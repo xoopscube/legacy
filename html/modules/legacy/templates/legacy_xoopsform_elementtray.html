@@ -1,0 +1,17 @@
+<{foreach from=$tray->getElements() item=element}>
+  <{if $flag}>
+    <{$tray->getDelimeter()}>
+  <{/if}>
+  <{if is_object($element) }>
+    <{if $element->getCaption() != ''}>
+      <{$element->getCaption()}>&nbsp;
+    <{/if}>
+    <{$element->render()}>
+    <{if !$element->isHidden()}>
+      <{assign var=flag value=true}>
+    <{/if}>
+  <{else}>
+    <{$element}>
+    <{assign var=flag value=true}>
+  <{/if}>
+<{/foreach}>

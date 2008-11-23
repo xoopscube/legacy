@@ -1,0 +1,10 @@
+<div class="adminnavi">
+  <a href="<{$module->getAdminIndex()|xoops_escape:link}>"><{$module->mXoopsModule->getShow('name')}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._HELP}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._HELP}>
+ <a href="<{$module->getAdminIndex()|xoops_escape:link}>"><{$module->mXoopsModule->getShow('name')}></a>
+</h3>
+
+<div class="help"><{$contents}></div>

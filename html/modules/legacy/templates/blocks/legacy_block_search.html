@@ -1,0 +1,7 @@
+<form style="margin-top: 0px;" action="<{$xoops_url}>/search.php" method="get">
+  <{xoops_input type=text name=query size=14 }>
+  <{xoops_input type=hidden name=andor value=AND}>
+  <{xoops_input type=hidden name=action value=results }><br />
+  <{xoops_input type=submit name=submit value=$smarty.const._MB_LEGACY_SEARCH }>
+</form>
+<a href="<{$xoops_url}>/search.php"><{$smarty.const._MB_LEGACY_ADVS}></a>

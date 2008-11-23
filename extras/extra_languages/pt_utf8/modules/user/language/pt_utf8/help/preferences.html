@@ -1,0 +1,87 @@
+<h4>User module - Preferences</h4>
+<h5>Allow new user registration?</h5>
+<p>Specifies whether anonymous users can register to your site. In case of YES, register.php is available, and <span class='highlight_block_name'>Login Block</span> shows the link to register.php. Even if case of No, you can add a new user in the user management.</p>
+<h5>Minimum length of password required</h5>
+<p>Specifies the minimum length of password. Long password makes a password harder to guess. Of course, the length isn't all factors of strong password. But, you should specify five or longer.</p>
+<h5>Minimum length of username required</h5>
+<p>Specifies the minimum length of username. This option isn't about security. Decide with just your preferences.</p>
+<h5>Allow users to change email address?</h5>
+<p>Specifies whether users can change their email address in user profile editor (edituser.php). In fact, this module doesn't send confirm-mail for users who changes email address.</p>
+<h5>Notify by mail when a new user is registered?</h5>
+<p>In the case where this option is Yes, the group specified by the next option can receive notification mail about new users' registrations.</p>
+<h5>Select a group to which new user notification mail will be sent</h5>
+<p>Specifies the group which get notification mail in the case where the previous option is Yes. Webmaster group is good usually for this option.</p>
+<h5>Select activation type of newly registered users</h5>
+<p>After registering, a user must be activated. Being activated means being able to log in. There are several ways to activate users.</p>
+<h6>Require activation by user</h6>
+<p>This is far and away the most popular setting in the world of website systems. A user gets an activation email when they register. They can then become able to login by clicking the activation URL on the mail. This choise is good for most of cases.</p>
+<h6>Activate automatically</h6>
+<p>In simple terms, there is really no activation mechanism, everyone is activated straight away. But, if you use this, you should pay attention to BOT. BOT may register and submit SPAM automatically. Therefore, this choice is good for closed segment.</p>
+<h6>Activation by administrators</h6>
+<p>A user can only be activated by direct approval from the group specified by the next option. This selection may force hard work to activators.</p>
+<h5>Select the level of strictness for username filtering</h5>
+<p>Select amount of freedom for username form following choises.</p>
+<h6>Strict (Only alphabets and numbers)</h6>
+<p>With this choice, your site allows the following characters for user name.</p>
+<ul>
+<li>Alphabets without case sensitive.</li>
+<li>Numbers.</li>
+<li>Under score (_).</li>
+<li>Hyphen (-).</li>
+</ul>
+<h6>Medium</h6>
+<p>With this choice, your site allows the following characters for user name.</p>
+<ul>
+<li>Alphabets without case sensitive.</li>
+<li>Numbers</li>
+<li>Underscore(_).</li>
+<li>Hyphen(-).</li>
+<li>Less than character(&lt;).</li>
+<li>Greater than character(&gt;).</li>
+<li>Comma(,).</li>
+<li>Period(.).</li>
+<li>Dollar($).</li>
+<li>Percent(%).</li>
+<li>Sharp(#).</li>
+<li>At sign(@).</li>
+<li>Exclamation point(!).</li>
+<li>Single quotation(').</li>
+<li>Double quotation(&quot;).</li>
+</ul>
+<h6>Light - allow 2byte characters</h6>
+<p>With this choice, your site allows all characters except control code. But, the choice may cause troubles for some modules. Therefore, this module doesn't recommend the choice.</p>
+<h5>Allow custom avatar upload?</h5>
+<p>Specifies whether a user can upload his favorite image file as his avatar to this site. Even if case of No, a user can choose his avatar from system avatars which administrators prepare.</p>
+<h5>Minimum posts required</h5>
+<p>If allow custom avatar upload, you don't need to touch this option.</p>
+<p>This is the minimum number of posts which users can get right of uploading custom avatar. It may have have poor taste. Zero is good.</p>
+<h5>Avatar image max width (pixel)</h5>
+<p>If you don't allow custom avatar upload, you don't need to touch this option.</p>
+<p>Specifies the limit width for custom avatar. In the case where a user upload a wider image than this value, this module displays error messages.</p>
+<h5>Avatar image max hight (pixel)</h5>
+<p>If you don't allow custom avatar upload, you don't need to touch this option.</p>
+<p>Specifies the limit height for custom avatar. In the case where a user upload a higher image than this value, this module displays error messages.</p>
+<h5>Avatar image max filesize (byte)</h5>
+<p>If you don't allow custom avatar upload, you don't need to touch this option.</p>
+<p>Specifies the limit filesize for custom avatar. In the case where a user upload a larger image file than this value, this module displays error messages.</p>
+<h5>Allow users to delete own account?</h5>
+<p>Specifies whether users can delete own account in the user profile edit. In case of Yes, users can go to the account delete dialog through the link from the user profile (userinfo.php). Because these dialogs about deleting are very simple, you should edit templates of them --- user_delete.html, user_delete_success.html.</p>
+<h5>Execution confirmation message</h5>
+<p>This is the message displayed in the account delete dialog. If you don't allow users to delete own account, you don't need to touch this option.</p>
+<h5>Enter names that should not be selected as username</h5>
+<p>This is patterns which your site doesn't permit as username. Separate each with a |. This is case insensitive and regex enabled. In addition, this rule does not apply to the user management in the control panel.</p>
+<p>If you don't allow anonymous users to register to this site, you don't need to touch this option.</p>
+<h5>Enter emails that should not be used in user profile</h5>
+<p>This is patterns which your site doesn't permit as email address. Separate each with a |. This is case insensitive and regex enabled. In addition, this rule does not apply to the user management in the control panel.</p>
+<h5>Display disclaimer?</h5>
+<p>Specify whether the user registration shows the disclaimer specified by the next option.</p>
+<h5>Registration disclaimer</h5>
+<p>This is the disclaimer shown in the user registration for anonymous user. If the previous option is No, you don't need to touch this option.</p>
+<h5>Name for user cookies</h5>
+<p>Specifies the cookie name for web browsers. In most of cases, you don't need to change this.</p>
+<h5>Use SSL for login?</h5>
+<p>You must install the special additional login script to activate SSL login. In case of YES, <span class="highlight_block_name">Login Block</span> shows the link whose name is "SSL Login" specified by next options. These options are for the compatibility with XOOPS2 JP. Perhaps, you can find better solutions than this for SSL Login. The script is in "/extra" directory.</p>
+<h5>SSL Post variable name</h5>
+<p>This option is for SSL Login, too. Specifies a name of the POST-request variable.</p>
+<h5>URL where SSL login page is located</h5>
+<p>This option is for SSL Login, too. Specifies URL where you have installed the special additional login script.</p>

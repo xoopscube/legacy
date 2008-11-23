@@ -1,0 +1,15 @@
+<{$form->getTitle()}>
+<form name='<{$form->getName()}>' id='<{$form->getName()}>' action='<{$form->getAction()}>' method='<{$form->getMethod()}>' <{$form->getExtra()}> >
+  <{foreach from=$form->getElements() item=element}>
+    <{if is_object($element) }>
+      <{if !$element->isHidden()}>
+        <b><{$element->getCaption()}></b><br/>
+        <{$element->render()}><br/>
+      <{else}>
+        <{$element->render()}>
+      <{/if}>
+    <{else}>
+      <{$element}>
+    <{/if}>
+  <{/foreach}>
+</form>

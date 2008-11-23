@@ -1,0 +1,65 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=ImagecategoryList"><{$smarty.const._MI_LEGACY_MENU_IMAGE_MANAGE}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_IMAGE_LIST}> (<{$category->getShow('imgcat_name')}>)</span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_IMAGE_LIST}> (<{$category->getShow('imgcat_name')}>)</h3>
+
+<ul class="toptab">
+  <li><a href="index.php?action=ImageCreate&amp;imgcat_id=<{$category->getShow('imgcat_id')}>"><{$smarty.const._AD_LEGACY_LANG_IMAGE_NEW}></a></li>
+</ul>
+
+<table class="outer">
+  <tr>
+    <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_ID}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_ID}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_ID}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_NAME}><br />
+      <{$smarty.const._MD_LEGACY_LANG_IMAGE_NICENAME}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_NICENAME}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_NICENAME}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._MD_LEGACY_LANG_IMAGE_MIMETYPE}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_MIMETYPE}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_MIMETYPE}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_CREATED}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_CREATED}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_CREATED}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAY}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_DISPLAY}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_DISPLAY}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_WEIGHT}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_WEIGHT}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_WEIGHT}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
+  </tr>
+  <{foreach item=obj from=$objects}>
+    <{if $obj->get('image_display') == 1}>
+      <tr class="<{cycle values='odd,even'}> active">
+    <{else}>
+      <tr class="<{cycle values='odd,even'}>">
+    <{/if}>
+      <td class="legacy_list_id"><{$obj->getShow('image_id')}></td>
+      <td class="legacy_list_image">
+        <{if $obj->mImageCategory != null}>
+          <{if $obj->mImageCategory->get('imgcat_storetype') == 'file'}>
+            <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>" alt="<{$obj->getShow('image_nicename')}>" title="<{$obj->getShow('image_nicename')}>" />
+          <{else}>
+            <img src="<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>" alt="<{$obj->getShow('image_nicename')}>" title="<{$obj->getShow('image_nicename')}>" />
+          <{/if}>
+        <{/if}>
+        <div class="legacy_list_imagetitle"><{$obj->getShow('image_nicename')}></div>
+      </td>
+      <td class="legacy_list_type"><{$obj->getShow('image_mimetype')}></td>
+      <td class="legacy_list_date"><{$obj->getShow('image_created')|xoops_formattimestamp:l}></td>
+      <td class="legacy_list_select"><{if $obj->get('image_display') == 1}><{$smarty.const._YES}><{else}><{$smarty.const._NO}><{/if}></td>
+      <td class="legacy_list_order"><{$obj->getShow('image_weight')}></td>
+      <td class="legacy_list_control">
+        <a href="./index.php?action=ImageEdit&amp;image_id=<{$obj->getShow('image_id')}>"><img src="<{"icons/edit.gif"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+        <a href="./index.php?action=ImageDelete&amp;image_id=<{$obj->getShow('image_id')}>"><img src="<{"icons/delete.gif"|theme}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
+      </td>
+    </tr>
+  <{/foreach}>
+</table>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>

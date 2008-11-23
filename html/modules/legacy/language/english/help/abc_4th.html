@@ -1,0 +1,119 @@
+<h4>Step Four --- Basic User Management</h4>
+<H5>Overview</h5>
+<p>In this section, you will learn the basics of user management. How to edit group permissions, create a new group and add a new user to groups.</p>
+
+<h5>Step Four (1) --- How to give permissions</h5>
+<p>Your account is that of an administrator and as such, you are able to do anything. But what do anonymous users and registered users see in your site? Let's find out. Click "logout" to become an anonymous user. This will take you  to the homepage. Once there, you notice that the main menu block no longer shows "news" and "forum". The reason is that anonymous users don't have permission to access these modules. So let's give our anonymous users some permissions. Login once again as the adminstrator and go to the control panel. In the User Module control menu, click <em>Group Management</em>.</p>
+
+<p><img src="<{'abc_4th_clickgroupmanagement.png'|helpimage}>" /></p>
+
+<p>You will see a list of all the groups.</p>
+
+<p><img src="<{'abc_4th_groupmanagement.png'|helpimage}>" /></p>
+
+<p>Since we have not created any of our own groups, these are the system-fixed groups, which you learned of in Step Two. On the right hand side of the row for Anonymous Users, there are a set of 4 icons. Click the permission icon of this row.</p>
+
+<p><img src="<{'abc_4th_groupmanagement_permission.png'|helpimage}>" /></p>
+
+<p>In the next screen, look at the top section, "System/module permissions". Here, each module is listed and for each you are offered two choices, "access" and "admin". In a large site, it is sometimes a good idea to have a trusted colleague take on some of the administration tasks for some modules. By selecting the "admin" checkbox, you can easily allow any group to have administration permissions for any module. Right now, though, we simply want the anonymous users to be able to have "access" to the <span class ="highlight_module_name">"news"</span> and <span class ="highlight_module_name">"forum"</span> modules. Select the "access" checkbox for both of these modules, then click <button>Submit</button></p>
+
+<p><img src="<{'abc_4th_groupperm_news_forum.png'|helpimage}>" /></p>
+
+<p>Let's confirm the result. Click "logout" to go back to the homepage as an Anonymous user. You will now be able to see the display you wanted.</p>
+
+<h5>Step Four (2) --- Create a new user</h5>
+<p>You also need to check what registered users can see on your site. For that, you need to create a new user as a test account. Login as administrator and go to the Admin side and the Control Panel. In the <span class ="highlight_module_name">User Module</span> control menu, click <em>User Management</em>. Next, click on "Add a new user".</p>
+
+<p><img src="<{'abc_4th_clickaddnewuser.png'|helpimage}>" /></p>
+
+<p>You will see the form for creating a new user. You must input User name (Login ID), email and password.</p>
+
+<p><img src="<{'abc_4th_useredit.png'|helpimage}>" /></p>
+
+<h6>User name</h6>
+<p>This is the user's Login ID. These must be unique. This time, enter "test".</p>
+
+<h6>Email address</h6>
+<p>You must enter a unique email address, this is a precondition of XOOPS2. For now, input an e-mail address different to your administrator account.</p>
+
+<p>It is not good manners to use dummy email addresses.</p>
+
+<h6>Password</h6>
+<p>Threre are two boxes for the password. Type the same password in the two boxes, the passwords must match. For now, input "test"</p>
+
+<p>Note that the Group setting is automatically set to "Registered Users". Click on <button>Submit</button></p>
+
+<p>Having created a new user successfully, go ahead and login with the new account. You can no longer see the news and forum links in the main menu block. Yes, that's right, it's because the registered users group doesn't have access permissions. Login as an Administrator and give access permissions to the registered users, in the same way that you gave permissions to the anonymous users group.</p>
+
+<h5>Step Four (4) --- Site Launched</h5>
+<p>Now let's launch your site! Make some final settings. You previously invalidated the new user registration. To change the setting back again, login as administrator and in the Control Panel, go to the User Module control menu and click <em>Preferences</em>.</p>
+
+<p>Enable "Allow new user registration?". Now, let's check some of these other settings, too.</p>
+
+<h6>Notify by mail when a new user is registered?</h6>
+<p>When a new user registers, specific groups can get email notification.</p>
+
+<h6>Select activation type of newly registered users</h6>
+<p>After registering, a user must be activated. Being activated means being able to log in. There are several ways to activate users.</p>
+<dl>
+  <dt>Require activation by user</dt>
+  <dd>This is far and away the most popular setting in the world of website systems. A user gets an activation email when they register. They can then become able to login by clicking the activation URL on the mail.</dd>
+  <dt>Activate automatically</dt>
+  <dd>In simple terms, there is really no activation mechanism, everyone is activated straight away.</dd>
+  <dt>Activation by administrators</dt>
+  <dd>A user can only be activated by direct approval from the administrators.</dd>
+</dl>
+
+<h6>Allow custom avatar upload?</h6>
+<p>This allows a user to upload their own avatars (picture/graphic), typically used in forums.</p>
+
+<h6>Site Launch</h6>
+<p>Everything is set! Click <button>Submit</button>!</p>
+
+<h5>Step Four (3) --- Add administrator team mate</h5>
+<p>Since many users will use your site, it can soon become difficult to manage your site by yourself. So, you decide to add your wiling friends as administrators. To do that, you first need to create a new group with specific permissions. Let's try it! First of all, let us assume that two of your friends, Jorn Dagrus and Michel Romano are currently registered users who we are going to elevate to become administrators.</p>
+
+<p>First you will need to create two new users, "John Dagrus" and "Sean Romano".</p>
+
+<p>Next, in the User Module control menu, go to <em>Group Management</em> and create a new group called "News Administrators". Now, you need to add "John Dagrus" and "Sean Romano" to the group. There are several ways to do this, here are two, using the Group Member function and the User Search function.</p>
+
+<h6>Group Member function</h6>
+<p>On the right hand side of the row for News Administrators, there are a set of icons. Click the icon on the far right of this row. This is the members icon.</p>
+
+<p><img src="<{'abc_4th_groupmanagement_members.png'|helpimage}>" /></p>
+
+<p>You will see two user lists --- a list of members and one of non-members.</p>
+
+<p><img src="<{'abc_4th_groupmember.png'|helpimage}>" /></p>
+
+<p>In the list of users who are not members of this group, the first column is labelled "Assign" and has a checkbox. Find "John" &amp; "Sean", click the checkbox in their rows, and click <button>Assign</button>. </p>
+
+<p><img src="<{'abc_4th_groupmember_select.png'|helpimage}>" /></p>
+
+<p>This function is a standard function, but it's not suseful when you have a lot of users because you can't search for users using this function.</p>
+
+<h6>User Search function</h6>
+<p>If the name of the users you are looking for is clear, try to search for them through "User Search". In the User Module control menu click <em>User Search</em>.</p>
+
+<p><img src="<{'abc_4th_clickusersearch.png'|helpimage}>" /></p>
+
+<p>You will see the user search form. You can find users by searching on lots of different parameters, including simply the user name.</p>
+
+<p><img src="<{'abc_4th_usersearch.png'|helpimage}>" /></p>
+
+<p>So, let's look for Sean. </p>
+
+<p><img src="<{'abc_4th_usersearch_username.png'|helpimage}>" /></p>
+
+<p>Then, click the edit-icon in the search result. This will show you the edit form and there you can change the Groups that Sean is a member of.</p>
+
+<p><img src="<{'abc_4th_usersearch_result.png'|helpimage}>" /></p>
+
+<h5>Summary</h5>
+<p>Well, you've just finished learning the basic uses of XOOPS Cube Legacy. Now you know modules, blocks and basic user management, it will take you no time at all to get up and running with a powerful yet easy to manage website solution. For more informations, use the other help files in XOOPS Cube Legacy and Google.</p>
+
+<p>Wishing your site a very successful future.</p>
+
+<h6>Note</h6>
+<p>XOOPS Cube Legacy only sets up a basic permission mechanism. This means that modules may have much greater permission controls. Also, XOOPS Cube has a role-based permission mechanism. If you want to understand XOOPS Cube more, you really should learn this.</p>
+

@@ -1,0 +1,49 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=TplsetList"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_MANAGE}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_EDIT}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_EDIT}> (<{$object->getShow('tplset_name')}>)</h3>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form action="./index.php?action=TplsetEdit" method="post">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=tplset_id value=$actionForm->get('tplset_id')}>
+  <table class="outer">
+    <tr>
+      <th colspan="2"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_EDIT}> (<{$object->getShow('tplset_name')}>)</th>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_NAME}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('tplset_name')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DESC}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=tplset_desc value=$actionForm->get('tplset_desc') size=50 maxlength=255}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_CREDITS}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_textarea name=tplset_credits rows=5 cols=50 value=$actionForm->get('tplset_credits')}>
+      </td>
+    </tr>
+    <tr>
+      <td class="foot" colspan="2">
+        <input class="formButton" type="submit" value="<{$smarty.const._EDIT}>" />
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      </td>
+    </tr>
+  </table>
+</form>

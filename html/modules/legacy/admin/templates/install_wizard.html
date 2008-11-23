@@ -1,0 +1,40 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
+  &raquo;&raquo; <a href="index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_CONF}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_CONF}></h3>
+
+<ul>
+  <li><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_ADVICE|replace:"_%s_":$module->getShow('name')}>
+</ul>
+
+<form method="post" action="">
+<{xoops_token form=$actionForm}>
+<input type="hidden" name="dirname" value="<{$module->getShow('dirname')}>" />
+<table class="outer">
+  <tr>
+    <th colspan="2"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_CONF}></th>
+  </tr>
+  <tr>
+    <td class="head legacy_list_image">
+      <img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.installer.image|xoops_escape:link}>" alt="<{$module->getShow('name')}>" title="<{$module->getShow('name')}>" />
+    </td>
+    <td class="even">
+      <h4 class="admintitle"><{$module->getShow('name')}></h4>
+      <ul>
+        <{foreach item=item from=$module->modinfo.installer.description}>
+          <li><{$item|xoops_escape}>
+        <{/foreach}>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="foot" colspan="2">
+      <input type="submit" value="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>" class="formButton" />
+    </td>
+  </tr>
+</table>
+</form>

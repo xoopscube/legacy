@@ -1,0 +1,50 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=BannerList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_BANNER_MANAGE}></a>
+  &raquo;&raquo; <a href="./index.php?action=BannerclientList"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_DELETE}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_DELETE}></h3>
+
+<div class="confirm"><{$smarty.const._AD_LEGACYRENDER_MESSAGE_CONFIRM_DELETE}></div>
+
+<form method="post" action="./index.php?action=BannerclientDelete">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=cid value=$actionForm->get('cid')}>
+  <table class="outer">
+    <tr>
+      <th colspan="2"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_DELETE}></th>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_CID}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('cid')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_NAME}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('name')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_CONTACT}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('contact')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_EMAIL}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('email')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_LOGIN}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('login')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_EXTRAINFO}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('extrainfo')}></td>
+    </tr>
+    <tr>
+      <td class="foot" colspan="2">
+        <input class="formButton" type="submit" value="<{$smarty.const._DELETE}>" />
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      </td>
+    </tr>
+  </table>
+</form>

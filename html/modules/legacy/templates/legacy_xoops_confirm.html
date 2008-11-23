@@ -1,0 +1,21 @@
+<div class='confirmMsg'>
+  <h4><{$message}></h4>
+  <form method="post" action="<{$action|xoops_escape}>">
+    <{xoops_input type=hidden name=$tokenName value=$tokenValue}>
+    <{foreach key=key item=value from=$hiddens}>
+      <{if is_array($value)}>
+        <{foreach key=radioName item=radioValue from=$value}>
+          <label><{xoops_input type=radio name=$key value=$radioValue}><{$radioName|xoops_escape}></label><br/>
+        <{/foreach}>
+      <{else}>
+        <{xoops_input type=hidden name=$key value=$value}>
+      <{/if}>
+    <{/foreach}>
+    <{if $submit}>
+      <input type="submit" name="confirm_submit" value="<{$submit}>" />
+    <{else}>
+      <input type="submit" name="confirm_submit" value="<{$smarty.const._SUBMIT}>" />
+    <{/if}>
+    <input type="button" name="confirm_back" value="<{$smarty.const._CANCEL}>"  onclick="javascript:history.go(-1);" />
+  </form>
+</div>

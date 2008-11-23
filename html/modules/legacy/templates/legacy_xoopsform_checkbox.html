@@ -1,0 +1,3 @@
+<{foreach from=$element->getOptions() key=value item=name}>
+  <label><input type='checkbox' name='<{$element->getName()}>' id='<{$element->getName()}>_<{$value}>' value='<{$value}>' <{if (count($element->getValue()) > 0 && in_array($value, $element->getValue()))}>checked="checked"<{/if}> <{$element->getExtra()}> /><{$name}></label>
+<{/foreach}>

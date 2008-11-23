@@ -1,0 +1,66 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=TplfileList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_TPLFILE_MANAGE}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_FILE_VIEW}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_FILE_VIEW}></h3>
+<script type="text/javascript">
+<!--
+function expandEditor( id, width, height )
+{
+  var element = document.getElementById( id );
+  if( element ) {
+    element.style.width = width + "px";
+    element.style.height = height + "px";
+  }
+  return false;
+}
+// -->
+</script>
+
+<table class="outer">
+  <tr>
+    <th colspan="2"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_FILE_VIEW}></th>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_TPLSET}></td>
+    <td class="<{cycle values="odd,even"}>"><b><{$object->getShow('tpl_tplset')}></b></td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_MODULE}></td>
+    <td class="<{cycle values="odd,even"}>"><b><{$object->getShow('tpl_module')}></b></td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_FILE}></td>
+    <td class="<{cycle values="odd,even"}>"><b><{$object->getShow('tpl_file')}></b></td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_DESC}></td>
+    <td class="<{cycle values="odd,even"}>"><{$object->getShow('tpl_desc')}></td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_SOURCE}></td>
+    <td class="<{cycle values="odd,even"}>">
+      <div class="legacyRender_TemplateManager_sizenavi">
+        <{$smarty.const._AD_LEGACYRENDER_LANG_MORE_SMALL}>
+        &raquo;&raquo;
+        <a href="javascript:void(0);" onclick="return expandEditor( 'tpl_source', '480', '360' );">[480x360]</a>
+        &raquo;
+        <a href="javascript:void(0);" onclick="return expandEditor( 'tpl_source', '600', '400' );">[600x400]</a>
+        &raquo;
+        <a href="javascript:void(0);" onclick="return expandEditor( 'tpl_source', '600', '600' );">[600x600]</a>
+        &raquo;
+        <a href="javascript:void(0);" onclick="return expandEditor( 'tpl_source', '640', '700' );">[640x700]</a>
+        &raquo;&raquo;
+        <{$smarty.const._AD_LEGACYRENDER_LANG_MORE_LARGE}>
+      </div>
+      <textarea name=tpl_source id=tpl_source class="legacyRender_TemplateManager_textarea" readonly="readonly"><{$object->Source->get('tpl_source')|xoops_escape:plain}></textarea>
+    </td>
+  </tr>
+    <tr>
+      <td colspan="2" class="foot">
+      <input type="button" value="<{$smarty.const._BACK}>" onclick="javascript:history.back()" class="formButton" />
+      </td>
+  </tr>
+</table>
