@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xoopscube-dynaactionform>
+	<form-bean name="GroupAdminDeleteForm" type="XCube_ActionForm">
+		<form-property name="groupid" type="Int" />
+	</form-bean>
+	<form-validation>
+		<field property="groupid" depends="required">
+			<arg0 key="const._MD_USER_LANG_GROUPID" />
+			<msg name="required" key="const._MD_USER_ERROR_REQUIRED" />
+		</field>
+	</form-validation>
+</xoopscube-dynaactionform>

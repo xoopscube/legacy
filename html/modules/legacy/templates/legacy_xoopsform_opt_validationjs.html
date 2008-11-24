@@ -1,0 +1,23 @@
+<{if $withtags}>
+  <!-- Start Form Vaidation JavaScript //-->
+  <script type='text/javascript'>
+  <!--//
+<{/if}>
+
+function xoopsFormValidate_<{$form->getName()}>() {
+	myform = window.document.<{$form->getName()}>;
+	<{foreach from=$required item=t_required}>
+	  if (myform.<{$t_required->getName()}>.value == "") {
+	    window.alert("<{$t_required->getMessageForJS()}>");
+	    myform.<{$t_required->getName()}>.focus();
+	    return false;
+	  }
+	<{/foreach}>
+	return true;
+}
+
+<{if $withtags}>
+  //-->
+  </script>
+  <!-- End Form Vaidation JavaScript //-->
+<{/if}>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xoopscube-dynaactionform>
+	<form-bean name="SmilesAdminEditForm" type="XCube_ActionForm">
+		<form-property name="id" type="Int" />
+		<form-property name="code" type="String" />
+		<form-property name="smile_url" type="ImageFile" />
+		<form-property name="emotion" type="String" />
+		<form-property name="display" type="Bool" />
+	</form-bean>
+	<form-validation>
+		<field property="id" depends="required">
+			<arg0 key="const._AD_LEGACY_LANG_ID" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+		</field>
+		<field property="code" depends="required,maxlength">
+			<arg0 key="const._MD_LEGACY_LANG_CODE" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_LEGACY_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="50" />
+		</field>
+		<field property="smile_url" depends="extension">
+			<msg name="extension" key="const._AD_LEGACY_ERROR_EXTENSION" />
+			<var name="extension" value="jpg,gif,png" />
+		</field>
+		<field property="emotion" depends="required,maxlength">
+			<arg0 key="const._MD_LEGACY_LANG_EMOTION" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_LEGACY_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="75" />
+		</field>
+	</form-validation>
+</xoopscube-dynaactionform>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xoopscube-dynaactionform>
+	<form-bean name="InstallWizardForm" type="XCube_ActionForm">
+		<form-property name="dirname" type="String" />
+		<form-property name="agree" type="Bool" />
+	</form-bean>
+	<form-validation>
+		<field property="agree" depends="min">
+			<msg name="min" key="const._AD_LEGACY_ERROR_PLEASE_AGREE" />
+			<var name="min" value="1" />
+		</field>
+	</form-validation>
+</xoopscube-dynaactionform>

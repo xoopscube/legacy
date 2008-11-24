@@ -1,0 +1,18 @@
+<h4>Outline</h4>
+<ul>
+<li>This module adds caching functionality to your site, which can reduce the sever load considerably when your site has a lot of access.</li>
+<li>However, there still exists some minor problems to be fixed in the future such as the cache exposing contents to those that should not have access.</li>
+<li>This module enables the function for two types of user group (i.e. guest and registered user groups). Caching contents for other user groups is not available at this time.</li>
+</ul>
+<h4>Cache maintainance using the clear cache block</h4>
+<ul>
+<li>The clear cache block will invalidate all the cached contents when the block is viewed by a user.</li>
+<li>We recommend setting the block accessible by the guest users, and the clearance interval to "one day" in block preference, which would then purge all the cached contents once a day.</li>
+<li>The module might create a large amount of cached files, but it hardly becomes a problem if you use the clear cache block properly as recommended.</li>
+</ul>
+<h4>How to set up</h4>
+<ul>
+<li>Please add the following two lines to the the configuration file, under the [Cube] block.</li>
+<li>CacheSystem.path=/modules/stdCache/kernel</li>
+<li>CacheSystem.class=StdRenderCache</li>
+</ul>

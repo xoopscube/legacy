@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xoopscube-dynaactionform>
+	<form-bean name="RecountForm" type="XCube_ActionForm">
+		<form-property name="uid" type="Int" />
+	</form-bean>
+	<form-validation>
+		<field property="uid" depends="required,objectExist">
+			<arg0 key="const._MD_USER_LANG_UID" />
+			<msg name="required" key="const._MD_USER_ERROR_REQUIRED" />
+			<msg name="objectExist" key="const._AD_USER_ERROR_OBJECTEXIST" /> 
+			<var name="handler" value="users" />
+			<var name="module" value="user" />
+		</field>
+	</form-validation>
+</xoopscube-dynaactionform>

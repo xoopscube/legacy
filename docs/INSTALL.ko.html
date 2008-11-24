@@ -1,0 +1,272 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=EUC-KR">
+<title>XOOPS Cube 설치 가이드</title>
+<meta name="keywords" content="XOOPS Cube docs" />
+<meta name="description" content="XOOPS Cube" />
+
+<style type="text/css">
+
+body {margin:15px; padding:0; background:#f8f8f8; color:#000; font-family:font-family:Verdana, Helvetica, Tahoma, Arial, sans-serif; font-size:13px; line-height:140%; text-align:center;}
+ul, ol {margin:0; padding:0;}
+li {margin-left:60px;}
+
+h1, h2, h3, h4, h5 {margin:0.5em;}
+h1 {font-size:150%;}
+h2 {font-size:140%;}
+h3 {font-size:130%;}
+h4 {font-size:120%; padding:5px; padding-left:26px; background:transparent url(images/title.png) no-repeat center left; border-bottom:1px solid #cccccc;}
+h5 {font-size:110%:}
+
+
+.error {color:#CC3333; font-weight:bold;}
+.indent {margin-left:40px;}
+.additions {color:#008800;}
+.deletions {color:#880000;}
+
+.page {background:#FFFFFF; padding:15px; margin:0 auto; border:1px solid #cccccc; text-align:left;}
+.page p {padding:0 10px; margin-left:20px;}
+
+.info { color:#666666; padding:10px 20px; }
+
+.copyright { font-size: 11px; color: #AAAAAA; text-align: right; }
+.copyright A { color: #AAAAAA; }
+</style>
+</head>
+
+<body>
+<div class="page">
+<h2>XOOPS Cube Legacy 설치 방법</h2>
+<hr noshade size="1" />
+<h4>알아두어야 할 기본 지식</h4>
+<p>
+<a href="http://xoopscube.sourceforge.net/">XOOPS Cube Legacy</a> 는 객체지향(Object Oriented)적 디자인의 PHP 오픈소스 프로그램입니다.
+현재 다양한 운영환경을 지원하고 있으며..향후 지원폭을 계속 늘려갈 것입니다.
+짧은 시간내에 간단히..그러나 정말로 멋진 커뮤니티사이트, 인트라넷용 포탈사이트, 기업 포탈사이트, 웹 블로그 등을 작성하시길 원하신다면 최적의 선택이 될 것입니다.
+</p>
+<p>
+XOOPS Cube Legacy의 라이센스는 <a href='http://xoopscube.sourceforge.net/license/GPL_V2.txt' target='_blank'>GNU General Public License (GPL  Ver.2)</a>입니다. <br />
+단, 포함되어져 있는 XOOPS Cube 코어파일들의 라이센스는 <a href='http://xoopscube.sourceforge.net/license/bsd_licenses.txt' target='_blank'>BSD license</a>입니다. <br />
+( 라이센스관련 자세한 사항은 패키지에 포함되어져있는 COPYING.txt 파일을 참조하시기 바랍니다. )
+</p>
+<p>
+XOOPS Cube Legacy를 설치하시기 전에 웹사이트구축과 관련된 기본적 지식을 책이나 관련 사이트 등을 참고하여 미리 어느 정도 학습해 두실 것을 권합니다.
+</p>
+<u><b>요구사양</b></u>
+<p>
+<ul>
+<li>웹서버 (<a href='http://www.apache.org/' target='_blank'>Apache</a>, IIS ): #XOOPS Cube 공식 지원 웹서버는 Apache</li>
+<li><a href='http://www.php.net/' target='_blank'>PHP</a> 4.3.2 이상 </li>
+<li><a href='http://www.mysql.com/' target='_blank'>MySQL</a> Database 3.23.XX</li>
+</ul>
+</p>
+<u><b>설치전 준비사항</b></u>
+<ul>
+<li>웹서버, PHP, 데이타베이스서버를  올바르게 설치한다.</li>
+<li>XOOPS Cube Legacy용의 데이타베이스를 하나 준비한다.<br />
+( 데이타베이스 작성권한이 없으실 경우는 서버관리자에게 문의/요청하시기 바랍니다. )</li>
+<li>준비한 데이타베이스에 접근가능한 데이타베이스서버 사용자계정을 준비한다.</li>
+<li>XOOPS Cube Legacy 파일들을 서버에 업로드한 후, uploads/, cache/, templates_c/ 디렉토리와  mainfile.php 파일을 쓰기가능상태로 설정한다.</li>
+<li>웹브라우저를  cookie 가능,  JavaScript 가능으로 설정한다.</li>
+</ul>
+<br />
+<br />
+
+<h4>설치법 간단요약</h4>
+<p>
+##XOOPS Cube 한국어버전 설치법(1) - 한국어언어팩을 이용한 설치<br />
+<br />
+(1)XOOPS Cube코어를 다운받는다.<br />
+xoopcube.org 에서 최신버전을 다운받습니다.<br />
+http://www.xoopscube.org<br />
+<br />
+(2)저희 사이트의 다운로드코너나 혹은.. dev.xoops.org 의 한국어버전 프로젝트 페이지에서 한국어 언어팩을 다운받습니다.<br />
+(EUC-KR 과 UTF-8(유니코드) 버전중..선택) <br />
+프로젝트페이지:<br />
+http://dev.xoops.org/modules/xfmod/project/?group_id=1189<br />
+<br />
+(3)언어팩을 압축해제하여..내용물을.. (1)에서 다운받은..코어파일들에..추가합니다.<br />
+(이미지파일의 경우엔..덮어쓰기)<br />
+<br />
+(4)파일을 서버에 업로드하셔야 겠죠!<br />
+(위의 설치전 준비사항 참고하세요!)<br />
+<br />
+(5)이제.. 설치를 시작합니다.<br />
+설치는 설치마법사를 통해..간단히..되므로..설치마법사를....그냥..따라가시면..됩니다.<br />
+--설치시 사용할 언어는..<br />
+EUC-KR의 경우.. korean 을<br />
+UTF-8 의 경우... koreanutf 를 선택하세요.<br />
+--XOOPS Cube루트 혹은... XOOPS Cube루트/install/index.php 를 브라우저로 액세스하시면.. 설치마법사가 시작됩니다.<br />
+예1) http://127.0.0.1/html/index.php (테스트용 로컬서버의 경우)<br />
+예2) http://www.xoops.ne.kr/xoopscube/index.php<br /> 
+       (물론 실전에선 본인의 URL을 입력하셔야겠죠! )
+</p>
+<p>
+##XOOPS Cube 한국어버전 설치법(2) - XOOPS Cube Korean 풀 패키지를 이용한 설치<br />
+<br />
+(1)저희 XOOPS Cube 한국어 지원 사이트에서 XOOPS Cube Korean 풀 패키지를 다운받습니다.<br />
+(EUC-KR 과 UTF-8(유니코드) 버전중..선택) <br />
+<br />
+(2)압축해제후 파일을 서버에 업로드하셔야 겠죠!<br />
+(위의 설치전 준비사항 참고하세요!)<br />
+<br />
+(4)이제.. 설치를 시작합니다.<br />
+설치는 설치마법사를 통해..간단히..되므로..설치마법사를....그냥..따라가시면..됩니다.<br />
+--설치시 사용할 언어는..<br />
+EUC-KR의 경우.. korean 을<br />
+UTF-8 의 경우... koreanutf 를 선택하세요.<br />
+--XOOPS Cube루트 혹은... XOOPS Cube루트/install/index.php 를 브라우저로 액세스하시면.. 설치마법사가 시작됩니다.<br />
+예1) http://127.0.0.1/html/index.php (테스트용 로컬서버의 경우)<br />
+예2) http://www.xoops.ne.kr/xoopscube/index.php<br /> 
+       (물론 실전에선 본인의 URL을 입력하셔야겠죠! )
+</p>
+
+<h4>설치 단계별 상세 설명</h4>
+<p>
+XOOPS Cube루트 혹은... XOOPS Cube루트/install/index.php 를 브라우저로 액세스하시면..<br />
+아래 화면과 같이 설치마법사가 시작됩니다.<br />
+음..<br />
+먼저 설치할 언어를 선택하셔야 겠죠! <br />
+EUC-KR의 경우.. korean 을<br />
+UTF-8 의 경우... koreanutf 를 선택하신후 Next 버튼을 클릭하시면 됩니다.
+</p>
+<p><img src="images/korean/install001.gif" border="0" /></p>
+
+<p>
+위의 알아두어야할 기본 지식 항목에서도 언급한 <br />
+XOOPS Cube에 대한 간단한 소개글, 요구사항, 설치전 준비사항등이 표시되니..<br />
+다시 한번 주의깊게 읽어보신 후 <br />
+다음 버튼을 클릭해 다음 화면으로 이동하시기 바랍니다. 
+</p>
+
+<p><img src="images/korean/install002.gif" border="0" /></p>
+
+<p>
+설치전 준비사항 항목에서 언급한 <br />
+파일/디렉토리에 대한 퍼미션 설정이 올바른지 체크합니다.<br />
+녹색 아이콘이 표시될 경우엔 정상설정을 의미하고...<br />
+빨간색 아이콘이 표시될 경우엔 설정이 잘못되었음을 의미하니..다시 확인후 재설정하시면 됩니다.<br />
+모두 정상적으로 설정된 경우(모두 녹색아이콘이 표시된 경우)엔..<br />
+다음 버튼을 클릭해 다음 화면으로 이동하시면 되겠죠!<br />
+</p>
+
+<p><img src="images/korean/install003.gif" border="0" /></p>
+
+<p>
+다음은 <br />
+데이타베이스, PATH, URL 을 설정하셔야 합니다.<br />
+설명글을..참고하여 설정해 주시면 됩니다.<br />
+( 보안을 위해 테이블 접두어는 xoops 이외의 값을 사용하시길 권합니다.) <br />
+용어의 의미가 잘 이해되지 않는 초보분들은 <br />
+서버관리자등에게 관련사항을 문의하신 후 설정하시면 되겠죠!
+</p>
+<p><img src="images/korean/install004.gif" border="0" /></p>
+
+<p>
+이전화면에서 입력한 데이타베이스, PATH, URL 관련 설정값들이..<br />
+정상적으로 입력되었는지 다시 한번 확인하는 화면입니다.<br />
+다시 한번 주의깊게 확인하신 후 <br />
+정상적으로 입력된 경우엔 다음 버튼을 이용해 다음 화면으로..<br />
+잘못입력된 경우엔 뒤로 버튼을 클릭해 이전화면으로..<br />
+이동하시면 되겠죠! 
+</p>
+
+<p><img src="images/korean/install005.gif" border="0" /></p>
+
+<p>
+이전화면에서 입력한 데이타베이스, PATH, URL 관련 설정값들이..<br />
+mainfile.php 에 기록처리됩니다.<br />
+모두 정상적으로 기록된 경우...<br />
+(녹색아이콘:기록성공, 빨간아이콘:기록실패 을 의미)<br />
+다음 버튼을 클릭해 다음 화면으로 이동하시면 되겠죠!
+</p>
+
+<p><img src="images/korean/install006.gif" border="0" /></p>
+
+<p>
+mainfile.php 에 기록처리된<br />
+XOOPS Cube 디렉토리의 경로, XOOPS Cube의 URL 설정값이 <br />
+설치마법사가 검출한 값과 일치하는지를 확인합니다.<br />
+( 녹색 아이콘: 일치함을 의미)<br />
+( 붉은색 아이콘: 불일치를 의미)<br />
+정상적으로 일치하는 경우엔 다음 버튼을 클릭하여 다음화면으로 이동하시면 되겠죠!<br />
+그렇지 않은 경우엔 뒤로 버튼을 클릭해 다시 확인후 설정해 주시면 됩니다.<br />
+( 특수 설정환경하에서 올바르게 설정하였음에도 불구하고 <br />
+  붉은색 아이콘(불일치)이 표시되는 경우가 발생할 가능성이 있습니다.<br />
+  그럴 경우엔 무시하시고 다음 버튼을 클릭해 다음화면으로 이동하시며 됩니다. )
+</p>
+<p><img src="images/korean/install007.gif" border="0" /></p>
+
+<p>
+이전설정화면에서 입력한 <br />
+데이타베이스 관련 설정값들을<br />
+다시 한번 확인하는 화면입니다.<br />
+주의깊게 다시 한번 확인하신후<br />
+올바르게 입력/설정 되었다면<br />
+다음 버튼을 클릭해 다음화면으로 이동하시면 됩니다.
+</p>
+<p><img src="images/korean/install008.gif" border="0" /></p>
+
+<p>
+이전 설정화면에서 입력한<br />
+데이타베이스관련 설정값을 이용해<br />
+설치마법사가<br />
+데이타베이스 서버에서 접속테스트 및 사용할 데이타베이스의 존재확인 테스트를<br />
+실시합니다.<br />
+(에러가 발생한 경우엔 붉은색 아이콘이 표시되니 올바른 설정값으로 다시 설치하셔야 합니다.)
+</p>
+<p><img src="images/korean/install009.gif" border="0" /></p>
+<p><img src="images/korean/install010.gif" border="0" /></p>
+<p><img src="images/korean/install011.gif" border="0" /></p>
+
+<p>
+XOOPS Cube 에서 사용할 데이타베이스 테이블이 작성처리되어<br />
+그 작업결과가 표시됩니다.<br />
+(작성에 성공한 경우엔 녹색 아이콘, 실패한 경우엔 붉은색 아이콘이 표시됩니다.)<br />
+모두 정상적으로 작성되었다면 다음 버튼을 클릭해 다음 화면으로 이동하시면 됩니다.
+</p>
+<p><img src="images/korean/install012.gif" border="0" /></p>
+
+<p>
+사이트관리자용의 계정을 작성하는 화면입니다.<br />
+(암호는 되도록 남들이 추측하기 힘든 값으로 설정하시는게 좋겠죠!)<br />
+설치완료후 이 관리자계정으로 로그인하셔서 사이트관리를 하셔야 하니..<br />
+반드시 잊지말고 기억하셔야만 합니다. 
+</p>
+<p><img src="images/korean/install013.gif" border="0" /></p>
+
+<p>
+XOOPS Cube 에서 사용할 초기 기본설정값등이 기록/작성되어져..<br />
+그 작업결과가 표시됩니다.<br />
+모두 정상적으로 기록되어 녹색아이콘이 표시되어 졌다면<br />
+다음 버튼을 클릭해 다음화면으로 이동하시면 되겠죠!
+</p>
+<p><img src="images/korean/install014.gif" border="0" /></p>
+
+<h4>설치 제 1단계 작업 완료!!</h4>
+<p><img src="images/korean/install015.gif" border="0" /></p>
+<p><img src="images/korean/install016.gif" border="0" /></p>
+<p><img src="images/korean/install017.gif" border="0" /></p>
+<p><img src="images/korean/install018.gif" border="0" /></p>
+<p>
+이것저것 길게 설명하였습니다만...<br />
+설정값들만 제대한 입력하시면<br />
+설치완료까지...실제적으로 몇분 밖에 걸리지 않습니다.<br />
+(음...공개서버에 설치하시기 전에..<br />
+ 먼저 테스트서버에서 설치테스트를..한번 해 보실 것을 권합니다.)<br />
+<br />
+그럼^^<br />
+XOOPS Cube 의 세계에 풍덩 빠져보시기 바랍니다.<br />
+</p>
+<p>
+#####<br />
+상세한 정보가 필요하신 분들은<br />
+XOOPS Cube FAQ 혹은<br /> 
+ XOOPS Cube 한국어 지원 사이트의 관련 포럼을<br /> 
+참조해 주시기 바랍니다.<br /><br />
+<a href="http://xoopscube.sourceforge.net/">XOOPS Cube Project</a> <br />
+<a href="http://xoopscube.org/modules/pukiwiki/">XOOPS Cube FAQ</a> <br />
+<a href="http://www.xoops.ne.kr/xoopscube/">XOOPS Cube 한국어 지원 사이트<a> <br />
+</p>
+</body>
+</html>

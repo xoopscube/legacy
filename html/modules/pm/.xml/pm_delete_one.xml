@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xoopscube-dynaactionform>
+	<form-bean name="DeleteOneForm" type="XCube_ActionForm">
+		<form-property name="msg_id" type="Int" />
+	</form-bean>
+	<form-validation>
+		<field property="msg_id" depends="required,objectExist">
+			<arg0 key="const._MD_PM_LANG_MSG_ID" />
+			<msg name="required" key="const._MD_PM_ERROR_REQUIRED" />
+			<msg name="objectExist" key="const._MD_PM_ERROR_OBJECTEXIST" />
+			<var name="handler" value="privmessage" />
+		</field>
+	</form-validation>
+</xoopscube-dynaactionform>

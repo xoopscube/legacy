@@ -1,0 +1,32 @@
+<script type="text/javascript"><!--//
+	function doSmilie(addSmilie) {
+	var currentMessage = window.opener.xoopsGetElementById("<{$targetName}>").value;
+    window.opener.xoopsGetElementById("<{$targetName}>").value=currentMessage+addSmilie;
+    return;
+    }
+    //-->
+</script>
+
+<table width="100%" class="outer">
+  <tr>
+    <th colspan="3"><{$smarty.const._MD_LEGACY_LANG_SMILIES}></th>
+  </tr>
+  <tr class="head">
+    <td><{$smarty.const._MD_LEGACY_LANG_CODE}></td>
+    <td><{$smarty.const._MD_LEGACY_LANG_EMOTION}></td>
+    <td><{$smarty.const._MD_LEGACY_LANG_IMAGE}></td>
+  </tr>
+  <{foreach item=obj from=$objects}>
+    <tr class="<{cycle values="even,odd"}>">
+      <td><{$obj->getShow('code')}></td>
+      <td><{$obj->getShow('emotion')}></td>
+      <td>
+        <a href="#" onclick='doSmilie(" <{$obj->getShow('code')}> "); return false;'><img src='<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('smile_url')}>' alt='<{$obj->getShow('emotion')}>' title='<{$obj->getShow('emotion')}>' /></a>
+      </td>
+    </tr>
+  <{/foreach}>
+</table>
+<div style="text-align:center;"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+<br />
+
+<p><{$smarty.const._MD_LEGACY_LANG_CLICKASMILIE}></p>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cubson-mapping>
+  <class name="bannerclient">
+    <id name="cid" type="XOBJ_DTYPE_INT" column="cid">
+      <generator type="increment" />
+    </id>
+    <property name="name" type="XOBJ_DTYPE_STRING" column="name" not-null="true" length="60" />
+    <property name="contact" type="XOBJ_DTYPE_STRING" column="contact" not-null="true" length="60" />
+    <property name="email" type="XOBJ_DTYPE_STRING" column="email" not-null="true" length="60" />
+    <property name="login" type="XOBJ_DTYPE_STRING" column="login" not-null="true" length="10" />
+    <property name="passwd" type="XOBJ_DTYPE_STRING" column="passwd" not-null="true" length="10" />
+    <property name="extrainfo" type="XOBJ_DTYPE_TEXT" column="extrainfo" not-null="true" />
+    <set name="mBanners">
+      <key>
+        <column name="cid" />
+      </key>
+      <one-to-many class="Entity.banner" />
+    </set>
+    <set name="mFinishBanners">
+      <key>
+        <column name="cid" />
+      </key>
+      <one-to-many class="Entity.bannerfinish" />
+    </set>
+  </class>
+</cubson-mapping>

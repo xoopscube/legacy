@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xoopscube-dynaactionform>
+	<form-bean name="SearchShowallbyuserForm" type="Legacy_SearchShowallForm">
+		<form-property name="mid" type="Int" />
+		<form-property name="uid" type="Int" />
+		<form-property name="andor" type="String" />
+		<form-property name="query" type="String" />
+		<form-property name="start" type="Int" />
+	</form-bean>
+	<form-validation>
+		<field property="andor" depends="mask">
+			<arg0 key="const._MD_LEGACY_LANG_ANDOR" />
+			<msg name="mask" key="const._MD_LEGACY_ERROR_MASK" />
+			<var name="mask" value="/(AND|OR|exact)/" />
+		</field>
+	</form-validation>
+</xoopscube-dynaactionform>

@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta http-equiv="content-style-type" content="text/css" />
+<title><{$legacy_sitename|xoops_escape}> : <{$smarty.const._CPHOME}> : <{$legacy_pagetitle|xoops_escape}></title>
+<script type="text/javascript" src="<{$xoops_url}>/include/xoops.js"></script>
+<{stylesheet file=style.css}>
+<{stylesheet file=module.css}>
+
+<script type="text/javascript">
+<!-- <![CDATA[
+var cid = <{if $smarty.get.fct == "preferences" && $smarty.get.mod > 0}><{$smarty.get.mod}><{else}><{$currentModule->mXoopsModule->get('mid')}><{/if}>;
+function ccToggle(id)
+{
+	el = xoopsGetElementById('c'+id).style;
+	if (el.display == 'block') {
+		el.display = 'none';
+		xoopsGetElementById('t'+id).className = 'head';
+		xoopsGetElementById('i'+id).src = '<{"design/navy.gif"|theme}>';
+	} else {
+		el.display = 'block';
+		xoopsGetElementById('t'+id).className = 'head2';
+		xoopsGetElementById('i'+id).src = '<{"design/orange.gif"|theme}>';
+	}
+}
+// ]]> -->
+</script>
+</head>
+<body onload="ccToggle(cid);">
+<div id="container">
+
+<table cellspacing="0" id="header">
+<tr>
+<td class="logo">
+  <a href="<{$xoops_url}>/admin.php"><img src="<{"design/logo.gif"|theme}>" alt="Admin Home" /></a>
+</td>
+<td class="searchbar">
+  <{*  <{$xoops_lblocks.action_search.content}> *}>
+  <form action="<{$xoops_url}>/modules/legacy/admin/index.php?action=actSearch" method="post" class="searchBox">
+  <input type="text" size="40" name="keywords" />
+  <input type="submit" value="Search" />
+  </form>
+</td>
+</tr>
+<tr>
+<td class="topnav" colspan="2">
+<img src="<{"design/menulist.gif"|theme}>" alt="" /> <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
+<img src="<{"design/menulist.gif"|theme}>" alt="" /> <a href="<{$xoops_url}>/"><{$smarty.const._YOURHOME}></a>
+<img src="<{"design/menulist.gif"|theme}>" alt="" /> <a href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._LOGOUT}></a>
+</td>
+</tr>
+</table>
+
+<table cellspacing="0">
+<tr>
+<td id="leftcolumn">
+  <{$xoops_lblocks.sidemenu.content}>
+
+  <{foreach name=lblock item=block from=$xoops_lblocks}>
+  <{if $block.name != 'action_search' && $block.name != 'sidemenu'}>
+  <{$block.content}>
+  <{/if}>
+  <{/foreach}>
+</td>
+<td id="centercolumn">
+
+<noscript>
+  <div id="menunavi">
+  <h2><{$currentModule->mXoopsModule->getShow('name')}></h2>
+  <{if $currentModule->getAdminMenu()}>
+    <ul class="submenunavi">
+      <{foreach item=menu from=$currentModule->getAdminMenu()}>
+        <{if $menu.show !== false}>
+          <li><a href="<{$menu.link|xoops_escape:link}>"><{$menu.title|xoops_escape}></a></li>
+        <{/if}>
+      <{/foreach}>
+    </ul>
+  <{/if}>
+  </div>
+</noscript>
+
+  <div id="contentBody"><{$xoops_contents}></div>
+  <div class="return_top"><a href="#container"><{$smarty.const._RETURN_TOP}></a></div>
+  
+</td>
+</tr>
+</table>
+
+<div id="footer">Powered by&nbsp;<{$smarty.const.XOOPS_VERSION}>&copy; 2001-2006 <a href="http://xoopscube.sourceforge.net/" target="_blank">XOOPS Cube Project</a></div>
+
+</div>
+</body>
+</html>
+<{$stdout_buffer}>

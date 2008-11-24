@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xoopscube-dynaactionform>
+	<form-bean name="NewblocksAdminEditForm" type="XCube_ActionForm">
+		<form-property name="bid" type="Int" />
+		<form-property name="mid" type="Int" />
+		<form-property name="func_num" type="Int" />
+		<form-property name="options" type="String" />
+		<form-property name="name" type="String" />
+		<form-property name="title" type="String" />
+		<form-property name="content" type="Text" />
+		<form-property name="side" type="Bool" />
+		<form-property name="weight" type="Int" />
+		<form-property name="visible" type="Bool" />
+		<form-property name="block_type" type="String" />
+		<form-property name="c_type" type="String" />
+		<form-property name="isactive" type="Bool" />
+		<form-property name="dirname" type="String" />
+		<form-property name="func_file" type="String" />
+		<form-property name="show_func" type="String" />
+		<form-property name="edit_func" type="String" />
+		<form-property name="template" type="String" />
+		<form-property name="bcachetime" type="Int" />
+		<form-property name="last_modified" type="Int" />
+	</form-bean>
+	<form-validation>
+		<field property="bid" depends="required">
+			<arg0 key="const._AD_LEGACY_LANG_BID" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+		</field>
+		<field property="mid" depends="required">
+			<arg0 key="const._AD_LEGACY_LANG_MID" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+		</field>
+		<field property="func_num" depends="required">
+			<arg0 key="const._AD_LEGACY_LANG_FUNC_NUM" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+		</field>
+		<field property="options" depends="required,maxlength">
+			<arg0 key="const._AD_LEGACY_LANG_OPTIONS" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_LEGACY_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="255" />
+		</field>
+		<field property="name" depends="required,maxlength">
+			<arg0 key="const._AD_LEGACY_LANG_NAME" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_LEGACY_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="150" />
+		</field>
+		<field property="title" depends="required,maxlength">
+			<arg0 key="const._AD_LEGACY_LANG_TITLE" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_LEGACY_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="255" />
+		</field>
+		<field property="content" depends="required">
+			<arg0 key="const._AD_LEGACY_LANG_CONTENT" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+		</field>
+		<field property="weight" depends="required">
+			<arg0 key="const._AD_LEGACY_LANG_WEIGHT" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+		</field>
+		<field property="block_type" depends="required,maxlength">
+			<arg0 key="const._AD_LEGACY_LANG_BLOCK_TYPE" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_LEGACY_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="1" />
+		</field>
+		<field property="c_type" depends="required,maxlength">
+			<arg0 key="const._AD_LEGACY_LANG_C_TYPE" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_LEGACY_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="1" />
+		</field>
+		<field property="dirname" depends="required,maxlength">
+			<arg0 key="const._AD_LEGACY_LANG_DIRNAME" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_LEGACY_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="50" />
+		</field>
+		<field property="func_file" depends="required,maxlength">
+			<arg0 key="const._AD_LEGACY_LANG_FUNC_FILE" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_LEGACY_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="50" />
+		</field>
+		<field property="show_func" depends="required,maxlength">
+			<arg0 key="const._AD_LEGACY_LANG_SHOW_FUNC" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_LEGACY_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="50" />
+		</field>
+		<field property="edit_func" depends="required,maxlength">
+			<arg0 key="const._AD_LEGACY_LANG_EDIT_FUNC" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_LEGACY_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="50" />
+		</field>
+		<field property="template" depends="required,maxlength">
+			<arg0 key="const._AD_LEGACY_LANG_TEMPLATE" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_LEGACY_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="50" />
+		</field>
+		<field property="bcachetime" depends="required">
+			<arg0 key="const._AD_LEGACY_LANG_BCACHETIME" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+		</field>
+		<field property="last_modified" depends="required">
+			<arg0 key="const._AD_LEGACY_LANG_LAST_MODIFIED" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+		</field>
+	</form-validation>
+</xoopscube-dynaactionform>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xoopscube-dynaactionform>
+	<form-bean name="GroupMemberEditForm" type="XCube_ActionForm">
+		<form-property name="groupid" type="Int" />
+		<form-property name="uid" type="Int[]" />
+	</form-bean>
+	<form-validation>
+		<field property="uid" depends="intRange">
+			<msg name="intRange" key="const._AD_USER_ERROR_REQUEST_IS_WRONG" />
+			<var name="min" value="1" />
+			<var name="max" value="2" />
+		</field>
+	</form-validation>
+</xoopscube-dynaactionform>

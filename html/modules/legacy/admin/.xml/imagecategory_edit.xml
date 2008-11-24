@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xoopscube-dynaactionform>
+	<form-bean name="ImagecategoryAdminEditForm" type="XCube_ActionForm">
+		<form-property name="imgcat_id" type="Int" />
+		<form-property name="imgcat_name" type="String" />
+		<form-property name="imgcat_maxsize" type="Int" />
+		<form-property name="imgcat_maxwidth" type="Int" />
+		<form-property name="imgcat_maxheight" type="Int" />
+		<form-property name="imgcat_display" type="Bool" />
+		<form-property name="imgcat_weight" type="Int" />
+
+    <form-property name="readgroups" type="Int[]" />
+    <form-property name="uploadgroups" type="Int[]" />
+  </form-bean>
+	<form-validation>
+		<field property="imgcat_id" depends="required">
+			<arg0 key="const._AD_LEGACY_LANG_IMGCAT_ID" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+		</field>
+		<field property="imgcat_name" depends="required,maxlength">
+			<arg0 key="const._AD_LEGACY_LANG_IMGCAT_NAME" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_LEGACY_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="100" />
+		</field>
+		<field property="imgcat_maxsize" depends="required">
+			<arg0 key="const._AD_LEGACY_LANG_IMGCAT_MAXSIZE" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+		</field>
+		<field property="imgcat_maxwidth" depends="required">
+			<arg0 key="const._AD_LEGACY_LANG_IMGCAT_MAXWIDTH" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+		</field>
+		<field property="imgcat_maxheight" depends="required">
+			<arg0 key="const._AD_LEGACY_LANG_IMGCAT_MAXHEIGHT" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+		</field>
+		<field property="imgcat_weight" depends="required">
+			<arg0 key="const._AD_LEGACY_LANG_IMGCAT_WEIGHT" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+		</field>
+    <field property="readgroups" depends="objectExist">
+      <arg0 key="const._AD_LEGACY_LANG_IMGCAT_READ_GROUPS" />
+      <msg name="objectExist" key="const._AD_LEGACY_ERROR_IMGCAT_READGROUPS" />
+      <var name="handler" value="group" />
+    </field>
+    <field property="uploadgroups" depends="objectExist">
+      <arg0 key="const._AD_LEGACY_LANG_IMGCAT_UPLOAD_GROUPS" />
+      <msg name="objectExist" key="const._AD_LEGACY_ERROR_IMGCAT_UPLOADGROUPS" />
+      <var name="handler" value="group" />
+    </field>
+  </form-validation>
+</xoopscube-dynaactionform>

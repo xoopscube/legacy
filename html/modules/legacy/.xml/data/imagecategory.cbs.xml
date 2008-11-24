@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<cubson-mapping>
+  <class name="imagecategory">
+    <id name="imgcat_id" type="XOBJ_DTYPE_INT" column="imgcat_id">
+      <generator type="increment" />
+    </id>
+    <property name="imgcat_name" type="XOBJ_DTYPE_STRING" column="imgcat_name" not-null="true" length="100" />
+    <property name="imgcat_maxsize" type="XOBJ_DTYPE_INT" column="imgcat_maxsize" not-null="true" default="50000" />
+    <property name="imgcat_maxwidth" type="XOBJ_DTYPE_INT" column="imgcat_maxwidth" not-null="true" default="120" />
+    <property name="imgcat_maxheight" type="XOBJ_DTYPE_INT" column="imgcat_maxheight" not-null="true" default="120" />
+    <property name="imgcat_display" type="XOBJ_DTYPE_BOOL" column="imgcat_display" not-null="true" default="1" />
+    <property name="imgcat_weight" type="XOBJ_DTYPE_INT" column="imgcat_weight" not-null="true" default="0" />
+    <property name="imgcat_type" type="XOBJ_DTYPE_STRING" column="imgcat_type" not-null="true" length="1" default="C" />
+    <property name="imgcat_storetype" type="XOBJ_DTYPE_STRING" column="imgcat_storetype" not-null="true" length="5" default="file" />
+    <set name="mImage">
+      <key>
+        <column name="imagecat_id" />
+      </key>
+      <one-to-many class="Entity.image" />
+    </set>
+  </class>
+</cubson-mapping>

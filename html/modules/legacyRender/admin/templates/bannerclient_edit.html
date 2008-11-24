@@ -1,0 +1,84 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=BannerList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_BANNER_MANAGE}></a>
+  &raquo;&raquo; <a href="./index.php?action=BannerclientList"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></a>
+  <{if $actionForm->get('cid')}>
+    &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_EDIT}></span>
+  <{else}>
+    &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_NEW}></span>
+  <{/if}>
+</div>
+
+  <{if $actionForm->get('cid')}>
+    <h3 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_EDIT}></h3>
+  <{else}>
+    <h3 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_NEW}></h3>
+  <{/if}>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form action="index.php?action=BannerclientEdit" method="post">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=cid value=$actionForm->get('cid')}>
+  <table class="outer">
+    <tr>
+      <th colspan="2">
+        <{if $actionForm->get('cid')}>
+          <{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_EDIT}>
+        <{else}>
+          <{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_NEW}>
+        <{/if}>
+      </th>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_NAME}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=name value=$actionForm->get('name') size=50 maxlength=60}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_CONTACT}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=contact value=$actionForm->get('contact') size=50 maxlength=60}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_EMAIL}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=email value=$actionForm->get('email') size=50 maxlength=60}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_LOGIN}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=login value=$actionForm->get('login') size=15 maxlength=10}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_PASSWD}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=passwd value=$actionForm->get('passwd') size=15 maxlength=10}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_EXTRAINFO}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_dhtmltarea type=text name=extrainfo value=$actionForm->get('extrainfo') rows=5 cols=50}>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="foot">
+        <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      </td>
+    </tr>
+  </table>
+</form>

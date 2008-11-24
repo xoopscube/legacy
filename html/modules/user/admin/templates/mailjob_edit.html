@@ -1,0 +1,87 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=MailjobList"><{$smarty.const._AD_USER_LANG_MAILJOB_LIST}></a>
+  <{if $actionForm->get('mailjob_id')}>
+    &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_MAILJOB_EDIT}></span>
+  <{else}>
+    &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_MAILJOB_NEW}></span>
+  <{/if}>
+</div>
+
+  <{if $actionForm->get('mailjob_id')}>
+    <h3 class="admintitle"><{$smarty.const._AD_USER_LANG_MAILJOB_EDIT}></h3>
+  <{else}>
+    <h3 class="admintitle"><{$smarty.const._AD_USER_LANG_MAILJOB_NEW}></h3>
+  <{/if}>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form action="index.php?action=MailjobEdit" method="post">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=mailjob_id value=$actionForm->get('mailjob_id')}>
+  <{xoops_explaceholder control=UserPagenaviHidden pagenavi=$pageNavi}>
+  <table class="outer">
+    <tr>
+      <th colspan="2">
+        <{if $actionForm->get('mailjob_id')}>
+          <{$smarty.const._AD_USER_LANG_MAILJOB_EDIT}>
+        <{else}>
+          <{$smarty.const._AD_USER_LANG_MAILJOB_NEW}>
+        <{/if}>
+      </th>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_TITLE}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=title value=$actionForm->get('title') size=32 maxlength=255}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_BODY}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_dhtmltarea type=text name=body value=$actionForm->get('body') cols=50 rows=10}>
+<{*        <{xoops_textarea type=text name=body value=$actionForm->get('body') cols=50 rows=10}> *}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_FROM_NAME}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=from_name value=$actionForm->get('from_name') size=32 maxlength=255}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_FROM_EMAIL}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=from_email value=$actionForm->get('from_email') size=32 maxlength=255}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_IS_PM}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <label><{xoops_input type=radio name=is_pm value=1 default=$actionForm->get('is_pm')}><{$smarty.const._YES}></label>
+        <label><{xoops_input type=radio name=is_pm value=0 default=$actionForm->get('is_pm')}><{$smarty.const._NO}></label>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_IS_MAIL}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <label><{xoops_input type=radio name=is_mail value=1 default=$actionForm->get('is_mail')}><{$smarty.const._YES}></label>
+        <label><{xoops_input type=radio name=is_mail value=0 default=$actionForm->get('is_mail')}><{$smarty.const._NO}></label>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="foot">
+        <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      </td>
+    </tr>
+  </table>
+</form>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xoopscube-dynaactionform>
+	<form-bean name="CommentAdminDeleteForm" type="XCube_ActionForm">
+		<form-property name="com_id" type="Int" />
+	</form-bean>
+	<form-validation>
+		<field property="com_id" depends="required">
+			<arg0 key="const._MD_LEGACY_LANG_COM_ID" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+		</field>
+	</form-validation>
+</xoopscube-dynaactionform>

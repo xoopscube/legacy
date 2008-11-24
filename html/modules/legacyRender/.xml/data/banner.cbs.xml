@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cubson-mapping>
+  <class name="banner">
+    <id name="bid" type="XOBJ_DTYPE_INT" column="bid">
+      <generator type="increment" />
+    </id>
+    <property name="cid" type="XOBJ_DTYPE_INT" column="cid" not-null="true" default="0" />
+    <property name="imptotal" type="XOBJ_DTYPE_INT" column="imptotal" not-null="true" default="0" />
+    <property name="impmade" type="XOBJ_DTYPE_INT" column="impmade" not-null="true" default="0" />
+    <property name="clicks" type="XOBJ_DTYPE_INT" column="clicks" not-null="true" default="0" />
+    <property name="imageurl" type="XOBJ_DTYPE_STRING" column="imageurl" not-null="true" length="255" />
+    <property name="clickurl" type="XOBJ_DTYPE_STRING" column="clickurl" not-null="true" length="255" />
+    <property name="date" type="XOBJ_DTYPE_INT" column="date" not-null="true" default="0" />
+    <property name="htmlbanner" type="XOBJ_DTYPE_BOOL" column="htmlbanner" not-null="true" default="0" />
+    <property name="htmlcode" type="XOBJ_DTYPE_TEXT" column="htmlcode" not-null="true" />
+    <many-to-one name="mClient" column="cid" class="Entity.bannerclient" />
+  </class>
+</cubson-mapping>

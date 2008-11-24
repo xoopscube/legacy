@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xoopscube-dynaactionform>
+	<form-bean name="LostpassEditForm" type="XCube_ActionForm">
+		<form-property name="email" type="String" />
+	</form-bean>
+	<form-validation>
+		<field property="email" depends="required">
+			<arg0 key="const._MD_USER_LANG_EMAIL" />
+			<msg name="required" key="const._MD_USER_ERROR_REQUIRED" />
+		</field>
+	</form-validation>
+</xoopscube-dynaactionform>

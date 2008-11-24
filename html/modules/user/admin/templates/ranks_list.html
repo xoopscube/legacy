@@ -1,0 +1,54 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=RanksList"><{$smarty.const._AD_USER_LANG_RANK_LIST}></a></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_RANK_LIST}></h3>
+
+<ul class="toptab">
+  <li><a href="index.php?action=RanksEdit"><{$smarty.const._AD_USER_LANG_CREATE_NEW}></a></li>
+</ul>
+
+<table class="outer">
+  <tr>
+    <th><{$smarty.const._MD_USER_LANG_RANK_ID}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.RANKS_SORT_KEY_RANK_ID}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.RANKS_SORT_KEY_RANK_ID}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_RANK_TITLE}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.RANKS_SORT_KEY_RANK_TITLE}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.RANKS_SORT_KEY_RANK_TITLE}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_RANK_MIN}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.RANKS_SORT_KEY_RANK_MIN}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.RANKS_SORT_KEY_RANK_MIN}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_RANK_MAX}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.RANKS_SORT_KEY_RANK_MAX}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.RANKS_SORT_KEY_RANK_MAX}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_RANK_SPECIAL}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.RANKS_SORT_KEY_RANK_SPECIAL}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.RANKS_SORT_KEY_RANK_SPECIAL}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_RANK_IMAGE}></th>
+    <th><{$smarty.const._AD_USER_LANG_CONTROL}></th>
+  </tr>
+  <{foreach item=obj from=$objects}>
+    <tr class="<{cycle values='odd,even'}>">
+      <td class="user_list_id"><{$obj->getShow('rank_id')}></td>
+      <td class="user_list_title"><{$obj->getShow('rank_title')}></td>
+      <td class="user_list_number"><{$obj->getShow('rank_min')}></td>
+      <td class="user_list_number"><{$obj->getShow('rank_max')}></td>
+      <td class="user_list_order">
+        <{if $obj->getShow('rank_special') == 1}>
+          <{$smarty.const._YES}>
+        <{else}>
+          <{$smarty.const._NO}>
+        <{/if}>
+      </td>
+      <td class="user_list_image"><img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('rank_image')}>" alt="<{$obj->getShow('rank_title')}>" title="<{$obj->getShow('rank_title')}>" /></td>
+      <td class="user_list_control">
+        <a href="index.php?action=RanksEdit&amp;rank_id=<{$obj->getShow('rank_id')}>"><img src="<{"icons/edit.gif"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+        <a href="index.php?action=RanksDelete&amp;rank_id=<{$obj->getShow('rank_id')}>"><img src="<{"icons/delete.gif"|theme}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
+      </td>
+    </tr>
+  <{/foreach}>
+</table>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>

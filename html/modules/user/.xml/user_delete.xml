@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xoopscube-dynaactionform>
+	<form-bean name="UserDeleteForm" type="XCube_ActionForm" />
+</xoopscube-dynaactionform>

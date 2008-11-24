@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xoopscube-dynaactionform>
+	<form-bean name="TplfileEditForm" type="XCube_ActionForm">
+		<form-property name="tpl_id" type="Int" />
+		<form-property name="tpl_desc" type="String" />
+		<form-property name="tpl_source" type="Text" />
+	</form-bean>
+	<form-validation>
+		<field property="tpl_id" depends="required">
+			<arg0 key="const._AD_LEGACYRENDER_LANG_TPL_ID" />
+			<msg name="required" key="const._AD_LEGACYRENDER_ERROR_REQUIRED" />
+		</field>
+		<field property="tpl_desc" depends="required,maxlength">
+			<arg0 key="const._AD_LEGACYRENDER_LANG_TPL_DESC" />
+			<msg name="required" key="const._AD_LEGACYRENDER_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._AD_LEGACYRENDER_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="255" />
+		</field>
+		<field property="tpl_source" depends="required">
+			<arg0 key="const._AD_LEGACYRENDER_LANG_TPL_SOURCE" />
+			<msg name="required" key="const._AD_LEGACYRENDER_ERROR_REQUIRED" />
+		</field>
+	</form-validation>
+</xoopscube-dynaactionform>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xoopscube-dynaactionform>
+	<form-bean name="AvatarEditForm" type="XCube_ActionForm">
+		<form-property name="uid" type="Int" />
+		<form-property name="uploadavatar" type="ImageFile" />
+	</form-bean>
+	<form-validation>
+		<field property="uploadavatar" depends="extension">
+			<msg name="extension" key="const._MD_USER_ERROR_AVATAR_EXTENSION" />
+			<var name="extension" value="jpg,gif,png" />
+		</field>
+	</form-validation>
+</xoopscube-dynaactionform>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xoopscube-dynaactionform>
+	<form-bean name="CommentAdminEditForm" type="XCube_ActionForm">
+		<form-property name="com_id" type="Int" />
+		<form-property name="com_icon" type="String" />
+		<form-property name="com_title" type="String" />
+		<form-property name="com_text" type="Text" />
+		<form-property name="com_sig" type="Bool" />
+		<form-property name="com_status" type="Int" />
+		<form-property name="dohtml" type="Bool" />
+		<form-property name="dosmiley" type="Bool" />
+		<form-property name="doxcode" type="Bool" />
+		<form-property name="doimage" type="Bool" />
+		<form-property name="dobr" type="Bool" />
+	</form-bean>
+	<form-validation>
+		<field property="com_id" depends="required">
+			<arg0 key="const._MD_LEGACY_LANG_COM_ID" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+		</field>
+		<field property="com_icon" depends="maxlength">
+			<arg0 key="const._MD_LEGACY_LANG_COM_ICON" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_LEGACY_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="25" />
+		</field>
+		<field property="com_title" depends="required,maxlength">
+			<arg0 key="const._MD_LEGACY_LANG_COM_TITLE" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_LEGACY_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="255" />
+		</field>
+		<field property="com_text" depends="required">
+			<arg0 key="const._MD_LEGACY_LANG_COM_TEXT" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+		</field>
+		<field property="com_status" depends="required,intRange">
+			<arg0 key="const._AD_LEGACY_LANG_COM_STATUS" />
+			<var name="min" value="1" />
+			<var name="max" value="3" />
+			<msg name="required" key="const._MD_LEGACY_ERROR_REQUIRED" />
+			<msg name="required" key="const._AD_LEGACY_ERROR_INTRANGE" />
+		</field>
+	</form-validation>
+</xoopscube-dynaactionform>

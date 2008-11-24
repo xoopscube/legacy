@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xoopscube-dynaactionform>
+	<form-bean name="RanksAdminEditForm" type="XCube_ActionForm">
+		<form-property name="rank_id" type="Int" />
+		<form-property name="rank_title" type="String" />
+		<form-property name="rank_min" type="Int" />
+		<form-property name="rank_max" type="Int" />
+		<form-property name="rank_special" type="Bool" />
+		<form-property name="rank_image" type="File" />
+	</form-bean>
+	<form-validation>
+		<field property="rank_id" depends="required">
+			<arg0 key="const._MD_USER_LANG_RANK_ID" />
+			<msg name="required" key="const._MD_USER_ERROR_REQUIRED" />
+		</field>
+		<field property="rank_title" depends="required,maxlength">
+			<arg0 key="const._MD_USER_LANG_RANK_TITLE" />
+			<msg name="required" key="const._MD_USER_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_USER_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="50" />
+		</field>
+		<field property="rank_min" depends="required,min">
+			<arg0 key="const._MD_USER_LANG_RANK_MIN" />
+			<msg name="required" key="const._MD_USER_ERROR_REQUIRED" />
+			<arg1 name="min" key="${var:maxlength}" />
+			<msg name="min" key="const._AD_USER_ERROR_MIN" />
+			<var name="min" value="0" />
+		</field>
+		<field property="rank_max" depends="required,min">
+			<arg0 key="const._MD_USER_LANG_RANK_MAX" />
+			<msg name="required" key="const._MD_USER_ERROR_REQUIRED" />
+			<arg1 name="min" key="${var:maxlength}" />
+			<msg name="min" key="const._AD_USER_ERROR_MIN" />
+			<var name="min" value="0" />
+		</field>
+		<field property="rank_image" depends="extension">
+			<arg0 key="const._MD_USER_LANG_RANK_IMAGE" />
+			<msg name="extension" key="const._MD_USER_ERROR_AVATAR_EXTENSION" />
+			<var name="extension" value="gif,png,jpg" />
+		</field>
+	</form-validation>
+</xoopscube-dynaactionform>

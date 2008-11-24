@@ -1,0 +1,42 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
+  &raquo;&raquo; <a href="index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_CONF}></span>
+</div>
+
+<h3 class="admintitle"><{$licence|xoops_escape}></h3>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form method="post" action="">
+<{xoops_token form=$actionForm}>
+<{xoops_input type=hidden name=dirname value=$actionForm->get('dirname')}>
+<table class="outer">
+  <tr>
+    <th><{$licence|xoops_escape}></th>
+  </tr>
+  <tr>
+    <td class="head">
+      <textarea cols="75" rows="15"><{$licenceText|xoops_escape:edit}></textarea>
+    </td>
+  <tr>
+    <td class="foot">
+      <label><input type="radio" name="agree" value="1" /><{$smarty.const._AD_LEGACY_LANG_AGREE}></label>
+      <label><input type="radio" name="agree" value="0" /><{$smarty.const._AD_LEGACY_LANG_NO_AGREE}></label>
+    </td>
+  <tr>
+    <td class="foot">
+      <input type="submit" value="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>" class="formButton" />
+    </td>
+  </tr>
+</table>
+</form>

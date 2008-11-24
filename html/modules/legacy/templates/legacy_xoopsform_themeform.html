@@ -1,0 +1,37 @@
+<form name='<{$form->getName()}>' id='<{$form->getName()}>' action='<{$form->getAction()}>' method='<{$form->getMethod()}>' onsubmit='return xoopsFormValidate_<{$form->getName()}>();' <{$form->getExtra()}> >
+  <table class="outer" style="width:100%;" cellspacing="1">
+    <tr>
+      <th colspan='2'>
+        <{$form->getTitle()}>
+      </th>
+    </tr>
+    <{foreach from=$form->getElements() item=element}>
+      <{if is_object($element) }>
+        <{if !$element->isHidden()}>
+          <{if !$element->isBreak()}>
+            <tr>
+              <td class='head' style="text-align:left; vertical-align:top;">
+                <{$element->getCaption()}>
+                <{if $element->getDescription() != ''}>
+                  <br /><br /><span style="font-weight: normal;"><{$element->getDescription()}></span>
+                <{/if}>
+              </td>
+              <td class='even' style="text-align:left; vertical-align:top;">
+                <{$element->render()}>
+              </td>
+            </tr>
+          <{else}>
+            <tr><td colspan='2' <{$element->getClass()}>><{$element->getExtra()}></td></tr>
+          <{/if}>
+        <{/if}>
+      <{else}>
+        <{$element}>
+      <{/if}>
+    <{/foreach}>
+  </table>
+  <{foreach from=$form->getElements() item=element}>
+    <{if $element->isHidden()}>
+      <{$element->render()}>
+    <{/if}>
+  <{/foreach}>
+</form>

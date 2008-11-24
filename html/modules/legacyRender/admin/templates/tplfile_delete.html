@@ -1,0 +1,61 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=TplfileList"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLFILE_LIST}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLFILE_DELETE}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLFILE_DELETE}></h3>
+
+<div class="confirm"><{$smarty.const._AD_LEGACYRENDER_MESSAGE_CONFIRM_DELETE}></div>
+
+<form method="post" action="./index.php?action=TplfileDelete">
+  <{xoops_token form=$actionForm}>
+  <table class="outer">
+    <tr>
+      <th colspan="2"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLFILE_DELETE}></th>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_ID}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('tpl_id')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_REFID}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('tpl_refid')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_MODULE}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('tpl_module')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_TPLSET}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('tpl_tplset')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_FILE}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('tpl_file')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_DESC}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('tpl_desc')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_LASTMODIFIED}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->get('tpl_lastmodified')|xoops_formattimestamp:l}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_LASTIMPORTED}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->get('tpl_lastimported')|xoops_formattimestamp:l}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_TYPE}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('tpl_type')}></td>
+    </tr>
+    <tr>
+      <td class="foot" colspan="2">
+        <{xoops_input type=hidden name=tpl_id value=$actionForm->get('tpl_id')}>
+        <input class="formButton" type="submit" value="<{$smarty.const._DELETE}>" />
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      </td>
+    </tr>
+  </table>
+</form>

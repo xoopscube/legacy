@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xoopscube-dynaactionform>
+	<form-bean name="MailjobAdminDeleteForm" type="XCube_ActionForm">
+		<form-property name="mailjob_id" type="Int" />
+	</form-bean>
+	<form-validation>
+		<field property="mailjob_id" depends="required">
+			<arg0 key="const._AD_USER_LANG_MAILJOB_ID" />
+			<msg name="required" key="const._MD_USER_ERROR_REQUIRED" />
+		</field>
+	</form-validation>
+</xoopscube-dynaactionform>

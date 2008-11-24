@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<title><{$xoops_sitename}></title>
+<style type="text/css">
+<!--
+body {
+	padding:0px;
+	margin:0px;
+}
+
+img {
+	border: 0;
+}
+
+#header {
+	background-color:#000080;
+	vertical-align: middle;
+	text-align:left;
+	padding:5px;
+	margin:0px;
+}
+
+#siteclosemsg {
+	background-color:#ddffdf;
+	color:#136C99;
+	font-weight:bold;
+	text-align:center;
+	border-top:1px solid #ddffdf;
+	border-left:1px solid #DDDDFF;
+	border-right:1px solid #AAAAAA;
+	border-bottom:1px solid #AAAAAA;
+	padding:10px;
+	width:80%;
+	margin:15px auto;
+}
+
+#loginformTable {
+	border: 1px solid silver;
+	margin:5px auto;
+	border-top:1px solid #dddddd;
+	border-left:1px solid #dddddd;
+	border-right:1px solid #AAAAAA;
+	border-bottom:1px solid #AAAAAA;
+
+}
+#loginformTable th, #loginformTable td {
+	font-size:14px;
+}
+#loginformTable th {
+	background-color: #c2cdd6;
+	color: #FFFFFF;
+	vertical-align: middle;
+	text-align: center;
+	border-top:2px solid #dddddd;
+	border-left:2px solid #dddddd;
+	border-right:2px solid #AAAAAA;
+	border-bottom:2px solid #AAAAAA;
+	padding : 3px;
+}
+
+#loginformTable td {
+	background-color: #f8f8f8;
+	padding : 5px 15px;
+	color: #000000;
+}
+
+#footer {
+	font-size: 12px;
+	vertical-align: middle;
+	text-align: center;
+	color:#666666;
+	border-bottom:1px solid silver;
+	border-top:1px solid silver;
+	background-color:#eeeeee;
+	margin:40px 0;
+	padding:3px;
+}
+-->
+</style>
+</head>
+<body>
+
+  <div id="header"><a href="<{$xoops_url}>/"><img src="<{$xoops_url}>/images/logo.gif" alt="<{$xoops_sitename}>" title="<{$xoops_sitename}>" /></a></div>
+
+  <div id="siteclosemsg"><{$lang_siteclosemsg}></div>
+
+  <{if $xoops_isuser}>
+    <div align="center"><a href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._LOGOUT}></a></div>
+  <{else}>
+  <form action="<{$xoops_url}>/user.php" method="post">
+    <table id="loginformTable" cellspacing="0">
+      <tr>
+        <th colspan="2"><{$lang_login}></th>
+      </tr>
+      <tr>
+        <td><{$lang_username}></td>
+        <td><input type="text" name="uname" size="14" value="" /></td>
+      </tr>
+      <tr>
+        <td><{$lang_password}></td>
+        <td><input type="password" name="pass" size="14" /></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><input type="hidden" name="xoops_login" value="1" /><input type="submit" value="<{$lang_login}>" /></td>
+      </tr>
+    </table>
+  </form>
+  <{/if}>
+
+  <div id="footer">&nbsp;<{$xoops_sitename}></div>
+
+</body>
+</html>
