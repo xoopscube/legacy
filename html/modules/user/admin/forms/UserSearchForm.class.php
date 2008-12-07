@@ -32,6 +32,14 @@ class User_UserSearchForm extends XCube_ActionForm
 		$this->mFormProperties['mail_condition'] =& new XCube_IntProperty('mail_condition');
 		$this->mFormProperties['user_level'] =& new XCube_IntProperty('user_level');
 		$this->mFormProperties['groups'] =& new XCube_IntArrayProperty('groups');
+		//
+		$this->mFormProperties['user_uname_match'] =& new XCube_IntProperty('user_uname_match');
+		$this->mFormProperties['user_name_match'] =& new XCube_IntProperty('user_name_match');
+		$this->mFormProperties['user_email_match'] =& new XCube_IntProperty('user_email_match');
+		$this->mFormProperties['user_icq_match'] =& new XCube_IntProperty('user_icq_match');
+		$this->mFormProperties['user_aim_match'] =& new XCube_IntProperty('user_aim_match');
+		$this->mFormProperties['user_yim_match'] =& new XCube_IntProperty('user_yim_match');
+		$this->mFormProperties['user_msnm_match'] =& new XCube_IntProperty('user_msnm_match');
 
 		//
 		// Set field properties

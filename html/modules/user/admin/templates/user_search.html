@@ -5,6 +5,20 @@
 
 <h3 class="admintitle"><{$smarty.const._MI_USER_ADMENU_USER_SEARCH}></h3>
 
+<div class="tips">
+<ul>
+<li>
+<{$smarty.const._AD_USER_LANG_USER_TOTAL}>: <{$UserTotal}>&nbsp;&nbsp;
+( <{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>: <{$activeUserTotal}>&nbsp;&nbsp;&nbsp;<{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>: <{$inactiveUserTotal}> )
+</li>
+<li>
+<{$smarty.const._AD_USER_LANG_USER_SEARCH_MYTIPS}>
+</li>
+<li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=user"><{$smarty.const._HELP}></a></li>
+</ul>
+</div>
+
+
 <{if $actionForm->hasError()}>
 <div class="error">
   <ul>
@@ -24,42 +38,63 @@
     <tr>
       <td class="head"><{$smarty.const._MD_USER_LANG_UNAME}></td>
       <td class="<{cycle values="odd,even"}>">
+        <select size="1" id="user_uname_match" name="user_uname_match">
+          <{html_options options=$matchOptions selected=$actionForm->get('user_uname_match')}>
+        </select>&nbsp;
         <{xoops_input type=text name=uname value=$actionForm->get('uname') size=25 maxlength=25}>
       </td>
     </tr>
     <tr>
       <td class="head"><{$smarty.const._MD_USER_LANG_NAME}></td>
       <td class="<{cycle values="odd,even"}>">
+        <select size="1" id="user_name_match" name="user_name_match">
+          <{html_options options=$matchOptions selected=$actionForm->get('user_name_match')}>
+        </select>&nbsp;
         <{xoops_input type=text name=name value=$actionForm->get('name') size=30 maxlength=60}>
       </td>
     </tr>
     <tr>
       <td class="head"><{$smarty.const._MD_USER_LANG_EMAIL}></td>
       <td class="<{cycle values="odd,even"}>">
+        <select size="1" id="user_email_match" name="user_email_match">
+          <{html_options options=$matchOptions selected=$actionForm->get('user_email_match')}>
+        </select>&nbsp;
         <{xoops_input type=text name=email value=$actionForm->get('email') size=30 maxlength=60}>
       </td>
     </tr>
     <tr>
       <td class="head"><{$smarty.const._MD_USER_LANG_USER_ICQ}></td>
       <td class="<{cycle values="odd,even"}>">
+        <select size="1" id="user_icq_match" name="user_icq_match">
+          <{html_options options=$matchOptions selected=$actionForm->get('user_icq_match')}>
+        </select>&nbsp;
         <{xoops_input type=text name=user_icq value=$actionForm->get('user_icq') size=15 maxlength=15}>
       </td>
     </tr>
     <tr>
       <td class="head"><{$smarty.const._MD_USER_LANG_USER_AIM}></td>
       <td class="<{cycle values="odd,even"}>">
+        <select size="1" id="user_aim_match" name="user_aim_match">
+          <{html_options options=$matchOptions selected=$actionForm->get('user_aim_match')}>
+        </select>&nbsp;
         <{xoops_input type=text name=user_aim value=$actionForm->get('user_aim') size=18 maxlength=18}>
       </td>
     </tr>
     <tr>
       <td class="head"><{$smarty.const._MD_USER_LANG_USER_YIM}></td>
       <td class="<{cycle values="odd,even"}>">
+        <select size="1" id="user_yim_match" name="user_yim_match">
+          <{html_options options=$matchOptions selected=$actionForm->get('user_yim_match')}>
+        </select>&nbsp;
         <{xoops_input type=text name=user_yim value=$actionForm->get('user_yim') size=25 maxlength=25}>
       </td>
     </tr>
     <tr>
       <td class="head"><{$smarty.const._MD_USER_LANG_USER_MSNM}></td>
       <td class="<{cycle values="odd,even"}>">
+        <select size="1" id="user_msnm_match" name="user_msnm_match">
+          <{html_options options=$matchOptions selected=$actionForm->get('user_msnm_match')}>
+        </select>&nbsp;
         <{xoops_input type=text name=user_msnm value=$actionForm->get('user_msnm') size=25 maxlength=100}>
       </td>
     </tr>
