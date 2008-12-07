@@ -60,6 +60,9 @@ class Legacy_CommentFilterForm extends Legacy_AbstractFilterForm
 		COMMENT_SORT_KEY_DOIMAGE => 'doimage',
 		COMMENT_SORT_KEY_DOBR => 'dobr'
 	);
+	//wanikoo
+	var $mKeyword = "";
+	var $mSearchField = "";
 
 	function getDefaultSortKey()
 	{
@@ -70,38 +73,97 @@ class Legacy_CommentFilterForm extends Legacy_AbstractFilterForm
 	{
 		parent::fetch();
 	
-		if (isset($_REQUEST['com_modid']) && intval(xoops_getrequest('com_modid')) > 0) {
-			$this->mNavi->addExtra('com_modid', xoops_getrequest('com_modid'));
-			$this->_mCriteria->add(new Criteria('com_modid', xoops_getrequest('com_modid')));
+		$root =& XCube_Root::getSingleton();
+		$com_modid = $root->mContext->mRequest->getRequest('com_modid');
+		$dirname = $root->mContext->mRequest->getRequest('dirname');
+		$com_icon = $root->mContext->mRequest->getRequest('com_icon');
+		$com_uid = $root->mContext->mRequest->getRequest('com_uid');
+		$com_ip = $root->mContext->mRequest->getRequest('com_ip');
+		$com_status = $root->mContext->mRequest->getRequest('com_status');
+		$keyword = $root->mContext->mRequest->getRequest('keyword');
+		$search_field = $root->mContext->mRequest->getRequest('search_field');
+
+		if (isset($com_modid) && intval($com_modid) > 0) {
+			$this->mNavi->addExtra('com_modid', $com_modid);
+			$this->_mCriteria->add(new Criteria('com_modid', $com_modid));
 		}
-		elseif (isset($_REQUEST['dirname'])) {
-			$this->mNavi->addExtra('dirname', xoops_getrequest('dirname'));
+		elseif (isset($dirname)&&!empty($dirname)) {
+			$this->mNavi->addExtra('dirname', $dirname);
 
 			$handler =& xoops_gethandler('module');
-			$module =& $handler->getByDirname(xoops_getrequest('dirname'));
+			$module =& $handler->getByDirname($dirname);
 			if (is_object($module)) {
 				$this->_mCriteria->add(new Criteria('com_modid', $module->get('mid')));
 			}
 		}
 	
-		if (isset($_REQUEST['com_icon'])) {
-			$this->mNavi->addExtra('com_icon', xoops_getrequest('com_icon'));
-			$this->_mCriteria->add(new Criteria('com_icon', xoops_getrequest('com_icon')));
+		if (isset($com_icon)) {
+			$this->mNavi->addExtra('com_icon', $com_icon);
+			$this->_mCriteria->add(new Criteria('com_icon', $com_icon));
 		}
 	
-		if (isset($_REQUEST['com_uid'])) {
-			$this->mNavi->addExtra('com_uid', xoops_getrequest('com_uid'));
-			$this->_mCriteria->add(new Criteria('com_uid', xoops_getrequest('com_uid')));
+		if (isset($com_uid)) {
+			$this->mNavi->addExtra('com_uid', $com_uid);
+			$this->_mCriteria->add(new Criteria('com_uid', $com_uid));
 		}
 	
-		if (isset($_REQUEST['com_ip'])) {
-			$this->mNavi->addExtra('com_ip', xoops_getrequest('com_ip'));
-			$this->_mCriteria->add(new Criteria('com_ip', xoops_getrequest('com_ip')));
+		if (isset($com_ip)) {
+			$this->mNavi->addExtra('com_ip', $com_ip);
+			$this->_mCriteria->add(new Criteria('com_ip', $com_ip));
 		}
 	
-		if (xoops_getrequest('com_status') > 0) {
-			$this->mNavi->addExtra('com_status', xoops_getrequest('com_status'));
-			$this->_mCriteria->add(new Criteria('com_status', xoops_getrequest('com_status')));
+		if ($com_status > 0) {
+			$this->mNavi->addExtra('com_status', $com_status);
+			$this->_mCriteria->add(new Criteria('com_status', $com_status));
+		}
+
+		//wanikoo
+		if (!empty($keyword)&&isset($search_field)) {
+			$this->mKeyword = $keyword;
+			$this->mSearchField = $search_field;
+			$this->mNavi->addExtra('keyword', $this->mKeyword);
+			$this->mNavi->addExtra('search_field', $this->mSearchField);
+
+			if ( $this->mSearchField == "com_both" ) {
+			//title or text ( OR condition )
+			$search_criteria = new CriteriaCompo(new Criteria('com_title', '%' . $this->mKeyword . '%', 'LIKE'));
+			$search_criteria->add(new Criteria('com_text', '%' . $this->mKeyword . '%', 'LIKE'), $condition='OR');
+			$this->_mCriteria->add($search_criteria);
+			}
+			elseif ( $this->mSearchField == "com_title" ) {
+			//only search about title
+			$this->_mCriteria->add(new Criteria('com_title', '%' . $this->mKeyword . '%', 'LIKE'));
+			}
+			elseif ( $this->mSearchField == "com_text" ) {
+			//only search about text
+			$this->_mCriteria->add(new Criteria('com_text', '%' . $this->mKeyword . '%', 'LIKE'));
+			}
+			elseif ( $this->mSearchField == "com_uid" ) {
+			//search about uname
+			if ( $this->mKeyword != "guest") {
+			//in case of member
+			$cm_handler =& xoops_gethandler('member');
+			$cm_user =& $cm_handler->getUsers(new Criteria('uname', $this->mKeyword));
+			if(count($cm_user) == 1 && is_object($cm_user[0])) {
+			$cm_user_uid = $cm_user[0]->getVar('uid');
+			$this->_mCriteria->add(new Criteria('com_uid', $cm_user_uid));
+			}
+			else {
+			//no match
+			$this->_mCriteria->add(new Criteria('com_uid', -1));
+			}
+			}
+			else {
+			//in case of guest, please customize keyword,"guest"
+			$this->_mCriteria->add(new Criteria('com_uid', 0));
+			}
+
+			}
+			else{
+			//default(only search about title)
+			$this->_mCriteria->add(new Criteria('com_title', '%' . $this->mKeyword . '%', 'LIKE'));
+			}
+
 		}
 
 		$this->_mCriteria->addSort($this->getSort(), $this->getOrder());

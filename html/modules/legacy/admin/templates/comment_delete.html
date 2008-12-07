@@ -45,7 +45,7 @@
         <{if $object->getShow('com_icon')}>
           <img src="<{$smarty.const.XOOPS_URL}>/images/subject/<{$object->getShow('com_icon')}>" />
         <{else}>
-          <img src="<{$smarty.const.XOOPS_URL}>/images/icons/no_posticon.gif" />
+          <img src="<{$smarty.const.XOOPS_URL}>/images/icons/no_posticon.png" />
         <{/if}>
       </td>
     </tr>
@@ -105,6 +105,13 @@
       </td>
     </tr>
     <tr>
+      <td class="head"><{$smarty.const._CM_DELETESELECT}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <label><{xoops_input type=radio name=delete_mode value=delete_one}><{$smarty.const._CM_DELETEONE}></label><br />
+        <label><{xoops_input type=radio name=delete_mode value=delete_all default=delete_all}><{$smarty.const._CM_DELETEALL}></label><br />
+      </td>
+    </tr>
+    <tr>
       <td colspan="2" class="foot">
         <input class="formButton" type="submit" value="<{$smarty.const._DELETE}>" />
         <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
@@ -141,7 +148,7 @@
       <td class="legacy_list_select"><{$obj->getShow('com_ip')}></td>
       <td class="legacy_list_control">
         <{if $obj->get('com_status') == 2}>
-          <img src="<{"icons/active.gif"|theme}>" />
+          <img src="<{"icons/active.png"|theme}>" />
         <{/if}>
       </td>
     </tr>

@@ -16,8 +16,26 @@
       <td class="legacy_list_id"><{$obj->getVar('confcat_id')}></td>
       <td class="legacy_list_title"><{$obj->getName()|xoops_escape}></td>
       <td class="legacy_list_control">
-        <a href="./index.php?action=PreferenceEdit&amp;confcat_id=<{$obj->getVar('confcat_id')}>"><img src="<{"icons/edit.gif"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+        <a href="./index.php?action=PreferenceEdit&amp;confcat_id=<{$obj->getVar('confcat_id')}>"><img src="<{"icons/edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
       </td>
     </tr>
   <{/foreach}>
+  
+  <!-- 2008-12-7 Gigamaster, Test Accessibility-->
+  <tfoot>
+  <tr class="odd">
+  <td class="legacy_list_id">-</td>
+  <td class="legacy_list_title">User</td>
+      <td class="legacy_list_control">
+        <a href="./index.php?action=PreferenceEdit&confmod_id=3"><img src="<{"icons/edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+      </td>
+      </tr>
+  <tr class="even">
+  <td class="legacy_list_id">-</td>
+  <td class="legacy_list_title">Meta Keywords</td>
+      <td class="legacy_list_control">
+        <a href="./index.php?action=PreferenceEdit&confmod_id=4"><img src="<{"icons/edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+      </td>
+      </tr>
+    </tfoot>
 </table>

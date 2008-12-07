@@ -53,6 +53,10 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
 		NEWBLOCKS_SORT_KEY_BCACHETIME => 'bcachetime',
 		NEWBLOCKS_SORT_KEY_LAST_MODIFIED => 'last_modified'
 	);
+	//wanikoo
+	var $mKeyword = "";
+	var $mModule = null;
+	var $mOptionField = "all";
 
 	function getDefaultSortKey()
 	{
@@ -62,40 +66,76 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
 	function fetch()
 	{
 		parent::fetch();
+
+		$root =& XCube_Root::getSingleton();
+		$mid = $root->mContext->mRequest->getRequest('mid');
+		$side = $root->mContext->mRequest->getRequest('side');
+		$weight = $root->mContext->mRequest->getRequest('weight');
+		$block_type = $root->mContext->mRequest->getRequest('block_type');
+		$c_type = $root->mContext->mRequest->getRequest('c_type');
+		$dirname = $root->mContext->mRequest->getRequest('dirname');
+		$search = $root->mContext->mRequest->getRequest('search');
+		$option_field = $root->mContext->mRequest->getRequest('option_field');
 		
-		if (isset($_REQUEST['mid'])) {
-			$this->mNavi->addExtra('mid', xoops_getrequest('mid'));
-			$this->_mCriteria->add(new Criteria('mid', xoops_getrequest('mid')));
+		if (isset($mid)) {
+			$this->mNavi->addExtra('mid', $mid);
+			$this->_mCriteria->add(new Criteria('mid', $mid));
 		}
 	
-		if (isset($_REQUEST['side'])) {
-			$this->mNavi->addExtra('side', xoops_getrequest('side'));
-			$this->_mCriteria->add(new Criteria('side', xoops_getrequest('side')));
+		if (isset($side)) {
+			$this->mNavi->addExtra('side', $side);
+			$this->_mCriteria->add(new Criteria('side', $side));
 		}
 	
-		if (isset($_REQUEST['weight'])) {
-			$this->mNavi->addExtra('weight', xoops_getrequest('weight'));
-			$this->_mCriteria->add(new Criteria('weight', xoops_getrequest('weight')));
+		if (isset($weight)) {
+			$this->mNavi->addExtra('weight', $weight);
+			$this->_mCriteria->add(new Criteria('weight', $weight));
 		}
 	
-		if (isset($_REQUEST['block_type'])) {
-			$this->mNavi->addExtra('block_type', xoops_getrequest('block_type'));
-			$this->_mCriteria->add(new Criteria('block_type', xoops_getrequest('block_type')));
+		if (isset($block_type)) {
+			$this->mNavi->addExtra('block_type', $block_type);
+			$this->_mCriteria->add(new Criteria('block_type', $block_type));
 		}
 	
-		if (isset($_REQUEST['c_type'])) {
-			$this->mNavi->addExtra('c_type', xoops_getrequest('c_type'));
-			$this->_mCriteria->add(new Criteria('c_type', xoops_getrequest('c_type')));
+		if (isset($c_type)) {
+			$this->mNavi->addExtra('c_type', $c_type);
+			$this->_mCriteria->add(new Criteria('c_type', $c_type));
 		}
 	
-		if (isset($_REQUEST['dirname'])) {
-			$this->mNavi->addExtra('dirname', xoops_getrequest('dirname'));
-			$this->_mCriteria->add(new Criteria('dirname', xoops_getrequest('dirname')));
+		if (isset($dirname)&&!empty($dirname)) {
+			if (intval($dirname) == -1){
+			$this->_mCriteria->add(new Criteria('block_type', 'C'));
+			$this->mModule = "cblock";
+			}
+			else {
+			$this->_mCriteria->add(new Criteria('dirname', $dirname));
+			//wanikoo
+			$handler =& xoops_gethandler('module');
+			$this->mModule =& $handler->getByDirname($dirname);
+			}
+			$this->mNavi->addExtra('dirname', $dirname);
 		}
-	
+
+		//
+		if (!empty($search)) {
+			$this->mKeyword = $search;
+			$this->mNavi->addExtra('search', $this->mKeyword);
+			$this->_mCriteria->add(new Criteria('name', '%' . $this->mKeyword . '%', 'LIKE'));
+		}
+		//
+		if (isset($option_field) ) {
+			$this->mOptionField = $option_field;
+			if ( $this->mOptionField != "all" ) {
+			$this->_mCriteria->add(new Criteria('side', intval($this->mOptionField)));
+			}
+			$this->mNavi->addExtra('option_field', $this->mOptionField);
+		}
+
+
+		//
 		$this->_mCriteria->add(new Criteria('visible', $this->_getVisible()));
 		$this->_mCriteria->add(new Criteria('isactive', 1));
-		
+
 		//
 		// Set sort conditions.
 		//

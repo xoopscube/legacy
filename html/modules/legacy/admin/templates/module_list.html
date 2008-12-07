@@ -5,8 +5,21 @@
 
 <h3 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></h3>
 
+<div class="tips">
+<ul>
+<li>
+<{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>: <{$ModuleTotal}>&nbsp;&nbsp;
+( <{$smarty.const._AD_LEGACY_LANG_ACTIVE}>: <{$activeModuleTotal}>&nbsp;&nbsp;&nbsp;<{$smarty.const._AD_LEGACY_LANG_DEACTIVATE}>: <{$inactiveModuleTotal}> )
+</li>
+<li>
+<{$smarty.const._AD_LEGACY_LANG_MOD_MYTIPS}>
+</li>
+<li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=legacy"><{$smarty.const._HELP}></a></li>
+</ul>
+</div>
+
 <ul class="toptab">
-  <li><a href="index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></li>
+  <li class="addModule"><a href="index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></li>
 </ul>
 
 <{if $actionForm->hasError()}>
@@ -23,24 +36,24 @@
 <{xoops_token form=$actionForm}>
 <table class="outer">
   <tr>
-    <th><{$smarty.const._AD_LEGACY_LANG_MOD_MID}><br />
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_MID}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_MID}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}><br />
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_NAME}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_NAME}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_VERSION}><br />
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}><br />
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_WEIGHT}><br />
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_WEIGHT}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_WEIGHT}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_ISACTIVE}><br />
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_ISACTIVE}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_ISACTIVE}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_MOD_MID}>
+      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_MID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_MID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}>
+      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_NAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_NAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_VERSION}>
+      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}>
+      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_WEIGHT}>
+      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_WEIGHT}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_WEIGHT}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_ISACTIVE}>
+      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_ISACTIVE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_ISACTIVE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
     <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
   </tr>
   <{foreach item=module from=$moduleObjects}>
@@ -55,7 +68,7 @@
       <td class="legacy_list_order">
         <{if $module->hasNeedUpdate()}>
           <strong class="legacy_module_versionMsg"><{$module->getRenderedVersion()}></strong>
-          <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getShow('dirname')}>"><img src="<{"icons/upgrade.gif"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" /></a>
+          <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getShow('dirname')}>"><img src="<{"icons/upgrade.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" /></a>
         <{else}>
           <{$module->getRenderedVersion()}>
         <{/if}>
@@ -66,11 +79,14 @@
       </td>
       <td class="legacy_list_select"><input type="checkbox" name="isactive[<{$module->getShow('mid')}>]" value="1" <{if $module->get('isactive')}>checked="checked"<{/if}> /></td>
       <td class="legacy_list_control">
-        <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getShow('dirname')}>"><img src="<{"icons/update.gif"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" /></a>
-        <{if $module->get('isactive') == 0 }>
-          <a href="index.php?action=ModuleUninstall&amp;dirname=<{$module->getShow('dirname')}>"><img src="<{"icons/uninstall.gif"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" title="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" /></a>
+        <{if $module->get('isactive') == 1 }>
+          <a href="index.php?action=ModuleEdit&amp;mid=<{$module->getShow('mid')}>"><img src="<{"icons/module_edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
         <{/if}>
-        <a href="index.php?action=ModuleInfo&amp;dirname=<{$module->getShow('dirname')}>"><img src="<{"icons/info.gif"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>" title="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>" /></a>
+        <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getShow('dirname')}>"><img src="<{"icons/update.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" /></a>
+        <{if $module->get('isactive') == 0 }>
+          <a href="index.php?action=ModuleUninstall&amp;dirname=<{$module->getShow('dirname')}>"><img src="<{"icons/module_remove.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" title="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" /></a>
+        <{/if}>
+        <a href="index.php?action=ModuleInfo&amp;dirname=<{$module->getShow('dirname')}>"><img src="<{"icons/info.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>" title="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>" /></a>
       </td>
     </tr>
   <{/foreach}>
@@ -81,3 +97,4 @@
   </tr>
 </table>
 </form>
+

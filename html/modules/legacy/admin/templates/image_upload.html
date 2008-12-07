@@ -1,0 +1,56 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=ImagecategoryList"><{$smarty.const._MI_LEGACY_MENU_IMAGE_MANAGE}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_IMAGE_UPLOAD}> <{if $category}>(<{$category->getShow('imgcat_name')}>)<{/if}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_IMAGE_UPLOAD}> <{if $category}>(<{$category->getShow('imgcat_name')}>)<{/if}></h3>
+
+<div class="tips">
+  <{$smarty.const._AD_LEGACY_TIPS_IMAGE_UPLOAD}>
+</div>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form action="./index.php?action=ImageUpload" method="post" enctype="multipart/form-data">
+  <{xoops_token form=$actionForm}>
+  <table class="outer">
+    <tr>
+      <th colspan="2">
+          <{$smarty.const._AD_LEGACY_LANG_IMAGE_UPLOAD}>
+      </th>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMAGE_UPLOAD_FILE}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=file name=upload}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_ID}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <select name="imgcat_id">
+          <{if $category}>
+          <{xoops_optionsArray id=imgcat_id from=$categoryArr value=imgcat_id label=imgcat_name default=$category->getShow('imgcat_id')}>
+          <{else}>
+          <{xoops_optionsArray id=imgcat_id from=$categoryArr value=imgcat_id label=imgcat_name}>
+          <{/if}>	
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="foot" colspan="2">
+        <input class="formButton" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPLOAD}>" />
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      </td>
+    </tr>
+  </table>
+</form>
