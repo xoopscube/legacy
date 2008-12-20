@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<xoopscube-dynaactionform>
-	<form-bean name="AvatarSelectForm" type="XCube_ActionForm">
-		<form-property name="uid" type="Int" />
-		<form-property name="avatar_id" type="Int[]" />
-	</form-bean>
-</xoopscube-dynaactionform>

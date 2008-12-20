@@ -1,0 +1,14 @@
+<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_AVATAR_UPLOAD_RESULT}></h3>
+
+<div class="error">
+<ul>
+  <{foreach item=message from=$errorMessages}>
+    <li><{$message|xoops_escape}></li>
+  <{/foreach}>
+</ul>
+</div>
+
+<ul class="toptab">
+  <li><a href="./index.php?action=AvatarList"><{$smarty.const._MI_USER_ADMENU_AVATAR_MANAGE}></a></li>
+  <li><a href="./index.php?action=AvatarUpload"><{$smarty.const._AD_USER_LANG_AVATAR_UPLOAD}></a></li>
+</ul>

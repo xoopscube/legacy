@@ -38,7 +38,22 @@ class User_UserSearchAction extends User_Action
 			$groupOptions[$gid] = $group->getVar('name');
 		}
 
+		$matchOptions = array();
+		$matchArray = array(XOOPS_MATCH_START => _STARTSWITH, XOOPS_MATCH_END => _ENDSWITH, XOOPS_MATCH_EQUAL => _MATCHES, XOOPS_MATCH_CONTAIN => _CONTAINS);
+		foreach ($matchArray as $key => $value) {
+			$matchOptions[$key] = $value;
+		}
+
 		$render->setAttribute('groupOptions', $groupOptions);
+		$render->setAttribute('matchOptions', $matchOptions);
+
+		$member_handler =& xoops_gethandler('member');
+		$active_total = $member_handler->getUserCount(new Criteria('level', 0, '>'));
+		$inactive_total = $member_handler->getUserCount(new Criteria('level', 0));
+		$render->setAttribute('activeUserTotal', $active_total);
+		$render->setAttribute('inactiveUserTotal', $inactive_total);
+		$render->setAttribute('UserTotal', $active_total+$inactive_total);
+
 	}
 }
 

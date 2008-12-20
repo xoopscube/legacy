@@ -46,3 +46,6 @@
 .user_list_select {
 	text-align:center;
 }
+.user_module_error {
+	color:#ff0000;
+}

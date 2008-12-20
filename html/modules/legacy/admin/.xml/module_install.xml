@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<xoopscube-dynaactionform>
-	<form-bean name="ModuleInstallForm" type="XCube_ActionForm">
-		<form-property name="dirname" type="String" />
-		<form-property name="force" type="Bool" />
-	</form-bean>
-</xoopscube-dynaactionform>

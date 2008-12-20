@@ -7,6 +7,10 @@
 
 <div class="tips"><{$smarty.const._AD_LEGACY_TIPS_THEME_ADMIN}></div>
 
+<ul class="toptab">
+  <li class="templates"><a href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplsetList">Templates</a></li>
+</ul>
+
 <{if $actionForm->hasError()}>
 <div class="error">
   <ul>
@@ -59,7 +63,7 @@
         <{if $currentThemeName != $theme->get('dirname')}>
           <input name="choose[<{$theme->getShow('dirname')}>]" type="submit" value="<{$smarty.const._SELECT}>" class="formButton" />
         <{else}>
-          <img src="<{"icons/active.gif"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_SELECTED}>" title="<{$smarty.const._AD_LEGACY_LANG_SELECTED}>" />
+          <img src="<{"icons/active.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_SELECTED}>" title="<{$smarty.const._AD_LEGACY_LANG_SELECTED}>" />
         <{/if}>
       </td>
     </tr>

@@ -20,23 +20,53 @@ require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
  */
 class Legacy_BlockListForm extends XCube_ActionForm
 {
+	/**
+	 * If the request is GET, never return token name.
+	 * By this logic, a action can have three page in one action.
+	 */
 	function getTokenName()
 	{
-		return "module.legacy.BlockListForm.TOKEN";
+		//
+		//
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			return "module.legacy.BlockListForm.TOKEN";
+		}
+		else {
+			return null;
+		}
 	}
-
+	
+	/**
+	 * For displaying the confirm-page, don't show CSRF error.
+	 * Always return null.
+	 */
+	function getTokenErrorMessage()
+	{
+		return null;
+	}
+	
 	function prepare()
 	{
 		//
 		// Set form properties
 		//
+		$this->mFormProperties['title'] =& new XCube_StringArrayProperty('title');
 		$this->mFormProperties['weight'] =& new XCube_IntArrayProperty('weight');
 		$this->mFormProperties['side'] =& new XCube_IntArrayProperty('side');
 		$this->mFormProperties['bcachetime'] =& new XCube_IntArrayProperty('bcachetime');
-	
+		$this->mFormProperties['uninstall']=& new XCube_BoolArrayProperty('uninstall');
+		//to display error-msg at confirm-page
+		$this->mFormProperties['confirm'] =& new XCube_BoolProperty('confirm');
+
 		//
 		// Set field properties
 		//
+		$this->mFieldProperties['title'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['title']->setDependsByArray(array('required','maxlength'));
+		$this->mFieldProperties['title']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_TITLE, '255');
+		$this->mFieldProperties['title']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _AD_LEGACY_LANG_TITLE, '255');
+		$this->mFieldProperties['title']->addVar('maxlength', '255');
+
 		$this->mFieldProperties['weight'] =& new XCube_FieldProperty($this);
 		$this->mFieldProperties['weight']->setDependsByArray(array('required','intRange'));
 		$this->mFieldProperties['weight']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_WEIGHT);

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<xoopscube-dynaactionform>
-	<form-bean name="ThemeSelectForm" type="XCube_ActionForm">
-		<form-property name="select" type="String[]" />
-		<form-property name="choose" type="Bool[]" />
-	</form-bean>
-</xoopscube-dynaactionform>

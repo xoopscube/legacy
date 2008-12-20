@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<xoopscube-dynaactionform>
-	<form-bean name="TplfileUploadForm" type="XCube_ActionForm">
-		<form-property name="upload" type="File[]" />
-	</form-bean>
-</xoopscube-dynaactionform>

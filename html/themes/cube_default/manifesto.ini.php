@@ -2,20 +2,20 @@
 /**
 
 [Manifesto]
-Name="Default theme of Cube"
+Name="Cube Default 2.2"
 Depends=Legacy_RenderSystem,legacy
 Url="http://xoopscube.sourceforge.net/"
-Version="1.0.0"
+Version="2.2"
 
 [Theme]
 RenderSystem=Legacy_RenderSystem
 Format="XOOPS2 Legacy Style"
 Author=XOOPS Cube Project Team
 ScreenShot="screenshot.png"
-Description="Default theme of XOOPS Cube 2.1"
+Description="Full header with tabs and search. Layout with 2 Columns and bottom center blocks."
 W3C=NG
 
-License="GPL"
+Licence="BSD"
 
 */
 ?>

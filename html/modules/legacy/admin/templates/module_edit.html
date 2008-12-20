@@ -1,0 +1,109 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_MOD_EDIT}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MOD_EDIT}></h3>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form action="index.php?action=ModuleEdit" method="post">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=mid value=$actionForm->get('mid')}>
+  <table class="outer">
+    <tr>
+      <th colspan="2"><{$smarty.const._AD_LEGACY_LANG_MOD_EDIT}></th>
+    </tr>
+  <tr>
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_MID}></td>
+	<td class="<{cycle values='odd,even'}>">
+	  <{if $object->get('mid')}>
+	    <{$object->getShow('mid')}>
+	  <{else}>
+	    --
+	  <{/if}>
+	</td>
+  </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACY_LANG_NAME}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=name value=$actionForm->get('name') size=50 maxlength=255}>
+      </td>
+    </tr>
+  <tr>
+     <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_DIR_NAME}></td>
+     <td class="<{cycle values='odd,even'}>"><{$object->getShow('dirname')}></td>
+  </tr>
+  <tr>
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_VERSION}></td>
+	<td class="<{cycle values='odd,even'}>"><{math equation="v/100" v=$object->get('version') format="%.2f"}>
+	<{if $object->get('version')/100 != $object->modinfo.version  }>
+	  &raquo; <b class="legacy_module_warning"><{math equation=$object->modinfo.version format="%.2f"}></b>
+	<{/if}>
+	</td>
+  </tr>
+  <tr>
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}></td>
+	<td class="<{cycle values='odd,even'}>">
+	  <{if $object->get('last_update')}>
+        <{$object->get('last_update')|xoops_formattimestamp:l}>
+      <{else}>
+        --
+      <{/if}>
+    </td>
+  </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACY_LANG_WEIGHT}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=weight value=$actionForm->get('weight') size=5 class=legacy_list_number}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_ADMINGROUP}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <select  size='5' name='admin_groupid[]' multiple='multiple'>
+          <{xoops_optionsArray id=admin_groupid[] from=$groupArr value=groupid label=name default=$admingroupidArr}>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_READGROUP}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <select  size='5' name='read_groupid[]' multiple='multiple'>
+          <{xoops_optionsArray id=read_groupid[] from=$groupArr value=groupid label=name default=$readgroupidArr}>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_AM_MODCACHE}></td>
+      <td class="<{cycle values="odd,even"}>">
+       <{if $object->get('hasmain')}>
+        <select name='module_cache'>
+          <{xoops_optionsArray id=module_cache from=$cachetimeArr value=cachetime label=label default=$actionForm->get('module_cache')}>
+        </select>
+       <{else}>
+           <{$smarty.const._NOCACHE}><{xoops_input type=hidden name=module_cache value=0}>
+       <{/if}>
+      </td>
+    </tr>
+  <tr>
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_DESC}></td>
+	<td class="<{cycle values='odd,even'}>"><{$object->modinfo.description}></td>
+  </tr>
+    <tr>
+      <td class="foot" colspan="2">
+        <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      </td>
+    </tr>
+  </table>
+</form>

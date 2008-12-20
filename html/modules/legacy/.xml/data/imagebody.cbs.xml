@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<cubson-mapping>
-  <class name="imagebody">
-    <id name="image_id" type="XOBJ_DTYPE_INT" column="image_id" />
-    
-    <property name="image_body" type="XOBJ_DTYPE_TEXT" column="image_body" not-null="true" />
-    <one-to-one name="mImageBody" column="image_id" class="Entity.imagebody" />
-  </class>
-</cubson-mapping>

@@ -5,7 +5,7 @@
  */
 
 $modversion['name']=_MI_LEGACYRENDER_NAME;
-$modversion['version'] = 1.06; // 2.1.6 RC
+$modversion['version']=1.07;
 $modversion['description']=_MI_LEGACYRENDER_NAME_DESC;
 $modversion['author']="";
 $modversion['credits']="The XOOPS Cube Project";
@@ -41,7 +41,7 @@ $modversion['config'][]=array (
 		"description"=>"_MI_LR_META_KEYWORDS_DESC",
 		"formtype"=>"textarea",
 		"valuetype"=>"text",
-		"default"=>"news, technology, headlines, xoops, xoop, nuke, myphpnuke, myphp-nuke, phpnuke, SE, geek, geeks, hacker, hackers, linux, software, download, downloads, free, community, mp3, forum, forums, bulletin, board, boards, bbs, php, survey, poll, polls, kernel, comment, comments, portal, odp, open, source, opensource, FreeSoftware, gnu, gpl, license, Unix, *nix, mysql, sql, database, databases, web site, weblog, guru, module, modules, theme, themes, cms, content management"
+		"default"=>"news, technology, headlines, xoops, cube, legacy, social, network, module, plugin, theme, css, web 2.0, ajax, cms, content management, nuke, myphpnuke, myphp-nuke, phpnuke, SE, geek, geeks, hacker, hackers, linux, software, download, downloads, free, community, mp3, forum, forums, bulletin, board, boards, bbs, php, survey, poll, polls, kernel, comment, comments, portal, odp, open, source, opensource, FreeSoftware, gnu, gpl, license, Unix, *nix, mysql, sql, database, databases, web site, weblog, guru"
 	);
 
 $modversion['config'][]=array (
@@ -50,7 +50,7 @@ $modversion['config'][]=array (
 		"description"=>"_MI_LR_META_DESCRIPTION_DESC",
 		"formtype"=>"textarea",
 		"valuetype"=>"text",
-		"default"=>"XOOPS is a dynamic Object Oriented based open source portal script written in PHP."
+		"default"=>"XOOPS Cube Legacy is a dynamic Object Oriented based open source portal script written in PHP."
 	);
 
 $modversion['config'][]=array (
@@ -88,7 +88,7 @@ $modversion['config'][]=array (
 		"description"=>"_MI_LR_META_COPYRIGHT_DESC",
 		"formtype"=>"textbox",
 		"valuetype"=>"text",
-		"default"=>"Copyright &copy; 2001-2006"
+		"default"=>"Copyright &copy; 2001-2008"
 	);
 
 $modversion['config'][]=array (
@@ -97,7 +97,7 @@ $modversion['config'][]=array (
 		"description"=>"_MI_LR_FOOTER_DESC",
 		"formtype"=>"textarea",
 		"valuetype"=>"text",
-		"default"=>"Powered by XOOPS Cube 2.1&copy; 2001-2006 <a href=\"http://xoopscube.sourceforge.net/\" target=\"_blank\">XOOPS Cube Project</a>"
+		"default"=>"Powered by <a href=\"http://xoopscube.org/\" target=\"_blank\">XOOPS Cube</a> 2.2&copy; 2001-2008 <a href=\"http://xoopscube.sourceforge.net/\" target=\"_blank\">XOOPS Cube Project</a>"
 	);
 
 $modversion['config'][]=array (

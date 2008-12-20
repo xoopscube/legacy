@@ -1,0 +1,15 @@
+
+<div class="tips">
+  <{if $title}>
+    <h4 class="admintitle"><b><{$title}></b></h4>
+  <{/if}>
+  
+  <{if is_array($messages)}>
+    <{foreach item=msg from=$messages}>
+      <{$msg}><br/>
+    <{/foreach}>
+  <{else}>
+    <{$messages}>
+  <{/if}>
+
+</div>
