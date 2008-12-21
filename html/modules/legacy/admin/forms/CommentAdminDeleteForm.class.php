@@ -28,7 +28,6 @@ class Legacy_CommentAdminDeleteForm extends XCube_ActionForm
 		// Set form properties
 		//
 		$this->mFormProperties['com_id'] =& new XCube_IntProperty('com_id');
-		$this->mFormProperties['delete_mode'] =& new XCube_StringProperty('delete_mode');
 
 		//
 		// Set field properties
