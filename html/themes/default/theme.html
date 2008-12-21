@@ -2,8 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
-<meta http-equiv="content-style-type" content="text/css" />
-<meta http-equiv="content-script-type" content="text/javascript" />
 <meta http-equiv="content-language" content="<{$xoops_langcode}>" />
 <meta name="robots" content="<{$xoops_meta_robots}>" />
 <meta name="keywords" content="<{$xoops_meta_keywords}>" />
@@ -11,8 +9,9 @@
 <meta name="rating" content="<{$xoops_meta_rating}>" />
 <meta name="author" content="<{$xoops_meta_author}>" />
 <meta name="copyright" content="<{$xoops_meta_copyright}>" />
-<meta name="generator" content="XOOPS Cube" />
-<link rel="shortcut icon" href="<{$xoops_url}>/favicon.ico" />
+<meta name="generator" content="XOOPS" />
+<title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
+<link href="<{$xoops_url}>/favicon.ico" rel="SHORTCUT ICON" />
 <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/xoops.css" />
 
 <{* If you change standard Legacy theme structure removing style*.css from the theme directory, you have to remove the following; *}>
@@ -20,90 +19,101 @@
   <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_themecss}>" />
 <{/if}>
 
-<title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
 <!-- RMV: added module header -->
 <{$xoops_module_header}>
 <script type="text/javascript">
 <!--
 <{$xoops_js}>
-// -->
+//-->
 </script>
 </head>
 <body>
-<div class="outline">
-<table cellspacing="0">
-<tr>
-<td class="headerlogo"><a href="<{$xoops_url}>/"><img src="<{$xoops_imageurl}>images/logo.gif" width="200" height="100" alt="<{$xoops_sitename}>" title="<{$xoops_sitename}>" /></a></td>
-<td class="headerbanner"><{$xoops_banner}></td>
-</tr>
-</table>
-<div class="headerbar">Welcome <{if $xoops_isuser}><{$xoops_uname}><{else}>Guest<{/if}>&nbsp;</div>
+  <table cellspacing="0">
+    <tr id="header">
+      <td id="headerlogo"><a href="<{$xoops_url}>/"><img src="<{$xoops_imageurl}>logo.gif" width="150" height="80" alt="" /></a></td>
+      <td id="headerbanner"><{$xoops_banner}></td>
+    </tr>
+    <tr>
+      <td id="headerbar" colspan="2">&nbsp;</td>
+    </tr>
+  </table>
 
-<table cellspacing="0">
-<tr>
-<{if $xoops_showlblock == 1}>
-<td id="leftcolumn" class="leftcolumn">
-<!-- Start left blocks loop -->
-<{foreach item=block from=$xoops_lblocks}>
-<div class="leftblockTitle"><{$block.title}></div>
-<div class="leftblockContent"><{$block.content}></div>
-<{/foreach}>
-<!-- End left blocks loop -->
-</td>
-<{/if}>
+  <table cellspacing="0">
+    <tr>
+      <td id="leftcolumn">
+        <!-- Start left blocks loop -->
+        <{foreach item=block from=$xoops_lblocks}>
+          <{include file="default/theme_blockleft.html"}>
+        <{/foreach}>
+        <!-- End left blocks loop -->
 
-<td id="centercolumn" class="centercolumn">
-<{if $xoops_showcblock == 1}>
-<table cellspacing="0">
-<tr>
-<td class="centerCcolumn" colspan="2">
-<{foreach item=block from=$xoops_ccblocks}>
-<div class="centeroutline">
-<div class="centerCblockTitle"><{$block.title}></div>
-<div class="centerCblockContent"><{$block.content}></div>
-</div>
-<{/foreach}>
-</td>
-</tr>
-<tr>
-<td class="centerLcolumn">
-<{foreach item=block from=$xoops_clblocks}>
-<div class="centeroutline">
-<div class="centerLblockTitle"><{$block.title}></div>
-<div class="centerLblockContent"><{$block.content}></div>
-</div>
-<{/foreach}>
-</td>
-<td class="centerRcolumn">
-<{foreach item=block from=$xoops_crblocks}>
-<div class="centeroutline">
-<div class="centerRblockTitle"><{$block.title}></div>
-<div class="centerRblockContent"><{$block.content}></div>
-</div>
-<{/foreach}>
-</td>
-</tr>
-</table>
-<{/if}>
-<div class="content"><{$xoops_contents}></div>
-</td>
+      </td>
 
-<{if $xoops_showrblock == 1}>
-<td id="rightcolumn" class="rightcolumn">
-<{foreach item=block from=$xoops_rblocks}>
-<div class="rightblockTitle"><{$block.title}></div>
-<div class="rightblockContent"><{$block.content}></div>
-<{/foreach}>
-</td>
-<{/if}>
-</tr>
-</table>
+      <td id="centercolumn">
 
-<div class="footerbar">
-<a href="http://xoopscube.sourceforge.net/"><img src="<{$xoops_imageurl}>images/poweredby.gif" width="287" height="10" alt="XOOPS Cube PROJECT" title="XOOPS Cube PROJECT" /></a><br />
-<{if $xoops_footer != 'Powered by XOOPS Cube 2.1&copy; 2001-2006 <a href="http://xoopscube.sourceforge.net/" target="_blank">XOOPS Cube Project</a>'}><{$xoops_footer}><{/if}>
-</div>
+        <!-- Display center blocks if any -->
+        <{if $xoops_showcblock == 1}>
 
-</div>
+        <table cellspacing="0">
+          <tr>
+            <td id="centerCcolumn" colspan="2">
+
+            <!-- Start center-center blocks loop -->
+            <{foreach item=block from=$xoops_ccblocks}>
+              <{include file="default/theme_blockcenter_c.html"}>
+            <{/foreach}>
+            <!-- End center-center blocks loop -->
+
+            </td>
+          </tr>
+          <tr>
+            <td id="centerLcolumn">
+
+            <!-- Start center-left blocks loop -->
+              <{foreach item=block from=$xoops_clblocks}>
+                <{include file="default/theme_blockcenter_l.html"}>
+              <{/foreach}>
+            <!-- End center-left blocks loop -->
+
+            </td><td id="centerRcolumn">
+
+            <!-- Start center-right blocks loop -->
+              <{foreach item=block from=$xoops_crblocks}>
+                <{include file="default/theme_blockcenter_r.html"}>
+              <{/foreach}>
+            <!-- End center-right blocks loop -->
+
+            </td>
+          </tr>
+        </table>
+
+        <{/if}>
+        <!-- End display center blocks -->
+
+        <div id="content">
+          <{$xoops_contents}>
+        </div>
+      </td>
+
+      <{if $xoops_showrblock == 1}>
+
+      <td id="rightcolumn">
+        <!-- Start right blocks loop -->
+        <{foreach item=block from=$xoops_rblocks}>
+          <{include file="default/theme_blockright.html"}>
+        <{/foreach}>
+        <!-- End right blocks loop -->
+      </td>
+
+      <{/if}>
+
+    </tr>
+  </table>
+
+  <table cellspacing="0">
+    <tr id="footerbar">
+      <td><a href="http://jp.xoops.org/" target="_blank"><img src="<{$xoops_imageurl}>poweredby.gif" alt="" /></a></td>
+    </tr>
+  </table>
 </body>
 </html>

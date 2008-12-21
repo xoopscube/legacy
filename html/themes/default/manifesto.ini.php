@@ -2,17 +2,17 @@
 /**
 
 [Manifesto]
-Name="Default theme of Cube"
+Name="Default Theme"
 Depends=Legacy_RenderSystem,legacy
-Url="http://xoopscube.sourceforge.net/"
+Url="http://www.xoops.org"
 Version="1.0.0"
 
 [Theme]
 RenderSystem=Legacy_RenderSystem
 Format="XOOPS2 Legacy Style"
-Author=XOOPS Cube Project Team
+Author=XOOPS Project Team
 ScreenShot="screenshot.png"
-Description="Default theme of XOOPS Cube 2.1"
+Description="This is the theme that was a standard of XOOPS2 once"
 W3C=NG
 
 License="GPL"
