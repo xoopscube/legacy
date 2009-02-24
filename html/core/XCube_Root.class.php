@@ -12,6 +12,16 @@ if (!defined('XCUBE_CORE_PATH')) define('XCUBE_CORE_PATH', dirname(__FILE__));
 
 require_once XCUBE_CORE_PATH . '/XCube_HttpContext.class.php';
 
+function XC_CLASS_EXISTS($className)
+{
+	if (version_compare(PHP_VERSION, "5.0", ">=")) {
+		return class_exists($className, false);
+	}
+	else {
+		return class_exists($className);
+	}
+}
+
 /**
  * @public
  * @brief [FINAL CLASS] The root object which collects exchangable managers. 
@@ -524,7 +534,7 @@ class XCube_Root
 			}
 		}
 		
-		if (class_exists($className)) {
+		if (XC_CLASS_EXISTS($className)) {
 			$ret =& new $className();
 		}
 
