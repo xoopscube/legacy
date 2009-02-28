@@ -10,6 +10,8 @@
 
 if (!defined('XCUBE_CORE_PATH')) define('XCUBE_CORE_PATH', dirname(__FILE__));
 
+require_once XCUBE_CORE_PATH . '/XCube_Root.class.php';
+
 require_once XCUBE_CORE_PATH . '/XCube_Property.class.php';
 require_once XCUBE_CORE_PATH . '/XCube_Validator.class.php';
 require_once XCUBE_CORE_PATH . '/XCube_FormFile.class.php';
@@ -654,7 +656,7 @@ class XCube_DependClassFactory
 		if (!isset($_cache[$dependName])) {
 			// or switch?
 			$class_name = "XCube_" . ucfirst($dependName) . "Validator";
-			if (class_exists($class_name)) {
+			if (XC_CLASS_EXISTS($class_name)) {
 				$_cache[$dependName] =& new $class_name();
 			}
 			else {
