@@ -44,8 +44,8 @@ class Legacy_SmilesEditAction extends Legacy_AbstractEditAction
 		//
 		// Delete old file, if the file exists.
 		//
-		if ($this->mActionForm->mOldAvatarFilename != null && $this->mActionForm->mOldAvatarFilename != "blank.gif") {
-			@unlink(XOOPS_UPLOAD_PATH . "/" . $this->mActionForm->mOldAvatarFilename);
+		if ($this->mActionForm->mOldFilename != null && $this->mActionForm->mOldFilename != "blank.gif") {
+			@unlink(XOOPS_UPLOAD_PATH . "/" . $this->mActionForm->mOldFilename);
 		}
 
 		return parent::_doExecute();
