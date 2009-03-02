@@ -5,6 +5,8 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
 - Bug #2491813 - SmileEditAction include multi byte comment.
+- Bug #2491817 - SmileEditAction cannnot delete old file.
+- Bug #2591041 - Typo Legacy_PublicControllerStrategy.class.php.
 
 [Bug Fix - From "XCube" Bug Tracker]
 - Bug #2635869 - Abstracts difference of class_exists between two versions.
@@ -12,6 +14,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 [Other Changes/Enhancements]
 
 [Staff]
+- Marijuana
 - minahito
 - mumincacao
 - onokazu
