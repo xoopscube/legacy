@@ -4,14 +4,16 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 2009/03/?: Package Revision 2.1.7
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
+- Bug #2491813 - SmileEditAction include multi byte comment.
 
 [Bug Fix - From "XCube" Bug Tracker]
-- Bug #2635869 Abstracts difference of class_exists between two versions
+- Bug #2635869 - Abstracts difference of class_exists between two versions.
 
 [Other Changes/Enhancements]
 
 [Staff]
 - minahito
+- mumincacao
 - onokazu
 
 ----------------------------------------

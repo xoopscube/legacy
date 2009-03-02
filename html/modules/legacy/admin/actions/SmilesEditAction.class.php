@@ -42,7 +42,7 @@ class Legacy_SmilesEditAction extends Legacy_AbstractEditAction
 		}
 
 		//
-		// 古いファイルがあれば削る
+		// Delete old file, if the file exists.
 		//
 		if ($this->mActionForm->mOldAvatarFilename != null && $this->mActionForm->mOldAvatarFilename != "blank.gif") {
 			@unlink(XOOPS_UPLOAD_PATH . "/" . $this->mActionForm->mOldAvatarFilename);
