@@ -73,14 +73,14 @@ class Legacy_Utils
 		// IMPORTANT CONVENTION
 		//
 		$className = ucfirst($dirname) . "_Module";
-		if (!class_exists($className)) {
+		if (!XC_CLASS_EXISTS($className)) {
 			$filePath = XOOPS_ROOT_PATH . "/modules/${dirname}/class/Module.class.php";
 			if (file_exists($filePath)) {
 				require_once $filePath;
 			}
 		}
 		
-		if (class_exists($className)) {
+		if (XC_CLASS_EXISTS($className)) {
 			$instance =& new $className($module);
 		}
 		else {
@@ -115,7 +115,7 @@ class Legacy_Utils
 		$func = $block->get('show_func');
 		if (substr($func, 0, 4) == 'cl::') {
 			$className = ucfirst($block->get('dirname')) . '_' . substr($func, 4);
-			if (!class_exists($className)) {
+			if (!XC_CLASS_EXISTS($className)) {
 				$filePath = XOOPS_ROOT_PATH . '/modules/' . $block->get('dirname') . '/blocks/' . $block->get('func_file');
 				if (!file_exists($filePath)) {
 					$retBlock =& new Legacy_BlockProcedureAdapter($block);
@@ -124,7 +124,7 @@ class Legacy_Utils
 				
 				require_once $filePath;
 				
-				if (!class_exists($className)) {
+				if (!XC_CLASS_EXISTS($className)) {
 					$retBlock =& new Legacy_BlockProcedureAdapter($block);
 					return $retBlock;
 				}

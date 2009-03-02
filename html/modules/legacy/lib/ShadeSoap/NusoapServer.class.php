@@ -6,7 +6,7 @@
  * @license http://www.gnu.org/licenses/lgpl.txt GNU LESSER GENERAL PUBLIC LICENSE Version 2.1
  */
 
-if (!class_exists('soap_server')) exit();
+if (!XC_CLASS_EXISTS('soap_server')) exit();
 
 class ShadeSoap_NusoapServer extends soap_server
 {
@@ -45,7 +45,7 @@ class ShadeSoap_NusoapServer extends soap_server
 		}
 
 		if (strlen($delim) > 0 && substr_count($this->methodname, $delim) == 1 &&
-			class_exists(substr($this->methodname, 0, strpos($this->methodname, $delim)))) {
+			XC_CLASS_EXISTS(substr($this->methodname, 0, strpos($this->methodname, $delim)))) {
 			// get the class and method name
 			$class = substr($this->methodname, 0, strpos($this->methodname, $delim));
 			$method = substr($this->methodname, strpos($this->methodname, $delim) + strlen($delim));

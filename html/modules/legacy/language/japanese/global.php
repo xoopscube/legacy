@@ -199,7 +199,7 @@ define('XOOPS_USE_MULTIBYTES', '1');
 //
 // Register the function about local.
 //
-if (class_exists('XCube_Root') && function_exists('mb_convert_encoding') && function_exists('mb_convert_kana')) {
+if (XC_CLASS_EXISTS('XCube_Root') && function_exists('mb_convert_encoding') && function_exists('mb_convert_kana')) {
 	$root =& XCube_Root::getSingleton();
 	$root->mDelegateManager->add('Legacy_Mailer.ConvertLocal', 'Legacy_JapaneseEucJP_convLocal');
 }

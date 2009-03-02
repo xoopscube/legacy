@@ -65,7 +65,7 @@ class Pm_ActionFrame
 	
 		require_once $fileName;
 	
-		if (class_exists($className)) {
+		if (XC_CLASS_EXISTS($className)) {
 			$this->mAction =& new $className();
 		}
 	

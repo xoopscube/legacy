@@ -69,7 +69,7 @@ class LegacyRender_ActionFrame
 	
 		require_once $fileName;
 	
-		if (class_exists($className)) {
+		if (XC_CLASS_EXISTS($className)) {
 			$actionFrame->mAction =& new $className($actionFrame->mAdminFlag);
 		}
 	}

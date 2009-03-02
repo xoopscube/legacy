@@ -554,7 +554,7 @@ function &getMailer()
     require_once XOOPS_ROOT_PATH."/class/xoopsmailer.php";
     if ( file_exists(XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/xoopsmailerlocal.php") ) {
         require_once XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/xoopsmailerlocal.php";
-        if ( class_exists("XoopsMailerLocal") ) {
+        if ( XC_CLASS_EXISTS("XoopsMailerLocal") ) {
             $ret =& new XoopsMailerLocal();
 			return $ret;
         }
@@ -586,7 +586,7 @@ function &xoops_gethandler($name, $optional = false )
             require_once $hnd_file;
         }
         $class = 'Xoops'.ucfirst($name).'Handler';
-        if (class_exists($class)) {
+        if (XC_CLASS_EXISTS($class)) {
             $handlers[$name] = new $class($GLOBALS['xoopsDB']);
         }
     }
@@ -629,12 +629,12 @@ function &xoops_getmodulehandler($name = null, $module_dir = null, $optional = f
         }
 		
 		$className = ucfirst(strtolower($module_dir)) . "_" . ucfirst($name) . 'Handler';
-		if (class_exists($className)) {
+		if (XC_CLASS_EXISTS($className)) {
 			$handlers[$module_dir][$name] =& new $className($GLOBALS['xoopsDB']);
 		}
 		else {
 			$className = ucfirst(strtolower($module_dir)) . ucfirst($name) . 'Handler';
-			if (class_exists($className)) {
+			if (XC_CLASS_EXISTS($className)) {
 				$handlers[$module_dir][$name] = new $className($GLOBALS['xoopsDB']);
 			}
 		}
