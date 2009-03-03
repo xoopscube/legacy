@@ -15,10 +15,10 @@ require_once XCUBE_CORE_PATH . '/XCube_HttpContext.class.php';
 function XC_CLASS_EXISTS($className)
 {
 	if (version_compare(PHP_VERSION, "5.0", ">=")) {
-		return XC_CLASS_EXISTS($className, false);
+		return class_exists($className, false);
 	}
 	else {
-		return XC_CLASS_EXISTS($className);
+		return class_exists($className);
 	}
 }
 
