@@ -911,7 +911,13 @@ class Legacy_Controller extends XCube_Controller
 			
 			$this->mRoot->mLanguageManager->loadModuleMessageCatalog('legacy');
 
-			if(is_object($this->mRoot->mContext->mXoopsUser)) {
+			if (is_object($this->mRoot->mContext->mXoopsUser)) {
+				// If the current user doesn't bring to any groups, kick out him for XCL's security.
+				//if (!(count($this->mRoot->mContext->mXoopsUser->getGroups()) > 0)) {
+				//	$this->logout();
+				//	return;
+				//}
+
 				// RMV-NOTIFY
 				// Perform some maintenance of notification records
 				$notification_handler =& xoops_gethandler('notification');
