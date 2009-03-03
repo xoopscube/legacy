@@ -94,7 +94,9 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
         }
         
         // Set unique key.
-        $sql = 'ALTER TABLE `' . $table . '` DROP INDEX `groupid_uid`, ADD UNIQUE `uid_groupid` (`uid`,`groupid`)';
+        $sql = 'ALTER TABLE `' . $table . '` DROP INDEX `groupid_uid`';
+		$db->query($sql); // ignore sql errors
+		$sql = 'ALTER TABLE `' . $table . '` ADD UNIQUE `uid_groupid` (`uid`,`groupid`)';
         if ($db->query($sql))
         {
             $this->mLog->addReport(XCube_Utils::formatString(_AD_LEGACY_MESSAGE_SET_UNIQUE_KEY_SUCCESSFUL, $table));
