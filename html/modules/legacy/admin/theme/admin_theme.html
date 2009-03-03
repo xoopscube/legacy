@@ -15,6 +15,7 @@
 var cid = <{if $smarty.get.fct == "preferences" && $smarty.get.mod > 0}><{$smarty.get.mod}><{else}><{$currentModule->mXoopsModule->get('mid')}><{/if}>;
 function ccToggle(id)
 {
+	if (!xoopsGetElementById('c' + id)) return;
 	el = xoopsGetElementById('c'+id).style;
 	if (el.display == 'block') {
 		el.display = 'none';
