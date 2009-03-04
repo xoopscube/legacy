@@ -913,11 +913,18 @@ class Legacy_Controller extends XCube_Controller
 
 			if (is_object($this->mRoot->mContext->mXoopsUser)) {
 				// If the current user doesn't bring to any groups, kick out him for XCL's security.
-				//if (!(count($this->mRoot->mContext->mXoopsUser->getGroups()) > 0)) {
-				//	$this->logout();
-				//	return;
-				//}
-
+				$t_groups =& $this->mRoot->mContext->mXoopsUser->getGroups();
+				if (!is_array($t_groups)) {
+					// exception
+					$this->logout();
+					return;
+				}
+				else if (count($t_groups) == 0) {
+					// exception, too
+					$this->logout();
+					return;
+				}
+				
 				// RMV-NOTIFY
 				// Perform some maintenance of notification records
 				$notification_handler =& xoops_gethandler('notification');

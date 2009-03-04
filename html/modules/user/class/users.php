@@ -53,6 +53,12 @@ class UserUsersObject extends XoopsSimpleObject
 		return $this->Groups;
 	}
 	
+	function getNumGroups()
+	{
+		$this->_loadGroups();
+		return count($this->Groups);
+	}
+	
 	//
 	// TODO naming rule
 	//
