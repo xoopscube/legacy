@@ -220,7 +220,7 @@ class XoopsMySQLDatabase extends XoopsDatabase
      */
     function quoteString($str)
     {
-         $str = "'".str_replace('\\"', '"', addslashes($str))."'";
+         $str = "'".mysql_real_escape_string($str)."'";
          return $str;
     }
 

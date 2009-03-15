@@ -8,6 +8,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Bug #2491817 - SmileEditAction cannnot delete old file.
 - Bug #2591041 - Typo Legacy_PublicControllerStrategy.class.php.
 - Bug #2656854 - XC_CLASS_EXISTS loops infinity.
+- Bug #2658360 - doubtful escaping in quoteString()
 
 [Bug Fix - From "XCube" Bug Tracker]
 - Bug #2635869 - Abstracts difference of class_exists between two versions.
