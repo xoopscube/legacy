@@ -12,10 +12,14 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 [Bug Fix - From "XCube" Bug Tracker]
 - Bug #2635869 - Abstracts difference of class_exists between two versions.
 
+[Patches - From Feature Request Tracker]
+- Request #2642992 - exclude extra trim()
+
 [Other Changes/Enhancements]
 
 [Staff]
 - Marijuana
+- gusagi
 - minahito
 - mumincacao
 - onokazu
