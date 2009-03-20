@@ -139,7 +139,7 @@ class XUpgrade_UpgradeProcessor
 			'system_comments_thread.html' => 'system_comments_thread.html',
 			'system_dummy.html' => 'legacy_dummy.html',
 			'system_notification_list.html' => 'legacy_notification_list.html',
-			'system_notification_select.html' => 'system_notification_select_form.html',
+			'system_notification_select.html' => 'legacy_notification_select_form.html',
 			'system_redirect.html' => 'legacy_redirect.html',
 			'system_rss.html' => 'legacy_rss.html',
 			'system_siteclosed.html' => 'legacy_site_closed.html'
