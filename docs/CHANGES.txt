@@ -9,12 +9,13 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #2591041 - Typo Legacy_PublicControllerStrategy.class.php.
 - Fix Bug #2642879 - javascript error in admin area.
 - Fix Bug #2642959 - SQL Error in Legacy_Updater.
-- Bug #2656854 - XC_CLASS_EXISTS loops infinity.
-- Bug #2658360 - doubtful escaping in quoteString()
-
+- Fix Bug #2658360 - doubtful escaping in quoteString()
+- Fix Bug #2690739 - typo in /install/include/functions.php, line 38
+- Fix Bug #2696701 - user_lostpass.html email maxlength too short
 
 [Bug Fix - From "XCube" Bug Tracker]
-- Bug #2635869 - Abstracts difference of class_exists between two versions.
+- Fix Bug #2656854 - XC_CLASS_EXISTS loops infinity.
+- Fix Bug #2635869 - Abstracts difference of class_exists between two versions.
 
 [Patches - From Feature Request Tracker]
 - Request #2642992 - exclude extra trim()
