@@ -1,6 +1,6 @@
 <?php
 // Translation Info
-// $Id: user.php,v 1.1 2008/03/09 02:32:38 xoopserver Exp $
+// $Id: user.php 928 2008-05-01 05:16:31Z mikhail.miguel $
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
@@ -34,7 +34,7 @@ define("_US_CSORTORDER","Ordem da aparência dos comentários");
 define("_US_DELACCOUNT","Remover cadastro");
 define("_US_DISCLAIMER","Termo de Responsabilidade");
 define("_US_EDITPROFILE","Editar perfil");
-define("_US_EMAIL","<i>E-mail</i>");
+define("_US_EMAIL","<em>E-mail</em>");
 define("_US_EMAILNOSPACES","Ocorreu um erro, endereços de correio-eletrônico não contêm espaços.");
 define("_US_EMAILTAKEN","Ocorreu um erro, este endereço de correio-eletrônico já está em uso.");
 define("_US_ENTERPWD","Ocorreu um erro, é necessário escolher uma senha.");
@@ -78,7 +78,7 @@ define("_US_NOEDITRIGHT","Lamento, você ainda não tem permissão para editar a
 define("_US_NOPERMISS","Lamento, você ainda não tem permissão para executar esta operação.");
 define("_US_NOPROBLEM","Escreva o endereço de e-mail com o qual você se cadastrou em nosso site.");
 define("_US_NOREGISTER","Lamento, mas o cadastro de novos associados está temporariamente desabilitado.");
-define("_US_NOTREGISTERED","Ainda não se cadastrou? Clique <a href='register.php'>aqui</a>!");
+define("_US_NOTREGISTERED","Ainda não se cadastrou? Clique <a href='./register.php'>aqui</a>!");
 define("_US_OCCUPATION","Ocupação");
 define("_US_OLDDELETED","O seu avatar anterior será removido.");
 define("_US_PASSNOTSAME","Verifique se digitou as senhas corretamente. Elas devem ser idênticas");
@@ -106,7 +106,7 @@ define("_US_STATISTICS","Estatísticas");
 define("_US_SUBMIT","Prosseguir");
 define("_US_SURETODEL","Tem certeza de que deseja cancelar a sua conta?");
 define("_US_THANKYOUFORVISIT","Obrigado por nos visitar.");
-define("_US_TIMEZONE","Fuso-horário");
+define("_US_TIMEZONE","Fuso horário");
 define("_US_TYPEPASSTWICE","(escreva uma nova senha duas vezes para alterar a atual)");
 define("_US_UNEEDAGREE","Lamento, mas tem de concordar com o Termo de Responsabilidade para poder se cadastrar.");
 define("_US_UPLOADMYAVATAR","Enviar o meu próprio avatar");
@@ -115,11 +115,11 @@ define("_US_USERKEYFOR","Este é o código de ativação para %s");
 define("_US_USERNAME","Codinome");
 define("_US_USERREG","Cadastro");
 define("_US_VERIFYPASS","Verificar senha");
-define("_US_WEBSITE","Blog");
+define("_US_WEBSITE","Website");
 define("_US_YIM","Perfil Yahoo!");
 define("_US_YOURACCOUNT","O seu perfil no %s");
 define("_US_YOUREMAIL","Endereço de correio-eletrônico:");
 define("_US_YOURREGISTERED","Agora você está cadastrado: uma mensagem com a sua chave de ativação foi enviada ao endereço de correio-eletrônico fornecido. Por favor, siga as instruções contidas no e-mail para habilitar a sua conta.");
 define("_US_YOURREGISTERED2","Agora você está cadastrado. Entretanto, espere pela aprovação dos administradores.");
-define("_US_YOURREGMAILNG","Agora você está cadastrado. Entretanto, o envio da mensagem de e-mail com o código de ativação não foi efetuado corretamente devido a um erro interno do servidor. Pedimos desculpas pelo inconveniente e solicitamos que contate a administração por e-mail para completar a ativação de sua conta.");
+define("_US_YOURREGMAILNG","Atenção: agora você está cadastrado. Porém, o envio da mensagem de e-mail com o código de ativação não foi efetuado corretamente devido a um erro interno do servidor. Pedimos desculpas pelo inconveniente e solicitamos que contate a administração por e-mail para completar a ativação de sua conta.");
 ?>

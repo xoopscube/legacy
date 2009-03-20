@@ -1,6 +1,7 @@
 <?php
 // Translation Info
-// $Id: blocks.php,v 1.2 2008/06/22 03:23:09 minahito Exp $
+// $Id: blocks.php 968 2009-03-17 19:49:23Z mikhail.miguel $
+// License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //
@@ -33,13 +34,13 @@ define("_MB_LEGACY_MESSAGE_CAN_NOT_THEME_CHANGE","Lamento, a alteração de tema
 define("_MB_LEGACY_MFLS","Arquivos alterados");
 define("_MB_LEGACY_MLNKS","Endereços alterados");
 define("_MB_LEGACY_NOTIF","Notificações");
-define("_MB_LEGACY_PWHEIGHT","Altura das janelas <i>pop-up</i>");
-define("_MB_LEGACY_PWWIDTH","Largura das janelas <i>pop-up</i>");
+define("_MB_LEGACY_PWHEIGHT","Altura das janelas <em>pop-up</em>");
+define("_MB_LEGACY_PWWIDTH","Largura das janelas <em>pop-up</em>");
 define("_MB_LEGACY_RECO","Recomende-nos");
 define("_MB_LEGACY_SADMIN","Mostrar grupos administrativos");
 define("_MB_LEGACY_SEARCH","Pesquisa");
 define("_MB_LEGACY_SUBMS","Conteúdo pendente");
-define("_MB_LEGACY_VACNT","Perfil");
+define("_MB_LEGACY_VACNT","Sobre mim");
 define("_MB_LEGACY_WDLS","Arquivos pendentes");
 define("_MB_LEGACY_WLNKS","Endereços pendentes");
 ?>

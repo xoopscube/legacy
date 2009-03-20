@@ -1,6 +1,7 @@
 <?php
 // Translation Info
-// $Id: main.php,v 1.2 2008/06/22 03:23:09 minahito Exp $
+// $Id: main.php 860 2008-02-28 17:36:42Z mikhail.miguel $
+// License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //
@@ -22,7 +23,7 @@ define("_MD_LEGACY_ERROR_MAXLENGTH","O valor {0} com {1} ou menos caracteres.");
 define("_MD_LEGACY_ERROR_OBJECTEXIST","Entrada incorreta em {0}.");
 define("_MD_LEGACY_ERROR_PERMISSION","Lamento, permissão negada.");
 define("_MD_LEGACY_ERROR_REQUIRED","{0} é um valor necessário.");
-define("_MD_LEGACY_ERROR_SEARCH_NOT_ENABLED","O mecanismo de busca está deshabilitado");
+define("_MD_LEGACY_ERROR_SEARCH_NOT_ENABLED","O mecanismo de busca está desabilitado");
 define("_MD_LEGACY_ERROR_SEARCH_QUERY_REQUIRED","Tamanho mínimo das palavras-chave");
 define("_MD_LEGACY_ERROR_YOU_MUST_UPLOAD","É necessário o envio de um arquivo de imagem");
 define("_MD_LEGACY_FORMAT_SEARCH_SEPARATOR","/[s,]+/");

@@ -1,6 +1,6 @@
 <?php
 // Translation Info
-// $Id: notification.php,v 1.1 2008/03/09 02:32:37 xoopserver Exp $
+// $Id: notification.php 862 2008-02-28 17:41:15Z mikhail.miguel $
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português

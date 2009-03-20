@@ -3,10 +3,11 @@
 // *************************************************************** //
 // ############################################################### //
 // ## XOOPS Cube Legacy 2.1 - Tradução para o Português do Brasil
-// ## $Id: modinfo.php,v 1.2 2008/06/22 03:23:09 minahito Exp $
+// ## $Id: modinfo.php 864 2008-02-28 17:42:55Z mikhail.miguel $
+// License http://creativecommons.org/licenses/by/2.5/br/
 // ## Por............: Mikhail Miguel
 // ## E-mail.........: mikhail@underpop.com
-// ## Website........: http://xoops.eti.br
+// ## Website........: http://xoopscube.com.br
 // ############################################################### //
 // *************************************************************** //
 define("_MI_STDCACHE_NAME","Acelerador");

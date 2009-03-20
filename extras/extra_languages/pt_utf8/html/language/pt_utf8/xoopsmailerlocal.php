@@ -1,5 +1,5 @@
 <?php
-// $Id: xoopsmailerlocal.php,v 1.1 2008/03/09 02:32:38 xoopserver Exp $
+// $Id: xoopsmailerlocal.php 862 2008-02-28 17:41:15Z mikhail.miguel $
 // License http://creativecommons.org/licenses/by/2.5/br/
 class XoopsMailerLocal extends XoopsMailer {
 function XoopsMailerLocal(){

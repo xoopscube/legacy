@@ -1,6 +1,7 @@
 <?php
 // Translation Info
-// $Id: global.php,v 1.2 2008/06/22 03:23:09 minahito Exp $
+// $Id: global.php 930 2008-05-10 18:16:01Z mikhail.miguel $
+// License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //
@@ -115,7 +116,7 @@ define("_PLEASEWAIT","Por favor, aguarde.");
 define("_PLZCOMPLETE","Por favor, complete os campos 'assunto' e 'mensagem'.");
 define("_POSTANON","Postar anonimamente");
 define("_POSTEDBY","Por");
-define("_PREFERENCES","Preferências");
+define("_PREFERENCES","Definições");
 define("_PREVIEW","Mostrar");
 define("_PROFILE","Perfil");
 define("_QUOTE","Citar");
@@ -163,13 +164,13 @@ define("_YES","Sim");
 define("_YOURHOME","Inicial");
 define("XOOPS_USE_MULTIBYTES","0");
 //%%%%% LANGUAGE SPECIFIC SETTINGS %%%%%
-@define("LEGACY_MAIL_CHAR","utf-8");
-@define("LEGACY_MAIL_ENCO","utf-8");
+@define("LEGACY_MAIL_CHAR","UTF-8");
+@define("LEGACY_MAIL_ENCO","UTF-8");
 @define("LEGACY_MAIL_LANG","pt");
-@define("_CHARSET","utf-8");
+@define("_CHARSET","UTF-8");
 @define("_LANGCODE","pt");
 // mb_language( 'uni');
-// mb_internal_encoding( 'utf-8');
-// mb_http_output( 'utf-8');
+// mb_internal_encoding( 'UTF-8');
+// mb_http_output( 'UTF-8');
 header('Content-Type:text/html; charset='._CHARSET);
 ?>
