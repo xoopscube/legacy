@@ -1,6 +1,6 @@
 {X_UNAME}さん、こんにちは
 
-当サイト{X_NOTIFY_MODULE}モジュールにおける{X_ITEM_TYPE} "{X_ITEM_TILE}"に対して{X_NOTIFY_EVENT}が発生しました。
+当サイト{X_MODULE}モジュールにおける{X_ITEM_TYPE} "{X_ITEM_NAME}"に対して{X_NOTIFY_EVENT}が発生しました。
 
 下記のリンクをクリックするとこのコメント（{X_ITEM_TYPE}）を見ることができます：
 {X_ITEM_URL}
