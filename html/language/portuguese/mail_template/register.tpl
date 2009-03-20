@@ -7,9 +7,8 @@ Para confirmar o seu cadastro no {SITENAME}, visite:
 
 
 
-Lembre-se que o seu codinome escolhido no momento do cadastro foi {X_UNAME}, e
-que mailto:{X_UEMAIL} foi o endereço de e-mail utilizado.
-
+Lembre-se de que o seu codinome escolhido no momento do cadastro foi {X_UNAME},
+e que mailto:{X_UEMAIL} foi o endereço de e-mail utilizado.
 
 
 
@@ -29,12 +28,8 @@ pela seção de contato do {SITENAME}:
 {SITEURL}
 
 
-*=-=-=-==-=-=-==-=-=-==-=-
-{SITENAME} - {SITEURL}
-=-=-=-==-=-=-==-=-=-==-=-*
 
 
-/"\
-\ / Campanha da fita ASCII
- X  a favor do correio eletrônico livre
-/ \ de códigos html e anexos sem utilidade.
+=-=-=-==-=-=-==-=-=-==-=-=-=-=-==-=-=-==-=-=-==-=--
+{SITENAME} ~ {SITEURL}
+=-=-=-==-=-=-==-=-=-==-=-=-=-=-==-=-=-==-=-=-==-=-* 

@@ -1,5 +1,5 @@
 <?php
-// $Id: admin.php,v 1.1 2008/03/09 02:32:42 xoopserver Exp $
+// $Id: admin.php 968 2009-03-17 19:49:23Z mikhail.miguel $
 // License http://creativecommons.org/licenses/by/2.5/br/
 define("_AD_USER_ERROR_CONTENT_IS_NOT_FOUND","Não foi possível encontrar os dados.");
 define("_AD_USER_ERROR_EMAIL","{0} é um endereço inválido");
@@ -75,10 +75,10 @@ define("_AD_USER_LANG_MAILJOB_VIEW","Entrega do correio");
 define("_AD_USER_LANG_MAIL_NG_USERS_ONLY","Apenas associados que NÃO aceitam receber cartas-eletrônicas");
 define("_AD_USER_LANG_MAIL_OK_USERS_ONLY","Apenas associados que ACEITAM receber cartas-eletrônicas");
 define("_AD_USER_LANG_MESSAGE","Mensagem");
-define("_AD_USER_LANG_NO_SPECIAL_RANK","~-~-~-~-~-~");
+define("_AD_USER_LANG_NO_SPECIAL_RANK","-~-~-~-");
 define("_AD_USER_LANG_OVER_POSTS","Número de contribuições é superior a X");
 define("_AD_USER_LANG_PENDING_USERS_ONLY","Apenas inativos");
-define("_AD_USER_LANG_PERM_ACCESS","Accesso");
+define("_AD_USER_LANG_PERM_ACCESS","Acesso");
 define("_AD_USER_LANG_PERM_ACCESS_ADMIN","Privilégios");
 define("_AD_USER_LANG_PERM_ADMIN","Admin");
 define("_AD_USER_LANG_PERM_BLOCK_ACCESS","Permissão para acesso aos blocos");
@@ -111,7 +111,7 @@ define("_AD_USER_LANG_USER","Associado");
 define("_AD_USER_LANG_USER_DELETE","Remover associado");
 define("_AD_USER_LANG_USER_DELETE_ADVICE","Tem certeza de que deseja remover este associado?");
 define("_AD_USER_LANG_USER_EDIT","Editar associado");
-define("_AD_USER_LANG_USER_LIST","Cadastros");
+define("_AD_USER_LANG_USER_LIST","Cadastrados");
 define("_AD_USER_LANG_USER_NEW","Incluir manualmente um novo associado");
 define("_AD_USER_LANG_USER_SEARCH_LIST","Lista de associados");
 define("_AD_USER_LANG_USER_VIEW","Mostrar associado");

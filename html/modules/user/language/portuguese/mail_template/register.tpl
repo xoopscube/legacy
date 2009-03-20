@@ -1,32 +1,32 @@
 ================================================================================
-:: {SITENAME} :: CONFIRMAÇÃO DO CADASTRO
+:: {SITENAME} :: Confirmação de Cadastro 
 ================================================================================
+
 
 Para confirmar o seu cadastro no {SITENAME}, visite:
 {USERACTLINK}
 
 
-
 Lembre-se que o seu codinome escolhido no momento do cadastro foi “{X_UNAME}”, e
-que “mailto:{X_UEMAIL}” foi o endereço de e-mail utilizado.
-
-
-
-
-
+que “{X_UEMAIL}” foi o endereço de e-mail utilizado.
 
 
 
 :: Esta conta não é sua? ::
 ================================================================================
-Você recebeu este e-mail porque recentemente foi criada uma conta no website
-{SITENAME} usando este endereço como meio de contato.
-
-Caso você não tenha criado uma conta no {SITENAME} recentemente,
+Você recebeu este e-mail porque alguém criou uma conta no portal {SITENAME}
+usando este endereço como meio de contato. Se esse alguém não é você,
 ignore esta mensagem e/ou entre em contato com o administrador do
 {SITENAME} pelo endereço {ADMINMAIL} , ou via web,
 pela seção de contato do {SITENAME}:
 {SITEURL}
+
+
+
+
+
+
+
 
 
 *=-=-=-==-=-=-==-=-=-==-=-

@@ -1,6 +1,6 @@
 <?php
 // Versão em português: Mikhail Miguel
-// $Id: admin.php,v 1.1 2008/03/09 02:32:41 xoopserver Exp $
+// $Id: admin.php 864 2008-02-28 17:42:55Z mikhail.miguel $
 // License http://creativecommons.org/licenses/by/2.5/br/
 define("_AD_STDCACHE_LANG_INTERVAL_TIMER", "Duração (em minutos):");
 ?>

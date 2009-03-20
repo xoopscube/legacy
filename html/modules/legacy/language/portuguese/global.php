@@ -1,6 +1,6 @@
 <?php
 // Translation Info
-// $Id: global.php,v 1.1 2008/03/09 02:32:40 xoopserver Exp $
+// $Id: global.php 930 2008-05-10 18:16:01Z mikhail.miguel $
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
@@ -116,7 +116,7 @@ define("_PLEASEWAIT","Por favor, aguarde.");
 define("_PLZCOMPLETE","Por favor, complete os campos 'assunto' e 'mensagem'.");
 define("_POSTANON","Postar anonimamente");
 define("_POSTEDBY","Por");
-define("_PREFERENCES","Preferências");
+define("_PREFERENCES","Definições");
 define("_PREVIEW","Mostrar");
 define("_PROFILE","Perfil");
 define("_QUOTE","Citar");

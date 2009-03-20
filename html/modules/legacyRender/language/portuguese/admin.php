@@ -1,5 +1,5 @@
 <?php
-// $Id: admin.php,v 1.1 2008/03/09 02:32:40 xoopserver Exp $
+// $Id: admin.php 966 2009-03-16 15:54:13Z mikhail.miguel $
 define("_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_IMAGESET","Lamento, não foi possível gravar o conjunto de imagens '{0}'.");
 define("_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_IMAGE_FILE","Lamento, não foi possível gravar a imagem '{0}'");
 define("_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_LINKTPLSET","Lamento, não foi possível possível a informação da ligação entre o imageset e o conjunto do modelo.");
@@ -12,7 +12,7 @@ define("_AD_LEGACYRENDER_ERROR_LOGIN_REPETITION","Repetição de início de uma ses
 define("_AD_LEGACYRENDER_ERROR_MAXLENGTH","Entrada {0} com {1} ou menos carateres.");
 define("_AD_LEGACYRENDER_ERROR_OBJECT_EXIST","O objeto existe");
 define("_AD_LEGACYRENDER_ERROR_OBJECT_IS_NOT_EXIST","O objeto especificado não existe.");
-define("_AD_LEGACYRENDER_ERROR_REQUIRED","{0} é necessário.");
+define("_AD_LEGACYRENDER_ERROR_REQUIRED","{0} é um valor necessário.");
 define("_AD_LEGACYRENDER_ERROR_TPLSET_ALREADY_EXISTS","O conjunto de modelos '{0}' já existe.");
 define("_AD_LEGACYRENDER_ERROR_TPLSET_NAME_RULE","Ao nomear um conjunto de modelos, utilize apenas letras (sem acentos), números, e travessão.");
 define("_AD_LEGACYRENDER_ERROR_TPLSET_NAME_WRONG","O nome escolhido para o conjunto de modelos é inválido.");
@@ -24,15 +24,15 @@ define("_AD_LEGACYRENDER_LANG_BANNER","Faixa publicitária");
 define("_AD_LEGACYRENDER_LANG_BANNERCLIENT_DELETE","Remover um cliente");
 define("_AD_LEGACYRENDER_LANG_BANNERCLIENT_EDIT","Editar um cliente");
 define("_AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST","Lista de clientes");
-define("_AD_LEGACYRENDER_LANG_BANNERCLIENT_NEW","Incluir um novo cliente");
+define("_AD_LEGACYRENDER_LANG_BANNERCLIENT_NEW","Incluir uma nova faixa publicitária");
 define("_AD_LEGACYRENDER_LANG_BANNERFINISH_DELETE","Remover faixa publicitária expirada");
 define("_AD_LEGACYRENDER_LANG_BANNERFINISH_LIST","Faixas expiradas");
 define("_AD_LEGACYRENDER_LANG_BANNER_DELETE","Remover uma faixa");
 define("_AD_LEGACYRENDER_LANG_BANNER_EDIT","Editar uma faixa");
 define("_AD_LEGACYRENDER_LANG_BANNER_LIST","Lista de faixas");
 define("_AD_LEGACYRENDER_LANG_BANNER_NEW","Nova faixa publicitária");
-define("_AD_LEGACYRENDER_LANG_BID","N° da faixa");
-define("_AD_LEGACYRENDER_LANG_CID","Categoria");
+define("_AD_LEGACYRENDER_LANG_BID","Número");
+define("_AD_LEGACYRENDER_LANG_CID","Cliente");
 define("_AD_LEGACYRENDER_LANG_CLICKS","Cliques");
 define("_AD_LEGACYRENDER_LANG_CLICKURL","Endereço do clique");
 define("_AD_LEGACYRENDER_LANG_CLIENT_NAME","Nome do cliente");
@@ -71,7 +71,7 @@ define("_AD_LEGACYRENDER_LANG_TEMPLATE_SET_LIST","Listar conjuntos de modelos");
 define("_AD_LEGACYRENDER_LANG_TPLFILE_DELETE","Remover um arquivo de modelo");
 define("_AD_LEGACYRENDER_LANG_TPLFILE_LIST","Listar arquivos de modelo");
 define("_AD_LEGACYRENDER_LANG_TPLFILE_UPLOAD","Enviar");
-define("_AD_LEGACYRENDER_LANG_TPLSET_CREATED","Criado em...");
+define("_AD_LEGACYRENDER_LANG_TPLSET_CREATED","Criado");
 define("_AD_LEGACYRENDER_LANG_TPLSET_CREDITS","Créditos");
 define("_AD_LEGACYRENDER_LANG_TPLSET_DESC","Descrição");
 define("_AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD","Descarregar");

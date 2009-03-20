@@ -1,5 +1,5 @@
 <?php
-// $Id: blocks.php,v 1.1 2008/03/09 02:32:42 xoopserver Exp $
+// $Id: blocks.php 870 2008-02-28 17:51:01Z mikhail.miguel $
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português

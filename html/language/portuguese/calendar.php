@@ -1,7 +1,7 @@
 <?php
 // *************************************************************** //
 // ** XOOPS Cube Legacy - Versão em Português
-// ** $Id: calendar.php,v 1.1 2008/03/09 02:38:12 xoopserver Exp $
+// ** $Id: calendar.php 862 2008-02-28 17:41:15Z mikhail.miguel $
 // License http://creativecommons.org/licenses/by/2.5/br/
 // *************************************************************** //
 define("_CAL_APRIL","Abril");

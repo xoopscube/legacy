@@ -1,6 +1,6 @@
 <?php
 // Translation Info
-// $Id: modinfo.php,v 1.1 2008/03/09 02:32:40 xoopserver Exp $
+// $Id: modinfo.php 861 2008-02-28 17:37:07Z mikhail.miguel $
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy 2.1 - Tradução para o Português do Brasil

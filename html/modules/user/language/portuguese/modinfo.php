@@ -1,9 +1,9 @@
 <?php
-// $Id: modinfo.php,v 1.1 2008/03/09 02:32:42 xoopserver Exp $
+// $Id: modinfo.php 915 2008-03-15 16:27:00Z mikhail.miguel $
 // License http://creativecommons.org/licenses/by/2.5/br/
 define("_MI_USER_ADMENU_AVATAR_MANAGE","Avatares");
 define("_MI_USER_ADMENU_GROUP_LIST","Grupos e permissões");
-define("_MI_USER_ADMENU_LIST","Cadastro");
+define("_MI_USER_ADMENU_LIST","Listar associados");
 define("_MI_USER_ADMENU_MAIL","Contatar associados");
 define("_MI_USER_ADMENU_MAILJOB_MANAGE","Mala direta");
 define("_MI_USER_ADMENU_RANK_LIST","Graduações");
@@ -57,7 +57,7 @@ define("_MI_USER_CONF_UNAME_TEST_LEVEL_WEAK","Permissivo (permite caracteres de 
 define("_MI_USER_CONF_USERCOOKIE","Nome para os <i>cookies</i> dos associados.");
 define("_MI_USER_CONF_USERCOOKIE_DESC","Este <i>cookie</i> apenas contém o codinome e é guardado no computador do associado por um ano (se o utilizador desejar). Com isto, o codinome será inserido automaticamente no formulário de entrada.");
 define("_MI_USER_CONF_USE_SSL","Utilizar conexão segura via SSL na entrada?");
-define("_MI_USER_KEYWORD_AVATAR_MANAGE","avatar personalizado sistema lista editar alterar excluir");
+define("_MI_USER_KEYWORD_AVATAR_MANAGE","avatar personalizado sistema lista editar alterar remover");
 define("_MI_USER_KEYWORD_CREATE_AVATAR","Enviar avatar");
 define("_MI_USER_KEYWORD_CREATE_GROUP","Criar grupo");
 define("_MI_USER_KEYWORD_CREATE_RANK","Criar graduação");
@@ -72,6 +72,6 @@ define("_MI_USER_MENU_CREATE_AVATAR","Incluir avatar");
 define("_MI_USER_MENU_CREATE_GROUP","Criar grupo");
 define("_MI_USER_MENU_CREATE_RANK","Criar graduação");
 define("_MI_USER_MENU_CREATE_USER","Criar cadastro");
-define("_MI_USER_NAME","Perfil");
+define("_MI_USER_NAME","Cadastros");
 define("_MI_USER_NAME_DESC","Módulo de gerenciamento de associados.");
 ?>
