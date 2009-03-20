@@ -10,6 +10,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #2642879 - javascript error in admin area.
 - Fix Bug #2642959 - SQL Error in Legacy_Updater.
 - Fix Bug #2658360 - doubtful escaping in quoteString()
+- Fix Bug #2666693 - Error in /XUpgrade/admin/class/UpgradeProcessor.class.php
 - Fix Bug #2690736 - typo: X_ITEM_TILE (X_ITEM_TITLE?) default_notify.tpl
 - Fix Bug #2690739 - typo in /install/include/functions.php, line 38
 - Fix Bug #2696701 - user_lostpass.html email maxlength too short
@@ -35,6 +36,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - roger
 - salamander
 - tohokuaiki
+- Tom_G3X
 
 
 ----------------------------------------
