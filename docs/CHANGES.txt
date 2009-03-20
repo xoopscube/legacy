@@ -23,6 +23,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Request #2642992 - exclude extra trim()
 - Request #2662922 - DB Layer can be overridden.
 - Patch #2697022 - Package_Legacy\html\ - new portuguese translations
+- Patch #2697034 - extra_languages\ - new pt_utf8 translations
 
 
 [Other Changes/Enhancements]
