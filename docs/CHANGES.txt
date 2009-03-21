@@ -15,6 +15,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #2690736 - typo: X_ITEM_TILE (X_ITEM_TITLE?) default_notify.tpl
 - Fix Bug #2690739 - typo in /install/include/functions.php, line 38
 - Fix Bug #2696701 - user_lostpass.html email maxlength too short
+- Fix Bug #2699408 - Specify 2nd argument of mysql_real_escape_string().
 
 [Bug Fix - From "XCube" Bug Tracker]
 - Fix Bug #2656854 - XC_CLASS_EXISTS loops infinity.

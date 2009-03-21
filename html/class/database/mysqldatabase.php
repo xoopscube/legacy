@@ -220,7 +220,7 @@ class XoopsMySQLDatabase extends XoopsDatabase
      */
     function quoteString($str)
     {
-         $str = "'".mysql_real_escape_string($str)."'";
+         $str = "'".mysql_real_escape_string($str, $this->conn)."'";
          return $str;
     }
 
