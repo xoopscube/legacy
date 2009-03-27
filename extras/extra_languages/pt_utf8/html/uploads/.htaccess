@@ -1,4 +1,4 @@
-#	$Id: .htaccess 1 2009-03-09 19:32:11Z mikhail.miguel $
+#	$Id$
 
 <Files *.php>
 deny from all

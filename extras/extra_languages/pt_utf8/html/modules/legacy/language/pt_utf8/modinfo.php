@@ -1,6 +1,6 @@
 <?php
 // Translation Info
-// $Id: modinfo.php 915 2008-03-15 16:27:00Z mikhail.miguel $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português

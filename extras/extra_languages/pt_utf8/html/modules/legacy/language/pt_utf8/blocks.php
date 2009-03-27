@@ -1,6 +1,6 @@
 <?php
 // Translation Info
-// $Id: blocks.php 968 2009-03-17 19:49:23Z mikhail.miguel $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português

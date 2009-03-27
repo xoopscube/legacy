@@ -1,6 +1,6 @@
 <?php
 // Translation Info
-// $Id: install2.php 859 2008-02-28 17:36:04Z mikhail.miguel $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube - Tradução para o Português

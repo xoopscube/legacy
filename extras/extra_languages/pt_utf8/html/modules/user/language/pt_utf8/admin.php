@@ -1,5 +1,5 @@
 <?php
-// $Id: admin.php 968 2009-03-17 19:49:23Z mikhail.miguel $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 define("_AD_USER_ERROR_CONTENT_IS_NOT_FOUND","Não foi possível encontrar os dados.");
 define("_AD_USER_ERROR_EMAIL","{0} é um endereço inválido");

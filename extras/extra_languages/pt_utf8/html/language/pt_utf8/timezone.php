@@ -1,6 +1,6 @@
 <?php
 // Translation Info
-// $Id: timezone.php 928 2008-05-01 05:16:31Z mikhail.miguel $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy 2.1 - Tradução para o Português do Brasil

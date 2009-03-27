@@ -28,23 +28,25 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Patch #2697022 - Package_Legacy\html\ - new portuguese translations
 - Patch #2697034 - extra_languages\ - new pt_utf8 translations
 - patch #2697044 - missing: XUpgrade and system pt language files
+- Patch #2701060 - Path disclosure in xoopsmailerlocal.php (pt_utf8)
+- Patch #2701140 - legacyRender: update for Portuguese Files
 
 [Other Changes/Enhancements]
 - Request #2682887 - MySQL Database Connection should specify the client_flags
 
 [Staff]
 - GIJOE
-- hxrr
+- Gusagi
+- Hxrr
 - Marijuana
-- gusagi
-- minahito
-- mumincacao
-- onokazu
-- roger
-- salamander
-- tohokuaiki
+- Mikhail
+- Minahito
+- Mumincacao
+- Onokazu
+- Roger
+- Salamander
+- Tohokuaiki
 - Tom_G3X
-
 
 ----------------------------------------
 2008/11/21: Package Revision 2.1.6

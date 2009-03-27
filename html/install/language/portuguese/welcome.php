@@ -1,5 +1,5 @@
 <?php
-// $Id: welcome.php 966 2009-03-16 15:54:13Z mikhail.miguel $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português

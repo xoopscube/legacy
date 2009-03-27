@@ -1,6 +1,6 @@
 <?php
 // Translation Info
-// $Id: global.php 930 2008-05-10 18:16:01Z mikhail.miguel $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
