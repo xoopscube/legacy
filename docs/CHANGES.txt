@@ -30,6 +30,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - patch #2697044 - missing: XUpgrade and system pt language files
 
 [Other Changes/Enhancements]
+- Request #2682887 - MySQL Database Connection should specify the client_flags
 
 [Staff]
 - GIJOE
