@@ -4,7 +4,6 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 2009/03/?: Package Revision 2.1.7
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
-- Fix Bug #2350320 - Possibility of script injection in ErrorHandler::show.
 - Fix Bug #2491813 - SmileEditAction include multi byte comment.
 - Fix Bug #2491817 - SmileEditAction cannnot delete old file.
 - Fix Bug #2591041 - Typo Legacy_PublicControllerStrategy.class.php.
@@ -48,6 +47,15 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Salamander
 - Tohokuaiki
 - Tom_G3X
+
+
+----------------------------------------
+2009/04/02: Package Revision 2.1.6a
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug IPA#74747784 / JPCERT#95042060 - XSS weakness
+- Fix Bug #2350320 - Possibility of script injection in ErrorHandler::show.
+
 
 ----------------------------------------
 2008/11/21: Package Revision 2.1.6

@@ -92,7 +92,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 		$render->setAttribute('hasUploadPerm', $hasUploadPerm);
 		$render->setAttribute("category", $this->mCategory);
 		
-		$render->setAttribute('target', xoops_getrequest('target'));
+        $render->setAttribute('target', htmlspecialchars(xoops_getrequest('target'), ENT_QUOTES));
 	}
 
 	function executeViewError(&$controller, &$xoopsUser, &$render)
