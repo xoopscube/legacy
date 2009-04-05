@@ -10,6 +10,8 @@
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
+define("LEGACY_MODULE_VERSION", "2.1.7.RC");
+
 define("LEGACY_CONTROLLER_STATE_PUBLIC", 1);
 define("LEGACY_CONTROLLER_STATE_ADMIN", 2);
 

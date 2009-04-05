@@ -1,7 +1,7 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
-2009/03/?: Package Revision 2.1.7
+2009/04/05: Package Revision 2.1.7 RC
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
 - Fix Bug #2491813 - SmileEditAction include multi byte comment.
@@ -33,6 +33,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 [Other Changes/Enhancements]
 - Request #2682887 - MySQL Database Connection should specify the client_flags
+- Legacy Controller class provides LEGACY_MODULE_VERSION constant as phpversion.
 
 [Staff]
 - GIJOE
