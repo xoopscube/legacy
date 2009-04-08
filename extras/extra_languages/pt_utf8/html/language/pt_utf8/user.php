@@ -108,7 +108,7 @@ define("_US_SURETODEL","Tem certeza de que deseja cancelar a sua conta?");
 define("_US_THANKYOUFORVISIT","Obrigado por nos visitar.");
 define("_US_TIMEZONE","Fuso horário");
 define("_US_TYPEPASSTWICE","(escreva uma nova senha duas vezes para alterar a atual)");
-define("_US_UNEEDAGREE","Lamento, mas tem de concordar com o Termo de Responsabilidade para poder se cadastrar.");
+define("_US_UNEEDAGREE","Lamento, mas apenas os visitantes que concordam com o <em>Termo de Responsabilidade</em> podem se cadastrar.");
 define("_US_UPLOADMYAVATAR","Enviar o meu próprio avatar");
 define("_US_USECOOKIE","Armazenar o meu codinome em um cookie durante um ano.");
 define("_US_USERKEYFOR","Este é o código de ativação para %s");
