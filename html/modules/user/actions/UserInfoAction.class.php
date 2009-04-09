@@ -129,6 +129,19 @@ class User_UserInfoAction extends User_Action
 		else {
 			$render->setAttribute('enableSelfDelete', false);
 		}
+	
+		//XCL2.2 TEST:Profile_Service
+		$root =& $controller->mRoot;
+		$service = $root->mServiceManager->getService("Profile_Service");
+		$client = $root->mServiceManager->createClient($service);
+		if (is_object($client)) {
+			$definitions = $client->call('getDefinitions', array());
+			$render->setAttribute('definitions', $definitions);
+		
+			$data = $client->call('getProfile', array('uid'=>$this->mObject->get('uid')));
+			$render->setAttribute('data', $data);
+		}
+		//XCL2.2 TEST END:Profile_Service
 	}
 	
 	function executeViewError(&$controller, &$xoopsUser, &$render)

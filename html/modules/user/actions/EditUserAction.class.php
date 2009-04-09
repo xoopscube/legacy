@@ -154,10 +154,39 @@ class User_EditUserAction extends User_AbstractEditAction
 		);
 
 		$render->setAttribute('notify_modeOptions', $modeOptions);
+	
+		//XCL2.2 TEST:Profile_Service
+		$service = $root->mServiceManager->getService("Profile_Service");
+		$client = $root->mServiceManager->createClient($service);
+		if (is_object($client)) {
+			$definitions = $client->call('getDefinitions', array('show_form'=>true));
+			$render->setAttribute('definitions', $definitions);
+		
+			$data = $client->call('getProfile', array('uid'=>$this->mObject->get('uid')));
+			$render->setAttribute('data', $data);
+		}
+		//XCL2.2 TEST END:Profile_Service
 	}
 
 	function executeViewSuccess(&$controller,&$xoopsUser,&$render)
 	{
+		//XCL2.2 TEST:Profile_Service
+		$root = XCube_Root::getSingleton();
+		$uid = ($root->mContext->mXoopsUser) ? $root->mContext->mXoopsUser->get('uid') : 0;
+		$profileArr = xoops_getrequest('profile');
+	
+		$service = $root->mServiceManager->getService("Profile_Service");
+		$client = $root->mServiceManager->createClient($service);
+		if (is_object($client)) {
+			$definitions = $client->call('getDefinitions', array('uid'=>$uid, 'show_form'=>true));
+			foreach(array_keys($definitions) as $key){
+				$arr[$definitions[$key]['field_name']] = $profileArr[$definitions[$key]['field_name']]; 
+			}
+			$arr['uid'] = $uid;
+			$client->call('setProfiles', $arr);
+		}
+		//XCL2.2 TEST END:Profile_Service
+	
 		$controller->executeForward(XOOPS_URL . '/userinfo.php?uid=' . $this->mObject->getShow('uid'));
 	}
 

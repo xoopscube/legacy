@@ -65,6 +65,16 @@
           </td>
         </tr>
       <{/if}>
+			<{foreach item=def from=$definitions}>
+			<tr valign="top">
+			  <td class="head"><{$def.label}></td>
+			  <td class="<{cycle values='odd,even'}>">
+			  	<{assign var="defkey" value=$def.field_name}>
+			    <{$data.$defkey}>
+			  </td>
+			</tr>
+			<{/foreach}>
+      <!--
       <tr valign="top">
         <td class="head"><{$smarty.const._MD_USER_LANG_USER_ICQ}></td>
         <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('user_icq')}></td>
@@ -97,6 +107,7 @@
         <td class="head"><{$smarty.const._MD_USER_LANG_BIO}></td>
         <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('bio')}></td>
       </tr>
+      -->
     </table>
     </td>
     <td width="50%">

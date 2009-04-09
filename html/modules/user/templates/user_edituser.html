@@ -55,6 +55,33 @@
       </select>
     </td>
   </tr>
+
+  <!-- XCL2.2 TEST-->
+	<{foreach item=def from=$definitions}>
+	<{assign var=field_name value=$def.field_name}>
+	<tr>
+    <td class="head"><{$def.label}></td>
+    <td class="<{cycle values="odd,even"}>">
+    	<{if $def.type=="string"}>
+      <{xoops_input type=text name=profile[$field_name] value=$data.$field_name  size=40 maxlength=255}>
+      <{elseif $def.type=="int"}>
+      <{xoops_input type=text name=profile[$field_name] value=$data.$field_name size=15 maxlength=11}>
+      <{elseif $def.type=="text"}>
+      <{xoops_dhtmltarea type=text name=profile[$field_name] value=$data.$field_name}>
+      <{elseif $def.type=="date"}>
+      <{elseif $def.type=="checkbox"}>
+      <{xoops_input type=checkbox name=profile[$field_name] value=1 default=$data.$field_name}>
+      <{elseif $def.type=="selectbox"}>
+      <select name="profile[<{$field_name}>]" id="legacy_xoopsform_profile[<{$field_name}>]">
+        <{foreach item=option from=$def.options}>
+      	<option value="<{$option}>"<{if $data.$field_name==$option}> selected="selected"<{/if}>><{$option}></option>
+	    <{/foreach}>
+      </select>
+      <{/if}>
+    </td>
+  </tr>
+	<{/foreach}>
+  <!--
   <tr>
     <td class="head"><{$smarty.const._MD_USER_LANG_USER_ICQ}></td>
     <td class="<{cycle values="odd,even"}>">
@@ -97,6 +124,8 @@
       <{xoops_input name=user_intrest size=30 maxlength=150 value=$actionForm->get('user_intrest')}>
     </td>
   </tr>
+  -->
+  <!-- XCL2.2 TEST END-->
   <tr>
     <td class="head"><{$smarty.const._MD_USER_LANG_USER_SIG}></td>
     <td class="<{cycle values="odd,even"}>">
