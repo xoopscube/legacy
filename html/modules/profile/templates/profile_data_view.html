@@ -1,0 +1,8 @@
+<dl>
+	<{foreach item=field from=$fields}>
+  <dt><{$field->getShow('label')}></dt>
+  <dd>
+    <{$object->get($field->get('field_name'))}>
+  </dd>
+	<{/foreach}>
+</dl>

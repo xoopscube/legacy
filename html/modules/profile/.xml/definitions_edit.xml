@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<cubson-dynaactionform>
+	<form-bean name="DefinitionsEditForm" type="XCube_ActionForm">
+		<form-property name="field_id" type="Int" />
+		<form-property name="field_name" type="String" />
+		<form-property name="label" type="String" />
+		<form-property name="type" type="String" />
+		<form-property name="validation" type="String" />
+		<form-property name="required" type="Bool" />
+		<form-property name="show_form" type="Bool" />
+		<form-property name="weight" type="Int" />
+		<form-property name="description" type="Text" />
+		<form-property name="access" type="Text" />
+		<form-property name="options" type="Text" />
+	</form-bean>
+	<form-validation>
+		<field property="field_id" depends="required">
+			<arg0 key="const._MD_PROFILE_LANG_FIELD_ID" />
+			<msg name="required" key="const._MD_PROFILE_ERROR_REQUIRED" />
+		</field>
+		<field property="field_name" depends="required,maxlength">
+			<arg0 key="const._MD_PROFILE_LANG_FIELD_NAME" />
+			<msg name="required" key="const._MD_PROFILE_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_PROFILE_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="32" />
+		</field>
+		<field property="label" depends="required,maxlength">
+			<arg0 key="const._MD_PROFILE_LANG_LABEL" />
+			<msg name="required" key="const._MD_PROFILE_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_PROFILE_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="255" />
+		</field>
+		<field property="type" depends="required,maxlength">
+			<arg0 key="const._MD_PROFILE_LANG_TYPE" />
+			<msg name="required" key="const._MD_PROFILE_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_PROFILE_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="16" />
+		</field>
+		<field property="validation" depends="required,maxlength">
+			<arg0 key="const._MD_PROFILE_LANG_VALIDATION" />
+			<msg name="required" key="const._MD_PROFILE_ERROR_REQUIRED" />
+			<arg1 name="maxlength" key="${var:maxlength}" />
+			<msg name="maxlength" key="const._MD_PROFILE_ERROR_MAXLENGTH" />
+			<var name="maxlength" value="255" />
+		</field>
+		<field property="weight" depends="required">
+			<arg0 key="const._MD_PROFILE_LANG_WEIGHT" />
+			<msg name="required" key="const._MD_PROFILE_ERROR_REQUIRED" />
+		</field>
+		<field property="description" depends="required">
+			<arg0 key="const._MD_PROFILE_LANG_DESCRIPTION" />
+			<msg name="required" key="const._MD_PROFILE_ERROR_REQUIRED" />
+		</field>
+		<field property="access" depends="required">
+			<arg0 key="const._MD_PROFILE_LANG_ACCESS" />
+			<msg name="required" key="const._MD_PROFILE_ERROR_REQUIRED" />
+		</field>
+		<field property="options" depends="required">
+			<arg0 key="const._MD_PROFILE_LANG_OPTIONS" />
+			<msg name="required" key="const._MD_PROFILE_ERROR_REQUIRED" />
+		</field>
+	</form-validation>
+</cubson-dynaactionform>
