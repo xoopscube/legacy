@@ -35,7 +35,7 @@ function getLanguage() {
 			'tw' => 'tchinese',
 			'cn' => 'schinese',
 			'ro' => 'romanian',
-			'po' => 'portuguese'
+			'pt' => 'portuguese'
 	);
 
 	$charset_array = array(

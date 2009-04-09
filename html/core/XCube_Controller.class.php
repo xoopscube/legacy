@@ -10,6 +10,8 @@
 
 if (!defined('XCUBE_CORE_PATH')) define('XCUBE_CORE_PATH', dirname(__FILE__));
 
+require_once XCUBE_CORE_PATH . '/XCube_Root.class.php';
+
 require_once XCUBE_CORE_PATH . '/XCube_ActionFilter.class.php';
 require_once XCUBE_CORE_PATH . '/XCube_RenderSystem.class.php';
 require_once XCUBE_CORE_PATH . '/XCube_Delegate.class.php';
@@ -432,7 +434,7 @@ class XCube_Controller
 						require_once $path . $file;
 						$className = $matches[1];
 						
-						if (class_exists($className) && !isset($this->_mLoadedFilterNames[$className])) {
+						if (XC_CLASS_EXISTS($className) && !isset($this->_mLoadedFilterNames[$className])) {
 							$this->_mLoadedFilterNames[$className] = true;
 							$instance =& new $className($this);
 							$this->addActionFilter($instance);

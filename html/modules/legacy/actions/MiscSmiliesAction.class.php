@@ -39,7 +39,10 @@ class Legacy_MiscSmiliesAction extends Legacy_AbstractListAction
 
 	function getDefaultView(&$controller, &$xoopsUser)
 	{
-		$this->mTargetName = xoops_getrequest('target');
+        $this->mTargetName = trim(xoops_getrequest('target'));
+        if ($this->mTargetName == '' || !preg_match('/^[a-zA-Z]\w*$/', $this->mTargetName)) {
+            return LEGACY_FRAME_VIEW_ERROR;
+        }
 		return parent::getDefaultView($controller, $xoopsUser);
 	}
 	
@@ -56,6 +59,11 @@ class Legacy_MiscSmiliesAction extends Legacy_AbstractListAction
 		$render->setAttribute("pageNavi", $this->mFilter->mNavi);
 		$render->setAttribute("targetName", $this->mTargetName);
 	}
+
+	function executeViewError(&$controller, &$xoopsUser, &$render)
+    {
+        $render->setTemplateName("legacy_dummy.html");
+    }
 }
 
 ?>

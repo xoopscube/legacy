@@ -370,6 +370,11 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
      */
     function checkRight($gperm_name, $gperm_itemid, $gperm_groupid, $gperm_modid = 1, $bypass_admincheck = false)
     {
+		if (empty($gperm_groupid)) {
+			return false;
+		}
+		   
+
         if (($bypass_admincheck == false) &&
             ((is_array($gperm_groupid) && in_array(XOOPS_GROUP_ADMIN, $gperm_groupid))||
             (XOOPS_GROUP_ADMIN == $gperm_groupid))) {

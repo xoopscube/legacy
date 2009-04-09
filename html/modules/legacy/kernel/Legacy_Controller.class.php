@@ -10,6 +10,8 @@
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
+define("LEGACY_MODULE_VERSION", "2.2");
+
 define("LEGACY_CONTROLLER_STATE_PUBLIC", 1);
 define("LEGACY_CONTROLLER_STATE_ADMIN", 2);
 
@@ -603,7 +605,7 @@ class Legacy_Controller extends XCube_Controller
 			// If the class exists, create a instance. Else, load the file, and
 			// try creating a instance again.
 			//
-			if (class_exists($className)) {
+			if (XC_CLASS_EXISTS($className)) {
 				$languageManager =& new $className();
 			}
 			else {
@@ -612,7 +614,7 @@ class Legacy_Controller extends XCube_Controller
 					require_once $filePath;
 				}
 				
-				if (class_exists($className)) {
+				if (XC_CLASS_EXISTS($className)) {
 					$languageManager =& new $className();
 				}
 				else {
@@ -694,7 +696,7 @@ class Legacy_Controller extends XCube_Controller
 							if (preg_match("/(\w+)\.class\.php/", $file, $matches)) {
 								$className = ucfirst($mod_dir) . "_" . $matches[1];
 						
-								if (class_exists($className) && !isset($this->_mLoadedFilterNames[$className])) {
+								if (XC_CLASS_EXISTS($className) && !isset($this->_mLoadedFilterNames[$className])) {
 									$this->_mLoadedFilterNames[$className] = true;
 									$instance =& new $className($this);
 									$this->addActionFilter($instance);
@@ -911,7 +913,20 @@ class Legacy_Controller extends XCube_Controller
 			
 			$this->mRoot->mLanguageManager->loadModuleMessageCatalog('legacy');
 
-			if(is_object($this->mRoot->mContext->mXoopsUser)) {
+			if (is_object($this->mRoot->mContext->mXoopsUser)) {
+				// If the current user doesn't bring to any groups, kick out him for XCL's security.
+				$t_groups =& $this->mRoot->mContext->mXoopsUser->getGroups();
+				if (!is_array($t_groups)) {
+					// exception
+					$this->logout();
+					return;
+				}
+				else if (count($t_groups) == 0) {
+					// exception, too
+					$this->logout();
+					return;
+				}
+				
 				// RMV-NOTIFY
 				// Perform some maintenance of notification records
 				$notification_handler =& xoops_gethandler('notification');
@@ -1277,7 +1292,7 @@ class Legacy_AbstractControllerStrategy
 		foreach ($primaryPreloads as $className => $classPath) {
 			if (file_exists(XOOPS_ROOT_PATH . $classPath)) {
 				require_once XOOPS_ROOT_PATH . $classPath;
-				if (class_exists($className) && !isset($this->_mLoadedFilterNames[$className])) {
+				if (XC_CLASS_EXISTS($className) && !isset($this->_mLoadedFilterNames[$className])) {
 					$this->_mLoadedFilterNames[$className] = true;
 					$filter =& new $className($this->mController);
 					$this->mController->addActionFilter($filter);

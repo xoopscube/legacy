@@ -34,7 +34,7 @@ class ShadePlus_ServiceServer
 		// FIXME
 		//
 		foreach ($this->_mService->_mTypes as $className) {
-			if (class_exists($className)) {
+			if (XC_CLASS_EXISTS($className)) {
 				if (call_user_func(array($className, 'isArray')) == true) {
 					$targetClassName = call_user_func(array($className, 'getClassName'));
 					

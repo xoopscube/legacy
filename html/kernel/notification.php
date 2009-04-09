@@ -174,6 +174,11 @@ class XoopsNotificationHandler extends XoopsObjectHandler
 	 * @var XCube_Delegate
 	 */
 	var $mTrigger = null;
+
+	/**
+	 * @var XCube_Delegate
+	 */
+	var $mTriggerPreAction = null;
 	
 	function XoopsNotificationHandler(&$db)
 	{
@@ -181,6 +186,9 @@ class XoopsNotificationHandler extends XoopsObjectHandler
 		
 		$this->mTrigger =& new XCube_Delegate();
 		$this->mTrigger->register('XoopsNotificationHandler.Trigger');
+
+		$this->mTriggerPreAction =& new XCube_Delegate();
+		$this->mTriggerPreAction->register("XoopsNotificationHandler.TriggerPreAction");
 	}
 
     /**
@@ -625,6 +633,11 @@ class XoopsNotificationHandler extends XoopsObjectHandler
 						
 			$force_return = false;
 			
+			$this->mTriggerPreAction->call(new XCube_Ref($category), new XCube_Ref($event), new XCube_Ref($item_id),
+										   new XCube_Ref($extra_tags), new XCube_Ref($module), new XCube_Ref($user_list),
+										   new XCube_Ref($omit_user_id), new XCube_Ref($not_config),
+										   new XCube_Ref($force_return));
+																												   
 			$this->mTrigger->call($category, $event, $item_id, $extra_tags, new XCube_Ref($module), $user_list, $omit_user_id, $not_config, new XCube_Ref($force_return));
         	if ($force_return) {
 				return;
