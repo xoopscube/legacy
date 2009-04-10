@@ -26,11 +26,7 @@
 
 FCKConfig.CustomConfigurationsPath = '' ;
 
-//FCKConfig.EditorAreaCSS = FCKConfig.BasePath + 'css/fck_editorarea.css' ;
-
-FCKConfig.EditorAreaCSS = FCKConfig.BasePath + '../../../themes/cube_default/style.css' ;
-
-
+FCKConfig.EditorAreaCSS = FCKConfig.BasePath + 'css/fck_editorarea.css' ;
 FCKConfig.EditorAreaStyles = '' ;
 FCKConfig.ToolbarComboPreviewCSS = '' ;
 
@@ -46,7 +42,7 @@ FCKConfig.StartupShowBlocks = false ;
 FCKConfig.Debug = false ;
 FCKConfig.AllowQueryStringDebug = true ;
 
-FCKConfig.SkinPath = FCKConfig.BasePath + 'skins/default/' ;
+FCKConfig.SkinPath = FCKConfig.BasePath + 'skins/silver/' ;
 FCKConfig.SkinEditorCSS = '' ;	// FCKConfig.SkinPath + "|<minified css>" ;
 FCKConfig.SkinDialogCSS = '' ;	// FCKConfig.SkinPath + "|<minified css>" ;
 
@@ -328,4 +324,4 @@ FCKConfig.PreventSubmitHandler = false ;
 
 FCKConfig.Plugins.Add('kfm');
 FCKConfig.Plugins.Add( 'googlemaps', 'de,en,es,fr,it,jp') ;
-FCKConfig.GoogleMaps_Key = 'ABQIAAAAlXu5Pw6DFAUgqM2wQn01gxT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSy5hTGQdsosYD3dz6faZHVrO-02A' ;
+FCKConfig.GoogleMaps_Key = 'ABQIAAAAb9YoJBY0IwbUP_7gmwHPHxT2yXp_ZAY8_ufC3CFXhHIE1NvwkxTIfg4by9dDhRB529vNMdLvhZ-xgw' ;
