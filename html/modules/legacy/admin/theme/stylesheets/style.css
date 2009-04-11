@@ -375,6 +375,9 @@ background:#f2f2f2 url(<{"icons/block_edit.png"|theme}>) 5px center no-repeat;
 ul.toptab li.addFile {
 background:#f2f2f2 url(<{"icons/page_add.png"|theme}>) 5px center no-repeat;
 }
+ul.toptab li.addField {
+background:#f2f2f2 url(<{"icons/add_field.png"|theme}>) 5px center no-repeat;
+}
 ul.toptab li.addFolder {
 background:#f2f2f2 url(<{"icons/folder_add.png"|theme}>) 5px center no-repeat;
 }

@@ -1,23 +1,22 @@
-<ul class="toptab">
-  <li><a href="index.php?action=DataEdit"><{$smarty.const._MD_PROFILE_LANG_ADD_A_NEW_DATA}></a></li>
-</ul>
-
+<p><img src="<{$xoops_url}>/modules/profile/images/form_add.png" alt="<{$smarty.const._MD_PROFILE_LANG_ADD_A_NEW_DATA}>" title="<{$smarty.const._MD_PROFILE_LANG_ADD_A_NEW_DATA}>" /> <a href="index.php?action=DataEdit"><{$smarty.const._MD_PROFILE_LANG_ADD_A_NEW_DATA}></a></li>
+</p>
+<br />
 <table class="outer">
   <tr>
-    <th><{$smarty.const._MD_PROFILE_LANG_UID}><br />
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DATA_SORT_KEY_UID}>"><img src="<{$xoops_url}>/modules/profile/images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DATA_SORT_KEY_UID}>"><img src="<{$xoops_url}>/modules/profile/images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._MD_PROFILE_LANG_UID}> 
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DATA_SORT_KEY_UID}>"><img src="<{$xoops_url}>/modules/profile/images/up.png" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a> 
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DATA_SORT_KEY_UID}>"><img src="<{$xoops_url}>/modules/profile/images/down.png" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
     <th><{$smarty.const._MD_PROFILE_LANG_UNAME}><br />
-    <th><{$smarty.const._MD_PROFILE_LANG_CONTROL}></th>
+    <th width="100" align="center"><{$smarty.const._MD_PROFILE_LANG_CONTROL}></th>
   </tr>
   <{foreach item=obj from=$objects}>
     <tr class="<{cycle values='odd,even'}>">
       <td><{$obj->getShow('uid')}></td>
       <td><{$obj->getShow('uid')|xoops_user:"uname"}></td>
-      <td>
-        <a href="./index.php?action=DataView&amp;uid=<{$obj->getShow('uid')}>"><{$smarty.const._VIEW}></a>
-        <a href="./index.php?action=DataEdit&amp;uid=<{$obj->getShow('uid')}>"><{$smarty.const._EDIT}></a>
-        <a href="./index.php?action=DataDelete&amp;uid=<{$obj->getShow('uid')}>"><{$smarty.const._DELETE}></a>
+      <td width="100" align="center">
+        <a href="./index.php?action=DataView&amp;uid=<{$obj->getShow('uid')}>"><img src="<{$xoops_url}>/modules/profile/images/form_view.png" alt="<{$smarty.const._VIEW}>" title="<{$smarty.const._VIEW}>" /></a>
+        <a href="./index.php?action=DataEdit&amp;uid=<{$obj->getShow('uid')}>"><img src="<{$xoops_url}>/modules/profile/images/form_edit.png" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+        <a href="./index.php?action=DataDelete&amp;uid=<{$obj->getShow('uid')}>"><img src="<{$xoops_url}>/modules/profile/images/form_delete.png" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
       </td>
     </tr>
   <{/foreach}>

@@ -14,6 +14,30 @@
     <h3><{$smarty.const._MI_PROFILE_LANG_ADD_A_NEW_DEFINITIONS}></h3>
   <{/if}>
 
+<div class="tips">
+<ul>
+<li>
+<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP1}>
+</li>
+<li>
+<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP2}>
+</li>
+<li>
+<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP3}>
+</li>
+<li>
+<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP4}>
+</li>
+<li>
+<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP5}>
+</li>
+<li>
+<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP6}>
+</li>
+<li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&dirname=profile"><{$smarty.const._HELP}></a></li>
+</ul>
+</div>
+
 <{if $actionForm->hasError()}>
   <div class="error">
     <ul>
@@ -38,7 +62,8 @@
   <{/if}>
     </tr>
     <tr>
-      <td class="head"><{$smarty.const._MD_PROFILE_LANG_FIELD_NAME}></td>
+      <td class="head"><{$smarty.const._MD_PROFILE_LANG_FIELD_NAME}><br />
+      <{$smarty.const._MD_PROFILE_LANG_FIELD_NAME_DESC}></td>
       <td class="<{cycle values="odd,even"}>">
         <{xoops_input type=text name=field_name value=$actionForm->get('field_name') size=15 maxlength=32}>
       </td>
@@ -81,7 +106,8 @@
       </td>
     </tr>
     <tr>
-      <td class="head"><{$smarty.const._MD_PROFILE_LANG_SHOW_FORM}></td>
+      <td class="head"><{$smarty.const._MD_PROFILE_LANG_SHOW_FORM}><br />
+		<{$smarty.const._MD_PROFILE_LANG_SHOW_FORM_DESC}></td>
       <td class="<{cycle values="odd,even"}>">
         <{xoops_input type=checkbox name=show_form value=1 default=$actionForm->get('show_form')}>
       </td>

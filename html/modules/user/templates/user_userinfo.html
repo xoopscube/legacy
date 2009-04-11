@@ -102,12 +102,13 @@
       <tr valign="top">
         <td class="head"><{$smarty.const._MD_USER_LANG_USER_INTREST}></td>
         <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('user_intrest')}></td>
-      </tr>
+      </tr> -->
+      <{if $bio != null}>
       <tr valign="top">
         <td class="head"><{$smarty.const._MD_USER_LANG_BIO}></td>
         <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('bio')}></td>
       </tr>
-      -->
+     <{/if}>
     </table>
     </td>
     <td width="50%">

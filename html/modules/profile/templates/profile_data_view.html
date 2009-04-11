@@ -1,8 +1,15 @@
-<dl>
+<p><img src="<{$xoops_url}>/modules/profile/images/form_add.png" alt="<{$smarty.const._MD_PROFILE_LANG_ADD_A_NEW_DATA}>" title="<{$smarty.const._MD_PROFILE_LANG_ADD_A_NEW_DATA}>" /> <a href="index.php?action=DataEdit"><{$smarty.const._MD_PROFILE_LANG_ADD_A_NEW_DATA}></a></li>
+</p>
+<br />
+<table class="outer">
+<th><{$smarty.const._MD_PROFILE_LANG_FIELD_NAME}></th>
+<th><{$smarty.const._MD_PROFILE_LANG_OPTIONS}></th>
+
 	<{foreach item=field from=$fields}>
-  <dt><{$field->getShow('label')}></dt>
-  <dd>
-    <{$object->get($field->get('field_name'))}>
-  </dd>
-	<{/foreach}>
-</dl>
+    <tr class="<{cycle values='odd,even'}>">
+      <td><{$field->getShow('label')}></td>
+      <td><{$object->get($field->get('field_name'))}></td>
+    </tr>
+  <{/foreach}>
+</table>
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
