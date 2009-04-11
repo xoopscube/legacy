@@ -635,6 +635,7 @@ class Legacy_Controller extends XCube_Controller
 		
 		$this->mRoot->mContext->mXoopsConfig =& $configHandler->getConfigsByCat(XOOPS_CONF);
 
+		$this->mRoot->mContext->mXoopsConfig['language'] = $this->mRoot->mLanguageManager->getLanguage();
 		$GLOBALS['xoopsConfig'] =& $this->mRoot->mContext->mXoopsConfig; // Compatiblity for 2.0.x
 		$GLOBALS['config_handler'] =& $configHandler;
 		$GLOBALS['module_handler'] =& xoops_gethandler('module');
@@ -644,7 +645,6 @@ class Legacy_Controller extends XCube_Controller
 		}
 
 		$this->mRoot->mContext->setThemeName($this->mRoot->mContext->mXoopsConfig['theme_set']);
-		$this->mRoot->mContext->mXoopsConfig['language'] = $this->mRoot->mLanguageManager->getLanguage();
 		
 		$this->mRoot->mContext->setAttribute('legacy_sitename', $this->mRoot->mContext->mXoopsConfig['sitename']);
 		$this->mRoot->mContext->setAttribute('legacy_pagetitle', $this->mRoot->mContext->mXoopsConfig['slogan']);
