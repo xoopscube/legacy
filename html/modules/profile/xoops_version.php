@@ -51,7 +51,7 @@ $modversion['templates'][7]['file'] = 'profile_data_view.html';
 // Admin panel setting
 //
 $modversion['hasAdmin'] = 1;
-$modversion['adminindex'] = "admin/index.php";
+$modversion['adminindex'] = "admin/index.php?action=DefinitionsList";
 $modversion['adminmenu'] = "admin/menu.php";
 
 //

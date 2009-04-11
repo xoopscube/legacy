@@ -14,9 +14,9 @@ class Profile_DataDeleteAction extends Profile_AbstractDeleteAction
 	/**
 	 * @protected
 	 */
-	function &_getId()
+	function _getId()
 	{
-		return xoops_getrequest('uid');
+		return intval(xoops_getrequest('uid'));
 	}
 
 	/**
@@ -31,7 +31,7 @@ class Profile_DataDeleteAction extends Profile_AbstractDeleteAction
 	/**
 	 * @protected
 	 */
-	function &_setupActionForm()
+	function _setupActionForm()
 	{
 		// $this->mActionForm =& new Profile_DataDeleteForm();
 		$this->mActionForm =& $this->mAsset->create('form', "delete_data");

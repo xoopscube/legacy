@@ -16,7 +16,7 @@ class Profile_Admin_DefinitionsViewAction extends Profile_AbstractViewAction
 	 */
 	function _getId()
 	{
-		return xoops_getrequest('field_id');
+		return intval(xoops_getrequest('field_id'));
 	}
 
 	/**

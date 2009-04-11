@@ -19,7 +19,7 @@ class Profile_Admin_DefinitionsEditAction extends Profile_AbstractEditAction
 	 */
 	function _getId()
 	{
-		return xoops_getrequest('field_id');
+		return intval(xoops_getrequest('field_id'));
 	}
 
 	/**

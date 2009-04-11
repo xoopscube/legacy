@@ -29,7 +29,7 @@ class Profile_AbstractViewAction extends Profile_AbstractAction
 	/**
 	 * @protected
 	 */
-	function &_setupObject()
+	function _setupObject()
 	{
 		$id = $this->_getId();
 	
@@ -41,7 +41,7 @@ class Profile_AbstractViewAction extends Profile_AbstractAction
 	/**
 	 * @public
 	 */
-	function &prepare()
+	function prepare()
 	{
 		$this->_setupObject();
 		return is_object($this->mObject);
