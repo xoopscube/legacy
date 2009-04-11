@@ -199,7 +199,8 @@ class Profile_Service extends XCube_Service
 	function getProfile()
 	{
 		$root =& XCube_Root::getSingleton();
-		$uid = $root->mContext->mRequest->getRequest('uid');
+		$uid = (intval($root->mContext->mRequest->getRequest('value'))>0) ? intval($root->mContext->mRequest->getRequest('value')) : $root->mContext->mRequest->getRequest('uid');
+	
 		$handler =& xoops_getmodulehandler('data', 'profile');
 	
 		$dataObj =& $handler->get($uid);
@@ -212,7 +213,7 @@ class Profile_Service extends XCube_Service
 
 	/**
 	 * @public
-	 * get the given user's profile
+	 * get users' profiles
 	 */
 	function getProfileArr()
 	{
@@ -241,12 +242,27 @@ class Profile_Service extends XCube_Service
 		$root =& XCube_Root::getSingleton();
 		$field_name = $root->mContext->mRequest->getRequest('field_name');
 		$value = $root->mContext->mRequest->getRequest('value');
-		$uid = $root->mContext->mRequest->getRequest('uid');
+		$uid = (intval($root->mContext->mRequest->getRequest('value'))>0) ? intval($root->mContext->mRequest->getRequest('value')) : $root->mContext->mRequest->getRequest('uid');
 	
+		//coundn't insert profile for guest
+		if($uid==0){
+			return false;
+		}
+	
+		//get user's current profile data
 		$handler =& xoops_getmodulehandler('data', 'profile');
 		$obj =& $handler->get($uid);
 	
+		//if user's profile is not exist, create it.
+		if($obj == null){
+			$obj =& $handler->create();
+			$obj->set('uid', $uid);
+		}
+	
+		//set requested value to user's profile
 		$obj->set($field_name, $value);
+	
+		//insert/update profile to DB
 		if($handler->insert($obj)){
 			return true;
 		}
@@ -262,21 +278,31 @@ class Profile_Service extends XCube_Service
 	function setProfiles()
 	{
 		$root =& XCube_Root::getSingleton();
-		$uid = $root->mContext->mRequest->getRequest('uid');
+		$uid = (intval($root->mContext->mRequest->getRequest('value'))>0) ? intval($root->mContext->mRequest->getRequest('value')) : $root->mContext->mRequest->getRequest('uid');
+	
+		//coundn't insert profile for guest
+		if($uid==0){
+			return false;
+		}
 	
 		$defHandler =& xoops_getmodulehandler('definitions', 'profile');
 		$defArr =& $defHandler->getObjects();
 	
+		//get user's current profile data
 		$dataHandler =& xoops_getmodulehandler('data', 'profile');
 		$dataObj =& $defHandler->get($uid);
-		if(! $dataObj){
+		//if user's profile is not exist, create it.
+		if($dataObj == null){
 			$dataObj = $dataHandler->create();
+			$dataObj->set('uid', $uid);
 		}
 	
+		//set requested profile data
 		foreach(array_keys($defArr) as $key){
-			$dataObj->set($defArr[$key]->getShow('field_name'), $root->mContext->mRequest->getRequest($defArr[$key]->getShow('field_name')));
+			$dataObj->set($defArr[$key]->get('field_name'), $root->mContext->mRequest->getRequest($defArr[$key]->get('field_name')));
 		}
 	
+		//insert/update profiles to DB
 		if($dataHandler->insert($dataObj)){
 			return true;
 		}
