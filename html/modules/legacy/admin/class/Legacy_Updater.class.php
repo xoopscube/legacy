@@ -15,8 +15,62 @@ require_once XOOPS_LEGACY_PATH . '/admin/class/ModuleUpdater.class.php';
 class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
 {
     var $_mMilestone = array(
-        '106' => 'update106'
+        '106' => 'update106',
+        '200' => 'update200'
     );
+    
+    function update200()
+    {
+        $this->mLog->addReport(_AD_LEGACY_MESSAGE_UPDATE_STARTED);
+    
+        // Update database table index.
+        $this->_extendConfigTitleSize();
+        if (!$this->_mForceMode && $this->mLog->hasError())
+        {
+            $this->_processReport();
+            return false;
+        }
+        
+        // Normal update process.
+        $this->_updateModuleTemplates();
+        if (!$this->_mForceMode && $this->mLog->hasError())
+        {
+            $this->_processReport();
+            return false;
+        }
+        
+        $this->_updateBlocks();
+        if (!$this->_mForceMode && $this->mLog->hasError())
+        {
+            $this->_processReport();
+            return false;
+        }
+        
+        $this->_updatePreferences();
+        if (!$this->_mForceMode && $this->mLog->hasError())
+        {
+            $this->_processReport();
+            return false;
+        }
+        
+        $this->saveXoopsModule($this->_mTargetXoopsModule);
+        if (!$this->_mForceMode && $this->mLog->hasError())
+        {
+            $this->_processReport();
+            return false;
+        }
+        
+        $this->_processScript();
+        if (!$this->_mForceMode && $this->mLog->hasError())
+        {
+            $this->_processReport();
+            return false;
+        }
+        
+        $this->_processReport();
+        
+        return true;
+    }
     
     function update106()
     {
@@ -71,6 +125,28 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
         
         return true;
     }
+	
+    /**
+     * @brief extend config_title and config_desc size in config table.
+     * @author kilica
+	 */
+	function _extendConfigTitleSize()
+	{
+        $root =& XCube_Root::getSingleton();
+        $db =& $root->mController->getDB();
+        $table = $db->prefix('config');
+	
+		$sql = 'ALTER TABLE `'. $table .'` MODIFY `conf_title` varchar(255) NOT NULL default "", MODIFY `conf_desc` varchar(255) NOT NULL default ""';
+
+        if ($db->query($sql))
+        {
+            $this->mLog->addReport(XCube_Utils::formatString(_AD_LEGACY_MESSAGE_EXTEND_CONFIG_TITLE_SIZE_SUCCESSFUL, $table));
+        }
+        else
+        {
+            $this->mLog->addError(XCube_Utils::formatString(_AD_LEGACY_ERROR_COULD_NOT_EXTEND_CONFIG_TITLE_SIZE, $table));
+        }
+	}
     
     function _setUniqueToGroupUserLink()
     {

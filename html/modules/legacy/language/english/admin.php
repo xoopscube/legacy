@@ -7,6 +7,7 @@ define('_AD_LEGACY_ERROR_BMODULE', "You must specify one or more modules as the 
 define('_AD_LEGACY_ERROR_CASE_OF_ACTIVE_MODULE', "Can't uninstall active module. To uninstall, turn off the active-status of the module.");
 define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_BLOCK_TEMPLATES', "Could not delete block templates : {0}");
 define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_DUPLICATE_DATA', "Could not delete duplicate data : {0}");
+define('_AD_LEGACY_ERROR_COULD_NOT_EXTEND_CONFIG_TITLE_SIZE', "Could not extend config_table size in '{0}'.");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSERT_CONFIG', "Could not insert config '{0}'");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSTALL_BLOCK', "Could not install '{0}' block.");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSTALL_TEMPLATE', "Could not install '{0}' template.");
@@ -233,6 +234,7 @@ define('_AD_LEGACY_MESSAGE_CONFIRM_DELETE', "Are you sure you want to delete?");
 define('_AD_LEGACY_MESSAGE_DATABASE_SETUP_FINISHED', "Database table setup finished.");
 define('_AD_LEGACY_MESSAGE_DELETE_MODULEINFO_FROM_DB', "Delete module information from XOOPS database.");
 define('_AD_LEGACY_MESSAGE_DROP_TABLE', "Drop table {0}.");
+define('_AD_LEGACY_MESSAGE_EXTEND_CONFIG_TITLE_SIZE_SUCCESSFUL', "Extend config_title size in Table '{0}' has been successful.");
 define('_AD_LEGACY_MESSAGE_INSERT_CONFIG', "Config {0} added.");
 define('_AD_LEGACY_MESSAGE_INSTALLATION_MODULE_SUCCESSFUL', "Installation of '{0}' module has been successful.");
 define('_AD_LEGACY_MESSAGE_SET_UNIQUE_KEY_SUCCESSFUL', "Set UNIQUE KEY to '{0}' has been successful.");
