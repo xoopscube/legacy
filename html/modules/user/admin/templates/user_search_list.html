@@ -76,7 +76,7 @@
       <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_LEVEL}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
     <th><{$smarty.const._DELETE}><br />
       <input name="allbox" id="allbox" onclick="with(document.usersearchlistform){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].disabled==false&&elements[i].name.indexOf('delete')>=0){elements[i].checked=this.checked;}}}" type="checkbox" value="Check All" /></th>
-    <th><{$smarty.const._AD_USER_LANG_CONTROL}><_CONTROL}></th>
+    <th><{$smarty.const._AD_USER_LANG_CONTROL}></th>
   </tr>
   <{foreach item=user from=$objects}>
     <tr class="<{cycle values='odd,even'}>">
