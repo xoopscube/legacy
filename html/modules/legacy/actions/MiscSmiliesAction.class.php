@@ -53,6 +53,7 @@ class Legacy_MiscSmiliesAction extends Legacy_AbstractListAction
 		//
 		$root =& $controller->mRoot;
 		$root->mLanguageManager->loadModuleMessageCatalog('legacy');
+		$root->mContext->setAttribute('legacy_pagetitle', _MD_LEGACY_LANG_ALL_SMILEY_LIST);
 		
 		$render->setTemplateName("legacy_misc_smilies.html");
 		$render->setAttribute("objects", $this->mObjects);
