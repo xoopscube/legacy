@@ -80,7 +80,13 @@
 <div class="centerCcolumn">
 <{foreach item=block from=$xoops_ccblocks}>
 <div class="centerCblock">
-<div class="centerCblockTitle"><{$block.title}></div>
+<div class="centerCblockTitle">
+<{if $xoops_isadmin}>
+<a
+href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=<{$block.id}>"><img src="<{$xoops_imageurl}>images/edit.png" /></a> 
+<{/if}>
+<{$block.title}>
+</div>
 <div class="centerCblockContent"><{$block.content}></div>
 </div>
 <{/foreach}></div>
@@ -95,7 +101,12 @@
         <{if $xoops_showlblock == 1}>
         <{foreach item=block from=$xoops_lblocks}>
         <div class="leftblock">
-        <div class="leftblockTitle"><{$block.title}></div>
+        <div class="leftblockTitle">
+        <{if $xoops_isadmin}>
+<a
+href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=<{$block.id}>"><img src="<{$xoops_imageurl}>images/edit.png" /></a>
+<{/if}>
+<{$block.title}></div>
         <div class="leftblockContent"><{$block.content}></div>
         </div>
         <{/foreach}>
@@ -104,7 +115,11 @@
         <{if $xoops_showrblock == 1}>  
         <{foreach item=block from=$xoops_rblocks}>
         <div class="rightblock">
-        <div class="rightblockTitle"><{$block.title}></div>
+        <div class="rightblockTitle">
+        <{if $xoops_isadmin}>
+<a
+href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=<{$block.id}>"><img src="<{$xoops_imageurl}>images/edit.png" /></a>
+<{/if}><{$block.title}></div>
         <div class="rightblockContent"><{$block.content}></div>
         </div>
         <{/foreach}>
@@ -121,7 +136,12 @@
 <div class="centerLcolumn">
 <{foreach item=block from=$xoops_clblocks}>
 <div class="centerLblock">
-<div class="centerLblockTitle"><{$block.title}></div>
+<div class="centerLblockTitle">
+<{if $xoops_isadmin}>
+<a
+href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=<{$block.id}>"><img src="<{$xoops_imageurl}>images/edit.png" /></a>
+<{/if}>
+<{$block.title}></div>
 <div class="centerLblockContent"><{$block.content}></div>
 </div>
 <{/foreach}>
@@ -129,7 +149,12 @@
 <div class="centerRcolumn">
 <{foreach item=block from=$xoops_crblocks}>
 <div class="centerRblock">
-<div class="centerRblockTitle"><{$block.title}></div>
+<div class="centerRblockTitle">
+<{if $xoops_isadmin}>
+<a
+href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=<{$block.id}>"><img src="<{$xoops_imageurl}>images/edit.png" /></a>
+<{/if}>
+<{$block.title}></div>
 <div class="centerRblockContent"><{$block.content}></div>
 </div>
 <{/foreach}>
