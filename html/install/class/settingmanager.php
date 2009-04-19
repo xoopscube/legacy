@@ -170,9 +170,8 @@ class setting_manager {
     function editform(){
         $ret =
             '<table width="100%" class="outer" cellspacing="5">
-                <tr>
-                    <th colspan="2"></th>
-                </tr>
+               
+
                 <tr valign="top" align="left">
                     <td class="head">
                         <b>'._INSTALL_L51.'</b><br />
