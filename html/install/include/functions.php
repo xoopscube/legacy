@@ -161,10 +161,11 @@ function b_back($option = null)
     if(!isset($option) || !is_array($option)) return '';
     $content = '';
     if(isset($option[0]) && $option[0] != ''){
-        $content .= '<input type="button" value="'._INSTALL_L42.'"'.
+        $content .= '<input  type="image" src="img/back.png" class="back" value="'._INSTALL_L42.'"'.
                     ' onclick="location=\'index.php?op='.htmlspecialchars($option[0]).'\'" />';
+					
     }else{
-        $content .= '<input type="button" value="'._INSTALL_L42.'"'.
+        $content .= '<input type="image" src="img/back.png" class="back" title="'._INSTALL_L42.'" value="'._INSTALL_L42.'"'.
                     ' onclick="javascript:history.back();" />';
     }
     if(isset($option[1]) && $option[1] != ''){
@@ -178,7 +179,7 @@ function b_reload($option=''){
     if (!defined('_INSTALL_L200')) {
         define('_INSTALL_L200', 'Reload');
     }
-    return  '<input type="button" value="'._INSTALL_L200.'" onclick="location.reload();" />';
+    return  '<input type="image" src="img/reload.png" class="reload" title="Reload" value="'._INSTALL_L200.'" onclick="location.reload();" />';
 }
 
 function b_next($option=null){
@@ -188,7 +189,7 @@ function b_next($option=null){
         $content .= '<span style="font-size:90%;">'.htmlspecialchars($option[1]).' &gt;&gt; </span>';
     }
     $content .= '<input type="hidden" name="op" value="'.htmlspecialchars($option[0]).'" />';
-    $content .= '<input type="submit" name="submit" value="'._INSTALL_L47.'" />';
+    $content .= '<input type="image" src="img/next.png" class="next" title="'._INSTALL_L47.'" name="submit" value="'._INSTALL_L47.'" />';
     return $content;
 }
 

@@ -45,8 +45,8 @@ if ( isset($_POST) ) {
 include_once './include/functions.php';
 $language = getLanguage();
 include_once './language/'.$language.'/install.php';
-define('_OKIMG', '<img src="img/yes.gif" width="6" height="12" border="0" alt="OK" /> ');
-define('_NGIMG', '<img src="img/no.gif" width="6" height="12" border="0" alt="NG" /> ');
+define('_OKIMG', '<img src="img/yes.png" border="0" alt="OK" /> ');
+define('_NGIMG', '<img src="img/no.png" border="0" alt="NG" /> ');
 
 include_once './class/simplewizard.php';
 $wizard = new SimpleWizard;

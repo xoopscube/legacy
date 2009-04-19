@@ -13,7 +13,7 @@
 # Dumping data for table `bannerclient`
 #
 
-INSERT INTO bannerclient VALUES (0, 'Sample client', 'XOOPS Project Team', '', '', '', '');
+INSERT INTO bannerclient VALUES (0, 'Sample client', 'XOOPS Cube Project Team', '', '', '', '');
 
 #
 # Dumping data for table `bannerfinish`

@@ -70,7 +70,7 @@ function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $
 	$time_diff = floatval(substr($time_diff_val,0,1).(substr($time_diff_val,1,2) + substr($time_diff_val,3,2)/60));
     $dbm->insert('config', " VALUES (5, 0, 1, 'server_TZ', '_MD_AM_SERVERTZ', '".$time_diff."', '_MD_AM_SERVERTZDSC', 'timezone', 'float', 8)");
     $dbm->insert('config', " VALUES (6, 0, 1, 'default_TZ', '_MD_AM_DEFAULTTZ', '".$time_diff."', '_MD_AM_DEFAULTTZDSC', 'timezone', 'float', 10)");
-    $dbm->insert('config', " VALUES (7, 0, 1, 'theme_set', '_MD_AM_DTHEME', 'cube_default', '_MD_AM_DTHEMEDSC', 'theme', 'other', 12)");
+    $dbm->insert('config', " VALUES (7, 0, 1, 'theme_set', '_MD_AM_DTHEME', 'legacy_default', '_MD_AM_DTHEMEDSC', 'theme', 'other', 12)");
     $dbm->insert('config', " VALUES (8, 0, 1, 'anonymous', '_MD_AM_ANONNAME', '".addslashes(_INSTALL_ANON)."', '_MD_AM_ANONNAMEDSC', 'textbox', 'text', 15)");
     $dbm->insert('config', " VALUES (9, 0, 1, 'gzip_compression', '_MD_AM_USEGZIP', '0', '_MD_AM_USEGZIPDSC', 'yesno', 'int', 16)");
     $dbm->insert('config', " VALUES (11, 0, 1, 'session_expire', '_MD_AM_SESSEXPIRE', '15', '_MD_AM_SESSEXPIREDSC', 'textbox', 'int', 22)");
@@ -107,14 +107,14 @@ function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $
     $dbm->insert('config', " VALUES (69,0,6,'from','_MD_AM_MAILFROM','','_MD_AM_MAILFROMDESC','textbox','text', 1)");
     $dbm->insert('config', " VALUES (70,0,6,'fromname','_MD_AM_MAILFROMNAME','','_MD_AM_MAILFROMNAMEDESC','textbox','text',2)");
     $dbm->insert('config', " VALUES (71, 0, 1, 'sslloginlink', '_MD_AM_SSLLINK', 'https://', '_MD_AM_SSLLINKDSC', 'textbox', 'text', 33)");
-    $dbm->insert('config', " VALUES (72, 0, 1, 'theme_set_allowed', '_MD_AM_THEMEOK', '".serialize(array('cube_default'))."', '_MD_AM_THEMEOKDSC', 'theme_multi', 'array', 13)");
+    $dbm->insert('config', " VALUES (72, 0, 1, 'theme_set_allowed', '_MD_AM_THEMEOK', '".serialize(array('legacy_default'))."', '_MD_AM_THEMEOKDSC', 'theme_multi', 'array', 13)");
     // RMV-NOTIFY... Need to specify which user is sender of notification PM
     $dbm->insert('config', " VALUES (73,0,6,'fromuid','_MD_AM_MAILFROMUID','1','_MD_AM_MAILFROMUIDDESC','user','int',3)");
     // data for table 'users'
 
     $temp = md5($adminpass);
     $regdate = time();
-    $dbm->insert('users', " VALUES (1,'','".addslashes($adminname)."','".addslashes($adminmail)."','".XOOPS_URL."/','blank.gif','".$regdate."','','','',1,'','','','','".$temp."',0,0,7,5,'cube_default','".$time_diff."',".time().",'thread',0,1,0,'','','',0)");
+    $dbm->insert('users', " VALUES (1,'','".addslashes($adminname)."','".addslashes($adminmail)."','".XOOPS_URL."/','blank.gif','".$regdate."','','','',1,'','','','','".$temp."',0,0,7,5,'legacy_default','".$time_diff."',".time().",'thread',0,1,0,'','','',0)");
 
     // data for table 'groups_users_link'
 

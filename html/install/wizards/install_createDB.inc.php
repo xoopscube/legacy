@@ -15,7 +15,7 @@
         $wizard->setNext(array('checkDB', _INSTALL_L104));
         $wizard->setBack(array('start', _INSTALL_L103));
     } else {
-        $wizard->setContent('<p>'.sprintf(_INSTALL_L43, XOOPS_DB_NAME).'</p>');
+        $wizard->setContent('<div class="confirmOk">'.sprintf(_INSTALL_L43, XOOPS_DB_NAME).'</div>');
     }
     $wizard->render();
 ?>

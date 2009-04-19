@@ -1,3 +1,4 @@
+<div style="width:500px; margin:0 auto;">
 <table align="center">
 <tr><td align="left">
 <?php foreach($this->v('checks') as $check) { ?>
@@ -16,4 +17,5 @@
   <td class="bg1"><b><?php echo XOOPS_URL?></b></td>
 </tr>
 </table>
-<p align="center"><?php echo _INSTALL_L13 ?></p>
+<div class="confirmMsg"><?php echo _INSTALL_L13 ?></div>
+</div>
