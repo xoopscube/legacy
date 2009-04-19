@@ -1,16 +1,16 @@
 <ul id="usermenu">
-      <li><a class="menuTop" href="<{$xoops_url}>/user.php"><{$smarty.const._MB_LEGACY_VACNT}></a></li>
-      <li><a href="<{$xoops_url}>/edituser.php"><{$smarty.const._MB_LEGACY_EACNT}></a></li>
-      <li><a href="<{$xoops_url}>/notifications.php"><{$smarty.const._MB_LEGACY_NOTIF}></a></li>
-      <li><a href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._MB_LEGACY_LOUT}></a></li>
-      <{if $block.flagShowInbox}>
-        <{if $block.new_messages > 0}>
-          <li><a class="highlight" href="<{$block.inbox_url}>"><{$smarty.const._MB_LEGACY_INBOX}> (<span style="color:#ff0000; font-weight: bold;"><{$block.new_messages}></span>)</a></li>
-        <{else}>
-          <li><a href="<{$block.inbox_url}>"><{$smarty.const._MB_LEGACY_INBOX}></a></li>
-        <{/if}>
-      <{/if}>
-      <{if $block.show_adminlink}>
-        <li><a href="<{$xoops_url}>/admin.php"><{$smarty.const._MB_LEGACY_ADMENU}></a></li>
-      <{/if}>
+<li><a class="menuTop" href="<{$xoops_url}>/user.php"><img src="<{$xoops_imageurl}>images/user.png" alt="Profil" /> <{$smarty.const._MB_LEGACY_VACNT}></a></li>
+<li><a href="<{$xoops_url}>/edituser.php"><img src="<{$xoops_imageurl}>images/user_edit.png" alt="Edit Account" /> <{$smarty.const._MB_LEGACY_EACNT}></a></li>
+<li><a href="<{$xoops_url}>/notifications.php"><img src="<{$xoops_imageurl}>images/user_comments.png" alt="Notifications" /> <{$smarty.const._MB_LEGACY_NOTIF}></a></li>
+<li><a href="<{$xoops_url}>/user.php?op=logout"><img src="<{$xoops_imageurl}>images/user_logout.png" alt="Logout" /> <{$smarty.const._MB_LEGACY_LOUT}></a></li>
+<{if $block.flagShowInbox}>
+<{if $block.new_messages > 0}>
+<li><a class="highlight" href="<{$block.inbox_url}>"><img src="<{$xoops_imageurl}>images/user_email.png" alt="Private Messages" /> <{$smarty.const._MB_LEGACY_INBOX}> (<span style="color:#ff0000; font-weight: bold;"><{$block.new_messages}></span>)</a></li>
+<{else}>
+<li><a href="<{$block.inbox_url}>"><img src="<{$xoops_imageurl}>images/user_email.png" alt="Private Messages" /> <{$smarty.const._MB_LEGACY_INBOX}></a></li>
+<{/if}>
+<{/if}>
+<{if $block.show_adminlink}>
+<li><a href="<{$xoops_url}>/admin.php"><img src="<{$xoops_imageurl}>images/user_admin.png" alt="Administration" />  <{$smarty.const._MB_LEGACY_ADMENU}></a></li>
+<{/if}>
 </ul>
