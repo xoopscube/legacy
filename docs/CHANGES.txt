@@ -1,6 +1,26 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
+2009/04/20: Package Revision 2.2.0
+----------------------------------------
+[Feature Request - From Feature Requests Legacy Tracker]
+- Feature Request #1718527 - User Profile Extended
+- Feature Request #1721686 - Mailjob API of user module
+- Feature Request #1872731 - title for legacy_misc_smilies.html
+- Feature Request #1943014 - set LanguageManager's LanguageName in $GLOBALS['xoopsConfig'
+- Feature Request #1999592 - lengthen fields in the config table
+- Feature Request #2122628 - Extended Profiles
+
+[Staff]
+- GIJOE
+- jidaikobo
+- minahito
+- mumincacao
+- ohwada
+- kilica
+- xoopserver
+
+----------------------------------------
 2008/11/21: Package Revision 2.1.6
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
