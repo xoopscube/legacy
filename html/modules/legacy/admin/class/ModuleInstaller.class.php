@@ -204,7 +204,7 @@ class Legacy_ModuleInstaller
 				// Because X2 can use reference parameter, Legacy doesn't use the following code;'
                 // if (!call_user_func($funcName, $this->_mXoopsModule)) {
 
-				$result = $funcName($this->_mXoopsModule);                	
+				$result = $funcName($this->_mXoopsModule, new XCube_Ref($this->mLog));                	
 				if (!$result) {
                     $this->mLog->addError(XCUbe_Utils::formatMessage(_AD_LEGACY_ERROR_FAILED_TO_EXECUTE_CALLBACK, $funcName));
                 }
