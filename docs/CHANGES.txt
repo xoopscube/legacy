@@ -17,6 +17,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - minahito
 - mumincacao
 - ohwada
+- onokazu
 - kilica
 - xoopserver
 
