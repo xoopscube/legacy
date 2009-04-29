@@ -70,7 +70,7 @@
 			  <td class="head"><{$def.label}></td>
 			  <td class="<{cycle values='odd,even'}>">
 			  	<{assign var="defkey" value=$def.field_name}>
-			    <{$data.$defkey}>
+			    <{$data.$defkey|xoops_escape}>
 			  </td>
 			</tr>
 			<{/foreach}>
