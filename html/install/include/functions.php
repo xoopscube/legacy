@@ -49,8 +49,10 @@ function getLanguage() {
 	    if (isset($_COOKIE['install_lang'])) {
 	        $language = $_COOKIE['install_lang'];
 	    } else {
-	        if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-	            $accept_langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+	    	$http_accept_language = xoops_getenv('HTTP_ACCEPT_LANGUAGE');
+	    	$http_accept_charset = xoops_getenv('HTTP_ACCEPT_CHARSET');
+	        if (isset($http_accept_language)) {
+	            $accept_langs = explode(',', $http_accept_language);
 	            foreach ($accept_langs as $al) {
 	                $al = strtolower($al);
 	                $al_len = strlen($al);
@@ -66,9 +68,9 @@ function getLanguage() {
 	                    break;
 	                }
 	            }
-	        } else if (isset($_SERVER['HTTP_ACCEPT_CHARSET'])) {
+	        } else if (isset($http_accept_charset)) {
 				foreach ($charset_array as $ac => $lg) {
-					if (strstr($_SERVER['HTTP_ACCEPT_CHARSET'],$ac)) {
+					if (strstr(xoops_getenv('HTTP_ACCEPT_CHARSET'),$ac)) {
 						$language = $lg ;
 						break ;
 					}

@@ -186,8 +186,8 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
 		list($mysqlversion) = $db->fetchRow($result);
 		$systemconfig['mysqlversion'] = $mysqlversion; 
 		$systemconfig['os'] = substr( php_uname(), 0, 7 );
-		$systemconfig['server'] = $_SERVER['SERVER_SOFTWARE'];
-		$systemconfig['useragent'] = $_SERVER['HTTP_USER_AGENT'];
+		$systemconfig['server'] = xoops_getenv('SERVER_SOFTWARE');
+		$systemconfig['useragent'] = xoops_getenv('HTTP_USER_AGENT');
 
 		$systeminfo_message[] = _AD_LEGACY_OS." : ".$systemconfig['os'];
 		$systeminfo_message[] = _AD_LEGACY_SERVER." : ".$systemconfig['server'];

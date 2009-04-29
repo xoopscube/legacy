@@ -8,6 +8,7 @@
  *
  */
     include_once './class/mainfilemanager.php';
+    include_once '../include/functions.php';
     $mm = new mainfile_manager('../mainfile.php');
 
     $ret = $mm->copyDistFile();
@@ -32,7 +33,8 @@
     $mm->setRewrite('XOOPS_GROUP_ANONYMOUS', 3);
 
     // Check if XOOPS_CHECK_PATH should be initially set or not
-    $xoopsPathTrans = isset($_SERVER['PATH_TRANSLATED']) ? $_SERVER['PATH_TRANSLATED'] :  $_SERVER['SCRIPT_FILENAME'];
+    $path_translated = xoops_getenv('PATH_TRANSLATED');
+    $xoopsPathTrans = isset($path_translated) ? xoops_getenv('PATH_TRANSLATED') :  xoops_getenv('SCRIPT_FILENAME');
     if ( DIRECTORY_SEPARATOR != '/' ) {
         // IIS6 doubles the \ chars
         $xoopsPathTrans = str_replace( strpos( $xoopsPathTrans, '\\\\', 2 ) ? '\\\\' : DIRECTORY_SEPARATOR, '/', $xoopsPathTrans);

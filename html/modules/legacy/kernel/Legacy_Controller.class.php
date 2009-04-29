@@ -382,7 +382,8 @@ class Legacy_Controller extends XCube_Controller
 		$ret = array();
 		$rootPathInfo = @parse_url(XOOPS_URL); 
 		$rootPath = (isset($rootPathInfo['path']) ? $rootPathInfo['path'] : '') . '/';
-		$requestPathInfo = @parse_url(!empty($_SERVER['PATH_INFO']) ? substr($_SERVER['PHP_SELF'],0,- strlen($_SERVER['PATH_INFO'])) : $_SERVER['PHP_SELF']);
+		$php_info = xoops_getenv('PATH_INFO');
+		$requestPathInfo = @parse_url(!empty($php_info) ? substr(xoops_getenv('PHP_SELF'),0,- strlen(xoops_getenv('PATH_INFO'))) : xoops_getenv('PHP_SELF'));
 		
 		if ($requestPathInfo === false) {
 			die();
@@ -462,31 +463,37 @@ class Legacy_Controller extends XCube_Controller
 	// @todo change to refer settings ini file for HostAbstractLayer.
 	function _processHostAbstractLayer()
 	{
-		if ( !isset($_SERVER['PATH_TRANSLATED']) && isset($_SERVER['SCRIPT_FILENAME']) ) {
+		require_once XOOPS_ROOT_PATH.'/include/functions.php';
+	
+		$path_translated = xoops_getenv('PATH_TRANSLATED');
+		$script_filename = xoops_getenv('SCRIPT_FILENAME');
+		$request_uri = xoops_getenv('REQUEST_URI');
+		if ( !isset($path_translated) && isset($script_filename) ) {
 			// There is this setting for CGI mode. @todo We have to confirm this.
 			$_SERVER['PATH_TRANSLATED'] =& $_SERVER['SCRIPT_FILENAME'];
-		} elseif ( isset($_SERVER['PATH_TRANSLATED']) && !isset($_SERVER['SCRIPT_FILENAME']) ) {
+		} elseif ( isset($path_translated) && !isset($script_filename) ) {
 			// There is this setting for IIS Win2K. Really?
 			$_SERVER['SCRIPT_FILENAME'] =& $_SERVER['PATH_TRANSLATED'];
 		}
 
 		// IIS does not set REQUEST_URI. This system defines it. But...
-		if (empty($_SERVER['REQUEST_URI'])) {
-			if ( !( $_SERVER[ 'REQUEST_URI' ] = @$_SERVER['PHP_SELF'] ) ) {
-				$_SERVER[ 'REQUEST_URI' ] = $_SERVER['SCRIPT_NAME'];
+		if (empty($request_uri)) {
+			$query_string = xoops_getenv('QUERY_STRING');
+			if ( !( $_SERVER['REQUEST_URI'] = xoops_getenv('PHP_SELF'))) {
+				$_SERVER['REQUEST_URI'] = xoops_getenv('SCRIPT_NAME');
 			}
-			if ( isset( $_SERVER[ 'QUERY_STRING' ] ) ) {
-				$_SERVER[ 'REQUEST_URI' ] .= '?' . $_SERVER[ 'QUERY_STRING' ];
+			if (isset($query_string)) {
+				$_SERVER['REQUEST_URI'] .= '?' . $query_string;
 			}
 			
 			// Guard for XSS string of PHP_SELF
 			// @todo I must move this logic to preload plugin.
-			if(preg_match("/[\<\>\"\'\(\)]/",$_SERVER['REQUEST_URI']))
+			if(preg_match("/[\<\>\"\'\(\)]/",xoops_getenv('REQUEST_URI')))
 				die();
 		}
 
 		// What is this!? But, old system depends this setting. We have to confirm it and modify!
-		$GLOBALS['xoopsRequestUri'] = $_SERVER[ 'REQUEST_URI' ];
+		$GLOBALS['xoopsRequestUri'] = xoops_getenv('REQUEST_URI');
 	}
 
 	function _setupUser()
@@ -522,11 +529,11 @@ class Legacy_Controller extends XCube_Controller
 		require_once XOOPS_ROOT_PATH.'/class/database/databasefactory.php';
 
 		if ($this->mRoot->getSiteConfig('Legacy', 'AllowDBProxy') == true) {
-			if ($_SERVER['REQUEST_METHOD'] != 'POST' || !xoops_refcheck(XOOPS_DB_CHKREF)) {
+			if (xoops_getenv('REQUEST_METHOD') != 'POST' || !xoops_refcheck(XOOPS_DB_CHKREF)) {
 				define('XOOPS_DB_PROXY', 1);
 			}
 		}
-		elseif ($_SERVER['REQUEST_METHOD'] != 'POST') {
+		elseif (xoops_getenv('REQUEST_METHOD') != 'POST') {
 			define('XOOPS_DB_PROXY', 1);
 		}
 

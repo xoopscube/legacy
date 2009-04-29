@@ -20,7 +20,7 @@ class Legacy_NotifyDeleteForm extends XCube_ActionForm
 	
 	function getTokenName()
 	{
-		return $_SERVER['REQUEST_METHOD'] == 'POST' ? "module.legacy.NotifyDeleteForm.TOKEN" : null;
+		return xoops_getenv('REQUEST_METHOD') == 'POST' ? "module.legacy.NotifyDeleteForm.TOKEN" : null;
 	}
 
 	function fetch()

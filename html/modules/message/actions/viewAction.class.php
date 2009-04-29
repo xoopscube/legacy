@@ -33,7 +33,7 @@ class viewAction extends AbstractAction
     }
     
     if ( $this->inout == 'inbox' ) {
-      if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+      if ( xoops_getenv('REQUEST_METHOD') == 'POST' ) {
         if ( $this->root->mContext->mRequest->getRequest('cmd') == 'lock' ) {
           if ( intval($this->root->mContext->mRequest->getRequest('lock')) == 1 ) {
             $modObj->set('is_read', 2);

@@ -29,7 +29,7 @@ class indexAction extends AbstractAction
     $this->mPagenavi->setPagenum($pagenum);
     $this->mPagenavi->addSort('utime', 'DESC');
     $this->mPagenavi->addCriteria(new Criteria('uid', $this->root->mContext->mXoopsUser->get('uid')));
-    if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+    if ( xoops_getenv('REQUEST_METHOD') == 'POST' ) {
       $fromuid = intval($this->root->mContext->mRequest->getRequest('fromuid'));
       if ( $fromuid > 0 ) {
         $this->mPagenavi->addCriteria(new Criteria('from_uid', $fromuid));

@@ -14,18 +14,19 @@
 
 include_once './passwd.php';
 if(INSTALL_USER != '' || INSTALL_PASSWD != ''){
-    if (!isset($_SERVER['PHP_AUTH_USER'])) {
+	$php_auth_user = xoops_getenv('PHP_AUTH_USER');
+    if (!isset($php_auth_user)) {
         header('WWW-Authenticate: Basic realm="XOOPS Installer"');
         header('HTTP/1.0 401 Unauthorized');
         echo 'You can not access this XOOPS installer.';
         exit;
     } else {
-        if(INSTALL_USER != '' && $_SERVER['PHP_AUTH_USER'] != INSTALL_USER){
+        if(INSTALL_USER != '' && xoops_getenv('PHP_AUTH_USER') != INSTALL_USER){
             header('HTTP/1.0 401 Unauthorized');
             echo 'You can not access this XOOPS installer.';
             exit;
         }
-        if(INSTALL_PASSWD != $_SERVER['PHP_AUTH_PW']){
+        if(INSTALL_PASSWD != xoops_getenv('PHP_AUTH_PW')){
             header('HTTP/1.0 401 Unauthorized');
             echo 'You can not access this XOOPS installer.';
             exit;

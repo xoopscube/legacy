@@ -80,7 +80,7 @@ class User_UserDataDownloadAction extends User_Action
 			mb_convert_variables('SJIS', _CHARSET, $text);
 		}
 		
-		if( preg_match('/firefox/i' , $_SERVER['HTTP_USER_AGENT']) ){
+		if( preg_match('/firefox/i' , xoops_getenv('HTTP_USER_AGENT')) ){
 			header("Content-Type: application/x-csv");
 		}else{
 			header("Content-Type: application/vnd.ms-excel");

@@ -18,7 +18,7 @@ class User_UserSearchListForm extends XCube_ActionForm
 	{
 		//
 		//only in case of batchjob not searchresult 
-		if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_REQUEST['batchjob'])) {
+		if (xoops_getenv('REQUEST_METHOD') == 'POST' && isset($_REQUEST['batchjob'])) {
 			return "module.user.UserSearchSettingsForm.TOKEN";
 		}
 		else {

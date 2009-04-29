@@ -18,7 +18,7 @@ class Legacy_SmilesListForm extends XCube_ActionForm
 	{
 		//
 		//
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		if (xoops_getenv('REQUEST_METHOD') == 'POST') {
 			return "module.legacy.SmilesSettingsForm.TOKEN";
 		}
 		else {

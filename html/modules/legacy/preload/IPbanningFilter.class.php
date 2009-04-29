@@ -19,10 +19,11 @@ class Legacy_IPbanningFilter extends XCube_ActionFilter
 	function preBlockFilter()
 	{
 		if ($this->mRoot->mContext->getXoopsConfig('enable_badips')) {
-			if (isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR']) {
+			$remote_addr = xoops_getenv('REMOTE_ADDR');
+			if (isset($remote_addr) && $remote_addr) {
 				foreach ($this->mRoot->mContext->mXoopsConfig['bad_ips'] as $bi) {
 					$bi = str_replace('.', '\.', $bi);
-					if (!empty($bi) && preg_match("/".$bi."/", $_SERVER['REMOTE_ADDR'])) {
+					if (!empty($bi) && preg_match("/".$bi."/", $remote_addr)) {
 						die();
 					}
 				}

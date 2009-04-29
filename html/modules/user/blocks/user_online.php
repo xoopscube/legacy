@@ -15,13 +15,13 @@ function b_user_online_show() {
         $uname = '';
     }
     if (is_object($xoopsModule)) {
-        $online_handler->write($uid, $uname, time(), $xoopsModule->get('mid'), $_SERVER['REMOTE_ADDR']);
+        $online_handler->write($uid, $uname, time(), $xoopsModule->get('mid'), xoops_getenv('REMOTE_ADDR'));
     } else {
 		//
 		// TODO We have to find the best method.
 		//
 		if (strpos(xoops_getenv('REQUEST_URI'),'misc.php') === false) {
-			$online_handler->write($uid, $uname, time(), 0, $_SERVER['REMOTE_ADDR']);
+			$online_handler->write($uid, $uname, time(), 0, xoops_getenv('REMOTE_ADDR'));
 		}
     }
     $onlines =& $online_handler->getAll();

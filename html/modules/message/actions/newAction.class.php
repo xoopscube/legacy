@@ -27,7 +27,7 @@ class newAction extends AbstractAction
       $inboxid = intval($this->root->mContext->mRequest->getRequest('res'));
       $to_userid = intval($this->root->mContext->mRequest->getRequest('to_userid'));
       
-      if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+      if ( xoops_getenv('REQUEST_METHOD') == 'POST' ) {
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
         if ($this->mActionForm->hasError()) {
