@@ -268,7 +268,7 @@ class Profile_Service extends XCube_Service
 		$defArr =& $defHandler->getObjects();
 	
 		$dataHandler =& xoops_getmodulehandler('data', 'profile');
-		$dataObj =& $defHandler->get($uid);
+		$dataObj =& $dataHandler->get($uid);
 		if(! $dataObj){
 			$dataObj = $dataHandler->create();
 		}
