@@ -4,18 +4,25 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 2009/04/20: Package Revision 2.2.0
 ----------------------------------------
 [Feature Request - From Feature Requests Legacy Tracker]
-- Feature Request #1897507 - $_SERVER variables not defined on CLI
 - Feature Request #1718527 - User Profile Extended
 - Feature Request #1721686 - Mailjob API of user module
 - Feature Request #1872731 - title for legacy_misc_smilies.html
+- Feature Request #1897507 - $_SERVER variables not defined on CLI
 - Feature Request #1943014 - set LanguageManager's LanguageName in $GLOBALS['xoopsConfig'
 - Feature Request #1999592 - lengthen fields in the config table
+- Feature Request #2115625 - Admin Graphical User Interface
+- Feature Request #2115658 - Admin Welcome Page
+- Feature Request #2115670 - Default Editor WYSIWYG
+- Feature Request #2115674 - Default WYSIWYG Editor for Blocks
+- Feature Request #2115747 - File Manager, FCKEditor Extension KFM
 - Feature Request #2122628 - Extended Profiles
+- Feature Request #2162017 - Private Message
 
 [Staff]
 - GIJOE
 - jidaikobo
 - kilica
+- mikhail
 - minahito
 - mumincacao
 - nobunobu
