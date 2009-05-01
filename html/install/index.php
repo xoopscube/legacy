@@ -44,6 +44,7 @@ if ( isset($_POST) ) {
 }
 
 include_once './include/functions.php';
+include_once '../include/functions.php';
 $language = getLanguage();
 include_once './language/'.$language.'/install.php';
 define('_OKIMG', '<img src="img/yes.png" border="0" alt="OK" /> ');
