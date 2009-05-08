@@ -7,6 +7,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #2721231 - Lines 70 & 75 /docs/INSTALL.html : links to ecommerce site
 - Fix Bug #2696001 - missing images/pointer.gif
 - Fix Bug #2692138 - robots.txt disallow files and folders
+- Fix Bug #2686348 - Smarty version 2.6.22
 
 [Feature Request - From Feature Requests Legacy Tracker]
 - Feature Request #1718527 - User Profile Extended

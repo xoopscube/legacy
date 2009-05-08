@@ -27,15 +27,19 @@
 function getLanguage() {
 	$language_array = array(
 			'en' => 'english',
-			'ja' => 'japanese',
+//			'cn' => 'schinese',
+			'cs' => 'czech',
+//			'de' => 'german',
+			'el' => 'greek',
+//			'es' => 'spanish',
 			'fr' => 'french',
-			'de' => 'german',
+			'ja' => 'japanese',
+			'ko' => 'korean',
 			'nl' => 'dutch',
-			'es' => 'spanish',
-			'tw' => 'tchinese',
-			'cn' => 'schinese',
-			'ro' => 'romanian',
 			'pt' => 'portuguese'
+			'ru' => 'russian',
+			'zh' => 'schinese',
+
 	);
 
 	$charset_array = array(
