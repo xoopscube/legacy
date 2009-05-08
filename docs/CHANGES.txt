@@ -23,6 +23,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Feature Request #2115747 - File Manager, FCKEditor Extension KFM
 - Feature Request #2122628 - Extended Profiles
 - Feature Request #2162017 - Private Message
+- Feature Request #2746645 - Replace the Smarty files with links
 
 [Other Changes/Enhancements]
 - Add Preload AdminLangPlus to catalog, legacy/{language}/admin.php
