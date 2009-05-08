@@ -3,6 +3,9 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 ----------------------------------------
 2009/04/20: Package Revision 2.2.0
 ----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #2721231 - Lines 70 & 75 /docs/INSTALL.html : links to ecommerce site
+
 [Feature Request - From Feature Requests Legacy Tracker]
 - Feature Request #1718527 - User Profile Extended
 - Feature Request #1721686 - Mailjob API of user module
