@@ -9,6 +9,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #2692138 - robots.txt disallow files and folders
 - Fix Bug #2686348 - Smarty version 2.6.22
 - Fix Bug #2666831 - Site-closed = HTTP/1.1 503 Service Temporarily Unavailable
+- Fix Bug #2666664 - Snoopy class v1.2.4
 
 [Feature Request - From Feature Requests Legacy Tracker]
 - Feature Request #1718527 - User Profile Extended

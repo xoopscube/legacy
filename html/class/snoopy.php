@@ -4,8 +4,8 @@
 
 Snoopy - the PHP net client
 Author: Monte Ohrt <monte@ispi.net>
-Copyright (c): 1999-2000 ispi, all rights reserved
-Version: 1.01
+Copyright (c): 1999-2008 New Digital Group, all rights reserved
+Version: 1.2.4
 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -22,13 +22,7 @@ Version: 1.01
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 You may contact the author of Snoopy by e-mail at:
-monte@ispi.net
-
-Or, write to:
-Monte Ohrt
-CTO, ispi
-237 S. 70th suite 220
-Lincoln, NE 68510
+monte@ohrt.com
 
 The latest version of Snoopy can be obtained from:
 http://snoopy.sourceforge.net/
@@ -43,13 +37,12 @@ class Snoopy
 
 	var $host			=	"www.php.net";		// host name we are connecting to
 	var $port			=	80;					// port we are connecting to
-	var $host_port		=	"";					// port for Host Header
 	var $proxy_host		=	"";					// proxy host to use
 	var $proxy_port		=	"";					// proxy port to use
 	var $proxy_user		=	"";					// proxy user to use
 	var $proxy_pass		=	"";					// proxy password to use
 	
-	var $agent			=	"Snoopy v1.2.3";	// agent we masquerade as
+	var $agent			=	"Snoopy v1.2.4";	// agent we masquerade as
 	var	$referer		=	"";					// referer info to pass
 	var $cookies		=	array();			// array of cookies to pass
 												// $cookies["username"]="joe";
@@ -145,10 +138,8 @@ class Snoopy
 		{
 			case "http":
 				$this->host = $URI_PARTS["host"];
-				if(!empty($URI_PARTS["port"])) {
+				if(!empty($URI_PARTS["port"]))
 					$this->port = $URI_PARTS["port"];
-					$this->host_port = $URI_PARTS["port"];
-				}
 				if($this->_connect($fp))
 				{
 					if($this->_isproxy)
@@ -211,10 +202,8 @@ class Snoopy
 				    if (!is_executable($this->curl_path))
 				        return false;
 				$this->host = $URI_PARTS["host"];
-				if(!empty($URI_PARTS["port"])) {
+				if(!empty($URI_PARTS["port"]))
 					$this->port = $URI_PARTS["port"];
-					$this->host_port = $URI_PARTS["port"];
-				}
 				if($this->_isproxy)
 				{
 					// using proxy, send entire URI
@@ -301,10 +290,8 @@ class Snoopy
 		{
 			case "http":
 				$this->host = $URI_PARTS["host"];
-				if(!empty($URI_PARTS["port"])) {
+				if(!empty($URI_PARTS["port"]))
 					$this->port = $URI_PARTS["port"];
-					$this->host_port = $URI_PARTS["port"];
-				}
 				if($this->_connect($fp))
 				{
 					if($this->_isproxy)
@@ -374,10 +361,8 @@ class Snoopy
 				    if (!is_executable($this->curl_path))
 				        return false;
 				$this->host = $URI_PARTS["host"];
-				if(!empty($URI_PARTS["port"])) {
+				if(!empty($URI_PARTS["port"]))
 					$this->port = $URI_PARTS["port"];
-					$this->host_port = $URI_PARTS["port"];
-				}
 				if($this->_isproxy)
 				{
 					// using proxy, send entire URI
@@ -740,13 +725,13 @@ class Snoopy
 							chr(176),
 							chr(39),
 							chr(128),
-							chr(228),
-							chr(246),
-							chr(252),
-							chr(196),
-							chr(214),
-							chr(220),
-							chr(223),
+							"ä",
+							"ö",
+							"ü",
+							"Ä",
+							"Ö",
+							"Ü",
+							"ß",
 						);
 					
 		$text = preg_replace($search,$replace,$document);
@@ -816,8 +801,8 @@ class Snoopy
 			$headers .= "User-Agent: ".$this->agent."\r\n";
 		if(!empty($this->host) && !isset($this->rawheaders['Host'])) {
 			$headers .= "Host: ".$this->host;
-			if(!empty($this->host_port))
-				$headers .= ":".$this->host_port;
+			if(!empty($this->port))
+				$headers .= ":".$this->port;
 			$headers .= "\r\n";
 		}
 		if(!empty($this->accept))
@@ -893,9 +878,7 @@ class Snoopy
 				if(!preg_match("|\:\/\/|",$matches[2]))
 				{
 					// no host in the path, so prepend
-					$this->_redirectaddr = $URI_PARTS["scheme"]."://".$this->host;
-        			if(!empty($this->host_port))
-        			    $this->_redirectaddr .= ":".$this->host_port;
+					$this->_redirectaddr = $URI_PARTS["scheme"]."://".$this->host.":".$this->port;
 					// eliminate double slash
 					if(!preg_match("|^/|",$matches[2]))
 							$this->_redirectaddr .= "/".$matches[2];
@@ -968,7 +951,7 @@ class Snoopy
 \*======================================================================*/
 	
 	function _httpsrequest($url,$URI,$http_method,$content_type="",$body="")
-	{
+	{  
 		if($this->passcookies && $this->_redirectaddr)
 			$this->setcookies();
 
@@ -982,8 +965,8 @@ class Snoopy
 		if(!empty($this->agent))
 			$headers[] = "User-Agent: ".$this->agent;
 		if(!empty($this->host))
-			if(!empty($this->host_port))
-				$headers[] = "Host: ".$this->host.":".$this->host_port;
+			if(!empty($this->port))
+				$headers[] = "Host: ".$this->host.":".$this->port;
 			else
 				$headers[] = "Host: ".$this->host;
 		if(!empty($this->accept))
@@ -1036,7 +1019,7 @@ class Snoopy
 		$headerfile = tempnam($temp_dir, "sno");
 
 		exec($this->curl_path." -k -D \"$headerfile\"".$cmdline_params." \"".escapeshellcmd($URI)."\"",$results,$return);
-
+		
 		if($return)
 		{
 			$this->error = "Error: cURL could not retrieve the document, error $return.";
@@ -1063,9 +1046,7 @@ class Snoopy
 				if(!preg_match("|\:\/\/|",$matches[2]))
 				{
 					// no host in the path, so prepend
-					$this->_redirectaddr = $URI_PARTS["scheme"]."://".$this->host;
-        			if(!empty($this->host_port))
-        			    $this->_redirectaddr .= ":".$this->host_port;
+					$this->_redirectaddr = $URI_PARTS["scheme"]."://".$this->host.":".$this->port;
 					// eliminate double slash
 					if(!preg_match("|^/|",$matches[2]))
 							$this->_redirectaddr .= "/".$matches[2];
