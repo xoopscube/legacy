@@ -6,6 +6,8 @@
  * @license http://xoopscube.sourceforge.net/license/bsd_licenses.txt Modified BSD license
  *
  */
+ 
+ error_reporting(0);
 
 if (!XC_CLASS_EXISTS('XCube_AbstractServiceClient')) exit();
 

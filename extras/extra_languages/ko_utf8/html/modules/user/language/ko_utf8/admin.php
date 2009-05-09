@@ -141,6 +141,7 @@ define('_AD_USER_LANG_USER_DELETE_ADVICE', "이 사용자를 삭제합니다. �
 define('_AD_USER_LANG_USER_EDIT', "사용자 편집");
 define('_AD_USER_LANG_USER_LIST', "사용자 관리");
 define('_AD_USER_LANG_USER_NEW', "사용자 신규등록");
+define('_AD_USER_LANG_USER_NEW_FIELD', "Add a New Field");
 define('_AD_USER_LANG_USER_SEARCH_LIST', "사용자 검색 결과");
 define('_AD_USER_LANG_USER_VIEW', "사용자 열람");
 define('_AD_USER_LANG_VPASS', "패스워드 확인");

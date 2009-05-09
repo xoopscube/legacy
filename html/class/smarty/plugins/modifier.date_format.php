@@ -4,7 +4,7 @@
  * @package Smarty
  * @subpackage plugins
  */
-
+error_reporting(0);
 /**
  * Include the {@link shared.make_timestamp.php} plugin
  */

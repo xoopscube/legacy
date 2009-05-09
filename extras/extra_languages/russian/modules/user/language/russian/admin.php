@@ -112,6 +112,7 @@ define('_AD_USER_LANG_USER_DELETE_ADVICE', "Вы уверены, что хотите удалить этого
 define('_AD_USER_LANG_USER_EDIT', "Редактировать пользователя");
 define('_AD_USER_LANG_USER_LIST', "Управление пользователями");
 define('_AD_USER_LANG_USER_NEW', "Добавить нового пользователя");
+define('_AD_USER_LANG_USER_NEW_FIELD', "Add a New Field");
 define('_AD_USER_LANG_USER_SEARCH_LIST', "User search list");
 define('_AD_USER_LANG_USER_VIEW', "user view");
 define('_AD_USER_LANG_VPASS', "Проверить пароль");

@@ -5,6 +5,8 @@
  * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
  * @license http://www.gnu.org/licenses/lgpl.txt GNU LESSER GENERAL PUBLIC LICENSE Version 2.1
  */
+ 
+ error_reporting(0);
 
 if (!XC_CLASS_EXISTS('soap_server')) exit();
 

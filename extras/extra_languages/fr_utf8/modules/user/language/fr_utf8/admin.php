@@ -111,6 +111,7 @@ define('_AD_USER_LANG_USER_DELETE_ADVICE', "Supprimer ");
 define('_AD_USER_LANG_USER_EDIT', "Editer un Utilisateur");
 define('_AD_USER_LANG_USER_LIST', "Gestion des Utilisateurs");
 define('_AD_USER_LANG_USER_NEW', "Ajouter un Nouveau Utilisateur");
+define('_AD_USER_LANG_USER_NEW_FIELD', "Ajouter un Nouveau Champ");
 define('_AD_USER_LANG_USER_SEARCH_LIST', "Recherche d'Utilisateurs");
 define('_AD_USER_LANG_USER_VIEW', "Voir Utilisateur");
 define('_AD_USER_LANG_VPASS', "Vérifier Mot de Passe");

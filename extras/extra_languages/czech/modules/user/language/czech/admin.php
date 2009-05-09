@@ -111,6 +111,7 @@ define('_AD_USER_LANG_USER_DELETE_ADVICE', "Opravdu chcete smazat tohoto uživate
 define('_AD_USER_LANG_USER_EDIT', "Editovat uživatele");
 define('_AD_USER_LANG_USER_LIST', "Administrace uživatelù");
 define('_AD_USER_LANG_USER_NEW', "Pøidat uživatele");
+define('_AD_USER_LANG_USER_NEW_FIELD', "Add a New Field");
 define('_AD_USER_LANG_USER_SEARCH_LIST', "Seznam nalezených uživatelù");
 define('_AD_USER_LANG_USER_VIEW', "Výpis úètu uživatele");
 define('_AD_USER_LANG_VPASS', "Kontrola hesla");

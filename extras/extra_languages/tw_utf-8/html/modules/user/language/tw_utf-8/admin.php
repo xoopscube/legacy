@@ -112,6 +112,7 @@ define('_AD_USER_LANG_USER_DELETE_ADVICE', "您確定要刪除這個使用者嗎
 define('_AD_USER_LANG_USER_EDIT', "編輯使用者");
 define('_AD_USER_LANG_USER_LIST', "使用者管理");
 define('_AD_USER_LANG_USER_NEW', "新增使用者");
+define('_AD_USER_LANG_USER_NEW_FIELD', "Add a New Field");
 define('_AD_USER_LANG_USER_SEARCH_LIST', "使用者搜尋列表");
 define('_AD_USER_LANG_USER_VIEW', "瀏覽使用者");
 define('_AD_USER_LANG_VPASS', "確認密碼");
