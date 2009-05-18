@@ -6,82 +6,8 @@
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
-//New language constants
-if (!defined('_AD_LEGACY_XCLEGACYVERSION')) {
-define('_AD_LEGACY_XCLEGACYVERSION', "XC Legacy Version");
-}
-if (!defined('_AD_LEGACY_XCVERSION')) {
-define('_AD_LEGACY_XCVERSION', "XOOPS Cube Version");
-}
-if (!defined('_AD_LEGACY_SYSTEMINFO')) {
-define('_AD_LEGACY_SYSTEMINFO', "Site/System Info");
-}
-if (!defined('_AD_LEGACY_PHPVERSION')) {
-define('_AD_LEGACY_PHPVERSION', "PHP Version");
-}
-if (!defined('_AD_LEGACY_MYSQLVERSION')) {
-define('_AD_LEGACY_MYSQLVERSION', "MYSQL Version");
-}
-if (!defined('_AD_LEGACY_OS')) {
-define('_AD_LEGACY_OS', "Operating System");
-}
-if (!defined('_AD_LEGACY_SERVER')) {
-define('_AD_LEGACY_SERVER', "Server");
-}
-if (!defined('_AD_LEGACY_USERAGENT')) {
-define('_AD_LEGACY_USERAGENT', "User Agent");
-}
-if (!defined('_AD_LEGACY_PHPSETTING')) {
-define('_AD_LEGACY_PHPSETTING', "PHP Setting");
-}
-if (!defined('_AD_LEGACY_PHPSETTING_SM')) {
-define('_AD_LEGACY_PHPSETTING_SM', "Safe Mode");
-}
-if (!defined('_AD_LEGACY_PHPSETTING_DE')) {
-define('_AD_LEGACY_PHPSETTING_DE', "Display Errors");
-}
-if (!defined('_AD_LEGACY_PHPSETTING_SOT')) {
-define('_AD_LEGACY_PHPSETTING_SOT', "Short Open Tags");
-}
-if (!defined('_AD_LEGACY_PHPSETTING_FU')) {
-define('_AD_LEGACY_PHPSETTING_FU', "File Uploads");
-}
-if (!defined('_AD_LEGACY_PHPSETTING_FU_UMAX')) {
-define('_AD_LEGACY_PHPSETTING_FU_UMAX', "Upload Max File Size:");
-}
-if (!defined('_AD_LEGACY_PHPSETTING_FU_PMAX')) {
-define('_AD_LEGACY_PHPSETTING_FU_PMAX', "Post Max Size:");
-}
-if (!defined('_AD_LEGACY_PHPSETTING_MQ')) {
-define('_AD_LEGACY_PHPSETTING_MQ', "Magic Quotes");
-}
-if (!defined('_AD_LEGACY_PHPSETTING_RG')) {
-define('_AD_LEGACY_PHPSETTING_RG', "Register Globals");
-}
-if (!defined('_AD_LEGACY_PHPSETTING_OB')) {
-define('_AD_LEGACY_PHPSETTING_OB', "Output Buffering");
-}
-if (!defined('_AD_LEGACY_PHPSETTING_SAS')) {
-define('_AD_LEGACY_PHPSETTING_SAS', "Session auto start");
-}
-if (!defined('_AD_LEGACY_PHPSETTING_XML')) {
-define('_AD_LEGACY_PHPSETTING_XML', "XML enabled");
-}
-if (!defined('_AD_LEGACY_PHPSETTING_ZLIB')) {
-define('_AD_LEGACY_PHPSETTING_ZLIB', "Zlib enabled");
-}
-if (!defined('_AD_LEGACY_PHPSETTING_MB')) {
-define('_AD_LEGACY_PHPSETTING_MB', "Mbstring enabled");
-}
-if (!defined('_AD_LEGACY_PHPSETTING_ICONV')) {
-define('_AD_LEGACY_PHPSETTING_ICONV', "Iconv available");
-}
-if (!defined('_AD_LEGACY_PHPSETTING_ON')) {
-define('_AD_LEGACY_PHPSETTING_ON', "On");
-}
-if (!defined('_AD_LEGACY_PHPSETTING_OFF')) {
-define('_AD_LEGACY_PHPSETTING_OFF', "Off");
-}
+//New language constants added to catalog
+// (...)
 
 //This preload is just an example 
 //to show you how to design/decorate your html/admin.php (front page of admin-section) using a preload!  

@@ -1,5 +1,33 @@
 <?php
 
+// CONTROL PANEL
+define('_AD_LEGACY_MYSQLVERSION', "MYSQL Version");
+define('_AD_LEGACY_OS', "Operating System");
+define('_AD_LEGACY_PHPSETTING', "PHP Setting");
+define('_AD_LEGACY_PHPSETTING_SM', "Safe Mode");
+define('_AD_LEGACY_PHPSETTING_DE', "Display Errors");
+define('_AD_LEGACY_PHPSETTING_SOT', "Short Open Tags");
+define('_AD_LEGACY_PHPSETTING_FU', "File Uploads");
+define('_AD_LEGACY_PHPSETTING_FU_UMAX', "Upload Max File Size:");
+define('_AD_LEGACY_PHPSETTING_FU_PMAX', "Post Max Size:");
+define('_AD_LEGACY_PHPSETTING_MQ', "Magic Quotes");
+define('_AD_LEGACY_PHPSETTING_RG', "Register Globals");
+define('_AD_LEGACY_PHPSETTING_OB', "Output Buffering");
+define('_AD_LEGACY_PHPSETTING_SAS', "Session auto start");
+define('_AD_LEGACY_PHPSETTING_XML', "XML enabled");
+define('_AD_LEGACY_PHPSETTING_ZLIB', "Zlib enabled");
+define('_AD_LEGACY_PHPSETTING_MB', "Mbstring enabled");
+define('_AD_LEGACY_PHPSETTING_ICONV', "Iconv available");
+define('_AD_LEGACY_PHPSETTING_ON', "On");
+define('_AD_LEGACY_PHPSETTING_OFF', "Off");
+define('_AD_LEGACY_PHPVERSION', "PHP Version");
+define('_AD_LEGACY_SERVER', "Server");
+define('_AD_LEGACY_SYSTEMINFO', "Site/System Info");
+define('_AD_LEGACY_USERAGENT', "User Agent");
+define('_AD_LEGACY_XCLEGACYVERSION', "XC Legacy Version");
+define('_AD_LEGACY_XCVERSION', "XOOPS Cube Version");
+
+// ERROR
 define('_AD_LEGACY_ERROR_ACTION_SEARCH_NORESULT', "Couldn't find results with your keyword(s).");
 define('_AD_LEGACY_ERROR_ACTION_SEARCH_TRY_AGAIN', "Try again with different keyword(s).");
 define('_AD_LEGACY_ERROR_BLOCK_TEMPLATE_INSTALL', "Could not install block template '{0}'");
@@ -43,6 +71,8 @@ define('_AD_LEGACY_ERROR_COULD_NOT_SAVE_IMAGE_FILE', "Could not save image file 
 define('_AD_LEGACY_ERROR_DBUPDATE_FAILED', "Database update failed.");
 define('_AD_LEGACY_ERROR_EXTENSION_IS_WRONG', "The extension of the uploaded file is invalid.");
 define('_AD_LEGACY_ERROR_REQUIRED', "{0} is required.");
+
+// LANG
 define('_AD_LEGACY_LANG_ACTIONSEARCH', "Action Search");
 define('_AD_LEGACY_LANG_ACTIONSEARCH_INFO', "You can use ActionSearch to search for a menu item or a help file by typing in a keyword.");
 define('_AD_LEGACY_LANG_ACTIVE', "Active");
@@ -263,6 +293,8 @@ define('_AD_LEGACY_LANG_UPLOAD', "Upload");
 define('_AD_LEGACY_LANG_VERSION', "Version");
 define('_AD_LEGACY_LANG_VISIBLE', "Visible");
 define('_AD_LEGACY_LANG_WEIGHT', "Weight");
+
+// MESSAGE
 define('_AD_LEGACY_MESSAGE_BLOCK_HAS_BEEN_UNINSTALLED', "Block {0} has been uninstalled");
 define('_AD_LEGACY_MESSAGE_BLOCK_INSTALLED', "Block {0} has been installed");
 define('_AD_LEGACY_MESSAGE_BLOCK_TEMPLATE_INSTALLED', "Block Template '{0}' has been installed.");
@@ -286,6 +318,8 @@ define('_AD_LEGACY_MESSAGE_UNINSTALLATION_BLOCK_SUCCESSFUL', "Uninstallation of 
 define('_AD_LEGACY_MESSAGE_UNINSTALLATION_MODULE_SUCCESSFUL', "Uninstallation of '{0}' module has been successful.");
 define('_AD_LEGACY_MESSAGE_UPDATE_STARTED', "Update started.");
 define('_AD_LEGACY_MESSAGE_UPDATING_MODULE_SUCCESSFUL', "Updating '{0}' module has been successful.");
+
+// TIPS
 define('_AD_LEGACY_TIPS_ADD_CUSTOM_BLOCK', "<a href=\"index.php?action=BlockInstallList\">Install new blocks</a>, and set your site just the way you want it!<br/>If you want to have a block with free content that is not part of a module, simply <a href=\"index.php?action=CustomBlockEdit\">create a custom block</a> and write your message in it.");
 define('_AD_LEGACY_TIPS_BLOCK_UNINSTALL', "Even if you uninstall a block, the configuration of the block isn't deleted. The block is simply removed from view. Therefore you can re-install the block easily because the installer remembers the last configuration.");
 define('_AD_LEGACY_TIPS_BLOCK', "Please write down your tips here!<br />( Customize _AD_LEGACY_TIPS_BLOCK !)");
@@ -302,6 +336,8 @@ define('_AD_LEGACY_TIPS_MOD', "Please write down your tips here!<br />( Customiz
 define('_AD_LEGACY_TIPS_SMILES', "Please write down your tips here!<br />( Customize _AD_LEGACY_TIPS_SMILES !)");
 define('_AD_LEGACY_TIPS_SMILES_UPLOAD', "You can easily register many smiles by uploading Archive file including them! <br />This batch-upload doesn't check Length and File-Size of each smiles!<br />Please pre-adjust them before you archive them!<br />(Only tar.gz or zip archive)");
 define('_AD_LEGACY_TIPS_THEME_ADMIN', "Choose the look of your site by clicking the 'select' button next to your favourite theme.<br/> Let your users choose their own favourite look and feel for your site.  Check the boxes to add a theme to the theme selection block. For more details, read the help.");
+
+// MODULE ADMIN
 define('_MD_AM_ADMINML', "Admin mail address");
 define('_MD_AM_ADMNOTSET', "Admin mail has not been set.");
 define('_MD_AM_ALLOWHTML', "Allow HTML tags in user comments?");
