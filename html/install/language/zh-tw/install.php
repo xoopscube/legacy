@@ -1,6 +1,6 @@
 <?php
 // $Id$
-define('_INSTALL_L0', '歡迎來到 XOOPS Cube 2.1 安裝精靈，安裝程式將會慢慢引導你安裝XOOPS。');
+define('_INSTALL_L0', '歡迎來到 XOOPS Cube 2.2 安裝精靈，安裝程式將會慢慢引導你安裝XOOPS。');
 define('_INSTALL_L70', '請先確定mainfile.php 這個檔案的屬性是可讀寫的，以便讓程式把必要的資訊寫入(例如！在 UNIX/LINUX 主機上 chmod 777 mainfile.php ，於WinOS 系統上則把唯讀屬性去除). 當你做好這個動作時請按重新整理按鈕。');
 //define('_INSTALL_L71', 'Click on the button below to begin the installation.');
 define('_INSTALL_L1', '開啟 mainfile.php  並使用你的文字編輯器軟體尋找下列的第31行程式碼：');

@@ -1,6 +1,6 @@
 <?php
 // $Id$
-define("_INSTALL_L0","Добро пожаловать в программу установки XOOPS Cube 2.1");
+define("_INSTALL_L0","Добро пожаловать в программу установки XOOPS Cube 2.2");
 define("_INSTALL_L70","Пожалуйста, измените права файла mainfile.php так, чтобы он был доступен для записи сервером (например, chmod 777 mainfile.php на UNIX/LINUX сервере, или проверьте, что атрибут read-only не установлен на Windows сервере). Перезагрузите эту страницу после того как внесете изменения.");
 //define("_INSTALL_L71","Click on the button below to begin the installation.");
 define("_INSTALL_L1","Откройте файл mainfile.php в текстовом редакторе и найдите следующий код в строке 31:");

@@ -2,7 +2,7 @@
 // $Id$
 // Greek Translation by Angelos Plastropoulos (plusangel[at]xoopscube.gr) at 30/10/2006, revised 18/04/2007, revised 30/04/2007
 
-define("_INSTALL_L0","Καλώς ήρθατε στον οδηγό εγκατάστασης του XOOPS Cube Legacy 2.1");
+define("_INSTALL_L0","Καλώς ήρθατε στον οδηγό εγκατάστασης του XOOPS Cube Legacy 2.2");
 define("_INSTALL_L70"," Παρακαλείσθε να αλλάξετε τα δικαιώματα του αρχείου mainfile.php έτσι ώστε να μπορεί ο server να το τροποποιήσει (i.e. chmod 777 mainfile.php σε UNIX/LINUX server, ή ελέγξτε τις ιδιότητες του αρχείου και σιγουρευτείτε ότι η read-only δεν είναι σε Windows server ). Ξαναφορτώστε τη σελίδα αυτή όταν έχετε ρυθμίσει τα δικαιώματα που απαιτούνται.");
 //define("_INSTALL_L71","Click on the button below to begin the installation.");
 define("_INSTALL_L1","Άνοιξε το mainfile.php με έναν απλό επεξεργαστή κειμένου και βρες τα ακόλουθα στοιχεία στη γραμμή 31:");

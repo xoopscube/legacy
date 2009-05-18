@@ -1,6 +1,6 @@
 <?php
 // $Id$
-define("_INSTALL_L0","Bienvenue dans l'assistant d'installation de XOOPS Cube 2.1");
+define("_INSTALL_L0","Bienvenue dans l'assistant d'installation de XOOPS Cube 2.2");
 define("_INSTALL_L70","Merci de changer les permissions du fichier mainfile.php afin qu'il soit accessible en écriture par le serveur (ex. chmod 777 sur un serveur UNIX/LINUX, ou vérifier les propriétés du fichier et s'assurer que l'option 'Lecture seule' n'est pas cochée sur un serveur Windows). Rechargez cette page une fois les permissions changées.");
 //define("_INSTALL_L71","Cliquez sur le bouton ci-dessous pour commencer l'installation.");
 define("_INSTALL_L1","Ouvrez le fichier mainfile.php avec un éditeur de texte et cherchez le code suivant à la ligne 31 :");
@@ -134,8 +134,8 @@ define("_INSTALL_L124","Echec de stockage du fichier %s dans le répertoire cache
 define("_INSTALL_L125","Fichier %s écrasé par %s.");
 define("_INSTALL_L126","Impossible d'écrire dans le fichier %s.");
 
-define("_INSTALL_L130","L'installateur a détecté des tables pour XOOPS 1.3.x dans votre base de données.<br />L'installateur va maintenant essayer de mettre à jour votre base de données pour XOOPS Cube 2.1");
-define("_INSTALL_L131","Les Tables pour XOOPS Cube 2.1 existe déjà dans votre base de données.");
+define("_INSTALL_L130","L'installateur a détecté des tables pour XOOPS 1.3.x dans votre base de données.<br />L'installateur va maintenant essayer de mettre à jour votre base de données pour XOOPS Cube 2.2");
+define("_INSTALL_L131","Les Tables pour XOOPS Cube 2.2 existe déjà dans votre base de données.");
 define("_INSTALL_L132","Mise à jour des tables");
 define("_INSTALL_L133","Table %s mise à jour.");
 define("_INSTALL_L134","Echec de mise à jour de la table %s.");
@@ -145,9 +145,9 @@ define("_INSTALL_L137","Mettre à jour les modules");
 define("_INSTALL_L138","Mettre à jour les commentaires");
 define("_INSTALL_L139","Mettre à jour les avatars");
 define("_INSTALL_L140","Mettre à jour les emoticones");
-define("_INSTALL_L141","L'installateur va maintenant mettre à jour chaque module pour qu'ils fonctionnent avec XOOPS Cube 2.1<br />Assurez-vous d'avoir uploadé tous les fichiers du package XOOPS Cube 2.1 sur votre serveur.<br />Cela peut prendre un certain temps pour finir.");
+define("_INSTALL_L141","L'installateur va maintenant mettre à jour chaque module pour qu'ils fonctionnent avec XOOPS Cube 2.2<br />Assurez-vous d'avoir uploadé tous les fichiers du package XOOPS Cube 2.2 sur votre serveur.<br />Cela peut prendre un certain temps pour finir.");
 define("_INSTALL_L142","Mise à jour des modules...");
-define("_INSTALL_L143","L'installateur va maintenant mettre à jour les données de configuration de XOOPS 1.3.x pour être utilisées avec XOOPS Cube 2.1");
+define("_INSTALL_L143","L'installateur va maintenant mettre à jour les données de configuration de XOOPS 1.3.x pour être utilisées avec XOOPS Cube 2.2");
 define("_INSTALL_L144","Mettre à jour la configuration");
 define("_INSTALL_L145","Commentaire (ID : %s) inséré dans la base de données.");
 define("_INSTALL_L146","Impossible d'insérer le commentaire (ID : %s) dans la base de données.");

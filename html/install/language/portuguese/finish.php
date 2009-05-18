@@ -3,7 +3,7 @@
 // $Id: finish.php 106 2009-03-27 22:40:55Z mikhail $
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
-// ## XOOPS Cube Legacy 2.1 - Tradução para o Português do Brasil
+// ## XOOPS Cube Legacy 2.2 - Tradução para o Português do Brasil
 // ############################################################### //
 // ## Por............: Mikhail Miguel
 // ## E-mail.........: mikhail@underpop.com

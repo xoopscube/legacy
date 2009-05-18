@@ -1,6 +1,6 @@
 <?php
 // $Id: install.php,v 1.1 2008/07/05 08:25:13 minahito Exp $
-define("_INSTALL_L0","Vítá Vás prùvodce instalací pro XOOPS Cube 2.1.1");
+define("_INSTALL_L0","Vítá Vás prùvodce instalací pro XOOPS Cube 2.2");
 define("_INSTALL_L70","Je nezbytné, aby bìhem instalace byl soubor mainfile.php nastaven pro zápis serverem (napø. chmod 777 mainfile.php na UNIX/LINUX serveru nebo na Windowsech nastavte soubor mainfile.php tak, aby nebyl nastaven \"Pouze pro ètení\"). Až to udìláte znovunaètìte tuto stránku.");
 //define("_INSTALL_L71","Click on the button below to begin the installation.");
 define("_INSTALL_L1","Otevøete soubor mainfile.php ve Vašem textovém editoru a najdìte následující kód na øádku 31:");
