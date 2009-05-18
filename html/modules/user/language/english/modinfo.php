@@ -6,6 +6,8 @@ define('_MI_USER_ADMENU_LIST', "User Management");
 define('_MI_USER_ADMENU_MAIL', "Mail Users");
 define('_MI_USER_ADMENU_MAILJOB_MANAGE', "Mailjob Management");
 define('_MI_USER_ADMENU_RANK_LIST', "User Rank Manager");
+define('_MI_USER_ADMENU_USER_DATA_CSVUPLOAD', 'Users Batch Registration');
+define('_MI_USER_ADMENU_USER_DATA_DOWNLOAD', 'User Data Download');
 define('_MI_USER_ADMENU_USER_SEARCH', "User Search");
 define('_MI_USER_BLOCK_LOGIN_DESC', "Shows login form");
 define('_MI_USER_BLOCK_LOGIN_NAME', "Login");
@@ -72,6 +74,6 @@ define('_MI_USER_MENU_CREATE_GROUP', "Create group");
 define('_MI_USER_MENU_CREATE_RANK', "user rank create new");
 define('_MI_USER_MENU_CREATE_USER', "Create user");
 define('_MI_USER_NAME', "User module");
-define('_MI_USER_NAME_DESC', "This module manages user account.");
+define('_MI_USER_NAME_DESC', "Authentication module which provides user management and group-based permissions system.");
 
 ?>

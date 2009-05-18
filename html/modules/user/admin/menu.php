@@ -49,4 +49,15 @@ $adminmenu[100]['keywords'] = _MI_USER_KEYWORD_MAILJOB_MANAGE;
 $adminmenu[100]['link'] = "admin/index.php?action=MailjobList";
 $adminmenu[100]['show'] = true;
 
+$adminmenu[110]['title'] = _MI_USER_ADMENU_USER_DATA_DOWNLOAD;
+$adminmenu[110]['keywords'] = _MI_USER_KEYWORD_MAILJOB_MANAGE;
+$adminmenu[110]['link'] = "admin/index.php?action=UserDataDownload";
+$adminmenu[110]['show'] = true;
+
+$adminmenu[120]['title'] = _MI_USER_ADMENU_USER_DATA_CSVUPLOAD;
+$adminmenu[120]['keywords'] = _MI_USER_KEYWORD_MAILJOB_MANAGE;
+$adminmenu[120]['link'] = "admin/index.php?action=UserDataUpload";
+$adminmenu[120]['show'] = true;
+
+
 ?>

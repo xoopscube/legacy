@@ -58,6 +58,6 @@ class User_UserDataUploadDoAction extends User_UserDataUploadAction
 		
 		unset($_SESSION['user_csv_upload_data']);
 		
-		$controller->executeRedirect("index.php", 1, _AD_USER_EXTRA_DATA_UPLOAD_DONE);
+		$controller->executeRedirect("index.php", 1, _AD_USER_DATA_UPLOAD_DONE);
 	}
 }
