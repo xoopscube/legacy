@@ -153,6 +153,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #2010090 - Missing Content-Type in MailHeader by #1729813.
 - Fix Bug #2011775 - When a user deletes his account, principal is not created.
 - Fix Bug #2017164 - Can't register new account by #2011775.
+- Fix Bug #2791554 - phpmailer japanese language file is broken.
 
 [Other Changes/Enhancements]
 - Patch #1868259 - add alt to smaily icons@legacy_xoopsform_opt_smileys.html
@@ -162,6 +163,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Patch #2011199 - Czech message catalog for XCL.
 - Patch #2016023 - Package Legacy 215rc patch FR and PT typo.
 - (Exception Patch) Improve LostPassAction.
+- Request #2795674 - Update phpmailer from 2.0.3 to 2.0.4
 
 [Staff]
 - aaki

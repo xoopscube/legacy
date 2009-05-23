@@ -1,5 +1,9 @@
 ChangeLog
 
+Version 2.0.4 (April 02 2009)
+* fixed == in class.smtp.php
+- NOTE: this is it folks, our last PHPMailer to support PHP4
+
 Version 2.0.3 (November 08 2008)
 * fixed line 1041 in class.smtp.php (endless loop from missing = sign)
 * fixed duplicate images in email body

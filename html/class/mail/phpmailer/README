@@ -9,7 +9,12 @@ PHPMailer
 Full Featured Email Transfer Class for PHP
 ==========================================
 
-Version 2.3 (November 08, 2008)
+Version 2.0.4 (April 02, 2009)
+
+This is the last version to support PHP4. We've made the move to PHP5 and
+all of our efforts now are into PHPMailer for PHP5/6.
+
+Version 2.0.3 (November 08, 2008)
 
 PHP4 continues to be a major platform for developers. We are responding
 to the emails received to continue development for PHP4 with this 
