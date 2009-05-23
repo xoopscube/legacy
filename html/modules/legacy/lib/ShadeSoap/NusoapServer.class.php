@@ -6,7 +6,18 @@
  * @license http://www.gnu.org/licenses/lgpl.txt GNU LESSER GENERAL PUBLIC LICENSE Version 2.1
  */
 
-if (!XC_CLASS_EXISTS('soap_server')) exit();
+
+
+if (version_compare(PHP_VERSION, "5.0", ">=")) {
+	if (!class_exists("soap_server", false)) {
+		exit();
+	}
+}
+else {
+	if (!class_exists("soap_server")) {
+		exit();
+	}
+}
 
 class ShadeSoap_NusoapServer extends soap_server
 {
