@@ -1,7 +1,9 @@
 <h3><{$smarty.const._MD_MESSAGE_TEMPLATE7}></h3>
 
-<p><a href="<{$message_url}>&amp;action=index"><img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_inbox.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE15}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE15}>" /></a>&nbsp;&nbsp;
-<a href="<{$message_url}>&amp;action=new"><img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_edit.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE8}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE8}>" /></a></p>
+<p><img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_inbox.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE15}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE15}>" /> <a href="<{$message_url}>&amp;action=index"><{$smarty.const._MD_MESSAGE_TEMPLATE15}></a>&nbsp;&nbsp;
+<img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_add.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE8}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE8}>" /> <a href="<{$message_url}>&amp;action=new"><{$smarty.const._MD_MESSAGE_TEMPLATE8}></a></p>
+
+<br />
 
 <form method="post" action="<{$message_url}>&amp;action=deleteall">
 <table class="outer">

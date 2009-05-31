@@ -8,7 +8,8 @@
 
 <{if $msgdata.from_uid != 0}>
 <div style="margin-right: 10px; float:left;">
-<input type="image" value="<{$smarty.const._MD_MESSAGE_TEMPLATE13}>" src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_edit.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE13}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE13}>" onclick="location.href='<{$message_url}>&amp;action=new&amp;res=<{$msgdata.inbox_id}>'" />
+<input type="image" value="<{$smarty.const._MD_MESSAGE_TEMPLATE13}>" src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_add.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE13}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE13}>" onclick="location.href='<{$message_url}>&amp;action=new&amp;res=<{$msgdata.inbox_id}>'" />
+<{$smarty.const._MD_MESSAGE_TEMPLATE13}>
 </div>
 <{/if}>
 

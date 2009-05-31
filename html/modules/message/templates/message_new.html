@@ -1,8 +1,8 @@
 <h3><{$smarty.const._MD_MESSAGE_TEMPLATE1}></h3>
 
-<p><a href="<{$message_url}>&amp;action=index"><img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_inbox.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE15}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE15}>" /></a>&nbsp;&nbsp;
-<a href="<{$message_url}>&amp;action=send"><img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_outbox.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE7}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE7}>" /></a></p>
-
+<p><img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_inbox.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE15}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE15}>" /> <a href="<{$message_url}>&amp;action=index"><{$smarty.const._MD_MESSAGE_TEMPLATE15}></a>&nbsp;&nbsp;
+<a href="<{$message_url}>&amp;action=send"><img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_outbox.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE7}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE7}>" /> <a href="<{$message_url}>&amp;action=send"><{$smarty.const._MD_MESSAGE_TEMPLATE7}></a></p>
+<br />
 <{if $errMsg!=""}>
 <ul>
 <{foreach item=error from=$errMsg}>

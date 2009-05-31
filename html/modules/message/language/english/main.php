@@ -13,7 +13,7 @@ define('_MD_MESSAGE_ACTIONMSG2', 'You don\'t have permission.');
 define('_MD_MESSAGE_ACTIONMSG3', 'Message was deleted.');
 define('_MD_MESSAGE_ACTIONMSG4', 'Deletion failed.');
 define('_MD_MESSAGE_ACTIONMSG5', 'Message could not be sent.');
-define('_MD_MESSAGE_ACTIONMSG6', 'Failed in addition to the Send Box.');
+define('_MD_MESSAGE_ACTIONMSG6', 'Failed additioning to the Sent Box.');
 define('_MD_MESSAGE_ACTIONMSG7', 'Message was send.');
 define('_MD_MESSAGE_ACTIONMSG8', 'You don\'t have permission.');
 
@@ -23,7 +23,7 @@ define('_MD_MESSAGE_TEMPLATE3', 'Subject');
 define('_MD_MESSAGE_TEMPLATE4', 'Message');
 define('_MD_MESSAGE_TEMPLATE5', 'Preview');
 define('_MD_MESSAGE_TEMPLATE6', 'Submit');
-define('_MD_MESSAGE_TEMPLATE7', 'Send Box');
+define('_MD_MESSAGE_TEMPLATE7', 'Sent Box');
 define('_MD_MESSAGE_TEMPLATE8', 'Compose message');
 define('_MD_MESSAGE_TEMPLATE9', 'To');
 define('_MD_MESSAGE_TEMPLATE10', 'Date');
@@ -39,7 +39,7 @@ define('_MD_MESSAGE_TEMPLATE19', 'Lock');
 define('_MD_MESSAGE_TEMPLATE20', 'Unlock');
 define('_MD_MESSAGE_TEMPLATE21', 'Send email');
 
-define('_MD_MESSAGE_ADDFAVORITES', 'Add favorites');
+define('_MD_MESSAGE_ADDFAVORITES', 'Add to favorites');
 
 define('_MD_MESSAGE_FAVORITES0', 'The user which it adds is not selected.');
 define('_MD_MESSAGE_FAVORITES1', 'Add faile');
