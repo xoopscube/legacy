@@ -1,6 +1,6 @@
 <h3><{$smarty.const._MD_MESSAGE_SETTINGS}></h3>
 <br />
-<form action="<{$message_url}>&amp;action=settings" method="post">
+<form action="index.php?action=settings" method="post">
 <table class="outer">
 <tr>
 <th width="30%"><{$smarty.const._MD_MESSAGE_SETTINGS_MSG1}></th>
@@ -34,7 +34,7 @@
 <th><{$smarty.const._MD_MESSAGE_SETTINGS_MSG10}></th>
 <td class="even">
 <{xoops_input type=text name=blacklist value=$mActionForm->get('blacklist') maxlength=255 size=60}>
-<a href="<{$message_url}>&amp;action=blacklist"><{$smarty.const._MD_MESSAGE_SETTINGS_MSG18}></a>
+<a href="index.php?action=blacklist"><{$smarty.const._MD_MESSAGE_SETTINGS_MSG18}></a>
 <br /><{$smarty.const._MD_MESSAGE_SETTINGS_MSG11}>
 </td>
 </tr>

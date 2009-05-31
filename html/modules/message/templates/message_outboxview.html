@@ -1,4 +1,4 @@
-<h3><a href="<{$message_url}>&amp;action=send"><{$smarty.const._MD_MESSAGE_TEMPLATE7}></a> &raquo; <{$smarty.const._MD_MESSAGE_TEMPLATE6}><{$smarty.const._MD_MESSAGE_TEMPLATE11}></h3>
+<h3><a href="index.php?action=send"><{$smarty.const._MD_MESSAGE_TEMPLATE7}></a> &raquo; <{$smarty.const._MD_MESSAGE_TEMPLATE6}><{$smarty.const._MD_MESSAGE_TEMPLATE11}></h3>
 
 <table class="outer">
 <tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE9}></td><td class="odd"><{$msgdata.toname}> (<{$msgdata.utime|xoops_formattimestamp:l}>)</td></tr>
@@ -6,7 +6,7 @@
 <tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE4}></td><td class="odd"><{$msgdata.message}></td></tr>
 <tr>
 <td class="even" colspan="2" style="text-align:center;">
-<form method="post" action="<{$message_url}>&amp;action=delete&amp;inout=out">
+<form method="post" action="index.php?action=delete&amp;inout=out">
 <input type="hidden" name="outbox" value="<{$msgdata.outbox_id}>" />
 <input type="submit" value="<{$smarty.const._MD_MESSAGE_TEMPLATE14}>" />
 </form>

@@ -6,11 +6,10 @@ if ( !isset($root) ) {
 }
 $modversion['name'] = _MI_MESSAGE_NAME;
 $modversion['dirname'] = basename(dirname(__FILE__));
-$modversion['version'] = 1.00;
+$modversion['version'] = 1.11;
 $modversion['author'] = 'Marijuana';
 $modversion['image'] = 'slogo.png';
 $modversion['mcl_update'] = 'message';
-$modversion['front'] = true;
 
 $modversion['cube_style'] = true;
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';

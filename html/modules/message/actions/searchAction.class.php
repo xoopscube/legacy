@@ -24,12 +24,7 @@ class searchAction extends AbstractAction
   public function execute()
   {
     if ( !$this->chk_use() ) {
-      //FRONT
-      if (defined('_FRONTCONTROLLER')) {
-        $this->setUrl($this->url.'&action=settings');
-      } else {
-        $this->setUrl('index.php?action=settings');
-      }
+      $this->setUrl('index.php?action=settings');
       $this->setErr(_MD_MESSAGE_SETTINGS_MSG5);
     } else {
       if ( $this->mService == null ) {
@@ -54,10 +49,6 @@ class searchAction extends AbstractAction
           'page'  => 10,
           'url'   => 'index.php?action=search'
         );
-        //FRONT
-        if (defined('_FRONTCONTROLLER')) {
-          $request['url'].= '&amp;moddir='._MY_DIRNAME;
-        }
         $this->getData($request);
       } else {
         $this->mActionform->set('searchtype', 0);
@@ -70,12 +61,6 @@ class searchAction extends AbstractAction
     $render->setTemplateName('message_usersearch.html');
     $render->setAttribute('mActionform', $this->mActionform);
     $render->setAttribute('listdata', $this->listdata);
-    //FRONT
-    if (defined('_FRONTCONTROLLER')) {
-      $render->setAttribute('message_url', XOOPS_URL.'/index.php?moddir='._MY_DIRNAME);
-    } else {
-      $render->setAttribute('message_url', 'index.php?moddir='._MY_DIRNAME);
-    }
   }
 }
 ?>

@@ -12,10 +12,6 @@ abstract class AbstractAction
   public function __construct()
   {
     $this->root = XCube_Root::getSingleton();
-    //FRONT
-    if (defined('_FRONTCONTROLLER')) {
-      $this->url = XOOPS_URL.'/index.php?moddir='._MY_DIRNAME;
-    }
   }
   
   protected function setUrl($url)

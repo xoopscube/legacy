@@ -3,7 +3,7 @@
 <div style="padding: 5px;">
   <fieldset>
     <legend><{$smarty.const._MD_USERSEARCH_2}></legend>
-    <form name="searchform" action="<{$message_url}>" method="get">
+    <form name="searchform" action="index.php" method="get">
     <{$smarty.const._MD_USERSEARCH_3}><{xoops_input type=text name=uname size=30 value=$mActionform->get('uname')}>&nbsp;&nbsp;
     <{xoops_input type=radio name=searchtype id=searchtype value=0 default=$mActionform->get('searchtype')}><label for="searchtype_0"><{$smarty.const._MD_USERSEARCH_4}></label>&nbsp;&nbsp;
     <{xoops_input type=radio name=searchtype id=searchtype value=1 default=$mActionform->get('searchtype')}><label for="searchtype_1"><{$smarty.const._MD_USERSEARCH_5}></label>&nbsp;&nbsp;
@@ -17,7 +17,7 @@
 </div>
 <hr />
 <{if $listdata!=false}>
-<form method="post" action="<{$message_url}>">
+<form method="post" action="index.php">
 <{foreach item=user from=$listdata.udata}>
 <input type="checkbox" name="adduid[]" value="<{$user->get('uid')}>" />
 <a href="<{$xoops_url}>/modules/message/index.php?action=new&to_userid=<{$user->get('uid')}>"><{$user->get('uname')}></a>

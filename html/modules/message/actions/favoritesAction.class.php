@@ -10,12 +10,7 @@ class favoritesAction extends AbstractAction
   {
     parent::__construct();
     $this->mService = $this->root->mServiceManager->getService('UserSearch');
-    //FRONT
-    if (defined('_FRONTCONTROLLER')) {
-      $this->setUrl($this->url.'&action=favorites');
-    } else {
-      $this->setUrl('index.php?action=favorites');
-    }
+    $this->setUrl('index.php?action=favorites');
   }
   
   private function addFavorites()
@@ -84,12 +79,7 @@ class favoritesAction extends AbstractAction
   public function execute()
   {
     if ( !$this->chk_use() ) {
-      //FRONT
-      if (defined('_FRONTCONTROLLER')) {
-        $this->setUrl($this->url.'&action=settings');
-      } else {
-        $this->setUrl('index.php?action=settings');
-      }
+      $this->setUrl('index.php?action=settings');
       $this->setErr(_MD_MESSAGE_SETTINGS_MSG5);
     } else {
       if ( $this->mService == null ) {
@@ -120,12 +110,6 @@ class favoritesAction extends AbstractAction
   {
     $render->setTemplateName('message_favorites.html');
     $render->setAttribute('fuser', $this->favorites);
-    //FRONT
-    if (defined('_FRONTCONTROLLER')) {
-      $render->setAttribute('message_url', XOOPS_URL.'/index.php?moddir='._MY_DIRNAME);
-    } else {
-      $render->setAttribute('message_url', 'index.php?moddir='._MY_DIRNAME);
-    }
   }
 }
 ?>

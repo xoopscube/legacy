@@ -29,7 +29,7 @@ class indexAction extends AbstractAction
     $this->mPagenavi->setPagenum($pagenum);
     $this->mPagenavi->addSort('utime', 'DESC');
     $this->mPagenavi->addCriteria(new Criteria('uid', $this->root->mContext->mXoopsUser->get('uid')));
-    if ( xoops_getenv('REQUEST_METHOD') == 'POST' ) {
+    if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
       $fromuid = intval($this->root->mContext->mRequest->getRequest('fromuid'));
       if ( $fromuid > 0 ) {
         $this->mPagenavi->addCriteria(new Criteria('from_uid', $fromuid));
@@ -58,12 +58,7 @@ class indexAction extends AbstractAction
     if ( $this->chk_use() ) {
       $this->_view();
     } else {
-      //FRONT
-      if (defined('_FRONTCONTROLLER')) {
-        $this->setUrl($this->url.'&action=settings');
-      } else {
-        $this->setUrl('index.php?action=settings');
-      }
+      $this->setUrl('index.php?action=settings');
       $this->setErr(_MD_MESSAGE_SETTINGS_MSG5);
     }
   }
@@ -75,12 +70,6 @@ class indexAction extends AbstractAction
     $render->setAttribute('pageNavi', $this->mPagenavi->mNavi);
     $render->setAttribute('select', $this->select);
     $render->setAttribute('subject', $this->subject);
-    //FRONT
-    if (defined('_FRONTCONTROLLER')) {
-      $render->setAttribute('message_url', XOOPS_URL.'/index.php?moddir='._MY_DIRNAME);
-    } else {
-      $render->setAttribute('message_url', 'index.php?moddir='._MY_DIRNAME);
-    }
   }
 }
 ?>

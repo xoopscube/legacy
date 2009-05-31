@@ -53,27 +53,6 @@ class My_Mailer extends PHPMailer
     return true;
   }
   
-  public function SendmailSend($header, $body)
-  {
-    if ($this->Sender != "") {
-      $sendmail = sprintf("%s -oi -f %s -t", $this->Sendmail, escapeshellcmd($this->Sender));
-    } else {
-      $sendmail = sprintf("%s -oi -t", $this->Sendmail);
-    }
-    if (!@$mail = popen($sendmail, "w")) {
-      $this->SetError($this->Lang("execute") . $this->Sendmail);
-      return false;
-    }
-    fputs($mail, $header);
-    fputs($mail, $body);
-    $result = pclose($mail) >> 8 & 0xFF;
-    if ($result != 0) {
-      $this->SetError($this->Lang("execute") . $this->Sendmail);
-      return false;
-    }
-    return true;
-  }
-  
   public function setFrom($text)
   {
     $this->From = $text;

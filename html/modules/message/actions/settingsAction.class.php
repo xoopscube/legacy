@@ -21,18 +21,13 @@ class settingsAction extends AbstractAction
       $modObj = $modHand->create();
     }
     $this->mActionForm->load($modObj);
-    if ( xoops_getenv('REQUEST_METHOD') == 'POST' ) {
+    if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
       $this->mActionForm->fetch();
       $this->mActionForm->validate();
       if ($this->mActionForm->hasError()) {
         $this->setErr($this->mActionForm->getErrorMessages());
       } else {
-        //FRONT
-        if (defined('_FRONTCONTROLLER')) {
-          $this->setUrl($this->url.'&action=settings');
-        } else {
-          $this->setUrl('index.php?action=settings');
-        }
+        $this->setUrl('index.php?action=settings');
         $this->mActionForm->update($modObj);
         if ( !$modHand->insert($modObj) ) {
           $this->setErr(_MD_MESSAGE_SETTINGS_MSG4);
@@ -47,12 +42,6 @@ class settingsAction extends AbstractAction
   {
     $render->setTemplateName('message_settings.html');
     $render->setAttribute('mActionForm', $this->mActionForm);
-    //FRONT
-    if (defined('_FRONTCONTROLLER')) {
-      $render->setAttribute('message_url', XOOPS_URL.'/index.php?moddir='._MY_DIRNAME);
-    } else {
-      $render->setAttribute('message_url', 'index.php?moddir='._MY_DIRNAME);
-    }
   }
 }
 ?>

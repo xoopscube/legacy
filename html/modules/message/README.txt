@@ -47,19 +47,36 @@ open_message_alertに新着メッセージがある場合に1
 また、Handlerの互換性を向上させたので従来のX2用のSmartyコードでもテーマへのアサインが可能です。
 ＊参考スレッド：http://www.xugj.org/modules/d3forum/index.php?post_id=5138
 
-【注意】
-＊PostgreSQL対応は、Marijuanaがローカルで動かしているXCLで動作確認しています。（PostgreSQL8.1及び8.3で確認しています）
-＊PHP5専用なのでPHP4にも対応出来るように書き換えたらパッチ投げしますが、暇が無いのとPHP4は気乗りしないのでなかなか進みません。
-＊http://marijuana.moe.hm/ をPostgreSQLで動かしています。
-
 
 【モバイル用テンプレート】
 モバイル テンプハウス様でモバイル用のテンプレートを配布してくれています
 http://www.mc8.jp/HD/modules/xpwiki/45.html
 
 
+templates
+/message_new.htmlの26行目
+<tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE2}></td><td class="even"><{xoops_input name=uname size=30 maxlength=50 value=$mActionForm->get('uname')}></td></tr>
+を
+<tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE2}></td><td class="even"><{message_userlist uname=$mActionForm->get('uname')}></td></tr>
+に書き換えることでユーザ名を直接入力からリスト選択へ変更出来ます。
+<tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE2}></td><td class="even"><{message_suggestlist uname=$mActionForm->get('uname')}></td></tr>
+に書き換えることでオートコンプリートのテキストボックスが利用出来ます。
+
+
+【suggest.js】
+配布元：Enjoy*Studyさん(http://www.enjoyxstudy.com/)
+ライセンス：MITライセンス
+
+
+
 ToDo:
 同報発信
+Ver 1.11:他人のメッセージが読めてしまう問題修正
+Ver 1.10:PostgreSQL対応の廃止
+         フロントコントローラー動作の廃止
+         phpmailerのパッチ削除
+Ver 1.02:ユーザリスト用のSmartyプラグイン追加
+         suggest.jsを利用したSmartyプラグイン追加
 Ver 1.01:Handlerの互換性の向上
          テーマへ新着数をアサインするSmartyプラグイン追加
          セキュリティ向上

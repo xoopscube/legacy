@@ -42,7 +42,6 @@ class MessageInboxHandler extends XoopsObjectGenericHandler
   public $mTable = 'message_inbox';
   public $mPrimary = 'inbox_id';
   public $mClass = 'MessageInboxObject';
-  public $mSequence = 'message_inbox_inbox_id_seq';
   
   public function __construct(&$db)
   {
@@ -64,17 +63,12 @@ class MessageInboxHandler extends XoopsObjectGenericHandler
   
   public function getSendUserList($uid = 0, $fuid = 0)
   {
-    if ( defined('XOOPS_DB_FILEDS_QUOTE') ) {
-      $q = XOOPS_DB_FILEDS_QUOTE;
-    } else {
-      $q = '`';
-    }
     $ret = array();
-    $sql = "SELECT u.".$q."uname".$q.",u.".$q."uid".$q." FROM ".$q.$this->db->prefix('users').$q." u, ";
-    $sql.= $q.$this->mTable.$q." i ";
-    $sql.= "WHERE i.".$q."from_uid".$q." = u.".$q."uid".$q." ";
-    $sql.= "AND i.".$q."uid".$q." = ".$uid." ";
-    $sql.= "GROUP BY u.".$q."uname".$q.",u.".$q."uid".$q."";
+    $sql = "SELECT u.`uname`,u.`uid` FROM `".$this->db->prefix('users')."` u, ";
+    $sql.= '`'.$this->mTable."` i ";
+    $sql.= "WHERE i.`from_uid` = u.`uid` ";
+    $sql.= "AND i.`uid` = ".$uid." ";
+    $sql.= "GROUP BY u.`uname`, u.`uid`";
     
     $result = $this->db->query($sql);
     while ($row = $this->db->fetchArray($result)) {
@@ -94,9 +88,9 @@ class MessageInboxHandler extends XoopsObjectGenericHandler
       return;
     }
     $time = time() - ($day * 86400);
-    $sql = "DELETE FROM ".$this->mTable." ";
-    $sql.= "WHERE utime < ".$time." ";
-    $sql.= "AND is_read < 2 ";
+    $sql = "DELETE FROM `".$this->mTable."` ";
+    $sql.= "WHERE `utime` < ".$time." ";
+    $sql.= "AND `is_read` < 2 ";
     $this->db->query($sql);
   }
   

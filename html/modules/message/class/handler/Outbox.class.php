@@ -22,7 +22,6 @@ class MessageOutboxHandler extends XoopsObjectGenericHandler
   public $mTable = 'message_outbox';
   public $mPrimary = 'outbox_id';
   public $mClass = 'MessageOutboxObject';
-  public $mSequence = 'message_outbox_outbox_id_seq';
   
   public function __construct(&$db)
   {
@@ -41,8 +40,8 @@ class MessageOutboxHandler extends XoopsObjectGenericHandler
       return;
     }
     $time = time() - ($day * 86400);
-    $sql = "DELETE FROM ".$this->mTable." ";
-    $sql.= "WHERE utime < ".$time;
+    $sql = "DELETE FROM `".$this->mTable."` ";
+    $sql.= "WHERE `utime` < ".$time;
     $this->db->query($sql);
   }
 }

@@ -12,18 +12,12 @@ class deleteallAction extends AbstractAction
   
   public function execute()
   {
-    if (defined('_FRONTCONTROLLER')) {
-      $this->setUrl($this->url.'&');
-    } else {
-      $this->setUrl('index.php?');
-    }
-    
     if ( $this->root->mContext->mRequest->getRequest('inout') == 'in' ) {
       $this->inout = 'inbox';
-      $this->setUrl($this->url.'action=index');
+      $this->setUrl('index.php?action=index');
     } else {
       $this->inout = 'outbox';
-      $this->setUrl($this->url.'action=send');
+      $this->setUrl('index.php?action=send');
     }
     
     $delid = $this->root->mContext->mRequest->getRequest('delmsg');

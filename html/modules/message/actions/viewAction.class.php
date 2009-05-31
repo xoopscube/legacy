@@ -33,7 +33,7 @@ class viewAction extends AbstractAction
     }
     
     if ( $this->inout == 'inbox' ) {
-      if ( xoops_getenv('REQUEST_METHOD') == 'POST' ) {
+      if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
         if ( $this->root->mContext->mRequest->getRequest('cmd') == 'lock' ) {
           if ( intval($this->root->mContext->mRequest->getRequest('lock')) == 1 ) {
             $modObj->set('is_read', 2);
@@ -83,12 +83,6 @@ class viewAction extends AbstractAction
       $render->setTemplateName('message_outboxview.html');
     }
     $render->setAttribute('msgdata', $this->msgdata);
-    //FRONT
-    if (defined('_FRONTCONTROLLER')) {
-      $render->setAttribute('message_url', XOOPS_URL.'/index.php?moddir='._MY_DIRNAME);
-    } else {
-      $render->setAttribute('message_url', 'index.php?moddir='._MY_DIRNAME);
-    }
   }
 }
 ?>

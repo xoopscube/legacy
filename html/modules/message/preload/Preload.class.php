@@ -7,7 +7,6 @@ class Message_Preload extends XCube_ActionFilter
   {
     $confhand = xoops_gethandler('config');
     $conf = $confhand->getConfigsByDirname('message');
-    
     if ($this->mRoot->mContext->mUser->isInRole('Site.RegisteredUser')) {
       require_once XOOPS_MODULE_PATH.'/message/service/Service.class.php';
       $service = new Message_Service();

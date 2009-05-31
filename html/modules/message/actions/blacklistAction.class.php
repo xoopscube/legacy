@@ -13,12 +13,7 @@ class blacklistAction extends AbstractAction
   
   public function execute()
   {
-    //FRONT
-    if (defined('_FRONTCONTROLLER')) {
-      $this->setUrl($this->url.'&action=blacklist');
-    } else {
-      $this->setUrl('index.php?action=blacklist');
-    }
+    $this->setUrl('index.php?action=blacklist');
     $modobj = $this->getSettings();
     $uid = intval($this->root->mContext->mRequest->getRequest('uid'));
     if ( $uid != 0 ) {  //Add
@@ -106,12 +101,6 @@ class blacklistAction extends AbstractAction
   {
     $render->setTemplateName('message_blaclist.html');
     $render->setAttribute('blackuser', $this->blackuser);
-    //FRONT
-    if (defined('_FRONTCONTROLLER')) {
-      $render->setAttribute('message_url', XOOPS_URL.'/index.php?moddir='._MY_DIRNAME);
-    } else {
-      $render->setAttribute('message_url', 'index.php?moddir='._MY_DIRNAME);
-    }
   }
 }
 ?>

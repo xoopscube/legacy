@@ -43,12 +43,7 @@ class sendAction extends AbstractAction
   public function execute()
   {
     if ( !$this->chk_use() ) {
-      //FRONT
-      if (defined('_FRONTCONTROLLER')) {
-        $this->setUrl($this->url.'&action=settings');
-      } else {
-        $this->setUrl('index.php?action=settings');
-      }
+      $this->setUrl('index.php?action=settings');
       $this->setErr(_MD_MESSAGE_SETTINGS_MSG5);
     } else {
       $this->_view();
@@ -61,12 +56,6 @@ class sendAction extends AbstractAction
     $render->setTemplateName('message_outboxlist.html');
     $render->setAttribute('ListData', $this->listdata);
     $render->setAttribute('pageNavi', $this->mPagenavi->mNavi);
-    //FRONT
-    if (defined('_FRONTCONTROLLER')) {
-      $render->setAttribute('message_url', XOOPS_URL.'/index.php?moddir='._MY_DIRNAME);
-    } else {
-      $render->setAttribute('message_url', 'index.php?moddir='._MY_DIRNAME);
-    }
   }
 }
 ?>

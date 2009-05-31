@@ -54,12 +54,7 @@ class Message_Block extends Legacy_BlockProcedure
     
     $modHand = xoops_getmodulehandler('outbox', 'message');
     $render->setAttribute('outcount', $modHand->getOutboxCount($uid));
-    //FRONT
-    if (defined('_FRONTCONTROLLER')) {
-      $render->setAttribute('message_url', XOOPS_URL.'/index.php?moddir='.basename(dirname(dirname(__FILE__))));
-    } else {
-      $render->setAttribute('message_url', XOOPS_URL.'/modules/message/index.php?moddir='.basename(dirname(dirname(__FILE__))));
-    }
+    $render->setAttribute('message_url', XOOPS_URL.'/modules/message/index.php');
     $renderSystem = $root->getRenderSystem($this->getRenderSystemName());
     $renderSystem->renderBlock($render);
   }

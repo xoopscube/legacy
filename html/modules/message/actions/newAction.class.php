@@ -16,18 +16,13 @@ class newAction extends AbstractAction
   public function execute()
   {
     if ( !$this->chk_use() ) {
-      //FRONT
-      if (defined('_FRONTCONTROLLER')) {
-        $this->setUrl($this->url.'&action=settings');
-      } else {
-        $this->setUrl('index.php?action=settings');
-      }
+      $this->setUrl('index.php?action=settings');
       $this->setErr(_MD_MESSAGE_SETTINGS_MSG5);
     } else {
       $inboxid = intval($this->root->mContext->mRequest->getRequest('res'));
       $to_userid = intval($this->root->mContext->mRequest->getRequest('to_userid'));
       
-      if ( xoops_getenv('REQUEST_METHOD') == 'POST' ) {
+      if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
         if ($this->mActionForm->hasError()) {
@@ -54,7 +49,7 @@ class newAction extends AbstractAction
       } elseif ( $inboxid > 0 ) {
         $modHand = xoops_getmodulehandler('inbox', _MY_DIRNAME);
         $modObj = $modHand->get($inboxid);
-        if ( is_object($modObj) && $modObj->get('from_uid') > 0 ) {
+        if ( is_object($modObj) && $modObj->get('from_uid') > 0 && $modObj->get('uid') == $this->root->mContext->mXoopsUser->get('uid') ) {
           $this->mActionForm->setRes($modObj);
         }
       } elseif ( $to_userid > 0 ) {
@@ -143,12 +138,6 @@ class newAction extends AbstractAction
     $render->setTemplateName('message_new.html');
     $render->setAttribute('mActionForm', $this->mActionForm);
     $render->setAttribute('errMsg', $this->errMsg);
-    //FRONT
-    if (defined('_FRONTCONTROLLER')) {
-      $render->setAttribute('message_url', XOOPS_URL.'/index.php?moddir='._MY_DIRNAME);
-    } else {
-      $render->setAttribute('message_url', 'index.php?moddir='._MY_DIRNAME);
-    }
   }
 }
 ?>
