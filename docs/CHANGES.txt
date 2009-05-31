@@ -14,6 +14,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 [Feature Request - From Feature Requests Legacy Tracker]
 - Feature Request #1718527 - User Profile Extended
 - Feature Request #1721686 - Mailjob API of user module
+- Feature Request #1800104 - icon read.gif
 - Feature Request #1872731 - title for legacy_misc_smilies.html
 - Feature Request #1897507 - $_SERVER variables not defined on CLI
 - Feature Request #1943014 - set LanguageManager's LanguageName in $GLOBALS['xoopsConfig'
@@ -32,7 +33,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Add Avatar Search filter and display per page
 - Add Block Search filter and display per page
 - Add Images Batch Upload
-- Add Images Search filter and display per page)
+- Add Images Search filter and display per page
 - Add Smilies Batch Upload
 - Add Smilies Search filter and display per page
 - Add User Data download and cvs upload
