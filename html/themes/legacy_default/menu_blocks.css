@@ -7,31 +7,28 @@
 /*------------------------------------------------------- MAIN & USER MENU */
 /*------------------------------------------------------- COMMUNITY LINK */
 
-ul#communityLink, 
 ul#mainmenu, 
 ul#usermenu,
-ul#projectLinks 
+ul#privatemessages 
 	{
 	margin:1em; 
 	padding: 0px; 
 	list-style-type:none;
 	}
-
-ul#communityLink li, 
+ 
 ul#mainmenu li, 
 ul#usermenu li, 
-ul#projectLinks li 
+ul#privatemessages li 
 	{
 	margin:0;
 	padding:3px;
 	}
 
-ul#communityLink li a, ul#communityLink li a:visited,
 ul#mainmenu li a, ul#mainmenu li a:visited, 
 ul#usermenu li a, ul#usermenu li a:visited,
 ul#mainmenu a.menuTop, ul#usermenu a.menuTop, 
 ul#mainmenu a.menuMain, ul#mainmenu a.menuSub,
-ul#projectLinks li a, ul#projectLinks li a:visited
+ul#privatemessages li a, ul#privatemessages li a:visited
 	{ 
 	display: block;
 	margin:0;
@@ -41,24 +38,6 @@ ul#projectLinks li a, ul#projectLinks li a:visited
 	font-size:13px;
 	text-decoration:none;
 	}
-
-ul#projectLinks li a.Project {padding-left:30px; background:url(images/project.png) center left no-repeat;}
-ul#projectLinks li a.Download {padding-left:30px; background:url(images/package.png) center left no-repeat;}
-ul#projectLinks li a.Hoda {padding-left:30px; background:url(images/hoda.png) center left no-repeat;}
-ul#projectLinks li a.Modules {padding-left:30px; background:url(images/modules.png) center left no-repeat;}
-ul#projectLinks li a.Doc {padding-left:30px; background:url(images/doc.png) center left no-repeat;}
-ul#projectLinks li a.Forum {padding-left:30px; background:url(images/news.png) center left no-repeat;}
-ul#projectLinks li a.Tracker {padding-left:30px; background:url(images/tracker.png) center left no-repeat;}
-
-ul#communityLink li a.brasil {padding-left:30px; background:url(images/flag_brasil.png) center left no-repeat;}
-ul#communityLink li a.french {padding-left:30px; background:url(images/flag_french.png) center left no-repeat;}
-ul#communityLink li a.german {padding-left:30px; background:url(images/flag_german.png) center left no-repeat;}
-ul#communityLink li a.greece {padding-left:30px; background:url(images/flag_greece.png) center left no-repeat;}
-ul#communityLink li a.japan {padding-left:30px; background:url(images/flag_japan.png) center left no-repeat;}
-ul#communityLink li a.korean {padding-left:30px; background:url(images/flag_korean.png) center left no-repeat;}
-ul#communityLink li a.russian {padding-left:30px; background:url(images/flag_russian.png) center left no-repeat;}
-ul#communityLink li a.taiwan {padding-left:30px; background:url(images/flag_taiwan.png) center left no-repeat;}
-
 
 ul#mainmenu li a.menuSub
 {padding-left:15px;}
@@ -71,10 +50,9 @@ ul#mainmenu li a.menuSub
 	font-weight:normal
 	}
 
-ul#communityLink li a:hover,
 ul#mainmenu li a:hover,
 ul#usermenu li a:hover,
-ul#projectLinks li a:hover 
+ul#privatemessages li a:hover 
 	{
 	border-bottom:#fff 1px solid;
 	color:#FF9900;

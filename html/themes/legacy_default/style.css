@@ -110,6 +110,7 @@ body
 
 #container 
 	{
+	margin-top:45px; /* Remove this margin if Headernav is used */
 	padding:10px 0;
 	display:block;
 	}
