@@ -12,7 +12,7 @@ RenderSystem=Legacy_RenderSystem
 Format="XOOPS2 Legacy Style"
 Author=XOOPS Cube Project Team
 ScreenShot="screenshot.png"
-Description="Full header with tabs and search. Layout with 2 Columns and bottom center blocks."
+Description="Full header with search. Layout with 2 Columns, left or right, and bottom center blocks."
 W3C=NG
 
 Licence="BSD"
