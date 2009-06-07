@@ -15,6 +15,8 @@ define('_MI_MESSAGE_NEWALERT', '新着ブロックの利用');
 define('_MI_MESSAGE_NEWALERT_DESC', 'マイフレンドモジュールの新着ブロックを利用するか');
 define('_MI_MESSAGE_USERINFO', 'user_userinfo.htmlの差替え');
 define('_MI_MESSAGE_USERINFO_DESC', 'user_userinfo.htmlをこのモジュールのものに変更するか');
+define('_MI_MESSAGE_DELTYPE', '未読メッセージの削除');
+define('_MI_MESSAGE_DELTYPE_DESC', '保存期間の過ぎた未読メッセージを自動削除するかどうか');
 
 define('_MI_MESSAGE_BLOCK_NAME', '新着ブロック');
 define('_MI_MESSAGE_INSTALL_ERROR', 'このモジュールはPHP5.0以上でないと動作しません。');

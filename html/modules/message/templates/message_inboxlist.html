@@ -5,6 +5,14 @@
 
 <form method="post" action="index.php?action=index">
 <div align="right">
+<{$smarty.const._MD_MESSAGE_TEMPLATE22}>
+<select name="status">
+<option value="">---</option>
+<option value="0"<{if $status===0}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE16}></option>
+<option value="1"<{if $status==1}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE17}></option>
+<option value="2"<{if $status==2}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE19}></option>
+</select>
+&nbsp;
 <{$smarty.const._MD_MESSAGE_TEMPLATE12}>
 <select name="fromuid">
 <option value="0">---</option>
@@ -24,7 +32,7 @@
 
 <table class="outer">
 <tr>
-<th width="36"><{$smarty.const._MD_MESSAGE_TEMPLATE16}></th>
+<th width="36"><{$smarty.const._MD_MESSAGE_TEMPLATE22}></th>
 <th><{$smarty.const._MD_MESSAGE_TEMPLATE3}></th>
 <th><{$smarty.const._MD_MESSAGE_TEMPLATE12}></th>
 <th><{$smarty.const._MD_MESSAGE_TEMPLATE10}></th>

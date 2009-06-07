@@ -6,7 +6,7 @@ if ( !isset($root) ) {
 }
 $modversion['name'] = _MI_MESSAGE_NAME;
 $modversion['dirname'] = basename(dirname(__FILE__));
-$modversion['version'] = 1.11;
+$modversion['version'] = 1.12;
 $modversion['author'] = 'Marijuana';
 $modversion['image'] = 'slogo.png';
 $modversion['mcl_update'] = 'message';
@@ -70,6 +70,13 @@ $modversion['config'][3]['description'] = '_MI_MESSAGE_USERINFO_DESC';
 $modversion['config'][3]['formtype']    = 'yesno';
 $modversion['config'][3]['valuetype']   = 'int';
 $modversion['config'][3]['default']     = '1';
+
+$modversion['config'][4]['name']        = 'dletype';
+$modversion['config'][4]['title']       = '_MI_MESSAGE_DELTYPE';
+$modversion['config'][4]['description'] = '_MI_MESSAGE_DELTYPE_DESC';
+$modversion['config'][4]['formtype']    = 'yesno';
+$modversion['config'][4]['valuetype']   = 'int';
+$modversion['config'][4]['default']     = '1';
 
 $modversion['blocks'][0]['file']        = 'message_block.class.php';
 $modversion['blocks'][0]['name']        = _MI_MESSAGE_BLOCK_NAME;

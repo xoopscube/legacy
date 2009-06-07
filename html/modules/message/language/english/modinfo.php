@@ -15,6 +15,8 @@ define('_MI_MESSAGE_NEWALERT', 'Use block : New Messages');
 define('_MI_MESSAGE_NEWALERT_DESC', 'Requires installation of module MyFriend and its block New Messages.');
 define('_MI_MESSAGE_USERINFO', 'Replacement of user_userinfo.html');
 define('_MI_MESSAGE_USERINFO_DESC', 'Change User profile template user_userinfo.html to the one of this module?');
+define('_MI_MESSAGE_DELTYPE', 'The unread message is deleted.');
+define('_MI_MESSAGE_DELTYPE_DESC', 'Is the unread message that the period of preservation passes automatically deleted?');
 
 define('_MI_MESSAGE_BLOCK_NAME', 'New Messages');
 define('_MI_INQUIRY_INSTALL_ERROR', 'This module only works with PHP5.');

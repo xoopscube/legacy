@@ -6,6 +6,8 @@ class sendAction extends AbstractAction
 {
   private $listdata;
   private $mPagenavi = null;
+  private $select;
+  private $subject = "";
   
   public function __construct()
   {
@@ -26,8 +28,22 @@ class sendAction extends AbstractAction
     $this->mPagenavi->setPagenum($pagenum);
     $this->mPagenavi->addSort('utime', 'DESC');
     $this->mPagenavi->addCriteria(new Criteria('uid', $this->root->mContext->mXoopsUser->get('uid')));
+    if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+      $fromuid = intval($this->root->mContext->mRequest->getRequest('touid'));
+      if ( $fromuid > 0 ) {
+        $this->mPagenavi->addCriteria(new Criteria('to_uid', $fromuid));
+      }
+      $this->subject = $this->root->mContext->mRequest->getRequest('subject');
+      if ( $this->subject != "" ) {
+        $this->mPagenavi->addCriteria(new Criteria('title', '%'.$this->subject.'%', 'LIKE'));
+      }
+    }
+    
     $this->mPagenavi->fetch();
     $this->mPagenavi->mNavi->addExtra('action', 'send');
+    
+    $this->select = $modHand->getReceiveUserList($this->root->mContext->mXoopsUser->get('uid'), $fromuid);
+    
     $modObj = $modHand->getObjects($this->mPagenavi->getCriteria());
 
     foreach ($modObj as $key => $val) {
@@ -56,6 +72,9 @@ class sendAction extends AbstractAction
     $render->setTemplateName('message_outboxlist.html');
     $render->setAttribute('ListData', $this->listdata);
     $render->setAttribute('pageNavi', $this->mPagenavi->mNavi);
+    
+    $render->setAttribute('select', $this->select);
+    $render->setAttribute('subject', $this->subject);
   }
 }
 ?>

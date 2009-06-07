@@ -8,6 +8,7 @@ class indexAction extends AbstractAction
   private $mPagenavi = null;
   private $select;
   private $subject = "";
+  private $status = "";
   
   public function __construct()
   {
@@ -37,6 +38,11 @@ class indexAction extends AbstractAction
       $this->subject = $this->root->mContext->mRequest->getRequest('subject');
       if ( $this->subject != "" ) {
         $this->mPagenavi->addCriteria(new Criteria('title', '%'.$this->subject.'%', 'LIKE'));
+      }
+      $this->status = $this->root->mContext->mRequest->getRequest('status');
+      if ( $this->status !== "" ) {
+        $this->status = intval($this->status);
+        $this->mPagenavi->addCriteria(new Criteria('is_read', $this->status));
       }
     }
     $this->mPagenavi->fetch();
@@ -70,6 +76,7 @@ class indexAction extends AbstractAction
     $render->setAttribute('pageNavi', $this->mPagenavi->mNavi);
     $render->setAttribute('select', $this->select);
     $render->setAttribute('subject', $this->subject);
+    $render->setAttribute('status', $this->status);
   }
 }
 ?>

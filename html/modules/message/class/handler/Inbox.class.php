@@ -82,7 +82,7 @@ class MessageInboxHandler extends XoopsObjectGenericHandler
     return $ret;
   }
   
-  public function deleteDays($day)
+  public function deleteDays($day, $type)
   {
     if ( $day < 1 ) {
       return;
@@ -90,8 +90,12 @@ class MessageInboxHandler extends XoopsObjectGenericHandler
     $time = time() - ($day * 86400);
     $sql = "DELETE FROM `".$this->mTable."` ";
     $sql.= "WHERE `utime` < ".$time." ";
-    $sql.= "AND `is_read` < 2 ";
-    $this->db->query($sql);
+    if ( $type == 0 ) {
+      $sql.= "AND `is_read` = 1 ";
+    } else {
+      $sql.= "AND `is_read` < 2 ";
+    }
+    $this->db->queryF($sql);
   }
   
   public function _makeCriteria4sql($criteria)

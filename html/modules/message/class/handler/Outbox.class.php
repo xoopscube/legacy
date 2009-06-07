@@ -42,7 +42,28 @@ class MessageOutboxHandler extends XoopsObjectGenericHandler
     $time = time() - ($day * 86400);
     $sql = "DELETE FROM `".$this->mTable."` ";
     $sql.= "WHERE `utime` < ".$time;
-    $this->db->query($sql);
+    $this->db->queryF($sql);
+  }
+
+  public function getReceiveUserList($uid = 0, $fuid = 0)
+  {
+    $ret = array();
+    $sql = "SELECT u.`uname`,u.`uid` FROM `".$this->db->prefix('users')."` u, ";
+    $sql.= '`'.$this->mTable."` i ";
+    $sql.= "WHERE i.`to_uid` = u.`uid` ";
+    $sql.= "AND i.`uid` = ".$uid." ";
+    $sql.= "GROUP BY u.`uname`, u.`uid`";
+    
+    $result = $this->db->query($sql);
+    while ($row = $this->db->fetchArray($result)) {
+      if ( $fuid == $row['uid'] ) {
+        $row['select'] = true;
+      } else {
+        $row['select'] = false;
+      }
+      $ret[] = $row;
+    }
+    return $ret;
   }
 }
 ?>

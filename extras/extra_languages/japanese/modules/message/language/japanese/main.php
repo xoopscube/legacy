@@ -41,6 +41,8 @@ define('_MD_MESSAGE_TEMPLATE18', '並び順');
 define('_MD_MESSAGE_TEMPLATE19', '保護');
 define('_MD_MESSAGE_TEMPLATE20', '保護解除');
 define('_MD_MESSAGE_TEMPLATE21', 'メール転送');
+define('_MD_MESSAGE_TEMPLATE22', '状態');
+
 
 define('_MD_MESSAGE_ADDFAVORITES', 'お気に入りに追加');
 

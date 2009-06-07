@@ -3,6 +3,22 @@
 <p><img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_inbox.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE15}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE15}>" /> <a href="index.php?action=index"><{$smarty.const._MD_MESSAGE_TEMPLATE15}></a>&nbsp;&nbsp;
 <img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_add.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE8}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE8}>" /> <a href="index.php?action=new"><{$smarty.const._MD_MESSAGE_TEMPLATE8}></a></p>
 
+<form method="post" action="index.php?action=send">
+<div align="right">
+<{$smarty.const._MD_MESSAGE_TEMPLATE9}>
+<select name="touid">
+<option value="0">---</option>
+<{foreach item=fuser from=$select}>
+<option value="<{$fuser.uid}>"<{if $fuser.select==true}> selected="selected"<{/if}>><{$fuser.uname|xoops_escape}></option>
+<{/foreach}>
+</select>
+&nbsp;
+<{$smarty.const._MD_MESSAGE_TEMPLATE3}>
+<input type="text" name="subject" size="25" value="<{$subject|xoops_escape}>" />
+&nbsp;
+<input type="submit" name="subbtn" value="<{$smarty.const._MD_MESSAGE_SEARCH}>" />
+</form>
+</div>
 <br />
 
 <form method="post" action="index.php?action=deleteall">

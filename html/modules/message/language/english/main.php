@@ -38,6 +38,7 @@ define('_MD_MESSAGE_TEMPLATE18', 'Order');
 define('_MD_MESSAGE_TEMPLATE19', 'Lock');
 define('_MD_MESSAGE_TEMPLATE20', 'Unlock');
 define('_MD_MESSAGE_TEMPLATE21', 'Send email');
+define('_MD_MESSAGE_TEMPLATE22', 'Status');
 
 define('_MD_MESSAGE_ADDFAVORITES', 'Add to favorites');
 

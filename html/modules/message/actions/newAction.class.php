@@ -38,7 +38,7 @@ class newAction extends AbstractAction
             $this->errMsg = _MD_MESSAGE_ACTIONMSG5;
           } else {
             $this->usemail();
-            $modHand->deleteDays($this->root->mContext->mModuleConfig['savedays']);
+            $modHand->deleteDays($this->root->mContext->mModuleConfig['savedays'], $this->root->mContext->mModuleConfig['dletype']);
             if ( !$this->update_outbox($modObj) ) {
               $this->errMsg = _MD_MESSAGE_ACTIONMSG6;
             } else {
