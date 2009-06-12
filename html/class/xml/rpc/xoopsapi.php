@@ -108,7 +108,7 @@ class XoopsApi extends XoopsXmlRpcApi
                             $story->setHometext(addslashes(trim($post['hometext'])));
                         }
                         $story->setUid($this->user->getVar('uid'));
-                        $story->setHostname(xoops_getenv('REMOTE_ADDR'));
+                        $story->setHostname($_SERVER['REMOTE_ADDR']);
                         if (!$this->_checkAdmin()) {
                             $story->setNohtml(1);
                         } else {

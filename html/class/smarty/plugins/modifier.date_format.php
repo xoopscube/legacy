@@ -4,6 +4,8 @@
  * @package Smarty
  * @subpackage plugins
  */
+
+/* TODO prevent path disclosure vulnerability*/
 error_reporting(0);
 /**
  * Include the {@link shared.make_timestamp.php} plugin

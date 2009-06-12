@@ -38,20 +38,14 @@
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
-// mysql_affeceted_rows() returns 0 if no data is modified
-// even there was a match, not desirable for implementing
-// the optimistic offline locking pattern in which we need
-// to return false or 0 only when no matching record was found. 
-// We can change this behaviour of mysql by supplying the
-// following constant to mysql_connect()
-if (!defined('MYSQL_CLIENT_FOUND_ROWS')) {
-    define('MYSQL_CLIENT_FOUND_ROWS', 2);
-}
-
 /**
  * base class
  */
 include_once XOOPS_ROOT_PATH."/class/database/database.php";
+
+if (!defined("MYSQL_CLIENT_FOUND_ROWS")) {
+	define("MYSQL_CLIENT_FOUND_ROWS", 2);
+}
 
 /**
  * connection to a mysql database
@@ -230,7 +224,7 @@ class XoopsMySQLDatabase extends XoopsDatabase
      */
     function quoteString($str)
     {
-         $str = "'".str_replace('\\"', '"', addslashes($str))."'";
+         $str = "'".mysql_real_escape_string($str, $this->conn)."'";
          return $str;
     }
 
