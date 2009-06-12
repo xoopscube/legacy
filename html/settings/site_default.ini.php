@@ -5,8 +5,8 @@
 Root=XOOPS_ROOT_PATH
 Controller=Legacy_Controller
 #SystemModules=system,legacy,user,legacyRender
-SystemModules=legacy,user,legacyRender,stdCache
-RecommendedModules=pm,profile
+SystemModules=legacy,legacyRender,user,profile,stdCache
+RecommendedModules=message
 RoleManager=Legacy_RoleManager
 Salt=XOOPS_SALT
 
