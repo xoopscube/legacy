@@ -68,9 +68,11 @@
       <input type="hidden" name="status[<{$cid}>]" value="<{$actionForm->get('status',$cid)}>" />
     </td>
     <td class="legacy_list_select">
-        <b class="legacy_module_error">
+        
         <{if $actionForm->get('delete',$cid) == 1}>
+          <b class="legacy_module_error">
           <{$smarty.const._YES}>
+          <b class="legacy_module_warning">
         <{else}>
           <{$smarty.const._NO}>
         <{/if}>

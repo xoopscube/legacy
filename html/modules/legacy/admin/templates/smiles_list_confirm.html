@@ -57,10 +57,12 @@
           <{$smarty.const._NO}>
         <{/if}>) 
         &raquo;
-        <b class="legacy_module_error">
+        
         <{if $actionForm->get('display',$sid) == 1}>
+        <b class="legacy_module_error">
           <{$smarty.const._YES}>
         <{else}>
+        <b class="legacy_module_warning">
           <{$smarty.const._NO}>
         <{/if}></b>
       <{/if}>
@@ -73,10 +75,12 @@
       <{/if}>
     </td>
     <td class="legacy_list_select">
-        <b class="legacy_module_error">
+        
         <{if $actionForm->get('delete',$sid) == 1}>
+        <b class="legacy_module_error">
           <{$smarty.const._YES}>
         <{else}>
+        <b class="legacy_module_warning">
           <{$smarty.const._NO}>
         <{/if}></b>
       <{if $actionForm->get('delete',$sid)}>

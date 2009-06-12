@@ -71,10 +71,12 @@
       <input type="hidden" name="bcachetime[<{$bid}>]" value="<{$actionForm->get('bcachetime',$bid)|xoops_escape:edit}>" />
     </td>
     <td class="legacy_list_select">
-        <b class="legacy_module_error">
+        
         <{if $actionForm->get('uninstall',$bid) == 1}>
+        <b class="legacy_module_error">
           <{$smarty.const._YES}>
         <{else}>
+        <b class="legacy_module_warning">
           <{$smarty.const._NO}>
         <{/if}></b>
       <{if $actionForm->get('uninstall',$bid)}>

@@ -83,10 +83,12 @@
           <{$smarty.const._NO}>
         <{/if}>) 
         &raquo;
-        <b class="legacy_module_error">
+        
         <{if $actionForm->get('display',$icid) == 1}>
+        <b class="legacy_module_error">
           <{$smarty.const._YES}>
         <{else}>
+        <b class="legacy_module_warning">
           <{$smarty.const._NO}>
         <{/if}></b>
       <{/if}>
@@ -105,10 +107,12 @@
       <input type="hidden" name="weight[<{$icid}>]" value="<{$actionForm->get('weight',$icid)|xoops_escape:edit}>" />
     </td>
     <td class="legacy_list_select">
-        <b class="legacy_module_error">
+       
         <{if $actionForm->get('delete',$icid) == 1}>
+        <b class="legacy_module_error">
           <{$smarty.const._YES}>
         <{else}>
+        <b class="legacy_module_warning">
           <{$smarty.const._NO}>
         <{/if}>
 	</b>
