@@ -72,11 +72,9 @@ class setting_manager {
             $this->root_path = str_replace('\\','/',getcwd()); // "
             $this->root_path = str_replace('/install', '', $this->root_path);
         
-        	$request_uri = xoops_getenv('REQUEST_URI');
-        	$https = xoops_getenv('HTTPS');
-            $filepath = (! empty($request_uri))
-                            ? dirname(xoops_getenv('REQUEST_URI'))
-                            : dirname(xoops_getenv('SCRIPT_NAME'));
+            $filepath = (! empty($_SERVER['REQUEST_URI']))
+                            ? dirname($_SERVER['REQUEST_URI'])
+                            : dirname($_SERVER['SCRIPT_NAME']);
         
             $filepath = str_replace('\\', '/', $filepath); // "
             $filepath = str_replace('/install', '', $filepath);
@@ -86,8 +84,8 @@ class setting_manager {
             if ( substr($filepath, -1) == '/' ) {
                 $filepath = substr($filepath, 0, -1);
             }
-            $protocol = (!empty($https) && xoops_getenv('HTTPS') == 'on') ? 'https://' : 'http://';
-            $this->xoops_url = (!empty($filepath)) ? $protocol.xoops_getenv('HTTP_HOST').'/'.$filepath : $protocol.xoops_getenv('HTTP_HOST');
+            $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://';
+            $this->xoops_url = (!empty($filepath)) ? $protocol.$_SERVER['HTTP_HOST'].'/'.$filepath : $protocol.$_SERVER['HTTP_HOST'];
         }
     }
 

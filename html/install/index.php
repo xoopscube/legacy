@@ -14,19 +14,18 @@
 
 include_once './passwd.php';
 if(INSTALL_USER != '' || INSTALL_PASSWD != ''){
-	$php_auth_user = xoops_getenv('PHP_AUTH_USER');
-    if (!isset($php_auth_user)) {
+    if (!isset($_SERVER['PHP_AUTH_USER'])) {
         header('WWW-Authenticate: Basic realm="XOOPS Installer"');
         header('HTTP/1.0 401 Unauthorized');
         echo 'You can not access this XOOPS installer.';
         exit;
     } else {
-        if(INSTALL_USER != '' && xoops_getenv('PHP_AUTH_USER') != INSTALL_USER){
+        if(INSTALL_USER != '' && $_SERVER['PHP_AUTH_USER'] != INSTALL_USER){
             header('HTTP/1.0 401 Unauthorized');
             echo 'You can not access this XOOPS installer.';
             exit;
         }
-        if(INSTALL_PASSWD != xoops_getenv('PHP_AUTH_PW')){
+        if(INSTALL_PASSWD != $_SERVER['PHP_AUTH_PW']){
             header('HTTP/1.0 401 Unauthorized');
             echo 'You can not access this XOOPS installer.';
             exit;
@@ -44,7 +43,6 @@ if ( isset($_POST) ) {
 }
 
 include_once './include/functions.php';
-include_once '../include/functions.php';
 $language = getLanguage();
 include_once './language/'.$language.'/install.php';
 define('_OKIMG', '<img src="img/yes.png" border="0" alt="OK" /> ');
