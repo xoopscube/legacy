@@ -73,7 +73,7 @@ function myTextForm($url , $value)
 
 function xoopsfwrite()
 {
-    if (xoops_getenv('REQUEST_METHOD') != 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] != 'POST') {
         return false;
     } else {
 
