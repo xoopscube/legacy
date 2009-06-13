@@ -38,19 +38,23 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Add Smilies Search filter and display per page
 - Add User Data download and cvs upload
 - Add User Rank Search filter and display per page
+- Add Module Message (PHP5)
+- Add Module PM to 'extras' (compatible php4)
 
 [Staff]
 - GIJOE
-- jidaikobo
-- kilica
-- mikhail
-- minahito
-- mumincacao
-- nobunobu
-- ohwada
-- onokazu
-- wanikoo
-- xoopserver
+- Jidaikobo
+- Kilica
+- marijuana
+- Mikhail
+- Minahito
+- Mumincacao
+- Nobunobu
+- Ohwada
+- Onokazu
+- Wanikoo
+- Xoopserver
+ (Gigamaster)
 
 ----------------------------------------
 2008/11/21: Package Revision 2.1.6
