@@ -1,0 +1,66 @@
+<h4><{$xoops_pagetitle}></h4>
+<{if $feature.user.profile}>
+  <a href="<{$xoops_url}>/userinfo.php?uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_PM_LANG_PROFILE}></a>&nbsp;&raquo;&raquo;&nbsp;
+<{/if}>
+<a href="viewpmsg.php"><{$smarty.const._MD_PM_LANG_INBOX}></a>
+&nbsp;&raquo;&raquo;&nbsp;<{$privMessage->getShow('subject')}>
+<br /><br />
+
+<form action='<{$xoops_url}>/readpmsg.php' method='post' name='delete<{$privMessage->getShow('msg_id')}>'>
+  <table class="outer" border="0" cellpadding="4" cellspacing="1" width="100%">
+    <tr>
+      <th <{if $sendUser != null && $sendUser->hasAvatar()}>colspan="2"<{/if}>><{$smarty.const._MD_PM_LANG_MESSAGE_DETAIL}></th>
+    </tr>
+    <tr class="even">
+      <{if $sendUser && $sendUser->hasAvatar()}>
+        <td valign="top" style="text-align:center;" rowspan="3">
+          <a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$sendUser->getShow('uid')}>"><img src="<{$sendUser->getAvatarUrl()}>" alt="<{$sendUser->getShow('uname')}>" title="<{$sendUser->getShow('uname')}>" /></a>
+          <{if $sendUser->getShow('user_from')}>
+            <br /> <{$sendUser->getShow('user_from')}>
+          <{/if}>
+        </td>
+      <{/if}>
+      <td><{$smarty.const._MD_PM_LANG_FROMC}>
+          <{if $sendUser}>
+            <a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$sendUser->getShow('uid')}>"><{$sendUser->getShow('uname')}></a>
+          <{else}>
+            &nbsp;
+          <{/if}>
+          <!--- TODO Online Information --->
+      </td>
+    </tr>
+    <tr class="even">
+      <td><{$smarty.const._MD_PM_LANG_SENTC}><{$privMessage->get("msg_time")|xoops_formattimestamp:l}></td>
+    </tr>
+    <tr class="even">
+      <td><{$smarty.const._MD_PM_LANG_SUBJECTC}><img src="<{$xoops_url}>/images/subject/<{$privMessage->getShow('msg_image')}>" alt='' title='' />&nbsp;<b><{$privMessage->getShow('subject')}></b></td>
+    </tr>
+    <tr class="odd">
+      <td colspan="2">
+        <{$privMessage->getShow('msg_text')}><br /><br />
+      </td>
+    </tr>
+    <tr>
+      <td class="foot" <{if $sendUser && $sendUser->hasAvatar()}>colspan="2"<{/if}> style="text-align:left;">
+        <!--- TODO check postr. See original readpmsg --->
+        <a href='#' onclick="javascript:openWithSelfMain('<{$xoops_url}>/pmlite.php?reply=1&amp;msg_id=<{$privMessage->getShow("msg_id")}>','pmlite',480,400);"><img src="<{$xoops_url}>/images/icons/reply.gif" alt="<{$smarty.const._MD_PM_LANG_REPLY}>" title="<{$smarty.const._MD_PM_LANG_REPLY}>" /></a>
+        <input type="hidden" name="delete" value="1" />  <!--- << check --->
+        <input type="hidden" name="msg_id" value="<{$privMessage->getShow('msg_id')}>" />
+        <a href="#<{$privMessage->getShow('msg_id')}>" onclick='javascript:document.delete<{$privMessage->getShow("msg_id")}>.submit();'><img src="<{$xoops_url}>/images/icons/delete.gif" alt="<{$smarty.const._MD_PM_LANG_DELETE}>" title="<{$smarty.const._MD_PM_LANG_DELETE}>" /></a>
+      </td>
+    </tr>
+    <{if $previousMessage || $nextMessage}>
+    <tr>
+      <td class="foot" <{if $sendUser && $sendUser->hasAvatar()}>colspan="2"<{/if}> style="text-align:right;">
+        <{if $previousMessage}>
+          <a href="<{$xoops_url}>/readpmsg.php?msg_id=<{$previousMessage->getShow('msg_id')}>"><{$smarty.const._MD_PM_LANG_PREVIOUS}></a>
+        <{/if}>
+        <{if $nextMessage}>
+          <{if $previousMessage}> | <{/if}>
+          <a href="<{$xoops_url}>/readpmsg.php?msg_id=<{$nextMessage->getShow('msg_id')}>"><{$smarty.const._MD_PM_LANG_NEXT}></a>
+        <{/if}>
+      </td>
+    </tr>
+    <{/if}>
+  </table>
+</form>
