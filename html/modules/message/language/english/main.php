@@ -2,20 +2,20 @@
 define('_MD_MESSAGE_NEWMESSAGE', 'You have {0} messages.');
 
 define('_MD_MESSAGE_FORMERROR1', 'Name is required.');
-define('_MD_MESSAGE_FORMERROR2', 'Input name with 30 or less characters.');
+define('_MD_MESSAGE_FORMERROR2', 'Input name with a maximum of 30 characters.');
 define('_MD_MESSAGE_FORMERROR3', 'Subject is required.');
-define('_MD_MESSAGE_FORMERROR4', 'Input subject with 100  or less characters.');
+define('_MD_MESSAGE_FORMERROR4', 'Input subject with a maximum of 100 characters.');
 define('_MD_MESSAGE_FORMERROR5', 'Message is required.');
 define('_MD_MESSAGE_FORMERROR6', 'The selected user doesn\'t exist.');
 
 define('_MD_MESSAGE_ACTIONMSG1', 'The message doesn\'t exist.');
-define('_MD_MESSAGE_ACTIONMSG2', 'You don\'t have permission.');
-define('_MD_MESSAGE_ACTIONMSG3', 'Message was deleted.');
-define('_MD_MESSAGE_ACTIONMSG4', 'Deletion failed.');
+define('_MD_MESSAGE_ACTIONMSG2', 'You don\'t have the required permissions.');
+define('_MD_MESSAGE_ACTIONMSG3', 'The Message was deleted.');
+define('_MD_MESSAGE_ACTIONMSG4', 'Delete fail!');
 define('_MD_MESSAGE_ACTIONMSG5', 'Message could not be sent.');
-define('_MD_MESSAGE_ACTIONMSG6', 'Failed additioning to the Sent Box.');
-define('_MD_MESSAGE_ACTIONMSG7', 'Message was send.');
-define('_MD_MESSAGE_ACTIONMSG8', 'You don\'t have permission.');
+define('_MD_MESSAGE_ACTIONMSG6', 'Fail adding to the Sent Box.');
+define('_MD_MESSAGE_ACTIONMSG7', 'Message was sent.');
+define('_MD_MESSAGE_ACTIONMSG8', 'You don\'t have the required permissions.');
 
 define('_MD_MESSAGE_TEMPLATE1', 'Send message');
 define('_MD_MESSAGE_TEMPLATE2', 'User name');
@@ -24,7 +24,7 @@ define('_MD_MESSAGE_TEMPLATE4', 'Message');
 define('_MD_MESSAGE_TEMPLATE5', 'Preview');
 define('_MD_MESSAGE_TEMPLATE6', 'Submit');
 define('_MD_MESSAGE_TEMPLATE7', 'Sent Box');
-define('_MD_MESSAGE_TEMPLATE8', 'Compose message');
+define('_MD_MESSAGE_TEMPLATE8', 'New message');
 define('_MD_MESSAGE_TEMPLATE9', 'To');
 define('_MD_MESSAGE_TEMPLATE10', 'Date');
 define('_MD_MESSAGE_TEMPLATE11', 'Message');
@@ -42,10 +42,10 @@ define('_MD_MESSAGE_TEMPLATE22', 'Status');
 
 define('_MD_MESSAGE_ADDFAVORITES', 'Add to favorites');
 
-define('_MD_MESSAGE_FAVORITES0', 'The user which it adds is not selected.');
-define('_MD_MESSAGE_FAVORITES1', 'Add faile');
+define('_MD_MESSAGE_FAVORITES0', 'There\s no user selected to add.');
+define('_MD_MESSAGE_FAVORITES1', 'Fail adding!');
 define('_MD_MESSAGE_FAVORITES2', 'Add');
-define('_MD_MESSAGE_FAVORITES3', 'Update fail');
+define('_MD_MESSAGE_FAVORITES3', 'Fail Updating!');
 define('_MD_MESSAGE_FAVORITES4', 'Update');
 define('_MD_MESSAGE_FAVORITES5', 'Delete');
 
@@ -53,27 +53,27 @@ define('_MD_MESSAGE_SETTINGS', 'PM Settings');
 define('_MD_MESSAGE_SETTINGS_MSG1', 'Use private message');
 define('_MD_MESSAGE_SETTINGS_MSG2', 'Forword to email');
 define('_MD_MESSAGE_SETTINGS_MSG3', 'change settings');
-define('_MD_MESSAGE_SETTINGS_MSG4', 'update fail');
-define('_MD_MESSAGE_SETTINGS_MSG5', 'You cannot use private message. When you use, please modify setting.');
-define('_MD_MESSAGE_SETTINGS_MSG6', 'The user which it tries to transmit message cannot receive message.');
-define('_MD_MESSAGE_SETTINGS_MSG7', 'The text is displayed in mail.');
-define('_MD_MESSAGE_SETTINGS_MSG8', 'Number of displays of pages 1');
-define('_MD_MESSAGE_SETTINGS_MSG9', 'It becomes the default of the site in case of 0.');
+define('_MD_MESSAGE_SETTINGS_MSG4', 'Fail updating !');
+define('_MD_MESSAGE_SETTINGS_MSG5', 'You cannot use private message. Please modify settings.');
+define('_MD_MESSAGE_SETTINGS_MSG6', 'The selected user cannot receive the message.');
+define('_MD_MESSAGE_SETTINGS_MSG7', 'The message is displayed in mail.');
+define('_MD_MESSAGE_SETTINGS_MSG8', 'Number of messages displayed per page');
+define('_MD_MESSAGE_SETTINGS_MSG9', 'Use default module settings if value is 0.');
 define('_MD_MESSAGE_SETTINGS_MSG10', 'Blacklist');
-define('_MD_MESSAGE_SETTINGS_MSG11', 'User ID who doesn\'t want to receive the message is delimited by the comma and it inputs it.');
+define('_MD_MESSAGE_SETTINGS_MSG11', 'Separate User IDs with a comma.');
 define('_MD_MESSAGE_SETTINGS_MSG12', '{0} was added to the blacklist.');
-define('_MD_MESSAGE_SETTINGS_MSG13', 'It failed in {0}\'s blacklist addition.');
-define('_MD_MESSAGE_SETTINGS_MSG14', '{0} exists already.');
+define('_MD_MESSAGE_SETTINGS_MSG13', 'Fail adding {0}\'s to blacklist.');
+define('_MD_MESSAGE_SETTINGS_MSG14', '{0} already exists.');
 define('_MD_MESSAGE_SETTINGS_MSG15', 'Blacklist management');
-define('_MD_MESSAGE_SETTINGS_MSG16', 'The user was deleted.');
-define('_MD_MESSAGE_SETTINGS_MSG17', 'It failed in deletion of the user.');
+define('_MD_MESSAGE_SETTINGS_MSG16', 'The user was removed.');
+define('_MD_MESSAGE_SETTINGS_MSG17', 'Fail removing user.');
 define('_MD_MESSAGE_SETTINGS_MSG18', 'Details');
 define('_MD_MESSAGE_SETTINGS_MSG19', 'The user does not exist.');
 
-define('_MD_MESSAGE_MAILSUBJECT', 'Private message reached');
-define('_MD_MESSAGE_MAILBODY', '{0} To login doing, please verify.');
+define('_MD_MESSAGE_MAILSUBJECT', 'You have a New Private Message');
+define('_MD_MESSAGE_MAILBODY', '{0} login, please.');
 
-define('_MD_MESSAGE_ADDBLACKLIST', 'This user is added to the blacklist.');
+define('_MD_MESSAGE_ADDBLACKLIST', 'This user was added to the blacklist.');
 
 define('_MD_MESSAGE_DELETEMSG1', 'The parameter is illegal.');
 define('_MD_MESSAGE_DELETEMSG2', 'It is not selected.');

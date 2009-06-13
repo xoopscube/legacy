@@ -1,12 +1,15 @@
-Hello it is {$sitename}.
+Hello,
 
-A private message has reached from {$uname}. 
+You have a new message from {$uname},
+at {$sitename}.
 
 ------
 {$note}
 ------
 
-Please note not reaching to the other party even if it replies to this mail.
+This is only a notification!
+
+Please do not reply to this mail.
 
 ---{$sitename}---
 URL ÅF {$siteurl}
