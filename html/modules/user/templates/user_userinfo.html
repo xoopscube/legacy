@@ -60,7 +60,7 @@
         <tr valign="top">
           <td class="head"><{$smarty.const._MD_USER_LANG_PM}></td>
           <td class="<{cycle values='odd,even'}>">
-            <a href="javascript:openWithSelfMain('<{$pmliteUrl|xoops_escape:link}>', 'pmlite', 480, 400);">
+            <a href="<{$pmliteUrl|xoops_escape:link}>">
             <img src="<{$smarty.const.XOOPS_URL}>/images/icons/pm.gif" alt="<{$smarty.const._SENDPMTO|replace:"%s":$thisUser->getShow('uname')}>" title="<{$smarty.const._SENDPMTO|replace:"%s":$thisUser->getShow('uname')}>" /></a>
           </td>
         </tr>

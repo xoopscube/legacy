@@ -55,57 +55,57 @@ class User_AvatarFilterForm extends User_AbstractFilterForm
 		$option_field3 = $root->mContext->mRequest->getRequest('option_field3');
 		$search = $root->mContext->mRequest->getRequest('search');
 
-		if (isset($avatar_display)) {
-			$this->mNavi->addExtra('avatar_display', $avatar_display);
-			$this->_mCriteria->add(new Criteria('avatar_display', array(XOBJ_DTYPE_BOOL, $avatar_display)));
+		if (isset($_REQUEST['avatar_display'])) {
+			$this->mNavi->addExtra('avatar_display', xoops_getrequest('avatar_display'));
+			$this->_mCriteria->add(new Criteria('avatar_display', array(XOBJ_DTYPE_BOOL, xoops_getrequest('avatar_display'))));
 		}
 	
-		if (isset($avatar_type)) {
-			$this->mNavi->addExtra('avatar_type', $avatar_type);
-			$this->_mCriteria->add(new Criteria('avatar_type', array(XOBJ_DTYPE_STRING, $avatar_type)));
+		if (isset($_REQUEST['avatar_type'])) {
+			$this->mNavi->addExtra('avatar_type', xoops_getrequest('avatar_type'));
+			$this->_mCriteria->add(new Criteria('avatar_type', array(XOBJ_DTYPE_STRING, xoops_getrequest('avatar_type'))));
 		}
 
-		if (isset($option_field)) {
-			$this->mNavi->addExtra('option_field', $option_field);
+		if (isset($_REQUEST['option_field'])) {
+			$this->mNavi->addExtra('option_field', xoops_getrequest('option_field'));
 			$this->mOptionField = $option_field;
 			if ( $this->mOptionField == "system" ) {
 			//only system avatar
-			$this->_mCriteria->add(new Criteria('avatar_type', 'S'));
+			$this->_mCriteria->add(new Criteria('avatar_type', xoops_getrequest('S')));
 			}
 			elseif ( $this->mOptionField == "custom" ) {
 			//only custom avatar
-			$this->_mCriteria->add(new Criteria('avatar_type', 'C'));
+			$this->_mCriteria->add(new Criteria('avatar_type', xoops_getrequest('C')));
 			}
 			else {
 			//all
 			}
 		}
 
-		if (isset($option_field2)) {
-			$this->mNavi->addExtra('option_field2', $option_field2);
+		if (isset($_REQUEST['option_field2'])) {
+			$this->mNavi->addExtra('option_field2', xoops_getrequest('option_field2'));
 			$this->mOptionField2 = $option_field2;
 			if ( $this->mOptionField2 == "visible" ) {
-			$this->_mCriteria->add(new Criteria('avatar_display', 1));
+			$this->_mCriteria->add(new Criteria('avatar_display', xoops_getrequest('1')));
 			}
 			elseif ( $this->mOptionField2 == "invisible" ) {
-			$this->_mCriteria->add(new Criteria('avatar_display', 0));
+			$this->_mCriteria->add(new Criteria('avatar_display', xoops_getrequest('0')));
 			}
 			else {
 			//all
 			}
 		}
 
-		if (isset($option_field3)) {
-			$this->mNavi->addExtra('option_field3', $option_field3);
+		if (isset($_REQUEST['option_field3'])) {
+			$this->mNavi->addExtra('option_field3', xoops_getrequest('option_field3'));
 			$this->mOptionField3 = $option_field3;
 			if ( $this->mOptionField3 == "gif" ) {
-			$this->_mCriteria->add(new Criteria('avatar_mimetype', 'image/gif'));
+			$this->_mCriteria->add(new Criteria('avatar_mimetype', xoops_getrequest('image/gif')));
 			}
 			elseif ( $this->mOptionField3 == "png" ) {
-			$this->_mCriteria->add(new Criteria('avatar_mimetype', 'image/png'));
+			$this->_mCriteria->add(new Criteria('avatar_mimetype', xoops_getrequest('image/png')));
 			}
 			elseif ( $this->mOptionField3 == "jpeg" ) {
-			$this->_mCriteria->add(new Criteria('avatar_mimetype', 'image/jpeg'));
+			$this->_mCriteria->add(new Criteria('avatar_mimetype', xoops_getrequest('image/jpeg')));
 			}
 			else {
 			//all

@@ -43,21 +43,21 @@ class User_RanksFilterForm extends User_AbstractFilterForm
 		$rank_special = $root->mContext->mRequest->getRequest('rank_special');
 		$option_field = $root->mContext->mRequest->getRequest('option_field');
 		$search = $root->mContext->mRequest->getRequest('search');	
-		if (isset($rank_special)) {
-			$this->mNavi->addExtra('rank_special', $rank_special);
-			$this->_mCriteria->add(new Criteria('rank_special', $rank_special));
+		if (isset($_REQUEST['rank_special'])) {
+			$this->mNavi->addExtra('rank_special', xoops_getrequest('rank_special'));
+			$this->_mCriteria->add(new Criteria('rank_special', xoops_getrequest('rank_special')));
 		}
 
-		if (isset($option_field)) {
-			$this->mNavi->addExtra('option_field', $option_field);
+		if (isset($_REQUEST['option_field'])) {
+			$this->mNavi->addExtra('option_field', xoops_getrequest('option_field'));
 			$this->mOptionField = $option_field;
 			if ( $this->mOptionField == "special" ) {
 			//only system avatar
-			$this->_mCriteria->add(new Criteria('rank_special', 1));
+			$this->_mCriteria->add(new Criteria('rank_special', xoops_getrequest('1')));
 			}
 			elseif ( $this->mOptionField == "normal" ) {
 			//only custom avatar
-			$this->_mCriteria->add(new Criteria('rank_special', 0));
+			$this->_mCriteria->add(new Criteria('rank_special', xoops_getrequest('0')));
 			}
 			else {
 			//all

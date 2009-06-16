@@ -25,7 +25,7 @@ $adminmenu[50]['link'] = "admin/index.php?action=RanksList";
 $adminmenu[50]['show'] = true;
 
 $adminmenu[60]['title'] = _MI_USER_MENU_CREATE_GROUP;
-$adminmenu[60]['link'] = "admin/index.php?action=RanksList";
+$adminmenu[60]['link'] = "admin/index.php?action=GroupEdit";
 $adminmenu[60]['keywords'] = _MI_USER_KEYWORD_CREATE_GROUP;
 $adminmenu[60]['show'] = false;
 

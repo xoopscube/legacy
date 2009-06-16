@@ -107,53 +107,53 @@ class User_UserFilterForm extends User_AbstractFilterForm
 		$option_field = $root->mContext->mRequest->getRequest('option_field');
 		$search = $root->mContext->mRequest->getRequest('search');
 
-		if (isset($uid)) {
-			$this->mNavi->addExtra('uid', $uid);
-			$this->_mCriteria->add(new Criteria('uid', $uid));
+		if (isset($_REQUEST['uid'])) {
+			$this->mNavi->addExtra('uid', xoops_getrequest('uid'));
+			$this->_mCriteria->add(new Criteria('uid', xoops_getrequest('uid')));
 		}
 
-		if (isset($email)) {
-			$this->mNavi->addExtra('email', $email);
-			$this->_mCriteria->add(new Criteria('email', $email));
+		if (isset($_REQUEST['email'])) {
+			$this->mNavi->addExtra('email', xoops_getrequest('email'));
+			$this->_mCriteria->add(new Criteria('email', xoops_getrequest('email')));
 		}
 	
-		if (isset($attachsig)) {
-			$this->mNavi->addExtra('attachsig', $attachsig);
-			$this->_mCriteria->add(new Criteria('attachsig', $attachsig));
+		if (isset($_REQUEST['attachsig'])) {
+			$this->mNavi->addExtra('attachsig', xoops_getrequest('attachsig'));
+			$this->_mCriteria->add(new Criteria('attachsig', xoops_getrequest('attachsig')));
 		}
 	
-		if (isset($rank)) {
-			$this->mNavi->addExtra('rank', $rank);
-			$this->_mCriteria->add(new Criteria('rank', $rank));
+		if (isset($_REQUEST['rank'])) {
+			$this->mNavi->addExtra('rank', xoops_getrequest('rank'));
+			$this->_mCriteria->add(new Criteria('rank', xoops_getrequest('rank')));
 		}
 	
-		if (isset($level)) {
-			$this->mNavi->addExtra('level', $level);
-			$this->_mCriteria->add(new Criteria('level', $level));
+		if (isset($_REQUEST['level'])) {
+			$this->mNavi->addExtra('level', xoops_getrequest('level'));
+			$this->_mCriteria->add(new Criteria('level', xoops_getrequest('level')));
 		}
 	
-		if (isset($timezone_offset)) {
-			$this->mNavi->addExtra('timezone_offset', $timezone_offset);
-			$this->_mCriteria->add(new Criteria('timezone_offset', $timezone_offset));
+		if (isset($_REQUEST['timezone_offset'])) {
+			$this->mNavi->addExtra('timezone_offset', xoops_getrequest('timezone_offset'));
+			$this->_mCriteria->add(new Criteria('timezone_offset', xoops_getrequest('timezone_offset')));
 		}
 	
-		if (isset($user_mailok)) {
-			$this->mNavi->addExtra('user_mailok', $user_mailok);
-			$this->_mCriteria->add(new Criteria('user_mailok', $user_mailok));
+		if (isset($_REQUEST['user_mailok'])) {
+			$this->mNavi->addExtra('user_mailok', xoops_getrequest('user_mailok'));
+			$this->_mCriteria->add(new Criteria('user_mailok', xoops_getrequest('user_mailok')));
 		}
 
 		//wanikoo
-		if (isset($option_field)) {
-			$this->mNavi->addExtra('option_field', $option_field);
+		if (isset($_REQUEST['option_field'])) {
+			$this->mNavi->addExtra('option_field', xoops_getrequest('option_field'));
 			$this->mOptionField = $option_field;
 
 			if ( $option_field == "inactive" ) {
 			//only inactive users
-			$this->_mCriteria->add(new Criteria('level', 0));
+			$this->_mCriteria->add(new Criteria('level', xoops_getrequest('0')));
 			}
 			elseif ( $option_field == "active" ) {
 			//only active users
-			$this->_mCriteria->add(new Criteria('level', 0, '>'));
+			$this->_mCriteria->add(new Criteria('level', xoops_getrequest('0', '>')));
 			}
 			else {
 			//all

@@ -107,7 +107,7 @@ class User_UserSearchFilterForm extends User_AbstractFilterForm
 		foreach ($this->_mMatchFields as $field) {
 			if (strlen($form->get($field)) > 0) {
 				$this->mNavi->addExtra($field, $form->get($field));
-				//
+				
 				$user_field_match = $root->mContext->mRequest->getRequest('user_'.$field.'_match');
 				$field_match = $root->mContext->mRequest->getRequest($field.'_match');
 				if( isset($user_field_match) || isset($field_match) ){
