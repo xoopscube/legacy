@@ -35,7 +35,7 @@ class LegacyRender_TplfileDownloadAction extends LegacyRender_Action
 		header('Pragma: no-cache');
 		header('Content-Type: application/force-download');
 		
-		if (preg_match("/MSIE 5.5/", xoops_getenv('HTTP_USER_AGENT'))) {
+		if (preg_match("/MSIE 5.5/", $_SERVER['HTTP_USER_AGENT'])) {
 			header('Content-Disposition: filename=' . $this->mObject->getShow('tpl_file'));
 		} else {
 			header('Content-Disposition: attachment; filename=' . $this->mObject->getShow('tpl_file'));
