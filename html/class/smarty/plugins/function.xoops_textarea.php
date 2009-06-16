@@ -33,7 +33,7 @@
  *           rows = amount of rows. (default 5)
  *           readonly = if it's true, textarea becomes readonly.
  * 
- * Examples: {xoopsdhtmltarea name=message cols=40 rows=6 value=$message}
+ * Examples: {xoops_textarea name=message cols=40 rows=6 value=$message}
  * -------------------------------------------------------------
  */
 

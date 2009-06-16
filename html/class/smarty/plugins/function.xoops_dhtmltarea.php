@@ -33,7 +33,7 @@
  *           cols = amount of cols. (default 50)
  *           rows = amount of rows. (default 5)
  * 
- * Examples: {xoopsdhtmltarea name=message cols=40 rows=6 value=$message}
+ * Examples: {xoops_dhtmltarea name=message cols=40 rows=6 value=$message}
  * -------------------------------------------------------------
  */
 
