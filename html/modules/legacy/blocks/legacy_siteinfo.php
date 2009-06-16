@@ -36,7 +36,7 @@ function b_legacy_siteinfo_show($options) {
                     $block['groups'][$i]['name'] = $myts->htmlSpecialChars($userinfo['groupname']);
                 }
                 if (is_object($xoopsUser)) {
-                    $block['groups'][$i]['users'][] = array('id' => $userinfo['uid'], 'name' => $myts->htmlspecialchars($userinfo['uname']), 'msglink' => "<a href=\"javascript:openWithSelfMain('".XOOPS_URL."/pmlite.php?send2=1&amp;to_userid=".$userinfo['uid']."','pmlite',480,400);\"><img src=\"".XOOPS_URL."/images/icons/pm_small.gif\" border=\"0\" width=\"27\" height=\"17\" alt=\"\" /></a>", 'avatar' => XOOPS_UPLOAD_URL.'/'.$userinfo['user_avatar']);
+                    $block['groups'][$i]['users'][] = array('id' => $userinfo['uid'], 'name' => $myts->htmlspecialchars($userinfo['uname']), 'msglink' => "<a href=\"".XOOPS_URL."/modules/message/index.php?action=new&to_userid=".$userinfo['uid']."\"><img src=\"".XOOPS_URL."/images/icons/pm_small.gif\" border=\"0\" alt=\"\" /></a>", 'avatar' => XOOPS_UPLOAD_URL.'/'.$userinfo['user_avatar']);
                 } else {
                     if ($userinfo['user_viewemail']) {
                         $block['groups'][$i]['users'][] = array('id' => $userinfo['uid'], 'name' => $myts->htmlspecialchars($userinfo['uname']), 'msglink' => '<a href="mailto:'.$userinfo['email'].'"><img src="'.XOOPS_URL.'/images/icons/em_small.gif" border="0" width="16" height="14" alt="" /></a>', 'avatar' => XOOPS_UPLOAD_URL.'/'.$userinfo['user_avatar']);

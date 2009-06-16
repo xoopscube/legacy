@@ -57,41 +57,41 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
 		$option_field2 = $root->mContext->mRequest->getRequest('option_field2');
 		$search = $root->mContext->mRequest->getRequest('search');
 	
-		if (isset($image_display)) {
-			$this->mNavi->addExtra('image_display', $image_display);
-			$this->_mCriteria->add(new Criteria('image_display', $image_display));
+		if (isset($_REQUEST['image_display'])) {
+			$this->mNavi->addExtra('image_display', xoops_getrequest('image_display'));
+			$this->_mCriteria->add(new Criteria('image_display', xoops_getrequest('image_display')));
 		}
 	
-		if (isset($imgcat_id)) {
-			$this->mNavi->addExtra('imgcat_id', $imgcat_id);
-			$this->_mCriteria->add(new Criteria('imgcat_id', $imgcat_id));
+		if (isset($_REQUEST['imgcat_id'])) {
+			$this->mNavi->addExtra('imgcat_id', xoops_getrequest('imgcat_id'));
 		}
 
-		if (isset($option_field)) {
+
+		if (isset($_REQUEST['option_field'])) {
 			$this->mNavi->addExtra('option_field', $option_field);
 			$this->mOptionField = $option_field;
 			if ( $this->mOptionField == "visible" ) {
-			$this->_mCriteria->add(new Criteria('image_display', 1));
+			$this->_mCriteria->add(new Criteria('image_display', xoops_getrequest('1')));
 			}
 			elseif ( $this->mOptionField == "invisible" ) {
-			$this->_mCriteria->add(new Criteria('image_display', 0));
+			$this->_mCriteria->add(new Criteria('image_display', xoops_getrequest('0')));
 			}
 			else {
 			//all
 			}
 		}
 
-		if (isset($option_field2)) {
+		if (isset($_REQUEST['option_field2'])) {
 			$this->mNavi->addExtra('option_field2', $option_field2);
 			$this->mOptionField2 = $option_field2;
 			if ( $this->mOptionField2 == "gif" ) {
-			$this->_mCriteria->add(new Criteria('image_mimetype', 'image/gif'));
+			$this->_mCriteria->add(new Criteria('image_mimetype', xoops_getrequest('image/gif')));
 			}
 			elseif ( $this->mOptionField2 == "png" ) {
-			$this->_mCriteria->add(new Criteria('image_mimetype', 'image/png'));
+			$this->_mCriteria->add(new Criteria('image_mimetype', xoops_getrequest('image/png')));
 			}
 			elseif ( $this->mOptionField2 == "jpeg" ) {
-			$this->_mCriteria->add(new Criteria('image_mimetype', 'image/jpeg'));
+			$this->_mCriteria->add(new Criteria('image_mimetype', xoops_getrequest('image/jpeg')));
 			}
 			else {
 			//all

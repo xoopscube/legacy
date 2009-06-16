@@ -51,34 +51,34 @@ class Legacy_SmilesFilterForm extends Legacy_AbstractFilterForm
 		$option_field = $root->mContext->mRequest->getRequest('option_field');
 		$search = $root->mContext->mRequest->getRequest('search');
 
-		if (isset($code)) {
-			$this->mNavi->addExtra('code', $code);
-			$this->_mCriteria->add(new Criteria('code', $code));
+		if (isset($_REQUEST['code'])) {
+			$this->mNavi->addExtra('code', xoops_getrequest('code'));
+			$this->_mCriteria->add(new Criteria('code', xoops_getrequest('code')));
 		}
 	
-		if (isset($smile_url)) {
-			$this->mNavi->addExtra('smile_url', $smile_url);
-			$this->_mCriteria->add(new Criteria('smile_url', $smile_url));
+		if (isset($_REQUEST['smile_url'])) {
+			$this->mNavi->addExtra('smile_url', xoops_getrequest('smile_url'));
+			$this->_mCriteria->add(new Criteria('smile_url', xoops_getrequest('smile_url')));
 		}
 	
-		if (isset($emotion)) {
-			$this->mNavi->addExtra('emotion', $emotion);
-			$this->_mCriteria->add(new Criteria('emotion', $emotion));
+		if (isset($_REQUEST['emotion'])) {
+			$this->mNavi->addExtra('emotion', xoops_getrequest('emotion'));
+			$this->_mCriteria->add(new Criteria('emotion', xoops_getrequest('emotion')));
 		}
 	
-		if (isset($display)) {
-			$this->mNavi->addExtra('display', $display);
-			$this->_mCriteria->add(new Criteria('display', $display));
+		if (isset($_REQUEST['display'])) {
+			$this->mNavi->addExtra('display', xoops_getrequest('display'));
+			$this->_mCriteria->add(new Criteria('display', xoops_getrequest('display')));
 		}
 
-		if (isset($option_field)) {
-			$this->mNavi->addExtra('option_field', $option_field);
+		if (isset($_REQUEST['option_field'])) {
+			$this->mNavi->addExtra('option_field', xoops_getrequest('option_field'));
 			$this->mOptionField = $option_field;
 			if ( $this->mOptionField == "visible" ) {
-			$this->_mCriteria->add(new Criteria('display', 1));
+			$this->_mCriteria->add(new Criteria('display', xoops_getrequest('1')));
 			}
 			elseif ( $this->mOptionField == "invisible" ) {
-			$this->_mCriteria->add(new Criteria('display', 0));
+			$this->_mCriteria->add(new Criteria('display', xoops_getrequest('0')));
 			}
 			else {
 			//all

@@ -136,7 +136,7 @@ class Legacy_CommentEditForm extends XCube_ActionForm
 		// TODO  IP will be changed when a administrator will edit or a user will
 		//      edit again.
 		//
-		$obj->set('com_ip', xoops_getenv('REMOTE_ADDR'));
+		$obj->set('com_ip', $_SERVER['REMOTE_ADDR']);
 		$obj->set('com_title', $this->get('com_title'));
 		$obj->set('com_text', $this->get('com_text'));
 		$obj->set('com_sig', $this->get('com_sig'));

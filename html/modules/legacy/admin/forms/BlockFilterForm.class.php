@@ -77,53 +77,53 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
 		$search = $root->mContext->mRequest->getRequest('search');
 		$option_field = $root->mContext->mRequest->getRequest('option_field');
 		
-		if (isset($mid)) {
-			$this->mNavi->addExtra('mid', $mid);
-			$this->_mCriteria->add(new Criteria('mid', $mid));
+		if (isset($_REQUEST['mid'])) {
+			$this->mNavi->addExtra('mid', xoops_getrequest('mid'));
+			$this->_mCriteria->add(new Criteria('mid', xoops_getrequest('mid')));
 		}
 	
-		if (isset($side)) {
-			$this->mNavi->addExtra('side', $side);
-			$this->_mCriteria->add(new Criteria('side', $side));
+		if (isset($_REQUEST['side'])) {
+			$this->mNavi->addExtra('side', xoops_getrequest('side'));
+			$this->_mCriteria->add(new Criteria('side', xoops_getrequest('side')));
 		}
 	
-		if (isset($weight)) {
-			$this->mNavi->addExtra('weight', $weight);
-			$this->_mCriteria->add(new Criteria('weight', $weight));
+		if (isset($_REQUEST['weight'])) {
+			$this->mNavi->addExtra('weight', xoops_getrequest('weight'));
+			$this->_mCriteria->add(new Criteria('weight', xoops_getrequest('weight')));
 		}
 	
-		if (isset($block_type)) {
-			$this->mNavi->addExtra('block_type', $block_type);
-			$this->_mCriteria->add(new Criteria('block_type', $block_type));
+		if (isset($_REQUEST['block_type'])) {
+			$this->mNavi->addExtra('block_type', xoops_getrequest('block_type'));
+			$this->_mCriteria->add(new Criteria('block_type', xoops_getrequest('block_type')));
 		}
 	
-		if (isset($c_type)) {
-			$this->mNavi->addExtra('c_type', $c_type);
-			$this->_mCriteria->add(new Criteria('c_type', $c_type));
+		if (isset($_REQUEST['c_type'])) {
+			$this->mNavi->addExtra('c_type', xoops_getrequest('c_type'));
+			$this->_mCriteria->add(new Criteria('c_type', xoops_getrequest('c_type')));
 		}
 	
-		if (isset($dirname)&&!empty($dirname)) {
+		if (isset($_REQUEST['dirname'])) {
 			if (intval($dirname) == -1){
 			$this->_mCriteria->add(new Criteria('block_type', 'C'));
 			$this->mModule = "cblock";
 			}
 			else {
-			$this->_mCriteria->add(new Criteria('dirname', $dirname));
+			$this->_mCriteria->add(new Criteria('dirname', xoops_getrequest('dirname')));
 			//wanikoo
 			$handler =& xoops_gethandler('module');
 			$this->mModule =& $handler->getByDirname($dirname);
 			}
-			$this->mNavi->addExtra('dirname', $dirname);
+			$this->mNavi->addExtra('dirname', xoops_getrequest('dirname'));
 		}
 
-		//
-		if (!empty($search)) {
+		
+		if (isset($_REQUEST['search'])) {
 			$this->mKeyword = $search;
 			$this->mNavi->addExtra('search', $this->mKeyword);
 			$this->_mCriteria->add(new Criteria('name', '%' . $this->mKeyword . '%', 'LIKE'));
 		}
-		//
-		if (isset($option_field) ) {
+		
+		if (isset($_REQUEST['option_field'])) {
 			$this->mOptionField = $option_field;
 			if ( $this->mOptionField != "all" ) {
 			$this->_mCriteria->add(new Criteria('side', intval($this->mOptionField)));
