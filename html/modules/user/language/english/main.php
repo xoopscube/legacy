@@ -52,6 +52,7 @@ define('_MD_USER_LANG_NO', "No");
 define('_MD_USER_LANG_NOACTTPADM', "The selected user has been deactivated or has not been activated yet.");
 define('_MD_USER_LANG_NOPROBLEM', "No problem. Simply enter the e-mail address we have on file for your account.");
 define('_MD_USER_LANG_NOREGISTER', "Sorry, we are currently closed for new user registrations.");
+define('_MD_USER_LANG_NOTIFY', "Notifications");
 define('_MD_USER_LANG_NOTIFY_METHOD', "Notification Method : When you monitor e.g. a forum, how would you like to receive notifications of updates?");
 define('_MD_USER_LANG_NOTIFY_MODE', "Default Notification Mode");
 define('_MD_USER_LANG_NOTREGISTERED', "Not registered?");

@@ -1,14 +1,16 @@
-<{if $user_ownpage == true && $enableSelfDelete == true && $xoops_isadmin == false}>
-  <div style="text-align:right;">
-      <a href="<{$xoops_url}>/user.php?op=delete"><{$smarty.const._MD_USER_LANG_DELACCOUNT}></a>
-  </div>
-<{elseif $xoops_isadmin == true}>
-  <div style="text-align:right;">
-    <a href="<{$xoops_url}>/edituser.php?uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_EDITPROFILE}></a> - 
-    <a href="<{$xoops_url}>/edituser.php?op=avatarform&amp;uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_AVATAR_EDIT}></a> -
-    <a href="<{$xoops_url}>/modules/user/admin/index.php?action=UserDelete&amp;uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_DELACCOUNT}></a>
-  </div>
+<div style="text-align:right;">
+<{if $user_ownpage == true}>
+	<a href="<{$xoops_url}>/notifications.php"><{$smarty.const._MD_USER_LANG_NOTIFY}></a>
 <{/if}>
+
+<{if $user_ownpage == true && $enableSelfDelete == true && $xoops_isadmin == false}>
+| <a href="<{$xoops_url}>/user.php?op=delete"><{$smarty.const._MD_USER_LANG_DELACCOUNT}></a>
+<{elseif $xoops_isadmin == true}>
+    | <a href="<{$xoops_url}>/edituser.php?uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_EDITPROFILE}></a> - 
+    | <a href="<{$xoops_url}>/edituser.php?op=avatarform&amp;uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_AVATAR_EDIT}></a> -
+    | <a href="<{$xoops_url}>/modules/user/admin/index.php?action=UserDelete&amp;uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_DELACCOUNT}></a>
+<{/if}>
+</div>
 
 <table width="100%" border="0" cellspacing="5">
   <tr valign="top">

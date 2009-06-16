@@ -11,6 +11,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #2666831 - Site-closed = HTTP/1.1 503 Service Temporarily Unavailable
 - Fix Bug #2666664 - Snoopy class v1.2.4
 - Fix Bug #2790695 - Fix duplicated reservedTables
+- Fix Bug #2789906 - missing link to "notifications.php"
 - Fix Bug #2802706 - Change users.email field length
 - Fix Bug #2802859 - Typo class Waiting
 - Fix Bug #2802861 - Typo at example xoops_dhtmltarea and xoops_textarea
