@@ -2,7 +2,7 @@
 /**
  *
  * @package Legacy
- * @version $Id: Wating.class.php,v 1.3 2008/09/25 15:12:44 kilica Exp $
+ * @version $Id: Waiting.class.php,v 1.3 2008/09/25 15:12:44 kilica Exp $
  * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
  * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
@@ -10,13 +10,13 @@
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
-class Legacy_Wating extends XCube_ActionFilter {
+class Legacy_Waiting extends XCube_ActionFilter {
     function preBlockFilter()
     {
-        $this->mController->mRoot->mDelegateManager->add('Legacyblock.Wating.Show',array(&$this,"callbackWatingShow"));
+        $this->mController->mRoot->mDelegateManager->add('Legacyblock.Waiting.Show',array(&$this,"callbackWaitingShow"));
     }
     
-    function callbackWatingShow(&$modules) {
+    function callbackWaitingShow(&$modules) {
         $xoopsDB =& Database::getInstance();
         // for News Module
         $module_handler =& xoops_gethandler('module');

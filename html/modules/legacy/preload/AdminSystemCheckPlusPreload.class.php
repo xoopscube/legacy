@@ -22,7 +22,7 @@ if (!defined('XC_ADMINSYSTEMCHECK_WELCOME')) define('XC_ADMINSYSTEMCHECK_WELCOME
 if (!defined('XC_ADMINSYSTEMCHECK_SYSTEMINFO')) define('XC_ADMINSYSTEMCHECK_SYSTEMINFO', 1);
 //display(1) or not display(0): PHP Settings
 if (!defined('XC_ADMINSYSTEMCHECK_PHPSETTING')) define('XC_ADMINSYSTEMCHECK_PHPSETTING', 1);
-//display(1) or not display(0): Wating(pending) contents
+//display(1) or not display(0): Waiting(pending) contents
 if (!defined('XC_ADMINSYSTEMCHECK_WAITING')) define('XC_ADMINSYSTEMCHECK_WAITING', 0);
 //display(1) or not display(0): Full PHP Info!
 if (!defined('XC_ADMINSYSTEMCHECK_PHPINFO')) define('XC_ADMINSYSTEMCHECK_PHPINFO', 0);
@@ -152,7 +152,7 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
 		/////////////////////////////////////////
 		if(XC_ADMINSYSTEMCHECK_WAITING) {
 		$modules = array();
-    		XCube_DelegateUtils::call('Legacyblock.Wating.Show', new XCube_Ref($modules));
+    		XCube_DelegateUtils::call('Legacyblock.Waiting.Show', new XCube_Ref($modules));
 		$attributes = array();
 		$attributes['block']['modules'] = $modules;
 		$template = XOOPS_ROOT_PATH."/modules/legacy/templates/blocks/legacy_block_waiting.html";
