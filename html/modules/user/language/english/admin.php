@@ -166,7 +166,7 @@ define('_AD_USER_TIPS_USER_ADMIN', "Access to your XOOPS Cube web site is contro
 You can also extend default User Profile by adding new fields. To learn more, click the following link :");
 define('_AD_USER_TIPS_USER_EDIT', "If you hope to change password, input 'Password' & 'Verify password'.");
 define('_AD_USER_TIPS_USER_NEW', "You must input 'User name', 'Email address' and 'Password' & 'Verify password'.");
-define('_AD_USER_TIPS_USER_SEARCH', "You can search and sort your users data to find the vital information you want. The more fields you fill, the more you ensure accuracy.");
+define('_AD_USER_TIPS_USER_SEARCH', "You can search and sort your users data to find the vital information you are looking for.<br />The accuracy of the end result will be directly related to the number of fields you fill.");
 define('_AD_USER_TIPS1_DATA_UPLOAD', 'The user batch registration with CSV file is possible.');
 define('_AD_USER_TIPS2_DATA_UPLOAD', 'Use CSV file downloaded from <a href="?action=UserDataDownload" style="color:#941d55;font-weight:bold;">'._MI_USER_ADMENU_USER_DATA_DOWNLOAD.'</a> Do not increase and decrease columns.');
 define('_AD_USER_TIPS3_DATA_UPLOAD', 'Please describe only the user who wants to update and wants to register information newly in CSV file.');

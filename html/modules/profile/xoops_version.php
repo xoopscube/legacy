@@ -57,7 +57,7 @@ $modversion['adminmenu'] = "admin/menu.php";
 //
 // Public side control setting
 //
-$modversion['hasMain'] = 1;
+$modversion['hasMain'] = 0;
 // $modversion['sub'][]['name'] = "";
 // $modversion['sub'][]['url'] = "";
 

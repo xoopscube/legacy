@@ -21,32 +21,6 @@
     </td>
   </tr>
   <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_UNAME}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$object->getShow('uname')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_NAME}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$object->getShow('name')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_EMAIL}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$object->getShow('email')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_URL}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{if $object->getShow('url')}>
-        <a href="<{$object->getShow('url')}>" target="_blank"><{$object->getShow('url')}></a>
-      <{/if}>
-    </td>
-  </tr>
-  <tr>
     <td class="head"><{$smarty.const._MD_USER_LANG_USER_AVATAR}></td>
     <td class="<{cycle values='odd,even'}>">
       <{if $object->get('user_avatar') != "blank.gif" }>
@@ -57,76 +31,15 @@
     </td>
   </tr>
   <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_REGDATE}></td>
+    <td class="head"><{$smarty.const._MD_USER_LANG_UNAME}></td>
     <td class="<{cycle values='odd,even'}>">
-      <{$object->get('user_regdate')|xoops_formattimestamp:l}>
+      <{$object->getShow('uname')}>
     </td>
   </tr>
   <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_ICQ}></td>
+    <td class="head"><{$smarty.const._MD_USER_LANG_NAME}></td>
     <td class="<{cycle values='odd,even'}>">
-      <{$object->getShow('user_icq')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_FROM}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$object->getShow('user_from')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_SIG}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$object->getShow('user_sig')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{if $object->getShow('user_viewemail') == 1}>
-        <{$smarty.const._YES}>
-      <{else}>
-        <{$smarty.const._NO}>
-      <{/if}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_AIM}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$object->getShow('user_aim')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_YIM}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$object->getShow('user_yim')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_MSNM}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$object->getShow('user_msnm')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_POSTS}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <form action="./index.php?action=UserView" method="post">
-      <{$object->getShow('posts')}>
-        <{xoops_token form=$actionForm}>
-        <{xoops_input type=hidden name=uid value=$actionForm->get('uid')}>
-        <input class='formButton' type='submit' value='<{$smarty.const._AD_USER_LANG_RECOUNT}>' />
-      </form>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_ATTACHSIG}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{if $object->get('attachesig')}>
-        <{$smarty.const._YES}>
-      <{else}>
-        <{$smarty.const._NO}>
-      <{/if}>
+      <{$object->getShow('name')}>
     </td>
   </tr>
   <tr>
@@ -151,9 +64,26 @@
     </td>
   </tr>
   <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_THEME}></td>
+    <td class="head"><{$smarty.const._MD_USER_LANG_USER_REGDATE}></td>
     <td class="<{cycle values='odd,even'}>">
-      <{$object->getShow('theme')}>
+      <{$object->get('user_regdate')|xoops_formattimestamp:l}>
+    </td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._MD_USER_LANG_LAST_LOGIN}></td>
+    <td class="<{cycle values='odd,even'}>">
+      <{$object->get('last_login')|xoops_formattimestamp:l}>
+    </td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._MD_USER_LANG_POSTS}></td>
+    <td class="<{cycle values='odd,even'}>">
+      <form action="./index.php?action=UserView" method="post">
+      <{$object->getShow('posts')}>
+        <{xoops_token form=$actionForm}>
+        <{xoops_input type=hidden name=uid value=$actionForm->get('uid')}>
+        <input class='formButton' type='submit' value='<{$smarty.const._AD_USER_LANG_RECOUNT}>' />
+      </form>
     </td>
   </tr>
   <tr>
@@ -167,9 +97,101 @@
     </td>
   </tr>
   <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_LAST_LOGIN}></td>
+    <td class="head"><{$smarty.const._MD_USER_LANG_USER_FROM}></td>
     <td class="<{cycle values='odd,even'}>">
-      <{$object->get('last_login')|xoops_formattimestamp:l}>
+      <{$object->getShow('user_from')}>
+    </td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._MD_USER_LANG_USER_OCC}></td>
+    <td class="<{cycle values='odd,even'}>">
+      <{$object->getShow('user_occ')}>
+    </td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._MD_USER_LANG_USER_INTREST}></td>
+    <td class="<{cycle values='odd,even'}>">
+      <{$object->getShow('user_intrest')}>
+    </td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._MD_USER_LANG_URL}></td>
+    <td class="<{cycle values='odd,even'}>">
+      <{if $object->getShow('url')}>
+        <a href="<{$object->getShow('url')}>" target="_blank"><{$object->getShow('url')}></a>
+      <{/if}>
+    </td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._MD_USER_LANG_EMAIL}></td>
+    <td class="<{cycle values='odd,even'}>">
+      <{$object->getShow('email')}>
+    </td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}></td>
+    <td class="<{cycle values='odd,even'}>">
+      <{if $object->getShow('user_viewemail') == 1}>
+        <{$smarty.const._YES}>
+      <{else}>
+        <{$smarty.const._NO}>
+      <{/if}>
+    </td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._MD_USER_LANG_USER_MAILOK}></td>
+    <td class="<{cycle values='odd,even'}>">
+      <{if $object->getShow('user_mailok') == 1}>
+        <{$smarty.const._YES}>
+      <{else}>
+        <{$smarty.const._NO}>
+      <{/if}>
+    </td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._MD_USER_LANG_USER_ICQ}></td>
+    <td class="<{cycle values='odd,even'}>">
+      <{$object->getShow('user_icq')}>
+    </td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._MD_USER_LANG_USER_AIM}></td>
+    <td class="<{cycle values='odd,even'}>">
+      <{$object->getShow('user_aim')}>
+    </td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._MD_USER_LANG_USER_YIM}></td>
+    <td class="<{cycle values='odd,even'}>">
+      <{$object->getShow('user_yim')}>
+    </td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._MD_USER_LANG_USER_MSNM}></td>
+    <td class="<{cycle values='odd,even'}>">
+      <{$object->getShow('user_msnm')}>
+    </td>
+  </tr>          
+  <tr>
+    <td class="head"><{$smarty.const._MD_USER_LANG_USER_SIG}></td>
+    <td class="<{cycle values='odd,even'}>">
+      <{$object->getShow('user_sig')}>
+    </td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._MD_USER_LANG_ATTACHSIG}></td>
+    <td class="<{cycle values='odd,even'}>">
+      <{if $object->get('attachesig')}>
+        <{$smarty.const._YES}>
+      <{else}>
+        <{$smarty.const._NO}>
+      <{/if}>
+    </td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._MD_USER_LANG_THEME}></td>
+    <td class="<{cycle values='odd,even'}>">
+      <{$object->getShow('theme')}>
     </td>
   </tr>
   <tr>
@@ -197,31 +219,18 @@
     </td>
   </tr>
   <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_OCC}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$object->getShow('user_occ')}>
-    </td>
-  </tr>
-  <tr>
     <td class="head"><{$smarty.const._MD_USER_LANG_BIO}></td>
     <td class="<{cycle values='odd,even'}>">
       <{$object->getShow('bio')}>
     </td>
   </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_INTREST}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$object->getShow('user_intrest')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_MAILOK}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{if $object->getShow('user_mailok') == 1}>
-        <{$smarty.const._YES}>
-      <{else}>
-        <{$smarty.const._NO}>
-      <{/if}>
-    </td>
-  </tr>
+    <{foreach item=def from=$definitions}>
+			<tr valign="top">
+			  <td class="head"><{$def.label}></td>
+			  <td class="<{cycle values='odd,even'}>">
+			  	<{assign var="defkey" value=$def.field_name}>
+			    <{$data.$defkey|xoops_escape}>
+			  </td>
+			</tr>
+  <{/foreach}>
 </table>

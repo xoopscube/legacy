@@ -35,7 +35,7 @@ $modversion['templates'][] = array('file' => 'message_settings.html');
 $modversion['templates'][] = array('file' => 'message_userinfo.html');
 $modversion['templates'][] = array('file' => 'message_blaclist.html');
 
-$modversion['hasMain'] = 1;
+$modversion['hasMain'] = 0;
 $modversion['sub'][] = array('name' => _MI_MESSAGE_SUB_SEND, 'url' => 'index.php?action=send');
 $modversion['sub'][] = array('name' => _MI_MESSAGE_SUB_NEW, 'url' => 'index.php?action=new');
 if ($root->mServiceManager->getService('UserSearch') != null ) {
@@ -73,7 +73,7 @@ $modversion['config'][3]['title']       = '_MI_MESSAGE_USERINFO';
 $modversion['config'][3]['description'] = '_MI_MESSAGE_USERINFO_DESC';
 $modversion['config'][3]['formtype']    = 'yesno';
 $modversion['config'][3]['valuetype']   = 'int';
-$modversion['config'][3]['default']     = '1';
+$modversion['config'][3]['default']     = '0';
 
 $modversion['config'][4]['name']        = 'dletype';
 $modversion['config'][4]['title']       = '_MI_MESSAGE_DELTYPE';
