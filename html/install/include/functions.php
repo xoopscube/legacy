@@ -35,7 +35,7 @@ function getLanguage() {
 			'fr' => 'french',
 			'ja' => 'japanese',
 			'ko' => 'korean',
-			'nl' => 'dutch',
+//			'nl' => 'dutch',
 			'pt' => 'portuguese',
 			'ru' => 'russian',
 			'zh' => 'schinese',
@@ -43,7 +43,7 @@ function getLanguage() {
 	);
 
 	$charset_array = array(
-			'Shift_JIS' => 'japanese',
+			'Shift_JIS' => 'ja_utf8',
 	);
 
 	$language = 'english';

@@ -20,17 +20,17 @@ It is free to redistribute as long as you abide by the distribution terms of the
 <p>
 <ul>
 <li>WWW Server (<a href='http://www.apache.org/' target='_blank'>Apache</a>, IIS, Roxen, etc)</li>
-<li><a href='http://www.php.net/' target='_blank'>PHP</a> 4.3.2 and higher</li>
-<li><a href='http://www.mysql.com/' target='_blank'>MySQL</a> Database 3.23.XX</li>
+<li><a href='http://www.php.net/' target='_blank'>PHP</a> 5.x and higher</li>
+<li><a href='http://www.mysql.com/' target='_blank'>MySQL</a> Database 4.4 and higher</li>
 </ul>
 </p>
 <u><b>Before you install</b></u>
 <ul>
 <li>Setup WWW server, PHP and database server properly.</li>
-<li>Prepare a database for your XOOPS Cube Legacy site.</li>
+<li>Prepare a database for your new XOOPS Cube Legacy website.</li>
 <li>Prepare user account and grant the user the access to the database.</li>
-<li>Make the directories of uploads/, cache/ and templates_c/ and the files of mainfile.php writabale.</li>
-<li>Turn cookie and JavaScript of your browser on.</li>
+<li>Make the directories of uploads/, cache/ and templates_c/ and the file mainfile.php writabale.</li>
+<li>Turn on the cookie and JavaScript options of your browser.</li>
 </ul>
 <u><b>Installation</b></u>
 <p>
