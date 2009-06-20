@@ -321,7 +321,3 @@ FCKConfig.BackgroundBlockerOpacity = 0.50 ;
 FCKConfig.MsWebBrowserControlCompat = false ;
 
 FCKConfig.PreventSubmitHandler = false ;
-
-FCKConfig.Plugins.Add('kfm');
-FCKConfig.Plugins.Add( 'googlemaps', 'de,en,es,fr,it,jp') ;
-FCKConfig.GoogleMaps_Key = 'ABQIAAAAb9YoJBY0IwbUP_7gmwHPHxT2yXp_ZAY8_ufC3CFXhHIE1NvwkxTIfg4by9dDhRB529vNMdLvhZ-xgw' ;
