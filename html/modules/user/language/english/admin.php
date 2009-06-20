@@ -83,8 +83,8 @@ define('_AD_USER_LANG_LASTLOG_LESS', "Last login was less than X days ago");
 define('_AD_USER_LANG_LASTLOG_MORE', "Last login was more than X days ago");
 define('_AD_USER_LANG_LASTLOGIN', "Last login");
 define('_AD_USER_LANG_LEFT_TARGET_USER', "Remaining Recipients");
-define('_AD_USER_LANG_LEVEL_ACTIVE', "Active User");
-define('_AD_USER_LANG_LEVEL_PENDING', "Pending User");
+define('_AD_USER_LANG_LEVEL_ACTIVE', "Active Users");
+define('_AD_USER_LANG_LEVEL_PENDING', "Pending Users");
 define('_AD_USER_LANG_LEVEL_ROOT', "Root User");
 define('_AD_USER_LANG_MAIL_NG_USERS_ONLY', "Only users that don't accept mail ");
 define('_AD_USER_LANG_MAIL_OK_USERS_ONLY', "Only users that accept mail");
@@ -141,7 +141,7 @@ define('_AD_USER_LANG_USER_LIST', "User administration");
 define('_AD_USER_LANG_USER_NEW', "Add a New User");
 define('_AD_USER_LANG_USER_NEW_FIELD', "Add a New Field");
 define('_AD_USER_LANG_USER_SEARCH_LIST', "User search list");
-define('_AD_USER_LANG_USER_TOTAL', "Total of User(s)");
+define('_AD_USER_LANG_USER_TOTAL', "Total of Users");
 define('_AD_USER_LANG_USER_UPDATECONF', "Confirm user update");
 define('_AD_USER_LANG_USER_VIEW', "user view");
 define('_AD_USER_LANG_VPASS', "Verify password");
@@ -165,7 +165,7 @@ define('_AD_USER_TIPS_RECOUNT_POSTS', "You may recalculate the number of posts f
 define('_AD_USER_TIPS_USER_ADMIN', "Access to your XOOPS Cube web site is controlled through a group-based system by which users are assigned to groups that authorize their access to Modules and blocks content. Some recent modules can extend default User Management providing a role-based system which allows you to assign permissions by User.<br />
 You can also extend default User Profile by adding new fields. To learn more, click the following link :");
 define('_AD_USER_TIPS_USER_EDIT', "If you hope to change password, input 'Password' & 'Verify password'.");
-define('_AD_USER_TIPS_USER_NEW', "You must input 'User name', 'Email address' and 'Password' & 'Verify password'.");
+define('_AD_USER_TIPS_USER_NEW', "The following fields are required: 'User name', 'Email address' and 'Password' & 'Verify password'.");
 define('_AD_USER_TIPS_USER_SEARCH', "You can search and sort your users data to find the vital information you are looking for.<br />The accuracy of the end result will be directly related to the number of fields you fill.");
 define('_AD_USER_TIPS1_DATA_UPLOAD', 'The user batch registration with CSV file is possible.');
 define('_AD_USER_TIPS2_DATA_UPLOAD', 'Use CSV file downloaded from <a href="?action=UserDataDownload" style="color:#941d55;font-weight:bold;">'._MI_USER_ADMENU_USER_DATA_DOWNLOAD.'</a> Do not increase and decrease columns.');
