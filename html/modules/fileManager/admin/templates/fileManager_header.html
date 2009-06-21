@@ -1,0 +1,15 @@
+<{* --- /admin/templates/fileManager_header.html --- *}>
+<{$moduleHeader}>
+<{* --- Admin Navigation --- *}>
+<div class="adminnavi">
+    <a href="./index.php"><{$module_info.module_name}></a>
+<{foreach from=$bread_crumbs item="item" name="item_loop"}>
+&raquo;&raquo;
+<{if $item.url}>
+<span><a href="<{$item.url}>"><{$item.name}></a></span>
+<{else}>
+<span class="adminnaviTitle"><{$item.name}></span>
+<{/if}>
+<{/foreach}>
+</div>
+<{if $confirm_mssage}><div class="confirm"><{$confirm_mssage}></div><{/if}>

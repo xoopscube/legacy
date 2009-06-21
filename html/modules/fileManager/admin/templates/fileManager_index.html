@@ -1,0 +1,177 @@
+<{include file="file:$xoops_rootpath/modules/fileManager/admin/templates/fileManager_header.html"}>
+
+<{* --- Upload --- *}>
+<{if $isopen_folder}>
+<ul class="toptab">
+	<li class="addFolder"><a href='index.php?action=AddFolder&path=<{$current_path}>'><{$smarty.const._AD_FILEMANAGER_FOLDER_ADD}></a></li>
+	<li class="addFile"><a href='index.php?action=Upload&path=<{$current_path}>'><{$smarty.const._AD_FILEMANAGER_UPLOAD}></a></li>
+</ul>
+<{/if}>
+
+<{* --- Path  --- *}>
+<div id='pathlink'>
+<ul>
+	<li><a href='index.php'><img src="../images/icon/house_go.png" alt="<{$smarty.const._AD_FILEMANAGER_PATH_HOME}>"><{$smarty.const._AD_FILEMANAGER_PATH_HOME}></a></li>
+	<{foreach item=dpath from=$path_array}>
+		<li><a href='index.php?path=<{$dpath.link}>'><{$dpath.name}></a></li>
+	<{/foreach}>
+<ul>
+</div>
+
+<{* --- Page Navi --- *}>
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+
+<{* --- List --- *}>
+
+<form name='filter' id='filter' action='index.php' method='POST'>
+	<{xoops_token form=$actionForm}>
+
+	<{* --- Action --- *}>
+	<select name="action" class="select-action">
+		<option value="-1" selected="selected"><{$smarty.const._AD_FILEMANAGER_ACTION_DEFULT}></option>
+		<option value="delete"><{$smarty.const._AD_FILEMANAGER_ACTION_DELETE}></option>
+		<{if $ffmpeguse}><option value="capture"><{$smarty.const._AD_FILEMANAGER_ACTION_CAPTURE}></option><{/if}>
+	</select>
+	<{xoops_input type=hidden name=current_path value=$current_path}>
+	<input value="<{$smarty.const._AD_FILEMANAGER_ACTION_SUBMIT}>" name="doaction" id="doaction" type="submit">
+	<{* --- File count --- *}>
+	<span><{$xoops_upload_url}><{$current_path}>/ <{$smarty.const._AD_FILEMANAGER_FILECOUNT}> : <{$files_count}></span>
+	<{* --- List --- *}>
+	<table width='100%' class='outer' cellspacing='1' cellpadding='3' border='0' >
+	<tbody>
+	<tr>
+		<th align='center' width='40'>
+			<{* --- check all --- *}>
+			<input type='checkbox' name='rmall' id='rmall' onClick="xoopsCheckAll('filter', 'rmall')"/>
+		</th>
+		<th align='center' width='120'>
+			<{$smarty.const._AD_FILEMANAGER_PREVIEW}>
+		</th>
+		<th>
+			<{$smarty.const._AD_FILEMANAGER_FILENAME}>
+			<a href="<{$sortNavi->renderUrlForSort()}>?sort=<{$smarty.const.FILEMANAGER_SORT_KEY_FILENAME}><{if $current_path ne ''}>&amp;path=<{$current_path}><{/if}>">
+				<img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" />
+			</a>
+			<a href="<{$sortNavi->renderUrlForSort()}>?sort=-<{$smarty.const.FILEMANAGER_SORT_KEY_FILENAME}><{if $current_path ne ''}>&amp;path=<{$current_path}><{/if}>">
+				<img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" />
+			</a>
+		</th>
+		<th align='center' width='120'>
+			<{$smarty.const._AD_FILEMANAGER_TYPE}>
+			<a href="<{$sortNavi->renderUrlForSort()}>?sort=<{$smarty.const.FILEMANAGER_SORT_KEY_FILETYPE}><{if $current_path ne ''}>&amp;path=<{$current_path}><{/if}>">
+				<img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" />
+			</a>
+			<a href="<{$sortNavi->renderUrlForSort()}>?sort=-<{$smarty.const.FILEMANAGER_SORT_KEY_FILETYPE}><{if $current_path ne ''}>&amp;path=<{$current_path}><{/if}>">
+				<img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" />
+			</a>
+		</th>
+		<th align='center' width='120'>
+			<{$smarty.const._AD_FILEMANAGER_SIZE}>
+			<a href="<{$sortNavi->renderUrlForSort()}>?sort=<{$smarty.const.FILEMANAGER_SORT_KEY_FILESIZE}><{if $current_path ne ''}>&amp;path=<{$current_path}><{/if}>">
+				<img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" />
+			</a>
+			<a href="<{$sortNavi->renderUrlForSort()}>?sort=-<{$smarty.const.FILEMANAGER_SORT_KEY_FILESIZE}><{if $current_path ne ''}>&amp;path=<{$current_path}><{/if}>">
+				<img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" />
+			</a>
+		</th>
+		<th align='center' width='120'>
+			<{$smarty.const._AD_FILEMANAGER_DATE}>
+			<a href="<{$sortNavi->renderUrlForSort()}>?sort=<{$smarty.const.FILEMANAGER_SORT_KEY_FILEDATE}><{if $current_path ne ''}>&amp;path=<{$current_path}><{/if}>">
+				<img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" />
+			</a>
+			<a href="<{$sortNavi->renderUrlForSort()}>?sort=-<{$smarty.const.FILEMANAGER_SORT_KEY_FILEDATE}><{if $current_path ne ''}>&amp;path=<{$current_path}><{/if}>">
+				<img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" />
+			</a>
+		</th>
+	</tr>
+
+	<{* --- Folder List --- *}>
+	<{foreach item=dir from=$dir_list}>
+		<tr class="<{cycle values='even, odd'}>">
+			<td></td>
+			<td>
+				<a href='index.php?path=<{$dir.linkpath}>'>
+				<{if $dir.icon}><img src='<{$dir.icon}>'><{/if}>
+				<{$dir.name}>
+				</a>
+			</td>
+			<td>
+				<{if $dir.folderhandle}>
+					<a href='index.php?action=DelFolder&amp;path=<{$dir.linkpath}>'>
+					<img src="../images/icon/folder_delete.png" alt="<{$smarty.const._AD_FILEMANAGER_DELFOLDER}>">
+					</a>
+				<{/if}>
+
+			</td>
+			<td align='right'><{$smarty.const._AD_FILEMANAGER_FOLDER}></td>
+			<td align='right'>
+				<{* --- TODO files count
+				<{$dir.count}>
+				 --- *}>
+			</td>
+			<td align='right'><{$dir.time|xoops_formattimestamp:l}></td>
+		</tr>
+	<{/foreach}>
+
+	<{* --- File List --- *}>
+	<{foreach item=file from=$files_list}>
+		<tr class="<{cycle values='even, odd'}>">
+			<td align='center'>
+				<{if $isopen_folder}>
+					<input type="checkbox" name="check[]"  id="check<{$i.item_id}>" value="<{$file.file}>">
+				<{/if}>
+			</td>
+			<td align='center'>
+				<{if $file.file_media eq 'IMAGE'}>
+					<{if $file.image_thumb}>
+						<a href='<{$xoops_upload_url}><{$file.file_url}>' class='lightview' title='<{$file.file_name}>' rel='gallery[mygallery]' id='<{$file.file_name}>'>
+						<img src='<{$xoops_upload_url}><{$file.file_url}>' width='<{$thumb_size}>' alt='<{$file.file_name}>' />
+						</a>
+					<{else}>
+						<img src='<{$xoops_upload_url}><{$file.file_url}>' alt='<{$file.file_name}>'>
+					<{/if}>
+				<{elseif $file.file_media eq 'FLV'}>
+					<a href='templates/view_flv.php?file=<{$file.file_url}>' rel='iframe' title='<{$file.file_name}>'class='lightview'>
+					<img src='<{$file.icon}>'>
+					</a>
+				<{elseif $file.file_media eq 'MEDIAPLAYER'}>
+					<a href='templates/view_mediaplayer.php?file=<{$xoops_upload_url}><{$file.file_url}>' rel='iframe' title='<{$file.file_name}>'class='lightview'>
+					<img src='<{$file.icon}>'>
+					</a>
+					<{if $ffmpeguse}><a href='convert.php?file=<{$file.file_url}>&amp;path=<{$current_path}>'><{$smarty.const._AD_FILEMANAGER_ACTION_CONVERT}></a><{/if}>
+
+				<{elseif $file.file_media eq 'QUICKTIME'}>
+					<a href='templates/view_quicktime.php?file=<{$xoops_upload_url}><{$file.file_url}>' rel='iframe' title='<{$file.file_name}>'class='lightview'>
+					<img src='<{$file.icon}>'>
+					</a>
+					<{if $ffmpeguse}><a href='convert.php?file=<{$file.file_url}>&amp;path=<{$current_path}>'><{$smarty.const._AD_FILEMANAGER_ACTION_CONVERT}></a><{/if}>
+				<{elseif $file.file_media eq 'MP3'}>
+					<a href='templates/view_quicktime.php?file=<{$xoops_upload_url}><{$file.file_url}>' rel='iframe' title='<{$file.file_name}>'class='lightview'>
+					<img src='<{$file.icon}>'>
+					</a>
+				<{elseif $file.file_media eq 'REALPLAYER'}>
+					<a href='templates/view_realplayer.php?file=<{$xoops_upload_url}><{$file.file_url}>' rel='iframe' title='<{$file.file_name}>'class='lightview'>
+					<img src='<{$file.icon}>'>
+					</a>
+					<{if $ffmpeguse}><a href='convert.php?file=<{$file.file_url}>&amp;path=<{$current_path}>'><{$smarty.const._AD_FILEMANAGER_ACTION_CONVERT}></a><{/if}>
+				<{elseif $file.file_media eq 'FLASH'}>
+					<a href='templates/view_flash.php?file=<{$xoops_upload_url}><{$file.file_url}>' rel='iframe' title='<{$file.file_name}>'class='lightview'>
+					<img src='<{$file.icon}>'>
+					</a>
+				<{else}>
+				<{/if}>
+			</td>
+			<td>
+				<{$file.file_name}><br />
+				<{$file.file_info}>
+			</td>
+			<td align='right'><{$file.file_type}></td>
+			<td align='right'><{$file.file_size}></td>
+			<td align='right'><{$file.time_stamp|xoops_formattimestamp:l}></td>
+		</td>
+		</tr>
+	<{/foreach}>
+</tbody>
+	</table>
+</form>
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>

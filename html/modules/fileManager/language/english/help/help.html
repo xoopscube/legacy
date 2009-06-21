@@ -1,0 +1,170 @@
+<h4>File Manager Guide </h4>
+<p>File Manager (file manager) is a module that manages the uploaded file.</p>
+<p>
+Help is on writing. You may disagree with the content. 
+</p>
+<h5>Terms of use </h5>
+<ul>
+  <li>This module is XOOPS Cube Legacy only.</li>
+  <li>License is well be <a href='http://creativecommons.org/licenses/by-nc-sa/3.0/'>noncommercial license</a>.</li>
+  <li>The author also caused damage to the user by using the module is in no way responsible. </li>
+</ul>
+
+<h4>Overview</h4>
+<ul>
+  <li>You can upload multiple files at once using the SWF Uploader.</li>
+  <li>Support to remove the folder created. </li>
+  <li>Some functions may not be used by the installation of the server environment. </li>
+</ul>
+
+<h4>Features </h4>
+
+<ul>
+  <li>XOOPS Cube Legacy full compatible</li>
+  <li>Supports multiple file upload. </li>
+  <li>Include the viewer can see in the image (oliginal size), you can see and play music and videos. </li>
+</ul>
+
+
+<h4>General Settings </h4>
+<p>
+Before using the module, you must do the initial setup. 
+</p>
+<ul>
+  <li>Default upload path<br />
+  The standard specifies the folder name to upload. Specified folder, XOOPS installation bus / uploads / directory can be specified below.<br />
+  If not specified, XOOPS installation bus / uploads /.<br />
+  XOOPS installation bus / uploads / other settings are invalid. XOOPS Installation Bus / myimage / subject is not specified.<br />
+  <li>Thumbnail size<br />When you specify a list of thumbnail-size files. </li>
+  <li>Hide System Image <br />Do not display images and avatars are using the system and image manager. Recommends hidden. The default is "No". </li>
+  <li>Debugging for uploader <br />SWFUpload enable debug screen. Error analysis can help to upload. The default is "No". </li>
+  <li>Support the operation of the folder<br />"Yes" to enable the operation of the folder and select. The default is "No".</li>
+</ul>
+
+<h4>Usage </h4>
+
+<h5>ile names and folder names </h5>
+<p>Folder name and file name are available in the file manager supports only alphanumeric characters. <br /><font color="#F00000">Multi byte file name is not supported. </font></p>
+
+
+<h5>Settings for each folder </h5>
+<p>Folder attributes can manipulate the file manager has been fixed in <font color="#F00000">0777</font>. If you manage the image on the module, for 0755,0775 not delete the folder it might be wise to set.</p>
+<p>Uploading files, 0755,0775,0777 can be uploaded to the case.</p>
+
+
+<h5>List of features and folder permissions </h5>
+<p>Folder permissions and functionality are as follows. Not to accidentally delete the configuration on FTP please.</p>
+<table border="1" cellpadding="5">
+  <tr>
+    <td><div align="center">Permission </div></td>
+    <td><div align="center">Browse </div></td>
+    <td><div align="center">Upload files</div></td>
+    <td><div align="center">Delete files</div></td>
+    <td><div align="center">Create folder</div></td>
+    <td><div align="center">Delete folder</div></td>
+  </tr>
+  <tr>
+    <td><div align="center">0777</div></td>
+    <td><div align="center">OK</div></td>
+    <td><div align="center">OK</div></td>
+    <td><div align="center">OK</div></td>
+    <td><div align="center">OK</div></td>
+    <td><div align="center">OK</div></td>
+  </tr>
+  <tr>
+    <td><div align="center">0775,0755</div></td>
+    <td><div align="center">OK</div></td>
+    <td><div align="center">OK</div></td>
+    <td><div align="center"><font color="#F00000">NG</font></div></td>
+    <td><div align="center"><font color="#F00000">NG</font></div></td>
+    <td><div align="center"><font color="#F00000">NG</font></div></td>
+  </tr>
+  <tr>
+    <td><div align="center">Others</div></td>
+    <td><div align="center">OK</div></td>
+    <td><div align="center"><font color="#F00000">NG</font></div></td>
+    <td><div align="center"><font color="#F00000">NG</font></div></td>
+    <td><div align="center"><font color="#F00000">NG</font></div></td>
+    <td><div align="center"><font color="#F00000">NG</font></div></td>
+  </tr>
+</table>
+
+
+<h4>About ffmpeg </h4>
+<p>
+Library will be able to crop the image and convert video server side. 
+</p>
+<ul>
+  <li>Ffmpg If available, you need a server-side configuration. </li>
+  <li>Ffmpg guarantee that if you work with. </li>
+  <li>Ffmpg the binary distribution is not allowed, please provide separately. </li>
+  <li>Ffmpg operation using, ffmpg dependent to compile and server environment. /li>
+  <li>Rent-sharing server and use it to convert video to high server load, please use the dedicated server.</li>
+</ul>
+
+
+
+
+<h4>Notes </h4>
+<ul>
+  <li>Impress and XOOPS 2  is not supporte</li>
+</ul>
+
+<h4>Notes for your site is moveing and shut down.</h4>
+<p><font color="#F00000">* If you have a rented server, please.</font></p>
+<p>If you create folders and upload files in file manager, and the ownership of the file system folder FTP may be deleted.</p>
+<p>Once by uploading a file, FTP will recommend that you determine whether you can remove the software. If you can not remove the FTP software, please remove it from the file manager.</p>
+
+<h4>Support</h4>
+<ul>
+  <li>Support is done here.</li>
+  <li>Registration is only available in Japanese and English, I can answer simple English.</li>
+</ul>
+
+<h4>License and use library</h4>
+<p>
+<font color="#F00000">The file manager uses the library. Each library is different from the license, please.<br />
+Authors on issues related to abuse in violation of the license is not none.</font>
+</p>
+<ul>
+  <li>SWFUpload<br /><a href='http://swfupload.org/'>SWFUpload</a> is useing to upload files.<br />License: <a href='http://www.opensource.org/licenses/mit-license.php'>MIT License</a></li>
+  <li>lightview<br /><a href='http://www.nickstakenburg.com/projects/lightview/'>lightview</a> to use a file viewer.<br />
+  License: <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/'>Creative Commons by-nc-nd License</a></li>
+  <li>JW FLV Player <br /><a href='http://www.longtailvideo.com/players/jw-flv-player/'>JW FLV Player</a> to use the FLV file viewer.<br />
+  License: <a href='http://creativecommons.org/licenses/by-nc-sa/3.0/'>noncommercial license</a><br />
+  * If your site have click and Adsense income, you must purchase a license.
+  </li>
+</ul>
+
+<h4>History</h4>
+<ul>
+  <li>0.0<br />Start a public beta.</li>
+  <li>0.9<br />
+  The access to the files, and to switch the display of the operation.<br />
+  If ffmpeg into operation, which can handle video in the server side.<br />
+  </li>
+  <li>0.95<br />
+  Chane User Inter face.<br />
+  Delete tab menu sysytem<br />
+  </li>
+  <li>0.96<br />
+  Change folder SWFUpload and JW FLV Player is using common.<br />
+  </li>
+</ul>
+
+
+<h4>Schedule</h4>
+<p>Plan for the future, I think the idea is to be determined as follows.</p>
+<ul>
+  <li>1.0<br />Final version. To be able to easily upload function calls from other modules.</li>
+  <li>1.1<br />In case you accidentally delete a file, add a feature to the trash.</li>
+</ul>
+
+<h4>Contavt</h4>
+<ul>
+  <li>Mail<br />hiro1173.seike@gmail.com</li>
+  <li>Web<br />http://beabo.net<br />http://beabo.dip.jp</li>
+</ul>
+
+hiro1173.seike@gmail.com
+hP7Ud8Wx4aN7

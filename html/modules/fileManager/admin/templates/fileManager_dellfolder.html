@@ -1,0 +1,38 @@
+<{include file="file:$xoops_rootpath/modules/fileManager/admin/templates/fileManager_header.html"}>
+
+<{if $actionForm->hasError()}>
+	<div class="error">
+	<ul>
+	<{foreach item=errval from=$actionForm->getErrorMessages()}>
+		<li><{$errval}></li>
+	<{/foreach}>
+	</ul>
+	</div>
+<{/if}>
+
+<form action="index.php?action=DelFolder" method="post" name="post">
+	<{xoops_token form=$actionForm}>
+	<{xoops_input type=hidden name=path value=$actionForm->get('path')}>
+	<table width="100%" class="outer" cellspacing="1" cellpadding="3" border="0" class="outer">
+	<tbody>
+		<tr>
+			<th colspan="2" align="center">
+			<{$smarty.const._AD_FILEMANAGER_DELFOLDER}>
+			</th>
+		</tr>
+		<tr>
+			<td class="head" width="150"><{$smarty.const._AD_FILEMANAGER_FOLDERNAME}></td>
+			<td class="<{cycle values="odd,even"}>">
+				<{$actionForm->get('path')}>
+			</td>
+		</tr>
+		<td colspan="2" class="foot" align="center">
+			<{if $is_delete}>
+				<input class="formButton" type="submit" value="<{$smarty.const._DELETE}>" />
+			<{/if}>
+			<input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+		</td>
+		</tr>
+	</tbody>
+	</table>
+</form>
