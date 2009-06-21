@@ -155,12 +155,12 @@ define('_AD_USER_MESSAGE_CONFIRM_UPDATE_USER', "Are you sure you want to update 
 define('_AD_USER_MESSAGE_RECOUNT_SUCCESS', "Recalculate success");
 
 // Tips
-define('_AD_USER_TIPS_AVATAR', "Please write down your tips here!<br />( Customize _AD_USER_TIPS_AVATAR !)");
+define('_AD_USER_TIPS_AVATAR', "Site members can optionally fashion their own online personae called avatars.<br />This option can be set off from module User preferences.");
 define('_AD_USER_TIPS_AVATAR_UPLOAD', "You can easily register many avatars by uploading Archive file including them! <br />This batch-upload doesn't check Length and File-Size of each avatar!<br />Please pre-adjust them before you archive them!<br />(Only tar.gz or zip archive)");
 define('_AD_USER_TIPS_DATA_DOWNLOAD', 'You are only able to get CSV User data order by user_id.');
 define('_AD_USER_TIPS_DELETE_AVATAR', "Users who are using this avatar will have blank.gif as the avatar image file.");
 define('_AD_USER_TIPS_MAILJOB_SEND', "If there are too many users to send mail, the server may not respond as expected (blank page etc.). In that case, reload the browser several times to complete sending mail to all users.");
-define('_AD_USER_TIPS_RANK', "Please write down your tips here!<br />( Customize _AD_USER_TIPS_RANK !)");
+define('_AD_USER_TIPS_RANK', "A social user ranking system is helpfull to identify contributors. You can define your own policy by editing default ranks.");
 define('_AD_USER_TIPS_RECOUNT_POSTS', "You may recalculate the number of posts for the user by clicking on the 'Recalculate' button below.");
 define('_AD_USER_TIPS_USER_ADMIN', "Access to your XOOPS Cube web site is controlled through a group-based system by which users are assigned to groups that authorize their access to Modules and blocks content. Some recent modules can extend default User Management providing a role-based system which allows you to assign permissions by User.<br />
 You can also extend default User Profile by adding new fields. To learn more, click the following link :");
