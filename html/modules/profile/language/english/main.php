@@ -1,10 +1,10 @@
 <?php
-define("_MD_PROFILE_LANG_FIELD_TIP1","Tip for field 'string'.");
-define("_MD_PROFILE_LANG_FIELD_TIP2","Tip for field 'text'.");
-define("_MD_PROFILE_LANG_FIELD_TIP3","Tip for field 'int'.");
-define("_MD_PROFILE_LANG_FIELD_TIP4","Tip for field 'date'.");
-define("_MD_PROFILE_LANG_FIELD_TIP5","Tip for field 'checkbox'.");
-define("_MD_PROFILE_LANG_FIELD_TIP6","Tip for field 'selectbox'.");
+define("_MD_PROFILE_LANG_FIELD_TIP1","String - allows a series of characters to be stored.");
+define("_MD_PROFILE_LANG_FIELD_TIP2","Text - textarea with editor.");
+define("_MD_PROFILE_LANG_FIELD_TIP3","Int (Integers) - input value containing only decimal digits.");
+define("_MD_PROFILE_LANG_FIELD_TIP4","Date - as named it can specify a date.");
+define("_MD_PROFILE_LANG_FIELD_TIP5","Checkbox - allows a selection 0 or 1, true or false.");
+define("_MD_PROFILE_LANG_FIELD_TIP6","Selectbox - allows multiple options, see the example.");
 define("_MD_PROFILE_LANG_UNAME","User Name");
 define("_MD_PROFILE_ERROR_CONTENT_IS_NOT_FOUND","Content not found");
 define("_MD_PROFILE_ERROR_DBUPDATE_FAILED","Failed to update the database");
