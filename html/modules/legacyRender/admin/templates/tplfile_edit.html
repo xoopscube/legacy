@@ -56,7 +56,7 @@ function expandEditor( id, width, height )
     <tr>
       <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_SOURCE}></td>
       <td class="<{cycle values="odd,even"}>">
-<!--    <div class="legacyRender_TemplateManager_sizenavi">
+    <div class="legacyRender_TemplateManager_sizenavi">
         <{$smarty.const._AD_LEGACYRENDER_LANG_MORE_SMALL}>
         &raquo;&raquo;
         <a href="javascript:void(0);" onclick="return expandEditor( 'tpl_source', '480', '360' );">[480x360]</a>
@@ -70,8 +70,8 @@ function expandEditor( id, width, height )
         <{$smarty.const._AD_LEGACYRENDER_LANG_MORE_LARGE}>
       </div>
       <textarea name=tpl_source id=tpl_source class="legacyRender_TemplateManager_textarea"><{$actionForm->get('tpl_source')|xoops_escape:plain}></textarea>
--->
-<{fck_htmlarea name=tpl_source width=100% hight=400px skin=silver value=$actionForm->get('tpl_source')}>
+
+<{* fck_htmlarea name=tpl_source width=100% hight=400px skin=silver value=$actionForm->get('tpl_source') *}>
 </td>
     </tr>
     <tr>
