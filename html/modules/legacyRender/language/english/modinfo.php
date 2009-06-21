@@ -6,7 +6,7 @@ define('_MI_LEGACYRENDER_ADMENU_THEME_SETTING', "Theme settings");
 define('_MI_LEGACYRENDER_ADMENU_TPLFILE_MANAGE', "Template File Management");
 define('_MI_LEGACYRENDER_CONF_BANNERS', "Activate banner ads?");
 define('_MI_LEGACYRENDER_NAME', "Legacy Renderer");
-define('_MI_LEGACYRENDER_NAME_DESC', "This rendering engine (renderer) is compatibile with XOOPS 2.0.9 and XOOPS JP 2.0.x. You can use XOOPS2 Themes on this system.");
+define('_MI_LEGACYRENDER_NAME_DESC', "This rendering engine (renderer) is compatibile with XOOPS 2.0.9 and XOOPS JP 2.0.x. You can use XOOPS2 Themes with this system.");
 define('_MI_LR_FOOTER', "Footer");
 define('_MI_LR_FOOTER_DESC', "Be sure to type full links with the path starting from http://, otherwise the links will not work correctly in modules pages.");
 define('_MI_LR_META_AUTHOR', "Meta Author");
