@@ -97,7 +97,7 @@ $modversion['config'][]=array (
 		"description"=>"_MI_LR_FOOTER_DESC",
 		"formtype"=>"textarea",
 		"valuetype"=>"text",
-		"default"=>"Powered by <a href=\"http://xoopscube.org/\" target=\"_blank\">XOOPS Cube</a> 2.2&copy; 2001-2009 <a href=\"http://xoopscube.sourceforge.net/\" target=\"_blank\">XOOPS Cube Project</a>"
+		"default"=>"Powered by <a href=\"http://xoopscube.org/\" target=\"_blank\">XOOPS Cube</a> 2.2 &copy; 2001-2009 <a href=\"http://xoopscube.sourceforge.net/\" target=\"_blank\">XOOPS Cube Project</a>"
 	);
 
 $modversion['config'][]=array (
