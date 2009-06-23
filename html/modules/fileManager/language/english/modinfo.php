@@ -41,7 +41,7 @@ define('_MI_FILEMANAGER_EXTENSIONS_DSC',"Separate files extensions with a '|' pi
 define('_MI_FILEMANAGER_FUSE',"[ffmpeg] Use FFmpeg");
 define('_MI_FILEMANAGER_FUSE_DSC',"FFmpeg is a complete, cross-platform solution to record, convert and stream audio and video.<br /> FFmpeg must be supported by the server. If not, Install the FFmpeg binary to your server.");
 define('_MI_FILEMANAGER_FPATH',"[ffmpeg] Path of FFmpeg");
-define('_MI_FILEMANAGER_FPATH_DSC',"Specify the path installation of FFmpeg.<br />(Example:<tt>/usr/local/bin</tt><tt>:/usr/bin</tt>)");
+define('_MI_FILEMANAGER_FPATH_DSC',"Specify the path installation of FFmpeg.<br />(Example:<tt>/usr/local/bin</tt>, <tt>/usr/bin</tt>)");
 define('_MI_FILEMANAGER_FOPT',"[ffmpeg] Option");
 define('_MI_FILEMANAGER_FOPT_DSC',"Please specify the command option.（This version is not available）");
 define('_MI_FILEMANAGER_FCAPTURE',"[ffmpeg] Screen Shot time");
