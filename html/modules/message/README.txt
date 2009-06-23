@@ -73,6 +73,8 @@ templates
 ToDo:
 同報発信
 
+Ver 1.14:smarty_function_message_userlistの修正
+Ver 1.13:英語の言語ファイルに定数追加
 Ver 1.12:送信箱で受信者、件名での絞り込みに対応
          受信箱の絞込み条件追加
          自動削除時に未読メッセージを削除するか設定追加

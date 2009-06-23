@@ -22,7 +22,7 @@ function smarty_function_message_userlist($params, &$smarty)
     $uname = htmlspecialchars($uname, ENT_QUOTES);
     $option.= '<option value="';
     $option.= $buid ? $uid : $uname;
-    if ( ($buid == false && $uname == $username) || ($buid && $uid == $username ) {
+    if ( ($buid == false && $uname == $username) || ($buid && $uid == $username ) ) {
       $option.= '" selected="selected';
     }
     $option.= '">'.$uname.'</option>'.chr(10);

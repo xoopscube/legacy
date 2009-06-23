@@ -80,4 +80,9 @@ define('_MD_MESSAGE_DELETEMSG2', 'It is not selected.');
 
 define('_MD_MESSAGE_SEARCH', 'Search');
 
+if ( !defined('LEGACY_MAIL_LANG') ) {
+  define('LEGACY_MAIL_LANG','en');
+  define('LEGACY_MAIL_CHAR','iso-8859-1');
+  define('LEGACY_MAIL_ENCO','7bit');
+}
 ?>
