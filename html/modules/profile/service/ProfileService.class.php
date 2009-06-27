@@ -201,7 +201,7 @@ class Profile_Service extends XCube_Service
 		$root =& XCube_Root::getSingleton();
 		$uid = $root->mContext->mRequest->getRequest('uid');
 		$handler =& xoops_getmodulehandler('data', 'profile');
-	
+
 		$dataObj =& $handler->get($uid);
 		if(! $dataObj){
 			$dataObj =& $handler->create();
@@ -245,7 +245,11 @@ class Profile_Service extends XCube_Service
 	
 		$handler =& xoops_getmodulehandler('data', 'profile');
 		$obj =& $handler->get($uid);
-	
+		
+		if (! $obj) {
+			return false;
+		}
+		
 		$obj->set($field_name, $value);
 		if($handler->insert($obj)){
 			return true;
@@ -269,9 +273,12 @@ class Profile_Service extends XCube_Service
 	
 		$dataHandler =& xoops_getmodulehandler('data', 'profile');
 		$dataObj =& $dataHandler->get($uid);
+
 		if(! $dataObj){
 			$dataObj = $dataHandler->create();
 		}
+
+		$dataObj->set("uid", $uid);
 	
 		foreach(array_keys($defArr) as $key){
 			$dataObj->set($defArr[$key]->getShow('field_name'), $root->mContext->mRequest->getRequest($defArr[$key]->getShow('field_name')));
