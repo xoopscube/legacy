@@ -62,6 +62,61 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Wanikoo
 - Xoopserver
  (Gigamaster)
+ 
+----------------------------------------
+2009/05/23: Package Revision 2.1.7
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #2491813 - SmileEditAction include multi byte comment.
+- Fix Bug #2491817 - SmileEditAction cannnot delete old file.
+- Fix Bug #2591041 - Typo Legacy_PublicControllerStrategy.class.php.
+- Fix Bug #2642879 - javascript error in admin area.
+- Fix Bug #2642959 - SQL Error in Legacy_Updater.
+- Fix Bug #2658360 - doubtful escaping in quoteString()
+- Fix Bug #2666693 - Error in /XUpgrade/admin/class/UpgradeProcessor.class.php
+- Fix Bug #2686374 - Bugs in class.phpmailer.php v2.0.2 (Updated PHPmailer to v2.0.3)
+- Fix Bug #2690736 - typo: X_ITEM_TILE (X_ITEM_TITLE?) default_notify.tpl
+- Fix Bug #2690739 - typo in /install/include/functions.php, line 38
+- Fix Bug #2696001 - images/pointer.gif is missing (ref:include/cp_functions.php)
+- Fix Bug #2696701 - user_lostpass.html email maxlength too short
+- Fix Bug #2699408 - Specify 2nd argument of mysql_real_escape_string().
+- Fix Bug #2724748 - XoopsMemberHandler::getUserByEmail() cannot get user object.
+- Fix Bug #2746729 - Fatal error: Call to undefined function XC_CLASS_EXISTS()
+- Fix Bug #2769264 - a typo in Japanese Help.
+- Fix Bug #2794397 - User admin menu is mistaken.
+
+[BUG Fix - From "XCube" Bug Tracker]
+- Fix Bug #2656854 - XC_CLASS_EXISTS loops infinity.
+- Fix Bug #2635869 - Abstracts difference of class_exists between two versions.
+
+[Patches - From Feature Request Tracker]
+- Request #2642992 - exclude extra trim()
+- Request #2662922 - DB Layer can be overridden.
+- Request #2795674 - Update phpmailer from 2.0.3 to 2.0.4
+- Patch #2697022 - Package_Legacy\html\ - new portuguese translations
+- Patch #2697034 - extra_languages\ - new pt_utf8 translations
+- patch #2697044 - missing: XUpgrade and system pt language files
+- Patch #2701060 - Path disclosure in xoopsmailerlocal.php (pt_utf8)
+- Patch #2701140 - legacyRender: update for Portuguese Files
+
+[Other Changes/Enhancements]
+- Request #2682887 - MySQL Database Connection should specify the client_flags
+- Legacy Controller class provides LEGACY_MODULE_VERSION constant as phpversion.
+
+[Staff]
+- gigamaster
+- GIJOE
+- gusagi
+- hxrr
+- marijuana
+- Mikhail
+- minahito
+- mumincacao
+- onokazu
+- roger
+- salamander
+- tohokuaiki
+- Tom_G3X
 
 ----------------------------------------
 2008/11/21: Package Revision 2.1.6
@@ -157,6 +212,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #2010090 - Missing Content-Type in MailHeader by #1729813.
 - Fix Bug #2011775 - When a user deletes his account, principal is not created.
 - Fix Bug #2017164 - Can't register new account by #2011775.
+- Fix Bug #2791554 - phpmailer japanese language file is broken.
 
 [Other Changes/Enhancements]
 - Patch #1868259 - add alt to smaily icons@legacy_xoopsform_opt_smileys.html
@@ -166,6 +222,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Patch #2011199 - Czech message catalog for XCL.
 - Patch #2016023 - Package Legacy 215rc patch FR and PT typo.
 - (Exception Patch) Improve LostPassAction.
+- Request #2795674 - Update phpmailer from 2.0.3 to 2.0.4
 
 [Staff]
 - aaki
