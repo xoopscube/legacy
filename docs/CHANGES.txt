@@ -1,3 +1,4 @@
+
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
@@ -16,6 +17,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #2802859 - Typo class Waiting
 - Fix Bug #2802861 - Typo at example xoops_dhtmltarea and xoops_textarea
 - Fix Bug #2805269 - Argument of Criteria::setOrder() is not column name
+- Fix Bug #2809822 - Useredit doesn't save Profile extra fields
 
 [Feature Request - From Feature Requests Legacy Tracker]
 - Feature Request #1718527 - User Profile Extended
@@ -47,9 +49,11 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Add User Rank Search filter and display per page
 - Add Module Message (PHP5)
 - Add Module PM to 'extras' (compatible php4)
+- Add Filemanager (Admin side, under development)
 
 [Staff]
 - GIJOE
+- Hiroki
 - Jidaikobo
 - Kilica
 - marijuana
