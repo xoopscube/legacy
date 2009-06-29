@@ -101,17 +101,17 @@ Class FileSystemUtilty {
 
 	// check dirctory name and permission
 	function checkFolder($folderPath='') {
-		$isWriteble = false;    // defult
+		$isWriteble = false;    // default
 		if ($folderPath!='') {
 			// is exists ?
 			if (!file_exists($folderPath)) {
 				return false;
 			}
-			// is dirctory ?
+			// is directory ?
 			if (!is_dir($folderPath)) {
 				return false;
 			}
-			// dirctory permission is 777 ?
+			// directory permission is 777 ?
 			if ( fileperms($folderPath) == '16895') {
 				return true;
 			}
