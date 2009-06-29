@@ -426,12 +426,10 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 			}
 		}
 
-		// add moduleHeader
-		$this->moduleHeader .='<link rel="stylesheet" type="text/css" href="'. XOOPS_URL. '/modules/fileManager/js/lightview/lightview.css" />'."\n";
-		$this->moduleHeader .='<script type="text/javascript" src="'. XOOPS_URL. '/modules/fileManager/js/lightview/prototype.js"></script>'."\n";
-		$this->moduleHeader .='<script type="text/javascript" src="'. XOOPS_URL. '/modules/fileManager/js/lightview/lightview.js"></script>'."\n";
-		$this->moduleHeader .='<script type="text/javascript" src="'. XOOPS_URL. '/modules/fileManager/js/scriptaculous/scriptaculous.js"></script>'."\n";
-
+		// add moduleHeader # gigamaster 2009-06-29
+		$this->moduleHeader .='<script type="text/javascript" src="'. XOOPS_URL. '/common/js/jquery.js" ></script>'."\n";
+		$this->moduleHeader .='<link rel="stylesheet" type="text/css" href="'. XOOPS_URL. '/common/prettyPhoto/css/prettyPhoto.css" />'."\n";
+		$this->moduleHeader .='<script type="text/javascript" src="'. XOOPS_URL. '/common/prettyPhoto/js/jquery.prettyPhoto.js"></script>'."\n";
 		return CONTENTS_FRAME_VIEW_INDEX;
 	}
 
