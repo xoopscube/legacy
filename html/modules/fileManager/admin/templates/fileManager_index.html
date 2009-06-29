@@ -124,38 +124,38 @@
 			<td align='center'>
 				<{if $file.file_media eq 'IMAGE'}>
 					<{if $file.image_thumb}>
-						<a href='<{$xoops_upload_url}><{$file.file_url}>' class='lightview' title='<{$file.file_name}>' rel='gallery[mygallery]' id='<{$file.file_name}>'>
+						<a href='<{$xoops_upload_url}><{$file.file_url}>' rel='prettyPhoto[gallery]' title='<{$file.file_name}>' id='<{$file.file_name}>'>
 						<img src='<{$xoops_upload_url}><{$file.file_url}>' width='<{$thumb_size}>' alt='<{$file.file_name}>' />
 						</a>
 					<{else}>
 						<img src='<{$xoops_upload_url}><{$file.file_url}>' alt='<{$file.file_name}>'>
 					<{/if}>
 				<{elseif $file.file_media eq 'FLV'}>
-					<a href='templates/view_flv.php?file=<{$file.file_url}>' rel='iframe' title='<{$file.file_name}>'class='lightview'>
+					<a href='templates/view_flv.php?file=<{$file.file_url}>?iframe=true' rel='prettyPhoto[iframes]' title='<{$file.file_name}>'>
 					<img src='<{$file.icon}>'>
 					</a>
 				<{elseif $file.file_media eq 'MEDIAPLAYER'}>
-					<a href='templates/view_mediaplayer.php?file=<{$xoops_upload_url}><{$file.file_url}>' rel='iframe' title='<{$file.file_name}>'class='lightview'>
+					<a href='templates/view_mediaplayer.php?file=<{$xoops_upload_url}><{$file.file_url}>?iframe=true' rel='prettyPhoto[iframes]' title='<{$file.file_name}>'>
 					<img src='<{$file.icon}>'>
 					</a>
 					<{if $ffmpeguse}><a href='convert.php?file=<{$file.file_url}>&amp;path=<{$current_path}>'><{$smarty.const._AD_FILEMANAGER_ACTION_CONVERT}></a><{/if}>
 
 				<{elseif $file.file_media eq 'QUICKTIME'}>
-					<a href='templates/view_quicktime.php?file=<{$xoops_upload_url}><{$file.file_url}>' rel='iframe' title='<{$file.file_name}>'class='lightview'>
+					<a href='templates/view_quicktime.php?file=<{$xoops_upload_url}><{$file.file_url}>iframe=true' rel='prettyPhoto[iframes]' title='<{$file.file_name}>'>
 					<img src='<{$file.icon}>'>
 					</a>
 					<{if $ffmpeguse}><a href='convert.php?file=<{$file.file_url}>&amp;path=<{$current_path}>'><{$smarty.const._AD_FILEMANAGER_ACTION_CONVERT}></a><{/if}>
 				<{elseif $file.file_media eq 'MP3'}>
-					<a href='templates/view_quicktime.php?file=<{$xoops_upload_url}><{$file.file_url}>' rel='iframe' title='<{$file.file_name}>'class='lightview'>
+					<a href='templates/view_quicktime.php?file=<{$xoops_upload_url}><{$file.file_url}>iframe=true' rel='prettyPhoto[iframes]' title='<{$file.file_name}>'>
 					<img src='<{$file.icon}>'>
 					</a>
 				<{elseif $file.file_media eq 'REALPLAYER'}>
-					<a href='templates/view_realplayer.php?file=<{$xoops_upload_url}><{$file.file_url}>' rel='iframe' title='<{$file.file_name}>'class='lightview'>
+					<a href='templates/view_realplayer.php?file=<{$xoops_upload_url}><{$file.file_url}>iframe=true' rel='prettyPhoto[iframes]' title='<{$file.file_name}>'>
 					<img src='<{$file.icon}>'>
 					</a>
 					<{if $ffmpeguse}><a href='convert.php?file=<{$file.file_url}>&amp;path=<{$current_path}>'><{$smarty.const._AD_FILEMANAGER_ACTION_CONVERT}></a><{/if}>
 				<{elseif $file.file_media eq 'FLASH'}>
-					<a href='templates/view_flash.php?file=<{$xoops_upload_url}><{$file.file_url}>' rel='iframe' title='<{$file.file_name}>'class='lightview'>
+					<a href='templates/view_flash.php?file=<{$xoops_upload_url}><{$file.file_url}>iframe=true' rel='prettyPhoto[iframes]' title='<{$file.file_name}>'>
 					<img src='<{$file.icon}>'>
 					</a>
 				<{else}>
