@@ -1,1 +1,0 @@
-http://www.nickstakenburg.com/projects/lightview/
