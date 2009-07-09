@@ -17,11 +17,11 @@ if ($isPlay) {
 </head>
 <body>
 <center>
-<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" width="380" height="250" codebase="http://www.apple.com/qtactivex/qtplugin.cab">
+<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" width="300" height="100" codebase="http://www.apple.com/qtactivex/qtplugin.cab">
 	<param name="src" value="<?php echo $playfile ?>">
 	<param name="autoplay" value="false">
 	<param name="controller" value="true">
-	<embed src="<?php echo $playfile ?>" width="380" height="250" autoplay="true" controller="true" type="video/quicktime" pluginspage="http://www.apple.com/quicktime/download/">
+	<embed src="<?php echo $playfile ?>" width="300" height="100" autoplay="true" controller="true" type="video/quicktime" pluginspage="http://www.apple.com/quicktime/download/">
 	</embed>
 </object>
 </center>

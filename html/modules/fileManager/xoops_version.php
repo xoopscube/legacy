@@ -1,7 +1,13 @@
 <?php
+/**
+ * Filemaneger
+ * (C)2007-2009 BeaBo Japan by Hiroki Seike
+ * http://beabo.net/
+ **/
+
 if( ! defined( 'XOOPS_ROOT_PATH' ) ) exit ;
 $modversion['name']        = _MI_FILEMANAGER_NAME;
-$modversion['version']     = 0.96;
+$modversion['version']     = 0.98;
 $modversion['description'] = _MI_FILEMANAGER_DESC;
 $modversion['author']      = "Hiroki Seike http://beabo.net/";
 $modversion['credits']     = "Hiroki Seike";
@@ -21,6 +27,9 @@ $modversion['hasNotification'] = 0;
 $modversion['hasMain']         = 0;
 $modversion['hasconfig']       = 1;
 
+$modversion['sqlfile']['mysql'] = "sql/mysql.sql";
+$modversion['tables'][] = "{prefix}_{dirname}_token";
+
 $modversion['config'][] = array(
     "name"        => "defaultpath" ,
     "title"       => "_MI_FILEMANAGER_PATH" ,
@@ -38,6 +47,7 @@ $modversion['config'][] = array(
     "valuetype"   => "int" ,
     "default"     => 0
 ) ;
+
 
 $modversion['config'][] = array(
     "name"        => "thumbsize" ,
@@ -110,28 +120,14 @@ $modversion['config'][] = array(
     "options"     => array('3' => 3, '5' => 5, '10' => 10, '15' => 15)
 ) ;
 
-/*
-TODO options setting 
 $modversion['config'][] = array(
-    "name"        => "ffmpegoption" ,
-    "title"       => "_MI_FILEMANAGER_FOPT" ,
-    "description" => "_MI_FILEMANAGER_FOPT_DSC" ,
-    "formtype"    => "yesno" ,
-    "valuetype"   => "int" ,
-    "default"     => 0
+    "name"        => "ffmpegmoviefile" ,
+    "title"       => "_MI_FILEMANAGER_FMOVIEFILE" ,
+    "description" => "_MI_FILEMANAGER_FMOVIEFILE_DSC" ,
+    "formtype"    => "text" ,
+    "valuetype"   => "string" ,
+    "default"     => "flv|avi|mwv|mov|mpg|qt|mov|mp4"
 ) ;
-
-TODO file size check
-$modversion['config'][] = array(
-    "name"        => "ffmpegconvertsize" ,
-    "title"       => "_MI_FILEMANAGER_FCONVERT" ,
-    "description" => "_MI_FILEMANAGER_FCONVERT_DSC" ,
-    "formtype"    => "select" ,
-    "valuetype"   => "int" ,
-    "default"     => 2 ,
-    "options"     => array('1MB' => 1, '2MB' => 2, '3MB' => 3, '5MB' => 5)
-) ;
-*/
 
 // On install & Update , Uninstall
 $modversion['onInstall']   = '/include/oninstall.php' ;

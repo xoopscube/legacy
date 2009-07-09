@@ -1,3 +1,18 @@
+<?php
+require_once "../../../../mainfile.php";
+
+$isPlay = false;
+// Check file
+if (isset($_GET["file"])) {
+	$fileName = htmlspecialchars(urldecode($_GET["file"]), ENT_QUOTES);
+	$playfile = XOOPS_UPLOAD_URL. $fileName;
+	$filePath = XOOPS_UPLOAD_PATH. $fileName;
+	$filename = htmlspecialchars(urldecode($_GET["name"]), ENT_QUOTES);
+	$isPlay = true;
+}
+
+if ($isPlay) {
+?>
 <html>
 <head>
 </head>
@@ -9,9 +24,14 @@
 	<param name="autostart" value="false">
 	<param name="maintainaspect" value="true">
 	<param name="nojava" value="true">
-	<param name="src" value="<?php if (isset($_GET["file"])) { $file = htmlspecialchars(urldecode($_GET["file"]), ENT_QUOTES); } else { $file = ''; } echo $file ?>">
-	<embed type="audio/x-pn-realaudio-plugin" src="<?php if (isset($_GET["file"])) { $file = htmlspecialchars(urldecode($_GET["file"]), ENT_QUOTES); } else { $file = ''; } echo $file ?>" width="320" height="260" nojava="true" console="Clip1" controls="ImageWindow" autostart="false" pluginspage="http://www.real.com/player/index.html">
+	<param name="src" value="<?php echo $playfile ?>">
+	<embed type="audio/x-pn-realaudio-plugin" src="<?php echo $playfile ?>" width="320" height="260" nojava="true" console="Clip1" controls="ImageWindow" autostart="false" pluginspage="http://www.real.com/player/index.html">
 	</embed>
 </object>
 </center>
 </body>
+<?php
+} else {
+	echo _AD_FILEMANAGER_NOTFOUND;
+}
+?>

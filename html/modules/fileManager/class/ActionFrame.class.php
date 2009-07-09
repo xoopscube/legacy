@@ -1,8 +1,9 @@
 <?php
-/*=====================================================================
-  (C)2007 BeaBo Japan by Hiroki Seike
-  http://beabo.net/
-=====================================================================*/
+/**
+ * Filemaneger
+ * (C)2007-2009 BeaBo Japan by Hiroki Seike
+ * http://beabo.net/
+ **/
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
@@ -121,8 +122,6 @@ class FileManager_ActionFrame
 		else {
 			$viewStatus = $this->mAction->getDefaultView($controller, $controller->mRoot->mContext->mXoopsUser);
 		}
-
-//echo " viewStatus ".$viewStatus."<br />";
 
 		switch ($viewStatus)
 		{

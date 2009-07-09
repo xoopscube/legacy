@@ -1,8 +1,10 @@
 <?php
-/*=====================================================================
-  (C)2007 BeaBo Japan by Hiroki Seike
-  http://beabo.net/
-=====================================================================*/
+/**
+ * Filemaneger
+ * (C)2007-2009 BeaBo Japan by Hiroki Seike
+ * http://beabo.net/
+ **/
+
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
 require_once XOOPS_MODULE_PATH. '/fileManager/class/AbstractEditAction.class.php';

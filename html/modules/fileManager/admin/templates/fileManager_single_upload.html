@@ -1,0 +1,46 @@
+<{* --- /admin/templates/admin_index.html --- *}>
+<{* --- header --- *}>
+<{include file="file:$xoops_rootpath/modules/fileManager/admin/templates/fileManager_header.html"}>
+
+<ul class='toptab'>
+  <li><a href='index.php?path=<{$upload_path}>'><{$smarty.const._AD_FILEMANAGER_RETURN}></a></li>
+</ul>
+
+
+<{if $actionForm->hasError()}>
+	<div class="confirm">
+	<ul>
+	<{foreach item=errval from=$actionForm->getErrorMessages()}>
+		<li><{$errval}></li>
+	<{/foreach}>
+	</ul>
+	</div>
+<{/if}>
+
+
+<form action="index.php?action=SingleUpload" method="post" enctype="multipart/form-data">
+	<{xoops_token form=$actionForm}>
+	<{xoops_input type=hidden name=path value=$path}>
+
+	<table width="100%" class="outer" cellspacing="1" cellpadding="3" border="0">
+	<tbody>
+		<tr>
+			<th colspan="2" align="center">
+			<{$smarty.const._AD_FILEMANAGER_UPLOAD}>
+			</th>
+		</tr>
+		<tr>
+			<td class="head"><{$smarty.const._AD_FILEMANAGER_FILENAME}></td>
+			<td class="<{cycle values="odd,even"}>">
+				<{xoops_input type=file name=image size=30}>
+			</td>
+		</tr>
+		<tr>
+		<td colspan="2" class="foot" align="center">
+			<input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+			<input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+		</td>
+		</tr>
+	</tbody>
+	</table>
+</form>

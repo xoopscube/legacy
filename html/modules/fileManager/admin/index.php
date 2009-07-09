@@ -1,8 +1,10 @@
 <?php
-/*=====================================================================
-  (C)2007 BeaBo Japan by Hiroki Seike
-  http://beabo.net/
-=====================================================================*/
+/**
+ * Filemaneger
+ * (C)2007-2009 BeaBo Japan by Hiroki Seike
+ * http://beabo.net/
+ **/
+
 require_once "../../../mainfile.php";
 require_once XOOPS_MODULE_PATH. '/fileManager/admin/menu.php' ;
 require_once XOOPS_MODULE_PATH. '/fileManager/class/ActionFrame.class.php';
@@ -20,8 +22,6 @@ $root->mController->execute();
 
 $xoopsLogger=&$root->mController->getLogger();
 $xoopsLogger->stopTime();
-
-//$root->mController->executeView();
 
 
 $out = ob_get_contents();

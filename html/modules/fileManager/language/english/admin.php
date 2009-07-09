@@ -1,8 +1,9 @@
 <?php
-/*=====================================================================
-  (C)2007 BeaBo Japan by Hiroki Seike
-  http://beabo.net/
-=====================================================================*/
+/**
+ * Filemaneger
+ * (C)2007-2009 BeaBo Japan by Hiroki Seike
+ * http://beabo.net/
+ **/
 
 // --------------------------------------------------------
 // Main
@@ -66,6 +67,18 @@ define('_AD_FILEMANAGER_DELFOLDER_NOTACCESS', "Folder %s is can not be removed f
 define('_AD_FILEMANAGER_FILECOUNT', "Files");
 
 // --------------------------------------------------------
+// Setting check
+// --------------------------------------------------------
+define('_AD_FILEMANAGER_CHECK_NG', "Library file is not found.Please upload files.<br />");
+define('_AD_FILEMANAGER_CHECK_OK', "The setting of the library file is completed.");
+define('_AD_FILEMANAGER_CHECK', "Setting Check");
+define('_AD_FILEMANAGER_CHECK_DSC_1', "Using SWFUpload");
+define('_AD_FILEMANAGER_CHECK_DSC_2', "SWFUpload to upload for public use is not recommended.<br />The htaccess set to the location of the library, please set up with restricted access.");
+define('_AD_FILEMANAGER_HTACCESS_DSC_1', "You can choose your settings and click the form");
+define('_AD_FILEMANAGER_HTACCESS_DSC_2', "That allow access your current IP address.(Sample composition is automatic. Please change to suit your server environment.)");
+define('_AD_FILEMANAGER_HTACCESS_PATH', "htaccess file to install path");
+
+// --------------------------------------------------------
 // SWFUpload
 // --------------------------------------------------------
 define('_AD_FILEMANAGER_SWF_UPLOAD_QUEUE', "Uploads");
@@ -76,20 +89,10 @@ define('_AD_FILEMANAGER_SWF_LOAD_HAS_FAILED', "SWFUpload is taking a long time t
 define('_AD_FILEMANAGER_SWF_INSTALL_FLASH', "We're sorry.  SWFUpload could not load.  You may need to install or upgrade Flash Player.<br />
 Visit the <a href='http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash'>Adobe website</a> to get the Flash Player.");
 
-// TODO reserved
 // --------------------------------------------------------
-// reserved  options setting
+// FFMPEG
 // --------------------------------------------------------
-define('_AD_FILEMANAGER_FILTER', "Filter");
-define('_AD_FILEMANAGER_FILTER_ALL', "---");
-define('_AD_FILEMANAGER_FILTER_IMGAE', "Image");
-define('_AD_FILEMANAGER_FILTER_MOVIE', "Movie");
-define('_AD_FILEMANAGER_FILTER_SOUND', "Music");
-define('_AD_FILEMANAGER_FILTER_APLICATION', "Aplicatrion");
 define('_AD_FILEMANAGER_ACTION_CONVERT', "Convert to FLV");
 define('_AD_FILEMANAGER_ACTION_CAPTURE', "Make Capture Image");
-define('_AD_FILEMANAGER_CONVERT_DSC', "Now converting FLV file..");
-define('_AD_FILEMANAGER_CONVERT_NOW', "Now converting FLV file.Please wait until the conversion is complete.<br />After return to the original screen conversion.");
-
 
 ?>

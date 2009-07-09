@@ -1,21 +1,21 @@
 <?php
-/*=====================================================================
-  (C)2007 BeaBo Japan by Hiroki Seike
-  http://beabo.net/
-=====================================================================*/
+/**
+ * Filemaneger
+ * (C)2007-2009 BeaBo Japan by Hiroki Seike
+ * http://beabo.net/
+ **/
+
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
 require_once XOOPS_MODULE_PATH. '/fileManager/class/AbstractEditAction.class.php';
 require_once XOOPS_MODULE_PATH. '/fileManager/admin/include/functions.php';
 
-class FileManager_UploadAction extends FileManager_AbstractEditAction
+class FileManager_MnultiUploadAction extends FileManager_AbstractEditAction
 {
 	// for menu
-	var $breadCrumbs     = array();
-	var $confirmMssage   = null;
-	var $moduleHeader    = null;
-	var $menuDescription = null;
-
+	var $breadCrumbs = array();
+	var $confirmMssage = null;
+	var $moduleHeader = null;
 	var $debugMode   = false;
 	var $defaultPass = null;
 	var $upload_path = null;
@@ -24,6 +24,18 @@ class FileManager_UploadAction extends FileManager_AbstractEditAction
 	function _getPath()
 	{
 		return xoops_getrequest('path');
+	}
+
+	function _getId()
+	{
+		return xoops_getrequest('sectionid');
+	}
+
+
+	function &_getHandler()
+	{
+		$handler =& xoops_getmodulehandler('token');
+		return $handler;
 	}
 
 	// Over ride
@@ -72,8 +84,7 @@ class FileManager_UploadAction extends FileManager_AbstractEditAction
 		}
 
 		// info upload path and uploads size
-		$this->confirmMssage = sprintf(_AD_FILEMANAGER_CONFIRMMSSAGE, $uploadPath,  FileSystemUtilty::bytes(ini_get('upload_max_filesize')) );
-
+		$this->confirmMssage = sprintf(_AD_FILEMANAGER_CONFIRMMSSAGE, $uploadPath, ini_get('upload_max_filesize') );
 
 		// uploads directory
 		$dirpath = XOOPS_UPLOAD_PATH. $this->_getPath();
@@ -84,7 +95,6 @@ class FileManager_UploadAction extends FileManager_AbstractEditAction
 		}
 
 		$this->breadCrumbs[]  = array('name' => _AD_FILEMANAGER_UPLOAD ) ;
-		$this->menuDescription = _AD_FILEMANAGER_UPLOAD_DSC ;
 
 		return CONTENTS_FRAME_VIEW_INPUT;
 	}
@@ -92,8 +102,17 @@ class FileManager_UploadAction extends FileManager_AbstractEditAction
 	function executeViewInput(&$controller, &$xoopsUser, &$render)
 	{
 		$root =& XCube_Root::getSingleton();
+		// make upload token
+		$uploadToken = md5(uniqid().mt_rand());
+		$uploadToken = htmlspecialchars($uploadToken, ENT_QUOTES);
 
-		$render->setTemplateName('fileManager_upload.html');
+		$uid = $root->mContext->mXoopsUser->get('uid');
+
+		// save token
+		$handler =& $this->_getHandler();
+		$handler->setToken( $uploadToken, time()+1800, $uid, getenv("REMOTE_ADDR"));
+
+		$render->setTemplateName('fileManager_multiupload.html');
 		$render->setAttribute('module_info'   , getModuleInfo());
 		$render->setAttribute('moduleHeader'  , $this->moduleHeader);
 		$render->setAttribute('bread_crumbs'  , $this->breadCrumbs);
@@ -101,14 +120,12 @@ class FileManager_UploadAction extends FileManager_AbstractEditAction
 		$render->setAttribute('debug_mode'    , $this->debugMode);
 		$render->setAttribute('default_pass'  , $this->defaultPass);
 		$render->setAttribute('confirm_mssage', $this->confirmMssage);
-
+		$render->setAttribute('upload_token'  , $uploadToken);
 	}
 
 	function executeViewError(&$controller, &$xoopsUser, &$render)
 	{
 		$controller->executeRedirect('index.php', 1, _AD_FILEMANAGER_UPLOAD_PERMISSION);
 	}
-
-
 }
 ?>

@@ -1,15 +1,15 @@
 <?php
-/*=====================================================================
-  (C)2007 BeaBo Japan by Hiroki Seike
-  http://beabo.net/
-=====================================================================*/
+/**
+ * Filemaneger
+ * (C)2007-2009 BeaBo Japan by Hiroki Seike
+ * http://beabo.net/
+ **/
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
 require_once XOOPS_MODULE_PATH. '/fileManager/class/AbstractListAction.class.php';
 require_once XOOPS_MODULE_PATH. '/fileManager/admin/forms/IndexFilterForm.class.php';
 require_once XOOPS_MODULE_PATH. '/fileManager/admin/include/functions.php';
-
 require_once XOOPS_MODULE_PATH. '/fileManager/class/Ffmpeg.class.php';
 
 class FileManager_indexAction extends FileManager_AbstractListAction
@@ -160,6 +160,8 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 		// Initial setting
 		$root =& XCube_Root::getSingleton();
 		$this->imageThumbSize = $this->mConfig['thumbsize'] ;
+		$xoopsImageLock = $this->mConfig['xoopsimagelock'] ;
+
 
 		if ($this->_getCurrentPath() != '') {
 			$this->currentPath = $this->_getCurrentPath() ;
@@ -182,7 +184,6 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 
 		$pathArray =  array();
 
-
 		if ($dirNameArray[0]<>"") {
 			foreach($dirNameArray as $pathName) {
 				$this->parentPath .= '/'. $pathName ;
@@ -192,9 +193,6 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 				array_push($this->pathNameArray, $pathArray) ;
 			}
 		}
-
-		// $pathNameArray = Array ( [0] => Array ( [name] => temp [link] => /temp  ) [1] => Array ( [name] => aaaa [link] => /temp /aaaa  ) ) 
-
 
 		if ($this->currentPath == "" || $this->currentPath == "/") {
 			$this->setSortkey = '';
@@ -218,7 +216,7 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 
 		$hideFile = array();    // hide files array
 		$fileArray = $pathArray =  array();
-		$fileMediaType = $fileIcon = $pluginsUrl = $imageInfo = '';
+		$fileMediaType = $pluginsUrl = $imageInfo = '';
 		$imageThumb = false;
 
 		// hide files name & file extension
@@ -226,13 +224,15 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 		$hiddenType = "html|htm|php|js";        // Hidden File ext
 
 		if ($isFileHome) {
-			// functions.php
-			// get system images array
-			$hideFile= getSyetemImages($hideFile) ;
+			if ($xoopsImageLock > 0) {
+				// functions.php
+				// get system images array
+				$hideFile= getSyetemImages($hideFile) ;
+			}
 		}
 
-		// TODO check using MAC plugin player
 		// TODO need pdf , xcl ,csv ... other file type and viewr or link
+		// $appliType = "txt|csv|pdf|xls|ods|doc|odt";             // application
 		$imageType       = "gif|jpe?g|png|bmp";      // Image
 		$flvType         = "flv";                    // FLVplayer
 		$quicktimeType   = "qt|mov|3gp|3gp2|mp4";    // Quick Time
@@ -241,7 +241,6 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 		$realplayerType  = "rm|ra";                  // RealPlayer
 		$mediaplayerType = "avi|asf|wav|wma|wmv|mid|avi|mpe|mpg";  // WindowsMediaPlayer
 
-		// $appliType = "txt|csv|pdf|xls|ods|doc|odt";             // application
 		// Open a known directory, and proceed to read its contents
 		if (is_dir($filesUploadPath)) {
 			if ($dh = opendir($filesUploadPath)) {
@@ -250,27 +249,6 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 					// is directory
 					if ($mFileType == 'dir') {
 						// directory list
-						$fileIcon = './../images/icon/folder.png';
-
-						if ($file == '..') {
-							// parent dirctory
-							$dirArray['folderhandle'] = false;
-							$dirArray['is_writable'] =is_writable($filesUploadPath .'/' .$file);
-							$dirArray['linkpath'] = $parentPath;
-							$dirArray['name'] = $file;
-							$dirArray['type'] = _AD_FILEMANAGER_FOLDER ;
-							$dirArray['icon'] = './../images/icon/folder_up.png';
-							$stat = stat($filesUploadPath .'/' .$file);
-							$timestamp = $stat['mtime'];
-							// TODO get directory size ... file access speed is slow
-							// TODO files count for speed up
-							// $dirArray['count'] = count(scandir($filesUploadPath.'/' .$file)) - 2 ;
-							$dirArray['time'] = $timestamp;
-							//$dirArray['disk_space'] = disk_total_space($filesUploadPath .'/' .$file);
-							$dirArray['upload_link'] = $file;
-							$this->dirList[] = & $dirArray;
-						}
-
 						// Excluding the parent(..) and the current directory(.)
 						if ($file != '.' && $file != "..") {
 							$dirArray['folderhandle'] = (fileperms($filesUploadPath .'/' .$file) == '16895');
@@ -278,7 +256,6 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 							$dirArray['linkpath'] =$this->currentPath. '/' .$file;
 							$dirArray['name'] = $file;
 							$dirArray['type'] = _AD_FILEMANAGER_FOLDER ;
-							$dirArray['icon'] = $fileIcon;
 							$stat = stat($filesUploadPath .'/' .$file);
 							$timestamp = $stat['mtime'];
 							// TODO files count for speed up
@@ -303,7 +280,6 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 									if (eregi($imageType, $fileExtension)) {
 										// Image
 										$fileMediaType = 'IMAGE';
-										$fileIcon = './../images/icon/photo.png';
 										$imageSize = getimagesize($filesUploadPath .'/' .$file);
 										$imageInfo = $imageSize[0] . ' x ' . $imageSize[1];
 										if ($imageSize[0] > $this->imageThumbSize || $imageSize[1] > $this->imageThumbSize) { 
@@ -312,46 +288,39 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 										}
 									} elseif (eregi($flvType, $fileExtension)) {
 										// FLV Player
+										// TODO get moive view size to using ffmpeg. but need server perfoemance....?? Useing to chace file ??
 										$fileMediaType = 'FLV';
-										$fileIcon = './../images/icon/video.png';
 									} elseif (eregi($mediaplayerType, $fileExtension)) {
 										// WindowsMediaPlayer
 										$fileMediaType = 'MEDIAPLAYER';
-										$fileIcon = './../images/icon/video.png';
 									} else if (eregi($quicktimeType, $fileExtension)) {
 										// Quick Time Player
 										$fileMediaType = 'QUICKTIME';
-										$fileIcon = './../images/icon/video.png';
 									} else if (eregi($mp3Type, $fileExtension)) {
 										// Quick Time Sound
 										$fileMediaType = 'MP3';
-										$fileIcon = './../images/icon/music.png';
 									} else if (eregi($realplayerType, $fileExtension)) {
 										// RealPlayer
 										$fileMediaType = 'REALPLAYER';
-										$fileIcon = './../images/icon/video.png';
 									} else if (eregi($flashType, $fileExtension)) {
 										// Flash
 										$fileMediaType = 'FLASH';
-										$fileIcon = './../images/icon/page_white_actionscript.png';
 									} else {
 										$fileMediaType = 'ETC';
-										$fileIcon = "";
 									}
 									// get file infomation
 									$stat = stat($filesUploadPath .'/' .$file);
 									// view file infofation
 									$fileArray['file'] = $this->setSortkey. '/'. $file ;
-									$fileArray['file_name']   = $file;
-									$fileArray['file_url']    = $this->currentPath .'/' .$file ;
-									$fileArray['file_size']   = FileSystemUtilty::bytes($stat['size']);
-									$fileArray['file_statsize']   = $stat['size'];
-									$fileArray['file_media']   = $fileMediaType ;
-									$fileArray['file_type']   = $fileExtension ;
-									$fileArray['time_stamp']  = filemtime($filesUploadPath .'/' .$file);
-									$fileArray['icon']        = $fileIcon;
-									$fileArray['file_info']  = $imageInfo;
-									$fileArray['image_thumb'] = $imageThumb;
+									$fileArray['file_name']     = $file;
+									$fileArray['file_url']      = $this->currentPath .'/' .$file ;
+									$fileArray['file_size']     = FileSystemUtilty::bytes($stat['size']);
+									$fileArray['file_statsize'] = $stat['size'];
+									$fileArray['file_media']    = $fileMediaType ;
+									$fileArray['file_type']     = $fileExtension ;
+									$fileArray['time_stamp']    = filemtime($filesUploadPath .'/' .$file);
+									$fileArray['file_info']     = $imageInfo;
+									$fileArray['image_thumb']   = $imageThumb;
 									$this->filesList[] = & $fileArray;
 								}
 							}
@@ -359,7 +328,7 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 					}
 					// clear for loop
 					$imageThumb = false;
-					$fileMediaType = $fileIcon = $imageInfo = '';
+					$fileMediaType = $imageInfo = '';
 					unset($fileArray);
 					unset($dirArray);
 				}
@@ -373,9 +342,13 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 		// file count
 		$this->filesCount = count($this->filesList);
 
+		// making to virtual page navi
+		// virtual page navi is file list array control
+
 		// page navi
 		$this->mFilter =& $this->_getFilterForm();
 		$this->mFilter->fetch();
+
 		// get sort array
 		foreach ($this->filesList as $key => $row) {
 		    $file_name[$key]  = $row['file_name'];
@@ -427,19 +400,21 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 		}
 
 		// add moduleHeader # gigamaster 2009-06-29
-		$this->moduleHeader .='<script type="text/javascript" src="'. XOOPS_URL. '/common/js/jquery.js" ></script>'."\n";
-		$this->moduleHeader .='<link rel="stylesheet" type="text/css" href="'. XOOPS_URL. '/common/prettyPhoto/css/prettyPhoto.css" />'."\n";
-		$this->moduleHeader .='<script type="text/javascript" src="'. XOOPS_URL. '/common/prettyPhoto/js/jquery.prettyPhoto.js"></script>'."\n";
+		// $this->moduleHeader .='<script type="text/javascript" src="'. XOOPS_URL. '/common/js/jquery.js" ></script>'."\n";
+		// $this->moduleHeader .='<link rel="stylesheet" type="text/css" href="'. XOOPS_URL. '/common/prettyPhoto/css/prettyPhoto.css" />'."\n";
+		// $this->moduleHeader .='<script type="text/javascript" src="'. XOOPS_URL. '/common/prettyPhoto/js/jquery.prettyPhoto.js"></script>'."\n";
+		// add moduleHeader
+		$this->moduleHeader.= "<script type=\"text/javascript\" src=\"" . XOOPS_URL ."/modules/fileManager/js/jquery-1.3.2.min.js\"></script>\n";
+		$this->moduleHeader.= "<script type=\"text/javascript\" src=\"" . XOOPS_URL ."/modules/fileManager/js/jquery.prettyPhoto.js\"></script>\n";
+		$this->moduleHeader.= "<link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"" .  XOOPS_URL ."/modules/fileManager/js/css/prettyPhoto.css\" />\n";
+
 		return CONTENTS_FRAME_VIEW_INDEX;
 	}
 
 	function executeViewIndex(&$controller, &$xoopsUser, &$render)
 	{
-		// for menu
-
 		// Initial setting
 		$root =& XCube_Root::getSingleton();
-		$this->menuDescription = _AD_FILEMANAGER_MAIN_DSC ;
 
 		// set template
 		$render->setTemplateName('fileManager_index.html');

@@ -1,8 +1,8 @@
 <?php
 /**
- * XCL Code Generator ver 0.5
- * @package sitemap
- * @file /admin/forms/AddFolderAdminEditForm.class.php 2008-12-10 23:00
+ * Filemaneger
+ * (C)2007-2009 BeaBo Japan by Hiroki Seike
+ * http://beabo.net/
  **/
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
@@ -55,7 +55,6 @@ class FileManager_AddFolderAdminForm extends XCube_ActionForm
 
 	function update(&$obj)
 	{
-//		$obj->set('foldername', $this->get('foldername'));
 		$this->set('hello',1);
 	}
 }

@@ -1,0 +1,46 @@
+<div class="adminnavi">
+    <a href="./index.php"><{$module_info.module_name}></a>
+<{foreach from=$bread_crumbs item="item" name="item_loop"}>
+&raquo;&raquo;
+<{if $item.url}>
+<span><a href="<{$item.url}>"><{$item.name}></a></span>
+<{else}>
+<span class="adminnaviTitle"><{$item.name}></span>
+<{/if}>
+<{/foreach}>
+</div>
+
+
+
+<{if $confirm_mssage}>
+	<div class="confirm">
+	<{$smarty.const._AD_FILEMANAGER_CHECK_NG}>
+	<{$confirm_mssage}></div>
+<{else}>
+	<div class="tips"><{$smarty.const._AD_FILEMANAGER_CHECK_OK}></div>
+<{/if}>
+
+
+<b><{$smarty.const._AD_FILEMANAGER_CHECK_DSC_1}></b><br />
+<br />
+<{$smarty.const._AD_FILEMANAGER_CHECK_DSC_2}><br />
+<br />
+
+<{$smarty.const._AD_FILEMANAGER_HTACCESS_PATH}><br />
+
+<{$xoops_url}>/common/SWFUpload/.htaccess<br />
+
+<br />
+<{$smarty.const._AD_FILEMANAGER_HTACCESS_DSC_1}><br />
+<form name="embed_Form" id="embed_Form">
+<textarea name="embed_link" rows="6" cols="50" readonly="true" size="60" onClick="javascript:document.embed_Form.embed_link.focus();document.embed_Form.embed_link.select();">
+<Files ~ "^.(htaccess)$">
+deny from all
+</Files>
+order deny,allow
+allow from <{$ip_address}>
+deny from all
+</textarea>
+</form>
+<{$smarty.const._AD_FILEMANAGER_HTACCESS_DSC_2}><br />
+

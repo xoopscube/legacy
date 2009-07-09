@@ -1,4 +1,10 @@
 <?php
+/**
+ * Filemaneger
+ * (C)2007-2009 BeaBo Japan by Hiroki Seike
+ * http://beabo.net/
+ **/
+
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
 class Ffmpeg {
@@ -55,13 +61,19 @@ class Ffmpeg {
 				ini_set('max_execution_time', 3600);
 				// file convert options
 				system("ffmpeg -i ". $captureFilePath. " -ar 44100 -s qvga -y ". $convertFileName);  // qvga - defult
-				// etc options
+
+				// you need chenge your server settings and ffmpeg version
+				// etc options(saample)
+				// chenge to your server
 				// system("ffmpeg -i ". $captureFilePath. " -ar 44100 -b 1150k -s vga -y ". $convertFileName);  // vga bitrate 128k
 				// system("ffmpeg -i ". $captureFilePath. " -ar 44100 -b 128k -s vga -y ". $convertFileName);   // vga bitrate 128k
 				// system("ffmpeg -i ". $captureFilePath. " -ar 44100 -s vga -y ". $convertFileName);           // vga
 				// system("ffmpeg -i ". $captureFilePath. " -ar 44100 -s qvga -y ". $convertFileName ." > /dev/null &");;  // qvga
+
 				// image capture
-				system("ffmpeg -i ". $convertFileName. " -ss ". $mConfig['ffmpegcapture']. " -vcodec mjpeg -vframes 1 -an -f rawvideo -y ". $imageFileName);
+				// You need convrt movie file to capture image
+				// system("ffmpeg -i ". $convertFileName. " -ss ". $mConfig['ffmpegcapture']. " -vcodec mjpeg -vframes 1 -an -f rawvideo -y ". $imageFileName);
+
 				return true;
 			} else {
 				// error : file extension
@@ -80,8 +92,8 @@ class Ffmpeg {
 			return false;
 		}
 		// $movie file extension white list
-		// you need chenge your server's settings
-		$movieTypeWhitelist = "flv|avi|mwv|mov|MOV|mpg|qt|mov|3gp|3gp2|mp4"; 
+		// ffmpegmoviefile sample is 'flv|avi|mwv|mov|mpg|qt|mov|3gp|3gp2|mp4'
+		$movieTypeWhitelist = $mConfig['ffmpegmoviefile']; 
 		$fileExtension = substr( strrchr( $fileName, "." ), 1);
 		if (eregi($movieTypeWhitelist, $fileExtension)) {
 			return true;
@@ -90,16 +102,16 @@ class Ffmpeg {
 	}
 
 	//  delete file extension
-	// $path : /var/www/html/uploads/elmm/akb48/AKB48-sukart_hirari.flv
-	// to    : /var/www/html/uploads/elmm/akb48/AKB48-sukart_hirari
+	// $path : /var/www/html/uploads/akb48/AKB48-sukart_hirari.flv
+	// to    : /var/www/html/uploads/akb48/AKB48-sukart_hirari
 	function getBaseFile($path) {
 		$fileNameCount = strlen($path) - strlen(strrchr( $path, "." )) ;
 		return  substr($path, 0, $fileNameCount); 
 	}
 
 	// get path
-	// $path : /var/www/html/uploads/elmm/akb48/AKB48-sukart_hirari.flv
-	// to    : /var/www/html/uploads/elmm/akb48/
+	// $path : /var/www/html/uploads/akb48/AKB48-sukart_hirari.flv
+	// to    : /var/www/html/uploads/akb48/
 	function getBasePath($path) {
 		$fileNameCount = strlen($path) - strlen(strrchr( $path, "/" )) +1 ;
 		return  substr($path, 0, $fileNameCount); 

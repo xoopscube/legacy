@@ -1,8 +1,10 @@
 <?php
-/*=====================================================================
-  (C)2007 BeaBo Japan by Hiroki Seike
-  http://beabo.net/
-=====================================================================*/
+/**
+ * Filemaneger
+ * (C)2007-2009 BeaBo Japan by Hiroki Seike
+ * http://beabo.net/
+ **/
+
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
 require_once XOOPS_MODULE_PATH. '/fileManager/class/AbstractEditAction.class.php';
@@ -11,13 +13,11 @@ require_once XOOPS_MODULE_PATH. '/fileManager/admin/include/functions.php';
 
 class FileManager_DelFolderAction extends FileManager_AbstractEditAction
 {
-
 	var $folderName = null;
 	var $isDelete = true;
 	// for menu
 	var $breadCrumbs = array();
 	var $confirmMssage = null;
-	var $moduleHeader = null;
 
 	// change dirctory name
 	function _getPath()
@@ -88,11 +88,6 @@ class FileManager_DelFolderAction extends FileManager_AbstractEditAction
 
 	function executeViewInput(&$controller, &$xoopsUser, &$render)
 	{
-
-		$root =& XCube_Root::getSingleton();
-
-		// for menu
-
 		// Initial setting
 		$this->breadCrumbs[]  = array('name' => _AD_FILEMANAGER_DELFOLDER ) ;
 		$this->menuDescription = _AD_FILEMANAGER_DELFOLDER_DSC ;
@@ -102,15 +97,10 @@ class FileManager_DelFolderAction extends FileManager_AbstractEditAction
 
 		// module info ( /admin/include/functions.php )
 		$render->setAttribute('module_info'   , getModuleInfo());
-
-		// haeder menu
-		$render->setAttribute('moduleHeader'  , $this->moduleHeader);
 		$render->setAttribute('bread_crumbs'  , $this->breadCrumbs);
-
 		$render->setAttribute('confirm_mssage', $this->confirmMssage);
 		$render->setAttribute('actionForm'    , $this->mActionForm);
 		$render->setAttribute('is_delete'     , $this->isDelete);
-
 	}
 
 	// Over ride
@@ -126,7 +116,6 @@ class FileManager_DelFolderAction extends FileManager_AbstractEditAction
 
 		if (is_dir($folderPath)) {
 			$dirPermission = fileperms($folderPath) ;
-			
 			// dirctory  permission is not 777
 			if($dirPermission !='16895') {
 				return CONTENTS_FRAME_VIEW_ERROR;
@@ -156,10 +145,6 @@ class FileManager_DelFolderAction extends FileManager_AbstractEditAction
 		$controller->executeForward('index.php');
 	}
 
-	function _doExecute()
-	{
-		//return $this->mObjectHandler->delete($this->mObject);
-	}
 
 }
 ?>

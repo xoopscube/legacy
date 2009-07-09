@@ -1,40 +1,56 @@
 <?php
+/**
+ * Filemaneger
+ * (C)2007-2009 BeaBo Japan by Hiroki Seike
+ * http://beabo.net/
+ **/
+
 require_once "../../../../mainfile.php";
 
-// get movie file name
+$isPlay = false;
+// Check file
 if (isset($_GET["file"])) {
-	$playfile = htmlspecialchars(urldecode($_GET["file"]), ENT_QUOTES);
-} else {
-	$playfile = '';
+	$fileName = htmlspecialchars(urldecode($_GET["file"]), ENT_QUOTES);
+	$playfile = XOOPS_UPLOAD_URL. $fileName;
+	$filePath = XOOPS_UPLOAD_PATH. $fileName;
+	$filename = htmlspecialchars(urldecode($_GET["name"]), ENT_QUOTES);
+	$isPlay = true;
 }
 
-// make image file name
-$fileNameCount = strlen($playfile) - strlen(strrchr( $playfile, "." )) ;
-$image_file = substr($playfile, 0, $fileNameCount). ".jpg"; 
-
-// preview fimage file check
-if (file_exists(XOOPS_UPLOAD_PATH . $image_file)) {
-	$view_image = true;
-} else {
-	$view_image = false;
-}
+if ($isPlay) {
 ?>
-
 <html>
 <head>
+<script src="../../../../common/flowplayer/flowplayer-3.1.1.min.js"></script> 
 </head>
 <body>
 <center>
-<div id="container_view"><a href="http://www.macromedia.com/go/getflashplayer">Get the Flash Player</a> to see this player.</div>
-<script type="text/javascript" src="../../../../common/JWFLVmediaplayer/swfobject.js"></script>
+<!-- setup player container -->
+<div id="player" style="width:425px;height:300px"></div>
+<!-- initialize flowplayer -->
 <script type="text/javascript">
-    var s1 = new SWFObject("../../../../common/JWFLVmediaplayer/mediaplayer.swf","mediaplayer","320","240","7");
-    s1.addParam("allowfullscreen","true");
-    s1.addVariable("width","320");
-    s1.addVariable("height","240");
-<?php if($view_image) echo '    s1.addVariable("image","'. XOOPS_UPLOAD_URL .$image_file. '");';?>
-    s1.addVariable("file","<?php echo  XOOPS_UPLOAD_URL .$playfile ?>");
-    s1.write("container_view");
+// Flowplayer installation with Flashembed parameters
+flowplayer("player", {
+	// Flash component
+	src: "../../../../common/flowplayer/flowplayer-3.1.1.swf",
+	// we need at least this version
+	version: [9, 115],
+	// older versions will see a custom message
+	onFail: function()  {
+		document.getElementById("info").innerHTML =
+			"You need the latest Flash version to view MP4 movies. " +
+			"Your version is " + this.getVersion()
+		;
+	}
+}, {
+	// Play file
+	clip: "<?php echo $playfile ?>"
+});
 </script>
 </center>
 </body>
+<?php
+} else {
+	echo _AD_FILEMANAGER_NOTFOUND;
+}
+?>

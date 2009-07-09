@@ -3,14 +3,13 @@
 <h5>Terms of use </h5>
 <ul>
   <li>This module is XOOPS Cube Legacy only.</li>
-  <li>The module is released under a <a href='http://creativecommons.org/licenses/by-nc-sa/3.0/'>non-commercial license</a>.</li>
   <li>The author is not responsible for any damage caused to the user running the module. </li>
 </ul>
 
 <h4>Overview</h4>
 <ul>
-  <li>Support to upload multiple files at once using the SWF Uploader.</li>
-  <li>Support to create and delete folders.</li>
+  <li>Support multiple files upload at once using the SWF Uploader.</li>
+  <li>Support directory management, create and delete folders.</li>
   <li>Some functions may not run due to the server environment.</li>
 </ul>
 
@@ -38,6 +37,13 @@ After install FileManager module, configure its default preferences and users pe
   <li>Debugging for uploader <br />Enable debug screen of SWFUpload to report and help to fix uploader.<br />By default this option is set to "No". </li>
   <li>Upload directory management <br />Allow or not webmasters to create and delete folders under directory: / uploads /<br />By default this option is set to "No".</li>
 </ul>
+<p><b>After the set Preferences, please check the Setting Check for left block into menu.</b></p>
+<p><font color="#F00000">
+Setting Check is check the ibraries are using files.<br />
+Upload SWFUpload used, can be accessed from outside.Please set to htaccess.<br />
+Setting Check is maked allow access your current IP address. Please change to suit your server environment.<br />
+When you want to use it with plural managers, add to .htaccess for IP address.<br />
+</font></p>
 
 <h4>Usage</h4>
 
@@ -51,7 +57,7 @@ After install FileManager module, configure its default preferences and users pe
 <p>Uploading files can be done under the following permissions : 0755,0775,0777</p>
 
 
-<h5>List of actions and folder permissions </h5>
+<h5>List of actions and folder permissions</h5>
 <p>This table shows which actions are allowed unde specific folder permissions. <br />
 <i>Note that permissions can be accidentally changed by FTP clients</i>.</p>
 <table border="1" cellpadding="5" class="outer">
@@ -114,16 +120,18 @@ If FFmpeg Library is installed you can crop images and convert video on server s
 </ul>
 
 <h4>Licenses of libraries</h4>
+<p>FileManager is released under <a href='http://www.gnu.org/licenses/gpl.html'>GPL</a>license.</p>
 <p>
 <font color="#F00000">FileManager is built with various libraries. Each library is released with a different license.<br />
 To avoid any issue related to abuse or violation of license terms, visit the following links please.</font>
 </p>
 <ul>
-  <li>SWFUpload<br /><a href='http://swfupload.org/'>SWFUpload</a> is used to upload files.<br />License: <a href='http://www.opensource.org/licenses/mit-license.php'>MIT License</a></li>
-  <li>prettyPhoto<br /><a href='http://www.no-margin-for-errors.com/projects/prettyPhoto-jquery-lightbox-clone/'>prettyPhoto</a> is used as file viewer.<br />
-  License: <a href='http://creativecommons.org/licenses/by/2.5/'>Creative Commons Attribution 2.5 License</a></li>
-  <li>JW FLV Player <br /><a href='http://www.longtailvideo.com/players/jw-flv-player/'>JW FLV Player</a> is used as FLV file viewer.<br />
-  License: <a href='http://creativecommons.org/licenses/by-nc-sa/3.0/'>non-commercial license</a><br />
+  <li>SWFUpload<br /><a href="http://swfupload.org/">SWFUpload</a> is used to upload files.<br />License: <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></li>
+  <li>jQuery<br /><a href="http://jquery.com/">jQuery</a><br />License: <a href="http://docs.jquery.com/License">MIT and GPL</a></li>
+  <li>prettyPhoto<br /><a href="http://www.no-margin-for-errors.com/projects/prettyPhoto-jquery-lightbox-clone/">prettyPhoto</a><br />
+  License: <a href="http://creativecommons.org/licenses/by/2.5/">Creative Commons Attribution 2.5</a></li>
+  <li>Flowplayer <br /><a href="http://flowplayer.org/">Flowplayer</a> is used as FLV file viewer.<br />
+  License: <a href="http://flowplayer.org/download/license_gpl.html">GPL 3</a><br />
   * If you have any click and Adsense on your site, you must purchase a license.
   </li>
 </ul>
@@ -136,23 +144,28 @@ To avoid any issue related to abuse or violation of license terms, visit the fol
   FFmpeg action, which can handle video from the server side.<br />
   </li>
   <li>0.95<br />
-  Changee User Interface.<br />
-  Delete tab menu sysytem<br />
+  Change User Interface.<br />
+  Delete tab menu system<br />
   </li>
   <li>0.96<br />
   Change SWFUpload and JW FLV Player using a common folder.<br />
   </li>
-</ul>
-
-
-<h4>Schedule</h4>
-<ul>
-  <li>1.0<br />Final version. Easily add and call upload function from other modules.</li>
-  <li>1.1<br />Trash feature, in case you accidentally delete a file, you can recover it.</li>
+  <li>0.97<br />
+  Change to Flowplayer and prettyPhoto.<br />
+  Change the image files and modified screen design.<br />
+  If using SWFUpload, an upload screen was displayed changed to publish a new session.<br />
+  Add libraries files check.<br />
+  </li>
+  <li>0.98<br />
+  SWFUpload specify a path to create the sample of htaccess<br />
+  Add a token to the database. The following update is required for version 0.98<br />
+  Upload to check SQL and save tokens to prevent unauthorized access during upload.<br />
+  Upload without htaccess is not recommended!
+  </li>
 </ul>
 
 <h4>Author</h4>
 <ul>
   <li>Mail<br />hiro1173.seike@gmail.com</li>
-  <li>Web<br />http://beabo.net<br />http://beabo.dip.jp</li>
+  <li>Web<br />http://beabo.net<br />http://beabo.dip.jp<br />http://code.google.com/p/hiro1173/</li>
 </ul>

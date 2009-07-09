@@ -1,8 +1,10 @@
 <?php
-/*=====================================================================
-	(C)2007 BeaBo Japan by Hiroki Seike
-	http://beabo.net/
-=====================================================================*/
+/**
+ * Filemaneger
+ * (C)2007-2009 BeaBo Japan by Hiroki Seike
+ * http://beabo.net/
+ **/
+
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
 // template header module infomation
@@ -143,8 +145,8 @@ Class FileSystemUtilty {
 
 	// get folder List
 	// 
-	// 引数 $dirpath は、中身を見たいディレクトリの相対パスまたは絶対パス。お尻にスラッシュは不要。
-	// $invisible : check invisible files (不可視ファイルをリストに含める)
+	//  $dirpath ?AgfBNg??pX???pXBK?XbV?svB
+	// $invisible : check invisible files (s?t@CXg???)
 	function getDirlLst($dirpath='' , $invisible = true ){
 		if ( strcmp($dirpath,'')==0 ) {
 			$file_list = array();

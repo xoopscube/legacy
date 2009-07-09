@@ -1,8 +1,9 @@
 <?php
-/*=====================================================================
-  (C)2007 BeaBo Japan by Hiroki Seike
-  http://beabo.net/
-=====================================================================*/
+/**
+ * Filemaneger
+ * (C)2007-2009 BeaBo Japan by Hiroki Seike
+ * http://beabo.net/
+ **/
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
@@ -14,11 +15,8 @@ class FileManager_AbstractFilterForm
 	var $mNavi = null;
 
 	function FileManager_AbstractFilterForm(&$navi)
-//	function FileManager_AbstractFilterForm(&$navi, &$handler)
 	{
 		$this->mNavi =& $navi;
-//		$this->_mHandler =& $handler;
-//		$this->_mCriteria =& new CriteriaCompo();
 		$this->mNavi->mGetTotalItems->add(array(&$this, 'getTotalItems'));
 	}
 

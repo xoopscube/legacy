@@ -1,0 +1,103 @@
+<{* --- /admin/templates/admin_index.html --- *}>
+<{* --- header --- *}>
+<{include file="file:$xoops_rootpath/modules/fileManager/admin/templates/fileManager_header.html"}>
+
+<{* --- java script & css --- *}>
+<link rel="stylesheet" type="text/css" href="<{$xoops_url}>/common/SWFUpload/css/xupload.css" />
+<script type="text/javascript" src="<{$xoops_url}>/common/SWFUpload/swfupload.js"></script>
+<script type="text/javascript" src="<{$xoops_url}>/common/SWFUpload/js/swfupload.swfobject.js"></script>
+<script type="text/javascript" src="<{$xoops_url}>/common/SWFUpload/js/swfupload.queue.js"></script>
+<script type="text/javascript" src="<{$xoops_url}>/common/SWFUpload/js/fileprogress.js"></script>
+<script type="text/javascript" src="<{$xoops_url}>/common/SWFUpload/js/handlers.js"></script>
+<script type="text/javascript" src="<{$xoops_url}>/common/SWFUpload/plugins/swfupload.cookies.js"></script>
+
+<script type="text/javascript">
+var swfu;
+
+SWFUpload.onload = function () {
+	var settings = {
+		flash_url :  "<{$xoops_url}>/common/SWFUpload/swfupload.swf",
+		// set swfupload.swf is vercal path
+		upload_url: "<{$xoops_url}>/common/SWFUpload/xupload.php?path=<{$default_pass}>",	// Relative to the SWF file
+		post_params: {
+			"PHPSESSID" : "NONE",
+			"HELLO-WORLD" : "Here I Am",
+			".what" : "OKAY"
+		},
+		file_size_limit : "100 MB",
+		file_types : "*.*",
+		file_types_description : "All Files",
+		file_upload_limit : 100,
+		file_queue_limit : 0,
+		custom_settings : {
+			progressTarget : "fsUploadProgress",
+			cancelButtonId : "btnCancel"
+		},
+		debug: <{$debug_mode}>,
+
+		// Button Settings
+		button_image_url : "<{$xoops_url}>/common/SWFUpload/images/XPButtonUploadText_61x22.png",
+		button_placeholder_id : "spanButtonPlaceholder",
+		button_width: 61,
+		button_height: 22,
+
+		// The event handler functions are defined in handlers.js
+		swfupload_loaded_handler : swfUploadLoaded,
+		file_queued_handler : fileQueued,
+		file_queue_error_handler : fileQueueError,
+		file_dialog_complete_handler : fileDialogComplete,
+		upload_start_handler : uploadStart,
+		upload_progress_handler : uploadProgress,
+		upload_error_handler : uploadError,
+		upload_success_handler : uploadSuccess,
+		upload_complete_handler : uploadComplete,
+		queue_complete_handler : queueComplete,	// Queue plugin event
+		
+		// SWFObject settings
+		minimum_flash_version : "9.0.28",
+		swfupload_pre_load_handler : swfUploadPreLoad,
+		swfupload_load_failed_handler : swfUploadLoadFailed
+	};
+
+	swfu = new SWFUpload(settings);
+}
+
+</script>
+
+<{* ---
+<p><a href='index.php?path=<{$upload_path}>'><{$upload_path}></a><p>
+--- *}>
+
+<ul class='toptab'>
+  <li><a href='index.php?path=<{$upload_path}>'><{$smarty.const._AD_FILEMANAGER_RETURN}></a></li>
+</ul>
+<br />
+
+<{* --- files upload --- *}>
+<div id="content">
+	<form id="form1" action="index.php?action=Upload" method="post" enctype="multipart/form-data">
+		<div id="divSWFUploadUI">
+			<div class="fieldset  flash" id="fsUploadProgress">
+			<span class="legend"><{$smarty.const._AD_FILEMANAGER_SWF_UPLOAD_QUEUE}></span>
+			</div>
+			<p id="divStatus">0 Files Uploaded</p>
+			<p>
+				<span id="spanButtonPlaceholder"></span>
+				<input id="btnCancel" type="button" value="<{$smarty.const._AD_FILEMANAGER_SWF_UPLOAD_CNACEL}>" disabled="disabled" style="margin-left: 2px; height: 22px; font-size: 8pt;" />
+				<br />
+			</p>
+		</div>
+		<noscript style="background-color: #FFFF66; border-top: solid 4px #FF9966; border-bottom: solid 4px #FF9966; margin: 10px 25px; padding: 10px 15px;">
+			<{$smarty.const._AD_FILEMANAGER_SWF_COULD_NOT_LOAD}>
+		</noscript>
+		<div id="divLoadingContent" class="content" style="background-color: #FFFF66; border-top: solid 4px #FF9966; border-bottom: solid 4px #FF9966; margin: 10px 25px; padding: 10px 15px; display: none;">
+			<{$smarty.const._AD_FILEMANAGER_SWF_LOADING}>
+		</div>
+		<div id="divLongLoading" class="content" style="background-color: #FFFF66; border-top: solid 4px #FF9966; border-bottom: solid 4px #FF9966; margin: 10px 25px; padding: 10px 15px; display: none;">
+			<{$smarty.const._AD_FILEMANAGER_SWF_LOAD_HAS_FAILED}>
+		</div>
+		<div id="divAlternateContent" class="content" style="background-color: #FFFF66; border-top: solid 4px #FF9966; border-bottom: solid 4px #FF9966; margin: 10px 25px; padding: 10px 15px; display: none;">
+			<{$smarty.const._AD_FILEMANAGER_SWF_INSTALL_FLASH}>
+		</div>
+	</form>
+</div>
