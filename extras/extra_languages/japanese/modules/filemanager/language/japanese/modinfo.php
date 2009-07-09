@@ -1,50 +1,57 @@
 <?php
-/*=====================================================================
-  (C)2007 BeaBo Japan by Hiroki Seike
-  http://beabo.net/
-=====================================================================*/
-define('_MI_FILEMANAGER_NAME', "ファイルマネ〖ジャ〖");
-define('_MI_FILEMANAGER_DESC', "uploadsフォルダのファイル瓷妄とファイルのアップロ〖ドを词帽に");
-define('_MI_FILEMANAGER_UPDATE', 'アップデ〖ト');
+/**
+ * Filemaneger
+ * (C)2007-2009 BeaBo Japan by Hiroki Seike
+ * http://beabo.net/
+ **/
+
+define('_MI_FILEMANAGER_NAME', "僼傽僀儖儅僱乕僕儍乕");
+define('_MI_FILEMANAGER_DESC', "uploads僼僅儖僟偺僼傽僀儖娗棟偲僼傽僀儖偺傾僢僾儘乕僪傪娙扨偵");
+define('_MI_FILEMANAGER_UPDATE', '傾僢僾僨乕僩');
 
 // --------------------------------------------------------
 // Names of admin menu items
 // --------------------------------------------------------
-define('_MI_FILEMANAGER_MAIN', "リスト");
-define('_MI_FILEMANAGER_MAIN_DSC', "アップロ〖ドフォルダのファイルリスト山绩");
-define('_MI_FILEMANAGER_UPLOAD', "アップロ〖ド");
-define('_MI_FILEMANAGER_UPLOAD_DSC', "ファイルのアップロ〖ドを乖います");
-define('_MI_FILEMANAGER_FOLDER', "フォルダの拎侯");
-define('_MI_FILEMANAGER_FOLDER_DSC', "フォルダの纳裁ˇ猴近を乖います。");
-define('_MI_FILEMANAGER_OPTION', "オプション");
-define('_MI_FILEMANAGER_OPTION_DSC', "オプションの肋年を乖います");
+define('_MI_FILEMANAGER_MAIN', "僼傽僀儖儕僗僩");
+define('_MI_FILEMANAGER_MAIN_DSC', "傾僢僾儘乕僪僼僅儖僟偺僼傽僀儖儕僗僩昞帵");
+define('_MI_FILEMANAGER_UPLOAD', "傾僢僾儘乕僪");
+define('_MI_FILEMANAGER_UPLOAD_DSC', "僼傽僀儖偺傾僢僾儘乕僪傪峴偄傑偡");
+define('_MI_FILEMANAGER_FOLDER', "僼僅儖僟偺憖嶌");
+define('_MI_FILEMANAGER_FOLDER_DSC', "僼僅儖僟偺捛壛丒嶍彍傪峴偄傑偡丅");
+define('_MI_FILEMANAGER_CHECK', "摦嶌娐嫬偺妋擣");
+define('_MI_FILEMANAGER_CHECK_DSC', "僼傽僀儖儅僱乕僕儍乕偺愝掕偐傜摦嶌娐嫬傪僠僃僢僋偟傑偡丅");
 
 // --------------------------------------------------------
-// PreferenceEdit
+// Preference Edit
 // --------------------------------------------------------
-define('_MI_FILEMANAGER_PATH',"アップロ〖ドするデフォルトのパス");
-define('_MI_FILEMANAGER_PATH_DSC',"アップロ〖ドのパスを回年しない眷圭にアップロ〖ドするパス叹を回年します。肋弥URL/uploads/ が筛洁になります。<br />毋¨temp と回年した眷圭、肋弥URL/uploads/temp/ が筛洁のアップロ〖ド黎になります。 ");
-define('_MI_FILEMANAGER_DIRHANDLE',"フォルダの拎侯をサポ〖ト");
-define('_MI_FILEMANAGER_DIRHANDLE_DSC',"≈はい∽を联ぶとフォルダの拎侯を材墙にします。フォルダの拎侯が叫丸るのは、アクセス涪が777の眷圭のみになります。");
-define('_MI_FILEMANAGER_THUMBSIZE',"サムネイルサイズ");
-define('_MI_FILEMANAGER_THUMBSIZE_DSC',"ファイルリスト山绩箕のサムネイルサイズを回年します。帽疤はピクセルです。");
-define('_MI_FILEMANAGER_DEBUGON',"アップロ〖ダ〖のデバックをオン");
-define('_MI_FILEMANAGER_DEBUGON_DSC',"SWFアップロ〖ドのデバックを材墙にします。");
-define('_MI_FILEMANAGER_XOOPSLOCK',"システム茶咙の润山绩");
-define('_MI_FILEMANAGER_XOOPSLOCK_DSC',"システムで蝗っている茶咙を山绩しない。イメ〖ジマネ〖ジャ〖ˇアバタ〖ˇ撮アイコンを山绩しません。");
-define('_MI_FILEMANAGER_EXTENSIONS',"アップロ〖ド材墙なファイルの橙磨灰");
-define('_MI_FILEMANAGER_EXTENSIONS_DSC',"アップロ〖ドを钓材するファイルの橙磨灰を '|' 惰磊りで回年します。橙磨灰は、链て井矢机で掐蜗して布さい。");
+define('_MI_FILEMANAGER_PATH',"傾僢僾儘乕僪偡傞僨僼僅儖僩偺僷僗");
+define('_MI_FILEMANAGER_PATH_DSC',"傾僢僾儘乕僪偺僷僗傪巜掕偟側偄応崌偵傾僢僾儘乕僪偡傞僷僗柤傪巜掕偟傑偡丅<br />愝抲URL/uploads/ 偑昗弨偵側傝傑偡丅<br />椺丗temp 偲巜掕偟偨応崌丄愝抲URL/uploads/temp/ 偑昗弨偺傾僢僾儘乕僪愭偵側傝傑偡丅 ");
+define('_MI_FILEMANAGER_DIRHANDLE',"僼僅儖僟偺憖嶌傪僒億乕僩");
+define('_MI_FILEMANAGER_DIRHANDLE_DSC',"乽偼偄乿傪慖傇偲僼僅儖僟偺憖嶌傪壜擻偵偟傑偡丅僼僅儖僟偺憖嶌偑弌棃傞偺偼丄僼僅儖僟偺傾僋僙僗尃偑777偺応崌偺傒偵桳岠偱偡丅");
+define('_MI_FILEMANAGER_THUMBSIZE',"僒儉僱僀儖僒僀僘");
+define('_MI_FILEMANAGER_THUMBSIZE_DSC',"僼傽僀儖儕僗僩昞帵帪偺僒儉僱僀儖僒僀僘傪巜掕偟傑偡丅扨埵偼僺僋僙儖偱偡丅");
+define('_MI_FILEMANAGER_DEBUGON',"傾僢僾儘乕僟乕偺僨僶僢僋傪僆儞");
+define('_MI_FILEMANAGER_DEBUGON_DSC',"SWF傾僢僾儘乕僪偺僨僶僢僋傪壜擻偵偟傑偡丅捠忢偼偄偄偊偱巊梡偟偰偔偩偝偄丅");
+define('_MI_FILEMANAGER_XOOPSLOCK',"僔僗僥儉夋憸偺旕昞帵");
+define('_MI_FILEMANAGER_XOOPSLOCK_DSC',"僔僗僥儉偱巊偭偰偄傞夋憸傪昞帵偟側偄丅僀儊乕僕儅僱乕僕儍乕丒傾僶僞乕丒婄傾僀僐儞傪昞帵偟傑偣傫丅");
+define('_MI_FILEMANAGER_EXTENSIONS',"傾僢僾儘乕僪壜擻側僼傽僀儖偺奼挘巕");
+define('_MI_FILEMANAGER_EXTENSIONS_DSC',"傾僢僾儘乕僪傪嫋壜偡傞僼傽僀儖偺奼挘巕傪 '|' 嬫愗傝偱巜掕偟傑偡丅奼挘巕偼丄慡偰彫暥帤偱擖椡偟偰壓偝偄丅<br />僨僼僅儖僩偼丄gif|jpg|jpeg|png|avi|mov|wmv|mp3|mp4|flv|doc|xls|ods|odt|pdf 偱偡丅");
 
-// reserved  options setting 
-define('_MI_FILEMANAGER_FUSE',"≮ffmpeg≯ffmpegを网脱する");
-define('_MI_FILEMANAGER_FUSE_DSC',"ffmpegを网脱する眷圭は、はいを联买して布さい。ffmpegは、サ〖バ〖娄が滦炳している涩妥があります。<br />お蝗いのサ〖バ〖に滦炳したバイナリを肋弥するか、ビルドして布さい。");
-define('_MI_FILEMANAGER_FPATH',"≮ffmpeg≯コマンド浮瑚パス");
-define('_MI_FILEMANAGER_FPATH_DSC',"ffmpegの悸乖ファイルへパスが奶っていない眷圭は、肋弥パスを回年します。<br />(毋: <tt>/usr/local/bin</tt><tt>:/usr/bin</tt>)");
-define('_MI_FILEMANAGER_FOPT',"≮ffmpeg≯オプション肋年");
-define('_MI_FILEMANAGER_FOPT_DSC',"ffmpegの肋年をより嘿かく回年が材墙になります。∈附バ〖ジョンでは蝗えません∷");
-define('_MI_FILEMANAGER_FCAPTURE',"≮ffmpeg≯スクリ〖ンショットの箕粗");
-define('_MI_FILEMANAGER_FCAPTURE_DSC',"瓢茶ファイルからスクリ〖ンショットを唬る箕粗を瓢茶の黎片からの箕粗∈擅∷を回年します。");
-define('_MI_FILEMANAGER_FCONVERT',"≮ffmpeg≯FLV恃垂の呵络サイズ");
-define('_MI_FILEMANAGER_FCONVERT_DSC',"瓢茶ファイルからFLV妨及の瓢茶へ恃垂する呵络のサイズを回年します。帽疤はMBです。");
+// ffmpeg Preference
+define('_MI_FILEMANAGER_FUSE',"亂ffmpeg亃ffmpeg傪棙梡偡傞");
+define('_MI_FILEMANAGER_FUSE_DSC',"ffmpeg傪棙梡偡傞応崌偼丄偼偄傪慖戰偟偰壓偝偄丅ffmpeg偼丄僒乕僶乕懁偑懳墳偟偰偄傞昁梫偑偁傝傑偡丅<br />偍巊偄偺僒乕僶乕偵懳墳偟偨僶僀僫儕傪愝抲偡傞偐丄價儖僪偟偰壓偝偄丅");
+define('_MI_FILEMANAGER_FPATH',"亂ffmpeg亃僐儅儞僪専嶕僷僗");
+define('_MI_FILEMANAGER_FPATH_DSC',"ffmpeg偺幚峴僼傽僀儖傊僷僗偑捠偭偰偄側偄応崌偼丄愝抲僷僗傪巜掕偟傑偡丅<br />(椺: <tt>/usr/local/bin</tt><tt>:/usr/bin</tt>)");
+define('_MI_FILEMANAGER_FCAPTURE',"亂ffmpeg亃僗僋儕乕儞僔儑僢僩偺帪娫");
+define('_MI_FILEMANAGER_FCAPTURE_DSC',"摦夋僼傽僀儖偐傜僗僋儕乕儞僔儑僢僩傪嶣傞帪娫傪摦夋偺愭摢偐傜偺帪娫乮昩乯傪巜掕偟傑偡丅");
+define('_MI_FILEMANAGER_FCONVERT',"亂ffmpeg亃FLV曄姺偺嵟戝僒僀僘");
+define('_MI_FILEMANAGER_FCONVERT_DSC',"摦夋僼傽僀儖偐傜FLV宍幃偺摦夋傊曄姺偡傞嵟戝偺僒僀僘傪巜掕偟傑偡丅扨埵偼MB偱偡丅");
+define('_MI_FILEMANAGER_MULTIUPLOAD',"儅儖僠傾僢僾儘乕僟乕傪棙梡偡傞");
+define('_MI_FILEMANAGER_MULTIUPLOAD_DSC',"暋悢僼傽僀儖傪堦搙偵傾僢僾儘乕僪偡傞曽朄偲傂偲偮偺僼傽僀儖偛偲偵傾僢僾儘乕僪傪峴偆曽幃傪慖戰偱偒傑偡丅");
+define('_MI_FILEMANAGER_MULTIUPLOAD_0',"儅儖僠傾僢僾儘乕僟乕傪棙梡偡傞");
+define('_MI_FILEMANAGER_MULTIUPLOAD_1',"僼傽僀儖偛偲偵傾僢僾儘乕僪偡傞");
+define('_MI_FILEMANAGER_FMOVIEFILE',"亂ffmpeg亃FLV曄姺偺僼傽僀儖宍幃");
+define('_MI_FILEMANAGER_FMOVIEFILE_DSC',"FLV曄姺壜擻側摦夋僼傽僀儖偺奼挘巕傪 '|' 嬫愗傝偱巜掕偟傑偡丅奼挘巕偼丄慡偰彫暥帤偱擖椡偟偰壓偝偄丅<br />偍巊偄偺ffmpeg偵傛偭偰曄姺弌棃傞僼傽僀儖宍幃偑堎側傝傑偡丅<br />僨僼僅儖僩偼丄flv|avi|mwv|mov|mpg|qt|mov|3gp|3gp2|mp4 偱偡丅");
+
 
 ?>

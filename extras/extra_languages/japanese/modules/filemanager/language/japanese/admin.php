@@ -1,104 +1,101 @@
 <?php
-/*=====================================================================
-  (C)2007 BeaBo Japan by Hiroki Seike
-  http://beabo.net/
-=====================================================================*/
+/**
+ * Filemaneger
+ * (C)2007-2009 BeaBo Japan by Hiroki Seike
+ * http://beabo.net/
+ **/
 
 // --------------------------------------------------------
-// メイン
+// 儊僀儞
 // --------------------------------------------------------
-define('_AD_FILEMANAGER_MAIN_DSC', "附哼判峡されているメディアの办枉です。");
-define('_AD_FILEMANAGER_PATH_HOME', "ホ〖ム");
-define('_AD_FILEMANAGER_TYPE', "タイプ");
-define('_AD_FILEMANAGER_PARENT', "惧へ");
-define('_AD_FILEMANAGER_EDIT', "纳裁");
-define('_AD_FILEMANAGER_DEL', "猴近");
-define('_AD_FILEMANAGER_RETURN', "リストへ提る");
-define('_AD_FILEMANAGER_ACTION_DELETE', "&nbsp;猴近&nbsp;");
-define('_AD_FILEMANAGER_ACTION_DEFULT', "&nbsp;-----&nbsp; ");
-define('_AD_FILEMANAGER_ACTION_SUBMIT', "&nbsp;努脱&nbsp;");
-define('_AD_FILEMANAGER_FILE_TOTAL', "圭纷");
+define('_AD_FILEMANAGER_PATH_HOME', "儂乕儉");
+define('_AD_FILEMANAGER_TYPE', "僞僀僾");
+define('_AD_FILEMANAGER_EDIT', "捛壛");
+define('_AD_FILEMANAGER_DEL', "嶍彍");
+define('_AD_FILEMANAGER_RETURN', "儕僗僩傊栠傞");
+define('_AD_FILEMANAGER_ACTION_DELETE', "&nbsp;嶍彍");
+define('_AD_FILEMANAGER_ACTION_DEFULT', "&nbsp;-----");
+define('_AD_FILEMANAGER_ACTION_SUBMIT', "&nbsp;揔梡&nbsp;");
+define('_AD_FILEMANAGER_FILE_TOTAL', "崌寁");
 
 // --------------------------------------------------------
-// エラ〖メッセ〖ジ
+// 僄儔乕儊僢僙乕僕
 // --------------------------------------------------------
-define('_AD_FILEMANAGER_ERROR_REQUIRED', "{0}は涩ず掐蜗して布さい");
-define('_AD_FILEMANAGER_ERROR_PERMISSION', "アクセス涪嘎がありません。");
-define('_AD_FILEMANAGER_ERROR_FILE_PERMISSION', "%s は、アクセス涪嘎がありません。");
-define('_AD_FILEMANAGER_ERROR_DELETE_FOR_PERMISSION', "%s は、猴近するアクセス涪嘎がない百ファイルマネ〖ジャ〖から猴近できません。");
-define('_AD_FILEMANAGER_NOTFOUND', "ファイルが斧つかりません。");
+define('_AD_FILEMANAGER_ERROR_REQUIRED', "{0}偼昁偢擖椡偟偰壓偝偄");
+define('_AD_FILEMANAGER_ERROR_PERMISSION', "傾僋僙僗尃尷偑偁傝傑偣傫丅");
+define('_AD_FILEMANAGER_ERROR_FILE_PERMISSION', "%s 偼丄傾僋僙僗尃尷偑偁傝傑偣傫丅");
+define('_AD_FILEMANAGER_ERROR_DELETE_FOR_PERMISSION', "%s 偼丄嶍彍偡傞傾僋僙僗尃尷偑側偄堊僼傽僀儖儅僱乕僕儍乕偐傜嶍彍偱偒傑偣傫丅");
+define('_AD_FILEMANAGER_NOTFOUND', "僼傽僀儖偑尒偮偐傝傑偣傫丅");
+define('_AD_FILEMANAGER_ERROR_FILE_EXISTS', "'%s' 偑尒偮偐傝傑偣傫丅");
 
 // --------------------------------------------------------
-// アップロ〖ド
+// 傾僢僾儘乕僪
 // --------------------------------------------------------
-define('_AD_FILEMANAGER_PREVIEW', "プレビュ〖");
-define('_AD_FILEMANAGER_FILENAME', "ファイル");
-define('_AD_FILEMANAGER_SIZE', "サイズ");
-define('_AD_FILEMANAGER_DATE', "构糠泣箕");
-define('_AD_FILEMANAGER_UPLOAD', "アップロ〖ド");
-define('_AD_FILEMANAGER_UPLOAD_DSC', "Uploadをクリックして、ファイルを联买するとアップロ〖ドを倡幌します。");
-define('_AD_FILEMANAGER_UPLOAD_NOTACCESS',  "%s は、アップロ〖ドできません。FTPソフトなどで、パ〖ミッションを恃构して布さい。");
-define('_AD_FILEMANAGER_NOTFOUNDURL', "アップロ〖ドパスが斧つかりません。");
-define('_AD_FILEMANAGER_CONFIRMMSSAGE', "アップロ〖ド材墙なサイズは %sまでです。");
-define('_AD_FILEMANAGER_UPLOAD_PERMISSION', "アップロ〖ドパスが斧つからないか、アップロ〖ド涪嘎がありません。");
-define('_AD_FILEMANAGER_FOLDER_ADD', "ディレクトリ纳裁");
+define('_AD_FILEMANAGER_PREVIEW', "僾儗價儏乕");
+define('_AD_FILEMANAGER_FILENAME', "僼傽僀儖");
+define('_AD_FILEMANAGER_FOLDER_ADD', "僨傿儗僋僩儕捛壛");
+define('_AD_FILEMANAGER_SIZE', "僒僀僘");
+define('_AD_FILEMANAGER_DATE', "峏怴擔帪");
+define('_AD_FILEMANAGER_UPLOAD', "傾僢僾儘乕僪");
+define('_AD_FILEMANAGER_UPLOAD_DSC', "Upload傪僋儕僢僋偟偰丄僼傽僀儖傪慖戰偡傞偲傾僢僾儘乕僪傪奐巒偟傑偡丅");
+define('_AD_FILEMANAGER_UPLOAD_NOTACCESS',  "%s 偼丄傾僢僾儘乕僪偱偒傑偣傫丅FTP僜僼僩側偳偱丄僷乕儈僢僔儑儞傪曄峏偟偰壓偝偄丅");
+define('_AD_FILEMANAGER_UPLOAD_PERMISSION', "傾僢僾儘乕僪僷僗偑尒偮偐傜側偄偐丄傾僢僾儘乕僪尃尷偑偁傝傑偣傫丅");
+define('_AD_FILEMANAGER_UPLOAD_NOFILE', "傾僢僾儘乕僪偡傞僼傽僀儖偑尒偮偐傝傑偣傫丅僼傽僀儖傪慖戰偟偰壓偝偄丅");
+define('_AD_FILEMANAGER_SINGLEUPLOAD', "僼傽僀儖傾僢僾儘乕僪");
+define('_AD_FILEMANAGER_NOTFOUNDURL', "傾僢僾儘乕僪僷僗偑尒偮偐傝傑偣傫丅");
+define('_AD_FILEMANAGER_CONFIRMMSSAGE', "%s 傊僼傽僀儖傪傾僢僾儘乕僪偟傑偡丅<br />傾僢僾儘乕僪壜擻側僼傽僀儖僒僀僘偼 %s傑偱壜擻偱偡丅");
 
 // --------------------------------------------------------
-// フォルダ
+// 僼僅儖僟
 // --------------------------------------------------------
-define('_AD_FILEMANAGER_FOLDER', "フォルダ");
-define('_AD_FILEMANAGER_FOLDERNAME', "フォルダ叹");
-define('_AD_FILEMANAGER_FOLDER_UPLOAD', "このフォルダにアップロ〖ド");
-define('_AD_FILEMANAGER_ERROR_FOLDERNAME', "フォルダ叹が赖しくありません。フォルダ叹を澄千して布さい。<br />フォルダ叹で蝗える矢机は、染逞毖眶机-~_のみが网脱叫丸ます。<br />毖机は井矢机のみが网脱叫丸ます。");
-define('_AD_FILEMANAGER_ERROR_PATH', "フォルダ叹の回年が赖しくありません。フォルダ叹を澄千して布さい。");
-define('_AD_FILEMANAGER_ADD', "幪帿庂幚庌纳裁");
-define('_AD_FILEMANAGER_ADDFOLDER', "フォルダの纳裁");
-define('_AD_FILEMANAGER_ADDFOLDER_DSC', "糠しいフォルダを纳裁します。侯喇されたフォルダはファイルマネ〖ジャ〖から拎侯できます。");
-define('_AD_FILEMANAGER_ADDFOLDER_SUCCESS', "フォルダを纳裁しました。");
-define('_AD_FILEMANAGER_ADDFOLDER_ERROR', "フォルダがないか、アクセス涪嘎がない百、フォルダを纳裁叫丸ません。");
-define('_AD_FILEMANAGER_ADDFOLDER_CONFIRMMSSAGE', "%s の布にフォルダを侯喇します。侯喇するフォルダ叹を掐蜗して布さい。");
-define('_AD_FILEMANAGER_DELET', "幪帿庂幚庌猴近");
-define('_AD_FILEMANAGER_DELFOLDER', "フォルダの猴近");
-define('_AD_FILEMANAGER_DELFOLDER_DSC', "回年したフォルダを猴近します。");
-define('_AD_FILEMANAGER_DELFOLDER_CONFIRMMSSAGE', "フォルダ %s を猴近します。");
-define('_AD_FILEMANAGER_DELFOLDER_FILE_EXISTS', "フォルダにファイルがある百 %s は猴近できません。フォルダの柒推を澄千して布さい。");
-define('_AD_FILEMANAGER_DELFOLDER_SUCCESS', "フォルダを猴近しました。");
-define('_AD_FILEMANAGER_DELFOLDER_ERROR', "フォルダを猴近叫丸ません。回年したフォルダが鄂でないか、努磊なパ〖ミッションでありません。");
-define('_AD_FILEMANAGER_DELFOLDER_ISDIR', "フォルダ %s は、フォルダでない百ファイルマネ〖ジャ〖から猴近できません。");
-define('_AD_FILEMANAGER_DELFOLDER_NOTACCESS', "フォルダ %s は、ファイルマネ〖ジャ〖から猴近できません。FTPソフトなどで、パ〖ミッションを恃构して布さい。");
-define('_AD_FILEMANAGER_FILECOUNT', "ファイル圭纷");
-
+define('_AD_FILEMANAGER_FOLDER', "僼僅儖僟");
+define('_AD_FILEMANAGER_FOLDERNAME', "僼僅儖僟柤");
+define('_AD_FILEMANAGER_FOLDER_UPLOAD', "偙偺僼僅儖僟偵傾僢僾儘乕僪");
+define('_AD_FILEMANAGER_ERROR_FOLDERNAME', "僼僅儖僟柤偑惓偟偔偁傝傑偣傫丅僼僅儖僟柤傪妋擣偟偰壓偝偄丅<br />僼僅儖僟柤偱巊偊傞暥帤偼丄敿妏塸悢帤-~_偺傒偑棙梡弌棃傑偡丅<br />塸帤偼彫暥帤偺傒偑棙梡弌棃傑偡丅");
+define('_AD_FILEMANAGER_ERROR_PATH', "僼僅儖僟柤偺巜掕偑惓偟偔偁傝傑偣傫丅僼僅儖僟柤傪妋擣偟偰壓偝偄丅");
+define('_AD_FILEMANAGER_ADDFOLDER', "僼僅儖僟偺捛壛");
+define('_AD_FILEMANAGER_ADDFOLDER_DSC', "怴偟偄僼僅儖僟傪捛壛偟傑偡丅嶌惉偝傟偨僼僅儖僟偼僼傽僀儖儅僱乕僕儍乕偐傜憖嶌偱偒傑偡丅");
+define('_AD_FILEMANAGER_ADDFOLDER_SUCCESS', "僼僅儖僟傪捛壛偟傑偟偨丅");
+define('_AD_FILEMANAGER_ADDFOLDER_ERROR', "僼僅儖僟偑側偄偐丄傾僋僙僗尃尷偑側偄堊丄僼僅儖僟傪捛壛弌棃傑偣傫丅");
+define('_AD_FILEMANAGER_ADDFOLDER_CONFIRMMSSAGE', "%s 偺壓偵僼僅儖僟傪嶌惉偟傑偡丅<br />嶌惉偡傞僼僅儖僟柤傪擖椡偟偰壓偝偄丅");
+define('_AD_FILEMANAGER_DELFOLDER', "僼僅儖僟偺嶍彍");
+define('_AD_FILEMANAGER_DELFOLDER_DSC', "巜掕偟偨僼僅儖僟傪嶍彍偟傑偡丅");
+define('_AD_FILEMANAGER_DELFOLDER_CONFIRMMSSAGE', "僼僅儖僟 %s 傪嶍彍偟傑偡丅");
+define('_AD_FILEMANAGER_DELFOLDER_FILE_EXISTS', "僼僅儖僟偵僼傽僀儖偑偁傞堊 %s 偼嶍彍偱偒傑偣傫丅僼僅儖僟偺撪梕傪妋擣偟偰壓偝偄丅");
+define('_AD_FILEMANAGER_DELFOLDER_SUCCESS', "僼僅儖僟傪嶍彍偟傑偟偨丅");
+define('_AD_FILEMANAGER_DELFOLDER_ERROR', "僼僅儖僟傪嶍彍弌棃傑偣傫丅巜掕偟偨僼僅儖僟偑嬻偱側偄偐丄揔愗側僷乕儈僢僔儑儞偱偁傝傑偣傫丅");
+define('_AD_FILEMANAGER_DELFOLDER_ISDIR', "僼僅儖僟 %s 偼丄僼僅儖僟偱側偄堊僼傽僀儖儅僱乕僕儍乕偐傜嶍彍偱偒傑偣傫丅");
+define('_AD_FILEMANAGER_DELFOLDER_NOTACCESS', "僼僅儖僟 %s 偼丄僼傽僀儖儅僱乕僕儍乕偐傜嶍彍偱偒傑偣傫丅FTP僜僼僩側偳偱丄僷乕儈僢僔儑儞傪曄峏偟偰壓偝偄丅");
+define('_AD_FILEMANAGER_FILECOUNT', "僼傽僀儖崌寁");
 
 // --------------------------------------------------------
 // SWFUpload
 // --------------------------------------------------------
-define('_AD_FILEMANAGER_SWF_UPLOAD_QUEUE', "アップロ〖ド");
-define('_AD_FILEMANAGER_SWF_UPLOAD_CNACEL', "すべてのアップロ〖ドをキャンセルする");
-define('_AD_FILEMANAGER_SWF_COULD_NOT_LOAD', "SWFUpload ライブラリをロ〖ド叫丸ません。JavaScript の网脱を钓材して布さい。");
-define('_AD_FILEMANAGER_SWF_LOADING', "SWFUpload ライブラリを粕み哈んでいます。しばらくお略ちください...");
-define('_AD_FILEMANAGER_SWF_LOAD_HAS_FAILED', "SWFUpload ライブラリをロ〖ド叫丸ません。ライブラリがセットされているか澄千するか、Flash プレイヤ〖をインスト〖ルして布さい。");
-define('_AD_FILEMANAGER_SWF_INSTALL_FLASH', "SWFUpload  ライブラリをロ〖ド叫丸ません。ライブラリがセットされているか澄千するか、Flash プレイヤ〖をインスト〖ルして布さい。<br />
-こちらから <a href=\"http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash\">Adobe website</a>Flash プレイヤ〖をインスト〖ルして布さい");
+define('_AD_FILEMANAGER_SWF_UPLOAD_QUEUE', "傾僢僾儘乕僪");
+define('_AD_FILEMANAGER_SWF_UPLOAD_CNACEL', "偡傋偰偺傾僢僾儘乕僪傪僉儍儞僙儖偡傞");
+define('_AD_FILEMANAGER_SWF_COULD_NOT_LOAD', "SWFUpload 儔僀僽儔儕傪儘乕僪弌棃傑偣傫丅JavaScript 偺棙梡傪嫋壜偟偰壓偝偄丅");
+define('_AD_FILEMANAGER_SWF_LOADING', "SWFUpload 儔僀僽儔儕傪撉傒崬傫偱偄傑偡丅偟偽傜偔偍懸偪偔偩偝偄...");
+define('_AD_FILEMANAGER_SWF_LOAD_HAS_FAILED', "SWFUpload 儔僀僽儔儕傪儘乕僪弌棃傑偣傫丅儔僀僽儔儕偑僙僢僩偝傟偰偄傞偐妋擣偡傞偐丄Flash 僾儗僀儎乕傪僀儞僗僩乕儖偟偰壓偝偄丅");
+define('_AD_FILEMANAGER_SWF_INSTALL_FLASH', "SWFUpload  儔僀僽儔儕傪儘乕僪弌棃傑偣傫丅儔僀僽儔儕偑僙僢僩偝傟偰偄傞偐妋擣偡傞偐丄Flash 僾儗僀儎乕傪僀儞僗僩乕儖偟偰壓偝偄丅<br />偙偪傜偐傜 <a href=\"http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash\">Adobe website</a>Flash 僾儗僀儎乕傪僀儞僗僩乕儖偟偰壓偝偄");
 
 // --------------------------------------------------------
-// アップロ〖ド
+// 愝掕妋擣
 // --------------------------------------------------------
-define('_AD_FILEMANAGER_OPTION', "オプション");
-define('_AD_FILEMANAGER_OPTION_DSC', "オプション");
+define('_AD_FILEMANAGER_OPTION', "僆僾僔儑儞");
+define('_AD_FILEMANAGER_OPTION_DSC', "僆僾僔儑儞");
+define('_AD_FILEMANAGER_CHECK_NG', "儔僀僽儔儕偺僼傽僀儖偑尒偮偐傝傑偣傫丅僼傽僀儖傪傾僢僾儘乕僪偟偰壓偝偄丅<br />");
+define('_AD_FILEMANAGER_CHECK_OK', "儔僀僽儔儕僼傽僀儖偺愝抲偼丄姰椆偟偰偄傑偡丅");
+define('_AD_FILEMANAGER_CHECK', "摦嶌娐嫬偺妋擣");
+define('_AD_FILEMANAGER_CHECK_DSC_1', "SWFUpload傪棙梡偡傞応崌");
+define('_AD_FILEMANAGER_CHECK_DSC_2', "SWFUpload傪巊偭偨傾僢僾儘乕僪傪堦斒偵岞奐偡傞偺偼僆僗僗儊偱偒傑偣傫丅<br />儔僀僽儔儕偺偁傞応強傊htaccess傪巊偭偨傾僋僙僗惂尷傪愝掕偟偰偔偩偝偄丅");
+define('_AD_FILEMANAGER_HTACCESS_DSC_1', "壓婰僼僅乕儉傪僋儕僢僋偡傞偲愝掕撪梕傪慖戰偱偒傑偡丅");
+define('_AD_FILEMANAGER_HTACCESS_DSC_2', "尰嵼傾僋僙僗偟偰偄傞IP傾僪儗僗偺傒嫋壜偡傞応崌乮帺摦揑偵慻惉偟偨僒儞僾儖偱偡丅偍巊偄偺僒乕僶娐嫬偵崌傢偣偰曄峏偟偰壓偝偄丅乯");
+define('_AD_FILEMANAGER_HTACCESS_PATH', "htaccess僼傽僀儖傪愝抲偡傞僷僗");
 
 // --------------------------------------------------------
-// reserved  options setting
+// FFMPEG 憖嶌
 // --------------------------------------------------------
-define('_AD_FILEMANAGER_FILTER', "フィルタ〖");
-define('_AD_FILEMANAGER_FILTER_ALL', "---");
-define('_AD_FILEMANAGER_FILTER_IMGAE', "茶咙");
-define('_AD_FILEMANAGER_FILTER_MOVIE', "瓢茶");
-define('_AD_FILEMANAGER_FILTER_SOUND', "不弛");
-define('_AD_FILEMANAGER_FILTER_APLICATION', "アプリ");
-define('_AD_FILEMANAGER_ACTION_CONVERT', "FLV恃垂");
-define('_AD_FILEMANAGER_ACTION_CAPTURE', "キャプチャ〖茶咙侯喇");
-define('_AD_FILEMANAGER_CONVERT_DSC', "回年された瓢茶ファイルをFLV妨及に恃垂面です。");
-define('_AD_FILEMANAGER_CONVERT_NOW', "FLVファイルに恃垂侯度面です。恃垂が窗位するまでしばらくお略ちください。<br />恃垂が姜わったら傅の茶烫へ提ります。 ");
-
+define('_AD_FILEMANAGER_ACTION_CONVERT', "FLV曄姺");
+define('_AD_FILEMANAGER_ACTION_CAPTURE', "僉儍僾僠儍乕夋憸嶌惉");
 
 ?>
