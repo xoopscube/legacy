@@ -1,25 +1,11 @@
 <h4>File Manager利用ガイド</h4>
 <p>File Manager (ファイルマネージャー)は、アップロードしたファイルを管理するモジュールです。</p>
 <p>
-<font color="#F00000">
-ファイルマネージャーは、現在ベータ版です。動作を保障するものではありません。<br />
-利用することによってサイトに対して不具合等が発生する可能性があります。ご利用は、ご自身の責任においてご利用下さい。
-</font>
-</p>
-
-<p>
-<font color="#F00000">
-ファイルマネージャーは、現在も開発中で、ユーザーインターフェースや使用しているライブラリなどの変更の予定があります。<br />
-</font>
-</p>
-
-<p>
-このヘルプは書きかけです。内容が合わない場合があります。
+管理画面専用のモジュールで、サイト管理者が利用することを目的としています。ヘルプをよく読んでお使い下さい。
 </p>
 <h5>ご利用条件</h5>
 <ul>
   <li>XOOPS Cube Legacy 専用モジュールです。従来のXOOPS 2環境では動作しません。</li>
-  <li>ライセンスは、<a href='http://creativecommons.org/licenses/by-nc-sa/3.0/'>noncommercial license</a>の予定です。これは、組み込んでいるライブラリでライセンスがかわります。。</li>
   <li>当モジュールを使う事で利用者に損害が生じても作者は一切責任を負いません。</li>
 </ul>
 
@@ -36,6 +22,7 @@
   <li>XOOPS Cube Legacy に完全対応しています。</li>
   <li>複数のファイルのアップロードに対応しています。</li>
   <li>ビューワーを組み込んでおり、画像を見たり、各種動画・音楽を再生して見ることが出来ます。</li>
+  <li>SWFアップローダのディレクトリにアクセス制限を行う為のhtaccessのサンプルを組成します。</li>
 </ul>
 
 
@@ -50,7 +37,21 @@
   <li>システム画像の非表示<br />イメージマネージャーやアバターなどシステムで使っている画像を表示しません。非表示を推奨します。デフォルトは「いいえ」です。</li>
   <li>アップローダーのデバックをオン<br />SWFUploadのデバッグ画面を有効にします。アップロード時のエラー解析に役立ちます。デフォルトは「いいえ」です。</li>
   <li>フォルダの操作をサポート<br />「はい」を選ぶとフォルダの操作を可能にします。デフォルトは「いいえ」です。</li>
+  <li>アップロード可能なファイルの拡張子<br />アップロードを許可するファイルの拡張子を '|' 区切りで指定します。拡張子は、全て小文字で入力して下さい。<br />デフォルトは、gif|jpg|jpeg|png|avi|mov|wmv|mp3|mp4|flv|doc|xls|ods|odt|pdf です。</li>
+  <li>【ffmpeg用設定】ffmpegを利用する<br />ffmpegを利用する場合は、はいを選択して下さい。ffmpegは、サーバー側が対応している必要があります。<br />お使いのサーバーに対応したバイナリを設置するか、ビルドして下さい。</li>
+  <li>【ffmpeg用設定】コマンド検索パス<br />ffmpegの実行ファイルへパスが通っていない場合は、設置パスを指定します。<br />(例: /usr/local/bin:/usr/bin)</li>
+  <li>【ffmpeg用設定】スクリーンショットの時間<br />動画ファイルからスクリーンショットを撮る時間を動画の先頭からの時間（秒）を指定します。</li>
+  <li>【ffmpeg用設定】FLV変換のファイル形式<br />FLV変換可能な動画ファイルの拡張子を '|' 区切りで指定します。拡張子は、全て小文字で入力して下さい。<br />お使いのffmpegによって変換出来るファイル形式が異なります。<br />デフォルトは、flv|avi|mwv|mov|mpg|qt|mov|3gp|3gp2|mp4 です。</li>
 </ul>
+
+<p><b>一般設定が終わったら、動作環境の確認を行って下さい。</b></p>
+<p><font color="#F00000">
+動作環境の確認では、使用しているライブラリのファイルのチェックを行います。<br />
+SWFUpload(FLASH)を使ったアップロードは、外部からのアクセスが可能になります。<br />
+SWFUploadを設置しているフォルダへ、htaccessを設置してアクセス制限を行って下さい。<br />
+動作環境の確認画面では、管理者のIPアドレスのみ利用できるhtaccessを組成しています。お使いのサーバーに合わせて設置してください。<br />
+複数の管理者で利用したい場合は、管理者のIPアドレスを追加すると良いでしょう。<br />
+</font></p>
 
 <h4>使い方</h4>
 
@@ -112,12 +113,12 @@
 </ul>
 
 
-
-
 <h4>注意事項</h4>
 <ul>
   <li>XOOPSおよびImpressには、対応していません。また今後も対応する予定はありません。</li>
+  <li>ファイルのアップロードは、アップロード画面を開いて３０分以上過ぎるとアップロードが出来ません。<br />再度画面をリロードして表示しなおしてください。</li>
 </ul>
+
 
 <h4>サイトの閉鎖・移動の際の注意事項</h4>
 <p><font color="#F00000">※レンタルサーバでご利用の場合は、必ずご確認下さい。</font></p>
@@ -126,30 +127,34 @@
 
 <h4>サポートについて</h4>
 <ul>
-  <li>サポートはこちらで行います。</li>
+  <li>サポートはメールで行います。サポート用のサイトは準備中です。</li>
   <li>日本語・英語のみ受付可能ですが、簡単な英語であれば答えることが可能です。</li>
 </ul>
 
 <h4>使用ライブラリとライセンス</h4>
+
+<p>ファイルマネージャー本体のライセンスは、<a href='http://www.gnu.org/licenses/gpl.html'>GPL</a>の予定です。</p>
+
 <p>
-<font color="#F00000">ファイルマネージャーは、以下のライブラリを利用しています。各ライブラリによってライセンスが異なりますから、必ずご確認ください。<br />
-ライセンス違反による不正利用に関する問題について作者は関知いたしません。</font>
+<font color="#F00000">ファイルマネージャーは、以下のライブラリを利用しています。各ライブラリによってライセンスが異なりますから、必ずご確認ください。ライセンス違反による不正利用に関する問題について作者は関知いたしません。</font>
 </p>
 <ul>
   <li>SWFUpload<br /><a href='http://swfupload.org/'>SWFUpload</a>をファイルのアップロードに使用<br />ライセンス：<a href='http://www.opensource.org/licenses/mit-license.php'>MIT License</a></li>
-  <li>lightview<br /><a href='http://www.nickstakenburg.com/projects/lightview/'>lightview</a>をファイルのビューワーに使用<br />
-  ライセンス：<a href='http://creativecommons.org/licenses/by-nc-nd/3.0/'>Creative Commons by-nc-nd License</a></li>
-  <li>JW FLV Player <br /><a href='http://www.longtailvideo.com/players/jw-flv-player/'>JW FLV Player</a>をFLVファイルのビューワーに使用<br />
-  ライセンス：<a href='http://creativecommons.org/licenses/by-nc-sa/3.0/'>noncommercial license</a><br />
-  <font color="#F00000">※アドセンスなどのクリックによる収入がある場合は、ライセンスを購入する必要があります。</font>
+  <li>jQuery<br /><a href='http://jquery.com/'>prettyPhoto</a>をファイルのビューワーに使用<br />
+  ライセンス：<a href=http://docs.jquery.com/License'>MIT と GPL</a></li>
+  <li>prettyPhoto<br /><a href='http://www.no-margin-for-errors.com/projects/prettyPhoto-jquery-lightbox-clone/'>prettyPhoto</a>をファイルのビューワーに使用<br />
+  ライセンス：<a href='http://creativecommons.org/licenses/by/2.5/'>Creative Commons Attribution 2.5</a></li>
+  <li>Flowplayer <br /><a href='http://flowplayer.org/'>Flowplayer</a>をFLVファイルのビューワーに使用<br />
+  ライセンス：<a href='http://flowplayer.org/download/license_gpl.html'>GPL 3</a><br />
   </li>
 </ul>
 
 <h4>参考URL</h4>
 <p>モジュールを作成するにあたり以下のサイトを参考にしました。</p>
 <ul>
-  <li><a href='http://swfupload.org/'>Shttp://swfupload.org/</a></li>
+  <li><a href='http://swfupload.org/'>http://swfupload.org/</a></li>
   <li><a href='http://code.google.com/p/swfupload/'>http://code.google.com/p/swfupload/</a></li>
+  <li><a href='http://drupal.org/node/287776'>http://drupal.org/node/287776</a></li>
   <li><a href='http://youmos.com/reference/swfupload_setup.html'>http://youmos.com/reference/swfupload_setup.html</a> (日本語)</li>
 </ul>
 
@@ -168,18 +173,22 @@
   <li>0.96<br />
   SWFUploadとJW FLV Playerの設置をcommonへ設置したものを使うように変更した。<br />
   </li>
-</ul>
-
-<h4>今後の予定</h4>
-<p>今後の予定は、未定ですが次のような構想を考えています。</p>
-<ul>
-  <li>1.0<br />完成版。他のモジュールからアップロード機能を簡単に呼び出すことが出来るようにする。</li>
-  <li>1.1<br />ファイルを誤って削除した場合に備えて、ゴミ箱の機能を追加する。</li>
+  <li>0.97<br />
+  JW FLV PlayerとlightviewをFlowplayerとprettyPhotoに変更して、ライセンスを合わせた。<br />
+  利用している画像を変更し、画面デザインを少し変更した。<br />
+  SWFUploadを使う場合に、アップロード画面が表示される都度、新しいセッションを発行する方式へ変更した。<br />
+  使用しているライブラリのファイルチェック機能を追加した。<br />
+  </li>
+  <li>0.98<br />
+  SWFUploadのパスへ設置するhtaccessのサンプルを作成するようにした。<br />
+  トークン用のデータベースを追加を追加した。0.98以下のバージョンの人はアップデートが必要です。<br />
+  アップロードのチェックに独自にSQL側にトークンを保存して、アップロード時の不正アクセスを防止するようにした。<br />
+  </li>
 </ul>
 
 <h4>連絡先</h4>
 <p>モジュールに関する連絡先</p>
 <ul>
   <li>メール<br />hiro1173.seike@gmail.com</li>
-  <li>ウェブサイト<br />http://beabo.net<br />http://beabo.dip.jp</li>
+  <li>ウェブサイト<br />http://beabo.net<br />http://beabo.dip.jp<br />http://code.google.com/p/hiro1173/</li>
 </ul>
