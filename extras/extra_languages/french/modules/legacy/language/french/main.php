@@ -29,6 +29,7 @@ define('_MD_LEGACY_LANG_COMMENT_RULE', "Régles des Commentaires");
 define('_MD_LEGACY_LANG_DOBR', "Insérez automatiquement un retour à la ligne");
 define('_MD_LEGACY_LANG_DOHTML', "Autoriser HTML ");
 define('_MD_LEGACY_LANG_DOSMILEY', "Utiliser émoticones");
+define('_MD_LEGACY_LANG_ALL_SMILEY_LIST', "smilies List");
 define('_MD_LEGACY_LANG_DOXCODE', "Autoriser code editeur");
 define('_MD_LEGACY_LANG_EMOTION', "Emoticone");
 define('_MD_LEGACY_LANG_ERROR', "erreur");
