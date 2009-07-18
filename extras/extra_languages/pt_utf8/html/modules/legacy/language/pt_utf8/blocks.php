@@ -30,7 +30,7 @@ define("_MB_LEGACY_LANG_THSHOW","Mostrar miniaturas");
 define("_MB_LEGACY_LANG_THWIDTH","Largura das miniaturas");
 define("_MB_LEGACY_LOGO","Arquivo do logotipo no diretório %s");
 define("_MB_LEGACY_LOUT","Sair");
-define("_MB_LEGACY_MESSAGE_CAN_NOT_THEME_CHANGE","Lamento, a alteração de temas está desabilitada para esta área.");
+define("_MB_LEGACY_MESSAGE_CAN_NOT_THEME_CHANGE","Lamento, a seleção de temas está desabilitada para esta área.");
 define("_MB_LEGACY_MFLS","Arquivos alterados");
 define("_MB_LEGACY_MLNKS","Endereços alterados");
 define("_MB_LEGACY_NOTIF","Notificações");

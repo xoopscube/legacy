@@ -7,8 +7,8 @@ Para confirmar o seu cadastro no {SITENAME}, visite:
 {USERACTLINK}
 
 
-Lembre-se que o seu codinome escolhido no momento do cadastro foi {X_UNAME}, e
-que {X_UEMAIL} foi o endereço de e-mail utilizado.
+Lembre-se que o seu codinome escolhido no momento do cadastro foi “{X_UNAME}”, e
+que “{X_UEMAIL}” foi o endereço de e-mail utilizado.
 
 
 

@@ -5,31 +5,33 @@ define("_MI_USER_ADMENU_AVATAR_MANAGE","Avatares");
 define("_MI_USER_ADMENU_GROUP_LIST","Grupos e permissões");
 define("_MI_USER_ADMENU_LIST","Listar associados");
 define("_MI_USER_ADMENU_MAIL","Contatar associados");
-define("_MI_USER_ADMENU_MAILJOB_MANAGE","Mala direta");
+define("_MI_USER_ADMENU_MAILJOB_MANAGE","Mala direta"); // só para não esquecer: 1) confirmar se utilizam esse termo em Portugal; 2) não tem hífen http://pt.wikipedia.org/wiki/Hífen
 define("_MI_USER_ADMENU_RANK_LIST","Graduações");
-define("_MI_USER_ADMENU_USER_SEARCH","Localizar associado");
-define("_MI_USER_BLOCK_LOGIN_DESC","Mostra o formulário de entrada");
-define("_MI_USER_BLOCK_LOGIN_NAME","Entrada");
-define("_MI_USER_BLOCK_NEWUSERS_DESC","Mostra uma lista com os últimos visitantes cadastrados");
-define("_MI_USER_BLOCK_NEWUSERS_NAME","Novos associados");
-define("_MI_USER_BLOCK_ONLINE_DESC","Mostra os visitantes anônimos e cadastrados presentes");
-define("_MI_USER_BLOCK_ONLINE_NAME","Quem nos visita");
-define("_MI_USER_BLOCK_TOPUSERS_DESC","Lista os associados mais participativos, com mais postagens, comentários, etc");
+define("_MI_USER_ADMENU_USER_DATA_CSVUPLOAD","Importar dados");
+define("_MI_USER_ADMENU_USER_DATA_DOWNLOAD","Exportar dados");
+define("_MI_USER_ADMENU_USER_SEARCH","Localizar associado"); // singular mesmo
+define("_MI_USER_BLOCK_LOGIN_DESC","Mostra o formulário de entrada"); // não encontrei descrição melhor :-)
+define("_MI_USER_BLOCK_LOGIN_NAME","Entrada"); // melhor que login, putz... que ódio que tenho do tal 'lojin'
+define("_MI_USER_BLOCK_NEWUSERS_DESC","Mostra uma lista com os últimos visitantes cadastrados"); // tá, dá pra melhorar
+define("_MI_USER_BLOCK_NEWUSERS_NAME","Novos associados"); // ficou estranho
+define("_MI_USER_BLOCK_ONLINE_DESC","Mostra os visitantes anônimos e cadastrados presentes"); // ficou muito estranho
+define("_MI_USER_BLOCK_ONLINE_NAME","Quem nos visita"); // achei que ficou legal. Ou pelo menos melhor do que as outras opções que apareceram...
+define("_MI_USER_BLOCK_TOPUSERS_DESC","Lista os associados mais participativos, com mais postagens, comentários, etc."); // Pena que nem sempre é possível atualizar esse valor corretamente. Devo colocar isso aqui?
 define("_MI_USER_BLOCK_TOPUSERS_NAME","Mais participativos");
 define("_MI_USER_CONF_ACTV_ADMIN","Ativação manual pelos administradores");
-define("_MI_USER_CONF_ACTV_AUTO","Ativação automática");
-define("_MI_USER_CONF_ACTV_GROUP","Escolha um grupo para o qual o pedido de associação será enviado");
+define("_MI_USER_CONF_ACTV_AUTO","Ativação automática"); // Dica: experimentem utilizar esta opção em um serviço de hospedagem gratuita. Keyword para o Google: TAZ.
+define("_MI_USER_CONF_ACTV_GROUP","Escolha um grupo para o qual o pedido de associação será enviado"); // talvez formal demais...
 define("_MI_USER_CONF_ACTV_GROUP_DESC","Válido somente quando a ativação manual pelos administradores estiver habilitada.");
 define("_MI_USER_CONF_ACTV_TYPE","Escolha o tipo de ativação dos cadastros");
 define("_MI_USER_CONF_ACTV_USER","Requer ativação pelo visitante");
-define("_MI_USER_CONF_ALLOW_REGISTER","Permitir que novos visitantes se associem?");
+define("_MI_USER_CONF_ALLOW_REGISTER","Permitir que novos visitantes se cadastrem?");
 define("_MI_USER_CONF_ALW_RG_DESC","Escolha NÃO para bloquear o cadastro de novos associados.");
-define("_MI_USER_CONF_AVATAR_HEIGHT","Altura máxima dos avatares (em pixels)");
-define("_MI_USER_CONF_AVATAR_MAXSIZE","Tamanho máximo dos avatares (em bytes)");
+define("_MI_USER_CONF_AVATAR_HEIGHT","Altura máxima dos avatares (em <em>pixels</em>)");
+define("_MI_USER_CONF_AVATAR_MAXSIZE","Tamanho máximo dos avatares (em <em>bytes</em>)");
 define("_MI_USER_CONF_AVATAR_MINPOSTS","Mínimo de contribuições necessárias");
-define("_MI_USER_CONF_AVATAR_WIDTH","Largura máxima dos avatares (em pixels)");
-define("_MI_USER_CONF_AVTR_ALLOW_UP","Permitir o envio de avatares personalizados?");
+define("_MI_USER_CONF_AVATAR_WIDTH","Largura máxima dos avatares (em <em>pixels</em>)");
 define("_MI_USER_CONF_AVT_MIN_DESC","Escreva o número mínimo de contribuições necessário para que o associado possa enviar o seu próprio avatar.");
+define("_MI_USER_CONF_AVTR_ALLOW_UP","Permitir o envio de avatares personalizados?");
 define("_MI_USER_CONF_BAD_EMAILS","Escreva os tipos de email que não poderão ser utilizados no cadastro dos visitantes");
 define("_MI_USER_CONF_BAD_EMAILS_DESC","Separe cada um com uma barra vertical ( | ). Caixa-alta ou caixa-baixa, tanto faz. Sistema REGEX habilitado.");
 define("_MI_USER_CONF_BAD_UNAMES","Escreva os tipos de email que NÃO poderão ser utilizados no cadastro dos visitantes");
@@ -43,8 +45,8 @@ define("_MI_USER_CONF_DISPDSCLMR_DESC","Escolha SIM para mostrar as regras do po
 define("_MI_USER_CONF_MAXUNAME","Comprimento máximo dos codinomes");
 define("_MI_USER_CONF_MINPASS","Comprimento mínimo necessário das senhas");
 define("_MI_USER_CONF_MINUNAME","Comprimento mínimo necessário dos codinomes");
-define("_MI_USER_CONF_NEW_NTF_GROUP","Escolha um grupo ao qual novo utilizador notificação mail será enviado");
-define("_MI_USER_CONF_NEW_USER_NOTIFY","Notificar por carta-eletrônica quando um novo utilizador se cadastrar?");
+define("_MI_USER_CONF_NEW_NTF_GROUP","Escolha um grupo ao qual uma notificação sobre os novos cadastros será enviada.");
+define("_MI_USER_CONF_NEW_USER_NOTIFY","Notificar por carta-eletrônica quando um novo visitante se cadastrar?");
 define("_MI_USER_CONF_SELF_DELETE","Permitir que os associados removam os seus próprios perfis?");
 define("_MI_USER_CONF_SELF_DELETE_CONF","Mensagem de confirmação");
 define("_MI_USER_CONF_SELF_DELETE_CONFIRM_DEFAULT","Tem certeza de que deseja remover o seu cadastro? Isto irá remover todas as suas informações de nosso banco de dados.");
@@ -54,9 +56,9 @@ define("_MI_USER_CONF_UNAME_TEST_LEVEL","Escolha o quão rigorosa será a filtra
 define("_MI_USER_CONF_UNAME_TEST_LEVEL_NORMAL","Médio (permite alguns caracteres especiais)");
 define("_MI_USER_CONF_UNAME_TEST_LEVEL_STRONG","Restritivo (apenas letras e números)");
 define("_MI_USER_CONF_UNAME_TEST_LEVEL_WEAK","Permissivo (permite caracteres de 2 bytes)");
+define("_MI_USER_CONF_USE_SSL","Utilizar conexão segura via SSL na entrada?");
 define("_MI_USER_CONF_USERCOOKIE","Nome para os <em>cookies</em> dos associados.");
 define("_MI_USER_CONF_USERCOOKIE_DESC","Este <em>cookie</em> apenas contém o codinome e é guardado no computador do associado por um ano (se o utilizador desejar). Com isto, o codinome será inserido automaticamente no formulário de entrada.");
-define("_MI_USER_CONF_USE_SSL","Utilizar conexão segura via SSL na entrada?");
 define("_MI_USER_KEYWORD_AVATAR_MANAGE","avatar personalizado sistema lista editar alterar remover");
 define("_MI_USER_KEYWORD_CREATE_AVATAR","Enviar avatar");
 define("_MI_USER_KEYWORD_CREATE_GROUP","Criar grupo");
