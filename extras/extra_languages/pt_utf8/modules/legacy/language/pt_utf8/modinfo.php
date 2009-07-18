@@ -1,6 +1,7 @@
 <?php
 // Translation Info
-// $Id: modinfo.php,v 1.2 2008/06/22 03:23:09 minahito Exp $
+// $Id: modinfo.php 915 2008-03-15 16:27:00Z mikhail.miguel $
+// License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //
@@ -27,7 +28,7 @@ define("_MI_LEGACY_BLOCK_SITEINFO_NAME","Acerca");
 define("_MI_LEGACY_BLOCK_THEMES_DESC","Mostra a caixa de seleção de temas");
 define("_MI_LEGACY_BLOCK_THEMES_NAME","Temas");
 define("_MI_LEGACY_BLOCK_USERMENU_DESC","Mostra o bloco dos associados");
-define("_MI_LEGACY_BLOCK_USERMENU_NAME","Cadastro");
+define("_MI_LEGACY_BLOCK_USERMENU_NAME","Perfil");
 define("_MI_LEGACY_BLOCK_WAITING_DESC","Mostra o conteúdo pendente por aprovação");
 define("_MI_LEGACY_BLOCK_WAITING_NAME","Pendências");
 define("_MI_LEGACY_KEYWORD_BLOCKINSTALL","Instalar bloco");

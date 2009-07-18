@@ -1,5 +1,6 @@
 <?php
-// $Id: main.php,v 1.2 2008/06/22 03:23:10 minahito Exp $
+// $Id: main.php 915 2008-03-15 16:27:00Z mikhail.miguel $
+// License http://creativecommons.org/licenses/by/2.5/br/
 define("_MD_USER_ERROR_AVATAR_EXTENSION","Lamento, ainda não foi habilitado o envio de arquivos com esta extensão.");
 define("_MD_USER_ERROR_AVATAR_MAXFILESIZE","O arquivo enviado excede o limite de tamanho permitido para avatares.");
 define("_MD_USER_ERROR_AVATAR_SELECT","Ocorreu um erro: selecione um avatar válido.");
@@ -15,7 +16,7 @@ define("_MD_USER_ERROR_NAME_RESERVED","O nome escolhido está reservado.");
 define("_MD_USER_ERROR_PASSWORD","Senha incorreta.");
 define("_MD_USER_ERROR_REQUIRED","É necessário completar o campo {0}.");
 define("_MD_USER_ERROR_SEND_MAIL","Lamento, erro ao tentar enviar a mensagem de correio-eletrônico. Por favor, entre em contato com a adminstração do portal.");
-define("_MD_USER_ERROR_TIMEZONE","Fuso-horário");
+define("_MD_USER_ERROR_TIMEZONE","Fuso horário");
 define("_MD_USER_ERROR_UNEEDAGREE","Lamento que você não concorda com as Regras de Conduta...");
 define("_MD_USER_ERROR_YOURREGMAILNG","ATENÇÃO: você completou o seu cadastrado. Porém, por um erro do servidor, não foi possível te enviar a mensagem com o código de ativação. Por favor, entre em contato com a administração e comunique o ocorrido.");
 define("_MD_USER_LANG_ALLABOUT","Informações acerca de %s");
@@ -72,8 +73,8 @@ define("_MD_USER_LANG_SHOWALL","Mostrar todos");
 define("_MD_USER_LANG_STATISTICS","Estatísticas");
 define("_MD_USER_LANG_SUBMIT","Prosseguir");
 define("_MD_USER_LANG_THEME","Tema");
-define("_MD_USER_LANG_TIMEZONE","Fuso-horário");
-define("_MD_USER_LANG_TIMEZONE_OFFSET","Fuso-horário");
+define("_MD_USER_LANG_TIMEZONE","Fuso horário");
+define("_MD_USER_LANG_TIMEZONE_OFFSET","Fuso horário");
 define("_MD_USER_LANG_TYPEPASSTWICE","(se desejar, escreva uma nova senha duas vezes para alterá-la)");
 define("_MD_USER_LANG_UID","UID");
 define("_MD_USER_LANG_UMODE","Modo de aparência dos comentários");
@@ -95,7 +96,7 @@ define("_MD_USER_LANG_USER_OCC","Ocupação");
 define("_MD_USER_LANG_USER_REGDATE","Desde");
 define("_MD_USER_LANG_USER_SIG","Assinatura");
 define("_MD_USER_LANG_USER_VIEWEMAIL","Permitir que outros associados vejam o endereço de email");
-define("_MD_USER_LANG_USER_YIM","Yahoo! ID");
+define("_MD_USER_LANG_USER_YIM","ID Yahoo!");
 define("_MD_USER_LANG_VERIFYPASS","Verificar senha");
 define("_MD_USER_LANG_WEBSITE","Seu endereço na web");
 define("_MD_USER_LANG_WHOSONLINE","Quem nos visita");

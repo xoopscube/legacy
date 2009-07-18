@@ -1,6 +1,7 @@
 <?php
 // Translation Info
-// $Id: main.php,v 1.2 2008/06/22 03:23:09 minahito Exp $
+// $Id: main.php 992 2009-07-17 21:30:38Z mikhail.miguel $
+// License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //
@@ -22,7 +23,7 @@ define("_MD_LEGACY_ERROR_MAXLENGTH","O valor {0} com {1} ou menos caracteres.");
 define("_MD_LEGACY_ERROR_OBJECTEXIST","Entrada incorreta em {0}.");
 define("_MD_LEGACY_ERROR_PERMISSION","Lamento, permissão negada.");
 define("_MD_LEGACY_ERROR_REQUIRED","{0} é um valor necessário.");
-define("_MD_LEGACY_ERROR_SEARCH_NOT_ENABLED","O mecanismo de busca está deshabilitado");
+define("_MD_LEGACY_ERROR_SEARCH_NOT_ENABLED","O mecanismo de busca está desabilitado");
 define("_MD_LEGACY_ERROR_SEARCH_QUERY_REQUIRED","Tamanho mínimo das palavras-chave");
 define("_MD_LEGACY_ERROR_YOU_MUST_UPLOAD","É necessário o envio de um arquivo de imagem");
 define("_MD_LEGACY_FORMAT_SEARCH_SEPARATOR","/[s,]+/");
@@ -34,7 +35,7 @@ define("_MD_LEGACY_LANG_COM_ICON","Ícone");
 define("_MD_LEGACY_LANG_COM_ID","Número");
 define("_MD_LEGACY_LANG_COM_IP","Endereço IP");
 define("_MD_LEGACY_LANG_COM_ITEMID","N° do item");
-define("_MD_LEGACY_LANG_COM_MODID","N° do módulo");
+define("_MD_LEGACY_LANG_COM_MODID","Nome do módulo");
 define("_MD_LEGACY_LANG_COM_PID","N° do processo");
 define("_MD_LEGACY_LANG_COM_ROOTID","Root ID");
 define("_MD_LEGACY_LANG_COM_TEXT","Comentário");
@@ -54,7 +55,7 @@ define("_MD_LEGACY_LANG_IMAGE_MIMETYPE","Formato da imagem");
 define("_MD_LEGACY_LANG_IMAGE_NICENAME","Nome descritivo");
 define("_MD_LEGACY_LANG_IMAGE_POSITION","Posição");
 define("_MD_LEGACY_LANG_IMAGE_UPLOAD","Envio de imagem");
-define("_MD_LEGACY_LANG_IMGCAT_ID","N° da categoria");
+define("_MD_LEGACY_LANG_IMGCAT_ID","Categoria");
 define("_MD_LEGACY_LANG_MID","N° do módulo");
 define("_MD_LEGACY_LANG_NEXT_PAGE","Próxima página");
 define("_MD_LEGACY_LANG_OPTION","Opção");
