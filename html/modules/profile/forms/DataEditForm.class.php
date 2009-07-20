@@ -56,12 +56,22 @@ class Profile_DataEditForm extends XCube_ActionForm
 					$this->mFormProperties[$this->mDef[$key]->get('field_name')] =& new XCube_StringProperty($this->mDef[$key]->get('field_name'));
 					break;
 			}
-			//validation check
+			//validation checks
+			$validationArr = array();
+			$this->mFieldProperties[$this->mDef[$key]->get('field_name')] =& new XCube_FieldProperty($this);
+			//required check
 			if($this->mDef[$key]->get('required')==1){
-				$this->mFieldProperties[$this->mDef[$key]->get('field_name')] =& new XCube_FieldProperty($this);
-				$this->mFieldProperties[$this->mDef[$key]->get('field_name')]->setDependsByArray(array('required'));
+				$validationArr[] = 'required';
 				$this->mFieldProperties[$this->mDef[$key]->get('field_name')]->addMessage('required', _MD_PROFILE_ERROR_REQUIRED, $this->mDef[$key]->get('label'));
 			}
+			//validation check
+			switch($this->mDef[$key]->get('validation')){
+			case 'email' :
+				$validationArr[] = 'email';
+				$this->mFieldProperties[$this->mDef[$key]->get('field_name')]->addMessage($this->mDef[$key]->get('field_name'), _MD_PROFILE_ERROR_EMAIL, _MD_USER_LANG_EMAIL);
+			break;
+			}
+			$this->mFieldProperties[$this->mDef[$key]->get('field_name')]->setDependsByArray($validationArr);
 		}
 	
 		//

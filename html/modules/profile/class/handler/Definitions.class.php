@@ -94,7 +94,7 @@ class Profile_DefinitionsObject extends XoopsSimpleObject
 	 */
 	function getValidationList()
 	{
-		return array("email", "url");
+		return array("email");
 	}
 
 	/**

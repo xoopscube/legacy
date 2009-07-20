@@ -8,7 +8,7 @@ define("_MD_PROFILE_LANG_FIELD_TIP6","Selectbox - allows multiple options, see t
 define("_MD_PROFILE_LANG_UNAME","User Name");
 define("_MD_PROFILE_ERROR_CONTENT_IS_NOT_FOUND","Content not found");
 define("_MD_PROFILE_ERROR_DBUPDATE_FAILED","Failed to update the database");
-define("_MD_PROFILE_ERROR_EMAIL","{0} is an incorrect email address value.");
+define("_MD_PROFILE_ERROR_EMAIL","Incorrect email address value.");
 define("_MD_PROFILE_ERROR_EXTENSION","Uploaded file's extension does not match any entry in the allowed list.");
 define("_MD_PROFILE_ERROR_INTRANGE","Incorrect input on {0}.");
 define("_MD_PROFILE_ERROR_MAX","Input {0} with {1} or less numeric value.");
@@ -17,6 +17,7 @@ define("_MD_PROFILE_ERROR_MIN","Input {0} with {1} or more numeric value.");
 define("_MD_PROFILE_ERROR_MINLENGTH","Input {0} with {1} or more characters.");
 define("_MD_PROFILE_ERROR_OBJECTEXIST","Incorrect input on {0}.");
 define("_MD_PROFILE_ERROR_REQUIRED","{0} is required.");
+
 define("_MD_PROFILE_LANG_ACCESS","Access groups");
 define("_MD_PROFILE_LANG_ADD_A_NEW_DATA","Add a New Data");
 define("_MD_PROFILE_LANG_ADD_A_NEW_DEFINITIONS","Add a New Field");

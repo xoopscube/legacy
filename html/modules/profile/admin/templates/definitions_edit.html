@@ -91,7 +91,7 @@
     <tr>
       <td class="head"><{$smarty.const._MD_PROFILE_LANG_VALIDATION}></td>
       <td class="<{cycle values="odd,even"}>">
-      	<select name="valication" id="legacy_xoopsform_validation">
+      	<select name="validation" id="legacy_xoopsform_validation">
 			<option value="<{$validation}>"<{if ! $actionForm->get('validation')}>selected="selected"<{/if}>></option>
 			<{foreach item=validation from=$validationArr}>
 			<option value="<{$validation}>"<{if $validation==$actionForm->get('validation')}>selected="selected"<{/if}>><{$validation}></option>
