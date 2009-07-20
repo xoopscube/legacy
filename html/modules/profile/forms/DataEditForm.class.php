@@ -68,7 +68,7 @@ class Profile_DataEditForm extends XCube_ActionForm
 			switch($this->mDef[$key]->get('validation')){
 			case 'email' :
 				$validationArr[] = 'email';
-				$this->mFieldProperties[$this->mDef[$key]->get('field_name')]->addMessage($this->mDef[$key]->get('field_name'), _MD_PROFILE_ERROR_EMAIL, _MD_USER_LANG_EMAIL);
+				$this->mFieldProperties[$this->mDef[$key]->get('field_name')]->addMessage($this->mDef[$key]->get('field_name'), _MD_PROFILE_ERROR_EMAIL);
 			break;
 			}
 			$this->mFieldProperties[$this->mDef[$key]->get('field_name')]->setDependsByArray($validationArr);
