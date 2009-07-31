@@ -1,5 +1,5 @@
 <?php
-// $Id: admin.php 992 2009-07-17 21:30:38Z mikhail.miguel $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 define("_AD_LEGACY_ERROR_ACTION_SEARCH_NORESULT","A sua pesquisa não retornou nenhum documento correspondente.");
 define("_AD_LEGACY_ERROR_ACTION_SEARCH_TRY_AGAIN","Tente de novo com outra(s) palavra(s)-chave.");

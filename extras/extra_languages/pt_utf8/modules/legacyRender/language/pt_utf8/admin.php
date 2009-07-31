@@ -1,5 +1,5 @@
 <?php
-// $Id: admin.php 973 2009-03-21 16:44:28Z mikhail.miguel $
+// $Id$
 define("_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_IMAGESET","Lamento, não foi possível gravar o conjunto de imagens '{0}'.");
 define("_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_IMAGE_FILE","Lamento, não foi possível gravar a imagem '{0}'");
 define("_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_LINKTPLSET","Lamento, não foi possível possível a informação da ligação entre o imageset e o conjunto do modelo.");

@@ -3,7 +3,7 @@
 // *************************************************************** //
 // ############################################################### //
 // ## XOOPS Cube Legacy 2.1 - Tradução para o Português do Brasil
-// ## $Id: modinfo.php 980 2009-04-12 18:45:51Z mikhail.miguel $
+// ## $Id$
 // ## License http://creativecommons.org/licenses/by/2.5/br/
 // ## Por............: Mikhail Miguel
 // ## E-mail.........: mikhail@underpop.com

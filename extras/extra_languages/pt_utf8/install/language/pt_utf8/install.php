@@ -1,5 +1,5 @@
 <?php
-// $Id: install.php,v 1.1 2008/03/09 02:32:37 xoopserver Exp $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
@@ -19,8 +19,8 @@ define("_INSTALL_HEADER_MESSAGE","Siga a instalação lendo com cuidado todas as
 define("_INSTALL_L0","Bem-vindo ao assistente de instalação do XOOPS Cube");
 define("_INSTALL_L1","Abra o arquivo mainfile.php com seu editor de textos e procure o seguinte código na linha 31:");
 define("_INSTALL_L10","Por favor, pressione o botão abaixo se isto estiver realmente correto.");
-define("_INSTALL_L100","O <b>caminho virtual</b> é um endereço válido.");
-define("_INSTALL_L101","O <b>caminho virtual</b> não é um endereço válido.");
+define("_INSTALL_L100","O <strong>caminho virtual</strong> é um endereço válido.");
+define("_INSTALL_L101","O <strong>caminho virtual</strong> não é um endereço válido.");
 define("_INSTALL_L102","Confirmar as opções do banco de dados");
 define("_INSTALL_L103","Recomeçar");
 define("_INSTALL_L104","Verificar o banco de dados");
@@ -40,7 +40,7 @@ define("_INSTALL_L116","Inserir infomação");
 define("_INSTALL_L117","Fim");
 define("_INSTALL_L118","Ocorreu um erro, não foi possível criar a tabela %s.");
 define("_INSTALL_L119","%d inserções na tabela %s.");
-define("_INSTALL_L12","Endereço virtual (url) em que o XOOPS Cube será instalado:");
+define("_INSTALL_L12","Endereço virtual (URL) em que o XOOPS Cube será instalado:");
 define("_INSTALL_L120","Ocorreu um erro, não foi possível inserir %d entradas na tabela %s.");
 define("_INSTALL_L121","Constante %s escrita com o valor %s.");
 define("_INSTALL_L122","Ocorreu um erro, não foi possível escrever a constante %s.");
@@ -90,7 +90,7 @@ define("_INSTALL_L162","É necessário selecionar uma permissão para cada tipo 
 define("_INSTALL_L163","A tabela %s foi removida corretamente...");
 define("_INSTALL_L164","Ocorreu um erro, não foi possível remover a tabela %s.");
 define("_INSTALL_L165","Estamos no meio de uma manutenção temporária do portal. Volte em alguns instantes. Pedimos desculpas pelo transtorno.");
-define("_INSTALL_L17","%s é o nome do utilizador ('username') de sua conta de banco de dados.");
+define("_INSTALL_L17","%s é o nome do utilizador ('<em>username</em>') de sua conta de banco de dados.");
 define("_INSTALL_L18","%s é a senha solicitada para aceder ao banco de dados.");
 define("_INSTALL_L19","%s é o nome da suo banco de dados onde as tabelas do XOOPS Cube serão criadas.");
 define("_INSTALL_L2","Agora, altere esta linha para:");
@@ -130,7 +130,7 @@ define("_INSTALL_L51","Banco de dados");
 define("_INSTALL_L52","Senha do banco de dados");
 define("_INSTALL_L53","Por favor, confirme os dados enviados:");
 define("_INSTALL_L54","Utilizar conexão persistente?");
-define("_INSTALL_L55","Caminho físico do XOOPS Cube (path)");
+define("_INSTALL_L55","Caminho físico do XOOPS Cube (<em>path</em>)");
 define("_INSTALL_L56","Caminho virtual do XOOPS Cube (URL)");
 define("_INSTALL_L57","Por favor, escreva %s");
 define("_INSTALL_L58","Caminho virtual do diretório principal do XOOPS Cube SEM a barra invertida.");
@@ -171,8 +171,8 @@ define("_INSTALL_L93","Modificar parâmetros");
 define("_INSTALL_L94","Verificar o caminho e URL");
 define("_INSTALL_L95","Não foi possível detectar o caminho físico do diretório (path) onde está o XOOPS.");
 define("_INSTALL_L96","Há um conflito entre o caminho físico do diretório (path) detectado e o que foi digitado.");
-define("_INSTALL_L97","O <b>caminho físico</b> está correto.");
-define("_INSTALL_L99","Talvez o <b>caminho físico</b> não esteja correto.");
+define("_INSTALL_L97","O <strong>caminho físico</strong> está correto.");
+define("_INSTALL_L99","Talvez o <strong>caminho físico</strong> não esteja correto.");
 define("_INSTALL_LANG_XOOPS_SALT","Chave de segurança");
 define("_INSTALL_LANG_XOOPS_SALT_DESC","A chave de segurança provê uma maior segurança ao sistema. Não é necessário alterar esse valor.");
 // mb_http_output("UTF-8");

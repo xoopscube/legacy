@@ -1,7 +1,7 @@
 <?php
 // *************************************************************** //
 // ** XOOPS Cube Legacy - Versão em Português
-// ** $Id: modinfo.php 982 2009-04-12 21:22:45Z mikhail.miguel $
+// ** $Id$
 // ** License http://creativecommons.org/licenses/by/2.5/br/
 // *************************************************************** //
 define("_MI_SYSTEM_ADMENU1","Publicidade");

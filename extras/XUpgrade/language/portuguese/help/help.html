@@ -1,0 +1,110 @@
+<p>Welcome to "The Migration Guide for XOOPS2JP Users".</p>
+
+<p>
+XOOPS Cube Legacy is the package which has compatibility with XOOPS2 JP.
+But, the control panel you are accessing now has been remaked.
+Some concepts were changed. You may not be able to install modules, because you aren't good at Cube Legacy yet.
+</p>
+
+<p>
+This migration guide lets you from XOOPS2 JP to XOOPS Cube Legacy 2.1.
+Do learn Cube Legacy with this help and other helps.
+</p>
+
+<h4>Control</h4>
+<h5>Where did the pop-up menu go?</h5>
+<p>
+The pop-up menu said good-bye.
+The default admin theme of XOOPS Cube Legacy 2.1 doesn't have the pop-up menu.
+All of menu is showed in the side menu.
+You can open and close a menu of each modules by clicking [+] icon or [-] icon.
+Yes, you don't need to move your mouse carefully to move the cursor on the pop-up layer.
+</p>
+
+<h5>How to find the menu</h5>
+<p>
+Menu of XOOPS2 JP has been divided to some modules.
+You may use ActionSearch while you aren't good at Cube Legacy.
+By ActionSearch, you can search the keyword you input, from menu of the control panel and help.
+Try inputting 'User', you will get some menu about user management.
+</p>
+
+<h5>How to use List Table</h5>
+<p>
+Most of the pages which has item list has been changed to unified List Table UI.
+</p>
+<ul>
+ <li>To control sorting, click the arrow icon. It changes the sort field, and ASC or DESC. Do try it!
+ <li>To flip pages, use the page navigator. You can use it at most list table. 
+ <li>To edit or delete item, click each icons in the control field, which is in the most right column.
+ <li>To create new item, click the 'Create new' link, which is on the top of the table.
+</ul>
+
+<p>
+All of tables doesn't work these functions. Do read each help or tips for more informations.
+</p>
+
+<h6>Note</h6>
+<p>
+In Multi-Byte language, you have to set up MySQL correctly.
+If you haven't done it, the sort function may not work correctly for MultiByte field.
+For more informations, go to the official site of MySQL.
+</p>
+
+<h4>Management</h4>
+<h5>How to select the theme</h5>
+<p>
+<a href='<{$smarty.const.XOOPS_URL}>/base/admin/index.php?action=ThemeList'>'Theme management'</a> is good for you. Or, you may select it in the preference.
+</p>
+
+<h5>How to install module</h5>
+<p>
+The module management in Cube Legacy lists installed modules only.
+To install new modules, you have to visit the <a href='<{$smarty.const.XOOPS_MODULE_URL}>/base/admin/index.php?action=InstallList'>'Install module'</a>.
+</p>
+
+<h5>How to switch the visible flag of blocks</h5>
+<p>
+The concept of blocks is one of the most changed features from XOOPS2 JP.
+At first, you have to know that blocks have gotten 'Install' and 'Uninstall'.
+When you install new modules, new blocks of the module are listed in the uninstalled block list.
+</p>
+
+<ul>
+ <li>If you want to turn a block on, you have to visit <a href='<{$smarty.const.XOOPS_MODULE_URL}>/base/admin/index.php?action=BlockInstallList'>'Install block'</a>.
+ <li>If you want to turn a block off, you have to uninstall it in <a href='<{$smarty.const.XOOPS_MODULE_URL}>/base/admin/index.php?action=BlockList'>'block management'</a>.
+</ul>
+<p>
+ Also, the custom block has the concept of install.
+ To create your custom block, click the <a href='<{$smarty.const.XOOPS_MODULE_URL}>/base/admin/index.php?action=CustomBlockEdit'>'Add Custom Block'</a> link in <a href='<{$smarty.const.XOOPS_MODULE_URL}>/base/admin/index.php?action=BlockInstallList'>'Install block'</a>.
+</p>
+
+<p>
+ Blocks are deleted if you uninstall them. You can install them again anytime.
+ To delete your custom block, you need to make it uninstalled once.
+ Next, delete it in <a href='<{$smarty.const.XOOPS_MODULE_URL}>/base/admin/index.php?action=BlockInstallList'>'Install block'</a>. Blocks of the module are deleted when you uninstall the module.
+</p>
+
+<h5>How to send mail or PM to many users</h5>
+<p>
+That's changed all. And, that became more useful. (Developes think so. How do you think?)
+</p>
+
+<p>
+ Well, you can send mail in <a href='<{$smarty.const.XOOPS_MODULE_URL}>/user/admin/index.php?action=MailjobList'>'Mailjob management'</a>.
+ The mailjob is new concept in Cube Legacy.
+ A mailjob has the mail body and the send list.
+ At first, you have to make the send list by the <a href='<{$smarty.const.XOOPS_MODULE_URL}>/user/admin/index.php?action=UserSearch'>'Search users'</a>.
+</p>
+
+<ol>
+ <li><a href='<{$smarty.const.XOOPS_MODULE_URL}>/user/admin/index.php?action=UserSearch'>Search users</a> to list users which you want to send mail to.
+ <li>If you get the result you hope, click the 'Send mail by this condition' link, which is on the top of the table.
+ <li>Write the subject and the body, and select Mail or PM.
+ <li>After you finish it, the mailjob item is created and listed in the <a href='<{$smarty.const.XOOPS_MODULE_URL}>/user/admin/index.php?action=MailjobList'>'Mailjob management'</a>.
+ <li>Click a name of the mailjob to send mails. Of course, you can keep the mailjob un-send.
+</ol>
+
+<p>
+For more informations, let's read <a href='<{$smarty.const.XOOPS_MODULE_URL}>/user/admin/index.php?action=Help&amp;dirname=user'>the help of the user module</a>.
+</p>

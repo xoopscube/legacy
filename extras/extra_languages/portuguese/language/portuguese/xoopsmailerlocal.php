@@ -1,5 +1,5 @@
 <?php
-// $Id: xoopsmailerlocal.php,v 1.1 2008/03/09 02:38:13 xoopserver Exp $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 
 error_reporting(0);

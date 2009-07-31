@@ -1,5 +1,5 @@
 <?php
-// $Id: main.php,v 1.1 2008/03/09 02:32:42 xoopserver Exp $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 define("_MD_USER_ERROR_AVATAR_EXTENSION","Lamento, ainda não foi habilitado o envio de arquivos com esta extensão.");
 define("_MD_USER_ERROR_AVATAR_MAXFILESIZE","O arquivo enviado excede o limite de tamanho permitido para avatares.");

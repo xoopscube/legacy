@@ -1,5 +1,5 @@
 <?php
-// $Id: admin.php 992 2009-07-17 21:30:38Z mikhail.miguel $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 define("_AD_USER_DATA_DOWNLOAD_DO","Descarregar em CSV");
 define("_AD_USER_DATA_NUM","%d visitantes cadastrados.");

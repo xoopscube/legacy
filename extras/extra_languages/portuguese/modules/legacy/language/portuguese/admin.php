@@ -1,6 +1,6 @@
 <?php
 // Translation Info
-// $Id: admin.php,v 1.2 2008/10/13 00:32:36 minahito Exp $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy 2.1 - Tradução para o Português do Brasil

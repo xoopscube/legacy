@@ -1,7 +1,7 @@
 <?php
 // *************************************************************** //
 // ** XOOPS Cube Legacy - Versão em Português
-// ** $Id: banners.php 980 2009-04-12 18:45:51Z mikhail.miguel $
+// ** $Id$
 // **	License http://creativecommons.org/licenses/by/2.5/br/
 // *************************************************************** //
 #	define("_AM_DBUPDATED",_MD_AM_DBUPDATED);

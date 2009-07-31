@@ -1,5 +1,5 @@
 <?php
-// $Id: welcome.php,v 1.2 2008/10/12 04:31:06 minahito Exp $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
