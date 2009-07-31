@@ -1,7 +1,7 @@
 <?php
 // $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
-define("_MD_USER_ERROR_AVATAR_EXTENSION","Lamento, ainda não foi habilitado o envio de arquivos com esta extensão.");
+define("_MD_USER_ERROR_AVATAR_EXTENSION","Lamento, o envio de arquivos com essa extensão ainda não foi habilitado.");
 define("_MD_USER_ERROR_AVATAR_MAXFILESIZE","O arquivo enviado excede o limite de tamanho permitido para avatares.");
 define("_MD_USER_ERROR_AVATAR_SELECT","Ocorreu um erro: selecione um avatar válido.");
 define("_MD_USER_ERROR_AVATAR_SIZE","O arquivo enviado excede as dimensões permitidas...");
@@ -28,7 +28,7 @@ define("_MD_USER_LANG_AVATAR_ID","N°");
 define("_MD_USER_LANG_AVATAR_LIST","Avatares disponíveis");
 define("_MD_USER_LANG_AVATAR_MAXFILESIZE","Tamanho máximo");
 define("_MD_USER_LANG_AVATAR_WIDTH","Largura");
-define("_MD_USER_LANG_AVATAR_WIDTH_HIGHT","avatar width hight");
+define("_MD_USER_LANG_AVATAR_WIDTH_HIGHT","avatar largura altura");
 define("_MD_USER_LANG_BIO","Informações complementares");
 define("_MD_USER_LANG_DELACCOUNT","Remover cadastro");
 define("_MD_USER_LANG_DELETE","Remover");
@@ -53,6 +53,7 @@ define("_MD_USER_LANG_NO","Não");
 define("_MD_USER_LANG_NOACTTPADM","O cadastro do associado selecionado foi desabilitado ou ainda não foi habilitado.<br />Entre em contato com o administrador para mais informações.");
 define("_MD_USER_LANG_NOPROBLEM","Escreva o e-mail com o qual você se cadastrou em nosso site.");
 define("_MD_USER_LANG_NOREGISTER","Lamento, mas o cadastro de novos associados está bloqueado.");
+define("_MD_USER_LANG_NOTIFY","Notificações");
 define("_MD_USER_LANG_NOTIFY_METHOD","Método de notificação: ao monitorar uma seção do portal, como você deseja receber as notificações de atualização?");
 define("_MD_USER_LANG_NOTIFY_MODE","Método de notificação padrão");
 define("_MD_USER_LANG_NOTREGISTERED","Você ainda não se cadastrou? <a href=register.php>Clique AQUI!</a>");
@@ -72,20 +73,17 @@ define("_MD_USER_LANG_SENDPASSWORD","Enviar senha");
 define("_MD_USER_LANG_SHOWALL","Mostrar todos");
 define("_MD_USER_LANG_STATISTICS","Estatísticas");
 define("_MD_USER_LANG_SUBMIT","Prosseguir");
-define("_MD_USER_LANG_THEME","Tema");
+define("_MD_USER_LANG_THEME","Interface");
 define("_MD_USER_LANG_TIMEZONE","Fuso horário");
 define("_MD_USER_LANG_TIMEZONE_OFFSET","Fuso horário");
 define("_MD_USER_LANG_TYPEPASSTWICE","(se desejar, escreva uma nova senha duas vezes para alterá-la)");
 define("_MD_USER_LANG_UID","UID");
 define("_MD_USER_LANG_UMODE","Modo de aparência dos comentários");
 define("_MD_USER_LANG_UNAME","Codinome");
-define("_MD_USER_LANG_UNASSIGN","Remover");
+define("_MD_USER_LANG_UNASSIGN","Desassociar");
 define("_MD_USER_LANG_UORDER","Ordem de aparência dos comentários");
-define("_MD_USER_LANG_URL","URL");
-define("_MD_USER_LANG_USERCOOKIE","Guardar o meu codinome");
-define("_MD_USER_LANG_USERKEYFOR","Este é o código de ativação para %s");
-define("_MD_USER_LANG_USERREG","Cadastre-se!");
-define("_MD_USER_LANG_USER_AIM","AOL ID");
+define("_MD_USER_LANG_URL","Endereço na WEB");
+define("_MD_USER_LANG_USER_AIM","AOL Screen Name");
 define("_MD_USER_LANG_USER_AVATAR","Avatar");
 define("_MD_USER_LANG_USER_FROM","Localidade");
 define("_MD_USER_LANG_USER_ICQ","ICQ");
@@ -97,8 +95,11 @@ define("_MD_USER_LANG_USER_REGDATE","Desde");
 define("_MD_USER_LANG_USER_SIG","Assinatura");
 define("_MD_USER_LANG_USER_VIEWEMAIL","Permitir que outros associados vejam o endereço de email");
 define("_MD_USER_LANG_USER_YIM","ID Yahoo!");
+define("_MD_USER_LANG_USERCOOKIE","Gravar o meu codinome por um ano");
+define("_MD_USER_LANG_USERKEYFOR","Este é o código de ativação para %s");
+define("_MD_USER_LANG_USERREG","Cadastre-se!");
 define("_MD_USER_LANG_VERIFYPASS","Verificar senha");
-define("_MD_USER_LANG_WEBSITE","Seu endereço na web");
+define("_MD_USER_LANG_WEBSITE","Seu endereço na WEB");
 define("_MD_USER_LANG_WHOSONLINE","Quem nos visita");
 define("_MD_USER_LANG_YOURACCOUNT","A sua conta em %s");
 define("_MD_USER_LANG_YOUREMAIL","O seu e-mail:");
@@ -110,8 +111,21 @@ define("_MD_USER_MESSAGE_ACTVMAILOK","Uma mensagem com a chave de ativação foi
 define("_MD_USER_MESSAGE_IAGREE","Concordo com o acima descrito");
 define("_MD_USER_MESSAGE_OLDDELETED","O seu avatar anterior será removido.");
 define("_MD_USER_MESSAGE_SEND_PASSWORD","Senha enviada");
-define("_MD_USER_MESSAGE_SURETODEL","Tem certeza de que deseja cancelar a sua conta? :-(");
-define("_MD_USER_MESSAGE_USER_DELETE_SUCCESS","O seu perfil por corretamente removido deste portal.");
+define("_MD_USER_MESSAGE_SURETODEL","Tem certeza de que deseja cancelar a sua conta?");
+define("_MD_USER_MESSAGE_USER_DELETE_SUCCESS","O seu perfil foi definificamente removido deste portal.");
 define("_MD_USER_MESSAGE_YOURREGISTERED","Agora você está cadastrado. Uma mensagem com a sua chave de ativação foi enviada ao e-mail que você nos forneceu. Por favor, siga as instruções contidas no e-mail para habilitar a sua conta.");
 define("_MD_USER_MESSAGE_YOURREGISTERED2","Agora você está cadastrado. Por favor, espere pela aprovação dos administradores.");
+// ############################################################### //
+// ## XOOPS Cube Legacy - Versão em Português
+// ############################################################### //
+// ## Por............: Mikhail Miguel
+// ## Website........: http://xoopscube.com.br
+// ## E-mail.........: mikhail@underpop.com
+// ## AOL............: mikhailmiguel
+// ## MSN............: mikhail.miguel@hotmail.com
+// ## Orkut..........: 15440532260129226492
+// ## Skype..........: mikhailmiguel
+// ## Yahoo!.........: mikhail.miguel@yahoo.com.br
+// ############################################################### //
+// *************************************************************** //
 ?>

@@ -1,31 +1,34 @@
 <?php
 // $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
+// DATA
 define("_AD_USER_DATA_DOWNLOAD_DO","Descarregar em CSV");
 define("_AD_USER_DATA_NUM","%d visitantes cadastrados.");
 define("_AD_USER_DATA_UPLOAD_BACK","Selecione o arquivo CSV mais uma vez");
-define("_AD_USER_DATA_UPLOAD_CHECK_USER_CSVFILE","Por gentileza, confirme o conteúdo do cadastro.");
+define("_AD_USER_DATA_UPLOAD_CHECK_USER_CSVFILE","Por gentileza, verifique se há algum problema no conteúdo do arquivo CSV dos cadastros.");
 define("_AD_USER_DATA_UPLOAD_CONF","Por favor, confirme:");
 define("_AD_USER_DATA_UPLOAD_DO","Cadastro");
 define("_AD_USER_DATA_UPLOAD_DONE","As informações do arquivo CSV foram corretamente importadas.");
-define("_AD_USER_DATA_UPLOAD_SELECT_USER_CSVFILE","Please select the file of registered CSV.");
+define("_AD_USER_DATA_UPLOAD_SELECT_USER_CSVFILE","Por favor, selecione o arquivo em formado CSV.");
+// ERROR
 define("_AD_USER_ERROR_CONTENT_IS_NOT_FOUND","Não foi possível encontrar os dados.");
-define("_AD_USER_ERROR_COULD_NOT_SAVE_AVATAR_FILE","Lamento, não foi possível gravar o arquivo do avatar avatar '{0}'");
+define("_AD_USER_ERROR_COULD_NOT_SAVE_AVATAR_FILE","Lamento, não foi possível gravar o arquivo do avatar '{0}'");
 define("_AD_USER_ERROR_DBUPDATE_FAILED","Lamento, não foi possível atualizar o banco de dados.");
 define("_AD_USER_ERROR_EMAIL","{0} é um endereço inválido");
 define("_AD_USER_ERROR_EXTENSION_IS_WRONG","Atenção: a extensão do arquivo enviado é ínválida.");
 define("_AD_USER_ERROR_GROUP_VALUE","O valor atribuído ao grupo está equivocado.");
 define("_AD_USER_ERROR_IMAGE_REQUIRED","É necessário especificar um arquivo de imagem.");
 define("_AD_USER_ERROR_INJURY_MIN_MAX","A relação entre os valores mínimo e máximo está errada.");
-define("_AD_USER_ERROR_INTRANGE","Entrada incorreta em {0}.");
-define("_AD_USER_ERROR_MAILJOB_SEND_FAIL","Ocorreu um erro ao tentar enviar a mensagem interna ou de correio-eletrônico.");
-define("_AD_USER_ERROR_MAILJOB_SEND_MEANS","É necessário escolher pelo menos um método de entrega do correio.");
+define("_AD_USER_ERROR_INTRANGE","A entrada {0} está aparentemente incorreta.");
+define("_AD_USER_ERROR_MAILJOB_SEND_FAIL","Ocorreu um erro ao tentar enviar a mensagem.");
+define("_AD_USER_ERROR_MAILJOB_SEND_MEANS","É necessário escolher pelo menos um método de entrega para o correio-eletrônico.");
 define("_AD_USER_ERROR_MIN","Entrada {0} com {1} ou mais valores numéricos.");
-define("_AD_USER_ERROR_OBJECTEXIST","Entrada incorreta para {0:toLower}.");
-define("_AD_USER_ERROR_REQUEST_IS_WRONG","Solicitação inválida.");
-define("_AD_USER_ERROR_REQUIRED","{0} é um valor necessário.");
+define("_AD_USER_ERROR_OBJECTEXIST","{0:toLower} possui uma entrada incorreta.");
+define("_AD_USER_ERROR_REQUIRED","{0} é um valor que necessário para esta operação.");
+define("_AD_USER_ERROR_REQUEST_IS_WRONG","Lamento, a sua solicitação é inválida.");
 define("_AD_USER_ERROR_UMODE","O valor especificado para a ordem dos comentários é inválido.");
-define("_AD_USER_ERROR_UNAME_NO_UNIQUE","Esse codinome já está em uso.");
+define("_AD_USER_ERROR_UNAME_NO_UNIQUE","Esse codinome escolhido é de muito bom gosto e por isso já está em uso por outro associado. Lamento.");
+// LANG
 define("_AD_USER_LANG_ALL_OF_USERS","Todos os frequentadores");
 define("_AD_USER_LANG_APPROVE_USERS_ONLY","Apenas associados ativos");
 define("_AD_USER_LANG_AVATAR_CREATED","Criado");
@@ -141,26 +144,41 @@ define("_AD_USER_LANG_USER_TOTAL","Visitantes associados");
 define("_AD_USER_LANG_USER_UPDATECONF","Confirme a atualização do associado");
 define("_AD_USER_LANG_USER_VIEW","Mostrar associado");
 define("_AD_USER_LANG_VPASS","Verificar a senha");
+// Message
 define("_AD_USER_MESSAGE_CONFIRM_DELETE","Confirma a remoção?");
 define("_AD_USER_MESSAGE_CONFIRM_DELETE_RANK","Confirma a remoção desta graduação?");
-define("_AD_USER_MESSAGE_CONFIRM_UPDATE_AVATAR","Are you sure you want to update it?");
-define("_AD_USER_MESSAGE_CONFIRM_UPDATE_RANK","Are you sure you want to update rank?");
-define("_AD_USER_MESSAGE_CONFIRM_UPDATE_USER","Are you sure you want to update user?");
+define("_AD_USER_MESSAGE_CONFIRM_UPDATE_AVATAR","Tem certeza de que deseja atualizar isto?");
+define("_AD_USER_MESSAGE_CONFIRM_UPDATE_RANK","Tem certeza de que deseja atualizar a graduação?");
+define("_AD_USER_MESSAGE_CONFIRM_UPDATE_USER","Tem certeza de que deseja atualizar esse associado?");
 define("_AD_USER_MESSAGE_RECOUNT_SUCCESS","Valores recalculados corretamente.... ");
-define("_AD_USER_TIPS1_DATA_UPLOAD","The user batch registration with CSV file is possible.");
-define("_AD_USER_TIPS2_DATA_UPLOAD","Use CSV file downloaded from <a href=\"?action=UserDataDownload\" style=\"color:#941d55;font-weight:bold;\">'._MI_USER_ADMENU_USER_DATA_DOWNLOAD.'</a> Do not increase and decrease columns.");
-define("_AD_USER_TIPS3_DATA_UPLOAD","Please describe only the user who wants to update and wants to register information newly in CSV file.");
-define("_AD_USER_TIPS4_DATA_UPLOAD","When the row of leftmost UID is emptied(or 0), it registers as a new user.");
-define("_AD_USER_TIPS5_DATA_UPLOAD","The user information is updated when there is a value of the row of leftmost(UID).<br>If you set password,set it within 30bytes.");
-define("_AD_USER_TIPS_AVATAR","Site members can optionally fashion their own online personae called avatars.<br />This option can be set off from module User preferences.");
+// Tips
+define("_AD_USER_TIPS_AVATAR","Avatares são imagens que representam as personalidades dos associados. Podem ser desde figuras <q>nonsense</q> a ícones de nossas culturas; ou mesmo suas próprias fotos. A palavra <q>Avatar</q> tem o origem indiana e significa, segundo a crença hinduísta, a descida de um ser divino à terra, em forma materializada, podendo assumir a forma humana ou a de um animal. Também significa <q>processo metamórfico</q>; <q>transformação</q>, como a de um artista ao entrar no palco ou a de um visitante ao acessar um bate-papo ou fórum da Internet. Resumindo: escolha a imagem que tenha mais a ver com a sua personalidade. Se desejar, escolha um dos avatares disponíveis em nossa galeria ou, se desejar, utilize alguma imagem do seu computador.");
 define("_AD_USER_TIPS_AVATAR_UPLOAD","You can easily register many avatars by uploading Archive file including them! <br />This batch-upload doesn't check Length and File-Size of each avatar!<br />Please pre-adjust them before you archive them!<br />(Only tar.gz or zip archive)");
-define("_AD_USER_TIPS_DATA_DOWNLOAD","You are only able to get CSV User data order by user_id.");
+define("_AD_USER_TIPS_DATA_DOWNLOAD","O arquivo CSV com os dados dos associados só está disponível em ordem de cadastro (user_id).");
 define("_AD_USER_TIPS_DELETE_AVATAR","Users who are using this avatar will have blank.gif as the avatar image file.");
 define("_AD_USER_TIPS_MAILJOB_SEND","Se houver muitos destinatários, o servidor poderá não responder como esperado (página em branco, etc.) Neste caso, recarregue o navegador diversas vezes para contornar este problema e completar o envio das cartas-eletrônicas para todos os associados.");
 define("_AD_USER_TIPS_RANK","A social user ranking system is helpfull to identify contributors. You can define your own policy by editing default ranks.");
-define("_AD_USER_TIPS_RECOUNT_POSTS","Você pode recalcular o número de contribuições dos associados clicando no botão 'Recalcular' abaixo.");
+define("_AD_USER_TIPS_RECOUNT_POSTS","Você pode recalcular o número de contribuições dos associados clicando no botão <q>Recalcular</q> abaixo.");
 define("_AD_USER_TIPS_USER_ADMIN","Access to your XOOPS Cube web site is controlled through a group-based system by which users are assigned to groups that authorize their access to Modules and blocks content. Some recent modules can extend default User Management providing a role-based system which allows you to assign permissions by User.<br />You can also extend default User Profile by adding new fields. To learn more, click the following link :");
-define("_AD_USER_TIPS_USER_EDIT","Se você deseja mudar de senha, complete os campos 'Senha' e 'Confirmar senha' do formulário.");
-define("_AD_USER_TIPS_USER_NEW","É necessário completar os camos 'Codinome', 'Endereço de correio-eletrônico', 'Senha' e 'Confirmar senha'.");
+define("_AD_USER_TIPS_USER_EDIT","Se você deseja mudar de senha, complete os campos <q>Senha</q> e <q>Confirmar senha</q> do formulário.");
+define("_AD_USER_TIPS_USER_NEW","É necessário completar os camos <q>Codinome</q>, <q>Endereço de correio-eletrônico</q>, <q>Senha</q> e <q>Confirmar senha</q>.");
 define("_AD_USER_TIPS_USER_SEARCH","You can search and sort your users data to find the vital information you are looking for.<br />The accuracy of the end result will be directly related to the number of fields you fill.");
+define("_AD_USER_TIPS1_DATA_UPLOAD","The user batch registration with CSV file is possible.");
+define("_AD_USER_TIPS2_DATA_UPLOAD", "Utilize um arquivo CSV no mesmo formado da opção <q><a href='?action=UserDataDownload'>Exportar Dados</a></q>, sem alterar o número de colunas");
+define("_AD_USER_TIPS3_DATA_UPLOAD","Please describe only the user who wants to update and wants to register information newly in CSV file.");
+define("_AD_USER_TIPS4_DATA_UPLOAD","When the row of leftmost UID is emptied(or 0), it registers as a new user.");
+define("_AD_USER_TIPS5_DATA_UPLOAD","The user information is updated when there is a value of the row of leftmost(UID).<br>If you set password,set it within 30bytes.");
+// ############################################################### //
+// ## XOOPS Cube Legacy - Versão em Português
+// ############################################################### //
+// ## Por............: Mikhail Miguel
+// ## Website........: http://xoopscube.com.br
+// ## E-mail.........: mikhail@underpop.com
+// ## AOL............: mikhailmiguel
+// ## MSN............: mikhail.miguel@hotmail.com
+// ## Orkut..........: 15440532260129226492
+// ## Skype..........: mikhailmiguel
+// ## Yahoo!.........: mikhail.miguel@yahoo.com.br
+// ############################################################### //
+// *************************************************************** //
 ?>
