@@ -26,6 +26,11 @@ $adminmenu[1]['link'] = 'admin/index.php?action=DefinitionsEdit';
 $adminmenu[1]['keywords'] = _MI_PROFILE_KEYWORD_DEFINITIONS_CREATE;
 $adminmenu[1]['show'] = true;
 
+$adminmenu[2]['title'] = _MI_PROFILE_LANG_DOWNLOAD;
+$adminmenu[2]['link'] = 'admin/index.php?action=DataDownload';
+$adminmenu[2]['keywords'] = _MI_PROFILE_KEYWORD_DOWNLOAD;
+$adminmenu[2]['show'] = true;
+
 ##[/cubson:adminmenu]
 
 ?>
