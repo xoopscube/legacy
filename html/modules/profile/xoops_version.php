@@ -11,9 +11,9 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 // Define a basic manifesto.
 //
 $modversion['name'] = _MI_PROFILE_LANG_PROFILE;
-$modversion['version'] = 0.01;
+$modversion['version'] = 2.00;
 $modversion['description'] = _MI_PROFILE_DESC_PROFILE;
-$modversion['author'] = "";
+$modversion['author'] = "kilica";
 $modversion['credits'] = "";
 $modversion['help'] = "help.html";
 $modversion['license'] = "GPL";

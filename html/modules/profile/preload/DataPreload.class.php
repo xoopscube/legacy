@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * @package xcat
+ * @package profile
  * @version $Id$
  */
 

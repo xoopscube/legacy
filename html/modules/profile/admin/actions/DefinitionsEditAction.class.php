@@ -47,8 +47,9 @@ class Profile_Admin_DefinitionsEditAction extends Profile_AbstractEditAction
 	function prepare()
 	{
 		parent::prepare();
-		$this->mTypeArr = $this->mObject->getTypeList();
-		$this->mValidationArr = $this->mObject->getValidationList();
+		$handler =& $this->_getHandler();
+		$this->mTypeArr = $handler->getTypeList();
+		$this->mValidationArr = $handler->getValidationList();
 	}
 
 	/**

@@ -84,22 +84,6 @@ class Profile_DefinitionsObject extends XoopsSimpleObject
 	/**
 	 * @public
 	 */
-	function getTypeList()
-	{
-		return array("string", "text", "int", "date", "checkbox", "selectbox");
-	}
-
-	/**
-	 * @public
-	 */
-	function getValidationList()
-	{
-		return array("email");
-	}
-
-	/**
-	 * @public
-	 */
 	function getServiceType()
 	{
 		switch($this->get('type')){
@@ -197,7 +181,7 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 	{
 		global $xoopsDB;
 		if ($obj->isNew()) {
-			$sql = 'ALTER TABLE '. $xoopsDB->prefix('profile_data') .' ADD `'. $obj->get('field_name') .'` '. $obj->getQUery4AlterTable();
+			$sql = 'ALTER TABLE '. $xoopsDB->prefix('profile_data') .' ADD `'. $obj->get('field_name') .'` '. $obj->getQuery4AlterTable();
 			$xoopsDB->query($sql);
 		}
 		else {
@@ -222,6 +206,38 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 		
 		return parent::delete($obj);
 	}
+
+	function getDefinitionsArr($show_form=true)
+	{
+		$criteria = new CriteriaCompo('1', '1');
+		$criteria->setSort('weight', 'ASC');
+		if($show_form==true){
+			$criteria->add(new Criteria('show_form', 1));
+		}
+		$definitions = $this->getObjects($criteria);
+		$defArr = array();
+		foreach($definitions as $def){
+			$defArr[$def->get('field_name')] = $def->gets();
+		}
+		return $defArr;
+	}
+
+	/**
+	 * @public
+	 */
+	function getTypeList()
+	{
+		return array("string", "text", "int", "date", "checkbox", "selectbox");
+	}
+
+	/**
+	 * @public
+	 */
+	function getValidationList()
+	{
+		return array("email");
+	}
+
 
 }
 
