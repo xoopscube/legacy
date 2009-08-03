@@ -2,14 +2,15 @@
 -- Novo cadastro no {SITENAME}
 =============================================
 
-
 {USERNAME} < mailto:{USEREMAIL} >
 
+---
 
-Para habilitar este perfil, visite:
+
+{X_UNAME}, para habilitar o perfil acima, visite:
 {USERACTLINK}
 
 
 
 ---------------------------------------
-:: {SITENAME} - {SITEURL} ::
+:: {SITEURL} ::

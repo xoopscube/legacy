@@ -1,10 +1,11 @@
 ================================================================================
-:: {SITENAME} - Notificação automática para {X_UNAME} ::
+:: {X_SITENAME} - Notificação automática para {X_UNAME} ::
 ================================================================================
 
+NOME: {X_ITEM_NAME}
 EVENTO: {X_NOTIFY_EVENT}
-SEÇÃO: {X_ITEM_TYPE}
-TÍTULO: {X_ITEM_TILE}
+TIPO: {X_ITEM_TYPE}
+SEÇÃO: {X_MODULE}
 
 ENDEREÇO:
 {X_ITEM_URL}
@@ -13,12 +14,10 @@ ENDEREÇO:
 
 
 
+=-=-=-==-=-=-==-=-=-==-=-=-=-=-==-=-=-==-=-=-==-=--
+{X_SITENAME} ~ {X_SITEURL}
+=-=-=-==-=-=-==-=-=-==-=-=-=-=-==-=-=-==-=-=-==-=-*
 
-
-
-*=-=-=-==-=-=-==-=-=-==-=-
-{SITENAME} - {SITEURL}
-=-=-=-==-=-=-==-=-=-==-=-*
 
 Para não receber mais estas notificações, visite:
 {X_UNSUBSCRIBE_URL}

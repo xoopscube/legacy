@@ -4,10 +4,10 @@
 // ############################################################### //
 // ## XOOPS Cube Legacy 2.1 - Tradução para o Português do Brasil
 // ## $Id$
-// License http://creativecommons.org/licenses/by/2.5/br/
+// ## License http://creativecommons.org/licenses/by/2.5/br/
 // ## Por............: Mikhail Miguel
 // ## E-mail.........: mikhail@underpop.com
-// ## Website........: http://xoops.eti.br
+// ## Website........: http://xoopscube.com.br/
 // ############################################################### //
 // *************************************************************** //
 define("_MI_STDCACHE_NAME","Acelerador");

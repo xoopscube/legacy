@@ -5,7 +5,6 @@ INSERT INTO ranks VALUES (4, 'Participativo', 71, 150, 0, 'rank3dbf8ea81e642.gif
 INSERT INTO ranks VALUES (5, 'Hiperativo', 151, 10000, 0, 'rank3dbf8eb1a72e7.gif');
 INSERT INTO ranks VALUES (6, 'Moderação', 0, 0, 1, 'rank3dbf8edf15093.gif');
 INSERT INTO ranks VALUES (7, 'Administração', 0, 0, 1, 'rank3dbf8ee8681cd.gif');
-
 INSERT INTO smiles VALUES (1, ':-D', 'smil3dbd4d4e4c4f2.gif', 'Muito feliz', 1);
 INSERT INTO smiles VALUES (10, ':oops:', 'smil3dbd4df1944ee.gif', 'Com vergonha', 0);
 INSERT INTO smiles VALUES (11, ':cry:', 'smil3dbd4e02c5440.gif', 'Chorando', 0);

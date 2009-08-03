@@ -28,7 +28,7 @@ define("_MI_LEGACY_BLOCK_SITEINFO_NAME","Acerca");
 define("_MI_LEGACY_BLOCK_THEMES_DESC","Mostra a caixa de seleção de temas");
 define("_MI_LEGACY_BLOCK_THEMES_NAME","Temas");
 define("_MI_LEGACY_BLOCK_USERMENU_DESC","Mostra o bloco dos associados");
-define("_MI_LEGACY_BLOCK_USERMENU_NAME","Cadastro");
+define("_MI_LEGACY_BLOCK_USERMENU_NAME","Perfil");
 define("_MI_LEGACY_BLOCK_WAITING_DESC","Mostra o conteúdo pendente por aprovação");
 define("_MI_LEGACY_BLOCK_WAITING_NAME","Pendências");
 define("_MI_LEGACY_KEYWORD_BLOCKINSTALL","Instalar bloco");
@@ -51,5 +51,5 @@ define("_MI_LEGACY_MENU_SMILES_MANAGE","Ícones emotivos");
 define("_MI_LEGACY_MENU_THEME_MANAGE","Temas");
 define("_MI_LEGACY_MENU_XOOPS_CONFIG","Configurações gerais");
 define("_MI_LEGACY_NAME","Sistema legado");
-define("_MI_LEGACY_NAME_DESC","Este módulo provê a compatibilidade com as antigas versões 2.0.x do XOOPS. Traduzido por Mikhail Miguel.");
+define("_MI_LEGACY_NAME_DESC","Este módulo provê a compatibilidade com as antigas versões 2.0.x do XOOPS. Sistema Legado é um Software, Computador, Rede ou outro equipamento que continua a ser utilizado depois que uma empresa ou organização instala novos sistemas. Traduzido por Mikhail Miguel.");
 ?>

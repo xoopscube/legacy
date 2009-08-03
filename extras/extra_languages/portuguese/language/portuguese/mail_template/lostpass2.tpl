@@ -20,6 +20,7 @@ Endereço IP utilizado: {IP}
 Se desejar, entre em contato para mais informações.
 
 
-*=-=-=-==-=-=-==-=-=-==-=-
-{SITENAME} - {SITEURL}
-=-=-=-==-=-=-==-=-=-==-=-*
+
+=-=-=-==-=-=-==-=-=-==-=-=-=-=-==-=-=-==-=-=-==-=--
+{SITENAME} ~ {SITEURL}
+=-=-=-==-=-=-==-=-=-==-=-=-=-=-==-=-=-==-=-=-==-=-*

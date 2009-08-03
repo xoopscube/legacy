@@ -16,7 +16,7 @@ define("_TZ_GMTM10","(GMT -10:00) Havaí");
 define("_TZ_GMTM11","(GMT -11:00) Ilhas Midway, Samoa");
 define("_TZ_GMTM12","(GMT -12:00) Eniwetok, Kwajalein");
 define("_TZ_GMTM2","(GMT -2:00) Atlântico Central");
-define("_TZ_GMTM3","(GMT -3:00) Brasília, Buenos Aires, Georgetown");
+define("_TZ_GMTM3","(GMT -3:00) BRASÍLIA, BUENOS AIRES, GEORGETOWN");
 define("_TZ_GMTM35","(GMT -3:30) Newfoundland");
 define("_TZ_GMTM4","(GMT -4:00) Hora do Atlântico (Canadá), Caracas, La Paz");
 define("_TZ_GMTM5","(GMT -5:00) Hora Oriental (Canadá e EUA), Bogotá, Lima, Quito");
