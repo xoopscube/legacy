@@ -96,6 +96,6 @@ define("_AD_LEGACYRENDER_LANG_VIEW","Mostrar");
 define("_AD_LEGACYRENDER_MESSAGE_CONFIRM_DELETE","Confirma a remoção?");
 define("_AD_LEGACYRENDER_MESSAGE_UPLOAD_TEMPLATE_SUCCESS","Conjunto de modelos enviado corretamente.");
 define("_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_1","Personalize o seu portal modificando os modelos. Primeiro, faça uma cópia (clone) do conjunto de modelos padrão, e então modifique os modelos deste novo conjunto. Para aprender mais, leia a ajuda.");
-define("_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_2","Você pode facilmente mudar o conjunto de modelos para seu portal clicando o respectivo  a tecla. Para saber mais, leia a ajuda.");
+define("_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_2","Você pode facilmente mudar o conjunto de modelos para seu portal clicando o respectivo a tecla. Para saber mais, leia a ajuda.");
 define("_AD_LEGACYRENDER_TIPS_TPLSET_UPLOAD","Se você não escolher um nome para o seu novo conjunto de modelos, o nome será feito exame do arquivo enviado. Por favor, envie apenas arquivos do tipo TAR.GZ.");
 ?>

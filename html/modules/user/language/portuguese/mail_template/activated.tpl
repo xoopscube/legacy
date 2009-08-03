@@ -138,12 +138,16 @@
 
  Se desejar, entre em contato com o administrador do {SITENAME} pelo endereço
  de correio-eletrônico {ADMINMAIL} , ou via web, pela seção de contato do
- {SITENAME}: {SITEURL}modules/contact/
+ {SITENAME}:
+
+ {SITEURL}modules/contact/
 
 
-*=-=-=-==-=-=-==-=-=-==-=-
+*=-=-=-==-=-=-==-=-=-==-=-=-=-=-==-=-=-==-=-=-==-=-
 {SITENAME} - {SITEURL}
-=-=-=-==-=-=-==-=-=-==-=-*
+=-=-=-==-=-=-==-=-=-==-=-=-=-=-==-=-=-==-=-=-==-=-*
+
+
 /"\
 \ / Campanha da fita ASCII
  X  a favor do correio eletrônico livre

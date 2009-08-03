@@ -162,17 +162,15 @@ define("_WELCOMETO","Bem-vindo ao %s");
 define("_WHOSONLINE","Quem nos visita");
 define("_YES","Sim");
 define("_YOURHOME","Inicial");
-
 define("XOOPS_USE_MULTIBYTES","0");
 //%%%%% LANGUAGE SPECIFIC SETTINGS %%%%%
-@define("LEGACY_MAIL_CHAR","ISO-8859-1");
-@define("LEGACY_MAIL_ENCO","ISO-8859-1");
+@define("LEGACY_MAIL_CHAR","UTF-8");
+@define("LEGACY_MAIL_ENCO","UTF-8");
 @define("LEGACY_MAIL_LANG","pt");
-@define("_CHARSET","ISO-8859-1");
+@define("_CHARSET","UTF-8");
 @define("_LANGCODE","pt");
-
-// mb_language( 'uni' ) ;
-// mb_internal_encoding( 'iso-8859-1' ) ;
-// mb_http_output( 'iso-8859-1' ) ;
+// mb_language( 'uni');
+// mb_internal_encoding( 'UTF-8');
+// mb_http_output( 'UTF-8');
 header('Content-Type:text/html; charset='._CHARSET);
 ?>

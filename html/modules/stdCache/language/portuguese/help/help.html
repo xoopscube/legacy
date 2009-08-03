@@ -1,18 +1,17 @@
-<h4>Outline</h4>
-<ul>
-<li>This module adds caching functionality to your site, which can reduce the sever load considerably when your site has a lot of access.</li>
-<li>However, there still exists some minor problems to be fixed in the future such as the cache exposing contents to those that should not have access.</li>
-<li>This module enables the function for two types of user group (i.e. guest and registered user groups). Caching contents for other user groups is not available at this time.</li>
-</ul>
-<h4>Cache maintainance using the clear cache block</h4>
-<ul>
-<li>The clear cache block will invalidate all the cached contents when the block is viewed by a user.</li>
-<li>We recommend setting the block accessible by the guest users, and the clearance interval to "one day" in block preference, which would then purge all the cached contents once a day.</li>
-<li>The module might create a large amount of cached files, but it hardly becomes a problem if you use the clear cache block properly as recommended.</li>
-</ul>
-<h4>How to set up</h4>
-<ul>
-<li>Please add the following two lines to the the configuration file, under the [Cube] block.</li>
-<li>CacheSystem.path=/modules/stdCache/kernel</li>
-<li>CacheSystem.class=StdRenderCache</li>
-</ul>
+<h4>Standard Cache Module</h4>
+<h5>Summary</h5>
+<p>This module adds the standard cache policy to Legacy System. The policy orders Legacy System to make cache files for every groups except the webmaster group.</p>
+<h5>What is this?</h5>
+<p>Legacy System module has contents cache feature for modules and blocks. The cache feature saves the content of their work to files, if cache setting is active. And, if cache files are available, Legacy System prevents the logic and SQL of blocks and modules. That's very powerful but very dangerous, because there is not the cache policy.</p>
+<p>For example, if Legacy System makes the cache file for administrators' access, anonymous users may see the cache file having secret informations which only administrators can access. For security, Legacy System should make the cache file for every groups. But, this way makes too many files in your server. In other words, Legacy System doesn't know what you hope.</p>
+<p>This module is one of cache modules and adds the standard cache policy to Legacy System. The policy orders Legacy System to make the cache file for every groups except the administrator group.</p>
+<p>Therefore, the cache policy of this module makes many files, so you should install "cache clear block". This block is imvisible and deletes all of cache files including extra cache files, with interval timer. </p>
+<h5>The cache clear block</h5>
+<h6>Summary</h6>
+<p>This block is <strong>invisible</strong> and deletes all of cache files including extra cache files, with interval timer.</p>
+<h6>Options</h6>
+<p><img src="<{'cacheclear_block_option.png'|helpimage}>" /></p>
+<dl>
+<dt>Interval timer (min)</dt>
+<dd>Specify the interval.</dd>
+</dl>
