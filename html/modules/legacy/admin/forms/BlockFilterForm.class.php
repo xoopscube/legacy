@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: BlockFilterForm.class.php,v 1.3 2008/09/25 15:10:53 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
+ * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/>
  * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -62,7 +62,7 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
 	{
 		return NEWBLOCKS_SORT_KEY_DEFAULT;
 	}
-	
+
 	function fetch()
 	{
 		parent::fetch();
@@ -76,33 +76,33 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
 		$dirname = $root->mContext->mRequest->getRequest('dirname');
 		$search = $root->mContext->mRequest->getRequest('search');
 		$option_field = $root->mContext->mRequest->getRequest('option_field');
-		
+
 		if (isset($_REQUEST['mid'])) {
 			$this->mNavi->addExtra('mid', xoops_getrequest('mid'));
 			$this->_mCriteria->add(new Criteria('mid', xoops_getrequest('mid')));
 		}
-	
+
 		if (isset($_REQUEST['side'])) {
 			$this->mNavi->addExtra('side', xoops_getrequest('side'));
 			$this->_mCriteria->add(new Criteria('side', xoops_getrequest('side')));
 		}
-	
+
 		if (isset($_REQUEST['weight'])) {
 			$this->mNavi->addExtra('weight', xoops_getrequest('weight'));
 			$this->_mCriteria->add(new Criteria('weight', xoops_getrequest('weight')));
 		}
-	
+
 		if (isset($_REQUEST['block_type'])) {
 			$this->mNavi->addExtra('block_type', xoops_getrequest('block_type'));
 			$this->_mCriteria->add(new Criteria('block_type', xoops_getrequest('block_type')));
 		}
-	
+
 		if (isset($_REQUEST['c_type'])) {
 			$this->mNavi->addExtra('c_type', xoops_getrequest('c_type'));
 			$this->_mCriteria->add(new Criteria('c_type', xoops_getrequest('c_type')));
 		}
-	
-		if (isset($_REQUEST['dirname'])) {
+
+		if (isset($_REQUEST['dirname']) and !$_REQUEST['dirname'] == 0) {
 			if (intval($dirname) == -1){
 			$this->_mCriteria->add(new Criteria('block_type', 'C'));
 			$this->mModule = "cblock";
@@ -116,13 +116,13 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
 			$this->mNavi->addExtra('dirname', xoops_getrequest('dirname'));
 		}
 
-		
+
 		if (isset($_REQUEST['search'])) {
 			$this->mKeyword = $search;
 			$this->mNavi->addExtra('search', $this->mKeyword);
 			$this->_mCriteria->add(new Criteria('name', '%' . $this->mKeyword . '%', 'LIKE'));
 		}
-		
+
 		if (isset($_REQUEST['option_field'])) {
 			$this->mOptionField = $option_field;
 			if ( $this->mOptionField != "all" ) {
@@ -140,23 +140,23 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
 		// Set sort conditions.
 		//
 		$this->_mCriteria->addSort($this->getSort(), $this->getOrder());
-		
+
 		//
 		// If the sort key is mid, set c_type to second sort key for list display.
 		//
 		if (abs($this->mSort) == NEWBLOCKS_SORT_KEY_MID) {
 			$this->_mCriteria->addSort('c_type', $this->getOrder());
 		}
-		
+
 		if (abs($this->mSort) != NEWBLOCKS_SORT_KEY_SIDE) {
 			$this->_mCriteria->addSort('side', $this->getOrder());
 		}
-		
+
 		if (abs($this->mSort) != NEWBLOCKS_SORT_KEY_WEIGHT) {
 			$this->_mCriteria->addSort('weight', $this->getOrder());
 		}
 	}
-	
+
 	function _getVisible()
 	{
 		return 1;
