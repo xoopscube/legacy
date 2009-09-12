@@ -58,5 +58,12 @@ ThemeDevelopmentMode=false
 path=/modules/legacy/kernel
 class=Legacy_RoleManager
 
+[jQuery]
+library=google
+MainVersion=1
+UIVersion=1
+usePrototype=0
+#prototypeUrl=
+#funcNamePrefix=j
 */
 ?>

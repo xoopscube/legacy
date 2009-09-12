@@ -161,6 +161,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 							// set JavaScript/Weird, but need extra <script> tags for 2.0.x themes
 							'xoops_js' => '//--></script><script type="text/javascript" src="'.XOOPS_URL.'/include/xoops.js"></script><script type="text/javascript"><!--'
 						));
+	
 		$this->mXoopsTpl->assign('xoops_sitename', $textFilter->toShow($context->getAttribute('legacy_sitename')));
 		$this->mXoopsTpl->assign('xoops_pagetitle', $textFilter->toShow($context->getAttribute('legacy_pagetitle')));
 		$this->mXoopsTpl->assign('xoops_slogan', $textFilter->toShow($context->getAttribute('legacy_slogan')));
@@ -359,6 +360,13 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 	function renderTheme(&$target)
 	{
 		$this->_commonPrepareRender();
+	
+		//jQuery Ready functions
+		XCube_DelegateUtils::call("Site.JQuery.AddFunction", new XCube_Ref($this->mController->mRoot->mContext->mAttributes['jQuery']));
+		$jQuery = $this->mController->mRoot->mContext->getAttribute('jQuery');
+		$moduleHeader = $this->mXoopsTpl->get_template_vars('xoops_module_header');
+		$moduleHeader =  $jQuery->createLibraryTag() . $moduleHeader . $jQuery->createOnloadFunctionTag();
+		$this->mXoopsTpl->assign('xoops_module_header', $moduleHeader);
 		
 		//
 		// If this site has the setting of banner.

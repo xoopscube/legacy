@@ -189,7 +189,9 @@ class Legacy_Controller extends XCube_Controller
 		$this->_setupTextFilter();
 
 		$this->_setupConfig();
-		
+
+		$this->_setupScript();
+
 		$this->_setupDebugger();
 
 		$this->_processPreBlockFilter();	// What's !?
@@ -656,6 +658,13 @@ class Legacy_Controller extends XCube_Controller
 		$this->mRoot->mContext->setAttribute('legacy_sitename', $this->mRoot->mContext->mXoopsConfig['sitename']);
 		$this->mRoot->mContext->setAttribute('legacy_pagetitle', $this->mRoot->mContext->mXoopsConfig['slogan']);
 		$this->mRoot->mContext->setAttribute('legacy_slogan', $this->mRoot->mContext->mXoopsConfig['slogan']);
+	}
+
+	function _setupScript()
+	{
+		require_once XOOPS_MODULE_PATH.'/legacy/class/jquery.class.php';
+		$jQuery = new Legacy_JQueryObject();
+		$this->mRoot->mContext->setAttribute('jQuery', $jQuery);
 	}
 
 	/**
