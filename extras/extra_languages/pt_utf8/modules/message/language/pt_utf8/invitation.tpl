@@ -1,15 +1,15 @@
-Hello,
+Ol√°,
 
-You have a new message from {$uname},
-at {$sitename}.
+{$uname} te enviou uma mensagem pelo {$sitename}:
+
 
 ------
 {$note}
 ------
 
-This is only a notification!
 
-Please do not reply to this mail.
 
----{$sitename}---
-URL ÅF {$siteurl}
+
+-=-=-=-==-=-=-==-=-=-==-=-=-=-=-==-=-=-==-=-=-==-=--
+{$sitename} ~ {$siteurl}
+-=-=-=-==-=-=-==-=-=-==-=-=-=-=-==-=-=-==-=-=-==-=-*
