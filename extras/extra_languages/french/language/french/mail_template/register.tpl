@@ -11,7 +11,7 @@ En tant que membre vous pouvez :
 
 L'adresse e-mail ({X_UEMAIL}) a été utilisée pour enregistrer un compte.
 
-Merci de confirmer votre demande d'enregistrement sur le site {SITENAME}, en cliquant sur le lien ci-dessous :
+Merci de confirmer votre demande d'enregistrement sur le site {SITENAME}, en cliquer le lien suivant :
 
 {X_UACTLINK}
 
