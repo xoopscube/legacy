@@ -18,6 +18,7 @@
     }
 
     $mm->setRewrite('XOOPS_ROOT_PATH', $myts->stripSlashesGPC($_POST['root_path']));
+    $mm->setRewrite('XOOPS_TRUST_PATH', $myts->stripSlashesGPC($_POST['trust_path']));
     $mm->setRewrite('XOOPS_URL', $myts->stripSlashesGPC($_POST['xoops_url']));
     $mm->setRewrite('XOOPS_DB_TYPE', $myts->stripSlashesGPC($_POST['database']));
     $mm->setRewrite('XOOPS_DB_PREFIX', $myts->stripSlashesGPC($_POST['prefix']));

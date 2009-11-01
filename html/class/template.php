@@ -75,7 +75,7 @@ class XoopsTpl extends Smarty
 		$this->template_dir = XOOPS_THEME_PATH;
 		$this->cache_dir = XOOPS_CACHE_PATH;
 		$this->compile_dir = XOOPS_COMPILE_PATH;
-		$this->plugins_dir = array(XOOPS_ROOT_PATH.'/class/smarty/plugins');
+		$this->plugins_dir = array(SMARTY_DIR.'plugins');
 //		$this->default_template_handler_func = 'xoops_template_create';
 		$this->use_sub_dirs = false;
 

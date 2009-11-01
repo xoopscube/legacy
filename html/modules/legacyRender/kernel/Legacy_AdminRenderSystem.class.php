@@ -15,7 +15,7 @@ define('LEGACY_ADMIN_RENDER_TEMPLATE_DIRNAME', "templates");
 define('LEGACY_ADMIN_RENDER_FALLBACK_PATH', XOOPS_MODULE_PATH . "/legacy/admin/theme");
 define('LEGACY_ADMIN_RENDER_FALLBACK_URL', XOOPS_MODULE_URL . "/legacy/admin/theme");
 
-require_once XOOPS_ROOT_PATH."/class/smarty/Smarty.class.php";
+require_once SMARTY_DIR."/Smarty.class.php";
 
 /**
  * @internal
