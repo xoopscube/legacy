@@ -40,7 +40,7 @@ define("_AD_FILEMANAGER_NOTFOUND","Arquivo não encontrado.");
 define("_AD_FILEMANAGER_PREVIEW","Mostrar");
 define("_AD_FILEMANAGER_FILENAME","Arquivo");
 define("_AD_FILEMANAGER_SIZE","Tamanho");
-define("_AD_FILEMANAGER_DATE","Tempo da atualização");
+define("_AD_FILEMANAGER_DATE","Data");
 define("_AD_FILEMANAGER_UPLOAD","Enviar");
 define("_AD_FILEMANAGER_UPLOAD_DSC","Clique para seleccionar para carregar os arquivos do seu computador e iniciar o upload");
 define("_AD_FILEMANAGER_UPLOAD_NOTACCESS","Não foi possível enviar %s. Por favor, altere as permissões manualmente (por exemplo, com um software FTP).");
@@ -87,7 +87,7 @@ define("_AD_FILEMANAGER_HTACCESS_PATH","arquivo .htaccess para o caminho de inst
 // --------------------------------------------------------
 // SWFUpload
 // --------------------------------------------------------
-define("_AD_FILEMANAGER_SWF_UPLOAD_QUEUE","Envios de arquivo");
+define("_AD_FILEMANAGER_SWF_UPLOAD_QUEUE","Envios agendados");
 define("_AD_FILEMANAGER_SWF_UPLOAD_CNACEL","Cancelar todos os envios de arquivos");
 define("_AD_FILEMANAGER_SWF_COULD_NOT_LOAD","Lamento, mas não foi possível carregar o SWFUpload. Você precisa habilitar o JavaScript para desfrutar do SWFUpload.");
 define("_AD_FILEMANAGER_SWF_LOADING","SWFUpload está carregando. Aguarde um momento");

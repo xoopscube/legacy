@@ -31,12 +31,12 @@ define("_MI_LR_META_RATING","Meta Rating");
 define("_MI_LR_META_RATING_DESC","The rating meta tag defines your saite age and content rating");
 define("_MI_LR_META_ROBOTS","Meta Robots");
 define("_MI_LR_META_ROBOTS_DESC","Códigos que definem o tipo de conteúdo aos mecanismos de busca externos.");
-define("_MI_LR_ROBOT_INDEXFOLLOW","Indexar, seguindo todos os links");
-define("_MI_LR_ROBOT_INDEXNOFOLLOW","Indexar apenas a página inicial");
+define("_MI_LR_ROBOT_INDEXFOLLOW","Indexar, seguindo todos os links (<b>padrão</b>)");
+define("_MI_LR_ROBOT_INDEXNOFOLLOW","Indexar, mas sem seguir (<q>Index, No Follow</q>)");
 define("_MI_LR_ROBOT_METAO14YRS","Apenas para maiores de 14 anos");
 define("_MI_LR_ROBOT_METAOGEN","Censura livre");
 define("_MI_LR_ROBOT_METAOMAT","Adulto");
 define("_MI_LR_ROBOT_METAOREST","Restrito");
-define("_MI_LR_ROBOT_NOINDEXFOLLOW","No Index, Follow");
-define("_MI_LR_ROBOT_NOINDEXNOFOLLOW","No Index, No Follow");
+define("_MI_LR_ROBOT_NOINDEXFOLLOW","Seguir sem indexar (<q>No Index, Follow</q>)");
+define("_MI_LR_ROBOT_NOINDEXNOFOLLOW","Não indexar e nem seguir (<q>No Index, No Follow</q>)");
 ?>

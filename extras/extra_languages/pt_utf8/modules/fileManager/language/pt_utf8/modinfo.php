@@ -17,7 +17,7 @@
  **/
 
 define("_MI_FILEMANAGER_NAME","Arquivos");
-define("_MI_FILEMANAGER_DESC","Gerenciador de pastas e arquivos, com opção para envio em lote.");
+define("_MI_FILEMANAGER_DESC","Gerenciador de pastas e arquivos, com opção de manipulação em lote.");
 define("_MI_FILEMANAGER_UPDATE","Atualizar");
 
 // --------------------------------------------------------
@@ -48,14 +48,14 @@ define("_MI_FILEMANAGER_DEBUGON_DSC","Ativar ou não console debug do uploader q
 
 
 define("_MI_FILEMANAGER_XOOPSLOCK","Ocultar imagens do sistema?");
-define("_MI_FILEMANAGER_XOOPSLOCK_DSC","Mostra ou não arquivos de 'Image Manager' (ie. avatares, smilies, etc)");
+define("_MI_FILEMANAGER_XOOPSLOCK_DSC","Mostra ou não arquivos de 'Image Manager' (por exemplo:. avatares, ícones emoticos, etc)");
 define("_MI_FILEMANAGER_EXTENSIONS","Extensões dos arquivos permitidos para serem enviados ao servidor");
 define("_MI_FILEMANAGER_EXTENSIONS_DSC","Separe as extensões dos formatos dos arquivos com barras verticais.<br /> Certifique-se de utilizar apenas minúsculas e não incluir espações entre elas as extensões. <br />O valor predefinido é: <q>gif|jpg|jpeg|png|avi|mov|wmv|mp3|mp4|flv|doc|xls|ods|odt|pdf</q>");
 
 // reserved  options setting
 
 define("_MI_FILEMANAGER_FUSE","[ffmpeg] Utilizar FFmpeg");
-define("_MI_FILEMANAGER_FUSE_DSC","FFmpeg é uma completa, solução multi-plataforma para gravar, converter e stream de áudio e vídeo. <br /> FFmpeg deve ser suportada pelo servidor. Se não estiver, instale o FFmpeg binários para o seu servidor");
+define("_MI_FILEMANAGER_FUSE_DSC","FFmpeg é uma solução multi-plataforma completa para gravar, converter e servir conteúdo  em áudio e vídeo. <br /> FFmpeg deve ser suportada pelo servidor. Se não estiver, instale o FFmpeg binários para o seu servidor");
 define("_MI_FILEMANAGER_FPATH","[ffmpeg] Caminho do FFmpeg");
 define("_MI_FILEMANAGER_FPATH_DSC","Especifique o caminho de instalação FFmpeg. <br /> (Exemplo: <tt> / usr / local / bin </ tt>, <tt> / usr / bin </ tt >)");
 define("_MI_FILEMANAGER_FOPT","[ffmpeg] Opção");
@@ -66,5 +66,4 @@ define("_MI_FILEMANAGER_FCONVERT","[ffmpeg] tamanho máximo de FLV conversão");
 define("_MI_FILEMANAGER_FCONVERT_DSC","Especifique o tamanho máximo de arquivos FLV vídeo a ser convertido para o formato video. A unidade é MB");
 define("_MI_FILEMANAGER_FMOVIEFILE","[ffmpeg] Formato do arquivo para converter para FLV");
 define("_MI_FILEMANAGER_FMOVIEFILE_DSC","Separe as extensões dos formatos dos arquivos com barras verticais.<br />Certifique-se de utilizar todas as palavras em minúsculas e de não incluir espaços entre elas. <br /> O valor predefinido é <q>flv|avi|mwv|mov|mpg|qt|mov|3gp|3gp2|mp4</q>");
-
 ?>

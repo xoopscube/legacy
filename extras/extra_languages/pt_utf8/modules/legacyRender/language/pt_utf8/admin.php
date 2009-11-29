@@ -1,5 +1,15 @@
 <?php
+// Translation Info
 // $Id$
+// License http://creativecommons.org/licenses/by/2.5/br/
+// ############################################################### //
+// ## XOOPS Cube Legacy 2.1 - Tradução para o Português
+// ############################################################### //
+// ## Por............: MIKHAIL MIGUEL
+// ## E-mail.........: mikhail@underpop.com
+// ## Website........: http://www.xoops.net.br
+// ############################################################### //
+// *************************************************************** //
 define("_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_IMAGESET","Lamento, não foi possível gravar o conjunto de imagens '{0}'.");
 define("_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_IMAGE_FILE","Lamento, não foi possível gravar a imagem '{0}'");
 define("_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_LINKTPLSET","Lamento, não foi possível possível a informação da ligação entre o imageset e o conjunto do modelo.");
@@ -59,17 +69,17 @@ define("_AD_LEGACYRENDER_LANG_PASSWD","Senha");
 define("_AD_LEGACYRENDER_LANG_RECENT_MODIFY_FILES","Arquivos recentemente modificados");
 define("_AD_LEGACYRENDER_LANG_SEARCH_TEMPLATE","Modelos de pesquisa");
 define("_AD_LEGACYRENDER_LANG_TEMPLATE","Modelo");
-define("_AD_LEGACYRENDER_LANG_TEMPLATE_FILE_EDIT","Editar arquivo do modelo");
-define("_AD_LEGACYRENDER_LANG_TEMPLATE_FILE_LIST","Arquivos dos conjuntos de modelos");
-define("_AD_LEGACYRENDER_LANG_TEMPLATE_FILE_VIEW","Mostrar os arquivos do modelo");
+define("_AD_LEGACYRENDER_LANG_TEMPLATE_FILE_EDIT","Editar conjunto de modelos");
+define("_AD_LEGACYRENDER_LANG_TEMPLATE_FILE_LIST","Arquivos do conjunto de modelos");
+define("_AD_LEGACYRENDER_LANG_TEMPLATE_FILE_VIEW","Mostrar o conjunto de modelos");
 define("_AD_LEGACYRENDER_LANG_TEMPLATE_MANAGE","Gestor de modelos smarty");
 define("_AD_LEGACYRENDER_LANG_TEMPLATE_SET_CLONE","Clonar um conjunto de modelos");
 define("_AD_LEGACYRENDER_LANG_TEMPLATE_SET_DELETE","Remover um conjunto de modelos");
 define("_AD_LEGACYRENDER_LANG_TEMPLATE_SET_DELETE_CONF","Confirma a remoção?");
 define("_AD_LEGACYRENDER_LANG_TEMPLATE_SET_EDIT","Editar um conjunto de modelos");
 define("_AD_LEGACYRENDER_LANG_TEMPLATE_SET_LIST","Listar conjuntos de modelos");
-define("_AD_LEGACYRENDER_LANG_TPLFILE_DELETE","Remover um arquivo de modelo");
-define("_AD_LEGACYRENDER_LANG_TPLFILE_LIST","Listar arquivos de modelo");
+define("_AD_LEGACYRENDER_LANG_TPLFILE_DELETE","Remover conjunto de modelos");
+define("_AD_LEGACYRENDER_LANG_TPLFILE_LIST","Listar conjuntos de modelos");
 define("_AD_LEGACYRENDER_LANG_TPLFILE_UPLOAD","Enviar");
 define("_AD_LEGACYRENDER_LANG_TPLSET_CREATED","Criado");
 define("_AD_LEGACYRENDER_LANG_TPLSET_CREDITS","Créditos");
