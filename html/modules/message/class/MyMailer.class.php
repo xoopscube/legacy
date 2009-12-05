@@ -1,5 +1,10 @@
 <?php
 if (!defined('XOOPS_ROOT_PATH')) exit();
+if ( !defined('LEGACY_MAIL_LANG') ) {
+  define('LEGACY_MAIL_LANG', _LANGCODE);
+  define('LEGACY_MAIL_CHAR', _CHARSET);
+  define('LEGACY_MAIL_ENCO', '7bit');
+}
 
 class My_Mailer extends PHPMailer
 {
@@ -9,6 +14,8 @@ class My_Mailer extends PHPMailer
   {
     $this->mConvertLocal = new XCube_Delegate();
     $this->mConvertLocal->register('Legacy_Mailer.ConvertLocal');
+    $this->LE ="\n";
+    $this->prepare();
   }
   
   public function prepare()
@@ -53,29 +60,37 @@ class My_Mailer extends PHPMailer
     return true;
   }
   
-  public function setFrom($text)
+  public function setFromEmail($text)
   {
     $this->From = $text;
   }
   
-  public function setFromname($text)
+  public function setFromName($text)
   {
-    $this->FromName = $this->convertLocal($text, 2);
+    $this->FromName = $this->convertLocal($this->SecureHeader($text), true);
   }
   
   public function setSubject($text)
   {
-    $this->Subject = $this->convertLocal($text, 1);
+    $this->Subject = $text;
   }
   
   public function setBody($text)
   {
+    $search = array("\r\n", "\r", "\n");
+    $replace = array("\n", "\n", $this->LE);
+    $text = str_replace($search, $replace, $text);
     $this->Body = $this->convertLocal($text);
   }
   
-  public function setTo($add, $name)
+  public function setToEmails($email)
   {
-    $this->AddAddress($add, $this->convertLocal($name, 1));
+    $this->AddAddress($email, "");
+  }
+  
+  public function setTo($add, $name = "")
+  {
+    $this->AddAddress($add, $name);
   }
   
   public function reset()
@@ -84,8 +99,22 @@ class My_Mailer extends PHPMailer
     $this->Body = "";
     $this->Subject = "";
   }
+
+  public function send()
+  {
+    parent::Send();
+  }
+
+  public function EncodeHeader($str, $position = 'text')
+  {
+    if ( $position == 'text' ) {
+      return $this->convertLocal($str, true);
+    } else {
+      return parent::EncodeHeader($str, $position);
+    }
+  }
   
-  public function convertLocal($text, $mime = false)
+  private function convertLocal($text, $mime = false)
   {
     if ( _LANGCODE == 'ja' ) {
       $text = $this->_Japanese_convLocal($text, $mime);
@@ -98,10 +127,7 @@ class My_Mailer extends PHPMailer
   private function _Japanese_convLocal($text, $mime)
   {
     if ( $mime ) {
-      switch ($mime) {
-        case '1': $text = mb_encode_mimeheader($text, LEGACY_MAIL_CHAR, 'B', $this->LE); break;
-        case '2': $text = mb_encode_mimeheader($text, LEGACY_MAIL_CHAR, 'B', ""); break;
-      }
+      $text = mb_encode_mimeheader($text, LEGACY_MAIL_CHAR, 'B', $this->LE);
     } else {
       $text = mb_convert_encoding($text, 'JIS', _CHARSET);
     }

@@ -40,16 +40,23 @@ ul#privatemessages li a, ul#privatemessages li a:visited
 	}
 
 ul#mainmenu li a.menuSub
-{padding-left:15px;}
+	{
+	padding-left:15px;
+	}
 
 #usermenu a.highlight 
 	{
-	color:#DFDFDF;
-	background:#FF8040;
+	background-color:#CCFF99;
 	border-top:#EBEBEB 1px solid;
 	font-weight:normal
 	}
 
+#usermenu a.highlight  span.newMessages
+	{
+	background-color:#CCFF99;
+	color:#000000;
+	font-weight:bold;
+	}
 ul#mainmenu li a:hover,
 ul#usermenu li a:hover,
 ul#privatemessages li a:hover 

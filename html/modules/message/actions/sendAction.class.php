@@ -42,7 +42,7 @@ class sendAction extends AbstractAction
     $this->mPagenavi->fetch();
     $this->mPagenavi->mNavi->addExtra('action', 'send');
     
-    $this->select = $modHand->getReceiveUserList($this->root->mContext->mXoopsUser->get('uid'), $fromuid);
+    $this->select = $modHand->getReceiveUserList($this->root->mContext->mXoopsUser->get('uid'));
     
     $modObj = $modHand->getObjects($this->mPagenavi->getCriteria());
 

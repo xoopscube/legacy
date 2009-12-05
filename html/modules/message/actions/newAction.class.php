@@ -1,5 +1,6 @@
 <?php
 if (!defined('XOOPS_ROOT_PATH')) exit();
+
 require _MY_MODULE_PATH.'forms/MessageForm.class.php';
 
 class newAction extends AbstractAction
@@ -78,28 +79,25 @@ class newAction extends AbstractAction
     return false;
   }
   
+
+  
   private function usemail()
   {
     $setting = $this->getSettings($this->mActionForm->fuid);
     if ( $setting->get('tomail') == 1 ) {
       $userhand = xoops_gethandler('user');
       $user = $userhand->get($this->mActionForm->fuid);
-
-      require_once XOOPS_ROOT_PATH.'/class/mail/phpmailer/class.phpmailer.php';
-      require_once _MY_MODULE_PATH.'class/MyMailer.class.php';
-      $mailer = new My_Mailer();
-      $mailer->prepare();
-      $mailer->setFromname($this->root->mContext->mXoopsConfig['sitename']);
-      $mailer->setFrom($this->root->mContext->mXoopsConfig['adminmail']);
-      $mailer->setTo($user->get('email'), $user->get('uname'));
       
+      $mailer = $this->getMailer();
+      $mailer->setFromName($this->root->mContext->mXoopsConfig['sitename']);
+      $mailer->setFromEmail($this->root->mContext->mXoopsConfig['adminmail']);
+      $mailer->setToEmails($user->get('email'));
       $mailer->setSubject(_MD_MESSAGE_MAILSUBJECT);
       $mailer->setBody($this->getMailBody($setting->get('viewmsm')));
-      
-      $mailer->Send();
+      $mailer->send();
     }
   }
-  
+
   private function getMailBody($body = 0)
   {
     $tpl = new Smarty();

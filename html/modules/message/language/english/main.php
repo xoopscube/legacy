@@ -2,9 +2,9 @@
 define('_MD_MESSAGE_NEWMESSAGE', 'You have {0} messages.');
 
 define('_MD_MESSAGE_FORMERROR1', 'Name is required.');
-define('_MD_MESSAGE_FORMERROR2', 'Input name with a maximum of 30 characters.');
+define('_MD_MESSAGE_FORMERROR2', 'Add a name with a maximum of 30 characters.');
 define('_MD_MESSAGE_FORMERROR3', 'Subject is required.');
-define('_MD_MESSAGE_FORMERROR4', 'Input subject with a maximum of 100 characters.');
+define('_MD_MESSAGE_FORMERROR4', 'Add a subject with a maximum of 100 characters.');
 define('_MD_MESSAGE_FORMERROR5', 'Message is required.');
 define('_MD_MESSAGE_FORMERROR6', 'The selected user doesn\'t exist.');
 
@@ -42,14 +42,14 @@ define('_MD_MESSAGE_TEMPLATE22', 'Status');
 
 define('_MD_MESSAGE_ADDFAVORITES', 'Add to favorites');
 
-define('_MD_MESSAGE_FAVORITES0', 'There\s no user selected to add.');
+define('_MD_MESSAGE_FAVORITES0', 'Select an user to add.');
 define('_MD_MESSAGE_FAVORITES1', 'Fail adding!');
 define('_MD_MESSAGE_FAVORITES2', 'Add');
 define('_MD_MESSAGE_FAVORITES3', 'Fail Updating!');
 define('_MD_MESSAGE_FAVORITES4', 'Update');
 define('_MD_MESSAGE_FAVORITES5', 'Delete');
 
-define('_MD_MESSAGE_SETTINGS', 'PM Settings');
+define('_MD_MESSAGE_SETTINGS', 'Private Message Settings');
 define('_MD_MESSAGE_SETTINGS_MSG1', 'Use private message');
 define('_MD_MESSAGE_SETTINGS_MSG2', 'Forword to email');
 define('_MD_MESSAGE_SETTINGS_MSG3', 'change settings');

@@ -1,9 +1,9 @@
 /*
 --------------------------------------------------------
 suggest.js - Input Suggest
-Version 2.1 (Update 2008/04/02)
+Version 2.1.1 (Update 2009/10/04)
 
-Copyright (c) 2006-2008 onozaty (http://www.enjoyxstudy.com)
+Copyright (c) 2006-2009 onozaty (http://www.enjoyxstudy.com)
 
 Released under an MIT-style license.
 
@@ -109,7 +109,7 @@ Suggest.Local.prototype = {
 
     this.hookBeforeSearch(text);
     var resultList = this._search(text);
-    if (resultList != 0) this.createSuggestArea(resultList);
+    if (resultList.length != 0) this.createSuggestArea(resultList);
   },
 
   _search: function(text) {
@@ -469,3 +469,4 @@ Suggest.LocalMulti.prototype.setInputText = function(text) {
 Suggest.LocalMulti.prototype.getLastTokenPos = function() {
   return this.input.value.lastIndexOf(this.delim);
 };
+

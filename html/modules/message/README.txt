@@ -73,6 +73,13 @@ templates
 ToDo:
 同報発信
 
+【更新履歴】
+Ver 1.16:newAction.class.phpの修正
+         My_Mailerクラスのbodyをセットする際にテキストの改行コードを統一するように変更
+         mb_encode_mimeheaderに改行コードをセット
+Ver 1.15:My_MailerクラスをXoopsMailerとメソッド名を同じに変更（一部だけ）
+         定数_USE_XOOPSMAILERを追加し、XoopsMailerを利用できるように変更
+         suggest.jsのアップデート
 Ver 1.14:smarty_function_message_userlistの修正
 Ver 1.13:英語の言語ファイルに定数追加
 Ver 1.12:送信箱で受信者、件名での絞り込みに対応

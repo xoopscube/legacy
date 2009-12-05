@@ -62,18 +62,27 @@ class viewAction extends AbstractAction
   
   private function send_mail(&$obj)
   {
+    /*
     require_once XOOPS_ROOT_PATH.'/class/mail/phpmailer/class.phpmailer.php';
     require_once _MY_MODULE_PATH.'class/MyMailer.class.php';
     $mailer = new My_Mailer();
     $mailer->prepare();
-    $mailer->setFromname($this->root->mContext->mXoopsConfig['sitename']);
-    $mailer->setFrom($this->root->mContext->mXoopsConfig['adminmail']);
+    $mailer->setFromName($this->root->mContext->mXoopsConfig['sitename']);
+    $mailer->setFromEmail($this->root->mContext->mXoopsConfig['adminmail']);
     $mailer->setTo($this->root->mContext->mXoopsUser->get('email'), $this->root->mContext->mXoopsUser->get('uname'));
     $mailer->setSubject($obj->get('title'));
     $mailer->setBody($obj->get('message'));
     $mailer->Send();
+    */
+    $mailer = $this->getMailer();
+    $mailer->setFromName($this->root->mContext->mXoopsConfig['sitename']);
+    $mailer->setFromEmail($this->root->mContext->mXoopsConfig['adminmail']);
+    $mailer->setToEmails($this->root->mContext->mXoopsUser->get('email'));
+    $mailer->setSubject($obj->get('title'));
+    $mailer->setBody($obj->get('message'));
+    $mailer->send();
+    
   }
-  
   
   public function executeView(&$render)
   {

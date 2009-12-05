@@ -1,8 +1,8 @@
 <?php
 define("_MD_PROFILE_LANG_FIELD_TIP1","String - allows a series of characters to be stored.");
 define("_MD_PROFILE_LANG_FIELD_TIP2","Text - textarea with editor.");
-define("_MD_PROFILE_LANG_FIELD_TIP3","Int (Integers) - input value containing only decimal digits.");
-define("_MD_PROFILE_LANG_FIELD_TIP4","Date - as named it can specify a date.");
+define("_MD_PROFILE_LANG_FIELD_TIP3","Int (Integers) - allows value containing only decimal digits.");
+define("_MD_PROFILE_LANG_FIELD_TIP4","Date - allows a specific date format.");
 define("_MD_PROFILE_LANG_FIELD_TIP5","Checkbox - allows a selection 0 or 1, true or false.");
 define("_MD_PROFILE_LANG_FIELD_TIP6","Selectbox - allows multiple options, see the example.");
 define("_MD_PROFILE_LANG_UNAME","User Name");
