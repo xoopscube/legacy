@@ -45,8 +45,8 @@ define("_INSTALL_L54","Use persistent connection?");
 define("_INSTALL_L69","Default is 'NO'. Choose 'NO' if you are unsure.");
 define("_INSTALL_L55","XOOPS Cube Physical Path");
 define("_INSTALL_L59","Physical path to your main XOOPS Cube directory WITHOUT trailing slash");
-define("_INSTALL_L55","XOOPS_TRUST_PATH Physical Path");
-define("_INSTALL_L59","Physical path to your main XOOPS_TRUST_PATH directory WITHOUT trailing slash<br />You should set XOOPS_TRUST_PATH outside DocumentRoot.");
+define("_INSTALL_L75","XOOPS_TRUST_PATH Physical Path");
+define("_INSTALL_L76","Physical path to your main XOOPS_TRUST_PATH directory WITHOUT trailing slash<br />You should set XOOPS_TRUST_PATH outside DocumentRoot.");
 
 define("_INSTALL_L56","XOOPS Cube Virtual Path (URL)");
 define("_INSTALL_L58","Virtual path to your main XOOPS Cube directory WITHOUT trailing slash");
