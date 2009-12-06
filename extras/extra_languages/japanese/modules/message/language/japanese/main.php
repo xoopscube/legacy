@@ -16,6 +16,7 @@ define('_MD_MESSAGE_ACTIONMSG5', '投稿に失敗しました。');
 define('_MD_MESSAGE_ACTIONMSG6', '送信箱への追加に失敗しました。');
 define('_MD_MESSAGE_ACTIONMSG7', '送信しました。');
 define('_MD_MESSAGE_ACTIONMSG8', '他人のメッセージは読めません。');
+define('_MD_MESSAGE_ACTIONMSG9', '返信先のユーザが存在しません。');
 
 define('_MD_MESSAGE_DELETEMSG1', 'パラメータが不正です。');
 define('_MD_MESSAGE_DELETEMSG2', '選択されていません。');

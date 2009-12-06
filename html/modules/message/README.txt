@@ -74,6 +74,7 @@ ToDo:
 同報発信
 
 【更新履歴】
+Ver 1.17:削除されたユーザへの返信でエラーになっていたのを修正
 Ver 1.16:newAction.class.phpの修正
          My_Mailerクラスのbodyをセットする際にテキストの改行コードを統一するように変更
          mb_encode_mimeheaderに改行コードをセット

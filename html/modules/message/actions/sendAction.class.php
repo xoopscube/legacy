@@ -16,6 +16,7 @@ class sendAction extends AbstractAction
   
   private function _view()
   {
+    $fromuid = 0;
     $setting = $this->getSettings();
     if ( $setting->get('pagenum') > 0 ) {
       $pagenum = $setting->get('pagenum');
@@ -42,7 +43,7 @@ class sendAction extends AbstractAction
     $this->mPagenavi->fetch();
     $this->mPagenavi->mNavi->addExtra('action', 'send');
     
-    $this->select = $modHand->getReceiveUserList($this->root->mContext->mXoopsUser->get('uid'));
+    $this->select = $modHand->getReceiveUserList($this->root->mContext->mXoopsUser->get('uid'), $fromuid);
     
     $modObj = $modHand->getObjects($this->mPagenavi->getCriteria());
 

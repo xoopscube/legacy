@@ -51,7 +51,9 @@ class newAction extends AbstractAction
         $modHand = xoops_getmodulehandler('inbox', _MY_DIRNAME);
         $modObj = $modHand->get($inboxid);
         if ( is_object($modObj) && $modObj->get('from_uid') > 0 && $modObj->get('uid') == $this->root->mContext->mXoopsUser->get('uid') ) {
-          $this->mActionForm->setRes($modObj);
+          if ( !$this->mActionForm->setRes($modObj) ) {
+            $this->errMsg = _MD_MESSAGE_ACTIONMSG9;
+          }
         }
       } elseif ( $to_userid > 0 ) {
         $userhand = xoops_gethandler('user');
@@ -79,7 +81,28 @@ class newAction extends AbstractAction
     return false;
   }
   
-
+  /*
+  private function usemail($orgi = false)
+  {
+    $setting = $this->getSettings($this->mActionForm->fuid);
+    if ( $setting->get('tomail') == 1 ) {
+      $userhand = xoops_gethandler('user');
+      $user = $userhand->get($this->mActionForm->fuid);
+      require_once XOOPS_ROOT_PATH.'/class/mail/phpmailer/class.phpmailer.php';
+      require_once _MY_MODULE_PATH.'class/MyMailer.class.php';
+      $mailer = new My_Mailer();
+      $mailer->prepare();
+      $mailer->setFromname($this->root->mContext->mXoopsConfig['sitename']);
+      $mailer->setFrom($this->root->mContext->mXoopsConfig['adminmail']);
+      $mailer->setTo($user->get('email'), $user->get('uname'));
+      
+      $mailer->setSubject(_MD_MESSAGE_MAILSUBJECT);
+      $mailer->setBody($this->getMailBody($setting->get('viewmsm')));
+      
+      $mailer->Send();
+    }
+  }
+  */
   
   private function usemail()
   {

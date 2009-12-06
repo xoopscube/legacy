@@ -6,7 +6,7 @@ if ( !isset($root) ) {
 }
 $modversion['name'] = _MI_MESSAGE_NAME;
 $modversion['dirname'] = basename(dirname(__FILE__));
-$modversion['version'] = 1.16;
+$modversion['version'] = 1.17;
 $modversion['description'] = _MI_MESSAGE_DESC;
 $modversion['author'] = 'Marijuana';
 $modversion['credits'] = "XOOPS Cube Project";

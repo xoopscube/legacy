@@ -97,9 +97,13 @@ class MessageForm extends XCube_ActionForm
     
     $userhand = xoops_gethandler('user');
     $uobj = $userhand->get($obj->get('from_uid'));
-    $this->set('uname', $uobj->get('uname'));
-    $this->set('title', $title);
-    $this->set('note', '[quote]'.$obj->get('message').'[/quote]');
+    if ( is_object($uobj) ) {
+      $this->set('uname', $uobj->get('uname'));
+      $this->set('title', $title);
+      $this->set('note', '[quote]'.$obj->get('message').'[/quote]');
+      return true;
+    }
+    return false;
   }
   
   public function setUser(&$user)
