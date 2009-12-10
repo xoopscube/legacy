@@ -17,14 +17,14 @@
  **/
 
 define("_MI_FILEMANAGER_NAME","Arquivos");
-define("_MI_FILEMANAGER_DESC","Gerenciador de pastas e arquivos, com opção de manipulação em lote.");
+define("_MI_FILEMANAGER_DESC","Gerenciador de pastas e arquivos, com capacidade de manipulação em lote.");
 define("_MI_FILEMANAGER_UPDATE","Atualizar");
 
 // --------------------------------------------------------
 // Names of admin menu items
 // --------------------------------------------------------
 define("_MI_FILEMANAGER_MAIN","Lista de arquivos");
-define("_MI_FILEMANAGER_MAIN_DSC","lista de arquivos com miniaturas visualizador de imagens");
+define("_MI_FILEMANAGER_MAIN_DSC","Lista de arquivos com opção de miniaturas automáticas para as imagens");
 define("_MI_FILEMANAGER_UPLOAD","Enviar arquivo");
 define("_MI_FILEMANAGER_UPLOAD_DSC","Enviar arquivos para o diretório <q>uploads</q>");
 
@@ -43,8 +43,8 @@ define("_MI_FILEMANAGER_DIRHANDLE","Gestor de diretórios");
 define("_MI_FILEMANAGER_DIRHANDLE_DSC","Permitir ou não webmasters para criar e apagar pastas");
 define("_MI_FILEMANAGER_THUMBSIZE","Tamanho da miniatura");
 define("_MI_FILEMANAGER_THUMBSIZE_DSC","Especifique a largura máxima das miniaturas para a lista de arquivos");
-define("_MI_FILEMANAGER_DEBUGON","Habilitar o modo de depuração do gerenciador");
-define("_MI_FILEMANAGER_DEBUGON_DSC","Ativar ou não console debug do uploader que é prestado dentro de um iframe");
+define("_MI_FILEMANAGER_DEBUGON","Habilitar o modo de depuração");
+define("_MI_FILEMANAGER_DEBUGON_DSC","Ativar ou não o modo de depuração (<q>debug</q>) do gerenciador de arquivos, o qual é mostrado em uma página encapsulada (<q>iframe</q>).");
 
 
 define("_MI_FILEMANAGER_XOOPSLOCK","Ocultar imagens do sistema?");
@@ -57,7 +57,7 @@ define("_MI_FILEMANAGER_EXTENSIONS_DSC","Separe as extensões dos formatos dos a
 define("_MI_FILEMANAGER_FUSE","[ffmpeg] Utilizar FFmpeg");
 define("_MI_FILEMANAGER_FUSE_DSC","FFmpeg é uma solução multi-plataforma completa para gravar, converter e servir conteúdo  em áudio e vídeo. <br /> FFmpeg deve ser suportada pelo servidor. Se não estiver, instale o FFmpeg binários para o seu servidor");
 define("_MI_FILEMANAGER_FPATH","[ffmpeg] Caminho do FFmpeg");
-define("_MI_FILEMANAGER_FPATH_DSC","Especifique o caminho de instalação FFmpeg. <br /> (Exemplo: <tt> / usr / local / bin </ tt>, <tt> / usr / bin </ tt >)");
+define("_MI_FILEMANAGER_FPATH_DSC","Especifique o caminho físico (<q>path</q>) da instalação do FFmpeg. <br />(por exemplo: <tt>/usr/local/bin</tt>, <tt>/usr/bin</tt>)");
 define("_MI_FILEMANAGER_FOPT","[ffmpeg] Opção");
 define("_MI_FILEMANAGER_FOPT_DSC","Especifique o comando opção. Sua versão não está disponível");
 define("_MI_FILEMANAGER_FCAPTURE","[ffmpeg] tempo para o Screen Shot ");

@@ -1,7 +1,6 @@
 <?php
 // $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
-// DATA
 define("_AD_USER_DATA_DOWNLOAD_DO","Descarregar em CSV");
 define("_AD_USER_DATA_NUM","%d visitantes cadastrados.");
 define("_AD_USER_DATA_UPLOAD_BACK","Selecione o arquivo CSV mais uma vez");
@@ -10,7 +9,6 @@ define("_AD_USER_DATA_UPLOAD_CONF","Por favor, confirme:");
 define("_AD_USER_DATA_UPLOAD_DO","Cadastro");
 define("_AD_USER_DATA_UPLOAD_DONE","As informações do arquivo CSV foram corretamente importadas.");
 define("_AD_USER_DATA_UPLOAD_SELECT_USER_CSVFILE","Por favor, selecione o arquivo em formado CSV.");
-// ERROR
 define("_AD_USER_ERROR_CONTENT_IS_NOT_FOUND","Não foi possível encontrar os dados.");
 define("_AD_USER_ERROR_COULD_NOT_SAVE_AVATAR_FILE","Lamento, não foi possível gravar o arquivo do avatar '{0}'");
 define("_AD_USER_ERROR_DBUPDATE_FAILED","Lamento, não foi possível atualizar o banco de dados.");
@@ -24,11 +22,10 @@ define("_AD_USER_ERROR_MAILJOB_SEND_FAIL","Ocorreu um erro ao tentar enviar a me
 define("_AD_USER_ERROR_MAILJOB_SEND_MEANS","É necessário escolher pelo menos um método de entrega para o correio-eletrônico.");
 define("_AD_USER_ERROR_MIN","Entrada {0} com {1} ou mais valores numéricos.");
 define("_AD_USER_ERROR_OBJECTEXIST","{0:toLower} possui uma entrada incorreta.");
-define("_AD_USER_ERROR_REQUIRED","{0} é um valor que necessário para esta operação.");
 define("_AD_USER_ERROR_REQUEST_IS_WRONG","Lamento, a sua solicitação é inválida.");
+define("_AD_USER_ERROR_REQUIRED","{0} é um valor que necessário para esta operação.");
 define("_AD_USER_ERROR_UMODE","O valor especificado para a ordem dos comentários é inválido.");
 define("_AD_USER_ERROR_UNAME_NO_UNIQUE","Esse codinome escolhido é de muito bom gosto e por isso já está em uso por outro associado. Lamento.");
-// LANG
 define("_AD_USER_LANG_ALL_OF_USERS","Todos os frequentadores");
 define("_AD_USER_LANG_APPROVE_USERS_ONLY","Apenas associados ativos");
 define("_AD_USER_LANG_AVATAR_CREATED","Criado");
@@ -69,7 +66,7 @@ define("_AD_USER_LANG_GROUP_DELETE_ADVICE2","Quando você remover um grupo, os pe
 define("_AD_USER_LANG_GROUP_DESC","Descrição");
 define("_AD_USER_LANG_GROUP_EDIT","Editar grupos");
 define("_AD_USER_LANG_GROUP_GID","N° do grupo");
-define("_AD_USER_LANG_GROUP_LIST","Gestor de grupos");
+define("_AD_USER_LANG_GROUP_LIST","Grupos");
 define("_AD_USER_LANG_GROUP_NAME","Nome");
 define("_AD_USER_LANG_GROUP_NEW","Criar um novo grupo");
 define("_AD_USER_LANG_GROUP_NOASSIN_MEMBERS","Associados que não fazem parte deste grupo");
@@ -78,23 +75,23 @@ define("_AD_USER_LANG_GROUP_PROPERTY","Propriedades");
 define("_AD_USER_LANG_GROUP_TYPE","Tipo");
 define("_AD_USER_LANG_IS_MAIL","Email");
 define("_AD_USER_LANG_IS_PM","Recado");
+define("_AD_USER_LANG_LASTLOGIN","Última visita");
 define("_AD_USER_LANG_LASTLOG_LESS","Último acesso com menos de X dias.");
 define("_AD_USER_LANG_LASTLOG_MORE","Último acesso com mais de X dias.");
-define("_AD_USER_LANG_LASTLOGIN","Última visita");
 define("_AD_USER_LANG_LEFT_TARGET_USER","Destinatários remanescentes");
 define("_AD_USER_LANG_LEVEL_ACTIVE","Associados ativos");
 define("_AD_USER_LANG_LEVEL_PENDING","Inativos, com cadastro ainda não habilitado");
 define("_AD_USER_LANG_LEVEL_ROOT","SuperAdmin");
-define("_AD_USER_LANG_MAIL_NG_USERS_ONLY","Apenas associados que NÃO aceitam receber cartas-eletrônicas");
-define("_AD_USER_LANG_MAIL_OK_USERS_ONLY","Apenas associados que ACEITAM receber cartas-eletrônicas");
 define("_AD_USER_LANG_MAILJOB_DELETE","Remover trabalho de correio");
 define("_AD_USER_LANG_MAILJOB_EDIT","Editar trabalho de correio");
 define("_AD_USER_LANG_MAILJOB_ID","N° do trabalho");
-define("_AD_USER_LANG_MAILJOB_LINK_LIST","Lista de trabalhos de correio");
-define("_AD_USER_LANG_MAILJOB_LIST","Lista de trabalhos de correio");
-define("_AD_USER_LANG_MAILJOB_NEW","Novo trabalho de correio");
+define("_AD_USER_LANG_MAILJOB_LINK_LIST","Lista de agendamentos de correio");
+define("_AD_USER_LANG_MAILJOB_LIST","Lista de agendamentos de correio");
+define("_AD_USER_LANG_MAILJOB_NEW","Novo agendamento de correio");
 define("_AD_USER_LANG_MAILJOB_SEND","Enviar mensagens");
 define("_AD_USER_LANG_MAILJOB_VIEW","Entrega do correio");
+define("_AD_USER_LANG_MAIL_NG_USERS_ONLY","Apenas associados que <b>não aceitam</b> receber cartas-eletrônicas");
+define("_AD_USER_LANG_MAIL_OK_USERS_ONLY","Apenas associados que <b>aceitam</b> receber cartas-eletrônicas");
 define("_AD_USER_LANG_MESSAGE","Mensagem");
 define("_AD_USER_LANG_NO_SPECIAL_RANK","-~-~-~-");
 define("_AD_USER_LANG_OVER_POSTS","Número de contribuições é superior a X");
@@ -119,7 +116,7 @@ define("_AD_USER_LANG_RANK_TITLE","Título");
 define("_AD_USER_LANG_RANK_TOTAL","Número de graduações");
 define("_AD_USER_LANG_RANK_UPDATECONF","Confirme a atualização da graduação");
 define("_AD_USER_LANG_RECOUNT","Recontar");
-define("_AD_USER_LANG_REGDATE","Data de cadastro");
+define("_AD_USER_LANG_REGDATE","Dia do cadastro");
 define("_AD_USER_LANG_REGDATE_LESS","Cadastrado há menos de X dias.");
 define("_AD_USER_LANG_REGDATE_MORE","Cadastrado há mais de X dias.");
 define("_AD_USER_LANG_RESET","Limpar");
@@ -131,7 +128,7 @@ define("_AD_USER_LANG_TITLE","Título");
 define("_AD_USER_LANG_TOTAL","Total");
 define("_AD_USER_LANG_UID","Número");
 define("_AD_USER_LANG_UNDER_POSTS","Número de mensagens é inferior a X");
-define("_AD_USER_LANG_UPLOAD","Envio");
+define("_AD_USER_LANG_UPLOAD","Enviar");
 define("_AD_USER_LANG_USER","Associado");
 define("_AD_USER_LANG_USER_DELETE","Remover associado");
 define("_AD_USER_LANG_USER_DELETE_ADVICE","Tem certeza de que deseja remover este associado?");
@@ -144,14 +141,17 @@ define("_AD_USER_LANG_USER_TOTAL","Visitantes associados");
 define("_AD_USER_LANG_USER_UPDATECONF","Confirme a atualização do associado");
 define("_AD_USER_LANG_USER_VIEW","Mostrar associado");
 define("_AD_USER_LANG_VPASS","Verificar a senha");
-// Message
 define("_AD_USER_MESSAGE_CONFIRM_DELETE","Confirma a remoção?");
 define("_AD_USER_MESSAGE_CONFIRM_DELETE_RANK","Confirma a remoção desta graduação?");
 define("_AD_USER_MESSAGE_CONFIRM_UPDATE_AVATAR","Tem certeza de que deseja atualizar isto?");
 define("_AD_USER_MESSAGE_CONFIRM_UPDATE_RANK","Tem certeza de que deseja atualizar a graduação?");
 define("_AD_USER_MESSAGE_CONFIRM_UPDATE_USER","Tem certeza de que deseja atualizar esse associado?");
 define("_AD_USER_MESSAGE_RECOUNT_SUCCESS","Valores recalculados corretamente.... ");
-// Tips
+define("_AD_USER_TIPS1_DATA_UPLOAD","A inclusão em lote de associados é possível via arquivos CSV.");
+define("_AD_USER_TIPS2_DATA_UPLOAD","Utilize um arquivo CSV no mesmo formato da opção <q><a href='?action=UserDataDownload'>Exportar Dados</a></q>, sem alterar o número de colunas.");
+define("_AD_USER_TIPS3_DATA_UPLOAD","Please describe only the user who wants to update and wants to register information newly in CSV file.");
+define("_AD_USER_TIPS4_DATA_UPLOAD","When the row of leftmost UID is emptied(or 0), it registers as a new user.");
+define("_AD_USER_TIPS5_DATA_UPLOAD","The user information is updated when there is a value of the row of leftmost(UID).<br>If you set password,set it within 30bytes.");
 define("_AD_USER_TIPS_AVATAR","Avatares são imagens que representam as personalidades dos associados. Podem ser desde figuras <q>nonsense</q> a ícones de nossas culturas; ou mesmo suas próprias fotos. A palavra <q>Avatar</q> tem o origem indiana e significa, segundo a crença hinduísta, a descida de um ser divino à terra, em forma materializada, podendo assumir a forma humana ou a de um animal. Também significa <q>processo metamórfico</q>; <q>transformação</q>, como a de um artista ao entrar no palco ou a de um visitante ao acessar um bate-papo ou fórum da Internet. Resumindo: escolha a imagem que tenha mais a ver com a sua personalidade. Se desejar, escolha um dos avatares disponíveis em nossa galeria ou, se desejar, utilize alguma imagem do seu computador.");
 define("_AD_USER_TIPS_AVATAR_UPLOAD","You can easily register many avatars by uploading Archive file including them! <br />This batch-upload doesn't check Length and File-Size of each avatar!<br />Please pre-adjust them before you archive them!<br />(Only tar.gz or zip archive)");
 define("_AD_USER_TIPS_DATA_DOWNLOAD","O arquivo CSV com os dados dos associados só está disponível em ordem de cadastro (user_id).");
@@ -163,11 +163,6 @@ define("_AD_USER_TIPS_USER_ADMIN","Access to your XOOPS Cube web site is control
 define("_AD_USER_TIPS_USER_EDIT","Se você deseja mudar de senha, complete os campos <q>Senha</q> e <q>Confirmar senha</q> do formulário.");
 define("_AD_USER_TIPS_USER_NEW","É necessário completar os camos <q>Codinome</q>, <q>Endereço de correio-eletrônico</q>, <q>Senha</q> e <q>Confirmar senha</q>.");
 define("_AD_USER_TIPS_USER_SEARCH","You can search and sort your users data to find the vital information you are looking for.<br />The accuracy of the end result will be directly related to the number of fields you fill.");
-define("_AD_USER_TIPS1_DATA_UPLOAD","The user batch registration with CSV file is possible.");
-define("_AD_USER_TIPS2_DATA_UPLOAD", "Utilize um arquivo CSV no mesmo formado da opção <q><a href='?action=UserDataDownload'>Exportar Dados</a></q>, sem alterar o número de colunas");
-define("_AD_USER_TIPS3_DATA_UPLOAD","Please describe only the user who wants to update and wants to register information newly in CSV file.");
-define("_AD_USER_TIPS4_DATA_UPLOAD","When the row of leftmost UID is emptied(or 0), it registers as a new user.");
-define("_AD_USER_TIPS5_DATA_UPLOAD","The user information is updated when there is a value of the row of leftmost(UID).<br>If you set password,set it within 30bytes.");
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //

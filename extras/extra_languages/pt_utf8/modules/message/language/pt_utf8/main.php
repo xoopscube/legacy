@@ -1,4 +1,22 @@
 <?php
+// Translation Info
+// $Id$
+// License http://creativecommons.org/licenses/by/2.5/br/
+// ############################################################### //
+// ## XOOPS Cube Legacy - Versão em Português
+// ############################################################### //
+// ## Por............: Mikhail Miguel
+// ## Website........: http://xoopscube.com.br
+// ## E-mail.........: mikhail@underpop.com
+// ## Yahoo!.........: mikhailmiguel@yahoo.com
+// ## MSN01..........: mikhailmiguel@msn.com
+// ## MSN02..........: mikhailmiguel@hotmail.com
+// ## AOL............: mikhailmiguel
+// ## Skype..........: mikhailmiguel
+// ## Orkut..........: 15440532260129226492
+// ## Plus...........: http://card.ly/mikhail
+// ############################################################### //
+// *************************************************************** //
 define("_MD_MESSAGE_TEMPLATE9","Destinatário");
 define("_MD_MESSAGE_TEMPLATE8","Nova mensagem");
 define("_MD_MESSAGE_TEMPLATE7","Mensagens enviadas");
@@ -22,13 +40,13 @@ define("_MD_MESSAGE_TEMPLATE11","Mensagem");
 define("_MD_MESSAGE_TEMPLATE10","Data");
 define("_MD_MESSAGE_TEMPLATE1","Enviar mensagem");
 define("_MD_MESSAGE_SETTINGS_MSG9","Utiliza a configuração padrão do módulo caso o valor for igual a zero.");
-define("_MD_MESSAGE_SETTINGS_MSG8","O número de mensagens mostradas por página");
+define("_MD_MESSAGE_SETTINGS_MSG8","Número de mensagens mostradas por página");
 define("_MD_MESSAGE_SETTINGS_MSG7","A mensagem é mostrada no email.");
-define("_MD_MESSAGE_SETTINGS_MSG6","O associado selecionado não pode receber a mensagem.");
+define("_MD_MESSAGE_SETTINGS_MSG6","O associado selecionado não pôde receber a mensagem.");
 define("_MD_MESSAGE_SETTINGS_MSG5","Você não pode utilizar o rcurso de mensagens privadas. Por favor, verifique as suas configurações.");
-define("_MD_MESSAGE_SETTINGS_MSG4","Falha ao atualizar!");
-define("_MD_MESSAGE_SETTINGS_MSG3","alterar configurações");
-define("_MD_MESSAGE_SETTINGS_MSG2","Redirecionar o e-mail");
+define("_MD_MESSAGE_SETTINGS_MSG4","Falha ao atualizar.");
+define("_MD_MESSAGE_SETTINGS_MSG3","Alterar configurações");
+define("_MD_MESSAGE_SETTINGS_MSG2","Receber mensagens internas via email");
 define("_MD_MESSAGE_SETTINGS_MSG19","O associado não existe.");
 define("_MD_MESSAGE_SETTINGS_MSG18","Detalhes");
 define("_MD_MESSAGE_SETTINGS_MSG17","Falha na remoção do associado.");
@@ -38,27 +56,27 @@ define("_MD_MESSAGE_SETTINGS_MSG14","{0} já existe.");
 define("_MD_MESSAGE_SETTINGS_MSG13","Falha ao acrescentar {0} à lista-negra.");
 define("_MD_MESSAGE_SETTINGS_MSG12","{0} foi adicionado à lista-negra.");
 define("_MD_MESSAGE_SETTINGS_MSG11","Separar IDs dos destinatários com uma vírgula.");
-define("_MD_MESSAGE_SETTINGS_MSG10","Lista-negra");
-define("_MD_MESSAGE_SETTINGS_MSG1","Mensagem de uso privado");
+define("_MD_MESSAGE_SETTINGS_MSG10","Lista de ignorados");
+define("_MD_MESSAGE_SETTINGS_MSG1","Mensagens internas");
 define("_MD_MESSAGE_SETTINGS","Configurações ");
 define("_MD_MESSAGE_SEARCH","Pesquisar");
 define("_MD_MESSAGE_NEWMESSAGE","Você tem {0} mensagens.");
-define("_MD_MESSAGE_MAILSUBJECT","Você tem uma nova mensagem interna");
+define("_MD_MESSAGE_MAILSUBJECT","Você tem uma nova mensagem");
 define("_MD_MESSAGE_MAILBODY","{0} de login, por favor.");
-define("_MD_MESSAGE_FORMERROR6","O associado selecionado não existe.");
+define("_MD_MESSAGE_FORMERROR6","Ocorreu um erro, o associado selecionado aparentemente não existe.");
 define("_MD_MESSAGE_FORMERROR5","É necessário escrever algo no corpo da mensagem.");
-define("_MD_MESSAGE_FORMERROR4","Título deve ter no máximo cem caracteres.");
-define("_MD_MESSAGE_FORMERROR3","Assunto é requerido.");
+define("_MD_MESSAGE_FORMERROR4","O título deve ter no máximo cem caracteres.");
+define("_MD_MESSAGE_FORMERROR3","O título é um valor necessário.");
 define("_MD_MESSAGE_FORMERROR2","O nome de entrada, com um máximo de trinta caracteres.");
 define("_MD_MESSAGE_FORMERROR1","O nome é um valor obrigatório.");
 define("_MD_MESSAGE_FAVORITES5","Remover");
 define("_MD_MESSAGE_FAVORITES4","Atualizar");
 define("_MD_MESSAGE_FAVORITES3","Falha ao atualizar.");
-define("_MD_MESSAGE_FAVORITES2","Adicionar");
+define("_MD_MESSAGE_FAVORITES2","Incluir");
 define("_MD_MESSAGE_FAVORITES1","Falha ao adicionar.");
-define("_MD_MESSAGE_FAVORITES0","Não há nenhum associado selecionado para ser adicionado.");
+define("_MD_MESSAGE_FAVORITES0","Nenhum associado foi selecionado para ser adicionado.");
 define("_MD_MESSAGE_DELETEMSG2","Não está selecionado.");
-define("_MD_MESSAGE_DELETEMSG1","O parâmetro é ilegal.");
+define("_MD_MESSAGE_DELETEMSG1","O parâmetro é considerado ilegal.");
 define("_MD_MESSAGE_ADDFAVORITES","Adicionar aos favoritos");
 define("_MD_MESSAGE_ADDBLACKLIST","Este associado foi adicionado à lista negra.");
 define("_MD_MESSAGE_ACTIONMSG8","Lamento, você ainda não tem as permissões necessárias.");
@@ -70,10 +88,9 @@ define("_MD_MESSAGE_ACTIONMSG3","A mensagem foi corretamente removida.");
 define("_MD_MESSAGE_ACTIONMSG2","Lamento, você ainda não tem as permissões necessárias.");
 define("_MD_MESSAGE_ACTIONMSG1","A mensagem não existe.");
 
-if ( !defined("LEGACY_MAIL_LANG") ) {
+if (!defined("LEGACY_MAIL_LANG")) {
 define("LEGACY_MAIL_LANG","pt");
-define("LEGACY_MAIL_CHAR","iso-8859-1");
-define("LEGACY_MAIL_ENCO","7bit");
+define("LEGACY_MAIL_CHAR","UTF-8");
+define("LEGACY_MAIL_ENCO","8bit");
 }
-
 ?>
