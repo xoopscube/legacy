@@ -148,7 +148,6 @@ define('_AD_USER_LANG_VPASS', "Vérifier Mot de Passe");
 
 // Message
 define('_AD_USER_MESSAGE_CONFIRM_DELETE', "Veuillez confirmer la suppression?");
-define('_AD_USER_MESSAGE_CONFIRM_DELETE_RANK', "Are you sure you want to delete this user rank?");
 define('_AD_USER_MESSAGE_CONFIRM_UPDATE_AVATAR', "Are you sure you want to update it?");
 define('_AD_USER_MESSAGE_CONFIRM_DELETE_RANK', "Voulez-vous supprimer ce rang d'Utilisateur?");
 define('_AD_USER_MESSAGE_CONFIRM_UPDATE_USER', "Are you sure you want to update user?");

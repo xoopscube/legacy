@@ -1,6 +1,6 @@
 <?php
 // $Id$
-define("_INSTALL_L0","Bienvenue dans l'assistant d'installation de XOOPS Cube 2.1");
+define("_INSTALL_L0","Bienvenue dans l'assistant d'installation de XOOPS Cube 2.2");
 define("_INSTALL_L70","Merci de changer les permissions du fichier mainfile.php afin qu'il soit accessible en écriture par le serveur (ex. chmod 777 sur un serveur UNIX/LINUX, ou vérifier les propriétés du fichier et s'assurer que l'option 'Lecture seule' n'est pas cochée sur un serveur Windows). Rechargez cette page une fois les permissions changées.");
 //define("_INSTALL_L71","Cliquez sur le bouton ci-dessous pour commencer l'installation.");
 define("_INSTALL_L1","Ouvrez le fichier mainfile.php avec un éditeur de texte et cherchez le code suivant à la ligne 31 :");
@@ -45,6 +45,9 @@ define("_INSTALL_L54","Utiliser les connexions persistentes?");
 define("_INSTALL_L69","Par défaut c'est 'NON'. Choisissez 'NON' si vous n'êtes pas sûr.");
 define("_INSTALL_L55","Chemin physique de XOOPS Cube");
 define("_INSTALL_L59","Chemin physique de votre répertoire racine XOOPS Cube sans le slash / de fin.");
+define("_INSTALL_L75","Chemin physique de XOOPS_TRUST_PATH");
+define("_INSTALL_L76","Chemin physique de votre répertoire XOOPS_TRUST_PATH sans le slash / de fin.<br />XOOPS_TRUST_PATH doit se trouver hors du domaine public.");
+
 define("_INSTALL_L56","Chemin virtuel de XOOPS Cube (URL)");
 define("_INSTALL_L58","Chemin virtuel de votre répertoire racine XOOPS Cube sans le slash / de fin.");
 
