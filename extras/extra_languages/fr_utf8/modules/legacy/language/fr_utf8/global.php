@@ -33,8 +33,8 @@ define("_NEWESTFIRST","Les récents en premier");
 define("_MORE","plus...");
 define("_MULTIPAGE","Pour avoir votre article sur des pages multiples, insérer le mot <font color=red>[pagebreak]</font> (avec les crochets) dans l'article.");
 define("_IFNOTRELOAD","Si la page ne se recharge pas automatiquement, merci de cliquer <a href=%s>ici</a>");
-define("_WARNINSTALL2","ATTENTION: Le repértoire %s existe sur votre serveur. <br />Veuillez supprimer ce repértoire pour des raisons de sécurité.");
-define("_WARNINWRITEABLE","ATTENTION : Veillez Changer les permissions du fichier %s pour des raisons de sécurité.<br /> sous Unix (444), sous Win32 (lecture seule)");
+define("_WARNINSTALL2","ATTENTION: Le repértoire %s existe sur votre serveur. Veuillez supprimer ce repértoire pour des raisons de sécurité.");
+define("_WARNINWRITEABLE","ATTENTION : Veillez Changer les permissions du fichier %s pour des raisons de sécurité - sous Unix (444), sous Win32 (lecture seule)");
 define('_WARNPHPENV','ATTENTION : paramètres php.ini "%s" est réglé "%s". %s');
 define('_WARNSECURITY','(Ceci peut causer des problèmes de sécurité)');
 
