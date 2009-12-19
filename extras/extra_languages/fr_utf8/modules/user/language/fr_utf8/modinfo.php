@@ -5,6 +5,8 @@ define('_MI_USER_ADMENU_LIST', "Gestion des Utilisateurs");
 define('_MI_USER_ADMENU_MAIL', "Email Utilisateurs");
 define('_MI_USER_ADMENU_MAILJOB_MANAGE', "Gestion du Courrier");
 define('_MI_USER_ADMENU_RANK_LIST', "Rangs des Utilisateurs");
+define('_MI_USER_ADMENU_USER_DATA_CSVUPLOAD', 'Users Batch Registration');
+define('_MI_USER_ADMENU_USER_DATA_DOWNLOAD', 'User Data Download');
 define('_MI_USER_ADMENU_USER_SEARCH', "Chercher un Utilisateur");
 define('_MI_USER_BLOCK_LOGIN_DESC', "Afficher connexion");
 define('_MI_USER_BLOCK_LOGIN_NAME', "Connexion");
