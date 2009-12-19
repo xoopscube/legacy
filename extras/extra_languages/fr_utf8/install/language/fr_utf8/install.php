@@ -1,14 +1,14 @@
 <?php
 
-define("_INSTALL_L0","Bienvenue dans l'assistant d'installation de XOOPS Cube 2.1");
+define("_INSTALL_L0","Bienvenue dans l'assistant d'installation de XOOPS Cube 2.2");
 define("_INSTALL_L70","Merci de changer les permissions du fichier mainfile.php afin qu'il soit accessible en écriture par le serveur (ex. chmod 777 sur un serveur UNIX/LINUX, ou vérifier les propriétés du fichier et s'assurer que l'option 'Lecture seule' n'est pas cochée sur un serveur Windows). Rechargez cette page une fois les permissions changées.");
 //define("_INSTALL_L71","Cliquez sur le bouton ci-dessous pour commencer l'installation.");
-define("_INSTALL_L1","Ouvrez le fichier mainfile.php avec un éditeur de texte et cherchez le code suivant à la ligne 31 :");
+define("_INSTALL_L1","Ouvrez le fichier mainfile.php avec un éditeur de texte et cherchez le code suivant à  la ligne 31 :");
 define("_INSTALL_L2","Maintenant, changez cette ligne en :");
-define("_INSTALL_L3","Ensuite, à la ligne 35, changez %s en %s");
-define("_INSTALL_L4","OK, j'ai saisi les paramètres ci-dessus, laissez-moi essayer à nouveau !");
+define("_INSTALL_L3","Ensuite, à  la ligne 35, changez %s en %s");
+define("_INSTALL_L4","OK, j'ai saisi les paramètres ci-dessus, laissez-moi essayer à  nouveau !");
 define("_INSTALL_L5","ATTENTION !");
-define("_INSTALL_L6","Il y a une différence entre votre configuration XOOPS_ROOT_PATH à la ligne 31 du fichier mainfile.php et les infos du chemin racine que nous avons détectées.");
+define("_INSTALL_L6","Il y a une différence entre votre configuration XOOPS_ROOT_PATH à  la ligne 31 du fichier mainfile.php et les infos du chemin racine que nous avons détectées.");
 define("_INSTALL_L7","Vos paramètres : ");
 define("_INSTALL_L8","Nous avons détecté : ");
 define("_INSTALL_L9","( Sur les plateformes Windows, vous pouvez recevoir ce message d'erreur même si votre configuration est correcte. Si c'est le cas, merci de presser le bouton ci-dessous pour continuer)");
@@ -18,9 +18,9 @@ define("_INSTALL_L12","L'URL du répertoire racine de XOOPS Cube : ");
 define("_INSTALL_L13","Si les paramètres ci-dessus sont corrects, pressez le bouton ci-dessous pour continuer.");
 define("_INSTALL_L14","Suivant");
 define("_INSTALL_L15","Merci d'éditer le fichier mainfile.php et d'entrer les données requises pour votre base de données");
-define("_INSTALL_L16","%s est le nom d'hôte de votre serveur de base de données.");
+define("_INSTALL_L16","%s est le nom d'hà´te de votre serveur de base de données.");
 define("_INSTALL_L17","%s est le nom d'utilisateur de votre compte de base de données.");
-define("_INSTALL_L18","%s est le mot de passe requis pour accéder à votre base de données.");
+define("_INSTALL_L18","%s est le mot de passe requis pour accéder à  votre base de données.");
 define("_INSTALL_L19","%s est le nom de votre base de données dans laquelle les tables de XOOPS Cube seront créées.");
 define("_INSTALL_L20","%s est le préfixe des tables qui seront créées durant l'installation.");
 define("_INSTALL_L21","La base de données suivante n'a pas été trouvée sur le serveur :");
@@ -30,9 +30,9 @@ define("_INSTALL_L24","Non");
 define("_INSTALL_L25","Nous avons détecté les infos de configuration suivantes pour votre base de données dans mainfile.php. Merci de rectifier maintenant si ce n'est pas correct.");
 define("_INSTALL_L26","Configuration de la base de données");
 define("_INSTALL_L51","Base de données");
-define("_INSTALL_L66","Choisissez la base de données à utiliser");
-define("_INSTALL_L27","Nom d'hôte de la base de données");
-define("_INSTALL_L67","Nom d'hôte du serveur de base de données. Si vous n'êtes pas sûr, 'localhost' fonctionne dans la majorité des cas.");
+define("_INSTALL_L66","Choisissez la base de données à  utiliser");
+define("_INSTALL_L27","Nom de la base de données");
+define("_INSTALL_L67","Nom d'hà´te du serveur de base de données. Si vous n'êtes pas sûr, 'localhost' fonctionne dans la majorité des cas.");
 define("_INSTALL_L28","Nom d'utilisateur de la base de données");
 define("_INSTALL_L65","Nom d'utilisateur de votre compte de base de données sur le serveur.");
 define("_INSTALL_L29","Nom de la base de données");
@@ -40,11 +40,14 @@ define("_INSTALL_L64","Le nom de la base de données sur le serveur. L'assistant
 define("_INSTALL_L52","Mot de passe de la base de données");
 define("_INSTALL_L68","Mot de passe de votre compte utilisateur de base de données.");
 define("_INSTALL_L30","Préfixe des tables");
-define("_INSTALL_L63","Le préfixe sera ajouté à toutes les tables créées pour éviter un conflit de noms dans la base de données. Si vous n'êtes pas sûr, utilisez juste par défaut 'xoops'.");
+define("_INSTALL_L63","Le préfixe sera ajouté à  toutes les tables créées pour éviter un conflit de noms dans la base de données. Si vous n'êtes pas sûr, utilisez juste par défaut 'xoops'.");
 define("_INSTALL_L54","Utiliser les connexions persistentes?");
 define("_INSTALL_L69","Par défaut c'est 'NON'. Choisissez 'NON' si vous n'êtes pas sûr.");
 define("_INSTALL_L55","Chemin physique de XOOPS Cube");
 define("_INSTALL_L59","Chemin physique de votre répertoire racine XOOPS Cube sans le slash / de fin.");
+define("_INSTALL_L75","Chemin physique de XOOPS_TRUST_PATH");
+define("_INSTALL_L76","Chemin physique de votre répertoire XOOPS_TRUST_PATH sans le slash / de fin.<br />XOOPS_TRUST_PATH doit se trouver hors du domaine public.");
+
 define("_INSTALL_L56","Chemin virtuel de XOOPS Cube (URL)");
 define("_INSTALL_L58","Chemin virtuel de votre répertoire racine XOOPS Cube sans le slash / de fin.");
 
@@ -110,7 +113,7 @@ define("_INSTALL_L107","Merci de vérifier le serveur de base de données et sa 
 define("_INSTALL_L108","La connexion au serveur de base données est OK.");
 define("_INSTALL_L109","La base de données %s n'existe pas.");
 define("_INSTALL_L110","La base de données %s existe et est connectable.");
-define("_INSTALL_L111","La connexion à la base de données est OK.<br />Pressez le bouton ci-dessous pour créer les tables dans la base de données.");
+define("_INSTALL_L111","La connexion à  la base de données est OK.<br />Pressez le bouton ci-dessous pour créer les tables dans la base de données.");
 define("_INSTALL_L112","Paramètres du compte de l'administrateur");
 define("_INSTALL_L113","Table %s supprimée.");
 define("_INSTALL_L114","Echec de création des tables dans la base de données.");
@@ -131,30 +134,30 @@ define("_INSTALL_L124","Echec de stockage du fichier %s dans le répertoire cach
 define("_INSTALL_L125","Fichier %s écrasé par %s.");
 define("_INSTALL_L126","Impossible d'écrire dans le fichier %s.");
 
-define("_INSTALL_L130","L'installateur a détecté des tables pour XOOPS 1.3.x dans votre base de données.<br />L'installateur va maintenant essayer de mettre à jour votre base de données pour XOOPS Cube 2.1");
-define("_INSTALL_L131","Les Tables pour XOOPS Cube 2.1 existe déjà dans votre base de données.");
-define("_INSTALL_L132","Mise à jour des tables");
-define("_INSTALL_L133","Table %s mise à jour.");
-define("_INSTALL_L134","Echec de mise à jour de la table %s.");
-define("_INSTALL_L135","Echec de mise à jour des tables de la base de données.");
-define("_INSTALL_L136","Tables de la base de données mises à jour.");
-define("_INSTALL_L137","Mettre à jour les modules");
-define("_INSTALL_L138","Mettre à jour les commentaires");
-define("_INSTALL_L139","Mettre à jour les avatars");
-define("_INSTALL_L140","Mettre à jour les emoticones");
-define("_INSTALL_L141","L'installateur va maintenant mettre à jour chaque module pour qu'ils fonctionnent avec XOOPS Cube 2.1<br />Assurez-vous d'avoir uploadé tous les fichiers du package XOOPS Cube 2.1 sur votre serveur.<br />Cela peut prendre un certain temps pour finir.");
-define("_INSTALL_L142","Mise à jour des modules...");
-define("_INSTALL_L143","L'installateur va maintenant mettre à jour les données de configuration de XOOPS 1.3.x pour être utilisées avec XOOPS Cube 2.1");
-define("_INSTALL_L144","Mettre à jour la configuration");
+define("_INSTALL_L130","L'installateur a détecté des tables pour XOOPS 1.3.x dans votre base de données.<br />L'installateur va maintenant essayer de mettre à  jour votre base de données pour XOOPS Cube 2.1");
+define("_INSTALL_L131","Les Tables pour XOOPS Cube 2.1 existe déjà  dans votre base de données.");
+define("_INSTALL_L132","Mise à  jour des tables");
+define("_INSTALL_L133","Table %s mise à  jour.");
+define("_INSTALL_L134","Echec de mise à  jour de la table %s.");
+define("_INSTALL_L135","Echec de mise à  jour des tables de la base de données.");
+define("_INSTALL_L136","Tables de la base de données mises à  jour.");
+define("_INSTALL_L137","Mettre à  jour les modules");
+define("_INSTALL_L138","Mettre à  jour les commentaires");
+define("_INSTALL_L139","Mettre à  jour les avatars");
+define("_INSTALL_L140","Mettre à  jour les emoticones");
+define("_INSTALL_L141","L'installateur va maintenant mettre à  jour chaque module pour qu'ils fonctionnent avec XOOPS Cube 2.1<br />Assurez-vous d'avoir uploadé tous les fichiers du package XOOPS Cube 2.1 sur votre serveur.<br />Cela peut prendre un certain temps pour finir.");
+define("_INSTALL_L142","Mise à  jour des modules...");
+define("_INSTALL_L143","L'installateur va maintenant mettre à  jour les données de configuration de XOOPS 1.3.x pour être utilisées avec XOOPS Cube 2.1");
+define("_INSTALL_L144","Mettre à  jour la configuration");
 define("_INSTALL_L145","Commentaire (ID : %s) inséré dans la base de données.");
 define("_INSTALL_L146","Impossible d'insérer le commentaire (ID : %s) dans la base de données.");
-define("_INSTALL_L147","Mise à jour des commentaires...");
-define("_INSTALL_L148","Mise à jour terminée.");
-define("_INSTALL_L149","L'installateur va maintenant mettre à jour les envois de commentaires de XOOPS 1.3.x pour être utilisés dans XOOPS Cube 2.<br />Cela peut prendre un certain temps pour finir.");
-define("_INSTALL_L150","L'installateur va maintenant mettre à jour les émoticônes et les images de classement utilisateur pour être utilisés dans XOOPS Cube 2.<br />Cela peut prendre un certain temps pour finir.");
-define("_INSTALL_L151","L'installateur va maintenant mettre à jour les avatars utilisateurs pour être utilisés dans XOOPS Cube 2.1<br />Cela peut prendre un certain temps.");
-define("_INSTALL_L155","Mise à jour des émoticônes/images de classement...");
-define("_INSTALL_L156","Mise à jour des avatars utilisateurs...");
+define("_INSTALL_L147","Mise à  jour des commentaires...");
+define("_INSTALL_L148","Mise à  jour terminée.");
+define("_INSTALL_L149","L'installateur va maintenant mettre à  jour les envois de commentaires de XOOPS 1.3.x pour être utilisés dans XOOPS Cube 2.<br />Cela peut prendre un certain temps pour finir.");
+define("_INSTALL_L150","L'installateur va maintenant mettre à  jour les émoticà´nes et les images de classement utilisateur pour être utilisés dans XOOPS Cube 2.<br />Cela peut prendre un certain temps pour finir.");
+define("_INSTALL_L151","L'installateur va maintenant mettre à  jour les avatars utilisateurs pour être utilisés dans XOOPS Cube 2.1<br />Cela peut prendre un certain temps.");
+define("_INSTALL_L155","Mise à  jour des émoticà´nes/images de classement...");
+define("_INSTALL_L156","Mise à  jour des avatars utilisateurs...");
 define("_INSTALL_L157","Sélectionnez le groupe utilisateurs par défaut pour chaque type de groupe");
 define("_INSTALL_L158","Groupes de la v1.3.x");
 define("_INSTALL_L159","Webmestres");
@@ -166,10 +169,10 @@ define("_INSTALL_L164","Echec de suppression de la table %s.");
 define("_INSTALL_L165","Le site est actuellement fermé pour maintenance. Merci de revenir plus tard.");
 // %s is filename
 define("_INSTALL_L152","Impossible d'ouvrir %s.");
-define("_INSTALL_L153","Impossible de mettre à jour %s.");
-define("_INSTALL_L154","%s mis à jour.");
+define("_INSTALL_L153","Impossible de mettre à  jour %s.");
+define("_INSTALL_L154","%s mis à  jour.");
 
-define('_INSTALL_L128', "Choisissez le langage à utiliser pour la procédure d'installation");
+define('_INSTALL_L128', "Choisissez le langage à  utiliser pour la procédure d'installation");
 define('_INSTALL_L200', "Recharger");
 define("_INSTALL_L210","La 2ème étape de l'Installation");
 
@@ -177,7 +180,7 @@ define("_INSTALL_L210","La 2ème étape de l'Installation");
 define('_INSTALL_CHARSET',"utf-8");
 
 define('_INSTALL_LANG_XOOPS_SALT', "SALT");
-define('_INSTALL_LANG_XOOPS_SALT_DESC', "Ceci joue un rôle supplémentaire pour produire un code secret et de suivi (token). Vous n'avez pas besoin de changer la valeur par défaut.");
+define('_INSTALL_LANG_XOOPS_SALT_DESC', "Ceci joue un rà´le supplémentaire pour produire un code secret et de suivi (token). Vous n'avez pas besoin de changer la valeur par défaut.");
 
-define('_INSTALL_HEADER_MESSAGE',"Suivez les instructions d'installation à l'écran");
+define('_INSTALL_HEADER_MESSAGE',"Suivez les instructions d'installation à  l'écran");
 ?>
