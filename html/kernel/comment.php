@@ -112,6 +112,11 @@ class XoopsComment extends XoopsObject
 		elseif (preg_match("/^Re\[(\d+)\]:(.+)$/", $title, $matches)) {
 			$ret->set('com_title', "Re[" . ($matches[1] + 1) . "]: " . $matches[2]);
 		}
+		elseif (!preg_match("/^re:/i", $title)) {
+			$ret->set('com_title', "Re: ".xoops_substr($title, 0, 56) );
+		} else {
+			$ret->set('com_title', $title );
+		}
 
 		return $ret;
 	}
