@@ -395,7 +395,7 @@ case "post":
     } else {
         if (!isset($purge_comment_post_results)) {
             include XOOPS_ROOT_PATH.'/header.php';
-            xoops_error($comment->getHtmlErrors());
+            xoops_error( $comment->getErrors() );
             include XOOPS_ROOT_PATH.'/footer.php';
         } else {
             $comment_post_results = $comment->getErrors();
