@@ -3,20 +3,13 @@
 	XOOPS Cube Legacy 
     http://xoopscube.org  */
 
-/*------------------------------------------------------- XIGG Titles */
-
-#Xigg .blogTitle a, #Xigg .blogTitle a:visited 
-	{
-	color: #344587;
-	text-decoration: none;
-	}
-
-#Xigg .blogTitle a:hover 
-	{
-	color:#F89D07;
-	}
 
 /*------------------------------------------------------- ITEMS */
+
+.breadcrumbs 
+	{
+	style="margin:12px 6px;
+	}
 
 .item 
 	{
