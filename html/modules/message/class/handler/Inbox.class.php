@@ -31,6 +31,7 @@ class MessageInboxObject extends XoopsSimpleObject
       case 'msg_text':    $key = 'message';  break;
       case 'to_userid':   $key = 'uid';      break;
       case 'read_msg':    $key = 'is_read';  break;
+      case 'msg_time':    $key = 'utime';    break;
     }
     
     $this->assignVar($key, $value);
@@ -118,6 +119,7 @@ class MessageInboxHandler extends XoopsObjectGenericHandler
           case 'subject': $criteria->column = 'title'; break;
           case 'from_userid': $criteria->column = 'from_uid'; break;
           case 'msg_text': $criteria->column = 'message'; break;
+          case 'msg_time': $criteria->column = 'utime';    break;
         }
       }
     }

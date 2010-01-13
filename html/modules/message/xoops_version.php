@@ -4,15 +4,18 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 if ( !isset($root) ) {
   $root = XCube_Root::getSingleton();
 }
+
+$mydirpath = basename( dirname( dirname( __FILE__ ) ) ) ;
+
 $modversion['name'] = _MI_MESSAGE_NAME;
 $modversion['dirname'] = basename(dirname(__FILE__));
-$modversion['version'] = 1.17;
+$modversion['version'] = 1.18;
 $modversion['description'] = _MI_MESSAGE_DESC;
 $modversion['author'] = 'Marijuana';
 $modversion['credits'] = "XOOPS Cube Project";
 $modversion['help'] = "help.html";
 $modversion['license'] = "MIT LICENSE";
-$modversion['image'] = 'slogo.png';
+$modversion['image']       = file_exists( $mydirpath.'/module_icon.png' ) ? 'module_icon.png' : 'module_icon.php' ;
 $modversion['mcl_update'] = 'message';
 
 $modversion['cube_style'] = true;
