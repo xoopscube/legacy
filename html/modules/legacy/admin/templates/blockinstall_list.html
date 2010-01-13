@@ -24,7 +24,7 @@
 </div>
 
 <ul class="toptab">
-  <li class="addBlockEdit"><a href="index.php?action=CustomBlockEdit"><{$smarty.const._AD_LEGACY_LANG_ADD_CUSTOM_BLOCK}></a></li>
+  <li class="addBlockCustom"><a href="index.php?action=CustomBlockEdit"><{$smarty.const._AD_LEGACY_LANG_ADD_CUSTOM_BLOCK}></a></li>
 </ul>
 
 <div>
@@ -108,7 +108,7 @@
           <a href="./index.php?action=CustomBlockEdit&amp;bid=<{$obj->getShow('bid')}>"><img src="<{"icons/block_edit.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>" title="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>" /></a>
           <a href="./index.php?action=CustomBlockDelete&amp;bid=<{$obj->getShow('bid')}>"><img src="<{"icons/block_remove.png"|theme}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
         <{else}>
-          <a href="./index.php?action=BlockInstallEdit&amp;bid=<{$obj->getShow('bid')}>"><img src="<{"icons/block_add.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>"title="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>" /></a>
+          <a href="./index.php?action=BlockInstallEdit&amp;bid=<{$obj->getShow('bid')}>"><img src="<{"icons/block_install.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>"title="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>" /></a>
         <{/if}>
       </td>
     </tr>

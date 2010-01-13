@@ -6,7 +6,6 @@
 	(c) 2008
 */
 
-
 * {
 	margin:0;
 	padding:0;
@@ -367,6 +366,9 @@ ul.toptab li.addBannerExpire {
 background:#f2f2f2 url(<{"icons/time_expire.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.addBlock {
+background:#f2f2f2 url(<{"icons/block.png"|theme}>) 5px center no-repeat;
+}
+ul.toptab li.addBlockCustom {
 background:#f2f2f2 url(<{"icons/block_add.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.addBlockEdit {
@@ -403,9 +405,9 @@ ul.toptab li.addSend {
 background:#f2f2f2 url(<{"icons/send.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.editFile {
-background:#f2f2f2 url(<{"icons/edit.png"|theme}>) 5px center no-repeat;
+background:#f2f2f2 url(<{"icons/page_edit.png"|theme}>) 5px center no-repeat;
 }
-ul.toptab li.editDir {
+ul.toptab li.editFolder {
 background:#f2f2f2 url(<{"icons/folder_edit.png"|theme}>) 5px center no-repeat;
 }
 ul.toptab li.group {

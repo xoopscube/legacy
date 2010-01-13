@@ -114,7 +114,7 @@
         <{if $obj->getShow('com_icon')}>
           <img src="<{$smarty.const.XOOPS_URL}>/images/subject/<{$obj->getShow('com_icon')}>" alt="" />
         <{else}>
-          <img src="<{$smarty.const.XOOPS_URL}>/images/icons/no_posticon.png" alt="" />
+          <img src="<{$smarty.const.XOOPS_URL}>/images/icons/no_posticon.gif" alt="" />
         <{/if}>
         <a href="./index.php?action=CommentView&amp;com_id=<{$obj->getShow('com_id')}>"><{$obj->getShow('com_title')}></a></td>
       <td class="legacy_list_date"><{$obj->getShow('com_created')|xoops_formattimestamp:l}></td>
