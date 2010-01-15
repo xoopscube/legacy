@@ -665,9 +665,9 @@ class Legacy_Controller extends XCube_Controller
 
 	function _setupScript()
 	{
-		require_once XOOPS_MODULE_PATH.'/legacy/class/jquery.class.php';
-		$jQuery = new Legacy_JQueryObject();
-		$this->mRoot->mContext->setAttribute('jQuery', $jQuery);
+		require_once XOOPS_MODULE_PATH.'/legacy/class/Legacy_HeaderScript.class.php';
+		$headerScript = new Legacy_HeaderScript();
+		$this->mRoot->mContext->setAttribute('headerScript', $headerScript);
 	}
 
 	/**

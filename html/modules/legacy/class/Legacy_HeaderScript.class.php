@@ -2,7 +2,7 @@
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
-class Legacy_JQueryObject
+class Legacy_HeaderScript
 {
 	var $mMainLibrary = 'google';
 	var $mMainVersion = "1";
@@ -12,19 +12,19 @@ class Legacy_JQueryObject
 
 	var $_mLibrary = array();
 	var $_mScript = array();
-	var $_mCSS = array();
+	var $_mStylesheet = array();
 
 	var $mUsePrototype = false;	//use prototype.js ?
 	var $mFuncNamePrefix = "";	//jQuery $() function's name prefix for compatibility with prototype.js
 
     /**
-     * Legacy_JQueryObject
+     * __construct
      * 
      * @param   void
      * 
      * @return  void
     **/
-	function Legacy_JQueryObject()
+	public function __construct()
 	{
 		$root = XCube_Root::getSingleton();
 		$this->mMainLibrary = $root->getSiteConfig('jQuery', 'library');
@@ -47,14 +47,14 @@ class Legacy_JQueryObject
 	}
 
     /**
-     * appendLibrary
+     * addLibrary
      * 
      * @param   string $url
      * @param   bool $xoopsUrl
      * 
      * @return  void
     **/
-	function appendLibrary($url, $xoopsUrl=true)
+	public function addLibrary($url, $xoopsUrl=true)
 	{
 		$libUrl = ($xoopsUrl==true) ? XOOPS_URL. $url : $url;
 		if(! in_array($libUrl, $this->_mLibrary)){
@@ -63,29 +63,29 @@ class Legacy_JQueryObject
 	}
 
     /**
-     * appendCSS
+     * addStylesheet
      * 
      * @param   string $url
      * @param   bool $xoopsUrl
      * 
      * @return  void
     **/
-	function appendCSS($url, $xoopsUrl=true)
+	public function addStylesheet($url, $xoopsUrl=true)
 	{
 		$libUrl = ($xoopsUrl==true) ? XOOPS_URL. $url : $url;
 		if(! in_array($libUrl, $this->_mLibrary)){
-			 $this->_mCSS[] = $libUrl;
+			 $this->_mStylesheet[] = $libUrl;
 		}
 	}
 
     /**
-     * appendScript
+     * addScript
      * 
      * @param   string $script
      * 
      * @return  void
     **/
-	function appendScript($script)
+	public function addScript($script)
 	{
 		$this->_mScript[] = $script;
 	}
@@ -97,7 +97,7 @@ class Legacy_JQueryObject
      * 
      * @return  string[]
     **/
-	function getLibraryArr()
+	public function getLibraryArr()
 	{
 		return $this->_mLibrary;
 	}
@@ -109,7 +109,7 @@ class Legacy_JQueryObject
      * 
      * @return  string[]
     **/
-	function getScriptArr()
+	public function getScriptArr()
 	{
 		return $this->_mScript;
 	}
@@ -121,7 +121,7 @@ class Legacy_JQueryObject
      * 
      * @return  string
     **/
-	function createLibraryTag()
+	public function createLibraryTag()
 	{
 		$html = "";
 	
@@ -144,7 +144,7 @@ class Legacy_JQueryObject
 		}
 	
 		//load css
-		foreach($this->_mCSS as $css){
+		foreach($this->_mStylesheet as $css){
 			$html .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"". $css ."\" />\n";
 		}
 	
@@ -158,7 +158,7 @@ class Legacy_JQueryObject
      * 
      * @return  string
     **/
-	function _loadGoogleJQueryLibrary()
+	protected function _loadGoogleJQueryLibrary()
 	{
 		return '<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script type="text/javascript"><!--
@@ -177,7 +177,7 @@ google.load("jqueryui", "'. $this->mUIVersion .'");
      * 
      * @return  string
     **/
-	function _loadLocalJQueryLibrary()
+	protected function _loadLocalJQueryLibrary()
 	{
 		$html = "";
 		if($this->mMainUrl) $html .= '<script type="text/javascript" src="'. $this->mMainUrl .'"></script>';
@@ -193,7 +193,7 @@ google.load("jqueryui", "'. $this->mUIVersion .'");
      * 
      * @return  string
     **/
-	function createOnloadFunctionTag()
+	public function createOnloadFunctionTag()
 	{
 		$html = null;
 		if(count($this->_mScript)>0){
@@ -218,7 +218,7 @@ google.load("jqueryui", "'. $this->mUIVersion .'");
      * 
      * @return  string
     **/
-	function _makeScript()
+	protected function _makeScript()
 	{
 		$html = null;
 		foreach($this->_mScript as $script){
@@ -234,7 +234,7 @@ google.load("jqueryui", "'. $this->mUIVersion .'");
      * 
      * @return  string
     **/
-	function _convertFuncName($script)
+	protected function _convertFuncName($script)
 	{
 		if($this->mFuncNamePrefix){
 			$script = str_replace("$(", $this->mFuncNamePrefix."$(", $script);

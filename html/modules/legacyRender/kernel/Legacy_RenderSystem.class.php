@@ -362,10 +362,10 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 		$this->_commonPrepareRender();
 	
 		//jQuery Ready functions
-		XCube_DelegateUtils::call("Site.JQuery.AddFunction", new XCube_Ref($this->mController->mRoot->mContext->mAttributes['jQuery']));
-		$jQuery = $this->mController->mRoot->mContext->getAttribute('jQuery');
+		XCube_DelegateUtils::call("Site.JQuery.AddFunction", new XCube_Ref($this->mController->mRoot->mContext->mAttributes['headerScript']));
+		$headerScript = $this->mController->mRoot->mContext->getAttribute('headerScript');
 		$moduleHeader = $this->mXoopsTpl->get_template_vars('xoops_module_header');
-		$moduleHeader =  $jQuery->createLibraryTag() . $moduleHeader . $jQuery->createOnloadFunctionTag();
+		$moduleHeader =  $headerScript->createLibraryTag() . $moduleHeader . $headerScript->createOnloadFunctionTag();
 		$this->mXoopsTpl->assign('xoops_module_header', $moduleHeader);
 		
 		//
