@@ -64,6 +64,12 @@ function smarty_function_xoops_dhtmltarea($params, &$smarty)
 		//
 		// Build the object for output.
 		//
+		
+		$html = "";
+		XCube_DelegateUtils::call("Site.DhtmlTextArea.Show", new XCube_Ref($html), $id, $caption, $name, $value, $rows, $cols);
+		print $html;
+		
+		/*
 		$form =& new XoopsFormDhtmlTextArea($name, $name, $value, $rows, $cols);
 		$form->setId($id);
 		if ($class != null) {
@@ -71,6 +77,7 @@ function smarty_function_xoops_dhtmltarea($params, &$smarty)
 		}
 		
 		print $form->render();
+		*/
 	}
 }
 
