@@ -183,7 +183,7 @@ class Lecat_CatEditAction extends Lecat_AbstractEditAction
     **/
     public function executeViewSuccess(/*** XCube_RenderTarget ***/ &$render)
     {
-        $this->mRoot->mController->executeForward('./index.php?action=CatView&gr_id='. $this->mObject->getShow('cat_id'));
+        $this->mRoot->mController->executeForward('./index.php?action=CatView&cat_id='. $this->mObject->getShow('cat_id'));
     }
 
     /**
@@ -207,7 +207,7 @@ class Lecat_CatEditAction extends Lecat_AbstractEditAction
     **/
     public function executeViewCancel(/*** XCube_RenderTarget ***/ &$render)
     {
-        $this->mRoot->mController->executeForward('./index.php?action=CatCatView&cat_id='. $this->mObject->getShow('cat_id'));
+        $this->mRoot->mController->executeForward('./index.php?action=CatView&cat_id='. $this->mObject->getShow('cat_id'));
     }
 }
 
