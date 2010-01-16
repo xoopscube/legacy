@@ -1,0 +1,61 @@
+<?php
+/**
+ * @file
+ * @package lecat
+ * @version $Id$
+**/
+
+define('_MD_LECAT_ERROR_REQUIRED', '{0} is required.');
+define('_MD_LECAT_ERROR_MINLENGTH', 'Input {0} with {1} or more characters.');
+define('_MD_LECAT_ERROR_MAXLENGTH', 'Input {0} with {1} or less characters.');
+define('_MD_LECAT_ERROR_EXTENSION', 'Uploaded file\'s extension does not match any entry in the allowed list.');
+define('_MD_LECAT_ERROR_INTRANGE', 'Incorrect input on {0}.');
+define('_MD_LECAT_ERROR_MIN', 'Input {0} with {1} or more numeric value.');
+define('_MD_LECAT_ERROR_MAX', 'Input {0} with {1} or less numeric value.');
+define('_MD_LECAT_ERROR_OBJECTEXIST', 'Incorrect input on {0}.');
+define('_MD_LECAT_ERROR_DBUPDATE_FAILED', 'Failed updating database.');
+define('_MD_LECAT_ERROR_EMAIL', '{0} is an incorrect email address.');
+define('_MD_LECAT_ERROR_NO_CATEGORY_REQUESTED', 'No Category is requested');
+define('_MD_LECAT_MESSAGE_CONFIRM_DELETE', 'Are you sure to delete?');
+define('_MD_LECAT_LANG_ADD_A_NEW_CAT', 'Add a new Category');
+define('_MD_LECAT_LANG_CAT_ID', 'CAT_ID');
+define('_MD_LECAT_LANG_TITLE', 'Title');
+define('_MD_LECAT_LANG_GR_ID', 'Group ID');
+define('_MD_LECAT_LANG_GR', 'Category Group');
+define('_MD_LECAT_LANG_PARENT', 'Parent Category');
+define('_MD_LECAT_LANG_MODULES', 'Modules');
+define('_MD_LECAT_LANG_DESCRIPTION', 'Description');
+define('_MD_LECAT_LANG_DEPTH', 'Depth');
+define('_MD_LECAT_LANG_WEIGHT', 'Weight');
+define('_MD_LECAT_LANG_OPTIONS', 'Option');
+define('_MD_LECAT_LANG_CONTROL', 'CONTROL');
+define('_MD_LECAT_LANG_CAT', 'Category');
+define('_MD_LECAT_LANG_CAT_EDIT', 'Category Edit');
+define('_MD_LECAT_LANG_CAT_DELETE', 'Category Delete');
+define('_MD_LECAT_ERROR_CONTENT_IS_NOT_FOUND', 'Content is not found');
+define('_MD_LECAT_LANG_ADD_A_NEW_GR', 'Add a new Category Group');
+define('_MD_LECAT_LANG_LEVEL', 'Level');
+define('_MD_LECAT_LANG_ACTIONS', 'Action');
+define('_MD_LECAT_LANG_GR_EDIT', 'Category Group Edit');
+define('_MD_LECAT_LANG_GR_DELETE', 'Category Group Delete');
+define('_MD_LECAT_LANG_ADD_A_NEW_PERMIT', 'Add a new Permission');
+define('_MD_LECAT_LANG_PERMIT_ID', 'PERMIT_ID');
+define('_MD_LECAT_LANG_UID', 'UID');
+define('_MD_LECAT_LANG_GROUPID', 'User Group ID');
+define('_MD_LECAT_LANG_PERMISSIONS', 'Permissions');
+define('_MD_LECAT_LANG_PERMIT_EDIT', 'PERMIT_EDIT');
+define('_MD_LECAT_LANG_PERMIT_DELETE', 'PERMIT_DELETE');
+define('_MD_LECAT_LANG_AUTH_SETTING', 'auth setting');
+define('_MD_LECAT_LANG_AUTH_KEY', 'auth key name');
+define('_MD_LECAT_LANG_AUTH_TITLE', 'auth display title');
+define('_MD_LECAT_LANG_AUTH_DEFAULT', 'auth default value');
+define('_MD_LECAT_LANG_MODULES_CONFINEMENT', 'Module Confinement');
+define('_MD_LECAT_LANG_PERMISSION_TYPE', 'Permission Type');
+define('_MD_LECAT_DESC_PERMISSION_TYPE', 'Set permission type and default values.');define('_MD_LECAT_LANG_ADD_A_NEW_PERMISSION_TYPE', 'Add a new permission type');
+define('_MD_LECAT_LANG_VIEWER', 'Viewer');
+define('_MD_LECAT_LANG_POSTER', 'Poster');
+define('_MD_LECAT_LANG_MANAGER', 'Manager');
+define('_MD_LECAT_LANG_CATEGORY', 'Category');
+define('_MD_LECAT_LANG_TOP_CAT', 'Top Category');
+define('_MD_LECAT_LANG_DELEET_ALL_PERMIT', 'Delete all Permission on this category');
+?>
