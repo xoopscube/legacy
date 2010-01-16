@@ -11,7 +11,6 @@ if(!defined('XOOPS_ROOT_PATH'))
 }
 
 require_once LECAT_TRUST_PATH . '/class/AbstractViewAction.class.php';
-require_once LECAT_TRUST_PATH . '/class/TreeObject.class.php';
 
 /**
  * Lecat_GrViewAction
