@@ -34,6 +34,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Feature Request #2115658 - Admin Welcome Page
 - Feature Request #2115670 - Default Editor WYSIWYG
 - Feature Request #2115674 - Default WYSIWYG Editor for Blocks
+- Feature Request #2115711 - Improve Admin Help Search
 - Feature Request #2115747 - File Manager, FCKEditor Extension KFM
 - Feature Request #2115768 - CSS Framework, Extras
 - Feature Request #2122628 - Extended Profiles
