@@ -194,7 +194,7 @@ class Lecat_CatObject extends XoopsSimpleObject
 			//set default permissions from Gr, if any permission is set in this Category Tree
 			if(! $permitArr=Lecat_Utils::getInheritPermission($this->getDirname(), $this->mCatPath['cat_id'], $groupId)){
 				$this->loadGr();
-				$permissions = $this->mGr->getDefaultPermissionList();
+				$permissions = $this->mGr->getDefaultPermissionForCheck();
 				if(intval($groupId)>0){
 					$permitArr[0] = $this->_getHandler('permit')->create();
 					$permitArr[0]->set('cat_id', $this->get('cat_id'));
@@ -267,6 +267,7 @@ class Lecat_CatObject extends XoopsSimpleObject
 			return false;
 		}
 		$permissions =$permitArr[0]->getPermissionArr();
+		//var_dump($permissions);die();
 		return (@$permissions[$action]==1) ? true : false;
 	}
 

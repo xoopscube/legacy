@@ -55,6 +55,7 @@ class Lecat_CatViewAction extends Lecat_AbstractViewAction
 	{
 		parent::prepare();
 		$this->mObject->loadGr();
+		$this->mObject->mGr->loadTree();
 		$this->mObject->loadPcat();
 	
 		//for Permissions
@@ -93,10 +94,6 @@ class Lecat_CatViewAction extends Lecat_AbstractViewAction
     {
         $render->setTemplateName($this->mAsset->mDirname . '_cat_view.html');
 	
-		//TreeObject
-		$this->mObject->mGr->loadTree();
-		$catTree = $this->mObject->mGr->mTree;
-	
 		//format Permissions for html form
 		$permissions = new Lecat_Permission($this->mAsset->mDirname, $this->mObject);
 		$gPermit = ($this->mObject->getThisPermit()) ? $this->mObject->getThisPermit() : array();
@@ -105,7 +102,7 @@ class Lecat_CatViewAction extends Lecat_AbstractViewAction
 		//set renders
 		$render->setAttribute('dirname', $this->mAsset->mDirname);
 		$render->setAttribute('object', $this->mObject);
-		$render->setAttribute('childrenTree', $catTree);
+		$render->setAttribute('childrenTree', $this->mObject->mGr->mTree);
 		$render->setAttribute('permitObj', $permissions);
 		//modules confinement
 		$render->setAttribute('modulesArr', $this->mObject->getModuleArr());

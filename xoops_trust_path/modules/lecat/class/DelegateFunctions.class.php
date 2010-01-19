@@ -46,7 +46,6 @@ class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
 				}
 				else{
 					$tree['permit'][$key] = 0;
-			//var_dump($grObj->mTree[$key]);echo $uid;echo $action;die();
 				}
 			}
 			else{

@@ -77,6 +77,24 @@ class Lecat_GrObject extends XoopsSimpleObject
 	}
 
     /**
+     * getDefaultPermissionForCheck
+     * 
+     * @param   void
+     * 
+     * @return  string[]
+    **/
+	public function getDefaultPermissionForCheck()
+	{
+		$permissions = array();
+		$actions = $this->getActions();
+		$i=0;
+		foreach(array_keys($actions['title']) as $key){
+			$permissions[$key] = $actions['default'][$key];
+		}
+		return $permissions;
+	}
+
+    /**
      * getActions
      * 
      * @param   void
