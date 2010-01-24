@@ -155,7 +155,7 @@ class Profile_Service extends XCube_Service
 		//show_form
 		$show_form = $root->mContext->mRequest->getRequest('show_form');
 	
-		$criteria = new CriteriaCompo('1', '1');
+		$criteria = new CriteriaCompo();
 		if($show_form==true){
 			$criteria->add(new Criteria('show_form', '1'));
 		}
@@ -223,7 +223,7 @@ class Profile_Service extends XCube_Service
 		$value = $root->mContext->mRequest->getRequest('value');
 	
 		$handler =& xoops_getmodulehandler('data', 'profile');
-		$criteria = new CriteriaCompo('1', '1');
+		$criteria = new CriteriaCompo();
 		$criteria->add(new Criteria($field_name, $value));
 		$dataArr =& $handler->getObjects($criteria);
 		foreach(array_keys($dataArr) as $key){

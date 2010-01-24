@@ -141,7 +141,7 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 	 */
 	function getFields4DataEdit()
 	{
-		$criteria = new CriteriaCompo('1', '1');
+		$criteria = new CriteriaCompo();
 		$criteria->add(new Criteria('show_form', '1'));
 		$criteria->setSort('weight');
 	
@@ -155,7 +155,7 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 	{
 		$lHandler =& xoops_getmodulehandler('groups_users_link', 'user');
 	
-		$criteria = new CriteriaCompo('1', '1');
+		$criteria = new CriteriaCompo();
 		$criteria->setSort('weight');
 		$fieldArr = $this->getObjects($criteria);
 		foreach(array_keys($fieldArr) as $keyF){
@@ -209,7 +209,7 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 
 	function getDefinitionsArr($show_form=true)
 	{
-		$criteria = new CriteriaCompo('1', '1');
+		$criteria = new CriteriaCompo();
 		$criteria->setSort('weight', 'ASC');
 		if($show_form==true){
 			$criteria->add(new Criteria('show_form', 1));
