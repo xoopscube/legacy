@@ -404,7 +404,7 @@ function xoops_getbanner()
 function redirect_header($url, $time = 3, $message = '', $addredirect = true)
 {
     global $xoopsConfig, $xoopsRequestUri;
-    if (preg_match("/[\\0-\\31]/", $url) || preg_match("/^(javascript|vbscript|about):/i", $url)) {
+    if (preg_match('/[\x0-\x1f\x7f]/', $url) || preg_match("/^(javascript|vbscript|about):/i", $url)) {
         $url = XOOPS_URL;
     }
     if (!defined('XOOPS_CPFUNC_LOADED')) {

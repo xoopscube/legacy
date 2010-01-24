@@ -43,7 +43,7 @@ class User_AbstractUserEditForm extends XCube_ActionForm
 					break;
 
 				case 2:
-					$regex="/[\000-\040]/";
+					$regex='[\000-\040\177]';
 					break;
 			}
 			if(preg_match($regex,$this->get('uname'))) {

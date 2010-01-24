@@ -195,7 +195,7 @@ class MyTextSanitizer
     function checkUrlString($text)
     {
         // Check control code
-        if (preg_match("/[\\0-\\31]/", $text)) {
+        if (preg_match('/[\x0-\x1f\x7f]/', $text)) {
             return false;
         }
         // check black pattern(deprecated)
