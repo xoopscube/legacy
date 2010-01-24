@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 // Author: NobuNobu (Nobuki@Kowa.ORG)                                        //
-// URL:  http://jp.xoops.org                                                 //
+// URL:  http://xoopscube.jp                                                 //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 

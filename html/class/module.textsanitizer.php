@@ -24,7 +24,7 @@
 //  along with this program; if not, write to the Free Software              //
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (http://www.myweb.ne.jp/, http://jp.xoops.org/)        //
+// Author: Kazumi Ono (http://www.myweb.ne.jp/, http://xoopscube.jp/)        //
 //         Goghs Cheng (http://www.eqiao.com, http://www.devbeez.com/)       //
 // Project: The XOOPS Project (http://www.xoops.org/)                        //
 // ------------------------------------------------------------------------- //
