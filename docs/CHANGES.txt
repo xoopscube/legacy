@@ -28,6 +28,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Feature Request #1800104 - icon read.gif
 - Feature Request #1872731 - title for legacy_misc_smilies.html
 - Feature Request #1897507 - $_SERVER variables not defined on CLI
+- Feature Request #1915329 - Allow custom module install functin to reference $mlog
 - Feature Request #1943014 - set LanguageManager's LanguageName in $GLOBALS['xoopsConfig'
 - Feature Request #1999592 - lengthen fields in the config table
 - Feature Request #2115625 - Admin Graphical User Interface
@@ -40,7 +41,9 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Feature Request #2122628 - Extended Profiles
 - Feature Request #2162017 - Private Message
 - Feature Request #2161286 - Install, XOOPS TRUST PATH
+- Feature Request #2175825 - Javascript Library Handling
 - Feature Request #2746645 - Replace the Smarty files with links
+- Feature Request #2889797 - parse_ini_file() compliant for PHP5.3
 
 
 [Other Changes/Enhancements]
