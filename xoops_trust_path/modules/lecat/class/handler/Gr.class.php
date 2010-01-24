@@ -10,7 +10,7 @@ if(!defined('XOOPS_ROOT_PATH'))
     exit;
 }
 
-require_once LECAT_TRUST_PATH . '/class/LecatObjectHandler.class.php';
+require_once LECAT_TRUST_PATH . '/class/ObjectHandler.class.php';
 
 /**
  * Lecat_GrObject

@@ -9,6 +9,21 @@ require_once XOOPS_ROOT_PATH.'/modules/legacy/class/interface/AbstractCategoryDe
 class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
 {
 	/**
+	 * getCategoryGroupList
+	 *
+	 * @param string[] &$grList
+	 *
+     * @return  void
+	 */	
+	public function getCategoryGroupList(/*** string[] ***/ &$grList)
+	{
+		$objs = Lecat_Utils::getLecatHandler('gr', self::_getDirname())->getObjects();
+		foreach($objs as $obj){
+			$grList[$obj->getShow('gr_id')] = $obj->getShow('title');
+		}
+	}
+
+	/**
 	 * getTitle
 	 *
 	 * @param string &$title
@@ -19,7 +34,7 @@ class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
 	 */	
 	public function getTitle(/*** string ***/ &$title, /*** int ***/ $catId)
 	{
-		Lecat_Utils::getLecatHandler('cat', self::_getDirname())->get($catId)->get('title');
+		$title = Lecat_Utils::getLecatHandler('cat', self::_getDirname())->get($catId)->get('title');
 	}
 
 	/**
@@ -176,7 +191,7 @@ class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
 	/**
 	 * getPermittedIdList
 	 *
-	 * @param int[] &$idArr
+	 * @param int[] &$idList
 	 * @param int $grId
 	 * @param string $action
 	 * @param int $uid
@@ -185,13 +200,13 @@ class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
 	 *
      * @return  void
 	 */	
-	public function getPermittedIdList(/*** int[] ***/ &$idArr, /*** int ***/ $grId, /*** string ***/ $action, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module="")
+	public function getPermittedIdList(/*** int[] ***/ &$idList, /*** int ***/ $grId, /*** string ***/ $action, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module="")
 	{
 		$grObj = Lecat_Utils::getLecatHandler('gr', self::_getDirname())->get($grId);
 		$grObj->loadTree(intval($catId));
 		foreach(array_keys($grObj->mTree) as $key){
 			if($grObj->mTree[$key]->checkPermitByUid($action, $uid)=='true'){
-				$idArr[] = $grObj->mTree[$key]->get('cat_id');
+				$idList[] = $grObj->mTree[$key]->get('cat_id');
 			}
 		}
 		unset($grObj);
