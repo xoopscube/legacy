@@ -112,7 +112,9 @@ class Lecat_GrEditAction extends Lecat_AbstractEditAction
         $render->setAttribute('object', $this->mObject);
 	
 		$render->setAttribute('actions', $this->mActions);
+		//set Header
 		$headerScript = $this->mRoot->mContext->getAttribute('headerScript');
+		$headerScript->addStylesheet($this->_getStylesheet());
 		$headerScript->addScript('actionsCounter='. count($this->mActions). ';');
 		$headerScript->addScript('function addActionKeyForm() {$("#permitOptions").append("<tr><td><input type=\'text\' id=\'legacy_xoopsform_actions_key["+actionsCounter+"]\' value=\'\' name=\'actions_key["+actionsCounter+"]\'></td><td><input type=\'text\' id=\'legacy_xoopsform_actions_title["+actionsCounter+"]\' value=\'\' name=\'actions_title["+actionsCounter+"]\'></td><td><input type=\'checkbox\' id=\'legacy_xoopsform_actions_default["+actionsCounter+"]\' value=\'1\' name=\'actions_default["+actionsCounter+"]\'></td></tr>");actionsCounter++;}');
     }

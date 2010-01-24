@@ -120,6 +120,15 @@ $modversion['sub'] = array(
 // Config setting
 //
 $modversion['config'] = array(
+	array(
+		'name'			=> 'css_file' ,
+		'title'			=> "_MI_LECAT_LANG_CSS_FILE" ,
+		'description'	=> "_MI_LECAT_DESC_CSS_FILE" ,
+		'formtype'		=> 'textbox' ,
+		'valuetype'		=> 'text' ,
+		'default'		=> '/modules/'.$myDirName.'/style.css',
+		'options'		=> array()
+	) ,
 /*
     array(
         'name'          => 'xxxx',

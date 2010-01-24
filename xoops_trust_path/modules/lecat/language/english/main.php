@@ -22,6 +22,7 @@ define('_MD_LECAT_LANG_CAT_ID', 'CAT_ID');
 define('_MD_LECAT_LANG_TITLE', 'Title');
 define('_MD_LECAT_LANG_GR_ID', 'Group ID');
 define('_MD_LECAT_LANG_GR', 'Category Group');
+define('_MD_LECAT_LANG_P_ID', 'Parent Category ID');
 define('_MD_LECAT_LANG_PARENT', 'Parent Category');
 define('_MD_LECAT_LANG_MODULES', 'Modules');
 define('_MD_LECAT_LANG_DESCRIPTION', 'Description');
@@ -58,4 +59,6 @@ define('_MD_LECAT_LANG_MANAGER', 'Manager');
 define('_MD_LECAT_LANG_CATEGORY', 'Category');
 define('_MD_LECAT_LANG_TOP_CAT', 'Top Category');
 define('_MD_LECAT_LANG_DELEET_ALL_PERMIT', 'Delete all Permission on this category');
+define('_MD_LECAT_LANG_PERMISSION_ON', 'permitted');
+define('_MD_LECAT_LANG_LEVEL_UNLIMITED', 'unlimited depth');
 ?>

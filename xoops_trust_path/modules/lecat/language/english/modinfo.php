@@ -60,5 +60,6 @@ define('_MI_LECAT_TPL_GR_LIST', 'Category Group List');
 define('_MI_LECAT_TPL_GR_EDIT', 'Category Group Edit');
 define('_MI_LECAT_TPL_GR_DELETE', 'Category Group Delete');
 define('_MI_LECAT_TPL_GR_VIEW', 'Category Group View');
-
+define('_MI_LECAT_LANG_CSS_FILE', 'CSS file url');
+define('_MI_LECAT_DESC_CSS_FILE', 'set CSS file url after {XOOPS_URL}');
 ?>

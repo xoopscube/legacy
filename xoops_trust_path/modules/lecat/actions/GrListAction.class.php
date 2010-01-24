@@ -67,15 +67,12 @@ class Lecat_GrListAction extends Lecat_AbstractListAction
     public function executeViewIndex(/*** XCube_RenderTarget ***/ &$render)
     {
         $render->setTemplateName($this->mAsset->mDirname . '_gr_list.html');
-        #cubson::lazy_load_array('gr', $this->mObjects);
         $render->setAttribute('objects', $this->mObjects);
         $render->setAttribute('pageNavi', $this->mFilter->mNavi);
     
-    /*
-        $jQuery = $this->mRoot->mContext->getAttribute('jQuery');
-        $jQuery->appendCss('/modules/'. $this->mAsset->mDirname .'/lecat.css');
-        $this->mRoot->mContext->setAttribute('jQuery', $jQuery);
-    */
+		//set Header
+		$headerScript = $this->mRoot->mContext->getAttribute('headerScript');
+		$headerScript->addStylesheet($this->_getStylesheet());
     }
 }
 

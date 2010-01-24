@@ -1,3 +1,4 @@
+<div id="lecat">
 <{if $actionForm->hasError()}>
   <ul class="error">
     <{foreach item=message from=$actionForm->getErrorMessages()}>
@@ -39,7 +40,7 @@
         </td>
       </tr>
       <tr>
-        <th class="head"><{$smarty.const._MD_LECAT_LANG_MODULES}></th>
+        <th class="head"><{$smarty.const._MD_LECAT_LANG_MODULES_CONFINEMENT}></th>
         <td class="<{cycle values="odd,even"}>">
           <{xoops_textarea type=text name=modules value=$actionForm->get('modules')}>
         </td>
@@ -70,3 +71,4 @@
     </tfoot>
   </table>
 </form>
+</div>

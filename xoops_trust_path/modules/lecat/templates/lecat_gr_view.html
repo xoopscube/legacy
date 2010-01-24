@@ -1,16 +1,34 @@
-<a href="index.php?action=CatEdit&amp;gr_id=<{$object->getShow('gr_id')}>"><{$smarty.const._MD_LECAT_LANG_ADD_A_NEW_CAT}></a>
-<dl>
+<div id="lecat">
+<dl class="view">
   <dt><{$smarty.const._MD_LECAT_LANG_GR_ID}></dt>
   <dd><{$object->getShow('gr_id')}></dd>
-  <dt><{$smarty.const._MD_LECAT_LANG_TITLE}></dt>
-  <dd><{$object->getShow('title')}></dd>
+  <dt><{$smarty.const._MD_LECAT_LANG_TITLE}>
+</dt>
+  <dd><{$object->getShow('title')}> [<a href="index.php?action=GrEdit&amp;gr_id=<{$object->getShow('gr_id')}>"><{$smarty.const._EDIT}></a>]</dd>
   <dt><{$smarty.const._MD_LECAT_LANG_LEVEL}></dt>
-  <dd><{$object->getShow('level')}></dd>
+  <dd><{$object->getShowLevel()}></dd>
   <dt><{$smarty.const._MD_LECAT_LANG_ACTIONS}></dt>
-  <dd><{$object->getShow('actions')}></dd>
+  <dd>
+  	<table id="permitOptions">
+  	<tr>
+    	<th><{$smarty.const._MD_LECAT_LANG_AUTH_KEY}></th>
+    	<th><{$smarty.const._MD_LECAT_LANG_AUTH_TITLE}></th>
+    	<th><{$smarty.const._MD_LECAT_LANG_AUTH_DEFAULT}></th>
+  	</tr>
+  	<{foreach from=$actions item=opt}>
+  	<tr>
+      <td><{$opt.key}></td>
+      <td><{$opt.title}></td>
+      <td><{$opt.default==1}><{$smarty.const._MD_LECAT_LANG_PERMISSION_ON}></td>
+    </tr>
+    <{/foreach}>
+    </table>
+	</dd>
 </dl>
-
+<hr class="clear" />
 <h3><{$smarty.const._MD_LECAT_LANG_CATEGORY}></h3>
+<a href="index.php?action=CatEdit&amp;gr_id=<{$object->getShow('gr_id')}>"><{$smarty.const._MD_LECAT_LANG_ADD_A_NEW_CAT}></a>
 <div>
 	<{lecat_tree tree=$tree dirname=$lecatDirname url="./index.php?action=CatView&amp;cat_id="}>
+</div>
 </div>

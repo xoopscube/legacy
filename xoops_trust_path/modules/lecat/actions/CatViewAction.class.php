@@ -112,9 +112,9 @@ class Lecat_CatViewAction extends Lecat_AbstractViewAction
 		$render->setAttribute('actionFormPermit', $this->mActionForm);
 	
 		//set CSS and Javascript
-		///TODO XCL2.2
-		$jQuery = $this->mRoot->mContext->getAttribute('jQuery');
-		//$jQuery->appendCss('/modules/'. $this->mAsset->mDirname .'/lecat.css');
+		//set Header
+		$headerScript = $this->mRoot->mContext->getAttribute('headerScript');
+		$headerScript->addStylesheet($this->_getStylesheet());
     }
 
     /**

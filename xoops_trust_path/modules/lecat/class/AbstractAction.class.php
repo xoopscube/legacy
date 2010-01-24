@@ -45,6 +45,18 @@ abstract class Lecat_AbstractAction
     }
 
     /**
+     * _getStylesheet
+     * 
+     * @param   void
+     * 
+     * @return  String
+    **/
+    protected function _getStylesheet()
+    {
+        return Lecat_Utils::getModuleConfig('css_file', $this->mAsset->mDirname);
+    }
+
+    /**
      * prepare
      * 
      * @param   void

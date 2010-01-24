@@ -56,6 +56,23 @@ class Lecat_GrObject extends XoopsSimpleObject
 	}
 
     /**
+     * getShowLevel
+     * 
+     * @param   void
+     * 
+     * @return  string
+    **/
+	public function getShowLevel()
+	{
+		if ($this->get('level')==0) {
+			return _MD_LECAT_LANG_LEVEL_UNLIMITED;
+		}
+		else{
+			return $this->getShow('level');
+		}
+	}
+
+    /**
      * getDefaultPermissionList
      * 
      * @param   void

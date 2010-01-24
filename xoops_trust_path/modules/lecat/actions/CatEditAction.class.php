@@ -172,6 +172,10 @@ class Lecat_CatEditAction extends Lecat_AbstractEditAction
 		$render->setAttribute('actionForm', $this->mActionForm);
 		$render->setAttribute('object', $this->mObject);
 		$render->setAttribute('catArr', $catArr);
+	
+		//set Header
+		$headerScript = $this->mRoot->mContext->getAttribute('headerScript');
+		$headerScript->addStylesheet($this->_getStylesheet());
     }
 
     /**

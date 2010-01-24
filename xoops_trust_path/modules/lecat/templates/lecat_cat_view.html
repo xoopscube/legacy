@@ -1,10 +1,10 @@
-<div class="lecat">
+<div id="lecat">
 	<div class="catDetail">
 		<h1><{$smarty.const._MD_LECAT_LANG_TITLE}>: <{$object->getShow('title')}> <a href="./index.php?action=CatEdit&amp;cat_id=<{$object->getShow('cat_id')}>"><img src="<{$xoops_url}>/images/icons/edit.gif" alt="<{$smarty.const._EDIT}>" /></a></h1>
 		<div class="description">
 			<{$object->getShow('description')}>
 		</div>
-		<dl>
+		<dl class="view">
 		  <dt><{$smarty.const._MD_LECAT_LANG_GR}>:</dt>
 		  <dd><a href="./index.php?action=GrView&amp;gr_id=<{$object->getShow('gr_id')}>"><{$object->mGr->getShow('title')}></a></dd>
 
@@ -13,15 +13,13 @@
 
 		  <dt><{$smarty.const._MD_LECAT_LANG_WEIGHT}>:</dt>
 		  <dd><{$object->getShow('weight')}></dd>
-
-		</dl>
-		<h3><{$smarty.const._MD_LECAT_LANG_MODULES_CONFINEMENT}></h3>
-		<ul>
+			<dt><{$smarty.const._MD_LECAT_LANG_MODULES_CONFINEMENT}></dt>
 			<{foreach item=module from=$modulesArr}>
-			<li><{$module}></li>
+			<dd><{$module}></dd>
 			<{/foreach}>
-		</ul>
+		</dl>
 	</div>
+	<hr class="clear" />
 	<div>
 	<h2><{$smarty.const._MD_LECAT_LANG_PERMISSIONS}></h2>
 	<form action="index.php?action=PermitEdit" method="post">
@@ -73,9 +71,10 @@
 		</form>
 	<{/if}>
 	</div>
-</div>
-<hr style="clear:both;" />
-<div class="catTree">
-	<h2><{$smarty.const._MD_LECAT_LANG_CAT}></h2>
-	<{lecat_tree tree=$childrenTree url="./index.php?action=CatView&amp;cat_id=" dirname=$dirname}>
+	<hr class="clear" />
+	<div class="catTree">
+		<h2><{$smarty.const._MD_LECAT_LANG_CAT}></h2>
+	<a href="index.php?action=CatEdit&amp;gr_id=<{$object->getShow('gr_id')}>"><{$smarty.const._MD_LECAT_LANG_ADD_A_NEW_CAT}></a>
+		<{lecat_tree tree=$childrenTree url="./index.php?action=CatView&amp;cat_id=" dirname=$dirname}>
+	</div>
 </div>

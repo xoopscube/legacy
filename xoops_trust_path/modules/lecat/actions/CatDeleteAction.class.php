@@ -67,9 +67,12 @@ class Lecat_CatDeleteAction extends Lecat_AbstractDeleteAction
     {
         $render->setTemplateName($this->mAsset->mDirname . '_cat_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
-        #cubson::lazy_load('cat', $this->mObject);
         $render->setAttribute('object', $this->mObject);
-    }
+	
+		//set Header
+		$headerScript = $this->mRoot->mContext->getAttribute('headerScript');
+		$headerScript->addStylesheet($this->_getStylesheet());
+   }
 
     /**
      * executeViewSuccess
