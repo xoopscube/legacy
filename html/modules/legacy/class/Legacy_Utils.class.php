@@ -176,21 +176,6 @@ class Legacy_Utils
 	}
 
     /**
-     * getModuleConfig
-     * 
-     * @param   string	$type
-     * @param   string	$dirname
-     * 
-     * @return  mix
-    **/
-    public static function getModuleConfig($type, $dirname)
-    {
-		$handler = self::getXoopsHandler('config');
-		$configArr = $handler->getConfigsByDirname($dirname);
-		return $configArr[$type];
-    }
-
-    /**
      * getUid
      * 
      * @param   void
@@ -247,37 +232,6 @@ class Legacy_Utils
             }
         }
     }
-
-    /**
-     * getModuleIcon
-     * 
-     * @param   string	$dirname
-     * @param   string	$baseIconPath
-     * 
-     * @return  string
-    **/
-	public static function getModuleIcon(/*** string ***/ $dirname, /*** string ***/ $baseIconPath="images/module_icon.png")
-	{
-		$moduleIconPath = 'images/module_icon.png';
-		if(file_exists(XOOPS_MODULE_PATH .'/'. $dirname .'/'. $moduleIconPath)){			return $moduleIconPath;
-		}
-		else{
-			$xoopsIconPath = XOOPS_ROOT_PATH .'/'. $baseIconPath;
-		
-			if(function_exists('imagecreatefrompng') && function_exists('imagecolorallocate') && function_exists('imagestring') && function_exists('imagepng')) {
-				$im = imagecreatefrompng($xoopsIconPath);
-			
-				$color = imagecolorallocate($im , 255 , 255 , 255); // white
-				$px = (127 - 6 * strlen($dirname)) / 2;
-				imagestring($im , 2 , $px , 5 , $dirname , $color);
-				imagepng($im, XOOPS_MODULE_PATH .'/'. $dirname .'/'. $moduleIconPath);
-				imagedestroy($im);
-				return $moduleIconPath;
-			} else {
-				return $xoopsIconPath;
-			}
-		}
-	}
 }
 
 ?>
