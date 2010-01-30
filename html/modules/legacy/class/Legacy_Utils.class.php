@@ -259,18 +259,10 @@ class Legacy_Utils
 	public static function getModuleIcon(/*** string ***/ $dirname, /*** string ***/ $baseIconPath="images/module_icon.png")
 	{
 		$moduleIconPath = 'images/module_icon.png';
-		if(file_exists(XOOPS_MODULE_PATH .'/'. $dirname .'/'. $moduleIconPath)){
-			return $moduleIconPath;
+		if(file_exists(XOOPS_MODULE_PATH .'/'. $dirname .'/'. $moduleIconPath)){			return $moduleIconPath;
 		}
 		else{
 			$xoopsIconPath = XOOPS_ROOT_PATH .'/'. $baseIconPath;
-			$icon_cache_limit = 3600; // default 3600sec == 1hour
-			session_cache_limiter('public');
-		
-			header("Expires: ".date('r',intval(time()/$icon_cache_limit)*$icon_cache_limit+$icon_cache_limit));
-			header("Cache-Control: public, max-age=$icon_cache_limit");
-			header("Last-Modified: ".date('r',intval(time()/$icon_cache_limit)*$icon_cache_limit));
-			header("Content-type: image/png");
 		
 			if(function_exists('imagecreatefrompng') && function_exists('imagecolorallocate') && function_exists('imagestring') && function_exists('imagepng')) {
 				$im = imagecreatefrompng($xoopsIconPath);
