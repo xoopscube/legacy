@@ -174,6 +174,118 @@ class Legacy_Utils
 	{
 		return round(floatval(intval($version) / 100), 2);
 	}
+
+    /**
+     * getModuleConfig
+     * 
+     * @param   string	$type
+     * @param   string	$dirname
+     * 
+     * @return  mix
+    **/
+    public static function getModuleConfig($type, $dirname)
+    {
+		$handler = self::getXoopsHandler('config');
+		$configArr = $handler->getConfigsByDirname($dirname);
+		return $configArr[$type];
+    }
+
+    /**
+     * getUid
+     * 
+     * @param   void
+     * 
+     * @return  int
+    **/
+    public static function getUid()
+    {
+        $root = XCube_Root::getSingleton();
+        return ($root->mContext->mUser->isInRole('Site.RegisteredUser')) ? $root->mContext->mXoopsUser->get('uid') : 0;
+    }
+
+    /**
+     * getDirnameListByTrustName
+     * 
+     * @param   string	$trustName
+     * 
+     * @return  string[]
+    **/
+    public static function getDirnameListByTrustName(/*** string ***/ $trustName)
+    {
+        $list = array();
+        $cri = new Criteria('isactive',0,'>');
+        $cri->addSort('weight','ASC');
+        $cri->addSort('mid','ASC');
+        foreach(xoops_gethandler('module')->getObjects($cri) as $module)
+        {
+            if($module->getInfo('trust_dirname') == $trustName)
+            {
+                $list[] = $module->get('dirname');
+            }
+        }
+        return $list;
+    }
+
+    /**
+     * getTrustNameByDirname
+     * 
+     * @param   string	$dirname
+     * 
+     * @return  string
+    **/
+    public static function getTrustNameByDirname(/*** string ***/ $dirname)
+    {
+        $list = array();
+        $cri = new Criteria('isactive',0,'>');
+        $cri->addSort('weight','ASC');
+        $cri->addSort('mid','ASC');
+        foreach(xoops_gethandler('module')->getObjects($cri) as $module)
+        {
+            if($module->getInfo('dirname') == $dirname)
+            {
+                return $module->get('trust_dirname');
+            }
+        }
+    }
+
+    /**
+     * getModuleIcon
+     * 
+     * @param   string	$dirname
+     * @param   string	$baseIconPath
+     * 
+     * @return  string
+    **/
+	public static function getModuleIcon(/*** string ***/ $dirname, /*** string ***/ $baseIconPath="images/module_icon.png")
+	{
+		$moduleIconPath = 'images/module_icon.png';
+		if(file_exists(XOOPS_MODULE_PATH .'/'. $dirname .'/'. $moduleIconPath)){
+			return $moduleIconPath;
+		}
+		else{
+			$xoopsIconPath = XOOPS_ROOT_PATH .'/'. $baseIconPath;
+			$icon_cache_limit = 3600; // default 3600sec == 1hour
+			session_cache_limiter('public');
+		
+			header("Expires: ".date('r',intval(time()/$icon_cache_limit)*$icon_cache_limit+$icon_cache_limit));
+			header("Cache-Control: public, max-age=$icon_cache_limit");
+			header("Last-Modified: ".date('r',intval(time()/$icon_cache_limit)*$icon_cache_limit));
+			header("Content-type: image/png");
+		
+			if(function_exists('imagecreatefrompng') && function_exists('imagecolorallocate') && function_exists('imagestring') && function_exists('imagepng')) {
+				$im = imagecreatefrompng($xoopsIconPath);
+			
+				$color = imagecolorallocate($im , 255 , 255 , 255); // white
+				$px = (127 - 6 * strlen($dirname)) / 2;
+				imagestring($im , 2 , $px , 5 , $dirname , $color);
+				imagepng($im, XOOPS_MODULE_PATH .'/'. $dirname .'/'. $moduleIconPath);
+				imagedestroy($im);
+				return $moduleIconPath;
+			} else {
+				return $xoopsIconPath;
+			}
+		}
+	}
 }
 
 ?>
