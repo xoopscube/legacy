@@ -82,7 +82,7 @@
         <{else}>
       	<select name="type" id="legacy_xoopsform_type">
 					<{foreach item=type from=$typeArr}>
-					<option value="<{$type}>"<{if $type==$actionForm->get('type')}>selected="selected"<{/if}>><{$type}></option>
+					<option value="<{$type}>"<{if $type==$actionForm->get('type')}> selected="selected"<{/if}>><{$type}></option>
 					<{/foreach}>
         </select>
         <{/if}>
@@ -92,7 +92,7 @@
       <td class="head"><{$smarty.const._MD_PROFILE_LANG_VALIDATION}></td>
       <td class="<{cycle values="odd,even"}>">
       	<select name="validation" id="legacy_xoopsform_validation">
-			<option value="<{$validation}>"<{if ! $actionForm->get('validation')}>selected="selected"<{/if}>></option>
+			<option value="<{$validation}>"<{if ! $actionForm->get('validation')}> selected="selected"<{/if}>></option>
 			<{foreach item=validation from=$validationArr}>
 			<option value="<{$validation}>"<{if $validation==$actionForm->get('validation')}>selected="selected"<{/if}>><{$validation}></option>
 			<{/foreach}>
