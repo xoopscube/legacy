@@ -11,7 +11,6 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #2686348 - Smarty version 2.6.22
 - Fix Bug #2666831 - Site-closed = HTTP/1.1 503 Service Temporarily Unavailable
 - Fix Bug #2666664 - Snoopy class v1.2.4
-- Fix Bug #2682887 - Legacy_Controller::executeRedirect() dose not send header.
 - Fix Bug #2790695 - Fix duplicated reservedTables
 - Fix Bug #2789906 - missing link to "notifications.php"
 - Fix Bug #2802706 - Change users.email field length
@@ -43,9 +42,12 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Feature Request #2162017 - Private Message
 - Feature Request #2161286 - Install, XOOPS TRUST PATH
 - Feature Request #2175825 - Javascript Library Handling
+- Feature Request #2682887 - Legacy_Controller::executeRedirect() dose not send header.
 - Feature Request #2746645 - Replace the Smarty files with links
 - Feature Request #2889797 - parse_ini_file() compliant for PHP5.3
 
+[Patches - From Patches Legacy Tracker]
+- Patches #1812761 - Block table checker
 
 [Other Changes/Enhancements]
 - Add Preload AdminLangPlus to catalog, legacy/{language}/admin.php
@@ -60,6 +62,9 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Add Module Message (PHP5)
 - Add Module PM to 'extras' (compatible php4)
 - Add Filemanager (Admin side, under development)
+- Change getting script for Dhtmltarea by Delegate
+- Add legacy/class/interface for delegate: category, tag, progress
+- Add Lecat(Legacy Category) module.
 
 [Staff]
 - GIJOE
