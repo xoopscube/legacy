@@ -53,7 +53,7 @@ abstract class Lecat_AbstractAction
     **/
     protected function _getStylesheet()
     {
-        return Lecat_Utils::getModuleConfig('css_file', $this->mAsset->mDirname);
+        return $this->mRoot->mContext->mModuleConfig['css_file'];
     }
 
     /**

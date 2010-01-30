@@ -313,7 +313,6 @@ class Lecat_CatObject extends XoopsSimpleObject
     /**
      * _getHandler
      * 
-     * @param   string  $dirname
      * @param   string  $tablename
      * 
      * @return  XoopsObjectHandleer

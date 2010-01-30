@@ -202,14 +202,15 @@ class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
 	 */	
 	public function getPermittedIdList(/*** int[] ***/ &$idList, /*** int ***/ $grId, /*** string ***/ $action, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module="")
 	{
-		$grObj = Lecat_Utils::getLecatHandler('gr', self::_getDirname())->get($grId);
-		$grObj->loadTree(intval($catId));
-		foreach(array_keys($grObj->mTree) as $key){
-			if($grObj->mTree[$key]->checkPermitByUid($action, $uid)=='true'){
-				$idList[] = $grObj->mTree[$key]->get('cat_id');
+		if($grObj = Lecat_Utils::getLecatHandler('gr', self::_getDirname())->get($grId)){
+			$grObj->loadTree(intval($catId));
+			foreach(array_keys($grObj->mTree) as $key){
+				if($grObj->mTree[$key]->checkPermitByUid($action, $uid)=='true'){
+					$idList[] = $grObj->mTree[$key]->get('cat_id');
+				}
 			}
+			unset($grObj);
 		}
-		unset($grObj);
 	}
 
 

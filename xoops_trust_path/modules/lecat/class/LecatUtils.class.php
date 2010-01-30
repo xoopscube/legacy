@@ -80,20 +80,6 @@ class Lecat_Utils
     }
 
     /**
-     * getModuleConfig
-     * 
-     * @param   string	$key
-     * 
-     * @return  mix
-    **/
-    public static function getModuleConfig($type, $dirname)
-    {
-		$handler = self::getXoopsHandler('config');
-		$configArr = $handler->getConfigsByDirname($dirname);
-		return $configArr[$type];
-    }
-
-    /**
      * getInheritPermission
      * 
      * @param   string  $dirname

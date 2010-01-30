@@ -220,7 +220,6 @@ class Lecat_GrObject extends XoopsSimpleObject
     /**
      * _getHandler
      * 
-     * @param   string  $dirname
      * @param   string  $tablename
      * 
      * @return  XoopsObjectHandler
