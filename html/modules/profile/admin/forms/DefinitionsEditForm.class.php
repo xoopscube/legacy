@@ -112,6 +112,21 @@ class Profile_Admin_DefinitionsEditForm extends XCube_ActionForm
 		}
 		$obj->set('options', $this->get('options'));
 	}
+
+    /**
+     * validateField_name
+     * 
+     * @param   void
+     * 
+     * @return  void
+    **/
+    public function validateField_name(){
+        $objs = xoops_getmodulehandler('definitions', 'profile')->getObjects(new Criteria('field_name', $this->get('field_name')));
+        if(count($objs)>0){
+            $this->addErrorMessage(_MD_PROFILE_ERROR_DUPLICATED_FIELD_NAME);
+        }
+    }
+
 }
 
 ?>

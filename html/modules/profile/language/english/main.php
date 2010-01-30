@@ -42,5 +42,5 @@ define("_MD_PROFILE_LANG_VALIDATION","Validation");
 define("_MD_PROFILE_LANG_WEIGHT","Order");
 define("_MD_PROFILE_MESSAGE_CONFIRM_DELETE","Do you really want to delete?");
 define('_MD_PROFILE_DESC_OPTIONS', "Separate options with a pipe '|' without extra spaces. Example: tea|coffee|green tea");
-
+define('_MD_PROFILE_ERROR_DUPLICATED_FIELD_NAME', "The field name is already used.");
 ?>
