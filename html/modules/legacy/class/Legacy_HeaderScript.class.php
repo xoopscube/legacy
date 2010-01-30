@@ -73,7 +73,7 @@ class Legacy_HeaderScript
 	public function addStylesheet($url, $xoopsUrl=true)
 	{
 		$libUrl = ($xoopsUrl==true) ? XOOPS_URL. $url : $url;
-		if(! in_array($libUrl, $this->_mLibrary)){
+		if(! in_array($libUrl, $this->_mStylesheet)){
 			 $this->_mStylesheet[] = $libUrl;
 		}
 	}

@@ -16,6 +16,15 @@ if(!defined('XOOPS_ROOT_PATH'))
 abstract class Legacy_AbstractCategoryDelegate
 {
 	/**
+	 * getCategoryGroupList
+	 *
+	 * @param string[] &$grList
+	 *
+     * @return  void
+	 */	
+	abstract public function getCategoryGroupList(/*** string[] ***/ &$grList);
+
+	/**
 	 * getTitle
 	 * get the category title by category id.
 	 *
