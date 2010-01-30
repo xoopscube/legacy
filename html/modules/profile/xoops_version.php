@@ -7,7 +7,7 @@
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
-$mydirpath = basename( dirname( __FILE__ ) ) ;
+$mydirname = basename(dirname(__FILE__));
 
 //
 // Define a basic manifesto.
@@ -20,7 +20,7 @@ $modversion['credits'] = "";
 $modversion['help'] = "help.html";
 $modversion['license'] = "GPL";
 $modversion['official'] = 0;
-$modversion['image']       = file_exists( $mydirpath.'/module_icon.png' ) ? 'module_icon.png' : 'module_icon.php' ;
+$modversion['image']       = Legacy_Utils::getModuleIcon($mydirname);
 $modversion['dirname'] = "profile";
 
 $modversion['cube_style'] = true;
