@@ -5,7 +5,7 @@ if ( !isset($root) ) {
   $root = XCube_Root::getSingleton();
 }
 
-$mydirname = basename(dirname(__FILE__));
+$mydirpath = basename( dirname( dirname( __FILE__ ) ) ) ;
 
 $modversion['name'] = _MI_MESSAGE_NAME;
 $modversion['dirname'] = basename(dirname(__FILE__));
@@ -15,8 +15,7 @@ $modversion['author'] = 'Marijuana';
 $modversion['credits'] = "XOOPS Cube Project";
 $modversion['help'] = "help.html";
 $modversion['license'] = "MIT LICENSE";
-$modversion['image']       = Legacy_Utils::getModuleIcon($mydirname);
-
+$modversion['image']       = file_exists( $mydirpath.'/module_icon.png' ) ? 'module_icon.png' : 'module_icon.php' ;
 $modversion['mcl_update'] = 'message';
 
 $modversion['cube_style'] = true;
