@@ -41,14 +41,14 @@ abstract class Legacy_AbstractProgressDelegate
     /**
      * getHistory
      *
-     * @param XoopsSimpleObject[] &$historyArr
+     * @param mix[] &$historyArr
      * @param string $dirname
      * @param string $target
      * @param int    $id
      *
      * @return  void
      */ 
-    abstract public function getHistory(/*** bool ***/ &$response, /*** string ***/ $dirname, /*** string ***/ $target, /*** int ***/ $id);
+    abstract public function getHistory(/*** mix[] ***/ &$historyArr, /*** string ***/ $dirname, /*** string ***/ $target, /*** int ***/ $id);
 
 
 }
