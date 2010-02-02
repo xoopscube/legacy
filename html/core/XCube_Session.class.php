@@ -38,10 +38,10 @@ class XCube_Session
     {
         $this->setParam($sessionName, $sessionExpire);
 
-        $this->mSetupSessionHandler =& new XCube_Delegate();
+        $this->mSetupSessionHandler = new XCube_Delegate();
         $this->mSetupSessionHandler->register('XCube_Session.SetupSessionHandler');
 
-        $this->mGetSessionCookiePath =& new XCube_Delegate();
+        $this->mGetSessionCookiePath = new XCube_Delegate();
         $this->mGetSessionCookiePath->register('XCube_Session.GetSessionCookiePath');
     }
     

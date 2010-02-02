@@ -586,7 +586,7 @@ class XCube_DelegateUtils
                 $keys = array_keys($delegates[$delegateName]);
                 $delegate =& $delegates[$delegateName][$keys[0]];
             } else {
-                $delegate =& new XCube_Delegate;
+                $delegate = new XCube_Delegate;
                 $root->mDelegateManager->register($delegateName, $delegate);
             }
         }
@@ -676,7 +676,7 @@ class XCube_DelegateUtils
             if (!empty($string) && is_string($string)) {
                 return "";
             }
-            $args[1] =& new XCube_Ref($string);
+            $args[1] = new XCube_Ref($string);
             call_user_func_array(array('XCube_DelegateUtils','call'),$args);
             return $string;
         } else {

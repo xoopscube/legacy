@@ -17,6 +17,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #2802859 - Typo class Waiting
 - Fix Bug #2802861 - Typo at example xoops_dhtmltarea and xoops_textarea
 - Fix Bug #2805269 - Argument of Criteria::setOrder() is not column name
+- Fix Bug #2806108 - PHP 5.3.0 released with Deprecated ereg extension
 - Fix Bug #2809822 - Useredit doesn't save Profile extra fields
 - Fix Bug #2862494 - HTML tag is shown in error message when post comment
 - Fix Bug #2862491 - NOT show title in form when reply comment

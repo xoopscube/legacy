@@ -137,9 +137,9 @@ class XCube_Controller
 		$this->_mFilterChain = array();
 		$this->_mLoadedFilterNames = array();
 		
-		$this->mSetupUser =& new XCube_Delegate();
-		$this->mExecute =& new XCube_Delegate();
-		$this->mSetupTextFilter =&  new XCube_Delegate();
+		$this->mSetupUser = new XCube_Delegate();
+		$this->mExecute = new XCube_Delegate();
+		$this->mSetupTextFilter = new XCube_Delegate();
 	    $this->mSetupTextFilter->add('XCube_TextFilter::getInstance',XCUBE_DELEGATE_PRIORITY_FINAL);
 	}
 	
@@ -303,7 +303,7 @@ class XCube_Controller
 	 */
 	function _setupLanguage()
 	{
-		$this->mRoot->mLanguageManager =& new XCube_LanguageManager();
+		$this->mRoot->mLanguageManager = new XCube_LanguageManager();
 	}
 	
 	
@@ -436,7 +436,7 @@ class XCube_Controller
 						
 						if (XC_CLASS_EXISTS($className) && !isset($this->_mLoadedFilterNames[$className])) {
 							$this->_mLoadedFilterNames[$className] = true;
-							$instance =& new $className($this);
+							$instance = new $className($this);
 							$this->addActionFilter($instance);
 						}
 					}
@@ -453,7 +453,7 @@ class XCube_Controller
 	 */
 	function &_createDelegateManager()
 	{
-		$delegateManager =& new XCube_DelegateManager();
+		$delegateManager = new XCube_DelegateManager();
 		return $delegateManager;
 	}
 
@@ -465,7 +465,7 @@ class XCube_Controller
 	function &_createServiceManager()
 	{
 		require_once XCUBE_CORE_PATH . '/XCube_ServiceManager.class.php';
-		$serviceManager =& new XCube_ServiceManager();
+		$serviceManager = new XCube_ServiceManager();
 		return $serviceManager;
 	}
 
@@ -510,8 +510,8 @@ class XCube_Controller
 	 */
 	function &_createContext()
 	{
-		$context =& new XCube_HttpContext();
-		$request =& new XCube_HttpRequest();
+		$context = new XCube_HttpContext();
+		$request = new XCube_HttpRequest();
 		$context->setRequest($request);
 		
 		return $context;
