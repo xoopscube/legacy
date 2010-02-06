@@ -1,7 +1,7 @@
 <div id="lecat">
 <h3><{$smarty.const._MD_LECAT_LANG_GR_DELETE}></h3>
 
-<div class="confirm"><{$smarty.const._MD_LECAT_MESSAGE_CONFIRM_DELETE}></div>
+<div class="confirm"><{$smarty.const._MD_LECAT_MESSAGE_CONFIRM_GR_DELETE}></div>
 
 <form action="./index.php?action=GrDelete" method="post">
   <table class="outer">
@@ -17,10 +17,6 @@
       <tr>
         <th class="head"><{$smarty.const._MD_LECAT_LANG_LEVEL}></th>
         <td class="<{cycle values="odd,even"}>"><{$object->getShow('level')}></td>
-      </tr>
-      <tr>
-        <th class="head"><{$smarty.const._MD_LECAT_LANG_ACTIONS}></th>
-        <td class="<{cycle values="odd,even"}>"><{$object->getShow('actions')}></td>
       </tr>
     </tbody>
     <tfoot>

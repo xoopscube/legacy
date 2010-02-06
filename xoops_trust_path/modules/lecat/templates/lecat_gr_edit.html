@@ -25,7 +25,8 @@
       <tr>
         <th class="head"><{$smarty.const._MD_LECAT_LANG_LEVEL}></th>
         <td class="<{cycle values="odd,even"}>">
-          <{xoops_input type=text name=level value=$actionForm->get('level')}>
+          <{xoops_input type=text name=level value=$actionForm->get('level')}><br />
+          <{$smarty.const._MD_LECAT_TIPS_LEVEL}>
         </td>
       </tr>
 	    <tr>

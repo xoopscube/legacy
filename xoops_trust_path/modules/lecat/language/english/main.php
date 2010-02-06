@@ -61,4 +61,9 @@ define('_MD_LECAT_LANG_TOP_CAT', 'Top Category');
 define('_MD_LECAT_LANG_DELEET_ALL_PERMIT', 'Delete all Permission on this category');
 define('_MD_LECAT_LANG_PERMISSION_ON', 'permitted');
 define('_MD_LECAT_LANG_LEVEL_UNLIMITED', 'unlimited depth');
+define('_MD_LECAT_TIPS_CATEGORY_GROUP','<p>Lecat is category management module.<br />This means many other module like forum, news and article use lecat for their category management.<br /></P<p>Lecat provides two main function to other modules.<ul><li>Category List(tree like)</li><li>Permission check for each category.</li></ul></p><h3>Category Group</h3><p>Each module request different category. For example, a news module requests \'site update\', \'new member\', \'new shop\'. On the other hand, a forum request \'question\', \'request\', \'talk\'.<br />So, you can create several category groups. For news, for forum, for ...</p><p>At first, you create this Category Group.</p>');
+define('_MD_LECAT_TIPS_LEVEL', 'max depth in category tree. 0 means no limit.');
+define('_MD_LECAT_TIPS_MODULE_CONFINEMENT', 'set module name separeted by "," if you want to apply this category at specific modules only.');
+define('_MD_LECAT_MESSAGE_CONFIRM_GR_DELETE', 'Are you sure to delete ? All of categories belonging to this category group are deleted too.');
+define('_MD_LECAT_TIPS_PERMISSIONS', 'Leave the following permissions as is if you want to inherit parent category\'s permissions.');
 ?>
