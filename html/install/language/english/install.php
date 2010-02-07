@@ -98,6 +98,8 @@ define("_INSTALL_L91","confirm");
 define("_INSTALL_L92","Save settings");
 define("_INSTALL_L93","Modify settings");
 define("_INSTALL_L88","Saving configuration data..");
+define("_INSTALL_L166","Check file permissions in XOOPS_TRUST_PATH");
+define("_INSTALL_L167","Checking file and directory permissions..");
 define("_INSTALL_L94","Check path & URL");
 define("_INSTALL_L127","Checking file path & URL settings..");
 define("_INSTALL_L95","Could not detect the physical path to your XOOPS directory.");
@@ -138,7 +140,7 @@ define("_INSTALL_L125","File %s overwritten by %s.");
 define("_INSTALL_L126","Could not write to file %s.");
 
 define("_INSTALL_L130","The installer has detected tables for XOOPS 1.3.x in your database.<br />The installer will now attempt to upgrade your database to XOOPS2.");
-define("_INSTALL_L131","Tables for XOOPS2 already exist in your database.");
+define("_INSTALL_L131","Tables for XOOPS Cube Legacy already exist in your database.");
 define("_INSTALL_L132","update tables");
 define("_INSTALL_L133","Table %s updated.");
 define("_INSTALL_L134","Failed updating table %s.");
