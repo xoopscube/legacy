@@ -86,7 +86,14 @@ After performing the above procedures, you're ready to continue installing XOOPS
 <p>Click the Next button to continue on to the next screen. </p>
 
 <p>
-The next part of the install Wizard is designed to check your file and directory permissions. If you're running in a Win32 environment, this should be a pretty painless install.  If you're running in a UNIX environment, the Wizard will display any problems and the corrective actions to take if there are problems. 
+The next part of the install Wizard is designed to check your <a href="http://en.wikipedia.org/wiki/File_system_permissions">file and directory permissions</a>. If you're running in a Win32 environment, this should be a pretty painless install. If you're running in a UNIX environment, the Wizard may display any problems and the corrective actions to take if there are problems. If the authority of your web server is different from yours, try to change permissions as the following and reload:
+<ul>
+  <li>chmod 660 mainfile.php</li>
+  <li>chmod 770 uploads</li>
+  <li>chmod 770 templates_c</li>
+  <li>chmod 770 cache</li>
+</ul>
+If there are red signals, contact administrators to get advices.
 </p>
 
 <p><img src="images/install003.gif" /></p>
