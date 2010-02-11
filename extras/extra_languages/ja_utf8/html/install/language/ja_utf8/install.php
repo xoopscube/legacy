@@ -1,7 +1,7 @@
 <?php
 // $Id: install.php,v 1.4 2007/07/02 02:18:11 minahito Exp $
 define("_INSTALL_L0","XOOPS Cube 2.1 インストールウィザードへようこそ");
-define("_INSTALL_L70","サーバ上のmainfile.php への書き込み権限を与えてください。<br />（例：UNIX/LINUXサーバの場合はchmod 777 mainfile.php、Windowsサーバの場合は読み取り専用プロパティがセットされていないかチェックする。）<br />権限の設定完了後、ブラウザの「更新」ボタンを押してこのページを再度読み込んでください。");
+define("_INSTALL_L70","サーバ上のmainfile.php への書き込み権限を与えてください。<br />（例：UNIX/LINUXサーバの場合はウェブサーバに mainfile.php への書き込み権限を与える、Windowsサーバの場合は読み取り専用プロパティがセットされていないかチェックする。）<br />権限の設定完了後、ブラウザの「更新」ボタンを押してこのページを再度読み込んでください。");
 //define("_INSTALL_L71","下記のボタンをクリックするとインストールを開始します。");
 define("_INSTALL_L1","mainfile.phpを開き、31行目に以下のコードがあることを確認してください。");
 define("_INSTALL_L2","この行を以下のように変更してください。");
@@ -85,9 +85,9 @@ define("_INSTALL_L73","不正なメールアドレスです。");
 define("_INSTALL_L80","イントロダクション");
 define("_INSTALL_L81","アクセス権のチェック");
 define("_INSTALL_L82","ファイルのアクセス権のチェック");
-define("_INSTALL_L83","ファイル%sは、書込不可となっています。chmod 666してください。");
+define("_INSTALL_L83","ファイル%sは、書込不可となっています。パーミッションの変更が必要です。");
 define("_INSTALL_L84","ファイル%sは、書込可です。");
-define("_INSTALL_L85","ディレクトリ%sは、書込不可となっています。chmod 777してください。");
+define("_INSTALL_L85","ディレクトリ%sは、書込不可となっています。パーミッションの変更が必要です。");
 define("_INSTALL_L86","ディレクトリ%sは、書込可です。");
 define("_INSTALL_L87","アクセス権に問題はありません。");
 define("_INSTALL_L88","ファイル・ディレクトリのアクセス権をチェックしてください。");
