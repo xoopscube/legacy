@@ -7,9 +7,12 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #2806101 - References to JP.XOOPS.ORG (removed by XOOPS Foundation).
 - Fix Bug #2839172 - missing SSLLogin feature.
 - Fix Bug #2884127 - typos about regular expressions.
+- Fix Bug #2949716 - The value of start and limit might be not corresponding between Criteria and PageNavi.
 
 [Staff]
 - GIJOE
+- gusagi
+- halt
 - kilica
 - Marijuana
 - Mikhail
