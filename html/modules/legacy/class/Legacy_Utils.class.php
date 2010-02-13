@@ -175,63 +175,101 @@ class Legacy_Utils
 		return round(floatval(intval($version) / 100), 2);
 	}
 
-    /**
-     * getUid
-     * 
-     * @param   void
-     * 
-     * @return  int
-    **/
-    public static function getUid()
-    {
-        $root = XCube_Root::getSingleton();
-        return ($root->mContext->mUser->isInRole('Site.RegisteredUser')) ? $root->mContext->mXoopsUser->get('uid') : 0;
-    }
+	/**
+	 * getUid
+	 * 
+	 * @param   void
+	 * 
+	 * @return  int
+	**/
+	public static function getUid()
+	{
+		$root = XCube_Root::getSingleton();
+		return ($root->mContext->mUser->isInRole('Site.RegisteredUser')) ? $root->mContext->mXoopsUser->get('uid') : 0;
+	}
 
-    /**
-     * getDirnameListByTrustName
-     * 
-     * @param   string	$trustName
-     * 
-     * @return  string[]
-    **/
-    public static function getDirnameListByTrustName(/*** string ***/ $trustName)
-    {
-        $list = array();
-        $cri = new Criteria('isactive',0,'>');
-        $cri->addSort('weight','ASC');
-        $cri->addSort('mid','ASC');
-        foreach(xoops_gethandler('module')->getObjects($cri) as $module)
-        {
-            if($module->getInfo('trust_dirname') == $trustName)
-            {
-                $list[] = $module->get('dirname');
-            }
-        }
-        return $list;
-    }
+	/**
+	 * getDirnameListByTrustName
+	 * 
+	 * @param   string	$trustName
+	 * 
+	 * @return  string[]
+	**/
+	public static function getDirnameListByTrustName(/*** string ***/ $trustName)
+	{
+		$list = array();
+		$cri = new Criteria('isactive',0,'>');
+		$cri->addSort('weight','ASC');
+		$cri->addSort('mid','ASC');
+		foreach(xoops_gethandler('module')->getObjects($cri) as $module)
+		{
+			if($module->getInfo('trust_dirname') == $trustName)
+			{
+				$list[] = $module->get('dirname');
+			}
+		}
+		return $list;
+	}
 
-    /**
-     * getTrustNameByDirname
-     * 
-     * @param   string	$dirname
-     * 
-     * @return  string
-    **/
-    public static function getTrustNameByDirname(/*** string ***/ $dirname)
-    {
-        $list = array();
-        $cri = new Criteria('isactive',0,'>');
-        $cri->addSort('weight','ASC');
-        $cri->addSort('mid','ASC');
-        foreach(xoops_gethandler('module')->getObjects($cri) as $module)
-        {
-            if($module->getInfo('dirname') == $dirname)
-            {
-                return $module->get('trust_dirname');
-            }
-        }
-    }
+	/**
+	 * getTrustNameByDirname
+	 * 
+	 * @param   string	$dirname
+	 * 
+	 * @return  string
+	**/
+	public static function getTrustNameByDirname(/*** string ***/ $dirname)
+	{
+		$list = array();
+		$cri = new Criteria('isactive',0,'>');
+		$cri->addSort('weight','ASC');
+		$cri->addSort('mid','ASC');
+		foreach(xoops_gethandler('module')->getObjects($cri) as $module)
+		{
+			if($module->getInfo('dirname') == $dirname)
+			{
+				return $module->get('trust_dirname');
+			}
+		}
+	}
+
+	/**
+	 * getModuleConfig
+	 * 
+	 * @param   string  $key
+	 * 
+	 * @return  mix
+	**/
+	public static function getModuleConfig($type, $dirname)
+	{
+		$handler = xoops_gethandler('config');
+		$configArr = $handler->getConfigsByDirname($dirname);
+		return $configArr[$type];
+	}
+
+	/**
+	 * formatPagetitle
+	 * 
+	 * @param   string	$modulename
+	 * @param   string	$pagetitle ex. "Hello!", "How to install XCL?"
+	 * @param   string	$action	ex.edit, delete, list
+	 * 
+	 * @return  string
+	**/
+	public static function formatPagetitle(/*** string ***/ $modulename, /*** string ***/ $pagetitle, /*** string ***/ $action)
+	{
+		$root = XCube_Root::getSingleton();
+		$format = self::getModuleConfig('pagetitle', 'legacyRender'); 
+		$replace = array($modulename, $pagetitle, $action);
+		$search = array('{modulename}', '{pagetitle}', '{action}');
+		$ret = str_replace($search, $replace, $format);
+	
+		$ret = (! $modulename) ? preg_replace("/\[modulename\](.*)\[\/modulename\]/U", "", $ret) : preg_replace("/\[modulename\](.*)\[\/modulename\]/U", '$1', $ret);
+		$ret = (! $pagetitle) ? preg_replace("/\[pagetitle\](.*)\[\/pagetitle\]/U", "", $ret) : preg_replace("/\[pagetitle\](.*)\[\/pagetitle\]/U", '$1', $ret);
+		$ret = (! $action) ? preg_replace("/\[action\](.*)\[\/action\]/U", "", $ret) : preg_replace("/\[action\](.*)\[\/action\]/U", '$1', $ret);
+	
+		return $ret;
+	}
 }
 
 ?>

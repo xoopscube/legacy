@@ -107,6 +107,15 @@ $modversion['config'][]=array (
 		"valuetype"=>"int",
 		"default"=>0
 	);
+
+$modversion['config'][]=array (
+		"name"=>"pagetitle",
+		"title"=>"_MI_LR_PAGETITLE_FORMAT",
+		"description"=>"_MI_LR_PAGETITLE_FORMAT",
+		"formtype"=>"textbox",
+		"valuetype"=>"text",
+		"default"=>"{modulename} {action} [pagetitle]:[/pagetitle] {pagetitle}"
+	);
 	
 // Menu
 $modversion['hasMain']=0;
