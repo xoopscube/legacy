@@ -59,6 +59,8 @@ class User_AbstractFilterForm
 
 	function getCriteria($start = null, $limit = null)
 	{
+		$t_start = 0;
+		$t_limit = 0;
 		if ($start === null) {
 			$t_start = $this->mNavi->getStart();
 		} else {
