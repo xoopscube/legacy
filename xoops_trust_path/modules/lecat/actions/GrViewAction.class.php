@@ -69,10 +69,6 @@ class Lecat_GrViewAction extends Lecat_AbstractViewAction
         $render->setAttribute('tree', $this->mObject->mTree);
         $render->setAttribute('object', $this->mObject);
         $render->setAttribute('actions', $this->mObject->getDefaultPermissionList());
-	
-		//set Header
-		$headerScript = $this->mRoot->mContext->getAttribute('headerScript');
-		$headerScript->addStylesheet($this->_getStylesheet());
     }
 
     /**

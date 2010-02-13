@@ -69,10 +69,6 @@ class Lecat_CatListAction extends Lecat_AbstractListAction
         $render->setTemplateName($this->mAsset->mDirname . '_cat_list.html');
         $render->setAttribute('objects', $this->mObjects);
         $render->setAttribute('pageNavi', $this->mFilter->mNavi);
-	
-		//set Header
-		$headerScript = $this->mRoot->mContext->getAttribute('headerScript');
-		$headerScript->addStylesheet($this->_getStylesheet());
     }
 }
 

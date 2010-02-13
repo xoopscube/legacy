@@ -308,7 +308,10 @@ class Lecat_Module extends Legacy_ModuleAdapter
             $methodName = 'executeView' . ucfirst($viewStatus);
             if(is_callable(array($this->mAction,$methodName)))
             {
-                $this->mAction->$methodName($this->getRenderTarget());
+		       	$render = $this->getRenderTarget();
+                $this->mAction->$methodName($render);
+		        $render->setAttribute('xoops_pagetitle', $this->mAction->getPagetitle());
+		        $this->mAction->setHeaderScript();
             }
         }
     }

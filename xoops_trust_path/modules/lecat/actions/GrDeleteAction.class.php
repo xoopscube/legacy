@@ -68,10 +68,6 @@ class Lecat_GrDeleteAction extends Lecat_AbstractDeleteAction
         $render->setTemplateName($this->mAsset->mDirname . '_gr_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
-	
-		//set Header
-		$headerScript = $this->mRoot->mContext->getAttribute('headerScript');
-		$headerScript->addStylesheet($this->_getStylesheet());
     }
 
     /**

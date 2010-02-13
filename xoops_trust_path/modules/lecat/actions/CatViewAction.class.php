@@ -110,11 +110,6 @@ class Lecat_CatViewAction extends Lecat_AbstractViewAction
 		//for permit addition
 		$this->mActionForm->load($this->mPermit);
 		$render->setAttribute('actionFormPermit', $this->mActionForm);
-	
-		//set CSS and Javascript
-		//set Header
-		$headerScript = $this->mRoot->mContext->getAttribute('headerScript');
-		$headerScript->addStylesheet($this->_getStylesheet());
     }
 
     /**

@@ -80,7 +80,6 @@ class Lecat_PermitEditAction extends Lecat_AbstractEditAction
     {
         $render->setTemplateName($this->mAsset->mDirname . '_permit_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
-        #cubson::lazy_load('permit', $this->mObject);
         $render->setAttribute('object', $this->mObject);
     }
 

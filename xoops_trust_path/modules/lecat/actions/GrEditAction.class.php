@@ -112,12 +112,22 @@ class Lecat_GrEditAction extends Lecat_AbstractEditAction
         $render->setAttribute('object', $this->mObject);
 	
 		$render->setAttribute('actions', $this->mActions);
-		//set Header
+    }
+
+    /**
+     * setHeaderScript
+     * 
+     * @param   void
+     * 
+     * @return  void
+    **/
+    public function setHeaderScript()
+	{
 		$headerScript = $this->mRoot->mContext->getAttribute('headerScript');
 		$headerScript->addStylesheet($this->_getStylesheet());
-		$headerScript->addScript('actionsCounter='. count($this->mActions). ';');
-		$headerScript->addScript('function addActionKeyForm() {$("#permitOptions").append("<tr><td><input type=\'text\' id=\'legacy_xoopsform_actions_key["+actionsCounter+"]\' value=\'\' name=\'actions_key["+actionsCounter+"]\'></td><td><input type=\'text\' id=\'legacy_xoopsform_actions_title["+actionsCounter+"]\' value=\'\' name=\'actions_title["+actionsCounter+"]\'></td><td><input type=\'checkbox\' id=\'legacy_xoopsform_actions_default["+actionsCounter+"]\' value=\'1\' name=\'actions_default["+actionsCounter+"]\'></td></tr>");actionsCounter++;}');
-    }
+		$headerScript->addScript('actionsCounter='. count($this->mActions). ';',false);
+		$headerScript->addScript('function addActionKeyForm() {$("#permitOptions").append("<tr><td><input type=\'text\' id=\'legacy_xoopsform_actions_key["+actionsCounter+"]\' value=\'\' name=\'actions_key["+actionsCounter+"]\'></td><td><input type=\'text\' id=\'legacy_xoopsform_actions_title["+actionsCounter+"]\' value=\'\' name=\'actions_title["+actionsCounter+"]\'></td><td><input type=\'checkbox\' id=\'legacy_xoopsform_actions_default["+actionsCounter+"]\' value=\'1\' name=\'actions_default["+actionsCounter+"]\'></td></tr>");actionsCounter++;}', false);
+	}
 
     /**
      * executeViewSuccess
@@ -128,7 +138,7 @@ class Lecat_GrEditAction extends Lecat_AbstractEditAction
     **/
     public function executeViewSuccess(/*** XCube_RenderTarget ***/ &$render)
     {
-        $this->mRoot->mController->executeForward('./index.php?action=GrList');
+        $this->mRoot->mController->executeForward('./index.php?action=GrView&gr_id='.$this->mObject->getShow('gr_id'));
     }
 
     /**

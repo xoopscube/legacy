@@ -57,6 +57,31 @@ abstract class Lecat_AbstractAction
     }
 
     /**
+     * getPageTitle
+     * 
+     * @param   void
+     * 
+     * @return  string
+    **/
+    public function getPagetitle()
+    {
+        return $this->mRoot->mContext->mModule->mXoopsModule->get('name');
+    }
+
+    /**
+     * setHeaderScript
+     * 
+     * @param   void
+     * 
+     * @return  void
+    **/
+    public function setHeaderScript()
+    {
+		$headerScript = $this->mRoot->mContext->getAttribute('headerScript');
+		$headerScript->addStylesheet($this->_getStylesheet());
+    }
+
+    /**
      * prepare
      * 
      * @param   void
