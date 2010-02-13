@@ -207,7 +207,7 @@ google.load("jqueryui", "'. $this->mUIVersion .'");
 	public function createOnloadFunctionTag()
 	{
 		$html = null;
-		if(count($this->_mOnloadScript)>0){
+		if(count($this->_mOnloadScript)>0||count($this->_mScript)>0){
 			$html = "<script type=\"text/javascript\"><!--\n";
 			if($this->mMainLibrary == "google"){
 				$html .= "google.setOnLoadCallback(function() {\n";
