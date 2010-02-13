@@ -82,12 +82,18 @@ class Legacy_HeaderScript
      * addScript
      * 
      * @param   string $script
+     * @param   bool $isOnloadFunction
      * 
      * @return  void
     **/
-	public function addScript($script)
+	public function addScript($script, $isOnloadFunction=true)
 	{
-		$this->_mScript[] = $script;
+		if($isOnloadFunction==true){
+			$this->_mOnloadScript[] = $script;
+		}
+		else{
+			$this->_mScript[] = $script;
+		}
 	}
 
     /**
@@ -105,13 +111,18 @@ class Legacy_HeaderScript
     /**
      * getScriptArr
      * 
-     * @param   void
+     * @param   bool	$isOnloadFunction
      * 
      * @return  string[]
     **/
-	public function getScriptArr()
+	public function getScriptArr($isOnloadFunction=true)
 	{
-		return $this->_mScript;
+		if($isOnloadFunction==true){
+			return $this->_mOnloadScript;
+		}
+		else{
+			return $this->_mScript;
+		}
 	}
 
     /**
@@ -196,7 +207,7 @@ google.load("jqueryui", "'. $this->mUIVersion .'");
 	public function createOnloadFunctionTag()
 	{
 		$html = null;
-		if(count($this->_mScript)>0){
+		if(count($this->_mOnloadScript)>0){
 			$html = "<script type=\"text/javascript\"><!--\n";
 			if($this->mMainLibrary == "google"){
 				$html .= "google.setOnLoadCallback(function() {\n";
@@ -204,9 +215,10 @@ google.load("jqueryui", "'. $this->mUIVersion .'");
 			else{
 				$html .= "$(document).ready(function(){\n";
 			}
-			$html .= $this->_makeScript();
+			$html .= $this->_makeScript(true);
 			$html .= "\n});\n";
-			$html .= "// --></script>";
+			$html .= $this->_makeScript(false);
+			$html .= "// --></script>"."\n";
 		}
 		return $html;
 	}
@@ -214,14 +226,15 @@ google.load("jqueryui", "'. $this->mUIVersion .'");
     /**
      * _makeScript
      * 
-     * @param   void
+     * @param   bool	$isOnloadFunction
      * 
      * @return  string
     **/
-	protected function _makeScript()
+	protected function _makeScript($isOnloadFunction=true)
 	{
 		$html = null;
-		foreach($this->_mScript as $script){
+		$scriptArr = ($isOnloadFunction===true) ? $this->_mOnloadScript : $this->_mScript;
+		foreach($scriptArr as $script){
 			$html .= $this->_convertFuncName($script);
 		}
 		return $html;
