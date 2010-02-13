@@ -303,7 +303,7 @@ class XUpgrade_UpgradeProcessor
 		foreach ($modules as $module) {
 			$module->set('isactive', 1);
 			$handler->insert($module);
-			$log->add(XCube_Utils::formatMessage(_MI_XUPGRADE_MESSAGE_ADJUST_MODULE_ISACTIVE, $module->get('dirname')));
+			$this->mLog->add(XCube_Utils::formatMessage(_MI_XUPGRADE_MESSAGE_ADJUST_MODULE_ISACTIVE, $module->get('dirname')));
 		}
 	}
 }

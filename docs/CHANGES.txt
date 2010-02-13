@@ -8,6 +8,8 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #2839172 - missing SSLLogin feature.
 - Fix Bug #2884127 - typos about regular expressions.
 - Fix Bug #2949716 - The value of start and limit might be not corresponding between Criteria and PageNavi.
+- Fix Bug #2951068 - It becomes Fatal Error when the installation of XUpgrade.
+
 
 [Staff]
 - GIJOE
@@ -16,6 +18,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - kilica
 - Marijuana
 - Mikhail
+- minahito
 
 ----------------------------------------
 2009/05/23: Package Revision 2.1.7
