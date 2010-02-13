@@ -73,7 +73,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Jidaikobo
 - Kilica
 - marijuana
-- Mikhail
+- Mikhail Miguel
 - Minahito
 - Mumincacao
 - Nobunobu
@@ -82,7 +82,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Wanikoo
 - Xoopserver
  (Gigamaster)
- 
+
 ----------------------------------------
 2009/05/23: Package Revision 2.1.7
 ----------------------------------------
@@ -129,7 +129,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - gusagi
 - hxrr
 - marijuana
-- Mikhail
+- Mikhail Miguel
 - minahito
 - mumincacao
 - onokazu
@@ -195,7 +195,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - kilica
 - Marijuana
 - masarap
-- Mikhail
+- Mikhail Miguel
 - minahito
 - mumincacao
 - nor
@@ -254,7 +254,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - kilica
 - marijuana
 - MAT
-- mikhail
+- Mikhail Miguel
 - minahito
 - nbuy (aka nobu)
 - nobunobu
@@ -308,7 +308,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 [Other Changes/Enhancements]
 - Added Traditional Chinese Message Catalogs (language pack).
-- Patch #1875606 - Added Portuguese Message Catalogs (language pack by Mikhail Miguel)
+- Patch #1875606 - Added Portuguese Message Catalogs (language pack by Mikhail Miguel Miguel)
 - Patch #1897498 - Password charactor check
 
 [Staff]
@@ -318,7 +318,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - hiro1173
 - jidaikobo
 - kilica
-- Mikhail
+- Mikhail Miguel
 - minahito
 - mumincacao
 - nbuy (aka nobu)
