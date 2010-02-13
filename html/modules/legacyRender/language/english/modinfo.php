@@ -29,5 +29,6 @@ define('_MI_LR_ROBOT_METAOMAT', "Mature");
 define('_MI_LR_ROBOT_METAOREST', "Restricted");
 define('_MI_LR_ROBOT_NOINDEXFOLLOW', "No Index, Follow");
 define('_MI_LR_ROBOT_NOINDEXNOFOLLOW', "No Index, No Follow");
-
+define('_MI_LR_PAGETITLE_FORMAT', "Pagetitle Format");
+define('_MI_LR_PAGETITLE_FORMAT_DESC', "Set Pagetitle Format with {modulename}, {pagetitle}, {action}. Module name is set at {modulename} like 'profile'. Page Title is set set at {pagetitle} like 'Hello !' or 'How to install XCL'. Action is set at {action} like 'Edit', 'View' or 'List'. You set [module]***[/module], *** is not display when {module} is not set. [pagetitle]***[/pagetitle], [action]***[action] is the same.");
 ?>
