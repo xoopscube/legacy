@@ -69,8 +69,20 @@ class Legacy_AbstractFilterForm
 
 	function getCriteria($start = null, $limit = null)
 	{
-		$t_start = ($start === null) ? $this->mNavi->getStart() : intval($start);
-		$t_limit = ($limit === null) ? $this->mNavi->getPerpage() : intval($limit);
+		$t_start = 0;
+		$t_limit = 0;
+		if ($start === null) {
+			$t_start = $this->mNavi->getStart();
+		} else {
+			$t_start = intval($start);
+			$this->mNavi->setStart($t_start);
+		}
+		if ($limit === null) {
+			$t_limit = $this->mNavi->getPerpage();
+		} else {
+			$t_limit = intval($limit);
+			$this->mNavi->setPerpage($t_limit);
+		}
 		
 		$criteria = $this->_mCriteria;
 		
