@@ -2,7 +2,7 @@ INSERT INTO ranks VALUES (1, 'Iniciante', 0, 20, 0, 'rank3e632f95e81ca.gif');
 INSERT INTO ranks VALUES (2, 'Ocasional', 21, 40, 0, 'rank3dbf8e94a6f72.gif');
 INSERT INTO ranks VALUES (3, 'Regular', 41, 70, 0, 'rank3dbf8e9e7d88d.gif');
 INSERT INTO ranks VALUES (4, 'Participativo', 71, 150, 0, 'rank3dbf8ea81e642.gif');
-INSERT INTO ranks VALUES (5, 'Hiperativo', 151, 10000, 0, 'rank3dbf8eb1a72e7.gif');
+INSERT INTO ranks VALUES (5, 'Membro', 151, 10000, 0, 'rank3dbf8eb1a72e7.gif');
 INSERT INTO ranks VALUES (6, 'Moderação', 0, 0, 1, 'rank3dbf8edf15093.gif');
 INSERT INTO ranks VALUES (7, 'Administração', 0, 0, 1, 'rank3dbf8ee8681cd.gif');
 INSERT INTO smiles VALUES (1, ':-D', 'smil3dbd4d4e4c4f2.gif', 'Muito feliz', 1);
