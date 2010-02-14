@@ -217,6 +217,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
 				return false;
 			}
 		}
+		$this->_resize();
 		
 		if ($this->mActionForm->mOldAvatarFilename != null && $this->mActionForm->mOldAvatarFilename != "blank.gif") {
 			$avatarHandler =& xoops_getmodulehandler('avatar', 'user');
@@ -250,6 +251,69 @@ class User_AvatarEditAction extends User_AbstractEditAction
 			return false;
 		}
 	}
+
+    /**
+     * Resize image resource.
+     * 
+     * @param   void
+     * 
+     * @return  void
+    **/
+    public function _resize()
+    {
+    	$formFile = $this->mActionForm->mFormFile;
+    	$filePath = XOOPS_UPLOAD_PATH.'/'.$formFile->getFileName();
+		list($width,$height,$type,$attr)=getimagesize($filePath);
+    	switch($type){
+	    	case 2:
+	    	$source = imagecreatefromjpeg($filePath);
+	    	break;
+	    	case 1:
+	    	$source = imagecreatefromgif($filePath);
+	    	break;
+	    	case 3:
+	    	$source = imagecreatefrompng($filePath);
+	    	break;
+    	}
+        $size = $this->_getResizedSize($width,$height,$this->mAvatarWidth,$this->mAvatarHeight);
+        $result = function_exists(imagecreatetruecolor) ? imagecreatetruecolor($size['width'],$size['height']) : imagecreate($size['width'],$size['height']);
+        if(!imagecopyresampled($result, $source,0,0,0,0,$size['width'],$size['height'],$width,$height))
+        {
+            die();
+        }
+    	switch($type){
+	    	case 2:
+	        imagejpeg($result, $filePath);
+	    	break;
+	    	case 1:
+	        imagegif($result, $filePath);
+	    	break;
+	    	case 3:
+	        imagepng($result, $filePath);
+	    	break;
+    	}
+    }
+
+    /** 
+     * Get _resized size.
+     * 
+     * @param   int $width
+     * @param   int $height
+     * @param   int $maxWidth
+     * @param   int $maxHeight
+     * 
+     * @return  int{}
+    **/
+    public function _getResizedSize(/*** int ***/ $width,/*** int ***/ $height,/*** int ***/ $maxWidth,/*** int ***/ $maxHeight)
+    {
+        if(min($width,$height,$maxWidth,$maxHeight) < 1)
+        {
+        	echo $width .'/'. $height .'/'. $maxWidth .'/'. $maxHeight;
+            die();
+        }
+        $scale = min($maxWidth / $width,$maxHeight / $height, 1);
+        return array('width' => intval($width * $scale),'height' => intval($height * $scale));
+    }
 
 	function executeViewInput(&$controller,&$xoopsUser,&$render)
 	{
