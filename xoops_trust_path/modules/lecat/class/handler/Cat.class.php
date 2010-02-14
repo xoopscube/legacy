@@ -338,7 +338,7 @@ class Lecat_CatObject extends XoopsSimpleObject
 /**
  * Lecat_CatHandler
 **/
-class Lecat_CatHandler extends LecatObjectHandler
+class Lecat_CatHandler extends Lecat_ObjectGenericHandler
 {
     /**
      * @brief   string

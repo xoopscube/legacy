@@ -48,6 +48,18 @@ abstract class Lecat_AbstractViewAction extends Lecat_AbstractAction
     }
 
     /**
+     * _getActionName
+     * 
+     * @param   void
+     * 
+     * @return  string
+    **/
+    protected function _getActionName()
+    {
+        return _VIEW;
+    }
+
+    /**
      * _setupObject
      * 
      * @param   void

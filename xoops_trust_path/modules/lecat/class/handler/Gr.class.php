@@ -245,7 +245,7 @@ class Lecat_GrObject extends XoopsSimpleObject
 /**
  * Lecat_GrHandler
 **/
-class Lecat_GrHandler extends LecatObjectHandler
+class Lecat_GrHandler extends Lecat_ObjectGenericHandler
 {
     /**
      * @brief   string

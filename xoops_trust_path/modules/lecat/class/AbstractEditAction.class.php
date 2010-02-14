@@ -53,6 +53,18 @@ abstract class Lecat_AbstractEditAction extends Lecat_AbstractAction
     }
 
     /**
+     * _getActionName
+     * 
+     * @param   void
+     * 
+     * @return  string
+    **/
+    protected function _getActionName()
+    {
+        return _EDIT;
+    }
+
+    /**
      * _setupActionForm
      * 
      * @param   void

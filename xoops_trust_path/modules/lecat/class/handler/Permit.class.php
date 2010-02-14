@@ -79,7 +79,7 @@ class Lecat_PermitObject extends XoopsSimpleObject
 /**
  * Lecat_PermitHandler
 **/
-class Lecat_PermitHandler extends LecatObjectHandler
+class Lecat_PermitHandler extends Lecat_ObjectGenericHandler
 {
     /**
      * @brief   string

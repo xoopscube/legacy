@@ -39,6 +39,18 @@ abstract class Lecat_AbstractListAction extends Lecat_AbstractAction
     }
 
     /**
+     * _getActionName
+     * 
+     * @param   void
+     * 
+     * @return  string
+    **/
+    protected function _getActionName()
+    {
+        return _LIST;
+    }
+
+    /**
      * &_getFilterForm
      * 
      * @param   void

@@ -13,7 +13,7 @@ if(!defined('XOOPS_ROOT_PATH'))
 /**
  * LecatObjectHandler
 **/
-class LecatObjectHandler extends XoopsObjectGenericHandler
+class Lecat_ObjectGenericHandler extends XoopsObjectGenericHandler
 {
     /**
      * @brief   string

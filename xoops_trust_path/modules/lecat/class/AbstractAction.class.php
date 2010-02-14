@@ -45,15 +45,27 @@ abstract class Lecat_AbstractAction
     }
 
     /**
-     * _getStylesheet
+     * _getPageTitle
      * 
      * @param   void
      * 
-     * @return  String
+     * @return  string
     **/
-    protected function _getStylesheet()
+    protected function _getPagetitle()
     {
-        return $this->mRoot->mContext->mModuleConfig['css_file'];
+        return null;
+    }
+
+    /**
+     * _getActionName
+     * 
+     * @param   void
+     * 
+     * @return  string
+    **/
+    protected function _getActionName()
+    {
+        return null;
     }
 
     /**
@@ -65,7 +77,19 @@ abstract class Lecat_AbstractAction
     **/
     public function getPagetitle()
     {
-        return $this->mRoot->mContext->mModule->mXoopsModule->get('name');
+        return Legacy_Utils::formatPagetitle($this->mRoot->mContext->mModule->mXoopsModule->get('name'), $this->_getPagetitle(), $this->_getActionName());
+    }
+
+    /**
+     * _getStylesheet
+     * 
+     * @param   void
+     * 
+     * @return  String
+    **/
+    protected function _getStylesheet()
+    {
+        return $this->mRoot->mContext->mModuleConfig['css_file'];
     }
 
     /**
