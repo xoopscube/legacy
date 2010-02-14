@@ -12,6 +12,7 @@ class Legacy_HeaderScript
 
 	var $_mLibrary = array();
 	var $_mScript = array();
+	var $_mOnloadScript = array();
 	var $_mStylesheet = array();
 
 	var $mUsePrototype = false;	//use prototype.js ?
