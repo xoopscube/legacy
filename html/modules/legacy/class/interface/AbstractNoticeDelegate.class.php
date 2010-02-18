@@ -16,7 +16,7 @@ if(!defined('XOOPS_ROOT_PATH'))
 abstract class Legacy_AbstractNoticeDelegate
 {
 	/**
-	 * getNoticeItems
+	 * getNoticeItems	Legacy_Notice.GetNoticeItems
 	 *
 	 * @param mix[] &$notice
 	 *	$notice['dirname']

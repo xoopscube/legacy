@@ -16,7 +16,7 @@ if(!defined('XOOPS_ROOT_PATH'))
 abstract class Legacy_AbstractCalendarDelegate
 {
 	/**
-	 * getCalendarEvents
+	 * getCalendarEvents	Legacy_Calendar.GetCalendarEvents
 	 *
 	 * @param mix[] &$event see hCalendar
 	 *	 $event['dirname']	module directory name

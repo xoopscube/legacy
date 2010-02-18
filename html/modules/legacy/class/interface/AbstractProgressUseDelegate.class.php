@@ -16,7 +16,7 @@ if(!defined('XOOPS_ROOT_PATH'))
 abstract class Legacy_AbstractProgressUseDelegate
 {
     /**
-     * getModuleUsingProgress
+     * getModuleUsingProgress	Legacy_Progress.GetTargetUsingProgress
      *
      * @param mix[] &$list
      *	$list['dirname']
@@ -27,7 +27,7 @@ abstract class Legacy_AbstractProgressUseDelegate
     abstract public function getTargetUsingProgress(/*** array ***/ &$list);
 
 	/**
-	 * getOriginalUrl
+	 * getOriginalUrl	Legacy_Progress.GetOriginalUrl
 	 *
 	 * @param string &$url
 	 * @param string $dirname
@@ -39,7 +39,7 @@ abstract class Legacy_AbstractProgressUseDelegate
 	abstract public function getOriginalUrl(/*** string ***/ &$url, /*** string ***/ $dirname, /*** string ***/ $target_name, /*** int ***/ $target_id);
 
 	/**
-	 * updateStatus
+	 * updateStatus	Legacy_Progress.UpdateStatus
 	 *
 	 * @param string 	&$result
 	 * @param string 	$dirname

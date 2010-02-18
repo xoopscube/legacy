@@ -16,7 +16,7 @@ if(!defined('XOOPS_ROOT_PATH'))
 abstract class Legacy_AbstractCategoryDelegate
 {
 	/**
-	 * getCategoryGroupList
+	 * getCategoryGroupList	Legacy_Category.GetCategoryGroupList
 	 *
 	 * @param string[] &$grList
 	 *
@@ -25,7 +25,7 @@ abstract class Legacy_AbstractCategoryDelegate
 	abstract public function getCategoryGroupList(/*** string[] ***/ &$grList);
 
 	/**
-	 * getTitle
+	 * getTitle		Legacy_Category.GetTitle
 	 * get the category title by category id.
 	 *
 	 * @param string &$title
@@ -36,7 +36,7 @@ abstract class Legacy_AbstractCategoryDelegate
 	abstract public function getTitle(/*** string ***/ &$title, /*** int ***/ $catId);
 
 	/**
-	 * getTree
+	 * getTree		Legacy_Category.GetTree
 	 * get category objects in the form of tree.
 	 *
 	 * @param XoopsSimpleObject[] $tree
@@ -51,7 +51,7 @@ abstract class Legacy_AbstractCategoryDelegate
 	abstract public function getTree(/*** XoopsSimpleObject[] ***/ &$tree, /*** int ***/ $grId, /*** string ***/ $action, /*** int ***/ $uid, /*** int ***/ $catId=0, $modules="");
 
 	/**
-	 * getTitleList
+	 * getTitleList		Legacy_Category.GetTitleList
 	 * get category titles.
 	 *
 	 * @param string[] &$titleList
@@ -62,7 +62,7 @@ abstract class Legacy_AbstractCategoryDelegate
 	abstract public function getTitleList(/*** string[] ***/ &$titleList, /*** int ***/ $grId);
 
 	/**
-	 * checkPermitByUserId
+	 * checkPermitByUserId		Legacy_Category.CheckPermitByUserId
 	 * check permission of the given category by user id.
 	 *
 	 * @param bool &$check
@@ -76,7 +76,7 @@ abstract class Legacy_AbstractCategoryDelegate
 	abstract public function checkPermitByUserId(/*** bool ***/ &$check, /*** int ***/ $catId, /*** string ***/ $action, /*** int ***/ $uid, /*** string ***/ $module="");
 
 	/**
-	 * checkPermitByGroupId
+	 * checkPermitByGroupId		Legacy_Category.CheckPermitByGroupId
 	 * check permission of the given category by user group id.
 	 *
 	 * @param bool &$check
@@ -90,7 +90,7 @@ abstract class Legacy_AbstractCategoryDelegate
 	abstract public function checkPermitByGroupId(/*** bool ***/ &$check, /*** int ***/ $catId, /*** string ***/ $action, /*** int ***/ $groupId, /*** string ***/ $module="");
 
 	/**
-	 * getParent
+	 * getParent		Legacy_Category.GetParent
 	 * get the parent category object.
 	 *
 	 * @param XoopsSimpleObject &$parent
@@ -101,7 +101,7 @@ abstract class Legacy_AbstractCategoryDelegate
 	abstract public function getParent(/*** Lecat_CatObject ***/ &$parent, /*** int ***/ $catId);
 
 	/**
-	 * getChildren
+	 * getChildren		Legacy_Category.GetChildren
 	 * get the child category objects. Be careful that you can get only children objects, excluded the given category itself.
 	 *
 	 * @param Lecat_CatObject[] &$children
@@ -115,7 +115,7 @@ abstract class Legacy_AbstractCategoryDelegate
 	abstract public function getChildren(/*** Lecat_CatObject[] ***/ &$children, /*** int ***/ $catId, /*** string ***/ $action, /*** int ***/ $uid, /*** string ***/ $module="");
 
 	/**
-	 * getCatPath
+	 * getCatPath		Legacy_Category.GetCatPath
 	 * get category path array from top to the given category.
 	 *
 	 * @param array &$catPath	:$catPath includes cat_id, title
@@ -127,7 +127,7 @@ abstract class Legacy_AbstractCategoryDelegate
 	abstract public function getCatPath(/*** array ***/ &$catPath, /*** int ***/ $catId, /*** string ***/ $order);
 
 	/**
-	 * getPermittedIdList
+	 * getPermittedIdList		Legacy_Category.GetPermittedIdList
 	 * get category ids of permission.
 	 *
 	 * @param int[] &$idArr

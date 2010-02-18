@@ -16,7 +16,7 @@ if(!defined('XOOPS_ROOT_PATH'))
 abstract class Legacy_AbstractProgressDelegate
 {
     /**
-     * addItem
+     * addItem	Legacy_Progress.AddItem
      *
      * @param string $title
      * @param string $dirname
@@ -28,7 +28,7 @@ abstract class Legacy_AbstractProgressDelegate
     abstract public function addItem(/*** string ***/ $title, /*** string ***/ $dirname, /*** string ***/ $target, /*** int ***/ $id);
 
     /**
-     * deleteItem
+     * deleteItem	Legacy_Progress.DeleteItem
      *
      * @param string $dirname
      * @param string $target
@@ -39,9 +39,14 @@ abstract class Legacy_AbstractProgressDelegate
     abstract public function deleteItem(/*** string ***/ $dirname, /*** string ***/ $target, /*** int ***/ $id);
 
     /**
-     * getHistory
+     * getHistory	Legacy_Progress.GetHistory
      *
      * @param mix[] &$historyArr
+     *	$hisotryArr['step']
+     *	$hisotryArr['uid']
+     *	$hisotryArr['result']
+     *	$hisotryArr['comment']
+     *	$hisotryArr['posttime']
      * @param string $dirname
      * @param string $target
      * @param int    $id
