@@ -12,6 +12,7 @@ require_once XOOPS_ROOT_PATH . "/header.php";
 $root =& XCube_Root::getSingleton();
 
 $root->mContext->mModule->setAdminMode(true);
+$root->mContext->mModule->setActionName('DefinitionsList');
 $root->mController->execute();
 
 require_once XOOPS_ROOT_PATH . "/footer.php";
