@@ -17,7 +17,7 @@ if(!defined('LECAT_TRUST_PATH'))
 
 if(!defined('LEGACY_CATEGORY_DIRNAME'))
 {
-	define('LEGACY_CATEGORY_DIRNAME', basename(dirname(dirname(__FILE__))));
+    define('LEGACY_CATEGORY_DIRNAME', basename(dirname(dirname(__FILE__))));
 }
 
 require_once LECAT_TRUST_PATH . '/class/LecatUtils.class.php';
@@ -53,7 +53,8 @@ class Lecat_Category extends XCube_ActionFilter
     **/
     public function preBlockFilter()
     {
-    	$file = LECAT_TRUST_PATH . '/class/DelegateFunctions.class.php';
+        $file = LECAT_TRUST_PATH . '/class/DelegateFunctions.class.php';
+        $this->mRoot->mDelegateManager->add('Legacy_Category.GetCategoryGroupList','Lecat_DelegateFunctions::getCategoryGroupList', $file);
         $this->mRoot->mDelegateManager->add('Legacy_Category.GetTitle','Lecat_DelegateFunctions::getTitle', $file);
         $this->mRoot->mDelegateManager->add('Legacy_Category.GetTree','Lecat_DelegateFunctions::getTree', $file);
         $this->mRoot->mDelegateManager->add('Legacy_Category.GetTitleList','Lecat_DelegateFunctions::getTitleList', $file);

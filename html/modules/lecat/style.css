@@ -1,6 +1,19 @@
 #lecat{
-	font-size: 15px;
-	line-height:	2em;
+    font-size: 15px;
+    line-height:    2em;
+}
+
+/* Permission Table */
+#lecat .curCatPermit td{
+    background-color:#FFAAFF;
+}
+
+#lecat .ancCatPermit td{
+    background-color:#D6D6FC;
+}
+
+#lecat .ngCatPermit td{
+    background-color:#AAAAFF;
 }
 
 #lecat h1{
@@ -13,13 +26,13 @@
 }
 
 #lecat .desc{
-	border:	1px solid #DDDDDD;
-	margin:	10px 20px 10px 20px;
-	padding:	10px;
+    border: 1px solid #DDDDDD;
+    margin: 10px 20px 10px 20px;
+    padding:    10px;
 }
 
 #lecat .clear{
-	clear:	both;
+    clear:  both;
 }
 
 #lecat .view dt{
@@ -38,7 +51,7 @@ margin-top:10px;
 /* Form */
 
 #lecat .form{
-	
+    
 }
 
 #lecat .form dt{
