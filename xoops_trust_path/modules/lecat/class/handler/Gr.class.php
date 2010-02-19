@@ -17,12 +17,12 @@ require_once LECAT_TRUST_PATH . '/class/ObjectHandler.class.php';
 **/
 class Lecat_GrObject extends XoopsSimpleObject
 {
-	public $mDirname = null;
-	public $mCat = array();
-	public $mTree = array();
-	public $mCatCount = 0;
-	protected $_mCatLoadedFlag = false;
-	protected $_mTreeLoadedFlag = false;
+    public $mDirname = null;
+    public $mCat = array();
+    public $mTree = array();
+    public $mCatCount = 0;
+    protected $_mCatLoadedFlag = false;
+    protected $_mTreeLoadedFlag = false;
 
     /**
      * __construct
@@ -46,14 +46,14 @@ class Lecat_GrObject extends XoopsSimpleObject
      * 
      * @return  void
     **/
-	public function loadCat()
-	{
-		if ($this->_mCatLoadedFlag == false) {
-			$handler = $this->_getHandler('cat');
-			$this->mCat = $handler->getObjects(new Criteria('gr_id', $this->get('gr_id')));
-			$this->_mCatLoadedFlag = true;
-		}
-	}
+    public function loadCat()
+    {
+        if ($this->_mCatLoadedFlag == false) {
+            $handler = $this->_getHandler('cat');
+            $this->mCat = $handler->getObjects(new Criteria('gr_id', $this->get('gr_id')));
+            $this->_mCatLoadedFlag = true;
+        }
+    }
 
     /**
      * getShowLevel
@@ -62,15 +62,15 @@ class Lecat_GrObject extends XoopsSimpleObject
      * 
      * @return  string
     **/
-	public function getShowLevel()
-	{
-		if ($this->get('level')==0) {
-			return _MD_LECAT_LANG_LEVEL_UNLIMITED;
-		}
-		else{
-			return $this->getShow('level');
-		}
-	}
+    public function getShowLevel()
+    {
+        if ($this->get('level')==0) {
+            return _MD_LECAT_LANG_LEVEL_UNLIMITED;
+        }
+        else{
+            return $this->getShow('level');
+        }
+    }
 
     /**
      * getDefaultPermissionList
@@ -79,19 +79,19 @@ class Lecat_GrObject extends XoopsSimpleObject
      * 
      * @return  string[]
     **/
-	public function getDefaultPermissionList()
-	{
-		$permissions = array();
-		$actions = $this->getActions();
-		$i=0;
-		foreach(array_keys($actions['title']) as $key){
-			$permissions[$i]['key'] = $key;
-			$permissions[$i]['title'] = $actions['title'][$key];
-			$permissions[$i]['default'] = $actions['default'][$key];
-			$i++;
-		}
-		return $permissions;
-	}
+    public function getDefaultPermissionList()
+    {
+        $permissions = array();
+        $actions = $this->getActions();
+        $i=0;
+        foreach(array_keys($actions['title']) as $key){
+            $permissions[$i]['key'] = $key;
+            $permissions[$i]['title'] = $actions['title'][$key];
+            $permissions[$i]['default'] = $actions['default'][$key];
+            $i++;
+        }
+        return $permissions;
+    }
 
     /**
      * getDefaultPermissionForCheck
@@ -100,16 +100,16 @@ class Lecat_GrObject extends XoopsSimpleObject
      * 
      * @return  string[]
     **/
-	public function getDefaultPermissionForCheck()
-	{
-		$permissions = array();
-		$actions = $this->getActions();
-		$i=0;
-		foreach(array_keys($actions['title']) as $key){
-			$permissions[$key] = $actions['default'][$key];
-		}
-		return $permissions;
-	}
+    public function getDefaultPermissionForCheck()
+    {
+        $permissions = array();
+        $actions = $this->getActions();
+        $i=0;
+        foreach(array_keys($actions['title']) as $key){
+            $permissions[$key] = $actions['default'][$key];
+        }
+        return $permissions;
+    }
 
     /**
      * getActions
@@ -118,10 +118,10 @@ class Lecat_GrObject extends XoopsSimpleObject
      * 
      * @return  string[]
     **/
-	public function getActions()
-	{
-		return ($this->get('actions')) ? unserialize($this->get('actions')) : array('key'=>array(),'title'=>array(),'default'=>array());
-	}
+    public function getActions()
+    {
+        return ($this->get('actions')) ? unserialize($this->get('actions')) : array('key'=>array(),'title'=>array(),'default'=>array());
+    }
 
     /**
      * setActions
@@ -130,92 +130,69 @@ class Lecat_GrObject extends XoopsSimpleObject
      * 
      * @return  void
     **/
-	public function setActions(/*** array ***/ $actionArr)
-	{
-		$this->set('actions', serialize($actionArr));
-	}
+    public function setActions(/*** array ***/ $actionArr)
+    {
+        $this->set('actions', serialize($actionArr));
+    }
 
-	/**
-	 * @public
-	 * load Category Tree.
-	 * if already loaded, do nothing.
-	 */
-	function loadTree($p_id=0, $module="")
-	{
-		if ($this->_mTreeLoadedFlag == false) {
-			$this->_loadTree($p_id, $module);
-		}
-	}
+    /**
+     * loadTree
+     * 
+     * @param   int     $pid
+     * @param   string  $module
+     * 
+     * @return  string[]
+    **/
+    public function loadTree(/*** int ***/ $p_id=0, /*** string ***/ $module="")
+    {
+        if ($this->_mTreeLoadedFlag == false) {
+            $this->_loadTree($p_id, $module);
+        }
+    }
 
-	/**
-	 * @private
-	 * load Categories retroactively and set $mTree array 
-	 * in order of category tree.
-	 */
-	function _loadTree($p_id=0, $module="")
-	{
-		$criteria = new CriteriaCompo();
-		$criteria->add(new Criteria('gr_id', $this->get('gr_id')));
-		$criteria->add(new Criteria('p_id', $p_id));
-		$criteria->setSort('weight');
-		$catArr =Lecat_Utils::getLecatHandler('cat', $this->mDirname)->getObjects($criteria);
-		foreach(array_keys($catArr) as $key){
-			//check module confinement
-			if($catArr[$key]->checkModule($module)){
-				$this->mTree[$this->mCatCount] = $catArr[$key];
-				$this->mCatCount++;
-				$this->_loadTree($catArr[$key]->get('cat_id'), $module);
-			}
-		}
-	}
+    /**
+     * _loadTree
+     * 
+     * @param   int     $pid
+     * @param   string  $module
+     * 
+     * @return  string[]
+    **/
+    protected function _loadTree(/*** int ***/ $p_id=0, /*** string ***/ $module="")
+    {
+        $criteria = new CriteriaCompo();
+        $criteria->add(new Criteria('gr_id', $this->get('gr_id')));
+        $criteria->add(new Criteria('p_id', $p_id));
+        $criteria->setSort('weight');
+        $catArr =Lecat_Utils::getLecatHandler('cat', $this->getDirname())->getObjects($criteria);
+        foreach(array_keys($catArr) as $key){
+            //check module confinement
+            if($catArr[$key]->checkModule($module)){
+                $this->mTree[$this->mCatCount] = $catArr[$key];
+                $this->mCatCount++;
+                $this->_loadTree($catArr[$key]->get('cat_id'), $module);
+            }
+        }
+    }
 
-	/**
-	 * @public
-	 * add deleted flag on unpermititted categories by uid and action
-	 */
-	function filterCatByUser($action, $uid=0)
-	{
-		$handler =Lecat_Utils::getXoopsHandler('user');
-		$groupHandler = Lecat_Utils::getXoopsHandler('groups');
-	
-		if(intval($uid)>0){
-			$groupIds = $handler->get($uid)->getGroups();
-			foreach($groupIds as $gid){
-				$groupArr[] = $groupHandler->get($gid);
-			}
-		}
-		else{
-			$groupArr = $groupHandler->getObjects('group_type', 'Anonymous');
-		}
-		//check permission of each cat in the given tree
-		foreach(array_keys($this->mTree) as $keyT){
-			$cat =Lecat_Utils::getLecatHandler('cat', $this->mDirname)->get($this->mTree[$keyT]->get('cat_id'));
-			$permitArr = $cat->getThisPermit($this->mDirname, $this->get('gr_id'));
-		
-			$checkFlg = false;	//permission check flag
-			//check if the user has permission about this category
-			foreach(array_keys($permitArr) as $keyP){
-				foreach(array_keys($groupArr) as $keyG){
-					if($permitArr[$keyP]->get('groupid')==$groupArr[$keyG]->get('groupid')){
-						if($permitArr[$keyP]->checkPermit($action)){
-							$checkFlg = true;
-						}
-					}
-				}
-			}
-			//if the user don't have the permission, omit the cat from the tree
-			if($checkFlg==false){
-				//unset($tree[$keyT]);
-				$this->mTree[$keyT]->mDelFlag = true;
-			}
-		}
-	}
-
-
-
-
-
-
+    /**
+     * filterCategory
+     * 
+     * @param   string  $action
+     * @param   int     $uid
+     * @param   bool    $deleteFlag
+     * 
+     * @return  void
+    **/
+    public function filterCategory($action, $uid=0, $deleteFlag=false)
+    {
+        //check permission of each cat in the given tree
+        foreach(array_keys($this->mTree) as $key){
+            if($this->mTree[$key]->checkPermitByUid($action, $uid)==false && $deleteFlag==true){
+                unset($this->mTree[$key]);
+            }
+        }
+    }
 
     /**
      * _getHandler
@@ -224,10 +201,10 @@ class Lecat_GrObject extends XoopsSimpleObject
      * 
      * @return  XoopsObjectHandler
     **/
-	protected function _getHandler($tablename)
-	{
-		return Lecat_Utils::getLecatHandler($tablename, $this->getDirname());
-	}
+    protected function _getHandler($tablename)
+    {
+        return Lecat_Utils::getLecatHandler($tablename, $this->getDirname());
+    }
 
     /**
      * getDirname
@@ -236,10 +213,10 @@ class Lecat_GrObject extends XoopsSimpleObject
      * 
      * @return  string
     **/
-	public function getDirname()
-	{
-		return $this->mDirname;
-	}
+    public function getDirname()
+    {
+        return $this->mDirname;
+    }
 }
 
 /**
@@ -269,14 +246,14 @@ class Lecat_GrHandler extends Lecat_ObjectGenericHandler
      * 
      * @return  
     **/
-	public function delete(&$obj)
-	{
-		$handler = $this->_getHandler('cat');
-		$handler->deleteAll(new Criteria('gr_id', $obj->get('gr_id')));
-		unset($handler);
-	
-		return parent::delete($obj);
-	}
+    public function delete(&$obj)
+    {
+        $handler = $this->_getHandler('cat');
+        $handler->deleteAll(new Criteria('gr_id', $obj->get('gr_id')));
+        unset($handler);
+    
+        return parent::delete($obj);
+    }
 }
 
 ?>

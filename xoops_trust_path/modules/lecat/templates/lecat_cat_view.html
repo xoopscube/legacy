@@ -29,11 +29,11 @@
 	  <{xoops_input type=hidden name=cat_id value=$actionFormPermit->get('cat_id')}>
 		<{assign var=targetCat value=$permitObj->getTargetCat()}>
 		<{if $targetCat=='cur'}>
-		<table class="curCatPermit">
+		<table class="outer curCatPermit">
 		<{elseif $targetCat=='anc'}>
-		<table class="ancCatPermit">
+		<table class="outer ancCatPermit">
 		<{else}>
-		<table class="ngCatPermit">
+		<table class="outer ngCatPermit">
 		<{/if}>
 			<tr>
 				<th style="width:150px;">Group</th>

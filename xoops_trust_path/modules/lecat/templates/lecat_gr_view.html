@@ -9,7 +9,7 @@
   <dd><{$object->getShowLevel()}></dd>
   <dt><{$smarty.const._MD_LECAT_LANG_ACTIONS}></dt>
   <dd>
-  	<table id="permitOptions">
+  	<table id="permitOptions" class="outer">
   	<tr>
     	<th><{$smarty.const._MD_LECAT_LANG_AUTH_KEY}></th>
     	<th><{$smarty.const._MD_LECAT_LANG_AUTH_TITLE}></th>
@@ -19,7 +19,7 @@
   	<tr>
       <td><{$opt.key}></td>
       <td><{$opt.title}></td>
-      <td><{$opt.default==1}><{$smarty.const._MD_LECAT_LANG_PERMISSION_ON}></td>
+      <td><{if $opt.default==1}><{$smarty.const._MD_LECAT_LANG_PERMISSION_ON}><{/if}></td>
     </tr>
     <{/foreach}>
     </table>
