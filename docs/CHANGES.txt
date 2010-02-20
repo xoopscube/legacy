@@ -9,6 +9,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #2884127 - typos about regular expressions.
 - Fix Bug #2949716 - The value of start and limit might be not corresponding between Criteria and PageNavi.
 - Fix Bug #2951068 - It becomes Fatal Error when the installation of XUpgrade.
+- Fix Bug #2955659 - invalid url exists in lostpass2.tpl.
 
 
 [Staff]
