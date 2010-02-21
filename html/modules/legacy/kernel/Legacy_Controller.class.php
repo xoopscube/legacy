@@ -1137,6 +1137,7 @@ class Legacy_Controller extends XCube_Controller
 			$GLOBALS['xoopsModuleUpdate'] = 1;
 			$xoopsTpl->display('db:system_redirect.html');
 		} else {
+			header('Content-Type:text/html; charset='._CHARSET); 
 			echo '
 			<html>
 			<head>
