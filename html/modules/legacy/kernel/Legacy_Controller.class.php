@@ -175,6 +175,8 @@ class Legacy_Controller extends XCube_Controller
 		$this->_setupFilterChain();
 		$this->_processFilter();
 
+		error_reporting(0);
+
 		// ^^;
 		$this->_setupErrorHandler();
 
@@ -657,8 +659,6 @@ class Legacy_Controller extends XCube_Controller
 	 */
 	function _setupDebugger()
 	{
-		error_reporting(0);
-
 		$debug_mode = $this->mRoot->mContext->mXoopsConfig['debug_mode'];
 		if (defined("OH_MY_GOD_HELP_ME")) {
 			$debug_mode = XOOPS_DEBUG_PHP;
