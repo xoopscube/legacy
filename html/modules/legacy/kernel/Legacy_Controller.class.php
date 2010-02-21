@@ -175,7 +175,9 @@ class Legacy_Controller extends XCube_Controller
 		$this->_setupFilterChain();
 		$this->_processFilter();
 
-		error_reporting(0);
+		if (!defined("OH_MY_GOD_HELP_ME")) {
+			error_reporting(0);
+		}
 
 		// ^^;
 		$this->_setupErrorHandler();
