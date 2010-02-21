@@ -32,7 +32,6 @@ define("_CONTAINS","Contém");
 define("_CPHOME","Administração");
 define("_CURRCHAR","Número de caracteres escritos:");
 define("_DATE","Data"); // Posted date
-define("_DATESTRING","d/m/y H:i:s");
 define("_DAY","Um dia");
 define("_DAYS","%s dias");
 define("_DELETE","Remover");
@@ -86,7 +85,6 @@ define("_LOGOUT","Sair do portal");
 define("_MAIN","Principal");
 define("_MANUAL","Manual");
 define("_MATCHES","Igual a");
-define("_MEDIUMDATESTRING","d/m/Y H:i");
 define("_MEMBERS","Associados");
 define("_MESSAGEICON","Ícone");
 define("_MESSAGETOOLONG","A sua mensagem é extensa demais.");
@@ -133,7 +131,6 @@ define("_SELECT","Selecionar");
 define("_SEND","Enviar");
 define("_SENDEMAILTO","Enviar uma carta-eletrônica para %s");
 define("_SENDPMTO","Enviar uma mensagem privada para %s");
-define("_SHORTDATESTRING","d/n/Y");
 define("_SIZE","Tamanho");
 define("_STARTSWITH","Começa com");
 define("_SUBJECT","Assunto");
@@ -167,10 +164,5 @@ define("XOOPS_USE_MULTIBYTES","0");
 @define("LEGACY_MAIL_CHAR","UTF-8");
 @define("LEGACY_MAIL_ENCO","UTF-8");
 @define("LEGACY_MAIL_LANG","pt");
-@define("_CHARSET","UTF-8");
-@define("_LANGCODE","pt");
-// mb_language( 'uni');
-// mb_internal_encoding( 'UTF-8');
-// mb_http_output( 'UTF-8');
-header('Content-Type:text/html; charset='._CHARSET);
+
 ?>

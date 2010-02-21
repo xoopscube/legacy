@@ -37,8 +37,8 @@ Z - timezone offset in seconds (i.e. "-43200" to "43200")
 
 
 //%%%%%		LANGUAGE SPECIFIC SETTINGS   %%%%%
-if (!defined('_CHARSET')) define('_CHARSET', 'windows-1251');
-if (!defined('_LANGCODE')) define('_LANGCODE', 'ru');
+if (!defined('_CHARSET')) define('_CHARSET', 'Windows-1250');
+if (!defined('_LANGCODE')) define('_LANGCODE', 'cz');
 // change 0 to 1 if this language is a multi-bytes language
 if (!defined('XOOPS_USE_MULTIBYTES')) define("XOOPS_USE_MULTIBYTES", "0");
 
