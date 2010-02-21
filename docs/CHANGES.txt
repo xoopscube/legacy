@@ -24,14 +24,17 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #2874305 - A typo in UserInfoProtector
 
 [Feature Request - From Feature Requests Legacy Tracker]
+- Feature Request #2889797 - parse_ini_file() compliant for PHP5.3
 - Feature Request #1718527 - User Profile Extended
 - Feature Request #1721686 - Mailjob API of user module
+- Feature Request #1800087 - style in legacy/langauge/xxx/global.php
 - Feature Request #1800104 - icon read.gif
 - Feature Request #1872731 - title for legacy_misc_smilies.html
 - Feature Request #1897507 - $_SERVER variables not defined on CLI
 - Feature Request #1915329 - Allow custom module install functin to reference $mlog
 - Feature Request #1943014 - set LanguageManager's LanguageName in $GLOBALS['xoopsConfig'
 - Feature Request #1999592 - lengthen fields in the config table
+- Feature Request #2104641 - target="_blank" is not XHTML strict compliant
 - Feature Request #2115625 - Admin Graphical User Interface
 - Feature Request #2115658 - Admin Welcome Page
 - Feature Request #2115670 - Default Editor WYSIWYG
