@@ -13,6 +13,6 @@ $content =
 <br />
 <br />
 <u><b>Support</b></u>
-<br />Visit please <a href="http://xoopscube.org/" target="_blank">XOOPS Cube Project</a> for documentation, modules, extensions (preloads) and themes.</p>
+<br />Visit please <a href="http://xoopscube.org/" rel="external">XOOPS Cube Project</a> for documentation, modules, extensions (preloads) and themes.</p>
 ';
 ?>

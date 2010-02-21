@@ -43,7 +43,7 @@
         <{if $actionForm->get('htmlbanner')}>
           <{$actionForm->get('htmlcode')}>
         <{else}>
-          <a href="<{$actionForm->get('clickurl')}>" target="_blank"><img src="<{$actionForm->get('imageurl')}>" alt="Banner" /></a>
+          <a href="<{$actionForm->get('clickurl')}>" rel="external"><img src="<{$actionForm->get('imageurl')}>" alt="Banner" /></a>
         <{/if}>
       </td>
     </tr>

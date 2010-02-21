@@ -378,7 +378,7 @@ if ( $op == "submit" ) {
             printf(_SENDPMTO,$foundusers[$j]->getVar("uname", "E"));
             echo "' /></a></td><td align='center'>";
             if ( $foundusers[$j]->getVar("url","E") != "" ) {
-                echo "<a href='".$foundusers[$j]->getVar("url","E")."' target='_blank'><img src='".XOOPS_URL."/images/icons/www.gif' border='0' alt='"._VISITWEBSITE."' /></a>";
+                echo "<a href='".$foundusers[$j]->getVar("url","E")."' rel='external'><img src='".XOOPS_URL."/images/icons/www.gif' border='0' alt='"._VISITWEBSITE."' /></a>";
             } else {
                 echo "&nbsp;";
             }

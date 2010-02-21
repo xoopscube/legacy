@@ -285,7 +285,7 @@ class XoopsComments extends XoopsObject
 			}
 			$posterurl = $poster->getVar("url");
    			if ( $posterurl != "" ) {
-				$www_image = "<a href='$posterurl' target='_blank'><img src='".XOOPS_URL."/images/icons/www.gif' alt='"._VISITWEBSITE."' /></a>";
+				$www_image = "<a href='$posterurl' rel='external'><img src='".XOOPS_URL."/images/icons/www.gif' alt='"._VISITWEBSITE."' /></a>";
 			} else {
 				$www_image = "";
 			}

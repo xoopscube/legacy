@@ -5,6 +5,18 @@
   <meta http-equiv="Content-Type" content="text/html; charset=<?php echo _INSTALL_CHARSET ?>" />
   <style type="text/css" media="all"><!-- @import url(../xoops.css); --></style>
   <link rel="stylesheet" type="text/css" media="all" href="style.css" />
+  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+  <script type="text/javascript"><!--
+  google.load("language", "1"); 
+  google.load("jquery", "1");
+  google.setOnLoadCallback(function() {
+    $("a[rel='external']").click(function(){
+    window.open($(this).attr("href"));
+    return false;
+    });
+  });
+  //--></script>
+  </script> 
 </head>
 
 <body>

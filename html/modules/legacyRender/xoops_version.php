@@ -97,7 +97,7 @@ $modversion['config'][]=array (
 		"description"=>"_MI_LR_FOOTER_DESC",
 		"formtype"=>"textarea",
 		"valuetype"=>"text",
-		"default"=>"Powered by <a href=\"http://xoopscube.org/\" target=\"_blank\">XOOPS Cube</a> 2.2 &copy; 2001-2009 <a href=\"http://xoopscube.sourceforge.net/\" target=\"_blank\">XOOPS Cube Project</a>"
+		"default"=>"Powered by <a href=\"http://xoopscube.org/\" rel=\"external\">XOOPS Cube</a> 2.2 &copy; 2001-2009 <a href=\"http://xoopscube.sourceforge.net/\" rel=\"external\">XOOPS Cube Project</a>"
 	);
 
 $modversion['config'][]=array (
@@ -106,15 +106,6 @@ $modversion['config'][]=array (
 		"formtype"=>"yesno",
 		"valuetype"=>"int",
 		"default"=>0
-	);
-
-$modversion['config'][]=array (
-		"name"=>"pagetitle",
-		"title"=>"_MI_LR_PAGETITLE_FORMAT",
-		"description"=>"_MI_LR_PAGETITLE_FORMAT_DESC",
-		"formtype"=>"textbox",
-		"valuetype"=>"text",
-		"default"=>"{modulename} {action} [pagetitle]:[/pagetitle] {pagetitle}"
 	);
 	
 // Menu

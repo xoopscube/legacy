@@ -39,7 +39,7 @@ if (!empty($_POST['memberslist_id'])) {
     for ( $i = 0; $i < $user_count; $i++ ) {
         $uid_hidden = new XoopsFormHidden("mail_to_user[]", $_POST['memberslist_id'][$i]);
         $form->addElement($uid_hidden);
-        $display_names .= "<a href='".XOOPS_URL."/userinfo.php?uid=".$_POST['memberslist_id'][$i]."' target='_blank'>".$_POST['memberslist_uname'][$_POST['memberslist_id'][$i]]."</a>, ";
+        $display_names .= "<a href='".XOOPS_URL."/userinfo.php?uid=".$_POST['memberslist_id'][$i]."' rel='external'>".$_POST['memberslist_uname'][$_POST['memberslist_id'][$i]]."</a>, ";
         unset($uid_hidden);
     }
     $users_label = new XoopsFormLabel(_AM_SENDTOUSERS2, substr($display_names, 0, -2));

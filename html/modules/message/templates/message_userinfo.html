@@ -46,7 +46,7 @@
       </tr>
       <tr>
         <td class="head"><{$smarty.const._MD_USER_LANG_WEBSITE}></td>
-        <td class="<{cycle values='odd,even'}>"><a href="<{$thisUser->getShow('url')}>" target="_blank"><{$thisUser->getShow('url')}></a></td>
+        <td class="<{cycle values='odd,even'}>"><a href="<{$thisUser->getShow('url')}>" rel="external"><{$thisUser->getShow('url')}></a></td>
       </tr>
       <{if $thisUser->get('user_viewemail') == 1 || $user_ownpage == true || $xoops_isadmin == true }>
         <tr valign="top">

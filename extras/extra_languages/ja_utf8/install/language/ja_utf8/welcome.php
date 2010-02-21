@@ -7,17 +7,17 @@ XOOPS Cube Legacyは様々なデータベースサーバで動作します。
 規模の大小を問わず、ダイナミックなコミュニティーサイトや、イントラネット用のポータルサイト、企業のポータルサイト、ウェブログ、そういったものの作成に最適です。
 </p>
 <p>
-XOOPS Cube は、<a href='http://xoopscube.sourceforge.net/license/bsd_licenses.txt' target='_blank'>修正BSDライセンス</a>（参考：<a href='http://sourceforge.jp/projects/opensource/wiki/licenses%2Fnew_BSD_license' target='_blank'>日本語訳</a>）というライセンスでリリースされており、自由に使用し、また改変できます。再配布も修正BSDライセンスの条項にしたがっていれば、自由に行うことができます。
+XOOPS Cube は、<a href='http://xoopscube.sourceforge.net/license/bsd_licenses.txt' rel='external'>修正BSDライセンス</a>（参考：<a href='http://sourceforge.jp/projects/opensource/wiki/licenses%2Fnew_BSD_license' rel='external'>日本語訳</a>）というライセンスでリリースされており、自由に使用し、また改変できます。再配布も修正BSDライセンスの条項にしたがっていれば、自由に行うことができます。
 </p>
 <p>
-XOOPS Cube Legacyは、<a href='http://xoopscube.sourceforge.net/license/GPL_V2.txt' target='_blank'>GNU 一般公衆利用許諾契約書(GPL)</a>（参考：<a href='http://www.opensource.jp/gpl/gpl.ja.html' target='_blank'>日本語訳</a>）というライセンスでリリースされており、自由に使用し、また改変できます。再配布もGPLの条項にしたがっていれば、自由に行うことができます。
+XOOPS Cube Legacyは、<a href='http://xoopscube.sourceforge.net/license/GPL_V2.txt' rel='external'>GNU 一般公衆利用許諾契約書(GPL)</a>（参考：<a href='http://www.opensource.jp/gpl/gpl.ja.html' rel='external'>日本語訳</a>）というライセンスでリリースされており、自由に使用し、また改変できます。再配布もGPLの条項にしたがっていれば、自由に行うことができます。
 </p>
 <u><b>必要なソフトウエア</b></u>
 <p>
 <ul>
-<li>ウェブサーバ(<a href='http://www.apache.org/' target='_blank'>Apache</a>, IIS, Roxen, など)</li>
-<li><a href='http://www.php.net/' target='_blank'>PHP</a> 4.3.2以降</li>
-<li>データベースサーバ（<a href='http://www.mysql.com/' target='_blank'>MySQL</a> Database 3.23.XX）</li>
+<li>ウェブサーバ(<a href='http://www.apache.org/' rel='external'>Apache</a>, IIS, Roxen, など)</li>
+<li><a href='http://www.php.net/' rel='external'>PHP</a> 4.3.2以降</li>
+<li>データベースサーバ（<a href='http://www.mysql.com/' rel='external'>MySQL</a> Database 3.23.XX）</li>
 </ul>
 </p>
 <u><b>準備</b></u>

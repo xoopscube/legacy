@@ -229,11 +229,11 @@ class Legacy_TextFilter extends XCube_TextFilter
 
     function makeClickableConvertTable(&$patterns, &$replacements) {
         $patterns[] = "/(^|[^]_a-z0-9-=\"'\/])([a-z]+?):\/\/([^, \r\n\"\(\)'<>]+)/i";
-        $replacements[] = "\\1<a href=\"\\2://\\3\" target=\"_blank\">\\2://\\3</a>";
+        $replacements[] = "\\1<a href=\"\\2://\\3\" rel=\"external\">\\2://\\3</a>";
         $patterns[] = "/(^|[^]_a-z0-9-=\"'\/])www\.([a-z0-9\-]+)\.([^, \r\n\"\(\)'<>]+)/i";
-        $replacements[] = "\\1<a href=\"http://www.\\2.\\3\" target=\"_blank\">www.\\2.\\3</a>";
+        $replacements[] = "\\1<a href=\"http://www.\\2.\\3\" rel=\"external\">www.\\2.\\3</a>";
         $patterns[] = "/(^|[^]_a-z0-9-=\"'\/])ftp\.([a-z0-9\-]+)\.([^, \r\n\"\(\)'<>]+)/i";
-        $replacements[] = "\\1<a href=\"ftp://ftp.\\2.\\3\" target=\"_blank\">ftp.\\2.\\3</a>";
+        $replacements[] = "\\1<a href=\"ftp://ftp.\\2.\\3\" rel=\"external\">ftp.\\2.\\3</a>";
         $patterns[] = "/(^|[^]_a-z0-9-=\"'\/:\.])([a-z0-9\-_\.]+?)@([a-z0-9!#\$%&'\*\+\-\/=\?^_\`{\|}~\.]+)/i";
         $replacements[] = "\\1<a href=\"mailto:\\2@\\3\">\\2@\\3</a>";
     }
@@ -291,13 +291,13 @@ class Legacy_TextFilter extends XCube_TextFilter
 
     function makeXCodeConvertTable(&$patterns, &$replacements) {
         $patterns[] = "/\[siteurl\=(['\"]?)([^\"'<>]*)\\1\](.*)\[\/siteurl\]/sU";
-        $replacements[0][] = $replacements[1][] = '<a href="'.XOOPS_URL.'/\\2" target="_blank">\\3</a>';
+        $replacements[0][] = $replacements[1][] = '<a href="'.XOOPS_URL.'/\\2" rel="external">\\3</a>';
         $patterns[] = "/\[url\=(['\"]?)(http[s]?:\/\/[^\"'<>]*)\\1\](.*)\[\/url\]/sU";
-        $replacements[0][] = $replacements[1][] = '<a href="\\2" target="_blank">\\3</a>';
+        $replacements[0][] = $replacements[1][] = '<a href="\\2" rel="external">\\3</a>';
         $patterns[] = "/\[url\=(['\"]?)(ftp?:\/\/[^\"'<>]*)\\1\](.*)\[\/url\]/sU";
-        $replacements[0][] = $replacements[1][] = '<a href="\\2" target="_blank">\\3</a>';
+        $replacements[0][] = $replacements[1][] = '<a href="\\2" rel="external">\\3</a>';
         $patterns[] = "/\[url\=(['\"]?)([^\"'<>]*)\\1\](.*)\[\/url\]/sU";
-        $replacements[0][] = $replacements[1][] = '<a href="http://\\2" target="_blank">\\3</a>';
+        $replacements[0][] = $replacements[1][] = '<a href="http://\\2" rel="external">\\3</a>';
         $patterns[] = "/\[color\=(['\"]?)([a-zA-Z0-9]*)\\1\](.*)\[\/color\]/sU";
         $replacements[0][] = $replacements[1][] = '<span style="color: #\\2;">\\3</span>';
         $patterns[] = "/\[size\=(['\"]?)([a-z-]*)\\1\](.*)\[\/size\]/sU";
@@ -315,16 +315,16 @@ class Legacy_TextFilter extends XCube_TextFilter
         $patterns[] = "/\[d\](.*)\[\/d\]/sU";
         $replacements[0][] = $replacements[1][] = '<del>\\1</del>';
         $patterns[] = "/\[img align\=(['\"]?)(left|center|right)\\1\]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
-        $replacements[0][] = '<a href="\\3" target="_blank">\\3</a>';
+        $replacements[0][] = '<a href="\\3" rel="external">\\3</a>';
         $replacements[1][] = '<img src="\\3" align="\\2" alt="" />';
         $patterns[] = "/\[img\]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
-        $replacements[0][] = '<a href="\\1" target="_blank">\\1</a>';
+        $replacements[0][] = '<a href="\\1" rel="external">\\1</a>';
         $replacements[1][] = '<img src="\\1" alt="" />';
         $patterns[] = "/\[img align\=(['\"]?)(left|center|right)\\1 id\=(['\"]?)([0-9]*)\\3\]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
-        $replacements[0][] = '<a href="'.XOOPS_URL.'/image.php?id=\\4" target="_blank">\\5</a>';
+        $replacements[0][] = '<a href="'.XOOPS_URL.'/image.php?id=\\4" rel="external">\\5</a>';
         $replacements[1][] = '<img src="'.XOOPS_URL.'/image.php?id=\\4" align="\\2" alt="\\5" />';
         $patterns[] = "/\[img id\=(['\"]?)([0-9]*)\\1\]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
-        $replacements[0][] = '<a href="'.XOOPS_URL.'/image.php?id=\\2" target="_blank">\\3</a>';
+        $replacements[0][] = '<a href="'.XOOPS_URL.'/image.php?id=\\2" rel="external">\\3</a>';
         $replacements[1][] = '<img src="'.XOOPS_URL.'/image.php?id=\\2" alt="\\3" />';
         $patterns[] = "/\[quote\]/sU";
         $replacements[0][] = $replacements[1][] = _QUOTEC.'<div class="xoopsQuote"><blockquote>';

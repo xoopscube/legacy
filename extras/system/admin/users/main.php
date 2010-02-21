@@ -146,7 +146,7 @@ case "delete_many":
         for ( $i = 0; $i < $count; $i++ ) {
             $id = intval($_POST['memberslist_id'][$i]);
             if ($id > 0) {
-                $list .= ", <a href='".XOOPS_URL."/userinfo.php?uid=$id' target='_blank'>".htmlspecialchars($_POST['memberslist_uname'][$id])."</a>";
+                $list .= ", <a href='".XOOPS_URL."/userinfo.php?uid=$id' rel='external'>".htmlspecialchars($_POST['memberslist_uname'][$id])."</a>";
                 $hidden .= "<input type='hidden' name='memberslist_id[]' value='$id' />\n";
             }
         }

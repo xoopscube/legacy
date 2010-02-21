@@ -57,7 +57,7 @@ class TextSanitizer
     function &makeClickable(&$text)
     {
         $patterns = array("/([^]_a-z0-9-=\"'\/])([a-z]+?):\/\/([^, \r\n\"\(\)'<>]+)/i", "/([^]_a-z0-9-=\"'\/])www\.([a-z0-9\-]+)\.([^, \r\n\"\(\)'<>]+)/i", "/([^]_a-z0-9-=\"'\/])([a-z0-9\-_.]+?)@([^, \r\n\"\(\)'<>]+)/i");
-        $replacements = array("\\1<a href=\"\\2://\\3\" target=\"_blank\">\\2://\\3</a>", "\\1<a href=\"http://www.\\2.\\3\" target=\"_blank\">www.\\2.\\3</a>", "\\1<a href=\"mailto:\\2@\\3\">\\2@\\3</a>");
+        $replacements = array("\\1<a href=\"\\2://\\3\" rel=\"external\">\\2://\\3</a>", "\\1<a href=\"http://www.\\2.\\3\" rel=\"external\">www.\\2.\\3</a>", "\\1<a href=\"mailto:\\2@\\3\">\\2@\\3</a>");
         $ret = preg_replace($patterns, $replacements, $text);
         return $ret;
     }
