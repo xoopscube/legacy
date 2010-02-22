@@ -30,6 +30,17 @@ class Profile_DefinitionsObject extends XoopsSimpleObject
     /**
      * @public
      */
+    function getFields()
+    {
+        $cri = new Criteria('1', '1');
+        $cri->setSort('weight');
+    
+        return $this->getObjects($cri);
+    }
+
+    /**
+     * @public
+     */
     function getQuery4AlterTable()
     {
         switch($this->get('type')){
