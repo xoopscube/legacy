@@ -2,7 +2,7 @@
 /**
  *
  * @package Legacy
- * @version $Id: function.xoops_dhtmltarea.php,v 1.3 2008/09/25 15:12:36 kilica Exp $
+ * @version $Id: function.xoops_dhtmltarea.php,v 1.3 2010/02/22 15:12:36 kilica Exp $
  * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
  * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
@@ -32,6 +32,7 @@
  *           id = form 'id'. If it's empty, ID is defined automatically by prefix & name.
  *           cols = amount of cols. (default 50)
  *           rows = amount of rows. (default 5)
+ *           editor = textarea editor type (default 0=BBCode)
  * 
  * Examples: {xoops_dhtmltarea name=message cols=40 rows=6 value=$message}
  * -------------------------------------------------------------
@@ -43,42 +44,60 @@ define ("XOOPS_DHTMLTAREA_DEFAULT_ROWS", "5");
 
 function smarty_function_xoops_dhtmltarea($params, &$smarty)
 {
-	if (!XC_CLASS_EXISTS('xoopsformelement')) {
-		require_once XOOPS_ROOT_PATH . "/class/xoopsformloader.php";
-	}
-	$form = null;
+    if (!XC_CLASS_EXISTS('xoopsformelement')) {
+        require_once XOOPS_ROOT_PATH . "/class/xoopsformloader.php";
+    }
+    $form = null;
 
     $root =& XCube_Root::getSingleton();
     $textFilter =& $root->getTextFilter();
-	if (isset($params['name'])) {
-		//
-		// Fetch major elements from $params.
-		//
-		$name = trim($params['name']);
-		$class = isset($params['class']) ? trim($params['class']) : null;
-		$cols = isset($params['cols']) ? intval($params['cols']) : XOOPS_DHTMLTAREA_DEFAULT_COLS;
-		$rows = isset($params['rows']) ? intval($params['rows']) : XOOPS_DHTMLTAREA_DEFAULT_ROWS;
-		$value = isset($params['value']) ? $textFilter->toEdit($params['value']) : null;
-		$id = isset($params['id']) ? trim($params['id']) : XOOPS_DHTMLTAREA_DEFID_PREFIX . $name;
+    if (isset($params['name'])) {
+        //
+        // Fetch major elements from $params.
+        //
+        $name = trim($params['name']);
+        $class = isset($params['class']) ? trim($params['class']) : null;
+        $cols = isset($params['cols']) ? intval($params['cols']) : XOOPS_DHTMLTAREA_DEFAULT_COLS;
+        $rows = isset($params['rows']) ? intval($params['rows']) : XOOPS_DHTMLTAREA_DEFAULT_ROWS;
+        $value = isset($params['value']) ? $textFilter->toEdit($params['value']) : null;
+        $id = isset($params['id']) ? trim($params['id']) : XOOPS_DHTMLTAREA_DEFID_PREFIX . $name;
+    
+        //
+        // Build the object for output.
+        //
+        $html = "";
+        switch(intval($params['editor'])){
+            case Legacy_TextareaEditorEnum::BBCODE:
+            XCube_DelegateUtils::call("Site.TextareaEditor.BBCode.Show", new XCube_Ref($html), $id, $caption, $name, $value, $rows, $cols);
+            break;
+        
+            case Legacy_TextareaEditorEnum::HTML:
+            XCube_DelegateUtils::call("Site.TextareaEditor.HTML.Show", new XCube_Ref($html), $params);
+            break;
+        
+            case Legacy_TextareaEditorEnum::NONE:
+            XCube_DelegateUtils::call("Site.TextareaEditor.None.Show", new XCube_Ref($html), $id, $caption, $name, $value, $rows, $cols);
+            break;
+        }
+        print $html;
+    
+        /*
+        $form =& new XoopsFormDhtmlTextArea($name, $name, $value, $rows, $cols);
+        $form->setId($id);
+        if ($class != null) {
+            $form->setClass($class);
+        }
+        
+        print $form->render();
+        */
+    }
+}
 
-		//
-		// Build the object for output.
-		//
-		
-		$html = "";
-		XCube_DelegateUtils::call("Site.DhtmlTextArea.Show", new XCube_Ref($html), $id, $caption, $name, $value, $rows, $cols);
-		print $html;
-		
-		/*
-		$form =& new XoopsFormDhtmlTextArea($name, $name, $value, $rows, $cols);
-		$form->setId($id);
-		if ($class != null) {
-			$form->setClass($class);
-		}
-		
-		print $form->render();
-		*/
-	}
+abstract class Legacy_TextareaEditorEnum
+{
+    const BBCODE = 0;   //default
+    const HTML = 1;
+    const NONE = 2;
 }
 
 ?>
