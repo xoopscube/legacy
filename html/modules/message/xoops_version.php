@@ -15,7 +15,7 @@ $modversion['author'] = 'Marijuana';
 $modversion['credits'] = "XOOPS Cube Project";
 $modversion['help'] = "help.html";
 $modversion['license'] = "MIT LICENSE";
-$modversion['image']       = file_exists( $mydirpath.'/module_icon.png' ) ? 'module_icon.png' : 'module_icon.php' ;
+$modversion['image']       = file_exists( $mydirpath.'/images/module_icon.png' ) ? 'images/module_icon.png' : 'module_icon.php' ;
 $modversion['mcl_update'] = 'message';
 
 $modversion['cube_style'] = true;
