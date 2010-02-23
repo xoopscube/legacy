@@ -88,7 +88,7 @@ $modversion['templates'] = array(
 // Admin panel setting
 //
 $modversion['hasAdmin'] = 1;
-$modversion['adminindex'] = 'admin/index.php';
+$modversion['adminindex'] = 'admin/index.php?action=Index';
 $modversion['adminmenu'] = array(
 /*
     array(

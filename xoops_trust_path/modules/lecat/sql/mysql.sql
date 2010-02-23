@@ -14,6 +14,9 @@ CREATE TABLE IF NOT EXISTS `{prefix}_{dirname}_cat` (
   KEY `weight` (`weight`)
 ) ENGINE=MyISAM;
 
+
+INSERT INTO `{prefix}_{dirname}_cat` (`cat_id`, `title`, `gr_id`, `p_id`, `modules`, `description`, `depth`, `weight`, `options`) VALUES (1, 'common', 1, 0, '', 'common category', 0, 10, '');
+
 CREATE TABLE IF NOT EXISTS `{prefix}_{dirname}_gr` (
   `gr_id` smallint(5) unsigned NOT NULL auto_increment,
   `title` varchar(255) NOT NULL default '',
@@ -21,6 +24,9 @@ CREATE TABLE IF NOT EXISTS `{prefix}_{dirname}_gr` (
   `actions` text NOT NULL,
   PRIMARY KEY  (`gr_id`)
 ) ENGINE=MyISAM;
+
+INSERT INTO `{prefix}_{dirname}_gr` (`gr_id`, `title`, `level`, `actions`) VALUES
+(1, 'common', 1, 'a:2:{s:5:"title";a:3:{s:6:"viewer";s:6:"Viewer";s:6:"poster";s:6:"Poster";s:7:"manager";s:7:"Manager";}s:7:"default";a:3:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";s:7:"manager";N;}}');
 
 CREATE TABLE IF NOT EXISTS `{prefix}_{dirname}_permit` (
   `permit_id` mediumint(8) unsigned NOT NULL auto_increment,
