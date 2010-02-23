@@ -21,4 +21,6 @@ define('_MI_MESSAGE_DELTYPE_DESC', '保存期間の過ぎた未読メッセー�
 define('_MI_MESSAGE_BLOCK_NAME', '新着ブロック');
 define('_MI_MESSAGE_INSTALL_ERROR', 'このモジュールはPHP5.0以上でないと動作しません。');
 define('_MI_MESSAGE_INSTALL_ERROR2', 'XCL付属のPMモジュールはアンインストールしてください。');
+define('_MI_MESSAGE_DESC', 'このモジュールは、プライベートメッセージ機能を提供します。');
+define('_MI_INQUIRY_INSTALL_ERROR', 'このモジュールはPHP5専用です');
 ?>

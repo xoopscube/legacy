@@ -123,5 +123,46 @@ define('_AD_USER_TIPS_MAILJOB_SEND', "送信対象ユーザー数が多すぎる
 define('_AD_USER_TIPS_RECOUNT_POSTS', "もし投稿数が間違っているようであれば、再計算することができます。");
 define('_AD_USER_TIPS_USER_EDIT', "パスワードを変更したいときだけ、パスワードとパスワード確認を入力してください");
 define('_AD_USER_TIPS_USER_NEW', "ユーザー名、メールアドレス、パスワードとパスワード確認は必ず入力してください");
+define('_AD_USER_DATA_DOWNLOAD_DO', 'CSVでダウンロード');
+define('_AD_USER_DATA_NUM', '%d人が登録しています。');
+define('_AD_USER_DATA_UPLOAD_BACK', 'CSVファイルを再度選択');
+define('_AD_USER_DATA_UPLOAD_CHECK_USER_CSVFILE', '登録の内容をご確認ください。');
+define('_AD_USER_DATA_UPLOAD_CONF', '登録内容の確認');
+define('_AD_USER_DATA_UPLOAD_DO', '登録');
+define('_AD_USER_DATA_UPLOAD_DONE', 'CSVデータにより、ユーザーデータが更新されました。');
+define('_AD_USER_DATA_UPLOAD_SELECT_USER_CSVFILE', '登録されたCSVファイルを選択して下さい。');
+define('_AD_USER_ERROR_COULD_NOT_SAVE_AVATAR_FILE', '\'{0}\'のアバターファイルを保存できませんでした。');
+define('_AD_USER_ERROR_DBUPDATE_FAILED', 'データーベースの更新に失敗しました。');
+define('_AD_USER_ERROR_EXTENSION_IS_WRONG', 'アップロードされたファイルの拡張子が無効です。');
+define('_AD_USER_ERROR_REQUIRED', '{0}は必須です。');
+define('_AD_USER_LANG_AVATAR_TOTAL', 'アバターの合計');
+define('_AD_USER_LANG_AVATAR_UPDATECONF', 'アバターの更新を確認');
+define('_AD_USER_LANG_AVATAR_UPLOAD', 'アバターをアップロード');
+define('_AD_USER_LANG_AVATAR_UPLOAD_FILE', 'アバターアーカイブ（tar.gzまたはZIP圧縮形式のみ）');
+define('_AD_USER_LANG_AVATAR_UPLOAD_RESULT', 'アバターアップロードの結果');
+define('_AD_USER_LANG_FOUNDUSERS', 'ユーザーを作った合計');
+define('_AD_USER_LANG_RANK_TOTAL', 'ランクの合計');
+define('_AD_USER_LANG_RANK_UPDATECONF', 'ランクのアップデートを確認する');
+define('_AD_USER_LANG_TOTAL', '合計');
+define('_AD_USER_LANG_UPLOAD', 'アップロード');
+define('_AD_USER_LANG_USER_NEW_FIELD', '新しいフィールドの追加');
+define('_AD_USER_LANG_USER_TOTAL', 'ユーザーの合計');
+define('_AD_USER_LANG_USER_UPDATECONF', 'ユーザーの更新を確認する');
+define('_AD_USER_MESSAGE_CONFIRM_UPDATE_AVATAR', '更新してもよろしいですか？');
+define('_AD_USER_MESSAGE_CONFIRM_UPDATE_RANK', 'ランクを更新してもよろしいですか？');
+define('_AD_USER_MESSAGE_CONFIRM_UPDATE_USER', 'ユーザーを更新してもよろしいですか？');
+define('_AD_USER_TIPS_AVATAR', 'サイトのメンバーに対応してオンライン中のファッションとして独自のアバターを表示します。<br />このオプションは、モジュールのユーザ設定からオフに設定することができます。');
+define('_AD_USER_TIPS_AVATAR_UPLOAD', 'アーカイブファイルに包みアップロードして、多くのアバターを簡単に登録することができます！<br />このアップロードは、アバター同士のサイズはチェックされません！<br />それらをアーカイブする前に事前に調整してください！<br />（tar.gzまたはzipアーカイブのみ）');
+define('_AD_USER_TIPS_DATA_DOWNLOAD', 'CSV形式のユーザーデータを取得できるのはuser_idからのみです。');
+define('_AD_USER_TIPS_DELETE_AVATAR', 'ユーザーの誰かがこのアバターを使用していると、blank.gifはアバターの画像ファイルとして必要があります。');
+define('_AD_USER_TIPS_RANK', 'ユーザーのランキングシステムは貢献者を識別するために役立ちます。既定のランクを編集する事によって、独自のポリシーを定義することができます。');
+define('_AD_USER_TIPS_USER_ADMIN', '"あなたのXOOPS CubeのWebサイトにアクセスするにはグループベースのシステムにより、モジュールとブロックのコンテンツにアクセスするグループ権限を割り当てられるユーザーかどうかです。最近、一部のモジュールはデフォルトのユーザ管理の役割を提供し、ユーザーのアクセス許可を割り当てるロールベースのシステムにより拡張可能にすることができます。<br />また、新しいフィールドを追加して、既定のユーザープロフィールを拡張することができます。詳細については、次のリンクをクリック："');
+define('_AD_USER_TIPS_USER_SEARCH', 'あなたが探している重要な情報を見つけるために、ユーザデータを検索したり並べ替える事ができます。<br />最終結果の精度は、入力フィールドの数に直接関連されます。');
+define('_AD_USER_TIPS1_DATA_UPLOAD', 'CSVファイルでユーザーの一括登録が可能です。');
+define('_AD_USER_TIPS2_DATA_UPLOAD', 'ダウンロードしたCSVファイルを使用する。<a href="?action=UserDataDownload?" style="color:#941d55;font-weight:bold;">');
+define('_AD_USER_TIPS3_DATA_UPLOAD', 'CSVファイル内へ新たに情報の登録や更新をしようとしたユーザーのみを記述してください。');
+define('_AD_USER_TIPS4_DATA_UPLOAD', '左端の行のUIDが空（または0）の時は、新しいユーザーとして登録。');
+define('_AD_USER_TIPS5_DATA_UPLOAD', 'ユーザー情報は左端の行（UID）の値があるときに更新されます。<br />パスワードを設定するなら３０バイト以内にして下さい。');
+
 
 ?>
