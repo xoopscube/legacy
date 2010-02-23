@@ -16,40 +16,40 @@ if(!defined('XOOPS_ROOT_PATH'))
 abstract class Legacy_AbstractProgressUseDelegate
 {
     /**
-     * getModuleUsingProgress	Legacy_Progress.GetTargetUsingProgress
+     * getManagedModules    Legacy_Progress.GetManagedModules
      *
      * @param mix[] &$list
-     *	$list['dirname']
-     *	$list['target_name']
+     *  $list['dirname']
+     *  $list['target_name']
      *
      * @return  void
      */ 
-    abstract public function getTargetUsingProgress(/*** array ***/ &$list);
+    abstract public function getManagedModules(/*** array ***/ &$list);
 
-	/**
-	 * getOriginalUrl	Legacy_Progress.GetOriginalUrl
-	 *
-	 * @param string &$url
-	 * @param string $dirname
-	 * @param string $target_name
-	 * @param int $target_id
-	 *
+    /**
+     * getSourceUrl Legacy_Progress.GetSourceUrl
+     *
+     * @param string &$url
+     * @param string $dirname
+     * @param string $target_name
+     * @param int $target_id
+     *
      * @return  void
-	 */	
-	abstract public function getOriginalUrl(/*** string ***/ &$url, /*** string ***/ $dirname, /*** string ***/ $target_name, /*** int ***/ $target_id);
+     */ 
+    abstract public function getSourceUrl(/*** string ***/ &$url, /*** string ***/ $dirname, /*** string ***/ $target_name, /*** int ***/ $target_id);
 
-	/**
-	 * updateStatus	Legacy_Progress.UpdateStatus
-	 *
-	 * @param string 	&$result
-	 * @param string 	$dirname
-	 * @param string 	$target_name
-	 * @param int	 	$target_id
-	 * @param bool		$status
-	 *
+    /**
+     * updateStatus Legacy_Progress.UpdateStatus
+     *
+     * @param string    &$result
+     * @param string    $dirname
+     * @param string    $target_name
+     * @param int       $target_id
+     * @param Enum      $status Legacy_ProgressStatus
+     *
      * @return  void
-	 */	
-	abstract public function updateStatus(/*** string ***/ &$result, /*** string ***/ $dirname, /*** string ***/ $target_name, /*** int ***/ $target_id, /*** bool ***/ $status);
+     */ 
+    abstract public function updateStatus(/*** string ***/ &$result, /*** string ***/ $dirname, /*** string ***/ $target_name, /*** int ***/ $target_id, /*** Enum ***/ $status);
 }
 
 ?>

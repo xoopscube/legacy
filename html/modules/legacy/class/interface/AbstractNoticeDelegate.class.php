@@ -15,23 +15,25 @@ if(!defined('XOOPS_ROOT_PATH'))
 **/
 abstract class Legacy_AbstractNoticeDelegate
 {
-	/**
-	 * getNoticeItems	Legacy_Notice.GetNoticeItems
-	 *
-	 * @param mix[] &$notice
-	 *	$notice['dirname']
-	 *	$notice['data_type']
-	 *	$notice['summary']
-	 *	$notice['posttime']
-	 *	$notice['description']
-	 *	$notice['url']
-	 *	$notice['id']
-	 * @param int $end
-	 * @param int $uid
-	 *
+    /**
+     * getNoticeItems   Legacy_Notice.GetNoticeItems
+     *
+     * @param mix[] &$item
+     *  $item['dirname']*
+     *  $item['data_type']*
+     *  $item['id']
+     *  $item['uid']
+     *  $item['title']*
+     *  $item['pubdate']*
+     *  $item['description']
+     *  $item['category']
+     *  $item['author']
+     *  $item['link']
+     * @param int $uid
+     *
      * @return  void
-	 */	
-	abstract public function getNoticeItems(/*** mix[] ***/ &$notice, /*** int ***/ $uid);
+     */ 
+    abstract public function getNoticeItems(/*** mix[] ***/ &$item, /*** int ***/ $uid);
 
 }
 
