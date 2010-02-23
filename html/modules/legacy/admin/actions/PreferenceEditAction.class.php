@@ -346,18 +346,14 @@ class Legacy_ModulePreferenceEditState extends Legacy_AbstractPreferenceEditStat
 	
 	function executeViewSuccess(&$controller, &$xoopsUser, &$render)
 	{
-		//
-		// TODO The following URL is a wrong for some module which hasn't admin directory.
-		//
-		$controller->executeForward(XOOPS_MODULE_URL . '/' . $this->_mMaster->mModule->get('dirname') . '/admin/');
+		$module = Legacy_Utils::createModule($this->_mMaster->mModule);
+		$controller->executeForward($module->getAdminIndex());
 	}
 
 	function executeViewCancel(&$controller, &$xoopsUser, &$render)
 	{
-		//
-		// TODO The following URL is a wrong for some module which hasn't admin directory.
-		//
-		$controller->executeForward(XOOPS_MODULE_URL . '/' . $this->_mMaster->mModule->get('dirname') . '/admin/');
+		$module = Legacy_Utils::createModule($this->_mMaster->mModule);
+		$controller->executeForward($module->getAdminIndex());
 	}
 }
 ?>

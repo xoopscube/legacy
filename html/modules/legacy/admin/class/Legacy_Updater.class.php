@@ -95,6 +95,15 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
         
         // Set unique key.
         $sql = 'ALTER TABLE `' . $table . '` DROP INDEX `groupid_uid`';
+		if ($db->query($sql)) {
+			$this->mLog->addReport(
+				XCube_Utils::formatString(_AD_LEGACY_MESSAGE_SET_UNIQUE_KEY_SUCCESSFUL, $table));
+		}
+		else {
+			$this->mLog->addReport(
+				XCube_Utils::formatString(_AD_LEGACY_ERROR_COULD_NOT_SET_UNIQUE_KEY, $table));
+		}
+			
 		$db->query($sql); // ignore sql errors
 		$sql = 'ALTER TABLE `' . $table . '` ADD UNIQUE `uid_groupid` (`uid`,`groupid`)';
         if ($db->query($sql))
@@ -137,7 +146,7 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
 		if (count( $gids ) != 0) {
 			$sql = sprintf('DELETE FROM `%s` WHERE `gperm_groupid` IN (%s) AND `gperm_modid`=1',
 			               $permTable, implode(',', $gids));
-			$result = $xoopsDB->query($sql);
+			$result = $db->query($sql);
 			if (!$result) {
 				return false;
 			}
