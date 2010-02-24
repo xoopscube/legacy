@@ -54,7 +54,7 @@ class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
         $grObj = Lecat_Utils::getLecatHandler('gr', self::_getDirname())->get($grId);
         $grObj->loadTree(intval($catId));
         $grObj->filterCategory($action, $uid, false);
-        return $grObj->mTree;
+        $tree = $grObj->mTree;
     }
 
     /**
