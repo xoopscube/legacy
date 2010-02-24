@@ -11,9 +11,9 @@ if(!defined('XOOPS_ROOT_PATH'))
 }
 
 /**
- * Interface of progress use delegate
+ * Interface of progress client delegate
 **/
-abstract class Legacy_AbstractProgressUseDelegate
+abstract class Legacy_AbstractProgressClientDelegate
 {
     /**
      * getManagedModules    Legacy_Progress.GetManagedModules
