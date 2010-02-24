@@ -7,6 +7,8 @@
 <h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODUNINSTALL_SUCCESS}></h3>
 
 <h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODUNINSTALL_LOG}></h4>
+
+<div class="sqlDelete">
 <ul>
 <{foreach item=msg from=$log}>
   <{if $msg.type == "error"}>
@@ -18,7 +20,9 @@
   <{/if}>
 <{/foreach}>
 </ul>
+</div>
 
-<!--<p>&raquo; <a href="index.php?action=ModuleList"><b><{$smarty.const._AD_LEGACY_LANG_MODLIST}></b></a></p>-->
+<div class="tips">
 <div class="legacy_module_return"><img src="<{"icons/module.png"|theme}>" alt="" title="" /> <a href="index.php?action=ModuleList"><{$smarty.const._AD_LEGACY_LANG_MODLIST}></a></div>
 <div class="legacy_module_return"><img src="<{"icons/module_add.png"|theme}>" alt="" title="" /> <a href="index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></div>
+</div>

@@ -492,6 +492,38 @@ background:#f2f2f2 url(<{"icons/view.png"|theme}>) 5px center no-repeat;
 	background:#EEEEFF url(<{"icons/info.png"|theme}>) no-repeat 5px 4px;
 }
 
+.sqlAdd {
+	color:#009900;
+	border:1px solid #00cc00;
+	display:block;
+	height:240px;
+	padding:8px 8px 8px 35px;
+	margin:15px 10px;
+	overflow:auto;
+	background:#E4E4E4 url(<{"icons/database_add.png"|theme}>) no-repeat 5px 4px;
+}
+.sqlDelete {
+	color:#CC3300;
+	border:1px solid #ff6633;
+	display:block;
+	height:240px;
+	overflow:auto;
+	padding:8px 8px 8px 35px;
+	margin:15px 10px;
+	background:#E4E4E4 url(<{"icons/database_delete.png"|theme}>) no-repeat 5px 4px;
+}
+
+.updateMsg {
+	color:#009900;
+	border:1px solid #00cc00;
+	display:block;
+	height:240px;
+	padding:8px 8px 8px 35px;
+	margin:15px 10px;
+	overflow:auto;
+	background:#E4E4E4 url(<{"icons/update.png"|theme}>) no-repeat 5px 4px;
+}
+
 /* ====================================================== active ===== */
 
 .active {
