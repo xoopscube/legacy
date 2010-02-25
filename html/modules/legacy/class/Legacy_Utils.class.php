@@ -244,7 +244,7 @@ class Legacy_Utils
     **/
     public static function formatPagetitle(/*** string ***/ $modulename, /*** string ***/ $pagetitle, /*** string ***/ $action)
     {
-        $handler = Xcck_Utils::getXoopsHandler('config');
+        $handler = xoops_gethandler('config');
         $configArr = $handler->getConfigsByDirname('legacyRender');
     
         $replace = array($modulename, $pagetitle, $action);
