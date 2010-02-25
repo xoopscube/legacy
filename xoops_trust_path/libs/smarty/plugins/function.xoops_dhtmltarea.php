@@ -93,11 +93,4 @@ function smarty_function_xoops_dhtmltarea($params, &$smarty)
     }
 }
 
-abstract class Legacy_TextareaEditorEnum
-{
-    const BBCODE = 0;   //default
-    const HTML = 1;
-    const NONE = 2;
-}
-
 ?>
