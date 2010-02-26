@@ -27,6 +27,7 @@
 
 // ################## Various functions from here ################
 
+if (!function_exists("xoops_getrequest")) {
 /**
  * @deprecated see RequestObject
  */
@@ -35,7 +36,9 @@ function xoops_getrequest($name)
 	$root =& XCube_Root::getSingleton();
 	return $root->mContext->mRequest->getRequest($name);
 }
+}
 
+if (!function_exists("xoops_header")) {
 /**
  * @deprecated
  */
@@ -47,7 +50,9 @@ function xoops_header($closehead = true)
 		$renderSystem->showXoopsHeader($closehead);
 	}
 }
+}
 
+if (!function_exists("xoops_footer")) {
 /**
  * @deprecated
  */
@@ -59,7 +64,9 @@ function xoops_footer()
 		$renderSystem->showXoopsFooter();
 	}
 }
+}
 
+if (!function_exists("xoops_error")) {
 function xoops_error($message, $title='', $style='errorMsg')
 {
 	$root =& XCube_Root::getSingleton();
@@ -78,7 +85,9 @@ function xoops_error($message, $title='', $style='errorMsg')
 	
 	print $renderTarget->getResult();
 }
+}
 
+if (!function_exists("xoops_result")) {
 /**
  * @deprecated Don't use.
  */
@@ -99,7 +108,9 @@ function xoops_result($message, $title='')
 	
 	print $renderTarget->getResult();
 }
+}
 
+if (!function_exists("xoops_confirm")) {
 function xoops_confirm($hiddens, $action, $message, $submit = '', $addToken = true)
 {
 	//
@@ -132,7 +143,9 @@ function xoops_confirm($hiddens, $action, $message, $submit = '', $addToken = tr
 	
 	print $renderTarget->getResult();
 }
+}
 
+if (!function_exists("xoops_token_confirm")) {
 /**
  * @brief xoops_confirm alias [test]
  */
@@ -140,12 +153,16 @@ function xoops_token_confirm($hiddens, $action, $msg, $submit='')
 {
     return xoops_confirm($hiddens, $action, $msg, $submit, true);
 }
+}
 
+if (!function_exists("xoops_confirm_validate")) {
 function xoops_confirm_validate()
 {
     return XoopsMultiTokenHandler::quickValidate(XOOPS_TOKEN_DEFAULT);
 }
+}
 
+if (!function_exists("xoops_refcheck")) {
 function xoops_refcheck($docheck=1)
 {
     $ref = xoops_getenv('HTTP_REFERER');
@@ -160,7 +177,9 @@ function xoops_refcheck($docheck=1)
     }
     return true;
 }
+}
 
+if (!function_exists("xoops_getUserTimestamp")) {
 function xoops_getUserTimestamp($time, $timeoffset="")
 {
     global $xoopsConfig, $xoopsUser;
@@ -174,7 +193,9 @@ function xoops_getUserTimestamp($time, $timeoffset="")
 
     return intval($time) + (intval($timeoffset) - $xoopsConfig['server_TZ'])*3600;
 }
+}
 
+if (!function_exists("formatTimestamp")) {
 /*
  * Function to display formatted times in user timezone
  */
@@ -184,7 +205,9 @@ function formatTimestamp($time, $format="l", $timeoffset="")
     $usertimestamp = xoops_getUserTimestamp($time, $timeoffset);
     return _formatTimeStamp($usertimestamp, $format);
 }
+}
 
+if (!function_exists("formatTimestamp")) {
 /*
  * Function to display formatted times in user timezone
  */
@@ -203,7 +226,9 @@ function formatTimestampGMT($time, $format="l", $timeoffset="")
     $usertimestamp = intval($time) + (intval($timeoffset))*3600;
     return _formatTimeStamp($usertimestamp, $format);
 }
+}
 
+if (!function_exists("_formatTimeStamp")) {
 function _formatTimeStamp($time, $format="l")
 {
     switch (strtolower($format)) {
@@ -232,7 +257,9 @@ function _formatTimeStamp($time, $format="l")
     }
     return ucfirst(date($datestring, $time));
 }
+}
 
+if (!function_exists("userTimeToServerTime")) {
 /*
  * Function to calculate server timestamp from user entered time (timestamp)
  */
@@ -245,7 +272,9 @@ function userTimeToServerTime($timestamp, $userTZ=null)
     $timestamp = $timestamp - (($userTZ - $xoopsConfig['server_TZ']) * 3600);
     return $timestamp;
 }
+}
 
+if (!function_exists("xoops_makepass")) {
 function xoops_makepass() {
     $makepass = '';
     $syllables = array("er","in","tia","wol","fe","pre","vet","jo","nes","al","len","son","cha","ir","ler","bo","ok","tio","nar","sim","ple","bla","ten","toe","cho","co","lat","spe","ak","er","po","co","lor","pen","cil","li","ght","wh","at","the","he","ck","is","mam","bo","no","fi","ve","any","way","pol","iti","cs","ra","dio","sou","rce","sea","rch","pa","per","com","bo","sp","eak","st","fi","rst","gr","oup","boy","ea","gle","tr","ail","bi","ble","brb","pri","dee","kay","en","be","se");
@@ -259,7 +288,9 @@ function xoops_makepass() {
     }
     return $makepass;
 }
+}
 
+if (!function_exists("OpenWaitBox")) {
 /*
  * Functions to display dhtml loading image box
  */
@@ -301,7 +332,9 @@ function OpenWaitBox()
     //-->
     </script>";
 }
+}
 
+if (!function_exists("CloseWaitBox")) {
 function CloseWaitBox()
 {
     echo "<script type='text/javascript'>
@@ -311,7 +344,9 @@ function CloseWaitBox()
     </script>
     ";
 }
+}
 
+if (!function_exists("checkEmail")) {
 function checkEmail($email,$antispam = false)
 {
     if (!$email || !preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i",$email)){
@@ -325,7 +360,9 @@ function checkEmail($email,$antispam = false)
         return true;
     }
 }
+}
 
+if (!function_exists("formatURL")) {
 function formatURL($url)
 {
     $url = trim($url);
@@ -336,7 +373,9 @@ function formatURL($url)
     }
     return $url;
 }
+}
 
+if (!function_exists("showbanner")) {
 /*
  * Function to display banners in all pages
  */
@@ -344,7 +383,9 @@ function showbanner()
 {
     echo xoops_getbanner();
 }
+}
 
+if (!function_exists("xoops_getbanner")) {
 /*
  * Function to get banner html tags for use in templates
  */
@@ -397,7 +438,9 @@ function xoops_getbanner()
         return $bannerobject;
     }
 }
+}
 
+if (!function_exists("redirect_header")) {
 /*
 * Function to redirect a user to certain pages
 */
@@ -479,7 +522,9 @@ function redirect_header($url, $time = 3, $message = '', $addredirect = true)
     }
     exit();
 }
+}
 
+if (!function_exists("xoops_getenv")) {
 function xoops_getenv($key)
 {
     $ret = null;
@@ -502,7 +547,9 @@ function xoops_getenv($key)
 
     return $ret;
 }
+}
 
+if (!function_exists("getTheme")) {
 /*
  * This function is deprecated. Do not use!
  */
@@ -511,7 +558,9 @@ function getTheme()
 	$root =& XCube_Root::getSingleton();
 	return $root->mContext->getXoopsConfig('theme_set');
 }
+}
 
+if (!function_exists("getcss")) {
 /*
  * Function to get css file for a certain theme
  * This function will be deprecated.
@@ -520,7 +569,9 @@ function getcss($theme = '')
 {
     return xoops_getcss($theme);
 }
+}
 
+if (!function_exists("xoops_getcss")) {
 /*
  * Function to get css file for a certain themeset
  */
@@ -546,7 +597,9 @@ function xoops_getcss($theme = '')
     }
     return '';
 }
+}
 
+if (!function_exists("getMailer")) {
 function &getMailer()
 {
     global $xoopsConfig;
@@ -562,7 +615,9 @@ function &getMailer()
     $ret =& new XoopsMailer();
 	return $ret;
 }
+}
 
+if (!function_exists("xoops_gethandler")) {
 /**
  * This function is Fly-Weight to get an instance of XoopsObject in Legacy
  * Kernel.
@@ -601,7 +656,9 @@ function &xoops_gethandler($name, $optional = false )
 	else
         return $falseRet;
 }
+}
 
+if (!function_exists("xoops_getmodulehandler")) {
 function &xoops_getmodulehandler($name = null, $module_dir = null, $optional = false)
 {
     static $handlers;
@@ -645,7 +702,9 @@ function &xoops_getmodulehandler($name = null, $module_dir = null, $optional = f
 	
     return $handlers[$module_dir][$name];
 }
+}
 
+if (!function_exists("xoops_getrank")) {
 function xoops_getrank($rank_id =0, $posts = 0)
 {
     $db =& Database::getInstance();
@@ -661,8 +720,10 @@ function xoops_getrank($rank_id =0, $posts = 0)
     
     return $rank;
 }
+}
 
 
+if (!function_exists("xoops_substr")) {
 /**
 * Returns the portion of string specified by the start and length parameters. If $trimmarker is supplied, it is appended to the return string. This function works fine with multi-byte characters if mb_* functions exist on the server.
 *
@@ -700,6 +761,7 @@ function xoops_substr($str, $start, $length, $trimmarker = '...')
     }
     return ($action) ? substr( $str, $pos_st, $pos_i - $pos_st - strlen($trimmarker) ) . $trimmarker : $str;
 }
+}
 
 // RMV-NOTIFY
 // ################ Notification Helper Functions ##################
@@ -707,26 +769,33 @@ function xoops_substr($str, $start, $length, $trimmarker = '...')
 // We want to be able to delete by module, by user, or by item.
 // How do we specify this??
 
+if (!function_exists("xoops_notification_deletebymodule")) {
 function xoops_notification_deletebymodule ($module_id)
 {
     $notification_handler =& xoops_gethandler('notification');
     return $notification_handler->unsubscribeByModule ($module_id);
 }
+}
 
+if (!function_exists("xoops_notification_deletebyuser")) {
 function xoops_notification_deletebyuser ($user_id)
 {
     $notification_handler =& xoops_gethandler('notification');
     return $notification_handler->unsubscribeByUser ($user_id);
 }
+}
 
+if (!function_exists("xoops_notification_deletebyitem")) {
 function xoops_notification_deletebyitem ($module_id, $category, $item_id)
 {
     $notification_handler =& xoops_gethandler('notification');
     return $notification_handler->unsubscribeByItem ($module_id, $category, $item_id);
 }
+}
 
 // ################### Comment helper functions ####################
 
+if (!function_exists("xoops_comment_count")) {
 function xoops_comment_count($module_id, $item_id = null)
 {
     $comment_handler =& xoops_gethandler('comment');
@@ -736,7 +805,9 @@ function xoops_comment_count($module_id, $item_id = null)
     }
     return $comment_handler->getCount($criteria);
 }
+}
 
+if (!function_exists("xoops_comment_delete")) {
 function xoops_comment_delete($module_id, $item_id)
 {
     if (intval($module_id) > 0 && intval($item_id) > 0) {
@@ -767,9 +838,11 @@ function xoops_comment_delete($module_id, $item_id)
     }
     return false;
 }
+}
 
 // ################ Group Permission Helper Functions ##################
 
+if (!function_exists("xoops_groupperm_deletebymoditem")) {
 function xoops_groupperm_deletebymoditem($module_id, $perm_name, $item_id = null)
 {
     // do not allow system permissions to be deleted
@@ -779,7 +852,9 @@ function xoops_groupperm_deletebymoditem($module_id, $perm_name, $item_id = null
     $gperm_handler =& xoops_gethandler('groupperm');
     return $gperm_handler->deleteByModule($module_id, $perm_name, $item_id);
 }
+}
 
+if (!function_exists("xoops_utf8_encode")) {
 function &xoops_utf8_encode(&$text)
 {
     if (XOOPS_USE_MULTIBYTES == 1) {
@@ -792,12 +867,16 @@ function &xoops_utf8_encode(&$text)
     $out_text = utf8_encode($text);
     return $out_text;
 }
+}
 
+if (!function_exists("xoops_convert_encoding")) {
 function &xoops_convert_encoding(&$text)
 {
     return xoops_utf8_encode($text);
 }
+}
 
+if (!function_exists("xoops_getLinkedUnameFromId")) {
 function xoops_getLinkedUnameFromId($userid)
 {
     $userid = intval($userid);
@@ -811,13 +890,16 @@ function xoops_getLinkedUnameFromId($userid)
     }
     return $GLOBALS['xoopsConfig']['anonymous'];
 }
+}
 
+if (!function_exists("xoops_trim")) {
 function xoops_trim($text)
 {
     if (function_exists('xoops_language_trim')) {
         return xoops_language_trim($text);
     }
     return trim($text);
+}
 }
 
 if (!function_exists('htmlspecialchars_decode')) {
