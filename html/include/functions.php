@@ -207,7 +207,7 @@ function formatTimestamp($time, $format="l", $timeoffset="")
 }
 }
 
-if (!function_exists("formatTimestamp")) {
+if (!function_exists("formatTimestampGMT")) {
 /*
  * Function to display formatted times in user timezone
  */
@@ -902,6 +902,7 @@ function xoops_trim($text)
 }
 }
 
+// ################ Alternative PHP Core Functions ##################
 if (!function_exists('htmlspecialchars_decode')) {
 	function htmlspecialchars_decode($text)
 	{
