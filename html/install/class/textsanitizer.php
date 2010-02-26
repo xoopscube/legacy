@@ -29,7 +29,7 @@
 // Project: The XOOPS Project (http://www.xoops.org/)                        //
 // ------------------------------------------------------------------------- //
 // This is subset and modified version of module.textsanitizer.php
-set_magic_quotes_runtime(0);
+if(get_magic_quotes_runtime()) set_magic_quotes_runtime(0);
 
 class TextSanitizer
 {

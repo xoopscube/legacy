@@ -128,8 +128,9 @@ class Legacy_Controller extends XCube_Controller
         $this->mSetupTextFilter->add('Legacy_TextFilter::getInstance',XCUBE_DELEGATE_PRIORITY_FINAL-1);
 
         $this->_mNotifyRedirectToUser = new XCube_Delegate();
-        
-        set_magic_quotes_runtime(0);    // ^^;
+        if(get_magic_quotes_runtime()) {
+            set_magic_quotes_runtime(0);    // ^^;
+        }
     }
     
     function prepare(&$root)
