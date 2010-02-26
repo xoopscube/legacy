@@ -19,7 +19,7 @@ class User_UserSearchListAction extends User_AbstractListAction
 
 	function prepare(&$controller, &$xoopsUser)
 	{
-		$this->mActionForm =& new User_UserSearchListForm();
+		$this->mActionForm =new User_UserSearchListForm();
 		$this->mActionForm->prepare();
 	}
 
@@ -31,13 +31,13 @@ class User_UserSearchListAction extends User_AbstractListAction
 
 	function &_getFilterForm()
 	{
-		$filter =& new User_UserSearchFilterForm($this->_getPageNavi(), $this->_getHandler());
+		$filter =new User_UserSearchFilterForm($this->_getPageNavi(), $this->_getHandler());
 		return $filter;
 	}
 
 	function &_getPageNavi()
 	{
-		$navi =& new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
+		$navi =new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
 		if (isset($_REQUEST[$navi->mPrefix.'perpage']) && intval($_REQUEST[$navi->mPrefix.'perpage']) == 0) { 	
 		$navi->setPerpage(0);
 		}

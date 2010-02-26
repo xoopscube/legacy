@@ -24,8 +24,8 @@ class Legacy_ModuleInstallForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['dirname'] =& new XCube_StringProperty('dirname');
-		$this->mFormProperties['force'] =& new XCube_BoolProperty('force');
+		$this->mFormProperties['dirname'] =new XCube_StringProperty('dirname');
+		$this->mFormProperties['force'] =new XCube_BoolProperty('force');
 	}
 
 	function load(&$obj)

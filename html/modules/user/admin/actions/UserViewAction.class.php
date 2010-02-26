@@ -17,14 +17,14 @@ class User_UserViewAction extends User_AbstractViewAction
 	function User_UserViewAction()
 	{
 		parent::User_AbstractViewAction();
-		$this->mGetUserPosts =& new XCube_Delegate();
+		$this->mGetUserPosts =new XCube_Delegate();
 		$this->mGetUserPosts->register('User_UserViewAction.GetUserPosts');
 	}
 	
 	function prepare(&$controller, &$xoopsUser, $moduleConfig)
 	{
 		parent::prepare($controller, $xoopsUser, $moduleConfig);
-		$this->mActionForm =& new User_RecountForm();
+		$this->mActionForm =new User_RecountForm();
 		$this->mActionForm->prepare();
 	}
 	

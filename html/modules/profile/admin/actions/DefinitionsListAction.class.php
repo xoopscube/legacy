@@ -25,7 +25,7 @@ class Profile_Admin_DefinitionsListAction extends Profile_AbstractListAction
 	 */
 	function &_getFilterForm()
 	{
-		// $filter =& new Profile_Admin_DefinitionsFilterForm();
+		// $filter =new Profile_Admin_DefinitionsFilterForm();
 		$filter =& $this->mAsset->create('filter', "admin.definitions");
 		$filter->prepare($this->_getPageNavi(), $this->_getHandler());
 		return $filter;

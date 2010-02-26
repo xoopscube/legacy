@@ -90,10 +90,10 @@ class Legacy_ModuleInstallAction extends Legacy_Action
 	{
 		parent::Legacy_Action($flag);
 		
-		$this->mInstallSuccess =& new XCube_Delegate();
+		$this->mInstallSuccess =new XCube_Delegate();
 		$this->mInstallSuccess->register('Legacy_ModuleInstallAction.InstallSuccess');
 		
-		$this->mInstallFail =& new XCube_Delegate();
+		$this->mInstallFail =new XCube_Delegate();
 		$this->mInstallFail->register('Legacy_ModuleInstallAction.InstallFail');
 	}
 	
@@ -142,7 +142,7 @@ class Legacy_ModuleInstallAction extends Legacy_Action
 		
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_ModuleInstallForm();
+		$this->mActionForm =new Legacy_ModuleInstallForm();
 		$this->mActionForm->prepare();
 	}
 

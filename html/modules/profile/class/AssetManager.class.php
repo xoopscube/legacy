@@ -166,7 +166,7 @@ class Profile_AssetManager
 		$instance = null;
 	
 		if (class_exists($className)) {
-			$instance =& new $className();
+			$instance =new $className();
 			return $instance;
 		}
 	
@@ -177,7 +177,7 @@ class Profile_AssetManager
 		require_once $filePath;
 	
 		if (class_exists($className)) {
-			$instance =& new $className();
+			$instance =new $className();
 		}
 	
 		return $instance;

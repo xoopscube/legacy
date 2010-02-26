@@ -29,14 +29,14 @@ class Legacy_SearchResultsForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['mids'] =& new XCube_IntArrayProperty('mids');
-		$this->mFormProperties['andor'] =& new XCube_StringProperty('andor');
-		$this->mFormProperties['query'] =& new XCube_StringProperty('query');
+		$this->mFormProperties['mids'] =new XCube_IntArrayProperty('mids');
+		$this->mFormProperties['andor'] =new XCube_StringProperty('andor');
+		$this->mFormProperties['query'] =new XCube_StringProperty('query');
 	
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['andor'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['andor'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['andor']->setDependsByArray(array('mask'));
 		$this->mFieldProperties['andor']->addMessage('mask', _MD_LEGACY_ERROR_MASK, _MD_LEGACY_LANG_ANDOR);
 		$this->mFieldProperties['andor']->addVar('mask', '/^(AND|OR|exact)$/i');

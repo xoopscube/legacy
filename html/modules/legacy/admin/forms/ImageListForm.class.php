@@ -38,18 +38,18 @@ class Legacy_ImageListForm extends XCube_ActionForm
 	function prepare()
 	{
 		// set properties
-		$this->mFormProperties['nicename']=& new XCube_StringArrayProperty('nicename');
-		$this->mFormProperties['weight']=& new XCube_IntArrayProperty('weight');
-		$this->mFormProperties['display']=& new XCube_BoolArrayProperty('display');
-		$this->mFormProperties['delete']=& new XCube_BoolArrayProperty('delete');
+		$this->mFormProperties['nicename']=new XCube_StringArrayProperty('nicename');
+		$this->mFormProperties['weight']=new XCube_IntArrayProperty('weight');
+		$this->mFormProperties['display']=new XCube_BoolArrayProperty('display');
+		$this->mFormProperties['delete']=new XCube_BoolArrayProperty('delete');
 		//to display error-msg at confirm-page
-		$this->mFormProperties['confirm'] =& new XCube_BoolProperty('confirm');
+		$this->mFormProperties['confirm'] =new XCube_BoolProperty('confirm');
 		// set fields
-		$this->mFieldProperties['nicename'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['nicename'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['nicename']->setDependsByArray(array('required'));
 		$this->mFieldProperties['nicename']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_IMAGE_NICENAME);
 
-		$this->mFieldProperties['weight'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['weight'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['weight']->setDependsByArray(array('required'));
 		$this->mFieldProperties['weight']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_IMAGE_WEIGHT);
 

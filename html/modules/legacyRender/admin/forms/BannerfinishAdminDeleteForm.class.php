@@ -21,12 +21,12 @@ class LegacyRender_BannerfinishAdminDeleteForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['bid'] =& new XCube_IntProperty('bid');
+		$this->mFormProperties['bid'] =new XCube_IntProperty('bid');
 	
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['bid'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['bid'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['bid']->setDependsByArray(array('required'));
 		$this->mFieldProperties['bid']->addMessage('required', _AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_BID);
 	}

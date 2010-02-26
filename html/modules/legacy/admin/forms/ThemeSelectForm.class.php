@@ -28,8 +28,8 @@ class Legacy_ThemeSelectForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['select'] =& new XCube_BoolArrayProperty('select');
-		$this->mFormProperties['choose'] =& new XCube_StringArrayProperty('choose');
+		$this->mFormProperties['select'] =new XCube_BoolArrayProperty('select');
+		$this->mFormProperties['choose'] =new XCube_StringArrayProperty('choose');
 	}
 
 	/**

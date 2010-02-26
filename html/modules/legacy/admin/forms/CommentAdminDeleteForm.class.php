@@ -27,13 +27,13 @@ class Legacy_CommentAdminDeleteForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['com_id'] =& new XCube_IntProperty('com_id');
-		$this->mFormProperties['delete_mode'] =& new XCube_StringProperty('delete_mode');
+		$this->mFormProperties['com_id'] =new XCube_IntProperty('com_id');
+		$this->mFormProperties['delete_mode'] =new XCube_StringProperty('delete_mode');
 
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['com_id'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['com_id'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['com_id']->setDependsByArray(array('required'));
 		$this->mFieldProperties['com_id']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_ID);
 	}

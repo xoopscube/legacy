@@ -29,7 +29,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_ModuleEditForm();
+		$this->mActionForm =new Legacy_ModuleEditForm();
 		$this->mActionForm->prepare();
 	}
 	
@@ -88,7 +88,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
 				$currentAdminGroupid[] = $admingroup->get('groupid');
 			}			
 			//readperm
-			$criteria =& new CriteriaCompo();
+			$criteria =new CriteriaCompo();
 			$criteria->add(new Criteria('gperm_modid', 1));
 			$criteria->add(new Criteria('gperm_itemid', $this->mObject->get('mid')));
 			$criteria->add(new Criteria('gperm_name', 'module_read'));
@@ -122,7 +122,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
 				}
 			}
 			//admin perm
-			$criteria =& new CriteriaCompo();
+			$criteria =new CriteriaCompo();
 			$criteria->add(new Criteria('gperm_modid', 1));
 			$criteria->add(new Criteria('gperm_itemid', $this->mObject->get('mid')));
 			$criteria->add(new Criteria('gperm_name', 'module_admin'));
@@ -158,7 +158,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
 
 			//module_cache
 			$confighandler =& xoops_gethandler('config');
-			$criteria =& new CriteriaCompo();
+			$criteria =new CriteriaCompo();
 			$criteria->add(new Criteria('conf_name', 'module_cache'));
 			$criteria->add(new Criteria('conf_catid', XOOPS_CONF));			
 			$configObjects =& $confighandler->getConfigs($criteria);
@@ -197,7 +197,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
 		$groupArr =& $grouphandler->getObjects();
 		$render->setAttribute('groupArr', $groupArr);
 		
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('gperm_modid', 1));
 		$criteria->add(new Criteria('gperm_itemid', $this->mObject->get('mid')));
 		$criteria->add(new Criteria('gperm_name', 'module_read'));
@@ -208,7 +208,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
 		}
 		$render->setAttribute('readgroupidArr', $readgroupid);
 		
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('gperm_modid', 1));
 		$criteria->add(new Criteria('gperm_itemid', $this->mObject->get('mid')));
 		$criteria->add(new Criteria('gperm_name', 'module_admin'));

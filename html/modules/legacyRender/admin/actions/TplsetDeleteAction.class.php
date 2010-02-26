@@ -36,7 +36,7 @@ class LegacyRender_TplsetDeleteAction extends LegacyRender_AbstractDeleteAction
 	
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new LegacyRender_TplsetDeleteForm();
+		$this->mActionForm =new LegacyRender_TplsetDeleteForm();
 		$this->mActionForm->prepare();
 	}
 

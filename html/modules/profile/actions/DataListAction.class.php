@@ -25,7 +25,7 @@ class Profile_DataListAction extends Profile_AbstractListAction
 	 */
 	function &_getFilterForm()
 	{
-		// $filter =& new Profile_DataFilterForm();
+		// $filter =new Profile_DataFilterForm();
 		$filter =& $this->mAsset->create('filter', "data");
 		$filter->prepare($this->_getPageNavi(), $this->_getHandler());
 		return $filter;

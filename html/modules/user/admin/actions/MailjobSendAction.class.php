@@ -18,7 +18,7 @@ class User_MailjobSendAction extends User_Action
 		$this->mMailjob =& $handler->get($id);
 
 		if (is_object($this->mMailjob)) {
-			$this->mActionForm =& new User_MailjobAdminSendForm();
+			$this->mActionForm =new User_MailjobAdminSendForm();
 			$this->mActionForm->prepare();
 			$this->mActionForm->load($this->mMailjob);
 		}

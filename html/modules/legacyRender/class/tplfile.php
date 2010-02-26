@@ -46,7 +46,7 @@ class LegacyRenderTplfileObject extends XoopsSimpleObject
 	{
 		$this->loadSource();
 		
-		$obj =& new LegacyRenderTplfileObject();
+		$obj =new LegacyRenderTplfileObject();
 
 		$obj->set('tpl_refid', $this->get('tpl_refid'));
 		$obj->set('tpl_module', $this->get('tpl_module'));
@@ -79,7 +79,7 @@ class LegacyRenderTplfileObject extends XoopsSimpleObject
 		
 		$handler =& xoops_getmodulehandler('tplfile', 'legacyRender');
 		
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('tpl_tplset', $tplset));
 		$criteria->add(new Criteria('tpl_file', $this->get('tpl_file')));
 		
@@ -197,7 +197,7 @@ class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
 	 * @return array      array of the object.
 	 */
 	function &find($tplsetName, $type = null, $refId = null, $module = null, $file = null) {
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('tpl_tplset', $tplsetName));
 		if ($type != null) {
 			$criteria->add(new Criteria('tpl_type', $type));

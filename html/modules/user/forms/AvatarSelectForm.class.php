@@ -19,8 +19,8 @@ class User_AvatarSelectForm extends XCube_ActionForm
 
 	function prepare()
 	{
-		$this->mFormProperties['uid'] =& new XCube_IntProperty('uid');
-		$this->mFormProperties['avatar_id'] =& new XCube_IntArrayProperty('avatar_id');
+		$this->mFormProperties['uid'] =new XCube_IntProperty('uid');
+		$this->mFormProperties['avatar_id'] =new XCube_IntArrayProperty('avatar_id');
 	}
 	
 	function validateAvatar_id()

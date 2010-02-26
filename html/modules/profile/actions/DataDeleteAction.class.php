@@ -33,7 +33,7 @@ class Profile_DataDeleteAction extends Profile_AbstractDeleteAction
 	 */
 	function _setupActionForm()
 	{
-		// $this->mActionForm =& new Profile_DataDeleteForm();
+		// $this->mActionForm =new Profile_DataDeleteForm();
 		$this->mActionForm =& $this->mAsset->create('form', "delete_data");
 		$this->mActionForm->prepare();
 	}

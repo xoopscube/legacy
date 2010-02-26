@@ -46,7 +46,7 @@ class FileManager_AddFolderAction extends FileManager_AbstractEditAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new FileManager_AddFolderAdminForm();
+		$this->mActionForm =new FileManager_AddFolderAdminForm();
 		$this->mActionForm->prepare();
 	}
 

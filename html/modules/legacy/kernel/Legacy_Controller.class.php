@@ -107,27 +107,27 @@ class Legacy_Controller extends XCube_Controller
         //
         $this->mSetupUser->register("Legacy_Controller.SetupUser");
         
-        $this->mCheckLogin =& new XCube_Delegate();
+        $this->mCheckLogin =new XCube_Delegate();
         $this->mCheckLogin->register("Site.CheckLogin");
         
-        $this->mLogout =& new XCube_Delegate();
+        $this->mLogout =new XCube_Delegate();
         $this->mLogout->register("Site.Logout");
         
-        $this->mCreateLanguageManager =& new XCube_Delegate();
+        $this->mCreateLanguageManager = new XCube_Delegate();
         $this->mCreateLanguageManager->register("Legacy_Controller.CreateLanguageManager");
         
-        $this->mGetLanguageName =& new XCube_Delegate();
+        $this->mGetLanguageName = new XCube_Delegate();
         $this->mGetLanguageName->register("Legacy_Controller.GetLanguageName");
         
-        $this->mSetBlockCachePolicy =& new XCube_Delegate();
-        $this->mSetModuleCachePolicy =& new XCube_Delegate();
+        $this->mSetBlockCachePolicy = new XCube_Delegate();
+        $this->mSetModuleCachePolicy = new XCube_Delegate();
         
-        $this->mSetupDebugger =& new XCube_Delegate();
+        $this->mSetupDebugger = new XCube_Delegate();
         $this->mSetupDebugger->add('Legacy_DebuggerManager::createInstance');
 
         $this->mSetupTextFilter->add('Legacy_TextFilter::getInstance',XCUBE_DELEGATE_PRIORITY_FINAL-1);
 
-        $this->_mNotifyRedirectToUser =& new XCube_Delegate();
+        $this->_mNotifyRedirectToUser = new XCube_Delegate();
         
         set_magic_quotes_runtime(0);    // ^^;
     }
@@ -161,10 +161,10 @@ class Legacy_Controller extends XCube_Controller
 
         if ($adminStateFlag) {
             require_once XOOPS_ROOT_PATH . "/modules/legacy/kernel/Legacy_AdminControllerStrategy.class.php";
-            $this->_mStrategy =& new Legacy_AdminControllerStrategy($this);
+            $this->_mStrategy = new Legacy_AdminControllerStrategy($this);
         }
         else {
-            $this->_mStrategy =& new Legacy_PublicControllerStrategy($this);
+            $this->_mStrategy = new Legacy_PublicControllerStrategy($this);
         }
     }
     
@@ -265,7 +265,7 @@ class Legacy_Controller extends XCube_Controller
         require_once XOOPS_ROOT_PATH.'/core/XCube_Utils.class.php'; // ToDo
 
         require_once XOOPS_ROOT_PATH.'/class/xoopssecurity.php';
-        $GLOBALS['xoopsSecurity'] =& new XoopsSecurity();
+        $GLOBALS['xoopsSecurity'] = new XoopsSecurity();
     }
 
     /**
@@ -371,7 +371,7 @@ class Legacy_Controller extends XCube_Controller
                     //
                     // Dummy save
                     //
-                    $renderBuffer =& new XCube_RenderTarget();
+                    $renderBuffer = new XCube_RenderTarget();
                 }
                 
                 if ($this->isEnableCacheFeature() && $blockProcedure->isEnableCache() && is_object($cacheInfo) && $cacheInfo->isEnableCache()) {
@@ -566,7 +566,7 @@ class Legacy_Controller extends XCube_Controller
         
         if ($language == null) {
             $handler =& xoops_gethandler('config');
-            $criteria =& new CriteriaCompo(new Criteria('conf_modid', 0));
+            $criteria = new CriteriaCompo(new Criteria('conf_modid', 0));
             $criteria->add(new Criteria('conf_catid', XOOPS_CONF));
             $criteria->add(new Criteria('conf_name', 'language'));
             $configs =& $handler->getConfigs($criteria);
@@ -619,7 +619,7 @@ class Legacy_Controller extends XCube_Controller
             // try creating a instance again.
             //
             if (XC_CLASS_EXISTS($className)) {
-                $languageManager =& new $className();
+                $languageManager = new $className();
             }
             else {
                 $filePath = XOOPS_ROOT_PATH . "/language/" . $language . "/LanguageManager.class.php";
@@ -628,13 +628,13 @@ class Legacy_Controller extends XCube_Controller
                 }
                 
                 if (XC_CLASS_EXISTS($className)) {
-                    $languageManager =& new $className();
+                    $languageManager = new $className();
                 }
                 else {
                     //
                     // Default
                     //
-                    $languageManager =& new Legacy_LanguageManager();
+                    $languageManager = new Legacy_LanguageManager();
                 }
             }
         }
@@ -703,7 +703,7 @@ class Legacy_Controller extends XCube_Controller
         //
         if ($this->mRoot->getSiteConfig('Legacy', 'AutoPreload') == 1) {
             $moduleHandler =& xoops_gethandler('module');
-            $criteria =& new Criteria('isactive', 1);
+            $criteria = new Criteria('isactive', 1);
             $moduleObjects =& $moduleHandler->getObjects($criteria);
             foreach ($moduleObjects as $moduleObject) {
                 $mod_dir = $moduleObject->getVar('dirname');
@@ -718,7 +718,7 @@ class Legacy_Controller extends XCube_Controller
                         
                                 if (XC_CLASS_EXISTS($className) && !isset($this->_mLoadedFilterNames[$className])) {
                                     $this->_mLoadedFilterNames[$className] = true;
-                                    $instance =& new $className($this);
+                                    $instance = new $className($this);
                                     $this->addActionFilter($instance);
                                 }
                             }
@@ -912,7 +912,7 @@ class Legacy_Controller extends XCube_Controller
         $serviceManager =& parent::_createServiceManager();
         
         require_once XOOPS_ROOT_PATH . "/modules/legacy/service/LegacySearchService.class.php";
-        $searchService =& new Legacy_SearchService();
+        $searchService = new Legacy_SearchService();
         $searchService->prepare();
         
         $serviceManager->addService('LegacySearch', $searchService);
@@ -1252,8 +1252,8 @@ class Legacy_Controller extends XCube_Controller
     {
         require_once XOOPS_ROOT_PATH . "/modules/legacy/kernel/Legacy_HttpContext.class.php";
         
-        $context =& new Legacy_HttpContext();
-        $request =& new XCube_HttpRequest();
+        $context = new Legacy_HttpContext();
+        $request = new XCube_HttpRequest();
         $context->setRequest($request);
         
         return $context;
@@ -1315,7 +1315,7 @@ class Legacy_AbstractControllerStrategy
                 require_once XOOPS_ROOT_PATH . $classPath;
                 if (XC_CLASS_EXISTS($className) && !isset($this->_mLoadedFilterNames[$className])) {
                     $this->_mLoadedFilterNames[$className] = true;
-                    $filter =& new $className($this->mController);
+                    $filter = new $className($this->mController);
                     $this->mController->addActionFilter($filter);
                     unset($filter);
                 }

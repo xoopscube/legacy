@@ -41,7 +41,7 @@ class Legacy_ThemeListAction extends Legacy_Action
 		
 		$handler =& xoops_gethandler('config');
 		
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('conf_name', 'theme_set'));
 		$criteria->add(new Criteria('conf_catid', XOOPS_CONF));
 		
@@ -57,7 +57,7 @@ class Legacy_ThemeListAction extends Legacy_Action
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_ThemeSelectForm();
+		$this->mActionForm =new Legacy_ThemeSelectForm();
 		$this->mActionForm->prepare();
 	}
 	
@@ -65,7 +65,7 @@ class Legacy_ThemeListAction extends Legacy_Action
 	{
 		$configHandler =& xoops_gethandler('config');
 
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('conf_name', 'theme_set_allowed'));
 		$criteria->add(new Criteria('conf_catid', XOOPS_CONF));
 		
@@ -91,7 +91,7 @@ class Legacy_ThemeListAction extends Legacy_Action
 		//
 		$configHandler =& xoops_gethandler('config');
 
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('conf_name', 'theme_set_allowed'));
 		$criteria->add(new Criteria('conf_catid', XOOPS_CONF));
 		
@@ -108,7 +108,7 @@ class Legacy_ThemeListAction extends Legacy_Action
 		$themeName = $this->mActionForm->getChooseTheme();
 		
 		if ($themeName != null) {
-			$criteria =& new CriteriaCompo();
+			$criteria =new CriteriaCompo();
 			$criteria->add(new Criteria('conf_name', 'theme_set'));
 			$criteria->add(new Criteria('conf_catid', XOOPS_CONF));
 			

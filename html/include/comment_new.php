@@ -110,10 +110,10 @@ else {
 // Create action form instance and load from a comment object.
 //
 if (is_object($xoopsUser) && $xoopsUser->isAdmin()) {
-	$actionForm =& new Legacy_CommentEditForm_Admin();
+	$actionForm =new Legacy_CommentEditForm_Admin();
 }
 else {
-	$actionForm =& new Legacy_CommentEditForm();
+	$actionForm =new Legacy_CommentEditForm();
 }
 $actionForm->prepare();
 $actionForm->load($comment);

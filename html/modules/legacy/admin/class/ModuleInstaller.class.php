@@ -36,7 +36,7 @@ class Legacy_ModuleInstaller
 	
 	function Legacy_ModuleInstaller()
 	{
-		$this->mLog =& new Legacy_ModuleInstallLog();
+		$this->mLog =new Legacy_ModuleInstallLog();
 	}
 
 	/**

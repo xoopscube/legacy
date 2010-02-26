@@ -96,7 +96,7 @@ class Legacy_ModulePhasedUpgrader
 	
 	function Legacy_ModulePhasedUpgrader()
 	{
-		$this->mLog =& new Legacy_ModuleInstallLog();
+		$this->mLog =new Legacy_ModuleInstallLog();
 	}
 	
 	/**

@@ -55,7 +55,7 @@ class Legacy_ModuleListFilterForm extends Legacy_AbstractFilterForm
 
 	function Legacy_ModuleListFilterForm()
 	{
-		$this->_mCriteria =& new CriteriaCompo();
+		$this->_mCriteria =new CriteriaCompo();
 	}
 	
 	function getDefaultSortKey()

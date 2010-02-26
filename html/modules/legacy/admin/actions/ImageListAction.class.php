@@ -23,7 +23,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 
 	function prepare(&$controller, &$xoopsUser)
 	{
-		$this->mActionForm =& new Legacy_ImageListForm();
+		$this->mActionForm =new Legacy_ImageListForm();
 		$this->mActionForm->prepare();
 	}
 
@@ -35,7 +35,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 
 	function &_getPageNavi()
 	{
-		$navi =& new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
+		$navi =new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
 
 		$root =& XCube_Root::getSingleton();
 		$perpage = $root->mContext->mRequest->getRequest($navi->mPrefix.'perpage');
@@ -47,7 +47,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 
 	function &_getFilterForm()
 	{
-		$filter =& new Legacy_ImageFilterForm($this->_getPageNavi(), $this->_getHandler());
+		$filter =new Legacy_ImageFilterForm($this->_getPageNavi(), $this->_getHandler());
 		return $filter;
 	}
 
@@ -91,7 +91,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 		$image_handler =& $this->_getHandler();
 		$imgcat_id = $controller->mRoot->mContext->mRequest->getRequest('imgcat_id');
 		$cat_id = isset($imgcat_id) ? intval($imgcat_id) : 0;
-		$total_criteria =& new CriteriaCompo(new Criteria('imgcat_id', $cat_id));
+		$total_criteria =new CriteriaCompo(new Criteria('imgcat_id', $cat_id));
 		$image_total = $image_handler->getCount($total_criteria);
 		$total_criteria->add(new Criteria('image_display', 1));
 		$display_image_total = $image_handler->getCount($total_criteria);

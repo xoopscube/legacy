@@ -28,12 +28,12 @@ class Legacy_ImagecategoryAdminNewForm extends Legacy_ImagecategoryAdminEditForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['imgcat_storetype'] =& new XCube_StringProperty('imgcat_storetype');
+		$this->mFormProperties['imgcat_storetype'] =new XCube_StringProperty('imgcat_storetype');
 	
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['imgcat_storetype'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['imgcat_storetype'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['imgcat_storetype']->setDependsByArray(array('required','mask'));
 		$this->mFieldProperties['imgcat_storetype']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_IMGCAT_STORETYPE);
 		$this->mFieldProperties['imgcat_storetype']->addMessage('mask', _MD_LEGACY_ERROR_MASK, _AD_LEGACY_LANG_IMGCAT_STORETYPE);

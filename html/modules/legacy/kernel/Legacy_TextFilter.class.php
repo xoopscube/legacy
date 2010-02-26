@@ -66,40 +66,40 @@ class Legacy_TextFilter extends XCube_TextFilter
     var $mSmileys = array();
     var $mSmileysConvTable = array();
 
-	/**
-	 * @public
-	 * @brief Constructor
-	 * @todo
-	 *    This method keeps a deprecated delegate.
-	 */
+    /**
+     * @public
+     * @brief Constructor
+     * @todo
+     *    This method keeps a deprecated delegate.
+     */
     function Legacy_TextFilter()
-	{
-        $this->mMakeClickableConvertTable =& new XCube_Delegate;
+    {
+        $this->mMakeClickableConvertTable = new XCube_Delegate;
         $this->mMakeClickableConvertTable->register('Legacy_TextFilter.MakeClickableConvertTable');
         $this->mMakeClickableConvertTable->add('Legacy_TextFilter::makeClickableConvertTable', XCUBE_DELEGATE_PRIORITY_2);
 
-        $this->mMakeXCodeConvertTable =& new XCube_Delegate;
+        $this->mMakeXCodeConvertTable = new XCube_Delegate;
         $this->mMakeXCodeConvertTable->register('Legacy_TextFilter.MakeXCodeConvertTable');
         $this->mMakeXCodeConvertTable->add('Legacy_TextFilter::makeXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_2);
 
-        $this->mMakeXCodeCheckImgPatterns =& new XCube_Delegate;
+        $this->mMakeXCodeCheckImgPatterns = new XCube_Delegate;
         $this->mMakeXCodeCheckImgPatterns->register('Legacy_TextFilter.MakeXCodeCheckImgPatterns');
         $this->mMakeXCodeCheckImgPatterns->add('Legacy_TextFilter::makeXCodeCheckImgPatterns', XCUBE_DELEGATE_PRIORITY_2);
 
-        $this->mMakePreXCodeConvertTable =& new XCube_Delegate;
+        $this->mMakePreXCodeConvertTable = new XCube_Delegate;
         $this->mMakePreXCodeConvertTable->register('Legacy_TextFilter.MakePreXCodeConvertTable');
         $this->mMakePreXCodeConvertTable->add('Legacy_TextFilter::makePreXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_2);
 
-        $this->mMakePostXCodeConvertTable =& new XCube_Delegate;
+        $this->mMakePostXCodeConvertTable = new XCube_Delegate;
         $this->mMakePostXCodeConvertTable->register('Legacy_TextFilter.MakePostXCodeConvertTable');
         $this->mMakePostXCodeConvertTable->add('Legacy_TextFilter::makePostXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_2);
 
         //@deprecated
         //Todo: For keeping compatible with XC2.1 Beta3
-        $this->mMakeClickablePre =& new XCube_Delegate();
+        $this->mMakeClickablePre = new XCube_Delegate();
         $this->mMakeClickablePre->register('MyTextSanitizer.MakeClickablePre');
 
-        $this->mXCodePre =& new XCube_Delegate();
+        $this->mXCodePre = new XCube_Delegate();
         $this->mXCodePre->register('MyTextSanitizer.XoopsCodePre');
     }
     

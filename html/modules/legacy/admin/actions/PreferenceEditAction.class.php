@@ -37,7 +37,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
 		if ($this->mPreparedFlag) {
 			$handler =& xoops_gethandler('config');
 			
-			$criteria =& new CriteriaCompo();
+			$criteria =new CriteriaCompo();
 			$criteria->add(new Criteria('conf_modid', $this->mActionForm->getModuleId()));
 			$criteria->add(new Criteria('conf_catid', $this->mActionForm->getCategoryId()));
 			
@@ -153,7 +153,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
 		//
 		if (in_array('startpage', $formtypeArr)||in_array('module_cache', $formtypeArr)) {
 			$handler =& xoops_gethandler('module');
-			$criteria =& new CriteriaCompo();
+			$criteria =new CriteriaCompo();
 			$criteria->add(new Criteria('hasmain', 1));
 			$criteria->add(new Criteria('isactive', 1));
 			$moduleArr = $handler->getObjects($criteria);
@@ -247,7 +247,7 @@ class Legacy_PreferenceEditState extends Legacy_AbstractPreferenceEditState
 			return;
 		}
 
-		$this->_mMaster->mActionForm =& new Legacy_PreferenceEditForm($this->_mMaster->mCategory);
+		$this->_mMaster->mActionForm =new Legacy_PreferenceEditForm($this->_mMaster->mCategory);
 		
 		$this->_mMaster->mPreparedFlag = true;
 	}
@@ -327,7 +327,7 @@ class Legacy_ModulePreferenceEditState extends Legacy_AbstractPreferenceEditStat
 			$controller->executeForward(XOOPS_URL . '/admin.php');
 		}
 
-		$this->_mMaster->mActionForm =& new Legacy_ModulePreferenceEditForm($this->_mMaster->mModule);
+		$this->_mMaster->mActionForm =new Legacy_ModulePreferenceEditForm($this->_mMaster->mModule);
 		
 		//
 		// Load constants

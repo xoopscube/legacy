@@ -34,31 +34,31 @@ class Profile_DataEditForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['uid'] =& new XCube_IntProperty('uid');
+		$this->mFormProperties['uid'] =new XCube_IntProperty('uid');
 		foreach(array_keys($this->mDef) as $key){
 			switch($this->mDef[$key]->get('type')){
 				case 'string':
-					$this->mFormProperties[$this->mDef[$key]->get('field_name')] =& new XCube_StringProperty($this->mDef[$key]->get('field_name'));
+					$this->mFormProperties[$this->mDef[$key]->get('field_name')] =new XCube_StringProperty($this->mDef[$key]->get('field_name'));
 					break;
 				case 'text':
-					$this->mFormProperties[$this->mDef[$key]->get('field_name')] =& new XCube_TextProperty($this->mDef[$key]->get('field_name'));
+					$this->mFormProperties[$this->mDef[$key]->get('field_name')] =new XCube_TextProperty($this->mDef[$key]->get('field_name'));
 					break;
 				case 'int':
-					$this->mFormProperties[$this->mDef[$key]->get('field_name')] =& new XCube_IntProperty($this->mDef[$key]->get('field_name'));
+					$this->mFormProperties[$this->mDef[$key]->get('field_name')] =new XCube_IntProperty($this->mDef[$key]->get('field_name'));
 					break;
 				case 'date':
-					$this->mFormProperties[$this->mDef[$key]->get('field_name')] =& new XCube_IntProperty($this->mDef[$key]->get('field_name'));
+					$this->mFormProperties[$this->mDef[$key]->get('field_name')] =new XCube_IntProperty($this->mDef[$key]->get('field_name'));
 					break;
 				case 'checkbox':
-					$this->mFormProperties[$this->mDef[$key]->get('field_name')] =& new XCube_BoolProperty($this->mDef[$key]->get('field_name'));
+					$this->mFormProperties[$this->mDef[$key]->get('field_name')] =new XCube_BoolProperty($this->mDef[$key]->get('field_name'));
 					break;
 				case 'selectbox':
-					$this->mFormProperties[$this->mDef[$key]->get('field_name')] =& new XCube_StringProperty($this->mDef[$key]->get('field_name'));
+					$this->mFormProperties[$this->mDef[$key]->get('field_name')] =new XCube_StringProperty($this->mDef[$key]->get('field_name'));
 					break;
 			}
 			//validation checks
 			$validationArr = array();
-			$this->mFieldProperties[$this->mDef[$key]->get('field_name')] =& new XCube_FieldProperty($this);
+			$this->mFieldProperties[$this->mDef[$key]->get('field_name')] =new XCube_FieldProperty($this);
 			//required check
 			if($this->mDef[$key]->get('required')==1){
 				$validationArr[] = 'required';
@@ -77,7 +77,7 @@ class Profile_DataEditForm extends XCube_ActionForm
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['uid'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['uid'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['uid']->setDependsByArray(array('required'));
 		$this->mFieldProperties['uid']->addMessage('required', _MD_PROFILE_ERROR_REQUIRED, _MD_PROFILE_LANG_UID);
 	}

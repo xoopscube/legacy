@@ -28,7 +28,7 @@ class LegacyRender_TplfileDeleteAction extends LegacyRender_AbstractDeleteAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new LegacyRender_TplfileAdminDeleteForm();
+		$this->mActionForm =new LegacyRender_TplfileAdminDeleteForm();
 		$this->mActionForm->prepare();
 	}
 
@@ -44,7 +44,7 @@ class LegacyRender_TplfileDeleteAction extends LegacyRender_AbstractDeleteAction
 	{
 		require_once XOOPS_ROOT_PATH . "/class/template.php";
 		
-		$xoopsTpl =& new XoopsTpl();
+		$xoopsTpl =new XoopsTpl();
 		$xoopsTpl->clear_cache('db:' . $this->mObject->get('tpl_file'));
 		$xoopsTpl->clear_compiled_tpl('db:' . $this->mObject->get('tpl_file'));
 		

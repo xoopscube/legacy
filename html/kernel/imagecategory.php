@@ -76,7 +76,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
 
     function &create($isNew = true)
     {
-        $imgcat =& new XoopsImagecategory();
+        $imgcat =new XoopsImagecategory();
         if ($isNew) {
             $imgcat->setNew();
         }
@@ -91,7 +91,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $imgcat =& new XoopsImagecategory();
+                        $imgcat =new XoopsImagecategory();
                     $imgcat->assignVars($this->db->fetchArray($result));
                         $ret =& $imgcat;
                 }
@@ -159,7 +159,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
-            $imgcat =& new XoopsImagecategory();
+            $imgcat =new XoopsImagecategory();
             $imgcat->assignVars($myrow);
             if (!$id_as_key) {
                 $ret[] =& $imgcat;

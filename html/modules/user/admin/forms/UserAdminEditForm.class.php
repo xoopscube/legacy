@@ -28,147 +28,147 @@ class User_UserAdminEditForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['uid'] =& new XCube_IntProperty('uid');
-		$this->mFormProperties['name'] =& new XCube_StringProperty('name');
-		$this->mFormProperties['uname'] =& new XCube_StringProperty('uname');
-		$this->mFormProperties['email'] =& new XCube_StringProperty('email');
-		$this->mFormProperties['url'] =& new XCube_StringProperty('url');
-		$this->mFormProperties['user_icq'] =& new XCube_StringProperty('user_icq');
-		$this->mFormProperties['user_from'] =& new XCube_StringProperty('user_from');
-		$this->mFormProperties['user_sig'] =& new XCube_TextProperty('user_sig');
-		$this->mFormProperties['user_viewemail'] =& new XCube_IntProperty('user_viewemail');
-		$this->mFormProperties['user_aim'] =& new XCube_StringProperty('user_aim');
-		$this->mFormProperties['user_yim'] =& new XCube_StringProperty('user_yim');
-		$this->mFormProperties['user_msnm'] =& new XCube_StringProperty('user_msnm');
-		$this->mFormProperties['pass'] =& new XCube_StringProperty('pass');
-		$this->mFormProperties['vpass'] =& new XCube_StringProperty('vpass');
-		$this->mFormProperties['posts'] =& new XCube_IntProperty('posts');
-		$this->mFormProperties['attachsig'] =& new XCube_IntProperty('attachsig');
-		$this->mFormProperties['rank'] =& new XCube_IntProperty('rank');
-		$this->mFormProperties['level'] =& new XCube_IntProperty('level');
-		$this->mFormProperties['timezone_offset'] =& new XCube_FloatProperty('timezone_offset');
-		$this->mFormProperties['umode'] =& new XCube_StringProperty('umode');
-		$this->mFormProperties['uorder'] =& new XCube_IntProperty('uorder');
-		$this->mFormProperties['notify_method'] =& new XCube_IntProperty('notify_method');
-		$this->mFormProperties['notify_mode'] =& new XCube_IntProperty('notify_mode');
-		$this->mFormProperties['user_occ'] =& new XCube_StringProperty('user_occ');
-		$this->mFormProperties['bio'] =& new XCube_TextProperty('bio');
-		$this->mFormProperties['user_intrest'] =& new XCube_StringProperty('user_intrest');
-		$this->mFormProperties['user_mailok'] =& new XCube_IntProperty('user_mailok');
-		$this->mFormProperties['groups'] =& new XCube_IntArrayProperty('groups');
+		$this->mFormProperties['uid'] =new XCube_IntProperty('uid');
+		$this->mFormProperties['name'] =new XCube_StringProperty('name');
+		$this->mFormProperties['uname'] =new XCube_StringProperty('uname');
+		$this->mFormProperties['email'] =new XCube_StringProperty('email');
+		$this->mFormProperties['url'] =new XCube_StringProperty('url');
+		$this->mFormProperties['user_icq'] =new XCube_StringProperty('user_icq');
+		$this->mFormProperties['user_from'] =new XCube_StringProperty('user_from');
+		$this->mFormProperties['user_sig'] =new XCube_TextProperty('user_sig');
+		$this->mFormProperties['user_viewemail'] =new XCube_IntProperty('user_viewemail');
+		$this->mFormProperties['user_aim'] =new XCube_StringProperty('user_aim');
+		$this->mFormProperties['user_yim'] =new XCube_StringProperty('user_yim');
+		$this->mFormProperties['user_msnm'] =new XCube_StringProperty('user_msnm');
+		$this->mFormProperties['pass'] =new XCube_StringProperty('pass');
+		$this->mFormProperties['vpass'] =new XCube_StringProperty('vpass');
+		$this->mFormProperties['posts'] =new XCube_IntProperty('posts');
+		$this->mFormProperties['attachsig'] =new XCube_IntProperty('attachsig');
+		$this->mFormProperties['rank'] =new XCube_IntProperty('rank');
+		$this->mFormProperties['level'] =new XCube_IntProperty('level');
+		$this->mFormProperties['timezone_offset'] =new XCube_FloatProperty('timezone_offset');
+		$this->mFormProperties['umode'] =new XCube_StringProperty('umode');
+		$this->mFormProperties['uorder'] =new XCube_IntProperty('uorder');
+		$this->mFormProperties['notify_method'] =new XCube_IntProperty('notify_method');
+		$this->mFormProperties['notify_mode'] =new XCube_IntProperty('notify_mode');
+		$this->mFormProperties['user_occ'] =new XCube_StringProperty('user_occ');
+		$this->mFormProperties['bio'] =new XCube_TextProperty('bio');
+		$this->mFormProperties['user_intrest'] =new XCube_StringProperty('user_intrest');
+		$this->mFormProperties['user_mailok'] =new XCube_IntProperty('user_mailok');
+		$this->mFormProperties['groups'] =new XCube_IntArrayProperty('groups');
 
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['uid'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['uid'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['uid']->setDependsByArray(array('required'));
 		$this->mFieldProperties['uid']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_UID);
 
-		$this->mFieldProperties['name'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['name'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['name']->setDependsByArray(array('maxlength'));
 		$this->mFieldProperties['name']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_NAME, '60');
 		$this->mFieldProperties['name']->addVar('maxlength', 60);
 
-		$this->mFieldProperties['uname'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['uname'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['uname']->setDependsByArray(array('required','maxlength'));
 		$this->mFieldProperties['uname']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_UNAME, '25');
 		$this->mFieldProperties['uname']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_UNAME, '25');
 		$this->mFieldProperties['uname']->addVar('maxlength', 25);
 
-		$this->mFieldProperties['email'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['email'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['email']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_EMAIL, '60');
 		$this->mFieldProperties['email']->setDependsByArray(array('required', 'maxlength', 'email'));
 		$this->mFieldProperties['email']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_EMAIL, '60');
 		$this->mFieldProperties['email']->addVar('maxlength', 60);
 		$this->mFieldProperties['email']->addMessage('email', _MD_USER_ERROR_EMAIL, _MD_USER_LANG_EMAIL);
 
-		$this->mFieldProperties['url'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['url'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['url']->setDependsByArray(array('maxlength'));
 		$this->mFieldProperties['url']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_URL, '100');
 		$this->mFieldProperties['url']->addVar('maxlength', 100);
 
-		$this->mFieldProperties['user_icq'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['user_icq'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['user_icq']->setDependsByArray(array('maxlength'));
 		$this->mFieldProperties['user_icq']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_USER_ICQ, '15');
 		$this->mFieldProperties['user_icq']->addVar('maxlength', 15);
 
-		$this->mFieldProperties['user_from'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['user_from'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['user_from']->setDependsByArray(array('maxlength'));
 		$this->mFieldProperties['user_from']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_USER_FROM, '100');
 		$this->mFieldProperties['user_from']->addVar('maxlength', 100);
 
-		$this->mFieldProperties['user_aim'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['user_aim'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['user_aim']->setDependsByArray(array('maxlength'));
 		$this->mFieldProperties['user_aim']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_USER_AIM, '18');
 		$this->mFieldProperties['user_aim']->addVar('maxlength', 18);
 
-		$this->mFieldProperties['user_yim'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['user_yim'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['user_yim']->setDependsByArray(array('maxlength'));
 		$this->mFieldProperties['user_yim']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_USER_YIM, '25');
 		$this->mFieldProperties['user_yim']->addVar('maxlength', 25);
 
-		$this->mFieldProperties['user_msnm'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['user_msnm'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['user_msnm']->setDependsByArray(array('maxlength'));
 		$this->mFieldProperties['user_msnm']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_USER_MSNM, '100');
 		$this->mFieldProperties['user_msnm']->addVar('maxlength', 100);
 
-		$this->mFieldProperties['pass'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['pass'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['pass']->setDependsByArray(array('maxlength'));
 		$this->mFieldProperties['pass']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_PASS, '32');
 		$this->mFieldProperties['pass']->addVar('maxlength', 32);
 
-		$this->mFieldProperties['vpass'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['vpass'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['vpass']->setDependsByArray(array('maxlength'));
 		$this->mFieldProperties['vpass']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_PASS, '32');
 		$this->mFieldProperties['vpass']->addVar('maxlength', 32);
 
-		$this->mFieldProperties['posts'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['posts'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['posts']->setDependsByArray(array('required'));
 		$this->mFieldProperties['posts']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_POSTS);
 
-		$this->mFieldProperties['rank'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['rank'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['rank']->setDependsByArray(array('required'));
 		$this->mFieldProperties['rank']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_RANK);
 
-		$this->mFieldProperties['level'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['level'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['level']->setDependsByArray(array('required'));
 		$this->mFieldProperties['level']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_LEVEL);
 
-		$this->mFieldProperties['timezone_offset'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['timezone_offset'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['timezone_offset']->setDependsByArray(array('required'));
 		$this->mFieldProperties['timezone_offset']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_TIMEZONE_OFFSET);
 
-		$this->mFieldProperties['umode'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['umode'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['umode']->setDependsByArray(array('required'));
 		$this->mFieldProperties['umode']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_UMODE);
 
-		$this->mFieldProperties['uorder'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['uorder'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['uorder']->setDependsByArray(array('required','intRange'));
 		$this->mFieldProperties['uorder']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_UORDER);
 		$this->mFieldProperties['uorder']->addMessage('intRange', _MD_USER_ERROR_INJURY, _MD_USER_LANG_UORDER);
 		$this->mFieldProperties['uorder']->addVar('min', 0);
 		$this->mFieldProperties['uorder']->addVar('max', 1);
 
-		$this->mFieldProperties['notify_method'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['notify_method'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['notify_method']->setDependsByArray(array('required','intRange'));
 		$this->mFieldProperties['notify_method']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_NOTIFY_METHOD);
 		$this->mFieldProperties['notify_method']->addMessage('intRange', _MD_USER_ERROR_INJURY, _MD_USER_LANG_NOTIFY_METHOD);
 		$this->mFieldProperties['notify_method']->addVar('min', 0);
 		$this->mFieldProperties['notify_method']->addVar('max', 2);
 
-		$this->mFieldProperties['notify_mode'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['notify_mode'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['notify_mode']->setDependsByArray(array('required','intRange'));
 		$this->mFieldProperties['notify_mode']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_NOTIFY_MODE);
 		$this->mFieldProperties['notify_mode']->addMessage('intRange', _MD_USER_ERROR_INJURY, _MD_USER_LANG_NOTIFY_MODE);
 		$this->mFieldProperties['notify_mode']->addVar('min', 0);
 		$this->mFieldProperties['notify_mode']->addVar('max', 2);
 
-		$this->mFieldProperties['user_occ'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['user_occ'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['user_occ']->setDependsByArray(array('maxlength'));
 		$this->mFieldProperties['user_occ']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_USER_OCC, '100');
 		$this->mFieldProperties['user_occ']->addVar('maxlength', 100);
 
-		$this->mFieldProperties['user_intrest'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['user_intrest'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['user_intrest']->setDependsByArray(array('maxlength'));
 		$this->mFieldProperties['user_intrest']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_USER_INTREST, '150');
 		$this->mFieldProperties['user_intrest']->addVar('maxlength', 150);
@@ -178,7 +178,7 @@ class User_UserAdminEditForm extends XCube_ActionForm
 	{
 		if ($this->get('uname') != null) {
 			$handler =& xoops_gethandler('user');
-			$criteria =& new CriteriaCompo(new Criteria('uname', $this->get('uname')));
+			$criteria =new CriteriaCompo(new Criteria('uname', $this->get('uname')));
 			if ($this->get('uid')) {
 				$criteria->add(new Criteria('uid', $this->get('uid'), '<>'));
 			}
@@ -195,7 +195,7 @@ class User_UserAdminEditForm extends XCube_ActionForm
 			// email unique check
 			//
 			$userHandler=&xoops_gethandler('user');
-			$criteria =& new CriteriaCompo(new Criteria('email', $this->get('email')));
+			$criteria =new CriteriaCompo(new Criteria('email', $this->get('email')));
 			if ($this->get('uid') > 0) {
 				$criteria->add(new Criteria('uid', $this->get('uid'), '<>'));
 			}

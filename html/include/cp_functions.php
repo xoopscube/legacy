@@ -36,7 +36,7 @@ function xoops_cp_header()
 	$root=&XCube_Root::getSingleton();
 	require_once XOOPS_ROOT_PATH . "/modules/legacy/kernel/Legacy_AdminControllerStrategy.class.php";
 	
-	$strategy =& new Legacy_AdminControllerStrategy($root->mController);
+	$strategy =new Legacy_AdminControllerStrategy($root->mController);
 	
 	$root->mController->setStrategy($strategy);
 	$root->mController->setupModuleContext();

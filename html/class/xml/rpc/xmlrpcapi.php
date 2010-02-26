@@ -158,7 +158,7 @@ class XoopsXmlRpcApi
     {
         if (strtolower(get_class($this)) != 'xoopsapi') {
             require_once(XOOPS_ROOT_PATH.'/class/xml/rpc/xoopsapi.php');
-            $instance =& new XoopsApi($params, $this->response, $this->module); 
+            $instance =new XoopsApi($params, $this->response, $this->module); 
             return $instance;
         } else {
             return $this;

@@ -21,7 +21,7 @@ class LegacyRender_TplsetCloneAction extends LegacyRender_TplsetEditAction
 	
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new LegacyRender_TplsetCloneForm();
+		$this->mActionForm =new LegacyRender_TplsetCloneForm();
 		$this->mActionForm->prepare();
 	}
 

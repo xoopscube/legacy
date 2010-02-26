@@ -363,7 +363,7 @@ class Lecat_Module extends Legacy_ModuleAdapter
             . ucfirst($this->mActionName) . 'Action';
         if(class_exists($className))
         {
-            $this->mAction =& new $className();
+            $this->mAction =new $className();
         }
         if(!$this->mAction instanceof Lecat_AbstractAction)
         {

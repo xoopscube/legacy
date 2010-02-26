@@ -377,7 +377,7 @@ class XCube_Controller
 	{
 /*		foreach(array_keys($this->mBlockChain) as $key) {
 			if ($this->mBlockChain[$key]->hasPermission($this, $this->getUser())) {
-				$renderTarget =& new XCube_RenderTarget();
+				$renderTarget =new XCube_RenderTarget();
 				$renderTarget->setType(XCUBE_RENDER_TARGET_TYPE_MAIN);
 				
 				$this->mBlockChain[$key]->execute($this, $this->getUser(), $renderTarget);

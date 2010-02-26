@@ -14,7 +14,7 @@ class LegacyRender_TplsetListAction extends LegacyRender_AbstractListAction
 	function prepare(&$controller, &$xoopsUser, $moduleConfig)
 	{
 		LegacyRender_AbstractListAction::prepare($controller, $xoopsUser, $moduleConfig);
-		$this->mActionForm =& new LegacyRender_TplsetSelectForm();
+		$this->mActionForm =new LegacyRender_TplsetSelectForm();
 		$this->mActionForm->prepare();
 	}
 	
@@ -26,7 +26,7 @@ class LegacyRender_TplsetListAction extends LegacyRender_AbstractListAction
 
 	function &_getFilterForm()
 	{
-		$filter =& new LegacyRender_TplsetFilterForm($this->_getPageNavi(), $this->_getHandler());
+		$filter =new LegacyRender_TplsetFilterForm($this->_getPageNavi(), $this->_getHandler());
 		return $filter;
 	}
 	
@@ -42,7 +42,7 @@ class LegacyRender_TplsetListAction extends LegacyRender_AbstractListAction
 		if (!$this->mActionForm->hasError()) {
 			$configHandler =& xoops_gethandler('config');
 
-			$criteria =& new CriteriaCompo();
+			$criteria =new CriteriaCompo();
 			$criteria->add(new Criteria('conf_name', 'template_set'));
 			$criteria->add(new Criteria('conf_catid', XOOPS_CONF));
 			

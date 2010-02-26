@@ -47,12 +47,12 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
 	function _setupActionForm()
 	{
 		if ($this->mObject->get('com_status') == 1) {
-			$this->mActionForm =& new Legacy_PendingCommentAdminEditForm();
+			$this->mActionForm =new Legacy_PendingCommentAdminEditForm();
 			$this->mObjectHandler->mUpdateSuccess->add(array(&$this, "doApprove"));
 			$this->mObjectHandler->mUpdateSuccess->add(array(&$this, "doUpdate"));
 		}
 		else {
-			$this->mActionForm =& new Legacy_ApprovalCommentAdminEditForm();
+			$this->mActionForm =new Legacy_ApprovalCommentAdminEditForm();
 			$this->mObjectHandler->mUpdateSuccess->add(array(&$this, "doUpdate"));
 		}
 		$this->mActionForm->prepare();

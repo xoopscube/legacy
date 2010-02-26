@@ -81,10 +81,10 @@ class Legacy_Utils
         }
         
         if (XC_CLASS_EXISTS($className)) {
-            $instance =& new $className($module);
+            $instance = new $className($module);
         }
         else {
-            $instance =& new Legacy_ModuleAdapter($module);
+            $instance = new Legacy_ModuleAdapter($module);
         }
         
         return $instance;
@@ -118,22 +118,22 @@ class Legacy_Utils
             if (!XC_CLASS_EXISTS($className)) {
                 $filePath = XOOPS_ROOT_PATH . '/modules/' . $block->get('dirname') . '/blocks/' . $block->get('func_file');
                 if (!file_exists($filePath)) {
-                    $retBlock =& new Legacy_BlockProcedureAdapter($block);
+                    $retBlock = new Legacy_BlockProcedureAdapter($block);
                     return $retBlock;
                 }
                 
                 require_once $filePath;
                 
                 if (!XC_CLASS_EXISTS($className)) {
-                    $retBlock =& new Legacy_BlockProcedureAdapter($block);
+                    $retBlock = new Legacy_BlockProcedureAdapter($block);
                     return $retBlock;
                 }
             }
                 
-            $retBlock =& new $className($block);
+            $retBlock = new $className($block);
         }
         else {
-            $retBlock =& new Legacy_BlockProcedureAdapter($block);
+            $retBlock = new Legacy_BlockProcedureAdapter($block);
         }
         
         return $retBlock;

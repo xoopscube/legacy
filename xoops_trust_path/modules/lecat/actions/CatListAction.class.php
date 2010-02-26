@@ -39,7 +39,7 @@ class Lecat_CatListAction extends Lecat_AbstractListAction
     **/
     protected function &_getFilterForm()
     {
-        // $filter =& new Lecat_CatFilterForm();
+        // $filter =new Lecat_CatFilterForm();
         $filter =& $this->mAsset->getObject('filter', 'cat',false);
         $filter->prepare($this->_getPageNavi(), $this->_getHandler());
         return $filter;

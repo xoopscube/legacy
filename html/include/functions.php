@@ -32,8 +32,8 @@
  */
 function xoops_getrequest($name)
 {
-	$root =& XCube_Root::getSingleton();
-	return $root->mContext->mRequest->getRequest($name);
+    $root =& XCube_Root::getSingleton();
+    return $root->mContext->mRequest->getRequest($name);
 }
 
 /**
@@ -41,11 +41,11 @@ function xoops_getrequest($name)
  */
 function xoops_header($closehead = true)
 {
-	$root =& XCube_Root::getSingleton();
-	$renderSystem =& $root->getRenderSystem('Legacy_RenderSystem');
-	if ($renderSystem != null) {
-		$renderSystem->showXoopsHeader($closehead);
-	}
+    $root =& XCube_Root::getSingleton();
+    $renderSystem =& $root->getRenderSystem('Legacy_RenderSystem');
+    if ($renderSystem != null) {
+        $renderSystem->showXoopsHeader($closehead);
+    }
 }
 
 /**
@@ -53,30 +53,30 @@ function xoops_header($closehead = true)
  */
 function xoops_footer()
 {
-	$root =& XCube_Root::getSingleton();
-	$renderSystem =& $root->getRenderSystem('Legacy_RenderSystem');
-	if ($renderSystem != null) {
-		$renderSystem->showXoopsFooter();
-	}
+    $root =& XCube_Root::getSingleton();
+    $renderSystem =& $root->getRenderSystem('Legacy_RenderSystem');
+    if ($renderSystem != null) {
+        $renderSystem->showXoopsFooter();
+    }
 }
 
 function xoops_error($message, $title='', $style='errorMsg')
 {
-	$root =& XCube_Root::getSingleton();
-	$renderSystem =& $root->getRenderSystem($root->mContext->mBaseRenderSystemName);
+    $root =& XCube_Root::getSingleton();
+    $renderSystem =& $root->getRenderSystem($root->mContext->mBaseRenderSystemName);
 
-	$renderTarget =& $renderSystem->createRenderTarget('main');
-	
-	$renderTarget->setAttribute('legacy_module', 'legacy');
-	$renderTarget->setTemplateName("legacy_xoops_error.html");
-	
-	$renderTarget->setAttribute("style", $style);
-	$renderTarget->setAttribute("title", $title);
-	$renderTarget->setAttribute("message", $message);
+    $renderTarget =& $renderSystem->createRenderTarget('main');
+    
+    $renderTarget->setAttribute('legacy_module', 'legacy');
+    $renderTarget->setTemplateName("legacy_xoops_error.html");
+    
+    $renderTarget->setAttribute("style", $style);
+    $renderTarget->setAttribute("title", $title);
+    $renderTarget->setAttribute("message", $message);
 
-	$renderSystem->render($renderTarget);
-	
-	print $renderTarget->getResult();
+    $renderSystem->render($renderTarget);
+    
+    print $renderTarget->getResult();
 }
 
 /**
@@ -84,53 +84,53 @@ function xoops_error($message, $title='', $style='errorMsg')
  */
 function xoops_result($message, $title='')
 {
-	$root =& XCube_Root::getSingleton();
-	$renderSystem =& $root->getRenderSystem($root->mContext->mBaseRenderSystemName);
-	
-	$renderTarget =& $renderSystem->createRenderTarget('main');
-	
-	$renderTarget->setAttribute('legacy_module', 'legacy');
-	$renderTarget->setTemplateName("legacy_xoops_result.html");
-	
-	$renderTarget->setAttribute("title", $title);
-	$renderTarget->setAttribute("message", $message);
+    $root =& XCube_Root::getSingleton();
+    $renderSystem =& $root->getRenderSystem($root->mContext->mBaseRenderSystemName);
+    
+    $renderTarget =& $renderSystem->createRenderTarget('main');
+    
+    $renderTarget->setAttribute('legacy_module', 'legacy');
+    $renderTarget->setTemplateName("legacy_xoops_result.html");
+    
+    $renderTarget->setAttribute("title", $title);
+    $renderTarget->setAttribute("message", $message);
 
-	$renderSystem->render($renderTarget);
-	
-	print $renderTarget->getResult();
+    $renderSystem->render($renderTarget);
+    
+    print $renderTarget->getResult();
 }
 
 function xoops_confirm($hiddens, $action, $message, $submit = '', $addToken = true)
 {
-	//
-	// Create token.
-	//
-	$tokenHandler =& new XoopsMultiTokenHandler();
-	$token =& $tokenHandler->create(XOOPS_TOKEN_DEFAULT);
+    //
+    // Create token.
+    //
+    $tokenHandler = new XoopsMultiTokenHandler();
+    $token =& $tokenHandler->create(XOOPS_TOKEN_DEFAULT);
 
-	//
-	// Register to session. And, set it to own property.
-	//
-	$tokenHandler->register($token);
-	
-	$root =& XCube_Root::getSingleton();
-	$renderSystem =& $root->getRenderSystem($root->mContext->mBaseRenderSystemName);
-	
-	$renderTarget =& $renderSystem->createRenderTarget('main');
-	
-	$renderTarget->setAttribute('legacy_module', 'legacy');
-	$renderTarget->setTemplateName("legacy_xoops_confirm.html");
+    //
+    // Register to session. And, set it to own property.
+    //
+    $tokenHandler->register($token);
+    
+    $root =& XCube_Root::getSingleton();
+    $renderSystem =& $root->getRenderSystem($root->mContext->mBaseRenderSystemName);
+    
+    $renderTarget =& $renderSystem->createRenderTarget('main');
+    
+    $renderTarget->setAttribute('legacy_module', 'legacy');
+    $renderTarget->setTemplateName("legacy_xoops_confirm.html");
 
-	$renderTarget->setAttribute("action", $action);
-	$renderTarget->setAttribute("message", $message);
-	$renderTarget->setAttribute("hiddens", $hiddens);
-	$renderTarget->setAttribute("submit", $submit);
-	$renderTarget->setAttribute("tokenName", $token->getTokenName());
-	$renderTarget->setAttribute("tokenValue", $token->getTokenValue());
+    $renderTarget->setAttribute("action", $action);
+    $renderTarget->setAttribute("message", $message);
+    $renderTarget->setAttribute("hiddens", $hiddens);
+    $renderTarget->setAttribute("submit", $submit);
+    $renderTarget->setAttribute("tokenName", $token->getTokenName());
+    $renderTarget->setAttribute("tokenValue", $token->getTokenValue());
 
-	$renderSystem->render($renderTarget);
-	
-	print $renderTarget->getResult();
+    $renderSystem->render($renderTarget);
+    
+    print $renderTarget->getResult();
 }
 
 /**
@@ -487,9 +487,9 @@ function xoops_getenv($key)
     //if ($phpv[0] > 3 && $phpv[1] > 0) {
     //  $ret = isset($_SERVER[$key]) ? $_SERVER[$key] : $_ENV[$key];
     //} else {
-		if (isset($_SERVER[$key]) || isset($_ENV[$key])) {
+        if (isset($_SERVER[$key]) || isset($_ENV[$key])) {
             $ret = isset($_SERVER[$key]) ? $_SERVER[$key] : $_ENV[$key];
-		}
+        }
     //}
 
     switch($key) {
@@ -508,8 +508,8 @@ function xoops_getenv($key)
  */
 function getTheme()
 {
-	$root =& XCube_Root::getSingleton();
-	return $root->mContext->getXoopsConfig('theme_set');
+    $root =& XCube_Root::getSingleton();
+    return $root->mContext->getXoopsConfig('theme_set');
 }
 
 /*
@@ -550,17 +550,17 @@ function xoops_getcss($theme = '')
 function &getMailer()
 {
     global $xoopsConfig;
-	$ret = null;
+    $ret = null;
     require_once XOOPS_ROOT_PATH."/class/xoopsmailer.php";
     if ( file_exists(XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/xoopsmailerlocal.php") ) {
         require_once XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/xoopsmailerlocal.php";
         if ( XC_CLASS_EXISTS("XoopsMailerLocal") ) {
-            $ret =& new XoopsMailerLocal();
-			return $ret;
+            $ret = new XoopsMailerLocal();
+            return $ret;
         }
     }
-    $ret =& new XoopsMailer();
-	return $ret;
+    $ret = new XoopsMailer();
+    return $ret;
 }
 
 /**
@@ -572,16 +572,16 @@ function &xoops_gethandler($name, $optional = false )
     static $handlers;
     $name = strtolower(trim($name));
     if (!isset($handlers[$name])) {
-		//
-		// The following delegate is test at Alpha4-c.
-		//
-		$handler = null;
-		XCube_DelegateUtils::call('Legacy.Event.GetHandler', new XCube_Ref($handler), $name, $optional);
-		if (is_object($handler)) {
-			$handlers[$name] =& $handler;
-			return $handlers[$name];
-		}
-		
+        //
+        // The following delegate is test at Alpha4-c.
+        //
+        $handler = null;
+        XCube_DelegateUtils::call('Legacy.Event.GetHandler', new XCube_Ref($handler), $name, $optional);
+        if (is_object($handler)) {
+            $handlers[$name] =& $handler;
+            return $handlers[$name];
+        }
+        
         if ( file_exists( $hnd_file = XOOPS_ROOT_PATH.'/kernel/'.$name.'.php' ) ) {
             require_once $hnd_file;
         }
@@ -593,12 +593,12 @@ function &xoops_gethandler($name, $optional = false )
     if (!isset($handlers[$name]) && !$optional ) {
         trigger_error('Class <b>'.$class.'</b> does not exist<br />Handler Name: '.$name, E_USER_ERROR);
     }
-	
-	$falseRet = false;
-	
+    
+    $falseRet = false;
+    
     if (isset($handlers[$name]))
         return $handlers[$name];
-	else
+    else
         return $falseRet;
 }
 
@@ -618,31 +618,31 @@ function &xoops_getmodulehandler($name = null, $module_dir = null, $optional = f
     }
     $name = (!isset($name)) ? $module_dir : trim($name);
     if (!isset($handlers[$module_dir][$name])) {
-		//
-		// Cube Style
-		//
-		if (file_exists($hnd_file = XOOPS_ROOT_PATH . "/modules/{$module_dir}/class/handler/" . ucfirst($name) . ".class.php")) {
-			include_once $hnd_file;
-		}
-		elseif ( file_exists( $hnd_file = XOOPS_ROOT_PATH . "/modules/{$module_dir}/class/{$name}.php" ) ) {
+        //
+        // Cube Style
+        //
+        if (file_exists($hnd_file = XOOPS_ROOT_PATH . "/modules/{$module_dir}/class/handler/" . ucfirst($name) . ".class.php")) {
             include_once $hnd_file;
         }
-		
-		$className = ucfirst(strtolower($module_dir)) . "_" . ucfirst($name) . 'Handler';
-		if (XC_CLASS_EXISTS($className)) {
-			$handlers[$module_dir][$name] =& new $className($GLOBALS['xoopsDB']);
-		}
-		else {
-			$className = ucfirst(strtolower($module_dir)) . ucfirst($name) . 'Handler';
-			if (XC_CLASS_EXISTS($className)) {
-				$handlers[$module_dir][$name] = new $className($GLOBALS['xoopsDB']);
-			}
-		}
+        elseif ( file_exists( $hnd_file = XOOPS_ROOT_PATH . "/modules/{$module_dir}/class/{$name}.php" ) ) {
+            include_once $hnd_file;
+        }
+        
+        $className = ucfirst(strtolower($module_dir)) . "_" . ucfirst($name) . 'Handler';
+        if (XC_CLASS_EXISTS($className)) {
+            $handlers[$module_dir][$name] = new $className($GLOBALS['xoopsDB']);
+        }
+        else {
+            $className = ucfirst(strtolower($module_dir)) . ucfirst($name) . 'Handler';
+            if (XC_CLASS_EXISTS($className)) {
+                $handlers[$module_dir][$name] = new $className($GLOBALS['xoopsDB']);
+            }
+        }
     }
     if (!isset($handlers[$module_dir][$name]) && !$optional) {
         trigger_error('Handler does not exist<br />Module: '.$module_dir.'<br />Name: '.$name, E_USER_ERROR);
     }
-	
+    
     return $handlers[$module_dir][$name];
 }
 
@@ -821,10 +821,10 @@ function xoops_trim($text)
 }
 
 if (!function_exists('htmlspecialchars_decode')) {
-	function htmlspecialchars_decode($text)
-	{
-		return strtr($text, array_flip(get_html_translation_table(HTML_SPECIALCHARS)));
-	}
+    function htmlspecialchars_decode($text)
+    {
+        return strtr($text, array_flip(get_html_translation_table(HTML_SPECIALCHARS)));
+    }
 }
 
 if (!function_exists('session_regenerate_id')) { // @ToDo this compatible function should be moved to other file.

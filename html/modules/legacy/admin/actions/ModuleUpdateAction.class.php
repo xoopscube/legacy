@@ -84,10 +84,10 @@ class Legacy_ModuleUpdateAction extends Legacy_Action
 	{
 		parent::Legacy_Action($flag);
 		
-		$this->mUpdateSuccess =& new XCube_Delegate();
+		$this->mUpdateSuccess =new XCube_Delegate();
 		$this->mUpdateSuccess->register('Legacy_ModuleUpdateAction.UpdateSuccess');
 		
-		$this->mUpdateFail =& new XCube_Delegate();
+		$this->mUpdateFail =new XCube_Delegate();
 		$this->mUpdateFail->register('Legacy_ModuleUpdateAction.UpdateFail');
 	}
 	
@@ -124,7 +124,7 @@ class Legacy_ModuleUpdateAction extends Legacy_Action
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_ModuleUpdateForm();
+		$this->mActionForm =new Legacy_ModuleUpdateForm();
 		$this->mActionForm->prepare();
 	}
 

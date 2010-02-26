@@ -21,12 +21,12 @@ class User_RecountForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['uid'] =& new XCube_IntProperty('uid');
+		$this->mFormProperties['uid'] =new XCube_IntProperty('uid');
 	
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['uid'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['uid'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['uid']->setDependsByArray(array('required','objectExist'));
 		$this->mFieldProperties['uid']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_UID);
 		$this->mFieldProperties['uid']->addMessage('objectExist', _AD_USER_ERROR_OBJECTEXIST, _MD_USER_LANG_UID);

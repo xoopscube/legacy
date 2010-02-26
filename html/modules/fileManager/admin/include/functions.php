@@ -39,7 +39,7 @@ function getSyetemImages($hideFile) {
 	}
 	// user users
 	$handler =& xoops_getmodulehandler('users','user');
-	$mCriteria =& new CriteriaCompo();
+	$mCriteria =new CriteriaCompo();
 	$mCriteria->add(new Criteria('user_avatar', 'blank.gif','<>' ));
 	$mObjects =$handler->getObjects($mCriteria);
 	foreach ($mObjects as $key => $val) {

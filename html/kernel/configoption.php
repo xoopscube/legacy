@@ -120,7 +120,7 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
      */
     function &create($isNew = true)
     {
-        $confoption =& new XoopsConfigOption();
+        $confoption =new XoopsConfigOption();
         if ($isNew) {
             $confoption->setNew();
         }
@@ -143,7 +143,7 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $confoption =& new XoopsConfigOption();
+                        $confoption =new XoopsConfigOption();
                     $confoption->assignVars($this->db->fetchArray($result));
                         $ret =& $confoption;
                 }
@@ -229,7 +229,7 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
-            $confoption =& new XoopsConfigOption();
+            $confoption =new XoopsConfigOption();
             $confoption->assignVars($myrow);
             if (!$id_as_key) {
                 $ret[] =& $confoption;

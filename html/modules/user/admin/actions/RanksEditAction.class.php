@@ -20,7 +20,7 @@ class User_RanksEditAction extends User_AbstractEditAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new User_RanksAdminEditForm();
+		$this->mActionForm =new User_RanksAdminEditForm();
 		$this->mActionForm->prepare();
 	}
 	

@@ -24,7 +24,7 @@ class User_UserEditAction extends User_AbstractEditAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new User_UserAdminEditForm();
+		$this->mActionForm =new User_UserAdminEditForm();
 		$this->mActionForm->prepare();
 	}
 

@@ -25,7 +25,7 @@ class Legacy_MiscFriendAction extends Legacy_Action
 
 	function prepare(&$controller, &$xoopsUser)
 	{
-		$this->mActionForm =& new Legacy_MiscFriendForm();
+		$this->mActionForm =new Legacy_MiscFriendForm();
 		$this->mActionForm->prepare();
 	}
 

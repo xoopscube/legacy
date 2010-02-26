@@ -174,11 +174,11 @@ class Lecat_AssetManager
         if($type == 'handler')
         {
             $root =& XCube_Root::getSingleton();
-            $instance =& new $className($root->mController->getDB(),$this->mDirname);
+            $instance =new $className($root->mController->getDB(),$this->mDirname);
         }
         else
         {
-            $instance =& new $className();
+            $instance =new $className();
         }
         return $instance;
     }

@@ -59,7 +59,7 @@ class XoopsTplsetHandler extends XoopsObjectHandler
 
     function &create($isNew = true)
     {
-        $tplset =& new XoopsTplset();
+        $tplset =new XoopsTplset();
         if ($isNew) {
             $tplset->setNew();
         }
@@ -93,7 +93,7 @@ class XoopsTplsetHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $tplset =& new XoopsTplset();
+                        $tplset =new XoopsTplset();
                     $tplset->assignVars($this->db->fetchArray($result));
                         $ret =& $tplset;
                 }
@@ -161,7 +161,7 @@ class XoopsTplsetHandler extends XoopsObjectHandler
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
-            $tplset =& new XoopsTplset();
+            $tplset =new XoopsTplset();
             $tplset->assignVars($myrow);
             if (!$id_as_key) {
                 $ret[] =& $tplset;

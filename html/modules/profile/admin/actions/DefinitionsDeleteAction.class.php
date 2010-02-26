@@ -33,7 +33,7 @@ class Profile_Admin_DefinitionsDeleteAction extends Profile_AbstractDeleteAction
 	 */
 	function _setupActionForm()
 	{
-		// $this->mActionForm =& new Profile_Admin_DefinitionsDeleteForm();
+		// $this->mActionForm =new Profile_Admin_DefinitionsDeleteForm();
 		$this->mActionForm =& $this->mAsset->create('form', "admin.delete_definitions");
 		$this->mActionForm->prepare();
 	}

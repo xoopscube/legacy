@@ -14,7 +14,7 @@ class User_UserSearchAction extends User_Action
 	
 	function prepare(&$controller, &$xoopsUser)
 	{
-		$this->mActionForm =& new User_UserSearchForm();
+		$this->mActionForm =new User_UserSearchForm();
 		$this->mActionForm->prepare();
 	}
 	

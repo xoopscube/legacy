@@ -28,7 +28,7 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_ImageAdminCreateForm();
+		$this->mActionForm =new Legacy_ImageAdminCreateForm();
 		$this->mActionForm->prepare();
 	}
 	

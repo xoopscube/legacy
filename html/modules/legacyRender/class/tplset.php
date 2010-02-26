@@ -37,7 +37,7 @@ class LegacyRenderTplsetObject extends XoopsSimpleObject
 		$tplfileHandler =& xoops_getmodulehandler('tplfile', 'legacyRender');
 		
 		foreach ($modules as $module) {
-			$modtpl =& new LegacyRenderModuletplObject();
+			$modtpl =new LegacyRenderModuletplObject();
 			
 			$modtpl->set('mid', $module->get('mid'));
 			$modtpl->set('dirname', $module->get('dirname'));

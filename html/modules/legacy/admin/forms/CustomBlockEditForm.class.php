@@ -28,17 +28,17 @@ class Legacy_CustomBlockEditForm extends Legacy_BlockEditForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['content'] =& new XCube_TextProperty('content');
-		$this->mFormProperties['c_type'] =& new XCube_StringProperty('c_type');
+		$this->mFormProperties['content'] =new XCube_TextProperty('content');
+		$this->mFormProperties['c_type'] =new XCube_StringProperty('c_type');
 	
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['content'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['content'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['content']->setDependsByArray(array('required'));
 		$this->mFieldProperties['content']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_CONTENT);
 	
-		$this->mFieldProperties['c_type'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['c_type'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['c_type']->setDependsByArray(array('required','maxlength'));
 		$this->mFieldProperties['c_type']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_C_TYPE, '1');
 		$this->mFieldProperties['c_type']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _AD_LEGACY_LANG_C_TYPE, '1');

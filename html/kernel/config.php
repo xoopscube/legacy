@@ -91,8 +91,8 @@ class XoopsConfigHandler
      */
     function XoopsConfigHandler(&$db)
     {
-        $this->_cHandler =& new XoopsConfigItemHandler($db);
-        $this->_oHandler =& new XoopsConfigOptionHandler($db);
+        $this->_cHandler =new XoopsConfigItemHandler($db);
+        $this->_oHandler =new XoopsConfigOptionHandler($db);
     }
 
     /**

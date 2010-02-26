@@ -16,7 +16,7 @@ $root =& XCube_Root::getSingleton();
 
 $actionName = isset($_GET['action']) ? trim($_GET['action']) : "Default";
 
-$moduleRunner =& new Legacy_ActionFrame(false);
+$moduleRunner =new Legacy_ActionFrame(false);
 $moduleRunner->setActionName($actionName);
 
 $root->mController->mExecute->add(array(&$moduleRunner, 'execute'));

@@ -28,12 +28,12 @@ class Profile_DataDeleteForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['uid'] =& new XCube_IntProperty('uid');
+		$this->mFormProperties['uid'] =new XCube_IntProperty('uid');
 	
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['uid'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['uid'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['uid']->setDependsByArray(array('required'));
 		$this->mFieldProperties['uid']->addMessage('required', _MD_PROFILE_ERROR_REQUIRED, _MD_PROFILE_LANG_UID);
 	}

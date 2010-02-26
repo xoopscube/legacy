@@ -51,7 +51,7 @@ class Lecat_CatDeleteAction extends Lecat_AbstractDeleteAction
     **/
     protected function _setupActionForm()
     {
-        // $this->mActionForm =& new Lecat_CatDeleteForm();
+        // $this->mActionForm =new Lecat_CatDeleteForm();
         $this->mActionForm =& $this->mAsset->getObject('form', 'cat',false,'delete');
         $this->mActionForm->prepare();
     }

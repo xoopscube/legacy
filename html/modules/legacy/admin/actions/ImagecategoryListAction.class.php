@@ -22,7 +22,7 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
 
 	function prepare(&$controller, &$xoopsUser)
 	{
-		$this->mActionForm =& new Legacy_ImagecategoryListForm();
+		$this->mActionForm =new Legacy_ImagecategoryListForm();
 		$this->mActionForm->prepare();
 	}
 
@@ -34,7 +34,7 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
 
 	function &_getPageNavi()
 	{
-		$navi =& new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
+		$navi =new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
 
 		$root =& XCube_Root::getSingleton();
 		$perpage = $root->mContext->mRequest->getRequest($navi->mPrefix.'perpage');
@@ -46,7 +46,7 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
 
 	function &_getFilterForm()
 	{
-		$filter =& new Legacy_ImagecategoryFilterForm($this->_getPageNavi(), $this->_getHandler());
+		$filter =new Legacy_ImagecategoryFilterForm($this->_getPageNavi(), $this->_getHandler());
 		return $filter;
 	}
 

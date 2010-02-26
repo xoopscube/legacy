@@ -30,7 +30,7 @@ class Lecat_AdminRenderSystem extends Legacy_AdminRenderSystem
     {
         $this->mController =& $controller;
     
-        $this->mSmarty =& new Legacy_AdminSmarty();    // TODO will be use other class?
+        $this->mSmarty =new Legacy_AdminSmarty();    // TODO will be use other class?
         $this->mSmarty->register_modifier('theme',array($this,'modifierTheme'));
         $this->mSmarty->register_function('stylesheet',array($this,'functionStylesheet'));
     

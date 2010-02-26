@@ -24,18 +24,18 @@ class Legacy_SearchShowallbyuserForm extends Legacy_SearchShowallForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['uid'] =& new XCube_IntProperty('uid');
-		$this->mFormProperties['mid'] =& new XCube_IntProperty('mid');
-		$this->mFormProperties['start'] =& new XCube_IntProperty('start');
+		$this->mFormProperties['uid'] =new XCube_IntProperty('uid');
+		$this->mFormProperties['mid'] =new XCube_IntProperty('mid');
+		$this->mFormProperties['start'] =new XCube_IntProperty('start');
 		
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['uid'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['uid'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['uid']->setDependsByArray(array('required'));
 		$this->mFieldProperties['uid']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_UID);
 		
-		$this->mFieldProperties['mid'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['mid'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['mid']->setDependsByArray(array('required'));
 		$this->mFieldProperties['mid']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_MID);
 	}

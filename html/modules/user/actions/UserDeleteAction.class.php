@@ -30,10 +30,10 @@ class User_UserDeleteAction extends User_Action
 		$this->mSelfDelete = $moduleConfig['self_delete'];
 		$this->mSelfDeleteConfirmMessage = $moduleConfig['self_delete_confirm'];
 		
-		$this->mActionForm =& new User_UserDeleteForm();
+		$this->mActionForm =new User_UserDeleteForm();
 		$this->mActionForm->prepare();
 		
-		$this->_mDoDelete =& new XCube_Delegate('bool &', 'Legacy_Controller', 'XoopsUser');
+		$this->_mDoDelete =new XCube_Delegate('bool &', 'Legacy_Controller', 'XoopsUser');
 		$this->_mDoDelete->register('User_UserDeleteAction._doDelete');
 		
 		$this->_mDoDelete->add(array(&$this, "_doDelete"));

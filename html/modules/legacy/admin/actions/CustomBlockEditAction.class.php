@@ -18,7 +18,7 @@ class Legacy_CustomBlockEditAction extends Legacy_BlockEditAction
 {
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_CustomBlockEditForm();
+		$this->mActionForm =new Legacy_CustomBlockEditForm();
 		$this->mActionForm->prepare();
 	}
 	
@@ -56,7 +56,7 @@ class Legacy_CustomBlockEditAction extends Legacy_BlockEditAction
 		$moduleArr[1]->set('mid', 0);
 		$moduleArr[1]->set('name', _AD_LEGACY_LANG_ALL_MODULES);
 
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('hasmain', 1));
 		$criteria->add(new Criteria('isactive', 1));
 		

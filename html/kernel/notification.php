@@ -184,10 +184,10 @@ class XoopsNotificationHandler extends XoopsObjectHandler
 	{
 		parent::XoopsObjectHandler($db);
 		
-		$this->mTrigger =& new XCube_Delegate();
+		$this->mTrigger =new XCube_Delegate();
 		$this->mTrigger->register('XoopsNotificationHandler.Trigger');
 
-		$this->mTriggerPreAction =& new XCube_Delegate();
+		$this->mTriggerPreAction =new XCube_Delegate();
 		$this->mTriggerPreAction->register("XoopsNotificationHandler.TriggerPreAction");
 	}
 
@@ -200,7 +200,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
      */
     function &create($isNew = true)
     {
-        $notification =& new XoopsNotification();
+        $notification =new XoopsNotification();
         if ($isNew) {
             $notification->setNew();
         }
@@ -224,7 +224,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $notification =& new XoopsNotification();
+                        $notification =new XoopsNotification();
                     $notification->assignVars($this->db->fetchArray($result));
                         $ret =& $notification;
                 }
@@ -314,7 +314,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
-            $notification =& new XoopsNotification();
+            $notification =new XoopsNotification();
             $notification->assignVars($myrow);
             if (!$id_as_key) {
                 $ret[] =& $notification;

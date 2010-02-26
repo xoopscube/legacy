@@ -15,7 +15,7 @@ class LegacyRender_BannerListAction extends LegacyRender_AbstractListAction
 
 	function &_getFilterForm()
 	{
-		$filter =& new LegacyRender_BannerFilterForm($this->_getPageNavi(), $this->_getHandler());
+		$filter =new LegacyRender_BannerFilterForm($this->_getPageNavi(), $this->_getHandler());
 		return $filter;
 	}
 

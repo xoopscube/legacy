@@ -16,7 +16,7 @@ class LegacyRender_AbstractFilterForm
 		$this->mNavi =& $navi;
 		$this->_mHandler =& $handler;
 		
-		$this->_mCriteria =& new CriteriaCompo();
+		$this->_mCriteria =new CriteriaCompo();
 		
 		$this->mNavi->mGetTotalItems->add(array(&$this, 'getTotalItems'));
 	}

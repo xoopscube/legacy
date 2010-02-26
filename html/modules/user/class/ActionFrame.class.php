@@ -28,7 +28,7 @@ class User_ActionFrame
 	function User_ActionFrame($admin)
 	{
 		$this->mAdminFlag = $admin;
-		$this->mCreateAction =& new XCube_Delegate();
+		$this->mCreateAction =new XCube_Delegate();
 		$this->mCreateAction->register('User_ActionFrame.CreateAction');
 		$this->mCreateAction->add(array(&$this, '_createAction'));
 	}
@@ -70,7 +70,7 @@ class User_ActionFrame
 		require_once $fileName;
 	
 		if (XC_CLASS_EXISTS($className)) {
-			$actionFrame->mAction =& new $className($actionFrame->mAdminFlag);
+			$actionFrame->mAction =new $className($actionFrame->mAdminFlag);
 		}
 	}
 	

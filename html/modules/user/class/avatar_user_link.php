@@ -44,7 +44,7 @@ class UserAvatar_user_linkHandler extends XoopsObjectGenericHandler
 	function deleteAllByUser(&$xoopsUser)
 	{
 		if (is_object($xoopsUser)) {
-			$criteria =& new Criteria('user_id', $xoopsUser->get('uid'));
+			$criteria =new Criteria('user_id', $xoopsUser->get('uid'));
 			return $this->deleteAll($criteria);
 		}
 	}

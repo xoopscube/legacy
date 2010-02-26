@@ -28,7 +28,7 @@ class Legacy_CustomBlockDeleteAction extends Legacy_AbstractDeleteAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_CustomBlockDeleteForm();
+		$this->mActionForm =new Legacy_CustomBlockDeleteForm();
 		$this->mActionForm->prepare();
 	}
 	

@@ -42,12 +42,12 @@ class Lecat_CatDeleteForm extends XCube_ActionForm
         //
         // Set form properties
         //
-        $this->mFormProperties['cat_id'] =& new XCube_IntProperty('cat_id');
+        $this->mFormProperties['cat_id'] =new XCube_IntProperty('cat_id');
     
         //
         // Set field properties
         //
-        $this->mFieldProperties['cat_id'] =& new XCube_FieldProperty($this);
+        $this->mFieldProperties['cat_id'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['cat_id']->setDependsByArray(array('required'));
         $this->mFieldProperties['cat_id']->addMessage('required', _MD_LECAT_ERROR_REQUIRED, _MD_LECAT_LANG_CAT_ID);
     }

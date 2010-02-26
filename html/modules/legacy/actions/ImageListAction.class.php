@@ -36,7 +36,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 
 	function &_getFilterForm()
 	{
-		$filter =& new Legacy_ImageFilterForm($this->_getPageNavi(), $this->_getHandler());
+		$filter =new Legacy_ImageFilterForm($this->_getPageNavi(), $this->_getHandler());
 		return $filter;
 	}
 

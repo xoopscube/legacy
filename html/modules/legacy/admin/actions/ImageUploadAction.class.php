@@ -14,7 +14,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
 	
 	function prepare(&$controller, &$xoopsUser)
 	{
-		$this->mActionForm =& new Legacy_ImageUploadForm();
+		$this->mActionForm =new Legacy_ImageUploadForm();
 		$this->mActionForm->prepare();
 	}
 	
@@ -54,7 +54,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
 			return LEGACY_FRAME_VIEW_ERROR;
 		}
 		require_once XOOPS_ROOT_PATH . "/class/Archive_Zip.php" ;
-		$zip = & new Archive_Zip($formFile->_mTmpFileName) ;
+		$zip = new Archive_Zip($formFile->_mTmpFileName) ;
 		$files = $zip->extract( array( 'extract_as_string' => true ) ) ;
 		if( ! is_array( @$files ) ) {
 		return LEGACY_FRAME_VIEW_ERROR;
@@ -65,7 +65,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
 		}//if zip end
 		else { 
 		require_once XOOPS_ROOT_PATH . "/class/class.tar.php";
-		$tar =& new tar();
+		$tar =new tar();
 		$tar->openTar($formFile->_mTmpFileName);
 		if (!is_array( @$tar->files)) {
 			return LEGACY_FRAME_VIEW_ERROR;

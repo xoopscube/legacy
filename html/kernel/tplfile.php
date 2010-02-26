@@ -75,7 +75,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
 
     function &create($isNew = true)
     {
-        $tplfile =& new XoopsTplfile();
+        $tplfile =new XoopsTplfile();
         if ($isNew) {
             $tplfile->setNew();
         }
@@ -95,7 +95,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $ret =& new XoopsTplfile();
+                        $ret =new XoopsTplfile();
                         $ret->assignVars($this->db->fetchArray($result));
                 }
             }
@@ -252,7 +252,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
-            $tplfile =& new XoopsTplfile();
+            $tplfile =new XoopsTplfile();
             $tplfile->assignVars($myrow);
             if (!$id_as_key) {
                 $ret[] =& $tplfile;

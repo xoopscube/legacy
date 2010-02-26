@@ -357,7 +357,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
      **/
     function &create($isNew = true)
     {
-        $module =& new XoopsModule();
+        $module =new XoopsModule();
         if ($isNew) {
             $module->setNew();
         }
@@ -383,7 +383,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
                 if ($result = $this->db->query($sql)) {
                     $numrows = $this->db->getRowsNum($result);
                     if ($numrows == 1) {
-                        $module =& new XoopsModule();
+                        $module =new XoopsModule();
                         $myrow = $this->db->fetchArray($result);
                         $module->assignVars($myrow);
                         $this->_cachedModule_mid[$id] =& $module;
@@ -415,7 +415,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                    $module =& new XoopsModule();
+                    $module =new XoopsModule();
                     $myrow = $this->db->fetchArray($result);
                     $module->assignVars($myrow);
                     $this->_cachedModule_dirname[$dirname] =& $module;
@@ -576,7 +576,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
-            $module =& new XoopsModule();
+            $module =new XoopsModule();
             $module->assignVars($myrow);
             if (!$id_as_key) {
                 $ret[] =& $module;

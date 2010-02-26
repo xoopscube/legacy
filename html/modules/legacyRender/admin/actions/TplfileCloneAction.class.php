@@ -47,7 +47,7 @@ class LegacyRender_TplfileCloneAction extends LegacyRender_AbstractEditAction
 	
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new LegacyRender_TplfileCloneForm();
+		$this->mActionForm =new LegacyRender_TplfileCloneForm();
 		$this->mActionForm->prepare();
 	}
 

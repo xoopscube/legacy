@@ -12,7 +12,7 @@ class FileManager_Module extends Legacy_ModuleAdapter
 	function FileManager_Module(&$xoopsModule)
 	{
 		parent::Legacy_ModuleAdapter($xoopsModule);
-		$this->mGetAdminMenu =& new XCube_Delegate();
+		$this->mGetAdminMenu =new XCube_Delegate();
 		$this->mGetAdminMenu->register('fileManager_Module.getAdminMenu');
 	}
 

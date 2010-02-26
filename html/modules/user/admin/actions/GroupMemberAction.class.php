@@ -46,7 +46,7 @@ class User_GroupMemberAction extends User_Action
 		//
 		// TODO Because this action has two form, we should prepare two action forms.
 		//
-		$this->mActionForm =& new User_GroupMemberEditForm();
+		$this->mActionForm =new User_GroupMemberEditForm();
 		$this->mActionForm->prepare();
 	}
 
@@ -65,7 +65,7 @@ class User_GroupMemberAction extends User_Action
 		//
 		$total = $memberHandler->getUserCountByGroup($groupid);
 
-		$this->mPageNavi =& new XCube_PageNavigator("./index.php?action=GroupMember", XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);	// TODO get controller->getUrl() ?
+		$this->mPageNavi =new XCube_PageNavigator("./index.php?action=GroupMember", XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);	// TODO get controller->getUrl() ?
 		$this->mPageNavi->setTotalItems($total);
 		$this->mPageNavi->addExtra('groupid', $groupid);
 		$this->mPageNavi->setPerpage(USER_GROUPMEMBER_DEFAULT_PERPAGE);

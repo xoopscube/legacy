@@ -40,7 +40,7 @@ class Profile_AbstractListAction extends Profile_AbstractAction
 	 */
 	function &_getPageNavi()
 	{
-		$navi =& new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START);
+		$navi =new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START);
 		return $navi;
 	}
 

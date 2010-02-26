@@ -29,22 +29,22 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['image_name'] =& new XCube_ImageFileProperty('image_name');
-		$this->mFormProperties['image_nicename'] =& new XCube_StringProperty('image_nicename');
-		$this->mFormProperties['imgcat_id'] =& new XCube_IntProperty('imgcat_id');
+		$this->mFormProperties['image_name'] =new XCube_ImageFileProperty('image_name');
+		$this->mFormProperties['image_nicename'] =new XCube_StringProperty('image_nicename');
+		$this->mFormProperties['imgcat_id'] =new XCube_IntProperty('imgcat_id');
 	
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['image_name'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['image_name'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['image_name']->setDependsByArray(array('extension'));
 		$this->mFieldProperties['image_name']->addVar('extension', 'jpg,gif,png');
 	
-		$this->mFieldProperties['image_nicename'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['image_nicename'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['image_nicename']->setDependsByArray(array('required'));
 		$this->mFieldProperties['image_nicename']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_IMAGE_NICENAME);
 		
-		$this->mFieldProperties['imgcat_id'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['imgcat_id'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['imgcat_id']->setDependsByArray(array('required','objectExist'));
 		$this->mFieldProperties['imgcat_id']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_IMGCAT_ID);
 		$this->mFieldProperties['imgcat_id']->addMessage('objectExist', _MD_LEGACY_ERROR_OBJECTEXIST, _MD_LEGACY_LANG_IMGCAT_ID);

@@ -147,7 +147,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
      */
     function &create($isNew = true)
     {
-        $comment =& new XoopsComment();
+        $comment =new XoopsComment();
         if ($isNew) {
             $comment->setNew();
         }

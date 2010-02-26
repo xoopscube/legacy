@@ -94,10 +94,10 @@ $subjectIcons =& $handler->getObjects();
 
 if ($xoopsModule->getVar('dirname') != 'system') {
 	if (is_object($xoopsUser) && $xoopsUser->isAdmin()) {
-		$actionForm =& new Legacy_CommentEditForm_Admin();
+		$actionForm =new Legacy_CommentEditForm_Admin();
 	}
 	else {
-		$actionForm =& new Legacy_CommentEditForm();
+		$actionForm =new Legacy_CommentEditForm();
 	}
 	$actionForm->prepare();
 	$actionForm->load($comment);

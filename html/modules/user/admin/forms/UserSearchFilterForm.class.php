@@ -92,7 +92,7 @@ class User_UserSearchFilterForm extends User_AbstractFilterForm
 	{
 		parent::fetch();
 
-		$form =& new User_UserSearchForm();
+		$form =new User_UserSearchForm();
 		$form->prepare();
 
 		$form->fetch();
@@ -199,7 +199,7 @@ class User_UserSearchFilterForm extends User_AbstractFilterForm
 		
 		$groups = $form->get('groups');
 		if (count($groups) > 0) {
-			$g_criteria =& new CriteriaCompo();
+			$g_criteria =new CriteriaCompo();
 			foreach($groups as $gid) {
 				$g_criteria->add(new Criteria('g.groupid', $gid), $condition='OR');
 				$this->mNavi->addExtra('groups[' . $gid . ']', $gid);

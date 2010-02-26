@@ -25,9 +25,9 @@ class FileManager_DelFolderAdminForm extends XCube_ActionForm
 
 	function prepare()
 	{
-		$this->mFormProperties['path'] =& new XCube_StringProperty('path');
+		$this->mFormProperties['path'] =new XCube_StringProperty('path');
 
-		$this->mFieldProperties['path'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['path'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['path']->setDependsByArray(array('required'));
 		$this->mFieldProperties['path']->addMessage('required', _AD_FILEMANAGER_ERROR_REQUIRED, _AD_FILEMANAGER_FOLDERNAME);
 	}

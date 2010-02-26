@@ -22,14 +22,14 @@ class Legacy_ModuleListAction extends Legacy_Action
 
 	function prepare(&$controller, &$xoopsUser)
 	{
-		$this->mActionForm =& new Legacy_ModuleListForm();
+		$this->mActionForm =new Legacy_ModuleListForm();
 		$this->mActionForm->prepare();
 	}
 	
 
 	function getDefaultView(&$controller, &$xoopsUser)
 	{
-		$this->mFilter =& new Legacy_ModuleListFilterForm();
+		$this->mFilter =new Legacy_ModuleListFilterForm();
 		$this->mFilter->fetch();
 
 		$moduleHandler =& xoops_gethandler('module');

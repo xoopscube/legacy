@@ -71,7 +71,7 @@ abstract class Lecat_AbstractFilterForm
     **/
     public function __construct()
     {
-        $this->_mCriteria =& new CriteriaCompo();
+        $this->_mCriteria =new CriteriaCompo();
     }
 
     /**

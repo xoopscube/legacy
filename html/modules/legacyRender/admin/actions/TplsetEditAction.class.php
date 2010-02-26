@@ -35,7 +35,7 @@ class LegacyRender_TplsetEditAction extends LegacyRender_AbstractEditAction
 	
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new LegacyRender_TplsetEditForm();
+		$this->mActionForm =new LegacyRender_TplsetEditForm();
 		$this->mActionForm->prepare();
 	}
 

@@ -26,13 +26,13 @@ class Legacy_InstallWizardAction extends Legacy_AbstractModuleInstallAction
 
 	function &_getInstaller($dirname)
 	{
-		$installer =& new Legacy_ModuleInstaller($dirname);
+		$installer =new Legacy_ModuleInstaller($dirname);
 		return $installer;
 	}
 	
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_InstallWizardForm();
+		$this->mActionForm =new Legacy_InstallWizardForm();
 		$this->mActionForm->prepare();
 	}
 

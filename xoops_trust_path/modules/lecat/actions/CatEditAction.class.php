@@ -51,7 +51,7 @@ class Lecat_CatEditAction extends Lecat_AbstractEditAction
     **/
     protected function _setupActionForm()
     {
-        // $this->mActionForm =& new Lecat_CatEditForm();
+        // $this->mActionForm =new Lecat_CatEditForm();
         $this->mActionForm =& $this->mAsset->getObject('form', 'cat',false,'edit');
         $this->mActionForm->prepare();
     }

@@ -28,7 +28,7 @@ class Legacy_TextareaEditor extends XCube_ActionFilter
             require_once XOOPS_ROOT_PATH . "/class/xoopsformloader.php";
         }
     
-        $form =& new XoopsFormDhtmlTextArea($name, $name, $value, $rows, $cols);
+        $form =new XoopsFormDhtmlTextArea($name, $name, $value, $rows, $cols);
         $form->setId($id);
         if ($class != null) {
             $form->setClass($class);

@@ -79,10 +79,10 @@ class MyTextSanitizer
     function MyTextSanitizer()
     {
 		
-		$this->mMakeClickablePostFilter =& new XCube_Delegate();
+		$this->mMakeClickablePostFilter =new XCube_Delegate();
 		$this->mMakeClickablePostFilter->register('MyTextSanitizer.MakeClickablePostFilter');
 		
-		$this->mXoopsCodePostFilter =& new XCube_Delegate();
+		$this->mXoopsCodePostFilter =new XCube_Delegate();
 		$this->mXoopsCodePostFilter->register('MyTextSanitizer.XoopsCodePostFilter');
 
         $root =& XCube_Root::getSingleton();

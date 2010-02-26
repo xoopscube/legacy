@@ -7,7 +7,7 @@ class LegacyRender_Module extends Legacy_ModuleAdapter
 	function LegacyRender_Module(&$xoopsModule)
 	{
 		parent::Legacy_ModuleAdapter($xoopsModule);
-		$this->mGetAdminMenu =& new XCube_Delegate();
+		$this->mGetAdminMenu =new XCube_Delegate();
 		$this->mGetAdminMenu->register('LegacyRender_Module.getAdminMenu');
 	}
 	

@@ -79,7 +79,7 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 	// _getFilterForm Overrid
 	function &_getFilterForm()
 	{
-		$filter =& new FileManager_IndexFilterForm($this->_getPageNavi());
+		$filter =new FileManager_IndexFilterForm($this->_getPageNavi());
 		return $filter;
 	}
 

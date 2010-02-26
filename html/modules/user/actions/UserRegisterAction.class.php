@@ -62,9 +62,9 @@ class User_UserRegisterAction extends User_Action
 	{
 		if ($this->mConfig['reg_dispdsclmr'] != 0 && $this->mConfig['reg_disclaimer'] != null) {
 			$this->mEnableAgreeFlag = true;
-			$this->mActionForm =& new User_RegisterAgreeEditForm($this->mConfig);
+			$this->mActionForm =new User_RegisterAgreeEditForm($this->mConfig);
 		} else {
-			$this->mActionForm =& new User_RegisterEditForm($this->mConfig);
+			$this->mActionForm =new User_RegisterEditForm($this->mConfig);
 		}
 		
 		$this->mActionForm->prepare();

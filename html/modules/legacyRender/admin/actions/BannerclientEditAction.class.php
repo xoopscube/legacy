@@ -24,7 +24,7 @@ class LegacyRender_BannerclientEditAction extends LegacyRender_AbstractEditActio
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new LegacyRender_BannerclientAdminEditForm();
+		$this->mActionForm =new LegacyRender_BannerclientAdminEditForm();
 		$this->mActionForm->prepare();
 	}
 

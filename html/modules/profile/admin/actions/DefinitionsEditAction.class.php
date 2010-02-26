@@ -36,7 +36,7 @@ class Profile_Admin_DefinitionsEditAction extends Profile_AbstractEditAction
 	 */
 	function _setupActionForm()
 	{
-		// $this->mActionForm =& new Profile_Admin_DefinitionsEditForm();
+		// $this->mActionForm =new Profile_Admin_DefinitionsEditForm();
 		$this->mActionForm =& $this->mAsset->create('form', "admin.edit_definitions");
 		$this->mActionForm->prepare();
 	}

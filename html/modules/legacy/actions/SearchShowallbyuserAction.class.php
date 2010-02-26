@@ -17,7 +17,7 @@ class Legacy_SearchShowallbyuserAction extends Legacy_SearchShowallAction
 {
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_SearchShowallbyuserForm(0);
+		$this->mActionForm =new Legacy_SearchShowallbyuserForm(0);
 		$this->mActionForm->prepare();
 	}
 	

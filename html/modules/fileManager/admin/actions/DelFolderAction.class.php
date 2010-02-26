@@ -38,7 +38,7 @@ class FileManager_DelFolderAction extends FileManager_AbstractEditAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new FileManager_AddFolderAdminForm();
+		$this->mActionForm =new FileManager_AddFolderAdminForm();
 		$this->mActionForm->prepare();
 	}
 

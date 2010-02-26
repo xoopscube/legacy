@@ -33,7 +33,7 @@ class FileManager_ActionFrame
 	function FileManager_ActionFrame($admin)
 	{
 		$this->mAdminFlag = $admin;
-		$this->mCreateAction =& new XCube_Delegate();
+		$this->mCreateAction =new XCube_Delegate();
 		$this->mCreateAction->register('FileManager_ActionFrame.CreateAction');
 		$this->mCreateAction->add(array(&$this, '_createAction'));
 	}
@@ -74,7 +74,7 @@ class FileManager_ActionFrame
 		require_once $fileName;
 
 		if (class_exists($className)) {
-			$actionFrame->mAction =& new $className($actionFrame->mAdminFlag);
+			$actionFrame->mAction =new $className($actionFrame->mAdminFlag);
 		}
 	}
 

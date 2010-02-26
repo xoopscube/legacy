@@ -22,12 +22,12 @@ class User_AvatarUploadForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['upload'] =& new XCube_FileProperty('upload');
+		$this->mFormProperties['upload'] =new XCube_FileProperty('upload');
 	
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['upload'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['upload'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['upload']->setDependsByArray(array('required'));
 		$this->mFieldProperties['upload']->addMessage('required', _AD_USER_ERROR_REQUIRED, _AD_USER_LANG_AVATAR_UPLOAD_FILE);
 	

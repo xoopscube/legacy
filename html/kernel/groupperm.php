@@ -141,7 +141,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
      */
     function &create($isNew = true)
     {
-        $perm =& new XoopsGroupPerm();
+        $perm =new XoopsGroupPerm();
         if ($isNew) {
             $perm->setNew();
         }
@@ -163,7 +163,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ( $numrows == 1 ) {
-                        $perm =& new XoopsGroupPerm();
+                        $perm =new XoopsGroupPerm();
                     $perm->assignVars($this->db->fetchArray($result));
                         $ret =& $perm;
                 }
@@ -252,7 +252,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
-            $perm =& new XoopsGroupPerm();
+            $perm =new XoopsGroupPerm();
             $perm->assignVars($myrow);
             if (!$id_as_key) {
                 $ret[] =& $perm;

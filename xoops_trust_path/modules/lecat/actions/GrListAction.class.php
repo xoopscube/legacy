@@ -39,7 +39,7 @@ class Lecat_GrListAction extends Lecat_AbstractListAction
     **/
     protected function &_getFilterForm()
     {
-        // $filter =& new Lecat_GrFilterForm();
+        // $filter =new Lecat_GrFilterForm();
         $filter =& $this->mAsset->getObject('filter', 'gr',false);
         $filter->prepare($this->_getPageNavi(), $this->_getHandler());
         return $filter;

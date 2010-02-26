@@ -65,7 +65,7 @@ class XoopsTimezoneHandler extends XoopsObjectHandler
 	
 	function &create()
 	{
-		$ret =& new XoopsTimezone();
+		$ret =new XoopsTimezone();
 		return $ret;
 	}
 	
@@ -75,7 +75,7 @@ class XoopsTimezoneHandler extends XoopsObjectHandler
 		
 		foreach ($this->_mResult as $index => $zone_name) {
 			if (floatval($index) == floatval($offset)) {
-				$obj =& new XoopsTimezone();
+				$obj =new XoopsTimezone();
 				$obj->set('offset', $index);
 				$obj->set('zone_name', $zone_name);
 
@@ -91,7 +91,7 @@ class XoopsTimezoneHandler extends XoopsObjectHandler
 		$ret = array();
 		
 		foreach ($this->_mResult as $offset => $zone_name) {
-			$obj =& new XoopsTimezone();
+			$obj =new XoopsTimezone();
 			$obj->setVar('offset', $offset);
 			$obj->setVar('zone_name', $zone_name);
 			if ($key_as_id) {

@@ -19,7 +19,7 @@ class User_AvatarListAction extends User_AbstractListAction
 
 	function prepare(&$controller, &$xoopsUser)
 	{
-		$this->mActionForm =& new User_AvatarListForm();
+		$this->mActionForm =new User_AvatarListForm();
 		$this->mActionForm->prepare();
 	}
 
@@ -32,7 +32,7 @@ class User_AvatarListAction extends User_AbstractListAction
 
 	function &_getPageNavi()
 	{
-		$navi =& new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
+		$navi =new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
 
 		$root =& XCube_Root::getSingleton();
 		$perpage = $root->mContext->mRequest->getRequest($navi->mPrefix.'perpage');
@@ -45,7 +45,7 @@ class User_AvatarListAction extends User_AbstractListAction
 
 	function &_getFilterForm()
 	{
-		$filter =& new User_AvatarFilterForm($this->_getPageNavi(), $this->_getHandler());
+		$filter =new User_AvatarFilterForm($this->_getPageNavi(), $this->_getHandler());
 		return $filter;
 	}
 
@@ -139,7 +139,7 @@ class User_AvatarListAction extends User_AbstractListAction
 		if($this->mActionForm->get('delete', $aid) == 1) {
 			$avatar =& $avatarHandler->get($aid);
 			if (is_object($avatar)) {
-				$criteria =& new Criteria('avatar_id', $aid);
+				$criteria =new Criteria('avatar_id', $aid);
 				$linkArr =& $linkHandler->getObjects($criteria);
 		
 				if ($avatarHandler->delete($avatar)) {

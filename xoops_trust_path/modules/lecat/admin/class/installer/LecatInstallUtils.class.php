@@ -50,7 +50,7 @@ class Lecat_InstallUtils
         }
     
         require_once XOOPS_MODULE_PATH . '/legacy/admin/class/Legacy_SQLScanner.class.php';    // TODO will be use other class?
-        $scanner =& new Legacy_SQLScanner();
+        $scanner =new Legacy_SQLScanner();
         $scanner->setDB_PREFIX(XOOPS_DB_PREFIX);
         $scanner->setDirname($dirname);
         if(!$scanner->loadFile($sqlFilePath))
@@ -92,7 +92,7 @@ class Lecat_InstallUtils
     public static function DBquery(/*** string ***/ $query,/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
     {
         require_once XOOPS_MODULE_PATH . '/legacy/admin/class/Legacy_SQLScanner.class.php';    // TODO will be use other class?
-        $scanner =& new Legacy_SQLScanner();
+        $scanner =new Legacy_SQLScanner();
         $scanner->setDB_PREFIX(XOOPS_DB_PREFIX);
         $scanner->setDirname($module->get('dirname'));
         $scanner->setBuffer($query);
@@ -286,7 +286,7 @@ class Lecat_InstallUtils
     
         if(is_array($delTemplates) && count($delTemplates) > 0)
         {
-            $xoopsTpl =& new XoopsTpl();
+            $xoopsTpl =new XoopsTpl();
             $xoopsTpl->clear_cache(null,'mod_' . $module->get('dirname'));
             foreach($delTemplates as $tpl)
             {
@@ -492,7 +492,7 @@ class Lecat_InstallUtils
         );
         $tplHandler =& Lecat_Utils::getXoopsHandler('tplfile');
     
-        $cri =& new CriteriaCompo();
+        $cri =new CriteriaCompo();
         $cri->add(new Criteria('tpl_type','block'));
         $cri->add(new Criteria('tpl_tplset','default'));
         $cri->add(new Criteria('tpl_module',$module->get('dirname')));
@@ -559,7 +559,7 @@ class Lecat_InstallUtils
     
         $blockHandler =& Lecat_Utils::getXoopsHandler('block');
         $gpermHandler =& Lecat_Utils::getXoopsHandler('groupperm');
-        $cri =& new Criteria('mid',$module->get('mid'));
+        $cri =new Criteria('mid',$module->get('mid'));
         $blocks =& $blockHandler->getObjectsDirectly($cri);
     
         foreach($blocks as $block)
@@ -584,7 +584,7 @@ class Lecat_InstallUtils
                 $successFlag = false;
             }
             
-            $cri =& new CriteriaCompo();
+            $cri =new CriteriaCompo();
             $cri->add(new Criteria('gperm_name','block_read'));
             $cri->add(new Criteria('gperm_itemid',$block->get('bid')));
             $cri->add(new Criteria('gperm_modid',1));
@@ -615,8 +615,8 @@ class Lecat_InstallUtils
     {
         $dirname = $module->get('dirname');
     
-        $fileReader =& new Legacy_ModinfoX2FileReader($dirname);
-        $dbReader =& new Legacy_ModinfoX2DBReader($dirname);
+        $fileReader =new Legacy_ModinfoX2FileReader($dirname);
+        $dbReader =new Legacy_ModinfoX2DBReader($dirname);
     
         $blocks =& $dbReader->loadBlockInformations();
         $blocks->update($fileReader->loadBlockInformations());
@@ -655,7 +655,7 @@ class Lecat_InstallUtils
     public static function updateBlockTemplateByInfo(/*** Legacy_BlockInformation ***/ &$info,/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
     {
         $blockHandler =& Lecat_Utils::getModuleHandler('newblocks','legacy');
-        $cri =& new CriteriaCompo();
+        $cri =new CriteriaCompo();
         $cri->add(new Criteria('dirname',$module->get('dirname')));
         $cri->add(new Criteria('func_num',$info->mFuncNum));
         $blocks =& $blockHandler->getObjects($cri);
@@ -679,7 +679,7 @@ class Lecat_InstallUtils
     public static function updateBlockByInfo(/*** Legacy_BlockInformation ***/ &$info,/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
     {
         $blockHandler =& Lecat_Utils::getModuleHandler('newblocks','legacy');
-        $cri =& new CriteriaCompo();
+        $cri =new CriteriaCompo();
         $cri->add(new Criteria('dirname',$module->get('dirname')));
         $cri->add(new Criteria('func_num',$info->mFuncNum));
         $blocks =& $blockHandler->getObjects($cri);
@@ -787,7 +787,7 @@ class Lecat_InstallUtils
     public static function uninstallBlockByFuncNum(/*** int ***/ $func_num,/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
     {
         $blockHandler =& Lecat_Utils::getModuleHandler('newblocks','legacy');
-        $cri =& new CriteriaCompo();
+        $cri =new CriteriaCompo();
         $cri->add(new Criteria('dirname',$module->get('dirname')));
         $cri->add(new Criteria('func_num',$func_num));
         $blocks =& $blockHandler->getObjects($cri);
@@ -870,7 +870,7 @@ class Lecat_InstallUtils
     {
         $successFlag = true;
         $configHandler =& Lecat_Utils::getXoopsHandler('config');
-        $fileReader =& new Legacy_ModinfoX2FileReader($module->get('dirname'));    // TODO will be use other class?
+        $fileReader =new Legacy_ModinfoX2FileReader($module->get('dirname'));    // TODO will be use other class?
         $preferences =& $fileReader->loadPreferenceInformations();
     
         foreach($preferences->mPreferences as $info)
@@ -1040,7 +1040,7 @@ class Lecat_InstallUtils
     {
         $configHandler =& Lecat_Utils::getXoopsHandler('config');
     
-        $cri =& new CriteriaCompo();
+        $cri =new CriteriaCompo();
         $cri->add(new Criteria('conf_modid',$module->get('mid')));
         $cri->add(new Criteria('conf_catid',0));
         $cri->add(new Criteria('conf_order',$order));
@@ -1081,8 +1081,8 @@ class Lecat_InstallUtils
     {
         $dirname = $module->get('dirname');
     
-        $fileReader =& new Legacy_ModinfoX2FileReader($dirname);
-        $dbReader =& new Legacy_ModinfoX2DBReader($dirname);
+        $fileReader =new Legacy_ModinfoX2FileReader($dirname);
+        $dbReader =new Legacy_ModinfoX2DBReader($dirname);
     
         $configs  =& $dbReader->loadPreferenceInformations();
         $configs->update($fileReader->loadPreferenceInformations());
@@ -1121,7 +1121,7 @@ class Lecat_InstallUtils
     public static function updateConfigByInfo(/*** Legacy_PreferenceInformation ***/ &$info,/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
     {
         $configHandler =& Lecat_Utils::getXoopsHandler('config');
-        $cri =& new CriteriaCompo();
+        $cri =new CriteriaCompo();
         $cri->add(new Criteria('conf_modid',$module->get('mid')));
         $cri->add(new Criteria('conf_catid',0));
         $cri->add(new Criteria('conf_name',$info->mName));
@@ -1203,7 +1203,7 @@ class Lecat_InstallUtils
     public static function updateConfigOrderByInfo(/*** Legacy_PreferenceInformation ***/ &$info,/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
     {
         $configHandler =& Lecat_Utils::getXoopsHandler('config');
-        $cri =& new CriteriaCompo();
+        $cri =new CriteriaCompo();
         $cri->add(new Criteria('conf_modid',$module->get('mid')));
         $cri->add(new Criteria('conf_catid',0));
         $cri->add(new Criteria('conf_name',$info->mName));

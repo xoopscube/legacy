@@ -14,7 +14,7 @@ $root->mController->executeHeader();
 
 $actionName = isset($_GET['action']) ? trim($_GET['action']) : "index";   
 
-$moduleRunner =& new FileManager_ActionFrame(true);
+$moduleRunner =new FileManager_ActionFrame(true);
 $moduleRunner->setActionName($actionName);
 
 $root->mController->mExecute->add(array(&$moduleRunner, 'execute'));

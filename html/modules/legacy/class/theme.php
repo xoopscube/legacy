@@ -43,13 +43,13 @@ class LegacyThemeHandler extends XoopsObjectHandler
 	
 	function LegacyThemeHandler(&$db)
 	{
-		$this->mGetInstalledThemes =& new XCube_Delegate();
+		$this->mGetInstalledThemes =new XCube_Delegate();
 		$this->mGetInstalledThemes->register('LegacyThemeHandler.GetInstalledThemes');
 	}
 	
 	function &create()
 	{
-		$ret =& new LegacyThemeObject();
+		$ret =new LegacyThemeObject();
 		return $ret;
 	}
 	

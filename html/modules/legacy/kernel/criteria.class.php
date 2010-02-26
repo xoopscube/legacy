@@ -129,7 +129,7 @@ class Legacy_Criteria
 	 */
 	function &createCriterion()
 	{
-		$criteria =& new Legacy_Criteria($this->mTypeInfoArr);
+		$criteria =new Legacy_Criteria($this->mTypeInfoArr);
 		return $criteria;
 	}
 	

@@ -518,7 +518,7 @@ class XoopsUserHandler extends XoopsObjectHandler
      */
     function &create($isNew = true)
     {
-        $user =& new XoopsUser();
+        $user =new XoopsUser();
         if ($isNew) {
             $user->setNew();
         }
@@ -539,7 +539,7 @@ class XoopsUserHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $user =& new XoopsUser();
+                        $user =new XoopsUser();
                     $user->assignVars($this->db->fetchArray($result));
                         $ret =& $user;
                 }
@@ -641,7 +641,7 @@ class XoopsUserHandler extends XoopsObjectHandler
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
-            $user =& new XoopsUser();
+            $user =new XoopsUser();
             $user->assignVars($myrow);
             if (!$id_as_key) {
                 $ret[] =& $user;

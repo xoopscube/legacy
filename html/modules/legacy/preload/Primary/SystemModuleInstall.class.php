@@ -114,7 +114,7 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
 			}
 			elseif (!empty($_GET['cube_module_uninstall'])) {
 				require_once XOOPS_ROOT_PATH . '/class/template.php';
-				$xoopsTpl =& new XoopsTpl();
+				$xoopsTpl =new XoopsTpl();
 				$xoopsTpl->assign('cube_module_uninstall', htmlspecialchars($_GET['cube_module_uninstall'],ENT_QUOTES));
 				$xoopsTpl->assign( array(
 							   'xoops_sitename' => htmlspecialchars($xoopsConfig['sitename']),
@@ -165,7 +165,7 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
                 ksort( $optionModules ) ;
                 $optionModules = array_values( $optionModules ) ;
 				require_once XOOPS_ROOT_PATH . '/class/template.php';
-				$xoopsTpl =& new XoopsTpl();
+				$xoopsTpl =new XoopsTpl();
 				$xoopsTpl->assign('uninstalled',$retArray['uninstalled']);
 				$xoopsTpl->assign('disabled',$retArray['disabled']);
 				$xoopsTpl->assign('option',$optionModules);
@@ -183,7 +183,7 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
 
 		if (!$accessAllowFlag) {
 			require_once XOOPS_ROOT_PATH . '/class/template.php';
-			$xoopsTpl =& new XoopsTpl();
+			$xoopsTpl =new XoopsTpl();
 			$xoopsTpl->assign(array('xoops_sitename' => htmlspecialchars($xoopsConfig['sitename']),
 									   'xoops_themecss' => xoops_getcss(),
 									   'xoops_imageurl' => XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/',

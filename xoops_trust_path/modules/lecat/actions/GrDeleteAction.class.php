@@ -51,7 +51,7 @@ class Lecat_GrDeleteAction extends Lecat_AbstractDeleteAction
     **/
     protected function _setupActionForm()
     {
-        // $this->mActionForm =& new Lecat_GrDeleteForm();
+        // $this->mActionForm =new Lecat_GrDeleteForm();
         $this->mActionForm =& $this->mAsset->getObject('form', 'gr',false,'delete');
         $this->mActionForm->prepare();
     }

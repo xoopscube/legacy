@@ -22,12 +22,12 @@ class Legacy_SmilesUploadForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['upload'] =& new XCube_FileProperty('upload');
+		$this->mFormProperties['upload'] =new XCube_FileProperty('upload');
 	
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['upload'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['upload'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['upload']->setDependsByArray(array('required'));
 		$this->mFieldProperties['upload']->addMessage('required', _AD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_SMILES_UPLOAD_FILE);
 	

@@ -1,16 +1,15 @@
-<?php
 [Cube]
 Root=XOOPS_ROOT_PATH
 Controller=Legacy_Controller
-#SystemModules=system,legacy,user,legacyRender
+;SystemModules=system,legacy,user,legacyRender
 SystemModules=legacy,legacyRender,user,profile,stdCache
 RecommendedModules=message
 RoleManager=Legacy_RoleManager
 Salt=XOOPS_SALT
 
-#
-# You can register plural render systems.
-#
+;
+; You can register plural render systems.
+;
 [RenderSystems]
 Legacy_RenderSystem=Legacy_RenderSystem
 Legacy_AdminRenderSystem=Legacy_AdminRenderSystem
@@ -21,9 +20,9 @@ Theme=admin
 AllowDBProxy=true
 IsReverseProxy=false
 
-#                  #
-# Primary Preloads #
-#                  #
+;                  ;
+; Primary Preloads ;
+;                  ;
 
 [Legacy.PrimaryPreloads]
 protectorLE_Filter=/modules/legacy/preload/protectorLE/protectorLE.class.php
@@ -33,9 +32,9 @@ User_PrimaryFilter=/modules/user/preload/Primary/Primary.class.php
 Legacy_NuSoapLoader=/modules/legacy/preload/Primary/NuSoapLoader.class.php
 Legacy_SessionCallback=/modules/legacy/preload/Primary/SessionCallback.class.php
 
-#            #
-# components #
-#            #
+;            ;
+; components ;
+;            ;
 
 [Legacy_Controller]
 path=/modules/legacy/kernel
@@ -61,6 +60,5 @@ library=google
 MainVersion=1
 UIVersion=1
 usePrototype=0
-#prototypeUrl=
-#funcNamePrefix=j
-?>
+;prototypeUrl=
+;funcNamePrefix=j

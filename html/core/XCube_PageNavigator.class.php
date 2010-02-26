@@ -115,10 +115,10 @@ class XCube_PageNavigator
 		$this->mUrl = $url;
 		$this->mFlags = $flags;
 		
-		$this->mFetch =& new XCube_Delegate();
+		$this->mFetch =new XCube_Delegate();
 		$this->mFetch->add(array(&$this, 'fetchNaviControl'));
 		
-		$this->mGetTotalItems =& new XCube_Delegate();
+		$this->mGetTotalItems =new XCube_Delegate();
 	}
 	
 	/**

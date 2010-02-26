@@ -20,31 +20,31 @@ class User_AvatarAdminEditForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['avatar_id'] =& new XCube_IntProperty('avatar_id');
-		$this->mFormProperties['avatar_file'] =& new XCube_FileProperty('avatar_file');
-		$this->mFormProperties['avatar_name'] =& new XCube_StringProperty('avatar_name');
-		$this->mFormProperties['avatar_display'] =& new XCube_BoolProperty('avatar_display');
-		$this->mFormProperties['avatar_weight'] =& new XCube_IntProperty('avatar_weight');
+		$this->mFormProperties['avatar_id'] =new XCube_IntProperty('avatar_id');
+		$this->mFormProperties['avatar_file'] =new XCube_FileProperty('avatar_file');
+		$this->mFormProperties['avatar_name'] =new XCube_StringProperty('avatar_name');
+		$this->mFormProperties['avatar_display'] =new XCube_BoolProperty('avatar_display');
+		$this->mFormProperties['avatar_weight'] =new XCube_IntProperty('avatar_weight');
 
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['avatar_id'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['avatar_id'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['avatar_id']->setDependsByArray(array('required'));
 		$this->mFieldProperties['avatar_id']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_AVATAR_ID);
 
-		$this->mFieldProperties['avatar_file'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['avatar_file'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['avatar_file']->setDependsByArray(array('extension'));
 		$this->mFieldProperties['avatar_file']->addMessage('extension', _MD_USER_ERROR_AVATAR_EXTENSION, _AD_USER_LANG_AVATAR_FILE);
 		$this->mFieldProperties['avatar_file']->addVar('extension', "gif,png,jpg");
 
-		$this->mFieldProperties['avatar_name'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['avatar_name'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['avatar_name']->setDependsByArray(array('required','maxlength'));
 		$this->mFieldProperties['avatar_name']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_AVATAR_NAME, '100');
 		$this->mFieldProperties['avatar_name']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _AD_USER_LANG_AVATAR_NAME, '100');
 		$this->mFieldProperties['avatar_name']->addVar('maxlength', 100);
 
-		$this->mFieldProperties['avatar_weight'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['avatar_weight'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['avatar_weight']->setDependsByArray(array('required'));
 		$this->mFieldProperties['avatar_weight']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_AVATAR_WEIGHT);
 	}

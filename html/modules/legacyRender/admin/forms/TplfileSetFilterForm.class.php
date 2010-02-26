@@ -28,7 +28,7 @@ class LegacyRender_TplfileSetFilterForm extends LegacyRender_TplfileFilterForm
 			// The template of the specified template-set will be loaded in Tplset Object.
 			// See business-logic.
 			//
-			$subCriteria =& new CriteriaCompo();
+			$subCriteria =new CriteriaCompo();
 			$subCriteria->add(new Criteria('tpl_tplset', 'default'), 'OR');
 			
 			$handler =& xoops_getmodulehandler('tplset');

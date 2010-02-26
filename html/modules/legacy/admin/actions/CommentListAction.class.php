@@ -23,7 +23,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
 
 	function prepare(&$controller, &$xoopsUser)
 	{
-		$this->mActionForm =& new Legacy_CommentListForm();
+		$this->mActionForm =new Legacy_CommentListForm();
 		$this->mActionForm->prepare();
 	}
 
@@ -35,7 +35,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
 
 	function &_getPageNavi()
 	{
-		$navi =& new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
+		$navi =new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
 		if (isset($_REQUEST[$navi->mPrefix.'perpage']) && intval($_REQUEST[$navi->mPrefix.'perpage']) == 0) { 	
 		$navi->setPerpage(0);
 		}
@@ -44,7 +44,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
 
 	function &_getFilterForm()
 	{
-		$filter =& new Legacy_CommentFilterForm($this->_getPageNavi(), $this->_getHandler());
+		$filter =new Legacy_CommentFilterForm($this->_getPageNavi(), $this->_getHandler());
 		return $filter;
 	}
 

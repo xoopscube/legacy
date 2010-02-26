@@ -25,49 +25,49 @@ class Legacy_BlockEditForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['bid'] =& new XCube_IntProperty('bid');
-		$this->mFormProperties['options'] =& new XCube_StringArrayProperty('options');
-		$this->mFormProperties['title'] =& new XCube_StringProperty('title');
-		$this->mFormProperties['side'] =& new XCube_IntProperty('side');
-		$this->mFormProperties['weight'] =& new XCube_IntProperty('weight');
-		$this->mFormProperties['bcachetime'] =& new XCube_IntProperty('bcachetime');
-		$this->mFormProperties['bmodule'] =& new XCube_IntArrayProperty('bmodule');
-		$this->mFormProperties['groupid'] =& new XCube_IntArrayProperty('groupid');
+		$this->mFormProperties['bid'] =new XCube_IntProperty('bid');
+		$this->mFormProperties['options'] =new XCube_StringArrayProperty('options');
+		$this->mFormProperties['title'] =new XCube_StringProperty('title');
+		$this->mFormProperties['side'] =new XCube_IntProperty('side');
+		$this->mFormProperties['weight'] =new XCube_IntProperty('weight');
+		$this->mFormProperties['bcachetime'] =new XCube_IntProperty('bcachetime');
+		$this->mFormProperties['bmodule'] =new XCube_IntArrayProperty('bmodule');
+		$this->mFormProperties['groupid'] =new XCube_IntArrayProperty('groupid');
 	
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['bid'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['bid'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['bid']->setDependsByArray(array('required'));
 		$this->mFieldProperties['bid']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_BID);
 	
-		$this->mFieldProperties['title'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['title'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['title']->setDependsByArray(array('required','maxlength'));
 		$this->mFieldProperties['title']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_TITLE, '255');
 		$this->mFieldProperties['title']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _AD_LEGACY_LANG_TITLE, '255');
 		$this->mFieldProperties['title']->addVar('maxlength', '255');
 	
-		$this->mFieldProperties['side'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['side'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['side']->setDependsByArray(array('required', 'objectExist'));
 		$this->mFieldProperties['side']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_SIDE);
 		$this->mFieldProperties['side']->addMessage('objectExist', _AD_LEGACY_ERROR_OBJECTEXIST, _AD_LEGACY_LANG_SIDE);
 		$this->mFieldProperties['side']->addVar('handler', 'columnside');
 		$this->mFieldProperties['side']->addVar('module', 'legacy');
 	
-		$this->mFieldProperties['weight'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['weight'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['weight']->setDependsByArray(array('required', 'intRange'));
 		$this->mFieldProperties['weight']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_WEIGHT);
 		$this->mFieldProperties['weight']->addMessage('intRange', _AD_LEGACY_ERROR_INTRANGE, _AD_LEGACY_LANG_WEIGHT);
 		$this->mFieldProperties['weight']->addVar('min', '0');
 		$this->mFieldProperties['weight']->addVar('max', '65535');
 	
-		$this->mFieldProperties['bcachetime'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['bcachetime'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['bcachetime']->setDependsByArray(array('required', 'objectExist'));
 		$this->mFieldProperties['bcachetime']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_BCACHETIME);
 		$this->mFieldProperties['bcachetime']->addMessage('objectExist', _AD_LEGACY_ERROR_OBJECTEXIST, _AD_LEGACY_LANG_BCACHETIME);
 		$this->mFieldProperties['bcachetime']->addVar('handler', 'cachetime');
 		
-		$this->mFieldProperties['groupid'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['groupid'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['groupid']->setDependsByArray(array('objectExist'));
 		$this->mFieldProperties['groupid']->addMessage('objectExist', _AD_LEGACY_ERROR_OBJECTEXIST, _AD_LEGACY_LANG_GROUPID);
 		$this->mFieldProperties['groupid']->addVar('handler', 'group');

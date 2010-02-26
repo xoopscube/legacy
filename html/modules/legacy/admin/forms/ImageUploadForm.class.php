@@ -22,16 +22,16 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['imgcat_id'] =& new XCube_IntProperty('imgcat_id');
-		$this->mFormProperties['upload'] =& new XCube_FileProperty('upload');
+		$this->mFormProperties['imgcat_id'] =new XCube_IntProperty('imgcat_id');
+		$this->mFormProperties['upload'] =new XCube_FileProperty('upload');
 	
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['imgcat_id'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['imgcat_id'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['imgcat_id']->setDependsByArray(array('required'));
 		$this->mFieldProperties['imgcat_id']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_IMGCAT_ID);
-		$this->mFieldProperties['upload'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['upload'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['upload']->setDependsByArray(array('required'));
 		$this->mFieldProperties['upload']->addMessage('required', _AD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_IMAGE_UPLOAD_FILE);
 	

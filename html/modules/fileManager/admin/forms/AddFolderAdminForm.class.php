@@ -24,10 +24,10 @@ class FileManager_AddFolderAdminForm extends XCube_ActionForm
 
 	function prepare()
 	{
-		$this->mFormProperties['foldername'] =& new XCube_StringProperty('foldername');
-		$this->mFormProperties['path'] =& new XCube_StringProperty('path');
+		$this->mFormProperties['foldername'] =new XCube_StringProperty('foldername');
+		$this->mFormProperties['path'] =new XCube_StringProperty('path');
 
-		$this->mFieldProperties['foldername'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['foldername'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['foldername']->setDependsByArray(array('required'));
 		$this->mFieldProperties['foldername']->addMessage('required', _AD_FILEMANAGER_ERROR_REQUIRED, _AD_FILEMANAGER_FOLDERNAME);
 	}

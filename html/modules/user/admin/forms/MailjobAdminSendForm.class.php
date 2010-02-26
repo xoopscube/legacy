@@ -21,12 +21,12 @@ class User_MailjobAdminSendForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['mailjob_id'] =& new XCube_IntProperty('mailjob_id');
+		$this->mFormProperties['mailjob_id'] =new XCube_IntProperty('mailjob_id');
 	
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['mailjob_id'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['mailjob_id'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['mailjob_id']->setDependsByArray(array('required'));
 		$this->mFieldProperties['mailjob_id']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_MAILJOB_ID);
 	}

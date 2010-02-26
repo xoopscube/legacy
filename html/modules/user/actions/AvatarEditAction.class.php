@@ -107,7 +107,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
 	 */
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new User_AvatarEditForm();
+		$this->mActionForm =new User_AvatarEditForm();
 		$this->mActionForm->prepare($this->mAvatarWidth, $this->mAvatarHeight, $this->mAvatarMaxfilesize);
 	}
 	
@@ -142,7 +142,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
 		elseif ($this->mObject->get('uid') == $xoopsUser->get('uid')) {
 			// Check count of the system avatar.
 			$handler =& xoops_getmodulehandler('avatar', 'user');
-			$criteria =& new Criteria('avatar_type', 'S');
+			$criteria =new Criteria('avatar_type', 'S');
 			if ($handler->getCount($criteria) > 0)
 				return true;
 			
@@ -158,12 +158,12 @@ class User_AvatarEditAction extends User_AbstractEditAction
 	 */
 	function getDefaultView(&$controller, &$xoopsUser)
 	{
-		$navi =& new XCube_PageNavigator(XOOPS_URL . "/edituser.php?op=avatarform&amp;uid=" . $xoopsUser->get('uid'), XCUBE_PAGENAVI_START);
+		$navi =new XCube_PageNavigator(XOOPS_URL . "/edituser.php?op=avatarform&amp;uid=" . $xoopsUser->get('uid'), XCUBE_PAGENAVI_START);
 		$handler =& xoops_getmodulehandler('avatar', 'user');
 		
 		$this->mSystemAvatars[] =& $handler->createNoavatar();
 		
-		$this->mFilter =& new User_AvatarFilterForm($navi, $handler);
+		$this->mFilter =new User_AvatarFilterForm($navi, $handler);
 		$this->mFilter->fetch();
 		
 		$criteria = $this->mFilter->getCriteria();
@@ -172,7 +172,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
 			$this->mSystemAvatars[] =& $t_avatarArr[$key];
 		}
 		
-		$this->mAvatarSelectForm =& new User_AvatarSelectForm();
+		$this->mAvatarSelectForm =new User_AvatarSelectForm();
 		$this->mAvatarSelectForm->prepare();
 		
 		$this->mAvatarSelectForm->load($this->mObject);
@@ -221,7 +221,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
 		
 		if ($this->mActionForm->mOldAvatarFilename != null && $this->mActionForm->mOldAvatarFilename != "blank.gif") {
 			$avatarHandler =& xoops_getmodulehandler('avatar', 'user');
-			$criteria =& new Criteria('avatar_file', $this->mActionForm->mOldAvatarFilename);
+			$criteria =new Criteria('avatar_file', $this->mActionForm->mOldAvatarFilename);
 			$avatarArr =& $avatarHandler->getObjects($criteria);
 			if (count($avatarArr) > 0 && is_object($avatarArr[0]) && $avatarArr[0]->get('avatar_type') == 'C') {
 				$avatarHandler->delete($avatarArr[0]);

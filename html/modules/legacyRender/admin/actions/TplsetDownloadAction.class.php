@@ -24,13 +24,13 @@ class LegacyRender_TplsetDownloadAction extends LegacyRender_Action
 			case 'tar':
 				if (@function_exists('gzencode')) {
 					require_once XOOPS_ROOT_PATH . "/class/tardownloader.php";
-					$ret =& new XoopsTarDownloader();
+					$ret =new XoopsTarDownloader();
 				}
 				break;
 			case 'zip':
 				if (@function_exists('gzcompress')) {
 					require_once XOOPS_ROOT_PATH . "/class/zipdownloader.php";
-					$ret =& new XoopsZipDownloader();
+					$ret =new XoopsZipDownloader();
 				}
 				break;
 		}

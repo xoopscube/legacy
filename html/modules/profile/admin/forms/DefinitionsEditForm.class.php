@@ -28,49 +28,49 @@ class Profile_Admin_DefinitionsEditForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['field_id'] =& new XCube_IntProperty('field_id');
-		$this->mFormProperties['field_name'] =& new XCube_StringProperty('field_name');
-		$this->mFormProperties['label'] =& new XCube_StringProperty('label');
-		$this->mFormProperties['type'] =& new XCube_StringProperty('type');
-		$this->mFormProperties['validation'] =& new XCube_StringProperty('validation');
-		$this->mFormProperties['required'] =& new XCube_BoolProperty('required');
-		$this->mFormProperties['show_form'] =& new XCube_BoolProperty('show_form');
-		$this->mFormProperties['weight'] =& new XCube_IntProperty('weight');
-		$this->mFormProperties['description'] =& new XCube_TextProperty('description');
-		$this->mFormProperties['access'] =& new XCube_TextProperty('access');
-		$this->mFormProperties['options'] =& new XCube_TextProperty('options');
+		$this->mFormProperties['field_id'] =new XCube_IntProperty('field_id');
+		$this->mFormProperties['field_name'] =new XCube_StringProperty('field_name');
+		$this->mFormProperties['label'] =new XCube_StringProperty('label');
+		$this->mFormProperties['type'] =new XCube_StringProperty('type');
+		$this->mFormProperties['validation'] =new XCube_StringProperty('validation');
+		$this->mFormProperties['required'] =new XCube_BoolProperty('required');
+		$this->mFormProperties['show_form'] =new XCube_BoolProperty('show_form');
+		$this->mFormProperties['weight'] =new XCube_IntProperty('weight');
+		$this->mFormProperties['description'] =new XCube_TextProperty('description');
+		$this->mFormProperties['access'] =new XCube_TextProperty('access');
+		$this->mFormProperties['options'] =new XCube_TextProperty('options');
 	
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['field_id'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['field_id'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['field_id']->setDependsByArray(array('required'));
 		$this->mFieldProperties['field_id']->addMessage('required', _MD_PROFILE_ERROR_REQUIRED, _MD_PROFILE_LANG_FIELD_ID);
 	
-		$this->mFieldProperties['field_name'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['field_name'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['field_name']->setDependsByArray(array('required','maxlength'));
 		$this->mFieldProperties['field_name']->addMessage('required', _MD_PROFILE_ERROR_REQUIRED, _MD_PROFILE_LANG_FIELD_NAME, '32');
 		$this->mFieldProperties['field_name']->addMessage('maxlength', _MD_PROFILE_ERROR_MAXLENGTH, _MD_PROFILE_LANG_FIELD_NAME, '32');
 		$this->mFieldProperties['field_name']->addVar('maxlength', '32');
 	
-		$this->mFieldProperties['label'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['label'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['label']->setDependsByArray(array('required','maxlength'));
 		$this->mFieldProperties['label']->addMessage('required', _MD_PROFILE_ERROR_REQUIRED, _MD_PROFILE_LANG_LABEL, '255');
 		$this->mFieldProperties['label']->addMessage('maxlength', _MD_PROFILE_ERROR_MAXLENGTH, _MD_PROFILE_LANG_LABEL, '255');
 		$this->mFieldProperties['label']->addVar('maxlength', '255');
 	
-		$this->mFieldProperties['type'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['type'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['type']->setDependsByArray(array('maxlength'));
 //		$this->mFieldProperties['type']->addMessage('required', _MD_PROFILE_ERROR_REQUIRED, _MD_PROFILE_LANG_TYPE, '16');
 		$this->mFieldProperties['type']->addMessage('maxlength', _MD_PROFILE_ERROR_MAXLENGTH, _MD_PROFILE_LANG_TYPE, '32');
 		$this->mFieldProperties['type']->addVar('maxlength', '32');
 	
-		$this->mFieldProperties['validation'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['validation'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['validation']->setDependsByArray(array('maxlength'));
 		$this->mFieldProperties['validation']->addMessage('maxlength', _MD_PROFILE_ERROR_MAXLENGTH, _MD_PROFILE_LANG_VALIDATION, '255');
 		$this->mFieldProperties['validation']->addVar('maxlength', '255');
 	
-		$this->mFieldProperties['weight'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['weight'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['weight']->setDependsByArray(array('required'));
 		$this->mFieldProperties['weight']->addMessage('required', _MD_PROFILE_ERROR_REQUIRED, _MD_PROFILE_LANG_WEIGHT);
 	}

@@ -123,10 +123,10 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 	function Legacy_RenderSystem()
 	{
 		parent::XCube_RenderSystem();
-		$this->mSetupXoopsTpl =& new XCube_Delegate();
+		$this->mSetupXoopsTpl =new XCube_Delegate();
 		$this->mSetupXoopsTpl->register('Legacy_RenderSystem.SetupXoopsTpl');
 
-		$this->mBeginRender =& new XCube_Delegate();
+		$this->mBeginRender =new XCube_Delegate();
 		$this->mBeginRender->register("Legacy_RenderSystem.BeginRender");
 	}
 	
@@ -142,7 +142,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         if ( isset($GLOBALS['xoopsTpl']) ) {
             $this->mXoopsTpl =& $GLOBALS['xoopsTpl'];
         } else {
-		    $this->mXoopsTpl =& new Legacy_XoopsTpl();
+		    $this->mXoopsTpl =new Legacy_XoopsTpl();
         }
 		$this->mXoopsTpl->register_function("legacy_notifications_select", "LegacyRender_smartyfunction_notifications_select");
 		$this->mSetupXoopsTpl->call(new XCube_Ref($this->mXoopsTpl));
@@ -543,16 +543,16 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 		$renderTarget = null;
 		switch ($type) {
 			case XCUBE_RENDER_TARGET_TYPE_MAIN:
-				$renderTarget =& new Legacy_RenderTargetMain();
+				$renderTarget =new Legacy_RenderTargetMain();
 				break;
 				
 			case LEGACY_RENDER_TARGET_TYPE_BLOCK:
-				$renderTarget =& new XCube_RenderTarget();
+				$renderTarget =new XCube_RenderTarget();
 				$renderTarget->setAttribute('legacy_buffertype', LEGACY_RENDER_TARGET_TYPE_BLOCK);
 				break;
 				
 			default:
-				$renderTarget =& new XCube_RenderTarget();
+				$renderTarget =new XCube_RenderTarget();
 				break;
 		}
 

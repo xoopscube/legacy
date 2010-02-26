@@ -30,7 +30,7 @@ class Legacy_NotifyListAction extends Legacy_Action
 		$root->mLanguageManager->loadPageTypeMessageCatalog('notification');
 		$root->mLanguageManager->loadModuleMessageCatalog('legacy');
 		
-		$this->mActionForm =& new Legacy_NotifyDeleteForm();
+		$this->mActionForm =new Legacy_NotifyDeleteForm();
 		$this->mActionForm->prepare();
 	}
 	
@@ -41,7 +41,7 @@ class Legacy_NotifyListAction extends Legacy_Action
 
 	function getDefaultView(&$contoller, &$xoopsUser)
 	{
-		$criteria =& new Criteria('not_uid', $xoopsUser->get('uid'));
+		$criteria =new Criteria('not_uid', $xoopsUser->get('uid'));
 		$criteria->setSort('not_modid, not_category, not_itemid');
 		
 		$handler =& xoops_gethandler('notification');

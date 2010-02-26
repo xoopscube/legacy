@@ -50,38 +50,38 @@ class Legacy_BlockListForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['title'] =& new XCube_StringArrayProperty('title');
-		$this->mFormProperties['weight'] =& new XCube_IntArrayProperty('weight');
-		$this->mFormProperties['side'] =& new XCube_IntArrayProperty('side');
-		$this->mFormProperties['bcachetime'] =& new XCube_IntArrayProperty('bcachetime');
-		$this->mFormProperties['uninstall']=& new XCube_BoolArrayProperty('uninstall');
+		$this->mFormProperties['title'] =new XCube_StringArrayProperty('title');
+		$this->mFormProperties['weight'] =new XCube_IntArrayProperty('weight');
+		$this->mFormProperties['side'] =new XCube_IntArrayProperty('side');
+		$this->mFormProperties['bcachetime'] =new XCube_IntArrayProperty('bcachetime');
+		$this->mFormProperties['uninstall']=new XCube_BoolArrayProperty('uninstall');
 		//to display error-msg at confirm-page
-		$this->mFormProperties['confirm'] =& new XCube_BoolProperty('confirm');
+		$this->mFormProperties['confirm'] =new XCube_BoolProperty('confirm');
 
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['title'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['title'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['title']->setDependsByArray(array('required','maxlength'));
 		$this->mFieldProperties['title']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_TITLE, '255');
 		$this->mFieldProperties['title']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _AD_LEGACY_LANG_TITLE, '255');
 		$this->mFieldProperties['title']->addVar('maxlength', '255');
 
-		$this->mFieldProperties['weight'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['weight'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['weight']->setDependsByArray(array('required','intRange'));
 		$this->mFieldProperties['weight']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_WEIGHT);
 		$this->mFieldProperties['weight']->addMessage('intRange', _AD_LEGACY_ERROR_INTRANGE, _AD_LEGACY_LANG_WEIGHT);
 		$this->mFieldProperties['weight']->addVar('min', '0');
 		$this->mFieldProperties['weight']->addVar('max', '65535');
 	
-		$this->mFieldProperties['side'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['side'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['side']->setDependsByArray(array('required','objectExist'));
 		$this->mFieldProperties['side']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_SIDE);
 		$this->mFieldProperties['side']->addMessage('objectExist', _AD_LEGACY_ERROR_OBJECTEXIST, _AD_LEGACY_LANG_SIDE);
 		$this->mFieldProperties['side']->addVar('handler', 'columnside');
 		$this->mFieldProperties['side']->addVar('module', 'legacy');
 	
-		$this->mFieldProperties['bcachetime'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['bcachetime'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['bcachetime']->setDependsByArray(array('required','objectExist'));
 		$this->mFieldProperties['bcachetime']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_BCACHETIME);
 		$this->mFieldProperties['bcachetime']->addMessage('objectExist', _AD_LEGACY_ERROR_OBJECTEXIST, _AD_LEGACY_LANG_BCACHETIME);

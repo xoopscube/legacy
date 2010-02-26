@@ -305,7 +305,7 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
      */
     function &create($isNew = true)
     {
-        $config =& new XoopsConfigItem();
+        $config =new XoopsConfigItem();
         if ($isNew) {
             $config->setNew();
         }
@@ -328,7 +328,7 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
                     $myrow = $this->db->fetchArray($result);
-                        $config =& new XoopsConfigItem();
+                        $config =new XoopsConfigItem();
                     $config->assignVars($myrow);
                         $ret =& $config;
                 }
@@ -414,7 +414,7 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
-            $config =& new XoopsConfigItem();
+            $config =new XoopsConfigItem();
             $config->assignVars($myrow);
             if (!$id_as_key) {
                 $ret[] =& $config;

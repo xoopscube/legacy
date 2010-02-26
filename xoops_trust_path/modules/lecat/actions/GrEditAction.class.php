@@ -63,7 +63,7 @@ class Lecat_GrEditAction extends Lecat_AbstractEditAction
     **/
     protected function _setupActionForm()
     {
-        // $this->mActionForm =& new Lecat_GrEditForm();
+        // $this->mActionForm =new Lecat_GrEditForm();
         $this->mActionForm =& $this->mAsset->getObject('form', 'gr',false,'edit');
         $this->mActionForm->prepare();
     }

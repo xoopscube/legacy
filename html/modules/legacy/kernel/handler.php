@@ -34,7 +34,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 	{
 		$obj = null;
 		if (XC_CLASS_EXISTS($this->mClass)) {
-			$obj =& new $this->mClass();
+			$obj =new $this->mClass();
 			if($isNew)
 				$obj->setNew();
 		}
@@ -45,7 +45,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 	{
 		$ret = null;
 		
-		$criteria =& new Criteria($this->mPrimary, $id);
+		$criteria =new Criteria($this->mPrimary, $id);
 		$objArr =& $this->getObjects($criteria);
 		
 		if (count($objArr) == 1) {
@@ -112,7 +112,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 		}
 
 		while($row = $this->db->fetchArray($result)) {
-			$obj =& new $this->mClass();
+			$obj =new $this->mClass();
 			$obj->assignVars($row);
 			$obj->unsetNew();
 			
@@ -346,7 +346,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 		// Because Criteria can generate the most appropriate sentence, use
 		// criteria even if this approach is few slow.
 		//
-		$criteria =& new Criteria($this->mPrimary, $obj->get($this->mPrimary));
+		$criteria =new Criteria($this->mPrimary, $obj->get($this->mPrimary));
         $sql = "DELETE FROM `" . $this->mTable . "` WHERE " . $this->_makeCriteriaElement4sql($criteria, $obj); 
 
 		return $force ? $this->db->queryF($sql) : $this->db->query($sql);

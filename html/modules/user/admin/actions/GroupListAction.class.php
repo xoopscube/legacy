@@ -15,7 +15,7 @@ class User_GroupListAction extends User_AbstractListAction
 
 	function &_getFilterForm()
 	{
-		$filter =& new User_GroupFilterForm($this->_getPageNavi(), $this->_getHandler());
+		$filter =new User_GroupFilterForm($this->_getPageNavi(), $this->_getHandler());
 		return $filter;
 	}
 

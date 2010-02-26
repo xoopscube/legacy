@@ -42,25 +42,25 @@ class Lecat_GrEditForm extends XCube_ActionForm
         //
         // Set form properties
         //
-        $this->mFormProperties['gr_id'] =& new XCube_IntProperty('gr_id');
-        $this->mFormProperties['title'] =& new XCube_StringProperty('title');
-        $this->mFormProperties['level'] =& new XCube_IntProperty('level');
-        $this->mFormProperties['actions'] =& new XCube_TextProperty('actions');
+        $this->mFormProperties['gr_id'] =new XCube_IntProperty('gr_id');
+        $this->mFormProperties['title'] =new XCube_StringProperty('title');
+        $this->mFormProperties['level'] =new XCube_IntProperty('level');
+        $this->mFormProperties['actions'] =new XCube_TextProperty('actions');
     
         //
         // Set field properties
         //
-        $this->mFieldProperties['gr_id'] =& new XCube_FieldProperty($this);
+        $this->mFieldProperties['gr_id'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['gr_id']->setDependsByArray(array('required'));
         $this->mFieldProperties['gr_id']->addMessage('required', _MD_LECAT_ERROR_REQUIRED, _MD_LECAT_LANG_GR_ID);
     
-        $this->mFieldProperties['title'] =& new XCube_FieldProperty($this);
+        $this->mFieldProperties['title'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['title']->setDependsByArray(array('required','maxlength'));
         $this->mFieldProperties['title']->addMessage('required', _MD_LECAT_ERROR_REQUIRED, _MD_LECAT_LANG_TITLE, '255');
         $this->mFieldProperties['title']->addMessage('maxlength', _MD_LECAT_ERROR_MAXLENGTH, _MD_LECAT_LANG_TITLE, '255');
         $this->mFieldProperties['title']->addVar('maxlength', '255');
     
-        $this->mFieldProperties['level'] =& new XCube_FieldProperty($this);
+        $this->mFieldProperties['level'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['level']->setDependsByArray(array('required'));
         $this->mFieldProperties['level']->addMessage('required', _MD_LECAT_ERROR_REQUIRED, _MD_LECAT_LANG_LEVEL);
     }

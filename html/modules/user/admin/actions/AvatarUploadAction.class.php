@@ -13,7 +13,7 @@ class User_AvatarUploadAction extends User_Action
 	
 	function prepare(&$controller, &$xoopsUser)
 	{
-		$this->mActionForm =& new User_AvatarUploadForm();
+		$this->mActionForm =new User_AvatarUploadForm();
 		$this->mActionForm->prepare();
 	}
 	
@@ -51,7 +51,7 @@ class User_AvatarUploadAction extends User_Action
 			return USER_FRAME_VIEW_ERROR;
 		}
 		require_once XOOPS_ROOT_PATH . "/class/Archive_Zip.php" ;
-		$zip = & new Archive_Zip($formFile->_mTmpFileName) ;
+		$zip = new Archive_Zip($formFile->_mTmpFileName) ;
 		$files = $zip->extract( array( 'extract_as_string' => true ) ) ;
 		if( ! is_array( @$files ) ) {
 		return USER_FRAME_VIEW_ERROR;
@@ -62,7 +62,7 @@ class User_AvatarUploadAction extends User_Action
 		}//if zip end
 		else { 
 		require_once XOOPS_ROOT_PATH . "/class/class.tar.php";
-		$tar =& new tar();
+		$tar =new tar();
 		$tar->openTar($formFile->_mTmpFileName);
 		if (!is_array( @$tar->files)) {
 			return USER_FRAME_VIEW_ERROR;

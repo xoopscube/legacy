@@ -22,17 +22,17 @@ class LegacyRender_TplsetUploadForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['upload'] =& new XCube_FileProperty('upload');
-		$this->mFormProperties['tplset_name'] =& new XCube_StringProperty('tplset_name');
+		$this->mFormProperties['upload'] =new XCube_FileProperty('upload');
+		$this->mFormProperties['tplset_name'] =new XCube_StringProperty('tplset_name');
 	
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['upload'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['upload'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['upload']->setDependsByArray(array('required'));
 		$this->mFieldProperties['upload']->addMessage('required', _AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_TPLSET_UPLOAD_FILE);
 	
-		$this->mFieldProperties['tplset_name'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['tplset_name'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['tplset_name']->setDependsByArray(array('maxlength'));
 		$this->mFieldProperties['tplset_name']->addMessage('maxlength', _AD_LEGACYRENDER_ERROR_MAXLENGTH, _AD_LEGACYRENDER_LANG_TPLSET_DESC, '50');
 		$this->mFieldProperties['tplset_name']->addVar('maxlength', '50');

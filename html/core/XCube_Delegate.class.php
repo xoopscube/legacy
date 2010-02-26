@@ -146,7 +146,7 @@ class XCube_Delegate
 	 * important to accent a delegate for making rightly connected functions.
 	 * 
 	 * \code
-	 *   $delegate =& new XCube_Delegate("string", "string");
+	 *   $delegate =new XCube_Delegate("string", "string");
 	 * \endcode
 	 */
 	function XCube_Delegate()
@@ -610,7 +610,7 @@ class XCube_DelegateUtils
      * 
      *     \code
      *       {
-     *	       $local =& new XCube_Delegate();
+     *	       $local =new XCube_Delegate();
      *	       $local->register("Module.A.Exception.Null");
      *	       $local->call();
      *	     }

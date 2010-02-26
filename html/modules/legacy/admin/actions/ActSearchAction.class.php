@@ -38,7 +38,7 @@ class Legacy_ActionSearchArgs
 
 	function addRecord($moduleName, $url, $title, $desc = null)
 	{
-		$this->mRecords[] =& new Legacy_ActionSearchRecord($moduleName, $url, $title, $desc);
+		$this->mRecords[] =new Legacy_ActionSearchRecord($moduleName, $url, $title, $desc);
 	}
 	
 	function &getRecords()
@@ -96,7 +96,7 @@ class Legacy_ActSearchAction extends Legacy_Action
 	{
 		parent::Legacy_Action($flag);
 		
-		$this->mSearchAction =& new XCube_Delegate();
+		$this->mSearchAction =new XCube_Delegate();
 		$this->mSearchAction->add(array(&$this, 'defaultSearch'));
 		$this->mSearchAction->register('Legacy_ActSearchAction.SearchAction');
 	}
@@ -120,7 +120,7 @@ class Legacy_ActSearchAction extends Legacy_Action
 		$handler =& xoops_gethandler('module');
 		while ($row = $db->fetchArray($result)) {
 			$module =& $handler->get($row['mid']);
-			$adapter =& new Legacy_ModuleAdapter($module); // FIXMED
+			$adapter =new Legacy_ModuleAdapter($module); // FIXMED
 			
 			$this->mModules[] =& $adapter;
 			
@@ -146,7 +146,7 @@ class Legacy_ActSearchAction extends Legacy_Action
 			return LEGACY_FRAME_VIEW_INPUT;
 		}
 
-		$searchArgs =& new Legacy_ActionSearchArgs($this->mActionForm->get('keywords'));
+		$searchArgs =new Legacy_ActionSearchArgs($this->mActionForm->get('keywords'));
 		$this->mSearchAction->call(new XCube_Ref($searchArgs));
 
 		if ($searchArgs->hasRecord()) {
@@ -172,7 +172,7 @@ class Legacy_ActSearchAction extends Legacy_Action
 	
 	function _processActionForm()
 	{
-		$this->mActionForm =& new Legacy_ActionSearchForm();
+		$this->mActionForm =new Legacy_ActionSearchForm();
 		$this->mActionForm->prepare();
 	}
 

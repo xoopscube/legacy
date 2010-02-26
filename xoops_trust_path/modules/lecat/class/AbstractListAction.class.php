@@ -81,7 +81,7 @@ abstract class Lecat_AbstractListAction extends Lecat_AbstractAction
     **/
     protected function &_getPageNavi()
     {
-        $navi =& new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START);
+        $navi =new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START);
         return $navi;
     }
 

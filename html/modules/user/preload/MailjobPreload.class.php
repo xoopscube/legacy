@@ -17,7 +17,7 @@ class User_MailjobPreload extends XCube_ActionFilter
 		$root =& XCube_Root::getSingleton();
 	
 		require_once XOOPS_MODULE_PATH . "/user/service/MailjobService.class.php";
-		$service =& new User_MailjobService();
+		$service =new User_MailjobService();
 		$service->prepare();
 	
 		$this->mRoot->mServiceManager->addService('User_MailjobService', $service);

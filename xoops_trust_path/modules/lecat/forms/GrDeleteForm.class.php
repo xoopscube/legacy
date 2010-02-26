@@ -42,12 +42,12 @@ class Lecat_GrDeleteForm extends XCube_ActionForm
         //
         // Set form properties
         //
-        $this->mFormProperties['gr_id'] =& new XCube_IntProperty('gr_id');
+        $this->mFormProperties['gr_id'] =new XCube_IntProperty('gr_id');
     
         //
         // Set field properties
         //
-        $this->mFieldProperties['gr_id'] =& new XCube_FieldProperty($this);
+        $this->mFieldProperties['gr_id'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['gr_id']->setDependsByArray(array('required'));
         $this->mFieldProperties['gr_id']->addMessage('required', _MD_LECAT_ERROR_REQUIRED, _MD_LECAT_LANG_GR_ID);
     }

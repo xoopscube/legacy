@@ -59,7 +59,7 @@ class XoopsImagesetimgHandler extends XoopsObjectHandler
 
     function &create($isNew = true)
     {
-        $imgsetimg =& new XoopsImagesetimg();
+        $imgsetimg =new XoopsImagesetimg();
         if ($isNew) {
             $imgsetimg->setNew();
         }
@@ -75,7 +75,7 @@ class XoopsImagesetimgHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $imgsetimg =& new XoopsImagesetimg();
+                        $imgsetimg =new XoopsImagesetimg();
                     $imgsetimg->assignVars($this->db->fetchArray($result));
                         $ret =& $imgsetimg;
                 }
@@ -142,7 +142,7 @@ class XoopsImagesetimgHandler extends XoopsObjectHandler
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
-            $imgsetimg =& new XoopsImagesetimg();
+            $imgsetimg =new XoopsImagesetimg();
             $imgsetimg->assignVars($myrow);
             if (!$id_as_key) {
                 $ret[] =& $imgsetimg;

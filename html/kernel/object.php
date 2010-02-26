@@ -637,7 +637,7 @@ class XoopsObject extends AbstractXoopsObject
     function &xoopsClone()
     {
         $class = get_class($this);
-        $clone =& new $class();
+        $clone =new $class();
         foreach ($this->vars as $k => $v) {
             $clone->assignVar($k, $v['value']);
         }

@@ -82,7 +82,7 @@ function smarty_function_xoops_dhtmltarea($params, &$smarty)
         print $html;
     
         /*
-        $form =& new XoopsFormDhtmlTextArea($name, $name, $value, $rows, $cols);
+        $form =new XoopsFormDhtmlTextArea($name, $name, $value, $rows, $cols);
         $form->setId($id);
         if ($class != null) {
             $form->setClass($class);

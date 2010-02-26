@@ -131,12 +131,12 @@ class Legacy_ModuleInstallUtils
 			}
 				
 			if (XC_CLASS_EXISTS($className)) {
-				$installer =& new $className();
+				$installer =new $className();
 				return $installer;
 			}
 		}
 		
-		$installer =& new $defaultClassName();
+		$installer =new $defaultClassName();
 		return $installer;
 	}
 	
@@ -165,7 +165,7 @@ class Legacy_ModuleInstallUtils
 		
 		if (isset($module->modinfo['cube_style']) && $module->modinfo['cube_style'] == true) {
 			require_once XOOPS_MODULE_PATH . "/legacy/admin/class/Legacy_SQLScanner.class.php";
-			$scanner =& new Legacy_SQLScanner();
+			$scanner =new Legacy_SQLScanner();
 			$scanner->setDB_PREFIX(XOOPS_DB_PREFIX);
 			$scanner->setDirname($module->get('dirname'));
 			
@@ -360,7 +360,7 @@ class Legacy_ModuleInstallUtils
 			//
 			// clear cache
 			//
-			$xoopsTpl =& new XoopsTpl();
+			$xoopsTpl =new XoopsTpl();
 			$xoopsTpl->clear_cache(null, "mod_" . $module->get('dirname'));
 			
 			foreach ($delTemplates as $tpl) {
@@ -618,7 +618,7 @@ class Legacy_ModuleInstallUtils
 		// Deletes permissions
 		//
 		$gpermHandler =& xoops_gethandler('groupperm');
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('gperm_name', 'block_read'));
 		$criteria->add(new Criteria('gperm_itemid', $block->get('bid')));
 		$criteria->add(new Criteria('gperm_modid', 1));
@@ -638,7 +638,7 @@ class Legacy_ModuleInstallUtils
 		
 		$tplHandler =& xoops_gethandler('tplfile');
 
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('tpl_type', 'block'));
 		$criteria->add(new Criteria('tpl_tplset', 'default'));
 		$criteria->add(new Criteria('tpl_module', $module->get('dirname')));
@@ -714,7 +714,7 @@ class Legacy_ModuleInstallUtils
 	{
 		$dirname = $module->get('dirname');
 		
-		$fileReader =& new Legacy_ModinfoX2FileReader($dirname);
+		$fileReader =new Legacy_ModinfoX2FileReader($dirname);
 		$preferences =& $fileReader->loadPreferenceInformations();
 		
 		//
@@ -886,10 +886,10 @@ class Legacy_ModuleInstallUtils
 	{
 		$dirname = $module->get('dirname');
 		
-		$fileReader =& new Legacy_ModinfoX2FileReader($dirname);
+		$fileReader =new Legacy_ModinfoX2FileReader($dirname);
 		$latestBlocks =& $fileReader->loadBlockInformations();
 		
-		$dbReader =& new Legacy_ModinfoX2DBReader($dirname);
+		$dbReader =new Legacy_ModinfoX2DBReader($dirname);
 		$currentBlocks =& $dbReader->loadBlockInformations();
 		
 		$currentBlocks->update($latestBlocks);
@@ -919,10 +919,10 @@ class Legacy_ModuleInstallUtils
 	{
 		$dirname = $module->get('dirname');
 		
-		$fileReader =& new Legacy_ModinfoX2FileReader($dirname);
+		$fileReader =new Legacy_ModinfoX2FileReader($dirname);
 		$latestPreferences =& $fileReader->loadPreferenceInformations();
 		
-		$dbReader =& new Legacy_ModinfoX2DBReader($dirname);
+		$dbReader =new Legacy_ModinfoX2DBReader($dirname);
 		$currentPreferences =& $dbReader->loadPreferenceInformations();
 		
 		$currentPreferences->update($latestPreferences);
@@ -1001,7 +1001,7 @@ class Legacy_ModuleInstallUtils
 	{
 		$handler =& xoops_getmodulehandler('newblocks', 'legacy');
 		
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('dirname', $module->get('dirname')));
 		$criteria->add(new Criteria('func_num', $info->mFuncNum));
 		
@@ -1016,7 +1016,7 @@ class Legacy_ModuleInstallUtils
 	{
 		$handler =& xoops_getmodulehandler('newblocks', 'legacy');
 		
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('dirname', $module->get('dirname')));
 		$criteria->add(new Criteria('func_num', $info->mFuncNum));
 		
@@ -1045,7 +1045,7 @@ class Legacy_ModuleInstallUtils
 	{
 		$handler =& xoops_gethandler('config');
 
-		$criteria =& new CriteriaCompo();		
+		$criteria =new CriteriaCompo();		
 		$criteria->add(new Criteria('conf_modid', $module->get('mid')));
 		$criteria->add(new Criteria('conf_catid', 0));
 		$criteria->add(new Criteria('conf_name', $info->mName));
@@ -1107,7 +1107,7 @@ class Legacy_ModuleInstallUtils
 	{
 		$handler =& xoops_gethandler('config');
 
-		$criteria =& new CriteriaCompo();		
+		$criteria =new CriteriaCompo();		
 		$criteria->add(new Criteria('conf_modid', $module->get('mid')));
 		$criteria->add(new Criteria('conf_catid', 0));
 		$criteria->add(new Criteria('conf_name', $info->mName));
@@ -1166,7 +1166,7 @@ class Legacy_ModuleInstallUtils
 	{
 		$handler =& xoops_getmodulehandler('newblocks', 'legacy');
 		
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('dirname', $module->get('dirname')));
 		$criteria->add(new Criteria('func_num', $func_num));
 		
@@ -1198,7 +1198,7 @@ class Legacy_ModuleInstallUtils
 	function _uninstallBlockTemplate(&$block, &$module, $tplset, &$log)
 	{
 		$handler =& xoops_gethandler('tplfile');
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('tpl_refid', $block->get('bid')));
 		$criteria->add(new Criteria('tpl_file', $block->get('template')));
 		$criteria->add(new Criteria('tpl_module', $module->get('dirname')));
@@ -1230,7 +1230,7 @@ class Legacy_ModuleInstallUtils
 	{
 		$handler =& xoops_gethandler('config');
 
-		$criteria =& new CriteriaCompo();		
+		$criteria =new CriteriaCompo();		
 		$criteria->add(new Criteria('conf_modid', $module->get('mid')));
 		$criteria->add(new Criteria('conf_catid', 0));
 		$criteria->add(new Criteria('conf_order', $order));
@@ -1256,7 +1256,7 @@ class Legacy_ModuleInstallUtils
 		
 		$successFlag = true;
 		
-		$scanner =& new Legacy_SQLScanner();
+		$scanner =new Legacy_SQLScanner();
 		$scanner->setDB_PREFIX(XOOPS_DB_PREFIX);
 		$scanner->setDirname($module->get('dirname'));
 		$scanner->setBuffer($query);
@@ -1282,14 +1282,14 @@ class Legacy_ModuleInstallUtils
 	function deleteAllOfNotifications(&$module, &$log)
 	{
 		$handler =& xoops_gethandler('notification');
-		$criteria =& new Criteria('not_modid', $module->get('mid'));
+		$criteria =new Criteria('not_modid', $module->get('mid'));
 		$handler->deleteAll($criteria);
 	}
 
 	function deleteAllOfComments(&$module, &$log)
 	{
 		$handler =& xoops_gethandler('comment');
-		$criteria =& new Criteria('com_modid', $module->get('mid'));
+		$criteria =new Criteria('com_modid', $module->get('mid'));
 		$handler->deleteAll($criteria);
 	}
 }

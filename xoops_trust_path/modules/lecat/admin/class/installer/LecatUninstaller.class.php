@@ -41,7 +41,7 @@ class Lecat_Uninstaller
     **/
     public function __construct()
     {
-        $this->mLog =& new Legacy_ModuleInstallLog();
+        $this->mLog =new Legacy_ModuleInstallLog();
     }
 
     /**
@@ -160,7 +160,7 @@ class Lecat_Uninstaller
         Lecat_InstallUtils::uninstallAllOfBlocks($this->_mXoopsModule,$this->mLog);
     
         $tplHandler =& Lecat_Utils::getXoopsHandler('tplfile');
-        $cri =& new Criteria('tpl_module',$this->_mXoopsModule->get('dirname'));
+        $cri =new Criteria('tpl_module',$this->_mXoopsModule->get('dirname'));
         if(!$tplHandler->deleteAll($cri))
         {
             $this->mLog->addError(

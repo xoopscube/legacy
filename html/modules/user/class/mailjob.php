@@ -35,13 +35,13 @@ class UserMailjobObject extends XoopsSimpleObject
 		$this->initVar('is_mail', XOBJ_DTYPE_BOOL, '0', true);
 		$this->initVar('create_unixtime', XOBJ_DTYPE_INT, time(), true);
 		
-		$this->mGetReplaceTitle =& new XCube_Delegate();
+		$this->mGetReplaceTitle =new XCube_Delegate();
 		$this->mGetReplaceTitle->register('UserMailjobObject.GetReplaceTitle');
 		
-		$this->mGetReplaceBody =& new XCube_Delegate();
+		$this->mGetReplaceBody =new XCube_Delegate();
 		$this->mGetReplaceBody->register('UserMailjobObject.GetReplaceBody');
 		
-		$this->mSend =& new XCube_Delegate();
+		$this->mSend =new XCube_Delegate();
 		$this->mSend->register('UserMailjobObject.Send');
 	}
 
@@ -78,7 +78,7 @@ class UserMailjobObject extends XoopsSimpleObject
 	{
 		$handler =& xoops_getmodulehandler('mailjob_link', 'user');
 		
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('mailjob_id', $this->get('mailjob_id')));
 		$criteria->add(new Criteria('retry', $retry));
 		

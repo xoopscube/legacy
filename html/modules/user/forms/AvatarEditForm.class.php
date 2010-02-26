@@ -29,13 +29,13 @@ class User_AvatarEditForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['uid'] =& new XCube_IntProperty('uid');
-		$this->mFormProperties['uploadavatar'] =& new XCube_ImageFileProperty('uploadavatar');
+		$this->mFormProperties['uid'] =new XCube_IntProperty('uid');
+		$this->mFormProperties['uploadavatar'] =new XCube_ImageFileProperty('uploadavatar');
 
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['uploadavatar'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['uploadavatar'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['uploadavatar']->setDependsByArray(array('extension', 'maxfilesize'));
 		$this->mFieldProperties['uploadavatar']->addMessage('extension', _MD_USER_ERROR_AVATAR_EXTENSION);
 		$this->mFieldProperties['uploadavatar']->addVar('extension', "jpg,gif,png");

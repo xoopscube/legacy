@@ -26,7 +26,7 @@ class User_LostPassAction extends User_Action
 	
 	function prepare(&$controller, &$xoopsUser, $moduleConfig)
 	{
-		$this->mActionForm =& new User_LostPassEditForm();
+		$this->mActionForm =new User_LostPassEditForm();
 		$this->mActionForm->prepare();
 	}
 	
@@ -57,7 +57,7 @@ class User_LostPassAction extends User_Action
 		$this->mActionForm->fetch();
 
 		$userHandler =& xoops_gethandler('user');
-		$criteria =& new CriteriaCompo(new Criteria('email', $this->mActionForm->get('email')));
+		$criteria =new CriteriaCompo(new Criteria('email', $this->mActionForm->get('email')));
 		$criteria->add(new Criteria('pass', $this->mActionForm->get('code'), '=', '', 'LEFT(%s, 5)'));
 		$lostUserArr =& $userHandler->getObjects($criteria);
 		
@@ -70,8 +70,8 @@ class User_LostPassAction extends User_Action
 
 		$newpass = xoops_makepass();
 		$extraVars['newpass'] = $newpass;
-		$builder =& new User_LostPass2MailBuilder();
-		$director =& new User_LostPassMailDirector($builder, $lostUser, $controller->mRoot->mContext->getXoopsConfig(), $extraVars);
+		$builder =new User_LostPass2MailBuilder();
+		$director =new User_LostPassMailDirector($builder, $lostUser, $controller->mRoot->mContext->getXoopsConfig(), $extraVars);
 		$director->contruct();
 		$xoopsMailer =& $builder->getResult();
 		if (!$xoopsMailer->send()) {
@@ -103,8 +103,8 @@ class User_LostPassAction extends User_Action
 			return USER_FRAME_VIEW_ERROR;
 		}
 
-		$builder =& new User_LostPass1MailBuilder();
-		$director =& new User_LostPassMailDirector($builder, $lostUser, $controller->mRoot->mContext->getXoopsConfig());
+		$builder =new User_LostPass1MailBuilder();
+		$director =new User_LostPassMailDirector($builder, $lostUser, $controller->mRoot->mContext->getXoopsConfig());
 		$director->contruct();
 		$xoopsMailer =& $builder->getResult();
 

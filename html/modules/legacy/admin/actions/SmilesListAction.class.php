@@ -22,7 +22,7 @@ class Legacy_SmilesListAction extends Legacy_AbstractListAction
 
 	function prepare(&$controller, &$xoopsUser)
 	{
-		$this->mActionForm =& new Legacy_SmilesListForm();
+		$this->mActionForm =new Legacy_SmilesListForm();
 		$this->mActionForm->prepare();
 	}
 
@@ -34,7 +34,7 @@ class Legacy_SmilesListAction extends Legacy_AbstractListAction
 
 	function &_getPageNavi()
 	{
-		$navi =& new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
+		$navi =new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
 
 		$root =& XCube_Root::getSingleton();
 		$perpage = $root->mContext->mRequest->getRequest($navi->mPrefix.'perpage');
@@ -47,7 +47,7 @@ class Legacy_SmilesListAction extends Legacy_AbstractListAction
 
 	function &_getFilterForm()
 	{
-		$filter =& new Legacy_SmilesFilterForm($this->_getPageNavi(), $this->_getHandler());
+		$filter =new Legacy_SmilesFilterForm($this->_getPageNavi(), $this->_getHandler());
 		return $filter;
 	}
 

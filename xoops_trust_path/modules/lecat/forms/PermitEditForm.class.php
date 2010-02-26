@@ -42,19 +42,19 @@ class Lecat_PermitEditForm extends XCube_ActionForm
         //
         // Set form properties
         //
-        $this->mFormProperties['permit_id'] =& new XCube_IntProperty('permit_id');
-        $this->mFormProperties['cat_id'] =& new XCube_IntProperty('cat_id');
-        $this->mFormProperties['groupid'] =& new XCube_IntProperty('groupid');
-        $this->mFormProperties['permissions'] =& new XCube_TextProperty('permissions');
+        $this->mFormProperties['permit_id'] =new XCube_IntProperty('permit_id');
+        $this->mFormProperties['cat_id'] =new XCube_IntProperty('cat_id');
+        $this->mFormProperties['groupid'] =new XCube_IntProperty('groupid');
+        $this->mFormProperties['permissions'] =new XCube_TextProperty('permissions');
     
         //
         // Set field properties
         //
-        $this->mFieldProperties['permit_id'] =& new XCube_FieldProperty($this);
+        $this->mFieldProperties['permit_id'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['permit_id']->setDependsByArray(array('required'));
         $this->mFieldProperties['permit_id']->addMessage('required', _MD_LECAT_ERROR_REQUIRED, _MD_LECAT_LANG_PERMIT_ID);
     
-        $this->mFieldProperties['cat_id'] =& new XCube_FieldProperty($this);
+        $this->mFieldProperties['cat_id'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['cat_id']->setDependsByArray(array('required'));
         $this->mFieldProperties['cat_id']->addMessage('required', _MD_LECAT_ERROR_REQUIRED, _MD_LECAT_LANG_CAT_ID);
     

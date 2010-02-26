@@ -14,7 +14,7 @@ class User_RanksListAction extends User_AbstractListAction
 
 	function prepare(&$controller, &$xoopsUser)
 	{
-		$this->mActionForm =& new User_RanksListForm();
+		$this->mActionForm =new User_RanksListForm();
 		$this->mActionForm->prepare();
 	}
 
@@ -26,7 +26,7 @@ class User_RanksListAction extends User_AbstractListAction
 
 	function &_getPageNavi()
 	{
-		$navi =& new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
+		$navi =new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
 
 		$root =& XCube_Root::getSingleton();
 		$perpage = $root->mContext->mRequest->getRequest($navi->mPrefix.'perpage');
@@ -39,7 +39,7 @@ class User_RanksListAction extends User_AbstractListAction
 
 	function &_getFilterForm()
 	{
-		$filter =& new User_RanksFilterForm($this->_getPageNavi(), $this->_getHandler());
+		$filter =new User_RanksFilterForm($this->_getPageNavi(), $this->_getHandler());
 		return $filter;
 	}
 

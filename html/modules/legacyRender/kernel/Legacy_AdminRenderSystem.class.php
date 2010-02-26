@@ -112,7 +112,7 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
 	{
 		$this->mController =& $controller;
 		
-		$this->mSmarty =& new Legacy_AdminSmarty();
+		$this->mSmarty =new Legacy_AdminSmarty();
 		$this->mSmarty->register_modifier("theme", "Legacy_modifier_theme");
 		$this->mSmarty->register_function("stylesheet", "Legacy_function_stylesheet");
 

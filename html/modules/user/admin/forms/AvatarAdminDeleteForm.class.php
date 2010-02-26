@@ -20,12 +20,12 @@ class User_AvatarAdminDeleteForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['avatar_id'] =& new XCube_IntProperty('avatar_id');
+		$this->mFormProperties['avatar_id'] =new XCube_IntProperty('avatar_id');
 
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['avatar_id'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['avatar_id'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['avatar_id']->setDependsByArray(array('required'));
 		$this->mFieldProperties['avatar_id']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_AVATAR_ID);
 	}

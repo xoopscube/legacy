@@ -15,7 +15,7 @@ class Profile_AssetPreload extends XCube_ActionFilter
 	function preBlockFilter()
 	{
 		if (!$this->mRoot->mContext->hasAttribute('module.profile.HasSetAssetManager')) {
-			$delegate =& new XCube_Delegate();
+			$delegate =new XCube_Delegate();
 			$delegate->register('Module.profile.Event.GetAssetManager');
 			$delegate->add(array(&$this, 'getManager'));
 			$this->mRoot->mContext->setAttribute('module.profile.HasSetAssetManager', true);

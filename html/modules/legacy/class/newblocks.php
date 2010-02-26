@@ -64,7 +64,7 @@ class LegacyNewblocksObject extends XoopsSimpleObject
 	function loadGroup()
 	{
 		$handler =& xoops_gethandler('groupperm');
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('gperm_modid', 1));
 		$criteria->add(new Criteria('gperm_itemid', $this->get('bid')));
 		$criteria->add(new Criteria('gperm_name', 'block_read'));
@@ -80,7 +80,7 @@ class LegacyNewblocksObject extends XoopsSimpleObject
 	function loadBmodule()
 	{
 		$handler =& xoops_getmodulehandler('block_module_link', 'legacy');
-		$criteria =& new Criteria('block_id', $this->get('bid'));
+		$criteria =new Criteria('block_id', $this->get('bid'));
 		
 		$this->mBmodule =& $handler->getObjects($criteria);
 	}
@@ -118,7 +118,7 @@ class LegacyNewblocksHandler extends XoopsObjectGenericHandler
 			//
 			$handler =& xoops_gethandler('groupperm');
 
-			$criteria =& new CriteriaCompo();
+			$criteria =new CriteriaCompo();
 			$criteria->add(new Criteria('gperm_modid', 1));
 			$criteria->add(new Criteria('gperm_itemid', $obj->get('bid')));
 			$criteria->add(new Criteria('gperm_name', 'block_read'));

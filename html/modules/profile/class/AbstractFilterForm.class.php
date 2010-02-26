@@ -35,7 +35,7 @@ class Profile_AbstractFilterForm
 	 */
 	function Profile_AbstractFilterForm()
 	{
-		$this->_mCriteria =& new CriteriaCompo();
+		$this->_mCriteria =new CriteriaCompo();
 	
 	}
 

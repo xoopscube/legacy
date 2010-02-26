@@ -96,7 +96,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
  **/
     function &create($isNew = true)
     {
-        $pm =& new XoopsPrivmessage();
+        $pm =new XoopsPrivmessage();
         if ($isNew) {
             $pm->setNew();
         }
@@ -117,7 +117,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $pm =& new XoopsPrivmessage();
+                        $pm =new XoopsPrivmessage();
                     $pm->assignVars($this->db->fetchArray($result));
                         $ret =& $pm;
                 }
@@ -204,7 +204,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
-            $pm =& new XoopsPrivmessage();
+            $pm =new XoopsPrivmessage();
             $pm->assignVars($myrow);
 			if (!$id_as_key) {
             	$ret[] =& $pm;

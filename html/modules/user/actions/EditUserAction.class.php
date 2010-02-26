@@ -49,7 +49,7 @@ class User_EditUserAction extends User_AbstractEditAction
 	 */
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new User_EditUserForm($this->mConfig);
+		$this->mActionForm =new User_EditUserForm($this->mConfig);
 		$this->mActionForm->prepare();
 	}
 	

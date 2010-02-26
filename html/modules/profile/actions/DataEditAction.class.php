@@ -41,7 +41,7 @@ class Profile_DataEditAction extends Profile_AbstractEditAction
 	 */
 	function _setupActionForm()
 	{
-		// $this->mActionForm =& new Profile_DataEditForm();
+		// $this->mActionForm =new Profile_DataEditForm();
 		$this->mActionForm =& $this->mAsset->create('form', "edit_data");
 		$this->mActionForm->prepare();
 	}

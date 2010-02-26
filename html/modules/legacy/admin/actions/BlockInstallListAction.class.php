@@ -26,7 +26,7 @@ class Legacy_BlockInstallListAction extends Legacy_AbstractListAction
 
 	function &_getPageNavi()
 	{
-		$navi =& new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
+		$navi =new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
 
 		$root =& XCube_Root::getSingleton();
 		$perpage = $root->mContext->mRequest->getRequest($navi->mPrefix.'perpage');
@@ -39,7 +39,7 @@ class Legacy_BlockInstallListAction extends Legacy_AbstractListAction
 
 	function &_getFilterForm()
 	{
-		$filter =& new Legacy_BlockInstallFilterForm($this->_getPageNavi(), $this->_getHandler());
+		$filter =new Legacy_BlockInstallFilterForm($this->_getPageNavi(), $this->_getHandler());
 		return $filter;
 	}
 
@@ -75,13 +75,13 @@ class Legacy_BlockInstallListAction extends Legacy_AbstractListAction
 		$render->setAttribute('ActiveBlockTotal', $active_block_total);
 		$render->setAttribute('InactiveBlockTotal', $inactive_block_total);
 
-		$active_installed_criteria = & new CriteriaCompo(new Criteria('visible', 1));
+		$active_installed_criteria = new CriteriaCompo(new Criteria('visible', 1));
 		$active_installed_criteria->add(new Criteria('isactive', 1));
 		$active_installed_block_total = $block_handler->getCount($active_installed_criteria);
 		$render->setAttribute('ActiveInstalledBlockTotal', $active_installed_block_total);
 		$render->setAttribute('ActiveUninstalledBlockTotal', $active_block_total - $active_installed_block_total);
 
-		$inactive_installed_criteria = & new CriteriaCompo(new Criteria('visible', 1));
+		$inactive_installed_criteria = new CriteriaCompo(new Criteria('visible', 1));
 		$inactive_installed_criteria->add(new Criteria('isactive', 0));
 		$inactive_installed_block_total = $block_handler->getCount($inactive_installed_criteria);
 		$render->setAttribute('InactiveInstalledBlockTotal', $inactive_installed_block_total);

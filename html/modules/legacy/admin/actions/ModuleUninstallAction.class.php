@@ -92,10 +92,10 @@ class Legacy_ModuleUninstallAction extends Legacy_Action
 	{
 		parent::Legacy_Action($flag);
 		
-		$this->mUninstallSuccess =& new XCube_Delegate();
+		$this->mUninstallSuccess =new XCube_Delegate();
 		$this->mUninstallSuccess->register('Legacy_ModuleUninstallAction.UninstallSuccess');
 		
-		$this->mUninstallFail =& new XCube_Delegate();
+		$this->mUninstallFail =new XCube_Delegate();
 		$this->mUninstallFail->register('Legacy_ModuleUninstallAction.UninstallFail');
 	}
 
@@ -132,7 +132,7 @@ class Legacy_ModuleUninstallAction extends Legacy_Action
 	
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_ModuleUninstallForm();
+		$this->mActionForm =new Legacy_ModuleUninstallForm();
 		$this->mActionForm->prepare();
 	}
 

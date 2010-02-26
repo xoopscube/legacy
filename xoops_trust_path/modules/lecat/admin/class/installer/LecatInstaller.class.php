@@ -41,7 +41,7 @@ class Lecat_Installer
     **/
     public function __construct()
     {
-        $this->mLog =& new Legacy_ModuleInstallLog();
+        $this->mLog =new Legacy_ModuleInstallLog();
     }
 
     /**

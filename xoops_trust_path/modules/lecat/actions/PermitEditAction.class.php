@@ -64,7 +64,7 @@ class Lecat_PermitEditAction extends Lecat_AbstractEditAction
     **/
     protected function _setupActionForm()
     {
-        // $this->mActionForm =& new Lecat_PermitEditForm();
+        // $this->mActionForm =new Lecat_PermitEditForm();
         $this->mActionForm =& $this->mAsset->getObject('form', 'permit',false,'edit');
         $this->mActionForm->prepare();
     }

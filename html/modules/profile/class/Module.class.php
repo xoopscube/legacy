@@ -99,7 +99,7 @@ class Profile_Module extends Legacy_ModuleAdapter
 		require_once $fileName;
 	
 		if (class_exists($className)) {
-			$this->mAction =& new $className();
+			$this->mAction =new $className();
 		}
 	
 		if (!is_object($this->mAction)) {

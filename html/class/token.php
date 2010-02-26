@@ -197,7 +197,7 @@ class XoopsTokenHandler
      */
     function &create($name,$timeout = XOOPS_TOKEN_TIMEOUT)
     {
-        $token =& new XoopsToken($name,$timeout);
+        $token =new XoopsToken($name,$timeout);
         $this->register($token);
         return $token;
     }
@@ -291,7 +291,7 @@ class XoopsSingleTokenHandler extends XoopsTokenHandler
     */
     function &quickCreate($name,$timeout = XOOPS_TOKEN_TIMEOUT)
     {
-        $handler =& new XoopsSingleTokenHandler();
+        $handler =new XoopsSingleTokenHandler();
         $ret =& $handler->create($name,$timeout);
         return $ret;
     }
@@ -318,7 +318,7 @@ class XoopsMultiTokenHandler extends XoopsTokenHandler
 {
     function &create($name,$timeout=XOOPS_TOKEN_TIMEOUT)
     {
-        $token =& new XoopsToken($name,$timeout);
+        $token =new XoopsToken($name,$timeout);
         $token->setSerialNumber($this->getUniqueSerial($name));
         $this->register($token);
         return $token;
@@ -368,7 +368,7 @@ class XoopsMultiTokenHandler extends XoopsTokenHandler
     */
     function &quickCreate($name,$timeout = XOOPS_TOKEN_TIMEOUT)
     {
-        $handler =& new XoopsMultiTokenHandler();
+        $handler =new XoopsMultiTokenHandler();
         $ret =& $handler->create($name,$timeout);
         return $ret;
     }
