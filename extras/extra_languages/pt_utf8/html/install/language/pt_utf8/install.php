@@ -5,13 +5,13 @@
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## Website........: http://xoopscube.com.br
+// ## Website........: http://xoops.net.br/
 // ## E-mail.........: mikhail@underpop.com
 // ## AOL............: mikhailmiguel
 // ## MSN............: mikhailmiguel@msn.com
 // ## Orkut..........: 15440532260129226492
 // ## Skype..........: mikhailmiguel
-// ## Yahoo!.........: mikhailmiguel@yahoo.com
+// ## Yahoo!.........: mikhail.miguel@yahoo.com.br
 // ############################################################### //
 // *************************************************************** //
 define("_INSTALL_CHARSET","UTF-8");
@@ -71,10 +71,10 @@ define("_INSTALL_L145","Comentário (ID: %s) inserido no banco de dados.");
 define("_INSTALL_L146","Não foi possível inserir o comentário de número %s no banco de dados.");
 define("_INSTALL_L147","Atualizando os comentários..");
 define("_INSTALL_L148","Atualização completa.");
-define("_INSTALL_L149","O sistema de instalação vai agora atualizar os comentários feitos na versão XOOPS 1.3.x, para serem usados no XOOPS Cube Legacy.<br />Esta ação vai demorar algum tempo a ser finalizada.");
+define("_INSTALL_L149","O sistema de instalação vai agora atualizar os comentários feitos na versão XOOPS 1.3.x, para serem utilizados no XOOPS Cube Legacy.<br />Esta ação vai demorar algum tempo a ser finalizada.");
 define("_INSTALL_L15","Por favor, abra o arquivo mainfile.php e escreva as configurações do BD solicitadas");
-define("_INSTALL_L150","O sistema de instalação vai agora atualizar os emoticons e ranks, para serem usados no XOOPS2.<br />Esta acção vai demorar algum tempo para ser finalizada.");
-define("_INSTALL_L151","O sistema de instalação vai agora atualizar os personagens para serem usados no XOOPS2.<br />Esta ação vai demorar algum tempo para ser finalizada.");
+define("_INSTALL_L150","O sistema de instalação vai agora atualizar os emoticons e ranks, para serem utilizados no XOOPS2.<br />Esta acção vai demorar algum tempo para ser finalizada.");
+define("_INSTALL_L151","O sistema de instalação vai agora atualizar os personagens para serem utilizados no XOOPS2.<br />Esta ação vai demorar algum tempo para ser finalizada.");
 define("_INSTALL_L152","Ocorreu um erro, não foi possível abrir %s.");
 define("_INSTALL_L153","Ocorreu um erro, não foi possível atualizar %s.");
 define("_INSTALL_L154","%s atualizado.");

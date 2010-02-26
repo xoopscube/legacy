@@ -65,7 +65,7 @@ define("_AD_USER_LANG_GROUP_ASSIGN","Incluir um associado");
 define("_AD_USER_LANG_GROUP_ASSIN_MEMBERS","Lista de associados deste grupo");
 define("_AD_USER_LANG_GROUP_DELETE","Remover grupo");
 define("_AD_USER_LANG_GROUP_DELETE_ADVICE","Remover");
-define("_AD_USER_LANG_GROUP_DELETE_ADVICE2","Quando você remover um grupo, os perfis dos associados do grupo não serão removidas.");
+define("_AD_USER_LANG_GROUP_DELETE_ADVICE2","Quando você remover um grupo, os perfis dos associados do grupo não serão removidos.");
 define("_AD_USER_LANG_GROUP_DESC","Descrição");
 define("_AD_USER_LANG_GROUP_EDIT","Editar grupos");
 define("_AD_USER_LANG_GROUP_GID","N° do grupo");
@@ -172,7 +172,7 @@ define("_AD_USER_TIPS5_DATA_UPLOAD","The user information is updated when there 
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## Website........: http://xoopscube.com.br
+// ## Website........: http://xoops.net.br/
 // ## E-mail.........: mikhail@underpop.com
 // ## AOL............: mikhailmiguel
 // ## MSN............: mikhail.miguel@hotmail.com

@@ -1,5 +1,19 @@
 <?php
 // $Id$
+// License http://creativecommons.org/licenses/by/2.5/br/
+// ############################################################### //
+// ## XOOPS Cube Legacy - Versão em Português
+// ############################################################### //
+// ## Por............: Mikhail Miguel
+// ## Website........: http://xoops.net.br/
+// ## E-mail.........: mikhail@underpop.com
+// ## AOL............: mikhailmiguel
+// ## MSN............: mikhail.miguel@hotmail.com
+// ## Orkut..........: 15440532260129226492
+// ## Skype..........: mikhailmiguel
+// ## Yahoo!.........: mikhail.miguel@yahoo.com.br
+// ############################################################### //
+// *************************************************************** //
 define("_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_IMAGESET","Lamento, não foi possível gravar o conjunto de imagens '{0}'.");
 define("_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_IMAGE_FILE","Lamento, não foi possível gravar a imagem '{0}'");
 define("_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_LINKTPLSET","Lamento, não foi possível possível a informação da ligação entre o imageset e o conjunto do modelo.");
@@ -83,8 +97,8 @@ define("_AD_LEGACYRENDER_LANG_TPLSET_UPLOAD_RESULT","Resultado do envio do conju
 define("_AD_LEGACYRENDER_LANG_TPL_DESC","Descrição");
 define("_AD_LEGACYRENDER_LANG_TPL_FILE","Arquivo");
 define("_AD_LEGACYRENDER_LANG_TPL_ID","N°");
-define("_AD_LEGACYRENDER_LANG_TPL_LASTIMPORTED","Data da importação");
-define("_AD_LEGACYRENDER_LANG_TPL_LASTMODIFIED","Data de modificação");
+define("_AD_LEGACYRENDER_LANG_TPL_LASTIMPORTED","Importado em:");
+define("_AD_LEGACYRENDER_LANG_TPL_LASTMODIFIED","Modificado em:");
 define("_AD_LEGACYRENDER_LANG_TPL_MODULE","Módulo");
 define("_AD_LEGACYRENDER_LANG_TPL_REFID","N°");
 define("_AD_LEGACYRENDER_LANG_TPL_SOURCE","Código-fonte");

@@ -6,7 +6,7 @@
 // ###################################################### //
 // ## Translator.....: Mikhail Miguel #//
 // ## E-mail.........: mikhail@underpop.com #/
-// ## Website........: http://xoopscube.com.br #
+// ## Website........: http://xoops.net.br/ #
 // ######################################################
 // ******************************************************...
 define("_AM_ACCESSRIGHTS","Permissões de acesso aos módulos");

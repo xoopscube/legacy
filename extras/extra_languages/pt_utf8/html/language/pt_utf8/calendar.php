@@ -8,8 +8,8 @@
 define("_CAL_APRIL","Abril");
 define("_CAL_AUGUST","Agosto");
 define("_CAL_DECEMBER","Dezembro");
-define("_CAL_DISPM1ST","Mostrar 'segunda' como o primeiro dia da semana");
-define("_CAL_DISPS1ST","Mostrar 'domingo' como o primeiro dia da semana");
+define("_CAL_DISPM1ST","Mostrar <q>segunda</q> como o primeiro dia da semana");
+define("_CAL_DISPS1ST","Mostrar <q>domingo</q> como o primeiro dia da semana");
 define("_CAL_DRAGMOVE","Arraste para mover");
 define("_CAL_FEBRUARY","Fevereiro");
 define("_CAL_FRIDAY","Sexta");

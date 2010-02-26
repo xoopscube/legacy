@@ -5,13 +5,13 @@
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## Website........: http://xoopscube.com.br
+// ## Website........: http://xoops.net.br/
 // ## E-mail.........: mikhail@underpop.com
 // ## AOL............: mikhailmiguel
 // ## MSN............: mikhailmiguel@msn.com
 // ## Orkut..........: 15440532260129226492
 // ## Skype..........: mikhailmiguel
-// ## Yahoo!.........: mikhailmiguel@yahoo.com
+// ## Yahoo!.........: mikhail.miguel@yahoo.com.br
 // *************************************************************** //
 $content .= "<u><strong>O que é?</strong></u>
 <p>

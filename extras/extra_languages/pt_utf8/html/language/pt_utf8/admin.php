@@ -7,7 +7,7 @@
 // ############################################################### //
 // ## Por............: Mikhail Miguel
 // ## E-mail.........: mikhail@underpop.com
-// ## Website........: http://xoopscube.com.br
+// ## Website........: http://xoops.net.br/
 // ############################################################### //
 // *************************************************************** //
 define("_AD_NORIGHT", "Lamento, esta é uma área restrita e você ainda não possui permissão de acesso.");

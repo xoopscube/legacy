@@ -119,7 +119,7 @@ define("_MD_USER_MESSAGE_YOURREGISTERED2","Agora você está cadastrado. Por fav
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## Website........: http://xoopscube.com.br
+// ## Website........: http://xoops.net.br/
 // ## E-mail.........: mikhail@underpop.com
 // ## AOL............: mikhailmiguel
 // ## MSN............: mikhail.miguel@hotmail.com

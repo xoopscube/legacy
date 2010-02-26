@@ -7,7 +7,7 @@
 // ############################################################### //
 // ## Por............: MIKHAIL MIGUEL
 // ## E-mail.........: mikhail@underpop.com
-// ## Website........: http://xoopscube.com.br
+// ## Website........: http://xoops.net.br/
 // ############################################################### //
 // *************************************************************** //
 define("_MI_LEGACYRENDER_ADMENU_BANNER_MANAGE","Faixas publicitárias");
@@ -31,7 +31,7 @@ define("_MI_LR_META_RATING","Meta Rating");
 define("_MI_LR_META_RATING_DESC","The rating meta tag defines your saite age and content rating");
 define("_MI_LR_META_ROBOTS","Meta Robots");
 define("_MI_LR_META_ROBOTS_DESC","Códigos que definem o tipo de conteúdo aos mecanismos de busca externos.");
-define("_MI_LR_ROBOT_INDEXFOLLOW","Indexar, seguindo todos os links");
+define("_MI_LR_ROBOT_INDEXFOLLOW","Indexar seguindo todos os links");
 define("_MI_LR_ROBOT_INDEXNOFOLLOW","Indexar apenas a página inicial");
 define("_MI_LR_ROBOT_METAO14YRS","Apenas para maiores de 14 anos");
 define("_MI_LR_ROBOT_METAOGEN","Censura livre");

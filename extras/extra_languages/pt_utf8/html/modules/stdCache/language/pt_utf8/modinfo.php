@@ -7,7 +7,7 @@
 // ## License http://creativecommons.org/licenses/by/2.5/br/
 // ## Por............: Mikhail Miguel
 // ## E-mail.........: mikhail@underpop.com
-// ## Website........: http://xoopscube.com.br/
+// ## Website........: http://xoops.net.br/
 // ############################################################### //
 // *************************************************************** //
 define("_MI_STDCACHE_NAME","Acelerador");
