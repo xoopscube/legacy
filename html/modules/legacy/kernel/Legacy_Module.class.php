@@ -399,6 +399,11 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
      */
     var $mAdminMenu = null;
     
+    function Legacy_ModuleAdapter($module)
+    {
+        parent::Legacy_AbstractModule($module);
+    }
+
     /**
      * @public
      * @brief This method is called back by the action search feature in the control
