@@ -27,8 +27,8 @@ require_once XOOPS_ROOT_PATH . "/core/XCube_Controller.class.php";
 // TODO We have to move the following lines to an appropriate place.
 //      (We may not need the following constants)
 //
-define("XCUBE_SITE_SETTING_FILE", XOOPS_TRUST_PATH . "/settings/site_default.ini.php");
-define("XCUBE_SITE_CUSTOM_FILE", XOOPS_TRUST_PATH . "/settings/site_custom.ini.php");
+define("XCUBE_SITE_SETTING_FILE", XOOPS_TRUST_PATH . "/settings/site_default.ini");
+define("XCUBE_SITE_CUSTOM_FILE", XOOPS_TRUST_PATH . "/settings/site_custom.ini");
 
 //
 //@todo How does the system decide the main controller?
