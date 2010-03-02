@@ -719,8 +719,7 @@ class Legacy_Controller extends XCube_Controller
                         
                                 if (XC_CLASS_EXISTS($className) && !isset($this->_mLoadedFilterNames[$className])) {
                                     $this->_mLoadedFilterNames[$className] = true;
-                                    $instance = new $className($this);
-                                    $this->addActionFilter($instance);
+                                    $this->addActionFilter(new $className($this));
                                 }
                             }
                         }
