@@ -56,6 +56,7 @@ class User_GroupPermAction extends User_GroupPropertyAction
 			
 			$perm->save();
 
+			unset($item);
 			unset($perm);
 		}
 		

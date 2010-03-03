@@ -82,15 +82,15 @@ class User_GroupPropertyAction extends User_Action
 		// Get module list
 		//
 		$this->_loadActiveModules();
-
+	
 		$t_activeModuleIDs = array();
-				
+	
 		foreach ($this->_mActiveModules as $module) {
 			$item =new User_PermissionModuleItem($module);
 			$this->mPermissions[] =new User_Permission($this->mGroup->getVar('groupid'), $item);
-			
+		
 			$t_activeModuleIDs[] = $module->get('mid');
-
+		
 			unset($module);
 			unset($item);
 		}
@@ -107,6 +107,7 @@ class User_GroupPropertyAction extends User_Action
 			foreach ($this->_mActiveBlocks[$side] as $block) {
 				$item =new User_PermissionBlockItem($block);
 				$this->mBlockPermissions[$idx][] =new User_Permission($this->mGroup->get('groupid'), $item);
+				unset ($item);
 				unset ($block);
 			}
 			

@@ -616,6 +616,7 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
 			foreach ($arr['options'] as $name => $value) {
 				$option =new Legacy_PreferenceOptionInformation($name, $value);
 				$info->mOption->add($option);
+				unset($option);
 			}
 		}
 		
