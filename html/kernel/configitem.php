@@ -73,6 +73,11 @@ class XoopsConfigItem extends XoopsObject
      */
     function XoopsConfigItem()
     {
+		static $initVars;
+		if (isset($initVars)) {
+		    $this->vars = $initVars;
+		    return;
+		}
         $this->initVar('conf_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('conf_modid', XOBJ_DTYPE_INT, null, false);
         $this->initVar('conf_catid', XOBJ_DTYPE_INT, null, false);
@@ -83,6 +88,7 @@ class XoopsConfigItem extends XoopsObject
         $this->initVar('conf_formtype', XOBJ_DTYPE_OTHER);
         $this->initVar('conf_valuetype', XOBJ_DTYPE_OTHER);
         $this->initVar('conf_order', XOBJ_DTYPE_INT);
+        $initVars = $this->vars;
     }
     
     /**

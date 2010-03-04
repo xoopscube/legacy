@@ -58,6 +58,11 @@ class XoopsModule extends XoopsObject
     function XoopsModule()
     {
         $this->XoopsObject();
+		static $initVars;
+		if (isset($initVars)) {
+		    $this->vars = $initVars;
+		    return;
+		}
         $this->initVar('mid', XOBJ_DTYPE_INT, null, false);
         $this->initVar('name', XOBJ_DTYPE_TXTBOX, null, true, 150);
         $this->initVar('version', XOBJ_DTYPE_INT, 100, false);
@@ -72,6 +77,7 @@ class XoopsModule extends XoopsObject
         $this->initVar('hascomments', XOBJ_DTYPE_INT, 0, false);
         // RMV-NOTIFY
         $this->initVar('hasnotification', XOBJ_DTYPE_INT, 0, false);
+		$initVars = $this->vars;
     }
 
     /**
@@ -408,24 +414,26 @@ class XoopsModuleHandler extends XoopsObjectHandler
         $ret = false;
         $dirname =  trim($dirname);
         
-        if (!empty($this->_cachedModule_dirname[$dirname])) {
-            $ret = $this->_cachedModule_dirname[$dirname];
-        } else {
-            $sql = "SELECT * FROM ".$this->db->prefix('modules')." WHERE dirname = ".$this->db->quoteString($dirname);
-            if ($result = $this->db->query($sql)) {
-                $numrows = $this->db->getRowsNum($result);
-                if ($numrows == 1) {
-                    $module =new XoopsModule();
-                    $myrow = $this->db->fetchArray($result);
-                    $module->assignVars($myrow);
-                    $this->_cachedModule_dirname[$dirname] =& $module;
-                    $this->_cachedModule_mid[$module->getVar('mid')] =& $module;
-                    $ret =& $module;
-                }
-            }
-        }
-        return $ret;
-    }
+		if (!empty($this->_cachedModule_dirname[$dirname])) {
+			$ret = $this->_cachedModule_dirname[$dirname];
+		}
+		elseif (count($this->_cachedModule_dirname)==0) {
+			$db = $this->db;
+			$sql = "SELECT * FROM ".$db->prefix('modules');
+			if ($result = $db->query($sql)) {
+				while ($myrow = $db->fetchArray($result)) {
+					 $module =& new XoopsModule();
+					 $module->assignVars($myrow);
+					 $this->_cachedModule_dirname[$myrow['dirname']] =& $module;
+					 $this->_cachedModule_mid[$myrow['mid']] =& $module;
+				}
+			}
+			if (!empty($this->_cachedModule_dirname[$dirname])) {
+				$ret = $this->_cachedModule_dirname[$dirname];
+			}
+		}
+		return $ret;
+	}
 
     /**
      * Write a module to the database

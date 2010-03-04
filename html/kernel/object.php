@@ -241,10 +241,8 @@ class XoopsObject extends AbstractXoopsObject
     */
     function assignVar($key, $value)
     {
-        if (isset($value) && isset($this->vars[$key])) {
-            $this->vars[$key]['value'] =& $value;
-        }
-    }
+		$vars = &$this->vars;
+		if (isset($value) && isset($vars[$key])) $vars[$key]['value'] =& $value;    }
 
     /**
     * assign values to multiple variables in a batch
@@ -257,6 +255,10 @@ class XoopsObject extends AbstractXoopsObject
         foreach ($var_arr as $key => $value) {
             $this->assignVar($key, $value);
         }
+		$vars = &$this->vars;
+		foreach ($var_arr as $key => $value) {
+			if (isset($value) && isset($vars[$key])) $vars[$key]['value'] = $value;
+		}
     }
 
     /**

@@ -36,6 +36,11 @@ class XoopsTplfile extends XoopsObject
 
 	function XoopsTplfile()
 	{
+		static $initVars;
+		if (isset($initVars)) {
+		    $this->vars = $initVars;
+		    return;
+		}
 		$this->XoopsObject();
 		$this->initVar('tpl_id', XOBJ_DTYPE_INT, null, false);
 		$this->initVar('tpl_refid', XOBJ_DTYPE_INT, 0, false);
@@ -47,6 +52,7 @@ class XoopsTplfile extends XoopsObject
 		$this->initVar('tpl_module', XOBJ_DTYPE_OTHER, null, false);
 		$this->initVar('tpl_type', XOBJ_DTYPE_OTHER, null, false);
 		$this->initVar('tpl_source', XOBJ_DTYPE_SOURCE, null, false);
+		$initVars = $this->vars;
 	}
 
 	function &getSource()
