@@ -4,27 +4,28 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 
 class Legacy_HeaderScript
 {
-	var $mMainLibrary = 'google';
-	var $mMainVersion = "1";
-	var $mUIVersion = "1";
-	var $mMainUrl = "";	//url of jQuery Main library file
-	var $mUIUrl = "";	//url of jQuery UI library file
+	public $mMainLibrary = 'google';
+	public $mMainVersion = "1";
+	public $mUIVersion = "1";
+	public $mMainUrl = "";	//url of jQuery Main library file
+	public $mUIUrl = "";	//url of jQuery UI library file
 
-	var $_mLibrary = array();
-	var $_mScript = array();
-	var $_mOnloadScript = array();
-	var $_mStylesheet = array();
+	protected $_mLibrary = array();
+	protected $_mScript = array();
+	protected $_mMeta = array('keywords'=>'','description'=>'','robots'=>'','rating'=>'','author'=>'','copyright'=>'',);
+	protected $_mOnloadScript = array();
+	protected $_mStylesheet = array();
 
-	var $mUsePrototype = false;	//use prototype.js ?
-	var $mFuncNamePrefix = "";	//jQuery $() function's name prefix for compatibility with prototype.js
+	public $mUsePrototype = false;	//use prototype.js ?
+	public $mFuncNamePrefix = "";	//jQuery $() function's name prefix for compatibility with prototype.js
 
-    /**
-     * __construct
-     * 
-     * @param   void
-     * 
-     * @return  void
-    **/
+	/**
+	 * __construct
+	 * 
+	 * @param	void
+	 * 
+	 * @return	void
+	**/
 	public function __construct()
 	{
 		$root = XCube_Root::getSingleton();
@@ -47,14 +48,14 @@ class Legacy_HeaderScript
 		}
 	}
 
-    /**
-     * addLibrary
-     * 
-     * @param   string $url
-     * @param   bool $xoopsUrl
-     * 
-     * @return  void
-    **/
+	/**
+	 * addLibrary
+	 * 
+	 * @param	string $url
+	 * @param	bool $xoopsUrl
+	 * 
+	 * @return	void
+	**/
 	public function addLibrary($url, $xoopsUrl=true)
 	{
 		$libUrl = ($xoopsUrl==true) ? XOOPS_URL. $url : $url;
@@ -63,14 +64,14 @@ class Legacy_HeaderScript
 		}
 	}
 
-    /**
-     * addStylesheet
-     * 
-     * @param   string $url
-     * @param   bool $xoopsUrl
-     * 
-     * @return  void
-    **/
+	/**
+	 * addStylesheet
+	 * 
+	 * @param	string $url
+	 * @param	bool $xoopsUrl
+	 * 
+	 * @return	void
+	**/
 	public function addStylesheet($url, $xoopsUrl=true)
 	{
 		$libUrl = ($xoopsUrl==true) ? XOOPS_URL. $url : $url;
@@ -79,14 +80,14 @@ class Legacy_HeaderScript
 		}
 	}
 
-    /**
-     * addScript
-     * 
-     * @param   string $script
-     * @param   bool $isOnloadFunction
-     * 
-     * @return  void
-    **/
+	/**
+	 * addScript
+	 * 
+	 * @param	string $script
+	 * @param	bool $isOnloadFunction
+	 * 
+	 * @return	void
+	**/
 	public function addScript($script, $isOnloadFunction=true)
 	{
 		if($isOnloadFunction==true){
@@ -97,25 +98,25 @@ class Legacy_HeaderScript
 		}
 	}
 
-    /**
-     * getLibraryArr
-     * 
-     * @param   void
-     * 
-     * @return  string[]
-    **/
+	/**
+	 * getLibraryArr
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string[]
+	**/
 	public function getLibraryArr()
 	{
 		return $this->_mLibrary;
 	}
 
-    /**
-     * getScriptArr
-     * 
-     * @param   bool	$isOnloadFunction
-     * 
-     * @return  string[]
-    **/
+	/**
+	 * getScriptArr
+	 * 
+	 * @param	bool	$isOnloadFunction
+	 * 
+	 * @return	string[]
+	**/
 	public function getScriptArr($isOnloadFunction=true)
 	{
 		if($isOnloadFunction==true){
@@ -126,13 +127,38 @@ class Legacy_HeaderScript
 		}
 	}
 
-    /**
-     * createLibraryTag
-     * 
-     * @param   void
-     * 
-     * @return  string
-    **/
+	/**
+	 * setMeta
+	 * 
+	 * @param	string	$name
+	 * @param	string	$content
+	 * 
+	 * @return	void
+	**/
+	public function setMeta(/*** string ***/ $name, /*** string ***/ $content)
+	{
+		$this->_mMeta[$name] = $content;
+	}
+
+	/**
+	 * getMeta
+	 * 
+	 * @param	string	$name
+	 * 
+	 * @return	string
+	**/
+	public function getMeta(/*** string ***/ $name)
+	{
+		return $this->_mMeta[$name];
+	}
+
+	/**
+	 * createLibraryTag
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
 	public function createLibraryTag()
 	{
 		$html = "";
@@ -163,13 +189,13 @@ class Legacy_HeaderScript
 		return $html;
 	}
 
-    /**
-     * _loadGoogleJQueryLibrary
-     * 
-     * @param   void
-     * 
-     * @return  string
-    **/
+	/**
+	 * _loadGoogleJQueryLibrary
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
 	protected function _loadGoogleJQueryLibrary()
 	{
 		return '<script type="text/javascript" src="http://www.google.com/jsapi"></script>
@@ -182,13 +208,13 @@ google.load("jqueryui", "'. $this->mUIVersion .'");
 ';
 	}
 
-    /**
-     * _loadLocalJQueryLibrary
-     * 
-     * @param   void
-     * 
-     * @return  string
-    **/
+	/**
+	 * _loadLocalJQueryLibrary
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
 	protected function _loadLocalJQueryLibrary()
 	{
 		$html = "";
@@ -198,13 +224,13 @@ google.load("jqueryui", "'. $this->mUIVersion .'");
 		return $html;
 	}
 
-    /**
-     * createOnloadFunctionTag
-     * 
-     * @param   void
-     * 
-     * @return  string
-    **/
+	/**
+	 * createOnloadFunctionTag
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
 	public function createOnloadFunctionTag()
 	{
 		$html = null;
@@ -224,13 +250,13 @@ google.load("jqueryui", "'. $this->mUIVersion .'");
 		return $html;
 	}
 
-    /**
-     * _makeScript
-     * 
-     * @param   bool	$isOnloadFunction
-     * 
-     * @return  string
-    **/
+	/**
+	 * _makeScript
+	 * 
+	 * @param	bool	$isOnloadFunction
+	 * 
+	 * @return	string
+	**/
 	protected function _makeScript($isOnloadFunction=true)
 	{
 		$html = null;
@@ -241,13 +267,13 @@ google.load("jqueryui", "'. $this->mUIVersion .'");
 		return $html;
 	}
 
-    /**
-     * _convertFuncName
-     * 
-     * @param   string $script
-     * 
-     * @return  string
-    **/
+	/**
+	 * _convertFuncName
+	 * 
+	 * @param	string $script
+	 * 
+	 * @return	string
+	**/
 	protected function _convertFuncName($script)
 	{
 		if($this->mFuncNamePrefix){

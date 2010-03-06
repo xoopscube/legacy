@@ -34,8 +34,8 @@ class Legacy_XoopsTpl extends XoopsTpl
 		parent::XoopsTpl();
 	}
 	
-    function assign($tpl_var, $value = null)
-    {
+	function assign($tpl_var, $value = null)
+	{
 		if (is_array($tpl_var)){
 			foreach ($tpl_var as $key => $val) {
 				if ($key != '') {
@@ -51,7 +51,7 @@ class Legacy_XoopsTpl extends XoopsTpl
 				}
 				$this->_tpl_vars[$tpl_var] = $value;
 			}
-        }
+		}
 	}
 	
 	function assign_by_ref($tpl_var, &$value)
@@ -70,8 +70,8 @@ class Legacy_XoopsTpl extends XoopsTpl
 		$root =& XCube_Root::getSingleton();
 		if (!isset($name)) {
 			foreach ($this->_mContextReserve as $t_key => $t_value) {
-			    if (isset($this->_mContextReserve[$t_value])) {
-				    $this->_tpl_vars[$t_key] = htmlspecialchars($root->mContext->getAttribute($this->_mContextReserve[$t_value]), ENT_QUOTES);
+				if (isset($this->_mContextReserve[$t_value])) {
+					$this->_tpl_vars[$t_key] = htmlspecialchars($root->mContext->getAttribute($this->_mContextReserve[$t_value]), ENT_QUOTES);
 				}
 			}
 			$value =& parent::get_template_vars($name);
@@ -139,11 +139,11 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 		$textFilter =& $root->getTextFilter();
 		
 		// XoopsTpl default setup
-        if ( isset($GLOBALS['xoopsTpl']) ) {
-            $this->mXoopsTpl =& $GLOBALS['xoopsTpl'];
-        } else {
-		    $this->mXoopsTpl =new Legacy_XoopsTpl();
-        }
+		if ( isset($GLOBALS['xoopsTpl']) ) {
+			$this->mXoopsTpl =& $GLOBALS['xoopsTpl'];
+		} else {
+			$this->mXoopsTpl =new Legacy_XoopsTpl();
+		}
 		$this->mXoopsTpl->register_function("legacy_notifications_select", "LegacyRender_smartyfunction_notifications_select");
 		$this->mSetupXoopsTpl->call(new XCube_Ref($this->mXoopsTpl));
 
@@ -169,20 +169,12 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 		// --------------------------------------
 		// Meta tags
 		// --------------------------------------
-        $moduleHandler =& xoops_gethandler('module');
-        $legacyRender =& $moduleHandler->getByDirname('legacyRender');
+		$moduleHandler =& xoops_gethandler('module');
+		$legacyRender =& $moduleHandler->getByDirname('legacyRender');
 		
 		if (is_object($legacyRender)) {
 			$configHandler =& xoops_gethandler('config');
 			$configs =& $configHandler->getConfigsByCat(0, $legacyRender->get('mid'));
-			
-			$this->mXoopsTpl->assign('xoops_meta_keywords', $textFilter->toShow($configs['meta_keywords']));
-			$this->mXoopsTpl->assign('xoops_meta_description', $textFilter->toShow($configs['meta_description']));
-			$this->mXoopsTpl->assign('xoops_meta_robots', $textFilter->toShow($configs['meta_robots']));
-			$this->mXoopsTpl->assign('xoops_meta_rating', $textFilter->toShow($configs['meta_rating']));
-			$this->mXoopsTpl->assign('xoops_meta_author', $textFilter->toShow($configs['meta_author']));
-			$this->mXoopsTpl->assign('xoops_meta_copyright', $textFilter->toShow($configs['meta_copyright']));
-			$this->mXoopsTpl->assign('xoops_footer', $configs['footer']); // footer may be raw HTML text.
 			
 			//
 			// If this site has the setting of banner.
@@ -257,7 +249,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 		if($context->mModule != null) {	// The process of module
 			$xoopsModule =& $context->mXoopsModule;
 			$this->mXoopsTpl->assign(array('xoops_modulename' => $xoopsModule->getShow('name'),
-			                               'xoops_dirname' => $xoopsModule->getShow('dirname')));
+										   'xoops_dirname' => $xoopsModule->getShow('dirname')));
 		}
 		
 		if (isset($GLOBALS['xoopsUserIsAdmin'])) {
@@ -340,18 +332,18 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 		}
 
 		if ($target->getTemplateName()) {
-		    if ($cachedTemplateId!==null) {
-		        $contents=$this->mXoopsTpl->fetch('db:'.$target->getTemplateName(), $xoopsCachedTemplateId);
-		    } else {
-		        $contents=$this->mXoopsTpl->fetch('db:'.$target->getTemplateName());
-		    }
+			if ($cachedTemplateId!==null) {
+				$contents=$this->mXoopsTpl->fetch('db:'.$target->getTemplateName(), $xoopsCachedTemplateId);
+			} else {
+				$contents=$this->mXoopsTpl->fetch('db:'.$target->getTemplateName());
+			}
 		} else {
-		    if ($cachedTemplateId!==null) {
-		        $this->mXoopsTpl->assign('dummy_content', $target->getAttribute("stdout_buffer"));
-		        $contents=$this->mXoopsTpl->fetch($GLOBALS['xoopsCachedTemplate'], $xoopsCachedTemplateId);
-		    } else {
-		        $contents=$target->getAttribute("stdout_buffer");
-		    }
+			if ($cachedTemplateId!==null) {
+				$this->mXoopsTpl->assign('dummy_content', $target->getAttribute("stdout_buffer"));
+				$contents=$this->mXoopsTpl->fetch($GLOBALS['xoopsCachedTemplate'], $xoopsCachedTemplateId);
+			} else {
+				$contents=$target->getAttribute("stdout_buffer");
+			}
 		}
 		
 		$target->setResult($contents);
@@ -368,6 +360,21 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 		$moduleHeader =  $headerScript->createLibraryTag() . $moduleHeader . $headerScript->createOnloadFunctionTag();
 		$this->mXoopsTpl->assign('xoops_module_header', $moduleHeader);
 		
+		$moduleHandler =& xoops_gethandler('module');
+		$legacyRender =& $moduleHandler->getByDirname('legacyRender');
+		$configHandler =& xoops_gethandler('config');
+		$configs =& $configHandler->getConfigsByCat(0, $legacyRender->get('mid'));
+	
+		$textFilter =& $this->mController->mRoot->getTextFilter();
+		$headerScript = $this->mController->mRoot->mContext->getAttribute('headerScript');//echo $headerScript->getMeta('author');die();
+		$headerScript->getMeta('keywords') ? $this->mXoopsTpl->assign('xoops_meta_keywords', $headerScript->getMeta('keywords')) : $this->mXoopsTpl->assign('xoops_meta_keywords', $textFilter->toShow($configs['meta_keywords']));
+		$headerScript->getMeta('description') ? $this->mXoopsTpl->assign('xoops_meta_robots', $headerScript->getMeta('description')) : $this->mXoopsTpl->assign('xoops_meta_description', $textFilter->toShow($configs['meta_description']));
+		$headerScript->getMeta('robots') ? $this->mXoopsTpl->assign('xoops_meta_robots', $headerScript->getMeta('robots')) : $this->mXoopsTpl->assign('xoops_meta_robots', $textFilter->toShow($configs['meta_robots']));
+		$headerScript->getMeta('rating') ? $this->mXoopsTpl->assign('xoops_meta_rating', $headerScript->getMeta('rating')) : $this->mXoopsTpl->assign('xoops_meta_rating', $textFilter->toShow($configs['meta_rating']));
+		$headerScript->getMeta('author') ? $this->mXoopsTpl->assign('xoops_meta_author', $headerScript->getMeta('author')) : $this->mXoopsTpl->assign('xoops_meta_author', $textFilter->toShow($configs['meta_author']));
+		$headerScript->getMeta('copyright') ? $this->mXoopsTpl->assign('xoops_meta_copyright', $headerScript->getMeta('copyright')) : $this->mXoopsTpl->assign('xoops_meta_copyright', $textFilter->toShow($configs['meta_copyright']));
+		$this->mXoopsTpl->assign('xoops_footer', $configs['footer']); // footer may be raw HTML text.
+	
 		//
 		// If this site has the setting of banner.
 		// TODO this process depends on XOOPS 2.0.x.
@@ -444,8 +451,8 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 			case 'xoops_showcblock' :
 				if (isset($GLOBALS['show_cblock']) && empty($GLOBALS['show_cblock'])) return 0;
 				return (!empty($this->mController->mRoot->mContext->mAttributes['legacy_BlockShowFlags'][XOOPS_CENTERBLOCK_LEFT])||
-				        !empty($this->mController->mRoot->mContext->mAttributes['legacy_BlockShowFlags'][XOOPS_CENTERBLOCK_RIGHT])||
-				        !empty($this->mController->mRoot->mContext->mAttributes['legacy_BlockShowFlags'][XOOPS_CENTERBLOCK_CENTER])) ? 1 : 0;
+						!empty($this->mController->mRoot->mContext->mAttributes['legacy_BlockShowFlags'][XOOPS_CENTERBLOCK_RIGHT])||
+						!empty($this->mController->mRoot->mContext->mAttributes['legacy_BlockShowFlags'][XOOPS_CENTERBLOCK_CENTER])) ? 1 : 0;
 				break;
 			default :
 				return 0;
@@ -527,7 +534,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 	function _renderFooter()
 	{
 		echo '</body></html>';
-	    ob_end_flush();
+		ob_end_flush();
 	}
 	
 	/**
