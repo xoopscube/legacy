@@ -16,9 +16,7 @@ require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/BlockListForm.class.php";
 
 class Legacy_BlockListAction extends Legacy_AbstractListAction
 {
-	var $mBlockObjects = array();
 	var $mActionForm = null;
-	var $mpageArr = array(5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0);
 	
 	function prepare(&$controller, &$xoopsUser)
 	{
@@ -47,13 +45,50 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 
 		if (isset($perpage) && intval($perpage) == 0) { 	
 		$navi->setPerpage(0);
-		}
+		
 		return $navi;
 	}
 
 	function _getBaseUrl()
 	{
 		return "./index.php?action=BlockList";
+	}
+
+	function execute(&$controller, &$xoopsUser)
+	{
+		$this->mActionForm->fetch();
+		$this->mActionForm->validate();
+		
+		if ($this->mActionForm->hasError()) {
+			return $this->getDefaultView($controller, $xoopsUser);
+		}
+		
+		$weightArr = $this->mActionForm->get('weight');
+		
+		$handler =& xoops_getmodulehandler('newblocks');
+		foreach (array_keys($weightArr) as $bid) {
+			$block =& $handler->get($bid);
+			if (is_object($block) && $block->get('isactive') == 1 && $block->get('visible') == 1) {
+                $olddata['weight'] = $block->get('weight');
+                $olddata['side'] = $block->get('side');
+                $olddata['bcachetime'] = $block->get('bcachetime');
+                $newdata['weight'] = $this->mActionForm->get('weight', $bid);
+                $newdata['side'] = $this->mActionForm->get('side', $bid);
+                $newdata['bcachetime'] = $this->mActionForm->get('bcachetime', $bid);
+                if ( count(array_diff_assoc($olddata, $newdata)) > 0 ) {
+    				$block->set('weight', $this->mActionForm->get('weight', $bid));
+    				$block->set('side', $this->mActionForm->get('side', $bid));
+    				$block->set('bcachetime', $this->mActionForm->get('bcachetime', $bid));
+    				$block->set('last_modified', time());
+    				
+    				if (!$handler->insert($block)) {
+    					return LEGACY_FRAME_VIEW_ERROR;
+    				}
+    			}
+			}
+		}
+		
+		return LEGACY_FRAME_VIEW_SUCCESS;
 	}
 
 	function executeViewIndex(&$controller, &$xoopsUser, &$render)
@@ -67,18 +102,14 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 		
 		$render->setAttribute("objects", $this->mObjects);
 		$render->setAttribute("pageNavi", $this->mFilter->mNavi);
-
-		$moduleHandler =& xoops_gethandler('module');
-		$modules =& $moduleHandler->getObjects(new Criteria('isactive', 1));
-		$render->setAttribute('modules', $modules);
-		$render->setAttribute('filterForm', $this->mFilter);
-		$render->setAttribute('pageArr', $this->mpageArr);		
+		
 		//
 		// Load cache-time pattern objects and set.
 		//
 		$handler =& xoops_gethandler('cachetime');
 		$cachetimeArr =& $handler->getObjects();
 		$render->setAttribute('cachetimeArr', $cachetimeArr);
+		
 		$render->setAttribute('actionForm', $this->mActionForm);
 		//
 		$handler =& xoops_getmodulehandler('columnside');
@@ -106,109 +137,6 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 		$render->setAttribute('InactiveUninstalledBlockTotal', $inactive_block_total - $inactive_installed_block_total);
 	}
 
-
-	function execute(&$controller, &$xoopsUser)
-	{
-		$form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-		if ($form_cancel != null) {
-			return LEGACY_FRAME_VIEW_CANCEL;
-		}
-
-		$this->mActionForm->fetch();
-		$this->mActionForm->validate();
-
-		if ($this->mActionForm->hasError()) {
-			return $this->_processConfirm($controller, $xoopsUser);
-		}
-		else {
-			return $this->_processSave($controller, $xoopsUser);
-		}
-	}
-
-	function _processConfirm(&$controller,&$xoopsUser)
-	{
-        		$titleArr = $this->mActionForm->get('title');
-		$blockHandler =& xoops_getmodulehandler('newblocks');
-		//
-		// Do mapping.
-		//
-		foreach (array_keys($titleArr) as $bid) {
-			$block =& $blockHandler->get($bid);
-			if (is_object($block) && $block->get('isactive') == 1 && $block->get('visible') == 1) {
-			$this->mBlockObjects[$bid] =& $block;
-			$this->mBlockObjects[$bid]->loadColumn();
-			$this->mBlockObjects[$bid]->loadCachetime();
-			}
-			unset($block);
-		}
-
-		return LEGACY_FRAME_VIEW_INPUT;
-	}
-
-	function _processSave(&$controller, &$xoopsUser)
-	{
-		$titleArr = $this->mActionForm->get('title');		
-		$blockHandler =& xoops_getmodulehandler('newblocks');
-
-		foreach (array_keys($titleArr) as $bid) {
-			$block =& $blockHandler->get($bid);
-			if (is_object($block) && $block->get('isactive') == 1 && $block->get('visible') == 1) {
-			$olddata['title'] = $block->get('title');
-			$olddata['weight'] = $block->get('weight');
-			$olddata['side'] = $block->get('side');
-			$olddata['bcachetime'] = $block->get('bcachetime');
-			$newdata['title'] = $this->mActionForm->get('title', $bid);
-			$newdata['weight'] = $this->mActionForm->get('weight', $bid);
-			$newdata['side'] = $this->mActionForm->get('side', $bid);
-			$newdata['bcachetime'] = $this->mActionForm->get('bcachetime', $bid);
-			if ( count(array_diff_assoc($olddata, $newdata)) > 0 ) {
-			$block->set('title', $this->mActionForm->get('title', $bid));
-			$block->set('weight', $this->mActionForm->get('weight', $bid));
-			$block->set('side', $this->mActionForm->get('side', $bid));
-			$block->set('bcachetime', $this->mActionForm->get('bcachetime', $bid));
-			$block->set('last_modified', time());
-			if (!$blockHandler->insert($block)) {
-			return LEGACY_FRAME_VIEW_ERROR;
-			}
-    			}//count if
-			}//object if
-		}
-
-		//uninstall process
-        		foreach(array_keys($titleArr) as $bid) {
-		if($this->mActionForm->get('uninstall', $bid) == 1) {
-			$block =& $blockHandler->get($bid);
-			if (is_object($block) && $block->get('isactive') == 1 && $block->get('visible') == 1) {
-				$block->set('visible', 0);
-				if( !$blockHandler->insert($block) ) {
-				return LEGACY_FRAME_VIEW_ERROR;
-				}
-			}//object if
-		}//if
-		}
-
-		return LEGACY_FRAME_VIEW_SUCCESS;
-	}
-
-
-	function executeViewInput(&$controller, &$xoopsUser, &$render)
-	{
-		$render->setTemplateName("block_list_confirm.html");
-		$render->setAttribute('blockObjects', $this->mBlockObjects);
-		$render->setAttribute('actionForm', $this->mActionForm);
-		
-		$t_arr = $this->mActionForm->get('title');
-		$render->setAttribute('bids', array_keys($t_arr));
-
-		$handler =& xoops_getmodulehandler('columnside');
-		$columnSideArr =& $handler->getObjects($criteria = null, $id_as_key = true);
-		$render->setAttribute('columnSideArr', $columnSideArr);
-		$handler =& xoops_gethandler('cachetime');
-		$cachetimeArr =& $handler->getObjects($criteria = null, $id_as_key = true);
-		$render->setAttribute('cachetimeArr', $cachetimeArr);
-
-	}
-
 	function executeViewSuccess(&$controller, &$xoopsUser, &$render)
 	{
 		$controller->executeForward('./index.php?action=BlockList');
@@ -218,12 +146,6 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 	{
 		$controller->executeRedirect("./index.php?action=BlockInstallList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
 	}
-
-	function executeViewCancel(&$controller,&$xoopsUser,&$renderer)
-	{
-		$controller->executeForward('./index.php?action=BlockList');
-	}
-
 }
 
 ?>
