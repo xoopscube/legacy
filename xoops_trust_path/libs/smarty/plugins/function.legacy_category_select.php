@@ -3,21 +3,21 @@
 /*
  * Smarty plugin
  * -------------------------------------------------------------
- * Type:     function
- * Name:     legacy_category_select
+ * Type:	 function
+ * Name:	 legacy_category_select
  * Version:  1.0
- * Date:     May 23, 2008
- * Author:   HIKAWA Kilica
+ * Date:	 May 23, 2008
+ * Author:	 HIKAWA Kilica
  * Purpose:  format xoopstree object fot select
- * Input:    tree: xoopstree array
- *           selectedValue: selected category id
- *           show: if 'all', show all categories, even if it were not permitted
+ * Input:	 tree: xoopstree array
+ *			 selectedValue: selected category id
+ *			 show: if 'all', show all categories, even if it were not permitted
  * Examples: {legacy_category_select tree=$cattree selectedValue=$cat_id}
  * -------------------------------------------------------------
  */
  
 function smarty_function_legacy_category_select($params, &$smarty)
-{
+{//var_dump($params['tree']);die();
 	$selectHtml = '';
 	foreach(array_keys($params['tree']) as $key){
 		$d = $params['tree'][$key]->getDepth();	//depth of tree
