@@ -46,6 +46,20 @@ class Legacy_HeaderScript
 			$this->mPrototypeUrl = $root->getSiteConfig('jQuery', 'prototypeUrl');
 			$this->mFuncNamePrefix = $root->getSiteConfig('jQuery', 'funcNamePrefix');
 		}
+	
+		$this->_setupDefaultStylesheet();
+	}
+
+	/**
+	 * _setupDefaultCss
+	 * 
+	 * @param	void
+	 * 
+	 * @return	void
+	**/
+	public function _setupDefaultStylesheet()
+	{
+		if($this->_getRenderConfig('css_file')) $this->addStylesheet($this->_getRenderConfig('css_file'));
 	}
 
 	/**
@@ -130,6 +144,21 @@ class Legacy_HeaderScript
 	/**
 	 * setMeta
 	 * 
+	 * @param	string	$rel
+	 * @param	string	$type
+	 * @param	string	$title
+	 * @param	string	$href
+	 * 
+	 * @return	void
+	**/
+	public function setLink(/*** string ***/ $rel, /*** string ***/ $type, /*** string ***/ $title, /*** string ***/ $href)
+	{
+		$this->_mLink[] = array('rel'=>$rel, 'type'=>$type, 'title'=>$title, 'href'=>$href);
+	}
+
+	/**
+	 * setMeta
+	 * 
 	 * @param	string	$name
 	 * @param	string	$content
 	 * 
@@ -186,6 +215,15 @@ class Legacy_HeaderScript
 			$html .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"". $css ."\" />\n";
 		}
 	
+		//load link
+		foreach($this->_mStylesheet as $css){
+			$html .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"". $css ."\" />\n";
+		}
+	
+		//set rss auto-discovery
+		if($this->_getRenderConfig('feed_url')){
+			$html .= sprintf('<link rel="alternate" type="application/rss+xml" title="rss" href="%s" />'."\n", $this->_getRenderConfig('feed_url'));
+		}
 		return $html;
 	}
 
@@ -281,5 +319,20 @@ google.load("jqueryui", "'. $this->mUIVersion .'");
 		}
 		return $script;
 	}
+
+	/**
+	 * _getRenderConfig
+	 * 
+	 * @param	string $key
+	 * 
+	 * @return	string
+	**/
+	protected function _getRenderConfig($key)
+	{
+		$handler =& xoops_gethandler('config');
+		$configArr =& $handler->getConfigsByDirname('legacyRender');
+		return $configArr[$key];
+	}
+
 }
 ?>

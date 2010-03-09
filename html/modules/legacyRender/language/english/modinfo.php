@@ -31,4 +31,8 @@ define('_MI_LR_ROBOT_NOINDEXFOLLOW', "No Index, Follow");
 define('_MI_LR_ROBOT_NOINDEXNOFOLLOW', "No Index, No Follow");
 define('_MI_LR_PAGETITLE_FORMAT', "Pagetitle Format");
 define('_MI_LR_PAGETITLE_FORMAT_DESC', "Set Pagetitle Format with {modulename}, {pagetitle}, {action}. Module name is set at {modulename} like 'profile'. Page Title is set set at {pagetitle} like 'Hello !' or 'How to install XCL'. Action is set at {action} like 'Edit', 'View' or 'List'. You set [module]***[/module], *** is not display when {module} is not set. [pagetitle]***[/pagetitle], [action]***[action] is the same.");
+define('_MI_LR_CSS_FILE', "jQuery UI CSS file URL");
+define('_MI_LR_CSS_FILE_DESC', "Set jQuery UI CSS file url after ".XOOPS_URL);
+define('_MI_LR_FEED_URL', "RSS Feed URL");
+define('_MI_LR_FEED_URL_DESC', "Set RSS feed URL after ".XOOPS_URL);
 ?>
