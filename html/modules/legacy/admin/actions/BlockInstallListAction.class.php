@@ -15,6 +15,9 @@ require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/BlockInstallFilterForm.cla
 
 class Legacy_BlockInstallListAction extends Legacy_AbstractListAction
 {
+
+	var $mpageArr = array(5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0);
+
 	function &_getHandler()
 	{
 		$handler =& xoops_getmodulehandler('newblocks');

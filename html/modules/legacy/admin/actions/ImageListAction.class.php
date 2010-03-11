@@ -12,6 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 
 require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractListAction.class.php";
 require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ImageFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ImageListForm.class.php";
 
 class Legacy_ImageListAction extends Legacy_AbstractListAction
 {
