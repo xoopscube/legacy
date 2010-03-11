@@ -15,9 +15,10 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
  */
 class XoopsObjectGenericHandler extends XoopsObjectHandler
 {
-	var $mTable = null;
-	var $mPrimary = null;
-	var $mClass = null;
+	public $mTable = null;
+	public $mPrimary = null;
+	public $mClass = null;
+	public $mDirname = null;
 
 	/**
 	 * A instance of xoops simple object to get type information.
@@ -27,6 +28,8 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 	function XoopsObjectGenericHandler(&$db)
 	{
 		parent::XoopsObjectHandler($db);
+		$tableArr = explode('_', $this->mTable);
+		$this->mDirname = $tableArr[0];
 		$this->mTable = $this->db->prefix($this->mTable);
 	}
 
@@ -35,6 +38,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 		$obj = null;
 		if (XC_CLASS_EXISTS($this->mClass)) {
 			$obj =new $this->mClass();
+			$obj->mDirname = $this->getDirname();
 			if($isNew)
 				$obj->setNew();
 		}
@@ -71,7 +75,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 		$ret = array();
 
 		$sql = "SELECT * FROM `" . $this->mTable . '`';
-        
+		
 		if($criteria !== null && is_a($criteria, 'CriteriaElement')) {
 			$where = $this->_makeCriteria4sql($criteria);
 			
@@ -81,7 +85,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 			
 			$sorts = array();
 			foreach ($criteria->getSorts() as $sort) {
-                $sorts[] = '`' . $sort['sort'] . '` ' . $sort['order']; 
+				$sorts[] = '`' . $sort['sort'] . '` ' . $sort['order']; 
 			}
 			if ($criteria->getSort() != '') {
 				$sql .= " ORDER BY " . implode(',', $sorts);
@@ -113,6 +117,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 
 		while($row = $this->db->fetchArray($result)) {
 			$obj =new $this->mClass();
+			$obj->mDirname = $this->getDirname();
 			$obj->assignVars($row);
 			$obj->unsetNew();
 			
@@ -131,7 +136,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 	
 	function getCount($criteria = null)
 	{
-        $sql="SELECT COUNT(*) c FROM `" . $this->mTable . '`'; 
+		$sql="SELECT COUNT(*) c FROM `" . $this->mTable . '`'; 
 
 		if($criteria !== null && is_a($criteria, 'CriteriaElement')) {
 			$where = $this->_makeCriteria4sql($criteria);
@@ -240,10 +245,10 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 	{
 		$ret = array();
 		foreach ($obj->gets() as $key => $value) {
-            if ($value === null) {
-                $ret[$key] = 'NULL';
-            }
-            else {
+			if ($value === null) {
+				$ret[$key] = 'NULL';
+			}
+			else {
 				switch ($obj->mVars[$key]['data_type']) {
 					case XOBJ_DTYPE_STRING:
 					case XOBJ_DTYPE_TEXT:
@@ -253,7 +258,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 					default:
 						$ret[$key] = $value;
 				}
-            }
+			}
 		}
 		
 		return $ret;
@@ -279,13 +284,13 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 				$queryString = "";
 				$maxCount = $criteria->getCountChildElements();
 				
-	            $queryString = '('. $this->_makeCriteria4sql($criteria->getChildElement(0));
-	            for ($i = 1; $i < $maxCount; $i++) {
+				$queryString = '('. $this->_makeCriteria4sql($criteria->getChildElement(0));
+				for ($i = 1; $i < $maxCount; $i++) {
 					$queryString .= " " . $criteria->getCondition($i) . " " . $this->_makeCriteria4sql($criteria->getChildElement($i));
-	            }
-	            $queryString .= ')';
-	            
-	            return $queryString;
+				}
+				$queryString .= ')';
+				
+				return $queryString;
 			}
 			else {
 				//
@@ -322,7 +327,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 						}
 					}
 				} else {
-				    $value = $this->db->quoteString($value);
+					$value = $this->db->quoteString($value);
 				}
 
 				if ($name != null) {
@@ -347,7 +352,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 		// criteria even if this approach is few slow.
 		//
 		$criteria =new Criteria($this->mPrimary, $obj->get($this->mPrimary));
-        $sql = "DELETE FROM `" . $this->mTable . "` WHERE " . $this->_makeCriteriaElement4sql($criteria, $obj); 
+		$sql = "DELETE FROM `" . $this->mTable . "` WHERE " . $this->_makeCriteriaElement4sql($criteria, $obj); 
 
 		return $force ? $this->db->queryF($sql) : $this->db->query($sql);
 	}
@@ -359,7 +364,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 	 * inside.
 	 * 
 	 * @param Criteria $criteria
-	 * @param bool     $force
+	 * @param bool	   $force
 	 */
 	function deleteAll($criteria, $force = false)
 	{
@@ -373,5 +378,18 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 		
 		return $flag;
 	}
+
+	/**
+	 * getDirname
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	public function getDirname()
+	{
+		return $this->mDirname;
+	}
+
 }
 ?>

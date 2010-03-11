@@ -26,8 +26,9 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
  */
 class XoopsSimpleObject extends AbstractXoopsObject
 {
-	var $mVars = array();
-	var $mIsNew = true;
+	public $mVars = array();
+	public $mIsNew = true;
+	public $mDirname = null;
 	
 	var $_mAllowType = array(XOBJ_DTYPE_BOOL, XOBJ_DTYPE_INT, XOBJ_DTYPE_FLOAT, XOBJ_DTYPE_STRING, XOBJ_DTYPE_TEXT);
 	
@@ -183,6 +184,11 @@ class XoopsSimpleObject extends AbstractXoopsObject
 		}
 		
 		return $ret;
+	}
+
+	function getDirname()
+	{
+		return $this->mDirname;
 	}
 }
 
