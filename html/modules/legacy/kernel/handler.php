@@ -189,6 +189,10 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 		
 		if ($new_flag) {
 			$obj->setVar($this->mPrimary, $this->db->getInsertId());
+			$this->_callDelegate('Add', &$obj);
+		}
+		else{
+			$this->_callDelegate('Update', &$obj);
 		}
 
 		return true;
@@ -353,8 +357,11 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 		//
 		$criteria =new Criteria($this->mPrimary, $obj->get($this->mPrimary));
 		$sql = "DELETE FROM `" . $this->mTable . "` WHERE " . $this->_makeCriteriaElement4sql($criteria, $obj); 
-
-		return $force ? $this->db->queryF($sql) : $this->db->query($sql);
+	
+		$result = $force ? $this->db->queryF($sql) : $this->db->query($sql);
+		if($result==true) $this->_callDelegate('delete', &$obj);
+	
+		return $result;
 	}
 	
 	/**
@@ -389,6 +396,19 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 	public function getDirname()
 	{
 		return $this->mDirname;
+	}
+
+	/**
+	 * _callDelegate
+	 * 
+	 * @param	string	$type
+	 * @param	XoopsSimpleObject	&$obj
+	 * 
+	 * @return	string
+	**/
+	public function _callDelegate(/*** string ***/ $type, /*** XoopsSimpleObject ***/ &$obj)
+	{
+		XCube_DelegateUtils::call(sprintf('Module.%s.Event.%s.%s', $this->getDirname(), $type, $this->mTable), new XCube_Ref($obj));
 	}
 
 }
