@@ -7,41 +7,38 @@
 
 if(!defined('XOOPS_ROOT_PATH'))
 {
-    exit;
+	exit;
 }
-require_once LECAT_TRUST_PATH . '/class/ObjectHandler.class.php';
-
 /**
  * Lecat_PermitObject
 **/
 class Lecat_PermitObject extends XoopsSimpleObject
 {
-	public $mDirname = null;
 	public $mCat = null;
 	protected $_mCatLoadedFlag = false;
 
-    /**
-     * __construct
-     * 
-     * @param   void
-     * 
-     * @return  void
-    **/
-    public function __construct()
-    {
-        $this->initVar('permit_id', XOBJ_DTYPE_INT, '', false);
-        $this->initVar('cat_id', XOBJ_DTYPE_INT, '0', false);
-        $this->initVar('groupid', XOBJ_DTYPE_INT, '0', false);
-        $this->initVar('permissions', XOBJ_DTYPE_TEXT, '', false);
-    }
+	/**
+	 * __construct
+	 * 
+	 * @param	void
+	 * 
+	 * @return	void
+	**/
+	public function __construct()
+	{
+		$this->initVar('permit_id', XOBJ_DTYPE_INT, '', false);
+		$this->initVar('cat_id', XOBJ_DTYPE_INT, '0', false);
+		$this->initVar('groupid', XOBJ_DTYPE_INT, '0', false);
+		$this->initVar('permissions', XOBJ_DTYPE_TEXT, '', false);
+	}
 
-    /**
-     * loadCat
-     * 
-     * @param   void
-     * 
-     * @return  void
-    **/
+	/**
+	 * loadCat
+	 * 
+	 * @param	void
+	 * 
+	 * @return	void
+	**/
 	public function loadCat()
 	{
 		if ($this->_mCatLoadedFlag == false) {
@@ -65,36 +62,41 @@ class Lecat_PermitObject extends XoopsSimpleObject
 		$permissions = $this->getPermissionArr();
 		return ($permissions[$action]==1) ? true : false;
 	}
-
-	/**
-	 * @public
-	 * check permission about given action
-	 */
-	public function getDirname()
-	{
-		return $this->mDirname;
-	}
 }
 
 /**
  * Lecat_PermitHandler
 **/
-class Lecat_PermitHandler extends Lecat_ObjectGenericHandler
+class Lecat_PermitHandler extends XoopsObjectGenericHandler
 {
-    /**
-     * @brief   string
-    **/
-    public $mTable = '{dirname}_permit';
+	/**
+	 * @brief	string
+	**/
+	public $mTable = '{dirname}_permit';
 
-    /**
-     * @brief   string
-    **/
-    public $mPrimary = 'permit_id';
+	/**
+	 * @brief	string
+	**/
+	public $mPrimary = 'permit_id';
 
-    /**
-     * @brief   string
-    **/
-    public $mClass = 'Lecat_PermitObject';
+	/**
+	 * @brief	string
+	**/
+	public $mClass = 'Lecat_PermitObject';
+
+	/**
+	 * __construct
+	 * 
+	 * @param	XoopsDatabase  &$db
+	 * @param	string	$dirname
+	 * 
+	 * @return	void
+	**/
+	public function __construct(/*** XoopsDatabase ***/ &$db,/*** string ***/ $dirname)
+	{
+		$this->mTable = strtr($this->mTable,array('{dirname}' => $dirname));
+		parent::XoopsObjectGenericHandler($db);
+	}
 
 	public function updatePermission($catId, $groupId, $permission)
 	{
