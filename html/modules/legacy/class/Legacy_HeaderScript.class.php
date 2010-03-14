@@ -59,7 +59,7 @@ class Legacy_HeaderScript
 	**/
 	public function _setupDefaultStylesheet()
 	{
-		if($this->_getRenderConfig('css_file')) $this->addStylesheet($this->_getRenderConfig('css_file'));
+		if($this->_getRenderConfig('css_file')) $this->addStylesheet($this->_getRenderConfig('css_file'), false);
 	}
 
 	/**
