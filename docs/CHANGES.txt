@@ -69,6 +69,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Change getting script for Dhtmltarea by Delegate
 - Add legacy/class/interface for delegate: category, tag, progress
 - Add Lecat(Legacy Category) module.
+- Speeding up code(thanks nobu)
 
 [Staff]
 - GIJOE
@@ -79,12 +80,41 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Mikhail Miguel
 - Minahito
 - Mumincacao
+- Nobu
 - Nobunobu
 - Ohwada
 - Onokazu
+- suin
 - Wanikoo
 - Xoopserver
  (Gigamaster)
+
+----------------------------------------
+2010/02/13: Package Revision 2.1.8 Beta
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #2721445 - Full path disclosure when mySQL fails.
+- Fix Bug #2806101 - References to JP.XOOPS.ORG (removed by XOOPS Foundation).
+- Fix Bug #2839172 - missing SSLLogin feature.
+- Fix Bug #2884127 - typos about regular expressions.
+- Fix Bug #2949716 - The value of start and limit might be not corresponding between Criteria and PageNavi.
+- Fix Bug #2951068 - It becomes Fatal Error when the installation of XUpgrade.
+- Fix Bug #2955659 - invalid url exists in lostpass2.tpl.
+
+[Pathes]
+- Patch #2933635 - Mr Marijuana's patch.
+
+[Other Changes/Enhancements]
+- Request #1999811 - Function of the same name as functions.php is made effective
+
+[Staff]
+- GIJOE
+- gusagi
+- halt
+- kilica
+- Marijuana
+- Mikhail Miguel
+- minahito
 
 ----------------------------------------
 2009/05/23: Package Revision 2.1.7
