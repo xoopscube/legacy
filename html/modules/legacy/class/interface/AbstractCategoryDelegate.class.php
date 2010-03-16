@@ -15,131 +15,131 @@ if(!defined('XOOPS_ROOT_PATH'))
 **/
 abstract class Legacy_AbstractCategoryDelegate
 {
-	/**
-	 * getCategoryGroupList	Legacy_Category.GetCategoryGroupList
-	 *
-	 * @param string[] &$grList
-	 *
+    /**
+     * getCategoryGroupList Legacy_Category.GetCategoryGroupList
+     *
+     * @param string[] &$grList
+     *
      * @return  void
-	 */	
-	abstract public function getCategoryGroupList(/*** string[] ***/ &$grList);
+     */ 
+    abstract public function getCategoryGroupList(/*** string[] ***/ &$grList);
 
-	/**
-	 * getTitle		Legacy_Category.GetTitle
-	 * get the category title by category id.
-	 *
-	 * @param string &$title
-	 * @param int $catId
-	 *
+    /**
+     * getTitle     Legacy_Category.GetTitle
+     * get the category title by category id.
+     *
+     * @param string &$title
+     * @param int $catId
+     *
      * @return  void
-	 */	
-	abstract public function getTitle(/*** string ***/ &$title, /*** int ***/ $catId);
+     */ 
+    abstract public function getTitle(/*** string ***/ &$title, /*** int ***/ $catId);
 
-	/**
-	 * getTree		Legacy_Category.GetTree
-	 * get category objects in the form of tree.
-	 *
-	 * @param XoopsSimpleObject[] $tree
-	 * @param int $grId	:category group id
-	 * @param string $action	:ex.view, edit
-	 * @param int $uid
-	 * @param int $catId
-	 * @param string $module
-	 *
+    /**
+     * getTree      Legacy_Category.GetTree
+     * get category objects in the form of tree.
+     *
+     * @param Legacy_AbstractCategoryObject[] $tree
+     * @param int $grId :category group id
+     * @param string $action    :ex.view, edit
+     * @param int $uid
+     * @param int $catId
+     * @param string $module
+     *
      * @return  void
-	 */	
-	abstract public function getTree(/*** XoopsSimpleObject[] ***/ &$tree, /*** int ***/ $grId, /*** string ***/ $action, /*** int ***/ $uid, /*** int ***/ $catId=0, $modules="");
+     */ 
+    abstract public function getTree(/*** Legacy_AbstractCategoryObject[] ***/ &$tree, /*** int ***/ $grId, /*** string ***/ $action, /*** int ***/ $uid, /*** int ***/ $catId=0, $modules="");
 
-	/**
-	 * getTitleList		Legacy_Category.GetTitleList
-	 * get category titles.
-	 *
-	 * @param string[] &$titleList
-	 * @param int $grId	:category group id
-	 *
+    /**
+     * getTitleList     Legacy_Category.GetTitleList
+     * get category titles.
+     *
+     * @param string[] &$titleList
+     * @param int $grId :category group id
+     *
      * @return  void
-	 */	
-	abstract public function getTitleList(/*** string[] ***/ &$titleList, /*** int ***/ $grId);
+     */ 
+    abstract public function getTitleList(/*** string[] ***/ &$titleList, /*** int ***/ $grId);
 
-	/**
-	 * checkPermitByUserId		Legacy_Category.CheckPermitByUserId
-	 * check permission of the given category by user id.
-	 *
-	 * @param bool &$check
-	 * @param int $catId
-	 * @param string $action
-	 * @param int $uid
-	 * @param string $module
-	 *
+    /**
+     * checkPermitByUserId      Legacy_Category.CheckPermitByUserId
+     * check permission of the given category by user id.
+     *
+     * @param bool &$check
+     * @param int $catId
+     * @param string $action
+     * @param int $uid
+     * @param string $module
+     *
      * @return  void
-	 */	
-	abstract public function checkPermitByUserId(/*** bool ***/ &$check, /*** int ***/ $catId, /*** string ***/ $action, /*** int ***/ $uid, /*** string ***/ $module="");
+     */ 
+    abstract public function checkPermitByUserId(/*** bool ***/ &$check, /*** int ***/ $catId, /*** string ***/ $action, /*** int ***/ $uid, /*** string ***/ $module="");
 
-	/**
-	 * checkPermitByGroupId		Legacy_Category.CheckPermitByGroupId
-	 * check permission of the given category by user group id.
-	 *
-	 * @param bool &$check
-	 * @param int $catId
-	 * @param string $action
-	 * @param int $groupId	:user group id
-	 * @param string $module
-	 *
+    /**
+     * checkPermitByGroupId     Legacy_Category.CheckPermitByGroupId
+     * check permission of the given category by user group id.
+     *
+     * @param bool &$check
+     * @param int $catId
+     * @param string $action
+     * @param int $groupId  :user group id
+     * @param string $module
+     *
      * @return  void
-	 */	
-	abstract public function checkPermitByGroupId(/*** bool ***/ &$check, /*** int ***/ $catId, /*** string ***/ $action, /*** int ***/ $groupId, /*** string ***/ $module="");
+     */ 
+    abstract public function checkPermitByGroupId(/*** bool ***/ &$check, /*** int ***/ $catId, /*** string ***/ $action, /*** int ***/ $groupId, /*** string ***/ $module="");
 
-	/**
-	 * getParent		Legacy_Category.GetParent
-	 * get the parent category object.
-	 *
-	 * @param XoopsSimpleObject &$parent
-	 * @param int $catId
-	 *
+    /**
+     * getParent        Legacy_Category.GetParent
+     * get the parent category object.
+     *
+     * @param Legacy_AbstractCategoryObject &$parent
+     * @param int $catId
+     *
      * @return  void
-	 */	
-	abstract public function getParent(/*** Lecat_CatObject ***/ &$parent, /*** int ***/ $catId);
+     */ 
+    abstract public function getParent(/*** Legacy_AbstractCategoryObject ***/ &$parent, /*** int ***/ $catId);
 
-	/**
-	 * getChildren		Legacy_Category.GetChildren
-	 * get the child category objects. Be careful that you can get only children objects, excluded the given category itself.
-	 *
-	 * @param Lecat_CatObject[] &$children
-	 * @param int $catId
-	 * @param string $action
-	 * @param int $uid
-	 * @param string $module
-	 *
+    /**
+     * getChildren      Legacy_Category.GetChildren
+     * get the child category objects. Be careful that you can get only children objects, excluded the given category itself.
+     *
+     * @param Legacy_AbstractCategoryObject[] &$children
+     * @param int $catId
+     * @param string $action
+     * @param int $uid
+     * @param string $module
+     *
      * @return  void
-	 */	
-	abstract public function getChildren(/*** Lecat_CatObject[] ***/ &$children, /*** int ***/ $catId, /*** string ***/ $action, /*** int ***/ $uid, /*** string ***/ $module="");
+     */ 
+    abstract public function getChildren(/*** Legacy_AbstractCategoryObject[] ***/ &$children, /*** int ***/ $catId, /*** string ***/ $action, /*** int ***/ $uid, /*** string ***/ $module="");
 
-	/**
-	 * getCatPath		Legacy_Category.GetCatPath
-	 * get category path array from top to the given category.
-	 *
-	 * @param array &$catPath	:$catPath includes cat_id, title
-	 * @param int $catId
-	 * @param string $order	:order of categories. From top OR From the given category
-	 *
+    /**
+     * getCatPath       Legacy_Category.GetCatPath
+     * get category path array from top to the given category.
+     *
+     * @param array &$catPath   :$catPath includes cat_id, title
+     * @param int $catId
+     * @param string $order :order of categories. From top OR From the given category
+     *
      * @return  void
-	 */	
-	abstract public function getCatPath(/*** array ***/ &$catPath, /*** int ***/ $catId, /*** string ***/ $order);
+     */ 
+    abstract public function getCatPath(/*** array ***/ &$catPath, /*** int ***/ $catId, /*** string ***/ $order);
 
-	/**
-	 * getPermittedIdList		Legacy_Category.GetPermittedIdList
-	 * get category ids of permission.
-	 *
-	 * @param int[] &$idArr
-	 * @param int $grId
-	 * @param string $action
-	 * @param int $uid
-	 * @param int $catId	
-	 * @param string $module
-	 *
+    /**
+     * getPermittedIdList       Legacy_Category.GetPermittedIdList
+     * get category ids of permission.
+     *
+     * @param int[] &$idArr
+     * @param int $grId
+     * @param string $action
+     * @param int $uid
+     * @param int $catId    
+     * @param string $module
+     *
      * @return  void
-	 */	
-	abstract public function getPermittedIdList(/*** int[] ***/ &$idArr, /*** int ***/ $grId, /*** string ***/ $action, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module="");
+     */ 
+    abstract public function getPermittedIdList(/*** int[] ***/ &$idArr, /*** int ***/ $grId, /*** string ***/ $action, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module="");
 
 }
 
