@@ -45,7 +45,7 @@ class Legacy_AdminSmarty extends Smarty
 
 		//
 		// [TODO]
-		//  If we don't set true to the following flag, a user can not recover
+		//	If we don't set true to the following flag, a user can not recover
 		// with deleting additional theme. But, a user should to select true or
 		// false by site_custom.ini.php.
 		//
@@ -117,12 +117,12 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
 		$this->mSmarty->register_function("stylesheet", "Legacy_function_stylesheet");
 
 		$this->mSmarty->assign(array(
-			"xoops_url"        => XOOPS_URL,
-		    "xoops_rootpath"   => XOOPS_ROOT_PATH,
-		    "xoops_langcode"   => _LANGCODE,
-		    "xoops_charset"    => _CHARSET,
-		    "xoops_version"    => XOOPS_VERSION,
-		    "xoops_upload_url" => XOOPS_UPLOAD_URL)
+			"xoops_url" 	   => XOOPS_URL,
+			"xoops_rootpath"   => XOOPS_ROOT_PATH,
+			"xoops_langcode"   => _LANGCODE,
+			"xoops_charset"    => _CHARSET,
+			"xoops_version"    => XOOPS_VERSION,
+			"xoops_upload_url" => XOOPS_UPLOAD_URL)
 		);
 
 		if ($controller->mRoot->mSiteConfig['Legacy_AdminRenderSystem']['ThemeDevelopmentMode'] == true) {
@@ -160,7 +160,13 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
 		}
 		
 		$this->mSmarty->assign('stdout_buffer', $this->_mStdoutBuffer);
-
+	
+		//jQuery Ready functions
+		XCube_DelegateUtils::call("Site.JQuery.AddFunction", new XCube_Ref($this->mController->mRoot->mContext->mAttributes['headerScript']));
+		$headerScript = $this->mController->mRoot->mContext->getAttribute('headerScript');
+		$moduleHeader =  $headerScript->createLibraryTag() . $headerScript->createOnloadFunctionTag();
+		$this->mSmarty->assign('xoops_module_header', $moduleHeader);
+	
 		//
 		// Get a virtual current module object from the controller and assign it.
 		//
