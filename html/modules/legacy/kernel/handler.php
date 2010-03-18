@@ -287,16 +287,13 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 			if ($criteria->hasChildElements()) {
 				$queryString = "";
 				$maxCount = $criteria->getCountChildElements();
-				
 				$queryString = '('. $this->_makeCriteria4sql($criteria->getChildElement(0));
 				for ($i = 1; $i < $maxCount; $i++) {
 					$queryString .= " " . $criteria->getCondition($i) . " " . $this->_makeCriteria4sql($criteria->getChildElement($i));
 				}
 				$queryString .= ')';
-				
 				return $queryString;
-			}
-			else {
+			} else {
 				//
 				// Render
 				//
@@ -306,29 +303,14 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 					if ($value === null) {
 						$criteria->operator = $criteria->getOperator() == '=' ? "IS" : "IS NOT";
 						$value = "NULL";
-					}
-					else {
-						switch ($obj->mVars[$name]['data_type']) {
-							case XOBJ_DTYPE_BOOL:
-								$value = $value ? "1" : "0";
-								break;
-							
-							case XOBJ_DTYPE_INT:
-								$value = intval($value);
-								break;
-						
-							case XOBJ_DTYPE_FLOAT:
-								$value = floatval($value);
-								break;
-						
-							case XOBJ_DTYPE_STRING:
-							case XOBJ_DTYPE_TEXT:
-								$value = $this->db->quoteString($value);
-								break;
-								
-							default:
-								$value = $this->db->quoteString($value);
+					} elseif (in_array(strtoupper($criteria->operator), array('IN', 'NOT IN'))) {
+						$value = is_array($value) ? $value : explode(',', $value);
+						foreach ( $value as $val ) {
+							$tmp[] = $this->_escapeValue($val, $obj->mVars[$name]['data_type']);
 						}
+						$value = '('.implode(',', $tmp).')';
+					} else {
+						$value = $this->_escapeValue($value, $obj->mVars[$name]['data_type']);
 					}
 				} else {
 					$value = $this->db->quoteString($value);
@@ -336,12 +318,33 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 
 				if ($name != null) {
 					return $name . " " . $criteria->getOperator() . " " . $value;
-				}
-				else {
+				} else {
 					return null;
 				}
 			}
 		}
+	}
+
+	function _escapeValue($value, $type)
+	{
+		switch ($type) {
+			case XOBJ_DTYPE_BOOL:
+				$value = $value ? true : false;
+				break;
+			case XOBJ_DTYPE_INT:
+				$value = intval($value);
+				break;
+			case XOBJ_DTYPE_FLOAT:
+				$value = floatval($value);
+				break;
+			case XOBJ_DTYPE_STRING:
+			case XOBJ_DTYPE_TEXT:
+				$value = $this->db->quoteString($value);
+				break;
+			default:
+				$value = $this->db->quoteString($value);
+		}
+		return $value;
 	}
 
 	/**
