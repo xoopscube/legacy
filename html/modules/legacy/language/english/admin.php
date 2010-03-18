@@ -44,6 +44,7 @@ define('_AD_LEGACY_ERROR_ACTION_SEARCH_TRY_AGAIN', "Try again with different key
 define('_AD_LEGACY_ERROR_BLOCK_TEMPLATE_INSTALL', "Could not install block template '{0}'");
 define('_AD_LEGACY_ERROR_BMODULE', "You must specify one or more modules as the target module in which to display the block.");
 define('_AD_LEGACY_ERROR_CASE_OF_ACTIVE_MODULE', "Can't uninstall active module. To uninstall, turn off the active-status of the module.");
+define('_AD_LEGACY_ERROR_COULD_NOT_ADD_TRUST_DIRNAME', "Could not add trust_dirname in '{0}'.");
 define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_BLOCK_TEMPLATES', "Could not delete block templates : {0}");
 define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_DUPLICATE_DATA', "Could not delete duplicate data : {0}");
 define('_AD_LEGACY_ERROR_COULD_NOT_EXTEND_CONFIG_TITLE_SIZE', "Could not extend config_table size in '{0}'.");
@@ -306,6 +307,7 @@ define('_AD_LEGACY_LANG_VISIBLE', "Visible");
 define('_AD_LEGACY_LANG_WEIGHT', "Order");
 
 // MESSAGE
+define('_AD_LEGACY_MESSAGE_ADD_TRUST_DIRNAME_SUCCESSFUL', "Add trust_dirname in Table '{0}' has been successful.");
 define('_AD_LEGACY_MESSAGE_BLOCK_HAS_BEEN_UNINSTALLED', "Block {0} has been uninstalled");
 define('_AD_LEGACY_MESSAGE_BLOCK_INSTALLED', "Block {0} has been installed");
 define('_AD_LEGACY_MESSAGE_BLOCK_TEMPLATE_INSTALLED', "Block Template '{0}' has been installed.");
