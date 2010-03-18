@@ -17,26 +17,26 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 	var $mConfig = array();
 
 	var $currentPath  = null;
-	var $mPagenavi    = null;
+	var $mPagenavi	  = null;
 	var $setSortkey   = null;
-	var $dirList      = array();
-	var $filesList    = array();
+	var $dirList	  = array();
+	var $filesList	  = array();
 	var $filesCount   = 0;
 	var $parentPath   = null;
 	var $isOpenFolder = false;
-	var $filter       = null;
+	var $filter 	  = null;
 
 	var $pathLink ='';
-	var $pathNameArray    = array();
+	var $pathNameArray	  = array();
 
 	// user config
 	var $imageThumbSize  = 100;
 	var $systemImageLock = true;
 
 	// for menu
-	var $breadCrumbs     = array();
-	var $confirmMssage   = null;
-	var $moduleHeader    = null;
+	var $breadCrumbs	 = array();
+	var $confirmMssage	 = null;
+	var $moduleHeader	 = null;
 
 	// per page
 	var $perpage = 20 ;
@@ -214,14 +214,14 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 		// get dirctory permission
 		$this->isOpenFolder = (fileperms($filesUploadPath) =='16895') ;
 
-		$hideFile = array();    // hide files array
+		$hideFile = array();	// hide files array
 		$fileArray = $pathArray =  array();
 		$fileMediaType = $pluginsUrl = $imageInfo = '';
 		$imageThumb = false;
 
 		// hide files name & file extension
-		$systemFile = 'blank.gif|.htaccess';    // System files
-		$hiddenType = "html|htm|php|js";        // Hidden File ext
+		$systemFile = 'blank.gif|.htaccess';	// System files
+		$hiddenType = "html|htm|php|js";		// Hidden File ext
 
 		if ($isFileHome) {
 			if ($xoopsImageLock > 0) {
@@ -232,13 +232,13 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 		}
 
 		// TODO need pdf , xcl ,csv ... other file type and viewr or link
-		// $appliType = "txt|csv|pdf|xls|ods|doc|odt";             // application
-		$imageType       = "gif|jpe?g|png|bmp";      // Image
-		$flvType         = "flv";                    // FLVplayer
-		$quicktimeType   = "qt|mov|3gp|3gp2|mp4";    // Quick Time
-		$mp3Type         = "mp3";                    // Quick Time Sound
-		$flashType       = "swf";                    // Flash
-		$realplayerType  = "rm|ra";                  // RealPlayer
+		// $appliType = "txt|csv|pdf|xls|ods|doc|odt";			   // application
+		$imageType		 = "gif|jpe?g|png|bmp"; 	 // Image
+		$flvType		 = "flv";					 // FLVplayer
+		$quicktimeType	 = "qt|mov|3gp|3gp2|mp4";	 // Quick Time
+		$mp3Type		 = "mp3";					 // Quick Time Sound
+		$flashType		 = "swf";					 // Flash
+		$realplayerType  = "rm|ra"; 				 // RealPlayer
 		$mediaplayerType = "avi|asf|wav|wma|wmv|mid|avi|mpe|mpg";  // WindowsMediaPlayer
 
 		// Open a known directory, and proceed to read its contents
@@ -312,15 +312,15 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 									$stat = stat($filesUploadPath .'/' .$file);
 									// view file infofation
 									$fileArray['file'] = $this->setSortkey. '/'. $file ;
-									$fileArray['file_name']     = $file;
-									$fileArray['file_url']      = $this->currentPath .'/' .$file ;
-									$fileArray['file_size']     = FileSystemUtilty::bytes($stat['size']);
+									$fileArray['file_name'] 	= $file;
+									$fileArray['file_url']		= $this->currentPath .'/' .$file ;
+									$fileArray['file_size'] 	= FileSystemUtilty::bytes($stat['size']);
 									$fileArray['file_statsize'] = $stat['size'];
-									$fileArray['file_media']    = $fileMediaType ;
-									$fileArray['file_type']     = $fileExtension ;
-									$fileArray['time_stamp']    = filemtime($filesUploadPath .'/' .$file);
-									$fileArray['file_info']     = $imageInfo;
-									$fileArray['image_thumb']   = $imageThumb;
+									$fileArray['file_media']	= $fileMediaType ;
+									$fileArray['file_type'] 	= $fileExtension ;
+									$fileArray['time_stamp']	= filemtime($filesUploadPath .'/' .$file);
+									$fileArray['file_info'] 	= $imageInfo;
+									$fileArray['image_thumb']	= $imageThumb;
 									$this->filesList[] = & $fileArray;
 								}
 							}
@@ -351,10 +351,10 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 
 		// get sort array
 		foreach ($this->filesList as $key => $row) {
-		    $file_name[$key]  = $row['file_name'];
-		    $file_type[$key]  = $row['file_type'];
-		    $time_stamp[$key] = $row['time_stamp'];
-		    $file_statsize[$key]  = $row['file_statsize'];
+			$file_name[$key]  = $row['file_name'];
+			$file_type[$key]  = $row['file_type'];
+			$time_stamp[$key] = $row['time_stamp'];
+			$file_statsize[$key]  = $row['file_statsize'];
 		}
 		// sort file
 		// TODO more simple
@@ -404,9 +404,11 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 		// $this->moduleHeader .='<link rel="stylesheet" type="text/css" href="'. XOOPS_URL. '/common/prettyPhoto/css/prettyPhoto.css" />'."\n";
 		// $this->moduleHeader .='<script type="text/javascript" src="'. XOOPS_URL. '/common/prettyPhoto/js/jquery.prettyPhoto.js"></script>'."\n";
 		// add moduleHeader
-		$this->moduleHeader.= "<script type=\"text/javascript\" src=\"" . XOOPS_URL ."/modules/fileManager/js/jquery-1.3.2.min.js\"></script>\n";
-		$this->moduleHeader.= "<script type=\"text/javascript\" src=\"" . XOOPS_URL ."/modules/fileManager/js/jquery.prettyPhoto.js\"></script>\n";
-		$this->moduleHeader.= "<link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"" .  XOOPS_URL ."/modules/fileManager/js/css/prettyPhoto.css\" />\n";
+		//$this->moduleHeader.= "<script type=\"text/javascript\" src=\"" . XOOPS_URL ."/modules/fileManager/js/jquery-1.3.2.min.js\"></script>\n";
+		$root =& XCube_Root::getSingleton();
+		$headerScript = $root->mContext->getAttribute('headerScript');
+		$headerScript->addLibrary("/common/prettyPhoto/js/jquery.prettyPhoto.js");
+		$headerScript->addStylesheet("/common/prettyPhoto/css/css/prettyPhoto.css");
 
 		return CONTENTS_FRAME_VIEW_INDEX;
 	}
@@ -418,7 +420,7 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 
 		// set template
 		$render->setTemplateName('fileManager_index.html');
-		$render->setAttribute('config'  , $this->mConfig);
+		$render->setAttribute('config'	, $this->mConfig);
 
 		// module info ( /admin/include/functions.php )
 		$render->setAttribute('module_info'   , getModuleInfo());
@@ -429,21 +431,21 @@ class FileManager_indexAction extends FileManager_AbstractListAction
 		$render->setAttribute('confirm_mssage', $this->confirmMssage);
 
 		// page navi & sort navi
-		$render->setAttribute("sortNavi"      , $this->_getPageNavi());
+		$render->setAttribute("sortNavi"	  , $this->_getPageNavi());
 		$render->setAttribute("sortNaviAdd"   , $this->_getPath());
-		$render->setAttribute('pageNavi'      , $this->mPagenavi);
+		$render->setAttribute('pageNavi'	  , $this->mPagenavi);
 
 		// use ffmpeg flag
-		$render->setAttribute('ffmpeguse'     , $this->mConfig['ffmpeguse']);
+		$render->setAttribute('ffmpeguse'	  , $this->mConfig['ffmpeguse']);
 
 		// parh & file
 		$render->setAttribute('isopen_folder' , $this->isOpenFolder);
 		$render->setAttribute('current_path'  , $this->currentPath);
-		$render->setAttribute('dir_list'      , $this->dirList);
-		$render->setAttribute('files_list'    , $this->filesList);
+		$render->setAttribute('dir_list'	  , $this->dirList);
+		$render->setAttribute('files_list'	  , $this->filesList);
 		$render->setAttribute('files_count'   , $this->filesCount);
-		$render->setAttribute('thumb_size'    , $this->imageThumbSize);
-		$render->setAttribute('path_array'    , $this->pathNameArray);
+		$render->setAttribute('thumb_size'	  , $this->imageThumbSize);
+		$render->setAttribute('path_array'	  , $this->pathNameArray);
 	}
 
 	// TODO this function is reary need ??
