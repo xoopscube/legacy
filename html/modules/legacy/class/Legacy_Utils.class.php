@@ -189,13 +189,13 @@ class Legacy_Utils
 	}
 
 	/**
-	 * getDirnameListByTrustName
+	 * getDirnameListByTrustDirname
 	 * 
 	 * @param	string	$trustName
 	 * 
 	 * @return	string[]
 	**/
-	public static function getDirnameListByTrustName(/*** string ***/ $trustName)
+	public static function getDirnameListByTrustDirname(/*** string ***/ $trustName)
 	{
 		$list = array();
 		$cri = new Criteria('isactive',0,'>');
@@ -212,13 +212,13 @@ class Legacy_Utils
 	}
 
 	/**
-	 * getTrustNameByDirname
+	 * getTrustDirnameByDirname
 	 * 
 	 * @param	string	$dirname
 	 * 
 	 * @return	string
 	**/
-	public static function getTrustNameByDirname(/*** string ***/ $dirname)
+	public static function getTrustDirnameByDirname(/*** string ***/ $dirname)
 	{
 		$list = array();
 		$handler =& xoops_gethandler('module');
@@ -261,7 +261,7 @@ class Legacy_Utils
 	**/
 	public static function getModuleHandler(/*** string ***/ $name, /*** string ***/ $dirname)
 	{
-		$trustDirname = self::getTrustNameByDirname($dirname);
+		$trustDirname = self::getTrustDirnameByDirname($dirname);
 		if(isset($trustDirname)){
 			$path = XOOPS_TRUST_PATH. '/modules/'. $trustDirname .'/class/handler/' . ucfirst($name) . '.class.php';
 			$className = ucfirst($trustDirname) . '_' . ucfirst($name) . 'Handler';
