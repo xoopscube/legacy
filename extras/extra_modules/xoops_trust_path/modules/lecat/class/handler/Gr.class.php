@@ -161,7 +161,7 @@ class Lecat_GrObject extends XoopsSimpleObject
 		$criteria->add(new Criteria('gr_id', $this->get('gr_id')));
 		$criteria->add(new Criteria('p_id', $p_id));
 		$criteria->setSort('weight');
-		$catArr =Lecat_Utils::getLecatHandler('cat', $this->getDirname())->getObjects($criteria);
+		$catArr =Legacy_Utils::getModuleHandler('cat', $this->getDirname())->getObjects($criteria);
 		foreach(array_keys($catArr) as $key){
 			//check module confinement
 			if($catArr[$key]->checkModule($module)){
@@ -200,7 +200,7 @@ class Lecat_GrObject extends XoopsSimpleObject
 	**/
 	protected function _getHandler($tablename)
 	{
-		return Lecat_Utils::getLecatHandler($tablename, $this->getDirname());
+		return Legacy_Utils::getModuleHandler($tablename, $this->getDirname());
 	}
 }
 

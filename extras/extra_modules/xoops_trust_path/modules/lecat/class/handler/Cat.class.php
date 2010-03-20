@@ -51,7 +51,7 @@ class Lecat_CatObject extends XoopsSimpleObject
 	public function loadGr()
 	{
 		if ($this->_mGrLoadedFlag == false) {
-			$handler = Lecat_Utils::getLecatHandler('gr', $this->getDirname());
+			$handler = Legacy_Utils::getModuleHandler('gr', $this->getDirname());
 			$this->mGr =& $handler->get($this->get('gr_id'));
 			$this->_mGrLoadedFlag = true;
 		}
@@ -64,7 +64,7 @@ class Lecat_CatObject extends XoopsSimpleObject
 	public function loadPermit()
 	{
 		if ($this->_mPermitLoadedFlag == false) {
-			$handler =Lecat_Utils::getLecatHandler('permit', $this->getDirname());
+			$handler =Legacy_Utils::getModuleHandler('permit', $this->getDirname());
 			$this->mPermit =& $handler->getObjects(new Criteria('cat_id', $this->get('cat_id')));
 			$this->_mPermitLoadedFlag = true;
 		}
@@ -77,7 +77,7 @@ class Lecat_CatObject extends XoopsSimpleObject
 	public function loadPcat()
 	{
 		if ($this->_mPcatLoadedFlag == false) {
-			$handler =Lecat_Utils::getLecatHandler('cat', $this->getDirname());
+			$handler =Legacy_Utils::getModuleHandler('cat', $this->getDirname());
 			$this->mPcat =& $handler->get($this->get('p_id'));
 			$this->_mPcatLoadedFlag = true;
 		}
@@ -322,7 +322,7 @@ class Lecat_CatObject extends XoopsSimpleObject
 	**/
 	protected function _getHandler($tablename)
 	{
-		return Lecat_Utils::getLecatHandler($tablename, $this->getDirname());
+		return Legacy_Utils::getModuleHandler($tablename, $this->getDirname());
 	}
 
 }
