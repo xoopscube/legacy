@@ -191,22 +191,21 @@ class Legacy_Utils
 	/**
 	 * getDirnameListByTrustDirname
 	 * 
-	 * @param	string	$trustName
+	 * @param	string	$trustDirname
 	 * 
 	 * @return	string[]
 	**/
-	public static function getDirnameListByTrustDirname(/*** string ***/ $trustName)
+	public static function getDirnameListByTrustDirname(/*** string ***/ $trustDirname)
 	{
 		$list = array();
-		$cri = new Criteria('isactive',0,'>');
+		$cri = new CriteriaCompo();
+		$cri->add(new Criteria('isactive',0,'>'));
+		$cri->add(new Criteria('trust_dirname', $trustDirname));
 		$cri->addSort('weight','ASC');
 		$cri->addSort('mid','ASC');
 		foreach(xoops_gethandler('module')->getObjects($cri) as $module)
 		{
-			if($module->getInfo('trust_dirname') == $trustName)
-			{
-				$list[] = $module->get('dirname');
-			}
+			$list[] = $module->get('dirname');
 		}
 		return $list;
 	}
@@ -220,7 +219,6 @@ class Legacy_Utils
 	**/
 	public static function getTrustDirnameByDirname(/*** string ***/ $dirname)
 	{
-		$list = array();
 		$handler =& xoops_gethandler('module');
 		$module =& $handler->getByDirname($dirname);
 		return $module->get('trust_dirname') ? $module->get('trust_dirname') : null;
@@ -229,7 +227,7 @@ class Legacy_Utils
 	/**
 	 * formatPagetitle
 	 * 
-	 * @param	string	$modulename module directory name
+	 * @param	string	$modulename
 	 * @param	string	$pagetitle ex. "Hello!", "How to install XCL?"
 	 * @param	string	$action ex.edit, delete, list
 	 * 
@@ -257,7 +255,7 @@ class Legacy_Utils
 	 * @param	string	$name
 	 * @param	string	$dirname
 	 * 
-	 * @return	string
+	 * @return	XoopsObjectGenericHandler
 	**/
 	public static function getModuleHandler(/*** string ***/ $name, /*** string ***/ $dirname)
 	{
