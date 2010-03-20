@@ -14,7 +14,7 @@
 // ## Yahoo!.........: mikhail.miguel@yahoo.com.br
 // ############################################################### //
 // *************************************************************** //
-define("_INSTALL_CHARSET","UTF-8");
+define("_INSTALL_CHARSET","ISO-8859-1");
 define("_INSTALL_HEADER_MESSAGE","Siga a instalação lendo com cuidado todas as instruções e avisos de cada página mostrada.");
 define("_INSTALL_L0","Bem-vindo ao assistente de instalação do XOOPS Cube");
 define("_INSTALL_L1","Abra o arquivo mainfile.php com seu editor de textos e procure o seguinte código na linha 31:");
