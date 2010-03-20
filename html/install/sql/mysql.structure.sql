@@ -362,7 +362,7 @@ CREATE TABLE modules (
   KEY hassearch (hassearch),
   KEY hasnotification (hasnotification),
   KEY dirname (dirname),
-  KEY trust_dirname (turst_dirname),
+  KEY trust_dirname (trust_dirname),
   KEY name (name(15))
 ) TYPE=MyISAM AUTO_INCREMENT=2 ;
 # mid=1 is reserved for old XOOPS system module
