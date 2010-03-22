@@ -16,7 +16,7 @@ If the first character in a line is #, ; or //, the line is treated as comment.
 
 class XCube_IniHandler
 {
-	public /*** string[] ***/	$mConfig = array();
+	protected /*** string[] ***/	$_mConfig = array();
 	protected /*** string ***/	$_mFilePath = null;
 	protected /*** bool ***/	$_mSectionFlag = false;
 
@@ -54,7 +54,7 @@ class XCube_IniHandler
 				elseif(preg_match('/\[(.*)\]/', $line, $str)){
 					if($this->_mSectionFlag===true){
 						$key = $str[1];
-						$this->mConfig[$key] = array();
+						$this->_mConfig[$key] = array();
 					}
 				}
 				elseif(preg_match('/(.*)=(.*)/', $line, $str)){
@@ -63,10 +63,10 @@ class XCube_IniHandler
 					}
 				
 					if($this->_mSectionFlag===true){
-						$this->mConfig[$key][$str[1]] = $str[2];
+						$this->_mConfig[$key][$str[1]] = $str[2];
 					}
 					else{
-						$this->mConfig[$str[1]] = $str[2];
+						$this->_mConfig[$str[1]] = $str[2];
 					}
 				}
 			}
@@ -84,26 +84,35 @@ class XCube_IniHandler
 	public function getConfig(/*** string ***/ $key, /*** string ***/ $section='')
 	{
 		if($this->_mSectionFlag===true){
-			return $this->mConfig[$section][$key];
+			return $this->_mConfig[$section][$key];
 		}
 		else{
-			return $this->mConfig[$key];
+			return $this->_mConfig[$key];
 		}
 	}
 
 	/**
-	 * getSection
+	 * getSectionConfig
 	 * 
 	 * @param	string	$section
 	 * 
 	 * @return	string[]
 	**/
-	public function getSection(/*** string ***/ $section)
+	public function getSectionConfig(/*** string ***/ $section)
 	{
-		if($this->_mSectionFlag===true){
-			return $this->mConfig[$section];
-		}
-		return null;
+		return ($this->_mSectionFlag===true) ? $this->_mConfig[$section] : null;
+	}
+
+	/**
+	 * getAllConfig
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string[]
+	**/
+	public function getAllConfig(/*** string ***/ $section)
+	{
+		return $this->_mConfig;
 	}
 
 }
