@@ -65,12 +65,12 @@ abstract class Legacy_AbstractFriendDelegate
 	 *
 	 * @param Legacy_AbstractUserActivityObject[] &$actionList
 	 * @param int	$uid
-	 * @param int	$start
 	 * @param int	$limit
+	 * @param int	$start
 	 *
 	 * @return	void
 	 */ 
-	abstract public function getMyFriendsActivitiesList(/*** Legacy_AbstractUserActivityObject[] ***/ &$actionList, /*** int ***/ $uid, /*** int ***/ $start=0, , /*** int ***/ $limit=20);
+	abstract public function getMyFriendsActivitiesList(/*** Legacy_AbstractUserActivityObject[] ***/ &$actionList, /*** int ***/ $uid, /*** int ***/ $limit=20, /*** int ***/ $start=0);
 
 
 }

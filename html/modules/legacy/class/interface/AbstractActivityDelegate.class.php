@@ -28,25 +28,23 @@ abstract class Legacy_AbstractActivityDelegate
 	 * deleteUserActivity	Legacy_Activity.DeleteUserActivity
 	 *
 	 * @param bool &$result
-	 * @param string $dirname
-	 * @param string $dataname
-	 * @param int $id
+	 * @param CriteriaElement $cri ex)$cri=new CriteriaCompo();$cri->add(new Criteria('dirname',$dirname);$cri->add(new Criteria('dataname',$dataname);$cri->add(new Criteria('id',$id);
 	 *
 	 * @return	void
 	 */ 
-	abstract public function deleteUserActivity(/*** bool ***/ &$result, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $id);
+	abstract public function deleteUserActivity(/*** bool ***/ &$result, /*** CriteriaElement ***/ $cri);
 
 	/**
 	 * getUsersActivities	Legacy_Activity.GetUsersAcitivities
 	 *
 	 * @param Legacy_AbstractActivityObject[]	&$activityList
-	 * @param int[]	$uid[]
-	 * @param int	$start
+	 * @param int[]	$uids
 	 * @param int	$limit
+	 * @param int	$start
 	 *
 	 * @return	void
 	 */ 
-	abstract public function getUsersActivities(/*** Legacy_AbstractUserActivityObject[] ***/ &$activityList, /*** int[] ***/ $uid[], /*** int ***/ $start, /*** int ***/ $limit);
+	abstract public function getUsersActivities(/*** Legacy_AbstractUserActivityObject[] ***/ &$activityList, /*** int[] ***/ $uids, /*** int ***/ $limit=20, /*** int ***/ $start=0);
 
 	/**
 	 * addGroupActivity	 Legacy_Activity.AddGroupActivity
@@ -61,25 +59,23 @@ abstract class Legacy_AbstractActivityDelegate
 	 * deleteGroupActivity	Legacy_Activity.deleteGroupActivity
 	 *
 	 * @param bool &$result
-	 * @param string $dirname
-	 * @param string $dataname
-	 * @param int $id
+	 * @param CriteriaElement $cri ex)$cri=new CriteriaCompo();$cri->add(new Criteria('dirname',$dirname);$cri->add(new Criteria('dataname',$dataname);$cri->add(new Criteria('id',$id);
 	 *
 	 * @return	void
 	 */ 
-	abstract public function deleteGroupActivity(/*** bool ***/ &$result, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $id);
+	abstract public function deleteGroupActivity(/*** bool ***/ &$result, /*** CriteriaElement ***/ $cri);
 
 	/**
 	 * getGroupsActivities	 Legacy_Activity.GetGroupsAcitivities
 	 *
 	 * @param Legacy_AbstractActivityObject[]	&$activityList
-	 * @param int	$groupId[]
-	 * @param int	$start
+	 * @param int[]	$groupIds
 	 * @param int	$limit
+	 * @param int	$start
 	 *
 	 * @return	void
 	 */ 
-	abstract public function getGroupsActivities(/*** Legacy_AbstractGroupActivityObject[] ***/ &$activityList, /*** int ***/ $groupId[], /*** int ***/ $start, /*** int ***/ $limit);
+	abstract public function getGroupsActivities(/*** Legacy_AbstractGroupActivityObject[] ***/ &$activityList, /*** int[] ***/ $groupIds, /*** int ***/ $limit=20, /*** int ***/ $start=0);
 
 }
 

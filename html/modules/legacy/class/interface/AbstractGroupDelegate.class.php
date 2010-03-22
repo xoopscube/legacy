@@ -16,14 +16,26 @@ if(!defined('XOOPS_ROOT_PATH'))
 abstract class Legacy_AbstractGroupDelegate
 {
 	/**
-	 * getGroupList Legacy_Group.GetGroupList
+	 * getGroupIdList Legacy_Group.GetGroupIdList
 	 *
 	 * @param XoopsSimpleObject[] &$groupList
 	 * @param int	$uid
 	 *
 	 * @return	void
 	 */ 
-	abstract public function getGroupList(/*** string[] ***/ &$groupList, /*** int ***/ $uid);
+	abstract public function getGroupIdList(/*** int[] ***/ &$groupIds, /*** int ***/ $uid);
+
+	/**
+	 * getGroupList Legacy_Group.GetGroupList
+	 *
+	 * @param XoopsSimpleObject[] &$groupList
+	 * @param int	$uid
+	 * @param int	$limit
+	 * @param int	$start
+	 *
+	 * @return	void
+	 */ 
+	abstract public function getGroupList(/*** XoopsSimpleObject[] ***/ &$groupList, /*** int ***/ $uid, /*** int ***/ $limit=20, /*** int ***/ $start=0);
 
 	/**
 	 * getGroup 	Legacy_Group.GetGroup
@@ -68,12 +80,12 @@ abstract class Legacy_AbstractGroupDelegate
 	 *
 	 * @param Legacy_AbstractGroupActivityObject[] &$actionList
 	 * @param int	$uid
-	 * @param int	$start
 	 * @param int	$limit
+	 * @param int	$start
 	 *
 	 * @return	void
 	 */ 
-	abstract public function getMyGroupsActivitiesList(/*** Legacy_AbstractGroupActivityObject[] ***/ &$actionList, /*** int ***/ $uid, /*** int ***/ $start=0, /*** int ***/ $limit=20);
+	abstract public function getMyGroupsActivitiesList(/*** Legacy_AbstractGroupActivityObject[] ***/ &$actionList, /*** int ***/ $uid, /*** int ***/ $limit=20, /*** int ***/ $start=0);
 
 }
 

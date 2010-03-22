@@ -30,8 +30,8 @@ abstract class Legacy_AbstractActivityObject extends XoopsSimpleObject
 		$this->initVar('category', XOBJ_DTYPE_STRING, '', false, 255);
 		$this->initVar('author', XOBJ_DTYPE_STRING, '', false, 128);
 		$this->initVar('link', XOBJ_DTYPE_TEXT, '', false);
-		$this->initVar('latitude', XOBJ_DTYPE_FLOAT, '0', false);
-		$this->initVar('longitude', XOBJ_DTYPE_FLOAT, '0', false);
+		$this->initVar('latitude', XOBJ_DTYPE_FLOAT, '0.0', false);
+		$this->initVar('longitude', XOBJ_DTYPE_FLOAT, '0.0', false);
 		$this->initVar('posttime', XOBJ_DTYPE_INT, time()', false);
 	}
 }
@@ -75,8 +75,8 @@ abstract class Legacy_AbstractCalendarObject extends Legacy_AbstractActivityObje
 
 abstract class Legacy_AbstractActivityHandler extends XoopsObjectGenericHandler
 {
-	abstract public function getActivities(/*** int ***/ $uid, /*** int ***/ $start, /*** int ***/ $limit)
-	abstract public function getMyActivities(/*** int ***/ $uid, /*** int ***/ $start, /*** int ***/ $limit)
+	abstract public function getActivities(/*** int ***/ $target_id, /*** int ***/ $limit=20, /*** int ***/ $start=0)
+	abstract public function getMyActivities(/*** int ***/ $uid, /*** int ***/ $limit=20, /*** int ***/ $start=0)
 
 }
 
