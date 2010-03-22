@@ -12,7 +12,7 @@
   <{foreach item=obj from=$objects}>
     <tr class="<{cycle values='odd,even'}>">
       <td><{$obj->getShow('uid')}></td>
-      <td><{$obj->getShow('uid')|xoops_user:"uname"}></td>
+      <td><{$obj->getShow('uid')|xoops_user:"user_name"}></td>
       <td width="100" align="center">
         <a href="./index.php?action=DataView&amp;uid=<{$obj->getShow('uid')}>"><img src="<{$xoops_url}>/modules/profile/images/form_view.png" alt="<{$smarty.const._VIEW}>" title="<{$smarty.const._VIEW}>" /></a>
         <a href="./index.php?action=DataEdit&amp;uid=<{$obj->getShow('uid')}>"><img src="<{$xoops_url}>/modules/profile/images/form_edit.png" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
