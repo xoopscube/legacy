@@ -1,6 +1,6 @@
 <div>
 <a href="<{$xoops_url}>/userinfo.php?uid=<{$actionForm->get('uid')|xoops_escape}>"><{$smarty.const._MD_USER_LANG_PROFILE}></a>
-&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;<{$smarty.const._MD_USER_LANG_AVATAR_EDIT}>( <{$actionForm->get('uid')|xoops_user:uname}> )
+&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;<{$smarty.const._MD_USER_LANG_AVATAR_EDIT}>( <{$actionForm->get('uid')|xoops_user:user_name}> )
 </div>
 
 <{if $allowUpload}>
@@ -19,7 +19,7 @@
   <{xoops_input type=hidden name=uid value=$actionForm->get('uid')}>
   <table class="outer">
     <tr>
-      <th colspan="2" style="text-align:center;">( <{$actionForm->get('uid')|xoops_user:uname}> )<{$smarty.const._MD_USER_LANG_AVATAR_EDIT}></th>
+      <th colspan="2" style="text-align:center;">( <{$actionForm->get('uid')|xoops_user:user_name}> )<{$smarty.const._MD_USER_LANG_AVATAR_EDIT}></th>
     </tr>
     <tr>
       <td colspan="2" class="<{cycle values="odd,even"}>" style="text-align:center;">

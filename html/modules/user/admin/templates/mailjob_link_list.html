@@ -37,7 +37,7 @@
     <tr class="<{cycle values='odd,even'}>">
       <td class="user_list_control"><{xoops_input type=checkbox name=uid key=$obj->get('uid')}></td>
       <td class="user_list_id"><{$obj->getShow('uid')}></td>
-      <td class="user_list_name"><{$obj->get('uid')|xoops_user:uname}></td>
+      <td class="user_list_name"><{$obj->get('uid')|xoops_user:user_name}></td>
       <td class="user_list_number"><{$obj->getShow('retry')}></td>
       <td class="user_list_description"><{$obj->getShow('message')}></td>
     </tr>
