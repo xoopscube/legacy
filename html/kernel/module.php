@@ -95,7 +95,8 @@ class XoopsModule extends XoopsObject
 		$this->setVar('name', $this->modinfo['name'], true);
 		$this->setVar('version', Legacy_Utils::convertVersionFromModinfoToInt($this->modinfo['version']));
 		$this->setVar('dirname', $this->modinfo['dirname'], true);
-		$this->setVar('trust_dirname', $this->modinfo['trust_dirname'], true);
+		$trustDirname = isset($this->modinfo['trust_dirname']) ? $this->modinfo['trust_dirname'] : null;
+		$this->setVar('trust_dirname', $trustDirname , true);
 		$hasmain = (isset($this->modinfo['hasMain']) && $this->modinfo['hasMain'] == 1) ? 1 : 0;
 		$hasadmin = (isset($this->modinfo['hasAdmin']) && $this->modinfo['hasAdmin'] == 1) ? 1 : 0;
 		$hassearch = (isset($this->modinfo['hasSearch']) && $this->modinfo['hasSearch'] == 1) ? 1 : 0;
