@@ -189,6 +189,25 @@ class Legacy_Utils
 	}
 
 	/**
+	 * getUserName
+	 * 
+	 * @param	void
+	 * 
+	 * @return	int
+	**/
+	public static function getUserName(/*** int ***/ $uid)
+	{
+		$name = null;
+		XCube_DelegateUtils::call('Legacy_User.GetUserName', new XCube_Ref($name), $uid);
+		if(! $name){
+			$handler =& xoops_gethandler('member');
+			$user =& $handler->getUser(intval($uid));
+			$name = $user->getShow('uname');
+		}
+		return $name;
+	}
+
+	/**
 	 * getDirnameListByTrustDirname
 	 * 
 	 * @param	string	$trustDirname
