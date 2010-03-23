@@ -39,14 +39,10 @@ $modversion['tables'][1] = "{prefix}_profile_data";
 //$modversion['templates'][]['file'] = 'profile'_xxxxx.html';
 //$modversion['templates'][]['description'] = 'profile'_xxxxx.html';
 ##[cubson:templates]
-$modversion['templates'][0]['file'] = 'profile_definitions_list.html';
-$modversion['templates'][1]['file'] = 'profile_definitions_edit.html';
-$modversion['templates'][2]['file'] = 'profile_definitions_delete.html';
-$modversion['templates'][3]['file'] = 'profile_definitions_view.html';
+$modversion['templates'][1]['file'] = 'profile_data_edit.html';
+$modversion['templates'][2]['file'] = 'profile_data_delete.html';
+$modversion['templates'][3]['file'] = 'profile_data_view.html';
 $modversion['templates'][4]['file'] = 'profile_data_list.html';
-$modversion['templates'][5]['file'] = 'profile_data_edit.html';
-$modversion['templates'][6]['file'] = 'profile_data_delete.html';
-$modversion['templates'][7]['file'] = 'profile_data_view.html';
 ##[/cubson:templates]
 
 //

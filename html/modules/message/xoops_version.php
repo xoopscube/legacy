@@ -70,14 +70,14 @@ $modversion['config'][2]['description'] = '_MI_MESSAGE_NEWALERT_DESC';
 $modversion['config'][2]['formtype']	= 'yesno';
 $modversion['config'][2]['valuetype']	= 'int';
 $modversion['config'][2]['default'] 	= '1';
-
+/*
 $modversion['config'][3]['name']		= 'userinfo';
 $modversion['config'][3]['title']		= '_MI_MESSAGE_USERINFO';
 $modversion['config'][3]['description'] = '_MI_MESSAGE_USERINFO_DESC';
 $modversion['config'][3]['formtype']	= 'yesno';
 $modversion['config'][3]['valuetype']	= 'int';
 $modversion['config'][3]['default'] 	= '1';
-
+*/
 $modversion['config'][4]['name']		= 'dletype';
 $modversion['config'][4]['title']		= '_MI_MESSAGE_DELTYPE';
 $modversion['config'][4]['description'] = '_MI_MESSAGE_DELTYPE_DESC';

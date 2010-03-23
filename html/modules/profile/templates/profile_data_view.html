@@ -8,7 +8,7 @@
 	<{foreach item=field from=$fields}>
     <tr class="<{cycle values='odd,even'}>">
       <td><{$field->getShow('label')}></td>
-      <td><{$object->get($field->get('field_name'))}></td>
+      <td><{$object->showField($field->get('field_name'))}></td>
     </tr>
   <{/foreach}>
 </table>

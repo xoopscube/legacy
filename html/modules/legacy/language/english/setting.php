@@ -1,9 +1,11 @@
 <?php
 
-//%%%%%		TIME FORMAT SETTINGS   %%%%%
-if (!defined('_DATESTRING')) define("_DATESTRING","Y/n/j G:i:s");
-if (!defined('_MEDIUMDATESTRING')) define("_MEDIUMDATESTRING","Y/n/j G:i");
-if (!defined('_SHORTDATESTRING')) define("_SHORTDATESTRING","Y/n/j");
+//%%%%%     TIME FORMAT SETTINGS   %%%%%
+if (!defined('_DATESTRING')) define('_DATESTRING','Y/n/j G:i:s');
+if (!defined('_MEDIUMDATESTRING')) define('_MEDIUMDATESTRING','Y/n/j G:i');
+if (!defined('_SHORTDATESTRING')) define('_SHORTDATESTRING','Y/n/j');
+define('_JSDATEPICKSTRING','yy-mm-dd');
+define('_PHPDATEPICKSTRING','Y-m-d');
 
 /*
 The following characters are recognized in the format string:
@@ -36,9 +38,9 @@ Z - timezone offset in seconds (i.e. "-43200" to "43200")
 */
 
 
-//%%%%%		LANGUAGE SPECIFIC SETTINGS   %%%%%
+//%%%%%     LANGUAGE SPECIFIC SETTINGS   %%%%%
 if (!defined('_CHARSET')) define('_CHARSET', 'ISO-8859-1');
 if (!defined('_LANGCODE')) define('_LANGCODE', 'en');
 // change 0 to 1 if this language is a multi-bytes language
-if (!defined('XOOPS_USE_MULTIBYTES')) define("XOOPS_USE_MULTIBYTES", "0");
+if (!defined('XOOPS_USE_MULTIBYTES')) define('XOOPS_USE_MULTIBYTES', '0');
 ?>

@@ -12,7 +12,7 @@ class Profile_DefinitionsObject extends XoopsSimpleObject
 	/**
 	 * @public
 	 */
-	function Profile_DefinitionsObject()
+	public function Profile_DefinitionsObject()
 	{
 		$this->initVar('field_id', XOBJ_DTYPE_INT, '', false);
 		$this->initVar('field_name', XOBJ_DTYPE_STRING, '', false, 32);
@@ -21,7 +21,7 @@ class Profile_DefinitionsObject extends XoopsSimpleObject
 		$this->initVar('validation', XOBJ_DTYPE_STRING, '', false, 255);
 		$this->initVar('required', XOBJ_DTYPE_BOOL, 0, false);
 		$this->initVar('show_form', XOBJ_DTYPE_BOOL, 1, false);
-		$this->initVar('weight', XOBJ_DTYPE_INT, 0, false);
+		$this->initVar('weight', XOBJ_DTYPE_INT, 10, false);
 		$this->initVar('description', XOBJ_DTYPE_TEXT, '', false);
 		$this->initVar('access', XOBJ_DTYPE_TEXT, '', false);
 		$this->initVar('options', XOBJ_DTYPE_TEXT, '', false);
@@ -30,7 +30,7 @@ class Profile_DefinitionsObject extends XoopsSimpleObject
 	/**
 	 * @public
 	 */
-	function getFields()
+	public function getFields()
 	{
 		$cri = new Criteria('1', '1');
 		$cri->setSort('weight');
@@ -41,25 +41,25 @@ class Profile_DefinitionsObject extends XoopsSimpleObject
 	/**
 	 * @public
 	 */
-	function getQuery4AlterTable()
+	public function getQuery4AlterTable()
 	{
 		switch($this->get('type')){
-			case 'string':
+			case Profile_FormType::STRING:
 				return 'VARCHAR(255) NOT NULL';
 				break;
-			case 'text':
+			case Profile_FormType::TEXT:
 				return 'TEXT NOT NULL';
 				break;
-			case 'int':
+			case Profile_FormType::INT:
 				return 'INT(11) UNSIGNED NOT NULL';
 				break;
-			case 'date':
+			case Profile_FormType::DATE:
 				return 'INT(11) UNSIGNED NOT NULL';
 				break;
-			case 'checkbox':
+			case Profile_FormType::CHECKBOX:
 				return 'TINYINT(1) UNSIGNED NOT NULL';
 				break;
-			case 'selectbox':
+			case Profile_FormType::SELECTBOX:
 				return 'VARCHAR(64) NOT NULL';
 				break;
 		}
@@ -68,61 +68,7 @@ class Profile_DefinitionsObject extends XoopsSimpleObject
 	/**
 	 * @public
 	 */
-	function getXObjType()
-	{
-		switch($this->get('type')){
-			case 'string':
-				return XOBJ_DTYPE_STRING;
-				break;
-			case 'text':
-				return XOBJ_DTYPE_TEXT;
-				break;
-			case 'int':
-				return XOBJ_DTYPE_INT;
-				break;
-			case 'date':
-				return XOBJ_DTYPE_INT;
-				break;
-			case 'checkbox':
-				return XOBJ_DTYPE_BOOL;
-				break;
-			case 'selectbox':
-				return XOBJ_DTYPE_STRING;
-				break;
-		}
-	}
-
-	/**
-	 * @public
-	 */
-	function getServiceType()
-	{
-		switch($this->get('type')){
-			case 'string':
-				return 'string';
-				break;
-			case 'text':
-				return 'text';
-				break;
-			case 'int':
-				return 'int';
-				break;
-			case 'date':
-				return 'int';
-				break;
-			case 'checkbox':
-				return 'bool';
-				break;
-			case 'selectbox':
-				return 'string';
-				break;
-		}
-	}
-
-	/**
-	 * @public
-	 */
-	function getOptions()
+	public function getOptions()
 	{
 		if($this->get('options')){
 			return explode('|', $this->get('options'));
@@ -132,12 +78,31 @@ class Profile_DefinitionsObject extends XoopsSimpleObject
 		}
 	}
 
-	/**
-	 * @public
-	 */
-	function getServiceField()
+	public function getFormPropertyClass()
 	{
-		return $this->getServiceType() .' '. $this->get('field_name');
+		$class = null;
+	
+		switch($this->get('type')){
+		case Profile_FormType::STRING:
+			$class = 'XCube_StringProperty';
+			break;
+		case Profile_FormType::TEXT:
+			$class = 'XCube_TextProperty';
+			break;
+		case Profile_FormType::INT:
+			$class = 'XCube_IntProperty';
+			break;
+		case Profile_FormType::DATE:
+			$class = 'XCube_StringProperty';
+			break;
+		case Profile_FormType::CHECKBOX:
+			$class = 'XCube_BoolProperty';
+			break;
+		case Profile_FormType::SELECTBOX:
+			$class = 'XCube_StringProperty';
+			break;
+		}
+		return $class;
 	}
 }
 
@@ -150,7 +115,7 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 	/**
 	 * @public
 	 */
-	function getFields4DataEdit()
+	public function getFields4DataEdit()
 	{
 		$criteria = new CriteriaCompo();
 		$criteria->add(new Criteria('show_form', '1'));
@@ -162,7 +127,7 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 	/**
 	 * @public
 	 */
-	function getFields4DataShow($uid)
+	public function getFields4DataShow($uid)
 	{
 		$lHandler =& xoops_getmodulehandler('groups_users_link', 'user');
 	
@@ -188,7 +153,7 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 	/**
 	 * @public
 	 */
-	function insert(&$obj)
+	public function insert(&$obj)
 	{
 		global $xoopsDB;
 		if ($obj->isNew()) {
@@ -209,7 +174,7 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 	/**
 	 * @public
 	 */
-	function delete(&$obj)
+	public function delete(&$obj)
 	{
 		global $xoopsDB;
 		$sql = 'ALTER TABLE '. $xoopsDB->prefix('profile_data') .' DROP `'. $obj->get('field_name') .'`';
@@ -218,7 +183,7 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 		return parent::delete($obj);
 	}
 
-	function getDefinitionsArr($show_form=true)
+	public function getDefinitionsArr($show_form=true)
 	{
 		$criteria = new CriteriaCompo();
 		$criteria->setSort('weight', 'ASC');
@@ -236,24 +201,72 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 	/**
 	 * @public
 	 */
-	function getTypeList()
+	public function getTypeList()
 	{
-		return array("string", "text", "int", "date", "checkbox", "selectbox");
+		return array(
+			Profile_FormType::STRING,
+			Profile_FormType::TEXT,
+			Profile_FormType::INT,
+			Profile_FormType::FLOAT,
+			Profile_FormType::DATE,
+			Profile_FormType::CHECKBOX,
+			Profile_FormType::SELECTBOX
+		);
+	}
+
+	public static function getReservedNameList()
+	{
+		return array('uid','name','uname','email','url','user_avatar','user_regdate','user_icq','user_from','user_sig','user_viewemail','actkey','user_aim','user_yim','user_msnm','pass','posts','attachsig','rank','level','theme','timezone_offset','last_login','umode','uorder','notify_method','notify_mode','user_occ','bio','user_intrest','user_mailok', 'user_name');
 	}
 
 	/**
 	 * @public
 	 */
-	function getValidationList()
+	public function getValidationList()
 	{
 		return array("email");
 	}
+}
 
-	public function getReservedNameList()
+class Profile_FormType
+{
+	const STRING = 'string';
+	const TEXT = 'text';
+	const INT = 'int';
+	const FLOAT = 'float';
+	const DATE = 'date';
+	const CHECKBOX = 'checkbox';
+	const SELECTBOX = 'selectbox';
+
+	/**
+	 * @public
+	 */
+	public static function getXObjType($type)
 	{
-		return array('uid','name','uname','email','url','user_avatar','user_regdate','user_icq','user_from','user_sig','user_viewemail','actkey','user_aim','user_yim','user_msnm','pass','posts','attachsig','rank','level','theme','timezone_offset','last_login','umode','uorder','notify_method','notify_mode','user_occ','bio','user_intrest','user_mailok');
+		switch($type){
+			case self::STRING:
+				return XOBJ_DTYPE_STRING;
+				break;
+			case self::STRING:
+				return XOBJ_DTYPE_TEXT;
+				break;
+			case 'int':
+				return XOBJ_DTYPE_INT;
+				break;
+			case 'float':
+				return XOBJ_DTYPE_FLOAT;
+				break;
+			case 'date':
+				return XOBJ_DTYPE_INT;
+				break;
+			case 'checkbox':
+				return XOBJ_DTYPE_BOOL;
+				break;
+			case 'selectbox':
+				return XOBJ_DTYPE_STRING;
+				break;
+		}
 	}
-
 }
 
 ?>

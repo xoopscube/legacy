@@ -29,33 +29,16 @@ class Profile_DataEditForm extends XCube_ActionForm
 	function prepare()
 	{
 		$handler =& xoops_getmodulehandler('definitions');
-		$this->mDef = $handler->getObjects();
+		$this->mDef = $handler->getFields4DataEdit();
 	
 		//
 		// Set form properties
 		//
 		$this->mFormProperties['uid'] =new XCube_IntProperty('uid');
 		foreach(array_keys($this->mDef) as $key){
-			switch($this->mDef[$key]->get('type')){
-				case 'string':
-					$this->mFormProperties[$this->mDef[$key]->get('field_name')] =new XCube_StringProperty($this->mDef[$key]->get('field_name'));
-					break;
-				case 'text':
-					$this->mFormProperties[$this->mDef[$key]->get('field_name')] =new XCube_TextProperty($this->mDef[$key]->get('field_name'));
-					break;
-				case 'int':
-					$this->mFormProperties[$this->mDef[$key]->get('field_name')] =new XCube_IntProperty($this->mDef[$key]->get('field_name'));
-					break;
-				case 'date':
-					$this->mFormProperties[$this->mDef[$key]->get('field_name')] =new XCube_IntProperty($this->mDef[$key]->get('field_name'));
-					break;
-				case 'checkbox':
-					$this->mFormProperties[$this->mDef[$key]->get('field_name')] =new XCube_BoolProperty($this->mDef[$key]->get('field_name'));
-					break;
-				case 'selectbox':
-					$this->mFormProperties[$this->mDef[$key]->get('field_name')] =new XCube_StringProperty($this->mDef[$key]->get('field_name'));
-					break;
-			}
+			$className = $thi->mDef[$key]->getFormPropertyClass();
+			$this->mFormProperties[$this->mDef[$key]->get('field_name')] =new $className($this->mDef[$key]->get('field_name'));
+		
 			//validation checks
 			$validationArr = array();
 			$this->mFieldProperties[$this->mDef[$key]->get('field_name')] =new XCube_FieldProperty($this);
@@ -89,7 +72,7 @@ class Profile_DataEditForm extends XCube_ActionForm
 	{
 		$this->set('uid', $obj->get('uid'));
 		foreach(array_keys($this->mDef) as $key){
-			$this->set($this->mDef[$key]->get('field_name'), $obj->get($this->mDef[$key]->get('field_name')));
+			$this->set($this->mDef[$key]->get('field_name'), $obj->showField($this->mDef[$key]->get('field_name'), Profile_ActionType::EDIT));
 		}
 	}
 
@@ -100,8 +83,15 @@ class Profile_DataEditForm extends XCube_ActionForm
 	{
 		$obj->set('uid', $this->get('uid'));
 		foreach(array_keys($this->mDef) as $key){
-			$obj->set($this->mDef[$key]->get('field_name'), $this->get($this->mDef[$key]->get('field_name')));
+			$val = ($this->mDef[$key]->get('field_type')!='date') ? $this->get($this->mDef[$key]->get('field_name')) : $this->_makeUnixtime($this->mDef[$key]->get('field_name'));
+			$obj->set($this->mDef[$key]->get('field_name'), $val);
 		}
+	}
+
+	protected function _makeUnixtime($key)
+	{
+		$timeArray = explode('/', $this->get($key));
+		return mktime(0, 0, 0, $timeArray[1], $timeArray[2], $timeArray[0]);
 	}
 }
 

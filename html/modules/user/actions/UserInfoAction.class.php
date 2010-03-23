@@ -90,7 +90,7 @@ class User_UserInfoAction extends User_Action
 				}
 			}
 		}
-
+	
 		return USER_FRAME_VIEW_SUCCESS;
 	}
 	
@@ -130,20 +130,21 @@ class User_UserInfoAction extends User_Action
 			$render->setAttribute('enableSelfDelete', false);
 		}
 	
-		//XCL2.2 TEST:Profile_Service
-		$root =& $controller->mRoot;
-		$service = $root->mServiceManager->getService("Profile_Service");
-		$client = $root->mServiceManager->createClient($service);
-		if (is_object($client)) {
-			$definitions = $client->call('getDefinitions', array());
-			$render->setAttribute('definitions', $definitions);
-		
-			$data = $client->call('getProfile', array('uid'=>$this->mObject->get('uid')));
-			$render->setAttribute('data', $data);
-		}
-		//XCL2.2 TEST END:Profile_Service
+		//XCL2.2
+		$render->setAttribute('definitions', $this->_getProfileDefinitions());
+		$render->setAttribute('data', $this->_getProfileData());
 	}
-	
+
+	protected function _getProfileDefinitions()
+	{
+		return xoops_getmodulehandler('definitions', 'profile')->getDefinitionsArr();
+	}
+
+	protected function _getProfileData()
+	{
+		return xoops_getmodulehandler('data', 'profile')->get($this->mObject->get('uid'));
+	}
+
 	function executeViewError(&$controller, &$xoopsUser, &$render)
 	{
 		$controller->executeForward(XOOPS_URL . '/user.php');

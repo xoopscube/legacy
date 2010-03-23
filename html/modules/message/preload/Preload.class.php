@@ -20,9 +20,11 @@ class Message_Preload extends XCube_ActionFilter
       $this->mRoot->mDelegateManager->add('Legacypage.Readpmsg.Access', 'Message_Preload::accessToReadpmsg');
       $this->mRoot->mDelegateManager->add('Legacypage.Pmlite.Access', 'Message_Preload::accessToReadpmsg');
     }
+    /*
     if ( $conf['userinfo'] == 1 ) {
       $this->mRoot->mDelegateManager->add('User_ActionFrame.CreateAction', 'Message_Preload::_createAction', XCUBE_DELEGATE_PRIORITY_FIRST);
     }
+    */
     $this->mRoot->mDelegateManager->add('Legacy.Event.GetHandler', 'Message_Preload::makeHandler');
     $this->mRoot->mDelegateManager->add('Legacy_RenderSystem.SetupXoopsTpl', 'Message_Preload::addFilter');
   }

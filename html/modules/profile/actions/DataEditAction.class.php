@@ -72,6 +72,8 @@ class Profile_DataEditAction extends Profile_AbstractEditAction
 		$render->setAttribute('actionForm', $this->mActionForm);
 		$render->setAttribute('object', $this->mObject);
 		$render->setAttribute('fields', $this->mFields);
+		$headerScript = $this->mRoot->mContext->getAttribute('headerScript');
+		$headerScript->addScript('$(".datepicker").each(function(){$(this).datepicker({dateFormat: "'._JSDATEPICKSTRING.'"});});');
 	}
 
 	/**

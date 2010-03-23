@@ -29,6 +29,7 @@
         <{elseif $field->get('type')=="text"}>
         <{xoops_dhtmltarea type=text name=$field->get('field_name') value=$actionForm->get($field->get('field_name'))}>
         <{elseif $field->get('type')=="date"}>
+        <{xoops_input class=datePicker type=text name=$field->get('field_name') value=$actionForm->get($field->get('field_name'))  size=15 maxlength=12}>
         <{elseif $field->get('type')=="checkbox"}>
         <{xoops_input type=checkbox name=$field->get('field_name') value=1 default=$actionForm->get($field->get('field_name'))}>
         <{elseif $field->get('type')=="selectbox"}>
