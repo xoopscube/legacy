@@ -396,9 +396,9 @@ define('_AD_LEGACY_SYSTEMINFO', 'サイト／システム情報');
 define('_AD_LEGACY_USERAGENT', 'ユーザーエージェント');
 define('_AD_LEGACY_XCLEGACYVERSION', 'XC Legacyバージョン');
 define('_AD_LEGACY_XCVERSION', 'XOOPS Cube バージョン');
-define('_AD_LEGACY_ERROR_COULD_NOT_EXTEND_CONFIG_TITLE_SIZE', ''{0}'で設定テーブルサイズを拡張できませんでした。');
-define('_AD_LEGACY_ERROR_COULD_NOT_SAVE_SMILES_FILE', ''{0}'のスマイリーを保存できませんでした。');
-define('_AD_LEGACY_ERROR_COULD_NOT_SAVE_IMAGE_FILE', ''{0}'の画像を保存できませんでした。');
+define('_AD_LEGACY_ERROR_COULD_NOT_EXTEND_CONFIG_TITLE_SIZE', '{0} で設定テーブルサイズを拡張できませんでした。');
+define('_AD_LEGACY_ERROR_COULD_NOT_SAVE_SMILES_FILE', '{0}のスマイリーを保存できませんでした。');
+define('_AD_LEGACY_ERROR_COULD_NOT_SAVE_IMAGE_FILE', '{0}の画像を保存できませんでした。');
 define('_AD_LEGACY_ERROR_DBUPDATE_FAILED', '更新に失敗しました。');
 define('_AD_LEGACY_ERROR_EXTENSION_IS_WRONG', 'アップロードされたファイルの拡張子が無効です。');
 define('_AD_LEGACY_ERROR_REQUIRED', '{0}が必要です。');
@@ -440,7 +440,7 @@ define('_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_COMMENT', 'コメントを更新して
 define('_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_IMAGE', '画像を更新してもよろしいですか？');
 define('_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_MODULE', 'モジュールをアップデートしてもよろしいですか？');
 define('_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_SMILES', 'スマイリーを更新してもよろしいですか？');
-define('_AD_LEGACY_MESSAGE_EXTEND_CONFIG_TITLE_SIZE_SUCCESSFUL', 'テーブル'{0}'はタイトルサイズを設定変更されました。');
+define('_AD_LEGACY_MESSAGE_EXTEND_CONFIG_TITLE_SIZE_SUCCESSFUL', 'テーブル {0} はタイトルサイズを設定変更されました。');
 define('_AD_LEGACY_TIPS_BLOCK', '<a href=\"index.php?action=CustomBlockEdit?\">カスタムブロックを作成し、簡単にコンテンツを追加します。</a>');
 define('_AD_LEGACY_TIPS_BLOCK2', 'ブロックをインストールするときは、オプションを編集することができます。');
 define('_AD_LEGACY_TIPS_COMMENT', '表示、保留中、非表示のコメントを任意のモジュール上の任意のユーザから検索や管理する');
@@ -450,5 +450,6 @@ define('_AD_LEGACY_TIPS_IMGCAT', '画像のカテゴリやユーザーのアク�
 define('_AD_LEGACY_TIPS_MOD', '新しいモジュールをインストールするなら、忘れずにブロックとユーザーアクセス許可の設定を優先して行ってください！');
 define('_AD_LEGACY_TIPS_SMILES', 'カスタムスマイリーのアーカイブを表示、名前変更、削除、またはアップロードします。');
 define('_AD_LEGACY_TIPS_SMILES_UPLOAD', '圧縮されたアーカイブをアップロードして、多くのスマイリーを簡単に登録することができます！<br />このアップロードは、各スマイリーのサイズは確認されません！<br />アーカイブする前に事前に調整してください！<br />（tar.gzまたはzipアーカイブのみ）');
-
+define('_AD_LEGACY_ERROR_COULD_NOT_ADD_TRUST_DIRNAME', 'trust_dirname フィールドを {0} に追加できませんでした');
+define('_AD_LEGACY_MESSAGE_ADD_TRUST_DIRNAME_SUCCESSFUL', '{0} テーブルへの trust_dirname が追加されました。');
 ?>

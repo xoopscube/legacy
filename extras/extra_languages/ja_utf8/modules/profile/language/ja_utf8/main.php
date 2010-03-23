@@ -79,6 +79,7 @@ define('_MD_PROFILE_LANG_WEIGHT', '順番');
 define('_MD_PROFILE_MESSAGE_CONFIRM_DELETE', '本当に削除しますか？');
 define('_MD_PROFILE_DESC_OPTIONS', 'オプションを区切るのはスペースではなくパイプ '|' です。 例； 紅茶|コーヒー|緑茶');
 define('_MD_PROFILE_ERROR_DUPLICATED_FIELD_NAME', 'フィールド名がすでに使用されています。');
+define('_MD_PROFILE_ERROR_RESERVED_NAME', 'このフィールド名はユーザモジュールで使われているため使えません。');
 
 
 ?>

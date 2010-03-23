@@ -5,7 +5,7 @@ if (!defined('_DATESTRING')) define("_DATESTRING","Y/n/j G:i:s");
 if (!defined('_MEDIUMDATESTRING')) define("_MEDIUMDATESTRING","Y/n/j G:i");
 if (!defined('_SHORTDATESTRING')) define("_SHORTDATESTRING","Y/n/j");
 
-//%%%%%		LANGUAGE SPECIFIC SETTINGS   %%%%%
+//%%%%%		LANGUAGE SPECIFIC SETTINGS	 %%%%%
 @define('_CHARSET', 'UTF-8');
 @define('_LANGCODE', 'ja');
 mb_language( 'ja' ) ;
@@ -34,7 +34,7 @@ if ( class_exists( 'XCube_Root' ) && function_exists('mb_convert_encoding') && f
 @define('LEGACY_MAIL_CHAR','iso-2022-jp');
 @define('LEGACY_MAIL_ENCO','7bit');
 
-if( ! defined( 'FOR_XOOPS_LANG_CHECKER' ) ) {
+if(! defined('FOR_XOOPS_LANG_CHECKER')) {
 
 function Legacy_JapaneseUtf8_convLocal(&$text, $mime)
 {
@@ -61,5 +61,5 @@ function xoops_language_trim($text)
 	$text = trim($text);
 	return $text;
 }
-
+}
 ?>
