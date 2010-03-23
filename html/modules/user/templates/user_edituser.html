@@ -63,19 +63,19 @@
     <td class="head"><{$def.label}></td>
     <td class="<{cycle values="odd,even"}>">
     	<{if $def.type=="string"}>
-      <{xoops_input type=text name=profile[$field_name] value=$data->showField($field_name, 1)  size=40 maxlength=255}>
+      <{xoops_input type=text name=$field_name value=$data->showField($field_name, 1)  size=40 maxlength=255}>
       <{elseif $def.type=="int"}>
-      <{xoops_input type=text name=profile[$field_name] value=$data->showField($field_name, 1) size=15 maxlength=11}>
+      <{xoops_input type=text name=$field_name value=$data->showField($field_name, 1) size=15 maxlength=11}>
       <{elseif $def.type=="text"}>
-      <{xoops_dhtmltarea type=text name=profile[$field_name] value=$data->showField($field_name, 1)}>
+      <{xoops_dhtmltarea type=text name=$field_name value=$data->showField($field_name, 1)}>
       <{elseif $def.type=="date"}>
-      <{xoops_input class=datepicker type=text name=profile[$field_name] value=$data->showField($field_name, 1) size=20 maxlength=10}>
+      <{xoops_input class=datepicker type=text name=$field_name value=$data->showField($field_name, 1) size=20 maxlength=10}>
       <{elseif $def.type=="checkbox"}>
-      <{xoops_input type=checkbox name=profile[$field_name] value=1 default=$data->showField($field_name, 1)}>
+      <{xoops_input type=checkbox name=$field_name value=1 default=$data->showField($field_name, 1)}>
       <{elseif $def.type=="selectbox"}>
-      <select name="profile[<{$field_name}>]" id="legacy_xoopsform_profile[<{$field_name}>]">
+      <select name="<{$field_name}>" id="legacy_xoopsform_<{$field_name}>">
         <{foreach item=option from=$def.options}>
-      	<option value="<{$option}>"<{if $data->showField($field_name, 1)==$option}> selected="selected"<{/if}>><{$option}></option>
+      	<option value="<{$option}>"<{if $actionForm->showField($field_name, 1)==$option}> selected="selected"<{/if}>><{$option}></option>
 	    <{/foreach}>
       </select>
       <{/if}>

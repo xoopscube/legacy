@@ -189,14 +189,14 @@ class User_EditUserAction extends User_AbstractEditAction
 	function executeViewSuccess(&$controller,&$xoopsUser,&$render)
 	{
 		//XCL2.2
-		$profileArr = XCube_Root::getSingleton()->mContext->mRequest->getRequest('profile');
+		$req = XCube_Root::getSingleton()->mContext->mRequest;
 	
 		$dhandler = xoops_getmodulehandler('definitions', 'profile');
 		$phandler = xoops_getmodulehandler('data', 'profile');
 		$definitions = $dhandler->getDefinitionsArr(false);
 		$profile = $this->_getProfileObject();
 		foreach(array_keys($definitions) as $key){
-			$profile->setField($definitions[$key]['field_name'], $profileArr[$definitions[$key]['field_name']]); 
+			$profile->setField($definitions[$key]['field_name'], $req->getRequest($definitions[$key]['field_name'])); 
 		}
 		if(! $phandler->insert($profile)){
 			echo "failed to update DB";die();

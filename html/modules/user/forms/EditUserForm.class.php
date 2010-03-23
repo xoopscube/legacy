@@ -231,7 +231,7 @@ class User_EditUserForm extends User_AbstractUserEditForm
 		$handler =& xoops_getmodulehandler('definitions', 'profile');
 		$definitions =& $handler->getFields4DataEdit();
 		foreach($definitions as $def){
-			$className = $def->getFormPropertyClass()
+			$className = $def->getFormPropertyClass();
 			$this->mFormProperties[$def->get('field_name')] = new $className($def->get('field_name'));
 		
 			//
@@ -251,7 +251,7 @@ class User_EditUserForm extends User_AbstractUserEditForm
 				$this->mFieldProperties[$def->get('field_name')]->addMessage($def->get('field_name'), _MD_USER_ERROR_EMAIL);
 				break;
 			}
-			$this->mFieldProperties[$def[$key]->get('field_name')]->setDependsByArray($validationArr);
+			$this->mFieldProperties[$def->get('field_name')]->setDependsByArray($validationArr);
 		}
 	}
 }
