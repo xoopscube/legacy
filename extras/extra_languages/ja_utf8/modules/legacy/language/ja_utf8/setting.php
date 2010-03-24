@@ -4,6 +4,8 @@
 if (!defined('_DATESTRING')) define("_DATESTRING","Y/n/j G:i:s");
 if (!defined('_MEDIUMDATESTRING')) define("_MEDIUMDATESTRING","Y/n/j G:i");
 if (!defined('_SHORTDATESTRING')) define("_SHORTDATESTRING","Y/n/j");
+define('_JSDATEPICKSTRING','yy-mm-dd');
+define('_PHPDATEPICKSTRING','Y-m-d');
 
 //%%%%%		LANGUAGE SPECIFIC SETTINGS	 %%%%%
 @define('_CHARSET', 'UTF-8');
