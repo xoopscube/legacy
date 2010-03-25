@@ -21,10 +21,10 @@ class Mydhtml_MyDhtmlTextArea extends XCube_ActionFilter
 	/**
 	 *	@public
 	*/
-	function render(&$html, $id, $caption, $name, $value, $rows, $cols)
+	function render(&$html, $id, $caption, $name, $value, $rows, $cols, $class)
 	{
 		//$form =& new XoopsFormDhtmlTextArea($name, $name, $value, $rows, $cols);		
-		$form = array('name'=>$name, 'value'=>$value, 'rows'=>$rows, 'cols'=>$cols, 'id'=>$id);
+		$form = array('name'=>$name, 'value'=>$value, 'rows'=>$rows, 'cols'=>$cols, 'id'=>$id, 'class'=>$class);
 		$root =& XCube_Root::getSingleton();
 		$renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
 		

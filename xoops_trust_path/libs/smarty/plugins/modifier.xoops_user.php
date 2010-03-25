@@ -23,6 +23,7 @@
  */
 function smarty_modifier_xoops_user($uid, $key, $flag=2)
 {
+	require_once XOOPS_MODULE_PATH.'/profile/class/handler/Definitions.class.php';
 	if(in_array($key, Profile_DefinitionsHandler::getReservedNameList())){
 		if($key=='user_name'){
 			return Legacy_Utils::getUserName($uid);
