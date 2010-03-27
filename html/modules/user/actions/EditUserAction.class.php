@@ -91,18 +91,38 @@ class User_EditUserAction extends User_AbstractEditAction
 			else {
 				setcookie($this->mUserCookie);
 			}
-			
-			return true;
+			return $this->_doExecuteProfile();
 		}
 		else {
 			return false;
 		}
 	}
 
+	protected function _doExecuteProfile()
+	{
+		//XCL2.2
+		$req = XCube_Root::getSingleton()->mContext->mRequest;
+	
+		$dhandler = xoops_getmodulehandler('definitions', 'profile');
+		$definitions = $dhandler->getDefinitionsArr(false);
+		if(count($definitions)==0){
+			return true;
+		}
+		$profile = $this->_getProfileObject();
+		$phandler = xoops_getmodulehandler('data', 'profile');
+		foreach(array_keys($definitions) as $key){
+			$profile->setField($definitions[$key]['field_name'], $req->getRequest($definitions[$key]['field_name']));
+		}
+		if(! $phandler->insert($profile)){
+			echo "failed to update Profile DB";die();
+		}
+		return true;
+	}
+
 	/**
 	 * @protected
 	 */
-	function _getProfileObject()
+	protected function _getProfileObject()
 	{
 		$phandler = xoops_getmodulehandler('data', 'profile');
 		$profile = $phandler->get($this->_getId());
@@ -188,20 +208,6 @@ class User_EditUserAction extends User_AbstractEditAction
 
 	function executeViewSuccess(&$controller,&$xoopsUser,&$render)
 	{
-		//XCL2.2
-		$req = XCube_Root::getSingleton()->mContext->mRequest;
-	
-		$dhandler = xoops_getmodulehandler('definitions', 'profile');
-		$phandler = xoops_getmodulehandler('data', 'profile');
-		$definitions = $dhandler->getDefinitionsArr(false);
-		$profile = $this->_getProfileObject();
-		foreach(array_keys($definitions) as $key){
-			$profile->setField($definitions[$key]['field_name'], $req->getRequest($definitions[$key]['field_name'])); 
-		}
-		if(! $phandler->insert($profile)){
-			echo "failed to update DB";die();
-		}
-	
 		$controller->executeForward(XOOPS_URL . '/userinfo.php?uid=' . $this->mObject->getShow('uid'));
 	}
 
