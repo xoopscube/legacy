@@ -20,12 +20,20 @@ if (!defined('XOOPS_TRUST_PATH')){
  */
 define('XOOPS_CUBE_LEGACY', true);
 
+/**
+ * This constant is the sign which this system is XOOPS Cube, for module
+ * developers.
+ * ex) if(defined('LEGACY_BASE_VERSION') && version_compare('LEGACY_BASE_VERSION', '2.2.0.0', '>='))
+ */
+define('LEGACY_BASE_VERSION', '2.2.0.0');
+
 require_once XOOPS_ROOT_PATH . "/core/XCube_Root.class.php";
 require_once XOOPS_ROOT_PATH . "/core/XCube_Controller.class.php";
+require_once XOOPS_ROOT_PATH . "/core/libs/IniHandler.class.php";
 
 //
 // TODO We have to move the following lines to an appropriate place.
-//      (We may not need the following constants)
+//		(We may not need the following constants)
 //
 define("XCUBE_SITE_SETTING_FILE", XOOPS_TRUST_PATH . "/settings/site_default.ini");
 define("XCUBE_SITE_CUSTOM_FILE", XOOPS_TRUST_PATH . "/settings/site_custom.ini");

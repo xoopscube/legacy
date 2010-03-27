@@ -20,7 +20,8 @@ class LegacyRenderThemeObject extends XoopsSimpleObject
 		$themeDir = XOOPS_THEME_PATH . "/" . $this->get('name');
 
 		if (file_exists($mnfFile = $themeDir . "/manifesto.ini.php")) {
-			$this->mPackage = parse_ini_file($mnfFile, true);
+			$iniHandler = new XCube_IniHandler($mnfFile, true);
+			$this->mPackage = $iniHandler->getAllConfig();
 		}
 					
 		if (isset($this->mPackage['Manifesto'])) {
@@ -79,7 +80,8 @@ class LegacyRenderThemeHandler extends XoopsObjectGenericHandler
 				if(is_dir($themeDir)) {
 					$manifesto = array();
 					if (file_exists($mnfFile = $themeDir . "/manifesto.ini.php")) {
-						$manifesto = parse_ini_file($mnfFile, true);
+						$iniHandler = new XCube_IniHandler($mnfFile, true);
+						$manifesto = $iniHandler->getAllConfig();
 					}
 					
 					if(count($manifesto) > 0) {
@@ -132,7 +134,7 @@ class LegacyRenderThemeHandler extends XoopsObjectGenericHandler
 		}
 		
 		//
-		//  Next, check themes that we got from DB. If it had removed from disk system,
+		//	Next, check themes that we got from DB. If it had removed from disk system,
 		// We also have to remove from DB.
 		//
 		foreach ($DBthemes as $theme) {
