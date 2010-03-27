@@ -467,7 +467,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
 			if (empty($mid)) { //Memo: if system module, mid might be set to 1
 				$mid = $this->db->genId('modules_mid_seq');
 			}
-			$sql = sprintf("INSERT INTO %s (mid, name, version, last_update, weight, isactive, dirname, trust_dirname, hasmain, hasadmin, hassearch, hasconfig, hascomments, hasnotification) VALUES (%u, %s, %u, %u, %u, %u, %s, %s, %u, %u, %u, %u, %u, %u)", $this->db->prefix('modules'), $mid, $this->db->quoteString($name), $version, time(), $weight, 1, $this->db->quoteString($dirname), $this->db->quoteString($trust_name), $hasmain, $hasadmin, $hassearch, $hasconfig, $hascomments, $hasnotification);
+			$sql = sprintf("INSERT INTO %s (mid, name, version, last_update, weight, isactive, dirname, trust_dirname, hasmain, hasadmin, hassearch, hasconfig, hascomments, hasnotification) VALUES (%u, %s, %u, %u, %u, %u, %s, %s, %u, %u, %u, %u, %u, %u)", $this->db->prefix('modules'), $mid, $this->db->quoteString($name), $version, time(), $weight, 1, $this->db->quoteString($dirname), $this->db->quoteString($trust_dirname), $hasmain, $hasadmin, $hassearch, $hasconfig, $hascomments, $hasnotification);
 		} else {
 			$sql = sprintf("UPDATE %s SET name = %s, dirname = %s, trust_dirname = %s, version = %u, last_update = %u, weight = %u, isactive = %u, hasmain = %u, hasadmin = %u, hassearch = %u, hasconfig = %u, hascomments = %u, hasnotification = %u WHERE mid = %u", $this->db->prefix('modules'), $this->db->quoteString($name), $this->db->quoteString($dirname), $this->db->quoteString($trust_dirname), $version, time(), $weight, $isactive, $hasmain, $hasadmin, $hassearch, $hasconfig, $hascomments, $hasnotification, $mid);
 		}
