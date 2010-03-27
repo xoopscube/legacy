@@ -45,6 +45,8 @@ define("_INSTALL_L54","データベースへ持続的接続");
 define("_INSTALL_L69","　デフォルトは「いいえ」です。よく分からない場合は「いいえ」を選択してください。");
 define("_INSTALL_L55","XOOPS Cubeへのパス");
 define("_INSTALL_L59","　XOOPS Cubeが設置されているディレクトリへのフルパスを入力してください。<br />　末尾には「/」を付加しないでください。");
+define("_INSTALL_L75","XOOPS_TRUST_PATH へのパス");
+define("_INSTALL_L76","XOOPS_TRUST_PATH ディレクトリへのフルパスを入力してください。末尾には「/」を付加しないでください。<br />XOOPS_TRUST_PATH はドキュメントルートの外に置いてください（'public_html', 'html'などのディレクトリの下はNGです）。");
 define("_INSTALL_L56","XOOPS CubeへのURL");
 define("_INSTALL_L58","　XOOPS CubeにアクセスするURLを入力してください。<br />　末尾には「/」を付加しないでください。");
 
@@ -91,6 +93,8 @@ define("_INSTALL_L85","ディレクトリ%sは、書込不可となっています。chmod 777してく
 define("_INSTALL_L86","ディレクトリ%sは、書込可です。");
 define("_INSTALL_L87","アクセス権に問題はありません。");
 define("_INSTALL_L88","ファイル・ディレクトリのアクセス権をチェックしてください。");
+define("_INSTALL_L166","XOOPS_TRUST_PATH のアクセス権チェック");
+define("_INSTALL_L167","XOOPS_TRUST_PATH のファイルのアクセス権のチェック");
 define("_INSTALL_L89","設定の入力");
 define("_INSTALL_L90","データベース、およびパス・URLの設定");
 define("_INSTALL_L91","確認");
@@ -148,7 +152,7 @@ define("_INSTALL_L139","アバターのアップデート");
 define("_INSTALL_L140","顔アイコンのアップデート");
 define("_INSTALL_L141","インストーラは今から、XOOPS Cubeで動くように各モジュールをアップデートします。<br />XOOPS Cubeのパッケージに含まれるすべてのファイルがサーバにアップロードされているか確認してください。<br />これが完了するまでには、しばらく時間が掛かるかもしれません。");
 define("_INSTALL_L142","モジュールのアップデート中…");
-define("_INSTALL_L143","The installer will now update configuration data of XOOPS 1.3.x to be used with XOOPS Cube.");  //[MADA]
+define("_INSTALL_L143","The installer will now update configuration data of XOOPS 1.3.x to be used with XOOPS Cube.");	//[MADA]
 define("_INSTALL_L144","コンフィギュレーションのアップデート");
 define("_INSTALL_L145","コメント(ID: %s)をデータベースに格納しました。");
 define("_INSTALL_L146","コメント(ID: %s)がデータベースに格納できません。");
