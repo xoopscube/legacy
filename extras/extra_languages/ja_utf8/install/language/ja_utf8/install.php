@@ -191,9 +191,11 @@ define('_INSTALL_LANG_XOOPS_SALT_DESC', "暗号・トークンを生成するた
 
 define('_INSTALL_HEADER_MESSAGE','画面上の指示に従って設定を行ってください');
 
-mb_language( 'Japanese' ) ;
-mb_internal_encoding( 'UTF-8' ) ;
-mb_http_output( 'UTF-8' ) ;
+if (function_exists("mb_language")) { 
+	mb_language( 'Japanese' ) ;
+	mb_internal_encoding( 'UTF-8' ) ;
+	mb_http_output( 'UTF-8' ) ;
+}
 @ini_set('default_charset', _INSTALL_CHARSET);
 
 ?>

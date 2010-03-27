@@ -10,9 +10,10 @@ define('_PHPDATEPICKSTRING','Y-m-d');
 //%%%%%		LANGUAGE SPECIFIC SETTINGS	 %%%%%
 @define('_CHARSET', 'UTF-8');
 @define('_LANGCODE', 'ja');
-mb_language( 'ja' ) ;
+// mb_language('ja');
 // mb_internal_encoding( 'UTF-8' ) ;
 // mb_http_output( 'UTF-8' ) ;
+
 @ini_set('default_charset', _CHARSET);
 
 // change 0 to 1 if this language is a multi-bytes language
