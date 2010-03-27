@@ -110,7 +110,7 @@ class XCube_IniHandler
 	 * 
 	 * @return	string[]
 	**/
-	public function getAllConfig(/*** string ***/ $section)
+	public function getAllConfig()
 	{
 		return $this->_mConfig;
 	}
