@@ -183,9 +183,11 @@ define('_HELP', "ヘルプ");
 //%%%%%		LANGUAGE SPECIFIC SETTINGS   %%%%%
 @define('_CHARSET', 'UTF-8');
 @define('_LANGCODE', 'ja');
-mb_language( 'ja' ) ;
+if (function_exists("mb_language")) {
+	mb_language( 'ja' ) ;
 // mb_internal_encoding( 'UTF-8' ) ;
 // mb_http_output( 'UTF-8' ) ;
+}
 @ini_set('default_charset', _CHARSET);
 
 // If _MBSTRING_LANGUAGE is defined, the Legacy_LanguageManager class initializes mb functions.
