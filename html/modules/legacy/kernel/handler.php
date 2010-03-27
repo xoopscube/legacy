@@ -411,7 +411,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 	**/
 	public function _callDelegate(/*** string ***/ $type, /*** XoopsSimpleObject ***/ &$obj)
 	{
-		$arr = explode('_', $this->mTable);var_dump($arr);
+		$arr = explode('_', $this->mTable);
 		if(isset($arr[2])){
 			$tableName = $arr[2];
 			for($i=3;$i<count($arr);$i++) $tableName .= '_'.$arr[$i];
