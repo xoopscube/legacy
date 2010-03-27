@@ -411,10 +411,15 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 	**/
 	public function _callDelegate(/*** string ***/ $type, /*** XoopsSimpleObject ***/ &$obj)
 	{
-		$arr = explode('_', $this->mTable);
-		$tableName = $arr[2];
-		for($i=3;$i<count($arr);$i++) $tableName .= '_'.$arr[$i];
-		XCube_DelegateUtils::call(sprintf('Module.%s.Event.%s.%s', $this->getDirname(), $type, $tableName), new XCube_Ref($obj));
+		$arr = explode('_', $this->mTable);var_dump($arr);
+		if(isset($arr[2])){
+			$tableName = $arr[2];
+			for($i=3;$i<count($arr);$i++) $tableName .= '_'.$arr[$i];
+			XCube_DelegateUtils::call(sprintf('Module.%s.Event.%s.%s', $this->getDirname(), $type, $tableName), new XCube_Ref($obj));
+		}
+		else{
+			XCube_DelegateUtils::call(sprintf('Module.%s.Event.%s', $this->getDirname(), $type), new XCube_Ref($obj));
+		}
 	}
 
 }
