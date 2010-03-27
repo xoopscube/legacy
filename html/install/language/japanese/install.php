@@ -187,9 +187,11 @@ define('_INSTALL_LANG_XOOPS_SALT_DESC', "°Å¹æ¡¦¥È¡¼¥¯¥ó¤òÀ¸À®¤¹¤ë¤¿¤á¤ÎÊä½õÅª¤Ê¾
 
 define('_INSTALL_HEADER_MESSAGE','²èÌÌ¾å¤Î»Ø¼¨¤Ë½¾¤Ã¤ÆÀßÄê¤ò¹Ô¤Ã¤Æ¤¯¤À¤µ¤¤');
 
-mb_language( 'Japanese' ) ;
-mb_internal_encoding( 'EUC-JP' ) ;
-mb_http_output( 'EUC-JP' ) ;
+if (function_exists("mb_language")) {
+	mb_language( 'Japanese' ) ;
+	mb_internal_encoding( 'EUC-JP' ) ;
+	mb_http_output( 'EUC-JP' ) ;
+}
 @ini_set('default_charset', _INSTALL_CHARSET);
 
 ?>
