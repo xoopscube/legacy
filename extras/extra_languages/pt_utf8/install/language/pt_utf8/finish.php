@@ -10,7 +10,7 @@
 // ## Website........: http://xoopscube.com.br
 // ############################################################### //
 // *************************************************************** //
-$content .= "<h3><u>SEGUNDA PARTE DA INSTALAÇÃO</u></h3>
+$content = "<h3><u>SEGUNDA PARTE DA INSTALAÇÃO</u></h3>
 <p>A primeira etapa da instalação do XOOPS Cube está completa, e os próximos passos serão relativos à instalação dos primeiros módulos. Leia atentamente as instruções antes de continuar:</p>
 <p>Ao clicar no botão [Prosseguir], aparecerá uma tela de entrada (<em>login</em>). Nela, escreva o codinome e senha escolhidos na etapa anterior e então clique no botão [Entrar].</p>
 <p>Uma lista com os módulos disponíveis para instalação será mostrada. Escolha aqueles que você irá utilizar e clique no botão [Instalar].</p>

@@ -8,6 +8,7 @@
 // ## Por............: Mikhail Miguel
 // ## E-mail.........: mikhail@underpop.com
 // ## Website........: http://xoopscube.com.br
+// ## Plus...........: http://card.ly/mikhail
 // ############################################################### //
 // *************************************************************** //
 
@@ -31,7 +32,7 @@ define("_AD_FILEMANAGER_FILE_TOTAL","Total");
 // --------------------------------------------------------
 define("_AD_FILEMANAGER_ERROR_REQUIRED","{0} é um valor necessário");
 define("_AD_FILEMANAGER_ERROR_PERMISSION","Não há permissão de acesso para essa operação.");
-define("_AD_FILEMANAGER_ERROR_DELETE_FOR_PERMISSION","Você não tem acesso do tipo <q>%s</q> para o gerenciador de arquivos.");
+define("_AD_FILEMANAGER_ERROR_DELETE_FOR_PERMISSION","Você ainda não tem acesso do tipo <q>%s</q> para o gerenciador de arquivos.");
 define("_AD_FILEMANAGER_NOTFOUND","Arquivo não encontrado.");
 
 // --------------------------------------------------------
@@ -42,9 +43,9 @@ define("_AD_FILEMANAGER_FILENAME","Arquivo");
 define("_AD_FILEMANAGER_SIZE","Tamanho");
 define("_AD_FILEMANAGER_DATE","Data");
 define("_AD_FILEMANAGER_UPLOAD","Enviar");
-define("_AD_FILEMANAGER_UPLOAD_DSC","Clique para seleccionar para carregar os arquivos do seu computador e iniciar o upload");
+define("_AD_FILEMANAGER_UPLOAD_DSC","Clique para selecionar para carregar os arquivos do seu computador e iniciar o envio");
 define("_AD_FILEMANAGER_UPLOAD_NOTACCESS","Não foi possível enviar %s. Por favor, altere as permissões manualmente (por exemplo, com um software FTP).");
-define("_AD_FILEMANAGER_NOTFOUNDURL","O local onde o arquivo seria gravado não foi encontrado, possivelmente não existe.");
+define("_AD_FILEMANAGER_NOTFOUNDURL","O local onde o arquivo seria gravado não foi encontrado, e possivelmente não existe.");
 define("_AD_FILEMANAGER_CONFIRMMSSAGE","Você pode enviar arquivos de no máximo %s.");
 define("_AD_FILEMANAGER_FOLDER_ADD","Criar subdiretório");
 
@@ -53,7 +54,7 @@ define("_AD_FILEMANAGER_FOLDER_ADD","Criar subdiretório");
 // --------------------------------------------------------
 define("_AD_FILEMANAGER_FOLDER","Diretório");
 define("_AD_FILEMANAGER_FOLDERNAME","Novo nome para o diretório");
-define("_AD_FILEMANAGER_ERROR_FOLDERNAME","O nome da pasta não está correto. <br /> Apenas travessão, hifem e caracteres alfanuméricos e podem ser utilizados.");
+define("_AD_FILEMANAGER_ERROR_FOLDERNAME","O nome da pasta não está correto. <br /> Apenas caracteres alfanuméricos, hifem e travessão podem ser utilizados.");
 define("_AD_FILEMANAGER_ERROR_PATH","mais velhos nome não é certa. Favor confirmar um nome de pasta");
 define("_AD_FILEMANAGER_ADD","Criar diretório");
 define("_AD_FILEMANAGER_ADDFOLDER","Criar diretório");
@@ -63,11 +64,11 @@ define("_AD_FILEMANAGER_ADDFOLDER_ERROR","Eu não posso criar um diretório");
 define("_AD_FILEMANAGER_ADDFOLDER_CONFIRMMSSAGE","Criar uma pasta sob %s. <br />Escreva o nome para a nova pasta.");
 define("_AD_FILEMANAGER_DELET","Remover");
 define("_AD_FILEMANAGER_DELFOLDER","Remover diretório");
-define("_AD_FILEMANAGER_DELFOLDER_DSC","Remova o diretório selecionado.");
+define("_AD_FILEMANAGER_DELFOLDER_DSC","Remover o diretório selecionado.");
 define("_AD_FILEMANAGER_DELFOLDER_CONFIRMMSSAGE","Remover o diretório %s");
-define("_AD_FILEMANAGER_DELFOLDER_FILE_EXISTS","%s para o arquivo para a pasta que não pode ser apagada. Para verificar o conteúdo de uma pasta, por favor");
+define("_AD_FILEMANAGER_DELFOLDER_FILE_EXISTS","%s para o arquivo para a pasta que não pode ser removida. Para verificar o conteúdo de uma pasta, por favor");
 define("_AD_FILEMANAGER_DELFOLDER_SUCCESS","Pasta removida corretamente.");
-define("_AD_FILEMANAGER_DELFOLDER_ERROR","Eu não posso apagar a pasta. Não especificar uma pasta vazia, ou não é adequado permissões");
+define("_AD_FILEMANAGER_DELFOLDER_ERROR","Eu não posso remover a pasta. Não especificar uma pasta vazia, ou não é adequado permissões");
 define("_AD_FILEMANAGER_DELFOLDER_ISDIR","O diretório %s não pode ser removido do gerenciador de arquivos");
 define("_AD_FILEMANAGER_DELFOLDER_NOTACCESS","O diretório %s não pode ser removido pelo gerenciador de arquivos. Por favor, altere as permissões manualmente via software FTP.");
 define("_AD_FILEMANAGER_FILECOUNT","Arquivos");
@@ -76,9 +77,9 @@ define("_AD_FILEMANAGER_FILECOUNT","Arquivos");
 // Setting check
 // --------------------------------------------------------
 define("_AD_FILEMANAGER_CHECK_NG","O arquivo da biblioteca não foi encontrado. Por favor, envie esses arquivos ao servidor. <br />");
-define("_AD_FILEMANAGER_CHECK_OK","A configuração do arquivo estiver concluída");
+define("_AD_FILEMANAGER_CHECK_OK","A configuração do arquivo foi concluída");
 define("_AD_FILEMANAGER_CHECK","Verificar configuração");
-define("_AD_FILEMANAGER_CHECK_DSC_1","SWFUpload em uso");
+define("_AD_FILEMANAGER_CHECK_DSC_1","Utilizar SWFUpload");
 define("_AD_FILEMANAGER_CHECK_DSC_2","SWFUpload para upload para uso público não é recomendada. <br /> O htaccess para definir a localização da biblioteca, por favor, criada com acesso restrito");
 define("_AD_FILEMANAGER_HTACCESS_DSC_1","Você pode escolher as suas configurações e clique no formulário");
 define("_AD_FILEMANAGER_HTACCESS_DSC_2","Que permitem aceder ao seu endereço IP atual. A composição da amostra é gerado automático. Favor mude para se adequar ao ambiente do seu servidor.");
