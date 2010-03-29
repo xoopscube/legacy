@@ -167,7 +167,7 @@ define("XOOPS_USE_MULTIBYTES","0");
 @define("LEGACY_MAIL_CHAR","UTF-8");
 @define("LEGACY_MAIL_ENCO","UTF-8");
 @define("LEGACY_MAIL_LANG","pt");
-@define("_CHARSET","UTF-8");
+@define("_CHARSET","ISO-8859-1");
 @define("_LANGCODE","pt");
 // mb_language( 'uni');
 // mb_internal_encoding( 'UTF-8');
