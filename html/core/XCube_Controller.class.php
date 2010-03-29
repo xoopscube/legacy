@@ -71,8 +71,8 @@ class XCube_Controller
 	 * @protected
 	 * @var Array
 	 * @remarks
-	 *     typedef std:vector<XCube_ActionFilter*> FilterList; \n
-	 *     FilterList _mFilterChain; \n
+	 *	   typedef std:vector<XCube_ActionFilter*> FilterList; \n
+	 *	   FilterList _mFilterChain; \n
 	 */
 	var $_mFilterChain = array();
 	
@@ -97,7 +97,7 @@ class XCube_Controller
 	 * @access public
 	 * @var string
 	 */
-    var $mLocale = null;
+	var $mLocale = null;
 
 	/**
 	 * A name of the current language.
@@ -140,7 +140,7 @@ class XCube_Controller
 		$this->mSetupUser = new XCube_Delegate();
 		$this->mExecute = new XCube_Delegate();
 		$this->mSetupTextFilter = new XCube_Delegate();
-	    $this->mSetupTextFilter->add('XCube_TextFilter::getInstance',XCUBE_DELEGATE_PRIORITY_FINAL);
+		$this->mSetupTextFilter->add('XCube_TextFilter::getInstance',XCUBE_DELEGATE_PRIORITY_FINAL);
 	}
 	
 	/**
@@ -178,9 +178,9 @@ class XCube_Controller
 		
 		$this->_setupDB();
 
-        $this->_setupLanguage();
+		$this->_setupLanguage();
 
-        $this->_setupTextFilter();
+		$this->_setupTextFilter();
 
 		$this->_setupConfig();
 		
@@ -228,8 +228,8 @@ class XCube_Controller
 	/**
 	 * TODO We may change this name to forward()
 	 * 
-	 * @param string  $url      Can't use html tags.
-	 * @param int     $time
+	 * @param string  $url		Can't use html tags.
+	 * @param int	  $time
 	 * @param string  $message
 	 */
 	function executeForward($url, $time = 0, $message = null)
@@ -242,8 +242,8 @@ class XCube_Controller
 	/**
 	 * Redirect to the specified URL with displaying message.
 	 * 
-	 * @param string  $url      Can't use html tags.
-	 * @param int     $time
+	 * @param string  $url		Can't use html tags.
+	 * @param int	  $time
 	 * @param string  $message
 	 */
 	function executeRedirect($url, $time = 1, $message = null)
@@ -315,9 +315,9 @@ class XCube_Controller
 	 */
 	function _setupTextFilter()
 	{
-	    $textFilter = null;
-	    $this->mSetupTextFilter->call(new XCube_Ref($textFilter));
-	    $this->mRoot->setTextFilter($textFilter);
+		$textFilter = null;
+		$this->mSetupTextFilter->call(new XCube_Ref($textFilter));
+		$this->mRoot->setTextFilter($textFilter);
 	}
 	
 	
@@ -338,7 +338,7 @@ class XCube_Controller
 	 */
 	function _setupSession()
 	{
-	    $this->mRoot->setSession(new XCube_Session());
+		$this->mRoot->setSession(new XCube_Session());
 	}
 	
 	/**
@@ -438,6 +438,7 @@ class XCube_Controller
 							$this->_mLoadedFilterNames[$className] = true;
 							$instance = new $className($this);
 							$this->addActionFilter($instance);
+							unset($instance);
 						}
 					}
 				}
