@@ -329,7 +329,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 	{
 		switch ($type) {
 			case XOBJ_DTYPE_BOOL:
-				$value = $value ? true : false;
+				$value = $value ? "1" : "0";
 				break;
 			case XOBJ_DTYPE_INT:
 				$value = intval($value);
