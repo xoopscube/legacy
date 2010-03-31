@@ -37,7 +37,5 @@ define('_MI_LEGACY_MENU_THEME_MANAGE', "テーマの管理");
 define('_MI_LEGACY_MENU_XOOPS_CONFIG', "XOOPS コンフィグ");
 define('_MI_LEGACY_NAME', "互換モジュール");
 define('_MI_LEGACY_NAME_DESC', "XOOPS Cube にXOOPS 2.0.x シリーズの互換性を与えます");
-define('_MI_USER_ADMENU_USER_DATA_DOWNLOAD', "一括ダウンロード");
-define('_MI_USER_ADMENU_USER_DATA_CSVUPLOAD', "一括アップロード");
 
 ?>
