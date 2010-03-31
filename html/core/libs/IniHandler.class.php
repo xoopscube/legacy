@@ -48,17 +48,23 @@ class XCube_IniHandler
 			$key = null;
 			$file = fopen($this->_mFilePath, 'r');
 			for($lineNum=1; $line=fgets($file);$lineNum++){
+				//remove CR
+				$line = preg_replace('/\r/', '', $line);
+			
+				//case: comment line
 				if(substr($line,1,1)==';'||substr($line,1,1)=='#'||substr($line,1,2)=='//'){
 					continue;
 				}
+				//case: section line
 				elseif(preg_match('/\[(.*)\]/', $line, $str)){
 					if($this->_mSectionFlag===true){
 						$key = $str[1];
 						$this->_mConfig[$key] = array();
 					}
 				}
-				elseif(preg_match('/(.*)=(.*)/', $line, $str)){
-					if(preg_match('/^\"(.*)\"$/', $str[2], $body)||preg_match('/^\'(.*)\'$/', $str[2], $body)){
+				//case: key/value line
+				elseif(preg_match('/^(.*)=(.*)$/', $line, $str)){
+					if(preg_match('/^"(.*)"$/', $str[2], $body)||preg_match('/^\'(.*)\'$/', $str[2], $body)){
 						$str[2] = $body[1];
 					}
 				
