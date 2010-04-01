@@ -14,7 +14,7 @@ class StdCache_Initialize extends XCube_ActionFilter
 		$this->mController->mSetModuleCachePolicy->add(array(&$this, 'setForModule'), XCUBE_DELEGATE_PRIORITY_FIRST + 10);
 	}
 	
-	function setForBlock(&$cacheInfo)
+	function setForBlock($cacheInfo)
 	{
 		$user =& $this->mRoot->mContext->mXoopsUser;
 		if (is_object($user)) {
@@ -27,7 +27,7 @@ class StdCache_Initialize extends XCube_ActionFilter
 		}
 	}
 
-	function setForModule(&$cacheInfo)
+	function setForModule($cacheInfo)
 	{
 		$user =& $this->mRoot->mContext->mXoopsUser;
 		if (is_object($user)) {
