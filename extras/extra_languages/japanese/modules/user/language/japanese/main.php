@@ -52,7 +52,6 @@ define('_MD_USER_LANG_NO', "いいえ");
 define('_MD_USER_LANG_NOACTTPADM', "選択されたユーザはまだ存在しないか、承認が完了していません。");
 define('_MD_USER_LANG_NOPROBLEM', "ご心配なく。まずはあなたが登録に使用したメールアドレスを入力し、ボタンをクリックしてください。 パスワード取得用のリンクが記載されたメールがあなたの登録メールアドレス宛に送られます。");
 define('_MD_USER_LANG_NOREGISTER', "申し訳ございませんが、現在このサイトでは新規ユーザの登録受付を行っておりません。");
-define('_MD_USER_LANG_NOTIFY', "イベント通知");
 define('_MD_USER_LANG_NOTIFY_METHOD', "イベント更新通知メッセージの受取方法");
 define('_MD_USER_LANG_NOTIFY_MODE', "イベント通知のタイミング");
 define('_MD_USER_LANG_NOTREGISTERED', "今すぐ登録？");

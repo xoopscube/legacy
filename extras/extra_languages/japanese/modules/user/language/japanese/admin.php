@@ -112,7 +112,6 @@ define('_AD_USER_LANG_USER_DELETE_ADVICE', "このユーザーを削除します。よろしいで
 define('_AD_USER_LANG_USER_EDIT', "ユーザーの編集");
 define('_AD_USER_LANG_USER_LIST', "ユーザー管理");
 define('_AD_USER_LANG_USER_NEW', "ユーザー新規登録");
-define('_AD_USER_LANG_USER_NEW_FIELD', "Add a New Field");
 define('_AD_USER_LANG_USER_SEARCH_LIST', "ユーザー検索結果");
 define('_AD_USER_LANG_USER_VIEW', "ユーザー閲覧");
 define('_AD_USER_LANG_VPASS', "パスワード確認");
@@ -124,23 +123,6 @@ define('_AD_USER_TIPS_MAILJOB_SEND', "送信対象ユーザー数が多すぎる場合、反応が返
 define('_AD_USER_TIPS_RECOUNT_POSTS', "もし投稿数が間違っているようであれば、再計算することができます。");
 define('_AD_USER_TIPS_USER_EDIT', "パスワードを変更したいときだけ、パスワードとパスワード確認を入力してください");
 define('_AD_USER_TIPS_USER_NEW', "ユーザー名、メールアドレス、パスワードとパスワード確認は必ず入力してください");
-define('_AD_USER_LANG_USER_TOTAL', "ユーザ数");
-define('_AD_USER_TIPS_USER_ADMIN', "TIPS USER ADMIN");
-define('_AD_USER_TIPS_DATA_DOWNLOAD', "ユーザID順に並んだCSVデータをダウンロードできます。");
-define('_AD_USER_DATA_NUM', "ユーザ数");
-define('_AD_USER_DATA_DOWNLOAD_DO', "CSVファイルのダウンロード");
-define('_AD_USER_TIPS1_DATA_UPLOAD', "CSVファイル形式でのユーザデータをアップロードできます。");
-define('_AD_USER_TIPS2_DATA_UPLOAD', "ユーザデータのCSVダウンロードのファイルを使ってください。項目を増やしたり減らしたりしてはいけません。");
-define('_AD_USER_TIPS3_DATA_UPLOAD', "データを変更したり、追加したいユーザのデータのみをアップロードファイルに入れてください。");
-define('_AD_USER_TIPS4_DATA_UPLOAD', "一番左の列の UID が0の場合、新規追加ユーザとして登録されます。");
-define('_AD_USER_TIPS5_DATA_UPLOAD', "一番左の列の UID が0より大きい数字で入力されている場合、更新データとして扱われます。パスワードをセットする場合は、30バイト以内で入れてください。");
-define('_AD_USER_DATA_UPLOAD_SELECT_USER_CSVFILE', "アップロードするCSVファイルを選択してください。");
-define('_AD_USER_DATA_UPLOAD_CONF', "登録内容を確認する");
-define('_AD_USER_LANG_AVATAR_UPLOAD', "アップロード");
-define('_AD_USER_LANG_AVATAR_TOTAL', "アバターの合計数");
-define('_AD_USER_TIPS_AVATAR', "登録ユーザは自分の似顔絵・シンボルを選んでユーザ情報などに表示させることができます。これを｢アバター｣と呼びます。このオプションは、ユーザモジュールの一般設定からオフにすることができます。");
-define('_AD_USER_TIPS_USER_SEARCH', "サイト内のユーザデータを検索して表示することができます。検索結果の精度は、<br />検索時に指定した検索条件によります。");
-define('_MD_USER_LANG_NOTIFY', "NOTIFY");
 define('_AD_USER_DATA_DOWNLOAD_DO', 'CSVでダウンロード');
 define('_AD_USER_DATA_NUM', '%d人が登録しています。');
 define('_AD_USER_DATA_UPLOAD_BACK', 'CSVファイルを再度選択');
@@ -181,5 +163,6 @@ define('_AD_USER_TIPS2_DATA_UPLOAD', 'ダウンロードしたCSVファイルを使用する。<a 
 define('_AD_USER_TIPS3_DATA_UPLOAD', 'CSVファイル内へ新たに情報の登録や更新をしようとしたユーザーのみを記述してください。');
 define('_AD_USER_TIPS4_DATA_UPLOAD', '左端の行のUIDが空（または0）の時は、新しいユーザーとして登録。');
 define('_AD_USER_TIPS5_DATA_UPLOAD', 'ユーザー情報は左端の行（UID）の値があるときに更新されます。<br />パスワードを設定するなら３０バイト以内にして下さい。');
+
 
 ?>
