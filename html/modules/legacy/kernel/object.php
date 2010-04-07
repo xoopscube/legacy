@@ -175,7 +175,7 @@ class XoopsSimpleObject extends AbstractXoopsObject
 		
 		return $value;
 	}
-	
+
 	function getTypeInformations()
 	{
 		$ret = array();
@@ -186,7 +186,30 @@ class XoopsSimpleObject extends AbstractXoopsObject
 		return $ret;
 	}
 
-	function getDirname()
+	/**
+	 * purifyHtml
+	 * 
+	 * @param	string	$html
+	 * @param	string	$encoding
+	 * @param	string	$doctype
+	 * 
+	 * @return	string
+	**/
+	public function purifyHtml(/*** string ***/ $html, /*** string ***/ $encoding=null, /*** string ***/ $doctype=null)
+	{
+		$root =& XCube_Root::getSingleton();
+		$textFilter =& $root->getTextFilter();
+		return $textFilter->purifyHtml($html, $encoding, $doctype);
+	}
+
+	/**
+	 * getDirname
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	public function getDirname()
 	{
 		return $this->mDirname;
 	}
