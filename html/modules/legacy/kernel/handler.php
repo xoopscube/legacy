@@ -189,10 +189,10 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 		
 		if ($new_flag) {
 			$obj->setVar($this->mPrimary, $this->db->getInsertId());
-			$this->_callDelegate('Add', &$obj);
+			$this->_callDelegate('Add', $obj);
 		}
 		else{
-			$this->_callDelegate('Update', &$obj);
+			$this->_callDelegate('Update', $obj);
 		}
 
 		return true;
@@ -362,7 +362,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 		$sql = "DELETE FROM `" . $this->mTable . "` WHERE " . $this->_makeCriteriaElement4sql($criteria, $obj); 
 	
 		$result = $force ? $this->db->queryF($sql) : $this->db->query($sql);
-		if($result==true) $this->_callDelegate('delete', &$obj);
+		if($result==true) $this->_callDelegate('delete', $obj);
 	
 		return $result;
 	}
