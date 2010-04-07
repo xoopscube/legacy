@@ -42,7 +42,7 @@ class Legacy_TextareaEditor extends XCube_ActionFilter
 	*/
 	public static function renderHtml(&$html, $params)
 	{
-		self::renderBBCode(&$html, $params);
+		self::renderBBCode($html, $params);
 	}
 
 }
