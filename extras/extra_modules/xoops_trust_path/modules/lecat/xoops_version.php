@@ -56,7 +56,7 @@ $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 $modversion['tables'] = array(
 //	  '{prefix}_{dirname}_xxxx',
 ##[cubson:tables]
-	'{prefix}_{dirname}_gr',
+	'{prefix}_{dirname}_set',
 	'{prefix}_{dirname}_cat',
 	'{prefix}_{dirname}_permit',
 ##[/cubson:tables]
@@ -77,10 +77,10 @@ $modversion['templates'] = array(
 	array('file' => '{dirname}_cat_edit.html','description' => _MI_LECAT_TPL_CAT_EDIT),
 	array('file' => '{dirname}_cat_delete.html','description' => _MI_LECAT_TPL_CAT_DELETE),
 	array('file' => '{dirname}_cat_view.html','description' => _MI_LECAT_TPL_CAT_VIEW),
-	array('file' => '{dirname}_gr_list.html','description' => _MI_LECAT_TPL_GR_LIST),
-	array('file' => '{dirname}_gr_edit.html','description' => _MI_LECAT_TPL_GR_EDIT),
-	array('file' => '{dirname}_gr_delete.html','description' => _MI_LECAT_TPL_GR_DELETE),
-	array('file' => '{dirname}_gr_view.html','description' => _MI_LECAT_TPL_GR_VIEW),
+	array('file' => '{dirname}_set_list.html','description' => _MI_LECAT_TPL_SET_LIST),
+	array('file' => '{dirname}_set_edit.html','description' => _MI_LECAT_TPL_SET_EDIT),
+	array('file' => '{dirname}_set_delete.html','description' => _MI_LECAT_TPL_SET_DELETE),
+	array('file' => '{dirname}_set_view.html','description' => _MI_LECAT_TPL_SET_VIEW),
 ##[/cubson:templates]
 );
 

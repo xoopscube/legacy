@@ -16,7 +16,7 @@ class Lecat_Permission
 	{
 		$this->mDirname = $dirname;
 		$this->mCat = $cat;
-		$this->mCat->loadGr();
+		$this->mCat->loadSet();
 		$this->setActionArr();
 		$this->setGroupArr();
 	}
@@ -40,11 +40,11 @@ class Lecat_Permission
 
 	/**
 	 * @public
-	 * set permission action master from Gr "actions".
+	 * set permission action master from Set "actions".
 	 */
 	function setActionArr()
 	{
-		$actionArr = $this->mCat->mGr->getActions();
+		$actionArr = $this->mCat->mSet->getActions();
 		$i = 0;
 		foreach(array_keys($actionArr['title']) as $key){
 			$this->mActionArr['key'][$i] = $key;

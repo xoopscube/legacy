@@ -56,9 +56,9 @@ define('_MI_LECAT_TPL_CAT_LIST', 'カテゴリ一覧');
 define('_MI_LECAT_TPL_CAT_EDIT', 'カテゴリ編集');
 define('_MI_LECAT_TPL_CAT_DELETE', 'カテゴリ削除');
 define('_MI_LECAT_TPL_CAT_VIEW', 'カテゴリ表示');
-define('_MI_LECAT_TPL_GR_LIST', 'カテゴリグループ一覧');
-define('_MI_LECAT_TPL_GR_EDIT', 'カテゴリグループ編集');
-define('_MI_LECAT_TPL_GR_DELETE', 'カテゴリグループ削除');
-define('_MI_LECAT_TPL_GR_VIEW', 'カテゴリグループ表示');
+define('_MI_LECAT_TPL_SET_LIST', 'カテゴリグループ一覧');
+define('_MI_LECAT_TPL_SET_EDIT', 'カテゴリグループ編集');
+define('_MI_LECAT_TPL_SET_DELETE', 'カテゴリグループ削除');
+define('_MI_LECAT_TPL_SET_VIEW', 'カテゴリグループ表示');
 
 ?>

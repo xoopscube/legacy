@@ -1,14 +1,14 @@
 <div id="lecat">
-<h3><{$smarty.const._MD_LECAT_LANG_GR_DELETE}></h3>
+<h3><{$smarty.const._MD_LECAT_LANG_SET_DELETE}></h3>
 
-<div class="confirm"><{$smarty.const._MD_LECAT_MESSAGE_CONFIRM_GR_DELETE}></div>
+<div class="confirm"><{$smarty.const._MD_LECAT_MESSAGE_CONFIRM_SET_DELETE}></div>
 
-<form action="./index.php?action=GrDelete" method="post">
+<form action="./index.php?action=SetDelete" method="post">
   <table class="outer">
     <tbody>
       <tr>
-        <th class="head"><{$smarty.const._MD_LECAT_LANG_GR_ID}></th>
-        <td class="<{cycle values="odd,even"}>"><{$object->getShow('gr_id')}></td>
+        <th class="head"><{$smarty.const._MD_LECAT_LANG_SET_ID}></th>
+        <td class="<{cycle values="odd,even"}>"><{$object->getShow('set_id')}></td>
       </tr>
       <tr>
         <th class="head"><{$smarty.const._MD_LECAT_LANG_TITLE}></th>
@@ -23,7 +23,7 @@
       <tr>
         <td class="foot" colspan="2">
           <{xoops_token form=$actionForm}>
-          <{xoops_input type=hidden name=gr_id value=$actionForm->get('gr_id')}>
+          <{xoops_input type=hidden name=set_id value=$actionForm->get('set_id')}>
           <input type="submit" class="formButton" value="<{$smarty.const._DELETE}>"/>
           <input type="submit" class="formButton" value="<{$smarty.const._CANCEL}>" name="_form_control_cancel"/>
         </td>

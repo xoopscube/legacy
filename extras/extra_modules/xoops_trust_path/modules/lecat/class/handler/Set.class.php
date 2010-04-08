@@ -11,9 +11,9 @@ if(!defined('XOOPS_ROOT_PATH'))
 }
 
 /**
- * Lecat_GrObject
+ * Lecat_SetObject
 **/
-class Lecat_GrObject extends XoopsSimpleObject
+class Lecat_SetObject extends XoopsSimpleObject
 {
 	public $mCat = array();
 	public $mTree = array();
@@ -30,7 +30,7 @@ class Lecat_GrObject extends XoopsSimpleObject
 	**/
 	public function __construct()
 	{
-		$this->initVar('gr_id', XOBJ_DTYPE_INT, '', false);
+		$this->initVar('set_id', XOBJ_DTYPE_INT, '', false);
 		$this->initVar('title', XOBJ_DTYPE_STRING, '', false, 255);
 		$this->initVar('level', XOBJ_DTYPE_INT, '0', false);
 		$this->initVar('actions', XOBJ_DTYPE_TEXT, '', false);
@@ -47,7 +47,7 @@ class Lecat_GrObject extends XoopsSimpleObject
 	{
 		if ($this->_mCatLoadedFlag == false) {
 			$handler = $this->_getHandler('cat');
-			$this->mCat = $handler->getObjects(new Criteria('gr_id', $this->get('gr_id')));
+			$this->mCat = $handler->getObjects(new Criteria('set_id', $this->get('set_id')));
 			$this->_mCatLoadedFlag = true;
 		}
 	}
@@ -158,7 +158,7 @@ class Lecat_GrObject extends XoopsSimpleObject
 	protected function _loadTree(/*** int ***/ $p_id=0, /*** string ***/ $module="")
 	{
 		$criteria = new CriteriaCompo();
-		$criteria->add(new Criteria('gr_id', $this->get('gr_id')));
+		$criteria->add(new Criteria('set_id', $this->get('set_id')));
 		$criteria->add(new Criteria('p_id', $p_id));
 		$criteria->setSort('weight');
 		$catArr =Legacy_Utils::getModuleHandler('cat', $this->getDirname())->getObjects($criteria);
@@ -205,24 +205,24 @@ class Lecat_GrObject extends XoopsSimpleObject
 }
 
 /**
- * Lecat_GrHandler
+ * Lecat_SetHandler
 **/
-class Lecat_GrHandler extends XoopsObjectGenericHandler
+class Lecat_SetHandler extends XoopsObjectGenericHandler
 {
 	/**
 	 * @brief	string
 	**/
-	public $mTable = '{dirname}_gr';
+	public $mTable = '{dirname}_set';
 
 	/**
 	 * @brief	string
 	**/
-	public $mPrimary = 'gr_id';
+	public $mPrimary = 'set_id';
 
 	/**
 	 * @brief	string
 	**/
-	public $mClass = 'Lecat_GrObject';
+	public $mClass = 'Lecat_SetObject';
 
 	/**
 	 * __construct
@@ -248,7 +248,7 @@ class Lecat_GrHandler extends XoopsObjectGenericHandler
 	public function delete(&$obj)
 	{
 		$handler = $this->_getHandler('cat');
-		$handler->deleteAll(new Criteria('gr_id', $obj->get('gr_id')));
+		$handler->deleteAll(new Criteria('set_id', $obj->get('set_id')));
 		unset($handler);
 	
 		return parent::delete($obj);

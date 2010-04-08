@@ -13,20 +13,20 @@ if(!defined('XOOPS_ROOT_PATH'))
 require_once LECAT_TRUST_PATH . '/class/AbstractListAction.class.php';
 
 /**
- * Lecat_GrListAction
+ * Lecat_SetListAction
 **/
-class Lecat_GrListAction extends Lecat_AbstractListAction
+class Lecat_SetListAction extends Lecat_AbstractListAction
 {
     /**
      * &_getHandler
      * 
      * @param   void
      * 
-     * @return  Lecat_GrHandler
+     * @return  Lecat_SetHandler
     **/
     protected function &_getHandler()
     {
-        $handler =& $this->mAsset->getObject('handler', 'gr');
+        $handler =& $this->mAsset->getObject('handler', 'set');
         return $handler;
     }
 
@@ -35,12 +35,12 @@ class Lecat_GrListAction extends Lecat_AbstractListAction
      * 
      * @param   void
      * 
-     * @return  Lecat_GrFilterForm
+     * @return  Lecat_SetFilterForm
     **/
     protected function &_getFilterForm()
     {
-        // $filter =new Lecat_GrFilterForm();
-        $filter =& $this->mAsset->getObject('filter', 'gr',false);
+        // $filter =new Lecat_SetFilterForm();
+        $filter =& $this->mAsset->getObject('filter', 'set',false);
         $filter->prepare($this->_getPageNavi(), $this->_getHandler());
         return $filter;
     }
@@ -54,7 +54,7 @@ class Lecat_GrListAction extends Lecat_AbstractListAction
     **/
     protected function _getBaseUrl()
     {
-        return './index.php?action=GrList';
+        return './index.php?action=SetList';
     }
 
     /**
@@ -66,7 +66,7 @@ class Lecat_GrListAction extends Lecat_AbstractListAction
     **/
     public function executeViewIndex(/*** XCube_RenderTarget ***/ &$render)
     {
-        $render->setTemplateName($this->mAsset->mDirname . '_gr_list.html');
+        $render->setTemplateName($this->mAsset->mDirname . '_set_list.html');
         $render->setAttribute('objects', $this->mObjects);
         $render->setAttribute('pageNavi', $this->mFilter->mNavi);
     }

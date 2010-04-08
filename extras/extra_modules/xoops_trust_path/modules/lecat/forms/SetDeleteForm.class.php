@@ -14,9 +14,9 @@ require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 /**
- * Lecat_GrDeleteForm
+ * Lecat_SetDeleteForm
 **/
-class Lecat_GrDeleteForm extends XCube_ActionForm
+class Lecat_SetDeleteForm extends XCube_ActionForm
 {
     /**
      * getTokenName
@@ -27,7 +27,7 @@ class Lecat_GrDeleteForm extends XCube_ActionForm
     **/
     public function getTokenName()
     {
-        return "module.lecat.GrDeleteForm.TOKEN";
+        return "module.lecat.SetDeleteForm.TOKEN";
     }
 
     /**
@@ -42,14 +42,14 @@ class Lecat_GrDeleteForm extends XCube_ActionForm
         //
         // Set form properties
         //
-        $this->mFormProperties['gr_id'] =new XCube_IntProperty('gr_id');
+        $this->mFormProperties['set_id'] =new XCube_IntProperty('set_id');
     
         //
         // Set field properties
         //
-        $this->mFieldProperties['gr_id'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['gr_id']->setDependsByArray(array('required'));
-        $this->mFieldProperties['gr_id']->addMessage('required', _MD_LECAT_ERROR_REQUIRED, _MD_LECAT_LANG_GR_ID);
+        $this->mFieldProperties['set_id'] =new XCube_FieldProperty($this);
+        $this->mFieldProperties['set_id']->setDependsByArray(array('required'));
+        $this->mFieldProperties['set_id']->addMessage('required', _MD_LECAT_ERROR_REQUIRED, _MD_LECAT_LANG_SET_ID);
     }
 
     /**
@@ -61,7 +61,7 @@ class Lecat_GrDeleteForm extends XCube_ActionForm
     **/
     public function load(/*** XoopsSimpleObject ***/ &$obj)
     {
-        $this->set('gr_id', $obj->get('gr_id'));
+        $this->set('set_id', $obj->get('set_id'));
     }
 
     /**
@@ -73,7 +73,7 @@ class Lecat_GrDeleteForm extends XCube_ActionForm
     **/
     public function update(/*** XoopsSimpleObject ***/ &$obj)
     {
-        $obj->set('gr_id', $this->get('gr_id'));
+        $obj->set('set_id', $this->get('set_id'));
     }
 }
 

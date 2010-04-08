@@ -13,9 +13,9 @@ if(!defined('XOOPS_ROOT_PATH'))
 require_once LECAT_TRUST_PATH . '/class/AbstractDeleteAction.class.php';
 
 /**
- * Lecat_GrDeleteAction
+ * Lecat_SetDeleteAction
 **/
-class Lecat_GrDeleteAction extends Lecat_AbstractDeleteAction
+class Lecat_SetDeleteAction extends Lecat_AbstractDeleteAction
 {
     /**
      * _getId
@@ -26,7 +26,7 @@ class Lecat_GrDeleteAction extends Lecat_AbstractDeleteAction
     **/
     protected function _getId()
     {
-        return $this->mRoot->mContext->mRequest->getRequest('gr_id');
+        return $this->mRoot->mContext->mRequest->getRequest('set_id');
     }
 
     /**
@@ -34,11 +34,11 @@ class Lecat_GrDeleteAction extends Lecat_AbstractDeleteAction
      * 
      * @param   void
      * 
-     * @return  Lecat_GrHandler
+     * @return  Lecat_SetHandler
     **/
     protected function &_getHandler()
     {
-        $handler =& $this->mAsset->getObject('handler', 'gr');
+        $handler =& $this->mAsset->getObject('handler', 'set');
         return $handler;
     }
 
@@ -51,8 +51,8 @@ class Lecat_GrDeleteAction extends Lecat_AbstractDeleteAction
     **/
     protected function _setupActionForm()
     {
-        // $this->mActionForm =new Lecat_GrDeleteForm();
-        $this->mActionForm =& $this->mAsset->getObject('form', 'gr',false,'delete');
+        // $this->mActionForm =new Lecat_SetDeleteForm();
+        $this->mActionForm =& $this->mAsset->getObject('form', 'set',false,'delete');
         $this->mActionForm->prepare();
     }
 
@@ -65,7 +65,7 @@ class Lecat_GrDeleteAction extends Lecat_AbstractDeleteAction
     **/
     public function executeViewInput(/*** XCube_RenderTarget ***/ &$render)
     {
-        $render->setTemplateName($this->mAsset->mDirname . '_gr_delete.html');
+        $render->setTemplateName($this->mAsset->mDirname . '_set_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
     }
@@ -79,7 +79,7 @@ class Lecat_GrDeleteAction extends Lecat_AbstractDeleteAction
     **/
     public function executeViewSuccess(/*** XCube_RenderTarget ***/ &$render)
     {
-        $this->mRoot->mController->executeForward('./index.php?action=GrList');
+        $this->mRoot->mController->executeForward('./index.php?action=SetList');
     }
 
     /**
@@ -91,7 +91,7 @@ class Lecat_GrDeleteAction extends Lecat_AbstractDeleteAction
     **/
     public function executeViewError(/*** XCube_RenderTarget ***/ &$render)
     {
-        $this->mRoot->mController->executeRedirect('./index.php?action=GrList', 1, _MD_LECAT_ERROR_DBUPDATE_FAILED);
+        $this->mRoot->mController->executeRedirect('./index.php?action=SetList', 1, _MD_LECAT_ERROR_DBUPDATE_FAILED);
     }
 
     /**
@@ -103,7 +103,7 @@ class Lecat_GrDeleteAction extends Lecat_AbstractDeleteAction
     **/
     public function executeViewCancel(/*** XCube_RenderTarget ***/ &$render)
     {
-        $this->mRoot->mController->executeForward('./index.php?action=GrList');
+        $this->mRoot->mController->executeForward('./index.php?action=SetList');
     }
 }
 

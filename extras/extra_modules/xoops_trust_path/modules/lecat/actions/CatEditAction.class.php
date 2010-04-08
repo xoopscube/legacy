@@ -7,7 +7,7 @@
 
 if(!defined('XOOPS_ROOT_PATH'))
 {
-    exit;
+	exit;
 }
 
 require_once LECAT_TRUST_PATH . '/class/AbstractEditAction.class.php';
@@ -17,76 +17,76 @@ require_once LECAT_TRUST_PATH . '/class/AbstractEditAction.class.php';
 **/
 class Lecat_CatEditAction extends Lecat_AbstractEditAction
 {
-    /**
-     * _getId
-     * 
-     * @param   void
-     * 
-     * @return  int
-    **/
-    protected function _getId()
-    {
-        return $this->mRoot->mContext->mRequest->getRequest('cat_id');
-    }
+	/**
+	 * _getId
+	 * 
+	 * @param	void
+	 * 
+	 * @return	int
+	**/
+	protected function _getId()
+	{
+		return $this->mRoot->mContext->mRequest->getRequest('cat_id');
+	}
 
-    /**
-     * &_getHandler
-     * 
-     * @param   void
-     * 
-     * @return  Lecat_CatHandler
-    **/
-    protected function &_getHandler()
-    {
-        $handler =& $this->mAsset->getObject('handler', 'cat');
-        return $handler;
-    }
+	/**
+	 * &_getHandler
+	 * 
+	 * @param	void
+	 * 
+	 * @return	Lecat_CatHandler
+	**/
+	protected function &_getHandler()
+	{
+		$handler =& $this->mAsset->getObject('handler', 'cat');
+		return $handler;
+	}
 
-    /**
-     * _setupActionForm
-     * 
-     * @param   void
-     * 
-     * @return  void
-    **/
-    protected function _setupActionForm()
-    {
-        // $this->mActionForm =new Lecat_CatEditForm();
-        $this->mActionForm =& $this->mAsset->getObject('form', 'cat',false,'edit');
-        $this->mActionForm->prepare();
-    }
+	/**
+	 * _setupActionForm
+	 * 
+	 * @param	void
+	 * 
+	 * @return	void
+	**/
+	protected function _setupActionForm()
+	{
+		// $this->mActionForm =new Lecat_CatEditForm();
+		$this->mActionForm =& $this->mAsset->getObject('form', 'cat',false,'edit');
+		$this->mActionForm->prepare();
+	}
 
-    /**
-     * _setupRequest
-     * 
-     * @param   void
-     * 
-     * @return  void
-    **/
+	/**
+	 * _setupRequest
+	 * 
+	 * @param	void
+	 * 
+	 * @return	void
+	**/
 	protected function _setupRequest()
 	{
 		//set parent category if requested
 		if($this->mRoot->mContext->mRequest->getRequest('p_id')){
 			$this->mObject->set('p_id', $this->mRoot->mContext->mRequest->getRequest('p_id'));
 			$this->mObject->loadPcat();
-			$this->mObject->set('gr_id', $this->mObject->mPcat->get('gr_id'));
+			$this->mObject->set('set_id', $this->mObject->mPcat->get('set_id'));
 		}
-		//set category group if requested
-		elseif($this->mRoot->mContext->mRequest->getRequest('gr_id')){
-			$this->mObject->set('gr_id', $this->mRoot->mContext->mRequest->getRequest('gr_id'));
+		//set category set if requested
+		elseif($this->mRoot->mContext->mRequest->getRequest('set_id')){
+			$this->mObject->set('set_id', $this->mRoot->mContext->mRequest->getRequest('set_id'));
 		}
 		else{
-			$this->mRoot->mController->executeRedirect("./index.php?action=GrEdit", 1, _MD_LECAT_ERROR_NO_GROUP_REQUESTED);
+			$this->mRoot->mController->executeRedirect("./index.php?action=SetEdit", 1, _MD_LECAT_ERROR_NO_SET_REQUESTED);
 		}
 	}
 
-    /**
-     * prepare
-     * 
-     * @param   void
-     * 
-     * @return  void
-    **/
+	/**
+	 * prepare
+	 * 
+	 * @param	void
+	 * 
+	 * @return	void
+	**/
 	public function prepare()
 	{
 		parent::prepare();
@@ -100,7 +100,7 @@ class Lecat_CatEditAction extends Lecat_AbstractEditAction
 			$this->mObject->loadPermit();
 		}
 	
-		$this->mObject->loadGr();
+		$this->mObject->loadSet();
 	
 		//check specified modules name in the current and parent cats.
 		$reqModulesArr = explode(',', $this->mRoot->mContext->mRequest->getRequest('modules'));
@@ -127,18 +127,18 @@ class Lecat_CatEditAction extends Lecat_AbstractEditAction
 		}
 	}
 
-    /**
-     * executeViewInput
-     * 
-     * @param   XCube_RenderTarget  &$render
-     * 
-     * @return  void
-    **/
-    public function executeViewInput(/*** XCube_RenderTarget ***/ &$render)
-    {
+	/**
+	 * executeViewInput
+	 * 
+	 * @param	XCube_RenderTarget	&$render
+	 * 
+	 * @return	void
+	**/
+	public function executeViewInput(/*** XCube_RenderTarget ***/ &$render)
+	{
 		//load Category for Parent Selection
 		$catCriteria=new CriteriaCompo();
-		$catCriteria->add(new Criteria('gr_id', $this->mObject->get('gr_id')));
+		$catCriteria->add(new Criteria('set_id', $this->mObject->get('set_id')));
 		if($this->mObject->get('cat_id')){
 			$catCriteria->add(new Criteria('cat_id', $this->mObject->get('cat_id'), '!='));
 		}
@@ -158,7 +158,7 @@ class Lecat_CatEditAction extends Lecat_AbstractEditAction
 			}
 		}
 		//remove depth limit overed categories
-		$limit = $this->mObject->mGr->get('level');
+		$limit = $this->mObject->mSet->get('level');
 		if($limit!=0){	//limit==0 means unlimited depth
 			foreach(array_keys($catArr) as $keyL){
 				if($limit<$catArr[$keyL]->getDepth()+$deepest-$this->mObject->getDepth()+1||$limit<$catArr[$keyL]->getDepth()+1){
@@ -168,47 +168,47 @@ class Lecat_CatEditAction extends Lecat_AbstractEditAction
 		}
 	
 		//set renders
-        $render->setTemplateName($this->mAsset->mDirname . '_cat_edit.html');
+		$render->setTemplateName($this->mAsset->mDirname . '_cat_edit.html');
 		$render->setAttribute('actionForm', $this->mActionForm);
 		$render->setAttribute('object', $this->mObject);
 		$render->setAttribute('catArr', $catArr);
-    }
+	}
 
-    /**
-     * executeViewSuccess
-     * 
-     * @param   XCube_RenderTarget  &$render
-     * 
-     * @return  void
-    **/
-    public function executeViewSuccess(/*** XCube_RenderTarget ***/ &$render)
-    {
-        $this->mRoot->mController->executeForward('./index.php?action=CatView&cat_id='. $this->mObject->getShow('cat_id'));
-    }
+	/**
+	 * executeViewSuccess
+	 * 
+	 * @param	XCube_RenderTarget	&$render
+	 * 
+	 * @return	void
+	**/
+	public function executeViewSuccess(/*** XCube_RenderTarget ***/ &$render)
+	{
+		$this->mRoot->mController->executeForward('./index.php?action=CatView&cat_id='. $this->mObject->getShow('cat_id'));
+	}
 
-    /**
-     * executeViewError
-     * 
-     * @param   XCube_RenderTarget  &$render
-     * 
-     * @return  void
-    **/
-    public function executeViewError(/*** XCube_RenderTarget ***/ &$render)
-    {
-        $this->mRoot->mController->executeRedirect('./index.php?action=CatList', 1, _MD_LECAT_ERROR_DBUPDATE_FAILED);
-    }
+	/**
+	 * executeViewError
+	 * 
+	 * @param	XCube_RenderTarget	&$render
+	 * 
+	 * @return	void
+	**/
+	public function executeViewError(/*** XCube_RenderTarget ***/ &$render)
+	{
+		$this->mRoot->mController->executeRedirect('./index.php?action=CatList', 1, _MD_LECAT_ERROR_DBUPDATE_FAILED);
+	}
 
-    /**
-     * executeViewCancel
-     * 
-     * @param   XCube_RenderTarget  &$render
-     * 
-     * @return  void
-    **/
-    public function executeViewCancel(/*** XCube_RenderTarget ***/ &$render)
-    {
-        $this->mRoot->mController->executeForward('./index.php?action=CatView&cat_id='. $this->mObject->getShow('cat_id'));
-    }
+	/**
+	 * executeViewCancel
+	 * 
+	 * @param	XCube_RenderTarget	&$render
+	 * 
+	 * @return	void
+	**/
+	public function executeViewCancel(/*** XCube_RenderTarget ***/ &$render)
+	{
+		$this->mRoot->mController->executeForward('./index.php?action=CatView&cat_id='. $this->mObject->getShow('cat_id'));
+	}
 }
 
 ?>

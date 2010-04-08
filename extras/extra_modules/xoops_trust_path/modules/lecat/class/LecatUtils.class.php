@@ -66,7 +66,7 @@ class Lecat_Utils
 	**/
 	public function getInheritPermission(/*** string ***/ $dirname, /*** int[] ***/$catPath, /*** int ***/ $groupId=0)
 	{
-		$handler = self::getLecatHandler('permit', $dirname);
+		$handler = Legacy_Utils::getModuleHandler('permit', $dirname);
 		//check if the category has permission in order
 		foreach(array_keys($catPath) as $key){
 			$criteria = new CriteriaCompo();

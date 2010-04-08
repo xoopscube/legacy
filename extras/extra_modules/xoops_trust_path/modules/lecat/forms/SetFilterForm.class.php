@@ -12,16 +12,16 @@ if(!defined('XOOPS_ROOT_PATH'))
 
 require_once LECAT_TRUST_PATH . '/class/AbstractFilterForm.class.php';
 
-define('LECAT_GR_SORT_KEY_GR_ID', 1);
-define('LECAT_GR_SORT_KEY_TITLE', 2);
-define('LECAT_GR_SORT_KEY_LEVEL', 3);
-define('LECAT_GR_SORT_KEY_ACTIONS', 4);
-define('LECAT_GR_SORT_KEY_DEFAULT', LECAT_GR_SORT_KEY_GR_ID);
+define('LECAT_SET_SORT_KEY_SET_ID', 1);
+define('LECAT_SET_SORT_KEY_TITLE', 2);
+define('LECAT_SET_SORT_KEY_LEVEL', 3);
+define('LECAT_SET_SORT_KEY_ACTIONS', 4);
+define('LECAT_SET_SORT_KEY_DEFAULT', LECAT_SET_SORT_KEY_SET_ID);
 
 /**
- * Lecat_GrFilterForm
+ * Lecat_SetFilterForm
 **/
-class Lecat_GrFilterForm extends Lecat_AbstractFilterForm
+class Lecat_SetFilterForm extends Lecat_AbstractFilterForm
 {
     /**
      * @var  string[]
@@ -29,10 +29,10 @@ class Lecat_GrFilterForm extends Lecat_AbstractFilterForm
      * @public
     **/
     var $mSortKeys = array(
-        LECAT_GR_SORT_KEY_GR_ID => 'gr_id',
-        LECAT_GR_SORT_KEY_TITLE => 'title',
-        LECAT_GR_SORT_KEY_LEVEL => 'level',
-        LECAT_GR_SORT_KEY_ACTIONS => 'actions'
+        LECAT_SET_SORT_KEY_SET_ID => 'set_id',
+        LECAT_SET_SORT_KEY_TITLE => 'title',
+        LECAT_SET_SORT_KEY_LEVEL => 'level',
+        LECAT_SET_SORT_KEY_ACTIONS => 'actions'
     );
 
     /**
@@ -44,7 +44,7 @@ class Lecat_GrFilterForm extends Lecat_AbstractFilterForm
     **/
     public function getDefaultSortKey()
     {
-        return LECAT_GR_SORT_KEY_DEFAULT;
+        return LECAT_SET_SORT_KEY_DEFAULT;
     }
 
     /**
@@ -60,9 +60,9 @@ class Lecat_GrFilterForm extends Lecat_AbstractFilterForm
     
         $root =& XCube_Root::getSingleton();
     
-        if (($value = $root->mContext->mRequest->getRequest('gr_id')) !== null) {
-            $this->mNavi->addExtra('gr_id', $value);
-            $this->_mCriteria->add(new Criteria('gr_id', $value));
+        if (($value = $root->mContext->mRequest->getRequest('set_id')) !== null) {
+            $this->mNavi->addExtra('set_id', $value);
+            $this->_mCriteria->add(new Criteria('set_id', $value));
         }
     
         if (($value = $root->mContext->mRequest->getRequest('title')) !== null) {

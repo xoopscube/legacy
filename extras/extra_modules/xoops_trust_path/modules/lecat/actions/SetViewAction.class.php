@@ -13,9 +13,9 @@ if(!defined('XOOPS_ROOT_PATH'))
 require_once LECAT_TRUST_PATH . '/class/AbstractViewAction.class.php';
 
 /**
- * Lecat_GrViewAction
+ * Lecat_SetViewAction
 **/
-class Lecat_GrViewAction extends Lecat_AbstractViewAction
+class Lecat_SetViewAction extends Lecat_AbstractViewAction
 {
 	/**
 	 * _getId
@@ -26,7 +26,7 @@ class Lecat_GrViewAction extends Lecat_AbstractViewAction
 	**/
 	protected function _getId()
 	{
-		return $this->mRoot->mContext->mRequest->getRequest('gr_id');
+		return $this->mRoot->mContext->mRequest->getRequest('set_id');
 	}
 
 	/**
@@ -34,11 +34,11 @@ class Lecat_GrViewAction extends Lecat_AbstractViewAction
 	 * 
 	 * @param	void
 	 * 
-	 * @return	Lecat_GrHandler
+	 * @return	Lecat_SetHandler
 	**/
 	protected function &_getHandler()
 	{
-		$handler =& $this->mAsset->getObject('handler', 'gr');
+		$handler =& $this->mAsset->getObject('handler', 'set');
 		return $handler;
 	}
 
@@ -64,7 +64,7 @@ class Lecat_GrViewAction extends Lecat_AbstractViewAction
 	**/
 	public function executeViewSuccess(/*** XCube_RenderTarget ***/ &$render)
 	{
-		$render->setTemplateName($this->mAsset->mDirname . '_gr_view.html');
+		$render->setTemplateName($this->mAsset->mDirname . '_set_view.html');
 		$render->setAttribute('lecatDirname', $this->mAsset->mDirname);
 		$render->setAttribute('tree', $this->mObject->mTree);
 		$render->setAttribute('object', $this->mObject);
@@ -80,7 +80,7 @@ class Lecat_GrViewAction extends Lecat_AbstractViewAction
 	**/
 	public function executeViewError(/*** XCube_RenderTarget ***/ &$render)
 	{
-		$this->mRoot->mController->executeRedirect('./index.php?action=GrList', 1, _MD_LECAT_ERROR_CONTENT_IS_NOT_FOUND);
+		$this->mRoot->mController->executeRedirect('./index.php?action=SetList', 1, _MD_LECAT_ERROR_CONTENT_IS_NOT_FOUND);
 	}
 }
 

@@ -14,9 +14,9 @@ require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 /**
- * Lecat_GrEditForm
+ * Lecat_SetEditForm
 **/
-class Lecat_GrEditForm extends XCube_ActionForm
+class Lecat_SetEditForm extends XCube_ActionForm
 {
     /**
      * getTokenName
@@ -27,7 +27,7 @@ class Lecat_GrEditForm extends XCube_ActionForm
     **/
     public function getTokenName()
     {
-        return "module.lecat.GrEditForm.TOKEN";
+        return "module.lecat.SetEditForm.TOKEN";
     }
 
     /**
@@ -42,7 +42,7 @@ class Lecat_GrEditForm extends XCube_ActionForm
         //
         // Set form properties
         //
-        $this->mFormProperties['gr_id'] =new XCube_IntProperty('gr_id');
+        $this->mFormProperties['set_id'] =new XCube_IntProperty('set_id');
         $this->mFormProperties['title'] =new XCube_StringProperty('title');
         $this->mFormProperties['level'] =new XCube_IntProperty('level');
         $this->mFormProperties['actions'] =new XCube_TextProperty('actions');
@@ -50,9 +50,9 @@ class Lecat_GrEditForm extends XCube_ActionForm
         //
         // Set field properties
         //
-        $this->mFieldProperties['gr_id'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['gr_id']->setDependsByArray(array('required'));
-        $this->mFieldProperties['gr_id']->addMessage('required', _MD_LECAT_ERROR_REQUIRED, _MD_LECAT_LANG_GR_ID);
+        $this->mFieldProperties['set_id'] =new XCube_FieldProperty($this);
+        $this->mFieldProperties['set_id']->setDependsByArray(array('required'));
+        $this->mFieldProperties['set_id']->addMessage('required', _MD_LECAT_ERROR_REQUIRED, _MD_LECAT_LANG_SET_ID);
     
         $this->mFieldProperties['title'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['title']->setDependsByArray(array('required','maxlength'));
@@ -74,7 +74,7 @@ class Lecat_GrEditForm extends XCube_ActionForm
     **/
     public function load(/*** XoopsSimpleObject ***/ &$obj)
     {
-        $this->set('gr_id', $obj->get('gr_id'));
+        $this->set('set_id', $obj->get('set_id'));
         $this->set('title', $obj->get('title'));
         $this->set('level', $obj->get('level'));
         $this->set('actions', $obj->get('actions'));
@@ -90,7 +90,7 @@ class Lecat_GrEditForm extends XCube_ActionForm
     public function update(/*** XoopsSimpleObject ***/ &$obj)
     {
     	$request = XCube_Root::getSingleton()->mContext->mRequest;
-        //$obj->set('gr_id', $this->get('gr_id'));
+        //$obj->set('set_id', $this->get('set_id'));
         $obj->set('title', $this->get('title'));
         $obj->set('level', $this->get('level'));
 		//actions

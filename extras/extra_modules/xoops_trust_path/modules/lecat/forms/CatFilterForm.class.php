@@ -14,7 +14,7 @@ require_once LECAT_TRUST_PATH . '/class/AbstractFilterForm.class.php';
 
 define('LECAT_CAT_SORT_KEY_CAT_ID', 1);
 define('LECAT_CAT_SORT_KEY_TITLE', 2);
-define('LECAT_CAT_SORT_KEY_GR_ID', 3);
+define('LECAT_CAT_SORT_KEY_SET_ID', 3);
 define('LECAT_CAT_SORT_KEY_P_ID', 4);
 define('LECAT_CAT_SORT_KEY_MODULES', 5);
 define('LECAT_CAT_SORT_KEY_DESCRIPTION', 6);
@@ -36,7 +36,7 @@ class Lecat_CatFilterForm extends Lecat_AbstractFilterForm
     var $mSortKeys = array(
         LECAT_CAT_SORT_KEY_CAT_ID => 'cat_id',
         LECAT_CAT_SORT_KEY_TITLE => 'title',
-        LECAT_CAT_SORT_KEY_GR_ID => 'gr_id',
+        LECAT_CAT_SORT_KEY_SET_ID => 'set_id',
         LECAT_CAT_SORT_KEY_P_ID => 'p_id',
         LECAT_CAT_SORT_KEY_MODULES => 'modules',
         LECAT_CAT_SORT_KEY_DESCRIPTION => 'description',
@@ -80,9 +80,9 @@ class Lecat_CatFilterForm extends Lecat_AbstractFilterForm
             $this->_mCriteria->add(new Criteria('title', $value));
         }
     
-        if (($value = $root->mContext->mRequest->getRequest('gr_id')) !== null) {
-            $this->mNavi->addExtra('gr_id', $value);
-            $this->_mCriteria->add(new Criteria('gr_id', $value));
+        if (($value = $root->mContext->mRequest->getRequest('set_id')) !== null) {
+            $this->mNavi->addExtra('set_id', $value);
+            $this->_mCriteria->add(new Criteria('set_id', $value));
         }
     
         if (($value = $root->mContext->mRequest->getRequest('p_id')) !== null) {

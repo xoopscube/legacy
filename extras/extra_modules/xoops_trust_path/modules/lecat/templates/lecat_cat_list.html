@@ -18,9 +18,9 @@
         <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.LECAT_CAT_SORT_KEY_TITLE}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
       <th>
-        <{$smarty.const._MD_LECAT_LANG_GR_ID}><br />
-        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.LECAT_CAT_SORT_KEY_GR_ID}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.LECAT_CAT_SORT_KEY_GR_ID}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+        <{$smarty.const._MD_LECAT_LANG_SET_ID}><br />
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.LECAT_CAT_SORT_KEY_SET_ID}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.LECAT_CAT_SORT_KEY_SET_ID}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
       <th>
         <{$smarty.const._MD_LECAT_LANG_P_ID}><br />
@@ -60,7 +60,7 @@
       <tr class="<{cycle values='odd,even'}>">
         <td><{$obj->getShow('cat_id')}></td>
         <td><{$obj->getShow('title')}></td>
-        <td><{$obj->getShow('gr_id')}></td>
+        <td><{$obj->getShow('set_id')}></td>
         <td><{$obj->getShow('p_id')}></td>
         <td><{$obj->getShow('modules')}></td>
         <td><{$obj->getShow('description')}></td>

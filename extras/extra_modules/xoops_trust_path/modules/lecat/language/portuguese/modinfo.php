@@ -56,10 +56,10 @@ define('_MI_LECAT_TPL_CAT_LIST', 'Category List');
 define('_MI_LECAT_TPL_CAT_EDIT', 'Category Edit');
 define('_MI_LECAT_TPL_CAT_DELETE', 'Category Delete');
 define('_MI_LECAT_TPL_CAT_VIEW', 'Category View');
-define('_MI_LECAT_TPL_GR_LIST', 'Category Group List');
-define('_MI_LECAT_TPL_GR_EDIT', 'Category Group Edit');
-define('_MI_LECAT_TPL_GR_DELETE', 'Category Group Delete');
-define('_MI_LECAT_TPL_GR_VIEW', 'Category Group View');
+define('_MI_LECAT_TPL_SET_LIST', 'Category Set List');
+define('_MI_LECAT_TPL_SET_EDIT', 'Category Set Edit');
+define('_MI_LECAT_TPL_SET_DELETE', 'Category Set Delete');
+define('_MI_LECAT_TPL_SET_VIEW', 'Category Set View');
 define('_MI_LECAT_LANG_CSS_FILE', 'CSS file url');
 define('_MI_LECAT_DESC_CSS_FILE', 'set CSS file url after {XOOPS_URL}');
 ?>

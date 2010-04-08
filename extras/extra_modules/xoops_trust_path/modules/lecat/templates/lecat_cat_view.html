@@ -5,8 +5,8 @@
 			<{$object->getShow('description')}>
 		</div>
 		<dl class="view">
-		  <dt><{$smarty.const._MD_LECAT_LANG_GR}>:</dt>
-		  <dd><a href="./index.php?action=GrView&amp;gr_id=<{$object->getShow('gr_id')}>"><{$object->mGr->getShow('title')}></a></dd>
+		  <dt><{$smarty.const._MD_LECAT_LANG_SET}>:</dt>
+		  <dd><a href="./index.php?action=SetView&amp;set_id=<{$object->getShow('set_id')}>"><{$object->mSet->getShow('title')}></a></dd>
 
 		  <dt><{$smarty.const._MD_LECAT_LANG_PARENT}>:</dt>
 		  <dd><{if $object->mPcat}><a href="./index.php?action=CatView&amp;cat_id=<{$object->getShow('p_id')}>"><{$object->mPcat->getShow('title')}></a><{else}><{$smarty.const._MD_LECAT_LANG_TOP_CAT}><{/if}></dd>
@@ -75,7 +75,7 @@
 	<hr class="clear" />
 	<div class="catTree">
 		<h2><{$smarty.const._MD_LECAT_LANG_CAT}></h2>
-	<a href="index.php?action=CatEdit&amp;gr_id=<{$object->getShow('gr_id')}>"><{$smarty.const._MD_LECAT_LANG_ADD_A_NEW_CAT}></a>
+	<a href="index.php?action=CatEdit&amp;set_id=<{$object->getShow('set_id')}>"><{$smarty.const._MD_LECAT_LANG_ADD_A_NEW_CAT}></a>
 		<{lecat_tree tree=$childrenTree url="./index.php?action=CatView&amp;cat_id=" dirname=$dirname}>
 	</div>
 </div>

@@ -115,7 +115,7 @@ class Lecat_Module extends Legacy_ModuleAdapter
     private function _getDefaultActionName()
     {
         // TODO insert your default action name
-        return 'GrList';
+        return 'SetList';
     }
 
     /**

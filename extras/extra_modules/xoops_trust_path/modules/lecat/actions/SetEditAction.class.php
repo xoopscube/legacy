@@ -13,9 +13,9 @@ if(!defined('XOOPS_ROOT_PATH'))
 require_once LECAT_TRUST_PATH . '/class/AbstractEditAction.class.php';
 
 /**
- * Lecat_GrEditAction
+ * Lecat_SetEditAction
 **/
-class Lecat_GrEditAction extends Lecat_AbstractEditAction
+class Lecat_SetEditAction extends Lecat_AbstractEditAction
 {
     /**
      * _getId
@@ -26,7 +26,7 @@ class Lecat_GrEditAction extends Lecat_AbstractEditAction
     **/
     protected function _getId()
     {
-        return $this->mRoot->mContext->mRequest->getRequest('gr_id');
+        return $this->mRoot->mContext->mRequest->getRequest('set_id');
     }
 
     /**
@@ -34,11 +34,11 @@ class Lecat_GrEditAction extends Lecat_AbstractEditAction
      * 
      * @param   void
      * 
-     * @return  Lecat_GrHandler
+     * @return  Lecat_SetHandler
     **/
     protected function &_getHandler()
     {
-        $handler =& $this->mAsset->getObject('handler', 'gr');
+        $handler =& $this->mAsset->getObject('handler', 'set');
         return $handler;
     }
 
@@ -63,8 +63,8 @@ class Lecat_GrEditAction extends Lecat_AbstractEditAction
     **/
     protected function _setupActionForm()
     {
-        // $this->mActionForm =new Lecat_GrEditForm();
-        $this->mActionForm =& $this->mAsset->getObject('form', 'gr',false,'edit');
+        // $this->mActionForm =new Lecat_SetEditForm();
+        $this->mActionForm =& $this->mAsset->getObject('form', 'set',false,'edit');
         $this->mActionForm->prepare();
     }
 
@@ -107,7 +107,7 @@ class Lecat_GrEditAction extends Lecat_AbstractEditAction
     **/
     public function executeViewInput(/*** XCube_RenderTarget ***/ &$render)
     {
-        $render->setTemplateName($this->mAsset->mDirname . '_gr_edit.html');
+        $render->setTemplateName($this->mAsset->mDirname . '_set_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
 	
@@ -138,7 +138,7 @@ class Lecat_GrEditAction extends Lecat_AbstractEditAction
     **/
     public function executeViewSuccess(/*** XCube_RenderTarget ***/ &$render)
     {
-        $this->mRoot->mController->executeForward('./index.php?action=GrView&gr_id='.$this->mObject->getShow('gr_id'));
+        $this->mRoot->mController->executeForward('./index.php?action=SetView&set_id='.$this->mObject->getShow('set_id'));
     }
 
     /**
@@ -150,7 +150,7 @@ class Lecat_GrEditAction extends Lecat_AbstractEditAction
     **/
     public function executeViewError(/*** XCube_RenderTarget ***/ &$render)
     {
-        $this->mRoot->mController->executeRedirect('./index.php?action=GrList', 1, _MD_LECAT_ERROR_DBUPDATE_FAILED);
+        $this->mRoot->mController->executeRedirect('./index.php?action=SetList', 1, _MD_LECAT_ERROR_DBUPDATE_FAILED);
     }
 
     /**
@@ -162,7 +162,7 @@ class Lecat_GrEditAction extends Lecat_AbstractEditAction
     **/
     public function executeViewCancel(/*** XCube_RenderTarget ***/ &$render)
     {
-        $this->mRoot->mController->executeForward('./index.php?action=GrList');
+        $this->mRoot->mController->executeForward('./index.php?action=SetList');
     }
 }
 

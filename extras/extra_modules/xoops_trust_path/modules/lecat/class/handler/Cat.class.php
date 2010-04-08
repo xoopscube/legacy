@@ -15,7 +15,7 @@ if(!defined('XOOPS_ROOT_PATH'))
 **/
 class Lecat_CatObject extends XoopsSimpleObject
 {
-	protected $_mGrLoadedFlag = false;
+	protected $_mSetLoadedFlag = false;
 	protected $_mPermitLoadedFlag = false;
 	protected $_mPcatLoadedFlag = false;
 	protected $_mChildrenLoadedFlag = false;
@@ -34,7 +34,7 @@ class Lecat_CatObject extends XoopsSimpleObject
 	{
 		$this->initVar('cat_id', XOBJ_DTYPE_INT, '', false);
 		$this->initVar('title', XOBJ_DTYPE_STRING, '', false, 255);
-		$this->initVar('gr_id', XOBJ_DTYPE_INT, '0', false);
+		$this->initVar('set_id', XOBJ_DTYPE_INT, '0', false);
 		$this->initVar('p_id', XOBJ_DTYPE_INT, '0', false);
 		$this->initVar('modules', XOBJ_DTYPE_TEXT, '', false);
 		$this->initVar('description', XOBJ_DTYPE_TEXT, '', false);
@@ -46,14 +46,14 @@ class Lecat_CatObject extends XoopsSimpleObject
 
 	/**
 	 * @public
-	 * load Gr Object of this category.
+	 * load Set Object of this category.
 	 */
-	public function loadGr()
+	public function loadSet()
 	{
-		if ($this->_mGrLoadedFlag == false) {
-			$handler = Legacy_Utils::getModuleHandler('gr', $this->getDirname());
-			$this->mGr =& $handler->get($this->get('gr_id'));
-			$this->_mGrLoadedFlag = true;
+		if ($this->_mSetLoadedFlag == false) {
+			$handler = Legacy_Utils::getModuleHandler('set', $this->getDirname());
+			$this->mSet =& $handler->get($this->get('set_id'));
+			$this->_mSetLoadedFlag = true;
 		}
 	}
 
@@ -189,10 +189,10 @@ class Lecat_CatObject extends XoopsSimpleObject
 		else{
 			//get the category path from the top category in descendant order
 			$this->loadCatPath();
-			//set default permissions from Gr, if any permission is set in this Category Tree
+			//set default permissions from Set, if any permission is set in this Category Tree
 			if(! $permitArr=Lecat_Utils::getInheritPermission($this->getDirname(), $this->mCatPath['cat_id'], $groupId)){
-				$this->loadGr();
-				$permissions = $this->mGr->getDefaultPermissionForCheck();
+				$this->loadSet();
+				$permissions = $this->mSet->getDefaultPermissionForCheck();
 				if(intval($groupId)>0){
 					$permitArr[0] = $this->_getHandler('permit')->create();
 					$permitArr[0]->set('cat_id', $this->get('cat_id'));

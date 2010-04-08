@@ -9,17 +9,17 @@ require_once XOOPS_ROOT_PATH.'/modules/legacy/class/interface/AbstractCategoryDe
 class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
 {
 	/**
-	 * getCategoryGroupList
+	 * getCategorySetList
 	 *
-	 * @param string[] &$grList
+	 * @param string[] &$setList
 	 *
 	 * @return	void
 	 */ 
-	public function getCategoryGroupList(/*** string[] ***/ &$grList)
+	public function getCategorySetList(/*** string[] ***/ &$setList)
 	{
-		$objs = Legacy_Utils::getModuleHandler('gr', self::_getDirname())->getObjects();
+		$objs = Legacy_Utils::getModuleHandler('set', self::_getDirname())->getObjects();
 		foreach($objs as $obj){
-			$grList[$obj->getShow('title')] = $obj->getShow('gr_id');
+			$setList[$obj->getShow('title')] = $obj->getShow('set_id');
 		}
 	}
 
@@ -41,7 +41,7 @@ class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
 	 * getTree
 	 *
 	 * @param array $tree
-	 * @param int $grId
+	 * @param int $setId
 	 * @param string $action
 	 * @param int $uid
 	 * @param int $catId
@@ -49,25 +49,25 @@ class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getTree(/*** array ***/ &$tree, /*** int ***/ $grId, /*** string ***/ $action, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module="")
+	public function getTree(/*** array ***/ &$tree, /*** int ***/ $setId, /*** string ***/ $action, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module="")
 	{
-		$grObj = Legacy_Utils::getModuleHandler('gr', self::_getDirname())->get($grId);
-		$grObj->loadTree(intval($catId));
-		$grObj->filterCategory($action, $uid, false);
-		$tree = $grObj->mTree;
+		$setObj = Legacy_Utils::getModuleHandler('set', self::_getDirname())->get($setId);
+		$setObj->loadTree(intval($catId));
+		$setObj->filterCategory($action, $uid, false);
+		$tree = $setObj->mTree;
 	}
 
 	/**
 	 * getTitleList
 	 *
 	 * @param string &$titleList
-	 * @param int $grId
+	 * @param int $setId
 	 *
 	 * @return	void
 	 */ 
-	public function getTitleList(/*** string[] ***/ &$titleList, /*** int ***/ $grId)
+	public function getTitleList(/*** string[] ***/ &$titleList, /*** int ***/ $setId)
 	{
-		$catObjs = Legacy_Utils::getModuleHandler('cat', self::_getDirname())->getObjects(new Criteria('gr_id', $grId));
+		$catObjs = Legacy_Utils::getModuleHandler('cat', self::_getDirname())->getObjects(new Criteria('set_id', $setId));
 		foreach(array_keys($catObjs) as $key){
 			if($catObjs[$key]->checkModule()){
 				$titleList[$catObjs[$key]->get('cat_id')] = $catObjs[$key]->get('title');
@@ -180,7 +180,7 @@ class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
 	 * getPermittedIdList
 	 *
 	 * @param int[] &$idList
-	 * @param int $grId
+	 * @param int $setId
 	 * @param string $action
 	 * @param int $uid
 	 * @param int $catId
@@ -188,15 +188,15 @@ class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getPermittedIdList(/*** int[] ***/ &$idList, /*** int ***/ $grId, /*** string ***/ $action, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module="")
+	public function getPermittedIdList(/*** int[] ***/ &$idList, /*** int ***/ $setId, /*** string ***/ $action, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module="")
 	{
-		if($grObj = Legacy_Utils::getModuleHandler('gr', self::_getDirname())->get($grId)){
-			$grObj->loadTree(intval($catId));
-			$grObj->filterCategory($action, $uid, true);
-			foreach(array_keys($grObj->mTree) as $key){
-				$idList[] = $grObj->mTree[$key]->get('cat_id');
+		if($setObj = Legacy_Utils::getModuleHandler('set', self::_getDirname())->get($setId)){
+			$setObj->loadTree(intval($catId));
+			$setObj->filterCategory($action, $uid, true);
+			foreach(array_keys($setObj->mTree) as $key){
+				$idList[] = $setObj->mTree[$key]->get('cat_id');
 			}
-			unset($grObj);
+			unset($setObj);
 		}
 	}
 
