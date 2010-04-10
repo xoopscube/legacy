@@ -32,11 +32,11 @@ abstract class Legacy_AbstractProgressClientDelegate
 	 * @param string &$url
 	 * @param string $dirname
 	 * @param string $dataname
-	 * @param int $target_id
+	 * @param int $id
 	 *
 	 * @return	void
 	 */ 
-	abstract public function getSourceUrl(/*** string ***/ &$url, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $target_id);
+	abstract public function getSourceUrl(/*** string ***/ &$url, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $id);
 
 	/**
 	 * updateStatus Legacy_Progress.UpdateStatus
@@ -44,12 +44,12 @@ abstract class Legacy_AbstractProgressClientDelegate
 	 * @param string	&$result
 	 * @param string	$dirname
 	 * @param string	$dataname
-	 * @param int		$target_id
+	 * @param int		$id
 	 * @param Enum		$status Legacy_ProgressStatus
 	 *
 	 * @return	void
 	 */ 
-	abstract public function updateStatus(/*** string ***/ &$result, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $target_id, /*** Enum ***/ $status);
+	abstract public function updateStatus(/*** string ***/ &$result, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $id, /*** Enum ***/ $status);
 }
 
 ?>

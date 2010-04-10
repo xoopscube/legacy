@@ -18,7 +18,7 @@ abstract class Legacy_AbstractCategoryDelegate
 	/**
 	 * getCategorySetList Legacy_Category.GetCategorySetList
 	 *
-	 * @param string[] &$setList
+	 * @param string[] &$setList :key should be set_id
 	 *
 	 * @return	void
 	 */ 
@@ -48,7 +48,7 @@ abstract class Legacy_AbstractCategoryDelegate
 	 *
 	 * @return	void
 	 */ 
-	abstract public function getTree(/*** Legacy_AbstractCategoryObject[] ***/ &$tree, /*** int ***/ $setId, /*** string ***/ $action, /*** int ***/ $uid, /*** int ***/ $catId=0, $modules="");
+	abstract public function getTree(/*** Legacy_AbstractCategoryObject[] ***/ &$tree, /*** int ***/ $setId, /*** string ***/ $action, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module="");
 
 	/**
 	 * getTitleList 	Legacy_Category.GetTitleList
@@ -120,7 +120,7 @@ abstract class Legacy_AbstractCategoryDelegate
 	 *
 	 * @param array &$catPath	:$catPath includes cat_id, title
 	 * @param int $catId
-	 * @param string $order :order of categories. From top OR From the given category
+	 * @param string $order :order of categories. From top OR From the given category. 'ASC' or 'DESC'.
 	 *
 	 * @return	void
 	 */ 
