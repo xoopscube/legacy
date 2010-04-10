@@ -2,7 +2,34 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
-2010/03/27: Package Revision 2.2.0
+2010/04/10: Package Revision 2.2.0 Alpha2
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #2973984 - fix admin page templates mistake
+- Fix Bug #2978965 - Cannot create table at installing in MySQL4 environment
+- Fix Bug #2978966 - Need to unset object
+- Fix Bug #2978968 - Cannot show block list on block installation
+- Fix Bug #2978969 - Call-time pass-by-refer error at delegate
+- Fix Bug #2979992 - filemanager's ja_utf8 files are saved as EUC
+- Fix Bug #2980018 - common trust_path use make trouble about  templates_c
+
+[Other Changes/Enhancements]
+- When installation start, check PHP5 environment.
+- Add purifyHtml() to Legacy_TextFilter
+- Add purifyHtml() to XoopsSimpleObject
+
+[Staff]
+- hypweb
+- kilica
+- Marijuana
+- matchan
+- minahito
+- pcboy
+- nobu(nbuy)
+- Shiraga
+
+----------------------------------------
+2010/03/27: Package Revision 2.2.0 Alpha1
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
 - Fix Bug #2721231 - Lines 70 & 75 /docs/INSTALL.html : links to ecommerce site
@@ -102,7 +129,7 @@ http://sourceforge.net/apps/mediawiki/xoopscube/index.php?title=Release_Logs:XOO
 - Mikhail Miguel
 - Minahito
 - Mumincacao
-- Nobu
+- Nobu(nbuy)
 - Nobunobu
 - Ohwada
 - Onokazu
