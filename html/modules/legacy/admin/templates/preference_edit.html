@@ -165,7 +165,7 @@
           <{elseif $config->get('conf_formtype') == 'module_cache'}>
             <{foreach item=module from=$moduleArr}>
               <{$module->getVar('name')}>
-                <select name="<{$config->getVar('conf_name')}>[<{$module->getVar('mid')}>]"> id='legacy_xoopsform_<{$config->getVar('conf_name')}>_<{$module->getVar('mid')}>'
+                <select name="<{$config->getVar('conf_name')}>[<{$module->getVar('mid')}>]" id="legacy_xoopsform_<{$config->getVar('conf_name')}>_<{$module->getVar('mid')}>">
                   <{foreach item=cachetime from=$cachetimeArr}>
                     <{if $actionForm->get($config->get('conf_name'), $module->get('mid')) == $cachetime->get('cachetime')}>
                       <option value="<{$cachetime->getVar('cachetime')}>" selected="selected"><{$cachetime->getVar('label')}></option>
