@@ -12,19 +12,29 @@ class Mydhtml_MyDhtmlTextArea extends XCube_ActionFilter
 	/**
 	 * @public
 	 */
-	function preBlockFilter()
+	public function preBlockFilter()
 	{
 		$this->mRoot->mDelegateManager->reset('Site.TextareaEditor.BBCode.Show');
 		$this->mRoot->mDelegateManager->add('Site.TextareaEditor.BBCode.Show',array(&$this, 'render'));
 	}
 
+	protected function _addScript()
+	{
+		$jQuery = XCube_Root::getSingleton()->mContext->getAttribute('headerScript');
+		$jQuery->addScript('$(".mydhtml").sMarkUp("bbcode", 300);');
+		$jQuery->addLibrary('/modules/mydhtml/templates/smarkup/jquery.smarkup.js');
+		$jQuery->addLibrary('/modules/mydhtml/templates/smarkup/smarkup.js');
+		$jQuery->addLibrary('/modules/mydhtml/templates/smarkup/conf/bbcode/conf.js');
+		$jQuery->addStylesheet('/modules/mydhtml/templates/smarkup/skins/style.css');
+		$jQuery->addStylesheet('/modules/mydhtml/templates/smarkup/skins/default/style.css');
+	}
+
 	/**
 	 *	@public
 	*/
-	function render(&$html, $id, $caption, $name, $value, $rows, $cols, $class)
+	public function render(&$html, $params)
 	{
 		//$form =& new XoopsFormDhtmlTextArea($name, $name, $value, $rows, $cols);		
-		$form = array('name'=>$name, 'value'=>$value, 'rows'=>$rows, 'cols'=>$cols, 'id'=>$id, 'class'=>$class);
 		$root =& XCube_Root::getSingleton();
 		$renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
 		
@@ -32,11 +42,12 @@ class Mydhtml_MyDhtmlTextArea extends XCube_ActionFilter
 	
 		$renderTarget->setAttribute('legacy_module', 'mydhtml');
 		$renderTarget->setTemplateName("mydhtml_textarea.html");
-		$renderTarget->setAttribute("element", $form);
-	//var_dump($renderTarget->getAttribute("element"));die();
+		$renderTarget->setAttribute("element", $params);
+	
 		$renderSystem->render($renderTarget);
 	
 		$html = $renderTarget->getResult();
+		$this->_addScript();
 	}
 }
 
