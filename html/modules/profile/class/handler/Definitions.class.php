@@ -247,22 +247,22 @@ class Profile_FormType
 			case self::STRING:
 				return XOBJ_DTYPE_STRING;
 				break;
-			case self::STRING:
+			case self::TEXT:
 				return XOBJ_DTYPE_TEXT;
 				break;
-			case 'int':
+			case self::INT:
 				return XOBJ_DTYPE_INT;
 				break;
-			case 'float':
+			case self::FLOAT:
 				return XOBJ_DTYPE_FLOAT;
 				break;
-			case 'date':
+			case self::DATE:
 				return XOBJ_DTYPE_INT;
 				break;
-			case 'checkbox':
+			case self::CHECKBOX:
 				return XOBJ_DTYPE_BOOL;
 				break;
-			case 'selectbox':
+			case self::SELECTBOX:
 				return XOBJ_DTYPE_STRING;
 				break;
 		}

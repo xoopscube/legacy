@@ -7,7 +7,7 @@
 
 if(!defined('XOOPS_ROOT_PATH'))
 {
-    exit();
+	exit();
 }
 
 /**
@@ -19,41 +19,53 @@ abstract class Legacy_AbstractTagDelegate
 	/**
 	 * setTags
 	 *
-	 * @param string $title
+	 * @param string $dirname
+	 * @param string $dataname
+	 * @param int	$id
 	 * @param string $url
-	 * @param string $module
+	 * @param string $title
+	 * @param string[] $tagArr
+	 * @param int $posttime
+	 */	
+	abstract public function setTags($dirname, $dataname, $id, $url, $title, $tagArr, $posttime);
+
+	/**
+	 * getTags
+	 *
 	 * @param string[] $tagArr
 	 * @param string $dirname
+	 * @param string $dataname
+	 * @param int $id
 	 */	
-	abstract public function setTags($title, $url, $module, $tagArr, $dirname);
+	abstract public function getTags(&$tagArr, $dirname, $dataname, $id);
 
 	/**
 	 * getTagsByUrl
 	 *
-	 * @param string[] $tagArr
-	 * @param string $url
-	 * @param string $dirname
+	 * @param string[]	$tagArr
+	 * @param string	$url
 	 */	
-	abstract public function getTagsByUrl(&$tagArr, $url, $dirname);
+	abstract public function getTagsByUrl(&$tagArr, $url);
 
 	/**
 	 * getTagCloudSrc
 	 *
-	 * @param Letag_TagObject[] $cloud
-	 * @param string[] $tagArr
-	 * @param string $dirname
+	 * @param mixed		$cloud
+	 *	 @param string	$cloud['tag'][]
+	 *	 @param int		$cloud['count'][]
+	 * @param int	$setId
 	 */	
-	abstract public function getTagCloudSrc(&$cloud, $tagArr, $dirname);
+	abstract public function getTagCloudSrc(&$cloud, $setId=0);
 
 	/**
 	 * getContentsByTags
 	 *
-	 * @param Letag_BmObject[] $contents
-	 * @param string[] $tagArr
-	 * @param string $module
-	 * @param string $dirname
+	 * @param id[]		$idList
+	 * @param string	$dirname
+	 * @param string	$dataname
+	 * @param string[]	$tagArr
 	 */	
-	abstract public function getContentsByTags(&$contents, $tagArr, $module, $dirname);
+	abstract public function getContentsByTags(&$idList, $dirname, $dataname, $tagArr);
 
 }
 

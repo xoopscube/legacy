@@ -33,7 +33,7 @@ class Profile_DataObject extends XoopsSimpleObject
 				$this->initVar($key, Profile_FormType::getXObjType($type), '', false, 255);
 				break;
 				case Profile_FormType::TEXT:
-				$this->initVar($key, Profile_FormType::getXObjType($type), 0, false);
+				$this->initVar($key, Profile_FormType::getXObjType($type), '', false);
 				break;
 				case Profile_FormType::DATE:
 				$this->initVar($key, Profile_FormType::getXObjType($type), time(), false);

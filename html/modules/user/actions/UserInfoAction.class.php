@@ -142,7 +142,14 @@ class User_UserInfoAction extends User_Action
 
 	protected function _getProfileData()
 	{
-		return xoops_getmodulehandler('data', 'profile')->get($this->mObject->get('uid'));
+		$handler = xoops_getmodulehandler('data', 'profile');
+		$obj = $handler->get($this->mObject->get('uid'));
+		if(is_object($obj)){
+			return $obj;
+		}
+		else{
+			return $handler->create();
+		}
 	}
 
 	function executeViewError(&$controller, &$xoopsUser, &$render)
