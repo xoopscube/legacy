@@ -21,13 +21,13 @@ abstract class Legacy_AbstractTagDelegate
 	 *
 	 * @param string $dirname
 	 * @param string $dataname
-	 * @param int	$id
-	 * @param string $url
-	 * @param string $title
+	 * @param int	$data_id
 	 * @param string[] $tagArr
 	 * @param int $posttime
+	 * @param string $title
+	 * @param string $url
 	 */	
-	abstract public function setTags($dirname, $dataname, $id, $url, $title, $tagArr, $posttime);
+	abstract public function setTags($dirname, $dataname, $data_id, $tagArr, $posttime, $title, $url);
 
 	/**
 	 * getTags
@@ -35,17 +35,9 @@ abstract class Legacy_AbstractTagDelegate
 	 * @param string[] $tagArr
 	 * @param string $dirname
 	 * @param string $dataname
-	 * @param int $id
+	 * @param int $data_id
 	 */	
-	abstract public function getTags(&$tagArr, $dirname, $dataname, $id);
-
-	/**
-	 * getTagsByUrl
-	 *
-	 * @param string[]	$tagArr
-	 * @param string	$url
-	 */	
-	abstract public function getTagsByUrl(&$tagArr, $url);
+	abstract public function getTags(&$tagArr, $dirname, $dataname, $data_id);
 
 	/**
 	 * getTagCloudSrc

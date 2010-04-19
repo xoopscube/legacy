@@ -28,7 +28,7 @@ abstract class Legacy_AbstractActivityDelegate
 	 * deleteUserActivity	Legacy_Activity.DeleteUserActivity
 	 *
 	 * @param bool &$result
-	 * @param CriteriaElement $cri ex)$cri=new CriteriaCompo();$cri->add(new Criteria('dirname',$dirname);$cri->add(new Criteria('dataname',$dataname);$cri->add(new Criteria('id',$id);
+	 * @param CriteriaElement $cri ex)$cri=new CriteriaCompo();$cri->add(new Criteria('dirname',$dirname);$cri->add(new Criteria('dataname',$dataname);$cri->add(new Criteria('data_id',$data_id);
 	 *
 	 * @return	void
 	 */ 
@@ -59,7 +59,7 @@ abstract class Legacy_AbstractActivityDelegate
 	 * deleteGroupActivity	Legacy_Activity.deleteGroupActivity
 	 *
 	 * @param bool &$result
-	 * @param CriteriaElement $cri ex)$cri=new CriteriaCompo();$cri->add(new Criteria('dirname',$dirname);$cri->add(new Criteria('dataname',$dataname);$cri->add(new Criteria('id',$id);
+	 * @param CriteriaElement $cri ex)$cri=new CriteriaCompo();$cri->add(new Criteria('dirname',$dirname);$cri->add(new Criteria('dataname',$dataname);$cri->add(new Criteria('data_id',$data_id);
 	 *
 	 * @return	void
 	 */ 

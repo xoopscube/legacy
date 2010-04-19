@@ -21,22 +21,23 @@ abstract class Legacy_AbstractProgressDelegate
 	 * @param string $title
 	 * @param string $dirname
 	 * @param string $dataname
-	 * @param int	 $id
+	 * @param int	 $data_id
+	 * @param string $url
 	 *
 	 * @return	void
 	 */ 
-	abstract public function addItem(/*** string ***/ $title, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $id);
+	abstract public function addItem(/*** string ***/ $title, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id, /*** string ***/ $url);
 
 	/**
 	 * deleteItem	Legacy_Progress.DeleteItem
 	 *
 	 * @param string $dirname
 	 * @param string $dataname
-	 * @param int	 $id
+	 * @param int	 $data_id
 	 *
 	 * @return	void
 	 */ 
-	abstract public function deleteItem(/*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $id);
+	abstract public function deleteItem(/*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id);
 
 	/**
 	 * getHistory	Legacy_Progress.GetHistory
@@ -49,11 +50,11 @@ abstract class Legacy_AbstractProgressDelegate
 	 *	$hisotryArr['posttime']
 	 * @param string $dirname
 	 * @param string $dataname
-	 * @param int	 $id
+	 * @param int	 $data_id
 	 *
 	 * @return	void
 	 */ 
-	abstract public function getHistory(/*** mix[] ***/ &$historyArr, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $id);
+	abstract public function getHistory(/*** mix[] ***/ &$historyArr, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id);
 
 
 }

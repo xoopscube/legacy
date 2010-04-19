@@ -27,29 +27,17 @@ abstract class Legacy_AbstractProgressClientDelegate
 	abstract public function getManagedModules(/*** array ***/ &$list);
 
 	/**
-	 * getSourceUrl Legacy_Progress.GetSourceUrl
-	 *
-	 * @param string &$url
-	 * @param string $dirname
-	 * @param string $dataname
-	 * @param int $id
-	 *
-	 * @return	void
-	 */ 
-	abstract public function getSourceUrl(/*** string ***/ &$url, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $id);
-
-	/**
 	 * updateStatus Legacy_Progress.UpdateStatus
 	 *
 	 * @param string	&$result
 	 * @param string	$dirname
 	 * @param string	$dataname
-	 * @param int		$id
+	 * @param int		$data_id
 	 * @param Enum		$status Legacy_ProgressStatus
 	 *
 	 * @return	void
 	 */ 
-	abstract public function updateStatus(/*** string ***/ &$result, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $id, /*** Enum ***/ $status);
+	abstract public function updateStatus(/*** string ***/ &$result, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id, /*** Enum ***/ $status);
 }
 
 ?>

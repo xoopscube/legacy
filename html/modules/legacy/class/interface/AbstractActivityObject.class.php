@@ -20,7 +20,7 @@ abstract class Legacy_AbstractActivityObject extends XoopsSimpleObject
 		$this->initVar('activity_id', XOBJ_DTYPE_INT, 0, false);
 		$this->initVar('dirname', XOBJ_DTYPE_STRING, '', false, 32);
 		$this->initVar('dataname', XOBJ_DTYPE_STRING, '', false, 32);
-		$this->initVar('id', XOBJ_DTYPE_INT, '0', false);
+		$this->initVar('data_id', XOBJ_DTYPE_INT, '0', false);
 		$this->initVar('uid', XOBJ_DTYPE_INT, '0', false);
 		//cat_id is field in Legacy_AbstractCategoryObject
 		$this->initVar('cat_id', XOBJ_DTYPE_INT, 0, false);
@@ -75,7 +75,7 @@ abstract class Legacy_AbstractCalendarObject extends Legacy_AbstractActivityObje
 
 abstract class Legacy_AbstractActivityHandler extends XoopsObjectGenericHandler
 {
-	abstract public function getActivities(/*** int ***/ $target_id, /*** int ***/ $limit=20, /*** int ***/ $start=0)
+	abstract public function getActivities(/*** int ***/ $data_id, /*** int ***/ $limit=20, /*** int ***/ $start=0)
 	abstract public function getMyActivities(/*** int ***/ $uid, /*** int ***/ $limit=20, /*** int ***/ $start=0)
 
 }
