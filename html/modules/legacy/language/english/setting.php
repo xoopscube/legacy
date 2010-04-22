@@ -43,4 +43,10 @@ if (!defined('_CHARSET')) define('_CHARSET', 'ISO-8859-1');
 if (!defined('_LANGCODE')) define('_LANGCODE', 'en');
 // change 0 to 1 if this language is a multi-bytes language
 if (!defined('XOOPS_USE_MULTIBYTES')) define('XOOPS_USE_MULTIBYTES', '0');
+
+
+//%%%%%     REQUSTED DATA SETTINGS   %%%%%
+if (!defined('_REQUESTED_DATA_NAME')) define('_REQUESTED_DATA_NAME', 'requested_data_name');
+if (!defined('_REQUESTED_ACTION_NAME')) define('_REQUESTED_ACTION_NAME', 'requested_action_name');
+if (!defined('_REQUESTED_DATA_ID')) define('_REQUESTED_DATA_ID', 'requested_data_id');
 ?>
