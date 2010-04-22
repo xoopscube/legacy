@@ -7,6 +7,11 @@ if (!defined('_SHORTDATESTRING')) define("_SHORTDATESTRING","Y/n/j");
 define('_JSDATEPICKSTRING','yy-mm-dd');
 define('_PHPDATEPICKSTRING','Y-m-d');
 
+//%%%%%     REQUSTED DATA SETTINGS   %%%%%
+if (!defined('_REQUESTED_DATA_NAME')) define('_REQUESTED_DATA_NAME', 'requested_data_name');
+if (!defined('_REQUESTED_ACTION_NAME')) define('_REQUESTED_ACTION_NAME', 'requested_action_name');
+if (!defined('_REQUESTED_DATA_ID')) define('_REQUESTED_DATA_ID', 'requested_data_id');
+
 //%%%%%		LANGUAGE SPECIFIC SETTINGS	 %%%%%
 @define('_CHARSET', 'UTF-8');
 @define('_LANGCODE', 'ja');
