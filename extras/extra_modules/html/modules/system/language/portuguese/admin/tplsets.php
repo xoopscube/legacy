@@ -53,7 +53,7 @@ define("_MD_TITLE","Título");
 define("_MD_TPLMAIN","Administração dos modelos");
 define("_MD_UPLOAD","Enviar");
 define("_MD_UPLOADTAR","Enviar um conjunto de modelos");
-define("_MD_UPWILLREPLACE","Fazendo upload deste arquivo os dados do banco de dados serão substituidos.");
+define("_MD_UPWILLREPLACE","Fazendo upload deste arquivo os dados do banco de dados serão substituídos.");
 define("_MD_VIEW","Mostrar");
 define("_MD_VIEWDEFAULT","Mostrar o modelo padrão");
 ?>

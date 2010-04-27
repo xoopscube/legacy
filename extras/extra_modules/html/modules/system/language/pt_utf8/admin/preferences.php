@@ -31,8 +31,8 @@ define("_MD_AM_BADUNAMES","Escreva os nomes que não devem ser usados para nome 
 define("_MD_AM_BADUNAMESDSC","Separar cada um por um <strong>|</strong>, é indiferente o uso de maiúsculas ou minúsculas, regex ligadas.");
 define("_MD_AM_BANNERS","Habilitar exibição de banners?");
 define("_MD_AM_CENSOR","Palavras censuradas");
-define("_MD_AM_CENSORRPLC","As palavras censuradas serão substituidas por:");
-define("_MD_AM_CENSORRPLCDSC","As palavras censuradas serão substituidas por pelos caracteres inseridos neste campo");
+define("_MD_AM_CENSORRPLC","As palavras censuradas serão substitu�das por:");
+define("_MD_AM_CENSORRPLCDSC","As palavras censuradas serão substitu�das por pelos caracteres inseridos neste campo");
 define("_MD_AM_CENSORWRD","Palavras para censurar");
 define("_MD_AM_CENSORWRDDSC","Escreva as mensagens para serem censuradas nas mensagens dos associados.<bb>Separar cada um por um <strong>|</strong>, é indiferente o uso de maiusculas ou minusculas");
 define("_MD_AM_CHNGUTHEME","Editar o tema de todos os associados");

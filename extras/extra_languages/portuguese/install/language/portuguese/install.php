@@ -90,6 +90,8 @@ define("_INSTALL_L162","É necessário selecionar uma permissão para cada tipo de 
 define("_INSTALL_L163","A tabela %s foi removida corretamente...");
 define("_INSTALL_L164","Ocorreu um erro, não foi possível remover a tabela %s.");
 define("_INSTALL_L165","Estamos no meio de uma manutenção temporária do portal. Volte em alguns instantes. Pedimos desculpas pelo transtorno.");
+define("_INSTALL_L166","Verifique as permissões de acesso do XOOPS_TRUST_PATH");
+define("_INSTALL_L167","Verificando as permissões de leitura e escrita de diretórios e arquivos...");
 define("_INSTALL_L17","%s é o nome do utilizador ('<em>username</em>') de sua conta de banco de dados.");
 define("_INSTALL_L18","%s é a senha solicitada para aceder ao banco de dados.");
 define("_INSTALL_L19","%s é o nome da suo banco de dados onde as tabelas do XOOPS Cube serão criadas.");
@@ -177,6 +179,7 @@ define("_INSTALL_L97","O <strong>caminho físico</strong> está correto.");
 define("_INSTALL_L99","Talvez o <strong>caminho físico</strong> não esteja correto.");
 define("_INSTALL_LANG_XOOPS_SALT","Chave de segurança");
 define("_INSTALL_LANG_XOOPS_SALT_DESC","A chave de segurança provê uma maior segurança ao sistema. Não é necessário alterar esse valor.");
+
 // mb_http_output("UTF-8");
 // mb_internal_encoding("UTF-8");
 // mb_language("uni");

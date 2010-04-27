@@ -11,10 +11,11 @@
 // ## MSN............: mikhailmiguel@msn.com
 // ## Orkut..........: 15440532260129226492
 // ## Skype..........: mikhailmiguel
-// ## Yahoo!.........: mikhail.miguel@yahoo.com
+// ## Yahoo!.........: mikhail.miguel@yahoo.com.br
 // ############################################################### //
 // *************************************************************** //
 define("_INSTALL_CHARSET","UTF-8");
+
 define("_INSTALL_HEADER_MESSAGE","Siga a instalação lendo com cuidado todas as instruções e avisos de cada página mostrada.");
 define("_INSTALL_L0","Bem-vindo ao assistente de instalação do XOOPS Cube 2.2");
 define("_INSTALL_L1","Abra o arquivo mainfile.php com seu editor de textos e procure o seguinte código na linha 31:");
@@ -90,6 +91,8 @@ define("_INSTALL_L162","É necessário selecionar uma permissão para cada tipo 
 define("_INSTALL_L163","A tabela %s foi removida corretamente...");
 define("_INSTALL_L164","Ocorreu um erro, não foi possível remover a tabela %s.");
 define("_INSTALL_L165","Estamos no meio de uma manutenção temporária do portal. Volte em alguns instantes. Pedimos desculpas pelo transtorno.");
+define("_INSTALL_L166","Verifique as permissões de acesso do XOOPS_TRUST_PATH");
+define("_INSTALL_L167","Verificando as permissões de leitura e escrita de diretórios e arquivos...");
 define("_INSTALL_L17","%s é o nome do utilizador ('<em>username</em>') de sua conta de banco de dados.");
 define("_INSTALL_L18","%s é a senha solicitada para aceder ao banco de dados.");
 define("_INSTALL_L19","%s é o nome da suo banco de dados onde as tabelas do XOOPS Cube serão criadas.");
@@ -98,7 +101,8 @@ define("_INSTALL_L20","%s é o prefixo das tabelas que serão criadas durante a 
 define("_INSTALL_L200","Atualizar");
 define("_INSTALL_L21","O seguinte banco de dados não foi encontrado no servidor:");
 define("_INSTALL_L210","Segunda etapa da instalação");
-define("_INSTALL_L22","Deseja tentar criá-lo?");
+define("_INSTALL_L22","<b>Se desejar, prossiga para que o instalador tente criá-lo.</b>");
+// define("_INSTALL_L22","Deseja tentar criá-lo?");
 define("_INSTALL_L23","Sim");
 define("_INSTALL_L24","Não");
 define("_INSTALL_L25","Detectamos a seguinte informação do banco de dados nas suas configurações do arquivo mainfile.php. Por favor, corrija-a agora se ela não estiver correta.");
@@ -177,6 +181,7 @@ define("_INSTALL_L97","O <strong>caminho físico</strong> está correto.");
 define("_INSTALL_L99","Talvez o <strong>caminho físico</strong> não esteja correto.");
 define("_INSTALL_LANG_XOOPS_SALT","Chave de segurança");
 define("_INSTALL_LANG_XOOPS_SALT_DESC","A chave de segurança provê uma maior segurança ao sistema. Não é necessário alterar esse valor.");
+
 // mb_http_output("UTF-8");
 // mb_internal_encoding("UTF-8");
 // mb_language("uni");
