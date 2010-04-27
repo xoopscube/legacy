@@ -1,4 +1,9 @@
 <?php
+// *************************************************************** //
+// ** XOOPS Cube Legacy - Versão em Português
+// ** $Id$
+// **	License http://creativecommons.org/licenses/by/2.5/br/
+// *************************************************************** //
 define("_AM_BADIPCONTAIN","aaa.bbb.ccc irá proibir visitantes com um IP que contenha aaa.bbb.ccc");
 define("_AM_BADIPEND","aaa.bbb.ccc$ irá proibir visitantes com um IP que termine com with aaa.bbb.ccc");
 define("_AM_BADIPS","Banir endereço IP");

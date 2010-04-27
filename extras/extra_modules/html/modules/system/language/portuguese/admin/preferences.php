@@ -1,6 +1,11 @@
 <?php
+// *************************************************************** //
+// ** XOOPS Cube Legacy - Versão em Português
+// ** $Id$
+// **	License http://creativecommons.org/licenses/by/2.5/br/
+// *************************************************************** //
 define("_AM_DBUPDATED","Configurações atualizadas corretamente.");
-define("_MD_AM_ACTVGROUP","Incluir o e-mail de ativação de conta para (válido apenas quando a opção 'Ativação pelos administradores' é selecionada):");
+define("_MD_AM_ACTVGROUP","Incluir o e-mail de ativação de conta para (válido apenas quando a opção <q>Ativação pelos administradores</q> é selecionada):");
 define("_MD_AM_ACTVGROUPDSC","Válido apenas quando a Ativação pelo Administrador estiver habilitada");
 define("_MD_AM_ACTVTYPE","Escolha o tipo de ativação do cadastro de novos associados");
 define("_MD_AM_ADMINACTV","Ativação pelos administradores");
@@ -9,7 +14,7 @@ define("_MD_AM_ADMNOTSET","O endereço de correio eletrônico do administrador não
 define("_MD_AM_ALLOWHTML","Permitir o uso de tags html nos comentários dos associados?");
 define("_MD_AM_ALLOWIMAGE","Permitir o uso de imagens nas mensagens");
 define("_MD_AM_ALLOWREG","Permitir o cadastro de novos associados?");
-define("_MD_AM_ALLOWREGDSC","Escolha 'sim' para permitir o cadastro de novos associados");
+define("_MD_AM_ALLOWREGDSC","Escolha <q>sim</q> para permitir o cadastro de novos associados");
 define("_MD_AM_ALLOWTHEME","Permitir que associados selecionem temas?");
 define("_MD_AM_ALLWCHGMAIL","Permitir que os associados mudem de endereço de e-mail?");
 define("_MD_AM_ALLWCHGMAILDSC","Permite que os associados mudem de endereço de e-mail.");
@@ -48,7 +53,7 @@ define("_MD_AM_DEBUGMODE","Relatório de erros");
 define("_MD_AM_DEBUGMODE0","Desligado");
 define("_MD_AM_DEBUGMODE1","Mostrar o cadastro de comportamento do PHP");
 define("_MD_AM_DEBUGMODE2","Mostrar o cadastro de comportamento MySQL");
-define("_MD_AM_DEBUGMODE3","Mostrar o cadastro de comportamento 'SmartyTemplates'");
+define("_MD_AM_DEBUGMODE3","Mostrar o cadastro de comportamento <q>SmartyTemplates</q>");
 define("_MD_AM_DEBUGMODEDSC","Diversos tipos de relatórios de erros (debug). Usado quando o portal ainda está em desenvolvimento para tratar erros.");
 define("_MD_AM_DEFAULTTZ","Fuso horário padrão");
 define("_MD_AM_DOBADIPS","Bloquear acesso por IP?");
@@ -75,13 +80,13 @@ define("_MD_AM_INVLDUCOOK","Valor inválido para o nome do cookie do associado.")
 define("_MD_AM_IPBAN","Banir por número ip");
 define("_MD_AM_LANGUAGE","Idioma padrão");
 define("_MD_AM_LIGHT","Leve (recomendada para caracteres de múltiplos bytes)");
-define("_MD_AM_LOADINGIMG","Mostrar a imagem de 'Carregando...'?");
+define("_MD_AM_LOADINGIMG","Mostrar a imagem de <q>Carregando...</q>?");
 define("_MD_AM_MAILER","Opções de envio dos e-mails ");
 define("_MD_AM_MAILERMETHOD","Método de envio");
-define("_MD_AM_MAILERMETHODDESC","Method used to deliver e-mail. Default is 'mail', use others only if that makes trouble.");
+define("_MD_AM_MAILERMETHODDESC","Method used to deliver e-mail. Default is <q>mail</q>, use others only if that makes trouble.");
 define("_MD_AM_MAILER_","Nome do remetente");
 define("_MD_AM_MAILER_MAIL","Endereço de correio-eletrônico do remetente");
-define("_MD_AM_MAILER_SENDMAIL","'Mailer Sendmail'");
+define("_MD_AM_MAILER_SENDMAIL","<q>Mailer Sendmail</q>");
 define("_MD_AM_MAILFROM","E-mail do remetente");
 define("_MD_AM_MAILFROMDESC","E-mail do remetente");
 define("_MD_AM_MAILFROMNAME","Nome do remetente");
@@ -91,9 +96,9 @@ define("_MD_AM_MAILFROMUIDDESC","When the system sends a private message, which 
 define("_MD_AM_MAXUNAME","Tamanho máximo dos codinomes");
 define("_MD_AM_MEDIUM","Médio");
 define("_MD_AM_METAAUTHOR","Autor");
-define("_MD_AM_METAAUTHORDSC","O campo 'Autor' define o nome do autor do documento que está a ser lido. Pode-se utilizar o nome, endereço de correio eletrônico do administrador, nome da compania ou URL.");
+define("_MD_AM_METAAUTHORDSC","O campo <q>Autor</q> define o nome do autor do documento que está a ser lido. Pode-se utilizar o nome, endereço de correio eletrônico do administrador, nome da compania ou URL.");
 define("_MD_AM_METACOPYR","Direitos autorais");
-define("_MD_AM_METACOPYRDSC","O campo 'Direitos autorais' contém as informações sobre direitos de reprodução dos documentos disponíveis.");
+define("_MD_AM_METACOPYRDSC","O campo <q>Direitos autorais</q> contém as informações sobre direitos de reprodução dos documentos disponíveis.");
 define("_MD_AM_METADESC","Descrição do site");
 define("_MD_AM_METADESCDSC","O campo Meta Description é uma descrição geral do conteúdo da sua página");
 define("_MD_AM_METAFOOTER","Opções de palavras-chaves e rodapé");
@@ -120,23 +125,23 @@ define("_MD_AM_NEWUNOTIFY","Notificar por e-mail quando um novo associado se cad
 define("_MD_AM_NO","Não");
 define("_MD_AM_NOINDEXFOLLOW","Não indexar, seguir");
 define("_MD_AM_NOINDEXNOFOLLOW","Não indexar, não seguir");
-define("_MD_AM_NOMODULE","Nenhum módulo foi instalado para que seja utilizada a aceleração via 'cache'.");
+define("_MD_AM_NOMODULE","Nenhum módulo foi instalado para que seja utilizada a aceleração via <q>cache</q>.");
 define("_MD_AM_NONE","Nenhum");
 define("_MD_AM_NOTIFYTO","Notificar os grupos:");
 define("_MD_AM_PREFMAIN","Configurações");
 define("_MD_AM_REGDSCLMR","Termo de responsabilidade");
 define("_MD_AM_REGDSCLMRDSC","Escreva o texto do termo de responsabilidade");
-define("_MD_AM_REMEMBER","Lembre-se de atribuir 'chmod 666' a este arquivo para permitir que o sistema possa editá-lo corretamente.");
+define("_MD_AM_REMEMBER","Lembre-se de atribuir <q>CHMOD 666</q> a este arquivo para permitir que o sistema possa editá-lo corretamente.");
 define("_MD_AM_SEARCH","Opções de pesquisa");
 define("_MD_AM_SELFDELETE","Permitir que associados apaguem o seu próprio cadastro?");
-define("_MD_AM_SENDMAILPATH","Caminho do 'sendmail'");
-define("_MD_AM_SENDMAILPATHDESC","Caminho físico (path) ao programa 'sendmail' (ou substituto) no servidor.");
+define("_MD_AM_SENDMAILPATH","Caminho do <q>sendmail</q>");
+define("_MD_AM_SENDMAILPATHDESC","Caminho físico (path) ao programa <q>sendmail</q> (ou substituto) no servidor.");
 define("_MD_AM_SERVERTZ","Fuso horário do servidor");
 define("_MD_AM_SESSEXPIRE","Duração da sessão em minutos");
 define("_MD_AM_SESSEXPIREDSC","Duração máxima, em minutos, de uma sessão inativa (válido apenas se não usar o gerenciador de sessões do PHP)");
 define("_MD_AM_SESSNAME","Nome da sessão");
-define("_MD_AM_SESSNAMEDSC","Nome da sessão (válido apenas se a opção 'Usar sessão personalizada' estiver habilitada)");
-define("_MD_AM_SITECACHE","Aceleração via 'cache'");
+define("_MD_AM_SESSNAMEDSC","Nome da sessão (válido apenas se a opção <q>Usar sessão personalizada</q> estiver habilitada)");
+define("_MD_AM_SITECACHE","Aceleração via <q>cache</q>");
 define("_MD_AM_SITECACHEDSC","Faz cache de todo o conteúdo do site para aumento de performance, indepentemente das caches ao nível dos blocos, ou módulos.");
 define("_MD_AM_SITENAME","Nome do portal");
 define("_MD_AM_SITEPREF","Configurações do portal");
@@ -158,7 +163,7 @@ define("_MD_AM_THEMEOK","Temas habilitados");
 define("_MD_AM_THEMEOKDSC","Escolha os temas que os associados poderão utilizar além da interface padrão.");
 define("_MD_AM_THEMESET","Tema");
 define("_MD_AM_UNAMELVL","Qual deve ser a restrição dos caracteres permitidos nos codinomes?");
-define("_MD_AM_USEGZIP","Utilizar compressão gzip?");
+define("_MD_AM_USEGZIP","Utilizar compressão GZIP?");
 define("_MD_AM_USEMYSESS","Utilizar sessão personalizada");
 define("_MD_AM_USEMYSESSDSC","Escolha Sim se deseja personalizar as sessões.");
 define("_MD_AM_USERACTV","Solicitar ativação pelo associado (recomendado)");

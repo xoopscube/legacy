@@ -1,4 +1,16 @@
 <?php
+// Translation Info
+// $Id$
+// License http://creativecommons.org/licenses/by/2.5/br/
+// ############################################################### //
+// ## XOOPS Cube Legacy 2.1 - Tradução para o Português do Brasil
+// ############################################################### //
+// ## Por............: Mikhail Miguel
+// ## E-mail.........: mikhail@underpop.com
+// ## Website........: http://xoopscube.com.br
+// ## Plus...........: http://card.ly/mikhail
+// ############################################################### //
+// *************************************************************** //
 define("_AM_FINDUS","Pesquisar associado(s)");
 define("_AM_AVATAR","Avatar");
 define("_AM_REALNAME","Nome");

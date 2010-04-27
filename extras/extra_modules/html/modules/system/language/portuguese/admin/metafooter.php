@@ -1,4 +1,9 @@
 <?php
+// *************************************************************** //
+// ** XOOPS Cube Legacy - Versão em Português
+// ** $Id$
+// **	License http://creativecommons.org/licenses/by/2.5/br/
+// *************************************************************** //
 define("_AM_ADDCODE","Incluir código");
 define("_AM_BESURELINK","Assegure-se de que os links sejam digitados por completo, iniciando desde o http:");
 define("_AM_CLEAR","Limpar");

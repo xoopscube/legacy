@@ -1,12 +1,12 @@
 <?php
 // Translation Info
-// ********************************************************* //
-// ######################################################## //
+// ****************************************************** //
+// ##################################################### //
 // ## XOOPS 2.0.9 - Brazilian Portuguese Translation ## //
-// ###################################################### //
-// ## Translator.....: Mikhail Miguel #//
-// ## E-mail.........: mikhail@underpop.com #/
-// ## Website........: http://xoops.underpop.com #
+// ################################################### //
+// ## Translator.....: Mikhail Miguel
+// ## E-mail.........: mikhail@underpop.com
+// ## Website........: http://xoops.underpop.com
 // ######################################################
 // ******************************************************...
 define("_AM_ACCESSLEV","Nível de acesso");
@@ -14,7 +14,7 @@ define("_AM_ADDUSER","Incluir associado");
 define("_AM_AIM","AIM");
 define("_AM_AOUTVTEAD","Permitir que os outros associados vejam o meu endereço de e-mail.");
 define("_AM_AVATAR","Avatar");
-define("_AM_AYSYWTDU","Tem certeza de que deseja remover o associado %s?");
+define("_AM_AYSYWTDU","Tem certeza de que deseja remover o associado <b>%s</b>?");
 define("_AM_BYTHIS","Serão removidas permanentemente todas as informações deste associado.");
 define("_AM_CHANGEONLY","(apenas para alterações)");
 define("_AM_CNGTCOM","Não foi possível obter o número total de comentários");
@@ -29,7 +29,7 @@ define("_AM_EDEUSER","Editar ou remover associados");
 define("_AM_EMAIL","E-mail");
 define("_AM_GO","Prosseguir");
 define("_AM_ICQ","ICQ");
-define("_AM_INDICATECOF","Os ateriscos (*) indicam os campos obrigatórios.");
+define("_AM_INDICATECOF","Os ateriscos indicam os campos obrigatórios.");
 define("_AM_INTEREST","Interesses");
 define("_AM_LIST","Listar");
 define("_AM_LOCATION","Localidade");
@@ -40,8 +40,8 @@ define("_AM_NICKNAME","Codinome");
 define("_AM_NO","Não");
 define("_AM_NOTACTIVE","Este associado ainda não foi habilitado. Deseja habilitar este associado?");
 define("_AM_NOUSERS","Nenhum associado selecionado");
-define("_AM_NSRA","Nenhum ranking especial associado");
-define("_AM_NSRID","Não há rankings especias no banco de dados");
+define("_AM_NSRA","Nenhuma graduação especial para associado");
+define("_AM_NSRID","Não há graduações especias no banco de dados");
 define("_AM_OCCUPATION","Ocupação");
 define("_AM_OPTION","Opção");
 define("_AM_PASSWORD","Senha");

@@ -1,4 +1,9 @@
 <?php
+// *************************************************************** //
+// ** XOOPS Cube Legacy - Versão em Português
+// ** $Id$
+// **	License http://creativecommons.org/licenses/by/2.5/br/
+// *************************************************************** //
 define("_MD_AM_MODADMIN","Administração de módulos");
 define("_MD_AM_MODULE","Nome do Módulo");
 define("_MD_AM_VERSION","Versão");

@@ -1,4 +1,9 @@
 <?php
+// *************************************************************** //
+// ** XOOPS Cube Legacy - Versão em Português
+// ** $Id$
+// **	License http://creativecommons.org/licenses/by/2.5/br/
+// *************************************************************** //
 define("_MD_ACTION","Ações");
 define("_MD_ADDSKINIMG","Incluir um arquivo de imagem ao Skin");
 define("_MD_AM_BTOTADMIN","Voltar ao gerenciador de modelos.");

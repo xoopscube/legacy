@@ -1,9 +1,11 @@
 <?php
 /**
  * @file
- * @package mydhtml
+ * @package myckeditor
  * @version $Id$
  */
-define("_MI_MYDHTML_LANG_MYDHTML", "MYDHTML");
-define("_MI_MYDHTML_DESC_MYDHTML", "MYDHTML");
+
+define("_MI_MYCKEDITOR_LANG_MYCKEDITOR", "MYCKEDITOR");
+define("_MI_MYCKEDITOR_DESC_MYCKEDITOR", "Módulo MYCKEDITOR");
+
 ?>

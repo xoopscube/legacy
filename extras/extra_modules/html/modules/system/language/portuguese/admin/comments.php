@@ -1,5 +1,10 @@
 <?php
-define("_MD_AM_COMMMAN","Adimisntração de comentários");
+// *************************************************************** //
+// ** XOOPS Cube Legacy - Versão em Português
+// ** $Id$
+// **	License http://creativecommons.org/licenses/by/2.5/br/
+// *************************************************************** //
+define("_MD_AM_COMMMAN","Administração de comentários");
 define("_MD_AM_LISTCOMM","Listar os comentários");
 define("_MD_AM_ALLMODS","Todos os módulos");
 define("_MD_AM_ALLSTATUS","Qualquer situação");
