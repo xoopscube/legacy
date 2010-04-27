@@ -13,7 +13,7 @@
 // ## Skype..........: mikhailmiguel
 // ## Yahoo!.........: mikhail.miguel@yahoo.com.br
 // *************************************************************** //
-$content .= "<u><strong>O que é?</strong></u>
+$content = "<u><strong>O que é?</strong></u>
 <p>
 XOOPS Cube é um sistema de publicação para a criação de sites dinâmicos. É de código livre, e concebido usando programação PHP orientada a objetos (OO).
 O XOOPS Cube é ideal para a criação de portais, sites de notícias, intranets ou weblogs, de pequena a grande escala. O XOOPS Cube Legacy é lançado sob os termos da licença <a href='http://www.gnu.org/copyleft/gpl.html' target='_tab'>GNU (GPL)</a>.
