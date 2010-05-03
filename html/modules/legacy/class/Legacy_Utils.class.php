@@ -202,7 +202,9 @@ class Legacy_Utils
 		if(! $name){
 			$handler =& xoops_gethandler('member');
 			$user =& $handler->getUser(intval($uid));
-			$name = $user->getShow('uname');
+			if($user){
+				$name = $user->getShow('uname');
+			}
 		}
 		return $name;
 	}
@@ -240,7 +242,9 @@ class Legacy_Utils
 	{
 		$handler =& xoops_gethandler('module');
 		$module =& $handler->getByDirname($dirname);
-		return $module->get('trust_dirname') ? $module->get('trust_dirname') : null;
+		if($module){
+			return $module->get('trust_dirname') ? $module->get('trust_dirname') : null;
+		}
 	}
 
 	/**
@@ -291,6 +295,70 @@ class Legacy_Utils
 		else{
 			return xoops_getmodulehandler($name, $dirname);
 		}
+	}
+
+	/**
+	 * renderUri
+	 * 
+	 * @param	string	$dirname
+	 * @param	string	$dataname
+	 * @param	int		$data_id
+	 * @param	string	$action
+	 * @param	string	$query
+	 * 
+	 * @return	XoopsObjectGenericHandler
+	**/
+	public static function renderUri(/*** string ***/ $dirname, /*** string ***/ $dataname=null, /*** int ***/ $data_id=0, /*** string ***/ $action=null, /*** string ***/ $query=null)
+	{
+		$uri = null;
+		if(XCube_Root::getSingleton()->getSiteConfig('CoolUri')==1){
+			if(isset($dataname)){
+				if($data_id>0){
+					if(isset($action)){
+						$uri = sprintf('/%s/%s/%d/%s', $dirname, $dataname, $data_id, $action);
+					}
+					else{
+						$uri = sprintf('/%s/%s/%d', $dirname, $dataname, $data_id);
+					}
+				}
+				else{
+					if(isset($action)){
+						$uri = sprintf('/%s/%s/%s', $dirname, $dataname, $action);
+					}
+					else{
+						$uri = sprintf('/%s/%s', $dirname, $dataname);
+					}
+				}
+			}
+			else{
+				if($data_id>0){
+					if(isset($action)){
+						die();
+					}
+					else{
+						$uri = sprintf('/%s/%d', $dirname, $data_id);
+					}
+				}
+				else{
+					if(isset($action)){
+						die();
+					}
+					else{
+						$uri = '';
+					}
+				}
+			}
+			$uri = (isset($query)) ? XOOPS_URL.$uri.'/?'.$query : XOOPS_URL. $uri;
+		}
+		else{
+			$trustDirname = self::getTrustDirnameByDirname($dirname);
+			$dirname = $trustDirname ? $trustDirname : $dirname;
+			XCube_DelegateUtils::call('Module.'.$trustDirname.'.Global.Event.GetNormalUri', new XCube_Ref($uri), $dirname, $dataname, $data_id, $action, $query);
+		
+			$uri = XOOPS_MODULE_URL. $uri;
+		}
+	
+		return $uri;
 	}
 
 	/**
