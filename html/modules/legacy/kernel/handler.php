@@ -133,7 +133,68 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 	
 		return $ret;
 	}
+
+	/**
+	 * Return array of primary id with $criteria.
+	 * 
+	 * @param CriteriaElement $criteria
+	 * @param int  $limit
+	 * @param int  $start
+	 * 
+	 * @return array
+	 */
+	public function getIdList($criteria = null, $limit = null, $start = null)
+	{
+		$ret = array();
 	
+		$sql = "SELECT `".$this->mPrimary."` FROM `" . $this->mTable . '`';
+	
+		if($criteria !== null && is_a($criteria, 'CriteriaElement')) {
+			$where = $this->_makeCriteria4sql($criteria);
+			
+			if (trim($where)) {
+				$sql .= " WHERE " . $where;
+			}
+			
+			$sorts = array();
+			foreach ($criteria->getSorts() as $sort) {
+				$sorts[] = '`' . $sort['sort'] . '` ' . $sort['order']; 
+			}
+			if ($criteria->getSort() != '') {
+				$sql .= " ORDER BY " . implode(',', $sorts);
+			}
+			
+			if ($limit === null) {
+				$limit = $criteria->getLimit();
+			}
+			
+			if ($start === null) {
+				$start = $criteria->getStart();
+			}
+		}
+		else {
+			if ($limit === null) {
+				$limit = 0;
+			}
+			
+			if ($start === null) {
+				$start = 0;
+			}
+		}
+	
+		$result = $this->db->query($sql, $limit, $start);
+	
+		if (!$result) {
+			return $ret;
+		}
+	
+		while($row = $this->db->fetchArray($result)) {
+			$ret[] = $row[$this->mPrimary];
+		}
+	
+		return $ret;
+	}
+
 	function getCount($criteria = null)
 	{
 		$sql="SELECT COUNT(*) c FROM `" . $this->mTable . '`'; 
@@ -307,7 +368,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 						$value = is_array($value) ? $value : explode(',', $value);
 						foreach ( $value as $val ) {
 							$tmp[] = $this->_escapeValue($val, $obj->mVars[$name]['data_type']);
-						}
+						}if(! isset($tmp)){var_dump($criteria);die(); }
 						$value = '('.implode(',', $tmp).')';
 					} else {
 						$value = $this->_escapeValue($value, $obj->mVars[$name]['data_type']);
