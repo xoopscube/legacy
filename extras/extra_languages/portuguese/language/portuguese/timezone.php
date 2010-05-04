@@ -10,13 +10,13 @@
 // ## Website........: http://xoopscube.com.br
 // ############################################################### //
 // *************************************************************** //
-define("_TZ_GMT0","(GMT) Greenwich, Londres, Dublin, Lisboa, Casablanca, Monróvia");
-define("_TZ_GMTM1","(GMT -01:00) Açores, Ilhas de Cabo Verde");
+DEFINE("_TZ_GMT0","(GMT) GREENWICH, LISBOA, Londres, Dublin, Casablanca, Monróvia");
+DEFINE("_TZ_GMTM1","(GMT -01:00) AÇORES, ILHAS DE CABO VERDE");
 define("_TZ_GMTM10","(GMT -10:00) Havaí");
 define("_TZ_GMTM11","(GMT -11:00) Ilhas Midway, Samoa");
 define("_TZ_GMTM12","(GMT -12:00) Eniwetok, Kwajalein");
 define("_TZ_GMTM2","(GMT -02:00) Atlântico Central");
-define("_TZ_GMTM3","(GMT -03:00) BRASÍLIA, BUENOS AIRES, GEORGETOWN");
+define("_TZ_GMTM3","(GMT -03:00) BRASÍLIA, Buenos Aires, Georgetown");
 define("_TZ_GMTM35","(GMT -03:30) Newfoundland");
 define("_TZ_GMTM4","(GMT -04:00) Hora do Atlântico (Canadá), Caracas, La Paz");
 define("_TZ_GMTM5","(GMT -05:00) Hora Oriental (Canadá e EUA), Bogotá, Lima, Quito");
