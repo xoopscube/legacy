@@ -1,4 +1,6 @@
 <?php
+// $Id$
+// License http://creativecommons.org/licenses/by/2.5/br/
 define("_MD_AVATARMAN","Administração dos Avatares");
 define("_MD_SYSAVATARS","Avatares do sistema");
 define("_MD_CSTAVATARS","Avatares enviados");

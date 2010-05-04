@@ -1,4 +1,6 @@
 <?php
+// $Id$
+// License http://creativecommons.org/licenses/by/2.5/br/
 define("_AM_DBUPDATED","Banco de dados atualizado corretamente.");
 define("_AM_SENDTOUSERS","Enviar mensagens aos associados baseando-se nas seguintes informações:");
 define("_AM_SENDTOUSERS2","Enviar para:");
@@ -6,8 +8,8 @@ define("_AM_GROUPIS","Associados do Grupo (opcional)");
 define("_AM_TIMEFORMAT","[yyyy-mm-dd](opcional)");
 define("_AM_LASTLOGMIN","Último acesso após:");
 define("_AM_LASTLOGMAX","Com último acesso antes de:");
-define("_AM_REGDMIN","Registrado após");
-define("_AM_REGDMAX","Registrado antes de");
+define("_AM_REGDMIN","Cadastrado após");
+define("_AM_REGDMAX","Cadastrado antes de");
 define("_AM_IDLEMORE","Último acesso com mais de <span style='color:#ff0000'>X</span> dias.");
 define("_AM_IDLELESS","Último acesso com menos de <span style='color:#ff0000'>X</span> dias.");
 define("_AM_MAILOK","Aceitam receber e-mails. (opcional)");

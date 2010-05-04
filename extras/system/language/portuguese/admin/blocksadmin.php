@@ -1,4 +1,6 @@
 <?php
+// $Id$
+// License http://creativecommons.org/licenses/by/2.5/br/
 define("_AM_ABOVEORG","Antes do conteúdo original");
 define("_AM_ACTION","Ações");
 define("_AM_ADDBLOCK","Criar um novo bloco");

@@ -1,4 +1,6 @@
 <?php
+// $Id$
+// License http://creativecommons.org/licenses/by/2.5/br/
 define("_AM_DBUPDATED","Banco de dados atualizado corretamente.");
 define("_AM_DISPLAYF","Mostrar");
 define("_AM_SMILESCONTROL","Configuração dos Emos");

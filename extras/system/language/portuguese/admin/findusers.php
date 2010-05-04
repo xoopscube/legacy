@@ -1,4 +1,6 @@
 <?php
+// $Id$
+// License http://creativecommons.org/licenses/by/2.5/br/
 define("_AM_FINDUS","Pesquisar associado(s)");
 define("_AM_AVATAR","Avatar");
 define("_AM_REALNAME","Nome");

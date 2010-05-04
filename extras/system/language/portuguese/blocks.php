@@ -1,4 +1,6 @@
 <?php
+// $Id$
+// License http://creativecommons.org/licenses/by/2.5/br/
 define("_MB_SYSTEM_ADMENU","Painel de controle");
 define("_MB_SYSTEM_ADVS","Pesquisa avançada");
 define("_MB_SYSTEM_BFLS","Arquivos corrompidos");

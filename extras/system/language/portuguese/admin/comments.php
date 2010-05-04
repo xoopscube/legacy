@@ -1,4 +1,6 @@
 <?php
+// $Id$
+// License http://creativecommons.org/licenses/by/2.5/br/
 define("_MD_AM_COMMMAN","Adimisntração de comentários");
 define("_MD_AM_LISTCOMM","Listar os comentários");
 define("_MD_AM_ALLMODS","Todos os módulos");

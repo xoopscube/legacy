@@ -1,4 +1,6 @@
 <?php
+// $Id$
+// License http://creativecommons.org/licenses/by/2.5/br/
 define("_MD_ACTION","Ação");
 define("_MD_ADDSKINIMG","Adiciona arquivo de imagem de uma skin");
 define("_MD_AM_BTOTADMIN","Retornar ao gerenciador de temas");
@@ -36,14 +38,14 @@ define("_MD_LASTIMP","Última importação");
 define("_MD_LASTMOD","Ultima atualização");
 define("_MD_NEWNAME","Escreva o nome do novo modelo");
 define("_MD_NOFILE","Sem arquivos");
-define("_MD_NOZLIB","A tecnologia de compactação Zlib tem de estar disponível no servidor");
+define("_MD_NOZLIB","A tecnologia de compactação ZLIB tem de estar disponível no servidor");
 define("_MD_NTHEMENAME","Novo nome do modelo");
 define("_MD_ONLYTAR","Tem de ser um arquivo tar.gz ou .tar, com uma estrura de um tema XOOPS válido");
 define("_MD_PLZGENERATE","Pressione o botão abaixo para gerar os arquivos");
 define("_MD_PLZINSTALL","Pressione para começar a instalação");
 define("_MD_RUSUREDELTH","Tem certeza de que deseja remover este tema e toda a informação referente ao modelo?");
 define("_MD_RUSUREDELTPL","Tem certeza de que deseja remover todas as informações referentes ao modelo?");
-define("_MD_RUSUREIMPT","A importação do modelo irá sobrescrever as suas alterações no banco de dados.<br/>Clique 'Importar' para continuar.");
+define("_MD_RUSUREIMPT","A importação do modelo irá sobrescrever as suas alterações no banco de dados.<BR />Clique 'Importar' para continuar.");
 define("_MD_SKIN","Skin");
 define("_MD_SKINIMGS","Arquivos de imagem para a Skin");
 define("_MD_TEMPLATES","Modelos");
@@ -51,8 +53,8 @@ define("_MD_THEMENAME","Modelo de base");
 define("_MD_THMSETNAME","Nome");
 define("_MD_TITLE","Título");
 define("_MD_TPLMAIN","Gerenciamento de modelos");
-define("_MD_UPLOAD","Upload");
-define("_MD_UPLOADTAR","Upload de um tema");
+define("_MD_UPLOAD","Enviar");
+define("_MD_UPLOADTAR","Enviar um conjunto de modelos");
 define("_MD_UPWILLREPLACE","A importação deste arquivo irá sobescrever suas alterações no banco de dados.");
 define("_MD_VIEW","Mostrar");
 define("_MD_VIEWDEFAULT","Mostrar o modelo padrão");

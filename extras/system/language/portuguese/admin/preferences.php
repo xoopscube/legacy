@@ -1,4 +1,6 @@
 <?php
+// $Id$
+// License http://creativecommons.org/licenses/by/2.5/br/
 define("_AM_DBUPDATED","Configurações atualizadas corretamente.");
 define("_MD_AM_ACTVGROUP","Incluir o e-mail de ativação de conta para (válido apenas quando a opção 'Ativação pelos administradores' é selecionada):");
 define("_MD_AM_ACTVGROUPDSC","Válido apenas quando a Ativação pelo Administrador estiver habilitada");

@@ -1,4 +1,6 @@
 <?php
+// $Id$
+// License http://creativecommons.org/licenses/by/2.5/br/
 define("_AM_ACTION","Ações");
 define("_AM_ACTIVE","Ativar");
 define("_AM_ADD","Incluir");
