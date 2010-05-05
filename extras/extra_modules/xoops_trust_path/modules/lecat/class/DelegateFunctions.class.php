@@ -52,9 +52,11 @@ class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
 	public function getTree(/*** array ***/ &$tree, /*** int ***/ $setId, /*** string ***/ $action, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module="")
 	{
 		$setObj = Legacy_Utils::getModuleHandler('set', self::_getDirname())->get($setId);
-		$setObj->loadTree(intval($catId));
-		$setObj->filterCategory($action, $uid, false);
-		$tree = $setObj->mTree;
+		if($setObj){
+			$setObj->loadTree(intval($catId));
+			$setObj->filterCategory($action, $uid, false);
+			$tree = $setObj->mTree;
+		}
 	}
 
 	/**
@@ -88,7 +90,11 @@ class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
 	 */ 
 	public function checkPermitByUserId(/*** bool ***/ &$check, /*** int ***/ $catId, /*** string ***/ $action, /*** int ***/ $uid, /*** string ***/ $module="")
 	{
-		$check = Legacy_Utils::getModuleHandler('cat', self::_getDirname())->get($catId)->checkPermitByUid($action, $uid, $module);
+		$check = false;
+		$obj = Legacy_Utils::getModuleHandler('cat', self::_getDirname())->get($catId);
+		if($obj){
+			$check = $obj->checkPermitByUid($action, $uid, $module);
+		}
 	}
 
 	/**
@@ -104,7 +110,11 @@ class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
 	 */ 
 	public function checkPermitByGroupId(/*** bool ***/ &$check, /*** int ***/ $catId, /*** string ***/ $action, /*** int ***/ $groupId, /*** string ***/ $module="")
 	{
-		$check = Legacy_Utils::getModuleHandler('cat', self::_getDirname())->get($catId)->checkPermitByGroupid($action, $groupid, $module);
+		$check = false;
+		$obj = Legacy_Utils::getModuleHandler('cat', self::_getDirname())->get($catId);
+		if($obj){
+			$check = $obj->checkPermitByGroupid($action, $groupid, $module);
+		}
 	}
 
 	/**
@@ -137,19 +147,21 @@ class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
 	{
 		$handler = Legacy_Utils::getModuleHandler('cat', self::_getDirname());
 		$cat = $handler->get($catId);
-		$cat->loadChildren($module);
-		foreach(array_keys($cat->mChildren) as $key){
-			$children['catObj'][$key] = $cat->mChildren[$key];
-			if($action){
-				if($cat->mChildren[$key]->checkPermitByUserId($action, intval($uid))=='true'){
-					$children['permit'][$key] = 1;
+		if($cat){
+			$cat->loadChildren($module);
+			foreach(array_keys($cat->mChildren) as $key){
+				$children['catObj'][$key] = $cat->mChildren[$key];
+				if($action){
+					if($cat->mChildren[$key]->checkPermitByUserId($action, intval($uid))=='true'){
+						$children['permit'][$key] = 1;
+					}
+					else{
+						$children['permit'][$key] = 0;
+					}
 				}
 				else{
-					$children['permit'][$key] = 0;
+					$children['permit'][$key] = 1;
 				}
-			}
-			else{
-				$children['permit'][$key] = 1;
 			}
 		}
 	}
@@ -166,13 +178,15 @@ class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
 	public function getCatPath(/*** array ***/ &$catPath, /*** int ***/ $catId, /*** string ***/ $order, /*** string ***/ $module="")
 	{
 		$cat = Legacy_Utils::getModuleHandler('cat', self::_getDirname())->get($catId);
-		$cat->loadCatPath();
-		if($order=='ASC' && count($cat->mCatPath)>0){
-			$catPath['cat_id'] = array_reverse($cat->mCatPath['cat_id']);
-			$catPath['title'] = array_reverse($cat->mCatPath['title']);
-		}
-		else{
-			$catPath = $cat->mCatPath;
+		if($cat){
+			$cat->loadCatPath();
+			if($order=='ASC' && count($cat->mCatPath)>0){
+				$catPath['cat_id'] = array_reverse($cat->mCatPath['cat_id']);
+				$catPath['title'] = array_reverse($cat->mCatPath['title']);
+			}
+			else{
+				$catPath = $cat->mCatPath;
+			}
 		}
 	}
 
