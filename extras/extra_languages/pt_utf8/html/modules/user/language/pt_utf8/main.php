@@ -20,7 +20,7 @@ define("_MD_USER_ERROR_TIMEZONE","Fuso horário");
 define("_MD_USER_ERROR_UNEEDAGREE","Lamento que você não concorda com as Regras de Conduta...");
 define("_MD_USER_ERROR_YOURREGMAILNG","ATENÇÃO: você completou o seu cadastrado. Porém, por um erro do servidor, não foi possível te enviar a mensagem com o código de ativação. Por favor, entre em contato com a administração e comunique o ocorrido.");
 define("_MD_USER_LANG_ALLABOUT","Informações acerca de %s");
-define("_MD_USER_LANG_ASSIGN","Incluir");
+define("_MD_USER_LANG_ASSIGN","Acrescentar");
 define("_MD_USER_LANG_ATTACHSIG","Sempre incluir a minha assinatura");
 define("_MD_USER_LANG_AVATAR","Avatar");
 define("_MD_USER_LANG_AVATAR_EDIT","Alterar avatar");

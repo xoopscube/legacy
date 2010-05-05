@@ -13,7 +13,7 @@ define("_AM_EDITSMILE","Editar um emo");
 define("_AM_SMILECODE","Código do emo:");
 define("_AM_SMILEURL","URL do emo:");
 define("_AM_SMILEEMOTION","Descrição");
-define("_AM_ADD","Incluir");
+define("_AM_ADD","Acrescentar");
 define("_AM_SAVE","Gravar");
-define("_AM_WAYSYWTDTS","Deseja remover este emo?");
+define("_AM_WAYSYWTDTS","Deseja remover este ícone emotivo?");
 ?>
