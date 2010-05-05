@@ -15,7 +15,7 @@
 // ## Yahoo!.........: mikhailmiguel@yahoo.com
 // ############################################################### //
 // *************************************************************** //
-define("_ADD","Incluir");
+define("_ADD","Acrescentar");
 define("_ADDIMAGE","Enviar imagem");
 define("_ALIGN","Alinhamento");
 define("_ALL","Todos");

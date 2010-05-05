@@ -1,6 +1,6 @@
 Olá,
 
-{$uname} te enviou uma mensagem pelo {$sitename}:
+{$uname} te enviou esta mensagem pelo {$sitename}:
 
 
 ------

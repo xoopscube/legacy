@@ -141,7 +141,7 @@ define("_INSTALL_L6","Há uma confusão entre a configuração de XOOPS_ROOT_PATH na
 define("_INSTALL_L60","Não foi possível abrir o arquivo mainfile.php. Verfique as permissões desse arquivo e tente de novo.");
 define("_INSTALL_L61","Não foi possível gravar no arquivo mainfile.php. Entre em contacto com o administrador do sistema para maiores detalhes.");
 define("_INSTALL_L62","Os dados da configuração foram gravados corretamente. Clique no botão abaixo para continuar.");
-define("_INSTALL_L63","Este prefixo será adicionado a todas as novas tabelas criadas para evitar conflitos com o banco de dados. Se você ainda não tiver certeza, use o prefixo padrão.");
+define("_INSTALL_L63","Este prefixo será acrescentado a todas as novas tabelas criadas para evitar conflitos com o banco de dados. Se você ainda não tiver certeza, use o prefixo padrão.");
 define("_INSTALL_L64","O nome do banco de dados no servidor. O assistente de instalação tentará criar o banco de dados se ele não existir.");
 define("_INSTALL_L65","Nome do utilizador (<q>username</q>) do banco de dados");
 define("_INSTALL_L66","Escolha o tipo de banco de dados a ser utilizado");

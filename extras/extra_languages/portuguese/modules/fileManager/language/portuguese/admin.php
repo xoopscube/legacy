@@ -41,7 +41,7 @@ define("_AD_FILEMANAGER_DELFOLDER_FILE_EXISTS", "Não foi possível remover a past
 define("_AD_FILEMANAGER_DELFOLDER_ISDIR", "O diretório %s não pode ser removido do gerenciador de arquivos. Por gentileza, utilize um programa FTP para alterar isso.");
 define("_AD_FILEMANAGER_DELFOLDER_NOTACCESS", "O diretório %s não pode ser removido pelo gerenciador de arquivos. Por favor, altere as permissões manualmente via software FTP.");
 define("_AD_FILEMANAGER_DELFOLDER_SUCCESS", "Pasta removida corretamente.");
-define("_AD_FILEMANAGER_EDIT", "Incluir");
+define("_AD_FILEMANAGER_EDIT", "Acrescentar");
 define("_AD_FILEMANAGER_ERROR_DELETE_FOR_PERMISSION", "Você ainda não tem acesso do tipo <q>%s</q> para o gerenciador de arquivos.");
 define("_AD_FILEMANAGER_ERROR_FILE_EXISTS", "%s não encontrado.");
 define("_AD_FILEMANAGER_ERROR_FILE_PERMISSION", "%s não tem permissão.");
