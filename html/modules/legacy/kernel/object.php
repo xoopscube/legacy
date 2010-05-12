@@ -187,19 +187,19 @@ class XoopsSimpleObject extends AbstractXoopsObject
 	}
 
 	/**
-	 * purifyHtml
+	 * getPurifiedHtml
 	 * 
-	 * @param	string	$html
+	 * @param	string	$key
 	 * @param	string	$encoding
 	 * @param	string	$doctype
 	 * 
 	 * @return	string
 	**/
-	public function purifyHtml(/*** string ***/ $html, /*** string ***/ $encoding=null, /*** string ***/ $doctype=null)
+	public function getPurifiedHtml(/*** string ***/ $key, /*** string ***/ $encoding=null, /*** string ***/ $doctype=null)
 	{
-		$root =& XCube_Root::getSingleton();
-		$textFilter =& $root->getTextFilter();
-		return $textFilter->purifyHtml($html, $encoding, $doctype);
+		$root = XCube_Root::getSingleton();
+		$textFilter = $root->getTextFilter();
+		return $textFilter->purifyHtml($this->get($key), $encoding, $doctype);
 	}
 
 	/**
