@@ -13,7 +13,7 @@ if(!defined('XOOPS_ROOT_PATH'))
 /**
  * Lecat_CatObject
 **/
-class Lecat_CatObject extends XoopsSimpleObject
+class Lecat_CatObject extends Legacy_AbstractCategoryObject
 {
 	protected $_mSetLoadedFlag = false;
 	protected $_mPermitLoadedFlag = false;
@@ -22,27 +22,6 @@ class Lecat_CatObject extends XoopsSimpleObject
 	protected $_mCatPathLoadedFlag = false;
 	public $mTargetFlag = false;
 	public $mProhibitedFlag = false;
-
-	/**
-	 * __construct
-	 * 
-	 * @param	void
-	 * 
-	 * @return	void
-	**/
-	public function __construct()
-	{
-		$this->initVar('cat_id', XOBJ_DTYPE_INT, '', false);
-		$this->initVar('title', XOBJ_DTYPE_STRING, '', false, 255);
-		$this->initVar('set_id', XOBJ_DTYPE_INT, '0', false);
-		$this->initVar('p_id', XOBJ_DTYPE_INT, '0', false);
-		$this->initVar('modules', XOBJ_DTYPE_TEXT, '', false);
-		$this->initVar('description', XOBJ_DTYPE_TEXT, '', false);
-		$this->initVar('depth', XOBJ_DTYPE_INT, '0', false);
-		$this->initVar('weight', XOBJ_DTYPE_INT, '10', false);
-		$this->initVar('options', XOBJ_DTYPE_TEXT, '', false);
-	}
-
 
 	/**
 	 * @public
@@ -119,7 +98,7 @@ class Lecat_CatObject extends XoopsSimpleObject
 	 * @public
 	 * get child categories' id and title array.
 	 */
-	public function getChildList($module)
+	public function getChildList($module="")
 	{
 		$this->loadChildren($this->getDirname(), $module);
 		foreach(array_keys($this->mChildren) as $key){
@@ -255,7 +234,7 @@ class Lecat_CatObject extends XoopsSimpleObject
 	 * @public
 	 * check permission about the given groupid and action.
 	*/
-	public function checkPermitByGroupid($action, $groupid, $module="")
+	public function checkPermitByGroupid($action, $groupid=0, $module="")
 	{
 		//check this category is for specific dirname ?
 		if(! $this->checkModule($module)) return false;
