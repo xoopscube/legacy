@@ -28,6 +28,18 @@ class User_AbstractViewAction extends User_Action
 		$this->mObject =& $this->mObjectHandler->get($id);
 	}
 
+	/**
+	 * _getPageAction
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	protected function _getPageAction()
+	{
+		return _VIEW;
+	}
+
 	function prepare(&$controller, &$xoopsUser, &$moduleConfig)
 	{
 		$this->_setupObject();

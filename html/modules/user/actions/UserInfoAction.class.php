@@ -29,6 +29,18 @@ class User_UserInfoAction extends User_Action
 	
 	var $mPmliteURL = null;
 
+	/**
+	 * _getPageTitle
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	protected function _getPagetitle()
+	{
+		return Legacy_Utils::getUserName(Legacy_Utils::getUid());
+	}
+
 	function prepare(&$controller, &$xoopsUser, $moduleConfig)
 	{
 		$this->mSelfDelete = $moduleConfig['self_delete'];

@@ -99,6 +99,30 @@ class User_AvatarEditAction extends User_AbstractEditAction
 		return $handler;
 	}
 
+	/**
+	 * _getPageTitle
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	protected function _getPagetitle()
+	{
+		return Legacy_Utils::getUserName($this->_getId());
+	}
+
+	/**
+	 * _getPageAction
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	protected function _getPageAction()
+	{
+		return _MD_USER_LANG_AVATAR_EDIT;
+	}
+
 	/***
 	 * This class uses AvatarUploadForm class. It requests three condition
 	 * which are width limit, height limit and filesize limit.

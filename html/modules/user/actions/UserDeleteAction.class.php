@@ -25,6 +25,30 @@ class User_UserDeleteAction extends User_Action
 	
 	var $_mDoDelete;
 
+	/**
+	 * _getPageAction
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	protected function _getPageAction()
+	{
+		return _DELETE;
+	}
+
+	/**
+	 * _getPageTitle
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	protected function _getPagetitle()
+	{
+		return Legacy_Utils::getUserName(Legacy_Utils::getUid());
+	}
+
 	function prepare(&$controller, &$xoopsUser, $moduleConfig)
 	{
 		$this->mSelfDelete = $moduleConfig['self_delete'];

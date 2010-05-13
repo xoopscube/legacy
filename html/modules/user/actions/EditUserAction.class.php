@@ -52,7 +52,19 @@ class User_EditUserAction extends User_AbstractEditAction
 		$this->mActionForm =new User_EditUserForm($this->mConfig);
 		$this->mActionForm->prepare();
 	}
-	
+
+	/**
+	 * _getPageTitle
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	protected function _getPagetitle()
+	{
+		return Legacy_Utils::getUserName($this->_getId());
+	}
+
 	function isEnableCreate()
 	{
 		return false;
