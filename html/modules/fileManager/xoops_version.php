@@ -15,7 +15,6 @@ $modversion['author']	   = "Hiroki Seike http://beabo.net/";
 $modversion['credits']	   = "Hiroki Seike";
 $modversion['help'] 	   = "help.html";
 $modversion['license']	   = "See Help";
-$modversion['image']	   = 'images/module_icon.php' ;
 $modversion['image'] = 'images/module_icon.png';
 $modversion['dirname']	   = "fileManager";
 $modversion['cube_style']  = true;
