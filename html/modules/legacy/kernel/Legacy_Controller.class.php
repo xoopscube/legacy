@@ -183,37 +183,39 @@ class Legacy_Controller extends XCube_Controller
 		if (!defined("OH_MY_GOD_HELP_ME")) {
 			error_reporting(0);
 		}
-
+	
 		// ^^;
 		$this->_setupErrorHandler();
-
+	
 		$this->_setupEnvironment();
-		
+	
 		$this->_setupLogger();
-
+	
 		$this->_setupDB();
-
+	
 		$this->_setupLanguage();
-
+	
 		$this->_setupTextFilter();
-
+	
 		$this->_setupConfig();
-
+	
 		$this->_setupScript();
-
+	
 		$this->_setupDebugger();
-
+	
 		$this->_processPreBlockFilter();	// What's !?
-
+	
 		$this->_setupSession();
-
+	
 		$this->_setupUser();
-		
+	
 		$this->setupModuleContext();
-		
+	
 		$this->_processModule();
-
+	
 		$this->_processPostFilter();
+	
+		$this->_loadInterfaceFiles();
 	}
 	
 	/**
@@ -744,7 +746,16 @@ class Legacy_Controller extends XCube_Controller
 		}
 		$this->mRoot->mSession->start();
 	}
-	
+
+	protected function _loadInterfaceFiles()
+	{
+		$dir = XOOPS_MODULE_PATH.'/legacy/class/interface/';
+		$interfaces = glob($dir.'*.php');
+		foreach($interfaces as $file){
+			require_once($file);
+		}
+	}
+
 	function executeHeader()
 	{
 		//

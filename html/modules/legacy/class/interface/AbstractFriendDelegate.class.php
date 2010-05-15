@@ -17,13 +17,14 @@ abstract class Legacy_AbstractFriendDelegate
 {
 	/**
 	 * getFriendIdList Legacy_Friend.GetFriendIdList
+	 * @comment $list should be sorted by recent friends.
 	 *
-	 * @param int[] &$friendList
+	 * @param int[] &$list
 	 * @param int	$uid
 	 *
 	 * @return	void
 	 */ 
-	abstract public function getFriendIdList(/*** int[] ***/ &$friendList, /*** int ***/ $uid);
+	abstract public function getFriendIdList(/*** int[] ***/ &$list, /*** int ***/ $uid);
 
 	/**
 	 * isFriend 	Legacy_Friend.IsFriend
@@ -36,28 +37,6 @@ abstract class Legacy_AbstractFriendDelegate
 	 * @return	void
 	 */ 
 	abstract public function isFriend(/*** bool ***/ &$check, /*** int ***/ $uid, /*** int ***/ $friend_uid);
-
-	/**
-	 * getFriend	 Legacy_Friend.GetFriend
-	 * get friend Object
-	 *
-	 * @param XoopsSimpleObject &$friend
-	 * @param int	$uid
-	 * @param int	$friend_uid
-	 *
-	 * @return	void
-	 */ 
-	abstract public function getFriend(/*** XoopsSimpleObject ***/ &$frined, /*** int ***/ $uid, /*** int ***/ $friend_uid);
-
-	/**
-	 * getPendingFriendIdList Legacy_Friend.GetPendingFriendIdList
-	 *
-	 * @param int[] &$friendList
-	 * @param int	$uid
-	 *
-	 * @return	void
-	 */ 
-	abstract public function getPendingFriendIdList(/*** id[] ***/ &$friendList, /*** int ***/ $uid);
 
 	/**
 	 * getMyFriendsActivitiesList 	Legacy_Friend.GetFriendsActivitiesList

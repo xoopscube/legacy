@@ -15,7 +15,7 @@ if(!defined('XOOPS_ROOT_PATH'))
 **/
 abstract class Legacy_AbstractCategoryObject extends XoopsSimpleObject
 {
-	public function __construct
+	public function __construct()
 	{
 		$this->initVar('cat_id', XOBJ_DTYPE_INT, '', false);
 		$this->initVar('title', XOBJ_DTYPE_STRING, '', false, 255);
@@ -35,7 +35,7 @@ abstract class Legacy_AbstractCategoryObject extends XoopsSimpleObject
 	 *
 	 * @return int
 	 */
-	abstract public function getDepth()
+	abstract public function getDepth();
 
 	/**
 	 * getChildList
@@ -44,7 +44,7 @@ abstract class Legacy_AbstractCategoryObject extends XoopsSimpleObject
 	 *
 	 * @return int
 	 */
-	abstract public function getChildList(/*** string ***/ $module="")
+	abstract public function getChildList(/*** string ***/ $module="");
 
 	/**
 	 * checkPermitByUid
@@ -55,7 +55,7 @@ abstract class Legacy_AbstractCategoryObject extends XoopsSimpleObject
 	 *
 	 * @return bool
 	 */
-	abstract public function checkPermitByUid(/*** string ***/ $action, /*** int ***/ $uid=0, /*** string ***/ $module="")
+	abstract public function checkPermitByUid(/*** string ***/ $action, /*** int ***/ $uid=0, /*** string ***/ $module="");
 
 	/**
 	 * checkPermitByGroupid
@@ -66,7 +66,7 @@ abstract class Legacy_AbstractCategoryObject extends XoopsSimpleObject
 	 *
 	 * @return bool
 	 */
-	public function checkPermitByGroupid(/*** string ***/ $action, /*** int ***/ $groupid=0, /*** string ***/ $module="")
+	abstract public function checkPermitByGroupid(/*** string ***/ $action, /*** int ***/ $groupid=0, /*** string ***/ $module="");
 
 }
 

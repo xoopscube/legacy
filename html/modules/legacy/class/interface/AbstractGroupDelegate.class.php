@@ -16,76 +16,86 @@ if(!defined('XOOPS_ROOT_PATH'))
 abstract class Legacy_AbstractGroupDelegate
 {
 	/**
-	 * getGroupIdList Legacy_Group.GetGroupIdList
+	 * getMyGroupIdList Legacy_Group.GetMyGroupIdList
 	 *
-	 * @param XoopsSimpleObject[] &$groupList
-	 * @param int	$uid
+	 * @param int[] &$list
+	 * @param int	$setId
+	 * @param Enum	$rank	Lenum_GroupRank
 	 *
 	 * @return	void
 	 */ 
-	abstract public function getGroupIdList(/*** int[] ***/ &$groupIds, /*** int ***/ $uid);
+	abstract public function getMyGroupIdList(/*** int[] ***/ &$list, /*** int ***/ $setId, /*** Enum ***/ $rank);
 
 	/**
-	 * getGroupList Legacy_Group.GetGroupList
+	 * getMyGroupIdListByDataname Legacy_Group.GetMyGroupIdListByDataname
 	 *
-	 * @param XoopsSimpleObject[] &$groupList
-	 * @param int	$uid
+	 * @param int[]		&$list
+	 * @param int	$setId
+	 * @param string	$dirname
+	 * @param string	$dataname
+	 *
+	 * @return	void
+	 */ 
+	abstract public function getMyGroupIdListByDataname(/*** int[] ***/ &$list, /*** int ***/ $setId, /*** string ***/ $dirname, /*** string ***/ $dataname);
+
+	/**
+	 * getMyGroupList Legacy_Group.GetMyGroupList
+	 *
+	 * @param mixed[] &$list
+	 *	  $list['group_id'][]	int
+	 *	  $list['title'][]		string
+	 *	  $list['url'][]		string
+	 * @param int	$setId
+	 * @param Enum	$rank	Lenum_GroupRank
 	 * @param int	$limit
 	 * @param int	$start
 	 *
 	 * @return	void
 	 */ 
-	abstract public function getGroupList(/*** XoopsSimpleObject[] ***/ &$groupList, /*** int ***/ $uid, /*** int ***/ $limit=20, /*** int ***/ $start=0);
-
-	/**
-	 * getGroup 	Legacy_Group.GetGroup
-	 * get Group Object
-	 *
-	 * @param XoopsSimpleObject &$group
-	 * @param int	$groupId
-	 *
-	 * @return	void
-	 */ 
-	abstract public function getGroup(/*** string ***/ &$group, /*** int ***/ $groupId);
+	abstract public function getMyGroupList(/*** mixed[] ***/ &$list, /*** int ***/ $setId, /*** Enum ***/ $rank, /*** int ***/ $limit=20, /*** int ***/ $start=0);
 
 	/**
 	 * getMemberList	  Legacy_Group.GetMemberList
-	 * get category objects in the form of tree.
+	 * get member list in the given group
 	 *
-	 * @param mixed $memberList
-	 *	$memberList['uid']
-	 *	$memberList['level']
-	 * @param int	$groupId :category group id
+	 * @param mixed $list
+	 *	$list['uid']
+	 *	$list['rank']
+	 * @param int	$setId
+	 * @param int	$groupId
+	 * @param Enum	$rank	Lenum_GroupRank
 	 *
 	 * @return	void
 	 */ 
-	abstract public function getMemberList(/*** int[] ***/ &$memberList, /*** int ***/ $groupId);
+	abstract public function getMemberList(/*** int[] ***/ &$list, /*** int ***/ $setId, /*** int ***/ $groupId, /*** Enum ***/ $rank);
 
 	/**
 	 * isMember 	 Legacy_Group.IsMember
-	 * check permission of the given category by user id.
+	 * check the user's belonging and rank in the given group
 	 *
+	 * @param int	$setId
 	 * @param bool	&$check
 	 * @param int	$groupId
 	 * @param int	$uid
-	 * @param Enum	$level
+	 * @param Enum	$rank	Lenum_GroupRank
 	 *
 	 * @return	void
 	 */ 
-	abstract public function isMember(/*** bool ***/ &$check, /*** int ***/ $groupId, /*** int ***/ $uid, /*** Enum ***/ $level);
+	abstract public function isMember(/*** bool ***/ &$check, /*** int ***/ $setId, /*** int ***/ $groupId, /*** int ***/ $uid, /*** Enum ***/ $rank=Lenum_GroupRank::REGULAR);
 
 	/**
 	 * getMyGroupsActivitiesList 	Legacy_Group.GetGroupActivitiesList
 	 * get friends recent action list
 	 *
 	 * @param Legacy_AbstractGroupActivityObject[] &$actionList
+	 * @param int	$setId
 	 * @param int	$uid
 	 * @param int	$limit
 	 * @param int	$start
 	 *
 	 * @return	void
 	 */ 
-	abstract public function getMyGroupsActivitiesList(/*** Legacy_AbstractGroupActivityObject[] ***/ &$actionList, /*** int ***/ $uid, /*** int ***/ $limit=20, /*** int ***/ $start=0);
+	abstract public function getMyGroupsActivitiesList(/*** Legacy_AbstractGroupActivityObject[] ***/ &$actionList, /*** int ***/ $setId, /*** int ***/ $uid, /*** int ***/ $limit=20, /*** int ***/ $start=0);
 
 }
 

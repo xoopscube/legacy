@@ -33,7 +33,7 @@ abstract class Legacy_AbstractProgressClientDelegate
 	 * @param string	$dirname
 	 * @param string	$dataname
 	 * @param int		$data_id
-	 * @param Enum		$status Legacy_ProgressStatus
+	 * @param Enum		$status Lenum_ProgressStatus
 	 *
 	 * @return	void
 	 */ 
