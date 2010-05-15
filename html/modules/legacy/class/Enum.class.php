@@ -12,9 +12,9 @@ if(!defined('XOOPS_ROOT_PATH'))
 }
 
 /**
- * Legacy_Status
+ * Lenum_Status
 **/
-interface Legacy_Status
+interface Lenum_Status
 {
 	const DELETED = 0;
 	const REJECTED = 2;
@@ -22,21 +22,26 @@ interface Legacy_Status
 	const PUBLISHED = 9;
 }
 /**
- * Legacy_ProgressStatus
+ * Lenum_ProgressStatus
 **/
-interface Legacy_ProgressStatus
+interface Lenum_ProgressStatus
 {
 	const DELETED = 0;
 	const REJECTED = 2;
 	const PROGRESS = 5;
 	const FINISHED = 9;
 }
-
-interface Legacy_TextareaEditorEnum
+/**
+ * Lenum_GroupRank
+**/
+interface Lenum_GroupRank
 {
-	const BBCODE = 0;	//default
-	const HTML = 1;
-	const NONE = 2;
+	const GUEST = 0;
+	const ASSOCIATE = 2;
+	const REGULAR = 5;
+	const STAFF = 7;
+	const OWNER = 9;
 }
+
 
 ?>

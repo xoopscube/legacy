@@ -32,7 +32,7 @@
  *			 id = form 'id'. If it's empty, ID is defined automatically by prefix & name.
  *			 cols = amount of cols. (default 50)
  *			 rows = amount of rows. (default 5)
- *			 editor = textarea editor type (default 0=BBCode)
+ *			 editor = textarea editor type (default bbcode)
  * 
  * Examples: {xoops_dhtmltarea name=message cols=40 rows=6 value=$message}
  * -------------------------------------------------------------
@@ -66,17 +66,17 @@ function smarty_function_xoops_dhtmltarea($params, &$smarty)
 		// Build the object for output.
 		//
 		$html = "";
-		switch(intval($params['editor'])){
-			case Legacy_TextareaEditorEnum::BBCODE:
-			XCube_DelegateUtils::call("Site.TextareaEditor.BBCode.Show", new XCube_Ref($html), $params);
-			break;
-		
-			case Legacy_TextareaEditorEnum::HTML:
+		switch($params['editor']){
+		case 'html':
 			XCube_DelegateUtils::call("Site.TextareaEditor.HTML.Show", new XCube_Ref($html), $params);
 			break;
 		
-			case Legacy_TextareaEditorEnum::NONE:
+		case 'none':
 			XCube_DelegateUtils::call("Site.TextareaEditor.None.Show", new XCube_Ref($html), $params);
+			break;
+		case 'bbcode':
+		default:
+			XCube_DelegateUtils::call("Site.TextareaEditor.BBCode.Show", new XCube_Ref($html), $params);
 			break;
 		}
 		print $html;
