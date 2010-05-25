@@ -236,7 +236,9 @@ class Legacy_HeaderScript
 	**/
 	protected function _loadGoogleJQueryLibrary()
 	{
-		return '<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+		$apiKey = XCube_Root::getSingleton()->getSiteConfig('jQuery', 'GoogleApiKey');
+		$apiKey = (isset($apiKey)) ? '?key='.$apiKey : null;
+		return '<script type="text/javascript" src="http://www.google.com/jsapi'.$apiKey.'"></script>
 <script type="text/javascript"><!--
 google.load("language", "1"); 
 google.load("jquery", "'. $this->mMainVersion .'");
