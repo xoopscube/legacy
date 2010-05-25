@@ -31,13 +31,6 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
 			return false;
 		}
 	
-		$this->_addTrustDirnameToModuleTable();
-		if (!$this->_mForceMode && $this->mLog->hasError())
-		{
-			$this->_processReport();
-			return false;
-		}
-		
 		// Normal update process.
 		$this->_updateModuleTemplates();
 		if (!$this->_mForceMode && $this->mLog->hasError())
@@ -155,28 +148,6 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
 		}
 	}
 
-	/**
-	 * @brief add trust_dirname field to Module table.
-	 * @author kilica
-	 */
-	function _addTrustDirnameToModuleTable()
-	{
-		$root =& XCube_Root::getSingleton();
-		$db =& $root->mController->getDB();
-		$table = $db->prefix('modules');
-	
-		$sql = 'ALTER TABLE `'. $table .'` ADD `trust_dirname` varchar(25) NOT NULL default ""';
-	
-		if ($db->query($sql))
-		{
-			$this->mLog->addReport(XCube_Utils::formatString(_AD_LEGACY_MESSAGE_ADD_TRUST_DIRNAME_SUCCESSFUL, $table));
-		}
-		else
-		{
-			$this->mLog->addError(XCube_Utils::formatString(_AD_LEGACY_ERROR_COULD_NOT_ADD_TRUST_DIRNAME, $table));
-		}
-	}
-	
 	function _setUniqueToGroupUserLink()
 	{
 		$root =& XCube_Root::getSingleton();
