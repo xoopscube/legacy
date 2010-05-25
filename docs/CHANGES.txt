@@ -2,6 +2,22 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
+2010/05/xx: Package Revision 2.2.0 Alpha3
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #2993385 - AbstractCategoryObject.class.php syntax error
+- Fix Bug #2993394 - FATAL ERROR in include\module_icon.php
+- Fix Bug #2993397 - fileManager\admin\menu.php with 4 undefined constants
+- Fix Bug #2998179 - 12 index.html files with 0 byte 
+- Fix Bug #2998189 - xoops_trust_path with empty folders
+- Fix Bug #2998205 - robots.txt without references about the new XCL 2.2 modules- Fix Bug #2993387 - Use of undefined constant _MI_USER_ADMENU_USER_DATA_DOWNLOAD
+
+[Staff]
+- kilica
+- Mikhail Miguel
+- minahito
+
+----------------------------------------
 2010/04/10: Package Revision 2.2.0 Alpha2
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
