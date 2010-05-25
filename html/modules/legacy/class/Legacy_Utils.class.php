@@ -311,7 +311,7 @@ class Legacy_Utils
 	public static function renderUri(/*** string ***/ $dirname, /*** string ***/ $dataname=null, /*** int ***/ $data_id=0, /*** string ***/ $action=null, /*** string ***/ $query=null)
 	{
 		$uri = null;
-		if(XCube_Root::getSingleton()->getSiteConfig('CoolUri')==1){
+		if(XCube_Root::getSingleton()->getSiteConfig('Uri', 'CoolUri')==true){
 			if(isset($dataname)){
 				if($data_id>0){
 					if(isset($action)){
