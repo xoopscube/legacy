@@ -1,6 +1,6 @@
 <?php
 // $Id: install.php,v 1.3 2008/03/15 06:20:01 gusagi Exp $
-define("_INSTALL_L0","XOOPS Cube 2.1 インストールウィザードへようこそ");
+define("_INSTALL_L0","XOOPS Cube 2.2 インストールウィザードへようこそ");
 define("_INSTALL_L168","XOOPS Cube Legacy の動作には PHP5 以降が必要です");
 define("_INSTALL_L70","サーバ上のmainfile.php への書き込み権限を与えてください。<br />（例：UNIX/LINUXサーバの場合はchmod 777 mainfile.php、Windowsサーバの場合は読み取り専用プロパティがセットされていないかチェックする。）<br />権限の設定完了後、ブラウザの「更新」ボタンを押してこのページを再度読み込んでください。");
 //define("_INSTALL_L71","下記のボタンをクリックするとインストールを開始します。");
