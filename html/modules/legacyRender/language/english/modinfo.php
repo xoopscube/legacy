@@ -4,6 +4,7 @@ define('_MI_LEGACYRENDER_ADMENU_BANNER_MANAGE', "Banner Management");
 define('_MI_LEGACYRENDER_ADMENU_TEMPLATE_MANAGE', "Template Management");
 define('_MI_LEGACYRENDER_ADMENU_THEME_SETTING', "Theme settings");
 define('_MI_LEGACYRENDER_ADMENU_TPLFILE_MANAGE', "Template File Management");
+define('_MI_LEGACYRENDER_ADMENU_HTACCESS_VIEW', "htaccess setting");
 define('_MI_LEGACYRENDER_CONF_BANNERS', "Activate banner ads?");
 define('_MI_LEGACYRENDER_NAME', "Legacy Renderer");
 define('_MI_LEGACYRENDER_NAME_DESC', "This rendering engine (renderer) is compatibile with XOOPS 2.0.9 and XOOPS JP 2.0.x. You can use XOOPS2 Themes with this system.");
