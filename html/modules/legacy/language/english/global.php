@@ -174,4 +174,12 @@ define('_MONTH', '1 month');
 
 define('_HELP', "Help");
 
+//%%%%%		   %%%%%
+define('_CATEGORY', "Category");
+define('_STATUS', "Status");
+define('_STATUS_DELETED', "Deleted");
+define('_STATUS_REJECTED', "Rejected");
+define('_STATUS_POSTED', "Posted");
+define('_STATUS_PUBLISHED', "Published");
+
 ?>
