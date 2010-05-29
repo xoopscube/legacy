@@ -2,20 +2,31 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
-2010/05/xx: Package Revision 2.2.0 Alpha3
+2010/05/29: Package Revision 2.2.0 Alpha3
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
+- Fix Bug #2980000 - User Menu Block icons are lost when theme is changed
+- Fix Bug #2993368 - Without the welcome message on install
 - Fix Bug #2993385 - AbstractCategoryObject.class.php syntax error
-- Fix Bug #2993394 - FATAL ERROR in include\module_icon.php
-- Fix Bug #2993397 - fileManager\admin\menu.php with 4 undefined constants
+- Fix Bug #2993394 - FATAL ERROR in include/module_icon.php
+- Fix Bug #2993397 - fileManager/admin/menu.php with 4 undefined constants
 - Fix Bug #2998179 - 12 index.html files with 0 byte 
 - Fix Bug #2998189 - xoops_trust_path with empty folders
-- Fix Bug #2998205 - robots.txt without references about the new XCL 2.2 modules- Fix Bug #2993387 - Use of undefined constant _MI_USER_ADMENU_USER_DATA_DOWNLOAD
+- Fix Bug #2998205 - robots.txt without references about the new XCL 2.2 modules- Fix Bug #2993377 - syntax error in phpmailer.lang-cn.php with path disclosure
+- Fix Bug #2993387 - Use of undefined constant _MI_USER_ADMENU_USER_DATA_DOWNLOAD
+- Fix Bug #2998194 - filemanager: language files in invalid folder (lower case)
+
+[Other Changes/Enhancements]
+- Add Cool Uri(SEO Uri) feature
+- Add upgrade preload from XCL2.1.*
 
 [Staff]
 - kilica
 - Mikhail Miguel
+- Matchan
 - minahito
+- gigamaster
+- Shiraga
 
 ----------------------------------------
 2010/04/10: Package Revision 2.2.0 Alpha2
