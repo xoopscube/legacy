@@ -15,6 +15,7 @@
 // ## Yahoo!.........: mikhailmiguel@yahoo.com
 // ############################################################### //
 // *************************************************************** //
+define("XOOPS_USE_MULTIBYTES","0");
 define("_ADD","Acrescentar");
 define("_ADDIMAGE","Enviar imagem");
 define("_ALIGN","Alinhamento");
@@ -23,6 +24,7 @@ define("_ALLOWEDCHAR","Número máximo de caracteres permitidos:");
 define("_ASCENDING","Ordem ascendente");
 define("_BACK","Retornar");
 define("_CANCEL","Cancelar");
+define("_CATEGORY","Categoria");
 define("_CENTER","Centro");
 define("_CLONE","Clonar");
 define("_CLOSE","Fechar"); // Close window
@@ -136,6 +138,11 @@ define("_SENDPMTO","Enviar uma mensagem privada para %s");
 define("_SHORTDATESTRING","d/n/Y");
 define("_SIZE","Tamanho");
 define("_STARTSWITH","Começa com");
+define("_STATUS","Situação");
+define("_STATUS_DELETED","Removido");
+define("_STATUS_POSTED","Enviado");
+define("_STATUS_PUBLISHED","Publicado");
+define("_STATUS_REJECTED","Rejeitado");
 define("_SUBJECT","Assunto");
 define("_SUBMIT","Enviar");
 define("_SYSTEM_MODULE_ERROR","Os módulos a seguir não foram instalados.");
@@ -162,7 +169,7 @@ define("_WELCOMETO","Bem-vindo ao %s");
 define("_WHOSONLINE","Quem nos visita");
 define("_YES","Sim");
 define("_YOURHOME","Inicial");
-define("XOOPS_USE_MULTIBYTES","0");
+
 //%%%%% LANGUAGE SPECIFIC SETTINGS %%%%%
 @define("LEGACY_MAIL_CHAR","UTF-8");
 @define("LEGACY_MAIL_ENCO","UTF-8");

@@ -467,5 +467,6 @@ define("_MD_AM_USEMYSESS","Sessão personalizada");
 define("_MD_AM_USEMYSESSDSC","Escolha Sim para personalizar os valores relativos às sessões.");
 define("_MD_AM_USESSL","Utilizar <abbr lang='pt' title='O objetivo principal do SSL é permitir transações financeiras eletrônicas seguras na WWW, mas também pode ser utilizado no sistema de entrada dos portais em XOOPS Cube.'>conexão segura</abbr> via <acronym lang='pt' title='SSL é o acrônimo para Secure Sockets Layer, um padrão aberto para estabelecer um canal de comunicação seguro, de forma a evitar a interceptação de informações críticas, como números de cartão de crédito, senhas, etc.'>SSL</acronym> ao entrar no portal?");
 define("_MD_AM_YES","Sim");
-
+define("_MD_AM_COOLURI","Habilitar a opção Cool URI?");
+define("_MD_AM_COOLURIDSC","If your server can handle apache mod_rewrite, you may use this option. See also <a href='".XOOPS_URL."/modules/legacyRender/admin/index.php?action=HtaccessView'>.htaccess setting</a>");
 ?>

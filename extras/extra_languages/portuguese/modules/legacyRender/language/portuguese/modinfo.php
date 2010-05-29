@@ -11,12 +11,17 @@
 // ############################################################### //
 // *************************************************************** //
 define("_MI_LEGACYRENDER_ADMENU_BANNER_MANAGE","Faixas publicitárias");
+define("_MI_LEGACYRENDER_ADMENU_HTACCESS_VIEW","htaccess setting");
 define("_MI_LEGACYRENDER_ADMENU_TEMPLATE_MANAGE","Conjuntos de modelos");
 define("_MI_LEGACYRENDER_ADMENU_THEME_SETTING","Temas");
 define("_MI_LEGACYRENDER_ADMENU_TPLFILE_MANAGE","Arquivos de modelos");
 define("_MI_LEGACYRENDER_CONF_BANNERS","Habilitar as faixas publicitárias?");
 define("_MI_LEGACYRENDER_NAME","Renderizador legado");
 define("_MI_LEGACYRENDER_NAME_DESC","SISTEMA RENDERIZADOR LEGADO: este módulo provê a compatibilidade dos antigos formatos de tema e modelos smarty utilizados até as versões 2.0.9 e JP 2.0.x do XOOPS. Traduzido por Mikhail Miguel.");
+define("_MI_LR_CSS_FILE","jQuery UI CSS file URL");
+define("_MI_LR_CSS_FILE_DESC","Set jQuery UI CSS file url after ".XOOPS_URL);
+define("_MI_LR_FEED_URL","RSS Feed URL");
+define("_MI_LR_FEED_URL_DESC","Set RSS feed URL after ".XOOPS_URL);
 define("_MI_LR_FOOTER","Rodapé");
 define("_MI_LR_FOOTER_DESC","Escreva o endereço completo, iniciando com agá-te-te-pê, dois pontos, barra-barra...");
 define("_MI_LR_META_AUTHOR","Autor (Meta Author)");
@@ -39,4 +44,7 @@ define("_MI_LR_ROBOT_METAOMAT","Adulto");
 define("_MI_LR_ROBOT_METAOREST","Restrito");
 define("_MI_LR_ROBOT_NOINDEXFOLLOW","Seguir sem indexar (<q>No Index, Follow</q>)");
 define("_MI_LR_ROBOT_NOINDEXNOFOLLOW","Não indexar e nem seguir (<q>No Index, No Follow</q>)");
+define("_MI_LR_PAGETITLE_FORMAT","Pagetitle Format");
+define("_MI_LR_PAGETITLE_FORMAT_DESC","Set Pagetitle Format with {modulename}, {pagetitle}, {action}. Module name is set at {modulename} like <q>profile</q>. Page Title is set set at {pagetitle} like <q>Hello !</q> or <q>How to install XCL</q>. Action is set at {action} like <q>Edit</q>, <q>View</q> or <q>List</q>. You set [module]***[/module], *** is not display when {module} is not set. [pagetitle]***[/pagetitle], [action]***[action] is the same.");
+
 ?>
