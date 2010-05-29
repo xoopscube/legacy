@@ -57,15 +57,11 @@ ul#mainmenu li a.menuSub
 	color:#000000;
 	font-weight:bold;
 	}
-ul#mainmenu li a:hover,
-ul#usermenu li a:hover,
-
 ul#usermenu li{
 	background-repeat:no-repeat;
 	background-position:left center;
 	padding-left:25px;
 }
-
 .userMenuTop
 	{
 	background-image:url(images/user.png);
@@ -91,7 +87,8 @@ ul#usermenu li{
 	background-image:url(images/user_admin.png);
 	}
 
-
+ul#mainmenu li a:hover,
+ul#usermenu li a:hover,
 ul#privatemessages li a:hover 
 	{
 	border-bottom:#fff 1px solid;
