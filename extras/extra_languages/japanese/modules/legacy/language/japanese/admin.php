@@ -452,4 +452,6 @@ define('_AD_LEGACY_TIPS_SMILES', 'カスタムスマイリーのアーカイブを表示、名前変更
 define('_AD_LEGACY_TIPS_SMILES_UPLOAD', '圧縮されたアーカイブをアップロードして、多くのスマイリーを簡単に登録することができます！<br />このアップロードは、各スマイリーのサイズは確認されません！<br />アーカイブする前に事前に調整してください！<br />（tar.gzまたはzipアーカイブのみ）');
 define('_AD_LEGACY_ERROR_COULD_NOT_ADD_TRUST_DIRNAME', 'trust_dirname フィールドを {0} に追加できませんでした');
 define('_AD_LEGACY_MESSAGE_ADD_TRUST_DIRNAME_SUCCESSFUL', '{0} テーブルへの trust_dirname が追加されました。');
+define('_MD_AM_COOLURI', 'Cool URI を利用する');
+define('_MD_AM_COOLURIDSC', 'お使いのサーバが apache の mod_reweite に対応していれば、このオプションを使うことが出来ます。mod_rewrite による .htaccess の設定については、<a href="'.XOOPS_URL.'/modules/legacyRender/admin/index.php?action=HtaccessView">.htaccess 設定</a> を参照ください');
 ?>

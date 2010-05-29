@@ -63,7 +63,7 @@ define('_GUESTS', 'ゲスト');
 define('_MEMBERS', '登録ユーザ');
 define('_ONLINEPHRASE','%s 人のユーザが現在オンラインです。');
 define('_ONLINEPHRASEX','%s 人のユーザが %s を参照しています。');
-define('_CLOSE','閉じる');  // Close window
+define('_CLOSE','閉じる');	// Close window
 
 //%%%%%%	File Name module.textsanitizer.php 	%%%%%
 define('_QUOTEC','引用：');
@@ -97,9 +97,9 @@ define('_READS','ヒット');
 define('_WELCOMETO','%sへようこそ');
 define('_SEARCH','検索');
 define('_ALL', 'すべて');
-define('_TITLE', '題名');      //-no use
+define('_TITLE', '題名');	   //-no use
 define('_OPTIONS', 'オプション');
-define('_QUOTE', '引用');     //-no use
+define('_QUOTE', '引用');	  //-no use
 define('_LIST', '一覧');
 define('_LOGIN','ログイン');
 define('_USERNAME','ユーザ名: ');
@@ -146,7 +146,7 @@ define('_REGISTER','登録');
 //%%%%%%	File Name xoopscodes.php 	%%%%%
 define('_SIZE','大きさ');  // font size
 define('_FONT','フォント');  // font family
-define('_COLOR','色');  // font color
+define('_COLOR','色');	// font color
 define('_EXAMPLE','サンプル');
 define('_ENTERURL','リンクしたいサイトのURLを入力してください。');
 define('_ENTERWEBTITLE','サイト名を入力してください。');
@@ -176,5 +176,12 @@ define('_WEEK', '1週間');
 define('_MONTH', '1ヶ月');
 
 define('_HELP', "ヘルプ");
+
+define('_CATEGORY', "カテゴリ");
+define('_STATUS', "ステータス");
+define('_STATUS_DELETED', "削除済み");
+define('_STATUS_REJECTED', "却下");
+define('_STATUS_POSTED', "投稿済み");
+define('_STATUS_PUBLISHED', "承認済み");
 
 ?>

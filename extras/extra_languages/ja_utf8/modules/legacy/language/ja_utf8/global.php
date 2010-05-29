@@ -176,6 +176,11 @@ define('_MONTH', '1ヶ月');
 
 define('_HELP', "ヘルプ");
 
-
+define('_CATEGORY', "カテゴリ");
+define('_STATUS', "ステータス");
+define('_STATUS_DELETED', "削除済み");
+define('_STATUS_REJECTED', "却下");
+define('_STATUS_POSTED', "投稿済み");
+define('_STATUS_PUBLISHED', "承認済み");
 
 ?>

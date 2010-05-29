@@ -99,6 +99,6 @@ define('_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_1', "まず、デフォルトの�
 define('_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_2', "サイトに適用するテンプレートセットを変更しますか？　選択ボタンを押して、テンプレートセットを選びましょう。詳しくはヘルプをご覧ください。");
 define('_AD_LEGACYRENDER_TIPS_TPLSET_UPLOAD', "もしこの場で名前を指定しなかった場合は、アップロードされたファイルからテンプレートセット名が取得されます。<br/>このシステムが対応しているTAR.GZ形式のファイルをアップロードしてください。");
 define('_AD_LEGACYRENDER_LANG_HTACCESS', ".htaccess ファイル");
-define('_AD_LEGACYRENDER_DESC_HTACCESS', "お使いのサーバが mod_rewrite に対応していれば、このページの設定を .htaccess ファイルに追加することで URI を変換することが出来ます。");
+define('_AD_LEGACYRENDER_DESC_HTACCESS', "お使いのサーバが mod_rewrite に対応していれば、このページの設定を .htaccess ファイルに追加することで URI を変換することが出来ます。このオプションを使う場合、<a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1">全般設定</a> 画面で Cool Uri のオプションを「はい」に設定してください。");
 
 ?>
