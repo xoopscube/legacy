@@ -344,11 +344,11 @@ class Legacy_Utils
 						die();
 					}
 					else{
-						$uri = '';
+						$uri = '/'.$dirname;
 					}
 				}
 			}
-			$uri = (isset($query)) ? XOOPS_URL.$uri.'/?'.$query : XOOPS_URL. $uri;
+			$uri = (isset($query)) ? XOOPS_URL.$uri.'?'.$query : XOOPS_URL. $uri;
 		}
 		else{
 			$trustDirname = self::getTrustDirnameByDirname($dirname);
