@@ -99,5 +99,5 @@ define('_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_1', "д▐д║бве╟е╒ейеые╚д╬е╞еєе╫еьб╝е
 define('_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_2', "е╡еде╚д╦┼м═╤д╣дые╞еєе╫еьб╝е╚е╗е├е╚дЄ╩╤╣╣д╖д▐д╣длбйбб┴к┬Єе▄е┐еєдЄ▓бд╖д╞бве╞еєе╫еьб╝е╚е╗е├е╚дЄ┴кд╙д▐д╖дчджбг╛▄д╖дпд╧е╪еые╫дЄд┤═ўдпд└д╡ддбг");
 define('_AD_LEGACYRENDER_TIPS_TPLSET_UPLOAD', "дтд╖д│д╬╛ьд╟╠╛┴░дЄ╗╪─ъд╖д╩длд├д┐╛ь╣чд╧бвеве├е╫еэб╝е╔д╡дьд┐е╒ебедеыдлдще╞еєе╫еьб╝е╚е╗е├е╚╠╛дм╝ш╞└д╡дьд▐д╣бг<br/>д│д╬е╖е╣е╞ердм┬╨▒■д╖д╞дддыTAR.GZ╖┴╝░д╬е╒ебедеыдЄеве├е╫еэб╝е╔д╖д╞дпд└д╡ддбг");
 define('_AD_LEGACYRENDER_LANG_HTACCESS', ".htaccess е╒ебедеы");
-define('_AD_LEGACYRENDER_DESC_HTACCESS', "дк╗╚ддд╬е╡б╝е╨дм mod_rewrite д╦┬╨▒■д╖д╞дддьд╨бвд│д╬е┌б╝е╕д╬└▀─ъдЄ .htaccess е╒ебедеыд╦─╔▓├д╣дыд│д╚д╟ URI дЄ╩╤┤╣д╣дыд│д╚дм╜╨═шд▐д╣бгд│д╬еке╫е╖ечеєдЄ╗╚дж╛ь╣чбв<a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1">┴┤╚╠└▀─ъ</a> ▓ш╠╠д╟ Cool Uri д╬еке╫е╖ечеєдЄб╓д╧ддб╫д╦└▀─ъд╖д╞дпд└д╡ддбг");
+define('_AD_LEGACYRENDER_DESC_HTACCESS', 'дк╗╚ддд╬е╡б╝е╨дм mod_rewrite д╦┬╨▒■д╖д╞дддьд╨бвд│д╬е┌б╝е╕д╬└▀─ъдЄ .htaccess е╒ебедеыд╦─╔▓├д╣дыд│д╚д╟ URI дЄ╩╤┤╣д╣дыд│д╚дм╜╨═шд▐д╣бгд│д╬еке╫е╖ечеєдЄ╗╚дж╛ь╣чбв<a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1">┴┤╚╠└▀─ъ</a> ▓ш╠╠д╟ Cool Uri д╬еке╫е╖ечеєдЄб╓д╧ддб╫д╦└▀─ъд╖д╞дпд└д╡ддбг');
 ?>
