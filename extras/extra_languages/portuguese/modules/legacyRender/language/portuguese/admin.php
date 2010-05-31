@@ -11,7 +11,7 @@
 // ############################################################### //
 // *************************************************************** //
 
-define("_AD_LEGACYRENDER_DESC_HTACCESS","If your server can handle apache mod_rewrite, you may use the below .htaccess setting for cool uri. If you use this option, you have to turn on COOL URI config at <a href="".XOOPS_URL."/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1">legacy preference setting</a>.");
+define("_AD_LEGACYRENDER_DESC_HTACCESS", "Se o recurso <q>mod_rewrite</q> do Apache estiver disponível em seu servidor, você poderá utilizar o arquivo de configuração .htaccess abaixo para gerar endereços WEB mais amigáves, curtos e fáceis de lembrar. Para isto, também é necessário habilitar a opção <q>COOL URI</q> nas <q><u><a href='".XOOPS_URL."/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1'>configurações principais</a></u></q> do módulo <q>Sistema Legado</q>.");
 define("_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_IMAGESET","Lamento, não foi possível gravar o conjunto de imagens '{0}'.");
 define("_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_IMAGE_FILE","Lamento, não foi possível gravar a imagem '{0}'");
 define("_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_LINKTPLSET","Lamento, não foi possível possível a informação da ligação entre o imageset e o conjunto do modelo.");

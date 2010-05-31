@@ -11,7 +11,7 @@
 // ############################################################### //
 // *************************************************************** //
 define("_MI_LEGACYRENDER_ADMENU_BANNER_MANAGE","Faixas publicitárias");
-define("_MI_LEGACYRENDER_ADMENU_HTACCESS_VIEW","htaccess setting");
+define("_MI_LEGACYRENDER_ADMENU_HTACCESS_VIEW",".htaccess");
 define("_MI_LEGACYRENDER_ADMENU_TEMPLATE_MANAGE","Conjuntos de modelos");
 define("_MI_LEGACYRENDER_ADMENU_THEME_SETTING","Temas");
 define("_MI_LEGACYRENDER_ADMENU_TPLFILE_MANAGE","Arquivos de modelos");
