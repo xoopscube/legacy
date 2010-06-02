@@ -2,6 +2,13 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
+2010/06/02: Package Revision 2.2.0 Alpha3
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #2837114 - legacy_block_usermenu.html with invalid references
+- Fix Bug #2973984 - fix admin page templates mistake
+
+----------------------------------------
 2010/05/29: Package Revision 2.2.0 Alpha3
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
@@ -12,7 +19,8 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #2993397 - fileManager/admin/menu.php with 4 undefined constants
 - Fix Bug #2998179 - 12 index.html files with 0 byte 
 - Fix Bug #2998189 - xoops_trust_path with empty folders
-- Fix Bug #2998205 - robots.txt without references about the new XCL 2.2 modules- Fix Bug #2993377 - syntax error in phpmailer.lang-cn.php with path disclosure
+- Fix Bug #2998205 - robots.txt without references about the new XCL 2.2 modules
+- Fix Bug #2993377 - syntax error in phpmailer.lang-cn.php with path disclosure
 - Fix Bug #2993387 - Use of undefined constant _MI_USER_ADMENU_USER_DATA_DOWNLOAD
 - Fix Bug #2998194 - filemanager: language files in invalid folder (lower case)
 

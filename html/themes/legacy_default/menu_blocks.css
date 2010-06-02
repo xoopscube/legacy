@@ -53,8 +53,7 @@ ul#mainmenu li a.menuSub
 
 #usermenu a.highlight  span.newMessages
 	{
-	background-color:#CCFF99;
-	color:#000000;
+	color:#FF0000;
 	font-weight:bold;
 	}
 ul#usermenu li{

@@ -5,7 +5,7 @@
 <li class="userMenuLogout"><a href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._MB_LEGACY_LOUT}></a></li>
 <{if $block.flagShowInbox}>
 <{if $block.new_messages > 0}>
-<li class="userMenuEmail"><a class="highlight" href="<{$block.inbox_url}>"><{$smarty.const._MB_LEGACY_INBOX}> (<span style="color:#ff0000; font-weight: bold;"><{$block.new_messages}></span>)</a></li>
+<li class="userMenuEmail"><a class="highlight" href="<{$block.inbox_url}>"><{$smarty.const._MB_LEGACY_INBOX}> (<span class="newMessages"><{$block.new_messages}></span>)</a></li>
 <{else}>
 <li class="userMenuEmail"><a href="<{$block.inbox_url}>"><{$smarty.const._MB_LEGACY_INBOX}></a></li>
 <{/if}>
