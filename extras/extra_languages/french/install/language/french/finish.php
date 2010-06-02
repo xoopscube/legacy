@@ -10,6 +10,6 @@ Utilisez le compte administrateur créé dans la 1ère étape de l'installation.</p>
 Sélectionnez les modules complémentaires et cliquez sur le bouton <b>[ Installer ]</b>.</p>
 <p>Les modules spécifiés seront installés automatiquement et s'affichera ensuite<br>
 la page d'accueil de votre XOOPS Cube prêt à l'emploi!</p>
-<p>Visitez le site de support officiel <a href='http://www.xoopscube.org/' target='_blank'>XOOPS Cube</a> pour plus d'informations.</p>
+<p>Visitez le site de support officiel <a href='http://www.xoopscube.org/' rel="external">XOOPS Cube</a> pour plus d'informations.</p>
 ";
 ?>
