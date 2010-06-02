@@ -13,7 +13,7 @@ L'adresse e-mail ({X_UEMAIL}) a été utilisée pour enregistrer un compte.
 
 Merci de confirmer votre demande d'enregistrement sur le site {SITENAME}, en cliquant sur le lien ci-dessous :
 
-{USERACTLINK}
+{X_UACTLINK}
 
 -----------
 Sincères salutations

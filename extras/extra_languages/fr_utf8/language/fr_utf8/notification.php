@@ -19,7 +19,6 @@ define ('_NOT_EVENT', 'Evènement');
 define ('_NOT_EVENTS', 'Evènements');
 define ('_NOT_ACTIVENOTIFICATIONS', 'Notifications actives');
 define ('_NOT_NAMENOTAVAILABLE', 'Pas de nom disponible');
-
 define ('_NOT_ITEMNAMENOTAVAILABLE', "Nom de l'élément non disponible");
 define ('_NOT_ITEMTYPENOTAVAILABLE', "Type de l'élément non disponible");
 define ('_NOT_ITEMURLNOTAVAILABLE', "URL de l'élément non disponible");

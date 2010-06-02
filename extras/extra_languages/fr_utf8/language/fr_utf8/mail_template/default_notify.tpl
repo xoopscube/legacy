@@ -1,6 +1,6 @@
 Bonjour {X_UNAME},
 
-L'événement {X_NOTIFY_EVENT} est arrivé à {X_ITEM_TYPE} "{X_ITEM_TILE}" vous pouvez le contrôler dans le module {X_MODULE} du site.
+L'événement {X_NOTIFY_EVENT} est arrivé à {X_ITEM_TYPE} "{X_ITEM_NAME}" vous pouvez le contrôler dans le module {X_MODULE} du site.
 
 Vous pouvez voir le commentaire {X_ITEM_TYPE} ici :
 {X_ITEM_URL}

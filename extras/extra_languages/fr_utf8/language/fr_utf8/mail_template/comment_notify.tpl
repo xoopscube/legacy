@@ -1,6 +1,6 @@
 Bonjour {X_UNAME},
 
-Un commentaire a été ajouté à {X_ITEM_TYPE} "{X_ITEM_TITLE}" vous pouvez le contrôler dans le module {X_MODULE} du site.
+Un commentaire a été ajouté à {X_ITEM_TYPE} "{X_ITEM_NAME}" vous pouvez le contrôler dans le module {X_MODULE} du site.
 
 Vous pouvez voir le commentaire ici :
 {X_COMMENT_URL}
