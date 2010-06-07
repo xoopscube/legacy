@@ -2,11 +2,23 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
-2010/06/02: Package Revision 2.2.0 Alpha3
+2010/06/07: Package Revision 2.2.0 Alpha4
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
 - Fix Bug #2837114 - legacy_block_usermenu.html with invalid references
 - Fix Bug #2973984 - fix admin page templates mistake
+- Fix Bug #2993383 - DeletePreload.class.php: class not found AND path disclosure
+- Fix Bug #3012550 - missing legacyRender language definition japanese/ja_utf8
+
+[Other Changes/Enhancements]
+- Update french, fr_utf8, pt_utf8, portuguese language files
+
+[Staff]
+- kilica
+- Mikhail Miguel
+- shiraga
+- toemon
+- xoopserver
 
 ----------------------------------------
 2010/05/29: Package Revision 2.2.0 Alpha3
