@@ -1,7 +1,7 @@
 <?php
 // Translation Info
 // ############################################################### //
-// ## XOOPS Cube Legacy 2.1 - Tradução para o Português do Brasil
+// ## XOOPS Cube Legacy 2.2 - Tradução para o Português do Brasil
 // ## $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //

@@ -3,7 +3,7 @@
 // $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
-// ## XOOPS Cube Legacy 2.1 - Tradução para o Português do Brasil
+// ## XOOPS Cube Legacy 2.2 - Tradução para o Português do Brasil
 // ############################################################### //
 // ## Por............: Mikhail Miguel
 // ## E-mail.........: mikhail@underpop.com
@@ -27,13 +27,13 @@ define("_MI_FILEMANAGER_DESC", "Gerenciador de pastas e arquivos, com capacidade
 define("_MI_FILEMANAGER_DIRHANDLE", "Gestor de diretórios");
 define("_MI_FILEMANAGER_DIRHANDLE_DSC", "Permite que o administrador do portal crie e apague pastas");
 define("_MI_FILEMANAGER_EXTENSIONS", "Extensões dos arquivos permitidos para serem enviados ao servidor");
-define("_MI_FILEMANAGER_EXTENSIONS_DSC", "Separe as extensões dos formatos dos arquivos com barras verticais.<br /> Certifique-se de utilizar apenas minúsculas e não incluir espações entre elas as extensões. <br />O valor predefinido é: <q>gif|jpg|jpeg|png|avi|mov|wmv|mp3|mp4|flv|doc|xls|ods|odt|pdf</q>");
+define("_MI_FILEMANAGER_EXTENSIONS_DSC", "Separe as extensões dos formatos dos arquivos com barras verticais.<br /> Certifique-se de utilizar apenas minúsculas e não acrescentar espações entre elas as extensões. <br />O valor predefinido é: <q>gif|jpg|jpeg|png|avi|mov|wmv|mp3|mp4|flv|doc|xls|ods|odt|pdf</q>");
 define("_MI_FILEMANAGER_FCAPTURE", "[FFMPEG] Tempo da captura da miniatura");
 define("_MI_FILEMANAGER_FCAPTURE_DSC", "Tempo a partir do início do vídeo para capturar uma imagem descritiva do vídeo.");
 define("_MI_FILEMANAGER_FCONVERT", "[FFMPEG] O tamanho máximo das conversões em FLV");
 define("_MI_FILEMANAGER_FCONVERT_DSC", "Especificar o tamanho máximo dos arquivos de vídeo FLV. A unidade é MB.");
 define("_MI_FILEMANAGER_FMOVIEFILE", "[FFMPEG] Formato do arquivo para converter em FLV");
-define("_MI_FILEMANAGER_FMOVIEFILE_DSC", "Separe as extensões dos formatos dos arquivos com barras verticais.<br />Certifique-se de utilizar todas as palavras em minúsculas e de não incluir espaços entre elas. <br /> O valor predefinido é <q>flv|avi|mwv|mov|mpg|qt|mov|3gp|3gp2|mp4</q>");
+define("_MI_FILEMANAGER_FMOVIEFILE_DSC", "Separe as extensões dos formatos dos arquivos com barras verticais.<br />Certifique-se de utilizar todas as palavras em minúsculas e de não acrescentar espaços entre elas. <br /> O valor predefinido é <q>flv|avi|mwv|mov|mpg|qt|mov|3gp|3gp2|mp4</q>");
 define("_MI_FILEMANAGER_FOLDER", "Gestão de pastas");
 define("_MI_FILEMANAGER_FOLDER_DSC", "Gestão de diretórios e suas permissões");
 define("_MI_FILEMANAGER_FOPT", "[FFMPEG] Opção");

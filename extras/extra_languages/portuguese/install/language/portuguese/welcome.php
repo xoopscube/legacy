@@ -16,13 +16,13 @@
 $content = "<div style='text-align: left;'>
 <u><b>O que é?</b></u>
 XOOPS Cube é um sistema de publicação gratuito para a criação de portais dinâmicos. É de código livre, e concebido usando programação <a  href='http://www.php.net/' rel='homepage nofollow' title='PHP'>PHP</a> orientada a objetos (OO).
-O XOOPS Cube é ideal para a criação <i>sites</i> de notícias, intranets, ou mesmo weblogs, de pequena a grande escala. O XOOPS Cube é distribuido sob os termos da <a href='http://pt.wikipedia.org/wiki/Licença_BSD' rel='nofollow' target='_tab'>Nova Licença BSD</a>, o que provê a liberdade de ser utilizado e modificado desde que sejam cumpridos os termos de distribuição dessa <a href='http://xoopscube.sourceforge.net/license/bsd_licenses.txt' target='_tab'>licença</a>.
+O XOOPS Cube é ideal para a criação <i>sites</i> de notícias, intranets, ou mesmo weblogs, de pequena a grande escala. O XOOPS Cube é distribuido sob os termos da <a href='http://pt.wikipedia.org/wiki/Licença_BSD' rel='external nofollow' target='_tab'>Nova Licença BSD</a>, o que provê a liberdade de ser utilizado e modificado desde que sejam cumpridos os termos de distribuição dessa <a href='http://xoopscube.sourceforge.net/license/bsd_licenses.txt' target='_tab'>licença</a>.
 
 <u><b>Requisitos:</b></u>
 <ul>
-<li>Servidor WEB (<a href='http://www.lighttpd.net/' rel='nofollow' target='_tab'>Lighttpd</a>, <a href='http://www.apache.org/' rel='nofollow' target='_tab'>Apache</a>, <a  href='http://www.microsoft.com/iis' rel='homepage nofollow' title='Internet Information Services'>IIS</a>, <a  href='http://en.wikipedia.org/wiki/Roxen_%28web_server%29' rel='wikipedia nofollow' title='Roxen (web server)'>Roxen</a>, etc).</li>
-<li><a href='http://br.php.net/downloads.php' rel='nofollow' target='_tab'>PHP</a> <a href='http://www.gophp5.org/' rel='nofollow' target='_tab'>5.0</a> ou superior.</li>
-<li>Banco de dados <a href='http://www.mysql.com/' rel='nofollow' target='_tab'>MySQL</a> v4.4</li>
+<li>Servidor WEB (<a href='http://www.lighttpd.net/' rel='external nofollow' target='_tab'>Lighttpd</a>, <a href='http://www.apache.org/' rel='external nofollow' target='_tab'>Apache</a>, <a  href='http://www.microsoft.com/iis' rel='homepage nofollow' title='Internet Information Services'>IIS</a>, <a  href='http://en.wikipedia.org/wiki/Roxen_%28web_server%29' rel='wikipedia nofollow' title='Roxen (web server)'>Roxen</a>, etc).</li>
+<li><a href='http://br.php.net/downloads.php' rel='external nofollow' target='_tab'>PHP</a> <a href='http://www.gophp5.org/' rel='external nofollow' target='_tab'>5.0</a> ou superior.</li>
+<li>Banco de dados <a href='http://www.mysql.com/' rel='external nofollow' target='_tab'>MySQL</a> v4.4</li>
 </ul>
 <u><b>Antes de instalar:</b></u>
 <ul>

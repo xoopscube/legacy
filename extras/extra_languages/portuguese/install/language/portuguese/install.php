@@ -113,7 +113,7 @@ define("_INSTALL_L3","Agora, na linha 35, mude %s para %s");
 define("_INSTALL_L30","Prefixo da tabela");
 define("_INSTALL_L31","Não foi possível criar o banco de dados. Entre em contato com o administrador do sistema para maiores detalhes.");
 define("_INSTALL_L32","Fim da primeira parte da instalação.");
-define("_INSTALL_L33","Clique <a href='../index.php'>AQUI</a> para ver a página inicial do seu portal.");
+define("_INSTALL_L33","Clique <a rel='external' hreflang='pt' href='../index.php'>AQUI</a> para ver a página inicial do seu portal.");
 define("_INSTALL_L35","Se encontrou algum erro, favor contatar a equipe de desenvolvimento.");
 define("_INSTALL_L36","Por favor, escolha o nome e a senha do administrador, e então clique no botão abaixo para inciar a criação das tabelas no banco de dados.");
 define("_INSTALL_L37","Codinome do administrador");

@@ -3,7 +3,7 @@
 // $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
-// ## XOOPS Cube Legacy 2.1 - Tradução para o Português do Brasil
+// ## XOOPS Cube Legacy 2.2 - Tradução para o Português do Brasil
 // ############################################################### //
 // ## Por............: Mikhail Miguel
 // ## E-mail.........: mikhail@underpop.com
@@ -71,7 +71,7 @@ define("_AD_FILEMANAGER_RETURN", "Retornar");
 define("_AD_FILEMANAGER_SINGLEUPLOAD", "Arquivo");
 define("_AD_FILEMANAGER_SIZE", "Tamanho");
 define("_AD_FILEMANAGER_SWF_COULD_NOT_LOAD", "Lamento, mas não foi possível carregar o SWFUpload. Você precisa habilitar o JavaScript para desfrutar do SWFUpload.");
-define("_AD_FILEMANAGER_SWF_INSTALL_FLASH", "Lamento, mas não foi possível carregar o SWFUpload. Pode ser necessário instalar ou atualizar o Flash Player. <br /> Visite o portal da <a href='http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash' rel='nofollow' target='_tab'>Adobe</a> para obter a última versão do Flash Player.");
+define("_AD_FILEMANAGER_SWF_INSTALL_FLASH", "Lamento, mas não foi possível carregar o SWFUpload. Pode ser necessário instalar ou atualizar o Flash Player. <br /> Visite o portal da <a href='http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash' rel='external nofollow' target='_tab'>Adobe</a> para obter a última versão do Flash Player.");
 define("_AD_FILEMANAGER_SWF_LOADING", "Carregando a biblioteca SWFUpload. Aguarde ...");
 define("_AD_FILEMANAGER_SWF_LOAD_HAS_FAILED", "A biblioteca SWFUpload está levando muito tempo para ser carregado. Por favor, certifique-se de que uma versão recente do Plugin Adobe Flash Player está instalada e funcionando corretamente.");
 define("_AD_FILEMANAGER_SWF_UPLOAD_CANCEL", "Cancelar todos os envios de arquivos agendados");

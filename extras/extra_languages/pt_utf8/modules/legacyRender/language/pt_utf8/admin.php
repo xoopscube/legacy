@@ -3,7 +3,7 @@
 // $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
-// ## XOOPS Cube Legacy 2.1 - Tradução para o Português
+// ## XOOPS Cube Legacy 2.2 - Tradução para o Português
 // ############################################################### //
 // ## Por............: MIKHAIL MIGUEL
 // ## E-mail.........: mikhail@underpop.com
@@ -35,7 +35,7 @@ define("_AD_LEGACYRENDER_LANG_BANNER","Faixa publicitária");
 define("_AD_LEGACYRENDER_LANG_BANNERCLIENT_DELETE","Remover um anunciante");
 define("_AD_LEGACYRENDER_LANG_BANNERCLIENT_EDIT","Editar um anunciante");
 define("_AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST","Anunciantes");
-define("_AD_LEGACYRENDER_LANG_BANNERCLIENT_NEW","Incluir anunciante");
+define("_AD_LEGACYRENDER_LANG_BANNERCLIENT_NEW","Acrescentar anunciante");
 define("_AD_LEGACYRENDER_LANG_BANNERFINISH_DELETE","Remover faixa publicitária expirada");
 define("_AD_LEGACYRENDER_LANG_BANNERFINISH_LIST","Faixas expiradas");
 define("_AD_LEGACYRENDER_LANG_BANNER_DELETE","Remover uma faixa");
