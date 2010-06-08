@@ -9,7 +9,7 @@ define("_AM_SMILIE","Imagem");
 define("_AM_ACTION","Ações");
 define("_AM_EDIT","Editar");
 define("_AM_DEL","Remover");
-define("_AM_CNRFTSD","Impossível incluir Emo.");
+define("_AM_CNRFTSD","Impossível acrescentar Emo.");
 define("_AM_ADDSMILE","Incluir um emo");
 define("_AM_EDITSMILE","Editar um emo");
 define("_AM_SMILECODE","Código do emo:");

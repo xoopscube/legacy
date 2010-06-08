@@ -24,7 +24,7 @@ define("_AD_LEGACYRENDER_LANG_BANNER","Faixa publicitária");
 define("_AD_LEGACYRENDER_LANG_BANNERCLIENT_DELETE","Remover um anunciante");
 define("_AD_LEGACYRENDER_LANG_BANNERCLIENT_EDIT","Editar um anunciante");
 define("_AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST","Anunciantes");
-define("_AD_LEGACYRENDER_LANG_BANNERCLIENT_NEW","Incluir anunciante");
+define("_AD_LEGACYRENDER_LANG_BANNERCLIENT_NEW","Acrescentar anunciante");
 define("_AD_LEGACYRENDER_LANG_BANNERFINISH_DELETE","Remover faixa publicitária expirada");
 define("_AD_LEGACYRENDER_LANG_BANNERFINISH_LIST","Faixas expiradas");
 define("_AD_LEGACYRENDER_LANG_BANNER_DELETE","Remover uma faixa");

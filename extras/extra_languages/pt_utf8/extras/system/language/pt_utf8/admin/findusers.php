@@ -43,5 +43,5 @@ define("_AM_ACTIVE","Ativos");
 define("_AM_INACTIVE","Inativos");
 define("_AM_BOTH","Todos");
 define("_AM_SENDMAIL","Enviar e-mail");
-define("_AM_ADD2GROUP","Incluir no grupo %s");
+define("_AM_ADD2GROUP","Acrescentar no grupo %s");
 ?>

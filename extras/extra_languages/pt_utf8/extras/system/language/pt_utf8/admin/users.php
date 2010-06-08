@@ -10,7 +10,7 @@
 // ######################################################
 // ******************************************************...
 define("_AM_ACCESSLEV","Nível de acesso");
-define("_AM_ADDUSER","Incluir associado");
+define("_AM_ADDUSER","Acrescentar associado");
 define("_AM_AIM","AIM");
 define("_AM_AOUTVTEAD","Permitir que os outros associados vejam o meu endereço de e-mail.");
 define("_AM_AVATAR","Avatar");

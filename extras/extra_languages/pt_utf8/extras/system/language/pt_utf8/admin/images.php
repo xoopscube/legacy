@@ -10,7 +10,7 @@
 // ############################################################### //
 // *************************************************************** //
 define("_MD_IMGMAIN","Imagens");
-define("_MD_ADDIMGCAT","Incluir uma categoria de imagens");
+define("_MD_ADDIMGCAT","Acrescentar uma categoria de imagens");
 define("_MD_EDITIMGCAT","Editar uma categoria de imagens");
 define("_MD_IMGCATNAME","Nome");
 define("_MD_IMGCATRGRP","Select groups for image manager use:<BR /><BR /><span style='font-weight: normal;'>These are groups allowed to use the image manager for selecting images but not uploading. Administrador has automatic access.</span>");

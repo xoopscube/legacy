@@ -21,9 +21,9 @@ O XOOPS Cube é ideal para a criação de portais, sites de notícias, intranets
 <u><strong>Requisitos:</strong></u>
 <p>
 <ul>
-<li>Servidor WEB (<a href='http://www.lighttpd.net/' rel='nofollow' target='_tab'>Lighttpd</a>, <a href='http://www.apache.org/' rel='nofollow' target='_tab'>Apache</a>, IIS, Roxen, etc).</li>
+<li>Servidor WEB (<a href='http://www.lighttpd.net/' rel='external nofollow' target='_tab'>Lighttpd</a>, <a href='http://www.apache.org/' rel='external nofollow' target='_tab'>Apache</a>, IIS, Roxen, etc).</li>
 <li><a href='http://www.php.net/' target='_tab'>PHP</a> 4.3.2 ou superior.</li>
-<li>Banco de dados <a href='http://www.mysql.com/' rel='nofollow' target='_tab'>MySQL</a> v3.23</li>
+<li>Banco de dados <a href='http://www.mysql.com/' rel='external nofollow' target='_tab'>MySQL</a> v3.23</li>
 </ul>
 </p>
 <u><strong>Antes de instalar:</strong></u>

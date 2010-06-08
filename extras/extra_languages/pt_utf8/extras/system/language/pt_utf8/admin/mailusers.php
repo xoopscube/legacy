@@ -11,7 +11,7 @@ define("_AM_REGDMAX","Cadastrado antes de");
 define("_AM_IDLEMORE","Último acesso com mais de <span style='color:red'>X</span> dias.");
 define("_AM_IDLELESS","Último acesso com menos de <span style='color:red'>X</span> dias.");
 define("_AM_MAILOK","Aceitam receber e-mails. (opcional)");
-define("_AM_INACTIVE","Incluir mensagens apenas para associados inativos (opcional)");
+define("_AM_INACTIVE","Acrescentar mensagens apenas para associados inativos (opcional)");
 define("_AMIFCHECKD","Se este item estiver selecionado todas as mensagens, (incluindo as particulares) serão ignoradas");
 define("_AM_MAILFNAME","Nome (apenas)");
 define("_AM_MAILFMAIL","E-mail (apenas)");

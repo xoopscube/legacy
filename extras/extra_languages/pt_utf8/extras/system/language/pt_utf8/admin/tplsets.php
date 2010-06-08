@@ -1,6 +1,6 @@
 <?php
 define("_MD_ACTION","Ações");
-define("_MD_ADDSKINIMG","Incluir um arquivo de imagem ao Skin");
+define("_MD_ADDSKINIMG","Acrescentar um arquivo de imagem ao Skin");
 define("_MD_AM_BTOTADMIN","Voltar ao gerenciador de modelos.");
 define("_MD_AM_ERRTHEME","O modelo a seguir tem um arquivo de skin com dados inválidos. Pressione delete para remover os dados relacionados ao modelo.");
 define("_MD_BLOCKHTML","Bloco em HTML");

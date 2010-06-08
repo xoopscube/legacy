@@ -2,7 +2,7 @@
 define("_AM_ACTION","Ações");
 define("_AM_ACTIVE","Ativar");
 define("_AM_ADD","Acrescentar");
-define("_AM_ADDNEWRANK","Incluir uma nova graduação");
+define("_AM_ADDNEWRANK","Acrescentar uma nova graduação");
 define("_AM_DBUPDATED","Alterações realizadas corretamente.");
 define("_AM_DEL","Remover");
 define("_AM_EDIT","Editar");

@@ -99,7 +99,7 @@ define("_US_SELECTNG","Nenhum associado correspondente. Por favor, retorne e ten
 define("_US_SELFILE","Escolha o arquivo");
 define("_US_SENDPASSWORD","Enviar senha");
 define("_US_SHOWALL","Mostrar todos");
-define("_US_SHOWSIG","Sempre incluir a minha assinatura");
+define("_US_SHOWSIG","Sempre acrescentar a minha assinatura");
 define("_US_SIGNATURE","Assinatura");
 define("_US_SORRYNOTFOUND","Lamento, não foi localizada nenhuma informação correspondente.");
 define("_US_STATISTICS","Estatísticas");
