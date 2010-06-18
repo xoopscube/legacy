@@ -203,6 +203,8 @@ class Legacy_Controller extends XCube_Controller
 	
 		$this->_setupDebugger();
 	
+		$this->_loadInterfaceFiles();
+	
 		$this->_processPreBlockFilter();	// What's !?
 	
 		$this->_setupSession();
@@ -215,7 +217,6 @@ class Legacy_Controller extends XCube_Controller
 	
 		$this->_processPostFilter();
 	
-		$this->_loadInterfaceFiles();
 	}
 	
 	/**
