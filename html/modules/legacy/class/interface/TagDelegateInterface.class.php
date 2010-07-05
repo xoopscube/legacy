@@ -13,7 +13,7 @@ if(!defined('XOOPS_ROOT_PATH'))
 /**
  * Interface of tag delegate
 **/
-abstract class Legacy_AbstractTagDelegate
+interface Legacy_iTagDelegate
 {
 
 	/**
@@ -27,7 +27,7 @@ abstract class Legacy_AbstractTagDelegate
 	 * @param string $title
 	 * @param string $url
 	 */	
-	abstract public function setTags($dirname, $dataname, $data_id, $tagArr, $posttime, $title, $url);
+	public function setTags($dirname, $dataname, $data_id, $tagArr, $posttime, $title, $url);
 
 	/**
 	 * getTags
@@ -37,7 +37,7 @@ abstract class Legacy_AbstractTagDelegate
 	 * @param string $dataname
 	 * @param int $data_id
 	 */	
-	abstract public function getTags(&$tagArr, $dirname, $dataname, $data_id);
+	public function getTags(&$tagArr, $dirname, $dataname, $data_id);
 
 	/**
 	 * getTagCloudSrc
@@ -47,7 +47,7 @@ abstract class Legacy_AbstractTagDelegate
 	 *	 @param int		$cloud['count'][]
 	 * @param int	$setId
 	 */	
-	abstract public function getTagCloudSrc(&$cloud, $setId=0);
+	public function getTagCloudSrc(&$cloud, $setId=0);
 
 	/**
 	 * getContentsByTags
@@ -57,7 +57,7 @@ abstract class Legacy_AbstractTagDelegate
 	 * @param string	$dataname
 	 * @param string[]	$tagArr
 	 */	
-	abstract public function getContentsByTags(&$idList, $dirname, $dataname, $tagArr);
+	public function getContentsByTags(&$idList, $dirname, $dataname, $tagArr);
 
 }
 

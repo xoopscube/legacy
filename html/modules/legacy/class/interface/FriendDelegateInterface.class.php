@@ -13,7 +13,7 @@ if(!defined('XOOPS_ROOT_PATH'))
 /**
  * Interface of friend delegate
 **/
-abstract class Legacy_AbstractFriendDelegate
+interface Legacy_iFriendDelegate
 {
 	/**
 	 * getFriendIdList Legacy_Friend.GetFriendIdList
@@ -24,7 +24,7 @@ abstract class Legacy_AbstractFriendDelegate
 	 *
 	 * @return	void
 	 */ 
-	abstract public function getFriendIdList(/*** int[] ***/ &$list, /*** int ***/ $uid);
+	public function getFriendIdList(/*** int[] ***/ &$list, /*** int ***/ $uid);
 
 	/**
 	 * isFriend 	Legacy_Friend.IsFriend
@@ -36,7 +36,7 @@ abstract class Legacy_AbstractFriendDelegate
 	 *
 	 * @return	void
 	 */ 
-	abstract public function isFriend(/*** bool ***/ &$check, /*** int ***/ $uid, /*** int ***/ $friend_uid);
+	public function isFriend(/*** bool ***/ &$check, /*** int ***/ $uid, /*** int ***/ $friend_uid);
 
 	/**
 	 * getMyFriendsActivitiesList 	Legacy_Friend.GetFriendsActivitiesList
@@ -49,7 +49,7 @@ abstract class Legacy_AbstractFriendDelegate
 	 *
 	 * @return	void
 	 */ 
-	abstract public function getMyFriendsActivitiesList(/*** Legacy_AbstractUserActivityObject[] ***/ &$actionList, /*** int ***/ $uid, /*** int ***/ $limit=20, /*** int ***/ $start=0);
+	public function getMyFriendsActivitiesList(/*** Legacy_AbstractUserActivityObject[] ***/ &$actionList, /*** int ***/ $uid, /*** int ***/ $limit=20, /*** int ***/ $start=0);
 
 
 }

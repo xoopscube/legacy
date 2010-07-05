@@ -13,7 +13,7 @@ if(!defined('XOOPS_ROOT_PATH'))
 /**
  * Interface of calendar delegate
 **/
-abstract class Legacy_AbstractCalendarDelegate
+interface Legacy_iCalendarDelegate
 {
 	/**
 	 * getCalendarEvents	Legacy_Calendar.GetCalendarEvents
@@ -25,7 +25,7 @@ abstract class Legacy_AbstractCalendarDelegate
 	 *
 	 * @return	void
 	 */	
-	abstract public function getCalendarEvents(/*** mix[] ***/ &$event, /*** int ***/ $start, /*** int ***/ $end, /*** int ***/ $uid);
+	public function getCalendarEvents(/*** mix[] ***/ &$event, /*** int ***/ $start, /*** int ***/ $end, /*** int ***/ $uid);
 
 }
 

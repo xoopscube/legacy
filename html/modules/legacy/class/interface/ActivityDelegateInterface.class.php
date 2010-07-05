@@ -13,7 +13,7 @@ if(!defined('XOOPS_ROOT_PATH'))
 /**
  * Interface of acitivity delegate
 **/
-abstract class Legacy_AbstractActivityDelegate
+interface Legacy_iActivityDelegate
 {
 	/**
 	 * addUserActivity	 Legacy_Activity.AddUserActivity
@@ -22,7 +22,7 @@ abstract class Legacy_AbstractActivityDelegate
 	 *
 	 * @return	void
 	 */ 
-	abstract public function addUserActivity(/*** Legacy_AbstractUserActivityObject ***/ &$activity);
+	public function addUserActivity(/*** Legacy_AbstractUserActivityObject ***/ &$activity);
 
 	/**
 	 * deleteUserActivity	Legacy_Activity.DeleteUserActivity
@@ -32,7 +32,7 @@ abstract class Legacy_AbstractActivityDelegate
 	 *
 	 * @return	void
 	 */ 
-	abstract public function deleteUserActivity(/*** bool ***/ &$result, /*** CriteriaElement ***/ $cri);
+	public function deleteUserActivity(/*** bool ***/ &$result, /*** CriteriaElement ***/ $cri);
 
 	/**
 	 * getUsersActivities	Legacy_Activity.GetUsersAcitivities
@@ -44,7 +44,7 @@ abstract class Legacy_AbstractActivityDelegate
 	 *
 	 * @return	void
 	 */ 
-	abstract public function getUsersActivities(/*** Legacy_AbstractUserActivityObject[] ***/ &$activityList, /*** int[] ***/ $uids, /*** int ***/ $limit=20, /*** int ***/ $start=0);
+	public function getUsersActivities(/*** Legacy_AbstractUserActivityObject[] ***/ &$activityList, /*** int[] ***/ $uids, /*** int ***/ $limit=20, /*** int ***/ $start=0);
 
 	/**
 	 * addGroupActivity	 Legacy_Activity.AddGroupActivity
@@ -53,7 +53,7 @@ abstract class Legacy_AbstractActivityDelegate
 	 *
 	 * @return	void
 	 */ 
-	abstract public function addGroupActivity(/*** Legacy_AbstractGroupActivityObject ***/ &$activity);
+	public function addGroupActivity(/*** Legacy_AbstractGroupActivityObject ***/ &$activity);
 
 	/**
 	 * deleteGroupActivity	Legacy_Activity.deleteGroupActivity
@@ -63,7 +63,7 @@ abstract class Legacy_AbstractActivityDelegate
 	 *
 	 * @return	void
 	 */ 
-	abstract public function deleteGroupActivity(/*** bool ***/ &$result, /*** CriteriaElement ***/ $cri);
+	public function deleteGroupActivity(/*** bool ***/ &$result, /*** CriteriaElement ***/ $cri);
 
 	/**
 	 * getGroupsActivities	 Legacy_Activity.GetGroupsAcitivities
@@ -75,7 +75,7 @@ abstract class Legacy_AbstractActivityDelegate
 	 *
 	 * @return	void
 	 */ 
-	abstract public function getGroupsActivities(/*** Legacy_AbstractGroupActivityObject[] ***/ &$activityList, /*** int[] ***/ $groupIds, /*** int ***/ $limit=20, /*** int ***/ $start=0);
+	public function getGroupsActivities(/*** Legacy_AbstractGroupActivityObject[] ***/ &$activityList, /*** int[] ***/ $groupIds, /*** int ***/ $limit=20, /*** int ***/ $start=0);
 
 }
 

@@ -13,7 +13,7 @@ if(!defined('XOOPS_ROOT_PATH'))
 /**
  * Interface of progress client delegate
 **/
-abstract class Legacy_AbstractProgressClientDelegate
+interface Legacy_iProgressClientDelegate
 {
 	/**
 	 * getManagedModules	Legacy_Progress.GetManagedModules
@@ -24,7 +24,7 @@ abstract class Legacy_AbstractProgressClientDelegate
 	 *
 	 * @return	void
 	 */ 
-	abstract public function getManagedModules(/*** array ***/ &$list);
+	public function getManagedModules(/*** array ***/ &$list);
 
 	/**
 	 * updateStatus Legacy_Progress.UpdateStatus
@@ -37,7 +37,7 @@ abstract class Legacy_AbstractProgressClientDelegate
 	 *
 	 * @return	void
 	 */ 
-	abstract public function updateStatus(/*** string ***/ &$result, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id, /*** Enum ***/ $status);
+	public function updateStatus(/*** string ***/ &$result, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id, /*** Enum ***/ $status);
 }
 
 ?>

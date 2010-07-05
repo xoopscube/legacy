@@ -13,7 +13,7 @@ if(!defined('XOOPS_ROOT_PATH'))
 /**
  * Interface of progress delegate
 **/
-abstract class Legacy_AbstractProgressDelegate
+interface Legacy_iAbstractProgressDelegate
 {
 	/**
 	 * addItem	Legacy_Progress.AddItem
@@ -26,7 +26,7 @@ abstract class Legacy_AbstractProgressDelegate
 	 *
 	 * @return	void
 	 */ 
-	abstract public function addItem(/*** string ***/ $title, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id, /*** string ***/ $url);
+	public function addItem(/*** string ***/ $title, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id, /*** string ***/ $url);
 
 	/**
 	 * deleteItem	Legacy_Progress.DeleteItem
@@ -37,7 +37,7 @@ abstract class Legacy_AbstractProgressDelegate
 	 *
 	 * @return	void
 	 */ 
-	abstract public function deleteItem(/*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id);
+	public function deleteItem(/*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id);
 
 	/**
 	 * getHistory	Legacy_Progress.GetHistory
@@ -54,7 +54,7 @@ abstract class Legacy_AbstractProgressDelegate
 	 *
 	 * @return	void
 	 */ 
-	abstract public function getHistory(/*** mix[] ***/ &$historyArr, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id);
+	public function getHistory(/*** mix[] ***/ &$historyArr, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id);
 
 
 }
