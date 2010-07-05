@@ -1,15 +1,12 @@
 <div id="lecat">
 	<div class="catDetail">
-		<h1><{$smarty.const._MD_LECAT_LANG_TITLE}>: <{$object->getShow('title')}> <a href="./index.php?action=CatEdit&amp;cat_id=<{$object->getShow('cat_id')}>"><img src="<{$xoops_url}>/images/icons/edit.gif" alt="<{$smarty.const._EDIT}>" /></a></h1>
+		<h1><{$smarty.const._MD_LECAT_LANG_TITLE}>: <{$object->getShow('title')}> <a href="<{xoops_cooluri dirname=$dirname dataname=cat data_id=$object->getShow('cat_id') action=edit}>"><img src="<{$xoops_url}>/images/icons/edit.gif" alt="<{$smarty.const._EDIT}>" /></a></h1>
 		<div class="description">
 			<{$object->getShow('description')}>
 		</div>
 		<dl class="view">
-		  <dt><{$smarty.const._MD_LECAT_LANG_SET}>:</dt>
-		  <dd><a href="./index.php?action=SetView&amp;set_id=<{$object->getShow('set_id')}>"><{$object->mSet->getShow('title')}></a></dd>
-
 		  <dt><{$smarty.const._MD_LECAT_LANG_PARENT}>:</dt>
-		  <dd><{if $object->mPcat}><a href="./index.php?action=CatView&amp;cat_id=<{$object->getShow('p_id')}>"><{$object->mPcat->getShow('title')}></a><{else}><{$smarty.const._MD_LECAT_LANG_TOP_CAT}><{/if}></dd>
+		  <dd><{if $object->mPcat}><a href="<{xoops_cooluri dirname=$dirname dataname=cat data_id=$object->getShow('p_id')}>"><{$object->mPcat->getShow('title')}></a><{else}><{$smarty.const._MD_LECAT_LANG_TOP_CAT}><{/if}></dd>
 
 		  <dt><{$smarty.const._MD_LECAT_LANG_WEIGHT}>:</dt>
 		  <dd><{$object->getShow('weight')}></dd>
@@ -75,7 +72,7 @@
 	<hr class="clear" />
 	<div class="catTree">
 		<h2><{$smarty.const._MD_LECAT_LANG_CAT}></h2>
-	<a href="index.php?action=CatEdit&amp;set_id=<{$object->getShow('set_id')}>"><{$smarty.const._MD_LECAT_LANG_ADD_A_NEW_CAT}></a>
+		<a href="<{xoops_cooluri dirname=$dirname dataname=cat action=edit}>"><{$smarty.const._MD_LECAT_LANG_ADD_A_NEW_CAT}></a>
 		<{lecat_tree tree=$childrenTree url="./index.php?action=CatView&amp;cat_id=" dirname=$dirname}>
 	</div>
 </div>

@@ -6,7 +6,7 @@
     <{/foreach}>
   </ul>
 <{/if}>
-<form action="index.php?action=CatEdit" method="post">
+<form action="<{xoops_cooluri dirname=$dirname dataname=cat action=edit}>" method="post">
   <table class="outer" summary="">
     <caption>
       <{if $actionForm->get('cat_id')}>
@@ -20,12 +20,6 @@
         <th class="head"><{$smarty.const._MD_LECAT_LANG_TITLE}></th>
         <td class="<{cycle values="odd,even"}>">
           <{xoops_input type=text name=title value=$actionForm->get('title') size=15 maxlength=255}>
-        </td>
-      </tr>
-      <tr>
-        <th class="head"><{$smarty.const._MD_LECAT_LANG_SET}></th>
-        <td class="<{cycle values="odd,even"}>">
-          <{$object->mSet->get('title')}>
         </td>
       </tr>
       <tr>
@@ -64,7 +58,6 @@
         <td class="foot" colspan="2">
           <{xoops_token form=$actionForm}>
           <{xoops_input type=hidden name=cat_id value=$actionForm->get('cat_id')}>
-				  <{xoops_input type=hidden name=set_id value=$actionForm->get('set_id')}>
           <input type="submit" value="<{$smarty.const._SUBMIT}>" />
           <input type="submit" value="<{$smarty.const._CANCEL}>" name="_form_control_cancel" />
         </td>

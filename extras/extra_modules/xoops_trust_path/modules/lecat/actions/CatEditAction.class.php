@@ -69,14 +69,6 @@ class Lecat_CatEditAction extends Lecat_AbstractEditAction
 		if($this->mRoot->mContext->mRequest->getRequest('p_id')){
 			$this->mObject->set('p_id', $this->mRoot->mContext->mRequest->getRequest('p_id'));
 			$this->mObject->loadPcat();
-			$this->mObject->set('set_id', $this->mObject->mPcat->get('set_id'));
-		}
-		//set category set if requested
-		elseif($this->mRoot->mContext->mRequest->getRequest('set_id')){
-			$this->mObject->set('set_id', $this->mRoot->mContext->mRequest->getRequest('set_id'));
-		}
-		else{
-			$this->mRoot->mController->executeRedirect("./index.php?action=SetEdit", 1, _MD_LECAT_ERROR_NO_SET_REQUESTED);
 		}
 	}
 
@@ -99,8 +91,6 @@ class Lecat_CatEditAction extends Lecat_AbstractEditAction
 			$this->mObject->loadPcat();
 			$this->mObject->loadPermit();
 		}
-	
-		$this->mObject->loadSet();
 	
 		//check specified modules name in the current and parent cats.
 		$reqModulesArr = explode(',', $this->mRoot->mContext->mRequest->getRequest('modules'));
@@ -138,7 +128,6 @@ class Lecat_CatEditAction extends Lecat_AbstractEditAction
 	{
 		//load Category for Parent Selection
 		$catCriteria=new CriteriaCompo();
-		$catCriteria->add(new Criteria('set_id', $this->mObject->get('set_id')));
 		if($this->mObject->get('cat_id')){
 			$catCriteria->add(new Criteria('cat_id', $this->mObject->get('cat_id'), '!='));
 		}
@@ -158,10 +147,10 @@ class Lecat_CatEditAction extends Lecat_AbstractEditAction
 			}
 		}
 		//remove depth limit overed categories
-		$limit = $this->mObject->mSet->get('level');
-		if($limit!=0){	//limit==0 means unlimited depth
+		$maxdepth = $this->mModule->getModuleConfig('maxdepth');
+		if($maxdepth!=0){	//maxdepth==0 means unlimited depth
 			foreach(array_keys($catArr) as $keyL){
-				if($limit<$catArr[$keyL]->getDepth()+$deepest-$this->mObject->getDepth()+1||$limit<$catArr[$keyL]->getDepth()+1){
+				if($maxdepth<$catArr[$keyL]->getDepth()+$deepest-$this->mObject->getDepth()+1||$maxdepth<$catArr[$keyL]->getDepth()+1){
 					unset($catArr[$keyL]);
 				}
 			}
@@ -172,6 +161,7 @@ class Lecat_CatEditAction extends Lecat_AbstractEditAction
 		$render->setAttribute('actionForm', $this->mActionForm);
 		$render->setAttribute('object', $this->mObject);
 		$render->setAttribute('catArr', $catArr);
+		$render->setAttribute('dirname', $this->mAsset->mDirname);
 	}
 
 	/**

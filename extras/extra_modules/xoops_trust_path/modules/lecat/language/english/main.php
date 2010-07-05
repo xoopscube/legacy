@@ -35,7 +35,7 @@ define('_MD_LECAT_LANG_CAT_EDIT', 'Category Edit');
 define('_MD_LECAT_LANG_CAT_DELETE', 'Category Delete');
 define('_MD_LECAT_ERROR_CONTENT_IS_NOT_FOUND', 'Content is not found');
 define('_MD_LECAT_LANG_ADD_A_NEW_SET', 'Add a new Category Set');
-define('_MD_LECAT_LANG_LEVEL', 'Level');
+define('_MD_LECAT_LANG_LEVEL', 'Max Depth');
 define('_MD_LECAT_LANG_ACTIONS', 'Action');
 define('_MD_LECAT_LANG_SET_EDIT', 'Category Set Edit');
 define('_MD_LECAT_LANG_SET_DELETE', 'Category Set Delete');

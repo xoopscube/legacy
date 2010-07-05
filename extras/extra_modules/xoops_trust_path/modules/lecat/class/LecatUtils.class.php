@@ -78,6 +78,22 @@ class Lecat_Utils
 			if(count($objs)>0) return $objs;
 		}
 	}
+
+	/**
+	 * getActionList
+	 * 
+	 * @param	string	$dirname
+	 * 
+	 * @return	string[]
+	**/
+	public static function getActionList(/*** string ***/ $dirname)
+	{
+		$handler = xoops_gethandler('config');
+		$conf = $handler->getConfigsByDirname($dirname);
+	
+		$actions = $conf['actions'];
+		return isset($actions) ? unserialize($actions) : array('key'=>array('viewer','poster','manager'),'title'=>array('Viewer', 'Poster', 'Manager'),'default'=>array(1,1,0));
+	}
 }
 
 ?>

@@ -14,13 +14,12 @@ require_once LECAT_TRUST_PATH . '/class/AbstractFilterForm.class.php';
 
 define('LECAT_CAT_SORT_KEY_CAT_ID', 1);
 define('LECAT_CAT_SORT_KEY_TITLE', 2);
-define('LECAT_CAT_SORT_KEY_SET_ID', 3);
-define('LECAT_CAT_SORT_KEY_P_ID', 4);
-define('LECAT_CAT_SORT_KEY_MODULES', 5);
-define('LECAT_CAT_SORT_KEY_DESCRIPTION', 6);
-define('LECAT_CAT_SORT_KEY_DEPTH', 7);
-define('LECAT_CAT_SORT_KEY_WEIGHT', 8);
-define('LECAT_CAT_SORT_KEY_OPTIONS', 9);
+define('LECAT_CAT_SORT_KEY_P_ID', 3);
+define('LECAT_CAT_SORT_KEY_MODULES', 4);
+define('LECAT_CAT_SORT_KEY_DESCRIPTION', 5);
+define('LECAT_CAT_SORT_KEY_DEPTH', 6);
+define('LECAT_CAT_SORT_KEY_WEIGHT', 7);
+define('LECAT_CAT_SORT_KEY_OPTIONS', 8);
 define('LECAT_CAT_SORT_KEY_DEFAULT', LECAT_CAT_SORT_KEY_CAT_ID);
 
 /**
@@ -36,7 +35,6 @@ class Lecat_CatFilterForm extends Lecat_AbstractFilterForm
     var $mSortKeys = array(
         LECAT_CAT_SORT_KEY_CAT_ID => 'cat_id',
         LECAT_CAT_SORT_KEY_TITLE => 'title',
-        LECAT_CAT_SORT_KEY_SET_ID => 'set_id',
         LECAT_CAT_SORT_KEY_P_ID => 'p_id',
         LECAT_CAT_SORT_KEY_MODULES => 'modules',
         LECAT_CAT_SORT_KEY_DESCRIPTION => 'description',
@@ -78,11 +76,6 @@ class Lecat_CatFilterForm extends Lecat_AbstractFilterForm
         if (($value = $root->mContext->mRequest->getRequest('title')) !== null) {
             $this->mNavi->addExtra('title', $value);
             $this->_mCriteria->add(new Criteria('title', $value));
-        }
-    
-        if (($value = $root->mContext->mRequest->getRequest('set_id')) !== null) {
-            $this->mNavi->addExtra('set_id', $value);
-            $this->_mCriteria->add(new Criteria('set_id', $value));
         }
     
         if (($value = $root->mContext->mRequest->getRequest('p_id')) !== null) {

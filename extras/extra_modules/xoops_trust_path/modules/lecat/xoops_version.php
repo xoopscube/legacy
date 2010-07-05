@@ -56,7 +56,6 @@ $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 $modversion['tables'] = array(
 //	  '{prefix}_{dirname}_xxxx',
 ##[cubson:tables]
-	'{prefix}_{dirname}_set',
 	'{prefix}_{dirname}_cat',
 	'{prefix}_{dirname}_permit',
 ##[/cubson:tables]
@@ -77,10 +76,6 @@ $modversion['templates'] = array(
 	array('file' => '{dirname}_cat_edit.html','description' => _MI_LECAT_TPL_CAT_EDIT),
 	array('file' => '{dirname}_cat_delete.html','description' => _MI_LECAT_TPL_CAT_DELETE),
 	array('file' => '{dirname}_cat_view.html','description' => _MI_LECAT_TPL_CAT_VIEW),
-	array('file' => '{dirname}_set_list.html','description' => _MI_LECAT_TPL_SET_LIST),
-	array('file' => '{dirname}_set_edit.html','description' => _MI_LECAT_TPL_SET_EDIT),
-	array('file' => '{dirname}_set_delete.html','description' => _MI_LECAT_TPL_SET_DELETE),
-	array('file' => '{dirname}_set_view.html','description' => _MI_LECAT_TPL_SET_VIEW),
 ##[/cubson:templates]
 );
 
@@ -90,15 +85,13 @@ $modversion['templates'] = array(
 $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = 'admin/index.php?action=Index';
 $modversion['adminmenu'] = array(
-/*
 	array(
-		'title'    => _MI_LECAT_LANG_XXXX,
-		'link'	   => 'admin/index.php?action=xxx',
-		'keywords' => _MI_LECAT_KEYWORD_XXX,
+		'title'    => _MI_LECAT_LANG_SETTING_EDIT,
+		'link'	   => 'admin/index.php?action=SettingEdit',
+		'keywords' => _MI_LECAT_KEYWORD_SETTING_EDIT,
 		'show'	   => true,
 		'absolute' => false
 	),
-*/
 ##[cubson:adminmenu]
 ##[/cubson:adminmenu]
 );
@@ -130,6 +123,15 @@ $modversion['config'] = array(
 		'formtype'		=> 'textbox' ,
 		'valuetype' 	=> 'text' ,
 		'default'		=> '/modules/'.$myDirName.'/style.css',
+		'options'		=> array()
+	) ,
+	array(
+		'name'			=> 'maxdepth' ,
+		'title' 		=> "_MI_LECAT_LANG_MAXDEPTH" ,
+		'description'	=> "_MI_LECAT_DESC_MAXDEPTH" ,
+		'formtype'		=> 'textbox' ,
+		'valuetype' 	=> 'int' ,
+		'default'		=> '0',
 		'options'		=> array()
 	) ,
 /*

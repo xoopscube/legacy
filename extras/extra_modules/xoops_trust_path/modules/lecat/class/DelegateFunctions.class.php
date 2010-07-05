@@ -5,57 +5,110 @@
  */
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
-require_once XOOPS_ROOT_PATH.'/modules/legacy/class/interface/AbstractCategoryDelegate.class.php';
-class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
+
+
+class Lecat_CoolUriDelegate
 {
 	/**
-	 * getCategorySetList
+	 * getNormalUri
 	 *
-	 * @param string[] &$setList
+	 * @param string	$uri
+	 * @param string	$dirname
+	 * @param string	$dataname
+	 * @param int		$data_id
+	 * @param string	$authType
+	 * @param string	$query
 	 *
 	 * @return	void
 	 */ 
-	public function getCategorySetList(/*** string[] ***/ &$setList)
+	public function getNormalUri(/*** string ***/ &$uri, /*** string ***/ $dirname, /*** string ***/ $dataname=null, /*** int ***/ $data_id=0, /*** string ***/ $authType=null, /*** string ***/ $query=null)
 	{
-		$objs = Legacy_Utils::getModuleHandler('set', self::_getDirname())->getObjects();
-		foreach($objs as $obj){
-			$setList[$obj->getShow('title')] = $obj->getShow('set_id');
+		$sUri = '/%s/index.php?action=%s%s';
+		$lUri = '/%s/index.php?action=%s%s&%s=%d';
+		$table = isset($dataname) ? $dataname : 'cat';
+	
+		$key = $table.'_id';
+	
+		if(isset($dataname)){
+			if($data_id>0){
+				if(isset($authType)){
+					$uri = sprintf($lUri, $dirname, ucfirst($dataname), ucfirst($authType), $key, $data_id);
+				}
+				else{
+					$uri = sprintf($lUri, $dirname, ucfirst($dataname), 'View', $key, $data_id);
+				}
+			}
+			else{
+				if(isset($authType)){
+					$uri = sprintf($sUri, $dirname, ucfirst($dataname), ucfirst($authType));
+				}
+				else{
+					$uri = sprintf($sUri, $dirname, ucfirst($dataname), 'List');
+				}
+			}
+			$uri = isset($query) ? $uri.'&'.$query : $uri;
+		}
+		else{
+			if($data_id>0){
+				if(isset($authType)){
+					die('invalid uri');
+				}
+				else{
+					$handler = Legacy_Utils::getModuleHandler($table, $dirname);
+					$key = $handler->mPrimary;
+					$uri = sprintf($lUri, $dirname, ucfirst($table).'View', ucfirst($authType), $key, $data_id);
+				}
+				$uri = isset($query) ? $uri.'&'.$query : $uri;
+			}
+			else{
+				if(isset($authType)){
+					die('invalid uri');
+				}
+				else{
+					$uri = sprintf('/%s/', $dirname);
+					$uri = isset($query) ? $uri.'index.php?'.$query : $uri;
+				}
+			}
 		}
 	}
+}
 
+
+class Lecat_DelegateFunctions implements Legacy_iCategoryDelegate
+{
 	/**
 	 * getTitle
 	 *
-	 * @param string &$title
-	 * @param int $catId
-	 * @param string $dirname
+	 * @param string 	&$title
+	 * @param string 	$catDir	category module's directory name
+	 * @param int 		$catId
 	 *
 	 * @return	void
 	 */ 
-	public function getTitle(/*** string ***/ &$title, /*** int ***/ $catId)
+	public function getTitle(/*** string ***/ &$title, /*** string ***/ $catDir, /*** int ***/ $catId)
 	{
-		$title = Legacy_Utils::getModuleHandler('cat', self::_getDirname())->get($catId)->get('title');
+		$title = Legacy_Utils::getModuleHandler('cat', $catDir)->get($catId)->get('title');
 	}
 
 	/**
 	 * getTree
+	 * Get category Legacy_AbstractCategoryObject array in parent-child tree order
 	 *
-	 * @param array $tree
-	 * @param int $setId
-	 * @param string $action
-	 * @param int $uid
-	 * @param int $catId
-	 * @param string $module
+	 * @param Legacy_AbstractCategoryObject[] $tree
+	 * @param string $catDir	category module's directory name
+	 * @param string 	$authType	ex) viewer, editor, manager
+	 * @param int 		$uid
+	 * @param int 		$catId	get tree under this cat_id
+	 * @param string	$module module confinement
 	 *
 	 * @return	void
 	 */ 
-	public function getTree(/*** array ***/ &$tree, /*** int ***/ $setId, /*** string ***/ $action, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module="")
+	public function getTree(/*** Legacy_AbstractCategoryObject[] ***/ &$tree, /*** string ***/ $catDir, /*** string ***/ $authType, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module=null)
 	{
-		$setObj = Legacy_Utils::getModuleHandler('set', self::_getDirname())->get($setId);
-		if($setObj){
-			$setObj->loadTree(intval($catId));
-			$setObj->filterCategory($action, $uid, false);
-			$tree = $setObj->mTree;
+		$handler = Legacy_Utils::getModuleHandler('cat', $catDir);
+		if($handler){
+			$tree = $handler->getTree(intval($catId));
+			$tree = $handler->filterCategory($tree, $authType, $uid, false);
 		}
 	}
 
@@ -63,13 +116,13 @@ class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
 	 * getTitleList
 	 *
 	 * @param string &$titleList
-	 * @param int $setId
+	 * @param string $catDir	category module's directory name
 	 *
 	 * @return	void
 	 */ 
-	public function getTitleList(/*** string[] ***/ &$titleList, /*** int ***/ $setId)
+	public function getTitleList(/*** string[] ***/ &$titleList, /*** string ***/ $catDir)
 	{
-		$catObjs = Legacy_Utils::getModuleHandler('cat', self::_getDirname())->getObjects(new Criteria('set_id', $setId));
+		$catObjs = Legacy_Utils::getModuleHandler('cat', $catDir)->getObjects();
 		foreach(array_keys($catObjs) as $key){
 			if($catObjs[$key]->checkModule()){
 				$titleList[$catObjs[$key]->get('cat_id')] = $catObjs[$key]->get('title');
@@ -81,78 +134,84 @@ class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
 	 * checkPermitByUserId
 	 *
 	 * @param bool &$check
-	 * @param int $catId
-	 * @param string $action
-	 * @param int $uid
-	 * @param string $module
+	 * @param string	$catDir	category module's directory name
+	 * @param int		$catId
+	 * @param string	$authType	ex) viewer, editor, manager
+	 * @param int		$uid
+	 * @param string	$module	module confinement
 	 *
 	 * @return	void
 	 */ 
-	public function checkPermitByUserId(/*** bool ***/ &$check, /*** int ***/ $catId, /*** string ***/ $action, /*** int ***/ $uid, /*** string ***/ $module="")
+	public function checkPermitByUserId(/*** bool ***/ &$check, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** int ***/ $uid, /*** string ***/ $module=null)
 	{
 		$check = false;
-		$obj = Legacy_Utils::getModuleHandler('cat', self::_getDirname())->get($catId);
+		$obj = Legacy_Utils::getModuleHandler('cat', $catDir)->get($catId);
 		if($obj){
-			$check = $obj->checkPermitByUid($action, $uid, $module);
+			$check = $obj->checkPermitByUid($authType, $uid, $module);
 		}
 	}
 
 	/**
 	 * checkPermitByGroupId
 	 *
-	 * @param bool &$check
-	 * @param int $catId
-	 * @param string $action
-	 * @param int $groupId
-	 * @param string $module
+	 * @param bool		&$check
+	 * @param string	$catDir	category module's directory name
+	 * @param int		$catId
+	 * @param string	$authType	ex) viewer, editor, manager
+	 * @param int		$groupId
+	 * @param string	$module	 module confinement
 	 *
 	 * @return	void
 	 */ 
-	public function checkPermitByGroupId(/*** bool ***/ &$check, /*** int ***/ $catId, /*** string ***/ $action, /*** int ***/ $groupId, /*** string ***/ $module="")
+	public function checkPermitByGroupId(/*** bool ***/ &$check, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** int ***/ $groupId, /*** string ***/ $module=null)
 	{
 		$check = false;
-		$obj = Legacy_Utils::getModuleHandler('cat', self::_getDirname())->get($catId);
+		$obj = Legacy_Utils::getModuleHandler('cat', $catDir)->get($catId);
 		if($obj){
-			$check = $obj->checkPermitByGroupid($action, $groupid, $module);
+			$check = $obj->checkPermitByGroupid($authType, $groupid, $module);
 		}
 	}
 
 	/**
-	 * getParent
+	 * getParent		Legacy_Category.GetParent
+	 * get the parent category object.
 	 *
-	 * @param Lecat_CatObject &$parent
-	 * @param int $catId
+	 * @param Legacy_AbstractCategoryObject &$parent
+	 * @param string 	$catDir	category module's directory name
+	 * @param int 		$catId
 	 *
 	 * @return	void
 	 */ 
-	public function getParent(/*** Lecat_CatObject ***/ &$parent, /*** int ***/ $catId)
+	public function getParent(/*** Legacy_AbstractCategoryObject ***/ &$parent, /*** string ***/ $catDir, /*** int ***/ $catId)
 	{
-		$handler = Legacy_Utils::getModuleHandler('cat', self::_getDirname());
+		$handler = Legacy_Utils::getModuleHandler('cat', $catDir);
 		$pId = $handler->get($catId)->get('p_id');
 		$parent = $handler->get($pId);
 	}
 
 	/**
-	 * getChildren
+	 * getChildren		Legacy_Category.GetChildren
+	 * get the child category objects. Be careful that you can get only children objects, excluded the given category itself.
 	 *
-	 * @param array &$children
-	 * @param int $catId
-	 * @param string $action
-	 * @param int $uid
-	 * @param string $module
+	 * @param Legacy_AbstractCategoryObject[] &$children
+	 * @param string	$catDir	category module's directory name
+	 * @param int		$catId	the parent's category id
+	 * @param string	$authType	ex) viewer, editor, manager
+	 * @param int		$uid
+	 * @param string	$module	 module confinement
 	 *
 	 * @return	void
 	 */ 
-	public function getChildren(/*** array ***/ &$children, /*** int ***/ $catId, /*** string ***/ $action, /*** int ***/ $uid, /*** string ***/ $module="")
+	public function getChildren(/*** Legacy_AbstractCategoryObject[] ***/ &$children, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** int ***/ $uid, /*** string ***/ $module=null)
 	{
-		$handler = Legacy_Utils::getModuleHandler('cat', self::_getDirname());
+		$handler = Legacy_Utils::getModuleHandler('cat', $catDir);
 		$cat = $handler->get($catId);
 		if($cat){
 			$cat->loadChildren($module);
 			foreach(array_keys($cat->mChildren) as $key){
 				$children['catObj'][$key] = $cat->mChildren[$key];
-				if($action){
-					if($cat->mChildren[$key]->checkPermitByUserId($action, intval($uid))=='true'){
+				if($authType){
+					if($cat->mChildren[$key]->checkPermitByUserId($authType, intval($uid))=='true'){
 						$children['permit'][$key] = 1;
 					}
 					else{
@@ -167,17 +226,21 @@ class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
 	}
 
 	/**
-	 * getCatPath
+	 * getCatPath		Legacy_Category.GetCatPath
+	 * get category path array from top to the given category.
 	 *
-	 * @param string &$catPath
-	 * @param int $catId
-	 * @param string $order
+	 * @param string[] &$catPath
+	 *	 $catPath['cat_id']
+	 *	 $catPath['title']
+	 * @param string $catDir	category module's directory name
+	 * @param int $catId		terminal category id in the category path
+	 * @param string $order		'ASC' or 'DESC'
 	 *
 	 * @return	void
 	 */ 
-	public function getCatPath(/*** array ***/ &$catPath, /*** int ***/ $catId, /*** string ***/ $order, /*** string ***/ $module="")
+	public function getCatPath(/*** array ***/ &$catPath, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $order='ASC')
 	{
-		$cat = Legacy_Utils::getModuleHandler('cat', self::_getDirname())->get($catId);
+		$cat = Legacy_Utils::getModuleHandler('cat', $catDir)->get($catId);
 		if($cat){
 			$cat->loadCatPath();
 			if($order=='ASC' && count($cat->mCatPath)>0){
@@ -191,35 +254,27 @@ class Lecat_DelegateFunctions extends Legacy_AbstractCategoryDelegate
 	}
 
 	/**
-	 * getPermittedIdList
+	 * getPermittedIdList		Legacy_Category.GetPermittedIdList
+	 * get category ids of permission.
 	 *
-	 * @param int[] &$idList
-	 * @param int $setId
-	 * @param string $action
-	 * @param int $uid
-	 * @param int $catId
-	 * @param string $module
+	 * @param int[]		&$idList
+	 * @param string	$catDir	category module's directory name
+	 * @param string	$authType	ex) viewer, editor, manager
+	 * @param int		$uid
+	 * @param int		$catId	get result under this cat_id
+	 * @param string	$module	 module confinement
 	 *
 	 * @return	void
 	 */ 
-	public function getPermittedIdList(/*** int[] ***/ &$idList, /*** int ***/ $setId, /*** string ***/ $action, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module="")
+	public function getPermittedIdList(/*** int[] ***/ &$idList, /*** string ***/ $catDir, /*** string ***/ $authType, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module=null)
 	{
-		if($setObj = Legacy_Utils::getModuleHandler('set', self::_getDirname())->get($setId)){
-			$setObj->loadTree(intval($catId));
-			$setObj->filterCategory($action, $uid, true);
-			foreach(array_keys($setObj->mTree) as $key){
-				$idList[] = $setObj->mTree[$key]->get('cat_id');
-			}
-			unset($setObj);
+		$handler = Legacy_Utils::getModuleHandler('cat', $catDir);
+		$tree = $handler->getTree(intval($catId), $module);
+		$tree = $handler->filterCategory($tree, $authType, $uid, true);
+		foreach(array_keys($tree) as $key){
+			$idList[] = $tree[$key]->get('cat_id');
 		}
 	}
-
-
-	protected function _getDirname()
-	{
-		return LEGACY_CATEGORY_DIRNAME;
-	}
-
 }
 
 ?>

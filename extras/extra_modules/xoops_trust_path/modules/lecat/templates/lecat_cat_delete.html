@@ -3,7 +3,7 @@
 
 <div class="confirm"><{$smarty.const._MD_LECAT_MESSAGE_CONFIRM_DELETE}></div>
 
-<form action="./index.php?action=CatDelete" method="post">
+<form action="<{xoops_cooluri dirname=$dirname dataname=cat action=delete}>" method="post">
   <table class="outer">
     <tbody>
       <tr>
@@ -13,10 +13,6 @@
       <tr>
         <th class="head"><{$smarty.const._MD_LECAT_LANG_TITLE}></th>
         <td class="<{cycle values="odd,even"}>"><{$object->getShow('title')}></td>
-      </tr>
-      <tr>
-        <th class="head"><{$smarty.const._MD_LECAT_LANG_SET_ID}></th>
-        <td class="<{cycle values="odd,even"}>"><{$object->getShow('set_id')}></td>
       </tr>
       <tr>
         <th class="head"><{$smarty.const._MD_LECAT_LANG_P_ID}></th>

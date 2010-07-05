@@ -54,8 +54,6 @@ class Lecat_CatViewAction extends Lecat_AbstractViewAction
 	public function prepare()
 	{
 		parent::prepare();
-		$this->mObject->loadSet();
-		$this->mObject->mSet->loadTree();
 		$this->mObject->loadPcat();
 	
 		//for Permissions
@@ -102,7 +100,7 @@ class Lecat_CatViewAction extends Lecat_AbstractViewAction
 		//set renders
 		$render->setAttribute('dirname', $this->mAsset->mDirname);
 		$render->setAttribute('object', $this->mObject);
-		$render->setAttribute('childrenTree', $this->mObject->mSet->mTree);
+		$render->setAttribute('childrenTree', $this->mObjectHandler->getTree());
 		$render->setAttribute('permitObj', $permissions);
 		//modules confinement
 		$render->setAttribute('modulesArr', $this->mObject->getModuleArr());

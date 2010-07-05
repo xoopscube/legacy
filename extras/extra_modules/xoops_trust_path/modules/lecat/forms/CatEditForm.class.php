@@ -44,7 +44,6 @@ class Lecat_CatEditForm extends XCube_ActionForm
         //
         $this->mFormProperties['cat_id'] =new XCube_IntProperty('cat_id');
         $this->mFormProperties['title'] =new XCube_StringProperty('title');
-        $this->mFormProperties['set_id'] =new XCube_IntProperty('set_id');
         $this->mFormProperties['p_id'] =new XCube_IntProperty('p_id');
         $this->mFormProperties['modules'] =new XCube_TextProperty('modules');
         $this->mFormProperties['description'] =new XCube_TextProperty('description');
@@ -64,10 +63,6 @@ class Lecat_CatEditForm extends XCube_ActionForm
         $this->mFieldProperties['title']->addMessage('required', _MD_LECAT_ERROR_REQUIRED, _MD_LECAT_LANG_TITLE, '255');
         $this->mFieldProperties['title']->addMessage('maxlength', _MD_LECAT_ERROR_MAXLENGTH, _MD_LECAT_LANG_TITLE, '255');
         $this->mFieldProperties['title']->addVar('maxlength', '255');
-    
-        $this->mFieldProperties['set_id'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['set_id']->setDependsByArray(array('required'));
-        $this->mFieldProperties['set_id']->addMessage('required', _MD_LECAT_ERROR_REQUIRED, _MD_LECAT_LANG_SET_ID);
     
         $this->mFieldProperties['p_id'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['p_id']->setDependsByArray(array('required'));
@@ -89,7 +84,6 @@ class Lecat_CatEditForm extends XCube_ActionForm
     {
         $this->set('cat_id', $obj->get('cat_id'));
         $this->set('title', $obj->get('title'));
-        $this->set('set_id', $obj->get('set_id'));
         $this->set('p_id', $obj->get('p_id'));
         $this->set('modules', $obj->get('modules'));
         $this->set('description', $obj->get('description'));
@@ -109,7 +103,6 @@ class Lecat_CatEditForm extends XCube_ActionForm
     {
         //$obj->set('cat_id', $this->get('cat_id'));
         $obj->set('title', $this->get('title'));
-        //$obj->set('set_id', $this->get('set_id'));
         $obj->set('p_id', $this->get('p_id'));
         $obj->set('modules', $this->get('modules'));
         $obj->set('description', $this->get('description'));

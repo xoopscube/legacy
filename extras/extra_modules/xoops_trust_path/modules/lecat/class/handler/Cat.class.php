@@ -15,26 +15,12 @@ if(!defined('XOOPS_ROOT_PATH'))
 **/
 class Lecat_CatObject extends Legacy_AbstractCategoryObject
 {
-	protected $_mSetLoadedFlag = false;
 	protected $_mPermitLoadedFlag = false;
 	protected $_mPcatLoadedFlag = false;
 	protected $_mChildrenLoadedFlag = false;
 	protected $_mCatPathLoadedFlag = false;
 	public $mTargetFlag = false;
 	public $mProhibitedFlag = false;
-
-	/**
-	 * @public
-	 * load Set Object of this category.
-	 */
-	public function loadSet()
-	{
-		if ($this->_mSetLoadedFlag == false) {
-			$handler = Legacy_Utils::getModuleHandler('set', $this->getDirname());
-			$this->mSet =& $handler->get($this->get('set_id'));
-			$this->_mSetLoadedFlag = true;
-		}
-	}
 
 	/**
 	 * @public
@@ -79,7 +65,7 @@ class Lecat_CatObject extends Legacy_AbstractCategoryObject
 	public function loadChildren($module)
 	{
 		if ($this->_mChildrenLoadedFlag == false) {
-			$handler = $this->_getHandler('cat');
+			$handler = Legacy_Utils::getModuleHandler('cat', $this->getDirname());
 			$criteria = new CriteriaCompo();
 			$criteria->add(new Criteria('p_id', $this->get('cat_id')));
 			$criteria->setSort('weight', 'ASC');
@@ -116,7 +102,7 @@ class Lecat_CatObject extends Legacy_AbstractCategoryObject
 	{
 		//set this category's parent cat_id
 		if($this->_mCatPathLoadedFlag==false){
-			$handler = $this->_getHandler('cat');
+			$handler = Legacy_Utils::getModuleHandler('cat', $this->getDirname());
 			$this->mCatPath['cat_id'] = array();
 			$this->mCatPath['title'] = array();
 			$this->mCatPath['modules'] = array();
@@ -143,7 +129,7 @@ class Lecat_CatObject extends Legacy_AbstractCategoryObject
 
 	protected function _getPermit($groupid=0)
 	{
-		$handler = $this->_getHandler('permit');
+		$handler = Legacy_Utils::getModuleHandler('permit', $this->getDirname());
 		$criteria=new CriteriaCompo();
 		$criteria->add(new Criteria('cat_id', $this->get('cat_id')));
 		if(intval($groupid)>0){
@@ -170,10 +156,9 @@ class Lecat_CatObject extends Legacy_AbstractCategoryObject
 			$this->loadCatPath();
 			//set default permissions from Set, if any permission is set in this Category Tree
 			if(! $permitArr=Lecat_Utils::getInheritPermission($this->getDirname(), $this->mCatPath['cat_id'], $groupId)){
-				$this->loadSet();
-				$permissions = $this->mSet->getDefaultPermissionForCheck();
+				$permissions = $this->getDefaultPermissionForCheck();
 				if(intval($groupId)>0){
-					$permitArr[0] = $this->_getHandler('permit')->create();
+					$permitArr[0] = Legacy_Utils::getModuleHandler('permit', $this->getDirname())->create();
 					$permitArr[0]->set('cat_id', $this->get('cat_id'));
 					$permitArr[0]->set('permissions', serialize($permissions));
 					$permitArr[0]->set('groupid', $groupId);
@@ -182,7 +167,7 @@ class Lecat_CatObject extends Legacy_AbstractCategoryObject
 					$groupHandler =& xoops_gethandler('member');
 					$group =& $groupHandler->getGroups();
 					foreach(array_keys($group) as $keyM){
-						$permitArr[$keyM] = $this->_getHandler('permit')->create();
+						$permitArr[$keyM] = Legacy_Utils::getModuleHandler('permit', $this->getDirname())->create();
 						$permitArr[$keyM]->set('cat_id', $this->get('cat_id'));
 						$permitArr[$keyM]->set('permissions', serialize($permissions));
 						$permitArr[$keyM]->set('groupid', $group[$keyM]->get('groupid'));
@@ -193,6 +178,24 @@ class Lecat_CatObject extends Legacy_AbstractCategoryObject
 			$this->mTargetFlag = 'anc'; //ancestoral cat has permission
 			return $permitArr;
 		}
+	}
+
+	/**
+	 * getDefaultPermissionForCheck
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string[]
+	**/
+	public function getDefaultPermissionForCheck()
+	{
+		$permissions = array();
+		$actions = Lecat_Utils::getActionList($this->getDirname());
+		$i=0;
+		foreach(array_keys($actions['title']) as $key){
+			$permissions[$key] = $actions['default'][$key];
+		}
+		return $permissions;
 	}
 
 	/**
@@ -291,19 +294,6 @@ class Lecat_CatObject extends Legacy_AbstractCategoryObject
 	
 		return array();
 	}
-
-	/**
-	 * _getHandler
-	 * 
-	 * @param	string	$tablename
-	 * 
-	 * @return	XoopsObjectHandleer
-	**/
-	protected function _getHandler($tablename)
-	{
-		return Legacy_Utils::getModuleHandler($tablename, $this->getDirname());
-	}
-
 }
 
 /**
@@ -349,11 +339,72 @@ class Lecat_CatHandler extends XoopsObjectGenericHandler
 	**/
 	public function delete(&$obj)
 	{
-		$handler = $this->_getHandler('permit');
+		$handler = Legacy_Utils::getModuleHandler('permit', $this->getDirname());;
 		$handler->deleteAll(new Criteria('cat_id', $obj->get('cat_id')));
 		unset($handler);
 	
 		return parent::delete($obj);
+	}
+
+
+	/**
+	 * getTree
+	 * get Lecat_CatObject array in parent-child tree form
+	 * @param	int 	$pid
+	 * @param	string	$module
+	 * 
+	 * @return	Lecat_CatObject[]
+	**/
+	public function getTree(/*** int ***/ $p_id=0, /*** string ***/ $module="")
+	{
+		$tree = array();
+		return $this->_getTree($tree, $p_id, $module);
+	}
+
+	/**
+	 * _getTree
+	 * 
+	 * @param	Lecat_CatObject[] 	$tree
+	 * @param	int 	$pid
+	 * @param	string	$module
+	 * 
+	 * @return	Lecat_CatObject[]
+	**/
+	protected function _getTree(/*** Lecat_CatObject[] ***/ $tree, /*** int ***/ $p_id, /*** string ***/ $module)
+	{
+		$criteria = new CriteriaCompo();
+		$criteria->add(new Criteria('p_id', $p_id));
+		$criteria->setSort('weight');
+		$catArr =$this->getObjects($criteria);
+		foreach(array_keys($catArr) as $key){
+			//check module confinement
+			if($catArr[$key]->checkModule($module)){
+				$tree[] = $catArr[$key];
+				$tree = $this->_getTree($tree, $catArr[$key]->get('cat_id'), $module);
+			}
+		}
+		return $tree;
+	}
+
+	/**
+	 * filterCategory
+	 * 
+	 * @param	Lecat_CatObject[]	$tree
+	 * @param	string	$action
+	 * @param	int 	$uid
+	 * @param	bool	$deleteFlag
+	 * 
+	 * @return	Lecat_CatObject[]
+	**/
+	public function filterCategory($tree, $action, $uid=0, $deleteFlag=false)
+	{
+		//check permission of each cat in the given tree
+		foreach(array_keys($tree) as $key){
+			if($tree[$key]->checkPermitByUid($action, $uid)==false && $deleteFlag==true){
+				unset($tree[$key]);
+			}
+		}
+		return $tree;
 	}
 }
 

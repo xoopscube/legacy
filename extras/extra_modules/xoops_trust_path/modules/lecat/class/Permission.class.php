@@ -16,7 +16,6 @@ class Lecat_Permission
 	{
 		$this->mDirname = $dirname;
 		$this->mCat = $cat;
-		$this->mCat->loadSet();
 		$this->setActionArr();
 		$this->setGroupArr();
 	}
@@ -44,10 +43,10 @@ class Lecat_Permission
 	 */
 	function setActionArr()
 	{
-		$actionArr = $this->mCat->mSet->getActions();
+		$actionArr = Lecat_Utils::getActionList($this->mDirname);
 		$i = 0;
 		foreach(array_keys($actionArr['title']) as $key){
-			$this->mActionArr['key'][$i] = $key;
+			$this->mActionArr['key'][$i] = $actionArr['key'][$key];
 			$this->mActionArr['name'][$i] = $actionArr['title'][$key];
 			$i++;
 		}

@@ -1,7 +1,6 @@
 CREATE TABLE IF NOT EXISTS `{prefix}_{dirname}_cat` (
   `cat_id` smallint(5) unsigned NOT NULL auto_increment,
   `title` varchar(255) NOT NULL default '',
-  `set_id` smallint(5) unsigned NOT NULL default '0',
   `p_id` smallint(5) unsigned NOT NULL default '0',
   `modules` text NOT NULL,
   `description` text NOT NULL,
@@ -9,24 +8,9 @@ CREATE TABLE IF NOT EXISTS `{prefix}_{dirname}_cat` (
   `weight` smallint(5) unsigned NOT NULL default '0',
   `options` text NOT NULL,
   PRIMARY KEY  (`cat_id`),
-  KEY `set_id` (`set_id`),
   KEY `p_id` (`p_id`),
   KEY `weight` (`weight`)
 ) ENGINE=MyISAM;
-
-
-INSERT INTO `{prefix}_{dirname}_cat` (`cat_id`, `title`, `set_id`, `p_id`, `modules`, `description`, `depth`, `weight`, `options`) VALUES (1, 'common', 1, 0, '', 'common category', 0, 10, '');
-
-CREATE TABLE IF NOT EXISTS `{prefix}_{dirname}_set` (
-  `set_id` smallint(5) unsigned NOT NULL auto_increment,
-  `title` varchar(255) NOT NULL default '',
-  `level` tinyint(3) unsigned NOT NULL default '0',
-  `actions` text NOT NULL,
-  PRIMARY KEY  (`set_id`)
-) ENGINE=MyISAM;
-
-INSERT INTO `{prefix}_{dirname}_set` (`set_id`, `title`, `level`, `actions`) VALUES
-(1, 'common', 1, 'a:2:{s:5:"title";a:3:{s:6:"viewer";s:6:"Viewer";s:6:"poster";s:6:"Poster";s:7:"manager";s:7:"Manager";}s:7:"default";a:3:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";s:7:"manager";N;}}');
 
 CREATE TABLE IF NOT EXISTS `{prefix}_{dirname}_permit` (
   `permit_id` mediumint(8) unsigned NOT NULL auto_increment,
@@ -37,3 +21,18 @@ CREATE TABLE IF NOT EXISTS `{prefix}_{dirname}_permit` (
   KEY `groupid` (`groupid`),
   KEY `cat_id` (`cat_id`)
 ) ENGINE=MyISAM;
+
+INSERT INTO `{prefix}_{dirname}_permit` (`permit_id`, `cat_id`, `groupid`, `permissions`) VALUES
+(1, 2, 1, 'a:3:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";s:7:"manager";s:1:"1";}'),
+(2, 2, 2, 'a:2:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";}'),
+(3, 2, 3, 'a:2:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";}'),
+(4, 3, 1, 'a:3:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";s:7:"manager";s:1:"1";}'),
+(5, 3, 2, 'a:2:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";}'),
+(6, 3, 3, 'a:1:{s:6:"viewer";s:1:"1";}'),
+(7, 4, 1, 'a:3:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";s:7:"manager";s:1:"1";}'),
+(8, 4, 2, 'a:2:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";}'),
+(9, 5, 1, 'a:3:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";s:7:"manager";s:1:"1";}'),
+(10, 5, 2, 'a:1:{s:6:"viewer";s:1:"1";}'),
+(11, 5, 3, 'a:1:{s:6:"viewer";s:1:"1";}'),
+(12, 6, 1, 'a:3:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";s:7:"manager";s:1:"1";}');
+
