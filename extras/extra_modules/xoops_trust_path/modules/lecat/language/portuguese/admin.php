@@ -4,5 +4,4 @@
  * @package lecat
  * @version $Id$
 **/
-
 ?>
