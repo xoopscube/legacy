@@ -27,6 +27,7 @@ interface Lenum_Status
 interface Lenum_ProgressStatus
 {
 	const DELETED = 0;
+	const BLOCKED = 1;
 	const REJECTED = 2;
 	const PROGRESS = 5;
 	const FINISHED = 9;
