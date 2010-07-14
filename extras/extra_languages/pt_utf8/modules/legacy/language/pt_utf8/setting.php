@@ -73,7 +73,7 @@ FULL DATE/TIME --- ---
 
 c -> ISO 8601 date (acrescentado no PHP 5) 2004-02-12T15:19:21+00:00
 r -> » RFC 2822 formatted date Exemplo: Thu, 21 Dec 2000 16:01:07 +0200
-U -> Segundos desde a Época Unix (January 1 1970 00:00:00 GMT) Veja também time()
+U -> Segundos desde a Época Unix (January 1 1970 00:00:00 GMT) Veja também: time()
 
 */
 
@@ -85,7 +85,7 @@ if (!defined("_JSDATEPICKSTRING")) define("_JSDATEPICKSTRING","yy-mm-dd");
 if (!defined("_PHPDATEPICKSTRING")) define("_PHPDATEPICKSTRING","Y-m-d");
 
 //%%%%% LANGUAGE SPECIFIC SETTINGS %%%%%
-if (!defined("_CHARSET")) define("_CHARSET", "utf-8");
+if (!defined("_CHARSET")) define("_CHARSET", "UTF-8");
 if (!defined("_LANGCODE")) define("_LANGCODE", "pt");
 // change 0 to 1 if this language is a multi-bytes language
 if (!defined("XOOPS_USE_MULTIBYTES")) define("XOOPS_USE_MULTIBYTES", "0");

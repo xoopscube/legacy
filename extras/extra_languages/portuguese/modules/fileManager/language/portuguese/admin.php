@@ -82,7 +82,7 @@ define("_AD_FILEMANAGER_UPLOAD", "Enviar");
 define("_AD_FILEMANAGER_UPLOAD_DSC", "Clique para selecionar para carregar os arquivos do seu computador e iniciar o envio");
 define("_AD_FILEMANAGER_UPLOAD_NOFILE", "O arquivo enviado não foi encontrado. Por favor, selecione o arquivo.");
 define("_AD_FILEMANAGER_UPLOAD_NOTACCESS", "Não foi possível enviar %s. Por favor, altere as permissões manualmente (por exemplo, com um software FTP).");
-define("_AD_FILEMANAGER_UPLOAD_PERMISSION", "o caminho de upload não foi encontrado ou não tem permissão para upload.");
+define("_AD_FILEMANAGER_UPLOAD_PERMISSION", "O diretório onde os arquivos enviados serão gravados não foi encontrado ou não tem permissão de escrita.");
 
 //
 // define("_AD_FILEMANAGER_ACTION_DEFULT", "-----");

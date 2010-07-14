@@ -13,8 +13,6 @@
 // *************************************************************** //
 
 
-//
-
 define("_AD_FILEMANAGER_ACTION_CAPTURE", "Capturar imagem");
 define("_AD_FILEMANAGER_ACTION_CONVERT", "Converter para FLV");
 define("_AD_FILEMANAGER_ACTION_DEFULT", "&nbsp;Continuar&nbsp;");
@@ -84,67 +82,9 @@ define("_AD_FILEMANAGER_UPLOAD", "Enviar");
 define("_AD_FILEMANAGER_UPLOAD_DSC", "Clique para selecionar para carregar os arquivos do seu computador e iniciar o envio");
 define("_AD_FILEMANAGER_UPLOAD_NOFILE", "O arquivo enviado não foi encontrado. Por favor, selecione o arquivo.");
 define("_AD_FILEMANAGER_UPLOAD_NOTACCESS", "Não foi possível enviar %s. Por favor, altere as permissões manualmente (por exemplo, com um software FTP).");
-define("_AD_FILEMANAGER_UPLOAD_PERMISSION", "o caminho de upload não foi encontrado ou não tem permissão para upload.");
+define("_AD_FILEMANAGER_UPLOAD_PERMISSION", "O diretório onde os arquivos enviados serão gravados não foi encontrado ou não tem permissão de escrita.");
 
-// --------------------------------------------------------
+//
 // define("_AD_FILEMANAGER_ACTION_DEFULT", "-----");
-// define("_AD_FILEMANAGER_ACTION_DELETE", "delete");
-// define("_AD_FILEMANAGER_ACTION_SUBMIT", "Aplicação");
-// define("_AD_FILEMANAGER_ADDFOLDER_ERROR", "Eu não posso criar um diretório");
-// define("_AD_FILEMANAGER_ADDFOLDER_ERROR", "não há nenhuma pasta para acesso não autorizado e pode adicionar uma pasta.");
-// define("_AD_FILEMANAGER_ADDFOLDER_SUCCESS", "Adicionar pasta");
-// define("_AD_FILEMANAGER_CHECK", "Verificar configuração");
-// define("_AD_FILEMANAGER_CHECK_DSC_1", "SWFUpload Ao usar");
-// define("_AD_FILEMANAGER_CHECK_DSC_1", "Utilizar SWFUpload");
-// define("_AD_FILEMANAGER_CHECK_DSC_2", "SWFUpload para carregar com o público não é recomendado. <br /> para a localização da biblioteca defina htaccess com acesso restrito.");
-// define("_AD_FILEMANAGER_CHECK_DSC_2", "SWFUpload para upload para uso público não é recomendada. <br /> O htaccess para definir a localização da biblioteca, por favor, criada com acesso restrito");
-// define("_AD_FILEMANAGER_CHECK_NG", "O arquivo da biblioteca não foi encontrado. Por favor, envie esses arquivos ao servidor. <br />");
-// define("_AD_FILEMANAGER_CHECK_OK", "A configuração do arquivo foi concluída");
-// define("_AD_FILEMANAGER_CHECK_OK", "Instalação dos arquivos da biblioteca estão concluídas.");
-// define("_AD_FILEMANAGER_CONFIRMMSSAGE", "%s arquivo para upload. <br /> você pode fazer o upload do arquivo%s está para cima.");
-// define("_AD_FILEMANAGER_DATE", "Data de modificação");
-// define("_AD_FILEMANAGER_DATE", "Data");
-// define("_AD_FILEMANAGER_DEL", "delete");
-// define("_AD_FILEMANAGER_DELFOLDER", "Apagar Pasta");
-// define("_AD_FILEMANAGER_DELFOLDER_CONFIRMMSSAGE", "%s remover a pasta.");
-// define("_AD_FILEMANAGER_DELFOLDER_DSC", "remover a pasta especificada.");
-// define("_AD_FILEMANAGER_DELFOLDER_ERROR", "Eu não posso remover a pasta. Não especificar uma pasta vazia, ou não é adequado permissões");
-// define("_AD_FILEMANAGER_DELFOLDER_FILE_EXISTS", "%s para o arquivo para a pasta que não pode ser removida. Para verificar o conteúdo de uma pasta, por favor");
-// define("_AD_FILEMANAGER_DELFOLDER_FILE_EXISTS", "é porque existe uma pasta de arquivo pode ser removido. Verifique o conteúdo da pasta.");
-// define("_AD_FILEMANAGER_DELFOLDER_ISDIR", "O diretório %s não pode ser removido do gerenciador de arquivos");
-// define("_AD_FILEMANAGER_DELFOLDER_ISDIR", "pasta%s não é ser removida do gerenciador de arquivos para pastas.");
-// define("_AD_FILEMANAGER_DELFOLDER_NOTACCESS", "A pasta %s não pode ser removido do gerenciador de arquivos. software FTP, etc, por favor, mudem suas permissões.");
-// define("_AD_FILEMANAGER_DELFOLDER_SUCCESS", "foi removido da pasta.");
-// define("_AD_FILEMANAGER_EDIT", "adicionar");
-// define("_AD_FILEMANAGER_ERROR_DELETE_FOR_PERMISSION", "%s não pode ser removido do gerenciador de arquivos e, portanto, não têm acesso para remover.");
-// define("_AD_FILEMANAGER_ERROR_FOLDERNAME", "nome da pasta é incorreto. Verifique o nome da pasta. /> <br permite caracteres em nomes de pasta, os caracteres alfanuméricos - só pode usar - _. <br /> alfabética Você só pode usar letras minúsculas.");
-// define("_AD_FILEMANAGER_ERROR_PATH", "mais velhos nome não é certa. Favor confirmar um nome de pasta");
-// define("_AD_FILEMANAGER_ERROR_PERMISSION", "não tem permissão para acessar.");
-// define("_AD_FILEMANAGER_ERROR_REQUIRED", "{0}, certifique-se de entrada");
-// define("_AD_FILEMANAGER_FILECOUNT", "Arquivos");
-// define("_AD_FILEMANAGER_FILENAME, "arquivo");
-// define("_AD_FILEMANAGER_FOLDER", "Diretório");
-// define("_AD_FILEMANAGER_FOLDERNAME", "Novo nome para o diretório");
-// define("_AD_FILEMANAGER_FOLDER_ADD", "acrescentou o diretório");
-// define("_AD_FILEMANAGER_HTACCESS_DSC_1", "você pode escolher o formulário abaixo e clique em Configurações.");
-// define("_AD_FILEMANAGER_HTACCESS_DSC_2", "que permite o acesso somente se o endereço IP atual (automaticamente constituir uma amostra. queira mudar para se adequar ao seu ambiente de servidor .)");
-// define("_AD_FILEMANAGER_HTACCESS_PATH", "htaccess para criar o caminho");
-// define("_AD_FILEMANAGER_NOTFOUND", "arquivo não encontrado.");
-// define("_AD_FILEMANAGER_NOTFOUNDURL", "upload caminho não foi encontrado.");
-// define("_AD_FILEMANAGER_PATH_HOME", "Home");
-// define("_AD_FILEMANAGER_PREVIEW", "preview");
-// define("_AD_FILEMANAGER_RETURN", "Voltar para a lista");
-// define("_AD_FILEMANAGER_SIZE", "tamanho");
-// define("_AD_FILEMANAGER_SWF_COULD_NOT_LOAD", "SWFUpload é possível carregar a biblioteca. JavaScript Por favor, use o permitam.");
-// define("_AD_FILEMANAGER_SWF_INSTALL_FLASH", "SWFUpload é possível carregar a biblioteca. Verifique se a biblioteca está configurada, Flash Player, instale. <br /> Aqui <a href = \" http://www . adobe.com / shockwave / download / download.cgi? P1_Prod_Version ShockwaveFlash = \ '> Adobe site </ a> Flash player instalado, por favor");
-// define("_AD_FILEMANAGER_SWF_LOADING", "SWFUpload está carregando. Aguarde um momento");
-// define("_AD_FILEMANAGER_SWF_LOAD_HAS_FAILED", "SWFUpload está levando muito tempo para carregar ou a carga falhou. Por favor, certifique-se de que o Flash Plugin é habilitado e que uma versão de trabalho do Adobe Flash Player é instalado");
-// define("_AD_FILEMANAGER_SWF_LOAD_HAS_FAILED", "SWFUpload é possível carregar a biblioteca. Verifique se a biblioteca estiver definida, o Flash Player instalado, por favor.");
-// define("_AD_FILEMANAGER_SWF_UPLOAD_CNACEL", "Cancelar todos os envios de arquivos");
-// define("_AD_FILEMANAGER_SWF_UPLOAD_CNACEL", "cancelar todos os carregado");
-// define("_AD_FILEMANAGER_SWF_UPLOAD_QUEUE", "upload");
-// define("_AD_FILEMANAGER_TYPE", "tipo");
-// define("_AD_FILEMANAGER_UPLOAD", "upload");
-// define("_AD_FILEMANAGER_UPLOAD_DSC", "Upload e clique para selecionar e iniciar o upload do arquivo.");
-// define("_AD_FILEMANAGER_UPLOAD_NOTACCESS", "%s não pode carregar. FTP software, etc, por favor, mudem suas permissões.");
+
 ?>

@@ -1,29 +1,5 @@
 <?php
 // $Id$
-//	------------------------------------------------------------------------ //
-//				  XOOPS - PHP Content Management System 					 //
-//					  Copyright (c) 2000 XOOPS.org							 //
-//						 <http://www.xoops.org/>							 //
-//	------------------------------------------------------------------------ //
-//	This program is free software; you can redistribute it and/or modify	 //
-//	it under the terms of the GNU General Public License as published by	 //
-//	the Free Software Foundation; either version 2 of the License, or		 //
-//	(at your option) any later version. 									 //
-//																			 //
-//	You may not change or alter any portion of this comment or credits		 //
-//	of supporting developers from this source code or any supporting		 //
-//	source code which is considered copyrighted (c) material of the 		 //
-//	original comment or credit authors. 									 //
-//																			 //
-//	This program is distributed in the hope that it will be useful, 		 //
-//	but WITHOUT ANY WARRANTY; without even the implied warranty of			 //
-//	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the			 //
-//	GNU General Public License for more details.							 //
-//																			 //
-//	You should have received a copy of the GNU General Public License		 //
-//	along with this program; if not, write to the Free Software 			 //
-//	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//	------------------------------------------------------------------------ //
 
 include_once './class/dbmanager.php';
 
@@ -184,21 +160,21 @@ function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $
 }
 // ToDo : remove following lines
 /**
- * 
+ *
  * Install module by module's name, language and specified mid.
- * 
+ *
  * @param $dbm object Database manager instance
  * @param $mid int module's ID
  * @param $module string module's name
  * @param $language string language
  * @param $grops array hash map
  */
-function installModule(&$dbm, $mid, $module, $module_name, $language = 'english', &$groups) {
+function installModule(&$dbm, $mid, $module, $module_name, $language = 'pt_utf8', &$groups) {
 	if ( file_exists("../modules/${module}/language/${language}/modinfo.php") ) {
 		include "../modules/${module}/language/${language}/modinfo.php";
 	} else {
-		include "../modules/${module}/language/english/modinfo.php";
-		$language = 'english';
+		include "../modules/${module}/language/pt_utf8/modinfo.php";
+		$language = 'pt_utf8';
 	}
 
 	$modversion = array();
@@ -223,7 +199,7 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'english'
 	if (isset($modversion['sqlfile']['mysql'])) {
 		$dbm->queryFromFile("../modules/${module}/" . $modversion['sqlfile']['mysql']);
 	}
-	
+
 	if (is_array($modversion['templates']) && count($modversion['templates']) > 0) {
 		foreach ($modversion['templates'] as $tplfile) {
 			if ($fp = fopen("../modules/${module}/templates/".$tplfile['file'], 'r')) {
@@ -266,7 +242,7 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'english'
 				}
 				fclose($fp);
 				$dbm->insert('tplsource', " (tpl_id, tpl_source) VALUES (".$newtplid.", '".addslashes($tplsource)."')");
-			
+
 				$dbm->insert("group_permission", " VALUES (0, ".$groups['XOOPS_GROUP_ADMIN'].", ".$newbid.", 1, 'block_read')");
 				//$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_ADMIN'].", ".$newbid.", 'xoops_blockadmiin')");
 				$dbm->insert("group_permission", " VALUES (0, ".$groups['XOOPS_GROUP_USERS'].", ".$newbid.", 1, 'block_read')");
@@ -274,7 +250,7 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'english'
 			}
 		}
 	}
-	
+
 	//
 	// Install preferences
 	//
@@ -290,19 +266,19 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'english'
 			$formtype = $configInfo['formtype'];
 			$valuetype = $configInfo['valuetype'];
 			$default = $configInfo['default'];
-			
+
 			if ($valuetype == "array") {
 				$default = serialize(explode('|', trim($default)));
 			}
-				
+
 			$conf_id = $dbm->insert("config", " VALUES (0, ${mid}, 0, '${name}', '${title}', '${default}', '${desc}', '${formtype}', '${valuetype}', ${count})");
-	
+
 			if (isset($configInfo['options']) && is_array($configInfo['options'])) {
 				foreach ($configInfo['options'] as $key => $value) {
 					$dbm->insert("configoption", " VALUES (0, '${key}', '${value}', ${conf_id})");
 				}
 			}
-			
+
 			$count++;
 		}
 	}
