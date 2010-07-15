@@ -61,7 +61,7 @@ FCKConfig.ProtectedSource.Add( /<{[\s\S]*?}>/g ) ;	// Smarty style code
 // FCKConfig.ProtectedSource.Add( /(<asp:[^\>]+>[\s|\S]*?<\/asp:[^\>]+>)|(<asp:[^\>]+\/>)/gi ) ;	// ASP.Net style tags <asp:control>
 
 FCKConfig.AutoDetectLanguage	= true ;
-FCKConfig.DefaultLanguage		= 'br' ;
+FCKConfig.DefaultLanguage		= 'pt' ;
 FCKConfig.ContentLangDirection	= 'ltr' ;
 
 FCKConfig.ProcessHTMLEntities	= false ;

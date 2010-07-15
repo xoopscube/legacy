@@ -32,7 +32,7 @@ define("_MD_MESSAGE_DELETEMSG1","O parâmetro é considerado ilegal.");
 define("_MD_MESSAGE_DELETEMSG2","Não está selecionado.");
 define("_MD_MESSAGE_FAVORITES0","Nenhum associado foi selecionado para ser acrescentado.");
 define("_MD_MESSAGE_FAVORITES1","Houve uma falha ao acrescentar.");
-define("_MD_MESSAGE_FAVORITES2","Houve uma falha ao acrescentar");
+define("_MD_MESSAGE_FAVORITES2","Acrescentar");
 define("_MD_MESSAGE_FAVORITES3","Falha ao atualizar.");
 define("_MD_MESSAGE_FAVORITES4","Atualizar");
 define("_MD_MESSAGE_FAVORITES5","Remover");
@@ -91,7 +91,7 @@ define("_MD_MESSAGE_TEMPLATE9","Destinatário");
 
 if (!defined("LEGACY_MAIL_LANG")) {
 define("LEGACY_MAIL_LANG","pt");
-define("LEGACY_MAIL_CHAR","iso-8859-1");
-define("LEGACY_MAIL_ENCO","7bit");
+define("LEGACY_MAIL_CHAR","UTF-8");
+define("LEGACY_MAIL_ENCO","8bit");
 }
 ?>
