@@ -17,7 +17,6 @@ if(!defined('LECAT_TRUST_PATH'))
 
 require_once LECAT_TRUST_PATH . '/class/LecatUtils.class.php';
 
-Lecat_AssetPreloadBase::prepare();
 
 
 /**
@@ -25,18 +24,39 @@ Lecat_AssetPreloadBase::prepare();
 **/
 class Lecat_AssetPreloadBase extends XCube_ActionFilter
 {
+	public $mDirname = null;
+
+
 	/**
 	 * prepare
 	 * 
-	 * @param	void
+	 * @param	string	$dirname
 	 * 
 	 * @return	void
 	**/
-	public static function prepare()
+	public static function prepare(/*** string ***/ $dirname)
+	{
+		static $setupCompleted = false;
+		if(!$setupCompleted)
+		{
+			$setupCompleted = self::_setup($dirname);
+		}
+	}
+
+	/**
+	 * _setup
+	 * 
+	 * @param	string	$dirname	This legroup's dirname
+	 * 
+	 * @return	bool
+	**/
+	public static function _setup(/*** string ***/ $dirname)
 	{
 		$root =& XCube_Root::getSingleton();
-		$instance = new Lecat_AssetPreloadBase($root->mController);
+		$instance = new self($root->mController);
+		$instance->mDirname = $dirname;
 		$root->mController->addActionFilter($instance);
+		return true;
 	}
 
 	/**
@@ -55,16 +75,18 @@ class Lecat_AssetPreloadBase extends XCube_ActionFilter
 		$this->mRoot->mDelegateManager->add('Legacy_Utils.CreateBlockProcedure','Lecat_AssetPreloadBase::getBlock');
 		$this->mRoot->mDelegateManager->add('Module.lecat.Global.Event.GetNormalUri','Lecat_CoolUriDelegate::getNormalUri', $file);
 	
-		$this->mRoot->mDelegateManager->add('Legacy_Category.GetCategoryGroupList','Lecat_DelegateFunctions::getCategoryGroupList', $file);
-		$this->mRoot->mDelegateManager->add('Legacy_Category.GetTitle','Lecat_DelegateFunctions::getTitle', $file);
-		$this->mRoot->mDelegateManager->add('Legacy_Category.GetTree','Lecat_DelegateFunctions::getTree', $file);
-		$this->mRoot->mDelegateManager->add('Legacy_Category.GetTitleList','Lecat_DelegateFunctions::getTitleList', $file);
-		$this->mRoot->mDelegateManager->add('Legacy_Category.CheckPermitByUserId','Lecat_DelegateFunctions::checkPermitByUserId', $file);
-		$this->mRoot->mDelegateManager->add('Legacy_Category.CheckPermitByGroupId','Lecat_DelegateFunctions::checkPermitByGroupId', $file);
-		$this->mRoot->mDelegateManager->add('Legacy_Category.GetParent','Lecat_DelegateFunctions::getParent', $file);
-		$this->mRoot->mDelegateManager->add('Legacy_Category.GetChildren','Lecat_DelegateFunctions::getChildren', $file);
-		$this->mRoot->mDelegateManager->add('Legacy_Category.GetCatPath','Lecat_DelegateFunctions::getCatPath', $file);
-		$this->mRoot->mDelegateManager->add('Legacy_Category.GetPermittedIdList','Lecat_DelegateFunctions::getPermittedIdList', $file);
+		//Legacy Category Delegate
+		$prefix = 'Legacy_Category.' . $this->mDirname;
+		$this->mRoot->mDelegateManager->add($prefix .'.GetCategoryGroupList','Lecat_DelegateFunctions::getCategoryGroupList', $file);
+		$this->mRoot->mDelegateManager->add($prefix .'.GetTitle','Lecat_DelegateFunctions::getTitle', $file);
+		$this->mRoot->mDelegateManager->add($prefix .'.GetTree','Lecat_DelegateFunctions::getTree', $file);
+		$this->mRoot->mDelegateManager->add($prefix .'.GetTitleList','Lecat_DelegateFunctions::getTitleList', $file);
+		$this->mRoot->mDelegateManager->add($prefix .'.CheckPermitByUserId','Lecat_DelegateFunctions::checkPermitByUserId', $file);
+		$this->mRoot->mDelegateManager->add($prefix .'.CheckPermitByGroupId','Lecat_DelegateFunctions::checkPermitByGroupId', $file);
+		$this->mRoot->mDelegateManager->add($prefix .'.GetParent','Lecat_DelegateFunctions::getParent', $file);
+		$this->mRoot->mDelegateManager->add($prefix .'.GetChildren','Lecat_DelegateFunctions::getChildren', $file);
+		$this->mRoot->mDelegateManager->add($prefix .'.GetCatPath','Lecat_DelegateFunctions::getCatPath', $file);
+		$this->mRoot->mDelegateManager->add($prefix .'.GetPermittedIdList','Lecat_DelegateFunctions::getPermittedIdList', $file);
 	}
 
 	/**

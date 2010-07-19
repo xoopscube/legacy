@@ -63,6 +63,7 @@ define('_MI_LECAT_TPL_SET_VIEW', 'カテゴリグループ表示');
 define('_MI_LECAT_LANG_MAXDEPTH', 'カテゴリの深さ');
 define('_MI_LECAT_DESC_MAXDEPTH', 'カテゴリの深さの制限（0は無制限）');
 define('_MI_LECAT_LANG_SETTING_EDIT', '設定');
+define('_MI_LECAT_KEYWORD_SETTING_EDIT', '設定');
 define('_MI_LECAT_LANG_KEYWORD', '初期権限の設定をします。');
 
 ?>
