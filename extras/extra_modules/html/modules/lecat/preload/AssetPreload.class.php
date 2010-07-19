@@ -10,9 +10,8 @@ if(!defined('XOOPS_ROOT_PATH'))
     exit;
 }
 
-if(!class_exists('Lecat_AssetPreload'))
-{
-    require_once XOOPS_TRUST_PATH . '/modules/lecat/preload/AssetPreload.class.php';
-}
+
+require_once XOOPS_TRUST_PATH . '/modules/lecat/preload/AssetPreload.class.php';
+Lecat_AssetPreloadBase::prepare(basename(dirname(dirname(__FILE__))));
 
 ?>
