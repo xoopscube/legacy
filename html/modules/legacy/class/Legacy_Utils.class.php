@@ -352,7 +352,6 @@ class Legacy_Utils
 		}
 		else{
 			$trustDirname = self::getTrustDirnameByDirname($dirname);
-			$dirname = $trustDirname ? $trustDirname : $dirname;
 			XCube_DelegateUtils::call('Module.'.$trustDirname.'.Global.Event.GetNormalUri', new XCube_Ref($uri), $dirname, $dataname, $data_id, $action, $query);
 		
 			$uri = XOOPS_MODULE_URL. $uri;
