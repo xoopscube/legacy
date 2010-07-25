@@ -82,7 +82,7 @@ class Lecat_Admin_SettingEditAction extends Lecat_AbstractEditAction
 	protected function _getActions()
 	{
 		$actions = $this->mModule->getModuleConfig('actions');
-		return isset($actions) ? unserialize($actions) : array('key'=>array('viewer','postor','manager'),'title'=>array('Viewer', 'Postor', 'Manager'),'default'=>array(1,1,0));
+		return isset($actions) ? unserialize($actions) : array('key'=>array('viewer','poster','manager'),'title'=>array('Viewer', 'Poster', 'Manager'),'default'=>array(1,1,0));
 	}
 
 	protected function _insertConfig($key, $value)
