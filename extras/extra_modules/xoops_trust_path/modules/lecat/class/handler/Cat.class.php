@@ -380,7 +380,7 @@ class Lecat_CatHandler extends XoopsObjectGenericHandler
 			//check module confinement
 			if($catArr[$key]->checkModule($module)){
 				$tree[] = $catArr[$key];
-				$tree = $this->_getTree($tree, $catArr[$key]->get('cat_id'), $module);
+				$this->_getTree($tree, $catArr[$key]->get('cat_id'), $module);
 			}
 		}
 		return $tree;

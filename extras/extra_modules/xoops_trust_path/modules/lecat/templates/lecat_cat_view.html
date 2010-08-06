@@ -1,6 +1,9 @@
 <div id="lecat">
 	<div class="catDetail">
-		<h1><{$smarty.const._MD_LECAT_LANG_TITLE}>: <{$object->getShow('title')}> <a href="<{xoops_cooluri dirname=$dirname dataname=cat data_id=$object->getShow('cat_id') action=edit}>"><img src="<{$xoops_url}>/images/icons/edit.gif" alt="<{$smarty.const._EDIT}>" /></a></h1>
+		<h1><{$smarty.const._MD_LECAT_LANG_TITLE}>: <{$object->getShow('title')}>
+			<a href="<{xoops_cooluri dirname=$dirname dataname=cat data_id=$object->getShow('cat_id') action=edit}>"><img src="<{$xoops_url}>/images/icons/edit.gif" alt="<{$smarty.const._EDIT}>" /></a>
+			<a href="<{xoops_cooluri dirname=$dirname dataname=cat data_id=$object->getShow('cat_id') action=delete}>"><img src="<{$xoops_url}>/images/icons/delete.gif" alt="<{$smarty.const._DELETE}>" /></a>
+		</h1>
 		<div class="description">
 			<{$object->getShow('description')}>
 		</div>
