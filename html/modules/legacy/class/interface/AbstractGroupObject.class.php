@@ -13,7 +13,7 @@ if(!defined('XOOPS_ROOT_PATH'))
 /**
  * Legacy_AbstractGroupObject
 **/
-class Legacy_AbstractGroupObject extends XoopsSimpleObject
+abstract class Legacy_AbstractGroupObject extends XoopsSimpleObject
 {
 	const PRIMARY = 'group_id';
 	const DATANAME = 'group';
@@ -74,7 +74,7 @@ class Legacy_AbstractGroupObject extends XoopsSimpleObject
 	 * 
 	 * @return	int
 	**/
-	public function countMembers(/*** Enum ***/ $rank=Lenum_GroupRank::ASSOCIATE);
+	abstract public function countMembers(/*** Enum ***/ $rank=Lenum_GroupRank::ASSOCIATE);
 
 	/**
 	 * renderUri
