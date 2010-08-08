@@ -13,19 +13,19 @@
       	<th><{$smarty.const._MD_LECAT_LANG_AUTH_TITLE}></th>
       	<th><{$smarty.const._MD_LECAT_LANG_AUTH_DEFAULT}></th>
     	</tr>
-    	<{foreach from=$actions.key item=optKey name=optKey}>
+    	<{foreach from=$actors.key item=optKey name=optKey}>
    		<{assign var=it value=$smarty.foreach.optKey.iteration-1}>
     	<tr>
-        <td><{xoops_input type=text name=key[$it] value=$actions.key[$it]}></td>
-        <td><{xoops_input type=text name=title[$it] value=$actions.title[$it]}></td>
-        <td><input type="checkbox" name="default[<{$it}>]" value="1" id="legacy_xoopsform_actions_default[<{$it}>]" <{if $actions.default[$it]==1}>checked="checked" <{/if}>></td>
+        <td><{xoops_input type=text name=key[$it] value=$actors.key[$it]}></td>
+        <td><{xoops_input type=text name=title[$it] value=$actors.title[$it]}></td>
+        <td><input type="checkbox" name="default[<{$it}>]" value="1" id="legacy_xoopsform_actors_default[<{$it}>]" <{if $actors.default[$it]==1}>checked="checked" <{/if}>></td>
       </tr>
       <{/foreach}>
     </tbody>
     <tfoot>
       <tr>
 	      <td colspan="3">
-		      <input type="button" value="<{$smarty.const._MD_LECAT_LANG_ADD_A_NEW_PERMISSION_TYPE}>" onClick="addActionKeyForm()">
+		      <input type="button" value="<{$smarty.const._MD_LECAT_LANG_ADD_A_NEW_PERMISSION_TYPE}>" onClick="addActorKeyForm()">
 	      </td>
       </tr>
       <tr>

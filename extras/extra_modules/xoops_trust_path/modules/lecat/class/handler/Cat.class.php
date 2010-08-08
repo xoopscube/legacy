@@ -155,8 +155,8 @@ class Lecat_CatObject extends Legacy_AbstractCategoryObject
 			//get the category path from the top category in descendant order
 			$this->loadCatPath();
 			//set default permissions from Set, if any permission is set in this Category Tree
-			if(! $permitArr=Lecat_Utils::getInheritPermission($this->getDirname(), $this->mCatPath['cat_id'], $groupId)){
-				$permissions = $this->getDefaultPermissionForCheck();
+			if(! $permitArr=$this->_getInheritPermission($this->getDirname(), $this->mCatPath['cat_id'], $groupId)){
+				$permissions = $this->getDefaultPermission();
 				if(intval($groupId)>0){
 					$permitArr[0] = Legacy_Utils::getModuleHandler('permit', $this->getDirname())->create();
 					$permitArr[0]->set('cat_id', $this->get('cat_id'));
@@ -181,19 +181,56 @@ class Lecat_CatObject extends Legacy_AbstractCategoryObject
 	}
 
 	/**
-	 * getDefaultPermissionForCheck
+	 * _getInheritPermission
+	 * 
+	 * @param	string	$dirname
+	 * @param	int[]  $catPath
+	 * @param	int  $groupid
+	 * 
+	 * @return	string
+	**/
+	protected function _getInheritPermission(/*** string ***/ $dirname, /*** int[] ***/$catPath, /*** int ***/ $groupId=0)
+	{
+		$handler = Legacy_Utils::getModuleHandler('permit', $dirname);
+		//check if the category has permission in order
+		foreach(array_keys($catPath) as $key){
+			$criteria = new CriteriaCompo();
+			$criteria->add(new Criteria('cat_id', $catPath[$key]));
+			if(intval($groupId)>0){
+				$criteria->add(new Criteria('groupid', $groupId));
+			}
+			$objs = $handler->getObjects($criteria);
+			if(count($objs)>0) return $objs;
+		}
+	
+		//get default permission for each group
+		$criteria = new CriteriaCompo();
+		$criteria->add(new Criteria('cat_id', 0));
+		if($groupId>0){
+			$criteria->add(new Criteria('groupid', $groupId));
+		}
+		$objs = $handler->getObjects($criteria);
+		if(count($objs)>0) return $objs;
+	}
+
+	/**
+	 * getDefaultPermission
 	 * 
 	 * @param	void
 	 * 
 	 * @return	string[]
 	**/
-	public function getDefaultPermissionForCheck()
+	public function getDefaultPermission()
 	{
 		$permissions = array();
-		$actions = Lecat_Utils::getActionList($this->getDirname());
+		$actors = Lecat_Utils::getActorList($this->getDirname());
+	
+		$cri = new CriteriaCompo();
+		$cri->add(new Criteria('cat_id', 0));
+	
 		$i=0;
-		foreach(array_keys($actions['title']) as $key){
-			$permissions[$key] = $actions['default'][$key];
+		foreach(array_keys($actors['title']) as $key){
+			$permissions[$key] = $actors['default'][$key];
 		}
 		return $permissions;
 	}

@@ -30,20 +30,6 @@ class Lecat_Utils
 	}
 
 	/**
-	 * &getModuleHandler
-	 * 
-	 * @param	string	$name
-	 * @param	string	$dirname
-	 * 
-	 * @return	XoopsObjectHandleer
-	**/
-	public static function &getModuleHandler(/*** string ***/ $name,/*** string ***/ $dirname)
-	{
-		// TODO will be emulated xoops_getmodulehandler
-		return xoops_getmodulehandler($name,$dirname);
-	}
-
-	/**
 	 * getEnv
 	 * 
 	 * @param	string	$key
@@ -56,43 +42,19 @@ class Lecat_Utils
 	}
 
 	/**
-	 * getInheritPermission
-	 * 
-	 * @param	string	$dirname
-	 * @param	int[]  $catPath
-	 * @param	int  $groupid
-	 * 
-	 * @return	string
-	**/
-	public function getInheritPermission(/*** string ***/ $dirname, /*** int[] ***/$catPath, /*** int ***/ $groupId=0)
-	{
-		$handler = Legacy_Utils::getModuleHandler('permit', $dirname);
-		//check if the category has permission in order
-		foreach(array_keys($catPath) as $key){
-			$criteria = new CriteriaCompo();
-			$criteria->add(new Criteria('cat_id', $catPath[$key]));
-			if(intval($groupId)>0){
-				$criteria->add(new Criteria('groupid', $groupId));
-			}
-			$objs = $handler->getObjects($criteria);
-			if(count($objs)>0) return $objs;
-		}
-	}
-
-	/**
-	 * getActionList
+	 * getActorList
 	 * 
 	 * @param	string	$dirname
 	 * 
 	 * @return	string[]
 	**/
-	public static function getActionList(/*** string ***/ $dirname)
+	public static function getActorList(/*** string ***/ $dirname)
 	{
 		$handler = xoops_gethandler('config');
 		$conf = $handler->getConfigsByDirname($dirname);
 	
-		$actions = $conf['actions'];
-		return isset($actions) ? unserialize($actions) : array('key'=>array('viewer','poster','manager'),'title'=>array('Viewer', 'Poster', 'Manager'),'default'=>array(1,1,0));
+		$actors = $conf['actors'];
+		return isset($actors) ? unserialize($actors) : array('key'=>array('viewer','poster','manager'),'title'=>array('Viewer', 'Poster', 'Manager'),'default'=>array(1,1,0));
 	}
 }
 

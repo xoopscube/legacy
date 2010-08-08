@@ -43,7 +43,7 @@ class Lecat_Permission
 	 */
 	function setActionArr()
 	{
-		$actionArr = Lecat_Utils::getActionList($this->mDirname);
+		$actionArr = Lecat_Utils::getActorList($this->mDirname);
 		$i = 0;
 		foreach(array_keys($actionArr['title']) as $key){
 			$this->mActionArr['key'][$i] = $actionArr['key'][$key];

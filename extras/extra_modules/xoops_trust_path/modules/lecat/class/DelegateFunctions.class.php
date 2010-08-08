@@ -21,7 +21,7 @@ class Lecat_CoolUriDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getNormalUri(/*** string ***/ &$uri, /*** string ***/ $dirname, /*** string ***/ $dataname=null, /*** int ***/ $data_id=0, /*** string ***/ $authType=null, /*** string ***/ $query=null)
+	public static function getNormalUri(/*** string ***/ &$uri, /*** string ***/ $dirname, /*** string ***/ $dataname=null, /*** int ***/ $data_id=0, /*** string ***/ $authType=null, /*** string ***/ $query=null)
 	{
 		$sUri = '/%s/index.php?action=%s%s';
 		$lUri = '/%s/index.php?action=%s%s&%s=%d';
@@ -85,7 +85,7 @@ class Lecat_DelegateFunctions implements Legacy_iCategoryDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getTitle(/*** string ***/ &$title, /*** string ***/ $catDir, /*** int ***/ $catId)
+	public static function getTitle(/*** string ***/ &$title, /*** string ***/ $catDir, /*** int ***/ $catId)
 	{
 		$title = Legacy_Utils::getModuleHandler('cat', $catDir)->get($catId)->get('title');
 	}
@@ -103,7 +103,7 @@ class Lecat_DelegateFunctions implements Legacy_iCategoryDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getTree(/*** Legacy_AbstractCategoryObject[] ***/ &$tree, /*** string ***/ $catDir, /*** string ***/ $authType, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module=null)
+	public static function getTree(/*** Legacy_AbstractCategoryObject[] ***/ &$tree, /*** string ***/ $catDir, /*** string ***/ $authType, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module=null)
 	{
 		$handler = Legacy_Utils::getModuleHandler('cat', $catDir);
 		if($handler){
@@ -120,7 +120,7 @@ class Lecat_DelegateFunctions implements Legacy_iCategoryDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getTitleList(/*** string[] ***/ &$titleList, /*** string ***/ $catDir)
+	public static function getTitleList(/*** string[] ***/ &$titleList, /*** string ***/ $catDir)
 	{
 		$catObjs = Legacy_Utils::getModuleHandler('cat', $catDir)->getObjects();
 		foreach(array_keys($catObjs) as $key){
@@ -142,7 +142,7 @@ class Lecat_DelegateFunctions implements Legacy_iCategoryDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function checkPermitByUserId(/*** bool ***/ &$check, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** int ***/ $uid, /*** string ***/ $module=null)
+	public static function checkPermitByUserId(/*** bool ***/ &$check, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** int ***/ $uid, /*** string ***/ $module=null)
 	{
 		$check = false;
 		$obj = Legacy_Utils::getModuleHandler('cat', $catDir)->get($catId);
@@ -163,7 +163,7 @@ class Lecat_DelegateFunctions implements Legacy_iCategoryDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function checkPermitByGroupId(/*** bool ***/ &$check, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** int ***/ $groupId, /*** string ***/ $module=null)
+	public static function checkPermitByGroupId(/*** bool ***/ &$check, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** int ***/ $groupId, /*** string ***/ $module=null)
 	{
 		$check = false;
 		$obj = Legacy_Utils::getModuleHandler('cat', $catDir)->get($catId);
@@ -182,7 +182,7 @@ class Lecat_DelegateFunctions implements Legacy_iCategoryDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getParent(/*** Legacy_AbstractCategoryObject ***/ &$parent, /*** string ***/ $catDir, /*** int ***/ $catId)
+	public static function getParent(/*** Legacy_AbstractCategoryObject ***/ &$parent, /*** string ***/ $catDir, /*** int ***/ $catId)
 	{
 		$handler = Legacy_Utils::getModuleHandler('cat', $catDir);
 		$pId = $handler->get($catId)->get('p_id');
@@ -202,7 +202,7 @@ class Lecat_DelegateFunctions implements Legacy_iCategoryDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getChildren(/*** Legacy_AbstractCategoryObject[] ***/ &$children, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** int ***/ $uid, /*** string ***/ $module=null)
+	public static function getChildren(/*** Legacy_AbstractCategoryObject[] ***/ &$children, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** int ***/ $uid, /*** string ***/ $module=null)
 	{
 		$handler = Legacy_Utils::getModuleHandler('cat', $catDir);
 		$cat = $handler->get($catId);
@@ -238,7 +238,7 @@ class Lecat_DelegateFunctions implements Legacy_iCategoryDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getCatPath(/*** array ***/ &$catPath, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $order='ASC')
+	public static function getCatPath(/*** array ***/ &$catPath, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $order='ASC')
 	{
 		$cat = Legacy_Utils::getModuleHandler('cat', $catDir)->get($catId);
 		if($cat){
@@ -266,7 +266,7 @@ class Lecat_DelegateFunctions implements Legacy_iCategoryDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getPermittedIdList(/*** int[] ***/ &$idList, /*** string ***/ $catDir, /*** string ***/ $authType, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module=null)
+	public static function getPermittedIdList(/*** int[] ***/ &$idList, /*** string ***/ $catDir, /*** string ***/ $authType, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module=null)
 	{
 		$handler = Legacy_Utils::getModuleHandler('cat', $catDir);
 		$tree = $handler->getTree(intval($catId), $module);

@@ -22,17 +22,8 @@ CREATE TABLE IF NOT EXISTS `{prefix}_{dirname}_permit` (
   KEY `cat_id` (`cat_id`)
 ) ENGINE=MyISAM;
 
-INSERT INTO `{prefix}_{dirname}_permit` (`permit_id`, `cat_id`, `groupid`, `permissions`) VALUES
-(1, 2, 1, 'a:3:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";s:7:"manager";s:1:"1";}'),
-(2, 2, 2, 'a:2:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";}'),
-(3, 2, 3, 'a:2:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";}'),
-(4, 3, 1, 'a:3:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";s:7:"manager";s:1:"1";}'),
-(5, 3, 2, 'a:2:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";}'),
-(6, 3, 3, 'a:1:{s:6:"viewer";s:1:"1";}'),
-(7, 4, 1, 'a:3:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";s:7:"manager";s:1:"1";}'),
-(8, 4, 2, 'a:2:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";}'),
-(9, 5, 1, 'a:3:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";s:7:"manager";s:1:"1";}'),
-(10, 5, 2, 'a:1:{s:6:"viewer";s:1:"1";}'),
-(11, 5, 3, 'a:1:{s:6:"viewer";s:1:"1";}'),
-(12, 6, 1, 'a:3:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";s:7:"manager";s:1:"1";}');
+INSERT INTO `{prefix}_{dirname}_permit` (`permit_id`, `cat_id`, `groupid`, `permissions`) VALUES 
+(1, 0, 1, 'a:3:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";s:7:"manager";s:1:"1";}'),
+(2, 0, 2, 'a:2:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";}'),
+(3, 0, 3, 'a:2:{s:6:"viewer";s:1:"1";s:6:"poster";s:1:"1";}');
 
