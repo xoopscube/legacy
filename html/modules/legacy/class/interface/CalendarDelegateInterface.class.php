@@ -25,7 +25,7 @@ interface Legacy_iCalendarDelegate
 	 *
 	 * @return	void
 	 */	
-	public function getCalendarEvents(/*** mix[] ***/ &$event, /*** int ***/ $start, /*** int ***/ $end, /*** int ***/ $uid);
+	public static function getCalendarEvents(/*** mix[] ***/ &$event, /*** int ***/ $start, /*** int ***/ $end, /*** int ***/ $uid);
 
 }
 

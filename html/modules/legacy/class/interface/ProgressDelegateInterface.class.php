@@ -26,7 +26,7 @@ interface Legacy_iAbstractProgressDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function addItem(/*** string ***/ $title, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id, /*** string ***/ $url);
+	public static function addItem(/*** string ***/ $title, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id, /*** string ***/ $url);
 
 	/**
 	 * deleteItem	Legacy_Progress.DeleteItem
@@ -37,7 +37,7 @@ interface Legacy_iAbstractProgressDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function deleteItem(/*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id);
+	public static function deleteItem(/*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id);
 
 	/**
 	 * getHistory	Legacy_Progress.GetHistory
@@ -54,7 +54,7 @@ interface Legacy_iAbstractProgressDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getHistory(/*** mix[] ***/ &$historyArr, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id);
+	public static function getHistory(/*** mix[] ***/ &$historyArr, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id);
 
 
 }

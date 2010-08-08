@@ -24,7 +24,7 @@ interface Legacy_iProgressClientDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getManagedModules(/*** array ***/ &$list);
+	public static function getManagedModules(/*** array ***/ &$list);
 
 	/**
 	 * updateStatus Legacy_Progress.UpdateStatus
@@ -37,7 +37,7 @@ interface Legacy_iProgressClientDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function updateStatus(/*** string ***/ &$result, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id, /*** Enum ***/ $status);
+	public static function updateStatus(/*** string ***/ &$result, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id, /*** Enum ***/ $status);
 }
 
 ?>

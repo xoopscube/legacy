@@ -22,7 +22,7 @@ interface Legacy_iActivityDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function addUserActivity(/*** Legacy_AbstractUserActivityObject ***/ &$activity);
+	public static function addUserActivity(/*** Legacy_AbstractUserActivityObject ***/ &$activity);
 
 	/**
 	 * deleteUserActivity	Legacy_Activity.DeleteUserActivity
@@ -32,7 +32,7 @@ interface Legacy_iActivityDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function deleteUserActivity(/*** bool ***/ &$result, /*** CriteriaElement ***/ $cri);
+	public static function deleteUserActivity(/*** bool ***/ &$result, /*** CriteriaElement ***/ $cri);
 
 	/**
 	 * getUsersActivities	Legacy_Activity.GetUsersAcitivities
@@ -44,7 +44,7 @@ interface Legacy_iActivityDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getUsersActivities(/*** Legacy_AbstractUserActivityObject[] ***/ &$activityList, /*** int[] ***/ $uids, /*** int ***/ $limit=20, /*** int ***/ $start=0);
+	public static function getUsersActivities(/*** Legacy_AbstractUserActivityObject[] ***/ &$activityList, /*** int[] ***/ $uids, /*** int ***/ $limit=20, /*** int ***/ $start=0);
 
 	/**
 	 * addGroupActivity	 Legacy_Activity.AddGroupActivity
@@ -53,7 +53,7 @@ interface Legacy_iActivityDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function addGroupActivity(/*** Legacy_AbstractGroupActivityObject ***/ &$activity);
+	public static function addGroupActivity(/*** Legacy_AbstractGroupActivityObject ***/ &$activity);
 
 	/**
 	 * deleteGroupActivity	Legacy_Activity.deleteGroupActivity
@@ -63,7 +63,7 @@ interface Legacy_iActivityDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function deleteGroupActivity(/*** bool ***/ &$result, /*** CriteriaElement ***/ $cri);
+	public static function deleteGroupActivity(/*** bool ***/ &$result, /*** CriteriaElement ***/ $cri);
 
 	/**
 	 * getGroupsActivities	 Legacy_Activity.GetGroupsAcitivities
@@ -75,7 +75,7 @@ interface Legacy_iActivityDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getGroupsActivities(/*** Legacy_AbstractGroupActivityObject[] ***/ &$activityList, /*** int[] ***/ $groupIds, /*** int ***/ $limit=20, /*** int ***/ $start=0);
+	public static function getGroupsActivities(/*** Legacy_AbstractGroupActivityObject[] ***/ &$activityList, /*** int[] ***/ $groupIds, /*** int ***/ $limit=20, /*** int ***/ $start=0);
 
 }
 

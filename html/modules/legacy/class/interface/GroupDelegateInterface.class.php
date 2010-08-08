@@ -26,7 +26,7 @@ interface Legacy_iGroupDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getTitle(/*** string ***/ &$title, /*** string ***/ $gDirname, /*** int ***/ $groupId);
+	public static function getTitle(/*** string ***/ &$title, /*** string ***/ $gDirname, /*** int ***/ $groupId);
 
 	/**
 	 * getTitleList 	Legacy_Group.GetTitleList
@@ -37,7 +37,7 @@ interface Legacy_iGroupDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getTitleList(/*** string[] ***/ &$titleList, /*** string ***/ $gDirname);
+	public static function getTitleList(/*** string[] ***/ &$titleList, /*** string ***/ $gDirname);
 
 	/**
 	 * hasPermission
@@ -51,7 +51,7 @@ interface Legacy_iGroupDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function hasPermission(/*** bool ***/ &$check, /*** string ***/ $gDirname, /*** int ***/ $groupId, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** string ***/ $action);
+	public static function hasPermission(/*** bool ***/ &$check, /*** string ***/ $gDirname, /*** int ***/ $groupId, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** string ***/ $action);
 
 	/**
 	 * getGroupIdList Legacy_Group.GetMyGroupIdList
@@ -64,7 +64,7 @@ interface Legacy_iGroupDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getGroupIdList(/*** int[] ***/ &$list, /*** string ***/ $gDirname, /*** Enum ***/ $rank, /*** int ***/ $limit=null, /*** int ***/ $start=null);
+	public static function getGroupIdList(/*** int[] ***/ &$list, /*** string ***/ $gDirname, /*** Enum ***/ $rank, /*** int ***/ $limit=null, /*** int ***/ $start=null);
 
 	/**
 	 * getGroupList Legacy_Group.GetMyGroupList
@@ -77,7 +77,7 @@ interface Legacy_iGroupDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getGroupList(/*** mixed[] ***/ &$list, /*** string ***/ $gDirname, /*** Enum ***/ $rank, /*** int ***/ $limit=null, /*** int ***/ $start=null);
+	public static function getGroupList(/*** mixed[] ***/ &$list, /*** string ***/ $gDirname, /*** Enum ***/ $rank, /*** int ***/ $limit=null, /*** int ***/ $start=null);
 
 	/**
 	 * getGroupIdListByAction Legacy_Group.GetGroupIdListByAction
@@ -92,7 +92,7 @@ interface Legacy_iGroupDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getGroupIdListByAction(/*** int[] ***/ &$list, /*** string ***/ $gDirname, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** string ***/ $action, /*** int ***/ $limit=null, /*** int ***/ $start=null);
+	public static function getGroupIdListByAction(/*** int[] ***/ &$list, /*** string ***/ $gDirname, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** string ***/ $action, /*** int ***/ $limit=null, /*** int ***/ $start=null);
 
 	/**
 	 * getGroupListByAction Legacy_Group.GetGroupListByAction
@@ -107,7 +107,7 @@ interface Legacy_iGroupDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getGroupListByAction(/*** mixed[] ***/ &$list, /*** string ***/ $gDirname, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** string ***/ $action, /*** int ***/ $limit=null, /*** int ***/ $start=null);
+	public static function getGroupListByAction(/*** mixed[] ***/ &$list, /*** string ***/ $gDirname, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** string ***/ $action, /*** int ***/ $limit=null, /*** int ***/ $start=null);
 
 	/**
 	 * getMemberList	  Legacy_Group.GetMemberList
@@ -122,7 +122,7 @@ interface Legacy_iGroupDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getMemberList(/*** int[] ***/ &$list, /*** string ***/ $gDirname, /*** int ***/ $groupId, /*** Enum ***/ $rank);
+	public static function getMemberList(/*** int[] ***/ &$list, /*** string ***/ $gDirname, /*** int ***/ $groupId, /*** Enum ***/ $rank);
 
 	/**
 	 * isMember 	 Legacy_Group.IsMember
@@ -136,7 +136,7 @@ interface Legacy_iGroupDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function isMember(/*** bool ***/ &$check, /*** string ***/ $gDirname, /*** int ***/ $groupId, /*** int ***/ $uid, /*** Enum ***/ $rank=Lenum_GroupRank::REGULAR);
+	public static function isMember(/*** bool ***/ &$check, /*** string ***/ $gDirname, /*** int ***/ $groupId, /*** int ***/ $uid, /*** Enum ***/ $rank=Lenum_GroupRank::REGULAR);
 
 	/**
 	 * getGroupsActivitiesList 	Legacy_Group.GetGroupActivitiesList
@@ -150,7 +150,7 @@ interface Legacy_iGroupDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getGroupsActivitiesList(/*** Legacy_AbstractGroupActivityObject[] ***/ &$actionList, /*** string ***/ $gDirname, /*** int ***/ $uid, /*** int ***/ $limit=20, /*** int ***/ $start=0);
+	public static function getGroupsActivitiesList(/*** Legacy_AbstractGroupActivityObject[] ***/ &$actionList, /*** string ***/ $gDirname, /*** int ***/ $uid, /*** int ***/ $limit=20, /*** int ***/ $start=0);
 }
 
 ?>

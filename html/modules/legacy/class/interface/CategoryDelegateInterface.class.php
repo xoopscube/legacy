@@ -24,7 +24,7 @@ interface Legacy_iCategoryDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getTitle(/*** string ***/ &$title, /*** string ***/ $catDir, /*** int ***/ $catId);
+	public static function getTitle(/*** string ***/ &$title, /*** string ***/ $catDir, /*** int ***/ $catId);
 
 	/**
 	 * getTree
@@ -39,7 +39,7 @@ interface Legacy_iCategoryDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getTree(/*** Legacy_AbstractCategoryObject[] ***/ &$tree, /*** string ***/ $catDir, /*** string ***/ $authType, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module=null);
+	public static function getTree(/*** Legacy_AbstractCategoryObject[] ***/ &$tree, /*** string ***/ $catDir, /*** string ***/ $authType, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module=null);
 
 	/**
 	 * getTitleList
@@ -49,7 +49,7 @@ interface Legacy_iCategoryDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getTitleList(/*** string[] ***/ &$titleList, /*** string ***/ $catDir);
+	public static function getTitleList(/*** string[] ***/ &$titleList, /*** string ***/ $catDir);
 
 	/**
 	 * checkPermitByUserId
@@ -63,7 +63,7 @@ interface Legacy_iCategoryDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function checkPermitByUserId(/*** bool ***/ &$check, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** int ***/ $uid, /*** string ***/ $module=null);
+	public static function checkPermitByUserId(/*** bool ***/ &$check, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** int ***/ $uid, /*** string ***/ $module=null);
 
 	/**
 	 * checkPermitByGroupId
@@ -77,7 +77,7 @@ interface Legacy_iCategoryDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function checkPermitByGroupId(/*** bool ***/ &$check, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** int ***/ $groupId, /*** string ***/ $module=null);
+	public static function checkPermitByGroupId(/*** bool ***/ &$check, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** int ***/ $groupId, /*** string ***/ $module=null);
 
 	/**
 	 * getParent		Legacy_Category.GetParent
@@ -89,7 +89,7 @@ interface Legacy_iCategoryDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getParent(/*** Legacy_AbstractCategoryObject ***/ &$parent, /*** string ***/ $catDir, /*** int ***/ $catId);
+	public static function getParent(/*** Legacy_AbstractCategoryObject ***/ &$parent, /*** string ***/ $catDir, /*** int ***/ $catId);
 
 	/**
 	 * getChildren		Legacy_Category.GetChildren
@@ -104,7 +104,7 @@ interface Legacy_iCategoryDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getChildren(/*** Legacy_AbstractCategoryObject[] ***/ &$children, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** int ***/ $uid, /*** string ***/ $module=null);
+	public static function getChildren(/*** Legacy_AbstractCategoryObject[] ***/ &$children, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** int ***/ $uid, /*** string ***/ $module=null);
 
 	/**
 	 * getCatPath		Legacy_Category.GetCatPath
@@ -119,7 +119,7 @@ interface Legacy_iCategoryDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getCatPath(/*** array ***/ &$catPath, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $order='ASC');
+	public static function getCatPath(/*** array ***/ &$catPath, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $order='ASC');
 
 	/**
 	 * getPermittedIdList		Legacy_Category.GetPermittedIdList
@@ -134,7 +134,7 @@ interface Legacy_iCategoryDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getPermittedIdList(/*** int[] ***/ &$idList, /*** string ***/ $catDir, /*** string ***/ $authType, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module=null);
+	public static function getPermittedIdList(/*** int[] ***/ &$idList, /*** string ***/ $catDir, /*** string ***/ $authType, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module=null);
 
 }
 

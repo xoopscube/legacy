@@ -27,7 +27,7 @@ interface Legacy_iTagDelegate
 	 * @param string $title
 	 * @param string $url
 	 */	
-	public function setTags($dirname, $dataname, $data_id, $tagArr, $posttime, $title, $url);
+	public static function setTags($dirname, $dataname, $data_id, $tagArr, $posttime, $title, $url);
 
 	/**
 	 * getTags
@@ -37,7 +37,7 @@ interface Legacy_iTagDelegate
 	 * @param string $dataname
 	 * @param int $data_id
 	 */	
-	public function getTags(&$tagArr, $dirname, $dataname, $data_id);
+	public static function getTags(&$tagArr, $dirname, $dataname, $data_id);
 
 	/**
 	 * getTagCloudSrc
@@ -47,7 +47,7 @@ interface Legacy_iTagDelegate
 	 *	 @param int		$cloud['count'][]
 	 * @param int	$setId
 	 */	
-	public function getTagCloudSrc(&$cloud, $setId=0);
+	public static function getTagCloudSrc(&$cloud, $setId=0);
 
 	/**
 	 * getContentsByTags
@@ -57,7 +57,7 @@ interface Legacy_iTagDelegate
 	 * @param string	$dataname
 	 * @param string[]	$tagArr
 	 */	
-	public function getContentsByTags(&$idList, $dirname, $dataname, $tagArr);
+	public static function getContentsByTags(&$idList, $dirname, $dataname, $tagArr);
 
 }
 

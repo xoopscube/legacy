@@ -24,7 +24,7 @@ interface Legacy_iFriendDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getFriendIdList(/*** int[] ***/ &$list, /*** int ***/ $uid);
+	public static function getFriendIdList(/*** int[] ***/ &$list, /*** int ***/ $uid);
 
 	/**
 	 * isFriend 	Legacy_Friend.IsFriend
@@ -36,7 +36,7 @@ interface Legacy_iFriendDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function isFriend(/*** bool ***/ &$check, /*** int ***/ $uid, /*** int ***/ $friend_uid);
+	public static function isFriend(/*** bool ***/ &$check, /*** int ***/ $uid, /*** int ***/ $friend_uid);
 
 	/**
 	 * getMyFriendsActivitiesList 	Legacy_Friend.GetFriendsActivitiesList
@@ -49,7 +49,7 @@ interface Legacy_iFriendDelegate
 	 *
 	 * @return	void
 	 */ 
-	public function getMyFriendsActivitiesList(/*** Legacy_AbstractUserActivityObject[] ***/ &$actionList, /*** int ***/ $uid, /*** int ***/ $limit=20, /*** int ***/ $start=0);
+	public static function getMyFriendsActivitiesList(/*** Legacy_AbstractUserActivityObject[] ***/ &$actionList, /*** int ***/ $uid, /*** int ***/ $limit=20, /*** int ***/ $start=0);
 
 
 }
