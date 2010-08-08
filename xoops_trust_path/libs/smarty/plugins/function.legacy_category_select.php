@@ -17,20 +17,24 @@
  */
  
 function smarty_function_legacy_category_select($params, &$smarty)
-{//var_dump($params['tree']);die();
+{
 	$selectHtml = '';
-	foreach(array_keys($params['tree']) as $key){
-		$d = $params['tree'][$key]->getDepth();	//depth of tree
-		if($params['selectedValue']==$params['tree'][$key]->getShow('cat_id')){
-			$selectHtml .= '<option value="'.$params['tree'][$key]->getShow('cat_id').'" selected="selected">';
+
+	$tree = $params['tree'];
+
+	foreach(array_keys($tree) as $key){
+		$pkey = $tree[$key]->getPrimary();
+		$d = method_exists('getDepth') ? $tree[$key]->getDepth() : 0;	//depth of tree
+		if($params['selectedValue']==$tree[$key]->getShow($pkey)){
+			$selectHtml .= '<option value="'.$tree[$key]->getShow($pkey).'" selected="selected">';
 		}
 		else{
-			$selectHtml .= '<option value="' .$params['tree'][$key]->getShow('cat_id'). '">';
+			$selectHtml .= '<option value="' .$tree[$key]->getShow($pkey). '">';
 		}
 		for($i=0;$i<$d;$i++){
 			$selectHtml .= '-';
 		}
-		$selectHtml .= $params['tree'][$key]->getShow('title') .'</option>';
+		$selectHtml .= $tree[$key]->getShow('title') .'</option>';
 	}
 
 	echo $selectHtml;
