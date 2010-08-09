@@ -127,6 +127,13 @@ class Lecat_CatObject extends Legacy_AbstractCategoryObject
 		}
 	}
 
+    /**
+     * _getPermit
+     * 
+     * @param   int		$groupId
+     * 
+     * @return  Lecat_PermitObject[]
+    **/
 	protected function _getPermit($groupid=0)
 	{
 		$handler = Legacy_Utils::getModuleHandler('permit', $this->getDirname());

@@ -76,6 +76,7 @@ $modversion['templates'] = array(
 	array('file' => '{dirname}_cat_edit.html','description' => _MI_LECAT_TPL_CAT_EDIT),
 	array('file' => '{dirname}_cat_delete.html','description' => _MI_LECAT_TPL_CAT_DELETE),
 	array('file' => '{dirname}_cat_view.html','description' => _MI_LECAT_TPL_CAT_VIEW),
+	array('file' => '{dirname}_default_set.html','description' => _MI_LECAT_TPL_DEFAULT_SET),
 ##[/cubson:templates]
 );
 

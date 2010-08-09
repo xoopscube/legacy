@@ -48,7 +48,8 @@ class Lecat_PermitEditAction extends Lecat_AbstractEditAction
 	{
 		parent::prepare();
 		//if no cat_id and no permit_id is requested, it is invalid request.
-		if(! $this->mRoot->mContext->mRequest->getRequest('cat_id') && ! $this->_getId()){
+		$catId = $this->mRoot->mContext->mRequest->getRequest('cat_id');
+		if(! isset($catId) && ! $this->_getId()){
 			$this->mRoot->mController->executeRedirect("./index.php?action=CatList", 1, _MD_LECAT_ERROR_NO_CATEGORY_REQUESTED);
 		}
 	
@@ -93,7 +94,12 @@ class Lecat_PermitEditAction extends Lecat_AbstractEditAction
 	**/
 	public function executeViewSuccess(/*** XCube_RenderTarget ***/ &$render)
 	{
-		$this->mRoot->mController->executeForward('./index.php?action=CatView&cat_id='. $this->mCatId);
+		if($this->mCatId==0){
+			$this->mRoot->mController->executeForward('./index.php?action=DefaultSet');
+		}
+		else{
+			$this->mRoot->mController->executeForward('./index.php?action=CatView&cat_id='. $this->mCatId);
+		}
 	}
 
 	/**
