@@ -33,13 +33,12 @@ interface Legacy_iCategoryDelegate
 	 * @param Legacy_AbstractCategoryObject[] $tree
 	 * @param string $catDir	category module's directory name
 	 * @param string 	$authType	ex) viewer, editor, manager
-	 * @param int 		$uid
 	 * @param int 		$catId	get tree under this cat_id
 	 * @param string	$module module confinement
 	 *
 	 * @return	void
 	 */ 
-	public static function getTree(/*** Legacy_AbstractCategoryObject[] ***/ &$tree, /*** string ***/ $catDir, /*** string ***/ $authType, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module=null);
+	public static function getTree(/*** Legacy_AbstractCategoryObject[] ***/ &$tree, /*** string ***/ $catDir, /*** string ***/ $authType, /*** int ***/ $catId=0, /*** string ***/ $module=null);
 
 	/**
 	 * getTitleList
@@ -52,32 +51,17 @@ interface Legacy_iCategoryDelegate
 	public static function getTitleList(/*** string[] ***/ &$titleList, /*** string ***/ $catDir);
 
 	/**
-	 * checkPermitByUserId
+	 * hasPermission
 	 *
 	 * @param bool &$check
 	 * @param string	$catDir	category module's directory name
 	 * @param int		$catId
 	 * @param string	$authType	ex) viewer, editor, manager
-	 * @param int		$uid
 	 * @param string	$module	module confinement
 	 *
 	 * @return	void
 	 */ 
-	public static function checkPermitByUserId(/*** bool ***/ &$check, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** int ***/ $uid, /*** string ***/ $module=null);
-
-	/**
-	 * checkPermitByGroupId
-	 *
-	 * @param bool		&$check
-	 * @param string	$catDir	category module's directory name
-	 * @param int		$catId
-	 * @param string	$authType	ex) viewer, editor, manager
-	 * @param int		$groupId
-	 * @param string	$module	 module confinement
-	 *
-	 * @return	void
-	 */ 
-	public static function checkPermitByGroupId(/*** bool ***/ &$check, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** int ***/ $groupId, /*** string ***/ $module=null);
+	public static function hasPermission(/*** bool ***/ &$check, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** string ***/ $module=null);
 
 	/**
 	 * getParent		Legacy_Category.GetParent
@@ -99,12 +83,11 @@ interface Legacy_iCategoryDelegate
 	 * @param string	$catDir	category module's directory name
 	 * @param int		$catId	the parent's category id
 	 * @param string	$authType	ex) viewer, editor, manager
-	 * @param int		$uid
 	 * @param string	$module	 module confinement
 	 *
 	 * @return	void
 	 */ 
-	public static function getChildren(/*** Legacy_AbstractCategoryObject[] ***/ &$children, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** int ***/ $uid, /*** string ***/ $module=null);
+	public static function getChildren(/*** Legacy_AbstractCategoryObject[] ***/ &$children, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** string ***/ $module=null);
 
 	/**
 	 * getCatPath		Legacy_Category.GetCatPath
