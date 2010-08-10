@@ -77,6 +77,7 @@ $modversion['templates'] = array(
 	array('file' => '{dirname}_cat_delete.html','description' => _MI_LECAT_TPL_CAT_DELETE),
 	array('file' => '{dirname}_cat_view.html','description' => _MI_LECAT_TPL_CAT_VIEW),
 	array('file' => '{dirname}_default_set.html','description' => _MI_LECAT_TPL_DEFAULT_SET),
+	array('file' => '{dirname}_actor_edit.html','description' => _MI_LECAT_TPL_ACTOR_EDIT),
 ##[/cubson:templates]
 );
 
@@ -86,6 +87,7 @@ $modversion['templates'] = array(
 $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = 'admin/index.php?action=Index';
 $modversion['adminmenu'] = array(
+/*
 	array(
 		'title'    => _MI_LECAT_LANG_SETTING_EDIT,
 		'link'	   => 'admin/index.php?action=SettingEdit',
@@ -93,6 +95,7 @@ $modversion['adminmenu'] = array(
 		'show'	   => true,
 		'absolute' => false
 	),
+*/
 ##[cubson:adminmenu]
 ##[/cubson:adminmenu]
 );

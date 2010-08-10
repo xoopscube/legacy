@@ -15,7 +15,7 @@ require_once LECAT_TRUST_PATH . '/class/AbstractEditAction.class.php';
 /**
  * Lecat_Admin_IndexAction
 **/
-class Lecat_Admin_SettingEditAction extends Lecat_AbstractEditAction
+class Lecat_ActorEditAction extends Lecat_AbstractEditAction
 {
 	/**
 	 * _setupActionForm
@@ -27,7 +27,7 @@ class Lecat_Admin_SettingEditAction extends Lecat_AbstractEditAction
 	protected function _setupActionForm()
 	{
 		// $this->mActionForm =new Lecat_CatEditForm();
-		$this->mActionForm =& $this->mAsset->getObject('form', 'setting', true, 'edit');
+		$this->mActionForm =& $this->mAsset->getObject('form', 'actor', false, 'edit');
 		$this->mActionForm->prepare();
 	}
 
@@ -61,9 +61,11 @@ class Lecat_Admin_SettingEditAction extends Lecat_AbstractEditAction
 		if(count($keyArr) == count($titleArr)){
 			$valueArr = array();
 			foreach(array_keys($keyArr) as $k){
-				$valueArr['key'][$k] =$keyArr[$k];
-				$valueArr['title'][$k] =$titleArr[$k];
-				$valueArr['default'][$k] = isset($defaultArr[$k]) ? $defaultArr[$k] : 0;
+				if($keyArr[$k] && $titleArr[$k]){
+					$valueArr['key'][$k] =$keyArr[$k];
+					$valueArr['title'][$k] =$titleArr[$k];
+					$valueArr['default'][$k] = isset($defaultArr[$k]) ? $defaultArr[$k] : 0;
+				}
 			}
 			if(! $this->_insertConfig('actors', serialize($valueArr))){
 				return LECAT_FRAME_VIEW_ERROR;
@@ -116,7 +118,8 @@ class Lecat_Admin_SettingEditAction extends Lecat_AbstractEditAction
 	{
 		$headerScript = $this->mRoot->mContext->getAttribute('headerScript');
 		$headerScript->addStylesheet($this->_getStylesheet());
-		$headerScript->addScript('actorsCounter='. count($this->_getactors()). ';',false);
+		$actors = $this->_getActors();
+		$headerScript->addScript('actorsCounter='. count($actors['key']). ';',false);
 		$headerScript->addScript('function addActorKeyForm() {$("#permitOptions").append("<tr><td><input type=\'text\' id=\'legacy_xoopsform_key["+actorsCounter+"]\' value=\'\' name=\'key["+actorsCounter+"]\'></td><td><input type=\'text\' id=\'legacy_xoopsform_title["+actorsCounter+"]\' value=\'\' name=\'title["+actorsCounter+"]\'></td><td><input type=\'checkbox\' id=\'legacy_xoopsform_default["+actorsCounter+"]\' value=\'1\' name=\'default["+actorsCounter+"]\'></td></tr>");actorsCounter++;}', false);
 	}
 
@@ -141,9 +144,8 @@ class Lecat_Admin_SettingEditAction extends Lecat_AbstractEditAction
 	**/
 	public function executeViewInput(&$render)
 	{
-		$render->setTemplateName('setting_edit.html');
+		$render->setTemplateName($this->mAsset->mDirname . '_actor_edit.html');
 		$render->setAttribute('actors', $this->_getActors());
-		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 		$render->setAttribute('actionForm', $this->mActionForm);
 		$render->setAttribute('dirname', $this->mAsset->mDirname);
 	}
@@ -181,7 +183,7 @@ class Lecat_Admin_SettingEditAction extends Lecat_AbstractEditAction
 	**/
 	protected function _getForwardUrl()
 	{
-		return './index.php?action=SettingEdit';
+		return Legacy_Utils::renderUri($this->mAsset->mDirname);
 	}
 }
 

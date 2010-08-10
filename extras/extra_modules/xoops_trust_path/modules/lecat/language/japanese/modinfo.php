@@ -61,6 +61,7 @@ define('_MI_LECAT_TPL_SET_EDIT', 'カテゴリグループ編集');
 define('_MI_LECAT_TPL_SET_DELETE', 'カテゴリグループ削除');
 define('_MI_LECAT_TPL_SET_VIEW', 'カテゴリグループ表示');
 define('_MI_LECAT_TPL_DEFAULT_SET', 'Default Set');
+define('_MI_LECAT_TPL_ACTOR_EDIT', 'Actor Edit');
 define('_MI_LECAT_LANG_MAXDEPTH', 'カテゴリの深さ');
 define('_MI_LECAT_DESC_MAXDEPTH', 'カテゴリの深さの制限（0は無制限）');
 define('_MI_LECAT_LANG_SETTING_EDIT', '設定');

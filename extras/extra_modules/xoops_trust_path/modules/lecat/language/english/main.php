@@ -50,6 +50,7 @@ define('_MD_LECAT_LANG_AUTH_SETTING', 'auth setting');
 define('_MD_LECAT_LANG_AUTH_KEY', 'auth key name');
 define('_MD_LECAT_LANG_AUTH_TITLE', 'auth display title');
 define('_MD_LECAT_LANG_AUTH_DEFAULT', 'auth default value');
+define('_MD_LECAT_LANG_EDIT_ACTOR', 'Edit Actors');
 define('_MD_LECAT_LANG_MODULES_CONFINEMENT', 'Module Confinement');
 define('_MD_LECAT_LANG_PERMISSION_TYPE', 'Permission Type');
 define('_MD_LECAT_LANG_DEFAULT_PERMISSIONS', 'Default Permission Setting');

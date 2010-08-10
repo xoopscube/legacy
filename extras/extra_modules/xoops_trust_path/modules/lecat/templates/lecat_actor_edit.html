@@ -1,10 +1,6 @@
-<ul class="adminMenu">
-<{foreach item=menu from=$adminMenu}>
-<li><a href="<{$menu.url}>"><{$menu.title}></a></li>
-<{/foreach}>
-</ul>
+<div id="lecat">
 
-<form action="index.php?action=SettingEdit" method="post">
+<form action="<{xoops_cooluri dirname=$dirname dataname=actor action=edit}>" method="post">
  	<{$smarty.const._MD_LECAT_DESC_PERMISSION_TYPE}>
   <table id="permitOptions" class="outer" summary="">
     <tbody>
@@ -18,7 +14,7 @@
     	<tr>
         <td><{xoops_input type=text name=key[$it] value=$actors.key[$it]}></td>
         <td><{xoops_input type=text name=title[$it] value=$actors.title[$it]}></td>
-        <td><input type="checkbox" name="default[<{$it}>]" value="1" id="legacy_xoopsform_actors_default[<{$it}>]" <{if $actors.default[$it]==1}>checked="checked" <{/if}>></td>
+        <td><input type="checkbox" name="default[<{$it}>]" value="1" id="legacy_xoopsform_actors_default[<{$it}>]" <{if $actors.default[$it]==1}>checked="checked"<{/if}> /></td>
       </tr>
       <{/foreach}>
     </tbody>
@@ -37,3 +33,4 @@
     </tfoot>
   </table>
 </form>
+</div>

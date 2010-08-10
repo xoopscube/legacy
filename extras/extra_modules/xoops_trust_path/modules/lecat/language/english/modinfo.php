@@ -61,6 +61,7 @@ define('_MI_LECAT_TPL_SET_EDIT', 'Category Set Edit');
 define('_MI_LECAT_TPL_SET_DELETE', 'Category Set Delete');
 define('_MI_LECAT_TPL_SET_VIEW', 'Category Set View');
 define('_MI_LECAT_TPL_DEFAULT_SET', 'Default Set');
+define('_MI_LECAT_TPL_ACTOR_EDIT', 'Actor Edit');
 define('_MI_LECAT_LANG_CSS_FILE', 'CSS file url');
 define('_MI_LECAT_DESC_CSS_FILE', 'set CSS file url after {XOOPS_URL}');
 define('_MI_LECAT_LANG_MAXDEPTH', 'Max depth');
