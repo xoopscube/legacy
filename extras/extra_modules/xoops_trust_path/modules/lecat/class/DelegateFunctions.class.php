@@ -97,18 +97,17 @@ class Lecat_DelegateFunctions implements Legacy_iCategoryDelegate
 	 * @param Legacy_AbstractCategoryObject[] $tree
 	 * @param string $catDir	category module's directory name
 	 * @param string 	$authType	ex) viewer, editor, manager
-	 * @param int 		$uid
 	 * @param int 		$catId	get tree under this cat_id
 	 * @param string	$module module confinement
 	 *
 	 * @return	void
 	 */ 
-	public static function getTree(/*** Legacy_AbstractCategoryObject[] ***/ &$tree, /*** string ***/ $catDir, /*** string ***/ $authType, /*** int ***/ $uid, /*** int ***/ $catId=0, /*** string ***/ $module=null)
+	public static function getTree(/*** Legacy_AbstractCategoryObject[] ***/ &$tree, /*** string ***/ $catDir, /*** string ***/ $authType, /*** int ***/ $catId=0, /*** string ***/ $module=null)
 	{
 		$handler = Legacy_Utils::getModuleHandler('cat', $catDir);
 		if($handler){
 			$tree = $handler->getTree(intval($catId));
-			$tree = $handler->filterCategory($tree, $authType, $uid, false);
+			$tree = $handler->filterCategory($tree, $authType, Legacy_Utils::getUid(), false);
 		}
 	}
 
@@ -131,44 +130,22 @@ class Lecat_DelegateFunctions implements Legacy_iCategoryDelegate
 	}
 
 	/**
-	 * checkPermitByUserId
+	 * hasPermission
 	 *
 	 * @param bool &$check
 	 * @param string	$catDir	category module's directory name
 	 * @param int		$catId
 	 * @param string	$authType	ex) viewer, editor, manager
-	 * @param int		$uid
 	 * @param string	$module	module confinement
 	 *
 	 * @return	void
 	 */ 
-	public static function checkPermitByUserId(/*** bool ***/ &$check, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** int ***/ $uid, /*** string ***/ $module=null)
+	public static function hasPermission(/*** bool ***/ &$check, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** string ***/ $module=null)
 	{
 		$check = false;
 		$obj = Legacy_Utils::getModuleHandler('cat', $catDir)->get($catId);
 		if($obj){
-			$check = $obj->checkPermitByUid($authType, $uid, $module);
-		}
-	}
-
-	/**
-	 * checkPermitByGroupId
-	 *
-	 * @param bool		&$check
-	 * @param string	$catDir	category module's directory name
-	 * @param int		$catId
-	 * @param string	$authType	ex) viewer, editor, manager
-	 * @param int		$groupId
-	 * @param string	$module	 module confinement
-	 *
-	 * @return	void
-	 */ 
-	public static function checkPermitByGroupId(/*** bool ***/ &$check, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** int ***/ $groupId, /*** string ***/ $module=null)
-	{
-		$check = false;
-		$obj = Legacy_Utils::getModuleHandler('cat', $catDir)->get($catId);
-		if($obj){
-			$check = $obj->checkPermitByGroupid($authType, $groupid, $module);
+			$check = $obj->checkPermitByUid($authType, Legacy_Utils::getUid(), $module);
 		}
 	}
 
@@ -197,12 +174,11 @@ class Lecat_DelegateFunctions implements Legacy_iCategoryDelegate
 	 * @param string	$catDir	category module's directory name
 	 * @param int		$catId	the parent's category id
 	 * @param string	$authType	ex) viewer, editor, manager
-	 * @param int		$uid
 	 * @param string	$module	 module confinement
 	 *
 	 * @return	void
 	 */ 
-	public static function getChildren(/*** Legacy_AbstractCategoryObject[] ***/ &$children, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** int ***/ $uid, /*** string ***/ $module=null)
+	public static function getChildren(/*** Legacy_AbstractCategoryObject[] ***/ &$children, /*** string ***/ $catDir, /*** int ***/ $catId, /*** string ***/ $authType, /*** string ***/ $module=null)
 	{
 		$handler = Legacy_Utils::getModuleHandler('cat', $catDir);
 		$cat = $handler->get($catId);
@@ -211,7 +187,7 @@ class Lecat_DelegateFunctions implements Legacy_iCategoryDelegate
 			foreach(array_keys($cat->mChildren) as $key){
 				$children['catObj'][$key] = $cat->mChildren[$key];
 				if($authType){
-					if($cat->mChildren[$key]->checkPermitByUserId($authType, intval($uid))=='true'){
+					if($cat->mChildren[$key]->checkPermitByUserId($authType, Legacy_Utils::getUid()=='true')){
 						$children['permit'][$key] = 1;
 					}
 					else{
