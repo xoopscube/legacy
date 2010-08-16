@@ -82,20 +82,6 @@ class Lecat_CatObject extends Legacy_AbstractCategoryObject
 
 	/**
 	 * @public
-	 * get child categories' id and title array.
-	 */
-	public function getChildList($module="")
-	{
-		$this->loadChildren($this->getDirname(), $module);
-		foreach(array_keys($this->mChildren) as $key){
-			$children['cat_id'][$key] = $this->mChildren[$key]->getShow('cat_id');
-			$children['cat_title'][$key] = $this->mChildren[$key]->getShow('title');
-		}
-		return $children;
-	}
-
-	/**
-	 * @public
 	 * call load category function if not loaded yet.
 	 */
 	public function loadCatPath()
