@@ -32,12 +32,12 @@ interface Legacy_iImageManagerDelegate
 	 * 3) create thumbnail if needed.
 	 *
 	 * @param bool		&$ret
-	 * @param FILE		$file	
+	 * @param string	$file	path to file as $_FILES['name']['tmp_name']
 	 * @param Abstract_ImageObject	$obj
 	 *
 	 * @return	void
 	 */ 
-	public static function saveImage(/*** bool ***/ &$ret, /*** FILE ***/ $file, /*** Legacy_AbstractImageObject ***/ $obj);
+	public static function saveImage(/*** bool ***/ &$ret, /*** string ***/ $file, /*** Legacy_AbstractImageObject ***/ $obj);
 
 	/**
 	 * deleteImage

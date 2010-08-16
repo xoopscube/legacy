@@ -34,7 +34,9 @@ abstract class Legacy_AbstractImageObject extends XoopsSimpleObject
 		$this->initVar('dataname', XOBJ_DTYPE_STRING, '', false);
 		$this->initVar('data_id', XOBJ_DTYPE_INT, '', false);
 		$this->initVar('num', XOBJ_DTYPE_INT, 1, false);
+		//body of file name
 		$this->initVar('file_name', XOBJ_DTYPE_STRING, '', false, 60);
+		//extension type of file name : Lenum_FileType
 		$this->initVar('file_type', XOBJ_DTYPE_INT, '', false);
 		$this->initVar('image_width', XOBJ_DTYPE_INT, '', false);
 		$this->initVar('image_height', XOBJ_DTYPE_INT, '', false);

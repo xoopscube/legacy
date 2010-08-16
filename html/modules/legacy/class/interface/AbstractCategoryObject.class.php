@@ -64,15 +64,6 @@ abstract class Legacy_AbstractCategoryObject extends XoopsSimpleObject
 	abstract public function getDepth();
 
 	/**
-	 * getChildList
-	 * 
-	 * @params	string $module
-	 *
-	 * @return int
-	 */
-	abstract public function getChildList(/*** string ***/ $module="");
-
-	/**
 	 * checkPermitByUid
 	 * 
 	 * @params	string	$action
