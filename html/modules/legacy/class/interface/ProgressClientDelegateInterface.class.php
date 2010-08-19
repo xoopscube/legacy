@@ -16,7 +16,7 @@ if(!defined('XOOPS_ROOT_PATH'))
 interface Legacy_iProgressClientDelegate
 {
 	/**
-	 * getManagedModules	Legacy_Progress.GetManagedModules
+	 * getClientList	Legacy_ProgressClient.getClientList
 	 *
 	 * @param mix[] &$list
 	 *	$list['dirname']
@@ -24,10 +24,10 @@ interface Legacy_iProgressClientDelegate
 	 *
 	 * @return	void
 	 */ 
-	public static function getManagedModules(/*** array ***/ &$list);
+	public static function getClientList(/*** array ***/ &$list);
 
 	/**
-	 * updateStatus Legacy_Progress.UpdateStatus
+	 * updateStatus Legacy_ProgressClient.UpdateStatus
 	 *
 	 * @param string	&$result
 	 * @param string	$dirname
