@@ -164,15 +164,19 @@ function xoopsSavePosition(id)
 
 function xoopsInsertText(domobj, text)
 {
-    if (domobj.createTextRange && domobj.caretPos){
-        var caretPos = domobj.caretPos;
-        caretPos.text = caretPos.text.charAt(caretPos.text.length - 1)
-== ' ' ? text + ' ' : text;
-    } else if (domobj.getSelection && domobj.caretPos){
-        var caretPos = domobj.caretPos;
-        caretPos.text = caretPos.text.charat(caretPos.text.length - 1)
-== ' ' ? text + ' ' : text;
-    } else {
+    if (document.selection) { //for IE
+        domobj.focus();
+        obj = document.selection.createRange();
+        obj.text = text;
+        obj.select(); // Display caret when text was replaced
+    } else if (domobj.setSelectionRange) { // for Fx, Chrome, Opera
+        var startPos = domobj.selectionStart;
+        var endPos = domobj.selectionEnd;
+        var lastPos = startPos + text.length;
+        domobj.value = domobj.value.substring(0, startPos) + text
+                       + domobj.value.substring(endPos, domobj.value.length);
+        domobj.setSelectionRange(lastPos, lastPos); // Move caret to inserted text end
+    } else { // for Other Browser
         domobj.value = domobj.value + text;
     }
 }
