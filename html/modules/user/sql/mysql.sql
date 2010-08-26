@@ -8,7 +8,7 @@ CREATE TABLE {prefix}_{dirname}_mailjob (
   is_mail tinyint(1) NOT NULL default '0',
   create_unixtime int(10) NOT NULL default '0',
   PRIMARY KEY (mailjob_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE {prefix}_{dirname}_mailjob_link (
   mailjob_id int(10) NOT NULL default '0',
@@ -16,4 +16,4 @@ CREATE TABLE {prefix}_{dirname}_mailjob_link (
   retry tinyint(3) NOT NULL default '0',
   message varchar(255) default NULL,
   PRIMARY KEY (mailjob_id, uid)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
