@@ -71,6 +71,7 @@ class XoopsModule extends XoopsObject
 		$this->initVar('isactive', XOBJ_DTYPE_INT, 1, false);
 		$this->initVar('dirname', XOBJ_DTYPE_OTHER, null, true);
 		$this->initVar('trust_dirname', XOBJ_DTYPE_OTHER, null, true);
+		$this->initVar('role', XOBJ_DTYPE_OTHER, null, false);
 		$this->initVar('hasmain', XOBJ_DTYPE_INT, 0, false);
 		$this->initVar('hasadmin', XOBJ_DTYPE_INT, 0, false);
 		$this->initVar('hassearch', XOBJ_DTYPE_INT, 0, false);
@@ -97,6 +98,8 @@ class XoopsModule extends XoopsObject
 		$this->setVar('dirname', $this->modinfo['dirname'], true);
 		$trustDirname = isset($this->modinfo['trust_dirname']) ? $this->modinfo['trust_dirname'] : null;
 		$this->setVar('trust_dirname', $trustDirname , true);
+		$role = isset($this->modinfo['role']) ? $this->modinfo['role'] : null;
+		$this->setVar('role', $role , true);
 		$hasmain = (isset($this->modinfo['hasMain']) && $this->modinfo['hasMain'] == 1) ? 1 : 0;
 		$hasadmin = (isset($this->modinfo['hasAdmin']) && $this->modinfo['hasAdmin'] == 1) ? 1 : 0;
 		$hassearch = (isset($this->modinfo['hasSearch']) && $this->modinfo['hasSearch'] == 1) ? 1 : 0;
@@ -467,9 +470,9 @@ class XoopsModuleHandler extends XoopsObjectHandler
 			if (empty($mid)) { //Memo: if system module, mid might be set to 1
 				$mid = $this->db->genId('modules_mid_seq');
 			}
-			$sql = sprintf("INSERT INTO %s (mid, name, version, last_update, weight, isactive, dirname, trust_dirname, hasmain, hasadmin, hassearch, hasconfig, hascomments, hasnotification) VALUES (%u, %s, %u, %u, %u, %u, %s, %s, %u, %u, %u, %u, %u, %u)", $this->db->prefix('modules'), $mid, $this->db->quoteString($name), $version, time(), $weight, 1, $this->db->quoteString($dirname), $this->db->quoteString($trust_dirname), $hasmain, $hasadmin, $hassearch, $hasconfig, $hascomments, $hasnotification);
+			$sql = sprintf("INSERT INTO %s (mid, name, version, last_update, weight, isactive, dirname, trust_dirname, role, hasmain, hasadmin, hassearch, hasconfig, hascomments, hasnotification) VALUES (%u, %s, %u, %u, %u, %u, %s, %s, %s, %u, %u, %u, %u, %u, %u)", $this->db->prefix('modules'), $mid, $this->db->quoteString($name), $version, time(), $weight, 1, $this->db->quoteString($dirname), $this->db->quoteString($trust_dirname), $this->db->quoteString($role), $hasmain, $hasadmin, $hassearch, $hasconfig, $hascomments, $hasnotification);
 		} else {
-			$sql = sprintf("UPDATE %s SET name = %s, dirname = %s, trust_dirname = %s, version = %u, last_update = %u, weight = %u, isactive = %u, hasmain = %u, hasadmin = %u, hassearch = %u, hasconfig = %u, hascomments = %u, hasnotification = %u WHERE mid = %u", $this->db->prefix('modules'), $this->db->quoteString($name), $this->db->quoteString($dirname), $this->db->quoteString($trust_dirname), $version, time(), $weight, $isactive, $hasmain, $hasadmin, $hassearch, $hasconfig, $hascomments, $hasnotification, $mid);
+			$sql = sprintf("UPDATE %s SET name = %s, dirname = %s, trust_dirname = %s, role = %s, version = %u, last_update = %u, weight = %u, isactive = %u, hasmain = %u, hasadmin = %u, hassearch = %u, hasconfig = %u, hascomments = %u, hasnotification = %u WHERE mid = %u", $this->db->prefix('modules'), $this->db->quoteString($name), $this->db->quoteString($dirname), $this->db->quoteString($trust_dirname), $this->db->quoteString($role), $version, time(), $weight, $isactive, $hasmain, $hasadmin, $hassearch, $hasconfig, $hascomments, $hasnotification, $mid);
 		}
 		if (!$result = $this->db->query($sql)) {
 			return false;

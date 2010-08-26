@@ -350,6 +350,7 @@ CREATE TABLE modules (
   isactive tinyint(1) unsigned NOT NULL default '0',
   dirname varchar(25) NOT NULL default '',
   trust_dirname varchar(25) NOT NULL default '',
+  role varchar(15) NOT NULL default '',
   hasmain tinyint(1) unsigned NOT NULL default '0',
   hasadmin tinyint(1) unsigned NOT NULL default '0',
   hassearch tinyint(1) unsigned NOT NULL default '0',
