@@ -368,7 +368,11 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 						$value = is_array($value) ? $value : explode(',', $value);
 						foreach ( $value as $val ) {
 							$tmp[] = $this->_escapeValue($val, $obj->mVars[$name]['data_type']);
-						}if(! isset($tmp)){var_dump($criteria);die(); }
+						}
+						if(! isset($tmp)){
+							//var_dump($criteria);die();
+							return '()';
+						}
 						$value = '('.implode(',', $tmp).')';
 					} else {
 						$value = $this->_escapeValue($value, $obj->mVars[$name]['data_type']);
