@@ -9,7 +9,7 @@ CREATE TABLE {prefix}_{dirname}_inbox (
   `uname` varchar(100) NOT NULL default '',
   PRIMARY KEY  (`inbox_id`),
   KEY uid (`uid`)
-) TYPE = MYISAM ;
+) ENGINE = MYISAM ;
 
 CREATE TABLE {prefix}_{dirname}_outbox (
   `outbox_id` int(8) unsigned NOT NULL auto_increment,
@@ -20,7 +20,7 @@ CREATE TABLE {prefix}_{dirname}_outbox (
   `utime` int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (`outbox_id`),
   KEY uid (`uid`)
-) TYPE = MYISAM ;
+) ENGINE = MYISAM ;
 
 CREATE TABLE {prefix}_{dirname}_users (
   `uid` int(8) unsigned NOT NULL default '0',
@@ -30,4 +30,4 @@ CREATE TABLE {prefix}_{dirname}_users (
   `pagenum` int(2) unsigned NOT NULL default '0',
   `blacklist` varchar(255) NOT NULL default '',
   PRIMARY KEY  (`uid`)
-) TYPE = MYISAM ;
+) ENGINE = MYISAM ;
