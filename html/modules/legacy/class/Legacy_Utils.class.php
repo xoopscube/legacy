@@ -361,6 +361,28 @@ class Legacy_Utils
 	}
 
 	/**
+	 * getCommonModuleList
+	 * 
+	 * @param	string		$role	ex) cat, group, progress, image
+	 * 
+	 * @return	string[]	dirnames
+	**/
+	public static function getCommonModuleList(/*** string ***/ $role)
+	{
+		$list = array();
+		$cri = new CriteriaCompo();
+		$cri->add(new Criteria('isactive',0,'>'));
+		$cri->add(new Criteria('role', $role));
+		$cri->addSort('weight','ASC');
+		$cri->addSort('mid','ASC');
+		foreach(xoops_gethandler('module')->getObjects($cri) as $module)
+		{
+			$list[] = $module->get('dirname');
+		}
+		return $list;
+	}
+
+	/**
 	 * _loadClassFile
 	 * 
 	 * @param	string	$path
