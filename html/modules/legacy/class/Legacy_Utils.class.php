@@ -383,6 +383,19 @@ class Legacy_Utils
 	}
 
 	/**
+	 * getClientModuleList
+	 * 
+	 * @param	string		$dirname	ex) lecat, legroup
+	 * 
+	 * @return	string[]	dirnames
+	**/
+	public static function getClientModuleList(/*** string ***/ $dirname)
+	{
+		$clients = XCube_Root::getSingleton()->mContext->getAttribute('client_modules');
+		return isset($clients[$dirname]) ? $clients[$dirname] : array();
+	}
+
+	/**
 	 * _loadClassFile
 	 * 
 	 * @param	string	$path
