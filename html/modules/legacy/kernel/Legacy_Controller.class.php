@@ -187,7 +187,10 @@ class Legacy_Controller extends XCube_Controller
 		// ^^;
 		$this->_setupErrorHandler();
 	
-		date_default_timezone_set($this->_getLocalTimezone());
+		//function date_default_timezone_set() is added on PHP5.1.0
+		if(function_exists('date_default_timezone_set')){
+			date_default_timezone_set($this->_getLocalTimezone());
+		}
 	
 		$this->_setupEnvironment();
 	
