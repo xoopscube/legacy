@@ -93,6 +93,15 @@ class XoopsTpl extends Smarty
         //      'xoopsTpl'     [I/O] : $this
         //
 		XCube_DelegateUtils::call('XoopsTpl.New',  new XCube_Ref($this));
+	
+		//for compatibility with XCL2.1
+		$files = glob(XOOPS_ROOT_PATH.'/class/smarty/plugins/*.php');
+		if (is_array($files)) {
+			foreach($files as $file) {
+				require_once $file;
+			}
+		}
+
 	}
 
 	/**
