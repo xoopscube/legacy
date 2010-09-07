@@ -15,7 +15,7 @@ function alterModulesTable()
 
 	$checkSql = 'DESC `'.$db->prefix('modules').'`';
 
-	$alterSql = 'ALTER TABLE `'.$db->prefix('modules').'` ADD `trust_dirname` VARCHAR( 25 ) NOT NULL default "" AFTER `dirname`';
+	$alterSql = 'ALTER TABLE `'.$db->prefix('modules').'` ADD `role` VARCHAR( 15 ) NOT NULL default "" AFTER `dirname`, ADD `trust_dirname` VARCHAR( 25 ) NOT NULL default "" AFTER `dirname`';
 
 	$resultC = $db->queryF($checkSql);
 	$cols = $db->fetchArray($resultC);
