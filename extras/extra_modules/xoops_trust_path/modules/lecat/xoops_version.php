@@ -31,6 +31,7 @@ $modversion['official'] = 0;
 $modversion['image'] = 'images/module_icon.png';
 $modversion['dirname'] = $myDirName;
 $modversion['trust_dirname'] = 'lecat';
+$modversion['role'] = 'cat';
 
 $modversion['cube_style'] = true;
 $modversion['legacy_installer'] = array(

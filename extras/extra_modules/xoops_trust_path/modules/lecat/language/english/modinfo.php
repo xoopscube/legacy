@@ -66,8 +66,5 @@ define('_MI_LECAT_LANG_CSS_FILE', 'CSS file url');
 define('_MI_LECAT_DESC_CSS_FILE', 'set CSS file url after {XOOPS_URL}');
 define('_MI_LECAT_LANG_MAXDEPTH', 'Max depth');
 define('_MI_LECAT_DESC_MAXDEPTH', 'Max depth in category tree.');
-define('_MI_LECAT_LANG_SETTING_EDIT', 'Setting');
-define('_MI_LECAT_KEYWORD_SETTING_EDIT', 'Setting');
-define('_MI_LECAT_LANG_KEYWORD', 'setting');
 
 ?>
