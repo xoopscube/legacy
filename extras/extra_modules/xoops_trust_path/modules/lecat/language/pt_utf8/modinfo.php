@@ -51,14 +51,11 @@ define("_MI_LECAT_INSTALL_MSG_TABLE_DOROPPED","A tabela '{0}' foi removida corre
 define("_MI_LECAT_INSTALL_MSG_TPL_INSTALLED","O modelo '{0}' foi instalado corretamente.");
 define("_MI_LECAT_INSTALL_MSG_UPDATE_FINISHED","A atualização do módulo foi concluída.");
 define("_MI_LECAT_INSTALL_MSG_UPDATE_STARTED","A atualização do módulo foi iniciada.");
-define("_MI_LECAT_KEYWORD_SETTING_EDIT","Configuração");
 define("_MI_LECAT_LANG_AUTHOR","<a href='http://www.xoops.net.br/'>Mikhail Miguel</a>");
 define("_MI_LECAT_LANG_CREDITS","<a href='mailto:mikhail.miguel@gmail.com'>Mikhail Miguel</a>");
 define("_MI_LECAT_LANG_CSS_FILE","Endereço URL do arquivo CSS");
-define("_MI_LECAT_LANG_KEYWORD","definições");
 define("_MI_LECAT_LANG_LECAT","Categorias");
 define("_MI_LECAT_LANG_MAXDEPTH","Profundidade máxima");
-define("_MI_LECAT_LANG_SETTING_EDIT","Definições");
 define("_MI_LECAT_TPL_ACTOR_EDIT", "Editar ator");
 define("_MI_LECAT_TPL_CAT_DELETE","Remover categoria");
 define("_MI_LECAT_TPL_CAT_EDIT","Editar categoria");
