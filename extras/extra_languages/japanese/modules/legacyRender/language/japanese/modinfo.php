@@ -36,5 +36,9 @@ define('_MI_LR_CSS_FILE_DESC', 'jQuery UI CSS ファイルのURL');
 define('_MI_LR_FEED_URL', 'RSS フィードの URL');
 define('_MI_LR_FEED_URL_DESC', 'RSS フィード URL');
 define('_MI_LEGACYRENDER_ADMENU_HTACCESS_VIEW', 'htaccess設定表示');
+define('_MI_LR_JQUERY_CORE', "jQuery コアライブラリ");
+define('_MI_LR_JQUERY_CORE_DESC', "Google Libraries APIを使う場合（推奨）、jQuery のバージョンを入れてください。ローカルの jQuery ファイルを使う場合は、そのURLを入れてください。");
+define('_MI_LR_JQUERY_UI', "jQuery UI ライブラリ");
+define('_MI_LR_JQUERY_UI_DESC', "Google Libraries APIを使う場合、jQuery UI のバージョンを入れてください。ローカルの jQuery UI ファイルを使う場合は、そのURLを入れてください。どちらを使うかはコアライブラリと同じでなければなりません。");
 
 ?>
