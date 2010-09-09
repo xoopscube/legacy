@@ -135,6 +135,24 @@ $modversion['config'][]=array (
 		"default"=>""
 	);
 
+$modversion['config'][]=array (
+		"name"=>"jquery_core",
+		"title"=>"_MI_LR_JQUERY_CORE",
+		"description"=>"_MI_LR_JQUERY_CORE_DESC",
+		"formtype"=>"textbox",
+		"valuetype"=>"text",
+		"default"=>"1"
+	);
+
+$modversion['config'][]=array (
+		"name"=>"jquery_ui",
+		"title"=>"_MI_LR_JQUERY_UI",
+		"description"=>"_MI_LR_JQUERY_UI_DESC",
+		"formtype"=>"textbox",
+		"valuetype"=>"text",
+		"default"=>"1"
+	);
+
 // Menu
 $modversion['hasMain']=0;
 

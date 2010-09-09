@@ -36,4 +36,9 @@ define('_MI_LR_CSS_FILE', "jQuery UI CSS file URL");
 define('_MI_LR_CSS_FILE_DESC', "Set jQuery UI CSS file url after ".XOOPS_URL);
 define('_MI_LR_FEED_URL', "RSS Feed URL");
 define('_MI_LR_FEED_URL_DESC', "Set RSS feed URL after ".XOOPS_URL);
+define('_MI_LR_JQUERY_CORE', "jQuery Core Library");
+define('_MI_LR_JQUERY_CORE_DESC', "If you use Google Libraries API, set the jQuery version. If you use local jQuery file, set the url.");
+define('_MI_LR_JQUERY_UI', "jQuery UI Library");
+define('_MI_LR_JQUERY_UI_DESC', "If you use Google Libraries API, set the jQuery UI version. If you use local jQuery UI file, set the url. You must choose the same way of jQuery Core Library.");
+
 ?>

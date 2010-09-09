@@ -4,11 +4,9 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 
 class Legacy_HeaderScript
 {
-	public $mMainLibrary = 'google';
-	public $mMainVersion = "1";
-	public $mUIVersion = "1";
-	public $mMainUrl = "";	//url of jQuery Main library file
-	public $mUIUrl = "";	//url of jQuery UI library file
+	protected $_mType = 'google';
+	protected $_mCore = "1";
+	protected $_mUi = "1";
 
 	protected $_mLibrary = array();
 	protected $_mScript = array();
@@ -29,16 +27,12 @@ class Legacy_HeaderScript
 	public function __construct()
 	{
 		$root = XCube_Root::getSingleton();
-		$this->mMainLibrary = $root->getSiteConfig('jQuery', 'library');
 	
-		if($this->mMainLibrary=="google"){
-			$this->mMainVersion = $root->getSiteConfig('jQuery', 'MainVersion');
-			$this->mUIVersion = $root->getSiteConfig('jQuery', 'UIVersion');
-		}
-		elseif($this->mMainLibrary=="local"){
-			$this->mMainUrl = $root->getSiteConfig('jQuery', 'MainUrl');
-			$this->mUIUrl = $root->getSiteConfig('jQuery', 'UIUrl');
-		}
+		//setup jQuery library location
+		$this->_mCore = $this->_getRenderConfig('jquery_core');
+		$this->_mUi = $this->_getRenderConfig('jquery_ui');
+		$core = str_replace('.', '', $this->_mCore);
+		$this->_mType = is_numeric($core) ? 'google' : 'local';
 	
 		//use compatibility mode with prototype.js ?
 		if($root->getSiteConfig('jQuery', 'usePrototype')==1){
@@ -51,7 +45,7 @@ class Legacy_HeaderScript
 	}
 
 	/**
-	 * _setupDefaultCss
+	 * _setupDefaultStylesheet
 	 * 
 	 * @param	void
 	 * 
@@ -142,7 +136,7 @@ class Legacy_HeaderScript
 	}
 
 	/**
-	 * setMeta
+	 * setLink
 	 * 
 	 * @param	string	$rel
 	 * @param	string	$type
@@ -198,10 +192,10 @@ class Legacy_HeaderScript
 		}
 		
 		//load main library
-		if($this->mMainLibrary=='google'){
+		if($this->_mType=='google'){
 			$html .= $this->_loadGoogleJQueryLibrary();
 		}
-		elseif($this->mMainLibrary=='local'){
+		elseif($this->_mType=='local'){
 			$html .= $this->_loadLocalJQueryLibrary();
 		}
 	
@@ -241,8 +235,8 @@ class Legacy_HeaderScript
 		return '<script type="text/javascript" src="http://www.google.com/jsapi'.$apiKey.'"></script>
 <script type="text/javascript"><!--
 google.load("language", "1"); 
-google.load("jquery", "'. $this->mMainVersion .'");
-google.load("jqueryui", "'. $this->mUIVersion .'");
+google.load("jquery", "'. $this->_mCore .'");
+google.load("jqueryui", "'. $this->_mUi .'");
 //-->
 </script>
 ';
@@ -258,8 +252,8 @@ google.load("jqueryui", "'. $this->mUIVersion .'");
 	protected function _loadLocalJQueryLibrary()
 	{
 		$html = "";
-		if($this->mMainUrl) $html .= '<script type="text/javascript" src="'. $this->mMainUrl .'"></script>';
-		if($this->mUIUrl) $html .= '<script type="text/javascript" src="'. $this->mUIUrl .'"></script>';
+		if($this->_mCore) $html .= '<script type="text/javascript" src="'. $this->_mCore .'"></script>';
+		if($this->_mUi) $html .= '<script type="text/javascript" src="'. $this->_mUi .'"></script>';
 	
 		return $html;
 	}
@@ -276,7 +270,7 @@ google.load("jqueryui", "'. $this->mUIVersion .'");
 		$html = null;
 		if(count($this->_mOnloadScript)>0||count($this->_mScript)>0){
 			$html = "<script type=\"text/javascript\"><!--\n";
-			if($this->mMainLibrary == "google"){
+			if($this->_mType == "google"){
 				$html .= "google.setOnLoadCallback(function() {\n";
 			}
 			else{
