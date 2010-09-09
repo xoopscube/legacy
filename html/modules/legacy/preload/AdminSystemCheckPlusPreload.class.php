@@ -161,7 +161,7 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
 		$phpsetting_message[] =  "GD Version: {$gd_info['GD Version']}" ;
 		}
 	
-		if( imagecreatetruecolor(200,200) ) {
+		if(function_exists('imagecreatetruecolor')) {
 		$phpsetting_message[] = _AD_LEGACY_PHPSETTING_GD." Image create Truecolor" ;
 		}
 
