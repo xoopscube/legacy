@@ -46,4 +46,8 @@ define("_MI_LR_ROBOT_METAOMAT","Adulto");
 define("_MI_LR_ROBOT_METAOREST","Restrito");
 define("_MI_LR_ROBOT_NOINDEXFOLLOW","No Index, Follow");
 define("_MI_LR_ROBOT_NOINDEXNOFOLLOW","No Index, No Follow");
+define("_MI_LR_JQUERY_CORE", "jQuery Core Library");
+define("_MI_LR_JQUERY_CORE_DESC", "If you use Google Libraries API, set the jQuery version. If you use local jQuery file, set the url.");
+define("_MI_LR_JQUERY_UI", "jQuery UI Library");
+define("_MI_LR_JQUERY_UI_DESC", "If you use Google Libraries API, set the jQuery UI version. If you use local jQuery UI file, set the url. You must choose the same way of jQuery Core Library.");
 ?>

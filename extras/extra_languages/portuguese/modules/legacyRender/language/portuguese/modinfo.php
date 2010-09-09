@@ -46,5 +46,8 @@ define("_MI_LR_ROBOT_NOINDEXFOLLOW","Seguir sem indexar (<q>No Index, Follow</q>
 define("_MI_LR_ROBOT_NOINDEXNOFOLLOW","Não indexar e nem seguir (<q>No Index, No Follow</q>)");
 define("_MI_LR_PAGETITLE_FORMAT","Pagetitle Format");
 define("_MI_LR_PAGETITLE_FORMAT_DESC","Set Pagetitle Format with {modulename}, {pagetitle}, {action}. Module name is set at {modulename} like <q>profile</q>. Page Title is set set at {pagetitle} like <q>Hello !</q> or <q>How to install XCL</q>. Action is set at {action} like <q>Edit</q>, <q>View</q> or <q>List</q>. You set [module]***[/module], *** is not display when {module} is not set. [pagetitle]***[/pagetitle], [action]***[action] is the same.");
-
+define("_MI_LR_JQUERY_CORE", "jQuery Core Library");
+define("_MI_LR_JQUERY_CORE_DESC", "If you use Google Libraries API, set the jQuery version. If you use local jQuery file, set the url.");
+define("_MI_LR_JQUERY_UI", "jQuery UI Library");
+define("_MI_LR_JQUERY_UI_DESC", "If you use Google Libraries API, set the jQuery UI version. If you use local jQuery UI file, set the url. You must choose the same way of jQuery Core Library.");
 ?>
