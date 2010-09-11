@@ -60,6 +60,7 @@ define("_INSTALL_L37","管理者ユーザ名");
 define("_INSTALL_L38","管理者メールアドレス");
 define("_INSTALL_L39","管理者パスワード");
 define("_INSTALL_L74","管理者パスワード(再入力)");
+define("_INSTALL_L77","タイムゾーン");
 
 define("_INSTALL_L40","データベーステーブル作成");
 define("_INSTALL_L41","必要なデータをすべて入力してください。");
