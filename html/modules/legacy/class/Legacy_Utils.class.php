@@ -363,7 +363,7 @@ class Legacy_Utils
 	/**
 	 * getCommonModuleList
 	 * 
-	 * @param	string		$role	ex) cat, group, progress, image
+	 * @param	string		$role	ex) cat, group, workflow, image
 	 * 
 	 * @return	string[]	dirnames
 	**/

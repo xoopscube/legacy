@@ -11,12 +11,12 @@ if(!defined('XOOPS_ROOT_PATH'))
 }
 
 /**
- * Interface of progress delegate
+ * Interface of workflow delegate
 **/
-interface Legacy_iAbstractProgressDelegate
+interface Legacy_iWorkflowDelegate
 {
 	/**
-	 * addItem	Legacy_Progress.AddItem
+	 * addItem	Legacy_Workflow.AddItem
 	 *
 	 * @param string $title
 	 * @param string $dirname
@@ -29,7 +29,7 @@ interface Legacy_iAbstractProgressDelegate
 	public static function addItem(/*** string ***/ $title, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id, /*** string ***/ $url);
 
 	/**
-	 * deleteItem	Legacy_Progress.DeleteItem
+	 * deleteItem	Legacy_Workflow.DeleteItem
 	 *
 	 * @param string $dirname
 	 * @param string $dataname
@@ -40,7 +40,7 @@ interface Legacy_iAbstractProgressDelegate
 	public static function deleteItem(/*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $data_id);
 
 	/**
-	 * getHistory	Legacy_Progress.GetHistory
+	 * getHistory	Legacy_Workflow.GetHistory
 	 *
 	 * @param mix[] &$historyArr
 	 *	$hisotryArr['step']

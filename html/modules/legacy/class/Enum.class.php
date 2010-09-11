@@ -22,9 +22,9 @@ interface Lenum_Status
 	const PUBLISHED = 9;
 }
 /**
- * Lenum_ProgressStatus
+ * Lenum_WorkflowStatus
 **/
-interface Lenum_ProgressStatus
+interface Lenum_WorkflowStatus
 {
 	const DELETED = 0;
 	const BLOCKED = 1;

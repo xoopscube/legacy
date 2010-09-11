@@ -11,9 +11,9 @@ if(!defined('XOOPS_ROOT_PATH'))
 }
 
 /**
- * Interface of Image Manager delegate
+ * Interface of Image delegate
 **/
-interface Legacy_iImageManagerDelegate
+interface Legacy_iImageDelegate
 {
 	/**
 	 * getImageObject
