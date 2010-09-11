@@ -7,14 +7,14 @@
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
-class Legacy_jQuery extends XCube_ActionFilter
+class jQuery_ExternalLink extends XCube_ActionFilter
 {
     public function preBlockFilter()
     {
-        $this->mRoot->mDelegateManager->add('Site.JQuery.AddFunction',array(&$this, '_addScript'));
+        $this->mRoot->mDelegateManager->add('Site.JQuery.AddFunction',array(&$this, 'addScript'));
     }
 
-    protected function _addScript(&$jQuery)
+    public function addScript(&$jQuery)
     {
         $jQuery->addScript(
         '$("a[rel=\'external\']").click(function(){
