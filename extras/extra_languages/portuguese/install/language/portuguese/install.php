@@ -157,6 +157,7 @@ define("_INSTALL_L73","Endereço de e-mail inválido.");
 define("_INSTALL_L74","Confirme a senha");
 define("_INSTALL_L75","Caminho físico do XOOPS_TRUST_PATH ");
 define("_INSTALL_L76","Diretório completo de onde está localizada a pasta XOOPS_TRUST_PATH, sem a barra no final.<br />Essa pasta deverá estar fora do PUBLIC_HTML, e os seus arquivos não deverão ser acessados via Web.");
+define("_INSTALL_L77","Definir o fuso-horário padrão");
 define("_INSTALL_L8","Foi detectado:");
 define("_INSTALL_L80","Introdução");
 define("_INSTALL_L81","Verifique as permissões dos arquivos");

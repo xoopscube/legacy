@@ -1,6 +1,7 @@
 <?php
 // $Id$
 
+
 include_once './class/dbmanager.php';
 
 // RMV
@@ -19,12 +20,11 @@ function make_groups(&$dbm){
 
 	return $gruops;
 }
-function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $gruops){
+function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $gruops, $timezone){
 
 	$myts =& textSanitizer::getInstance();
 
 	$tables = array();
-
 
 	// data for table 'banner'
 
@@ -33,15 +33,18 @@ function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $
 	// default theme
 
 	$time = time();
-	$dbm->insert('tplset', " VALUES (1, 'default', 'XOOPS Cube Default Template Set', '', ".$time.")");
+	$dbm->insert('tplset', " VALUES (1, 'default', 'Conjunto de modelos padrão', '', ".$time.")");
 
 	// data for table 'config'
 
-	$dbm->insert('config', " VALUES (1, 0, 1, 'sitename', '_MD_AM_SITENAME', 'XOOPS Cube Site', '_MD_AM_SITENAMEDSC', 'textbox', 'text', 0)");
-	$dbm->insert('config', " VALUES (2, 0, 1, 'slogan', '_MD_AM_SLOGAN', 'Just Use it!', '_MD_AM_SLOGANDSC', 'textbox', 'text', 2)");
+	$dbm->insert('config', " VALUES (1, 0, 1, 'sitename', '_MD_AM_SITENAME', 'Meu Portal XOOPS Cube', '_MD_AM_SITENAMEDSC', 'textbox', 'text', 0)");
+	$dbm->insert('config', " VALUES (2, 0, 1, 'slogan', '_MD_AM_SLOGAN', 'Use e abuse!', '_MD_AM_SLOGANDSC', 'textbox', 'text', 2)");
 	$dbm->insert('config', " VALUES (3, 0, 1, 'language', '_MD_AM_LANGUAGE', '".addslashes($language)."', '_MD_AM_LANGUAGEDSC', 'language', 'other', 4)");
 	$dbm->insert('config', " VALUES (4, 0, 1, 'startpage', '_MD_AM_STARTPAGE', '--', '_MD_AM_STARTPAGEDSC', 'startpage', 'other', 6)");
 	//Get Server timezone Setting
+	if(version_compare(phpversion(), '5.3.0', '>=') && function_exists('date_default_timezone_set')){
+		date_default_timezone_set($timezone);
+	}
 	$time_diff_val = date('O');
 	$time_diff = floatval(substr($time_diff_val,0,1).(substr($time_diff_val,1,2) + substr($time_diff_val,3,2)/60));
 	$dbm->insert('config', " VALUES (5, 0, 1, 'server_TZ', '_MD_AM_SERVERTZ', '".$time_diff."', '_MD_AM_SERVERTZDSC', 'timezone', 'float', 8)");
@@ -53,7 +56,7 @@ function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $
 	$dbm->insert('config', " VALUES (13, 0, 1, 'debug_mode', '_MD_AM_DEBUGMODE', '1', '_MD_AM_DEBUGMODEDSC', 'select', 'int', 24)");
 	$dbm->insert('config', " VALUES (14, 0, 1, 'my_ip', '_MD_AM_MYIP', '127.0.0.1', '_MD_AM_MYIPDSC', 'textbox', 'text', 29)");
 	$dbm->insert('config', " VALUES (15, 0, 1, 'use_ssl', '_MD_AM_USESSL', '0', '_MD_AM_USESSLDSC', 'yesno', 'int', 30)");
-	$dbm->insert('config', " VALUES (16, 0, 1, 'session_name', '_MD_AM_SESSNAME', 'xoops_session', '_MD_AM_SESSNAMEDSC', 'textbox', 'text', 20)");
+	$dbm->insert('config', " VALUES (16, 0, 1, 'session_name', '_MD_AM_SESSNAME', 'xoopscube_session', '_MD_AM_SESSNAMEDSC', 'textbox', 'text', 20)");
 	$dbm->insert('config', " VALUES (30, 0, 1, 'adminmail', '_MD_AM_ADMINML', '".addslashes($adminmail)."', '_MD_AM_ADMINMLDSC', 'textbox', 'text', 3)");
 	$dbm->insert('config', " VALUES (32, 0, 1, 'com_mode', '_MD_AM_COMMODE', 'nest', '_MD_AM_COMMODEDSC', 'select', 'text', 34)");
 	$dbm->insert('config', " VALUES (33, 0, 1, 'com_order', '_MD_AM_COMORDER', '0', '_MD_AM_COMORDERDSC', 'select', 'int', 36)");
