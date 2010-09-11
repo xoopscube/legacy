@@ -25,7 +25,7 @@ XOOPS Cube Legacyは、<a href='http://xoopscube.sourceforge.net/license/GPL_V2.
 <li>ウェブサーバ、PHP、データベースサーバを適切にセットアップする。</li>
 <li>XOOPS Cube Legacy用にデータベースを１つ準備する。</li>
 <li>上記のデータベースにアクセスできる、データベースサーバのユーザアカウントを準備する。</li>
-<li>uploads/、cache/およびtemplates_c/ディレクトリと、mainfile.phpファイルをPHPから書込み可能にする。</li>
+<li><strong>html/uploads/</strong>、<strong>xoops_trust_path/cache/</strong>および<strong>html/templates_c/</strong>ディレクトリと、<strong>html/mainfile.php</strong>ファイルをPHPから書込み可能にする。</li>
 <li>ブラウザのクッキーとJavaScriptをオンにする。</li>
 </ul>
 <u><b>インストール</b></u>
