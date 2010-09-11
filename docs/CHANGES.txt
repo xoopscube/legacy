@@ -2,6 +2,28 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
+2010/09/11: Package Revision 2.2.0 Beta1
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #3049854 - Invalid link at message
+- Fix Bug #3015916 - missing index.html in templates_c and cache directory
+- Fix Bug #3012550 - missing legacyRender language definition japanese/ja_utf8
+- Fix Bug #3027196 - Lecat with undefined constant _MI_LECAT_KEYWORD_SETTING_EDIT
+
+[Feature Request - From Feature Requests Legacy Tracker]
+- Feature Request #3049858 - xoops.js improvement
+- Feature Request #3053523 - TYPE=MyISAM cause error in  MySQL 5.5.3
+- Feature Request #3053875 - TYPE = MYISAM in modules/message/sql/mysql.sql
+
+[Staff]
+- kilica
+- Mikhail Miguel
+- OhYear
+- ohwada
+- okuhiki
+- bandit-x
+
+----------------------------------------
 2010/06/07: Package Revision 2.2.0 Alpha4
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
