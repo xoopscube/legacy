@@ -61,6 +61,7 @@ define("_INSTALL_L37","Admin Name");
 define("_INSTALL_L38","Admin Email");
 define("_INSTALL_L39","Admin Password");
 define("_INSTALL_L74","Confirm Password");
+define("_INSTALL_L77","Set Default Timezone");
 define("_INSTALL_L40","Create Tables");
 define("_INSTALL_L41","Please go back and type in all the required info.");
 define("_INSTALL_L42","Back");
