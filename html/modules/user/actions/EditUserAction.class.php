@@ -207,7 +207,7 @@ class User_EditUserAction extends User_AbstractEditAction
 	
 		//XCL2.2
 		$dhandler = xoops_getmodulehandler('definitions', 'profile');
-		$render->setAttribute('definitions', $dhandler->getDefinitionsArr());
+		$render->setAttribute('definitions', $dhandler->getFields4DataEdit());
 		$render->setAttribute('data', $this->_getProfileObject());
 		$this->_setDatepicker();
 	}
