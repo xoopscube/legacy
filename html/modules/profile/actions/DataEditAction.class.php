@@ -56,12 +56,7 @@ class Profile_DataEditAction extends Profile_AbstractEditAction
 	
 		$defHandler =& xoops_getmodulehandler('definitions');
 		$this->mFields =& $defHandler->getFields4DataEdit();
-		foreach(array_keys($this->mFields) as $key){
-			if($this->mFields[$key]->get('type')=="selectbox"){
-				$this->mFields[$key]->mOptions = explode("|", $this->mFields[$key]->get('options'));
-			}
-		}
-	}
+s	}
 
 	/**
 	 * @public
