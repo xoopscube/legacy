@@ -238,7 +238,7 @@ class User_EditUserForm extends User_AbstractUserEditForm
 			//validation checks for custom fields
 			//
 			$validationArr = array();
-			$this->mFieldProperties[$def->get('field_name')] =& new XCube_FieldProperty($this);
+			$this->mFieldProperties[$def->get('field_name')] = new XCube_FieldProperty($this);
 			//required check
 			if($def->get('required')==true){
 				$validationArr[] = 'required';
