@@ -96,7 +96,7 @@ class Lecat_CatViewAction extends Lecat_AbstractViewAction
 		$permissions = new Lecat_Permission($this->mAsset->mDirname, $this->mObject);
 		$gPermit = ($this->mObject->getThisPermit()) ? $this->mObject->getThisPermit() : array();
 		$permissions->setPermissions($gPermit);
-//		var_dump($permissions);die();
+		//var_dump($this->mObjectHandler->getTree());die();
 	
 		//set renders
 		$render->setAttribute('dirname', $this->mAsset->mDirname);
