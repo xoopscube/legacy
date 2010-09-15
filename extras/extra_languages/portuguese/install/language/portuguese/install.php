@@ -123,7 +123,7 @@ define("_INSTALL_L4","Certo, alterei as configurações acima, deixe-me tentar de 
 define("_INSTALL_L40","Criar tabelas");
 define("_INSTALL_L41","Por favor, retorne e escreva todas as informações solicitadas.");
 define("_INSTALL_L42","Retornar");
-define("_INSTALL_L43","Banco de dados %s criado.");
+define("_INSTALL_L43","Banco de dados %s criado corretamente.");
 define("_INSTALL_L44","Não foi possível criar %s");
 define("_INSTALL_L45","Tabela %s criada");
 define("_INSTALL_L46","Para que os módulos inclusos neste pacote funcionem corretamente, os seguintes arquivos precisam ter permissão de leitura/alteração pelo servidor. Por favor, altere as permissões para estes arquivos. (por exemplo:");
@@ -157,7 +157,7 @@ define("_INSTALL_L73","Endereço de e-mail inválido.");
 define("_INSTALL_L74","Confirme a senha");
 define("_INSTALL_L75","Caminho físico do XOOPS_TRUST_PATH ");
 define("_INSTALL_L76","Diretório completo de onde está localizada a pasta XOOPS_TRUST_PATH, sem a barra no final.<br />Essa pasta deverá estar fora do PUBLIC_HTML, e os seus arquivos não deverão ser acessados via Web.");
-define("_INSTALL_L77","Definir o fuso-horário padrão");
+define("_INSTALL_L77","Defina o fuso-horário padrão");
 define("_INSTALL_L8","Foi detectado:");
 define("_INSTALL_L80","Introdução");
 define("_INSTALL_L81","Verifique as permissões dos arquivos");
