@@ -138,7 +138,7 @@ class User_AvatarSelectAction extends User_AbstractEditAction
 
 	function executeViewError(&$controller,&$xoopsUser,&$renderSystem)
 	{
-		$controller->executeRedirect(XOOPS_URL . "/userinfo.php?op=avatarform&uid=" . $this->mActionForm->get('uid'), 1, _MD_ERROR_DBUPDATE_FAILED);
+		$controller->executeRedirect(XOOPS_URL . "/userinfo.php?op=avatarform&uid=" . $this->mActionForm->get('uid'), 1, _MD_USER_ERROR_DBUPDATE_FAILED);
 	}
 }
 
