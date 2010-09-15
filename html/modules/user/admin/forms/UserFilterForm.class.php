@@ -149,11 +149,11 @@ class User_UserFilterForm extends User_AbstractFilterForm
 
 			if ( $option_field == "inactive" ) {
 			//only inactive users
-			$this->_mCriteria->add(new Criteria('level', xoops_getrequest('0')));
+			$this->_mCriteria->add(new Criteria('level', '0'));
 			}
 			elseif ( $option_field == "active" ) {
 			//only active users
-			$this->_mCriteria->add(new Criteria('level', xoops_getrequest('0', '>')));
+			$this->_mCriteria->add(new Criteria('level', '0', '>'));
 			}
 			else {
 			//all
