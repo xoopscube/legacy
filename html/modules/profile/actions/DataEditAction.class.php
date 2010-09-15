@@ -56,7 +56,7 @@ class Profile_DataEditAction extends Profile_AbstractEditAction
 	
 		$defHandler =& xoops_getmodulehandler('definitions');
 		$this->mFields =& $defHandler->getFields4DataEdit();
-s	}
+	}
 
 	/**
 	 * @public
