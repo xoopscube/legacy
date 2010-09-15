@@ -21,13 +21,12 @@ interface Legacy_iWorkflowClientDelegate
 	 * Get client module's dirname and dataname(tablename)
 	 *
 	 * @param mixed[]	&$list
-	 *  @list[]['dirname']
-	 *  @list[]['dataname']
-	 * @param string	$dirname
+	 *  $list[]['dirname']
+	 *  $list[]['dataname']
 	 *
 	 * @return	void
 	 */ 
-	public static function getClientList(/*** mixed[] ***/ &$list, /*** string ***/ $dirname);
+	public static function getClientList(/*** mixed[] ***/ &$list);
 
 	/**
 	 * updateStatus Legacy_WorkflowClient.UpdateStatus

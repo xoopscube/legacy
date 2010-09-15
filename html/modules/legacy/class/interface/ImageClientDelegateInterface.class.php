@@ -17,13 +17,15 @@ if(!defined('XOOPS_ROOT_PATH'))
 interface Legacy_iImageClientDelegate
 {
 	/**
-	 * getClientModules
+	 * getClientList
 	 * Get client module's dirname and dataname(tablename)
 	 *
 	 * @param mixed[] &$list
+	 *  $list[]['dirname']
+	 *  $list[]['dataname']
 	 *
 	 * @return	void
 	 */ 
-	public static function getClientModules(/*** array ***/ &$list);
+	public static function getClientList(/*** array ***/ &$list);
 }
 ?>
