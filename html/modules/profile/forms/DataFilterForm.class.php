@@ -55,7 +55,7 @@ class Profile_DataFilterForm extends Profile_AbstractFilterForm
         $this->mFields = xoops_getmodulehandler('definitions', 'profile')->getFields4DataShow(Legacy_Utils::getUid());
     
         $this->_addSortKeys();
-        parent::prepare(&$navi,&$handler);
+        parent::prepare($navi,$handler);
     }
 
     /**
