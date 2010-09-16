@@ -23,12 +23,14 @@ interface Legacy_iGroupClientDelegate
 	 * @param mixed[]	&$list
 	 *  list[]['data']	mixed
 	 *  list[]['template']	string
-	 * @param string	$gDirname	//Legacy_Group module's dirname
+	 * @param string	$dirname	client module's dirname
+	 * @param string	$dataname	client's target tablename
+	 * @param string	$fieldname	client's target fieldname
 	 * @param int		$groupId
 	 *
 	 * @return	void
 	 */ 
-	public static function getClientData(/*** mixed ***/ &$list, /*** string ***/ $gDirname, /*** int ***/ $groupId);
+	public static function getClientData(/*** mixed ***/ &$list, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** string ***/ $fieldname, /*** int ***/ $groupId);
 
 	/**
 	 * getActionList
