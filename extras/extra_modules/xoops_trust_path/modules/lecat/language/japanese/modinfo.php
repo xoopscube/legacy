@@ -64,4 +64,10 @@ define('_MI_LECAT_TPL_DEFAULT_SET', 'Default Set');
 define('_MI_LECAT_TPL_ACTOR_EDIT', 'Actor Edit');
 define('_MI_LECAT_LANG_MAXDEPTH', 'カテゴリの深さ');
 define('_MI_LECAT_DESC_MAXDEPTH', 'カテゴリの深さの制限（0は無制限）');
+define('_MI_LECAT_LANG_CLIENT_LIST', '利用モジュール');
+define('_MI_LECAT_DESC_CLIENT_LIST', 'Lecat の利用モジュールとそのテーブル名をカンマで区切って指定します。複数の関連モジュールがある場合は、改行して記述します。<br />
+例）<br />
+forum,topics<br />
+forum,reply<br />
+album,item');
 ?>

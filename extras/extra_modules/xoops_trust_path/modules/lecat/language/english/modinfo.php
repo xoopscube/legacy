@@ -66,5 +66,11 @@ define('_MI_LECAT_LANG_CSS_FILE', 'CSS file url');
 define('_MI_LECAT_DESC_CSS_FILE', 'set CSS file url after {XOOPS_URL}');
 define('_MI_LECAT_LANG_MAXDEPTH', 'Max depth');
 define('_MI_LECAT_DESC_MAXDEPTH', 'Max depth in category tree.');
+define('_MI_LECAT_LANG_CLIENT_LIST', 'Client Module List');
+define('_MI_LECAT_DESC_CLIENT_LIST', 'List up client modules and its tablename separated by comma. If there are more than one client modules, write one module and its tablename in one line.<br />
+Example:<br />
+forum,topics<br />
+forum,reply<br />
+album,item');
 
 ?>

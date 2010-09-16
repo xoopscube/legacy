@@ -56,6 +56,34 @@ class Lecat_Utils
 		$actors = $conf['actors'];
 		return isset($actors) ? unserialize($actors) : array('key'=>array('viewer','poster','manager'),'title'=>array('Viewer', 'Poster', 'Manager'),'default'=>array(1,1,0));
 	}
+
+    /**
+     * getClientList
+     * 
+     * @param   string  $dirname
+     * 
+     * @return  array
+    **/
+	public static function getClientList(/*** string ***/ $dirname)
+	{
+		$list = array();
+		$handler = xoops_gethandler('config');
+		$configArr = $handler->getConfigsByDirname($dirname);
+		$clients = explode("\n", $configArr['client_list']);
+		foreach($clients as $client){
+			$module = explode(',', $client);
+			if(count($module)>2){
+				$list[] = array('dirname'=>trim($module[0]), 'dataname'=>trim($module[1]), 'fieldname'=>trim($module[2]));
+			}
+			elseif(count($module)==2){
+				$list[] = array('dirname'=>trim($module[0]), 'dataname'=>trim($module[1]), 'fieldname'=>null);
+			}
+			else{
+				continue;
+			}
+		}
+		return $list;
+	}
 }
 
 ?>

@@ -77,6 +77,37 @@ class Lecat_CoolUriDelegate
 class Lecat_DelegateFunctions implements Legacy_iCategoryDelegate
 {
 	/**
+	 * getServerDirname Site.GetServerDirname
+	 *
+	 * @param string	&$server	server module's dirname
+	 * @param string	$dirname	client module's dirname
+	 * @param string	$dataname	client's target tablename
+	 * @param string	$fieldname	client's target fieldname
+	 *
+	 * @return	void
+	 */ 
+	public static function getServerDirname(/*** string ***/ &$server, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** string ***/ $fieldname=null)
+	{
+		//don't call this method multiple times when site owner duplicate.
+		static $isCalled = false;
+		if($isCalled === true){
+			return;
+		}
+	
+		$dirnames = Legacy_Utils::getDirnameListByTrustDirname('lecat');
+		foreach($dirnames as $dir){
+			$list = Lecat_Utils::getClientList($dir);
+			foreach($list as $c){
+				if($c['dirname'] == $dirname && $c['dataname'] == $dataname && $c['fieldname'] == $fieldname){
+					$server = $dir;
+				}
+			}
+		}
+	
+		$isCalled = true;
+	}
+
+	/**
 	 * getTitle
 	 *
 	 * @param string 	&$title
