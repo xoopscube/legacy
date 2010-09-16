@@ -24,7 +24,7 @@ function smarty_function_legacy_category_select($params, &$smarty)
 
 	foreach(array_keys($tree) as $key){
 		$pkey = $tree[$key]->getPrimary();
-		$d = method_exists('getDepth') ? $tree[$key]->getDepth() : 0;	//depth of tree
+		$d = method_exists($tree, 'getDepth') ? $tree[$key]->getDepth() : 0;	//depth of tree
 		if($params['selectedValue']==$tree[$key]->getShow($pkey)){
 			$selectHtml .= '<option value="'.$tree[$key]->getShow($pkey).'" selected="selected">';
 		}
