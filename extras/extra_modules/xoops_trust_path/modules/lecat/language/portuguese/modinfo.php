@@ -66,4 +66,6 @@ define("_MI_LECAT_TPL_SET_DELETE","Remover");
 define("_MI_LECAT_TPL_SET_EDIT","Editar");
 define("_MI_LECAT_TPL_SET_LIST","Listar");
 define("_MI_LECAT_TPL_SET_VIEW","Mostrar");
+define("_MI_LECAT_LANG_CLIENT_LIST", "Client Module List");
+define("_MI_LECAT_DESC_CLIENT_LIST", "List up client modules and its tablename separated by comma. If there are more than one client modules, write one module and its tablename in one line.<br />Example:<br />forum, topics<br />forum, reply<br />album, item");
 ?>
