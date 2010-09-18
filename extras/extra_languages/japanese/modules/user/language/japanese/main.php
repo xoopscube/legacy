@@ -111,8 +111,8 @@ define('_MD_USER_MESSAGE_OLDDELETED', "古いアバター画像は上書きされます。");
 define('_MD_USER_MESSAGE_SEND_PASSWORD', "パスワードをメールで送信しました");
 define('_MD_USER_MESSAGE_SURETODEL', "ユーザアカウントを本当に削除しても良いですか？");
 define('_MD_USER_MESSAGE_USER_DELETE_SUCCESS', "アカウントを削除しました。");
-define('_MD_USER_MESSAGE_YOURREGISTERED', "登録が完了しました。記載されたメールを登録メールアドレス宛に承認キーを送信しました。メールの指示に従い、承認を完了してください。");
-define('_MD_USER_MESSAGE_YOURREGISTERED2', "登録が完了しました。サイト管理者がアカウントを承認するまでお待ちください。承認完了時にはメールにてお知らせします。");
+define('_MD_USER_MESSAGE_YOURREGISTERED', "登録申請が完了しました。記載されたメールを登録メールアドレス宛に承認キーを送信しました。メールの指示に従い、承認を完了してください。");
+define('_MD_USER_MESSAGE_YOURREGISTERED2', "登録申請が完了しました。サイト管理者がアカウントを承認するまでお待ちください。承認完了時にはメールにてお知らせします。");
 define('_MD_USER_LANG_NOTIFY', '通知');
 
 ?>

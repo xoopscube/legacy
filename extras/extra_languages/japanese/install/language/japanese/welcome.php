@@ -16,7 +16,7 @@ XOOPS Cube Legacyは、<a href='http://xoopscube.sourceforge.net/license/GPL_V2.tx
 <p>
 <ul>
 <li>ウェブサーバ(<a href='http://www.apache.org/' rel='external'>Apache</a>, IIS, Roxen, など)</li>
-<li><a href='http://www.php.net/' rel='external'>PHP</a> 4.3.2以降</li>
+<li><a href='http://www.php.net/' rel='external'>PHP</a> 5 以降</li>
 <li>データベースサーバ（<a href='http://www.mysql.com/' rel='external'>MySQL</a> Database 3.23.XX）</li>
 </ul>
 </p>
