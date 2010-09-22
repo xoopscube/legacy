@@ -367,12 +367,12 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 	
 		$textFilter =& $this->mController->mRoot->getTextFilter();
 		$headerScript = $this->mController->mRoot->mContext->getAttribute('headerScript');//echo $headerScript->getMeta('author');die();
-		$headerScript->getMeta('keywords') ? $this->mXoopsTpl->assign('xoops_meta_keywords', $headerScript->getMeta('keywords')) : $this->mXoopsTpl->assign('xoops_meta_keywords', $textFilter->toShow($configs['meta_keywords']));
+		$headerScript->getMeta('keywords') ? $this->mXoopsTpl->assign('xoops_meta_keywords', $textFilter->toShow($headerScript->getMeta('keywords'))) : $this->mXoopsTpl->assign('xoops_meta_keywords', $textFilter->toShow($configs['meta_keywords']));
 		$headerScript->getMeta('description') ? $this->mXoopsTpl->assign('xoops_meta_robots', $headerScript->getMeta('description')) : $this->mXoopsTpl->assign('xoops_meta_description', $textFilter->toShow($configs['meta_description']));
-		$headerScript->getMeta('robots') ? $this->mXoopsTpl->assign('xoops_meta_robots', $headerScript->getMeta('robots')) : $this->mXoopsTpl->assign('xoops_meta_robots', $textFilter->toShow($configs['meta_robots']));
-		$headerScript->getMeta('rating') ? $this->mXoopsTpl->assign('xoops_meta_rating', $headerScript->getMeta('rating')) : $this->mXoopsTpl->assign('xoops_meta_rating', $textFilter->toShow($configs['meta_rating']));
-		$headerScript->getMeta('author') ? $this->mXoopsTpl->assign('xoops_meta_author', $headerScript->getMeta('author')) : $this->mXoopsTpl->assign('xoops_meta_author', $textFilter->toShow($configs['meta_author']));
-		$headerScript->getMeta('copyright') ? $this->mXoopsTpl->assign('xoops_meta_copyright', $headerScript->getMeta('copyright')) : $this->mXoopsTpl->assign('xoops_meta_copyright', $textFilter->toShow($configs['meta_copyright']));
+		$headerScript->getMeta('robots') ? $this->mXoopsTpl->assign('xoops_meta_robots', $textFilter->toShow($headerScript->getMeta('robots'))) : $this->mXoopsTpl->assign('xoops_meta_robots', $textFilter->toShow($configs['meta_robots']));
+		$headerScript->getMeta('rating') ? $this->mXoopsTpl->assign('xoops_meta_rating', $textFilter->toShow($headerScript->getMeta('rating'))) : $this->mXoopsTpl->assign('xoops_meta_rating', $textFilter->toShow($configs['meta_rating']));
+		$headerScript->getMeta('author') ? $this->mXoopsTpl->assign('xoops_meta_author', $textFilter->toShow($headerScript->getMeta('author'))) : $this->mXoopsTpl->assign('xoops_meta_author', $textFilter->toShow($configs['meta_author']));
+		$headerScript->getMeta('copyright') ? $this->mXoopsTpl->assign('xoops_meta_copyright', $textFilter->toShow($headerScript->getMeta('copyright'))) : $this->mXoopsTpl->assign('xoops_meta_copyright', $textFilter->toShow($configs['meta_copyright']));
 		$this->mXoopsTpl->assign('xoops_footer', $configs['footer']); // footer may be raw HTML text.
 	
 		//

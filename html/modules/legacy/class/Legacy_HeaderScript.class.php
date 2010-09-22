@@ -13,6 +13,7 @@ class Legacy_HeaderScript
 	protected $_mMeta = array('keywords'=>'','description'=>'','robots'=>'','rating'=>'','author'=>'','copyright'=>'',);
 	protected $_mOnloadScript = array();
 	protected $_mStylesheet = array();
+	protected $_mLink = array();
 
 	public $mUsePrototype = false;	//use prototype.js ?
 	public $mFuncNamePrefix = "";	//jQuery $() function's name prefix for compatibility with prototype.js
@@ -136,29 +137,29 @@ class Legacy_HeaderScript
 	}
 
 	/**
-	 * setLink
+	 * addLink
 	 * 
 	 * @param	string	$rel
+	 * @param	string	$href
 	 * @param	string	$type
 	 * @param	string	$title
-	 * @param	string	$href
 	 * 
 	 * @return	void
 	**/
-	public function setLink(/*** string ***/ $rel, /*** string ***/ $type, /*** string ***/ $title, /*** string ***/ $href)
+	public function addLink(/*** string ***/ $rel, /*** string ***/ $href, /*** string ***/ $type, /*** string ***/ $title=null)
 	{
 		$this->_mLink[] = array('rel'=>$rel, 'type'=>$type, 'title'=>$title, 'href'=>$href);
 	}
 
 	/**
-	 * setMeta
+	 * addMeta
 	 * 
 	 * @param	string	$name
 	 * @param	string	$content
 	 * 
 	 * @return	void
 	**/
-	public function setMeta(/*** string ***/ $name, /*** string ***/ $content)
+	public function addMeta(/*** string ***/ $name, /*** string ***/ $content)
 	{
 		$this->_mMeta[$name] = $content;
 	}
@@ -210,8 +211,9 @@ class Legacy_HeaderScript
 		}
 	
 		//load link
-		foreach($this->_mStylesheet as $css){
-			$html .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"". $css ."\" />\n";
+		foreach($this->_mLink as $link){
+			$title = $link['title'] ? 'title="'.$link['title'].'" ' : null;
+			$html .= sprintf("<link type=\"%s\" rel=\"%s\" href=\"%s\" $title/>\n", $link['type'], $link['rel'], $link['href']);
 		}
 	
 		//set rss auto-discovery
