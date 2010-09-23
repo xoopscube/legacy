@@ -2,6 +2,29 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
+2010/09/**: Package Revision 2.2.0 Beta2
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #3065264 - link miss at XOOPS Config page
+- Fix Bug #3065273 - select box and checkbox can't show options
+- Fix Bug #3066640 - Parse error: syntax error: DataEditAction.class.php, Line59
+- Fix Bug #3066634 - deprecated: line 58: /profile/forms/DataFilterForm.class.php
+- Fix Bug #3066825 - criteria condition in UserFilterForm.class.php
+- Fix Bug #3066818 - Undefined _MD_ERROR_DBUPDATE_FAILED in AvatarSelectAction
+- Fix Bug #3069637 - _MD_USER_MESSAGE_YOURREGISTERED's value of japanese
+- Fix Bug #3073715 - Duplicated stylesheet load
+- Fix Bug #3073722 - smarty plugins in (html) is not loaded
+
+[Staff]
+- 10key
+- beduino_xt
+- kilica
+- Mikhail Miguel
+- okuhiki
+- SAK-AXYS
+- shige-p
+
+----------------------------------------
 2010/09/11: Package Revision 2.2.0 Beta1
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
