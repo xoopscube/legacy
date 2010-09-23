@@ -75,7 +75,8 @@ class XoopsTpl extends Smarty
 		$this->template_dir = XOOPS_THEME_PATH;
 		$this->cache_dir = XOOPS_CACHE_PATH;
 		$this->compile_dir = XOOPS_COMPILE_PATH;
-		$this->plugins_dir = array(SMARTY_DIR.'plugins');
+		//loading under root_path for compatibility with XCL2.1
+		$this->plugins_dir = array(SMARTY_DIR.'plugins', XOOPS_ROOT_PATH.'/class/smarty/plugins');
 //		$this->default_template_handler_func = 'xoops_template_create';
 		$this->use_sub_dirs = false;
 
@@ -93,15 +94,6 @@ class XoopsTpl extends Smarty
         //      'xoopsTpl'     [I/O] : $this
         //
 		XCube_DelegateUtils::call('XoopsTpl.New',  new XCube_Ref($this));
-	
-		//for compatibility with XCL2.1
-		$files = glob(XOOPS_ROOT_PATH.'/class/smarty/plugins/*.php');
-		if (is_array($files)) {
-			foreach($files as $file) {
-				require_once $file;
-			}
-		}
-
 	}
 
 	/**

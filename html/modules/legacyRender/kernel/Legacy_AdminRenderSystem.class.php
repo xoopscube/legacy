@@ -42,6 +42,7 @@ class Legacy_AdminSmarty extends Smarty
 		$this->compile_dir = XOOPS_COMPILE_PATH;
 		$this->left_delimiter = "<{";
 		$this->right_delimiter = "}>";
+		$this->plugins_dir = array(SMARTY_DIR.'plugins', XOOPS_ROOT_PATH.'/class/smarty/plugins');
 
 		//
 		// [TODO]
