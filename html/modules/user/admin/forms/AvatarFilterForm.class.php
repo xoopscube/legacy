@@ -70,11 +70,11 @@ class User_AvatarFilterForm extends User_AbstractFilterForm
 			$this->mOptionField = $option_field;
 			if ( $this->mOptionField == "system" ) {
 			//only system avatar
-			$this->_mCriteria->add(new Criteria('avatar_type', xoops_getrequest('S')));
+			$this->_mCriteria->add(new Criteria('avatar_type', 'S'));
 			}
 			elseif ( $this->mOptionField == "custom" ) {
 			//only custom avatar
-			$this->_mCriteria->add(new Criteria('avatar_type', xoops_getrequest('C')));
+			$this->_mCriteria->add(new Criteria('avatar_type', 'C'));
 			}
 			else {
 			//all
@@ -85,10 +85,10 @@ class User_AvatarFilterForm extends User_AbstractFilterForm
 			$this->mNavi->addExtra('option_field2', xoops_getrequest('option_field2'));
 			$this->mOptionField2 = $option_field2;
 			if ( $this->mOptionField2 == "visible" ) {
-			$this->_mCriteria->add(new Criteria('avatar_display', xoops_getrequest('1')));
+			$this->_mCriteria->add(new Criteria('avatar_display', '1'));
 			}
 			elseif ( $this->mOptionField2 == "invisible" ) {
-			$this->_mCriteria->add(new Criteria('avatar_display', xoops_getrequest('0')));
+			$this->_mCriteria->add(new Criteria('avatar_display', '0'));
 			}
 			else {
 			//all
@@ -99,13 +99,13 @@ class User_AvatarFilterForm extends User_AbstractFilterForm
 			$this->mNavi->addExtra('option_field3', xoops_getrequest('option_field3'));
 			$this->mOptionField3 = $option_field3;
 			if ( $this->mOptionField3 == "gif" ) {
-			$this->_mCriteria->add(new Criteria('avatar_mimetype', xoops_getrequest('image/gif')));
+			$this->_mCriteria->add(new Criteria('avatar_mimetype', 'image/gif'));
 			}
 			elseif ( $this->mOptionField3 == "png" ) {
-			$this->_mCriteria->add(new Criteria('avatar_mimetype', xoops_getrequest('image/png')));
+			$this->_mCriteria->add(new Criteria('avatar_mimetype', 'image/png'));
 			}
 			elseif ( $this->mOptionField3 == "jpeg" ) {
-			$this->_mCriteria->add(new Criteria('avatar_mimetype', xoops_getrequest('image/jpeg')));
+			$this->_mCriteria->add(new Criteria('avatar_mimetype', 'image/jpeg'));
 			}
 			else {
 			//all

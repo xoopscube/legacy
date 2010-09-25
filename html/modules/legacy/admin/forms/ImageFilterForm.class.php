@@ -71,10 +71,10 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
 			$this->mNavi->addExtra('option_field', $option_field);
 			$this->mOptionField = $option_field;
 			if ( $this->mOptionField == "visible" ) {
-			$this->_mCriteria->add(new Criteria('image_display', xoops_getrequest('1')));
+			$this->_mCriteria->add(new Criteria('image_display', '1'));
 			}
 			elseif ( $this->mOptionField == "invisible" ) {
-			$this->_mCriteria->add(new Criteria('image_display', xoops_getrequest('0')));
+			$this->_mCriteria->add(new Criteria('image_display', '0'));
 			}
 			else {
 			//all
@@ -85,13 +85,13 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
 			$this->mNavi->addExtra('option_field2', $option_field2);
 			$this->mOptionField2 = $option_field2;
 			if ( $this->mOptionField2 == "gif" ) {
-			$this->_mCriteria->add(new Criteria('image_mimetype', xoops_getrequest('image/gif')));
+			$this->_mCriteria->add(new Criteria('image_mimetype', 'image/gif'));
 			}
 			elseif ( $this->mOptionField2 == "png" ) {
-			$this->_mCriteria->add(new Criteria('image_mimetype', xoops_getrequest('image/png')));
+			$this->_mCriteria->add(new Criteria('image_mimetype', 'image/png'));
 			}
 			elseif ( $this->mOptionField2 == "jpeg" ) {
-			$this->_mCriteria->add(new Criteria('image_mimetype', xoops_getrequest('image/jpeg')));
+			$this->_mCriteria->add(new Criteria('image_mimetype', 'image/jpeg'));
 			}
 			else {
 			//all
