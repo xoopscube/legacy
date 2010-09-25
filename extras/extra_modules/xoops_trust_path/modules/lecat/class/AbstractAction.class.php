@@ -218,6 +218,25 @@ abstract class Lecat_AbstractAction
     public function executeViewCancel(/*** XCube_RenderTarget ***/ &$render)
     {
     }
+
+	/**
+	 * _getNextUri
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	protected function _getNextUri($tableName, $actionName=null)
+	{
+		$handler = $this->_getHandler();
+		if($this->mObject->get($handler->mPrimary)>0){
+			return Legacy_Utils::renderUri($this->mAsset->mDirname, $tableName, $this->mObject->get($handler->mPrimary), $actionName);
+		}
+		else{
+			return Legacy_Utils::renderUri($this->mAsset->mDirname, $tableName, 0, $actionName);
+		}
+	}
+
 }
 
 ?>

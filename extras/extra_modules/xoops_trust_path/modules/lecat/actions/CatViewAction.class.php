@@ -17,19 +17,8 @@ require_once LECAT_TRUST_PATH . "/class/Permission.class.php";
 **/
 class Lecat_CatViewAction extends Lecat_AbstractViewAction
 {
+	protected $_mDataname = 'cat';
 	public $mPermit = null;
-
-    /**
-     * _getId
-     * 
-     * @param   void
-     * 
-     * @return  int
-    **/
-    protected function _getId()
-    {
-        return $this->mRoot->mContext->mRequest->getRequest('cat_id');
-    }
 
     /**
      * &_getHandler
@@ -109,18 +98,6 @@ class Lecat_CatViewAction extends Lecat_AbstractViewAction
 		//for permit addition
 		$this->mActionForm->load($this->mPermit);
 		$render->setAttribute('actionFormPermit', $this->mActionForm);
-    }
-
-    /**
-     * executeViewError
-     * 
-     * @param   XCube_RenderTarget  &$render
-     * 
-     * @return  void
-    **/
-    public function executeViewError(/*** XCube_RenderTarget ***/ &$render)
-    {
-        $this->mRoot->mController->executeRedirect('./index.php?action=CatList', 1, _MD_LECAT_ERROR_CONTENT_IS_NOT_FOUND);
     }
 }
 

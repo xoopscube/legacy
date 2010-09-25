@@ -17,17 +17,7 @@ require_once LECAT_TRUST_PATH . '/class/AbstractDeleteAction.class.php';
 **/
 class Lecat_CatDeleteAction extends Lecat_AbstractDeleteAction
 {
-	/**
-	 * _getId
-	 * 
-	 * @param	void
-	 * 
-	 * @return	int
-	**/
-	protected function _getId()
-	{
-		return $this->mRoot->mContext->mRequest->getRequest('cat_id');
-	}
+	protected $_mDataname = 'cat';
 
 	/**
 	 * &_getHandler
@@ -69,42 +59,6 @@ class Lecat_CatDeleteAction extends Lecat_AbstractDeleteAction
 		$render->setAttribute('actionForm', $this->mActionForm);
 		$render->setAttribute('object', $this->mObject);
 		$render->setAttribute('dirname', $this->mAsset->mDirname);
-	}
-
-	/**
-	 * executeViewSuccess
-	 * 
-	 * @param	XCube_RenderTarget	&$render
-	 * 
-	 * @return	void
-	**/
-	public function executeViewSuccess(/*** XCube_RenderTarget ***/ &$render)
-	{
-		$this->mRoot->mController->executeForward('./index.php?action=CatList');
-	}
-
-	/**
-	 * executeViewError
-	 * 
-	 * @param	XCube_RenderTarget	&$render
-	 * 
-	 * @return	void
-	**/
-	public function executeViewError(/*** XCube_RenderTarget ***/ &$render)
-	{
-		$this->mRoot->mController->executeRedirect('./index.php?action=CatList', 1, _MD_LECAT_ERROR_DBUPDATE_FAILED);
-	}
-
-	/**
-	 * executeViewCancel
-	 * 
-	 * @param	XCube_RenderTarget	&$render
-	 * 
-	 * @return	void
-	**/
-	public function executeViewCancel(/*** XCube_RenderTarget ***/ &$render)
-	{
-		$this->mRoot->mController->executeForward('./index.php?action=CatList');
 	}
 }
 

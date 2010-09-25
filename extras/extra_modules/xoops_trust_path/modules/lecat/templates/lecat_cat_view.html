@@ -23,7 +23,7 @@
 	<div>
 	<h2><{$smarty.const._MD_LECAT_LANG_PERMISSIONS}></h2>
 	<p><{$smarty.const._MD_LECAT_TIPS_PERMISSIONS}></p>
-	<form action="index.php?action=PermitEdit" method="post">
+	<form action="<{xoops_cooluri dirname=$dirname dataname=permit action=edit}>" method="post">
 	  <{xoops_token form=$actionFormPermit}>
 	  <{xoops_input type=hidden name=permit_id value=$actionFormPermit->get('permit_id')}>
 	  <{xoops_input type=hidden name=cat_id value=$actionFormPermit->get('cat_id')}>
@@ -63,7 +63,8 @@
 	</form>
 	<{if $permitObj->getTargetCat()=='cur'}>
 		<hr />
-		<form action="index.php" method="post">
+		<{assign var=catId value=$object->getShow('cat_id')}>
+		<form action="<{xoops_cooluri dirname=$dirname dataname=permit action=edit query="cat_id=`$catId`"}>" method="post">
 		<p>
 		<input type="submit" class="formButton" value="<{$smarty.const._MD_LECAT_LANG_DELEET_ALL_PERMIT}>"/>
 	  <{xoops_input type=hidden name=cat_id value=$object->getShow('cat_id')}>

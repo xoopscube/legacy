@@ -69,6 +69,42 @@ abstract class Lecat_AbstractDeleteAction extends Lecat_AbstractEditAction
     
         return LECAT_FRAME_VIEW_ERROR;
     }
+
+	/**
+	 * executeViewSuccess
+	 * 
+	 * @param	XCube_RenderTarget	&$render
+	 * 
+	 * @return	void
+	**/
+	public function executeViewSuccess(/*** XCube_RenderTarget ***/ &$render)
+	{
+		$this->mRoot->mController->executeForward($this->_getNextUri($this->_mDataname, 'list'));
+	}
+
+	/**
+	 * executeViewError
+	 * 
+	 * @param	XCube_RenderTarget	&$render
+	 * 
+	 * @return	void
+	**/
+	public function executeViewError(/*** XCube_RenderTarget ***/ &$render)
+	{
+		$this->mRoot->mController->executeRedirect($this->_getNextUri($this->_mDataname, 'list'), 1, _MD_LECAT_ERROR_DBUPDATE_FAILED);
+	}
+
+	/**
+	 * executeViewCancel
+	 * 
+	 * @param	XCube_RenderTarget	&$render
+	 * 
+	 * @return	void
+	**/
+	public function executeViewCancel(/*** XCube_RenderTarget ***/ &$render)
+	{
+		$this->mRoot->mController->executeForward($this->_getNextUri($this->_mDataname));
+	}
 }
 
 ?>
