@@ -6,7 +6,7 @@
 	<hr class="clear" />
 	<div>
 	<h2><{$smarty.const._MD_LECAT_LANG_PERMISSIONS}></h2>
-	<form action="index.php?action=PermitEdit" method="post">
+	<form action="<{xoops_cooluri dirname=$dirname dataname=permit action=edit}>" method="post">
 	  <{xoops_token form=$actionFormPermit}>
 	  <{xoops_input type=hidden name=permit_id value=$actionFormPermit->get('permit_id')}>
 	  <{xoops_input type=hidden name=cat_id value=$actionFormPermit->get('cat_id')}>
