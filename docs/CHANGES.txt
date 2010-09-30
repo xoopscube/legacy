@@ -17,6 +17,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 [Staff]
 - 10key
+- beduino_xt
 - kilica
 - Mikhail Miguel
 - okuhiki
@@ -73,7 +74,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #2993385 - AbstractCategoryObject.class.php syntax error
 - Fix Bug #2993394 - FATAL ERROR in include/module_icon.php
 - Fix Bug #2993397 - fileManager/admin/menu.php with 4 undefined constants
-- Fix Bug #2998179 - 12 index.html files with 0 byte
+- Fix Bug #2998179 - 12 index.html files with 0 byte 
 - Fix Bug #2998189 - xoops_trust_path with empty folders
 - Fix Bug #2998205 - robots.txt without references about the new XCL 2.2 modules
 - Fix Bug #2993377 - syntax error in phpmailer.lang-cn.php with path disclosure
@@ -240,7 +241,7 @@ http://sourceforge.net/apps/mediawiki/xoopscube/index.php?title=Release_Logs:XOO
 - Fix Bug #2949716 - The value of start and limit might be not corresponding between Criteria and PageNavi.
 - Fix Bug #2951068 - It becomes Fatal Error when the installation of XUpgrade.
 - Fix Bug #2955659 - invalid url exists in lostpass2.tpl.
-- Fix Bug #2963974 - Fatal error when ja_utf8 enabled without mbstring support.
+- Fix Bug #2963974 - Fatal error when ja_utf8 enabled without mbstring support. 
 
 [Pathes]
 - Patch #2933635 - Mr Marijuana's patch.
