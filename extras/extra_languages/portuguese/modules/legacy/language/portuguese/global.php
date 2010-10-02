@@ -1,7 +1,6 @@
 <?php
 // Translation Info
 // $Id$
-// License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //
@@ -14,8 +13,9 @@
 // ## Skype..........: mikhailmiguel
 // ## Yahoo!.........: mikhailmiguel@yahoo.com
 // ############################################################### //
+// Esta tradução encontra-se licenciada sob a licença Creative Commons Attribution 2.5 Brazil.
+// Para visualizar uma cópia da licença, visite http://creativecommons.org/licenses/by/2.5/br/
 // *************************************************************** //
-define("XOOPS_USE_MULTIBYTES","0");
 define("_ADD","Acrescentar");
 define("_ADDIMAGE","Enviar imagem");
 define("_ALIGN","Alinhamento");
@@ -41,17 +41,17 @@ define("_DELETE","Remover");
 define("_DESCENDING","Ordem descendente");
 define("_DESCRIPTION","Descrição");
 define("_DISABLEHTML","Desabilitar HTML");
-define("_DISABLESMILEY","Desabilitar emos");
+define("_DISABLESMILEY","Desabilitar ícones emotivos");
 define("_EDIT","Editar");
 define("_ENDSWITH","Termina com");
 define("_ENTERCODE","Escreva os códigos que você deseja incluir.");
 define("_ENTEREMAIL","Escreva o e-mail que você deseja incluir.");
 define("_ENTERIMGPOS","Agora, escreva a posição da figura.");
-define("_ENTERIMGURL","Escreva o endereço da imagem que você deseja incluir:");
-define("_ENTERQUOTE","Escreva o texto que você deseja citar.");
-define("_ENTERTEXTBOX","Por favor, escreva o texto na caixa de texto.");
-define("_ENTERURL","Escreva o endereço do link que você deseja incluir:");
-define("_ENTERWEBTITLE","Agora, escreva o título do link:");
+define("_ENTERIMGURL","Escreva o endereço da imagem que você deseja incluir no texto:");
+define("_ENTERQUOTE","Escreva o texto que você deseja citar:");
+define("_ENTERTEXTBOX","Por favor, escreva o conteúdo na caixa de texto.");
+define("_ENTERURL","Escreva o endereço Web que você deseja incluir:");
+define("_ENTERWEBTITLE","Agora, escreva o título do endereço:");
 define("_ERRORIMGPOS","Ocorreu um erro. Por favor, escreva a posição da figura.");
 define("_ERRORS","Erros");
 define("_EXAMPLE","Exemplo");
@@ -134,7 +134,7 @@ define("_SECONDS","%s segundos");
 define("_SELECT","Selecionar");
 define("_SEND","Enviar");
 define("_SENDEMAILTO","Enviar uma carta-eletrônica para %s");
-define("_SENDPMTO","Enviar uma mensagem privada para %s");
+define("_SENDPMTO","Enviar uma mensagem interna para %s");
 define("_SHORTDATESTRING","d/n/Y");
 define("_SIZE","Tamanho");
 define("_STARTSWITH","Começa com");
@@ -145,15 +145,15 @@ define("_STATUS_PUBLISHED","Publicado");
 define("_STATUS_REJECTED","Rejeitado");
 define("_SUBJECT","Assunto");
 define("_SUBMIT","Enviar");
-define("_SYSTEM_MODULE_ERROR","Os módulos a seguir não foram instalados.");
 define("_SYS_MODULE_DISABLED","Necessário (desabilitado)");
 define("_SYS_MODULE_UNINSTALLED","Necessário (não instalado)");
 define("_SYS_OPTION_MODULES","Módulo opcional");
 define("_SYS_RECOMMENDED_MODULES","Módulo recomendado");
+define("_SYSTEM_MODULE_ERROR","Os módulos a seguir não foram instalados.");
 define("_TAKINGBACK","Bad, bad server. No donut for you...");
 define("_THREADED","Ramificar por título");
 define("_TITLE","Título");
-define("_TOKEN_ERROR","Alerta! This prevent you from instantiating a malformed request or post. Please, submit again to confirm!");
+define("_TOKEN_ERROR","Alerta: foi detectada uma possível solicitação malformada. Por precaução, confirme a sua requisição enviando os dados de novo.");
 define("_UNINSTALL","Desinstalar");
 define("_UNINSTALL_CONFIRM","Por favor, confirme: deseja desinstalar o módulo?");
 define("_USERNAME","Codinome:");
@@ -161,7 +161,7 @@ define("_VERSION","Versão");
 define("_VIEW","Mostrar");
 define("_VISITWEBSITE","Visitar");
 define("_WARNINSTALL2","Atenção: a pasta %s existe em seu servidor. Para sua segurança, remova este diretório.");
-define("_WARNINWRITEABLE","Atenção: o arquivo %s tem permissão de escrita pelo servidor. Altere esta permissão por motivos de segurança: em sistemas tipo unix, configure como CHMOD 444; em ambiente Windows, configure como somente leitura.");
+define("_WARNINWRITEABLE","Atenção: o arquivo %s tem permissão de escrita pelo servidor. Altere esta permissão por motivos de segurança: em sistemas tipo UNIX, configure como CHMOD 440; em ambiente Windows, configure como somente leitura.");
 define("_WARNPHPENV","Atenção: o parâmetro %s do arquivo php.ini está configurado como %s. %s");
 define("_WARNSECURITY","Isto deixa o seu portal menos seguro. Se possível, altere as configurações de seu servidor.");
 define("_WEEK","Uma semana");
@@ -169,6 +169,7 @@ define("_WELCOMETO","Bem-vindo ao %s");
 define("_WHOSONLINE","Quem nos visita");
 define("_YES","Sim");
 define("_YOURHOME","Inicial");
+define("XOOPS_USE_MULTIBYTES","0");
 
 //%%%%% LANGUAGE SPECIFIC SETTINGS %%%%%
 @define("LEGACY_MAIL_CHAR","UTF-8");

@@ -1,17 +1,17 @@
 <?php
 // Translation Info
 // $Id$
-// License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
-// ## XOOPS Cube Legacy 2.2 - Tradução para o Português do Brasil
+// ## XOOPS Cube Legacy 2.2 - Tradução para o Português
 // ############################################################### //
 // ## Por............: Mikhail Miguel
 // ## E-mail.........: mikhail@underpop.com
 // ## Website........: http://xoopscube.com.br
 // ## Plus...........: http://card.ly/mikhail
 // ############################################################### //
+// Esta tradução encontra-se licenciada sob a licença Creative Commons Attribution 2.5 Brazil.
+// Para ler uma cópia da licença, visite: http://creativecommons.org/licenses/by/2.5/br/
 // *************************************************************** //
-
 
 define("_MI_FILEMANAGER_CHECK", "Verificar requisitos");
 define("_MI_FILEMANAGER_CHECK_DSC", "Verifica se o sistema atende aos requisitos mínimos para a utilização deste gerenciador de arquivos.");
@@ -31,15 +31,15 @@ define("_MI_FILEMANAGER_FMOVIEFILE_DSC", "Separe as extensões dos formatos dos 
 define("_MI_FILEMANAGER_FOLDER", "Gestão de pastas");
 define("_MI_FILEMANAGER_FOLDER_DSC", "Gestão de diretórios e suas permissões");
 define("_MI_FILEMANAGER_FOPT", "[FFMPEG] Opção");
-define("_MI_FILEMANAGER_FOPT_DSC", "Por favor, especifique a opção de comando. ·A sua versão não está disponível  ");
+define("_MI_FILEMANAGER_FOPT_DSC", "Por favor, especifique a opção de comando. A sua versão não está disponível");
 define("_MI_FILEMANAGER_FPATH", "[FFMPEG] Caminho do FFmpeg");
 define("_MI_FILEMANAGER_FPATH_DSC", "Especifique o caminho físico (<q>path</q>) da instalação do FFmpeg. <br />(por exemplo: <tt>/usr/local/bin</tt>, <tt>/usr/bin</tt>)");
 define("_MI_FILEMANAGER_FUSE", "[FFMPEG] Utilizar FFmpeg");
 define("_MI_FILEMANAGER_FUSE_DSC", "FFmpeg é uma solução multi-plataforma completa para gravar, converter e servir conteúdo em áudio e vídeo. <br /> FFmpeg deve ser suportada pelo servidor. Se não estiver, instale o FFmpeg binários para o seu servidor");
 define("_MI_FILEMANAGER_MAIN", "Lista de arquivos");
 define("_MI_FILEMANAGER_MAIN_DSC", "Lista os arquivos com opção de miniaturas automáticas para as imagens");
-define("_MI_FILEMANAGER_MULTIUPLOAD", "Use Maruchiappuroda");
-define("_MI_FILEMANAGER_MULTIUPLOAD_0", "Use Maruchiappuroda");
+define("_MI_FILEMANAGER_MULTIUPLOAD", "Use Maruchiappuroda"); // WTF??? :-)
+define("_MI_FILEMANAGER_MULTIUPLOAD_0", "Use Maruchiappuroda"); // WTF??? :-)
 define("_MI_FILEMANAGER_MULTIUPLOAD_1", "Para cada arquivo de upload");
 define("_MI_FILEMANAGER_MULTIUPLOAD_DSC", "Você pode escolher o método para cada arquivo para carregar uma maneira de fazer upload de vários arquivos de uma vez.");
 define("_MI_FILEMANAGER_NAME", "Gestor de arquivos");
@@ -51,6 +51,6 @@ define("_MI_FILEMANAGER_UPDATE", "Atualizar");
 define("_MI_FILEMANAGER_UPLOAD", "Enviar arquivo");
 define("_MI_FILEMANAGER_UPLOAD_DSC", "Enviar arquivos para o diretório <q>uploads</q>");
 define("_MI_FILEMANAGER_XOOPSLOCK", "Ocultar as imagens do sistema?");
-define("_MI_FILEMANAGER_XOOPSLOCK_DSC", "Não mostrar a imagem do uso do sistema. não mostra os ícones face gerenciador de imagens avatar.");
+define("_MI_FILEMANAGER_XOOPSLOCK_DSC", "Não mostrar a imagens nativas do sistema. não mostra os ícones face gerenciador de imagens avatar.");
 
 ?>
