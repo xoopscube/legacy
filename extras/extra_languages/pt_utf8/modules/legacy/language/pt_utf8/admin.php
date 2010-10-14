@@ -449,7 +449,7 @@ define("_MD_AM_SITENAME","Nome do portal");
 define("_MD_AM_SITEPREF","Configurações do portal");
 define("_MD_AM_SLOGAN","Slogan do portal");
 define("_MD_AM_SMTPHOST","Servidor(es) SMTP");
-define("_MD_AM_SMTPHOSTDESC","Lista de servidores SMTP aos quais o xoops tentará usar para acrescentar as mensagens.");
+define("_MD_AM_SMTPHOSTDESC","Lista de servidores SMTP aos quais o XOOPS tentará usar para acrescentar as mensagens.");
 define("_MD_AM_SMTPPASS","Senha de acesso ao servidor SMTPAuth");
 define("_MD_AM_SMTPPASSDESC","Senha para se conectar ao servidor smtp usando o sistema de autorização SMTPAuth.");
 define("_MD_AM_SMTPUSER","Identidade de acesso SMTP");
