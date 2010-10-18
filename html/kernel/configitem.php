@@ -120,6 +120,25 @@ class XoopsConfigItem extends XoopsObject
 		return $optionArr;
 	}
 
+	/**
+	 * @return array()
+	 */
+	function getRoledModuleList()
+	{
+		$handler =& xoops_gethandler('config');
+		$optionArr =& $handler->getConfigOptions(new Criteria('conf_id', $this->get('conf_id')));
+		$list = array();
+		foreach($optionArr as $opt){
+			if($opt->get('confop_value')=='none'){
+				$list[] = '';
+			}
+			else{
+				$list = array_merge($list, Legacy_Utils::getCommonModuleList($opt->get('confop_value')));
+			}
+		}
+		return $list;
+	}
+
     /**
      * Get a config value in a format ready for output
      * 
