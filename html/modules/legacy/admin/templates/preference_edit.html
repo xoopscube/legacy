@@ -59,6 +59,14 @@
             <{xoops_textarea name=$config->getVar('conf_name') rows=5 cols=50 value=$actionForm->get($config->get('conf_name'))}>
 
 
+          <{elseif $config->get('conf_formtype') == 'server_module'}>
+            <select name='<{$config->getVar('conf_name')}>' id='legacy_xoopsform_<{$config->getVar('conf_name')}>'>
+              <{foreach item=option from=$config->getRoledModuleList()}>
+                <option value='<{$option}>' <{if $actionForm->get($config->get('conf_name')) == $option}>selected="selected"<{/if}>><{$option}></option>
+              <{/foreach}>
+            </select>
+
+
           <{elseif $config->get('conf_formtype') == 'select'}>
             <select name='<{$config->getVar('conf_name')}>' id='legacy_xoopsform_<{$config->getVar('conf_name')}>'>
               <{foreach item=option from=$config->getOptionItems()}>
