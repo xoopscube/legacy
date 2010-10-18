@@ -66,21 +66,12 @@ class Lecat_Utils
     **/
 	public static function getClientList(/*** string ***/ $dirname)
 	{
+		$clients = array();
 		$list = array();
-		$handler = xoops_gethandler('config');
-		$configArr = $handler->getConfigsByDirname($dirname);
-		$clients = explode("\n", $configArr['client_list']);
+		XCube_DelegateUtils::call('Legacy_Category.'.$dirname.'.GetClientList', new XCube_Ref($clients), $dirname);
+	
 		foreach($clients as $client){
-			$module = explode(',', $client);
-			if(count($module)>2){
-				$list[] = array('dirname'=>trim($module[0]), 'dataname'=>trim($module[1]), 'fieldname'=>trim($module[2]));
-			}
-			elseif(count($module)==2){
-				$list[] = array('dirname'=>trim($module[0]), 'dataname'=>trim($module[1]), 'fieldname'=>null);
-			}
-			else{
-				continue;
-			}
+			$list[] = array('dirname'=>trim($module[0]), 'dataname'=>trim($module[1]), 'fieldname'=>trim($module[2]));
 		}
 		return $list;
 	}
