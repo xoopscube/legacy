@@ -16,19 +16,6 @@ if(!defined('XOOPS_ROOT_PATH'))
 interface Legacy_iGroupDelegate
 {
 	/**
-	 * getServerDirname Site.GetServerDirname
-	 * get server module's dirname from client module's info.
-	 *
-	 * @param string	&$server	server module's dirname
-	 * @param string	$dirname	client module's dirname
-	 * @param string	$dataname	client's target tablename
-	 * @param string	$fieldname	client's target fieldname
-	 *
-	 * @return	void
-	 */ 
-	public static function getServerDirname(/*** string ***/ &$server, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** string ***/ $fieldname=null);
-
-	/**
 	 * getTitle 	Legacy_Group.GetTitle
 	 * get the group title by group id.
 	 *

@@ -17,6 +17,18 @@ if(!defined('XOOPS_ROOT_PATH'))
 interface Legacy_iGroupClientDelegate
 {
 	/**
+	 * getClientList
+	 *
+	 * @param mixed[]	&$list
+	 *  list[]['dirname']
+	 *  list[]['dataname']
+	 * @param string	$dirname
+	 *
+	 * @return	void
+	 */ 
+	public static function getClientList(/*** mixed[] ***/ &$list, /*** string ***/ $dirname);
+
+	/**
 	 * getClientData
 	 * Get client modules' data to show them inside Legacy_Group module
 	 *
