@@ -5,6 +5,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 2010/09/**: Package Revision 2.2.0 Beta2
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
+- Fix Bug #3028755 - English Language misspelling in install.php
 - Fix Bug #3065264 - link miss at XOOPS Config page
 - Fix Bug #3065273 - select box and checkbox can't show options
 - Fix Bug #3066634 - deprecated: line 58: /profile/forms/DataFilterForm.class.php
@@ -20,6 +21,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #3075239 - pjpeg handling
 - Fix Bug #3078808 - FCKeditor: currentfolder parameter - upload vulnerability
 - Fix Bug #3084151 - end tag for element "p": /lecat/language/english/main.php
+- Fix Bug #3095479 - installer have Unnecessary data
 
 [Staff]
 - 10key
