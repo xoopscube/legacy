@@ -60,6 +60,10 @@ class User_UserRegisterAction extends User_Action
 	
 	function _processActionForm()
 	{
+		if($this->mActionForm=unserialize($_SESSION['user_register_actionform'])){
+			return;
+		}
+	
 		if ($this->mConfig['reg_dispdsclmr'] != 0 && $this->mConfig['reg_disclaimer'] != null) {
 			$this->mEnableAgreeFlag = true;
 			$this->mActionForm =new User_RegisterAgreeEditForm($this->mConfig);

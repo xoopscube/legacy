@@ -39,6 +39,11 @@ class User_UserRegister_confirmAction extends User_Action
 
 	function execute(&$controller, &$xoopsUser)
 	{
+		if (XCube_Root::getSingleton()->mContext->mRequest->getRequest('_form_control_cancel') != null)
+		{
+			return USER_FRAME_VIEW_CANCEL;
+		}
+
 		$memberHandler =& xoops_gethandler('member');
 		$this->mNewUser =& $memberHandler->createUser();
 		$this->mRegistForm->update($this->mNewUser);
@@ -134,6 +139,18 @@ class User_UserRegister_confirmAction extends User_Action
 	function executeViewError(&$controller, &$xoopsUser, &$render)
 	{
 		$controller->executeRedirect(XOOPS_URL . '/', 1, $this->mRedirectMessage);
+	}
+
+	/**
+	 * executeViewCancel
+	 * 
+	 * @param	XCube_RenderTarget	&$render
+	 * 
+	 * @return	void
+	**/
+	public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+	{
+		$controller->executeForward(XOOPS_URL.'/register.php');
 	}
 
 	function executeViewInput(&$controller,&$xoopsUser,&$render)
