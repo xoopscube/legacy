@@ -46,10 +46,6 @@ INSERT INTO configoption VALUES (5, '_THREADED', 'thread', 32);
 INSERT INTO configoption VALUES (6, '_OLDESTFIRST', '0', 33);
 INSERT INTO configoption VALUES (7, '_NEWESTFIRST', '1', 33);
 INSERT INTO configoption VALUES (14, '_MD_AM_DEBUGMODE3', '3', 13);
-INSERT INTO configoption VALUES (15, '_MD_AM_INDEXFOLLOW', 'index,follow', 43);
-INSERT INTO configoption VALUES (16, '_MD_AM_NOINDEXFOLLOW', 'noindex,follow', 43);
-INSERT INTO configoption VALUES (17, '_MD_AM_INDEXNOFOLLOW', 'index,nofollow', 43);
-INSERT INTO configoption VALUES (18, '_MD_AM_NOINDEXNOFOLLOW', 'noindex,nofollow', 43);
 INSERT INTO configoption VALUES (23, '_MD_AM_DEBUGMODE0', '0', 13);
 
 INSERT INTO configoption VALUES (24,'PHP mail()','mail',64);
