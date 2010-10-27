@@ -7,13 +7,19 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 [Bug Fix - From Bug Tracker]
 - Fix Bug #3065264 - link miss at XOOPS Config page
 - Fix Bug #3065273 - select box and checkbox can't show options
-- Fix Bug #3066640 - Parse error: syntax error: DataEditAction.class.php, Line59
 - Fix Bug #3066634 - deprecated: line 58: /profile/forms/DataFilterForm.class.php
-- Fix Bug #3066825 - criteria condition in UserFilterForm.class.php
+- Fix Bug #3066640 - Parse error: syntax error: DataEditAction.class.php, Line59
 - Fix Bug #3066818 - Undefined _MD_ERROR_DBUPDATE_FAILED in AvatarSelectAction
+- Fix Bug #3066825 - criteria condition in UserFilterForm.class.php
+- Fix Bug #3066832 - Expire date in user registration
+- Fix Bug #3068976 - XCL 2.2 is designed for PHP5 but PHPMailer 2.0.4 is for PHP4
 - Fix Bug #3069637 - _MD_USER_MESSAGE_YOURREGISTERED's value of japanese
 - Fix Bug #3073715 - Duplicated stylesheet load
 - Fix Bug #3073722 - smarty plugins in (html) is not loaded
+- Fix Bug #3075220 - fitering lists show nothing
+- Fix Bug #3075239 - pjpeg handling
+- Fix Bug #3078808 - FCKeditor: currentfolder parameter - upload vulnerability
+- Fix Bug #3084151 - end tag for element "p": /lecat/language/english/main.php
 
 [Staff]
 - 10key
