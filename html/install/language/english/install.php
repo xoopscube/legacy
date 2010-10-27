@@ -7,13 +7,13 @@ define("_INSTALL_L70","Please change the file permission for mainfile.php so tha
 define("_INSTALL_L1","Open mainfile.php with your text editor and find the following codes on line 31:");
 define("_INSTALL_L2","Now, change this line to:");
 define("_INSTALL_L3","Next, on line 35, change %s to %s");
-define("_INSTALL_L4","OK, I have set the above setings, let me try again!");
+define("_INSTALL_L4","OK, I have set the above settings, let me try again!");
 define("_INSTALL_L5","WARNING!");
 define("_INSTALL_L6","There is a mismatch between your XOOPS_ROOT_PATH configuration on line 31 of mainfile.php and the root path info we have detected.");
 define("_INSTALL_L7","Your setting: ");
 define("_INSTALL_L8","We detected: ");
 define("_INSTALL_L9","( On MS platforms, you may receive this error message even when your configuration is correct. If that is the case, please press the button below to continue)");
-define("_INSTALL_L10","Plesae press the button below to continue if this is really ok.");
+define("_INSTALL_L10","Please press the button below to continue if this is really ok.");
 define("_INSTALL_L11","The server path to your XOOPS Cube root directory: ");
 define("_INSTALL_L12","URL to your XOOPS Cube root directory: ");
 define("_INSTALL_L13","If the above setting is correct, press the button below to continue.");
@@ -114,7 +114,7 @@ define("_INSTALL_L101","<b>Virtual path</b> is not a valid URL.");
 define("_INSTALL_L102","Confirm database settings");
 define("_INSTALL_L103","Restart from the beginning");
 define("_INSTALL_L104","Check database");
-define("_INSTALL_L105","Atempt to create database");
+define("_INSTALL_L105","Attempt to create database");
 define("_INSTALL_L106","Could not connect to the database server.");
 define("_INSTALL_L107","Please check the database server and its configuration.");
 define("_INSTALL_L108","Connection to database server is OK.");
@@ -173,7 +173,7 @@ define("_INSTALL_L161","Anonymous Users");
 define("_INSTALL_L162","You must select a default group for each group type.");
 define("_INSTALL_L163","Table %s dropped.");
 define("_INSTALL_L164","Failed deleting table %s.");
-define("_INSTALL_L165","The site is currently closed for maintainance. Please come back later.");
+define("_INSTALL_L165","The site is currently closed for maintenance. Please come back later.");
 
 // %s is filename
 define("_INSTALL_L152","Could not open %s.");
