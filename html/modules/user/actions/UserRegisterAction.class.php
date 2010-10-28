@@ -60,7 +60,9 @@ class User_UserRegisterAction extends User_Action
 	
 	function _processActionForm()
 	{
-		if($this->mActionForm=unserialize($_SESSION['user_register_actionform'])){
+		if(isset($_SESSION['user_register_actionform'])){
+			$this->mActionForm = unserialize($_SESSION['user_register_actionform']);
+			unset($_SESSION['user_register_actionform']);
 			return;
 		}
 	
