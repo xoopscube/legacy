@@ -191,40 +191,6 @@ SMarkUp.conf.bbcode = {
 		},
 		{separator: true},
 		{
-			name: 'ul',
-			title: 'Unordered List',
-			open: '[list]',
-			close: '[/list]',
-			prepend: "\n",
-			append: "\n",
-			wrapSelection: "\n   [*]{selection}\n"
-		},
-		{
-			name: 'ol',
-			title: 'Ordered List',
-			open: '[list={startingnumber}]',
-			close: '[/list]',
-			prepend: "\n",
-			append: "\n",
-			wrapSelection: "\n   [*]{selection}\n",
-			attributes: [
-				{
-					type: 'text',
-					name: 'startingnumber',
-					label: 'Starting Number'
-				}
-			]
-		},
-		{
-			name: 'li',
-			title: 'List Item',
-			open: '[*]',
-			prepend: "\n   "
-		},
-		{
-			separator: true	
-		},
-		{
 			name: 'quote',
 			className: 'blockquote',
 			open: '[quote]',
