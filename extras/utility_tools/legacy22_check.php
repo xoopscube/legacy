@@ -113,6 +113,12 @@ function checkDirectory()
 	if(is_dir(! XOOPS_TRUST_PATH.'/cache')){
 		$ret[] = 'Copy '.XOOPS_TRUST_PATH.'/cache from XCL22 and change permission 777';
 	}
+	if(is_dir(XOOPS_ROOT_PATH.'/class/smarty/core')){
+		$ret[] = 'Reove '.XOOPS_ROOT_PATH.'/class/smarty/core directory.';
+	}
+	if(count(glob(XOOPS_ROOT_PATH.'/class/smarty/*.*'))>0){
+		$ret[] = 'Reove all files(<span style="color:red;">NOT DIRECTORY</span>) in '.XOOPS_ROOT_PATH.'/class/smarty/*.*';
+	}
 	if(count(glob(XOOPS_ROOT_PATH.'/class/smarty/plugins/*.php'))>0){
 		$ret[] = 'Move all php files in '.XOOPS_ROOT_PATH.'/class/smarty/plugins/ to '.XOOPS_TRUST_PATH.'/libs/smarty/plugins. <br /><span style="color:red;">BE CAREFUL NOT TO OVERWRITE EXISTING FILES !!!</span>';
 	}
