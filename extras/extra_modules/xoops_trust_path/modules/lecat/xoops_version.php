@@ -139,15 +139,6 @@ $modversion['config'] = array(
 		'default'		=> '0',
 		'options'		=> array()
 	) ,
-	array(
-		'name'			=> 'client_list' ,
-		'title' 		=> "_MI_LECAT_LANG_CLIENT_LIST" ,
-		'description'	=> "_MI_LECAT_DESC_CLIENT_LIST" ,
-		'formtype'		=> 'textarea' ,
-		'valuetype' 	=> 'text' ,
-		'default'		=> '',
-		'options'		=> array()
-	) ,
 /*
 	array(
 		'name'			=> 'xxxx',

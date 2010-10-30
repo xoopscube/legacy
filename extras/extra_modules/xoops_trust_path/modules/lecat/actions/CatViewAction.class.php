@@ -85,7 +85,6 @@ class Lecat_CatViewAction extends Lecat_AbstractViewAction
 		$permissions = new Lecat_Permission($this->mAsset->mDirname, $this->mObject);
 		$gPermit = ($this->mObject->getThisPermit()) ? $this->mObject->getThisPermit() : array();
 		$permissions->setPermissions($gPermit);
-		//var_dump($this->mObjectHandler->getTree());die();
 	
 		//set renders
 		$render->setAttribute('dirname', $this->mAsset->mDirname);
@@ -98,6 +97,14 @@ class Lecat_CatViewAction extends Lecat_AbstractViewAction
 		//for permit addition
 		$this->mActionForm->load($this->mPermit);
 		$render->setAttribute('actionFormPermit', $this->mActionForm);
+	
+		$list = array();
+		$clientList = Lecat_Utils::getClientList($this->mAsset->mDirname);
+		$render->setAttribute('clientList', $clientList);
+		foreach($clientList as $client){
+			$list[] = $this->mObject->getClientData($client);
+		}
+		$render->setAttribute('clients', $list);
     }
 }
 

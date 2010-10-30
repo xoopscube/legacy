@@ -74,6 +74,19 @@
 	<{/if}>
 	</div>
 	<hr class="clear" />
+
+	<!-- Cat Client Data -->
+	<div id="clientList">
+	<{foreach item=client from=$clients}>
+	<div class="client">
+		<h2><{$client.dirname}> - <{$client.dataname}></h2>
+		<{foreach item=item from=$client.data}>
+		<{include file="`$client.template_name`" data=$item}>
+		<{/foreach}>
+	</div>
+	<{/foreach}>
+	</div>
+
 	<div class="catTree">
 		<h2><{$smarty.const._MD_LECAT_LANG_CAT}></h2>
 		<a href="<{xoops_cooluri dirname=$dirname dataname=cat action=edit}>"><{$smarty.const._MD_LECAT_LANG_ADD_A_NEW_CAT}></a>

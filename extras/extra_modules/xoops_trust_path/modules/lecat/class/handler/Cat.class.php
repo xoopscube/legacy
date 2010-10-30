@@ -287,6 +287,25 @@ class Lecat_CatObject extends Legacy_AbstractCategoryObject
 	}
 
 	/**
+	 * getClientData
+	 * 
+	 * @param	array	$client
+	 *  $client['dirname']
+	 *  $client['dataname']
+	 *  $client['fieldname']
+	 * 
+	 * @return	mixed[]
+	 *	string	$list['template_name'][]
+	 *	string	$list['data'][]
+	**/
+	public function getClientData(/*** string ***/ $client)
+	{
+		$list = array('template_name'=>array(), 'data'=>array(), 'dirname'=>array(), 'dataname'=>array());
+		XCube_DelegateUtils::call('Legacy_CategoryClient.'.$client['dirname'].'.GetClientData', new XCube_Ref($list), $client['dirname'], $client['dataname'], $client['fieldname'], $this->get('cat_id'));
+		return $list;
+	}
+
+	/**
 	 *	@public
 	 *	module confinement function
 	 *	check specified dirname is set in the categories' modules field ?
