@@ -126,6 +126,8 @@ $modversion['templates'][45]['file'] = 'legacy_xoopsform_opt_validationjs.html';
 $modversion['templates'][45]['description'] = 'The embedded template for the javascriot of the the xoopsform to validation the input value.';
 $modversion['templates'][46]['file'] = 'legacy_xoopsform_grouppermform.html';
 $modversion['templates'][46]['description'] = 'The embedded template for the groupperm form of the the xoopsform.';
+$modversion['templates'][47]['file'] = 'legacy_inc_tree.html';
+$modversion['templates'][47]['description'] = 'legacy_tree default template';
 
 // Menu
 $modversion['hasMain'] = 0;
