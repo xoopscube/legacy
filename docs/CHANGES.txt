@@ -2,7 +2,7 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
-2010/09/**: Package Revision 2.2.0 Beta2
+2010/10/31: Package Revision 2.2.0 Beta2
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
 - Fix Bug #3028755 - English Language misspelling in install.php
@@ -19,9 +19,12 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #3073722 - smarty plugins in (html) is not loaded
 - Fix Bug #3075220 - fitering lists show nothing
 - Fix Bug #3075239 - pjpeg handling
+- Fix Bug #3078705 - include/notification_update.php SQL Injection Vulnerability
 - Fix Bug #3078808 - FCKeditor: currentfolder parameter - upload vulnerability
 - Fix Bug #3084151 - end tag for element "p": /lecat/language/english/main.php
 - Fix Bug #3095479 - installer have Unnecessary data
+- Fix Bug #3098193 - myckeditor module with 256 bugs
+- Fix Bug #3098199 - NuSOAP 'nusoap.php' Cross Site Scripting Vulnerability.
 
 [Staff]
 - 10key
