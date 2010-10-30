@@ -1,5 +1,15 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
+
+----------------------------------------
+2010/**/**: Package Revision 2.1.9
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #3078705 - include/notification_update.php SQL Injection Vulnerability
+[Staff]
+- kilica
+- Mikhail Miguel
+
 ----------------------------------------
 2010/03/27: Package Revision 2.1.8
 ----------------------------------------
