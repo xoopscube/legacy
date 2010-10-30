@@ -91,7 +91,10 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
 			$this->_mCriteria->add(new Criteria('image_mimetype', 'image/png'));
 			}
 			elseif ( $this->mOptionField2 == "jpeg" ) {
-			$this->_mCriteria->add(new Criteria('image_mimetype', 'image/jpeg'));
+			$cri = new CriteriaCompo();
+			$cri->add(new Criteria('image_mimetype', 'image/jpeg'));
+			$cri->add(new Criteria('image_mimetype', 'image/pjpeg'), 'OR');
+			$this->_mCriteria->add($cri);
 			}
 			else {
 			//all
