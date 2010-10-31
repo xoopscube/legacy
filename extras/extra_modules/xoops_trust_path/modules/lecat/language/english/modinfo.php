@@ -56,21 +56,9 @@ define('_MI_LECAT_TPL_CAT_LIST', 'Category List');
 define('_MI_LECAT_TPL_CAT_EDIT', 'Category Edit');
 define('_MI_LECAT_TPL_CAT_DELETE', 'Category Delete');
 define('_MI_LECAT_TPL_CAT_VIEW', 'Category View');
-define('_MI_LECAT_TPL_SET_LIST', 'Category Set List');
-define('_MI_LECAT_TPL_SET_EDIT', 'Category Set Edit');
-define('_MI_LECAT_TPL_SET_DELETE', 'Category Set Delete');
-define('_MI_LECAT_TPL_SET_VIEW', 'Category Set View');
-define('_MI_LECAT_TPL_DEFAULT_SET', 'Default Set');
-define('_MI_LECAT_TPL_ACTOR_EDIT', 'Actor Edit');
 define('_MI_LECAT_LANG_CSS_FILE', 'CSS file url');
 define('_MI_LECAT_DESC_CSS_FILE', 'set CSS file url after {XOOPS_URL}');
 define('_MI_LECAT_LANG_MAXDEPTH', 'Max depth');
 define('_MI_LECAT_DESC_MAXDEPTH', 'Max depth in category tree.');
-define('_MI_LECAT_LANG_CLIENT_LIST', 'Client Module List');
-define('_MI_LECAT_DESC_CLIENT_LIST', 'List up client modules and its tablename, id separated by comma. If there are more than one client modules, write one module and its tablename and id field name in one line.<br />
-Example:<br />
-forum,topic,topic_id<br />
-forum,reply,reply_id<br />
-album,item,item_id');
 
 ?>

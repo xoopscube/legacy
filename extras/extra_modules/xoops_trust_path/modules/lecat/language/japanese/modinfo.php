@@ -9,7 +9,7 @@ define('_MI_LECAT_INSTALL_ERROR_MODULE_INSTALLED', 'モジュールのインストールがで
 define('_MI_LECAT_INSTALL_ERROR_PERM_ADMIN_SET', 'モジュールの管理権限を付加できませんでした。');
 define('_MI_LECAT_INSTALL_ERROR_PERM_READ_SET', 'モジュールのアクセス権限を付加できませんでした。');
 define('_MI_LECAT_INSTALL_MSG_MODULE_INSTALLED', 'モジュール『{0}』をインストールしました。');
-define('_MI_LECAT_INSTALL_ERROR_SQL_FILE_NOT_FOUND', 'SQLふぁいる『{0}』が見つかりませんでした。');
+define('_MI_LECAT_INSTALL_ERROR_SQL_FILE_NOT_FOUND', 'SQLファイル『{0}』が見つかりませんでした。');
 define('_MI_LECAT_INSTALL_MSG_DB_SETUP_FINISHED', 'データベースのセットアップが完了しました。');
 define('_MI_LECAT_INSTALL_MSG_SQL_SUCCESS', 'SQL success : {0}');
 define('_MI_LECAT_INSTALL_MSG_SQL_ERROR', 'SQL error : {0}');
@@ -56,18 +56,9 @@ define('_MI_LECAT_TPL_CAT_LIST', 'カテゴリ一覧');
 define('_MI_LECAT_TPL_CAT_EDIT', 'カテゴリ編集');
 define('_MI_LECAT_TPL_CAT_DELETE', 'カテゴリ削除');
 define('_MI_LECAT_TPL_CAT_VIEW', 'カテゴリ表示');
-define('_MI_LECAT_TPL_SET_LIST', 'カテゴリグループ一覧');
-define('_MI_LECAT_TPL_SET_EDIT', 'カテゴリグループ編集');
-define('_MI_LECAT_TPL_SET_DELETE', 'カテゴリグループ削除');
-define('_MI_LECAT_TPL_SET_VIEW', 'カテゴリグループ表示');
-define('_MI_LECAT_TPL_DEFAULT_SET', 'Default Set');
-define('_MI_LECAT_TPL_ACTOR_EDIT', 'Actor Edit');
-define('_MI_LECAT_LANG_MAXDEPTH', 'カテゴリの深さ');
-define('_MI_LECAT_DESC_MAXDEPTH', 'カテゴリの深さの制限（0は無制限）');
-define('_MI_LECAT_LANG_CLIENT_LIST', '利用モジュール');
-define('_MI_LECAT_DESC_CLIENT_LIST', 'Lecat の利用モジュールとそのテーブル名をカンマで区切って指定します。複数の関連モジュールがある場合は、改行して記述します。<br />
-例）<br />
-forum,topics<br />
-forum,reply<br />
-album,item');
+define('_MI_LECAT_LANG_CSS_FILE', 'CSS ファイルのURL');
+define('_MI_LECAT_DESC_CSS_FILE', 'カテゴリモジュール用のCSSファイルの場所を設定します（'.XOOPS_URL.'以降を入力）');
+define('_MI_LECAT_LANG_MAXDEPTH', '階層制限');
+define('_MI_LECAT_DESC_MAXDEPTH', 'カテゴリ階層の制限。0にすると無制限');
+
 ?>
