@@ -12,12 +12,12 @@
 if(file_exists('preload/SetupAltsysLangMgr.class.php')){
 	$contents = file_get_contents('preload/SetupAltsysLangMgr.class.php');
 	if(! preg_match('/setting/', $contents)){
-		die('Add "$this->_loadLanguage("legacy", "setting");" to (html)/preload/SetupAltsysLangMgr.class.php');
+		echo 'Add "$this->_loadLanguage("legacy", "setting");" to (html)/preload/SetupAltsysLangMgr.class.php<p>See also upgrade manual :<ul><li><a href="http://sourceforge.net/apps/mediawiki/xoopscube/index.php?title=Upgrade22#Upgrade_from_XCL2.1..2A_to_XCL2.2">English</a></li><li><a href="http://sourceforge.net/apps/mediawiki/xoopscube/index.php?title=Upgrade22;ja">Japanese</a></li></ul></p>';die();
 	}
 }
 
 if(!file_exists('preload/upgrade22.class.php')){
-	echo '<p style="color:red;">Maybe, you should move upgrade22.class.php from extras/preload to (html)/preload</p>';
+	echo '<p style="color:red;">Maybe, you should move upgrade22.class.php from extras/preload to (html)/preload</p><p>See also upgrade manual :<ul><li><a href="http://sourceforge.net/apps/mediawiki/xoopscube/index.php?title=Upgrade22#Upgrade_from_XCL2.1..2A_to_XCL2.2">English</a></li><li><a href="http://sourceforge.net/apps/mediawiki/xoopscube/index.php?title=Upgrade22;ja">Japanese</a></li></ul></p>';
 }
 
 if(! file_exists('mainfile.php')){
@@ -29,48 +29,67 @@ require_once 'mainfile.php';
 
 $messages = array();
 
+
+/*** check setting of XOOPS_TRUST_PATH ***/
 switch(checkMainfile()){
 	case 0:
-		$messages[] = 'You must add XOOPS_TRUST_PATH setting in (html)/mainfile.php';
+		$messages[] = 'You must add XOOPS_TRUST_PATH setting in '.XOOPS_ROOT_PATH.'/mainfile.php';
 		break;
 	case 1:
 		$messages[] = 'Directory XOOPS_TRUST_PATH('.XOOPS_TRUST_PATH.') is NOT found.';
 		break;
 }
 
+
+/*** check table field expand by preload ***/
 if(! checkTable()){
-	$messages[] = 'You must put extras/extra_preload/upgrade22.class.php in (html)/preload';
+	$messages[] = 'You must put extras/extra_preload/upgrade22.class.php in '.XOOPS_ROOT_PATH.'/preload';
 }
 
+
+/*** check latest language file ***/
+$lang = XCube_Root::getSingleton()->mLanguageManager->mLanguageName;
+if(! checkLanguage($lang)){
+	$messages[] = 'You must move latest language file from extras/extra_languages/'.$lang.'. DON\'T MOVE /install directory !';
+}
+
+
+/*** check file existing ***/
+$files = checkFile();
+foreach($files as $file){
+	$messages[] = $file;
+}
+
+
+/*** check directory existing ***/
+$directories = checkDirectory();
+foreach($directories as $dir){
+	$messages[] = $dir;
+}
+
+
+/*** check directory permission to write ***/
+$permissions = checkPermission();
+foreach($permissions as $perm){
+	$messages[] = $perm;
+}
+
+
+/*** check module version, if updated by module admin ***/
 $modules = checkVersion();
 foreach($modules as $mod){
 	$messages[] = 'You must upgrade module "'.$mod.'" in module administration page.';
 }
 
 
-$directories = checkDirectory();
-foreach($directories as $dir){
-	$messages[] = $dir;
-}
-
-$files = checkFile();
-foreach($files as $file){
-	$messages[] = 'You must change file name from "'.$file['from_path'].'" to '. $file['to_path'];
-}
-
-$permissions = checkPermission();
-foreach($permissions as $perm){
-	$messages[] = $perm;
-}
-
 if(count($messages)===0){
-	$messages[] = 'Congraturation! You are ready for upgrade XCL2.2.<br />Remove (html)/legacy22_check.php file.';
+	$messages[] = 'Congraturation! You are ready for upgrade XCL2.2.<br />Remove '.XOOPS_ROOT_PATH.'/legacy22_check.php file.';
 	if(! checkPreload()){
-		$messages[] = 'You should remove upgrade22.class.php from (html)/preload';
+		$messages[] = 'You should remove upgrade22.class.php from '.XOOPS_ROOT_PATH.'/preload';
 	}
 }
 
-echo '<html><body><ul>';
+echo '<html><body><ul><p>See also upgrade manual :<ul><li><a href="http://sourceforge.net/apps/mediawiki/xoopscube/index.php?title=Upgrade22#Upgrade_from_XCL2.1..2A_to_XCL2.2">English</a></li><li><a href="http://sourceforge.net/apps/mediawiki/xoopscube/index.php?title=Upgrade22;ja">Japanese</a></li></ul></p>';
 foreach($messages as $message){
 	echo '<li>'.$message.'</li>';
 }
@@ -91,6 +110,12 @@ function checkTable()
 		}
 	}
 	return false;
+}
+
+
+function checkLanguage($lang)
+{
+	return file_exists(XOOPS_ROOT_PATH.'/modules/legacy/language/'.$lang.'/setting.php') ? true : false;
 }
 
 function checkPreload()
@@ -130,11 +155,15 @@ function checkDirectory()
 
 function checkFile()
 {
+	$str = 'You must change file name from "%s" to "%s"';
+	if(file_exists(XOOPS_ROOT_PATH.'/settings/site_custom.ini.php')){
+		$ret[] = sprintf('You must move a file and change the file name from "%s" to "%s"', XOOPS_ROOT_PATH.'/settings/site_custom.ini.php', XOOPS_TRUST_PATH.'/settings/site_custom.ini');
+	}
 	if(file_exists(XOOPS_TRUST_PATH.'/settings/site_custom.ini.php')){
-		$ret[] = array('from_path'=>'(xoops_trust_path)/settings/site_custom.ini.php', 'to_path'=>'(xoops_trust_path)/settings/site_custom.ini');
+		$ret[] = sprintf($str, XOOPS_TRUST_PATH.'/settings/site_custom.ini.php', XOOPS_TRUST_PATH.'/settings/site_custom.ini');
 	}
 	if(file_exists(XOOPS_TRUST_PATH.'/settings/site_default.ini.php')){
-		$ret[] = array('from_path'=>'(xoops_trust_path)/settings/site_default.ini.php', 'to_path'=>'(xoops_trust_path)/settings/site_default.ini');
+		$ret[] = sprintf($str, XOOPS_TRUST_PATH.'/settings/site_default.ini.php', XOOPS_TRUST_PATH.'/settings/site_default.ini');
 	}
 	return $ret;
 }
