@@ -56,6 +56,8 @@ define('_MI_LECAT_TPL_CAT_LIST', 'Category List');
 define('_MI_LECAT_TPL_CAT_EDIT', 'Category Edit');
 define('_MI_LECAT_TPL_CAT_DELETE', 'Category Delete');
 define('_MI_LECAT_TPL_CAT_VIEW', 'Category View');
+define('_MI_LECAT_TPL_DEFAULT_SET', 'Default Permission');
+define('_MI_LECAT_TPL_ACTOR_EDIT', 'Actor');
 define('_MI_LECAT_LANG_CSS_FILE', 'CSS file url');
 define('_MI_LECAT_DESC_CSS_FILE', 'set CSS file url after {XOOPS_URL}');
 define('_MI_LECAT_LANG_MAXDEPTH', 'Max depth');

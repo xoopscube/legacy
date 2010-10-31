@@ -56,9 +56,13 @@ define('_MI_LECAT_TPL_CAT_LIST', 'カテゴリ一覧');
 define('_MI_LECAT_TPL_CAT_EDIT', 'カテゴリ編集');
 define('_MI_LECAT_TPL_CAT_DELETE', 'カテゴリ削除');
 define('_MI_LECAT_TPL_CAT_VIEW', 'カテゴリ表示');
+define('_MI_LECAT_TPL_DEFAULT_SET', '初期アクセス権設定');
+define('_MI_LECAT_TPL_ACTOR_EDIT', '権限の編集');
 define('_MI_LECAT_LANG_CSS_FILE', 'CSS ファイルのURL');
 define('_MI_LECAT_DESC_CSS_FILE', 'カテゴリモジュール用のCSSファイルの場所を設定します（'.XOOPS_URL.'以降を入力）');
 define('_MI_LECAT_LANG_MAXDEPTH', '階層制限');
 define('_MI_LECAT_DESC_MAXDEPTH', 'カテゴリ階層の制限。0にすると無制限');
+define('_MI_LECAT_TPL_DEFAULT_SET', '初期テンプレートセット');
+define('_MI_LECAT_TPL_ACTOR_EDIT', '権限の編集');
 
 ?>
