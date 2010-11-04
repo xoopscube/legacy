@@ -1,10 +1,14 @@
 <?php
 /**
- * @file
- * @package lecat
- * @version $Id$
+* $Id$
+* XOOPS Cube Legacy 2.2 - Módulo LeCAT - Tradução para o Português
+* Traduzido por Mikhail Miguel < mailto:mikhail.miguel@gmail.com >
+* http://xoops.net.br/ | http://card.ly/mikhail
+* Esta tradução encontra-se licenciada sob a licença Creative Commons Attribution 2.5 Brazil.
+* Para ler uma cópia da licença, visite: http://creativecommons.org/licenses/by/2.5/br/
 **/
 
+define("_MI_LECAT_DESC_CLIENT_LIST", "Lista os nomes dos módulos clientes seguidos de suas respectivas tabelas, separados por vírgulas. Se houver mais de um módulo cliente, escreve os nomes das tabelas e os nomes dos campos nas mesmas linhas. Exemplo: <br />forum,topic,topic_id<br />forum,reply,reply_id<br />album,item,item_id");
 define("_MI_LECAT_DESC_CSS_FILE","Caminho do arquivo CSS localizado depois da XOOPS_URL");
 define("_MI_LECAT_DESC_LECAT","Módulo de gestão de categorias");
 define("_MI_LECAT_DESC_MAXDEPTH","Profundidade máxima na árvore de categorias.");
@@ -52,6 +56,7 @@ define("_MI_LECAT_INSTALL_MSG_TPL_INSTALLED","O modelo '{0}' foi instalado corre
 define("_MI_LECAT_INSTALL_MSG_UPDATE_FINISHED","A atualização do módulo foi concluída.");
 define("_MI_LECAT_INSTALL_MSG_UPDATE_STARTED","A atualização do módulo foi iniciada.");
 define("_MI_LECAT_LANG_AUTHOR","<a href='http://www.xoops.net.br/'>Mikhail Miguel</a>");
+define("_MI_LECAT_LANG_CLIENT_LIST", "Lista de módulos clientes");
 define("_MI_LECAT_LANG_CREDITS","<a href='mailto:mikhail.miguel@gmail.com'>Mikhail Miguel</a>");
 define("_MI_LECAT_LANG_CSS_FILE","Endereço URL do arquivo CSS");
 define("_MI_LECAT_LANG_LECAT","Categorias");
@@ -61,11 +66,9 @@ define("_MI_LECAT_TPL_CAT_DELETE","Remover categoria");
 define("_MI_LECAT_TPL_CAT_EDIT","Editar categoria");
 define("_MI_LECAT_TPL_CAT_LIST","Lista de Categorias");
 define("_MI_LECAT_TPL_CAT_VIEW","Mostrar categoria");
-define("_MI_LECAT_TPL_DEFAULT_SET", "Conjunto pré-definido");
+define("_MI_LECAT_TPL_DEFAULT_SET", "Configuração pré-definida");
 define("_MI_LECAT_TPL_SET_DELETE","Remover");
 define("_MI_LECAT_TPL_SET_EDIT","Editar");
 define("_MI_LECAT_TPL_SET_LIST","Listar");
 define("_MI_LECAT_TPL_SET_VIEW","Mostrar");
-define("_MI_LECAT_LANG_CLIENT_LIST", "Lista de módulos clientes");
-define("_MI_LECAT_DESC_CLIENT_LIST", "Lista os nomes dos módulos clientes seguidos de suas respectivas tabelas, separados por vírgulas. Se houver mais de um módulo cliente, escreve os nomes das tabelas e os nomes dos campos nas mesmas linhas. Exemplo: <br />forum,topic,topic_id<br />forum,reply,reply_id<br />album,item,item_id");
 ?>
