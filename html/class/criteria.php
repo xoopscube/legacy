@@ -477,7 +477,7 @@ class Criteria extends CriteriaElement
 		//
 		// Recive DTYPE. This is a prolongation of criterion life operation.
 		//
-		if (is_array($value) && count($value)==2)
+		if (is_array($value) && count($value)==2 && $operator!='IN' && $operator!='NOT IN')
 		{
 			$this->dtype = intval($value[0]);
 			$this->value = $value[1];
