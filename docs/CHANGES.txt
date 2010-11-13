@@ -5,14 +5,14 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 2010/11/13: Package Revision 2.1.8a
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
-- Fix Bug #3078705 - include/notification_update.php SQL Injection Vulnerability
-- Fix Bug #2686348 - smarty: several bugs fixed in version 2.6.22 since 2.6.19
 - Fix Bug #2666664 - /class/snoopy.php is susceptible to a remote command.
+- Fix Bug #2686348 - smarty: several bugs fixed in version 2.6.22 since 2.6.19
+- Fix Bug #3078705 - include/notification_update.php SQL Injection Vulnerability
 
 [Staff]
 - kilica
-- Mikhail Miguel
 - Marijuana
+- Mikhail Miguel
 - xoopserver
 
 ----------------------------------------
