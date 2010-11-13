@@ -372,7 +372,9 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 						if(! isset($tmp)){
 							$value = '("")';
 						}
-						$value = '('.implode(',', $tmp).')';
+						else{
+							$value = '('.implode(',', $tmp).')';
+						}
 					} else {
 						$value = $this->_escapeValue($value, $obj->mVars[$name]['data_type']);
 					}
