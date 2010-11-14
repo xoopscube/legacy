@@ -191,7 +191,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
 		$this->mTriggerPreAction->register("XoopsNotificationHandler.TriggerPreAction");
 	}
 
-	protected function _escapeValue($value, $type=XOBJ_DTYPE_STRING)
+	function _escapeValue($value, $type=XOBJ_DTYPE_STRING)
 	{
 		switch ($type) {
 			case XOBJ_DTYPE_BOOL:
