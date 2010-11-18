@@ -33,8 +33,11 @@ interface Legacy_iGroupClientDelegate
 	 * Get client modules' data to show them inside Legacy_Group module
 	 *
 	 * @param mixed[]	&$list
+	 *  list[]['dirname']	string
+	 *  list[]['dataname']	string
+	 *  list[]['title']	string
 	 *  list[]['data']	mixed
-	 *  list[]['template']	string
+	 *  list[]['template_name']	string
 	 * @param string	$dirname	client module's dirname
 	 * @param string	$dataname	client's target tablename
 	 * @param string	$fieldname	client's target fieldname
