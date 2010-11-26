@@ -53,8 +53,7 @@ class Lecat_Utils
 		$handler = xoops_gethandler('config');
 		$conf = $handler->getConfigsByDirname($dirname);
 	
-		$actors = $conf['actors'];
-		return isset($actors) ? unserialize($actors) : array('key'=>array('viewer','poster','manager'),'title'=>array('Viewer', 'Poster', 'Manager'),'default'=>array(1,1,0));
+		return isset($conf['actors']) ? unserialize($conf['actors']) : array('key'=>array('viewer','poster','manager'),'title'=>array('Viewer', 'Poster', 'Manager'),'default'=>array(1,1,0));
 	}
 
     /**
