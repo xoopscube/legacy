@@ -62,7 +62,7 @@ class XoopsTpl extends Smarty
 	{
 		global $xoopsConfig;
 		$this->Smarty();
-		$this->compile_id = null;
+		$this->compile_id = XOOPS_URL;
 		if ($xoopsConfig['theme_fromfile'] == 1) {
 			$this->_canUpdateFromFile = true;
 			$this->compile_check = true;
@@ -87,6 +87,15 @@ class XoopsTpl extends Smarty
 							'xoops_version' => XOOPS_VERSION,
 							'xoops_upload_url' => XOOPS_UPLOAD_URL
 							));
+
+	    if(empty($this->debug_tpl)) {
+	        // set path to debug template from SMARTY_DIR
+	        $this->debug_tpl = XOOPS_ROOT_PATH.'/modules/legacy/templates/xoops_debug.tpl';
+	        if($this->security && is_file($this->debug_tpl)) {
+	            $this->secure_dir[] = realpath($this->debug_tpl);
+	        }
+	        $this->debug_tpl = 'file:' . XOOPS_ROOT_PATH.'/modules/legacy/templates/xoops_debug.tpl';
+	    }
 
         // Delegate 'XoopsTpl.New' 
         //  Delegate may define additional initialization code for XoopTpl Instance;

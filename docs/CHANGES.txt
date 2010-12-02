@@ -2,6 +2,21 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
+2010/12/XX: Package Revision 2.2.0 Beta3
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #3102808 - Avoid Smarty Debug infinite loop
+- Fix Bug #3101119 - I want you to move templates_c to xoops_trust_path
+
+[Staff]
+- domifara
+- kilica
+- Marijuana
+- Mikhail Miguel
+- moegiiro
+
+
+----------------------------------------
 2010/10/31: Package Revision 2.2.0 Beta2
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
