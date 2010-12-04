@@ -178,10 +178,20 @@ define('_MONTH', '1ヶ月');
 define('_HELP', "ヘルプ");
 
 define('_CATEGORY', "カテゴリ");
+define('_TAG', "タグ");
 define('_STATUS', "ステータス");
 define('_STATUS_DELETED', "削除済み");
 define('_STATUS_REJECTED', "却下");
 define('_STATUS_POSTED', "投稿済み");
 define('_STATUS_PUBLISHED', "承認済み");
+
+//%%%%% Group %%%%%
+define('_GROUP', "グループ");
+define('_MEMBER', "会員");
+define('_GROUP_RANK_GUEST', "ゲスト");
+define('_GROUP_RANK_ASSOCIATE', "準会員");
+define('_GROUP_RANK_REGULAR', "正会員");
+define('_GROUP_RANK_STAFF', "スタッフ");
+define('_GROUP_RANK_OWNER', "管理者");
 
 ?>

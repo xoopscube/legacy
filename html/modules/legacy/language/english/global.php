@@ -176,10 +176,20 @@ define('_HELP', "Help");
 
 //%%%%%		   %%%%%
 define('_CATEGORY', "Category");
+define('_TAG', "Tag");
 define('_STATUS', "Status");
 define('_STATUS_DELETED', "Deleted");
 define('_STATUS_REJECTED', "Rejected");
 define('_STATUS_POSTED', "Posted");
 define('_STATUS_PUBLISHED', "Published");
+
+//%%%%% Group %%%%%
+define('_GROUP', "Group");
+define('_MEMBER', "Member");
+define('_GROUP_RANK_GUEST', "Guest");
+define('_GROUP_RANK_ASSOCIATE', "Associate");
+define('_GROUP_RANK_REGULAR', "Regular");
+define('_GROUP_RANK_STAFF', "Staff");
+define('_GROUP_RANK_OWNER', "Owner");
 
 ?>
