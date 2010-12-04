@@ -16,6 +16,7 @@
 // Esta tradução encontra-se licenciada sob a licença Creative Commons Attribution 2.5 Brazil.
 // Para ler uma cópia da licença, visite http://creativecommons.org/licenses/by/2.5/br/
 // ***********************************************************************************
+
 define("_ADD","Acrescentar");
 define("_ADDIMAGE","Enviar imagem");
 define("_ALIGN","Alinhamento");
@@ -61,6 +62,12 @@ define("_FLAT","Expandir");
 define("_FONT","Fonte"); // font family
 define("_FORM_ENTER","Por favor, escreva %s");
 define("_GO","Prosseguir");
+define("_GROUP", "Grupo");
+define("_GROUP_RANK_ASSOCIATE", "Associado");
+define("_GROUP_RANK_GUEST", "Anônimo");
+define("_GROUP_RANK_OWNER", "Proprietário");
+define("_GROUP_RANK_REGULAR", "Regular");
+define("_GROUP_RANK_STAFF", "Equipe");
 define("_GUESTS","Anônimos");
 define("_HELP","Ajuda");
 define("_HOUR","Uma hora");
@@ -88,6 +95,7 @@ define("_MAIN","Principal");
 define("_MANUAL","Manual");
 define("_MATCHES","Igual a");
 define("_MEDIUMDATESTRING","d/m/Y H:i");
+define("_MEMBER", "Membro");
 define("_MEMBERS","Associados");
 define("_MESSAGEICON","Ícone");
 define("_MESSAGETOOLONG","A sua mensagem é extensa demais.");
@@ -149,6 +157,7 @@ define("_SYS_MODULE_UNINSTALLED","Necessário (não instalado)");
 define("_SYS_OPTION_MODULES","Módulo opcional");
 define("_SYS_RECOMMENDED_MODULES","Módulo recomendado");
 define("_SYSTEM_MODULE_ERROR","Os módulos a seguir não foram instalados.");
+define("_TAG", "Marcador");
 define("_TAKINGBACK","Bad, bad server. No donut for you...");
 define("_THREADED","Ramificar por título");
 define("_TITLE","Título");
