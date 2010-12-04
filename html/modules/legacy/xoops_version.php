@@ -128,6 +128,8 @@ $modversion['templates'][46]['file'] = 'legacy_xoopsform_grouppermform.html';
 $modversion['templates'][46]['description'] = 'The embedded template for the groupperm form of the the xoopsform.';
 $modversion['templates'][47]['file'] = 'legacy_inc_tree.html';
 $modversion['templates'][47]['description'] = 'legacy_tree default template';
+$modversion['templates'][48]['file'] = 'legacy_inc_tag_select.html';
+$modversion['templates'][48]['description'] = 'legacy_tag_select default template';
 
 // Menu
 $modversion['hasMain'] = 0;
