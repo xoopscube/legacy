@@ -60,7 +60,7 @@ function smarty_function_xoops_dhtmltarea($params, &$smarty)
 		$params['cols'] = isset($params['cols']) ? intval($params['cols']) : XOOPS_DHTMLTAREA_DEFAULT_COLS;
 		$params['rows'] = isset($params['rows']) ? intval($params['rows']) : XOOPS_DHTMLTAREA_DEFAULT_ROWS;
 		$params['value'] = isset($params['value']) ? $textFilter->toEdit($params['value']) : null;
-		$params['id'] = isset($params['id']) ? trim($params['id']) : XOOPS_DHTMLTAREA_DEFID_PREFIX . $name;
+		$params['id'] = isset($params['id']) ? trim($params['id']) : XOOPS_DHTMLTAREA_DEFID_PREFIX . $params['name'];
 	
 		//
 		// Build the object for output.
