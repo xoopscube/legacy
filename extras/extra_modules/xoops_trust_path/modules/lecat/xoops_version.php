@@ -20,7 +20,7 @@ require_once LECAT_TRUST_PATH . '/class/LecatUtils.class.php';
 //
 // Define a basic manifesto.
 //
-$modversion['name'] = _MI_LECAT_LANG_LECAT;
+$modversion['name'] = $myDirName;
 $modversion['version'] = 2.00;
 $modversion['description'] = _MI_LECAT_DESC_LECAT;
 $modversion['author'] = _MI_LECAT_LANG_AUTHOR;
