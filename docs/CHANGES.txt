@@ -5,9 +5,12 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 2010/12/XX: Package Revision 2.2.0 Beta3
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
-- Fix Bug #3102808 - Avoid Smarty Debug infinite loop
 - Fix Bug #3101119 - I want you to move templates_c to xoops_trust_path
-
+- Fix Bug #3102808 - Avoid Smarty Debug infinite loop
+- Fix Bug #3104460 - modules/legacy/include/groupperm bug
+- Fix Bug #2993409 - PHP 5.3.x: fileManager using the deprecated eregi() function
+- Fix Bug #3104945 - nusoap: class nusoap_base not found errors & path disclosure
+- Fix Bug #3101119 - I want you to move templates_c to xoops_trust_path
 [Staff]
 - domifara
 - kilica

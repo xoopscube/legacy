@@ -7,7 +7,7 @@
  * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
-	$writeok = array('uploads/', 'templates_c/', 'mainfile.php');
+	$writeok = array('uploads/', 'mainfile.php');
 	$error = false;
 	foreach ($writeok as $wok) {
 		if (!is_dir('../'.$wok)) {

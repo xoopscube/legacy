@@ -29,7 +29,7 @@ It is free to redistribute as long as you abide by the distribution terms of the
 <li>Setup WWW server, PHP and database server properly.</li>
 <li>Prepare a database for your new XOOPS Cube Legacy website.</li>
 <li>Prepare user account and grant the user the access to the database.</li>
-<li>Make the directories of <strong>html/uploads/, xoops_trust_path/cache/</strong> and <strong>html/templates_c/</strong> and the file <strong>html/mainfile.php</strong> writabale.</li>
+<li>Make the directories of <strong>html/uploads/, xoops_trust_path/cache/</strong> and <strong>xoops_trust_path/templates_c/</strong> and the file <strong>html/mainfile.php</strong> writabale.</li>
 <li>Turn on the cookie and JavaScript options of your browser.</li>
 </ul>
 <u><b>Installation</b></u>

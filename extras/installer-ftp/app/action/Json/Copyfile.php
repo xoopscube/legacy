@@ -70,11 +70,10 @@ class Hdinstaller_Action_JsonCopyfile extends Hdinstaller_Action_Json
 					
 					//// after script
 					$dir777 = array(
-						$xoops_root_path.'/cache',
-						$xoops_root_path.'/templates_c',
 						$xoops_root_path.'/uploads',
 						$xoops_root_path.'/uploads/fckeditor',
 						$xoops_root_path.'/uploads/wizmobile',
+						$xoops_trust_path.'/templates_c',
 						$xoops_trust_path.'/cache' ,
 						$xoops_trust_path.'/templates_c' ,
 						$xoops_trust_path.'/uploads' ,
