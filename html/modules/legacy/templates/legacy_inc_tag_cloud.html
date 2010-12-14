@@ -1,0 +1,5 @@
+<div class="tag_cloud">
+<{foreach item=item from=$cloud key=tag}>
+  <span style="font-size:<{$sizeArr.$tag}>%;"><{$tag|xoops_escape}></span>
+<{/foreach}>
+</div>

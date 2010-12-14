@@ -130,6 +130,8 @@ $modversion['templates'][47]['file'] = 'legacy_inc_tree.html';
 $modversion['templates'][47]['description'] = 'legacy_tree default template';
 $modversion['templates'][48]['file'] = 'legacy_inc_tag_select.html';
 $modversion['templates'][48]['description'] = 'legacy_tag_select default template';
+$modversion['templates'][49]['file'] = 'legacy_inc_tag_cloud.html';
+$modversion['templates'][49]['description'] = 'legacy_tag_cloud default template';
 
 // Menu
 $modversion['hasMain'] = 0;
