@@ -36,7 +36,7 @@ class Legacy_AdminSmarty extends Smarty
 	{
 		parent::Smarty();
 
-		$this->compile_id = null;
+		$this->compile_id = XOOPS_URL;
 		$this->_canUpdateFromFile = true;
 		$this->compile_check = true;
 		$this->compile_dir = XOOPS_COMPILE_PATH;
