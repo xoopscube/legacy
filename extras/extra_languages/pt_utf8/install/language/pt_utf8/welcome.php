@@ -28,7 +28,7 @@ O XOOPS Cube é ideal para a criação <i>sites</i> de notícias, intranets, ou 
 <ul>
 <li>Prepare o servidores web e mysql.</li>
 <li>Tenha em mãos as seguintes informações sobre o seu banco de dados: endereço do servidor mysql (<i>hostname</i>), nome do banco de dados a ser utilizado (<i>database name</i>), nome do utilizador do banco de dados (<i>mysql username</i>), e senha do banco de dados (<i>password</i>).</li>
-<li>Conceda permissões de escrita ao arquivo <q>mainfile.php</q> e aos diretórios <q>cache</q>, <q>templates_c</q>, e <q>uploads</q>.</li>
+<li>Conceda permissões de escrita ao arquivo <q>mainfile.php</q>; aos subdiretórios <q>cache</q> e <q>templates_c</q> localizados no diretório protegido XOOPS_TRUST_PATH, e ao subdiretório <q>uploads</q>, localizado no diretório da instalação.</li>
 <li>Habilite os recursos de <q>JavaScript</q> e <q>Cookies</q> de seu navegador web.</li>
 <li>Tenha em mente que muitos aplicativos de segurança da Internet, <q>firewall</q> ou antivírus podem impedir que o instalador do XOOPS Cube funcione da forma correta, caso não estejam devidamente configurados.</li>
 </ul>
