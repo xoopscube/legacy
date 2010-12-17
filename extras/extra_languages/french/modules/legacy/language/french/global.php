@@ -175,4 +175,22 @@ define("_MONTH", "1 mois");
 
 define("_HELP", "Aide");
 
+//%%%%%		   %%%%%
+define('_CATEGORY', "Categorie");
+define('_TAG', "Tag");
+define('_STATUS', "Status");
+define('_STATUS_DELETED', "Supprimé");
+define('_STATUS_REJECTED', "Rejeté");
+define('_STATUS_POSTED', "Posté");
+define('_STATUS_PUBLISHED', "Publié");
+
+//%%%%% Group %%%%%
+define('_GROUP', "Groupe");
+define('_MEMBER', "Membrr");
+define('_GROUP_RANK_GUEST', "Invité");
+define('_GROUP_RANK_ASSOCIATE', "Associé");
+define('_GROUP_RANK_REGULAR', "Regulier");
+define('_GROUP_RANK_STAFF', "Equipe");
+define('_GROUP_RANK_OWNER', "Propriétaire");
+
 ?>

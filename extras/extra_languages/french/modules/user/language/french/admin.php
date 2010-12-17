@@ -43,7 +43,7 @@ define('_AD_USER_LANG_AVATAR_TOTAL', "Total of Avatar(s)");
 define('_AD_USER_LANG_AVATAR_TYPE', "Type");
 define('_AD_USER_LANG_AVATAR_TYPE_C', "Personnalisé");
 define('_AD_USER_LANG_AVATAR_TYPE_S', "Système");
-define('_AD_USER_LANG_AVATAR_UPDATECONF', "Confirm avatar update");
+define('_AD_USER_LANG_AVATAR_UPDATECONF', "Confirmer mise-à-jour de l'avatar");
 define('_AD_USER_LANG_AVATAR_UPLOAD', "Avatar Batch-Upload");
 define('_AD_USER_LANG_AVATAR_UPLOAD_FILE', "Avatars Archive(Only tar.gz or zip)");
 define('_AD_USER_LANG_AVATAR_UPLOAD_RESULT', "Result of Avatar Batch-Upload");
@@ -148,9 +148,10 @@ define('_AD_USER_LANG_VPASS', "Vérifier Mot de Passe");
 
 // Message
 define('_AD_USER_MESSAGE_CONFIRM_DELETE', "Veuillez confirmer la suppression?");
-define('_AD_USER_MESSAGE_CONFIRM_UPDATE_AVATAR', "Are you sure you want to update it?");
 define('_AD_USER_MESSAGE_CONFIRM_DELETE_RANK', "Voulez-vous supprimer ce rang d'Utilisateur?");
-define('_AD_USER_MESSAGE_CONFIRM_UPDATE_USER', "Are you sure you want to update user?");
+define('_AD_USER_MESSAGE_CONFIRM_UPDATE_AVATAR', "Are you sure you want to update it?");
+define('_AD_USER_MESSAGE_CONFIRM_UPDATE_RANK', "Voulez-vous mettre à jour ce rang d'Utilisateur?");
+define('_AD_USER_MESSAGE_CONFIRM_UPDATE_USER', "Voulez-vous mettre à jour cet utilisateur?");
 define('_AD_USER_MESSAGE_RECOUNT_SUCCESS', "Recompté avec succès");
 
 // Tips

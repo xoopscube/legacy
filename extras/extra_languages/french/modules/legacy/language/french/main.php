@@ -15,7 +15,7 @@ define('_MD_LEGACY_FORMAT_SEARCH_SEPARATOR', "/[\s,]+/");
 define('_MD_LEGACY_LANG_ANDOR', "Et ou");
 define('_MD_LEGACY_LANG_CLICKASMILIE', "Cliquez sur un émoticone pour l'ajouter à votre message.");
 define('_MD_LEGACY_LANG_CODE', "Code");
-define('_MD_LEGACY_LANG_COM_EXPARAMS', "Paramêtres extra des Commentaires");
+define('_MD_LEGACY_LANG_COM_EXPARAMS', "Paramètres extra des Commentaires");
 define('_MD_LEGACY_LANG_COM_ICON', "Icone");
 define('_MD_LEGACY_LANG_COM_ID', "ID");
 define('_MD_LEGACY_LANG_COM_IP', "IP");

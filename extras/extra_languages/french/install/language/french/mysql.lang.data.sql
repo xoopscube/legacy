@@ -2,11 +2,11 @@
 # Dumping data for table `ranks`
 #
 
-INSERT INTO ranks VALUES (1, 'Nouveau', 0, 20, 0, '');
+INSERT INTO ranks VALUES (1, 'Nouveau', 0, 20, 0, 'rank3e632f95e81ca.gif');
 INSERT INTO ranks VALUES (2, 'Bavard', 21, 40, 0, 'rank3dbf8e94a6f72.gif');
-INSERT INTO ranks VALUES (3, 'Régulier', 41, 100, 0, 'rank3dbf8e9e7d88d.gif');
-INSERT INTO ranks VALUES (4, 'Habitué', 101, 300, 0, 'rank3dbf8ea81e642.gif');
-INSERT INTO ranks VALUES (5, 'Résident', 301, 10000, 0, 'rank3dbf8eb1a72e7.gif');
+INSERT INTO ranks VALUES (3, 'Régulier', 41, 70, 0, 'rank3dbf8e9e7d88d.gif');
+INSERT INTO ranks VALUES (4, 'Habitué', 71, 150, 0, 'rank3dbf8ea81e642.gif');
+INSERT INTO ranks VALUES (5, 'Résident', 151, 10000, 0, 'rank3dbf8eb1a72e7.gif');
 INSERT INTO ranks VALUES (6, 'Modérateur', 0, 0, 1, 'rank3dbf8edf15093.gif');
 INSERT INTO ranks VALUES (7, 'Webmestre', 0, 0, 1, 'rank3dbf8ee8681cd.gif');
 

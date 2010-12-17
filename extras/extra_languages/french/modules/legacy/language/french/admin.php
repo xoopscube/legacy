@@ -44,19 +44,20 @@ define('_AD_LEGACY_ERROR_ACTION_SEARCH_TRY_AGAIN', "Essayez avec de nouveaux ter
 define('_AD_LEGACY_ERROR_BLOCK_TEMPLATE_INSTALL', "Le systèeme ne peut pas installer le block template '{0}'");
 define('_AD_LEGACY_ERROR_BMODULE', "Vous devez spécifier un ou plusieurs modules pour afficher le bloc.");
 define('_AD_LEGACY_ERROR_CASE_OF_ACTIVE_MODULE', "Ce module ne peut être supprimé directement ! Désactivez le module.");
+define('_AD_LEGACY_ERROR_COULD_NOT_ADD_TRUST_DIRNAME', "Impossible d'ajouter trust_dirname sur '{0}'.");
 define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_BLOCK_TEMPLATES', "Suppression impossible des templates du bloc¡¡: {0}");
-define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_DUPLICATE_DATA', "Could not delete duplicate data : {0}");
-define('_AD_LEGACY_ERROR_COULD_NOT_EXTEND_CONFIG_TITLE_SIZE', "Could not extend config_table size in '{0}'.");
+define('_AD_LEGACY_ERROR_COULD_NOT_DELETE_DUPLICATE_DATA', "Impossible de supprimer les données dupliquées : {0}");
+define('_AD_LEGACY_ERROR_COULD_NOT_EXTEND_CONFIG_TITLE_SIZE', "Impossible d'étendre la taille de config_table '{0}'.");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSERT_CONFIG', "Impossible de configuration '{0}'");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSTALL_BLOCK', "Impossible d'installer le bloc '{0}'.");
 define('_AD_LEGACY_ERROR_COULD_NOT_INSTALL_TEMPLATE', "Impossible d'installer le template '{0}'.");
-define('_AD_LEGACY_ERROR_COULD_NOT_SAVE_SMILES_FILE', "Could not save smiles file '{0}'");
+define('_AD_LEGACY_ERROR_COULD_NOT_SAVE_SMILES_FILE', "Impossible d'enregistrer le fichier emoticone '{0}'");
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_ADMIN_PERMISSION', "Impossible d'activer les droit(s) d'administration.");
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_BLOCK_PERMISSION', "Impossible d'activer les droits d'accès du block '{0}'");
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_LINK', "Impossible d'activer le lien avec les modules sur le bloc '{0}'");
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_READ_PERMISSION', "Impossible d'activer les droits de lecture.");
 define('_AD_LEGACY_ERROR_COULD_NOT_SET_SYSTEM_PERMISSION', "Impossible d'activer les droit(s) d'administration(s) du système.");
-define('_AD_LEGACY_ERROR_COULD_NOT_SET_UNIQUE_KEY', "Could not set unique key at '{0}'.");
+define('_AD_LEGACY_ERROR_COULD_NOT_SET_UNIQUE_KEY', "Impossible de définir la clé unique '{0}'.");
 define('_AD_LEGACY_ERROR_DELETE_MODULEINFO_FROM_DB', "Impossible de désinstaller l'information du module de la base de données.");
 define('_AD_LEGACY_ERROR_DROP_TABLE', "Impossible de supprimer la table {0}");
 define('_AD_LEGACY_ERROR_EXTENSION', "Le fichier ne correspond pas à la liste des extensions autorisées.");
@@ -78,10 +79,10 @@ define('_AD_LEGACY_ERROR_TEMPLATE_UNINSTALLED', "Impossible de désinstaller le t
 define('_AD_LEGACY_ERROR_UNINSTALLATION_MODULE_FAILURE', "Impossible de désinstaller le module '{0}'.");
 define('_AD_LEGACY_ERROR_UPDATING_MODULE_FAILURE', "Impossible de mettre à jour le module '{0}'.");
 define('_AD_LEGACY_ERROR_UPLOADGROUPS', "Vous devez spécifier un ou plusieurs groupes avec droits d'envoyer.");
-define('_AD_LEGACY_ERROR_COULD_NOT_SAVE_IMAGE_FILE', "Could not save image file '{0}'");
-define('_AD_LEGACY_ERROR_DBUPDATE_FAILED', "Database update failed.");
-define('_AD_LEGACY_ERROR_EXTENSION_IS_WRONG', "The extension of the uploaded file is invalid.");
-define('_AD_LEGACY_ERROR_REQUIRED', "{0} is required.");
+define('_AD_LEGACY_ERROR_COULD_NOT_SAVE_IMAGE_FILE', "Impossible d'enregistrer le fichier image '{0}'");
+define('_AD_LEGACY_ERROR_DBUPDATE_FAILED', "Echec de la mise-à-jour de la base de données.");
+define('_AD_LEGACY_ERROR_EXTENSION_IS_WRONG', "L'extension du fichier téléchargé n'est pas valide.");
+define('_AD_LEGACY_ERROR_REQUIRED', "{0} est nécessaire.");
 
 // LANG
 define('_AD_LEGACY_LANG_ACTIONSEARCH', "Recherche");
@@ -214,18 +215,18 @@ define('_AD_LEGACY_LANG_MOD_BASIC_INFO', "Information générale");
 define('_AD_LEGACY_LANG_MOD_CREDITS', "Signature / Memo");
 define('_AD_LEGACY_LANG_MOD_DESC', "Description");
 define('_AD_LEGACY_LANG_MOD_DIR_NAME', "Répertoire");
-define('_AD_LEGACY_LANG_MOD_EDIT', "Module Edit");
+define('_AD_LEGACY_LANG_MOD_EDIT', "Modifier Module");
 define('_AD_LEGACY_LANG_MOD_LICENSE_INFO', "Information License");
 define('_AD_LEGACY_LANG_MOD_MID', "MID");
 define('_AD_LEGACY_LANG_MOD_NAME', "Nom");
-define('_AD_LEGACY_LANG_MOD_READGROUP', "Target Group(Read Right)");
+define('_AD_LEGACY_LANG_MOD_READGROUP', "Groupe cible (Accès Lecture)");
 define('_AD_LEGACY_LANG_MOD_TOTAL', "Total de Modules");
-define('_AD_LEGACY_LANG_MODINSTALL', "Module install");
+define('_AD_LEGACY_LANG_MODINSTALL', "Installer Module");
 define('_AD_LEGACY_LANG_MODINSTALL_ADVICE', "Veuillez confirmer l'installation <b>_%s_</b>.");
 define('_AD_LEGACY_LANG_MODINSTALL_CONF', "Voulez-vous installer ce module?");
 define('_AD_LEGACY_LANG_MODINSTALL_LIST_ADVICE', "A fin de préserver la sécurité de votre site, effacez les fichiers des modules inutilisés.");
 define('_AD_LEGACY_LANG_MODINSTALL_LOG', "journal de l'installation du module");
-define('_AD_LEGACY_LANG_MODINSTALL_SUCCESS', "Le module %s a été installé avec succès.");
+define('_AD_LEGACY_LANG_MODINSTALL_SUCCESS', "Le module a été installé avec succès.");
 define('_AD_LEGACY_LANG_MODLIST', "Administration Module ");
 define('_AD_LEGACY_LANG_MODULE_LICENSE', "License du Module");
 define('_AD_LEGACY_LANG_MODUNINSTALL_ADVICE', "Voulez-vous désinstaller ce module?");
@@ -299,13 +300,14 @@ define('_AD_LEGACY_LANG_TITLE', "Titre");
 define('_AD_LEGACY_LANG_TOPPAGE', "Toppage");
 define('_AD_LEGACY_LANG_UNINSTALL', "Désinstaller");
 define('_AD_LEGACY_LANG_UPDATE', "Mise à jour");
-define('_AD_LEGACY_LANG_UPGRADE', "Upgrade");
-define('_AD_LEGACY_LANG_UPLOAD', "Upload");
+define('_AD_LEGACY_LANG_UPGRADE', "Mise à niveau");
+define('_AD_LEGACY_LANG_UPLOAD', "Télécharger");
 define('_AD_LEGACY_LANG_VERSION', "Version");
 define('_AD_LEGACY_LANG_VISIBLE', "Visible");
 define('_AD_LEGACY_LANG_WEIGHT', "Ordre");
 
 // MESSAGE
+define('_AD_LEGACY_MESSAGE_ADD_TRUST_DIRNAME_SUCCESSFUL', "Ajouter trust_dirname dans la table '{0}' avec succès.");
 define('_AD_LEGACY_MESSAGE_BLOCK_HAS_BEEN_UNINSTALLED', "Le Bloc {0} a été désinstallé.");
 define('_AD_LEGACY_MESSAGE_BLOCK_INSTALLED', "Le Bloc {0} a été installé.");
 define('_AD_LEGACY_MESSAGE_BLOCK_TEMPLATE_INSTALLED', "Le Template du Block '{0}' a été supprimé.");
@@ -461,5 +463,7 @@ define('_MD_AM_USEMYSESS', "Utiliser une session personnalisée");
 define('_MD_AM_USEMYSESSDSC', "Choisissez OUI pour personnaliser la session des valeurs liées.");
 define('_MD_AM_USESSL', "Utiliser le SSL pour se connecter ?");
 define('_MD_AM_YES', "Oui");
+define('_MD_AM_COOLURI', 'Utiliser Cool URI ?');
+define('_MD_AM_COOLURIDSC', 'Si votre serveur permet de gérer apache mod_rewrite, vous pouvez utiliser cette option. Voir aussi <a href="'.XOOPS_URL.'/modules/legacyRender/admin/index.php?action=HtaccessView">paramètres .htaccess</a>');
 
 ?>

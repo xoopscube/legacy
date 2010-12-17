@@ -16,7 +16,7 @@ define('_MD_MESSAGE_ACTIONMSG5', 'Message could not be sent.');
 define('_MD_MESSAGE_ACTIONMSG6', 'Fail adding to the Sent Box.');
 define('_MD_MESSAGE_ACTIONMSG7', 'Message was sent.');
 define('_MD_MESSAGE_ACTIONMSG8', 'You don\'t have the required permissions.');
-define('_MD_MESSAGE_ACTIONMSG9', 'The user the reply ahead doesn\'t exist.');
+define('_MD_MESSAGE_ACTIONMSG9', 'The user you reply to doesn\'t exist.');
 
 define('_MD_MESSAGE_TEMPLATE1', 'Send message');
 define('_MD_MESSAGE_TEMPLATE2', 'User name');
