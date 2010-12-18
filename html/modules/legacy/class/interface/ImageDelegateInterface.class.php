@@ -12,21 +12,23 @@ if(!defined('XOOPS_ROOT_PATH'))
 
 /**
  * Interface of Image delegate
+ * Legacy_Image module must be unique.
+ * You can get its dirname by constant LEGACY_IMAGE_DIRNAME
 **/
 interface Legacy_iImageDelegate
 {
 	/**
-	 * getImageObject
+	 * createImageObject	Legacy_Image.CreateImageObject
 	 * Create new Image Object
 	 *
-	 * @param string	&$obj
+	 * @param Legacy_AbstractImageObject	&$obj
 	 *
 	 * @return	void
 	 */ 
 	public static function createImageObject(/*** Legacy_AbstractImageObject ***/ &$obj);
 
 	/**
-	 * saveImage
+	 * saveImage	Legacy_Image.SaveImage
 	 * 1) insert Legacy_AbstractImageObject to database
 	 * 2) copy image from upload file($_FILES) to upload directory
 	 * 3) create thumbnail if needed.
@@ -40,7 +42,7 @@ interface Legacy_iImageDelegate
 	public static function saveImage(/*** bool ***/ &$ret, /*** string ***/ $file, /*** Legacy_AbstractImageObject ***/ $obj);
 
 	/**
-	 * deleteImage
+	 * deleteImage	Legacy_Image.DeleteImage
 	 * 1) delete thumbnails
 	 * 2) delete image file
 	 * 3) delete image data from database
@@ -53,16 +55,16 @@ interface Legacy_iImageDelegate
 	public static function deleteImage(/*** bool ***/ &$ret, /*** Legacy_AbstractImageObject ***/ $obj);
 
 	/**
-	 * getImageObjects
+	 * getImageObjects	Legacy_Image.GetImageObjects
 	 * return requested image objects
 	 *
 	 * @param Legacy_AbstractImageObject[]	&$objects
-	 * @param string	$dirname
-	 * @param string	$dataname
-	 * @param int		$dataId
-	 * @param int		$num
-	 * @param int		$limit
-	 * @param int		$start
+	 * @param string	$dirname	client module dirname
+	 * @param string	$dataname	client module dataname
+	 * @param int		$dataId		client module primary key
+	 * @param int		$num		image serial number in a client data
+	 * @param int		$limit		the number of images 
+	 * @param int		$start		offset value
 	 *
 	 * @return	void
 	 */ 

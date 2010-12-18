@@ -25,7 +25,6 @@ abstract class Legacy_AbstractCategoryObject extends XoopsSimpleObject
 		$this->initVar('p_id', XOBJ_DTYPE_INT, '0', false);
 		$this->initVar('modules', XOBJ_DTYPE_TEXT, '', false);
 		$this->initVar('description', XOBJ_DTYPE_TEXT, '', false);
-		$this->initVar('depth', XOBJ_DTYPE_INT, '0', false);
 		$this->initVar('weight', XOBJ_DTYPE_INT, '10', false);
 		$this->initVar('options', XOBJ_DTYPE_TEXT, '', false);
 	}
