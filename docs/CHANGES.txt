@@ -11,8 +11,14 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #2993409 - PHP 5.3.x: fileManager using the deprecated eregi() function
 - Fix Bug #3104945 - nusoap: class nusoap_base not found errors & path disclosure
 - Fix Bug #3101119 - I want you to move templates_c to xoops_trust_path
+
+[Other Changes/Enhancements]
+- Update french, fr_utf8, pt_utf8, portuguese language files
+- module message templates edited, reply, xoops_dhtmltarea
+
 [Staff]
 - domifara
+- xoopserver (gigamaster)
 - kilica
 - Marijuana
 - Mikhail Miguel
