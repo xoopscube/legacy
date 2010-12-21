@@ -18,7 +18,7 @@ $modversion['credits'] = "HIKAWA Kilica";
 $modversion['help'] = "help.html";
 $modversion['license'] = "GPL";
 $modversion['official'] = 0;
-$modversion['image'] = "images/mydhtml.png";
+$modversion['image'] = "images/module_icon.png";
 $modversion['dirname'] = "mydhtml";
 
 $modversion['cube_style'] = true;
