@@ -129,7 +129,7 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 	 */
 	public function getFields4DataShow($uid)
 	{
-		$lHandler =& xoops_getmodulehandler('groups_users_link', 'user');
+		$lHandler = xoops_getmodulehandler('groups_users_link', 'user');
 	
 		$criteria = new CriteriaCompo();
 		$criteria->setSort('weight');
@@ -153,7 +153,7 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 	/**
 	 * @public
 	 */
-	public function insert(&$obj)
+	public function insert(&$obj, $force = false)
 	{
 		global $xoopsDB;
 		if ($obj->isNew()) {
@@ -161,26 +161,26 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 			$xoopsDB->query($sql);
 		}
 		else {
-			$oldObj =& $this->get($obj->get('field_id'));
+			$oldObj = $this->get($obj->get('field_id'));
 			if($oldObj->get('field_name')!=$obj->get('field_name')){
 				$sql = 'ALTER TABLE '. $xoopsDB->prefix('profile_data') .' CHANGE `'. $oldObj->get('field_name') .'` `'. $obj->get('field_name') .'` '. $oldObj->getQuery4AlterTable();
 				$xoopsDB->query($sql);
 			}
 		}
 	
-		return parent::insert($obj);
+		return parent::insert($obj, $force);
 	}
 
 	/**
 	 * @public
 	 */
-	public function delete(&$obj)
+	public function delete(&$obj, $force = false)
 	{
 		global $xoopsDB;
 		$sql = 'ALTER TABLE '. $xoopsDB->prefix('profile_data') .' DROP `'. $obj->get('field_name') .'`';
 		$xoopsDB->query($sql);
 		
-		return parent::delete($obj);
+		return parent::delete($obj, $force);
 	}
 
 	public function getDefinitionsArr($show_form=true)

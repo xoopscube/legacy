@@ -16,7 +16,7 @@ class Profile_DataObject extends XoopsSimpleObject
 	 */
 	public function Profile_DataObject()
 	{
-		$handler =& xoops_getmodulehandler('definitions', 'profile');
+		$handler = Legacy_Utils::getModuleHandler('definitions', 'profile');
 		$this->mDef = $handler->getDefinitionsArr(false);
 	
 		$this->initVar('uid', XOBJ_DTYPE_INT, '', false);
