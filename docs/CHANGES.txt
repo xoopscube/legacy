@@ -13,7 +13,6 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #3101119 - I want you to move templates_c to xoops_trust_path
 - Fix Bug #3104539 - Broken links in /themes/legacy_default/layout.css
 - Fix Bug #3069151 - image file missing: install/img/bg_blockcontent.gif
-- Fix Bug #3028755 - English Language misspelling in install.php
 
 [Other Changes/Enhancements]
 - Update french, fr_utf8, pt_utf8, portuguese language files
