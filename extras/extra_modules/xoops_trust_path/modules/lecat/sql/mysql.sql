@@ -4,7 +4,6 @@ CREATE TABLE IF NOT EXISTS `{prefix}_{dirname}_cat` (
   `p_id` smallint(5) unsigned NOT NULL default '0',
   `modules` text NOT NULL,
   `description` text NOT NULL,
-  `depth` smallint(5) unsigned NOT NULL default '0',
   `weight` smallint(5) unsigned NOT NULL default '0',
   `options` text NOT NULL,
   PRIMARY KEY  (`cat_id`),

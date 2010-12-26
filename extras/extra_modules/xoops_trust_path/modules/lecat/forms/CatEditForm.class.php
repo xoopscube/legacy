@@ -47,7 +47,6 @@ class Lecat_CatEditForm extends XCube_ActionForm
         $this->mFormProperties['p_id'] =new XCube_IntProperty('p_id');
         $this->mFormProperties['modules'] =new XCube_TextProperty('modules');
         $this->mFormProperties['description'] =new XCube_TextProperty('description');
-        $this->mFormProperties['depth'] =new XCube_IntProperty('depth');
         $this->mFormProperties['weight'] =new XCube_IntProperty('weight');
         $this->mFormProperties['options'] =new XCube_TextProperty('options');
     
@@ -87,7 +86,6 @@ class Lecat_CatEditForm extends XCube_ActionForm
         $this->set('p_id', $obj->get('p_id'));
         $this->set('modules', $obj->get('modules'));
         $this->set('description', $obj->get('description'));
-        $this->set('depth', $obj->get('depth'));
         $this->set('weight', $obj->get('weight'));
         $this->set('options', $obj->get('options'));
     }
@@ -106,7 +104,6 @@ class Lecat_CatEditForm extends XCube_ActionForm
         $obj->set('p_id', $this->get('p_id'));
         $obj->set('modules', $this->get('modules'));
         $obj->set('description', $this->get('description'));
-        //$obj->set('depth', $this->get('depth'));
         $obj->set('weight', $this->get('weight'));
         $obj->set('options', $this->get('options'));
     }

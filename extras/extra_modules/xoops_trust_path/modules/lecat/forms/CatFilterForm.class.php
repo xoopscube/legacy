@@ -17,9 +17,8 @@ define('LECAT_CAT_SORT_KEY_TITLE', 2);
 define('LECAT_CAT_SORT_KEY_P_ID', 3);
 define('LECAT_CAT_SORT_KEY_MODULES', 4);
 define('LECAT_CAT_SORT_KEY_DESCRIPTION', 5);
-define('LECAT_CAT_SORT_KEY_DEPTH', 6);
-define('LECAT_CAT_SORT_KEY_WEIGHT', 7);
-define('LECAT_CAT_SORT_KEY_OPTIONS', 8);
+define('LECAT_CAT_SORT_KEY_WEIGHT', 6);
+define('LECAT_CAT_SORT_KEY_OPTIONS', 7);
 define('LECAT_CAT_SORT_KEY_DEFAULT', LECAT_CAT_SORT_KEY_CAT_ID);
 
 /**
@@ -38,7 +37,6 @@ class Lecat_CatFilterForm extends Lecat_AbstractFilterForm
         LECAT_CAT_SORT_KEY_P_ID => 'p_id',
         LECAT_CAT_SORT_KEY_MODULES => 'modules',
         LECAT_CAT_SORT_KEY_DESCRIPTION => 'description',
-        LECAT_CAT_SORT_KEY_DEPTH => 'depth',
         LECAT_CAT_SORT_KEY_WEIGHT => 'weight',
         LECAT_CAT_SORT_KEY_OPTIONS => 'options'
     );
@@ -81,11 +79,6 @@ class Lecat_CatFilterForm extends Lecat_AbstractFilterForm
         if (($value = $root->mContext->mRequest->getRequest('p_id')) !== null) {
             $this->mNavi->addExtra('p_id', $value);
             $this->_mCriteria->add(new Criteria('p_id', $value));
-        }
-    
-        if (($value = $root->mContext->mRequest->getRequest('depth')) !== null) {
-            $this->mNavi->addExtra('depth', $value);
-            $this->_mCriteria->add(new Criteria('depth', $value));
         }
     
         if (($value = $root->mContext->mRequest->getRequest('weight')) !== null) {
