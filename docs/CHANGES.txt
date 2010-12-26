@@ -2,17 +2,20 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
-2010/12/XX: Package Revision 2.2.0 Beta3
+2010/12/26: Package Revision 2.2.0 Beta3
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
-- Fix Bug #3101119 - I want you to move templates_c to xoops_trust_path
-- Fix Bug #3102808 - Avoid Smarty Debug infinite loop
-- Fix Bug #3104460 - modules/legacy/include/groupperm bug
+- Fix Bug #2666664 - /class/snoopy.php is susceptible to a remote command
 - Fix Bug #2993409 - PHP 5.3.x: fileManager using the deprecated eregi() function
-- Fix Bug #3104945 - nusoap: class nusoap_base not found errors & path disclosure
-- Fix Bug #3101119 - I want you to move templates_c to xoops_trust_path
-- Fix Bug #3104539 - Broken links in /themes/legacy_default/layout.css
 - Fix Bug #3069151 - image file missing: install/img/bg_blockcontent.gif
+- Fix Bug #3101119 - I want you to move templates_c to xoops_trust_path
+- Fix Bug #3104460 - modules/legacy/include/groupperm bug
+- Fix Bug #3104539 - Broken links in /themes/legacy_default/layout.css
+- Fix Bug #3104945 - nusoap: class nusoap_base not found errors & path disclosure
+
+[Feature Request - From Feature Requests Legacy Tracker]
+- Feature Request #3101119 - I want you to move templates_c to xoops_trust_path
+- Feature Request #3102808 - Avoid Smarty Debug infinite loop
 
 [Other Changes/Enhancements]
 - Update french, fr_utf8, pt_utf8, portuguese language files
@@ -25,7 +28,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Marijuana
 - Mikhail Miguel
 - moegiiro
-
+- neko88
 
 ----------------------------------------
 2010/10/31: Package Revision 2.2.0 Beta2
