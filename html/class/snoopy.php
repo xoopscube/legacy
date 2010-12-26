@@ -725,13 +725,17 @@ class Snoopy
 							chr(176),
 							chr(39),
 							chr(128),
-							"ä",
-							"ö",
-							"ü",
-							"Ä",
-							"Ö",
-							"Ü",
-							"ß",
+							/*
+							 * use CHR code for UTF-8
+							 * Marijuana
+							 */
+							chr(228),
+							chr(246),
+							chr(252),
+							chr(196),
+							chr(214),
+							chr(220),
+							chr(223),
 						);
 					
 		$text = preg_replace($search,$replace,$document);
@@ -801,7 +805,11 @@ class Snoopy
 			$headers .= "User-Agent: ".$this->agent."\r\n";
 		if(!empty($this->host) && !isset($this->rawheaders['Host'])) {
 			$headers .= "Host: ".$this->host;
-			if(!empty($this->port))
+		  /**
+		   * when port is 80, port no should not be assigned
+		   * Marijuana
+		   */
+			if(!empty($this->port) && $this->port != 80)
 				$headers .= ":".$this->port;
 			$headers .= "\r\n";
 		}
@@ -965,7 +973,11 @@ class Snoopy
 		if(!empty($this->agent))
 			$headers[] = "User-Agent: ".$this->agent;
 		if(!empty($this->host))
-			if(!empty($this->port))
+		  /**
+		   * when port is 80, port no should not be assigned
+		   * Marijuana
+		   */
+			if(!empty($this->port) && $this->port != 80)
 				$headers[] = "Host: ".$this->host.":".$this->port;
 			else
 				$headers[] = "Host: ".$this->host;
