@@ -50,7 +50,7 @@ if(! checkTable()){
 /*** check latest language file ***/
 $lang = XCube_Root::getSingleton()->mLanguageManager->mLanguageName;
 if(! checkLanguage($lang)){
-	$messages[] = 'You must move latest language file from extras/extra_languages/'.$lang.'. DON\'T MOVE /install directory !';
+	$messages[] = 'You must move the latest language files from extras/extra_languages/'.$lang.'. DON\'T MOVE /install directory !';
 }
 
 
@@ -137,6 +137,12 @@ function checkDirectory()
 	}
 	if(is_dir(! XOOPS_TRUST_PATH.'/cache')){
 		$ret[] = 'Copy '.XOOPS_TRUST_PATH.'/cache from XCL22 and change permission 777';
+	}
+	if(is_dir(XOOPS_ROOT_PATH.'/templats_c')){
+		$ret[] = 'Delete '.XOOPS_ROOT_PATH.'/templates_c directory';
+	}
+	if(is_dir(! XOOPS_TRUST_PATH.'/templates_c')){
+		$ret[] = 'Copy '.XOOPS_TRUST_PATH.'/templates_c from XCL22 and change permission 777';
 	}
 	if(is_dir(XOOPS_ROOT_PATH.'/class/smarty/core')){
 		$ret[] = 'Reove '.XOOPS_ROOT_PATH.'/class/smarty/core directory.';
