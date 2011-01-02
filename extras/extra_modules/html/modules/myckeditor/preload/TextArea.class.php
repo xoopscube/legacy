@@ -43,7 +43,7 @@ class Myckeditor_TextArea extends XCube_ActionFilter
 	{
 		$root = XCube_Root::getSingleton();
 		$jQuery = $root->mContext->getAttribute('headerScript');
-		$jQuery->addScript('var ckconfig_'.$params['id'].' = {toolbar:[["Bold", "Italic", "-", "NumberedList", "BulletedList", "-", "Link", "Unlink"],["UIColor"]]};');
+		$jQuery->addScript('var ckconfig_'.$params['id'].' = {toolbar:[["Source", "-", "Bold", "Italic", "-", "NumberedList", "BulletedList", "-", "Link", "Unlink"],["UIColor"]]};');
 		$jQuery->addScript('$("textarea#'.$params['id'].'").ckeditor(ckconfig_'.$params['id'].');');
 		//$jQuery->addScript('CKEDITOR.replace("ckeditor");');
 		$jQuery->addLibrary('/modules/myckeditor/ckeditor/ckeditor.js');
