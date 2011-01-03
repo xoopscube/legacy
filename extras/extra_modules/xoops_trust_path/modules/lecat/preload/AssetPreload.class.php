@@ -63,7 +63,7 @@ class Lecat_AssetPreloadBase extends XCube_ActionFilter
 		$this->mRoot->mDelegateManager->add($prefix .'.GetTitle','Lecat_DelegateFunctions::getTitle', $file);
 		$this->mRoot->mDelegateManager->add($prefix .'.GetTree','Lecat_DelegateFunctions::getTree', $file);
 		$this->mRoot->mDelegateManager->add($prefix .'.GetTitleList','Lecat_DelegateFunctions::getTitleList', $file);
-		$this->mRoot->mDelegateManager->add($prefix .'.hasPermission','Lecat_DelegateFunctions::hasPermission', $file);
+		$this->mRoot->mDelegateManager->add($prefix .'.HasPermission','Lecat_DelegateFunctions::hasPermission', $file);
 		$this->mRoot->mDelegateManager->add($prefix .'.GetParent','Lecat_DelegateFunctions::getParent', $file);
 		$this->mRoot->mDelegateManager->add($prefix .'.GetChildren','Lecat_DelegateFunctions::getChildren', $file);
 		$this->mRoot->mDelegateManager->add($prefix .'.GetCatPath','Lecat_DelegateFunctions::getCatPath', $file);
