@@ -44,6 +44,7 @@ function smarty_function_legacy_tag_cloud($params, &$smarty)
 	$render = new XCube_RenderTarget();
 	$render->setTemplateName($template);
 	$render->setAttribute('legacy_buffertype',XCUBE_RENDER_TARGET_TYPE_MAIN);
+	$render->setAttribute('dirname', $tDirname);
 	$render->setAttribute('cloud', $cloud);
 	$render->setAttribute('sizeArr', $sizeArr);
 	XCube_Root::getSingleton()->getRenderSystem('Legacy_RenderSystem')->render($render);
