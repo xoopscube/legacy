@@ -19,6 +19,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 	public $mPrimary = null;
 	public $mClass = null;
 	public $mDirname = null;
+	public $mDataname = null;
 
 	/**
 	 * A instance of xoops simple object to get type information.
@@ -29,7 +30,8 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 	{
 		parent::XoopsObjectHandler($db);
 		$tableArr = explode('_', $this->mTable);
-		$this->mDirname = $tableArr[0];
+		$this->mDirname = array_shift($tableArr);
+		$this->mDataname = implode('_', $tableArr);
 		$this->mTable = $this->db->prefix($this->mTable);
 	}
 
@@ -465,6 +467,18 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 	public function getDirname()
 	{
 		return $this->mDirname;
+	}
+
+	/**
+	 * getDataname
+	 *
+	 * @param void
+	 *
+	 * @return	string[]
+	 */
+	public function getDataname()
+	{
+		return $this->mDataname;
 	}
 
 	/**
