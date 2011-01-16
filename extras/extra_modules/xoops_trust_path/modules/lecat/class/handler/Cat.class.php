@@ -293,14 +293,22 @@ class Lecat_CatObject extends Legacy_AbstractCategoryObject
 	 *  $client['dirname']
 	 *  $client['dataname']
 	 *  $client['fieldname']
+	 * @param	mixed[]	$list
+	 *	string	$list['dirname'][]
+	 *	string	$list['dataname'][]
+	 *	string	$list['title'][]
+	 *	string	$list['template_name'][]
+	 *	mixed	$list['data'][]
 	 * 
 	 * @return	mixed[]
+	 *	string	$list['dirname'][]
+	 *	string	$list['dataname'][]
+	 *	string	$list['title'][]
 	 *	string	$list['template_name'][]
-	 *	string	$list['data'][]
+	 *	mixed	$list['data'][]
 	**/
-	public function getClientData(/*** string ***/ $client)
+	public function getClientData(/*** mixed[] ***/ $client, /*** mixed ***/ $list)
 	{
-		$list = array('template_name'=>array(), 'data'=>array(), 'dirname'=>array(), 'dataname'=>array());
 		XCube_DelegateUtils::call('Legacy_CategoryClient.'.$client['dirname'].'.GetClientData', new XCube_Ref($list), $client['dirname'], $client['dataname'], $client['fieldname'], $this->get('cat_id'));
 		return $list;
 	}

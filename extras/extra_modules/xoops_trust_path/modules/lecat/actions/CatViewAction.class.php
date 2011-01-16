@@ -101,8 +101,9 @@ class Lecat_CatViewAction extends Lecat_AbstractViewAction
 		$list = array();
 		$clientList = Lecat_Utils::getClientList($this->mAsset->mDirname);
 		$render->setAttribute('clientList', $clientList);
+		$list = array('title'=>array(), 'template_name'=>array(), 'data'=>array(), 'dirname'=>array(), 'dataname'=>array());
 		foreach($clientList as $client){
-			$list[] = $this->mObject->getClientData($client);
+			$list = $this->mObject->getClientData($client, $list);
 		}
 		$render->setAttribute('clients', $list);
     }
