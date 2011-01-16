@@ -57,15 +57,16 @@ interface Legacy_iActivityDelegate
 	 * @param mixed[]	$categoryArr	access controller's info
 	 *  string	$categoryArr['dirname']	access controller's dirname
 	 *  int[]	$categoryArr['id']		access controller's id list
-	 * @param string	$dirname	client module's dirname
-	 * @param string	$dataname	client module's dataname(tablename)
+	 * @param mixed		$moduleArr
+	 *  string	$moduleArr['dirname']
+	 *  string	$moduleArr['dataname']
 	 * @param int		$uid		poster's uid
 	 * @param int		$limit		the number of returned entries
 	 * @param int		$start		offset value
 	 *
 	 * @return	void
 	 */ 
-	public static function getActivities(/*** mixed[] ***/ &$list, /*** mixed[] ***/ $categoryArr=null, /*** string ***/ $dirname=null, /*** string ***/ $dataname=null, /*** int ***/ $uid, /*** int ***/ $limit, /*** int ***/ $start);
+	public static function getActivities(/*** mixed[] ***/ &$list, /*** mixed[] ***/ $categoryArr=null, /*** mixed[] ***/ $moduleArr=null, /*** int ***/ $uid, /*** int ***/ $limit, /*** int ***/ $start);
 }
 
 ?>

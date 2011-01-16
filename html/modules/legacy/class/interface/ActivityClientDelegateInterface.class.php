@@ -19,7 +19,7 @@ if(!defined('XOOPS_ROOT_PATH'))
 interface Legacy_iActivityClientDelegate
 {
 	/**
-	 * getClientList	Legacy_ActivityClient.{dirname}.GetClient
+	 * getClientList	Legacy_ActivityClient.GetClientList
 	 *
 	 * @param mixed[]	&$list
 	 *  @list[]['dirname']	client module's dirname
@@ -52,12 +52,13 @@ interface Legacy_iActivityClientDelegate
 	 * getClientFeed	Legacy_ActivityClient.{dirname}.GetClientFeed
 	 *
 	 * @param mixed		&$list
-	 *  string	$list['title']	entry's title
-	 *  string	$list['link']	link to entry
-	 *  string	$list['id']		entry's id(=permalink to entry)
-	 *  int		$list['updated']	unixtime
-	 *  int		$list['published']	unixtime
-	 *  string	$list['content']
+	 *  string[]	$list['title']	entry's title
+	 *  string[]	$list['link']	link to entry
+	 *  string[]	$list['id']		entry's id(=permalink to entry)
+	 *  int[]		$list['updated']	unixtime
+	 *  int[]		$list['published']	unixtime
+	 *  string[]	$list['author']
+	 *  string[]	$list['content']
 	 * @param string	$dirname	client module's dirname
 	 * @param string	$dataname	client module's dataname(tablename)
 	 * @param int		$dataId		client module's primary key
