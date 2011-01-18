@@ -221,7 +221,7 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
 	protected function _setImages(/*** XoopsSimpleObject ***/ $obj)
 	{
 		$ret = true;
-		$imageList = $this->_getTempImageList();
+		$imageList = $this->_getTempImageList($obj);
 		foreach(array_keys($imageList) as $key){
 			$imageObjs = array();
 			XCube_DelegateUtils::call('Legacy_Image.GetImageObjects', new XCube_Ref($imageObjs), $this->getDirname(), $this->getDataname(), $obj->get($this->mPrimary), $key+1);
