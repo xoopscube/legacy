@@ -111,15 +111,19 @@ class Lecat_PermitHandler extends XoopsObjectGenericHandler
 		$objs = $this->getObjects($cri);
 		if($objs){
 			$obj = array_shift($objs);
+			/*
 			if(! in_array(1, $permitArr)){
 				$this->delete($obj);
 				return true;
 			}
+			*/
 		}
 		else{
+			/*
 			if(! in_array(1, $permitArr)){
 				return true;
 			}
+			*/
 			$obj = $this->create();
 			$obj->set('cat_id', intval($catId));
 			$obj->set('groupid', intval($groupId));

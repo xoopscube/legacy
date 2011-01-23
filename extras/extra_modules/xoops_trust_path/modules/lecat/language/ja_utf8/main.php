@@ -45,7 +45,7 @@ define('_MD_LECAT_LANG_AUTH_SETTING', '権限の設定');
 define('_MD_LECAT_LANG_AUTH_KEY', '権限キー名');
 define('_MD_LECAT_LANG_AUTH_TITLE', '権限名');
 define('_MD_LECAT_LANG_AUTH_DEFAULT', '初期値');
-define('_MD_LECAT_LANG_EDIT_ACTOR', 'Edit Actors');
+define('_MD_LECAT_LANG_EDIT_ACTOR', '権限キーの設定');
 define('_MD_LECAT_LANG_MODULES_CONFINEMENT', 'モジュールの限定');
 define('_MD_LECAT_LANG_PERMISSION_TYPE', 'アクセス権タイプ');
 define('_MD_LECAT_LANG_DEFAULT_PERMISSIONS', 'アクセス権の初期設定');

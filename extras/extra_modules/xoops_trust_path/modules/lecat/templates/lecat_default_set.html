@@ -1,11 +1,5 @@
 <div id="lecat">
-	<div class="catDetail">
-		<h1><{$smarty.const._MD_LECAT_LANG_DEFAULT_PERMISSIONS}>
-		</h1>
-	</div>
-	<hr class="clear" />
-	<div>
-	<h2><{$smarty.const._MD_LECAT_LANG_PERMISSIONS}></h2>
+	<h1><{$smarty.const._MD_LECAT_LANG_DEFAULT_PERMISSIONS}></h1>
 	<form action="<{xoops_cooluri dirname=$dirname dataname=permit action=edit}>" method="post">
 	  <{xoops_token form=$actionFormPermit}>
 	  <{xoops_input type=hidden name=permit_id value=$actionFormPermit->get('permit_id')}>
@@ -32,6 +26,4 @@
 		</table>
 		<input type="submit" class="formButton" value="<{$smarty.const._SUBMIT}>"/>
 	</form>
-	</div>
-	<hr class="clear" />
 </div>
