@@ -39,13 +39,13 @@ abstract class Lecat_AbstractListAction extends Lecat_AbstractAction
     }
 
     /**
-     * _getActionName
+     * _getActionTitle
      * 
      * @param   void
      * 
      * @return  string
     **/
-    protected function _getActionName()
+    protected function _getActionTitle()
     {
         return _LIST;
     }

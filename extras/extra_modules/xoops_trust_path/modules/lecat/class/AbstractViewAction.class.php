@@ -51,13 +51,13 @@ abstract class Lecat_AbstractViewAction extends Lecat_AbstractAction
     }
 
     /**
-     * _getActionName
+     * _getActionTitle
      * 
      * @param   void
      * 
      * @return  string
     **/
-    protected function _getActionName()
+    protected function _getActionTitle()
     {
         return _VIEW;
     }

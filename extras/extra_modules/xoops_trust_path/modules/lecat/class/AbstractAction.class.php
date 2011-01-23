@@ -57,13 +57,13 @@ abstract class Lecat_AbstractAction
     }
 
     /**
-     * _getActionName
+     * _getActionTitle
      * 
      * @param   void
      * 
      * @return  string
     **/
-    protected function _getActionName()
+    protected function _getActionTitle()
     {
         return null;
     }
@@ -77,7 +77,7 @@ abstract class Lecat_AbstractAction
     **/
     public function getPagetitle()
     {
-        return Legacy_Utils::formatPagetitle($this->mRoot->mContext->mModule->mXoopsModule->get('name'), $this->_getPagetitle(), $this->_getActionName());
+        return Legacy_Utils::formatPagetitle($this->mRoot->mContext->mModule->mXoopsModule->get('name'), $this->_getPagetitle(), $this->_getActionTitle());
     }
 
     /**

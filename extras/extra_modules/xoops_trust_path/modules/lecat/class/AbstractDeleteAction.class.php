@@ -30,13 +30,13 @@ abstract class Lecat_AbstractDeleteAction extends Lecat_AbstractEditAction
     }
 
     /**
-     * _getActionName
+     * _getActionTitle
      * 
      * @param   void
      * 
      * @return  string
     **/
-    protected function _getActionName()
+    protected function _getActionTitle()
     {
         return _DELETE;
     }
