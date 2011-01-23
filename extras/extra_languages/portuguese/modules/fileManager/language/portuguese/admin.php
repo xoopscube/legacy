@@ -1,17 +1,12 @@
 <?php
-// Translation Info
-// $Id$
-// License http://creativecommons.org/licenses/by/2.5/br/
-// ############################################################### //
-// ## XOOPS Cube Legacy 2.2 - Tradução para o Português do Brasil
-// ############################################################### //
-// ## Por............: Mikhail Miguel
-// ## E-mail.........: mikhail@underpop.com
-// ## Website........: http://xoopscube.com.br
-// ## Plus...........: http://card.ly/mikhail
-// ############################################################### //
-// *************************************************************** //
-
+/**
+* $Id$
+* XOOPS Cube Legacy 2.2 - Módulo LeCAT - Tradução para o Português
+* Traduzido por Mikhail Miguel < mailto:mikhail.miguel@gmail.com >
+* http://xoops.net.br/ | http://card.ly/mikhail
+* Esta tradução encontra-se licenciada sob a licença Creative Commons Attribution 2.5 Brazil.
+* Para ler uma cópia da licença, visite: http://creativecommons.org/licenses/by/2.5/br/
+**/
 
 define("_AD_FILEMANAGER_ACTION_CAPTURE", "Capturar imagem");
 define("_AD_FILEMANAGER_ACTION_CONVERT", "Converter para FLV");
@@ -38,7 +33,7 @@ define("_AD_FILEMANAGER_DELFOLDER_CONFIRMMSSAGE", "Remover o diretório %s");
 define("_AD_FILEMANAGER_DELFOLDER_DSC", "Remover o diretório selecionado.");
 define("_AD_FILEMANAGER_DELFOLDER_ERROR", "Não foi possível remover a pasta, que pode não estar vazia ou sem as permissões adequadas.");
 define("_AD_FILEMANAGER_DELFOLDER_FILE_EXISTS", "Não foi possível remover a pasta pois o arquivo %s está dentro dela.");
-define("_AD_FILEMANAGER_DELFOLDER_ISDIR", "O diretório %s não pode ser removido do gerenciador de arquivos. Por gentileza, utilize um programa FTP para alterar isso.");
+define("_AD_FILEMANAGER_DELFOLDER_ISDIR", "O diretório %s não pode ser removido pelo gerenciador de arquivos. Por gentileza, utilize um programa FTP para alterar isso.");
 define("_AD_FILEMANAGER_DELFOLDER_NOTACCESS", "O diretório %s não pode ser removido pelo gerenciador de arquivos. Por favor, altere as permissões manualmente via software FTP.");
 define("_AD_FILEMANAGER_DELFOLDER_SUCCESS", "Pasta removida corretamente.");
 define("_AD_FILEMANAGER_EDIT", "Acrescentar");
@@ -57,7 +52,7 @@ define("_AD_FILEMANAGER_FOLDERNAME", "Nome da pasta");
 define("_AD_FILEMANAGER_FOLDER_ADD", "Criar subdiretório");
 define("_AD_FILEMANAGER_FOLDER_UPLOAD", "Enviados para esta pasta");
 define("_AD_FILEMANAGER_HTACCESS_DSC_1", "Para gravar as suas alterações, basta clicar no formulário.");
-define("_AD_FILEMANAGER_HTACCESS_DSC_2", "Que permitem aceder ao seu endereço IP atual. A composição da amostra é gerado automático. Favor mude para se adequar ao ambiente do seu servidor.");
+define("_AD_FILEMANAGER_HTACCESS_DSC_2", "Que permitem aceder ao seu endereço IP atual. A composição da amostra é gerada automaticamente. Favor mudar para se adequar ao ambiente do seu servidor.");
 define("_AD_FILEMANAGER_HTACCESS_PATH", "Arquivo .htaccess para bloquear o acesso indevido");
 define("_AD_FILEMANAGER_MAIN_DSC", "Lista dos carregamentos. Quando você clica em uma pasta para mover para a pasta. A grande foto e vídeo preview está disponível");
 define("_AD_FILEMANAGER_NOTFOUND", "Arquivo não encontrado.");
@@ -70,8 +65,8 @@ define("_AD_FILEMANAGER_PREVIEW", "Mostrar");
 define("_AD_FILEMANAGER_RETURN", "Retornar");
 define("_AD_FILEMANAGER_SINGLEUPLOAD", "Arquivo");
 define("_AD_FILEMANAGER_SIZE", "Tamanho");
-define("_AD_FILEMANAGER_SWF_COULD_NOT_LOAD", "Lamento, mas não foi possível carregar o SWFUpload. Você precisa habilitar o JavaScript para desfrutar do SWFUpload.");
-define("_AD_FILEMANAGER_SWF_INSTALL_FLASH", "Lamento, mas não foi possível carregar o SWFUpload. Pode ser necessário instalar ou atualizar o Flash Player. <br /> Visite o portal da <a href='http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash' rel='external nofollow' target='_tab'>Adobe</a> para obter a última versão do Flash Player.");
+define("_AD_FILEMANAGER_SWF_COULD_NOT_LOAD", "Lamento, não foi possível carregar o SWFUpload. Você precisa habilitar o JavaScript para desfrutar do SWFUpload.");
+define("_AD_FILEMANAGER_SWF_INSTALL_FLASH", "Lamento, não foi possível carregar o SWFUpload. Pode ser necessário instalar ou atualizar o Flash Player. <br /> Visite o portal da <a href='http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash' rel='external nofollow' target='_tab'>Adobe</a> para obter a última versão do Flash Player.");
 define("_AD_FILEMANAGER_SWF_LOADING", "Carregando a biblioteca SWFUpload. Aguarde ...");
 define("_AD_FILEMANAGER_SWF_LOAD_HAS_FAILED", "A biblioteca SWFUpload está levando muito tempo para ser carregado. Por favor, certifique-se de que uma versão recente do Plugin Adobe Flash Player está instalada e funcionando corretamente.");
 define("_AD_FILEMANAGER_SWF_UPLOAD_CANCEL", "Cancelar todos os envios de arquivos agendados");
