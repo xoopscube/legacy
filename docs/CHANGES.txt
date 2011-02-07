@@ -2,6 +2,37 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
+2011/02/XX: Package Revision 2.2.0 Beta4
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #3147765 - groupperm.php bug
+- Fix Bug #3161729 - Back button doesn't work
+- Fix Bug #3164123 - Insert image through Image Manager
+
+[Staff]
+- domifara
+- kilica
+- marine
+
+----------------------------------------
+2010/12/26: Package Revision 2.2.0 Beta3
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #2993409 - PHP 5.3.x: fileManager using the deprecated eregi() function
+- Fix Bug #3101119 - I want you to move templates_c to xoops_trust_path
+- Fix Bug #3102808 - Avoid Smarty Debug infinite loop
+- Fix Bug #3104460 - modules/legacy/include/groupperm bug
+- Fix Bug #3104945 - nusoap: class nusoap_base not found errors & path disclosure
+
+[Staff]
+- domifara
+- kilica
+- Marijuana
+- Mikhail Miguel
+- moegiiro
+
+
+----------------------------------------
 2010/12/26: Package Revision 2.2.0 Beta3
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
