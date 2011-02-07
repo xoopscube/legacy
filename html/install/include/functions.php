@@ -165,12 +165,9 @@ function b_back($option = null)
     if(!isset($option) || !is_array($option)) return '';
     $content = '';
     if(isset($option[0]) && $option[0] != ''){
-        $content .= '<input  type="image" src="img/back.png" class="back" value="'._INSTALL_L42.'"'.
-                    ' onclick="location=\'index.php?op='.htmlspecialchars($option[0]).'\'" />';
-					
+        $content .= '<a href="javascript:void(0);" onclick=\'location.href="index.php?op='.htmlspecialchars($option[0]).'"\' class="back" style="display:inline-block;vertical-align:top;"><img src="img/back.png" alt="'._INSTALL_L42.'"></a>';
     }else{
-        $content .= '<input type="image" src="img/back.png" class="back" title="'._INSTALL_L42.'" value="'._INSTALL_L42.'"'.
-                    ' onclick="javascript:history.back();" />';
+        $content .= '<a href="javascript:history.back();" class="back" style="display:inline-block;vertical-align:top;"><img src="img/back.png" alt="'._INSTALL_L42.'" /></a>';
     }
     if(isset($option[1]) && $option[1] != ''){
         $content .= '<span style="font-size:90%;"> &lt;&lt; '.htmlspecialchars($option[1]).'</span>';
