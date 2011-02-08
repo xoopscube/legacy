@@ -141,27 +141,6 @@ class User_UserInfoAction extends User_Action
 		else {
 			$render->setAttribute('enableSelfDelete', false);
 		}
-	
-		//XCL2.2
-		$render->setAttribute('definitions', $this->_getProfileDefinitions());
-		$render->setAttribute('data', $this->_getProfileData());
-	}
-
-	protected function _getProfileDefinitions()
-	{
-		return xoops_getmodulehandler('definitions', 'profile')->getDefinitionsArr();
-	}
-
-	protected function _getProfileData()
-	{
-		$handler = xoops_getmodulehandler('data', 'profile');
-		$obj = $handler->get($this->mObject->get('uid'));
-		if(is_object($obj)){
-			return $obj;
-		}
-		else{
-			return $handler->create();
-		}
 	}
 
 	function executeViewError(&$controller, &$xoopsUser, &$render)

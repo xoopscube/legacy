@@ -20,6 +20,11 @@ class Profile_AssetPreload extends XCube_ActionFilter
 			$delegate->add(array(&$this, 'getManager'));
 			$this->mRoot->mContext->setAttribute('module.profile.HasSetAssetManager', true);
 		}
+		$file = XOOPS_MODULE_PATH.'/profile/class/DelegateFunctions.class.php';
+		$this->mRoot->mDelegateManager->add('Legacy_Profile.SaveProfile', 'Profile_Delegate::saveProfile', $file);
+		$this->mRoot->mDelegateManager->add('Legacy_Profile.GetDefinition', 'Profile_Delegate::getDefinition', $file);
+		$this->mRoot->mDelegateManager->add('Legacy_Profile.GetProfile', 'Profile_Delegate::getProfile', $file);
+		$this->mRoot->mDelegateManager->add('Legacy_Profile.SetupActionForm', 'Profile_Delegate::setupActionForm', $file);
 	}
 
 	/**

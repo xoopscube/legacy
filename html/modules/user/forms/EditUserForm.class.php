@@ -9,9 +9,6 @@ require_once XOOPS_MODULE_PATH . "/user/forms/AbstractUserEditForm.class.php";
  */
 class User_EditUserForm extends User_AbstractUserEditForm 
 {
-	//profile field definitions
-	protected $_mDef = array();
-
 	function getTokenName()
 	{
 		return "Module.User.EditUserForm.Token." . $this->get('uid');
@@ -153,8 +150,6 @@ class User_EditUserForm extends User_AbstractUserEditForm
 		$this->mFieldProperties['bio']->setDependsByArray(array('maxlength'));
 		$this->mFieldProperties['bio']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_BIO, '250');
 		$this->mFieldProperties['bio']->addVar('maxlength', 250);
-		
-		$this->_prepareProfile();
 	}
 	
 	function load(&$obj)
@@ -224,35 +219,6 @@ class User_EditUserForm extends User_AbstractUserEditForm
 		$obj->set('bio', $this->get('bio'));
 		$obj->set('user_intrest', $this->get('user_intrest'));
 		$obj->set('user_mailok', $this->get('user_mailok'));
-	}
-
-	protected function _prepareProfile()
-	{
-		$handler =& xoops_getmodulehandler('definitions', 'profile');
-		$definitions =& $handler->getFields4DataEdit();
-		foreach($definitions as $def){
-			$className = $def->getFormPropertyClass();
-			$this->mFormProperties[$def->get('field_name')] = new $className($def->get('field_name'));
-		
-			//
-			//validation checks for custom fields
-			//
-			$validationArr = array();
-			$this->mFieldProperties[$def->get('field_name')] = new XCube_FieldProperty($this);
-			//required check
-			if($def->get('required')==true){
-				$validationArr[] = 'required';
-				$this->mFieldProperties[$def->get('field_name')]->addMessage('required', _MD_USER_ERROR_REQUIRED, $def->get('label'));
-			}
-			//validation check
-			switch($def->get('validation')){
-			case 'email' :
-				$validationArr[] = 'email';
-				$this->mFieldProperties[$def->get('field_name')]->addMessage($def->get('field_name'), _MD_USER_ERROR_EMAIL);
-				break;
-			}
-			$this->mFieldProperties[$def->get('field_name')]->setDependsByArray($validationArr);
-		}
 	}
 }
 

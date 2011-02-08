@@ -127,9 +127,10 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 	/**
 	 * @public
 	 */
-	public function getFields4DataShow($uid)
+	public function getFields4DataShow($uid=0)
 	{
-		$lHandler = xoops_getmodulehandler('groups_users_link', 'user');
+		$uid = ($uid>0) ? $uid : Legacy_Utils::getUid();
+		$lHandler =& xoops_getmodulehandler('groups_users_link', 'user');
 	
 		$criteria = new CriteriaCompo();
 		$criteria->setSort('weight');
