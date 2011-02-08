@@ -1,0 +1,24 @@
+	<{foreach item=def from=$defArr}>
+	<tr>
+    <td class="head"><{$def->get('label')}></td>
+    <td class="<{cycle values="odd,even"}>">
+    	<{if $def->get('type')=="string"}>
+      <{xoops_input type=text name=$def->getShow('field_name') value=$profile->showField($def->getShow('field_name'), 1)  size=40 maxlength=255}>
+      <{elseif $def->get('type')=="int"}>
+      <{xoops_input type=text name=$def->getShow('field_name') value=$profile->showField($def->getShow('field_name'), 1) size=15 maxlength=11}>
+      <{elseif $def->get('type')=="text"}>
+      <{xoops_dhtmltarea type=text name=$def->getShow('field_name') value=$profile->showField($def->getShow('field_name'), 1)}>
+      <{elseif $def->get('type')=="date"}>
+      <{xoops_input class=datepicker type=text name=$def->getShow('field_name') value=$profile->showField($def->getShow('field_name'), 1) size=20 maxlength=10}>
+      <{elseif $def->get('type')=="checkbox"}>
+      <{xoops_input type=checkbox name=$def->getShow('field_name') value=1 default=$profile->showField($def->getShow('field_name'), 1)}>
+      <{elseif $def->get('type')=="selectbox"}>
+      <select name="<{$def->getShow('field_name')}>" id="legacy_xoopsform_<{$def->getShow('field_name')}>">
+        <{foreach item=option from=$def->getOptions()}>
+      	<option value="<{$option}>"<{if $profile->showField($def->getShow('field_name'), 1)==$option}> selected="selected"<{/if}>><{$option}></option>
+	    <{/foreach}>
+      </select>
+      <{/if}>
+    </td>
+  </tr>
+	<{/foreach}>
