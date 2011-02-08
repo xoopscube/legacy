@@ -103,6 +103,9 @@ class User_EditUserAction extends User_AbstractEditAction
 			else {
 				setcookie($this->mUserCookie);
 			}
+			$ret = false;
+			XCube_DelegateUtils::call('Legacy_Profile.SaveProfile', new XCube_Ref($ret), $profile);
+			return true;
 		}
 		else {
 			return false;
