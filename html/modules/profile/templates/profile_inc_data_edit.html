@@ -7,7 +7,13 @@
       <{elseif $def->get('type')=="int" || $def->get('type')=="float"}>
       <{xoops_input type=text name=$def->getShow('field_name') value=$profileForm->get($def->getShow('field_name')) size=15 maxlength=11}>
       <{elseif $def->get('type')=="text"}>
-      <{xoops_dhtmltarea type=text name=$def->getShow('field_name') value=$profileForm->get($def->getShow('field_name'))}>
+      <{if $def->mFieldType->getOption($def)=="bbcode"}>
+      <{xoops_dhtmltarea type=text name=$def->getShow('field_name') value=$profileForm->get($def->getShow('field_name')) editor=bbcode}>
+      <{elseif $def->mFieldType->getOption($def)=="html"}>
+      <{xoops_dhtmltarea type=text name=$def->getShow('field_name') value=$profileForm->get($def->getShow('field_name')) editor=html}>
+      <{else}>
+      <{xoops_dhtmltarea type=text name=$def->getShow('field_name') value=$profileForm->get($def->getShow('field_name')) editor=none}>
+      <{/if}>
       <{elseif $def->get('type')=="date"}>
       <{xoops_input class=datepicker type=text name=$def->getShow('field_name') value=$profileForm->get($def->getShow('field_name')) size=20 maxlength=10}>
       <{elseif $def->get('type')=="checkbox"}>

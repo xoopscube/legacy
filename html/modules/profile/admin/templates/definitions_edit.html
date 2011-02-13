@@ -141,8 +141,44 @@
     <tr>
       <td class="head"><{$smarty.const._MD_PROFILE_LANG_OPTIONS}></td>
       <td class="<{cycle values="odd,even"}>">
-      	<{$smarty.const._MD_PROFILE_DESC_OPTIONS}><br />
-        <{xoops_textarea type=text name=options value=$actionForm->get('options') cols=60 rows=1}>
+	      <div id="fieldtype_string" class="optionField">
+	        <input type="text" name="options" id="legacy_xoopsform_options" value="<{$actionForm->get('options')}>" />
+	        <p><{$smarty.const._AD_PROFILE_DESC_FIELD_STRING}></p>
+	      </div>
+	      <div id="fieldtype_int" class="optionField">
+	        <input type="text" name="options" id="legacy_xoopsform_options" value="<{$actionForm->get('options')}>" />
+	        <p><{$smarty.const._AD_PROFILE_DESC_FIELD_INT}></p>
+	      </div>
+	      <div id="fieldtype_float" class="optionField">
+	        <input type="text" name="options" id="legacy_xoopsform_options" value="<{$actionForm->get('options')}>" />
+	        <p><{$smarty.const._AD_PROFILE_DESC_FIELD_FLOAT}></p>
+	      </div>
+	      <div id="fieldtype_text" class="optionField">
+	        <label><input type="radio" name="options" value="bbcode" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="bbcode"}> checked="checked"<{/if}> />bbcode</label>
+	        <label><input type="radio" name="options" value="html" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="html"}> checked="checked"<{/if}> />html</label>
+	        <label><input type="radio" name="options" value="none" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="none"}> checked="checked"<{/if}> />none</label>
+	        <p><{$smarty.const._AD_PROFILE_DESC_FIELD_TEXT}></p>
+	      </div>
+	      <div id="fieldtype_checkbox" class="optionField">
+	        <textarea name="options" id="legacy_xoopsform_options"><{$actionForm->get('options')}></textarea>
+	        <p><{$smarty.const._AD_PROFILE_DESC_FIELD_CHECKBOX}></p>
+	      </div>
+	      <div id="fieldtype_selectbox" class="optionField">
+	        <textarea name="options" id="legacy_xoopsform_options"><{$actionForm->get('options')}></textarea>
+	        <p><{$smarty.const._AD_PROFILE_DESC_FIELD_SELECTBOX}></p>
+	      </div>
+	      <div id="fieldtype_category" class="optionField">
+	        <select name="options" id="legacy_xoopsform_options">
+	          <{foreach item="catDir" from=$catDirnames}>
+	          <option value="<{$catDir}>"<{if $catDir==$actionForm->get('options')}> selected="selected"<{/if}>><{$catDir}></options>
+	          <{/foreach}>
+	        </select>
+	        <p><{$smarty.const._AD_PROFILE_DESC_FIELD_CATEGORY}></p>
+	      </div>
+      
+      
+      	<{*$smarty.const._MD_PROFILE_DESC_OPTIONS*}><br />
+        <{*xoops_textarea type=text name=options value=$actionForm->get('options') cols=60 rows=1*}>
       </td>
     </tr>
     <tr>

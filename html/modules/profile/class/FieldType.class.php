@@ -122,7 +122,7 @@ class Profile_FieldTypeText implements Profile_iFieldType
 
 	public function getDefault(/*** string ***/ $option)
 	{
-		return isset($option) ? $option : '';
+		return '';
 	}
 
 	public function getXObjType()

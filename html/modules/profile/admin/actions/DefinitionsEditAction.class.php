@@ -42,6 +42,31 @@ class Profile_Admin_DefinitionsEditAction extends Profile_AbstractEditAction
 	}
 
 	/**
+	 * _setHeaderScript
+	 * 
+	 * @param	void
+	 * 
+	 * @return	void
+	**/
+	protected function _setHeaderScript()
+	{
+		$headerScript = $this->mRoot->mContext->getAttribute('headerScript');
+		$type = $this->mActionForm->get('type');
+		$headerScript->addStylesheet('/modules/profile/style.css');
+		$headerScript->addScript('
+$(".optionField input, .optionField select, .optionField textarea").attr("disabled", "disabled");
+$(".optionField").addClass("hideOption");
+$("#fieldtype_'. $type .'").removeClass("hideOption");
+$("#fieldtype_'. $type .' input, #fieldtype_'. $type .' select, #fieldtype_'. $type .' textarea").removeAttr("disabled");
+$("#legacy_xoopsform_type").change(function(){
+  $(".optionField").addClass("hideOption");
+  $("#fieldtype_"+$(this).val()).removeClass("hideOption");
+  $("#fieldtype_'. $type .' input, #fieldtype_'. $type .' select, #fieldtype_'. $type .' textarea").removeAttr("disabled");
+});'
+		);
+	}
+
+	/**
 	 * @public
 	 */
 	function prepare()
@@ -66,7 +91,7 @@ class Profile_Admin_DefinitionsEditAction extends Profile_AbstractEditAction
 		$render->setAttribute('accessArr', explode(',', $this->mObject->get('access')));
 		$render->setAttribute('typeArr', $this->mTypeArr);
 		$render->setAttribute('validationArr', $this->mValidationArr);
-
+		$this->_setHeaderScript();
 	}
 
 	/**
