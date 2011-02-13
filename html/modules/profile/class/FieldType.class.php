@@ -317,7 +317,15 @@ class Profile_FieldTypeCheckbox implements Profile_iFieldType
 			$value = $obj->get($key);
 		}
 		elseif($option==Profile_ActionType::VIEW){
-			$value = $obj->get($key)==true ? _YES : _NO;
+			$handler = Legacy_Utils::getModuleHandler('definitions', 'profile');
+			$objs = $handler->getObjects(new Criteria('field_name', $key));
+			if(count($objs)>0){
+				$def = array_shift($objs);
+				$optArr = $def->mFieldType->getOption($def);
+			}
+			$yes = $optArr[0] ? $optArr[0] : _YES;
+			$no = $optArr[1] ? $optArr[1] : _NO;
+			$value = $obj->get($key)==true ? $yes : $no;
 		}
 		return $value;
 	}
