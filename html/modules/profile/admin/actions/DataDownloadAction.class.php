@@ -44,7 +44,7 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
 		
 		$handler =& $this->_getHandler();
 		$defHandler =& xoops_getmodulehandler('definitions');
-		$defArr =& $defHandler->getDefinitionsArr(false);
+		$defArr =& $defHandler->getDefinitions(false);
 	
 		$criteria = new CriteriaElement();
 		$criteria->setSort('uid');
@@ -52,7 +52,7 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
 		if (count($dataArr)==0){
 			return PROFILE_FRAME_VIEW_INDEX;
 		}
-		foreach ($defArr as $key=>$var){
+		foreach (array_keys($defArr) as $key){
 			$field_line .= $var['label'].",";
 		}
 		$field_line .= "\n";
@@ -60,7 +60,7 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
 		foreach ($dataArr as $profile){
 			$profile_data = '';
 			foreach ($profile->gets() as $key=>$value){
-				if($defArr[$key]['type']=='date'){
+				if($defArr[$key]->get('type')=='date'){
 					$value = $value ? formatTimestamp($value, 'Y/n/j H:i') : '';				}
 				if (preg_match('/[,"\r\n]/', $value)) {
 					$value = preg_replace('/"/', "\"\"", $value);

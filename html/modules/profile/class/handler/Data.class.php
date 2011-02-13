@@ -17,28 +17,11 @@ class Profile_DataObject extends XoopsSimpleObject
 	public function Profile_DataObject()
 	{
 		$handler = Legacy_Utils::getModuleHandler('definitions', 'profile');
-		$this->mDef = $handler->getDefinitionsArr(false);
+		$this->mDef = $handler->getDefinitions(false);
 	
 		$this->initVar('uid', XOBJ_DTYPE_INT, '', false);
 		foreach(array_keys($this->mDef) as $key){
-			$type = $this->mDef[$key]['type'];
-			switch($type){
-				case Profile_FormType::INT:
-				case Profile_FormType::FLOAT:
-				case Profile_FormType::CHECKBOX:
-				$this->initVar($key, Profile_FormType::getXObjType($type), 0, false);
-				break;
-				case Profile_FormType::STRING:
-				case Profile_FormType::SELECTBOX:
-				$this->initVar($key, Profile_FormType::getXObjType($type), '', false, 255);
-				break;
-				case Profile_FormType::TEXT:
-				$this->initVar($key, Profile_FormType::getXObjType($type), '', false);
-				break;
-				case Profile_FormType::DATE:
-				$this->initVar($key, Profile_FormType::getXObjType($type), time(), false);
-				break;
-			}
+			$this->mDef[$key]->mFieldType->setInitVar($this, $this->mDef[$key]->getShow('field_name'), $this->mDef[$key]->getDefault());
 		}
 	}
 
@@ -52,44 +35,7 @@ class Profile_DataObject extends XoopsSimpleObject
 	**/
 	public function showField(/*** string ***/ $key, /*** Enum ***/ $option=2)
 	{
-		$value = null;
-	
-		$type = $this->mDef[$key]['type'];
-		switch ($type) {
-			case Profile_FormType::INT:
-			///TODO case FormType::FLOAT:
-			case Profile_FormType::STRING:
-			case Profile_FormType::SELECTBOX:
-			case Profile_FormType::TEXT:
-				if($option==Profile_ActionType::NONE||Profile_ActionType::VIEW){
-					$value = $this->getShow($key);
-				}
-				elseif($option==Profile_ActionType::EDIT){
-					$value = $this->get($key);
-				}
-				break;
-			case Profile_FormType::DATE:
-				if($option==Profile_ActionType::NONE){
-					$value = $this->get($key);
-				}
-				elseif($option==Profile_ActionType::EDIT){
-					$value = date(_PHPDATEPICKSTRING, $this->get($key));
-				}
-				elseif($option==Profile_ActionType::VIEW){
-					$value = ($this->get($key)) ? formatTimestamp($this->get($key), "m") : "";
-				}
-				break;
-			case Profile_FormType::CHECKBOX:
-				if($option==Profile_ActionType::NONE||$option==Profile_ActionType::EDIT){
-					$value = $this->get($key);
-				}
-				elseif($option==Profile_ActionType::VIEW){
-					$value = $this->get($key)==true ? _YES : _NO;
-				}
-				break;
-		}
-		
-		return $value;
+		return $this->mDef[$key]->mFieldType->showField($this, $key, $option);
 	}
 
 	/**
@@ -126,13 +72,4 @@ class Profile_DataHandler extends XoopsObjectGenericHandler
 
 }
 
-/**
- * Profile_ActionType
-**/
-class Profile_ActionType
-{
-	const NONE = 0;
-	const EDIT = 1;
-	const VIEW = 2;
-}
 ?>

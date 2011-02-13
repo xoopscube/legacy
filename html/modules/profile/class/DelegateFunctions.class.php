@@ -12,22 +12,32 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 class Profile_Delegate
 {
 	/**
-	 * save profile data. $profile is hash. 
+	 * save profile data.
 	 * Its key is field name and the value is value of profile.
 	 *
 	 * @param bool		&$ret
-	 * @param mixed[]	$profile
+	 * @param XCube_ActionForm	$actionForm	User_EditUserForm
 	 *
 	 * @return	void
 	 */ 
-	public static function saveProfile(/*** bool ***/ $ret, /*** mixed ***/ &$profile)
+	public static function saveProfile(/*** bool ***/ &$ret, XCube_ActionForm $actionForm)
 	{
 		$handler = Legacy_Utils::getModuleHandler('data', 'profile');
-		if(! $obj = $handler->get($profile['uid'])){
+		if(! $obj = $handler->get($actionForm->get('uid'))){
 			$obj = $handler->create();
+			$obj->set('uid', $actionForm->get('uid'));
 		}
-		foreach(array_keys($profile) as $key){
-			$obj->set($key, $profile[$key]);
+		$defHandler = Legacy_Utils::getModuleHandler('definitions', 'profile');
+		$defObjs = $defHandler->getFields4DataEdit();
+		foreach($defObjs as $def){
+			if($def->get('type')==Profile_FormType::DATE){
+				$timeArray = explode('-', $actionForm->get($def->get('field_name')));
+				$value = mktime(0, 0, 0, $timeArray[1], $timeArray[2], $timeArray[0]);
+			}
+			else{
+				$value = $actionForm->get($def->get('field_name'));
+			}
+			$obj->set($def->get('field_name'), $value);
 		}
 		$ret = $handler->insert($obj, true);
 	}
@@ -72,18 +82,18 @@ class Profile_Delegate
 	}
 
 	/**
-	 * setupActionForm
+	 * setup Profile ActionForm. Add FormProperties and FieldProperties on User_EditUserForm
 	 *
-	 * @param User_EditUserForm	&$actionForm
+	 * @param XCube_ActionForm	&$actionForm	User_EditUserForm
 	 *
 	 * @return	void
 	 */ 
-	public static function setupActionForm(User_EditUserForm $actionForm)
+	public static function setupActionForm(XCube_ActionForm $actionForm)
 	{
 		$handler = Legacy_Utils::getModuleHandler('definitions', 'profile');
 		$definitions = $handler->getFields4DataEdit();
 		foreach($definitions as $def){
-			$className = $def->getFormPropertyClass();
+			$className = $def->mFieldType->getFormPropertyClass();
 			$actionForm->mFormProperties[$def->get('field_name')] = new $className($def->get('field_name'));
 		
 			//
@@ -104,6 +114,24 @@ class Profile_Delegate
 				break;
 			}
 			$actionForm->mFieldProperties[$def->get('field_name')]->setDependsByArray($validationArr);
+		}
+	}
+
+	/**
+	 * load Profile ActionForm
+	 *
+	 * @param XCube_ActionForm	&$actionForm	User_EditUserForm
+	 *
+	 * @return	void
+	 */ 
+	public static function loadActionForm(XCube_ActionForm $actionForm)
+	{
+		$defHandler = Legacy_Utils::getModuleHandler('definitions', 'profile');
+		$definitions = $defHandler->getFields4DataEdit();
+		$dataHandler = Legacy_Utils::getModuleHandler('data', 'profile');
+		$profile = $dataHandler->get($actionForm->get('uid'));
+		foreach($definitions as $def){
+			$actionForm->set($def->get('field_name'), $profile->showField($def->get('field_name'), Profile_ActionType::EDIT));
 		}
 	}
 }

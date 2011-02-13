@@ -9,6 +9,8 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 
 class Profile_DefinitionsObject extends XoopsSimpleObject
 {
+	public $mFieldType = null;	//Profile_FieldType
+
 	/**
 	 * @public
 	 */
@@ -38,71 +40,17 @@ class Profile_DefinitionsObject extends XoopsSimpleObject
 		return $this->getObjects($cri);
 	}
 
-	/**
-	 * @public
-	 */
-	public function getQuery4AlterTable()
+	public function setFieldTypeObject()
 	{
-		switch($this->get('type')){
-			case Profile_FormType::STRING:
-				return 'VARCHAR(255) NOT NULL';
-				break;
-			case Profile_FormType::TEXT:
-				return 'TEXT NOT NULL';
-				break;
-			case Profile_FormType::INT:
-				return 'INT(11) UNSIGNED NOT NULL';
-				break;
-			case Profile_FormType::DATE:
-				return 'INT(11) UNSIGNED NOT NULL';
-				break;
-			case Profile_FormType::CHECKBOX:
-				return 'TINYINT(1) UNSIGNED NOT NULL';
-				break;
-			case Profile_FormType::SELECTBOX:
-				return 'VARCHAR(64) NOT NULL';
-				break;
+		if(! $this->mFieldType){
+			$className = 'Profile_FieldType'.ucfirst($this->get('type'));
+			$this->mFieldType = new $className();
 		}
 	}
 
-	/**
-	 * @public
-	 */
-	public function getOptions()
+	public function getDefault()
 	{
-		if($this->get('options')){
-			return explode('|', $this->get('options'));
-		}
-		else{
-			return array();
-		}
-	}
-
-	public function getFormPropertyClass()
-	{
-		$class = null;
-	
-		switch($this->get('type')){
-		case Profile_FormType::STRING:
-			$class = 'XCube_StringProperty';
-			break;
-		case Profile_FormType::TEXT:
-			$class = 'XCube_TextProperty';
-			break;
-		case Profile_FormType::INT:
-			$class = 'XCube_IntProperty';
-			break;
-		case Profile_FormType::DATE:
-			$class = 'XCube_StringProperty';
-			break;
-		case Profile_FormType::CHECKBOX:
-			$class = 'XCube_BoolProperty';
-			break;
-		case Profile_FormType::SELECTBOX:
-			$class = 'XCube_StringProperty';
-			break;
-		}
-		return $class;
+		return $this->mFieldType->getDefault($this->get('options'));
 	}
 }
 
@@ -157,14 +105,15 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 	public function insert(&$obj, $force = false)
 	{
 		global $xoopsDB;
+		$obj->setFieldTypeObject();
 		if ($obj->isNew()) {
-			$sql = 'ALTER TABLE '. $xoopsDB->prefix('profile_data') .' ADD `'. $obj->get('field_name') .'` '. $obj->getQuery4AlterTable();
+			$sql = 'ALTER TABLE '. $xoopsDB->prefix('profile_data') .' ADD `'. $obj->get('field_name') .'` '. $obj->mFieldType->getTableQuery();
 			$xoopsDB->query($sql);
 		}
 		else {
 			$oldObj = $this->get($obj->get('field_id'));
 			if($oldObj->get('field_name')!=$obj->get('field_name')){
-				$sql = 'ALTER TABLE '. $xoopsDB->prefix('profile_data') .' CHANGE `'. $oldObj->get('field_name') .'` `'. $obj->get('field_name') .'` '. $oldObj->getQuery4AlterTable();
+				$sql = 'ALTER TABLE '. $xoopsDB->prefix('profile_data') .' CHANGE `'. $oldObj->get('field_name') .'` `'. $obj->get('field_name') .'` '. $oldObj->mFieldType->getTableQuery();
 				$xoopsDB->query($sql);
 			}
 		}
@@ -184,7 +133,7 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 		return parent::delete($obj, $force);
 	}
 
-	public function getDefinitionsArr($show_form=true)
+	public function getDefinitions($show_form=true)
 	{
 		$criteria = new CriteriaCompo();
 		$criteria->setSort('weight', 'ASC');
@@ -194,7 +143,7 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 		$definitions = $this->getObjects($criteria);
 		$defArr = array();
 		foreach($definitions as $def){
-			$defArr[$def->get('field_name')] = $def->gets();
+			$defArr[$def->get('field_name')] = $def;
 		}
 		return $defArr;
 	}
@@ -211,7 +160,8 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 			Profile_FormType::FLOAT,
 			Profile_FormType::DATE,
 			Profile_FormType::CHECKBOX,
-			Profile_FormType::SELECTBOX
+			Profile_FormType::SELECTBOX,
+			Profile_FormType::URI
 		);
 	}
 
@@ -227,47 +177,15 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 	{
 		return array("email");
 	}
-}
 
-class Profile_FormType
-{
-	const STRING = 'string';
-	const TEXT = 'text';
-	const INT = 'int';
-	const FLOAT = 'float';
-	const DATE = 'date';
-	const CHECKBOX = 'checkbox';
-	const SELECTBOX = 'selectbox';
-
-	/**
-	 * @public
-	 */
-	public static function getXObjType($type)
+	public function &getObjects($criteria = null, $limit = null, $start = null, $id_as_key = false)
 	{
-		switch($type){
-			case self::STRING:
-				return XOBJ_DTYPE_STRING;
-				break;
-			case self::TEXT:
-				return XOBJ_DTYPE_TEXT;
-				break;
-			case self::INT:
-				return XOBJ_DTYPE_INT;
-				break;
-			case self::FLOAT:
-				return XOBJ_DTYPE_FLOAT;
-				break;
-			case self::DATE:
-				return XOBJ_DTYPE_INT;
-				break;
-			case self::CHECKBOX:
-				return XOBJ_DTYPE_BOOL;
-				break;
-			case self::SELECTBOX:
-				return XOBJ_DTYPE_STRING;
-				break;
+		$objs = parent::getObjects($criteria, $limit, $start, $id_as_key);
+	
+		foreach(array_keys($objs) as $key){
+			$objs[$key]->setFieldTypeObject();
 		}
+		return $objs;
 	}
 }
-
 ?>

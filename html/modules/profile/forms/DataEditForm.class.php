@@ -36,7 +36,7 @@ class Profile_DataEditForm extends XCube_ActionForm
 		//
 		$this->mFormProperties['uid'] =new XCube_IntProperty('uid');
 		foreach(array_keys($this->mDef) as $key){
-			$className = $thi->mDef[$key]->getFormPropertyClass();
+			$className = $this->mDef[$key]->mFieldType->getFormPropertyClass();
 			$this->mFormProperties[$this->mDef[$key]->get('field_name')] =new $className($this->mDef[$key]->get('field_name'));
 		
 			//validation checks
@@ -83,7 +83,7 @@ class Profile_DataEditForm extends XCube_ActionForm
 	{
 		$obj->set('uid', $this->get('uid'));
 		foreach(array_keys($this->mDef) as $key){
-			$val = ($this->mDef[$key]->get('field_type')!='date') ? $this->get($this->mDef[$key]->get('field_name')) : $this->_makeUnixtime($this->mDef[$key]->get('field_name'));
+			$val = ($this->mDef[$key]->get('type')!='date') ? $this->get($this->mDef[$key]->get('field_name')) : $this->_makeUnixtime($this->mDef[$key]->get('field_name'));
 			$obj->set($this->mDef[$key]->get('field_name'), $val);
 		}
 	}
