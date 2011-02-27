@@ -2,17 +2,24 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
-2011/02/XX: Package Revision 2.2.0 Beta4
+2011/02/27: Package Revision 2.2.0 RC1
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
+- Fix Bug #2988674 - NOT work weight in the imagemamanger
 - Fix Bug #3147765 - groupperm.php bug
 - Fix Bug #3161729 - Back button doesn't work
 - Fix Bug #3164123 - Insert image through Image Manager
 
+[Patches - From Patches Legacy Tracker]
+- Patches #3176946 - function createOnloadFunctionTag patch by gara
+
 [Staff]
 - domifara
+- gara
 - kilica
 - marine
+- Mikhail Miguel
+- ohwada 
 
 ----------------------------------------
 2010/12/26: Package Revision 2.2.0 Beta3
