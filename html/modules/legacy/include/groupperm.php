@@ -36,7 +36,7 @@ if (is_array($_POST['perms']) && !empty($_POST['perms'])) {
 	$gperm_handler = xoops_gethandler('groupperm');
 	foreach ($_POST['perms'] as $perm_name => $perm_data) {
 		if (false != $gperm_handler->deleteByModule($modid, $perm_name)) {
-			if (is_array($perm_data['groups'])) {
+			if (isset($perm_data['groups']) && is_array($perm_data['groups'])) {
 				foreach ($perm_data['groups'] as $group_id => $item_ids) {
 					foreach ($item_ids as $item_id => $selected) {
 						if ($selected == 1) {
