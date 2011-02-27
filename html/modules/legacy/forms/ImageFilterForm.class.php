@@ -26,7 +26,7 @@ define('IMAGE_SORT_KEY_DEFAULT', IMAGE_SORT_KEY_IMAGE_WEIGHT);
 
 class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
 {
-	var $_mSortKeys = array(
+	var $mSortKeys = array(
 		IMAGE_SORT_KEY_IMAGE_ID => 'image_id',
 		IMAGE_SORT_KEY_IMAGE_NAME => 'image_name',
 		IMAGE_SORT_KEY_IMAGE_NICENAME => 'image_nicename',
