@@ -21,7 +21,7 @@ class Mydhtml_MyDhtmlTextArea extends XCube_ActionFilter
 	protected function _addScript()
 	{
 		$jQuery = XCube_Root::getSingleton()->mContext->getAttribute('headerScript');
-		$jQuery->addScript('$(".mydhtml").sMarkUp("bbcode", 300);');
+		$jQuery->addScript('$("textarea#'.$params['id'].'").sMarkUp("bbcode", 300);');
 		$jQuery->addLibrary('/modules/mydhtml/templates/smarkup/jquery.smarkup.js');
 		$jQuery->addLibrary('/modules/mydhtml/templates/smarkup/smarkup.js');
 		$jQuery->addLibrary('/modules/mydhtml/templates/smarkup/conf/bbcode/conf.js');
@@ -47,7 +47,7 @@ class Mydhtml_MyDhtmlTextArea extends XCube_ActionFilter
 		$renderSystem->render($renderTarget);
 	
 		$html = $renderTarget->getResult();
-		$this->_addScript();
+		$this->_addScript($params);
 	}
 }
 
