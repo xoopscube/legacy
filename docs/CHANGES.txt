@@ -2,6 +2,17 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 
 ----------------------------------------
+2011/**/**: Package Revision 2.1.9
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #2988674 - NOT work weight in the imagemamanger
+- Fix Bug #3104460 - modules/legacy/include/groupperm bug
+
+[Staff]
+- kilica
+- ohwada
+
+----------------------------------------
 2010/11/13: Package Revision 2.1.8a
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
