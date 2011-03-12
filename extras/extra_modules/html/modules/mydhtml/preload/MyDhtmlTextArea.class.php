@@ -18,7 +18,7 @@ class Mydhtml_MyDhtmlTextArea extends XCube_ActionFilter
 		$this->mRoot->mDelegateManager->add('Site.TextareaEditor.BBCode.Show',array(&$this, 'render'));
 	}
 
-	protected function _addScript()
+	protected function _addScript($params)
 	{
 		$jQuery = XCube_Root::getSingleton()->mContext->getAttribute('headerScript');
 		$jQuery->addScript('$("textarea#'.$params['id'].'").sMarkUp("bbcode", 300);');
