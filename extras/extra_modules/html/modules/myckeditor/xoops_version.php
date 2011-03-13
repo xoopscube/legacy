@@ -33,7 +33,6 @@ $modversion['disable_legacy_2nd_installer'] = false;
 // Templates. You must never change [cubson] chunk to get the help of cubson.
 //
 $modversion['templates'][]['file'] = 'myckeditor_textarea.html';
-$modversion['templates'][]['description'] = 'myckeditor_textarea.html';
 ##[cubson:templates]
 ##[/cubson:templates]
 
