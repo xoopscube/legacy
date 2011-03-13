@@ -102,7 +102,16 @@ class Profile_FieldTypeText implements Profile_iFieldType
     public function showField(/*** Profile_DataObject ***/ $obj, /*** string ***/ $key, /*** Profile_ActionType ***/ $option=0)
     {
         if($option==Profile_ActionType::NONE||$option==Profile_ActionType::VIEW){
-            $value = $obj->getShow($key);
+        	switch($obj->get('option')){
+        	case 'html':
+        	case 'none':
+	            $value = $obj->getShow($key);
+	            break;
+	        case 'bbcode':
+	        default:
+	        	$value = $obj->get($key);
+	        	break;
+	        }
         }
         elseif($option==Profile_ActionType::EDIT){
             $value = $obj->get($key);

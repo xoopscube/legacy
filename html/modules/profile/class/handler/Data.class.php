@@ -48,8 +48,14 @@ class Profile_DataObject extends XoopsSimpleObject
 	**/
 	public function setField(/*** string ***/ $key, /*** mixed ***/ $value)
 	{
-		$type = $this->mDef[$key]['type'];
+		$type = $this->mDef[$key]->get('type');
 		switch ($type) {
+			case Profile_FormType::TEXT:
+				if($this->mDef[$key]->get('options')=='html'){
+					$value = XCube_Root::getSingleton()->mTextFilter->purifyHtml($value);
+				}
+				$this->set($key, $value);
+				break;
 			case Profile_FormType::DATE:
 				$dateArr = explode('-', $value);
 				$date = mktime(0,0,0,$dateArr[1],$dateArr[2],$dateArr[0]);

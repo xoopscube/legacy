@@ -30,14 +30,7 @@ class Profile_Delegate
         $defHandler = Legacy_Utils::getModuleHandler('definitions', 'profile');
         $defObjs = $defHandler->getFields4DataEdit();
         foreach($defObjs as $def){
-            if($def->get('type')==Profile_FormType::DATE){
-                $timeArray = explode('-', $actionForm->get($def->get('field_name')));
-                $value = mktime(0, 0, 0, $timeArray[1], $timeArray[2], $timeArray[0]);
-            }
-            else{
-                $value = $actionForm->get($def->get('field_name'));
-            }
-            $obj->set($def->get('field_name'), $value);
+        	$obj->setField($def->get('field_name'), $actionForm->get($def->get('field_name')));
         }
         $ret = $handler->insert($obj, true);
     }
