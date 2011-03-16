@@ -1,13 +1,12 @@
 <?php
 //  ------------------------------------------------------------------------ //
-//                XOOPS Cube - PHP Content Management System                      //
-//                    Copyright (c) 2006 XOOPSCube.org                           //
-//                       <http://www.xoopscube.org/>                             //
+//                XOOPS Cube - PHP Content Management System                 //
+//                    Copyright (c) 2006 XOOPSCube.org                       //
+//                       <http://www.xoopscube.org/>                         //
 //  ------------------------------------------------------------------------ //
 //  ------------------------------------------------------------------------ //
-//                XOOPS Cube Korean (translated by wanikoo[ wani@wanisys.net ])       //
-//                       < http://www.wanisys.net/ >                             //
-//                       < http://www.xoops.ne.kr/xoopscube/ >                             //
+//        XOOPS Cube Korean (translated by wanikoo[ wani@wanisys.net ])      //
+//                 <http://www.xoops.ne.kr/xoopscube/>                       //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -200,6 +199,24 @@ define('_DAYS', '%s 일');
 define('_WEEK', '1 주');
 define('_MONTH', '1 달');
 
-define('_HELP', "Help");
+define('_HELP', "도움말");
+
+//%%%%%		   %%%%%
+define('_CATEGORY', "카테고리");
+define('_TAG', "태그");
+define('_STATUS', "상태");
+define('_STATUS_DELETED', "Deleted");
+define('_STATUS_REJECTED', "Rejected");
+define('_STATUS_POSTED', "Posted");
+define('_STATUS_PUBLISHED', "Published");
+
+//%%%%% Group %%%%%
+define('_GROUP', "그룹");
+define('_MEMBER', "멤버");
+define('_GROUP_RANK_GUEST', "Guest");
+define('_GROUP_RANK_ASSOCIATE', "Associate");
+define('_GROUP_RANK_REGULAR', "Regular");
+define('_GROUP_RANK_STAFF', "Staff");
+define('_GROUP_RANK_OWNER', "Owner");
 
 ?>

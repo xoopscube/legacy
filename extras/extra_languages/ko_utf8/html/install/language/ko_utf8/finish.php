@@ -1,13 +1,12 @@
 <?php
 //  ------------------------------------------------------------------------ //
-//                XOOPS Cube - PHP Content Management System                      //
-//                    Copyright (c) 2006 XOOPSCube.org                           //
-//                       <http://www.xoopscube.org/>                             //
+//                XOOPS Cube - PHP Content Management System                 //
+//                    Copyright (c) 2006 XOOPSCube.org                       //
+//                       <http://www.xoopscube.org/>                         //
 //  ------------------------------------------------------------------------ //
 //  ------------------------------------------------------------------------ //
-//                XOOPS Cube Korean (translated by wanikoo[ wani@wanisys.net ])       //
-//                       < http://www.wanisys.net/ >                             //
-//                       < http://www.xoops.ne.kr/xoopscube/ >                             //
+//        XOOPS Cube Korean (translated by wanikoo[ wani@wanisys.net ])      //
+//                 <http://www.xoops.ne.kr/xoopscube/>                       //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -40,7 +39,7 @@ XOOPS Cube 의 필수모듈들을 설치하기 위해서 제2단계 작업을 �
 <u><b>XOOPS Cube의 사용법에 관하여</b></u>
 <p>[아직 작성안됨]</p>
 <u><b>지원</b></u>
-<p><a href='http://www.xoopscube.org/' target='_blank'>XOOPS Cube.org</a>(영문) 또는 
-<a href='http://www.xoops.ne.kr/xoopscube/' target='_blank'>XOOPS Cube 한국어지원사이트</a>를 방문해 주세요!</p>
+<p><a href='http://xoopscube.sourceforge.net/' rel='external'>XOOPS Cube Project</a> 또는 
+<a href='http://www.xoops.ne.kr/xoopscube/' rel='external'>XOOPS Cube 한국어지원사이트</a>를 방문해 주세요!</p>
 ";
 ?>

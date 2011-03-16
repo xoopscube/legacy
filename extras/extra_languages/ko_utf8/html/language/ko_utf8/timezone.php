@@ -1,13 +1,12 @@
 <?php
-// $Id: timezone.php,v 1.1 2007/05/25 06:05:05 minahito Exp $
 //  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                XOOPS Cube - PHP Content Management System                 //
+//                    Copyright (c) 2006 XOOPSCube.org                       //
+//                       <http://www.xoopscube.org/>                         //
 //  ------------------------------------------------------------------------ //
 //  ------------------------------------------------------------------------ //
-//                XOOPS Korean (translated by wanikoo[ wani@wanisys.net ])	   //
-//                       <http://www.wanisys.net/>                             //
+//        XOOPS Cube Korean (translated by wanikoo[ wani@wanisys.net ])      //
+//                 <http://www.xoops.ne.kr/xoopscube/>                       //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -29,35 +28,37 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 
+
 //%%%%%		Time Zone	%%%%
-define("_TZ_GMTM12", "(GMT-12:00) Eniwetok, Kwajalein");
-define("_TZ_GMTM11", "(GMT-11:00) Midway Island, Samoa");
-define("_TZ_GMTM10", "(GMT-10:00) Hawaii");
-define("_TZ_GMTM9", "(GMT-9:00) Alaska");
-define("_TZ_GMTM8", "(GMT-8:00) Pacific Time (US &amp; Canada)");
-define("_TZ_GMTM7", "(GMT-7:00) Mountain Time (US &amp; Canada)");
-define("_TZ_GMTM6", "(GMT-6:00) Central Time (US &amp; Canada), Mexico City");
-define("_TZ_GMTM5", "(GMT-5:00) Eastern Time (US &amp; Canada), Bogota, Lima, Quito");
-define("_TZ_GMTM4", "(GMT-4:00) Atlantic Time (Canada), Caracas, La Paz");
-define("_TZ_GMTM35", "(GMT-3:30) Newfoundland");
-define("_TZ_GMTM3", "(GMT-3:00) Brasilia, Buenos Aires, Georgetown");
-define("_TZ_GMTM2", "(GMT-2:00) Mid-Atlantic");
-define("_TZ_GMTM1", "(GMT-1:00) Azores, Cape Verde Islands");
-define("_TZ_GMT0", "(GMT) Greenwich Mean Time, London, Dublin, Lisbon, Casablanca, Monrovia");
-define("_TZ_GMTP1", "(GMT+1:00) Amsterdam, Berlin, Rome, Copenhagen, Brussels, Madrid, Paris");
-define("_TZ_GMTP2", "(GMT+2:00) Athens, Istanbul, Minsk, Helsinki, Jerusalem, South Africa");
-define("_TZ_GMTP3", "(GMT+3:00) Baghdad, Kuwait, Riyadh, Moscow, St. Petersburg");
-define("_TZ_GMTP35", "(GMT+3:30) Tehran");
-define("_TZ_GMTP4", "(GMT+4:00) Abu Dhabi, Muscat, Baku, Tbilisi");
-define("_TZ_GMTP45", "(GMT+4:30) Kabul");
-define("_TZ_GMTP5", "(GMT+5:00) Ekaterinburg, Islamabad, Karachi, Tashkent");
-define("_TZ_GMTP55", "(GMT+5:30) Bombay, Calcutta, Madras, New Delhi");
-define("_TZ_GMTP6", "(GMT+6:00) Almaty, Dhaka, Colombo");
-define("_TZ_GMTP7", "(GMT+7:00) Bangkok, Hanoi, Jakarta");
-define("_TZ_GMTP8", "(GMT+8:00) Beijing, Perth, Singapore, Hong Kong, Urumqi, Taipei");
-define("_TZ_GMTP9", "(GMT+9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk");
-define("_TZ_GMTP95", "(GMT+9:30) Adelaide, Darwin");
-define("_TZ_GMTP10", "(GMT+10:00) Brisbane, Canberra, Melbourne, Sydney, Guam,Vlasdiostok");
-define("_TZ_GMTP11", "(GMT+11:00) Magadan, Solomon Islands, New Caledonia");
-define("_TZ_GMTP12", "(GMT+12:00) Auckland, Wellington, Fiji, Kamchatka, Marshall Island");
+define("_TZ_GMTM12", "(GMT-12:00) 에니웨톡, 콰자레인");
+define("_TZ_GMTM11", "(GMT-11:00) 미드웨이 아일랜드, 사모아");
+define("_TZ_GMTM10", "(GMT-10:00) 하와이");
+define("_TZ_GMTM9", "(GMT-9:00) 알래스카");
+define("_TZ_GMTM8", "(GMT-8:00) 태평양 표준시 (미국 및 캐나다)");
+define("_TZ_GMTM7", "(GMT-7:00) 산지 표준시 (미국 및 캐나다)");
+define("_TZ_GMTM6", "(GMT-6:00) 중부 표준시 (미국 및 캐나다), 멕시코시티");
+define("_TZ_GMTM5", "(GMT-5:00) 동부 표준시 (미국 및 캐나다), 보고타, 리마, 키토");
+define("_TZ_GMTM4", "(GMT-4:00) 대서양 표준시 (캐나다), 카라카스, 라파스");
+define("_TZ_GMTM35", "(GMT-3:30) 뉴펀들랜드");
+define("_TZ_GMTM3", "(GMT-3:00) 브라질리아, 부에노스아이레스, 조지타운");
+define("_TZ_GMTM2", "(GMT-2:00) 중앙 대서양");
+define("_TZ_GMTM1", "(GMT-1:00) 아조레스, 카보베르데 군도 제도");
+define("_TZ_GMT0", "(GMT) 그리니치 표준시, 런던, 더블린, 리스본, 카사블랑카, 몬로비아");
+define("_TZ_GMTP1", "(GMT+1:00) 암스테르담, 베를린, 로마, 코펜하겐, 브뤼셀, 마드리드, 파리");
+define("_TZ_GMTP2", "(GMT+2:00) 아테네, 이스탄불, 민스크, 헬싱키, 예루살렘, 남아프리카 공화국");
+define("_TZ_GMTP3", "(GMT+3:00) 바그다드, 쿠웨이트, 리야드, 모스크바, 상트페테르부르크");
+define("_TZ_GMTP35", "(GMT+3:30) 테헤란");
+define("_TZ_GMTP4", "(GMT+4:00) 아부다비, 무스카트, 바쿠, 트빌리시");
+define("_TZ_GMTP45", "(GMT+4:30) 카불");
+define("_TZ_GMTP5", "(GMT+5:00) 예카테린부르크, 이슬라마바드, 카라치, 타슈켄트");
+define("_TZ_GMTP55", "(GMT+5:30) 뭄바이, 콜카타, 첸나이, 뉴델리");
+define("_TZ_GMTP6", "(GMT+6:00) 알마티, 다카, 콜롬보");
+define("_TZ_GMTP7", "(GMT+7:00) 방콕, 하노이, 자카르타");
+define("_TZ_GMTP8", "(GMT+8:00) 베이징, 퍼스, 싱가포르, 홍콩, 우루무치, 중화민국");
+define("_TZ_GMTP9", "(GMT+9:00) 도쿄, 서울, 오사카, 삿포로, 야쿠츠크");
+define("_TZ_GMTP95", "(GMT+9:30) 애들레이드, 다윈");
+define("_TZ_GMTP10", "(GMT+10:00) 브리즈번, 캔버라, 멜버른, 시드니, 괌, 블라디보스토크");
+define("_TZ_GMTP11", "(GMT+11:00) 마가단, 솔로몬 군도, 뉴칼레도니아");
+define("_TZ_GMTP12", "(GMT+12:00) 오클랜드, 웰링턴, 피지, 캄차카 반도, 마셜 제도");
+
 ?>
