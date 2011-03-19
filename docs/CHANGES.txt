@@ -2,6 +2,26 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
+2011/03/19: Package Revision 2.2.0 RC2
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #3200890 - Missing arg. _addScript
+- Fix Bug #3204014 - Failed to add profile data
+- Fix Bug #3204018 - Profile definition javascript
+- Fix Bug #3204050 - Can't add select filed
+- Fix Bug #3208862 - html allowed field show
+- Fix Bug #3208870 - myckeditor modinfo language typo
+- Fix Bug #3208873 - Unnecessary template setting in myckeditor
+
+[Other Changes/Enhancements]
+- Update korean language files
+
+[Staff]
+- kilica
+- otneg
+- wanikoo
+
+----------------------------------------
 2011/02/27: Package Revision 2.2.0 RC1
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
