@@ -167,8 +167,8 @@ define("_AD_USER_TIPS_USER_SEARCH","You can search and sort your users data to f
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## Website........: http://xoopscube.com.br
-// ## E-mail.........: mikhail@underpop.com
+// ## Website........: http://xoops.net.br
+// ## E-mail.........: mikhail.miguel@gmail.com
 // ## AOL............: mikhailmiguel
 // ## MSN............: mikhail.miguel@hotmail.com
 // ## Orkut..........: 15440532260129226492

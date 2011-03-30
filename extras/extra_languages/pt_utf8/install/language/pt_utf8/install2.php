@@ -6,8 +6,8 @@
 // ## XOOPS Cube - Tradução para o Português
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## E-mail.........: mikhail@underpop.com
-// ## Website........: http://xoopscube.com.br
+// ## E-mail.........: mikhail.miguel@gmail.com
+// ## Website........: http://xoops.net.br
 // ############################################################### //
 // *************************************************************** //
 define("_INSTALL_WEBMASTER", "Administração"); // Não traduzo como "administrador" porque assim fica indefinido, vale para administradores e administradoras

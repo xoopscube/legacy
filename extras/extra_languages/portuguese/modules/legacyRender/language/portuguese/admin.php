@@ -5,7 +5,7 @@
 // ## XOOPS Cube Legacy 2.2 - Tradução para o Português
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## E-mail.........: mikhail@underpop.com
+// ## E-mail.........: mikhail.miguel@gmail.com
 // ## Website........: http://xoops.net.br/
 // ## Plus...........: http://card.ly/mikhail
 // ############################################################### //

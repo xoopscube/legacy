@@ -6,8 +6,8 @@
 // ## XOOPS Cube Legacy 2.2 - Tradução para o Português do Brasil
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## E-mail.........: mikhail@underpop.com
-// ## Website........: http://xoopscube.com.br
+// ## E-mail.........: mikhail.miguel@gmail.com
+// ## Website........: http://xoops.net.br
 // ############################################################### //
 // *************************************************************** //
 define("_MSC_AVAVATARS","Avatares disponíveis");

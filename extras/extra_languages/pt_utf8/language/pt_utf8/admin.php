@@ -6,8 +6,8 @@
 // ## XOOPS Cube Legacy 2.2 - Tradução para o Português
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## E-mail.........: mikhail@underpop.com
-// ## Website........: http://xoopscube.com.br
+// ## E-mail.........: mikhail.miguel@gmail.com
+// ## Website........: http://xoops.net.br
 // ############################################################### //
 // *************************************************************** //
 define("_AD_NORIGHT", "Lamento, esta é uma área restrita e você ainda não possui permissão de acesso.");

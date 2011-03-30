@@ -6,8 +6,8 @@
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## E-mail.........: mikhail@underpop.com
-// ## Website........: http://xoopscube.com.br
+// ## E-mail.........: mikhail.miguel@gmail.com
+// ## Website........: http://xoops.net.br
 // ############################################################### //
 // *************************************************************** //
 if (!defined("_CM_TITLE")) {

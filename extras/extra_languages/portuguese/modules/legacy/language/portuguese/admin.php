@@ -6,8 +6,8 @@
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## Website........: http://xoopscube.com.br
-// ## E-mail.........: mikhail@underpop.com
+// ## Website........: http://xoops.net.br
+// ## E-mail.........: mikhail.miguel@gmail.com
 // ## AOL............: mikhailmiguel
 // ## MSN............: mikhailmiguel@msn.com
 // ## Orkut..........: 15440532260129226492
@@ -285,7 +285,7 @@ define("_AD_LEGACY_MESSAGE_BLOCK_INSTALLED","O bloco {0} foi instalado...");
 define("_AD_LEGACY_MESSAGE_BLOCK_TEMPLATE_INSTALLED","O modelo do bloco {0} foi instalado...");
 define("_AD_LEGACY_MESSAGE_CHILDREN_DELETED_TOGETHER","O conteúdo relacionado também foi removido...");
 define("_AD_LEGACY_MESSAGE_CONFIRM_DELETE","Tem certeza de que deseja continuar com a remoção?");
-define("_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_BLOCK","Tem certeza de que deseja atualizar bloco?");
+define("_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_BLOCK","Confirme as atualizações abaixo:");
 define("_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_COMMENT","Tem certeza de que deseja atualizar comentar?");
 define("_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_IMAGE","Tem certeza de que deseja atualizar a imagem?");
 define("_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_IMGCAT","Tem certeza de que deseja atualizar a categoria?");

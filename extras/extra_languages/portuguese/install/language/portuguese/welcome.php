@@ -6,7 +6,7 @@
 // ############################################################### //
 // ## Por............: Mikhail Miguel
 // ## Website........: http://www.xoops.net.br
-// ## E-mail.........: mikhail@underpop.com
+// ## E-mail.........: mikhail.miguel@gmail.com
 // ## AOL............: mikhailmiguel
 // ## MSN............: mikhailmiguel@msn.com
 // ## Orkut..........: 15440532260129226492

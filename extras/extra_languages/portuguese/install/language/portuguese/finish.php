@@ -6,8 +6,8 @@
 // ## XOOPS Cube Legacy 2.2 - Tradução para o Português do Brasil
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## E-mail.........: mikhail@underpop.com
-// ## Website........: http://xoopscube.com.br
+// ## E-mail.........: mikhail.miguel@gmail.com
+// ## Website........: http://xoops.net.br
 // ############################################################### //
 // *************************************************************** //
 $content = "<h3><u>SEGUNDA PARTE DA INSTALAÇÃO</u></h3>
@@ -27,7 +27,7 @@ $content = "<h3><u>SEGUNDA PARTE DA INSTALAÇÃO</u></h3>
 <ul>
 <li><a rel='external' hreflang='en' href='http://xoopscube.org/' target='_tab'>XOOPSCube.org</a>(inglês)</li>
 <li><a rel='external' hreflang='en' href='http://xoopscube.sf.net/' target='_tab'>Espaço dos desenvolvedores no SourceForge.net</a>(inglês)</li>
-<li><a rel='external' hreflang='en' href='http://xoopscube.com.br' target='_tab'>XOOPS Cube Brasil</a></li>
+<li><a rel='external' hreflang='en' href='http://xoops.net.br' target='_tab'>XOOPS Cube Brasil</a></li>
 <li><a rel='external' hreflang='pt' href='http://www.orkut.com/CommTopics.aspx?cmm=182236' target='_tab'>XOOPS Cube Brasil no ORKUT</a></li>
 <li><a rel='external' hreflang='pt' href='http://groups.google.com.br/group/xoopscube/subscribe' target='_tab'>XOOPS Cube Brasil no Google Groups</a></li>
 <li><a rel='external' hreflang='pt' href='http://br.groups.yahoo.com/group/xoopscube/join' target='_tab'>XOOPS Cube Brasil no Yahoo! Grupos</a></li>

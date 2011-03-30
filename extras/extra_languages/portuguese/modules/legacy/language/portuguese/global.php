@@ -5,8 +5,8 @@
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## Website........: http://xoopscube.com.br
-// ## E-mail.........: mikhail@underpop.com
+// ## Website........: http://xoops.net.br
+// ## E-mail.........: mikhail.miguel@gmail.com
 // ## AOL............: mikhailmiguel
 // ## MSN............: mikhailmiguel@msn.com
 // ## Orkut..........: 15440532260129226492
@@ -157,7 +157,7 @@ define("_SYS_MODULE_DISABLED","Necessário (desabilitado)");
 define("_SYS_MODULE_UNINSTALLED","Necessário (não instalado)");
 define("_SYS_OPTION_MODULES","Módulo opcional");
 define("_SYS_RECOMMENDED_MODULES","Módulo recomendado");
-define("_SYSTEM_MODULE_ERROR","Os módulos a seguir não foram instalados.");
+define("_SYSTEM_MODULE_ERROR","Selecione os módulos a serem instalados:");
 define("_TAG", "Marcador");
 define("_TAKINGBACK","Bad, bad server. No donut for you...");
 define("_THREADED","Ramificar por título");
