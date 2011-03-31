@@ -105,11 +105,11 @@ class Profile_FieldTypeText implements Profile_iFieldType
         	switch($obj->get('option')){
         	case 'html':
         	case 'none':
-	            $value = $obj->getShow($key);
+	            $value = $obj->get($key);
 	            break;
 	        case 'bbcode':
 	        default:
-	        	$value = $obj->get($key);
+	        	$value = $obj->getShow($key);
 	        	break;
 	        }
         }
