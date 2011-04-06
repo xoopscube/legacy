@@ -39,17 +39,17 @@ define("_MI_LR_META_DESCRIPTION_DESC","The description meta tag is a general des
 define("_MI_LR_META_KEYWORDS","Palavras-chave (meta-keywords)");
 define("_MI_LR_META_KEYWORDS_DESC","As palavras-chave são uma série de palavras, separadas por vírgula, que representam o conteúdo do seu saite (ex: xoops cube, php, mysql, sistema de portais, underpop).");
 define("_MI_LR_META_RATING","Meta-dados de classificação (meta-rating)");
-define("_MI_LR_META_RATING_DESC","Os meta-dados de classificação servem para definir a idade do público-alvo do portal e a classificação do conteúdo perante os sistemas de busca. Suporta os valores: <q>GENERAL</q>, para qualquer idade; <q>14 YEARS</q>, censura 14 anos; e <q>MATURE</q>, para pessoas acima de 18 anos.");
+define("_MI_LR_META_RATING_DESC","Os meta-dados de classificação servem para definir a idade do público-alvo do portal e a classificação do conteúdo perante os sistemas de busca. Suporta os valores: <q>GENERAL</q>, para qualquer idade; <q>14 YEARS</q>, censura 14 anos; e <q>ADULTO</q>, para pessoas acima de 18 anos.");
 define("_MI_LR_META_ROBOTS","Meta Robots");
 define("_MI_LR_META_ROBOTS_DESC","Códigos que definem o tipo de conteúdo aos mecanismos de busca externos.");
 define("_MI_LR_PAGETITLE_FORMAT","Formato do título das páginas");
 define("_MI_LR_PAGETITLE_FORMAT_DESC","Set Pagetitle Format with {modulename}, {pagetitle}, {action}. Module name is set at {modulename} like <q>profile</q>. Page Title is set set at {pagetitle} like <q>Hello !</q> or <q>How to install XCL</q>. Action is set at {action} like <q>Edit</q>, <q>View</q> or <q>List</q>. You set [module]***[/module], *** is not display when {module} is not set. [pagetitle]***[/pagetitle], [action]***[action] is the same.");
-define("_MI_LR_ROBOT_INDEXFOLLOW","Indexar, seguindo todos os links (<b>padrão</b>)");
-define("_MI_LR_ROBOT_INDEXNOFOLLOW","Indexar, mas sem seguir (<q>INDEX, NO FOLLOW</q>)");
+define("_MI_LR_ROBOT_INDEXFOLLOW","INDEX, FOLLOW (indexar seguindo todos os links)");
+define("_MI_LR_ROBOT_INDEXNOFOLLOW","INDEX, NO FOLLOW (indexar, mas sem seguir)");
 define("_MI_LR_ROBOT_METAO14YRS","Apenas para maiores de 14 anos");
 define("_MI_LR_ROBOT_METAOGEN","Censura livre");
 define("_MI_LR_ROBOT_METAOMAT","Adulto");
 define("_MI_LR_ROBOT_METAOREST","Restrito");
-define("_MI_LR_ROBOT_NOINDEXFOLLOW","Seguir sem indexar (<q>NO INDEX, FOLLOW</q>)");
-define("_MI_LR_ROBOT_NOINDEXNOFOLLOW","Não indexar e nem seguir (<q>NO INDEX, NO FOLLOW</q>)");
+define("_MI_LR_ROBOT_NOINDEXFOLLOW","NO INDEX, FOLLOW (seguir sem indexar)");
+define("_MI_LR_ROBOT_NOINDEXNOFOLLOW","NO INDEX, NO FOLLOW (não indexar e nem seguir)");
 ?>
