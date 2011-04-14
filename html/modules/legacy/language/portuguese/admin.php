@@ -6,8 +6,8 @@
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //
 // ## Por............: Mikhail Miguel
-// ## Website........: http://xoopscube.com.br
-// ## E-mail.........: mikhail@underpop.com
+// ## Website........: http://xoops.net.br
+// ## E-mail.........: mikhail.miguel@gmail.com
 // ## AOL............: mikhailmiguel
 // ## MSN............: mikhailmiguel@msn.com
 // ## Orkut..........: 15440532260129226492
@@ -106,7 +106,7 @@ define("_AD_LEGACY_LANG_COMMENT_UPDATECONF","Confirme a atualização do comentári
 define("_AD_LEGACY_LANG_COMMENT_VIEW","Aparência dos comentários");
 define("_AD_LEGACY_LANG_CONFCAT_ID","Número da categoria");
 define("_AD_LEGACY_LANG_CONFCAT_NAME","Nome da categoria");
-define("_AD_LEGACY_LANG_CONFIG_INFO","Definições dos módulos");
+define("_AD_LEGACY_LANG_CONFIG_INFO","Configurações dos módulos");
 define("_AD_LEGACY_LANG_CONFIG_KEY","Chave");
 define("_AD_LEGACY_LANG_CONFIG_VAL","Valor");
 define("_AD_LEGACY_LANG_CONTENT","Conteúdo");

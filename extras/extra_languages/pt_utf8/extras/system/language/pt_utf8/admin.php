@@ -13,7 +13,7 @@ define("_MD_AM_PERMADDNG","Could not add %s permission to %s for group %s");
 define("_MD_AM_PERMADDNGP","Todos os itens relacionados devem ser selecionados");
 define("_MD_AM_PERMADDOK","Added %s permission to %s for group %s");
 define("_MD_AM_PERMRESETNG","Could not reset group permission for module %s");
-define("_MD_AM_PREF","Definições");
+define("_MD_AM_PREF","Configurações");
 define("_MD_AM_RANK","Graduações dos associados");
 define("_MD_AM_SMLS","Emos");
 define("_MD_AM_TPLSETS","Modelos");

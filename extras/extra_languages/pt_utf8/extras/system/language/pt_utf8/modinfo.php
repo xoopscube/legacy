@@ -10,7 +10,7 @@ define("_MI_SYSTEM_ADMENU16","Comentários");
 define("_MI_SYSTEM_ADMENU2","Blocos");
 define("_MI_SYSTEM_ADMENU3","Grupos & permissões");
 define("_MI_SYSTEM_ADMENU5","Módulos");
-define("_MI_SYSTEM_ADMENU6","Definições");
+define("_MI_SYSTEM_ADMENU6","Configurações");
 define("_MI_SYSTEM_ADMENU7","Emos");
 define("_MI_SYSTEM_ADMENU9","Graduações");
 define("_MI_SYSTEM_BNAME10","Novos associados");

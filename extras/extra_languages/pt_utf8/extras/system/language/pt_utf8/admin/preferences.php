@@ -64,7 +64,7 @@ define("_MD_AM_DTHEME","Tema padrão");
 define("_MD_AM_DTPLSET","Conjunto de modelos padrão");
 define("_MD_AM_FOOTER","Rodapé");
 define("_MD_AM_FOOTERDSC","Use um endereço completo (incluindo o http:");
-define("_MD_AM_GENERAL","Definições");
+define("_MD_AM_GENERAL","Configurações");
 define("_MD_AM_IFUCANT","Se você ainda não puder editar as permissões, poderá editar o resto deste arquivo manualmente.");
 define("_MD_AM_INDEXFOLLOW","Indexar, seguindo todos os links");
 define("_MD_AM_INDEXNOFOLLOW","Indexar apenas a página inicial");

@@ -7,7 +7,7 @@
 // ############################################################### //
 // ## Por............: Mikhail Miguel
 // ## Website........: http://xoops.net.br/
-// ## E-mail.........: mikhail@underpop.com
+// ## E-mail.........: mikhail.miguel@gmail.com
 // ## Yahoo!.........: mikhail.miguel@yahoo.com.br
 // ## MSN01..........: mikhailmiguel@msn.com
 // ## MSN02..........: mikhailmiguel@hotmail.com
