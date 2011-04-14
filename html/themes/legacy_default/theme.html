@@ -23,7 +23,7 @@
 // -->
 </script>
 <!--[if IE]>
-<style type="text/css"> 
+<style type="text/css">
     #side{ width: 240px;}
     #content {width:690px;}
     #container { zoom: 1; padding-top: 10px; }
@@ -46,22 +46,22 @@
 <div id="layout">
 <a name="top" id="top"></a>
 
-<div id="header"> 
+<div id="header">
 <div class="headerlogo">
 <a href="<{$xoops_url}>/"><img src="<{$xoops_imageurl}>images/logo.png" alt="<{$xoops_sitename}>" title="<{$xoops_sitename}>" /></a>
 </div>
- 
+
     <div class="headersearch">
     <form action="<{$xoops_url}>/search.php" method="get">
     <input type="text" name="query" size="22" class="headerSearchField" />
     <input type="hidden" name="action" value="results" />
     <button name="submit" type="submit" value="search" accesskey="F">Search</button>
     </form>
-    </div> 
     </div>
-    
+    </div>
+
 <!--<div class="headerbar">
-  
+
 <ul id="navigation">
 <li><a href="http://xoopscube.org/index.php"><span>Welcome</span></a></li>
 <li><a href="http://xoopscube.org/modules/news/"><span>News</span></a></li>
@@ -75,27 +75,27 @@
 
 
 <div id="container" class="clearfix">
-   
-   
+
+
 <div id="main2columns">
-	
-    
+
+
     <!-- BLOCK Center-Center -->
     <{if $xoops_showcblock == 1}>
     <div class="centerCcolumn">
-    
+
     <{foreach item=block from=$xoops_ccblocks}>
     <div class="centerCblock">
         <div class="centerCblockTitle">
         <{if $xoops_isadmin}>
-        <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=<{$block.id}>"><img src="<{$xoops_imageurl}>images/edit.png" /></a> 
+        <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=<{$block.id}>"><img src="<{$xoops_imageurl}>images/edit.png" /></a>
         <{/if}>
         <{$block.title}>
         </div>
     <div class="centerCblockContent"><{$block.content}></div>
     </div>
     <{/foreach}>
-    
+
     </div>
     <{/if}>
 
@@ -103,13 +103,13 @@
     <{if !empty($xoops_contents)}>
     <div id="content"><{$xoops_contents}></div>
     <{/if}>
-    
+
 </div><!-- End main2columns -->
 
 
 <div id="side">
     <div class="sidecolumn">
-      
+
     <{if $xoops_showlblock == 1}>
     <{foreach item=block from=$xoops_lblocks}>
     <div class="leftblock">
@@ -123,10 +123,10 @@
     </div>
     <{/foreach}>
     <{/if}>
-    
+
     <br />
-    
-    <{if $xoops_showrblock == 1}>  
+
+    <{if $xoops_showrblock == 1}>
     <{foreach item=block from=$xoops_rblocks}>
     <div class="rightblock">
         <div class="rightblockTitle">
@@ -139,7 +139,7 @@
     </div>
     <{/foreach}>
     <{/if}>
-    
+
    </div><!-- End sidecolumn -->
 </div><!--End Side -->
 
@@ -181,14 +181,14 @@
 
 <div class="floatClear" /></div>
 
-	</div> 
+	</div>
 </div><!-- End Block Center-Left and Center-Right -->
 <{/if}>
 
 <br class="floatClear" />
 
 <div id="footerbar">
-<a href="http://xoopscube.com.br/">Brasilian</a> | <a href="http://xoopscube.org/">English</a> | <a href="http://www.xoopscube.de/">German</a> | <a href="http://www.xoopscube.gr/">Greek</a> | <a href="http://xoopscube.sourceforge.net/ja/">Japanese</a> | <a href="http://www.xoops.ne.kr/xoopscube/">Korean</a> | <a href="http://www.xoopscube.ru/">Russian</a> | <a href="http://www.xoopscube.tw/">T-Chinese</a>
+<a href="http://xoops.net.br/">Portuguese</a> | <a href="http://xoopscube.org/">English</a> | <a href="http://www.xoopscube.de/">German</a> | <a href="http://www.xoopscube.gr/">Greek</a> | <a href="http://xoopscube.sourceforge.net/ja/">Japanese</a> | <a href="http://www.xoops.ne.kr/xoopscube/">Korean</a> | <a href="http://www.xoopscube.ru/">Russian</a> | <a href="http://www.xoopscube.tw/">T-Chinese</a>
 <span><a href="#top"><img src="<{$xoops_imageurl}>images/top.gif" alt="top" title="top" hspace="15" /></a></span>
 <br />
 <{$xoops_footer}>

@@ -126,7 +126,7 @@ define("_PLEASEWAIT","Por favor, aguarde.");
 define("_PLZCOMPLETE","Por favor, complete os campos 'assunto' e 'mensagem'.");
 define("_POSTANON","Postar anonimamente");
 define("_POSTEDBY","Por");
-define("_PREFERENCES","Definições");
+define("_PREFERENCES","Configurações");
 define("_PREVIEW","Mostrar");
 define("_PROFILE","Perfil");
 define("_QUOTE","Citar");

@@ -106,7 +106,7 @@ define("_AD_LEGACY_LANG_COM_STATUS","Situação");
 define("_AD_LEGACY_LANG_COM_UID","N° do associado");
 define("_AD_LEGACY_LANG_CONFCAT_ID","Número da categoria");
 define("_AD_LEGACY_LANG_CONFCAT_NAME","Nome da categoria");
-define("_AD_LEGACY_LANG_CONFIG_INFO","Definições dos módulos");
+define("_AD_LEGACY_LANG_CONFIG_INFO","Configurações dos módulos");
 define("_AD_LEGACY_LANG_CONFIG_KEY","Chave");
 define("_AD_LEGACY_LANG_CONFIG_VAL","Valor");
 define("_AD_LEGACY_LANG_CONTENT","Conteúdo");

@@ -5,7 +5,7 @@
 // ## XOOPS 2.0.9 - Brazilian Portuguese Translation ## //
 // ################################################### //
 // ## Translator.....: Mikhail Miguel #//
-// ## E-mail.........: mikhail@underpop.com #/
+// ## E-mail.........: mikhail.miguel@gmail.com #/
 // ## Website........: http://xoops.underpop.com #
 // ######################################################
 // ******************************************************...

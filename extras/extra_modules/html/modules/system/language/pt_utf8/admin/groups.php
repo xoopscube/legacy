@@ -4,9 +4,9 @@
 // ######################################################## //
 // ## XOOPS 2.0.9 - Brazilian Portuguese Translation ## //
 // ###################################################### //
-// ## Translator.....: Mikhail Miguel #//
-// ## E-mail.........: mikhail@underpop.com #/
-// ## Website........: http://xoopscube.com.br #
+// ## Translator.....: Mikhail Miguel
+// ## E-mail.........: mikhail.miguel@gmail.com
+// ## Website........: http://xoops.net.br
 // ######################################################
 // ******************************************************...
 define("_AM_ACCESSRIGHTS","Permissões de acesso aos módulos");
