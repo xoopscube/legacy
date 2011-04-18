@@ -69,7 +69,7 @@ define('_CLOSE','閉じる');	// Close window
 define('_QUOTEC','引用：');
 
 //%%%%%%	File Name admin.php 	%%%%%
-define('_NOPERM','このエリアへのアクセスは許可されていません。');
+define('_NOPERM','このエリアへのアクセスは、ログイン若しくは許可された権限が必要です。');
 
 //%%%%%		Common Phrases		%%%%%
 define('_NO','いいえ');
