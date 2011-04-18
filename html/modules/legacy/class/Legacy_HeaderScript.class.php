@@ -274,18 +274,23 @@ google.load("jqueryui", "'. $this->_mUi .'");
 			$html = "<script type=\"text/javascript\"><!--\n";
 			if($this->_mType == "google"){
 				$html .= "google.setOnLoadCallback(function() {\n";
-			}
-			else{
+				$html .= "jQuery(function($){\n";
+			}else{
 				if($this->mUsePrototype == true){
-					$html .= "jQuery.noConflict();";
-					$html .= "var ".$this->mFuncNamePrefix."$ = jQuery;";
+					$html .= "jQuery.noConflict();\n";
+					$html .= "var ".$this->mFuncNamePrefix."$ = jQuery;\n";
 				}
-				$html .= "jQuery(function(){\n";
+				$html .= "jQuery(function($){\n";
 			}
 			$html .= $this->_makeScript(true);
-			$html .= "\n});\n";
+			if($this->_mType == "google"){
+				$html .= "\n});\n";
+				$html .= "\n});\n";
+			}else{
+				$html .= "\n});\n";
+			}
 			$html .= $this->_makeScript(false);
-			$html .= "// --></script>"."\n";
+			$html .= "//--></script>"."\n";
 		}
 		return $html;
 	}
