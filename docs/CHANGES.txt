@@ -2,6 +2,26 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
+2011/04/23: Package Revision 2.2.0
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #3288881 - noConflict prototype.js when using Google Library
+
+[Feature Request - From Feature Requests Tracker]
+- Feature Request #3276799 - Change Japanese Message
+
+[Other Changes/Enhancements]
+- Update portuguese/pt_utf8 language files
+- Remove fileManager module's language files
+- Update HTML Purifier to Version 4.3.0
+
+[Staff]
+- bluemooninc
+- domifara
+- kilica
+- Mikhail Miguel
+
+----------------------------------------
 2011/03/19: Package Revision 2.2.0 RC2
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
