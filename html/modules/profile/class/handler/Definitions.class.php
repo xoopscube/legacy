@@ -86,9 +86,16 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 		foreach(array_keys($fieldArr) as $keyF){
 			$flag = false;
 			$accessArr = explode(',', $fieldArr[$keyF]->get('access'));
-			foreach(array_keys($accessArr) as $keyA){
-				if($lHandler->isUserOfGroup($uid, $accessArr[$keyA])){
+			if($uid===0){	//guest
+				if(in_array(XOOPS_GROUP_ANONYMOUS, $accessArr)){
 					$flag = true;
+				}
+			}
+			else{
+				foreach(array_keys($accessArr) as $keyA){
+					if($lHandler->isUserOfGroup($uid, $accessArr[$keyA])){
+						$flag = true;
+					}
 				}
 			}
 			if(! $flag){
