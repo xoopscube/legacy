@@ -224,13 +224,5 @@
       <{$object->getShow('bio')}>
     </td>
   </tr>
-    <{foreach item=def from=$definitions}>
-			<tr valign="top">
-			  <td class="head"><{$def.label}></td>
-			  <td class="<{cycle values='odd,even'}>">
-			  	<{assign var="defkey" value=$def.field_name}>
-			    <{$data->showField($defkey, 2)}>
-			  </td>
-			</tr>
-  <{/foreach}>
+  <{legacy_profile uid=$object->getShow('uid')}>
 </table>
