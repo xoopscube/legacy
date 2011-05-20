@@ -113,6 +113,15 @@ class User_UserEditAction extends User_AbstractEditAction
 		$render->setAttribute('notify_modeOptions', $modeOptions);
 	}
 
+	function _doExecute()
+	{
+		$ret = parent::_doExecute();
+		if($ret===true){
+			XCube_DelegateUtils::call('Legacy_Profile.SaveProfile', new XCube_Ref($ret), $this->mActionForm);
+		}
+		return $ret;
+	}
+
 	function executeViewSuccess(&$controller, &$xoopsUser, &$render)
 	{
 		$controller->executeForward("./index.php?action=UserList");

@@ -172,6 +172,9 @@ class User_UserAdminEditForm extends XCube_ActionForm
 		$this->mFieldProperties['user_intrest']->setDependsByArray(array('maxlength'));
 		$this->mFieldProperties['user_intrest']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_USER_INTREST, '150');
 		$this->mFieldProperties['user_intrest']->addVar('maxlength', 150);
+	
+		//profile
+		XCube_DelegateUtils::call('Legacy_Profile.SetupActionForm', $this);
 	}
 	
 	function validateUname()
@@ -311,6 +314,9 @@ class User_UserAdminEditForm extends XCube_ActionForm
 				$this->set('groups', $i++, $gid);
 			}
 		}
+	
+		//profile
+		XCube_DelegateUtils::call('Legacy_Profile.LoadActionForm', $this);
 	}
 
 	function update(&$obj)
