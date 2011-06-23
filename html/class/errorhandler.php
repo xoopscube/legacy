@@ -104,14 +104,14 @@ class XoopsErrorHandler
      */
     function handleError($error)
     {
+        if ($error['errno'] == E_USER_ERROR) {
+            $this->_isFatal = true;
+            exit($error['errstr']);
+        }
         if (($error['errno'] & error_reporting()) != $error['errno']) {
             return;
         }
         $this->_errors[] = $error;
-        if ($error['errno'] == E_USER_ERROR) {
-            $this->_isFatal = true;
-            exit();
-        }
     }
 
     /**
