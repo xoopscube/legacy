@@ -7,10 +7,18 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 [Bug Fix - From Bug Tracker]
 - Fix Bug #2988674 - NOT work weight in the imagemamanger
 - Fix Bug #3104460 - modules/legacy/include/groupperm bug
+- Fix Bug #3313462 - trigger_error('...',E_USER_ERROR) may not halt execution
+- Fix Bug #3317712 - class/module.errorhandler.php bug
+
+[Feature Request - From Feature Requests Legacy Tracker]
+- Feature Request #3317730 - please add ja_utf8 language files to XUpgrade
 
 [Staff]
+- domifara
 - kilica
 - ohwada
+- onlineco
+
 
 ----------------------------------------
 2010/11/13: Package Revision 2.1.8a
