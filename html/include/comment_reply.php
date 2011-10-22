@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 // Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.xoops.org/ http://xoopscube.jp/  http://www.myweb.ne.jp/  //
+// URL: http://www.xoops.org/ http://jp.xoops.org/  http://www.myweb.ne.jp/  //
 // Project: The XOOPS Project (http://www.xoops.org/)                        //
 // ------------------------------------------------------------------------- //
 
@@ -107,10 +107,10 @@ else {
 // Create action form instance and load from a comment object.
 //
 if (is_object($xoopsUser) && $xoopsUser->isAdmin()) {
-	$actionForm =& new Legacy_CommentEditForm_Admin();
+	$actionForm =new Legacy_CommentEditForm_Admin();
 }
 else {
-	$actionForm =& new Legacy_CommentEditForm();
+	$actionForm =new Legacy_CommentEditForm();
 }
 $actionForm->prepare();
 $actionForm->load($res_comment);

@@ -70,6 +70,9 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 		if (!$this->_loadFile(XOOPS_ROOT_PATH . "/modules/legacy/language/" . $this->mLanguageName . "/global.php")) {
 			$this->_loadFile(XOOPS_ROOT_PATH . "/modules/legacy/language/english/global.php");
 		}
+		if (!$this->_loadFile(XOOPS_ROOT_PATH . "/modules/legacy/language/" . $this->mLanguageName . "/setting.php")) {
+			$this->_loadFile(XOOPS_ROOT_PATH . "/modules/legacy/language/english/setting.php");
+		}
 
 		//
 		// Now, if XOOPS_USE_MULTIBYTES isn't defined, set zero to it.

@@ -62,7 +62,7 @@ class User_Utils
 					$roles[] = "Site.Owner";
 				}
 				
-				$identity =& new Legacy_Identity($context->mXoopsUser);
+				$identity =new Legacy_Identity($context->mXoopsUser);
 				$principal = new Legacy_GenericPrincipal($identity, $roles);
 				return;
 			} else {
@@ -70,7 +70,7 @@ class User_Utils
 				$_SESSION = array();
 			}
 		}
-		$identity =& new Legacy_AnonymousIdentity();
+		$identity =new Legacy_AnonymousIdentity();
 		$principal = new Legacy_GenericPrincipal($identity, array("Site.GuestUser"));
 	}
 	

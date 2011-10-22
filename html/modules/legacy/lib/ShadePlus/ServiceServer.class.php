@@ -16,7 +16,7 @@ class ShadePlus_ServiceServer
 	function ShadePlus_ServiceServer(&$service)
 	{
 		$this->_mService =& $service;
-		$this->_mServer =& new ShadeSoap_NusoapServer();
+		$this->_mServer =new ShadeSoap_NusoapServer();
 		
 		$this->_mServer->configureWSDL($this->_mService->mServiceName, $this->_mService->mNameSpace);
 		$this->_mServer->wsdl->schemaTargetNamespace = $this->_mService->mNameSpace;

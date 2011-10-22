@@ -100,7 +100,7 @@
     // default the default theme
 
     $time = time();
-    $dbm->insert('tplset', " VALUES (1, 'default', 'XOOPS Default Theme', '', ".$time.")");
+    $dbm->insert('tplset', " VALUES (1, 'legacy_default', 'Legacy 2.2 Default Theme', '', ".$time.")");
 
 //  include_once './class/cachemanager.php';
 //    $cm = new cache_manager;

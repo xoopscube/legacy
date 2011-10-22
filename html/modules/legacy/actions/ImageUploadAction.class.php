@@ -44,7 +44,7 @@ class Legacy_ImageUploadAction extends Legacy_ImageEditAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_ImageUploadForm();
+		$this->mActionForm =new Legacy_ImageUploadForm();
 		$this->mActionForm->prepare();
 	}
 	

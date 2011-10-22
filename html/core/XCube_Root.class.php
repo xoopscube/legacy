@@ -535,7 +535,7 @@ class XCube_Root
 		}
 		
 		if (XC_CLASS_EXISTS($className)) {
-			$ret =& new $className();
+			$ret = new $className();
 		}
 
 		return $ret;

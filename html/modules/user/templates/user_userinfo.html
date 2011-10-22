@@ -1,14 +1,16 @@
-<{if $user_ownpage == true && $enableSelfDelete == true && $xoops_isadmin == false}>
-  <div style="text-align:right;">
-      <a href="<{$xoops_url}>/user.php?op=delete"><{$smarty.const._MD_USER_LANG_DELACCOUNT}></a>
-  </div>
-<{elseif $xoops_isadmin == true}>
-  <div style="text-align:right;">
-    <a href="<{$xoops_url}>/edituser.php?uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_EDITPROFILE}></a> - 
-    <a href="<{$xoops_url}>/edituser.php?op=avatarform&amp;uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_AVATAR_EDIT}></a> -
-    <a href="<{$xoops_url}>/modules/user/admin/index.php?action=UserDelete&amp;uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_DELACCOUNT}></a>
-  </div>
+<div style="text-align:right;">
+<{if $user_ownpage == true}>
+	<a href="<{$xoops_url}>/notifications.php"><{$smarty.const._MD_USER_LANG_NOTIFY}></a>
 <{/if}>
+
+<{if $user_ownpage == true && $enableSelfDelete == true && $xoops_isadmin == false}>
+| <a href="<{$xoops_url}>/user.php?op=delete"><{$smarty.const._MD_USER_LANG_DELACCOUNT}></a>
+<{elseif $xoops_isadmin == true}>
+    | <a href="<{$xoops_url}>/edituser.php?uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_EDITPROFILE}></a> - 
+    | <a href="<{$xoops_url}>/edituser.php?op=avatarform&amp;uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_AVATAR_EDIT}></a> -
+    | <a href="<{$xoops_url}>/modules/user/admin/index.php?action=UserDelete&amp;uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_DELACCOUNT}></a>
+<{/if}>
+</div>
 
 <table width="100%" border="0" cellspacing="5">
   <tr valign="top">
@@ -46,7 +48,7 @@
       </tr>
       <tr>
         <td class="head"><{$smarty.const._MD_USER_LANG_WEBSITE}></td>
-        <td class="<{cycle values='odd,even'}>"><a href="<{$thisUser->getShow('url')}>" target="_blank"><{$thisUser->getShow('url')}></a></td>
+        <td class="<{cycle values='odd,even'}>"><a href="<{$thisUser->getShow('url')}>" rel="external"><{$thisUser->getShow('url')}></a></td>
       </tr>
       <{if $thisUser->get('user_viewemail') == 1 || $user_ownpage == true || $xoops_isadmin == true }>
         <tr valign="top">
@@ -60,11 +62,13 @@
         <tr valign="top">
           <td class="head"><{$smarty.const._MD_USER_LANG_PM}></td>
           <td class="<{cycle values='odd,even'}>">
-            <a href="javascript:openWithSelfMain('<{$pmliteUrl|xoops_escape:link}>', 'pmlite', 480, 400);">
+            <a href="<{$pmliteUrl|xoops_escape:link}>">
             <img src="<{$smarty.const.XOOPS_URL}>/images/icons/pm.gif" alt="<{$smarty.const._SENDPMTO|replace:"%s":$thisUser->getShow('uname')}>" title="<{$smarty.const._SENDPMTO|replace:"%s":$thisUser->getShow('uname')}>" /></a>
           </td>
         </tr>
       <{/if}>
+      <{legacy_profile uid=$thisUser->getShow('uid')}>
+      <!--
       <tr valign="top">
         <td class="head"><{$smarty.const._MD_USER_LANG_USER_ICQ}></td>
         <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('user_icq')}></td>
@@ -92,11 +96,13 @@
       <tr valign="top">
         <td class="head"><{$smarty.const._MD_USER_LANG_USER_INTREST}></td>
         <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('user_intrest')}></td>
-      </tr>
+      </tr> -->
+      <{if $bio != null}>
       <tr valign="top">
         <td class="head"><{$smarty.const._MD_USER_LANG_BIO}></td>
         <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('bio')}></td>
       </tr>
+     <{/if}>
     </table>
     </td>
     <td width="50%">

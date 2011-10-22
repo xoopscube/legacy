@@ -5,8 +5,10 @@
  * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
  * @license http://www.gnu.org/licenses/lgpl.txt GNU LESSER GENERAL PUBLIC LICENSE Version 2.1
  */
+ // TODO prevent path disclosure, gigamaster
+ error_reporting(0);
 
-
+// if (!XC_CLASS_EXISTS('soap_server')) exit();
 
 if (version_compare(PHP_VERSION, "5.0", ">=")) {
 	if (!class_exists("soap_server", false)) {

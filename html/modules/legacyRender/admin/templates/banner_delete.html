@@ -20,7 +20,7 @@
         <{if $object->get('htmlbanner')}>
           <{$object->get('htmlcode')}>
         <{else}>
-          <a href="<{$object->getShow('clickurl')}>" target="_blank"><img src="<{$object->getShow('imageurl')}>" alt="Banner" /></a>
+          <a href="<{$object->getShow('clickurl')}>" rel="external"><img src="<{$object->getShow('imageurl')}>" alt="Banner" /></a>
         <{/if}>
       </td>
     </tr>

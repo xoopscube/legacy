@@ -48,44 +48,44 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
 				case 'text':
 				case 'string':
 					if ($config->get('conf_formtype') == 'textarea') {
-						$this->mFormProperties[$config->get('conf_name')] =& new XCube_TextProperty($config->get('conf_name'));
+						$this->mFormProperties[$config->get('conf_name')] =new XCube_TextProperty($config->get('conf_name'));
 					}
 					else {
-						$this->mFormProperties[$config->get('conf_name')] =& new XCube_StringProperty($config->get('conf_name'));
+						$this->mFormProperties[$config->get('conf_name')] =new XCube_StringProperty($config->get('conf_name'));
 					}
 					$this->set($config->get('conf_name'), $config->get('conf_value'));
 					break;
 
 				case 'float':
-					$this->mFormProperties[$config->get('conf_name')] =& new XCube_FloatProperty($config->get('conf_name'));
+					$this->mFormProperties[$config->get('conf_name')] =new XCube_FloatProperty($config->get('conf_name'));
 					$this->set($config->get('conf_name'), $config->get('conf_value'));
 					
-					$this->mFieldProperties[$config->get('conf_name')] =& new XCube_FieldProperty($this);
+					$this->mFieldProperties[$config->get('conf_name')] =new XCube_FieldProperty($this);
 					$this->mFieldProperties[$config->get('conf_name')]->setDependsByArray(array('required'));
 					$this->mFieldProperties[$config->get('conf_name')]->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, $config->get('conf_title'));
 					break;
 
 				case 'int':
-					$this->mFormProperties[$config->get('conf_name')] =& new XCube_IntProperty($config->get('conf_name'));
+					$this->mFormProperties[$config->get('conf_name')] =new XCube_IntProperty($config->get('conf_name'));
 					$this->set($config->get('conf_name'), $config->get('conf_value'));
 					
-					$this->mFieldProperties[$config->get('conf_name')] =& new XCube_FieldProperty($this);
+					$this->mFieldProperties[$config->get('conf_name')] =new XCube_FieldProperty($this);
 					$this->mFieldProperties[$config->get('conf_name')]->setDependsByArray(array('required'));
 					$this->mFieldProperties[$config->get('conf_name')]->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, $config->get('conf_title'));
 					break;
 					
 				case 'other':
-					$this->mFormProperties[$config->get('conf_name')] =& new XCube_StringProperty($config->get('conf_name'));
+					$this->mFormProperties[$config->get('conf_name')] =new XCube_StringProperty($config->get('conf_name'));
 					$this->set($config->get('conf_name'), $config->get('conf_value'));
 					break;
 
 				case 'array':
 					if($config->get('conf_formtype') == 'textarea') {
-						$this->mFormProperties[$config->get('conf_name')] =& new XCube_StringProperty($config->get('conf_name'));
+						$this->mFormProperties[$config->get('conf_name')] =new XCube_StringProperty($config->get('conf_name'));
 						$this->set($config->get('conf_name'), implode("|", unserialize($config->get('conf_value'))));
 					}
 					else {
-						$this->mFormProperties[$config->get('conf_name')] =& new XCube_StringArrayProperty($config->get('conf_name'));
+						$this->mFormProperties[$config->get('conf_name')] =new XCube_StringArrayProperty($config->get('conf_name'));
 						$t_arr = unserialize($config->get('conf_value'));
 						if (is_array($t_arr)) {
 							foreach ($t_arr as $_key => $_value) {

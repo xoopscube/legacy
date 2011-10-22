@@ -28,7 +28,7 @@ class Legacy_SmilesDeleteAction extends Legacy_AbstractDeleteAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_SmilesAdminDeleteForm();
+		$this->mActionForm =new Legacy_SmilesAdminDeleteForm();
 		$this->mActionForm->prepare();
 	}
 

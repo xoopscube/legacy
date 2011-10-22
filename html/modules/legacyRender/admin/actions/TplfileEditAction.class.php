@@ -33,7 +33,7 @@ class LegacyRender_TplfileEditAction extends LegacyRender_AbstractEditAction
 	
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new LegacyRender_TplfileEditForm();
+		$this->mActionForm =new LegacyRender_TplfileEditForm();
 		$this->mActionForm->prepare();
 	}
 
@@ -57,7 +57,7 @@ class LegacyRender_TplfileEditAction extends LegacyRender_AbstractEditAction
 		//
 		require_once XOOPS_ROOT_PATH . "/class/template.php";
 
-		$xoopsTpl =& new XoopsTpl();
+		$xoopsTpl =new XoopsTpl();
 		$xoopsTpl->clear_cache('db:' . $this->mObject->get('tpl_file'));
 		$xoopsTpl->clear_compiled_tpl('db:' . $this->mObject->get('tpl_file'));
 

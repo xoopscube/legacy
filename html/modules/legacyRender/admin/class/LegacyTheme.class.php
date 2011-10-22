@@ -45,7 +45,8 @@ class LegacyThemeHandler
 				if (is_dir($themeDir)) {
 					$manifesto = array();
 					if (file_exists($mnfFile = $themeDir . "/manifesto.ini.php")) {
-						$manifesto = parse_ini_file($mnfFile, true);
+						$iniHandler = new XCube_IniHandler($mnfFile, true);
+						$manifesto = $iniHandler->getAllConfig();
 					}
 					
 					if(count($manifesto) > 0) {

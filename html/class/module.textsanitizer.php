@@ -24,7 +24,7 @@
 //  along with this program; if not, write to the Free Software              //
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (http://www.myweb.ne.jp/, http://xoopscube.jp/)        //
+// Author: Kazumi Ono (http://www.myweb.ne.jp/, http://jp.xoops.org/)        //
 //         Goghs Cheng (http://www.eqiao.com, http://www.devbeez.com/)       //
 // Project: The XOOPS Project (http://www.xoops.org/)                        //
 // ------------------------------------------------------------------------- //
@@ -79,10 +79,10 @@ class MyTextSanitizer
     function MyTextSanitizer()
     {
 		
-		$this->mMakeClickablePostFilter =& new XCube_Delegate();
+		$this->mMakeClickablePostFilter =new XCube_Delegate();
 		$this->mMakeClickablePostFilter->register('MyTextSanitizer.MakeClickablePostFilter');
 		
-		$this->mXoopsCodePostFilter =& new XCube_Delegate();
+		$this->mXoopsCodePostFilter =new XCube_Delegate();
 		$this->mXoopsCodePostFilter->register('MyTextSanitizer.XoopsCodePostFilter');
 
         $root =& XCube_Root::getSingleton();
@@ -195,7 +195,7 @@ class MyTextSanitizer
     function checkUrlString($text)
     {
         // Check control code
-        if (preg_match('/[\x0-\x1f\x7f]/', $text)) {
+        if (preg_match("/[\\0-\\31]/", $text)) {
             return false;
         }
         // check black pattern(deprecated)

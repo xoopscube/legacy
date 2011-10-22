@@ -1,3 +1,3 @@
-<table width="70%" align="center"><tr><td align="left">
-<?php $this->e('finish')?>
-</td></tr></table>
+<div style="width:500px; margin:0 auto;">
+<p align="center"><?php $this->e('finish')?></p>
+</div>

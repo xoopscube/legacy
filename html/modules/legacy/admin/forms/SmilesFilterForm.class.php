@@ -31,6 +31,9 @@ class Legacy_SmilesFilterForm extends Legacy_AbstractFilterForm
 		SMILES_SORT_KEY_DISPLAY => 'display'
 	);
 	
+	var $mKeyword = "";
+	var $mOptionField = "";
+
 	function getDefaultSortKey()
 	{
 		return SMILES_SORT_KEY_DEFAULT;
@@ -40,6 +43,14 @@ class Legacy_SmilesFilterForm extends Legacy_AbstractFilterForm
 	{
 		parent::fetch();
 	
+		$root =& XCube_Root::getSingleton();
+		$code = $root->mContext->mRequest->getRequest('code');
+		$smile_url = $root->mContext->mRequest->getRequest('smile_url');
+		$emotion = $root->mContext->mRequest->getRequest('emotion');
+		$display = $root->mContext->mRequest->getRequest('display');
+		$option_field = $root->mContext->mRequest->getRequest('option_field');
+		$search = $root->mContext->mRequest->getRequest('search');
+
 		if (isset($_REQUEST['code'])) {
 			$this->mNavi->addExtra('code', xoops_getrequest('code'));
 			$this->_mCriteria->add(new Criteria('code', xoops_getrequest('code')));
@@ -58,6 +69,29 @@ class Legacy_SmilesFilterForm extends Legacy_AbstractFilterForm
 		if (isset($_REQUEST['display'])) {
 			$this->mNavi->addExtra('display', xoops_getrequest('display'));
 			$this->_mCriteria->add(new Criteria('display', xoops_getrequest('display')));
+		}
+
+		if (isset($_REQUEST['option_field'])) {
+			$this->mNavi->addExtra('option_field', xoops_getrequest('option_field'));
+			$this->mOptionField = $option_field;
+			if ( $this->mOptionField == "visible" ) {
+			$this->_mCriteria->add(new Criteria('display', '1'));
+			}
+			elseif ( $this->mOptionField == "invisible" ) {
+			$this->_mCriteria->add(new Criteria('display', '0'));
+			}
+			else {
+			//all
+			}
+		}
+
+		//
+		if (!empty($search)) {
+			$this->mKeyword = $search;
+			$this->mNavi->addExtra('search', $this->mKeyword);
+			$search_criteria = new CriteriaCompo(new Criteria('code', '%' . $this->mKeyword . '%', 'LIKE'));
+			$search_criteria->add(new Criteria('emotion', '%' . $this->mKeyword . '%', 'LIKE'), $condition='OR');
+			$this->_mCriteria->add($search_criteria);
 		}
 
 		$this->_mCriteria->addSort($this->getSort(), $this->getOrder());

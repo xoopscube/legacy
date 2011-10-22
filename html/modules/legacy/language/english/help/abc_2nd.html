@@ -9,7 +9,7 @@
 
 <p>xoopscube.org uses the block layout, too. It uses left, center and right blocks. That's the standard XOOPS layout.</p>
 
-<p><img src="<{'abc_2nd_xoopscubeorg.png'|helpimage}>" /></p>
+
 
 <p>The layout in most themes uses three columns;the left column, the center column and the right column. Plus, the upper part of the center column has two more columns;the left-center column and the right-center column. You can assign <b>blocks</b> to these columns.</p>
 
@@ -17,19 +17,16 @@
 
 <h6>Login Block</h6>
 
-<p><img src="<{'abc_2nd_loginblock.png'|helpimage}>" /></p>
 
 <p>The block you use to login is the "Login Block". This block is installed by default. This block displays text boxes for user's name and password. Once you  have logged in, the login block is no longer visible. In other words, a block can be set to display or not, depending on the permissions of the user.</p>
 
 <h6>Main Menu Block</h6>
 
-<p><img src="<{'abc_2nd_mainmenublock.png'|helpimage}>" /></p>
 
 <p>This is the standard automatic main menu block for all users. The main menu block has a link to the home page and also shows a list of all the modules which the current user has been allowed access to.</p>
 
 <h6>User Menu Block</h6>
 
-<p><img src="<{'abc_2nd_usermenublock.png'|helpimage}>" /></p>
 
 <p>This is a personal menu for registered users. It shows links to the user's profile and other pesonal settings.</p>
 
@@ -37,46 +34,35 @@
 <h6>Block Installation</h6>
 <p>First of all you will install the "Site Info" block in the right column of your home page. This block shows your visitors the username and address of your administrators. Go to the control menus on the left hand side of the Control Panel and click <em>Block Installation</em> in the Legacy System control menu.</p>
 
-<p><img src="<{'abc_2nd_clickblockinstallation.png'|helpimage}>" /></p>
-
 <p>You will see the list of unused blocks. </p>
 
-<p><img src="<{'abc_2nd_unusedblocklist.png'|helpimage}>" /></p>
 
 <p>Find the row with the "Site Info" block and click the install icon of that row.</p>
 
-<p><img src="<{'abc_2nd_siteinfoinstall.png'|helpimage}>" /></p>
 
 <h6>Block Installation</h6>
 
 <p>The "Site Info" block hasn't been installed yet. You have to input some settings for it.</p>
 
-<p><img src="<{'abc_2nd_blockinstall.png'|helpimage}>" /></p>
 
 <h6>Title</h6>
 <p>This is the title of the block that your visitors will see. You don't need to change it this time, if you don't wish to.</p>
 
 <h6>Side</h6>
 
-<p><img src="<{'abc_2nd_blockinstall_column.png'|helpimage}>" /></p>
-
 <p>Specify which column you want to assign the block to. This time, specify "Side block - right".</p>
 
-<h6>Weight</h6>
-<p>This sets the order of the block in the column. When you have several blocks all in the same column, they will be ordered from the top down, according to their <b>weight</b> setting. You can leave this as the default for now, we'll have a look at this shortly.</p>
+<h6>Order</h6>
+<p>This sets the order of the block in the column. When you have several blocks all in the same column, they will be ordered from the top down, according to their <b>order</b> setting. You can leave this as the default for now, we'll have a look at this shortly.</p>
 
 <h6>Cache time</h6>
 <p>You can specify how long the system keeps the block in cache. When the cache is active, the system will use the cache file when it can. This setting can be a little difficult, leave it for now.</p>
 
 <h6>Target modules</h6>
 
-<p><img src="<{'abc_2nd_blockinstall_modules.png'|helpimage}>" /></p>
-
 <p>Here you specify in which modules you wish to have the block displayed. This time, specify "Top page" only.</p>
 
 <h6>Target groups</h6>
-
-<p><img src="<{'abc_2nd_blockinstall_groups.png'|helpimage}>" /></p>
 
 <p>Here you specify which groups you give permission to view the block. What's a group? A group is a collection of users. Each group has permissions that allow it to access different parts of the site, such as modules or the administration control panel. You already have three system-fixed groups. These groups are special, so the administrator can't delete them.</p>
 
@@ -99,20 +85,16 @@
 <h6>Install</h6>
 <p>After you finish settings, click the install button! Then go to your site's homepage to view the block.</p>
 
-<h5>Step Two (2) --- How to control the weight of blocks</h5>
+<h5>Step Two (2) --- How to control the order of blocks</h5>
 <p>Since this concerns the ordering of blocks on a page, you have to install one more block before we can see the effect. Let's install the "Search" block so that users can search your site. When you install the block, choose "Side block - right" and "all modules" for the target modules. Now you have two blocks that have been placed in the right column. The "Search" block shows up in all pages, whereas the "Site Info" block is visible only in the top page.</p>
 
-<p>Next, set the weight of these blocks. In the control menu section on  the left-hand side of the Control Panel, click <em>Block Management</em> in the Legacy System control menu.</p>
-
-<p><img src="<{'abc_2nd_clickblockmanagement.png'|helpimage}>" /></p>
+<p>Next, set the order of these blocks. In the control menu section on  the left-hand side of the Control Panel, click <em>Block Management</em> in the Legacy System control menu.</p>
 
 <p>You see the list of installed blocks.</p>
 
-<p><img src="<{'abc_2nd_blockmanagement.png'|helpimage}>" /></p>
 
-<p>Input 1 for the weight of the "Search" block and input 5 for the weight of the "Site Info" block.</p>
+<p>Input 1 for the order of the "Search" block and input 5 for the order of the "Site Info" block.</p>
 
-<p><img src="<{'abc_2nd_blockmanagement_weight.png'|helpimage}>" /></p>
 
 <p>Then click the "Submit" button. Now the "Search" block will always be displayed before the "Site Info" block. </p>
 
@@ -121,16 +103,12 @@
 
 <p>First of all, go to <em>Block Management</em>. Then click "Add custom block" at the top of the table.</p>
 
-<p><img src="<{'abc_2nd_clickaddcustomblock.png'|helpimage}>" /></p>
-
-<p>You will be presented with a basic edit-form to create a new custom block. Some of these fields will be very familiar to you - title, side, weight - and so no explanation is needed here. Let's look at the new fields.</p>
+<p>You will be presented with a basic edit-form to create a new custom block. Some of these fields will be very familiar to you - title, side, order - and so no explanation is needed here. Let's look at the new fields.</p>
 
 <h6>Content</h6>
 <p>The content of the block. This is where you input the content you would like displayed on the user side, in this case, your welcome message. How you format your contant depends on the next setting - type.</p>
 
 <h6>Type</h6>
-
-<p><img src="<{'abc_2nd_cutomblock_type.png'|helpimage}>" /></p>
 
 <p>This field sets how the content of the block will be rendered. There are four types.</p>
 
@@ -147,12 +125,8 @@
 
 <p>Go ahead then, choose "Auto format with smilies" and input a welcome message. Then, assign this block to the center block - cente, visible on the toppage only but by anyone i.e. for all groups.</p>
 
-<p><img src="<{'abc_2nd_cutomblock_complete.png'|helpimage}>" /></p>
-
 <h5>Summary</h5>
 <p>Basically, site owners don't use HTML coding to create pages in XOOPS Cube Legacy. The themes offer columns as "slots" for you to assign blocks to. By assigning blocks to these columns, you can very easily and quickly create your site.</p>
-
-<p><img src="<{'abc_2nd_conclusion.png'|helpimage}>" /></p>
 
 <div align="right"><img src="<{'abc_index_arrow.png'|helpimage}>" style="vertical-align:-15px;" /> <a href="<{'abc_3rd.html'|helpurl}>">GO TO NEXT STEP</a></div>
 

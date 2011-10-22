@@ -6,6 +6,8 @@
 
 <h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_CONF}></h3>
 
+<div class="confirm"><{$smarty.const._AD_LEGACY_MESSAGE_CONFIRM_UPDATE_MODULE}></div>
+
 <form method="post">
   <{xoops_token form=$actionForm}>
   <{xoops_input type=hidden name=confirm value=1}>
@@ -44,10 +46,12 @@
           <{$smarty.const._AD_LEGACY_LANG_DEACTIVATE}>
         <{/if}>) 
         &raquo;
-        <b class="legacy_module_error">
+        
         <{if $actionForm->get('isactive',$mid) == 1}>
+        <b class="legacy_module_error">
           <{$smarty.const._AD_LEGACY_LANG_ISACTIVE}>
         <{else}>
+        <b class="legacy_module_warning">
           <{$smarty.const._AD_LEGACY_LANG_DEACTIVATE}>
         <{/if}></b>
       <{/if}>

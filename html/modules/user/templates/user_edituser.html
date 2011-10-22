@@ -55,6 +55,10 @@
       </select>
     </td>
   </tr>
+
+  <!-- XCL2.2 TEST-->
+  <{legacy_profile template=profile_inc_data_edit.html action=edit actionForm=$actionForm}>
+  <{*
   <tr>
     <td class="head"><{$smarty.const._MD_USER_LANG_USER_ICQ}></td>
     <td class="<{cycle values="odd,even"}>">
@@ -97,6 +101,8 @@
       <{xoops_input name=user_intrest size=30 maxlength=150 value=$actionForm->get('user_intrest')}>
     </td>
   </tr>
+  *}>
+  <!-- XCL2.2 TEST END-->
   <tr>
     <td class="head"><{$smarty.const._MD_USER_LANG_USER_SIG}></td>
     <td class="<{cycle values="odd,even"}>">

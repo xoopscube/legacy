@@ -1,0 +1,66 @@
+/* General definitions */
+html { scrollbar-face-color: #eeeeee; scrollbar-highlight-color: #ffffff; scrollbar-shadow-color: #d5d5d5; scrollbar-3dlight-color: #000000; scrollbar-arrow-color: #000000; scrollbar-track-color: #ffffff; scrollbar-darkshadow-color: #000000;}
+
+body { background-color : transparent; font-size: 12px; font-family: Verdana, Arial, Helvetica, sans-serif; margin: 0px; padding: 0px;}
+
+img {border: none;}
+
+hr { height: 3px; border: 3px #E18A00 solid; width: 95%;}
+
+ul { margin: 2px; padding: 2px; list-style: decimal inside; text-align: left;}
+li { margin-left: 2px; list-style: square inside; color: #000000;}
+
+h1 { font-size: 20px;}
+h2 { font-size: 18px;}
+h3 { font-size: 16px;}
+h4 { font-size: 14px;}
+
+th {background-color: #2F5376; color: #FFFFFF; padding : 2px; vertical-align : middle;}
+
+a:link {text-decoration: none; color: #666666; font-weight: bold; background-color: transparent;}
+a:visited {text-decoration: none; color: #666666; font-weight: bold; background-color: transparent;}
+a:hover {text-decoration: none; color: #ff9966; font-weight: bold; background-color: transparent;}
+
+
+/* Code and Quote Definition */
+div.xoopsCode { font-size: 11px; color: #006600; background-color: #FAFAFA; border: #c2cdd6 1px dashed;}
+div.xoopsQuote { font-size: 11px; color: #444444; line-height: 125%; text-align: justify; background-color: #FAFAFA; border: #c2cdd6 1px dashed;}
+
+/* Links for Quotes */
+div.xoopsQuote a:link, div.xoopsQuote a:visited { color: #444444; font-weight: bold; background-color: transparent;}
+div.xoopsQuote a:hover, div.xoopsQuote a:active { color: #1778cb; background-color: transparent;}
+
+/* Redirect messages */
+div.errorMsg { background-color: #FF3737; color: White; text-align: center; border-top: 1px solid #DDDDFF; border-left: 1px solid #DDDDFF; border-right: 1px solid #AAAAAA; border-bottom: 1px solid #AAAAAA; font-weight: bold; padding: 10px;}
+div.confirmMsg { background-color : #DDFFDF; color: #136C99; text-align:center; border-top: 1px solid #DDDDFF; border-left: 1px solid #DDDDFF; border-right: 1px solid #AAAAAA; border-bottom: 1px solid #AAAAAA; font-weight : bold;}
+
+/* General small */
+.fontSmall { font-size : 10px; background-color: transparent;}
+a.fontSmall { color: #006699;}
+a.fontSmall:hover { color: #C23030; text-decoration: underline;}
+
+/*forms elements*/
+input { border-right: #000000 1px solid; border-top: #000000 1px solid; font: 11px verdana, arial, helvetica, sans-serif; border-left: #000000 1px solid;color: #000000; border-bottom: #000000 1px solid; background-color: #ffffff;}
+textarea { border: #000000 1px solid; width: 430px; font: 11px verdana, arial, helvetica, sans-serif;}
+input.formTextBox { border: #000000 1px solid; background: #ffffff; font: 11px verdana, arial, helvetica, sans-serif;}
+select { border: #000000 1px solid; font: 11px verdana, arial, helvetica, sans-serif;}
+
+div.content { text-align: left; padding: 0px 15px 0px 15px;}
+
+.xoopsCenter { text-align:center;}
+
+.bg1 { background-color: #E6E6E6;}
+.bg2 { background-color: #2F5376;}
+.bg3 { background-color: #2F5376; color: #ffffff;}
+.bg4 { background-color: #ECECEC;}
+.bg5 { background-color: #ECECEC;}
+
+.outer {border: 1px solid silver;}
+.head {background-color: #c2cdd6; padding: 5px; font-weight: bold;}
+.even {background-color: #dee3e7; padding: 5px;}
+.odd {background-color: #E6E6E6; padding: 5px;}
+.foot {background-color: #c2cdd6; padding: 5px; font-weight: bold;}
+tr.head td {background-color: #c2cdd6; padding: 5px; font-weight: bold;}
+tr.even td {background-color: #dee3e7; padding: 5px;}
+tr.odd td {background-color: #E6E6E6; padding: 5px;}
+tr.foot td {background-color: #c2cdd6; padding: 5px; font-weight: bold;}

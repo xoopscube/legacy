@@ -22,7 +22,7 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
 	function prepare(&$controller, &$xoopsUser, $moduleConfig)
 	{
 		LegacyRender_AbstractListAction::prepare($controller, $xoopsUser, $moduleConfig);
-		$this->mActionForm =& new LegacyRender_TplfileUploadForm();
+		$this->mActionForm =new LegacyRender_TplfileUploadForm();
 		$this->mActionForm->prepare();
 	}
 	
@@ -120,7 +120,7 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
 				
 				$successFlag &= $handler->insert($obj);
 				
-				$xoopsTpl =& new XoopsTpl();
+				$xoopsTpl =new XoopsTpl();
 				$xoopsTpl->clear_cache('db:' . $obj->get('tpl_file'));
 				$xoopsTpl->clear_compiled_tpl('db:' . $obj->get('tpl_file'));
 			}

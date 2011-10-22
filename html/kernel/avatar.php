@@ -76,7 +76,7 @@ class XoopsAvatarHandler extends XoopsObjectHandler
 
     function &create($isNew = true)
     {
-        $avatar =& new XoopsAvatar();
+        $avatar =new XoopsAvatar();
         if ($isNew) {
             $avatar->setNew();
         }
@@ -92,7 +92,7 @@ class XoopsAvatarHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $avatar =& new XoopsAvatar();
+                        $avatar =new XoopsAvatar();
                     $avatar->assignVars($this->db->fetchArray($result));
                         $ret =& $avatar;
                 }
@@ -162,7 +162,7 @@ class XoopsAvatarHandler extends XoopsObjectHandler
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
-            $avatar =& new XoopsAvatar();
+            $avatar =new XoopsAvatar();
             $avatar->assignVars($myrow);
             $avatar->setUserCount($myrow['count']);
             if (!$id_as_key) {

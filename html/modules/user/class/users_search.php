@@ -55,7 +55,7 @@ class UserUsers_searchHandler extends UserUsersHandler
 		}
 
 		while($row = $this->db->fetchArray($result)) {
-			$obj =& new $this->mClass();
+			$obj =new $this->mClass();
 			$obj->assignVars($row);
 			$obj->unsetNew();
 			

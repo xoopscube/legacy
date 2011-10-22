@@ -24,7 +24,7 @@ class User_UserDeleteAction extends User_AbstractDeleteAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new User_UserAdminDeleteForm();
+		$this->mActionForm =new User_UserAdminDeleteForm();
 		$this->mActionForm->prepare();
 	}
 	

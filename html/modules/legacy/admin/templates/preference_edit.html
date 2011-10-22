@@ -59,6 +59,14 @@
             <{xoops_textarea name=$config->getVar('conf_name') rows=5 cols=50 value=$actionForm->get($config->get('conf_name'))}>
 
 
+          <{elseif $config->get('conf_formtype') == 'server_module'}>
+            <select name='<{$config->getVar('conf_name')}>' id='legacy_xoopsform_<{$config->getVar('conf_name')}>'>
+              <{foreach item=option from=$config->getRoledModuleList()}>
+                <option value='<{$option}>' <{if $actionForm->get($config->get('conf_name')) == $option}>selected="selected"<{/if}>><{$option}></option>
+              <{/foreach}>
+            </select>
+
+
           <{elseif $config->get('conf_formtype') == 'select'}>
             <select name='<{$config->getVar('conf_name')}>' id='legacy_xoopsform_<{$config->getVar('conf_name')}>'>
               <{foreach item=option from=$config->getOptionItems()}>
@@ -165,7 +173,7 @@
           <{elseif $config->get('conf_formtype') == 'module_cache'}>
             <{foreach item=module from=$moduleArr}>
               <{$module->getVar('name')}>
-                <select name="<{$config->getVar('conf_name')}>[<{$module->getVar('mid')}>]"> id='legacy_xoopsform_<{$config->getVar('conf_name')}>_<{$module->getVar('mid')}>'
+                <select name="<{$config->getVar('conf_name')}>[<{$module->getVar('mid')}>]" id="legacy_xoopsform_<{$config->getVar('conf_name')}>_<{$module->getVar('mid')}>">
                   <{foreach item=cachetime from=$cachetimeArr}>
                     <{if $actionForm->get($config->get('conf_name'), $module->get('mid')) == $cachetime->get('cachetime')}>
                       <option value="<{$cachetime->getVar('cachetime')}>" selected="selected"><{$cachetime->getVar('label')}></option>

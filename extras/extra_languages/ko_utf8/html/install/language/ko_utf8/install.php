@@ -1,13 +1,12 @@
 <?php
 //  ------------------------------------------------------------------------ //
-//                XOOPS Cube - PHP Content Management System                      //
-//                    Copyright (c) 2006 XOOPSCube.org                           //
-//                       <http://www.xoopscube.org/>                             //
+//                XOOPS Cube - PHP Content Management System                 //
+//                    Copyright (c) 2006 XOOPSCube.org                       //
+//                       <http://www.xoopscube.org/>                         //
 //  ------------------------------------------------------------------------ //
 //  ------------------------------------------------------------------------ //
-//                XOOPS Cube Korean (translated by wanikoo[ wani@wanisys.net ])       //
-//                       < http://www.wanisys.net/ >                             //
-//                       < http://www.xoops.ne.kr/xoopscube/ >                             //
+//        XOOPS Cube Korean (translated by wanikoo[ wani@wanisys.net ])      //
+//                 <http://www.xoops.ne.kr/xoopscube/>                       //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -31,7 +30,8 @@
 
 
 define("_INSTALL_L0","어서오세요. XOOPS Cube 설치마법사 입니다.");
-define("_INSTALL_L70","mainfile.php파일을 쓰기가능으로 설정해 주세요!<br />(예: UNIX/LINUX 서버의 경우는 chmod 777 mainfile.php ,Windows서버의 경우는 읽기전용으로 되어있는지 확인후 체크를 해제해주세요! ). <br />권한설정 변경후엔 이 페이지를 새로고침(리로드)해 주세요!");
+define("_INSTALL_L168","XOOPS Cube Legacy requires PHP5 or later");
+define("_INSTALL_L70","mainfile.php파일을 쓰기가능으로 설정해 주세요!<br />(예: UNIX/LINUX 서버의 경우는 웹서버에 mainfile.php 쓰기권한을 부여, Windows서버의 경우는 혹시 읽기전용으로 되어있는지 확인후 체크를 해제해주세요! ). <br />권한설정 변경후엔 이 페이지를 새로고침(리로드)해 주세요!");
 //define("_INSTALL_L71","Click on the button below to begin the installation.");
 define("_INSTALL_L1","mainfile.php 파일을 여신 후 31번째 줄에 이하의 코드가 존재하는지 확인해주세요!");
 define("_INSTALL_L2","이 줄을 다음과 같이 변경해 주세요!");
@@ -75,18 +75,21 @@ define("_INSTALL_L54","데이타베이스에의 영구접속(persistent connecti
 define("_INSTALL_L69","기본값은  아니요(NO) 입니다. 잘 모르실 경우는 아니요(NO) 를 선택해 주세요");
 define("_INSTALL_L55","XOOPS Cube의 경로(Physical Path)");
 define("_INSTALL_L59","XOOPS Cube가 설치되어있는 디렉토리로의 전체경로(Full Path)를 입력해 주세요! 끝에 [ / ]를 붙이지 마시기 바랍니다.");
+define("_INSTALL_L75","XOOPS_TRUST_PATH Physical Path");
+define("_INSTALL_L76","Physical path to your main XOOPS_TRUST_PATH directory WITHOUT trailing slash<br />You should set XOOPS_TRUST_PATH outside DocumentRoot.");
 define("_INSTALL_L56","XOOPS Cube의 URL(Virtual Path)");
 define("_INSTALL_L58","XOOPS Cube에 접속하기 위한 URL을 입력해 주세요! 끝에 [ / ] 를 붙이지 마시기 바랍니다.");
 
 define("_INSTALL_L31","데이타베이스의 작성에 실패하였습니다. 설정값이 올바른지 확인한 후 다시 처음부터 다시시도하시거나 관리자에게 해당사항을 문의해 보시기 바랍니다.");
 define("_INSTALL_L32","설치 제1단계작업 완료");
 define("_INSTALL_L33","설치가 끝난 사이트를 보시려면<a href='../index.php'>여기</a> 를 클릭해 주세요!");
-define("_INSTALL_L35","설치중에 에러가 발생한 경우엔 <a href='http://www.xoopscube.org/' target='_blank'>XOOPS Cube.org</a> 또는 <a href='http://www.wanisys.net/' target='_blank'>XOOPS Cube 비공식 한국어지원사이트</a>에 문의해 주시기 바랍니다.");
+define("_INSTALL_L35","설치중에 에러가 발생한 경우엔 <a href='http://xoopscube.sourceforge.net/' rel='external'>XOOPS Cube Project</a> 또는 <a href='http://www.wanisys.net/' rel='external'>XOOPS Cube 비공식 한국어지원사이트</a>에 문의해 주시기 바랍니다.");
 define("_INSTALL_L36","사이트 관리자의 아이디, 패스워드, 메일주소를 입력해 주시기 바랍니다.");
 define("_INSTALL_L37","관리자 아이디");
 define("_INSTALL_L38","관리자 이메일");
 define("_INSTALL_L39","관리자 패스워드");
 define("_INSTALL_L74","관리자 패스워드(재입력)");
+define("_INSTALL_L77","Set Default Timezone");
 define("_INSTALL_L40","데이타베이스테이블 작성");
 define("_INSTALL_L41","필요한 정보를 모두 입력해 주시기 바랍니다.");
 define("_INSTALL_L42","뒤로");
@@ -99,7 +102,7 @@ define("_INSTALL_L43","데이타베이스 %s 을 작성하였습니다.");
 define("_INSTALL_L44","%s 테이블의 작성에 실패하였습니다.");
 define("_INSTALL_L45","%s 테이블을 작성하였습니다.");
 
-define("_INSTALL_L46","XOOPS Cube의 모듈들이 정상적으로 작동하기 위해선 이하의 파일들이 쓰기가능으로 설정되어 있어야만 합니다.(예: UNIX/LINUX 서버의 경우엔 'chmod 666 file_name' and 'chmod 777 dir_name' , Windows 서버의 경우엔 읽기전용 해제)");
+define("_INSTALL_L46","XOOPS Cube의 모듈들이 정상적으로 작동하기 위해선 이하의 파일들이 서버에 의해 쓰기가능으로 설정되어 있어야만 합니다.");
 define("_INSTALL_L47","다음");
 
 define("_INSTALL_L53","설정내용확인:");
@@ -107,16 +110,16 @@ define("_INSTALL_L53","설정내용확인:");
 define("_INSTALL_L60","mainfile.php 파일에의 쓰기에 실패하였습니다. 파일권한설정이 올바른지 다시 확인해 주시기 바랍니다.");
 define("_INSTALL_L61","mainfile.php 파일에의 쓰기에 실패하였습니다. 서버 관리자에게 관련사항에 대해 문의해 보시기 바랍니다.");
 define("_INSTALL_L62","설정내용을 mainfile.php 파일에 성공적으로 기록하였습니다.");
-define("_INSTALL_L72","다음의 디렉토리들을 쓰기가능으로 설정해 주시기 바랍니다. (예: UNIX/LINUX 서버 'chmod 777 directory_name' , Windows서버 읽기전용해제)");
+define("_INSTALL_L72","다음의 디렉토리들을 서버에 의해 쓰기가능으로 설정해 주시기 바랍니다.");
 define("_INSTALL_L73","올바르지 않은 메일주소입니다.");
 
 // add by haruki
 define("_INSTALL_L80","소개글");
 define("_INSTALL_L81","파일의 권한(퍼미션) 체크");
 define("_INSTALL_L82","파일과 디렉토리의 권한(퍼미션) 체크");
-define("_INSTALL_L83","파일 %s 은(는) 쓰기불가 상태입니다. 쓰기가능으로 설정해주세요!(chmod 666)");
+define("_INSTALL_L83","파일 %s 은(는) 쓰기불가 상태입니다. 쓰기가능으로 설정해주세요!");
 define("_INSTALL_L84","파일 %s 은(는) 쓰기가능 상태입니다.");
-define("_INSTALL_L85","디렉토리 %s 은(는) 쓰기불가 상태입니다. 쓰기가능으로 설정해주세요!(chmod 777)");
+define("_INSTALL_L85","디렉토리 %s 은(는) 쓰기불가 상태입니다. 쓰기가능으로 설정해주세요!");
 define("_INSTALL_L86","디렉토리 %s 은 쓰기가능 상태입니다.");
 define("_INSTALL_L87","파일의 권한(퍼미션) 체크 이상무!");
 define("_INSTALL_L89","기본 설정");
@@ -125,6 +128,8 @@ define("_INSTALL_L91","확인");
 define("_INSTALL_L92","설정을 저장");
 define("_INSTALL_L93","설정을 재입력");
 define("_INSTALL_L88","파일,디렉토리의 액세스권한을 확인해 주세요.");
+define("_INSTALL_L166","Check file permissions in XOOPS_TRUST_PATH");
+define("_INSTALL_L167","Checking file and directory permissions..");
 define("_INSTALL_L94","PATH, URL 체크");
 define("_INSTALL_L127","파일의 PATH & URL을 체크하고 있습니다...");
 define("_INSTALL_L95","XOOPS Cube 경로(PATH) 탐지에 실패하였습니다.");
@@ -165,7 +170,7 @@ define("_INSTALL_L125","파일 %s 는 파일 %s 로 덮어쓰여졌습니다.");
 define("_INSTALL_L126","파일 %s의 덮어쓰기에 실패하였습니다.");
 
 define("_INSTALL_L130","설치마법사가 데이타베이스에서 XOOPS 1.3.x 의 테이블을 발견하였습니다.<br />설치마법사는 지금부터 XOOPS2 로의 업그레이드를 시도하게 됩니다.");
-define("_INSTALL_L131","XOOPS2 의 테이블이 데이타베이스에 이미 존재합니다.");
+define("_INSTALL_L131","XOOPS Cube Legacy의 테이블이 데이타베이스에 이미 존재합니다.");
 define("_INSTALL_L132","테이블 업그레이드");
 define("_INSTALL_L133","테이블 %s 를 업그레이드했습니다.");
 define("_INSTALL_L134","테이블 %s 의 업그레이드에 실패하였습니다.");

@@ -7,6 +7,8 @@
 <h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_SUCCESS}></h3>
 
 <h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_LOG}></h4>
+
+<div class="updateMsg">
 <ul>
 <{foreach item=msg from=$log}>
   <{if $msg.type=="error"}>
@@ -18,9 +20,12 @@
   <{/if}>
 <{/foreach}>
 </ul>
+</div>
 
 <{if $isPhasedMode && !$isLatestUpgrade}>
   <p>&raquo; <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getShow('dirname')}>"><b>Go to the next phased version</b></a></p>
 <{else}>
-  <p>&raquo; <a href="index.php?action=ModuleList"><b><{$smarty.const._AD_LEGACY_LANG_MODLIST}></b></a></p>
+<div class="tips">
+<div class="legacy_module_return"><img src="<{"icons/module.png"|theme}>" alt="" title="" /> <a href="index.php?action=ModuleList"><{$smarty.const._AD_LEGACY_LANG_MODLIST}></a></div>
+</div>
 <{/if}>

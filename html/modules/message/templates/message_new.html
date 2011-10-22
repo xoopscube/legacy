@@ -1,0 +1,34 @@
+<h3><{$smarty.const._MD_MESSAGE_TEMPLATE1}></h3>
+
+<p><img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_inbox.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE15}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE15}>" /> <a href="index.php?action=index"><{$smarty.const._MD_MESSAGE_TEMPLATE15}></a>&nbsp;&nbsp;
+<img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_outbox.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE7}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE7}>" /> <a href="index.php?action=send"><{$smarty.const._MD_MESSAGE_TEMPLATE7}></a></p>
+<br />
+<{if $errMsg!=""}>
+<ul>
+<{foreach item=error from=$errMsg}>
+<li style="color:red; font-weight: bold;"><{$error}></li>
+<{/foreach}>
+</ul>
+<{/if}>
+
+<{if $mActionForm->get('Legacy_Event_User_Preview')!=""}>
+<table class="outer">
+<tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE2}></td><td class="even"><{$mActionForm->getShow('uname')}></td></tr>
+<tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE3}></td><td class="even"><{$mActionForm->getShow('title')}></td></tr>
+<tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE4}></td><td class="even"><{$mActionForm->getShow('note', 'toShowTarea')}></td></tr>
+</table>
+<br />
+<{/if}>
+
+<form action="index.php?action=new" method="post">
+<{xoops_token form=$mActionForm}>
+<{xoops_input type=hidden name=mode}>
+<table class="outer">
+<tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE2}></td><td class="even"><{xoops_input name=uname size=30 maxlength=50 value=$mActionForm->get('uname')}></td></tr>
+<tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE3}></td><td class="even"><{xoops_input name=title size=50 maxlength=100 value=$mActionForm->get('title')}></td></tr>
+<tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE4}></td><td class="even"><{xoops_dhtmltarea cols=60 rows=7 name=note value=$mActionForm->get('note')}></td></tr>
+<tr><td class="foot""colspan="2" align="center""><{legacy_button id=Preview Text=$smarty.const._MD_MESSAGE_TEMPLATE5}>
+<{legacy_button id=Submit Text=$smarty.const._MD_MESSAGE_TEMPLATE6}></td></tr>
+</table>
+
+</form>

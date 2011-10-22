@@ -47,12 +47,12 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
 	function _setupActionForm()
 	{
 		if ($this->mObject->get('com_status') == XOOPS_COMMENT_PENDING) {
-			$this->mActionForm =& new Legacy_PendingCommentAdminEditForm();
+			$this->mActionForm =new Legacy_PendingCommentAdminEditForm();
 			$this->mObjectHandler->mUpdateSuccess->add(array(&$this, "doApprove"));
 			$this->mObjectHandler->mUpdateSuccess->add(array(&$this, "doUpdate"));
 		}
 		else {
-			$this->mActionForm =& new Legacy_ApprovalCommentAdminEditForm();
+			$this->mActionForm =new Legacy_ApprovalCommentAdminEditForm();
 			$this->mObjectHandler->mUpdateSuccess->add(array(&$this, "doUpdate"));
 		}
 		$this->mActionForm->prepare();
@@ -173,7 +173,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
 		$function = $comment_config['callback']['update'];
 		
 		if (function_exists($function)) {
-			$criteria =& new CriteriaCompo(new Criteria('com_modid', $comment->get('com_modid')));
+			$criteria = new CriteriaCompo(new Criteria('com_modid', $comment->get('com_modid')));
 			$criteria->add(new Criteria('com_itemid', $comment->get('com_itemid')));
 			$criteria->add(new Criteria('com_status', XOOPS_COMMENT_ACTIVE));
 			

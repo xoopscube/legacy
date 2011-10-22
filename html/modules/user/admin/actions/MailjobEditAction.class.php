@@ -30,11 +30,11 @@ class User_MailjobEditAction extends User_AbstractEditAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new User_MailjobAdminEditForm();
+		$this->mActionForm =new User_MailjobAdminEditForm();
 		$this->mActionForm->prepare();
 
-		$this->mPageNavi =& new XCube_PageNavigator('./index?action=MailjobEdit', XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
-		$this->mFilter =& new User_UserSearchFilterForm($this->mPageNavi, xoops_getmodulehandler('users_search', 'user'));
+		$this->mPageNavi =new XCube_PageNavigator('./index?action=MailjobEdit', XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
+		$this->mFilter =new User_UserSearchFilterForm($this->mPageNavi, xoops_getmodulehandler('users_search', 'user'));
 		
 		$this->mFilter->fetch();
 

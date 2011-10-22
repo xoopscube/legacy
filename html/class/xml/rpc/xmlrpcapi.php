@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 // Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://xoopscube.jp/ //
+// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
@@ -158,7 +158,7 @@ class XoopsXmlRpcApi
     {
         if (strtolower(get_class($this)) != 'xoopsapi') {
             require_once(XOOPS_ROOT_PATH.'/class/xml/rpc/xoopsapi.php');
-            $instance =& new XoopsApi($params, $this->response, $this->module); 
+            $instance =new XoopsApi($params, $this->response, $this->module); 
             return $instance;
         } else {
             return $this;

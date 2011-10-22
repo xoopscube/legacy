@@ -40,7 +40,7 @@ if (strstr($theme, "..") !== false || strstr($dirname, "..") !== false || strstr
 }
 require_once XOOPS_ROOT_PATH.'/modules/legacyRender/kernel/Legacy_AdminRenderSystem.class.php';
 
-$smarty =& new Legacy_AdminSmarty();
+$smarty =new Legacy_AdminSmarty();
 $smarty->register_modifier("theme", "Legacy_modifier_css_theme");
 $smarty->register_function("stylesheet", "Legacy_function_stylesheet");
 

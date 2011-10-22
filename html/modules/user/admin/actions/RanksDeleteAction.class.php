@@ -24,7 +24,7 @@ class User_RanksDeleteAction extends User_AbstractDeleteAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new User_RanksAdminDeleteForm();
+		$this->mActionForm =new User_RanksAdminDeleteForm();
 		$this->mActionForm->prepare();
 	}
 

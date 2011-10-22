@@ -24,7 +24,7 @@ class User_MiscOnlineAction extends User_AbstractListAction
 
 	function &_getFilterForm()
 	{
-		$filter =& new User_OnlineFilterForm($this->_getPageNavi(), $this->_getHandler());
+		$filter =new User_OnlineFilterForm($this->_getPageNavi(), $this->_getHandler());
 		return $filter;
 	}
 

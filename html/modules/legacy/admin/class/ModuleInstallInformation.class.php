@@ -193,7 +193,7 @@ class Legacy_PreferenceInformation
 		$this->mDefault = $default;
 		$this->mOrder = intval($order);
 		
-		$this->mOption =& new Legacy_PreferenceOptionInfoCollection();
+		$this->mOption =new Legacy_PreferenceOptionInfoCollection();
 	}
 	
 	/**
@@ -526,7 +526,7 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
 		$template = isset($arr['template']) ? $arr['template'] : null;
 		$options = isset($arr['options']) ? $arr['options'] : null;
 		
-		$info =& new Legacy_BlockInformation($funcNum, $arr['name'], $arr['file'], $showFunc, $editFunc, $template, $options);
+		$info =new Legacy_BlockInformation($funcNum, $arr['name'], $arr['file'], $showFunc, $editFunc, $template, $options);
 		
 		return $info;
 	}
@@ -536,7 +536,7 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
 	 */
 	function &loadBlockInformations()
 	{
-		$collection =& new Legacy_BlockInfoCollection();
+		$collection =new Legacy_BlockInfoCollection();
 		
 		$t_filePath = XOOPS_ROOT_PATH . '/modules/' . $this->_mDirname . '/xoops_version.php';
 		if (!file_exists($t_filePath)) {
@@ -611,11 +611,12 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
 	function &_createPreferenceInformation($arr)
 	{
 		$arr['description'] = isset($arr['description']) ? $arr['description'] : null;
-		$info =& new Legacy_PreferenceInformation($arr['name'], $arr['title'], $arr['description'], $arr['formtype'], $arr['valuetype'], $arr['default']);
+		$info =new Legacy_PreferenceInformation($arr['name'], $arr['title'], $arr['description'], $arr['formtype'], $arr['valuetype'], $arr['default']);
 		if (isset($arr['options'])) {
 			foreach ($arr['options'] as $name => $value) {
-				$option =& new Legacy_PreferenceOptionInformation($name, $value);
+				$option =new Legacy_PreferenceOptionInformation($name, $value);
 				$info->mOption->add($option);
+				unset($option);
 			}
 		}
 		
@@ -725,7 +726,7 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
 	 */
 	function &loadPreferenceInformations()
 	{
-		$collection =& new Legacy_PreferenceInfoCollection();
+		$collection =new Legacy_PreferenceInfoCollection();
 		
 		$t_filePath = XOOPS_ROOT_PATH . '/modules/' . $this->_mDirname . '/xoops_version.php';
 		if (!file_exists($t_filePath)) {
@@ -799,17 +800,17 @@ class Legacy_ModinfoX2DBReader extends Legacy_AbstractModinfoReader
 	
 	function &_createBlockInformation(&$block)
 	{
-		$info =& new Legacy_BlockInformation($block->get('func_num'), $block->get('name'), $block->get('func_file'), $block->get('show_func'), $block->get('edit_func'), $block->get('template'), $block->get('options'));
+		$info =new Legacy_BlockInformation($block->get('func_num'), $block->get('name'), $block->get('func_file'), $block->get('show_func'), $block->get('edit_func'), $block->get('template'), $block->get('options'));
 		return $info;
 	}
 	
 	function &loadBlockInformations()
 	{
-		$collection =& new Legacy_BlockInfoCollection();
+		$collection =new Legacy_BlockInfoCollection();
 		
 		$handler =& xoops_getmodulehandler('newblocks', 'legacy');
 		
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('dirname', $this->_mDirname));
 		$criteria->add(new Criteria('block_type', 'M'));
 		
@@ -827,12 +828,12 @@ class Legacy_ModinfoX2DBReader extends Legacy_AbstractModinfoReader
 	
 	function &_createPreferenceInformation(&$config)
 	{
-		$info =& new Legacy_PreferenceInformation($config->get('conf_name'), $config->get('conf_title'), $config->get('conf_desc'), $config->get('conf_formtype'), $config->get('conf_valuetype'), $config->get('conf_value'));
+		$info =new Legacy_PreferenceInformation($config->get('conf_name'), $config->get('conf_title'), $config->get('conf_desc'), $config->get('conf_formtype'), $config->get('conf_valuetype'), $config->get('conf_value'));
 		
 		$configOptionArr =& $config->getOptionItems();
 		
 		foreach (array_keys($configOptionArr) as $idx) {
-			$option =& new Legacy_PreferenceOptionInformation($configOptionArr[$idx]->get('confop_name'), $configOptionArr[$idx]->get('confop_value'));
+			$option =new Legacy_PreferenceOptionInformation($configOptionArr[$idx]->get('confop_name'), $configOptionArr[$idx]->get('confop_value'));
 			$info->mOption->add($option);
 			unset($option);
 		}
@@ -842,13 +843,13 @@ class Legacy_ModinfoX2DBReader extends Legacy_AbstractModinfoReader
 	
 	function &loadPreferenceInformations()
 	{
-		$collection =& new Legacy_PreferenceInfoCollection();
+		$collection =new Legacy_PreferenceInfoCollection();
 
 		$handler =& xoops_gethandler('module');
 		$module =& $handler->getByDirname($this->_mDirname);
 				
 		$handler =& xoops_gethandler('config');
-		$criteria =& new Criteria('conf_modid', $module->get('mid'));
+		$criteria =new Criteria('conf_modid', $module->get('mid'));
 		$criteria->setOrder('conf_order');
 		$configArr =& $handler->getConfigs($criteria);
 		

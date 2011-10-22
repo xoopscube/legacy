@@ -44,7 +44,7 @@ class LegacyColumnsideHandler extends XoopsObjectHandler
 	
 	function &create()
 	{
-		$ret =& new LegacyColumnsideObject();
+		$ret =new LegacyColumnsideObject();
 		return $ret;
 	}
 	

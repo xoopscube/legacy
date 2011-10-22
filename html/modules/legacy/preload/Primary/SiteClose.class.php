@@ -51,7 +51,7 @@ class Legacy_SiteClose extends XCube_ActionFilter
 
 		if (!$accessAllowFlag) {
 			require_once XOOPS_ROOT_PATH . '/class/template.php';
-			$xoopsTpl =& new XoopsTpl();
+			$xoopsTpl =new XoopsTpl();
 			$xoopsTpl->assign(array('xoops_sitename' => htmlspecialchars($xoopsConfig['sitename']),
 									   'xoops_isuser' => is_object( $context->mXoopsUser ),//GIJ
 									   'xoops_themecss' => xoops_getcss(),

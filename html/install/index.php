@@ -45,8 +45,8 @@ if ( isset($_POST) ) {
 include_once './include/functions.php';
 $language = getLanguage();
 include_once './language/'.$language.'/install.php';
-define('_OKIMG', '<img src="img/yes.gif" width="6" height="12" border="0" alt="OK" /> ');
-define('_NGIMG', '<img src="img/no.gif" width="6" height="12" border="0" alt="NG" /> ');
+define('_OKIMG', '<img src="img/yes.png" border="0" alt="OK" /> ');
+define('_NGIMG', '<img src="img/no.png" border="0" alt="NG" /> ');
 
 include_once './class/simplewizard.php';
 $wizard = new SimpleWizard;
@@ -60,7 +60,8 @@ $wizardSeq->add('start',       _INSTALL_L0,   'modcheck',   _INSTALL_L81);
 $wizardSeq->add('modcheck',    _INSTALL_L82,  'dbform',     _INSTALL_L89);
 $wizardSeq->add('dbform',      _INSTALL_L90,  'dbconfirm',  _INSTALL_L91);
 $wizardSeq->add('dbconfirm',   _INSTALL_L53,  'dbsave',     _INSTALL_L92,  '',      _INSTALL_L93);
-$wizardSeq->add('dbsave',      _INSTALL_L92,  'mainfile',   _INSTALL_L94);
+$wizardSeq->add('dbsave',      _INSTALL_L92,  'modcheck_trust',   _INSTALL_L166);
+$wizardSeq->add('modcheck_trust',      _INSTALL_L167,  'mainfile',   _INSTALL_L94);
 $wizardSeq->add('mainfile',    _INSTALL_L94,  'initial',    _INSTALL_L102, 'start', _INSTALL_L103, true);
 $wizardSeq->add('initial',     _INSTALL_L102, 'checkDB',    _INSTALL_L104, 'start', _INSTALL_L103, true);
 $wizardSeq->add('checkDB',     _INSTALL_L104, 'createDB',   _INSTALL_L105, 'start', _INSTALL_L103, true);

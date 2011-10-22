@@ -21,44 +21,44 @@ class LegacyRender_BannerclientAdminEditForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['cid'] =& new XCube_IntProperty('cid');
-		$this->mFormProperties['name'] =& new XCube_StringProperty('name');
-		$this->mFormProperties['contact'] =& new XCube_StringProperty('contact');
-		$this->mFormProperties['email'] =& new XCube_StringProperty('email');
-		$this->mFormProperties['login'] =& new XCube_StringProperty('login');
-		$this->mFormProperties['passwd'] =& new XCube_StringProperty('passwd');
-		$this->mFormProperties['extrainfo'] =& new XCube_TextProperty('extrainfo');
+		$this->mFormProperties['cid'] =new XCube_IntProperty('cid');
+		$this->mFormProperties['name'] =new XCube_StringProperty('name');
+		$this->mFormProperties['contact'] =new XCube_StringProperty('contact');
+		$this->mFormProperties['email'] =new XCube_StringProperty('email');
+		$this->mFormProperties['login'] =new XCube_StringProperty('login');
+		$this->mFormProperties['passwd'] =new XCube_StringProperty('passwd');
+		$this->mFormProperties['extrainfo'] =new XCube_TextProperty('extrainfo');
 	
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['cid'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['cid'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['cid']->setDependsByArray(array('required'));
 		$this->mFieldProperties['cid']->addMessage('required', _AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_CID);
 	
-		$this->mFieldProperties['name'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['name'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['name']->setDependsByArray(array('required','maxlength'));
 		$this->mFieldProperties['name']->addMessage('required', _AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_NAME, '60');
 		$this->mFieldProperties['name']->addMessage('maxlength', _AD_LEGACYRENDER_ERROR_MAXLENGTH, _AD_LEGACYRENDER_LANG_NAME, '60');
 		$this->mFieldProperties['name']->addVar('maxlength', '60');
 	
-		$this->mFieldProperties['contact'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['contact'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['contact']->setDependsByArray(array('maxlength'));
 		$this->mFieldProperties['contact']->addMessage('maxlength', _AD_LEGACYRENDER_ERROR_MAXLENGTH, _AD_LEGACYRENDER_LANG_CONTACT, '60');
 		$this->mFieldProperties['contact']->addVar('maxlength', '60');
 	
-		$this->mFieldProperties['email'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['email'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['email']->setDependsByArray(array('maxlength','email'));
 		$this->mFieldProperties['email']->addMessage('email', _AD_LEGACYRENDER_ERROR_EMAIL, _AD_LEGACYRENDER_LANG_EMAIL, '60');
 		$this->mFieldProperties['email']->addMessage('maxlength', _AD_LEGACYRENDER_ERROR_MAXLENGTH, _AD_LEGACYRENDER_LANG_EMAIL, '60');
 		$this->mFieldProperties['email']->addVar('maxlength', '60');
 	
-		$this->mFieldProperties['login'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['login'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['login']->setDependsByArray(array('maxlength'));
 		$this->mFieldProperties['login']->addMessage('maxlength', _AD_LEGACYRENDER_ERROR_MAXLENGTH, _AD_LEGACYRENDER_LANG_LOGIN, '10');
 		$this->mFieldProperties['login']->addVar('maxlength', '10');
 	
-		$this->mFieldProperties['passwd'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['passwd'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['passwd']->setDependsByArray(array('maxlength'));
 		$this->mFieldProperties['passwd']->addMessage('maxlength', _AD_LEGACYRENDER_ERROR_MAXLENGTH, _AD_LEGACYRENDER_LANG_PASSWD, '10');
 		$this->mFieldProperties['passwd']->addVar('maxlength', '10');
@@ -68,7 +68,7 @@ class LegacyRender_BannerclientAdminEditForm extends XCube_ActionForm
 	{
 		if (strlen($this->get('login')) > 0) {
 			$handler =& xoops_getmodulehandler('bannerclient', 'legacyRender');
-			$criteria =& new CriteriaCompo();
+			$criteria =new CriteriaCompo();
 			$criteria->add(new Criteria('login', $this->get('login')));
 			$criteria->add(new Criteria('cid', $this->get('cid'), '<>'));
 

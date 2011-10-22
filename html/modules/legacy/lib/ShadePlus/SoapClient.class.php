@@ -6,6 +6,8 @@
  * @license http://xoopscube.sourceforge.net/license/bsd_licenses.txt Modified BSD license
  *
  */
+ // TODO prevent path disclosure, gigamaster
+ error_reporting(0);
 
 if (!XC_CLASS_EXISTS('XCube_AbstractServiceClient')) exit();
 
@@ -16,7 +18,7 @@ class ShadePlus_SoapClient extends XCube_AbstractServiceClient
 	function ShadePlus_SoapClient(&$service)
 	{
 		parent::XCube_AbstractServiceClient($service);
-		$this->mClient =& new soap_client($service, true);
+		$this->mClient =new soap_client($service, true);
 		$this->mClient->decodeUTF8(false);
 	}
 	

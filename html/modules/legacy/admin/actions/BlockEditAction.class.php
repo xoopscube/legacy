@@ -51,7 +51,7 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_BlockEditForm();
+		$this->mActionForm =new Legacy_BlockEditForm();
 		$this->mActionForm->prepare();
 	}
 	
@@ -114,7 +114,7 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
 			}
 			
 			$permHandler =& xoops_gethandler('groupperm');
-			$criteria =& new CriteriaCompo();
+			$criteria =new CriteriaCompo();
 			$criteria->add(new Criteria('gperm_modid', 1));
 			$criteria->add(new Criteria('gperm_itemid', $this->mObject->get('bid')));
 			$criteria->add(new Criteria('gperm_name', 'block_read'));
@@ -173,7 +173,7 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
 		$moduleArr[1]->set('mid', 0);
 		$moduleArr[1]->set('name', _AD_LEGACY_LANG_ALL_MODULES);
 
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('hasmain', 1));
 		$criteria->add(new Criteria('isactive', 1));
 		

@@ -20,7 +20,7 @@ class LegacyRender_TplsetSelectForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['tplset_name'] =& new XCube_StringProperty('tplset_name');
+		$this->mFormProperties['tplset_name'] =new XCube_StringProperty('tplset_name');
 	}
 
 	function validateTplset_name()

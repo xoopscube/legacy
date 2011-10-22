@@ -114,5 +114,7 @@ return array(
      "qt"       => "video/quicktime",
      "mov"      => "video/quicktime",
      "avi"      => "video/x-msvideo",
+     "m4v"		=> "video/x-m4v",
+     "mp4"		=> "video/mp4",
 );
 ?>

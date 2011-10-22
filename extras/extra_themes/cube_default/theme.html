@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta name="robots" content="<{$xoops_meta_robots}>" />
+<meta name="keywords" content="<{$xoops_meta_keywords}>" />
+<meta name="description" content="<{$xoops_meta_description}>" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author}>" />
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<meta name="generator" content="XOOPS Cube" />
+<link rel="shortcut icon" href="<{$xoops_url}>/favicon.ico" />
+<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/xoops.css" />
+
+<{* If you change standard Legacy theme structure removing style*.css from the theme directory, you have to remove the following; *}>
+<{if $xoops_themecss != ""}>
+  <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_themecss}>" />
+<{/if}>
+
+<title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
+<!-- RMV: added module header -->
+<{$xoops_module_header}>
+<script type="text/javascript">
+<!--
+<{$xoops_js}>
+// -->
+</script>
+</head>
+<body>
+<div class="outline">
+<table cellspacing="0">
+<tr>
+<td class="headerlogo"><a href="<{$xoops_url}>/"><img src="<{$xoops_imageurl}>images/logo.gif" width="200" height="100" alt="<{$xoops_sitename}>" title="<{$xoops_sitename}>" /></a></td>
+<td class="headerbanner"><{$xoops_banner}></td>
+</tr>
+</table>
+<div class="headerbar">Welcome <{if $xoops_isuser}><{$xoops_uname}><{else}>Guest<{/if}>&nbsp;</div>
+
+<table cellspacing="0">
+<tr>
+<{if $xoops_showlblock == 1}>
+<td id="leftcolumn" class="leftcolumn">
+<!-- Start left blocks loop -->
+<{foreach item=block from=$xoops_lblocks}>
+<div class="leftblockTitle"><{$block.title}></div>
+<div class="leftblockContent"><{$block.content}></div>
+<{/foreach}>
+<!-- End left blocks loop -->
+</td>
+<{/if}>
+
+<td id="centercolumn" class="centercolumn">
+<{if $xoops_showcblock == 1}>
+<table cellspacing="0">
+<tr>
+<td class="centerCcolumn" colspan="2">
+<{foreach item=block from=$xoops_ccblocks}>
+<div class="centeroutline">
+<div class="centerCblockTitle"><{$block.title}></div>
+<div class="centerCblockContent"><{$block.content}></div>
+</div>
+<{/foreach}>
+</td>
+</tr>
+<tr>
+<td class="centerLcolumn">
+<{foreach item=block from=$xoops_clblocks}>
+<div class="centeroutline">
+<div class="centerLblockTitle"><{$block.title}></div>
+<div class="centerLblockContent"><{$block.content}></div>
+</div>
+<{/foreach}>
+</td>
+<td class="centerRcolumn">
+<{foreach item=block from=$xoops_crblocks}>
+<div class="centeroutline">
+<div class="centerRblockTitle"><{$block.title}></div>
+<div class="centerRblockContent"><{$block.content}></div>
+</div>
+<{/foreach}>
+</td>
+</tr>
+</table>
+<{/if}>
+<div class="content"><{$xoops_contents}></div>
+</td>
+
+<{if $xoops_showrblock == 1}>
+<td id="rightcolumn" class="rightcolumn">
+<{foreach item=block from=$xoops_rblocks}>
+<div class="rightblockTitle"><{$block.title}></div>
+<div class="rightblockContent"><{$block.content}></div>
+<{/foreach}>
+</td>
+<{/if}>
+</tr>
+</table>
+
+<div class="footerbar">
+<a href="http://xoopscube.sourceforge.net/"><img src="<{$xoops_imageurl}>images/s_poweredby.png" alt="XOOPS Cube PROJECT" title="XOOPS Cube PROJECT" /></a><br />
+<{if $xoops_footer != 'Powered by XOOPS Cube 2.1&copy; 2001-2009 <a href="http://xoopscube.sourceforge.net/" rel="external">XOOPS Cube Project</a>'}><{$xoops_footer}><{/if}>
+</div>
+
+</div>
+</body>
+</html>

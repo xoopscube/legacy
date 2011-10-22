@@ -115,10 +115,10 @@ class XCube_PageNavigator
 		$this->mUrl = $url;
 		$this->mFlags = $flags;
 		
-		$this->mFetch =& new XCube_Delegate();
+		$this->mFetch =new XCube_Delegate();
 		$this->mFetch->add(array(&$this, 'fetchNaviControl'));
 		
-		$this->mGetTotalItems =& new XCube_Delegate();
+		$this->mGetTotalItems =new XCube_Delegate();
 	}
 	
 	/**
@@ -164,6 +164,19 @@ class XCube_PageNavigator
 		}
 	}
 	
+
+	protected function _renderExtra(/*** string ***/ $key, /*** mixed ***/ $extra, /*** string[] ***/ &$query)
+	{
+		if(! is_array($extra)){
+			$query[] = $key.'='.urlencode($extra);
+		}
+		else{	//array
+			foreach($extra as $k=>$value){
+				$this->_renderExtra($key."[".$k."]", $value, $query);
+			}
+		}
+	}
+
 	function getRenderBaseUrl($mask = null)
 	{
 		if ($mask == null) {
@@ -178,7 +191,8 @@ class XCube_PageNavigator
 			
 			foreach($this->mExtra as $key=>$value) {
 				if (is_array($mask) && !in_array($key, $mask)) {
-					$tarr[]=$key."=".urlencode($value);
+					//$tarr[]=$key."=".urlencode($value);
+					$this->_renderExtra($key, $value, $tarr);
 				}
 			}
 			
@@ -225,7 +239,8 @@ class XCube_PageNavigator
 			$tarr=array();
 			
 			foreach($this->mExtra as $key=>$value) {
-				$tarr[]=$key."=".urlencode($value);
+				//$tarr[]=$key."=".urlencode($value);
+				$this->_renderExtra($key, $value, $tarr);
 			}
 			
 			$tarr[] = $this->getPerpageKey() . "=" . $this->mPerpage;
@@ -244,25 +259,26 @@ class XCube_PageNavigator
 	function renderUrlForPage($page = null)
 	{
 		$tarr=array();
-			
+	
 		foreach($this->mExtra as $key=>$value) {
-			$tarr[]=$key."=".urlencode($value);
+			//$tarr[]=$key."=".urlencode($value);
+			$this->_renderExtra($key, $value, $tarr);
 		}
-			
+	
 		foreach($this->mSort as $key=>$value) {
 			$tarr[]=$key."=".urlencode($value);
 		}
-			
+	
 		$tarr[] = $this->getPerpageKey() . "=" . $this->getPerpage();
-		
+	
 		if ($page !== null) {
 			$tarr[] = $this->getStartKey() . '=' . intval($page);
 		}
-			
+	
 		if (strpos($this->mUrl,"?") !== false) {
 			return $this->mUrl."&amp;".implode("&amp;",$tarr);
 		}
-
+	
 		return $this->mUrl."?".implode("&amp;",$tarr);
 	}
 	

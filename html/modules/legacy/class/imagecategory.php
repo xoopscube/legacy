@@ -168,7 +168,7 @@ class LegacyImagecategoryHandler extends XoopsObjectGenericHandler
 		// If the object has groups which are allowed to read.
 		//
 		if ($obj->isLoadedReadGroups()) {
-			$criteria =& new CriteriaCompo();
+			$criteria =new CriteriaCompo();
 			$criteria->add(new Criteria('gperm_itemid', $obj->get('imgcat_id')));
 			$criteria->add(new Criteria('gperm_modid', 1));
 			$criteria->add(new Criteria('gperm_name', 'imgcat_read'));
@@ -189,7 +189,7 @@ class LegacyImagecategoryHandler extends XoopsObjectGenericHandler
 		// If the object has groups which are allowed to upload.
 		//
 		if ($obj->isLoadedUploadGroups()) {
-			$criteria =& new CriteriaCompo();
+			$criteria =new CriteriaCompo();
 			$criteria->add(new Criteria('gperm_itemid', $obj->get('imgcat_id')));
 			$criteria->add(new Criteria('gperm_modid', 1));
 			$criteria->add(new Criteria('gperm_name', 'imgcat_write'));
@@ -236,11 +236,11 @@ class LegacyImagecategoryHandler extends XoopsObjectGenericHandler
 		unset($handler);
 	
 		$handler =& xoops_getmodulehandler('group_permission', 'legacy');
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('gperm_itemid', $obj->get('imgcat_id')));
 		$criteria->add(new Criteria('gperm_modid', 1));
 		
-		$nameCriteria =& new CriteriaCompo();
+		$nameCriteria =new CriteriaCompo();
 		$nameCriteria->add(new Criteria('gperm_name', 'imgcat_read'));
 		$nameCriteria->add(new Criteria('gperm_name', 'imgcat_write'), 'OR');
 		

@@ -29,7 +29,7 @@ class Legacy_InstallerChecker extends XCube_ActionFilter
     		$xoopsConfig = $root->mContext->mXoopsConfig;
     		
 			require_once XOOPS_ROOT_PATH . '/class/template.php';
-			$xoopsTpl =& new XoopsTpl();
+			$xoopsTpl =new XoopsTpl();
 			$xoopsTpl->assign(array('xoops_sitename' => htmlspecialchars($xoopsConfig['sitename']),
 									   'xoops_themecss' => xoops_getcss(),
 									   'xoops_imageurl' => XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/',

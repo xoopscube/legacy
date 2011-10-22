@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 // Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://xoopscube.jp/ //
+// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 // Modified by: Nathan Dial                                                  //
@@ -477,7 +477,7 @@ class Criteria extends CriteriaElement
 		//
 		// Recive DTYPE. This is a prolongation of criterion life operation.
 		//
-		if (is_array($value) && count($value)==2)
+		if (is_array($value) && count($value)==2 && $operator!='IN' && $operator!='NOT IN')
 		{
 			$this->dtype = intval($value[0]);
 			$this->value = $value[1];

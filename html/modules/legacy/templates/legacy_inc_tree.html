@@ -1,0 +1,25 @@
+<div class="<{$className}>">
+<{foreach item=cat from=$tree name=tree}>
+<{if $smarty.foreach.tree.first}>
+<{assign var=d value=$cat->getDepth()}>
+<{/if}>
+
+<{if $smarty.foreach.tree.first || $d < $cat->getDepth()}>
+	<ul class="catL<{$cat->getDepth()}>">
+		<li><a href="<{xoops_cooluri dirname=$dirname dataname=cat data_id=$cat->getShow('cat_id')}>"><{$cat->getShow('title')}></a></li>
+<{elseif $d==$cat->getDepth()}>
+		<li><a href="<{xoops_cooluri dirname=$dirname dataname=cat data_id=$cat->getShow('cat_id')}>"><{$cat->getShow('title')}></a></li>
+<{else}>
+	<{section name=i start=0 loop=$d-$cat->getDepth()}>
+	</ul>
+	<{/section}>
+		<li><a href="<{xoops_cooluri dirname=$dirname dataname=cat data_id=$cat->getShow('cat_id')}>"><{$cat->getShow('title')}></a></li>
+<{/if}>
+<{if $smarty.foreach.tree.last}>
+	<{section name=i start=0 loop=$cat->getDepth()}>
+	</ul>
+	<{/section}>
+<{/if}>
+<{assign var=d value=$cat->getDepth()}>
+<{/foreach}>
+</div>

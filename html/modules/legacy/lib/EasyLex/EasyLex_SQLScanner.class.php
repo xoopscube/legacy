@@ -323,7 +323,7 @@ class EasyLex_SQLScanner
 			$value = $this->mActiveToken;
 		}
 		
-		$token =& new EasyLex_SQLToken($type, $value);
+		$token =new EasyLex_SQLToken($type, $value);
 		$this->mTokens[] =& $token;
 
 		$this->mStatus = EASYLEX_SQL_UNKNOWN;

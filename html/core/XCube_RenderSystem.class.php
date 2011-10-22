@@ -173,7 +173,7 @@ class XCube_RenderSystem
 	 */
 	function &createRenderTarget()
 	{
-		$renderTarget =& new XCube_RenderTarget();
+		$renderTarget = new XCube_RenderTarget();
 		return $renderTarget;
 	}
 

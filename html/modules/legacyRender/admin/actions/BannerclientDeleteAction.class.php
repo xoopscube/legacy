@@ -24,7 +24,7 @@ class LegacyRender_BannerclientDeleteAction extends LegacyRender_AbstractDeleteA
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new LegacyRender_BannerclientAdminDeleteForm();
+		$this->mActionForm =new LegacyRender_BannerclientAdminDeleteForm();
 		$this->mActionForm->prepare();
 	}
 

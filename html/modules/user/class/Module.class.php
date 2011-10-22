@@ -7,7 +7,7 @@ class User_Module extends Legacy_ModuleAdapter
 	function User_Module(&$xoopsModule)
 	{
 		parent::Legacy_ModuleAdapter($xoopsModule);
-		$this->mGetAdminMenu =& new XCube_Delegate();
+		$this->mGetAdminMenu =new XCube_Delegate();
 		$this->mGetAdminMenu->register('User_Module.getAdminMenu');
 	}
 	

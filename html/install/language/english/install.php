@@ -1,7 +1,8 @@
 <?php
 // $Id: install.php,v 1.3 2007/06/24 12:39:39 tom_g3x Exp $
-define("_INSTALL_L0","Welcome to the Install Wizard for XOOPS Cube 2.1");
-define("_INSTALL_L70","Please change the file permission for mainfile.php so that it is writeable by the server (i.e. make mainfile.php writable for the web server if you're running on a UNIX/LINUX server, or check the properties of the file and make sure the read-only flag is not set on a Windows server ). Reload this page once you have changed the permission setting.");
+define("_INSTALL_L0","Welcome to the Install Wizard for XOOPS Cube 2.2");
+define("_INSTALL_L168","XOOPS Cube Legacy requires PHP5 or later");
+define("_INSTALL_L70","Please change the file permission for mainfile.php so that it is writeable by the server (i.e. chmod 777 mainfile.php on a UNIX/LINUX server, or check the properties of the file and make sure the read-only flag is not set on a Windows server ). Reload this page once you have changed the permission setting.");
 //define("_INSTALL_L71","Click on the button below to begin the installation.");
 define("_INSTALL_L1","Open mainfile.php with your text editor and find the following codes on line 31:");
 define("_INSTALL_L2","Now, change this line to:");
@@ -45,18 +46,22 @@ define("_INSTALL_L54","Use persistent connection?");
 define("_INSTALL_L69","Default is 'NO'. Choose 'NO' if you are unsure.");
 define("_INSTALL_L55","XOOPS Cube Physical Path");
 define("_INSTALL_L59","Physical path to your main XOOPS Cube directory WITHOUT trailing slash");
+define("_INSTALL_L75","XOOPS_TRUST_PATH Physical Path");
+define("_INSTALL_L76","Physical path to your main XOOPS_TRUST_PATH directory WITHOUT trailing slash<br />You should set XOOPS_TRUST_PATH outside DocumentRoot.");
+
 define("_INSTALL_L56","XOOPS Cube Virtual Path (URL)");
 define("_INSTALL_L58","Virtual path to your main XOOPS Cube directory WITHOUT trailing slash");
 
 define("_INSTALL_L31","Could not create database. Contact the server administrator for details.");
 define("_INSTALL_L32","The 1st Step Installation Complete");
 define("_INSTALL_L33","Click <a href='../index.php'>HERE</a> to see the home page of your site.");
-define("_INSTALL_L35","If you had any errors, please contact the dev team at <a href='http://xoopscube.sourceforge.net/' target='_blank'>XOOPS Cube Project</a>");
+define("_INSTALL_L35","If you had any errors, please contact the dev team at <a href='http://xoopscube.sourceforge.net/' rel='external'>XOOPS Cube Project</a>");
 define("_INSTALL_L36","Please choose your site admin's name and password.");
 define("_INSTALL_L37","Admin Name");
 define("_INSTALL_L38","Admin Email");
 define("_INSTALL_L39","Admin Password");
 define("_INSTALL_L74","Confirm Password");
+define("_INSTALL_L77","Set Default Timezone");
 define("_INSTALL_L40","Create Tables");
 define("_INSTALL_L41","Please go back and type in all the required info.");
 define("_INSTALL_L42","Back");
@@ -69,7 +74,7 @@ define("_INSTALL_L43","Database %s created!");
 define("_INSTALL_L44","Unable to make %s");
 define("_INSTALL_L45","Table %s created.");
 
-define("_INSTALL_L46","In order for the modules included in the package to work correctly, the following files must be writeable by the server. Please change the permission setting for these files. (i.e. make a file and directories writable for the web server if you're running on a UNIX/LINUX server, or check the properties of the file and make sure the read-only flag is not set on a Windows server)");
+define("_INSTALL_L46","In order for the modules included in the package to work correctly, the following files must be writeable by the server. Please change the permission setting for these files. (i.e. 'chmod 666 file_name' and 'chmod 777 dir_name' on a UNIX/LINUX server, or check the properties of the file and make sure the read-only flag is not set on a Windows server)");
 define("_INSTALL_L47","Next");
 
 define("_INSTALL_L53","Please confirm the following submitted data:");
@@ -77,7 +82,7 @@ define("_INSTALL_L53","Please confirm the following submitted data:");
 define("_INSTALL_L60","Could not write into mainfile.php. Please check the file permission and try again.");
 define("_INSTALL_L61","Could not write to mainfile.php. Contact the server administrator for details.");
 define("_INSTALL_L62","Configuration data has been saved successfully to mainfile.php.");
-define("_INSTALL_L72","The following directories must be created with the write permission by the server. (i.e. make those directories writable for the web server on a UNIX/LINUX server)");
+define("_INSTALL_L72","The following directories must be created with the write permission by the server. (i.e. 'chmod 777 directory_name' on a UNIX/LINUX server)");
 define("_INSTALL_L73","Invalid Email");
 
 // add by haruki
@@ -95,6 +100,8 @@ define("_INSTALL_L91","confirm");
 define("_INSTALL_L92","Save settings");
 define("_INSTALL_L93","Modify settings");
 define("_INSTALL_L88","Saving configuration data..");
+define("_INSTALL_L166","Check file permissions in XOOPS_TRUST_PATH");
+define("_INSTALL_L167","Checking file and directory permissions..");
 define("_INSTALL_L94","Check path & URL");
 define("_INSTALL_L127","Checking file path & URL settings..");
 define("_INSTALL_L95","Could not detect the physical path to your XOOPS directory.");
@@ -135,7 +142,7 @@ define("_INSTALL_L125","File %s overwritten by %s.");
 define("_INSTALL_L126","Could not write to file %s.");
 
 define("_INSTALL_L130","The installer has detected tables for XOOPS 1.3.x in your database.<br />The installer will now attempt to upgrade your database to XOOPS2.");
-define("_INSTALL_L131","Tables for XOOPS2 already exist in your database.");
+define("_INSTALL_L131","Tables for XOOPS Cube Legacy already exist in your database.");
 define("_INSTALL_L132","update tables");
 define("_INSTALL_L133","Table %s updated.");
 define("_INSTALL_L134","Failed updating table %s.");

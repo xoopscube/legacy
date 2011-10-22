@@ -53,7 +53,7 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
 			$GLOBALS['xoopsOption']['pagetype'] = "user";
 		}		
 		
-		$this->mSetupBlock =& new XCube_Delegate();
+		$this->mSetupBlock =new XCube_Delegate();
 		$this->mSetupBlock->register('Legacy_AdminControllerStrategy.SetupBlock');
 	}
 
@@ -82,8 +82,8 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
 	{
 		require_once XOOPS_LEGACY_PATH . "/admin/blocks/AdminActionSearch.class.php";
 		require_once XOOPS_LEGACY_PATH . "/admin/blocks/AdminSideMenu.class.php";
-		$this->mController->_mBlockChain[] =& new Legacy_AdminActionSearch();
-		$this->mController->_mBlockChain[] =& new Legacy_AdminSideMenu();
+		$this->mController->_mBlockChain[] =new Legacy_AdminActionSearch();
+		$this->mController->_mBlockChain[] =new Legacy_AdminSideMenu();
 		
 		$this->mSetupBlock->call(new XCube_Ref($this->mController));
 	}

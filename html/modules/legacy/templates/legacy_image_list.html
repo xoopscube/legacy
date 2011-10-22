@@ -1,23 +1,37 @@
 <script type="text/javascript">
 <!--//
 function appendCode(addCode) {
-	var targetDom = window.opener.xoopsGetElementById('<{$target}>');
-	if (targetDom.createTextRange && targetDom.caretPos){
-  		var caretPos = targetDom.caretPos;
-		caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? addCode + ' ' : addCode;  
-	} else if (targetDom.getSelection && targetDom.caretPos){
-		var caretPos = targetDom.caretPos;
-		caretPos.text = caretPos.text.charat(caretPos.text.length - 1) == ' ' ? addCode + ' ' : addCode;
-	} else {
-		targetDom.value = targetDom.value + addCode;
-  	}
-	window.close();
-	return;
+var targetDom = window.opener.xoopsGetElementById('<{$target}>');
+if (window.opener.document.selection) { //for IE
+if (targetDom.createTextRange && targetDom.caretPos){
+var caretPos = targetDom.caretPos;
+caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? addCode + ' ' : addCode;
+} else if (targetDom.getSelection && targetDom.caretPos){
+var caretPos = targetDom.caretPos;
+caretPos.text = caretPos.text.charat(caretPos.text.length - 1) == ' ' ? addCode + ' ' : addCode;
+} else {
+targetDom.value = targetDom.value + addCode;
 }
+} else if (targetDom.setSelectionRange) { // for Fx, Chrome, Opera
+var startPos = targetDom.selectionStart;
+var endPos = targetDom.selectionEnd;
+var lastPos = startPos + addCode.length;
+targetDom.value = targetDom.value.substring(0, startPos) + addCode
++ targetDom.value.substring(endPos, targetDom.value.length);
+targetDom.setSelectionRange(lastPos, lastPos); // Move caret to inserted text end
+} else { // for Other Browser
+targetDom.value = targetDom.value + addCode;
+}
+
+window.close();
+return;
+}
+
 //-->
 </script>
 
 <form method="get" action="<{$smarty.const.XOOPS_URL}>/imagemanager.php?op=list" style="margin:10px;">
+  <input type="hidden" name="target" value="<{$target}>" />
   <select name="imgcat_id" onchange="location='<{$smarty.const.XOOPS_URL}>/imagemanager.php?target=<{$target}>&amp;imgcat_id='+this.options[this.selectedIndex].value">
     <option id="imgcat_id_0" value="0">---</option>
     <{xoops_optionsArray id=imgcat_id from=$categoryArr value=imgcat_id label=imgcat_name default=$imgcatId}>

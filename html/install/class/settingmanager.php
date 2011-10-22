@@ -42,6 +42,7 @@ class setting_manager {
     var $prefix;
     var $db_pconnect;
     var $root_path;
+    var $trust_path;
     var $xoops_url;
 	
 	var $salt;
@@ -86,6 +87,15 @@ class setting_manager {
             }
             $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://';
             $this->xoops_url = (!empty($filepath)) ? $protocol.$_SERVER['HTTP_HOST'].'/'.$filepath : $protocol.$_SERVER['HTTP_HOST'];
+			// find xoops_trust_path
+			$path = $this->root_path ;
+			while( strlen( $path ) > 4 ) {
+				if( is_dir( $path . '/xoops_trust_path' ) ) {
+					$this->trust_path = $path . '/xoops_trust_path' ;
+					break ;
+				}
+				$path = dirname( $path ) ;
+			}
         }
     }
 
@@ -106,6 +116,8 @@ class setting_manager {
             $this->db_pconnect = intval($_POST['db_pconnect']) > 0 ? 1 : 0;
         if(isset($_POST['root_path']))
             $this->root_path = $this->sanitizer->stripSlashesGPC($_POST['root_path']);
+        if(isset($_POST['trust_path']))
+            $this->trust_path = $this->sanitizer->stripSlashesGPC($_POST['trust_path']);
         if(isset($_POST['xoops_url']))
             $this->xoops_url = $this->sanitizer->stripSlashesGPC($_POST['xoops_url']);
         if(isset($_POST['salt']))
@@ -129,6 +141,8 @@ class setting_manager {
             $this->db_pconnect = intval(XOOPS_DB_PCONNECT) > 0 ? 1 : 0;
         if(defined('XOOPS_ROOT_PATH'))
             $this->root_path = XOOPS_ROOT_PATH;
+        if(defined('XOOPS_TRUST_PATH'))
+            $this->trust_path = XOOPS_TRUST_PATH;
         if(defined('XOOPS_URL'))
             $this->xoops_url = XOOPS_URL;
 		if(defined('XOOPS_SALT'))
@@ -154,6 +168,9 @@ class setting_manager {
         if ( empty($this->root_path) ) {
             $error[] = sprintf(_INSTALL_L57, _INSTALL_L55);
         }
+        if ( empty($this->trust_path) ) {
+            $error[] = sprintf(_INSTALL_L57, _INSTALL_L55);
+        }
         if ( empty($this->xoops_url) ) {
             $error[] = sprintf(_INSTALL_L57, _INSTALL_L56);
         }
@@ -170,9 +187,6 @@ class setting_manager {
     function editform(){
         $ret =
             '<table width="100%" class="outer" cellspacing="5">
-                <tr>
-                    <th colspan="2"></th>
-                </tr>
                 <tr valign="top" align="left">
                     <td class="head">
                         <b>'._INSTALL_L51.'</b><br />
@@ -210,6 +224,7 @@ class setting_manager {
                 ';
 
         $ret .= $this->editform_sub(_INSTALL_L55, _INSTALL_L59, 'root_path', $this->sanitizer->htmlSpecialChars($this->root_path));
+        $ret .= $this->editform_sub(_INSTALL_L75, _INSTALL_L76, 'trust_path', $this->sanitizer->htmlSpecialChars($this->trust_path));
         $ret .= $this->editform_sub(_INSTALL_L56, _INSTALL_L58, 'xoops_url', $this->sanitizer->htmlSpecialChars($this->xoops_url));
 
         $ret .= "</table>";
@@ -270,6 +285,10 @@ class setting_manager {
                         <td class="bg1">'.$this->sanitizer->htmlSpecialChars($this->root_path).'</td>
                     </tr>
                     <tr>
+                        <td class="bg3"><b>'._INSTALL_L75.'</b></td>
+                        <td class="bg1">'.$this->sanitizer->htmlSpecialChars($this->trust_path).'</td>
+                    </tr>
+                    <tr>
                         <td class="bg3"><b>'._INSTALL_L56.'</b></td>
                         <td class="bg1">'.$this->sanitizer->htmlSpecialChars($this->xoops_url).'</td>
                     </tr>
@@ -283,6 +302,7 @@ class setting_manager {
             <input type="hidden" name="salt" value="'.$this->sanitizer->htmlSpecialChars($this->salt).'" />
             <input type="hidden" name="db_pconnect" value="'.intval($this->db_pconnect).'" />
             <input type="hidden" name="root_path" value="'.$this->sanitizer->htmlSpecialChars($this->root_path).'" />
+            <input type="hidden" name="trust_path" value="'.$this->sanitizer->htmlSpecialChars($this->trust_path).'" />
             <input type="hidden" name="xoops_url" value="'.$this->sanitizer->htmlSpecialChars($this->xoops_url).'" />
             ';
         return $ret;

@@ -1,0 +1,356 @@
+div.smarkup {
+	position: relative;
+	height: 100%;
+}
+div.smarkup * {
+	margin: 0;
+	padding: 0;
+	font-family: arial;
+	list-style-type: none;
+	outline: none;
+}
+div.smarkup form {
+	width: 100%;
+}
+div.smarkup div.smarkup-search {
+	border-top: 1px solid #999;
+	display: none;
+	padding: 2px 0 2px 4px;
+	line-height: 20px;
+}
+div.smarkup div.smarkup-search * {
+	float: left;
+}
+div.smarkup div.smarkup-search input.qsearch {
+	height: 14px;
+	padding: 2px;
+	margin: 0;
+	border: none;
+	width: 100px;
+	border: 1px solid #999;
+}
+div.smarkup div.smarkup-search a, div.smarkup div.smarkup-search small {
+	font-size: 11px;
+	line-height: 20px;
+}
+div.smarkup div.smarkup-search a {
+	border: 0;
+	margin: 2px 6px 0 4px;
+	display: block;
+	width: 16px; 
+	height: 16px;
+	background: url(img/magnifier.png) no-repeat;
+}
+div.smarkup div.smarkup-search:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+div.smarkup div.smarkup-textarea-wrapper {
+	margin: 0 4px 4px 4px;
+	height: 100%;
+}
+div.smarkup-textarea {
+	background-color: #fff;
+}
+div.smarkup textarea {
+	clear: both;
+	display: block;
+	width: 100%;
+	border: 0;
+	overflow: auto;
+	font-family: 'Courier New', Courier, monospace;
+}
+div.smarkup ul.smarkup-toolbar {
+	list-style-type: none;
+	margin: 0;
+}
+div.smarkup ul.smarkup-toolbar > li {
+	float: left;
+	height: 16px;
+}
+div.smarkup ul.smarkup-toolbar > li:hover div {
+	display: block;
+}
+div.smarkup ul.smarkup-toolbar li.ddmenu {
+	background: url(img/ddmenu.png) no-repeat 16px 7px;
+	padding-right: 3px;
+	margin-right: 5px;
+	position: relative;
+	cursor: pointer;
+}
+div.smarkup div.smarkup-ddmenu {
+	width: 200px;
+	position: absolute;
+	border: 1px solid #dedede;
+	border-bottom: none;
+	left: 0;
+	top: 16px;
+	z-index: 999;
+	display: none;
+}
+div.smarkup div.smarkup-ddmenu ul {
+	margin: 0;
+}
+div.smarkup div.smarkup-ddmenu li {
+	border-bottom: 1px solid #dedede;
+}
+div.smarkup div.smarkup-ddmenu li a {
+	display: block;
+	height: 24px;
+	width: auto;
+	line-height: 24px;
+	background-color: #fff;
+	color: #333;
+	font-weight: bold;
+	text-decoration: none;
+	padding-left: 9px;
+	font-size: 13px;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-position: 4px center;
+	padding-left: 24px !important;
+}
+div.smarkup div.smarkup-ddmenu li a:hover {
+	background-color: #dedede;
+}
+div.smarkup ul.smarkup-toolbar li.separator {
+	width: 1px;
+	margin: 0 12px 0 6px;
+	height: 16px;
+	overflow: hidden;
+	background-color: #ccc;
+}
+div.smarkup ul.smarkup-toolbar a {
+	text-decoration: none;
+	display: block;
+	width: 16px;
+	height: 16px;
+	margin-right: 6px;
+}
+div.smarkup div.smarkup-preview {
+	margin: 4px;
+	border: 1px solid #999;
+	display: none;
+}
+div.smarkup div.smarkup-preview-header {
+	cursor: pointer;
+}
+div.smarkup iframe.smarkup-preview-iframe {
+	border: 0;
+	width: 100%;
+	height: 300px;
+	overflow: auto;
+}
+div.smarkup div.smarkup-overlap {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0.7;
+	filter: alpha(opacity=70);
+	background-color: black;
+	display: none;
+	z-index: 1000;
+}
+
+div.smarkup div.smarkup-dialog {
+	position: absolute;
+	width: 360px;
+	top: 50%;
+	left: 50%;
+	margin-left: -180px;
+	display: none;
+	z-index: 1001;
+}
+
+div.smarkup div.smarkup-dialog dl {
+	margin-top: 8px;
+}
+
+div.smarkup div.smarkup-dialog dt {
+	clear: left;
+	float: left;
+	display: block;
+	margin-right: 8px;
+	width: 120px;
+	text-align: right;
+	line-height: 27px;
+	height: 27px;
+}
+
+div.smarkup div.smarkup-dialog dt label {
+	color: #666666;
+	font-size: 13px;
+}
+
+div.smarkup div.smarkup-dialog dd input {
+	height: 15px;
+	line-height: 15px;
+	padding: 2px;
+	border: 4px solid #dedede;
+}
+
+div.smarkup div.smarkup-dialog-form {
+	background-color: #fff;
+	margin: 0 9px;
+	padding: 9px;
+}
+
+div.smarkup div.smarkup-dialog-form h3 {
+	padding: 5px 0 5px 5px;
+	background-color: #dedede;
+	margin: -9px -9px 0;
+	position: relative;
+}
+
+div.smarkup div.smarkup-dialog-form p {
+	border-top: 1px solid #dedede;
+	margin: 8px -9px 0;
+	text-align: center;
+	padding-top: 8px;
+}
+
+div.smarkup div.smarkup-dialog-form p input {
+	background-color: #dedede;
+	border: none;
+	font-weight: bold;
+	color: #666666;
+	padding: 1px 0;
+	width: 60px;
+	height: 24px;
+	margin-right: 4px;
+	cursor: pointer;
+}
+
+div.smarkup div.smarkup-dialog-form p input:hover, div.smarkup div.smarkup-dialog-form p input:focus {
+	background-color: #666;
+	color: #fff;
+}
+
+div.smarkup div.smarkup-dialog-header, div.smarkup div.smarkup-dialog-footer {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+}
+
+div.smarkup div.smarkup_help * {
+	clear: both;
+	text-align: left;
+	font-size: 12px;
+}
+
+div.smarkup div.smarkup_help {
+	margin: 9px 0;
+	height: 150px;
+	overflow: auto;
+}
+
+div.smarkup div.smarkup_help h4 {
+	color: #FF8A00;
+	font-size: 1em;
+	border-bottom: 1px solid #dedede;
+}
+
+div.smarkup div.smarkup_help dt {
+	font-weight: bold;
+	text-align: left;
+	width: auto;
+	color: #3B4B5F;
+}
+
+div.smarkup div.smarkup_help dd {
+	margin-bottom: 6px;
+	padding-left: 6px;
+}
+
+div.smarkup a.find {
+	background: url(img/find.png) no-repeat center center;
+}
+div.smarkup a.preview {
+	background: url(img/preview.png) no-repeat center center;
+}
+div.smarkup a.h1 {
+	background: url(img/h1.png) no-repeat center center;
+}
+div.smarkup a.h2 {
+	background: url(img/h2.png) no-repeat center center;
+}
+div.smarkup a.h3 {
+	background: url(img/h3.png) no-repeat center center;
+}
+div.smarkup a.h4 {
+	background: url(img/h4.png) no-repeat center center;
+}
+div.smarkup a.h5 {
+	background: url(img/h5.png) no-repeat center center;
+}
+div.smarkup a.h6 {
+	background: url(img/h6.png) no-repeat center center;
+}
+div.smarkup a.p {
+	background: url(img/paragraph.png) no-repeat center center;
+}
+div.smarkup a.blockquote {
+	background: url(img/blockquote.png) no-repeat center center;
+}
+div.smarkup a.strong {
+	background: url(img/bold.png) no-repeat center center;
+}
+div.smarkup a.em {
+	background: url(img/italic.png) no-repeat center center;
+}
+div.smarkup a.del {
+	background: url(img/strikethrough.png) no-repeat center center;
+}
+div.smarkup a.ul {
+	background: url(img/unordered-list.png) no-repeat center center;
+}
+div.smarkup a.ol {
+	background: url(img/ordered-list.png) no-repeat center center;
+}
+div.smarkup a.li {
+	background: url(img/list-item.png) no-repeat center center;
+}
+div.smarkup a.img {
+	background: url(img/photo.png) no-repeat center center;
+}
+div.smarkup a.a {
+	background: url(img/link.png) no-repeat center center;
+}
+div.smarkup a.omega {
+	background: url(img/omega.png) no-repeat center center;
+}
+div.smarkup a.color {
+	background: url(img/color.png) no-repeat center center;
+}
+div.smarkup a.tag {
+	background: url(img/tag.png) no-repeat center center;
+}
+div.smarkup a.code {
+	background: url(img/code.png) no-repeat center center;
+}
+div.smarkup a.help {
+	background: url(img/help.png) no-repeat center center;
+}
+div.smarkup a.underline {
+	background: url(img/underline.png) no-repeat center center;
+}
+div.smarkup a.font {
+	background: url(img/font.png) no-repeat center center;
+}
+div.smarkup a.email {
+	background: url(img/email.png) no-repeat center center;
+}
+div.smarkup a.size {
+	background: url(img/size.png) no-repeat center center;
+}
+div.smarkup a.color {
+	background: url(img/color.png) no-repeat center center;
+}
+div.smarkup a.strikethrough {
+	background: url(img/strikethrough.png) no-repeat center center;
+}

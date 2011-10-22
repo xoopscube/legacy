@@ -20,12 +20,12 @@ class User_GroupAdminDeleteForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['groupid'] =& new XCube_IntProperty('groupid');
+		$this->mFormProperties['groupid'] =new XCube_IntProperty('groupid');
 
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['groupid'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['groupid'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['groupid']->setDependsByArray(array('required'));
 		$this->mFieldProperties['groupid']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_GROUPID);
 	}

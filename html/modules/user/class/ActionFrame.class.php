@@ -28,7 +28,7 @@ class User_ActionFrame
 	function User_ActionFrame($admin)
 	{
 		$this->mAdminFlag = $admin;
-		$this->mCreateAction =& new XCube_Delegate();
+		$this->mCreateAction =new XCube_Delegate();
 		$this->mCreateAction->register('User_ActionFrame.CreateAction');
 		$this->mCreateAction->add(array(&$this, '_createAction'));
 	}
@@ -70,7 +70,7 @@ class User_ActionFrame
 		require_once $fileName;
 	
 		if (XC_CLASS_EXISTS($className)) {
-			$actionFrame->mAction =& new $className($actionFrame->mAdminFlag);
+			$actionFrame->mAction =new $className($actionFrame->mAdminFlag);
 		}
 	}
 	
@@ -113,30 +113,33 @@ class User_ActionFrame
 		else {
 			$viewStatus = $this->mAction->getDefaultView($controller, $controller->mRoot->mContext->mXoopsUser);
 		}
-		
+	
+        $render = $controller->mRoot->mContext->mModule->getRenderTarget();
+        $render->setAttribute('xoops_pagetitle', $this->mAction->getPagetitle());
+	
 		switch($viewStatus) {
 			case USER_FRAME_VIEW_SUCCESS:
-				$this->mAction->executeViewSuccess($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
+				$this->mAction->executeViewSuccess($controller, $controller->mRoot->mContext->mXoopsUser, $render);
 				break;
 		
 			case USER_FRAME_VIEW_ERROR:
-				$this->mAction->executeViewError($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
+				$this->mAction->executeViewError($controller, $controller->mRoot->mContext->mXoopsUser, $render);
 				break;
 		
 			case USER_FRAME_VIEW_INDEX:
-				$this->mAction->executeViewIndex($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
+				$this->mAction->executeViewIndex($controller, $controller->mRoot->mContext->mXoopsUser, $render);
 				break;
 		
 			case USER_FRAME_VIEW_INPUT:
-				$this->mAction->executeViewInput($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
+				$this->mAction->executeViewInput($controller, $controller->mRoot->mContext->mXoopsUser, $render);
 				break;
 				
 			case USER_FRAME_VIEW_PREVIEW:
-				$this->mAction->executeViewPreview($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
+				$this->mAction->executeViewPreview($controller, $controller->mRoot->mContext->mXoopsUser, $render);
 				break;
 				
 			case USER_FRAME_VIEW_CANCEL:
-				$this->mAction->executeViewCancel($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
+				$this->mAction->executeViewCancel($controller, $controller->mRoot->mContext->mXoopsUser, $render);
 				break;
 		}
 	}
@@ -152,7 +155,36 @@ class User_Action
 	{
 		return false;
 	}
-	
+
+	/**
+	 * _getPageAction
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	protected function _getPageAction()
+	{
+		return null;
+	}
+
+	/**
+	 * _getPageTitle
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	protected function _getPagetitle()
+	{
+		return null;
+	}
+
+	public function getPageTitle()
+	{
+		return Legacy_Utils::formatPagetitle(XCube_Root::getSingleton()->mContext->mModule->mXoopsModule->get('name'), $this->_getPagetitle(), $this->_getPageAction());
+	}
+
 	function hasPermission(&$controller, &$xoopsUser, $moduleConfig)
 	{
 		return true;

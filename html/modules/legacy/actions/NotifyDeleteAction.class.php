@@ -31,7 +31,7 @@ class Legacy_NotifyDeleteAction extends Legacy_Action
 		$controller->mRoot->mLanguageManager->loadPageTypeMessageCatalog('notification');
 		$controller->mRoot->mLanguageManager->loadModuleMessageCatalog('legacy');
 		
-		$this->mActionForm =& new Legacy_NotifyDeleteForm();
+		$this->mActionForm =new Legacy_NotifyDeleteForm();
 		$this->mActionForm->prepare();
 	}
 

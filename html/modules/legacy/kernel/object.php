@@ -26,8 +26,9 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
  */
 class XoopsSimpleObject extends AbstractXoopsObject
 {
-	var $mVars = array();
-	var $mIsNew = true;
+	public $mVars = array();
+	public $mIsNew = true;
+	public $mDirname = null;
 	
 	var $_mAllowType = array(XOBJ_DTYPE_BOOL, XOBJ_DTYPE_INT, XOBJ_DTYPE_FLOAT, XOBJ_DTYPE_STRING, XOBJ_DTYPE_TEXT);
 	
@@ -68,43 +69,40 @@ class XoopsSimpleObject extends AbstractXoopsObject
 	
 	function assignVar($key, $value)
 	{
-		if (!isset($this->mVars[$key])) {
-			return;
-		}
+		$vars = &$this->mVars[$key];
+		if (!isset($vars)) return;
 		
-		switch ($this->mVars[$key]['data_type']) {
+		switch ($vars['data_type']) {
 			case XOBJ_DTYPE_BOOL:
-				$this->mVars[$key]['value'] = $value ? 1 : 0;
+				$vars['value'] = $value ? 1 : 0;
 				break;
 
 			case XOBJ_DTYPE_INT:
-				$this->mVars[$key]['value'] = $value !== null ? intval($value) : null;
+				$vars['value'] = $value !== null ? intval($value) : null;
 				break;
 
 			case XOBJ_DTYPE_FLOAT:
-				$this->mVars[$key]['value'] = $value !== null ? floatval($value) : null;
+				$vars['value'] = $value !== null ? floatval($value) : null;
 				break;
 
 			case XOBJ_DTYPE_STRING:
-				if ($this->mVars[$key]['maxlength'] !== null && strlen($value) > $this->mVars[$key]['maxlength']) {
-					$this->mVars[$key]['value'] = xoops_substr($value, 0, $this->mVars[$key]['maxlength'], null);
+				if ($vars['maxlength'] !== null && strlen($value) > $vars['maxlength']) {
+					$vars['value'] = xoops_substr($value, 0, $vars['maxlength'], null);
 				}
 				else {
-					$this->mVars[$key]['value'] = $value;
+					$vars['value'] = $value;
 				}
 				break;
 
 			case XOBJ_DTYPE_TEXT:
-				$this->mVars[$key]['value'] = $value;
+				$vars['value'] = $value;
 				break;
 		}
 	}
 	
 	function assignVars($values)
 	{
-		foreach ($values as $key => $value) {
-			$this->assignVar($key, $value);
-		}
+		foreach($values as $key => $value) $this->assignVar($key, $value);
 	}
 	
 	function set($key, $value)
@@ -153,30 +151,31 @@ class XoopsSimpleObject extends AbstractXoopsObject
 	function getShow($key)
 	{
 		$value = null;
+		$vars = $this->mVars[$key];
 		
-		switch ($this->mVars[$key]['data_type']) {
+		switch ($vars['data_type']) {
 			case XOBJ_DTYPE_BOOL:
 			case XOBJ_DTYPE_INT:
 			case XOBJ_DTYPE_FLOAT:
-				$value = $this->mVars[$key]['value'];
+				$value = $vars['value'];
 				break;
 
 			case XOBJ_DTYPE_STRING:
 				$root =& XCube_Root::getSingleton();
 				$textFilter =& $root->getTextFilter();
-				$value = $textFilter->toShow($this->mVars[$key]['value']);
+				$value = $textFilter->toShow($vars['value']);
 				break;
 
 			case XOBJ_DTYPE_TEXT:
 				$root =& XCube_Root::getSingleton();
 				$textFilter =& $root->getTextFilter();
-				$value = $textFilter->toShowTarea($this->mVars[$key]['value'], 0, 1, 1, 1, 1);
+				$value = $textFilter->toShowTarea($vars['value'], 0, 1, 1, 1, 1);
 				break;
 		}
 		
 		return $value;
 	}
-	
+
 	function getTypeInformations()
 	{
 		$ret = array();
@@ -185,6 +184,34 @@ class XoopsSimpleObject extends AbstractXoopsObject
 		}
 		
 		return $ret;
+	}
+
+	/**
+	 * getPurifiedHtml
+	 * 
+	 * @param	string	$key
+	 * @param	string	$encoding
+	 * @param	string	$doctype
+	 * 
+	 * @return	string
+	**/
+	public function getPurifiedHtml(/*** string ***/ $key, /*** string ***/ $encoding=null, /*** string ***/ $doctype=null)
+	{
+		$root = XCube_Root::getSingleton();
+		$textFilter = $root->getTextFilter();
+		return $textFilter->purifyHtml($this->get($key), $encoding, $doctype);
+	}
+
+	/**
+	 * getDirname
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	public function getDirname()
+	{
+		return $this->mDirname;
 	}
 }
 

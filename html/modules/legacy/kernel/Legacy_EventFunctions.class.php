@@ -19,7 +19,7 @@ class Legacy_EventFunction
 		$root =& XCube_Root::getSingleton();
 		$root->mController->setupModuleContext('legacy');
 	
-		$moduleRunner =& new Legacy_ActionFrame(false);
+		$moduleRunner =new Legacy_ActionFrame(false);
 		
 		$action = isset($_REQUEST['op']) ? ucfirst(xoops_getrequest('op')) : "List";
 		$moduleRunner->setMode(LEGACY_FRAME_MODE_IMAGE);
@@ -39,7 +39,7 @@ class Legacy_EventFunction
 		$root =& XCube_Root::getSingleton();
 		$root->mController->setupModuleContext('legacy');
 		
-		$moduleRunner =& new Legacy_ActionFrame(false);
+		$moduleRunner =new Legacy_ActionFrame(false);
 		$moduleRunner->setActionName('Backend');
 
 		$root->mController->mExecute->add(array(&$moduleRunner, 'execute'));
@@ -56,7 +56,7 @@ class Legacy_EventFunction
 		$root =& XCube_Root::getSingleton();
 		$root->mController->setupModuleContext('legacy');
 		
-		$moduleRunner =& new Legacy_ActionFrame(false);
+		$moduleRunner =new Legacy_ActionFrame(false);
 		$moduleRunner->setMode(LEGACY_FRAME_MODE_SEARCH);
 		$moduleRunner->setActionName(ucfirst(xoops_getrequest('action')));
 
@@ -199,7 +199,7 @@ class Legacy_EventFunction
 	function recountPost(&$posts, $xoopsUser)
 	{
 		$handler =& xoops_gethandler('comment');
-		$criteria =& new Criteria('com_uid', $xoopsUser->get('uid'));
+		$criteria =new Criteria('com_uid', $xoopsUser->get('uid'));
 		$posts += $handler->getCount($criteria);
 	}
 }

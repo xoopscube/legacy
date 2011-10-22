@@ -37,7 +37,7 @@ class Legacy_SearchResultsAction extends Legacy_Action
 	
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_SearchResultsForm($this->mConfig['keyword_min']);
+		$this->mActionForm =new Legacy_SearchResultsForm($this->mConfig['keyword_min']);
 		$this->mActionForm->prepare();
 	}
 	

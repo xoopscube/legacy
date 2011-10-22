@@ -1,0 +1,22 @@
+<table cellspacing="0">
+  <tr>
+    <td id="usermenu">
+      <a class="menuTop" href="<{$xoops_url}>/user.php"><{$block.lang_youraccount}></a>
+      <a href="<{$xoops_url}>/edituser.php"><{$block.lang_editaccount}></a>
+      <a href="<{$xoops_url}>/notifications.php"><{$block.lang_notifications}></a>
+      <a href="<{$xoops_url}>/user.php?op=logout"><{$block.lang_logout}></a>
+
+      <{if $block.flagShowInbox}>
+        <{if $block.new_messages > 0}>
+          <a class="highlight" href="<{$xoops_url}>/viewpmsg.php"><{$block.lang_inbox}> (<span style="color:#ff0000; font-weight: bold;"><{$block.new_messages}></span>)</a>
+        <{else}>
+          <a href="<{$xoops_url}>/viewpmsg.php"><{$block.lang_inbox}></a>
+        <{/if}>
+      <{/if}>
+
+      <{if $xoops_isadmin}>
+        <a href="<{$xoops_url}>/admin.php"><{$block.lang_adminmenu}></a>
+      <{/if}>
+    </td>
+  </tr>
+</table>

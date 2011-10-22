@@ -229,7 +229,7 @@ class User_LegacypageFunctions
 
 		$userHandler =& xoops_getmodulehandler('users', 'user');
 		
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('uname', xoops_getrequest('uname')));
 		$criteria->add(new Criteria('pass', md5(xoops_getrequest('pass'))));
 		

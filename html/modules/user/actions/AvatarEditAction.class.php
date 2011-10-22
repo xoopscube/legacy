@@ -99,6 +99,30 @@ class User_AvatarEditAction extends User_AbstractEditAction
 		return $handler;
 	}
 
+	/**
+	 * _getPageTitle
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	protected function _getPagetitle()
+	{
+		return Legacy_Utils::getUserName($this->_getId());
+	}
+
+	/**
+	 * _getPageAction
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	protected function _getPageAction()
+	{
+		return _MD_USER_LANG_AVATAR_EDIT;
+	}
+
 	/***
 	 * This class uses AvatarUploadForm class. It requests three condition
 	 * which are width limit, height limit and filesize limit.
@@ -107,7 +131,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
 	 */
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new User_AvatarEditForm();
+		$this->mActionForm =new User_AvatarEditForm();
 		$this->mActionForm->prepare($this->mAvatarWidth, $this->mAvatarHeight, $this->mAvatarMaxfilesize);
 	}
 	
@@ -142,7 +166,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
 		elseif ($this->mObject->get('uid') == $xoopsUser->get('uid')) {
 			// Check count of the system avatar.
 			$handler =& xoops_getmodulehandler('avatar', 'user');
-			$criteria =& new Criteria('avatar_type', 'S');
+			$criteria =new Criteria('avatar_type', 'S');
 			if ($handler->getCount($criteria) > 0)
 				return true;
 			
@@ -158,12 +182,12 @@ class User_AvatarEditAction extends User_AbstractEditAction
 	 */
 	function getDefaultView(&$controller, &$xoopsUser)
 	{
-		$navi =& new XCube_PageNavigator(XOOPS_URL . "/edituser.php?op=avatarform&amp;uid=" . $xoopsUser->get('uid'), XCUBE_PAGENAVI_START);
+		$navi =new XCube_PageNavigator(XOOPS_URL . "/edituser.php?op=avatarform&amp;uid=" . $xoopsUser->get('uid'), XCUBE_PAGENAVI_START);
 		$handler =& xoops_getmodulehandler('avatar', 'user');
 		
 		$this->mSystemAvatars[] =& $handler->createNoavatar();
 		
-		$this->mFilter =& new User_AvatarFilterForm($navi, $handler);
+		$this->mFilter =new User_AvatarFilterForm($navi, $handler);
 		$this->mFilter->fetch();
 		
 		$criteria = $this->mFilter->getCriteria();
@@ -172,7 +196,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
 			$this->mSystemAvatars[] =& $t_avatarArr[$key];
 		}
 		
-		$this->mAvatarSelectForm =& new User_AvatarSelectForm();
+		$this->mAvatarSelectForm =new User_AvatarSelectForm();
 		$this->mAvatarSelectForm->prepare();
 		
 		$this->mAvatarSelectForm->load($this->mObject);
@@ -217,10 +241,12 @@ class User_AvatarEditAction extends User_AbstractEditAction
 				return false;
 			}
 		}
+	
+		$this->_resize();
 		
 		if ($this->mActionForm->mOldAvatarFilename != null && $this->mActionForm->mOldAvatarFilename != "blank.gif") {
 			$avatarHandler =& xoops_getmodulehandler('avatar', 'user');
-			$criteria =& new Criteria('avatar_file', $this->mActionForm->mOldAvatarFilename);
+			$criteria =new Criteria('avatar_file', $this->mActionForm->mOldAvatarFilename);
 			$avatarArr =& $avatarHandler->getObjects($criteria);
 			if (count($avatarArr) > 0 && is_object($avatarArr[0]) && $avatarArr[0]->get('avatar_type') == 'C') {
 				$avatarHandler->delete($avatarArr[0]);
@@ -250,6 +276,72 @@ class User_AvatarEditAction extends User_AbstractEditAction
 			return false;
 		}
 	}
+
+    /**
+     * Resize image resource.
+     * 
+     * @param   void
+     * 
+     * @return  void
+    **/
+    public function _resize()
+    {
+		//resize requires GD library
+		if(! function_exists('imagecreatefromjpeg') || ! function_exists('imagecreatefrompng') || ! function_exists('imagecreatefromgif')) return;
+	
+    	if(! $formFile = $this->mActionForm->mFormFile) return;
+    	$filePath = XOOPS_UPLOAD_PATH.'/'.$formFile->getFileName();
+		list($width,$height,$type,$attr)=getimagesize($filePath);
+    	switch($type){
+	    	case 2:
+	    	$source = imagecreatefromjpeg($filePath);
+	    	break;
+	    	case 1:
+	    	$source = imagecreatefromgif($filePath);
+	    	break;
+	    	case 3:
+	    	$source = imagecreatefrompng($filePath);
+	    	break;
+    	}
+        $size = $this->_getResizedSize($width,$height,$this->mAvatarWidth,$this->mAvatarHeight);
+        $result = function_exists(imagecreatetruecolor) ? imagecreatetruecolor($size['width'],$size['height']) : imagecreate($size['width'],$size['height']);
+        if(!imagecopyresampled($result, $source,0,0,0,0,$size['width'],$size['height'],$width,$height))
+        {
+            die();
+        }
+    	switch($type){
+	    	case 2:
+	        imagejpeg($result, $filePath);
+	    	break;
+	    	case 1:
+	        imagegif($result, $filePath);
+	    	break;
+	    	case 3:
+	        imagepng($result, $filePath);
+	    	break;
+    	}
+    }
+
+    /** 
+     * Get _resized size.
+     * 
+     * @param   int $width
+     * @param   int $height
+     * @param   int $maxWidth
+     * @param   int $maxHeight
+     * 
+     * @return  int{}
+    **/
+    public function _getResizedSize(/*** int ***/ $width,/*** int ***/ $height,/*** int ***/ $maxWidth,/*** int ***/ $maxHeight)
+    {
+        if(min($width,$height,$maxWidth,$maxHeight) < 1)
+        {
+        	echo $width .'/'. $height .'/'. $maxWidth .'/'. $maxHeight;
+            die();
+        }
+        $scale = min($maxWidth / $width,$maxHeight / $height, 1);
+        return array('width' => intval($width * $scale),'height' => intval($height * $scale));
+    }
 
 	function executeViewInput(&$controller,&$xoopsUser,&$render)
 	{

@@ -29,13 +29,13 @@ class User_AvatarEditForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['uid'] =& new XCube_IntProperty('uid');
-		$this->mFormProperties['uploadavatar'] =& new XCube_ImageFileProperty('uploadavatar');
+		$this->mFormProperties['uid'] =new XCube_IntProperty('uid');
+		$this->mFormProperties['uploadavatar'] =new XCube_ImageFileProperty('uploadavatar');
 
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['uploadavatar'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['uploadavatar'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['uploadavatar']->setDependsByArray(array('extension', 'maxfilesize'));
 		$this->mFieldProperties['uploadavatar']->addMessage('extension', _MD_USER_ERROR_AVATAR_EXTENSION);
 		$this->mFieldProperties['uploadavatar']->addVar('extension', "jpg,gif,png");
@@ -46,6 +46,7 @@ class User_AvatarEditForm extends XCube_ActionForm
 	function validateUploadavatar()
 	{
 		if ($this->get('uploadavatar') != null) {
+		/*
 			$formfile = $this->get('uploadavatar');
 			if ($formfile->getWidth() > $this->mWidth) {
 				$this->addErrorMessage(_MD_USER_ERROR_AVATAR_SIZE);
@@ -53,6 +54,7 @@ class User_AvatarEditForm extends XCube_ActionForm
 			elseif ($formfile->getHeight() > $this->mHeight) {
 				$this->addErrorMessage(_MD_USER_ERROR_AVATAR_SIZE);
 			}
+		*/
 		}
 	}
 	
@@ -69,15 +71,15 @@ class User_AvatarEditForm extends XCube_ActionForm
 		$this->mFormFile = $this->get('uploadavatar');
 
 		if ($this->mFormFile != null) {
-		$this->mFormFile->setRandomToBodyName('cavt');
-		
-		$filename = $this->mFormFile->getFileName();
-		$this->mFormFile->setBodyName(substr($filename, 0, 25));
-		
-		$obj->set('user_avatar', $this->mFormFile->getFileName());	//< TODO
+			$this->mFormFile->setRandomToBodyName('cavt');
+			
+			$filename = $this->mFormFile->getFileName();
+			$this->mFormFile->setBodyName(substr($filename, 0, 25));
+			
+			$obj->set('user_avatar', $this->mFormFile->getFileName());	//< TODO
+		}
 	}
-	}
-	
+
 	/**
 	 * @return UserAvatarObject
 	 */

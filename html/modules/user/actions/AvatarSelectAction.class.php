@@ -25,7 +25,7 @@ class User_AvatarSelectAction extends User_AbstractEditAction
 		parent::prepare($controller, $xoopsUser, $moduleConfig);
 
 		$handler =& xoops_getmodulehandler('avatar', 'user');
-		$criteria =& new Criteria('avatar_file', $xoopsUser->get('user_avatar'));
+		$criteria =new Criteria('avatar_file', $xoopsUser->get('user_avatar'));
 		$avatarArr =& $handler->getObjects($criteria);
 		if (count($avatarArr) > 0) {
 			$this->mOldAvatar =& $avatarArr[0];
@@ -45,7 +45,7 @@ class User_AvatarSelectAction extends User_AbstractEditAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new User_AvatarSelectForm();
+		$this->mActionForm =new User_AvatarSelectForm();
 		$this->mActionForm->prepare();
 	}
 	
@@ -110,7 +110,7 @@ class User_AvatarSelectAction extends User_AbstractEditAction
 			//
 			// Insert new link.
 			//
-			$criteria =& new Criteria('avatar_file', $this->mObject->get('user_avatar'));
+			$criteria =new Criteria('avatar_file', $this->mObject->get('user_avatar'));
 			$avatarArr =& $avatarHandler->getObjects($criteria);
 			if (is_array($avatarArr) && is_object($avatarArr[0])) {
 				$link =& $linkHandler->create();
@@ -138,7 +138,7 @@ class User_AvatarSelectAction extends User_AbstractEditAction
 
 	function executeViewError(&$controller,&$xoopsUser,&$renderSystem)
 	{
-		$controller->executeRedirect(XOOPS_URL . "/userinfo.php?op=avatarform&uid=" . $this->mActionForm->get('uid'), 1, _MD_ERROR_DBUPDATE_FAILED);
+		$controller->executeRedirect(XOOPS_URL . "/userinfo.php?op=avatarform&uid=" . $this->mActionForm->get('uid'), 1, _MD_USER_ERROR_DBUPDATE_FAILED);
 	}
 }
 

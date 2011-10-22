@@ -30,7 +30,7 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_CommentAdminDeleteForm();
+		$this->mActionForm =new Legacy_CommentAdminDeleteForm();
 		$this->mActionForm->prepare();
 	}
 
@@ -47,7 +47,7 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
 		// Load children and load their module and commentater.
 		//
 		$handler =& xoops_getmodulehandler('comment');
-		$criteria =& new Criteria('com_pid', $this->mObject->get('com_id'));
+		$criteria =new Criteria('com_pid', $this->mObject->get('com_id'));
 		$children =& $handler->getObjects($criteria);
 
 		if (count($children) > 0) {
@@ -112,7 +112,7 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
 		$function = $comment_config['callback']['update'];
 		
 		if (function_exists($function)) {
-			$criteria =& new CriteriaCompo(new Criteria('com_modid', $comment->get('com_modid')));
+			$criteria = new CriteriaCompo(new Criteria('com_modid', $comment->get('com_modid')));
 			$criteria->add(new Criteria('com_itemid', $comment->get('com_itemid')));
 			$criteria->add(new Criteria('com_status', XOOPS_COMMENT_ACTIVE));
 			

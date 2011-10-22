@@ -27,19 +27,23 @@
 function getLanguage() {
 	$language_array = array(
 			'en' => 'english',
-			'ja' => 'japanese',
+//			'cn' => 'schinese',
+			'cs' => 'czech',
+//			'de' => 'german',
+			'el' => 'greek',
+//			'es' => 'spanish',
 			'fr' => 'french',
-			'de' => 'german',
-			'nl' => 'dutch',
-			'es' => 'spanish',
-			'tw' => 'tchinese',
-			'cn' => 'schinese',
-			'ro' => 'romanian',
-			'pt' => 'portuguese'
+			'ja' => 'japanese',
+			'ko' => 'korean',
+//			'nl' => 'dutch',
+			'pt' => 'portuguese',
+			'ru' => 'russian',
+			'zh' => 'schinese',
+
 	);
 
 	$charset_array = array(
-			'Shift_JIS' => 'japanese',
+			'Shift_JIS' => 'ja_utf8',
 	);
 
 	$language = 'english';
@@ -161,11 +165,9 @@ function b_back($option = null)
     if(!isset($option) || !is_array($option)) return '';
     $content = '';
     if(isset($option[0]) && $option[0] != ''){
-        $content .= '<input type="button" value="'._INSTALL_L42.'"'.
-                    ' onclick="location=\'index.php?op='.htmlspecialchars($option[0]).'\'" />';
+        $content .= '<a href="javascript:void(0);" onclick=\'location.href="index.php?op='.htmlspecialchars($option[0]).'"\' class="back" style="display:inline-block;vertical-align:top;"><img src="img/back.png" alt="'._INSTALL_L42.'"></a>';
     }else{
-        $content .= '<input type="button" value="'._INSTALL_L42.'"'.
-                    ' onclick="javascript:history.back();" />';
+        $content .= '<a href="javascript:history.back();" class="back" style="display:inline-block;vertical-align:top;"><img src="img/back.png" alt="'._INSTALL_L42.'" /></a>';
     }
     if(isset($option[1]) && $option[1] != ''){
         $content .= '<span style="font-size:90%;"> &lt;&lt; '.htmlspecialchars($option[1]).'</span>';
@@ -178,7 +180,7 @@ function b_reload($option=''){
     if (!defined('_INSTALL_L200')) {
         define('_INSTALL_L200', 'Reload');
     }
-    return  '<input type="button" value="'._INSTALL_L200.'" onclick="location.reload();" />';
+    return  '<input type="image" src="img/reload.png" class="reload" title="Reload" value="'._INSTALL_L200.'" onclick="location.reload();" />';
 }
 
 function b_next($option=null){
@@ -188,7 +190,7 @@ function b_next($option=null){
         $content .= '<span style="font-size:90%;">'.htmlspecialchars($option[1]).' &gt;&gt; </span>';
     }
     $content .= '<input type="hidden" name="op" value="'.htmlspecialchars($option[0]).'" />';
-    $content .= '<input type="submit" name="submit" value="'._INSTALL_L47.'" />';
+    $content .= '<input type="image" src="img/next.png" class="next" title="'._INSTALL_L47.'" name="submit" value="'._INSTALL_L47.'" />';
     return $content;
 }
 

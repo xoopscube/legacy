@@ -28,7 +28,7 @@ class Legacy_ImagecategoryDeleteAction extends Legacy_AbstractDeleteAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_ImagecategoryAdminDeleteForm();
+		$this->mActionForm =new Legacy_ImagecategoryAdminDeleteForm();
 		$this->mActionForm->prepare();
 	}
 

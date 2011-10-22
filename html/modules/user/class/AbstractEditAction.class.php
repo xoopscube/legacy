@@ -47,6 +47,18 @@ class User_AbstractEditAction extends User_Action
 	}
 
 	/**
+	 * _getPageAction
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	protected function _getPageAction()
+	{
+		return _EDIT;
+	}
+
+	/**
 	 * @access protected
 	 */
 	function isEnableCreate()

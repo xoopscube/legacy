@@ -1,39 +1,410 @@
+
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
-
 ----------------------------------------
-2011/**/**: Package Revision 2.1.9
+2011/10/XX: Package Revision 2.2.1 Beta2
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
-- Fix Bug #2988674 - NOT work weight in the imagemamanger
-- Fix Bug #3104460 - modules/legacy/include/groupperm bug
 - Fix Bug #3313462 - trigger_error('...',E_USER_ERROR) may not halt execution
+- Fix Bug #3314175 - user module admin UserView error
 - Fix Bug #3317712 - class/module.errorhandler.php bug
+- Fix Bug #3357632 - category path list should contain terminal cat
+- Fix Bug #3362690 - smarty pluigin legacy_category_select missing array key
+- Fix Bug #3366737 - Missing preload file SetupAltsysLangMgr.class.php
+- Fix Bug #3395113 - 500 error / Apache fatal error
+- Fix Bug #3398687 - Users can not register  at UserDataUploadAction
+- Fix Bug #3409051 - when get profiledata fatal error ,modifier.xoops_user.php
+- Fix Bug #3409729 - xoops_meta_description set
 
 [Feature Request - From Feature Requests Legacy Tracker]
+- Feature Request #3165296 - Replace resource.db.php with HD version
 - Feature Request #3317730 - please add ja_utf8 language files to XUpgrade
+- Feature Request #3352820 - Add new MIME type
+- Feature Request #3381570 - Check client data before delete category
+- Feature Request #3383519 - Check child category before delete category
+- Feature Request #3408918 - when no_avatar.gif, 0width modifier.xoops_user_avatarize.php
+- Feature Request #3412833 - array request handling in PageNavi
+
+[Other Changes/Enhancements]
+- Update portuguese/pt_utf8 language files
+- Update interfaces: AbstractObject.class.php, AbstractImageObject.class.php, AbstractClientObjectHandler.class.php, ImageDelegateInterface.class.php
+
+[Staff]
+- bluemooninc
+- domifara
+- kilica
+- Mikhail Miguel
+- onlineco
+
+----------------------------------------
+2011/06/05: Package Revision 2.2.1 Beta1
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #3298903 - Guests can't view their profile items
+- Fix Bug #3301424 - user module admin UserView error
+
+[Feature Request - From Feature Requests Legacy Tracker]
+- Fix Bug #3307977 - site_custom.ini for multisite
+
+[Feature Request : Legacy - From Feature Requests Legacy Tracker]
+- Fix Bug #3308571 - Add altsys as extara_modules
+
+[Other Changes/Enhancements]
+- Update portuguese/pt_utf8 language files
 
 [Staff]
 - domifara
 - kilica
-- ohwada
-- onlineco
-
+- Mikhail Miguel
+- roger
+- Sow
 
 ----------------------------------------
-2010/11/13: Package Revision 2.1.8a
+2011/04/23: Package Revision 2.2.0
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
-- Fix Bug #2666664 - /class/snoopy.php is susceptible to a remote command.
-- Fix Bug #2686348 - smarty: several bugs fixed in version 2.6.22 since 2.6.19
-- Fix Bug #3078705 - include/notification_update.php SQL Injection Vulnerability
-- Fix Bug #3028755 - English Language misspelling in install.php
+- Fix Bug #3288881 - noConflict prototype.js when using Google Library
+
+[Feature Request - From Feature Requests Tracker]
+- Feature Request #3276799 - Change Japanese Message
+
+[Other Changes/Enhancements]
+- Update portuguese/pt_utf8 language files
+- Remove fileManager module's language files
+- Update HTML Purifier to Version 4.3.0
+
+[Staff]
+- bluemooninc
+- domifara
+- kilica
+- Mikhail Miguel
+
+----------------------------------------
+2011/03/19: Package Revision 2.2.0 RC2
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #3200890 - Missing arg. _addScript
+- Fix Bug #3204014 - Failed to add profile data
+- Fix Bug #3204018 - Profile definition javascript
+- Fix Bug #3204050 - Can't add select filed
+- Fix Bug #3208862 - html allowed field show
+- Fix Bug #3208870 - myckeditor modinfo language typo
+- Fix Bug #3208873 - Unnecessary template setting in myckeditor
+
+[Other Changes/Enhancements]
+- Update korean language files
 
 [Staff]
 - kilica
+- otneg
+- wanikoo
+
+----------------------------------------
+2011/02/27: Package Revision 2.2.0 RC1
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #2988674 - NOT work weight in the imagemamanger
+- Fix Bug #3147765 - groupperm.php bug
+- Fix Bug #3161729 - Back button doesn't work
+- Fix Bug #3164123 - Insert image through Image Manager
+
+[Patches - From Patches Legacy Tracker]
+- Patches #3176946 - function createOnloadFunctionTag patch by gara
+
+[Staff]
+- domifara
+- gara
+- kilica
+- marine
+- Mikhail Miguel
+- ohwada 
+
+----------------------------------------
+2010/12/26: Package Revision 2.2.0 Beta3
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #2993409 - PHP 5.3.x: fileManager using the deprecated eregi() function
+- Fix Bug #3101119 - I want you to move templates_c to xoops_trust_path
+- Fix Bug #3102808 - Avoid Smarty Debug infinite loop
+- Fix Bug #3104460 - modules/legacy/include/groupperm bug
+- Fix Bug #3104945 - nusoap: class nusoap_base not found errors & path disclosure
+
+[Staff]
+- domifara
+- kilica
 - Marijuana
 - Mikhail Miguel
+- moegiiro
+
+
+----------------------------------------
+2010/12/26: Package Revision 2.2.0 Beta3
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #2666664 - /class/snoopy.php is susceptible to a remote command
+- Fix Bug #2993409 - PHP 5.3.x: fileManager using the deprecated eregi() function
+- Fix Bug #3069151 - image file missing: install/img/bg_blockcontent.gif
+- Fix Bug #3101119 - I want you to move templates_c to xoops_trust_path
+- Fix Bug #3104460 - modules/legacy/include/groupperm bug
+- Fix Bug #3104539 - Broken links in /themes/legacy_default/layout.css
+- Fix Bug #3104945 - nusoap: class nusoap_base not found errors & path disclosure
+
+[Feature Request - From Feature Requests Legacy Tracker]
+- Feature Request #3101119 - I want you to move templates_c to xoops_trust_path
+- Feature Request #3102808 - Avoid Smarty Debug infinite loop
+
+[Other Changes/Enhancements]
+- Update french, fr_utf8, pt_utf8, portuguese language files
+- module message templates edited, reply, xoops_dhtmltarea
+
+[Staff]
+- domifara
+- xoopserver (gigamaster)
+- kilica
+- Marijuana
+- Mikhail Miguel
+- moegiiro
+- neko88
+
+----------------------------------------
+2010/10/31: Package Revision 2.2.0 Beta2
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #3028755 - English Language misspelling in install.php
+- Fix Bug #3065264 - link miss at XOOPS Config page
+- Fix Bug #3065273 - select box and checkbox can't show options
+- Fix Bug #3066634 - deprecated: line 58: /profile/forms/DataFilterForm.class.php
+- Fix Bug #3066640 - Parse error: syntax error: DataEditAction.class.php, Line59
+- Fix Bug #3066818 - Undefined _MD_ERROR_DBUPDATE_FAILED in AvatarSelectAction
+- Fix Bug #3066825 - criteria condition in UserFilterForm.class.php
+- Fix Bug #3066832 - Expire date in user registration
+- Fix Bug #3068976 - XCL 2.2 is designed for PHP5 but PHPMailer 2.0.4 is for PHP4
+- Fix Bug #3069637 - _MD_USER_MESSAGE_YOURREGISTERED's value of japanese
+- Fix Bug #3073715 - Duplicated stylesheet load
+- Fix Bug #3073722 - smarty plugins in (html) is not loaded
+- Fix Bug #3075220 - fitering lists show nothing
+- Fix Bug #3075239 - pjpeg handling
+- Fix Bug #3078705 - include/notification_update.php SQL Injection Vulnerability
+- Fix Bug #3078808 - FCKeditor: currentfolder parameter - upload vulnerability
+- Fix Bug #3084151 - end tag for element "p": /lecat/language/english/main.php
+- Fix Bug #3095479 - installer have Unnecessary data
+- Fix Bug #3098193 - myckeditor module with 256 bugs
+- Fix Bug #3098199 - NuSOAP 'nusoap.php' Cross Site Scripting Vulnerability.
+
+[Staff]
+- 10key
+- beduino_xt
+- kilica
+- Mikhail Miguel
+- okuhiki
+- SAK-AXYS
+- shige-p
+
+----------------------------------------
+2010/09/11: Package Revision 2.2.0 Beta1
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #3049854 - Invalid link at message
+- Fix Bug #3015916 - missing index.html in templates_c and cache directory
+- Fix Bug #3012550 - missing legacyRender language definition japanese/ja_utf8
+- Fix Bug #3027196 - Lecat with undefined constant _MI_LECAT_KEYWORD_SETTING_EDIT
+
+[Feature Request - From Feature Requests Legacy Tracker]
+- Feature Request #3049858 - xoops.js improvement
+- Feature Request #3053523 - TYPE=MyISAM cause error in  MySQL 5.5.3
+- Feature Request #3053875 - TYPE = MYISAM in modules/message/sql/mysql.sql
+
+[Staff]
+- kilica
+- Mikhail Miguel
+- OhYear
+- ohwada
+- okuhiki
+- bandit-x
+
+----------------------------------------
+2010/06/07: Package Revision 2.2.0 Alpha4
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #2837114 - legacy_block_usermenu.html with invalid references
+- Fix Bug #2973984 - fix admin page templates mistake
+- Fix Bug #2993383 - DeletePreload.class.php: class not found AND path disclosure
+- Fix Bug #3012550 - missing legacyRender language definition japanese/ja_utf8
+
+[Other Changes/Enhancements]
+- Update french, fr_utf8, pt_utf8, portuguese language files
+
+[Staff]
+- kilica
+- Mikhail Miguel
+- shiraga
+- toemon
 - xoopserver
+
+----------------------------------------
+2010/05/29: Package Revision 2.2.0 Alpha3
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #2980000 - User Menu Block icons are lost when theme is changed
+- Fix Bug #2993368 - Without the welcome message on install
+- Fix Bug #2993385 - AbstractCategoryObject.class.php syntax error
+- Fix Bug #2993394 - FATAL ERROR in include/module_icon.php
+- Fix Bug #2993397 - fileManager/admin/menu.php with 4 undefined constants
+- Fix Bug #2998179 - 12 index.html files with 0 byte 
+- Fix Bug #2998189 - xoops_trust_path with empty folders
+- Fix Bug #2998205 - robots.txt without references about the new XCL 2.2 modules
+- Fix Bug #2993377 - syntax error in phpmailer.lang-cn.php with path disclosure
+- Fix Bug #2993387 - Use of undefined constant _MI_USER_ADMENU_USER_DATA_DOWNLOAD
+- Fix Bug #2998194 - filemanager: language files in invalid folder (lower case)
+
+[Other Changes/Enhancements]
+- Add Cool Uri(SEO Uri) feature
+- Add upgrade preload from XCL2.1.*
+
+[Staff]
+- kilica
+- Mikhail Miguel
+- Matchan
+- minahito
+- gigamaster
+- Shiraga
+
+----------------------------------------
+2010/04/10: Package Revision 2.2.0 Alpha2
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #2973984 - fix admin page templates mistake
+- Fix Bug #2978965 - Cannot create table at installing in MySQL4 environment
+- Fix Bug #2978966 - Need to unset object
+- Fix Bug #2978968 - Cannot show block list on block installation
+- Fix Bug #2978969 - Call-time pass-by-refer error at delegate
+- Fix Bug #2979992 - filemanager's ja_utf8 files are saved as EUC
+- Fix Bug #2980018 - common trust_path use make trouble about  templates_c
+
+[Other Changes/Enhancements]
+- When installation start, check PHP5 environment.
+- Add purifyHtml() to Legacy_TextFilter
+- Add purifyHtml() to XoopsSimpleObject
+
+[Staff]
+- hypweb
+- kilica
+- Marijuana
+- matchan
+- minahito
+- pcboy
+- nobu(nbuy)
+- Shiraga
+
+----------------------------------------
+2010/03/27: Package Revision 2.2.0 Alpha1
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #2721231 - Lines 70 & 75 /docs/INSTALL.html : links to ecommerce site
+- Fix Bug #2696001 - missing images/pointer.gif
+- Fix Bug #2692138 - robots.txt disallow files and folders
+- Fix Bug #2686348 - Smarty version 2.6.22
+- Fix Bug #2666831 - Site-closed = HTTP/1.1 503 Service Temporarily Unavailable
+- Fix Bug #2666664 - Snoopy class v1.2.4
+- Fix Bug #2790695 - Fix duplicated reservedTables
+- Fix Bug #2789906 - missing link to "notifications.php"
+- Fix Bug #2802706 - Change users.email field length
+- Fix Bug #2802859 - Typo class Waiting
+- Fix Bug #2802861 - Typo at example xoops_dhtmltarea and xoops_textarea
+- Fix Bug #2805269 - Argument of Criteria::setOrder() is not column name
+- Fix Bug #2806108 - PHP 5.3.0 released with Deprecated ereg extension
+- Fix Bug #2809822 - Useredit doesn't save Profile extra fields
+- Fix Bug #2862494 - HTML tag is shown in error message when post comment
+- Fix Bug #2862491 - NOT show title in form when reply comment
+- Fix Bug #2874305 - A typo in UserInfoProtector
+
+[Feature Request - From Feature Requests Legacy Tracker]
+- Feature Request #2889797 - parse_ini_file() compliant for PHP5.3
+- Feature Request #1718527 - User Profile Extended
+- Feature Request #1721686 - Mailjob API of user module
+- Feature Request #1800087 - style in legacy/langauge/xxx/global.php
+- Feature Request #1800104 - icon read.gif
+- Feature Request #1872731 - title for legacy_misc_smilies.html
+- Feature Request #1897507 - $_SERVER variables not defined on CLI
+- Feature Request #1915329 - Allow custom module install functin to reference $mlog
+- Feature Request #1943014 - set LanguageManager's LanguageName in $GLOBALS['xoopsConfig'
+- Feature Request #1999592 - lengthen fields in the config table
+- Feature Request #2104641 - target="_blank" is not XHTML strict compliant
+- Feature Request #2115625 - Admin Graphical User Interface
+- Feature Request #2115658 - Admin Welcome Page
+- Feature Request #2115670 - Default Editor WYSIWYG
+- Feature Request #2115674 - Default WYSIWYG Editor for Blocks
+- Feature Request #2115711 - Improve Admin Help Search
+- Feature Request #2115747 - File Manager, FCKEditor Extension KFM
+- Feature Request #2115768 - CSS Framework, Extras
+- Feature Request #2122628 - Extended Profiles
+- Feature Request #2162017 - Private Message
+- Feature Request #2161286 - Install, XOOPS TRUST PATH
+- Feature Request #2175825 - Javascript Library Handling
+- Feature Request #2682887 - Legacy_Controller::executeRedirect() dose not send header.
+- Feature Request #2746645 - Replace the Smarty files with links
+- Feature Request #2889797 - parse_ini_file() compliant for PHP5.3
+
+[Patches - From Patches Legacy Tracker]
+- Patches #1812761 - Block table checker
+
+[Other Changes/Enhancements]
+- Add Preload AdminLangPlus to catalog, legacy/{language}/admin.php
+- Add Avatar Search filter and display per page
+- Add Block Search filter and display per page
+- Add Images Batch Upload
+- Add Images Search filter and display per page
+- Add Smilies Batch Upload
+- Add Smilies Search filter and display per page
+- Add User Data download and cvs upload
+- Add User Rank Search filter and display per page
+- Add Module Message (PHP5)
+- Add Module PM to 'extras' (compatible php4)
+- Add Filemanager (Admin side, under development)
+- Change getting script for Dhtmltarea by Delegate
+- Add legacy/class/interface for delegate: category, tag, progress
+- Add Lecat(Legacy Category) module.
+- Add `trust_dirname` to modules table
+- Add Legacy_Utils APIs
+  - getUid()
+  - getUserName()
+  - getDirnameListByTrustDirname()
+  - getTrustDirnameByDirname()
+  - getModuleHandler()
+  - formatPagetitle()
+- Add New Delegates
+  - Module.{dirname}.Event.Add.{tablename}
+  - Module.{dirname}.Event.Update.{tablename}
+  - Module.{dirname}.Event.Delete.{tablename}
+- In Clause support in CriteriaElement
+- Define XOOPS_LIBRARY_PATH
+- Extend Smarty modifier 'xoops_user' for profile
+- Setting <meta> element by module
+- Add Ini handler
+- Add HTML Purifier library
+- Speeding up code(thanks nobu)
+- Replacable BB Code/HTML editor
+
+see also wiki page:
+http://sourceforge.net/apps/mediawiki/xoopscube/index.php?title=Release_Logs:XOOPS_Cube_Legacy_2.2.0
+
+[Staff]
+- GIJOE
+- Hiroki
+- Jidaikobo
+- Kilica
+- marijuana
+- Mikhail Miguel
+- Minahito
+- Mumincacao
+- Nobu(nbuy)
+- Nobunobu
+- Ohwada
+- Onokazu
+- suin
+- Wanikoo
+- Xoopserver
+ (Gigamaster)
 
 ----------------------------------------
 2010/03/27: Package Revision 2.1.8
@@ -46,7 +417,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #2949716 - The value of start and limit might be not corresponding between Criteria and PageNavi.
 - Fix Bug #2951068 - It becomes Fatal Error when the installation of XUpgrade.
 - Fix Bug #2955659 - invalid url exists in lostpass2.tpl.
-- Fix Bug #2963974 - Fatal error when ja_utf8 enabled without mbstring support.
+- Fix Bug #2963974 - Fatal error when ja_utf8 enabled without mbstring support. 
 
 [Pathes]
 - Patch #2933635 - Mr Marijuana's patch.
@@ -118,15 +489,6 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - salamander
 - tohokuaiki
 - Tom_G3X
-
-
-----------------------------------------
-2009/04/02: Package Revision 2.1.6a
-----------------------------------------
-[Bug Fix - From Bug Tracker]
-- Fix Bug IPA#74747784 / JPCERT#95042060 - XSS weakness
-- Fix Bug #2350320 - Possibility of script injection in ErrorHandler::show.
-
 
 ----------------------------------------
 2008/11/21: Package Revision 2.1.6

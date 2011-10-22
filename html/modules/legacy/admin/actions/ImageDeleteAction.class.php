@@ -28,7 +28,7 @@ class Legacy_ImageDeleteAction extends Legacy_AbstractDeleteAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_ImageAdminDeleteForm();
+		$this->mActionForm =new Legacy_ImageAdminDeleteForm();
 		$this->mActionForm->prepare();
 	}
 

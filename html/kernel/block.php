@@ -61,28 +61,35 @@ class XoopsBlock extends XoopsObject
      **/
     function XoopsBlock($id = null)
     {
-        $this->initVar('bid', XOBJ_DTYPE_INT, null, false);
-        $this->initVar('mid', XOBJ_DTYPE_INT, 0, false);
-        $this->initVar('func_num', XOBJ_DTYPE_INT, 0, false);
-        $this->initVar('options', XOBJ_DTYPE_TXTBOX, null, false, 255);
-        $this->initVar('name', XOBJ_DTYPE_TXTBOX, null, true, 150);
-        //$this->initVar('position', XOBJ_DTYPE_INT, 0, false);
-        $this->initVar('title', XOBJ_DTYPE_TXTBOX, null, false, 150);
-        $this->initVar('content', XOBJ_DTYPE_TXTAREA, null, false);
-        $this->initVar('side', XOBJ_DTYPE_INT, 0, false);
-        $this->initVar('weight', XOBJ_DTYPE_INT, 0, false);
-        $this->initVar('visible', XOBJ_DTYPE_INT, 0, false);
-        $this->initVar('block_type', XOBJ_DTYPE_OTHER, null, false);
-        $this->initVar('c_type', XOBJ_DTYPE_OTHER, null, false);
-        $this->initVar('isactive', XOBJ_DTYPE_INT, null, false);
-        $this->initVar('dirname', XOBJ_DTYPE_TXTBOX, null, false, 50);
-        $this->initVar('func_file', XOBJ_DTYPE_TXTBOX, null, false, 50);
-        $this->initVar('show_func', XOBJ_DTYPE_TXTBOX, null, false, 50);
-        $this->initVar('edit_func', XOBJ_DTYPE_TXTBOX, null, false, 50);
-        $this->initVar('template', XOBJ_DTYPE_OTHER, null, false);
-        $this->initVar('bcachetime', XOBJ_DTYPE_INT, 0, false);
-        $this->initVar('last_modified', XOBJ_DTYPE_INT, time(), false);
-
+		static $initVars;
+		if (isset($initVars)) {
+		    $this->vars = $initVars;
+		}
+		else{
+	        $this->initVar('bid', XOBJ_DTYPE_INT, null, false);
+	        $this->initVar('mid', XOBJ_DTYPE_INT, 0, false);
+	        $this->initVar('func_num', XOBJ_DTYPE_INT, 0, false);
+	        $this->initVar('options', XOBJ_DTYPE_TXTBOX, null, false, 255);
+	        $this->initVar('name', XOBJ_DTYPE_TXTBOX, null, true, 150);
+	        //$this->initVar('position', XOBJ_DTYPE_INT, 0, false);
+	        $this->initVar('title', XOBJ_DTYPE_TXTBOX, null, false, 150);
+	        $this->initVar('content', XOBJ_DTYPE_TXTAREA, null, false);
+	        $this->initVar('side', XOBJ_DTYPE_INT, 0, false);
+	        $this->initVar('weight', XOBJ_DTYPE_INT, 0, false);
+	        $this->initVar('visible', XOBJ_DTYPE_INT, 0, false);
+	        $this->initVar('block_type', XOBJ_DTYPE_OTHER, null, false);
+	        $this->initVar('c_type', XOBJ_DTYPE_OTHER, null, false);
+	        $this->initVar('isactive', XOBJ_DTYPE_INT, null, false);
+	        $this->initVar('dirname', XOBJ_DTYPE_TXTBOX, null, false, 50);
+	        $this->initVar('func_file', XOBJ_DTYPE_TXTBOX, null, false, 50);
+	        $this->initVar('show_func', XOBJ_DTYPE_TXTBOX, null, false, 50);
+	        $this->initVar('edit_func', XOBJ_DTYPE_TXTBOX, null, false, 50);
+	        $this->initVar('template', XOBJ_DTYPE_OTHER, null, false);
+	        $this->initVar('bcachetime', XOBJ_DTYPE_INT, 0, false);
+	        $this->initVar('last_modified', XOBJ_DTYPE_INT, time(), false);
+			$initVars = $this->vars;
+		}
+	
         // for backward compatibility
         if (isset($id)) {
             if (is_array($id)) {

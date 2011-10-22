@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 // Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://xoopscube.jp/ //
+// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
@@ -62,7 +62,7 @@ class XoopsTpl extends Smarty
 	{
 		global $xoopsConfig;
 		$this->Smarty();
-		$this->compile_id = null;
+		$this->compile_id = XOOPS_URL;
 		if ($xoopsConfig['theme_fromfile'] == 1) {
 			$this->_canUpdateFromFile = true;
 			$this->compile_check = true;
@@ -75,7 +75,8 @@ class XoopsTpl extends Smarty
 		$this->template_dir = XOOPS_THEME_PATH;
 		$this->cache_dir = XOOPS_CACHE_PATH;
 		$this->compile_dir = XOOPS_COMPILE_PATH;
-		$this->plugins_dir = array(XOOPS_ROOT_PATH.'/class/smarty/plugins');
+		//loading under root_path for compatibility with XCL2.1
+		$this->plugins_dir = array(SMARTY_DIR.'plugins', XOOPS_ROOT_PATH.'/class/smarty/plugins');
 //		$this->default_template_handler_func = 'xoops_template_create';
 		$this->use_sub_dirs = false;
 
@@ -86,6 +87,15 @@ class XoopsTpl extends Smarty
 							'xoops_version' => XOOPS_VERSION,
 							'xoops_upload_url' => XOOPS_UPLOAD_URL
 							));
+
+	    if(empty($this->debug_tpl)) {
+	        // set path to debug template from SMARTY_DIR
+	        $this->debug_tpl = XOOPS_ROOT_PATH.'/modules/legacy/templates/xoops_debug.tpl';
+	        if($this->security && is_file($this->debug_tpl)) {
+	            $this->secure_dir[] = realpath($this->debug_tpl);
+	        }
+	        $this->debug_tpl = 'file:' . XOOPS_ROOT_PATH.'/modules/legacy/templates/xoops_debug.tpl';
+	    }
 
         // Delegate 'XoopsTpl.New' 
         //  Delegate may define additional initialization code for XoopTpl Instance;

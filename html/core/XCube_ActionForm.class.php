@@ -657,7 +657,7 @@ class XCube_DependClassFactory
 			// or switch?
 			$class_name = "XCube_" . ucfirst($dependName) . "Validator";
 			if (XC_CLASS_EXISTS($class_name)) {
-				$_cache[$dependName] =& new $class_name();
+				$_cache[$dependName] = new $class_name();
 			}
 			else {
 				// FIXME:: use delegate?

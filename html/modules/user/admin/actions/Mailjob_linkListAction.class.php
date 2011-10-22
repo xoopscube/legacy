@@ -13,7 +13,7 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
 	
 	function prepare(&$controller, &$xoopsUser, &$moduleConfig)
 	{
-		$this->mActionForm =& new User_Mailjob_linkAdminDeletesForm();
+		$this->mActionForm =new User_Mailjob_linkAdminDeletesForm();
 		$this->mActionForm->prepare();
 
 		$this->mActionForm->fetch();
@@ -27,7 +27,7 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
 
 	function &_getFilterForm()
 	{
-		$filter =& new User_Mailjob_linkFilterForm($this->_getPageNavi(), $this->_getHandler());
+		$filter =new User_Mailjob_linkFilterForm($this->_getPageNavi(), $this->_getHandler());
 		return $filter;
 	}
 

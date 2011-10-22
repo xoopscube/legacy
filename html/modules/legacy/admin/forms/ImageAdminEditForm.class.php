@@ -30,18 +30,18 @@ class Legacy_ImageAdminCreateForm extends Legacy_ImageUploadForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['image_id'] =& new XCube_IntProperty('image_id');
-		$this->mFormProperties['image_display'] =& new XCube_BoolProperty('image_display');
-		$this->mFormProperties['image_weight'] =& new XCube_IntProperty('image_weight');
+		$this->mFormProperties['image_id'] =new XCube_IntProperty('image_id');
+		$this->mFormProperties['image_display'] =new XCube_BoolProperty('image_display');
+		$this->mFormProperties['image_weight'] =new XCube_IntProperty('image_weight');
 	
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['image_id'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['image_id'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['image_id']->setDependsByArray(array('required'));
 		$this->mFieldProperties['image_id']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_IMAGE_ID);
 	
-		$this->mFieldProperties['image_weight'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['image_weight'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['image_weight']->setDependsByArray(array('required'));
 		$this->mFieldProperties['image_weight']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_IMAGE_WEIGHT);
 	}

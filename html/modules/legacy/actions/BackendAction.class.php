@@ -37,7 +37,7 @@ class Legacy_BackendAction extends Legacy_Action
 	{
 		parent::Legacy_Action($flag);
 		
-		$this->mGetRSSItems =& new XCube_Delegate();
+		$this->mGetRSSItems =new XCube_Delegate();
 		$this->mGetRSSItems->register('Legacy_BackendAction.GetRSSItems');
 	}
 	

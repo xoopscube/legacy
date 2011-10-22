@@ -1,0 +1,69 @@
+<div id="lecat">
+<{include file="db:`$dirname`_inc_menu.html" dirname=$dirname}>
+
+<{if $actionForm->hasError()}>
+  <ul class="error">
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+<{/if}>
+<h1><{$smarty.const._MD_LECAT_LANG_CAT_EDIT}></h1>
+<form action="<{xoops_cooluri dirname=$dirname dataname=cat action=edit}>" method="post">
+  <table class="outer" summary="">
+    <caption>
+      <{if $actionForm->get('cat_id')}>
+        <{$smarty.const._MD_LECAT_LANG_CAT_EDIT}>
+      <{else}>
+        <{$smarty.const._MD_LECAT_LANG_ADD_A_NEW_CAT}>
+      <{/if}>
+   </caption>
+   <tbody>
+      <tr>
+        <th class="head"><{$smarty.const._MD_LECAT_LANG_TITLE}></th>
+        <td class="<{cycle values="odd,even"}>">
+          <{xoops_input type=text name=title value=$actionForm->get('title') size=15 maxlength=255}>
+        </td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_LECAT_LANG_PARENT}></th>
+        <td class="<{cycle values="odd,even"}>">
+          <select name="p_id">
+          <option value="0">TOP</option>
+          <{legacy_category_select tree=$catArr selectedValue=$object->get('p_id')}>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_LECAT_LANG_MODULES_CONFINEMENT}></th>
+        <td class="<{cycle values="odd,even"}>">
+          <{xoops_textarea type=text name=modules value=$actionForm->get('modules')}><br />
+          <{$smarty.const._MD_LECAT_TIPS_MODULE_CONFINEMENT}>
+        </td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_LECAT_LANG_DESCRIPTION}></th>
+        <td class="<{cycle values="odd,even"}>">
+          <{xoops_textarea type=text name=description value=$actionForm->get('description')}>
+        </td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_LECAT_LANG_WEIGHT}></th>
+        <td class="<{cycle values="odd,even"}>">
+          <{xoops_input type=text name=weight value=$actionForm->get('weight')}>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td class="foot" colspan="2">
+          <{xoops_token form=$actionForm}>
+          <{xoops_input type=hidden name=cat_id value=$actionForm->get('cat_id')}>
+          <input type="submit" value="<{$smarty.const._SUBMIT}>" />
+          <input type="submit" value="<{$smarty.const._CANCEL}>" name="_form_control_cancel" />
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</form>
+</div>

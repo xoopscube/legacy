@@ -47,7 +47,7 @@ class User_GroupPropertyAction extends User_Action
 		$memberHandler =& xoops_gethandler('member');
 
 		$total = $memberHandler->getUserCountByGroup($this->mGroup->getVar('groupid'));
-		$this->mPageNavi =& new XCube_PageNavigator("./index.php?action=GroupProperty", XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);	// TODO get controller->getUrl() ?
+		$this->mPageNavi =new XCube_PageNavigator("./index.php?action=GroupProperty", XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);	// TODO get controller->getUrl() ?
 		$this->mPageNavi->setTotalItems($total);
 		$this->mPageNavi->addExtra('groupid', $this->mGroup->get('groupid'));
 
@@ -68,8 +68,8 @@ class User_GroupPropertyAction extends User_Action
         			if (file_exists($infoFile)) {
         				require_once $infoFile;
         				if (!empty($modversion['category'])) {
-        					$item =& new User_PermissionSystemAdminItem($modversion['category'], $modversion['name']);
-        					$this->mSystemPermissions[] =& new User_Permission($this->mGroup->getVar('groupid'), $item);
+        					$item =new User_PermissionSystemAdminItem($modversion['category'], $modversion['name']);
+        					$this->mSystemPermissions[] =new User_Permission($this->mGroup->getVar('groupid'), $item);
 
         					unset($item);
         				}
@@ -82,15 +82,15 @@ class User_GroupPropertyAction extends User_Action
 		// Get module list
 		//
 		$this->_loadActiveModules();
-
+	
 		$t_activeModuleIDs = array();
-				
+	
 		foreach ($this->_mActiveModules as $module) {
-			$item =& new User_PermissionModuleItem($module);
-			$this->mPermissions[] =& new User_Permission($this->mGroup->getVar('groupid'), $item);
-			
+			$item =new User_PermissionModuleItem($module);
+			$this->mPermissions[] =new User_Permission($this->mGroup->getVar('groupid'), $item);
+		
 			$t_activeModuleIDs[] = $module->get('mid');
-
+		
 			unset($module);
 			unset($item);
 		}
@@ -105,8 +105,9 @@ class User_GroupPropertyAction extends User_Action
 			$this->mBlockPermissions[$idx] = array();
 
 			foreach ($this->_mActiveBlocks[$side] as $block) {
-				$item =& new User_PermissionBlockItem($block);
-				$this->mBlockPermissions[$idx][] =& new User_Permission($this->mGroup->get('groupid'), $item);
+				$item =new User_PermissionBlockItem($block);
+				$this->mBlockPermissions[$idx][] =new User_Permission($this->mGroup->get('groupid'), $item);
+				unset ($item);
 				unset ($block);
 			}
 			

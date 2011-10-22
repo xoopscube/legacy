@@ -69,39 +69,46 @@ class XoopsUser extends XoopsObject
      */
     function XoopsUser($id = null)
     {
-        $this->initVar('uid', XOBJ_DTYPE_INT, null, false);
-        $this->initVar('name', XOBJ_DTYPE_TXTBOX, null, false, 60);
-        $this->initVar('uname', XOBJ_DTYPE_TXTBOX, null, true, 25);
-        $this->initVar('email', XOBJ_DTYPE_TXTBOX, null, true, 60);
-        $this->initVar('url', XOBJ_DTYPE_TXTBOX, null, false, 100);
-        $this->initVar('user_avatar', XOBJ_DTYPE_TXTBOX, null, false, 30);
-        $this->initVar('user_regdate', XOBJ_DTYPE_INT, null, false);
-        $this->initVar('user_icq', XOBJ_DTYPE_TXTBOX, null, false, 15);
-        $this->initVar('user_from', XOBJ_DTYPE_TXTBOX, null, false, 100);
-        $this->initVar('user_sig', XOBJ_DTYPE_TXTAREA, null, false, null);
-        $this->initVar('user_viewemail', XOBJ_DTYPE_INT, 0, false);
-        $this->initVar('actkey', XOBJ_DTYPE_OTHER, null, false);
-        $this->initVar('user_aim', XOBJ_DTYPE_TXTBOX, null, false, 18);
-        $this->initVar('user_yim', XOBJ_DTYPE_TXTBOX, null, false, 25);
-        $this->initVar('user_msnm', XOBJ_DTYPE_TXTBOX, null, false, 100);
-        $this->initVar('pass', XOBJ_DTYPE_TXTBOX, null, false, 32);
-        $this->initVar('posts', XOBJ_DTYPE_INT, null, false);
-        $this->initVar('attachsig', XOBJ_DTYPE_INT, 0, false);
-        $this->initVar('rank', XOBJ_DTYPE_INT, 0, false);
-        $this->initVar('level', XOBJ_DTYPE_INT, 0, false);
-        $this->initVar('theme', XOBJ_DTYPE_OTHER, null, false);
-        $this->initVar('timezone_offset', XOBJ_DTYPE_OTHER, null, false);
-        $this->initVar('last_login', XOBJ_DTYPE_INT, 0, false);
-        $this->initVar('umode', XOBJ_DTYPE_OTHER, null, false);
-        $this->initVar('uorder', XOBJ_DTYPE_INT, 1, false);
-        // RMV-NOTIFY
-        $this->initVar('notify_method', XOBJ_DTYPE_OTHER, 1, false);
-        $this->initVar('notify_mode', XOBJ_DTYPE_OTHER, 0, false); 
-        $this->initVar('user_occ', XOBJ_DTYPE_TXTBOX, null, false, 100);
-        $this->initVar('bio', XOBJ_DTYPE_TXTAREA, null, false, null);
-        $this->initVar('user_intrest', XOBJ_DTYPE_TXTBOX, null, false, 150);
-        $this->initVar('user_mailok', XOBJ_DTYPE_INT, 1, false);
-
+		static $initVars;
+		if (isset($initVars)) {
+		    $this->vars = $initVars;
+		}
+		else{
+	        $this->initVar('uid', XOBJ_DTYPE_INT, null, false);
+	        $this->initVar('name', XOBJ_DTYPE_TXTBOX, null, false, 60);
+	        $this->initVar('uname', XOBJ_DTYPE_TXTBOX, null, true, 25);
+	        $this->initVar('email', XOBJ_DTYPE_TXTBOX, null, true, 256);
+	        $this->initVar('url', XOBJ_DTYPE_TXTBOX, null, false, 100);
+	        $this->initVar('user_avatar', XOBJ_DTYPE_TXTBOX, null, false, 30);
+	        $this->initVar('user_regdate', XOBJ_DTYPE_INT, null, false);
+	        $this->initVar('user_icq', XOBJ_DTYPE_TXTBOX, null, false, 15);
+	        $this->initVar('user_from', XOBJ_DTYPE_TXTBOX, null, false, 100);
+	        $this->initVar('user_sig', XOBJ_DTYPE_TXTAREA, null, false, null);
+	        $this->initVar('user_viewemail', XOBJ_DTYPE_INT, 0, false);
+	        $this->initVar('actkey', XOBJ_DTYPE_OTHER, null, false);
+	        $this->initVar('user_aim', XOBJ_DTYPE_TXTBOX, null, false, 18);
+	        $this->initVar('user_yim', XOBJ_DTYPE_TXTBOX, null, false, 25);
+	        $this->initVar('user_msnm', XOBJ_DTYPE_TXTBOX, null, false, 100);
+	        $this->initVar('pass', XOBJ_DTYPE_TXTBOX, null, false, 32);
+	        $this->initVar('posts', XOBJ_DTYPE_INT, null, false);
+	        $this->initVar('attachsig', XOBJ_DTYPE_INT, 0, false);
+	        $this->initVar('rank', XOBJ_DTYPE_INT, 0, false);
+	        $this->initVar('level', XOBJ_DTYPE_INT, 0, false);
+	        $this->initVar('theme', XOBJ_DTYPE_OTHER, null, false);
+	        $this->initVar('timezone_offset', XOBJ_DTYPE_OTHER, null, false);
+	        $this->initVar('last_login', XOBJ_DTYPE_INT, 0, false);
+	        $this->initVar('umode', XOBJ_DTYPE_OTHER, null, false);
+	        $this->initVar('uorder', XOBJ_DTYPE_INT, 1, false);
+	        // RMV-NOTIFY
+	        $this->initVar('notify_method', XOBJ_DTYPE_OTHER, 1, false);
+	        $this->initVar('notify_mode', XOBJ_DTYPE_OTHER, 0, false); 
+	        $this->initVar('user_occ', XOBJ_DTYPE_TXTBOX, null, false, 100);
+	        $this->initVar('bio', XOBJ_DTYPE_TXTAREA, null, false, null);
+	        $this->initVar('user_intrest', XOBJ_DTYPE_TXTBOX, null, false, 150);
+	        $this->initVar('user_mailok', XOBJ_DTYPE_INT, 1, false);
+			$initVars = $this->vars;
+		}
+	
         // for backward compatibility
         if (isset($id)) {
             if (is_array($id)) {
@@ -518,7 +525,7 @@ class XoopsUserHandler extends XoopsObjectHandler
      */
     function &create($isNew = true)
     {
-        $user =& new XoopsUser();
+        $user =new XoopsUser();
         if ($isNew) {
             $user->setNew();
         }
@@ -539,7 +546,7 @@ class XoopsUserHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $user =& new XoopsUser();
+                        $user =new XoopsUser();
                     $user->assignVars($this->db->fetchArray($result));
                         $ret =& $user;
                 }
@@ -641,7 +648,7 @@ class XoopsUserHandler extends XoopsObjectHandler
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
-            $user =& new XoopsUser();
+            $user =new XoopsUser();
             $user->assignVars($myrow);
             if (!$id_as_key) {
                 $ret[] =& $user;

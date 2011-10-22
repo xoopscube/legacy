@@ -29,6 +29,7 @@ define('_MD_LEGACY_LANG_COMMENT_RULE', "Comment rules");
 define('_MD_LEGACY_LANG_DOBR', "Insert line-break automatically");
 define('_MD_LEGACY_LANG_DOHTML', "Enable HTML tags");
 define('_MD_LEGACY_LANG_DOSMILEY', "Use smilies");
+define('_MD_LEGACY_LANG_ALL_SMILEY_LIST', "smilies List");
 define('_MD_LEGACY_LANG_DOXCODE', "Enable XOOPS code");
 define('_MD_LEGACY_LANG_EMOTION', "Emoticon");
 define('_MD_LEGACY_LANG_ERROR', "error");

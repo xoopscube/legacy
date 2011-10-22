@@ -24,14 +24,14 @@ class User_AvatarDeleteAction extends User_AbstractDeleteAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new User_AvatarAdminDeleteForm();
+		$this->mActionForm =new User_AvatarAdminDeleteForm();
 		$this->mActionForm->prepare();
 	}
 	
 	function _doExecute()
 	{
 		$linkHandler =& xoops_getmodulehandler('avatar_user_link');
-		$criteria =& new Criteria('avatar_id', $this->mObject->get('avatar_id'));
+		$criteria =new Criteria('avatar_id', $this->mObject->get('avatar_id'));
 		$linkArr =& $linkHandler->getObjects($criteria);
 		
 		if ($this->mObjectHandler->delete($this->mObject)) {

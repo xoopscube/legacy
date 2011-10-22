@@ -21,18 +21,18 @@ class LegacyRender_TplsetEditForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['tplset_id'] =& new XCube_IntProperty('tplset_id');
-		$this->mFormProperties['tplset_desc'] =& new XCube_StringProperty('tplset_desc');
-		$this->mFormProperties['tplset_credits'] =& new XCube_TextProperty('tplset_credits');
+		$this->mFormProperties['tplset_id'] =new XCube_IntProperty('tplset_id');
+		$this->mFormProperties['tplset_desc'] =new XCube_StringProperty('tplset_desc');
+		$this->mFormProperties['tplset_credits'] =new XCube_TextProperty('tplset_credits');
 
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['tplset_id'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['tplset_id'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['tplset_id']->setDependsByArray(array('required'));
 		$this->mFieldProperties['tplset_id']->addMessage('required', _AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_TPLSET_ID);
 
-		$this->mFieldProperties['tplset_desc'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['tplset_desc'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['tplset_desc']->setDependsByArray(array('maxlength'));
 		$this->mFieldProperties['tplset_desc']->addMessage('maxlength', _AD_LEGACYRENDER_ERROR_MAXLENGTH, _AD_LEGACYRENDER_LANG_TPLSET_DESC, '255');
 		$this->mFieldProperties['tplset_desc']->addVar('maxlength', 255);

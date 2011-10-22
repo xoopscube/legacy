@@ -75,6 +75,9 @@
         </select>
       </td>
     </tr>
+    
+<!-- Optional Fields
+
     <tr>
       <td class="head"><{$smarty.const._MD_USER_LANG_USER_ICQ}></td>
       <td class="<{cycle values="odd,even"}>">
@@ -125,6 +128,8 @@
         <label><{xoops_input type=checkbox name=attachsig value=1 default=$actionForm->get('attachsig')}> <{$smarty.const._MD_USER_LANG_ATTACHSIG}></label>
       </td>
     </tr>
+-->
+
     <tr>
       <td class="head"><{$smarty.const._MD_USER_LANG_UMODE}></td>
       <td class="<{cycle values="odd,even"}>">
@@ -205,13 +210,16 @@
             <option id="level_0" value="0" selected="selected"><{$smarty.const._AD_USER_LANG_LEVEL_PENDING}></option>
             <option id="level_1" value="1"><{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}></option>
           </select>
+        <{elseif $actionForm->get('level') == 1}>
+          <{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>
+          <{xoops_input type=hidden name=level value=$actionForm->get('level') }>
         <{elseif $actionForm->get('level') == 5}>
-          <{$smarty.const._AD_USER_LANG_LEVEL_ROOT}><{xoops_input type=hidden name=level value=$actionForm->get('level') }>
-        <{else}>
-          <{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}><{xoops_input type=hidden name=level value="1" }>
+          <{$smarty.const._AD_USER_LANG_LEVEL_ROOT}>
+          <{xoops_input type=hidden name=level value=$actionForm->get('level') }>
         <{/if}>
       </td>
     </tr>
+    <{legacy_profile template=profile_inc_data_edit.html action=edit actionForm=$actionForm}>
     <tr>
       <td colspan="2"  class="foot">
         <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />

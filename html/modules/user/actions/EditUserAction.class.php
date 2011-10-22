@@ -49,10 +49,22 @@ class User_EditUserAction extends User_AbstractEditAction
 	 */
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new User_EditUserForm($this->mConfig);
+		$this->mActionForm =new User_EditUserForm($this->mConfig);
 		$this->mActionForm->prepare();
 	}
-	
+
+	/**
+	 * _getPageTitle
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	protected function _getPagetitle()
+	{
+		return Legacy_Utils::getUserName($this->_getId());
+	}
+
 	function isEnableCreate()
 	{
 		return false;
@@ -91,8 +103,9 @@ class User_EditUserAction extends User_AbstractEditAction
 			else {
 				setcookie($this->mUserCookie);
 			}
-			
-			return true;
+			$ret = false;
+			XCube_DelegateUtils::call('Legacy_Profile.SaveProfile', new XCube_Ref($ret), $this->mActionForm);
+			return $ret;
 		}
 		else {
 			return false;
@@ -154,6 +167,13 @@ class User_EditUserAction extends User_AbstractEditAction
 		);
 
 		$render->setAttribute('notify_modeOptions', $modeOptions);
+		$this->_setDatepicker();
+	}
+
+	protected function _setDatepicker()
+	{
+		$headerScript = XCube_Root::getSingleton()->mContext->getAttribute('headerScript');
+		$headerScript->addScript('$(".datepicker").each(function(){$(this).datepicker({dateFormat: "'._JSDATEPICKSTRING.'"});});');
 	}
 
 	function executeViewSuccess(&$controller,&$xoopsUser,&$render)

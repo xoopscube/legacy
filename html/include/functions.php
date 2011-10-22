@@ -27,125 +27,112 @@
 
 // ################## Various functions from here ################
 
-if (!function_exists("xoops_getrequest")) {
 /**
  * @deprecated see RequestObject
  */
 function xoops_getrequest($name)
 {
-	$root =& XCube_Root::getSingleton();
-	return $root->mContext->mRequest->getRequest($name);
-}
+    $root =& XCube_Root::getSingleton();
+    return $root->mContext->mRequest->getRequest($name);
 }
 
-if (!function_exists("xoops_header")) {
 /**
  * @deprecated
  */
 function xoops_header($closehead = true)
 {
-	$root =& XCube_Root::getSingleton();
-	$renderSystem =& $root->getRenderSystem('Legacy_RenderSystem');
-	if ($renderSystem != null) {
-		$renderSystem->showXoopsHeader($closehead);
-	}
-}
+    $root =& XCube_Root::getSingleton();
+    $renderSystem =& $root->getRenderSystem('Legacy_RenderSystem');
+    if ($renderSystem != null) {
+        $renderSystem->showXoopsHeader($closehead);
+    }
 }
 
-if (!function_exists("xoops_footer")) {
 /**
  * @deprecated
  */
 function xoops_footer()
 {
-	$root =& XCube_Root::getSingleton();
-	$renderSystem =& $root->getRenderSystem('Legacy_RenderSystem');
-	if ($renderSystem != null) {
-		$renderSystem->showXoopsFooter();
-	}
-}
+    $root =& XCube_Root::getSingleton();
+    $renderSystem =& $root->getRenderSystem('Legacy_RenderSystem');
+    if ($renderSystem != null) {
+        $renderSystem->showXoopsFooter();
+    }
 }
 
-if (!function_exists("xoops_error")) {
 function xoops_error($message, $title='', $style='errorMsg')
 {
-	$root =& XCube_Root::getSingleton();
-	$renderSystem =& $root->getRenderSystem($root->mContext->mBaseRenderSystemName);
+    $root =& XCube_Root::getSingleton();
+    $renderSystem =& $root->getRenderSystem($root->mContext->mBaseRenderSystemName);
 
-	$renderTarget =& $renderSystem->createRenderTarget('main');
-	
-	$renderTarget->setAttribute('legacy_module', 'legacy');
-	$renderTarget->setTemplateName("legacy_xoops_error.html");
-	
-	$renderTarget->setAttribute("style", $style);
-	$renderTarget->setAttribute("title", $title);
-	$renderTarget->setAttribute("message", $message);
+    $renderTarget =& $renderSystem->createRenderTarget('main');
+    
+    $renderTarget->setAttribute('legacy_module', 'legacy');
+    $renderTarget->setTemplateName("legacy_xoops_error.html");
+    
+    $renderTarget->setAttribute("style", $style);
+    $renderTarget->setAttribute("title", $title);
+    $renderTarget->setAttribute("message", $message);
 
-	$renderSystem->render($renderTarget);
-	
-	print $renderTarget->getResult();
+    $renderSystem->render($renderTarget);
+    
+    print $renderTarget->getResult();
 }
-}
 
-if (!function_exists("xoops_result")) {
 /**
  * @deprecated Don't use.
  */
 function xoops_result($message, $title='')
 {
-	$root =& XCube_Root::getSingleton();
-	$renderSystem =& $root->getRenderSystem($root->mContext->mBaseRenderSystemName);
-	
-	$renderTarget =& $renderSystem->createRenderTarget('main');
-	
-	$renderTarget->setAttribute('legacy_module', 'legacy');
-	$renderTarget->setTemplateName("legacy_xoops_result.html");
-	
-	$renderTarget->setAttribute("title", $title);
-	$renderTarget->setAttribute("message", $message);
+    $root =& XCube_Root::getSingleton();
+    $renderSystem =& $root->getRenderSystem($root->mContext->mBaseRenderSystemName);
+    
+    $renderTarget =& $renderSystem->createRenderTarget('main');
+    
+    $renderTarget->setAttribute('legacy_module', 'legacy');
+    $renderTarget->setTemplateName("legacy_xoops_result.html");
+    
+    $renderTarget->setAttribute("title", $title);
+    $renderTarget->setAttribute("message", $message);
 
-	$renderSystem->render($renderTarget);
-	
-	print $renderTarget->getResult();
-}
+    $renderSystem->render($renderTarget);
+    
+    print $renderTarget->getResult();
 }
 
-if (!function_exists("xoops_confirm")) {
 function xoops_confirm($hiddens, $action, $message, $submit = '', $addToken = true)
 {
-	//
-	// Create token.
-	//
-	$tokenHandler =& new XoopsMultiTokenHandler();
-	$token =& $tokenHandler->create(XOOPS_TOKEN_DEFAULT);
+    //
+    // Create token.
+    //
+    $tokenHandler = new XoopsMultiTokenHandler();
+    $token =& $tokenHandler->create(XOOPS_TOKEN_DEFAULT);
 
-	//
-	// Register to session. And, set it to own property.
-	//
-	$tokenHandler->register($token);
-	
-	$root =& XCube_Root::getSingleton();
-	$renderSystem =& $root->getRenderSystem($root->mContext->mBaseRenderSystemName);
-	
-	$renderTarget =& $renderSystem->createRenderTarget('main');
-	
-	$renderTarget->setAttribute('legacy_module', 'legacy');
-	$renderTarget->setTemplateName("legacy_xoops_confirm.html");
+    //
+    // Register to session. And, set it to own property.
+    //
+    $tokenHandler->register($token);
+    
+    $root =& XCube_Root::getSingleton();
+    $renderSystem =& $root->getRenderSystem($root->mContext->mBaseRenderSystemName);
+    
+    $renderTarget =& $renderSystem->createRenderTarget('main');
+    
+    $renderTarget->setAttribute('legacy_module', 'legacy');
+    $renderTarget->setTemplateName("legacy_xoops_confirm.html");
 
-	$renderTarget->setAttribute("action", $action);
-	$renderTarget->setAttribute("message", $message);
-	$renderTarget->setAttribute("hiddens", $hiddens);
-	$renderTarget->setAttribute("submit", $submit);
-	$renderTarget->setAttribute("tokenName", $token->getTokenName());
-	$renderTarget->setAttribute("tokenValue", $token->getTokenValue());
+    $renderTarget->setAttribute("action", $action);
+    $renderTarget->setAttribute("message", $message);
+    $renderTarget->setAttribute("hiddens", $hiddens);
+    $renderTarget->setAttribute("submit", $submit);
+    $renderTarget->setAttribute("tokenName", $token->getTokenName());
+    $renderTarget->setAttribute("tokenValue", $token->getTokenValue());
 
-	$renderSystem->render($renderTarget);
-	
-	print $renderTarget->getResult();
+    $renderSystem->render($renderTarget);
+    
+    print $renderTarget->getResult();
 }
-}
 
-if (!function_exists("xoops_token_confirm")) {
 /**
  * @brief xoops_confirm alias [test]
  */
@@ -153,16 +140,12 @@ function xoops_token_confirm($hiddens, $action, $msg, $submit='')
 {
     return xoops_confirm($hiddens, $action, $msg, $submit, true);
 }
-}
 
-if (!function_exists("xoops_confirm_validate")) {
 function xoops_confirm_validate()
 {
     return XoopsMultiTokenHandler::quickValidate(XOOPS_TOKEN_DEFAULT);
 }
-}
 
-if (!function_exists("xoops_refcheck")) {
 function xoops_refcheck($docheck=1)
 {
     $ref = xoops_getenv('HTTP_REFERER');
@@ -177,9 +160,7 @@ function xoops_refcheck($docheck=1)
     }
     return true;
 }
-}
 
-if (!function_exists("xoops_getUserTimestamp")) {
 function xoops_getUserTimestamp($time, $timeoffset="")
 {
     global $xoopsConfig, $xoopsUser;
@@ -193,9 +174,7 @@ function xoops_getUserTimestamp($time, $timeoffset="")
 
     return intval($time) + (intval($timeoffset) - $xoopsConfig['server_TZ'])*3600;
 }
-}
 
-if (!function_exists("formatTimestamp")) {
 /*
  * Function to display formatted times in user timezone
  */
@@ -205,9 +184,7 @@ function formatTimestamp($time, $format="l", $timeoffset="")
     $usertimestamp = xoops_getUserTimestamp($time, $timeoffset);
     return _formatTimeStamp($usertimestamp, $format);
 }
-}
 
-if (!function_exists("formatTimestampGMT")) {
 /*
  * Function to display formatted times in user timezone
  */
@@ -226,9 +203,7 @@ function formatTimestampGMT($time, $format="l", $timeoffset="")
     $usertimestamp = intval($time) + (intval($timeoffset))*3600;
     return _formatTimeStamp($usertimestamp, $format);
 }
-}
 
-if (!function_exists("_formatTimeStamp")) {
 function _formatTimeStamp($time, $format="l")
 {
     switch (strtolower($format)) {
@@ -257,9 +232,7 @@ function _formatTimeStamp($time, $format="l")
     }
     return ucfirst(date($datestring, $time));
 }
-}
 
-if (!function_exists("userTimeToServerTime")) {
 /*
  * Function to calculate server timestamp from user entered time (timestamp)
  */
@@ -272,9 +245,7 @@ function userTimeToServerTime($timestamp, $userTZ=null)
     $timestamp = $timestamp - (($userTZ - $xoopsConfig['server_TZ']) * 3600);
     return $timestamp;
 }
-}
 
-if (!function_exists("xoops_makepass")) {
 function xoops_makepass() {
     $makepass = '';
     $syllables = array("er","in","tia","wol","fe","pre","vet","jo","nes","al","len","son","cha","ir","ler","bo","ok","tio","nar","sim","ple","bla","ten","toe","cho","co","lat","spe","ak","er","po","co","lor","pen","cil","li","ght","wh","at","the","he","ck","is","mam","bo","no","fi","ve","any","way","pol","iti","cs","ra","dio","sou","rce","sea","rch","pa","per","com","bo","sp","eak","st","fi","rst","gr","oup","boy","ea","gle","tr","ail","bi","ble","brb","pri","dee","kay","en","be","se");
@@ -288,9 +259,7 @@ function xoops_makepass() {
     }
     return $makepass;
 }
-}
 
-if (!function_exists("OpenWaitBox")) {
 /*
  * Functions to display dhtml loading image box
  */
@@ -332,9 +301,7 @@ function OpenWaitBox()
     //-->
     </script>";
 }
-}
 
-if (!function_exists("CloseWaitBox")) {
 function CloseWaitBox()
 {
     echo "<script type='text/javascript'>
@@ -344,9 +311,7 @@ function CloseWaitBox()
     </script>
     ";
 }
-}
 
-if (!function_exists("checkEmail")) {
 function checkEmail($email,$antispam = false)
 {
     if (!$email || !preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i",$email)){
@@ -360,9 +325,7 @@ function checkEmail($email,$antispam = false)
         return true;
     }
 }
-}
 
-if (!function_exists("formatURL")) {
 function formatURL($url)
 {
     $url = trim($url);
@@ -373,9 +336,7 @@ function formatURL($url)
     }
     return $url;
 }
-}
 
-if (!function_exists("showbanner")) {
 /*
  * Function to display banners in all pages
  */
@@ -383,9 +344,7 @@ function showbanner()
 {
     echo xoops_getbanner();
 }
-}
 
-if (!function_exists("xoops_getbanner")) {
 /*
  * Function to get banner html tags for use in templates
  */
@@ -420,7 +379,7 @@ function xoops_getbanner()
         if ($htmlbanner){
             $bannerobject = $htmlcode;
         }else{
-            $bannerobject = '<div><a href="'.XOOPS_URL.'/banners.php?op=click&amp;bid='.$bid.'" target="_blank">';
+            $bannerobject = '<div><a href="'.XOOPS_URL.'/banners.php?op=click&amp;bid='.$bid.'" rel="external">';
             if (stristr($imageurl, '.swf')) {
                 $bannerobject = $bannerobject
                     .'<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" width="468" height="60">'
@@ -438,16 +397,14 @@ function xoops_getbanner()
         return $bannerobject;
     }
 }
-}
 
-if (!function_exists("redirect_header")) {
 /*
 * Function to redirect a user to certain pages
 */
 function redirect_header($url, $time = 3, $message = '', $addredirect = true)
 {
     global $xoopsConfig, $xoopsRequestUri;
-    if (preg_match('/[\x0-\x1f\x7f]/', $url) || preg_match("/^(javascript|vbscript|about):/i", $url)) {
+    if (preg_match("/[\\0-\\31]/", $url) || preg_match("/^(javascript|vbscript|about):/i", $url)) {
         $url = XOOPS_URL;
     }
     if (!defined('XOOPS_CPFUNC_LOADED')) {
@@ -522,9 +479,7 @@ function redirect_header($url, $time = 3, $message = '', $addredirect = true)
     }
     exit();
 }
-}
 
-if (!function_exists("xoops_getenv")) {
 function xoops_getenv($key)
 {
     $ret = null;
@@ -532,9 +487,9 @@ function xoops_getenv($key)
     //if ($phpv[0] > 3 && $phpv[1] > 0) {
     //  $ret = isset($_SERVER[$key]) ? $_SERVER[$key] : $_ENV[$key];
     //} else {
-		if (isset($_SERVER[$key]) || isset($_ENV[$key])) {
+        if (isset($_SERVER[$key]) || isset($_ENV[$key])) {
             $ret = isset($_SERVER[$key]) ? $_SERVER[$key] : $_ENV[$key];
-		}
+        }
     //}
 
     switch($key) {
@@ -547,20 +502,16 @@ function xoops_getenv($key)
 
     return $ret;
 }
-}
 
-if (!function_exists("getTheme")) {
 /*
  * This function is deprecated. Do not use!
  */
 function getTheme()
 {
-	$root =& XCube_Root::getSingleton();
-	return $root->mContext->getXoopsConfig('theme_set');
-}
+    $root =& XCube_Root::getSingleton();
+    return $root->mContext->getXoopsConfig('theme_set');
 }
 
-if (!function_exists("getcss")) {
 /*
  * Function to get css file for a certain theme
  * This function will be deprecated.
@@ -569,9 +520,7 @@ function getcss($theme = '')
 {
     return xoops_getcss($theme);
 }
-}
 
-if (!function_exists("xoops_getcss")) {
 /*
  * Function to get css file for a certain themeset
  */
@@ -597,27 +546,23 @@ function xoops_getcss($theme = '')
     }
     return '';
 }
-}
 
-if (!function_exists("getMailer")) {
 function &getMailer()
 {
     global $xoopsConfig;
-	$ret = null;
+    $ret = null;
     require_once XOOPS_ROOT_PATH."/class/xoopsmailer.php";
     if ( file_exists(XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/xoopsmailerlocal.php") ) {
         require_once XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/xoopsmailerlocal.php";
         if ( XC_CLASS_EXISTS("XoopsMailerLocal") ) {
-            $ret =& new XoopsMailerLocal();
-			return $ret;
+            $ret = new XoopsMailerLocal();
+            return $ret;
         }
     }
-    $ret =& new XoopsMailer();
-	return $ret;
-}
+    $ret = new XoopsMailer();
+    return $ret;
 }
 
-if (!function_exists("xoops_gethandler")) {
 /**
  * This function is Fly-Weight to get an instance of XoopsObject in Legacy
  * Kernel.
@@ -627,16 +572,16 @@ function &xoops_gethandler($name, $optional = false )
     static $handlers;
     $name = strtolower(trim($name));
     if (!isset($handlers[$name])) {
-		//
-		// The following delegate is test at Alpha4-c.
-		//
-		$handler = null;
-		XCube_DelegateUtils::call('Legacy.Event.GetHandler', new XCube_Ref($handler), $name, $optional);
-		if (is_object($handler)) {
-			$handlers[$name] =& $handler;
-			return $handlers[$name];
-		}
-		
+        //
+        // The following delegate is test at Alpha4-c.
+        //
+        $handler = null;
+        XCube_DelegateUtils::call('Legacy.Event.GetHandler', new XCube_Ref($handler), $name, $optional);
+        if (is_object($handler)) {
+            $handlers[$name] =& $handler;
+            return $handlers[$name];
+        }
+        
         if ( file_exists( $hnd_file = XOOPS_ROOT_PATH.'/kernel/'.$name.'.php' ) ) {
             require_once $hnd_file;
         }
@@ -648,17 +593,15 @@ function &xoops_gethandler($name, $optional = false )
     if (!isset($handlers[$name]) && !$optional ) {
         trigger_error('Class <b>'.$class.'</b> does not exist<br />Handler Name: '.$name, E_USER_ERROR);
     }
-	
-	$falseRet = false;
-	
+    
+    $falseRet = false;
+    
     if (isset($handlers[$name]))
         return $handlers[$name];
-	else
+    else
         return $falseRet;
 }
-}
 
-if (!function_exists("xoops_getmodulehandler")) {
 function &xoops_getmodulehandler($name = null, $module_dir = null, $optional = false)
 {
     static $handlers;
@@ -675,36 +618,34 @@ function &xoops_getmodulehandler($name = null, $module_dir = null, $optional = f
     }
     $name = (!isset($name)) ? $module_dir : trim($name);
     if (!isset($handlers[$module_dir][$name])) {
-		//
-		// Cube Style
-		//
-		if (file_exists($hnd_file = XOOPS_ROOT_PATH . "/modules/{$module_dir}/class/handler/" . ucfirst($name) . ".class.php")) {
-			include_once $hnd_file;
-		}
-		elseif ( file_exists( $hnd_file = XOOPS_ROOT_PATH . "/modules/{$module_dir}/class/{$name}.php" ) ) {
+        //
+        // Cube Style
+        //
+        if (file_exists($hnd_file = XOOPS_ROOT_PATH . "/modules/{$module_dir}/class/handler/" . ucfirst($name) . ".class.php")) {
             include_once $hnd_file;
         }
-		
-		$className = ucfirst(strtolower($module_dir)) . "_" . ucfirst($name) . 'Handler';
-		if (XC_CLASS_EXISTS($className)) {
-			$handlers[$module_dir][$name] =& new $className($GLOBALS['xoopsDB']);
-		}
-		else {
-			$className = ucfirst(strtolower($module_dir)) . ucfirst($name) . 'Handler';
-			if (XC_CLASS_EXISTS($className)) {
-				$handlers[$module_dir][$name] = new $className($GLOBALS['xoopsDB']);
-			}
-		}
+        elseif ( file_exists( $hnd_file = XOOPS_ROOT_PATH . "/modules/{$module_dir}/class/{$name}.php" ) ) {
+            include_once $hnd_file;
+        }
+        
+        $className = ucfirst(strtolower($module_dir)) . "_" . ucfirst($name) . 'Handler';
+        if (XC_CLASS_EXISTS($className)) {
+            $handlers[$module_dir][$name] = new $className($GLOBALS['xoopsDB']);
+        }
+        else {
+            $className = ucfirst(strtolower($module_dir)) . ucfirst($name) . 'Handler';
+            if (XC_CLASS_EXISTS($className)) {
+                $handlers[$module_dir][$name] = new $className($GLOBALS['xoopsDB']);
+            }
+        }
     }
     if (!isset($handlers[$module_dir][$name]) && !$optional) {
         trigger_error('Handler does not exist<br />Module: '.$module_dir.'<br />Name: '.$name, E_USER_ERROR);
     }
-	
+    
     return $handlers[$module_dir][$name];
 }
-}
 
-if (!function_exists("xoops_getrank")) {
 function xoops_getrank($rank_id =0, $posts = 0)
 {
     $db =& Database::getInstance();
@@ -720,10 +661,8 @@ function xoops_getrank($rank_id =0, $posts = 0)
     
     return $rank;
 }
-}
 
 
-if (!function_exists("xoops_substr")) {
 /**
 * Returns the portion of string specified by the start and length parameters. If $trimmarker is supplied, it is appended to the return string. This function works fine with multi-byte characters if mb_* functions exist on the server.
 *
@@ -761,7 +700,6 @@ function xoops_substr($str, $start, $length, $trimmarker = '...')
     }
     return ($action) ? substr( $str, $pos_st, $pos_i - $pos_st - strlen($trimmarker) ) . $trimmarker : $str;
 }
-}
 
 // RMV-NOTIFY
 // ################ Notification Helper Functions ##################
@@ -769,33 +707,26 @@ function xoops_substr($str, $start, $length, $trimmarker = '...')
 // We want to be able to delete by module, by user, or by item.
 // How do we specify this??
 
-if (!function_exists("xoops_notification_deletebymodule")) {
 function xoops_notification_deletebymodule ($module_id)
 {
     $notification_handler =& xoops_gethandler('notification');
     return $notification_handler->unsubscribeByModule ($module_id);
 }
-}
 
-if (!function_exists("xoops_notification_deletebyuser")) {
 function xoops_notification_deletebyuser ($user_id)
 {
     $notification_handler =& xoops_gethandler('notification');
     return $notification_handler->unsubscribeByUser ($user_id);
 }
-}
 
-if (!function_exists("xoops_notification_deletebyitem")) {
 function xoops_notification_deletebyitem ($module_id, $category, $item_id)
 {
     $notification_handler =& xoops_gethandler('notification');
     return $notification_handler->unsubscribeByItem ($module_id, $category, $item_id);
 }
-}
 
 // ################### Comment helper functions ####################
 
-if (!function_exists("xoops_comment_count")) {
 function xoops_comment_count($module_id, $item_id = null)
 {
     $comment_handler =& xoops_gethandler('comment');
@@ -805,9 +736,7 @@ function xoops_comment_count($module_id, $item_id = null)
     }
     return $comment_handler->getCount($criteria);
 }
-}
 
-if (!function_exists("xoops_comment_delete")) {
 function xoops_comment_delete($module_id, $item_id)
 {
     if (intval($module_id) > 0 && intval($item_id) > 0) {
@@ -838,11 +767,9 @@ function xoops_comment_delete($module_id, $item_id)
     }
     return false;
 }
-}
 
 // ################ Group Permission Helper Functions ##################
 
-if (!function_exists("xoops_groupperm_deletebymoditem")) {
 function xoops_groupperm_deletebymoditem($module_id, $perm_name, $item_id = null)
 {
     // do not allow system permissions to be deleted
@@ -852,9 +779,7 @@ function xoops_groupperm_deletebymoditem($module_id, $perm_name, $item_id = null
     $gperm_handler =& xoops_gethandler('groupperm');
     return $gperm_handler->deleteByModule($module_id, $perm_name, $item_id);
 }
-}
 
-if (!function_exists("xoops_utf8_encode")) {
 function &xoops_utf8_encode(&$text)
 {
     if (XOOPS_USE_MULTIBYTES == 1) {
@@ -867,16 +792,12 @@ function &xoops_utf8_encode(&$text)
     $out_text = utf8_encode($text);
     return $out_text;
 }
-}
 
-if (!function_exists("xoops_convert_encoding")) {
 function &xoops_convert_encoding(&$text)
 {
     return xoops_utf8_encode($text);
 }
-}
 
-if (!function_exists("xoops_getLinkedUnameFromId")) {
 function xoops_getLinkedUnameFromId($userid)
 {
     $userid = intval($userid);
@@ -890,9 +811,7 @@ function xoops_getLinkedUnameFromId($userid)
     }
     return $GLOBALS['xoopsConfig']['anonymous'];
 }
-}
 
-if (!function_exists("xoops_trim")) {
 function xoops_trim($text)
 {
     if (function_exists('xoops_language_trim')) {
@@ -900,14 +819,12 @@ function xoops_trim($text)
     }
     return trim($text);
 }
-}
 
-// ################ Alternative PHP Core Functions ##################
 if (!function_exists('htmlspecialchars_decode')) {
-	function htmlspecialchars_decode($text)
-	{
-		return strtr($text, array_flip(get_html_translation_table(HTML_SPECIALCHARS)));
-	}
+    function htmlspecialchars_decode($text)
+    {
+        return strtr($text, array_flip(get_html_translation_table(HTML_SPECIALCHARS)));
+    }
 }
 
 if (!function_exists('session_regenerate_id')) { // @ToDo this compatible function should be moved to other file.

@@ -16,7 +16,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
 	
 	function prepare(&$controller, &$xoopsUser)
 	{
-		$this->mActionForm =& new LegacyRender_TplsetUploadForm();
+		$this->mActionForm =new LegacyRender_TplsetUploadForm();
 		$this->mActionForm->prepare();
 	}
 	
@@ -44,7 +44,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
 		}
 		
 		require_once XOOPS_ROOT_PATH . "/class/class.tar.php";
-		$tar =& new tar();
+		$tar =new tar();
 
 		$formFile = $this->mActionForm->get('upload');
 		

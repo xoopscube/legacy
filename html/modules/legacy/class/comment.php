@@ -96,8 +96,8 @@ class LegacyCommentHandler extends XoopsObjectGenericHandler
 	{
 		parent::XoopsObjectGenericHandler($db);
 		
-		$this->mUpdateSuccess =& new XCube_Delegate();
-		$this->mDeleteSuccess =& new XCube_Delegate();
+		$this->mUpdateSuccess =new XCube_Delegate();
+		$this->mDeleteSuccess =new XCube_Delegate();
 	}
 	
 	function insert(&$comment, $force = false)
@@ -116,7 +116,7 @@ class LegacyCommentHandler extends XoopsObjectGenericHandler
 	 */
 	function delete(&$comment, $force = false)
 	{
-		$criteria =& new Criteria('com_pid', $comment->get('com_id'));
+		$criteria =new Criteria('com_pid', $comment->get('com_id'));
 		$this->deleteAll($criteria);
 		
 		if (parent::delete($comment, $force)) {

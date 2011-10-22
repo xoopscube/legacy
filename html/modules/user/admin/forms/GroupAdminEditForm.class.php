@@ -21,18 +21,18 @@ class User_GroupAdminEditForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['groupid'] =& new XCube_IntProperty('groupid');
-		$this->mFormProperties['name'] =& new XCube_StringProperty('name');
-		$this->mFormProperties['description'] =& new XCube_TextProperty('description');
+		$this->mFormProperties['groupid'] =new XCube_IntProperty('groupid');
+		$this->mFormProperties['name'] =new XCube_StringProperty('name');
+		$this->mFormProperties['description'] =new XCube_TextProperty('description');
 	
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['groupid'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['groupid'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['groupid']->setDependsByArray(array('required'));
 		$this->mFieldProperties['groupid']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_GROUPID);
 	
-		$this->mFieldProperties['name'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['name'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['name']->setDependsByArray(array('required','maxlength'));
 		$this->mFieldProperties['name']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_GROUP_NAME, '50');
 		$this->mFieldProperties['name']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _AD_USER_LANG_GROUP_NAME, '50');

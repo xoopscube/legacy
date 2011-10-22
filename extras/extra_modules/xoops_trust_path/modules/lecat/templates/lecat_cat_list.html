@@ -1,0 +1,18 @@
+<div id="lecat">
+<{include file="db:`$dirname`_inc_menu.html" dirname=$dirname}>
+
+<h1><{$smarty.const._MD_LECAT_LANG_CAT}><{$smarty.const._LIST}></h1>
+
+<ul class="toptab">
+  <{if $xoops_isadmin}>
+  <li><a href="<{xoops_cooluri dirname=$dirname dataname=cat action=edit}>"><{$smarty.const._MD_LECAT_LANG_ADD_A_NEW_CAT}></a></li>
+  <li><a href="<{xoops_cooluri dirname=$dirname dataname=actor action=edit}>"><{$smarty.const._MD_LECAT_LANG_EDIT_ACTOR}></a></li>
+  <li><a href="<{xoops_cooluri dirname=$dirname dataname=default action=set}>"><{$smarty.const._MD_LECAT_LANG_DEFAULT_PERMISSIONS}></a></li>
+  <{/if}>
+</ul>
+
+<div class="catTree">
+  <h2><{$smarty.const._MD_LECAT_LANG_CAT}></h2>
+  <{legacy_tree tree=$objects dirname=$dirname}>
+</div>
+</div>

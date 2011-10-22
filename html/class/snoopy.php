@@ -598,6 +598,18 @@ class Snoopy
 	}
 
 	
+// XOOPS2 Hack begin
+// Added on March 4, 2003 by onokazu@xoops.org
+/*======================================================================*\
+	Function:	set_submit_xml
+	Purpose:	Set the submission content type to
+				text/xml
+\*======================================================================*/
+	function set_submit_xml()
+	{
+		$this->_submit_type = "text/xml";
+	}
+// XOOPS2 Hack end
 	
 
 /*======================================================================*\
@@ -714,16 +726,16 @@ class Snoopy
 							chr(39),
 							chr(128),
 							/*
-							 * UTF8で表示出来ない文字をコードに変更
+							 * use CHR code for UTF-8
 							 * Marijuana
 							 */
-              chr(228),
-              chr(246),
-              chr(252),
-              chr(196),
-              chr(214),
-              chr(220),
-              chr(223),
+							chr(228),
+							chr(246),
+							chr(252),
+							chr(196),
+							chr(214),
+							chr(220),
+							chr(223),
 						);
 					
 		$text = preg_replace($search,$replace,$document);
@@ -794,7 +806,7 @@ class Snoopy
 		if(!empty($this->host) && !isset($this->rawheaders['Host'])) {
 			$headers .= "Host: ".$this->host;
 		  /**
-		   * 80のときはポート番号を付けない
+		   * when port is 80, port no should not be assigned
 		   * Marijuana
 		   */
 			if(!empty($this->port) && $this->port != 80)
@@ -962,7 +974,7 @@ class Snoopy
 			$headers[] = "User-Agent: ".$this->agent;
 		if(!empty($this->host))
 		  /**
-		   * 80のときはポート番号を付けない
+		   * when port is 80, port no should not be assigned
 		   * Marijuana
 		   */
 			if(!empty($this->port) && $this->port != 80)

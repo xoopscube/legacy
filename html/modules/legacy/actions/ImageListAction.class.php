@@ -36,7 +36,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 
 	function &_getFilterForm()
 	{
-		$filter =& new Legacy_ImageFilterForm($this->_getPageNavi(), $this->_getHandler());
+		$filter =new Legacy_ImageFilterForm($this->_getPageNavi(), $this->_getHandler());
 		return $filter;
 	}
 
@@ -91,7 +91,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 		}
 		$render->setAttribute('hasUploadPerm', $hasUploadPerm);
 		$render->setAttribute("category", $this->mCategory);
-		
+		//echo xoops_getrequest('target');die();
         $render->setAttribute('target', htmlspecialchars(xoops_getrequest('target'), ENT_QUOTES));
 	}
 

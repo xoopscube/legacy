@@ -29,7 +29,7 @@ class Legacy_ThemeSelect extends XCube_ActionFilter
 		// TODO remove
 		//
 		parent::XCube_ActionFilter($controller);
-		$this->mIsSelectableTheme =& new XCube_Delegate();
+		$this->mIsSelectableTheme =new XCube_Delegate();
 		$this->mIsSelectableTheme->register('Legacy_ThemeSelect.IsSelectableTheme');
 		
 		$controller->mSetupUser->add(array(&$this, 'doChangeTheme'));

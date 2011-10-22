@@ -24,7 +24,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new User_AvatarAdminEditForm();
+		$this->mActionForm =new User_AvatarAdminEditForm();
 		$this->mActionForm->prepare();
 	}
 	
@@ -43,7 +43,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
 				//
 				if (!$this->mObject->isNew()) {
 					$linkHandler =& xoops_getmodulehandler('avatar_user_link');
-					$criteria =& new Criteria('avatar_id', $this->mObject->get('avatar_id'));
+					$criteria =new Criteria('avatar_id', $this->mObject->get('avatar_id'));
 					$linkArr =& $linkHandler->getObjects($criteria);
 
 					$userHandler =& xoops_gethandler('user');

@@ -146,7 +146,7 @@ class XCube_Delegate
 	 * important to accent a delegate for making rightly connected functions.
 	 * 
 	 * \code
-	 *   $delegate =& new XCube_Delegate("string", "string");
+	 *   $delegate =new XCube_Delegate("string", "string");
 	 * \endcode
 	 */
 	function XCube_Delegate()
@@ -586,7 +586,7 @@ class XCube_DelegateUtils
                 $keys = array_keys($delegates[$delegateName]);
                 $delegate =& $delegates[$delegateName][$keys[0]];
             } else {
-                $delegate =& new XCube_Delegate;
+                $delegate = new XCube_Delegate;
                 $root->mDelegateManager->register($delegateName, $delegate);
             }
         }
@@ -610,7 +610,7 @@ class XCube_DelegateUtils
      * 
      *     \code
      *       {
-     *	       $local =& new XCube_Delegate();
+     *	       $local =new XCube_Delegate();
      *	       $local->register("Module.A.Exception.Null");
      *	       $local->call();
      *	     }
@@ -676,7 +676,7 @@ class XCube_DelegateUtils
             if (!empty($string) && is_string($string)) {
                 return "";
             }
-            $args[1] =& new XCube_Ref($string);
+            $args[1] = new XCube_Ref($string);
             call_user_func_array(array('XCube_DelegateUtils','call'),$args);
             return $string;
         } else {

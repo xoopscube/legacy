@@ -11,6 +11,10 @@ class User_AbstractViewAction extends User_Action
 	var $mObject = null;
 	var $mObjectHandler = null;
 
+	function User_AbstractViewAction()
+	{
+	}
+
 	function _getId()
 	{
 	}
@@ -26,6 +30,18 @@ class User_AbstractViewAction extends User_Action
 		$this->mObjectHandler =& $this->_getHandler();
 		
 		$this->mObject =& $this->mObjectHandler->get($id);
+	}
+
+	/**
+	 * _getPageAction
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	protected function _getPageAction()
+	{
+		return _VIEW;
 	}
 
 	function prepare(&$controller, &$xoopsUser, &$moduleConfig)

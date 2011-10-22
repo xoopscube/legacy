@@ -84,6 +84,9 @@ class User_UserFilterForm extends User_AbstractFilterForm
 		USER_SORT_KEY_USER_MAILOK => 'user_mailok'
 	);
 
+	var $mKeyword = "";
+	var $mOptionField = "";
+
 	function getDefaultSortKey()
 	{
 		return USER_SORT_KEY_DEFAULT;
@@ -93,6 +96,17 @@ class User_UserFilterForm extends User_AbstractFilterForm
 	{
 		parent::fetch();
 	
+		$root =& XCube_Root::getSingleton();
+		$uid = $root->mContext->mRequest->getRequest('uid');
+		$email = $root->mContext->mRequest->getRequest('email');
+		$attachsig = $root->mContext->mRequest->getRequest('attachsig');
+		$rank = $root->mContext->mRequest->getRequest('rank');
+		$level = $root->mContext->mRequest->getRequest('level');
+		$timezone_offset = $root->mContext->mRequest->getRequest('timezone_offset');
+		$user_mailok = $root->mContext->mRequest->getRequest('user_mailok');
+		$option_field = $root->mContext->mRequest->getRequest('option_field');
+		$search = $root->mContext->mRequest->getRequest('search');
+
 		if (isset($_REQUEST['uid'])) {
 			$this->mNavi->addExtra('uid', xoops_getrequest('uid'));
 			$this->_mCriteria->add(new Criteria('uid', xoops_getrequest('uid')));
@@ -127,7 +141,32 @@ class User_UserFilterForm extends User_AbstractFilterForm
 			$this->mNavi->addExtra('user_mailok', xoops_getrequest('user_mailok'));
 			$this->_mCriteria->add(new Criteria('user_mailok', xoops_getrequest('user_mailok')));
 		}
+
+		//wanikoo
+		if (isset($_REQUEST['option_field'])) {
+			$this->mNavi->addExtra('option_field', xoops_getrequest('option_field'));
+			$this->mOptionField = $option_field;
+
+			if ( $option_field == "inactive" ) {
+			//only inactive users
+			$this->_mCriteria->add(new Criteria('level', '0'));
+			}
+			elseif ( $option_field == "active" ) {
+			//only active users
+			$this->_mCriteria->add(new Criteria('level', '0', '>'));
+			}
+			else {
+			//all
+			}
+		}
 		
+		//
+		if (!empty($search)) {
+			$this->mKeyword = $search;
+			$this->mNavi->addExtra('search', $this->mKeyword);
+			$this->_mCriteria->add(new Criteria('uname', '%' . $this->mKeyword . '%', 'LIKE'));
+		}
+
 		$this->_mCriteria->addSort($this->getSort(), $this->getOrder());
 	}
 }

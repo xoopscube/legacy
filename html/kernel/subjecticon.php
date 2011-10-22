@@ -22,14 +22,14 @@ class XoopsSubjecticonHandler extends XoopsObjectHandler
 	
 	function &create()
 	{
-		$ret =& new XoopsSubjecticon();
+		$ret =new XoopsSubjecticon();
 		return $ret;
 	}
 	
 	function &get($filename)
 	{
 		if (isset($this->_mResult[$filename])) {
-			$obj =& new XoopsSubjecticon();
+			$obj =new XoopsSubjecticon();
 			$obj->setVar('filename', $this->_mResult[$filename]);
 
 			return $obj;
@@ -44,7 +44,7 @@ class XoopsSubjecticonHandler extends XoopsObjectHandler
 		$ret = array();
 		
 		foreach ($this->_mResult as $filename => $value) {
-			$obj =& new XoopsSubjecticon();
+			$obj =new XoopsSubjecticon();
 			$obj->setVar('filename', $filename);
 			if ($key_as_id) {
 				$ret[$filename] =& $obj;

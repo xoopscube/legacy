@@ -17,7 +17,7 @@ class Legacy_SearchShowallAction extends Legacy_SearchResultsAction
 {
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_SearchShowallForm($this->mConfig['keyword_min']);
+		$this->mActionForm =new Legacy_SearchShowallForm($this->mConfig['keyword_min']);
 		$this->mActionForm->prepare();
 	}
 	

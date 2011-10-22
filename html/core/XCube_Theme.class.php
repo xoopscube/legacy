@@ -82,7 +82,8 @@ class XCube_Theme
 	function loadManifesto($file)
 	{
 		if (file_exists($file)) {
-			$this->_mManifesto = parse_ini_file($file, true);
+			$iniHandler = new XCube_IniHandler($file, true);
+			$this->_mManifesto = $iniHandler->getAllConfig();
 			$this->mName = isset($this->_mManifesto['Manifesto']['Name']) ? $this->_mManifesto['Manifesto']['Name'] : "";
 			$this->mDepends = isset($this->_mManifesto['Manifesto']['Depends']) ? $this->_mManifesto['Manifesto']['Depends'] : "";
 			$this->mVersion = isset($this->_mManifesto['Manifesto']['Version']) ? $this->_mManifesto['Manifesto']['Version'] : "";

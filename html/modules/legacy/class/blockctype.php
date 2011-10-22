@@ -41,7 +41,7 @@ class LegacyBlockctypeHandler extends XoopsObjectHandler
 	
 	function &create()
 	{
-		$ret =& new LegacyBlockctypeObject();
+		$ret =new LegacyBlockctypeObject();
 		return $ret;
 	}
 	

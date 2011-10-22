@@ -92,20 +92,52 @@ class User_UserSearchFilterForm extends User_AbstractFilterForm
 	{
 		parent::fetch();
 
-		$form =& new User_UserSearchForm();
+		$form =new User_UserSearchForm();
 		$form->prepare();
 
 		$form->fetch();
 		$form->validate();
-		
+
 		if ($form->hasError()) {
 			return;
 		}
-		
+
+		$root =& XCube_Root::getSingleton();
+
 		foreach ($this->_mMatchFields as $field) {
 			if (strlen($form->get($field)) > 0) {
 				$this->mNavi->addExtra($field, $form->get($field));
+				
+				$user_field_match = $root->mContext->mRequest->getRequest('user_'.$field.'_match');
+				$field_match = $root->mContext->mRequest->getRequest($field.'_match');
+				if( isset($user_field_match) || isset($field_match) ){
+					$formvalue =  0;
+					if (isset($user_field_match)){
+					$formvalue = intval($form->get('user_'.$field.'_match')) ;
+					$this->mNavi->addExtra('user_'.$field.'_match', $formvalue);
+					}
+					elseif(isset($field_match)){
+					$formvalue = intval($form->get($field.'_match')) ;
+					$this->mNavi->addExtra($field.'_match', $formvalue);
+					}
+					switch ($formvalue) {
+					case XOOPS_MATCH_START:
+					$this->_mCriteria->add(new Criteria('u.' . $field, $form->get($field) . '%', 'LIKE'));
+					break;
+					case XOOPS_MATCH_END:
+					$this->_mCriteria->add(new Criteria('u.' . $field, '%' . $form->get($field), 'LIKE'));
+					break;
+					case XOOPS_MATCH_EQUAL:
+					$this->_mCriteria->add(new Criteria('u.' . $field, $form->get($field)));
+					break;
+					case XOOPS_MATCH_CONTAIN:
+					$this->_mCriteria->add(new Criteria('u.' . $field, '%' . $form->get($field) . '%', 'LIKE'));
+					break;
+					}	
+				}
+				else {
 				$this->_mCriteria->add(new Criteria('u.' . $field, '%' . $form->get($field) . '%', 'LIKE'));
+				}
 			}
 		}
 		
@@ -167,9 +199,9 @@ class User_UserSearchFilterForm extends User_AbstractFilterForm
 		
 		$groups = $form->get('groups');
 		if (count($groups) > 0) {
-			$g_criteria =& new CriteriaCompo();
+			$g_criteria =new CriteriaCompo();
 			foreach($groups as $gid) {
-				$g_criteria->add(new Criteria('g.groupid', $gid), 'OR');
+				$g_criteria->add(new Criteria('g.groupid', $gid), $condition='OR');
 				$this->mNavi->addExtra('groups[' . $gid . ']', $gid);
 			}
 			$this->_mCriteria->add($g_criteria);

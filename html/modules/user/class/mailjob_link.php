@@ -23,7 +23,7 @@ class UserMailjob_linkHandler extends XoopsObjectGenericHandler
 	{
 		$ret = null;
 
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('mailjob_id', $mailjob_id));
 		$criteria->add(new Criteria('uid', $uid));
 
@@ -75,7 +75,7 @@ class UserMailjob_linkHandler extends XoopsObjectGenericHandler
 		// Because Criteria can generate the most appropriate sentence, use
 		// criteria even if this approach is few slow.
 		//
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('mailjob_id', $obj->get('mailjob_id')));
 		$criteria->add(new Criteria('uid', $obj->get('uid')));
 		$sql = "DELETE FROM " . $this->mTable . " WHERE " . $this->_makeCriteriaElement4sql($criteria, $obj);

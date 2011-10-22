@@ -1,0 +1,19 @@
+<h4>Sommaire</h4>
+<ul>
+<li>Ce module ajoute une fonction de cache à votre site qui peut réduire considérablement la charge lorsque votre site a un nombre important d'accès.</li>
+<li>La fonction de ce module est applicable à deux types de groupes d'utilisateur (les utilisateurs anonymes et les groupes d'utilisateur enregistrés).<br />
+Le contenu en cache des utilisateurs n'est plus accessible à d'autres au même moment.</li>
+</ul>
+<h4>Gestion du cache en utilisant le bloc vider le cache</h4>
+<ul>
+<li>Le bloc vider le cache limite l'accès au contenu en cache quand le bloc est regardé par un utilisateur anonyme.</li>
+<li>Nous recommandons de rendre le bloc accessible aux utilisateurs anonymes, et derégler le tempas de cache à "Un jour".</li>
+<li>Le module pourrait créer une grande quantité de fichiers de cache. Mais ce n'est pas un problème si le bloc vider le cache est
+paramétré comme recommandé.</li>
+</ul>
+<h4>Comment configurer</h4>
+<ul>
+<li>Veuillez ajouter les deux lignes suivantes au fichier de configuration, sous le bloc [Cube].</li>
+<li>CacheSystem.path=/modules/stdCache/kernel</li>
+<li>CacheSystem. classe = StdRenderCache</li>
+</ul>

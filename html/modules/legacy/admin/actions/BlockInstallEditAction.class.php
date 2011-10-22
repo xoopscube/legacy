@@ -19,7 +19,7 @@ class Legacy_BlockInstallEditAction extends Legacy_BlockEditAction
 {
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_BlockInstallEditForm();
+		$this->mActionForm =new Legacy_BlockInstallEditForm();
 		$this->mActionForm->prepare();
 	}
 	

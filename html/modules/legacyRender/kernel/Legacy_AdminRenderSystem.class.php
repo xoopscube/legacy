@@ -15,7 +15,7 @@ define('LEGACY_ADMIN_RENDER_TEMPLATE_DIRNAME', "templates");
 define('LEGACY_ADMIN_RENDER_FALLBACK_PATH', XOOPS_MODULE_PATH . "/legacy/admin/theme");
 define('LEGACY_ADMIN_RENDER_FALLBACK_URL', XOOPS_MODULE_URL . "/legacy/admin/theme");
 
-require_once XOOPS_ROOT_PATH."/class/smarty/Smarty.class.php";
+require_once SMARTY_DIR."/Smarty.class.php";
 
 /**
  * @internal
@@ -36,16 +36,17 @@ class Legacy_AdminSmarty extends Smarty
 	{
 		parent::Smarty();
 
-		$this->compile_id = null;
+		$this->compile_id = XOOPS_URL;
 		$this->_canUpdateFromFile = true;
 		$this->compile_check = true;
 		$this->compile_dir = XOOPS_COMPILE_PATH;
 		$this->left_delimiter = "<{";
 		$this->right_delimiter = "}>";
+		$this->plugins_dir = array(SMARTY_DIR.'plugins', XOOPS_ROOT_PATH.'/class/smarty/plugins');
 
 		//
 		// [TODO]
-		//  If we don't set true to the following flag, a user can not recover
+		//	If we don't set true to the following flag, a user can not recover
 		// with deleting additional theme. But, a user should to select true or
 		// false by site_custom.ini.php.
 		//
@@ -112,17 +113,17 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
 	{
 		$this->mController =& $controller;
 		
-		$this->mSmarty =& new Legacy_AdminSmarty();
+		$this->mSmarty =new Legacy_AdminSmarty();
 		$this->mSmarty->register_modifier("theme", "Legacy_modifier_theme");
 		$this->mSmarty->register_function("stylesheet", "Legacy_function_stylesheet");
 
 		$this->mSmarty->assign(array(
-			"xoops_url"        => XOOPS_URL,
-		    "xoops_rootpath"   => XOOPS_ROOT_PATH,
-		    "xoops_langcode"   => _LANGCODE,
-		    "xoops_charset"    => _CHARSET,
-		    "xoops_version"    => XOOPS_VERSION,
-		    "xoops_upload_url" => XOOPS_UPLOAD_URL)
+			"xoops_url" 	   => XOOPS_URL,
+			"xoops_rootpath"   => XOOPS_ROOT_PATH,
+			"xoops_langcode"   => _LANGCODE,
+			"xoops_charset"    => _CHARSET,
+			"xoops_version"    => XOOPS_VERSION,
+			"xoops_upload_url" => XOOPS_UPLOAD_URL)
 		);
 
 		if ($controller->mRoot->mSiteConfig['Legacy_AdminRenderSystem']['ThemeDevelopmentMode'] == true) {
@@ -160,7 +161,13 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
 		}
 		
 		$this->mSmarty->assign('stdout_buffer', $this->_mStdoutBuffer);
-
+	
+		//jQuery Ready functions
+		XCube_DelegateUtils::call("Site.JQuery.AddFunction", new XCube_Ref($this->mController->mRoot->mContext->mAttributes['headerScript']));
+		$headerScript = $this->mController->mRoot->mContext->getAttribute('headerScript');
+		$moduleHeader =  $headerScript->createLibraryTag() . $headerScript->createOnloadFunctionTag();
+		$this->mSmarty->assign('xoops_module_header', $moduleHeader);
+	
 		//
 		// Get a virtual current module object from the controller and assign it.
 		//

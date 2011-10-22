@@ -39,6 +39,10 @@ class Legacy_ImagecategoryFilterForm extends Legacy_AbstractFilterForm
 		IMAGECATEGORY_SORT_KEY_IMGCAT_STORETYPE => 'imgcat_storetype'
 	);
 
+	var $mKeyword = "";
+	var $mOptionField = "";
+	var $mOptionField2 = "";
+
 	function getDefaultSortKey()
 	{
 		return IMAGECATEGORY_SORT_KEY_DEFAULT;
@@ -47,6 +51,16 @@ class Legacy_ImagecategoryFilterForm extends Legacy_AbstractFilterForm
 	function fetch()
 	{
 		parent::fetch();
+
+		$root =& XCube_Root::getSingleton();
+		$imgcat_name = $root->mContext->mRequest->getRequest('imgcat_name');
+		$imgcat_display = $root->mContext->mRequest->getRequest('imgcat_display');
+		$imgcat_type = $root->mContext->mRequest->getRequest('imgcat_type');
+		$imgcat_storetype = $root->mContext->mRequest->getRequest('imgcat_storetype');
+		$option_field = $root->mContext->mRequest->getRequest('option_field');
+		$option_field2 = $root->mContext->mRequest->getRequest('option_field2');
+		$search = $root->mContext->mRequest->getRequest('search');
+
 		
 		if (isset($_REQUEST['imgcat_name'])) {
 			$this->mNavi->addExtra('imgcat_name', xoops_getrequest('imgcat_name'));
@@ -66,6 +80,41 @@ class Legacy_ImagecategoryFilterForm extends Legacy_AbstractFilterForm
 		if (isset($_REQUEST['imgcat_storetype'])) {
 			$this->mNavi->addExtra('imgcat_storetype', xoops_getrequest('imgcat_storetype'));
 			$this->_mCriteria->add(new Criteria('imgcat_storetype', xoops_getrequest('imgcat_storetype')));
+		}
+
+		if (isset($_REQUEST['option_field'])) {
+			$this->mNavi->addExtra('option_field', xoops_getrequest('option_field'));
+			$this->mOptionField = $option_field;
+			if ( $this->mOptionField == "visible" ) {
+			$this->_mCriteria->add(new Criteria('imgcat_display', xoops_getrequest('1')));
+			}
+			elseif ( $this->mOptionField == "invisible" ) {
+			$this->_mCriteria->add(new Criteria('imgcat_display', xoops_getrequest('0')));
+			}
+			else {
+			//all
+			}
+		}
+
+		if (isset($_REQUEST['option_field2'])) {
+			$this->mNavi->addExtra('option_field2', xoops_getrequest('option_field2'));
+			$this->mOptionField2 = $option_field2;
+			if ( $this->mOptionField2 == "file" ) {
+			$this->_mCriteria->add(new Criteria('imgcat_storetype', xoops_getrequest('file')));
+			}
+			elseif ( $this->mOptionField2 == "db" ) {
+			$this->_mCriteria->add(new Criteria('imgcat_storetype', xoops_getrequest('db')));
+			}
+			else {
+			//all
+			}
+		}
+
+		//
+		if (!empty($search)) {
+			$this->mKeyword = $search;
+			$this->mNavi->addExtra('search', $this->mKeyword);
+			$this->_mCriteria->add(new Criteria('imgcat_name', '%' . $this->mKeyword . '%', 'LIKE'));
 		}
 		
 		//

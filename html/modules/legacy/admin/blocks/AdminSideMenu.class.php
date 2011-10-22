@@ -16,7 +16,7 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
  * Then this load module's adminmenu and module's information.
  *
  * [ASSIGN]
- *  Array of module objects.
+ *	Array of module objects.
  * 
  * @package legacy
  */
@@ -57,6 +57,8 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
 		
 		// load message catalog of legacy for _AD_LEGACY_LANG_NO_SETTING, even if the current module is not Legacy.
 		$root->mLanguageManager->loadModuleAdminMessageCatalog('legacy'); 
+		//
+		$root->mLanguageManager->loadModinfoMessageCatalog('legacy');
 		
 		$controller =& $root->mController;
 		$user =& $root->mController->mRoot->mContext->mXoopsUser;
@@ -88,10 +90,10 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
 			$sql = "SELECT DISTINCT mid FROM ${mod} WHERE isactive=1 AND hasadmin=1 ORDER BY weight, mid";
 		}
 		else {
-	        $sql = "SELECT DISTINCT ${mod}.mid FROM ${mod},${perm} " .
-	               "WHERE ${mod}.isactive=1 AND ${mod}.mid=${perm}.gperm_itemid AND ${perm}.gperm_name='module_admin' AND ${perm}.gperm_groupid IN (${groups}) " .
-	               "AND ${mod}.hasadmin=1 " .
-	               "ORDER BY ${mod}.weight, ${mod}.mid";
+			$sql = "SELECT DISTINCT ${mod}.mid FROM ${mod},${perm} " .
+				   "WHERE ${mod}.isactive=1 AND ${mod}.mid=${perm}.gperm_itemid AND ${perm}.gperm_name='module_admin' AND ${perm}.gperm_groupid IN (${groups}) " .
+				   "AND ${mod}.hasadmin=1 " .
+				   "ORDER BY ${mod}.weight, ${mod}.mid";
 		}
 
 
@@ -106,7 +108,17 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
 			$this->mModules[] =& $module;
 			unset($module);
 		}
-		
+		//
+		$tpl = $db->prefix("tplfile");
+		$tpl_modules = array();
+		$sql = "SELECT DISTINCT tpl_module FROM ${tpl}";
+		$result = $db->query($sql);
+		while($row = $db->fetchArray($result)) {
+			$tpl_modules[] = $row['tpl_module'];
+		}
+		$render->setAttribute('tplmodules', $tpl_modules);
+		//
+
 		$render->setTemplateName('legacy_admin_block_sidemenu.html');
 		$render->setAttribute('modules', $this->mModules);
 		$render->setAttribute('currentModule', $this->mCurrentModule);

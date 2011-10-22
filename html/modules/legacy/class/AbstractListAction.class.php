@@ -32,7 +32,7 @@ class Legacy_AbstractListAction extends Legacy_Action
 	
 	function &_getPageNavi()
 	{
-		$navi =& new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START);
+		$navi =new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START);
 		return $navi;
 	}
 

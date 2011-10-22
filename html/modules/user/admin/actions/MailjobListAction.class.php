@@ -19,7 +19,7 @@ class User_MailjobListAction extends User_AbstractListAction
 
 	function &_getFilterForm()
 	{
-		$filter =& new User_MailjobFilterForm($this->_getPageNavi(), $this->_getHandler());
+		$filter =new User_MailjobFilterForm($this->_getPageNavi(), $this->_getHandler());
 		return $filter;
 	}
 

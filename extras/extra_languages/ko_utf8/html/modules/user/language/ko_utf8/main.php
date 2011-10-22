@@ -1,6 +1,5 @@
 <?php
 
-
 define('_MD_USER_ERROR_AVATAR_EXTENSION', "허가된 파일형식이 아닙니다.");
 define('_MD_USER_ERROR_AVATAR_MAXFILESIZE', "아바타 파일의 사이즈가 허용 파일사이즈를 초과하였습니다.");
 define('_MD_USER_ERROR_AVATAR_SELECT', "에러 - 지정하신 아바타는 올바르지 않습니다.");
@@ -53,6 +52,7 @@ define('_MD_USER_LANG_NO', "아니요");
 define('_MD_USER_LANG_NOACTTPADM', "선택하신 회원은 등록되어 있지 않거나, 혹은 아직 승인이 끝나지 않은 상태입니다.<br />자세한 내용은 관리자에게 문의해 주세요!");
 define('_MD_USER_LANG_NOPROBLEM', "걱정마세요! 먼저 등록시 사용하신 메일주소를 입력한 후 버튼을 클릭해 주세요!");
 define('_MD_USER_LANG_NOREGISTER', "죄송합니다만 현재 신규등록을 받고 있지 않습니다.");
+define('_MD_USER_LANG_NOTIFY', "이벤트 통지");
 define('_MD_USER_LANG_NOTIFY_METHOD', "이벤트갱신 통지메세지의 수신방법");
 define('_MD_USER_LANG_NOTIFY_MODE', "이벤트 통지의 타이밍");
 define('_MD_USER_LANG_NOTREGISTERED', "지금 바로 등록?");

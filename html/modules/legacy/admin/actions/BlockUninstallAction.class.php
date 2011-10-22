@@ -28,7 +28,7 @@ class Legacy_BlockUninstallAction extends Legacy_AbstractEditAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_BlockUninstallForm();
+		$this->mActionForm =new Legacy_BlockUninstallForm();
 		$this->mActionForm->prepare();
 	}
 	

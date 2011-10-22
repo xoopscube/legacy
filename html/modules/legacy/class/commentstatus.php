@@ -46,7 +46,7 @@ class LegacyCommentstatusHandler extends XoopsObjectHandler
 	
 	function &create()
 	{
-		$ret =& new LegacyCommentstatusObject();
+		$ret =new LegacyCommentstatusObject();
 		return $ret;
 	}
 	

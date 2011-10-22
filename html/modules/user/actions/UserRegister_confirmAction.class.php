@@ -39,6 +39,11 @@ class User_UserRegister_confirmAction extends User_Action
 
 	function execute(&$controller, &$xoopsUser)
 	{
+		if (XCube_Root::getSingleton()->mContext->mRequest->getRequest('_form_control_cancel') != null)
+		{
+			return USER_FRAME_VIEW_CANCEL;
+		}
+
 		$memberHandler =& xoops_gethandler('member');
 		$this->mNewUser =& $memberHandler->createUser();
 		$this->mRegistForm->update($this->mNewUser);
@@ -106,7 +111,7 @@ class User_UserRegister_confirmAction extends User_Action
 		$builder = ($activationType == 0) ? new User_RegistUserActivateMailBuilder()
 		                                  : new User_RegistUserAdminActivateMailBuilder();
 
-		$director =& new User_UserRegistMailDirector($builder, $this->mNewUser, $controller->mRoot->mContext->getXoopsConfig(), $this->mConfig);
+		$director =new User_UserRegistMailDirector($builder, $this->mNewUser, $controller->mRoot->mContext->getXoopsConfig(), $this->mConfig);
 		$director->contruct();
 		$mailer =& $builder->getResult();
 		
@@ -117,8 +122,8 @@ class User_UserRegister_confirmAction extends User_Action
 	function _eventNotifyMail(&$controller)
 	{
 		if($this->mConfig['new_user_notify'] == 1 && !empty($this->mConfig['new_user_notify_group'])) {
-			$builder =& new User_RegistUserNotifyMailBuilder();
-			$director =& new User_UserRegistMailDirector($builder, $this->mNewUser, $controller->mRoot->mContext->getXoopsConfig(), $this->mConfig);
+			$builder =new User_RegistUserNotifyMailBuilder();
+			$director =new User_UserRegistMailDirector($builder, $this->mNewUser, $controller->mRoot->mContext->getXoopsConfig(), $this->mConfig);
 			$director->contruct();
 			$mailer =& $builder->getResult();
 			$mailer->send();
@@ -127,13 +132,25 @@ class User_UserRegister_confirmAction extends User_Action
 
 	function _processActionForm()
 	{
-		$this->mActionForm =& new User_UserConfirmForm();
+		$this->mActionForm =new User_UserConfirmForm();
 		$this->mActionForm->prepare();
 	}
 
 	function executeViewError(&$controller, &$xoopsUser, &$render)
 	{
 		$controller->executeRedirect(XOOPS_URL . '/', 1, $this->mRedirectMessage);
+	}
+
+	/**
+	 * executeViewCancel
+	 * 
+	 * @param	XCube_RenderTarget	&$render
+	 * 
+	 * @return	void
+	**/
+	public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+	{
+		$controller->executeForward(XOOPS_URL.'/register.php');
 	}
 
 	function executeViewInput(&$controller,&$xoopsUser,&$render)

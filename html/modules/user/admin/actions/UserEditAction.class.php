@@ -24,7 +24,7 @@ class User_UserEditAction extends User_AbstractEditAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new User_UserAdminEditForm();
+		$this->mActionForm =new User_UserAdminEditForm();
 		$this->mActionForm->prepare();
 	}
 
@@ -111,6 +111,15 @@ class User_UserEditAction extends User_AbstractEditAction
 		                       XOOPS_NOTIFICATION_MODE_SENDONCETHENWAIT => _NOT_MODE_SENDONCEPERLOGIN
 		                 );
 		$render->setAttribute('notify_modeOptions', $modeOptions);
+	}
+
+	function _doExecute()
+	{
+		$ret = parent::_doExecute();
+		if($ret===true){
+			XCube_DelegateUtils::call('Legacy_Profile.SaveProfile', new XCube_Ref($ret), $this->mActionForm);
+		}
+		return $ret;
 	}
 
 	function executeViewSuccess(&$controller, &$xoopsUser, &$render)

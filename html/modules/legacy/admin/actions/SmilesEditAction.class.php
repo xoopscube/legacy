@@ -28,7 +28,7 @@ class Legacy_SmilesEditAction extends Legacy_AbstractEditAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_SmilesAdminEditForm();
+		$this->mActionForm =new Legacy_SmilesAdminEditForm();
 		$this->mActionForm->prepare();
 	}
 	

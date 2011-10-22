@@ -76,9 +76,9 @@ class XoopsMemberHandler{
      */
     function XoopsMemberHandler(&$db)
     {
-        $this->_gHandler =& new XoopsGroupHandler($db);
-        $this->_uHandler =& new XoopsUserHandler($db);
-        $this->_mHandler =& new XoopsMembershipHandler($db);
+        $this->_gHandler =new XoopsGroupHandler($db);
+        $this->_uHandler =new XoopsUserHandler($db);
+        $this->_mHandler =new XoopsMembershipHandler($db);
     }
 
     /**

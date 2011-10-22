@@ -99,7 +99,7 @@ class XoopsConfigCategoryHandler extends XoopsObjectHandler
      */
     function &create($isNew = true)
     {
-        $confcat =& new XoopsConfigCategory();
+        $confcat =new XoopsConfigCategory();
         if ($isNew) {
             $confcat->setNew();
         }
@@ -122,7 +122,7 @@ class XoopsConfigCategoryHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $confcat =& new XoopsConfigCategory();
+                        $confcat =new XoopsConfigCategory();
                     $confcat->assignVars($this->db->fetchArray($result), false);
                         $ret =& $confcat;
                 }
@@ -212,7 +212,7 @@ class XoopsConfigCategoryHandler extends XoopsObjectHandler
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
-            $confcat =& new XoopsConfigCategory();
+            $confcat =new XoopsConfigCategory();
             $confcat->assignVars($myrow, false);
             if (!$id_as_key) {
                 $ret[] =& $confcat;

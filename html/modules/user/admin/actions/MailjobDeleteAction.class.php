@@ -24,7 +24,7 @@ class User_MailjobDeleteAction extends User_AbstractDeleteAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new User_MailjobAdminDeleteForm();
+		$this->mActionForm =new User_MailjobAdminDeleteForm();
 		$this->mActionForm->prepare();
 	}
 

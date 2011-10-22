@@ -7,7 +7,7 @@
     <li><img src="<{$result.image}>" alt="<{$searchResults.0.name}>" title="<{$searchResults.0.name}>" /><span style="font-weight:bold;"><a href="<{$result.link}>"><{$result.title}></a></span><br />
     <span style="font-size:small;">
       <{if $result.uid > 0}>
-        <a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$result.uid|xoops_escape}>"><{$result.uid|xoops_user:uname}></a>
+        <a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$result.uid|xoops_escape}>"><{$result.uid|xoops_user:user_name}></a>
       <{/if}>
       (<{$result.time|xoops_formattimestampGMT:l}>)
     </span></li>

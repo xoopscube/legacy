@@ -1,3 +1,6 @@
-<table width="80%" align="center"><tr><td align="left">
-<?php $this->e('welcome')?>
-</td></tr></table>
+<?php if($message){ ?>
+<p align="center"><?php $this->e('message')?></p>
+<?php }else{ ?>
+<div class="confirmInfo"><?php $this->e('welcome') ?></div>
+</div>
+<?php } ?>

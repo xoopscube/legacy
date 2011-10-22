@@ -10,6 +10,7 @@
     $adminname = $myts->stripSlashesGPC(trim($_POST['adminname']));
     $adminpass = $myts->stripSlashesGPC($_POST['adminpass']);
     $adminmail = $myts->stripSlashesGPC(trim($_POST['adminmail']));
+    $timezone = $myts->stripSlashesGPC($_POST['timezone']);
 
     if (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i",$adminmail)) {
         $wizard->setContent('<p>'._INSTALL_L73.'</p>');
@@ -48,7 +49,7 @@
     $result = $dbm->queryFromFile('./language/'.$language.'/'.XOOPS_DB_TYPE.'.lang.data.sql');
 
     $group = make_groups($dbm);
-    $result = make_data($dbm, $cm, $adminname, $adminpass, $adminmail, $language, $group);
+    $result = make_data($dbm, $cm, $adminname, $adminpass, $adminmail, $language, $group, $timezone);
 
     $wizard->assign('dbm_reports',$dbm->report());
     $wizard->assign('cm_reports',$cm->report());

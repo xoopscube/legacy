@@ -1,13 +1,12 @@
 <?php
 //  ------------------------------------------------------------------------ //
-//                XOOPS Cube - PHP Content Management System                      //
-//                    Copyright (c) 2006 XOOPSCube.org                           //
-//                       <http://www.xoopscube.org/>                             //
+//                XOOPS Cube - PHP Content Management System                 //
+//                    Copyright (c) 2006 XOOPSCube.org                       //
+//                       <http://www.xoopscube.org/>                         //
 //  ------------------------------------------------------------------------ //
 //  ------------------------------------------------------------------------ //
-//                XOOPS Cube Korean (translated by wanikoo[ wani@wanisys.net ])       //
-//                       < http://www.wanisys.net/ >                             //
-//                       < http://www.xoops.ne.kr/xoopscube/ >                             //
+//        XOOPS Cube Korean (translated by wanikoo[ wani@wanisys.net ])      //
+//                 <http://www.xoops.ne.kr/xoopscube/>                       //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -59,6 +58,7 @@ define('_MD_LEGACY_LANG_COMMENT_RULE', "코멘트 투고관련 룰");
 define('_MD_LEGACY_LANG_DOBR', "개행(line-break)자동 삽입");
 define('_MD_LEGACY_LANG_DOHTML', "HTML태그를 유효화");
 define('_MD_LEGACY_LANG_DOSMILEY', "얼굴아이콘을 유효화");
+define('_MD_LEGACY_LANG_ALL_SMILEY_LIST', "얼굴아이콘 리스트");
 define('_MD_LEGACY_LANG_DOXCODE', "XOOPS코드를 유효화");
 define('_MD_LEGACY_LANG_EMOTION', "의미");
 define('_MD_LEGACY_LANG_ERROR', "에러");

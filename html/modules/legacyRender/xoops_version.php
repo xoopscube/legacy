@@ -5,7 +5,7 @@
  */
 
 $modversion['name']=_MI_LEGACYRENDER_NAME;
-$modversion['version'] = 1.08; // 2.1.8
+$modversion['version']=2.01;
 $modversion['description']=_MI_LEGACYRENDER_NAME_DESC;
 $modversion['author']="";
 $modversion['credits']="The XOOPS Cube Project";
@@ -41,7 +41,7 @@ $modversion['config'][]=array (
 		"description"=>"_MI_LR_META_KEYWORDS_DESC",
 		"formtype"=>"textarea",
 		"valuetype"=>"text",
-		"default"=>"news, technology, headlines, xoops, xoop, nuke, myphpnuke, myphp-nuke, phpnuke, SE, geek, geeks, hacker, hackers, linux, software, download, downloads, free, community, mp3, forum, forums, bulletin, board, boards, bbs, php, survey, poll, polls, kernel, comment, comments, portal, odp, open, source, opensource, FreeSoftware, gnu, gpl, license, Unix, *nix, mysql, sql, database, databases, web site, weblog, guru, module, modules, theme, themes, cms, content management"
+		"default"=>"news, technology, headlines, xoops, cube, legacy, social, network, module, plugin, theme, templates, css, web 2.0, ajax, cms, content management, software, blog, download, downloads, free, community, mp3, forum, forums, bulletin, board, boards, bbs, php, survey, poll, polls, kernel, comment, comments, portal, odp, open, source, opensource, FreeSoftware, bsd, gnu, gpl, license, Unix, *nix, mysql, sql, database, databases, web site"
 	);
 
 $modversion['config'][]=array (
@@ -50,7 +50,7 @@ $modversion['config'][]=array (
 		"description"=>"_MI_LR_META_DESCRIPTION_DESC",
 		"formtype"=>"textarea",
 		"valuetype"=>"text",
-		"default"=>"XOOPS is a dynamic Object Oriented based open source portal script written in PHP."
+		"default"=>"XOOPS Cube Legacy is a dynamic Object Oriented based open source portal script written in PHP."
 	);
 
 $modversion['config'][]=array (
@@ -88,7 +88,7 @@ $modversion['config'][]=array (
 		"description"=>"_MI_LR_META_COPYRIGHT_DESC",
 		"formtype"=>"textbox",
 		"valuetype"=>"text",
-		"default"=>"Copyright &copy; 2001-2006"
+		"default"=>"Copyright &copy; 2001-2010"
 	);
 
 $modversion['config'][]=array (
@@ -97,7 +97,7 @@ $modversion['config'][]=array (
 		"description"=>"_MI_LR_FOOTER_DESC",
 		"formtype"=>"textarea",
 		"valuetype"=>"text",
-		"default"=>"Powered by XOOPS Cube 2.1&copy; 2001-2006 <a href=\"http://xoopscube.sourceforge.net/\" target=\"_blank\">XOOPS Cube Project</a>"
+		"default"=>"Powered by <a href=\"http://xoopscube.org/\" rel=\"external\">XOOPS Cube</a> 2.2 &copy; 2001-2010 <a href=\"http://xoopscube.sourceforge.net/\" rel=\"external\">XOOPS Cube Project</a>"
 	);
 
 $modversion['config'][]=array (
@@ -107,7 +107,52 @@ $modversion['config'][]=array (
 		"valuetype"=>"int",
 		"default"=>0
 	);
-	
+
+$modversion['config'][]=array (
+		"name"=>"pagetitle",
+		"title"=>"_MI_LR_PAGETITLE_FORMAT",
+		"description"=>"_MI_LR_PAGETITLE_FORMAT_DESC",
+		"formtype"=>"textbox",
+		"valuetype"=>"text",
+		"default"=>"{modulename} {action} [pagetitle]:[/pagetitle] {pagetitle}"
+	);
+
+$modversion['config'][]=array (
+		"name"=>"css_file",
+		"title"=>"_MI_LR_CSS_FILE",
+		"description"=>"_MI_LR_CSS_FILE_DESC",
+		"formtype"=>"textbox",
+		"valuetype"=>"text",
+		"default"=>"http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/smoothness/jquery-ui.css"
+	);
+
+$modversion['config'][]=array (
+		"name"=>"feed_url",
+		"title"=>"_MI_LR_FEED_URL",
+		"description"=>"_MI_LR_FEED_URL_DESC",
+		"formtype"=>"textbox",
+		"valuetype"=>"text",
+		"default"=>""
+	);
+
+$modversion['config'][]=array (
+		"name"=>"jquery_core",
+		"title"=>"_MI_LR_JQUERY_CORE",
+		"description"=>"_MI_LR_JQUERY_CORE_DESC",
+		"formtype"=>"textbox",
+		"valuetype"=>"text",
+		"default"=>"1"
+	);
+
+$modversion['config'][]=array (
+		"name"=>"jquery_ui",
+		"title"=>"_MI_LR_JQUERY_UI",
+		"description"=>"_MI_LR_JQUERY_UI_DESC",
+		"formtype"=>"textbox",
+		"valuetype"=>"text",
+		"default"=>"1"
+	);
+
 // Menu
 $modversion['hasMain']=0;
 

@@ -17,7 +17,7 @@ class LegacyRender_TplfileUploadForm extends XCube_ActionForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['upload'] =& new XCube_FileArrayProperty('upload');
+		$this->mFormProperties['upload'] =new XCube_FileArrayProperty('upload');
 	
 		//
 		// Set field properties

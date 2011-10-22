@@ -21,7 +21,7 @@ class User_AbstractUserEditForm extends XCube_ActionForm
 			// uname unique check
 			//
 			$userHandler=&xoops_gethandler('user');
-			$criteria =& new CriteriaCompo(new Criteria('uname', $this->get('uname')));
+			$criteria =new CriteriaCompo(new Criteria('uname', $this->get('uname')));
 			if ($this->get('uid') > 0) {
 				$criteria->add(new Criteria('uid', $this->get('uid'), '<>'));
 			}
@@ -43,7 +43,7 @@ class User_AbstractUserEditForm extends XCube_ActionForm
 					break;
 
 				case 2:
-					$regex='[\000-\040\177]';
+					$regex="/[\000-\040]/";
 					break;
 			}
 			if(preg_match($regex,$this->get('uname'))) {
@@ -76,7 +76,7 @@ class User_AbstractUserEditForm extends XCube_ActionForm
 			// email unique check
 			//
 			$userHandler=&xoops_gethandler('user');
-			$criteria =& new CriteriaCompo(new Criteria('email', $this->get('email')));
+			$criteria =new CriteriaCompo(new Criteria('email', $this->get('email')));
 			if ($this->get('uid') > 0) {
 				$criteria->add(new Criteria('uid', $this->get('uid'), '<>'));
 				}

@@ -20,7 +20,7 @@ class User_GroupPermAction extends User_GroupPropertyAction
 	
 	function prepare(&$controller, &$xoopsUser, &$moduleConfig)
 	{
-		$this->mActionForm =& new User_GroupPermEditForm();
+		$this->mActionForm =new User_GroupPermEditForm();
 		$this->mActionForm->prepare();
 	}
 	
@@ -44,18 +44,19 @@ class User_GroupPermAction extends User_GroupPropertyAction
 		//
 		$gpermHandler =& xoops_gethandler('groupperm');
 		
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('gperm_groupid', $this->mGroup->get('groupid')));
 		$criteria->add(new Criteria('gperm_modid', 1));
 		$criteria->add(new Criteria('gperm_name', 'system_admin'));
 		$gpermHandler->deleteAll($criteria);
 
 		foreach ($this->mActionForm->get('system') as $sid => $value) {
-			$item =& new User_PermissionSystemAdminItem($sid, null);
-			$perm =& new User_Permission($this->mGroup->get('groupid'), $item);
+			$item =new User_PermissionSystemAdminItem($sid, null);
+			$perm =new User_Permission($this->mGroup->get('groupid'), $item);
 			
 			$perm->save();
 
+			unset($item);
 			unset($perm);
 		}
 		

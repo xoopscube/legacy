@@ -39,14 +39,14 @@ class XoopsCachetimeHandler extends XoopsObjectHandler
 	
 	function &create()
 	{
-		$ret =& new XoopsCachetime();
+		$ret =new XoopsCachetime();
 		return $ret;
 	}
 	
 	function &get($cachetime)
 	{
 		if (isset($this->_mResult[$cachetime])) {
-			$obj =& new XoopsCachetime();
+			$obj =new XoopsCachetime();
 			$obj->setVar('cachetime', $cachetime);
 			$obj->setVar('label', $this->_mResult[$cachetime]);
 
@@ -62,7 +62,7 @@ class XoopsCachetimeHandler extends XoopsObjectHandler
 		$ret = array();
 		
 		foreach ($this->_mResult as $cachetime => $label) {
-			$obj =& new XoopsCachetime();
+			$obj =new XoopsCachetime();
 			$obj->setVar('cachetime', $cachetime);
 			$obj->setVar('label', $label);
 			if ($key_as_id) {

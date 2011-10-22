@@ -17,7 +17,7 @@ define('_MI_LEGACY_BLOCK_USERMENU_NAME', "User Menu");
 define('_MI_LEGACY_BLOCK_WAITING_DESC', "Shows contents waiting for approval");
 define('_MI_LEGACY_BLOCK_WAITING_NAME', "Pending Contents");
 define('_MI_LEGACY_KEYWORD_BLOCKINSTALL', "block new");
-define('_MI_LEGACY_KEYWORD_BLOCKLIST', "BlockList");
+define('_MI_LEGACY_KEYWORD_BLOCKLIST', "Block List");
 define('_MI_LEGACY_KEYWORD_CREATE_SMILES', "smilies upload");
 define('_MI_LEGACY_KEYWORD_MODULEINSTALL', "module new");
 define('_MI_LEGACY_KEYWORD_MODULELIST', "install order sort name change rename uninstall");

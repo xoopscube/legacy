@@ -20,7 +20,7 @@ class UserGroups_users_linkHandler extends XoopsObjectGenericHandler
 	
 	function isUserOfGroup($uid, $groupid)
 	{
-		$criteria =& new CriteriaCompo();
+		$criteria =new CriteriaCompo();
 		$criteria->add(new Criteria('groupid', $groupid));
 		$criteria->add(new Criteria('uid', $uid));
 		

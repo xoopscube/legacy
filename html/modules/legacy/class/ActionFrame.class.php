@@ -52,7 +52,7 @@ class Legacy_ActionFrame
 	function Legacy_ActionFrame($admin)
 	{
 		$this->mAdminFlag = $admin;
-		$this->mCreateAction =& new XCube_Delegate();
+		$this->mCreateAction =new XCube_Delegate();
 		$this->mCreateAction->register('Legacy_ActionFrame.CreateAction');
 		$this->mCreateAction->add(array(&$this, '_createAction'));
 	}
@@ -104,7 +104,7 @@ class Legacy_ActionFrame
 		require_once $fileName;
 	
 		if (XC_CLASS_EXISTS($className)) {
-			$actionFrame->mAction =& new $className($actionFrame->mAdminFlag);
+			$actionFrame->mAction =new $className($actionFrame->mAdminFlag);
 		}
 	}
 	

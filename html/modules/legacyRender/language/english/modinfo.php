@@ -4,9 +4,10 @@ define('_MI_LEGACYRENDER_ADMENU_BANNER_MANAGE', "Banner Management");
 define('_MI_LEGACYRENDER_ADMENU_TEMPLATE_MANAGE', "Template Management");
 define('_MI_LEGACYRENDER_ADMENU_THEME_SETTING', "Theme settings");
 define('_MI_LEGACYRENDER_ADMENU_TPLFILE_MANAGE', "Template File Management");
+define('_MI_LEGACYRENDER_ADMENU_HTACCESS_VIEW', "htaccess setting");
 define('_MI_LEGACYRENDER_CONF_BANNERS', "Activate banner ads?");
 define('_MI_LEGACYRENDER_NAME', "Legacy Renderer");
-define('_MI_LEGACYRENDER_NAME_DESC', "This rendering engine (renderer) is compatibile with XOOPS 2.0.9 and XOOPS JP 2.0.x. You can use XOOPS2 Themes on this system.");
+define('_MI_LEGACYRENDER_NAME_DESC', "This rendering engine (renderer) is compatibile with XOOPS 2.0.9 and XOOPS JP 2.0.x. You can use XOOPS2 Themes with this system.");
 define('_MI_LR_FOOTER', "Footer");
 define('_MI_LR_FOOTER_DESC', "Be sure to type full links with the path starting from http://, otherwise the links will not work correctly in modules pages.");
 define('_MI_LR_META_AUTHOR', "Meta Author");
@@ -29,5 +30,15 @@ define('_MI_LR_ROBOT_METAOMAT', "Mature");
 define('_MI_LR_ROBOT_METAOREST', "Restricted");
 define('_MI_LR_ROBOT_NOINDEXFOLLOW', "No Index, Follow");
 define('_MI_LR_ROBOT_NOINDEXNOFOLLOW', "No Index, No Follow");
+define('_MI_LR_PAGETITLE_FORMAT', "Pagetitle Format");
+define('_MI_LR_PAGETITLE_FORMAT_DESC', "Set Pagetitle Format with {modulename}, {pagetitle}, {action}. Module name is set at {modulename} like 'profile'. Page Title is set set at {pagetitle} like 'Hello !' or 'How to install XCL'. Action is set at {action} like 'Edit', 'View' or 'List'. You set [module]***[/module], *** is not display when {module} is not set. [pagetitle]***[/pagetitle], [action]***[action] is the same.");
+define('_MI_LR_CSS_FILE', "jQuery UI CSS file URL");
+define('_MI_LR_CSS_FILE_DESC', "Set jQuery UI CSS file url after ".XOOPS_URL);
+define('_MI_LR_FEED_URL', "RSS Feed URL");
+define('_MI_LR_FEED_URL_DESC', "Set RSS feed URL after ".XOOPS_URL);
+define('_MI_LR_JQUERY_CORE', "jQuery Core Library");
+define('_MI_LR_JQUERY_CORE_DESC', "If you use Google Libraries API, set the jQuery version. If you use local jQuery file, set the url.");
+define('_MI_LR_JQUERY_UI', "jQuery UI Library");
+define('_MI_LR_JQUERY_UI_DESC', "If you use Google Libraries API, set the jQuery UI version. If you use local jQuery UI file, set the url. You must choose the same way of jQuery Core Library.");
 
 ?>

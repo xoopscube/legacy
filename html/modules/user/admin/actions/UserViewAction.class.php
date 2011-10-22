@@ -17,14 +17,14 @@ class User_UserViewAction extends User_AbstractViewAction
 	function User_UserViewAction()
 	{
 		parent::User_AbstractViewAction();
-		$this->mGetUserPosts =& new XCube_Delegate();
+		$this->mGetUserPosts =new XCube_Delegate();
 		$this->mGetUserPosts->register('User_UserViewAction.GetUserPosts');
 	}
 	
 	function prepare(&$controller, &$xoopsUser, $moduleConfig)
 	{
 		parent::prepare($controller, $xoopsUser, $moduleConfig);
-		$this->mActionForm =& new User_RecountForm();
+		$this->mActionForm =new User_RecountForm();
 		$this->mActionForm->prepare();
 	}
 	
@@ -122,6 +122,13 @@ class User_UserViewAction extends User_AbstractViewAction
 		                       XOOPS_NOTIFICATION_MODE_SENDONCETHENWAIT => _NOT_MODE_SENDONCEPERLOGIN
 		                 );
 		$render->setAttribute('notify_mode', $modeOptions[$this->mObject->get('notify_mode')]);
+	
+		$definitions = array();
+		$profile = null;
+		XCube_DelegateUtils::call('Legacy_Profile.GetDefinition', new XCube_Ref($definitions), 'view');
+		XCube_DelegateUtils::call('Legacy_Profile.GetProfile', new XCube_Ref($profile), $this->mObject->get('uid'));
+		$render->setAttribute('definitions', $definitions);
+		$render->setAttribute('data', $profile);
 	}
 
 	function executeViewSuccess(&$controller, &$xoopsUser, &$render)

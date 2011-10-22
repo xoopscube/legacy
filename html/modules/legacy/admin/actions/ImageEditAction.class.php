@@ -22,7 +22,7 @@ class Legacy_ImageEditAction extends Legacy_ImageCreateAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new Legacy_ImageAdminEditForm();
+		$this->mActionForm =new Legacy_ImageAdminEditForm();
 		$this->mActionForm->prepare();
 	}
 	

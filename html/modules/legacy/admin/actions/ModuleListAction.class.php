@@ -22,14 +22,14 @@ class Legacy_ModuleListAction extends Legacy_Action
 
 	function prepare(&$controller, &$xoopsUser)
 	{
-		$this->mActionForm =& new Legacy_ModuleListForm();
+		$this->mActionForm =new Legacy_ModuleListForm();
 		$this->mActionForm->prepare();
 	}
 	
 
 	function getDefaultView(&$controller, &$xoopsUser)
 	{
-		$this->mFilter =& new Legacy_ModuleListFilterForm();
+		$this->mFilter =new Legacy_ModuleListFilterForm();
 		$this->mFilter->fetch();
 
 		$moduleHandler =& xoops_gethandler('module');
@@ -40,7 +40,8 @@ class Legacy_ModuleListAction extends Legacy_Action
 	
 	function execute(&$controller, &$xoopsUser)
 	{
-		if (xoops_getrequest('_form_control_cancel') != null) {
+		$form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
+		if ($form_cancel != null) {
 			return LEGACY_FRAME_VIEW_CANCEL;
 		}
 
@@ -138,6 +139,13 @@ class Legacy_ModuleListAction extends Legacy_Action
 		}
 		
 		$render->setAttribute('moduleObjects', $this->mModuleObjects);
+
+		$moduleHandler =& xoops_gethandler('module');
+		$module_total = $moduleHandler->getCount();
+		$active_module_total = $moduleHandler->getCount(new Criteria('isactive', 1));
+		$render->setAttribute('ModuleTotal', $module_total);
+		$render->setAttribute('activeModuleTotal', $active_module_total );
+		$render->setAttribute('inactiveModuleTotal', $module_total - $active_module_total);
 	}
 
 	function executeViewSuccess(&$controller,&$xoopsUser,&$renderer)

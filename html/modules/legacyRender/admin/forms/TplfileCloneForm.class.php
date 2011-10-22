@@ -23,12 +23,12 @@ class LegacyRender_TplfileCloneForm extends LegacyRender_TplfileEditForm
 		//
 		// Set form properties
 		//
-		$this->mFormProperties['tpl_tplset'] =& new XCube_StringProperty('tpl_tplset');
+		$this->mFormProperties['tpl_tplset'] =new XCube_StringProperty('tpl_tplset');
 	
 		//
 		// Set field properties
 		//
-		$this->mFieldProperties['tpl_tplset'] =& new XCube_FieldProperty($this);
+		$this->mFieldProperties['tpl_tplset'] =new XCube_FieldProperty($this);
 		$this->mFieldProperties['tpl_tplset']->setDependsByArray(array('required'));
 		$this->mFieldProperties['tpl_tplset']->addMessage('required', _AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_TPL_TPLSET);
 	}
@@ -38,7 +38,7 @@ class LegacyRender_TplfileCloneForm extends LegacyRender_TplfileEditForm
 		$tplset = $this->get('tpl_tplset');
 
 		$handler =& xoops_getmodulehandler('tplset', 'legacyRender');
-		$criteria =& new Criteria('tplset_name', $this->get('tpl_tplset'));
+		$criteria =new Criteria('tplset_name', $this->get('tpl_tplset'));
 		$objs =& $handler->getObjects($criteria);
 		
 		if (count($objs) == 0) {

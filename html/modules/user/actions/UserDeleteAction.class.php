@@ -25,15 +25,39 @@ class User_UserDeleteAction extends User_Action
 	
 	var $_mDoDelete;
 
+	/**
+	 * _getPageAction
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	protected function _getPageAction()
+	{
+		return _DELETE;
+	}
+
+	/**
+	 * _getPageTitle
+	 * 
+	 * @param	void
+	 * 
+	 * @return	string
+	**/
+	protected function _getPagetitle()
+	{
+		return Legacy_Utils::getUserName(Legacy_Utils::getUid());
+	}
+
 	function prepare(&$controller, &$xoopsUser, $moduleConfig)
 	{
 		$this->mSelfDelete = $moduleConfig['self_delete'];
 		$this->mSelfDeleteConfirmMessage = $moduleConfig['self_delete_confirm'];
 		
-		$this->mActionForm =& new User_UserDeleteForm();
+		$this->mActionForm =new User_UserDeleteForm();
 		$this->mActionForm->prepare();
 		
-		$this->_mDoDelete =& new XCube_Delegate('bool &', 'Legacy_Controller', 'XoopsUser');
+		$this->_mDoDelete =new XCube_Delegate('bool &', 'Legacy_Controller', 'XoopsUser');
 		$this->_mDoDelete->register('User_UserDeleteAction._doDelete');
 		
 		$this->_mDoDelete->add(array(&$this, "_doDelete"));
@@ -99,7 +123,7 @@ class User_UserDeleteAction extends User_Action
 	 * 
 	 * @return bool
 	 */
-	function _doDelete(&$flag, &$controller, &$xoopsUser)
+	function _doDelete(&$flag, $controller, $xoopsUser)
 	{
 		$handler =& xoops_gethandler('member');
 		if ($handler->deleteUser($xoopsUser)) {

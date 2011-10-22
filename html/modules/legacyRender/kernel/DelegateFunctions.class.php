@@ -23,7 +23,7 @@ class LegacyRender_DelegateFunctions
 
 				$themeDir = XOOPS_THEME_PATH . "/" . $dirname;
 				if (is_dir($themeDir)) {
-					$theme =& new XCube_Theme();
+					$theme =new XCube_Theme();
 					$theme->mDirname = $dirname;
 					
 					if ($theme->loadManifesto($themeDir . "/manifesto.ini.php")) {

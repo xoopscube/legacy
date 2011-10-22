@@ -24,7 +24,7 @@ class User_GroupDeleteAction extends User_AbstractDeleteAction
 
 	function _setupActionForm()
 	{
-		$this->mActionForm =& new User_GroupAdminDeleteForm();
+		$this->mActionForm =new User_GroupAdminDeleteForm();
 		$this->mActionForm->prepare();
 	}
 	

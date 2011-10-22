@@ -16,7 +16,11 @@
   </tr>
   <tr>
     <td class="head legacy_list_image" rowspan="6">
+<{if $installed && $module->get('hasmain')}>
+      <a href="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/"><img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->getShow('name')}>" title="<{$module->getShow('name')}>" /></a>
+<{else}>
       <img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->getShow('name')}>" title="<{$module->getShow('name')}>" />
+<{/if}>
       <div class="legacy_list_imagetitle"><{$module->modinfo.name|xoops_escape}></div>
     </td>
 	<td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></td>
@@ -231,7 +235,13 @@
 <{foreach from=$module->modinfo.templates item=template key=template_key}>
   <tr class="<{cycle values='odd,even'}>">
 	<td class="head legacy_list_id"><{$template_key}></td>
-	<td><{$template.file|xoops_escape}></td>
+	<td>
+	<{if $installed }>
+	<a href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplfileList&amp;tpl_file=<{$template.file}>"><{$template.file|xoops_escape}></a>
+	<{else}>
+	<{$template.file|xoops_escape}>
+	<{/if}>
+	</td>
 	<td><{$template.description|xoops_escape}></td>
   </tr>
 <{/foreach}>
@@ -255,6 +265,8 @@
 	<td class="head legacy_list_name" style="width:30%;"><{$block_key|xoops_escape}></td>
 	<{if $block_key == "name" }>
 	  <td><b><{$block_val|xoops_escape}></b></td>
+	<{elseif $installed && $block_key == "template"}>
+	  <td><a href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplfileList&amp;tpl_file=<{$block_val}>"><{$block_val|xoops_escape}></a></td>
 	<{else}>
 	  <td><{$block_val|xoops_escape}></td>
 	<{/if}>
