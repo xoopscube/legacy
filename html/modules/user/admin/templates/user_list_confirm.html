@@ -1,0 +1,80 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=UserList"><{$smarty.const._AD_USER_LANG_USER_LIST}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_USER_UPDATECONF}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_USER_UPDATECONF}></h3>
+
+<div class="confirm"><{$smarty.const._AD_USER_MESSAGE_CONFIRM_UPDATE_USER}></div>
+
+<{if $actionForm->hasError() && $actionForm->get('confirm')}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form method="post"  action="./index.php?action=UserList">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=confirm value=1}>
+<table class="outer">
+  <tr>
+    <th><{$smarty.const._MD_USER_LANG_UID}></th>
+    <th><{$smarty.const._MD_USER_LANG_UNAME}></th>
+    <th><{$smarty.const._MD_USER_LANG_NAME}></th>
+    <th><{$smarty.const._MD_USER_LANG_POSTS}></th>
+    <th><{$smarty.const._MD_USER_LANG_LEVEL}></th>
+    <th><{$smarty.const._DELETE}></th>
+  </tr>
+
+<{foreach item=uid from=$uids}>
+<{if $uid != 1}>
+  <tr class="even">
+    <td class="user_list_id"><{$uid}></td>
+    <td class="user_list_title"><{$userObjects[$uid]->getShow('uname')}></td>
+    <td class="user_list_name"><{$userObjects[$uid]->get('name')}></td>
+    <td class="user_list_number">
+      <{if $actionForm->get('posts',$uid) == $userObjects[$uid]->get('posts')}>
+        <{$actionForm->get('posts',$uid)|xoops_escape}>
+      <{else}>
+         (<{$userObjects[$uid]->getShow('posts')}>) &raquo; <b  class="user_module_error"><{$actionForm->get('posts',$uid)|xoops_escape}></b>
+      <{/if}>
+      <input type="hidden" name="posts[<{$uid}>]" value="<{$actionForm->get('posts',$uid)|xoops_escape:edit}>" />
+    </td>
+    <td class="user_list_order">
+      <{if $actionForm->get('level',$uid) == $userObjects[$uid]->get('level')}>
+        <{$actionForm->get('level',$uid)|xoops_escape}>
+      <{else}>
+         (<{$userObjects[$uid]->getShow('level')}>) &raquo; <b  class="user_module_error"><{$actionForm->get('level',$uid)|xoops_escape}></b>
+      <{/if}>
+      <input type="hidden" name="level[<{$uid}>]" value="<{$actionForm->get('level',$uid)|xoops_escape:edit}>" />
+    </td>
+    <td class="user_list_select">
+        <b class="user_module_error">
+        <{if $actionForm->get('delete',$uid) == 1}>
+          <{$smarty.const._YES}>
+        <{else}>
+          <{$smarty.const._NO}>
+        <{/if}>
+	</b>
+      <{if $actionForm->get('delete',$uid)}>
+        <input type="hidden" name="delete[<{$uid}>]" value="1" />
+      <{else}>
+        <input type="hidden" name="delete[<{$uid}>]" value="0" />
+      <{/if}>
+    </td>
+  </tr>
+<{/if}>
+<{/foreach}>
+  <tr>
+    <td class="foot" colspan="6">
+      <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
+      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+    </td>
+  </tr>
+</table>
+</form>

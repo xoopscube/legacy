@@ -1,0 +1,53 @@
+<{if $actionForm->hasError()}>
+<div class="errorMsg">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form action="pmlite.php" method="post" name="coolsus">
+  <{xoops_token form=$actionForm}>
+  <table width="300" align="center" class="outer">
+    <tr>
+      <td class="head" width="25%"><{$smarty.const._MD_PM_LANG_TO}></td>
+      <td class="even">
+        <{if $send_type==0}>
+          <{if $actionForm->get('to_userid')}>
+            <{$actionForm->get('to_userid')|xoops_user:"uname"}>
+            <{xoops_input type=hidden name=to_userid value=$actionForm->get('to_userid')}>
+          <{else}>
+            <select name="to_userid">
+              <{xoops_optionsArray id=to_userid value=uid label=uname from=$userList default=$actionForm->get('to_userid')}>
+            </select>
+          <{/if}>
+        <{else}>
+          <{xoops_input name=to_uname value=$actionForm->get('to_uname')}>
+        <{/if}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_PM_LANG_SUBJECTC}></td>
+      <td class="even">
+        <{xoops_input name=subject size=30 maxlength=255 id=Text1 value=$actionForm->get('subject')}>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td class="head"><{$smarty.const._MD_PM_LANG_MESSAGEC}></td>
+      <td class="even">
+        <{xoops_dhtmltarea cols=37 rows=8 name=message value=$actionForm->get('message')}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head">&nbsp;</td>
+      <td class="even">
+        <input type="hidden" name="op" value="submit" />
+        <input type="submit" class="formButton" name="submit" value="<{$smarty.const._MD_PM_LANG_SUBMIT}>" />&nbsp;
+        <input type="reset" class="formButton" value="<{$smarty.const._MD_PM_LANG_CLEAR}>" />&nbsp;
+        <input type="button" class="formButton" name="cancel" value="<{$smarty.const._MD_PM_LANG_CANCELSEND}>" onclick="javascript:window.close();" />
+      </td>
+    </tr>
+  </table>
+</form>

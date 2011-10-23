@@ -1,0 +1,61 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=UserSearch"><{$smarty.const._MI_USER_ADMENU_USER_SEARCH}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_USER_SEARCH_LIST}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_USER_SEARCH_LIST}></h3>
+
+<ul class="toptab">
+  <li><a href="<{xoops_explaceholder control=UserPagenaviOtherUrl pagenavi=$pageNavi url='./index.php?action=UserSearch'}>"><{$smarty.const._AD_USER_LANG_SEARCH_AGAIN}></a></li>
+  <li><a href="<{xoops_explaceholder control=UserPagenaviOtherUrl pagenavi=$pageNavi url='./index.php?action=MailjobEdit'}>"><{$smarty.const._AD_USER_LANG_SEND_MAIL_BY_THIS_CONDITION}></a></li>
+</ul>
+
+<table class="outer">
+  <tr>
+    <th>&nbsp;</th>
+    <th><{$smarty.const._MD_USER_LANG_UID}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_UID}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_UID}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._MD_USER_LANG_UNAME}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_UNAME}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_UNAME}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._MD_USER_LANG_NAME}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_NAME}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_NAME}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_REGDATE}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_USER_REGDATE}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_USER_REGDATE}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_LASTLOGIN}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_LAST_LOGIN}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_LAST_LOGIN}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._MD_USER_LANG_POSTS}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_POSTS}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_POSTS}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._MD_USER_LANG_LEVEL}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_LEVEL}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_LEVEL}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_CONTROL}></th>
+  </tr>
+  <{foreach item=user from=$objects}>
+    <tr class="<{cycle values='odd,even'}>">
+      <td class="user_list_image"><img src="<{"icons/user.gif"|theme}>" alt="<{$smarty.const._AD_USER_LANG_USER}>" title="<{$smarty.const._AD_USER_LANG_USER}>" /></td>
+      <td class="user_list_id"><{$user->getShow('uid')}></td>
+      <td class="user_list_name"><{$user->getShow('uname')}></td>
+      <td class="user_list_name"><{$user->getShow('name')}></td>
+      <td class="user_list_date"><{$user->get('user_regdate')|xoops_formattimestamp}></td>
+      <td class="user_list_date"><{$user->get('last_login')|xoops_formattimestamp:l}></td>
+      <td class="user_list_number"><{$user->getShow('posts')}></td>
+      <td class="user_list_order"><{$user->getShow('level')}></td>
+      <td class="user_list_control">
+        <a href="./index.php?action=UserView&amp;uid=<{$user->getShow('uid')}>"><img src="<{"icons/property.gif"|theme}>" alt="<{$smarty.const._VIEW}>" title="<{$smarty.const._VIEW}>" /></a>
+        <a href="./index.php?action=UserEdit&amp;uid=<{$user->getShow('uid')}>"><img src="<{"icons/edit.gif"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+        <{if $user->get('uid') != 1 }>
+          <a href="index.php?action=UserDelete&amp;uid=<{$user->getShow('uid')}>"><img src="<{"icons/delete.gif"|theme}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
+        <{/if}>
+      </td>
+    </tr>
+  <{/foreach}>
+</table>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>

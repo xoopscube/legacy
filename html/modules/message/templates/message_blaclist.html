@@ -1,0 +1,20 @@
+<h3><{$smarty.const._MD_MESSAGE_SETTINGS_MSG15}></h3>
+
+<form action="index.php?action=blacklist" method="post" name="adduser">
+<input type="hidden" name="cmd" value="add" />
+<{$smarty.const._MD_MESSAGE_TEMPLATE2}>&nbsp;<input type="text" name="uname" value="" />
+<{legacy_button id=Submit Text=$smarty.const._ADD}>
+</form>
+
+<br />
+
+<form action="index.php?action=blacklist" method="post" name="listform">
+<input type="hidden" name="cmd" value="del" />
+<table class="outer">
+<tr><th><{$smarty.const._MD_MESSAGE_TEMPLATE2}></th><th><{$smarty.const._MD_MESSAGE_TEMPLATE14}></th></tr>
+<{foreach item=uname key=uid from=$blackuser}>
+<tr><td class="even"><{$uname}></td><td class="odd" align="center"><input type="checkbox" name="deluid[]" value="<{$uid}>" /></td></tr>
+<{/foreach}>
+<tr><td colspan="2" class="foot" align="center"><{legacy_button id=Submit Text=$smarty.const._DELETE}></td></tr>
+</table>
+</form>

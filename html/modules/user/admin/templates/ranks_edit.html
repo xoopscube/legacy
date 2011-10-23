@@ -1,0 +1,79 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=RanksList"><{$smarty.const._AD_USER_LANG_RANK_LIST}></a>
+  &raquo;&raquo; 
+  <{if $actionForm->get('rank_id') }>
+    <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_RANK_EDIT}></span>
+  <{else}>
+    <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_RANK_NEW}></span>
+  <{/if}>
+</div>
+
+<{if $actionForm->get('rank_id') }>
+  <h3 class="admintitle"><{$smarty.const._AD_USER_LANG_RANK_EDIT}></h3>
+<{else}>
+  <h3 class="admintitle"><{$smarty.const._AD_USER_LANG_RANK_NEW}></h3>
+<{/if}>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form action="?action=RanksEdit" method="post" enctype="multipart/form-data">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=rank_id value=$actionForm->get('rank_id')}>
+  <table class="outer">
+    <tr>
+      <th colspan="2">
+      <{if $actionForm->get('rank_id') }>
+        <{$smarty.const._AD_USER_LANG_RANK_EDIT}>
+      <{else}>
+        <{$smarty.const._AD_USER_LANG_RANK_NEW}>
+      <{/if}>
+      </th>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_RANK_TITLE}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=rank_title value=$actionForm->get('rank_title')}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_RANK_MIN}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=rank_min value=$actionForm->get('rank_min') class=user_list_number}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_RANK_MAX}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=rank_max value=$actionForm->get('rank_max') class=user_list_number}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_RANK_SPECIAL}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <label><{xoops_input type=radio name=rank_special value=1 default=$actionForm->get('rank_special')}><{$smarty.const._YES}></label>
+        <label><{xoops_input type=radio name=rank_special value=0 default=$actionForm->get('rank_special')}><{$smarty.const._NO}></label>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_RANK_IMAGE}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <input type="file" name="rank_image" size="30" />
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="foot">
+        <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      </td>
+    </tr>
+  </table>
+</form>

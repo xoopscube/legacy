@@ -1,0 +1,13 @@
+<table cellspacing="1" class="outer">
+  <{foreach item=user from=$block.users}>
+    <tr class="<{cycle values="even,odd"}>" valign="middle">
+      <td align="center">
+      <{if $user.avatar != ""}>
+      <img src="<{$user.avatar}>" alt="" width="32" /><br />
+      <{/if}>
+      <a href="<{$xoops_url}>/userinfo.php?uid=<{$user.id}>"><{$user.name}></a>
+      </td>
+      <td align="center"><{$user.joindate|xoops_formattimestamp:s}></td>
+    </tr>
+  <{/foreach}>
+</table>

@@ -1,0 +1,79 @@
+#lecat{
+	font-size: 15px;
+	line-height:	2em;
+}
+
+/* list */
+.list .num {
+	font-size:	2em;
+}
+
+.list .title {
+	font-size:	1.5em;
+}
+
+dl.list {
+	margin-bottom:	20px;
+}
+.list dd {
+	margin-left:	20px;
+}
+
+/* Permission Table */
+#lecat .curCatPermit td{
+	background-color:#FFAAFF;
+}
+
+#lecat .ancCatPermit td{
+	background-color:#D6D6FC;
+}
+
+#lecat .ngCatPermit td{
+	background-color:#AAAAFF;
+}
+
+#lecat .desc{
+	border: 1px solid #DDDDDD;
+	margin: 10px 20px 10px 20px;
+	padding:	10px;
+}
+
+#lecat .clear{
+	clear:	both;
+}
+
+#lecat .view dt{
+clear:both;
+width:140px;
+float:left;
+margin-top:10px;
+}
+
+#lecat .view dd{
+float:left;
+margin-top:10px;
+}
+
+
+/* Form */
+
+#lecat .form{
+	
+}
+
+#lecat .form dt{
+clear:both;
+width:140px;
+float:left;
+margin-top:10px;
+}
+
+#lecat .form dd{
+float:left;
+margin-top:10px;
+}
+
+#lecat .form dd.description{
+
+}
+

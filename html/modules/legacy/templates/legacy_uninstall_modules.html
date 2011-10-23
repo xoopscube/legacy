@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<title><{$xoops_sitename}></title>
+<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_url}>/xoops.css" />
+
+</head>
+<body>
+  <table cellspacing="0" width="100%">
+    <tr id="header">
+      <td style="height: 8px; border-bottom: 1px solid silver; background-color: #eeeeee;" colspan="2">&nbsp;</td>
+    </tr>
+  </table>
+
+  <table cellspacing="1" align="center" width="80%" border="0" cellpadding="10px;">
+    <tr>
+      <td align="center"><div style="background-color: #ddffdf; color: #136C99; text-align: center; border-top: 1px solid #ddffdf; border-left: 1px solid #DDDDFF; border-right: 1px solid #AAAAAA; border-bottom: 1px solid #AAAAAA; font-weight: bold; padding: 10px;"><{$smarty.const._UNINSTALL_CONFIRM}></div></td>
+    </tr>
+  </table>
+  
+  <form action="<{$xoops_url}>/index.php" method="post">
+      <table cellspacing="0" align="center" style="border: 1px solid silver; width: 380px;">
+        <tr><td colspan="4" style="text-align:center;padding: 2px;">
+         <input type="hidden" name="cube_module_uninstallok" value="<{$cube_module_uninstall}>"/>
+         <input type="submit" value="<{$smarty.const._UNINSTALL}>" />
+        </td></tr>
+      </table>
+  </form>
+
+  <table cellspacing="0" width="100%">
+    <tr>
+      <td style="height:8px; border-bottom: 1px solid silver; border-top: 1px solid silver; background-color: #eeeeee;" colspan="2">&nbsp;</td>
+    </tr>
+  </table>
+
+  </body>
+</html>

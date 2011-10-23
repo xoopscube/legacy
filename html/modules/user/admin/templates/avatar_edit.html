@@ -1,0 +1,89 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=AvatarList"><{$smarty.const._MI_USER_ADMENU_AVATAR_MANAGE}></a>
+  &raquo;&raquo; 
+  <{if $actionForm->get('avatar_id')}>
+    <span class="adminnaviTitle"><{$smarty.const._MD_USER_LANG_AVATAR_EDIT}></span>
+  <{else}>
+    <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_AVATAR_NEW}></span>
+  <{/if}>
+</div>
+
+<{if $actionForm->get('avatar_id')}>
+  <h3 class="admintitle"><{$smarty.const._MD_USER_LANG_AVATAR_EDIT}> (<{$actionForm->get('avatar_name')}>)</h3>
+<{else}>
+  <h3 class="admintitle"><{$smarty.const._AD_USER_LANG_AVATAR_NEW}></h3>
+<{/if}>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form action="?action=AvatarEdit" method="post" enctype="multipart/form-data">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=avatar_id value=$actionForm->get('avatar_id')}>
+  <table class="outer">
+    <tr>
+      <th colspan="2">
+        <{if $actionForm->get('avatar_id')}>
+          <{$smarty.const._MD_USER_LANG_AVATAR_EDIT}> (<{$actionForm->get('avatar_name')}>)
+        <{else}>
+          <{$smarty.const._AD_USER_LANG_AVATAR_NEW}>
+        <{/if}>
+      </th>
+    </tr>
+    <{if $actionForm->get('avatar_id')}>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_AVATAR_ID}></td>
+      <td class="<{cycle values="odd,even"}>"><{$actionForm->get('avatar_id')}></td>
+    </tr>
+    <{/if}>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_AVATAR_NAME}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=avatar_name value=$actionForm->get('avatar_name') size=15 maxlength=100}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_AVATAR_FILE}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=file name=avatar_file size=30}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_AVATAR_DISPLAY}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <label><{xoops_input type=radio name=avatar_display value=1 default=$actionForm->get('avatar_display')}><{$smarty.const._YES}></label>
+        <label><{xoops_input type=radio name=avatar_display value=0 default=$actionForm->get('avatar_display')}><{$smarty.const._NO}></label>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_AVATAR_WEIGHT}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=avatar_weight value=$actionForm->get('avatar_weight')}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_AVATAR_TYPE}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{if $object->getShow('avatar_type') == "C"}>
+          <{$smarty.const._AD_USER_LANG_AVATAR_TYPE_C}>
+        <{elseif $object->getShow('avatar_type') == "S"}>
+          <{$smarty.const._AD_USER_LANG_AVATAR_TYPE_S}>
+        <{/if}>
+      </td>
+    </tr>
+    <tr>
+      <td class="foot" colspan="2">
+        <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      </td>
+    </tr>
+  </table>
+</form>

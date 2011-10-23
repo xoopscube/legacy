@@ -1,0 +1,62 @@
+<h3><{$smarty.const._MD_MESSAGE_TEMPLATE15}></h3>
+
+<p><img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_outbox.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE7}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE7}>" /> <a href="index.php?action=send"><{$smarty.const._MD_MESSAGE_TEMPLATE7}></a>&nbsp;&nbsp;
+<img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_add.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE8}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE8}>" /> <a href="index.php?action=new"><{$smarty.const._MD_MESSAGE_TEMPLATE8}></a></p>
+
+<form method="post" action="index.php?action=index">
+<div align="right">
+<{$smarty.const._MD_MESSAGE_TEMPLATE22}>
+<select name="status">
+<option value="">---</option>
+<option value="0"<{if $status===0}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE16}></option>
+<option value="1"<{if $status==1}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE17}></option>
+<option value="2"<{if $status==2}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE19}></option>
+</select>
+&nbsp;
+<{$smarty.const._MD_MESSAGE_TEMPLATE12}>
+<select name="fromuid">
+<option value="0">---</option>
+<{foreach item=fuser from=$select}>
+<option value="<{$fuser.uid}>"<{if $fuser.select==true}> selected="selected"<{/if}>><{$fuser.uname|xoops_escape}></option>
+<{/foreach}>
+</select>
+&nbsp;
+<{$smarty.const._MD_MESSAGE_TEMPLATE3}>
+<input type="text" name="subject" size="25" value="<{$subject|xoops_escape}>" />
+&nbsp;
+<input type="submit" name="subbtn" value="<{$smarty.const._MD_MESSAGE_SEARCH}>" />
+</form>
+</div>
+<br />
+<form method="post" action="index.php?action=deleteall">
+
+<table class="outer">
+<tr>
+<th width="36"><{$smarty.const._MD_MESSAGE_TEMPLATE22}></th>
+<th><{$smarty.const._MD_MESSAGE_TEMPLATE3}></th>
+<th><{$smarty.const._MD_MESSAGE_TEMPLATE12}></th>
+<th><{$smarty.const._MD_MESSAGE_TEMPLATE10}></th>
+<th><{$smarty.const._DELETE}></th>
+</tr>
+<{foreach item=val from=$ListData}>
+<tr>
+<td class="head" align="center">
+<{if $val.is_read==0}>
+<img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE16}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE16}>" />
+<{elseif $val.is_read==1}>
+<img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_open.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE17}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE17}>" />
+<{elseif $val.is_read==2}>
+<img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_lock.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE19}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE19}>" />
+<{/if}>
+</td>
+<td class="even"><a href="index.php?action=view&amp;inout=in&amp;inbox=<{$val.inbox_id}>"><{$val.title}></a></td>
+<td class="odd"><{$val.fromname}></td>
+<td class="even"><{$val.utime|xoops_formattimestamp:l}></td>
+<td class="odd" align="center"><{if $val.is_read==1}><input type="checkbox" name="delmsg[]" value="<{$val.inbox_id}>" /><{/if}></td>
+</tr>
+<{/foreach}>
+<tr><td colspan="5" class="foot" align="center"><input type="submit" name="subbtn" value="<{$smarty.const._DELETE}>" /></td></tr>
+</table>
+<input type="hidden" name="inout" value="in" />
+</form>
+<div class="pagenavi" align="center"><{xoops_pagenavi pagenavi=$pageNavi}></div>

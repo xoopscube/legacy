@@ -1,0 +1,98 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=CommentList"><{$smarty.const._MI_LEGACY_MENU_COMMENT_MANAGE}></a></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_COMMENT_MANAGE}></h3>
+
+<div class="legacy_comment_search">
+<form method="get" action="./index.php">
+  <input type="hidden" name="action" value="CommentList" />
+  <select name="com_modid">
+    <option value="0"><{$smarty.const._AD_LEGACY_LANG_ALL_MODULES}></option>
+    <{foreach item=module from=$moduleArr}>
+      <{if $pageNavi->mExtra.com_modid == $module->get('mid')}>
+        <option value="<{$module->getShow('mid')}>" selected="selected"><{$module->getShow('name')}></option>
+      <{else}>
+        <option value="<{$module->getShow('mid')}>"><{$module->getShow('name')}></option>
+      <{/if}>
+    <{/foreach}>
+  </select>
+  <select name="com_status">
+    <option value="0"><{$smarty.const._AD_LEGACY_LANG_ALL_STATUS}></option>
+    <{foreach item=status from=$statusArr}>
+      <{if $pageNavi->mExtra.com_status == $status->get('id')}>
+        <option value="<{$status->getShow('id')}>" selected="selected"><{$status->getShow('name')}></option>
+      <{else}>
+        <option value="<{$status->getShow('id')}>"><{$status->getShow('name')}></option>
+      <{/if}>
+    <{/foreach}>
+  </select>
+  <input type="submit" value="<{$smarty.const._SUBMIT}>" />
+</form>
+</div>
+
+<table class="outer">
+  <tr>
+    <th><{$smarty.const._MD_LEGACY_LANG_COM_ID}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_ID}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_ID}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._MD_LEGACY_LANG_COM_MODID}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_MODID}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_MODID}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._MD_LEGACY_LANG_COM_TITLE}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_TITLE}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_TITLE}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_COM_CREATED}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_CREATED}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_CREATED}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_COM_MODIFIED}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_MODIFIED}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_MODIFIED}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_COM_UID}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_UID}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_UID}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._MD_LEGACY_LANG_COM_IP}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_IP}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_IP}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_COM_STATUS}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_STATUS}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_STATUS}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
+  </tr>
+  <{foreach item=obj from=$objects}>
+    <tr class="<{cycle values='odd,even'}>">
+      <td class="legacy_list_id"><{$obj->getShow('com_id')}></td>
+      <td class="legacy_list_name">
+        <{if $obj->mModule}>
+          <{$obj->mModule->getShow('name')}>
+        <{/if}>
+      </td>
+      <td class="legacy_list_title">
+        <{if $obj->getShow('com_icon')}>
+          <img src="<{$smarty.const.XOOPS_URL}>/images/subject/<{$obj->getShow('com_icon')}>" alt="" />
+        <{else}>
+          <img src="<{$smarty.const.XOOPS_URL}>/images/icons/no_posticon.gif" alt="" />
+        <{/if}>
+        <a href="./index.php?action=CommentView&amp;com_id=<{$obj->getShow('com_id')}>"><{$obj->getShow('com_title')}></a></td>
+      <td class="legacy_list_date"><{$obj->getShow('com_created')|xoops_formattimestamp:l}></td>
+      <td class="legacy_list_date"><{$obj->getShow('com_modified')|xoops_formattimestamp:l}></td>
+      <td class="legacy_list_name">
+        <{if $obj->mUser}>
+          <a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$obj->getShow('com_uid')}>"><{$obj->mUser->getShow('uname')}></a>
+        <{else}>
+          <{$smarty.const._GUESTS}>
+        <{/if}>
+      </td>
+      <td class="legacy_list_order"><{$obj->getShow('com_ip')}></td>
+      <td class="legacy_list_select"><{$obj->mStatus->getShow('name')}></td>
+      <td class="legacy_list_control">
+        <a href="./index.php?action=CommentView&amp;com_id=<{$obj->getShow('com_id')}>"><img src="<{"icons/property.gif"|theme}>" alt="<{$smarty.const._VIEW}>" title="<{$smarty.const._VIEW}>" /></a>
+        <a href="./index.php?action=CommentEdit&amp;com_id=<{$obj->getShow('com_id')}>"><img src="<{"icons/edit.gif"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+        <a href="./index.php?action=CommentDelete&amp;com_id=<{$obj->getShow('com_id')}>"><img src="<{"icons/delete.gif"|theme}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
+      </td>
+    </tr>
+  <{/foreach}>
+</table>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>

@@ -1,0 +1,225 @@
+/*	
+
+	XOOPS Cube Legacy 
+	http://xoopscube.org  */
+
+/*------------------------------------------------------- SIDE PROJECT LINKS */	
+/*------------------------------------------------------- MAIN & USER MENU */
+/*------------------------------------------------------- COMMUNITY LINK */
+
+ul#mainmenu, 
+ul#usermenu,
+ul#privatemessages 
+	{
+	margin:1em; 
+	padding: 0px; 
+	list-style-type:none;
+	}
+ 
+ul#mainmenu li, 
+ul#usermenu li, 
+ul#privatemessages li 
+	{
+	margin:0;
+	padding:3px;
+	}
+
+ul#mainmenu li a, ul#mainmenu li a:visited, 
+ul#usermenu li a, ul#usermenu li a:visited,
+ul#mainmenu a.menuTop, ul#usermenu a.menuTop, 
+ul#mainmenu a.menuMain, ul#mainmenu a.menuSub,
+ul#privatemessages li a, ul#privatemessages li a:visited
+	{ 
+	display: block;
+	margin:0;
+	padding:0px;	
+	color:#4D71B9;
+	border-bottom:#F5F5FF 1px solid;
+	font-size:13px;
+	text-decoration:none;
+	}
+
+ul#mainmenu li a.menuSub
+	{
+	padding-left:15px;
+	}
+
+#usermenu a.highlight 
+	{
+	background-color:#CCFF99;
+	border-top:#EBEBEB 1px solid;
+	font-weight:normal
+	}
+
+#usermenu a.highlight  span.newMessages
+	{
+	color:#FF0000;
+	font-weight:bold;
+	}
+ul#usermenu li{
+	background-repeat:no-repeat;
+	background-position:left center;
+	padding-left:25px;
+}
+.userMenuTop
+	{
+	background-image:url(images/user.png);
+	}
+.userMenuEdit
+	{
+	background-image:url(images/user_edit.png);
+	}
+.userMenuComments
+	{
+	background-image:url(images/user_comments.png);
+	}
+.userMenuLogout
+	{
+	background-image:url(images/user_logout.png);
+	}
+.userMenuEmail
+	{
+	background-image:url(images/user_email.png);
+	}
+.userMenuAdmin
+	{
+	background-image:url(images/user_admin.png);
+	}
+
+ul#mainmenu li a:hover,
+ul#usermenu li a:hover,
+ul#privatemessages li a:hover 
+	{
+	border-bottom:#fff 1px solid;
+	color:#FF9900;
+	}
+	
+
+input#legacy_xoopsform_block_submit
+	{
+	float: left;
+	width: 100px;
+	background-color:#A6A6FF;
+	}
+	
+/*------------------------------------------------------- SIDE BLOCKS */
+
+
+.leftblock, .rightblock 
+	{
+	margin:0px 0px 20px 0px;
+	}
+	
+.leftblockTitle, .rightblockTitle 
+	{
+	color: #344587;
+	font-size: 1.3em;
+	margin: 0;
+	padding: 5px 0px 5px 15px;
+	border-bottom:1px solid #E2E2FC;
+	background:url(images/bg_blocktitle.gif) repeat-x;
+	}
+	
+.leftblockContent, .rightblockContent
+	{
+	margin: 0;
+	padding: 5px 0px 5px 15px;
+	line-height: 1.5em;
+	border:1px solid #E4E4FF;
+	background:url(images/bg_blockcontent.gif) top left repeat-x;
+	}
+
+/*------------------------------------------------------- CENTER CENTER BLOCKS */
+
+.centerCcolumn 
+	{
+/*	float:left;
+	width:680px;*/
+	padding:10px 0px;
+	}
+.centerCblockTitle
+	{
+	color: #344587;
+	font-size: 1.3em;
+	margin: 0;
+	padding: 4px 0px;
+	}
+ .centerCblockContent
+	{
+	padding-top:15px;
+	margin-bottom:15px;
+	}
+	
+/*------------------------------------------------------- CENTER BOTTOM BLOCKS */
+
+
+#centerBlocksContainer 
+	{
+	width:970px;
+	padding-top:50px;
+	background:url(images/bg_centerblockcontainer.gif) 0px 0px repeat-x;
+	margin-top: 0;
+	margin-right: auto;
+	margin-bottom: 0;
+	margin-left: auto;
+	}
+	
+.centerLcolumn
+	{
+	float: left;
+	width: 49%;
+	padding:0px;
+	}
+	
+.centerRcolumn
+	{
+	float: right;
+	width: 49%;
+	padding:0px;
+	}
+
+.centerLblockTitle, 
+.centerRblockTitle 
+	{
+	margin: 0;
+	padding: 0px 0px 5px 40px;
+	color: #A8C6FD;
+	font-size: 1.3em;
+	line-height:2em;
+	}
+
+	.centerLblockTitle 
+	{
+	background:url(images/bg_cltitle.png) center left no-repeat;
+	}
+	
+	.centerRblockTitle 
+	{
+	background:url(images/bg_crtitle.png) center left no-repeat;
+	}
+	
+.centerLblockContent, 
+.centerRblockContent  
+	{
+	margin: 0;
+	padding: 30px 10px;
+	line-height: 1.5em;
+	border-top:2px solid #071B90;
+	color:#9BCDFF;
+	}
+	
+	.centerLblockContent a, .centerLblockContent a:visited,
+	.centerRblockContent a, .centerRblockContent a:visited
+	{
+	color: #4F94FB;
+	}
+
+	.centerLblockContent a:hover,
+	.centerRblockContent a:hover
+	{
+	color:#FF9900;
+	}
+	
+	
+#legacy_xoopsform_block_uname { background:url(images/admin.png) center left no-repeat; padding-left:17px;}
+#legacy_xoopsform_block_pass {background:url(images/pass.png) center left no-repeat; padding-left:17px;}

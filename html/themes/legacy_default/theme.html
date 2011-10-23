@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta name="robots" content="<{$xoops_meta_robots}>" />
+<meta name="keywords" content="<{$xoops_meta_keywords}>" />
+<meta name="description" content="<{$xoops_meta_description}>" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author}>" />
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<meta name="generator" content="XOOPS Cube" />
+<title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
+<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_themecss}>" />
+
+<!-- RMV: added module header -->
+<{$xoops_module_header}>
+<script type="text/javascript">
+<!--
+<{$xoops_js}>
+// -->
+</script>
+<!--[if IE]>
+<style type="text/css">
+    #side{ width: 240px;}
+    #content {width:690px;}
+    #container { zoom: 1; padding-top: 10px; }
+    .centerCcolumn { zoom: 1;}
+    input {
+    border-width: expression(this.type=="submit" ?'1px':'');
+    border-style: expression(this.type=="submit" ?'outset':''); <br>
+    border-color: expression(this.type=="submit" ?'#ccc #666 #666 #ccc':'');
+    font-family: expression(this.type=="submit" ?'verdana arial':'');
+    font-size: expression(this.type=="submit" ?'11px':'');
+    font-weight: expression(this.type=="submit" ?'bold':'');
+    color: expression(this.type=="submit" ?'#444':'');
+    background-color: expression(this.type=="submit" ?'#f4f4f4':'');
+    cursor: expression(this.type=="submit" ?'hand':'');
+    }
+</style>
+<![endif]-->
+</head>
+<body>
+<div id="layout">
+<a name="top" id="top"></a>
+
+<div id="header">
+<div class="headerlogo">
+<a href="<{$xoops_url}>/"><img src="<{$xoops_imageurl}>images/logo.png" alt="<{$xoops_sitename}>" title="<{$xoops_sitename}>" /></a>
+</div>
+
+    <div class="headersearch">
+    <form action="<{$xoops_url}>/search.php" method="get">
+    <input type="text" name="query" size="22" class="headerSearchField" />
+    <input type="hidden" name="action" value="results" />
+    <button name="submit" type="submit" value="search" accesskey="F">Search</button>
+    </form>
+    </div>
+    </div>
+
+<!--<div class="headerbar">
+
+<ul id="navigation">
+<li><a href="http://xoopscube.org/index.php"><span>Welcome</span></a></li>
+<li><a href="http://xoopscube.org/modules/news/"><span>News</span></a></li>
+<li><a href="http://xoopscube.org/modules/features/"><span>Features</span></a></li>
+<li><a href="http://xoopscube.org/modules/pukiwiki"><span>Documentation</span></a></li>
+<li><a href="http://xoopscube.org/modules/xhnewbb/"><span>Forum</span></a></li>
+<li><a href="http://xoopscube.org/modules/workshop/"><span>Workshop</span></a></li>
+</ul>
+<div class="floatClear"></div>
+</div>-->
+
+
+<div id="container" class="clearfix">
+
+
+<div id="main2columns">
+
+
+    <!-- BLOCK Center-Center -->
+    <{if $xoops_showcblock == 1}>
+    <div class="centerCcolumn">
+
+    <{foreach item=block from=$xoops_ccblocks}>
+    <div class="centerCblock">
+        <div class="centerCblockTitle">
+        <{if $xoops_isadmin}>
+        <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=<{$block.id}>"><img src="<{$xoops_imageurl}>images/edit.png" /></a>
+        <{/if}>
+        <{$block.title}>
+        </div>
+    <div class="centerCblockContent"><{$block.content}></div>
+    </div>
+    <{/foreach}>
+
+    </div>
+    <{/if}>
+
+	<!-- Module Content -->
+    <{if !empty($xoops_contents)}>
+    <div id="content"><{$xoops_contents}></div>
+    <{/if}>
+
+</div><!-- End main2columns -->
+
+
+<div id="side">
+    <div class="sidecolumn">
+
+    <{if $xoops_showlblock == 1}>
+    <{foreach item=block from=$xoops_lblocks}>
+    <div class="leftblock">
+        <div class="leftblockTitle">
+        <{if $xoops_isadmin}>
+        <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=<{$block.id}>"><img src="<{$xoops_imageurl}>images/edit.png" /></a>
+        <{/if}>
+        <{$block.title}>
+        </div>
+        <div class="leftblockContent"><{$block.content}></div>
+    </div>
+    <{/foreach}>
+    <{/if}>
+
+    <br />
+
+    <{if $xoops_showrblock == 1}>
+    <{foreach item=block from=$xoops_rblocks}>
+    <div class="rightblock">
+        <div class="rightblockTitle">
+        <{if $xoops_isadmin}>
+        <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=<{$block.id}>"><img src="<{$xoops_imageurl}>images/edit.png" /></a>
+        <{/if}>
+        <{$block.title}>
+        </div>
+    	<div class="rightblockContent"><{$block.content}></div>
+    </div>
+    <{/foreach}>
+    <{/if}>
+
+   </div><!-- End sidecolumn -->
+</div><!--End Side -->
+
+</div>
+</div>
+
+
+<{if $xoops_showcblock == 1}>
+<div id="centerBlocks">
+	<div id="centerBlocksContainer">
+
+    <div class="centerLcolumn">
+        <{foreach item=block from=$xoops_clblocks}>
+        <div class="centerLblock">
+        <div class="centerLblockTitle">
+        <{if $xoops_isadmin}>
+        <a
+        href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=<{$block.id}>"><img src="<{$xoops_imageurl}>images/edit.png" /></a>
+        <{/if}>
+        <{$block.title}></div>
+        <div class="centerLblockContent"><{$block.content}></div>
+        </div>
+        <{/foreach}>
+    </div>
+
+    <div class="centerRcolumn">
+        <{foreach item=block from=$xoops_crblocks}>
+        <div class="centerRblock">
+        <div class="centerRblockTitle">
+        <{if $xoops_isadmin}>
+        <a
+        href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=<{$block.id}>"><img src="<{$xoops_imageurl}>images/edit.png" /></a>
+        <{/if}>
+        <{$block.title}></div>
+        <div class="centerRblockContent"><{$block.content}></div>
+        </div>
+        <{/foreach}>
+     </div>
+
+<div class="floatClear" /></div>
+
+	</div>
+</div><!-- End Block Center-Left and Center-Right -->
+<{/if}>
+
+<br class="floatClear" />
+
+<div id="footerbar">
+<a href="http://xoops.net.br/">Portuguese</a> | <a href="http://xoopscube.org/">English</a> | <a href="http://www.xoopscube.de/">German</a> | <a href="http://www.xoopscube.gr/">Greek</a> | <a href="http://xoopscube.sourceforge.net/ja/">Japanese</a> | <a href="http://www.xoops.ne.kr/xoopscube/">Korean</a> | <a href="http://www.xoopscube.ru/">Russian</a> | <a href="http://www.xoopscube.tw/">T-Chinese</a>
+<span><a href="#top"><img src="<{$xoops_imageurl}>images/top.gif" alt="top" title="top" hspace="15" /></a></span>
+<br />
+<{$xoops_footer}>
+</div>
+
+</body>
+</html>

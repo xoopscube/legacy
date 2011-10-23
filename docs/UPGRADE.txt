@@ -1,0 +1,15 @@
+** NEVER UPLOAD all archive's files to your server!! **
+
+Basically, the archive includes all files whether a file has been updated.
+Therefore, if you upload all archive's files to your server, your server will
+be written by archive's default state.
+
+At the beginning, remove the following directory & file from the archive.
+
+- /install
+- /mainfile.php
+
+Next, upload all files to your server.
+
+Lastly, in the module management of Legacy's control panels, update all modules
+which show red-color update icons.

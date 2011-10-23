@@ -1,0 +1,21 @@
+<h4>Outline</h4>
+<ul>
+  <li>This module offers the cash function to your site. It may reduce sever load especially when your site has many access.</li>
+  <li>However, there is a possibility of causing problems such as the cash expose some improper contents (like a link to admin section) open to the public.</li>
+  <li>This module makes the cash function to two types of user groups, guest user and normal registered user. We expect high effectiveness of the cash function in general site, most of the sites has two types of user, guest user and normal registered user.</li>
+  <li>The cash function does not work for special types of user group other than normal registered user and guest user.</li>
+</ul>
+<h4>Cash Clear Block</h4>
+<ul>
+  <li>This block clears all cash when the block get receive access.</li>
+  <li>Please set the block is accessible from the guest, and set clearance interval for one day in block preference. Then, the module clear cash once in a day.</li>
+  <li>The module may create large amount of cash files. But it is hardly becomes a problem if you use cash clear block properly..</li>
+</ul>
+
+<h4>How to set up</h4>
+<ul>
+  <li>Please add the following two lines under the [Cube] block of the configuration file.</li>
+  <li>CacheSystem.path=/modules/stdCache/kernel</li>
+  <li>CacheSystem.class=StdRenderCache</li>
+</ul>
+

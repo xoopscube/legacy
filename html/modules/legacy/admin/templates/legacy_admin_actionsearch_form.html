@@ -1,0 +1,16 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=ActSearch"><{$smarty.const._MI_LEGACY_MENU_ACTIONSEARCH}></a></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_ACTIONSEARCH}></h3>
+
+<div class="tips"><{$smarty.const._AD_LEGACY_LANG_ACTIONSEARCH_INFO}></div>
+<div class="legacy_actionsearch_form">
+<form action="index.php" method="get">
+  <{xoops_input type=hidden name=action value=ActSearch}>
+  <{xoops_token form=$actionForm}>
+  <input type="text" size="40" name="keywords" <{if $actionForm}>value="<{$actionForm->get('keywords')|xoops_escape:edit}>"<{/if}> />
+  <input type="submit" value="<{$smarty.const._SEARCH}>" class="formButton" />
+</form>
+</div>

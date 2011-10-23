@@ -1,0 +1,131 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=BlockList"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></h3>
+
+<div class="tips">
+  <{$smarty.const._AD_LEGACY_TIPS_ADD_CUSTOM_BLOCK}>
+</div>
+
+<ul class="toptab">
+  <li><a href="index.php?action=BlockInstallList"><{$smarty.const._AD_LEGACY_LANG_BLOCK_INSTALL}></a></li>
+  <li><a href="index.php?action=CustomBlockEdit"><{$smarty.const._AD_LEGACY_LANG_ADD_CUSTOM_BLOCK}></a></li>
+</ul>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form method="post" action="./index.php?action=BlockList">
+  <{xoops_token form=$actionForm}>
+  <table class="outer">
+    <tr>
+      <th><{$smarty.const._AD_LEGACY_LANG_BID}><br />
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_BID}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_BID}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+      <th><{$smarty.const._AD_LEGACY_LANG_BLOCK_MOD}><br />
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_MID}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_MID}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+      <th><{$smarty.const._AD_LEGACY_LANG_TITLE}><br />
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_TITLE}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_TITLE}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+      <th><{$smarty.const._AD_LEGACY_LANG_SIDE}>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_SIDE}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_SIDE}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a><br />
+        <{$smarty.const._AD_LEGACY_LANG_LCR}></th>
+      <th><{$smarty.const._AD_LEGACY_LANG_WEIGHT}><br />
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_WEIGHT}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_WEIGHT}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+      <th><{$smarty.const._AD_LEGACY_LANG_BCACHETIME}><br />
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_BCACHETIME}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_BCACHETIME}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+      <th><{$smarty.const._AD_LEGACY_LANG_LAST_MODIFIED}><br />
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_LAST_MODIFIED}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_LAST_MODIFIED}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+      <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
+    </tr>
+    <{foreach item=obj from=$objects}>
+      <tr class="<{cycle values='odd,even'}>">
+        <td class="legacy_list_id"><{$obj->getShow('bid')}></td>
+        <td class="legacy_list_name">
+          <{if $obj->mModule}>
+            <span class="legacy_blocktype_module"><{$obj->mModule->getShow('name')}></span>
+          <{else}>
+            <span class="legacy_blocktype_custom">
+            <{if $obj->get('c_type') == "H" }><{$smarty.const._AD_LEGACY_LANG_CUSTOM_HTML}>
+            <{elseif $obj->get('c_type') == "P"}><{$smarty.const._AD_LEGACY_LANG_CUSTOM_PHP}>
+            <{elseif $obj->get('c_type') == "S"}><{$smarty.const._AD_LEGACY_LANG_CUSTOM_WITH_SMILIES}>
+            <{elseif $obj->get('c_type') == "T"}><{$smarty.const._AD_LEGACY_LANG_CUSTOM_WITHOUT_SMILIES}>
+            <{/if}>
+            </span>
+          <{/if}>
+        </td>
+        <td class="legacy_list_title"><{$obj->getShow('title')}></td>
+        <td class="legacy_blockside">
+        <{strip}>
+          <{if $obj->get('side') == 0}>
+            <div class="legacy_blocksideInput active"><{xoops_input type=radio name=side key=$obj->get('bid') value=0 default=$obj->get('side')}></div>
+          <{else}>
+            <div class="legacy_blocksideInput inactive"><{xoops_input type=radio name=side key=$obj->get('bid') value=0 default=$obj->get('side')}></div>
+          <{/if}>
+          <div class="legacy_blockside_separator">-</div>
+          <{if $obj->get('side') == 3}>
+            <div class="legacy_blocksideInput active"><{xoops_input type=radio name=side key=$obj->get('bid') value=3 default=$obj->get('side')}></div>
+          <{else}>
+            <div class="legacy_blocksideInput inactive"><{xoops_input type=radio name=side key=$obj->get('bid') value=3 default=$obj->get('side')}></div>
+          <{/if}>
+          <{if $obj->get('side') == 5}>
+            <div class="legacy_blocksideInput active"><{xoops_input type=radio name=side key=$obj->get('bid') value=5 default=$obj->get('side')}></div>
+          <{else}>
+            <div class="legacy_blocksideInput inactive"><{xoops_input type=radio name=side key=$obj->get('bid') value=5 default=$obj->get('side')}></div>
+          <{/if}>
+          <{if $obj->get('side') == 4}>
+            <div class="legacy_blocksideInput active"><{xoops_input type=radio name=side key=$obj->get('bid') value=4 default=$obj->get('side')}></div>
+          <{else}>
+            <div class="legacy_blocksideInput inactive"><{xoops_input type=radio name=side key=$obj->get('bid') value=4 default=$obj->get('side')}></div>
+          <{/if}>
+          <div class="legacy_blockside_separator">-</div>
+          <{if $obj->get('side') == 1}>
+            <div class="legacy_blocksideInput active"><{xoops_input type=radio name=side key=$obj->get('bid') value=1 default=$obj->get('side')}></div>
+          <{else}>
+            <div class="legacy_blocksideInput inactive"><{xoops_input type=radio name=side key=$obj->get('bid') value=1 default=$obj->get('side')}></div>
+          <{/if}>
+        <{/strip}>
+        </td>
+        <td class="legacy_list_select">
+          <{xoops_input type=text name=weight size=4 key=$obj->get('bid') value=$obj->get('weight') class=legacy_list_number}>
+        </td>
+        <td class="legacy_list_select">
+          <select name="bcachetime[<{$obj->getShow('bid')}>]">
+            <{assign var="bid" value=$obj->getShow('bid') }>
+            <{xoops_optionsArray id="bcachetime[`$bid`]" from=$cachetimeArr value=cachetime label=label default=$obj->get('bcachetime')}>
+          </select>
+        </td>
+        <td class="legacy_list_date"><{$obj->getShow('last_modified')|xoops_formattimestamp:l}></td>
+        <td class="legacy_list_control">
+          <{if $obj->get('block_type') == 'C'}>
+            <a href="./index.php?action=CustomBlockEdit&amp;bid=<{$obj->getShow('bid')}>"><img src="<{"icons/edit.gif"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+          <{else}>
+            <a href="./index.php?action=BlockEdit&amp;bid=<{$obj->getShow('bid')}>"><img src="<{"icons/edit.gif"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+          <{/if}>
+          <a href="./index.php?action=BlockUninstall&amp;bid=<{$obj->getShow('bid')}>"><img src="<{"icons/uninstall.gif"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" title="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" /></a>
+        </td>
+      </tr>
+    <{/foreach}>
+    <tr>
+      <td colspan="10" class="foot">
+        <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>

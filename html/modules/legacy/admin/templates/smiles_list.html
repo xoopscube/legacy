@@ -1,0 +1,54 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=SmilesList"><{$smarty.const._MI_LEGACY_MENU_SMILES_MANAGE}></a></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_SMILES_MANAGE}></h3>
+
+<ul class="toptab">
+  <li><a href="index.php?action=SmilesEdit"><{$smarty.const._AD_LEGACY_LANG_CREATE_NEW}></a></li>
+</ul>
+
+<table class="outer">
+  <tr>
+    <th><{$smarty.const._AD_LEGACY_LANG_ID}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_ID}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.SMILES_SORT_KEY_ID}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._MD_LEGACY_LANG_CODE}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_CODE}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.SMILES_SORT_KEY_CODE}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_SMILE_URL}><br />
+    <th><{$smarty.const._MD_LEGACY_LANG_EMOTION}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_EMOTION}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.SMILES_SORT_KEY_EMOTION}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_DISPLAY}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_DISPLAY}>"><img src="<{"icons/up.gif"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.SMILES_SORT_KEY_DISPLAY}>"><img src="<{"icons/down.gif"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
+  </tr>
+  <{foreach item=obj from=$objects}>
+    <{if $obj->get('display') == 1 }>
+    <tr class="<{cycle values='odd,even'}> active">
+    <{else}>
+    <tr class="<{cycle values='odd,even'}> inactive">
+    <{/if}>
+      <td class="legacy_list_id"><{$obj->getShow('id')}></td>
+      <td class="legacy_list_name"><{$obj->getShow('code')}></td>
+      <td class="legacy_list_image"><img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('smile_url')}>" alt="<{$obj->getShow('emotion')}>" title="<{$obj->getShow('emotion')}>" /></td>
+      <td class="legacy_list_text"><{$obj->getShow('emotion')}></td>
+      <td class="legacy_list_select">
+        <{if $obj->get('display') == 1 }>
+          <{$smarty.const._YES}>
+        <{else}>
+          <{$smarty.const._NO}>
+        <{/if}>
+      </td>
+      <td class="legacy_list_control">
+        <a href="./index.php?action=SmilesEdit&amp;id=<{$obj->getShow('id')}>"><img src="<{"icons/edit.gif"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+        <a href="./index.php?action=SmilesDelete&amp;id=<{$obj->getShow('id')}>"><img src="<{"icons/delete.gif"|theme}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
+      </td>
+    </tr>
+  <{/foreach}>
+</table>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>

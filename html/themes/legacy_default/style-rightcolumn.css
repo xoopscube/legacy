@@ -1,0 +1,46 @@
+
+/*  
+
+	XOOPS Cube Legacy 
+    http://xoopscube.org  */
+
+/*------------------------------------------------------- CONTAINER */
+
+
+#container 
+	{
+	margin-top:45px; /* Remove this margin if Headernav is used */
+	padding:10px 0;
+	display:block;
+	}
+
+#side 
+	{
+	 float:right; 
+	 position:relative; 
+	 width: 245px;
+	 text-align:center;
+	}
+	
+.sidecolumn
+	{
+	width:240px;
+	padding:0px;
+	text-align:left;
+	}
+
+#main2columns 
+	{
+	width:690px;
+	float: left;
+	display:inline;
+	position: relative;
+	}  
+
+#content 
+	{
+	float:left;
+	margin:0px auto;
+	padding:0px;
+	width:690px;
+	}

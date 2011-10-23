@@ -1,0 +1,4 @@
+<{foreach from=$smilesArr item=smiles}>
+  <a href="#" onclick='xoopsCodeSmilie("<{$element->getId()}>", "<{$smiles->getShow('code')}>"); return false;'><img src='<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$smiles->getShow('smile_url')}>' alt='<{$smiles->mVars.emotion.value|escape}>' title='<{$smiles->mVars.emotion.value|escape}>' /></a>
+<{/foreach}>
+&nbsp;[<a href='#moresmiley' onclick='javascript:openWithSelfMain("<{$xoops_url}>/misc.php?action=showpopups&amp;type=smilies&amp;target=<{$element->getId()}>", "smilies", 300, 500);'><{$smarty.const._MORE}></a>]

@@ -1,0 +1,154 @@
+<h4>3단계 --- 모듈 설치</h4>
+<h5>개요</h5>
+<p>게임소프트가 없는 게임기가 쓸모가 없는 것처럼 모듈이 없는 XOOPS Cube Legacy도 제기능을 발휘하지 못합니다. 현재 다용한 기능의 모듈(뉴스, 포럼, wiki, 이미지관리 등)이 개발/배포되고 있으니 님의 사이트에 맞는 모듈을 선택하여 설치해 보시기 바랍니다. 일단 여기서는 야구관련사이트를 구축한다는 전제하에 2개의 모듈을 설치해 보겠습니다.
+</p>
+<h5>3단계 (1) --- 모듈을 설치하는 방법</h5>
+
+<p>일단 우선적으로 설치할 모듈과 이를 사이트에 업로드할 FTP클라이언트를 준비할 필요가 있습니다. 현재 XOOPS Cube Legacy에서 이용가능한 수많은 모듈이 개발/배포되고 있으니 사이트 기능/성격에 맞는 모듈을 신중히 선택하셔서 설치하시기 바랍니다. 물론 기능성 못지않게 보안관련 안전성도 반드시 고려하셔야만 합니다. 기본적으로 XOOPS Cube Legacy 2.1는 다음의 모듈들과 호환됩니다.</p>
+
+<ul>
+  <li>XOOPS Cube Legacy 2.1 전용 모듈</li>
+  <li>XOOPS 2.0.x JP용 모듈</li>
+  <li>XOOPS 2.0.x용 모듈</li>
+</ul>
+
+<p>XOOPS Cube Legacy는 XOOPS2 JP를 에뮬레이터하는 호환기능을 가지고 있습니다. 이 기능은 XOOPS2 JP용 모듈과 XOOPS 2.0.x용 모듈이 XOOPS Cube Legacy상에서 제대로 작동할 수 있게 도와드릴 것입니다.</p>
+
+<h6>신규 모듈 입수</h6>
+<p>현재 다양한 모듈들이 개발/배포되어 지고 있습니다. 그럼 이들 모듈관련 정보는 어디에서 구할 수 있을까요? 물론 검색엔진을 이용하셔도 쉽게 찾으실 수 있지만 그전에 XOOPS Cube 프로젝트페이지나 혹은 <a href="http://xoopscube.org" target="_blank">xoopscube.org</a>와 같은 공식지원사이트들을 방문해 보시기 바랍니다. 아마 손쉽게 다양한 모듈관련 정보를 얻으실 수 있으실 것입니다. 참, 모듈도 테마와 마찬가지로 일반적으로 압축파일형태로 배포되니 다운받으신 후 압축해제하셔서 업로드하시기 바랍니다. 업로드시에는 다른 모듈들의 디렉토리 구조를 참조하셔서 올바르게 업로드하시기 바랍니다.(모듈 디렉토리에는 일반적으로 xoops_version.php 혹은 package.ini.php 파일이 존재합니다)</p>
+
+<h6>모듈을 사이트에 업로드</h6>
+<p>압축해제하여 생긴 모듈의 디렉토리를 XOOPS Cube Legacy의 루트디렉토리하에 있는 /modules 디렉토리로 업로드하시면 됩니다. 다음의 디렉토리 구조를 참조하시기 바랍니다.</p>
+
+<p><img src="<{'abc_3rd_modulepath.png'|helpimage}>" /></p>
+
+<p>주의!! 아래 그림과 같이 불필요한 디렉토리를 업로드하여 문제가 생기는 경우가 빈번히 발생하니 다른 모듈들의 디렉토리구조들을 참조하여 올바르게 업로드하시기 바랍니다.(모듈 디렉토리에는 일반적으로 xoops_version.php 혹은 package.ini.php 파일이 존재합니다.)</p>
+
+<p><img src="<{'abc_3rd_modulepath_miss.png'|helpimage}>" /></p>
+
+<h5>3단계 (2) --- 포럼모듈 설치</h5>
+<p>일단 여기서는 님의 야구관련사이트가 뉴스와 포럼모듈로 구축된다고 가정하고 있으므로 먼저 포럼모듈을 설치해 보도록 하겠습니다. 현재 다양한 기능의 포럼모듈들이 개발/배포되고 있습니다만 여기서는 예전 XOOPS2시절의 표준 포럼모듈이었던  newbb를 설치해 보도록 하겠습니다. 물론 이 모듈은 오래된 것이고 현재 더 좋은 포럼모듈(newbb2, xhnewbb, d3forum)들이 존재합니다만 일단 설명의 편의성을 위해 newbb모듈을 사용하도록 하겠습니다.</p>
+
+<h6>newbb모듈 업로드</h6>
+<p>다운받으신 newbb모듈 압축파일을 압축해제하셔서 생성된 newbb모듈디렉토리를 업로드해 주시기 바랍니다. 불필요한 여분의 디렉토리가 업로드되거나 잘못된 위치에 업로드되지 않도록 주의해 주시기 바랍니다.(위의 관련 설명 참조)</p>
+
+<h6>모듈 설치</h6>
+<p>관리화면 왼쪽에 위치한 관리메뉴들중에서 <span class="highlight_module_name">호환모듈</span>의 관리메뉴를 찾아 "모듈설치" 메뉴항목을 선택해 주시기 바랍니다.</p>
+
+<p><img src="<{'abc_3rd_clickmoduleinstallation.png'|helpimage}>" /></p>
+
+<p>아직 인스톨되지 않은 상태의 모듈들이 표시되어 질 것입니다.(님이 새로 모듈을 업로드하시면 여기에 해당 모듈의 아이콘이 나타나게 됩니다)</p>
+
+<p><img src="<{'abc_3rd_moduleinstallation.png'|helpimage}>" /></p>
+
+<p><span class ="highlight_module_name">포럼모듈</span>(newbb)을 찾으셔서 설치아이콘을 클릭하시기 바랍니다.</p>
+
+<p><img src="<{'abc_3rd_clickinstallation.png'|helpimage}>" /></p>
+
+<p>이제 확인화면을 보실수 있으실 겁니다. 설치작업 대상모듈이 <span class ="highlight_module_name">포럼모듈(newbb)</span>이 맞는지 확인하실 후 "인스톨"버튼을 클릭하시면 됩니다. 이제 설치작업과 관련된 정보들이 표시되면서 설치작업이 진행되어 질 것입니다. 설치된 모듈이 관리메뉴를 가지고 있는 모듈이라면 설치후 해당모듈의 관리메뉴가 관리화면의 왼쪽컬럼에 추가되어질 것입니다.</p>
+
+<p><img src="<{'abc_3rd_moduleinstallation_confirm.png'|helpimage}>" /></p>
+
+<h6>포럼모듈(newbb) 설정</h6>
+<p>대부분의 모듈은 설치후 효율적인 사용을 위해 관련 설정작업을 하실 필요가 있습니다. 이러한 모듈들은 대부분 자체 도움말파일/사용설명서파일을 가지고 있으니 이를 참고하여 필요에 따라 설정작업을 하시면 됩니다. newbb의 경우 그러한 도움말/설명파일이 포함되어 있지 않으니 간단히 설명드리도록 하겠습니다. </p>
+
+<p>관리영역의 왼쪽에 있는 관리메뉴들중 포럼모듈의 관리메뉴를 여신후 <em>카테고리추가</em>를 클릭해 주시기 바랍니다.</p>
+
+<p><img src="<{'abc_3rd_clickaddcategory.png'|helpimage}>" /></p>
+
+<p>3개의 카테고리("MLB", "Minor League", "Oregon")를 추가해 보겠습니다.</p>
+
+<p><img src="<{'abc_3rd_addcategory.png'|helpimage}>" /></p>
+
+<p>다음으로 각 카테고리에 속하는 토론방(forum)을 만들어 보겠습니다. <em>토론방(포럼)추가</em>를 클릭해 주시기 바랍니다.</p>
+
+<p><img src="<{'abc_3rd_clickaddforum.png'|helpimage}>" /></p>
+
+<p>"MLB"카테고리안에 3개의 토론방("2006 League", "Team Information", "Reports on games")을 추가해 보시기 바랍니다. "Minor League"카테고리에도 동일한 이름의 토론방을 작성해 보시기 바랍니다. "Oregon"카테고리에는 2개의 토론방("Local Baseball team", "Oregon Baseball forum")을 추가해 보시기 바랍니다.</p>
+
+<p><img src="<{'abc_3rd_addforum.png'|helpimage}>" /></p>
+
+<p>자 이제 포럼모듈(newbb)관련 설정이 완료되었습니다. 님의 사이트를 방문한 사람들은 이제 이 포럼모듈을 이용해 야구에 관한 열띤 토론을 펼칠 수 있을 겁니다.</p>
+
+<h5>3단계 (3) --- 뉴스모듈 설치</h5>
+<p>이번에는 <span class ="highlight_module_name">뉴스모듈</span>을 설치해 보도록 하겠습니다. 님은 이 뉴스모듈을 통해 사용자들에게 사이트소식, 야구관련뉴스등을 신속히 전달할 수 있게 될 것입니다.</p>
+
+<p><span class ="highlight_module_name">뉴스모듈</span>의 경우도 현재 다양한 종류의 것들이 존재합니다만 역시 설명의 편의를 위해 예전 XOOPS2시절의 표준뉴스모듈이었던 <span class ="highlight_module_name">"news"모듈</span>을 설치해 보도록 하겠습니다.</p>
+
+<h6>뉴스모듈(news)의 설정</h6>
+<p>위의 포럼모듈의 설치법을 참조하여 <span class ="highlight_module_name">뉴스모듈</span>을 설치하시기 바랍니다.(불필요한 여분의 디렉토리가 업로드되거나 잘못된 위치에 업로드되지 않도록 주의해 주시기 바랍니다.) 설치가 완료되었다면 이제 뉴스모듈의 설정작업을 해 보겠습니다.</p>
+
+<p>관리화면의 왼쪽에 위치한 관리메뉴들중 뉴스모듈(news)의 관리메뉴를 여신후 <em>토픽관리</em>을 클릭해 주시기 바랍니다.</p>
+
+<p><img src="<{'abc_3rd_clicktopicmanager.png'|helpimage}>" /></p>
+
+<p>2개의 토픽("Site News", "Oregon Players News")을 추가해 보시기 바랍니다.</p>
+
+<p><img src="<{'abc_3rd_topicmanager.png'|helpimage}>" /></p>
+
+<p>다음으론 뉴스모듈설치시에 기본적으로 만들어지는 "XOOPS"라는 샘플 토픽을 삭제하도록 하겠습니다. <em>토픽관리</em>에서 "XOOPS"를 선택해 <button>편집</button>을 클릭해 주십시오.</p>
+
+<p><img src="<{'abc_3rd_topicmanager_modify.png'|helpimage}>" /></p>
+
+<p>이제 <button>삭제</button>버튼을 클릭하여 삭제처리하시기 바랍니다.</p>
+
+<p><img src="<{'abc_3rd_topicmanager_delete.png'|helpimage}>" /></p>
+
+<h5>3단계 (4) --- 모듈의 표시순 조작하기</h5>
+<p>사이트의 톱페이지로 이동하셔서 메인메뉴블록을 보아주시기 바랍니다. 좀 전에 설치한 포럼모듈과 뉴스모듈에 대한 메뉴항목이 추가되어져 있는 것을 확인하실수 있으실 겁니다. 그런데 먼저 설치한 <span class ="highlight_module_name">포럼모듈</span>이 <span class ="highlight_module_name">뉴스모듈</span>보다 먼저 표시되어져 있으므로 이 순서를 변경해 보도록하겠습니다.</p>
+
+<p><img src="<{'abc_3rd_badmainmenublock.png'|helpimage}>" /></p>
+
+<p>이전에 블록의 표시순서를 조작해 보셨듯이, <em>모듈관리</em>메뉴를 통해 모듈의 표시순서도 간단히 조작하실 수 있습니다. 관리화면 왼쪽에 위치한 관리메뉴들중 호환모듈의 관리메뉴를 여셔서 <em>모듈관리</em>메뉴항목을 선택해 주시기 바랍니다.</p>
+
+<p><img src="<{'abc_3rd_clickmodulemanagement.png'|helpimage}>" /></p>
+
+<p>설치완료상태 모듈들의 리스트를 보실 수 있으실 겁니다.</p>
+
+<p><img src="<{'abc_3rd_modulemanagement.png'|helpimage}>" /></p>
+
+<p><span class ="highlight_module_name">뉴스모듈</span>의 표시순을 5로 <span class ="highlight_module_name">포럼모듈</span>의 표시순을 10으로 지정하시기 바랍니다.</p>
+
+<p><img src="<{'abc_3rd_modulemanagement_weight.png'|helpimage}>" /></p>
+
+<p>표시순을 지정완료하셨으면 <button>업데이트</button>버튼을 클릭하시기 바랍니다. 확인화면이 표시되어질 것이니 작업내용이 정확한지 확인하실 수 <button>업데이트</button>버튼을 다시 한번 클릭하셔서 설정을 저장/갱신하시기 바랍니다.</p>
+
+<h6>TIPS: 모듈명을 변경하는 방법</h6>
+<p>모듈설치시에 지정되어지는 기본모듈명이 마음에 들지 않아서 좀더 멋진 이름으로 변경하고 싶으신 경우도 있으실 겁니다. 그럴 경우엔 <em>모듈관리</em>페이지에서 모듈아이콘 밑에 표시되어지는 모듈명을 수정하신 후 설정을 갱신하시면 됩니다.</p>
+
+<p><img src="<{'abc_3rd_modulemanagement_rename.png'|helpimage}>" /></p>
+
+<h6>모듈디렉토리명(dirname)</h6>
+
+<p>모듈은 두가지의 이름을 가지게 됩니다. 즉 "모듈명(title)"과 "디렉토리명(dirname)"이 바로 그것입니다. "모듈명(title)"의 경우는 위의 TIPS코너에서도 설명드린 것처럼 자유롭게 변경하실 수 있습니다. 이에 반해 "디렉토리명(dirname)"의 경우는 모듈/시스템상에서 여러 용도로 사용되어지므로 대부분의 모듈의 경우 변경을 허용하지 않습니다. XOOPS Cube Legacy의 기본적 특성의 하나로 기억해 두시기 바랍니다.</p>
+
+<h5>3단계 (5) --- 톱페이지를 완성하기!</h5>
+<h6>포럼모듈과 뉴스모듈을 위해 관련 블록을 추가</h6>
+<p>이제 마지막으로 방문객들이 님의 사이트에 투고되어진 최신토픽과 최신뉴스를 신속히 확인할 수 있게 관련 블록을 톱페이지에 설치해 보도록 하겠습니다. 호환모듈의 관리메뉴를 여셔서 <em>블록설치</em>항목을 선택해 주시기 바랍니다. 앞에서 설치한 <span class ="highlight_module_name">포럼모듈(newbb)</span>과 <span class ="highlight_module_name">뉴스모듈(news)</span>에 속한 블록들이 신규로 추가되어져 있는 것을 보실 수 있으실 겁니다. 이전에도 설명드렸듯이 대부분의 모듈은 해당 모듈의 기능과 관련된 전용 블록을 한두개 가지고 있습니다. 이들은 해당모듈이 설치될 때 자동적으로 이용가능 블록리스트에 추가되어지게 됩니다. 그럼 먼저 <span class="highlight_module_name">포럼모듈</span>에 속한 "최신토픽"블록을 설치하시기 바랍니다.</p>
+
+<p><img src="<{'abc_3rd_newbbrecenttopics.png'|helpimage}>" /></p>
+
+<p>다음으로 뉴스모듈에 속한 "최신뉴스"블록을 설치하시기 바랍니다.</p>
+
+<p><img src="<{'abc_3rd_newsrecentnews.png'|helpimage}>" /></p>
+
+<p>블록관련 설정은 다음과 같이 하시기 바랍니다.</p>
+
+<ul>
+ <li>표시side: "중앙블록-중앙"</li>
+ <li>표시대상모듈: "톱페이지"만 지정</li>
+ <li>열람권한을 가질 그룹: 모든 그룹을 선택</li>
+</ul>
+
+<p><img src="<{'abc_3rd_additionalblocks.png'|helpimage}>" /></p>
+
+<h6>중앙컬럼에서의 블록의 표시순을 설정</h6>
+<p><em>블록관리</em>로 가셔서 이전에 설치한 환영메세지용 커스텀블록의 표시순은 5로, 방금설치한 "최신뉴스"블록의 표시순은 10으로, 마지막으로 "최신토픽"블록의 표시순은 15로 지정하신 후 <button>보내기</button>버튼을 눌러 설정을 저장/갱신하시면 됩니다.</p>
+
+<h5>요약</h5>
+<p>XOOPS Cube Legacy의 표준 패키지는 그 자체만으로 하나의 완전한 시스템으로 기능하도록 설계되어 있지는 않습니다. 하지만 사이트의 성격에 맞는 모듈(+블록)등을 설치함으로써 그 기능을 간단히 개선/확장해 나갈수 있으니 이를 잘 활용하셔서 님의 사이트를 멋지게 꾸며 보시기 바랍니다.</p>
+
+<p><img src="<{'abc_3rd_conclusion.png'|helpimage}>" /></p>
+
+<div align="right"><img src="<{'abc_index_arrow.png'|helpimage}>" style="vertical-align:-15px;" /> <a href="<{'abc_4th.html'|helpurl}>">다음 단계로 진행</a></div>
+
