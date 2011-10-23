@@ -1,0 +1,95 @@
+<{if $block.full_view == true}>
+<table class="outer" cellspacing="1">
+<thead>
+<tr>
+	<th><{$block.lang_forum}></th>
+	<th><{$block.lang_topic}></th>
+	<th align="center"><{$block.lang_replies}></th>
+	<th align="center"><{$block.lang_views}></th>
+	<th align="center" colspan="2"><{$block.lang_lastpost}></th>
+</tr>
+</thead>
+<{foreach item=topic from=$block.topics}>
+<{strip}>
+<tr class="<{cycle values="even,odd"}>">
+	<td><a href="<{$block.mod_url}>/index.php?forum_id=<{$topic.forum_id}>"><{$topic.forum_title}></a></td>
+	<td>
+    <{* <{if $topic.forum_id == 1}>
+        <a href="<{$xoops_url}>/modules/d3diary/detail.php?bid=<{$topic.external_link_id}>#post_id<{$topic.last_post_id}>">
+    <{elseif $topic.forum_id == 3}>
+        <a href="<{$xoops_url}>/modules/xpwiki/index.php?pgid=<{$topic.external_link_id}>#post_id<{$topic.last_post_id}>">
+    <{elseif $topic.forum_id == 8}>
+        <a href="<{$xoops_url}>/modules/pico/index.php?content_id=<{$topic.external_link_id}>#post_id<{$topic.last_post_id}>">
+    <{elseif $topic.forum_id == 10}>
+        <a href="<{$xoops_url}>/modules/bulletin/index.php?page=article&storyid=<{$topic.external_link_id}>#post_id<{$topic.last_post_id}>">
+    <{else}> *}>
+        <a href="<{$block.mod_url}>/index.php?topic_id=<{$topic.id}>#post_id<{$topic.last_post_id}>">
+    <{* <{/if}> *}>
+
+	<{if $topic.u2t_marked}><img src="<{$block.mod_imageurl}>/block_marked.gif" alt="<{$block.lang_alt_marked}>" /><{/if}>
+	<{* displays the last post's subject or topic title *}>
+	<{if $block.disp_last_subject }>
+	<{$topic.last_subject}>
+	<{else}>
+	<{$topic.title}>
+	<{/if}></a>
+	<{if ! $topic.solved}><img src="<{$block.mod_imageurl}>/block_unsolved.gif" alt="<{$block.lang_alt_unsolved}>" /><{/if}></td>
+	<td align="center"><{$topic.replies}></td>
+	<td align="center"><{$topic.views}></td>
+	<td align="center" nowrap="nowrap">
+	<{if $topic.guest_name}>
+		<{$topic.guest_name}>
+	<{else}>
+		<{$topic.last_uname}>
+	<{/if}>
+</td>
+	<td align="right" nowrap="nowrap"><{$topic.last_post_time_formatted}></td>
+</tr>
+<{/strip}>
+<{/foreach}>
+</table>
+
+<div style="text-align:right; padding: 5px;">
+<a href="<{$block.mod_url}>/index.php?page=search"><{$block.lang_linktosearch}></a>
+&nbsp;
+<{if is_numeric( $block.forums ) }>
+<a href="<{$block.mod_url}>/index.php?forum_id=<{$block.forums}>"><{$block.lang_linktolisttopics}></a>
+<{else}>
+<a href="<{$block.mod_url}>/index.php?cat_ids=<{$block.categories}>"><{$block.lang_linktolisttopics}></a>
+<{/if}>
+&nbsp;
+<{if is_numeric( $block.categories ) }>
+<a href="<{$block.mod_url}>/index.php?cat_id=<{$block.categories}>"><{$block.lang_linktolistforums}></a>
+&nbsp;
+<{/if}>
+<a href="<{$block.mod_url}>/index.php"><{$block.lang_linktolistcategories}></a>
+</div>
+
+
+<{else}>
+
+<ol style="padding:3px;margin:0;">
+<{foreach item=topic from=$block.topics}>
+	<li>
+    <{* <{if $topic.forum_id == 1}>
+        <a href="<{$xoops_url}>/modules/d3diary/detail.php?bid=<{$topic.external_link_id}>#post_id<{$topic.last_post_id}>">
+    <{elseif $topic.forum_id == 3}>
+        <a href="<{$xoops_url}>/modules/xpwiki/index.php?pgid=<{$topic.external_link_id}>#post_id<{$topic.last_post_id}>">
+    <{elseif $topic.forum_id == 8}>
+        <a href="<{$xoops_url}>/modules/pico/index.php?content_id=<{$topic.external_link_id}>#post_id<{$topic.last_post_id}>">
+    <{elseif $topic.forum_id == 10}>
+        <a href="<{$xoops_url}>/modules/bulletin/index.php?page=article&storyid=<{$topic.external_link_id}>#post_id<{$topic.last_post_id}>">
+    <{else}> *}>
+        <a href="<{$block.mod_url}>/index.php?topic_id=<{$topic.id}>#post_id<{$topic.last_post_id}>">
+    <{* <{/if}> *}>
+    <{$topic.title}></a>(<{$topic.replies}>) 
+	<{if $topic.guest_name}>
+		<{$topic.guest_name}>
+	<{else}>
+		<{$topic.last_uname}>
+	<{/if}>
+ <{$topic.last_post_time_formatted}></li>
+<{/foreach}>
+</ol>
+
+<{/if}>
