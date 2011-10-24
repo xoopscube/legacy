@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns="http://purl.org/rss/1.0/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xml:lang="<{$smarty.const._LANGCODE}>">
+
+	<channel rdf:about="<{$mod_url}>/index.php?page=xml&amp;style=rss10&amp;pipe_id=<{$pipe.id}>">
+		<title><{$pipe.name4xml}></title>
+		<link><{$pipe.link4xml}></link>
+		<description></description>
+		<items>
+			<rdf:Seq>
+				<{foreach from=$entries item="entry"}>
+					<rdf:li rdf:resource="<{$entry.fingerprint|escape}>" />
+				<{/foreach}>
+			</rdf:Seq>
+		</items>
+	</channel>
+
+	<{foreach from=$entries item="entry"}>
+		<item rdf:about="<{$entry.fingerprint|escape}>">
+			<title><{$entry.headline|escape}></title>
+			<{if $link_prefer == 'clipping' && $entry.clipping_id}>
+			<link><{$mod_url}>/index.php?page=clipping&amp;clipping_id=<{$entry.clipping_id}></link>
+			<{else}>
+			<link><{$entry.link|escape}></link>
+			<{/if}>
+			<description><{$entry.description|escape}></description>
+			<dc:date><{"Y-m-d\TH:i:sO"|date:$entry.pubtime}></dc:date>
+		</item>
+	<{/foreach}>
+
+</rdf:RDF>

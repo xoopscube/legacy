@@ -1,0 +1,99 @@
+<{if $entry.allow_html}>
+	<{assign var="entry_headline4disp" value=$entry.headline}>
+	<{assign var="entry_description4disp" value=$entry.description}>
+<{else}>
+	<{assign var="entry_headline4disp" value=$entry.headline|escape}>
+	<{assign var="entry_description4disp" value=$entry.description|escape|trim|nl2br}>
+<{/if}>
+
+<div class="d3pipes_clipping" id="<{$mydirname}>_clipping">
+
+	<h2><{$smarty.const._MD_D3PIPES_H2_CLIPPING}></h2>
+
+	<dl>
+		<dt><{$smarty.const._MD_D3PIPES_TH_PUBTIME}></dt>
+		<dd id="clipping_pubtime"><{$smarty.const._MEDIUMDATESTRING|date:$entry.pubtime+$timezone_offset}></dd>
+	</dl>
+
+	<dl>
+		<dt><{$smarty.const._MD_D3PIPES_TH_HEADLINE}></dt>
+		<dd id="clipping_headline"><{$entry_headline4disp}></dd>
+	</dl>
+
+	<dl>
+		<dt><{$smarty.const._MD_D3PIPES_TH_LINKURL}></dt>
+		<dd><span id="clipping_link"><{$entry.link|escape}></span> <a href="<{$entry.link|escape}>"> <img src="<{$mod_imageurl}>/external.png" alt="<{$entry.headline|escape|string_format:$smarty.const._MD_D3PIPES_FMT_EXTERNALLINK}>" /> </a></dd>
+	</dl>
+
+	<dl>
+		<dt><{$smarty.const._MD_D3PIPES_TH_DESCRIPTION}></dt>
+		<dd>
+			<{if $entry.content_encoded}>
+				<div id="clipping_content_encoded"><{$entry.content_encoded}></div>
+				<{if $xoops_isadmin}>
+					<script type="text/javascript">new Ajax.InPlaceEditor( 'clipping_content_encoded' , '<{$mod_url}>/admin/index.php?page=update_clipping&clipping_id=<{$entry.clipping_id}>&field=content_encoded' , {cols: 80, rows: 20, hasHTMLLineBreaks: false } ) ;
+					</script>
+				<{/if}>
+			<{else}>
+				<{$entry_description4disp}>
+				<{if $xoops_isadmin}>
+					<div id="edit_description">
+						<input type="button" id="button_edit_description" value="<{$smarty.const._EDIT}>" />
+						<div id="clipping_description" style="display:none;"><{$entry.description}></div>
+						<script type="text/javascript">new Ajax.InPlaceEditor( 'clipping_description' , '<{$mod_url}>/admin/index.php?page=update_clipping&clipping_id=<{$entry.clipping_id}>&field=description' , {cols: 80, rows: 20, externalControl: 'button_edit_description', hasHTMLLineBreaks: false, onComplete: function() {document.getElementById('edit_description').style.display='none';} } ) ;
+						</script>
+					</div>
+				<{/if}>
+			<{/if}>
+		</dd>
+	</dl>
+
+	<{if $xoops_isadmin}>
+	<dl>
+		<dt><{$smarty.const._MD_D3PIPES_TH_ACTIONTOCLIPPING}></dt>
+		<dd>
+			<form action="<{$mod_url}>/index.php?page=update_clipping" method="post">
+				<!-- highlight -->
+				<input type="checkbox" name="highlight_clipping" id="highlight_clipping" value="1" <{if $entry.clipping_highlight}>checked="checked"<{/if}> /><label for="highlight_clipping"><{$smarty.const._MD_D3PIPES_LABEL_HIGHLIGHTCLIPPING}></label>
+				<br />
+
+				<!-- visible (invisible==soft delete) -->
+				<input type="checkbox" name="visible_clipping" id="visible_clipping" value="1" <{if $entry.visible}>checked="checked"<{/if}> /><label for="visible_clipping"><{$smarty.const._MD_D3PIPES_LABEL_VISIBLECLIPPING}></label>
+				<br />
+
+				<!-- hard delete -->
+				<input type="checkbox" name="delete_clipping" id="delete_clipping" value="1" /><label for="delete_clipping"><{$smarty.const._MD_D3PIPES_LABEL_DELETECLIPPING}></label>
+				<br />
+
+				<input type="hidden" name="clipping_id" value="<{$clipping_id}>" />
+				<input type="submit" value="<{$smarty.const._MD_D3PIPES_BTN_UPDATE}>" />
+			</form>
+
+		</dd>
+	</dl>
+	<{/if}>
+
+	<{* d3forum comment integration *}>
+	<{if $mod_config.comment_dirname && $mod_config.comment_forum_id}>
+		<{d3comment mydirname=$mydirname class="D3pipesD3commentContent"}>
+	<{/if}>
+
+</div>
+
+<{if $xoops_isadmin}>
+<script type="text/javascript">
+// <![CDATA[
+
+	Object.extend(Ajax.InPlaceEditor.prototype, {
+		convertHTMLLineBreaks: function(string) {
+		return string;
+	}
+	});
+
+	new Ajax.InPlaceEditor( 'clipping_pubtime' , '<{$mod_url}>/admin/index.php?page=update_clipping&clipping_id=<{$entry.clipping_id}>&field=pubtime' , {cols: 20} ) ;
+	new Ajax.InPlaceEditor( 'clipping_headline' , '<{$mod_url}>/admin/index.php?page=update_clipping&clipping_id=<{$entry.clipping_id}>&field=headline' , {cols: 80} ) ;
+	new Ajax.InPlaceEditor( 'clipping_link' , '<{$mod_url}>/admin/index.php?page=update_clipping&clipping_id=<{$entry.clipping_id}>&field=link' , {cols: 80} ) ;
+
+// ]]>
+</script>
+<{/if}>

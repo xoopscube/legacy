@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc><{$smarty.const.XOOPS_URL}>/</loc>
+<lastmod><{"Y-m-d\TH:i:s\Z"|gmdate:$entries_lastmodified}></lastmod>
+<priority>1.0</priority>
+</url>
+
+<{foreach from=$entries item="entry"}>
+  <url>
+    <loc><{$entry.link|escape}></loc>
+    <lastmod><{"Y-m-d\TH:i:s\Z"|gmdate:$entry.pubtime}></lastmod>
+  </url>
+<{/foreach}>
+
+</urlset>

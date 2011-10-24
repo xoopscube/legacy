@@ -1,0 +1,82 @@
+<div class="d3pipes_admin_wizard_fetch" id="<{$mydirname}>_admin_wizard_fetch">
+
+<h2><{$mod_name}> - <{$smarty.const._MD_A_D3PIPES_H2_WIZARDFETCH}></h2>
+
+<{if $post_hiddens}>
+<div class="confirmMsg">
+<form action="<{$mod_url}>/admin/index.php?page=pipe" method="post">
+	<{foreach from=$post_hiddens key="hidden_key_raw" item="hidden_value_raw"}>
+		<input type="hidden" name="<{$hidden_key_raw|escape}>" value="<{$hidden_value_raw|escape}>"}>
+	<{/foreach}>
+	<{$gticket_hidden}>
+
+	<{foreach from=$error_messages item="error_message"}>
+		<{$error_message}><br />
+	<{/foreach}>
+
+	<{$smarty.const._MD_A_D3PIPES_CNFM_REGISTERASIS}>
+	<br />
+	<input type="submit" name="do_update" value="<{$smarty.const._MD_A_D3PIPES_TH_WIZ_BTN_REGISTER}>" />
+</form>
+</div>
+<br />
+<{/if}>
+
+
+<form action="<{$mod_url}>/admin/index.php?page=wizard_fetch" method="post">
+
+	<table class="outer">
+		<tr>
+			<th>
+				<{$smarty.const._MD_A_D3PIPES_TH_WIZ_SITENAME}>
+			</th>
+			<td class="even">
+				<input type="text" name="name" value="<{$requests_raw.name|escape}>" size="40" <{if $lacked_requests.name}>style="background-color:#ffffcc;"<{/if}> />
+			</td>
+		</tr>
+		<tr>
+			<th>
+				<{$smarty.const._MD_A_D3PIPES_TH_WIZ_SITEURL}>
+			</th>
+			<td class="even">
+				<input type="text" name="url" value="<{$requests_raw.url|escape}>" size="60" <{if $lacked_requests.url}>style="background-color:#ffffcc;"<{/if}> />
+			</td>
+		</tr>
+		<tr>
+			<th>
+				<{$smarty.const._MD_A_D3PIPES_TH_WIZ_RSSURL}>
+			</th>
+			<td class="even">
+				<input type="text" name="rssurl" value="<{$requests_raw.rssurl|escape}>" size="60" <{if $lacked_requests.rssurl}>style="background-color:#ffffcc;"<{/if}> />
+			</td>
+		</tr>
+		<tr>
+			<th>
+				<{$smarty.const._MD_A_D3PIPES_TH_WIZ_RSSENCODING}>
+			</th>
+			<td class="even">
+				<input type="text" name="rssencoding" value="<{$requests_raw.rssencoding|escape}>" size="20" />
+				<{$smarty.const._MD_A_D3PIPES_TH_WIZ_RSSENCODING_NOTE}>
+			</td>
+		</tr>
+		<tr>
+			<th>
+				<{$smarty.const._MD_A_D3PIPES_TH_WIZ_CLIPPINGYN}>
+			</th>
+			<td class="even">
+				<{html_radios name="clip" options=$yesno_options selected=$requests_raw.clip}>
+			</td>
+		</tr>
+		<tr>
+			<th>
+				<{$smarty.const._MD_A_D3PIPES_TH_WIZ_ALLOWHTMLYN}>
+			</th>
+			<td class="even">
+				<{html_radios name="allowhtml" options=$yesno_options selected=$requests_raw.allowhtml}>
+			</td>
+		</tr>
+	</table>
+	<input type="submit" value="<{$smarty.const._MD_A_D3PIPES_TH_WIZ_BTN_CONFIRM}>" />
+</form>
+
+</div>

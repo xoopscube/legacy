@@ -1,0 +1,60 @@
+<input type="hidden" name="options[0]" value="<{$mydirname}>" />
+
+<input type="hidden" name="options[1]" value="<{$uniqid}>" />
+
+<p>
+	<label for="pipe_id"><{$smarty.const._MB_D3PIPES_PIPE_ID}></label>:
+	<input type="text" name="options[2]" id="pipe_id" value="<{","|implode:$pipe_ids|escape}>" size="16" />
+	<select name="pipe_select" id="pipe_select" onchange="if(this.value){xoopsGetElementById('pipe_id').value=xoopsGetElementById('pipe_id').value?xoopsGetElementById('pipe_id').value+','+this.value:this.value;}">
+		<{html_options options=$pipe_options}>
+	</select>
+	<blockquote>
+		<{$smarty.const._MB_D3PIPES_PIPE_ID_NOTICE}>
+		<br />
+		<{$smarty.const._MB_D3PIPES_PIPE_ID_NOTICE2}>
+	</blockquote>
+</p>
+
+<p>
+	<label for="max_entries"><{$smarty.const._MB_D3PIPES_MAX_ENTRIES}></label>:
+	<input type="text" name="options[3]" id="max_entries" value="<{$max_entries}>" size="4" />
+	<blockquote>
+		<{$smarty.const._MB_D3PIPES_MAX_ENTRIES_NOTICE}>
+	</blockquote>
+</p>
+
+<p>
+	<label for="this_template"><{$smarty.const._MB_D3PIPES_THISTEMPLATE}></label>:
+	<input type="text" size="60" name="options[4]" id="this_template" value="<{$this_template|escape}>" />
+	<a href="<{$xoops_url}>/modules/<{$mydirname}>/admin/index.php?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=<{$this_template|escape}>"><{$smarty.const._EDIT}></a>
+	<{if $type == 'sync'}>
+		<blockquote>
+			<{$smarty.const._MB_D3PIPES_THISTEMPLATE_NOTICE}><br />
+			db:<{$mydirname}>_block_sync.html<br />
+			db:<{$mydirname}>_block_sync_big.html<br />
+		</blockquote>
+	<{/if}>
+</p>
+
+<p>
+	<label for="union_class"><{$smarty.const._MB_D3PIPES_UNIONCLASS}></label>:
+	<select name="options[5]" id="union_class">
+		<{html_options options=$union_options selected=$union_class}>
+	</select>
+</p>
+
+<p>
+	<{$smarty.const._MB_D3PIPES_LINK2CLIPPING}>:
+	<label for="link2clipping_yes"><{$smarty.const._YES}></label>
+	<input type="radio" name="options[6]" id="link2clipping_yes" value="1" <{if $link2clipping}>checked="checked"<{/if}> />
+	<label for="link2clipping_no"><{$smarty.const._NO}></label>
+	<input type="radio" name="options[6]" id="link2clipping_no" value="0" <{if ! $link2clipping}>checked="checked"<{/if}> />
+</p>
+
+<p>
+	<{$smarty.const._MB_D3PIPES_KEEP_PIPEINFO}>:
+	<label for="keep_pipeinfo_yes"><{$smarty.const._YES}></label>
+	<input type="radio" name="options[7]" id="keep_pipeinfo_yes" value="1" <{if $keep_pipeinfo}>checked="checked"<{/if}> />
+	<label for="keep_pipeinfo_no"><{$smarty.const._NO}></label>
+	<input type="radio" name="options[7]" id="keep_pipeinfo_no" value="0" <{if ! $keep_pipeinfo}>checked="checked"<{/if}> />
+</p>

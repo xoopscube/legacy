@@ -1,0 +1,24 @@
+
+== Architecture ==
+- Category
+- ASYNCブロック用バックエンド部のnocommon化
+
+== Wizards ==
+- OPML
+- Wizards for Union joints
+- RSS/Atom wizards should find rss+xml field
+- Import from xoopsheadline, xhld
+
+== Utility ==
+- output JSON formatted
+
+== ADMIN CONTROLLER ==
+- joint_class用のパラメータ設定画面
+
+
+- ある程度、新d3forumが浸透した時点で、class/D3pipesD3commentContent.class.php を修正 ($this->getPostsCount() を使うようにする)
+
+
+<link rel="alternate" type="application/rss+xml" title="<{$site_name}>" href="../backend.php" />
+この行の修正
+

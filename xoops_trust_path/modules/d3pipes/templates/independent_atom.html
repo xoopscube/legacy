@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns='http://www.w3.org/2005/Atom'>
+
+	<id><{$mod_url}>/</id>
+	<updated><{"Y-m-d\TH:i:sO"|date:$pipe.lastfetch_time}></updated>
+	<title type='text'><{$pipe.name4xml}></title>
+<{if $pipe.link}>
+	<link rel='alternate' type='text/html' href='<{$pipe.link|escape}>'></link>
+<{/if}>
+	<link rel='self' type='application/atom+xml' href='<{$mod_url}>/index.php?page=xml&amp;style=atom&amp;pipe_id=<{$pipe.id}>'></link>
+	<author><name><{$xoops_config_utf8.slogan|escape}></name></author>
+	<generator>XOOPS - d3pipes</generator>
+
+	<{foreach from=$entries item="entry"}>
+
+	<entry>
+		<id><{$entry.fingerprint|escape}></id>
+		<published><{"Y-m-d\TH:i:sO"|date:$entry.pubtime}></published>
+		<updated><{"Y-m-d\TH:i:sO"|date:$pipe.lastfetch_time}></updated>
+		<category><{$entry.category}></category>
+		<title type='text'><{$entry.headline|escape}></title>
+		<content type='html'><{$entry.description|escape}></content>
+		<{if $link_prefer == 'clipping' && $entry.clipping_id}>
+		<link rel='alternate' type='text/html' href='<{$mod_url}>/index.php?page=clipping&amp;clipping_id=<{$entry.clipping_id}>'></link>
+		<{else}>
+		<link rel='alternate' type='text/html' href='<{$entry.link|escape}>'></link>
+		<{/if}>
+	</entry>
+	<{/foreach}>
+
+</feed>
