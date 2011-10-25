@@ -19,7 +19,8 @@ class D3pipesBlockGnavilist extends D3pipesBlockAbstract {
 
 		// configurations (file, name, block_options)
 		$this->func_file = XOOPS_ROOT_PATH.'/modules/'.$this->target_dirname.'/blocks/blocks.php' ;
-		$this->func_name = 'b_gnavi_topnews_show' ;
+		$this->func_file = XOOPS_TRUST_PATH.'/modules/'.$this->trustdirname.'/blocks/d3pipes.php' ;
+		$this->func_name = 'b_gnavi_d3pipes_joints' ;
 		$this->block_options = array(
 			'disable_renderer' => true ,
 			0 => $this->target_dirname , // mydirname
