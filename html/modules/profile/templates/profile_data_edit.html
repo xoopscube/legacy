@@ -1,0 +1,51 @@
+<{if $actionForm->hasError()}>
+  <div class="error">
+    <ul>
+      <{foreach item=message from=$actionForm->getErrorMessages()}>
+        <li><{$message|xoops_escape}></li>
+      <{/foreach}>
+    </ul>
+  </div>
+<{/if}>
+<form action="index.php?action=DataEdit" method="post">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=uid value=$actionForm->get('uid')}>
+  <table class="outer">
+    <tr>
+    <{if $actionForm->get('uid')}>
+      <th colspan="2"><{$smarty.const._MD_PROFILE_LANG_DATA_EDIT}></th>
+  <{else}>
+      <th colspan="2"><{$smarty.const._MD_PROFILE_LANG_ADD_A_NEW_DATA}></th>
+  <{/if}>
+    </tr>
+		<{foreach item=field from=$fields}>
+		<tr>
+      <td class="head"><{$field->getShow('label')}></td>
+      <td class="<{cycle values="odd,even"}>">
+      	<{if $field->get('type')=="string"}>
+        <{xoops_input type=text name=$field->get('field_name') value=$actionForm->get($field->get('field_name'))  size=40 maxlength=255}>
+        <{elseif $field->get('type')=="int"}>
+        <{xoops_input type=text name=$field->get('field_name') value=$actionForm->get($field->get('field_name')) size=15 maxlength=11}>
+        <{elseif $field->get('type')=="text"}>
+        <{xoops_dhtmltarea type=text name=$field->get('field_name') value=$actionForm->get($field->get('field_name'))}>
+        <{elseif $field->get('type')=="date"}>
+        <{xoops_input class=datePicker type=text name=$field->get('field_name') value=$actionForm->get($field->get('field_name'))  size=15 maxlength=12}>
+        <{elseif $field->get('type')=="checkbox"}>
+        <{xoops_input type=checkbox name=$field->get('field_name') value=1 default=$actionForm->get($field->get('field_name'))}>
+        <{elseif $field->get('type')=="selectbox"}>
+        <select name="<{$field->get('field_name')}>" id="legacy_xoopsform_<{$field->get('field_name')}>">
+	        <{foreach item=option from=$field->getOptions()}>
+        	<option value="<{$option}>"<{if $actionForm->get($field->get('field_name'))==$option}> selected="selected"<{/if}>><{$option}></option>
+  	      <{/foreach}>
+        </select>
+        <{/if}>
+      </td>
+    </tr>
+		<{/foreach}>
+    <tr>
+      <td class="foot" colspan="2">
+        <input type="submit" class="formButton" value="<{$smarty.const._SUBMIT}>"/>
+      </td>
+    </tr>
+  </table>
+</form>

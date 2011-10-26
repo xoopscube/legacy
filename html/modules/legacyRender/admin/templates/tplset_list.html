@@ -1,0 +1,161 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=TplsetList"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_MANAGE}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_LIST}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_LIST}></h3>
+
+<div class="legacyRender_TemplateSearch">
+<form method="get" action="index.php"><{$smarty.const._AD_LEGACYRENDER_LANG_SEARCH_TEMPLATE}> : 
+  <input type="hidden" name="action" value="TplfileList" />
+  <input type="text" name="tpl_file" />
+  <input class="formButton" type="submit" value="<{$smarty.const._SEARCH}>" />
+</form>
+</div>
+
+<{if count($objects) == 1 }>
+  <div class="tips"><{$smarty.const._AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_1}></div>
+<{else}>
+  <div class="tips"><{$smarty.const._AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_2}></div>
+<{/if}>
+
+<ul class="toptab">
+  <li class="archive"><a href="./index.php?action=TplsetUpload"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_UPLOAD}></a></li>
+</ul>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<{assign var=tokenName value=$actionForm->getTokenName()}>
+<{assign var=token value=$actionForm->getToken()}>
+
+<table class="outer">
+  <tr>
+    <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_ID}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLSET_SORT_KEY_TPLSET_ID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLSET_SORT_KEY_TPLSET_ID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_NAME}>
+      (<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DESC}>)
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLSET_SORT_KEY_TPLSET_NAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLSET_SORT_KEY_TPLSET_NAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_CREDITS}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLSET_SORT_KEY_TPLSET_CREDITS}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLSET_SORT_KEY_TPLSET_CREDITS}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_CREATED}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLSET_SORT_KEY_TPLSET_CREATED}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLSET_SORT_KEY_TPLSET_CREATED}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE}></th>
+    <th><{$smarty.const._AD_LEGACYRENDER_LANG_CONTROL}></th>
+  </tr>
+  <{foreach item=obj from=$objects}>
+    <{if $activeTemplateSet == $obj->get('tplset_name')}>
+      <tr class="<{cycle values='odd,even'}> active">
+    <{else}>
+      <tr class="<{cycle values='odd,even'}> inactive">
+    <{/if}>
+      <td class="legacyRender_list_id"><{$obj->getShow('tplset_id')}></td>
+      <td class="legacyRender_list_title"><{$obj->getShow('tplset_name')}>
+        <{if $obj->getShow('tplset_desc')}>
+          <p class="legacyRender_list_description"><{$obj->getShow('tplset_desc')}></p>
+        <{/if}>
+      </td>
+      <td class="legacyRender_list_text"><{$obj->get('tplset_credits')|xoops_escape|nl2br}></td>
+      <td class="legacyRender_list_date"><{$obj->get('tplset_created')|xoops_formattimestamp:l}></td>
+      <td class="legacyRender_list_text">
+        <ul>
+        <{foreach item=moduletpl from=$obj->mModuleTemplates}>
+          <li><a href="./index.php?action=TplfileList&amp;tpl_tplset=<{$obj->get('tplset_name')|xoops_escape:link}>&amp;tpl_module=<{$moduletpl->get('dirname')|xoops_escape}>"><{$moduletpl->getShow('name')}></a> (<{$moduletpl->getShow('count')}>)</li>
+        <{/foreach}>
+        </ul>
+      </td>
+      <td class="legacyRender_list_control">
+        <{if $activeTemplateSet == $obj->get('tplset_name')}>
+          <img src="<{"icons/active.png"|theme}>" alt="<{$smarty.const._AD_LEGACYRENDER_LANG_ACTIVE}>" title="<{$smarty.const._AD_LEGACYRENDER_LANG_ACTIVE}>" /><br /><br />
+        <{else}>
+          <form method="post" action="./index.php?action=TplsetList">
+            <{xoops_token name=$actionForm->getTokenName() value=$actionForm->getToken()}>
+            <input type="hidden" name="tplset_name" value="<{$obj->getShow('tplset_name')}>" id="legacy_xoopsform_tplset_name_<{$obj->getShow('tplset_name')}>" />
+            <input type="submit" value="<{$smarty.const._SELECT}>" class="formButton" />
+          </form>
+        <{/if}>
+        
+        <a href="index.php?action=TplsetDownload&amp;tplset_id=<{$obj->get('tplset_id')}>&amp;method=tar"><img src="<{"icons/download.png"|theme}>" alt="<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD}>" title="<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD}>" /></a>
+        <a href="index.php?action=TplsetClone&amp;tplset_id=<{$obj->get('tplset_id')}>"><img src="<{"icons/clone.png"|theme}>" alt="<{$smarty.const._CLONE}>" title="<{$smarty.const._CLONE}>" /></a>
+        <br />
+        <{if $obj->get('tplset_name') != "default"}>
+          <a href="index.php?action=TplsetEdit&amp;tplset_id=<{$obj->get('tplset_id')}>"><img src="<{"icons/edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+          <{if $activeTemplateSet != $obj->get('tplset_name')}>
+            <a href="index.php?action=TplsetDelete&amp;tplset_id=<{$obj->get('tplset_id')}>"><img src="<{"icons/delete.png"|theme}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
+          <{/if}>
+        <{/if}>
+      </td>
+    </tr>
+  <{/foreach}>
+</table>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+
+<hr />
+<h4 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_RECENT_MODIFY_FILES}></h4>
+
+<table class="outer">
+  <tr>
+    <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_ID}></th>
+    <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_MODULE}></th>
+    <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_TPLSET}></th>
+    <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_FILE}></th>
+    <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_LASTMODIFIED}></th>
+    <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_LASTIMPORTED}></th>
+    <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_TYPE}></th>
+    <th><{$smarty.const._AD_LEGACYRENDER_LANG_CONTROL}></th>
+  </tr>
+  <{foreach item=obj from=$recentObjects}>
+    <{if $activeTemplateSet == $obj->getShow('tpl_tplset') }>
+      <{if $obj->get('tpl_type') == "block"}>
+        <tr class="<{cycle values='odd,even'}> active legacyRender_TemplateFile_block">
+      <{else}>
+        <tr class="<{cycle values='odd,even'}> active">
+      <{/if}>
+    <{else}>
+      <{if $obj->get('tpl_type') == "block"}>
+        <tr class="<{cycle values='odd,even'}> inactive legacyRender_TemplateFile_block">
+      <{else}>
+        <tr class="<{cycle values='odd,even'}> inactive">
+      <{/if}>
+    <{/if}>
+      <td class="legacyRender_list_id"><{$obj->getShow('tpl_id')}></td>
+      <td class="legacyRender_list_text"><{$obj->getShow('tpl_module')}></td>
+      <td class="legacyRender_list_text"><{$obj->getShow('tpl_tplset')}></td>
+      <td class="legacyRender_list_title"><{$obj->getShow('tpl_file')}>
+        <{if $obj->getShow('tpl_desc')}>
+          <div class="legacyRender_list_description"><{$obj->getShow('tpl_desc')}></div>
+        <{/if}>
+      </td>
+      <td class="legacyRender_list_date"><{$obj->get('tpl_lastmodified')|xoops_formattimestamp:l}></td>
+      <td class="legacyRender_list_date"><{$obj->get('tpl_lastimported')|xoops_formattimestamp:l}></td>
+      <td class="legacyRender_list_type"><{$obj->getShow('tpl_type')}></td>
+      <td class="legacyRender_list_control">
+        <{if $obj->get('tpl_tplset') == "default"}>
+          <a href="index.php?action=TplfileView&amp;tpl_id=<{$obj->get('tpl_id')}>"><img src="<{"icons/view.png"|theme}>" alt="<{$smarty.const._AD_LEGACYRENDER_LANG_VIEW}>" title="<{$smarty.const._AD_LEGACYRENDER_LANG_VIEW}>" /></a>
+        <{else}>
+          <a href="index.php?action=TplfileEdit&amp;tpl_id=<{$obj->get('tpl_id')}>"><img src="<{"icons/edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+        <{/if}>
+      </td>
+    </tr>
+  <{/foreach}>
+  <tr>
+    <td class="foot" colspan="8">
+      <a href="index.php?action=TplfileList&amp;sort=-7"><{$smarty.const._MORE}></a>
+    </td>
+  </tr>
+</table>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>

@@ -1,0 +1,19 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=UserDataDownload"><{$smarty.const._MI_USER_ADMENU_USER_DATA_DOWNLOAD}></a></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._MI_USER_ADMENU_USER_DATA_DOWNLOAD}></h3>
+
+<div class="tips">
+	<ul>
+		<li><{$smarty.const._AD_USER_TIPS_DATA_DOWNLOAD}></li>
+	</ul>
+</div>
+
+<div style="text-align:center; line-height:2em;">
+	<{$smarty.const._AD_USER_DATA_NUM|sprintf:$user_count}><br>
+	<form action="./index.php?action=UserDataDownload" method="post">
+		<input type="submit" value="<{$smarty.const._AD_USER_DATA_DOWNLOAD_DO}>" class="formButton"><br>
+	</form>
+</div>

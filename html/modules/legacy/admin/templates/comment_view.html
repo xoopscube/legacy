@@ -1,0 +1,134 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=CommentList"><{$smarty.const._MI_LEGACY_MENU_COMMENT_MANAGE}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_COMMENT_VIEW}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_COMMENT_VIEW}></h3>
+
+<ul class="toptab">
+  <li><a href="./index.php?action=CommentEdit&amp;com_id=<{$object->getShow('com_id')}>"><{$smarty.const._AD_LEGACY_LANG_COMMENT_EDIT}></a></li>
+  <li><a href="./index.php?action=CommentDelete&amp;com_id=<{$object->getShow('com_id')}>"><{$smarty.const._AD_LEGACY_LANG_COMMENT_DELETE}></a></li>
+</ul>
+
+  <table class="outer">
+    <tr>
+      <th colspan="2"><{$smarty.const._AD_LEGACY_LANG_COMMENT_VIEW}></th>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_ID}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('com_id')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_PID}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('com_pid')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_ROOTID}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('com_rootid')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_MODID}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->mModule->getShow('name')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_ITEMID}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('com_itemid')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_ICON}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{if $object->getShow('com_icon')}>
+          <img src="<{$smarty.const.XOOPS_URL}>/images/subject/<{$object->getShow('com_icon')}>" alt="" />
+        <{else}>
+          <img src="<{$smarty.const.XOOPS_URL}>/images/icons/no_posticon.gif" alt="" />
+        <{/if}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACY_LANG_COM_CREATED}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->get('com_created')|xoops_formattimestamp:l}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACY_LANG_COM_MODIFIED}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->get('com_modified')|xoops_formattimestamp:l}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACY_LANG_COM_UID}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{if $object->mUser != null}>
+          <{$object->mUser->getShow('uname')}>
+        <{else}>
+          Guest
+        <{/if}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_IP}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('com_ip')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_TITLE}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('com_title')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_TEXT}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('com_text')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACY_LANG_COM_SIG}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <label><{xoops_input type=radio name=com_sig value=1 default=$object->get('com_sig') disabled=true}><{$smarty.const._YES}></label>
+        <label><{xoops_input type=radio name=com_sig value=0 default=$object->get('com_sig') disabled=true}><{$smarty.const._NO}></label>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACY_LANG_COM_STATUS}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->mStatus->getShow('name')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_EXPARAMS}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('com_exparams')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACY_LANG_CONTROL}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <label><{xoops_input type=checkbox name=dohtml value=1 default=$object->get('dohtml') disabled=true}> <{$smarty.const._MD_LEGACY_LANG_DOHTML}></label><br />
+        <label><{xoops_input type=checkbox name=dosmiley value=1 default=$object->get('dosmiley') disabled=true}> <{$smarty.const._MD_LEGACY_LANG_DOSMILEY}></label><br />
+        <label><{xoops_input type=checkbox name=doxcode value=1 default=$object->get('doxcode') disabled=true}> <{$smarty.const._MD_LEGACY_LANG_DOXCODE}></label><br />
+        <label><{xoops_input type=checkbox name=doimage value=1 default=$object->get('doimage') disabled=true}> <{$smarty.const._AD_LEGACY_LANG_DOIMAGE}></label><br />
+        <label><{xoops_input type=checkbox name=dobr value=1 default=$object->get('dobr') disabled=true}> <{$smarty.const._MD_LEGACY_LANG_DOBR}></label>
+      </td>
+    </tr>
+  </table>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_RES_FOR_COMMENT}></h3>
+
+<table class="outer">
+  <tr>
+    <th><{$smarty.const._MD_LEGACY_LANG_COM_ID}></th>
+    <th><{$smarty.const._MD_LEGACY_LANG_COM_MODID}></th>
+    <th><{$smarty.const._MD_LEGACY_LANG_COM_TITLE}></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_COM_CREATED}></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_COM_MODIFIED}></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_COM_UID}></th>
+    <th><{$smarty.const._MD_LEGACY_LANG_COM_IP}></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_COM_STATUS}></th>
+  </tr>
+  <{foreach item=obj from=$children}>
+    <tr class="<{cycle values='odd,even'}>">
+      <td class="legacy_list_id"><{$obj->getShow('com_id')}></td>
+      <td class="legacy_list_name"><{$obj->mModule->getShow('name')}></td>
+      <td class="legacy_list_title"><{$obj->getShow('com_title')}></td>
+      <td class="legacy_list_date"><{$obj->get('com_created')|xoops_formattimestamp:l}></td>
+      <td class="legacy_list_date"><{$obj->get('com_modified')|xoops_formattimestamp:l}></td>
+      <td class="legacy_list_name"><a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$obj->getShow('com_uid')}>"><{if $obj->mUser}><{$obj->mUser->getShow('uname')}><{else}><{$smarty.const._GUESTS}><{/if}></a></td>
+      <td class="legacy_list_order"><{$obj->getShow('com_ip')}></td>
+      <td class="legacy_list_select">
+        <{if $obj->get('com_status') == 2 }>
+          <img src="<{"icons/active.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_ACTIVE}>" title="<{$smarty.const._AD_LEGACY_LANG_ACTIVE}>" />
+        <{/if}>
+      </td>
+    </tr>
+  <{/foreach}>
+</table>

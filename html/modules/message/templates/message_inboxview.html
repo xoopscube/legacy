@@ -1,0 +1,52 @@
+<h3><a href="index.php"><{$smarty.const._MD_MESSAGE_TEMPLATE15}></a> &raquo; <{$smarty.const._MD_MESSAGE_TEMPLATE11}></h3>
+
+<table class="outer">
+<tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE12}></td><td class="odd"><{$msgdata.fromname}> (<{$msgdata.utime|xoops_formattimestamp:l}>)</td></tr>
+<tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE3}></td><td class="odd"><{$msgdata.title}></td></tr>
+<tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE4}></td><td class="odd"><{$msgdata.message}></td></tr>
+<tr><td class="even" colspan="2">
+
+<{if $msgdata.from_uid != 0}>
+<div style="margin-right: 10px; float:right;">
+<input type="image" value="<{$smarty.const._MD_MESSAGE_TEMPLATE13}>" src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_add.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE13}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE13}>" onclick="location.href='index.php?action=new&amp;res=<{$msgdata.inbox_id}>'" />
+</div>
+<{/if}>
+
+
+
+<form method="post" action="index.php" style="margin-right: 10px; float:left;">
+<input type="hidden" name="inbox" value="<{$msgdata.inbox_id}>" />
+<input type="hidden" name="inout" value="in" />
+<input type="hidden" name="cmd" value="lock" />
+<input type="hidden" name="action" value="view" />
+<{if $msgdata.is_read==1}>
+<input type="hidden" name="lock" value="1" />
+<input type="image" value="<{$smarty.const._MD_MESSAGE_TEMPLATE19}>" src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_lock.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE19}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE19}>" />
+<{else}>
+<input type="hidden" name="lock" value="0" />
+<input type="image" value="<{$smarty.const._MD_MESSAGE_TEMPLATE20}>" src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_unlock.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE20}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE20}>" />
+<{/if}>
+</form>
+
+<form method="post" action="index.php" style="margin-right: 20px; float:left;">
+<input type="hidden" name="inbox" value="<{$msgdata.inbox_id}>" />
+<input type="hidden" name="inout" value="in" />
+<input type="hidden" name="cmd" value="mail" />
+<input type="hidden" name="action" value="view" />
+<input type="image" value="<{$smarty.const._MD_MESSAGE_TEMPLATE21}>" src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_go.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE21}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE21}>" />
+</form>
+
+<{if $msgdata.from_uid != 0}>
+<input type="image" value="<{$smarty.const._MD_MESSAGE_ADDBLACKLIST}>" src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_blacklist.png" alt="<{$smarty.const._MD_MESSAGE_ADDBLACKLIST}>" title="<{$smarty.const._MD_MESSAGE_ADDBLACKLIST}>" onclick="location.href='index.php?action=blacklist&amp;uid=<{$msgdata.from_uid}>'" style="float:left;" />
+<{/if}>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="foot" align="center">
+<form method="post" action="index.php?action=delete&amp;inout=in">
+<input type="hidden" name="inbox" value="<{$msgdata.inbox_id}>" />
+<input type="submit" value="<{$smarty.const._MD_MESSAGE_TEMPLATE14}>" />
+</form>
+
+</td></tr>
+</table>

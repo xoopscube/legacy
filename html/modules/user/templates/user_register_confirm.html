@@ -1,0 +1,22 @@
+<form action="#" method="post">
+<table width="100%" class="outer">
+  <tr>
+    <td class="head"><{$smarty.const._MD_USER_LANG_NICKNAME}></td>
+    <td class="<{cycle values="odd,even"}>">
+      <{$registForm->get('uname')|xoops_escape}>
+    </td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._MD_USER_LANG_EMAIL}></td>
+    <td class="<{cycle values="odd,even"}>">
+      <{$registForm->get('email')|xoops_escape}>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="foot" style="text-align:center;">
+      <input type="submit" value="<{$smarty.const._MD_USER_LANG_FINISH}>" />
+      <input type="submit" value="<{$smarty.const._CANCEL}>" name="_form_control_cancel" />
+    </td>
+  </tr>
+</table>
+</form>

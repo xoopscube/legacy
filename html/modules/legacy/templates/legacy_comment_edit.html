@@ -1,0 +1,77 @@
+<{if $actionForm->hasError()}>
+<div class="errorMsg">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form action="comment_post.php" method="post">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=com_id value=$actionForm->get('com_id')}>
+  <{xoops_input type=hidden name=com_pid value=$actionForm->get('com_pid')}>
+  <{xoops_input type=hidden name=com_rootid value=$actionForm->get('com_rootid')}>
+  <{xoops_input type=hidden name=com_modid value=$actionForm->get('com_modid')}>
+  <{xoops_input type=hidden name=com_itemid value=$actionForm->get('com_itemid')}>
+  <{xoops_input type=hidden name=com_exparams value=$actionForm->get('com_exparams')}>
+  <{xoops_input type=hidden name=com_order value=$com_order}>
+  <{foreach from=$extraParams key='key' item='value'}>
+    <{xoops_input type='hidden' name=$key value=$value}>
+  <{/foreach}>
+  <table class="outer" cellspacing="1">
+    <tr>
+      <th colspan="2"><{$smarty.const._MD_LEGACY_LANG_POST}></th>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_LEGACY_LANG_COMMENT_RULE}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{if $xoopsModuleConfig.com_rule == XOOPS_COMMENT_APPROVEALL}>
+          <{$smarty.const._CM_COMAPPROVEALL}>
+        <{elseif $xoopsModuleConfig.com_rule == XOOPS_COMMENT_APPROVEUSER}>
+          <{$smarty.const._CM_COMAPPROVEUSER}>
+        <{else}>
+          <{$smarty.const._CM_COMAPPROVEADMIN}>
+        <{/if}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_TITLE}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=com_title value=$actionForm->get('com_title') size=50 maxlength=255}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_ICON}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{foreach item=icon from=$subjectIcons}>
+          <label><{xoops_input type=radio name=com_icon value=$icon->get('filename') default=$actionForm->get('filename')}><img src="<{$xoops_url}>/images/subject/<{$icon->getShow('filename')}>" /></label>
+        <{/foreach}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_TEXT}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_dhtmltarea type=text rows=15 cols=60 name=com_text value=$actionForm->get('com_text')}>
+      </td>
+    </tr>
+      <tr>
+        <td class="head"><{$smarty.const._MD_LEGACY_LANG_OPTION}></td>
+        <td class="<{cycle values="odd,even"}>">
+          <{if $xoops_isadmin}>
+            <label><{xoops_input type=checkbox name=dohtml value=1 default=$actionForm->get('dohtml')}> <{$smarty.const._MD_LEGACY_LANG_DOHTML}></label><br />
+          <{/if}>
+        <label><{xoops_input type=checkbox name=dosmiley value=1 default=$actionForm->get('dosmiley')}> <{$smarty.const._MD_LEGACY_LANG_DOSMILEY}></label><br />
+        <label><{xoops_input type=checkbox name=doxcode value=1 default=$actionForm->get('doxcode')}> <{$smarty.const._MD_LEGACY_LANG_DOXCODE}></label><br />
+        <label><{xoops_input type=checkbox name=dobr value=1 default=$actionForm->get('dobr')}> <{$smarty.const._MD_LEGACY_LANG_DOBR}></label>
+      </td>
+    </tr>
+    <tr class="foot">
+      <td colspan="2" style="text-align:center;">
+        <input class="formButton" type="submit" name="com_dopost" value="<{$smarty.const._SUBMIT}>" />
+        <input type="button" value="<{$smarty.const._BACK}>" onclick="javascript:history.back()" class="formButton" />
+      </td>
+    </tr>
+  </table>
+</form>

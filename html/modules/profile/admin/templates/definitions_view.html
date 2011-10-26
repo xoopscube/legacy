@@ -1,0 +1,54 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_PROFILE_LANG_PROFILE}></a>
+  &raquo;&raquo; <a href="./index.php?action=DefinitionsList"><{$smarty.const._MI_PROFILE_LANG_DEFINITIONS_LIST}></a>
+  &raquo;&raquo; <{$smarty.const._AD_PROFILE_LANG_DEFINITIONS_VIEW}>
+</div>
+
+  <h3><{$smarty.const._AD_PROFILE_LANG_DEFINITIONS_VIEW}></h3>
+
+<table class="outer">
+	<tr>
+	  <td class="head"><{$smarty.const._MD_PROFILE_LANG_FIELD_ID}></td>
+	  <td class="<{cycle values='odd,even'}>"><{$object->getShow('field_id')}></td>
+	</tr>
+	<tr>
+	  <td class="head"><{$smarty.const._MD_PROFILE_LANG_FIELD_NAME}></td>
+	  <td class="<{cycle values='odd,even'}>"><{$object->getShow('field_name')}></td>
+	</tr>
+	<tr>
+	  <td class="head"><{$smarty.const._MD_PROFILE_LANG_LABEL}></td>
+	  <td class="<{cycle values='odd,even'}>"><{$object->getShow('label')}></td>
+	</tr>
+	<tr>
+	  <td class="head"><{$smarty.const._MD_PROFILE_LANG_TYPE}></td>
+	  <td class="<{cycle values='odd,even'}>"><{$object->getShow('type')}></td>
+	</tr>
+	<tr>
+	  <td class="head"><{$smarty.const._MD_PROFILE_LANG_VALIDATION}></td>
+	  <td class="<{cycle values='odd,even'}>"><{$object->getShow('validation')}></td>
+	</tr>
+	<tr>
+	  <td class="head"><{$smarty.const._MD_PROFILE_LANG_REQUIRED}></td>
+	  <td class="<{cycle values='odd,even'}>"><{$object->getShow('required')}></td>
+	</tr>
+	<tr>
+	  <td class="head"><{$smarty.const._MD_PROFILE_LANG_SHOW_FORM}></td>
+	  <td class="<{cycle values='odd,even'}>"><{$object->getShow('show_form')}></td>
+	</tr>
+	<tr>
+	  <td class="head"><{$smarty.const._MD_PROFILE_LANG_WEIGHT}></td>
+	  <td class="<{cycle values='odd,even'}>"><{$object->getShow('weight')}></td>
+	</tr>
+	<tr>
+	  <td class="head"><{$smarty.const._MD_PROFILE_LANG_DESCRIPTION}></td>
+	  <td class="<{cycle values='odd,even'}>"><{$object->getShow('description')}></td>
+	</tr>
+	<tr>
+	  <td class="head"><{$smarty.const._MD_PROFILE_LANG_ACCESS}></td>
+	  <td class="<{cycle values='odd,even'}>"><{$object->getShow('access')}></td>
+	</tr>
+	<tr>
+	  <td class="head"><{$smarty.const._MD_PROFILE_LANG_OPTIONS}></td>
+	  <td class="<{cycle values='odd,even'}>"><{$object->getShow('options')}></td>
+	</tr>
+</table>

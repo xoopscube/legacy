@@ -1,0 +1,95 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=CommentList"><{$smarty.const._MI_LEGACY_MENU_COMMENT_MANAGE}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_COMMENT_UPDATECONF}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_COMMENT_UPDATECONF}></h3>
+
+<div class="confirm"><{$smarty.const._AD_LEGACY_MESSAGE_CONFIRM_UPDATE_COMMENT}></div>
+
+<{if $actionForm->hasError() && $actionForm->get('confirm')}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form method="post"  action="./index.php?action=CommentList">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=confirm value=1}>
+<table class="outer">
+  <tr>
+    <th><{$smarty.const._MD_LEGACY_LANG_COM_ID}></th>
+    <th><{$smarty.const._MD_LEGACY_LANG_COM_MODID}></th>
+    <th><{$smarty.const._MD_LEGACY_LANG_COM_TITLE}></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_COM_UID}></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_COM_STATUS}></th>
+    <th><{$smarty.const._DELETE}></th>
+  </tr>
+
+<{foreach item=cid from=$cids}>
+  <tr class="<{cycle values='odd,even'}>">
+    <td class="legacy_list_id"><{$cid}></td>
+    <td class="legacy_list_name"><{if $commentObjects[$cid]->mModule}><{$commentObjects[$cid]->mModule->getShow('name')}><{/if}></td>
+    <td class="legacy_list_title"><a href="./index.php?action=CommentView&amp;com_id=<{$commentObjects[$cid]->getShow('com_id')}>"><{$commentObjects[$cid]->getShow('com_title')}></a>
+    </td>
+    <td class="legacy_list_name">
+        <{if $commentObjects[$cid]->mUser}>
+          <a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$commentObjects[$cid]->getShow('com_uid')}>"><{$commentObjects[$cid]->mUser->getShow('uname')}></a>
+        <{else}>
+          <{$smarty.const._GUESTS}>
+        <{/if}>
+    </td>
+    <td class="legacy_list_select">
+      <{if $actionForm->get('status',$cid)|intval == $commentObjects[$cid]->getShow('com_status')}>
+        <{$smarty.const._AD_LEGACY_LANG_NO_CHANGE}>
+      <{else}>
+        (<{if $commentObjects[$cid]->getShow('com_status') == 1 }>
+	<{$smarty.const._CM_PENDING}>
+        <{elseif $commentObjects[$cid]->getShow('com_status') == 2 }>
+	<{$smarty.const._CM_ACTIVE}>
+        <{elseif $commentObjects[$cid]->getShow('com_status') == 3}>
+	<{$smarty.const._CM_HIDDEN}>
+        <{/if}>) 
+        &raquo;
+        <b class="legacy_module_error">
+        <{if $actionForm->get('status',$cid) == 1 }>
+	<{$smarty.const._CM_PENDING}>
+        <{elseif $actionForm->get('status',$cid) == 2 }>
+	<{$smarty.const._CM_ACTIVE}>
+        <{elseif $actionForm->get('status',$cid) == 3}>
+	<{$smarty.const._CM_HIDDEN}>
+        <{/if}></b>
+      <{/if}>
+      <input type="hidden" name="status[<{$cid}>]" value="<{$actionForm->get('status',$cid)}>" />
+    </td>
+    <td class="legacy_list_select">
+        
+        <{if $actionForm->get('delete',$cid) == 1}>
+          <b class="legacy_module_error">
+          <{$smarty.const._YES}>
+          <b class="legacy_module_warning">
+        <{else}>
+          <{$smarty.const._NO}>
+        <{/if}>
+	</b>
+      <{if $actionForm->get('delete',$cid)}>
+        <input type="hidden" name="delete[<{$cid}>]" value="1" />
+      <{else}>
+        <input type="hidden" name="delete[<{$cid}>]" value="0" />
+      <{/if}>
+    </td>
+  </tr>
+<{/foreach}>
+  <tr>
+    <td class="foot" colspan="6">
+      <input type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" class="formButton" />
+      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+    </td>
+  </tr>
+</table>
+</form>

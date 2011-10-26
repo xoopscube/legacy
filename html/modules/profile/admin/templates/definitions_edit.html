@@ -1,0 +1,191 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_PROFILE_LANG_PROFILE}></a>
+  &raquo;&raquo; <a href="./index.php?action=DefinitionsList"><{$smarty.const._MI_PROFILE_LANG_DEFINITIONS_LIST}></a>
+  <{if $actionForm->get('field_id')}>
+    &raquo;&raquo; <{$smarty.const._AD_PROFILE_LANG_DEFINITIONS_EDIT}>
+  <{else}>
+    &raquo;&raquo; <{$smarty.const._MI_PROFILE_LANG_ADD_A_NEW_DEFINITIONS}>
+  <{/if}>
+</div>
+
+  <{if $actionForm->get('field_id')}>
+    <h3><{$smarty.const._AD_PROFILE_LANG_DEFINITIONS_EDIT}></h3>
+  <{else}>
+    <h3><{$smarty.const._MI_PROFILE_LANG_ADD_A_NEW_DEFINITIONS}></h3>
+  <{/if}>
+
+<div class="tips">
+<ul>
+<li>
+<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP1}>
+</li>
+<li>
+<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP2}>
+</li>
+<li>
+<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP3}>
+</li>
+<li>
+<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP4}>
+</li>
+<li>
+<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP5}>
+</li>
+<li>
+<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP6}>
+</li>
+<li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&dirname=profile"><{$smarty.const._HELP}></a></li>
+</ul>
+</div>
+
+<{if $actionForm->hasError()}>
+  <div class="error">
+    <ul>
+      <{foreach item=message from=$actionForm->getErrorMessages()}>
+        <li><{$message|xoops_escape}></li>
+      <{/foreach}>
+    </ul>
+  </div>
+<{/if}>
+<form action="index.php?action=DefinitionsEdit" method="post">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=field_id value=$actionForm->get('field_id')}>
+  <{if $actionForm->get('field_id')}>
+  <{xoops_input type=hidden name=type value=$actionForm->get('type')}>
+  <{/if}>
+  <table class="outer">
+    <tr>
+    <{if $actionForm->get('field_id')}>
+      <th colspan="2"><{$smarty.const._AD_PROFILE_LANG_DEFINITIONS_EDIT}></th>
+  <{else}>
+      <th colspan="2"><{$smarty.const._MD_PROFILE_LANG_ADD_A_NEW_DEFINITIONS}></th>
+  <{/if}>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_PROFILE_LANG_FIELD_NAME}><br />
+      <{$smarty.const._MD_PROFILE_LANG_FIELD_NAME_DESC}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=field_name value=$actionForm->get('field_name') size=15 maxlength=32}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_PROFILE_LANG_LABEL}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=label value=$actionForm->get('label') size=15 maxlength=255}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_PROFILE_LANG_TYPE}></td>
+      <td class="<{cycle values="odd,even"}>">
+		    <{if $actionForm->get('field_id')}>
+       	<{$object->getShow('type')}>
+        <{else}>
+      	<select name="type" id="legacy_xoopsform_type">
+					<{foreach item=type from=$typeArr}>
+					<option value="<{$type}>"<{if $type==$actionForm->get('type')}> selected="selected"<{/if}>><{$type}></option>
+					<{/foreach}>
+        </select>
+        <{/if}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_PROFILE_LANG_VALIDATION}></td>
+      <td class="<{cycle values="odd,even"}>">
+      	<select name="validation" id="legacy_xoopsform_validation">
+			<option value="<{$validation}>"<{if ! $actionForm->get('validation')}> selected="selected"<{/if}>></option>
+			<{foreach item=validation from=$validationArr}>
+			<option value="<{$validation}>"<{if $validation==$actionForm->get('validation')}>selected="selected"<{/if}>><{$validation}></option>
+			<{/foreach}>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_PROFILE_LANG_REQUIRED}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=checkbox name=required value=1 default=$actionForm->get('required')}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_PROFILE_LANG_SHOW_FORM}><br />
+		<{$smarty.const._MD_PROFILE_LANG_SHOW_FORM_DESC}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=checkbox name=show_form value=1 default=$actionForm->get('show_form')}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_PROFILE_LANG_WEIGHT}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=weight value=$actionForm->get('weight')}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_PROFILE_LANG_DESCRIPTION}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_dhtmltarea type=text name=description value=$actionForm->get('description')}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_PROFILE_LANG_ACCESS}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <select name="access[]" id="legacy_xoopsform_access" size='3' multiple="multiple">
+          <{foreach item=group from=$groupArr}>
+            <{assign var=flag value=0}>
+            <{foreach item=selected from=$accessArr}>
+              <{if $group->get('groupid') == $selected}><{assign var=flag value=1}><{/if}>
+            <{/foreach}>
+            <option value="<{$group->getShow('groupid')}>" <{if $flag}>selected="selected"<{/if}>><{$group->getShow('name')}></option>
+          <{/foreach}>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_PROFILE_LANG_OPTIONS}></td>
+      <td class="<{cycle values="odd,even"}>">
+	      <div id="fieldtype_string" class="optionField">
+	        <input type="text" name="options" id="legacy_xoopsform_options" value="<{$actionForm->get('options')}>" />
+	        <p><{$smarty.const._AD_PROFILE_DESC_FIELD_STRING}></p>
+	      </div>
+	      <div id="fieldtype_int" class="optionField">
+	        <input type="text" name="options" id="legacy_xoopsform_options" value="<{$actionForm->get('options')}>" />
+	        <p><{$smarty.const._AD_PROFILE_DESC_FIELD_INT}></p>
+	      </div>
+	      <div id="fieldtype_float" class="optionField">
+	        <input type="text" name="options" id="legacy_xoopsform_options" value="<{$actionForm->get('options')}>" />
+	        <p><{$smarty.const._AD_PROFILE_DESC_FIELD_FLOAT}></p>
+	      </div>
+	      <div id="fieldtype_text" class="optionField">
+	        <label><input type="radio" name="options" value="bbcode" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="bbcode"}> checked="checked"<{/if}> />bbcode</label>
+	        <label><input type="radio" name="options" value="html" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="html"}> checked="checked"<{/if}> />html</label>
+	        <label><input type="radio" name="options" value="none" id="legacy_xoopsform_options"<{if $actionForm->get('options')=="none"}> checked="checked"<{/if}> />none</label>
+	        <p><{$smarty.const._AD_PROFILE_DESC_FIELD_TEXT}></p>
+	      </div>
+	      <div id="fieldtype_checkbox" class="optionField">
+	        <textarea name="options" id="legacy_xoopsform_options"><{$actionForm->get('options')}></textarea>
+	        <p><{$smarty.const._AD_PROFILE_DESC_FIELD_CHECKBOX}></p>
+	      </div>
+	      <div id="fieldtype_selectbox" class="optionField">
+	        <textarea name="options" id="legacy_xoopsform_options"><{$actionForm->get('options')}></textarea>
+	        <p><{$smarty.const._AD_PROFILE_DESC_FIELD_SELECTBOX}></p>
+	      </div>
+	      <div id="fieldtype_category" class="optionField">
+	        <select name="options" id="legacy_xoopsform_options">
+	          <{foreach item="catDir" from=$catDirnames}>
+	          <option value="<{$catDir}>"<{if $catDir==$actionForm->get('options')}> selected="selected"<{/if}>><{$catDir}></options>
+	          <{/foreach}>
+	        </select>
+	        <p><{$smarty.const._AD_PROFILE_DESC_FIELD_CATEGORY}></p>
+	      </div>
+      
+      
+      	<{*$smarty.const._MD_PROFILE_DESC_OPTIONS*}><br />
+        <{*xoops_textarea type=text name=options value=$actionForm->get('options') cols=60 rows=1*}>
+      </td>
+    </tr>
+    <tr>
+      <td class="foot" colspan="2">
+        <input type="submit" class="formButton" value="<{$smarty.const._SUBMIT}>"/>
+        <input type="submit" class="formButton" value="<{$smarty.const._MD_PROFILE_LANG_CANCEL}>" name="_form_control_cancel"/>
+      </td>
+    </tr>
+  </table>
+</form>

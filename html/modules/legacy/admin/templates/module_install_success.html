@@ -1,0 +1,35 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
+  &raquo;&raquo; <a href="./index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_SUCCESS}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_SUCCESS}></h3>
+
+<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_LOG}></h4>
+
+<ul>
+<{foreach item=msg from=$log}>
+  <{if $msg.type=="error"}>
+    <li class="legacy_modinstall_error"><{$msg.message|xoops_escape}></li>
+  <{elseif $msg.type=="warning"}>
+    <li class="legacy_modinstall_warning"><{$msg.message|xoops_escape}></li>
+  <{else}>
+    <li class="legacy_modinstall_message"><{$msg.message|xoops_escape}></li>
+  <{/if}>
+<{/foreach}>
+</ul>
+
+
+<div class="legacy_module_return"><img src="<{"icons/info.png"|theme}>" alt="" title="" /> <a href="index.php?action=ModuleInfo&amp;dirname=<{$module->getShow('dirname')}>"><{$smarty.const._AD_LEGACY_LANG_INFORMATION}></a></div>
+<div class="legacy_module_return"><img src="<{"icons/module_edit.png"|theme}>" alt="" title="" /> <a href="index.php?action=ModuleEdit&amp;mid=<{$module->getShow('mid')}>"><{$smarty.const._AD_LEGACY_LANG_MOD_EDIT}></a></div>
+<{if $module->getInfo('blocks')}>
+<div class="legacy_module_return"><img src="<{"icons/block_add.png"|theme}>" alt="" title="" /> <a href="index.php?action=BlockInstallList&amp;dirname=<{$module->getShow('dirname')}>"><{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}></a></div>
+<{/if}>
+<{if $module->getInfo('templates')}>
+<div class="legacy_module_return"><img src="<{"icons/templates.png"|theme}>" alt="" title="" /> <a href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplfileList&amp;tpl_module=<{$module->getShow('dirname')}>&amp;sort=-9"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}></a></div>
+<{/if}>
+<div class="legacy_module_return"><img src="<{"icons/module.png"|theme}>" alt="" title="" /> <a href="index.php?action=ModuleList"><{$smarty.const._AD_LEGACY_LANG_MODLIST}></a></div>
+<div class="legacy_module_return"><img src="<{"icons/module_add.png"|theme}>" alt="" title="" /> <a href="index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></div>
+

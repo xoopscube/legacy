@@ -1,0 +1,58 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=GroupList"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_GROUP_DELETE}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_DELETE}> (<{$object->getShow('name')}>)</h3>
+
+<div class="confirm">
+  <{$smarty.const._AD_USER_LANG_GROUP_DELETE_ADVICE}><br />
+  <{$smarty.const._AD_USER_LANG_GROUP_DELETE_ADVICE2}>
+</div>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form action="?action=GroupDelete" method="post">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=groupid value=$object->get('groupid')}>
+<table class="outer">
+  <tr>
+    <th colspan="2"><img src="<{"icons/group.png"|theme}>" alt="<{$smarty.const._AD_USER_LANG_GROUP}>" title="<{$smarty.const._AD_USER_LANG_GROUP}>" /> <{$smarty.const._AD_USER_LANG_GROUP_DELETE}> (<{$object->getShow('name')}>)</th>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._AD_USER_LANG_GROUP_GID}></td>
+    <td class="<{cycle values="odd,even"}>"><{$object->getShow('groupid')}></td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._AD_USER_LANG_GROUP_NAME}></td>
+    <td class="<{cycle values="odd,even"}>"><{$object->getShow('name')}></td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._AD_USER_LANG_GROUP_DESC}></td>
+    <td class="<{cycle values="odd,even"}>"><{$object->getShow('description')}></td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._AD_USER_LANG_GROUP_TYPE}></td>
+    <td class="<{cycle values="odd,even"}>"><{$object->getShow('group_type')}></td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._AD_USER_LANG_GROUP_AMMO}></td>
+    <td class="<{cycle values="odd,even"}>"><{$object->getUserCount()|xoops_escape}></td>
+  </tr>
+  <tr>
+    <td class="foot" colspan="2">
+        <input class="formButton" type="submit" value="<{$smarty.const._DELETE}>" />
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+    </td>
+  </tr>
+</table>
+</form>

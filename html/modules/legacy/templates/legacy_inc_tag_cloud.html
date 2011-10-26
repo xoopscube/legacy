@@ -1,0 +1,6 @@
+<div class="tag_cloud">
+<{foreach item=item from=$cloud key=tag}>
+  <{assign var=tag_escaped value=$tag|xoops_escape:url}>
+  <span style="font-size:<{$sizeArr.$tag}>%;"><a href="<{xoops_cooluri dirname=$dirname dataname=tag action=view query="tag=`$tag_escaped`"}>"><{$tag|xoops_escape}></a></span>
+<{/foreach}>
+</div>

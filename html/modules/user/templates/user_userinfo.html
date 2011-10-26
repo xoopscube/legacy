@@ -1,0 +1,164 @@
+<div style="text-align:right;">
+<{if $user_ownpage == true}>
+	<a href="<{$xoops_url}>/notifications.php"><{$smarty.const._MD_USER_LANG_NOTIFY}></a>
+<{/if}>
+
+<{if $user_ownpage == true && $enableSelfDelete == true && $xoops_isadmin == false}>
+| <a href="<{$xoops_url}>/user.php?op=delete"><{$smarty.const._MD_USER_LANG_DELACCOUNT}></a>
+<{elseif $xoops_isadmin == true}>
+    | <a href="<{$xoops_url}>/edituser.php?uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_EDITPROFILE}></a> - 
+    | <a href="<{$xoops_url}>/edituser.php?op=avatarform&amp;uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_AVATAR_EDIT}></a> -
+    | <a href="<{$xoops_url}>/modules/user/admin/index.php?action=UserDelete&amp;uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_DELACCOUNT}></a>
+<{/if}>
+</div>
+
+<table width="100%" border="0" cellspacing="5">
+  <tr valign="top">
+    <td width="50%">
+
+    <table class="outer" cellpadding="4" cellspacing="1" width="100%">
+      <tr>
+        <th colspan="2" style="text-align:center;">
+          <{$smarty.const._MD_USER_LANG_ALLABOUT|replace:"%s":$thisUser->getShow('uname')}>
+        </th>
+      </tr>
+      <{if $user_ownpage == true}>
+      <tr>
+        <td class="head" colspan="2" style="text-align:center;">
+          <a href="<{$xoops_url}>/edituser.php?uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_EDITPROFILE}></a>
+        </td>
+      </tr>
+      <{/if}>
+      <tr valign="top">
+        <td class="head"><{$smarty.const._MD_USER_LANG_AVATAR}></td>
+        <td class="<{cycle values='odd,even'}>" style="text-align:center;">
+          <{if $thisUser->get('user_avatar') != "blank.gif" }>
+            <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$thisUser->getShow('user_avatar')}>" alt="Avatar" title="Avatar" />
+          <{else}>
+            <img src="<{$smarty.const.XOOPS_URL}>/modules/user/images/no_avatar.gif" alt="No Avatar" title="No Avatar" />
+          <{/if}>
+          <{if $user_ownpage == true}>
+            <br /><a href="<{$xoops_url}>/edituser.php?op=avatarform&amp;uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_AVATAR_EDIT}></a>
+          <{/if}>
+        </td>
+      </tr>
+      <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_NAME}></td>
+        <td class="<{cycle values='odd,even'}>" style="text-align:center;"><{$thisUser->getShow('name')}></td>
+      </tr>
+      <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_WEBSITE}></td>
+        <td class="<{cycle values='odd,even'}>"><a href="<{$thisUser->getShow('url')}>" rel="external"><{$thisUser->getShow('url')}></a></td>
+      </tr>
+      <{if $thisUser->get('user_viewemail') == 1 || $user_ownpage == true || $xoops_isadmin == true }>
+        <tr valign="top">
+          <td class="head"><{$smarty.const._MD_USER_LANG_EMAIL}></td>
+          <td class="<{cycle values='odd,even'}>">
+            <{mailto address=$thisUser->get('email') encode="javascript"}>
+          </td>
+        </tr>
+      <{/if}>
+      <{if $xoops_isuser == true && $pmliteUrl != ''}>
+        <tr valign="top">
+          <td class="head"><{$smarty.const._MD_USER_LANG_PM}></td>
+          <td class="<{cycle values='odd,even'}>">
+            <a href="<{$pmliteUrl|xoops_escape:link}>">
+            <img src="<{$smarty.const.XOOPS_URL}>/images/icons/pm.gif" alt="<{$smarty.const._SENDPMTO|replace:"%s":$thisUser->getShow('uname')}>" title="<{$smarty.const._SENDPMTO|replace:"%s":$thisUser->getShow('uname')}>" /></a>
+          </td>
+        </tr>
+      <{/if}>
+      <{legacy_profile uid=$thisUser->getShow('uid')}>
+      <!--
+      <tr valign="top">
+        <td class="head"><{$smarty.const._MD_USER_LANG_USER_ICQ}></td>
+        <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('user_icq')}></td>
+      </tr>
+      <tr valign="top">
+        <td class="head"><{$smarty.const._MD_USER_LANG_USER_AIM}></td>
+        <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('user_aim')}></td>
+      </tr>
+      <tr valign="top">
+        <td class="head"><{$smarty.const._MD_USER_LANG_USER_YIM}></td>
+        <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('user_yim')}></td>
+      </tr>
+      <tr valign="top">
+        <td class="head"><{$smarty.const._MD_USER_LANG_USER_MSNM}></td>
+        <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('user_msnm')}></td>
+      </tr>
+      <tr valign="top">
+        <td class="head"><{$smarty.const._MD_USER_LANG_USER_FROM}></td>
+        <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('user_from')}></td>
+      </tr>
+      <tr valign="top">
+        <td class="head"><{$smarty.const._MD_USER_LANG_USER_OCC}></td>
+        <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('user_occ')}></td>
+      </tr>
+      <tr valign="top">
+        <td class="head"><{$smarty.const._MD_USER_LANG_USER_INTREST}></td>
+        <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('user_intrest')}></td>
+      </tr> -->
+      <{if $bio != null}>
+      <tr valign="top">
+        <td class="head"><{$smarty.const._MD_USER_LANG_BIO}></td>
+        <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('bio')}></td>
+      </tr>
+     <{/if}>
+    </table>
+    </td>
+    <td width="50%">
+    <table class="outer" cellpadding="4" cellspacing="1" width="100%">
+      <tr valign="top">
+        <th colspan="2" style="text-align:center;"><{$smarty.const._MD_USER_LANG_STATISTICS}></th>
+      </tr>
+      <tr valign="top">
+        <td class="head"><{$smarty.const._MD_USER_LANG_USER_REGDATE}></td>
+        <td class="<{cycle values='odd,even'}>" style="text-align:center;"><{$thisUser->get('user_regdate')|xoops_formattimestamp:l}></td>
+      </tr>
+      <{if $rank != null}>
+        <tr valign="top">
+          <td class="head"><{$smarty.const._MD_USER_LANG_RANK}></td>
+          <td class="<{cycle values='odd,even'}>" style="text-align:center;">
+            <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$rank->getShow('rank_image')}>" alt="<{$rank->getShow('rank_title')}>" title="<{$rank->getShow('rank_title')}>" /><br />
+            <{$rank->getShow('rank_title')}>
+          </td>
+        </tr>
+      <{/if}>
+      <tr valign="top">
+        <td class="head"><{$smarty.const._MD_USER_LANG_POSTS}></td>
+        <td class="<{cycle values='odd,even'}>" style="text-align:center;"><{$thisUser->getShow('posts')}></td>
+      </tr>
+      <tr valign="top">
+        <td class="head"><{$smarty.const._MD_USER_LANG_LAST_LOGIN}></td>
+        <td class="<{cycle values='odd,even'}>" style="text-align:center;"><{$thisUser->get('last_login')|xoops_formattimestamp:l}></td>
+      </tr>
+    </table>
+    <br />
+    <table class="outer" cellpadding="4" cellspacing="1" width="100%">
+      <tr valign="top">
+        <th colspan="2" style="text-align:center;"><{$smarty.const._MD_USER_LANG_USER_SIG}></th>
+      </tr>
+      <tr valign="top">
+        <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('user_sig')}></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<!-- start module search results loop -->
+<{foreach item=module from=$searchResults}>
+  <p>
+  <h4><{$module.name}></h4>
+
+  <!-- start results item loop -->
+  <{foreach item=result from=$module.results}>
+    <img src="<{$result.image}>" alt="<{$module.name}>" title="<{$module.name}>" /><b><a href="<{$result.link}>"><{$result.title}></a></b><br /><small>(<{$result.time|xoops_formattimestampGMT:l}>)</small><br />
+  <{/foreach}>
+  <!-- end results item loop -->
+
+  <{if $module.has_more}>
+    <a href="<{$smarty.const.XOOPS_URL}>/search.php?action=showallbyuser&amp;mid=<{$module.mid|xoops_escape}>&amp;uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_SHOWALL}></a>
+  <{/if}>
+  </p>
+<{/foreach}>
+<!-- end module search results loop -->

@@ -1,0 +1,44 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=SmilesList"><{$smarty.const._MI_LEGACY_MENU_SMILES_MANAGE}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_SMILES_UPLOAD}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_SMILES_UPLOAD}></h3>
+
+<div class="tips">
+  <{$smarty.const._AD_LEGACY_TIPS_SMILES_UPLOAD}>
+</div>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form action="./index.php?action=SmilesUpload" method="post" enctype="multipart/form-data">
+  <{xoops_token form=$actionForm}>
+  <table class="outer">
+    <tr>
+      <th colspan="2">
+          <{$smarty.const._AD_LEGACY_LANG_SMILES_UPLOAD}>
+      </th>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACY_LANG_SMILES_UPLOAD_FILE}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=file name=upload}>
+      </td>
+    </tr>
+    <tr>
+      <td class="foot" colspan="2">
+        <input class="formButton" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPLOAD}>" />
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      </td>
+    </tr>
+  </table>
+</form>

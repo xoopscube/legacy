@@ -1,0 +1,91 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+   &raquo;&raquo; <a href="./index.php?action=RanksList"><{$smarty.const._AD_USER_LANG_RANK_LIST}></a>
+   &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_RANK_UPDATECONF}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_RANK_UPDATECONF}></h3>
+
+<div class="confirm"><{$smarty.const._AD_USER_MESSAGE_CONFIRM_UPDATE_RANK}></div>
+
+<{if $actionForm->hasError() && $actionForm->get('confirm')}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form method="post"  action="./index.php?action=RanksList">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=confirm value=1}>
+<table class="outer">
+  <tr>
+    <th><{$smarty.const._MD_USER_LANG_RANK_ID}></th>
+    <th><{$smarty.const._AD_USER_LANG_RANK_TITLE}></th>
+    <th><{$smarty.const._AD_USER_LANG_RANK_MIN}></th>
+    <th><{$smarty.const._AD_USER_LANG_RANK_MAX}></th>
+    <th><{$smarty.const._AD_USER_LANG_RANK_SPECIAL}></th>
+    <th><{$smarty.const._DELETE}></th>
+  </tr>
+
+<{foreach item=rid from=$rids}>
+  <tr class="even">
+    <td class="user_list_id"><{$rid}></td>
+    <td class="user_list_title">
+      <{if $actionForm->get('title',$rid) == $ranksObjects[$rid]->get('rank_title')}>
+        <{$actionForm->get('title',$rid)|xoops_escape}>
+      <{else}>
+         (<{$ranksObjects[$rid]->getShow('rank_title')}>) &raquo; <b  class="user_module_error"><{$actionForm->get('title',$rid)|xoops_escape}></b>
+      <{/if}>
+      <input type="hidden" name="title[<{$rid}>]" value="<{$actionForm->get('title',$rid)|xoops_escape:edit}>" />
+    </td>
+    <td class="user_list_number">
+      <{if $actionForm->get('min',$rid) == $ranksObjects[$rid]->get('rank_min')}>
+        <{$actionForm->get('min',$rid)|xoops_escape}>
+      <{else}>
+         (<{$ranksObjects[$rid]->getShow('rank_min')}>) &raquo; <b  class="user_module_error"><{$actionForm->get('min',$rid)|xoops_escape}></b>
+      <{/if}>
+      <input type="hidden" name="min[<{$rid}>]" value="<{$actionForm->get('min',$rid)|xoops_escape:edit}>" />
+    </td>
+    <td class="user_list_number">
+      <{if $actionForm->get('max',$rid) == $ranksObjects[$rid]->get('rank_max')}>
+        <{$actionForm->get('max',$rid)|xoops_escape}>
+      <{else}>
+         (<{$ranksObjects[$rid]->getShow('rank_max')}>) &raquo; <b  class="user_module_error"><{$actionForm->get('max',$rid)|xoops_escape}></b>
+      <{/if}>
+      <input type="hidden" name="max[<{$rid}>]" value="<{$actionForm->get('max',$rid)|xoops_escape:edit}>" />
+    </td>
+      <td class="user_list_order">
+        <{if $ranksObjects[$rid]->getShow('rank_special') == 1}>
+          <{$smarty.const._YES}>
+        <{else}>
+          <{$smarty.const._NO}>
+        <{/if}>
+      </td>
+    <td class="user_list_select">
+        <b class="user_module_error">
+        <{if $actionForm->get('delete',$rid) == 1}>
+          <{$smarty.const._YES}>
+        <{else}>
+          <{$smarty.const._NO}>
+        <{/if}>
+	</b>
+      <{if $actionForm->get('delete',$rid)}>
+        <input type="hidden" name="delete[<{$rid}>]" value="1" />
+      <{else}>
+        <input type="hidden" name="delete[<{$rid}>]" value="0" />
+      <{/if}>
+    </td>
+  </tr>
+<{/foreach}>
+  <tr>
+    <td class="foot" colspan="6">
+      <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
+      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+    </td>
+  </tr>
+</table>
+</form>

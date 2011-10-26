@@ -1,0 +1,77 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=MailjobList"><{$smarty.const._AD_USER_LANG_MAILJOB_LIST}></a></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_MAILJOB_LIST}></h3>
+
+<ul class="toptab">
+  <li class="add"><a href="index.php?action=UserSearch"><{$smarty.const._AD_USER_LANG_CREATE_NEW}></a></li>
+</ul>
+
+<table class="outer">
+  <tr>
+    <th><{$smarty.const._AD_USER_LANG_MAILJOB_ID}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_SORT_KEY_MAILJOB_ID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_SORT_KEY_MAILJOB_ID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_TITLE}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_SORT_KEY_TITLE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_SORT_KEY_TITLE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_IS_PM}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_SORT_KEY_IS_PM}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_SORT_KEY_IS_PM}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_IS_MAIL}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_SORT_KEY_IS_MAIL}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_SORT_KEY_IS_MAIL}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_CREATE_UNIXTIME}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_SORT_KEY_CREATE_UNIXTIME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_SORT_KEY_CREATE_UNIXTIME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_LEFT_TARGET_USER}></th>
+    <th><{$smarty.const._AD_USER_LANG_CONTROL}></th>
+  </tr>
+  <{foreach item=obj from=$objects}>
+    <tr class="<{cycle values='odd,even'}>">
+      <td class="user_list_id"><{$obj->getShow('mailjob_id')}></td>
+      <td class="user_list_title">
+        <{if $obj->getUserCount() > 0}>
+          <a href="./index.php?action=MailjobSend&amp;mailjob_id=<{$obj->getShow('mailjob_id')}>"><{$obj->getShow('title')}></a>
+        <{else}>
+          <a href="./index.php?action=MailjobView&amp;mailjob_id=<{$obj->getShow('mailjob_id')}>"><{$obj->getShow('title')}></a>
+        <{/if}>
+      </td>
+      <td class="user_list_order">
+        <{if $obj->getShow('is_pm') == 1}>
+          <{$smarty.const._YES}>
+        <{else}>
+          <{$smarty.const._NO}>
+        <{/if}>
+      </td>
+      <td class="user_list_order">
+        <{if $obj->getShow('is_mail') == 1}>
+          <{$smarty.const._YES}>
+        <{else}>
+          <{$smarty.const._NO}>
+        <{/if}>
+      </td>
+      <td class="user_list_date"><{$obj->get('create_unixtime')|date_format:"%Y/%m/%d %H:%M"}></td>
+      <td class="user_list_number">
+        <{if $obj->getUserCount() > 0}>
+          <span class="user_mailjob_count"><{$obj->mUserCount|xoops_escape}></span>
+        <{else}>
+          <{$smarty.const._AD_USER_LANG_COMPLETED}>
+        <{/if}>
+      </td>
+      <td class="user_list_control">
+        <{if $obj->getUserCount() > 0}>
+          <a href="./index.php?action=Mailjob_linkList&amp;mailjob_id=<{$obj->getShow('mailjob_id')}>"><img src="<{"icons/members.png"|theme}>" alt="<{$smarty.const._VIEW}>" title="<{$smarty.const._VIEW}>" /></a>
+          <a href="./index.php?action=MailjobSend&amp;mailjob_id=<{$obj->getShow('mailjob_id')}>"><img src="<{"icons/send.png"|theme}>" alt="<{$smarty.const._SEND}>" title="<{$smarty.const._SEND}>" /></a>
+          <a href="./index.php?action=MailjobEdit&amp;mailjob_id=<{$obj->getShow('mailjob_id')}>"><img src="<{"icons/edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+        <{/if}>
+        <a href="./index.php?action=MailjobView&amp;mailjob_id=<{$obj->getShow('mailjob_id')}>"><img src="<{"icons/view.png"|theme}>" alt="<{$smarty.const._VIEW}>" title="<{$smarty.const._VIEW}>" /></a>
+        <a href="./index.php?action=MailjobDelete&amp;mailjob_id=<{$obj->getShow('mailjob_id')}>"><img src="<{"icons/delete.png"|theme}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
+      </td>
+    </tr>
+  <{/foreach}>
+</table>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>

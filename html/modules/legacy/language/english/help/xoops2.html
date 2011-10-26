@@ -1,0 +1,35 @@
+<h4>XOOPS Cube Legacy 2.2 migration guide (for XOOPS 2.0.x users)</h4>
+<h5>Getting first</h5>
+<p>XOOPS Cube Legacy 2.2 is not released with a <strong>System module</strong> alike the one of XOOPS 2.0.x<br />
+If you migrate from XOOPS 2.0.x, you can keep using a <strong>System module</strong> to avoid any troubles with some XOOPS 2.0.x modules.<br />
+But some parameters are now on different modules of XOOPS Cube Legacy.</p>
+
+<h5>Module Management</h5>
+<ul>
+<li>You can manage modules from <strong>Legacy module</strong>.</li>
+<li>'Install module' and 'Module management' have different but intuitive user interface.</li>
+<li>Click 'Module management' from side-menu to manage your installed modules.</li>
+<li>Click 'Install module' from side-menu to install new modules.</li>
+</ul>
+
+<h5>User Management</h5>
+<ul>
+<li>'User management', 'Group management', 'Group permissions', 'Avatar management' and 'Sending mail' features are now part of <strong>User Module</strong>.</li>
+</ul>
+
+<h5>Theme Management</h5>
+<ul>
+<li>A renderer system (Theme engine) is used for themes management.</li>
+<li>The DB template manager is part of the renderer. Therefore, template manager is one of the features of Legacy renderer that ensures compatibility with XOOPS2's smarty environment.</li>
+</ul>
+
+<h5>Block Management</h5>
+<ul>
+<li>XOOPS Cube 2.2 Legacy environment provides a new block feature.<br />
+The new Legacy system handles Blocks alike modules. 
+<li>When installing a module, the module's blocks are registered to XOOPS Cube Legacy.</li>
+<li>A block can be installed or unistalled without being deleted from the system.</li>
+<li>If you uninstall a block, itis moved back to the page list of 'Install block'.<br />
+But, uninstalled blocks keep their settings. So, when you re-install the block, block installer will recover its last parameters.</li>
+<li>You can't edit 'uninstalled blocks', group permissions, target column and target module.</li>
+</ul>

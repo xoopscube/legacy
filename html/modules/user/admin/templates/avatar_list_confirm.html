@@ -1,0 +1,112 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=AvatarList"><{$smarty.const._MI_USER_ADMENU_AVATAR_MANAGE}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_AVATAR_UPDATECONF}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_AVATAR_UPDATECONF}></h3>
+
+<div class="confirm"><{$smarty.const._AD_USER_MESSAGE_CONFIRM_UPDATE_AVATAR}></div>
+
+<{if $actionForm->hasError() && $actionForm->get('confirm')}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form method="post"  action="./index.php?action=AvatarList">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=confirm value=1}>
+<table class="outer">
+  <tr>
+    <th><{$smarty.const._MD_USER_LANG_AVATAR_ID}></th>
+    <th><{$smarty.const._AD_USER_LANG_AVATAR_NAME}></th>
+    <th><{$smarty.const._AD_USER_LANG_AVATAR_MIMETYPE}></th>
+    <th><{$smarty.const._AD_USER_LANG_AVATAR_DISPLAY}></th>
+    <th><{$smarty.const._AD_USER_LANG_AVATAR_WEIGHT}></th>
+    <th><{$smarty.const._AD_USER_LANG_AVATAR_TYPE}></th>
+    <th><{$smarty.const._DELETE}></th>
+  </tr>
+
+<{foreach item=aid from=$aids}>
+  <tr class="even">
+    <td class="user_list_id"><{$aid}></td>
+    <td class="user_list_title">
+      <{if $actionForm->get('name',$aid) == $avatarObjects[$aid]->get('avatar_name')}>
+        <{$actionForm->get('name',$aid)|xoops_escape}>
+      <{else}>
+         (<{$avatarObjects[$aid]->getShow('avatar_name')}>) &raquo; <b  class="user_module_error"><{$actionForm->get('name',$aid)|xoops_escape}></b>
+      <{/if}>
+      <input type="hidden" name="name[<{$aid}>]" value="<{$actionForm->get('name',$aid)|xoops_escape:edit}>" />
+    </td>
+    <td class="user_list_type"><{$avatarObjects[$aid]->getShow('avatar_mimetype')}></td>
+    <td class="user_list_select">
+      <{if $actionForm->get('display',$aid)|intval == $avatarObjects[$aid]->get('avatar_display')}>
+	<{if $avatarObjects[$aid]->get('avatar_display') == 1 }>
+          	<{$smarty.const._YES}>
+        	<{else}>
+          	<{$smarty.const._NO}>
+        	<{/if}>
+      <{else}>
+        (<{if $avatarObjects[$aid]->get('avatar_display') == 1 }>
+          <{$smarty.const._YES}>
+        <{else}>
+          <{$smarty.const._NO}>
+        <{/if}>) 
+        &raquo;
+        <b class="user_module_error">
+        <{if $actionForm->get('display',$aid) == 1}>
+          <{$smarty.const._YES}>
+        <{else}>
+          <{$smarty.const._NO}>
+        <{/if}></b>
+      <{/if}>
+      <{if $actionForm->get('display',$aid)}>
+        <input type="hidden" name="display[<{$aid}>]" value="1" />
+      <{else}>
+        <input type="hidden" name="display[<{$aid}>]" value="0" />
+      <{/if}>
+    </td>
+    <td class="user_list_number">
+      <{if $actionForm->get('weight',$aid) == $avatarObjects[$aid]->get('avatar_weight')}>
+        <{$actionForm->get('weight',$aid)|xoops_escape}>
+      <{else}>
+         (<{$avatarObjects[$aid]->getShow('avatar_weight')}>) &raquo; <b  class="user_module_error"><{$actionForm->get('weight',$aid)|xoops_escape}></b>
+      <{/if}>
+      <input type="hidden" name="weight[<{$aid}>]" value="<{$actionForm->get('weight',$aid)|xoops_escape:edit}>" />
+    </td>
+      <td class="user_list_type">
+        <{if $avatarObjects[$aid]->getShow('avatar_type') == "C"}>
+          <{$smarty.const._AD_USER_LANG_AVATAR_TYPE_C}>
+        <{elseif $avatarObjects[$aid]->getShow('avatar_type') == "S"}>
+          <{$smarty.const._AD_USER_LANG_AVATAR_TYPE_S}>
+        <{/if}>
+      </td>
+    <td class="user_list_select">
+        <b class="user_module_error">
+        <{if $actionForm->get('delete',$aid) == 1}>
+          <{$smarty.const._YES}>
+        <{else}>
+          <{$smarty.const._NO}>
+        <{/if}>
+	</b>
+      <{if $actionForm->get('delete',$aid)}>
+        <input type="hidden" name="delete[<{$aid}>]" value="1" />
+      <{else}>
+        <input type="hidden" name="delete[<{$aid}>]" value="0" />
+      <{/if}>
+    </td>
+  </tr>
+<{/foreach}>
+  <tr>
+    <td class="foot" colspan="7">
+      <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
+      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+    </td>
+  </tr>
+</table>
+</form>

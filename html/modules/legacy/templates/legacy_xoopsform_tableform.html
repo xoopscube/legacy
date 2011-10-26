@@ -1,0 +1,33 @@
+<{$form->getTitle()}>
+<form name='<{$form->getName()}>' id='<{$form->getName()}>' action='<{$form->getAction()}>' method='<{$form->getMethod()}>' <{$form->getExtra()}> >
+  <table style="width:100%;" cellspacing="1">
+    <{foreach from=$form->getElements() item=element}>
+      <{if is_object($element) }>
+        <{if !$element->isHidden()}>
+          <{if !$element->isBreak()}>
+            <tr>
+              <td style="text-align:left; vertical-align:top;">
+                <{$element->getCaption()}>
+                <{if $element->getDescription() != ''}>
+                  <br /><br /><span style="font-weight: normal;"><{$element->getDescription()}></span>
+                <{/if}>
+              </td>
+              <td style="text-align:left; vertical-align:top;">
+                <{$element->render()}>
+              </td>
+            </tr>
+          <{else}>
+            <tr><td colspan='2' <{$element->getClass()}>><{$element->getExtra()}></td></tr>
+          <{/if}>
+        <{/if}>
+      <{else}>
+        <{$element}>
+      <{/if}>
+    <{/foreach}>
+  </table>
+  <{foreach from=$form->getElements() item=element}>
+    <{if $element->isHidden()}>
+      <{$element->render()}>
+    <{/if}>
+  <{/foreach}>
+</form>

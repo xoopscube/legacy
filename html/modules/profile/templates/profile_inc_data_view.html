@@ -1,0 +1,9 @@
+			<{foreach item=def from=$defArr}>
+			<tr valign="top">
+			  <td class="head"><{$def->getShow('label')}></td>
+			  <td class="<{cycle values='odd,even'}>">
+			  	<{assign var="defkey" value=$def->getShow('field_name')}>
+			    <{$profile->showField($defkey)}>
+			  </td>
+			</tr>
+			<{/foreach}>

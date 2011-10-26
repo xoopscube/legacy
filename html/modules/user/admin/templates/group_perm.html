@@ -1,0 +1,136 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=GroupList"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}> ( <{$group->getShow('name')}> )</h3>
+
+<table class="outer">
+  <tr>
+    <th>&nbsp;</th>
+    <th><{$smarty.const._AD_USER_LANG_GROUP_GID}></th>
+    <th><{$smarty.const._AD_USER_LANG_GROUP_NAME}></th>
+    <th><{$smarty.const._AD_USER_LANG_GROUP_DESC}></th>
+    <th><{$smarty.const._AD_USER_LANG_GROUP_TYPE}></th>
+    <th><{$smarty.const._AD_USER_LANG_GROUP_AMMO}></th>
+    <th><{$smarty.const._AD_USER_LANG_CONTROL}></th>
+  </tr>
+  <tr class="odd">
+    <td class="user_list_image"><img src="<{"icons/group.png"|theme}>" alt="<{$smarty.const._AD_USER_LANG_GROUP}>" title="<{$smarty.const._AD_USER_LANG_GROUP}>" /></td>
+    <td class="user_list_id"><{$group->getShow('groupid')}></td>
+    <td class="user_list_title"><{$group->getShow('name')}></td>
+    <td class="user_list_description"><{$group->getShow('description')}></td>
+    <td class="user_list_type"><{$group->getShow('group_type')}></td>
+    <td class="user_list_number"><{$group->getUserCount()|xoops_escape}></td>
+    <td class="user_list_control">
+      <a href="index.php?action=GroupEdit&amp;groupid=<{$group->getShow('groupid')}>"><img src="<{"icons/edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+      <{if $group->get('groupid') > $smarty.const.XOOPS_GROUP_ANONYMOUS }>
+        <a href="index.php?action=GroupDelete&amp;groupid=<{$group->getShow('groupid')}>"><img src="<{"icons/delete.png"|theme}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
+      <{/if}>
+      <a href="index.php?action=GroupProperty&amp;groupid=<{$group->getShow('groupid')}>"><img src="<{"icons/property.png"|theme}>" alt="<{$smarty.const._AD_USER_LANG_GROUP_PROPERTY}>" title="<{$smarty.const._AD_USER_LANG_GROUP_PROPERTY}>" /></a>
+      <a href="index.php?action=GroupPerm&amp;groupid=<{$group->getShow('groupid')}>"><img src="<{"icons/permission.png"|theme}>" alt="<{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}>" title="<{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}>" /></a>
+      <a href="index.php?action=GroupMember&amp;groupid=<{$group->getShow('groupid')}>"><img src="<{"icons/members.png"|theme}>" alt="<{$smarty.const._AD_USER_LANG_GROUP_ASSIGN}>" title="<{$smarty.const._AD_USER_LANG_GROUP_ASSIGN}>" /></a>
+    </td>
+  </tr>
+</table>
+
+<hr />
+<h4 class="admintitle"><{$smarty.const._AD_USER_LANG_PERM_ACCESS_ADMIN}></h4>
+
+<h5 class="admintitle"><{$smarty.const._AD_USER_LANG_PERM_MODULE_ACCESS}></h5>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form method="post" action="index.php?action=GroupPerm">
+<{xoops_token form=$actionForm}>
+<{if $systemPermissions }>
+<table class="outer">
+  <tr>
+    <th colspan="4"><{$smarty.const._AD_USER_LANG_PERM_SYSTEM_PERM_MODULE}></th>
+  </tr>
+  <tr>
+  <{foreach item=perm from=$systemPermissions key="perm_key" name="SysPer"}>
+    <td class="head" style="width:35%;">&nbsp;<{$perm->mItem->getName()|xoops_escape}></td>
+    <td class="even"><{assign var="getId" value=$perm->getId() }>
+      <label><input type="checkbox" name="system[<{$getId}>]" value="2" <{if $perm->mValue==2}>checked="checked"<{/if}> /><{$smarty.const._AD_USER_LANG_PERM_ADMIN}></label>
+    </td>
+    <{if $smarty.foreach.SysPer.last}>
+      </tr>
+    <{else}>
+      <{cycle values=",</tr><tr>" name="SysPer"}>
+    <{/if}>
+  <{/foreach}>
+</table>
+<br />
+<{/if}>
+<table class="outer">
+  <tr>
+    <th colspan="4"><{$smarty.const._AD_USER_LANG_PERM_GROUP_PERM_MODULE}></th>
+  </tr>
+  <tr>
+  <{foreach item=perm from=$modulePermissions name="ModPer"}>
+    <td class="head" style="width:25%;">&nbsp;<{$perm->mItem->getName()|xoops_escape}></td>
+    <td class="even"><{assign var="getId" value=$perm->getId() }>
+      <label><input type="checkbox" name="module[<{$getId}>]" value="1" <{if $perm->mValue & 1}>checked="checked"<{/if}> /><{$smarty.const._AD_USER_LANG_PERM_ACCESS}></label>
+      <label><input type="checkbox" name="module_admin[<{$getId}>]" value="2" <{if $perm->mValue & 2}>checked="checked"<{/if}> /><{$smarty.const._AD_USER_LANG_PERM_ADMIN}></label>
+    </td>
+    <{if $smarty.foreach.ModPer.last}>
+      </tr>
+    <{else}>
+      <{cycle values=",</tr><tr>" name="ModPer"}>
+    <{/if}>
+  <{/foreach}>
+</table>
+<br />
+
+<h5 class="admintitle"><{$smarty.const._AD_USER_LANG_PERM_BLOCK_ACCESS}></h5>
+
+<{foreach key=i item=permissions from=$blockPermissions}>
+<table class="outer">
+  <tr>
+    <th colspan="4"><{$smarty.const._AD_USER_LANG_PERM_GROUP_PERM_BLOCK}>
+      <{if $i == 0}>( <{$smarty.const._LEFT}> )
+      <{elseif $i == 1}>( <{$smarty.const._RIGHT}> )
+      <{elseif $i == 4}>( <{$smarty.const._CENTER}> )
+      <{elseif $i == 2}>( <{$smarty.const._CENTER}>-<{$smarty.const._LEFT}> )
+      <{elseif $i == 3}>( <{$smarty.const._CENTER}>-<{$smarty.const._RIGHT}> )
+      <{/if}></th>
+  </tr>
+  <tr>
+  <{foreach item=perm from=$permissions name=$i}>
+    <td class="head" style="width:35%;">&nbsp;
+      <{if $perm->mItem->isActive()}>
+        <{if $perm->mItem->mBlock->get('block_type') == 'C'}>
+          <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=CustomBlockEdit&amp;bid=<{$perm->mItem->mBlock->getShow('bid')}>"><{$perm->mItem->getName()|xoops_escape}></a>
+        <{else}>
+          <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=<{$perm->mItem->mBlock->getShow('bid')}>"><{$perm->mItem->getName()|xoops_escape}></a>
+        <{/if}>
+      <{else}>
+        <span class="inactive"><{$perm->mItem->getName()|xoops_escape}></span>
+      <{/if}>
+    </td>
+    <td class="even"><{assign var="getId" value=$perm->getId() }>
+      <label><input type="checkbox" name="block[<{$getId}>]" value="1" <{if $perm->mValue==1}>checked="checked"<{/if}> /><{$smarty.const._AD_USER_LANG_PERM_ACCESS}></label>
+    </td>
+      <{cycle values=",</tr><tr>" name=$i}>
+  <{/foreach}>
+  </tr>
+</table>
+<br />
+<{/foreach}>
+
+<div class="pagenavi">
+<{xoops_input type=hidden name=groupid value=$group->get('groupid')}>
+<input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
+<input type="reset" value="<{$smarty.const._AD_USER_LANG_RESET}>" class="formButton" />
+</div>
+</form>

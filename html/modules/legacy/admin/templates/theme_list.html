@@ -1,0 +1,79 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=ThemeList"><{$smarty.const._AD_LEGACY_LANG_THEME_ADMIN}></a></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_THEME_ADMIN}></h3>
+
+<div class="tips"><{$smarty.const._AD_LEGACY_TIPS_THEME_ADMIN}></div>
+
+<ul class="toptab">
+  <li class="templates"><a href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplsetList">Templates</a></li>
+</ul>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form action="./index.php?action=ThemeList" method="post" >
+<{xoops_token form=$actionForm}>
+<table class="outer">
+  <tr>
+    <th><{$smarty.const._AD_LEGACY_LANG_THEME}></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_PACKAGE}></th>
+    <th colspan="2"><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
+  </tr>
+  <{foreach item=theme from=$themes}>
+    <{if $currentThemeName == $theme->get('dirname')}>
+      <tr class="<{cycle values="odd,even"}> active">
+    <{else}>
+      <tr class="<{cycle values="odd,even"}> inactive">
+    <{/if}>
+      <td class="legacy_list_image">
+        <{if $theme->get('screenshot')}>
+          <img src="<{$smarty.const.XOOPS_THEME_URL}>/<{$theme->getShow('dirname')}>/<{$theme->getShow('screenshot')}>" width="120" height="90" alt="<{$theme->getShow('name')}>" title="<{$theme->getShow('name')}>" />
+        <{/if}>
+        <div class="legacy_list_imagetitle"><{$theme->getShow('name')}></div>
+      </td>
+      <td class="legacy_list_text">
+        <p class="legacy_list_description"><{$theme->getShow('description') != null}></p>
+        <ul>
+          <li><{$smarty.const._AD_LEGACY_LANG_VERSION}> : <{$theme->getShow('version')}></li>
+          <li><{$smarty.const._AD_LEGACY_LANG_RENDER}> : <{$theme->getShow('render_system')}></li>
+          <li><{$smarty.const._AD_LEGACY_LANG_FORMAT}> : <{$theme->getShow('format')}></li>
+          <li><{$smarty.const._AD_LEGACY_LANG_AUTHOR}> : <{$theme->getShow('author')}></li>
+          <{if $theme->get('licence')}>
+            <li><{$smarty.const._AD_LEGACY_LANG_LICENCE}> : <{$theme->getShow('license')}></li>
+          <{/if}>
+          <{if $theme->get('url') != null}>
+            <li><a href="<{$theme->getShow('url')}>"><{$smarty.const._AD_LEGACY_LANG_GET_THE_LATEST_VERSION}></a></li>
+          <{/if}>
+        </ul>
+      </td>
+      <td class="legacy_list_select">
+        <input type="checkbox" name="select[<{$theme->getShow('dirname')}>]" value="1" <{if $actionForm->get('select', $theme->get('dirname'))}>checked="checked"<{/if}> />
+      </td>
+      <td class="legacy_list_control">
+        <{if $currentThemeName != $theme->get('dirname')}>
+          <input name="choose[<{$theme->getShow('dirname')}>]" type="submit" value="<{$smarty.const._SELECT}>" class="formButton" />
+        <{else}>
+          <img src="<{"icons/active.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_SELECTED}>" title="<{$smarty.const._AD_LEGACY_LANG_SELECTED}>" />
+        <{/if}>
+      </td>
+    </tr>
+  <{/foreach}>
+  <tr>
+    <td colspan="2" class="foot"></td>
+    <td class="foot">
+      <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" name="submit" />
+    </td>
+    <td class="foot"></td>
+  </tr>
+</table>
+</form>

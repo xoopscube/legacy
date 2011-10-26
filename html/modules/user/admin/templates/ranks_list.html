@@ -1,0 +1,118 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=RanksList"><{$smarty.const._AD_USER_LANG_RANK_LIST}></a></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_RANK_LIST}></h3>
+
+<div class="tips">
+<ul>
+<li>
+<{$smarty.const._AD_USER_LANG_RANK_TOTAL}>: <{$rankTotal}>&nbsp;&nbsp;<br />
+<{$smarty.const._AD_USER_LANG_RANK_SPECIAL}>: <{$rankTotal_S}>
+</li>
+<li>
+<{$smarty.const._AD_USER_TIPS_RANK}>
+</li>
+<li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=user"><{$smarty.const._HELP}></a></li>
+</ul>
+</div>
+
+<ul class="toptab">
+  <li class="addRank"><a href="index.php?action=RanksEdit"><{$smarty.const._AD_USER_LANG_CREATE_NEW}></a></li>
+</ul>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<div>
+<form action="./index.php" method="get">
+  <input type="hidden" name="action" value="RanksList" />
+  <{$smarty.const._SEARCH}> : 
+  <input type="text" name="search" value="<{$filterForm->mKeyword}>" />
+  <{$smarty.const._AD_USER_LANG_RANK_SPECIAL}> : 
+  <select name="option_field">
+    <option value="all" <{if $filterForm->mOptionField == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
+    <option value="special" <{if $filterForm->mOptionField == 'special'}>selected="selected"<{/if}>><{$smarty.const._YES}></option>
+    <option value="normal" <{if $filterForm->mOptionField == 'normal'}>selected="selected"<{/if}>><{$smarty.const._NO}></option>
+  </select>
+  <{$smarty.const._VIEW}> : 
+  <select name="perpage">
+    <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
+    <{foreach item=page from=$pageArr}>
+      <{if $pageNavi->mPerpage == $page && $page != 0}>
+        <option value="<{$page}>" selected="selected"><{$page}></option>
+      <{elseif $pageNavi->mPerpage == $page && $page == 0}>
+        <option value="<{$page}>" selected="selected"><{$smarty.const._ALL}></option>
+      <{elseif $pageNavi->mPerpage != $page && $page == 0}>
+        <option value="<{$page}>"><{$smarty.const._ALL}></option>
+      <{else}>
+        <option value="<{$page}>"><{$page}></option>
+      <{/if}>
+    <{/foreach}>
+  </select>
+  <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+</form>
+</div>
+
+<form name="rankslistform" method="post" action="./index.php?action=RanksList">
+  <{xoops_token form=$actionForm}>
+<table class="outer">
+  <tr>
+    <th><{$smarty.const._MD_USER_LANG_RANK_ID}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.RANKS_SORT_KEY_RANK_ID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.RANKS_SORT_KEY_RANK_ID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_RANK_TITLE}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.RANKS_SORT_KEY_RANK_TITLE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.RANKS_SORT_KEY_RANK_TITLE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_RANK_MIN}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.RANKS_SORT_KEY_RANK_MIN}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.RANKS_SORT_KEY_RANK_MIN}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_RANK_MAX}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.RANKS_SORT_KEY_RANK_MAX}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.RANKS_SORT_KEY_RANK_MAX}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_RANK_SPECIAL}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.RANKS_SORT_KEY_RANK_SPECIAL}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.RANKS_SORT_KEY_RANK_SPECIAL}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_RANK_IMAGE}></th>
+    <th><{$smarty.const._DELETE}><br />
+      <input name="allbox" id="allbox" onclick="with(document.rankslistform){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].disabled==false&&elements[i].name.indexOf('delete')>=0){elements[i].checked=this.checked;}}}" type="checkbox" value="Check All" /></th>
+    <th><{$smarty.const._AD_USER_LANG_CONTROL}></th>
+  </tr>
+  <{foreach item=obj from=$objects}>
+    <tr class="<{cycle values='odd,even'}>">
+      <td class="user_list_id"><{$obj->getShow('rank_id')}></td>
+      <td class="user_list_title"><input type="text" size="12" name="title[<{$obj->getShow('rank_id')}>]" value="<{$obj->getShow('rank_title')}>" /></td>
+      <td class="user_list_number"><input type="text" size="6" maxlength="8" name="min[<{$obj->getShow('rank_id')}>]" value="<{$obj->getShow('rank_min')}>" class=user_list_number /></td>
+      <td class="user_list_number"><input type="text" size="6" maxlength="8" name="max[<{$obj->getShow('rank_id')}>]" value="<{$obj->getShow('rank_max')}>" class=user_list_number /></td>
+      <td class="user_list_order">
+        <{if $obj->getShow('rank_special') == 1}>
+          <{$smarty.const._YES}>
+        <{else}>
+          <{$smarty.const._NO}>
+        <{/if}>
+      </td>
+      <td class="user_list_image"><img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('rank_image')}>" alt="<{$obj->getShow('rank_title')}>" title="<{$obj->getShow('rank_title')}>" /></td>
+      <td class="user_list_select"><input type="checkbox" name="delete[<{$obj->getShow('rank_id')}>]" value="1" /></td>
+      <td class="user_list_control">
+        <a href="index.php?action=RanksEdit&amp;rank_id=<{$obj->getShow('rank_id')}>"><img src="<{"icons/edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+        <a href="index.php?action=RanksDelete&amp;rank_id=<{$obj->getShow('rank_id')}>"><img src="<{"icons/delete.png"|theme}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
+      </td>
+    </tr>
+  <{/foreach}>
+    <tr>
+      <td colspan="10" class="foot">
+        <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
+      </td>
+    </tr>
+</table>
+</form>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>

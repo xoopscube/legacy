@@ -1,0 +1,9 @@
+<ul id="mainmenu">
+      <li><a class="menuTop" href="<{$xoops_url}>/"><{$smarty.const._MB_LEGACY_HOME}></a></li>
+<{foreach item=module from=$block.modules}>
+      <li><a class="menuMain" href="<{$xoops_url}>/modules/<{$module.directory}>/"><{$module.name}></a></li>
+<{foreach item=sublink from=$module.sublinks}>
+        <li><a class="menuSub" href="<{$sublink.url}>"><{$sublink.name}></a></li>
+<{/foreach}>
+<{/foreach}>
+</ul>

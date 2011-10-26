@@ -1,0 +1,118 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=BlockList"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}></h3>
+
+<div class="tips">
+<ul>
+<li>
+<{$smarty.const._AD_LEGACY_LANG_BLOCK_TOTAL}>: <{$BlockTotal}><br />
+<{$smarty.const._AD_LEGACY_LANG_BLOCK_ACTIVETOTAL}>: <{$ActiveBlockTotal}>&nbsp;&nbsp;|&nbsp; <{$smarty.const._AD_LEGACY_LANG_BLOCK_INSTALLEDTOTAL}>: <{$ActiveInstalledBlockTotal}>&nbsp;&nbsp;|&nbsp; <{$smarty.const._AD_LEGACY_LANG_BLOCK_UNINSTALLEDTOTAL}>: <{$ActiveUninstalledBlockTotal}><br />
+<{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>: <{$InactiveBlockTotal}>&nbsp;&nbsp;|&nbsp; <{$smarty.const._AD_LEGACY_LANG_BLOCK_INSTALLEDTOTAL}>: <{$InactiveInstalledBlockTotal}>&nbsp;&nbsp;|&nbsp; <{$smarty.const._AD_LEGACY_LANG_BLOCK_UNINSTALLEDTOTAL}>: <{$InactiveUninstalledBlockTotal}>
+</li>
+<li>
+<{$smarty.const._AD_LEGACY_TIPS_INSTALL_BLOCK}>
+</li>
+<li>
+<{$smarty.const._AD_LEGACY_TIPS_BLOCK2}>
+</li>
+<li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=legacy"><{$smarty.const._HELP}></a></li>
+</ul>
+</div>
+
+<ul class="toptab">
+  <li class="addBlockCustom"><a href="index.php?action=CustomBlockEdit"><{$smarty.const._AD_LEGACY_LANG_ADD_CUSTOM_BLOCK}></a></li>
+</ul>
+
+<div>
+<form action="./index.php" method="get">
+  <input type="hidden" name="action" value="BlockInstallList" />
+  <{$smarty.const._SEARCH}> : 
+  <input type="text" name="search" value="<{$filterForm->mKeyword}>" />
+  <{$smarty.const._AD_LEGACY_LANG_MOD_NAME}> : 
+  <select name="dirname">
+    <option value="0"><{$smarty.const._ALL}></option>
+    <{foreach from=$modules item=module}>
+      <{if is_object($filterForm->mModule)}>
+        <option value="<{$module->getShow('dirname')}>" <{if $filterForm->mModule->get('dirname') == $module->get('dirname')}>selected="selected"<{/if}> >
+        <{$module->getShow('name')}></option>
+      <{else}>
+        <option value="<{$module->getShow('dirname')}>">
+        <{$module->getShow('name')}></option>
+      <{/if}>
+    <{/foreach}>
+     <option value="-1"  <{if $filterForm->mModule == "cblock"}>selected="selected"<{/if}>><{$smarty.const._AD_LEGACY_LANG_CUSTOMBLOCK_EDIT}></option>
+  </select>
+  <{$smarty.const._VIEW}> : 
+  <select name="perpage">
+    <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
+    <{foreach item=page from=$pageArr}>
+      <{if $pageNavi->mPerpage == $page && $page != 0}>
+        <option value="<{$page}>" selected="selected"><{$page}></option>
+      <{elseif $pageNavi->mPerpage == $page && $page == 0}>
+        <option value="<{$page}>" selected="selected"><{$smarty.const._ALL}></option>
+      <{elseif $pageNavi->mPerpage != $page && $page == 0}>
+        <option value="<{$page}>"><{$smarty.const._ALL}></option>
+      <{else}>
+        <option value="<{$page}>"><{$page}></option>
+      <{/if}>
+    <{/foreach}>
+  </select>
+  <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+</form>
+</div>
+
+<table class="outer">
+  <tr>
+    <th><{$smarty.const._AD_LEGACY_LANG_BID}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_BID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_BID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_BLOCK_MOD}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_MID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_MID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_TITLE}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_TITLE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_TITLE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_TEMPLATE}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_TEMPLATE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_TEMPLATE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
+  </tr>
+  <{foreach item=obj from=$objects}>
+    <tr class="<{cycle values='odd,even'}>">
+      <td class="legacy_list_id"><{$obj->getShow('bid')}></td>
+      <td class="legacy_list_name">
+        <{if $obj->mModule}>
+          <span class="legacy_blocktype_module"><{$obj->mModule->getShow('name')}></span>
+        <{else}>
+          <span class="legacy_blocktype_custom">
+          <{if $obj->get('c_type') == "H" }><{$smarty.const._AD_LEGACY_LANG_CUSTOM_HTML}>
+          <{elseif $obj->get('c_type') == "P"}><{$smarty.const._AD_LEGACY_LANG_CUSTOM_PHP}>
+          <{elseif $obj->get('c_type') == "S"}><{$smarty.const._AD_LEGACY_LANG_CUSTOM_WITH_SMILIES}>
+          <{elseif $obj->get('c_type') == "T"}><{$smarty.const._AD_LEGACY_LANG_CUSTOM_WITHOUT_SMILIES}>
+          <{/if}>
+          </span>
+        <{/if}>
+      </td>
+      <td class="legacy_list_title"><{$obj->getShow('title')}></td>
+      <td class="legacy_list_text">
+        <{if $obj->getShow('template')}>
+        <a href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplfileList&amp;tpl_file=<{$obj->getShow('template')}>"><{$obj->getShow('template')|xoops_escape}></a>
+        <{/if}>
+      </td>
+      <td class="legacy_list_control">
+        <{if $obj->get('block_type') == 'C'}>
+          <a href="./index.php?action=CustomBlockEdit&amp;bid=<{$obj->getShow('bid')}>"><img src="<{"icons/block_edit.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>" title="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>" /></a>
+          <a href="./index.php?action=CustomBlockDelete&amp;bid=<{$obj->getShow('bid')}>"><img src="<{"icons/block_remove.png"|theme}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
+        <{else}>
+          <a href="./index.php?action=BlockInstallEdit&amp;bid=<{$obj->getShow('bid')}>"><img src="<{"icons/block_install.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>"title="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>" /></a>
+        <{/if}>
+      </td>
+    </tr>
+  <{/foreach}>
+</table>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>

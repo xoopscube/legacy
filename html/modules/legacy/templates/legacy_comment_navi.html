@@ -1,0 +1,18 @@
+<form method="get" action="<{$pageName}>">
+  <table width="95%" class="outer" cellspacing="1">
+    <tr>
+      <td class="even" align="center">
+        <{html_options name=com_mode options=$modeOptions selected=$com_mode}>
+        <{html_options name=com_order options=$orderOptions selected=$com_order}>
+        <input type="hidden" name="<{$itemName}>" value="<{$com_itemid}>" />
+        <input type="submit" value="<{$smarty.const._CM_REFRESH}>" class="formButton" />
+        <{foreach key=key item=value from=$extraParams}>
+          <{xoops_input type=hidden name=$key value=$value}>
+        <{/foreach}>
+		<{if $postcomment_link}>
+          <input type="button" onclick="self.location.href='<{$postcomment_link|xoops_escape:link}><{$link_extra|xoops_escape:link}>'" class="formButton" value="<{$smarty.const._CM_POSTCOMMENT}>" />
+        <{/if}>
+    </td>
+  </tr>
+</table>
+</form>

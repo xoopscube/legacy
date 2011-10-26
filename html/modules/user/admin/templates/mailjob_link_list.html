@@ -1,0 +1,51 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=MailjobList"><{$smarty.const._AD_USER_LANG_MAILJOB_LIST}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=Mailjob_linkList"><{$smarty.const._AD_USER_LANG_MAILJOB_LINK_LIST}></a></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_MAILJOB_LINK_LIST}></h3>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form action="#" method="post">
+<{xoops_token form=$actionForm}>
+<{xoops_input type=hidden name=mailjob_id value=$actionForm->get('mailjob_id')}>
+<table class="outer">
+  <tr>
+    <th></th>
+    <th><{$smarty.const._MD_USER_LANG_UID}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_LINK_SORT_KEY_UID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_LINK_SORT_KEY_UID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._MD_USER_LANG_UNAME}><br />
+    <th><{$smarty.const._AD_USER_LANG_RETRY}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_LINK_SORT_KEY_RETRY}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_LINK_SORT_KEY_RETRY}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_MESSAGE}><br />
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_LINK_SORT_KEY_MESSAGE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_LINK_SORT_KEY_MESSAGE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+  </tr>
+  <{foreach item=obj from=$objects}>
+    <tr class="<{cycle values='odd,even'}>">
+      <td class="user_list_control"><{xoops_input type=checkbox name=uid key=$obj->get('uid')}></td>
+      <td class="user_list_id"><{$obj->getShow('uid')}></td>
+      <td class="user_list_name"><{$obj->get('uid')|xoops_user:user_name}></td>
+      <td class="user_list_number"><{$obj->getShow('retry')}></td>
+      <td class="user_list_description"><{$obj->getShow('message')}></td>
+    </tr>
+  <{/foreach}>
+  <tr>
+    <td colspan="5" class="foot"><input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" /></td>
+  </tr>
+</table>
+</form>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>

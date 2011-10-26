@@ -1,0 +1,64 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=MailjobList"><{$smarty.const._AD_USER_LANG_MAILJOB_LIST}></a>
+    &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_MAILJOB_SEND}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_MAILJOB_SEND}></h3>
+
+<div class="tips">
+  <{$smarty.const._AD_USER_TIPS_MAILJOB_SEND}>
+</div>
+
+<form method="post" action="./index.php?action=MailjobSend">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=mailjob_id value=$actionForm->get('mailjob_id')}>
+  <table class="outer">
+    <tr>
+      <th colspan="2"><{$smarty.const._AD_USER_LANG_MAILJOB_SEND}></th>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_MAILJOB_ID}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('mailjob_id')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_TITLE}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('title')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_BODY}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('body')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_TARGET_RETRY_NUMBER}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getCurrentRetry()|xoops_escape}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_FROM_NAME}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('from_name')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_FROM_EMAIL}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->getShow('from_email')}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_IS_PM}></td>
+      <td class="<{cycle values="odd,even"}>"><{if $object->getShow('is_pm') == 1}><{$smarty.const._YES}><{else}><{$smarty.const._NO}><{/if}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_IS_MAIL}></td>
+      <td class="<{cycle values="odd,even"}>"><{if $object->getShow('is_mail') == 1}><{$smarty.const._YES}><{else}><{$smarty.const._NO}><{/if}></td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_CREATE_UNIXTIME}></td>
+      <td class="<{cycle values="odd,even"}>"><{$object->get('create_unixtime')|xoops_formattimestamp:l}></td>
+    </tr>
+    <tr>
+      <td class="foot" colspan="2">
+        <input class="formButton" type="submit" value="<{$smarty.const._SEND}>" />
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      </td>
+    </tr>
+  </table>
+</form>
+
