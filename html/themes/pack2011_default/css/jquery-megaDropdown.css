@@ -1,0 +1,49 @@
+@charset "utf-8";
+
+/**
+* MediaQuery MultiDevice Template ver 0.1��
+* @Author: funnythingz
+* @Url:    http://hiropo.co.uk
+* 
+* jquery-megaDropdown.css
+*/
+
+/**============================================================
+* Styles
+*/
+.megaDropdown {
+	position: relative;
+	z-index: 100;
+	zoom: 1;
+}
+.megaDropdownOver ul li {
+	background: url(/public/resources/common/images/bg_clear.png) repeat 0 0;
+}
+.megaDropdownOver ul,
+.megaDropdownOver ul a {
+	color: #000000;
+}
+.gnaviChildCol {
+	background: #dddddd;
+}
+.gnaviParentCol li {
+	position: relative;
+}
+.gnaviParentCol .gnaviChildCol {
+	position: absolute;
+	z-index: 100;
+}
+.gnaviChildCol dl,
+.gnaviChildCol dl a {
+	color: #000000;
+}
+.megaDropdown .gnaviChildCol {
+	display: none;
+}
+@media only screen and (max-width: 580px)
+{
+	body {
+		-webkit-text-size-adjust: none;
+	}
+	
+}

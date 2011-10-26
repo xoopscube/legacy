@@ -1,0 +1,20 @@
+@media screen and (max-width: 478px) 	{
+	h1 { font-size: 70px; padding: 1px; }
+	h2 { font-size: 13px; padding: 1px; }
+	body { font-size: 13px; }
+}
+
+@media screen and (max-width: 740px) 	{
+	.left-col { width: 100%; }
+	.sidebar { width: 100%; }
+}
+
+@media screen and (max-width: 480px) {
+
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	width: auto\9; /* ie8 */
+}

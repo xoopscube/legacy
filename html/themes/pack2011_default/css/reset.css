@@ -1,0 +1,86 @@
+@charset "utf-8";
+
+/**
+* MediaQuery MultiDevice Template ver 0.1β
+* @Author: funnythingz
+* @Url:    http://hiropo.co.uk
+* 
+* reset.css
+*/
+
+/* all */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, p,
+blockquote, th, td, form, fieldset, legend, article, section, aside, header, footer, nav {
+	margin:0;
+	padding:0;
+	font-size: 100%;
+}
+article, section, aside, header, footer, nav {
+	display: block;
+}
+
+img{
+	border: 0;
+	vertical-align: bottom;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-family: inherit;
+}
+caption, th, td {
+	text-align: left;
+	vertical-align: top;
+	font-weight: normal;
+}
+
+fieldset { border: none; }
+
+input, textarea, select, label {
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: middle;
+}
+input[type="text"] {
+	padding: 2px 3px;
+}
+input[type="text"]:focus {
+}
+textarea {
+	padding: 2px 3px;
+	border: none;
+	overflow: auto;
+}
+textarea:focus {
+}
+label { cursor: pointer; }
+
+ul, ol, li {
+	list-style: none;
+}
+
+strong, em {
+	font-weight: normal;
+	font-style: normal;
+}
+
+/**/
+sup {
+	position: relative;
+	top: 0.1em;
+	font-weight: normal;
+	white-space:nowrap;
+	font-size: 10px;          /* モダンブラウザ */
+	>font-size: 12px;         /* IE6,7 */
+	font-size /*\**/: 12px\9; /* IE8 正式版 */
+}
+html>/**/body sup {
+	vertical-align:baseline;
+	position: relative;
+	top: -0.4em;
+	padding:0;
+}

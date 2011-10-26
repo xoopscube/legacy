@@ -1,0 +1,18 @@
+      <!-- start module menu loop -->
+      <{foreach name=menuloop item=imenu from=$block.contents}>
+        <{if $imenu.link != ""}>
+		<li>
+          <{if $smarty.foreach.menuloop.first}>
+            <a class="menuTop" href="<{$imenu.link}>" target="<{$imenu.target}>"><{$imenu.title}></a>
+          <{else}>
+            <a class="menuMain" href="<{$imenu.link}>" target="<{$imenu.target}>"><{$imenu.title}></a>
+          <{/if}>
+        <{foreach item=sublink from=$imenu.sublinks}>
+          <a class="menuSub" href="<{$sublink.url}>"><{$sublink.name}></a>
+        <{/foreach}>
+        <{else}>
+          <{$imenu.title}>
+		</li>
+        <{/if}>
+      <{/foreach}>
+      <!-- end module menu loop -->
