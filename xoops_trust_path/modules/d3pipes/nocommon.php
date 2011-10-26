@@ -1,8 +1,0 @@
-<?php
-
-// implemented later
-
-exit ;
-
-
-?>
