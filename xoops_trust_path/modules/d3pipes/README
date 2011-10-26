@@ -1,0 +1,594 @@
+[mlimg]
+[xlang:en]
+====  D3Pipes  ===
+
+A synthetic module for site syndications.
+
+
+[b]SUMMARY[/b]
+
+- Outer RSS/ATOMs can be displayed with any aggregation
+- Outer RSS/ATOMs can be imported/deleted automatically
+- Outer RSS/ATOMs can be marked/commented
+- Inside "what's new" information can be displayed with any aggregation
+- Both informations of inside/ouside can be treated seamlessly
+- Both informations of inside/ouside can be output by the format of RSS1/2/ATOM
+- Full customizable "Joint Model"
+- Entry extraction
+- Asynchronous blocks which never make your site heavy (Of course, clonable)
+- As D3 module, free dirname, duplicate, and easy maintenance.
+
+
+[b]USAGES[/b]
+
+Install altsys>=0.55 also. [b](essential)[/b]
+
+Copy "common/lib" (JavaScript Libraries) under XOOPS_ROOT_PATH
+http://xoops.peak.ne.jp/md/mydownloads/singlefile.php?lid=104
+
+Be sure smarty plugins (d3comment_*) are copied into class/smarty/plugins/
+Install it as normal D3 module.
+
+(If you did not)
+Make a directory XOOPS_TRUST_PATH/cache and change the mode writable.
+
+add pipes in "pipe" admin.
+You'd better use "Wizard" till you become familiar with the pipe structure.
+
+Notice: Async block requires the privileges of not only "block access" but also "module access".
+
+
+[b]SITEMAPS[/b]
+
+If you want Sitemaps feature for google etc., just copy html/sitemap.php of the archive into XOOPS_ROOT_PATH/
+
+All you have to do is just specify the URL (URL/sitemap.php) as the sitemap of your site to "Google Webmasters" etc.
+
+You can get the URLs for Sitemaps easily just by accessing the top of d3pipes as the administrator of the site.
+
+Note: This feature named "Sitemap" is irrelevant from "sitemap module" I had maintained a long time ago.
+
+
+[b]CHANGELOG[/b]
+
+0.68 2009-08-08
+- patched for the bug of libxml 2.7.0 - 2.7.3 (thx toychee)
+- modified a parse joint D3pipesParsePhpbbactivetopics.class.php 0.68a
+- fixed the patch for the bug of libxml (thx tsuji) 0.68b
+
+0.67 2009-05-27
+- added defaults for all joint_class into mysql.sql
+- added reassign joints
+-- pico_ef_except
+- modified a joint D3pipesBlockBulletinlist
+
+0.66 2009-01-18
+- added a parse joint D3pipesParsePhpbbactivetopics.class.php
+- modified D3pipesBlockPicolist.class.php fetches ef and tags
+- added the order option for comment-integration
+- modified a joint D3pipesBlockD3bloglist can specify userID (thx hodaka) 0.66a
+- added language files
+-- portuguesebr (thx leco)
+- updated language files
+-- persian (thx voltan) 0.66b
+- added block joints
+-- eguide2 0.66c
+
+0.65 2008-11-18
+- modified Sitemaps feature easy as possible
+- added a joint to merge entries from the other d3pipes (UnionTheotherd3pipes)
+- fixed missing assignment "pipe" from clipping detail controller
+- added "initial_pipe" attributes for each entries
+- added option "keep pipe info" for union joints
+- added "keep pipe info" as a preference and block's options
+- fixed wrong dirname displying for pipes from the other modules (thx ume8) 0.65a
+- modified utf8from joints modified encoding field in the XML declaration 0.65a
+- modified some interfaces a little better 0.65a
+
+0.64 2008-09-20
+- added editing pubtime via ajax
+- added editing description/content:encoded via ajax
+- modified unserializer for entry data
+- modified UTF8from removing encoding in XML declaration (thx akira1019) 0.64a
+
+0.63 2008-05-20
+- added an option "link to clipping or lint to entry directly" into block
+- modified comment-integration (update d3forum into 0.83 or higher)
+- added joints
+-- D3pipesBlockD3bloglist (thx hodaka)
+-- D3pipesBlockD3downloadslist (thx photositelinks) 0.63d
+- fixed typo in block_sync_big.html (thx toychee,neko88) 0.63a
+- modified block joints can be added extra parameters 0.63b
+- fixed D3pipesBlockXpwikipages.class.php missing require abstract class 0.63c
+- fixed _MD_D3PIPES_N4J_EXTRAOPTIONS is not assigned other than japanese 0.63d
+
+0.62 2008-05-01
+- reverted D3pipesClipModuledb never change fingerprints
+- added joints
+-- D3pipesReassignAppendpubtimeintofingerprint
+
+0.61 2008-04-29
+- modified D3pipesClipModuledb rebuilds unique fingerprints as possible
+- added joints
+-- D3pipesReplaceTidy4xml
+-- D3pipesReplaceTidy4xhtml
+- removed joints
+-- D3pipesReplaceTidy
+- fixed <webmaster> is encoded other than UTF-8 (thx neko88) 0.61a
+
+0.60 2008-02-20
+- fixed updated field in atom (thx yumipoyo)
+- added a plugin for sitemap (thx GEM)
+- fixed version number (thx nobuhiro) 0.60a
+- fixed typo in pulgin for sitemap (thx yumipoyo) 0.60b
+- modified considering dc:subject as a category 0.60b
+- fixed update_cache.sh owners problem 0.60b
+- added joints
+-- FilterFuture_except - filter future entries out 0.60b
+- modified templates removed adminmail 0.60c
+
+0.59 2007-12-12
+- fixed a fatal error on failed unserializing (thx sunuken)
+- added a root controller sitemap.php for google sitemap
+- added block joints
+-- xpwiki (thx nao-pon) 0.59a
+
+0.58 2007-11-10
+- fixed invalid clipping_id does not make redirect (thx Nobelium)
+- added description for each pipes
+- fixed wrong assign rss+xml in clipping (thx rockel)
+- added language files
+-- persian (thx voltan and irmtfan)
+-- french (thx gigamaster)
+-- fr_utf8 (thx gigamaster)
+
+0.57 2007-10-13
+- added sitemap xml
+- added configurations for entries count (eachpipe,cliplist,rss)
+- addded a RSS linked to clipping
+- fixed needless header for rss+xml (thx rockle)
+- fixed typo in clipping html (thx rockle)
+- fixed permission problem in update_cache.sh
+- modified update_cache.sh (Overwrite this file in ROOT side)
+- fixed union default entries problem (thx rockle) 0.57a
+
+0.56 2007-09-05
+- modified KeithXML extracting attributes of <item>
+- modified parser for RSS1.0 using rdf:about as fingerprint
+- fixed some warnings and notices (thx souhalt) 0.56a
+- modified W3C-DTF violated (missing cologne) feeds can be parsed 0.56a
+
+0.55 2007-09-01
+- fixed block_sync_big.html (thx Nobelium)
+- fixed separated view broken in 0.53
+- fixed xml title for module aggregated view (thx kilica)
+- modified lastfetch can be updated by block joints (thx kilica)
+
+0.54 2007-08-24
+- added a joint update ping
+- added a configuration about ping servers
+
+0.53 2007-08-23
+- added a configuration about snoopy max_redirs
+- added joints
+-- ReassignHtmlentitydecode (Fix extra htmlentitied entries)
+-- ReassignTruncate (using xoops_substr() to each field)
+- modified template as "allow_html" also effects displaying headline 0.53a
+
+0.52 2007-08-20 (update the module)
+- added joints
+-- SortPubtimedsc
+-- SortHeadlinestr
+-- SortHeadlineint
+- added a feature deleting a clipping
+- added a feature turn clipping's visibility on/off
+- divided from eachpipe into eachpipe and cliplist
+- modified a function on updating comments
+- fixed some typos 0.52a
+
+0.51 2007-08-12
+- added xml output for index aggregation
+- modified keithxml not to sort any entries
+- added a html header "alternate application/rss+xml"
+
+0.50 2007-07-13 Install altsys >= 0.55
+- modified compatibility with XOOPS 2.0.16
+- added inner joints wizard
+- added joints for inner modules
+-- myAlbum-P
+-- myDownloads
+-- myLinks
+-- piCal
+-- plzXoo
+-- News
+-- Bulletin2
+-- System(comments)
+-- xhnewbb
+-- newbb1
+
+0.34 2007-07-06
+- fixed common/lib rendering character converted wrongly
+- fixed common/lib rendering conflits admin_in_theme of altsys
+- modified template for pipe editing
+- added joints
+-- ReplaceTidy (0.34a)
+-- ReplaceXsltproc (0.34a)
+
+0.33 2007-07-03
+- added a joint type of "text replacement"
+- modified the spec of separators for joint's option
+- added InPlaceEditor into clipping view
+- fixed "union" cannot work with PHP5 (thx DJ_okamOTO) 0.33a
+- fixed multibyte options are converted wrongly 0.33b
+
+0.32 2007-06-30 (Install common/lib/ also)
+- added a command for cron (ROOT/modules/dirname/bin/update_cache.sh)
+- added encoding judgement into RSS/Atom wizard
+- modified the logic of pipe parsing radically (reversal evaluation)
+- fixed Atom cannot be parsed in 0.31 (Keithxml)
+- added a new joint type of "cache"
+- removed caching feature from clip joints
+- added two reassign joint Allowhtml and Strigtags
+- added pipe operation by Ajax (Install common/lib)
+
+0.31 2007-06-21 (update the module)
+- modified error handler can distinguish parse error from fetch error
+- modified RSS/Atom redirection
+- added Snoopy's setting (Proxy and curl path) into preferences
+- added a UNION joint without aggregation
+- added a block's option - Separated view
+- modified escaping rule that jsbackend.html can use single quote
+- added a block template for big view
+- divided files for blocks
+- divided functions for block editing
+- modified interfaces of block's options
+- added a preferences - life time of fetching cache
+- added pipe analyzer
+- added wizard for creating a pipe for RSS/Atom
+- modified a parse of Keithxml for CDATA part (thx Yeah) 0.31a
+
+0.30 2007-06-05 (update the module)
+- modified interface of pipe admin
+- modified multiple pipe_id can be assinged for a block
+- modified block/jsbackend templates
+- added sync type block
+- modified blocks into D3 standard style
+- added methods of callback and validation into D3 comment class
+- added a field of comments_count
+- added filter joints for exception
+- changed language name
+-- ja_utf8 (formerly japaneseutf) 0.30a
+- modified block option can each pipe_id has max entries 0.30a
+
+0.20 2007-05-11
+- changed the structure "altsys essential"
+- added language constants override system (with altsys>=0.5)
+- templatized mymenu (with altsys>=0.5)
+- fixed typo in block joint of PicoList (thx emomo)
+- added language files
+-- japaneseutf
+
+0.14 2007-05-02
+- added parse class LinkHTML
+- fixed parsing <link> of Atom 0.3 (thx kilica)
+
+0.13 2007-04-27
+- added parse class SimpleHTML
+- added reassign class DefaultLink
+
+0.12 2007-04-24
+- added page navigation to older clippings
+- modified parser Atom 0.3 (thx kilica)
+- modified SQL escape from addslashes() to mysql_real_escape_string()
+- modified MySQL original style SQL into standard style (for MySQL5)
+
+0.11 2007-04-19
+- modified error handlings easier
+- modified rss/rdf/atom auto recognization
+- added incoherence checks on pipe editing
+- added highlight
+
+0.10 2007-04-17
+- The first release
+- modified failable initials 0.10a
+
+
+[/xlang:en]
+[xlang:ja]
+
+====  D3パイプ  ===
+
+某!Pipesっぽい、シンジケーション総合モジュール
+
+
+●概要
+
+- 外部のRSS/ATOM等を任意のアグリゲーションで表示できる
+- 外部のRSS/ATOM等を取り込む/自動的に削除する
+- 取り込んだ外部のRSS/ATOM等にマークをつける/コメントをつける
+- 内部の新着情報を任意のアグリゲーションで表示できる
+- 内外の情報をシームレスに取り扱える
+- 内外の情報いずれもRSS1/RSS2/ATOMのフォーマットで出力できる
+- 機能を徹底的に分解したジョイントモデルにより拡張も自由自在
+- エントリ絞り込み（mbregexも選択可能）
+- XML取得動作でサイト全体を重く感じさせない非同期表示ブロック搭載
+- D3モジュールなので、自由なdirnameでの複製と簡単なバージョン管理は当たり前
+
+
+●使い方
+
+（事前準備）
+altsys-0.55以上をインストールしておいてください。altsysのバージョンが低くても正常に動作しません。必ず、0.55以上をインストールしてください。
+
+common/libが入っていなかったらXOOPS_ROOT_PATH下にコピーしておいてください。
+http://xoops.peak.ne.jp/md/mydownloads/singlefile.php?lid=104
+
+（ファイルアップロードとインストール）
+普通のD3モジュールとしてインストールします。
+モジュール管理でインストールする前に、Smartyプラグイン２つがちゃんとコピーされているか確認してください。
+
+XOOPS_TRUST_PATH 直下に cache ディレクトリを作り、書込を許可します。
+（まだ作っていない場合）
+
+あとは、パイプ管理からパイプを追加していくだけです。パイプ作成に慣れない内は、ウイザードを使うのが良いでしょう。ウイザードが構成したパイプを編集しているうちに、ジョイントの構成にも慣れるでしょう。
+
+なお、非同期パイプ一覧を表示するには、ブロックアクセス権限の他に、モジュールアクセス権限も必要です。
+
+
+●サイトマップ機能 (Sitemaps)
+
+http://www.sitemaps.org/
+
+ずいぶん前に実装だけしながらドキュメントで何も言及していなかった機能です。
+htmlフォルダ直下にある sitemap.php を mainfile.php と同じ階層にコピーしてください。
+あとは、Googleなどに、サイトマップとして XOOPS_URL/sitemap.php を指定するだけです。
+
+管理者としてd3pipesの公開側にアクセスすると、[Sitemaps] というリンクがありますので、それをそのままコピー＆ペーストするのも良いでしょう。
+
+以前メンテナンスしていたsitemapモジュールと混同されそうですが、そのモジュールとは何の関係もありません。d3pipesだけあれば機能します。
+
+
+●更新履歴
+
+0.68 2009-08-08
+- libxml 2.7.0 - 2.7.3 でタグが消えてしまうバグに対応 (thx toychee)
+- phpbb用パースジョイント更新 (sf.netに対応。頼むからRSS対応してくれ！) 0.68a
+
+0.67 2009-05-27
+- ジョイント初期設定で、全ジョイントタイプについてデフォルトクラスを設定した
+- 再割り当てジョイントの追加
+-- pico_ef_except
+- D3pipesBlockBulletinlist の微調整
+
+0.66 2009-01-18
+- phpbb用パースジョイント追加 (なぜかRSS禁止になっているsf.net対策)
+- picoの内部取得ジョイントで、efやtagsを渡すようにした
+- コメント統合の表示順指定追加
+- d3blog用ジョイントでユーザIDの指定が可能になった (thx hodaka) 0.66a
+- 言語ファイル追加
+-- portuguesebr (thx leco) 0.66a
+- 言語ファイル更新
+-- persian (thx voltan) 0.66b
+- ブロックジョイント追加
+-- eguide2 0.66c
+
+0.65 2008-11-18
+- Sitemaps機能を簡単に利用できるようにした
+- 他のd3pipesのパイプを集約できるジョイントの新規追加 (UnionTheotherd3pipes)
+- 切り抜き詳細画面に、パイプ情報をアサインしわすれていたのを修正
+- 最初の連結時にのみ initial_pipe 属性を付与するようにした
+- 「パイプ情報を保存する」オプションを連結ジョイントに追加した
+- モジュールトップやブロックに「上位パイプ名を表示する」オプションを追加
+- 他のd3pipesから持ってきたパイプのdirname誤表示を修正 (thx ume8) 0.65a
+- UTF-8への変換ジョイントでencoding="UTF-8"を強制指定するようにした 0.65a
+- 細かな使い勝手の改善 0.65a
+
+0.64 2008-09-20
+- 発行日時(pubtime)をAjax経由で書き換えるコントローラの追加
+- descriptionまたはcontent:encodedをAjaxで書き換えるコントローラの追加
+- 文字列長が間違っていてもなんとかunserializeできるような関数の作成
+- UTF8への変換で、XML宣言内のencoding指定を消すようにした (thx akira1019) 0.64a
+
+0.63 2008-05-20
+- ブロックのリンクを外部にするか内部にするかを選択するオプションを追加
+- コメント統合クラスを最新方式に変更 (要d3forum-0.83以上)
+- ブロックジョイント追加
+-- D3pipesBlockD3bloglist (thx hodaka)
+-- D3pipesBlockD3downloadslist (thx photositelinks) 0.63d
+- block_sync_big.html のtypo修正 (thx toychee,neko88) 0.63a
+- ブロックジョイントに追加オプションを指定可能とした 0.63b
+- D3pipesBlockXpwikipages.class.php が場合によってはfatalを起こすのを修正 0.63c
+- 定数 _MD_D3PIPES_N4J_EXTRAOPTIONS がjapanese以外で未定義だったのを修正 0.63d
+
+0.62 2008-05-01
+- ローカル保存ジョイントで、fingerprintを書き換えるのをやめた
+- 再割り当てジョイント追加
+-- D3pipesReassignAppendpubtimeintofingerprint (fingerprintにpubtimeを追加する)
+
+0.61 2008-04-29
+- ローカル保存ジョイントで、出来る限りユニークなfingerprintを再構築するようにした
+- 置換ジョイント追加
+-- D3pipesReplaceTidy4xml (誤ったRSSを修正する)
+-- D3pipesReplaceTidy4xhtml (XHTMLに強制変更する)
+- 置換ジョイント削除
+-- D3pipesReplaceTidy (実際には4xhtmlと名称変更になっただけ)
+- <webmaster>項目がUTF-8になっていないバグを修正 (thx neko88) 0.61a
+
+0.60 2008-02-20
+- 集約パイプのatom/updatedフィールドの値がおかしかったのを修正 (thx yumipoyo)
+- sitemapモジュール用のプラグインを追加 (thx GEM)
+- バージョン番号を間違っていたのを修正 (thx nobuhiro) 0.60a
+- sitemapモジュール用プラグインのtypoを修正 (thx yumipoyo) 0.60b
+- dc:subjectによるカテゴリー対応追加 0.60b
+- cronによる update_cache.sh 実行で、オーナーの問題がでるのを修正した 0.60b
+- フィルタージョイント追加
+-- FilterFuture_except 未来のエントリを除外する 0.60b
+- テンプレートから管理者メールアドレスを削除した 0.60c
+
+0.59 2007-12-12
+- unserializeに失敗した場合にfatal errorが発生していたのを修正 (thx sunuken)
+- google sitemap出力用のルートコントローラを追加
+- 内部情報取得用ジョイント追加
+-- xpwiki (thx nao-pon) 0.59a
+
+0.58 2007-11-10
+- 切り抜きへの不正なアクセスがリダイレクトされていなかったのを修正 (thx Nobelium)
+- パイプに詳細フィールドを追加
+- 不要なrss+xmlヘッダが切り抜き詳細で表示されていたのを修正 (thx rockel)
+- 言語ファイル追加
+-- persian (thx voltan and irmtfan)
+-- french (thx gigamaster)
+-- fr_utf8 (thx gigamaster)
+
+0.57 2007-10-13
+- google用sitemap出力機能の追加(サイトルートから出力する方法は検討中)
+- 個別パイプ・切り抜き一覧・RSSのそれぞれで、出力エントリ数を指定できるようにした
+- 切り抜きへリンクするRSSを出力できるようにした
+- 不要なrss+xmlヘッダをアサインしないようにした (thx rockle)
+- 切り抜き編集用のJSが管理者以外でも有効になっていたtypoを修正した (thx rockle)
+- update_cache.sh が作成するキャッシュのパーミッションを修正した
+- update_cache.sh を変更した（ROOT側のこのファイルだけ要更新）
+- 結合ジョイントエントリ数デフォルト値のバグを修正 (thx rockle) 0.57a
+
+0.56 2007-09-05
+- KeithXMLで、<item>の属性を展開するようにした
+- RSS1.0では、rdf:about をfingerprintとするようにした
+- いくつかの状況で出てしまっていたWarningとNoticeを潰した (thx souhalt) 0.56a
+- タイムゾーン表現に:が含まれていないW3C-DTF違反のフィードに対応した 0.56a
+
+0.55 2007-09-01
+- block_sync_big.htmlテンプレートのリンクがおかしかったのを修正 (thx Nobelium)
+- 0.53で並列ブロック表記がおかしくなっていたのを修正
+- モジュール全体のアグリゲーションフィールドのアサイン修正 (thx kilica)
+- ブロックジョイントでも最終取得日時を更新するようにした (thx kilica)
+
+0.54 2007-08-24
+- 更新Pingジョイントを追加
+- 一般設定に更新Ping送信先を追加
+
+0.53 2007-08-23
+- Snoopyの最大リダイレクト回数設定を追加した
+- 再割り当てジョイントを２つ追加
+-- ReassignHtmlentitydecode (余分にHTMLエンティティされているフィードの修正)
+-- ReassignTruncate (文字列長の切り落とし)
+- HTML許可設定がエントリタイトルにも影響するようにテンプレートを修正 0.53a
+
+0.52 2007-08-20 ※要モジュールアップデート
+- ソートジョイントの実装
+-- SortPubtimedsc (発行日降順)
+-- SortHeadlinestr (エントリタイトル文字列昇順)
+-- SortHeadlineint (エントリタイトル数字昇順)
+- 切り抜きの削除実装
+- 切り抜きの可視/不可視コントロール
+- パイプ個別表示と切り抜き一覧を機能的に分けた
+- コメントアップデート処理の改善
+- typoなど微修正 0.52a
+
+0.51 2007-08-12
+- モジュールトップ集約そのままのXML出力を追加した
+- Keithxmlパーサ自身では、エントリのソートを行わないように仕様変更した
+- モジュールメインで alternate application/rss+xml を出力するようにした
+
+0.50 2007-07-13 ※要altsys-0.55以上
+- XOOPS 2.0.16との互換性改善
+- サイト内新着情報パイプ作成ウイザードの実装
+- 内部情報取得用ジョイント追加
+-- myAlbum-P
+-- myDownloads
+-- myLinks
+-- piCal
+-- plzXoo
+-- News
+-- Bulletin2
+-- System(comments)
+-- xhnewbb
+-- newbb1
+
+0.34 2007-07-06
+- common/lib によるオプションレンダリングが文字化けしていたのを修正
+- common/lib によるオプションレンダリングとaltsys管理画面用テーマとの衝突を回避
+- パイプ編集用テンプレートの微調整
+- ジョイントの追加
+-- ReplaceTidy (0.34a)
+-- ReplaceXsltproc (0.34a)
+
+0.33 2007-07-03
+- テキスト置換ジョイントの実装
+- ジョイントオプションのセパレータをジョイント毎に変更可能にした
+- 切り抜きの一部をInPlaceEditor処理可能とした
+- PHP5だとUnionが効いていなかったバグの修正 (thx DJ_okamOTO) 0.33a
+- ジョイントオプションにマルチバイト文字を指定すると再編集で化けるのを修正 0.33b
+
+0.32 2007-06-30 ※このバージョンからcommon/lib/が必要になりました
+- cron用キャッシュ更新コマンド追加 ROOT/modules/dirname/bin/update_cache.sh
+- RSS/Atom取得ウイザードにURLおよびエンコーディングチェック実装
+- RSS/Atom取得ウイザードにHTML表示を追加
+- キャッシュ処理・パイプパース順を大きく変更した（逆順評価による実装）
+- Atomを正常にパース出来ていなかったのを修正(Keithxml)
+- 任意の段階に挟むことのできるキャッシュジョイントの実装
+- 切り抜きジョイントからキャッシュ機能を削除
+- HTML許可・HTMLタグ削除という再割り当てジョイントの追加
+- Ajaxによるパイプ操作実装 （要common/lib)
+
+0.31 2007-06-21 ※要モジュールアップデート
+- 取得エラーと解析エラーを可能な限り判別可能にした
+- リダイレクト処理を改善した
+- Snoopyの設定(Proxyやcurlパス等)を追加した
+- 時間によるアグリゲーションを行わないUNIONジョイントを追加
+- ブロックオプションに「個別表示」を追加
+- jsbackend.htmlテンプレートでもシングルクオートを利用可能とした
+- 大きなブロック表示用テンプレートを追加
+- ブロック処理ファイルの分割
+- ブロック編集関数の分割
+- ブロックオプションインターフェースの改善
+- 外部取得キャッシュ時間設定の追加
+- パイプの途中経過を解析する機能の実装
+- RSS/Atom取得パイプ作成ウイザードの実装
+- KeithxmlでRSS2にCDATAパートがあると解析できなかったのを修正 (thx Yeah) 0.31a
+
+0.30 2007-06-05 ※要モジュールアップデート/Smartyプラグインのコピーを忘れずに（一つ追加になってます）
+- パイプ管理のインターフェースを多少マシにした
+- ブロックでパイプ番号を複数選択できるようにした
+- ブロックに割り当てられたパイプ数に応じて、表示方式を切り替えるようにした
+- 同期ブロックを追加した
+- ブロックの仕様をD3標準にした
+- D3コメント用クラスに、コールバックとバリデータを実装した
+- コメント数フィールドの追加
+- 除外用フィルタージョイントの追加
+- 言語ファイル名前変更
+-- ja_utf8 (以前のjapaneseutf) 0.30a
+- ブロックのパイプ指定で、パイプIDに:数字を足すことで最大取得数を設定可能 0.30a
+
+0.20 2007-05-11
+- altsys必須となった
+- 文字定数オーバーライドシステムを導入した（要altsys-0.5以上）
+- mymenuのテンプレート化（要altsys-0.5以上）
+- PicoListブロックのtypo修正 (thx emomo)
+- 言語ファイル追加
+-- japaneseutf
+
+0.14 2007-05-02
+- パースジョイントにLinkHTMLを追加
+- Atom 0.3で<link>がとれていないのを修正した (thx kilica)
+
+0.13 2007-04-27
+- パースジョイントにSimpleHTMLを追加
+- 再割り当てジョイントにDefaultLinkを追加
+
+0.12 2007-04-24
+- 過去の切り抜きへのページナビゲーションをつけた
+- Atom 0.3に対応した (thx kilica)
+- エスケープをaddslashes()からmysql_real_escape_string()にした
+- 標準的なSQL構文にした (MySQL5対策)
+
+0.11 2007-04-19
+- エラー表示を判りやすくした
+- XML解析ジョイントに、RSS/RDF/ATOM自動判断処理を搭載した
+- パイプ編集時にジョイント順の矛盾チェックを行うようにした
+- ハイライト機能を実装した
+
+0.10 2007-04-17
+- 最初のリリース
+- つまづきやすい初期設定を変更 0.10a
+
+[/xlang:ja]

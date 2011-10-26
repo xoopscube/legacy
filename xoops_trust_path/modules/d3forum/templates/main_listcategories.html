@@ -1,0 +1,118 @@
+<!-- start module contents -->
+<!-- breadcrumbs -->
+<div class="d3f_breadcrumbs">
+	<a href="<{$mod_url}>/index.php?cat_ids=0"><{$smarty.const._MD_D3FORUM_LISTALLTOPICS}></a>
+</div>
+
+<{$mod_config.top_message}>
+
+<!-- top controller -->
+<ul class="d3f_ctrl">
+	<{if $xoops_isadmin}>
+		<li><a href="<{$mod_url}>/index.php?page=makecategory"><{$smarty.const._MD_D3FORUM_LINK_MAKECATEGORY}></a></li>
+	<{/if}>
+	<li><a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=0&amp;odr=1"><{$smarty.const._MD_D3FORUM_LINK_ALLRSS}> <img src="<{$mod_imageurl}>/icon_rss.gif" alt="<{$smarty.const._EDIT}>" width="16" height="16" /></a></li>
+</ul>
+
+<dl class="d3f_bbsinfo">
+<dt><{$smarty.const._MD_D3FORUM_TOTALTOPICSCOUNT}>:</dt>
+	<dd><{$total_topics_count}></dd>
+<dt><{$smarty.const._MD_D3FORUM_TOTALPOSTSCOUNT}>:</dt>
+	<dd><{$total_posts_count}></dd>
+</dl>
+
+<dl class="d3f_timeinfo">
+<dt><{$smarty.const._MD_D3FORUM_TIMENOW}>:</dt>
+	<dd><{$currenttime_formatted}></dd>
+<dt><{$smarty.const._MD_D3FORUM_LASTVISIT}>:</dt>
+	<dd><{$lastvisit_formatted}></dd>
+</dl>
+
+<div class="d3f_wrap">
+<!-- start categories -->
+<{foreach item="category" from=$top_categories}>
+<{if $category.subcategories or $category.forums or $xoops_isadmin}>
+
+<div class="itemHead">
+<h2 class="itemTitle"><a href="<{$mod_url}>/index.php?cat_id=<{$category.id}>"><img src="<{$mod_imageurl}>/category_<{$category.bit_new}>.gif" alt="" width="16" height="16" /> <{$category.title}></a></h2>
+	<p>
+		<{include file="db:`$mydirname`_inc_moderators.html" target=$category}>
+		<{$smarty.const._MD_D3FORUM_TOTALTOPICSCOUNT}>: <{$category.topics_count_in_tree}> <{$smarty.const._MD_D3FORUM_TOTALPOSTSCOUNT}>: <{$category.posts_count_in_tree}> 
+		<{if $category.last_post_time}><{$smarty.const._MD_D3FORUM_LASTPOST}>: <{$category.last_post_time_formatted}><{/if}>
+		<a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$category.id}>&amp;odr=1"><img src="<{$mod_imageurl}>/icon_rss.gif" alt="RSS" title="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}>" width="16" height="16" /></a>
+	</p>
+</div>
+<{if $category.desc}><p class="d3f_info"><{$category.desc}></p><{/if}>
+
+<{if $category.subcategories}>
+<h3 class="d3f_head_h3"><{$smarty.const._MD_D3FORUM_SUBCATEGORIES}></h3>
+<ul class="d3f_subcategories">
+<{foreach item="subcategory" from=$category.subcategories}>
+	<li>
+		<a href="<{$mod_url}>/index.php?cat_id=<{$subcategory.id}>" title="<{$subcategory.desc}>"><img src="<{$mod_imageurl}>/category_<{$subcategory.bit_new}>.gif" alt="<{$subcategory.title}>" width="16" height="16" /> <{$subcategory.title}></a> (<{$smarty.const._MD_D3FORUM_TOTALTOPICSCOUNT}>: <{$subcategory.topics_count_in_tree}>, <{$smarty.const._MD_D3FORUM_TOTALPOSTSCOUNT}>: <{$subcategory.posts_count_in_tree}>)
+		<{if $xoops_isadmin}><a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$subcategory.id}>"><img src="<{$mod_imageurl}>/icon_pencil22.gif" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>" width="16" height="16" /></a><{/if}>
+		<a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$subcategory.id}>&amp;odr=1"><img src="<{$mod_imageurl}>/icon_rss.gif" alt="RSS" title="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}>" width="16" height="16" /></a>
+	</li>
+<{/foreach}>
+</ul>
+<{/if}>
+
+<{if $category.forums}>
+<h3 class="d3f_head_h3"><{$smarty.const._MD_D3FORUM_FORUM}></h3>
+<ul class="d3f_listforums">
+<{foreach item=forum from=$category.forums}>
+	<li>
+		<a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>">
+			<img src="<{$mod_imageurl}>/forum_<{$forum.bit_new}>.gif" alt="<{$forum.title}>" width="16" height="16" />
+			<{$forum.title}>
+		</a> 
+		<{$smarty.const._MD_D3FORUM_TOPICSCOUNT}>: <{$forum.topics_count}> <{$smarty.const._MD_D3FORUM_POSTSCOUNT}>: <{$forum.posts_count}>
+		<{if $forum.last_post_time}><{$smarty.const._MD_D3FORUM_LASTPOST}>: <{$forum.last_post_time_formatted}><{/if}>
+		<{if $xoops_isadmin}><a href="<{$mod_url}>/index.php?page=forummanager&amp;forum_id=<{$forum.id}>"><img src="<{$mod_imageurl}>/icon_pencil22.gif" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._MD_D3FORUM_LINK_FORUMMANAGER}>" width="16" height="16" /></a><{/if}>
+		<a href="<{$mod_url}>/index.php?page=rss&amp;forum_id=<{$forum.id}>"><img src="<{$mod_imageurl}>/icon_rss.gif" alt="RSS" title="<{$smarty.const._MD_D3FORUM_LINK_FORUMRSS}>" width="16" height="16" /></a>
+	</li>
+<{/foreach}>
+</ul>
+<{/if}>
+
+<div class="d3f_info_ctrl">
+	<{strip}>
+	<a href="<{$mod_url}>/index.php?cat_ids=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LISTTOPICSINCATEGORY}></a>
+	<{if $xoops_isadmin}>
+		&nbsp;-&nbsp;<a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>"><img src="<{$mod_imageurl}>/icon_pencil22.gif" alt="<{$smarty.const._EDIT}>" width="16" height="16" /><{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}></a>
+	<{/if}>
+	<{if $category.can_makeforum}>
+		&nbsp;-&nbsp;<a href="<{$mod_url}>/index.php?page=makeforum&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_MAKEFORUM}></a>
+	<{/if}>
+	<{if $xoops_isadmin}>
+		&nbsp;-&nbsp;<a href="<{$mod_url}>/index.php?page=makecategory&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_MAKESUBCATEGORY}></a>
+	<{/if}>
+	<{/strip}>
+</div>
+<{/if}>
+<{/foreach}>
+<!-- end categories -->
+</div>
+
+<!-- icon explanation -->
+<div class="d3f_iconexps">
+<ul class="d3f_iconexp">
+	<li><img src="<{$mod_imageurl}>/forum_1.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_ALT_NEWPOSTS}></li>
+</ul>
+<ul class="d3f_iconexp">
+	<li><img src="<{$mod_imageurl}>/forum_0.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_ALT_NONEWPOSTS}></li>
+</ul>
+</div>
+
+<!-- forum jumpbox -->
+<form name="forum_jump_box" action="<{$mod_url}>/index.php" method="get" style="clear:both;" class="d3f_form">
+	<select name="forum_id"><{$forum_jumpbox_options}></select>
+	<input type="submit" value="<{$smarty.const._MD_D3FORUM_BTN_JUMPTOFORUM}>" />
+	&nbsp;
+	<a href="<{$mod_url}>/index.php?page=search"><{$smarty.const._MD_D3FORUM_LINK_ADVSEARCH}></a>
+</form>
+
+<hr class="notification" />
+
+<{include file='db:system_notification_select.html'}>
+<!-- end module contents -->

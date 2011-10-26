@@ -1,0 +1,46 @@
+<div class="d3pipes_admin_clipping" id="<{$mydirname}>_admin_clipping">
+
+	<h2><{$mod_name}> - <{$smarty.const._MD_A_D3PIPES_H2_CLIPPINGADMIN}></h2>
+
+	<{$smarty.const._MD_A_D3PIPES_LABEL_TOTALCLIPPINGS}>: <{$total_clippings}>
+	<br />
+	<{if $selected_clippings > -1}>
+	<strong><{$smarty.const._MD_A_D3PIPES_LABEL_SELECTEDCLIPPINGS}>: <{$selected_clippings}></strong>
+	<{/if}>
+
+	<form action="<{$mod_url}>/admin/index.php?page=clipping" method="post">
+
+		<div class="head" style="margin: 12px;">
+
+			<p>
+			<label for="protectbycomment"><{$smarty.const._MD_A_D3PIPES_LABEL_PROTECTBYCOMMENT}></label>:
+			<input type="checkbox" name="protectbycomment" id="protectbycomment" value="1" checked="checked" />
+			<br />
+			<label for="protectbyhighlight"><{$smarty.const._MD_A_D3PIPES_LABEL_PROTECTBYHIGHLIGHT}></label>:
+			<input type="checkbox" name="protectbyhighlight" id="protectbyhighlight" value="1" checked="checked" />
+			</p>
+
+			<p>
+			<{$smarty.const._MD_A_D3PIPES_LABEL_DELETEDEADLINKTOPIPEID}>:
+			<input type="submit" name="count_deleteunlinks" value="<{$smarty.const._MD_A_D3PIPES_BTN_COUNTNUM}>" />
+			<input type="submit" name="do_deleteunlinks" value="<{$smarty.const._MD_A_D3PIPES_BTN_EXECUTE}>" onclick="return confirm('<{$smarty.const._MD_A_D3PIPES_CNFM_DELETE}>');" />
+			</p>
+
+			<p>
+			<{'<input type="text" name="olderthan" id="olderthan" value="7" size="2" />'|string_format:$smarty.const._MD_A_D3PIPES_LABEL_FMT_DELETEOLDERTHAN}>
+			<input type="submit" name="count_deleteolder" value="<{$smarty.const._MD_A_D3PIPES_BTN_COUNTNUM}>" />
+			<input type="submit" name="do_deleteolder" value="<{$smarty.const._MD_A_D3PIPES_BTN_EXECUTE}>" onclick="return confirm('<{$smarty.const._MD_A_D3PIPES_CNFM_DELETE}>');" />
+			</p>
+
+			<{$gticket_hidden}>
+		</div>
+
+	</form>
+
+</div>
+
+<script type="text/javascript">
+<!--//
+	xoopsGetElementById("olderthan").value = <{$olderthan}>;
+//-->
+</script>

@@ -1,0 +1,67 @@
+<table class="outer">
+	<tr>
+		<th><{$smarty.const._MD_D3PIPES_TH_PUBTIME}></th>
+		<{if $entries[0].pipe.name}>
+			<{assign var="display_pipe_name_column" value="1"}>
+			<th><{$smarty.const._MD_D3PIPES_TH_PIPENAME}></th>
+		<{/if}>
+		<th><{$smarty.const._MD_D3PIPES_TH_HEADLINE}></th>
+	</tr>
+	<{foreach from=$entries item="entry"}>
+
+		<{if $entry.allow_html}>
+			<{assign var="entry_headline4disp" value=$entry.headline}>
+			<{assign var="entry_description4disp" value=$entry.description}>
+		<{else}>
+			<{assign var="entry_headline4disp" value=$entry.headline|escape}>
+			<{assign var="entry_description4disp" value=$entry.description|escape|trim|nl2br}>
+		<{/if}>
+
+		<tr class="<{cycle values="odd,even"}>">
+			<td>
+				<{$smarty.const._MEDIUMDATESTRING|date:$entry.pubtime+$timezone_offset}>
+			</td>
+			<{if $display_pipe_name_column}>
+				<td>
+					<a href="<{$xoops_url}>/modules/<{$entry.pipe.dirname}>/index.php?page=eachpipe&amp;pipe_id=<{$entry.pipe.id}>"><{$entry.pipe.name}></a>
+					<{if $entry.pipe.url}>
+						<a href="<{$entry.pipe.url}>"> <img src="<{$mod_imageurl}>/external.png" alt="<{$entry.pipe.name|escape|string_format:$smarty.const._MD_D3PIPES_FMT_EXTERNALLINK}>" /> </a>
+					<{/if}>
+				</td>
+			<{/if}>
+			<td>
+
+				<!-- internal links -->
+				<{if strstr($entry.link,$xoops_url)}>
+					<a href="<{$entry.link|escape}>"><{$entry_headline4disp}></a>
+				<{elseif $entry.clipping_id}>
+					<a href="<{$mod_url}>/index.php?page=clipping&amp;clipping_id=<{$entry.clipping_id}>"><{$entry_headline4disp}></a>
+					<{* d3forum comment integration *}>
+					<{if $mod_config.comment_dirname && $mod_config.comment_forum_id}>
+						(<{$entry.comments_count}>)
+					<{/if}>
+				<{else}>
+					<{$entry_headline4disp}>
+				<{/if}>
+
+				<!-- link to outside directly -->
+				<{if ! strstr($entry.link,$xoops_url)}>
+					<a href="<{$entry.link|escape}>"> <img src="<{$mod_imageurl}>/external.png" alt="<{$entry.headline|escape|string_format:$smarty.const._MD_D3PIPES_FMT_EXTERNALLINK}>" /> </a>
+				<{/if}>
+
+				<!-- description on/off -->
+				<{if $entry.fingerprint && $entry.description}>
+					<a href="javascript:void(0);" onclick="obj=document.getElementById('<{$entry.fingerprint|escape}>');obj.style.display=obj.style.display=='block'?'none':'block'; img=document.getElementById('closeopen_<{$entry.fingerprint|escape}>');img.src=obj.style.display=='block'?'<{$mod_imageurl}>/description_opened.gif':'<{$mod_imageurl}>/description_closed.gif';"> <img src="<{$mod_imageurl}>/description_closed.gif" id="closeopen_<{$entry.fingerprint|escape}>" alt="+" /> </a>
+					<div id="<{$entry.fingerprint|escape}>" style="display:none;">
+						<{if $entry.content_encoded}>
+							<{$entry.content_encoded}>
+						<{else}>
+							<{$entry_description4disp}>
+						<{/if}>
+					</div>
+				<{/if}>
+
+			</td>
+		</tr>
+	<{/foreach}>
+</table>

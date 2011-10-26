@@ -1,0 +1,46 @@
+<div class="d3pipes_admin_wizard_inner" id="<{$mydirname}>_admin_wizard_inner">
+
+<h2><{$mod_name}> - <{$smarty.const._MD_A_D3PIPES_H2_WIZARDINNER}></h2>
+
+<form action="<{$mod_url}>/admin/index.php?page=wizard_inner" method="post">
+
+	<table class="outer">
+		<tr>
+			<th>
+				<{$smarty.const._MD_A_D3PIPES_TH_WIZ_MODNAME}>
+			</th>
+			<th>
+				<{$smarty.const._MD_A_D3PIPES_TH_WIZ_DIRNAME}>
+			</th>
+			<th>
+				<{$smarty.const._MD_A_D3PIPES_TH_WIZ_JOINTS}>
+			</th>
+		</tr>
+
+		<!-- modules loop -->
+		<{foreach from=$modules item="module" key="dirname"}>
+		<tr class="<{cycle values="even,odd"}>">
+			<td>
+				<{$module.name}>
+			</td>
+			<td>
+				<{$dirname}>
+			</td>
+			<td>
+				<{foreach from=$module.joints item="joint"}>
+					<input type="checkbox" name="joints[]" value="<{$joint.type}>::<{$joint.class}>::<{$dirname}>" id="joint4<{$dirname}>_<{$joint.type}>_<{$joint.class}>" /><label for="joint4<{$dirname}>_<{$joint.type}>_<{$joint.class}>"><{$joint.name}></label><br />
+				<{/foreach}>
+			</td>
+		</tr>
+		<{/foreach}>
+
+	</table>
+	<div align="center">
+		<input type="checkbox" name="create_union_pipe" id="create_union_pipe" value="1" checked="checked" /><label for="create_union_pipe"><{$smarty.const._MD_A_D3PIPES_TH_WIZ_CREATEUNIONPIPE}></label>
+		<br />
+		<input type="submit" value="<{$smarty.const._MD_A_D3PIPES_TH_WIZ_BTN_REGISTER}>" />
+		<{$gticket_hidden}>
+	</div>
+</form>
+
+</div>

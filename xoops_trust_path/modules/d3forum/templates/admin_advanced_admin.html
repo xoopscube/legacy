@@ -1,0 +1,56 @@
+<h3><{$mod_name}></h3>
+
+<h2 class="head"><{$smarty.const._MD_A_D3FORUM_H2_SYNCALLTABLES}></h2>
+<form name="syncalltables" action="<{$mod_url}>/admin/index.php?page=advanced_admin" method="post">
+	<{$smarty.const._MD_A_D3FORUM_HELP_SYNCALLTABLES}>
+	<h3>
+		<label for="button_synctopics">1.<{$smarty.const._MD_D3FORUM_TOPIC}></label>
+	</h3>
+	<p>
+		<{$smarty.const._MD_A_D3FORUM_MAX_TOPIC_ID}>:<{$max_topic_id}>
+		<br />
+		<label for="synctopics_start"><{$smarty.const._MD_A_D3FORUM_LABEL_SYNCTOPICS_START}></label>
+		<input type="textbox" size="10" name="synctopics_start" id="synctopics_start" value="<{$synctopics_start}>" />
+		<label for="synctopics_num"><{$smarty.const._MD_A_D3FORUM_LABEL_SYNCTOPICS_NUM}></label>
+		<input type="textbox" size="10" name="synctopics_num" id="synctopics_num" value="<{$synctopics_num}>" />
+		<input type="submit" name="do_synctopics" id="button_synctopics" value="<{$smarty.const._MD_A_D3FORUM_BTN_DOSYNCTABLES}>" />
+	</p>
+	<h3>
+		<label for="button_syncforums">2.<{$smarty.const._MD_D3FORUM_FORUM}></label>
+		<input type="submit" name="do_syncforums" id="button_syncforums" value="<{$smarty.const._MD_A_D3FORUM_BTN_DOSYNCTABLES}>" />
+	</h3>
+	<h3>
+		<label for="button_synccategories">3.<{$smarty.const._MD_D3FORUM_CATEGORY}></label>
+		<input type="submit" name="do_synccategories" id="button_synccategories" value="<{$smarty.const._MD_A_D3FORUM_BTN_DOSYNCTABLES}>" />
+	</h3>
+</form>
+
+<h2 class="head"><{$smarty.const._MD_A_D3FORUM_H2_IMPORTFROM}></h2>
+<form name="importfrom" action="<{$mod_url}>/admin/index.php?page=advanced_admin" method="post">
+	<{$gticket_hidden}>
+	<label for="import_mid"><{$smarty.const._MD_A_D3FORUM_LABEL_SELECTMODULE}></label>
+	<select name="import_mid" id="import_mid"><{html_options options=$import_from_options}></select>
+	<br />
+	<input type="submit" name="do_import" value="<{$smarty.const._MD_A_D3FORUM_BTN_DOIMPORT}>" onclick="return confirm('<{$smarty.const._MD_A_D3FORUM_CONFIRM_DOIMPORT}>')" />
+	<br />
+	<{$smarty.const._MD_A_D3FORUM_HELP_IMPORTFROM}>
+</form>
+
+<h2 class="head"><{$smarty.const._MD_A_D3FORUM_H2_COMIMPORTFROM}></h2>
+<form name="comimportfrom" action="<{$mod_url}>/admin/index.php?page=advanced_admin" method="post">
+	<{$gticket_hidden}>
+	<label for="comimport_mid"><{$smarty.const._MD_A_D3FORUM_LABEL_SELECTMODULE}></label>
+	<select name="comimport_mid" id="comimport_mid"><{html_options options=$comimport_from_options}></select>
+	<br />
+	<label for="comimport_forum_id"><{$smarty.const._MD_A_D3FORUM_LABEL_SELECTFORUM}></label>
+	<select name="comimport_forum_id" id="comimport_forum_id">
+		<option value="0">----</option>
+		<{$comimport_to_options}>
+	</select>
+	<br />
+	<input type="submit" name="do_comimport" value="<{$smarty.const._MD_A_D3FORUM_BTN_DOIMPORT}>" onclick="return confirm('<{$smarty.const._MD_A_D3FORUM_CONFIRM_DOIMPORT}>')" />
+	<br />
+	<{$smarty.const._MD_A_D3FORUM_HELP_COMIMPORTFROM}>
+</form>
+
+

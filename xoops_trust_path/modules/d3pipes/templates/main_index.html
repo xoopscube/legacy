@@ -1,0 +1,43 @@
+<div class="d3pipes_index" id="<{$mydirname}>_index">
+
+	<h2><{$smarty.const._MD_D3PIPES_H2_INDEX}></h2>
+
+	<ul>
+		<{foreach from=$headpipes item="pipe"}>
+			<li>
+				<a href="<{$mod_url}>/index.php?page=eachpipe&amp;pipe_id=<{$pipe.id}>"><{$pipe.name}></a>
+				<{if $pipe.url}>
+					&nbsp; (<a href="<{$pipe.url}>"><{$pipe.url}></a>)
+				<{/if}>
+				<{if $xoops_isadmin}>
+					<a href="<{$mod_url}>/admin/index.php?page=pipe&amp;pipe_id=<{$pipe.id}>">[<{$smarty.const._EDIT}>]</a>
+					<a href="<{$xoops_url}>/sitemap.php?dirname=<{$mydirname}>&amp;pipe_id=<{$pipe.id}>">[<{$smarty.const._MD_D3PIPES_LINK_SITEMAPS}>]</a>
+				<{/if}>
+			</li>
+		<{/foreach}>
+	</ul>
+
+	<div style="float:right;">
+		<a href="<{$mod_url}>/index.php?page=xml&amp;style=atom"><img src="<{$mod_imageurl}>/icon_atom.gif" width="80" height="15" alt="ATOM" /></a>
+		<a href="<{$mod_url}>/index.php?page=xml&amp;style=rss10"><img src="<{$mod_imageurl}>/icon_rss10.gif" width="80" height="15" alt="RSS 1.0" /></a>
+		<a href="<{$mod_url}>/index.php?page=xml&amp;style=rss20"><img src="<{$mod_imageurl}>/icon_rss20.gif" width="80" height="15" alt="RSS 2.0" /></a>
+	</div>
+
+	<{if $xoops_isadmin}>
+	<div style="float:right;">
+		<a href="<{$mod_url}>/admin/index.php?page=pipe">[<{$smarty.const._EDIT}>]</a>
+		<a href="<{$xoops_url}>/sitemap.php?dirname=<{$mydirname}>">[<{$smarty.const._MD_D3PIPES_LINK_SITEMAPS}>]</a>
+	</div>
+	<{/if}>
+
+	<h2><{$smarty.const._MD_D3PIPES_H2_LATESTHEADLINES}></h2>
+
+	<{if $errors && $xoops_isadmin}>
+		<{foreach from=$errors item="error"}>
+			<div class="errorMsg"><{$error|escape|nl2br|regex_replace:"/\((\d+)\)/":"<a href='`$mod_url`/admin/index.php?page=pipe&amp;pipe_id=\\1'>(\\1)</a>"}></div>
+		<{/foreach}>
+	<{/if}>
+
+	<{include file="db:`$mydirname`_inc_entries.html" caller="index"}>
+
+</div>
