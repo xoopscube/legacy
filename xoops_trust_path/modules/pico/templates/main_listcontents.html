@@ -1,0 +1,94 @@
+<div class="pico_container" id="<{$mydirname}>_container">
+
+<{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
+
+<!-- controllers -->
+<div class="pico_controllers">
+
+	<!-- link to menu -->
+	<a href="<{$mod_url}>/index.php?page=menu">[<{$smarty.const._MD_PICO_MENU}>]</a>
+	
+	<{if $category.isadminormod}>
+	<a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>">[<{$smarty.const._MD_PICO_LINK_EDITCATEGORY}>]</a>
+	<{/if}>
+	
+	<{if $xoops_isadmin}>
+		<a href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>">[<{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}>]</a>
+	<{/if}>
+	
+	<{if $xoops_isadmin}>
+		<a href="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$category.id}>">[<{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}>]</a>
+	<{/if}>
+	
+	<{if $category.can_makesubcategory}>
+	<a href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$category.id}>">[<{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}>]</a>
+	<{/if}>
+	
+	<{if $category.can_post}>
+	<a href="<{$mod_url}>/index.php?page=makecontent&amp;cat_id=<{$category.id}>&amp;ret=mc<{$category.id}>">[<{$smarty.const._MD_PICO_LINK_MAKECONTENT}>]</a>
+	<{/if}>
+
+	<!-- link to RSS -->
+	<a href="<{$mod_url}>/index.php?page=rss&amp;cat_id=<{$category.id}>">[RSS]</a>
+	
+</div>
+
+<{if $category.id == 0}><p><{$mod_config.top_message}></p><{/if}>
+
+<h1><{$category.title}></h1>
+<{if $category.isadminormod}>
+	<p>
+	<{$smarty.const._MD_PICO_CONTENTS_TOTAL}>:<{$category.redundants.contents_total}>
+	<{$smarty.const._MD_PICO_SUBCATEGORIES_TOTAL}>:<{$category.redundants.subcategories_total}>
+	</p>
+<{/if}>
+
+<p><{$category.desc}></p>
+
+<!-- list subcategories -->
+<{if $subcategories}>
+<h2><{$smarty.const._MD_PICO_SUBCATEGORIES}></h2>
+<{foreach from=$subcategories item="subcategory"}>
+	<dl class="pico_subcategory">
+		<dt>
+			<a href="<{$mod_url}>/<{$subcategory.link}>"><{$subcategory.title}></a>
+			<{if $category.isadminormod}>
+				<{$smarty.const._MD_PICO_CONTENTS_TOTAL}>:<{$subcategory.redundants.contents_total}>
+				<{$smarty.const._MD_PICO_SUBCATEGORIES_TOTAL}>:<{$subcategory.redundants.subcategories_total}>
+			<{/if}>
+		</dt>
+		<dd>
+			<{$subcategory.desc}>
+		</dd>
+	</dl>
+<{/foreach}>
+<{/if}>
+
+<!-- list contents -->
+<{if $contents}>
+<h2><{$smarty.const._MD_PICO_CONTENTS}></h2>
+<ul class="pico_list_contents">
+<{foreach from=$contents item="content"}>
+	<li><a href="<{$mod_url}>/<{$content.link}>">
+	<{if $content.public}>
+		<{$content.subject}>
+	<{elseif $category.isadminormod}>
+		<em class="pico_notice"><{$content.subject}></em>
+		<{if ! $content.approval}>
+			(<{$content.poster_uname}> <{$content.created_time_formatted}> )
+		<{/if}>
+	<{/if}>
+	</a>
+	<{if $category.can_edit}>
+		<a href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>&amp;ret=mc<{$category.id}>"><img src="<{$mod_imageurl}>/icon_edit.gif" alt="<{$smarty.const._MD_PICO_LINK_EDITCONTENT}>" /></a>
+	<{/if}>
+	</li>
+<{/foreach}>
+</ul>
+<{/if}>
+
+<hr class="notification" />
+<{include file='db:system_notification_select.html'}>
+
+</div>
+<!-- end module contents -->

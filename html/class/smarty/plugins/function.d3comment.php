@@ -16,9 +16,6 @@
  */
 function smarty_function_d3comment($params, &$smarty)
 {
-	$forum_dirpath = XOOPS_TRUST_PATH.'/modules/d3forum' ;
-	require_once $forum_dirpath.'/class/D3commentObj.class.php' ;
-
 	$mydirname = @$params['mydirname'] ;
 	$classname = @$params['class'] ;
 
@@ -41,22 +38,16 @@ function smarty_function_d3comment($params, &$smarty)
 		}
 	}
 
-	$m_params['forum_dirname'] = $forum_dirname ;
-
-	$m_params['external_dirname'] = $mydirname  ; 
-	$m_params['classname'] = $classname ;
-	$m_params['external_trustdirname'] = $mytrustdirname ;
-
 	if( class_exists( $classname ) ) {
-		$obj =& D3commentObj::getInstance ( $m_params ) ;
-		$obj->d3comObj->setSmarty( $smarty ) ;
+		$d3com =& new $classname( '' , $mydirname , $mytrustdirname ) ;
+		$d3com->setSmarty( $smarty ) ;
 		switch( $params['mode'] ) {
 			case 'count' :
-				$obj->d3comObj->displayCommentsCount( $params ) ;
+				$d3com->displayCommentsCount( $params ) ;
 				break ;
 			case 'display_inline' :
 			default :
-				$obj->d3comObj->displayCommentsInline( $params ) ;
+				$d3com->displayCommentsInline( $params ) ;
 				break ;
 		}
 	} else {

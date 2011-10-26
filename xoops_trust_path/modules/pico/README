@@ -1,0 +1,1052 @@
+[mlimg]
+[xlang:en]
+====  pico - the module for static contents  ===
+
+[b]pico[/b] is a module for static contents based on Duplicatable V3 (D3).
+
+Don't forget updating this module after overwritting older version.
+And you have to "sync" once on upgrading from 1.5x/1.6x
+
+Though functionally pico looks a successor to TinyD, pico is made as full-scratched module.
+
+TinyD became a deprecated module because pico has been marked as stable.
+Of course, you can upgrade your contents from TinyD to pico easily.
+
+
+[b]SPEC:[/b]
+
+- hierarchical category
+- breadcrumbs
+- page navigation
+- XOOPS_TRUST_PATH/wraps/(dirname) files manual page-wrapping
+- XOOPS_TRUST_PATH/wraps/(dirname) files automatic page-wrapping/transfer
+- static URI (same as wraps)
+- overridable options at each categories
+- body filter system (smarty, wiki, php etc.)
+- better preview
+- contents cache
+- tell a friend link (tellafriend module supported natively)
+- printer friendly view
+- singlecontent view
+- html header customize per module/categories
+- html header customize per contents
+- search (with context)
+- counts views
+- list block (duplicatable)
+- menu block (duplicatable)
+- contents block (duplicatable)
+- contents controller for admin
+- dynamic submenu
+- native d3forum comment-integration
+- Wysiwyg Editor (common/fckeditor only)
+- import from TinyD per a module
+- import from pico per a module
+- import from pico per a content
+- plugin for sitemap module
+- vote
+- automated menu page
+- approval system for creating contents
+- approval system for modifying contents
+- event notification for waiting approval
+- plugin for waiting module
+- RSS (both entire module and each categories)
+- auto-registering wrapped files into DB
+- xoops_breadcrumbs
+- static URI by mod_rewrite (both wraps mode and normal mode)
+- refer histories of contents
+- language constants override system
+- Xmobile plugin
+- any number of extra fields or images as you like
+- tag
+- hierarchical permission system (succeeding or independent as you like)
+- waiting/expiring contents
+
+
+[b]USAGE:[/b]
+
+(0) Install altsys(>=0.61) before using pico.
+
+(1) copy html/modules/pico into your modules/
+
+(2) name the directory name as you like.
+
+(3) copy two files under html/class/smarty/plugins/ in the archive into your class/smarty/plugins/
+
+(4) make a new folder out of DocumentRoot  eg) /home/yourhome/xoops_trust_path/
+
+(5) insert a line into just after defining XOOPS_URL in mainfile.php. (Edit '/ho
+me/yourhome/xoops_trust_path')
+[code]
+        define('XOOPS_TRUST_PATH','/home/yourhome/xoops_trust_path');
+[/code]
+
+(6) make a directory 'modules' under the directory. (XOOPS_TRUST_PATH/modules/)
+
+(Since the steps of (4)(5)(6) are the same as altsys or D3 modules, you need not to do the steps if you've already done it.)
+
+(7) copy xoops_trust_path/modules/pico into XOOPS_TRUST_PATH/modules/
+
+(8) install it in XOOPS modulesadmin
+
+(9) set group permissions of the TOP category in admin area
+
+You did it.
+you can add categories or contents as you like.
+
+And you'd better install d3forum also.
+(pico supports comment system integrated with d3forum only)
+
+
+
+[b]NOTICE:[/b]
+
+You have to turn "module cache" off about this module.
+pico is fast enough if you use content's cache.
+
+
+[b]HISTORY:[/b]
+
+1.82 (2009/08/20)
+- fixed preload.php considering directories begin with a number (thx 9darts)
+- changed list view for histories from poster/created to modifier/modified
+- fixed Notices in contents admin (thx fooo)
+- fixed no history is stored when it is deleted in contents admin
+- modified two histories will be stored at deleting a content
+- removed xmobile support 1.82a
+- fixed category jumpbox in contentmanager (thx kerokero) 1.82b
+- fixed encoding detection for form with WizMobile 1.82c
+- fixed some SQL Errors with MySQL 5.1 strict (thx moegiiro) 1.82d
+- fixed compatibility with prototype.js (thx tohokuaiki) 1.82e
+
+1.81 (2009/05/09)
+- modified ret can be specified by relative link
+- fixed missing the top content redirection (thx dekki) 1.81a
+- added virtual method canUploadImages() into ExtraFields class (thx naao) 1.81b
+
+1.80 (2009/03/02)
+- marked as a stable version
+- fixed missing notification_select in main_viewcontent.html (thx nor)
+- fixed wrong permissions are applied for histories (thx jidaikobo) 1.80a
+- fixed html headers are not assigned for singlecontent (thx dekki) 1.80b
+
+1.79 (2009/02/16)
+- modified templates to support RTL (not left/right but _ALIGN_START/END)
+- modified body filtering to rescure it from fatal smarty compiling errors
+- modified the content form to notify "HTML headers for each contents" status
+
+1.78 (2009/02/09)
+- fixed vpath in subcategories block (thx MAMEMARU)
+- updated language files
+-- persian (thx voltan)
+
+1.77 (2009/01/23)
+- fixed datetime of histories is displayed as created time in content form
+- fixed array for extra_fields broken with magic_quotes_gpc=on (thx jidaikobo)
+- fixed IE7 cannot download CSVs via SSL (thx jidaikobo)
+- fixed any categories with no contents display thier lists (thx nobu175)
+- added [ pagebreak ] tag into xcode
+- added a parameter replyto_field_name for formmail plugins
+
+1.76 (2009/01/18)
+- modified comment integration using d3comment instead of d3forum_comment
+
+1.75 (2008/12/03)
+- modified "auto registrar class" can be overridden per category
+- added auto-remover by "auto registrar class"
+- added auto-updater by "auto registrar class"
+- modified flags for auto-registering can be overriden per category
+- fixed some fields for the contents stored into wrong fields of the histries
+- fixed the preview for makecontent with wraps (thx mathmay)
+- modified simple html-wapping controller can assign tellafriend
+- fixed html-wrapping controller can work without wraps mode
+- fixed a typo in admin_tags.html (thx salamander) 1.75a
+- modified auto-updater from wrapped file without title tag 1.75a
+- fixed formmail feature cannot get <legend> correctly (thx jidaikobo) 1.75a
+- fixed poster_uid and modifier_uid cannot be changed into 0 1.75b
+- confirmed to work with ImpressCMS and slight modifications 1.75b
+- added language files
+-- portuguesebr (thx leco) 1.75b
+
+1.74 (2008/11/19)
+- added tags manager
+- modified extras manager
+- added options for tags blocks
+- changed string formats to serialize extra data (do sync once)
+- changed string formats to serialize extra fields (do sync once)
+- changed string formats to serialize redundant data
+- fixed undefined function pico_common_unserialize() (thx jidaikobo) 1.74a
+- fixed extra_fields sample is enabled in the template 1.74b
+
+1.73 (2008/10/01)
+- modified URI mapper class can be overridden (update the module)
+- modified the subject is rendered with entity enabled
+- fixed 'cancel' is appended into the formmail feature
+- fixed xmobile plugin (thx shige-p) 1.73a
+- fixed Smarty filter missing $xoops_imageurl etc. on XCL (thx gusagi) 1.73b
+- fixed the flag for "Use tellafriend" is reversed (thx shige-p) 1.73b
+- fixed a typo (vpath on/off) in main_content_form.html (thx mkbl) 1.73c
+- added offset feature (offset,limit) into list blocks 1.73d
+
+1.72 (2008-09-17)
+- fixed formmail feature cannot work with mobile renderers
+- added a flag for process_body into content block (thx jidaikobo) 1.72a
+- fixed the condition for hyp_common's mobile (thx nao-pon) 1.72b
+
+1.71 (2008-09-10)
+- fixed htmlheaders for each contents are not rendered (thx neko88)
+- fixed compatibility of the listing block (thx neko88)
+- updated language files
+-- persian (thx voltan and stranger)
+- fixed formmail cannot work (thx ditamine) 1.71a
+- fixed category info is not assigned for content page (thx ditamine) 1.71a
+
+1.70 (2008-09-07)
+- changed altsys-0.61 essential
+- restructed almost codes
+- added a feature of extra fields
+- added configurations about images for extra fields
+- modified d3forum.textsanitizer XCL2.1 preload friendly
+- modified xoops_version for XCL2.1 friendly
+- added a feature changing poster_uid/modifier_uid
+- added a feature of TAG
+- added a block for tags
+- added a configuration HTML header can be edited
+- modified timing for caching
+- added a field for searching
+- finished supporting common/spaw
+- fixed a problem of body leaking at searching (thx toshi)
+- added a controller clearing body caches
+- added succeedable category permissioning system
+
+1.62 (2008/08/27)
+- fixed templates wrong link on use_rewrite (thx taked2)
+- fixed missing some escapes in RSS (thx tom_moppet)
+
+1.61 (2008/06/12)
+- fixed a typo in main_content_form (thx jidaikobo)
+- fixed typos in language files (thx jidaikobo)
+- updated gticket2
+- fixed search.php can hit invisible or waiting contents (thx sacchan)
+- updated language files
+-- persian (thx voltan) 1.61a
+
+1.60 (2007/12/19)
+- marked as a stable version
+- added a parameter "from_field_name" into PicoFormProcessBySmartyBase 1.60a
+- added a parameter "fromname_field_name" into PicoFormProcessBySmartyBase 1.60a
+- added "cancel" into PicoFormProcessBySmartyBase 1.60a
+
+1.57 (2007/11/20)
+- modified field cat_redundants from text to mediumtext
+- added pico_subcattree for getting redundants from a specified cat_id
+- added contents_count,subcategories_count,subcattree_raw into cat_redundants
+- modified contents_* don't count invisible content
+- fixed contentmanager can be hanged up by Smarty error like wrong plugin etc.
+- added pico_list 1.57a
+- added pico_category_search 1.57a
+- added XC-delegate ModuleClass.Pico.Contentman.InsertSuccess 1.57a
+
+1.56 (2007/10/23)
+- modified the viewed counter checks IP is different from modifier's IP
+- changed the policy checking referer disabled
+- fixed "save as" does not work (thx PhotoSiteLinks)
+
+1.55 (2007/10/03)
+- modified contentmanager that moderators can change poster,modifier
+- modified admin/extras (CSV etc.)
+- modified survey plugin can send mail if necessary
+- modified parsing types of "int" and "double"
+- fixed typo in PicoTextSanitizer (thx enhiro)
+- added a feature of custom validator for formprocessing system
+- modified behaviors on changing modifier (thx starck) 1.55a
+
+1.54 (2007/09/22) update the module
+- modified all contents will be hit by search even off-cache contents
+- modified the default value for content cache off
+- added extras feature for DB storing plugins
+- added contents locking
+- modified class PicoFormProcessBySmartyBase radically
+- added confirming mail for smarty_plugins like formmail
+- added parameters for smarty_plugins like formmail
+- added smarty_plugin
+-- formmail4fleamarket
+-- survey
+- fixed wrong caching (thx Sow) 1.54a
+- added language files 1.54a
+-- fr_utf8 (thx gigamaster)
+
+
+1.53 (2007/09/18) update the module
+- added a config for auto HTML cleaner by HTMLPurifier (PHP5 & Protector>=3.14)
+- added a switch to wysiwyg editor
+- modified formmail can specify "to" addresses
+- added language files
+-- portuguese (thx Mikhail)
+-- pt_utf8 (thx Mikhail)
+
+1.52 (2007/09/13) update the module
+- modified class FormProcess getting labels of checkbox/radio from <legend>
+- modified class FormProcess can treat <select multiple>
+- modified class FormProcess can treat hidden <input>
+- modified waiting contents can be edited by poster him/herself.
+- added a block displaying waiting requests from the user
+
+1.51 (2007/09/08)
+- modified "formmail" Smarty plugin radically
+- modified the class FormProcessByHtml can parse radio/checkbox
+- modified that the validation rule uses class (thx genet!)
+- modified modified time will be synchronized the wrapped file
+- fixed timezone problem in created/modified contents (thx mirror)
+
+1.50 (2007/09/04)
+- added HTML validated formmail
+- fixed missing sync after content updated (thx rockle)
+- added permission checker for hodajuku distribution
+- updated language files
+-- persian (thx voltan)
+- modified session for form process will be cleared on managing content 1.50a
+
+1.40 (2007/08/08)
+- added a class for xmobile's plugin
+- numbered as stable version
+- fixed a class for xmoble plugin (thx yue) 1.40a
+- modified search function for xmobile (thx SATT) 1.40b
+
+1.39 beta (2007/08/06)
+- fixed parsing dynamic contents can be occurred on listing contents
+- fixed a violation of entities in RSS
+
+1.38 beta (2007/07/04)
+- modified htmlheader can use <{$mod_url}>,<{$xoops_url}> etc.
+- modified to return to previous page after update/create a content
+
+1.37 beta (2007/07/01)
+- fixed preg pattern for the content block (thx sakurai)
+- fixed TextWiki cannot work in block
+- modified category's description can use HTML
+- modified permission function for xmobile plugin
+- fixed a typo in ja_utf8 (dqnchan)
+
+1.36 beta (2007/06/14)
+- modified controller about created/modified (thx moegiiro)
+- modified future timestamped content is not displayed yet
+- added an event "new content"
+- modified notifications around escaping HTML
+- modified compatibility of BBCode filter
+- added import feature from SmartSection
+- added a block "subcategories"
+- changed thelanguage file name
+-- ja_utf8 (formerly japaneseutf)
+
+1.35 beta (2007/05/29)
+- modified interfaces managing contents/categories
+- added drop-down controller for vpath 
+- modified wrapping speed
+- fixed small typo in submenu (thx taku777)
+- modified deals of poster/modifier (thx starck) 1.35a
+
+1.34 beta (2007/05/17)
+- added D3Comment callback
+- added language files
+-- schinese (thx chnwalkman)
+
+1.33 beta (2007/05/15)
+- fixed a typo in vote
+- fixed a typo in tellafriend
+
+1.32 beta (2007/05/14)
+- templatized block editing area
+- added an option to display body also into list block
+- modified content block can select a content from listdown box.
+- modified links in content block from relative to absolute on wraps mode
+- fixed links in content block above (thx makimaki) 1.32a
+- updated language files
+-- persian (thx voltan)
+
+1.31 alpha (2007/05/07)
+- changed the structure "altsys essential"
+- added language constants override system (with altsys>=0.5)
+- templatized mymenu (with altsys>=0.5)
+- modified many templates
+- modified php removing duplicated codes
+- modified SQLs common as possible
+- added language files
+-- japaneseutf
+-- italian (thx evoc)
+- modified the interface for mylangadmin 1.31a
+
+1.30 alpha (2007/04/21)
+- modified addslashes() into mysql_real_escape_string()
+- addded some redundants informations
+- changed the top category editable (like normal category)
+- modified pagewrap returns just between <body> and </body>
+- added pico's special Smarty plugin system
+- added pico's Smarty plugins
+-- pico contents <{pico}>
+-- d3pipes entries <{d3pipes}>
+
+1.20 (2007/04/18)
+- numbered as stable version
+
+1.18 beta (2007/03/29)
+- fixed bugs for invisible content
+- modified only moderators can enable HTML headers
+- modified moderators can change created/modified time
+- modified blocks for xugj_block plugin
+- fixed modified time is updated unexpectedly 1.18a (thx starck)
+
+1.17 beta (2007/03/23)
+- fixed category's permissions is not affected in search
+- added a configuration using concept of "poster" in search
+- updated mymenu
+- changed some text field into mediumtext 1.17a
+- minor fixes 1.17a
+
+1.16 beta (2007/03/20)
+- added history diff
+- modified viewer of histories
+- fixed the checker for duplicated vpaths 1.16a
+- separated two features viewer and downloader of histories 1.16a
+
+1.15 beta (2007/03/16)
+- fixed a typo in header('Expires'...) (thx rock)
+- fixed css template does not work (thx mizukami) 1.15a
+- fixed calculation of time offsets of RSS (thx Yoshii) 1.15b
+
+1.14 beta (2007/03/13)
+- modified CSS of this module's template into a template
+- added two configs about the feature of history
+- modified module_icon.php cacheable for web browser
+- modified images etc. transferred by php in wraps cacheable for web browser
+- added referring feature to deleted contents (in contents manager for admin)
+- fixed a typo in contents controller for admin 1.14a (thx t_yamo)
+
+1.13 beta (2007/03/10) update the module
+- added history
+- added a config for sitemap plugin (also display contents or not)
+- added a config for submenu (also display contents or not)
+
+1.12 beta (2007/03/09) overwrite public side also
+- modified html/css radically (thx emomo)
+- modified sitemap plugin
+- added mod_rewrite mode for categories
+- fixed notice in submenus (thx starck)
+
+1.11 beta (2007/03/07)
+- added mod_rewrite mode
+
+1.10 beta (2007/03/06)
+- added hierarchical submenu
+- added a config of prohibited filters
+- added a config of forced filters
+
+0.99RC4->1.00 (2007/03/05)
+- fixed xoops_breadcrumbs (thx starck)
+- fixed form template to edit content
+
+0.98->0.99RC4
+- added xoops_breadcrumbs
+- added singlecontent
+- fixed preview with wraps mode (thx toplan)
+- fixed checking of permission of making subcategories (thx t_yamo)
+- fixed a plugin for sitemap module (thx starck)
+
+0.97->0.98RC3
+- fixed some minor bugs
+- added language files
+-- persian (thx voltan)
+-- spanish (thx PepeMty) 0.98a
+-- french (thx gigamaster) 0.98b
+
+0.96->0.97RC2
+- modified the filter of xoopstpl radically
+- fixed RSS encoding conversion
+- fixed wrapping encoding conversion
+- fixed mymenu's wrong link (thx umasan)
+
+0.95->0.96RC
+- upgraded the version as RC
+- modified treating directory in wraps mode
+- added sync tables
+- fixed filter xoopstpl
+- checked compatibility with XOOPS Cube 2.1 Legacy
+- fixed some bugs (thx starck)
+- fixed a looping bug (thx photositelinks&starck) 0.96a
+
+0.90->0.95beta (update the module essentially)
+- added RSS
+- added auto-registering wrapped files into DB
+
+0.40->0.90beta (update the module essentially)
+- upgraded the version as BETA
+- added static URI (same as wraps)
+- added auto-page-wrap
+- added manual-page-wrap
+- fixed top page with wraps mode (thx Kaz) 0.90a
+
+0.32->0.40
+- added concept of waiting
+- added a plugin for waiting
+- added a notification for waiting
+
+0.31->0.32  (update the module essentially)
+- fixed the problem 30 character limits in config table (thx starck)
+- modified index menu (thx emomo) 0.32a
+
+0.30->0.31
+- modified compatibility with MySQL5 (thx sakichi)
+
+0.22->0.30  (update the module essentially)
+- added vote
+- added index menu
+- added sitemap plugin
+- added export to the other pico per contents
+- fixed top contents cannot be accessed (thx starck and emomo) 0.30a
+
+0.21->0.22
+- fixed menu block (thx kuon)
+- added list block
+- fixed importing from TinyD
+- modified invisible contents
+- fixed templates for list block (thx choromo) 0.22a
+
+0.20->0.21
+- fixed page navigation (thx PhotoSiteLinks)
+
+0.10->0.20  (update the module essentially)
+- rebuilt permission system
+- added a permission of "full read"
+- added submenu for "main menu"
+- added WYSIWYG Editors (common/spaw and common/fckeditor)
+- added a feature of importing from TinyD
+- added a feature of importing from the other pico
+- modified top category's permission (0.20a)
+
+
+[/xlang:en]
+[xlang:ja]
+====  静的コンテンツ用モジュール pico  ===
+
+pico とは Duplicatable V3 (D3) 技術を応用した静的コンテンツ用モジュールです。
+開発当初から想定していた機能を一通り実装したこともあり、現時点では1.80を安定版としています。
+
+
+以下、安定版・開発版共通。
+
+D3モジュールなので、XOOPS_TRUST_PATH についての設定が必要です。
+（すでにこのあたりの設定がしてあれば、とても簡単にインストールできます）
+
+機能的には、TinyDの後継という位置づけですが、コード的には完全なフルスクラッチであり、TinyDとは（もちろんTinyContentとも）完全に独立しています。なお、picoが安定版となったので、TinyDは開発終了とします。もちろん、TinyDからのアップグレードパスは用意してますので、必要に応じて、適宜引っ越してください。少なくとも、picoがTinyDに機能的に劣ることはないはずです。
+
+
+[b]SPEC:[/b]
+
+・階層カテゴリー
+・パンくず
+・ページナビゲーション
+・XOOPS_TRUST_PATH/wraps/(dirname)ファイルの手動ページラップ
+・XOOPS_TRUST_PATH/wraps/(dirname)ファイルの自動ページラップ/転送
+・静的URI (wraps方式)
+・カテゴリーOption Overrideシステム
+・任意の順番でかけることのできるフィルター群（新たに Smarty追加）
+・プレビュー
+・本文キャッシュ（代わりにXOOPSのモジュールキャッシュは利用不可）
+・文字化けのない友達紹介リンク
+・プリンタ用画面
+・シングルコンテント画面
+・モジュール・カテゴリーレベルのHTMLヘッダ
+・コンテンツ毎のHTMLヘッダ（上とは独立）
+・検索（XOOPS検索の本文表示対応）
+・閲覧数カウント
+・ブロック「コンテンツ一覧」複製可
+・ブロック「メニュー」複製可
+・ブロック「コンテンツ表示」複製可
+・管理者用記事一覧管理
+・サブメニュー（ただし、メインメニューで自分自身が選択されている場合のみ）
+・d3forum nativeコメント統合
+・Wysiwyg Editor (common/fckeditor対応)
+・TinyDからのインポート（モジュールまるごと）
+・他のpicoからのインポート（モジュールまるごと）
+・他のpicoへのエクスポート（記事単位）
+・sitemapプラグイン
+・投票
+・目次ページ
+・新規登録の承認制
+・変更申請の承認制
+・申請があったことへのイベント通知
+・申請に対するwaitingプラグイン
+・新着RSS（モジュール全体およびカテゴリー毎）
+・ラップページ自動登録
+・xoops_breadcrumbs規格に対応
+・階層サブメニュー
+・mod_rewriteによる静的URI(wrapsモードおよびnormalモード)
+・コンテンツ編集履歴機能
+・言語定数オーバーライドシステム
+・Xmobileによる携帯対応
+・任意追加フィールド機能（画像フィールド機能）
+・タグ機能
+・上位カテゴリーの設定を継承するカテゴリー権限システム
+・公開待ち・期限切れ機能
+
+
+[b]USAGE:[/b]
+
+(0) pico1.3から、altsysが必須となりました。picoより先にaltsys-0.61以上をインストールしてください。
+
+(1) アーカイブを展開して、html/modules/pico を moduels の下にコピー
+
+(2) ディレクトリ名は好きにつけてください。（"pico"をリネーム可）
+
+(3) アーカイブ内の html/class/smarty/plugins/ にあるファイル２つを class/smarty/plugins/ の下にコピーしてください (d3forum等と同じです）
+
+(4) DocumentRootの外に専用のディレクトリを作ります  例) /home/yourhome/xoops_trust_path/
+
+(5) そのディレクトリのフルパスをmainfile.phpに記述します。場所はXOOPS_URL定義行の直後が良いでしょう。
+[code]
+	define('XOOPS_TRUST_PATH','/home/yourhome/xoops_trust_path');
+[/code]
+
+(6) XOOPS_TRUST_PATHの下にmodulesディレクトリを作ります (XOOPS_TRUST_PATH/modules/)
+（ステップ(4)〜(6)は、altsysや各種D3モジュールと共通ですので、すでに行ってあればスキップして構いません）
+
+(7) アーカイブのxoops_trust_path/modules/picoをXOOPS_TRUST_PATH/modules/にコピーします。（この"pico"はリネームしないでください）
+
+(8) XOOPSモジュールとしてインストールしてください。
+
+(9) 管理者画面のカテゴリー権限設定で、トップカテゴリーについての権限をこの時点で設定しておくと後々楽が出来るかも知れません。
+
+
+あとはTinyDの操作を知っていれば、そう難しいことはないと思います。
+カテゴリーやコンテンツを追加していくだけです。
+d3forumを一緒にインストールすると幸せになれるかもしれません。
+（というか、d3forumがないとコメント機能は利用できません）
+
+
+[b]NOTICE:[/b]
+
+このモジュールは、TinyDと違い、モジュールキャッシュ非推奨です。本文キャッシュ機能があるので十分に速いはずです。
+
+
+[b]HISTORY:[/b]
+
+1.82 (2009/08/20)
+- preloadが数字からはじまるディレクトリ名を考慮しなかったのを修正 (thx 9darts)
+- 履歴一覧で作成者・作成日となっている部分を更新者・更新日に変更
+- コンテンツ一括管理で、削除済コンテンツを開くと出ていたNoticeを修正 (thx fooo)
+- コンテンツ一括管理で削除すると履歴に残らない問題を修正
+- コンテンツを削除する際、削除直前と削除後の２つの履歴を保存するように変更
+- xmobileの対応を終了した 1.82a
+- 編集権限のみ与えた場合のカテゴリー選択を修正した (thx kerokero) 1.82b
+- WizMobileとの同時利用でエンコーディングを誤認識するバグを修正 1.82c
+- MySQL 5.1 strictモードでエラーになるSQLを修正した (thx moegiiro) 1.82d
+- Object汚染でpagebreakが効かなくなる現象を修正 (thx tohokuaiki) 1.82e
+
+1.81 (2009/05/09)
+- 編集後の戻り先をサイト内について自由に指定できるようにした
+- モジュールトップがコンテンツの時のリダイレクトを復活した (thx dekki) 1.81a
+- イメージアップロードを許可するかどうかの権限確認メソッド追加 (thx naao) 1.81b
+
+1.80 (2009/03/02)
+- 安定版としてマーク
+- イベント通知選択がmain_viewcontent.htmlから記述もれしていたのを修正 (thx nor)
+- 履歴に関する権限確認先が誤っていたのを修正 (thx jidaikobo) 1.80a
+- singlecontentモードでのHTMLヘッダアサイン忘れを修正 (thx dekki) 1.80b
+
+1.79 (2009/02/16)
+- RTLにテンプレートレベルで対応してみた (left/rightではなく_ALIGN_START/END利用)
+- Smartyコンテンツのコンパイルエラーを検知することでハマリを防いでみた
+- コンテンツ毎のHTMLヘッダが効かない場合、編集画面で知らせるようにしてみた
+
+1.78 (2009/02/09)
+- 仮想パスがサブカテゴリーブロックでおかしかったのを修正 (thx MAMEMARU)
+- 言語ファイル更新
+-- persian (thx voltan)
+
+1.77 (2009/01/23)
+- コンテンツ編集履歴が作成日時になっていたのを更新日時に修正
+- magic_quotes_gpc環境でextra_fieldsの配列が壊れるのを修正 (thx jidaikobo)
+- 一部の環境でSSLだとCSVのダウンロードができない現象に対応 (thx jidaikobo)
+- カテゴリー直属コンテンツがない時は強制的にリスト表示するよう修正 (thx nobu175)
+- [ pagebreak ] タグの実装
+- フォーム処理にreplyto_field_nameのパラメータを追加した
+
+1.76 (2009/01/18)
+- コメント統合をd3forumの最新版仕様に追随
+
+1.75 (2008/12/03)
+- ラップファイル自動削除処理追加
+- ラップファイル自動更新処理追加
+- ラップファイル自動登録処理クラスをオーバーライド可能とした（カテゴリー単位）
+- ラップファイル自動登録の可否を、カテゴリー単位でオーバーライド可能とした
+- コンテンツヒストリの保存ルールがおかしかったのを修正
+- wrapsモードでコンテンツ作成時のプレビューがおかしくなるのを修正 (thx mathmay)
+- 単純ページラップで友達に知らせる機能が効かなくなっていたのを改善
+- wrapsモードがoffでも単純ページラップが有効になっていたのを修正
+- テンプレートadmin_tags.htmlのtypoを修正 (thx salamander) 1.75a
+- ラップファイルによる自動更新でSubjectが取得できない場合の処理改善 1.75a
+- formmail機能で<legend>が正しく取得できないバグを修正 (thx jidaikobo) 1.75a
+- 投稿UIDや変更UIDが0に変更できなかったのを修正 1.75b
+- ImpressCMSでの動作確認・微調整 1.75b
+- 言語ファイル追加
+-- portuguesebr (thx leco) 1.75b
+
+1.74 (2008/11/19)
+- タグ管理を追加
+- 拡張機能管理に絞り込み等を追加
+- タグブロックにいくつかオプションを追加
+- 拡張データのシリアライズ方法を変更 (一度、同期を行ってください)
+- 拡張フィールドのシリアライズ方法を変更
+- コンテンツやカテゴリーの冗長情報のシリアライズ方法を変更
+- pico_common_unserialize() の未定義問題を修正 (thx jidaikobo) 1.74a
+- extra_fieldsのサンプルコードが有効になっていたのを修正 1.74b
+
+1.73 (2008/10/01)
+- URIマッパークラスを置換可能とした（要モジュールアップデート）
+- ページ名で文字実体参照と数値文字参照を許可した
+- フォームメール機能でcancelボタンの情報が送られてしまうのを修正
+- xmobileプラグインのtypoを修正 (thx shige-p) 1.73a
+- XCL+Smartyフィルターで$xoops_imageurl等のアサイン修正 (thx gusagi) 1.73b
+- 「Tellafriendを使う」オプションが反転していたのを修正 (thx shige-p) 1.73b
+- フォームテンプレートの仮想パス入力欄の判定typoを修正 (thx mkbl) 1.73c
+- コンテンツ一覧ブロックで(offset,limit)形式のオプション指定を追加 1.73d
+
+1.72 (2008/09/17)
+- フォームメール機能がWizMobileや携帯対応レンダラーで動作しなかったのを修正
+- コンテンツ内容ブロックに本文処理オプションを追加 (thx jidaikobo) 1.72a
+- 携帯対応レンダラーのコードを修正 (thx nao-pon) 1.72b
+
+1.71 (2008-09-10)
+- コンテンツごとのHTMLヘッダが渡されていないバグの修正 (thx neko88)
+- 一覧ブロックの前バージョンとの互換性改善 (thx neko88)
+- 言語ファイル更新
+-- persian (thx voltan and stranger)
+- formmailプラグインが機能していなかったのを修正 (thx ditamine) 1.71a
+- カテゴリー情報のアサイン忘れを修正 (thx ditamine) 1.71a
+
+1.70 (2008-09-07)
+- altsys-0.61以上が必須となった
+- リクエスト処理など、全体的な作りを大幅に変更した
+- 任意追加フィールド機能の実装
+- 任意追加フィールドの画像関連の設定追加
+- XCL2.1テキストフィルター系Preloadがなるべくちゃんと動作するように調整
+- XCL2.1用に細かなオプションを追加指定
+- poster_uid/modifier_uidの変更機能追加
+- タグフィールド追加
+- タグ一覧ブロック追加
+- HTMLヘッダを指定できるかどうかの設定を追加
+- キャッシュタイミングを保存するようにした
+- 検索専用フィールドの追加
+- common/spawのサポートを終了
+- 全文閲覧権限のないコンテンツの検索時本文表示問題を修正 (thx toshi)
+- 管理画面から本文キャッシュを削除する機能の追加
+- 期限切れ機能の実装
+- 上位の権限を継承するカテゴリー権限システム実装
+
+1.62 (2008/08/27)
+- rewriteモードでプリンターへのリンクが切れていたのを修正 (thx taked2)
+- RSSなどでサイト名のエスケープ忘れを修正 (thx tom_moppet)
+
+1.61 (2008/06/12)
+- main_content_form内の余計な</label>を削除 (thx jidaikobo)
+- 言語定数内のtypo修正 (thx jidaikobo)
+- gticket2の更新
+- 検索で非表示や表示待ちのコンテンツがヒットしてしまうバグの修正 (thx sacchan)
+- 言語ファイル更新
+-- persian (thx voltan) 1.61a
+
+1.60 (2007/12/19)
+- 安定版としていったんマークした
+- フォーム処理にfrom_field_nameのパラメータを追加した 1.60a
+- フォーム処理にfromname_field_nameのパラメータを追加した 1.60a
+- フォーム処理にキャンセル処理を追加した 1.60a
+
+1.57 (2007/11/20)
+- カテゴリー冗長用情報フィールドをtextからmediumtextに変更
+- カテゴリー冗長情報を取得するだけのプラグインpico_subcattreeを追加
+- カテゴリーの冗長情報として直下記事数・サブカテゴリー構造などを追加
+- 冗長情報の記事数に非表示コンテンツは含まないようにした
+- 誤ったプラグインで登録するとそれだけで編集手段がなくなってしまうバグを修正
+- カテゴリーに所属するコンテンツの一覧表示を行うプラグインpico_list追加 1.57a
+- カテゴリーを検索して中身を一覧表示するプラグインpico_category_search追加 1.57a
+- XCデリゲートとしてModuleClass.Pico.Contentman.InsertSuccessを追加 1.57a
+
+1.56 (2007/10/23)
+- 最終修正者IPと同じならカウンターをアップしないようにしてみた
+- GTicketが有効ならリファラーOFFでも極力更新するようポリシー変更
+- 別レコードとして保存が効いていなかったバグを修正 (thx PhotoSiteLinks)
+
+1.55 (2007/10/03)
+- 投稿者・更新者を指定できるようにした
+- 拡張機能の改善(CSVフィールド等)
+- survey でも必要に応じてメール送信指定できるように仕様変更した
+- intやdoubleのValidationを強制変換から、エラーを表示するように仕様変更した
+- テキストサニタイザのメソッド名typoを修正 (thx enhiro)
+- カスタムValidator実装
+- 投稿者・更新者指定の動作を改善した (thx starck) 1.55a
+
+1.54 (2007/09/22) ※要モジュールアップデート
+- 本文キャッシュがOFFでも検索にひっかかるようにした
+- 本文キャッシュのデフォルトをOFFに変更した
+- DB保存拡張機能用テーブル追加
+- 記事ロックの実装
+- クラスPicoFormProcessBySmartyBaseの設計変更
+- 自動返信機能の実装
+- メール生成用各種パラメータの実装
+- 専用smarty_pluginの追加
+-- formmail4fleamarket （フリマ用）
+-- survey （アンケート用）
+- 本文キャッシュ処理がおかしくなっていたのを修正 (thx Sow) 1.54a
+- 言語ファイル追加 1.54a
+-- fr_utf8 (thx gigamaster)
+
+1.53 (2007/09/18) ※要モジュールアップデート
+- HTML投稿の自動正規化設定を追加 (要 PHP5 / Protector>=3.14)
+- WYSIWYGエディタへの一時切替スイッチをつけた
+- formmailプラグインで"to"指定を可能にした
+- 言語ファイル追加
+-- portuguese (thx Mikhail)
+-- pt_utf8 (thx Mikhail)
+
+1.52 (2007/09/13) ※要モジュールアップデート
+- FormProcessクラスでcheckbox/radioのラベルを<legend>から取るようにした
+- FormProcessクラスのmultiple select対応
+- FormProcessクラスのhidden対応
+- 未承認記事でも登録者本人は編集できるようにした
+- 自身の承認待ちブロック追加
+
+1.51 (2007/09/08)
+- Formmail Smarty プラグインの大幅な構造変更
+- FormProcessByHtml で、radioやcheckboxも対応できるようにした
+- Validationルールにclassを利用するに用に仕様変更した (thx genet!)
+- ラップ時の更新日時はファイルのタイムスタンプを参考にするように修正
+- 更新・編集日時指定のタイムゾーン計算が抜けていたのを修正 (thx mirror)
+
+1.50 (2007/09/04)
+- SmartyテンプレートをValidationにも使うフォームメールを実装
+- 記事編集後のsync忘れを修正 (thx rockle)
+- ホダ塾ディストリビューション用にパーミッションチェッカを追加
+- 言語ファイル更新
+-- persian (thx voltan)
+- コンテンツ編集時にはセッションをクリアするように変更 1.50a
+
+1.40 (2007/08/08)
+- xmobileプラグイン用クラスの追加
+- 安定版としてのリリース
+- xmobileプラグイン用クラスのパーミッション処理の修正 (thx yue) 1.40a
+- xmobileの場合の検索結果を振り分け (thx SATT) 1.40b
+
+1.39 beta (2007/08/06)
+- コンテンツ個別表示以外でのbody処理をやらないようにした
+- RSS出力における実体参照違反の修正
+
+1.38 beta (2007/07/04)
+- HTMLヘッダを表示する前に、Smartyっぽい変換処理を追加した
+- コンテンツ編集終了後、出来る限り元のページに戻るようにした
+
+1.37 beta (2007/07/01)
+- コンテンツ表示ブロックの書き換えパターン修正 (thx sakurai)
+- TextWikiフィルターで状況によってパスが通らないバグの修正
+- カテゴリー説明文をHTML許可に変更
+- xmobileプラグイン用の対応
+- ja_utf8 言語ファイル内に、EUC-JP直書き部分が残っていたのを修正 (dqnchan)
+
+1.36 beta (2007/06/15)
+- 作成日/更新日等の処理改善 (thx moegiiro)
+- 未来の作成日時を持つコンテンツは、その時間が来るまで表示されないようにした
+- 新規コンテンツのイベント通知追加
+- イベント通知でHTMLエスケープ処理がおかしかったのを改善
+- BBCode処理の非互換性(特にcodeブロック)の改善
+- SmartSectionからのインポート実装
+- サブカテゴリーブロック実装
+- 言語ファイル名変更
+-- ja_utf8 (旧japaneseutf)
+
+1.35 beta (2007/05/29)
+- 各種操作性の向上
+- 管理者のみ、ラップディレクトリから選択できるようにした
+- 処理速度改善
+- サブメニュー処理のtypo修正 (thx taku777)
+- 投稿者・更新者処理の改善 (thx starck) 1.35a
+
+1.34 beta (2007/05/17)
+- D3Commentのコールバック処理対応
+- 言語ファイル追加
+-- schinese (thx chnwalkman)
+
+1.33 beta (2007/05/15)
+- 投票関連のtypoを修正
+- tellafriendリンクのtypoを修正
+
+1.32 beta (2007/05/14)
+- ブロック編集部分をテンプレート化した
+- 一覧ブロックに本文表示機能追加
+- 内容表示ブロックの選択方法変更
+- wrapsモードコンテンツをブロック表示する際に、相対->絶対パス変換をするよう変更
+- 同上パス修正 (thx makimaki) 1.32a
+- 言語ファイル更新
+-- persian (thx voltan)
+
+1.31 alpha (2007/05/07)
+- 正式にaltsys必須とした
+- 文字定数オーバーライドシステムを導入した（要altsys-0.5以上）
+- mymenuのテンプレート化（要altsys-0.5以上）
+- テンプレートを少しでも使いやすく変更
+- 重複コードを整理した
+- 一般的なSQL構文だけにしてみた
+- 言語ファイル追加
+-- japaneseutf
+-- italian (thx evoc)
+- mylangsadminへの接続部分の互換性改善 1.31a
+
+1.30 alpha (2007/04/21)
+- addslashes()をmysql_real_escape_string()にしてみた
+- カテゴリとコンテンツに冗長情報フィールドを追加した
+- トップカテゴリーを通常のカテゴリーとして編集可能にした
+- ページラップ時に、常に<body></body>の内側を返すようにした
+- pico専用Smartyプラグインシステムの実装
+- pico専用Smartyプラグインの追加
+-- pico内容表示 <{pico}>
+-- d3pipes表示  <{d3pipes}>
+
+1.20 (2007/04/18)
+- 安定版としてのリリース
+
+1.18 beta (2007/03/29)
+- 非表示コンテンツの閲覧・編集権限処理を修正
+- HTMLヘッダの編集は管理者かモデレータでないと最終的に有効にならないよう仕様変更
+- 管理者/モデレータは各日時をいじれるようにした
+- xugj_blockプラグインへの対応
+- 更新日が予想外のタイミングで更新されてしまうバグを修正 1.18a (thx starck)
+
+1.17 beta (2007/03/23)
+- 検索で権限が反映されていないバグの修正
+- 検索に「投稿ユーザ」という概念を導入するかどうかの設定を追加
+- mymenuの更新
+- 一部のtextをmediumtextに変更 1.17a
+- 細かな修正 1.17a
+
+1.16 beta (2007/03/20)
+- 履歴比較機能実装
+- ヒストリ参照機能の改善(IE対策)
+- 仮想パス重複チェックのバグを修正 1.16a
+- 参照とダウンロードを機能として分けた 1.16a
+
+1.15 beta (2007/03/16)
+- HTTPヘッダ送出でのtypoを修正 (thx rock)
+- テンプレートCSSが効いていないのを修正 (thx mizukami) 1.15a
+- RSSの時差計算が間違っていたのを修正 (thx Yoshii) 1.15b
+
+1.14 beta (2007/03/13)
+- モジュールCSSのテンプレート化
+- 履歴機能関連の設定追加
+- モジュールアイコンをブラウザキャッシュ可能にした
+- wrapsモードで転送する画像等をブラウザキャッシュ可能にした
+- 削除済コンテンツの参照機能（コンテンツ一括管理）
+- コンテンツ一括管理のtypo修正 1.14a (thx t_yamo)
+
+1.13 beta (2007/03/10) モジュールアップデート必須
+- 履歴機能の実装
+- sitemap用プラグインの動作設定（コンテンツも同列表示するかどうか）追加
+- サブメニューの動作設定（コンテンツも同列表示するかどうか）追加
+
+1.12 beta (2007/03/09) 公開側も上書きする必要あり
+- HTML/CSSを抜本的に書き直した (thx emomo)
+- sitemap用プラグインの改善（改悪か？）
+- カテゴリーURIも mod_rewriteモード に対応した
+- サブメニュー関連のNotice潰し (thx starck)
+
+1.11 beta (2007/03/07)
+- mod_rewriteモード新設
+
+1.10 beta (2007/03/06)
+- 階層サブメニュー追加
+- 禁止フィルター追加
+- 強制フィルター追加
+
+0.99RC4->1.00 (2007/03/05)
+- xoops_breadcrumbs の修正 (thx starck)
+- 編集テンプレートのおかしかったところを修正
+
+0.98->0.99RC4
+- xoops_breadcrumbs に対応
+- シングルコンテント追加
+- wrapsモードでのプレビューが機能していなかったのを修正 (thx toplan)
+- subcategory権限が正しく機能していなかったバグの修正 (thx t_yamo)
+- sitemapプラグインのバグ修正 (thx starck)
+
+0.97->0.98RC3
+- 細かなバグ修正数件
+- 言語ファイル追加
+-- persian (thx voltan)
+-- spanish (thx PepeMty) 0.98a
+-- french (thx gigamaster) 0.98b
+
+0.96->0.97RC2
+- Smarty(XoopsTpl)フィルターの動作修正（XOOPS専用テンプレート変数が使えるように）
+- RSSのエンコーディング処理変更（要テンプレートマージ）
+- ラップファイルのエンコード変換処理の修正
+- mymenuが誤ったリンクを指し示す問題の修正 (thx umasan)
+
+0.95->0.96RC
+- だいたいの動作確認がとれたので、RC版扱いに格上げした
+- wrapsモードでのディレクトリの扱い改善
+- 同期実装
+- Smartyフィルターの動作がおかしかったのを改善
+- XOOPS Cube 2.1 Legacy での動作確認
+- いくつかのバグ修正 (thx starck)
+- 無限ループバグを修正 (thx photositelinks&starck) 0.96a
+
+0.90->0.95beta （※モジュールアップデート必須）
+- RSS追加
+- ラップページ自動登録追加
+
+0.40->0.90beta （※モジュールアップデート必須）
+- 一通り機能を実装したので、β版扱いに格上げした
+- 静的URIの実装 (wraps方式)
+- 自動ページラップの実装
+- 手動ページラップの実装（コンテンツ追加で、フィルター指定する）
+- トップページの処理がおかしかったのをfix (thx Kaz) 0.90a
+
+0.32->0.40
+- 承認待ち、という概念を実装した
+- waitingモジュール用プラグインの追加
+- 承認待ちイベント通知の実装
+
+0.31->0.32（※モジュールアップデート必須）
+- 一般設定が30字制限に引っかかっていたのを修正 (thx starck)
+- コンテンツメニュー処理の改善 (thx emomo) 0.32a
+
+0.30->0.31
+- MySQL5 との互換性問題を改善 (thx sakichi)
+
+0.22->0.30（※モジュールアップデート必須）
+- 投票を実装
+- コンテンツメニューを実装
+- sitemapプラグインを実装
+- 他のpicoへのコンテンツごとのエクスポートを実装
+- トップ直下のコンテンツにアクセスできないバグを修正 (thx starck and emomo) 0.30a
+
+0.21->0.22
+- メニューブロックが機能していなかったのを修正 (thx kuon)
+- 一覧ブロックを追加
+- TinyDからのインポート関連のデバッグ
+- 管理者でも非表示コンテンツは見えないようにした
+- 一覧ブロックのテンプレート修正 (thx choromo) 0.22a
+
+0.20->0.21
+- ページナビが正常に動作しなかったのを修正 (thx PhotoSiteLinks)
+
+0.10->0.20 （※モジュールアップデート必須）
+- 権限システムの作り直し （0.1を使っていた人は、再度、カテゴリー権限を設定しなおしてください）
+- 本文の全文表示、という権限の追加
+- メインメニュー用サブメニュー処理
+- WYSIWYG Editor選択 (common/spaw および common/fckeditor)
+- TinyDからのインポート
+- 他のpicoからのインポート
+- トップカテゴリーの権限処理を修正 (0.20a)
+
+
+バグ報告を歓迎します。
+
+
+[/xlang:ja]

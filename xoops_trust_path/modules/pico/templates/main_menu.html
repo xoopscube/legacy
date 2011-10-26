@@ -1,0 +1,68 @@
+<div class="pico_container pico_menu" id="<{$mydirname}>_container">
+
+<!-- controllers -->
+<div class="pico_controllers">
+	<{if $xoops_isadmin}>
+		<a href="<{$mod_url}>/admin/index.php?page=category_access">[<{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}>]</a>
+		<a href="<{$mod_url}>/admin/index.php?page=contents">[<{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}>]</a>
+		<a href="<{$mod_url}>/index.php?page=makecategory">[<{$smarty.const._MD_PICO_LINK_MAKECATEGORY}>]</a>
+	<{/if}>
+	<!-- link to RSS -->
+	<a href="<{$mod_url}>/index.php?page=rss">[RSS]</a>
+</div>
+
+<p><{$mod_config.top_message}></p>
+
+<{foreach item=category from=$categories}>
+
+	<h<{$category.depth_in_tree|min:5}>><a href="<{$mod_url}>/<{$category.link}>"><{$category.title}></a>
+	</h<{$category.depth_in_tree|min:5}>>
+
+	<!-- controllers for each categories -->
+	<div class="pico_controllers_in_menu">
+		<{if $category.isadminormod && $category.private_contents_counter}>
+			<a href="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$category.id}>">[<{$category.private_contents_counter|string_format:$smarty.const._MD_PICO_FMT_PRIVATECOUNT}>]</a>
+		<{/if}>
+
+		<{if $category.isadminormod}>
+			<a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>">[<{$smarty.const._MD_PICO_LINK_EDITCATEGORY}>]</a>
+		<{/if}>
+
+		<{* <{if $category.can_makesubcategory}>
+			<a href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$category.id}>">[<{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}>]</a>
+		<{/if}> *}>
+
+		<{if $xoops_isadmin}>
+			<a href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>">[<{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}>]</a>
+		<{/if}>
+	
+		<{if $category.can_post}>
+			<a href="<{$mod_url}>/index.php?page=makecontent&amp;cat_id=<{$category.id}>&amp;ret=mm">[<{$smarty.const._MD_PICO_LINK_MAKECONTENT}>]</a>
+		<{/if}>
+
+		<!-- link to RSS -->
+		<a href="<{$mod_url}>/index.php?page=rss&amp;cat_id=<{$category.id}>">[RSS]</a>
+	</div>
+
+	<div class="level<{$category.depth_in_tree|min:5}>">
+		<ul class="pico_list_contents_in_menu">
+		<{foreach item=content from=$category.contents}>
+			<li><a href="<{$mod_url}>/<{$content.link}>" title="<{$smarty.const._MD_PICO_CREATED}>:<{$content.created_time_formatted}>"><{$content.subject}></a>
+			<{if $category.isadminormod && ! $content.approval}>
+				<em class="pico_notice">(<{$smarty.const._MD_PICO_WAITINGUPDATE}>)</em>
+			<{/if}>
+			<{if $category.can_edit}>
+				<a href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>&amp;ret=mm"><img src="<{$mod_imageurl}>/icon_edit.gif" alt="<{$smarty.const._MD_PICO_LINK_EDITCONTENT}>" /></a>
+			<{/if}>
+			</li>
+		<{/foreach}>
+		</ul>
+	</div>
+<{/foreach}>
+
+<br />
+<hr class="notification" />
+<{include file='db:system_notification_select.html'}>
+
+</div>
+<!-- end module contents -->

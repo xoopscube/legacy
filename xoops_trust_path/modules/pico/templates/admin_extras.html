@@ -1,0 +1,87 @@
+<h3><{$mod_name}></h3>
+
+<!-- extras form -->
+<h2 class="head"><{$smarty.const._MD_A_PICO_H2_EXTRAS}></h2>
+
+<form method="get" action="<{$mod_url}>/admin/index.php" class="pico_pagenav">
+	<input type="hidden" name="page" value="extras" />
+	<label>
+		<{$smarty.const._MD_PICO_NUM}>
+		<select name="num">
+			<{assign var="nums" value=","|explode:"10,30,100,300,1000"}>
+			<{html_options values=$nums output=$nums selected=$num}>
+		</select>
+	</label>
+	<label>
+		<{$smarty.const._MD_A_PICO_TH_ID}>
+		<input type="text" size="4" name="content_id" value="<{$content_id}>" />
+	</label>
+	<label>
+		<{$smarty.const._MD_A_PICO_LABEL_SEARCHBYPHRASE}>
+		<input type="text" size="6" name="txt" value="<{$txt_raw|escape}>" />
+	</label>
+	<input type="submit" value="<{$smarty.const._GO}>" />
+	<{$pagenav}>
+</form>
+
+<form name="extras" action="<{$mod_url}>/admin/index.php?page=extras&amp;cat_id=<{$cat_id}>" method="post" style="margin:20px 0px;">
+	<{$gticket_hidden}>
+	<table class="outer">
+		<tr>
+			<th>
+				<{$smarty.const._MD_A_PICO_TH_ID}>
+			</th>
+			<th>
+				<{$smarty.const._MD_PICO_TH_SUBJECT}>
+			</th>
+			<th>
+				<{$smarty.const._MD_PICO_CREATED}>
+			</th>
+			<th>
+				<{$smarty.const._MD_A_PICO_TH_TYPE}>
+			</th>
+			<th>
+				<{$smarty.const._MD_A_PICO_TH_SUMMARY}>
+			</th>
+			<th>
+				<{$smarty.const._MD_A_PICO_TH_EXTRASACTIONS}>
+				<input type="checkbox" onclick="with(document.extras){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_action_')>=0){elements[i].checked=this.checked;}}}">
+			</th>
+		</tr>
+		<{foreach from=$extras item="extra"}>
+			<tr class="<{cycle values="even,odd"}>">
+				<td style="text-align:<{$smarty.const._ALIGN_END}>;">
+					<{$extra.id}>
+				</td>
+				<td align="<{$smarty.const._ALIGN_START}>">
+					<a href="<{$mod_url}>/<{$extra.link}>">
+						<{$extra.content_subject}>
+					</a>
+					[<a href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$extra.content_id}>"><{$smarty.const._EDIT}></a>]
+					[<a href="<{$mod_url}>/admin/index.php?page=extras&amp;content_id=<{$extra.content_id}>&amp;num=<{$num}>"><{$smarty.const._MD_A_PICO_LINK_EXTRACT}></a>]
+				</td>
+				<td align="<{$smarty.const._ALIGN_START}>">
+					<{$extra.created_time_formatted}>
+				</td>
+				<td align="<{$smarty.const._ALIGN_START}>">
+					<{$extra.extra_type_formatted}>
+				</td>
+				<td align="<{$smarty.const._ALIGN_START}>">
+					<{$extra.data_summary_short_raw|escape}>
+				</td>
+				<td align="<{$smarty.const._ALIGN_START}>">
+					<input type="checkbox" name="action_selects[<{$extra.id}>]" id="col_action_<{$extra.id}>" value="1" />
+					<a href="<{$mod_url}>/admin/index.php?page=extras&amp;extra_id=<{$extra.id}>"><{$smarty.const._MD_A_PICO_LINK_DETAIL}></a>
+				</td>
+			</tr>
+		<{/foreach}>
+		<tr>
+			<th colspan="9" style="text-align:<{$smarty.const._ALIGN_END}>;">
+				<{$smarty.const._MD_A_PICO_LABEL_EXTRASRIGHTCHECKED}>
+				<input type="submit" name="extras_delete" value="<{$smarty.const._MD_A_PICO_BTN_DELETE}>" onclick="return confirm('<{$smarty.const._MD_A_PICO_CONFIRM_DELETE}>');" />
+				<input type="submit" name="extras_output" value="<{$smarty.const._MD_A_PICO_BTN_CSVOUTPUT}>" />
+			</th>
+		</tr>
+	</table>
+</form>
+

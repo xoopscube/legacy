@@ -1,0 +1,28 @@
+<h3><{$mod_name}></h3>
+<h2 class="head"><{$smarty.const._MD_A_PICO_H2_IMPORTFROM}></h2>
+<form name="importfrom" action="<{$mod_url}>/admin/index.php?page=import" method="post">
+	<{$gticket_hidden}>
+	<label for="import_mid"><{$smarty.const._MD_A_PICO_LABEL_SELECTMODULE}></label>
+	<select name="import_mid" id="import_mid"><{html_options options=$import_from_options}></select>
+	<br />
+	<input type="submit" name="do_import" value="<{$smarty.const._MD_A_PICO_BTN_DOIMPORT}>" onclick="return confirm('<{$smarty.const._MD_A_PICO_CONFIRM_DOIMPORT}>')" />
+	<br />
+	<{$smarty.const._MD_A_PICO_HELP_IMPORTFROM}>
+</form>
+
+<h2 class="head"><{$smarty.const._MD_A_PICO_H2_SYNCALL}></h2>
+<form name="syncall" action="<{$mod_url}>/admin/index.php?page=import" method="post">
+	<{$gticket_hidden}>
+	<input type="submit" name="do_syncall" value="<{$smarty.const._MD_A_PICO_BTN_DOSYNCALL}>" />
+	<br />
+	<{$smarty.const._MD_A_PICO_HELP_SYNCALL}>
+</form>
+
+<h2 class="head"><{$smarty.const._MD_A_PICO_H2_CLEARBODYCACHE}></h2>
+<form name="clearbodycache" action="<{$mod_url}>/admin/index.php?page=import" method="post">
+	<{$gticket_hidden}>
+	<input type="submit" name="do_clearbodycache" value="<{$smarty.const._MD_A_PICO_BTN_DOCLEARBODYCACHE}>" />
+	<br />
+	<{$smarty.const._MD_A_PICO_HELP_CLEARBODYCACHE}>
+</form>
+

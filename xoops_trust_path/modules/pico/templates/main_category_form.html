@@ -1,0 +1,110 @@
+<div class="pico_container" id="<{$mydirname}>_container">
+
+<{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
+
+<h1 class="pico_title"><{$smarty.const._MD_PICO_CATEGORYMANAGER}></h1>
+
+<h2 class="head pico_head"><{$formtitle}></h2>
+<form name="categoryform" id="categoryform" action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>" method="post" onsubmit="return xoopsFormValidate_categoryform();">
+
+
+	<table class="outer pico_form_table">
+		<tr style="display:none;">
+			<td><{$gticket_hidden}></td>
+		</tr>
+
+		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
+			<th class="head"><label for="category_pid"><{$smarty.const._MD_PICO_TH_CATEGORYPARENT}></label></th>
+			<td class="even">
+				<{if $category.id == 0}>
+					(<{$smarty.const._MD_PICO_TOP}>)
+				<{else}>
+					<select name="pid" id="category_pid">
+						<{html_options options=$categories_can_makesubcategory selected=$category.pid}>
+					</select>
+				<{/if}>
+			</td>
+		</tr>
+
+		<{if $mod_config.use_wraps_mode && $category.id != 0}>
+		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
+			<th class="head"><label for="category_vpath"><{$smarty.const._MD_PICO_TH_VIRTUALPATH}></label></th>
+			<td class="even">
+				<input type="text" name="cat_vpath" id="category_vpath" size="60" value="<{$category.vpath}>" class="pico_ascii_only" />
+				<{if $xoops_isadmin}>
+					<br />
+					<select name="wraps_target" onchange="xoopsGetElementById('category_vpath').value=this.value;">
+						<{html_options options=$category.wraps_directories selected=$category.vpath}>
+					</select>
+				<{/if}>
+			</td>
+		</tr>
+		<{/if}>
+
+		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
+			<th class="head"><label for="category_title"><{$smarty.const._MD_PICO_TH_CATEGORYTITLE}></label></th>
+			<td class="even">
+				<input type="text" name="cat_title" id="category_title" size="50" maxlength="255" value="<{$category.title}>" />
+			</td>
+		</tr>
+
+		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
+			<th class="head"><label for="category_desc"><{$smarty.const._MD_PICO_TH_CATEGORYDESC}></label></th>
+			<td class="even">
+				<textarea name="cat_desc" id="category_desc" cols="50" rows="10"><{$category.desc}></textarea>
+			</td>
+		</tr>
+
+		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
+			<th class="head"><label for="category_weight"><{$smarty.const._MD_PICO_TH_CATEGORYWEIGHT}></label></th>
+			<td class="even">
+				<input type="text" name="cat_weight" id="category_weight" size="4" maxlength="4" value="<{$category.weight}>" class="pico_number_only" />
+			</td>
+		</tr>
+
+		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
+			<th class="head">
+				<{$smarty.const._MD_PICO_SUBCATEGORY_COUNT}>
+			</th>
+			<td class="even">
+				<{$category.children_count}>
+			</td>
+		</tr>
+
+		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
+			<th class="head">
+				<{$smarty.const._MD_PICO_TH_CATEGORYOPTIONS}>
+			</th>
+			<td class="even">
+				<input type="checkbox" id="category_option_controller_onoff" onclick="if(this.checked){xoopsGetElementById('category_option_controller').style.display='block';}else{xoopsGetElementById('category_option_controller').style.display='none';};"  <{if $category.options}>checked="checked"<{/if}> /><label for="category_option_controller_onoff"><{$smarty.const._MD_PICO_ONOFF}></label>
+				<div id="category_option_controller" <{if ! $category.options}>style="display:none;"<{/if}>>
+					<textarea name="cat_options" id="category_options" cols="50" rows="10"><{$category.options}></textarea>
+					<br />
+					<{$smarty.const._MD_PICO_HOWTO_OVERRIDEOPTIONS}>:
+					<br />
+					<span class="categoryoptiondesc"><{$category.option_desc}></span>
+				</div>
+			</td>
+		</tr>
+
+	</table>
+
+<p class="pico_submit"><input type="submit" name="categoryman_post" value="<{$smarty.const._SUBMIT}>" />
+<{if $page == 'categorymanager' && $children_count == 0}>
+<input type="submit" name="categoryman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMDELETECATEGORY}>')" />
+<{/if}></p>
+
+</form>
+
+<!-- Start Form Vaidation JavaScript //-->
+<script type="text/javascript">
+<!--//
+function xoopsFormValidate_categoryform() {
+	myform = window.document.categoryform;
+	if ( myform.title.value == "" ) { window.alert("<{$smarty.const._MD_PICO_TH_CATEGORYTITLE|string_format:$smarty.const._FORM_ENTER}>"); myform.title.focus(); return false; }
+	return true;
+}
+//--></script>
+<!-- End Form Vaidation JavaScript //-->
+
+</div>
