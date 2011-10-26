@@ -1,0 +1,109 @@
+<p>"XOOPS2JP 사용자를 위한 이전/업그레이드 가이드"에 오신 것을 환영합니다.</p>
+
+<p>
+XOOPS Cube Legacy 는 XOOPS2 JP 와의 호환성을 가진 패키지입니다.
+하지만 지금 이용중이신 관리섹션의 콘트롤 패널을 비롯해 많은 부분이 새롭게 개선되었으며 새로운 컨셉(Concept)도 도입되어졌습니다.
+따라서 아직 Cube Legacy 에 익숙하지 않으신 분들은 상당히 당황하실 수도 있습니다.
+</p>
+
+<p>
+이 이전/업그레이드 가이드는 XOOPS2 JP 사용자들이 손쉽게 XOOPS Cube Legacy 2.1 에 적응할 수 있게 도와드립니다.
+물론 이 가이드 이외에도 각 모듈별 모움말 등도 존재하니 찾아서 함께 읽어보시면 손쉽게 Cube Legacy에 적응하실 수 있을 겁니다.
+</p>
+
+<h4>조작법</h4>
+<h5>팝업 메뉴는 어디로??</h5>
+<p>
+XOOPS2 JP 관리섹션의 특징이자 애물단지였던 팝업 메뉴는 더이상 존재하지 않습니다.
+XOOPS Cube Legacy 2.1의 관리섹션 기본 테마는 일체 팝업메뉴를 사용하지 않으며 대신 사이드 메뉴를 사용합니다. 
+[+] 랑 [-] 아이콘을 클릭하시면 해당 모듈의 메뉴를 열기/닫기하실 수 있습니다.
+더이상 XOOPS2 JP 시절처럼 팝업메뉴를 찾아서 마우스가 헤매는 일은 없어졌네요!..^^//
+</p>
+
+<h5>원하는 메뉴 찾기</h5>
+<p>
+XOOPS2 JP 시절의 관리메뉴들은 관련 모듈로 분산되어졌습니다.
+Cube Legacy에 익숙하지 않으신 분들은 당황하실 수도 있습니다만 액션서치기능을 이용하시면 쉽게 찾으실 수 있습니다.
+액션서치를 이용하시면 입력 검색키워드와 일치하는 관리메뉴와 도움말을 찾아줍니다.
+예를 들어 'User'를 키워드로 검색하시면 사용자관리와 관련된 메뉴들이 검색되어질 겁니다.
+</p>
+
+<h5>리스트 테이블의 사용법</h5>
+<p>
+항목의 리스트를 표시하는 페이지의 대부분은 통일된 형식의 리스트 테이블로 디자인되어져 있습니다.
+</p>
+<ul>
+ <li>정렬순을 변경하시려면 화살표모양의 아이콘을 클릭하시면 됩니다. 직접 한번 조작해보시면 쉽게 이해하실 수 있을 겁니다.
+ <li>페이지 이동은 페이지네비게이터를 이용하시면 됩니다.
+ <li>각 항목의 삭제/편집 등의 작업은 제일 오른쪽 열에 위치한 각 작업별 해당 아이콘을 클릭하시면 됩니다.
+ <li>새로운 항목을 신규작성하시려면 테이블의 위에 위치한 [신규작성] 링크를 클릭하시면 됩니다.
+</ul>
+
+<p>
+모든 테이블에 위와 같은 기능이 모두 구현되어져 있는 것은 아닙니다. 자세한 내용은 해당 기능의 도움말이나 Tips등을 참조하시기 바랍니다.
+</p>
+
+<h6>주의</h6>
+<p>
+멀티 바이트 언어 사용자들은 MySQL을 올바르게 설정하실 필요가 있습니다.
+그렇지 않으면 멀티 바이트 언어에 대한 정렬기능이 정상작동하지 않을 수 있습니다.
+자세한 사항은 MySQL 공식사이트를 참조하시기 바랍니다.
+</p>
+
+<h4>관리</h4>
+<h5>테마 선택 방법</h5>
+<p>
+<a href='<{$smarty.const.XOOPS_URL}>/base/admin/index.php?action=ThemeList'>'테마 관리'</a> 를 이용하시면 편리합니다. 물론 일반설정에서도 선택가능합니다.
+</p>
+
+<h5>모듈 인스톨 방법</h5>
+<p>
+Cube Legacy의 경우 모듈관리메뉴를 선택하시면 인스톨되어진 모듈들만 표시되어집니다.
+새롭게 모듈을 설치하시려면 <a href='<{$smarty.const.XOOPS_MODULE_URL}>/base/admin/index.php?action=InstallList'>'모듈 설치'</a>메뉴를 선택하셔서 원하는 모듈을 설치하셔야 합니다.
+</p>
+
+<h5>블록의 표시/비표시는 어떻게?</h5>
+<p>
+블록과 관련된 컨셉(concept)도 XOOPS2 JP 시절과는 상당히 차이가 있습니다.
+먼저 블록에 대해서도 설치(Install)/제거(Uninstall)의 개념이 적용된다는 점을 기억해 두시기 바랍니다.
+블록을 가진 모듈을 인스톨하시면 해당 모듈의 블록들이 [인스톨되어 있지 않은 블록 리스트] 에 나타나게 됩니다.
+</p>
+
+<ul>
+ <li>XOOPS2 JP 시절의 블록 표시(On)에 해당하는 작업이 <a href='<{$smarty.const.XOOPS_MODULE_URL}>/base/admin/index.php?action=BlockInstallList'>블록 설치(Install)</a>입니다.
+ <li>XOOPS2 JP 시절의 블록 비표시(Off)에 해당하는 작업이 <a href='<{$smarty.const.XOOPS_MODULE_URL}>/base/admin/index.php?action=BlockList'>블록관리의 블록제거(Uninstall)</a>입니다.
+</ul>
+<p>
+커스텀 블록에 대해서도 동일한 개념이 적용되어 집니다.
+커스텀 블록을 작성하시려면 <a href='<{$smarty.const.XOOPS_MODULE_URL}>/base/admin/index.php?action=BlockInstallList'>블록 설치(Install)</a>에서 <a href='<{$smarty.const.XOOPS_MODULE_URL}>/base/admin/index.php?action=CustomBlockEdit'>커스텀 블록 추가</a>를 선택하시면 됩니다.
+</p>
+
+<p>
+블록을 제거(uninstall)하셔도 블록이 삭제처리되어지는 것은 아니므로 언제든지 다시 설치(install)하실 수 있습니다.
+커스텀 블록을 삭제처리하시려면 먼저 해당 블록을 제거(uninstall)하신 후 <a href='<{$smarty.const.XOOPS_MODULE_URL}>/base/admin/index.php?action=BlockInstallList'>블록 설치</a>에서 해당 블록을 삭제처리하시면 됩니다.
+모듈에 소속된 블록들은 모듈을 제거하시면 함께 삭제처리되어 집니다.
+</p>
+
+<h5>메일/PM쪽지 일괄발송은 어디에서?</h5>
+<p>
+이 부분도 XOOPS2 JP시절과는 많은 차이점이 있습니다. 좀 더 편리해 졌다고... (개발팅은 그렇게 생각중...--;;)
+</p>
+
+<p>
+먼저 메일발송은 <a href='<{$smarty.const.XOOPS_MODULE_URL}>/user/admin/index.php?action=MailjobList'>메일작업(Mailjob) 관리</a>에서 이루어진다는 것을 기억해 두시기 바랍니다.
+메일작업(mailjob)도 Cube Legacy에서 새롭게 도입되어진 개념입니다.
+각각의 메일작업(mailjob)은 메일의 본문과 그 메일을 받을 이들의 리스트를 가지게 됩니다.
+메일을 받을 이들의 리스트(send list)는 <a href='<{$smarty.const.XOOPS_MODULE_URL}>/user/admin/index.php?action=UserSearch'>사용자 검색</a>작업을 통해 작성하게 됩니다.
+</p>
+
+<ol>
+ <li>메일을 받을 이들의 리스트(send list)를 작성하기 위해 <a href='<{$smarty.const.XOOPS_MODULE_URL}>/user/admin/index.php?action=UserSearch'>사용자 검색</a>작업을 합니다.
+ <li>사용자 검색을 통해 메일을 받을 이들을 검색하셨다면 검색결과 테이블위에 있는 [이 조건으로 메일 발송]을 클릭하시기 바랍니다.
+ <li>메일의 제목과 본문을 작성하신 후 메일로 보내실 건지 PM쪽지로 보내실 건지 선택해 주시면 됩니다.
+ <li>여기까지 끝내시면 해당 메일작업(mailjob)이 신규작성되어져서 <a href='<{$smarty.const.XOOPS_MODULE_URL}>/user/admin/index.php?action=MailjobList'>메일작업(Mailjob) 관리</a>에 나타나게 됩니다.
+ <li>이제 언제든지 이 메일작업(mailjob)의 타이틀을 클릭하셔서 해당 메일작업을 수행하실 수 있습니다. 물론 보내지 않고 그대로 두셨다가 필요할 때 작업을 수행하셔도 됩니다. 
+</ol>
+
+<p>
+보다 상세한 정보가 필요하시면 <a href='<{$smarty.const.XOOPS_MODULE_URL}>/user/admin/index.php?action=Help&amp;dirname=user'>사용자 모듈의 Help</a>를 참조하시기 바랍니다.
+</p>

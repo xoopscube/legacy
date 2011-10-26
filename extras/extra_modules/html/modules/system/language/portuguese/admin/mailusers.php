@@ -1,0 +1,39 @@
+<?php
+// *************************************************************** //
+// ** XOOPS Cube Legacy - Versão em Português
+// ** $Id: mailusers.php 616 2010-04-27 22:04:08Z mikhail $
+// **	License http://creativecommons.org/licenses/by/2.5/br/
+// *************************************************************** //
+define("_AM_DBUPDATED","Banco de dados atualizado corretamente.");
+define("_AM_SENDTOUSERS","Enviar mensagens aos associados baseando-se nas seguintes informações:");
+define("_AM_SENDTOUSERS2","Enviar para:");
+define("_AM_GROUPIS","Associados do Grupo (opcional)");
+define("_AM_TIMEFORMAT","[yyyy-mm-dd](opcional)");
+define("_AM_LASTLOGMIN","Último acesso após:");
+define("_AM_LASTLOGMAX","Com último acesso antes de:");
+define("_AM_REGDMIN","Registrado após");
+define("_AM_REGDMAX","Registrado antes de");
+define("_AM_IDLEMORE","Último acesso com mais de <span style='color:#ff0000'>X</span> dias.");
+define("_AM_IDLELESS","Último acesso com menos de <span style='color:#ff0000'>X</span> dias.");
+define("_AM_MAILOK","Aceitam receber e-mails. (opcional)");
+define("_AM_INACTIVE","Incluir mensagens apenas para associados inativos (opcional)");
+define("_AMIFCHECKD","Se este item estiver selecionado todas as mensagens, (incluindo as particulares) serão ignoradas");
+define("_AM_MAILFNAME","Nome (apenas)");
+define("_AM_MAILFMAIL","E-mail (apenas)");
+define("_AM_MAILSUBJECT","Assunto");
+define("_AM_MAILBODY","Mensagem");
+define("_AM_MAILTAGS","Códigos úteis:");
+define("_AM_MAILTAGS1","{X_UID} inclui o ID do associado");
+define("_AM_MAILTAGS2","{X_UNAME} inclui o nome do associado");
+define("_AM_MAILTAGS3","{X_UEMAIL} inclui o e-mail do associado");
+define("_AM_MAILTAGS4","{X_UACTLINK} inclui o link de ativação");
+define("_AM_SENDTO","Método de envio");
+define("_AM_EMAIL","E-mail");
+define("_AM_PM","Recado");
+define("_AM_SENDMTOUSERS","Enviar mensagem aos associados");
+define("_AM_SENT","Associados");
+define("_AM_SENTNUM","%s - %s (total: %s associados)");
+define("_AM_SENDNEXT","Próximos »");
+define("_AM_NOUSERMATCH","Nenhum associado correspondente");
+define("_AM_SENDCOMP","Envio concluído.");
+?>

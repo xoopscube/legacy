@@ -1,0 +1,72 @@
+div.smarkup {
+	background: url(img/toolbar-bg.png) repeat-x;
+	border: 1px solid #999;
+}
+div.smarkup-textarea {
+	border: 1px solid #999;
+	background: #fff url(img/textarea-bg.png) repeat-x;
+}
+div.smarkup textarea {
+	line-height: 18px;
+	padding: 4px 0;
+	height: 350px;
+	color: #333;
+	font-size: 14px;
+	background: none;
+}
+div.smarkup-toolbar {
+	height: 24px;
+	padding: 6px 0 0 4px;
+}
+div.smarkup-preview {
+	background: #fff url(img/toolbar-bg.png) repeat-x;
+}
+div.smarkup-preview iframe {
+	background: #fff;
+}
+div.smarkup-preview-header {
+	background: url(../img/preview.png) no-repeat 4px center;
+	border-bottom: 1px solid #999;
+	height: 30px;
+	line-height: 30px;
+	font-size: 12px;
+	padding-left: 24px;
+	font-weight: bold;
+}
+div.smarkup-dialog-body {
+	background: url(img/dialog-bg.png);
+}
+
+div.smarkup-dialog-header, 
+div.smarkup-dialog-footer, 
+div.smarkup-dialog-tl,
+div.smarkup-dialog-tr,
+div.smarkup-dialog-bl,
+div.smarkup-dialog-br {
+	height: 9px;
+}
+
+div.smarkup-dialog-tl {
+	margin-right: 9px;
+	background: url(img/dialog-tl.png) no-repeat;
+}
+
+div.smarkup-dialog-tr, div.smarkup-dialog-br {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 9px;
+}
+
+div.smarkup-dialog-tr {
+	background: url(img/dialog-tr.png) no-repeat;
+}
+
+div.smarkup-dialog-br {
+	background: url(img/dialog-br.png) no-repeat;
+}
+
+div.smarkup-dialog-bl {
+	margin-right: 9px;
+	background: url(img/dialog-bl.png) no-repeat;
+}

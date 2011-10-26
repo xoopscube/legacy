@@ -1,0 +1,47 @@
+---------------------------------------------------------
+Copyright and License notice about XOOPS Cube Legacy 2.1.
+---------------------------------------------------------
+
+Most of the files included in XOOPS Cube Legacy 2.1 packages are licensed under 
+the "GNU PUBLIC LICENSE VERSION 2.0". (see /docs/GPL_V2.txt)
+
+ Many of these files are delivered from 
+  -XOOPS 2.0.9.3
+    Copyright 2000 XOOPS Project
+    http://www.xoops.org
+
+ But the other files are newly added  or completely rewritten by XOOPS Cube Legacy Project.
+    Copyright 2005, 2006 XOOPSCube.org
+    http://xoopscube.org
+
+But some special files are licensed under the other license models those can co-exist with GPL V2 files.
+
+*Licensed under the "Modified BSD License"  (see /docs/ModifiedBSD.txt)
+  -XOOPS Cube Core Files (/html/core/*)  
+     Copyright 2005, 2006 XOOPSCube.org
+     http://xoopscube.org
+     (These files are developed by XOOPS Cube Core Project and are fully isolated from
+     XOOPS files. Then we decide to change the license modle from GPL to Modified BSD.)
+
+*Licensed under the "GNU LESSER GENERAL PUBLIC LICENSE Version 2.1"  (see /docs/LGPL_V2_1.txt)
+  -Smarty (/html/class/smarty/*)
+     Copyright (c) 2001-2005 New Digital Group, Inc. All rights reserved. 
+     (http://smarty.php.net/)
+  -PHPDownloader(/html/classs/class.tar.php, /html/classs/class.zipfile.php)
+     Copyright (c) 2002 - www.ipunkt.biz (rok)
+     (http://www.ipunkt.biz/service/php-downloader/index.html)
+  -Snoopy(/html/classs/class.tar.php)
+     Copyright (c): 1999-2000 ispi, all rights reserved
+     (http://sourceforge.net/projects/snoopy/)
+  -PHPMailer(/html/classs/mail/phpmailer/*)
+     Copyright (C) 2001 - 2003  Brent R. Matzelle
+     (http://phpmailer.sourceforge.net/)
+  -eXtremePHP (/html/classs/xml/saxparser.php, /html/classs/xml/xmltaghandler.php)
+     Copyright (C) 2001 - eXtremePHP Ken Egervari <ken@extremephp.org> Remi Michalski <remi@extremephp.org>
+     http://www.extremephp.org/
+  -The Coolest DHTML Calendar(/html/include/calendar.js, /html/include/calendar-blue.css)
+     Copyright Mihai Bazon, 2002
+     http://sourceforge.net/projects/jscalendar
+  -NuSOAP modules/legacy/lib/nusoap/ 
+     Copyright (c) 2002 NuSphere Corporation
+     http://dietrich.ganx4.com/nusoap

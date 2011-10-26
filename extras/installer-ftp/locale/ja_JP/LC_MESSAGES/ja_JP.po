@@ -1,0 +1,360 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Hodajuku ftp installer 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-10-23 16:44+0900\n"
+"PO-Revision-Date: \n"
+"Last-Translator: ITOH Takashi <tohokuaiki@gmail.com>\n"
+"Language-Team: hodajuku <tohokuaiki@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: Japan\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: _\n"
+"X-Poedit-Basepath: \\\\Junoewww.sc440\\smbuser\\Site\\main\\public_html\\itoh\\hodajuku\\hd_ftp_installer\n"
+"X-Poedit-SearchPath-0: template\n"
+"X-Poedit-SearchPath-1: app\n"
+
+#: template/setupfailed.php:2
+msgid "Server setting is failed.Check below messages."
+msgstr "サーバの設定が有効ではありません。下記のメッセージをチェックしてください。"
+
+#: template/setupfailed.php:5
+msgid "PHP FTP library is not loaded. You cannot use this system at this server."
+msgstr "PHPのFTPライブラリが使えません。このサーバでは本プログラムは動きません。"
+
+#: template/setupfailed.php:8
+#, fuzzy
+msgid "You cannot use this system when PHP safe_mode is ON."
+msgstr "PHPのセーフモードがONになっている場合は使用できません。"
+
+#: template/setupfailed.php:11
+msgid "System tar command cannot use."
+msgstr "システムコマンドのtarがPHPから使用できません。"
+
+#: template/setupfailed.php:14
+msgid "System wget or curl command cannot use."
+msgstr "システムコマンドのwgetもしくはcurlがPHPから使用できません。"
+
+#: template/setupfailed.php:17
+msgid "System chmod command cannot use."
+msgstr "システムコマンドのchmodがPHPから使用できません。"
+
+#: template/setupfailed.php:20
+msgid "check tmp directory permission is set to 777."
+msgstr "tmpディレクトリがパーミション777になっていることを確認してください。"
+
+#: template/layout.php:17
+msgid "Please let your browser set JavaScript ON."
+msgstr "JavaScriptを有効にしてください。"
+
+#: template/layout.php:29
+msgid "Downloading package file from selected server."
+msgstr "選択されたサーバからパッケージをダウンロードします。"
+
+#: template/layout.php:34
+msgid "XOOPSCube installer 2nd STEP Start."
+msgstr "XOOPSCubeのインストール第二ステップに進みます。"
+
+#: template/layout.php:36
+msgid "Logining as XOOPSCube Admin User."
+msgstr "XOOPSCubeの管理者としてログインします。"
+
+#: template/layout.php:37
+msgid "Login Success."
+msgstr "管理者権限でのログインが成功しました。"
+
+#: template/layout.php:38
+msgid "Modules Install success."
+msgstr "モジュールのインストールが成功しました。"
+
+#: template/layout.php:39
+msgid "Login Failed."
+msgstr "XOOPSCubeへのログインに失敗しました。"
+
+#: template/layout.php:41
+msgid "XOOPSCube Install Finished. Start to Click HERE."
+msgstr "XOOPSCubeのインストールが完了しました。ここをクリックしてXOOPSCubeを始めましょう。"
+
+#: template/layout.php:50
+msgid "This Installer is under BSD Licence."
+msgstr "BSDライセンス"
+
+#: template/ftp.php:1
+msgid "Set FTP information of your this server."
+msgstr "このサーバのFTP情報を設定します"
+
+#: template/ftp.php:5
+msgid "Input FTP params and check."
+msgstr "FTPのパラメータの入力と確認"
+
+#: template/ftp.php:13
+msgid "check this parameters are valid."
+msgstr "この値が有効かチェック"
+
+#: template/index.php:1
+msgid "Please select the your preferred language when you operate."
+msgstr "操作する時に表示する言語を選択してください。"
+
+#: template/index.php:9
+msgid "Change Language"
+msgstr "言語を選択"
+
+#: template/index.php:10
+msgid "next"
+msgstr "次へ"
+
+#: template/json/copyfile.php:1
+#: template/json/copyfile.php:3
+msgid "File Install Success"
+msgstr "ファイルのインストールが成功しました。"
+
+#: template/json/copyfile.php:5
+msgid "Is your XOOPSCube SITE is this?"
+msgstr "インストールしたXOOPSCubeのサイトはここですか？"
+
+#: template/json/copyfile.php:6
+msgid "If this is not collect, Let's go to XOOOPSCube Installer manually."
+msgstr "もし、これが正しくない場合はXOOPSCubeのインストーラに直接アクセスしてください。"
+
+#: template/json/copyfile.php:9
+msgid "Next STEP is XOOPSCube Install wizards."
+msgstr "次のステップは、XOOPSCubeのインストールです。"
+
+#: template/json/copyfile.php:12
+msgid "Set database parameters below."
+msgstr "下記のデータベースパラメータなどを設定してください。"
+
+#: template/json/copyfile.php:13
+msgid "XOOPSCube Language"
+msgstr "XOOPSCubeで使用する言語を選択してください"
+
+#: template/json/copyfile.php:14
+msgid "MySQL Database Host"
+msgstr "MySQLのデータベースサーバ"
+
+#: template/json/copyfile.php:15
+msgid "MySQL Database Name"
+msgstr "MySQLのデータベース名"
+
+#: template/json/copyfile.php:16
+msgid "MySQL Database User"
+msgstr "MySQLのユーザー名"
+
+#: template/json/copyfile.php:17
+msgid "MySQL Database Password"
+msgstr "MySQLのユーザーパスワード"
+
+#: template/json/copyfile.php:18
+msgid "XOOPS URL"
+msgstr "XOOPS CubeへのURL"
+
+#: template/json/copyfile.php:19
+msgid "XOOPS ROOT PATH"
+msgstr "XOOPS Cubeへのパス"
+
+#: template/json/copyfile.php:20
+msgid "XOOPS TRUST PATH"
+msgstr "XOOPS_TRUST_PATH"
+
+#: template/json/copyfile.php:21
+msgid "XOOPS COOKIE Path"
+msgstr "XOOPS_COOKIE_PATHの指定"
+
+#: template/json/copyfile.php:22
+msgid "Admin Username"
+msgstr "XOOPSCube管理者のユーザー名"
+
+#: template/json/copyfile.php:23
+msgid "Admin Mail"
+msgstr "管理者のメールアドレス"
+
+#: template/json/copyfile.php:24
+msgid "Admin Password"
+msgstr "XOOPSCube管理者のパスワード"
+
+#: template/json/copyfile.php:25
+msgid "Admin Password(Confirm)"
+msgstr "管理者のパスワード(確認)"
+
+#: template/json/copyfile.php:27
+msgid "install XOOPSCube"
+msgstr "XOOPSCubeをインストールする"
+
+#: template/json/copyfile.php:41
+msgid "Start XOOPSCube Install Wizard."
+msgstr "XOOPSCubeのインストーラを実行します。"
+
+#: template/json/ftpcheck.php:1
+msgid "FTP check is O.K"
+msgstr "FTP接続は問題ありません。"
+
+#: template/json/ftpcheck.php:3
+msgid "Please input XOOPSCube repository url."
+msgstr "XOOPSCubeのパッケージのリポジトリURLを入力してください。"
+
+#: template/json/ftpcheck.php:7
+msgid "For example Hodajuku distribution repository definition URL is <br> http://hodajuku.sourceforge.net/"
+msgstr "たとえば、ホダ塾ディストリビューションのリポジトリURLは次になります。 <br> http://hodajuku.sourceforge.net/"
+
+#: template/json/ftpcheck.php:12
+msgid "get information from this repository."
+msgstr "レポジトリから情報を取得"
+
+#: template/json/xoopsparam.php:2
+msgid "Finaly set Install Path. XOOPS_ROOT_PATH &amp; XOOPS_TRUST_PATH"
+msgstr "最後にインストールするパスを設定します。XOOPS_ROOT_PATHとXOOPS_TRUST_PATHの設定になります。"
+
+#: template/json/xoopsparam.php:6
+msgid "Set XOOPSCube file path parameters."
+msgstr "XOOPSCubeのファイルの位置に関する設定"
+
+#: template/json/xoopsparam.php:14
+msgid "Download File and Install. Are you O.K?"
+msgstr "ダウンロードとファイルの設置を行います。よろしいですか？"
+
+#: template/json/cleanup1sttables.php:2
+msgid "XOOPS Install failed. Cleanup created tables."
+msgstr "XOOPSCubeのインストールに失敗しました。作成したデータベーステーブルを一掃しました。"
+
+#: template/json/getrepository.php:1
+msgid "Your Repository is available."
+msgstr "選択したリポジトリは有効です"
+
+#: template/json/getrepository.php:3
+msgid "Please select package what you use."
+msgstr "使用するパッケージを選択してください。"
+
+#: template/json/getrepository.php:11
+msgid "Package"
+msgstr "パッケージ"
+
+#: template/json/getrepository.php:12
+msgid "Version"
+msgstr "バージョン"
+
+#: template/json/getrepository.php:17
+msgid "Select this package."
+msgstr "パッケージの選択"
+
+#: template/json/error/repeatxoops1ststep.php:2
+msgid "Check XOOPSCube parameters and reClick install button."
+msgstr "もう一度、XOOPSCubeの各パラメータを確認して、インストール実行ボタンを再度クリックしてください。"
+
+#: template/json/error/reload.php:2
+msgid "File Install Action failed Retry Please."
+msgstr "ファイルのインストール作業が失敗しました。再度リロードしてやり直してください。"
+
+#: app/Hdinstaller_ViewClass.php:42
+msgid "Hodajuku Distribution Install/Upgrade System"
+msgstr "ホダ塾ディストリビューション 新規インストールファイルアップロードシステム"
+
+#: app/view/Index.php:27
+msgid "Select language"
+msgstr "言語の選択"
+
+#: app/action/Json.php:31
+#: app/action/Ftp.php:31
+msgid "FTP user name"
+msgstr "FTPのユーザー名"
+
+#: app/action/Json.php:36
+#: app/action/Ftp.php:37
+msgid "FTP password"
+msgstr "FTPのパスワード"
+
+#: app/action/Json.php:41
+msgid "Repository URL"
+msgstr "リポジトリのURL"
+
+#: app/action/Json.php:46
+msgid "Target Package"
+msgstr "選択したパッケージ"
+
+#: app/action/Json.php:51
+msgid "Path to XOOPS Top page"
+msgstr "XOOPSCubeのトップページへのファイルパス"
+
+#: app/action/Json.php:56
+msgid "Path to XOOPS program files."
+msgstr "XOOPSCubeのファイルパス設定"
+
+#: app/action/Json/Getrepository.php:61
+msgid "your indicated repository is not available"
+msgstr "指定したリポジトリは無効です"
+
+#: app/action/Json/Ftpcheck.php:63
+msgid "Failed ftp operation rmdir."
+msgstr "FTPのrmdir操作に失敗しました"
+
+#: app/action/Json/Ftpcheck.php:67
+msgid "Failed ftp operation mkdir."
+msgstr "FTPのmkdir操作に失敗しました"
+
+#: app/action/Json/Ftpcheck.php:71
+msgid "Failed ftp operation delete."
+msgstr "FTPのdelete操作に失敗しました"
+
+#: app/action/Json/Ftpcheck.php:75
+msgid "Failed ftp operation put."
+msgstr "FTPのput操作に失敗しました"
+
+#: app/action/Json/Ftpcheck.php:79
+msgid "Failed seek ftp root path."
+msgstr "FTPのルートパスの検出に失敗しました。"
+
+#: app/action/Json/Ftpcheck.php:83
+msgid "FTP login failed."
+msgstr "FTPのログインに失敗しました。ユーザー名とパスワードは正確ですか？"
+
+#: app/action/Json/Ftpcheck.php:87
+msgid "Failed ftp connect to localhost."
+msgstr "FTP接続に失敗しました。"
+
+#: app/action/Json/Cleanup1sttables.php:26
+msgid "DB Host"
+msgstr "データベースサーバのホスト名"
+
+#: app/action/Json/Cleanup1sttables.php:32
+msgid "DB name"
+msgstr "データベース名"
+
+#: app/action/Json/Cleanup1sttables.php:38
+msgid "DB Username"
+msgstr "データベースのユーザー名"
+
+#: app/action/Json/Cleanup1sttables.php:44
+msgid "DB Password"
+msgstr "データベースユーザーのパスワード"
+
+#: app/action/Json/Cleanup1sttables.php:50
+msgid "Database table prefix"
+msgstr "テーブル接頭語"
+
+#: app/action/Json/Downloadpackage.php:90
+msgid "file download failed."
+msgstr "ファイルのダウンロードに失敗しました。"
+
+#: app/action/Json/Downloadpackage.php:104
+msgid "Extract dowloaded files"
+msgstr "ダウンロードしたファイルを展開しています。"
+
+#: app/action/Json/Copyfile.php:110
+msgid "Finish XOOPSCube File install"
+msgstr "XOOPSCubeのファイルをサーバ上にインストールしました。"
+
+#: app/action/Json/Extractfile.php:57
+msgid "file extract error"
+msgstr "ファイルの展開に失敗しました。"
+
+#: app/action/Json/Extractfile.php:71
+msgid "Files copy to XOOPS_ROOT_PATH and XOOPS_TRUST_PATH."
+msgstr "展開したファイルをXOOPS_ROOT_PATHとXOOPS_TRUST_PATHにコピーしています。"
+
+#~ msgid "Here?"
+#~ msgstr "ここですか？"
+#~ msgid "INSTALL HEADER MESSAGE"
+#~ msgstr "インストールするために、サーバにファイルをダウンロードします。"
+

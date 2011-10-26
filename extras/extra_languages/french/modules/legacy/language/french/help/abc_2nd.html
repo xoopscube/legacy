@@ -1,0 +1,160 @@
+<h4>La deuxième étape - L'installation de blocs</h4>
+<h5>Descripton</h5>
+<p>Vous pouvez ajouter un message de bienvenue pour amis et visiteurs dans l'en-tête de la page d'accueil. 
+Mais également des blocs d'articles et forums selon les besoins de votre site.</p>
+
+<h5>La Mise en Page</h5>
+<p>Voici une mise en page d'un theme standard de Xoops Cube Legacy</p>
+
+
+<p>Le site xoopscube.org utilise aussi les blocs dans la mise en page. C'est une structure basique de XOOPS.</p>
+
+
+
+<p>Dans la plupart des thèmes, vous pouvez utiliser trois colonnes: la colonne de gauche, la colonne du centre et la colonne de droite.<br />
+ Au centre, vous avez le plus souvent un bloc central et deux colonnes: centre-gauche, centre-centre et centre-droit.<br /> 
+ Vous pouvez assigner un "Bloc" à une de ces colonnes.</p>
+
+<p>Le "Bloc" est une partie de contenu dynamique.<br />
+Les blocs appartiennent aux modules et sont installés en même temps que les modules.</p>
+
+<h6>Bloc de connexion</h6>
+
+
+
+<p>Le bloc que vous utilisez pour vous connecter est le bloc "Login" (connexion) installé par défaut.<br />
+Ce bloc affiche les boîtes de texte pour le nom de l'utilisateur et le mot de passe.<br />
+Lors de la connexion, il bloc est automatiquement remplacé par le bloc 'Menu Utilisateur'.</p>
+
+<h6>Bloc du Menu Principal</h6>
+
+<p>Ceci est le bloc automatique du Menu Principal pour tous les utilisateurs.<br /> 
+Le bloc du Menu Principal affiche uniquement les lien accessibles à l'utilisateur actuel.</p>
+
+<h6>Le Bloc du Menu Utilisateur</h6>
+
+
+<p>C'est un bloc qui affiche un menu personnel pour les utilisateurs inscrits.<br /> 
+Ce bloc est aussi un de trois blocs installés par défaut.</p>
+
+<h5>La Deuxième Etape (1) - Comment installer de nouveaux blocs</h5>
+<h6>Installer un Bloc</h6>
+<p>Commencez par installer le bloc "Site Info" (information du site) sur la colonne droite. <br />
+Ce bloc affiche les administrateur de votre site. <br />
+Ainsi, les visiteurs peuvent obtenir le surnom et l'adresse de contact de l'administrateur. <br />
+Cliquez sur "Installer un Bloc" du module Legacy dans le bloc gauche du panneau de contrôle.</p>
+
+<p>Ensuite, vous obtenez la liste des blocs non-utilisés. </p>
+
+
+<p>Trouvez le bloc "Site Info", et cliquez sur l'icône installer de la ligne indiquant ce bloc.</p>
+
+
+<h6>Installation du Bloc</h6>
+
+<p>Le bloc "Site Info" n'est pas encore installé. Vous devez configurer quelques options.</p>
+
+
+<h6>Titre</h6>
+<p>Le titre de ce bloc pour les visiteurs.</p>
+
+<h6>Position / Colonne</h6>
+
+
+<p>Choisissez une colonne pour afficher votre bloc. Cette fois, spécifiez "Bloc Droit".</p>
+
+<h6>Ordre</h6>
+<p>Ordre d'affichage sur la colonne. Vous pouvez laisser la valeur par défaut.</p>
+
+<h6>Temps de Cache</h6>
+<p>Vous pouvez spécifier combien de temps le système garde en cache ce bloc. 
+Dans le cas où le cache est activé, le système ne fait pas appel au programme mais utilise le bloc sauvegardé dans le dossier cache.</p>
+
+<h6>Cibler des modules</h6>
+
+<p>Spécifier les modules dans lesquels vous voulez afficher le bloc. 
+Cette fois, spécifiez "Toppage" (page d'accueil seulement).</p>
+
+<h6>Cibler un groupe</h6>
+
+<p>Spécifiez les groupes d'utilisateurs qui auront le droit d'accès au bloc. 
+C'est quoi un groupe ? <br />
+Les groupes sont un ensemble d'utilisateurs avec la permission d'accéder à certains modules ou le panneau de contrôle.<br />
+Vous avez trois types de groupes du système. Ces groupes sont spéciaux, donc l'administrateur ne peut pas les effacer.</p>
+
+<dl>
+  <dt>Webmestres</dt>
+  <dd>Ceci est le premier groupe de ce site.<br />
+  Les utilisateurs dans ce groupe ont la permission d'exécuter toute action.<br /> 
+  Le compte administrateur que vous utilisez lors de votre connexion appartient à ce groupe.</dd>
+  
+  <dt>Utilisateurs inscrits</dt>
+  <dd>Les utilisateurs communs qui se sont enregistrés, appartiennent par défaut à ce groupe .</dd>
+  
+  <dt>Utilisateurs anonymes</dt>
+  <dd>Ce groupe représente les utilisateurs non enregistrés.</dt>
+</dl>
+
+<p>Bien, cette fois, spécifier les trois groupes.<br />
+Parce que vous n'avez pas besoin de cacher le bloc aux utilisateurs.</p>
+
+<h6>Options</h6>
+<p>Cette option s'affiche dans le cas où un bloc a des paramètres facultatifs.<br /> 
+Mais, Cette fois, vous n'avez pas à le faire.</p>
+
+
+<h6>Installer</h6>
+<p>Une fois votre bloc configuré, cliquez sur le bouton "Installer" !<br /> 
+Allez sur la page d'accueil pour confirmer l'installation du bloc.</p>
+
+<h5>La Deuxième Etape (2)- Comment contrôler l'ordre des blocs</h5>
+<p>Installons un bloc supplémentaire, le bloc "Chercher" pour que les utilisateurs puissent effectuer une recherche avec un mot clé dans le contenu du site. 
+Lors de l'installation de ce bloc, choisissez la position "Bloc Droit" et "Tous les modules".<br />
+A présent, la colonne droite a deux blocs: le bloc "Chercher" en haut, sur toutes les pages, 
+et le bloc "Site Info" seulement en haut de la première page.</p>
+
+<p>Pour changer l'ordre d'affichage (poids) de ces blocs, cliquez sur le lien "Gestion des Blocs" du module Legacy dans le bloc gauche du panneau de contrôle.</p>
+
+<p>Vous voyez la liste des blocs installés.</p>
+
+<p>Ajoutez la valeur 1 dans la colonne 'Ordre' (ou poids, i.e. xoops2) du bloc "Chercher". 
+Et la valeur 5 sur le bloc "Site Info".</p>
+
+<p>Ensuite, cliquez sur le bouton "Valider". Maintenant, le bloc "Chercher" est toujours affiché avant le bloc "Site Info". </p>
+
+<h5>La Deuxième Etape (2)- Comment utiliser des blocs personnalisés</h5>
+<p>Les blocs personnalisés sont aussi très utiles, par exemple, pour ajouter un message de bienvenue sur la première page de votre site.</p>
+
+<p>Cliquez sur "Gestion de Blocs".<br />
+Ensuite, cliquez sur "Ajouter un Bloc Personnalisé".</p>
+
+<p>Vous voyez le formulaire d'édition pour créer un nouveau bloc personnalisé.<br />
+Les champs de ce formulaire vous sont familiers et n'ont pas besoin d'explications.</p>
+
+<h6>Contenu</h6>
+<p>Le type de contenu du bloc détermine comment il sera traité lors du rendu.<br />
+Cette fois, entrez votre message de bienvenue.</p>
+
+<h6>Type</h6>
+
+<p>Ce champ détermine comment rendre le contenu du bloc. Il y a quatre types.</p>
+
+<dl>
+  <dt>HTML</dt>
+  <dd>Le Type HTML vous permet d'ajouter du code html dans le champ 'contenu'.</dd>
+  <dt>PHP</dt>
+  <dd>Le Type PHP vous permet d'ajouter votre script dans le champ 'contenu'.</dd>
+  <dt>Le format auto avec émoticones</dt>
+  <dd>Ceci est le type le plus pratique. Vous pouvez entrer des messages dans le champ 'contenu' comme pour les articles ou le forum.</dd>
+  <dt>Le format auto sans émoticones</dt>
+  <dd>Vous ne pouvez pas utiliser les émoticones.</dd>
+</dl>
+
+<p>Cette fois, utilisez le format "Auto avec émoticones" et entrez votre message de bienvenue.<br />
+Et, assignez ce bloc à la colonne du centre accessible par tous les groupes.</p>
+
+<h5>Conclusions</h5>
+<p>Fondamentalement, les propriétaires du site n'utilisent pas d'éditeur HTML avec XOOPS Cube Legacy.<br />
+Certains thèmes vous offrent une mise en page et des colonnes différentes. Donc, vous pouvez assigner des blocs à ces colonnes spécifiques.</p>
+
+<div align="right"><img src="<{'abc_index_arrow.png'|helpimage}>" style="vertical-align:-15px;" /> <a href="<{'abc_3rd.html'|helpurl}>">ETAPE SUIVANTE</a></div>

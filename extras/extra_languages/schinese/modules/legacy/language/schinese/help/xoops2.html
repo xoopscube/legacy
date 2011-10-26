@@ -1,0 +1,33 @@
+<h4>XOOPS Cube Legacy 2.1 migration guide (for XOOPS 2.0.x users)</h4>
+<h5>Getting first</h5>
+<p>XOOPS Cube Legacy 2.1 does not have <strong>System module</strong>, that XOOPS 2.0.x had.
+If you migrate from XOOPS 2.0.x, you can keep using a <strong>System module</strong> to avoid some troubles with some XOOPS 2.0.x modules. But some preference parameters move to another new XOOPS Cube modules.</p>
+
+<h5>Module management</h5>
+<ul>
+<li>You can manage modules on <strong>Legacy module</strong>.</li>
+<li>'Install module' and 'Module management' has each control page.</li>
+<li>Click 'Module management' menu to manage your installed modules. Click 'Install module' menu to install new modules.</li>
+<li>Old system's installer set group permission by the user who execute install. New Legacy system's installer set group permission to an administrator group only.</li>
+</ul>
+
+<h5>User management</h5>
+<ul>
+<li>'User management', 'Group management', 'Group permission', 'Avatar management' and 'Sending mail' is ported to <strong>User module</strong>.</li>
+</ul>
+
+<h5>Theme management</h5>
+<ul>
+<li>Each renderer systems (Theme engine) are used for management themes.</li>
+<li>We think that DB template manager is property of the renderer. Therefore, template manager is ported to Legacy renderer which has compatibility with XOOPS2's smarty environment.</li>
+</ul>
+
+<h5>Block management</h5>
+<ul>
+<li>XOOPS Cube 2.1 Legacy environment changed an opinion about block feature. You need <strong>install</strong> block before you set block to your site. New Legacy system handles it by visible flag.</li>
+<li>If you install module, the module's blocks are registered to XOOPS Cube Legacy.<br />
+But you cannot use it, until you go to 'Install block' page and click install icon of block which you want to install at</li>
+<li>If you uninstall the block, it moves back to the list of 'Install block' page.</li>
+<li>You can't edit uninstalled blocks' group permission, target column and target module. <br />
+But, uninstalled blocks keep these parameters. When you re-install the block, block installer recovers last parameters.</li>
+</ul>

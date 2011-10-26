@@ -1,0 +1,54 @@
+a.aligns {
+	background-image: url(img/align_left.png);
+}
+a.align-center {
+	background-image: url(img/align_center.png);
+}
+a.align-justify {
+	background-image: url(img/align_justify.png);
+}
+a.align-left {
+	background-image: url(img/align_left.png);
+}
+a.align-right {
+	background-image: url(img/align_right.png);
+}
+a.paddings {
+	background: url(img/padding_left.png) no-repeat center center;
+}
+a.padding-top {
+	background-image: url(img/padding_top.png);
+}
+a.padding-right {
+	background-image: url(img/padding_right.png);
+}
+a.padding-bottom {
+	background-image: url(img/padding_bottom.png);
+}
+a.padding-left {
+	background-image: url(img/padding_left.png);
+}
+a.text-indent {
+	background: url(img/text_indent.png) no-repeat center center;
+}
+a.letter-spacing {
+	background: url(img/letterspacing.png) no-repeat center center;
+}
+a.line-height {
+	background: url(img/linespacing.png) no-repeat center center;
+}
+a.font {
+	background: url(img/font.png) no-repeat center center;
+}
+a.uppercase {
+	background: url(img/uppercase.png) no-repeat center center;
+}
+a.lowercase {
+	background: url(img/lowercase.png) no-repeat center center;
+}
+a.background {
+	background: url(img/picture.png) no-repeat center center;
+}
+a.class-name{
+	background: url(img/class.png) no-repeat center center;
+}
