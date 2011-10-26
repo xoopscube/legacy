@@ -1,7 +1,7 @@
 <?php
 // *************************************************************** //
 // ** XOOPS Cube Legacy - Versão em Português
-// ** $Id: avatars.php 336 2009-07-31 09:53:22Z mikhail $
+// ** $Id$
 // **	License http://creativecommons.org/licenses/by/2.5/br/
 // *************************************************************** //
 define("_MD_AVATARMAN","Administração dos Avatares");

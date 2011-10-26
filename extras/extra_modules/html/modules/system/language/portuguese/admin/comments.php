@@ -1,7 +1,7 @@
 <?php
 // *************************************************************** //
 // ** XOOPS Cube Legacy - Versão em Português
-// ** $Id: comments.php 616 2010-04-27 22:04:08Z mikhail $
+// ** $Id$
 // **	License http://creativecommons.org/licenses/by/2.5/br/
 // *************************************************************** //
 define("_MD_AM_COMMMAN","Administração de comentários");

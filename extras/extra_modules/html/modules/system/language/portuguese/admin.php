@@ -1,7 +1,7 @@
 <?php
 // *************************************************************** //
 // ** XOOPS Cube Legacy - Versão em Português
-// ** $Id: admin.php 336 2009-07-31 09:53:22Z mikhail $
+// ** $Id$
 // **	License http://creativecommons.org/licenses/by/2.5/br/
 // *************************************************************** //
 define("_MD_AM_ADGS","Grupos & permissões");

@@ -2,7 +2,7 @@
 // ******************************************************************** //
 // ** XOOPS Cube Legacy - Profile Module - Portuguese
 // ** Por Mikhail Miguel <mikhail.miguel@gmail.com> - http://xoops.net.br/
-// ** $Id: admin.php 902 2011-02-16 22:24:07Z mikhail $
+// ** $Id$
 // **	License http://creativecommons.org/licenses/by/2.5/br/
 // ******************************************************************** //
 

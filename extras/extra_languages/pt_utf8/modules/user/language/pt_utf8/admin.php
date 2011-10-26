@@ -1,5 +1,5 @@
 <?php
-// $Id: admin.php 924 2011-03-30 00:31:19Z mikhail $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 define("_AD_USER_DATA_DOWNLOAD_DO","Descarregar em CSV");
 define("_AD_USER_DATA_NUM","%d visitantes cadastrados.");
@@ -93,7 +93,7 @@ define("_AD_USER_LANG_MAILJOB_VIEW","Entrega do correio");
 define("_AD_USER_LANG_MAIL_NG_USERS_ONLY","Apenas associados que <b>não aceitam</b> receber cartas-eletrônicas");
 define("_AD_USER_LANG_MAIL_OK_USERS_ONLY","Apenas associados que <b>aceitam</b> receber cartas-eletrônicas");
 define("_AD_USER_LANG_MESSAGE","Mensagem");
-define("_AD_USER_LANG_NO_SPECIAL_RANK","-~-~-~-");
+define("_AD_USER_LANG_NO_SPECIAL_RANK","Sem definição");
 define("_AD_USER_LANG_OVER_POSTS","Número de contribuições é superior a X");
 define("_AD_USER_LANG_PENDING_USERS_ONLY","Apenas inativos");
 define("_AD_USER_LANG_PERM_ACCESS","Acesso");
@@ -146,23 +146,23 @@ define("_AD_USER_MESSAGE_CONFIRM_DELETE_RANK","Confirma a remoção desta gradua
 define("_AD_USER_MESSAGE_CONFIRM_UPDATE_AVATAR","Tem certeza de que deseja atualizar isto?");
 define("_AD_USER_MESSAGE_CONFIRM_UPDATE_RANK","Tem certeza de que deseja atualizar a graduação?");
 define("_AD_USER_MESSAGE_CONFIRM_UPDATE_USER","Tem certeza de que deseja atualizar esse associado?");
-define("_AD_USER_MESSAGE_RECOUNT_SUCCESS","Valores recalculados corretamente.... ");
+define("_AD_USER_MESSAGE_RECOUNT_SUCCESS","Valores recalculados corretamente...");
 define("_AD_USER_TIPS1_DATA_UPLOAD","A inclusão em lote de associados é possível via arquivos CSV.");
 define("_AD_USER_TIPS2_DATA_UPLOAD","Utilize um arquivo CSV no mesmo formato da opção <q><a href='?action=UserDataDownload'>Exportar Dados</a></q>, sem alterar o número de colunas.");
 define("_AD_USER_TIPS3_DATA_UPLOAD","Please describe only the user who wants to update and wants to register information newly in CSV file.");
 define("_AD_USER_TIPS4_DATA_UPLOAD","When the row of leftmost UID is emptied(or 0), it registers as a new user.");
 define("_AD_USER_TIPS5_DATA_UPLOAD","The user information is updated when there is a value of the row of leftmost(UID).<br>If you set password,set it within 30bytes.");
 define("_AD_USER_TIPS_AVATAR","Avatares são imagens que representam as personalidades dos associados. Podem ser desde figuras <q>nonsense</q> a ícones de nossas culturas; ou mesmo suas próprias fotos. A palavra <q>Avatar</q> tem o origem indiana e significa, segundo a crença hinduísta, a descida de um ser divino à terra, em forma materializada, podendo assumir a forma humana ou a de um animal. Também significa <q>processo metamórfico</q>; <q>transformação</q>, como a de um artista ao entrar no palco ou a de um visitante ao acessar um bate-papo ou fórum da Internet. Resumindo: escolha a imagem que tenha mais a ver com a sua personalidade. Se desejar, escolha um dos avatares disponíveis em nossa galeria ou, se desejar, utilize alguma imagem do seu computador.");
-define("_AD_USER_TIPS_AVATAR_UPLOAD","You can easily register many avatars by uploading Archive file including them! <br />This batch-upload doesn't check Length and File-Size of each avatar!<br />Please pre-adjust them before you archive them!<br />(Only tar.gz or zip archive)");
+define("_AD_USER_TIPS_AVATAR_UPLOAD","You can easily register many avatars by uploading Archive file including them! <BR />This batch-upload doesn't check Length and File-Size of each avatar!<BR />Please pre-adjust them before you archive them!<BR />(Only tar.gz or zip archive)");
 define("_AD_USER_TIPS_DATA_DOWNLOAD","O arquivo CSV com os dados dos associados só está disponível em ordem de cadastro (user_id).");
-define("_AD_USER_TIPS_DELETE_AVATAR","Users who are using this avatar will have blank.gif as the avatar image file.");
+define("_AD_USER_TIPS_DELETE_AVATAR","Qualquer associado que por ventura estiver usando este avatar passará a ter o arquivo de imagem <q>blank.gif</q> como novo avatar.");
 define("_AD_USER_TIPS_MAILJOB_SEND","Se houver muitos destinatários, o servidor poderá não responder como esperado (página em branco, etc.) Neste caso, recarregue o navegador diversas vezes para contornar este problema e completar o envio das cartas-eletrônicas para todos os associados.");
 define("_AD_USER_TIPS_RANK","A social user ranking system is helpfull to identify contributors. You can define your own policy by editing default ranks.");
 define("_AD_USER_TIPS_RECOUNT_POSTS","Você pode recalcular o número de contribuições dos associados clicando no botão <q>Recalcular</q> abaixo.");
-define("_AD_USER_TIPS_USER_ADMIN","Access to your XOOPS Cube web site is controlled through a group-based system by which users are assigned to groups that authorize their access to Modules and blocks content. Some recent modules can extend default User Management providing a role-based system which allows you to assign permissions by User.<br />You can also extend default User Profile by adding new fields. To learn more, click the following link :");
+define("_AD_USER_TIPS_USER_ADMIN","Access to your XOOPS Cube web site is controlled through a group-based system by which users are assigned to groups that authorize their access to Modules and blocks content. Some recent modules can extend default User Management providing a role-based system which allows you to assign permissions by User.<BR />You can also extend default User Profile by adding new fields. To learn more, click the following link :");
 define("_AD_USER_TIPS_USER_EDIT","Se você deseja mudar de senha, complete os campos <q>Senha</q> e <q>Confirmar senha</q> do formulário.");
-define("_AD_USER_TIPS_USER_NEW","É necessário completar os camos <q>Codinome</q>, <q>Endereço de correio-eletrônico</q>, <q>Senha</q> e <q>Confirmar senha</q>.");
-define("_AD_USER_TIPS_USER_SEARCH","You can search and sort your users data to find the vital information you are looking for.<br />The accuracy of the end result will be directly related to the number of fields you fill.");
+define("_AD_USER_TIPS_USER_NEW","É necessário completar os campos <q>Codinome</q>, <q>Endereço de correio-eletrônico</q>, <q>Senha</q> e <q>Confirmar senha</q>.");
+define("_AD_USER_TIPS_USER_SEARCH","Você pode pesquisar e classificar os dados dos associados cadastrados para encontrar informações relevantes aos seus objetivos.<BR /> A precisão do resultado final das pesquisas será diretamente relacionada ao número de campos que você criar.");
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //

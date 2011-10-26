@@ -1,5 +1,5 @@
 <?php
-// $Id: makedata.php 856 2010-12-16 19:46:14Z mikhail $
+// $Id$
 
 
 include_once './class/dbmanager.php';

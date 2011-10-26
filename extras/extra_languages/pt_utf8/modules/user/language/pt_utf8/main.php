@@ -1,12 +1,12 @@
 <?php
-// $Id: main.php 924 2011-03-30 00:31:19Z mikhail $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 define("_MD_USER_ERROR_AVATAR_EXTENSION","Lamento, o envio de arquivos com essa extensão ainda não foi habilitado.");
 define("_MD_USER_ERROR_AVATAR_MAXFILESIZE","O arquivo enviado excede o limite de tamanho permitido para avatares.");
 define("_MD_USER_ERROR_AVATAR_SELECT","Ocorreu um erro: selecione um avatar válido.");
 define("_MD_USER_ERROR_AVATAR_SIZE","O arquivo enviado excede as dimensões permitidas...");
-define("_MD_USER_ERROR_DBUPDATE_FAILED","Falha ao tentar atualizar o banco de dados");
-define("_MD_USER_ERROR_EMAIL","{0} não é considerado um endereço de correio-eletrônico válido");
+define("_MD_USER_ERROR_DBUPDATE_FAILED","Falha ao tentar atualizar o banco de dados.");
+define("_MD_USER_ERROR_EMAIL","{0} não é considerado um endereço de correio-eletrônico válido.");
 define("_MD_USER_ERROR_EMAILTAKEN","O endereço de correio-eletrônico escolhido já está em uso.");
 define("_MD_USER_ERROR_INJURY","Lamento, o sistema considera {0} como um valor equivovado.");
 define("_MD_USER_ERROR_INVALID_EMAIL","Endereço de correio eletrônico inválido");
@@ -15,9 +15,9 @@ define("_MD_USER_ERROR_MINLENGTH","Escreva {0:toLower} com no mínimo {1} caract
 define("_MD_USER_ERROR_NAME_RESERVED","O nome escolhido está reservado.");
 define("_MD_USER_ERROR_PASSWORD","Senha incorreta.");
 define("_MD_USER_ERROR_REQUIRED","É necessário completar o campo {0}.");
-define("_MD_USER_ERROR_SEND_MAIL","Lamento, erro ao tentar enviar a mensagem de correio-eletrônico. Por favor, entre em contato com a adminstração do portal.");
+define("_MD_USER_ERROR_SEND_MAIL","Lamento, ocorreu um erro ao tentar enviar a mensagem de correio-eletrônico. Por favor, entre em contato com a adminstração do portal.");
 define("_MD_USER_ERROR_TIMEZONE","Fuso horário");
-define("_MD_USER_ERROR_UNEEDAGREE","Lamento que você não concorda com as Regras de Conduta...");
+define("_MD_USER_ERROR_UNEEDAGREE","Lamento por você não concordar com as Regras de Conduta...");
 define("_MD_USER_ERROR_YOURREGMAILNG","ATENÇÃO: você completou o seu cadastrado. Porém, por um erro do servidor, não foi possível te enviar a mensagem com o código de ativação. Por favor, entre em contato com a administração e comunique o ocorrido.");
 define("_MD_USER_LANG_ALLABOUT","Informações acerca de %s");
 define("_MD_USER_LANG_ASSIGN","Acrescentar");
@@ -44,19 +44,19 @@ define("_MD_USER_LANG_LAST_LOGIN","Última visita");
 define("_MD_USER_LANG_LEVEL","Nível");
 define("_MD_USER_LANG_LOSTPASSWORD","Esqueceu a senha?");
 define("_MD_USER_LANG_NAME","Nome");
-define("_MD_USER_LANG_NAMERESERVED","Lamento, este nome está reservado.");
+define("_MD_USER_LANG_NAMERESERVED","Lamento, este nome escolhido está reservado.");
 define("_MD_USER_LANG_NEWPWDREQ","Nova solicitação de senha para %s");
 define("_MD_USER_LANG_NEWUSERREGAT","%s, mais um visitante acaba de se cadastrar...");
 define("_MD_USER_LANG_NICKNAME","Codinome");
 define("_MD_USER_LANG_NICKNAMETAKEN","Lamento, mas este codinome já está em uso.");
 define("_MD_USER_LANG_NO","Não");
-define("_MD_USER_LANG_NOACTTPADM","O cadastro do associado selecionado foi desabilitado ou ainda não foi habilitado.<br />Entre em contato com o administrador para mais informações.");
-define("_MD_USER_LANG_NOPROBLEM","Escreva o e-mail com o qual você se cadastrou em nosso site.");
+define("_MD_USER_LANG_NOACTTPADM","O cadastro do associado selecionado foi desabilitado ou ainda não foi habilitado.<BR />Entre em contato com o administrador para mais informações.");
+define("_MD_USER_LANG_NOPROBLEM","Escreva o e-mail com o qual você se cadastrou em nosso portal.");
 define("_MD_USER_LANG_NOREGISTER","Lamento, mas o cadastro de novos associados está bloqueado.");
 define("_MD_USER_LANG_NOTIFY","Notificações");
 define("_MD_USER_LANG_NOTIFY_METHOD","Método de notificação: ao monitorar uma seção do portal, como você deseja receber as notificações de atualização?");
 define("_MD_USER_LANG_NOTIFY_MODE","Método de notificação padrão");
-define("_MD_USER_LANG_NOTREGISTERED","Você ainda não se cadastrou? <a href=register.php>Clique AQUI!</a>");
+define("_MD_USER_LANG_NOTREGISTERED","Você ainda não se cadastrou? <a rel='nofollow' href='register.php'>Clique aqui!</a>");
 define("_MD_USER_LANG_PASS","Senha");
 define("_MD_USER_LANG_PASSWORD","Senha");
 define("_MD_USER_LANG_PM","Recado");
@@ -112,7 +112,7 @@ define("_MD_USER_MESSAGE_IAGREE","Concordo com o acima descrito");
 define("_MD_USER_MESSAGE_OLDDELETED","O seu avatar anterior será removido.");
 define("_MD_USER_MESSAGE_SEND_PASSWORD","Senha enviada");
 define("_MD_USER_MESSAGE_SURETODEL","Tem certeza de que deseja cancelar a sua conta?");
-define("_MD_USER_MESSAGE_USER_DELETE_SUCCESS","O seu perfil foi definificamente removido deste portal.");
+define("_MD_USER_MESSAGE_USER_DELETE_SUCCESS","O seu perfil foi definitivamente removido deste portal.");
 define("_MD_USER_MESSAGE_YOURREGISTERED","Agora você está cadastrado. Uma mensagem com a sua chave de ativação foi enviada ao e-mail que você nos forneceu. Por favor, siga as instruções contidas no e-mail para habilitar a sua conta.");
 define("_MD_USER_MESSAGE_YOURREGISTERED2","Agora você está cadastrado. Por favor, espere pela aprovação dos administradores.");
 // ############################################################### //

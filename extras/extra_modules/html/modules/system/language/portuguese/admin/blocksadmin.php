@@ -1,7 +1,7 @@
 <?php
 // *************************************************************** //
 // ** XOOPS Cube Legacy - Versão em Português
-// ** $Id: blocksadmin.php 616 2010-04-27 22:04:08Z mikhail $
+// ** $Id$
 // **	License http://creativecommons.org/licenses/by/2.5/br/
 // *************************************************************** //
 define("_AM_ABOVEORG","Antes do conteúdo original");

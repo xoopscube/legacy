@@ -2,6 +2,29 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
+2011/06/05: Package Revision 2.2.1 Beta1
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #3298903 - Guests can't view their profile items
+- Fix Bug #3301424 - user module admin UserView error
+
+[Feature Request - From Feature Requests Legacy Tracker]
+- Fix Bug #3307977 - site_custom.ini for multisite
+
+[Feature Request : Legacy - From Feature Requests Legacy Tracker]
+- Fix Bug #3308571 - Add altsys as extara_modules
+
+[Other Changes/Enhancements]
+- Update portuguese/pt_utf8 language files
+
+[Staff]
+- domifara
+- kilica
+- Mikhail Miguel
+- roger
+- Sow
+
+----------------------------------------
 2011/04/23: Package Revision 2.2.0
 ----------------------------------------
 [Bug Fix - From Bug Tracker]

@@ -11,6 +11,10 @@ class User_AbstractViewAction extends User_Action
 	var $mObject = null;
 	var $mObjectHandler = null;
 
+	function User_AbstractViewAction()
+	{
+	}
+
 	function _getId()
 	{
 	}

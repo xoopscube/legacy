@@ -1,7 +1,7 @@
 <?php
 // *************************************************************** //
 // ** XOOPS Cube Legacy - Versão em Português
-// ** $Id: blocks.php 336 2009-07-31 09:53:22Z mikhail $
+// ** $Id$
 // **	License http://creativecommons.org/licenses/by/2.5/br/
 // *************************************************************** //
 define("_MB_SYSTEM_ADMENU","Painel de controle");

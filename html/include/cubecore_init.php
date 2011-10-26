@@ -25,7 +25,7 @@ define('XOOPS_CUBE_LEGACY', true);
  * developers.
  * ex) if(defined('LEGACY_BASE_VERSION') && version_compare('LEGACY_BASE_VERSION', '2.2.0.0', '>='))
  */
-define('LEGACY_BASE_VERSION', '2.2.0.0');
+define('LEGACY_BASE_VERSION', '2.2.1.0');
 
 require_once XOOPS_ROOT_PATH . "/core/XCube_Root.class.php";
 require_once XOOPS_ROOT_PATH . "/core/XCube_Controller.class.php";
@@ -35,13 +35,16 @@ require_once XOOPS_ROOT_PATH . "/core/libs/IniHandler.class.php";
 // TODO We have to move the following lines to an appropriate place.
 //		(We may not need the following constants)
 //
+
 define("XCUBE_SITE_SETTING_FILE", XOOPS_TRUST_PATH . "/settings/site_default.ini");
 define("XCUBE_SITE_CUSTOM_FILE", XOOPS_TRUST_PATH . "/settings/site_custom.ini");
+define('XCUBE_SITE_CUSTOM_FILE_SALT', XOOPS_TRUST_PATH . '/settings/site_custom_' . XOOPS_SALT . '.ini');
 
 //
 //@todo How does the system decide the main controller?
 //
 $root=&XCube_Root::getSingleton();
-$root->loadSiteConfig(XCUBE_SITE_SETTING_FILE, XCUBE_SITE_CUSTOM_FILE);
+$root->loadSiteConfig(XCUBE_SITE_SETTING_FILE, XCUBE_SITE_CUSTOM_FILE, XCUBE_SITE_CUSTOM_FILE_SALT);
 $root->setupController();
+
 ?>

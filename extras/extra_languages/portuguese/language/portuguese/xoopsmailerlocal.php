@@ -1,5 +1,5 @@
 <?php
-// $Id: xoopsmailerlocal.php 342 2009-08-03 19:50:55Z mikhail $
+// $Id$
 if (!defined('XOOPS_ROOT_PATH')) exit();
 class XoopsMailerLocal extends XoopsMailer {
 function XoopsMailerLocal() {
