@@ -1,0 +1,288 @@
+●完了
+×D3LangMan対応
+×本文や題名のない投稿への対応
+×コメント統合のリダイレクト処理（できるだけ元のページに戻す）
+×コメント統合のexternal_link_id validation
+×external_link_id の varchar(255)化 (onupdate)
+×index.cssのテンプレート化
+×[quote]と[/quote]の数が合わない場合の対処
+×コメント統合のコールバック処理
+×waitingプラグイン
+×コメント統合の本文表示処理
+×ゲスト削除 (guest_md5_pass check)
+×AntiSPAMシステム（とりあえずJS使ったdefaultだけ）
+------------ここまで0.70---------------
+
+●現在のTODO（優先度順不同）
+
+コメント投稿を新規トピックとするかどうかのコントローラ
+d3comment への移行推進 (READMEに書かれたd3forum_commentの使い方も書き直す?)
+
+&#027; とかが混ざるとrssがとれない？
+
+main_listcategoriesでxoops_isadminで判断している編集コントローラリンクを、forum.isadminormoodに変更する
+
+ブラウザのクッキーにIDだけ書き込んで既読未読を保存する
+
+post_text_waiting, subject_waiting の実装
+系統表示ビュー（あるpostの直系の親だけを一覧できるビュー）
+d3forum_make_treeinformations( $data )
+f1s を保存するようにして、取得時にORDERかけるだけで、あとからusort()かける必要をなくす (ul_in, ul_out, prev_id, next_id)
+モジュールをまたぐエクスポートだと、コメントコールバックがかからない不具合の修正
+（というより、コメントコールバックを「同期」するべきか）
+newbb2のインポートスクリプトのインポート
+ユーザ＆グループから、権限を表示・変更できるコントローラ
+xmobileプラグイン
+ドラフト保存機能
+返信のないトピックだけをピックアップするブロックオプション（トピックブロック）
+
+
+●チェックすべき項目
+
+cut&paste で消えたtopicの残滓処理のチェック
+solved, marked の再チェック
+invisible なpostのsubjectが表示されないか（*_waitingに移行すべきか？）
+
+
+●やるかどうか微妙な件（先送り）
+画像認証ロボット避け …CAPTCHAって本当にいいか？ 視覚障害者への逃げ道が必要
+なぞなぞ認証 …問題をどう作ろう？
+post.php のリファイン …うわ、大変そう
+can_post,can_edit,can_delete,can_replyの整理
+可能なら、picoと同じパターンの権限方式に移行
+投稿削除後の投稿数減算処理 ……必要？
+全トピック一覧で、サブカテゴリー内のトピックも含む …必要？
+Smartyプラグインが各モジュールの $xoopsModuleConfig をルックアップする
+ゲスト編集 (guest_md5_pass check) …削除だけあれば十分じゃないか？
+
+
+※テーブル構造を変えたときには、必ず、include/import_functions.php も書き換える
+
+
+$rs = $db->query( "SELECT post_id FROM xoops_d3forum_posts" ) ;
+while( list( $post_id ) = $db->fetchRow( $rs ) ) {
+	list( $post_text ) = $db->fetchRow( $db->query( "SELECT post_text FROM xoops_d3forum_posts_text WHERE post_id=$post_id" ) ) ;
+	$db->queryF( "UPDATE xoops_d3forum_posts SET post_text='".addslashes($post_text)."' WHERE post_id=$post_id" ) ;
+}
+
+
+ALTER TABLE xoops_d3forum_posts ADD post_text TEXT NOT NULL default '';
+(上のPHPスクリプト実行)
+DROP TABLE xoops_d3forum_posts_text ;
+
+ALTER TABLE xoops_d3forum_categories CHANGE cat_order cat_weight smallint(5) NOT NULL default 0;
+ALTER TABLE xoops_d3forum_categories ADD cat_desc text NOT NULL default '' AFTER cat_title;
+/* ALTER TABLE xoops_d3forum_categories ADD cat_guests_read tinyint(1) NOT NULL default 0, ADD cat_users_read tinyint(1) NOT NULL default 0, ADD cat_guests_post tinyint(1) NOT NULL default 0, ADD cat_users_post tinyint(1) NOT NULL default 0, ADD cat_use_access_control tinyint(1) NOT NULL default 0, ADD cat_moderators varchar(255) NOT NULL default '';
+ALTER TABLE xoops_d3forum_categories DROP cat_guests_read, DROP cat_users_read , DROP cat_guests_post, DROP cat_users_post, DROP cat_use_access_control, DROP cat_moderators; */
+
+
+ALTER TABLE xoops_d3forum_categories ADD pid smallint(5) unsigned NOT NULL default 0, ADD cat_options text NOT NULL default '';
+ALTER TABLE xoops_d3forum_forums CHANGE forum_name forum_title varchar(255) NOT NULL default '';
+ALTER TABLE xoops_d3forum_forums DROP forum_access;
+/* ALTER TABLE xoops_d3forum_forums ADD forum_guests_read tinyint(1) NOT NULL default '0', ADD forum_users_read tinyint(1) NOT NULL default '0', ADD forum_guests_post tinyint(1) NOT NULL default '0', ADD forum_users_post tinyint(1) NOT NULL default '0';
+ALTER TABLE xoops_d3forum_forums ADD forum_moderators varchar(255) NOT NULL default '' ;
+ALTER TABLE xoops_d3forum_forums CHANGE forum_type forum_use_access_control 
+tinyint(1) NOT NULL default 0;
+ALTER TABLE xoops_d3forum_forums DROP forum_guests_read, DROP forum_users_read , DROP forum_guests_post, DROP forum_users_post, DROP forum_use_access_control, DROP forum_moderators; */
+ALTER TABLE xoops_d3forum_forums CHANGE forum_topics forum_topics_count int(8) NOT NULL default '0', CHANGE forum_posts forum_posts_count int(8) NOT NULL default '0';
+ALTER TABLE xoops_d3forum_forums ADD forum_last_post_time int(10) NOT NULL default 0 AFTER forum_last_post_id;
+ALTER TABLE xoops_d3forum_forums DROP allow_html, DROP allow_sig, DROP posts_per_page, DROP hot_threshold, DROP topics_per_page;
+
+ALTER TABLE xoops_d3forum_topics CHANGE topic_rsv topic_invisible tinyint(1) NOT NULL default 0;
+ALTER TABLE xoops_d3forum_topics CHANGE topic_status topic_locked tinyint(1) NOT NULL default 0;
+ALTER TABLE xoops_d3forum_topics CHANGE topic_poster topic_first_uid mediumint(8) NOT NULL default 0;
+ALTER TABLE xoops_d3forum_topics ADD topic_first_post_id int(10) unsigned NOT NULL default 0, ADD  topic_first_post_time int(10) NOT NULL default 0;
+ALTER TABLE xoops_d3forum_topics CHANGE topic_time topic_last_post_time int(10) NOT NULL default 0;
+ALTER TABLE xoops_d3forum_topics CHANGE topic_replies topic_posts_count int(10) NOT NULL default 0;
+UPDATE xoops_d3forum_topics SET topic_posts_count=topic_posts_count+1 ;
+ALTER TABLE xoops_d3forum_topics ADD topic_last_uid mediumint(8) NOT NULL default 0;
+
+ALTER TABLE xoops_d3forum_posts ADD modified_time int(10) NOT NULL default 0 AFTER post_time, ADD modifier_ip varchar(15) NOT NULL default '' AFTER poster_ip;
+ALTER TABLE xoops_d3forum_posts
+CHANGE nohtml html tinyint(1) NOT NULL default 0,
+CHANGE nosmiley smiley tinyint(1) NOT NULL default 0,
+ADD `br` tinyint(1) NOT NULL default 0 AFTER smiley,
+ADD xcode tinyint(1) NOT NULL default 0 AFTER smiley;
+UPDATE xoops_d3forum_posts SET html=1-html, smiley=1-smiley;
+UPDATE xoops_d3forum_posts SET icon=1 WHERE icon='icon1.gif';
+UPDATE xoops_d3forum_posts SET icon=2 WHERE icon='icon2.gif';
+UPDATE xoops_d3forum_posts SET icon=3 WHERE icon='icon3.gif';
+UPDATE xoops_d3forum_posts SET icon=4 WHERE icon='icon4.gif';
+UPDATE xoops_d3forum_posts SET icon=5 WHERE icon='icon5.gif';
+UPDATE xoops_d3forum_posts SET icon=6 WHERE icon='icon6.gif';
+UPDATE xoops_d3forum_posts SET icon=7 WHERE icon='icon7.gif';
+ALTER TABLE xoops_d3forum_posts MODIFY icon tinyint(3) NOT NULL default 0;
+ALTER TABLE xoops_d3forum_posts DROP forum_id;
+ALTER TABLE xoops_d3forum_posts
+ADD invisible tinyint(1) NOT NULL default 0,
+ADD hide_uid tinyint(1) NOT NULL default 0,
+ADD depth_in_tree smallint(5) NOT NULL default 0,
+ADD order_in_tree smallint(5) NOT NULL default 0;
+ALTER TABLE xoops_d3forum_posts
+ADD guest_name varchar(25) NOT NULL default '',
+ADD guest_email varchar(60) NOT NULL default '',
+ADD guest_url varchar(100) NOT NULL default '';
+ALTER TABLE xoops_d3forum_posts
+ADD approval tinyint(1) NOT NULL default 1 after invisible,
+ADD guest_pass_md5 varchar(40) NOT NULL default '' after guest_url,
+ADD guest_trip varchar(40) NOT NULL default '' after guest_url;
+
+ALTER TABLE xoops_d3forum_posts
+ADD number_entity tinyint(1) NOT NULL default 0 AFTER br,
+ADD special_entity tinyint(1) NOT NULL default 0 AFTER br ;
+
+
+$rs = $db->query( "SELECT topic_id, topic_last_post_id FROM xoops_d3forum_topics" ) ;
+while( list( $topic_id , $last_post_id ) = $db->fetchRow( $rs ) ) {
+	list( $uid ) = $db->fetchRow( $db->query( "SELECT uid FROM xoops_d3forum_posts WHERE post_id=$last_post_id" ) ) ;
+	$db->queryF( "UPDATE xoops_d3forum_topics SET topic_last_uid='$uid' WHERE topic_id=$topic_id" ) ;
+	list( $post_id ) = $db->fetchRow( $db->query( "SELECT MIN(post_id) FROM xoops_d3forum_posts WHERE topic_id=$topic_id" ) ) ;
+	list( $post_time ) = $db->fetchRow( $db->query( "SELECT post_time FROM xoops_d3forum_posts WHERE post_id=$post_id" ) ) ;
+	$db->queryF( "UPDATE xoops_d3forum_topics SET topic_first_post_id='$post_id', topic_first_post_time='$post_time' WHERE topic_id=$topic_id" ) ;
+}
+
+$rs = $db->query( "SELECT forum_id,forum_last_post_id FROM xoops_d3forum_forums" ) ;
+while( list( $forum_id,$last_post_id ) = $db->fetchRow( $rs ) ) {
+	list( $post_time ) = $db->fetchRow( $db->query( "SELECT post_time FROM xoops_d3forum_posts WHERE post_id=$last_post_id" ) ) ;
+	$db->queryF( "UPDATE xoops_d3forum_forums SET forum_last_post_time='$post_time' WHERE forum_id=$forum_id" ) ;
+}
+
+ALTER TABLE xoops_d3forum_forum_access CHANGE user_id uid mediumint(8) default NULL;
+ALTER TABLE xoops_d3forum_forum_access ADD can_edit tinyint(1) NOT NULL default 0, ADD  can_delete tinyint(1) NOT NULL default 0, ADD post_auto_approved tinyint(1) NOT NULL default 0, ADD is_moderator tinyint(1) NOT NULL default 0;
+
+CREATE TABLE xoops_d3forum_category_access (
+  cat_id smallint(5) unsigned NOT NULL default 0,
+  uid mediumint(8) default NULL,
+  groupid smallint(5) default NULL,
+  can_post tinyint(1) NOT NULL default 0,
+  can_edit tinyint(1) NOT NULL default 0,
+  can_delete tinyint(1) NOT NULL default 0,
+  post_auto_approved tinyint(1) NOT NULL default 0,
+  can_makeforum tinyint(1) NOT NULL default 0,
+  is_moderator tinyint(1) NOT NULL default 0,
+  UNIQUE KEY (cat_id,uid),
+  UNIQUE KEY (cat_id,groupid),
+  KEY (cat_id),
+  KEY (uid),
+  KEY (groupid),
+  KEY (can_post)
+) ENGINE=MyISAM;
+
+ALTER TABLE xoops_d3forum_categories
+ADD cat_topics_count int(8) NOT NULL default 0 AFTER cat_desc,
+ADD cat_posts_count int(10) NOT NULL default 0 AFTER cat_desc,
+ADD cat_last_post_id int(10) NOT NULL default 0 AFTER cat_desc,
+ADD cat_last_post_time int(10) NOT NULL default 0 AFTER cat_desc,
+ADD cat_topics_count_in_tree int(8) NOT NULL default 0 AFTER cat_desc,
+ADD cat_posts_count_in_tree int(10) NOT NULL default 0 AFTER cat_desc,
+ADD cat_last_post_id_in_tree int(10) NOT NULL default 0 AFTER cat_desc,
+ADD cat_last_post_time_in_tree int(10) NOT NULL default 0 AFTER cat_desc,
+ADD cat_depth_in_tree smallint(5) NOT NULL default 0 AFTER cat_desc,
+ADD cat_order_in_tree smallint(5) NOT NULL default 0 AFTER cat_desc;
+
+ALTER TABLE xoops_d3forum_categories
+ADD cat_path_in_tree text NOT NULL default '' AFTER cat_order_in_tree;
+
+ALTER TABLE xoops_d3forum_topics
+ADD topic_votes_sum int(10) unsigned NOT NULL default 0,
+ADD topic_votes_count int(10) unsigned NOT NULL default 0;
+
+ALTER TABLE xoops_d3forum_posts
+ADD votes_sum int(10) unsigned NOT NULL default 0 AFTER `hide_uid`,
+ADD votes_count int(10) unsigned NOT NULL default 0 AFTER `hide_uid`;
+
+CREATE TABLE xoops_d3forum_post_votes (
+  vote_id int(10) unsigned NOT NULL auto_increment,
+  post_id int(10) unsigned NOT NULL default 0,
+  uid mediumint(8) unsigned NOT NULL default 0,
+  vote_point tinyint(3) NOT NULL default 0,
+  vote_time int(10) NOT NULL default 0,
+  vote_ip char(16) NOT NULL default '',
+  PRIMARY KEY (vote_id),
+  KEY (post_id),
+  KEY (vote_ip)
+) ENGINE=MyISAM;
+
+
+
+
+
+
+
+●category単位
+タイトル
+ソート機能
+ツリー構造(pid) - 将来的な実装
+オプション群 - フォーラムを作るときの雛形
+権限設定 category_access テーブルで、uid または groupid と結合。
+モデレータ - category_access テーブルに is_moderator として登録
+カテゴリー作成時には、category_accessテーブルにも一通りのグループ用のレコードを用意するように注意。（インポート時も同様）
+category_accessテーブルのうち、can_post,can_edit,can_delete,post_auto_approvedは、forum_accessテーブルのための雛形であり、実行時のチェックはしない。
+can_makeforum のみが、カテゴリー権限として直接意味を持つ。(レコードが存在することで暗黙的にread_permも意味を持つ）
+- 重複 cat_topics_count トピック数 （直下の全フォーラムの集計）
+- 重複 cat_posts_count 投稿数 （直下の全フォーラムの集計）
+- 重複 cat_last_post_id 最新投稿ID （直下の全フォーラムでの最新）
+- 重複 cat_last_post_time 最新投稿時間 （直下の全フォーラムでの最新）
+- 重複 cat_topics_count_in_tree トピック数（サブカテゴリも含めた総集計）
+- 重複 cat_posts_count_in_tree 投稿数（サブカテゴリも含めた総集計）
+- 重複 cat_last_post_id_in_tree 最新投稿ID（サブカテゴリも含めた最新）
+- 重複 cat_last_post_time_in_tree 最新投稿時間（サブカテゴリも含めた最新）
+- 重複 cat_depth_in_tree （ツリー構造での深さ）
+- 重複 cat_order_in_tree （ツリー構造での位置）
+- 重複 cat_path_in_tree （ツリー構造でのパス　cat_id,cat_title|）
+
+
+●forum単位
+モデレータ - 旧forum_modsテーブル -> forum_access テーブルに is_moderator として登録
+権限設定 forum_access テーブルで、uid または groupid と結合。要するに、全フォーラムが従前のプライベートフォーラムのようなもの。
+フォーラム作成時には、所属するcategroy_accessと同じレコードを用意する。（モデレータや各種権限も同じ）
+フォーラム作成ができるのは、カテゴリー権限のcan_makeforumを与えられた者。所属カテゴリーモデレータおよび管理者も可能。
+フォーラム編集ができるのは、フォーラムモデレータおよび管理者。
+管理者のみ、weight・cat_id・forum_optionsの書き換えができる。（モデレータには出来ない）
+フォーラムへのアクセス権限を直接いじることができるのも管理者のみ（管理画面）
+*newbb*からのインポート時には、forum_status が0のものについては、一通りのグループ用のレコードをINSERTすること。
+- 重複 forum_topics_count トピック数
+- 重複 forum_posts_count 投稿数
+- 重複 forum_last_post_id 最新投稿ID
+- 重複 forum_last_post_time 最新投稿時間
+オプション群 - forum_options にserializeして格納 xoopsModuleConfigをoverride
+  (boolean)allow_html
+  (boolean)allow_sig
+  (int)posts_per_page default 20 deprecated
+  (int)hot_threshold default 10
+  (int)topics_per_page default 20
+
+●topic単位
+閲覧数カウント
+既読管理 - users2topics
+注目機能 - users2topics
+解決機能
+Sticky topic_sticky
+Lock （読むことはできるが書くことはできない） 旧topic_status=1 -> topic_locked
+Invisible （モデレータ以外読むことも書くこともできない。存在しないものとして扱われる。ブロックではモデレータでも無視される。postの不可視とは違う。） topic_invisible
+topic_title 最初の投稿のsubjectと同じになるが、トピック管理で独自に変更可能（一応重複フィールドではない）最初の投稿の編集でも自動的に書き換わる（この動作は微妙？）
+- 重複 topic_last_(uid|post_id|post_time) (最新の投稿者|投稿ID|投稿時間)
+- 重複 topic_first_(uid|post_id|post_time) (最初の投稿者|投稿ID|投稿時間)
+- 重複 topic_posts_count Smartyへのアサインは、-1したreplies
+- 重複 topic_votes_sum   （評価の総和）
+- 重複 topic_votes_count （投票総数）
+
+●post単位
+ツリー構造(pid)
+修飾ON/OFF (html, smiley, br, xcode)
+署名ON/OFF `attachsig`
+メッセージアイコン （あくまで数字）
+Invisible （モデレータ以外、読むことも書くこともできないが、テンプレートで処理分けして隠すだけの実装であり、それが存在することやpost_idは判る。そうしないと、ツリー構造が維持できないという構造上の要請。ブロックにも表示される） `invisible`
+`approval` 承認 モデレータであっても承認を未承認に戻せない（イベント通知からの要請）点で、invisibleとは違うが、こちらも存在やpost_idは一般ユーザに判る。
+`uid_hidden` (隠された投稿者uid。ゲスト投稿とは違う。)
+ゲスト名 `guest_name` 空欄の場合、設定されたanonymous_nameが入る。
+ゲストメールアドレス `guest_email` デフォルトでは非公開・非必須
+ゲストサイトURL `guest_url` デフォルトで公開・非必須
+ゲストパスワード `guest_pass_md5` md5 hashしたパスワード。あえてsaltは'd3forum'で固定（$mydirnameとかXOOPS_DB_PREFIXとかにすると、後でインポートとかprefix変更した時にハマるから）
+ゲストトリップ `guest_trip` ゲスト名の後ろに#(文字列)をつけた場合に計算する。アルゴリズムはおそらく2chと同じ。crypt()がなければ機能しない
+- 重複 votes_sum   （評価の総和）
+- 重複 votes_count （投票総数）
+- 重複 depth_in_tree （ツリー構造での深さ）
+- 重複 order_in_tree （ツリー構造での位置）
+
+
