@@ -1,0 +1,149 @@
+<html>
+<head>
+  <title>Xoops Cube Install Guide</title>
+  <meta name="keywords" content="XOOPS docs" />
+  <meta name="description" content="XOOPS" />
+
+<style type="text/css">
+body {margin:15px; padding:0; background:#f8f8f8; color:#000; font-family:font-family:Verdana, Helvetica, Tahoma, Arial, sans-serif; font-size:13px; line-height:140%; text-align:center;}
+ul, ol {margin:0; padding:0;}
+li {margin-left:60px;}
+
+h1, h2, h3, h4, h5 {margin:0.5em;}
+h1 {font-size:150%;}
+h2 {font-size:140%;}
+h3 {font-size:130%;}
+h4 {font-size:120%; padding:5px; padding-left:26px; background:transparent url(images/title.png) no-repeat center left; border-bottom:1px solid #cccccc;}
+h5 {font-size:110%:}
+
+
+.error {color:#CC3333; font-weight:bold;}
+.indent {margin-left:40px;}
+.additions {color:#008800;}
+.deletions {color:#880000;}
+
+.page {background:#FFFFFF; padding:15px; margin:0 auto; border:1px solid #cccccc; text-align:left;}
+.page p {padding:0 10px; margin-left:20px;}
+
+.info { color:#666666; padding:10px 20px; }
+
+.copyright { font-size: 11px; color: #AAAAAA; text-align: right; }
+.copyright A { color: #AAAAAA; }
+</style>
+</head>
+
+<body>
+
+<div class="page">
+<h3>XOOPS Cube Legacy Install Guide</h3>
+<hr noshade size="1" />
+<h4>Preface:</h4>
+
+<p>
+Before starting the installation process, we (the XOOPS Cube team) ask that you have a good understanding of how to install and support server/hosted based software.  As with anything in life, there's no easy answer or way.  Since XOOPS is server based, it's not as easy to install as normal desktop software which in itself can be daunting to install so, please be familiar with setting up and installing the software listed below.  Be familiar with how to configure CGI scripts and HTTP server software.  It can easily be demonstrated that 80% of our support questions wind up being improper configurations with the server components or two pieces of software conflict. No two servers are configured alike.</p>
+
+<p>
+To install XOOPS for the first time, you'll need to have the minimum following server software pre-installed:
+</p>
+<ul>
+<li>HTTP Server (<a href="http://www.apache.org">Apache</a> or IIS)  "Note, XOOPS only officially supports Apache"</li>
+<li><a href="http://www.php.net">PHP</a> 4.3.2 and higher</li>
+<li><a href="http://www.mysql.com">MySQL</a> Database 3.23.XX</li>
+</ul>
+
+<p>
+Before starting the install, be sure to have:
+</p>
+
+<ul>
+<li>Setup the HTTP, PHP and database server properly.</li>
+<li>Create a database for your <a href="http://xoopscube.sourceforge.net/">XOOPS Cube Legacy</a> installation <br />
+(Have your hosting company create one if you can't. The install script does provide this capability with the proper privileges).</li>
+<li>A user account with the proper database permissions.</li>
+<li>The ability to set the following directories and files world writeable: uploads/, cache/ and templates_c/ and the file mainfile.php</li>
+<li>Turn cookie and <span class="missingpage">JavaScript</span> support in your browser on.</li>
+</ul>
+<br />
+
+<h4>Installing locally</h4>
+<p>
+If you're running a local environment for development or testing, make sure that you have the previous requirements met.  Once this is done, copy the contents of the HTML directory (from the XOOPS Cube Legacy distribution file or CVS) to the root document path of your web environment. Once the files are copied there, you can start the install by typing <strong>http://my-site-domain.com/</strong>.  This will start the install process. </p>
+
+<h4>Installing on a hosted platform</h4>
+<p>
+If you're running in a hosted environment, unpack the XOOPS Cube Legacy files locally or on the server if you have telnet or SSH access. Once you done this, make sure to move or copy all XOOPS Cube Legacy files from the HTML directory to your root web directory (your provider usually provides this location with directions).  Once the files are copied there, you can start the install by typing <strong>http://my-site-domain.com/</strong>.  This will start the install process.</p>
+
+<h4>Continuing the install</h4>
+<p><img src="images/install001.gif" /></p>
+
+<p>
+After performing the above procedures, you're ready to continue installing XOOPS Cube Legacy with the Install Wizard.  The first screen in the install Wizard takes you to will be the welcome screen. 
+</p>
+
+<p><img src="images/install002.gif" /></p>
+
+<p>Click the Next button to continue on to the next screen. </p>
+
+<p>
+The next part of the install Wizard is designed to check your file and directory permissions. If you're running in a Win32 environment, this should be a pretty painless install.  If you're running in a UNIX environment, the Wizard will display any problems and the corrective actions to take if there are problems. 
+</p>
+
+<p><img src="images/install003.gif" /></p>
+
+<p>
+If all lights are green on the Wizard, click Next to continue. If not, please read the screen and perform the necessary actions recommended by the Wizard</p>
+
+<p>
+The next part of the Wizard is for writing the settings to the mainfile.php file.
+</p>
+
+<p><img src="images/install004.gif" /></p>
+
+<p>
+The General Settings screen is self explanatory so, input the required information into the files and click next.
+</p>
+
+<p>
+The next four Wizard screens are informational displaying the settings from the General Settings screen for your confirmation and to show that the values were written correctly.
+</p>
+
+<p><img src="images/install005.gif" /></p>
+<p><img src="images/install006.gif" /></p>
+<p><img src="images/install007.gif" /></p>
+<p><img src="images/install008.gif" /></p>
+
+<p>If you seen any Red lights, please click the Back button to make the proper corrections.<br />
+The next Wizard screen is will be to show the progress for accessing the database.<br />
+</p>
+
+<p><img src="images/install009.gif" /></p>
+
+<p>
+If you're in a hosted environment without the proper access to create databases, please check with your provider for help in getting a database.  If your provider (or you) created the database, all  lights should be green.  If you get a red light stating the DB does not exist and your user name has the ability to create databases, and then click next and the install Wizard will attempt to create the database for you.  If your user id does not have the rights to create a database, please correct this and continue the install.  The next two screens are informational on trying to create and access the database.  Click Next or Back depending on the Wizard screen.
+</p>
+
+<p>
+After clicking next a couple of times, you will come to an informational screen showing the results of table creation. If there is a problem, please refer to the <a href="http://xoopscube.org/modules/pukiwiki/">FAQ</a> or <a href="http://www.xoopscube.org">XOOPS Cube Forums</a> for further assistance.
+</p>
+
+<p><img src="images/install011.gif" /></p>
+
+<p>If all lights are green, you're ready to proceed by clicking Next.<br />
+The next Wizard screen is for inputting site administrative information. <br />
+</p>
+
+<p><img src="images/install018.gif" /></p>
+
+<p>
+Please be careful here and write down or remember your administrative password. You'll need this after the install to continue setting up your XOOPS Cube site.  Once you have completed inputting the correct information, click Next to continue.   * Note, try to refrain from using names with spaces for the Admin name. *<br />
+<br />
+The next screen is informational. If all the lights are green, click Next to continue.<br />
+</p>
+
+<h4>Congratulations!</h4>
+<p>
+Your installation should now be complete.  You can check the site out by clicking the "HERE" text on the last screen. If all went well, then your new site should be up and running. If not, please refer to the <a href="http://xoopscube.org/modules/pukiwiki/">FAQ</a> or <a href="http://www.xoopscube.org/">XOOPS Cube Forums</a> for further assistance.</p>
+
+</div>
+</body>
+</html>
