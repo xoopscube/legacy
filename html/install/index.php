@@ -45,6 +45,7 @@ if ( isset($_POST) ) {
 include_once './include/functions.php';
 $language = getLanguage();
 include_once './language/'.$language.'/install.php';
+include_once '../language/'.$language.'/timezone.php';
 define('_OKIMG', '<img src="img/yes.png" border="0" alt="OK" /> ');
 define('_NGIMG', '<img src="img/no.png" border="0" alt="NG" /> ');
 

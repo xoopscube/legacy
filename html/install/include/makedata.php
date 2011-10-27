@@ -65,7 +65,7 @@ function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $
 	$dbm->insert('config', " VALUES (3, 0, 1, 'language', '_MD_AM_LANGUAGE', '".addslashes($language)."', '_MD_AM_LANGUAGEDSC', 'language', 'other', 4)");
 	$dbm->insert('config', " VALUES (4, 0, 1, 'startpage', '_MD_AM_STARTPAGE', '--', '_MD_AM_STARTPAGEDSC', 'startpage', 'other', 6)");
 	//Get Server timezone Setting
-	if(version_compare(phpversion(), '5.3.0', '>=') && function_exists('date_default_timezone_set')){
+	if(version_compare(phpversion(), '5.1.0', '>=') && function_exists('date_default_timezone_set')){
 		date_default_timezone_set($timezone);
 	}
 	$time_diff_val = date('O');
