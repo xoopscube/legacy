@@ -38,6 +38,7 @@ define("_TZ_GMTM8", "(GMT-8:00) 태평양 표준시 (미국 및 캐나다)");
 define("_TZ_GMTM7", "(GMT-7:00) 산지 표준시 (미국 및 캐나다)");
 define("_TZ_GMTM6", "(GMT-6:00) 중부 표준시 (미국 및 캐나다), 멕시코시티");
 define("_TZ_GMTM5", "(GMT-5:00) 동부 표준시 (미국 및 캐나다), 보고타, 리마, 키토");
+define("_TZ_GMTM45", "(GMT-4:30) Caracas");
 define("_TZ_GMTM4", "(GMT-4:00) 대서양 표준시 (캐나다), 카라카스, 라파스");
 define("_TZ_GMTM35", "(GMT-3:30) 뉴펀들랜드");
 define("_TZ_GMTM3", "(GMT-3:00) 브라질리아, 부에노스아이레스, 조지타운");
@@ -52,7 +53,9 @@ define("_TZ_GMTP4", "(GMT+4:00) 아부다비, 무스카트, 바쿠, 트빌리시
 define("_TZ_GMTP45", "(GMT+4:30) 카불");
 define("_TZ_GMTP5", "(GMT+5:00) 예카테린부르크, 이슬라마바드, 카라치, 타슈켄트");
 define("_TZ_GMTP55", "(GMT+5:30) 뭄바이, 콜카타, 첸나이, 뉴델리");
+define("_TZ_GMTP575", "(GMT+5:45) Kathmandu, Pokhara, patan"); 
 define("_TZ_GMTP6", "(GMT+6:00) 알마티, 다카, 콜롬보");
+define("_TZ_GMTP65", "(GMT+6:30) Yangon, Cocos Islands");
 define("_TZ_GMTP7", "(GMT+7:00) 방콕, 하노이, 자카르타");
 define("_TZ_GMTP8", "(GMT+8:00) 베이징, 퍼스, 싱가포르, 홍콩, 우루무치, 중화민국");
 define("_TZ_GMTP9", "(GMT+9:00) 도쿄, 서울, 오사카, 삿포로, 야쿠츠크");
@@ -60,5 +63,6 @@ define("_TZ_GMTP95", "(GMT+9:30) 애들레이드, 다윈");
 define("_TZ_GMTP10", "(GMT+10:00) 브리즈번, 캔버라, 멜버른, 시드니, 괌, 블라디보스토크");
 define("_TZ_GMTP11", "(GMT+11:00) 마가단, 솔로몬 군도, 뉴칼레도니아");
 define("_TZ_GMTP12", "(GMT+12:00) 오클랜드, 웰링턴, 피지, 캄차카 반도, 마셜 제도");
+define("_TZ_GMTP13", "(GMT+13:00) Tongatapu");
 
 ?>
