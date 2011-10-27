@@ -44,6 +44,7 @@ class XoopsTimezoneHandler extends XoopsObjectHandler
 			"-7"   => _TZ_GMTM7,
 			"-6"   => _TZ_GMTM6,
 			"-5"   => _TZ_GMTM5,
+		    "-4.5" => _TZ_GMTM45,
 			"-4"   => _TZ_GMTM4,
 			"-3.5" => _TZ_GMTM35,
 			"-3"   => _TZ_GMTM3,
@@ -58,14 +59,17 @@ class XoopsTimezoneHandler extends XoopsObjectHandler
 			"4.5"  => _TZ_GMTP45,
 			"5"    => _TZ_GMTP5,
 			"5.5"  => _TZ_GMTP55,
+			"5.75" => _TZ_GMTP575,
 			"6"    => _TZ_GMTP6,
+			"6.5"  => _TZ_GMTP65,
 			"7"    => _TZ_GMTP7,
 			"8"    => _TZ_GMTP8,
 			"9"    => _TZ_GMTP9,
 			"9.5"  => _TZ_GMTP95,
 			"10"   => _TZ_GMTP10,
 			"11"   => _TZ_GMTP11,
-			"12"   => _TZ_GMTP12
+			"12"   => _TZ_GMTP12,
+			"13"   => _TZ_GMTP13
 		);
 	}
 	
