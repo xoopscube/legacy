@@ -309,7 +309,7 @@ function Legacy_get_override_file($file, $prefix = null, $isSpDirname = false)
 	$root =& XCube_Root::getSingleton();
 	$moduleObject =& $root->mContext->mXoopsModule;
 
-	if ($isSpDirname && is_object($moduleObject) && $moduleObject->get('dirname') == 'legacy' && isset($_REQUEST['dirname'])) {
+	if ($isSpDirname && ($isobj = is_object($moduleObject)) && $moduleObject->get('dirname') == 'legacy' && isset($_REQUEST['dirname'])) {
 		if (preg_match("/^[a-z0-9_]+$/i", xoops_getrequest('dirname'))) {
 			$handler =& xoops_gethandler('module');
 			$moduleObject =& $handler->getByDirname(xoops_getrequest('dirname'));
@@ -324,9 +324,9 @@ function Legacy_get_override_file($file, $prefix = null, $isSpDirname = false)
 	
 	$file = $prefix . $file;
 
-	if (!is_object($moduleObject)) {
-		$themePath = XOOPS_THEME_PATH . "/" . $theme . "/" . $file;
-		if (file_exists($themePath)) {
+	$themePath = XOOPS_THEME_PATH . '/' . $theme . '/';
+	if (!$isobj) {
+		if (file_exists($themePath. $file)) {
 			return $ret;
 		}
 		
@@ -338,21 +338,18 @@ function Legacy_get_override_file($file, $prefix = null, $isSpDirname = false)
 		
 		$ret['dirname'] = $dirname;
 
-		$themePath = XOOPS_THEME_PATH . "/" . $theme . "/modules/" . $dirname . "/" . $file;
-		if (file_exists($themePath)) {
+		if (file_exists($themePath.'modules/' . $dirname . '/' . $file)) {
 			return $ret;
 		}
 		
-		$themePath = XOOPS_THEME_PATH . "/" . $theme . "/" . $file;
-		if (file_exists($themePath)) {
+		if (file_exists($themePath. $file)) {
 			$ret['dirname'] = null;
 			return $ret;
 		}
 		
 		$ret['theme'] = null;
 
-		$modulePath = XOOPS_MODULE_PATH . "/" . $dirname . "/admin/templates/" . $file;
-		if (file_exists($modulePath)) {
+		if (file_exists(XOOPS_MODULE_PATH . '/' . $dirname . '/admin/templates/' . $file)) {
 			return $ret;
 		}
 		
