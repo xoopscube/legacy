@@ -428,21 +428,15 @@ class XCube_Controller
 		$path = $path . "/";
 		
 		if (is_dir($path)) {
-			if ($handler = opendir($path)) {
-				while (($file = readdir($handler)) !== false) {
-					if (preg_match("/(\w+)\.class\.php$/", $file, $matches)) {
-						require_once $path . $file;
-						$className = $matches[1];
-						
+				foreach (glob($path.'/*.class.php') as $file) {
+						require_once $file;
+						$className = basename($file, '.class.php');
 						if (XC_CLASS_EXISTS($className) && !isset($this->_mLoadedFilterNames[$className])) {
 							$this->_mLoadedFilterNames[$className] = true;
 							$instance = new $className($this);
 							$this->addActionFilter($instance);
 							unset($instance);
 						}
-					}
-				}
-				closedir($handler);
 			}
 		}
 	}

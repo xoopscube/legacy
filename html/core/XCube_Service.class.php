@@ -14,27 +14,20 @@
  */
 function S_PUBLIC_FUNC($definition)
 {
-	$ret = null;
-	
 	$pos = strpos($definition, '(');
 	if ($pos > 0) {
-		$func_nameArr = explode(' ', substr($definition, 0, $pos));
-		$func_paramArr = explode(',', substr($definition, $pos + 1, -1));
 		$params = array();
-		foreach ($func_paramArr as $t_param) {
-			if (strlen($t_param) > 0) {
-				$t_str = explode(' ', trim($t_param));
-				$params[trim($t_str[1])] = trim($t_str[0]);
+		foreach (explode(',', substr($definition, $pos + 1, -1)) as $t_param) {
+			if ($t_param) {
+				list($k, $v) = explode(' ', trim($t_param));
+				$params[$k] = $v;
 			}
 		}
-		
-		$ret = array();
-		$ret['name'] = trim($func_nameArr[1]);
-		$ret['in'] = $params;
-		$ret['out'] = trim($func_nameArr[0]);
+		$ret = array('in' => $params);
+		list($ret['out'], $ret['name']) = explode(' ', substr($definition, 0, $pos));
+		return $ret;
 	}
-	
-	return $ret;
+	return null;
 }
 
 /**
@@ -90,11 +83,14 @@ class XCube_Service
 	function addFunction()
 	{
 		$args = func_get_args();
-		if (func_num_args() == 3) {
-			$this->_addFunctionStandard($args[0], $args[1], $args[2]);
+		$n = func_num_args();
+		$arg0 = &$args[0];
+
+		if ($n == 3) {
+			$this->_addFunctionStandard($arg0, $args[1], $args[2]);
 		}
-		elseif (func_num_args() == 1 && is_array($args[0])) {
-			$this->_addFunctionStandard($args[0]['name'], $args[0]['in'], $args[0]['out']);
+		elseif ($n == 1 && is_array($arg0)) {
+			$this->_addFunctionStandard($arg0['name'], $arg0['in'], $arg0['out']);
 		}
 	}
 	

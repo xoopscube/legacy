@@ -454,12 +454,7 @@ class XCube_BoolProperty extends XCube_AbstractProperty
 {
 	function set($value)
 	{
-		if (strlen(trim($value)) > 0) {
-			$this->mValue = (intval($value) > 0) ? 1 : 0;
-		}
-		else {
-			$this->mValue = 0;
-		}
+		$this->mValue = (int)$value ? 1 : 0;
 	}
 }
 
@@ -484,12 +479,7 @@ class XCube_IntProperty extends XCube_AbstractProperty
 {
 	function set($value)
 	{
-		if (strlen(trim($value)) > 0) {
-			$this->mValue = intval($value);
-		}
-		else {
-			$this->mValue = null;
-		}
+		$this->mValue = trim($value)!==''?(int)$value:null;
 	}
 }
 
@@ -514,12 +504,7 @@ class XCube_FloatProperty extends XCube_AbstractProperty
 {
 	function set($value)
 	{
-		if (strlen(trim($value)) > 0) {
-			$this->mValue = floatval($value);
-		}
-		else {
-			$this->mValue = null;
-		}
+		$this->mValue = trim($value)!== ''?(float)$value:null;
 	}
 }
 
@@ -556,7 +541,7 @@ class XCube_StringProperty extends XCube_AbstractProperty
 	
 	function toNumber()
 	{
-		return intval($this->mValue);
+		return (int)$this->mValue;
 	}
 }
 
@@ -595,7 +580,7 @@ class XCube_TextProperty extends XCube_AbstractProperty
 	
 	function toNumber()
 	{
-		return intval($this->mValue);
+		return (int)$this->mValue;
 	}
 }
 
