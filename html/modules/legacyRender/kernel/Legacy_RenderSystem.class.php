@@ -144,27 +144,28 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 		} else {
 			$this->mXoopsTpl =new Legacy_XoopsTpl();
 		}
-		$this->mXoopsTpl->register_function("legacy_notifications_select", "LegacyRender_smartyfunction_notifications_select");
-		$this->mSetupXoopsTpl->call(new XCube_Ref($this->mXoopsTpl));
+		$mTpl = $this->mXoopsTpl;
+		$mTpl->register_function("legacy_notifications_select", "LegacyRender_smartyfunction_notifications_select");
+		$this->mSetupXoopsTpl->call(new XCube_Ref($mTpl));
 
 		// compatible
-		$GLOBALS['xoopsTpl'] =& $this->mXoopsTpl;
+		$GLOBALS['xoopsTpl'] =& $mTpl;
 		
-		$this->mXoopsTpl->xoops_setCaching(0);
+		$mTpl->xoops_setCaching(0);
 
 		// If debugger request debugging to me, send debug mode signal by any methods.
 		if ($controller->mDebugger->isDebugRenderSystem()) {
-			$this->mXoopsTpl->xoops_setDebugging(true);
+			$mTpl->xoops_setDebugging(true);
 		}
 		
-   		$this->mXoopsTpl->assign(array('xoops_requesturi' => htmlspecialchars($GLOBALS['xoopsRequestUri'], ENT_QUOTES),	//@todo ?????????????
+   		$mTpl->assign(array('xoops_requesturi' => htmlspecialchars($GLOBALS['xoopsRequestUri'], ENT_QUOTES),	//@todo ?????????????
 							// set JavaScript/Weird, but need extra <script> tags for 2.0.x themes
 							'xoops_js' => '//--></script><script type="text/javascript" src="'.XOOPS_URL.'/include/xoops.js"></script><script type="text/javascript"><!--'
 						));
 	
-		$this->mXoopsTpl->assign('xoops_sitename', $textFilter->toShow($context->getAttribute('legacy_sitename')));
-		$this->mXoopsTpl->assign('xoops_pagetitle', $textFilter->toShow($context->getAttribute('legacy_pagetitle')));
-		$this->mXoopsTpl->assign('xoops_slogan', $textFilter->toShow($context->getAttribute('legacy_slogan')));
+		$mTpl->assign('xoops_sitename', $textFilter->toShow($context->getAttribute('legacy_sitename')));
+		$mTpl->assign('xoops_pagetitle', $textFilter->toShow($context->getAttribute('legacy_pagetitle')));
+		$mTpl->assign('xoops_slogan', $textFilter->toShow($context->getAttribute('legacy_slogan')));
 
 		// --------------------------------------
 		// Meta tags
@@ -183,15 +184,15 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 			$this->_mIsActiveBanner = $configs['banners'];
 			if (LEGACY_RENDERSYSTEM_BANNERSETUP_BEFORE == true) {
 				if ($configs['banners'] == 1) {
-					$this->mXoopsTpl->assign('xoops_banner',xoops_getbanner());
+					$mTpl->assign('xoops_banner',xoops_getbanner());
 				}
 				else {
-					$this->mXoopsTpl->assign('xoops_banner','&nbsp;');
+					$mTpl->assign('xoops_banner','&nbsp;');
 				}
 			}
 		}
 		else {
-			$this->mXoopsTpl->assign('xoops_banner','&nbsp;');
+			$mTpl->assign('xoops_banner','&nbsp;');
 		}
 		
 		// --------------------------------------
@@ -211,7 +212,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 			);
 		}
 		
-		$this->mXoopsTpl->assign($arr);
+		$mTpl->assign($arr);
 	}
 
 	function setAttribute($key,$value)
@@ -235,25 +236,26 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 		$textFilter =& $root->getTextFilter();
 
 		$themeName = $context->getThemeName();
-   		$this->mXoopsTpl->assign('xoops_theme', $themeName);
-   		$this->mXoopsTpl->assign('xoops_imageurl', XOOPS_THEME_URL . "/${themeName}/");
-   		$this->mXoopsTpl->assign('xoops_themecss', xoops_getcss($themeName));
+		$mTpl = $this->mXoopsTpl;
+   		$mTpl->assign('xoops_theme', $themeName);
+   		$mTpl->assign('xoops_imageurl', XOOPS_THEME_URL . "/${themeName}/");
+   		$mTpl->assign('xoops_themecss', xoops_getcss($themeName));
 
-		$this->mXoopsTpl->assign('xoops_sitename', $textFilter->toShow($context->getAttribute('legacy_sitename')));
-		$this->mXoopsTpl->assign('xoops_pagetitle', $textFilter->toShow($context->getAttribute('legacy_pagetitle')));
-		$this->mXoopsTpl->assign('xoops_slogan', $textFilter->toShow($context->getAttribute('legacy_slogan')));
+		$mTpl->assign('xoops_sitename', $textFilter->toShow($context->getAttribute('legacy_sitename')));
+		$mTpl->assign('xoops_pagetitle', $textFilter->toShow($context->getAttribute('legacy_pagetitle')));
+		$mTpl->assign('xoops_slogan', $textFilter->toShow($context->getAttribute('legacy_slogan')));
 
 		//
 		// Assign module informations.
 		//
 		if($context->mModule != null) {	// The process of module
 			$xoopsModule =& $context->mXoopsModule;
-			$this->mXoopsTpl->assign(array('xoops_modulename' => $xoopsModule->getShow('name'),
+			$mTpl->assign(array('xoops_modulename' => $xoopsModule->getShow('name'),
 										   'xoops_dirname' => $xoopsModule->getShow('dirname')));
 		}
 		
 		if (isset($GLOBALS['xoopsUserIsAdmin'])) {
-			$this->mXoopsTpl->assign('xoops_isadmin', $GLOBALS['xoopsUserIsAdmin']);
+			$mTpl->assign('xoops_isadmin', $GLOBALS['xoopsUserIsAdmin']);
 		}
 	}
 	
@@ -264,21 +266,22 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 		//
 		// Temporary
 		//
-		$this->mXoopsTpl->xoops_setCaching(0);
+		$mTpl = $this->mXoopsTpl;
+		$mTpl->xoops_setCaching(0);
 
 		foreach($target->getAttributes() as $key=>$value) {
-			$this->mXoopsTpl->assign($key,$value);
+			$mTpl->assign($key,$value);
 		}
 
-		$this->mBeginRender->call(new XCube_Ref($this->mXoopsTpl));
-		$result=&$this->mXoopsTpl->fetchBlock($target->getTemplateName(),$target->getAttribute("bid"));
+		$this->mBeginRender->call(new XCube_Ref($mTpl));
+		$result=&$mTpl->fetchBlock($target->getTemplateName(),$target->getAttribute("bid"));
 		$target->setResult($result);
 		
 		//
 		// Reset
 		//
 		foreach($target->getAttributes() as $key=>$value) {
-			$this->mXoopsTpl->clear_assign($key);
+			$mTpl->clear_assign($key);
 		}
 	}
 	
@@ -354,11 +357,14 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 		$this->_commonPrepareRender();
 	
 		//jQuery Ready functions
-		XCube_DelegateUtils::call("Site.JQuery.AddFunction", new XCube_Ref($this->mController->mRoot->mContext->mAttributes['headerScript']));
-		$headerScript = $this->mController->mRoot->mContext->getAttribute('headerScript');
-		$moduleHeader = $this->mXoopsTpl->get_template_vars('xoops_module_header');
+		$mRoot = $this->mController->mRoot;
+		$mContext = $mRoot->mContext;
+		XCube_DelegateUtils::call("Site.JQuery.AddFunction", new XCube_Ref($mContext->mAttributes['headerScript']));
+		$headerScript = $mContext->getAttribute('headerScript');
+		$mTpl = $this->mXoopsTpl;
+		$moduleHeader = $mTpl->get_template_vars('xoops_module_header');
 		$moduleHeader =  $headerScript->createLibraryTag() . $moduleHeader . $headerScript->createOnloadFunctionTag();
-		$this->mXoopsTpl->assign('xoops_module_header', $moduleHeader);
+		$mTpl->assign('xoops_module_header', $moduleHeader);
 		
 		$moduleHandler =& xoops_gethandler('module');
 		$legacyRender =& $moduleHandler->getByDirname('legacyRender');
@@ -381,10 +387,10 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 		//
 		if (LEGACY_RENDERSYSTEM_BANNERSETUP_BEFORE == false) {
 			if ($this->_mIsActiveBanner == 1) {
-				$this->mXoopsTpl->assign('xoops_banner',xoops_getbanner());
+				$mTpl->assign('xoops_banner',xoops_getbanner());
 			}
 			else {
-				$this->mXoopsTpl->assign('xoops_banner','&nbsp;');
+				$mTpl->assign('xoops_banner','&nbsp;');
 			}
 		}
 
@@ -392,7 +398,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 		// Assign from attributes of the render-target.
 		//
 		foreach($target->getAttributes() as $key => $value) {
-			$this->mXoopsTpl->assign($key, $value);
+			$mTpl->assign($key, $value);
 		}
 		
 		//
@@ -412,28 +418,28 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 			);
 
 		foreach($assignNameMap as $key=>$val) {
-			$this->mXoopsTpl->assign($val['showflag'],$this->_getBlockShowFlag($val['showflag']));
-			if(isset($this->mController->mRoot->mContext->mAttributes['legacy_BlockContents'][$key])) {
-				foreach($this->mController->mRoot->mContext->mAttributes['legacy_BlockContents'][$key] as $result) {
-					$this->mXoopsTpl->append($val['block'], $result);
+			$mTpl->assign($val['showflag'],$this->_getBlockShowFlag($val['showflag']));
+			if(isset($mContext->mAttributes['legacy_BlockContents'][$key])) {
+				foreach($mContext->mAttributes['legacy_BlockContents'][$key] as $result) {
+					$mTpl->append($val['block'], $result);
 				}
 			}
 		}
 
-		$this->mBeginRender->call(new XCube_Ref($this->mXoopsTpl));
+		$this->mBeginRender->call(new XCube_Ref($mTpl));
 		
 		//
 		// Render result, and set it to the RenderBuffer of the $target.
 		//
 		$result=null;
 		if($target->getAttribute("isFileTheme")) {
-			$result=$this->mXoopsTpl->fetch($target->getTemplateName()."/theme.html");
+			$result=$mTpl->fetch($target->getTemplateName()."/theme.html");
 		}
 		else {
-			$result=$this->mXoopsTpl->fetch("db:".$target->getTemplateName());
+			$result=$mTpl->fetch("db:".$target->getTemplateName());
 		}
 		
-		$result .= $this->mXoopsTpl->fetchDebugConsole();
+		$result .= $mTpl->fetchDebugConsole();
 
 		$target->setResult($result);
 	}
