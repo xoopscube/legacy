@@ -15,21 +15,29 @@
 <meta name="copyright" content="<{$xoops_meta_copyright}>" />
 <meta name="generator" content="XOOPS Cube" />
 
-<link rel="shortcut icon" href="<{$xoops_imageurl}>/images/favicon.ico">
+<link rel="shortcut icon" href="<{$xoops_imageurl}>images/favicon.ico">
+<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_url}>/xoops.css" />
+<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_themecss}>" />
+<link rel="stylesheet" href="<{$xoops_imageurl}>css/import_basic.css" media="all" type="text/css">
+<link rel="stylesheet" href="<{$xoops_imageurl}>css/import_print.css" media="print" type="text/css">
+<link rel="stylesheet" href="<{$xoops_imageurl}>css/jquery-jcflick.css" media="all" type="text/css">
+<link rel="stylesheet" href="<{$xoops_imageurl}>css/jquery-megaDropdown.css" media="all" type="text/css">
+<link rel="stylesheet" href="<{$xoops_imageurl}>css/jquery-jktab.css" media="all" type="text/css">
+
+<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/smoothness/jquery-ui.css" />
 
 <{if $xoops_module_header}><{$xoops_module_header}><{/if}>
 <{if $xoops_block_header}><{$xoops_block_header}><{/if}>
 
-<script type="text/javascript" src="<{$xoops_imageurl}>/js/jquery-1.6.4.min.js"></script>
-<script type="text/javascript" src="<{$xoops_imageurl}>/js/global.js"></script>
-<script type="text/javascript" src="<{$xoops_imageurl}>/js/jquery-megaDropdown.js"></script>
-<script type="text/javascript" src="<{$xoops_imageurl}>/js/jquery-jktab.js"></script>
+<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="<{$xoops_imageurl}>js/global.js"></script>
+<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-megaDropdown.js"></script>
+<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-jktab.js"></script>
 <script type="text/javascript">
 (function(){
-	//Viewportの指定
 	if( ProjectName.ua.iPhone || ProjectName.ua.Android || ProjectName.ua.WP7 ){
 		ProjectName.MOD.print_r( ProjectName.META.iOS() );
-
 	}
 })();
 $(function(){
@@ -42,23 +50,7 @@ $(function(){
 	$('#footerTabIndex').jktab();
 });
 </script>
-<!--[if IE 6]>
-<script type="text/javascript" src="/public/resources/common/js/DD_belatedPNG_0.0.8a-min.js"></script>
-<script type="text/javascript">
-	DD_belatedPNG.fix('img');
-</script>
-<![endif]-->
-<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_url}>/xoops.css" />
-<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_themecss}>" />
-
-<link rel="stylesheet" href="<{$xoops_imageurl}>/css/import_basic.css" media="all" type="text/css">
-<link rel="stylesheet" href="<{$xoops_imageurl}>/css/import_print.css" media="print" type="text/css">
-
-<link rel="stylesheet" href="<{$xoops_imageurl}>/css/jquery-jcflick.css" media="all" type="text/css">
-<link rel="stylesheet" href="<{$xoops_imageurl}>/css/jquery-megaDropdown.css" media="all" type="text/css">
-<link rel="stylesheet" href="<{$xoops_imageurl}>/css/jquery-jktab.css" media="all" type="text/css">
-
-<script type="text/javascript" src="<{$xoops_imageurl}>/js/jquery-jcflick.js"></script>
+<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-jcflick.js"></script>
 <script type="text/javascript">
 $(function(){
 	$('#flickMain').jcflick({
@@ -81,10 +73,42 @@ $(function(){
 	
 });
 </script>
+<script type="text/javascript">
+$ ( function () {
+    var stop = false;
+    $ ( '.jquery-ui-accordion-title' )
+        . click ( function ( event ){
+            if ( stop ) {
+                event . stopImmediatePropagation ();
+                event . preventDefault ();
+                stop = false;
+            }
+        } ) ;
+    $ ( '#jquery-ui-accordion' )
+        . accordion ( {
+            icons: {
+                'header': 'ui-icon-folder-collapsed',
+                'headerSelected': 'ui-icon-folder-open'
+            },
+            header: '.jquery-ui-accordion-title'
+        } )
+        . sortable ( {
+            axis: 'y',
+            handle: '.jquery-ui-accordion-title',
+            stop: function () {
+                stop = true;
+            }
+        } ) ;
+} ) ;
+</script>
+<!--[if IE 6]>
+<script type="text/javascript" src="/public/resources/common/js/DD_belatedPNG_0.0.8a-min.js"></script>
+<script type="text/javascript">
+	DD_belatedPNG.fix('img');
+</script>
+<![endif]-->
 </head>
-
 <body onLoad="ProjectName.PARTS.hideAdBar()" onOrientationChange="ProjectName.PARTS.hideAdBar()">
-
 <div id="globalContainer">
 <div id="globalContentsWrapper">
 	<div class="header">
