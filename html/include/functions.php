@@ -172,7 +172,7 @@ function xoops_getUserTimestamp($time, $timeoffset="")
         }
     }
 
-    return intval($time) + (intval($timeoffset) - $xoopsConfig['server_TZ'])*3600;
+    return (int)$time + ((int)$timeoffset - $xoopsConfig['server_TZ'])*3600;
 }
 
 /*
@@ -200,7 +200,7 @@ function formatTimestampGMT($time, $format="l", $timeoffset="")
         }
     }
     
-    $usertimestamp = intval($time) + (intval($timeoffset))*3600;
+    $usertimestamp = (int)$time + ((int)$timeoffset)*3600;
     return _formatTimeStamp($usertimestamp, $format);
 }
 
@@ -571,35 +571,28 @@ function &xoops_gethandler($name, $optional = false )
 {
     static $handlers;
     $name = strtolower(trim($name));
-    if (!isset($handlers[$name])) {
+    if (isset($handlers[$name])) return $handlers[$name];
+
         //
         // The following delegate is test at Alpha4-c.
         //
         $handler = null;
         XCube_DelegateUtils::call('Legacy.Event.GetHandler', new XCube_Ref($handler), $name, $optional);
-        if (is_object($handler)) {
-            $handlers[$name] =& $handler;
-            return $handlers[$name];
-        }
-        
-        if ( file_exists( $hnd_file = XOOPS_ROOT_PATH.'/kernel/'.$name.'.php' ) ) {
-            require_once $hnd_file;
-        }
+        if ($handler) return $handlers[$name] =& $handler;
+
+        require_once XOOPS_ROOT_PATH.'/kernel/'.$name.'.php';
         $class = 'Xoops'.ucfirst($name).'Handler';
         if (XC_CLASS_EXISTS($class)) {
-            $handlers[$name] = new $class($GLOBALS['xoopsDB']);
-        }
-    }
-    if (!isset($handlers[$name]) && !$optional ) {
+	    $handlers[$name] = $handler = &new $class($GLOBALS['xoopsDB']);
+	    return $handler;
+		}
+
+    if (!$optional) {
         trigger_error('Class <b>'.$class.'</b> does not exist<br />Handler Name: '.$name, E_USER_ERROR);
     }
-    
+
     $falseRet = false;
-    
-    if (isset($handlers[$name]))
-        return $handlers[$name];
-    else
-        return $falseRet;
+    return $falseRet;
 }
 
 function &xoops_getmodulehandler($name = null, $module_dir = null, $optional = false)
@@ -608,7 +601,7 @@ function &xoops_getmodulehandler($name = null, $module_dir = null, $optional = f
     // if $module_dir is not specified
     if (!isset($module_dir)) {
         //if a module is loaded
-        if (isset($GLOBALS['xoopsModule']) && is_object($GLOBALS['xoopsModule'])) {
+        if (is_object($GLOBALS['xoopsModule'])) {
             $module_dir = $GLOBALS['xoopsModule']->getVar('dirname');
         } else {
             trigger_error('No Module is loaded', E_USER_ERROR);
@@ -617,40 +610,41 @@ function &xoops_getmodulehandler($name = null, $module_dir = null, $optional = f
         $module_dir = trim($module_dir);
     }
     $name = (!isset($name)) ? $module_dir : trim($name);
-    if (!isset($handlers[$module_dir][$name])) {
+    $mhdr = &$handlers[$module_dir];
+    if (!isset($mhdr[$name])) {
         //
         // Cube Style
         //
-        if (file_exists($hnd_file = XOOPS_ROOT_PATH . "/modules/{$module_dir}/class/handler/" . ucfirst($name) . ".class.php")) {
+        if (file_exists($hnd_file = XOOPS_ROOT_PATH . '/modules/'.$module_dir.'/class/handler/' . ucfirst($name) . '.class.php')) {
             include_once $hnd_file;
         }
-        elseif ( file_exists( $hnd_file = XOOPS_ROOT_PATH . "/modules/{$module_dir}/class/{$name}.php" ) ) {
+        elseif ( file_exists( $hnd_file = XOOPS_ROOT_PATH . '/modules/'.$module_dir.'/class/'.$name.'.php' ) ) {
             include_once $hnd_file;
         }
         
-        $className = ucfirst(strtolower($module_dir)) . "_" . ucfirst($name) . 'Handler';
+        $className = ucfirst(strtolower($module_dir)) . '_' . ucfirst($name) . 'Handler';
         if (XC_CLASS_EXISTS($className)) {
-            $handlers[$module_dir][$name] = new $className($GLOBALS['xoopsDB']);
+            $mhdr[$name] = new $className($GLOBALS['xoopsDB']);
         }
         else {
             $className = ucfirst(strtolower($module_dir)) . ucfirst($name) . 'Handler';
             if (XC_CLASS_EXISTS($className)) {
-                $handlers[$module_dir][$name] = new $className($GLOBALS['xoopsDB']);
+                $mhdr[$name] = new $className($GLOBALS['xoopsDB']);
             }
         }
     }
-    if (!isset($handlers[$module_dir][$name]) && !$optional) {
+    if (!isset($mhdr[$name]) && !$optional) {
         trigger_error('Handler does not exist<br />Module: '.$module_dir.'<br />Name: '.$name, E_USER_ERROR);
     }
     
-    return $handlers[$module_dir][$name];
+    return $mhdr[$name];
 }
 
 function xoops_getrank($rank_id =0, $posts = 0)
 {
     $db =& Database::getInstance();
     $myts =& MyTextSanitizer::getInstance();
-    $rank_id = intval($rank_id);
+    $rank_id = (int)$rank_id;
     if ($rank_id != 0) {
         $sql = "SELECT rank_title AS title, rank_image AS image, rank_id AS id FROM ".$db->prefix('ranks')." WHERE rank_id = ".$rank_id;
     } else {
@@ -730,16 +724,16 @@ function xoops_notification_deletebyitem ($module_id, $category, $item_id)
 function xoops_comment_count($module_id, $item_id = null)
 {
     $comment_handler =& xoops_gethandler('comment');
-    $criteria = new CriteriaCompo(new Criteria('com_modid', intval($module_id)));
+    $criteria = new CriteriaCompo(new Criteria('com_modid', (int)$module_id));
     if (isset($item_id)) {
-        $criteria->add(new Criteria('com_itemid', intval($item_id)));
+        $criteria->add(new Criteria('com_itemid', (int)$item_id));
     }
     return $comment_handler->getCount($criteria);
 }
 
 function xoops_comment_delete($module_id, $item_id)
 {
-    if (intval($module_id) > 0 && intval($item_id) > 0) {
+    if ((int)$module_id > 0 && (int)$item_id > 0) {
         $comment_handler =& xoops_gethandler('comment');
         $comments =& $comment_handler->getByItemId($module_id, $item_id);
         if (is_array($comments)) {
@@ -773,7 +767,7 @@ function xoops_comment_delete($module_id, $item_id)
 function xoops_groupperm_deletebymoditem($module_id, $perm_name, $item_id = null)
 {
     // do not allow system permissions to be deleted
-    if (intval($module_id) <= 1) {
+    if ((int)$module_id <= 1) {
         return false;
     }
     $gperm_handler =& xoops_gethandler('groupperm');
@@ -800,7 +794,7 @@ function &xoops_convert_encoding(&$text)
 
 function xoops_getLinkedUnameFromId($userid)
 {
-    $userid = intval($userid);
+    $userid = (int)$userid;
     if ($userid > 0) {
         $member_handler =& xoops_gethandler('member');
         $user =& $member_handler->getUser($userid);
