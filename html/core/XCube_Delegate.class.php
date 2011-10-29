@@ -151,8 +151,8 @@ class XCube_Delegate
 	 */
 	function XCube_Delegate()
 	{
-		if (func_num_args() > 0) {
-			$this->_setSignatures(func_get_args());
+		if ($n = func_num_args()) {
+			$this->_setSignatures($n);
 		}
 		$this->_mUniqueID = md5(uniqid(rand(), true));
 	}
@@ -283,78 +283,48 @@ class XCube_Delegate
 			$this->register($this->_mLazyRegisterName);
 		}
 		
-		if ($this->_mHasCheckSignatures) {
-			if (count($this->_mSignatures) != $num) {
-				return false;
-			}
+		if ($hasSig = $this->_mHasCheckSignatures) {
+			if (count($mSigs = &$this->_mSignatures) != $num) return false;
 		}
 		
-		$param = array();
 		for ($i=0 ; $i<$num ;$i++) {
-			if (is_a($args[$i], "XCube_Ref")) {
-				$args[$i] =& $args[$i]->getObject();
-			}
-			
-			if ($this->_mHasCheckSignatures) {
-				if (!isset($this->_mSignatures[$i])) {
-					return false;
-				}
-				
-				switch ($this->_mSignatures[$i]) {
-					case "void":
+			$arg = &$args[$i];
+			if (is_a($arg, 'XCube_Ref')) $args[$i] =& $arg->getObject();
+
+			if ($hasSig) {
+				if (!isset($mSigs[$i])) return false;
+				switch ($mSigs[$i]) {
+					case 'void':
 						break;
 					
-					case "bool":
-						if (!empty($args[$i])) {
-							$args[$i] = $args[$i] ? true : false;
-						}
+					case 'bool':
+						if (!empty($arg)) $args[$i] = $arg? true : false;
 						break;
 
-					case "int":
-						if (!empty($args[$i])) {
-							$args[$i] = intval($args[$i]);
-						}
+					case 'int':
+						if (!empty($arg)) $args[$i] = (int)$arg;
 						break;
 					
-					case "float":
-						if (!empty($args[$i])) {
-							$args[$i] = floatval($args[$i]);
-						}
+					case 'float':
+						if (!empty($arg)) $args[$i] = (float)$arg;
 						break;
 
-					case "string":
-						if (!empty($args[$i]) && !is_string($args[$i])) {
-							return false;
-						}
+					case 'string':
+						if (!empty($arg) && !is_string($arg)) return false;
 						break;
 					
 					default:
-						if (!is_a($args[$i], $this->_mSignatures[$i])) {
-							return false;
-						}
+						if (!is_a($arg, $mSigs[$i])) return false;
 				}
 			}
-		
-			$param[] = '$args[' . $i . ']';
 		}
 		
-		if (count($param) > 0) {
-			$argstr = "(" . join($param, ",") . ");";
-		}
-		else {
-			$argstr = "()";
-		}
-
 		foreach ($this->_mCallbacks as $callback_arrays) {
             foreach ($callback_arrays as $callback_array) {
-                $callback = $callback_array[0];
+                list($callback, $file) = $callback_array;
 
-               	if ($callback_array[1] != null && file_exists($callback_array[1])) {
-               		require_once $callback_array[1];
-               	}
-               	if (is_callable($callback)) {
-               		call_user_func_array($callback, $args);
-               	}
+               	if ($file) require_once $file;
+               	if (is_callable($callback)) call_user_func_array($callback, $args);
             }
 		}
 	}
@@ -436,12 +406,16 @@ class XCube_DelegateManager
 	 */
 	function register($name, &$delegate)
 	{
-		if (!isset($this->_mDelegates[$name][$delegate->getID()])) {
-			$this->_mDelegates[$name][$delegate->getID()] =& $delegate;
+		$id=$delegate->getID();
+		$mDelegate =& $this->_mDelegates[$name];
+		if (!isset($mDelegate[$id])) {
+			$mDelegate[$id] =& $delegate;
 			
-			if (isset($this->_mCallbacks[$name]) && count($this->_mCallbacks[$name]) > 0) {
-				foreach (array_keys($this->_mCallbacks[$name]) as $key) {
-					$delegate->add($this->_mCallbacks[$name][$key], $this->_mCallbackParameters[$name][$key][0], $this->_mCallbackParameters[$name][$key][1]);
+			$mcb = &$this->_mCallbacks[$name];
+			if (isset($mcb) && count($mcb) > 0) {
+				foreach (array_keys($mcb) as $key) {
+					list($a, $b) = $this->_mCallbackParameters[$name][$key];
+					$delegate->add($mcb[$key], $a, $b);
 				}
 			}
 			
@@ -571,23 +545,19 @@ class XCube_DelegateUtils
     {
         $args = func_get_args();
         $num = func_num_args();
-        if ($num > 0) {
-            $delegateName = $args[0];
-            if ($num > 1) {
-                array_shift($args);
-            }
-        } else {
-            return false;
-        }
-        $root =& XCube_Root::getSingleton();
-        if ($root->mDelegateManager != null) {
-            $delegates = $root->mDelegateManager->getDelegates();
+        if ($num == 1) $delegateName = $args[0];
+		elseif ($num) $delegateName = array_shift($args);
+		else return false;
+		$m =& XCube_Root::getSingleton()->mDelegateManager;
+        if ($m) {
+            $delegates = $m->getDelegates();
             if (isset($delegates[$delegateName])) {
-                $keys = array_keys($delegates[$delegateName]);
-                $delegate =& $delegates[$delegateName][$keys[0]];
+				$delegates = &$delegates[$delegateName];
+				list($key) = array_keys($delegates);
+                $delegate =& $delegates[$key];
             } else {
                 $delegate = new XCube_Delegate;
-                $root->mDelegateManager->register($delegateName, $delegate);
+                $m->register($delegateName, $delegate);
             }
         }
         return call_user_func_array(array(&$delegate,'call'),$args);
@@ -647,10 +617,8 @@ class XCube_DelegateUtils
      */
     function raiseEvent()
     {
-        $args = func_get_args();
-        $num = func_num_args();
-        if ($num > 0) {
-            return call_user_func_array(array('XCube_DelegateUtils','call'),$args);
+        if (func_num_args()) {
+            return call_user_func_array(array('XCube_DelegateUtils','call'),func_get_args());
         }
     }
 
