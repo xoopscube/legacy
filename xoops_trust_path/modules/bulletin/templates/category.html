@@ -1,0 +1,26 @@
+<{strip}>
+
+<{if $category_storeis}>
+<br />
+<div class="item">
+  <div class="itemHead"><span class="itemTitle"><a href="<{$mydirurl}>/index.php?storytopic=<{$story.topicid}>"><{$story.topic}></a></span></div>
+  <div class="itemInfo">
+  <ul>
+  <{foreach item=c from=$category_storeis}>
+    <li><a href="<{$mydirurl}>/index.php?page=article&amp;storyid=<{$c.storyid}>"><{$c.title}></a> (<{$c.date}>)</li>
+  <{/foreach}>
+  </ul>
+  </div>
+</div>
+
+<{/if}>
+
+<{* These tags available.
+	<{$c.uid}> : Poster's uid.
+	<{$c.uname}> : Poster's uname.
+	<{$c.realname}> : Poster's real name.
+	<{$c.counter}> : Number of view.
+	<{$c.comments}> : Number of comments.
+*}>
+
+<{/strip}>

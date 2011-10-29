@@ -1,0 +1,50 @@
+<{strip}>
+
+<p><{$navi}></p>
+
+<table class="outer" cellpadding="4" cellspacing="1" width="100%">
+  <tr align="center">
+    <th width="40"><{$smarty.const._AM_STORYID}></th>
+    <th><{$smarty.const._AM_TITLE}></th>
+    <th width="100"><{$smarty.const._AM_TOPIC}></th>
+    <th width="100"><{$smarty.const._AM_POSTER}></th>
+    <th width="150">
+    <{if $mode == 'newsubmission'}>
+      <{$smarty.const._AM_POSTED}>
+    <{elseif $mode == 'autostory'}>
+      <{$smarty.const._AM_PROGRAMMED}>
+    <{else}>
+      <{$smarty.const._AM_PUBLISHED}>
+    <{/if}>
+    </th>
+    <th width="150"><{$smarty.const._AM_EXPIRED}></th>
+    <th width="80"><{$smarty.const._AM_ACTION}></th>
+  </tr>
+  <{foreach item=i from=$stories}>
+    <tr align="center" class="<{cycle values="odd,even"}>">
+      <td><{$i.storyid}></td>
+      <td align="left"><{$i.title}></td>
+      <td><{$i.topic}></td>
+      <{if $i.uid}>
+        <td><{$i.uname}></td>
+      <{else}>
+        <td><a href="<{$xoops_url}>/userinfo.php?uid=<{$i.uid}>"><{$i.uname}></a></td>
+      <{/if}>
+      <td>
+      <{if $mode == 'newsubmission'}>
+        <{$i.created}>
+      <{else}>
+        <{$i.published}>
+      <{/if}>
+      </td>
+      <td><{$i.expired}></td>
+      <td><a href="<{$mydirurl}>/index.php?page=submit&amp;return=1&amp;storyid=<{$i.storyid}>"><{$smarty.const._EDIT}></a>
+      &nbsp;<a href="<{$mydirurl}>/index.php?page=submit&amp;return=1&amp;op=delete&amp;storyid=<{$i.storyid}>"><{$smarty.const._DELETE}></a></td>
+    </tr>
+  <{/foreach}>
+</table>
+
+<p><{$navi}></p>
+<{include file="$template_path/bulletin_footer.html"}>
+
+<{/strip}>

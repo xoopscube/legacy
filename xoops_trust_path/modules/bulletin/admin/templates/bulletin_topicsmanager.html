@@ -1,0 +1,68 @@
+<{strip}>
+
+<form method="post" action="index.php?mode=admin">
+  <table class="outer" cellspacing="1" width="100%">
+    <tbody>
+      <tr>
+        <th colspan="2"><{$smarty.const._AM_ADDMTOPIC}></th>
+      </tr>
+      <tr>
+        <td class="head" width="100"><{$smarty.const._AM_TOPICNAME}></td>
+        <td class="even"><input type="text" name="topic_title" size="20" maxlength="40" /> <{$smarty.const._AM_MAX40CHAR}></td>
+      </tr>
+      <tr>
+        <td class="head"><{$smarty.const._AM_PARENTTOPIC}></td>
+        <td class="even"><{$topicselbox}></td>
+      </tr>
+      <tr>
+        <td class="head"><{$smarty.const._AM_TOPICIMG}></td>
+        <td class="even">
+          <select size="1" name="topic_imgurl" id="topic_imgurl" onchange='showImgSelected("topicimage", "topic_imgurl", "<{$imagebase}>", "", "<{$imagedirname}>")'>
+          <option value="">------</option>
+          <{foreach item=i from=$images}>
+          <option value="<{$i.image}>"><{$i.image}></option>
+          <{/foreach}>
+          </select><br />
+          <img src="<{$xoops_url}>/images/blank.gif" name="topicimage" id="topicimage" alt="" vspace="4" />
+          <br />
+          <{$imagelocation}>
+        </td>
+      </tr>
+      <tr>
+        <td class="head"></td>
+        <td class="even">
+          <input type="hidden" name="op" value="addTopic" />
+          <input type="submit" value="<{$smarty.const._ADD}>" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+
+<br />
+
+<{if $topics_exists}>
+  <form method="get" action="index.php">
+    <table class="outer" cellspacing="1" width="100%">
+      <tbody>
+        <tr><th colspan="2"><{$smarty.const._AM_MODIFYTOPIC}></th></tr>
+        <tr>
+          <td class="head" width="100"><{$smarty.const._AM_TOPIC}></td>
+          <td class="even"><{$topicselbox2}></td>
+        </tr>
+        <tr>
+          <td class="head"></td>
+          <td class="even">
+            <input type="hidden" name="op" value="modTopic" />
+            <input type="hidden" name="mode" value="admin" />
+            <input type="submit" value="<{$smarty.const._AM_MODIFY}>" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+<{/if}>
+
+<{include file="$template_path/bulletin_footer.html"}>
+
+<{/strip}>

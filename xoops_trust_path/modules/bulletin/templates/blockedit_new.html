@@ -1,0 +1,19 @@
+<input type="hidden" name="options[0]" value="<{$options[0]|escape}>" />
+
+<{$smarty.const._MB_BULLETIN_ORDER}>:
+<select name="options[1]">
+	<{html_options options=$order_options selected=$selected_order}>
+</select>
+<br />
+
+<{$smarty.const._MB_BULLETIN_DISP}>:
+<input type="text" name="options[2]" value="<{$options[2]|intval}>" size="3" />&nbsp;<{$smarty.const._MB_BULLETIN_ARTCLS}>
+<br />
+
+<{$smarty.const._MB_BULLETIN_CHARS}>:
+<input type="text" name="options[3]" value="<{$options[3]|intval}>" size="4" />&nbsp;<{$smarty.const._MB_BULLETIN_LENGTH}>
+<br />
+
+<{$smarty.const._MB_BULLETIN_DISP_HOMETEXT}>:
+<input type="text" name="options[4]" value="<{$options[4]|intval}>" size="3" />&nbsp;<{$smarty.const._MB_BULLETIN_ARTCLS}>
+

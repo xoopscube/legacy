@@ -1,0 +1,24 @@
+<{strip}>
+
+<{assign var="mydirurl" value=$block.mydirurl}>
+<{assign var="mydirname" value=$block.mydirname}>
+<{assign var="mod_config" value=$block.mod_config}>
+
+<{foreach item=fullstory from=$block.fullstories}>
+  <{include file="db:`$block.mydirname`_item.html" story=$fullstory}>
+  <br />
+<{/foreach}>
+
+<ul>
+  <{foreach item=story from=$block.stories}>
+  <li><a href="<{$mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>"><{$story.title}></a>
+  <{if strstr( $block.type , "counter" )}>
+    (<{$story.hits}>)
+  <{else}>
+    (<{$story.date}>)
+  <{/if}>
+  </li>
+  <{/foreach}>
+</ul>
+
+<{/strip}>

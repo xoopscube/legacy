@@ -1,0 +1,106 @@
+<{strip}>
+
+<form name="storyform" id="storyform" action="?page=submit" method="post" onsubmit="return xoopsFormValidate_storyform();">
+  <table class="outer" cellspacing="1" width="100%">
+    <tr><th colspan="2"><{$smarty.const._MD_SUBMITNEWS}></th></tr>
+    <tr align="left" valign="top">
+      <td class="head"><{$smarty.const._MD_POSTEDBY}></td>
+      <td class="even"><{$poster}></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="head"><{$smarty.const._MD_TITLE}></td>
+      <td class="even"><{xoops_input name=title value=$title size=50 maxlength=80}></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="head"><{$smarty.const._MD_TOPIC}></td>
+      <td class="even">
+        <select name="topicid">
+          <{foreach item=t from=$topics}>
+          <option value="<{$t.id}>"<{if $t.id==$topicid}> selected="selected"<{/if}>><{$t.name}></option>
+          <{/foreach}>
+        </select>
+      </td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="head"><{$smarty.const._MD_TOPIC_IMAGE}></td>
+      <td class="even">
+        <select name="topicimg">
+          <option value="1"<{if $topicimg==1}> selected="selected"<{/if}>><{$smarty.const._MD_TOPIC_RIGHT}></option>
+          <option value="2"<{if $topicimg==2}> selected="selected"<{/if}>><{$smarty.const._MD_TOPIC_LEFT}></option>
+          <option value="0"<{if $topicimg==0}> selected="selected"<{/if}>><{$smarty.const._MD_TOPIC_DISABLE}></option>
+        </select>
+      </td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="head"><{$smarty.const._MD_THESCOOP}></td>
+      <td class="even">
+        <{xoops_dhtmltarea name=text cols=40 rows=6 value=$text}>
+        <div><{$smarty.const._MULTIPAGE}></div>
+      </td>
+    </tr>
+    <{*if $can_use_date*}>
+    <tr align="left" valign="top">
+      <td class="head"><{$smarty.const._MD_PUBLISHED}></td>
+      <td class="even">
+        <{xoops_input type=checkbox name=autodate value=$autodate default=1}><{$smarty.const._MD_SETDATETIME}>&nbsp;
+        <span style="font-size:0.8em;"><{$smarty.const._MD_SETDATETIME_DESC}></span><br />
+        <{*suin_formselecttime name= value= format= startyear= endyear=*}>
+      </td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="head"><{$smarty.const._MD_EXPIRED}></td>
+      <td class="even">
+        <{xoops_input type=checkbox name=autodate value=$autodate default=1}><{$smarty.const._MD_SETEXPDATETIME}>&nbsp;
+        <span style="font-size:0.8em;"><{$smarty.const._MD_SETEXPDATETIME_DESC}></span><br />
+        <{*suin_formselecttime name= value= format= startyear= endyear=*}>
+      </td>
+    </tr>
+    <{*/if*}>
+    <tr align="left" valign="top">
+      <td class="head"><{$smarty.const._MD_RELATION}></td>
+      <td class="even">
+        <div id="relation">
+        <{foreach item=i from=$relations}>
+          <input type="checkbox" name="storyidR[]" value="<{$i.linkedid}>" />
+          <input type="hidden" name="titleR[]" value="<{$i.title}>" />
+          <input type="hidden" name="dirnameR[]" value="<{$i.dirname}>" />
+          <input type="hidden" name="storyidRH[]" value="<{$i.linkedid}>" />
+          <{$i.title}><br />
+        <{/foreach}>
+        </div>
+        <input type="button" value="<{$smarty.const._MD_ADD_RELATION}>" name="opensub" onclick="window.open('index.php?page=search','sub','width=400,height=500');">
+        <input type="button" value="<{$smarty.const._DELETE}>" name="updatevar" onclick="updateRelations('storyform', false)">
+      </td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="head"><{$smarty.const._OPTIONS}></td>
+      <td class="even">
+        <{xoops_input type=checkbox name=notifypub value=$notifypub default=1}><{$smarty.const._MD_NOTIFYPUBLISH}><br />
+        <{xoops_input type=checkbox name=html value=$html default=1}><{$smarty.const._MD_USE_HTML}><br />
+        <{xoops_input type=checkbox name=br value=$br default=1}><{$smarty.const._MD_USE_BR}><br />
+        <{xoops_input type=checkbox name=smiley value=$smiley default=1}><{$smarty.const._MD_USE_SMILEY}><br />
+        <{xoops_input type=checkbox name=xcode value=$xcode default=1}><{$smarty.const._MD_USE_XCODE}><br />
+        <{xoops_input type=checkbox name=block value=$block default=1}><{$smarty.const._MD_DISP_BLOCK}><br />
+        <{xoops_input type=checkbox name=ihome value=$ihome default=1}><{$smarty.const._MD_PUBINHOME}><br />
+        <{xoops_input type=checkbox name=approve value=$approve default=1}><{$smarty.const._MD_APPROVE}>
+      </td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="head">&nbsp;</td>
+      <td class="even"></td>
+    </tr>
+  </table>
+</form>
+
+<!-- Start Form Vaidation JavaScript //-->
+<script type="text/javascript">
+<!--//
+function xoopsFormValidate_storyform() {
+    myform = window.document.storyform;
+    if ( myform.title.value == "" ) { window.alert("表題を入力してください"); myform.title.focus(); return false; }
+    return true;
+}
+//--></script>
+<!-- End Form Vaidation JavaScript //-->
+
+<{/strip}>
