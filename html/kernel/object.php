@@ -332,8 +332,9 @@ class XoopsObject extends AbstractXoopsObject
 	*/
 	function &getVar($key, $format = 's')
 	{
-		$ret = $this->vars[$key]['value'];
-		switch ($this->vars[$key]['data_type']) {
+		$var =& $this->vars[$key];
+		$ret = $var['value'];
+		switch ($var['data_type']) {
 
 		case XOBJ_DTYPE_TXTBOX:
 			switch (strtolower($format)) {
@@ -362,11 +363,12 @@ class XoopsObject extends AbstractXoopsObject
 			case 's':
 			case 'show':
 				$ts =& MyTextSanitizer::getInstance();
-				$html = !empty($this->vars['dohtml']['value']) ? 1 : 0;
-				$xcode = (!isset($this->vars['doxcode']['value']) || $this->vars['doxcode']['value'] == 1) ? 1 : 0;
-				$smiley = (!isset($this->vars['dosmiley']['value']) || $this->vars['dosmiley']['value'] == 1) ? 1 : 0;
-				$image = (!isset($this->vars['doimage']['value']) || $this->vars['doimage']['value'] == 1) ? 1 : 0;
-				$br = (!isset($this->vars['dobr']['value']) || $this->vars['dobr']['value'] == 1) ? 1 : 0;
+				$vars =&$this->vars;
+				$html = !empty($vars['dohtml']['value']) ? 1 : 0;
+				$xcode = (!isset($vars['doxcode']['value']) || $vars['doxcode']['value'] == 1) ? 1 : 0;
+				$smiley = (!isset($vars['dosmiley']['value']) || $vars['dosmiley']['value'] == 1) ? 1 : 0;
+				$image = (!isset($vars['doimage']['value']) || $vars['doimage']['value'] == 1) ? 1 : 0;
+				$br = (!isset($vars['dobr']['value']) || $vars['dobr']['value'] == 1) ? 1 : 0;
 				$ret = $ts->displayTarea($ret, $html, $smiley, $xcode, $image, $br);
 				break 1;
 			case 'e':
@@ -376,11 +378,12 @@ class XoopsObject extends AbstractXoopsObject
 			case 'p':
 			case 'preview':
 				$ts =& MyTextSanitizer::getInstance();
-				$html = !empty($this->vars['dohtml']['value']) ? 1 : 0;
-				$xcode = (!isset($this->vars['doxcode']['value']) || $this->vars['doxcode']['value'] == 1) ? 1 : 0;
-				$smiley = (!isset($this->vars['dosmiley']['value']) || $this->vars['dosmiley']['value'] == 1) ? 1 : 0;
-				$image = (!isset($this->vars['doimage']['value']) || $this->vars['doimage']['value'] == 1) ? 1 : 0;
-				$br = (!isset($this->vars['dobr']['value']) || $this->vars['dobr']['value'] == 1) ? 1 : 0;
+				$vars =&$this->vars;
+				$html = !empty($vars['dohtml']['value']) ? 1 : 0;
+				$xcode = (!isset($vars['doxcode']['value']) || $vars['doxcode']['value'] == 1) ? 1 : 0;
+				$smiley = (!isset($vars['dosmiley']['value']) || $vars['dosmiley']['value'] == 1) ? 1 : 0;
+				$image = (!isset($vars['doimage']['value']) || $vars['doimage']['value'] == 1) ? 1 : 0;
+				$br = (!isset($vars['dobr']['value']) || $vars['dobr']['value'] == 1) ? 1 : 0;
 				$ret = $ts->previewTarea($ret, $html, $smiley, $xcode, $image, $br);
 				break 1;
 			case 'f':
@@ -423,12 +426,12 @@ class XoopsObject extends AbstractXoopsObject
 			}
 			break;
 		default:
-			if ($this->vars[$key]['options'] != '' && $ret != '') {
+			if ($var['options'] != '' && $ret != '') {
 				switch (strtolower($format)) {
 				case 's':
 				case 'show':
 					$selected = explode('|', $ret);
-					$options = explode('|', $this->vars[$key]['options']);
+					$options = explode('|', $var['options']);
 					$i = 1;
 					$ret = array();
 					foreach ($options as $op) {
