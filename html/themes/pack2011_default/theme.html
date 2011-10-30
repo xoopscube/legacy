@@ -28,7 +28,6 @@
 
 <{if $xoops_module_header}><{$xoops_module_header}><{/if}>
 <{if $xoops_block_header}><{$xoops_block_header}><{/if}>
-
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-1.6.4.min.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/global.js"></script>
@@ -101,6 +100,11 @@ $ ( function () {
         } ) ;
 } ) ;
 </script>
+<script type="text/javascript">
+<!--
+<{$xoops_js}>
+// -->
+</script>
 <!--[if IE 6]>
 <script type="text/javascript" src="/public/resources/common/js/DD_belatedPNG_0.0.8a-min.js"></script>
 <script type="text/javascript">
@@ -171,9 +175,6 @@ $ ( function () {
 		<div id="flickMain">
 			<!-- flick -->
 			<div class="flickContainer"><div class="flickWrapper group">
-				<div class="flickCol">
-					<p><a href="#"><img src="<{$xoops_imageurl}>images/main_slideEffect.png" width="100%" alt="jQuery.slide-effect"></a></p>
-				</div>
 				<div class="flickCol">
 					<p><a href="#"><img src="<{$xoops_imageurl}>images/main_xoops_picture_01.jpg" width="100%" alt="jQuery.jcflick"></a></p>
 				</div>
