@@ -37,7 +37,7 @@ p *, th *, td *, li *, dt *, dd * {
 a,a:link,
 a:hover,
 a:visited {
-	text-decoration: underline;
+
 }
 a,a:link {
 }
@@ -175,7 +175,7 @@ body {
 	margin: 0 0 2em;
 }
 .level1, .level2, .level3, .level4, .level5, .level6 {
-	margin: 1em 0;
+	margin: 0;
 }
 p {
 	margin: 0 0 1em;
@@ -184,8 +184,6 @@ p {
 /* Head */
 .level1 {
 	font-size: 200%;
-	border-bottom: solid 1px #000;
-	padding-bottom: 5px;
 }
 .level2 {
 	font-size: 154%;
