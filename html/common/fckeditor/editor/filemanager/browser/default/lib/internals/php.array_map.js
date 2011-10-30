@@ -1,0 +1,1 @@
+function array_map(S){var d,C,x,o,Z=[],R=[];if(S==null){S=function(k){return [k];};}for(o=0,x=arguments.length-1;o<x;o++){}for(d=0,x=arguments[1].length;d<x;d++){for(C=1;C<=o;C++){Z[C-1]=arguments[C][d];}R[d]=S.apply(null,Z);}return R;}

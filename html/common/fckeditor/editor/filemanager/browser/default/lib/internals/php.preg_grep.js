@@ -1,0 +1,1 @@
+function preg_grep(R,Z,d){var C,d,k=(Z instanceof Array),x=(k)?[]:{};var a=(d=="PREG_GREP_INVERT")?function(o){return !o;}:function(o){return o;};if(k){for(C=0,d=Z.length;C<d;C++){if(R.test(Z[C])){x[C]=Z[C];}}}else{for(C in Z){x[C]=Z[C];}}return x;}

@@ -1,0 +1,1 @@
+function jsmarty_modifier_truncate(C,Z,d,o,k){Z=(Z)?Number(Z):80;if(Z==0){return ;}if(d==void (0)){d="...";}if(k==void (0)){k=false;}if(o==void (0)){o=false;}if(C.length>length){Z-=d.length;if(!o&&!k){C=C.replace(/\s+?(\S+)?$/,"").slice(0,Z+1);}return (!k)?C.slice(0,Z)+d:C.slice(0,Z/2)+d+C.slice(-Z/2);}return C;}

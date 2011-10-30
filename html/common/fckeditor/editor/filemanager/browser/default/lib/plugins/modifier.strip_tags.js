@@ -1,0 +1,1 @@
+function jsmarty_modifier_strip_tags(k,o){return k.replace(/<[^>]*?>/g,(!!o)?" ":"");}
