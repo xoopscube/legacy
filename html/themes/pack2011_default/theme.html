@@ -113,27 +113,27 @@ $ ( function () {
 <div id="globalContentsWrapper">
 	<div class="header">
 	<{if $xoops_isuser === true}>
-	  <span>
-	  <{* <span>Welcome <{$xoops_uname}> !</span> *}>	
-	  &nbsp;
-	  Welcome <{$xoops_userid|xoops_user:"name"}> !
-	  <a href="<{$xoops_url}>/user.php?op=logout">
-	  <{$smarty.const._LOGOUT}>
-	  </a>  
-	  &nbsp;
-	  </span>
-	<{else}>
-	  <span>
-	  <a href="<{$xoops_url}>/user.php">
-	  <img src="<{$xoops_imageurl}>images/login.gif" alt="<{$smarty.const._LOGIN}>" />
-	  </a>  
-	  </span>
+		<span>
+		<{* <span>Welcome <{$xoops_uname}> !</span> *}>	
+		&nbsp;
+		Welcome <{$xoops_userid|xoops_user:"name"}> !
+		<a href="<{$xoops_url}>/user.php?op=logout">
+		<{$smarty.const._LOGOUT}>
+		</a>  
+		&nbsp;
+		</span>
+		<{else}>
+		<span>
+		<a href="<{$xoops_url}>/user.php">
+		<img src="<{$xoops_imageurl}>images/login.gif" alt="<{$smarty.const._LOGIN}>" />
+		</a>
+		</span>
 	<{/if}>
 	</div>
 	
 	<h1 class="lebel1">
 		<a href="<{$xoops_url}>/">
-		<img src="<{$xoops_imageurl}>images/logo.png" alt="" />
+		<img src="<{$xoops_imageurl}>images/dp_logo.png" alt="" />
 		</a>
 		<{$xoops_sitename}>&nbsp;:&nbsp;<{$xoops_slogan}>
 	</h1>
@@ -142,16 +142,16 @@ $ ( function () {
 	<ul class="navigation group gnaviParentCol">	
 	<{foreach item=imenu from=$multiMenuToTheme.contents name=menuloop}>
 		<li>
-        <{if $imenu.link != ""}>
+		<{if $imenu.link != ""}>
 			<span class="title"><a href="<{$imenu.link}>" target="<{$imenu.target}>"><span class="inner">
 			<{$imenu.title}>
 			</span></a></span>
-        	<ul class="gnaviChildCol">
-        	<{foreach item=sublink from=$imenu.sublinks}>
-        		<li><a href="<{$sublink.url}>"><{$sublink.name}></a></li>
-        	<{/foreach}>
+			<ul class="gnaviChildCol">
+			<{foreach item=sublink from=$imenu.sublinks}>
+				<li><a href="<{$sublink.url}>"><{$sublink.name}></a></li>
+			<{/foreach}>
 			</ul>
-        <{/if}>
+		<{/if}>
 		</li>
 	<{/foreach}>
 	</ul>
@@ -222,62 +222,62 @@ $ ( function () {
 		<!-- Start Center Column -->
 		<{if $xoops_showcblock == 1}>
 			<div class="section">
- 				<!-- Start Center Center Column -->
-   				<{if $xoops_ccblocks}>
+				<!-- Start Center Center Column -->
+				<{if $xoops_ccblocks}>
 				<div class="group">
 					<{foreach item=block from=$xoops_ccblocks name=ccloop}>
 						<{if $block.weight < 100 }>
-        					<{if ! $block.title|strstr:"none"}>
-        						<h2 class="lebel2"><{$block.title}></h2>
-        					<{/if}>
+							<{if ! $block.title|strstr:"none"}>
+								<h2 class="lebel2"><{$block.title}></h2>
+							<{/if}>
 							<p class="fsL">
 							<div class="BlockContent"><{$block.content}></div>
-     					<{/if}>	
-     				<{/foreach}>
+						<{/if}>	
+					<{/foreach}>
 				</div>
-	    		<{/if}>	
-    			<!-- End Center Center Column -->
+				<{/if}>	
+				<!-- End Center Center Column -->
 
 				<div class="group mb10">
-    			<!-- Start Center Left Column -->
-    			<{if $xoops_clblocks}>
+				<!-- Start Center Left Column -->
+				<{if $xoops_clblocks}>
 					<div class="pane2 floL group">
-    				<{foreach item=block from=$xoops_clblocks name=clloop}>
-    					<{if $block.weight < 100 }>
+					<{foreach item=block from=$xoops_clblocks name=clloop}>
+						<{if $block.weight < 100 }>
 							<p class="fRect" id="centerl<{$smarty.foreach.clloop.iteration}>">
-    						<{if ! $block.title|strstr:"none"}>
-    							<h2 class="BlockTitle"><{$block.title}></h2>
-    						<{/if}>
-     						<div class="BlockContent"><{$block.content}></div>
+							<{if ! $block.title|strstr:"none"}>
+								<h2 class="BlockTitle"><{$block.title}></h2>
+							<{/if}>
+							<div class="BlockContent"><{$block.content}></div>
 							</p>
- 						<{/if}>
-	    			<{/foreach}>
+						<{/if}>
+					<{/foreach}>
 					</div>
 				<{/if}>
-    			<!-- End Center Left Column -->
+				<!-- End Center Left Column -->
 
-    			<!-- Start Center Right Column -->
+				<!-- Start Center Right Column -->
 				<{if $xoops_crblocks}>
 					<div class="pane2 floR group">
-    				<{foreach item=block from=$xoops_crblocks name=crloop}>
-    					<{if $block.weight < 100 }>
+					<{foreach item=block from=$xoops_crblocks name=crloop}>
+						<{if $block.weight < 100 }>
 						<p class="fRect" id="centerr<{$smarty.foreach.crloop.iteration}>">
-    					<{if ! $block.title|strstr:"none"}>
-    						<h2 class="BlockTitle"><{$block.title}></h2>
-    					<{/if}>
-    					<div class="BlockContent"><{$block.content}></div>
+						<{if ! $block.title|strstr:"none"}>
+							<h2 class="BlockTitle"><{$block.title}></h2>
+						<{/if}>
+						<div class="BlockContent"><{$block.content}></div>
 						</p>
-    				<{/if}>
-    			<{/foreach}>
-    			</div>
-    			<{/if}>
-    			<!-- End Center Right Column -->
+					<{/if}>
+				<{/foreach}>
 				</div>
-    			
+				<{/if}>
+				<!-- End Center Right Column -->
+				</div>
+				
 			<!-- End Center Column -->
 		
 			<!-- Module Content -->
-    		<{if !empty($xoops_contents)}>
+			<{if !empty($xoops_contents)}>
 			<div class="group">
 				<h2 class="lebel2">
 				<{if $xoops_pagetitle}>
@@ -290,12 +290,12 @@ $ ( function () {
 				<{$xoops_contents}>
 				</p>
 			</div>
-	    	<{/if}>
-	    	<!-- End Module -->		
+			<{/if}>
+			<!-- End Module -->		
 		</div><!-- /.section -->
-	    <{/if}>
+		<{/if}>
 		<!-- Module Content -->
-    	<{if !empty($xoops_contents)}>
+		<{if !empty($xoops_contents)}>
 			<{$xoops_contents}>
 		<{/if}>
 	
