@@ -42,7 +42,7 @@ FCKConfig.StartupShowBlocks = false ;
 FCKConfig.Debug = false ;
 FCKConfig.AllowQueryStringDebug = true ;
 
-FCKConfig.SkinPath = FCKConfig.BasePath + 'skins/default/' ;
+FCKConfig.SkinPath = FCKConfig.BasePath + 'skins/silver/' ;
 FCKConfig.PreloadImages = [ FCKConfig.SkinPath + 'images/toolbar.start.gif', FCKConfig.SkinPath + 'images/toolbar.buttonarrow.gif' ] ;
 
 FCKConfig.PluginsPath = FCKConfig.BasePath + 'plugins/' ;
@@ -93,7 +93,7 @@ FCKConfig.TemplateReplaceAll = true ;
 FCKConfig.TemplateReplaceCheckbox = true ;
 
 FCKConfig.ToolbarLocation = 'In' ;
-
+/*
 FCKConfig.ToolbarSets["Default"] = [
 	['Source','DocProps','-','Save','NewPage','Preview','-','Templates'],
 	['Cut','Copy','Paste','PasteText','PasteWord','-','Print','SpellCheck'],
@@ -109,6 +109,18 @@ FCKConfig.ToolbarSets["Default"] = [
 	['Style','FontFormat','FontName','FontSize'],
 	['TextColor','BGColor'],
 	['FitWindow','ShowBlocks','-','About']		// No comma for the last row.
+] ;
+*/
+FCKConfig.ToolbarSets["Default"] = [
+	['Source','Cut','Copy','Paste','PasteText','PasteWord','-','Print','SpellCheck'],
+	['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
+	['JustifyLeft','JustifyCenter','JustifyRight','JustifyFull'],
+	'/',
+	['Bold','Italic','Underline','StrikeThrough','-','Subscript','Superscript'],
+	['OrderedList','UnorderedList','-','Outdent','Indent','Blockquote'],
+	['Link','Unlink','Anchor'],
+	['Image','Smiley','PageBreak'],
+	['TextColor','BGColor'],
 ] ;
 
 FCKConfig.ToolbarSets["Basic"] = [
