@@ -131,7 +131,7 @@ $ ( function () {
 	<{/if}>
 	</div>
 	
-	<h1 class="lebel1">
+	<h1 class="level1">
 		<a href="<{$xoops_url}>/">
 		<img src="<{$xoops_imageurl}>images/dp_logo.png" alt="" />
 		</a>
@@ -198,10 +198,10 @@ $ ( function () {
 			<!-- Start Left Column -->
 			<{foreach item=block from=$xoops_lblocks name=lbloop}>
 			<{if ! $block.title|strstr:"none"}>
-			<h2 class="lebel2"><{$block.title}></h2>
+			<h2 class="level2"><{$block.title}></h2>
 			<{/if}>
 			<ul class="btnList">
-			<{$block.content}>
+			<{$block.content}>levellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevel
 			</ul>
 			<{/foreach}>
 		<{/if}>
@@ -209,7 +209,7 @@ $ ( function () {
 			<!-- Start Right Column -->
 			<{foreach item=block from=$xoops_rblocks name=rbloop}>
 			<{if ! $block.title|strstr:"none"}>
-			<h2 class="lebel2"><{$block.title}></h2>
+			<h2 class="level2"><{$block.title}></h2>
 			<{/if}>
 			<ul class="btnList">
 			<{$block.content}>
@@ -228,7 +228,7 @@ $ ( function () {
 					<{foreach item=block from=$xoops_ccblocks name=ccloop}>
 						<{if $block.weight < 100 }>
 							<{if ! $block.title|strstr:"none"}>
-								<h2 class="lebel2"><{$block.title}></h2>
+								<h2 class="level2"><{$block.title}></h2>
 							<{/if}>
 							<p class="fsL">
 							<div class="BlockContent"><{$block.content}></div>
@@ -279,7 +279,7 @@ $ ( function () {
 			<!-- Module Content -->
 			<{if !empty($xoops_contents)}>
 			<div class="group">
-				<h2 class="lebel2">
+				<h2 class="level2">
 				<{if $xoops_pagetitle}>
 					<{$xoops_pagetitle}>
 				<{else}>
