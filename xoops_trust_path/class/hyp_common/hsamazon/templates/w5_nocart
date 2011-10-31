@@ -1,0 +1,15 @@
+<div style="word-break:break-all;"><_EACH_><div style="clear: both;"></div></div>
+
+<!--EACH(5)-->
+<div style="float:left;width:19%;padding: 0px 1px;">
+<_LINKED_SIMG_><br />
+<a href="<_URL_>" target="_blank" rel="nofollow"><span style="font-size:12px;color:#3366FF;"><_TITLE_></span></a>
+<span style="font-size:12px;">(<_CATEGORY_>)</span><br />
+<span style="font-size:12px;"><_PRESENTER_></span><br />
+<span style="font-family:Arial;font-size:14px;color:#990000;"><_PRICE_FORMATTED_></span>
+</div>
+<!--/EACH-->
+
+<!--IMG-->
+<a href="<_URL_>" title="<_TITLE_>" target="_blank" rel="nofollow"><img src="<_IMGSRC_>" alt="<_TITLE_>"<_IMGSIZE_> style="border:none;margin:2px;" /></a>
+<!--/IMG-->

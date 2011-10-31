@@ -1,0 +1,555 @@
+#freeze
+#nofollow
+#norelated
+#navi(../)
+#contents
+------------------------------
+* A [#w8de4799]
+
+**add [#vef8f18f]
+:Plugin type|
+~Command type
+:Importance|
+~*
+:Synopsis|
+''?cmd=add''
+&color(blue){&page=PageName};
+:Description|
+~Display an empty edit screen, and when the Update button is clicked, append the new content at the end of the current content.
+:Parameters|
+~PageName must not be omitted. It must be URL encoded.
+~While [[edit>../E-G#i1e8d3e8]] displays the current content in the edit screen, add always displays an empty screen. This is useful for an append-only page, as the existing content is not changed unexpectedly.
+:Note|
+~In the old versions, this plugin used to be called the default skin from the "append" menu of the MenuBar. It is no longer in the MenuBar, as the edit command is more convenient.
+
+**amazon [#v7173e39]
+:Plugin type|
+~(Command type)
+~Inline type
+~Block type
+:Importance|
+~*
+:Synopsis|
+~''&amazon(''
+&color(blue){ASIN};
+'');''
+~''#amazon''
+~''#amazon('',
+&color(blue){clear};
+'')''
+~''#amazon(''
+&color(blue){ASIN};,
+[&color(blue){left};|&color(blue){right};],
+[&color(blue){Title};|&color(blue){image};|&color(blue){delimage};|&color(blue){deltitle};|&color(blue){delete};]
+'')''
+:Description|
+~Displays the producet name and image in Amazon (http://www.amazon.co.jp).
+~It supports Amazon's affiliate program, and it can display the fixed-format reviews.
+:Parameters|
+~If no options are given, the plugin displays a review input form. For example, if you place this plugin without no options in the page "BookReview", the subpages named "BookReview/ASIN" (where ASIN is the ASIN number).
+~The options left,right, and clear specify the output format of the product image and title.
+--left|right - Alignment of the output. The default value is right.
+--clear - Disables the text wraparound when specified.
+:|Title,image options specify what is displayed.
+--Title - The title of the product as a string. If the title is not specified, it is automatically obtained from the Amazon website.
+--image - Displays the image only. By default, both the image and the title are displayed.
+:|delimage,deltitle, and delete options controls the cache.
+--delimage - Delete the corresponding image cache.
+--deltitle - Delete the corresponding title cache.
+--delete - Delete both the image cache and the title cache.
+:Constants|
+--PLUGIN_AMAZON_AID Amazon affiliate ID (anonymous user when not specified)
+--PLUGIN_AMAZON_EXPIRE_IMAGECACHE expire Valid period of the image cache in days
+--PLUGIN_AMAZON_EXPIRE_TITLECACHE expire Valid period of the title cache in days
+--PLUGIN_AMAZON_NO_IMAGE Default image
+--PLUGIN_AMAZON_SHOP_URI URL of Amazon
+--PLUGIN_AMAZON_XML URI for the Amazon product info query
+:Note|
+~Check the copyright issues at the Amazon affiliate program site.
+~The default image is used when an image is not available in Amazon. By default, image/noimage.jpg is used.
+~ASIN is identical to ISBN for books. For other products, check the image name at the Amazon's page. For example, the ASIN is B000002G6J.01. If you use B000002G6J, it becomes "no image" because the default value, 09, is used unless you also display the title.)
+ http://images-jp.amazon.com/images/P/B000002G6J.01.LZZZZZZZ.jpg
+
+
+**aname [#n9f7bab5]
+:Plugin type|
+~Inline type
+~Block type
+:Importance|
+~****
+:Synopsis|
+~''&aname(''
+&color(blue){'''anchor_name'''};
+[,{[&color(blue){super};],
+[&color(blue){full};],
+[&color(blue){noid};]}]
+''){''
+&color(blue){'''anchor_string'''};
+''};''
+~''#aname(''
+&color(blue){'''anchor_name'''};
+[,{[&color(blue){super};],
+[&color(blue){full};],
+[&color(blue){noid};]},
+&color(blue){'''anchor_string'''};]
+'')''
+:Description|
+~Creates an anchor which can be used by a link.
+:Parameters|
+~The '''anchor_name''' is used as a URL fragment idetifier. It can't be omitted. The anchor name must consist of alphabets (uppercase/lowercase).
+~super,full,noid defines how the anchor is displayed.
+--super - The anchor string is displayed as superscript. By default, the anchor string is displayed as a normal string.
+--full - The anchor is displayed with the full URL. By default, only the fragment identifier is displayed.
+--noid - The fragment identifier is not displayed.
+:|~If the '''anchor_string''' is specified, the anchor is set for that string, so that the existence of the anchor is visible to users. By default, the anchor is set with an empty string.
+:Constants|~
+--PLUGIN_ANAME_ID_MAX - The maximum length of the anchor name
+--PLUGIN_ANAME_ID_REGEX - The regular expression that defines allowable anchor names.
+--PLUGIN_ANAME_ID_MUST_UNIQUE - Produces an error if there is a duplicated anchor name.
+:Note|
+~Normally, this plugin should be used as the inline type. It can be used as a block-type plugin if you want to set the anchor between two block-type plugins.
+~Since PukiWiki internally uses the aname plugin, it must always exist.
+
+**article [#a06a7f60]
+:Plugin type|
+~ (Command type)
+~Block type
+:Importance|
+~***
+:Synopsis|
+''#article''
+:Description|
+~Displays a simple BBS
+:Constants|~
+--PLUGIN_ARTICLE_COLS - the number of columns in the text area
+--PLUGIN_ARTICLE_ROWS - the number of lines in the text area
+--PLUGIN_ARTICLE_NAME_COLS - the number of columns in the name area
+--PLUGIN_ARTICLE_SUBJECT_COLS - the number of columns in the title area
+--PLUGIN_ARTICLE_NAME_FORMAT - name format
+--PLUGIN_ARTICLE_SUBJECT_FORMAT - title format
+--PLUGIN_ARTICLE_INS - whether the post is displayed before or after the input area
+--PLUGIN_ARTICLE_COMMENT - whether to allow single-line comments after the post
+--PLUGIN_ARTICLE_AUTO_BR - whether to automatically convert line breaks
+--PLUGIN_ARTICLE_MAIL_AUTO_SEND - whether to automatically forward a post by email
+--PLUGIN_ARTICLE_MAIL_FROM - the sender email address used to forward a post
+--PLUGIN_ARTICLE_MAIL_SUBJECT_PREFIX - the title of the email used to forward a post
+--$_plugin_article_mailto - the recipient email address used to forward a post
+
+
+**attach [#qe43bebc]
+:Plugin type|
+~ (Command type)
+~Block type
+:Importance|
+~*****
+:Synopsis|
+''#attach(''
+[&color(blue){nolist};]
+[,&color(blue){noform};]
+'')''
+:Description|
+~Displays the list of the files attached on the page, and the file upload form.
+:Parameters|
+~nolist, noform - parameters to specify the display format
+--nolist - Hide the list of the file attachments. The default is to display the list.
+--noform - Hide the upload form. The default is to display the form.
+:Constants|~
+--PLUGIN_ATTACH_MAX_FILESIZE - The maximum file size that can be uploaded
+--PLUGIN_ATTACH_UPLOAD_ADMIN_ONLY - Whether to restrict file uploads to the administrator only
+--PLUGIN_ATTACH_DELETE_ADMIN_ONLY - Whether to restrict file deletion to the administrator only
+--PLUGIN_ATTACH_DELETE_ADMIN_NOBACKUP - Whether to omit backup when PLUGIN_ATTACH_DELETE_ADMIN_ONLY is enabled
+--PLUGIN_ATTACH_PASSWORD_REQUIRE Whether to allow a user to set a password for deleting the uploaded file (PLUGIN_ATTACH_*_ADMIN_ONLY has a priority)
+--PLUGIN_ATTACH_FILE_MODE - the file permission mode for uploaded files
+--PLUGIN_ATTACH_FILE_ICON - the icon image file
+--PLUGIN_ATTACH_CONFIG_PAGE_MIME - the page describing the mime-type for downloading files
+:Note|
+~This plugin is necessary for using the default skin, as it is used in the "upload" menu
+~If you increase the value of PLUGIN_ATTACH_MAX_FILESIZE, remember also to change the settings related to the upload size outside of PukiWiki, such as upload_max_filesize in php.ini, and LimitRequestBody in Apache.
+
+
+------------------------------
+* B [#v07e2c1a]
+
+**back [#vd9cd7ec]
+:Plugin type|
+~Block type
+:Importance|
+~*
+:Synopsis|
+''#back(''
+[[&color(blue){'''string'''};]
+[,[&color(blue){left};|
+&color(blue){center};|
+&color(blue){right};]
+[,[&color(blue){0};|
+&color(blue){1};]
+[,[&color(blue){'''back_link'''};]
+]]]]
+'')''
+:Description|
+~Displays a link to go back to the previous page or to the specified location
+:Parameters|
+~'''string''' - the link string to be displayed. The default is 'Back'.
+~left, center, right - the alignment of the link. The default is center.
+--left - Left-alignment of the link
+--center - Centering of the link
+--right - Right-alighment of the link
+:|~0, 1 - Whether to display the horizontal rule. The default is 1.
+--0 - Do not display the horizontal rule
+--1 - Display the horizontal rule
+:|~'''Back_link''' - The URL or PageName displayed as alink. The PageName, or an anchor in the form of 'PageName#anchor', can be used only if PLUGIN_BACK_ALLOW_PAGELINK is set to TRUE. If PLUGIN_BACK_ALLOW_JAVASCRIPT is set  to TRUE, this parameter can be omitted and the link to go back to the previous page is displayed (the link works only if JavaScript is enabled on a browser).
+:Constants|~
+--PLUGIN_BACK_ALLOW_PAGELINK - Whether to allow the PageName (+ anchor) in the '''Back_link''' parameter
+--PLUGIN_BACK_ALLOW_JAVASCRIPT - Whether to use JavaScript(history.go(-1)) as the back link
+--PLUGIN_BACK_USAGE - Usage string is displayed upon errors
+
+**backup [#n727318e]
+:Plugin type|
+~Command type
+:Importance|
+~*****
+:Synopsis|
+''?cmd=backup''
+[&color(blue){&page='''PageName'''};]
+:Description|
+~Display the list of backup pages for the specified page or for the entire Wiki.
+:Parameters|
+~If '''PageName''' is omitted, the list of the backup pages for the whole PukiWiki. The '''PageName''' must be URL-encoded.
+:Constants|~
+--PLUGIN_BACKUP_DISABLE_BACKUP_RENDERING - Whether to disable the functionality of displaying the backup data.
+
+**br [#g693034c]
+:Plugin type|
+~Block type
+~Inline type
+:Importance|
+~**
+:Synopsis|
+~''#br''
+~''&br'''';''
+:Description|
+~Breaks the current line.
+~This is used to insert a line break or an empty line, when placing '~' at the end of the line can terminate the block element in certain places like a paragraph, a list, and a table.
+:Constants|~
+--PLUGIN_BR_ESCAPE_BLOCKQUOTE - avoid creating unmatched tags when used inside a blockquote.
+--PLUGIN_BR_TAG - the tag that is displayed by the br plugin.
+
+
+**bugtrack [#a83293e8]
+:Plugin type|
+~ (Command type)
+~Block type
+:Importance|
+~* (for generic websites)
+~**** (for websites for software development)
+:Synopsis|
+''#bugtrack(''
+[[&color(blue){'''PageName'''};]
+[&color(blue){,'''Category_1...Category_n'''};]]
+'')''
+:Description|
+~Displays an input form for bug reports, as a part of the bug tracking system.
+:Parameters|
+~'''PageName''' is the parent page of the page used as a bug report. The current page is used if this parameter is omitted. By default, the pages for each bug report are created under this page. For example, if '''PageName''' is "BugReportPage", the bug reports are created as "BugReportPage/1", "BugReportPage/2", "BugReportPage/3", etc.
+~'''Category''' is the element used as the target of the bug. The default is the input form.
+:Constants|~
+--PLUGIN_BUGTRACK_NUMBER_FORMAT - The format of the page numbers created as bug reports
+:Note|
+~This plugin is very useful in a website for software development. If you want to create a form which creates pages in a specified format for other purposes, the [[tracker>../S-U#rf5296e2]] plugin can be used.
+
+**bugtrack_list [#q557ea11]
+:Plugin type|
+~Block type
+:Importance|
+~* (for generic websites)
+~**** (for websites for software development)
+:Synopsis|
+''#bugtrack_list(''
+[&color(blue){'''PageName'''};]
+'')''
+:Description|
+~Displays the list of bug reports, as a part of the bug tracking system.
+:Parameters|
+~'''PageName''' is the parent page of the page used as a bug report. The current page is used if this parameter is omitted.
+:Note|
+~The bugtrack_list plugin is usually used with the bugtrack plugin.
+~Since it internally calls the bugtrack plugin, the bugtrack plugin must be installed.
+~The bugtrack_list plugin has fewer functionalities than the [[tracker_list>../S-U#t78d6d0a]] plugin, but it is faster and requires less memory. The difference becomes clearer as the number of pages increases. It is important to determine which plugin should be used.
+
+------------------------------
+* C [#y43dfe74]
+
+**calendar, calendar_edit, calendar_read [#v5a54211]
+:Plugin type|
+~Block type
+:Importance|
+~*
+:Synopsis|
+~''#calendar(''
+[{[&color(blue){'''PageName'''};],
+[&color(blue){'''year_month'''};]}]
+'')''
+~''#calendar_edit(''
+[{[&color(blue){'''PageName'''};],
+[&color(blue){'''year_month'''};]}]
+'')''
+~''#calendar_read(''
+[{[&color(blue){'''PageName'''};],
+[&color(blue){'''year_month'''};]}]
+'')''
+:Description|
+~Display a calander. By selecting the date (yyyy/mm/dd) on the calendar, the page named "PageName/yyyymmdd" can be displayed and edited.
+~The difference of these three plugins is whether the date page is shown in the edit mode or the display mode; The calendar_edit plugin shows the page in edit mode, while the calendar plugin and the calendar_read plugin shows the page in display mode.
+:Parameters|
+~'''PageName''' - the top page of the calender.
+If the page name is omitted, the current page is used.
+~'''year_month''' is the year and month to be displayed. It must be specified in the yyyymm format. The current year and month is used if thie parameter is omitted.
+:Note|
+~Since we have the calendar2 plugin, which has more functionalities, there is no specific reason to use the calendar plugin anymore.
+~The calendar is necessary for the calendar_edit plugin and the calendar_read plugin, as it is internally called by them.
+
+
+**calendar_viewer [#nd7dc5b8]
+:Plugin type|
+~ (Command type)
+~Block type
+:Importance|
+~***
+:Synopsis|
+''#calendar_viewer(''
+&color(blue){'''PageName'''};,
+&color(blue){yyyy-mm};|
+&color(blue){n};|
+&color(blue){x*y};|
+&color(blue){this};
+[,[&color(blue){past};|&color(blue){future};|&color(blue){view};]
+[,&color(blue){'''separator_char'''};]]
+'')''
+:Description|
+~Display the content of the pages created by the calendar plugin or the calendar2 plugin
+:Parameters|
+~'''PageName''' - the name of the page in which the calendar plugin or the calendar2 is placed.
+~yyyy-mm - the year and the month to be displayed
+~n - the number of pages to be displayed
+~x*y - display y pages starting from the page x (the first page is 0).
+~this - display the pages for this month
+~past, future, view - select the pages to be displayed. The default is past.
+--past - Display the past pages including today
+--future - Display the future pages including today
+--view - Display all pages
+:|~'''separator_char''' is the separator of year, month and day, such as '-' and '/'. The default is '-'.
+:Constants|~
+--PLUGIN_CALENDAR_VIEWER_USAGE - the usage message displayed upon an error
+--PLUGIN_CALENDAR_VIEWER_DATE_FORMAT - date format
+:Note|
+~The calendar2 plugin displays the content of the entry for today only. The calendar_viewer plugin was created to extend this feature. For example, while the entry disappears when the date changes in the calendar2 plugin, the calendar_viewer plugin can still displays the latest entry. Therefore, a suggested usage is to use the calendar_viewer plugin together calender2(off).
+
+**calendar2 [#afda2820]
+:Plugin type|
+~ (Command type)
+~Block type
+:Importance|
+~***
+:Synopsis|
+''#calendar2(''
+[{[&color(blue){'''PageName'''};|&color(blue){*};],
+[&color(blue){yyyymm};],
+[&color(blue){off};]}]
+'')''
+:Description|
+~Display a calendar. It can show the links (<< and >>) to go to the next/previous months. If the date yyyy/mm/dd is clicked on the calandar, the plugin displays the page named 'PageName/yyyy-mm-dd'. If today's entry exists, the content is displayed next to the calendar.
+:Parameters|
+~'''PageName''' - the parent page of the calendar entries. The default is the page in which the plugin is placed. If the page name is *, the calendar entries do not have the parent page (i.e., the page names are yyyy-mm-dd).
+~yyyymm - the year and month to be displayed. The default is the current year and month.
+~off - do not display the content of today's entry. The default is to display the content of today's entry.
+:Note|
+~The calender2 plugin creates the pages named PageName/yyyy-mm-dd, while the calender_edit plugin creates the pages named PageName/yyyymmdd.
+
+**clear [#v515085f]
+:Plugin type|
+~Block type
+:Importance|
+~*
+:Synopsis|
+''#clear''
+:Description|
+~Disable text wraparound which was set by the around option of the ref plugin.
+:Note|
+~It does the same thing as the clear option of the img plugin.
+
+**color [#q9790b97]
+:Plugin type|
+~Inline type
+:Importance|
+~****
+:Synopsis|
+~''&color(''
+[&color(blue){'''text_color'''};]
+[,&color(blue){'''background_color'''};]
+''){''
+&color(blue){'''text'''};
+''};''
+:Description|
+~Display given texts (or inline elements) with the specified text color and background color.
+:Parameters|
+~'''text_color''' and '''background_color''' are either color names (e.g., red, blue), 3-letter hex color code (#000-#FFF), or 6-letter hex color code (#000000-#FFFFFF). The color names and color codes are case-insensitive.
+~At least one of '''text_color''' and '''background_color''' must be specified. The text/background colors are not changed if the corresponding parameter is omitted.
+:Constants|~
+--PLUGIN_COLOR_ALLOW_CSS - use CSS instead of the font tag to change colors
+--PLUGIN_COLOR_USAGE - display usage message upon error
+--PLUGIN_COLOR_REGEX - the regular expression defining the colors that can be used
+:Note|
+~Below are selected color names defined in [[W3C Recommendation:http://www.w3.org/TR/1999/REC-html401-19991224/types.html#h-6.5]]:
+Aqua = "#00FFFF",
+Black = "#000000",
+Blue = "#0000FF",
+Fuchsia = "#FF00FF",
+Gray = "#808080",
+Green = "#008000",
+Lime = "#00FF00",
+Maroon = "#800000",
+Navy = "#000080",
+Olive = "#808000",
+Purple = "#800080",
+Red = "#FF0000",
+Silver = "#C0C0C0",
+Teal = "#008080",
+White = "#FFFFFF",
+Yellow = "#FFFF00"
+
+**comment [#kc065cd8]
+:Plugin type|
+~ (Command type)
+~Block type
+:Importance|
+~*****
+:Synopsis|
+''#comment(''
+{[&color(blue){above};],
+[&color(blue){below};],
+[&color(blue){nodate};],
+[&color(blue){noname};]}
+'')''
+:Description|
+~Display a form for entering comments
+:Parameters|
+~The parameters specify how the comments are displayed
+--above - comments are displayed above the input form (this is default)
+--below - comments are displayed below the input form
+--nodate - do not display date and time the comment is entered (the default is to display date and time)
+--noname - do not display the name form (the default is to display the form for entering the name)
+:Constants|~
+--PLUGIN_COMMENT_DIRECTION_DEFAULT - the default location of the comments (above the input form or below the form)
+--PLUGIN_COMMENT_SIZE_MSG - the width of the comment input form
+--PLUGIN_COMMENT_SIZE_NAME - the width of the name input form
+--PLUGIN_COMMENT_FORMAT_MSG - the format of the comment
+--PLUGIN_COMMENT_FORMAT_NAME - the format of the name
+--PLUGIN_COMMENT_FORMAT_NOW - the format of the date and time
+--PLUGIN_COMMENT_FORMAT_STRING - the format of the entire comment
+
+**contents [#vd4dabcd]
+:Plugin type|
+~Pseudo-block type
+:Importance|
+~***
+:Synopsis|
+~''#contents''
+:Description|
+~Display the list of the title of the pages
+
+**counter [#zedb02cf]
+:Plugin type|
+~Block type
+~Inline type
+:Importance|
+~***
+:Synopsis|
+~''#counter''
+~''&counter(''
+[&color(blue){total};|
+&color(blue){today};|
+&color(blue){yesterday};]
+'');''
+:Description|
+~Display the counter to show the number of visitors to the page
+:Parameters|
+~The parameter (total, today or yesterday) specified the type of the counter. The default is total. If the plugin is used as the block type, 'total' is used.
+--total - the total (cumulative) number of visitors
+--today - the number of visitors of today
+--yesterday - the number of visitors of yesterday
+:Constants|~
+--PLUGIN_COUNTER_SUFFIX - the suffix of the files storing the number of visitors
+:Note|
+~To display the number of visitor to all pages, use the counter plugin in the ManuBar or the skin.
+
+------------------------------
+* D [#bfe38652]
+
+**deleted [#kf08f93d]
+:Plugin type|
+~Command type
+:Importance|
+~**
+:Synopsis|
+''?plugin=deleted''
+{[&color(blue){&dir=diff};|
+&color(blue){backup};]
+[&color(blue){&file=on};]}
+:Description|
+~Display the list of the deleted pages
+:Parameters|
+~If file=on is specified, it displays the file names for backups (or diffs). The default is not to display them.
+~The dir parameter specified how to find deleted pages. The default is backup.
+--backup - find the pages that do not exist but have backups.
+--diff - find the pages that do not exist but have diffs.
+:Note|
+~This plugin is useful for an administrator to check erroneous or malicious page deletions.
+
+**diff [#zabff312]
+:Plugin type|
+~Command type
+:Importance|
+~*****
+:Synopsis|
+''?cmd=diff''
+&color(blue){&page='''PageName'''};
+:Description|
+~Display the difference of the current and the previous content of the specified page.
+:Parameters|
+~'''PageName''' - the page name to display the diff. It must be URL-encoded.
+:Note|
+~Use the backup plugin to display the diffs with other than the last backup.
+
+**dump [#k344e979]
+:Plugin type|
+~Command type
+:Importance|
+~*
+:Synopsis|
+~''?plugin=dump''
+:Description|
+~Backup and restore the files in the specified directory with the tar (tar.gz, tgz) format.~
+The administrator password is required to execute backup/restore.~
+The backup can be retrieved by converting the file name used to a page name.
+If this conversion is used, the file cannot be used for restore, but
+it becomes easier to guess the page name from the file name.~
+Backup can be performed on any directory.~
+Since restore just overwrites existing files, it can't delete files.~
+The directories for backup/restore can be specified are one of the following:
+--DATA_DIR (wiki/*.txt)
+--UPLOAD_DIR (attach/*)
+--BACKUP_DIR (backup/*)
+
+:Constants|~
+--PLUGIN_DUMP_ALLOW_RESTORE - Whether to allow restore
+--PLUGIN_DUMP_FILENAME_ENCORDING - Character encoding used to convert the page name to the directory structure
+--PLUGIN_DUMP_MAX_FILESIZE - the maximum file size (in Kbytes) for upload
+--PLUGIN_DUMP_DUMP - the plugin parameters used for backup
+--PLUGIN_DUMP_RESTORE - the plugin parameters used for restore
+
+:Note|
+~Since this plugin directly accesses the files which PukiWiki internally uses, 
+it must be used carefully to avoid security problems.
+~If the DATA_DIR is restored, call the [[links>../L-N#m5bbd018]] plugin to update the cache for page links.
+
+#navi(../)

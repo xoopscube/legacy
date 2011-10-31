@@ -1,0 +1,7 @@
+$class a,
+$class a:link,
+$class a:visited {
+	text-decoration: none !important;
+	border: none !important;
+	color: inherit !important;
+}

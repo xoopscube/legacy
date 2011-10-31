@@ -1,0 +1,13 @@
+$class .iframe_others {
+	height: 600px;
+	width:100%;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+$class .iframe_ie {
+	height: 600px;
+	width:100%;
+	margin-left:auto;
+	margin-right:auto;
+}

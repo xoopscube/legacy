@@ -1,0 +1,13 @@
+;### If you need change this config.
+;### Please save as "http_request.ini".
+
+use_proxy = 0
+proxy_host = ""
+proxy_port = ""
+	
+need_proxy_auth = 0
+proxy_auth_user = ""
+proxy_auth_pass = ""
+
+;### Separate with a space.
+no_proxy = "127.0.0.1 localhost"

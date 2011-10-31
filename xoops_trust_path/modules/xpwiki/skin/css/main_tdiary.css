@@ -1,0 +1,76 @@
+@charset "$charset";
+
+#xpwiki_loading {
+	background-color: white;
+	position: absolute;
+	text-align: center;
+	z-index: 200;
+	filter:alpha(opacity=50);
+	-moz-opacity: 0.5;
+	opacity: 0.5;
+	cursor: wait;
+}
+
+#XpWikiPopup {
+	border-left: solid gray 1px;
+}
+
+#XpWikiPopupHeader {
+	background-color: #9C9C9C;
+	color: white;
+	font-weight:bold;
+}
+
+#XpWikiPopupBody {
+	background-color: white;
+}
+
+body.popup_body {
+	padding-top:25px;
+	font-size:75%;
+}
+
+div.resizableResizeX {
+	position: absolute;
+	right: -5px;
+	width: 4px;
+	top: 0px;
+	height:100%;
+	border: none;
+	padding: 0px;
+	margin: 0px;
+	background-color: #b0c4de;
+	filter:alpha(opacity=60);
+	-moz-opacity: 0.6;
+	opacity: 0.6;
+}
+
+div.resizableResizeY {
+	position: absolute;
+	bottom: -5px;
+	height: 4px;
+	left: 0px;
+	width:100%;
+	border: none;
+	padding: 0px;
+	margin: 0px;
+	background-color: #b0c4de;
+	filter:alpha(opacity=60);
+	-moz-opacity: 0.6;
+	opacity: 0.6;
+}
+
+div.resizableResizeXY {
+	position: absolute;
+	bottom: -5px;
+	height: 6px;
+	right: -5px;
+	width: 6px;
+	border: none;
+	padding: 0px;
+	margin: 0px;
+	background-color: #b0c4de;
+	filter:alpha(opacity=60);
+	-moz-opacity: 0.6;
+	opacity: 0.6;
+}

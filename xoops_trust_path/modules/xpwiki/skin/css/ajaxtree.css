@@ -1,0 +1,80 @@
+/* ajaxtree.inc.php */
+
+$class div.xpwiki_ajaxtree ul {
+	cursor: default;
+	margin: 0 0 0 -12px;
+	padding: 0 0 0 12px;
+}
+
+$class div.xpwiki_ajaxtree li {
+	background: transparent url(./loader.php?src=leaf.gif) no-repeat 0 0.3em;
+	cursor: default;
+	list-style-type: none;
+	margin: 0;
+	padding: 0 0 0 12px;
+}
+
+$class div.xpwiki_ajaxtree li.expanded {
+	background-image: url(./loader.php?src=minus.gif);
+	cursor: pointer;
+}
+
+$class div.xpwiki_ajaxtree li.expanded ul.depth_1 {
+	width: 100%;
+	max-height: 400px;
+	overflow: auto;
+	overflow-x: hidden;
+}
+
+$class div.xpwiki_ajaxtree li.collapsed {
+	background-image: url(./loader.php?src=plus.gif);
+	cursor: pointer;
+}
+
+$class div.xpwiki_ajaxtree {
+	margin-bottom: 1em;
+}
+
+$class div.xpwiki_ajaxtree a.block,
+$class div.xpwiki_ajaxtree span.current {
+	display: block;
+	text-decoration: none;
+	/*white-space: nowrap;*/
+	width: 100%;
+	line-height: 105%;
+	margin: 0;
+	padding: 2px 0 3px 0;
+}
+
+*:first-child+html $class div.xpwiki_ajaxtree a.block,
+*:first-child+html $class div.xpwiki_ajaxtree span.current {	/* for IE7 */
+	padding-bottom: 2px;
+}
+
+*:first-child+html div.xpwiki_ajaxtree li.expanded ul.depth_1 li {
+	padding-right: 20px;
+}
+
+* html $class div.xpwiki_ajaxtree a.block,
+* html $class div.xpwiki_ajaxtree span.current {			/* for IE6 and below */
+	padding-bottom: 1px;
+	/*\*/
+	display: inline;			/* for Windows IE */
+}
+
+$class div.xpwiki_ajaxtree span.current {
+	background: #ffc;
+	cursor: default;
+}
+
+/*$class div.xpwiki_ajaxtree span.current:hover,*/
+$class div.xpwiki_ajaxtree a:hover {
+	background: #cde;
+}
+
+$class div.xpwiki_ajaxtree span.count {
+	margin-left: 2px;
+	color: #803;
+	font-family: Arial, sans-serif;
+	font-size: 85%;
+}

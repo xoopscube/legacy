@@ -1,0 +1,35 @@
+#freeze
+#pginfo(0			3	all	all	3	all	all	1	t2fV0bRUymc	web-master	1	)
+#xoopsadmin
+
+* Admin tools list [#i95b71f6]
+
+** Admin only [#kbcfbc57]
+
+-[[Page rename>[[cmd:rename]]]]
+-[[Delete any pages>[[cmd:deldel]]]]
+-[[Text replacement tool of pages>[[cmd:replacer]]]]
+-[[Default setting of Page permission>[[cmd:pginfo]]]]
+-[[Backup & Restore>[[cmd:dump]]]]
+-[[Synchronize Database>[[cmd:dbsync]]]]
+-[[Import>[[cmd:import]]]]
+-[[Update entities data>[[cmd:update_entities]]]]
+
+*** Plugin cache initialization [#k380e1e0]
+
+-[[ajaxtree Plugin>[[cmd:ajaxtree]]]]
+-[[tag Plugin>[[cmd:tag]]]]
+
+** Other tooles [#cf9cc793]
+
+-Lists
+--[[SiteMap>[[cmd:map]]]]
+--[[Yet list>[[cmd:yetlist]]]]
+--[[Deleted list>[[cmd:deleted]]]]
+--[[Page filename list>[[cmd:filelist]]]]
+--[[Config pages>:config]]
+--[[Version list>[[cmd:versionlist]]]]
+
+-Outputs
+--[[md5 hash>[[cmd:md5]]]]
+--[[Index for TouchGraphWikiBrowser>[[cmd:touchgraph]]]]

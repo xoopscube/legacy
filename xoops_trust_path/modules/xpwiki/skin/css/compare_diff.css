@@ -1,0 +1,37 @@
+$class table.diff {
+	background-color:#fff;
+	width:100%;
+}
+$class td.diff-blockheader {
+	font-weight:bold;
+}
+$class table.diff th {
+	color: #000;
+	background-color:#fff;
+	border-top:1px solid #8cacbb;
+	border-bottom:1px dotted #8cacbb;
+	width:50%;
+	text-align:left;
+	vertical-align:top;
+}
+$class table.diff td {
+	font-family:monospace;
+}
+$class td.diff-addedline {
+	background-color:#dfd;
+}
+$class td.diff-deletedline {
+	background-color:#ffb;
+}
+$class td.diff-context {
+	background-color:#f5f5f5;
+}
+$class table.diff td.diff-addedline strong,
+$class table.diff td.diff-deletedline strong {
+	color:red;
+}
+$class table.diff div.edit_summary {
+	font-size: 80%;
+	font-weight: normal;
+	color: green;
+}

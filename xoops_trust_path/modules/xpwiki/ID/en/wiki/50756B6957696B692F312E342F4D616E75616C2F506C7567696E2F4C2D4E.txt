@@ -1,0 +1,335 @@
+#freeze
+#nofollow
+#norelated
+#navi(../)
+#contents
+------------------------------
+* L [#o648e077]
+
+
+**lastmod [#icd62a6b]
+:Plugin type|
+~Inline type
+:Importance|
+~*
+:Synopsis|
+~''&lastmod(''
+[&color(blue){PageName};]
+'');''
+:Description|
+~Display the time of last modification of the specified page
+:Parameters|
+~'''PageName''' - the page name of which timestamp is displayed. If it is omitted, the current page is used.
+
+**links [#m5bbd018]
+:Plugin type|
+~Command type
+:Importance|
+~** (for admin)
+:Synopsis|
+''?plugin=links''
+:Description|
+~Update the cache maintaining page relationships. It doesn't have to be used in normal operations.
+~This plugin is necessary to restore cache integrity when the files storing the pages have been directly changed (for maintenance purposes).
+:Note|
+~The admin password is required to use this plugin.
+
+**list [#l9a47a57]
+:Plugin type|
+~Command type
+:Importance|
+~****
+:Synopsis|
+''?cmd=list''
+:Description|
+~Display the list of pages
+
+**lookup [#u9c3d366]
+:Plugin type|
+~(Command type)
+~Block type
+:Importance|
+~***
+:Synopsis|
+''#lookup(''
+&color(blue){interwikiname};
+[,&color(blue){Button name};
+[,&color(blue){Initial value of input column};]]
+'')''
+:Description|
+~The text input column and the button are displayed at the described position. When an arbitrary character string is input and the button is pushed, it moves to URL generated from interwikiname and the input value. As a result, transmitting Ceri to the search engine, and accessing the archive that corresponds only by typing the number become possible. 
+~InterWiki is used for the generation of URL. URL that this plug-in generates is the same as following InterWiki. It is necessary to set InterWikiName used to generate URL beforehand to the page of InterWikiName. 
+ [[interwikiname:Value of input column]]
+~When the input column is an empty column (null character string), it doesn't operate even if the button is pushed. It is necessary to input some character strings. 
+
+:Parameters|
+~interwikiname: One of the values set to InterWikiName is specified. 
+~Button name:The caption displayed in the button is specified. Omitting it is 'Lookup'. 
+~Initial value of input column:To specify an initial value, it fills it in. When omitting it, it becomes a null character string. 
+:Constants|~
+--PLUGIN_LOOKUP_USAGE Help displayed when Parameters is unspecified
+
+**ls [#b596a628]
+:Plugin type|
+~Block type
+:Importance|
+~**
+:Synopsis|
+''#ls(''
+[&color(blue){title};]
+'')''
+:Description|
+~PageName on the hierarchized page is having a look displayed on the described page. 
+:Parameters|
+~When title is specified, the title in addition to PageName is displayed. The title displays the content of the first line of each page. When omitting it, the title is not displayed. 
+:Note|
+~Actually, it seems that there are a lot of chances to use high performance or more ls2.
+
+**ls2 [#d2ce34ea]
+:Plugin type|
+~(Command type)
+~Block type
+:Importance|
+~***
+:Synopsis|
+''#ls2(''
+[[&color(blue){pattern};]
+[,
+{
+[&color(blue){title};],
+[&color(blue){include};],
+[&color(blue){reverse};],
+[&color(blue){compact};],
+[&color(blue){link};]
+}
+[,&color(blue){Display of alias of link};]
+]]
+'')''
+:Description|
+~PageName that starts by the specified pattern is having a look displayed.
+:Parameters|
+~A common part of displayed PageName is specified for the pattern. When omitting it, it becomes "Current PageName/".&br;
+And, It is possible also to do list up of another xpWiki on
+the same system, with "&font(Blue,b){Dirctory Name};&font(Red,b){:};&font(Blue,b){Page Pattern};".
+~The method of the display is specified with title, include, reverse, compact, and link. 
+--title - The list of finding (*,**,***) of the inclusion in the page is described in parallel.
+--include - When the page in the subordinate position layer uses # include, the list of the page to which include is done is displayed. 
+--reverse - The order of the row on the page is reversed, and it displays it in the descending order of the name. It is displayed in ascending order of the name when omitting it. 
+--compact - The finding level is adjusted. 
+--link - The link is displayed instead of displaying the list at the position in which #ls2 was written. When this link is selected, the list of the page is displayed on another screen. 
+:|~The character string of taking the place of the character string displayed when parameter link is specified is specified for the display of the alias of link. When omitting it, it becomes ''List of pages which begin with '...' ''. 
+:Constants|~
+--PLUGIN_LS2_ANCHOR_PREFIX Finding anchor's Synopsis.
+--PLUGIN_LS2_ANCHOR_ORIGIN Finding anchor's beginning number.
+--PLUGIN_LS2_LIST_COMPACT When the compact option is omitted, is the finding level adjusted?
+:Note|
+~About unlike with the ls plugin.
+--The page that becomes a starting point on the hierarchized page can be specified by the parameter in ls2 in ls though is described page fixation.
+--"List of finding" is displayed in ls2 though "The first line on the page" is displayed in ls when the title parameter is specified.
+--The display option named 'include' and 'link' is added. 
+
+------------------------------
+
+* M [#cdfaaa0f]
+
+**map [#i89f687e]
+:Plugin type|
+~Command type
+:Importance|
+~*
+:Synopsis|
+''?plugin=map''
+[&color(blue){&refer=PageName};]
+[&color(blue){&reverse=true};]
+
+:Description|
+~The link relations between pages are having a look displayed like the site map. 
+~The specified page is displayed and all pages that can be traced by the link are displayed in the starting point like the tree. 
+:Parameters|
+~The option of the method of displaying the list to Parameters is specified.
+--&refer=PageName - The page that becomes a starting point is specified. The top page of the site (It is FrontPage usually) becomes a starting point when omitting it.  
+--&reverse=true - Having a look it doesn't link with where, and where it is linked is displayed. Pages that have not been linked are displayed collectively in the latter half of the screen where. 
+:Constants|~
+--PLUGIN_MAP_SHOW_HIDDEN Whether a page off the subject for the display is listed or not?
+
+**md5 [#wec9aa1f]
+:Plugin type|
+~Command type
+:Importance|
+~*
+:Synopsis|
+''?plugin=md5''
+&color(blue){&md5=Character string};
+:Description|
+~The character string for the password preserved in pukiwiki.ini.php is output according to the form of the selected password. 
+~The format of the password can be selected from the following eight kinds of inside. 
+DES or PHP crypt() using MD5 algorithm and LDAP crypt ((Because the output of the crypt() function depends on the system, portability is not high)). 
+PHP md5(), LDAP MD5, and LDAP SMD5 (There is a seed) using the MD5 algorithm. 
+PHP sha(), LDAP SHA, and LDAP SSHA using SHA-1 algorithm(There is a seed. )
+:Note|
+~The password used in PukiWiki can preserve the character string (security hush) 
+derived from an actual password instead of the password character string. ~
+This is the one having aimed at the thing that the password doesn't leak easily when 
+it peeps at contents of pukiwiki.ini.php and it is seen by a malicious person. ~
+~
+It is necessary to use since PHP 4.3.0 to use the SHA-1 algorithm or to introduce the mhash extension. 
+~
+~The password formats other than MD5 can be selected against the plug-in name. 
+In the past, this is due to details for which the MD5 hush value derived from the 
+password is used. 
+~
+~Use that includes the password in URL where the plug-in of md5 is called is not recommended though remains for interchangeability. 
+~
+~This plug-in is nullified by setting PKWK_SAFE_MODE or PKWK_READONLY.
+
+**memo [#h2cba975]
+:Plugin type|
+~(Command type)
+~Block type
+:Importance|
+~*
+:Synopsis|
+''#memo''
+:Description|
+~Two or more-line input column and the button are displayed at the described position. 
+~When the button is pressed, the content of the description of the input column is updated.
+:Constants|~
+--MEMO_COLS Number of display digits of edit columns.
+--MEMO_ROWS The display number of lines of edit column.
+:Note|
+~The input content is not output outside the input column, and the point to stay in the input column is different though it looks like the insert plug-in and the article plug-in. 
+~It is convenient to save up information on the unarrangement temporarily when PukiWiki is used instead of a personal memo.
+
+**menu [#vc24ce14]
+:Plugin type|
+~Block type
+:Importance|
+~****
+:Synopsis|
+''#menu(''
+&color(blue){PageName};
+'')''
+:Description|
+~It is internally used so that the skin of default may display page (MenuBar) for the menu at the left of the page. 
+~The page specified use on an arbitrary page as Block type for Parameters can be specified for the page for the menu. &br;
+For instance, to display the page named hogeMenu instead of MenuBar, only the page named hoge can usually be achieved on the site where MenuBar is displayed by the thing described # menu(hogeMenu) on the page named hoge. 
+~It comes to display the MenuBar page that exists in MenuBar of a high-ranking hierarchy on the page under the display or this hierarchy when MENU_ENABLE_SUBMENU in the source is assumed to be TRUE as a menu. &br;
+For instance, when the page named FrontPage, MenuBar, hoge, fuga, hoge/MenuBar, and hoge/hoge exists, MenuBar is displayed as a menu in FrontPage, fuga, and MenuBar, and hoge/MenuBar is displayed as a menu in hoge, hoge/MenuBar, and hoge/hoge. 
+:Parameters|
+~PageName displayed as a page for the menu is specified. 
+:Constants|~
+--MENU_ENABLE_SUBMENU Is the submenu used?
+--MENU_SUBMENUBAR PageName called as menu when submenu is used. Default is MenuBar. 
+:Note|
+~Please change $root->menubar of pukiwiki.ini.php when you assume the page for the menu of default to be pages other than MenuBar. 
+
+
+
+------------------------------
+
+* N [#ge4daaa6]
+
+**navi [#yd9441b2]
+:Plugin type|
+~Block type
+:Importance|
+~**
+:Synopsis|
+''#navi(''
+[&color(blue){Contents page};]
+'')''
+:Description|
+~The DocBook style navigation bar is displayed. 
+~It displays on the page that becomes contents and the page of the hierarchy in the under displays the link named Prev, Home, and Next on all those pages (head and ..drinking.. end) when existing by the described thing. As a result, it becomes convenient though the page of the hierarchy in the under is referred sequentially. 
+:Parameters|
+~The page that hits the hierarchy of the page that sees sequentially and turns to the contents page on is specified. 
+~For instance, when # navi(hoge) is described in hoge/2 when the page named hoge, hoge/1, hoge/2, and hoge/3 exists, the link named Next that moves to the link and hoge/3 named Prev that moves to the link and hoge/1 named Home that moves to hoge is displayed. 
+~The link of the header images is output when the first calling it on the page. The link of Fttaimage is output when called on the page after the second. When a present page is a contents page, the list of the page that becomes an object is displayed. 
+:Constants|~
+--PLUGIN_NAVI_EXCLUSIVE_REGEX The excluded page is specified by the regular expression. 
+--PLUGIN_NAVI_LINK_TAGS <link> tag is output or not?
+
+**new [#meab71a6]
+:Plugin type|
+~Inline type
+:Importance|
+~**
+:Synopsis|
+:'''Synopsis1:'''|''&new(''
+[&color(blue){nodate};]
+''){''
+&color(blue){Date strings};
+''};''
+:'''Synopsis2:'''|''&new(''
+[&color(blue){PageName};]
+[,&color(blue){nolink};]
+'');''
+:Description|
+~The thing updated recently is emphatically displayed when recent the specified date. There are two kinds of specification of method ('''Synopsis2''') of adopting method ('''Synopsis1''') of describing time of the date directly and last updated date and time on the specified page (crowd) at the date. 
+~With standard, ''New'' is indicated in when it is within 5 days, and, ''New!'' It indicates in when it is within 1 day. Period and pattern in the character string which is indicated is
+customization possible with the installer.
+:Parameters|
+~'''Synopsis1:'''
+~Date string is specified, the date is within the prescribed period, when highlighted. If it is time to check the page is updated description be considered.
+--nodate - Date string will not be shown. Default is displayed.
+:|
+~'''Synopsis2:'''
+~PageName to specify when the page is updated when the prescribed period, when highlighted. If it is not a plug-in that describes the page specified assumed.
+~PageName end is / was the case, the page that starts with PageName group in the last modified date within the prescribed time, when highlighted.
+--nolink - PageName is not displayed. When omitting it, PageName (PageName renewed at the end when specifying it in page group) is displayed. 
+:Constants|~
+--PLUGIN_NEW_DATE_FORMAT Display format
+:Note|
+~The date character string should be Synopsis that can recognize PHP function 'strtotime()'.
+
+**newpage [#lec55a94]
+:Plugin type|
+~Command type
+~Block type
+:Importance|
+~*****
+:Synopsis|
+''?plugin=newpage''
+&color(blue){&page=PageName};
+&color(blue){&refer=Relation PageName};
+~''#newpage(''
+[&color(blue){PageName initial value};]
+'')''
+:Description|
+~The page is newly made or the input column of PageName newly made is displayed.
+:Parameters|
+~'''Command type:'''
+~The option on the page newly made is specified for the parameter. 
+~PageName newly made is specified for PageName. When omitting it, the page of PageName newly made to input it is displayed. It is necessary to encode PageName. 
+~PageName in the link origin is specified for relation PageName. The link to the page specified here is automatically buried under the head of the page newly made. It is necessary to encode PageName. 
+~
+~'''Block type:'''
+~The character string that displays initial in the input column where PageName newly made is input is specified for PageName initial value.
+
+**nofollow [#s8c0fa4c]
+:Plugin type|
+~Block type
+:Importance|
+~*
+:Synopsis|
+~''#nofollow''
+:Description|
+~When the described page has been frozen, "NOFOLLOW" "NOINDEX" option is added to the header. 
+~These options are insisted on to the search engine, "It wants you to disregard this page". Actually how do it become it depending on the search engine?
+:Note|
+~It is ineffectual than the program that disregards man and the above-mentioned option.
+
+**norelated [#uebd3c7c]
+:Plugin type|
+~Block type
+:Importance|
+~***
+:Synopsis|
+''#norelated''
+:Description|
+~The link of related pages displayed under the page is made non-display. 
+:Note|
+~It is linked on extremely a lot of pages and when the display of the related link is an eyesore etc. , it uses it. 
+
+
+#navi(../)

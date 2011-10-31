@@ -1,0 +1,22 @@
+$class div.page_navi
+{
+	text-align:center;
+	background-color:white;
+	border-bottom:  1px solid #6699FF;
+	border-top:     1px solid #6699FF;
+	margin-bottom:  5px;
+	margin-top:     5px;
+}
+
+$class div.filelist_page {
+	border-top:1px solid maroon;
+	border-bottom:1px dotted;
+	padding: 5px;
+	text-align: left;
+	font-weight: bold;
+	background-color: white;
+}
+
+$class div.attach_list img {
+	margin: 0;
+}

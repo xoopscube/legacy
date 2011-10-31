@@ -1,0 +1,264 @@
+/* fusen.inc.php */
+$class div#fusen_container {
+	position: absolute;
+	top : 0;
+	left: 0;
+}
+
+$class div#fusen_area
+{
+	margin: 0px;
+	padding: 0px;
+	height: 0px;
+	background:transparent none;
+}
+
+$class div.fusen_board
+{
+	background:white url(loader.php?src=fusen_back01.gif);
+}
+
+$class div#fusen_area div
+{
+	box-sizing : border-box;
+	-moz-box-sizing : border-box;
+}
+
+$class div.fusen_anchor
+{
+	margin: 0px;
+	padding: 0px;
+	height: 0px;
+}
+
+$class fieldset.fusen_fieldset *
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+$class fieldset.fusen_fieldset
+{
+	margin-top: 3px;
+	margin-bottom: 2px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+$class div.fusen_top_menu
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+$class div.fusen_body
+{
+	background-color: transparent;
+	white-space: nowrap;
+	position: absolute;
+	width: auto;
+	height: auto;
+	margin: 0px;
+	padding: 0px;
+	cursor: auto;
+}
+
+$class div.fusen_body_trans
+{
+	background-color: transparent;
+	white-space: nowrap;
+	position: absolute;
+	width: auto;
+	height: auto;
+	margin: 0px;
+	padding: 0px;
+	filter:alpha(opacity=60);
+	-moz-opacity:0.6;
+	cursor: auto;
+}
+$class div.fusen_body table,div.fusen_body_trans table
+{
+	margin:5px;
+	width: auto;
+	height: auto;
+}
+
+$class div.fusen_menu
+{
+	padding:1px;
+	font-size: 9px;
+	white-space: nowrap;
+	color: #000000;
+	background-color: #e9e9e9;
+	border-Bottom: 1px dotted #FFFFFF;
+	width: auto;
+	height: auto;
+}
+$class span.fusen_date {
+	font-size: 8px;
+}
+$class div.fusen_info
+{
+	padding:1px;
+	font-size: 10px;
+	text-align: right;
+	white-space: nowrap;
+	color: #000000;
+	background-color: #EEE0E5;
+	width: auto;
+	height: auto;
+	cursor: auto;
+}
+
+$class div.fusen_contents
+{
+	font-size:80%;
+	padding:0px;
+	margin:2px;
+	width: auto;
+	height: auto;
+	cursor: auto;
+}
+
+$class div.fusen_contents p
+{
+	margin:3px 0px;
+	padding:0px;
+}
+
+$class div.fusen_contents hr
+{
+}
+
+$class img.fusen_resize
+{
+	background-color: transparent;
+	width: 6px;
+	height: 6px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	cursor: nw-resize;
+}
+
+$class img.fusen_wresize
+{
+	background-color: transparent;
+	width: 3px;
+	height: 17px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	cursor: w-resize;
+}
+
+$class div.fusen_editbox
+{
+	position: absolute;
+	left: -1000px;
+	top: -1000px;
+	width: 360px;
+	border: black 2px solid;
+	color: #000000;
+	background-color: #cccccc;
+	padding: 4px;
+	visibility: hidden;
+	cursor: move;
+	z-index: 1000;
+}
+
+$class div.fusen_editbox div.wiki_helper
+{
+	cursor: auto;
+	margin: 0px;
+	padding: 0px;
+}
+
+$class div.fusen_editbox_title
+{
+	color: white;
+	background:blue url(loader.php?src=fusen.gif) no-repeat;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+$class div.fusen_editbox_title a:link, div.fusen_editbox_title a:visited
+{
+	color: white;
+}
+
+$class div.fusen_editbox_footer
+{
+	font-size: 12px;
+	background:#EEDFCC;
+	text-align: center;
+	margin-top: 3px;
+}
+
+$class div.fusen_help
+{
+	position: absolute;
+	font-size: 11px;
+	left: 0px;
+	top: 0px;
+	padding: 4px;
+	background-color: white;
+	border: black 2px solid;
+	visibility: hidden;
+	filter:alpha(opacity=85);
+	-moz-opacity:0.85;
+	cursor: move;
+}
+
+$class div#fusen_list *
+{
+	list-style-position: inside;
+}
+$class div.fusen_list
+{
+	position: absolute;
+	font-size: 11px;
+	left: 0px;
+	top: 0px;
+	padding:2px;
+	margin:2px;
+	background-color: white;
+	border: black 2px solid;
+	visibility: hidden;
+	filter:alpha(opacity=85);
+	-moz-opacity:0.85;
+	cursor: move;
+}
+$class div.fusen_list a:link
+{
+	color: black;
+}
+$class div.fusen_list a:visited
+{
+	color: black;
+}
+$class div.fusen_list a:hover
+{
+	color: blue;
+}
+$class div.fusen_list a:active
+{
+	color: red;
+}
+$class div.fusen_list ul,
+$class div.fusen_list li
+{
+	margin:3px 0px;
+	padding:0px;
+}
+$class .fusen_list_box
+{
+	height: 200px;
+	overflow: auto;
+}

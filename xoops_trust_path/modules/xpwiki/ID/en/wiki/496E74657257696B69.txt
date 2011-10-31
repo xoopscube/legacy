@@ -1,0 +1,4 @@
+* InterWiki
+InterWiki is the idea of having one unified Wiki system distributed across many servers.
+
+InterWikiName page contains definition of InterWiki

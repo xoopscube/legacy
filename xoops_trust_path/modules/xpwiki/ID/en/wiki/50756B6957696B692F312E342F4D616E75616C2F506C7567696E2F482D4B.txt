@@ -1,0 +1,117 @@
+#freeze
+#nofollow
+#norelated
+#navi(../)
+#contents
+------------------------------
+* H [#xfadc6da]
+
+**hr [#i56a8485]
+:Plugin type|
+~Block type
+:Importance|
+~**
+:Synopsis|
+''#hr''
+:Description|
+~Display a horizontal rule
+:Note|
+~Display a horizontal rule when the standard symtol for horizontal rule can't be used without breaking the block (e.g., inside a paragraph, a list, a table, etc.) The left/right margin setting is preserved.
+
+------------------------------
+* I [#qaa75d46]
+
+**img [#v66d65c4]
+:Plugin type|
+~Block type
+:Importance|
+~*
+:Synopsis|
+''#img(''
+&color(blue){'''image_url'''};[,
+&color(blue){right};|
+&color(blue){r};|
+&color(blue){left};|
+&color(blue){l};|
+&color(blue){clear};|
+&color(blue){c};,[
+&color(blue){clear};|
+&color(blue){c};
+]]
+'')''
+:Description|
+~Display the image other than the uploaded files. The same functionality has been integrated into the ref plugin, which has more functionalities. This pluging is left for just backward compatibility. 
+:Parameters|
+~'''image_url''' - the URL of the image to be displayed. The supported image formats are jpeg(jpg), gif, and png.
+~right,r,left,l,clear,c - specifies the alignment of the image, and text wraparound. The default value is left.
+--right,r - right-align the image
+--left,l - left-align the image
+--clear,c - disable the text wraparound. Unless right,r,left, or l is specified, the plugin assumes the clear option is selected.
+:Constants|~
+--PLUGIN_IMG_CLEAR - the tag used to realize 'clear' setting
+--PLUGIN_IMG_USAGE - the usage message to be displayed when no parameters are given
+
+**include [#nd4e3577]
+:Plugin type|
+~Block type
+:Importance|
+~***
+:Synopsis|
+''#include(''
+&color(blue){'''PageName'''[,title|,notitle]};
+'')''
+:Description|
+~Insert the content of the specified page, so that multiple pages can be displayed as an integrated page.
+:Parameters|
+~'''PageName''' - the page to be inserted~
+If the second parameter is 'notitle', the page name is not displayed. 'title' make the title to be displayed.
+:Constants|~
+--PLUGIN_INCLUDE_MAX - the maximum number of pages that can be included in the page
+--PLUGIN_INCLUDE_WITH_TITLE - the default setting about whether to show the title (title or notitle)
+--PLUGIN_INCLUDE_USAGE - the usage message displayed when the parameter is not given
+
+**includesubmenu [#a7f1d129]
+:Plugin type|
+~Block type
+:Importance|
+~**
+:Synopsis|
+''#includesubmenu(''
+[&color(blue){showpagename};]
+'')''
+:Description|
+~This plugin shows the content on the Menubar for each page.
+~It displays the SubMenu pages which are at the same level as the current page, as well as the SubMenu pages under the current page.
+:Parameters|
+~If the showpagename parameter is specified, the page names to be inserted is displayed. The default is not to display the page name.
+
+**insert [#q51c8898]
+:Plugin type|
+~(Command type)
+~Block type
+:Importance|
+~*
+:Synopsis|
+''#insert''
+:Description|
+~Display the multi-line text form and the button.
+~When the button is pressed, the content of the text form is inserted to the current page.
+:Constants|~
+--INSERT_COLS - the number of columns of the text form
+--INSERT_ROWS - the number of rows of the text form
+--INSERT_INS - whether to insert the text before or after the form
+
+**interwiki [#k3075466]
+:Plugin type|
+~Command type
+:Importance|
+~*
+:Synopsis|
+''?cmd=interwiki''
+&color(blue){&page='''InterWikiName'''};
+:Description|
+~This plugin is internally used by PukiWiki when InterWiki is used. Users don't have to use this plugin directly.
+:Parameters|
+~'''InterWikiName''' - specfies InterWiki name to be linked. It must be URL-encoded.
+
+#navi(../)

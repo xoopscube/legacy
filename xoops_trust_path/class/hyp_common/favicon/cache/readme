@@ -1,0 +1,9 @@
+Here is a directory that preserves the cache data of favicon.
+
+The file authority in creations such as permission 707 or 777 are necessary.
+
+[ja]
+このディレクトリは、favicon のキャッシュデータを蓄積します。
+
+ディレクトリのパーミッションを 707 や 777　などとして、ファイルの作成権限を与えてください。
+[/ja]

@@ -1,0 +1,4 @@
+* WikiEngines
+A Wiki Engine is software based on the [[WikiPrinciples:http://c2.com/cgi/wiki?WikiPrinciples]]. For a list of available engines, see [[WikiEngines:http://c2.com/cgi/wiki?WikiEngines]]
+
+Depending on the specific wiki engine, the presence of PHP, MySQL, etc. may be required. Many are implemented as CGI programs, so you only need the web server. Of course, if the engine is written in a language that requires a runtime component, like Perl, Python, or Java, you'll need that environment as well.

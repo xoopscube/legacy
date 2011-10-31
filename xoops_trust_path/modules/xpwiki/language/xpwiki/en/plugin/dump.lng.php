@@ -1,0 +1,47 @@
+<?php
+//
+// Created on 2006/11/06 by nao-pon http://hypweb.net/
+// $Id: dump.lng.php,v 1.4 2011/09/17 03:38:21 nao-pon Exp $
+//
+$msg = array(
+'upload_ok'        => 'Upload was completed.',
+'upload_ng'        => 'Failed in upload.',
+'maketmp_ng'       => 'Failed in generation of temporaty file.',
+'file_notfound'    => 'A file was not found.',
+'tarfile_notfound' => 'There was not the file which could untar.',
+'filelist'         => 'Untared file list',
+'data_download'    => 'A download of data.',
+'file'             => 'File:',
+'tar_type'         => 'Archive type',
+'tar.gz'           => '*.tar.gz',
+'tar'              => '*.tar',
+'backup_dir'       => 'Backup directorys',
+'option'           => 'Option',
+'decode_pagename'  => 'Do decode page name with directory path.
+ (You can not use restore, and Some character are replaced to \'_\'.)',
+'admin_pass'       => 'Admin pass',
+'password_ng'      => 'Password is different.',
+'data_restore'     => 'Restore data (*.tar, *.tar.gz)',
+'data_overwrite'   => '[Warning] It is overwritten, please warn a data file of the same name enough.',
+'max_filesize'     => 'Maximum file size is $maxsize KByte.',
+'error_filelist'   => 'List of file that was not able to be restored',
+'backup_table'     => 'Backup DB tables',
+'uplode_now'       => 'Uploding backup file',
+'uploded_ftp'      => 'Choose a backup file from directory "private/cache"',
+'file_notfound'    => 'There are no files.',
+'do_download'      => 'Do download backup file',
+'do_restore'       => 'Do restore now',
+'need_sync'        => 'You should <a href="?cmd=dbsync" target="_blank">synchronize this data files & DB.</a>.',
+'sync_pginfo'      => 'Choose "Page infomation DB".',
+'sync_count'       => 'Choose "Page counter DB".',
+'sync_attach'      => 'Choose "Attached file information DB".',
+'sync_rel'         => 'Choose "Plain text DB & Page relation DB".',
+'sync_plain'       => 'Choose "Plain text DB & Page relation DB".',
+'click_once'       => 'Time is necessary for processing according to volume of data. Please wait without clicking again until there is a change in a browser.',
+'restore_hint'     => 'Data other than UTF-8 can be restored to the UTF-8 environment.',
+'show_sql'         => 'Show executed SQL query.',
+'maxsize'          => 'Maximum value of size total of backup files.',
+'maxsize_desc'     => 'When the total size of the file for the backup exceeds this value, it is divided.',
+'download_tars'    => 'Creating the backup file now.<br />If $image is displayed, it is possible to download it by clicking. <br />When a backup file is divided, please be sure to apply all the files to restoration.',
+'make_fullpath'    => 'Save as fullpath ( $1 ).',
+);

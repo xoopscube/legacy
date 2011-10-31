@@ -1,0 +1,2 @@
+* WikiName
+WikiName stands for two or more Capitalized Words joined together without spaces, muti-byte characters, symbols, and numbers

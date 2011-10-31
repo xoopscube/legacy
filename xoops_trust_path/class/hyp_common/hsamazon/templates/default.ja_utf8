@@ -1,0 +1,21 @@
+<div>
+<_EACH_>
+</div>
+
+<!--EACH-->
+<h4><a href="<_URL_>" target="_blank" rel="nofollow"><_TITLE_></a></h4>
+<div style="float:left;margin:2px 10px;"><_LINKED_MIMG_></div>
+<div><_CATEGORY_></div>
+<div><_CREATOR_></div>
+<div>定価: <del><_LISTPRICE_FORMATTED_></del></div>
+<div>販売価格: <_PRICE_FORMATTED_></div>
+<div>中古最安: <_USEDPRICE_FORMATTED_></div>
+<div>発売日: <_RELEASEDATE_></div>
+<div><_MANUFACTURER_></div>
+<div><_AVAILABILITY_></div>
+<hr style="clear:both;">
+<!--/EACH-->
+
+<!--IMG-->
+<a href="<_URL_>" title="<_TITLE_>" target="_blank" rel="nofollow"><img src="<_IMGSRC_>" alt="<_TITLE_>" <_IMGSIZE_> /></a>
+<!--/IMG-->

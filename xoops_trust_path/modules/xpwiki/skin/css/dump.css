@@ -1,0 +1,27 @@
+/* dump.inc.php */
+$class div.dump_loading {
+	padding: 0;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background-image: url(./loader.php?src=loading16.gif);
+}
+
+$class div.dump_loading  img {
+	margin: 0;
+	background-color: white;
+}
+
+$class div.dump_result {
+	border: 1px solid gray;
+	margin: 10px 10px 10px 30px;
+	padding: 5px;
+	font-size: 90%;
+	width: 700px;
+	height: 350px;
+	overflow: scroll;
+}
+
+$class span.dump_result_error {
+	color: red;
+}

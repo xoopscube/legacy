@@ -1,0 +1,44 @@
+#wikihelper_base {
+	text-align: left;
+	padding: 2px;
+	padding-right: 6px;
+	border: 1px solid gray;
+	margin-right: 10px;
+	vertical-align: middle;
+	background-color: white;
+	filter: alpha(opacity=85);
+	-moz-opacity: 0.85;
+	opacity: 0.85;
+	z-index: 1000;
+	cursor: move;
+}
+
+#wikihelper_base img {
+	cursor: pointer;
+	margin: 2px 1px;
+	vertical-align: middle;
+}
+
+#wikihelper_base a {
+	font-weight: normal;
+	color: black;
+}
+
+#wikihelper_base span.button {
+	color: black;
+	font-size: 10px;
+	margin: 0 2px 0 0;
+	padding: 1px 5px;
+	border: 1px solid gray;
+	cursor: pointer;
+	background: #F5F5F5 url(./loader.php?src=buttonbg.gif) repeat-x scroll center bottom;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+#wikihelper_base span.button:hover {
+	padding: 0px 4px;
+	border: 2px solid orange;
+	border-top-color: gold;
+	border-left-color: gold;
+}

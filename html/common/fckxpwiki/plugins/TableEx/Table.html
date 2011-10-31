@@ -1,0 +1,421 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<!--
+	guiedit - PukiWiki Plugin
+
+	License:
+	  GNU General Public License Version 2 or later (GPL)
+	  http://www.gnu.org/licenses/gpl.html
+
+	Copyright (C) 2006-2007 garand
+	PukiWiki : Copyright (C) 2001-2006 PukiWiki Developers Team
+	FCKeditor : Copyright (C) 2003-2007 Frederico Caldeira Knabben
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Table Properties</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="robots" content="noindex, nofollow" />
+	<script type="text/javascript" charset="UTF-8">
+
+var oEditor = window.parent.InnerDialogLoaded() ;
+var oDOM = oEditor.FCK.EditorDocument ;
+var XpWiki = window.parent.window.parent.XpWiki;
+
+var table ;
+var e = oEditor.FCKSelection.MoveToAncestorNode('TABLE');
+
+if (e && e.tagName == "TABLE") {
+	table = e;
+}
+
+var bHead = false;
+var bFoot = false;
+
+//	ダイアログの共通スクリプトの読み込み
+var src = oEditor.FCKConfig.BasePath + 'dialog/common/fck_dialog_common.js';
+document.write('<script type="text/javascript" src="' + src + '"><\/script>');
+
+window.onload = function() {
+	oEditor.FCKLanguageManager.TranslatePage(document);
+
+	if (table) {
+		bHead = table.getElementsByTagName('THEAD').length ? true : false;
+		bFoot = table.getElementsByTagName('TFOOT').length ? true : false;
+		GetE('txtRows').value = table.rows.length;
+		GetE('txtRows').disabled = true;
+		GetE('txtColumns').value = table.rows[0].cells.length;
+		GetE('txtColumns').disabled = true;
+		GetE('thead').checked = bHead;
+		GetE('tfoot').checked = bFoot;
+
+		// Gets the value from the Width or the Style attribute
+		var iWidth  = (table.style.width  ? table.style.width  : table.width ) ;
+
+		if (iWidth.indexOf('%') >= 0)			// Percentual = %
+		{
+			iWidth = parseInt( iWidth.substr(0,iWidth.length - 1), 10 ) ;
+			GetE('selWidthType').value = "percent" ;
+		}
+		else if (iWidth.indexOf('px') >= 0)		// Style Pixel = px
+		{
+			iWidth = iWidth.substr(0,iWidth.length - 2);
+			GetE('selWidthType').value = "pixels" ;
+		}
+		else if (! iWidth) {
+			GetE('selWidthType').value = "auto" ;
+		}
+		
+		//var iStyle = GetAttribute( table, 'style', '' ) ;
+		
+		//var matches;
+		
+		//var iBorder = (table.style.borderWidth || table.style.borderLeftWidth);
+		//var iBorderType = (table.style.borderStyle || table.style.borderLeftStyle);
+		//if (! iBorderType) {
+		//	iBorderType = 'outset';
+		//}
+		//var iBorderColor = (table.style.borderColor || table.style.borderLeftColor);
+		
+		var iAlign = '';
+		if (table.style.marginLeft == 'auto' && table.style.marginRight == 'auto') {
+			iAlign = "center";
+		} else if (table.style.marginRight == 'auto') {
+			iAlign = "left";
+		} else if (table.style.marginLeft == 'auto') {
+			iAlign = "right";
+		}
+		
+		var iAround = false;
+		iAround = GetAttribute( table, 'align', '' );
+		if (iAround || table.style.cssFloat || table.style.styleFloat) {
+			iAround = true;
+		}
+		
+		//var iBColor = table.style.backgroundColor;
+		
+		GetE('txtWidth').value		= iWidth || '' ;
+		GetE('selAlignment').value	= iAlign ;
+		GetE('tAround').checked	= iAround ;
+		GetE('txtCellSpacing').value	= GetAttribute( table, 'cellSpacing', '' ) ;
+		GetE('txtBorder').value = table.style.borderLeftWidth.replace(/([\d]+).*$/, '$1');
+		GetE('selBorferStyle').value = table.style.borderLeftStyle;
+		GetE('txtBorderColor').value = TableEx_rgb2hex(table.style.borderLeftColor);
+		GetE('txtBackColor').value = TableEx_rgb2hex(table.style.backgroundColor);
+	}
+	
+	window.parent.SetOkButton(true);
+	window.parent.SetAutoSize(true);
+}
+
+function Ok() {
+	var bExists = (table != null);
+	var div_ie5;
+	
+	if (!bExists) {
+		//	テーブルを作成
+		table = oDOM.createElement("TABLE");
+		table.className = 'style_table';
+		
+		div_ie5 = oDOM.createElement("DIV");
+		div_ie5.className = 'ie5';
+		div_ie5.appendChild(table);
+		
+	} else {
+		if (table.parentNode.className == 'ie5') {
+			div_ie5 = table.parentNode;
+		}
+	}
+	
+	SetAttribute( table, 'cellSpacing'	, XpWiki.str2num(GetE('txtCellSpacing').value) ) ;
+	
+	var style = '';
+	SetAttribute( table, 'style', '');
+
+	if (GetE('selWidthType').value != 'auto' && GetE('txtWidth').value) {
+		table.style.width = XpWiki.str2num(GetE('txtWidth').value) + ((GetE('selWidthType').value == 'pixels')? 'px' : '%');
+	}
+
+	if (GetE('selAlignment').value == 'center') {
+		table.style.marginLeft = 'auto';
+		table.style.marginRight = 'auto';
+		if (div_ie5) div_ie5.style.textAlign = 'center';
+	} else if (GetE('selAlignment').value == 'left') {
+		table.style.marginLeft = '10px';
+		table.style.marginRight = 'auto';
+		if (div_ie5) div_ie5.style.textAlign = 'left';
+		if (GetE('tAround').checked) {
+			table.style.cssFloat = table.style.styleFloat = 'left';
+		}
+	} else if (GetE('selAlignment').value == 'right') {
+		table.style.marginLeft = 'auto';
+		table.style.marginRight = '10px';
+		if (div_ie5) div_ie5.style.textAlign = 'right';
+		if (GetE('tAround').checked) {
+			table.style.cssFloat = table.style.styleFloat = 'right';
+		}
+	}
+
+	if (GetE('txtBorder').value) {
+		table.style.border = XpWiki.str2num(GetE('txtBorder').value) + 'px';
+		table.style.borderStyle = GetE('selBorferStyle').value
+	}
+
+	if (GetE('txtBorderColor').value && GetE('txtBorderColor').value.match(/([a-z]+|#[0-9a-f]+)/i)) {
+		table.style.borderColor = GetE('txtBorderColor').value;
+	}
+	
+	if (GetE('txtBackColor').value && GetE('txtBackColor').value.match(/([a-z]+|#[0-9a-f]+)/i)) {
+		table.style.backgroundColor = GetE('txtBackColor').value;
+	}
+	
+	var iRows = XpWiki.str2num(GetE('txtRows').value);
+	var iCols = XpWiki.str2num(GetE('txtColumns').value);
+	var oRow;
+	
+	if (!bExists) {
+		//	セルの挿入
+		for (var r = 0 ; r < iRows ; r++) {
+			oRow = table.insertRow(-1);
+			InsertCells(oRow, iCols);
+		}
+		//	ヘッダ行の挿入
+		if (GetE('thead').checked) {
+			var oHead = table.createTHead();
+			oRow = oHead.insertRow(-1);
+			InsertCells(oRow, iCols);
+		}
+		//	フッタ行の挿入
+		if (GetE('tfoot').checked) {
+			var oFoot = table.createTFoot();
+			oRow = oFoot.insertRow(-1);
+			InsertCells(oRow, iCols);
+		}
+		
+		oEditor.FCK.InsertElement(div_ie5);
+	}
+	else {
+		if (bHead != GetE('thead').checked) {
+			//	ヘッダ行
+			bHead = !bHead;
+			if (bHead) {
+				var oHead = table.createTHead();
+				oRow = oHead.insertRow(-1);
+				InsertCells(oRow, iCols);
+			}
+			else {
+				table.deleteTHead();
+			}
+		}
+		if (bFoot != GetE('tfoot').checked) {
+			//	フッタ行
+			bFoot = !bFoot;
+			if (bFoot) {
+				var oFoot = table.createTFoot();
+				oRow = oFoot.insertRow(-1);
+				InsertCells(oRow, iCols);
+			}
+			else {
+				table.deleteTFoot();
+			}
+		}
+	}
+	
+	return true;
+}
+
+function InsertCells(oRow, iCols) {
+	for (var c = 0 ; c < iCols ; c++) {
+		var oCell = oRow.insertCell(-1);
+		oCell.className = 'style_td';
+		if (oEditor.FCKBrowserInfo.IsGeckoLike)
+			oEditor.FCKTools.AppendBogusBr(oCell);
+	}
+}
+
+function SelectBackColor(color) {
+	if (color && color.length > 0) {
+		GetE('txtBackColor').value = color;
+		GetE('selTransparent').checked = false;
+	}
+}
+
+function SelectFontColor(color) {
+	if (color && color.length > 0)
+		GetE('txtFontColor').value = color;
+}
+
+function SelectBorderColor(color) {
+	if (color && color.length > 0)
+		GetE('txtBorderColor').value = color;
+}
+
+function SelectColor(func) {
+	oEditor.FCKDialog.OpenDialog('FCKDialog_Color', oEditor.FCKLang.DlgColorTitle,
+		'dialog/fck_colorselector.html', 400, 330, func, window
+	);
+}
+
+function CorrectFiledData(cmd) {
+	if (cmd == 'around') {
+		if (GetE('tAround').checked) {
+			if (GetE('selAlignment').value == '' || GetE('selAlignment').value == 'center') {
+				GetE('selAlignment').value = 'left';
+			}
+		}
+	}
+	if (cmd == 'align') {
+		if (GetE('selAlignment').value == '' || GetE('selAlignment').value == 'center') {
+			GetE('tAround').checked = false;
+		}
+	}
+	if (cmd == 'width') {
+		if (GetE('txtWidth').value) {
+			if (GetE('selWidthType').value == 'auto') {
+				GetE('selWidthType').value = 'pixels';
+			}
+		} else {
+			GetE('selWidthType').value = 'auto';
+		}
+	}
+	if (cmd == 'wtype') {
+		if (GetE('selWidthType').value == 'auto') {
+			GetE('txtWidth').value = '';
+		}
+	}
+	if (cmd == 'transparent') {
+		if (GetE('selTransparent').checked) {
+			GetE('txtBackColor').value = 'transparent';
+		} else {
+			GetE('txtBackColor').value = '';
+		}
+	}
+}
+
+function TableEx_rgb2hex(str) {
+	if (str[0] == '-') return '';
+	if (str.match(/rgb\(\s*[\d]+\s*,\s*[\d]+\s*,\s*[\d]+\s*\)/i)) {
+		var matches = str.match(/[\d]+/g);
+		return '#' + TableEx_num2hex(matches[0]) + TableEx_num2hex(matches[1]) + TableEx_num2hex(matches[2]);
+	}
+	return str;
+}
+
+function TableEx_num2hex(num) {
+	num = parseInt(num);
+	var f = '';
+	if (num < 16) {
+		f = '0';
+	}
+	return f + num.toString(16);
+}
+
+	</script>
+</head>
+<body style="overflow: hidden">
+	<table id="otable" cellspacing="0" cellpadding="0" width="100%" border="0" style="height: 100%">
+		<tr>
+			<td>
+				<table cellspacing="1" cellpadding="1" width="100%" border="0">
+					<tr>
+						<td nowrap="nowrap">
+							<span fcklang="DlgTableRows">Rows</span>:</td>
+						<td nowrap="nowrap">
+							&nbsp;<input id="txtRows" type="text" maxlength="3" size="2" value="3" name="txtRows"
+								onkeypress="return IsDigit(event);" /></td>
+						<td><input id="thead" type="checkbox"><label for="thead" fcklang="TableDlgHead"></label></td>
+					</tr>
+					<tr>
+						<td nowrap="nowrap">
+							<span fcklang="DlgTableColumns">Columns</span>:</td>
+						<td nowrap="nowrap">
+							&nbsp;<input id="txtColumns" type="text" maxlength="2" size="2" value="2" name="txtColumns"
+								onkeypress="return IsDigit(event);" /></td>
+						<td><input id="tfoot" type="checkbox"><label for="tfoot" fcklang="TableDlgFoot"></label></td>
+					</tr>
+					<tr>
+						<td colspan="3">&nbsp;</td>
+					</tr>
+					<tr>
+						<td nowrap="nowrap">
+							<span fcklang="DlgTableWidth">Width</span>:</td>
+						<td colspan="2" nowrap="nowrap">
+							&nbsp;<input id="txtWidth" type="text" maxlength="4" size="3" value="" name="txtWidth"
+								onkeypress="return IsDigit(event);" onkeyup="CorrectFiledData('width');" />
+							&nbsp;<select id="selWidthType" name="selWidthType" onchange="CorrectFiledData('wtype');">
+								<option fcklang="TableDlgAuto" value="auto" selected="selected">AUTO</option>
+								<option fcklang="DlgTableWidthPx" value="pixels">pixels</option>
+								<option fcklang="DlgTableWidthPc" value="percent">percent</option>
+							</select></td>
+					</tr>
+					<tr>
+						<td nowrap="nowrap">
+							<span fcklang="TableDlgAlign">Alignment</span>:</td>
+						<td colspan="2" nowrap="nowrap">
+							&nbsp;<select id="selAlignment" name="selAlignment" onchange="CorrectFiledData('align');">
+								<option fcklang="DlgTableAlignNotSet" value="" selected="selected">&lt;Not set&gt;</option>
+								<option fcklang="DlgTableAlignLeft" value="left">Left</option>
+								<option fcklang="DlgTableAlignCenter" value="center">Center</option>
+								<option fcklang="DlgTableAlignRight" value="right">Right</option>
+							</select>&nbsp;
+						<input type="checkbox" id="tAround" name="around" onclick="CorrectFiledData('around');"><label for="tAround" fcklang="TableDlgAround">Around</label></td>
+					</tr>
+					<tr>
+						<td nowrap="nowrap">
+							<span fcklang="DlgTableBorder">Border size</span>:</td>
+						<td colspan="2" nowrap="nowrap">
+							&nbsp;<input id="txtBorder" type="text" maxlength="2" size="2" value="" name="txtBorder"
+								onkeypress="return IsDigit(event);" />px
+							&nbsp;<select id="selBorferStyle" name="selBorferStyle" onchange="CorrectFiledData('btype');">
+								<option fcklang="TableDlgBorder_solid" value="solid">solid</option>
+								<option fcklang="TableDlgBorder_double" value="double">double</option>
+								<option fcklang="TableDlgBorder_groove" value="groove">groove</option>
+								<option fcklang="TableDlgBorder_ridge" value="ridge">ridge</option>
+								<option fcklang="TableDlgBorder_inset" value="inset">inset</option>
+								<option fcklang="TableDlgBorder_outset" value="outset" selected="selected">outset</option>
+								<option fcklang="TableDlgBorder_dashed" value="dashed">dashed</option>
+								<option fcklang="TableDlgBorder_dotted" value="dotted">dotted</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span fcklang="DlgBorderColor">Border Color</span>:</td>
+						<td>
+							&nbsp;<input id="txtBorderColor" type="text" size="8" name="txtBorderColor"></td>
+						<td>
+							&nbsp;
+							<input type="button" fcklang="DlgCellBtnSelect" value="Select..."
+								onclick="SelectColor(SelectBorderColor)">
+						</td>
+					</tr>
+					<tr>
+						<td nowrap="nowrap">
+							<span fcklang="DlgTableCellSpace">Cell spacing</span>:</td>
+						<td colspan="2" nowrap="nowrap">
+							&nbsp;<input id="txtCellSpacing" type="text" maxlength="2" size="2" value="1" name="txtCellSpacing"
+								onkeypress="return IsDigit(event);" />px</td>
+					</tr>
+					<tr>
+						<td>
+							<span fcklang="TableDlgTableBackColor">Table BG Color</span>:</td>
+						<td>
+							&nbsp;<input id="txtBackColor" type="text" size="8" name="txtBackColor"></td>
+						<td>
+							&nbsp;
+							<input type="button" fcklang="DlgCellBtnSelect" value="Select..."
+								onclick="SelectColor(SelectBackColor)">
+						</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td colspan="2">
+							&nbsp;<input id="selTransparent" name="selTransparent" type="checkbox" value="1"
+								onclick="CorrectFiledData('transparent');"><label for="selTransparent" fcklang="TableDlgTransparent">Transparent</label>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

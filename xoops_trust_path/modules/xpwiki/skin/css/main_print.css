@@ -1,0 +1,152 @@
+@charset "$charset";
+
+* {
+	background-image: none !important;
+	background-color: #FFF !important;
+}
+
+body {
+	width: 180mm;
+	font-size: 12pt;
+	line-height: 1.5;
+	letter-spacing: 1px;
+	color: #000000;
+	background-color: #FFFFFF;
+	margin-left: auto;
+	margin-right: auto;
+	white-space: normal;
+}
+
+$class img {
+	border: 0;
+}
+
+$class table,
+$class th,
+$class td {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+$class table th,
+$class table td {
+	padding: 3px;
+	font-size: 90%;
+}
+
+$class table th {
+	border: 1px dotted #333333;
+	border-bottom: 1px solid #333333;
+}
+
+$class table td {
+	border: 1px dotted #333333;
+}
+
+$class table {
+	width: 100%;
+	margin: 0 0 20px 0;
+	padding: 5px;
+	border: 1px solid #333333 !important;
+}
+
+$class a,
+$class a:link,
+$class a:visited {
+	text-decoration: none;
+	border: none;
+	color: inherit;
+}
+
+$class div.body a,
+$class div.body a:link,
+$class div.body a:visited {
+	border-bottom: 1px dotted #333333;
+	color: inherit;
+}
+
+$class div.body a.ext,
+$class div.body a.ext:link,
+$class div.body a.ext:visited {
+	border-bottom: 1px solid #333333;
+}
+
+$class a.ext {
+	padding-left: 0px;
+}
+$class div.printButton {
+	top: 10px;
+	right: 30px;
+	position: fixed;
+	text-align: right;
+}
+
+$class div.printButton span {
+	font-size: 12pt !important;
+	padding: 3px 5px;
+}
+
+$class form,
+$class div.jumpmenu,
+$class a.anchor_super,
+$class div.navigator,
+$class td.menubar,
+$class div.menubar, 
+$class div.attach,
+$class div.toolbar,
+$class div.related,
+$class img.logo,
+$class div.contents,
+$class table.code_table pre.code_number,
+$class table.code_table pre.pre_number,
+$class table.code_table pre.code_outline {
+	display: none !important;
+}
+
+$class div.pre,
+$class div.code_table,
+$class div.pre_table,
+$class pre,
+$class code {
+	font-size: 10pt !important;
+	height: auto !important;
+	max-height: none !important;
+	width: auto !important;
+	max-width: none !important;
+	padding 0 !important;
+	margin 0 !important;
+    white-space: pre-wrap !important;
+    white-space: -moz-pre-wrap !important;
+    white-space: -o-pre-wrap !important;
+    white-space: -pre-wrap !important;
+    word-wrap: break-word !important;
+    overflow: visible !important;
+    /*overflow-x: hidden !important;*/
+    letter-spacing: 0px !important;
+    /*page-break-before: avoid !important;*/
+}
+
+$class div.linkslist {
+
+}
+
+$class sup.linkslist {
+	font-size: 7pt;
+	font-weight: normal;
+	color: #333333 !important;
+	letter-spacing: 0px;
+}
+
+* $class ol.links {
+	margin-left: 1.5em;
+}
+
+$class ol.links li {
+    font-size: 10pt;
+    white-space: pre-wrap !important;
+    white-space: -moz-pre-wrap !important;
+    white-space: -o-pre-wrap !important;
+    white-space: -pre-wrap !important;
+    word-wrap: break-word !important;
+}
+

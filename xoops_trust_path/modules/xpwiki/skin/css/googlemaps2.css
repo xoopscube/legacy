@@ -1,0 +1,23 @@
+$class div.googlemaps2_tag_info {
+	border: gray solid 1px;
+}
+
+$class span.googlemaps2_handle {
+	font-size: 80%;
+	font-weight: bold;
+	border: solid 1px;
+	padding: 1px;
+	cursor: pointer;
+	font-family: monospace
+}
+
+$class div.googlemaps2_optional {
+	margin: 5px 0px 5px 10px;
+	padding: 5px;
+	color: #696969;
+	border: #E8E8E8 solid 1px;
+}
+$class div.googlemaps2_optional input,
+$class div.googlemaps2_optional select {
+	color: #696969;
+}

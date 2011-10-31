@@ -1,0 +1,37 @@
+*lang [#a6072374]
+この表は code.inc.php が拡張子を自動判定する時に利用します。
+
+|~言語名|~拡張子|~言語|h
+|pre|txt text|テキストファイル|
+|c|c cpp cxx|C/C++|
+|php|php|PHP|
+|java|java|Java|
+|html|htm html|HTML|
+|xhtml|xhtml|xHTML|
+|xml|xml|XML|
+|css|css|CSS|
+|javascript|js|JavaScript|
+|bash|sh|bash|
+|ada|ada|Ada|
+|awk|awk|AWK|
+|csharp|cs|C#|
+|d|d|D|
+|haskell|hs|haskell|
+|lisp|lisp el|Lisp, Emacs Lisp|
+|hsp|hsp|HSP|
+//|prolog|pl|Prolog|
+|perl|pl|Perl|
+|python|py|Python|
+|vb|vb|VisualBasic|
+|ps|ps|PostScript|
+|ruby|rb|Ruby|
+|tcl|tcl|TCL|
+|verilog|v|Verilog|
+|vhdl|vhdl|VHLD|
+|diff|diff|diff|
+|dosbatch|bat|MS-DOS Batch|
+|tex|tex|TeX|
+|scilab|sce|Scilab|
+|matlab|m|Matlab|
+|sql|sql|SQL|
+|pli|pli|PL/I|

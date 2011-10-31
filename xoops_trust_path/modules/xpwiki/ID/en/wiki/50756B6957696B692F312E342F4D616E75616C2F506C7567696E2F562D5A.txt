@@ -1,0 +1,69 @@
+#freeze
+#nofollow
+#norelated
+#navi(../)
+#contents
+------------------------------
+* V [#be6c635c]
+
+**version [#v924021a]
+:Plugin type|
+~Block type
+~Inline type
+:Importance|
+~*
+:Synopsis|
+~''#version''
+~''&version'''';''
+:Description|
+~Display the version of PukiWiki installation
+
+**versionlist [#n3c07f6b]
+:Plugin type|
+~Command type
+~Block type
+:Importance|
+~*
+:Synopsis|
+~''?plugin=versionlist''
+~''#versionlist''
+:Description|
+~Display the versions of the PHP files in the plugin directory and the directory where pukiwiki.php exists
+
+**vote [#aa4fb1f8]
+:Plugin type|
+~Command type
+~Block type
+:Importance|
+~**
+:Synopsis|
+''#vote(''
+&color(blue){'''item_1'''};[&color(blue){'''numvotes_1'''};]
+[,&color(blue){'''item_2'''};[&color(blue){'''numvotes_2'''};]
+[,&color(blue){'''item_3'''};[&color(blue){'''numvotes_3'''};]...
+[,&color(blue){'''item_n'''};[&color(blue){'''numvotes_n'''};]]]
+'')''
+:Description|
+~Display a simple voting form, which consists of the list of items, number of votes for each item, and and the buttons for a vote.
+:Parameters|
+~'''item_1''' to '''item_n''' - the items to be displayed. The number of votes for each item can be set by specifying the number with square bracket ("[]") after the item.
+:Note|
+~Since the number of votes can be easily edited, this plugin cannot be used for serious purposes.
+
+------------------------------
+* Y [#kb2afc33]
+
+**yetlist [#v5902d84]
+:Plugin type|
+~Command type
+:Importance|
+~**
+:Synopsis|
+''?plugin=yetlist''
+:Description|
+~Display the list of the pages yet to be created.
+~They are the page names that are used in existing pages as a WikiName or a BracketName, but do not exist yet.
+:Note|
+~The concept of helping someone else write a page is very wiki-ish. However, in practice this plugin may be hard to use, as it display a lot of keywords that are unlikely to become a page (e.g., the name of one-time visitors in the comment plugin, parameters having the same format as WikiName, etc.)
+
+#navi(../)
