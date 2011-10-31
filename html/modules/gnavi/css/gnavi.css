@@ -1,0 +1,240 @@
+/*---- CSS for Gnavi for Xoops ----*/
+
+/*----maps----*/
+
+#map {
+	height:600px;
+	border:solid 1px #6666FF;
+}
+
+#gn_map {
+	width:100%;
+	background:#999999;
+}
+
+#gn_map td {
+	background:#FFFFFF;
+}
+
+#gn_mkhead {
+	text-align:center;
+	background:#000000;
+	color:#FFFFFF;
+	padding:3px;
+	height:34px;
+	margin:0;
+}
+
+#gn_mklist {
+	background:#FFFFFF;
+	font-size:10px;
+	padding:0;
+	margin:0;
+	height:525px;
+	width:150px;
+	overflow:auto;
+}
+
+#gn_mklist ul,#gn_mklist div{
+	padding:3px 0 3px 3px;
+	margin:0;
+}
+
+#gn_latlng {}
+
+/*----sortbox----*/
+
+#gnn_sort {
+	border:#a2e0ff solid 1px;
+	background-image:url(../images/back1.gif);
+	margin-bottom:8px;
+}
+
+#gnn_sort td {
+	text-align:center;
+	padding : 0 3px ;
+	margin : 0 ;
+	line-height:22px;
+	height:22px;
+	white-space: nowrap; 
+}
+
+#gnn_sort a {
+	color:#41bfff;
+}
+
+#gnn_sort a:hover {
+	color:#ff6600;
+}
+
+/*----navigations----*/
+
+#gnn_edit {
+	background:#ecc; 
+	border-right:solid 1px #ccc; 
+	border-bottom:solid 1px #ccc; 
+	border-left:solid 10px #c66;
+}
+
+#gnn_map {
+	background:#cec; 
+	border-right:solid 1px #ccc; 
+	border-bottom:solid 1px #ccc; 
+	border-left:solid 10px #6c6;
+}
+
+#gnn_up {
+	background:#cef;
+	border-right:solid 1px #ccc;
+	border-bottom:solid 1px #ccc;
+	border-left:solid 10px #66f;
+}
+
+.gnn_cat {
+	background:#ffc; 
+	border-right:solid 1px #ccc; 
+	border-bottom:solid 1px #ccc; 
+	border-left:solid 10px #fc6;
+}
+.gnn_cat,#gnn_map,#gnn_up,#gnn_edit{
+	float:left;
+	white-space:nowrap;
+	margin:0 8px 8px 0;
+	padding:2px 5px; 
+}
+
+.gnn_cat a,#gnn_map a,#gnn_up a,#gnn_edit a {
+	text-decoration:none;
+	color:#333;
+}
+
+#gnn_cat a:hover,.gnn_cat a:hover,#gnn_map a:hover,#gnn_up a:hover,#gnn_edit a:hover{text-decoration:underline;color: #ff6600;}
+
+.gnn_navi {
+	padding:4px 20px;
+	text-align:left;
+	border-color:#666666;
+	border-width:0 0 2px 0;
+	border-style:solid;
+	background:#F2F2F2;
+}
+
+.gnn_navi span {
+	color:#990100;
+	font-weight:bold;
+}
+
+/*----common----*/
+
+#gn_breadcrumbs {}
+
+#gnn_title {
+	margin:3px 0 8px 0;
+	font-size:120%;
+	font-weight:bold;
+	padding:0px 10px;
+	border-color:#666;
+	border-width:0px 20px 0px 0px;
+	border-style:solid;
+	background:#000;
+	color:#fff;
+	height:25px;
+	line-height:25px;
+}
+
+#gnn_title span {
+	font-size:80%;
+	margin-left:15px;
+	font-weight:normal;
+}
+
+#gnn_title a {
+	color:#ff9900;
+}
+
+.gn_rsmall {
+	margin:5px;
+	text-align:right;
+	font-size:12px;	
+}
+
+#gn_desc {
+	text-align:left;
+	margin:4px;
+}
+
+.gn_file {
+	float:left;
+	border:solid 1px #cccccc;
+	padding:2px;
+	text-align:center;
+	margin:2px;
+	_margin-left:1px;
+	_margin-right:1px;
+}
+
+.gn_file img {
+	margin:0px;
+	border:none;
+	padding:0px;
+}
+
+.gn_caption {
+	font-size:12px;	
+	background-color:#999999;
+	margin-top:2px;
+	color:white;
+	padding:1px;
+}
+
+.gn_outer {
+	border:solid 1px #cccccc;
+	border-collapse: separate; 
+	margin:4px 4px 4px 2px;
+}
+.gn_outer td{
+	vertical-align:middle;
+}
+.gn_itemheader {
+	font-size:120%;
+	background-color:#bbbbbb;
+	padding:0px 10px;
+	height:25px;
+	line-height:25px;
+	color:#000000;
+	font-weight: bold;
+	text-align:left;
+}
+.gn_itemheader span {
+	font-size:80%;
+	margin-left:15px;
+	font-weight:normal;
+}
+.gn_itemheader a {color:#2a35ca;}
+.gn_itemheader span a {color:#d31a1a;}
+
+.gn_head {
+	padding:2px;
+	text-align:center;
+	background-color:#cccccc;
+	width:30%;
+}
+.gn_head a {color:#2a35ca;}
+
+.gn_odd {
+	padding:2px 2px 2px 5px;
+	text-align:left;
+	background-color:#efefef;
+	width:70%;
+}
+
+
+
+#gn_print {
+	line-height:2.5em;
+	padding:2px 10px;
+	border:solid 1px #666;
+	background-color:#eee;
+}
+
+

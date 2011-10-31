@@ -1,0 +1,55 @@
+<{strip}>
+
+<{* BREADCRUMBS *}>
+<{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
+
+<{* GNAVI HEADER *}>
+<{include file="db:`$mydirname`_header.html"}>
+
+<{* Start Category Loop *}>
+<{foreach item=ranking from=$rankings}>
+	<table class="outer">
+		<tr>
+			<th colspan="6" align="center"><{$ranking.title}> (<{$lang_sortby}>)</th>
+		</tr>
+		<tr>
+			<td width='7%' class="head"><{$lang_rank}></td>
+			<td width='28%' class="head"><{$lang_title}></td>
+			<td width='40%' class="head"><{$lang_category}></td>
+			<{if $canrateview && $canvote}>
+				<td width='8%' class="head" align='center'><{$lang_hits}></td>
+				<td width='9%' class="head" align='center'><{$lang_rating}></td>
+				<td width='8%' class="head" align='right'><{$lang_vote}></td>
+			<{else}>
+				<td colspan='3' width='8%' class="head" align='center'><{$lang_hits}></td>
+			<{/if}>
+		</tr>
+
+		<{* Start photo loop *}>
+		<{foreach item=photo from=$ranking.photo}>
+
+			<tr>
+				<td class="even"><{$photo.rank}></td>
+				<td class="odd" align="left"><a href='index.php?cid=<{$photo.cid}>&amp;lid=<{$photo.lid}>'><{$photo.title}></a></td>
+				<td class="even" align="left"><{$photo.category}></td>
+				<{if $canrateview && $canvote}>
+					<td class="odd" align='center'><{$photo.hits}></td>
+					<td class="even" align='center'><{$photo.rating}></td>
+					<td class="odd" align='right'><{$photo.votes}></td>
+				<{else}>
+					<td colspan='3' class="odd" align='center'><{$photo.hits}></td>
+				<{/if}>
+			</tr>
+
+		<{/foreach}>
+		<{* End photo loop *}>
+
+	</table>
+	<br />
+<{/foreach}>
+<{* End Category Loop *}>
+
+<{* GNAVI FOOTER *}>
+<{include file="db:`$mydirname`_footer.html"}>
+
+<{/strip}>

@@ -1,0 +1,91 @@
+<html>
+<HEAD>
+	<meta http-equiv="content-type" content="text/html; charset=<{$charset}>">
+	<TITLE><{$xoops_sitename}> - <{$xoops_pagetitle}></TITLE>
+</HEAD>
+<BODY>
+
+
+	<TABLE WIDTH=100% BGCOLOR="#FFE566"><TR><TD><{$photo.title}></TD></TR></TABLE>
+
+	<HR COLOR="#FFE566">
+
+	<{*Show Description*}>
+
+	<{if $moreprev>-1}><A HREF="?lid=<{$photo.lid}>&more=<{$moreprev}><{$agent}>"><{$lng_mobile_prev}></A>...<{/if}>
+	<{$description}>
+	<{if $more}>...<A HREF="?lid=<{$photo.lid}>&more=<{$more}><{$agent}>"><{$lng_mobile_next}></A><{/if}>
+
+	<BR>
+
+	<{*Show Images*}>
+
+	<{if $photo.ext}>
+		<{if !$morepage}>
+			<img src=<{$photo.imgsrc_thumb}> >
+		<{else}>
+			[<A HREF=<{$photo.ahref_thumb}>><{$lng_mobile_photo1}></A>]
+		<{/if}>
+		<{if $photo.caption}><BR><{$photo.caption}><{/if}>
+		<BR>
+	<{/if}>
+	<{if $photo.ext1}>
+		<{if $morepage==1}>
+			<img src=<{$photo.imgsrc_thumb1}> >
+		<{else}>
+			[<A HREF=<{$photo.ahref_thumb1}>><{$lng_mobile_photo2}></A>]
+		<{/if}>
+		<{if $photo.caption1}><BR><{$photo.caption1}><{/if}>
+		<BR>
+	<{/if}>
+	<{if $photo.ext2}>
+		<{if $morepage==2}>
+			<img src=<{$photo.imgsrc_thumb2}> >
+		<{else}>
+			[<A HREF=<{$photo.ahref_thumb2}>><{$lng_mobile_photo3}></A>]
+		<{/if}>
+		<{if $photo.caption2}><BR><{$photo.caption2}><{/if}>
+		<BR>
+	<{/if}>
+
+	<{*Show Map*}>
+
+	<{if $map}>
+		<HR COLOR="#99CCFF">
+
+		<TABLE WIDTH=100% BGCOLOR="#99CCFF"><TR>
+			<TD ><{$lang_map}></TD>
+			<TD ALIGN=RIGHT>[<A HREF="index.php<{$maplink_option}><{$agent}>"><{$lng_mobile_show_area}></A>]</TD>
+		</TR></TABLE>
+
+		<HR COLOR="#99CCFF">
+
+		<img src=<{$mymap}> alt=GoogleMap>
+
+		<HR COLOR="#99CCFF">
+	<{/if}>
+
+	<{*Show Infos*}>
+
+	<TABLE WIDTH=100% >
+		<{if $photo.tel}><TR><TD BGCOLOR="#EFEFEF"><FONT COLOR=#990000><{$lang_tel}></FONT></TD></TR><TR><TD><A HREF=tel:<{$photo.tel}>><{$photo.tel}></A></TD></TR><{/if}>
+		<{if $photo.fax}><TR><TD BGCOLOR="#EFEFEF"><FONT COLOR=#990000><{$lang_fax}></FONT></TD></TR><TR><TD><{$photo.fax}></TD></TR><{/if}>
+		<{if $photo.zip}><TR><TD BGCOLOR="#EFEFEF"><FONT COLOR=#990000><{$lang_zip}></FONT></TD></TR><TR><TD><{$photo.zip}></TD></TR><{/if}>
+		<{if $photo.address}><TR><TD BGCOLOR="#EFEFEF"><FONT COLOR=#990000><{$lang_address}></FONT></TD></TR><TR><TD><{$photo.address}></TD></TR><{/if}>
+		<{foreach from=$photo.addinfo item=addinfo}>
+			<TR><TD BGCOLOR="#EFEFEF"><FONT COLOR=#990000><{$addinfo.title}></FONT></TD></TR><TR><TD><{$addinfo.desc}></TD></TR>
+		<{/foreach}>
+	</TABLE>
+
+	<HR COLOR="#FFE566">
+	<FONT SIZE=1><{$photo.mycat}></FONT>
+
+	<HR COLOR="#FFE566">
+
+	<TABLE WIDTH=100% BGCOLOR="#EFEFEF">
+		<TR>
+			<TD ALIGN=CENTER><FONT SIZE=1><A HREF=index.php><{$lang_top_link}></A></FONT></TD>
+		</TR>
+	</TABLE>
+</BODY>
+</HTML>

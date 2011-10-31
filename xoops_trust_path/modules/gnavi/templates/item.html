@@ -1,0 +1,73 @@
+<{strip}>
+
+<{* BREADCRUMBS *}>
+<{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
+
+<{* ITEM DATA *}>
+<{include file="db:`$mydirname`_itemheader.html"}>
+
+<div id='feed'></div>
+
+<{* VOTE *}>
+<{if $canvote}>
+	<table class="gn_outer">
+		<tr>
+			<td  class="gn_head"><{$lang_rating}></td>
+			<{if $canrateview}>
+				<td  class="gn_head">
+					<{if $photo.rating > 0}>
+						<img src='<{$mod_url}>/images/rank<{$photo.rank}>.gif' alt='<{$photo.rating}>' align="top" />
+					<{else}>
+						<img src='<{$mod_url}>/images/rank_none.gif' alt='<{$photo.info_votes}>' align="top" />
+					<{/if}>
+					&nbsp;<{$photo.info_votes}>
+				</td>
+			<{/if}>
+			<td  class="gn_head">
+				<{if $canratevote}>
+					<a href='<{$mod_url}>/index.php?page=vote&lid=<{$photo.lid}>'><{$lang_ratethisphoto}></a>
+				<{/if}>
+			</td>
+		</tr>
+	</table>
+<{/if}>
+
+<div style="text-align:right;"><span id="gn_print"><a href="index.php<{$link_option}>&page=print"><{$lang_print}></a></span></div>
+
+<{* ITEM NAVIGATION *}>
+<{if $photo_nav}><div class="gnn_navi" style="margin-top:15px;"><{$photo_nav}></div><{/if}>
+
+<{* COMMENTS  *}>
+<{if $comment_dirname && $comment_forum_id}>
+<{* ::Use d3forum for Comments.:: *}>
+
+	<{d3forum_comment dirname=$comment_dirname forum_id=$comment_forum_id class="GnaviD3commentContent" mytrustdirname="gnavi" id=$photo.lid subject=$photo.title subject_escaped=1 view=$comment_view}>
+
+<{else}>
+<{* ::Use Xoops Normal Comments. If you no need,can delete this stage.:: *}>
+
+	<div style="text-align: center; padding: 3px; margin: 3px;">
+		<{$commentsnav}>
+		<{$lang_notice}>
+	</div>
+
+	<div style="margin: 3px; padding: 3px;">
+		<{if $comment_mode == "flat"}>
+		  <{include file="db:system_comments_flat.html"}>
+		<{elseif $comment_mode == "thread"}>
+		  <{include file="db:system_comments_thread.html"}>
+		<{elseif $comment_mode == "nest"}>
+		  <{include file="db:system_comments_nest.html"}>
+		<{/if}>
+	</div>
+
+<{/if}>
+
+
+<{* NOTIFICATION *}>
+<{include file='db:system_notification_select.html'}>
+
+<{* GNAVI FOOTER *}>
+<{include file="db:`$mydirname`_footer.html"}>
+
+<{/strip}>
