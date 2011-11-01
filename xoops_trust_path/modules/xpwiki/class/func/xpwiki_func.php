@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/02 by nao-pon http://hypweb.net/
-// $Id: xpwiki_func.php,v 1.241 2011/10/28 13:55:10 nao-pon Exp $
+// $Id: xpwiki_func.php,v 1.242 2011/10/31 16:04:47 nao-pon Exp $
 //
 class XpWikiFunc extends XpWikiXoopsWrapper {
 
@@ -4523,9 +4523,10 @@ EOD;
 	}
 
 	function regist_jobstack ($data, $ttl = 864000, $wait = 0) {
-		$key = md5(serialize($data));
+		$s_data = serialize($data);
+		$key = md5($s_data . ($wait? '' : $wait));
 		$mtime = $this->cont['UTC'] + $wait;
-		$this->cache_save_db(serialize($data), 'jobstack', $ttl, $key, $mtime);
+		$this->cache_save_db($s_data, 'jobstack', $ttl, $key, $mtime);
 	}
 
 	function unregist_jobstack ($data) {
@@ -4535,12 +4536,17 @@ EOD;
 
 	function get_jobstack_imagetag () {
 		$dbtable = $this->xpwiki->db->prefix($this->root->mydirname.'_cache');
-		$sql = 'SELECT COUNT(*) FROM `'.$dbtable.'` WHERE `plugin`=\'jobstack\'';
-		$count = 0;
+		$sql = 'SELECT `key` FROM `'.$dbtable.'` WHERE `plugin`=\'jobstack\' LIMIT 1';
+		$check = '';
 		if ($res = $this->xpwiki->db->query($sql)) {
-			list($count) = $this->xpwiki->db->fetchRow($res);
+			$check = $this->xpwiki->db->getRowsNum($res);
 		}
-		return $count? '<div style="display:none;"><img src="'.$this->cont['HOME_URL'].'gate.php?way=jobstack" alt="" width="1" height="1" /></div>' . "\n" : '';
+		if ($check) {
+			$sid = (defined('SID') && SID)? '&amp;' . SID : '';
+			return '<div style="display:none;"><img class="ktai_direct" src="'.$this->cont['HOME_URL'].'gate.php?way=jobstack' . $sid . '" alt="" width="1" height="1" /></div>' . "\n";
+		} else {
+			return '';
+		}
 	}
 }
 ?>

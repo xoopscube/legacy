@@ -1,5 +1,5 @@
 <?php
-// $Id: moblog.inc.php,v 1.21 2011/10/28 13:50:33 nao-pon Exp $
+// $Id: moblog.inc.php,v 1.22 2011/10/31 16:05:40 nao-pon Exp $
 // Author: nao-pon http://hypweb.net/
 // Bace script is pop.php of mailbbs by Let's PHP!
 // Let's PHP! Web: http://php.s3.to/
@@ -40,7 +40,7 @@ class xpwiki_plugin_moblog extends xpwiki_plugin {
 		// 本文文字制限（半角で
 		$this->config['body_limit'] = 6000;
 
-		// 最小自動更新間隔（分）
+		// 最小更新間隔（分）
 		$this->config['refresh_min'] = 5;
 
 		// 件名がないときの題名
@@ -84,6 +84,10 @@ class xpwiki_plugin_moblog extends xpwiki_plugin {
 
 		// google map 自動作成を無効にする
 		$this->config['nomap'] = 0;
+
+		// 定期メールチェック間隔 (OFF:0, 分)
+		$this->config['check_interval'] = 5;
+
 	}
 	function plugin_moblog_action()
 	{
@@ -136,6 +140,16 @@ class xpwiki_plugin_moblog extends xpwiki_plugin {
 			$this->plugin_moblog_output();
 		} else {
 			$this->func->pkwk_touch_file($chk_file);
+		}
+
+		if ($this->config['check_interval']) {
+			$interval = max($this->config['check_interval'], $this->config['refresh_min']);
+			$data = array(
+				'action' => 'plugin_func',
+				'plugin' => 'moblog',
+				'func'   => 'plugin_moblog_action'
+			);
+			$this->func->regist_jobstack($data, 0, $interval * 60);
 		}
 
 		$this->chk_fp = fopen($chk_file, 'wb');
@@ -681,13 +695,15 @@ class xpwiki_plugin_moblog extends xpwiki_plugin {
 				$$key = $this->root->$_key;
 			}
 		}
-		if (! $host || ! $user || ! $pass) {
-			return '';
-		} else {
-			//POPサーバーにアクセスするためのイメージタグを生成
-			$sid = (defined('SID') && SID)? '&amp;' . SID : '';
-			return '<div style="float:left;"><img class="ktai_direct" src="' . $this->root->script . '?plugin=moblog'.$sid.'" width="1" height="1" /></div>' . "\n";
+		if ($host && $user && $pass) {
+			$data = array(
+				'action' => 'plugin_func',
+				'plugin' => 'moblog',
+				'func'   => 'plugin_moblog_action'
+			);
+			$this->func->regist_jobstack($data, 0);
 		}
+		return '';
 	}
 
 	function plugin_moblog_page_write($page,$subject,$text,$filenames,$ref_option,$now) {

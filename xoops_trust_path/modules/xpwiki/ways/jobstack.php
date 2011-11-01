@@ -1,36 +1,12 @@
 <?php
 /*
  * Created on 2008/05/13 by nao-pon http://hypweb.net/
- * $Id: jobstack.php,v 1.9 2010/05/19 11:25:58 nao-pon Exp $
+ * $Id: jobstack.php,v 1.10 2011/10/31 16:04:47 nao-pon Exp $
  */
 
 error_reporting(0);
 
 ignore_user_abort(TRUE);
-
-include_once $mytrustdirpath . '/include.php';
-
-$xpwiki = new XpWiki($mydirname);
-$xpwiki->init('#RenderMode');
-
-// It is all as for the one executed soon. (ttl = 0)
-$sql = 'SELECT `key`, `data` FROM '.$xpwiki->db->prefix($xpwiki->root->mydirname.'_cache').' WHERE `plugin`=\'jobstack\' AND `mtime` <= '.$xpwiki->cont['UTC'].' AND `ttl`=0 ORDER BY `mtime` ASC LIMIT 1';
-if ($res = $xpwiki->db->query($sql)) {
-	$row = $xpwiki->db->fetchRow($res);
-	while($row) {
-		xpwiki_jobstack_switch($xpwiki, $row);
-		$res = $xpwiki->db->query($sql);
-		$row = $xpwiki->db->fetchRow($res);
-	}
-}
-
-// Additionally, the one executed sequentially
-$sql = 'SELECT `key`, `data` FROM '.$xpwiki->db->prefix($xpwiki->root->mydirname.'_cache').' WHERE `plugin`=\'jobstack\' AND `mtime` <= '.$xpwiki->cont['UTC'].' ORDER BY `mtime` ASC LIMIT 1';
-if ($res = $xpwiki->db->query($sql)) {
-	if ($row = $xpwiki->db->fetchRow($res)) {
-		xpwiki_jobstack_switch($xpwiki, $row);
-	}
-}
 
 $file = $mytrustdirpath . '/skin/image/gif/blank.gif';
 
@@ -42,6 +18,36 @@ header('Cache-Control: no-cache, no-store, must-revalidate, pre-check=0, post-ch
 header('Pragma: no-cache');
 
 HypCommonFunc::readfile($file);
+
+flush();
+
+include_once $mytrustdirpath . '/include.php';
+
+$xpwiki = new XpWiki($mydirname);
+$xpwiki->init('#RenderMode');
+
+$max_execution_time = intval(ini_get('max_execution_time'));
+
+// It is all as for the one executed soon. (ttl = 0)
+$sql = 'SELECT `key`, `data` FROM '.$xpwiki->db->prefix($xpwiki->root->mydirname.'_cache').' WHERE `plugin`=\'jobstack\' AND `mtime` <= '.$xpwiki->cont['UTC'].' AND `ttl`=0 ORDER BY `mtime` ASC LIMIT 1';
+if ($res = $xpwiki->db->query($sql)) {
+	$row = $xpwiki->db->fetchRow($res);
+	while($row) {
+		if ($max_execution_time) @ ini_set('max_execution_time', (string)$max_execution_time);
+		xpwiki_jobstack_switch($xpwiki, $row);
+		$res = $xpwiki->db->query($sql);
+		$row = $xpwiki->db->fetchRow($res);
+	}
+}
+
+// Additionally, the one executed sequentially
+$sql = 'SELECT `key`, `data` FROM '.$xpwiki->db->prefix($xpwiki->root->mydirname.'_cache').' WHERE `plugin`=\'jobstack\' AND `mtime` <= '.$xpwiki->cont['UTC'].' ORDER BY `mtime` ASC LIMIT 1';
+if ($res = $xpwiki->db->query($sql)) {
+	if ($row = $xpwiki->db->fetchRow($res)) {
+		if ($max_execution_time) @ ini_set('max_execution_time', (string)$max_execution_time);
+		xpwiki_jobstack_switch($xpwiki, $row);
+	}
+}
 
 function xpwiki_jobstack_switch (& $xpwiki, $row) {
 	list($key, $data) = $row;

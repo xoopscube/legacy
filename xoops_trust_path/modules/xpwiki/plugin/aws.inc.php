@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2008/02/28 by nao-pon http://hypweb.net/
- * $Id: aws.inc.php,v 1.21 2011/09/17 07:42:26 nao-pon Exp $
+ * $Id: aws.inc.php,v 1.22 2011/10/31 12:40:35 nao-pon Exp $
  */
 
 /////////////////////////////////////////////////
@@ -146,7 +146,7 @@ class xpwiki_plugin_aws extends xpwiki_plugin {
 			@ unlink($cache_file);
 		}
 
-		if (is_readable($cache_file) && filemtime($cache_file) + $this->config['cache_time'] * 60 >= $this->cont['UTC']) {
+		if (is_readable($cache_file) && filemtime($cache_file) + $this->config['cache_time'] * 60 > $this->cont['UTC']) {
 			$ret = file_get_contents($cache_file);
 		} else {
 			include_once $this->cont['TRUST_PATH'] . 'class/hyp_common/hsamazon/hyp_simple_amazon.php';
