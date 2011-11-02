@@ -1,0 +1,13 @@
+<{* **************************  usage ****************************
+ 	The template tag of the following list can be used. 
+		<{$block.err_message}> 					// When the block cannot be displayed, this outputs the reason. Please do not delete it.
+ 		<{$block.meta_info}>					// Displays Meta Info. 
+   ************************* End of usage ************************ *}>
+<{* Start Template *}>
+
+<div class="xpress_block">
+	<{$block.err_message}>
+	<div class="xpress_meta_block">
+		<{$block.meta_info}>
+	</div>
+</div>

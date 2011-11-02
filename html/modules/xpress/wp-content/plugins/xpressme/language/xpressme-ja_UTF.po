@@ -1,0 +1,889 @@
+# Japanese (UTF-8) translation for XPressME Plugin
+# Copyright (c) 2005-2008 XPressME
+# This file is distributed under the same license as the XPressME package.
+# toemon <info@toemon.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: XPressME Plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-08-23 09:55+0900\n"
+"PO-Revision-Date: 2011-04-29 14:15+0900\n"
+"Last-Translator: toemon <info@toemon.com>\n"
+"Language-Team: toemon <info@toemon.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+"X-Poedit-KeywordsList: __;_e;_c\n"
+"X-Poedit-Basepath: D:\\XPressME_Project\\XPressME_SVN_Trunk\\xpressme_integration_kit\\wp-content\\plugins\\xpressme\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: xpressme.php:59
+msgid "Display Settings"
+msgstr "表示設定"
+
+#: xpressme.php:60
+msgid "Integration Settings"
+msgstr "統合設定"
+
+#: xpressme.php:61
+msgid "Other Settings"
+msgstr "その他の設定"
+
+#: xpressme.php:64
+msgid "Upgrade"
+msgstr "アップグレード"
+
+#: xpressme.php:65
+msgid "to Modules Admin"
+msgstr "モジュール管理へ"
+
+#: xpressme.php:196
+msgid "XPressME Display Setting"
+msgstr "XPressME 表示設定"
+
+#: xpressme.php:202
+msgid "Thema Sidebar Display"
+msgstr "テーマ表示時にサイドバー表示する。"
+
+#: xpressme.php:203
+#: xpressme.php:296
+#: xpressme.php:302
+#: xpressme.php:307
+#: xpressme.php:313
+#: xpressme_class.php:470
+#: xpressme_class.php:488
+#: xpressme_class.php:675
+#: xpressme_class.php:686
+#: xpressme_class.php:710
+msgid "YES"
+msgstr "はい"
+
+#: xpressme.php:204
+#: xpressme.php:297
+#: xpressme.php:303
+#: xpressme.php:308
+#: xpressme.php:314
+#: xpressme_class.php:471
+#: xpressme_class.php:489
+#: xpressme_class.php:676
+#: xpressme_class.php:687
+#: xpressme_class.php:711
+msgid "NO"
+msgstr "いいえ"
+
+#: xpressme.php:213
+#: xpressme.php:265
+#: xpressme.php:324
+msgid "Update Config"
+msgstr "更新"
+
+#: xpressme.php:214
+#: xpressme.php:266
+#: xpressme.php:325
+msgid "Preset Config"
+msgstr "プリセット"
+
+#: xpressme.php:247
+msgid "XPressME Integration Setting"
+msgstr "XPressME 統合設定"
+
+#: xpressme.php:251
+msgid "Media Upload Base Path"
+msgstr "メディアアップロードのベースパス設定"
+
+#: xpressme.php:254
+msgid "Use XOOPS UPLOAD PATH"
+msgstr "XOOPSのアップロードパスを使用する。"
+
+#: xpressme.php:255
+msgid "USE WordPress BASE_PATH"
+msgstr "WordPressのベースパスを使用する。"
+
+#: xpressme.php:290
+msgid "XPressME Other Setting"
+msgstr "XPressME その他の設定"
+
+#: xpressme.php:295
+msgid "The change tracking of the post is preserved"
+msgstr "投稿の変更履歴を有効にする。"
+
+#: xpressme.php:301
+msgid "Select Multi user mode"
+msgstr "マルチユーザーモードを選択"
+
+#: xpressme.php:306
+msgid "Is the posts author views counted?"
+msgstr "投稿者の閲覧をカウントしますか？"
+
+#: xpressme.php:312
+msgid "Is SQL debugging window displayed?"
+msgstr "SQLデバッグウィンドを表示しますか？"
+
+#: xpressme.php:317
+msgid "Select warning display of block file version check"
+msgstr "ブロックファイルのバージョンチェック時における警告表示"
+
+#: xpressme.php:318
+msgid "Do display"
+msgstr "表示する"
+
+#: xpressme.php:319
+msgid "Do not display"
+msgstr "表示しない"
+
+#: xpressme_class.php:64
+#: xpressme_class.php:418
+msgid "Older Post"
+msgstr "前の投稿へ"
+
+#: xpressme_class.php:65
+#: xpressme_class.php:421
+msgid "Newer Post"
+msgstr "次の投稿へ"
+
+#: xpressme_class.php:67
+#: xpressme_class.php:424
+msgid "Older Entries"
+msgstr "前ページへ"
+
+#: xpressme_class.php:68
+#: xpressme_class.php:427
+msgid "Newer Entries"
+msgstr "次ページへ"
+
+#: xpressme_class.php:82
+#: xpressme_class.php:83
+#: xpressme_class.php:430
+msgid "Read the rest of this entry &raquo;"
+msgstr "この投稿の続きを読む &raquo;"
+
+#: xpressme_class.php:530
+msgid "Single Post Navi Setting"
+msgstr "シングルポストナビの設定"
+
+#: xpressme_class.php:535
+#: xpressme_class.php:610
+msgid "Adjustment of Navi link display position"
+msgstr "リンクの表示位置設定"
+
+#: xpressme_class.php:538
+msgid "'Old Post Link' is displayed in the left, and 'Newer Post Link' is displayed in the right"
+msgstr "以前の記事へのリンクを左に、より新しい記事へのリンクを右に表示"
+
+#: xpressme_class.php:539
+msgid "'Newer Post Link' is displayed in the left, and 'Old Post Link' is displayed in the right"
+msgstr "より新しい記事へのリンクを左に、古い記事へのリンクを右に表示"
+
+#: xpressme_class.php:545
+msgid "Select Display name of PostNavi Link"
+msgstr "表示するリンクテキストを選択"
+
+#: xpressme_class.php:548
+msgid "Title of post"
+msgstr "投稿記事のタイトルを表示"
+
+#: xpressme_class.php:549
+msgid "Title of Navi"
+msgstr "ナビタイトルを表示"
+
+#: xpressme_class.php:555
+msgid "Display Navi Title of Old Post Link"
+msgstr "古い記事へのナビタイトルを設定"
+
+#: xpressme_class.php:562
+msgid "Display Navi Title of Newer Post Link"
+msgstr "より新しい記事へのナビタイトルを設定"
+
+#: xpressme_class.php:569
+#: xpressme_class.php:634
+msgid "Left arrow image src"
+msgstr "左矢印イメージSRC"
+
+#: xpressme_class.php:574
+#: xpressme_class.php:589
+#: xpressme_class.php:639
+#: xpressme_class.php:652
+msgid "Not Found"
+msgstr "見つかりません"
+
+#: xpressme_class.php:584
+#: xpressme_class.php:647
+msgid "Right arrow image src"
+msgstr "右矢印イメージSRC"
+
+#: xpressme_class.php:605
+msgid "Posts List Page Navi Setting"
+msgstr "ポストリストページナビの設定"
+
+#: xpressme_class.php:613
+msgid "'Old Page Link' is displayed in the left, and 'Newer Page Link' is displayed in the right"
+msgstr "古いページへのリンクを左に、より新しいページへのリンクを右に表示"
+
+#: xpressme_class.php:614
+msgid "'Newer Page Link' is displayed in the left, and 'Old Page Link' is displayed in the right"
+msgstr "より新しいページへのリンクを左に、古いページへのリンクを右に表示"
+
+#: xpressme_class.php:620
+msgid "Display Navi Title of Old Page Link"
+msgstr "古いページへのナビタイトルを設定"
+
+#: xpressme_class.php:627
+msgid "Display Navi Title of Newer Page Link"
+msgstr "より新しいページへのナビタイトルを設定"
+
+#: xpressme_class.php:666
+msgid "Dashboard feed Display Setting"
+msgstr "ダッシュボード　フィード表示設定"
+
+#: xpressme_class.php:672
+msgid "Display XPressMe Integration Kit Blog"
+msgstr "XPressME Integration Kit ブログを表示する。"
+
+#: xpressme_class.php:683
+msgid "Display XPressMe Integration Kit Forum"
+msgstr "XPressME Integration Kit フォーラムを表示する。"
+
+#: xpressme_class.php:701
+msgid "Role Setting at Login"
+msgstr "ログイン時の権限設定"
+
+#: xpressme_class.php:707
+msgid "XOOPS administrators role is set as all blog administrators."
+msgstr "XOOPSの管理者をすべてのブログの管理者に設定します。"
+
+#: xpressme_class.php:716
+msgid "XOOPS Groupe"
+msgstr "XOOPSグループ名"
+
+#: xpressme_class.php:716
+msgid "WordPress Role"
+msgstr "WordPressでの権限"
+
+#: xpressme_class.php:716
+msgid "Role is set at each login"
+msgstr "ログイン時、常に権限を更新する"
+
+#: xpressme_class.php:721
+msgid "module cannot be read"
+msgstr "モジュールアクセス権限なし"
+
+#: xpressme_class.php:762
+#: xpressme_class.php:766
+#: xpressme_class.php:769
+msgid "Default Role of WordPress"
+msgstr "WordPressのデフォルト権限"
+
+#: xpressme_class.php:763
+#: xpressme_class.php:767
+#: xpressme_class.php:770
+msgid "Group User Doesn't Register"
+msgstr "ユーザ登録しない"
+
+#: xpressme_class.php:783
+msgid "Only the Admin can set Group Role Setting"
+msgstr "管理者だけがグループ権限を設定できます。"
+
+#: xpressme_class.php:805
+msgid "WordPress MultiBlog cannot integrate the comments."
+msgstr "WordPress マルチブログではコメント統合できません。"
+
+#: xpressme_class.php:807
+msgid "Do Not Comment Integration."
+msgstr "コメント統合しません。"
+
+#: xpressme_class.php:842
+msgid "Create New Forum"
+msgstr "新規フォーラムを作成"
+
+#: xpressme_class.php:854
+msgid "Comment integration with D3Forum"
+msgstr "D3Forumとのコメント統合"
+
+#: xpressme_class.php:856
+msgid "Select the forum of D3Forum that does the comment integration from the following lists."
+msgstr "以下のリストからコメント統合をするD3Forumのフォーラムを選択してください。"
+
+#: xpressme_class.php:861
+msgid "Select the Type of display of D3Forum comment."
+msgstr "D3Forumの表示タイプを選択"
+
+#: xpressme_class.php:863
+#: xpressme_class.php:866
+msgid "Flat"
+msgstr "フラット"
+
+#: xpressme_class.php:864
+#: xpressme_class.php:867
+msgid "Threaded"
+msgstr "スレッド"
+
+#: xpressme_class.php:870
+msgid "Select the order of display of D3Forum comment."
+msgstr "D3Forumコメントの表示順を選択"
+
+#: xpressme_class.php:872
+#: xpressme_class.php:875
+msgid "DESC"
+msgstr "降順"
+
+#: xpressme_class.php:873
+#: xpressme_class.php:876
+msgid "ASC"
+msgstr "昇順"
+
+#: xpressme_class.php:879
+msgid "Number of displays of D3Forum comments."
+msgstr "D3Forumのコメント表示数"
+
+#: xpressme_class.php:882
+msgid "The import and the export between Wordpress Comments and the D3Forum Posts can be done. "
+msgstr "WordPressコメントとD3Forumポスト間の一括転送（エクスポート・インポート）"
+
+#: xpressme_class.php:883
+msgid "Export to D3Forum"
+msgstr "D3Forumへ一括エクスポート"
+
+#: xpressme_class.php:884
+msgid "Import from D3Forum"
+msgstr "D3Forumから一括インポート"
+
+#: xpressme_class.php:897
+msgid "Contents Excerpt Setting"
+msgstr "記事抜粋の設定"
+
+#: xpressme_class.php:902
+msgid "Is the excerpt display done with the archive of contents?"
+msgstr "記事のアーカイブで抜粋表示を行いますか？"
+
+#: xpressme_class.php:909
+msgid "When ASCII character more than the set ratio is included, it is judged ASCII contents. "
+msgstr "ASCII文字が含まれる比率が設定された値より大きい場合、ASCII文字コンテンツと判断します。"
+
+#: xpressme_class.php:916
+msgid "Excerpt length of word for ASCII contents"
+msgstr "ASCIIコンテンツの抜粋単語数"
+
+#: xpressme_class.php:923
+msgid "Excerpt length of character for multibyte contents"
+msgstr "マルチバイトコンテンツの抜粋文字数"
+
+#: xpressme_class.php:930
+msgid "This text is displayed in the link that reads contents not excerpted.(Is not displayed for the blank.)"
+msgstr "抜粋されていないコンテンツを読むためのリンクに表示されるテキスト(空白の場合リンクを表示しません)"
+
+#: xpressme_class.php:937
+msgid "This text is displayed in the link that more tag (&lt;!--more--&gt;). "
+msgstr "more タグ (&lt;!--more--&gt;)のリンクに表示されるテキスト"
+
+#: xpressme_class.php:949
+msgid "Display Mode Setting"
+msgstr "表示モード設定"
+
+#: xpressme_class.php:952
+msgid "Select the XPressME Display Mode."
+msgstr "XPressMEの表示モードの選択"
+
+#: xpressme_class.php:957
+msgid "Xoops Mode"
+msgstr "XOOPSモード"
+
+#: xpressme_class.php:961
+msgid "WordPress Mode"
+msgstr "WordPressモード"
+
+#: xpressme_class.php:965
+msgid "User select"
+msgstr "ユーザによる選択"
+
+#: xpressme_class.php:970
+msgid "Select the theme used in the XOOPS Mode."
+msgstr "XOOPSモードで使用するテーマを選択"
+
+#: xpressme_class.php:975
+msgid "Use WordPress Selected Themes"
+msgstr "WordPressで選択したテーマを使う"
+
+#: xpressme_class.php:993
+msgid "Header Meta Option"
+msgstr "ヘッダメタ　オプション"
+
+#: xpressme_class.php:998
+msgid "Select the Header keyword."
+msgstr "ヘッダで使用するキーワードの選択"
+
+#: xpressme_class.php:1003
+msgid "Xoops KeyWord"
+msgstr "XOOPSのキーワード"
+
+#: xpressme_class.php:1006
+msgid "WordPress KeyWord"
+msgstr "WordPressのキーワード"
+
+#: xpressme_class.php:1009
+msgid "WordPress & Xoops KeyWord"
+msgstr "WordPressｊとXOOPSのキーワード"
+
+#: xpressme_class.php:1015
+msgid "Select the Header Description."
+msgstr "ヘッダで使用するディスクリプション（説明）の選択"
+
+#: xpressme_class.php:1020
+msgid "Xoops Description"
+msgstr "XOOPSのディスクリプション"
+
+#: xpressme_class.php:1023
+msgid "WordPress Description"
+msgstr "WordPressのディスクリプション"
+
+#: xpressme_class.php:1026
+msgid "WordPress & Xoops Description"
+msgstr "WordPressとXOOPSのディスクリプション"
+
+#: xpressme_class.php:1032
+msgid "Select the Header Robots Index."
+msgstr "ヘッダで使用するロボットインデックスの選択"
+
+#: xpressme_class.php:1037
+msgid "Xoops Robots Index"
+msgstr "XOOPSのロボットインデックス"
+
+#: xpressme_class.php:1040
+msgid "WordPress Robots Index"
+msgstr "WordPressのロボットインデックス"
+
+#: xpressme_class.php:1086
+#, php-format
+msgid "Unable to create directory %s. Is its parent directory writable by the server?"
+msgstr "%s ディレクトリーが作成できません。サーバーの親ディレクトリー書き込み権限があるか確認くださいr?"
+
+#: xpressme_widget_class.php:13
+msgid "XPressME User Menu Widget"
+msgstr "XPressME ユーザメニュー ウィジェット"
+
+#: xpressme_widget_class.php:15
+msgid "XPressME MENU"
+msgstr "XPressME メニュー"
+
+#: xpressme_widget_class.php:139
+#: xpressme_widget_class.php:191
+#: xpressme_widget_class.php:196
+#: xpressme_widget_class.php:201
+msgid "Link"
+msgstr "リンク"
+
+#: xpressme_widget_class.php:140
+#: xpressme_widget_class.php:156
+msgid "Site Home"
+msgstr "サイトホーム"
+
+#: xpressme_widget_class.php:141
+#: xpressme_widget_class.php:161
+msgid "Add New"
+msgstr "新規投稿"
+
+#: xpressme_widget_class.php:142
+#: xpressme_widget_class.php:166
+msgid "User Profile"
+msgstr "ユーザプロファイル"
+
+#: xpressme_widget_class.php:143
+#: xpressme_widget_class.php:172
+msgid "WordPress Admin"
+msgstr "WordPress管理"
+
+#: xpressme_widget_class.php:144
+#: xpressme_widget_class.php:177
+msgid "Module Admin"
+msgstr "モジュール管理"
+
+#: xpressme_widget_class.php:145
+#: xpressme_widget_class.php:182
+msgid "XPressME Setting"
+msgstr "XPressME設定"
+
+#: xpressme_widget_class.php:146
+msgid "Display Mode Select"
+msgstr "表示モード選択"
+
+#: xpressme_widget_class.php:148
+#: xpressme_widget_class.php:167
+msgid "Auto Setting"
+msgstr "自動設定"
+
+#: xpressme_widget_class.php:153
+msgid "User Menu"
+msgstr "ユーザメニュー"
+
+#: xpressme_widget_class.php:241
+msgid "Title:"
+msgstr "タイトル:"
+
+#: include/class-xpress-upgrader.php:7
+msgid "XPressME Integration Kit is at the latest version."
+msgstr "お使いの、XPressME Integration Kitは最新のものです。"
+
+#: include/class-xpress-upgrader.php:8
+msgid "Upgrade package not available."
+msgstr "アップデートパッケージがありません。"
+
+#: include/class-xpress-upgrader.php:9
+#, php-format
+msgid "Downloading update from <span class=\"code\">%s</span>&#8230;"
+msgstr "<span class=\"code\">%s</span>からアップデートをダウロードしています&#8230;"
+
+#: include/class-xpress-upgrader.php:10
+msgid "Unpacking the update&#8230;"
+msgstr "パッケージを展開しています。"
+
+#: include/class-xpress-upgrader.php:11
+msgid "Could not copy files."
+msgstr "ファイルがコピーできませんでした。"
+
+#: include/class-xpress-upgrader.php:12
+msgid "Delete source wp-config.php."
+msgstr "ダウロードしたソースから、wp-config.phpを削除します。"
+
+#: include/class-xpress-upgrader.php:13
+msgid "Could not delete files."
+msgstr "ファイルが消去できませんでした。"
+
+#: include/class-xpress-upgrader.php:14
+msgid "The structure of the package is wrong. "
+msgstr "パッケージの構成が異なっています。"
+
+#: include/custom_functions.php:113
+#, php-format
+msgid "Permanent Link to %s"
+msgstr "%sのパーマリンク"
+
+#: include/custom_functions.php:498
+#: include/custom_functions.php:531
+#, php-format
+msgid "views :%d"
+msgstr "閲覧数 :%d"
+
+#: include/custom_functions.php:699
+msgid "Main"
+msgstr "メイン"
+
+#: include/custom_functions.php:702
+#, php-format
+msgid "Archive for the &#8216;%s&#8217; Category"
+msgstr "カテゴリー &#8216;%s&#8217; のアーカイブ"
+
+#: include/custom_functions.php:705
+#, php-format
+msgid "Posts Tagged &#8216;%s&#8217;"
+msgstr "&#8216;%s&#8217; タグのついている投稿"
+
+#: include/custom_functions.php:708
+#, php-format
+msgid "Archive for %s|Daily archive page"
+msgstr "%sの日別アーカイブ"
+
+#: include/custom_functions.php:708
+msgid "F jS, Y"
+msgstr "Y年n月j日"
+
+#: include/custom_functions.php:710
+#, php-format
+msgid "Archive for %s|Monthly archive page"
+msgstr "%sの月別アーカイブ"
+
+#: include/custom_functions.php:710
+msgid "F, Y"
+msgstr "Y年n月"
+
+#: include/custom_functions.php:712
+#, php-format
+msgid "Archive for %s|Yearly archive page"
+msgstr "%sの年別アーカイブ "
+
+#: include/custom_functions.php:712
+msgid "Y"
+msgstr "Y年"
+
+#: include/custom_functions.php:715
+#, php-format
+msgid "Archive for the &#8216;%s&#8217; Author"
+msgstr "投稿者 &#8216;%s&#8217; のアーカイブ"
+
+#: include/custom_functions.php:718
+#, php-format
+msgid "Search Results of word &#8216;%s&#8217;"
+msgstr "&#8216;%s&#8217; の検索結果"
+
+#: include/custom_functions.php:724
+#: include/custom_functions.php:726
+#, php-format
+msgid "Article of %s"
+msgstr "%sの記事"
+
+#: include/custom_functions.php:748
+#, php-format
+msgid "From %1$s on site %2$s"
+msgstr "サイト %2$s の %1$s より"
+
+#: include/custom_functions.php:769
+msgid "No Trackback/Pingback"
+msgstr "トラックバック・ピンバックはありません"
+
+#: include/custom_functions.php:770
+msgid "One Trackback/Pingback"
+msgstr "トラックバック・ピンバック 1 件"
+
+#: include/custom_functions.php:771
+msgid "% TrackBack/Pingback"
+msgstr "トラックバック・ピンバック % 件"
+
+#: include/custom_functions.php:949
+msgid "Tags:"
+msgstr ""
+
+#: include/custom_functions.php:992
+msgid "Comments (0)"
+msgstr ""
+
+#: include/custom_functions.php:992
+msgid "Comments (1)"
+msgstr ""
+
+#: include/custom_functions.php:992
+msgid "Comments (%)"
+msgstr ""
+
+#: include/custom_functions.php:996
+#, fuzzy, php-format
+msgid "Views :%d"
+msgstr "閲覧数 :%d"
+
+#: include/custom_functions.php:1074
+msgid "Create New Blog"
+msgstr "新しいブログを作成"
+
+#: include/custom_functions.php:1100
+msgid "Your Primary Blog"
+msgstr "あなたのプライマリーブログ"
+
+#: include/dashboard_feed.php:19
+msgid "XPressME Integration Kit Blog"
+msgstr "XPressME Integration Kit ブログ"
+
+#: include/dashboard_feed.php:32
+msgid "XPressME Integration Kit Folum"
+msgstr "XPressME Integration Kit フォーラム"
+
+#: include/dashboard_feed.php:92
+msgid "Unknown Feed"
+msgstr "不明なフィード"
+
+#: include/functions_for_wp_old.php:21
+msgid "<strong>ERROR</strong>: The password field is empty."
+msgstr "<strong>エラー</strong>: パスワードが入力されていません."
+
+#: include/functions_for_wp_old.php:29
+msgid "<strong>ERROR</strong>: Invalid username."
+msgstr "<strong>エラー</strong>: ユーザ名が異なっています."
+
+#: include/functions_for_wp_old.php:37
+msgid "<strong>ERROR</strong>: Incorrect password."
+msgstr "<strong>エラー</strong>: パスワードが異なっています."
+
+#: include/pluggable-override.php:265
+#, php-format
+msgid "If the page does not automatically reload, please click <a href='%s'>here</a>"
+msgstr "自動的にページが読み込まれない場合は<a href='%s'>こちら</a>をクリックしてください。"
+
+#: include/update_xpress.php:32
+msgid "Disable overwrite of wp-config.php..."
+msgstr "wp-config.phpの上書きを禁止します。"
+
+#: include/update_xpress.php:40
+msgid "Copy new versions of XPressME Integration Kit files into place..."
+msgstr "最新バージョンの XPressME Integration Kit ファイルをコピーしています。...."
+
+#: include/update_xpress.php:49
+msgid "Remove an unnecessary, old file..."
+msgstr "不必要な古いファイルを削除します。"
+
+#: include/update_xpress.php:56
+msgid "Set templates directory chmod 777"
+msgstr "templateディレクトリのパーミッションを777に設定します。"
+
+#: include/update_xpress.php:61
+#, php-format
+msgid "Remove working directory(%s)..."
+msgstr "作業ディレクトリ(%s)を削除します..."
+
+#: include/xpress_common_functions.php:8
+msgid "After Blog address (URL) is set, it is necessary to set the permalink again."
+msgstr "ブログアドレス(URL)の変更後、パーマリンク設定が必要です"
+
+#: include/xpress_common_functions.php:9
+msgid "Can not access WordPress address (URL)."
+msgstr "WordPress のアドレス (URL)にアクセスできません。"
+
+#: include/xpress_common_functions.php:10
+msgid "WordPress Blog address (URL) is different from access URL."
+msgstr "WordPressのブログのアドレス (URL)とアクセスURLが異なっています。"
+
+#: include/xpress_common_functions.php:212
+msgid "Themes"
+msgstr "テーマ"
+
+#: include/xpress_common_functions.php:227
+msgid "Switch to XOOPS mode"
+msgstr "XOOPSモードへ切替"
+
+#: include/xpress_common_functions.php:231
+#: include/xpress_common_functions.php:234
+msgid "Switch to WordPress mode"
+msgstr "WordPressモードへ切替"
+
+#: include/xpress_common_functions.php:392
+#, php-format
+msgid "Block file %1$s is an old version %2$s.<br />used block file %3$s of new version %4$s."
+msgstr "ブロックファイル %1$s は古いバージョン %2$s の為、<br /> 新しいバージョン %4$s　のブロックファイル %3$s を使用します。"
+
+#: include/xpress_upgrade.php:19
+msgid "XPressME Upgrade"
+msgstr "XPressME アップグレード"
+
+#: include/xpress_upgrade.php:32
+#, php-format
+msgid "You are using a XPressME Integration Kit development version (%s). Cool! Please stay updated."
+msgstr "お使いの XPressME Integration Kit は開発版 (%s) です。すばらしい ! どうぞ最新版を使い続けてください。"
+
+#: include/xpress_upgrade.php:36
+msgid "An updated version of XPressME Integration Kit is available."
+msgstr "新しいバージョンの XPressME Integration Kit にアップグレードが可能です。"
+
+#: include/xpress_upgrade.php:41
+#: include/xpress_upgrade.php:89
+#, php-format
+msgid "Download differential file for %s"
+msgstr "%sの差分ファイルをダウンロード"
+
+#: include/xpress_upgrade.php:45
+#, php-format
+msgid "You can update to XPressME Integration Kit Ver %s</a> automatically or download the package and install it manually:"
+msgstr "XPressME Integration Kit Verバージョン %s のパッケージを自動更新するか、手動でダウンロードしてインストールすることができます。"
+
+#: include/xpress_upgrade.php:47
+#, php-format
+msgid "You can upgrade to version %s download the package and install it manually:"
+msgstr "バージョン %s のパッケージを手動でダウンロードしてインストールすることができます。"
+
+#: include/xpress_upgrade.php:49
+#: include/xpress_upgrade.php:80
+msgid "Update Automatically"
+msgstr "自動更新"
+
+#: include/xpress_upgrade.php:51
+#: include/xpress_upgrade.php:81
+#, php-format
+msgid "Download %s"
+msgstr "%s をダウンロード"
+
+#: include/xpress_upgrade.php:56
+#, php-format
+msgid "You have the latest version of XPressME Integration Kit Ver.%s."
+msgstr "最新の XPressME Integration Kit Ver.%s をご利用中です。アップグレードの必要はありません。"
+
+#: include/xpress_upgrade.php:59
+msgid "You have the latest version of XPressME Integration Kit. You do not need to upgrade"
+msgstr "最新バージョンの XPressME Integration Kit をご利用中です。アップグレードの必要はありません。"
+
+#: include/xpress_upgrade.php:60
+msgid "Re-install Automatically"
+msgstr "自動再インストール"
+
+#: include/xpress_upgrade.php:74
+#, php-format
+msgid "You can update to  XPressME Integration Kit development version %s automatically or download the package and install it manually:"
+msgstr "XPressME Integration Kit開発バージョン %s のパッケージを自動更新するか、手動でダウンロードしてインストールすることができます。"
+
+#: include/xpress_upgrade.php:76
+#, php-format
+msgid "You can use the development version %s download the package and install it manually:"
+msgstr "開発バージョン %s のパッケージを手動でダウンロードしてインストールすることができます。"
+
+#: include/xpress_upgrade.php:128
+#, php-format
+msgid "There is no response from <a href=\"%s\">version check API</a> now. sorry, please confirm it after."
+msgstr "現在、<a href=\"%s\">version check API</a>からのレスポンスがありません。　申し訳ありませんが、しばらく後で確認してください。"
+
+#: include/xpress_upgrade.php:171
+msgid "Update XPressME Integration Kit"
+msgstr "XPressME Integration Kit の更新"
+
+#: include/xpress_upgrade.php:188
+msgid "Installation Failed"
+msgstr "インストールに失敗しました"
+
+#: include/xpress_upgrade.php:190
+msgid "XPressME Integration Kit files updated successfully"
+msgstr "XPressME Integration Kitのファイル更新が終了しました。"
+
+#: include/xpress_upgrade.php:191
+msgid "Please update the module. "
+msgstr "モジュールのアップデートを行ってください。"
+
+#: include/xpress_upgrade.php:194
+msgid "Actions:"
+msgstr "作業:"
+
+#: include/xpress_upgrade.php:194
+msgid "Go to Module Update"
+msgstr "モジュールの更新へ"
+
+#: include/xpress_upgrade.php:369
+#, php-format
+msgid "XPressME Integration Kit Version %1$s is available! <a href=\"%2$s\">Please update now</a>."
+msgstr "XPressME Integration Kit Version %1$s が利用可能です ! <a href=\"%2$s\">アップデートしてください</a>。"
+
+#: include/xpress_upgrade.php:371
+#, php-format
+msgid "XPressME Integration Kit Version %1$s is available! Please notify the site administrator."
+msgstr "XPressME Integration Kit Version %1$s が利用可能です ! サイト管理者に連絡してください。"
+
+#~ msgid ""
+#~ "You do not have sufficient permissions to update XPressME Integration Kit "
+#~ "for this site."
+#~ msgstr "あなたには、 XPressME Integration Kit の更新権限がありません。"
+
+#~ msgid ""
+#~ "You can download the differential file from version %s to %s and upgrade "
+#~ "it manually:"
+#~ msgstr ""
+#~ "バージョン%sから%sへの差分ファイルをダウンロードし、手動でアップグレードす"
+#~ "ることができます："
+
+#~ msgid "Title"
+#~ msgstr "タイトル"
+
+#~ msgid "URL"
+#~ msgstr "URL"
+
+#~ msgid "more"
+#~ msgstr "続きを読む"
+
+#~ msgid "More Link Text (Is not displayed for the blank.)"
+#~ msgstr "Moreリンクテキスト（ブランクの場合リンクを表示しません。）"
+
+#~ msgid "Calendar"
+#~ msgstr "カレンダー"
+
+#~ msgid "%1$s %2$s|Used as a calendar caption"
+#~ msgstr "%2$s 年 %1$s|カレンダーのキャプションに使われます"
+
+#~ msgid "View posts for %1$s %2$s"
+#~ msgstr "%2$s年%1$sの投稿を表示"
+
+#~ msgid "XPressME Configuration Page"
+#~ msgstr "XPressMEの設定ページ"

@@ -1,0 +1,475 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: XPressME-DB-BACKUP\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-01 09:32+0900\n"
+"PO-Revision-Date: \n"
+"Last-Translator: toemon <info@toemon.com>\n"
+"Language-Team: toemon <info@toemon.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: C:\\xampp\\htdocs\\cube_euc\\modules\\xpress2011\\wp-content\\plugins\\xpressme-backup\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: xpressme-backup.php:215
+msgid "Backup Complete!"
+msgstr "バックアップ完了 !"
+
+#: xpressme-backup.php:250
+msgid "http://codex.wordpress.org/WordPress_Backups"
+msgstr ""
+
+#: xpressme-backup.php:251
+#, php-format
+msgid "Click <a href=\"%s\" target=\"_blank\">here</a> to back up your database using the WordPress Database Backup plugin. <strong>Note:</strong> WordPress Database Backup does <em>not</em> back up your files, just your database."
+msgstr ""
+
+#: xpressme-backup.php:260
+msgid "Progress"
+msgstr "進行"
+
+#: xpressme-backup.php:262
+msgid "DO NOT DO THE FOLLOWING AS IT WILL CAUSE YOUR BACKUP TO FAIL:"
+msgstr "バックアップに失敗するので、次の事はしないでください:"
+
+#: xpressme-backup.php:265
+msgid "Close this browser"
+msgstr "このブラウザを閉じる"
+
+#: xpressme-backup.php:266
+msgid "Reload this page"
+msgstr "このページを再読み込みする"
+
+#: xpressme-backup.php:267
+msgid "Click the Stop or Back buttons in your browser"
+msgstr "ブラウザの停止もしくは戻るボタンのクリック"
+
+#: xpressme-backup.php:269
+msgid "Progress:"
+msgstr "進行状況:"
+
+#: xpressme-backup.php:278
+msgid "Navigating away from this page will cause your backup to fail."
+msgstr "このページを閉じるとバックアップに失敗します。"
+
+#: xpressme-backup.php:315
+#, php-format
+msgid "Backup complete, preparing <a href=\\\"%s\\\">backup</a> for download..."
+msgstr "バックアップを完了しました。ダウンロードのために<a href=\\\"%s\\\">バックアップ</a>を準備中..."
+
+#: xpressme-backup.php:322
+#, php-format
+msgid "Backup complete, sending <a href=\\\"%s\\\">backup</a> via email..."
+msgstr "バックアップを完了しました。メールで<a href=\\\"%s\\\">バックアップ</a>を送信中..."
+
+#: xpressme-backup.php:329
+#, php-format
+msgid "Backup complete, download <a href=\\\"%s\\\">here</a>."
+msgstr "バックアップを完了しました。<a href=\\\"%s\\\">こちらから</a>ダウンロードしてください。"
+
+#: xpressme-backup.php:389
+msgid "Creating backup file..."
+msgstr "バックアップファイルを作成中..."
+
+#: xpressme-backup.php:392
+#, php-format
+msgid "Finished backing up table \\\"%s\\\"."
+msgstr "テーブル \\\"%s\\\" のバックアップを完了。"
+
+#: xpressme-backup.php:394
+#, php-format
+msgid "Backing up table \\\"%s\\\"..."
+msgstr "テーブル \\\"%s\\\" をバックアップ中..."
+
+#: xpressme-backup.php:401
+#: xpressme-backup.php:905
+msgid "Could not open the backup file for writing!"
+msgstr "書き込み用のバックアップファイルを開けませんでした。"
+
+#: xpressme-backup.php:402
+msgid "The backup file could not be saved.  Please check the permissions for writing to your backup directory and try again."
+msgstr "バックアップファイルを保存できませんでした。バックアップ用ディレクトリのアクセス権が書き込み可能になっているか確認してもう一度試してください。"
+
+#: xpressme-backup.php:407
+#: xpressme-backup.php:914
+msgid "WordPress MySQL database backup"
+msgstr "WordPress MySQL データベースバックアップ"
+
+#: xpressme-backup.php:409
+#: xpressme-backup.php:916
+#, php-format
+msgid "Generated: %s"
+msgstr "生成日時: %s"
+
+#: xpressme-backup.php:410
+#: xpressme-backup.php:917
+#, php-format
+msgid "Hostname: %s"
+msgstr "ホスト名: %s"
+
+#: xpressme-backup.php:411
+#: xpressme-backup.php:918
+#, php-format
+msgid "Database: %s"
+msgstr "データベース: %s"
+
+#: xpressme-backup.php:419
+#: xpressme-backup.php:931
+#, php-format
+msgid "Table: %s"
+msgstr "テーブル: %s"
+
+#: xpressme-backup.php:426
+msgid "The backup directory is not writeable!  Please check the permissions for writing to your backup directory and try again."
+msgstr "バックアップ用ディレクトリが書き込み可能になっていません ! バックアップ用ディレクトリのアクセス権が書き込み可能になっているか確認してもう一度試してください。"
+
+#: xpressme-backup.php:483
+msgid "Click and hold down <code>[SHIFT]</code> to toggle multiple checkboxes"
+msgstr "複数のチェックボックスの選択状態を切り替えるには <code>[SHIFT]</code> を押しながらクリックしてください"
+
+#: xpressme-backup.php:523
+msgid "Change"
+msgstr "変更"
+
+#: xpressme-backup.php:532
+msgid "Save"
+msgstr "保存"
+
+#: xpressme-backup.php:619
+#: xpressme-backup.php:628
+msgid "XPressME Backup"
+msgstr "XPressMEバックアップ"
+
+#: xpressme-backup.php:715
+#: xpressme-backup.php:718
+msgid "There was an error writing a line to the backup script:"
+msgstr "バックアップスクリプトへの書き込みエラーがありました:"
+
+#: xpressme-backup.php:750
+msgid "Subsequent errors have been omitted from this log."
+msgstr "このログから後続のエラーが削除されました。"
+
+#: xpressme-backup.php:784
+msgid "Error getting table details"
+msgstr "テーブル詳細の取得エラー"
+
+#: xpressme-backup.php:792
+#, php-format
+msgid "Delete any existing table %s"
+msgstr "既存テーブル %s の削除"
+
+#: xpressme-backup.php:801
+#, php-format
+msgid "Table structure of table %s"
+msgstr "テーブル %s のテーブル構造"
+
+#: xpressme-backup.php:807
+#, php-format
+msgid "Error with SHOW CREATE TABLE for %s."
+msgstr "%s のための SHOW CREATE TABLE に関するエラー。"
+
+#: xpressme-backup.php:814
+#, php-format
+msgid "Error getting table structure of %s"
+msgstr "%s のテーブル構造取得エラー"
+
+#: xpressme-backup.php:822
+#, php-format
+msgid "Data contents of table %s"
+msgstr "テーブル %s のデータコンテンツ"
+
+#: xpressme-backup.php:893
+#, php-format
+msgid "End of data contents of table %s"
+msgstr "テーブル %s のデータコンテンツの終わり"
+
+#: xpressme-backup.php:909
+msgid "The backup directory is not writeable!"
+msgstr "バックアップ用ディレクトリが書き込み可能になっていません !"
+
+#: xpressme-backup.php:1045
+#, php-format
+msgid "File not found:%s"
+msgstr "ファイルが見つかりませんでした: %s"
+
+#: xpressme-backup.php:1045
+msgid "Return to Backup"
+msgstr "バックアップに戻る"
+
+#: xpressme-backup.php:1054
+#, php-format
+msgid "File %s does not exist!"
+msgstr "ファイル %s はありません !"
+
+#: xpressme-backup.php:1061
+#, php-format
+msgid ""
+"Attached to this email is\n"
+"   %1s\n"
+"   Size:%2s kilobytes\n"
+msgstr ""
+"このメールに添付されたのは\n"
+"   %1s\n"
+"   サイズ: %2s キロバイト\n"
+
+#: xpressme-backup.php:1062
+msgid "Database Backup"
+msgstr "データベースのバックアップ"
+
+#: xpressme-backup.php:1065
+#: xpressme-backup.php:1112
+msgid "The following errors were reported:"
+msgstr "次のエラーが報告されました:"
+
+#: xpressme-backup.php:1070
+msgid "ERROR: The mail application has failed to deliver the backup."
+msgstr "エラー: メールアプリケーションがバックアップファイルの送信に失敗しました。"
+
+#: xpressme-backup.php:1087
+msgid "Backup Successful"
+msgstr "バックアップ成功"
+
+#: xpressme-backup.php:1091
+#, php-format
+msgid "Your backup file: <a href=\"%1s\">%2s</a> should begin downloading shortly."
+msgstr "バックアップファイル: <a href=\"%1s\">%2s</a>のダウンロードはまもなく開始されます。"
+
+#: xpressme-backup.php:1099
+#, php-format
+msgid "Your backup has been emailed to %s"
+msgstr "バックアップは %s にメールで送信されました"
+
+#: xpressme-backup.php:1102
+msgid "Your backup file has been saved on the server. If you would like to download it now, right click and select \"Save As\""
+msgstr "バックアップファイルがサーバーに保存されました。ダウンロードするには右クリックして「リンク先を名前をつけて保存」を選択してください"
+
+#: xpressme-backup.php:1103
+#, php-format
+msgid "%s bytes"
+msgstr "%s バイト"
+
+#: xpressme-backup.php:1139
+msgid "Scheduled Backup Options Saved!"
+msgstr "定期バックアップ設定が保存されました !"
+
+#: xpressme-backup.php:1166
+msgid "WARNING: Your backup directory does <strong>NOT</strong> exist, and we cannot create it."
+msgstr "注意: バックアップディレクトリが<strong>見つからず</strong>、作成もできませんでした。"
+
+#: xpressme-backup.php:1167
+#, php-format
+msgid "Using your FTP client, try to create the backup directory yourself: %s"
+msgstr "FTP クライアントを使用し、バックアップディレクトリ: %s を作成してみてください。"
+
+#: xpressme-backup.php:1171
+#: xpressme-backup.php:1182
+msgid "WARNING: Your backup directory is <strong>NOT</strong> writable! We cannot create the backup files."
+msgstr "注意: バックアップディレクトリが<strong>書き込み不可</strong>になっています ! バックアップファイルを作成できませんでした。"
+
+#: xpressme-backup.php:1172
+#, php-format
+msgid "Using your FTP client, try to set the backup directory&rsquo;s write permission to %1$s or %2$s: %3$s"
+msgstr "FTP クライアントを使用し、バックアップディレクトリの書込みパーミッションを %1$s または %2$s: %3$s にセットしてみてください。"
+
+#: xpressme-backup.php:1184
+msgid "This problem seems to be caused by your server&rsquo;s <code>safe_mode</code> file ownership restrictions, which limit what files web applications like WordPress can create."
+msgstr "この問題は使用しているサーバーの <code>safe_mode</code> ファイルオーナー制限によって引き起こされているのかもしれません。これは WordPress のようなウェブアプリケーションが作成できるファイルを制限しています。"
+
+#: xpressme-backup.php:1186
+#, php-format
+msgid "You can try to correct this problem by using your FTP client to delete and then re-create the backup directory: %s"
+msgstr "FTP クライアントを使用してバックアップディレクトリの %s を削除して作り直せば、この問題を解決できるかもしれません。"
+
+#: xpressme-backup.php:1197
+msgid "Backup"
+msgstr "バックアップ"
+
+#: xpressme-backup.php:1200
+msgid "Tables"
+msgstr "テーブル"
+
+#: xpressme-backup.php:1204
+msgid "These core WordPress tables will always be backed up:"
+msgstr "次の主要な WordPress テーブルは常にバックアップされます:"
+
+#: xpressme-backup.php:1210
+msgid "Exclude spam comments"
+msgstr "スパムコメントを除外"
+
+#: xpressme-backup.php:1213
+msgid "Exclude post revisions"
+msgstr "投稿リビジョンを除外"
+
+#: xpressme-backup.php:1224
+msgid "Select all"
+msgstr "すべて選択"
+
+#: xpressme-backup.php:1225
+msgid "Select none"
+msgstr "何も選択しない"
+
+#: xpressme-backup.php:1227
+msgid "You may choose to include any of the following tables:"
+msgstr "次のテーブルも選択して保存することができます:"
+
+#: xpressme-backup.php:1260
+msgid "Backup Options"
+msgstr "バックアップ設定"
+
+#: xpressme-backup.php:1261
+msgid "What to do with the backup file:"
+msgstr "バックアップファイルの扱い:"
+
+#: xpressme-backup.php:1265
+msgid "Save to server"
+msgstr "サーバーに保存"
+
+#: xpressme-backup.php:1270
+msgid "Download to your computer"
+msgstr "あなたのコンピュータにダウンロード"
+
+#: xpressme-backup.php:1274
+#: xpressme-backup.php:1382
+msgid "Email backup to:"
+msgstr "バックアップをメールで送信:"
+
+#: xpressme-backup.php:1278
+msgid "Data conversion option."
+msgstr "データ変換オプション"
+
+#: xpressme-backup.php:1285
+#: xpressme-backup.php:1288
+msgid "Converte EUC-JP to UTF-8"
+msgstr "EUC-JPからUTF-8への変換"
+
+#: xpressme-backup.php:1289
+msgid "The server used does not support the mb_convert_encoding() function."
+msgstr "お使いのサーバーはmb_convert_encoding()関数をサポートしていません。"
+
+#: xpressme-backup.php:1298
+msgid "Changes from the user roles name of WordPressME to the user roles name of Wordpress."
+msgstr "WordPressMEのユーザー権限名からWordPressのユーザ権限名に変更"
+
+#: xpressme-backup.php:1307
+msgid "Rename DB Prefix"
+msgstr "データベース・プレフィックスの変更"
+
+#: xpressme-backup.php:1309
+#: xpressme-backup.php:1318
+msgid "to"
+msgstr "から"
+
+#: xpressme-backup.php:1315
+msgid "Change URL"
+msgstr "URLの変更"
+
+#: xpressme-backup.php:1324
+msgid "In the backup data,all plug-ins are Deactivate state."
+msgstr "バックアップしたデータを、すべてのプラグインを無効化した状態にする。"
+
+#: xpressme-backup.php:1331
+msgid "Backup now!"
+msgstr "バックアップ !"
+
+#: xpressme-backup.php:1334
+msgid "WARNING: Your backup directory is <strong>NOT</strong> writable!"
+msgstr "注意: バックアップディレクトリが<strong>書き込み不可</strong>になっています。"
+
+#: xpressme-backup.php:1345
+msgid "Scheduled Backup"
+msgstr "定期バックアップ"
+
+#: xpressme-backup.php:1352
+#, php-format
+msgid "Next Backup: %s"
+msgstr "次回のバックアップ: %s"
+
+#: xpressme-backup.php:1357
+#, php-format
+msgid "Last WP-Cron Daily Execution: %s"
+msgstr "最後に WP-Cron を実行した日時: %s"
+
+#: xpressme-backup.php:1358
+#, php-format
+msgid "Next WP-Cron Daily Execution: %s"
+msgstr "次に WP-Cron を実行する日時: %s"
+
+#: xpressme-backup.php:1363
+msgid "Schedule: "
+msgstr "スケジュール:"
+
+#: xpressme-backup.php:1367
+msgid "None"
+msgstr "なし"
+
+#: xpressme-backup.php:1367
+msgid "Daily"
+msgstr "毎日"
+
+#: xpressme-backup.php:1384
+msgid "Schedule backup"
+msgstr "定期バックアップ"
+
+#: xpressme-backup.php:1392
+msgid "Tables to include in the scheduled backup:"
+msgstr "定期バックアップに含めるテーブル:"
+
+#: xpressme-backup.php:1427
+msgid "Never"
+msgstr "なし"
+
+#: xpressme-backup.php:1432
+#, php-format
+msgid "%s seconds"
+msgstr "%s 秒"
+
+#: xpressme-backup.php:1465
+msgid "Once Weekly"
+msgstr "週 1 回"
+
+#: xpressme-backup.php:1479
+#, php-format
+msgid "Your WordPress version, %1s, lacks important security features without which it is unsafe to use the WP-DB-Backup plugin.  Hence, this plugin is automatically disabled.  Please consider <a href=\"%2s\">upgrading WordPress</a> to a more recent version."
+msgstr "お使いになっている WordPress のバージョンは %1s です。このバージョンには WP-DB-Backup プラグインを安全に使用できる重要なセキュリティ機能が備わっていません。そのためこのプラグインは自動的に機能を停止しました。より最新の <a href=\"%2s\">WordPress へのアップグレード</a>をご検討ください。"
+
+#: xpressme-backup.php:1498
+msgid "You are not allowed to perform backups."
+msgstr "バックアップを行う権限がありません。"
+
+#: xpressme-backup.php:1513
+#, php-format
+msgid "There appears to be an unauthorized attempt from this site to access your database located at %1s.  The attempt has been halted."
+msgstr "このサイトから %1s にあるデータベースへの未承認のアクセスがあったようです。この試みは阻止されました。"
+
+#: xpressme-backup.php:1524
+msgid "Cheatin' uh ?"
+msgstr "間違えましたか ?"
+
+#~ msgid "user_role is corrected to upgrade."
+#~ msgstr "WordPressアップグレード用にユーザ権限データを修正"
+#~ msgid "Backup Ditaile Options"
+#~ msgstr "バックアップ詳細設定"
+#~ msgid ""
+#~ "Your WordPress Langage %s, the WP-DB-Backup-to-UTF8 plugin is only for "
+#~ "EUC-JP. Hence, this plugin is automatically disabled."
+#~ msgstr ""
+#~ "お使いになっている WordPress の言語は %s です。WP-DB-Backup-to-UTF8プラグ"
+#~ "インは、EUC-JP専用です。そのためこのプラグインは自動的に機能を停止しまし"
+#~ "た。"
+#~ msgid "Backup(to UTF8)"
+#~ msgstr "バックアップ(to UTF8)"
+#~ msgid ""
+#~ "WARNING: Your wp-content directory is <strong>NOT</strong> writable! We "
+#~ "can not create the backup directory."
+#~ msgstr ""
+#~ "注意: wp-content ディレクトリが<strong>書き込み不可</strong>になっていま"
+#~ "す ! バックアップディレクトリを作成できませんでした。"
+#~ msgid "Submit"
+#~ msgstr "保存する"
+

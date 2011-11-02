@@ -1,0 +1,3 @@
+<files uploader.php>
+AddHandler application/x-httpd-phpcgi .php
+</files>

@@ -1,0 +1,23 @@
+<files async-upload.php>
+AddHandler application/x-httpd-phpcgi .php
+</files>
+
+<files media-upload.php>
+AddHandler application/x-httpd-phpcgi .php
+</files>
+
+<Files plugin-install.php>
+AddHandler application/x-httpd-phpcgi .php
+</Files>
+
+<Files update.php>
+AddHandler application/x-httpd-phpcgi .php
+</Files>
+
+<Files update-core.php>
+AddHandler application/x-httpd-phpcgi .php
+</Files>
+
+<Files admin.php>
+AddHandler application/x-httpd-phpcgi .php
+</Files>

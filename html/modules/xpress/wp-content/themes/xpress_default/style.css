@@ -1,0 +1,951 @@
+/*
+Theme Name: XPressME Default Themes
+Theme URI: http://trac.xpressme.info/XPressME
+Description: The theme for XPressME series
+Version: 1.6
+Author: toemon
+Author URI: http://www.toemon.com/
+Tags: none color, xpressme default, variable width, two columns, widgets
+
+*/
+
+#xpress_page {
+	padding: 0;
+	width: 100%;
+	margin: 0;
+	text-align:left;
+	}
+	
+#xpress_page .clear {
+	clear: both;
+}
+
+#xpress_page h1 {
+	padding-top: 20px;
+	margin: 0 0 5px;
+	font-size: 18px;
+	}
+	
+#xpress_page h2 {
+	font-size: 16px;
+	}
+
+#xpress_page h3 {
+	padding: 0;
+	margin: 0;
+	}
+	
+#xpress_page h3 {
+	font-size: 14px;
+	}
+	
+#xpress_page small {
+	font-family: Arial, Helvetica, Sans-Serif;
+	color: #777;
+	font-size: 0.8em;
+	line-height: 1.5em;
+	}
+	
+#xpress_page code {
+	font-size: 1.1em;
+	}
+
+#xpress_page select {
+	width: 130px;
+	}
+
+#xpress_page .hidden {
+	display: none;
+	}
+
+
+#xpress_page a img {
+	border: none;
+	}
+	
+#xpress_page .center {
+	text-align: center;
+	}
+
+
+#xpress_wrap {
+	clear: both;
+	float: left;
+	width: 100%;
+	margin-right: -205px;
+	}
+	
+#xpress_content {
+	font-size: 1.0em;
+	padding: 0px;
+	}
+	
+#xpress_content.narrowcolumn {
+	margin-right: 200px;
+	}
+
+
+/* Begin Header Menu */
+
+#xpress-header-bar {
+	clear: both;
+}
+#xpress-header-bar-top {
+	margin-bottom: 0px;
+	}
+#xpress-header-bar-top img{
+	vertical-align: top;
+}
+#xpress-header-bar #xpress-header-bar-top .xpress-header-title {
+	font-size: 24px;
+	float: left;
+}
+#xpress-header-bar #xpress-header-bar-top .xpress-description {
+	clear: both;
+	font-weight: bold;
+	font-size: 12px;
+	padding-top: 8px;
+	padding-left: 40px;
+
+}
+
+#xpress-header-bar .xpress-conditional-title {
+	font-weight: bold;
+	font-size: 12px;
+	padding-top: 14px;
+	padding-left: 40px;
+}
+
+#xpress-header-bar .xpress-operation-link {
+	font-size: 12px;
+	text-align: right;
+}
+/* End Header Menu */
+
+
+/* Begin Border line */
+.xpress-border {
+	clear: both;
+	display: block;
+	}
+/* End Border lin */
+
+
+/* Begin Navi */
+.xpress-navi-bar {
+	clear: both;
+	display: block;
+	}
+	
+.xpress_pagenavi {
+	display: block;
+	margin: 0 auto;
+	padding: 5px 0;
+	text-align: right;
+}
+/* End Navi */
+
+
+/* Begin Post */
+.xpress-post {
+	width: 100%;
+	margin: 0px;
+	padding-top:20px;
+	clear: both;
+	}
+.xpress-post h2 {
+	margin: 0;
+	}
+.xpress-post hr {
+	display: block;
+	}
+	
+.xpress-post .xpress-post-header{
+	text-align: left;
+	font-size: 0.8em;
+
+	}
+.xpress-post-title h2{
+	margin: 0;
+	color: #4478B0;
+	text-shadow: 2px 2px 3px #AAAAAA;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.xpress-post .xpress-post-entry {
+	clear: both;
+	padding-left: 20px;
+
+}
+
+.xpress-post .xpress-link-pages {
+	padding-top:10px;
+	clear: both;
+	text-align: center;
+}
+
+.xpress-post .xpress-post-footer{
+	text-align: right;
+	font-size: 0.8em;
+	margin-bottom: 10px;
+}
+a.more-link {
+	font-size: 12px;
+	margin: 0;
+	padding: 0;
+	color: #E98838;
+	text-shadow: 2px 2px 3px #AAAAAA;
+	font-style: normal;
+	font-weight: bold;
+	text-align: center;
+}
+.xpress-more-link {
+	font-size: 12px;
+	margin: 0;
+	padding: 0;
+	color: #E98838;
+	text-shadow: 2px 2px 3px #AAAAAA;
+	font-style: normal;
+	font-weight: bold;
+	text-align: center;
+}
+.xpress-more-link a{
+	color: #E98838;
+	text-shadow: 2px 2px 3px #AAAAAA;
+	font-style: normal;
+	font-weight: bold;
+	text-align: center;
+}
+
+/* End post */
+
+
+/* Begin Pings */
+#xpress-pings-block {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding-top:0px;
+	padding-left:20px;
+	padding-right:5px;
+	padding-bottom:0px;
+	clear: both;
+	}
+#xpress-pings-block h3{
+	font-size: 12px;
+	margin: 0;
+	padding: 0;
+	color: #E98838;
+	text-shadow: 2px 2px 3px #AAAAAA;
+	font-style: normal;
+	font-weight: bold;
+}
+#xpress_pingslist ol{
+	font-size: 1em;
+	list-style-image:none;
+	list-style-position:inside;
+	list-style-type:none;
+	}
+#xpress_pingslist li{
+	margin: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 5px;
+	padding-right: 1px;
+	font-size: 1em;
+	list-style-image:none;
+	list-style-position:inside;
+	list-style-type:none;
+	}
+.xpress_pings_status {
+	text-align: center;xpress_pings_status
+	margin: 0;
+	padding: 0;
+	}
+/* End pings */
+
+
+/* Begin Comment */
+#xpress-comments-block {
+	margin-top: 0px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding-top:0px;
+	padding-left:20px;
+	padding-right:5px;
+	padding-bottom:10px;
+	clear: both;
+	}
+
+#xpress_commentlist {
+	margin: 0px;
+	padding-left: 20px;
+	}
+
+#xpress_commentlist ol{
+	font-size: 1em;
+	list-style-image:none;
+	list-style-position:inside;
+	list-style-type:none;
+	}
+	
+#xpress_commentlist li{
+	margin: 0px;
+	padding-top: 5px;
+	padding-bottom: 0px;
+	padding-left: 5px;
+	padding-right: 1px;
+	font-size: 1em;
+	list-style-image:none;
+	list-style-position:inside;
+	list-style-type:none;
+	}
+	
+#xpress_commentlist .even {
+	background:#F4F4F4 none repeat scroll 0 0;
+	margin-top: 4px;
+	padding-top: 0px;
+	padding-bottom: 4px;
+	padding-left: 10px;
+	padding-right:0px
+	}
+
+#xpress_commentlist .odd {
+	background:#EFEFEF none repeat scroll 0 0;
+	margin-top: 4px;
+	padding-top: 0px;
+	padding-bottom: 4px;
+	padding-left: 10px;
+	padding-right:0px
+	}
+	
+#xpress_commentlist .avatar { 
+	float: right;
+	border: 1px solid #eee;
+	padding: 2px;
+	background: #efefef;
+	}
+
+#xpress_commentlist cite, .commentlist cite a {
+	font-weight: bold;
+	font-style: normal;
+	font-size: 1.1em;
+	}
+
+#xpress-comment-form {
+	margin: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 20px;
+	padding-right: 5px;
+	font-size: 18px;
+
+}
+
+#xpress-respond {
+	margin: 0px;
+	padding-top: 10px;
+	padding-bottom: 5px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+#xpress-comment-user {
+	margin: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 20px;
+	padding-right: 0px;
+}
+
+#xpress-comment-form .xpress-comment-submit{
+	margin: 0px;
+	padding-top: 5px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	font-size: 12px;
+
+}
+
+.nocomments {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	}
+/* End Comments */
+
+
+/* Begin Footer Title */
+#xpress_footer {
+	padding-top: 0px;
+	margin: 0 auto;
+	width: 100%;
+	clear: both;
+	text-align: center;
+	}
+#xpress_footer p {
+	font-size: 0.9em;
+}	
+
+#xpress_footer .xpress_rss {
+	margin: 0;
+	padding: 0;
+	text-align: right;
+	}
+
+#xpress_footer .xpress_credit {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	font-size: 10px;
+	color: #BDBDBD;
+	}
+	
+#xpress_footer .xpress_credit a {
+	font-size: 10px;
+	color: #BDBDBD;
+	}
+/* End Footer Title */
+
+
+/* Begin Sidebar */
+#xpress_sidebar {
+	float: right;
+	display:inline;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 10px;
+	margin-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 100px
+	padding-right: 0px
+	font-size: 0.8em;
+	width: 180px;
+	}
+	
+#xpress_sidebar h2 {
+	margin: 5px 0 0;
+	padding: 0;
+	font-size: 14px;
+	}
+
+#xpress_sidebar form {
+	margin: 0;
+	}
+
+#xpress_sidebar ul ul li:before {
+	content: "\00BB \0020";
+	}
+
+#xpress_sidebar ul, #xpress_sidebar ul ol {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	list-style-image: none;
+	list-style: none;
+	list-style-position:inside;
+	}
+
+#xpress_sidebar ul li {
+	list-style-type: none;
+	list-style-image: none;
+	margin-bottom: 15px;
+	}
+
+#xpress_sidebar ul p, #xpress_sidebar ul select {
+	margin: 5px 0 8px;
+	}
+
+#xpress_sidebar ul ul, #xpress_sidebar ul ol {
+	margin: 5px 0 0 10px;
+	}
+
+#xpress_sidebar ul ul ul, #xpress_sidebar ul ol {
+	margin: 0 0 0 10px;
+	}
+
+
+#xpress_sidebar ul ul li, #xpress_sidebar ul ol li {
+	margin: 3px 0 0;
+	padding: 0;
+	}
+
+#xpress_sidebar #searchform {
+	margin: 0px ;
+	padding: 0px;
+	text-align: left;
+	}
+
+#xpress_sidebar #searchform #s {
+	width: 108px;
+	padding: 2px;
+	}
+
+#xpress_sidebar #searchsubmit {
+	padding: 1px;
+	}
+/* End Sidebar */
+
+
+/* Begin Calendar */
+#wp-calendar {
+	empty-cells: show;
+	margin: 10px auto 0;
+	width: 155px;
+	}
+
+#wp-calendar #next a {
+	padding-right: 10px;
+	text-align: right;
+	font-size: 9pt;
+	background-color: #fff;
+	}
+
+#wp-calendar #prev a {
+	padding-left: 10px;
+	text-align: left;
+	font-size: 9pt;
+	background-color: #fff;
+	}
+
+#wp-calendar a {
+	display: block;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 14px;
+	background-color: #ddd;
+	}
+
+#wp-calendar caption {
+	text-align: center;
+	width: 100%;
+	font: bold 1.3em;
+	}
+
+#wp-calendar td {
+	padding: 3px 0;
+	text-align: center;
+	}
+
+#wp-calendar td.pad:hover { /* Doesn't work in IE */
+	background-color: #fff; }
+
+#wp-calendar th {
+	font-style: normal;
+	text-transform: capitalize;
+	}
+/* End Calendar */
+	
+
+
+/* Nocheck Under css */
+
+
+.widecolumn .entry {
+	font-size: 1.05em;
+	}
+
+.narrowcolumn .entry,.narrowcolumn_nonside .entry, .widecolumn .entry {
+	line-height: 1.4em;
+	}
+	
+p.postmeta{
+	line-height: 1.2em;
+	font-size: 0.9em;
+	}
+
+
+#xpress_headerimg .description {
+	font-size: 1.2em;
+	}
+
+
+.xpress_pagetitle {
+	font-size: 1.5em;
+	font-weight: bold;
+	}
+	
+.xpress_commentmetadata {
+	font-size: 11px;
+	font-weight: normal;
+	}
+
+.postmetadata {
+	font-size: 0.9em;
+	}
+
+
+
+acronym, abbr, span.caps
+{
+	font-size: 0.9em;
+	letter-spacing: .07em;
+	}
+
+.widecolumn { 
+	width: 500px; /*width of single page*/
+	margin: 0 auto;
+	}	
+
+.entry {
+	clear:both;
+	padding:10px 0 0;
+	}
+	
+.entry p{
+	padding: 5px 0;
+	}
+
+p.postmeta{
+	padding-top: 20px;
+	}
+	
+.narrowcolumn_nonside .postmetadata,
+.narrowcolumn .postmetadata {
+	padding-top: 10px;
+	/*text-align:center;*//*postmeta of index page*/
+	}
+
+.widecolumn .postmetadata {
+	margin: 30px 0;
+	padding:5px 10px;
+	}
+
+.widecolumn .smallattachment {
+	text-align: center;
+	float: left;
+	width: 128px;
+	margin: 5px 5px 5px 0px;
+}
+
+.widecolumn .attachment {
+	text-align: center;
+	margin: 5px 0px;
+}
+
+
+/* End Headers */
+
+/* Begin Images */
+
+/*	Using 'class="alignright"' on an image will (who would've
+	thought?!) align the image to the right. And using 'class="centered',
+	will of course center the image. This is much better than using
+	align="center", being much more futureproof (and valid) */
+
+img.centered {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	}
+
+img.alignright {
+	padding: 4px;
+	margin: 0 0 2px 7px;
+	display: inline;
+	}
+
+img.alignleft {
+	padding: 4px;
+	margin: 0 7px 2px 0;
+	display: inline;
+	}
+
+.alignright {
+	float: right;
+	}
+
+.alignleft {
+	float: left
+	}
+/* End Images */
+
+
+
+/* Begin Lists
+
+	Special stylized non-IE bullets
+	Do not work in Internet Explorer, which merely default to normal bullets. */
+
+html>body .entry ul {
+	margin-left: 0px;
+	padding: 0 0 0 30px;
+	list-style: none;
+	padding-left: 10px;
+	text-indent: -10px;
+	}
+
+html>body .entry li {
+	margin: 7px 0 8px 10px;
+	}
+
+.entry ul li:before{
+	content: "\00BB \0020";
+	}
+	
+.entry ol {
+	padding: 0 0 0 35px;
+	margin: 0;
+	}
+
+.entry ol li {
+	margin: 0;
+	padding: 0;
+	}
+
+.postmetadata ul, .postmetadata li {
+	display: inline;
+	list-style-type: none;
+	list-style-image: none;
+	}
+
+
+.entry form { /* This is mainly for password protected posts, makes them look better. */
+	text-align:center;
+	}
+
+	
+
+
+
+
+
+
+
+
+
+
+/* Begin Various Tags & Classes */
+acronym, abbr, span.caps {
+	cursor: help;
+	}
+
+acronym, abbr {
+	border-bottom: 1px dashed #999;
+	}
+
+blockquote {
+	margin: 15px 30px 0 10px;
+	padding-left: 20px;
+	border-left: 5px solid #ddd;
+	}
+
+blockquote cite {
+	margin: 5px 0 0;
+	display: block;
+	}
+
+.xpress_single_navigation {
+	display:block;
+	width: 500px;
+	margin: 0 auto;	
+	}
+	
+.xpress_index_navigation {
+	display:block;
+	width: 100%;
+	margin: 0 auto;	
+	}
+	
+
+/* End Various Tags & Classes*/
+
+
+
+/* Captions */
+.aligncenter,
+div.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.wp-caption {
+	border: 1px solid #ddd;
+	text-align: center;
+	background-color: #f3f3f3;
+	padding-top: 4px;
+	margin: 10px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.wp-caption img {
+	margin: 0;
+	padding: 0;
+	border: 0 none;
+}
+
+.wp-caption p.wp-caption-text {
+	font-size: 11px;
+	line-height: 17px;
+	padding: 0 4px 5px;
+	margin: 0;
+}
+.dateblock{
+	margin:-12px 0 0 -5px!important;
+	}
+
+.nocomments, .postmetadata, blockquote, strike {
+	color: #777;
+	}
+	
+
+/* =Menu
+-------------------------------------------------------------- */
+#menu_div {
+	border-bottom: 1px solid #000;
+//	background: #fff;
+	margin: 0 auto;
+	display:block;
+	clear:both;
+	height:20px;
+//	float:left;
+}
+.xpress-header-title{
+	padding-left: 5px;
+	padding-top: 5px;
+}
+#access{
+//	background: #fff;
+	margin: 0 auto;
+	display:block;
+	padding-left: 0px;
+	float:left;
+}
+#xpress-menu {
+//	background: #fff;
+	margin: 0 auto;
+	display:block;
+	float:right;
+}
+#access .menu-header,
+#access .menu,
+#xpress-menu .menu-header {
+	font-size: 11px;
+	margin-left: 12px;
+}
+#access .menu-header ul,
+#access .menu ul,
+#xpress-menu .menu-header ul {
+	list-style: none;
+	margin: 0;
+}
+#access .menu-header li,
+#access .menu li,
+#xpress-menu .menu-header li {
+	float:left;
+	list-style: none;
+	position: relative;
+}
+#access a,
+#xpress-menu a {
+	display:block;
+	text-decoration:none;
+//	color:#aaa;
+	padding:0 2px;
+	line-height:16px;
+}
+#access ul ul,
+#xpress-menu ul ul {
+	display:none;
+	position:absolute;
+	top:16px;
+	left:0;
+	float:left;
+	-webkit-box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
+	box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
+	z-index: 99999;
+}
+#access ul ul ul,
+#xpress-menu ul ul ul {
+	left:100%;
+	top:0;
+}
+#access ul ul a,
+#xpress-menu ul ul a {
+	background:#AAAAAA;
+	height:auto;
+	line-height:1em;
+	padding:3px;
+	width: 130px;
+}
+#access li:hover > a,
+#access ul ul :hover > a,
+#xpress-menu li:hover > a,
+#xpress-menu ul ul :hover > a {
+	color:#fff;
+	background:#333;
+}
+
+#access ul li:hover > ul,
+#xpress-menu ul li:hover > ul {
+	display:block;
+}
+
+#ed_toolbar input
+{
+	background: #14181B;
+	color: white;
+	border:2px dashed #323136; 
+	padding: 0px;
+	width: 65px;
+}
+#ed_toolbar input:hover 
+{
+	background: #323136;
+	color: white;
+	border:2px dashed #14181B; 
+	padding: 0px;
+	width: 65px;
+}
+
+#footer-widget-area {
+	overflow: hidden;
+	margin-top: 5px;
+	text-align: left;
+}
+#footer-widget-area .widget-area-type1 {
+	float: left;
+	padding-top: 0;
+	width:100%;
+}
+#footer-widget-area .widget-area-type2 {
+	float: left;
+	padding-top: 0;
+	width:49%;
+}
+#footer-widget-area .widget-area-type3 {
+	float: left;
+	padding-top: 0;
+	width:33%;
+}
+#footer-widget-area .widget-area-type4 {
+	float: left;
+	padding-top: 0;
+	width:24%;
+}
+#footer-widget-area .widget-area-type5 {
+	float: left;
+	padding-top: 0;
+	width:19%;
+}
+
+#footer-widget-area ul {
+	margin-top: 0;
+	list-style-type:none;
+	padding-left: 20px;
+
+}
+#footer-widget-area .widget-title {
+	margin-top: 0;
+	margin-bottom: 2px;
+}

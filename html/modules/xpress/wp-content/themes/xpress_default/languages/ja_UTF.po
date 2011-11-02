@@ -1,0 +1,823 @@
+# Japanese (UTF-8) translation for XPressME Default Themes
+# Copyright (c) 2005-2008 XPressME
+# This file is distributed under the same license as the XPressME package.
+# toemon <info@toemon.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: XPress_Default_themes\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-02-21 09:50+0900\n"
+"PO-Revision-Date: 2011-02-21 09:51+0900\n"
+"Last-Translator: toemon <info@toemon.com>\n"
+"Language-Team: toemon <info@toemon.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;_c\n"
+"X-Poedit-Basepath: D:\\XPressME_Project\\XPressME_SVN_Trunk\\xpressme_integration_kit\\wp-content\\themes\\xpress_default\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: 404.php:22
+msgid "Error 404 - Not Found"
+msgstr "エラー 404 - 見つかりませんでした"
+
+#: archives.php:20
+msgid "Archives by Month:"
+msgstr "月別のアーカイブ:"
+
+#: archives.php:25
+msgid "Archives by Subject:"
+msgstr "カテゴリー別アーカイブ:"
+
+#: comments-popup.php:9
+#, php-format
+msgid "%1$s - Comments on %2$s"
+msgstr "%1$s - %2$s へのコメント"
+
+#: comments-popup.php:22
+msgid "Comments"
+msgstr "コメント"
+
+#: comments-popup.php:24
+msgid "<abbr title=\"Really Simple Syndication\">RSS</abbr> feed for comments on this post."
+msgstr "このコメント欄の <abbr title=\"Really Simple Syndication\">RSS</abbr> フィード"
+
+#: comments-popup.php:27
+#, php-format
+msgid "The <abbr title=\"Universal Resource Locator\">URL</abbr> to TrackBack this entry is: <em>%s</em>"
+msgstr "この投稿へのトラックバック <acronym title=\"Universal Resource Locator\">URL</acronym>: <em>%s</em>"
+
+#: comments-popup.php:45
+msgid "Comment"
+msgstr "コメント"
+
+#: comments-popup.php:45
+msgid "Trackback"
+msgstr "トラックバック"
+
+#: comments-popup.php:45
+msgid "Pingback"
+msgstr "ピンバック"
+
+#: comments-popup.php:45
+#, php-format
+msgid "by %1$s &#8212; %2$s @ <a href=\"#comment-%3$s\">%4$s</a>"
+msgstr "&#8212; %2$s @ <a href=\"#comment-%3$s\">%4$s</a>: %1$s より"
+
+#: comments-popup.php:51
+msgid "No comments yet."
+msgstr "コメントはまだありません。"
+
+#: comments-popup.php:55
+msgid "Leave a comment"
+msgstr "コメントをどうぞ"
+
+#: comments-popup.php:56
+#, php-format
+msgid "Line and paragraph breaks automatic, e-mail address never displayed, <acronym title=\"Hypertext Markup Language\">HTML</acronym> allowed: <code>%s</code>"
+msgstr "改行と段落タグは自動で挿入されます。メールアドレスは表示されません。利用可能な <acronym title=\"Hypertext Markup Language\">HTML</acronym> タグ: <code>%s</code>"
+
+#: comments-popup.php:60
+#, php-format
+msgid "Logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log out of this account\">Log out &raquo;</a>"
+msgstr "<a href=\"%1$s\">%2$s</a> としてログイン中。<a href=\"%3$s\" title=\"このアカウントからログアウトする\">ログアウト &raquo;</a>"
+
+#: comments-popup.php:64
+#: comments.php:91
+msgid "Name"
+msgstr "お名前"
+
+#: comments-popup.php:71
+msgid "E-mail"
+msgstr "メールアドレス"
+
+#: comments-popup.php:76
+msgid "<abbr title=\"Universal Resource Locator\">URL</abbr>"
+msgstr "<abbr title=\"Universal Resource Locator\">URL</abbr>"
+
+#: comments-popup.php:81
+msgid "Your Comment"
+msgstr "コメント"
+
+#: comments-popup.php:87
+msgid "Say It!"
+msgstr "送信する !"
+
+#: comments-popup.php:92
+msgid "Sorry, the comment form is closed at this time."
+msgstr "コメントフォームは現在閉鎖中です。"
+
+#: comments-popup.php:97
+msgid "Close this window."
+msgstr "このウインドウを閉じる。"
+
+#: comments-popup.php:105
+#, php-format
+msgid "Powered by <a href=\"%s\" title=\"Powered by WordPress, state-of-the-art semantic personal publishing platform\"><strong>WordPress</strong></a>"
+msgstr "Powered by <a href=\"%s\" title=\"Powered by WordPress, state-of-the-art semantic personal publishing platform\"><strong>WordPress</strong></a>"
+
+#: comments.php:6
+msgid "This post is password protected. Enter the password to view comments."
+msgstr "この投稿はパスワードで保護されています。コメントを閲覧するにはパスワードを入力してください。"
+
+#: comments.php:17
+#: comments.php:38
+msgid "No Responses"
+msgstr "コメント はありません"
+
+#: comments.php:17
+#: comments.php:38
+msgid "One Response"
+msgstr "コメント 1 件"
+
+#: comments.php:17
+#: comments.php:38
+msgid "% Responses"
+msgstr "コメント % 件"
+
+#: comments.php:17
+#: comments.php:38
+#, php-format
+msgid "to &#8220;%s&#8221;"
+msgstr "<!-- to &#8220;%s&#8221; -->"
+
+#: comments.php:33
+#: comments.php:63
+msgid "Comments are closed."
+msgstr "現在コメントは受け付けていません。"
+
+#: comments.php:43
+#, php-format
+msgid "<cite>%s</cite> Says:"
+msgstr "<cite>%s</cite> より:"
+
+#: comments.php:45
+msgid "Your comment is awaiting moderation."
+msgstr "コメントは承認待ちです。"
+
+#: comments.php:48
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s %2$s"
+
+#: comments.php:48
+msgid "Comment Edit"
+msgstr "編集"
+
+#: comments.php:70
+msgid "Leave a Reply"
+msgstr "コメントをどうぞ"
+
+#: comments.php:70
+#, php-format
+msgid "Leave a Reply for %s"
+msgstr "%s にコメントする"
+
+#: comments.php:79
+#, php-format
+msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
+msgstr "コメントを投稿するには<a href=\"%s\">ログイン</a>してください。"
+
+#: comments.php:85
+#: comments.php:87
+#, php-format
+msgid "Logged in as <a href=\"%1$s\">%2$s</a>."
+msgstr "<a href=\"%1$s\">%2$s</a> としてログイン中。"
+
+#: comments.php:85
+#: comments.php:87
+msgid "Log out of this account"
+msgstr "このアカウントからログアウト"
+
+#: comments.php:85
+#: comments.php:87
+msgid "Log out &raquo;"
+msgstr "ログアウト &raquo;"
+
+#: comments.php:91
+#: comments.php:94
+msgid "(required)"
+msgstr " (必須)"
+
+#: comments.php:94
+msgid "Mail (will not be published)"
+msgstr "メールアドレス (公開されません)"
+
+#: comments.php:97
+msgid "Website"
+msgstr "ウェブサイト"
+
+#: comments.php:102
+#, php-format
+msgid "<strong>XHTML:</strong> You can use these tags: <code>%s</code>"
+msgstr "<strong>XHTML:</strong> 次のタグを使用できます: <code>%s</code>"
+
+#: comments.php:106
+msgid "Submit Comment"
+msgstr "コメント送信"
+
+#: footer.php:10
+#, php-format
+msgid "%1$s and %2$s."
+msgstr "%1$s と %2$s"
+
+#: footer.php:10
+msgid "Entries (RSS)"
+msgstr "投稿 (RSS)"
+
+#: footer.php:10
+msgid "Comments (RSS)"
+msgstr "コメント (RSS)"
+
+#: footer.php:12
+#, php-format
+msgid "%.3f sec."
+msgstr "%.3f 秒"
+
+#: functions.php:25
+msgid "Primary Navigation"
+msgstr "メインナビゲージョン"
+
+#: functions.php:196
+msgid "Header & Footer"
+msgstr "ヘッダー&フッター"
+
+#: functions.php:210
+msgid "Close Color Picker"
+msgstr "カラーピッカーを閉じる"
+
+#: functions.php:415
+msgid "Header Options saved."
+msgstr "ヘッダー設定を保存しました。"
+
+#: functions.php:416
+msgid "Footer Options saved."
+msgstr "フッター設定を保存しました。"
+
+#: functions.php:420
+msgid "Header Image and Color"
+msgstr "ヘッダーの背景と文字の色"
+
+#: functions.php:433
+#: functions.php:440
+msgid "Save"
+msgstr "保存"
+
+#: functions.php:434
+msgid "Font Color:"
+msgstr "フォントの色:"
+
+#: functions.php:434
+#, php-format
+msgid "Any CSS color (%s or %s or %s)"
+msgstr "CSS 色指定 (%s 、%s もしくは %s)"
+
+#: functions.php:435
+msgid "Upper Color:"
+msgstr "グラデーション上側の色:"
+
+#: functions.php:435
+#: functions.php:436
+#, php-format
+msgid "HEX only (%s or %s)"
+msgstr "16 進数のみ (%s もしくは %s)"
+
+#: functions.php:436
+msgid "Lower Color:"
+msgstr "グラデーション下側の色:"
+
+#: functions.php:438
+msgid "Toggle Text"
+msgstr "テキスト表示の切替え"
+
+#: functions.php:439
+msgid "Use Defaults"
+msgstr "デフォルト設定に戻す"
+
+#: functions.php:448
+msgid "Font Color"
+msgstr "フォントの色"
+
+#: functions.php:449
+msgid "Upper Color"
+msgstr "グラデーション上側の色"
+
+#: functions.php:450
+msgid "Lower Color"
+msgstr "グラデーション下側の色"
+
+#: functions.php:451
+msgid "Revert"
+msgstr "取り消し"
+
+#: functions.php:452
+msgid "Advanced"
+msgstr "詳細"
+
+#: functions.php:459
+msgid "Update Header &raquo;"
+msgstr "ヘッダーを更新 &raquo;"
+
+#: functions.php:465
+msgid "Font Color (CSS):"
+msgstr "フォントの色 (CSS):"
+
+#: functions.php:466
+msgid "Upper Color (HEX):"
+msgstr "グラデーション上側の色 (16 進数):"
+
+#: functions.php:467
+msgid "Lower Color (HEX):"
+msgstr "グラデーション下側の色 (16 進数):"
+
+#: functions.php:468
+msgid "Select Default Colors"
+msgstr "デフォルト設定に戻す"
+
+#: functions.php:469
+msgid "Toggle Text Display"
+msgstr "テキスト表示の切替え"
+
+#: functions.php:475
+msgid "Footer"
+msgstr "フッター"
+
+#: functions.php:481
+msgid "Set number of the sidebar to display in the footer."
+msgstr "フッターに表示するサイドバーの数を設定"
+
+#: functions.php:486
+msgid "none"
+msgstr "なし"
+
+#: functions.php:496
+msgid "Update Footer &raquo;"
+msgstr "フッターを更新 &raquo;"
+
+#: functions.php:512
+msgid "First Footer Widget Area"
+msgstr "フッターウィジェットエリア１"
+
+#: functions.php:513
+msgid "The first footer widget area"
+msgstr "フッターウィジェットエリア１"
+
+#: functions.php:516
+msgid "Second Footer Widget Area"
+msgstr "フッターウィジェットエリア２"
+
+#: functions.php:517
+msgid "The second footer widget area"
+msgstr "フッターウィジェットエリア２"
+
+#: functions.php:520
+msgid "Third Footer Widget Area"
+msgstr "フッターウィジェットエリア３"
+
+#: functions.php:521
+msgid "The third footer widget area"
+msgstr "フッターウィジェットエリア３"
+
+#: functions.php:524
+msgid "Fourth Footer Widget Area"
+msgstr "フッターウィジェットエリア４"
+
+#: functions.php:525
+msgid "The fourth footer widget area"
+msgstr "フッターウィジェットエリア４"
+
+#: functions.php:528
+msgid "Fifth Footer Widget Area"
+msgstr "フッターウィジェットエリア５"
+
+#: functions.php:529
+msgid "The fifth footer widget area"
+msgstr "フッターウィジェットエリア５"
+
+#: header.php:9
+msgid "&raquo; Blog Archive"
+msgstr "&raquo; ブログアーカイブ"
+
+#: header.php:14
+#, php-format
+msgid "%s RSS Feed"
+msgstr "%s RSS フィード"
+
+#: header.php:15
+#, php-format
+msgid "%s Atom Feed"
+msgstr "%s Atom フィード"
+
+#: header.php:58
+msgid "Main Page"
+msgstr "メインページ"
+
+#: header.php:61
+msgid "Blogs Home"
+msgstr "ブログのホーム"
+
+#: header.php:62
+msgid "Post New"
+msgstr "新規投稿"
+
+#: image.php:13
+msgid "Read the rest of this entry &raquo;"
+msgstr "この投稿の続きを読む &raquo;"
+
+#: image.php:15
+#: page.php:22
+msgid "Pages:"
+msgstr "ページ:"
+
+#: image.php:25
+#, php-format
+msgid "This entry was posted on %1$s at %2$s and is filed under %3$s."
+msgstr "この投稿は %1$s %2$s に %3$s カテゴリーに公開されました。"
+
+#: image.php:25
+#: sidebar.php:24
+msgid "l, F jS, Y"
+msgstr "Y 年 n 月 j 日 l"
+
+#: image.php:27
+#, php-format
+msgid "You can follow any responses to this entry through the <a href='%s'>RSS 2.0</a> feed."
+msgstr "この投稿へのコメントは <a href='%s'>RSS 2.0</a> フィードで購読することができます。"
+
+#: image.php:31
+#, php-format
+msgid "You can <a href=\"#respond\">leave a response</a>, or <a href=\"%s\" rel=\"trackback\">trackback</a> from your own site."
+msgstr "<a href=\"#respond\">コメントを残すか</a>、ご自分のサイトから<a href=\"%s\" rel=\"trackback\">トラックバック</a>することができます。"
+
+#: image.php:35
+#, php-format
+msgid "Responses are currently closed, but you can <a href=\"%s\" rel=\"trackback\">trackback</a> from your own site."
+msgstr "現在コメントは受け付けておりませんが、ご自分のサイトから<a href=\"%s\" rel=\"trackback\">トラックバック</a>を送ることはできます。"
+
+#: image.php:39
+msgid "You can skip to the end and leave a response. Pinging is currently not allowed."
+msgstr "このページの一番下でコメントを残すことができます。トラックバック / ピンバックは現在受け付けていません。"
+
+#: image.php:43
+msgid "Both comments and pings are currently closed."
+msgstr "現在コメント、トラックバックともに受け付けておりません。"
+
+#: image.php:45
+#: page.php:27
+msgid "Edit this entry."
+msgstr "この投稿を編集する。"
+
+#: image.php:58
+msgid "Sorry, no posts matched your criteria."
+msgstr "該当する投稿は見つかりませんでした。"
+
+#: index.php:29
+#: index.php:31
+#: multi_blog_index.php:33
+#: multi_blog_index.php:35
+#, php-format
+msgid "Permanent Link to %s"
+msgstr "%s のパーマリンク"
+
+#: index.php:44
+#: multi_blog_index.php:48
+#, php-format
+msgid "Views :%d"
+msgstr "閲覧 :%d"
+
+#: index.php:47
+#: multi_blog_index.php:51
+#, php-format
+msgid "Posted in %s"
+msgstr "カテゴリー: %s"
+
+#: index.php:49
+#: multi_blog_index.php:53
+msgid "Edit"
+msgstr "編集"
+
+#: index.php:50
+#: multi_blog_index.php:54
+msgid "No Comments &#187;"
+msgstr "コメントはまだありません &#187;"
+
+#: index.php:50
+#: multi_blog_index.php:54
+msgid "1 Comment &#187;"
+msgstr "1 件のコメント &#187;"
+
+#: index.php:50
+#: multi_blog_index.php:54
+msgid "% Comments &#187;"
+msgstr "% 件のコメント &#187;"
+
+#: index.php:50
+#: multi_blog_index.php:54
+msgid "Comments Closed"
+msgstr "コメントは受け付けていません。"
+
+#: index.php:68
+#: multi_blog_index.php:72
+msgid "Not Found"
+msgstr "見つかりませんでした。"
+
+#: index.php:69
+#: multi_blog_index.php:73
+msgid "Sorry, but you are looking for something that isn&#8217;t here."
+msgstr "お探しの物はここにはありません。"
+
+#: links.php:18
+msgid "Links:"
+msgstr "リンク:"
+
+#: multi_blog_front.php:9
+msgid "Site News"
+msgstr "サイトニュース"
+
+#: multi_blog_front.php:18
+msgid "Blogs List"
+msgstr "ブログリスト"
+
+#: multi_blog_front.php:27
+msgid "post count"
+msgstr "投稿数"
+
+#: multi_blog_front.php:34
+msgid "New Entries"
+msgstr "最近の投稿"
+
+#: multi_blog_front.php:39
+#, fuzzy, php-format
+msgid "%1$s wrote %2$s in %3$s."
+msgstr "%1$s %2$s"
+
+#: multi_blog_front.php:46
+msgid "Updated Blogs"
+msgstr "最近更新されたブログ"
+
+#: multi_blog_front.php:67
+#, php-format
+msgid "Howdy %s"
+msgstr "ようこそ %s さん"
+
+#: multi_blog_front.php:73
+msgid "Your Blogs list"
+msgstr "あなたのブログリスト"
+
+#: multi_blog_front.php:84
+msgid "Create a new blog"
+msgstr "新しいブログの作成"
+
+#: page.php:20
+msgid "Read the rest of this page &raquo;"
+msgstr "このページの続きを読む &raquo;"
+
+#: searchform.php:2
+msgid "Search for:"
+msgstr "検索:"
+
+#: searchform.php:8
+msgid "Search"
+msgstr "検索"
+
+#: sidebar.php:10
+msgid "Author"
+msgstr "作成者"
+
+#: sidebar.php:21
+#, php-format
+msgid "You are currently browsing the archives for the %s category."
+msgstr "%s カテゴリーのアーカイブを表示しています。"
+
+#: sidebar.php:24
+#, php-format
+msgid "You are currently browsing the <a href=\"%1$s/\">%2$s</a> blog archives for the day %3$s."
+msgstr "<a href=\"%1$s\">%2$s</a> ブログの %3$s のアーカイブを表示しています。"
+
+#: sidebar.php:27
+#, php-format
+msgid "You are currently browsing the <a href=\"%1$s/\">%2$s</a> blog archives for %3$s."
+msgstr "<a href=\"%1$s/\">%2$s</a> の %3$s のアーカイブを閲覧中です。"
+
+#: sidebar.php:27
+msgid "F, Y"
+msgstr "Y 年 n 月"
+
+#: sidebar.php:30
+#, php-format
+msgid "You are currently browsing the <a href=\"%1$s/\">%2$s</a> blog archives for the year %3$s."
+msgstr "<a href=\"%1$s\">%2$s</a> ブログの %3$s 年のアーカイブを表示しています。"
+
+#: sidebar.php:33
+#, php-format
+msgid "You have searched the <a href=\"%1$s/\">%2$s</a> blog archives for <strong>&#8216;%3$s&#8217;</strong>. If you are unable to find anything in these search results, you can try one of these links."
+msgstr "<a href=\"%1$s/\">%2$s</a> のアーカイブ内で<strong>&#8216;%3$s&#8217;</strong>を探しました。お探しのものが見つからない場合は他のリンクを試してみてください。"
+
+#: sidebar.php:36
+#, php-format
+msgid "You are currently browsing the <a href=\"%1$s/\">%2$s</a> blog archives."
+msgstr "<a href=\"%1$s/\">%2$s</a> ブログのアーカイブを閲覧中です。"
+
+#: sidebar.php:42
+msgid "Pages"
+msgstr "ページ"
+
+#: sidebar.php:44
+msgid "Archives"
+msgstr "アーカイブ"
+
+#: sidebar.php:51
+#: sidebar.php:53
+msgid "Categories"
+msgstr "カテゴリー"
+
+#: sidebar.php:62
+msgid "Meta"
+msgstr "メタ情報"
+
+#: sidebar.php:66
+msgid "This page validates as XHTML 1.0 Transitional"
+msgstr "このページが XHTML 1.0 Transitional に準拠しているか確認する"
+
+#: sidebar.php:66
+msgid "Valid <abbr title=\"eXtensible HyperText Markup Language\">XHTML</abbr>"
+msgstr "Valid <abbr title=\"eXtensible HyperText Markup Language\">XHTML</abbr>"
+
+#: sidebar.php:67
+msgid "XHTML Friends Network"
+msgstr "XHTML Friends Network"
+
+#: sidebar.php:67
+msgid "XFN"
+msgstr "XFN"
+
+#: sidebar.php:68
+msgid "Powered by WordPress, state-of-the-art semantic personal publishing platform."
+msgstr "Powered by WordPress, state-of-the-art semantic personal publishing platform."
+
+#: single.php:53
+msgid "No Trackback/Pingback"
+msgstr "トラックバック・ピンバックはありません"
+
+#: single.php:53
+msgid "One Trackback/Pingback"
+msgstr "トラックバック・ピンバック 1 件"
+
+#: single.php:53
+msgid "% TrackBack/Pingback"
+msgstr "トラックバック・ピンバック % 件"
+
+#: single.php:57
+#, php-format
+msgid "You can <a href=\"%s\" rel=\"trackback\">trackback</a> from your own site."
+msgstr "ご自分のサイトから<a href=\"%s\" rel=\"trackback\">トラックバック</a>を送ることができます。"
+
+#: single.php:59
+msgid "Pinging is currently not allowed."
+msgstr "トラックバック / ピンバックは現在受け付けていません。"
+
+#: blocks/archives_block_theme.php:14
+msgid "Select Yearly"
+msgstr "年を選択"
+
+#: blocks/archives_block_theme.php:17
+#: blocks/archives_block_theme.php:29
+msgid "Select Monthly"
+msgstr "月を選択"
+
+#: blocks/archives_block_theme.php:20
+msgid "Select Weekly"
+msgstr "週を選択"
+
+#: blocks/archives_block_theme.php:23
+msgid "Select Daily"
+msgstr "日を選択"
+
+#: blocks/archives_block_theme.php:26
+msgid "Select Post"
+msgstr "記事を選択"
+
+#: blocks/authors_block_theme.php:32
+msgid "All Authors"
+msgstr "全ての投稿者"
+
+#: blocks/blog_list_block_theme.php:66
+#: blocks/global_popular_posts_block_theme.php:192
+#: blocks/global_recent_comments_block_theme.php:130
+#: blocks/global_recent_posts_list_block_theme.php:44
+msgid "This blog is not set to the multi blog."
+msgstr "このブログはマルチブログに設定されていません。"
+
+#: blocks/enhanced_block_theme.php:14
+msgid "The include file name to display it is not set."
+msgstr "表示を行うためのインクルードファイル名が設定されていません。"
+
+#: blocks/enhanced_block_theme.php:21
+#, php-format
+msgid "File %s not exist."
+msgstr "ファイル %s が見つかりません。"
+
+#: blocks/enhanced_block_theme.php:29
+msgid "Data is Empty"
+msgstr "データは空です"
+
+#: blocks/global_popular_posts_block_theme.php:114
+#: blocks/popular_posts_block_theme.php:122
+#: blocks/recent_posts_content_block_theme.php:84
+#: blocks/recent_posts_list_block_theme.php:70
+msgid "Tags:"
+msgstr "タグ:"
+
+#: blocks/global_popular_posts_block_theme.php:143
+#: blocks/popular_posts_block_theme.php:151
+#: blocks/recent_posts_content_block_theme.php:123
+#: blocks/recent_posts_list_block_theme.php:99
+msgid "Comments (0)"
+msgstr "コメントはありません"
+
+#: blocks/global_popular_posts_block_theme.php:143
+#: blocks/popular_posts_block_theme.php:151
+#: blocks/recent_posts_content_block_theme.php:123
+#: blocks/recent_posts_list_block_theme.php:99
+msgid "Comments (1)"
+msgstr "1件のコメント"
+
+#: blocks/global_popular_posts_block_theme.php:143
+#: blocks/popular_posts_block_theme.php:151
+#: blocks/recent_posts_content_block_theme.php:123
+#: blocks/recent_posts_list_block_theme.php:99
+msgid "Comments (%)"
+msgstr "Comments (%)"
+
+#: blocks/global_recent_comments_block_theme.php:85
+#: blocks/recent_comments_block_theme.php:82
+#, php-format
+msgid "%1$s on %2$s"
+msgstr "%2$s に %1$s より"
+
+#: blocks/meta_block_theme.php:25
+msgid "Posts RSS"
+msgstr "投稿の RSS"
+
+#: blocks/meta_block_theme.php:28
+msgid "Comments RSS"
+msgstr "コメント のRSS"
+
+#: blocks/meta_block_theme.php:41
+#: blocks/meta_block_theme.php:46
+msgid "Add New"
+msgstr "新規投稿"
+
+#: blocks/meta_block_theme.php:55
+msgid "Site Admin"
+msgstr "WordPress管理"
+
+#: blocks/meta_block_theme.php:61
+msgid "User Profile"
+msgstr "ユーザープロファイル"
+
+#: blocks/meta_block_theme.php:69
+#: blocks/meta_block_theme.php:74
+msgid "Subscription management"
+msgstr "メール購読の設定"
+
+#: blocks/meta_block_theme.php:82
+msgid "ReadMe"
+msgstr "ReadMe表示"
+
+#: blocks/meta_block_theme.php:87
+msgid "Themes"
+msgstr "テーマ選択"
+
+#~ msgid "PHP code error"
+#~ msgstr "PHPコードにエラーがあります。"
+
+#~ msgid "Customize Header"
+#~ msgstr "ヘッダーのカスタマイズ"
+
+#~ msgid "%d queries. %s seconds."
+#~ msgstr "%d 個のクエリと %s 秒を要しました。"
+
+#~ msgid "views: %d"
+#~ msgstr "閲覧 :%d回"
+
+#~ msgid "more"
+#~ msgstr "続きを読む"
+
+#, fuzzy
+#~ msgid "F jS, Y"
+#~ msgstr "Y 年 n 月 j 日 l"
+
+#~ msgid "Calendar"
+#~ msgstr "カレンダー"
+
+#~ msgid "%1$s %2$s|Used as a calendar caption"
+#~ msgstr "%2$s 年 %1$s|カレンダーのキャプションに使われます"
+
+#~ msgid "View posts for %1$s %2$s"
+#~ msgstr "%2$s 年 %1$s の投稿を表示"

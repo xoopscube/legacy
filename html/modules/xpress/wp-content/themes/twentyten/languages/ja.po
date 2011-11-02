@@ -1,0 +1,423 @@
+# Translation of Twenty Ten in Japanese
+# This file is distributed under the same license as the Twenty Ten package.
+#
+# WordPress 日本語版作成チーム / WP ja translation team
+# <http://groups.google.com/group/wp-ja-pkg/web/members>
+#
+#  誤字脱字誤訳、あるいはよりよい訳などありましたら以下までぜひお知らせください。
+#  また、翻訳、校正、コミットをお手伝いしていただける方も随時募集中です。
+#  連絡先 / Contact: wpja.team@gmail.com (件名か内容に「日本語リソース」と入れてください)
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Twenty Ten\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/twentyten\n"
+"POT-Creation-Date: 2011-06-30 13:35:50+00:00\n"
+"PO-Revision-Date: 2011-06-30 23:18+0900\n"
+"Last-Translator: odyssey <odysseygate@gmail.com>\n"
+"Language-Team: wp-ja <wpja.team@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/0.1\n"
+
+#: loop-attachment.php:21
+msgid "Return to %s"
+msgstr "%s に戻る"
+
+#. translators: %s - title of parent post
+#: loop-attachment.php:23
+msgid "<span class=\"meta-nav\">&larr;</span> %s"
+msgstr "<span class=\"meta-nav\">&larr;</span> %s"
+
+#: loop-attachment.php:32
+msgid "<span class=\"%1$s\">By</span> %2$s"
+msgstr "<span class=\"%1$s\">投稿者:</span> %2$s"
+
+#: loop-attachment.php:36
+#: functions.php:476
+msgid "View all posts by %s"
+msgstr "%s の投稿をすべて表示"
+
+#: loop-attachment.php:43
+msgid "<span class=\"%1$s\">Published</span> %2$s"
+msgstr "<span class=\"%1$s\">公開日:</span> %2$s"
+
+#: loop-attachment.php:53
+msgid "Full size is %s pixels"
+msgstr "フルサイズ: %sピクセル"
+
+#: loop-attachment.php:56
+msgid "Link to full-size image"
+msgstr "フルサイズ画像へのリンク"
+
+#: loop-attachment.php:63
+#: loop-attachment.php:111
+#: loop-single.php:56
+#: loop.php:100
+#: loop.php:123
+#: loop.php:165
+#: loop-page.php:30
+msgid "Edit"
+msgstr "編集"
+
+#: loop-attachment.php:104
+#: functions.php:248
+#: loop.php:115
+#: loop.php:143
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "続きを読む <span class=\"meta-nav\">&rarr;</span>"
+
+#: loop-attachment.php:105
+#: loop-single.php:34
+#: loop.php:144
+#: loop-page.php:29
+msgid "Pages:"
+msgstr "ページ:"
+
+#: sidebar.php:27
+msgid "Archives"
+msgstr "アーカイブ"
+
+#: sidebar.php:34
+msgid "Meta"
+msgstr "メタ情報"
+
+#: loop-single.php:21
+#: loop-single.php:61
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr "&larr;"
+
+#: loop-single.php:22
+#: loop-single.php:62
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr "&rarr;"
+
+#: loop-single.php:43
+#: author.php:37
+msgid "About %s"
+msgstr "%s の紹介"
+
+#: loop-single.php:47
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "%s の投稿をすべて表示 <span class=\"meta-nav\">&rarr;</span>"
+
+#: author.php:27
+msgid "Author Archives: %s"
+msgstr "作成者別アーカイブ: %s"
+
+#: 404.php:16
+#: loop.php:33
+msgid "Not Found"
+msgstr "見つかりません"
+
+#: 404.php:18
+msgid "Apologies, but the page you requested could not be found. Perhaps searching will help."
+msgstr "リクエストされたページが存在しません。検索で見つかるかもしれません。"
+
+#: header.php:33
+msgid "Page %s"
+msgstr "ページ %s"
+
+#: header.php:83
+msgid "Skip to content"
+msgstr "コンテンツへ移動"
+
+#: functions.php:100
+msgid "Primary Navigation"
+msgstr "メインナビゲーション"
+
+#. translators: header image description
+#: functions.php:140
+msgid "Berries"
+msgstr "ベリー"
+
+#. translators: header image description
+#: functions.php:146
+msgid "Cherry Blossoms"
+msgstr "桜"
+
+#. translators: header image description
+#: functions.php:152
+msgid "Concave"
+msgstr "凹面"
+
+#. translators: header image description
+#: functions.php:158
+msgid "Fern"
+msgstr "シダ"
+
+#. translators: header image description
+#: functions.php:164
+msgid "Forest Floor"
+msgstr "フォレスト・フロア"
+
+#. translators: header image description
+#: functions.php:170
+msgid "Inkwell"
+msgstr "インクウェル"
+
+#. translators: header image description
+#: functions.php:176
+msgid "Path"
+msgstr "パス"
+
+#. translators: header image description
+#: functions.php:182
+msgid "Sunset"
+msgstr "夕焼け"
+
+#: functions.php:330
+msgid "%s <span class=\"says\">says:</span>"
+msgstr "%s <span class=\"says\">より:</span>"
+
+#: functions.php:333
+msgid "Your comment is awaiting moderation."
+msgstr "あなたのコメントは管理者のモデレーション待ちです。"
+
+#. translators: 1: date, 2: time
+#: functions.php:340
+msgid "%1$s at %2$s"
+msgstr "%1$s %2$s"
+
+#: functions.php:340
+#: functions.php:357
+msgid "(Edit)"
+msgstr "(編集)"
+
+#: functions.php:357
+msgid "Pingback:"
+msgstr "ピンバック:"
+
+#: functions.php:376
+msgid "Primary Widget Area"
+msgstr "ウィジェットエリア1"
+
+#: functions.php:378
+msgid "The primary widget area"
+msgstr "ウィジェットエリア1"
+
+#: functions.php:387
+msgid "Secondary Widget Area"
+msgstr "ウィジェットエリア2"
+
+#: functions.php:389
+msgid "The secondary widget area"
+msgstr "ウィジェットエリア2"
+
+#: functions.php:398
+msgid "First Footer Widget Area"
+msgstr "フッターウィジェットエリア1"
+
+#: functions.php:400
+msgid "The first footer widget area"
+msgstr "フッターウィジェットエリア1"
+
+#: functions.php:409
+msgid "Second Footer Widget Area"
+msgstr "フッターウィジェットエリア2"
+
+#: functions.php:411
+msgid "The second footer widget area"
+msgstr "フッターウィジェットエリア2"
+
+#: functions.php:420
+msgid "Third Footer Widget Area"
+msgstr "フッターウィジェットエリア3"
+
+#: functions.php:422
+msgid "The third footer widget area"
+msgstr "フッターウィジェットエリア3"
+
+#: functions.php:431
+msgid "Fourth Footer Widget Area"
+msgstr "フッターウィジェットエリア4"
+
+#: functions.php:433
+msgid "The fourth footer widget area"
+msgstr "フッターウィジェットエリア4"
+
+#: functions.php:467
+msgid "<span class=\"%1$s\">Posted on</span> %2$s <span class=\"meta-sep\">by</span> %3$s"
+msgstr "<span class=\"%1$s\">投稿日:</span> %2$s <span class=\"meta-sep\">作成者:</span> %3$s"
+
+#: functions.php:493
+msgid "This entry was posted in %1$s and tagged %2$s. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "カテゴリー: %1$s &nbsp; タグ: %2$s &nbsp; <a href=\"%3$s\" title=\"%4$s へのパーマリンク\" rel=\"bookmark\">この投稿のパーマリンク</a>"
+
+#: functions.php:495
+msgid "This entry was posted in %1$s. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "カテゴリー: %1$s &nbsp; <a href=\"%3$s\" title=\"%4$s へのパーマリンク\" rel=\"bookmark\">パーマリンク</a>"
+
+#: functions.php:497
+msgid "Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "<a href=\"%3$s\" title=\"%4$s へのパーマリンク\" rel=\"bookmark\">パーマリンク</a>をブックマーク"
+
+#. #-#-#-#-#  twentyten.pot (Twenty Ten 1.2)  #-#-#-#-#
+#. Theme URI of the plugin/theme
+#: footer.php:33
+msgid "http://wordpress.org/"
+msgstr "http://ja.wordpress.org/"
+
+#: footer.php:33
+msgid "Semantic Personal Publishing Platform"
+msgstr "セマンティックなパブリッシングツール"
+
+#: footer.php:33
+msgid "Proudly powered by %s."
+msgstr "Proudly powered by %s."
+
+#: search.php:16
+msgid "Search Results for: %s"
+msgstr "検索結果: %s"
+
+#: search.php:26
+msgid "Nothing Found"
+msgstr "見つかりません"
+
+#: search.php:28
+msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
+msgstr "ご指定の検索条件に合う投稿がありませんでした。他のキーワードでもう一度検索してみてください。"
+
+#: loop.php:25
+#: loop.php:178
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> 古い投稿"
+
+#: loop.php:26
+#: loop.php:179
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "新しい投稿 <span class=\"meta-nav\">&rarr;</span>"
+
+#: loop.php:35
+msgid "Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post."
+msgstr "リクエストされたアーカイブには何も見つかりませんでした。検索すれば関連投稿が見つかるかもしれません。"
+
+#: loop.php:60
+#: loop.php:95
+#: loop.php:96
+msgctxt "gallery category slug"
+msgid "gallery"
+msgstr "gallery"
+
+#: loop.php:62
+#: loop.php:83
+#: loop.php:131
+msgid "Permalink to %s"
+msgstr "%s へのパーマリンク"
+
+#: loop.php:82
+msgid "This gallery contains <a %1$s>%2$s photo</a>."
+msgid_plural "This gallery contains <a %1$s>%2$s photos</a>."
+msgstr[0] "このギャラリーには<a %1$s>%2$s枚の写真</a>が含まれています。"
+
+#: loop.php:93
+msgid "View Galleries"
+msgstr "ギャラリーを表示"
+
+#: loop.php:93
+#: loop.php:96
+msgid "More Galleries"
+msgstr "その他のギャラリー"
+
+#: loop.php:96
+msgid "View posts in the Gallery category"
+msgstr "ギャラリーカテゴリーの投稿を表示"
+
+#: loop.php:99
+#: loop.php:122
+#: loop.php:164
+msgid "Leave a comment"
+msgstr "コメントをどうぞ"
+
+#: loop.php:99
+#: loop.php:122
+#: loop.php:164
+msgid "1 Comment"
+msgstr "1件のコメント"
+
+#: loop.php:99
+#: loop.php:122
+#: loop.php:164
+msgid "% Comments"
+msgstr "%件のコメント"
+
+#: loop.php:106
+msgctxt "asides category slug"
+msgid "asides"
+msgstr "asides"
+
+#: loop.php:151
+msgid "<span class=\"%1$s\">Posted in</span> %2$s"
+msgstr "<span class=\"%1$s\">カテゴリー:</span> %2$s"
+
+#: loop.php:160
+msgid "<span class=\"%1$s\">Tagged</span> %2$s"
+msgstr "<span class=\"%1$s\">タグ:</span> %2$s"
+
+#: tag.php:16
+msgid "Tag Archives: %s"
+msgstr "タグ別アーカイブ: %s"
+
+#: archive.php:33
+msgid "Daily Archives: <span>%s</span>"
+msgstr "日別アーカイブ: <span>%s</span>"
+
+#: archive.php:35
+msgid "Monthly Archives: <span>%s</span>"
+msgstr "月別アーカイブ: <span>%s</span>"
+
+#: archive.php:37
+msgid "Yearly Archives: <span>%s</span>"
+msgstr "年別アーカイブ: <span>%s</span>"
+
+#: archive.php:39
+msgid "Blog Archives"
+msgstr "ブログアーカイブ"
+
+#: category.php:16
+msgid "Category Archives: %s"
+msgstr "カテゴリー別アーカイブ: %s"
+
+#: comments.php:18
+msgid "This post is password protected. Enter the password to view any comments."
+msgstr "この投稿はパスワードで保護されています。コメントを表示するにはパスワードを入力してください。"
+
+#: comments.php:35
+msgid "One Response to %2$s"
+msgid_plural "%1$s Responses to %2$s"
+msgstr[0] "%2$s への%1$s件のコメント"
+
+#: comments.php:41
+#: comments.php:60
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr "<span class=\"meta-nav\">&larr;</span> 古いコメント"
+
+#: comments.php:42
+#: comments.php:61
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr "新しいコメント <span class=\"meta-nav\">&rarr;</span>"
+
+#: comments.php:72
+msgid "Comments are closed."
+msgstr "コメントは受け付けていません。"
+
+#. Theme Name of the plugin/theme
+msgid "Twenty Ten"
+msgstr "Twenty Ten"
+
+#. Description of the plugin/theme
+msgid "The 2010 theme for WordPress is stylish, customizable, simple, and readable -- make it yours with a custom menu, header image, and background. Twenty Ten supports six widgetized areas (two in the sidebar, four in the footer) and featured images (thumbnails for gallery posts and custom header images for posts and pages). It includes stylesheets for print and the admin Visual Editor, special styles for posts in the \"Asides\" and \"Gallery\" categories, and has an optional one-column page template that removes the sidebar."
+msgstr "2010年版の WordPress テーマ「Twenty Ten」は、スタイリッシュで、カスタマイズ可能で、簡潔で、読みやすいデザインです。カスタムメニュー、ヘッダー画像、背景をあなたなりにアレンジしてみてください。Twenty Ten テーマでは6つのウィジェットエリア (サイドバーに2つ、フッターに4つ) と、アイキャッチ画像 (ギャラリー投稿のサムネイルと、投稿やページのカスタムヘッダー画像) に対応しています。印刷用、管理画面のビジュアルエディター用、アサイドおよびギャラリーカテゴリー用のスタイルシートが用意されています。また、サイドバーを取り去った1カラムページのテンプレートもあります。"
+
+#. Author of the plugin/theme
+msgid "the WordPress team"
+msgstr "the WordPress team"
+
+#. Tags of the plugin/theme
+msgid "black, blue, white, two-columns, fixed-width, custom-header, custom-background, threaded-comments, sticky-post, translation-ready, microformats, rtl-language-support, editor-style, custom-menu"
+msgstr "black, blue, white, two-columns, fixed-width, custom-header, custom-background, threaded-comments, sticky-post, translation-ready, microformats, rtl-language-support, editor-style, custom-menu"
+

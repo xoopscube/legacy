@@ -1,0 +1,345 @@
+/*
+Theme Name: XPress Default BlockThemes
+
+*/
+
+.xpress_block {
+
+}
+
+.xpress_block ul {
+
+}
+
+.xpress_block li {
+
+}
+
+.xpress_block a {
+
+}
+
+.xpress_block a:hover {
+
+}
+
+.xpress_block a:visited {
+
+}
+
+/*********** page block    ***************/
+.xpress_page_block {
+
+}
+
+.xpress_page_block ul {
+
+}
+
+.xpress_page_block li {
+
+}
+
+.xpress_page_block a {
+
+}
+
+.xpress_page_block a:hover {
+
+}
+
+.xpress_page_block a:visited {
+
+}
+
+/*********** archive block ***************/
+.xpress_archive_block {
+
+}
+
+.xpress_archive_block ul {
+
+}
+
+.xpress_archive_block li {
+
+}
+
+.xpress_archive_block a {
+
+}
+
+.xpress_archive_block a:hover {
+
+}
+
+.xpress_archive_block a:visited {
+
+}
+
+/*********** authors block ***************/
+.xpress_authors_block {
+
+}
+
+.xpress_authors_block ul {
+
+}
+
+.xpress_authors_block li {
+
+}
+
+.xpress_authors_block a {
+
+}
+
+.xpress_authors_block a:hover {
+
+}
+
+.xpress_authors_block a:visited {
+
+}
+
+/*********** calender block ***************/
+.xpress_calender_block {
+	empty-cells: show;
+	margin: 10px auto 0;
+	width: 155px;
+}
+
+.xpress_calender_block a {
+	text-decoration: none;
+	display: block;
+}
+
+.xpress_calender_block caption {
+	font: bold 1.3em;
+	text-align: center;
+}
+
+.xpress_calender_block td {
+	padding: 0px 0;
+	text-align: center;
+}
+
+.xpress_calender_block th {
+	font-style: normal;
+	text-transform: capitalize;
+}
+
+.xpress_calender_block #next a {
+	font-size: 9pt;
+	padding-right: 10px;
+	text-align: right;
+	}
+
+.xpress_calender_block #prev a {
+	font-size: 9pt;
+	padding-left: 10px;
+	text-align: left;
+	}
+
+
+
+
+/* End Calendar */
+
+/*********** popular post block ***************/
+.xpress_popular_post_block {
+
+}
+
+.xpress_popular_post_block ul {
+
+}
+
+.xpress_popular_post_block li {
+
+}
+
+.xpress_popular_post_block a {
+
+}
+
+.xpress_popular_post_block a:hover {
+
+}
+
+.xpress_popular_post_block a:visited {
+
+}
+
+/*********** recent comments block ***************/
+.xpress_recent_comments_block {
+
+}
+
+.xpress_recent_comments_block ul {
+
+}
+
+.xpress_recent_comments_block li {
+
+}
+
+.xpress_recent_comments_block a {
+
+}
+
+.xpress_recent_comments_block a:hover {
+
+}
+
+.xpress_recent_comments_block a:visited {
+
+}
+
+/*********** recent post list block ***************/
+.xpress_recent_post_list_block {
+
+}
+
+.xpress_recent_post_list_block ul {
+
+}
+
+.xpress_recent_post_list_block li {
+
+}
+
+.xpress_recent_post_list_block a {
+
+}
+
+.xpress_recent_post_list_block a:hover {
+
+}
+
+.xpress_recent_post_list_block a:visited {
+
+}
+
+/*********** recent post content block ***************/
+.xpress_recent_post_content_block {
+
+}
+
+.xpress_recent_post_content_block ul {
+
+}
+
+.xpress_recent_post_content_block li {
+
+}
+
+.xpress_recent_post_content_block a {
+
+}
+
+.xpress_recent_post_content_block a:hover {
+
+}
+
+.xpress_recent_post_content_block a:visited {
+
+}
+
+/*********** Search block    ***************/
+.xpress_search_block {
+
+}
+
+/*********** recent post content block ***************/
+.xpress_tag_cloud_block {
+
+}
+
+.xpress_tag_cloud_block a {
+
+}
+
+.xpress_tag_cloud_block a:hover {
+
+}
+
+.xpress_tag_cloud_block a:visited {
+
+}
+
+/*********** category block ***************/
+.xpress_category_block {
+
+}
+
+.xpress_category_block ul {
+
+}
+
+.xpress_category_block li {
+
+}
+
+.xpress_category_block a {
+
+}
+
+.xpress_category_block a:hover {
+
+}
+
+.xpress_category_block a:visited {
+
+}
+
+/*********** meta block ***************/
+.xpress_meta_block {
+
+}
+
+.xpress_meta_block ul {
+
+}
+
+.xpress_meta_block li {
+
+}
+
+.xpress_meta_block a {
+
+}
+
+.xpress_meta_block a:hover {
+
+}
+
+.xpress_meta_block a:visited {
+
+}
+
+/*********** sidebar block ***************/
+.xpress_sidebar_block {
+	width:190px;
+
+}
+.xpress_sidebar_block h2 {
+	font-size:14px;
+	margin:5px 0 0;
+	padding:0;
+}
+/*********** widget block ***************/
+.xpress_widget_block {
+
+}
+.xpress_widget_block h2{
+	font-size: 10pt;
+
+}
+
+/*********** custom block ***************/
+.xpress_enhanced_block {
+
+}
+
+

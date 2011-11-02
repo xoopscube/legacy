@@ -1,0 +1,40 @@
+<{* **************************  usage ****************************
+ 	The template tag of the following list can be used. 
+ 		<{$block.err_message}> 					// When the block cannot be displayed, this outputs the reason. Please do not delete it.
+		<{$block.data_count}>					// The number of contents is displayed. 
+		<{$block.contents}>						// Data array of contents. 
+		// Examples of <{$block.contents}>
+		<{foreach from=$block.contents item=content}>	// Loop
+		<{$content.post_id}>					// Displays the numeric ID of the post.
+		<{$content.post_title}>					// Displays the post's permalink, where the link text value is the posts title name.
+		<{$content.post_date}>					// Displays the published date of a post. Format at date set by general setting of Wordpress.
+		<{$content.post_time}>					// Displays the published time of a post. Format at time set by general setting of Wordpress.
+		<{$content.post_date_time}>				// Displays the published date-time of a post.
+		<{$content.post_modified_date}>			// Displays the modified date of a post. Format at date set by general setting of Wordpress.
+		<{$content.post_modified_time}>			// Displays the modified date of a post. Format at date set by general setting of Wordpress.
+		<{$content.post_modified_date_time}>	// Displays the modified date-time of a post.
+		<{$content.post_author}>				// Displays the author's archive link, where the link text value is the user's Display name. 
+		<{$content.post_category}>				// Displays a link to the category or categories a post belongs to.
+		<{$content.post_tags}>					// Displays a link to the tag or tags a post belongs to.
+		<{$content.post_views}>					// Displays the number of posts viewer.
+		<{$content.comment_link}>				// Displays a link to the comments popup window if comments_popup_script() is used, otherwise it displays a normal link to comments. 
+		<{$content.trackback_url}>				// Displays the trackback URL for the current post.
+		<{$content.blog_link}>					// Displays a permalink to the blog a comment belongs to.
+		<{$content.blog_title}>					// Displays a title to the blog a comment belongs to.
+		<{$content.blog_title_link}>			// Displays the blog's permalink, where the link text value is the posts title name.
+		<{/foreach}>							// End of Loop
+************************* End of usage ************************ *}>
+<{* Start Template *}>
+
+<div class="xpress_block">
+	<{$block.err_message}>
+	<div class="xpress_global_popular_post_block">
+		<ul>
+		<{foreach from=$block.contents item=content}>
+			<li>
+			<{$content.post_title}>&nbsp;(<{$content.post_views}>)
+			</li>
+		<{/foreach}>
+		</ul>
+	</div>
+</div>
