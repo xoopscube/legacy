@@ -511,7 +511,7 @@ class HypSimpleAmazon
 				$_item['ASIN'] = $item['ASIN'];
 				$_item['JAN'] = @ $item['ItemAttributes']['EAN'];
 				$_item['ADDCARTURL'] = $this->getAddCartURL($item['ASIN']);
-				$_item['TITLE'] = trim(htmlspecialchars(@ $item['ItemAttributes']['Title'] . '/' . $this->get_artist($item, 1)), '/');
+				$_item['TITLE'] = trim(htmlspecialchars(htmlspecialchars_decode(@ $item['ItemAttributes']['Title'] . '/' . $this->get_artist($item, 1), ENT_QUOTES)), '/');
 				if (isset($item["EditorialReviews"]["EditorialReview"])) {
 					$this->check_array($item["EditorialReviews"]["EditorialReview"]);
 					$_item['DISCRIPTION'] = $this->toPlainText(@ $item["EditorialReviews"]["EditorialReview"][0]["Content"]);

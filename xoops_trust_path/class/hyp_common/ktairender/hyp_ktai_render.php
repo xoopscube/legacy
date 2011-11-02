@@ -2,7 +2,7 @@
 /*
  * Created on 2008/06/17 by nao-pon http://hypweb.net/
  * License: GPL v2 or (at your option) any later version
- * $Id: hyp_ktai_render.php,v 1.55 2011/09/26 11:43:15 nao-pon Exp $
+ * $Id: hyp_ktai_render.php,v 1.56 2011/11/02 00:22:32 nao-pon Exp $
  */
 
 if (! function_exists('XC_CLASS_EXISTS')) {
@@ -469,7 +469,18 @@ class HypKTaiRender
 	function html_reduce_smart($body) {
 
 		$body = preg_replace('#(<(?:input|select|textarea))([^>]+? on[^>]+>)#iS', '$1 data-role="none"$2', $body);
+
+		// give data-ajax="false"
+		$body = preg_replace_callback('#(<script.+?/script>)|((<(?:a|form)[^>]+?)((?:href|action)=("|\')([^>]+?)\\5)([^>]*?>))#isS', array(& $this, '_check_href_smart'), $body);
+
 		return $body;
+	}
+
+	function _check_href_smart($match) {
+		if ($match[1] || strpos($match[2], 'data-ajax=') !== false) {
+			return $match[0];
+		}
+		return $match[3].$match[4].' data-ajax="false"'.$match[7];
 	}
 
 	// HTML を携帯端末用にシェイプアップする

@@ -1,5 +1,5 @@
 <?php
-// $Id: hyp_common_func.php,v 1.78 2011/09/26 11:44:52 nao-pon Exp $
+// $Id: hyp_common_func.php,v 1.79 2011/11/02 00:22:32 nao-pon Exp $
 // HypCommonFunc Class by nao-pon http://hypweb.net
 ////////////////////////////////////////////////
 
@@ -1903,13 +1903,16 @@ if (typeof hypEmojiPadSet != 'function') {
 		if (!!Prototype) {
 			document.observe("dom:loaded", function(){
 				$('emoji_button_pics_{$id}').innerHTML = html;
+				if (!!XpWiki && Prototype.Browser.IE) {
+					$('emoji_buttons_pre_$id').observe('mousedown', function(){wikihwlper_caretPos();});
+				}
 			});
 		} else {
 			document.write(html);
+			if (!!XpWiki && Prototype.Browser.IE) {
+				$('emoji_buttons_pre_$id').observe('mousedown', function(){wikihwlper_caretPos();});
+			}
 		}
-	}
-	if (!!XpWiki && Prototype.Browser.IE) {
-		$('emoji_buttons_pre_$id').observe('mousedown', function(){wikihwlper_caretPos();});
 	}
 })();
 // -->

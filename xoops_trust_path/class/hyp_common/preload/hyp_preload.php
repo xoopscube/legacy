@@ -131,9 +131,17 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 
 		if (! isset($this->k_tai_conf['ua_regex'])) $this->k_tai_conf['ua_regex'] = '#(?:Android|Windows Phone|SoftBank|Vodafone|J-PHONE|DoCoMo|UP\.Browser|DDIPOCKET|WILLCOM|iPhone|iPod|mixi-mobile-converter|Googlebot-Mobile|Google Wireless Transcoder|Hatena-Mobile-Gateway)#';
 		if (! isset($this->k_tai_conf['jquery_profiles'])) $this->k_tai_conf['jquery_profiles'] = 'android,iphone,ipod,windows phone';
-		if (! isset($this->k_tai_conf['jquery_theme'])) $this->k_tai_conf['jquery_theme'] = 'd';
+		if (! isset($this->k_tai_conf['jquery_theme'])) $this->k_tai_conf['jquery_theme'] = 'b';
+		if (! isset($this->k_tai_conf['jquery_theme_content'])) $this->k_tai_conf['jquery_theme_content'] = 'd';
+		if (! isset($this->k_tai_conf['jquery_theme_block'])) $this->k_tai_conf['jquery_theme_block'] = 'c';
 		if (! isset($this->k_tai_conf['jquery_no_reduce'])) $this->k_tai_conf['jquery_no_reduce'] = true;
 		if (! isset($this->k_tai_conf['rebuilds'])) $this->k_tai_conf['rebuilds'] = array(
+			'header'         => array( 'above' => '',
+			                          'below' => ''),
+			'body'           => array( 'above' => '',
+			                          'below' => ''),
+			'footer'         => array( 'above' => '',
+			                          'below' => ''),
 			'headerlogo'     => array( 'above' => '<center>',
 			                          'below' => '</center>'),
 			'headerbar'      => array( 'above' => '<hr>',
@@ -167,11 +175,29 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 			'subMenu'        => array( 'above' => '<div id="submenu" style="background-color:#ccccff"><h2 style="text-align:center">サブメニュー</h2></div>',
 			                          'below' => ''),
 			);
+		if (! isset($this->k_tai_conf['rebuildsEx'])) $this->k_tai_conf['rebuildsEx'] = array();
+		if (! isset($this->k_tai_conf['rebuildsEx']['jqm'])) $this->k_tai_conf['rebuildsEx']['jqm'] = array(
+			'header'         => array( 'above' => '<div data-role="header" data-theme="'.$this->k_tai_conf['jquery_theme'].'">',
+			                          'below' => '</div>'),
+			'body'           => array( 'above' => '<div data-role="content" id="keitaiContents" data-theme="'.$this->k_tai_conf['jquery_theme'].'">',
+			                          'below' => '</div>'),
+			'footer'         => array( 'above' => '<div data-role="footer" data-theme="'.$this->k_tai_conf['jquery_theme'].'">',
+			                          'below' => '</div>'),
+			'headerlogo'     => array( 'above' => '<h1>',
+			                          'below' => '</h1>'),
+			'easylogin'      => array( 'above' => '',
+			                          'below' => ''),
+			'blockMenu'      => array( 'above' => '</div><div data-role="footer" data-position="fixed" style="line-height:1">',
+			                          'below' => ''),
+		);
+
 		if (! isset($this->k_tai_conf['themeSet'])) $this->k_tai_conf['themeSet'] = 'ktai_default';
 		if (! isset($this->k_tai_conf['templateSet'])) $this->k_tai_conf['templateSet'] = 'ktai';
 		if (! isset($this->k_tai_conf['themeSets'])) $this->k_tai_conf['themeSets'] = array();
 		if (! isset($this->k_tai_conf['templateSets'])) $this->k_tai_conf['templateSets'] = array();
 		if (! isset($this->k_tai_conf['template'])) $this->k_tai_conf['template'] = 'default';
+		if (! isset($this->k_tai_conf['templates'])) $this->k_tai_conf['templates'] = array();
+		if (! isset($this->k_tai_conf['templates']['jqm']))$this->k_tai_conf['templates']['jqm'] = 'smart';
 		if (! isset($this->k_tai_conf['bodyAttribute'])) $this->k_tai_conf['bodyAttribute'] = '';
 		if (! isset($this->k_tai_conf['disabledBlockIds'])) $this->k_tai_conf['disabledBlockIds'] = array();
 		if (! isset($this->k_tai_conf['limitedBlockIds'])) $this->k_tai_conf['limitedBlockIds'] = array();
@@ -192,6 +218,7 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 		if (! isset($this->k_tai_conf['msg']['toMain'])) $this->k_tai_conf['msg']['toMain'] = 'Show main contents';
 		if (! isset($this->k_tai_conf['msg']['mainMenu'])) $this->k_tai_conf['msg']['mainMenu'] = 'Main Menu';
 		if (! isset($this->k_tai_conf['msg']['subMenu'])) $this->k_tai_conf['msg']['subMenu'] = 'Sub Menu';
+		if (! isset($this->k_tai_conf['msg']['switchSmart'])) $this->k_tai_conf['msg']['switchSmart'] = 'To Smart phone\'s';
 
 		if (! isset($this->k_tai_conf['icon']['toMain'])) $this->k_tai_conf['icon']['toMain'] = '((e:f7e4))';
 		if (! isset($this->k_tai_conf['style']['highlight'])) $this->k_tai_conf['style']['highlight'] = 'background-color:#ffc0cb';
@@ -221,7 +248,13 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 
 		// Use K_TAI Render
 		if (! empty($this->use_k_tai_render)) {
-			if (isset($_SERVER['HTTP_USER_AGENT']) &&
+			if (isset($_GET['_hypktaipc'])) {
+				if (! $_GET['_hypktaisw']) {
+					setcookie('_hypktaipc', '', 1, '/');
+					unset($_COOKIE['_hypktaipc']);
+				}
+			}
+			if (empty($_COOKIE['_hypktaipc']) && isset($_SERVER['HTTP_USER_AGENT']) &&
 				preg_match($this->k_tai_conf['ua_regex'], $_SERVER['HTTP_USER_AGENT'])) {
 
 				// Reset each site values.
@@ -253,18 +286,32 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 				$this->HypKTaiRender->marge_urlRewites('urlImgRewrites', $this->k_tai_conf['urlImgRewrites']);
 
 				// use jquery mobile?
-				$this->HypKTaiRender->Config_jquery = (in_array($this->HypKTaiRender->vars['ua']['carrier'], explode(',', $this->k_tai_conf['jquery_profiles'])));
+				$this->HypKTaiRender->Config_jquery = $use_jqm = (in_array($this->HypKTaiRender->vars['ua']['carrier'], explode(',', $this->k_tai_conf['jquery_profiles'])));
 
 				// jQuery use: 2, Normal: 1
-				define('HYP_K_TAI_RENDER', ($this->HypKTaiRender->Config_jquery? 2 : 1));
+				define('HYP_K_TAI_RENDER', ($use_jqm? 2 : 1));
 
 				// theme & template set
+				if ($use_jqm && isset($this->k_tai_conf['themeSets']['jqm'])) {
+					$this->k_tai_conf['themeSet'] = $this->k_tai_conf['themeSets']['jqm'];
+				}
 				if (isset($this->k_tai_conf['themeSets'][$this->HypKTaiRender->vars['ua']['carrier']]) && $this->k_tai_conf['themeSets'][$this->HypKTaiRender->vars['ua']['carrier']]) {
 					$this->k_tai_conf['themeSet'] = $this->k_tai_conf['themeSets'][$this->HypKTaiRender->vars['ua']['carrier']];
+				}
+				if ($use_jqm && isset($this->k_tai_conf['templateSets']['jqm'])) {
+					$this->k_tai_conf['templateSet'] = $this->k_tai_conf['templateSets']['jqm'];
 				}
 				if (isset($this->k_tai_conf['templateSets'][$this->HypKTaiRender->vars['ua']['carrier']]) && $this->k_tai_conf['templateSets'][$this->HypKTaiRender->vars['ua']['carrier']]) {
 					$this->k_tai_conf['templateSet'] = $this->k_tai_conf['templateSets'][$this->HypKTaiRender->vars['ua']['carrier']];
 				}
+				if ($use_jqm && isset($this->k_tai_conf['templates']['jqm'])) {
+					$this->k_tai_conf['template'] = $this->k_tai_conf['templates']['jqm'];
+				}
+				// keitai render template
+				if ($use_jqm && isset($this->k_tai_conf['rebuildsEx']['jqm'])) {
+					$this->k_tai_conf['rebuilds'] = array_merge($this->k_tai_conf['rebuilds'], $this->k_tai_conf['rebuildsEx']['jqm']);
+				}
+
 
 				// Session setting
 				@ ini_set('session.use_trans_sid', 0);
@@ -679,8 +726,11 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 			if (isset($_SERVER['HTTP_X_ORIGINAL_USER_AGENT']) && $this->encode !== 'UTF-8'){
 				ob_start(array(& $this, 'utf8Filter'));
 			}
-		}
 
+			if (! empty($_COOKIE['_hypktaipc'])) {
+				ob_start(array(& $this, 'switchOfSmartPhone'));
+			}
+		}
 
 		// Set Query Words
 		if ($this->use_set_query_words) {
@@ -689,6 +739,9 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 				ob_start(array(& $this, 'obFilter'));
 			}
 		}
+
+		$GLOBALS['hyp_preload_head_tag'] = '';
+		ob_start(array(& $this, 'addHeadTag'));
 
 		// Restor mb_detect_order
 		if ($this->detect_order_org) {
@@ -957,6 +1010,15 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 		}
 	}
 
+	function addHeadTag( $s ) {
+		if ($s === '' || strpos($s, '<html') === FALSE) return $s;
+
+		if (! empty($GLOBALS['hyp_preload_head_tag'])) {
+			$s = str_replace('</head>', $GLOBALS['hyp_preload_head_tag'] . '</head>', $s);
+		}
+		return $s;
+	}
+
 	function obFilter( $s ) {
 
 		if ($s === '' || strpos($s, '<html') === FALSE) return $s;
@@ -1092,6 +1154,7 @@ EOD;
 		// use jquery mobile?
 		$use_jquery = $r->Config_jquery;
 
+		$is_rss = false;
 		// Is RSS?
 		if (preg_match('/<(?:feed.+?<entry|(?:rss|rdf).+?<channel)/isS', substr($s, 0, 1000))) {
 			HypCommonFunc::loadClass('HypRss2Html');
@@ -1100,7 +1163,10 @@ EOD;
 			$s = $rh->getHtml();
 			//$s = mb_convert_encoding($s, $this->encode, $r->encoding);
 			$encode = $rh->encoding;
-			$use_jquery = false;
+			$header = '<h1>RSS of ' . $rh->base['TITLE'] . '</h1><a href="'.$rh->base['LINK'].'" data-icon="home" data-iconpos="notext">Home</a>';
+			$s = str_replace('<head>', '<head><link href="'.$_SERVER['REQUEST_URI'].'" title="RSS of ' . $rh->base['TITLE'] . '" type="application/rss+xml" rel="alternate" />', $s);
+			$is_rss = true;
+			//$use_jquery = false;
 		}
 
 		// preg_match では、サイズが大きいページで正常処理できないことがあるので。
@@ -1133,7 +1199,7 @@ EOD;
 			}
 			// Block を処理
 			$bid = isset($_GET[$this->k_tai_conf['getKeys']['block']])? intval($_GET[$this->k_tai_conf['getKeys']['block']]) : 0;
-			$_showblocks = $showblocks = $blocks = $submenu = array();
+			$_showblocks = $showblocks = $blocks = $submenu = $blockmenu = array();
 			$base = '?';
 			$querys = isset($_SERVER['QUERY_STRING'])? $_SERVER['QUERY_STRING'] : '';
 			if ($querys) {
@@ -1150,12 +1216,13 @@ EOD;
 				if ($use_jquery) {
 					$bcontent = preg_replace('#<h[1-6].*?<!--KTaiTitle-->(.+?)<!--/KTaiTitle-->.*?/h[1-6]>#s', '', $bcontent);
 					if (in_array($id, $this->k_tai_conf['showBlockIds'])) {
-						$body = $arr1[0] . '<div id="ktaiblock'.$id.'" data-role="collapsible" data-collapsed="false"><h3>'.$title.'</h3>' . $bcontent. '</div>' . $arr2[1];
+						$body = $arr1[0] . '<div id="ktaiblock'.$id.'" data-role="collapsible" data-theme="'.$this->k_tai_conf['jquery_theme_block'].'" data-content-theme="'.$this->k_tai_conf['jquery_theme_block'].'" data-collapsed="false"><h3>'.$title.'</h3>' . $bcontent. '</div>' . $arr2[1];
 						//$showblocks['ktaiblock'.$id] = $title;
 					} else {
-						$body = $arr1[0] . '<div id="ktaiblock'.$id.'" data-role="collapsible" data-collapsed="true"><h3>'.$title.'</h3>' . $bcontent. '</div>' . $arr2[1];
+						$body = $arr1[0] . '<div id="ktaiblock'.$id.'" data-role="collapsible" data-theme="'.$this->k_tai_conf['jquery_theme_block'].'" data-content-theme="'.$this->k_tai_conf['jquery_theme_block'].'" data-collapsed="true"><h3>'.$title.'</h3>' . $bcontent. '</div>' . $arr2[1];
 						//$_showblocks['ktaiblock'.$id] = $title;
 					}
+					$blockmenu[$id] = '<a href="#ktaiblock'.$id.'" data-ajax="false">' . $title . '</a>';
 				} else {
 					if (in_array($id, $this->k_tai_conf['showBlockIds'])) {
 						$body = $arr1[0] . '<div id="ktaiblock'.$id.'">' . $bcontent. '</div>' . $arr2[1];
@@ -1189,6 +1256,27 @@ EOD;
 					$block_menu[] = '<a href="#'.$id.'">' . $title . '</a>';
 				}
 				$body .= '<!--blockMenu-->' . join(' / ', $block_menu) . '<!--/blockMenu-->';
+			}
+			if ($blockmenu) {
+				$_url = XOOPS_URL . '/';
+				$blockmenu = join('</li><li>', $blockmenu);
+				$body .= <<<EOD
+<!--blockMenu-->
+<div id="keitaiblockmenu" style="display:none" data-role="footer">
+ <div data-role="navbar">
+  <ul><li>{$blockmenu}</li></ul>
+ </div>
+</div>
+<div data-role="header">
+ <a href="{$_url}" data-ajax="false" data-icon="home" data-iconpos="notext">Home</a>
+ <h4>
+  <a id="keitaifixedbar_main" href="#keitaiMainContents" data-ajax="false" style="display:inline;text-decoration:none;"><pagetitle></a>
+ </h4>
+ <a id="keitaifixedbar_block" href="#" data-ajax="false" data-icon="grid" data-iconpos="notext">block</a>
+</div>
+<!--/blockMenu-->
+EOD;
+
 			}
 
 			if ($rebuilds) {
@@ -1232,7 +1320,7 @@ EOD;
 					}
 
 					if ($use_jquery && !empty($parts['content'])) {
-						$parts['content'] = '<div data-role="collapsible" data-collapsed="false">' . $parts['content'] . '</div>';
+						$parts['content'] = '<div id="keitaiMainContents" data-role="collapsible" data-theme="'.$this->k_tai_conf['jquery_theme_content'].'" data-content-theme="'.$this->k_tai_conf['jquery_theme_content'].'" data-collapsed="false">' . $parts['content'] . '</div>';
 					}
 
 					// Easy login
@@ -1246,7 +1334,11 @@ EOD;
 							$url = $r->myRoot . $r->removeQueryFromUrl($r->SERVER['REQUEST_URI'], array('guid', $r->session_name));
 							$url .= ((strpos($url, '?') === FALSE)? '?' : '&') . $add;
 							$url = str_replace('&', '&amp;', $url);
-							$easylogin = '<a href="' . $url . '" data-role="button" data-icon="check" data-inline="true">' . $this->k_tai_conf['msg']['easylogin'] . '</a>';
+							if ($use_jquery) {
+								$easylogin = '<ul><li><a href="' . $url . '">' . $this->k_tai_conf['msg']['easylogin'] . '</a></li></ul>';
+							} else {
+								$easylogin = '<a href="' . $url . '">' . $this->k_tai_conf['msg']['easylogin'] . '</a>';
+							}
 						} else {
 							$uname = '';
 							if (empty($_SESSION['hyp_redirect_uname'])) {
@@ -1260,9 +1352,13 @@ EOD;
 							if ($uname) {
 								$uname = htmlspecialchars($uname);
 								$guid = ($r->vars['ua']['carrier'] === 'docomo')? '&amp;guid=on' : '';
-								$uname = '<a href="' . XOOPS_URL . '/userinfo.php?uid=' . $this->HypKTaiRender->vars['ua']['xoopsUid'] . $guid . '" data-role="button" data-icon="info" data-inline="true">' . $uname . '</a>';
+								$uname = '<a href="' . XOOPS_URL . '/userinfo.php?uid=' . $this->HypKTaiRender->vars['ua']['xoopsUid'] . $guid . '">' . $uname . '</a>';
 							}
-							$easylogin = $uname . ' <a href="' . XOOPS_URL . '/user.php?op=logout" data-role="button" data-icon="minus" data-inline="true">' . $this->k_tai_conf['msg']['logout'] . '</a>';
+							if ($use_jquery) {
+								$easylogin = '<ul><li>' . $uname . '</li><li><a href="' . XOOPS_URL . '/user.php?op=logout">' . $this->k_tai_conf['msg']['logout'] . '</a></li></ul>';
+							} else {
+								$easylogin = $uname . ' <a href="' . XOOPS_URL . '/user.php?op=logout">' . $this->k_tai_conf['msg']['logout'] . '</a>';
+							}
 
 							// 簡単ログイン:設定 or 解除
 							if (isset($this->k_tai_conf['easyLoginConfPath']) && isset($this->k_tai_conf['easyLoginConfuid'])) {
@@ -1348,19 +1444,9 @@ EOD;
 			$_css_type = ($use_jquery && $this->k_tai_conf['jquery_no_reduce'])? 'all|screen|handheld' : 'handheld';
 			$rss = array();
 			$jquery_script = array();
-/*
-			$jquery_script[] = <<<EOD
-<script>
-jQuery(document).ready(function(){
-	jQuery('textarea').focus(function(){
-	  jQuery(this).css('min-height', '15em');
-	});
-});
-</script>
-EOD;
-*/
+
 			if (preg_match_all('#<link([^>]+?)>#iS', $head, $match)) {
-				foreach($match[1] as $attrs) {
+				foreach($match[1] as $key => $attrs) {
 					if (preg_match('#type=("|\')application/(?:atom|rss)\+xml\\1#iS', $attrs)) {
 						if (preg_match('#href=("|\')([^ <>"\']+)\\1#is', $attrs, $match2)) {
 							$title = 'RSS';
@@ -1368,7 +1454,8 @@ EOD;
 							if (preg_match('#title=("|\')([^<>"\']+)\\1#isS', $attrs, $match3)) {
 								$title = $match3[2];
 							}
-							$rss[] = '<a href="'.$url.'">'.$title.'</a>';
+							if (! $is_rss) $rss[] = '<a href="'.$url.'" data-ajax="true">'.$title.'</a>';
+							if ($use_jquery) $_head .= $match[0][$key];
 						}
 					} else if (preg_match('#rel=("|\')stylesheet\\1#iS', $attrs)) {
 						if (preg_match('# media=("|\')[a-z, ]*\b(?:'.$_css_type.'|'.$r->vars['ua']['carrier'].')\b[a-z, ]*\\1#iS', $attrs)) {
@@ -1387,7 +1474,7 @@ EOD;
 			}
 			if ($rss) {
 				if ($use_jquery && count($rss) > 1) {
-					$body = '<div data-role="collapsible" data-collapsed="true"><h4>RSS Links</h4>' . $r->Config_icons['RSS'] . join('<br />' . $r->Config_icons['RSS'], $rss) . '</div>' . $body;
+					$body = '<div data-role="collapsible" data-theme="'.$this->k_tai_conf['jquery_theme_block'].'" data-content-theme="'.$this->k_tai_conf['jquery_theme_block'].'" data-collapsed="true"><h4>RSS Links</h4>' . $r->Config_icons['RSS'] . join('<br />' . $r->Config_icons['RSS'], $rss) . '</div>' . $body;
 				} else {
 					$body = '<div style="font-size:0.9em">' . $r->Config_icons['RSS'] . join('<br />' . $r->Config_icons['RSS'], $rss) . '</div>' . $body;
 				}
@@ -1432,6 +1519,10 @@ EOD;
 			$header .= $r->googleAnalyticsGetImgTag($this->k_tai_conf['googleAnalyticsId'], $pagetitle);
 		}
 
+		$header = $this->k_tai_conf['rebuilds']['header']['above'] . $header . $this->k_tai_conf['rebuilds']['header']['below'];
+		$body = $this->k_tai_conf['rebuilds']['body']['above'] . $body . $this->k_tai_conf['rebuilds']['body']['below'];
+		$footer = $this->k_tai_conf['rebuilds']['footer']['above'] . $footer . $this->k_tai_conf['rebuilds']['footer']['below'];
+
 		if ($use_jquery) {
 			$header .= '<separator>';
 			$body .= '<separator>';
@@ -1451,7 +1542,6 @@ EOD;
 
 		$r->doOptimize();
 
-		//$charset = (strtoupper($r->outputEncode) === 'UTF-8')? 'UTF-8' : 'Shift_JIS';
 		$charset = (strtoupper($r->outputEncode) === 'SJIS')? 'Shift_JIS' : $encode;
 
 		// Set <body> attribute
@@ -1461,12 +1551,15 @@ EOD;
 		}
 
 		$outBody = $r->outputBody;
+
+		$outBody = str_replace('<pagetitle>', $pagetitle, $outBody);
 		if ($use_jquery) {
 			$_array = explode('<separator>', $outBody);
 			$outBody  = '<div data-role="page" data-theme="'.$this->k_tai_conf['jquery_theme'].'">';
-			$outBody .= '<div data-role="header">' . $_array[0] . '</div>';
-			$outBody .= '<div data-role="content">' . $_array[1] . '</div>';
-			$outBody .= '<div data-role="footer">' . $_array[2] . '</div></div>';
+			$outBody .= $_array[0];
+			$outBody .= $_array[1];
+			$outBody .= $_array[2];
+			$outBody .= '</div>';
 		}
 
 		$s = $r->getHtmlDeclaration() . $head . '<body' . $bodyAttr . '>' . $outBody . '</body></html>';
@@ -1601,6 +1694,35 @@ EOD;
 		return $str;
 	}
 
+	function switchOfSmartPhone($str) {
+
+		$uri = $_SERVER['REQUEST_URI'];
+		$uri .= ((strpos($uri, '?') === false)? '?' : '&') . '_hypktaipc=0';
+		$htag = '<link href="'.XOOPS_THEME_URL.'/'.$this->k_tai_conf['themeSet'].'/keitaiswitch.css" rel="stylesheet" type="text/css" />' . "\n";
+		$htag .= <<<EOD
+<script type="text/javascript">
+	function hypKtaiSwitchToSmart() {
+		var expires = new Date();
+		expires.setDate(expires.getDate() - 1);
+		document.cookie = "_hypktaipc=0;expires=" + expires.toUTCString() + ";path=/";
+		if (location.href.match('_hypktaipc=1')) {
+			location.href = location.href.replace(/[?&]_hypktaipc=1/, '');
+		} else {
+			location.reload(true);
+		}
+		return false;
+	}
+</script>
+EOD;
+		$sw = '<div><a href="'.$uri.'" class="ktai_smart_btn" onclick="return hypKtaiSwitchToSmart();">'.$this->k_tai_conf['msg']['switchSmart'].'</a></div>';
+		list($head, $body) = explode('</head>', $str);
+		$head .= $htag . '</head>';
+		$body = preg_replace('/<body[^>]*?>/S', '$0' . $sw, $body, 1);
+		$str = $head . $body;
+
+		return $str;
+	}
+
 	function & getKtaiRenderObject() {
 		return $this->HypKTaiRender;
 	}
@@ -1726,13 +1848,24 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 		$this->k_tai_conf['jquery_profiles'] = 'android,iphone,ipod,windows phone';
 
 		// jQuery mobile のテーマ
-		$this->k_tai_conf['jquery_theme'] = 'd';
+		// ページ
+		$this->k_tai_conf['jquery_theme'] = 'b';
+		// メインコンテンツ
+		$this->k_tai_conf['jquery_theme_content'] = 'd';
+		// ブロックコンテンツ
+		$this->k_tai_conf['jquery_theme_block'] = 'c';
 
 		// jQuery 使用時はHTMLの携帯用変換を行わない
 		$this->k_tai_conf['jquery_no_reduce'] = true;
 
 		// HTML再構築用タグ設定
 		$this->k_tai_conf['rebuilds'] = array(
+			'header'         => array( 'above' => '',
+			                          'below' => ''),
+			'body'           => array( 'above' => '',
+			                          'below' => ''),
+			'footer'         => array( 'above' => '',
+			                          'below' => ''),
 			'headerlogo'     => array( 'above' => '<center>',
 			                          'below' => '</center>'),
 			'headerbar'      => array( 'above' => '<hr>',
@@ -1766,11 +1899,27 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 			'subMenu'        => array( 'above' => '<div id="submenu" style="background-color:#ccccff"><h2 style="text-align:center">サブメニュー</h2></div>',
 			                          'below' => ''),
 		);
+		// jQuery Mobile 上書き用
+		$this->k_tai_conf['rebuildsEx']['jqm'] = array(
+			'header'         => array( 'above' => '<div data-role="header" data-theme="'.$this->k_tai_conf['jquery_theme'].'">',
+			                          'below' => '</div>'),
+			'body'           => array( 'above' => '<div data-role="content" id="keitaiContents" data-theme="'.$this->k_tai_conf['jquery_theme'].'">',
+			                          'below' => '</div>'),
+			'footer'         => array( 'above' => '<div data-role="footer" data-theme="'.$this->k_tai_conf['jquery_theme'].'">',
+			                          'below' => '</div>'),
+			'headerlogo'     => array( 'above' => '<h1>',
+			                          'below' => '</h1>'),
+			'easylogin'      => array( 'above' => '',
+			                          'below' => ''),
+			'blockMenu'      => array( 'above' => '</div><div data-role="footer" data-position="fixed" style="line-height:1">',
+			                          'below' => ''),
+		);
 
 		// 携帯用XOOPSテーマセット
 		$this->k_tai_conf['themeSet'] = 'ktai_default';
-		// carrier 別の設定 (carrier をキーにして設定)
 		$this->k_tai_conf['themeSets'] = array();
+		//$this->k_tai_conf['themeSets']['jqm'] = ''; // jQuery mobile 一括
+		// carrier 別の設定 (carrier をキーにして設定)
 		//$this->k_tai_conf['themeSets']['android'] = '';
 		//$this->k_tai_conf['themeSets']['iphone'] = '';
 		//$this->k_tai_conf['themeSets']['ipod'] = '';
@@ -1778,8 +1927,9 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 
 		// 携帯用XOOPSテンプレートセット
 		$this->k_tai_conf['templateSet'] = '';
-		// carrier 別の設定 (carrier をキーにして設定)
 		$this->k_tai_conf['templateSets'] = array();
+		//$this->k_tai_conf['templateSets']['jqm'] = ''; // jQuery mobile 一括
+		// carrier 別の設定 (carrier をキーにして設定)
 		//$this->k_tai_conf['templateSets']['android'] = '';
 		//$this->k_tai_conf['templateSets']['iphone'] = '';
 		//$this->k_tai_conf['templateSets']['ipod'] = '';
@@ -1787,6 +1937,7 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 
 		// 使用テンプレート
 		$this->k_tai_conf['template'] = 'default';
+		$this->k_tai_conf['templates']['jqm'] = 'smart'; // jQuery mobile 用
 
 		// <body> attributes
 		$this->k_tai_conf['bodyAttribute'] = '';
@@ -1830,6 +1981,7 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 		$this->k_tai_conf['msg']['toMain'] = '本文を表示';
 		$this->k_tai_conf['msg']['mainMenu'] = 'メインメニュー';
 		$this->k_tai_conf['msg']['subMenu'] = 'サブメニュー';
+		$this->k_tai_conf['msg']['switchSmart'] = 'スマホスタイルへ';
 
 		// アイコン
 		$this->k_tai_conf['icon']['first']   = '((s:465d))';

@@ -46,7 +46,7 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 		$this->post_spam_filed = 200;     // Spam 無効フィールドの加算ポイント
 		$this->post_spam_trap  = '___url';// Spam 罠用無効フィールド名
 
-		$this->post_spam_user  = 50;      // POST SPAM 閾値: ログインユーザー
+		$this->post_spam_user  = 150;     // POST SPAM 閾値: ログインユーザー
 		$this->post_spam_guest = 15;      // POST SPAM 閾値: ゲスト
 		$this->post_spam_badip = 100;     // アクセス拒否リストへ登録する閾値
 
@@ -119,13 +119,24 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 		$this->k_tai_conf['jquery_profiles'] = 'android,iphone,ipod,windows phone';
 
 		// jQuery mobile のテーマ
-		$this->k_tai_conf['jquery_theme'] = 'd';
+		// ページ
+		$this->k_tai_conf['jquery_theme'] = 'b';
+		// メインコンテンツ
+		$this->k_tai_conf['jquery_theme_content'] = 'd';
+		// ブロックコンテンツ
+		$this->k_tai_conf['jquery_theme_block'] = 'c';
 
 		// jQuery 使用時はHTMLの携帯用変換を行わない
 		$this->k_tai_conf['jquery_no_reduce'] = true;
 
 		// HTML再構築用タグ設定
 		$this->k_tai_conf['rebuilds'] = array(
+			'header'         => array( 'above' => '',
+			                          'below' => ''),
+			'body'           => array( 'above' => '',
+			                          'below' => ''),
+			'footer'         => array( 'above' => '',
+			                          'below' => ''),
 			'headerlogo'     => array( 'above' => '<center>',
 			                          'below' => '</center>'),
 			'headerbar'      => array( 'above' => '<hr>',
@@ -156,14 +167,30 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 			                          'below' => ''),
 			'toMain'         => array( 'above' => '<hr /><div style="text-align:center">',
 			                          'below' => '</div>'),
-			'subMenu'        => array( 'above' => '<ns><div id="submenu" style="background-color:#ccccff"><h2 style="text-align:center">サブメニュー</h2></div>',
-			                          'below' => '</ns>'),
+			'subMenu'        => array( 'above' => '<div id="submenu" style="background-color:#ccccff"><h2 style="text-align:center">サブメニュー</h2></div>',
+			                          'below' => ''),
+		);
+		// jQuery Mobile 上書き用
+		$this->k_tai_conf['rebuildsEx']['jqm'] = array(
+			'header'         => array( 'above' => '<div data-role="header" data-theme="'.$this->k_tai_conf['jquery_theme'].'">',
+			                          'below' => '</div>'),
+			'body'           => array( 'above' => '<div data-role="content" id="keitaiContents" data-theme="'.$this->k_tai_conf['jquery_theme'].'">',
+			                          'below' => '</div>'),
+			'footer'         => array( 'above' => '<div data-role="footer" data-theme="'.$this->k_tai_conf['jquery_theme'].'">',
+			                          'below' => '</div>'),
+			'headerlogo'     => array( 'above' => '<h1>',
+			                          'below' => '</h1>'),
+			'easylogin'      => array( 'above' => '',
+			                          'below' => ''),
+			'blockMenu'      => array( 'above' => '</div><div data-role="footer" data-position="fixed" style="line-height:1">',
+			                          'below' => ''),
 		);
 
 		// 携帯用XOOPSテーマセット
 		$this->k_tai_conf['themeSet'] = 'ktai_default';
-		// carrier 別の設定 (carrier をキーにして設定)
 		$this->k_tai_conf['themeSets'] = array();
+		//$this->k_tai_conf['themeSets']['jqm'] = ''; // jQuery mobile 一括
+		// carrier 別の設定 (carrier をキーにして設定)
 		//$this->k_tai_conf['themeSets']['android'] = '';
 		//$this->k_tai_conf['themeSets']['iphone'] = '';
 		//$this->k_tai_conf['themeSets']['ipod'] = '';
@@ -171,8 +198,9 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 
 		// 携帯用XOOPSテンプレートセット
 		$this->k_tai_conf['templateSet'] = '';
-		// carrier 別の設定 (carrier をキーにして設定)
 		$this->k_tai_conf['templateSets'] = array();
+		//$this->k_tai_conf['templateSets']['jqm'] = ''; // jQuery mobile 一括
+		// carrier 別の設定 (carrier をキーにして設定)
 		//$this->k_tai_conf['templateSets']['android'] = '';
 		//$this->k_tai_conf['templateSets']['iphone'] = '';
 		//$this->k_tai_conf['templateSets']['ipod'] = '';
@@ -180,6 +208,7 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 
 		// 使用テンプレート
 		$this->k_tai_conf['template'] = 'default';
+		$this->k_tai_conf['templates']['jqm'] = 'smart'; // jQuery mobile 用
 
 		// <body> attributes
 		$this->k_tai_conf['bodyAttribute'] = '';
@@ -203,7 +232,7 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 		$this->k_tai_conf['directImgHosts'] = array('google-analytics.com', 'maps.google.com', 'ad.jp.ap.valuecommerce.com', 'ba.afl.rakuten.co.jp', 'assoc-amazon.jp', 'ad.linksynergy.com');
 
 		// リダイレクトスクリプトを経由しないホスト名(後方一致)
-		$this->k_tai_conf['directLinkHosts'] = array('amazon.co.jp', 'ck.jp.ap.valuecommerce.com', 'afl.rakuten.co.jp', 'maps.google.com', 'google.co.jp');
+		$this->k_tai_conf['directLinkHosts'] = array('amazon.co.jp', 'ck.jp.ap.valuecommerce.com', 'afl.rakuten.co.jp', 'maps.google.com');
 
 		// 外部リンク用リダイレクトスクリプト
 		$this->k_tai_conf['redirect'] = XOOPS_URL . '/class/hyp_common/gate.php?way=redirect&amp;_d=0&amp;_u=0&amp;_x=0&amp;l=';
@@ -212,6 +241,8 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 		$this->k_tai_conf['easyLogin'] = 1;
 		// Easy login で IP アドレス帯域をチェックしない
 		$this->k_tai_conf['noCheckIpRange'] = 0;
+		// docomo の端末IDを確認する間隔(秒)
+		$this->k_tai_conf['docomoGuidTTL'] = 300;
 
 		// リンクメッセージ
 		$this->k_tai_conf['msg']['easylogin'] = '簡単ログイン';
