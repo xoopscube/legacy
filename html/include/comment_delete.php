@@ -36,13 +36,13 @@ include_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
 $op = 'delete';
 if (!empty($_POST)) {
     $com_mode = isset($_POST['com_mode']) ? htmlspecialchars(trim($_POST['com_mode']), ENT_QUOTES) : 'flat';
-    $com_order = isset($_POST['com_order']) ? intval($_POST['com_order']) : XOOPS_COMMENT_OLD1ST;
-    $com_id = isset($_POST['com_id']) ? intval($_POST['com_id']) : 0;
+    $com_order = isset($_POST['com_order']) ? (int)$_POST['com_order'] : XOOPS_COMMENT_OLD1ST;
+    $com_id = isset($_POST['com_id']) ? (int)$_POST['com_id'] : 0;
     $op = isset($_POST['op']) ? $_POST['op'] : 'delete';
 } else {
     $com_mode = isset($_GET['com_mode']) ? htmlspecialchars(trim($_GET['com_mode']), ENT_QUOTES) : 'flat';
-    $com_order = isset($_GET['com_order']) ? intval($_GET['com_order']) : XOOPS_COMMENT_OLD1ST;
-    $com_id = isset($_GET['com_id']) ? intval($_GET['com_id']) : 0;
+    $com_order = isset($_GET['com_order']) ? (int)$_GET['com_order'] : XOOPS_COMMENT_OLD1ST;
+    $com_id = isset($_GET['com_id']) ? (int)$_GET['com_id'] : 0;
 
 }
 
@@ -100,7 +100,7 @@ if (false != $accesserror) {
     if ($ref != '') {
         redirect_header($ref, 2, _NOPERM);
     } else {
-        redirect_header($redirect_page.'?'.$comment_config['itemName'].'='.intval($com_itemid), 2, _NOPERM);
+        redirect_header($redirect_page.'?'.$comment_config['itemName'].'='.(int)$com_itemid, 2, _NOPERM);
     }
     exit();
 }

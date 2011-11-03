@@ -93,8 +93,8 @@ $br_checkbox->addOption(1, _CM_DOAUTOWRAP);
 $option_tray->addElement($br_checkbox);
 
 $cform->addElement($option_tray);
-$cform->addElement(new XoopsFormHidden('com_pid', intval($com_pid)));
-$cform->addElement(new XoopsFormHidden('com_rootid', intval($com_rootid)));
+$cform->addElement(new XoopsFormHidden('com_pid', (int)$com_pid));
+$cform->addElement(new XoopsFormHidden('com_rootid', (int)$com_rootid));
 $cform->addElement(new XoopsFormHidden('com_id', $com_id));
 $cform->addElement(new XoopsFormHidden('com_itemid', $com_itemid));
 $cform->addElement(new XoopsFormHidden('com_order', $com_order));

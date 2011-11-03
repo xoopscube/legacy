@@ -38,7 +38,7 @@ $t_root->mLanguageManager->loadPageTypeMessageCatalog("comment");	///< @todo Is 
 
 include_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
 
-$com_id = isset($_POST['com_id']) ? intval($_POST['com_id']) : 0;
+$com_id = isset($_POST['com_id']) ? (int)$_POST['com_id'] : 0;
 $extra_params = '';
 if ('system' == $xoopsModule->getVar('dirname')) {
     if (empty($com_id)) {
@@ -90,18 +90,18 @@ if (!empty($_POST)) {
 //    }
 
     $com_mode = isset($_POST['com_mode']) ? htmlspecialchars(trim($_POST['com_mode']), ENT_QUOTES) : 'flat';
-    $com_order = isset($_POST['com_order']) ? intval($_POST['com_order']) : XOOPS_COMMENT_OLD1ST;
-    $com_itemid = isset($_POST['com_itemid']) ? intval($_POST['com_itemid']) : 0;
-    $com_pid = isset($_POST['com_pid']) ? intval($_POST['com_pid']) : 0;
-    $com_rootid = isset($_POST['com_rootid']) ? intval($_POST['com_rootid']) : 0;
-    $com_status = isset($_POST['com_status']) ? intval($_POST['com_status']) : 0;
-    $dosmiley = (isset($_POST['dosmiley']) && intval($_POST['dosmiley']) > 0) ? 1 : 0;
-    $doxcode = (isset($_POST['doxcode']) && intval($_POST['doxcode']) > 0) ? 1 : 0;
-    $dobr = (isset($_POST['dobr']) && intval($_POST['dobr']) > 0) ? 1 : 0;
-    $dohtml = (isset($_POST['dohtml']) && intval($_POST['dohtml']) > 0) ? 1 : 0;
-    $doimage = (isset($_POST['doimage']) && intval($_POST['doimage']) > 0) ? 1 : 0;
+    $com_order = isset($_POST['com_order']) ? (int)$_POST['com_order'] : XOOPS_COMMENT_OLD1ST;
+    $com_itemid = isset($_POST['com_itemid']) ? (int)$_POST['com_itemid'] : 0;
+    $com_pid = isset($_POST['com_pid']) ? (int)$_POST['com_pid'] : 0;
+    $com_rootid = isset($_POST['com_rootid']) ? (int)$_POST['com_rootid'] : 0;
+    $com_status = isset($_POST['com_status']) ? (int)$_POST['com_status'] : 0;
+    $dosmiley = (isset($_POST['dosmiley']) && (int)$_POST['dosmiley'] > 0) ? 1 : 0;
+    $doxcode = (isset($_POST['doxcode']) && (int)$_POST['doxcode'] > 0) ? 1 : 0;
+    $dobr = (isset($_POST['dobr']) && (int)$_POST['dobr'] > 0) ? 1 : 0;
+    $dohtml = (isset($_POST['dohtml']) && (int)$_POST['dohtml'] > 0) ? 1 : 0;
+    $doimage = (isset($_POST['doimage']) && (int)$_POST['doimage'] > 0) ? 1 : 0;
     $com_icon = isset($_POST['com_icon']) ? trim($_POST['com_icon']) : '';
-    $noname = isset($_POST['noname']) ? intval($_POST['noname']) : 0;
+    $noname = isset($_POST['noname']) ? (int)$_POST['noname'] : 0;
 } else {
     exit();
 }

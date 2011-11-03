@@ -53,7 +53,7 @@ if ('system' != $xoopsModule->getVar('dirname') && XOOPS_COMMENT_APPROVENONE == 
 
 $t_root->mLanguageManager->loadPageTypeMessageCatalog('comment');	///< Is this must?
 
-$com_itemid = isset($_GET['com_itemid']) ? intval($_GET['com_itemid']) : 0;
+$com_itemid = isset($_GET['com_itemid']) ? (int)$_GET['com_itemid'] : 0;
 
 if ($com_itemid > 0) {
 	include XOOPS_ROOT_PATH.'/header.php';
@@ -85,7 +85,7 @@ if ($com_itemid > 0) {
 			$com_order = $xoopsConfig['com_order'];
 		}
 	} else {
-		$com_order = intval($_GET['com_order']);
+		$com_order = (int)$_GET['com_order'];
 	}
 	$noname = 0;
 
