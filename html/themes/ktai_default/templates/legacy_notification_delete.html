@@ -1,0 +1,11 @@
+<div class='confirmMsg'>
+  <h4><{$smarty.const._NOT_DELETINGNOTIFICATIONS}></h4>
+  <form action="notifications.php" method="post">
+    <{xoops_token form=$actionForm}>
+    <{xoops_input type=hidden name=delete value=1}>
+    <{foreach item=ids from=$actionForm->mNotifiyIds}>
+      <input type="hidden" name="del_not[<{$ids.modid|xoops_escape:plain}>][]" value="<{$ids.id|xoops_escape:plain}>" />
+    <{/foreach}>
+    <input type="submit" name="delete" value="<{$smarty.const._DELETE}>" />
+  </form>
+</div>

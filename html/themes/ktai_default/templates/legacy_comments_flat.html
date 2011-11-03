@@ -1,0 +1,6 @@
+<{$lang_poster}><br />
+<{$lang_thread}>
+  <{foreach item=comment from=$comments}>
+    <{include file="db:legacy_comment.html" comment=$comment}>
+    <hr />
+  <{/foreach}>

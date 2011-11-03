@@ -1,0 +1,19 @@
+<form method="get" action="<{$pageName}>">
+  <{xoops_token form=$actionForm}>
+  <input type="hidden" name="<{$itemName}>" value="<{$com_itemid}>" />
+  <div style="text-align: center;">
+    <{html_options name=com_order options=$orderOptions selected=$com_order}>
+    <{html_options name=com_mode options=$modeOptions selected=$com_mode}>
+    <input type="submit" value="<{$smarty.const._CM_REFRESH}>" class="formButton" />
+  </div>
+  <{foreach key=key item=value from=$extraParams}>
+    <{xoops_input type=hidden name=$key value=$value}>
+  <{/foreach}>
+</form>
+
+
+<form method="get" action="<{$postcomment_link|xoops_escape:link}><{$link_extra|xoops_escape:link}>">
+  <{if $postcomment_link}>
+	<input type="submit" class="formButton" value="<{$smarty.const._CM_POSTCOMMENT}>" />
+  <{/if}>
+

@@ -1,0 +1,61 @@
+<!-- start module contents -->
+<!-- breadcrumbs -->
+<{if $mod_config.show_breadcrumbs}>
+<div class="d3f_breadcrumbs">
+	<{strip}>
+		<a href="<{$mod_url}>/index.php"><{$smarty.const._MD_D3FORUM_TOP}></a>
+		&nbsp;&gt;&nbsp;
+		<{foreach from=$category.paths_raw key=parent_id item=parent_title_raw}>
+			<a href="<{$mod_url}>/index.php?cat_id=<{$parent_id}>"><{$parent_title_raw|escape}></a>
+		&nbsp;&gt;
+		<{/foreach}>
+		<a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>"><{$forum.title}></a>
+		&nbsp;&gt;
+		<a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>"><{$topic.title}></a>
+	<{/strip}>
+</div>
+<{/if}>
+<hr />
+<p class="d3f_topicinfo"><a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>"><{$smarty.const._MD_D3FORUM_LINK_LISTPOSTS}></a></p>
+
+<{include file="db:`$mydirname`_inc_d3comment_summary.html"}>
+
+<div class="d3f_wrap">
+<{include file="db:`$mydirname`_inc_eachpost.html" caller="viewpost" inner_link_format="`$mod_url`/index.php?post_id=%s"}>
+</div>
+
+<!-- start post tree -->
+<h3 class="head d3f_tree d3f_head"><{$smarty.const._MD_D3FORUM_POSTSTREE}></h3>
+
+<{foreach from=$posts item=eachpost}>
+<{if $eachpost.id == $post.id}>
+	<{$eachpost.ul_in|replace:"<ul>":"<ul class='d3f_eachbranch'>\n\t"|replace:"<li>":"<li class='d3f_eachbranchitem d3f_currenttopic'><span style='background-color:#FFC0CB'>"}>
+<{else}>
+	<{$eachpost.ul_in|replace:"<ul>":"<ul class='d3f_eachbranch'>\n\t"|replace:"<li>":"<li class='d3f_eachbranchitem'><span>"}>
+<{/if}>
+	<a href="<{$mod_url}>/index.php?post_id=<{$eachpost.id}>" id="post_path<{$eachpost.unique_path}>" name="post_path<{$eachpost.unique_path}>"><img src="<{$mod_imageurl}>/posticon<{$eachpost.icon}>.gif" alt="<{$icon_meanings[$eachpost.icon]}>" /> <{$eachpost.subject}></a>
+	(<{$eachpost.poster_uname}>, <{$eachpost.post_time_formatted}>)
+	<{if $forum.isadminormod}><a href="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$eachpost.id}>"><img src="<{$mod_imageurl}>/adminicon_cutpaste.gif" alt="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>" /></a><{/if}></span>
+<{$eachpost.ul_out}>
+<{/foreach}>
+<!-- end topic tree -->
+
+<!-- quick reply form -->
+<{if $post.can_reply}>
+<{include file="db:`$mydirname`_inc_post_form_quick.html"  uname=`$xoops_uname` h2_title=`$smarty.const._MD_D3FORUM_REPLYTHISPOST` quick_form_mode="reply" subject_raw=`$post.subject_raw`}>
+<{/if}>
+
+<!-- forum jump -->
+<form name="forum_jump_box" action="<{$mod_url}>/index.php" method="get" style="clear:both;">
+	<div data-role="fieldcontain">
+		<select name="forum_id"><{$forum_jumpbox_options}></select>
+		<input type="submit" value="<{$smarty.const._MD_D3FORUM_BTN_JUMPTOFORUM}>" />
+	</div>
+</form>
+
+<a href="<{$mod_url}>/index.php?page=search"><{$smarty.const._MD_D3FORUM_LINK_ADVSEARCH}></a>
+
+<hr class="notification" />
+
+<{include file='db:system_notification_select.html'}>
+<!-- end module contents -->
