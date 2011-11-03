@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=<{$xoops_charset}>" />
 <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-<title><{$xoops_sitename}> - <{if $xoops_pagetitle}><{$xoops_pagetitle}><{else}><{$xoops_slogan}><{/if}></title>
+<title><{$xoops_sitename}><{if $xoops_pagetitle}> - <{$xoops_pagetitle}><{else}><{if $xoops_slogan}> - <{$xoops_slogan}><{/if}><{/if}></title>
 
 <meta name="description" content="<{$xoops_meta_description}>" />
 <meta name="keywords" content="<{$xoops_meta_keywords}>" />
@@ -121,25 +121,19 @@ $ ( function () {
 		<{* <span>Welcome <{$xoops_uname}> !</span> *}>	
 		&nbsp;
 		Welcome <{$xoops_userid|xoops_user:"name"}> !
-		<a href="<{$xoops_url}>/user.php?op=logout">
-		<{$smarty.const._LOGOUT}>
-		</a>  
+		<a href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._LOGOUT}></a>
 		&nbsp;
 		</span>
 		<{else}>
 		<span>
-		<a href="<{$xoops_url}>/user.php">
-		<img src="<{$xoops_imageurl}>images/login.gif" alt="<{$smarty.const._LOGIN}>" />
-		</a>
+		<a href="<{$xoops_url}>/user.php"><{$smarty.const._LOGIN}></a>
 		</span>
 	<{/if}>
 	</div>
-	
+
 	<h1 class="level1">
-		<a href="<{$xoops_url}>/">
-		<img src="<{$xoops_imageurl}>images/dp_logo.png" alt="" />
-		</a>
-		<{$xoops_sitename}>&nbsp;:&nbsp;<{$xoops_slogan}>
+		<a href="<{$xoops_url}>/"><img src="<{$xoops_imageurl}>images/dp_logo.png" alt="" /></a>
+		<{$xoops_sitename}><{if $xoops_slogan}>&nbsp;-&nbsp;<{$xoops_slogan}><{/if}>
 	</h1>
 
 	<div id="globalNavi" class="megaDropdown group">
@@ -163,7 +157,7 @@ $ ( function () {
 
 	<{$xoops_banner}>
 
-<{*
+<{* 　smarty comment out
 	<ul class="breadNavi"><!--
 		--><li><a href="#dummy">HOME</a><span class="arrow">&gt;</span></li><!--
 		--><li><a href="#dummy">ParentPage</a><span class="arrow">&gt;</span></li><!--
@@ -171,6 +165,7 @@ $ ( function () {
 	--></ul>
 *}>
 	<{if empty($xoops_contents)}>
+	<!-- Start flick Demo -->
 	<div class="section">
 		<div id="flickMain">
 			<!-- flick -->
@@ -195,6 +190,7 @@ $ ( function () {
 			<!-- /.flickBtn -->
 		</div>
 	</div><!-- /.section -->
+	<!-- End flick Demo -->
 	<{/if}>	
 	<div class="group">
 		<div class="subContainer">
