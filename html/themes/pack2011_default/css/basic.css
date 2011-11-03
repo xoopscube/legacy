@@ -42,7 +42,7 @@ a:visited {
 a,a:link {
 }
 a:hover {
-	text-decoration: none;
+	text-decoration: underline;
 }
 a:visited {
 }
@@ -60,6 +60,18 @@ body {
 	margin: 0 10px;
 }
 #globalContentsWrapper {
+	max-width: 950px;
+	_width: 950px;
+	margin: 0 auto;
+}
+
+/* header */
+#globalHeaderContainer {
+	width: 100%;
+	padding: 5px 0;
+	background: #eee;
+}
+#headerInner {
 	max-width: 950px;
 	_width: 950px;
 	margin: 0 auto;
@@ -107,11 +119,11 @@ body {
 
 /* block */
 .mainContainer {
-	width: 70%;
+	width: 75%;
 	float: left;
 }
 .subContainer {
-	width: 29%;
+	width: 24%;
 	float: right;
 }
 
@@ -130,7 +142,7 @@ body {
 /* footer */
 #globalFooterContainer {
 	width: 100%;
-	padding: 10px 0;
+	padding: 5px 0;
 	background: #eee;
 }
 #footerInner {
@@ -280,9 +292,11 @@ p {
 	border: solid 1px #ddd;
 }
 .subContainer .btnList li:hover {
+
 	background: #eee;
 }
 .subContainer .btnList li a {
+	text-decoration: none;
 	padding: 5px 10px;
 	display: block;
 }

@@ -112,25 +112,23 @@ $ ( function () {
 </script>
 <![endif]-->
 </head>
-<body onLoad="ProjectName.PARTS.hideAdBar()" onOrientationChange="ProjectName.PARTS.hideAdBar()">
-<div id="globalContainer">
-<div id="globalContentsWrapper">
-	<div class="header">
-	<{if $xoops_isuser === true}>
-		<span>
-		<{* <span>Welcome <{$xoops_uname}> !</span> *}>	
-		&nbsp;
-		Welcome <{$xoops_userid|xoops_user:"name"}> !
-		<a href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._LOGOUT}></a>
-		&nbsp;
-		</span>
-		<{else}>
-		<span>
-		<a href="<{$xoops_url}>/user.php"><{$smarty.const._LOGIN}></a>
-		</span>
-	<{/if}>
-	</div>
 
+<body onLoad="ProjectName.PARTS.hideAdBar()" onOrientationChange="ProjectName.PARTS.hideAdBar()">
+<div id="globalHeaderContainer">
+	<div id="headerInner">
+		<{if $xoops_isuser === true}>
+			<{* Smarty comment　out
+			Welcome <{$xoops_uname}> !
+			 *}>
+			Welcome <{$xoops_userid|xoops_user:"name"}> !
+			<a href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._LOGOUT}></a>
+		<{else}>
+			<span><a href="<{$xoops_url}>/user.php"><{$smarty.const._LOGIN}></a></span>
+		<{/if}>
+	</div><!-- /#headerInner -->
+</div><!-- /#globalHeaderContainer -->
+
+<div id="globalContentsWrapper">
 	<h1 class="level1">
 		<a href="<{$xoops_url}>/"><img src="<{$xoops_imageurl}>images/dp_logo.png" alt="" /></a>
 		<{$xoops_sitename}><{if $xoops_slogan}>&nbsp;-&nbsp;<{$xoops_slogan}><{/if}>
@@ -153,17 +151,10 @@ $ ( function () {
 		</li>
 	<{/foreach}>
 	</ul>
-	</div><!-- /#globalHeader -->
+	</div>
 
 	<{$xoops_banner}>
 
-<{* 　smarty comment out
-	<ul class="breadNavi"><!--
-		--><li><a href="#dummy">HOME</a><span class="arrow">&gt;</span></li><!--
-		--><li><a href="#dummy">ParentPage</a><span class="arrow">&gt;</span></li><!--
-		--><li class="cur"><span>CurrentPage<span></li><!--
-	--></ul>
-*}>
 	<{if empty($xoops_contents)}>
 	<!-- Start flick Demo -->
 	<div class="section">
@@ -273,7 +264,6 @@ $ ( function () {
 				<{/if}>
 				<!-- End Center Right Column -->
 				</div>
-				
 			<!-- End Center Column -->
 
 			<!-- Module Content -->
@@ -298,7 +288,6 @@ $ ( function () {
 		<{if !empty($xoops_contents)}>
 			<{$xoops_contents}>
 		<{/if}>
-	
 		</div><!-- /.mainContainer -->
 
 	</div><!-- /.group -->
