@@ -216,14 +216,15 @@ class XoopsConfigHandler
 			return $_cachedConfigs[$module][$category];
 		} else {
         	$ret = array();
-        	$criteria = new CriteriaCompo(new Criteria('conf_modid', intval($module)));
+        	$criteria = new CriteriaCompo(new Criteria('conf_modid', (int)$module));
         	if (!empty($category)) {
-            	$criteria->add(new Criteria('conf_catid', intval($category)));
+            	$criteria->add(new Criteria('conf_catid', (int)$category));
         	}
         	$configs =& $this->getConfigs($criteria, true);
 			if (is_array($configs)) {
             	foreach (array_keys($configs) as $i) {
-                	$ret[$configs[$i]->getVar('conf_name')] = $configs[$i]->getConfValueForOutput();
+					$conf = &$configs[$i];
+                	$ret[$conf->getVar('conf_name')] = $conf->getConfValueForOutput();
             	}
         	}
 			$_cachedConfigs[$module][$category] =& $ret;

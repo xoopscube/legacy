@@ -69,7 +69,7 @@ class XoopsImagesetimgHandler extends XoopsObjectHandler
     function &get($id)
     {
         $ret = false;
-        $id = intval($id);
+        $id = (int)$id;
         if ($id > 0) {
             $sql = 'SELECT * FROM '.$this->db->prefix('imgsetimg').' WHERE imgsetimg_id='.$id;
             if ($result = $this->db->query($sql)) {
@@ -176,7 +176,7 @@ class XoopsImagesetimgHandler extends XoopsObjectHandler
  **/
     function &getByImageset($imgset_id, $id_as_key = false)
     {
-        $ret =& $this->getObjects(new Criteria('imgsetimg_imgset', intval($imgset_id)), $id_as_key);
+        $ret =& $this->getObjects(new Criteria('imgsetimg_imgset', (int)$imgset_id), $id_as_key);
         return $ret;
     }
 
@@ -190,7 +190,7 @@ class XoopsImagesetimgHandler extends XoopsObjectHandler
     function imageExists($filename, $imgset_id)
     {
         $criteria = new CriteriaCompo(new Criteria('imgsetimg_file', $filename));
-        $criteria->add(new Criteria('imgsetimg_imgset', intval($imgset_id)));
+        $criteria->add(new Criteria('imgsetimg_imgset', (int)$imgset_id));
         if ($this->getCount($criteria) > 0) {
             return true;
         }

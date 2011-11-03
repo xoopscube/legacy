@@ -69,7 +69,7 @@ class XoopsTplsetHandler extends XoopsObjectHandler
     function &get($id)
     {
         $ret = false;
-        $id = intval($id);
+        $id = (int)$id;
         if ($id > 0) {
             $sql = 'SELECT * FROM '.$this->db->prefix('tplset').' WHERE tplset_id='.$id;
             if ($result = $this->db->query($sql)) {

@@ -149,14 +149,13 @@ class XoopsConfigItem extends XoopsObject
         $ret = null;
         switch ($this->getVar('conf_valuetype')) {
         case 'int':
-            $ret = intval($this->getVar('conf_value', 'N'));
+            $ret = (int)$this->getVar('conf_value', 'N');
             break;
         case 'array':
             $ret = unserialize($this->getVar('conf_value', 'N'));
 			break;
         case 'float':
-            $value = $this->getVar('conf_value', 'N');
-            $ret = floatval($value);
+            $ret = (float)$this->getVar('conf_value', 'N');
             break;
         case 'textarea':
             $ret = $this->getVar('conf_value');
@@ -346,7 +345,7 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
     function &get($id)
     {
         $ret = false;
-        $id = intval($id);
+        $id = (int)$id;
         if ($id > 0) {
             $sql = 'SELECT * FROM '.$this->db->prefix('config').' WHERE conf_id='.$id;
             if ($result = $this->db->query($sql)) {
@@ -427,18 +426,19 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
     {
         $ret = array();
         $limit = $start = 0;
-        $sql = 'SELECT * FROM '.$this->db->prefix('config');
+        $db = $this->db;
+        $sql = 'SELECT * FROM '.$db->prefix('config');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             $sql .= ' '.$criteria->renderWhere();
             $sql .= ' ORDER BY conf_order ASC';
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();
         }
-        $result = $this->db->query($sql, $limit, $start);
+        $result = $db->query($sql, $limit, $start);
         if (!$result) {
             return $ret;
         }
-        while ($myrow = $this->db->fetchArray($result)) {
+        while ($myrow = $db->fetchArray($result)) {
             $config =new XoopsConfigItem();
             $config->assignVars($myrow);
             if (!$id_as_key) {

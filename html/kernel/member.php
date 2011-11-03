@@ -456,7 +456,7 @@ class XoopsMemberHandler{
      */
     function getUserCountByNoGroup($group_id)
     {
-        $groupid = intval($group_id);
+        $groupid = (int)$group_id;
         $usersTable = $this->_mHandler->db->prefix('users');
         $linkTable = $this->_mHandler->db->prefix('groups_users_link');
 

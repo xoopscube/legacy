@@ -52,7 +52,7 @@ class XoopsAvatar extends XoopsObject
 
     function setUserCount($value)
     {
-        $this->_userCount = intval($value);
+        $this->_userCount = (int)$value;
     }
 
     function getUserCount()
@@ -86,7 +86,7 @@ class XoopsAvatarHandler extends XoopsObjectHandler
     function &get($id)
     {
         $ret = false;
-        $id = intval($id);
+        $id = (int)$id;
         if ($id > 0) {
             $sql = 'SELECT * FROM '.$this->db->prefix('avatar').' WHERE avatar_id='.$id;
             if ($result = $this->db->query($sql)) {
@@ -189,8 +189,8 @@ class XoopsAvatarHandler extends XoopsObjectHandler
     }
 
     function addUser($avatar_id, $user_id){
-        $avatar_id = intval($avatar_id);
-        $user_id = intval($user_id);
+        $avatar_id = (int)$avatar_id;
+        $user_id = (int)$user_id;
         if ($avatar_id < 1 || $user_id < 1) {
             return false;
         }
@@ -226,7 +226,7 @@ class XoopsAvatarHandler extends XoopsObjectHandler
             $criteria->add(new Criteria('avatar_type', $avatar_type));
         }
         if (isset($avatar_display)) {
-            $criteria->add(new Criteria('avatar_display', intval($avatar_display)));
+            $criteria->add(new Criteria('avatar_display', (int)$avatar_display));
         }
         $avatars =& $this->getObjects($criteria, true);
         $ret = array('blank.gif' => _NONE);

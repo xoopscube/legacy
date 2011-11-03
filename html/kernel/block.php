@@ -412,7 +412,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
      **/
     function &get($id)
     {
-        $id = intval($id);
+        $id = (int)$id;
         if ($id > 0) {
             $sql = 'SELECT * FROM '.$this->db->prefix('newblocks').' WHERE bid='.$id;
             if (!$result = $this->db->query($sql)) {
@@ -604,20 +604,20 @@ class XoopsBlockHandler extends XoopsObjectHandler
         }
         $sql .= "FROM ".$this->db->prefix("newblocks")." b LEFT JOIN ".$this->db->prefix("group_permission")." l ON l.gperm_itemid=b.bid WHERE gperm_name = 'block_read' AND gperm_modid = 1";
         if ( is_array($groupid) ) {
-            $sql .= " AND (l.gperm_groupid=".intval($groupid[0])."";
+            $sql .= " AND (l.gperm_groupid=".(int)$groupid[0]."";
             $size = count($groupid);
             if ( $size  > 1 ) {
                 for ( $i = 1; $i < $size; $i++ ) {
-                    $sql .= " OR l.gperm_groupid=".intval($groupid[$i])."";
+                    $sql .= " OR l.gperm_groupid=".(int)$groupid[$i]."";
                 }
             }
             $sql .= ")";
         } else {
-            $sql .= " AND l.gperm_groupid=".intval($groupid)."";
+            $sql .= " AND l.gperm_groupid=".(int)$groupid."";
         }
-        $sql .= " AND b.isactive=".intval($isactive);
+        $sql .= " AND b.isactive=".(int)$isactive;
         if ( isset($side) ) {
-            $side = intval($side);
+            $side = (int)$side;
             // get both sides in sidebox? (some themes need this)
             if ( $side == XOOPS_SIDEBLOCK_BOTH ) {
                 $side = "(b.side=0 OR b.side=1)";
@@ -629,7 +629,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
             $sql .= " AND ".$side;
         }
         if ( isset($visible) ) {
-            $sql .= " AND b.visible=".intval($visible);
+            $sql .= " AND b.visible=".(int)$visible;
         }
         $sql .= " ORDER BY ".addslashes($orderby);
         $result = $this->db->query($sql);
@@ -651,9 +651,9 @@ class XoopsBlockHandler extends XoopsObjectHandler
     function &getAllBlocks($rettype="object", $side=null, $visible=null, $orderby="side,weight,bid", $isactive=1)
     {
         $ret = array();
-        $where_query = " WHERE isactive=".intval($isactive);
+        $where_query = " WHERE isactive=".(int)$isactive;
         if ( isset($side) ) {
-            $side = intval($side);
+            $side = (int)$side;
             // get both sides in sidebox? (some themes need this)
             if ( $side == 2 ) {
                 $side = "(side=0 OR side=1)";
@@ -665,7 +665,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
             $where_query .= " AND ".$side;
         }
         if ( isset($visible) ) {
-            $visible = intval($visible);
+            $visible = (int)$visible;
             $where_query .= " AND visible=$visible";
         }
         $where_query .= " ORDER BY ".addslashes($orderby);
@@ -704,7 +704,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
 
     function &getByModule($moduleid, $asobject=true)
     {
-        $moduleid = intval($moduleid);
+        $moduleid = (int)$moduleid;
         if ( $asobject == true ) {
             $sql = $sql = "SELECT * FROM ".$this->db->prefix("newblocks")." WHERE mid=".$moduleid."";
         } else {
@@ -735,8 +735,9 @@ class XoopsBlockHandler extends XoopsObjectHandler
         if ( is_array($groupid) ) {
             $sql .= ' AND gperm_groupid IN ('.addslashes(implode(',', array_map('intval', $groupid))).')';
         } else {
-            if (intval($groupid) > 0) {
-                $sql .= ' AND gperm_groupid='.intval($groupid);
+			$groupid = (int)$groupid;
+			if ($groupid > 0) {
+                $sql .= ' AND gperm_groupid='.$groupid;
             }
         }
         $result = $this->db->query($sql);
@@ -748,10 +749,10 @@ class XoopsBlockHandler extends XoopsObjectHandler
             $sql = 'SELECT b.* FROM '.$this->db->prefix('newblocks').' b, '.$this->db->prefix('block_module_link').' m WHERE m.block_id=b.bid';
             $sql .= ' AND b.isactive='.$isactive;
             if (isset($visible)) {
-                $sql .= ' AND b.visible='.intval($visible);
+                $sql .= ' AND b.visible='.(int)$visible;
             }
             if ($module_id !== false) {
-                $sql .= ' AND m.module_id IN (0,'.intval($module_id);
+                $sql .= ' AND m.module_id IN (0,'.(int)$module_id;
                 if ($toponlyblock) {
                     $sql .= ',-1';
                 }
@@ -791,8 +792,9 @@ class XoopsBlockHandler extends XoopsObjectHandler
         if ( is_array($groupid) ) {
             $sql .= ' AND gperm_groupid IN ('.addslashes(implode(',', array_map('intval', $groupid))).')';
         } else {
-            if (intval($groupid) > 0) {
-                $sql .= ' AND gperm_groupid='.intval($groupid);
+	    $groupid = (int)$groupid;
+            if ($groupid > 0) {
+                $sql .= ' AND gperm_groupid='.$groupid;
             }
         }
         $result = $this->db->query($sql);
@@ -804,7 +806,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
             $sql = 'SELECT b.* FROM '.$this->db->prefix('newblocks').' b, '.$this->db->prefix('block_module_link').' m WHERE m.block_id=b.bid';
             $sql .= ' AND b.isactive=1 AND b.visible=1';
             if ($mid !== false && $mid !== 0) {
-                $sql .= ' AND m.module_id IN (0,'.intval($mid).')';
+                $sql .= ' AND m.module_id IN (0,'.(int)$mid.')';
             } else {
                 $sql .= ' AND m.module_id=0';
             }
@@ -869,17 +871,13 @@ class XoopsBlockHandler extends XoopsObjectHandler
         $non_grouped = array_diff($bids, $grouped);
         if (!empty($non_grouped)) {
             $sql = 'SELECT b.* FROM '.$this->db->prefix('newblocks').' b, '.$this->db->prefix('block_module_link').' m WHERE m.block_id=b.bid';
-            $sql .= ' AND b.isactive='.intval($isactive);
+            $sql .= ' AND b.isactive='.(int)$isactive;
             if (isset($visible)) {
-                $sql .= ' AND b.visible='.intval($visible);
+                $sql .= ' AND b.visible='.(int)$visible;
             }
-            $module_id = intval($module_id);
+            $module_id = (int)$module_id;
             if (!empty($module_id)) {
-                $sql .= ' AND m.module_id IN (0,'.$module_id;
-                if ($toponlyblock) {
-                    $sql .= ',-1';
-                }
-                $sql .= ')';
+                $sql .= ' AND m.module_id IN (0,'.$module_id.($toponlyblock?',-1)':')');
             } else {
                 if ($toponlyblock) {
                     $sql .= ' AND m.module_id IN (0,-1)';
@@ -902,8 +900,8 @@ class XoopsBlockHandler extends XoopsObjectHandler
 
     function countSimilarBlocks($moduleId, $funcNum, $showFunc = null)
     {
-        $funcNum = intval($funcNum);
-        $moduleId = intval($moduleId);
+        $funcNum = (int)$funcNum;
+        $moduleId = (int)$moduleId;
         if ($funcNum < 1 || $moduleId < 1) {
             // invalid query
             return 0;

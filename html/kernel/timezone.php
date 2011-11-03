@@ -84,7 +84,7 @@ class XoopsTimezoneHandler extends XoopsObjectHandler
 		$ret = null;
 		
 		foreach ($this->_mResult as $index => $zone_name) {
-			if (floatval($index) == floatval($offset)) {
+			if ((float)$index == (float)$offset) {
 				$obj =new XoopsTimezone();
 				$obj->set('offset', $index);
 				$obj->set('zone_name', $zone_name);

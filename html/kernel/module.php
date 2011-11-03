@@ -224,7 +224,7 @@ class XoopsModule extends XoopsObject
 		$this->modinfo =& $modversion;
 		
 		if (isset($this->modinfo['version'])) {
-			$this->modinfo['version'] = floatval($this->modinfo['version']);
+			$this->modinfo['version'] = (float)$this->modinfo['version'];
 		} else {
 			$this->modinfo['version'] = 0;
 		}
@@ -386,7 +386,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
 	function &get($id)
 	{
 		$ret = false;
-		$id = intval($id);
+		$id = (int)$id;
 		if ($id > 0) {
 			if (!empty($this->_cachedModule_mid[$id])) {
 				return $this->_cachedModule_mid[$id];
@@ -419,24 +419,24 @@ class XoopsModuleHandler extends XoopsObjectHandler
 	{
 		$ret = false;
 		$dirname =	trim($dirname);
-		
-		if (!empty($this->_cachedModule_dirname[$dirname])) {
-			$ret = $this->_cachedModule_dirname[$dirname];
+		$cache = &$this->_cachedModule_dirname;
+		if (!empty($cache[$dirname])) {
+			$ret = $cache[$dirname];
 		}
-		elseif (count($this->_cachedModule_dirname)==0) {
+		elseif (count($cache)==0) {
 			$db = $this->db;
 			$sql = "SELECT * FROM ".$db->prefix('modules');
 			if ($result = $db->query($sql)) {
 				while ($myrow = $db->fetchArray($result)) {
 					 $module = new XoopsModule();
 					 $module->assignVars($myrow);
-					 $this->_cachedModule_dirname[$myrow['dirname']] =& $module;
+					 $cache[$myrow['dirname']] =& $module;
 					 $this->_cachedModule_mid[$myrow['mid']] =& $module;
 					 unset($module);
 				}
 			}
-			if (!empty($this->_cachedModule_dirname[$dirname])) {
-				$ret = $this->_cachedModule_dirname[$dirname];
+			if (!empty($cache[$dirname])) {
+				$ret = $cache[$dirname];
 			}
 		}
 		return $ret;
@@ -572,7 +572,8 @@ class XoopsModuleHandler extends XoopsObjectHandler
 	{
 		$ret = array();
 		$limit = $start = 0;
-		$sql = 'SELECT * FROM '.$this->db->prefix('modules');
+		$db = &$this->db;
+		$sql = 'SELECT * FROM '.$db->prefix('modules');
 		if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
 			$sql .= ' '.$criteria->renderWhere();
 
@@ -586,11 +587,11 @@ class XoopsModuleHandler extends XoopsObjectHandler
 			$limit = $criteria->getLimit();
 			$start = $criteria->getStart();
 		}
-		$result = $this->db->query($sql, $limit, $start);
+		$result = $db->query($sql, $limit, $start);
 		if (!$result) {
 			return $ret;
 		}
-		while ($myrow = $this->db->fetchArray($result)) {
+		while ($myrow = $db->fetchArray($result)) {
 			$module =new XoopsModule();
 			$module->assignVars($myrow);
 			if (!$id_as_key) {

@@ -111,7 +111,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
     function &get($id)
     {
         $ret = false;
-        $id = intval($id);
+        $id = (int)$id;
         if ($id > 0) {
             $sql = 'SELECT * FROM '.$this->db->prefix('priv_msgs').' WHERE msg_id='.$id;
             if ($result = $this->db->query($sql)) {

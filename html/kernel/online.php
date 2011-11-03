@@ -77,7 +77,7 @@ class XoopsOnlineHandler
      */
     function write($uid, $uname, $time, $module, $ip)
 	{
-		$uid = intval($uid);
+		$uid = (int)$uid;
 		$ip = $this->db->quoteString($ip);
 		if ($uid > 0) {
 			$sql = "SELECT COUNT(*) FROM ".$this->db->prefix('online')." WHERE online_uid=".$uid;
@@ -124,7 +124,7 @@ class XoopsOnlineHandler
      */
     function gc($expire)
     {
-		$sql = sprintf("DELETE FROM %s WHERE online_updated < %u", $this->db->prefix('online'), time() - intval($expire));
+		$sql = sprintf("DELETE FROM %s WHERE online_updated < %u", $this->db->prefix('online'), time() - (int)$expire);
         $this->db->queryF($sql);
     }
 

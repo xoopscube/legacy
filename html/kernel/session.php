@@ -153,7 +153,7 @@ class XoopsSessionHandler
      **/
     function gc($expire)
     {
-        $mintime = time() - intval($expire);
+        $mintime = time() - (int)$expire;
 		$sql = sprintf('DELETE FROM %s WHERE sess_updated < %u', $this->db->prefix('session'), $mintime);
         return $this->db->queryF($sql);
     }

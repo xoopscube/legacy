@@ -145,8 +145,8 @@ class XoopsUser extends XoopsObject
      */
     function getUnameFromId( $userid, $usereal = 0 )
     {
-		$userid = intval($userid);
-		$usereal = intval($usereal);
+		$userid = (int)$userid;
+		$usereal = (int)$usereal;
 		if ($userid > 0) {
             $member_handler =& xoops_gethandler('member');
             $user =& $member_handler->getUser($userid);
@@ -234,7 +234,7 @@ class XoopsUser extends XoopsObject
     function isAdmin( $module_id = null ) {
 		if ( is_null( $module_id ) ) {
 			$module_id = isset($GLOBALS['xoopsModule']) ? $GLOBALS['xoopsModule']->getVar( 'mid', 'n' ) : 1;
-		} elseif ( intval($module_id) < 1 ) {
+		} elseif ( (int)$module_id < 1 ) {
 			$module_id = 0;
 		}
         $moduleperm_handler =& xoops_gethandler('groupperm');
@@ -541,7 +541,7 @@ class XoopsUserHandler extends XoopsObjectHandler
     function &get($id)
     {
         $ret = false;
-        if (intval($id) > 0) {
+        if ((int)$id > 0) {
             $sql = 'SELECT * FROM '.$this->db->prefix('users').' WHERE uid='.$id;
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
@@ -668,7 +668,7 @@ class XoopsUserHandler extends XoopsObjectHandler
     function &getObjectsByLevel($level=0)
     {
 		$ret=array();
-		$level=intval($level);
+		$level=(int)$level;
 		$result = $this->db->query("SELECT * FROM ".$this->db->prefix("users")." WHERE level > $level ORDER BY uname");
 		if(!$result)
 			return $ret;

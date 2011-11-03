@@ -69,7 +69,7 @@ class XoopsImagesetHandler extends XoopsObjectHandler
     function &get($id)
     {
         $ret = false;
-        if (intval($id) > 0) {
+        if ((int)$id > 0) {
             $sql = 'SELECT * FROM '.$this->db->prefix('imgset').' WHERE imgset_id='.$id;
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
@@ -156,7 +156,7 @@ class XoopsImagesetHandler extends XoopsObjectHandler
 
     function linkThemeset($imgset_id, $tplset_name)
     {
-        $imgset_id = intval($imgset_id);
+        $imgset_id = (int)$imgset_id;
         $tplset_name = trim($tplset_name);
         if ($imgset_id <= 0 || $tplset_name == '') {
             return false;
@@ -174,7 +174,7 @@ class XoopsImagesetHandler extends XoopsObjectHandler
 
     function unlinkThemeset($imgset_id, $tplset_name)
     {
-        $imgset_id = intval($imgset_id);
+        $imgset_id = (int)$imgset_id;
         $tplset_name = trim($tplset_name);
         if ($imgset_id <= 0 || $tplset_name == '') {
             return false;
@@ -191,7 +191,7 @@ class XoopsImagesetHandler extends XoopsObjectHandler
     {
         $criteria = new CriteriaCompo();
         if (isset($refid)) {
-            $criteria->add(new Criteria('imgset_refid', intval($refid)));
+            $criteria->add(new Criteria('imgset_refid', (int)$refid));
         }
         if (isset($tplset)) {
             $criteria->add(new Criteria('tplset_name', $tplset));

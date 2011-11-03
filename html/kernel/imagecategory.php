@@ -53,7 +53,7 @@ class XoopsImagecategory extends XoopsObject
 
 	function setImageCount($value)
 	{
-		$this->_imageCount = intval($value);
+		$this->_imageCount = (int)$value;
 	}
 
 	function getImageCount()
@@ -86,7 +86,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
     function &get($id)
     {
         $ret = false;
-        if (intval($id) > 0) {
+        if ((int)$id > 0) {
             $sql = 'SELECT * FROM '.$this->db->prefix('imagecategory').' WHERE imgcat_id='.$id;
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
@@ -201,7 +201,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
             }
         }
         if (isset($display)) {
-            $criteria->add(new Criteria('imgcat_display', intval($display)));
+            $criteria->add(new Criteria('imgcat_display', (int)$display));
         }
         if (isset($storetype)) {
             $criteria->add(new Criteria('imgcat_storetype', $storetype));

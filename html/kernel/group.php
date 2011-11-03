@@ -97,7 +97,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
     function &get($id)
     {
         $ret = false;
-        if (intval($id) > 0) {
+        if ((int)$id > 0) {
             $sql = 'SELECT * FROM '.$this->db->prefix('groups').' WHERE groupid='.$id;
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
@@ -258,7 +258,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
     function &get($id)
     {
         $ret = false;
-        if (intval($id) > 0) {
+        if ((int)$id > 0) {
             $sql = 'SELECT * FROM '.$this->db->prefix('groups_users_link').' WHERE linkid='.$id;
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
@@ -409,7 +409,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
     function &getGroupsByUser($uid)
     {
         $ret = array();
-        $sql = 'SELECT groupid FROM '.$this->db->prefix('groups_users_link').' WHERE uid='.intval($uid);
+        $sql = 'SELECT groupid FROM '.$this->db->prefix('groups_users_link').' WHERE uid='.(int)$uid;
         $result = $this->db->query($sql);
         if (!$result) {
             return $ret;
@@ -433,7 +433,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
     function &getUsersByGroup($groupid, $limit=0, $start=0)
     {
         $ret = array();
-        $sql = 'SELECT uid FROM ' . $this->db->prefix('groups_users_link') . ' WHERE groupid='.intval($groupid);
+        $sql = 'SELECT uid FROM ' . $this->db->prefix('groups_users_link') . ' WHERE groupid='.(int)$groupid;
 
         $result = $this->db->query($sql, $limit, $start);
         if (!$result) {
@@ -452,7 +452,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
     {
         $ret = array();
 
-        $groupid = intval($groupid);
+        $groupid = (int)$groupid;
         $usersTable = $this->db->prefix('users');
         $linkTable = $this->db->prefix('groups_users_link');
 
