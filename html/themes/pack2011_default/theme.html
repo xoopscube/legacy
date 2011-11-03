@@ -275,7 +275,7 @@ $ ( function () {
 				</div>
 				
 			<!-- End Center Column -->
-		
+
 			<!-- Module Content -->
 			<{if !empty($xoops_contents)}>
 			<div class="group">
@@ -305,49 +305,11 @@ $ ( function () {
 </div><!-- /#globalContentsWrapper -->
 </div><!-- /#globalContainer -->
 
+<div id="globalFooterContainer">
+	<div id="footerInner">
+		<p><{if $xoops_footer}><{$xoops_footer}><{/if}> Distributed by XOOPS Cube 2.2 Distribution Pack 2011 team.</p>
+	</div><!-- /#footerInner -->
+</div><!-- /#globalFooterContainer -->
 
-<div id="globalFooterContainer"><div id="footerInner">
-	<!--#include virtual="<{$xoops_imageurl}>inc/footer_link.html" -->
-	<div id="footerTabIndex">
-		<{if $xoops_banner}>
-			<{$xoops_banner}>
-		<{/if}>
-		<div class="tabIndexCol">
-			<ul class="footerEtcLink">
-				<li class="group">
-					<dl class="fPane2 fFloL over">
-						<dt class="fb"><a href="#"><img src="<{$xoops_imageurl}>images/dummy_pict.gif" alt="dummy" class="floLm" width="60"></></dt>
-						<dd>
-							<a href="#">TitleName</a>
-							News Text News Text News Text News Text News Text News Text News Text News Text News Text
-						</dd>
-					</dl>
-					<dl class="fPane2 fFloR over">
-						<dt class="fb"><a href="#"><img src="<{$xoops_imageurl}>images/dummy_pict.gif" alt="dummy" class="floLm" width="60"></></dt>
-						<dd>
-							<a href="#">TitleName</a>
-							News Text News Text News Text News Text News Text News Text News Text News Text News Text
-						</dd>
-					</dl>
-				</li>
-			</ul>
-		</div>
-		<div class="tabIndexCol">
-			<ul class="inlineList">
-				<li><a href="#">123</a></li>
-				<li><a href="#">456</a></li>
-				<li><a href="#">789</a></li>
-			</ul>
-		</div>
-		<ul class="tabIndexMenu group">
-			<li>
-			<{if $xoops_footer}><{$xoops_footer}><{else}>Pack2011 by 
-			<a href="http://www.xoopscube.net/">XOOPSCube.NET</a><{/if}>
-			( Designed by Bluemoon inc. GPL Ver3.0 All rights reserved. )
-  			</li>
-		</ul>
-	</div>
-</div>
-<!-- /#footerInner --></div><!-- /#globalFooterContainer -->
 </body>
 </html>
