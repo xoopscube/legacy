@@ -69,3 +69,21 @@
 	{
 	font-size: 0.9em;
 	}
+
+/* 最新ニュースの投稿者 */
+.itemPoster
+	{
+	font-size:90%;
+	}
+
+/* 最新ニュースの投稿日 */
+.itemPostDate
+	{
+	font-size:90%;
+	}
+
+/* 最新ニュースのステータス */
+.itemStats
+	{
+	font-size:90%;
+	}
