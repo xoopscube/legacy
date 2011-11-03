@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 function b_gnavi_archive_show( $options )
 {
