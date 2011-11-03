@@ -47,11 +47,17 @@ class XoopsGroup extends XoopsObject
      */
     function XoopsGroup()
     {
+        static $initVars;
+        if (isset($initVars)) {
+            $this->vars = $initVars;
+	    return;
+	}
         $this->XoopsObject();
         $this->initVar('groupid', XOBJ_DTYPE_INT, null, false);
         $this->initVar('name', XOBJ_DTYPE_TXTBOX, null, true, 100);
         $this->initVar('description', XOBJ_DTYPE_TXTAREA, null, false);
         $this->initVar('group_type', XOBJ_DTYPE_OTHER, null, false);
+        $initVars = $this->vars;
     }
 }
 
