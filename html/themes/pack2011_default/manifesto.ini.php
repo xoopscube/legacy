@@ -2,7 +2,7 @@
 /**
 
 [Manifesto]
-Name="pack2011_default"
+Name="Pack2011_default"
 Depends="Legacy_RenderSystem,legacy"
 Url="http://sourceforge.jp/projects/xoopscube22x/"
 Version="0.5"
