@@ -98,7 +98,7 @@ body {
 }
 #globalNavi .navigation li {
 	float: left;
-	width: 12.5%;
+	width: 125px;
 	_display: inline;
 	border-bottom: solid 1px #000;
 }
