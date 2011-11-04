@@ -28,19 +28,18 @@
 
 <{if $xoops_module_header}><{$xoops_module_header}><{/if}>
 <{if $xoops_block_header}><{$xoops_block_header}><{/if}>
+<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-1.6.4.min.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/global.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-megaDropdown.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-jktab.js"></script>
-<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-jcflick.js"></script>
 <script type="text/javascript">
 (function(){
 	if( ProjectName.ua.iPhone || ProjectName.ua.Android || ProjectName.ua.WP7 ){
 		ProjectName.MOD.print_r( ProjectName.META.iOS() );
 	}
 })();
-(function($) {
-$(function($){
+$(function(){
 	if( !ProjectName.ua.iPhone ){
 	if( !ProjectName.ua.iPad ){
 	if( !ProjectName.ua.Android ){
@@ -49,6 +48,9 @@ $(function($){
 	ProjectName.PARTS.scrollAnchor();
 	$('#footerTabIndex').jktab();
 });
+</script>
+<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-jcflick.js"></script>
+<script type="text/javascript">
 $(function(){
 	$('#flickMain').jcflick({
 		//init
@@ -69,6 +71,8 @@ $(function(){
 	ProjectName.PARTS.scrollAnchor();
 	
 });
+</script>
+<script type="text/javascript">
 $ ( function () {
     var stop = false;
     $ ( '.jquery-ui-accordion-title' )
@@ -95,7 +99,6 @@ $ ( function () {
             }
         } ) ;
 } ) ;
-})(jQuery);
 </script>
 <script type="text/javascript">
 <!--
@@ -120,16 +123,24 @@ $ ( function () {
 			Welcome <{$xoops_userid|xoops_user:"name"}> !
 			<a href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._LOGOUT}></a>
 		<{else}>
-			<span><a href="<{$xoops_url}>/user.php"><{$smarty.const._LOGIN}></a></span>
+			<a href="<{$xoops_url}>/user.php"><{$smarty.const._LOGIN}></a>
 		<{/if}>
 	</div><!-- /#headerInner -->
 </div><!-- /#globalHeaderContainer -->
 
 <div id="globalContentsWrapper">
-	<h1 class="level1">
-		<a href="<{$xoops_url}>/"><img src="<{$xoops_imageurl}>images/dp_logo.png" alt="" /></a>
-		<{$xoops_sitename}><{if $xoops_slogan}>&nbsp;-&nbsp;<{$xoops_slogan}><{/if}>
-	</h1>
+	<div id="siteTitle">
+		<{if ! $legacy_module}>
+			<img src="<{$xoops_imageurl}>images/dp_logo.png" alt="" />
+			<span class="level1"><{$xoops_sitename}></span>
+		<{else}>
+			<a href="<{$xoops_url}>/"><img src="<{$xoops_imageurl}>images/dp_logo.png" alt="" /></a>
+			<a href="<{$xoops_url}>/"><span class="level1"><{$xoops_sitename}></span></a>
+		<{/if}>
+		<{if $xoops_slogan}>
+			<span class="level3">&nbsp;-&nbsp;<{$xoops_slogan}>
+		<{/if}>
+	</div>
 
 	<div id="globalNavi" class="megaDropdown group">
 	<ul class="navigation group gnaviParentCol">	

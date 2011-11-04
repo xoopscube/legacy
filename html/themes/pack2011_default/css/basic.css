@@ -90,6 +90,15 @@ body {
 	_width: 950px;
 	margin: 0 auto;
 }
+#siteTitle {
+	margin-top: 10px;
+	padding: 0;
+	line-height: 30px;
+}
+
+#siteTitle img {
+	vertical-align: text-bottom;
+}
 
 /* globalNavi */
 #globalNavi .navigation {
