@@ -1159,6 +1159,21 @@ var XpWiki = {
 		}
 	},
 
+	textareaMakeOnAjax: function(target) {
+		var textarea = target.getElementsByTagName('textarea');
+		if (!!textarea[1]) {
+			if (!this.useJQueryMobile) {new Resizable(textarea[1], {mode:'xy'});}
+			$(textarea[1]).setAttribute("rel", "wikihelper");
+			this.addWrapButton(textarea[1]);
+			if (!this.useJQueryMobile) {new Resizable(textarea[0], {mode:'xy'});}
+			this.addWrapButton(textarea[0]);
+		} else {
+			if (!this.useJQueryMobile) {new Resizable(textarea[0], {mode:'xy'});}
+			$(textarea[0]).setAttribute("rel", "wikihelper");
+			this.addWrapButton(textarea[0]);
+		}
+	},
+
 	str2num: function(string) {
 		if (typeof string == 'string' && !string) {
 			return '';
