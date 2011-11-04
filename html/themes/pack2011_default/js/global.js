@@ -14,6 +14,8 @@ if( typeof(ProjectName) == 'undefined' || !ProjectName ){
 	var ProjectName = {}
 }
 
+(function($) {
+
 //============================================================
 // Module Object
 //
@@ -73,3 +75,4 @@ ProjectName.PARTS = {
 		setTimeout("scrollTo(0,1)", 100);
 	}
 }
+})(jQuery);

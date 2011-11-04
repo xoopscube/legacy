@@ -6,11 +6,11 @@
 *jquery-jcflick.js
 */
 
-(function(jQuery){
+(function($){
 /**============================================================
 * global
 */
-jQuery.fn.jcflick = function(config)
+$.fn.jcflick = function(config)
 {
 	//引数の初期値を設定（カンマ区切り）
 	var defaults = {
