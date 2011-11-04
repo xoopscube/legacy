@@ -103,11 +103,10 @@ footer 				{ padding: 5px; }
 
 pre					{ overflow: scroll; font-size: 10px; }
 
-/*  
-
-	XOOPS Cube Legacy 
-    http://xoopscube.org  */
-
+/*------------------------------------*\
+	XOOPS Cube Legacy
+	http://xoopscube.org
+\*------------------------------------*/
 
 /*------------------------------------------------------- ITEMS */
 
@@ -144,7 +143,7 @@ pre					{ overflow: scroll; font-size: 10px; }
 	color:#F89D07;
 	}
 
-/* 最新ニュースのタイトルバー */
+/* TitleBar of Latest News */
 .itemHead
 	{
 	padding:3px 5px;
@@ -181,19 +180,19 @@ pre					{ overflow: scroll; font-size: 10px; }
 	font-size: 0.9em;
 	}
 
-/* 最新ニュースの投稿者 */
+/* Posted in Latest News */
 .itemPoster
 	{
 	font-size:90%;
 	}
 
-/* 最新ニュースの投稿日 */
+/* Date of Latest News */
 .itemPostDate
 	{
 	font-size:90%;
 	}
 
-/* 最新ニュースのステータス */
+/* Stats of Latest News */
 .itemStats
 	{
 	font-size:90%;
