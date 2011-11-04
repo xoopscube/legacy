@@ -108,7 +108,7 @@ div.d3f_breadcrumbs{
 	position				:relative;
 	z-index				:110;
 	border				:4px <{$color.d3f_bg}> solid;
-	margin				:-4px -8px 0 0;
+	margin				:-3px -5px 0 0;
 	float				:right;}
 
 /* each post */
@@ -142,7 +142,7 @@ div.d3f_breadcrumbs{
 .d3f_head h2 img{
 	vertical-align		:middle;}
 .d3f_msgnum{
-	color				:<{$color.d3f_head_link}>;
+/*	color				:<{$color.d3f_head_link}>;*/
 	font-size				:95%;
 	font-weight			:normal;}
 .d3f_info{
@@ -191,7 +191,7 @@ div.d3f_breadcrumbs{
 	line-height			:150%;
 	margin				:0 -2px;
 	padding				:15px 8px;
-	border-top			:1px <{$color.d3f_lines}> solid;}
+	border-top			:1px <{$color.d3f_lines}> dotted;}
 .d3f_info_ctrl{
 	line-height			:100%;
 	text-align			:right;
@@ -220,7 +220,10 @@ h2.d3f_tree{
 	border-top			:1px <{$color.d3f_lines}> solid;
 	border-right			:1px <{$color.d3f_lines}> solid;
 	border-left			:1px <{$color.d3f_lines}> solid;
-	padding				:2px 2px 0;}
+	border-bottom			:1px <{$color.d3f_lines}> solid;
+	padding				:2px 2px 0;
+	margin-bottom:0.8em;
+}
 
 /* d3f_form */
 
@@ -242,7 +245,14 @@ form.d3f_form p input{
 	margin-left			:25px;}
 
 div.d3f_order_ctrl{
-	float				:right;}
+	float				:right;
+	font-size:0.9em;
+	padding-bottom:1em;}
+
+.boxNavi + div.d3f_order_ctrl{
+	padding:0;}
+
+
 div.d3f_order_ctrl a{
 	margin-left			:10px;}
 
@@ -450,4 +460,47 @@ div.boxNavi .itemBody li a {
 }
 div.boxNavi .itemBody li.this span {
 	background-color: #CCCCCC;
+}
+
+.d3f_post_tree {
+	padding:2px;
+	border:dotted 1px #cccccc;
+}
+
+h2.head, ul.d3f_eachbranch {
+	width:98%;
+	margin:0 auto;
+	padding:4px 4px 0;
+}
+
+.d3f_order_ctrl + h2.head {
+	margin:1em 0 0;
+}
+
+
+ul.d3f_eachbranch {
+	padding:0  4px 4px;
+}
+
+.d3f_wrap .itemInfo {
+	padding: 0.5em 1em;
+}
+
+.d3f_wrap .itemFoot {
+	font-size:0.9em;
+	margin-bottom:4px;
+}
+
+.d3f_wrap .itemFoot + .itemHead {
+	border-top: solid 1px #AAA;
+}
+
+.d3f_wrap .itemFoot form input[type="submit"] {
+	font-size:0.9em;
+	padding:1px;
+	vertical-align: inherit;
+}
+
+form.d3f_form #d3f_form_jump_box {
+	text-align:center;
 }

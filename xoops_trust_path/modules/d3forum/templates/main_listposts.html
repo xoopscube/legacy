@@ -53,7 +53,10 @@
 </div><!-- /boxNavi -->
 
 <!-- start post tree  -->
-<h2 class="head"><{$smarty.const._MD_D3FORUM_POSTSTREE}></h2>
+<div class="d3f_post_tree">
+	<h2 class="head">
+		<{$smarty.const._MD_D3FORUM_POSTSTREE}>
+	</h2>
 <{foreach from=$posts item=eachpost}>
   <{if ($eachpost.topic_id==$topic.id)}>
     <ul class='d3f_eachbranch'><{"<span style='padding-left:`$eachpost.depth_in_tree`0px; padding-top: 0;'>"}>
@@ -64,6 +67,7 @@
   <{/if}>
 <{/foreach}>
 <{* $postorder *}>
+</div>
 <!-- end post tree  -->
 
 <!-- start topic list  -->
@@ -83,7 +87,6 @@
 </ul>
 <{/if}>
 <!-- end topic list  -->
-<br />
 
 <{include file="db:`$mydirname`_inc_postorder_links.html"}>
 <br />
@@ -133,12 +136,12 @@
 
 <!-- forum jump -->
 <form name="forum_jump_box" action="<{$mod_url}>/index.php" method="get" style="clear:both;" class="d3f_form">
-    <p>
+    <div id="d3f_form_jump_box">
         <select name="forum_id"><{$forum_jumpbox_options}></select>
         <input type="submit" value="<{$smarty.const._MD_D3FORUM_BTN_JUMPTOFORUM}>" />
         &nbsp;
         <a href="<{$mod_url}>/index.php?page=search"><{$smarty.const._MD_D3FORUM_LINK_ADVSEARCH}></a>
-    </p>
+    </div>
 </form>
 
 <hr class="notification" />

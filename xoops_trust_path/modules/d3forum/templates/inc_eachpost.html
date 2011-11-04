@@ -2,11 +2,15 @@
 <div class="itemHead">
 
 <{if $post.poster_avatar}>
+<{if $post.poster_uid != 0}><a href="<{$xoops_url}>/userinfo.php?uid=<{$post.poster_uid}>" title="<{$post.poster_uname}>"><{/if}>
 	<{if $post.poster_avatar.height > 80}>
-		<img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" height="80" alt="" class="d3f_avatar" />
+		<img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" height="80" alt="<{$post.poster_uname}>" class="d3f_avatar" />
+	<{elseif $post.poster_avatar.width > 1}>
+		<img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" width="<{$post.poster_avatar.width}>" height="<{$post.poster_avatar.height}>" alt="<{$post.poster_uname}>" class="d3f_avatar" />
 	<{else}>
-		<img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" width="<{$post.poster_avatar.width}>" height="<{$post.poster_avatar.height}>" alt="" class="d3f_avatar" />
+		<img src="<{$xoops_url}>/modules/user/images/no_avatar.gif" alt="<{$post.poster_uname}>" class="d3f_avatar" />
 	<{/if}>
+<{if $post.poster_uid != 0}></a><{/if}>
 <{/if}>
 	<h2 class="<{if $post.invisible || ! $post.approval }><{if $post.invisible}> invisible<{elseif ! $post.approval}> yetapproval<{/if}><{/if}> itemTitle">
 	<a id="post_id<{$post.id}>" name="post_id<{$post.id}>"><img src="<{$mod_imageurl}>/posticon<{$post.icon}>.gif" alt="<{$icon_meanings[$post.icon]}>" /></a>
