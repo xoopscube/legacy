@@ -125,7 +125,7 @@ if( $topic4assign['external_link_id'] >0 ) {
 		// topics array
 		$topic_last_uid = intval( $post_row['topic_last_uid'] ) ;
 		$topic_last_post_time = intval( $post_row['topic_last_post_time'] ) ;
-		$topic_last_uname = XoopsUser::getUnameFromId( $topic_last_uid , $xoopsModuleConfigs['use_name']) ; //naao usereal=1
+		$topic_last_uname = XoopsUser::getUnameFromId( $topic_last_uid , $xoopsModuleConfig['use_name']) ; //naao usereal=1
 		$topic_last_uname = $topic_last_uid > 0 ? $topic_last_uname : $myts->makeTboxData4Show( $post_row['guest_name'] ) ;
 
 		$tree[] = array(
