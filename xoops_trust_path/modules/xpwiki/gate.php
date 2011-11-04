@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2007/06/29 by nao-pon http://hypweb.net/
- * $Id: gate.php,v 1.9 2011/07/29 07:14:26 nao-pon Exp $
+ * $Id: gate.php,v 1.10 2011/11/04 06:43:28 nao-pon Exp $
  */
 
 /*
@@ -36,6 +36,10 @@ if ($xwGateOption['noumb']) {
 
 if (isset($xwGateOption['hypmode']) && $xwGateOption['hypmode']) {
 	if (!in_array($way, $xwGateOption['hypmodeAllowWays'])) xpWikiGate_goOut(400);
+}
+
+if ($way === 'w2x' && (version_compare(PHP_VERSION, '5.0.0', '>='))) {
+	$way .= '_php5';
 }
 
 $file_php = $mytrustdirpath . '/ways/' . $way . '.php';

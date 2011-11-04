@@ -1170,6 +1170,7 @@ EOD;
 		}
 
 		// preg_match では、サイズが大きいページで正常処理できないことがあるので。
+		$s = str_replace(array('</BODY>', '</HEAD>', '<BODY', '<HEAD'), array('</body>', '</head>', '<body', '<head'), $s);
 		$arr1 = explode('<head', $s, 2);
 		if (isset($arr1[1]) && strpos($arr1[1], '</head>') !== FALSE) {
 			$arr2 = explode('</head>', $arr1[1], 2);

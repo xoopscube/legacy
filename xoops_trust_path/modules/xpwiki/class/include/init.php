@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/13 by nao-pon http://hypweb.net/
-// $Id: init.php,v 1.75 2011/09/17 07:45:30 nao-pon Exp $
+// $Id: init.php,v 1.76 2011/11/04 06:42:53 nao-pon Exp $
 //
 
 $root = & $this->root;
@@ -509,6 +509,14 @@ if (isset($const['page_show'])) {
 
 	if (! isset($root->vars['cmd'])) {
 		$root->get['cmd'] = $root->post['cmd'] = $root->vars['cmd'] = '';
+	}
+
+	// dbsync の必要性チェック (初期導入時)
+	if ($root->userinfo['admin'] && $root->vars['cmd'] === 'read') {
+		$query = 'SELECT `pgid` FROM ' . $this->xpwiki->db->prefix($root->mydirname.'_pginfo') . ' LIMIT 1' ;
+		if (! $this->xpwiki->db->getRowsNum($this->xpwiki->db->query($query))) {
+			$this->redirect_header($this->root->script . '?cmd=dbsync', 0, 'Welcome to xpWiki Database Sync.');
+		}
 	}
 
 }
