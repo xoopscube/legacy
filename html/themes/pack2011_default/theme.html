@@ -30,6 +30,7 @@
 <{if $xoops_block_header}><{$xoops_block_header}><{/if}>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-1.6.4.min.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery.hoverIntent.minified.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/global.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-megaDropdown.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-jktab.js"></script>
@@ -117,7 +118,7 @@ $ ( function () {
 <div id="globalHeaderContainer">
 	<div id="headerInner">
 		<{if $xoops_isuser === true}>
-			welcome <{user_uname2name uname=$xoops_uname}> !
+			welcome <{* <{user_uname2name uname=$xoops_uname}> *}> !
 			<a href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._LOGOUT}></a>
 		<{else}>
 			<a href="<{$xoops_url}>/user.php"><{$smarty.const._LOGIN}></a>
@@ -139,24 +140,25 @@ $ ( function () {
 		<{/if}>
 	</div>
 
-	<div id="globalNavi" class="megaDropdown group">
-	<ul class="navigation group gnaviParentCol">	
+	<ul id="topnav">	
+	<{$xoops_banner}>
 	<{foreach item=imenu from=$multiMenuToTheme.contents name=menuloop}>
 		<li>
 		<{if $imenu.link != ""}>
-			<span class="title"><a href="<{$imenu.link}>" target="<{$imenu.target}>"><span class="inner">
+			<a href="<{$imenu.link}>" target="<{$imenu.target}>" class="home">
 			<{$imenu.title}>
-			</span></a></span>
-			<ul class="gnaviChildCol">
+			</a>
+			<div class="sub">
+			<ul>
 			<{foreach item=sublink from=$imenu.sublinks}>
 				<li><a href="<{$sublink.url}>"><{$sublink.name}></a></li>
 			<{/foreach}>
 			</ul>
+			</div>
 		<{/if}>
 		</li>
 	<{/foreach}>
 	</ul>
-	</div>
 
 	<{$xoops_banner}>
 
