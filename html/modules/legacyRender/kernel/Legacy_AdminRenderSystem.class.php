@@ -309,7 +309,7 @@ function Legacy_get_override_file($file, $prefix = null, $isSpDirname = false)
 	$root =& XCube_Root::getSingleton();
 	$moduleObject =& $root->mContext->mXoopsModule;
 
-	if ($isSpDirname && ($isobj = is_object($moduleObject)) && $moduleObject->get('dirname') == 'legacy' && isset($_REQUEST['dirname'])) {
+	if ($isSpDirname && is_object($moduleObject) && $moduleObject->get('dirname') == 'legacy' && isset($_REQUEST['dirname'])) {
 		if (preg_match("/^[a-z0-9_]+$/i", xoops_getrequest('dirname'))) {
 			$handler =& xoops_gethandler('module');
 			$moduleObject =& $handler->getByDirname(xoops_getrequest('dirname'));
@@ -325,7 +325,7 @@ function Legacy_get_override_file($file, $prefix = null, $isSpDirname = false)
 	$file = $prefix . $file;
 
 	$themePath = XOOPS_THEME_PATH . '/' . $theme . '/';
-	if (!$isobj) {
+	if (!is_object($moduleObject)) {
 		if (file_exists($themePath. $file)) {
 			return $ret;
 		}
