@@ -118,7 +118,8 @@ $ ( function () {
 <div id="globalHeaderContainer">
 	<div id="headerInner">
 		<{if $xoops_isuser === true}>
-			welcome <{* <{user_uname2name uname=$xoops_uname}> *}> !
+			<{* Welcome <{$xoops_userid|xoops_user:"name"}> ! *}>
+			Welcome <{$xoops_uname}> !
 			<a href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._LOGOUT}></a>
 		<{else}>
 			<a href="<{$xoops_url}>/user.php"><{$smarty.const._LOGIN}></a>
