@@ -1,0 +1,71 @@
+@charset "utf-8";
+
+/**
+* MediaQuery MultiDevice Template ver 0.1É¿
+* @Author: funnythingz
+* @Url:    http://hiropo.co.uk
+* 
+* small_module.css
+*/
+
+/* margin */
+.sMb0 {margin-bottom: 0 !important;}
+.sMb5 {margin-bottom: 5px !important;}
+.sMb10 {margin-bottom: 10px !important;}
+.sMb15 {margin-bottom: 15px !important;}
+.sMb20 {margin-bottom: 20px !important;}
+
+.sMt0 {margin-top: 0 !important;}
+.sMt5 {margin-top: 5px !important;}
+.sMt10 {margin-top: 10px !important;}
+.sMt15 {margin-top: 15px !important;}
+.sMt20 {margin-top: 20px !important;}
+
+/* padding */
+.sPb0 {padding-bottom: 0 !important;}
+.sPb5 {padding-bottom: 5px !important;}
+.sPb10 {padding-bottom: 10px !important;}
+.sPb15 {padding-bottom: 15px !important;}
+.sPb20 {padding-bottom: 20px !important;}
+
+.sPt0 {padding-top: 0 !important;}
+.sPt5 {padding-top: 5px !important;}
+.sPt10 {padding-top: 10px !important;}
+.sPt15 {padding-top: 15px !important;}
+.sPt20 {padding-top: 20px !important;}
+
+/* none */
+.sNone {
+	display: none !important;
+}
+
+/**/
+.sImage {
+	width: 100%;
+}
+.sRect {
+	overflow: hidden;
+	zoom: 1;
+}
+.sTaC {text-align: center !important;}
+.sTaL {text-align: left !important;}
+.sTaR {text-align: right !important;}
+
+
+.sFloL,
+.sFloLm {float: left !important;}
+.sFloR,
+.sFloRm {float: right !important;}
+.sFloLm {margin-right: 5px;}
+.sFloRm {margin-left: 5px;}
+
+.sPane2 {
+	width: 48%;
+}
+
+.sClear {clear: both;}
+.sInline {
+	display: inline !important;
+}
+.sNobr {white-space: nowrap;}
+.sBlock { display: block !important; }

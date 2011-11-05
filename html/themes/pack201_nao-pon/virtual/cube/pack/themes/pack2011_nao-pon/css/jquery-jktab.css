@@ -1,0 +1,33 @@
+@charset "utf-8";
+
+/**
+* MediaQuery MultiDevice Template ver 0.1É¿
+* @Author: funnythingz
+* @Url:    http://hiropo.co.uk
+* 
+* jquery-jktab.css
+*/
+
+/**============================================================
+* Styles
+*/
+.tabIndexMenu {
+	margin: 0 0 10px;
+}
+.tabIndexMenu li {
+	padding: 5px 10px;
+	cursor: pointer;
+}
+.tabIndexMenu li:hover {
+	background: #e0e0e0;
+}
+.tabIndexMenu li.cur {
+	background: #d0d0d0;
+}
+@media only screen and (max-width: 580px)
+{
+	body {
+		-webkit-text-size-adjust: none;
+	}
+	
+}

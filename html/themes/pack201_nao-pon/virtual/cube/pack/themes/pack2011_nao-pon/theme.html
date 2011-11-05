@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+<title><{$xoops_sitename}> - <{if $xoops_pagetitle}><{$xoops_pagetitle}><{else}><{$xoops_slogan}><{/if}></title>
+
+<meta name="description" content="<{$xoops_meta_description}>" />
+<meta name="keywords" content="<{$xoops_meta_keywords}>" />
+
+<meta name="robots" content="<{$xoops_meta_robots|upper}>" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author|replace:"@":"&#x40;"}>" />
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<meta name="generator" content="XOOPS Cube" />
+
+<link rel="shortcut icon" href="<{$xoops_imageurl}>/images/favicon.ico">
+
+<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_url}>/xoops.css" />
+<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_themecss}>" />
+
+<link rel="stylesheet" href="<{$xoops_imageurl}>/css/import_basic.css" media="all" type="text/css">
+<link rel="stylesheet" href="<{$xoops_imageurl}>/css/import_print.css" media="print" type="text/css">
+<link rel="stylesheet" href="<{$xoops_imageurl}>/css/jquery-jcflick.css" media="all" type="text/css">
+<link rel="stylesheet" href="<{$xoops_imageurl}>/css/jquery-megaDropdown.css" media="all" type="text/css">
+<link rel="stylesheet" href="<{$xoops_imageurl}>/css/jquery-jktab.css" media="all" type="text/css">
+
+
+<{if $xoops_module_header}><{$xoops_module_header}><{/if}>
+<{if $xoops_block_header}><{$xoops_block_header}><{/if}>
+
+
+<script type="text/javascript" src="<{$xoops_imageurl}>/js/global.js"></script>
+<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery.hoverIntent.minified.js"></script>
+<script type="text/javascript" src="<{$xoops_imageurl}>/js/jquery-megaDropdown.js"></script>
+<script type="text/javascript" src="<{$xoops_imageurl}>/js/jquery-jktab.js"></script>
+<!--[if IE 6]>
+<script type="text/javascript" src="/public/resources/common/js/DD_belatedPNG_0.0.8a-min.js"></script>
+<script type="text/javascript">
+	DD_belatedPNG.fix('img');
+</script>
+<![endif]-->
+
+<script type="text/javascript" src="<{$xoops_imageurl}>/js/jquery-jcflick.js"></script>
+<script type="text/javascript">
+(function(){
+		ProjectName.MOD.print_r( ProjectName.META.iOS() );
+})();
+(function($){
+$(function(){
+	if( !ProjectName.ua.iPhone ){
+	if( !ProjectName.ua.iPad ){
+	if( !ProjectName.ua.Android ){
+		$('#globalNavi').megaDropdown();
+	}}}
+	ProjectName.PARTS.scrollAnchor();
+	$('#footerTabIndex').jktab();
+});
+$(function(){
+	$('#flickMain').jcflick({
+		//init
+		flickContainer: 'flickContainer',
+		flickWrapper: 'flickWrapper',
+		flickCol: 'flickCol',
+		
+		//conf
+		flickLamp: 'flickLamp',
+		flickBtn: 'flickBtn',
+		flickBtnNextName: 'Next',
+		flickBtnBackName: 'Back',
+		flickCur: 0,
+		autoChange: true,
+		autoTimer: 5000
+	});
+	
+	ProjectName.PARTS.scrollAnchor();
+	
+});
+})(jQuery);
+</script>
+</head>
+
+<body onLoad="ProjectName.PARTS.hideAdBar()" onOrientationChange="ProjectName.PARTS.hideAdBar()">
+
+<div id="globalHeaderContainer">
+	<div id="headerInner">
+		<{if $xoops_isuser === true}>
+			<{* Welcome <{$xoops_userid|xoops_user:"name"}> ! *}>
+			Welcome <{$xoops_uname}> !
+			<a href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._LOGOUT}></a>
+		<{else}>
+			<a href="<{$xoops_url}>/user.php"><{$smarty.const._LOGIN}></a>
+		<{/if}>
+	</div><!-- /#headerInner -->
+</div><!-- /#globalHeaderContainer -->
+
+<div id="globalContainer">
+<div id="globalContentsWrapper">
+	
+	<h1 class="lebel1">
+		<a href="<{$xoops_url}>/">
+		<img src="<{$xoops_imageurl}>images/logo.png" alt="" />
+		</a>
+		<{$xoops_sitename}>&nbsp;:&nbsp;<{$xoops_slogan}>
+	</h1>
+
+	<ul id="topnav">	
+	<{$xoops_banner}>
+	<{foreach item=imenu from=$multiMenuToTheme.contents name=menuloop}>
+		<li>
+		<{if $imenu.link != ""}>
+			<a href="<{$imenu.link}>" target="<{$imenu.target}>" class="home">
+			<{$imenu.title}>
+			</a>
+			<div class="sub">
+			<ul>
+			<{foreach item=sublink from=$imenu.sublinks}>
+				<li><a href="<{$sublink.url}>"><{$sublink.name}></a></li>
+			<{/foreach}>
+			</ul>
+			</div>
+		<{/if}>
+		</li>
+	<{/foreach}>
+	</ul>
+
+	<{$xoops_banner}>
+
+<{*
+	<ul class="breadNavi"><!--
+		--><li><a href="#dummy">HOME</a><span class="arrow">&gt;</span></li><!--
+		--><li><a href="#dummy">ParentPage</a><span class="arrow">&gt;</span></li><!--
+		--><li class="cur"><span>CurrentPage<span></li><!--
+	--></ul>
+*}>
+	<{if empty($xoops_contents)}>
+	<div class="section">
+		<div id="flickMain">
+			<!-- flick -->
+			<div class="flickContainer"><div class="flickWrapper group">
+				<div class="flickCol">
+					<p><a href="#"><img src="<{$xoops_imageurl}>images/main_xoops_picture_01.jpg" width="100%" alt="jQuery.jcflick"></a></p>
+				</div>
+				<div class="flickCol">
+					<p><a href="#"><img src="<{$xoops_imageurl}>images/main_xoops_picture_02.jpg" width="100%" alt="jQuery.hogehoge"></a></p>
+				</div>
+				<div class="flickCol">
+					<p><a href="#"><img src="<{$xoops_imageurl}>images/main_xoops_picture_03.jpg" width="100%" alt="jQuery.hogehoge"></a></p>
+				</div>
+			</div></div>
+			
+			<!-- flickLamp -->
+			<div class="flickLamp"></div>
+			<!-- /.flickLamp -->
+			
+			<!-- flickBtn -->
+			<div class="flickBtn group"></div>
+			<!-- /.flickBtn -->
+		</div>
+	</div><!-- /.section -->
+	<{/if}>	
+	<div class="group">
+		<div class="subContainer">
+		<{if $xoops_showlblock}>
+			<!-- Start Left Column -->
+			<{foreach item=block from=$xoops_lblocks name=lbloop}>
+			<{if ! $block.title|strstr:"none"}>
+			<h2 class="lebel2"><{$block.title}></h2>
+			<{/if}>
+			<ul class="btnList">
+			<{$block.content}>
+			</ul>
+			<{/foreach}>
+		<{/if}>
+		<{if $xoops_showrblock}>
+			<!-- Start Right Column -->
+			<{foreach item=block from=$xoops_rblocks name=rbloop}>
+			<{if ! $block.title|strstr:"none"}>
+			<h2 class="lebel2"><{$block.title}></h2>
+			<{/if}>
+			<ul class="btnList">
+			<{$block.content}>
+			</ul>
+			<{/foreach}>
+		<{/if}>
+		</div><!-- /.subContainer -->
+
+		<div class="mainContainer">
+		<!-- Start Center Column -->
+		<{if $xoops_showcblock == 1}>
+			<div class="section">
+ 				<!-- Start Center Center Column -->
+   				<{if $xoops_ccblocks}>
+				<div class="group">
+					<{foreach item=block from=$xoops_ccblocks name=ccloop}>
+						<{if $block.weight < 100 }>
+        					<{if ! $block.title|strstr:"none"}>
+        						<h2 class="lebel2"><{$block.title}></h2>
+        					<{/if}>
+							<p class="fsL">
+							<div class="BlockContent"><{$block.content}></div>
+     					<{/if}>	
+     				<{/foreach}>
+				</div>
+	    		<{/if}>	
+    			<!-- End Center Center Column -->
+
+				<div class="group mb10">
+    			<!-- Start Center Left Column -->
+    			<{if $xoops_clblocks}>
+					<div class="pane2 floL group">
+    				<{foreach item=block from=$xoops_clblocks name=clloop}>
+    					<{if $block.weight < 100 }>
+							<p class="fRect" id="centerl<{$smarty.foreach.clloop.iteration}>">
+    						<{if ! $block.title|strstr:"none"}>
+    							<h2 class="BlockTitle"><{$block.title}></h2>
+    						<{/if}>
+     						<div class="BlockContent"><{$block.content}></div>
+							</p>
+ 						<{/if}>
+	    			<{/foreach}>
+					</div>
+				<{/if}>
+    			<!-- End Center Left Column -->
+
+    			<!-- Start Center Right Column -->
+				<{if $xoops_crblocks}>
+					<div class="pane2 floR group">
+    				<{foreach item=block from=$xoops_crblocks name=crloop}>
+    					<{if $block.weight < 100 }>
+						<p class="fRect" id="centerr<{$smarty.foreach.crloop.iteration}>">
+    					<{if ! $block.title|strstr:"none"}>
+    						<h2 class="BlockTitle"><{$block.title}></h2>
+    					<{/if}>
+    					<div class="BlockContent"><{$block.content}></div>
+						</p>
+    				<{/if}>
+    			<{/foreach}>
+    			</div>
+    			<{/if}>
+    			<!-- End Center Right Column -->
+				</div>
+    			
+			<!-- End Center Column -->
+		
+			<!-- Module Content -->
+    		<{if !empty($xoops_contents)}>
+			<div class="group">
+				<h2 class="lebel2">
+				<{if $xoops_pagetitle}>
+					<{$xoops_pagetitle}>
+				<{else}>
+					<{$xoops_modulename}>
+				<{/if}>
+				</h2>
+				<p class="fsL">
+				<{$xoops_contents}>
+				</p>
+			</div>
+	    	<{/if}>
+	    	<!-- End Module -->		
+		</div><!-- /.section -->
+	    <{/if}>
+		<!-- Module Content -->
+    	<{if !empty($xoops_contents)}>
+			<{$xoops_contents}>
+		<{/if}>
+	
+		</div><!-- /.mainContainer -->
+
+	</div><!-- /.group -->
+</div><!-- /#globalContentsWrapper -->
+</div><!-- /#globalContainer -->
+
+<div id="globalFooterContainer">
+	<div id="footerInner">
+		<p><{if $xoops_footer}><{$xoops_footer}><{/if}> Distributed by Pack 2011 Team.</p>
+	</div><!-- /#footerInner -->
+</div><!-- /#globalFooterContainer -->
+
+
+</body>
+</html>
