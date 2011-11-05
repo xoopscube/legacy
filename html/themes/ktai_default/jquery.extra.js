@@ -4,6 +4,7 @@ $(document).ready(function (){
 	$('textarea').bind('focus', function (){
 		$(this).css('min-height', '15em');
 	});
+
 	
 	$("#keitaiblockmenu a, #keitaifixedbar_main").bind('tap', function(){
 		return $.keitaiShowBlock( $.mobile.path.stripHash($(this).attr('href')) );
@@ -11,13 +12,9 @@ $(document).ready(function (){
 
 	$("#keitaifixedbar_block").bind('tap', function(){
 		$('#keitaiblockmenu').toggle();
-		//$.mobile.fixedToolbars.show();
-		//$.mobile.fixedToolbars.startShowTimer();
-		$.mobile.fixedToolbars.show(true);
+		//$.mobile.fixedToolbars.show(true);
 		return false;
 	});
-	
-	//$('.flickable').flickable();
 });
 
 $.extend({

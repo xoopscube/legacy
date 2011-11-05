@@ -709,11 +709,6 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 			ob_start(array(& $this, 'keitaiFilter'));
 			register_shutdown_function(array(& $this, '_onShutdownKtai'));
 		} else {
-			// smart redirection
-			if (! empty($this->use_smart_redirect)) {
-				ob_start(array(& $this, 'smartRedirect'));
-			}
-
 			// <from> Filter
 			if (! $this->wizMobileUse) {
 				ob_start(array(& $this, 'formFilter'));
@@ -727,8 +722,14 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 				ob_start(array(& $this, 'utf8Filter'));
 			}
 
+			// Add button to smartphone style
 			if (! empty($_COOKIE['_hypktaipc'])) {
 				ob_start(array(& $this, 'switchOfSmartPhone'));
+			}
+
+			// smart redirection
+			if (! empty($this->use_smart_redirect)) {
+				ob_start(array(& $this, 'smartRedirect'));
 			}
 		}
 
@@ -1011,7 +1012,7 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 	}
 
 	function addHeadTag( $s ) {
-		if ($s === '' || strpos($s, '<html') === FALSE) return $s;
+		if ($s === '' || strpos($s, '<html') === FALSE) return false;
 
 		if (! empty($GLOBALS['hyp_preload_head_tag'])) {
 			$s = str_replace('</head>', $GLOBALS['hyp_preload_head_tag'] . '</head>', $s);
@@ -1021,7 +1022,7 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 
 	function obFilter( $s ) {
 
-		if ($s === '' || strpos($s, '<html') === FALSE) return $s;
+		if ($s === '' || strpos($s, '<html') === FALSE) return false;
 
 		if (function_exists('mb_convert_encoding') && $this->configEncoding && $this->encode !== $this->configEncoding) {
 			$this->msg_words_highlight = mb_convert_encoding($this->msg_words_highlight, $this->encode, $this->configEncoding);
@@ -1031,7 +1032,7 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 
 	function smartRedirect( $s ) {
 		$part = substr($s, 0, 4096);
-		if ($s === '' || strpos($part, '<html') === FALSE) return $s;
+		if ($s === '' || strpos($part, '<html') === FALSE) return false;
 		if (strpos($part, 'http-equiv') !== FALSE && preg_match('#<meta[^>]+http-equiv=("|\')Refresh\\1[^>]+content=("|\')([\d]+);\s*url=(.+)\\2[^>]*>#iUS', $part, $match)) {
 			if (headers_sent()) return $s;
 			$wait = $match[3];
@@ -1059,7 +1060,7 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 	stl.top = '10px';
 	stl.left = '20%';
 	stl.width = '60%';
-	stl.zIndex = '10000';
+	stl.zIndex = '100000';
 	stl.textAlign = 'center';
 	stl.backgroundColor = 'white';
 	stl.filter = 'alpha(opacity=70)';
@@ -1103,7 +1104,7 @@ EOD;
 
 	function formFilter( $s ) {
 
-		if ($s === '' || strpos($s, '<html') === FALSE) return $s;
+		if ($s === '' || strpos($s, '<html') === FALSE) return false;
 
 		$insert = '';
 
@@ -1130,7 +1131,7 @@ EOD;
 
 	function keitaiFilter ( $s ) {
 
-		if ($s === '') return;
+		if ($s === '') return false;
 
 		$head = $header = $body = $footer = $pagetitle = '';
 		$header_template = $body_template = $footer_template = '';
@@ -1263,17 +1264,17 @@ EOD;
 				$blockmenu = join('</li><li>', $blockmenu);
 				$body .= <<<EOD
 <!--blockMenu-->
-<div id="keitaiblockmenu" style="display:none" data-role="footer">
- <div data-role="navbar">
-  <ul><li>{$blockmenu}</li></ul>
- </div>
-</div>
 <div data-role="header">
  <a href="{$_url}" data-ajax="false" data-icon="home" data-iconpos="notext">Home</a>
  <h4>
   <a id="keitaifixedbar_main" href="#keitaiMainContents" data-ajax="false" style="display:inline;text-decoration:none;"><pagetitle></a>
  </h4>
  <a id="keitaifixedbar_block" href="#" data-ajax="false" data-icon="grid" data-iconpos="notext">block</a>
+ <div id="keitaiblockmenu" style="display:none" data-role="header">
+  <div data-role="navbar">
+   <ul><li>{$blockmenu}</li></ul>
+  </div>
+ </div>
 </div>
 <!--/blockMenu-->
 EOD;
@@ -1326,6 +1327,7 @@ EOD;
 
 					// Easy login
 					if (! empty($this->k_tai_conf['easyLogin'])) {
+						$to_pc = '<li><a href="#" onclick="return jQuery.keitaiSwitchToPc();">PC</a></li>';
 						if (! empty($r->vars['ua']['isGuest'])) {
 							$add = '_EASYLOGIN';
 							if ($r->vars['ua']['carrier'] === 'docomo') {
@@ -1336,7 +1338,7 @@ EOD;
 							$url .= ((strpos($url, '?') === FALSE)? '?' : '&') . $add;
 							$url = str_replace('&', '&amp;', $url);
 							if ($use_jquery) {
-								$easylogin = '<ul><li><a href="' . $url . '">' . $this->k_tai_conf['msg']['easylogin'] . '</a></li></ul>';
+								$easylogin = '<ul><li><a href="' . $url . '">' . $this->k_tai_conf['msg']['easylogin'] . '</a></li>'.$to_pc.'</ul>';
 							} else {
 								$easylogin = '<a href="' . $url . '">' . $this->k_tai_conf['msg']['easylogin'] . '</a>';
 							}
@@ -1356,7 +1358,7 @@ EOD;
 								$uname = '<a href="' . XOOPS_URL . '/userinfo.php?uid=' . $this->HypKTaiRender->vars['ua']['xoopsUid'] . $guid . '">' . $uname . '</a>';
 							}
 							if ($use_jquery) {
-								$easylogin = '<ul><li>' . $uname . '</li><li><a href="' . XOOPS_URL . '/user.php?op=logout">' . $this->k_tai_conf['msg']['logout'] . '</a></li></ul>';
+								$easylogin = '<ul><li>' . $uname . '</li><li><a href="' . XOOPS_URL . '/user.php?op=logout">' . $this->k_tai_conf['msg']['logout'] . '</a></li>'.$to_pc.'</ul>';
 							} else {
 								$easylogin = $uname . ' <a href="' . XOOPS_URL . '/user.php?op=logout">' . $this->k_tai_conf['msg']['logout'] . '</a>';
 							}
@@ -1579,7 +1581,7 @@ EOD;
 
 	function emojiFilter ($str) {
 
-		if ($str === '' || strpos($str, '<html') === FALSE) return $str;
+		if ($str === '' || strpos($str, '<html') === FALSE) return false;
 
 		if (preg_match('/\(\([eisv]:[0-9a-f]{4}\)\)|\[emj:\d{1,4}(?::(?:im|ez|sb))?\]/S', $str)) {
 			if (! XC_CLASS_EXISTS('MobilePictogramConverter')) {
@@ -1601,8 +1603,10 @@ EOD;
 
 			$str = mb_convert_encoding($str, 'UTF-8', $this->encode);
 			header('Content-Type: text/html; charset=UTF-8');
+			return $str;
+		} else {
+			return false;
 		}
-		return $str;
 	}
 
 	function sendMail ($spamlev) {
@@ -1696,6 +1700,7 @@ EOD;
 	}
 
 	function switchOfSmartPhone($str) {
+		if ($str === '' || strpos($str, '<html') === FALSE) return false;
 
 		$uri = $_SERVER['REQUEST_URI'];
 		$uri .= ((strpos($uri, '?') === false)? '?' : '&') . '_hypktaipc=0';
@@ -1908,12 +1913,10 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 			                          'below' => '</div>'),
 			'footer'         => array( 'above' => '<div data-role="footer" data-theme="'.$this->k_tai_conf['jquery_theme'].'">',
 			                          'below' => '</div>'),
-			'headerlogo'     => array( 'above' => '<h1>',
-			                          'below' => '</h1>'),
 			'easylogin'      => array( 'above' => '',
 			                          'below' => ''),
-			'blockMenu'      => array( 'above' => '</div><div data-role="footer" data-position="fixed" style="line-height:1">',
-			                          'below' => ''),
+			'blockMenu'      => array( 'above' => '<div data-role="header" style="line-height:1">',
+			                          'below' => '</div>'),
 		);
 
 		// 携帯用XOOPSテーマセット

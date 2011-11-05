@@ -18,7 +18,7 @@ a + a {
 	padding-bottom: 0;
 }
 
-table,tr,td,form,input {
+div,table,tr,td,form,input {
 	max-width: 100% !important;
 }
 
@@ -51,7 +51,7 @@ ul,ol,li {
 /* image fit width */
 img {
 	max-width: 100% !important;
-	height: auto !important;
+	/*height: auto !important;*/
 }
 
 /* video fit width */
