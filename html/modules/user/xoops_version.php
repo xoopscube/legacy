@@ -128,6 +128,15 @@ $modversion['config'][]=array (
 	);
 
 $modversion['config'][]=array (
+		"name"=>"notify_method",
+		"title"=>"XOOPS_NOTIFICATION_METHOD_DISABLE",
+		"formtype"=>"select",
+		"options"=>array("_NOT_METHOD_DISABLE"=>0,"_NOT_METHOD_PM"=>1,"_NOT_METHOD_EMAIL"=>2),
+		"valuetype"=>"int",
+		"default"=>2
+	);
+
+$modversion['config'][]=array (
 		"name"=>"new_user_notify",
 		"title"=>"_MI_USER_CONF_NEW_USER_NOTIFY",
 		"formtype"=>"yesno",
