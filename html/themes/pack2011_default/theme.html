@@ -49,15 +49,13 @@
 		}}}
 		ProjectName.PARTS.scrollAnchor();
 		$('#footerTabIndex').jktab();
-	});
 
-	$(function(){
 		$('#flickMain').jcflick({
 			//init
 			flickContainer: 'flickContainer',
 			flickWrapper: 'flickWrapper',
 			flickCol: 'flickCol',
-			
+
 			//conf
 			flickLamp: 'flickLamp',
 			flickBtn: 'flickBtn',
@@ -67,38 +65,9 @@
 			autoChange: true,
 			autoTimer: 5000
 		});
-		
-		ProjectName.PARTS.scrollAnchor();
-		
-	});
 
-	$ ( function () {
-<<<<<<< HEAD
-	    var stop = false;
-	    $ ( '.jquery-ui-accordion-title' )
-	        . click ( function ( event ){
-	            if ( stop ) {
-	                event . stopImmediatePropagation ();
-	                event . preventDefault ();
-	                stop = false;
-	            }
-	        } ) ;
-	    $ ( '#jquery-ui-accordion' )
-	        . accordion ( {
-	            icons: {
-	                'header': 'ui-icon-folder-collapsed',
-	                'headerSelected': 'ui-icon-folder-open'
-	            },
-	            header: '.jquery-ui-accordion-title'
-	        } )
-	        . sortable ( {
-	            axis: 'y',
-	            handle: '.jquery-ui-accordion-title',
-	            stop: function () {
-	                stop = true;
-	            }
-	        } ) ;
-=======
+		ProjectName.PARTS.scrollAnchor();
+
 		var stop = false;
 		$ ( '.jquery-ui-accordion-title' )
 			. click ( function ( event ){
@@ -113,17 +82,16 @@
 				icons: {
 					'header': 'ui-icon-folder-collapsed',
 					'headerSelected': 'ui-icon-folder-open'
-					},
+				},
 				header: '.jquery-ui-accordion-title'
-	} )
-	. sortable ( {
+			} )
+			. sortable ( {
 				axis: 'y',
 				handle: '.jquery-ui-accordion-title',
 				stop: function () {
 					stop = true;
 				}
 			} ) ;
->>>>>>> modify header area. add search function. merge rev.
 	} ) ;
 })(jQuery);
 </script>
@@ -217,18 +185,18 @@
 					<p><a href="#"><img src="<{$xoops_imageurl}>images/main_xoops_picture_03.jpg" width="100%" alt="jQuery.hogehoge"></a></p>
 				</div>
 			</div></div>
-			
+
 			<!-- flickLamp -->
 			<div class="flickLamp"></div>
 			<!-- /.flickLamp -->
-			
+
 			<!-- flickBtn -->
 			<div class="flickBtn group"></div>
 			<!-- /.flickBtn -->
 		</div>
 	</div><!-- /.section -->
 	<!-- End flick Demo -->
-	<{/if}>	
+	<{/if}>
 	<div class="group">
 		<div class="subContainer">
 		<{if $xoops_showlblock}>
@@ -269,10 +237,10 @@
 							<{/if}>
 							<p class="fsL">
 							<div class="BlockContent"><{$block.content}></div>
-						<{/if}>	
+						<{/if}>
 					<{/foreach}>
 				</div>
-				<{/if}>	
+				<{/if}>
 				<!-- End Center Center Column -->
 
 				<div class="group mb10">
@@ -327,7 +295,7 @@
 				</p>
 			</div>
 			<{/if}>
-			<!-- End Module -->		
+			<!-- End Module -->
 		</div><!-- /.section -->
 		<{/if}>
 		<!-- Module Content -->
