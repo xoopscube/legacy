@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+/**
+* 
+* MediaQuery MultiDevice Template ver 0.1β
+* @Author: funnythingz
+* @Url:    http://hiropo.co.uk
+* 
+* small_reset.css
+* @MediaQuery max-width: 580px;
+*/
+
+/* all */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, p,
+blockquote, th, td, form, fieldset, legend, article, section, aside, header, footer, nav {
+	font-size: medium;
+	-webkit-text-size-adjust: none;/* Mobile Safari : 文字サイズの自動調整をオフに */
+}
