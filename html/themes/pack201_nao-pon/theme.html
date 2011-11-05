@@ -31,10 +31,11 @@
 <{if $xoops_block_header}><{$xoops_block_header}><{/if}>
 
 
-<script type="text/javascript" src="<{$xoops_imageurl}>/js/global.js"></script>
+<script type="text/javascript" src="<{$xoops_imageurl}>js/global.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery.hoverIntent.minified.js"></script>
-<script type="text/javascript" src="<{$xoops_imageurl}>/js/jquery-megaDropdown.js"></script>
-<script type="text/javascript" src="<{$xoops_imageurl}>/js/jquery-jktab.js"></script>
+<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-megaDropdown.js"></script>
+<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-jktab.js"></script>
+
 <!--[if IE 6]>
 <script type="text/javascript" src="/public/resources/common/js/DD_belatedPNG_0.0.8a-min.js"></script>
 <script type="text/javascript">
@@ -45,38 +46,64 @@
 <script type="text/javascript" src="<{$xoops_imageurl}>/js/jquery-jcflick.js"></script>
 <script type="text/javascript">
 (function(){
-		ProjectName.MOD.print_r( ProjectName.META.iOS() );
+	ProjectName.MOD.print_r( ProjectName.META.iOS() );
 })();
 (function($){
-$(function(){
-	if( !ProjectName.ua.iPhone ){
-	if( !ProjectName.ua.iPad ){
-	if( !ProjectName.ua.Android ){
-		$('#globalNavi').megaDropdown();
-	}}}
-	ProjectName.PARTS.scrollAnchor();
-	$('#footerTabIndex').jktab();
-});
-$(function(){
-	$('#flickMain').jcflick({
-		//init
-		flickContainer: 'flickContainer',
-		flickWrapper: 'flickWrapper',
-		flickCol: 'flickCol',
-		
-		//conf
-		flickLamp: 'flickLamp',
-		flickBtn: 'flickBtn',
-		flickBtnNextName: 'Next',
-		flickBtnBackName: 'Back',
-		flickCur: 0,
-		autoChange: true,
-		autoTimer: 5000
+	$ ( function () {
+	    var stop = false;
+	    $ ( '.jquery-ui-accordion-title' )
+	        . click ( function ( event ){
+	            if ( stop ) {
+	                event . stopImmediatePropagation ();
+	                event . preventDefault ();
+	                stop = false;
+	            }
+	        } ) ;
+	    $ ( '#jquery-ui-accordion' )
+	        . accordion ( {
+	            icons: {
+	                'header': 'ui-icon-folder-collapsed',
+	                'headerSelected': 'ui-icon-folder-open'
+	            },
+	            header: '.jquery-ui-accordion-title'
+	        } )
+	        . sortable ( {
+	            axis: 'y',
+	            handle: '.jquery-ui-accordion-title',
+	            stop: function () {
+	                stop = true;
+	            }
+	        } ) ;
+	} ) ;
+	$(function(){
+		if( !ProjectName.ua.iPhone ){
+		if( !ProjectName.ua.iPad ){
+		if( !ProjectName.ua.Android ){
+			$('#globalNavi').megaDropdown();
+		}}}
+		ProjectName.PARTS.scrollAnchor();
+		$('#footerTabIndex').jktab();
 	});
-	
-	ProjectName.PARTS.scrollAnchor();
-	
-});
+	$(function(){
+		$('#flickMain').jcflick({
+			//init
+			flickContainer: 'flickContainer',
+			flickWrapper: 'flickWrapper',
+			flickCol: 'flickCol',
+
+			//conf
+			flickLamp: 'flickLamp',
+			flickBtn: 'flickBtn',
+			flickBtnNextName: 'Next',
+			flickBtnBackName: 'Back',
+			flickCur: 0,
+			autoChange: true,
+			autoTimer: 5000
+		});
+
+		ProjectName.PARTS.scrollAnchor();
+
+	});
 })(jQuery);
 </script>
 </head>
@@ -97,7 +124,7 @@ $(function(){
 
 <div id="globalContainer">
 <div id="globalContentsWrapper">
-	
+
 	<h1 class="lebel1">
 		<a href="<{$xoops_url}>/">
 		<img src="<{$xoops_imageurl}>images/logo.png" alt="" />
@@ -105,7 +132,7 @@ $(function(){
 		<{$xoops_sitename}>&nbsp;:&nbsp;<{$xoops_slogan}>
 	</h1>
 
-	<ul id="topnav">	
+	<ul id="topnav">
 	<{$xoops_banner}>
 	<{foreach item=imenu from=$multiMenuToTheme.contents name=menuloop}>
 		<li>
@@ -149,17 +176,17 @@ $(function(){
 					<p><a href="#"><img src="<{$xoops_imageurl}>images/main_xoops_picture_03.jpg" width="100%" alt="jQuery.hogehoge"></a></p>
 				</div>
 			</div></div>
-			
+
 			<!-- flickLamp -->
 			<div class="flickLamp"></div>
 			<!-- /.flickLamp -->
-			
+
 			<!-- flickBtn -->
 			<div class="flickBtn group"></div>
 			<!-- /.flickBtn -->
 		</div>
 	</div><!-- /.section -->
-	<{/if}>	
+	<{/if}>
 	<div class="group">
 		<div class="subContainer">
 		<{if $xoops_showlblock}>
@@ -200,10 +227,10 @@ $(function(){
         					<{/if}>
 							<p class="fsL">
 							<div class="BlockContent"><{$block.content}></div>
-     					<{/if}>	
+     					<{/if}>
      				<{/foreach}>
 				</div>
-	    		<{/if}>	
+	    		<{/if}>
     			<!-- End Center Center Column -->
 
 				<div class="group mb10">
@@ -241,9 +268,9 @@ $(function(){
     			<{/if}>
     			<!-- End Center Right Column -->
 				</div>
-    			
+
 			<!-- End Center Column -->
-		
+
 			<!-- Module Content -->
     		<{if !empty($xoops_contents)}>
 			<div class="group">
@@ -259,14 +286,14 @@ $(function(){
 				</p>
 			</div>
 	    	<{/if}>
-	    	<!-- End Module -->		
+	    	<!-- End Module -->
 		</div><!-- /.section -->
 	    <{/if}>
 		<!-- Module Content -->
     	<{if !empty($xoops_contents)}>
 			<{$xoops_contents}>
 		<{/if}>
-	
+
 		</div><!-- /.mainContainer -->
 
 	</div><!-- /.group -->
