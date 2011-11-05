@@ -133,11 +133,13 @@ class XoopsMultiMailerLocal extends XoopsMultiMailer {
     }
 
     function EncodeHeader ($str, $position = 'text', $force=false) {
-        if (!preg_match('/^4\.4\.[01]([^0-9]+|$)/',PHP_VERSION)) {
+        if (version_compare(PHP_VERSION, '4.4.1')>0) {
             if (function_exists('mb_convert_encoding')) { //Use mb_string extension if exists.
                 if ($this->needs_encode || $force) {
-                    $encoded = mb_convert_encoding($str, _CHARSET, mb_detect_encoding($str));
-                    $encoded = mb_encode_mimeheader($encoded, "ISO-2022-JP", "B", "\n");
+                    $enc = mb_internal_encoding();
+                    mb_internal_encoding('ISO-2022-JP');
+                    $encoded = mb_encode_mimeheader($str, 'ISO-2022-JP', 'B', "\r\n", 9); // offset strlen("Subject: ") as 9
+                    mb_internal_encoding($enc);
                 } else {
                     $encoded = $str;
                 }
