@@ -28,78 +28,77 @@
 
 <{if $xoops_module_header}><{$xoops_module_header}><{/if}>
 <{if $xoops_block_header}><{$xoops_block_header}><{/if}>
-<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-1.6.4.min.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery.hoverIntent.minified.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/global.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-megaDropdown.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-jktab.js"></script>
-<script type="text/javascript">
-(function(){
-	if( ProjectName.ua.iPhone || ProjectName.ua.Android || ProjectName.ua.WP7 ){
-		ProjectName.MOD.print_r( ProjectName.META.iOS() );
-	}
-})();
-$(function(){
-	if( !ProjectName.ua.iPhone ){
-	if( !ProjectName.ua.iPad ){
-	if( !ProjectName.ua.Android ){
-		$('#globalNavi').megaDropdown();
-	}}}
-	ProjectName.PARTS.scrollAnchor();
-	$('#footerTabIndex').jktab();
-});
-</script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-jcflick.js"></script>
 <script type="text/javascript">
-$(function(){
-	$('#flickMain').jcflick({
-		//init
-		flickContainer: 'flickContainer',
-		flickWrapper: 'flickWrapper',
-		flickCol: 'flickCol',
-		
-		//conf
-		flickLamp: 'flickLamp',
-		flickBtn: 'flickBtn',
-		flickBtnNextName: 'Next',
-		flickBtnBackName: 'Back',
-		flickCur: 0,
-		autoChange: true,
-		autoTimer: 5000
+(function($){
+	(function(){
+		if( ProjectName.ua.iPhone || ProjectName.ua.Android || ProjectName.ua.WP7 ){
+			ProjectName.MOD.print_r( ProjectName.META.iOS() );
+		}
+	})();
+	$(function(){
+		if( !ProjectName.ua.iPhone ){
+		if( !ProjectName.ua.iPad ){
+		if( !ProjectName.ua.Android ){
+			$('#globalNavi').megaDropdown();
+		}}}
+		ProjectName.PARTS.scrollAnchor();
+		$('#footerTabIndex').jktab();
 	});
-	
-	ProjectName.PARTS.scrollAnchor();
-	
-});
-</script>
-<script type="text/javascript">
-$ ( function () {
-    var stop = false;
-    $ ( '.jquery-ui-accordion-title' )
-        . click ( function ( event ){
-            if ( stop ) {
-                event . stopImmediatePropagation ();
-                event . preventDefault ();
-                stop = false;
-            }
-        } ) ;
-    $ ( '#jquery-ui-accordion' )
-        . accordion ( {
-            icons: {
-                'header': 'ui-icon-folder-collapsed',
-                'headerSelected': 'ui-icon-folder-open'
-            },
-            header: '.jquery-ui-accordion-title'
-        } )
-        . sortable ( {
-            axis: 'y',
-            handle: '.jquery-ui-accordion-title',
-            stop: function () {
-                stop = true;
-            }
-        } ) ;
-} ) ;
+
+	$(function(){
+		$('#flickMain').jcflick({
+			//init
+			flickContainer: 'flickContainer',
+			flickWrapper: 'flickWrapper',
+			flickCol: 'flickCol',
+			
+			//conf
+			flickLamp: 'flickLamp',
+			flickBtn: 'flickBtn',
+			flickBtnNextName: 'Next',
+			flickBtnBackName: 'Back',
+			flickCur: 0,
+			autoChange: true,
+			autoTimer: 5000
+		});
+		
+		ProjectName.PARTS.scrollAnchor();
+		
+	});
+
+	$ ( function () {
+	    var stop = false;
+	    $ ( '.jquery-ui-accordion-title' )
+	        . click ( function ( event ){
+	            if ( stop ) {
+	                event . stopImmediatePropagation ();
+	                event . preventDefault ();
+	                stop = false;
+	            }
+	        } ) ;
+	    $ ( '#jquery-ui-accordion' )
+	        . accordion ( {
+	            icons: {
+	                'header': 'ui-icon-folder-collapsed',
+	                'headerSelected': 'ui-icon-folder-open'
+	            },
+	            header: '.jquery-ui-accordion-title'
+	        } )
+	        . sortable ( {
+	            axis: 'y',
+	            handle: '.jquery-ui-accordion-title',
+	            stop: function () {
+	                stop = true;
+	            }
+	        } ) ;
+	} ) ;
+})(jQuery);
 </script>
 <script type="text/javascript">
 <!--
