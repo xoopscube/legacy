@@ -27,9 +27,10 @@ ul#topnav li .sub {
 	top: 30px; left: 0;
 	margin: 0; 
 	padding: 0;
-	background: #eee;
+	background: #fcfcfc;
 	float: left;
 	z-index: 1000;
+	border: thin solid #777;
 	/*--top right rounded corner--*/
 	-moz-border-radius-topright: 5px;
 	-khtml-border-radius-topright: 5px;
@@ -48,12 +49,17 @@ ul#topnav li .sub {
 	-webkit-border-bottom-left-radius: 5px;
 	display: none;
 }
-ul#topnav li .row {clear: both; float: left; width: 100%; margin-bottom: 2px;}
+ul#topnav li .row {
+	clear: both;
+	float: left;
+	width: 100%;
+	margin-bottom:2px;
+}
 ul#topnav li .sub ul{
 	list-style: none;
 	margin: 0; 
 	padding: 0;
-	width: 150px;
+	width: 185px;
 	float: left;
 }
 ul#topnav .sub ul li {
@@ -78,4 +84,8 @@ ul#topnav .sub ul li a {
 	text-decoration: none;
 	color: #333;
 }
-ul#topnav .sub ul li a:hover {color: #ddd; background-position: 5px 5px ;}
+ul#topnav .sub ul li a:hover {
+	color: #888;
+	background: #f3f3f3;
+	width:95%;
+}
