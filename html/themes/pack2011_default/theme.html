@@ -73,6 +73,7 @@
 	});
 
 	$ ( function () {
+<<<<<<< HEAD
 	    var stop = false;
 	    $ ( '.jquery-ui-accordion-title' )
 	        . click ( function ( event ){
@@ -97,6 +98,32 @@
 	                stop = true;
 	            }
 	        } ) ;
+=======
+		var stop = false;
+		$ ( '.jquery-ui-accordion-title' )
+			. click ( function ( event ){
+				if ( stop ) {
+					event . stopImmediatePropagation ();
+					event . preventDefault ();
+					stop = false;
+				}
+			} ) ;
+		$ ( '#jquery-ui-accordion' )
+			. accordion ( {
+				icons: {
+					'header': 'ui-icon-folder-collapsed',
+					'headerSelected': 'ui-icon-folder-open'
+					},
+				header: '.jquery-ui-accordion-title'
+	} )
+	. sortable ( {
+				axis: 'y',
+				handle: '.jquery-ui-accordion-title',
+				stop: function () {
+					stop = true;
+				}
+			} ) ;
+>>>>>>> modify header area. add search function. merge rev.
 	} ) ;
 })(jQuery);
 </script>
@@ -117,8 +144,22 @@
 <div id="globalHeaderContainer">
 	<div id="headerInner">
 		<{if $xoops_isuser === true}>
-			welcome <{user_uname2name uname=$xoops_uname}> !
+			<span id="headerName">
+			<a href="<{$xoops_url}>/userinfo.php"><img src="<{$xoops_userid|xoops_user_avatarize}>" /></a>
+			<{user_uname2name uname=$xoops_uname}>
+			</span>
+			<!-- Start Search -->
+			<span id="headerSearch">
+			<form action="<{$xoops_url}>/search.php" method="get">
+			<input type="text" name="query" size="10" />
+			<input type="hidden" name="action" value="results" />
+			<button name="submit" type="submit" value="search" accesskey="F"><{$smarty.const._SEARCH}></button>
+			</form>
+			</span>
+			<!-- End Search -->
+			<span id="headerLogOut">
 			<a href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._LOGOUT}></a>
+			</span>
 		<{else}>
 			<a href="<{$xoops_url}>/user.php"><{$smarty.const._LOGIN}></a>
 		<{/if}>
@@ -128,19 +169,18 @@
 <div id="globalContentsWrapper">
 	<div id="siteTitle">
 		<{if ! $legacy_module}>
-			<img src="<{$xoops_imageurl}>images/dp_logo.png" alt="" />
+			<img src="<{$xoops_imageurl}>images/dp_logo.png" alt="<{$xoops_sitename}>" />
 			<span class="level1"><{$xoops_sitename}></span>
 		<{else}>
 			<a href="<{$xoops_url}>/"><img src="<{$xoops_imageurl}>images/dp_logo.png" alt="" /></a>
 			<a href="<{$xoops_url}>/"><span class="level1"><{$xoops_sitename}></span></a>
 		<{/if}>
 		<{if $xoops_slogan}>
-			<span class="level3">&nbsp;-&nbsp;<{$xoops_slogan}>
+			<span class="level3">&nbsp;-&nbsp;<{$xoops_slogan}></span>
 		<{/if}>
 	</div>
 
-	<ul id="topnav">	
-	<{$xoops_banner}>
+	<ul id="topnav">
 	<{foreach item=imenu from=$multiMenuToTheme.contents name=menuloop}>
 		<li>
 		<{if $imenu.link != ""}>

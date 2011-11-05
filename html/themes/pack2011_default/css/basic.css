@@ -52,17 +52,17 @@ input {
 }
 
 table {
-	border: 1px solid #CCC;
+	border: 1px solid #ccc;
 }
 
 th {
 	padding: 3px;
-	border: 1px solid #CCC;
+	border: 1px solid #ccc;
 	background: #e6e6e6;
 }
 td {
 	padding: 3px;
-	border: 1px solid #CCC;
+	border: 1px solid #ccc;
 }
 
 /**============================================================
@@ -89,7 +89,50 @@ body {
 	max-width: 950px;
 	_width: 950px;
 	margin: 0 auto;
+	text-align: right;
 }
+
+#headerInner img {
+	width: 1.2em;
+	height: 1.2em;
+	vertical-align: text-bottom;
+}
+
+#headerName {
+	padding: 3px;
+	border-right: dotted 1px #aaa;
+}
+
+#headerSearch {
+	padding: 3px;
+	border-right: dotted 1px #aaa;
+}
+
+#headerSearch form {
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
+#headerSearch input {
+	background: #fff;
+	border: inset 1px #bbb;
+	font-size: 1em;
+	vertical-align: top;
+}
+
+#headerSearch button {
+	margin: 0;
+	padding: 0;
+	background: #eee;
+	border: none;
+	font-size: 100%;
+}
+
+#headerLogOut {
+	margin-left: 0.5em;
+}
+
 #siteTitle {
 	margin-top: 10px;
 	padding: 0;
@@ -351,10 +394,10 @@ p {
 	border-top: 1px dotted #666;
 }
 .solidLine {
-	border-top: 1px solid #CCC;
+	border-top: 1px solid #ccc;
 }
 .borderBottom {
-	border-bottom: 1px solid #CCC;
+	border-bottom: 1px solid #ccc;
 }
 
 .defTbl {
