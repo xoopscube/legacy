@@ -29,6 +29,7 @@ ul#topnav li .sub {
 	padding: 0;
 	background: #eee;
 	float: left;
+	z-index: 1000;
 	/*--top right rounded corner--*/
 	-moz-border-radius-topright: 5px;
 	-khtml-border-radius-topright: 5px;
