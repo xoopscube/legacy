@@ -166,9 +166,6 @@
 		</li>
 	<{/foreach}>
 	</ul>
-
-	<{$xoops_banner}>
-
 	<{if empty($xoops_contents)}>
 	<!-- Start flick Demo -->
 	<div class="section">
@@ -176,7 +173,9 @@
 			<!-- flick -->
 			<div class="flickContainer"><div class="flickWrapper group">
 				<div class="flickCol">
-					<p><a href="#"><img src="<{$xoops_imageurl}>images/main_xoops_picture_01.jpg" width="100%" alt="jQuery.jcflick"></a></p>
+					<p><a href="#">
+					<img src="<{$xoops_imageurl}>images/main_xoops_picture_01.jpg" width="100%" alt="jQuery.jcflick">
+					</a></p>
 				</div>
 				<div class="flickCol">
 					<p><a href="#"><img src="<{$xoops_imageurl}>images/main_xoops_picture_02.jpg" width="100%" alt="jQuery.hogehoge"></a></p>
@@ -307,7 +306,9 @@
 	</div><!-- /.group -->
 </div><!-- /#globalContentsWrapper -->
 </div><!-- /#globalContainer -->
-
+<{if $xoops_banner}>
+	<{$xoops_banner}>
+<{/if}>
 <div id="globalFooterContainer">
 	<div id="footerInner">
 		<p><{if $xoops_footer}><{$xoops_footer}><{/if}> Distributed by XOOPS Cube 2.2 Distribution Pack 2011 Team.</p>
