@@ -50,11 +50,9 @@
     <div class="jquery-ui-accordion-contents">
       <{if $storyid}>
       	<input type="hidden" name="topicid" value="<{$topicid}>"/>
-      	<{$topic_title}>
-	  <{else}>
-	    <{$topic_selbox}>
-	  <{/if}>&nbsp;
-	  <{$smarty.const._MD_TOPIC_IMAGE}></td>
+      <{/if}>&nbsp;
+ 	    <{$topic_selbox}>&nbsp;
+	  <{$smarty.const._MD_TOPIC_IMAGE}>
       <select name="topicimg">
           <option value="1"<{if $topicimg==1}> selected="selected"<{/if}>><{$smarty.const._MD_TOPIC_RIGHT}></option>
           <option value="2"<{if $topicimg==2}> selected="selected"<{/if}>><{$smarty.const._MD_TOPIC_LEFT}></option>
@@ -134,4 +132,3 @@
   }
 </script>
 <!-- End Form Vaidation JavaScript //-->
-

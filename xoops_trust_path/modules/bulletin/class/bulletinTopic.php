@@ -92,8 +92,6 @@ class BulletinTopic extends XoopsTopic{
 	}
 	// Bluemoon
 	function makeMyTopicList($preset_id=0, $row=NULL){
-		$this->id = "topic_id";
-		$this->pid = "topic_pid";
 		$title = "topic_title";
 		$order = "topic_title";
 		$onchange = "";
@@ -104,7 +102,7 @@ class BulletinTopic extends XoopsTopic{
 			$ret .= " onchange='".$onchange."'";
 		}
 		$ret .= ">\n";
-		$sql = "SELECT ".$this->id.",".$title." FROM ".$this->table." WHERE ".$this->pid."=0";
+		$sql = "SELECT topic_id,topic_title FROM ".$this->table;
 		if ( $order != "" ) {
 			$sql .= " ORDER BY $order";
 		}
