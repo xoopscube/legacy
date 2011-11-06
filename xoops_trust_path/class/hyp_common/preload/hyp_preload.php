@@ -727,6 +727,9 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 				ob_start(array(& $this, 'switchOfSmartPhone'));
 			}
 
+		}
+
+		if (! defined('HYP_K_TAI_RENDER') || HYP_K_TAI_RENDER > 1) {
 			// smart redirection
 			if (! empty($this->use_smart_redirect)) {
 				ob_start(array(& $this, 'smartRedirect'));
@@ -1050,6 +1053,7 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 			if (!empty($_SESSION['hyp_redirect_message'])) {
 				$wait = max($this->smart_redirect_min_sec, $_SESSION['hyp_redirect_wait']);
 				$msg = '<div id="redirect_message" style="text-align:center;">' . $_SESSION['hyp_redirect_message'] . '</div>';
+				if (defined('HYP_K_TAI_RENDER') && HYP_K_TAI_RENDER) $msg = '<!--redirectMessage-->' . $msg. '<!--/redirectMessage-->';
 				$js_head = <<<EOD
 <script type="text/javascript">
 //<![CDATA[
@@ -1307,7 +1311,7 @@ EOD;
 						if (! $use_jquery) $target = trim(preg_replace('/<!--.+?-->/sS', '', $target));
 						if (trim(preg_replace('/<\/?(?:div|span|ns|p)[^>]*?>/S', '', $target))) {
 							$parts[$id] = $var['above'] . $target . $var['below'];
-							$rebuild_found = TRUE;
+							if ($id !== 'redirectMessage') $rebuild_found = TRUE;
 						}
 					}
 				}
@@ -1422,7 +1426,8 @@ EOD;
 		if ($head) {
 			// Redirect
 			if (preg_match('#<meta[^>]+http-equiv=("|\')Refresh\\1[^>]+content=("|\')[\d]+;\s*url=(.+)\\2[^>]*>#iUS', $head, $match)) {
-				$url = str_replace('&amp;', '&', $match[3]);
+				//$url = str_replace('&amp;', '&', $match[3]);
+				$url = strtr(str_replace('&amp;', '&', $match[3]), "\r\n\0", "   ");
 				if ($body) {
 					$body = preg_replace('#<p>.*?<a[^>]*?href="'.preg_quote($match[3], '#').'.*?</p>#', '', $body);
 					$_SESSION['hyp_redirect_message'] = strip_tags($body);
@@ -1491,11 +1496,11 @@ EOD;
 				if ($this->k_tai_conf['jquery_no_reduce']) {
 					$_head .= preg_replace('#<link([^>]+?)>\r?\n?|<title.+?/title>\r?\n?#iS', '', $head);
 				}
-				$_head .= '<script src="'.XOOPS_THEME_URL.'/'.$this->k_tai_conf['themeSet'].'/jquery.min.js"></script>';
-				$_head .= '<script src="'.XOOPS_THEME_URL.'/'.$this->k_tai_conf['themeSet'].'/jquery.mobile-config.js"></script>';
-				$_head .= '<script src="'.XOOPS_THEME_URL.'/'.$this->k_tai_conf['themeSet'].'/jquery.mobile.min.js"></script>';
+				$_head .= '<script type="text/javascript" src="'.XOOPS_THEME_URL.'/'.$this->k_tai_conf['themeSet'].'/jquery.min.js"></script>';
+				$_head .= '<script type="text/javascript" src="'.XOOPS_THEME_URL.'/'.$this->k_tai_conf['themeSet'].'/jquery.mobile-config.js"></script>';
+				$_head .= '<script type="text/javascript" src="'.XOOPS_THEME_URL.'/'.$this->k_tai_conf['themeSet'].'/jquery.mobile.min.js"></script>';
 				$_head .= join('', $jquery_script);
-				$_head .= '<script src="'.XOOPS_THEME_URL.'/'.$this->k_tai_conf['themeSet'].'/jquery.extra.js"></script>';
+				$_head .= '<script type="text/javascript" src="'.XOOPS_THEME_URL.'/'.$this->k_tai_conf['themeSet'].'/jquery.extra.js"></script>';
 			}
 
 			$_head .= '</head>';

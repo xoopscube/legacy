@@ -1,6 +1,6 @@
 <?php
 // PukiWiki - Yet another WikiWikiWeb clone.
-// $Id: lng.php,v 1.27 2011/09/26 12:06:26 nao-pon Exp $
+// $Id: lng.php,v 1.28 2011/11/06 05:08:01 nao-pon Exp $
 // Copyright (C)
 //   2002-2005 PukiWiki Developers Team
 //   2001-2002 Originally written by yu-ji
@@ -246,6 +246,7 @@ $root->_attach_messages = array(
 	'err_adminpass'=> 'Wrong administrator password',
 	'err_nopage'   => 'A page "$1" not found. Please make a page before.',
 	'btn_upload'   => 'Upload',
+	'btn_upload_fm'=> 'Upload Form',
 	'btn_info'     => 'Info',
 	'btn_submit'   => 'Submit',
 	'msg_copyrighted'  => 'The attached file was copyrighting protected.',

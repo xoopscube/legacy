@@ -1129,6 +1129,10 @@ $class .img_margin {
 	margin: 10px;
 }
 
+$class_mobile img.img_margin {
+	height: auto;
+}
+
 $class div.ref_use_caption {
 	margin-bottom: 0px;
 }

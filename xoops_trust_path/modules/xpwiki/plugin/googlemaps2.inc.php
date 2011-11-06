@@ -374,7 +374,7 @@ EOD;
 		$_zoom = ($zoom > 10)? ($zoom - 1) : $zoom;
 		$this->root->replaces_finish[$params] = 'center='.$lat.','.$lng.'&amp;zoom='.$_zoom.'&amp;';
 		$imgurl = $this->get_static_image_url($params, '', 0, $markers);
-		$img = '<img src="'.$imgurl.'" '.$this->conf['mapsize'].' />';
+		$img = '<img class="img_margin" src="'.$imgurl.'" '.$this->conf['mapsize'].' />';
 		$map = '<br />[ <a href="'.$this->get_static_image_url($lat, $lng, $zoom, '__GOOGLE_MAPS_STATIC_MARKERS_' . $this->lastmap_name, 1).'">Map</a> | <a href="'.$this->get_static_image_url($lat, $lng, $zoom, '__GOOGLE_MAPS_STATIC_MARKERS_' . $this->lastmap_name, 2).'">Google</a> ]';
 		return '<div style="text-align:center;">' . $img . $map . '</div>';
 	}

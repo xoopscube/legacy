@@ -1,6 +1,6 @@
 <?php
 // PukiWiki - Yet another WikiWikiWeb clone.
-// $Id: lng.php,v 1.27 2011/09/26 12:06:26 nao-pon Exp $
+// $Id: lng.php,v 1.28 2011/11/06 05:08:01 nao-pon Exp $
 // Copyright (C)
 //   2002-2005 PukiWiki Developers Team
 //   2001-2002 Originally written by yu-ji
@@ -246,6 +246,7 @@ $root->_attach_messages = array(
 	'err_adminpass'=> '管理者パスワードが一致しません。',
 	'err_nopage'   => 'ページ「$1」がありません。先にページを作成してください。',
 	'btn_upload'   => 'アップロード',
+	'btn_upload_fm'=> 'アップロードフォーム',
 	'btn_info'     => '詳細',
 	'btn_submit'   => '実行',
 	'msg_copyrighted'  => '添付ファイルを著作権保護しました。',

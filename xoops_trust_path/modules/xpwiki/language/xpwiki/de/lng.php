@@ -1,6 +1,6 @@
 <?php
 // PukiWiki - Yet another WikiWikiWeb clone.
-// $Id: lng.php,v 1.22 2011/09/26 12:06:26 nao-pon Exp $
+// $Id: lng.php,v 1.23 2011/11/06 05:08:01 nao-pon Exp $
 // Copyright (C)
 //   2002-2005 PukiWiki Developers Team
 //   2001-2002 Originally written by yu-ji
@@ -249,6 +249,7 @@ $root->_attach_messages = array(
 	'err_adminpass'=> 'Falsches Administrator Passwort',
 	'err_nopage'   => 'Eine Seite "$1" nicht gefunden. bitte erzeuge die Seite zuerst.',
 	'btn_upload'   => 'Upload',
+	'btn_upload_fm'=> 'Upload Form',
 	'btn_info'     => 'Info',
 	'btn_submit'   => 'Speichern',
 	'msg_copyrighted'  => 'Die angehängte Datei ist kopiergeschützt.',

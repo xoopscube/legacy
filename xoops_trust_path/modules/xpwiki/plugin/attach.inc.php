@@ -2,7 +2,7 @@
 /////////////////////////////////////////////////
 // PukiWiki - Yet another WikiWikiWeb clone.
 //
-//  $Id: attach.inc.php,v 1.60 2011/09/26 12:06:26 nao-pon Exp $
+//  $Id: attach.inc.php,v 1.61 2011/11/06 05:08:01 nao-pon Exp $
 //  ORG: attach.inc.php,v 1.31 2003/07/27 14:15:29 arino Exp $
 //
 /*
@@ -1033,7 +1033,7 @@ EOD;
 
 		if ($this->cont['UA_PROFILE'] === 'mobile') {
 			$painter = '';
-			$form = '<div style="text-align:center;"><span class="button" onclick="$(\'xpwiki_attach_form\').toggle()">'.$this->root->_attach_messages['btn_upload'].'</span></div><div id="xpwiki_attach_form">'.$form.'</div>' .
+			$form = '<div style="text-align:center;"><span class="button" onclick="$(\'xpwiki_attach_form\').toggle()">'.$this->root->_attach_messages['btn_upload_fm'].'</span></div><div id="xpwiki_attach_form">'.$form.'</div>' .
 					'<script type="text/javascript">document.observe(\'dom:loaded\',function(){$(\'xpwiki_attach_form\').toggle();});</script>';
 		}
 
