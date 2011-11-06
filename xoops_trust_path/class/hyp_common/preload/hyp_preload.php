@@ -707,6 +707,12 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 
 			// keitai Filter
 			ob_start(array(& $this, 'keitaiFilter'));
+
+			// smart redirection for smartphone
+			if (HYP_K_TAI_RENDER > 1) {
+				ob_start(array(& $this, 'smartRedirect'));
+			}
+
 			register_shutdown_function(array(& $this, '_onShutdownKtai'));
 		} else {
 			// <from> Filter
@@ -727,13 +733,11 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 				ob_start(array(& $this, 'switchOfSmartPhone'));
 			}
 
-		}
-
-		if (! defined('HYP_K_TAI_RENDER') || HYP_K_TAI_RENDER > 1) {
 			// smart redirection
 			if (! empty($this->use_smart_redirect)) {
 				ob_start(array(& $this, 'smartRedirect'));
 			}
+
 		}
 
 		// Set Query Words
@@ -1143,6 +1147,13 @@ EOD;
 
 		$rebuilds = $this->k_tai_conf['rebuilds'];
 
+		if (isset($rebuilds['redirectMessage'])) {
+			// check "redirectMessage" at last.
+			$_redirectMessage = $rebuilds['redirectMessage'];
+			unset($rebuilds['redirectMessage']);
+			$rebuilds['redirectMessage'] = $_redirectMessage;
+		}
+
 		// テンプレート読み込み
 		if ($rebuilds && $this->k_tai_conf['template']) {
 			$templates_dir = dirname(dirname( __FILE__ )) . '/ktairender/templates/' . $this->k_tai_conf['template']  . '/';
@@ -1311,7 +1322,14 @@ EOD;
 						if (! $use_jquery) $target = trim(preg_replace('/<!--.+?-->/sS', '', $target));
 						if (trim(preg_replace('/<\/?(?:div|span|ns|p)[^>]*?>/S', '', $target))) {
 							$parts[$id] = $var['above'] . $target . $var['below'];
-							if ($id !== 'redirectMessage') $rebuild_found = TRUE;
+							if ($id !== 'redirectMessage') {
+								$rebuild_found = TRUE;
+							} else {
+								if ($rebuild_found) {
+									$target = strip_tags($target);
+								}
+							}
+							$parts[$id] = $var['above'] . $target . $var['below'];
 						}
 					}
 				}
