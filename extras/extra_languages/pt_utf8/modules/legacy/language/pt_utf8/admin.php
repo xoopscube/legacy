@@ -1,5 +1,5 @@
 <?php
-// $Id: admin.php 1000 2011-10-18 20:52:09Z mikhail $
+// $Id$
 // TRANSLATION INFO
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
@@ -336,7 +336,7 @@ define("_AD_LEGACY_PHPSETTING_ZLIB","Zlib ativado");
 define("_AD_LEGACY_PHPVERSION","Versão do PHP");
 define("_AD_LEGACY_SERVER","Servidor");
 define("_AD_LEGACY_SYSTEMINFO","Sistema de Informação");
-define("_AD_LEGACY_TIPS_ADD_CUSTOM_BLOCK","<a href='./index.php?action=BlockInstallList'>Install new blocks</a>, and set your site just the way you want it!<br/>If you want to have a block with free content that is not part of a module, simply <a href='index.php?action=CustomBlockEdit'>create a custom block</a> and write your message in it.");
+define("_AD_LEGACY_TIPS_ADD_CUSTOM_BLOCK","<a href='./index.php?action=BlockInstallList'>Install new blocks</a>, and set your <i>site</i> just the way you want it!<br/>If you want to have a block with free content that is not part of a module, simply <a href='index.php?action=CustomBlockEdit'>create a custom block</a> and write your message in it.");
 define("_AD_LEGACY_TIPS_BLOCK","Ou simplesmente <a href='./index.php?action=CustomBlockEdit'>crie um bloco personalizado</a> com seu próprio conteúdo");
 define("_AD_LEGACY_TIPS_BLOCK2","You can edit each block's options when you install the block.");
 define("_AD_LEGACY_TIPS_BLOCK_UNINSTALL","Mesmo se você desinstalar um bloco, a configuração do bloco não é removida. O bloco é removido simplesmente da vista. Consequentemente você pode reinstalar o bloco facilmente porque o instalador recorda a última configuração.");
@@ -351,7 +351,7 @@ define("_AD_LEGACY_TIPS_MOD", "Ao instalar um novo módulo, lembre-se de que ele
 define("_AD_LEGACY_TIPS_PHASED_UPGRADE_MODE","This is Phased Upgrade Mode. You may need to upgrade this module some times for the latest version. By phased upgrade, you can upgrade this module correctly.");
 define("_AD_LEGACY_TIPS_SMILES","Mostra, renomeia, remove ou envia arquivos com os seus próprios ícones emotivos.");
 define("_AD_LEGACY_TIPS_SMILES_UPLOAD", "You can easily register many smiles by uploading a compressed archive!<br />This batch-upload doesn't check Length and File-Size of each smiles!<br />Pre-adjust them before you archive!<br />(Only tar.gz or zip archive)");
-define("_AD_LEGACY_TIPS_THEME_ADMIN","Choose the look of your site by clicking the 'select' button next to your favourite theme.<br/> Let your users choose their own favourite look and feel for your site. Check the boxes to add a theme to the theme selection block. For more details, read the help.");
+define("_AD_LEGACY_TIPS_THEME_ADMIN","Choose the look of your <i>site</i> by clicking the 'select' button next to your favourite theme.<br/> Let your users choose their own favourite look and feel for your site. Check the boxes to add a theme to the theme selection block. For more details, read the help.");
 define("_AD_LEGACY_USERAGENT","Identidade do navegador ('<em><a href='http://goo.gl/WfF6'>UA</a></em>')");
 define("_AD_LEGACY_XCLEGACYVERSION","Versão do XOOPS Cube Legacy");
 define("_AD_LEGACY_XCVERSION","Versão do XOOPS Cube");
@@ -375,7 +375,7 @@ define("_MD_AM_CENSORWRDDSC","Escreva as mensagens para serem censuradas nas men
 define("_MD_AM_CHNGUTHEME","Editar o tema de todos os associados");
 define("_MD_AM_CLOSESITE","Fechar temporariamente o portal?");
 define("_MD_AM_CLOSESITEDSC","Fechando o portal, somente os grupos com permissão de acesso poderão mostrar o conteúdo do mesmo.");
-define("_MD_AM_CLOSESITEOK","Grupos com acesso ao site bloqueado.");
+define("_MD_AM_CLOSESITEOK","Grupos com acesso ao <i>site</i> bloqueado.");
 define("_MD_AM_CLOSESITEOKDSC","Escolha os grupos que poderão acessar o portal enquanto este estiver bloqueado (administradores não precisam de permissão).");
 define("_MD_AM_CLOSESITETXT","Motivo para o fechamento temporário do portal.");
 define("_MD_AM_CLOSESITETXTDSC","Esta informação será mostrada quando o portal estiver fechado.");

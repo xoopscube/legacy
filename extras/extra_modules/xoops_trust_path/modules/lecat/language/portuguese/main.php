@@ -1,6 +1,6 @@
 <?php
 /**
-* $Id: main.php 981 2011-08-05 09:07:51Z mikhail $
+* $Id$
 * XOOPS Cube Legacy 2.2 - Módulo LeCAT - Tradução para o Português
 * Traduzido por Mikhail Miguel < mailto:mikhail.miguel@gmail.com >
 * http://xoops.net.br/ | http://about.me/mikhail.miguel

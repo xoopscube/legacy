@@ -1,5 +1,5 @@
 <?php
-// $Id: mytplsadmin.php 955 2011-06-08 07:02:57Z mikhail $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 define("_MYTPLSADMIN_BTN_COPY","Copiar");
 define("_MYTPLSADMIN_BTN_NEWTPLSET","Criar");

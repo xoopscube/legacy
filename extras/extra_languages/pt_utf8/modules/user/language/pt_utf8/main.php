@@ -1,5 +1,5 @@
 <?php
-// $Id: main.php 956 2011-06-15 00:46:50Z mikhail $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 define("_MD_USER_ERROR_AVATAR_EXTENSION","Lamento, o envio de arquivos com essa extensão ainda não foi habilitado.");
 define("_MD_USER_ERROR_AVATAR_MAXFILESIZE","O arquivo enviado excede o limite de tamanho permitido para avatares.");

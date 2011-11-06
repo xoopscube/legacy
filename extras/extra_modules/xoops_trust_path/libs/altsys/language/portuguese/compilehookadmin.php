@@ -2,7 +2,7 @@
 // ******************************************************************** //
 // ** XOOPS Cube Legacy - AltSys Module - Portuguese
 // ** Por Mikhail Miguel <mikhail.miguel@gmail.com> - http://xoops.net.br/
-// ** $Id: compilehookadmin.php 1000 2011-10-18 20:52:09Z mikhail $
+// ** $Id$
 // **	License http://creativecommons.org/licenses/by/2.5/br/
 // ******************************************************************** //
 //

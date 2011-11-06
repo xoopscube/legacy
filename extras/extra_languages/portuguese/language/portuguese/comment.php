@@ -2,7 +2,7 @@
 // Translation Info
 // ############################################################### //
 // ## XOOPS Cube Legacy 2.2 - Tradução para o Português do Brasil
-// ## $Id: comment.php 956 2011-06-15 00:46:50Z mikhail $
+// ## $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## Por............: Mikhail Miguel

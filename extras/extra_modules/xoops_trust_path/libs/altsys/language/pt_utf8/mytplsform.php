@@ -1,5 +1,5 @@
 <?php
-// $Id: mytplsform.php 955 2011-06-08 07:02:57Z mikhail $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 define("_MD_A_MYTPLSFORM_BTN_CREATE","Criar");
 define("_MD_A_MYTPLSFORM_BTN_MODIFYCONT","Modificar");

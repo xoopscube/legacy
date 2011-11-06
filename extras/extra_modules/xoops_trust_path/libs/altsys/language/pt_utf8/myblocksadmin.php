@@ -1,5 +1,5 @@
 <?php
-// $Id: myblocksadmin.php 958 2011-06-21 05:39:25Z mikhail $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 define("_MD_A_MYBLOCKSADMIN_ACTION","Ação");
 define("_MD_A_MYBLOCKSADMIN_ALLPAGES","Todas as páginas");

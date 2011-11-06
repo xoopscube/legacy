@@ -2,7 +2,7 @@
 // ******************************************************************** //
 // ** XOOPS Cube Legacy - Profile Module - Portuguese
 // ** Por Mikhail Miguel <mikhail.miguel@gmail.com> - http://xoops.net.br/
-// ** $Id: modinfo.php 1000 2011-10-18 20:52:09Z mikhail $
+// ** $Id$
 // **	License http://creativecommons.org/licenses/by/2.5/br/
 // ******************************************************************** //
 define("_MI_PROFILE_DESC_PROFILE","Módulo para personalizar o formulário de cadastro dos associados e o que será mostrado na página perfis.");

@@ -1,5 +1,5 @@
 <?php
-// $Id: makedata.php 1000 2011-10-18 20:52:09Z mikhail $
+// $Id$
 
 include_once './class/dbmanager.php';
 // RMV

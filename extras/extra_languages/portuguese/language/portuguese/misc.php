@@ -1,6 +1,6 @@
 <?php
 // Translation Info
-// $Id: misc.php 956 2011-06-15 00:46:50Z mikhail $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy 2.2 - Tradução para o Português do Brasil

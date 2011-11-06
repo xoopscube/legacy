@@ -1,5 +1,5 @@
 <?php
-// $Id: mylangadmin.php 955 2011-06-08 07:02:57Z mikhail $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 define("_MYLANGADMIN_BTN_RESET","Redefinir");
 define("_MYLANGADMIN_BTN_UPDATE","Atualizar");

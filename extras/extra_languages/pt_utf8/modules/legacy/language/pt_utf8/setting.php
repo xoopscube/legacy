@@ -1,6 +1,6 @@
 <?php
 // Translation Info
-// $Id: setting.php 924 2011-03-30 00:31:19Z mikhail $
+// $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
@@ -51,7 +51,7 @@ y -> Uma representação do ano com dois dígitos Exemplos: 99 ou 03
 TEMPO --- ---
 a -> Antes/Depois de meio-dia em minúsculo am or pm
 A -> Antes/Depois de meio-dia em maiúsculo AM or PM
-B -> Swatch Internet time 000 até 999
+B -> Swatch internet time 000 até 999
 g -> Formato 12-horas de uma hora sem preenchimento de zero 1 até 12
 G -> Formato 24-horas de uma hora sem preenchimento de zero 0 até 23
 h -> Formato 12-horas de uma hora com zero preenchendo à esquerda 01 até 12

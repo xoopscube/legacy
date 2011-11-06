@@ -36,7 +36,7 @@
  ser divino à terra, em forma materializada, podendo assumir a forma humana
  ou a de um animal. Também significa "processo metamórfico"; transformação,
  como a de um artista ao entrar no palco ou a de um visitante ao acessar um
- bate-papo ou fórum da Internet. Se desejar, escolha um dos avatares
+ bate-papo ou fórum da internet. Se desejar, escolha um dos avatares
  disponíveis em nossa galeria:
  {SITEURL}misc.php?action=showpopups&type=avatars
 
