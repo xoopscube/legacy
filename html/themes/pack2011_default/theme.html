@@ -35,7 +35,7 @@
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-jktab.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-jcflick.js"></script>
 <script type="text/javascript">
-(function($){
+jQuery(function($){
 	(function(){
 		if( ProjectName.ua.iPhone || ProjectName.ua.Android || ProjectName.ua.WP7 ){
 			ProjectName.MOD.print_r( ProjectName.META.iOS() );
@@ -77,7 +77,7 @@
 					stop = false;
 				}
 			} ) ;
-		$ ( '#jquery-ui-accordion' )
+		$ ( '.jquery-ui-accordion' )
 			. accordion ( {
 				icons: {
 					'header': 'ui-icon-folder-collapsed',
@@ -93,18 +93,24 @@
 				}
 			} ) ;
 	} ) ;
-})(jQuery);
+});
 </script>
 <script type="text/javascript">
 <!--
 <{$xoops_js}>
 // -->
 </script>
-<!--[if IE 6]>
+<!--[if lt IE 7]>
 <script type="text/javascript" src="/public/resources/common/js/DD_belatedPNG_0.0.8a-min.js"></script>
 <script type="text/javascript">
 	DD_belatedPNG.fix('img');
 </script>
+<![endif]-->
+<!--[if lt IE 8]>
+<script src="<{$xoops_imageurl}>js/IE8.js" type="text/javascript"></script>
+<![endif]-->
+<!--[if lt IE 9]>
+<script src="<{$xoops_imageurl}>js/IE9.js" type="text/javascript"></script>
 <![endif]-->
 </head>
 
@@ -279,6 +285,8 @@
 				</div>
 			<!-- End Center Column -->
 
+		</div><!-- /.section -->
+		<{/if}>
 			<!-- Module Content -->
 			<{if !empty($xoops_contents)}>
 			<div class="group">
@@ -295,13 +303,6 @@
 			</div>
 			<{/if}>
 			<!-- End Module -->
-		</div><!-- /.section -->
-		<{/if}>
-		<!-- Module Content -->
-		<{if !empty($xoops_contents)}>
-			<{$xoops_contents}>
-		<{/if}>
-		</div><!-- /.mainContainer -->
 
 	</div><!-- /.group -->
 </div><!-- /#globalContentsWrapper -->
