@@ -1,0 +1,21 @@
+<form action="<{$xoops_url}>/user.php" method="post" style="margin-top: 0px;">
+    <{$block.lang_username}><br />
+    <{xoops_input type=text name=uname size=12 value=$block.unamevalue maxlength=25 id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_uname"}><br />
+    <{$block.lang_password}><br />
+    <{xoops_input type=password name=pass size=12 maxlength=32 id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_pass"}><br />
+    <label><{xoops_input type=checkbox name=rememberme value=On class=formButton}><{$block.lang_rememberme}></label><br />
+    <input type="hidden" name="xoops_redirect" value="<{$xoops_requesturi}>" />
+    <{xoops_input type=hidden name=op value=login id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_op"}>
+    <{xoops_input type=submit name=submit value=$block.lang_login id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_submit"}><br />
+</form>
+<{* cubeUtils doesn't have default const of secure login *}>
+<{*
+<{if $block.use_ssl == '1'}>
+  <a href="javascript:openWithSelfMain('<{$block.sslloginlink}>', 'ssllogin', 300, 200);">SSL</a>
+<{/if}>
+*}>
+<a href="<{$xoops_url}>/lostpass.php"><{$block.lang_lostpass}></a>
+<br /><br />
+<{if $block.allow_register == '1'}>
+  <a href="<{$xoops_url}>/register.php"><{$block.lang_registernow}></a>
+<{/if}>

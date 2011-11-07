@@ -1,0 +1,38 @@
+<form action="<{$smarty.const.XOOPS_URL}>/user.php" method="post">
+<input type="hidden" name="op" value="login" />
+<input type="hidden" name="xoops_redirect" value="<{$redirect_page}>" />
+<table class="outer">
+  <tr>
+    <th colspan="2" style="text-align:center;"><{$smarty.const._LOGIN}></th>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._USERNAME}></td>
+    <td class="<{cycle values="odd,even"}>">
+      <input type="text" name="uname" size="25" maxlength="25" value="<{$usercookie}>" />
+    </td>
+  </tr>
+  <tr>
+    <td class="head"><{$smarty.const._PASSWORD}></td>
+    <td class="<{cycle values="odd,even"}>">
+     <input type="password" name="pass" size="30" maxlength="32" />
+    </td>
+  </tr>
+  <tr>
+    <td class="head">&nbsp;</td>
+    <td class="<{cycle values="odd,even"}>">
+      <input type="checkbox" name="rememberme" value="On" /><{$smarty.const._CUBE_UTILS_REMEMBERME}><br />
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="foot" style="text-align:center;">
+      <input type="submit" value="<{$smarty.const._LOGIN}>" />
+    </td>
+  </tr>
+</table>
+</form>
+<hr>
+<a href="<{$xoops_url}>/lostpass.php"><{$smarty.const._CUBE_UTILS_LOSTPASSWORD}></a>
+<{if $allow_register}>
+<br />
+<a href="<{$xoops_url}>/register.php"><{$smarty.const._CUBE_UTILS_NOTREGISTERED}></a>
+<{/if}>
