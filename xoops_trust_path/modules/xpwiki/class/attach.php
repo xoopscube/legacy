@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2008/03/24 by nao-pon http://hypweb.net/
- * $Id: attach.php,v 1.33 2011/09/26 12:06:25 nao-pon Exp $
+ * $Id: attach.php,v 1.34 2011/11/08 06:30:22 nao-pon Exp $
  */
 
 //-------- епеще╣
@@ -1437,7 +1437,7 @@ EOD;
 			$search = '';
 		} else {
 			if ($this->cont['UA_PROFILE'] === 'mobile') {
-				$search = '<div><form method="get" action="' . $this->root->script . '"><input type="search" name="word" value="' . $sword  . '" />' . $hidden . '</form></div>';
+				$search = '<div><form method="get" action="' . $this->root->script . '"><input type="search" name="word" autocomplete="off" value="' . $sword  . '" />' . $hidden . '</form></div>';
 			} else {
 				$search = '<div><form method="get" action="' . $this->root->script . '"><img src="' . $this->cont['LOADER_URL'] . '?src=find.png" alt="Search" /> <input size="15" type="search" name="word" value="' . $sword  . '" /><input data-inline="true" type="submit" value="' . $this->root->_btn_search . '" />' . $hidden . '</form></div>';
 			}

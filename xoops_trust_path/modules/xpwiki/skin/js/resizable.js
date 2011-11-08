@@ -1,6 +1,6 @@
 //
 // Created on 2007/10/03 by nao-pon http://hypweb.net/
-// $Id: resizable.js,v 1.19 2009/05/02 03:52:47 nao-pon Exp $
+// $Id: resizable.js,v 1.20 2011/11/08 06:30:22 nao-pon Exp $
 //
 
 var Resizable = Class.create();
@@ -8,7 +8,7 @@ var Resizable = Class.create();
 Resizable.prototype = {
 
 	initialize: function( id, options ){
-		
+
 		this.sizeX = null;
 		this.sizeY = null;
 		this.curX = null;
@@ -18,26 +18,27 @@ Resizable.prototype = {
 
 		this.boolX = false;
 		this.boolY = false;
-		
+
 		this.resizeX = null;
 		this.resizeY = null;
 		this.resizeXY = null;
-		
+
 		this.initHeight = '';
 		this.initWidth = '';
-		
+
 		this.options = options;
-		
+
+		if (XpWiki.useJQueryMobile) return false;
 		if (Prototype.Browser.MobileSafari) return false;
-		
+
 		var target = $(id);
 		if (!target) return false;
-		
+
 		if (!!target.Resizable_done) return false;
 		target.Resizable_done = true;
-		
+
 		this.tagName = target.tagName;
-		
+
 		if (this.tagName == 'TEXTAREA') {
 			var parent = target.parentNode;
 			this.base = document.createElement('div');
@@ -49,12 +50,12 @@ Resizable.prototype = {
 			this.base.style.marginTop = target.style.marginTop;
 
 			this.elem = target;
-			
+
 			var initH = this.elem.getHeight();
 			if (!!initH && initH != 'none') {
 				this.initHeight = initH;
 			}
-			
+
 			var inTable = false;
 			var inline = (this.elem.style.display == 'inline');
 			if (this.isIE8 || this.isIE6 || inline) {
@@ -79,7 +80,7 @@ Resizable.prototype = {
 				this.base.style.width = '98%';
 				this.elem.style.width = '100%';
 			}
-			
+
 			if (inline) {
 				this.base.style.display = 'inline';
 			}
@@ -97,9 +98,9 @@ Resizable.prototype = {
 			} else {
 				this.base.appendChild(this.elem);
 			}
-			
+
 			Element.makePositioned(parent);
-			
+
 		} else if (this.tagName == 'DIV') {
 			if (!!options.element) {
 				this.base = target;
@@ -109,7 +110,7 @@ Resizable.prototype = {
 				}
 			} else {
 				this.base = target;
-				
+
 				if (!!this.base.style.height) {
 					var initH = this.base.style.height;
 				} else {
@@ -118,7 +119,7 @@ Resizable.prototype = {
 				if (!!initH && initH != 'none') {
 					this.initHeight = initH;
 				}
-				
+
 				if (!!this.base.style.width) {
 					var initW = this.base.style.width;
 				} else {
@@ -127,7 +128,7 @@ Resizable.prototype = {
 				if (initW && initW != 'none') {
 					this.initWidth = initW;
 				}
-				
+
 				this.elem = document.createElement('div');
 				this.elem.innerHTML = this.base.innerHTML;
 				this.base.innerHTML = '';
@@ -136,13 +137,13 @@ Resizable.prototype = {
 		} else {
 			return false;
 		}
-		
+
 		this.base.style.overflow = 'visible';
 		this.base.style.maxHeight = 'none';
 		if (this.initWidth != '%') this.base.style.maxWidth = 'none';
 		this.base.style.marginBottom = (XpWiki.isIE7)? '2em' : '5px';
 		this.base.style.marginRight = '5px';
-		
+
 		if (!!this.elem.getStyle) {
 			this.elem._Top = parseInt(this.elem.getStyle('top'));
 			if (isNaN(this.elem._Top)) this.elem._Top = 0;
@@ -161,18 +162,18 @@ Resizable.prototype = {
 
 	// Version
 	VERSION: "0.01",
-	
+
 	// methods
-	setEast: function (elemid) { 
+	setEast: function (elemid) {
 		this.setEdge( elemid, true, false, "e-resize" );
 	},
-	setSouth: function (elemid) { 
+	setSouth: function (elemid) {
 		this.setEdge( elemid, false, true, "s-resize" );
 	},
-	setSouthEast: function (elemid) { 
+	setSouthEast: function (elemid) {
 		this.setEdge( elemid, true, true, "se-resize" );
 	},
-	
+
 	// make resize box
 	makeResizeBox: function (mode) {
 		if (!mode) mode = 'xy';
@@ -196,10 +197,10 @@ Resizable.prototype = {
 			});
 			this.base.appendChild(cover);
 		}
-		
+
 		if (mode == 'x' ) {
 			this.elem.style.maxWidth = (Prototype.Browser.WebKit)? '100%' : 'none';
-			
+
 			if (this.initWidth) {
 				if (this.initWidth == '%') {
 					this.elem.style.width = '100%';
@@ -240,14 +241,14 @@ Resizable.prototype = {
 			resize.className = 'resizableResizeY';
 			resize.style.zIndex = this.base.style.zIndex + 1;
 			this.base.appendChild(resize);
-			
+
 			if (this.tagName == 'DIV') {
 				resize.style.bottom = '0px';
 				this.elem.style.marginBottom = '5px';
 				//this.elem.style.paddingBottom = '5px';
 				this.base.style.paddingBottom = '5px';
 			}
-			
+
 		} else {
 			mode = 'xy';
 			this.makeResizeBox ('x');
@@ -265,18 +266,18 @@ Resizable.prototype = {
 		}
 		this.setEdge( resize.id, mode );
 	},
-	
+
 	setEdge: function (elemid, mode) {
 		var edgelem;
 		if ( typeof(elemid) == "object" && elemid.parentNode ) {
 			edgelem = elemid;
-		} else { 
+		} else {
 			edgelem = document.getElementById( elemid );
 		}
 		if ( ! edgelem ) return;	// no such element
-		
+
 		this.elem.style.overflow = 'auto';
-		
+
 		if (mode == 'x' ) {
 			edgelem.style.cursor = 'e-resize';
 			var func = this.dragStartX;
@@ -289,7 +290,7 @@ Resizable.prototype = {
 		}
 		Event.observe(edgelem, "mousedown", func.bindAsEventListener(this));
 	},
-	
+
 	dragStartX: function (event) {
 		if (!this.sizeX) {
 			this.setWidth(this.base.offsetWidth);
@@ -329,17 +330,17 @@ Resizable.prototype = {
 		Event.stop(event);
 		this.onDrag = true;
 		this.backupCursor();
-	
+
 		this.curX = event.clientX;
 		this.curY = event.clientY;
-		
+
 		Event.observe(document, "mousemove", this.dragMove.bindAsEventListener(this));
 		Event.observe(document, "mouseup", this.dragFinish.bindAsEventListener(this));
-		
+
 		if(!!this.options.starteffect) this.options.starteffect(this.base);
 		return false;
 	},
-	
+
 	dragMove: function (event) {
 		if ( ! this.onDrag ) return;
 		Event.stop(event);
@@ -361,7 +362,7 @@ Resizable.prototype = {
 		}
 		return false;
 	},
-	
+
 	dragFinish: function (event) {
 		if ( ! this.onDrag ) return;
 		Element.hide(this.base.id + '_resizeC');
@@ -371,7 +372,7 @@ Resizable.prototype = {
 		this.onDrag = false;
 		return false;
 	},
-	
+
 	backupCursor: function () {
 		this.saveCursor['body'] = document.body.style.cursor;
 		this.saveCursor['base'] = this.base.style.cursor;
@@ -390,7 +391,7 @@ Resizable.prototype = {
 		}
 		this.elem.style.cursor = this.base.style.cursor = document.body.style.cursor = this.cursorS;
 	},
-	
+
 	restoreCursor: function () {
 		document.body.style.cursor = this.saveCursor['body'];
 		this.base.style.cursor = this.saveCursor['base'];
@@ -399,7 +400,7 @@ Resizable.prototype = {
 		if (!!$(this.base.id + '_resizeY')) { $(this.base.id + '_resizeY').style.cursor = this.saveCursor['resizeY']; }
 		if (!!$(this.base.id + '_resizeXY')) { $(this.base.id + '_resizeXY').style.cursor = this.saveCursor['resizeXY']; }
 	},
-	
+
 	setWidth: function (val) {
 		val = parseInt(val);
 		if (val > 0) {
@@ -410,7 +411,7 @@ Resizable.prototype = {
 			this.sizeX = val;
 		}
 	},
-	
+
 	setHeight: function (val) {
 		val = parseInt(val);
 		if (val > 0) {

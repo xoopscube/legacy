@@ -53,6 +53,7 @@ xpwiki_ajax_edit_var['func_post'] = '';
 // cookie
 var wikihelper_adv;
 
+
 function wikihelper_show_fontset_img()
 {
 	if (!wikihelper_mapLoad)
@@ -113,7 +114,15 @@ function wikihelper_show_fontset_img()
 		}
 
 		new Draggable('wikihelper_base');
-
+/*
+		if (XpWiki.useJQueryMobile) {
+			jQuery(function() {
+				$('wikihelper_base').style.height = '50px';
+				$('wikihelper_base').style.overflow = 'auto';
+				jQuery('#wikihelper_base').flickable();
+			});
+		}
+*/
 	}
 
 	// Helper image tag set
@@ -352,7 +361,7 @@ function wikihelper_setActive(elem, istimer)
 		if (wikihelper_elem != elem) {
 			wikihelper_elem = elem;
 			var offset = wikihelper_cumulativeOffset(wikihelper_elem);
-			helper.style.left = offset[0] + "px";
+			helper.style.left = (XpWiki.useJQueryMobile? 12 : offset[0]) + "px";
 			helper.style.top = ( offset[1] - helper.offsetHeight - 1 ) + "px";
 			wikihelper_pos();
 		}

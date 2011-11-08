@@ -14,7 +14,16 @@ $class h6,
 $class pre,
 $class dl,
 $class p,
+$class div,
 $class blockquote { line-height:150%; }
+
+$class div,
+$class p {
+	font-size: 100%;
+	border: medium none;
+	margin: 0;
+	padding: 0;
+}
 
 $class p {
 	margin-left: 1em;

@@ -225,6 +225,7 @@ var Draggables = {
 
 var Draggable = Class.create({
   initialize: function(element) {
+    if (XpWiki.useJQueryMobile) return false;
     var defaults = {
       handle: false,
       reverteffect: function(element, top_offset, left_offset) {
