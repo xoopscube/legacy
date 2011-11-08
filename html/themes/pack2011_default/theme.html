@@ -291,6 +291,7 @@ jQuery(function($){
 
 		</div><!-- /.section -->
 		<{/if}>
+
 			<!-- Module Content -->
 			<{if !empty($xoops_contents)}>
 			<div class="group">
@@ -307,6 +308,65 @@ jQuery(function($){
 			</div>
 			<{/if}>
 			<!-- End Module -->
+
+		<!-- Start Center Column -->
+		<{if $xoops_showcblock == 1}>
+			<div class="section">
+				<!-- Start Center Center Column -->
+				<{if $xoops_ccblocks}>
+				<div class="group">
+					<{foreach item=block from=$xoops_ccblocks name=ccloop}>
+						<{if $block.weight >= 100 }>
+							<{if ! $block.title|strstr:"none"}>
+								<h2 class="level2"><{$block.title}></h2>
+							<{/if}>
+							<p class="fsL">
+							<div class="BlockContent"><{$block.content}></div>
+						<{/if}>
+					<{/foreach}>
+				</div>
+				<{/if}>
+				<!-- End Center Center Column -->
+
+				<div class="group mb10">
+				<!-- Start Center Left Column -->
+				<{if $xoops_clblocks}>
+					<div class="pane2 floL group">
+					<{foreach item=block from=$xoops_clblocks name=clloop}>
+						<{if $block.weight >= 100 }>
+							<p class="fRect" id="centerl<{$smarty.foreach.clloop.iteration}>">
+							<{if ! $block.title|strstr:"none"}>
+								<h2 class="BlockTitle"><{$block.title}></h2>
+							<{/if}>
+							<div class="BlockContent"><{$block.content}></div>
+							</p>
+						<{/if}>
+					<{/foreach}>
+					</div>
+				<{/if}>
+				<!-- End Center Left Column -->
+
+				<!-- Start Center Right Column -->
+				<{if $xoops_crblocks}>
+					<div class="pane2 floR group">
+					<{foreach item=block from=$xoops_crblocks name=crloop}>
+						<{if $block.weight >= 100 }>
+						<p class="fRect" id="centerr<{$smarty.foreach.crloop.iteration}>">
+						<{if ! $block.title|strstr:"none"}>
+							<h2 class="BlockTitle"><{$block.title}></h2>
+						<{/if}>
+						<div class="BlockContent"><{$block.content}></div>
+						</p>
+					<{/if}>
+				<{/foreach}>
+				</div>
+				<{/if}>
+				<!-- End Center Right Column -->
+				</div>
+			<!-- End Center Column -->
+
+		</div><!-- /.section -->
+		<{/if}>
 
 	</div><!-- /.group -->
 </div><!-- /#globalContentsWrapper -->
