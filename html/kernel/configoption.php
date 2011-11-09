@@ -57,11 +57,17 @@ class XoopsConfigOption extends XoopsObject
      */
     function XoopsConfigOption()
     {
+        static $initVars;
+        if (isset($initVars)) {
+            $this->vars = $initVars;
+            return;
+        }
         $this->XoopsObject();
         $this->initVar('confop_id', XOBJ_DTYPE_INT, null);
         $this->initVar('confop_name', XOBJ_DTYPE_TXTBOX, null, true, 255);
         $this->initVar('confop_value', XOBJ_DTYPE_TXTBOX, null, true, 255);
         $this->initVar('conf_id', XOBJ_DTYPE_INT, 0);
+        $initVars = $this->vars;
     }
 
     /**
