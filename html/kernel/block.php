@@ -169,19 +169,19 @@ class XoopsBlock extends XoopsObject
 
         $block = array();
         // M for module block, S for system block C for Custom
-        if ( $this->getVar('block_type') != 'C' ) {
+        if ( $this->getVar('block_type', 'N') != 'C' ) {
             // get block display function
-            $show_func = $this->getVar('show_func');
+            $show_func = $this->getVar('show_func', 'N');
             if ( !$show_func ) {
                 return $ret;
             }
             // must get lang files b4 execution of the function
-            if ( file_exists(XOOPS_ROOT_PATH.'/modules/'.$this->getVar('dirname').'/blocks/'.$this->getVar('func_file')) ) {
+            if ( file_exists($path = XOOPS_ROOT_PATH.'/modules/'.($dirname = $this->getVar('dirname', 'N')).'/blocks/'.$this->getVar('func_file', 'N')) ) {
                 $root=&XCube_Root::getSingleton();
-                $root->mLanguageManager->loadBlockMessageCatalog($this->getVar('dirname'));
+                $root->mLanguageManager->loadBlockMessageCatalog($dirname);
 
-                require_once XOOPS_ROOT_PATH.'/modules/'.$this->getVar('dirname').'/blocks/'.$this->getVar('func_file');
-                $options = explode('|', $this->getVar('options'));
+                require_once $path;
+                $options = explode('|', $this->getVar('options', 'N'));
                 if ( function_exists($show_func) ) {
                     // execute the function
                     $block = $show_func($options);
@@ -196,7 +196,7 @@ class XoopsBlock extends XoopsObject
             }
         } else {
             // it is a custom block, so just return the contents
-            $block['content'] = $this->getContent('S',$this->getVar('c_type'));
+            $block['content'] = $this->getContent('S',$this->getVar('c_type', 'N'));
             if (empty($block['content'])) {
                 return $ret;
             }
@@ -233,7 +233,7 @@ class XoopsBlock extends XoopsObject
 
     function isCustom()
     {
-        if ( $this->getVar('block_type') == 'C' ) {
+        if ( $this->getVar('block_type','N') == 'C' ) {
             return true;
         }
         return false;
@@ -246,17 +246,17 @@ class XoopsBlock extends XoopsObject
      **/
     function getOptions()
     {
-        if ($this->getVar('block_type') != 'C') {
-            $edit_func = $this->getVar('edit_func');
+        if ($this->getVar('block_type', 'N') != 'C') {
+            $edit_func = $this->getVar('edit_func', 'N');
             if (!$edit_func) {
                 return false;
             }
-            if (file_exists(XOOPS_ROOT_PATH.'/modules/'.$this->getVar('dirname').'/blocks/'.$this->getVar('func_file'))) {
+            if (file_exists($path = XOOPS_ROOT_PATH.'/modules/'.$this->getVar('dirname', 'N').'/blocks/'.$this->getVar('func_file', 'N'))) {
 				$root =& XCube_Root::getSingleton();
 				$root->mLanguageManager->loadBlockMessageCatalog($this->getVar('dirname'));
 				
-                include_once XOOPS_ROOT_PATH.'/modules/'.$this->getVar('dirname').'/blocks/'.$this->getVar('func_file');
-                $options = explode('|', $this->getVar('options'));
+                include_once $path;
+                $options = explode('|', $this->getVar('options', 'N'));
                 $edit_form = $edit_func($options);
                 if (!$edit_form) {
                     return false;
@@ -287,7 +287,7 @@ class XoopsBlock extends XoopsObject
     {
         $handler =& xoops_gethandler('block');
         if($handler->insert($this)) {
-            return $this->getVar('bid');
+            return $this->getVar('bid', 'N');
          
         } else {
             return false;
@@ -492,7 +492,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
         if (strtolower(get_class($block)) != 'xoopsblock') {
             return false;
         }
-        $id = $block->getVar('bid');
+        $id = $block->getVar('bid', 'N');
         $sql = sprintf("DELETE FROM %s WHERE bid = %u", $this->db->prefix('newblocks'), $id);
         if (!$result = $this->db->query($sql)) {
             return false;
@@ -574,7 +574,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
         $blocks =& $this->getObjects($criteria, true);
         $ret = array();
         foreach (array_keys($blocks) as $i) {
-            $name = ($blocks[$i]->getVar('block_type') != 'C') ? $blocks[$i]->getVar('name') : $blocks[$i]->getVar('title');
+            $name = ($blocks[$i]->getVar('block_type', 'N') != 'C') ? $blocks[$i]->getVar('name') : $blocks[$i]->getVar('title');
             $ret[$i] = $name;
         }
         return $ret;
@@ -670,8 +670,8 @@ class XoopsBlockHandler extends XoopsObjectHandler
         }
         $where_query .= " ORDER BY ".addslashes($orderby);
         switch ($rettype) {
-        case "object":
-            $sql = "SELECT * FROM ".$this->db->prefix("newblocks")."".$where_query;
+        case 'object':
+            $sql = 'SELECT * FROM '.$this->db->prefix('newblocks').$where_query;
             $result = $this->db->query($sql);
             while ( $myrow = $this->db->fetchArray($result) ) {
                 $block =& $this->create(false);
@@ -679,19 +679,19 @@ class XoopsBlockHandler extends XoopsObjectHandler
                 $ret[] =& $block;
             }
             break;
-        case "list":
-            $sql = "SELECT * FROM ".$this->db->prefix("newblocks")."".$where_query;
+        case 'list':
+            $sql = 'SELECT * FROM '.$this->db->prefix('newblocks').$where_query;
             $result = $this->db->query($sql);
             while ( $myrow = $this->db->fetchArray($result) ) {
                 $block =& $this->create(false);
                 $block->assignVars($myrow);
-                $name = ($block->getVar("block_type") != "C") ? $block->getVar("name") : $block->getVar("title");
-                $ret[$block->getVar("bid")] = $name;
+                $name = ($block->getVar('block_type', 'N') != 'C') ? $block->getVar('name') : $block->getVar('title');
+                $ret[$block->getVar('bid', 'N')] = $name;
                 unset($block);
             }
             break;
-        case "id":
-            $sql = "SELECT bid FROM ".$this->db->prefix("newblocks")."".$where_query;
+        case 'id':
+            $sql = 'SELECT bid FROM '.$this->db->prefix('newblocks').$where_query;
             $result = $this->db->query($sql);
             while ( $myrow = $this->db->fetchArray($result) ) {
                 $ret[] = $myrow['bid'];
@@ -706,9 +706,9 @@ class XoopsBlockHandler extends XoopsObjectHandler
     {
         $moduleid = (int)$moduleid;
         if ( $asobject == true ) {
-            $sql = $sql = "SELECT * FROM ".$this->db->prefix("newblocks")." WHERE mid=".$moduleid."";
+            $sql = $sql = 'SELECT * FROM '.$this->db->prefix('newblocks').' WHERE mid='.$moduleid;
         } else {
-            $sql = "SELECT bid FROM ".$this->db->prefix("newblocks")." WHERE mid=".$moduleid."";
+            $sql = 'SELECT bid FROM '.$this->db->prefix('newblocks').' WHERE mid='.$moduleid;
         }
         $result = $this->db->query($sql);
         $ret = array();

@@ -112,8 +112,6 @@ class XoopsConfigItem extends XoopsObject
 	 */
 	function &getOptionItems()
 	{
-		$optionArr = array();
-		
 		$handler =& xoops_gethandler('config');
 		$optionArr =& $handler->getConfigOptions(new Criteria('conf_id', $this->get('conf_id')));
 		
@@ -146,25 +144,23 @@ class XoopsConfigItem extends XoopsObject
      */
     function &getConfValueForOutput()
     {
-        $ret = null;
-        switch ($this->getVar('conf_valuetype')) {
+        switch ($this->getVar('conf_valuetype', 'N')) {
         case 'int':
             $ret = (int)$this->getVar('conf_value', 'N');
-            break;
+            return $ret;
         case 'array':
             $ret = unserialize($this->getVar('conf_value', 'N'));
-			break;
+            return $ret;
         case 'float':
             $ret = (float)$this->getVar('conf_value', 'N');
-            break;
+            return $ret;
         case 'textarea':
-            $ret = $this->getVar('conf_value');
-            break;
+            return $this->getVar('conf_value');
         default:
-            $ret = $this->getVar('conf_value', 'N');
-            break;
+            return $this->getVar('conf_value', 'N');
         }
 
+        $ret = null;
         return $ret;
     }
 
