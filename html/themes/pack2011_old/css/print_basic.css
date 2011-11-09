@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+/**
+* MediaQuery MultiDevice Template ver 0.1β
+* @Author: funnythingz
+* @Url:    http://hiropo.co.uk
+* 
+* print.css
+*/
+
+
+/* Print_Layout
+----------------------------------------------------*/
+body {
+	background: #fff;
+	font-size: 14pt;
+}
+
+/* IE6対策 */
+*html body {
+	zoom: 68%;
+}

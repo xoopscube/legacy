@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+/**
+* MediaQuery MultiDevice Template ver 0.1É¿
+* @Author: funnythingz
+* @Url:    http://hiropo.co.uk
+*
+* import_basic.css
+*/
+
+@import url(reset.css);
+@import url(module.css);
+@import url(basic.css);
+
+@import url(small_reset.css) screen and (max-width: 580px);
+@import url(small_module.css) screen and (max-width: 580px);
+@import url(small_basic.css) screen and (max-width: 580px);
