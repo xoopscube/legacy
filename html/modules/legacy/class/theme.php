@@ -16,6 +16,11 @@ class LegacyThemeObject extends XoopsSimpleObject
 {
 	function LegacyThemeObject()
 	{
+		static $initVars;
+		if (isset($initVars)) {
+			$this->mVars = $initVars;
+			return;
+		}
 		$this->initVar('name', XOBJ_DTYPE_STRING, '', true, 255);
 		$this->initVar('dirname', XOBJ_DTYPE_STRING, '', true, 255);
 		$this->initVar('screenshot', XOBJ_DTYPE_STRING, '', false, 255);
@@ -29,6 +34,7 @@ class LegacyThemeObject extends XoopsSimpleObject
 		
 		// For TYPO
 		$this->initVar('licence', XOBJ_DTYPE_STRING, '', true, 255);
+		$initVars = $this->mVars;
 	}
 }
 
