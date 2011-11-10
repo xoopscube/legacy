@@ -1,6 +1,6 @@
 <?php
 define('X2_ADD_SMARTYPLUGINS_DIR', XOOPS_TRUST_PATH . '/libs/smartyplugins/x2');
-
+define('HYP_COMMON_PRELOAD_CONF', '/cache/hypconf_'.md5(defined(XOOPS_SALT)?XOOPS_SALT:XOOPS_DB_PASS).'.conf');
 //// mbstring ////
 if (! extension_loaded('mbstring')) {
 	include_once dirname(dirname(__FILE__)) . '/mbemulator/mb-emulator.php';
@@ -237,10 +237,28 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 
 		$this->detect_order_org = mb_detect_order();
 
+		// Load conf file.
+		$conffile = XOOPS_TRUST_PATH . HYP_COMMON_PRELOAD_CONF;
+		$sections = array('main_switch');
+		if (is_file($conffile) && $conf = parse_ini_file($conffile, true)) {
+			foreach($conf as $name => $section) {
+				if ($name === 'k_tai_conf') {
+					foreach($section as $key => $val) {
+						$this->k_tai_conf[$key.'#'.XOOPS_URL] = $val;
+					}
+				} else if (in_array($name, $sections)) {
+					foreach($section as $key => $val) {
+						$this->$key = $val;
+					}
+				}
+			}
+		}
+
 		parent::XCube_ActionFilter($controller);
 	}
 
 	function preFilter() {
+
 		// Set const "HYP_IS_BOT_UA"
 		if (preg_match($this->bot_ua_reg, $_SERVER['HTTP_USER_AGENT'])) {
 			define('HYP_IS_BOT_UA', true);
