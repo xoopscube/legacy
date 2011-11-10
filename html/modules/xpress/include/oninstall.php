@@ -160,6 +160,8 @@ function xpress_oninstall_base( $module , $mydirname )
 	$email = is_object($GLOBALS["xoopsUser"])?$GLOBALS["xoopsUser"]->getVar("email"):'foo@exsample.com';
 	$pass_md5 = is_object($GLOBALS["xoopsUser"])?$GLOBALS["xoopsUser"]->getVar("pass"):'';
 	
+	add_filter('sanitize_user', "sanitize_user_multibyte" ,10,3);
+	
 	if (!function_exists('username_exists')){
 		require_once($mydirpath . '/wp-includes/registration-functions.php');
 	}
@@ -293,6 +295,14 @@ function wp_install_old_defaults($user_id) {
 	// First Page
 
 	$wpdb->query("INSERT INTO $wpdb->posts (post_author, post_date, post_date_gmt, post_content, post_excerpt, post_title, post_category, post_name, post_modified, post_modified_gmt, post_status, to_ping, pinged, post_content_filtered) VALUES ('1', '$now', '$now_gmt', '".$wpdb->escape(__('This is an example of a WordPress page, you could edit this to put information about yourself or your site so readers know where you are coming from. You can create as many pages like this one or sub-pages as you like and manage all of your content inside of WordPress.'))."', '', '".$wpdb->escape(__('About'))."', '0', '".$wpdb->escape(__('about'))."', '$now', '$now_gmt', 'static', '', '', '')");
+}
+endif;
+if( ! function_exists( 'sanitize_user_multibyte' ) ) :
+function sanitize_user_multibyte($username, $raw_username, $strict){
+	if ($raw_username !== "" && $username !== $raw_username){
+		return $raw_username;
+	}
+	return $username;
 }
 endif;
 ?>

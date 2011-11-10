@@ -147,6 +147,11 @@ if( ! defined( 'XP2_BLOCK_LANG_INCLUDED' ) ) {
 	define("_MB_XP2_BLOG_NAME","name");
 	define("_MB_XP2_BLOG_COUNT","count");
 	define("_MB_XP2_BLOG_ID","ID");
+// global_blog_list
+	define("_MB_XP2_SHOW_BLOGS_SELECT","Select Display Blogs");
+	define("_MB_XP2_EXCLUSION_BLOGS_SELECT","Select Exclusion Blogs");
+	define("_MB_XP2_BLOGS_DIRECT_SELECT","Direct input of ID(Comma separated list of blog ID)");
+	define("_MB_XP2_SHOWN_FOR_EACH_BLOG","Shown for each blog");
 
 }
 ?>

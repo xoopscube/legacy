@@ -148,6 +148,11 @@ if( ! defined( 'XP2_BLOCK_LANG_INCLUDED' ) ) {
 	define("_MB_XP2_BLOG_NAME","ブログ名");
 	define("_MB_XP2_BLOG_COUNT","ブログの投稿数");
 	define("_MB_XP2_BLOG_ID","ブログID");
+// global_blog_list
+	define("_MB_XP2_SHOW_BLOGS_SELECT","表示ブログの選択");
+	define("_MB_XP2_EXCLUSION_BLOGS_SELECT","除外ブログの選択");
+	define("_MB_XP2_BLOGS_DIRECT_SELECT","ブログIDを直接指定(複数ある場合はカンマ区切りで入力)");
+	define("_MB_XP2_SHOWN_FOR_EACH_BLOG","ブログ毎に表示する。");
 
 }
 ?>

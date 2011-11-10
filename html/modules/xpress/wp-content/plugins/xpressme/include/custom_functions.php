@@ -890,11 +890,13 @@ function xpress_get_calendar($args = '') {
 	return $calendar;
 }
 
-function xpress_grobal_recent_posts($num = 10,$post_list='')
+function xpress_grobal_recent_posts($num = 10,$exclusion_blog = 0, $shown_for_each_blog = false)
 {
 	global $wpdb, $wp_rewrite , $switched , $blog_id;
 	if (empty($date_format)) $date_format = get_settings('date_format');
 	if (empty($time_format)) $time_format = get_settings('time_format');
+	$exclusion = explode(',' , $exclusion_blog);
+
 
 	$first_blogid = $blog_id;
 	$num = (int)$num;
@@ -903,6 +905,7 @@ function xpress_grobal_recent_posts($num = 10,$post_list='')
 	if (xpress_is_multiblog()){
 		$blogs = get_blog_list(0,'all');
 		foreach ($blogs AS $blog) {
+			if (!in_array(0, $exclusion) && in_array($blog['blog_id'], $exclusion)) continue;
 			switch_to_blog($blog['blog_id']);
 			$wp_rewrite->init();  // http://core.trac.wordpress.org/ticket/12040 is solved, it is unnecessary.
 
@@ -921,7 +924,7 @@ function xpress_grobal_recent_posts($num = 10,$post_list='')
 							$data->post_id = ob_get_contents();
 						ob_end_clean();
 						
-						$data->brog_id = $blog['blog_id'];
+						$data->blog_id = $blog['blog_id'];
 						$data->blog_name = get_bloginfo('name');
 						$data->blog_url = get_bloginfo('url');
 						$data->blog_link = '<a href="' . $data->blog_url . '">' . $data->blog_name . '</a>' ;
@@ -994,6 +997,12 @@ function xpress_grobal_recent_posts($num = 10,$post_list='')
 						ob_end_clean();
 						
 						$data->post_views = xpress_post_views_count('post_id=' . $data->post_id . '&blogid=' . $data->brog_id . '&format=' . __('Views :%d', 'xpress'). '&echo=0');
+						if (function_exists('the_qf_get_thumb_one')){
+							$data->post_thumbnail = the_qf_get_thumb_one("num=0&width=120&tag=1","",$data->the_full_content);
+						} else {
+							$data->post_thumbnail = get_the_post_thumbnail(null,'thumbnail');
+						}
+						$data->author_avatar =get_avatar(get_the_author_meta('ID'),$size = '32');
 
 						$data_array[] = $data;
 	        		}  // end whilwe
@@ -1005,11 +1014,12 @@ function xpress_grobal_recent_posts($num = 10,$post_list='')
 		$wp_rewrite->init(); // http://core.trac.wordpress.org/ticket/12040 is solved, it is unnecessary.
 
 		restore_current_blog();
-		usort($data_array, "the_time_cmp");
 	}
-	
-	if (!empty($num)){
-		$data_array = array_slice($data_array,0,$num);
+	if (!$shown_for_each_blog){
+		usort($data_array, "the_time_cmp");
+		if (!empty($num)){
+			$data_array = array_slice($data_array,0,$num);
+		}
 	}
 	return $data_array;
 }

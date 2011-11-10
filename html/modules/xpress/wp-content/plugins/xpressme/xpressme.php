@@ -82,6 +82,19 @@ function  blog_charset_check()
  	}
 }
 
+// enable multibyte username
+if( ! function_exists( 'sanitize_user_multibyte_at_update' ) ){
+	function sanitize_user_multibyte_at_update($username, $raw_username, $strict){
+		if (isset($_POST['action']) && $_POST['action'] == 'update'){
+			if ($raw_username !== "" && $username !== $raw_username){
+				return $raw_username;
+			} 
+		}
+		return $username;
+	}
+}
+add_filter('sanitize_user', "sanitize_user_multibyte_at_update" ,10,3);
+
 add_action('admin_menu', 'my_plugin_menu');
 
 add_filter("upload_dir",array(&$xpress_config, 'xpress_upload_filter'),	1);		// Change wp-include/wp_upload_dir()

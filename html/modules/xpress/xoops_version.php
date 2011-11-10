@@ -82,7 +82,7 @@ include $mydirpath .'/wp-includes/version.php' ;
 
 $modversion['name'] = ucfirst($mydirname) . ' ' . constant('_MI_XP2_NAME') ;
 $modversion['description'] = constant( '_MI_XP2_DESC');
-$modversion['version'] = "2.41";
+$modversion['version'] = "2.42";
 $modversion['credits'] = "Wordpress DEV (http://wordpress.org/) XPressME DEV Toemon) (http://ja.xpressme.info) ;";
 $modversion['author'] = "toemon (http://ja.xpressme.info)";
 $modversion['license'] = "GPL see LICENSE";
@@ -385,7 +385,7 @@ if (wp_version_compare($wp_version, '>=','3.0-alpha') && is_show_multi_blog_bloc
 		'description'	=> '' ,
 		'show_func' 	=> "b_". $mydirname . "_global_posts_show" ,
 		'edit_func' 	=> "b_". $mydirname . "_global_posts_edit" ,
-		'options'		=> $mydirname. '||10|1|7||' ,
+		'options'		=> $mydirname. '||10|1|7||0|0' ,
 		'can_clone'		=> true ,
 		'func_num'		=> $b_no,	
 	);

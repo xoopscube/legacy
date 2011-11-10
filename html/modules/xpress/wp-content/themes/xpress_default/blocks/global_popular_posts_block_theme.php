@@ -3,7 +3,7 @@
 function global_popular_posts_block($options)
 {
 	$mydirname = empty( $options[0] ) ? 'xpress' : $options[0] ;
-	$this_template = empty( $options[1] ) ? 'db:'.$mydirname.'_block_popular.html' : trim( $options[1] );
+	$this_template = empty( $options[1] ) ? 'db:'.$mydirname.'_grobal_popular_posts_block.html' : trim( $options[1] );
 	$disp_count = empty( $options[2] ) ? '10' : $options[2] ;
 	$show_month_range = empty( $options[3] ) ? '0' : $options[3] ;
 	$date_format = empty( $options[4] ) ? '' : $options[4] ;

@@ -3,7 +3,7 @@
 function global_recent_comments_block($options)
 {
 	$mydirname = empty( $options[0] ) ? 'xpress' : $options[0] ;
-	$this_template = empty( $options[1] ) ? 'db:'.$mydirname.'_recent_comments_block.html' : trim( $options[1] );
+	$this_template = empty( $options[1] ) ? 'db:'.$mydirname.'_global_recent_comments_block.html' : trim( $options[1] );
 	$disp_count = empty( $options[2] ) ? '10' : $options[2] ;
 	$disp_length = empty( $options[3] ) ? '30' : $options[3] ;
 	$date_format = empty( $options[4] ) ? '' : $options[4] ;

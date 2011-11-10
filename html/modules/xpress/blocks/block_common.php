@@ -90,6 +90,95 @@ function categorie_select($option_name = '',$value='',$row_num=0 ,$sort_column =
 
 }
 endif;
+if(!function_exists("blog_select")):
+function blog_select($option_name = '',$value='',$exclusion=false ,$row_num=0)
+{
+    $mydirpath = dirname(dirname(__FILE__));
+	$mydirname = basename( dirname( dirname( __FILE__ ) ) ) ;
+	$wp_prefix = preg_replace('/wordpress/','wp',$mydirname) . '_';
+	$xoopsDB =& Database::getInstance();
+	$myts =& MyTextSanitizer::getInstance();
+    $selected = explode(',' , $value);
+	$isAll = (count($selected)==0||empty($selected[0]))?true:false;
+    
+    if (empty($row_num)) $size = ''; else $size = 'size="' . $row_num . '"';
+	include $mydirpath.'/wp-includes/version.php';
+	
+	$option = "\t<option value=\"0\" ";
+	if ($isAll) $option .= " selected=\"selected\"";
+	if ($exclusion){
+		$option .= ">"._MB_XP2_NONE ."</option>\n";
+    } else {
+	 	$option .= ">"._MB_XP2_ALL ."</option>\n";
+	}
+
+	if ($wp_db_version > 6124) {
+		$db_xpress_blogs = $xoopsDB->prefix($wp_prefix . 'blogs');
+		$query = "
+	    	SELECT blog_id 
+	    	FROM $db_xpress_blogs 
+	    	ORDER BY blog_id
+	        ";
+		
+	    if ($res =  $xoopsDB->query($query, 0, 0)){
+	 		while($row = $xoopsDB->fetchArray($res)){
+	 			
+	            $blog_id = $row['blog_id'];
+	            if ($blog_id == 1) {
+	            	$blog_selector = '';
+	            } else {
+	            	$blog_selector = $blog_id . '_';
+	            }
+		 		$db_xpress_options = $xoopsDB->prefix($wp_prefix . $blog_selector . 'options');
+	            $options_query = "
+	    			SELECT option_value 
+	    			FROM $db_xpress_options 
+	    			WHERE option_name = 'blogname'
+	        		";
+	    		if ($options_res =  $xoopsDB->query($options_query, 0, 0)){
+	    			$options_row = $xoopsDB->fetchArray($options_res);
+	    			$blog_name = $options_row['option_value'];
+	    		} else {
+	    			$blog_name = 'Blog_' . $blog_id ;
+	    		}
+	    		
+	            $option .= "\t<option value=\"".$blog_id."\"";
+	            if (in_array($blog_id, $selected))
+				$option .= ' selected="selected"';
+				$option .= '>';
+				$option .= $myts->htmlspecialchars($blog_name);
+				$option .= "</option>\n";
+	        }
+	    }
+    }
+	if ($exclusion){
+	 	$output = _MB_XP2_EXCLUSION_BLOGS_SELECT ."<br />\n";
+    } else {
+		$output = _MB_XP2_SHOW_BLOGS_SELECT ."<br />\n";
+	}
+    $output .= '&nbsp;&nbsp;<select name="blogs" id="blog_sel" '.$size.' multiple="multiple" onclick="BlogSelect()">' ."\n";
+    $output .= $option;
+    $output .= '</select>';
+    $output .= 	'&emsp;' .  _MB_XP2_BLOGS_DIRECT_SELECT . " <input type='text' name='$option_name' id='blog_csv' value='$value' /><br />\n";
+    $output .= '
+<script type="text/javascript">
+    function BlogSelect(){
+        var idx=new Array();
+        var sel = document.getElementById("blog_sel").options;
+        for(var i=0, n=0; i<sel.length; i++){
+            if(sel[i].selected){ idx[n++]=sel[i].value; }
+        }
+        if(idx.length>0){
+        	document.getElementById("blog_csv").value = idx;
+		}
+    }
+</script>
+';
+    
+    return $output;
+
+}
+endif;
 
 if(!function_exists("comment_type_select")):
 function comment_type_select($option_name = '',$value='')
