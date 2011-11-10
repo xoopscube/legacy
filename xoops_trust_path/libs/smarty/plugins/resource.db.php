@@ -159,7 +159,7 @@ class Legacy_ResourcedbUtils
 			$root = XCube_Root::getSingleton();
 			$handler = xoops_gethandler('module');
 			$module = $handler->getByDirname($dirname);
-			return ($trustDirname = $module->get('trust_dirname')) ? $trustDirname : null;
+			return ($module && ($trustDirname = $module->get('trust_dirname'))) ? $trustDirname : null;
 		}
 	}
 
