@@ -36,6 +36,8 @@ define('_MB_LEGACY_LANG_THWIDTH', "Screenshot image width");
 
 define('_MB_LEGACY_LANG_RECOMMENDSITE', "Recommend this Site to a Friend");
 
-define('_MB_LEGACY_MESSAGE_CAN_NOT_THEME_CHANGE', "Sorry, you can't change themes now.");
+define('_MB_LEGACY_MESSAGE_CAN_NOT_THEME_CHANGE', "Λυπούμαστε, αλλά δεν μπορείτε να αλλάξετε τα θέματα τώρα.");
+
+define('_MB_LEGACY_MAINMENU_EXPAND_SUB', "Εμφάνιση όλων των υπομενού");
 
 ?>

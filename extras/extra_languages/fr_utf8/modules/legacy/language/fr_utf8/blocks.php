@@ -34,4 +34,6 @@ define('_MB_LEGACY_LANG_RECOMMENDSITE', "Recommender ce Site a un(e) Ami(e)");
 
 define('_MB_LEGACY_MESSAGE_CAN_NOT_THEME_CHANGE', "Désolé, Il est actuellement impossible de changer les themes.");
 
+define('_MB_LEGACY_MAINMENU_EXPAND_SUB', "Voir toutes les sous-menus");
+
 ?>

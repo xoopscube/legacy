@@ -17,6 +17,16 @@ class StdCache_Initialize extends XCube_ActionFilter
 	function setForBlock($cacheInfo)
 	{
 		$user =& $this->mRoot->mContext->mXoopsUser;
+		$block =& $cacheInfo->mBlock;
+		switch ($block->getVar('show_func','n')) {
+		case 'b_legacy_mainmenu_show':	// mainmenu context
+			list($option) = explode('|', $block->getVar('options','n'));
+			if ($option) break;			// but options setting no context
+			$module = $this->mRoot->mContext->mXoopsModule;
+			$cacheInfo->mIdentityArr['dirname'] = is_object($module)?$module->getVar('dirname'):'';
+			break;
+			// something other block with context cache
+		}
 		if (is_object($user)) {
 			$cacheInfo->mGroupArr = $user->getGroups();
 			$cacheInfo->setEnableCache(!in_array(XOOPS_GROUP_ADMIN, $user->getGroups()));

@@ -35,4 +35,6 @@ define('_MB_LEGACY_LANG_RECOMMENDSITE', "当サイトを友達に薦める");
 
 define('_MB_LEGACY_MESSAGE_CAN_NOT_THEME_CHANGE', "ただいまテーマチェンジャーはご利用になれません");
 
+define('_MB_LEGACY_MAINMENU_EXPAND_SUB', "全てのサブメニューを表示する");
+
 ?>

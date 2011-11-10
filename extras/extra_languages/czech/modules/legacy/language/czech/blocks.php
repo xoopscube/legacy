@@ -34,4 +34,7 @@ define('_MB_LEGACY_LANG_THWIDTH', "Výška náhledu");
 define('_MB_LEGACY_LANG_RECOMMENDSITE', "Doporuète tento web pøátelùm");
 
 define('_MB_LEGACY_MESSAGE_CAN_NOT_THEME_CHANGE', "Promiòte, nyní nelze šablonu mìnit.");
+
+define('_MB_LEGACY_MAINMENU_EXPAND_SUB', "Show all submenus");
+
 ?>

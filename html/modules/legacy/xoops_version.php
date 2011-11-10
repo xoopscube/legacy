@@ -9,7 +9,7 @@
  */
 
 $modversion['name'] = _MI_LEGACY_NAME;
-$modversion['version'] = 2.01;
+$modversion['version'] = 2.02;
 $modversion['description'] = _MI_LEGACY_NAME_DESC;
 $modversion['author'] = "";
 $modversion['credits'] = "XOOPS Cube Project";
@@ -151,9 +151,11 @@ $modversion['blocks'][2]['file'] = "legacy_mainmenu.php";
 $modversion['blocks'][2]['name'] = _MI_LEGACY_BLOCK_MAINMENU_NAME;
 $modversion['blocks'][2]['description'] = _MI_LEGACY_BLOCK_MAINMENU_DESC;
 $modversion['blocks'][2]['show_func'] = "b_legacy_mainmenu_show";
+$modversion['blocks'][2]['edit_func'] = "b_legacy_mainmenu_edit";
 $modversion['blocks'][2]['template'] = 'legacy_block_mainmenu.html';
 $modversion['blocks'][2]['visible_any'] = true;
 $modversion['blocks'][2]['show_all_module'] = true;
+$modversion['blocks'][2]['options'] = '0';
 
 $modversion['blocks'][3]['func_num'] = 3;
 $modversion['blocks'][3]['file'] = "legacy_search.php";

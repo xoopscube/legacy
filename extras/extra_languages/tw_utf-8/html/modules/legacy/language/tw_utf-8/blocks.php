@@ -36,4 +36,6 @@ define('_MB_LEGACY_LANG_RECOMMENDSITE', "推薦本站");
 
 define('_MB_LEGACY_MESSAGE_CAN_NOT_THEME_CHANGE', "抱歉，您現在無法變更佈景。");
 
+define('_MB_LEGACY_MAINMENU_EXPAND_SUB', "顯示所有子菜單");
+
 ?>

@@ -43,4 +43,7 @@ define("_MB_LEGACY_SUBMS","Conteúdo pendente");
 define("_MB_LEGACY_VACNT","Informações");
 define("_MB_LEGACY_WDLS","Arquivos pendentes");
 define("_MB_LEGACY_WLNKS","Endereços pendentes");
+
+define('_MB_LEGACY_MAINMENU_EXPAND_SUB', "Mostrar todos os submenus");
+
 ?>

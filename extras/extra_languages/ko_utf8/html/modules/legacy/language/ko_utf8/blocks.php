@@ -65,4 +65,6 @@ define('_MB_LEGACY_LANG_RECOMMENDSITE', "친구에게 이 사이트를 추천");
 
 define('_MB_LEGACY_MESSAGE_CAN_NOT_THEME_CHANGE', "지금은 테마를 변경하실 수 없습니다.");
 
+define('_MB_LEGACY_MAINMENU_EXPAND_SUB', "모든 하위 메뉴를 표시");
+
 ?>

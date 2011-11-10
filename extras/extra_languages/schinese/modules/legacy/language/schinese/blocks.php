@@ -36,4 +36,6 @@ define('_MB_LEGACY_LANG_RECOMMENDSITE', "推荐本站");
 
 define('_MB_LEGACY_MESSAGE_CAN_NOT_THEME_CHANGE', "抱歉，您现在无法变更主题。");
 
+define('_MB_LEGACY_MAINMENU_EXPAND_SUB', "瘕绩疥铜灰黑优");
+
 ?>
