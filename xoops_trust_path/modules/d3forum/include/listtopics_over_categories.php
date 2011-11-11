@@ -119,8 +119,9 @@ while( $topic_row = $db->fetchArray( $trs ) ) {
 	// naao from
 	// d3comment overridings
 	$can_display = true;	//default
-	if( is_object( $d3com[intval($topic_row['forum_id'])]) ) {
-		$d3com_obj = $d3com[intval($topic_row['forum_id'])];
+	$forum_id = intval($topic_row['forum_id']) ; // added for XPress (2011-11-11)
+	if( is_object( $d3com[$forum_id]) ) {
+		$d3com_obj = $d3com[$forum_id];
 		$external_link_id = intval($topic_row['topic_external_link_id']);
 		if( ( $external_link_id = $d3com_obj->validate_id( $external_link_id ) ) === false && ! $isadminormod ) {
 			$can_display = false;
