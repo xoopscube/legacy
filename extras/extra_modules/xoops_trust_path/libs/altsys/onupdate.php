@@ -36,7 +36,7 @@ function altsys_onupdate_base( $module , $mydirname )
 	// 0.4 -> 0.5
 	$check_sql = "SELECT COUNT(*) FROM ".$db->prefix($mydirname."_language_constants") ;
 	if( ! $db->query( $check_sql ) ) {
-		$db->queryF( "CREATE TABLE ".$db->prefix($mydirname."_language_constants")." (mid smallint(5) unsigned NOT NULL default 0,language varchar(32) NOT NULL default '',name varchar(255) NOT NULL default '',value text,PRIMARY KEY (mid,language,name)) TYPE=MyISAM" ) ;
+		$db->queryF( "CREATE TABLE ".$db->prefix($mydirname."_language_constants")." (mid smallint(5) unsigned NOT NULL default 0,language varchar(32) NOT NULL default '',name varchar(255) NOT NULL default '',value text,PRIMARY KEY (mid,language,name)) ENGINE=MyISAM" ) ;
 	}
 
 

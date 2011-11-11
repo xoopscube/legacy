@@ -136,7 +136,7 @@ function tplsadmin_get_basefilepath( $dirname , $type , $tpl_file )
 		include XOOPS_ROOT_PATH.'/modules/'.$dirname.'/mytrustdirname.php' ;
 		if( ! empty( $mytrustdirname ) ) {
 			$mid_path = $mytrustdirname == 'altsys' ? '/libs/' : '/modules/' ;
-		
+
 			$path = XOOPS_TRUST_PATH.$mid_path.$mytrustdirname.'/templates/'.($type=='block'?'blocks/':'').substr( $tpl_file , strlen( $dirname ) + 1 ) ;
 		}
 	}

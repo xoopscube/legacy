@@ -67,6 +67,7 @@ define( 'ALTSYS_CORE_TYPE_X20S' , 2 ) ; // 2.0.14- from xoops.org (Skalpa's S)
 define( 'ALTSYS_CORE_TYPE_ORE' , 4 ) ; // ORETEKI by marijuana
 define( 'ALTSYS_CORE_TYPE_X22' , 8 ) ; // 2.2 from xoops.org
 define( 'ALTSYS_CORE_TYPE_X23P' , 10 ) ; // 2.3 from xoops.org (phppp's P)
+define( 'ALTSYS_CORE_TYPE_X25' , 11 ) ; // 2.5 from xoops.org
 define( 'ALTSYS_CORE_TYPE_ICMS' , 12 ) ; // ImpressCMS
 define( 'ALTSYS_CORE_TYPE_XCL21' , 16 ) ; // XOOPS Cube 2.1 Legacy
 
@@ -85,6 +86,8 @@ function altsys_get_core_type()
 				$result = ALTSYS_CORE_TYPE_X22 ;
 			} else if( $versions[0] == 2 && $versions[1] == 0 && $versions[2] > 13 ) {
 				$result = ALTSYS_CORE_TYPE_X20S ;
+			} else if( $versions[0] == 2 && $versions[1] >= 5 ) {
+				$result = ALTSYS_CORE_TYPE_X25 ;
 			} else if( $versions[0] == 2 && $versions[1] > 2 ) {
 				$result = ALTSYS_CORE_TYPE_X23P ;
 			} else {
@@ -115,7 +118,7 @@ function altsys_get_link2modpreferences( $mid , $coretype )
 
 function altsys_template_touch( $tpl_id )
 {
-	if( in_array( altsys_get_core_type() , array( ALTSYS_CORE_TYPE_X20S , ALTSYS_CORE_TYPE_X23P ) ) ) {
+	if( in_array( altsys_get_core_type() , array( ALTSYS_CORE_TYPE_X20S , ALTSYS_CORE_TYPE_X23P, ALTSYS_CORE_TYPE_X25 ) ) ) {
 		// need to delete all files under templates_c/
 		altsys_clear_templates_c() ;
 	} else {

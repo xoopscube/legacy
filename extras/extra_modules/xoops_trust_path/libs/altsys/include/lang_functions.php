@@ -49,7 +49,7 @@ function altsys_mylangadmin_get_constant_names_by_pcre( $langfile_path )
 	preg_match_all( '/\n\s*define\(\s*(["\'])([0-9a-zA-Z_]+)\\1/iU' , $file_contents , $matches ) ;
 	$langfile_names = array() ;
 	foreach( $matches[2] as $name ) {
-		// if( defined( $name ) ) 
+		// if( defined( $name ) )
 		$langfile_names[] = $name ;
 	}
 

@@ -1,6 +1,6 @@
 [mlimg]
 [xlang:en]
-== ALTSYS L == alternative system module & library for XOOPS Cube Legacy
+== ALTSYS == alternative system module & library
 
 [b]SUMMARY:[/b]
 
@@ -10,8 +10,6 @@ I'm appreciated your bug reports :-)
 
 I'll maintain this module instead of blocksadmin, tplsadmin, avaman etc.
 
-Based on ALTSYS ver.0.71, XOOPS Cube Project add this module as "ALTSYS L", with PHP5.3 and XCL2.2 ready.
-This 
 
 [b]INSTALL:[/b]
 
@@ -40,7 +38,7 @@ from 0.2x/0.3x:
 - displaying admin controll panels in any conventional themes
 - supporting three types of template auto-updating into the DB
 - modifying operations/developments of any versions of core (X2,XCL2.1,ImpressCMS etc.) efficient
-- PHP5.3 ready and XOOPS Cube Legacy 2.2 ready
+
 
 [b]DB template auto-updating feature[/b]
 
@@ -141,7 +139,7 @@ But, there are a hardle to enable this feature.
 
 [/xlang:en]
 [xlang:ja]
-== ALTSYS L == ÂåÂØ¥·¥¹¥Æ¥à¥â¥¸¥å¡¼¥ë¡õ¥é¥¤¥Ö¥é¥ê XCLÂÐ±þÈÇ
+== ALTSYS == ÂåÂØ¥·¥¹¥Æ¥à¥â¥¸¥å¡¼¥ë¡õ¥é¥¤¥Ö¥é¥ê
 
 ¡üÍ×»Ý
 
@@ -151,11 +149,6 @@ Duplicatable V3¥â¥¸¥å¡¼¥ë¤«¤é¡¢¥é¥¤¥Ö¥é¥ê¤È¤·¤ÆÍøÍÑ¤Ç¤­¤ë·Á¤Ë¤·¤¿¤¿¤á¡¢¹½Â¤¤«¤éÂ
 ¥Ð¥°Êó¹ð¤òÂç´¿·Þ¤·¤Þ¤¹¡£
 
 º£¸å¤Ï¡¢avaman¤âµÛ¼ý¤·¡¢»ä¼«¿È¤Î¥á¥ó¥Æ¥Ê¥ó¥¹¤ò³Ú¤Ë¤·¤¿¤¤¤È»×¤¤¤Þ¤¹¡£
-
-**
-
-¤Ê¤ª¡¢ALTSYS ver.0.71a ¤ò¥Ù¡¼¥¹¤ËXCL2.2¤ª¤è¤ÓPHP5.3ÂÐ±þ¤ò»Ü¤·¡¢"ALTSYS L" ¤È¤·¤Æ XOOPS Cube Legacy 2.2 ¤Ë¼ýÏ¿¤·¤Þ¤·¤¿¡£¤³¤Îºî¶È¤Ï¸¶ºî¼Ô GIJOE ÍÍ¤Ç¤Ï¤Ê¤¯¡¢XOOPS Cube Project ¤Ç¼Â»Ü¤·¤Æ¤¤¤Þ¤¹¡£
-
 
 
 ¡ü¥¤¥ó¥¹¥È¡¼¥ë
@@ -187,7 +180,7 @@ Duplicatable V3¥â¥¸¥å¡¼¥ë¤«¤é¡¢¥é¥¤¥Ö¥é¥ê¤È¤·¤ÆÍøÍÑ¤Ç¤­¤ë·Á¤Ë¤·¤¿¤¿¤á¡¢¹½Â¤¤«¤éÂ
 - ´ÉÍý²èÌÌ¤òÄÌ¾ï¥Æ¡¼¥Þ¤ÇÉ½¼¨¤¹¤ë¤³¤È¤¬¤Ç¤­¤Þ¤¹¡Ê´ÉÍý²èÌÌ¥Æ¡¼¥Þµ¡Ç½»²¾È¡Ë
 - ¥Æ¥ó¥×¥ì¡¼¥È¼«Æ°¹¹¿·µ¡Ç½¤òÄó¶¡¤·¤Þ¤¹¡Ê¥Æ¥ó¥×¥ì¡¼¥È¼«Æ°¹¹¿·µ¡Ç½»²¾È¡Ë
 - X2, XCL2.1, ImpressCMSÅù¡¢¤¢¤é¤æ¤ë¥³¥¢¤ÎÁàºîÀ­¡¦³«È¯¸úÎ¨¤ò¸þ¾å¤·¤Þ¤¹
-- PHP 5.3 ¤ª¤è¤Ó XCL2.2ÂÐ±þ
+
 
 ¡ü¥Æ¥ó¥×¥ì¡¼¥È¼«Æ°¹¹¿·µ¡Ç½
 

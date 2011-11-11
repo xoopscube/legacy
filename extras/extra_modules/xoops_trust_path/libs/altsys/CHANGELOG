@@ -1,12 +1,6 @@
 [xlang:en]
 
-v0.80 (2011-06-08) note: employing in XCL2.2 extra_modules
-- modified module name "ALTSYS L"(_MI_ALTSYS_MODULENAME)
-- modified language definition for XCL2.2
-- modified deprecated code(& new).
-- modified from "TYPE=MyISAM" to "ENGINE=MyISAM" at sql/mysql.sql
-- added Portuguese language files (human translation, "portuguese" and "pt_utf8")
-- removed "portuguesebr" folder (machine translation without any revision)
+
 
 v0.71 (2008-12-21)
 - modified rendering options form for XCL2.1 cl::{BlockClass} (thx tohokuaiki)

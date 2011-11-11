@@ -35,7 +35,7 @@ function b_altsys_admin_menu_show( $options )
 	$admin_mids = $moduleperm_handler->getItemIds('module_admin', $xoopsUser->getGroups());
 	$modules = $module_handler->getObjects( new Criteria( 'mid' , '('.implode( ',' , $admin_mids ) . ')' , 'IN' ) , true ) ;
 
-	$block = array( 
+	$block = array(
 		'mydirname' => $mydirname ,
 		'mod_url' => XOOPS_URL.'/modules/'.$mydirname ,
 		'mod_imageurl' => XOOPS_URL.'/modules/'.$mydirname.'/'.$current_configs['images_dir'] ,

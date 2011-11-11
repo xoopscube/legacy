@@ -11,7 +11,6 @@ include_once dirname(__FILE__).'/include/altsys_functions.php' ;
 include_once dirname(__FILE__).'/include/mygrouppermform.php' ;
 include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php' ;
 
-
 // language file
 altsys_include_language_file( 'myblocksadmin' ) ;
 
@@ -20,6 +19,10 @@ switch( altsys_get_core_type() ) {
 	case ALTSYS_CORE_TYPE_X22 :
 		include_once dirname(__FILE__).'/class/MyBlocksAdminForX22.class.php' ;
 		$myba =& MyBlocksAdminForX22::getInstance() ;
+		break ;
+	case ALTSYS_CORE_TYPE_X25 :
+		include_once dirname(__FILE__).'/class/MyBlocksAdminForX25.class.php' ;
+		$myba =& MyBlocksAdminForX25::getInstance() ;
 		break ;
 	case ALTSYS_CORE_TYPE_XCL21 :
 		include_once dirname(__FILE__).'/class/MyBlocksAdminForXCL21.class.php' ;
@@ -39,7 +42,6 @@ switch( altsys_get_core_type() ) {
 		$myba =& MyBlocksAdmin::getInstance() ;
 		break ;
 }
-
 // permission
 $myba->checkPermission() ;
 

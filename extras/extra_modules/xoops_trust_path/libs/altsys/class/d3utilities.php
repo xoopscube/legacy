@@ -12,7 +12,9 @@ class D3Utilities {
 	var $page_name = '' ; // controller's name  eg) page=(controller) in URI
 	var $action_base_hiddens = array() ;
 
-	function D3Utilities( $mydirname , $table_body , $primary_key , $cols , $page_name , $action_base_hiddens )
+//HACK by domifara
+//	public function D3Utilities( $mydirname , $table_body , $primary_key , $cols , $page_name , $action_base_hiddens )
+	public function __construct( $mydirname , $table_body , $primary_key , $cols , $page_name , $action_base_hiddens )
 	{
 		$db =& Database::getInstance() ;
 
@@ -37,7 +39,7 @@ class D3Utilities {
 
 	function get_set4sql( $value , $col )
 	{
-	
+
 		switch( $col['type'] ) {
 			case 'text' :
 			case 'blob' :
@@ -142,7 +144,7 @@ class D3Utilities {
 					// remove comments
 					$db->queryF( "DELETE FROM ".$db->prefix("xoopscomments")." WHERE com_modid=$this->mid AND com_itemid=$id" ) ;
 				}
-	
+
 				if( $delete_notifications ) {
 					// remove notifications
 					$db->queryF( "DELETE FROM ".$db->prefix("xoopsnotifications")." WHERE not_modid=$this->mid AND not_itemid=$id" ) ;

@@ -1,4 +1,5 @@
 <?php
+// $Id: admin_in_theme_header.inc.php ,ver 0.0.7.1 2011/01/27 16:10:00 domifara Exp $
 
 // This is a mimic file from header.php of 2.0.16-JP
 
@@ -53,7 +54,15 @@ include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php';
 	// Weird, but need extra <script> tags for 2.0.x themes
 	//$xoopsTpl->assign('xoops_js', '//--></script><script type="text/javascript" src="'.XOOPS_URL.'/include/xoops.js"></script><script type="text/javascript"><!--');
 	// get all blocks and assign to smarty
-	$xoopsblock = new XoopsBlock();
+
+//HACK by domifara
+	if (defined( 'XOOPS_CUBE_LEGACY' )){
+		$handler =& xoops_gethandler('block');
+		$xoopsblock =& $handler->create(false) ;
+	}else{
+		$xoopsblock = new XoopsBlock();
+	}
+
 	$block_arr = array();
 
 	if (is_object($xoopsUser)) {
@@ -133,7 +142,15 @@ include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php';
 		$sql = 'SELECT b.* FROM '.$db->prefix('newblocks').' b, '.$db->prefix('block_module_link').' m WHERE m.block_id=b.bid AND b.isactive=1 AND b.visible=1 AND m.module_id='.intval($altsysModuleId).' AND b.bid IN ('.implode(',', $blockids).') ORDER BY b.weight,b.bid' ;
 		$result = $db->query($sql);
 		while( $myrow = $db->fetchArray( $result ) ) {
-			$block = new XoopsBlock( $myrow ) ;
+
+//HACK by domifara
+			if (defined( 'XOOPS_CUBE_LEGACY' )){
+				$block =& $handler->create(false) ;
+				$block->assignVars($myrow);
+			}else{
+				$block = new XoopsBlock( $myrow ) ;
+			}
+
 			$block_arr[ $myrow['bid'] ] = $block ;
 		}
 	}

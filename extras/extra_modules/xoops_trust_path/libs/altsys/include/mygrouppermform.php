@@ -39,10 +39,10 @@ require_once XOOPS_ROOT_PATH.'/class/xoopsform/form.php';
 
 /**
  * Renders a form for setting module specific group permissions
- * 
+ *
  * @author	Kazumi Ono	<onokazu@myweb.ne.jp>
  * @copyright	copyright (c) 2000-2003 XOOPS.org
- * 
+ *
  * @package     kernel
  * @subpackage  form
  */
@@ -78,7 +78,9 @@ class MyXoopsGroupPermForm extends XoopsForm
 	/**
 	 * Constructor
 	 */
-	function MyXoopsGroupPermForm($title, $modid, $permname, $permdesc)
+//HACK by domifara
+//	public function MyXoopsGroupPermForm($title, $modid, $permname, $permdesc)
+	public function __construct($title, $modid, $permname, $permdesc)
 	{
 //		$this->XoopsForm($title, 'groupperm_form', XOOPS_URL.'/modules/system/admin/groupperm.php', 'post'); GIJ
 		$this->XoopsForm($title, 'groupperm_form', '' , 'post');
@@ -146,7 +148,7 @@ class MyXoopsGroupPermForm extends XoopsForm
 	function render()
 	{
 		global $xoopsGTicket ;
-	
+
 		// load all child ids for javascript codes
 		foreach (array_keys($this->_itemTree) as $item_id) {
 			$this->_itemTree[$item_id]['allchild'] = array();
@@ -214,10 +216,10 @@ class MyXoopsGroupPermForm extends XoopsForm
 
 /**
  * Renders checkbox options for a group permission form
- * 
+ *
  * @author	Kazumi Ono	<onokazu@myweb.ne.jp>
  * @copyright	copyright (c) 2000-2003 XOOPS.org
- * 
+ *
  * @package     kernel
  * @subpackage  form
  */

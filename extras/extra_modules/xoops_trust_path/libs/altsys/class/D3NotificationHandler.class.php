@@ -5,8 +5,9 @@
 require_once XOOPS_ROOT_PATH . '/include/notification_functions.php' ;
 
 class D3NotificationHandler {
-
-function &getInstance( $conn = null )
+//HACK by domifara for php5.3+
+//function &getInstance( $conn = null )
+public static function &getInstance( $conn = null )
 {
 	static $instance ;
 	if( ! isset( $instance ) ) {
@@ -51,7 +52,7 @@ function triggerEvent( $mydirname , $mytrustdirname , $category , $item_id , $ev
 	$notification_handler =& xoops_gethandler('notification') ;
 	$mail_template_dir = $this->getMailTemplateDir( $mydirname , $mytrustdirname ) ;
 
-	// calling a delegate before 
+	// calling a delegate before
 	if( class_exists( 'XCube_DelegateUtils' ) ) {
 		$force_return = false ;
 		XCube_DelegateUtils::raiseEvent( 'D3NotificationHandler.Trigger' , new XCube_Ref($category), new XCube_Ref($event), new XCube_Ref($item_id), new XCube_Ref($extra_tags), new XCube_Ref($module), new XCube_Ref($user_list), new XCube_Ref($omit_user_id), $module->getInfo( 'notification' ) , new XCube_Ref($force_return) , new XCube_Ref($mail_template_dir) , $mydirname , $mytrustdirname ) ;

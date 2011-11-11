@@ -78,7 +78,7 @@ if( ! empty( $_POST['clearcache'] ) || ! empty( $_POST['cleartplsvars'] ) ) {
 
 	if( $handler = opendir( XOOPS_COMPILE_PATH . '/' ) ) {
 		while( ( $file = readdir( $handler ) ) !== false ) {
-	
+
 			if( ! empty( $_POST['clearcache'] ) ) {
 				// judging template cache '*.php'
 				if( substr( $file , -4 ) !== '.php' ) continue ;
@@ -86,7 +86,7 @@ if( ! empty( $_POST['clearcache'] ) || ! empty( $_POST['cleartplsvars'] ) ) {
 				// judging tplsvars cache 'tplsvars_*'
 				if( substr( $file , 0 , 9 ) !== 'tplsvars_' ) continue ;
 			}
-	
+
 			$file_path = XOOPS_COMPILE_PATH . '/' . $file ;
 			@unlink( $file_path ) ;
 		}
@@ -104,11 +104,11 @@ foreach( $compile_hooks as $command => $compile_hook ) {
 		if ( ! $xoopsGTicket->check() ) {
 			redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
 		}
-	
+
 		if( $handler = opendir( XOOPS_COMPILE_PATH . '/' ) ) {
 			$file_count = 0 ;
 			while( ( $file = readdir( $handler ) ) !== false ) {
-		
+
 				// skip /. /.. and hidden files
 				if( $file{0} == '.' ) continue ;
 
@@ -130,21 +130,21 @@ foreach( $compile_hooks as $command => $compile_hook ) {
 					array_pop( $file_bodies ) ;
 					$file_bodies[count($file_bodies)-1] = rtrim( $file_bodies[count($file_bodies)-1] ) ;
 				}
-		
+
 				// get the name of the source template from Smarty's comment
 				if( preg_match( '/compiled from (\S+)/' , $file_bodies[1] , $regs ) ) {
 					$tpl_name = $regs[1] ;
 				} else {
 					$tpl_name = '__FILE__' ;
 				}
-		
+
 				$fw = fopen( $file_path , 'w' ) ;
-		
+
 				// insert "pre" command before the compiled cache
 				if( $compile_hook['pre'] && ! $skip_mode ) {
 					fwrite( $fw , sprintf( $compile_hook['pre'] , htmlspecialchars( $tpl_name , ENT_QUOTES ) ) . "\r\n" ) ;
 				}
-		
+
 				// rest of template cache
 				foreach( $file_bodies as $line ) {
 					fwrite( $fw , $line ) ;
@@ -154,9 +154,9 @@ foreach( $compile_hooks as $command => $compile_hook ) {
 				if( $compile_hook['post'] && ! $skip_mode ) {
 					fwrite( $fw , "\r\n" . sprintf( $compile_hook['post'] , htmlspecialchars( $tpl_name , ENT_QUOTES ) ) ) ;
 				}
-		
+
 				fclose( $fw ) ;
-	
+
 				$file_count ++ ;
 			}
 
@@ -220,7 +220,7 @@ echo "
 		dl	{ margin: 10px; }
 		dt	{ margin-bottom:5px; }
 		dd	{ margin-left:20px; }
-		
+
 	</style>
 	<form action='?mode=admin&amp;lib=altsys&amp;page=compilehookadmin' method='post' class='odd' style='margin: 40px;'>
 \n" ;

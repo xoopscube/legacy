@@ -29,7 +29,9 @@ class Text_Diff {
      *                           lines from a file.
      * @param array $to_lines    An array of strings.
      */
-    function Text_Diff($from_lines, $to_lines)
+//HACK by domifara
+//	function Text_Diff($from_lines, $to_lines)
+	public function __construct($from_lines, $to_lines)
     {
         array_walk($from_lines, array($this, '_trimNewlines'));
         array_walk($to_lines, array($this, '_trimNewlines'));

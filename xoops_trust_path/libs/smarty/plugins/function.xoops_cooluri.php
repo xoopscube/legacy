@@ -30,8 +30,13 @@
 function smarty_function_xoops_cooluri($params, &$smarty)
 {
 	if(! $params['dirname']) return;
+	$dirname = $params['dirname'];
+	$dataname = isset($params['dataname']) ? $params['dataname'] : null;
+	$dataId = isset($params['data_id']) ? $params['data_id'] : 0;
+	$action = isset($params['action']) ? $params['action'] : null;
+	$query = isset($params['query']) ? $params['query'] : null;
 
-	echo htmlspecialchars(Legacy_Utils::renderUri($params['dirname'], $params['dataname'], $params['data_id'], $params['action'], $params['query']), ENT_QUOTES);
+	echo htmlspecialchars(Legacy_Utils::renderUri($dirname, $dataname, $dataId, $action, $query), ENT_QUOTES);
 }
 
 ?>

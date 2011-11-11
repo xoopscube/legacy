@@ -206,7 +206,7 @@ if ($op == 'save') {
 					// clear cached/compiled files and regenerate them if default theme has been changed
 					if ($xoopsConfig['template_set'] != $_POST[$config->getVar('conf_name')]) {
 						$newtplset = $_POST[$config->getVar('conf_name')];
-						
+
 						// clear all compiled and cachedfiles
 						$xoopsTpl->clear_compiled_tpl();
 

@@ -29,8 +29,9 @@ function construct()
 	) ;
 }
 
-
-function &getInstance()
+//HACK by domifara for php5.3+
+//function &getInstance()
+public static function &getInstance()
 {
 	static $instance;
 	if (!isset($instance)) {

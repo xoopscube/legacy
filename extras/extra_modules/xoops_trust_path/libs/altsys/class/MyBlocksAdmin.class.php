@@ -1,4 +1,5 @@
 <?php
+// $Id: MyBlocksAdmin.class.php ,ver 0.0.7.1 2011/02/15 02:55:00 domifara Exp $
 
 class MyBlocksAdmin {
 
@@ -53,8 +54,9 @@ function construct()
 	) ;
 }
 
-
-function &getInstance()
+//HACK by domifara for php5.3+
+//function &getInstance()
+public static function &getInstance()
 {
 	static $instance;
 	if (!isset($instance)) {
@@ -175,7 +177,14 @@ function renderCell4BlockOptions( $block_data )
 {
 	$bid = intval( $block_data['bid'] ) ;
 
-	$block = new XoopsBlock( $bid ) ;
+//HACK by domifara
+	if (defined( 'XOOPS_CUBE_LEGACY' )){
+		$handler =& xoops_gethandler('block');
+		$block =& $handler->create(false) ;
+		$block->load($bid) ;
+	}else{
+		$block = new XoopsBlock( $bid ) ;
+	}
 	return $block->getOptions() ;
 }
 
@@ -355,8 +364,21 @@ function list_blocks()
 	$sql = "SELECT * FROM ".$this->db->prefix("newblocks")." WHERE mid='$this->target_mid' ORDER BY visible DESC,side,weight" ;
 	$result = $this->db->query( $sql ) ;
 	$block_arr = array() ;
+//HACK by domifara
+	if (defined( 'XOOPS_CUBE_LEGACY' )){
+		$handler =& xoops_gethandler('block');//add
+	}
 	while( $myrow = $this->db->fetchArray( $result ) ) {
-		$block_arr[] = new XoopsBlock( $myrow ) ;
+
+//HACK by domifara
+		if (defined( 'XOOPS_CUBE_LEGACY' )){
+			$block_one =& $handler->create(false) ;
+			$block_one->assignVars($myrow);
+			$block_arr[] =& $block_one ;
+		}else{
+			$block_arr[] = new XoopsBlock( $myrow ) ;
+		}
+
 	}
 	if( empty( $block_arr ) ) return ;
 
@@ -416,8 +438,19 @@ function list_groups()
 	$sql = "SELECT * FROM ".$this->db->prefix("newblocks")." WHERE mid='$this->target_mid' ORDER BY visible DESC,side,weight" ;
 	$result = $this->db->query( $sql ) ;
 	$block_arr = array() ;
+//HACK by domifara
+	if (defined( 'XOOPS_CUBE_LEGACY' )){
+		$handler =& xoops_gethandler('block');//add
+	}
 	while( $myrow = $this->db->fetchArray( $result ) ) {
-		$block_arr[] = new XoopsBlock( $myrow ) ;
+//HACK by domifara
+		if (defined( 'XOOPS_CUBE_LEGACY' )){
+			$block_one =& $handler->create(false) ;
+			$block_one->assignVars($myrow);
+			$block_arr[] =& $block_one ;
+		}else{
+			$block_arr[] = new XoopsBlock( $myrow ) ;
+		}
 	}
 
 	$item_list = array() ;
@@ -441,7 +474,16 @@ function list_groups()
 function update_block($bid, $bside, $bweight, $bvisible, $btitle, $bcontent, $bctype, $bcachetime, $options=array())
 {
 	global $xoopsConfig;
-	$block = new XoopsBlock($bid);
+
+//HACK by domifara
+	if (defined( 'XOOPS_CUBE_LEGACY' )){
+		$handler =& xoops_gethandler('block');
+		$block =& $handler->create(false) ;
+		$block->load($bid) ;
+	}else{
+		$block = new XoopsBlock($bid);
+	}
+
 	if( $bside >= 0 ) $block->setVar('side', $bside);
 	$block->setVar('weight', $bweight);
 	$block->setVar('visible', $bvisible);
@@ -581,20 +623,45 @@ function do_delete( $bid )
 {
 	$bid = intval( $bid ) ;
 
-	$block = new XoopsBlock( $bid ) ;
+//HACK by domifara
+	if (defined( 'XOOPS_CUBE_LEGACY' )){
+		$handler =& xoops_gethandler('block');
+		$block =& $handler->create(false) ;
+		$block->load($bid) ;
+	}else{
+		$block = new XoopsBlock( $bid ) ;
+	}
+
 	if( ! is_object( $block ) ) die( 'Invalid bid' ) ;
 	if( ! $this->canDelete( $block ) ) die( 'Cannot delete this block' ) ;
-
+    $this->do_deleteBlockReadGroupPerm( $bid ); //HACK add by domifara
 	$block->delete() ;
 	return _MD_A_MYBLOCKSADMIN_DBUPDATED ;
 }
 
+//HACK add by domifara
+function do_deleteBlockReadGroupPerm( $bid )
+{
+    $bid = intval( $bid ) ;
+    $table = $this->db->prefix("group_permission") ;
+    $sql = "DELETE FROM `$table` WHERE gperm_name='block_read' AND `gperm_itemid`=$bid" ;
+    $this->db->query( $sql ) ;
+}
 
 function form_delete( $bid )
 {
 	$bid = intval( $bid ) ;
 
-	$block = new XoopsBlock( $bid ) ;
+//HACK by domifara
+//HACK by domifara
+	if (defined( 'XOOPS_CUBE_LEGACY' )){
+		$handler =& xoops_gethandler('block');
+		$block =& $handler->create(false) ;
+		$block->load($bid) ;
+	}else{
+		$block = new XoopsBlock( $bid ) ;
+	}
+
 	if( ! is_object( $block ) ) die( 'Invalid bid' ) ;
 	if( ! $this->canDelete( $block ) ) die( 'Cannot delete this block' ) ;
 
@@ -612,7 +679,15 @@ function do_clone( $bid )
 
 	$request = $this->fetchRequest4Block( $bid ) ;
 
-	$block = new XoopsBlock( $bid ) ;
+//HACK by domifara
+	if (defined( 'XOOPS_CUBE_LEGACY' )){
+		$handler =& xoops_gethandler('block');
+		$block =& $handler->create(false) ;
+		$block->load($bid) ;
+	}else{
+		$block = new XoopsBlock( $bid ) ;
+	}
+
 	if( ! $block->getVar('bid') ) die( 'Invalid bid' ) ;
 	if( ! $this->canClone( $block ) ) die( 'Invalid block_type' ) ;
 
@@ -622,7 +697,14 @@ function do_clone( $bid )
 
 	// for backward compatibility
 	// $cblock =& $block->clone(); or $cblock =& $block->xoopsClone();
-	$cblock = new XoopsBlock() ;
+
+//HACK by domifara
+	if (defined( 'XOOPS_CUBE_LEGACY' )){
+		$cblock =& $handler->create(false) ;
+	}else{
+		$cblock = new XoopsBlock() ;
+	}
+
 	foreach( $block->vars as $k => $v ) {
 		$cblock->assignVar( $k , $v['value'] ) ;
 	}
@@ -667,7 +749,15 @@ function do_edit( $bid )
 
 	if( $bid <= 0 ) {
 		// new custom block
+
+//HACK by domifara
+	if (defined( 'XOOPS_CUBE_LEGACY' )){
+		$handler =& xoops_gethandler('block');
+		$new_block =& $handler->create(false) ;
+	}else{
 		$new_block = new XoopsBlock() ;
+	}
+
 		$new_block->setNew() ;
 		$new_block->setVar( 'name' , $this->get_blockname_from_ctype( 'C' ) ) ;
 		$new_block->setVar( 'block_type' , 'C' ) ;
@@ -700,7 +790,15 @@ function form_edit( $bid , $mode = 'edit' )
 {
 	$bid = intval( $bid ) ;
 
-	$block = new XoopsBlock( $bid ) ;
+//HACK by domifara
+	if (defined( 'XOOPS_CUBE_LEGACY' )){
+		$handler =& xoops_gethandler('block');
+		$block =& $handler->create(false) ;
+		$block->load($bid) ;
+	}else{
+		$block = new XoopsBlock( $bid ) ;
+	}
+
 	if( ! $block->getVar('bid') ) {
 		// new defaults
 		$bid = 0 ;
@@ -747,7 +845,12 @@ function form_edit( $bid , $mode = 'edit' )
 		$found_templates = $tplfile_handler->find($GLOBALS['xoopsConfig']['template_set'], 'block', null , null, $block_template ) ;
 		$block_template_tplset = count( $found_templates ) > 0 ? $GLOBALS['xoopsConfig']['template_set'] : 'default' ;
 	}
-
+//HACK by domifara
+/*
+	if ( !($block->getVar('c_type')) ){
+		$block->setVar('c_type','S');
+	}
+*/
 	$block_data = $this->preview_request + array(
 		'bid' => $bid ,
 		'name' => $block->getVar('name','n') ,
@@ -779,6 +882,15 @@ function form_edit( $bid , $mode = 'edit' )
 	// display
 	require_once XOOPS_TRUST_PATH.'/libs/altsys/class/D3Tpl.class.php' ;
 	$tpl = new D3Tpl() ;
+
+	//HACK by domifara
+	if (defined( 'XOOPS_CUBE_LEGACY' )){
+		$tpl->assign( 'xoops_cube_legacy' , true ) ;
+		include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
+	}else{
+		$tpl->assign( 'xoops_cube_legacy' , false ) ;
+	}
+
 	$tpl->assign( array(
 		'target_dirname' => $this->target_dirname ,
 		'target_mname' => $this->target_mname ,
@@ -792,7 +904,12 @@ function form_edit( $bid , $mode = 'edit' )
 		'common_fck_installed' => file_exists( XOOPS_ROOT_PATH.'/common/fckeditor/fckeditor.js' ) ,
 		'gticket_hidden' => $GLOBALS['xoopsGTicket']->getTicketHtml( __LINE__ , 1800 , 'myblocksadmin') ,
 	) ) ;
-	$tpl->display( 'db:altsys_main_myblocksadmin_edit.html' ) ;
+
+	if (defined( 'XOOPS_CUBE_LEGACY' )){
+		$tpl->display( 'db:altsys_main_myblocksadmin_edit_4legacy.html' ) ;
+	}else{
+		$tpl->display( 'db:altsys_main_myblocksadmin_edit.html' ) ;
+	}
 	return ;
 }
 
@@ -804,7 +921,15 @@ function previewContent( $block_data )
 	if( ! $block_data['is_custom'] ) return '' ;
 	if( empty( $this->preview_request ) ) return '' ;
 
+//HACK by domifara
+//TODO : need no hook block at this
 	$block = new XoopsBlock( $bid ) ;
+/*
+	$handler =& xoops_gethandler('block');
+	$block =& $handler->create(false) ;
+	$block->load($bid) ;
+*/
+
 	if( $block->getVar( 'mid' ) ) return '' ;
 
 	$block->setVar( 'title' , $block_data['title'] ) ;

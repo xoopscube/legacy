@@ -10,7 +10,9 @@ class XoopsGTicket {
 	var $_latest_token = '' ;
 	var $messages = array() ;
 
-	function XoopsGTicket()
+//HACK by domifara
+//	public function XoopsGTicket()
+	public function __construct()
 	{
 		global $xoopsConfig ;
 
@@ -68,7 +70,7 @@ class XoopsGTicket {
 	function issue( $salt = '' , $timeout = 1800 , $area = '' )
 	{
 		global $xoopsModule ;
-	
+
 		// create a token
 		list( $usec , $sec ) = explode( " " , microtime() ) ;
 		$appendix_salt = empty( $_SERVER['PATH'] ) ? XOOPS_DB_NAME : $_SERVER['PATH'] ;
@@ -191,7 +193,7 @@ class XoopsGTicket {
 			restore_error_handler() ;
 			exit ;
 		}
-	
+
 		error_reporting( 0 ) ;
 		while( ob_get_level() ) ob_end_clean() ;
 

@@ -23,8 +23,9 @@ function construct()
 	$this->block_positions[ -1 ] = _NONE ;
 }
 
-
-function &getInstance()
+//HACK by domifara for php5.3+
+//function &getInstance()
+public static function &getInstance()
 {
 	static $instance;
 	if (!isset($instance)) {
