@@ -47,12 +47,12 @@
 <script src="<{$xoops_imageurl}>js/IE9.js" type="text/javascript"></script>
 <![endif]-->
 <script type="text/javascript">
+(function(){
+	if( ProjectName.ua.iPhone || ProjectName.ua.Android || ProjectName.ua.WP7 ){
+		ProjectName.MOD.print_r( ProjectName.META.iOS() );
+	}
+})();
 jQuery(function($){
-	(function(){
-		if( ProjectName.ua.iPhone || ProjectName.ua.Android || ProjectName.ua.WP7 ){
-			ProjectName.MOD.print_r( ProjectName.META.iOS() );
-		}
-	})();
 	$(function(){
 		if( !ProjectName.ua.iPhone ){
 		if( !ProjectName.ua.iPad ){
