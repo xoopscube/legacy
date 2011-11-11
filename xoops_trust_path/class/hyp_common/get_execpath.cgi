@@ -41,6 +41,10 @@ $dat .= "?>\n";
 @ chmod(dirname(__FILE__).'/favicon/cache', 0707);
 @ chmod(XOOPS_ROOT_PATH.'/class/hyp_common/cache', 0707);
 
+@ chmod(XOOPS_TRUST_PATH.'/cache', 0707);
+@ chmod(XOOPS_TRUST_PATH.'/uploads/hyp_common', 0707);
+@ chmod(XOOPS_TRUST_PATH.'/uploads/hyp_common/kakasi', 0707);
+
 $filename = dirname(__FILE__)."/execpath.inc.php";
 
 if ($fp = @fopen($filename,"wb"))
