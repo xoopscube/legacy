@@ -500,9 +500,9 @@ if( ! defined( 'XPRESS_D3FORUM_CLASS_INCLUDED' ) ) {
 									$option['sub_dir'] = '';
 								}
 							}
-							if ($option['xpressme_option']['d3forum_forum_id'] == $d3forum_forum_id){
+							//if ($option['xpressme_option']['d3forum_forum_id'] == $d3forum_forum_id){
 								return $option;
-							}
+							//}
 						}
 					}
 					return null;
