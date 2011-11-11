@@ -53,58 +53,54 @@
 	}
 })();
 jQuery(function($){
-	$(function(){
-		if( !ProjectName.ua.iPhone ){
-		if( !ProjectName.ua.iPad ){
-		if( !ProjectName.ua.Android ){
-			$('#topnav').megaDropdown();
-		}}}
-		ProjectName.PARTS.scrollAnchor();
-		$('#footerTabIndex').jktab();
+	if( !ProjectName.ua.iPhone && !ProjectName.ua.iPad && !ProjectName.ua.Android ){
+		$('#topnav').megaDropdown();
+	}
+	ProjectName.PARTS.scrollAnchor();
+	$('#footerTabIndex').jktab();
 
-		$('#flickMain').jcflick({
-			//init
-			flickContainer: 'flickContainer',
-			flickWrapper: 'flickWrapper',
-			flickCol: 'flickCol',
+	$('#flickMain').jcflick({
+		//init
+		flickContainer: 'flickContainer',
+		flickWrapper: 'flickWrapper',
+		flickCol: 'flickCol',
 
-			//conf
-			flickLamp: 'flickLamp',
-			flickBtn: 'flickBtn',
-			flickBtnNextName: 'Next',
-			flickBtnBackName: 'Back',
-			flickCur: 0,
-			autoChange: true,
-			autoTimer: 5000
-		});
+		//conf
+		flickLamp: 'flickLamp',
+		flickBtn: 'flickBtn',
+		flickBtnNextName: 'Next',
+		flickBtnBackName: 'Back',
+		flickCur: 0,
+		autoChange: true,
+		autoTimer: 5000
+	});
 
-		ProjectName.PARTS.scrollAnchor();
+	ProjectName.PARTS.scrollAnchor();
 
-		var stop = false;
-		$ ( '.jquery-ui-accordion-title' )
-			. click ( function ( event ){
-				if ( stop ) {
-					event . stopImmediatePropagation ();
-					event . preventDefault ();
-					stop = false;
-				}
-			} ) ;
-		$ ( '.jquery-ui-accordion' )
-			. accordion ( {
-				icons: {
-					'header': 'ui-icon-folder-collapsed',
-					'headerSelected': 'ui-icon-folder-open'
-				},
-				header: '.jquery-ui-accordion-title'
-			} )
-			. sortable ( {
-				axis: 'y',
-				handle: '.jquery-ui-accordion-title',
-				stop: function () {
-					stop = true;
-				}
-			} ) ;
-	} ) ;
+	var stop = false;
+	$ ( '.jquery-ui-accordion-title' )
+		. click ( function ( event ){
+			if ( stop ) {
+				event . stopImmediatePropagation ();
+				event . preventDefault ();
+				stop = false;
+			}
+		} ) ;
+	$ ( '.jquery-ui-accordion' )
+		. accordion ( {
+			icons: {
+				'header': 'ui-icon-folder-collapsed',
+				'headerSelected': 'ui-icon-folder-open'
+			},
+			header: '.jquery-ui-accordion-title'
+		} )
+		. sortable ( {
+			axis: 'y',
+			handle: '.jquery-ui-accordion-title',
+			stop: function () {
+				stop = true;
+			}
+		} ) ;
 });
 </script>
 <script type="text/javascript">
