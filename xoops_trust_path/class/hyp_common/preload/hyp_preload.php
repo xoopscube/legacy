@@ -1,6 +1,6 @@
 <?php
 define('X2_ADD_SMARTYPLUGINS_DIR', XOOPS_TRUST_PATH . '/libs/smartyplugins/x2');
-define('HYP_COMMON_PRELOAD_CONF', '/cache/hypconf_'.md5(XOOPS_URL . (defined(XOOPS_SALT)?XOOPS_SALT:XOOPS_DB_PASS)).'.conf');
+define('HYP_COMMON_PRELOAD_CONF', '/uploads/hyp_common/hypconf_'.md5(XOOPS_URL . (defined(XOOPS_SALT)?XOOPS_SALT:XOOPS_DB_PASS)).'.conf');
 //// mbstring ////
 if (! extension_loaded('mbstring')) {
 	include_once dirname(dirname(__FILE__)) . '/mbemulator/mb-emulator.php';
@@ -123,7 +123,7 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 
 		if (! isset($this->extlink_class_name)) $this->extlink_class_name = 'ext';
 
-		if (! isset($this->kakasi_cache_dir)) $this->kakasi_cache_dir = XOOPS_ROOT_PATH.'/cache2/kakasi/';
+		if (! isset($this->kakasi_cache_dir)) $this->kakasi_cache_dir = XOOPS_TRUST_PATH.'/uploads/hyp_common/kakasi/';
 
 		if (! isset($this->smart_redirect_min_sec)) $this->smart_redirect_min_sec = 5;
 
@@ -855,7 +855,7 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 
 				// Read data file
 				$myroot = str_replace('/', '_', preg_replace('#https?://#i', '', XOOPS_URL));
-				$datfile = XOOPS_TRUST_PATH . '/cache/' . $myroot . '_easylogin.dat';
+				$datfile = XOOPS_TRUST_PATH . '/uploads/hyp_common/' . $myroot . '_easylogin.dat';
 				if (is_file($datfile)) {
 					$uids = unserialize(HypCommonFunc::flock_get_contents($datfile));
 				} else {
@@ -1416,7 +1416,7 @@ EOD;
 
 									// Read easy login data file
 									$myroot = str_replace('/', '_', preg_replace('#https?://#i', '', XOOPS_URL));
-									$datfile = XOOPS_TRUST_PATH . '/cache/' . $myroot . '_easylogin.dat';
+									$datfile = XOOPS_TRUST_PATH . '/uploads/hyp_common/' . $myroot . '_easylogin.dat';
 									if (is_file($datfile)) {
 										$uids = unserialize(HypCommonFunc::flock_get_contents($datfile));
 									} else {
@@ -1695,7 +1695,7 @@ EOD;
 		$message .= "\n" . str_repeat('=', 30) . "\n\n";
 
 		if ($this->send_mail_interval) {
-			$mail_tmp = XOOPS_TRUST_PATH . '/cache/' . str_replace('/', '_', preg_replace('#https?://#i', '', XOOPS_URL)) . '.SPAM.hyp';
+			$mail_tmp = XOOPS_TRUST_PATH . '/uploads/hyp_common/' . str_replace('/', '_', preg_replace('#https?://#i', '', XOOPS_URL)) . '.SPAM.hyp';
 			if (! file_exists($mail_tmp)) {
 				HypCommonFunc::flock_put_contents($mail_tmp, $message);
 				return;
@@ -1877,7 +1877,7 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 		$this->extlink_class_name = 'ext';
 
 		// KAKASI での分かち書き結果のキャッシュ先
-		$this->kakasi_cache_dir = XOOPS_ROOT_PATH.'/cache2/kakasi/';
+		$this->kakasi_cache_dir = XOOPS_TRUST_PATH.'/uploads/hyp_common/kakasi/';
 
 		// スマートリダイレクトのポップアップ最短秒数
 		$this->smart_redirect_min_sec = 5;
