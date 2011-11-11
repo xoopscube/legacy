@@ -411,9 +411,12 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 			}
 		}
 		if (! empty($this->k_tai_conf['limitedBlockIds']) && is_array($this->k_tai_conf['limitedBlockIds'])) {
-			if (! in_array($block->getVar('bid'), $this->k_tai_conf['limitedBlockIds'])) {
-				$retBlock = new HypXCLDisabledBlock();
-				return;
+			$this->k_tai_conf['limitedBlockIds'] = array_filter($this->k_tai_conf['limitedBlockIds']);
+			if ($this->k_tai_conf['limitedBlockIds']) {
+				if (! in_array($block->getVar('bid'), $this->k_tai_conf['limitedBlockIds'])) {
+					$retBlock = new HypXCLDisabledBlock();
+					return;
+				}
 			}
 		}
 	}
@@ -681,7 +684,8 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 					mb_convert_variables($this->encode, $this->configEncoding, $this->k_tai_conf['rebuilds']);
 				}
 			}
-			// 言語定数セット
+
+						// 言語定数セット
 			foreach($this->k_tai_conf['msg'] as $key => $val) {
 				define('KTAI_RENDER_MSG_' . strtoupper($key), $val);
 			}
@@ -748,6 +752,12 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 
 			// Add button to smartphone style
 			if (! empty($_COOKIE['_hypktaipc'])) {
+				// $this->k_tai_conf['msg'] 文字コード変換
+				if ($this->encode !== strtoupper($this->configEncoding)) {
+					if (function_exists('mb_convert_encoding') && $this->configEncoding && $this->encode !== $this->configEncoding) {
+						mb_convert_variables($this->encode, $this->configEncoding, $this->k_tai_conf['msg']);
+					}
+				}
 				ob_start(array(& $this, 'switchOfSmartPhone'));
 			}
 
