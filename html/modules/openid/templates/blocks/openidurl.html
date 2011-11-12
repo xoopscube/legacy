@@ -1,0 +1,56 @@
+<{*
+$Rev$
+$URL$
+*}>
+<style>
+img.openid_button {
+ border-style: none;
+ cursor: pointer;
+}
+#openid_identifier {
+ background: #fff url(<{$xoops_url}>/modules/openid/images/login-bg.gif) no-repeat left;
+ color: #000;
+ padding-left: 18px;
+ width: 100%;
+}
+</style>
+<script type="text/javascript">
+function changeServer(s, start, size) {
+    var o = document.getElementById('openid_identifier');
+    o.value = s;
+    o.parentNode.style.display = 'block';
+    o.focus();
+
+    if (o.createTextRange) {
+        try {
+            var tr = o.createTextRange();    
+            tr.collapse(true);
+            tr.moveStart('character', start);
+            tr.moveEnd('character', size);
+            tr.select();
+        } catch (e) {
+        }
+    } else {
+        o.setSelectionRange(start, start + size);
+    }
+}
+</script>
+<p><{$block.label}></p>
+<form method="post" action="<{$xoops_url}>/modules/openid/try_auth.php"<{if $block.allowInput == false}> style="display:none;"<{/if}>>
+ <input type="text" name="openid_identifier" id="openid_identifier" />
+<{if $block.frompage != ''}>
+ <input type="hidden" name="frompage" value="<{$block.frompage}>" />
+<{/if}>
+ <input type="submit" value="<{$smarty.const._MB_OPENID_LOGIN}>" />
+</form>
+<p>
+<{foreach item=button from=$block.buttons}>
+ <{if $button->get('type') == 0}>
+ <a href="<{$xoops_url}>/modules/openid/try_auth.php?openid_identifier=<{$button->get4show('identifier')|escape:'url'}><{if $block.frompage != ''}>&amp;frompage=<{$block.frompage}><{/if}>">
+ <img src="<{$xoops_url}>/modules/openid/images/<{$button->get4show('image')}>" alt="<{$button->get4show('description')}>" title="<{$button->get4show('description')}>" class="openid_button" />
+ </a>
+ <{else}>
+ <img src="<{$xoops_url}>/modules/openid/images/<{$button->get4show('image')}>" alt="<{$button->get4show('description')}>" title="<{$button->get4show('description')}>" class="openid_button" onClick="javascript:changeServer('<{$button->get4show('identifier')}>',<{$button->get4show('range')}>);">
+ <{/if}>
+<{/foreach}>
+</p>
