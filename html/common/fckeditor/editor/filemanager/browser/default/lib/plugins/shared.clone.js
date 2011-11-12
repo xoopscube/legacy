@@ -1,1 +1,0 @@
-function jsmarty_shared_clone(Z){function k(){}k.prototype=Z;return new k();}

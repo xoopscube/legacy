@@ -1,1 +1,0 @@
-function jsmarty_modifier_regex_replace(k,Z,o){return k.replace(Z,o);}

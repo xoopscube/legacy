@@ -1,1 +1,0 @@
-function jsmarty_modifier_lower(k){return k.toLowerCase();}

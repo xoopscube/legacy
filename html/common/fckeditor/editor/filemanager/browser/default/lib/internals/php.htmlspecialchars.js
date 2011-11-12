@@ -1,1 +1,0 @@
-function htmlspecialchars(o,k,Z){o=o.toString().replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");switch(k){case "ENT_QUOTES":o=o.replace(/"/g,"&quot;").replace(/'/g,"&#039;");break;case "ENT_NOQUOTES":break;case "ENT_COMPAT":default:o=o.replace(/"/g,"&quot;");break;}return o;}

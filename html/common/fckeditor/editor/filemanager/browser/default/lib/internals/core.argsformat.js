@@ -1,1 +1,0 @@
-function jsmarty_core_argsformat(k){return Array.prototype.join.apply(null,k);}

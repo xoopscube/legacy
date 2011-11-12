@@ -1,1 +1,0 @@
-function jsmarty_function_debug(Z,o){var k=JSmarty.Plugin.get("core.display_debug_console");if(Z.output!=void (0)){jsamrty.assign("_jsmarty_debug_output",Z.output);}}

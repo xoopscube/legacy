@@ -1,1 +1,0 @@
-function jsmarty_shared_escape_special_chars(k){return JSmarty.Plugin.get("php.htmlspecialchars")(k.toString());}

@@ -1,3 +1,0 @@
-#freeze
-#pginfo(0			1	none	none	3	all	all	0			)
-#ls2

@@ -1,1 +1,0 @@
-function jsmarty_modifier_strip(k,o){return k.replace(/ +/g,o||" ");}

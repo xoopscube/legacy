@@ -1,1 +1,0 @@
-function jsmarty_modifier_default(k,o){return k?k:(o==void (0))?"":o;}

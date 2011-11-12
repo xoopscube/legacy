@@ -1,1 +1,0 @@
-function strval(k){return k.toString();}

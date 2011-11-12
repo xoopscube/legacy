@@ -1,1 +1,0 @@
-function jsmarty_modifier_cat(k,o){return k.concat(o);}
