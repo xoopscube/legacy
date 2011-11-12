@@ -31,11 +31,11 @@ $xoopsTpl->assign( 'use_fckeditor' , ! empty( $xoopsModuleConfig['use_fckeditor'
 if( $can_use_date = $gperm->group_perm(3) ){
 	// autodate
 	$xoopsTpl->assign('autodate', $story->getVar('autodate'));
-	$post_date_xf =& new XoopsFormSelectTime('', 'auto', $auto, _MD_DATE_FORMAT);
+	$post_date_xf = new XoopsFormSelectTime('', 'auto', $auto, _MD_DATE_FORMAT);
 	$xoopsTpl->assign('post_date_selector', $post_date_xf->render());
 	// auto expire
 	$xoopsTpl->assign('autoexpdate', $story->getVar('autoexpdate'));
-	$expire_date_xf =& new XoopsFormSelectTime('', 'autoexp', $autoexp, _MD_DATE_FORMAT);
+	$expire_date_xf = new XoopsFormSelectTime('', 'autoexp', $autoexp, _MD_DATE_FORMAT);
 	$xoopsTpl->assign('expire_date_selector', $expire_date_xf->render());
 }
 $xoopsTpl->assign('can_use_date', $can_use_date);

@@ -118,7 +118,7 @@ if($bulletin_assing_rssurl_head){
 
 // GIJ
 $breadcrumbs = array( array( 'name' => $xoopsModule->getVar('name') , 'url' => XOOPS_URL.'/modules/'.$mydirname.'/' ) ) ;
-$topic =& new BulletinTopic( $mydirname , $storytopic ) ;
+$topic = new BulletinTopic( $mydirname , $storytopic ) ;
 if( $storytopic ) {
 	$pankuzu4assign = $topic->makePankuzuForHTML( $storytopic ) ;
 	foreach( $pankuzu4assign as $p4a ) {

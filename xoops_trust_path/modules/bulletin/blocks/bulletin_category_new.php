@@ -173,7 +173,7 @@ function b_bulletin_category_new_edit($options) {
 	$selected_order = empty( $options[1] ) || ! in_array( $options[1] , b_bulletin_category_new_allowed_order() ) ? 'published DESC' : $options[1] ;
 
 	require_once XOOPS_ROOT_PATH.'/class/template.php' ;
-	$tpl =& new XoopsTpl() ;
+	$tpl = new XoopsTpl() ;
 	$tpl->assign( array(
 		'mydirname' => $mydirname ,
 		'options' => $options ,
