@@ -1,0 +1,94 @@
+<{*
+$Rev$
+$URL$
+*}>
+<{if $error}>
+<p><{$error}></p>
+<{/if}>
+<table>
+ <tr>
+  <td style="width:47%;border:1px dashed #aaaaaa;padding:10px;">
+   <h3 class="centerLblockTitle"><{$smarty.const._MD_OPENID_EXISTING_USER}>:</h3>
+   <{$smarty.const._MD_OPENID_BIND_IDS}><br />
+   <form method="POST" action="<{$xoops_url}>/modules/openid/register.php">
+    <input type="hidden" name="op" value="link" />
+    <table>
+     <tr>
+      <th><{$smarty.const._MD_OPENID_XOOPS_USERNAME}></th>
+      <td><input type="text" name="uname" value="<{$unam}>" /></td>
+     </tr>
+     <tr>
+      <th><{$smarty.const._MD_OPENID_XOOPS_PASSWORD}></th>
+      <td><input type="password" name="pass" /></td>
+     </tr>
+<{if $options}>
+     <tr>
+      <th><{$smarty.const._MD_OPENID_MODE}></th>
+      <td>
+       <select size="1" name="omode">
+<{foreach from=$options key=k item=v}>
+        <option value="<{$k}>"<{if $omode == $k}> selected="selected"<{/if}>><{$v}></option>
+<{/foreach}>
+       </select>
+      </td>
+     </tr>
+<{/if}>
+    </table>
+    <input type="submit" value="<{$smarty.const._SUBMIT}>" />
+   </form>
+  </td>
+  <td style="width:6%;">&nbsp;</td>
+  <td style="width:47%;border:1px dashed #aaaaaa;padding:10px;">
+   <h3 class="centerLblockTitle"><{$smarty.const._MD_OPENID_NEW_USER}></h3>
+<{if $allow_register}>
+   <p><{$smarty.const._MD_OPENID_SELECT_SCREEN_NAME}> :</p>
+   <form method="POST" action="<{$xoops_url}>/modules/openid/register.php">
+    <input type="hidden" name="op" value="register" />
+    <table>
+     <tr>
+      <th><{$smarty.const._MD_OPENID_SCREEN_NAME}></th>
+      <td><input type="text" name="uname" id="uname" value="<{$unam}>" /></td>
+     </tr>
+     <tr>
+      <th><{$smarty.const._MD_OPENID_EMAIL}></th>
+      <td><input type="text" name="email" maxlength="60" value="<{$email}>" /></td>
+     </tr>
+     <tr>
+      <th><{$smarty.const._MD_OPENID_TIMEZONE}></th>
+      <td>
+       <select name="timezone_offset">
+<{foreach key=k item=timezone from=$timezones}>
+        <option value="<{$k}>"<{if $timezone_offset eq $k}> selected<{/if}>><{$timezone}></option>
+<{/foreach}>
+       </select>
+      </td>
+     </tr>
+<{if $options}>
+     <tr>
+      <th><{$smarty.const._MD_OPENID_MODE}></th>
+      <td>
+       <select size="1" name="omode">
+<{foreach from=$options key=k item=v}>
+        <option value="<{$k}>"<{if $omode == $k}> selected="selected"<{/if}>><{$v}></option>
+<{/foreach}>
+       </select>
+      </td>
+     </tr>
+<{/if}>
+    </table>
+    <input type="submit" value="<{$smarty.const._SUBMIT}>" />
+   </form>
+<{else}>
+   <p><{$smarty.const._MD_OPENID_NOREGISTER}></p>
+<{/if}>
+  </td>
+ </tr>
+</table>
+<{if $displayId}>
+<table>
+ <tr>
+  <th><{$smarty.const._MD_OPENID_YOUR_OPENID}>:</th>
+  <td><{$displayId}></td>
+ </tr>
+</table>
+<{/if}>
