@@ -1,6 +1,7 @@
 <?php
 //ini_set( 'display_errors', 1 );
 //error_reporting(E_ALL);
+if (! defined('HYP_COMMON_PRELOAD_CONF')) die('HypCommonPreLoad not found or that is old version.');
 
 if (! defined('_GLOBAL_LEFT')) define('_GLOBAL_LEFT', 'left');
 
