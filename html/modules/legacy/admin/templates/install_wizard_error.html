@@ -1,0 +1,13 @@
+<h4 class="admintitle"><{$smarty.const._ERROR}></h4>
+
+<ul>
+<{foreach item=msg from=$log}>
+  <{if $msg.type=="error"}>
+    <li class="legacy_module_error"><{$msg.message|xoops_escape}></li>
+  <{elseif $msg.type=="warning"}>
+    <li class="legacy_module_warning"><{$msg.message|xoops_escape}></li>
+  <{else}>
+    <li class="legacy_module_message"><{$msg.message|xoops_escape}></li>
+  <{/if}>
+<{/foreach}>
+</ul>

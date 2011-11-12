@@ -1,0 +1,37 @@
+<{section name=i loop=$comments}>
+<br />
+<table cellspacing="1" class="outer">
+  <tr>
+    <th width="20%"><{$lang_poster}></th>
+    <th><{$lang_thread}></th>
+  </tr>
+  <{include file="db:legacy_comment.html" comment=$comments[i]}>
+</table>
+
+<{if $show_threadnav == true}>
+<div style="text-align:left; margin:3px; padding: 5px;">
+<a href="<{$comment_url}>"><{$lang_top}></a> | <a href="<{$comment_url}>&amp;com_id=<{$comments[i].pid}>&amp;com_rootid=<{$comments[i].rootid}>#newscomment<{$comments[i].pid}>"><{$lang_parent}></a>
+</div>
+<{/if}>
+
+<{if $comments[i].show_replies == true}>
+<!-- start comment tree -->
+<br />
+<table cellspacing="1" class="outer">
+  <tr>
+    <th width="50%"><{$lang_subject}></th>
+    <th width="20%" align="center"><{$lang_poster}></th>
+    <th align="right"><{$lang_posted}></th>
+  </tr>
+  <{foreach item=reply from=$comments[i].replies}>
+  <tr>
+    <td class="even"><{$reply.prefix}> <a href="<{$comment_url}>&amp;com_id=<{$reply.id}>&amp;com_rootid=<{$reply.root_id}>"><{$reply.title}></a></td>
+    <td class="odd" align="center"><{$reply.poster.uname}></td>
+    <td class="even" align="right"><{$reply.date_posted}></td>
+  </tr>
+  <{/foreach}>
+</table>
+<!-- end comment tree -->
+<{/if}>
+
+<{/section}>

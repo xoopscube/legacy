@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta http-equiv="content-style-type" content="text/css" />
+<title><{$legacy_sitename|xoops_escape}> : <{$smarty.const._CPHOME}> : <{$legacy_pagetitle|xoops_escape}></title>
+<script type="text/javascript" src="<{$xoops_url}>/include/xoops.js"></script>
+
+<{stylesheet file=style.css}>
+<{stylesheet file=module.css}>
+
+<script type="text/javascript">
+<!-- <![CDATA[
+   
+var cid = <{if $smarty.get.fct == "preferences" && $smarty.get.mod > 0}><{$smarty.get.mod}><{else}><{$currentModule->mXoopsModule->get('mid')}><{/if}>;
+function ccToggle(id)
+{
+	var el = xoopsGetElementById('c'+id).style;
+	if (el.display == 'block') {
+		el.display = 'none';
+		xoopsGetElementById('t'+id).className = 'head';
+		xoopsGetElementById('i'+id).src = '<{"design/max.png"|theme}>';
+	} else {
+		el.display = 'block';
+		xoopsGetElementById('t'+id).className = 'head2';
+		xoopsGetElementById('i'+id).src = '<{"design/min.png"|theme}>';
+	}
+}
+
+
+function ccOpenAll()
+{
+       var divs = document.getElementsByTagName('div');
+       for (var i=0;i<divs.length;i++) {
+	if (divs[i].className == 'head') {
+	var divid = divs[i].id; 
+	var divcid = divid.replace(/t/i, 'c');
+	var cidel = xoopsGetElementById(divcid); 
+	if ( cidel.className == 'submenu' ) {
+		cidel.style.display = 'block';
+		divs[i].className = 'head2';
+		var imgid = divid.replace(/t/i, 'i');
+		xoopsGetElementById(imgid).src = '<{"design/min.png"|theme}>';	
+	}
+	}
+	}
+}
+
+
+function ccCloseAll()
+{
+       var divs = document.getElementsByTagName('div');
+       for (var i=0;i<divs.length;i++) {
+	if (divs[i].className == 'head2') {
+	var divid = divs[i].id; 
+	var divcid = divid.replace(/t/i, 'c');
+	var cidel = xoopsGetElementById(divcid); 
+	if ( cidel.className == 'submenu' ) {
+		cidel.style.display = 'none';
+		divs[i].className = 'head';
+		var imgid = divid.replace(/t/i, 'i');
+		xoopsGetElementById(imgid).src = '<{"design/max.png"|theme}>';	
+	}
+	}
+	}
+}
+
+function ccOpenCid()
+{
+	ccCloseAll();
+	ccToggle(cid);
+}
+
+   var startwidth = '0px';
+
+       function setEffectCookie(name, value, expiredays)
+    {
+	var todayDate = new Date();
+	todayDate.setDate( todayDate.getDate() + expiredays );
+	document.cookie = name + "=" + escape( value ) + "; expires=" + todayDate.toGMTString() + "; path=/;"
+      }
+
+      function getEffectCookie(name)
+     {
+	var nameOfCookie = name + "=";
+	var x = 0;
+	while ( x <= document.cookie.length )
+	{
+		var y = (x+nameOfCookie.length);
+		if ( document.cookie.substring( x, y ) == nameOfCookie )
+		{
+			if ( (endOfCookie=document.cookie.indexOf( ";", y )) == -1 )
+			endOfCookie = document.cookie.length;
+			return unescape( document.cookie.substring( y, endOfCookie ) );
+		}
+		x = document.cookie.indexOf( " ", x ) + 1;
+		if ( x == 0 )
+		break;
+	}
+	return "";
+      }
+
+   function toggleEffect(target, resizetarget, toggleimg) {
+    var targetstyle = xoopsGetElementById(target).style;
+    var elestyle = xoopsGetElementById(resizetarget).style;
+    var imgele = xoopsGetElementById(toggleimg);
+
+    if (elestyle.display == "block") {
+        elestyle.display = "none";
+          startwidth = targetstyle.width;
+        targetstyle.width = '20px';
+         imgele.src = '<{"design/menu_restore.png"|theme}>';
+         imgele.alt = 'Click me if you want to restore this left-column';
+         imgele.title = 'Click me if you want to restore this left-column';
+	setEffectCookie( 'effect', 'yes', 1 );
+	xoopsGetElementById('toggleall').style.display = "none";
+      }
+      else {
+        elestyle.display = "block";
+        targetstyle.width = startwidth;
+         imgele.src = '<{"design/menu_minimize.png"|theme}>';
+         imgele.alt = 'Click me if you want to minimize this left-column';
+         imgele.title = 'Click me if you want to minimize this left-column';
+	setEffectCookie( 'effect', 'no', 1 );
+	xoopsGetElementById('toggleall').style.display = "";
+      }
+   }
+
+   function onloadEffect(target, resizetarget, toggleimg) {
+	if ( getEffectCookie("effect") == "yes" ){
+        xoopsGetElementById(resizetarget).style.display = "none";
+          startwidth = xoopsGetElementById(target).style.width;
+        xoopsGetElementById(target).style.width = '20px';
+         xoopsGetElementById(toggleimg).src = '<{"design/menu_restore.png"|theme}>';
+         xoopsGetElementById(toggleimg).alt = 'Click me if you want to restore this left-column';
+         xoopsGetElementById(toggleimg).title = 'Click me if you want to restore this left-column';
+	xoopsGetElementById('toggleall').style.display = "none";
+      }
+     }	
+
+// ]]> -->
+</script>
+<{$xoops_module_header}>
+</head>
+<body onload="ccToggle(cid);onloadEffect('leftcolumn', 'minimizelc', 'lcimage');">
+
+
+<div id="container">
+
+<div id="header">
+
+<div class="logo"><a href="<{$xoops_url}>/admin.php">XOOPS Cube Administration</a></div>
+
+<div class="headerSearch">
+<{* <{$xoops_lblocks.action_search.content}> *}>
+<form action="<{$xoops_url}>/modules/legacy/admin/index.php?action=actSearch" method="post" class="headerSearchForm">
+<input type="text" size="40" name="keywords" />
+<input type="submit" value="Search" />
+</form>
+</div>
+
+<div class="topnav">
+<!-- 2008-12-07 Gigamaster, Test Accessibility -->
+<span class="linkadmin">
+<img src="<{"icons/tool.png"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceList"><{$smarty.const._MI_LEGACY_MENU_PREFERENCE}></a> 
+<img src="<{"icons/theme.png"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ThemeList"><{$smarty.const._MI_LEGACY_BLOCK_THEMES_NAME}></a> 
+<img src="<{"icons/module.png"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleList"><{$smarty.const._AD_LEGACY_LANG_BLOCK_MOD}></a> 
+<img src="<{"icons/blocks.png"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a>
+<!--<img src="<{"icons/folder_explore.png"|theme}>" alt="" /> <a href="javascript:openWithSelfMain('<{$xoops_url}>/common/fckeditor/editor/plugins/kfm/index.php', 'filemanager', 750, 600);"><{$smarty.const._IMGMANAGER}></a>-->
+<img src="<{"icons/group.png"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/user/admin/index.php"><{$smarty.const._MEMBERS}></a> 
+<img src="<{"icons/comments.png"|theme}>" alt="" /> <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=CommentList"><{$smarty.const._COMMENTS}></a>
+</span> 
+
+<span class="linksite"><img src="<{"icons/home.png"|theme}>" alt="" /> <a href="<{$xoops_url}>/"><{$smarty.const._YOURHOME}></a>  
+ <img src="<{"icons/logout.png"|theme}>" alt="" /> <a href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._LOGOUT}></a></span> 
+</div>
+</div>
+
+<div id="admincontent">
+<table cellspacing="0">
+<tr>
+<td id="leftcolumn">
+   <span id="toggleall" style="padding:0px 10px;">
+   <a href="javascript:void(0)" onclick="ccOpenAll()"><img src="<{"design/menu_openall.png"|theme}>" alt="Click me if you want to open all sidemenu!"  title="Click me if you want to open all sidemenu!" /></a>&nbsp;
+   <a href="javascript:void(0)" onclick="ccCloseAll()"><img src="<{"design/menu_closeall.png"|theme}>" alt="Click me if you want to close all sidemenu!" title="Click me if you want to close all sidemenu!"/></a>&nbsp;
+   <a href="javascript:void(0)" onclick="ccOpenCid()"><img src="<{"design/menu_openactive.png"|theme}>" alt="Click me if you want to open only the sidemenu of current module!" title="Click me if you want to open only the sidemenu of current module!"/></a>&nbsp;
+   <a href="#contentBottom"><img src="<{"design/menu_bottom.png"|theme}>" alt="Go to Bottom" title="Go to Bottom"/></a>&nbsp;
+   <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=legacy"><img src="<{"design/menu_help.png"|theme}>" alt="Help" title="Help"/></a>&nbsp;
+   </span>
+   <a href="javascript:void(0)" onclick="toggleEffect('leftcolumn', 'minimizelc', 'lcimage')"><img id="lcimage" src="<{"design/menu_minimize.png"|theme}>" alt="Click me if you want to minimize this left-column" title="Click me if you want to minimize this left-column" /></a>
+  <div id="minimizelc" style="display: block;">
+  <{$xoops_lblocks.sidemenu.content}>
+
+  <{foreach name=lblock item=block from=$xoops_lblocks}>
+  <{if $block.name != 'action_search' && $block.name != 'sidemenu'}>
+  <{$block.content}>
+  <{/if}>
+  <{/foreach}>
+   </div>
+</td>
+<td id="centercolumn">
+
+<noscript>
+  <div id="menunavi">
+  <h2><{$currentModule->mXoopsModule->getShow('name')}></h2>
+  <{if $currentModule->getAdminMenu()}>
+    <ul class="submenunavi">
+      <{foreach item=menu from=$currentModule->getAdminMenu()}>
+        <{if $menu.show !== false}>
+          <li><a href="<{$menu.link|xoops_escape:link}>"><{$menu.title|xoops_escape}></a></li>
+        <{/if}>
+      <{/foreach}>
+
+          <{if $currentModule->mXoopsModule->getInfo('blocks') && $currentModule->mXoopsModule->getShow('dirname') != "legacy" && $currentModule->mXoopsModule->getShow('dirname') != "altsys" && $currentModule->mXoopsModule->getShow('dirname') != "system"}>
+          <li><img src="<{"icons/upgrade.png"|theme}>" alt="" title="" />&nbsp;<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList&amp;dirname=<{$currentModule->mXoopsModule->getShow('dirname')}>"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a></li>
+          <li><img src="<{"icons/upgrade.png"|theme}>" alt="" title="" />&nbsp;<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockInstallList&amp;dirname=<{$currentModule->mXoopsModule->getShow('dirname')}>"><{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}></a></li>
+          <{/if}>
+          <{if $currentModule->mXoopsModule->getInfo('templates') && $currentModule->mXoopsModule->getShow('dirname') != "legacyRender" && $currentModule->mXoopsModule->getShow('dirname') != "altsys" && $currentModule->mXoopsModule->getShow('dirname') != "system"}>
+          <li><img src="<{"icons/upgrade.png"|theme}>" alt="" title="" />&nbsp;<a href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplfileList&amp;tpl_module=<{$currentModule->mXoopsModule->getShow('dirname')}>&amp;sort=-9"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}></a></li>
+          <{/if}>
+          <{if $currentModule->mXoopsModule->getInfo('hasComments')}>
+          <li><img src="<{"icons/upgrade.png"|theme}>" alt="" title="" />&nbsp;<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=CommentList&amp;com_modid=<{$currentModule->mXoopsModule->getShow('mid')}>&amp;sort=-8"><{$smarty.const._MI_LEGACY_MENU_COMMENT_MANAGE}></a></li>
+          <{/if}>
+        <{if $currentModule->mXoopsModule->hasNeedUpdate()}>
+          <li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$currentModule->mXoopsModule->getShow('dirname')}>"><{$smarty.const._AD_LEGACY_LANG_UPGRADE}>&nbsp;<img src="<{"icons/update.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" /></a></li>
+        <{else}>
+          <li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$currentModule->mXoopsModule->getShow('dirname')}>"><img src="<{"icons/upgrade.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" />&nbsp;<{$smarty.const._AD_LEGACY_LANG_UPGRADE}></a></li>
+        <{/if}>
+          <li><img src="<{"icons/upgrade.png"|theme}>" alt="" title="" />&nbsp;<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleEdit&amp;mid=<{$currentModule->mXoopsModule->getShow('mid')}>"><{$smarty.const._EDIT}></a></li>
+          <li><img src="<{"icons/upgrade.png"|theme}>" alt="" title="" />&nbsp;<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleInfo&amp;dirname=<{$currentModule->mXoopsModule->getShow('dirname')}>"><{$smarty.const._AD_LEGACY_LANG_INFORMATION}></a></li>
+    </ul>
+  <{/if}>
+  </div>
+</noscript>
+
+  <div id="contentBody"><{$xoops_contents}></div>
+  <div id="contentBottom" class="return_top"><a href="#container"><{$smarty.const._RETURN_TOP}></a></div>
+  
+</td>
+</tr>
+</table>
+</div>
+
+<div id="footer">Powered by&nbsp;<{$smarty.const.XOOPS_VERSION}> &copy; 2001-2009 <a href="http://sourceforge.net/projects/xoopscube/" rel="external">The XOOPS Cube Project<br />
+</a>Help Us to Improve <a href="http://xoopscube.org/" rel="external">XOOPS Cube</a> - Report All Bugs to: <a href="http://sourceforge.net/tracker/?group_id=159211"> Project Bug Tracker <img src="<{"icons/bug.png"|theme}>" alt="Bug report" /></a></div>
+
+</div>
+</body>
+</html>
+<{$stdout_buffer}>

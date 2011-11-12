@@ -1,0 +1,338 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
+  <{if !$installed }>
+    &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></span>
+  <{/if}>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_INFORMATION}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_INFORMATION}></h3>
+
+<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MOD_BASIC_INFO}></h4>
+<table class="outer">
+  <tr>
+    <th colspan="3"><{$smarty.const._AD_LEGACY_LANG_MOD_BASIC_INFO}></th>
+  </tr>
+  <tr>
+    <td class="head legacy_list_image" rowspan="6">
+<{if $installed && $module->get('hasmain')}>
+      <a href="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/"><img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->getShow('name')}>" title="<{$module->getShow('name')}>" /></a>
+<{else}>
+      <img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->getShow('name')}>" title="<{$module->getShow('name')}>" />
+<{/if}>
+      <div class="legacy_list_imagetitle"><{$module->modinfo.name|xoops_escape}></div>
+    </td>
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></td>
+	<td class="<{cycle values='odd,even'}>"><{$module->getShow('name')}></td>
+  </tr>
+  <tr>
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_DIR_NAME}></td>
+	<td class="<{cycle values='odd,even'}>"><{$module->getShow('dirname')}></td>
+  </tr>
+  <tr>
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_VERSION}></td>
+	<td class="<{cycle values='odd,even'}>"><{math equation="v/100" v=$module->get('version') format="%.2f"}>
+	<{if $module->get('version')/100 != $module->modinfo.version  }>
+	  &raquo; <b class="legacy_module_warning"><{math equation=$module->modinfo.version format="%.2f"}></b>
+	<{/if}>
+	</td>
+  </tr>
+  <tr>
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_MID}></td>
+	<td class="<{cycle values='odd,even'}>">
+	  <{if $module->get('mid')}>
+	    <{$module->getShow('mid')}>
+	  <{else}>
+	    --
+	  <{/if}>
+	</td>
+  </tr>
+  <tr>
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}></td>
+	<td class="<{cycle values='odd,even'}>">
+	  <{if $module->get('last_update')}>
+        <{$module->get('last_update')|xoops_formattimestamp:l}>
+      <{else}>
+        --
+      <{/if}>
+    </td>
+  </tr>
+  <tr>
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_DESC}></td>
+	<td class="<{cycle values='odd,even'}>"><{$module->modinfo.description}></td>
+  </tr>
+</table>
+
+<div class="return_top"><a href="#container"><{$smarty.const._RETURN_TOP}></a></div>
+<hr />
+<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MOD_LICENSE_INFO}></h4>
+<table class="outer">
+  <tr>
+    <th colspan="2"><{$smarty.const._AD_LEGACY_LANG_MOD_LICENSE_INFO}></th>
+  </tr>
+  <tr class="<{cycle values='odd,even'}>">
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_MODULE_LICENSE}></td>
+	<td><{$module->modinfo.license}></td>
+  </tr>
+  <tr class="<{cycle values='odd,even'}>">
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_AUTHOR}></td>
+	<td><{$module->modinfo.author}></td>
+  </tr>
+  <tr class="<{cycle values='odd,even'}>">
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_CREDITS}></td>
+	<td><{$module->modinfo.credits}></td>
+  </tr>
+</table>
+
+<div class="return_top"><a href="#container"><{$smarty.const._RETURN_TOP}></a></div>
+<hr />
+<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_SQL_INFO}></h4>
+<{if $module->modinfo.tables}>
+<table class="outer">
+  <tr>
+    <th colspan="2"><{$smarty.const._AD_LEGACY_LANG_SQL_INFO}></th>
+  </tr>
+  <tr class="<{cycle values='odd,even'}>">
+	<td class="head" style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_SQL_HAS_MAIN}></td>
+	<td><{$smarty.const._AD_LEGACY_LANG_ACTIVE}></td>
+  </tr>
+  <tr class="<{cycle values='odd,even'}>">
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_SQL_ENGINE}></td>
+	<td><{$smarty.const._AD_LEGACY_LANG_SQL_MYSQL}></td>
+  </tr>
+  <tr class="<{cycle values='odd,even'}>">
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_SQL_FILE_NAME}></td>
+	<td><{$module->modinfo.sqlfile.mysql}></td>
+  </tr>
+</table>
+<br />
+<table class="outer">
+  <tr>
+	<th><{$smarty.const._AD_LEGACY_LANG_TABLE_NUM}></th>
+	<th><{$smarty.const._AD_LEGACY_LANG_TABLE_NAME}></th>
+	<th><{$smarty.const._AD_LEGACY_LANG_TABLE_PROPERTIES}></th>
+  </tr>
+<{foreach from=$module->modinfo.tables item=table key=table_key}>
+  <tr class="<{cycle values='odd,even'}>">
+	<td class="head legacy_list_id"><{$table_key}></td>
+	<td><{$table|xoops_escape}></td>
+	<td></td>
+  </tr>
+<{/foreach}>
+</table>
+<{else}>
+  <div class="legacy_modinfo_notmounted"><{$smarty.const._AD_LEGACY_LANG_NO_SQL}></div>
+<{/if}>
+
+<div class="return_top"><a href="#container"><{$smarty.const._RETURN_TOP}></a></div>
+<hr />
+<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MAINMENU_INFO}></h4>
+<{if $module->get('hasmain')}>
+
+<table class="outer">
+  <tr>
+    <th colspan="2"><{$smarty.const._AD_LEGACY_LANG_MAINMENU_INFO}></th>
+  </tr>
+  <tr class="<{cycle values='odd,even'}>">
+	<td class="head" style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_MAINMENU_HAS_MAIN}></td>
+	<td><{$smarty.const._AD_LEGACY_LANG_ACTIVE}></td>
+  </tr>
+</table>
+
+<br />
+<table class="outer">
+  <tr>
+	<th><{$smarty.const._AD_LEGACY_LANG_SUBMENU_NAME}></th>
+	<th><{$smarty.const._AD_LEGACY_LANG_SUBMENU_URL}></th>
+  </tr>
+  <{foreach from=$module->modinfo.sub item=sub }>
+  <tr class="<{cycle values="odd,even"}>">
+    <td><{$sub.name}></td>
+    <td><{$sub.url}></td>
+  </tr>
+  <{foreachelse}>
+  <tr class="<{cycle values='odd,even'}>">
+    <td colspan="2"><{$smarty.const._AD_LEGACY_LANG_NO_SUBMENU}></td>
+  </tr>
+  <{/foreach}>
+</table>
+
+<{else}>
+<div class="legacy_modinfo_notmounted"><{$smarty.const._AD_LEGACY_LANG_NO_MAINMENU}></div>
+<{/if}>
+
+<div class="return_top"><a href="#container"><{$smarty.const._RETURN_TOP}></a></div>
+<hr />
+<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_ADMIN_MENU}></h4>
+<{if $module->get('hasadmin')}>
+<table class="outer">
+  <tr>
+    <th colspan="2"><{$smarty.const._AD_LEGACY_LANG_ADMIN_MENU}></th>
+  </tr>
+  <tr class="<{cycle values='odd,even'}>">
+	<td class="head" style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_ADMINMENU_HAS_MAIN}></td>
+	<td><{$smarty.const._AD_LEGACY_LANG_ACTIVE}></td>
+  </tr>
+  <tr class="<{cycle values='odd,even'}>">
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_ADMINMENU_INDEX}></td>
+	<td><{$module->modinfo.adminindex|xoops_escape}></td>
+  </tr>
+  <tr class="<{cycle values='odd,even'}>">
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_ADMINMENU_MENU}></td>
+	<td><{$module->modinfo.adminmenu|xoops_escape}></td>
+  </tr>
+  <tr class="<{cycle values='odd,even'}>">
+	<td class="head"><{$smarty.const._HELP}></td>
+	<td><{$module->modinfo.help|xoops_escape}></td>
+  </tr>
+</table>
+<{if $module->adminmenu}>
+<br />
+<table class="outer">
+  <tr>
+	<th><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_KEY}></th>
+	<th><{$smarty.const._AD_LEGACY_LANG_ADMINMENU_NAME}></th>
+	<th><{$smarty.const._AD_LEGACY_LANG_ADMINMENU_URL}></th>
+  </tr>
+  <{foreach from=$module->adminmenu item=admin key=admin_key}>
+  <tr class="<{cycle values='odd,even'}>">
+	<td class="head legacy_list_id"><{$admin_key|xoops_escape}></td>
+    <td><{$admin.title|xoops_escape}></td>
+    <td><{$admin.link|xoops_escape}></td>
+  </tr>
+  <{/foreach}>
+</table>
+<{/if}>
+<{else}>
+  <div class="legacy_modinfo_notmounted"><{$smarty.const._AD_LEGACY_LANG_NO_ADMINMENU}></div>
+<{/if}>
+
+<div class="return_top"><a href="#container"><{$smarty.const._RETURN_TOP}></a></div>
+<hr />
+<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}></h4>
+<{if $module->modinfo.templates}>
+<table class="outer">
+  <tr>
+    <th colspan="2"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}></th>
+  </tr>
+  <tr class="<{cycle values='odd,even'}>">
+	<td class="head" style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_HAS_MAIN}></td>
+	<td><{$smarty.const._AD_LEGACY_LANG_ACTIVE}></td>
+  </tr>
+  <tr class="<{cycle values='odd,even'}>">
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_ENGINE}></td>
+	<td><{$smarty.const._AD_LEGACY_LANG_SMARTY}></td>
+  </tr>
+</table>
+<br />
+<table class="outer">
+  <tr>
+	<th><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_KEY}></th>
+	<th><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_FILE}></th>
+	<th><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_DESC}></th>
+  </tr>
+<{foreach from=$module->modinfo.templates item=template key=template_key}>
+  <tr class="<{cycle values='odd,even'}>">
+	<td class="head legacy_list_id"><{$template_key}></td>
+	<td>
+	<{if $installed }>
+	<a href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplfileList&amp;tpl_file=<{$template.file}>"><{$template.file|xoops_escape}></a>
+	<{else}>
+	<{$template.file|xoops_escape}>
+	<{/if}>
+	</td>
+	<td><{$template.description|xoops_escape}></td>
+  </tr>
+<{/foreach}>
+</table>
+<{else}>
+  <div class="legacy_modinfo_notmounted"><{$smarty.const._AD_LEGACY_LANG_NO_TEMPLATE}></div>
+<{/if}>
+
+<div class="return_top"><a href="#container"><{$smarty.const._RETURN_TOP}></a></div>
+<hr />
+<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_BLOCKS_INFO}></h4>
+
+<{foreach from=$module->modinfo.blocks item=block key=block_num }>
+<table class="outer">
+  <tr>
+	<th><{$smarty.const._AD_LEGACY_LANG_BLOCK_KEY}> (<{$block_num|xoops_escape}>)</th>
+	<th><{$smarty.const._AD_LEGACY_LANG_BLOCK_VAL}></th>
+  </tr>
+  <{foreach from=$block key=block_key item=block_val name=block }>
+  <tr class="<{cycle values='odd,even' name=block}>">
+	<td class="head legacy_list_name" style="width:30%;"><{$block_key|xoops_escape}></td>
+	<{if $block_key == "name" }>
+	  <td><b><{$block_val|xoops_escape}></b></td>
+	<{elseif $installed && $block_key == "template"}>
+	  <td><a href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplfileList&amp;tpl_file=<{$block_val}>"><{$block_val|xoops_escape}></a></td>
+	<{else}>
+	  <td><{$block_val|xoops_escape}></td>
+	<{/if}>
+  </tr>
+  <{/foreach}>
+</table>
+<br />
+<{foreachelse}>
+  <div class="legacy_modinfo_notmounted"><{$smarty.const._AD_LEGACY_LANG_NO_BLOCK}></div>
+<{/foreach}>
+
+<div class="return_top"><a href="#container"><{$smarty.const._RETURN_TOP}></a></div>
+<hr />
+<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_CONFIG_INFO}></h4>
+
+<{foreach from=$module->modinfo.config item=config key=conf_num}>
+<table class="outer">
+  <tr>
+	<th><{$smarty.const._AD_LEGACY_LANG_CONFIG_KEY}> (<{$conf_num}>)</th>
+	<th><{$smarty.const._AD_LEGACY_LANG_CONFIG_VAL}></th>
+  </tr>
+  <{foreach from=$config key=config_key item=config_val name=config}>
+  <tr class="<{cycle values="odd,even" name=config}>">
+	<td class="head legacy_list_name" style="width:30%;"><{$config_key|xoops_escape}></td>
+	<td>
+	  <{if $config_key == "name" }>
+	    <b><{$config_val|xoops_escape}></b>
+      <{elseif $config_key == options }>
+	    <{foreach from=$config_val item=opt key=opt_key }>
+	      <{$opt_key}> &raquo; <{$opt|xoops_escape}><br />
+	    <{/foreach}>
+	  <{else}>
+	    <{$config_val|xoops_escape}>
+	  <{/if}>
+	</td>
+  </tr>
+  <{/foreach}>
+</table>
+<br />
+<{foreachelse}>
+  <div class="legacy_modinfo_notmounted"><{$smarty.const._AD_LEGACY_LANG_NO_CONFIG}></div>
+<{/foreach}>
+
+<{*
+<div class="return_top"><a href="#container"><{$smarty.const._RETURN_TOP}></a></div>
+<hr />
+<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_FEATURE_SVC_INFO}></h4>
+<table class="outer">
+<{if $module->get('hassearch')}>
+  <tr class="<{cycle values='odd,even'}>">
+	<td class="head" style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_SEARCH_SVC}></td>
+	<td><{$smarty.const._AD_LEGACY_LANG_ACTIVE}></td>
+  </tr>
+<{/if}>
+<{if $module->get('hascomments')}>
+  <tr class="<{cycle values='odd,even'}>">
+	<td class="head" style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_COMMENT_SVC}></td>
+	<td><{$smarty.const._AD_LEGACY_LANG_ACTIVE}></td>
+  </tr>
+<{/if}>
+
+<{if $module->get('hasnotification')}>
+  <tr class="<{cycle values='odd,even'}>">
+	<td class="head" style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_NOTIF_SVC}></td>
+	<td><{$smarty.const._AD_LEGACY_LANG_ACTIVE}></td>
+  </tr>
+<{/if}>
+</table>
+*}>

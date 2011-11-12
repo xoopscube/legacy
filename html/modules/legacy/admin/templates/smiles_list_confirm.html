@@ -1,0 +1,101 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=SmilesList"><{$smarty.const._MI_LEGACY_MENU_SMILES_MANAGE}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_SMILES_UPDATECONF}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_SMILES_UPDATECONF}></h3>
+
+<div class="confirm"><{$smarty.const._AD_LEGACY_MESSAGE_CONFIRM_UPDATE_SMILES}></div>
+
+<{if $actionForm->hasError() && $actionForm->get('confirm')}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form method="post"  action="./index.php?action=SmilesList">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=confirm value=1}>
+<table class="outer">
+  <tr>
+    <th><{$smarty.const._AD_LEGACY_LANG_ID}></th>
+    <th><{$smarty.const._MD_LEGACY_LANG_CODE}></th>
+    <th><{$smarty.const._MD_LEGACY_LANG_EMOTION}></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_DISPLAY}></th>
+    <th><{$smarty.const._DELETE}></th>
+  </tr>
+
+<{foreach item=sid from=$sids}>
+  <tr class="<{cycle values='odd,even'}>">
+    <td class="legacy_list_id"><{$sid}></td>
+    <td class="legacy_list_name">
+      <{if $actionForm->get('code',$sid) == $smilesObjects[$sid]->get('code')}>
+        <{$actionForm->get('code',$sid)|xoops_escape}>
+      <{else}>
+         (<{$smilesObjects[$sid]->getShow('code')}>) &raquo; <b  class="legacy_module_error"><{$actionForm->get('code',$sid)|xoops_escape}></b>
+      <{/if}>
+    </td>
+    <td class="legacy_list_name">
+      <{if $actionForm->get('emotion',$sid) == $smilesObjects[$sid]->get('emotion')}>
+        <{$actionForm->get('emotion',$sid)|xoops_escape}>
+      <{else}>
+         (<{$smilesObjects[$sid]->getShow('emotion')}>) &raquo; <br /><b  class="legacy_module_error"><{$actionForm->get('emotion',$sid)|xoops_escape}></b>
+      <{/if}>
+    </td>
+    <td class="legacy_list_select">
+      <{if $actionForm->get('display',$sid)|intval == $smilesObjects[$sid]->get('display')}>
+        <{$smarty.const._AD_LEGACY_LANG_NO_CHANGE}>
+      <{else}>
+        (<{if $smilesObjects[$sid]->get('display') == 1 }>
+          <{$smarty.const._YES}>
+        <{else}>
+          <{$smarty.const._NO}>
+        <{/if}>) 
+        &raquo;
+        
+        <{if $actionForm->get('display',$sid) == 1}>
+        <b class="legacy_module_error">
+          <{$smarty.const._YES}>
+        <{else}>
+        <b class="legacy_module_warning">
+          <{$smarty.const._NO}>
+        <{/if}></b>
+      <{/if}>
+      <input type="hidden" name="code[<{$sid}>]" value="<{$actionForm->get('code',$sid)|xoops_escape:edit}>" />
+      <input type="hidden" name="emotion[<{$sid}>]" value="<{$actionForm->get('emotion',$sid)|xoops_escape:edit}>" />
+      <{if $actionForm->get('display',$sid)}>
+        <input type="hidden" name="display[<{$sid}>]" value="1" />
+      <{else}>
+        <input type="hidden" name="display[<{$sid}>]" value="0" />
+      <{/if}>
+    </td>
+    <td class="legacy_list_select">
+        
+        <{if $actionForm->get('delete',$sid) == 1}>
+        <b class="legacy_module_error">
+          <{$smarty.const._YES}>
+        <{else}>
+        <b class="legacy_module_warning">
+          <{$smarty.const._NO}>
+        <{/if}></b>
+      <{if $actionForm->get('delete',$sid)}>
+        <input type="hidden" name="delete[<{$sid}>]" value="1" />
+      <{else}>
+        <input type="hidden" name="delete[<{$sid}>]" value="0" />
+      <{/if}>
+    </td>
+  </tr>
+<{/foreach}>
+  <tr>
+    <td class="foot" colspan="5">
+      <input type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" class="formButton" />
+      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+    </td>
+  </tr>
+</table>
+</form>

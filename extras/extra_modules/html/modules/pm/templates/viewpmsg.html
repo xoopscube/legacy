@@ -1,0 +1,73 @@
+<h4><{$xoops_pagetitle}></h4>
+
+<a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$currentUser->get("uid")}>"><{$smarty.const._MD_PM_LANG_PROFILE}></a>
+&nbsp;&raquo;&raquo;&nbsp;<{$smarty.const._MD_PM_LANG_INBOX}>
+<br /><br />
+
+<form name="prvmsg" method="post" action="<{$xoops_url}>/viewpmsg.php?action=delete">
+<{xoops_token form=$actionForm}>
+<table border="0" cellspacing="1" cellpadding="4" width="100%" class="outer">
+  <tr style="text-align:center;" valign="middle">
+    <th style="width:2%;"><input name="allbox" id="allbox" onclick='xoopsCheckAll("prvmsg", "allbox");' type="checkbox" value="Check All" /></th>
+    <th style="width:5%;"><img src="<{$xoops_url}>/images/download.gif" alt="" border="0" /></th>
+    <th style="width:5%;">&nbsp;</th>
+    <th style="width:10%;"><{$smarty.const._MD_PM_LANG_FROM}></th>
+    <th><{$smarty.const._MD_PM_LANG_SUBJECT}></th>
+    <th style="width:25%;"><{$smarty.const._MD_PM_LANG_DATE}></th>
+  </tr>
+
+  <{if !$total_messages}>
+    <tr>
+      <td class="even" colspan="6" style="text-align:center;">
+        <{$smarty.const._MD_PM_MESSAGE_YOUDONTHAVE}>
+      </td>
+    </tr>
+  <{/if}>
+
+  <{foreach name=viewpm item=pm from=$pmObjects}>
+    <tr style="text-align:left;" class="<{cycle values="odd,even"}>">
+      <td style="text-align:center; vertical-align:top;">
+        <input type="checkbox" id="msg_id[]" name="msg_id[]" value="<{$pm->get("msg_id")}>" />
+      </td>
+      <td style="text-align:center; vertical-align:top;">
+        <{if $pm->isRead()}>
+          &nbsp;
+        <{else}>
+          <img src="<{$xoops_url}>/images/read.gif" alt="<{$smarty.const._MD_PM_LANG_NOTREAD}>" title="<{$smarty.const._MD_PM_LANG_NOTREAD}>" />
+        <{/if}>
+      </td>
+      <td style="text-align:center; vertical-align:top;">
+        <img src="<{$smarty.const.XOOPS_URL}>/images/subject/<{$pm->get('msg_image')|xoops_escape:link}>" alt='' />
+      </td>
+      <td style="vertical-align:middle;">
+        <{$pm->get("from_userid")|xoops_user:"uname"}>
+      </td>
+      <td style="vertical-align:middle;">
+        <a href="<{$xoops_url}>/readpmsg.php?msg_id=<{$pm->getShow('msg_id')}>"><{$pm->getShow('subject')}></a>
+      </td>
+      <td style="text-align:center; vertical-align:middle;">
+        <{$pm->get("msg_time")|xoops_formattimestamp:l}>
+      </td>
+    </tr>
+  <{/foreach}>
+
+  <{if $total_messages}>
+    <tr style="text-align:left;">
+      <td class="foot" colspan="6">
+        <input type="button" class="formButton" onclick="javascript:openWithSelfMain('<{$smarty.const.XOOPS_URL}>/pmlite.php?send=1','pmlite',480,400);" value="<{$smarty.const._MD_PM_LANG_SEND}>" />
+        &nbsp;
+        <input type="submit" class="formButton" name="delete_messages" value="<{$smarty.const._MD_PM_LANG_DELETE}>" />
+      </td>
+    </tr>
+  <{else}>
+    <tr style="text-align:left;">
+      <td class="foot" colspan="6">
+        <input type="button" class="formButton" onclick="javascript:openWithSelfMain('<{$xoops_url}>/pmlite.php?send=1','pmlite',480,400);" value="<{$smarty.const._MD_PM_LANG_SEND}>" />
+      </td>
+    </tr>
+  <{/if}>
+
+</table>
+</form>
+
+<div style="text-align:center;"><{xoops_pagenavi pagenavi=$pageNavi}></div>

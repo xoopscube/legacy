@@ -1,0 +1,27 @@
+<{if $searchResults.0.name != null}>
+  <h4><{$searchResults.0.name}></h4>
+
+  <!-- start results item loop -->
+  <ul style="list-style:none;margin-left:10px;">
+  <{foreach item=result from=$searchResults.0.results}>
+    <li><img src="<{$result.image}>" alt="<{$searchResults.0.name}>" title="<{$searchResults.0.name}>" /><span style="font-weight:bold;"><a href="<{$result.link}>"><{$result.title}></a></span><br />
+    <span style="font-size:small;">
+      <{if $result.uid > 0}>
+        <a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$result.uid|xoops_escape}>"><{$result.uid|xoops_user:user_name}></a>
+      <{/if}>
+      (<{$result.time|xoops_formattimestampGMT:l}>)
+    </span></li>
+  <{/foreach}>
+  </ul>
+  <!-- end results item loop -->
+
+  <{if $actionForm->get('start') > 0}>
+    <a href="<{$smarty.const.XOOPS_URL}>/search.php?action=showall&amp;query=<{$actionForm->get('query')|escape:url}>&amp;mid=<{$searchResults.0.mid}>&amp;andor=<{$actionForm->get('andor')|xoops_escape}>"><{$smarty.const._MD_LEGACY_LANG_SHOW_ALL}></a>
+  <{/if}>
+
+  <{if $searchResults.0.has_more}>
+    <a href="<{$smarty.const.XOOPS_URL}>/search.php?action=showall&amp;query=<{$actionForm->get('query')|escape:url}>&amp;mid=<{$searchResults.0.mid}>&amp;andor=<{$actionForm->get('andor')|xoops_escape}>&amp;start=<{$nextStart}>"><{$smarty.const._MD_LEGACY_LANG_NEXT_PAGE}></a>
+  <{/if}>
+<{/if}>
+
+<{include file=db:legacy_search_form.html}>

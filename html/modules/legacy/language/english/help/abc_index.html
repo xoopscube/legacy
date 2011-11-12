@@ -1,0 +1,49 @@
+<h4>XOOPS Cube Legacy KICK START GUIDE</h4>
+
+<p>Welcome to XOOPS Cube Legacy 2.2. You are now the proud owner of your very own dynamic web site. Whether you want a portal site, a business site,
+ a site about your family or your hobby, XOOPS Cube Legacy 2.2 makes it easy. </p>
+
+
+<h5>What is Legacy?</h5>
+<p>It's a modular system and the Legacy modules have different functions for a particular purpose. <b>XOOPS Cube</b> is the core of the system running the base modules, 
+those modules that make the system interoperability usefull ! One of these Base modules are called <span class="highlight_module_name">Legacy</span> which is the container for other modules, 
+including the Xoops modules you add to your site. The Package_Legacy for XOOPS Cube is released only with essential resources. It is up to you to extend your site functionality with other modules : 
+articles, blog, image gallery, forums, etc. This can be easily done by installing free modules. Not only that but you can also easily extend your website without hack the source code by installing Preloads 
+- extensions based in one file. You change the look-and-feel of your site by installing different themes. And much more. You just need to try and learn a little bit more about Cube Legacy 2.2.</p><br clear=all />
+
+<h5>Getting Started</h5>
+
+<p>First of all - security! It's essential to confirm that your installation is secure. After what, you can start building your site.<br />
+ So, go to the top level  of Control Panel (Administration) and confirm whether any warnings are on the screen. Initially, after a clean install, 
+ you will see at least two warnings, one about the install directory and one about a file called mainfile.php</p>
+
+<p>Depending on the configuration of your server, you may get other warnings but right now, we are just going to look at the two that deal with security 
+as that must be the top priority.</p>
+
+<h6>Warning about the install directory</h6>
+<p>This is really dangerous! You must remove the install directory from your public directory right now! With the install directory still there, 
+a malicious user can access the installer of your site. They could then re-install XOOPS Cube in your site and become the administrator with full privileges! 
+You should be able to remove this directory, since you have already uploaded and installed XOOPS Cube successfully. But if you are not sure how to remove the directory, 
+contact the administrator of your server immediately.</p>
+
+<h6>Warning about mainfile.php</h6>
+<p>This message warns that a malicious attacker could rewrite your mainfile.php. This file contains important configuration information about your system including your database connection details. 
+You should make mainfile.php unwritable to prevent from such attacks. <br />
+According to the the OS of your server, if Unix or Linux family, the permissions of mainfile.php should be changed to 644.<br />
+If your server runs an OS from Microsoft, you can change file settings from the explorer.<br /> 
+If the message persists, notify the administrator of the server immediately.</p>
+
+<p>OK? Let's go to the next section!</p>
+
+<h5>Table of Contents</h5>
+<p>The best way to learn how to use XOOPS Cube Legacy 2.2 is to start with with a simple site.<br />
+Suppose you plan to build a community web site.<br /> 
+This site will consist of forum and some news. In the forum, registered users can start discussions (threads) and post messages. While volunteers publish news where users can post comments.</p>
+
+<ul>
+ <li><a href="<{'abc_1st.html'|helpurl}>">Step One --- Basics of the control panel, and themes</a></li>
+ <li><a href="<{'abc_2nd.html'|helpurl}>">Step Two --- Installing blocks</a></li>
+ <li><a href="<{'abc_3rd.html'|helpurl}>">Step Three --- Installing modules</a></li>
+ <li><a href="<{'abc_4th.html'|helpurl}>">Step Four --- Basic User Management</a></li>
+</ul>
+

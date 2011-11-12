@@ -1,0 +1,151 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=GroupList"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_GROUP_ASSIGN}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_ASSIGN}> ( <{$group->getShow('name')}> )</h3>
+
+<table class="outer">
+  <tr>
+    <th>&nbsp;</th>
+    <th><{$smarty.const._AD_USER_LANG_GROUP_GID}></th>
+    <th><{$smarty.const._AD_USER_LANG_GROUP_NAME}></th>
+    <th><{$smarty.const._AD_USER_LANG_GROUP_DESC}></th>
+    <th><{$smarty.const._AD_USER_LANG_GROUP_TYPE}></th>
+    <th><{$smarty.const._AD_USER_LANG_GROUP_AMMO}></th>
+    <th><{$smarty.const._AD_USER_LANG_CONTROL}></th>
+  </tr>
+  <tr class="odd">
+    <td class="user_list_image"><img src="<{"icons/group.png"|theme}>" alt="<{$smarty.const._AD_USER_LANG_GROUP}>" title="<{$smarty.const._AD_USER_LANG_GROUP}>" /></td>
+    <td class="user_list_id"><{$group->getShow('groupid')}></td>
+    <td class="user_list_title"><{$group->getShow('name')}></td>
+    <td class="user_list_description"><{$group->getShow('description')}></td>
+    <td class="user_list_type"><{$group->getShow('group_type')}></td>
+    <td class="user_list_number"><{$group->getUserCount()|xoops_escape}></td>
+    <td class="user_list_control">
+      <a href="index.php?action=GroupEdit&amp;groupid=<{$group->getShow('groupid')}>"><img src="<{"icons/edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+      <{if $group->get('groupid') > $smarty.const.XOOPS_GROUP_ANONYMOUS }>
+        <a href="index.php?action=GroupDelete&amp;groupid=<{$group->getShow('groupid')}>"><img src="<{"icons/delete.png"|theme}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
+      <{/if}>
+      <a href="index.php?action=GroupProperty&amp;groupid=<{$group->getShow('groupid')}>"><img src="<{"icons/property.png"|theme}>" alt="<{$smarty.const._AD_USER_LANG_GROUP_PROPERTY}>" title="<{$smarty.const._AD_USER_LANG_GROUP_PROPERTY}>" /></a>
+      <a href="index.php?action=GroupPerm&amp;groupid=<{$group->getShow('groupid')}>"><img src="<{"icons/permission.png"|theme}>" alt="<{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}>" title="<{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}>" /></a>
+      <a href="index.php?action=GroupMember&amp;groupid=<{$group->getShow('groupid')}>"><img src="<{"icons/members.png"|theme}>" alt="<{$smarty.const._AD_USER_LANG_GROUP_ASSIGN}>" title="<{$smarty.const._AD_USER_LANG_GROUP_ASSIGN}>" /></a>
+    </td>
+  </tr>
+</table>
+
+<hr />
+<h4 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_NOASSIN_MEMBERS}></h4>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<{assign var=tokenName value=$actionForm->getTokenName()}>
+<{assign var=tokenValue value=$actionForm->getToken()}>
+
+<form method="post" action="">
+<{xoops_token name=$tokenName value=$tokenValue}>
+<input type="hidden" name="perpage" value="<{$pageNavi->getPerpage()}>" />
+<input type="hidden" name="start" value="<{$pageNavi->getStart()}>" />
+<input type="hidden" name="noperpage" value="<{$noPageNavi->getPerpage()}>" />
+<input type="hidden" name="nostart" value="<{$noPageNavi->getStart()}>" />
+<table class="outer">
+  <tr>
+    <th><{$smarty.const._MD_USER_LANG_ASSIGN}></th>
+    <th>&nbsp;</th>
+    <th><{$smarty.const._MD_USER_LANG_UID}></th>
+    <th><{$smarty.const._MD_USER_LANG_UNAME}></th>
+    <th><{$smarty.const._MD_USER_LANG_NAME}></th>
+    <th><{$smarty.const._AD_USER_LANG_REGDATE}></th>
+    <th><{$smarty.const._AD_USER_LANG_LASTLOGIN}></th>
+    <th><{$smarty.const._MD_USER_LANG_POSTS}></th>
+    <th><{$smarty.const._MD_USER_LANG_LEVEL}></th>
+    <th><{$smarty.const._AD_USER_LANG_CONTROL}></th>
+  </tr>
+  <{foreach from=$noUsers item=user }>
+    <tr class="<{cycle values="odd,even"}>">
+      <td class="user_list_select"><input type="checkbox" name="uid[<{$user->getShow('uid')}>]" value="1" /></td>
+      <td class="user_list_image"><img src="<{"icons/user.png"|theme}>" alt="<{$smarty.const._AD_USER_LANG_USER}>" title="<{$smarty.const._AD_USER_LANG_USER}>" /></td>
+      <td class="user_list_id"><{$user->getShow('uid')}></td>
+      <td class="user_list_title"><{$user->getShow('uname')}></td>
+      <td class="user_list_name"><{$user->getShow('name')}></td>
+      <td class="user_list_date"><{$user->get('user_regdate')|xoops_formattimestamp}></td>
+      <td class="user_list_date"><{$user->get('last_login')|xoops_formattimestamp:l}></td>
+      <td class="user_list_number"><{$user->getShow('posts')}></td>
+      <td class="user_list_order"><{$user->getShow('level')}></td>
+      <td class="user_list_control">
+        <a href="./index.php?action=UserEdit&amp;uid=<{$user->getShow('uid')}>"><img src="<{"icons/edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+        <{if $user->get('uid') != 1 }>
+          <a href="index.php?action=UserDelete&amp;uid=<{$user->getShow('uid')}>"><img src="<{"icons/delete.png"|theme}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
+        <{/if}>
+      </td>
+    </tr>
+  <{/foreach}>
+  <tr>
+    <td class="foot" colspan="10">
+      <input type="submit" value="<{$smarty.const._MD_USER_LANG_ASSIGN}>" class="formButton" />
+    </td>
+  </tr>
+</table>
+</form>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$noPageNavi}></div>
+
+<hr />
+<h4 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_ASSIN_MEMBERS}></h4>
+
+<form  method="post" action="">
+<{xoops_token name=$tokenName value=$tokenValue}>
+<input type="hidden" name="perpage" value="<{$pageNavi->getPerpage()}>" />
+<input type="hidden" name="start" value="<{$pageNavi->getStart()}>" />
+<input type="hidden" name="noperpage" value="<{$noPageNavi->getPerpage()}>" />
+<input type="hidden" name="nostart" value="<{$noPageNavi->getStart()}>" />
+<table class="outer">
+  <tr>
+    <th><{$smarty.const._MD_USER_LANG_UNASSIGN}></th>
+    <th>&nbsp;</th>
+    <th><{$smarty.const._MD_USER_LANG_UID}></th>
+    <th><{$smarty.const._MD_USER_LANG_UNAME}></th>
+    <th><{$smarty.const._MD_USER_LANG_NAME}></th>
+    <th><{$smarty.const._AD_USER_LANG_REGDATE}></th>
+    <th><{$smarty.const._AD_USER_LANG_LASTLOGIN}></th>
+    <th><{$smarty.const._MD_USER_LANG_POSTS}></th>
+    <th><{$smarty.const._MD_USER_LANG_LEVEL}></th>
+    <th><{$smarty.const._AD_USER_LANG_CONTROL}></th>
+  </tr>
+  <{foreach from=$users item=user }>
+    <tr class="<{cycle values="odd,even"}>">
+      <td class="user_list_select"><input type="checkbox" name="uid[<{$user->getShow('uid')}>]" value="2" /></td>
+      <td class="user_list_image"><img src="<{"icons/user.png"|theme}>" alt="<{$smarty.const._AD_USER_LANG_USER}>" title="<{$smarty.const._AD_USER_LANG_USER}>" /></td>
+      <td class="user_list_id"><{$user->getShow('uid')}></td>
+      <td class="user_list_title"><{$user->getShow('uname')}></td>
+      <td class="user_list_name"><{$user->getShow('name')}></td>
+      <td class="user_list_date"><{$user->get('user_regdate')|xoops_formattimestamp}></td>
+      <td class="user_list_date"><{$user->get('last_login')|xoops_formattimestamp:l}></td>
+      <td class="user_list_number"><{$user->getShow('posts')}></td>
+      <td class="user_list_order"><{$user->getShow('level')}></td>
+      <td class="user_list_control">
+        <a href="index.php?action=UserEdit&amp;uid=<{$user->getShow('uid')}>&amp;op=modifyUser"><img src="<{"icons/edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a> 
+        <{if $user->get('uid') != 1 }>
+          <a href="index.php?action=UserDelete&amp;uid=<{$user->getShow('uid')}>"><img src="<{"icons/delete.png"|theme}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
+        <{/if}>
+      </td>
+    </tr>
+  <{/foreach}>
+  <tr>
+    <td class="foot" colspan="10">
+      <input type="submit" value="<{$smarty.const._MD_USER_LANG_UNASSIGN}>" class="formButton" />
+    </td>
+  </tr>
+</table>
+</form>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>

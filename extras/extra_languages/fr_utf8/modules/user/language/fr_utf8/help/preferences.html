@@ -1,0 +1,121 @@
+<h4>Module Utilisateur - Préférences</h4>
+<h5>Autoriser l'enregistrement de nouveaux utilisateurs?</h5>
+<p>Spécifie si les utilisateurs anonymes peuvent s'enregistrer sur votre site. En cas d'OUI, registre.php est disponible, et le <span class='highlight_block_name'>Bloc login</span> affiche le lien registrer.php. Même si l' option coché est Non, vous pouvez ajouter un nouvel utilisateur depuis laGestion d'utilisateurs.</p>
+
+<h5>Longueur minimum requise pour le mot de passe</h5>
+<p>Spécifie la longueur minimum de mot de passe. Un mot de passe long est plus difficle à deviner. Bien sûr, la longueur n'est pas le seul facteur d'un mot de passe fort. Mais, vous devriez spécifier cinq ou plus.</p>
+
+<h5>Longueur minimum requise pour le nom d'utilisateur</h5>
+<p>Spécifie la longueur minimum d'identifiant. Cette option n'est pas un critère de sécurité. Décidez selon vos préférences.</p>
+
+<h5>Autoriser les utilisateurs à changer leur adresse e-mail?</h5>
+<p>Spécifie si les utilisateurs peuvent changer leur adresse e-mail dans l'éditeur du profil utilisateur (edituser.php). En fait, ce module n'envoie pa de confirmation aux utilisateurs qui change leur adresse.</p>
+
+<h5>Notifier par email lors de l'enregistrement d'un nouveau utilisateur?</h5>
+<p>Dans le cas où cette option est Oui, le groupe spécifié par l'option suivante peut recevoir le courrier de notification des nouveaux enregistrements d'utilisateurs.</p>
+
+<h5>Choisissez le groupe auquel l'email d'activation doit être envoyé</h5>
+<p>Spécifie le groupe qui recevra le courrier de notification dans le cas où l'option précédente est Oui. Le groupe de webmestre est le plus approbon d'habitude pour cette option.</p>
+
+<h5>Sélectionnez le type d'activation des nouveaux utilisateurs enregistrés</h5>
+<p>Après l'enregistrement, un utilisateur doit être activé. Il y a plusieurs façons pour activer des utilisateurs.</p>
+
+<h6>Activation par l'utilisateur requise</h6>
+<p>C'est le cadre le plus populaire dans l'univers des systèmes de site web. Un utilisateur obtient un e-mail d'activation quand il s'enregistre. Ensuite il suffit de cliquer sur le lien d'activation de l'e-mail. C'est l emeilleur choix dans la plupart des cas.</p>
+
+<h6>Activation automatique</h6>
+<p>Dans des termes simples, il n'y a pas vraiment de mécanisme d'activation, tout utilisateur est activé tout de suite. Mais, si vous utilisez ceci, vous devez faire l'attention aux BOT. Les BOT peuvent s'enregistrer et vous soumettre automatiquement du SPAM. Donc, ce choix convient à un réseau fermé.</p>
+
+<h6>Activation par les administrateurs</h6>
+<p>Un utilisateur peut être seulement activé par l'approbation directe du groupe spécifié dans l'option suivante. Cette sélection devient une charge de travail assidu pour les activateurs.</p>
+
+<h5>Sélectionner le niveau de restriction pour le filtrage des noms d'utilisateur</h5>
+<p>Limite le type de caractères dans le nom d'utilisateur.</p>
+
+<h6>Strict (uniquement alpha-numérique)</h6>
+<p>Avec ce choix, votre site permet les caractères suivants pour le nom d'utilisateur.</p>
+<ul>
+  <li>Alphabet sans être sensible à la case.</li>
+  <li>Nombres.</li>
+  <li>Souligné (_).</li>
+  <li>Trait d'union (-).</li>
+</ul>
+
+<h6>Moyen</h6>
+<p>Avec ce choix, votre site permet les caractères suivants pour le nom d'utilisateur.</p>
+<ul>
+  <li>Alphabet sans être sensible à la case.</li>
+  <li>Nombres.</li>
+  <li>Souligné (_).</li>
+  <li>Trait d'union (-).</li>
+  <li>Le caractère moins que (<).</li>
+  <li>Le caractère plus grand que (>).</li>
+  <li>Virgule (,).</li>
+  <li>Point (.).</li>
+  <li>Dollar ($).</li>
+  <li>Pourcent (%).</li>
+  <li>Dièse (#).</li>
+  <li>Arrobas (@).</li>
+  <li>Point d'exclamation (!).</li>
+  <li>Citation seule (›).</li>
+  <li>Citation double (").</li>
+</ul>
+
+<h6>Faible (récommendé pour les caractères multi-bits)</h6>
+<p>Avec ce choix, votre site permet tous les caractères sauf le code contrôle. Mais, cette option peut causer des ennuis avec quelques modules. Donc, ce choixe n'est pas récommendé pour ce module.</p>
+
+<h5>Autoriser l'utilisateur a envoyer un avatar personnalisé?</h5>
+<p>Spécifie si un utilisateur peut télécharger son dossier d'image préféré comme son avatar à ce site. Même si le cas de Non, un utilisateur peut choisir son avatar des avatars de système qu'administrateurs préparent.</p>
+
+<h5>Envois minimum requis</h5>
+<p>Si permettre l'avatar à personnalisé télécharge, vous n'avez pas besoin de toucher cette option.</p>
+
+<p>Ceci est le nombre minimum de postes qu'utilisateurs peuvent obtenir la droite de télécharger l'avatar personnalisé. Il peut avoir a le goût pauvre. Zéro est bon.</p>
+
+<h5>Largeur maxi de l'image avatar (pixels))</h5>
+<p>Si vous ne permettez pas l'avatar à personnalisé télécharge, vous n'avez pas besoin de toucher cette option.</p>
+
+<p>Spécifie la largeur de limite pour l'avatar personnalisé. Dans le cas où un utilisateur télécharge une image plus large que cette valeur, ce module affiche des messages d'erreur.</p>
+
+<h5>Hauteur maxi de l'image avatar (pixels)</h5>
+<p>Si vous ne permettez pas l'avatar à personnalisé télécharge, vous n'avez pas besoin de toucher cette option.</p>
+
+<p>Spécifie la hauteur de limite pour l'avatar personnalisé. Dans le cas où un utilisateur télécharge une plus haute image que cette valeur, ce module affiche des messages d'erreur.</p>
+
+<h5>Taille maxi de l'image avatar (Octets)</h5>
+<p>Si vous ne permettez pas l'avatar à personnalisé télécharge, vous n'avez pas besoin de toucher cette option.</p>
+
+<p>Spécifie le filesize de limite pour l'avatar personnalisé. Dans le cas où un utilisateur télécharge un plus grand dossier d'image que cette valeur, ce module affiche des messages d'erreur.</p>
+
+<h5>Autoriser les utilisateurs à supprimer leur compte?</h5>
+<p>Spécifie si les utilisateurs peuvent effacer le propre compte dans le profil d'utilisateur édite. En cas d'Oui, les utilisateurs peuvent aller au compte efface le dialogue par le lien du profil d'utilisateur (userinfo.php). Parce que ces dialogues d'effacer sont très simples, vous devez éditer des gabarits d'eux -- -l'utilisateur_efface. le html, l'utilisateur_efface_le succès. le html.</p>
+
+<h5>Message de confirmation de la suppression du compte</h5>
+<p>Ceci est le message affiché dans le compte efface le dialogue. Si vous ne permettez pas d'utilisateur pour effacer le propre compte, vous n'avez pas besoin de toucher cette option.</p>
+
+<h5>Entrez les noms qui ne doivent pas être utilisés par les les utilisateurs</h5>
+<p>Ceci est des modèles que votre site ne permet pas comme l'identifiant. Séparer chaque avec un |. Ceci est le cas insensible et regex a rendu capable. En plus, cette règle ne s'applique pas à la direction d'utilisateur dans le tableau de commande avant.</p>
+
+<p>Si vous ne permettez pas d'utilisateurs anonymes pour enregistrer à ce site, vous n'avez pas besoin de toucher cette option.</p>
+
+<h5>Entrez les e-mails qui ne doivent pas être employés dans les profils utilisateurs</h5>
+<p>Ceci est des modèles que votre site ne permet pas comme envoie un e-mail à l'adresse. Séparer chaque avec un |. Ceci est le cas insensible et regex a rendu capable. En plus, cette règle ne s'applique pas à la direction d'utilisateur dans le tableau de commande avant.</p>
+
+<h5>Afficher les conditions d'utilisation du site?</h5>
+<p>Choisissez OUI pour afficher le disclaimer dans la page d'enregistrement</p>
+
+<h5>Conditions d'Utilisation</h5>
+<p>Ceci est le refus montré dans l'enregistrement d'utilisateur pour l'utilisateur anonyme. Si l'option précédente est Non, vous n'avez pas besoin de toucher cette option.</p>
+
+<h5>Nom pour le cookie utilisateur.</h5>
+<p>Spécifie le nom de petit gâteau pour les navigateurs web. Dans la plupart de cas, vous n'avez pas besoin de changer ceci.</p>
+
+<h5>Utiliser une connexion SSL?</h5>
+<p>Vous devez installer le manuscrit de login supplémentaire spécial pour activer le login de SSL. En cas d'OUI, <span class="highlight_block_name">Bloc de login</span> Montre dont le nom au lien est « le Login de SSL » spécifié par les options prochaines. Ces options sont pour la compatibilité avec XOOPS2 JP. Peut-être, vous pouvez trouver de meilleures solutions que ceci pour le Login de SSL. Le manuscrit est dans « /extra » annuaire.</p>
+
+<h5>Nom de la variable SSL</h5>
+<p>Cette option est pour le Login de SSL, aussi. Spécifie un nom de la variable de POSTE-DEMANDE.</p>
+
+<h5>URL pour la page de la connexion SSL</h5>
+<p>Cette option est pour le Login de SSL, aussi. Spécifie l'URL où vous avez installé le manuscrit de login supplémentaire spécial.</p>
+

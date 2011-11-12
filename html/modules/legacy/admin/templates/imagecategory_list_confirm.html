@@ -1,0 +1,134 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=ImagecategoryList"><{$smarty.const._MI_LEGACY_MENU_IMAGE_MANAGE}></a>
+  &raquo;&raquo; <{$smarty.const._AD_LEGACY_LANG_IMAGECATEGORY_LIST}>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_UPDATECONF}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_UPDATECONF}></h3>
+
+<div class="confirm"><{$smarty.const._AD_LEGACY_MESSAGE_CONFIRM_UPDATE_IMGCAT}></div>
+
+<{if $actionForm->hasError() && $actionForm->get('confirm')}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form method="post"  action="./index.php?action=ImagecategoryList">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=confirm value=1}>
+<table class="outer">
+  <tr>
+    <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_ID}></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_NAME}></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_MAXSIZE}></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_MAXWIDTH}></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_MAXHEIGHT}></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_DISPLAY}></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_WEIGHT}></th>
+    <th><{$smarty.const._DELETE}></th>
+  </tr>
+
+<{foreach item=icid from=$icids}>
+  <tr class="even">
+    <td class="legacy_list_id"><{$icid}></td>
+    <td class="legacy_list_title">
+      <{if $actionForm->get('name',$icid) == $imagecategoryObjects[$icid]->get('imgcat_name')}>
+        <{$actionForm->get('name',$icid)|xoops_escape}>
+      <{else}>
+         (<{$imagecategoryObjects[$icid]->getShow('imgcat_name')}>) &raquo; <b  class="legacy_module_error"><{$actionForm->get('name',$icid)|xoops_escape}></b>
+      <{/if}>
+      <input type="hidden" name="name[<{$icid}>]" value="<{$actionForm->get('name',$icid)|xoops_escape:edit}>" />
+    </td>
+    <td class="legacy_list_number">
+      <{if $actionForm->get('maxsize',$icid) == $imagecategoryObjects[$icid]->get('imgcat_maxsize')}>
+        <{$actionForm->get('maxsize',$icid)|xoops_escape}>
+      <{else}>
+         (<{$imagecategoryObjects[$icid]->getShow('imgcat_maxsize')}>) &raquo; <b  class="legacy_module_error"><{$actionForm->get('maxsize',$icid)|xoops_escape}></b>
+      <{/if}>
+      <input type="hidden" name="maxsize[<{$icid}>]" value="<{$actionForm->get('maxsize',$icid)|xoops_escape:edit}>" />
+    </td>
+    <td class="legacy_list_number">
+      <{if $actionForm->get('maxwidth',$icid) == $imagecategoryObjects[$icid]->get('imgcat_maxwidth')}>
+        <{$actionForm->get('maxwidth',$icid)|xoops_escape}>
+      <{else}>
+         (<{$imagecategoryObjects[$icid]->getShow('imgcat_maxwidth')}>) &raquo; <b  class="legacy_module_error"><{$actionForm->get('maxwidth',$icid)|xoops_escape}></b>
+      <{/if}>
+      <input type="hidden" name="maxwidth[<{$icid}>]" value="<{$actionForm->get('maxwidth',$icid)|xoops_escape:edit}>" />
+    </td>
+    <td class="legacy_list_number">
+      <{if $actionForm->get('maxheight',$icid) == $imagecategoryObjects[$icid]->get('imgcat_maxheight')}>
+        <{$actionForm->get('maxheight',$icid)|xoops_escape}>
+      <{else}>
+         (<{$imagecategoryObjects[$icid]->getShow('imgcat_maxheight')}>) &raquo; <b  class="legacy_module_error"><{$actionForm->get('maxheight',$icid)|xoops_escape}></b>
+      <{/if}>
+      <input type="hidden" name="maxheight[<{$icid}>]" value="<{$actionForm->get('maxheight',$icid)|xoops_escape:edit}>" />
+    </td>
+    <td class="legacy_list_select">
+      <{if $actionForm->get('display',$icid)|intval == $imagecategoryObjects[$icid]->get('imgcat_display')}>
+	<{if $imagecategoryObjects[$icid]->get('imgcat_display') == 1 }>
+          	<{$smarty.const._YES}>
+        	<{else}>
+          	<{$smarty.const._NO}>
+        	<{/if}>
+      <{else}>
+        (<{if $imagecategoryObjects[$icid]->get('imgcat_display') == 1 }>
+          <{$smarty.const._YES}>
+        <{else}>
+          <{$smarty.const._NO}>
+        <{/if}>) 
+        &raquo;
+        
+        <{if $actionForm->get('display',$icid) == 1}>
+        <b class="legacy_module_error">
+          <{$smarty.const._YES}>
+        <{else}>
+        <b class="legacy_module_warning">
+          <{$smarty.const._NO}>
+        <{/if}></b>
+      <{/if}>
+      <{if $actionForm->get('display',$icid)}>
+        <input type="hidden" name="display[<{$icid}>]" value="1" />
+      <{else}>
+        <input type="hidden" name="display[<{$icid}>]" value="0" />
+      <{/if}>
+    </td>
+    <td class="legacy_list_number">
+      <{if $actionForm->get('weight',$icid) == $imagecategoryObjects[$icid]->get('imgcat_weight')}>
+        <{$actionForm->get('weight',$icid)|xoops_escape}>
+      <{else}>
+         (<{$imagecategoryObjects[$icid]->getShow('imgcat_weight')}>) &raquo; <b  class="legacy_module_error"><{$actionForm->get('weight',$icid)|xoops_escape}></b>
+      <{/if}>
+      <input type="hidden" name="weight[<{$icid}>]" value="<{$actionForm->get('weight',$icid)|xoops_escape:edit}>" />
+    </td>
+    <td class="legacy_list_select">
+       
+        <{if $actionForm->get('delete',$icid) == 1}>
+        <b class="legacy_module_error">
+          <{$smarty.const._YES}>
+        <{else}>
+        <b class="legacy_module_warning">
+          <{$smarty.const._NO}>
+        <{/if}>
+	</b>
+      <{if $actionForm->get('delete',$icid)}>
+        <input type="hidden" name="delete[<{$icid}>]" value="1" />
+      <{else}>
+        <input type="hidden" name="delete[<{$icid}>]" value="0" />
+      <{/if}>
+    </td>
+  </tr>
+<{/foreach}>
+  <tr>
+    <td class="foot" colspan="8">
+      <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
+      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+    </td>
+  </tr>
+</table>
+</form>

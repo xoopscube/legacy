@@ -1,0 +1,124 @@
+<h4>Step Three --- Installing modules</h4>
+<h5>Overview</h5>
+<p>A game console without game software is not really that fun. XOOPS Cube Legacy without modules is not particularly useful. 
+Modules are additional features that can be easily installed to further enhance your website. Examples of modules: blog, calendar, contact center, document, downloads, event guide,
+forum, gallery, shop, social network, wik, etc.
+</p>
+<h5>Step Three (1) --- How to install modules</h5>
+
+<p>In short, you need to download some modules and a FTP client to upload them to your site. 
+There are lot of modules around for XOOPS-based systems. XOOPS Cube Legacy 2.2 runs the following modules.</p>
+
+<ul>
+  <li>XOOPS Cube Legacy 2.2 Modules<br />
+  Know as Cube and D3 Modules (directory free, duplicatable)</li>
+  <li>XOOPS 2.0.x JP Modules</li>
+  <li>XOOPS 2.0.9 Modules</li>
+</ul>
+
+<p>XOOPS Cube Legacy can emulate XOOPS2 JP. This ensures that most XOOPS2 JP modules and XOOPS 2.0.9 modules will work on XOOPS Cube Legacy.</p>
+
+<h6>Get new modules</h6>
+<p>You can download modules from <a href="http://xoopscube.org" rel="external">xoopscube.org</a> - a wiki page about <a href="http://xoopscube.org/modules/pukiwiki/?XOOPSCubeLegacy%2FModuleCompatibility">modules compatibility</a> is regularly updated. But you can also start programming your own modules , for further documentation visit <a href="http://xoopscube.org/modules/pukiwiki/?XOOPSCubeLegacy" rel="external">Wiki page</a> with good sources for modules, as well as for themes. Both themes and modules are usuallly distributed as compressed archives and you will need software to unzip, unpack the files you download. Modules should include a file "xoops_version.php".</p>
+
+<h6>Upload modules to your site</h6>
+<p>Now you have to upload the module you download to your site directory "/modules" of your XOOPS Cube Legacy installation. Keep in  mind the following directory tree.</p>
+
+<p><img src="<{'abc_3rd_modulepath.png'|helpimage}>" /></p>
+
+<p>Warning again! It is very common to upload an extra directory as the following diagram shows. Remember that the directory you want to upload should include xoops_version.php (or manifesto.ini.php).</p>
+
+
+<p><img src="<{'abc_3rd_modulepath_miss.png'|helpimage}>" /></p>
+
+<h5>Step Three (2) --- Install forum module</h5>
+<p>Your site plan consists of two modules, news and a forum. First, let's install the forum module. There are a lot of forum modules vB-like, guestbook-like and many others. You should choose your module according to your needs. For this example, we will install the "newbb" module. It's an older and not so good module perhaps but it's easy to install and explain. Newbb used to be the standard forum module of XOOPS2. Now there are better ones available, alike d3forum.</p>
+
+<h6>Upload newbb</h6>
+<p>Download the archive and unzip it. Then upload the directory you unzipped, as explained above.</p>
+
+<h6>Install module</h6>
+<p>Click "Module Installation" from the side-menu of <span class="highlight_module_name">Legacy System</span>  module.</p>
+
+<p>You will see the list of uninstalled modules. Whenever you upload a module directory, its icon will appear in this list.</p>
+
+<p>Find the row with the <span class ="highlight_module_name">forum module</span> (newbb) and click the install-icon on that row.</p>
+
+<p>You will now see a confirmation screen. Confirm that the module you want to install is <span class ="highlight_module_name">newbb</span>, then click "submit". Your screen will display a list of events related to tables created in your system database. Once installed, you will see a new side-menu for this module.</p>
+
+<h6>newbb settings</h6>
+<p>Go to your homepage to confirm that <span class ="highlight_module_name">newbb</span> is now installed. You should see the link in the Main Menu. The module has indeed been installed and now all you have to do is change the settings. Most modules need additonal settings before they can be used effectively. Most modules are also released with Help files and that's the best place to start.</p>
+
+<p>Back to the Control Panel (Administration) expand the Forum side-menu by clicking the [+] icon. Now click <em>Add Category</em>.</p>
+
+<p>Create forum categories according to your community topics of interest.</p>
+
+<p>Next, create forums in these categories. Click <em>Add Forum</em> from the side-menu.</p>
+
+<p>A main category can have multiple forums, and forums much more topics of interest.</p>
+
+<p>Newbb is now ready and your community can start new discussions.<br />
+Go to your homepage and try to create a new discussion thread and post a message!</p>
+
+<h5>Step Three (3) --- Install a news module</h5>
+<p>The site plan has a news module where the administrator publish relevant information to the community.</p>
+
+<p>There areof course a lot of different <span class ="highlight_module_name">news modules</span> as well as forum modules. For this example, and for the same reasons we chose newbb, we have chosen to use the <span class ="highlight_module_name">news module</span>. "News" was the original module of XOOPS2 to publish articles. It is now old and perhaps not so good anymore, but it's easy to install and explain.</p>
+
+<h6>News settings</h6>
+<p>Find a copy of the <span class ="highlight_module_name">"News" module</span>. Download and decompress, then upload to your XOOPS Cube Legacy installation. install the module the same way you installed <span class ="highlight_module_name">"NewBB"</span> above. Now you need to look at the settings of <span class ="highlight_module_name">"News"</span> as you did for <span class ="highlight_module_name">newbb</span>. Let's have a look.</p>
+
+<p>From the Administration control panel you can expand the side-menu of "News" module. Click <em>Topic Manager</em>.</p>
+
+<p>Add as many topics as you need, for this example create a new topic "Site News".</p>
+
+<p>You can rename or delete the default topic "xoops" created by default during module installation. From <em>Topic Manager</em>, choose "XOOPS" then click <button>Modify</button>.</p>
+
+<p>Then, click <button>Delete</button>.</p>
+
+<h5>Step Three (4) --- How to control the display order of modules</h5>
+<p>Go to the homepage now and check the position in the main menu of the two modules you installed. You should find that the forum module is above <span class ="highlight_module_name">the news module</span>, in the main menu block.</p>
+
+<p>From <em>Module Management</em> it is possible to control the display order of the modules in much the same way as you controlled the order of blocks. All you have to do is enter a value for the order of each module. Control panel, click to expand the Legacy System side-menu and then click on <em>Module Management</em>.</p>
+
+<p>You will see the list of installed modules.</p>
+
+
+<p>Set the order value of module Forum to 10 and the module News to 5.</p>
+
+
+<p>Then click <button>Update</button>. The confirmation screen is displayed. Confirm and click <button>Update</button> again.</p>
+
+<h6>TIPS: How to rename modules</h6>
+<p>The modules names displayed on the main menu don't always match our needs. You can rename them easily from <em>Module Management</em>. Simply type a new name under the module icon.</p>
+
+<h6>dirname</h6>
+
+<p>Modules have two names, "title" and "dirname". You are free to change the "title" as this is what will be displayed on the user side. It was the "title" that you changed just now.<br />
+"dirname" is the term that the system uses and refers to "directory name". <br />
+It is impossible to rename the "dirname" of most Xoops2 modules. But the recent D3 Modules allow you to duplicate and rename "dirname" asIwell.</p>
+
+<h5>Step Three (5) --- Let's finish the top page</h5>
+<h6>Add new blocks for the forum and news</h6>
+<p>Lastly, let's add new blocks to the top page so our visitors can see the latest posts. Once again, from the Legacy System side-menu, click on <em>Block Installation</em>. You will see some new blocks which were added when we installed the <span class ="highlight_module_name">newbb</span> and <span class ="highlight_module_name">news</span> modules. Most modules have one or more blocks that can be used to display a specific content related to the module. Now, let's install the "Recent Topics" block of the <span class ="highlight_module_name">newbb module</span>.</p>
+
+<p>And then let's install the "Recent News" block of the news module.</p>
+
+<p>Set the blocks up as follows:</p>
+
+<ul>
+ <li>Set the side to "Center block - center".</li>
+ <li>Set the Target modules to "Toppage" only.</li>
+ <li>Set the Target groups to all groups.</li>
+</ul>
+
+<h6>Control the order of the blocks in the center column</h6>
+<p>Go to <em>Block Management</em>. Set the order value of the custom block "Welcome !" to 5.<br />
+Fill the order value of "Recent News" block with 10, and "Recent Topics" block with 15. <br />
+Finally click <button>Submit</button>.</p>
+
+<h5>Summary</h5>
+<p>The XOOPS Cube Legacy package was not designed to be a complete system in itself, either for users or administrators. But by simply installing suitable modules, your site will become extremely powerful. Remember, that each module not only brings its own functionality but it's own blocks as well.</p>
+
+<div align="right"><img src="<{'abc_index_arrow.png'|helpimage}>" style="vertical-align:-15px;" /> <a href="<{'abc_4th.html'|helpurl}>">GO TO FINAL STEP</a></div>
+

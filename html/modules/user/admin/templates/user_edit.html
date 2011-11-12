@@ -1,0 +1,230 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=UserList"><{$smarty.const._AD_USER_LANG_USER_LIST}></a>
+  &raquo;&raquo;
+  <{if $actionForm->get('uid')}>
+    <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_USER_EDIT}></span>
+  <{else}>
+    <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_USER_NEW}></span>
+  <{/if}>
+</div>
+
+<{if $actionForm->get('uid')}>
+  <h3 class="admintitle"><{$smarty.const._AD_USER_LANG_USER_EDIT}> (<{$actionForm->get('uname')}>)</h3>
+  <div class="tips"><{$smarty.const._AD_USER_TIPS_USER_EDIT}></div>
+<{else}>
+  <h3 class="admintitle"><{$smarty.const._AD_USER_LANG_USER_NEW}></h3>
+  <div class="tips"><{$smarty.const._AD_USER_TIPS_USER_NEW}></div>
+<{/if}>
+
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form action="" method="post">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=uid value=$actionForm->get('uid')}>
+  <table class="outer">
+    <tr>
+      <th colspan="2">
+      <{if $actionForm->get('uid')}>
+        <{$smarty.const._AD_USER_LANG_USER_EDIT}>
+      <{else}>
+        <{$smarty.const._AD_USER_LANG_USER_NEW}>
+      <{/if}>
+      </th>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_UNAME}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=uname value=$actionForm->get('uname') size=25 maxlength=25}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_NAME}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=name value=$actionForm->get('name') size=30 maxlength=60}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_EMAIL}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=email value=$actionForm->get('email') size=30 maxlength=60}>
+        <br />
+        <label><{xoops_input type=checkbox name=user_viewemail value=1 default=$actionForm->get('user_viewemail')}> <{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}></label>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_URL}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=url value=$actionForm->get('url') size=50 maxlength=100}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_TIMEZONE_OFFSET}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <select name="timezone_offset">
+          <{xoops_optionsArray id=timezone_offset label=zone_name value=offset from=$timezones default=$actionForm->get('timezone_offset')}>
+        </select>
+      </td>
+    </tr>
+    
+<!-- Optional Fields
+
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_USER_ICQ}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=user_icq value=$actionForm->get('user_icq') size=15 maxlength=15}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_USER_AIM}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=user_aim value=$actionForm->get('user_aim') size=18 maxlength=18}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_USER_YIM}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=user_yim value=$actionForm->get('user_yim') size=25 maxlength=25}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_USER_MSNM}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=user_msnm value=$actionForm->get('user_msnm') size=25 maxlength=100}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_USER_FROM}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=user_from value=$actionForm->get('user_from') size=50 maxlength=100}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_USER_OCC}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=user_occ value=$actionForm->get('user_occ') size=50 maxlength=100}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_USER_INTREST}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=user_intrest value=$actionForm->get('user_intrest') size=50 maxlength=150}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_USER_SIG}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_dhtmltarea name=user_sig value=$actionForm->get('user_sig')}>
+        <br />
+        <label><{xoops_input type=checkbox name=attachsig value=1 default=$actionForm->get('attachsig')}> <{$smarty.const._MD_USER_LANG_ATTACHSIG}></label>
+      </td>
+    </tr>
+-->
+
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_UMODE}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{html_options name=umode options=$umodeOptions selected=$actionForm->get('umode')}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_UORDER}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{html_options name=uorder options=$uorderOptions selected=$actionForm->get('uorder')}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_NOTIFY_METHOD}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{html_options name=notify_method options=$notify_methodOptions selected=$actionForm->get('notify_method')}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_NOTIFY_MODE}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{html_options name=notify_mode options=$notify_modeOptions selected=$actionForm->get('notify_mode')}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_BIO}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_textarea type=text rows=5 cols=50 name=bio value=$actionForm->get('bio')}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_RANK}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <select name="rank">
+          <option id="rank_0" value="0"><{$smarty.const._AD_USER_LANG_NO_SPECIAL_RANK}></option>
+          <{xoops_optionsArray id=rank value=rank_id label=rank_title from=$ranks default=$actionForm->get('rank')}>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_PASS}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=password name=pass size=25 maxlength=32}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_VPASS}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=password name=vpass size=25 maxlength=32}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_USER_MAILOK}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <label><{xoops_input type=radio name=user_mailok value=1 default=$actionForm->get('user_mailok')}><{$smarty.const._YES}></label>
+        <label><{xoops_input type=radio name=user_mailok value=0 default=$actionForm->get('user_mailok')}><{$smarty.const._NO}></label>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_GROUP}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <select size="5" name="groups[]" multiple="multiple">
+          <{html_options options=$groupOptions selected=$actionForm->get('groups')}>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_POSTS}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=posts value=$actionForm->get('posts') class=user_list_number}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_LEVEL}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{if $actionForm->get('level') == 0}>
+          <select name="level">
+            <option id="level_0" value="0" selected="selected"><{$smarty.const._AD_USER_LANG_LEVEL_PENDING}></option>
+            <option id="level_1" value="1"><{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}></option>
+          </select>
+        <{elseif $actionForm->get('level') == 1}>
+          <{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>
+          <{xoops_input type=hidden name=level value=$actionForm->get('level') }>
+        <{elseif $actionForm->get('level') == 5}>
+          <{$smarty.const._AD_USER_LANG_LEVEL_ROOT}>
+          <{xoops_input type=hidden name=level value=$actionForm->get('level') }>
+        <{/if}>
+      </td>
+    </tr>
+    <{legacy_profile template=profile_inc_data_edit.html action=edit actionForm=$actionForm}>
+    <tr>
+      <td colspan="2"  class="foot">
+        <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      </td>
+    </tr>
+  </table>
+</form>

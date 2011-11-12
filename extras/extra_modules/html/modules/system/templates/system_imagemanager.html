@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC '//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<title><{$sitename}> <{$lang_imgmanager}></title>
+<script type="text/javascript">
+<!--//
+function appendCode(addCode) {
+	var targetDom = window.opener.xoopsGetElementById('<{$target}>');
+	if (targetDom.createTextRange && targetDom.caretPos){
+  		var caretPos = targetDom.caretPos;
+		caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) 
+== ' ' ? addCode + ' ' : addCode;  
+	} else if (targetDom.getSelection && targetDom.caretPos){
+		var caretPos = targetDom.caretPos;
+		caretPos.text = caretPos.text.charat(caretPos.text.length - 1)  
+== ' ' ? addCode + ' ' : addCode;
+	} else {
+		targetDom.value = targetDom.value + addCode;
+  	}
+	window.close();
+	return;
+}
+//-->
+</script>
+<style type="text/css" media="all">
+body {margin: 0;}
+img {border: 0;}
+table {width: 100%; margin: 0;}
+a:link {color: #3a76d6; font-weight: bold; background-color: transparent;}
+a:visited {color: #9eb2d6; font-weight: bold; background-color: transparent;}
+a:hover {color: #e18a00; background-color: transparent;}
+table td {background-color: white; font-size: 12px; padding: 0; border-width: 0; vertical-align: top; font-family: Verdana, Arial, Helvetica, sans-serif;}
+table#imagenav td {vertical-align: bottom; padding: 5px;}
+table#imagemain td {border-right: 1px solid silver; border-bottom: 1px solid silver; padding: 5px; vertical-align: middle;}
+table#imagemain th {border: 0; background-color: #2F5376; color:white; font-size: 12px; padding: 5px; vertical-align: top; text-align:center; font-family: Verdana, Arial, Helvetica, sans-serif;}
+table#header td {width: 100%; background-color: #2F5376; vertical-align: middle;}
+table#header td#headerbar {border-bottom: 1px solid silver; background-color: #dddddd;}
+div#pagenav {text-align:center;}
+div#footer {text-align:right; padding: 5px;}
+</style>
+</head>
+
+<body onload="window.resizeTo(<{$xsize}>, <{$ysize}>);">
+  <table id="header" cellspacing="0">
+    <tr>
+      <td><a href="<{$xoops_url}>/"><img src="<{$xoops_url}>/images/logo.gif" width="150" height="80" alt="" /></a></td><td> </td>
+    </tr>
+    <tr>
+      <td id="headerbar" colspan="2"> </td>
+    </tr>
+  </table>
+
+  <form action="imagemanager.php" method="get">
+    <table cellspacing="0" id="imagenav">
+      <tr>
+        <td>
+          <select name="cat_id" onchange="location='<{$xoops_url}>/imagemanager.php?target=<{$target}>&amp;cat_id='+this.options[this.selectedIndex].value"><{$cat_options}></select> <input type="hidden" name="target" value="<{$target}>" /><input type="submit" value="<{$lang_go}>" />
+        </td>
+
+        <{if $show_cat > 0}>
+        <td align="right"><a href="<{$xoops_url}>/imagemanager.php?target=<{$target}>&amp;op=upload&amp;imgcat_id=<{$show_cat}>"><{$lang_addimage}></a></td>
+        <{/if}>
+
+      </tr>
+    </table>
+  </form>
+
+  <{if $image_total > 0}>
+
+  <table cellspacing="0" id="imagemain">
+    <tr>
+      <th><{$lang_imagename}></th>
+      <th><{$lang_image}></th>
+      <th><{$lang_imagemime}></th>
+      <th><{$lang_align}></th>
+    </tr>
+
+    <{section name=i loop=$images}>
+    <tr align="center">
+      <td><input type="hidden" name="image_id[]" value="<{$images[i].id}>" /><{$images[i].nicename}></td>
+      <td><img src="<{$images[i].src}>" alt="" /></td>
+      <td><{$images[i].mimetype}></td>
+      <td><a href="#" onclick="javascript:appendCode('<{$images[i].lxcode}>');"><img src="<{$xoops_url}>/images/alignleft.gif" alt="Left" /></a> <a href="#" onclick="javascript:appendCode('<{$images[i].xcode}>');"><img src="<{$xoops_url}>/images/aligncenter.gif" alt="Center" /></a> <a href="#" onclick="javascript:appendCode('<{$images[i].rxcode}>');"><img src="<{$xoops_url}>/images/alignright.gif" alt="Right" /></a></td>
+    </tr>
+    <{/section}>
+  </table>
+
+  <{/if}>
+
+  <div id="pagenav"><{$pagenav}></div>
+
+  <div id="footer">
+    <input value="<{$lang_close}>" type="button" onclick="javascript:window.close();" />
+  </div>
+
+  </body>
+</html>

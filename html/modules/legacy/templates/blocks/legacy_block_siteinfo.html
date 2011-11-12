@@ -1,0 +1,27 @@
+<table class="outer" cellspacing="0">
+<{if $block.showgroups == true}>
+<{foreach item=group from=$block.groups}>
+  <tr>
+    <th colspan="2"><{$group.name}></th>
+  </tr>
+<{foreach item=user from=$group.users}>
+  <tr>
+    <td class="even" valign="middle" align="center">
+      <img src="<{$user.avatar}>" alt="" width="32" /><br />
+      <a href="<{$xoops_url}>/userinfo.php?uid=<{$user.id}>"><{$user.name}></a>
+    </td>
+    <td class="odd" width="20%" align="right" valign="middle">
+      <{$user.msglink}>
+    </td>
+  </tr>
+<{/foreach}>
+<{/foreach}>
+<{/if}>
+</table>
+<br />
+<div style="margin: 3px; text-align:center;">
+  <img src="<{$block.logourl}>" alt="" border="0" /><br />
+<{if $block.recoomendtime != 0}>
+  <a href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=friend&amp;op=sendform&amp;t=<{$block.recoomendtime}>','friend',<{$block.popup_width}>,<{$block.popup_height}>)"><{$smarty.const._MB_LEGACY_RECO}></a>
+<{/if}>
+</div>

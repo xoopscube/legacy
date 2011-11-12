@@ -1,0 +1,16 @@
+<ul id="usermenu">
+<li class="userMenuTop"><a class="menuTop" href="<{$xoops_url}>/user.php"><{$smarty.const._MB_LEGACY_VACNT}></a></li>
+<li class="userMenuEdit"><a href="<{$xoops_url}>/edituser.php"><{$smarty.const._MB_LEGACY_EACNT}></a></li>
+<li class="userMenuComments"><a href="<{$xoops_url}>/notifications.php"><{$smarty.const._MB_LEGACY_NOTIF}></a></li>
+<li class="userMenuLogout"><a href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._MB_LEGACY_LOUT}></a></li>
+<{if $block.flagShowInbox}>
+<{if $block.new_messages > 0}>
+<li class="userMenuEmail"><a class="highlight" href="<{$block.inbox_url}>"><{$smarty.const._MB_LEGACY_INBOX}> (<span class="newMessages"><{$block.new_messages}></span>)</a></li>
+<{else}>
+<li class="userMenuEmail"><a href="<{$block.inbox_url}>"><{$smarty.const._MB_LEGACY_INBOX}></a></li>
+<{/if}>
+<{/if}>
+<{if $block.show_adminlink}>
+<li class="userMenuAdmin"><a href="<{$xoops_url}>/admin.php"><{$smarty.const._MB_LEGACY_ADMENU}></a></li>
+<{/if}>
+</ul>

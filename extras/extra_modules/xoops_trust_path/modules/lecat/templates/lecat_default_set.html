@@ -1,0 +1,31 @@
+<div id="lecat">
+<{include file="db:`$dirname`_inc_menu.html" dirname=$dirname}>
+
+  <h1><{$smarty.const._MD_LECAT_LANG_DEFAULT_PERMISSIONS}></h1>
+  <form action="<{xoops_cooluri dirname=$dirname dataname=permit action=edit}>" method="post">
+    <{xoops_token form=$actionFormPermit}>
+    <{xoops_input type=hidden name=permit_id value=$actionFormPermit->get('permit_id')}>
+    <{xoops_input type=hidden name=cat_id value=$actionFormPermit->get('cat_id')}>
+    <{assign var=targetCat value=$permitObj->getTargetCat()}>
+    <table class="outer ansCatPermit">
+      <tr>
+        <th style="width:150px;">Group</th>
+        <{foreach item=act from=$permitObj->mActionArr.name}>
+          <th><{$act}></th>
+        <{/foreach}>
+      </tr>
+      <{foreach item=group key=gKey from=$permitObj->mGroupArr.groupid}>
+        <tr>
+          <{xoops_input type=hidden name=permit_ids[$group] value=$permitObj->mPermit.permit_id[$gKey].$targetCat}>
+          <th><{$permitObj->mGroupArr.name[$gKey]}></th>
+          <{foreach item=permitKey key=oKey from=$permitObj->mActionArr.key}>
+            <td>
+            <input type="checkbox" name="permission[<{$group}>][<{$permitKey}>]" value="1"<{if $permitObj->checkPermitGroup($gKey, $oKey)==1}> checked="checked"<{/if}>>
+            </td>
+          <{/foreach}>
+        </tr>
+      <{/foreach}>
+    </table>
+    <input type="submit" class="formButton" value="<{$smarty.const._SUBMIT}>"/>
+  </form>
+</div>

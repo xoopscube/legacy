@@ -1,0 +1,28 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_MODUNINSTALL_SUCCESS}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODUNINSTALL_SUCCESS}></h3>
+
+<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODUNINSTALL_LOG}></h4>
+
+<div class="sqlDelete">
+<ul>
+<{foreach item=msg from=$log}>
+  <{if $msg.type == "error"}>
+    <li class="legacy_module_error"><{$msg.message|xoops_escape}></li>
+  <{elseif $msg.type == "warning"}>
+    <li class="legacy_module_warning"><{$msg.message|xoops_escape}></li>
+  <{else}>
+    <li class="legacy_module_message"><{$msg.message|xoops_escape}></li>
+  <{/if}>
+<{/foreach}>
+</ul>
+</div>
+
+<div class="tips">
+<div class="legacy_module_return"><img src="<{"icons/module.png"|theme}>" alt="" title="" /> <a href="index.php?action=ModuleList"><{$smarty.const._AD_LEGACY_LANG_MODLIST}></a></div>
+<div class="legacy_module_return"><img src="<{"icons/module_add.png"|theme}>" alt="" title="" /> <a href="index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></div>
+</div>

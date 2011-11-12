@@ -1,0 +1,24 @@
+<h4>Standard Cache Module</h4>
+<h5>Summary</h5>
+<p>This module adds the standard cache policy to Legacy System. The policy orders Legacy System to make cache files for every groups except the webmaster group.</p>
+
+<h5>What is this?</h5>
+<p>Legacy System module has contents cache feature for modules and blocks. The cache feature saves the content of their work to files, if cache setting is active. And, if cache files are available, Legacy System prevents the logic and SQL of blocks and modules. That's very powerful but very dangerous, because there is not the cache policy.</p>
+
+<p>For example, if Legacy System makes the cache file for administrators' access, anonymous users may see the cache file having secret informations which only administrators can access. For security, Legacy System should make the cache file for every groups. But, this way makes too many files in your server. In other words, Legacy System doesn't know what you hope.</p>
+
+<p>This module is one of cache modules and adds the standard cache policy to Legacy System. The policy orders Legacy System to make the cache file for every groups except the administrator group.</p>
+
+<p>Therefore, the cache policy of this module makes many files, so you should install "cache clear block". This block is imvisible and deletes all of cache files including extra cache files, with interval timer. </p>
+
+<h5>The cache clear block</h5>
+<h6>Summary</h6>
+<p>This block is <strong>invisible</strong> and deletes all of cache files including extra cache files, with interval timer.</p>
+
+<h6>Options</h6>
+<p><img src="<{'cacheclear_block_option.png'|helpimage}>" /></p>
+
+  <dl>
+    <dt>Èasový interval (min)</dt>
+    <dd>Specifikujte interval.</dd>
+  </dl>

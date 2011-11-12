@@ -1,0 +1,10 @@
+<FilesMatch "(\.php|\.sql|\.tpl|\.html|README.txt)$">
+order deny,allow
+deny from all
+</FilesMatch>
+
+<FilesMatch "(\.png|index.php|\.css|\.js)$">
+order deny,allow
+deny from all
+Allow from all
+</FilesMatch>

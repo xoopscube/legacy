@@ -1,0 +1,62 @@
+<?php
+
+define('_MD_LEGACY_ERROR_DBUPDATE_FAILED', "Ошибка обновления БД");
+define('_MD_LEGACY_ERROR_EMAIL', "{0} неверный Email");
+define('_MD_LEGACY_ERROR_INCORRECTLOGIN', "Ошибка авторизации!");
+define('_MD_LEGACY_ERROR_MASK', "Неверный формат {0}.");
+define('_MD_LEGACY_ERROR_MAXLENGTH', "Введите {0:toLower} содержащее {1} или меньше символов.");
+define('_MD_LEGACY_ERROR_OBJECTEXIST', "Неверные данные в {0:toLower}.");
+define('_MD_LEGACY_ERROR_PERMISSION', "В доступе отказано");
+define('_MD_LEGACY_ERROR_REQUIRED', "{0} обязательное поле.");
+define('_MD_LEGACY_ERROR_SEARCH_NOT_ENABLED', "Поиск временно отключен.");
+define('_MD_LEGACY_ERROR_SEARCH_QUERY_REQUIRED', "Введите поисковое слово.");
+define('_MD_LEGACY_ERROR_YOU_MUST_UPLOAD', "You must upload an image file.");
+define('_MD_LEGACY_FORMAT_SEARCH_SEPARATOR', "/[\s,]+/");
+define('_MD_LEGACY_LANG_ANDOR', "AndOr");
+define('_MD_LEGACY_LANG_CLICKASMILIE', "Щелкните по смайлику, чтобы вставить его в свое сообщение.");
+define('_MD_LEGACY_LANG_CODE', "Код");
+define('_MD_LEGACY_LANG_COM_EXPARAMS', "Дополнительные параметры комментария");
+define('_MD_LEGACY_LANG_COM_ICON', "Иконка");
+define('_MD_LEGACY_LANG_COM_ID', "ID");
+define('_MD_LEGACY_LANG_COM_IP', "IP");
+define('_MD_LEGACY_LANG_COM_ITEMID', "Item ID");
+define('_MD_LEGACY_LANG_COM_MODID', "Module ID");
+define('_MD_LEGACY_LANG_COM_PID', "PID");
+define('_MD_LEGACY_LANG_COM_ROOTID', "Root ID");
+define('_MD_LEGACY_LANG_COM_TEXT', "Комментарий");
+define('_MD_LEGACY_LANG_COM_TITLE', "Заголовок");
+define('_MD_LEGACY_LANG_COMMENT_RULE', "Comment rules");
+define('_MD_LEGACY_LANG_DOBR', "Вставлять перенос строки автоматически");
+define('_MD_LEGACY_LANG_DOHTML', "Включить HTML теги");
+define('_MD_LEGACY_LANG_DOSMILEY', "Использовать смайлики");
+define('_MD_LEGACY_LANG_DOXCODE', "Включить коды XOOPS");
+define('_MD_LEGACY_LANG_EMOTION', "Emoticon");
+define('_MD_LEGACY_LANG_ERROR', "ошибка");
+define('_MD_LEGACY_LANG_FMAIL', "Email друга");
+define('_MD_LEGACY_LANG_FNAME', "Имя друга");
+define('_MD_LEGACY_LANG_IMAGE', "image");
+define('_MD_LEGACY_LANG_IMAGE_FILE', "Файл изображения");
+define('_MD_LEGACY_LANG_IMAGE_MIMETYPE', "mimetype изображения");
+define('_MD_LEGACY_LANG_IMAGE_NICENAME', "Image nicename");
+define('_MD_LEGACY_LANG_IMAGE_POSITION', "Image position");
+define('_MD_LEGACY_LANG_IMAGE_UPLOAD', "Image upload");
+define('_MD_LEGACY_LANG_IMGCAT_ID', "Кат. id");
+define('_MD_LEGACY_LANG_MID', "mid");
+define('_MD_LEGACY_LANG_NEXT_PAGE', "След. страница");
+define('_MD_LEGACY_LANG_OPTION', "Option");
+define('_MD_LEGACY_LANG_POST', "Post");
+define('_MD_LEGACY_LANG_PREV_PAGE', "Пред. страница");
+define('_MD_LEGACY_LANG_SHOW_ALL', "Показать всё");
+define('_MD_LEGACY_LANG_SMILIES', "Смайлики");
+define('_MD_LEGACY_LANG_UID', "uid");
+define('_MD_LEGACY_LANG_YMAIL', "Ваш Email");
+define('_MD_LEGACY_LANG_YNAME', "Ваше имя");
+define('_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_CONFIRM', "Установка завершена!");
+define('_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_WARNING', "Удалите каталог {0} чтобы исключить возможность установки анонимными пользователями.");
+define('_MD_LEGACY_MESSAGE_LOGGEDOUT', "Вы успешно разлогинились.");
+define('_MD_LEGACY_MESSAGE_LOGIN_SUCCESS', "Авторизация прошла успешно.");
+define('_MD_LEGACY_MESSAGE_THANKYOUFORVISIT', "Добро пожаловать на наш сайт!");
+
+define('_MB_LEGACY_MAINMENU_EXPAND_SUB', "Show all submenus");
+
+?>

@@ -1,0 +1,108 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=ImagecategoryList"><{$smarty.const._MI_LEGACY_MENU_IMAGE_MANAGE}></a>
+  <{if $actionForm->get('imgcat_id')}>
+    &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_IMAGECATEGORY_EDIT}></span>
+  <{else}>
+    &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_IMAGECATEGORY_NEW}></span>
+  <{/if}>
+</div>
+
+<{if $actionForm->get('imgcat_id')}>
+  <h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_IMAGECATEGORY_EDIT}></h3>
+<{else}>
+  <h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_IMAGECATEGORY_NEW}></h3>
+  <div class="tips"><{$smarty.const._AD_LEGACY_TIPS_IMGCAT_STORETYPE}></div>
+<{/if}>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form action="index.php?action=ImagecategoryEdit" method="post">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=imgcat_id value=$actionForm->get('imgcat_id')}>
+  <table class="outer">
+    <tr>
+      <th colspan="2">
+        <{if $actionForm->get('imgcat_id')}>
+          <{$smarty.const._AD_LEGACY_LANG_IMAGECATEGORY_EDIT}>
+        <{else}>
+          <{$smarty.const._AD_LEGACY_LANG_IMAGECATEGORY_NEW}>
+        <{/if}>
+      </th>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_NAME}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=imgcat_name value=$actionForm->get('imgcat_name') size=40 maxlength=100}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_READ_GROUPS}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <select  size='5' name='readgroups[]' multiple='multiple'>
+          <{xoops_optionsArray id=readgroups[] from=$groupArr value=groupid label=name default=$actionForm->get('readgroups')}>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_UPLOAD_GROUPS}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <select  size='5' name='uploadgroups[]' multiple='multiple'>
+          <{xoops_optionsArray id=uploadgroups[] from=$groupArr value=groupid label=name default=$actionForm->get('uploadgroups')}>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_MAXSIZE}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=imgcat_maxsize value=$actionForm->get('imgcat_maxsize')}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_MAXWIDTH}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=imgcat_maxwidth value=$actionForm->get('imgcat_maxwidth')}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_MAXHEIGHT}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=imgcat_maxheight value=$actionForm->get('imgcat_maxheight')}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_DISPLAY}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=checkbox name=imgcat_display value=1 default=$actionForm->get('imgcat_display')}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_WEIGHT}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=imgcat_weight value=$actionForm->get('imgcat_weight')}>
+      </td>
+    </tr>
+    <{if $actionForm->get('imgcat_id') == 0}>
+      <tr>
+        <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_STORETYPE}></td>
+        <td class="<{cycle values="odd,even"}>">
+          <label><{xoops_input type=radio name=imgcat_storetype value="file" default=$actionForm->get('imgcat_storetype')}>FILE</label><br />
+          <label><{xoops_input type=radio name=imgcat_storetype value="db" default=$actionForm->get('imgcat_storetype')}>DB</label>
+        </td>
+      </tr>
+    <{/if}>
+    <tr>
+      <td colspan="2" class="foot">
+        <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      </td>
+    </tr>
+  </table>
+</form>

@@ -1,0 +1,85 @@
+<script type="text/javascript">
+<!--//
+function appendCode(addCode) {
+var targetDom = window.opener.xoopsGetElementById('<{$target}>');
+if (window.opener.document.selection) { //for IE
+if (targetDom.createTextRange && targetDom.caretPos){
+var caretPos = targetDom.caretPos;
+caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? addCode + ' ' : addCode;
+} else if (targetDom.getSelection && targetDom.caretPos){
+var caretPos = targetDom.caretPos;
+caretPos.text = caretPos.text.charat(caretPos.text.length - 1) == ' ' ? addCode + ' ' : addCode;
+} else {
+targetDom.value = targetDom.value + addCode;
+}
+} else if (targetDom.setSelectionRange) { // for Fx, Chrome, Opera
+var startPos = targetDom.selectionStart;
+var endPos = targetDom.selectionEnd;
+var lastPos = startPos + addCode.length;
+targetDom.value = targetDom.value.substring(0, startPos) + addCode
++ targetDom.value.substring(endPos, targetDom.value.length);
+targetDom.setSelectionRange(lastPos, lastPos); // Move caret to inserted text end
+} else { // for Other Browser
+targetDom.value = targetDom.value + addCode;
+}
+
+window.close();
+return;
+}
+
+//-->
+</script>
+
+<form method="get" action="<{$smarty.const.XOOPS_URL}>/imagemanager.php?op=list" style="margin:10px;">
+  <input type="hidden" name="target" value="<{$target}>" />
+  <select name="imgcat_id" onchange="location='<{$smarty.const.XOOPS_URL}>/imagemanager.php?target=<{$target}>&amp;imgcat_id='+this.options[this.selectedIndex].value">
+    <option id="imgcat_id_0" value="0">---</option>
+    <{xoops_optionsArray id=imgcat_id from=$categoryArr value=imgcat_id label=imgcat_name default=$imgcatId}>
+  </select>
+  <input type="submit" value="<{$smarty.const._SUBMIT}>" />
+</form>
+
+<{if $hasUploadPerm}>
+  <div style="text-align:right; margin:5px;">[ <a href="<{$smarty.const.XOOPS_URL}>/imagemanager.php?op=upload&amp;imgcat_id=<{$category->getShow('imgcat_id')}>&amp;target=<{$target|xoops_escape}>"><{$smarty.const._MD_LEGACY_LANG_IMAGE_UPLOAD}></a> ]</div>
+<{/if}>
+
+<table class="outer" cellspacing="1">
+  <tr>
+    <th><{$smarty.const._MD_LEGACY_LANG_IMAGE_NICENAME}>
+    <th><{$smarty.const._MD_LEGACY_LANG_IMAGE}>
+    <th><{$smarty.const._MD_LEGACY_LANG_IMAGE_MIMETYPE}>
+    <th><{$smarty.const._MD_LEGACY_LANG_IMAGE_POSITION}>
+  </tr>
+  <{foreach item=obj from=$objects}>
+    <tr class="<{cycle values='odd,even'}>" style="text-align:center;">
+      <td><{$obj->getShow('image_nicename')}></td>
+      <td>
+        <{if $obj->mImageCategory != null}>
+          <{if $obj->mImageCategory->get('imgcat_storetype') == 'file'}>
+            <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>" />
+          <{else}>
+            <img src="<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>" />
+          <{/if}>
+        <{/if}>
+      </td>
+      <td><{$obj->getShow('image_mimetype')}></td>
+      <td>
+        <{if $obj->mImageCategory->get('imgcat_storetype') == 'file'}>
+          <a href="#" onclick="javascript:appendCode('[img align=left]<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/alignleft.gif" alt="Left" /></a>
+          <a href="#" onclick="javascript:appendCode('[img]<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/aligncenter.gif" alt="Center" /></a>
+          <a href="#" onclick="javascript:appendCode('[img align=right]<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/alignright.gif" alt="Left" /></a>
+        <{else}>
+          <a href="#" onclick="javascript:appendCode('[img align=left]<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/alignleft.gif" alt="Left" /></a>
+          <a href="#" onclick="javascript:appendCode('[img]<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/aligncenter.gif" alt="Center" /></a>
+          <a href="#" onclick="javascript:appendCode('[img align=right]<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/alignright.gif" alt="Left" /></a>
+        <{/if}>
+      </td>
+    </tr>
+  <{/foreach}>
+</table>
+
+<div class="pagenavi" style="text-align:center; margin:5px;"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+
+<div id="footer" style="text-align:center; margin:5px;">
+  <input value="<{$smarty.const._CLOSE}>" type="button" onclick="javascript:window.close();" />
+</div>

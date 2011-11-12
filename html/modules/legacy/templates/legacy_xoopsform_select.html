@@ -1,0 +1,9 @@
+<{if $element->isMultiple() != false}>
+  <select size='<{$element->getSize()}>' name='<{$element->getName()}>[]' id='<{$element->getName()}>' multiple='multiple' <{$element->getExtra()}>>
+<{else}>
+   <select size='<{$element->getSize()}>' name='<{$element->getName()}>' id='<{$element->getName()}>' <{$element->getExtra()}>>
+<{/if}>
+<{foreach from=$element->getOptions() key=value item=name}>
+  <option id='<{$element->getName()}>_<{$value|xoops_escape}>' value='<{$value|xoops_escape}>' <{if count($element->getValue()) > 0 && in_array($value, $element->getValue())}> selected='selected'<{/if}>><{$name}></option>
+<{/foreach}>
+</select>

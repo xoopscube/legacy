@@ -1,0 +1,86 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_CONF}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_CONF}></h3>
+
+<div class="confirm"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_ADVICE|replace:"_%s_":$module->getShow('name')}></div>
+
+<{if $isPhasedMode}>
+  <div class="tips">
+    <{$smarty.const._AD_LEGACY_TIPS_PHASED_UPGRADE_MODE}>
+  </div>
+<{/if}>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form method="post" action="">
+<{xoops_token form=$actionForm}>
+<{xoops_input type=hidden name=dirname value=$module->get('dirname')}>
+<table class="outer">
+  <tr>
+    <th colspan="3"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_CONF}></th>
+  </tr>
+  <tr>
+    <td class="head legacy_list_image" rowspan="6">
+      <img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->getShow('name')}>" title="<{$module->getShow('name')}>" />
+      <div class="legacy_list_imagetitle"><{$module->modinfo.name|xoops_escape}></div>
+    </td>
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></td>
+	<td class="<{cycle values='odd,even'}>"><{$module->getShow('name')}></td>
+  </tr>
+  <tr>
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_DIR_NAME}></td>
+	<td class="<{cycle values='odd,even'}>"><{$module->getShow('dirname')}></td>
+  </tr>
+  <tr>
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_VERSION}></td>
+	<td class="<{cycle values='odd,even'}>"><{$currentVersion|string_format:"%01.2f"}>
+	<{if $currentVersion != $targetVersion}>
+	  &raquo; <span class="legacy_module_versionMsg"><{$targetVersion|string_format:"%01.2f"}></span>
+	  <{if $isPhasedMode}>(Phased Mode)<{/if}>
+	<{/if}>
+	</td>
+  </tr>
+  <tr>
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_MID}></td>
+	<td class="<{cycle values='odd,even'}>">
+	  <{if $module->get('mid')}>
+	    <{$module->getShow('mid')}>
+	  <{else}>
+	    --
+	  <{/if}>
+	</td>
+  </tr>
+  <tr>
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}></td>
+	<td class="<{cycle values='odd,even'}>">
+	  <{if $module->get('last_update')}>
+        <{$module->get('last_update')|xoops_formattimestamp:l}>
+      <{else}>
+        --
+      <{/if}>
+    </td>
+  </tr>
+  <tr>
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_DESC}></td>
+	<td class="<{cycle values='odd,even'}>"><{$module->modinfo.description|xoops_escape}></td>
+  </tr>
+  <tr>
+    <td class="foot" colspan="3">
+      <input class="formButton" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" />
+      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+    </td>
+  </tr>
+</table>
+</form>

@@ -1,0 +1,14 @@
+/*  
+
+	XOOPS Cube Legacy 
+    http://xoopscube.org  */
+
+/*------------------------------------------------------- IMPORT */
+
+
+@import "layout.css";
+@import "style-rightcolumn.css";
+/*@import "style-leftcolumn.css";          Navigation Left side  */
+@import "menu_blocks.css";
+@import "common.css";
+@import "item.css";

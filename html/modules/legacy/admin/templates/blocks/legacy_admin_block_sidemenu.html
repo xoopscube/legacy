@@ -1,0 +1,95 @@
+<{foreach item=module from=$modules}>
+
+  <{if $module->hasAdminIndex()}>
+    <div id="t<{$module->mXoopsModule->getShow('mid')}>" class="head">
+      <a href="javascript:void(0)" onclick="ccToggle(<{$module->mXoopsModule->getShow('mid')}>)"><img src="<{"design/max.png"|theme}>" alt="" id="i<{$module->mXoopsModule->getShow('mid')}>" /></a>
+      <a href="<{$module->getAdminIndex()|xoops_escape:link}>"><{$module->mXoopsModule->getShow('name')}></a>
+    </div>
+
+    <div id="c<{$module->mXoopsModule->getShow('mid')}>" class="submenu">
+      <ul>
+      <{if $module->getAdminMenu()}>
+        <{foreach item=menu from=$module->getAdminMenu()}>
+          <{if $menu.show !== false}>
+            <li><a href="<{$menu.link|xoops_escape:link}>"><{$menu.title|xoops_escape}></a></li>
+          <{/if}>
+        <{/foreach}>
+
+          <{if $module->mXoopsModule->getInfo('blocks') && $module->mXoopsModule->getShow('dirname') != "legacy" && $module->mXoopsModule->getShow('dirname') != "altsys"  && $module->mXoopsModule->getShow('dirname') != "system"}>
+          <li>
+          <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList&amp;dirname=<{$module->mXoopsModule->getShow('dirname')}>">
+          <img src="<{"icons/blocks.png"|theme}>" alt="" title="" />&nbsp;
+          <{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}>
+          </a>
+          </li>
+          <li>
+          <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockInstallList&amp;dirname=<{$module->mXoopsModule->getShow('dirname')}>">
+          <img src="<{"icons/block_add.png"|theme}>" alt="" title="" />&nbsp;
+          <{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}>
+          </a>
+          </li>
+          <{/if}>
+          
+          <{if $module->mXoopsModule->getShow('dirname') != "legacyRender" && $module->mXoopsModule->getShow('dirname') != "altsys"  && $module->mXoopsModule->getShow('dirname') != "system"}>
+          <{foreach item=tplmodule from=$tplmodules}>
+          <{if $module->mXoopsModule->getShow('dirname') == $tplmodule}>			
+          <li>
+          <a href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplfileList&amp;tpl_module=<{$module->mXoopsModule->getShow('dirname')}>&amp;sort=-9">
+          <img src="<{"icons/templates.png"|theme}>" alt="" title="" />&nbsp;
+          <{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}>
+          </a>
+          </li>
+          <{/if}>
+          <{/foreach}>
+          <{/if}>
+          
+          <{if $module->mXoopsModule->getInfo('hasComments')}>
+          <li>
+          <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=CommentList&amp;com_modid=<{$module->mXoopsModule->getShow('mid')}>&amp;sort=-8">
+          <img src="<{"icons/comments.png"|theme}>" alt="" title="" />&nbsp;
+          <{$smarty.const._MI_LEGACY_MENU_COMMENT_MANAGE}>
+          </a>
+          </li>
+          <{/if}>
+          
+          <{if $module->mXoopsModule->hasNeedUpdate()}>
+          <li>
+          <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$module->mXoopsModule->getShow('dirname')}>">
+          <img src="<{"icons/upgrade.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" />&nbsp;
+          <{$smarty.const._AD_LEGACY_LANG_UPGRADE}>
+          </a>
+          </li>
+          
+          <{else}>
+          
+          <li>
+          <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$module->mXoopsModule->getShow('dirname')}>">
+          <img src="<{"icons/update.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" />&nbsp;
+          <{$smarty.const._AD_LEGACY_LANG_UPGRADE}>
+          </a>
+          </li>
+          <{/if}>
+          
+          <li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleEdit&amp;mid=<{$module->mXoopsModule->getShow('mid')}>">
+          <img src="<{"icons/module_edit.png"|theme}>" alt="" title="" />&nbsp;
+          <{$smarty.const._EDIT}>
+          </a>
+          </li>
+          <li>
+          <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleInfo&amp;dirname=<{$module->mXoopsModule->getShow('dirname')}>">
+          <img src="<{"icons/info.png"|theme}>" alt="" title="" />&nbsp;
+          <{$smarty.const._AD_LEGACY_LANG_INFORMATION}>
+          </a>
+          </li>
+
+		  <{else}>
+        
+          <li>
+          <{$smarty.const._AD_LEGACY_LANG_NO_SETTING}>
+          </li>
+      <{/if}>
+      </ul>
+    </div>
+  <{/if}>
+
+<{/foreach}>

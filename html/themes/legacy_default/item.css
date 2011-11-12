@@ -1,0 +1,71 @@
+/*  
+
+	XOOPS Cube Legacy 
+    http://xoopscube.org  */
+
+
+/*------------------------------------------------------- ITEMS */
+
+.breadcrumbs 
+	{
+	style="margin:12px 6px;
+	}
+
+.item 
+	{
+	padding: 10px 0px;
+	}
+
+.itemHead 
+	{
+	padding: 4px;
+	border-bottom:#E2E2FC 1px solid;
+	}
+
+.itemTitle 
+	{
+	color: #344587;
+	font-size: 1.7em; 
+	}
+
+#container .itemTitle a, #container .itemTitle a:visited 
+	{
+	color: #344587;
+	text-decoration: none;
+	}
+
+#container  .itemTitle a:hover 
+	{
+	color:#F89D07;
+	}
+
+.itemBody 
+	{
+	padding:4px 0px;
+	}
+
+.itemInfo 
+	{	
+	background: url(images/bg_hbar.gif) repeat-x;
+	padding: 1.5em 1em;
+	text-align: right;
+	}
+
+.itemText 
+	{
+	margin:0px;
+	padding: 8px 4px;
+	line-height: 1.5em;
+	}
+
+.itemFoot 
+	{
+	text-align: right;
+	margin: 0;
+	padding: 4px;
+	}
+
+.itemInfo, .itemPoster, .itemPostDate, .itemStats, .itemAdminLink, .itemPermaLink 
+	{
+	font-size: 0.9em;
+	}

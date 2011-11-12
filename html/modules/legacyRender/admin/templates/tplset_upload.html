@@ -1,0 +1,46 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=TplsetList"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_MANAGE}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_UPLOAD}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_UPLOAD}></h3>
+
+<div class="tips">
+  <{$smarty.const._AD_LEGACYRENDER_TIPS_TPLSET_UPLOAD}>
+</div>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form action="./index.php?action=TplsetUpload" method="post" enctype="multipart/form-data">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=tplset_id value=$actionForm->get('tplset_id')}>
+  <table class="outer">
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_UPLOAD_FILE}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=file name=upload}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_NAME}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=tplset_name size=50 maxlength=255}>
+      </td>
+    </tr>
+    <tr>
+      <td class="foot" colspan="2">
+        <input class="formButton" type="submit" value="<{$smarty.const._AD_LEGACYRENDER_LANG_UPLOAD}>" />
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      </td>
+    </tr>
+  </table>
+</form>

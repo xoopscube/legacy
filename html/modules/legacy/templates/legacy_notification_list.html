@@ -1,0 +1,40 @@
+<h4><{$smarty.const._NOT_ACTIVENOTIFICATIONS}></h4>
+<form name="notificationlist" action="notifications.php" method="post">
+  <{xoops_token form=$actionForm}>
+  <table class="outer">
+    <tr>
+      <th><input name="allbox" id="allbox" onclick="xoopsCheckAll('notificationlist', 'allbox');" type="checkbox" value="<{$smarty.const._NOT_CHECKALL}>" /></th>
+      <th><{$smarty.const._NOT_EVENT}></th>
+      <th><{$smarty.const._NOT_CATEGORY}></th>
+      <th><{$smarty.const._NOT_ITEMID}></th>
+      <th><{$smarty.const._NOT_ITEMNAME}></th>
+    </tr>
+    <{foreach item=module from=$modules}>
+      <tr>
+        <td class="head"><input name="del_mod[<{$module.id}>]" id="del_mod_<{$module.id}>" onclick="xoopsCheckGroup('notificationlist', 'del_mod_<{$module.id|escape}>', 'del_not_<{$module.id|escape}>');" type="checkbox" value="<{$module.id}>" /></td>
+        <td class="head" colspan="4"><{$smarty.const._NOT_MODULE}>: <{$module.name}></td>
+      </tr>
+      <{foreach item=category from=$module.categories}>
+        <{foreach item=item from=$category.items}>
+          <{foreach item=notification from=$item.notifications}>
+            <tr>
+              <{cycle values=odd,even assign=class}>
+              <td class="<{$class}>"><input type="checkbox" name="del_not[<{$module.id}>][]" id="del_not_<{$module.id}>_<{$notification.id}>" value="<{$notification.id}>" /></td>
+              <td class="<{$class}>"><{$notification.event_title}></td>
+              <td class="<{$class}>"><{$notification.category_title}></td>
+              <td class="<{$class}>"><{if $item.id != 0}><{$item.id}><{/if}></td>
+              <td class="<{$class}>"><{if $item.id != 0}><{if $item.url != ''}><a href="<{$item.url}>"><{/if}><{$item.name}><{if $item.url != ''}></a><{/if}><{/if}></td>
+            </tr>
+          <{/foreach}>
+        <{/foreach}>
+      <{/foreach}>
+    <{/foreach}>
+  <tr>
+    <td class="foot" colspan="5">
+      <input type="submit" name="delete_cancel" value="<{$smarty.const._CANCEL}>" />
+      <input type="reset" name="delete_reset" value="<{$smarty.const._NOT_CLEAR}>" />
+      <input type="submit" name="delete" value="<{$smarty.const._DELETE}>" />
+    </td>
+  </tr>
+  </table>
+</form>

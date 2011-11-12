@@ -1,0 +1,75 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_CONF}></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_CONF}></h3>
+
+<div class="confirm"><{$smarty.const._AD_LEGACY_MESSAGE_CONFIRM_UPDATE_MODULE}></div>
+
+<form method="post">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=confirm value=1}>
+<table class="outer">
+  <tr>
+    <th><{$smarty.const._AD_LEGACY_LANG_MOD_MID}></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_WEIGHT}></th>
+    <th><{$smarty.const._AD_LEGACY_LANG_ISACTIVE}></th>
+  </tr>
+
+<{foreach item=mid from=$mids}>
+  <tr class="<{cycle values='odd,even'}>">
+    <td class="legacy_list_id"><{$mid}></td>
+    <td class="legacy_list_name">
+      <{if $actionForm->get('name',$mid) == $moduleObjects[$mid]->get('name')}>
+        <{$actionForm->get('name',$mid)|xoops_escape}>
+      <{else}>
+         (<{$moduleObjects[$mid]->getShow('name')}>) &raquo; <b  class="legacy_module_error"><{$actionForm->get('name',$mid)|xoops_escape}></b>
+      <{/if}>
+    </td>
+    <td class="legacy_list_order">
+      <{if $actionForm->get('weight',$mid) == $moduleObjects[$mid]->get('weight')}>
+        <{$actionForm->get('weight',$mid)|xoops_escape}>
+      <{else}>
+         (<{$moduleObjects[$mid]->getShow('weight')}>) &raquo; <b  class="legacy_module_error"><{$actionForm->get('weight',$mid)|xoops_escape}></b>
+      <{/if}>
+    </td>
+    <td class="legacy_list_select">
+      <{if $actionForm->get('isactive',$mid)|intval == $moduleObjects[$mid]->get('isactive')}>
+        <{$smarty.const._AD_LEGACY_LANG_NO_CHANGE}>
+      <{else}>
+        (<{if $moduleObjects[$mid]->get('isactive') == 1 }>
+          <{$smarty.const._AD_LEGACY_LANG_ISACTIVE}>
+        <{else}>
+          <{$smarty.const._AD_LEGACY_LANG_DEACTIVATE}>
+        <{/if}>) 
+        &raquo;
+        
+        <{if $actionForm->get('isactive',$mid) == 1}>
+        <b class="legacy_module_error">
+          <{$smarty.const._AD_LEGACY_LANG_ISACTIVE}>
+        <{else}>
+        <b class="legacy_module_warning">
+          <{$smarty.const._AD_LEGACY_LANG_DEACTIVATE}>
+        <{/if}></b>
+      <{/if}>
+      <input type="hidden" name="name[<{$mid}>]" value="<{$actionForm->get('name',$mid)|xoops_escape:edit}>" />
+      <input type="hidden" name="weight[<{$mid}>]" value="<{$actionForm->get('weight',$mid)|xoops_escape:edit}>" />
+      <{if $actionForm->get('isactive',$mid)}>
+        <input type="hidden" name="isactive[<{$mid}>]" value="1" />
+      <{else}>
+        <input type="hidden" name="isactive[<{$mid}>]" value="0" />
+      <{/if}>
+    </td>
+  </tr>
+<{/foreach}>
+  <tr>
+    <td class="foot" colspan="4">
+      <input type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" class="formButton" />
+      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+    </td>
+  </tr>
+</table>
+</form>

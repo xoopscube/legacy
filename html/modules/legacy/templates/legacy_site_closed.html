@@ -1,0 +1,114 @@
+<{php}>
+ob_start();
+header('HTTP/1.1 503 Service Temporarily Unavailable');
+header('Status: 503 Service Temporarily Unavailable');
+header('Retry-After: 3600');
+header('X-Powered-By: XOOPS Cube');
+ob_end_clean();
+ob_end_flush();
+<{/php}>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<title><{$xoops_sitename}></title>
+<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_themecss}>" />
+
+<style type="text/css">
+<!--
+
+#siteclosemsg {
+	background-color:#ddffdf;
+	color:#136C99;
+	font-weight:bold;
+	text-align:center;
+	border-top:1px solid #ddffdf;
+	border-left:1px solid #DDDDFF;
+	border-right:1px solid #AAAAAA;
+	border-bottom:1px solid #AAAAAA;
+	padding:10px;
+	width:80%;
+	margin:55px auto;
+}
+
+#loginformTable {
+	border: 1px solid silver;
+	margin:5px auto;
+	border-top:1px solid #dddddd;
+	border-left:1px solid #dddddd;
+	border-right:1px solid #AAAAAA;
+	border-bottom:1px solid #AAAAAA;
+
+}
+#loginformTable th, #loginformTable td {
+	font-size:14px;
+}
+#loginformTable th {
+	background-color: #c2cdd6;
+	color: #FFFFFF;
+	vertical-align: middle;
+	text-align: center;
+	border-top:2px solid #dddddd;
+	border-left:2px solid #dddddd;
+	border-right:2px solid #AAAAAA;
+	border-bottom:2px solid #AAAAAA;
+	padding : 3px;
+}
+
+#loginformTable td {
+	background-color: #f8f8f8;
+	padding : 5px 15px;
+	color: #000000;
+}
+
+-->
+</style>
+</head>
+<body>
+<div id="layout">
+
+<div id="header">
+<div class="headerlogo">
+<a href="<{$xoops_url}>/"><img src="<{$xoops_imageurl}>images/logo.png" alt="<{$xoops_sitename}>" title="<{$xoops_sitename}>" /></a>
+</div>
+</div>
+
+
+<div id="container" class="clearfix" style="text-align:center">
+
+<div id="siteclosemsg"><{$lang_siteclosemsg}></div>
+
+  <{if $xoops_isuser}>
+    <div align="center"><a href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._LOGOUT}></a></div>
+  <{else}>
+  <form action="<{$xoops_url}>/user.php" method="post">
+    <table class="outer" style="width:400px; margin:20px auto; text-align:left;">
+      <tr>
+        <th colspan="2"><{$lang_login}></th>
+      </tr>
+      <tr>
+        <td class="odd"><{$lang_username}></td>
+        <td class="odd"><input type="text" name="uname" size="14" value="" /></td>
+      </tr>
+      <tr>
+        <td class="even"><{$lang_password}></td>
+        <td class="even"><input type="password" name="pass" size="14" /></td>
+      </tr>
+      <tr>
+        <td class="foot">&nbsp;</td>
+        <td class="foot"><input type="hidden" name="xoops_login" value="1" /><input type="submit" value="<{$lang_login}>" /></td>
+      </tr>
+    </table>
+  </form>
+  <{/if}>
+
+</div>
+
+</div>
+<br class="floatClear" />
+<br />
+  <div id="footerbar">&nbsp;<{$xoops_sitename}><br /><br /><br /></div>
+
+</body>
+</html>

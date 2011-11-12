@@ -1,0 +1,60 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+  &raquo;&raquo; <a href="./index.php?action=GroupList"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></a>
+  &raquo;&raquo;
+  <{if $actionForm->get('groupid') }>
+    <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_GROUP_EDIT}></span>
+  <{else}>
+    <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_GROUP_NEW}></span>
+  <{/if}>
+</div>
+
+<{if $actionForm->get('groupid') }>
+  <h3 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_EDIT}> (<{$actionForm->get('name')}>)</h3>
+<{else}>
+  <h3 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_NEW}></h3>
+<{/if}>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form action="?action=GroupEdit" method="post">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=groupid value=$actionForm->get('groupid')}>
+  <table class="outer">
+    <tr>
+      <th colspan="2">
+      <{if $actionForm->get('groupid') }>
+        <{$smarty.const._AD_USER_LANG_GROUP_EDIT}> (<{$actionForm->get('name')}>)
+      <{else}>
+        <{$smarty.const._AD_USER_LANG_GROUP_NEW}>
+      <{/if}>
+      </th>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_GROUP_NAME}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=text name=name value=$actionForm->get('name')}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._AD_USER_LANG_GROUP_DESC}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_dhtmltarea name=description value=$actionForm->get('description')}>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="foot">
+        <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      </td>
+    </tr>
+  </table>
+</form>

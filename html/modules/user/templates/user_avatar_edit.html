@@ -1,0 +1,85 @@
+<div>
+<a href="<{$xoops_url}>/userinfo.php?uid=<{$actionForm->get('uid')|xoops_escape}>"><{$smarty.const._MD_USER_LANG_PROFILE}></a>
+&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;<{$smarty.const._MD_USER_LANG_AVATAR_EDIT}>( <{$actionForm->get('uid')|xoops_user:user_name}> )
+</div>
+
+<{if $allowUpload}>
+<{if $actionForm->hasError()}>
+<div class="errorMsg">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form action="<{$xoops_url}>/edituser.php?op=avatarupload" method="post" enctype="multipart/form-data">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=uid value=$actionForm->get('uid')}>
+  <table class="outer">
+    <tr>
+      <th colspan="2" style="text-align:center;">( <{$actionForm->get('uid')|xoops_user:user_name}> )<{$smarty.const._MD_USER_LANG_AVATAR_EDIT}></th>
+    </tr>
+    <tr>
+      <td colspan="2" class="<{cycle values="odd,even"}>" style="text-align:center;">
+        <{if $actionForm->get('uid')|xoops_user:user_avatar != "blank.gif"}>
+          <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$actionForm->get('uid')|xoops_user:user_avatar}>" alt="Avatar" title="Avatar" />
+        <{else}>
+          <img src="<{$smarty.const.XOOPS_URL}>/modules/user/images/no_avatar.gif" alt="No Avatar" title="No Avatar" />
+        <{/if}>
+        <br />
+        <{$smarty.const._MD_USER_MESSAGE_OLDDELETED}>
+      <td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_AVATAR_WIDTH_HIGHT}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{$avatarWidth}> x <{$avatarHeight}> (px)
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_AVATAR_MAXFILESIZE}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{$avatarMaxfilesize|number_format}> (bytes)
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_USER_LANG_AVATAR}></td>
+      <td class="<{cycle values="odd,even"}>">
+        <{xoops_input type=file name=uploadavatar size=30}>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="foot" style="text-align:center;">
+        <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
+      </td>
+    </tr>
+  </table>
+</form>
+<{/if}>
+
+<form method="post" action="<{$xoops_url}>/edituser.php?op=avatarchoose">
+  <{xoops_token form=$avatarSelectForm}>
+  <{xoops_input type=hidden name=uid value=$avatarSelectForm->get('uid')}>
+  <table class="outer" style="text-align:center;">
+    <tr>
+      <th colspan="4"><{$smarty.const._MD_USER_LANG_AVATAR_LIST}></th>
+    </tr>
+    <tr>
+      <{foreach item=obj from=$systemAvatars}>
+        <td class="<{cycle values="odd,even" name="class"}>" style="text-align:center;">
+          <{if $obj->get('avatar_id') == 0}>
+            <img src="<{$smarty.const.XOOPS_MODULE_URL}>/user/images/no_avatar.gif" alt="<{$obj->getShow('avatar_name')}>" title="<{$obj->getShow('avatar_name')}>"/><br />
+          <{else}>
+            <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('avatar_file')}>" alt="<{$obj->getShow('avatar_name')}>" title="<{$obj->getShow('avatar_name')}>"/><br />
+          <{/if}>
+          <{$obj->getShow('avatar_name')}><br />
+          <input name="avatar_id[<{$obj->getShow('avatar_id')}>]" type="submit" value="<{$smarty.const._MD_USER_LANG_SELECT}>" />
+        <{cycle name="table" values="</td>,</td>,</td>,</td></tr><tr>"}>
+      <{/foreach}>
+    </tr>
+  </table>
+</form>
+
+<div class="pagenavi" style="text-align:center;"><{xoops_pagenavi pagenavi=$pageNavi}></div>

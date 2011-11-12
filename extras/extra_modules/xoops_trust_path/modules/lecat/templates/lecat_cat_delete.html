@@ -1,0 +1,52 @@
+<div id="lecat">
+<{include file="db:`$dirname`_inc_menu.html" dirname=$dirname}>
+
+<h1><{$smarty.const._MD_LECAT_LANG_CAT_DELETE}></h1>
+
+<div class="confirm"><{$smarty.const._MD_LECAT_MESSAGE_CONFIRM_DELETE}></div>
+
+<form action="<{xoops_cooluri dirname=$dirname dataname=cat action=delete}>" method="post">
+  <table class="outer">
+    <tbody>
+      <tr>
+        <th class="head"><{$smarty.const._MD_LECAT_LANG_CAT_ID}></th>
+        <td class="<{cycle values="odd,even"}>"><{$object->getShow('cat_id')}></td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_LECAT_LANG_TITLE}></th>
+        <td class="<{cycle values="odd,even"}>"><{$object->getShow('title')}></td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_LECAT_LANG_P_ID}></th>
+        <td class="<{cycle values="odd,even"}>"><{$object->getShow('p_id')}></td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_LECAT_LANG_MODULES}></th>
+        <td class="<{cycle values="odd,even"}>"><{$object->getShow('modules')}></td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_LECAT_LANG_DESCRIPTION}></th>
+        <td class="<{cycle values="odd,even"}>"><{$object->getShow('description')}></td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_LECAT_LANG_WEIGHT}></th>
+        <td class="<{cycle values="odd,even"}>"><{$object->getShow('weight')}></td>
+      </tr>
+      <tr>
+        <th class="head"><{$smarty.const._MD_LECAT_LANG_OPTIONS}></th>
+        <td class="<{cycle values="odd,even"}>"><{$object->getShow('options')}></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td class="foot" colspan="2">
+          <{xoops_token form=$actionForm}>
+          <{xoops_input type=hidden name=cat_id value=$actionForm->get('cat_id')}>
+          <input type="submit" class="formButton" value="<{$smarty.const._DELETE}>"/>
+          <input type="submit" class="formButton" value="<{$smarty.const._CANCEL}>" name="_form_control_cancel"/>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</form>
+</div>

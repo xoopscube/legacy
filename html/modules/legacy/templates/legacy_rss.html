@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title><{$channel_title|xoops_escape}></title>
+    <link><{$channel_link|xoops_escape}></link>
+    <description><{$channel_desc|xoops_escape}></description>
+    <lastBuildDate><{$channel_lastbuild|xoops_escape}></lastBuildDate>
+    <docs>http://backend.userland.com/rss/</docs>
+    <generator><{$channel_generator|xoops_escape}></generator>
+    <managingEditor><{$channel_editor|xoops_escape}></managingEditor>
+    <webMaster><{$channel_webmaster|xoops_escape}></webMaster>
+    <language><{$channel_language|xoops_escape}></language>
+    <{if $image_url != ""}>
+    <image>
+      <title><{$channel_title|xoops_escape}></title>
+      <url><{$image_url|xoops_escape}></url>
+      <link><{$channel_link|xoops_escape}></link>
+      <width><{$image_width|xoops_escape}></width>
+      <height><{$image_height|xoops_escape}></height>
+    </image>
+    <{/if}>
+    <{foreach item=item from=$items}>
+      <item>
+        <title><{$item.title|xoops_escape}></title>
+        <link><{$item.link|xoops_escape}></link>
+        <{if $item.author}>
+          <author><{$item.author|xoops_escape}></author>
+        <{/if}>
+        <{if $item.category}>
+          <category><{$item.category|xoops_escape}></category>
+        <{/if}>
+        <{if $item.description}>
+          <description><{$item.description|xoops_escape}></description>
+        <{/if}>
+        <pubDate><{$item.pubdate|xoops_formattimestamp:rss}></pubDate>
+        <guid><{$item.guid|xoops_escape}></guid>
+      </item>
+    <{/foreach}>
+  </channel>
+</rss>

@@ -1,0 +1,3 @@
+<{foreach from=$element->getOptions() key=value item=name}>
+  <label><input type='radio' id='<{$element->getName()}>_<{$value}>' name='<{$element->getName()}>' value='<{$value}>' <{if $element->getValue() !== null && $element->getValue() == $value}> checked='checked'<{/if}> <{$element->getExtra()}> /><{$name}></label>
+<{/foreach}>

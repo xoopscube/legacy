@@ -1,0 +1,42 @@
+<div><b><{$smarty.const._MD_PM_MESSAGE_CONFIRM_DELETE_PM}></b></div>
+
+<form method="post" action="<{$xoops_url}>/readpmsg.php?action=DeleteOne">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=msg_id value=$actionForm->get('msg_id')}>
+  <table class="outer">
+    <tr>
+      <th colspan="2"><{$smarty.const._MD_PM_MESSAGE_CONFIRM_DELETE_PM}></th>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_PM_LANG_FROMC}></td>
+      <td class="<{cycle values="even,odd"}>">
+        <{if $sendUser->getShow('uname')}>
+          <a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$sendUser->getShow('uid')}>"><{$sendUser->getShow('uname')}></a>
+        <{/if}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_PM_LANG_SENTC}></td>
+      <td class="<{cycle values="even,odd"}>">
+        <{$object->get("msg_time")|xoops_formattimestamp:l}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head"><{$smarty.const._MD_PM_LANG_SUBJECTC}></td>
+      <td class="<{cycle values="even,odd"}>">
+        <img src="<{$xoops_url}>/images/subject/<{$object->getShow('msg_image')}>" alt='' title='' />&nbsp;
+<b><{$object->getShow('subject')}></b>
+      </td>
+    </tr>
+    <tr>
+      <td class="<{cycle values="even,odd"}>" colspan="2"><{$object->getShow('msg_text')}></td>
+    </tr>
+    <tr>
+      <td class="foot" colspan="2">
+        <input class="formButton" type="submit" value="<{$smarty.const._DELETE}>" />
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      </td>
+    </tr>
+</table>
+</form>
+

@@ -1,0 +1,125 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=UserList"><{$smarty.const._AD_USER_LANG_USER_LIST}></a></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_USER_LIST}></h3>
+
+<div class="tips">
+<ul>
+<li>
+<{$smarty.const._AD_USER_LANG_USER_TOTAL}>: <{$UserTotal}><br />
+<{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>: <{$activeUserTotal}>&nbsp;&nbsp;|&nbsp; <{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>: <{$inactiveUserTotal}>
+</li>
+<li>
+<{$smarty.const._AD_USER_TIPS_USER_ADMIN}>
+</li>
+<li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=user"><{$smarty.const._HELP}></a></li>
+</ul>
+</div>
+
+<ul class="toptab">
+<li class="addUser"><a href="index.php?action=UserEdit"><{$smarty.const._AD_USER_LANG_USER_NEW}></a></li>
+<li class="group"><a href="index.php?action=GroupList"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></a></li>
+<li class="addField"><a href="<{$smarty.const.XOOPS_URL}>/modules/profile/admin/index.php?action=DefinitionsList"><{$smarty.const._AD_USER_LANG_USER_NEW_FIELD}></a></li>
+</ul>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<div>
+<form action="./index.php" method="get">
+  <input type="hidden" name="action" value="UserList" />
+  <{$smarty.const._SEARCH}> : 
+  <input type="text" name="search" value="<{$filterForm->mKeyword}>" />
+  <{$smarty.const._AD_USER_LANG_DISPLAY_USER_LEVEL}> : 
+  <select name="option_field">
+    <option value="all" <{if $filterForm->mOptionField == 'all'}>selected="selected"<{/if}>><{$smarty.const._AD_USER_LANG_ALL_OF_USERS}></option>
+    <option value="inactive" <{if $filterForm->mOptionField == 'inactive'}>selected="selected"<{/if}>><{$smarty.const._AD_USER_LANG_PENDING_USERS_ONLY}></option>
+    <option value="active" <{if $filterForm->mOptionField == 'active'}>selected="selected"<{/if}>><{$smarty.const._AD_USER_LANG_APPROVE_USERS_ONLY}></option>
+  </select>
+  <{$smarty.const._VIEW}> : 
+  <select name="perpage">
+    <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
+    <{foreach item=page from=$pageArr}>
+      <{if $pageNavi->mPerpage == $page && $page != 0}>
+        <option value="<{$page}>" selected="selected"><{$page}></option>
+      <{elseif $pageNavi->mPerpage == $page && $page == 0}>
+        <option value="<{$page}>" selected="selected"><{$smarty.const._ALL}></option>
+      <{elseif $pageNavi->mPerpage != $page && $page == 0}>
+        <option value="<{$page}>"><{$smarty.const._ALL}></option>
+      <{else}>
+        <option value="<{$page}>"><{$page}></option>
+      <{/if}>
+    <{/foreach}>
+  </select>
+  <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+</form>
+</div>
+
+<form name="userlistform" method="post" action="./index.php?action=UserList">
+  <{xoops_token form=$actionForm}>
+<table class="outer">
+  <tr>
+    <th>&nbsp;</th>
+    <th><{$smarty.const._MD_USER_LANG_UID}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_UID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_UID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._MD_USER_LANG_UNAME}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_UNAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_UNAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._MD_USER_LANG_NAME}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_NAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_NAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_REGDATE}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_USER_REGDATE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_USER_REGDATE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_LASTLOGIN}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_LAST_LOGIN}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_LAST_LOGIN}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._MD_USER_LANG_POSTS}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_POSTS}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_POSTS}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._MD_USER_LANG_LEVEL}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_LEVEL}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_LEVEL}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._DELETE}><br />
+      <input name="allbox" id="allbox" onclick="with(document.userlistform){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].disabled==false&&elements[i].name.indexOf('delete')>=0){elements[i].checked=this.checked;}}}" type="checkbox" value="Check All" /></th>
+    <th><{$smarty.const._AD_USER_LANG_CONTROL}></th>
+  </tr>
+  <{foreach item=user from=$objects}>
+    <tr class="<{cycle values='odd,even'}>">
+      <td class="user_list_image"><img src="<{"icons/user.png"|theme}>" alt="<{$smarty.const._AD_USER_LANG_USER}>" title="<{$smarty.const._AD_USER_LANG_USER}>" /></td>
+      <td class="user_list_id"><{$user->getShow('uid')}></td>
+      <td class="user_list_title"><a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$user->getShow('uid')}>"><{$user->getShow('uname')}></a></td>
+      <td class="user_list_name"><{$user->getShow('name')}></td>
+      <td class="user_list_date"><{$user->get('user_regdate')|xoops_formattimestamp}></td>
+      <td class="user_list_date"><{$user->get('last_login')|xoops_formattimestamp:l}></td>
+      <td class="user_list_number"><{if $user->get('uid') != 1 }><input type="text" size="4" maxlength="6" name="posts[<{$user->getShow('uid')}>]" value="<{$user->getShow('posts')}>" class=user_list_number /><{else}><{$user->getShow('posts')}><{/if}></td>
+      <td class="user_list_order"><{if $user->get('uid') != 1 }><input type="text" size="2" maxlength="4" name="level[<{$user->getShow('uid')}>]" value="<{$user->getShow('level')}>" class=user_list_number /><{else}><{$user->getShow('level')}><{/if}></td>
+      <td class="user_list_select"> <{if $user->get('uid') != 1 }><input type="checkbox" name="delete[<{$user->getShow('uid')}>]" value="1" /> <{/if}></td>
+      <td class="user_list_control">
+        <a href="./index.php?action=UserView&amp;uid=<{$user->getShow('uid')}>"><img src="<{"icons/property.png"|theme}>" alt="<{$smarty.const._VIEW}>" title="<{$smarty.const._VIEW}>" /></a>
+        <a href="./index.php?action=UserEdit&amp;uid=<{$user->getShow('uid')}>"><img src="<{"icons/edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+        <{if $user->get('uid') != 1 }>
+          <a href="index.php?action=UserDelete&amp;uid=<{$user->getShow('uid')}>"><img src="<{"icons/delete.png"|theme}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
+        <{/if}>
+      </td>
+    </tr>
+  <{/foreach}>
+    <tr>
+      <td colspan="10" class="foot">
+        <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
+      </td>
+    </tr>
+</table>
+</form>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
