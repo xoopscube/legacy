@@ -1,0 +1,22 @@
+<table cellspacing="0">
+	<tr>
+		<td id="mainmenu">
+			<{foreach item=category from=$block.categories}>
+				<{if $category.active==1}>
+					<a class="menuMain" style="color:#000;"><{$category.title}></a>
+				<{else}>
+					<a class="menuMain" href="<{$block.mod_url}>cid=<{$category.cid}>"><{$category.title}></a>
+				<{/if}>
+
+				<{foreach item=content from=$category.contents}>
+					<{if $content.active==1}>
+						<a class="menuSub" style="color:#000;"><{$content.title}></a>
+					<{else}>
+						<a class="menuSub" href="<{$block.mod_url}>cid=<{$content.cid}>"><{$content.title}></a>
+					<{/if}>
+				<{/foreach}>
+
+			<{/foreach}>
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,99 @@
+<HTML>
+<HEAD>
+	<meta http-equiv="content-type" content="text/HTML; charset=<{$charset}>" />
+	<TITLE><{$xoops_sitename}> - <{$xoops_pagetitle}></TITLE>
+</HEAD>
+<BODY>
+
+	<TABLE WIDTH=100% BGCOLOR="#FFE566"><TR>
+		<TD><{$album_sub_title}><{if !$indexpage}>(<{$photo_num_total}>)<{/if}></TD>
+	</TR></TABLE>
+
+	<HR COLOR="#FFE566">
+
+	<{if $indexpage}>
+		<TABLE WIDTH=100% BGCOLOR="#EFEFEF"><TR>
+			<TD><FONT SIZE=1><{$photo_num_total}></FONT></TD>
+		</TR></TABLE>
+	<{/if}>
+
+	<{if $subcategories}>
+
+		<FONT COLOR=#009900>
+			<UL>
+				<{foreach from=$subcategories item=cat key=count}>
+					<LI><A HREF=<{$cat_link}>cid=<{$cat.cid}><{$agent}>><{$cat.title}></A>&nbsp;(<{$cat.photo_total_sum}>)
+				<{/foreach}>
+			</UL>
+		</FONT>
+
+		<HR COLOR="#EFEFEF">
+
+	<{/if}>
+
+	<{if !$indexpage || $map}>
+		<TABLE WIDTH=100% BGCOLOR="#EFEFEF"><TR>
+			<{if $map}><TD><FONT SIZE=1>&nbsp;<A HREF="index.php<{$maplink_option}><{$agent}>"><{$map}></A></FONT></TD><{/if}>
+			<{if !$indexpage}><TD align=right><FONT SIZE=1><A HREF="<{$mod_url}>/index.php?<{if $parent_id}>&cid=<{$parent_id}><{/if}><{$agent}>"><{$lng_mobile_updir}></A>&nbsp;</FONT></TD><{/if}>
+		</TR></TABLE>
+	<{/if}>
+
+	<{* PAGE NAVIGATION *}>
+
+	<HR COLOR="#99ccff">
+
+	<TABLE WIDTH=100% BGCOLOR="#99ccff"><TR><TD><{$lang_itemlist}></TD></TR></TABLE>
+
+	<HR COLOR="#99ccff">
+
+
+	<{if $photo_small_sum < 1 }>
+		<{$lang_nomatch}>
+	<{else}>
+
+		<FONT COLOR=#ff9999>
+			<UL>
+				<{foreach from=$photos item=photo}>
+					<LI><A HREF='<{$mod_url}>/index.php?lid=<{$photo.lid}><{if $category_id}>&cid=<{$category_id}><{/if}><{$agent}>'><{$photo.title}></A>
+				<{/foreach}>
+			</UL>
+		</FONT>
+
+
+		<{if $photo_small_sum > 1 }>
+			<HR COLOR="#FFE566">
+
+			<TABLE WIDTH=100%><TR><TD BGCOLOR="#EFEFEF"><FONT SIZE=1 COLOR=#990000><{$photonavinfo}></FONT></TD></TR></TABLE>
+			<FONT SIZE=1><{$photonav}></FONT>
+
+		<{/if}>
+
+		<{if $photo_small_sum > 1 }>
+			<HR COLOR="#FFE566">
+
+			<{strip}>
+				<TABLE WIDTH=100%><TR><TD BGCOLOR="#EFEFEF"><FONT SIZE=1 COLOR=#990000><{$lang_sortby}></FONT></TD></TR></TABLE>
+				<FONT SIZE=1>
+					<A HREF="index.php?orderby=<{if $my_order=='titleD'}>titleA<{else}>titleD<{/if}><{$catlink_option}><{$agent}>"><{$lang_title}><{if $my_order=='titleD'}><IMG SRC=images/down.gif><{elseif $my_order=='titleA'}><IMG SRC=images/up.gif><{/if}></A>
+					|<A HREF="index.php?orderby=<{if $my_order=='dateD'}>dateA<{else}>dateD<{/if}><{$catlink_option}><{$agent}>"><{$lang_date}><{if $my_order=='dateD'}><IMG SRC=images/down.gif><{elseif $my_order=='dateA'}><IMG SRC=images/up.gif><{/if}></A>
+					<{if $canrateview && $canvote }>
+						|<A HREF="index.php?orderby=<{if $my_order=='ratingD'}>ratingA<{else}>ratingD<{/if}><{$catlink_option}><{$agent}>"><{$lang_rating}><{if $my_order=='ratingD'}><IMG SRC=images/down.gif><{elseif $my_order=='ratingA'}><IMG SRC=images/up.gif><{/if}></A>
+					<{/if}>
+					|<A HREF="index.php?orderby=<{if $my_order=='hitsD'}>hitsA<{else}>hitsD<{/if}><{$catlink_option}><{$agent}>"><{$lang_popularity}><{if $my_order=='hitsD'}><IMG SRC=images/down.gif><{elseif $my_order=='hitsA'}><IMG SRC=images/up.gif><{/if}></A>
+				</FONT>
+			<{/strip}>
+
+		<{/if}>
+
+	<{/if}>
+
+	<HR COLOR="#FFE566">
+
+	<TABLE WIDTH=100% BGCOLOR="#EFEFEF">
+		<TR>
+			<TD ALIGN=CENTER><FONT SIZE=1><A HREF=index.php><{$lang_top_link}></A></FONT></TD>
+		</TR>
+	</TABLE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,39 @@
+<h4><a href="index.php"><{$smarty.const._MD_MESSAGE_TEMPLATE15}></a> &raquo; <{$smarty.const._MD_MESSAGE_TEMPLATE11}></h4>
+<ul>
+<li><{$smarty.const._MD_MESSAGE_TEMPLATE12}> <{$msgdata.fromname}> (<{$msgdata.utime|xoops_formattimestamp:l}>)</li>
+<li><{$smarty.const._MD_MESSAGE_TEMPLATE3}><br><{$msgdata.title}></li>
+<li><{$smarty.const._MD_MESSAGE_TEMPLATE4}><br><{$msgdata.message}></li>
+</ul>
+<a href="index.php?action=new&amp;res=<{$msgdata.inbox_id}>"><{$smarty.const._MD_MESSAGE_TEMPLATE13}></a><br><br>
+
+<form method="post" action="index.php">
+<input type="hidden" name="inbox" value="<{$msgdata.inbox_id}>" />
+<input type="hidden" name="inout" value="in" />
+<input type="hidden" name="cmd" value="lock" />
+<input type="hidden" name="action" value="view" />
+<{if $msgdata.is_read==1}>
+<input type="hidden" name="lock" value="1" />
+<input type="submit" value="<{$smarty.const._MD_MESSAGE_TEMPLATE19}>" />
+<{else}>
+<input type="hidden" name="lock" value="0" />
+<input type="submit" value="<{$smarty.const._MD_MESSAGE_TEMPLATE20}>" />
+<{/if}>
+</form>
+
+<form method="post" action="index.php">
+<input type="hidden" name="inbox" value="<{$msgdata.inbox_id}>" />
+<input type="hidden" name="inout" value="in" />
+<input type="hidden" name="cmd" value="mail" />
+<input type="hidden" name="action" value="view" />
+<input type="submit" value="<{$smarty.const._MD_MESSAGE_TEMPLATE21}>" />
+</form>
+
+<{if $msgdata.from_uid != 0}>
+<a href="index.php?action=blacklist&amp;uid=<{$msgdata.from_uid}>"><{$smarty.const._MD_MESSAGE_ADDBLACKLIST}></a><br><br>
+<{/if}>
+
+<form method="post" action="index.php?action=delete&amp;inout=in">
+<input type="hidden" name="inbox" value="<{$msgdata.inbox_id}>" />
+<input type="submit" value="<{$smarty.const._MD_MESSAGE_TEMPLATE14}>" />
+</form>
+

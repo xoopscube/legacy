@@ -1,0 +1,14 @@
+<div style="word-break:break-all;">
+<_EACH_>
+</div>
+
+<!--EACH(5)-->
+<_LINKED_SIMG_><br />
+<a href="<_URL_>" target="_blank" rel="nofollow"><span style="font-size:90%;color:#3366FF;"><_TITLE_></span></a><span style="font-size:90%;"> (<_CATEGORY_>)</span><br />
+<span style="font-size:90%;color:#990000;"><_PRICE_FORMATTED_></span>
+<hr />
+<!--/EACH-->
+
+<!--IMG-->
+<a href="<_URL_>" title="<_TITLE_>" target="_blank" rel="nofollow"><img src="<_IMGSRC_>" alt="<_TITLE_>"<_IMGSIZE_> border="0" vspace="2" hspace="2" /></a>
+<!--/IMG-->

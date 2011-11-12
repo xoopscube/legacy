@@ -1,0 +1,11 @@
+<{* DRAW CATEGORY LIST *}>
+<{foreach from=$subcategories item=cat key=count}>
+	<div class="gnn_cat">
+		<{if $cat.imgurl != ""}>
+			<a href="<{$cat_link}>cid=<{$cat.cid}>">
+				<img src="<{$cat.imgurl}>" alt="<{$cat.title}>" />
+			</a>
+		<{/if}>
+		<a href="<{$cat_link}>cid=<{$cat.cid}>"><{$cat.title}></a>&nbsp;(<{$cat.photo_total_sum}>)
+	</div>
+<{/foreach}>

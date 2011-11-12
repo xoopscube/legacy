@@ -1,0 +1,1 @@
+function jsmarty_function_include(x,R){if(!x.file){self.trigger_error("include : missing \"file\" parameter.");return "";}var Z,d="";var C=x.file;var o=x.assign||false;delete x.file;delete x.assign;for(Z in x){R._tpl_vars[i]=x[i];}if(R._is_compiled(C)||R._compile_resource(C)){d=JSmarty.templates_c[C].call(R);}return d;}

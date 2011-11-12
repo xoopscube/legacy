@@ -1,0 +1,32 @@
+<h4><{$smarty.const._MD_MESSAGE_TEMPLATE1}></h4>
+[<a href="index.php?action=index"><{$smarty.const._MD_MESSAGE_TEMPLATE15}></a>]&nbsp;&nbsp;
+[<a href="index.php?action=send"><{$smarty.const._MD_MESSAGE_TEMPLATE7}></a>]
+<hr />
+<{if $errMsg!=""}>
+<ul>
+<{foreach item=error from=$errMsg}>
+<li style="color:red; font-weight: bold;"><{$error}></li>
+<{/foreach}>
+</ul>
+<{/if}>
+
+<ul>
+<{if $mActionForm->get('Legacy_Event_User_Preview')!=""}>
+<li><{$smarty.const._MD_MESSAGE_TEMPLATE2}> <{$mActionForm->getShow('uname')}></li>
+<li><{$smarty.const._MD_MESSAGE_TEMPLATE3}></td><td class="even"><{$mActionForm->getShow('title')}></li>
+<li><{$smarty.const._MD_MESSAGE_TEMPLATE4}></td><td class="even"><{$mActionForm->getShow('note', 'toShowTarea')}></li>
+<br />
+<{/if}>
+</ul>
+<form action="index.php?action=new" method="post">
+<ul>
+<{xoops_token form=$mActionForm}>
+<{xoops_input type=hidden name=mode}>
+<li><{$smarty.const._MD_MESSAGE_TEMPLATE2}><br><{xoops_input name=uname size=30 maxlength=50 value=$mActionForm->get('uname')}></li>
+<li><{$smarty.const._MD_MESSAGE_TEMPLATE3}><br><{xoops_input name=title size=50 maxlength=100 value=$mActionForm->get('title')}></li>
+<li><{$smarty.const._MD_MESSAGE_TEMPLATE4}><br><{xoops_textarea cols=60 rows=7 name=note value=$mActionForm->get('note')}></li>
+<{legacy_button id=Preview Text=$smarty.const._MD_MESSAGE_TEMPLATE5}>
+<{legacy_button id=Submit Text=$smarty.const._MD_MESSAGE_TEMPLATE6}>
+</ul>
+</form>
+

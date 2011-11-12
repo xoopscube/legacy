@@ -1,0 +1,12 @@
+#jsMath_Warning table,
+#jsMath_panel table {
+	width: auto;
+}
+$class div.math {
+	white-space: pre;
+}
+
+$class div.typeset {
+	text-align:left;
+	margin-left: 2em;
+}

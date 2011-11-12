@@ -1,0 +1,2 @@
+* &#91;&#91;&#66;racketName&#93;&#93;
+A string enclosed with [[ and ]] makes a BracketName, which is another link style in Pukiwiki.

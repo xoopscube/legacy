@@ -1,0 +1,339 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<!--
+	guiedit - PukiWiki Plugin
+
+	License:
+	  GNU General Public License Version 2 or later (GPL)
+	  http://www.gnu.org/licenses/gpl.html
+
+	Copyright (C) 2006-2007 garand
+	PukiWiki : Copyright (C) 2001-2006 PukiWiki Developers Team
+	FCKeditor : Copyright (C) 2003-2007 Frederico Caldeira Knabben
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Table Cell Properties</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="robots" content="noindex, nofollow" />
+	<script type="text/javascript" charset="UTF-8">
+
+var oEditor = window.parent.InnerDialogLoaded() ;
+var oDOM = oEditor.FCK.EditorDocument ;
+var XpWiki = window.parent.window.parent.XpWiki;
+
+var aCells = oEditor.FCKTableHandler.GetSelectedCells() ;
+
+//	ダイアログの共通スクリプトの読み込み
+var src = oEditor.FCKConfig.BasePath + 'dialog/common/fck_dialog_common.js';
+document.write('<script type="text/javascript" src="' + src + '"><\/script>');
+
+window.onload = function() {
+	oEditor.FCKLanguageManager.TranslatePage(document);
+
+	SetStartupValue() ;
+
+	window.parent.SetOkButton(true);
+	window.parent.SetAutoSize(true);
+}
+
+function SetStartupValue() {
+	if (aCells.length > 0) {
+		var oCell = aCells[0];
+		
+		var size = oCell.style.fontSize;
+		size = size.replace("px", '');
+
+		GetE('head').checked = (oCell.tagName == 'TH') ? true : false;
+		GetE('selHAlign').value = GetAttribute(oCell, 'align');
+		GetE('txtRowSpan').value = GetAttribute(oCell, 'rowSpan');
+		GetE('txtCollSpan').value = GetAttribute(oCell, 'colSpan');
+		GetE('txtFontSize').value = size;
+		GetE('txtBackColor').value = TableEx_rgb2hex(oCell.style.backgroundColor);
+		GetE('txtFontColor').value = TableEx_rgb2hex(oCell.style.color);
+
+		GetE('txtBorder').value = oCell.style.borderLeftWidth.replace(/([\d]+).*$/, '$1');
+		GetE('selBorferStyle').value = oCell.style.borderLeftStyle;
+		GetE('txtBorderColor').value = TableEx_rgb2hex(oCell.style.borderLeftColor);
+		GetE('txtCellSpacing').value = oCell.style.paddingLeft.replace(/([\d]+).*$/, '$1');
+
+	}
+}
+
+function Ok() {
+	for(i = 0 ; i < aCells.length ; i++) {
+		var tag = GetE('head').checked ? 'TH' : 'TD';
+		if (tag != aCells[i].tagName) {
+			//	タグの置換
+			oElement = oDOM.createElement(tag);
+			oElement.className = (tag == 'TH') ? 'style_th' : 'style_td';
+			oElement.innerHTML = aCells[i].innerHTML;
+			oElement.colSpan = aCells[i].colSpan;
+			oElement.rowSpan = aCells[i].rowSpan;
+			oElement.setAttribute('style', aCells[i].getAttribute('style'));
+			aCells[i] = aCells[i].parentNode.replaceChild(oElement, aCells[i]);
+		}
+		
+		SetAttribute(aCells[i], 'align', GetE('selHAlign').value);
+
+		if (GetE('txtFontSize').value.length) {
+			aCells[i].style.fontSize = XpWiki.str2num(GetE('txtFontSize').value) + 'px';
+		}
+		else {
+			RemoveStyle(aCells[i], 'font-size');
+		}
+		
+		aCells[i].style.color = GetE('txtFontColor').value;
+		aCells[i].style.backgroundColor = GetE('txtBackColor').value;
+
+		if (GetE('txtBorder').value) {
+			aCells[i].style.border = XpWiki.str2num(GetE('txtBorder').value) + 'px';
+			aCells[i].style.borderStyle = GetE('selBorferStyle').value
+		}
+	
+		if (GetE('txtBorderColor').value && GetE('txtBorderColor').value.match(/([a-z]+|#[0-9a-f]+)/i)) {
+			aCells[i].style.borderColor = GetE('txtBorderColor').value;
+		}
+		
+		if (GetE('txtCellSpacing').value) {
+			aCells[i].style.padding = XpWiki.str2num(GetE('txtCellSpacing').value) + 'px';
+		}
+	}
+
+	return true ;
+}
+
+//	スタイルを削除
+function RemoveStyle(oElement, property) {
+	if (oEditor.FCKBrowserInfo.IsIE) {
+		property = property.replace(/-([a-z])/g, function($0, $1){return $1.toUpperCase()});
+		oElement.style.removeAttribute(property);
+	}
+	else {
+		oElement.style.removeProperty(property);
+	}
+}
+
+function SelectBackColor(color) {
+	if (color && color.length > 0) {
+		GetE('txtBackColor').value = color;
+		GetE('selTransparent').checked = false;
+	}
+}
+
+function SelectFontColor(color) {
+	if (color && color.length > 0)
+		GetE('txtFontColor').value = color;
+}
+
+function SelectBorderColor(color) {
+	if (color && color.length > 0)
+		GetE('txtBorderColor').value = color;
+}
+
+function SelectColor(func) {
+	oEditor.FCKDialog.OpenDialog('FCKDialog_Color', oEditor.FCKLang.DlgColorTitle,
+		'dialog/fck_colorselector.html', 400, 330, func, window
+	);
+}
+
+function CorrectFiledData(cmd) {
+	if (cmd == 'around') {
+		if (GetE('tAround').checked) {
+			if (GetE('selAlignment').value == '' || GetE('selAlignment').value == 'center') {
+				GetE('selAlignment').value = 'left';
+			}
+		}
+	}
+	if (cmd == 'align') {
+		if (GetE('selAlignment').value == '' || GetE('selAlignment').value == 'center') {
+			GetE('tAround').checked = false;
+		}
+	}
+	if (cmd == 'width') {
+		if (GetE('txtWidth').value) {
+			if (GetE('selWidthType').value == 'auto') {
+				GetE('selWidthType').value = 'pixels';
+			}
+		} else {
+			GetE('selWidthType').value = 'auto';
+		}
+	}
+	if (cmd == 'wtype') {
+		if (GetE('selWidthType').value == 'auto') {
+			GetE('txtWidth').value = '';
+		}
+	}
+	if (cmd == 'transparent') {
+		if (GetE('selTransparent').checked) {
+			GetE('txtBackColor').value = 'transparent';
+		} else {
+			GetE('txtBackColor').value = '';
+		}
+	}
+}
+
+function TableEx_rgb2hex(str) {
+	if (str[0] == '-') return '';
+	if (str.match(/rgb\(\s*[\d]+\s*,\s*[\d]+\s*,\s*[\d]+\s*\)/i)) {
+		var matches = str.match(/[\d]+/g);
+		return '#' + TableEx_num2hex(matches[0]) + TableEx_num2hex(matches[1]) + TableEx_num2hex(matches[2]);
+	}
+	return str;
+}
+
+function TableEx_num2hex(num) {
+	num = parseInt(num);
+	var f = '';
+	if (num < 16) {
+		f = '0';
+	}
+	return f + num.toString(16);
+}
+
+	</script>
+</head>
+<body scroll="no" style="overflow: hidden">
+	<table cellspacing="0" cellpadding="0" width="100%" border="0" height="100%">
+		<tr>
+			<td>
+				<table cellspacing="1" cellpadding="1" width="100%" border="0">
+					<tr>
+						<td>
+							<table cellspacing="0" cellpadding="0" border="0">
+								<tr>
+									<td colspan="3" nowrap="nowrap">
+										<input type="checkbox" id="head">
+										<label for="head" fcklang="TableCellDlgHead">Head</label>
+									<td>
+								</tr>
+								<tr>
+									<td>
+										&nbsp;</td>
+									<td>
+										&nbsp;</td>
+								</tr>
+								<tr>
+									<td nowrap="nowrap">
+										<span fcklang="TableCellDlgRowSpan">Rows Span</span>:</td>
+									<td nowrap="nowrap">
+										&nbsp;
+										<input id="txtRowSpan" type="text" size="2" disabled></td>
+								</tr>
+								<tr>
+									<td nowrap="nowrap">
+										<span fcklang="TableCellDlgColSpan">Columns Span</span>:</td>
+									<td nowrap="nowrap">
+										&nbsp;
+										<input id="txtCollSpan" type="text" size="2" disabled></td>
+								</tr>
+								<tr>
+									<td>
+										&nbsp;</td>
+									<td>
+										&nbsp;</td>
+								</tr>
+								<tr>
+									<td nowrap="nowrap">
+										<span fcklang="TableCellDlgAlign">Alignment</span>:</td>
+									<td colspan="2" nowrap="nowrap">
+										&nbsp;
+										<select id="selHAlign" name="selAlignment">
+											<option fcklang="DlgCellHorAlignNotSet" value="" selected>Not set</option>
+											<option fcklang="DlgCellHorAlignLeft" value="left">Left</option>
+											<option fcklang="DlgCellHorAlignCenter" value="center">Center</option>
+											<option fcklang="DlgCellHorAlignRight" value="right">Right</option>
+										</select>
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							&nbsp;&nbsp;&nbsp;</td>
+						<td valign="bottom">
+							<table cellspacing="0" cellpadding="0" border="0">
+								<tr>
+									<td nowrap="nowrap">
+										<span fcklang="TableCellDlgFontSize">Font Size</span>:</td>
+									<td colspan="2" nowrap="nowrap">
+										&nbsp;
+										<input id="txtFontSize" type="text" maxlength="3" size="3" />
+										&nbsp;px
+									</td>
+								</tr>
+								<tr>
+									<td nowrap="nowrap">
+										<span fcklang="TableCellDlgFontColor">Font Color</span>:</td>
+									<td nowrap="nowrap">
+										&nbsp;<input id="txtFontColor" type="text" size="8" name="txtCellPadding" /></td>
+									<td nowrap="nowrap">
+										&nbsp;
+										<input type="button" fcklang="DlgCellBtnSelect" value="Select..."
+											onclick="SelectColor(SelectFontColor)" />
+									</td>
+								</tr>
+								<tr>
+									<td nowrap="nowrap">
+										<span fcklang="DlgCellBackColor">Background Color</span>:</td>
+									<td nowrap="nowrap">
+										&nbsp;<input id="txtBackColor" type="text" size="8" name="txtCellSpacing"></td>
+									<td nowrap="nowrap">
+										&nbsp;
+										<input type="button" fcklang="DlgCellBtnSelect" value="Select..."
+											onclick="SelectColor(SelectBackColor)">
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td colspan="2" nowrap="nowrap">
+										&nbsp;<input id="selTransparent" name="selTransparent" type="checkbox" value="1"
+											onclick="CorrectFiledData('transparent');"><label for="selTransparent" fcklang="TableDlgTransparent">Transparent</label>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3">&nbsp;</td>
+								</tr>
+								<tr>
+									<td nowrap="nowrap">
+										<span fcklang="DlgTableBorder">Border size</span>:</td>
+									<td colspan="2" nowrap="nowrap">
+										&nbsp;<input id="txtBorder" type="text" maxlength="2" size="2" value="" name="txtBorder"
+											onkeypress="return IsDigit(event);" />px
+										&nbsp;<select id="selBorferStyle" name="selBorferStyle" onchange="CorrectFiledData('btype');">
+											<option fcklang="TableDlgBorder_solid" value="solid">solid</option>
+											<option fcklang="TableDlgBorder_double" value="double">double</option>
+											<option fcklang="TableDlgBorder_groove" value="groove">groove</option>
+											<option fcklang="TableDlgBorder_ridge" value="ridge">ridge</option>
+											<option fcklang="TableDlgBorder_inset" value="inset">inset</option>
+											<option fcklang="TableDlgBorder_outset" value="outset" selected="selected">outset</option>
+											<option fcklang="TableDlgBorder_dashed" value="dashed">dashed</option>
+											<option fcklang="TableDlgBorder_dotted" value="dotted">dotted</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span fcklang="DlgBorderColor">Border Color</span>:</td>
+									<td>
+										&nbsp;<input id="txtBorderColor" type="text" size="8" name="txtBorderColor"></td>
+									<td>
+										&nbsp;
+										<input type="button" fcklang="DlgCellBtnSelect" value="Select..."
+											onclick="SelectColor(SelectBorderColor)">
+									</td>
+								</tr>
+								<tr>
+									<td nowrap="nowrap">
+										<span fcklang="DlgTableCellSpace">Cell spacing</span>:</td>
+									<td colspan="2" nowrap="nowrap">
+										&nbsp;<input id="txtCellSpacing" type="text" maxlength="2" size="2" value="1" name="txtCellSpacing"
+											onkeypress="return IsDigit(event);" />px</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

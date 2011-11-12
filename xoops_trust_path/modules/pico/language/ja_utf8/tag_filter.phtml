@@ -1,0 +1,13 @@
+<?php
+
+function pico_custom_tag_filter( $text )
+{
+	if( function_exists( 'mb_convert_kana' ) ) {
+		$text = mb_convert_kana( $text , 'as' ) ;
+	}
+
+	return preg_split( '/\s+/' , preg_replace( '/[\x00-\x2f:-@\x5b-\x60\x7b-\x7f]/' , ' ' , $text ) ) ;
+}
+
+
+?>

@@ -1,0 +1,305 @@
+<?php
+/*
+ * Created on 2007/02/13 by nao-pon http://hypweb.net/
+ * $Id: hyp_preload.conf.php.rename.php, v 1.0 2007/02/13 11:28:04 nao-pon Exp $
+
+ HypCommonPreLoad の設定値を変更したい場合は
+ このファイルを編集して hyp_preload.conf.php にリネームしてください。
+
+ */
+
+class HypCommonPreLoad extends HypCommonPreLoadBase {
+
+	function HypCommonPreLoad (& $controller) {
+
+		// 各機能のメインスイッチ (On = 1, Off = 0)
+		$this->use_set_query_words   = 0; // 検索ワードを定数にセット
+		$this->use_words_highlight   = 0; // 検索ワードをハイライト表示
+		$this->use_proxy_check       = 0; // POST時プロキシチェックする
+		$this->use_dependence_filter = 0; // 機種依存文字フィルター
+		$this->use_post_spam_filter  = 0; // POST SPAM フィルター
+		$this->post_spam_trap_set    = 0; // 無効フィールドのBot罠を自動で仕掛ける
+		$this->use_k_tai_render      = 1; // 携帯対応レンダーを有効にする
+		$this->use_smart_redirect    = 0; // スマートリダイレクトを有効にする
+
+		// 各種設定
+		$this->configEncoding = 'UTF-8'; // このファイルの文字コード
+
+		$this->encodehint_word = 'ぷ';    // POSTエンコーディング判定用文字
+		$this->encodehint_name = 'HypEncHint'; // POSTエンコーディング判定用 Filed name
+		$this->detect_order = 'ASCII, JIS, UTF-8, eucJP-win, EUC-JP, SJIS-win, SJIS';
+
+		$this->msg_words_highlight = 'これらのキーワードがハイライトされています';
+
+		$this->no_proxy_check  = '/^(127\.0\.0\.1|192\.168\.1\.)/'; // 除外IP
+		$this->msg_proxy_check = 'Can not post from public proxy.';
+
+		// POST SPAM
+		$this->use_mail_notify    = 1;    // POST SPAM メール通知 0:なし, 1:SPAM判定のみ, 2:すべて
+		$this->send_mail_interval = 60;   // まとめ送りのインターバル(分) (0 で随時送信)
+		$this->post_spam_a   = 1;         // <a> タグ 1個あたりのポイント
+		$this->post_spam_bb  = 1;         // BBリンク 1個あたりのポイント
+		$this->post_spam_url = 1;         // URL      1個あたりのポイント
+		$this->post_spam_unhost= 5;       // 不明 HOST の加算ポイント
+		$this->post_spam_host  = 31;      // Spam HOST の加算ポイント
+		$this->post_spam_word  = 10;      // Spam Word の加算ポイント
+		$this->post_spam_filed = 200;     // Spam 無効フィールドの加算ポイント
+		$this->post_spam_trap  = '___url';// Spam 罠用無効フィールド名
+
+		$this->post_spam_user  = 150;     // POST SPAM 閾値: ログインユーザー
+		$this->post_spam_guest = 15;      // POST SPAM 閾値: ゲスト
+		$this->post_spam_badip = 100;     // アクセス拒否リストへ登録する閾値
+
+		// 処理をパスするフォームフィールド名 (,<カンマ> 区切り)
+		// reference_quote : d3forum
+		// msg_before,msg_after : PukiWikiMod
+		$this->post_spam_pass_names = 'reference_quote,msg_before,msg_after';
+
+		// Protector 併用設定 (Protector の拒否IP登録の保護グループ設定も有効)
+		$this->post_spam_badip_ttl     = 900;     // アクセス拒否の拒否継続時間[Sec](0:無期限,null:Protector不使用)
+		$this->post_spam_badip_forever = 200;     // 無期限アクセス拒否閾値
+		$this->post_spam_badip_ttl0    = 2592000; // 無期限アクセス拒否継続時間[Sec](0:本当に無期限)
+
+		// Proxy Checkers
+		$this->post_spam_checkers = array(
+			//'list.dsbl.org',
+			'niku.2ch.net',
+			array(
+				'dnsbl.spam-champuru.livedoor.com',
+				'/^192\.168\.1\.2/'
+			),
+		);
+
+		// POST SPAM のポイント加算設定
+		$this->post_spam_rules = array(
+			// 同じURLが1行に3回 11pt
+			"/((?:ht|f)tps?:\/\/[!~*'();\/?:\@&=+\$,%#\w.-]+).+?\\1.+?\\1/i" => 11,
+
+			// 65文字以上の英数文字のみで構成されている 15pt
+			// '/^[\x00-\x7f\s]{65,}$/' => 15,
+
+			// 無効な文字コードがある 31pt
+			'/[\x00-\x08\x11-\x12\x14-\x1f\x7f]+/' => 31,
+
+			// よくあるSPAM 15pt
+			'/^\s*(?:Hi|Aloha)! (?:<a[^>]+?href=|\[url=|http:\/\/)/i' => 15,
+		);
+
+		// 無効なフィールド定義
+		$this->ignore_fileds = array(
+			// 'url' => array('newbb/post.php', 'comment_post.php'),
+		);
+
+		// 検索ワード定数名
+		$this->q_word  = 'XOOPS_QUERY_WORD';         // 検索ワード
+		$this->q_word2 = 'XOOPS_QUERY_WORD2';        // 検索ワード分かち書き(分かち書き不使用なら空文字''で設定)
+		$this->se_name = 'XOOPS_SEARCH_ENGINE_NAME'; // 検索元名
+
+		// 外部リンクに付加する class属性値
+		// use_words_highlight = 1 の場合に有効
+		// 空値指定で class属性の付加なし
+		$this->extlink_class_name = 'ext';
+
+		// KAKASI での分かち書き結果のキャッシュ先
+		$this->kakasi_cache_dir = XOOPS_ROOT_PATH.'/cache2/kakasi/';
+
+		// スマートリダイレクトのポップアップ最短秒数
+		$this->smart_redirect_min_sec = 5;
+
+		// 定数 "HYP_IS_BOT_UA" をセットする UserAgant PCRE 正規表現
+		$this->bot_ua_reg = '/bot|Slurp|Crawler|Sidewinder|spider|Y!J|Ask/i';
+
+		/////////////////////////
+		// 携帯対応レンダー設定
+
+		// 携帯端末判定用 UA 正規表現
+		$this->k_tai_conf['ua_regex'] = '#(?:Android|Windows Phone|SoftBank|Vodafone|J-PHONE|DoCoMo|UP\.Browser|DDIPOCKET|WILLCOM|iPhone|iPod|mixi-mobile-converter|Googlebot-Mobile|Google Wireless Transcoder|Hatena-Mobile-Gateway)#';
+
+		// jQuery mobile を使用するプロファイル
+		$this->k_tai_conf['jquery_profiles'] = 'android,iphone,ipod,windows phone';
+
+		// jQuery mobile のテーマ
+		// ページ
+		$this->k_tai_conf['jquery_theme'] = 'b';
+		// メインコンテンツ
+		$this->k_tai_conf['jquery_theme_content'] = 'd';
+		// ブロックコンテンツ
+		$this->k_tai_conf['jquery_theme_block'] = 'c';
+
+		// jQuery 使用時はHTMLの携帯用変換を行わない
+		$this->k_tai_conf['jquery_no_reduce'] = true;
+
+		// HTML再構築用タグ設定
+		$this->k_tai_conf['rebuilds'] = array(
+			'header'         => array( 'above' => '',
+			                          'below' => ''),
+			'body'           => array( 'above' => '',
+			                          'below' => ''),
+			'footer'         => array( 'above' => '',
+			                          'below' => ''),
+			'headerlogo'     => array( 'above' => '<center>',
+			                          'below' => '</center>'),
+			'headerbar'      => array( 'above' => '<hr>',
+			                          'below' => ''),
+			'breadcrumbs'    => array( 'above' => '',
+			                          'below' => ''),
+			'leftcolumn'     => array( 'above' => '<hr>',
+			                          'below' => ''),
+			'centerCcolumn'  => array( 'above' => '<hr>',
+			                          'below' => ''),
+			'centerLcolumn'  => array( 'above' => '',
+			                          'below' => ''),
+			'centerRcolumn'  => array( 'above' => '',
+			                          'below' => ''),
+			'content'        => array( 'above' => '<hr>',
+			                          'below' => ''),
+			'rightcolumn'    => array( 'above' => '<hr>',
+			                          'below' => ''),
+			'footerbar'      => array( 'above' => '',
+			                          'below' => ''),
+			'easylogin'      => array( 'above' => '<div style="text-align:center;background-color:#DBBCA6;font-size:small">[ ',
+			                          'below' => ' ]</div>'),
+			'redirectMessage'=> array( 'above' => '<marquee loop="3">',
+			                          'below' => '</marquee>'),
+			'blockMenu'      => array( 'above' => '<div style="background-color:#E0EEEE;font-size:small">',
+			                          'below' => '</div>'),
+			'blockContent'   => array( 'above' => '',
+			                          'below' => ''),
+			'toMain'         => array( 'above' => '<hr /><div style="text-align:center">',
+			                          'below' => '</div>'),
+			'subMenu'        => array( 'above' => '<div id="submenu" style="background-color:#ccccff"><h2 style="text-align:center">サブメニュー</h2></div>',
+			                          'below' => ''),
+		);
+		// jQuery Mobile 上書き用
+		$this->k_tai_conf['rebuildsEx']['jqm'] = array(
+			'header'         => array( 'above' => '<div data-role="header" data-theme="'.$this->k_tai_conf['jquery_theme'].'">',
+			                          'below' => '</div>'),
+			'body'           => array( 'above' => '<div data-role="content" id="keitaiContents" data-theme="'.$this->k_tai_conf['jquery_theme'].'">',
+			                          'below' => '</div>'),
+			'footer'         => array( 'above' => '<div data-role="footer" data-theme="'.$this->k_tai_conf['jquery_theme'].'">',
+			                          'below' => '</div>'),
+			'easylogin'      => array( 'above' => '',
+			                          'below' => ''),
+			'blockMenu'      => array( 'above' => '<div data-role="header" style="line-height:1">',
+			                          'below' => '</div>'),
+		);
+
+		// 携帯用XOOPSテーマセット
+		$this->k_tai_conf['themeSet'] = 'ktai_default';
+		$this->k_tai_conf['themeSets'] = array();
+		//$this->k_tai_conf['themeSets']['jqm'] = ''; // jQuery mobile 一括
+		// carrier 別の設定 (carrier をキーにして設定)
+		//$this->k_tai_conf['themeSets']['android'] = '';
+		//$this->k_tai_conf['themeSets']['iphone'] = '';
+		//$this->k_tai_conf['themeSets']['ipod'] = '';
+		//$this->k_tai_conf['themeSets']['windows phone'] = '';
+
+		// 携帯用XOOPSテンプレートセット
+		$this->k_tai_conf['templateSet'] = '';
+		$this->k_tai_conf['templateSets'] = array();
+		//$this->k_tai_conf['templateSets']['jqm'] = ''; // jQuery mobile 一括
+		// carrier 別の設定 (carrier をキーにして設定)
+		//$this->k_tai_conf['templateSets']['android'] = '';
+		//$this->k_tai_conf['templateSets']['iphone'] = '';
+		//$this->k_tai_conf['templateSets']['ipod'] = '';
+		//$this->k_tai_conf['templateSets']['windows phone'] = '';
+
+		// 使用テンプレート
+		$this->k_tai_conf['template'] = 'default';
+		$this->k_tai_conf['templates']['jqm'] = 'smart'; // jQuery mobile 用
+
+		// <body> attributes
+		$this->k_tai_conf['bodyAttribute'] = '';
+
+		// 無効にするブロックの bid (Block Id) (無指定:フィルタリングしない)
+		$this->k_tai_conf['disabledBlockIds'] = array();
+
+		// 有効にするブロックの bid (Block Id) (無指定:フィルタリングしない)
+		$this->k_tai_conf['limitedBlockIds'] = array();
+
+		// 常に表示するブロックの bid (Block Id) (メインメニューなど)
+		$this->k_tai_conf['showBlockIds'] = array();
+
+		// インラインイメージのリサイズ最大ピクセル
+		$this->k_tai_conf['pictSizeMax'] = '200';
+
+		// インラインイメージを表示するホスト名(後方一致)
+		$this->k_tai_conf['showImgHosts'] = array('amazon.com', 'yimg.jp', 'yimg.com', 'google.com');
+
+		// 直接画像を表示するホスト名(後方一致)
+		$this->k_tai_conf['directImgHosts'] = array('google-analytics.com', 'maps.google.com', 'ad.jp.ap.valuecommerce.com', 'ba.afl.rakuten.co.jp', 'assoc-amazon.jp', 'ad.linksynergy.com');
+
+		// リダイレクトスクリプトを経由しないホスト名(後方一致)
+		$this->k_tai_conf['directLinkHosts'] = array('amazon.co.jp', 'ck.jp.ap.valuecommerce.com', 'afl.rakuten.co.jp', 'maps.google.com');
+
+		// 外部リンク用リダイレクトスクリプト
+		$this->k_tai_conf['redirect'] = XOOPS_URL . '/class/hyp_common/gate.php?way=redirect&amp;_d=0&amp;_u=0&amp;_x=0&amp;l=';
+
+		// Easy login を有効にする
+		$this->k_tai_conf['easyLogin'] = 1;
+		// Easy login で IP アドレス帯域をチェックしない
+		$this->k_tai_conf['noCheckIpRange'] = 0;
+		// docomo の端末IDを確認する間隔(秒)
+		$this->k_tai_conf['docomoGuidTTL'] = 300;
+
+		// リンクメッセージ
+		$this->k_tai_conf['msg']['easylogin'] = '簡単ログイン';
+		$this->k_tai_conf['msg']['logout'] = 'ログアウト';
+		$this->k_tai_conf['msg']['easyloginSet'] = '簡単ログイン:設定';
+		$this->k_tai_conf['msg']['easyloginUnset'] = '簡単ログイン:解除';
+		$this->k_tai_conf['msg']['toMain'] = '本文を表示';
+		$this->k_tai_conf['msg']['mainMenu'] = 'メインメニュー';
+		$this->k_tai_conf['msg']['subMenu'] = 'サブメニュー';
+
+		// アイコン
+		$this->k_tai_conf['icon']['first']   = '((s:465d))';
+		$this->k_tai_conf['icon']['prev']    = '((s:465b))';
+		$this->k_tai_conf['icon']['next']    = '((s:465a))';
+		$this->k_tai_conf['icon']['last']    = '((s:465c))';
+		$this->k_tai_conf['icon']['extLink'] = '((i:f8d9))';
+		$this->k_tai_conf['icon']['hTag']    = '((i:f8e4))';
+		$this->k_tai_conf['icon']['RSS']     = '((e:f699))';
+
+		$this->k_tai_conf['icon']['toMain']  = '((e:f7e4))';
+
+		// style
+		$this->k_tai_conf['style']['highlight'] = 'background-color:#ffc0cb';
+
+		// Easy login: 設定 or 解除リンクを表示するURI(XOOPS_URL以降)とuidのGETキーと挿入位置
+		$this->k_tai_conf['easyLoginConfPath'] = '/userinfo.php';
+		$this->k_tai_conf['easyLoginConfuid'] = 'uid';
+		$this->k_tai_conf['easyLoginConfInsert'] = 'content';
+
+		// GET query keys
+		$this->k_tai_conf['getKeys']['page'] = '_p_';
+		$this->k_tai_conf['getKeys']['hash'] = '_h_';
+		$this->k_tai_conf['getKeys']['block'] = '_b_';
+
+		//// Google Adsense 設定
+		// config ファイルのパス
+		$this->k_tai_conf['googleAdsense']['config'] = '';
+		// 挿入場所 ('header', 'body', 'footer') の下、無指定時はページ最上部
+		$this->k_tai_conf['googleAdsense']['below'] = '';
+
+		// Google Analytics 設定
+		$this->k_tai_conf['googleAnalyticsId'] = '';
+
+		// <a> タグの href 属性の書き換えルール
+		//$this->k_tai_conf['urlRewrites']['regex'][] = '';
+		//$this->k_tai_conf['urlRewrites']['tostr'][] = '';
+
+		// <img> タグの src 属性の書き換えルール
+		//$this->k_tai_conf['urlImgRewrites']['regex'][] = '';
+		//$this->k_tai_conf['urlImgRewrites']['tostr'][] = '';
+
+		// 携帯対応レンダー設定 以上
+		/////////////////////////////
+
+
+		///////////////////////////////
+		// 以下は変更してはいけません。
+		parent::HypCommonPreLoadBase($controller);
+
+	}
+}
+?>

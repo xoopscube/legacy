@@ -1,0 +1,28 @@
+<{strip}>
+
+<{include file="db:`$mydirname`_head.html"}>
+
+<{if $displaynav == true}>
+  <div style="text-align: center;">
+    <form name="form1" action="<{$mydirurl}>/index.php" method="get">
+      <{$topic_select}>&nbsp;
+      <{assign var=storynum_options value=","|explode:"5,10,15,20,30"}>
+      <select name="storynum">
+       <{html_options selected=$smarty.get.storynum values=$storynum_options output=$storynum_options}>
+      </select>&nbsp;
+      <input type="submit" value="<{$smarty.const._GO}>" />
+    </form>
+  </div>
+<{/if}>
+
+<!-- start news item loop -->
+<{section name=i loop=$stories}>
+  <{include file="db:`$mydirname`_item.html" story=$stories[i]}>
+  <br />
+<{/section}>
+<!-- end news item loop -->
+
+<div style="text-align: right;"><{$pagenav}></div>
+<{include file='db:system_notification_select.html'}>
+
+<{/strip}>

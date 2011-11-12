@@ -1,0 +1,9 @@
+<table cellspacing="0">
+	<tr>
+		<td id="mainmenu">
+			<{foreach item=arcs from=$block.archive}>
+				<a href="<{$block.mod_url}>?m=<{$arcs.link}>"><{$arcs.text}></a>
+			<{/foreach}>
+		</td>
+	</tr>
+</table>

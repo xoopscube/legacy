@@ -1,0 +1,41 @@
+<table class="outer" cellspacing="0">
+<{if $block.showgroups == true}>
+<{foreach item=group from=$block.groups}>
+  <tr>
+    <th colspan="2"><{$group.name}></th>
+  </tr>
+<{foreach item=user from=$group.users}>
+  <tr>
+    <td class="even" valign="middle" align="center">
+      <img src="<{$user.avatar}>" alt="" width="32" /><br />
+      <a href="<{$xoops_url}>/userinfo.php?uid=<{$user.id}>"><{$user.name}></a>
+    </td>
+    <td class="odd" width="20%" align="right" valign="middle">
+      <{$user.msglink}>
+    </td>
+  </tr>
+<{/foreach}>
+<{/foreach}>
+<{/if}>
+</table>
+<br />
+<{if $block.showgroups == true}>
+  <div style="font-size: small;">
+  <dl><{foreach item=group from=$block.groups}>
+    <dt><{$group.name}></dt>
+    <dd><ul><{foreach item=user from=$group.users}><li>
+      <a href="<{$xoops_url}>/userinfo.php?uid=<{$user.id}>"><{$user.name}></a>
+      <{$user.msglink}>
+    </li><{/foreach}></ul></dd>
+  <{/foreach}></dl>
+  </div>
+<{/if}>
+
+<hr />
+<div style="text-align: center; font-size: small;">
+  <img src="<{$block.logourl}>" alt="" border="0" /><br />
+<{if $block.recoomendtime != 0}>
+  <a href="<{$xoops_url}>/misc.php?action=showpopups&amp;type=friend&amp;op=sendform&amp;t=<{$block.recoomendtime}>"><{$smarty.const._MB_LEGACY_RECO}></a>
+<{/if}>
+</div>
+<hr />

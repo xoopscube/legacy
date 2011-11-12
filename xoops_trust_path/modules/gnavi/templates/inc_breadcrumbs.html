@@ -1,0 +1,10 @@
+<{* DRAW BREAD CRUMBS *}>
+<div id="gn_breadcrumbs">
+	<{foreach from=$xoops_breadcrumbs key="i" item="bc"}>
+		<{if $bc.url}>
+			<a href="<{$bc.url}>"><{$bc.name}></a>&nbsp;&gt;&nbsp;
+		<{else}>
+			<{$bc.name}>
+		<{/if}>
+	<{/foreach}>
+</div>

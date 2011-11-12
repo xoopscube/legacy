@@ -1,0 +1,52 @@
+<{strip}>
+
+<table class="gn_outer" style="margin-top:17px;">
+
+	<{* TITLE *}>
+	<tr><td class="gn_itemheader" colspan="2">
+		<a name='<{$photo.lid}>'></a><a href='<{$mod_url}>/index.php?lid=<{$photo.lid}><{if $category_id}>&cid=<{$category_id}><{/if}>'><{$photo.title}></a>
+		<{if $photo.is_newphoto}>&nbsp;<img src='<{$mod_url}>/images/new.gif' border='0' alt='<{$lang_new}>' title='<{$lang_new}>' /><{/if}>
+		<{if $photo.is_updatedphoto}>&nbsp;<img src='<{$mod_url}>/images/update.gif' border='0' alt='<{$lang_updated}>' title='<{$lang_updated}>' /><{/if}>
+		<{if $photo.is_popularphoto}>&nbsp;<img src='<{$mod_url}>/images/pop.gif' border='0' alt='<{$lang_popular}>' title='<{$lang_popular}>' /><{/if}>
+		<{if $photo.can_edit}><span>[<a href="index.php?page=submit&lid=<{$photo.lid}>"><{$lang_editthisphoto}></a>]</span><{/if}>
+	</td></tr>
+
+	<{* FILE1 THUMNAIL OR ICON *}>
+	<{if $photo.ext}>
+		<tr>
+			<td class="gn_head" style="vertical-align:middle;padding:4px;">
+				<a href='<{$mod_url}>/index.php?lid=<{$photo.lid}><{if $category_id}>&cid=<{$category_id}><{/if}>'>
+					<img src='<{$photo.imgsrc_thumb}>' alt='<{$photo.title}>' />
+				</a>
+			</td>
+			<td class="gn_odd">
+	<{else}>
+		<tr>
+			<td class="gn_odd" colspan="2">
+	<{/if}>
+
+	<{* INFO date,owner,hits *}>
+	<div class="gn_rsmall">
+		<{$photo.datetime}>&nbsp;&nbsp;<{$lang_submitter}>:&nbsp;
+		<{if $photo.submitter > 0}><a href='<{$xoops_url}>/userinfo.php?uid=<{$photo.submitter}>'><{$photo.submitter_name}></a>&nbsp;(<a href='<{$mod_url}>/index.php?uid=<{$photo.submitter}>'><{$lang_itemlist}></a>)
+		<{else}><{$photo.submitter_name}><{/if}>
+		&nbsp;[&nbsp;<{$photo.hits}>hit&nbsp;]
+	</div>
+
+	<{* DESCRIPTION *}>
+	<{$photo.sdescription}>
+	<div align="right">
+		<a href='<{$mod_url}>/index.php?lid=<{$photo.lid}><{if $category_id}>&cid=<{$category_id}><{/if}>'><{$lang_readmore}></a>
+	</div>
+
+	</td></tr>
+
+	<{* ITEM INFORMATIONS *}>
+	<{if $photo.tel}><tr><td class="gn_head"><{$lang_tel}></td><td class="gn_odd"><{$photo.tel}></td></tr><{/if}>
+	<{if $photo.fax}><tr><td class="gn_head"><{$lang_fax}></td><td class="gn_odd"><{$photo.fax}></td></tr><{/if}>
+	<{if $photo.zip}><tr><td class="gn_head"><{$lang_zip}></td><td class="gn_odd"><{$photo.zip}></td></tr><{/if}>
+	<{if $photo.address}><tr><td class="gn_head"><{$lang_address}></td><td class="gn_odd"><{$photo.address}></td></tr><{/if}>
+
+</table>
+
+<{/strip}>

@@ -1,0 +1,34 @@
+#freeze
+#pginfo(0			3	all	all	3	all	all	1	eR1cAu1dhq6	web-master	1	)
+#xoopsadmin
+
+* 管理用ツール一覧 [#i95b71f6]
+
+** 管理者専用ツール [#kbcfbc57]
+
+-[[ページ名変更>[[cmd:rename]]]]
+-[[複数ページ一括削除>[[cmd:deldel]]]]
+-[[ページ内容の一括置換>[[cmd:replacer]]]]
+-[[ページ権限の規定値設定>[[cmd:pginfo]]]]
+-[[バックアップ・リストア>[[cmd:dump]]]]
+-[[データーベースシンクロ>[[cmd:dbsync]]]]
+-[[データーインポート>[[cmd:import]]]]
+-[[エンティティデータ更新>[[cmd:update_entities]]]]
+
+*** プラグインキャッシュ初期化 [#we6a31e2]
+-[[ajaxtree プラグイン>[[cmd:ajaxtree]]]]
+-[[tag プラグイン>[[cmd:tag]]]]
+
+** その他のツール [#cf9cc793]
+
+-各種一覧
+--[[サイトマップ>[[cmd:map]]]]
+--[[未作成ページ一覧>[[cmd:yetlist]]]]
+--[[削除ページ一覧>[[cmd:deleted]]]]
+--[[ページファイル名一覧>[[cmd:filelist]]]]
+--[[設定ページ一覧>:config]]
+--[[構成ファイルのバージョンリスト>[[cmd:versionlist]]]]
+
+-各種出力
+--[[md5ハッシュ計算>[[cmd:md5]]]]
+--[[TouchGraphWikiBrowser用のインデックス作成>[[cmd:touchgraph]]]]

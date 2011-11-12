@@ -1,0 +1,305 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!--
+	guiedit - PukiWiki Plugin
+
+	License:
+	  GNU General Public License Version 2 or later (GPL)
+	  http://www.gnu.org/licenses/gpl.html
+
+	Copyright (C) 2006-2007 garand
+	PukiWiki : Copyright (C) 2001-2006 PukiWiki Developers Team
+	FCKeditor : Copyright (C) 2003-2007 Frederico Caldeira Knabben
+-->
+<html>
+	<head>
+		<title>Attachment Properties</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta content="noindex, nofollow" name="robots">
+		<script language="javascript">
+
+//	ダイアログの共通スクリプトの読み込み
+var src = window.parent.FCKConfig.BasePath + 'dialog/common/fck_dialog_common.js';
+document.write('<script type="text/javascript" src="' + src + '"><\/script>');
+
+var oEditor = window.parent.InnerDialogLoaded() ;
+var FCKSelection = oEditor.FCKSelection;
+var FCKLang = oEditor.FCKLang ;
+var FCKConfig = oEditor.FCKConfig;
+var PukiWikiPlugin = oEditor.PukiWikiPlugin;
+var XpWiki = window.parent.window.parent.XpWiki;
+
+var eSelected;
+
+window.onload = function ()
+{
+	oEditor.FCKLanguageManager.TranslatePage(document);
+
+	eSelected = PukiWikiPlugin.GetSelectedElement2();
+		
+	LoadSelected();
+	
+	window.parent.SetOkButton(true);
+	
+	var insName = oEditor.FCK.Name;
+	if (insName) {
+		XpWiki.setUploadVar(insName);
+	}
+	window.parent.document.getElementById('btnOk').disabled = false;
+	window.parent.document.getElementById('btnCancel').disabled = false;
+
+	setTimeout(function(){window.parent.SetAutoSize(true)}, 100);
+};
+
+window.onunload = function ()
+{
+	XpWiki.PopupHide();
+}
+
+function LoadSelected()
+{
+	//GetE('height').disabled = true;
+
+	if (!eSelected)
+		return ;
+
+	if (eSelected.className == 'ref') {
+		FCKSelection.SelectNode(eSelected);
+		GetE('name').value = eSelected.getAttribute('_filename');
+		GetE('div').checked = (eSelected.tagName == 'DIV') ? true : false;
+		GetE('othor').value = eSelected.getAttribute('_othor');
+		GetE('alt').value = eSelected.getAttribute('_alt');
+		if (eSelected.getAttribute('_size') > 0) {
+			GetE('size').value = eSelected.getAttribute('_size');
+			GetE('width').value = "";
+			GetE('mw').value = "max";
+			GetE('mw').disabled = true;
+			GetE('height').value = "";
+			GetE('mh').value = "max";
+			GetE('mh').disabled = true;
+		} else {
+			if (eSelected.getAttribute('_mw')) {
+				GetE('width').value = eSelected.getAttribute('_mw');
+				GetE('mw').value = 'max';
+			} else {
+				GetE('width').value = eSelected.getAttribute('_width');
+				if (GetE('width').value) GetE('mw').value = 'fix';
+			}
+			if (eSelected.getAttribute('_mh')) {
+				GetE('height').value = eSelected.getAttribute('_mh');
+				GetE('mh').value = 'max';
+			} else {
+				GetE('height').value = eSelected.getAttribute('_height');
+				if (GetE('height').value) GetE('mh').value = 'fix';
+			}
+		}
+		GetE('align').value = eSelected.getAttribute('_align');
+		GetE('nolink').checked = (eSelected.getAttribute('_nolink') == 1);
+		GetE('noicon').checked = (eSelected.getAttribute('_noicon') == 1);
+		GetE('noimg').checked = (eSelected.getAttribute('_noimg') == 1);
+		GetE('wrap').checked = (eSelected.getAttribute('_wrap') == 1);
+		GetE('around').checked = (eSelected.getAttribute('_around') == 1);
+		//GetE('zoom').checked = (eSelected.getAttribute('_zoom') == 1);
+		
+		if (eSelected.tagName == 'SPAN') {
+			ChangeType('SPAN');
+		}
+	}
+	else {
+		eSelected == null ;
+	}
+}
+
+function Ok()
+{
+	var sValue = new Array();
+	sValue['class'] = 'ref';
+	sValue['name'] = GetE('name').value;
+	sValue['type'] = GetE('div').checked ? 'DIV' : 'SPAN';
+	sValue['othor'] = GetE('othor').value;
+	sValue['alt'] = GetE('alt').value;
+	sValue['width'] = XpWiki.str2num(GetE('width').value);
+	sValue['height'] = XpWiki.str2num(GetE('height').value);
+	sValue['mw'] = GetE('mw').value;
+	sValue['mh'] = GetE('mh').value;
+	sValue['size'] = XpWiki.str2num(GetE('size').value);
+	sValue['align'] = GetE('align').value;
+	sValue['nolink'] = GetE('nolink').checked;
+	sValue['noicon'] = GetE('noicon').checked;
+	sValue['noimg'] = GetE('noimg').checked;
+	sValue['wrap'] = GetE('wrap').checked;
+	sValue['around'] = GetE('around').checked;
+	//sValue['zoom'] = GetE('zoom').checked;
+
+	if ( sValue['name'].length == 0 )
+	{
+		alert( FCKLang.AttachmentErrNoName ) ;
+		return false ;
+	}
+
+	if (sValue['type'] == 'DIV') {
+		var aTags = ['H2', 'H3', 'H4', 'H5', 'H6'];
+		for (i = 0; i < aTags.length; i++) {
+			if (FCKSelection.HasAncestorNode(aTags[i])) {
+				alert(FCKLang.AttachmentErrInsert);
+				return false;
+			}
+		}
+	}
+	if (FCKSelection.HasAncestorNode('PRE')) {
+		alert(FCKLang.AttachmentErrInsert);
+		return false;
+	}
+
+	XpWiki.PopupHide();
+
+	window.parent.document.getElementById('btnOk').disabled = true;
+	window.parent.document.getElementById('btnCancel').disabled = true;
+
+	if (eSelected) {
+		PukiWikiPlugin.Change(eSelected, sValue);
+		return true;
+	}
+
+	PukiWikiPlugin.Add(sValue);
+	return true;
+}
+
+function Cancel() {
+	FCKSelection.Collapse();
+	XpWiki.PopupHide();
+}
+
+function ChangeType(type) {
+	if (type == 'DIV') {
+		//GetE('align').disabled = false;
+		GetE('align_c').disabled = false;
+		GetE('wrap').disabled = false;
+		GetE('around').disabled = false;
+	}
+	else {
+		//GetE('align').disabled = true;
+		if (GetE('align').value == 'center') {
+			GetE('align').value = '';
+		}
+		GetE('align_c').disabled = true;
+		GetE('wrap').disabled = true;
+		GetE('around').disabled = true;
+	}
+}
+
+function ChangeSizeType(par) {
+	if (par) {
+		GetE('width').value = "";
+		GetE('mw').value = "max";
+		GetE('mw').disabled = true;
+		GetE('height').value = "";
+		GetE('mh').value = "max";
+		GetE('mh').disabled = true;
+	} else {
+		GetE('size').value = "";
+		GetE('mw').disabled = false;
+		GetE('mh').disabled = false;
+	}
+}
+		</script>
+		
+	</head>
+	<body scroll="no" style="OVERFLOW: hidden">
+		<table height="100%" cellSpacing="0" cellPadding="0" width="100%" border="0">
+			<tr>
+				<td>
+					<table cellSpacing="0" cellPadding="2" align="center" border="0" width="100%">
+						<tr>
+							<td colspan="3" align="right"><form style="display: inline;"><input type="button" onclick="XpWiki.fileupFormPopup('fck');" value="File Browser" fckLang="AttachmentDlgBrowser"></form></td>
+						</tr>
+						<tr>
+							<td><span fckLang="AttachmentDlgType">Type</span>:</td>
+							<td colspan="2">
+								<input id="div" name="type" type="radio" onclick="ChangeType('DIV')">
+								<label for="div" fckLang="AttachmentDlgDiv">Block</label>
+								<input id="span" name="type" type="radio" onclick="ChangeType('SPAN')" checked>
+								<label for="span" fckLang="AttachmentDlgSpan">Inline</label>
+							</td>
+						</tr>
+						<tr>
+							<td><span fckLang="AttachmentDlgName">File Name</span>:</td>
+							<td colspan="2"><input id="name" type="text" style="width: 100%"></td>
+						</tr>
+						<tr>
+							<td><span fckLang="AttachmentDlgOthor">Othor options</span>:</td>
+							<td colspan="2"><input id="othor" type="text" style="width: 100%"></td>
+						</tr>
+						<tr>
+							<td><span fckLang="AttachmentDlgAlt">Alternative Text</span>:</td>
+							<td colspan="2"><input id="alt" type="text" style="width: 100%"></td>
+						</tr>
+						<tr>
+							<td><span fckLang="AttachmentDlgZoom">Zoom</span>:</td>
+							<td  colspan="2">
+								<input id="size" type="text" style="width: 40px" onkeydown="ChangeSizeType(true)"> %
+							</td>
+						</tr>
+						<tr>
+							<td><span fckLang="AttachmentDlgWidth">Width</span>:</td>
+							<td colspan="2">
+								<input id="width" type="text" style="width: 40px" onkeydown="ChangeSizeType(false)">px
+								(<select id="mw" onchange="ChangeSizeType(false)">
+									<option value="max" fckLang="AttachmentDlgMax">Max</option>
+									<option value="fix" fckLang="AttachmentDlgFix">Fix</option>
+								</select>)
+							</td>
+						</tr>
+						<tr>
+							<td><span fckLang="AttachmentDlgHeight">Height</span>:</td>
+							<td colspan="2">
+								<input id="height" type="text" style="width: 40px" onkeydown="ChangeSizeType(false)">px
+								(<select id="mh" onchange="ChangeSizeType(false)">
+									<option value="max" fckLang="AttachmentDlgMax">Max</option>
+									<option value="fix" fckLang="AttachmentDlgFix">Fix</option>
+								</select>)
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3" height="10"></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<input id="nolink" type="checkbox">
+								<label for="nolink" fckLang="AttachmentDlgNoLink">nolink</label>
+							</td>
+							<td>
+								<span fckLang="AttachmentDlgAlign">Align</span>:
+								<select id="align" style="width: 100px; margin-left: 10px">
+									<option value="" fckLang="AttachmentDlgAlignNo">No</option>
+									<option value="left" fckLang="AttachmentDlgAlignLeft">Left</option>
+									<option value="center" id="align_c" fckLang="AttachmentDlgAlignCenter" disabled>Center</option>
+									<option value="right" fckLang="AttachmentDlgAlignRight">Right</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<input id="noicon" type="checkbox">
+								<label for="noicon" fckLang="AttachmentDlgNoIcon">noicon</label>
+							</td>
+							<td>
+								<input id="wrap" type="checkbox" disabled>
+								<label for="wrap" fckLang="AttachmentDlgWrap">wrap</label>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<input id="noimg" type="checkbox">
+								<label for="noimg" fckLang="AttachmentDlgNoImg">noimg</label>
+							</td>
+							<td>
+								<input id="around" type="checkbox" disabled>
+								<label for="around" fckLang="AttachmentDlgAround">around</label>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

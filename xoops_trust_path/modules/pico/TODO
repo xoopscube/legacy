@@ -1,0 +1,187 @@
+●TODO停止中
+
+・申請内容とのdiff表示
+  ペンディング
+
+・コンテンツextra_fieldsの未承認状態がない
+・コンテンツのソート専用テーブルを用意する
+
+・「カテゴリー内記事へのコメント」というイベント通知
+
+
+・PDF
+  意味ある？
+
+・pukiWikiレンダラー
+  とりあえずnao-ponさんのpico_xpwiki.phpをdisabledとして収録しているからいいか。
+
+・全ページを連続表示するページナビ
+  手つかず
+
+・rewriteモードでは、すべてREQUEST_URIから展開するロジック
+  先送り
+
+・題名もしくは仮想パスによる記事間自動リンク
+・Wikiのようなページ指定方法
+  難しいので先送り
+
+・グループ/ユーザの選択肢から各カテゴリーの権限を確認/変更するコントローラ
+
+・カテゴリのextra_fields
+・マルチカテゴリ
+
+
+●TODO進行中
+
+・[summary][/summary]実装
+・全文閲覧権限のない状況と、RSSのdescriptionやコメント統合サマリ部との関係
+・各種コントローラ内から、WHERE条件に "visible AND created_time <= UNIX_TIMESTAMP()" 等を直書きしているSQLの根絶
+・パーミッションについても、var_export形式にする (それと同時に、クエリのLIKEパターンがシリアライズ形式に依存している部分を修正する）
+
+
+
+●実装済
+・階層カテゴリー
+・階層サブメニュー
+・パンくず
+・ページナビゲーション
+・カテゴリーOption Overrideシステム
+・トップカテゴリーの特別扱い
+・カテゴリー（モジュール）トップが、リスト表示かコンテンツかの選択
+・任意の順番でかけることのできるフィルター群（新たに Smarty追加）
+・プレビュー
+・本文キャッシュ
+・プリンタ用画面
+・モジュール・カテゴリーレベルのHTMLヘッダ
+・コンテンツ毎のHTMLヘッダ（上とは独立）
+・検索（XOOPS検索の本文表示対応）
+・閲覧数カウント
+・ブロック「コンテンツ一覧」複製可
+・ブロック「メニュー」複製可
+・ブロック「コンテンツ表示」複製可
+・d3forum nativeコメント統合
+・管理者用記事一覧管理
+・サブメニュー（ただし、メインメニューで自分自身が選択されている場合のみ）
+・Wysiwyg Editor (common/fckeditorのみ対応)
+・TinyDからのインポート（モジュールまるごと）
+・他のpicoからのインポート（モジュールまるごと）
+・sitemapプラグイン
+・投票
+・目次ページ
+・他のpicoへのエクスポート（記事単位）
+・新規登録の承認制
+・変更申請の承認制
+・申請があったことへのイベント通知
+・プラグイン (waiting)
+・静的URI (wraps方式)
+・XOOPS_TRUST_PATH/wraps/(dirname)ファイルの手動ページラップ
+・XOOPS_TRUST_PATH/wraps/(dirname)ファイルの自動ページラップ
+・新着RSS（モジュール全体およびカテゴリー毎）
+・ラップページ自動登録
+・シングルコンテント機能
+・xoops_breadcrumbs対応
+・禁止フィルター
+・強制フィルター
+・mod_rewriteによる静的URI(wrapsモードおよびnormalモード)
+・コンテンツ編集履歴機能
+・Xmobileによる携帯対応
+・poster_uid/modifier_uid 変更機能
+・任意追加フィールド機能の実装
+・タグ機能
+・タグ一覧ブロック
+・上位カテゴリーの設定を継承するカテゴリー権限システム
+・本文キャッシュではキャッシュ生成timestampとコンテンツ変更timestampを比較する
+・カテゴリごとのイベント通知（上位カテゴリへの登録に対しても通知する）
+・期限切れ処理の実装
+・[pagebreak]
+・コンテンツextra_fields
+
+
+●権限・表示ON/OFF関係の仕様
+category_permissions レコードがあれば、そのカテゴリーの「読み出し権限」がある
+category_permissions.permissions serializeデータ
+$permissions['can_read'] 閲覧権限 原則常に1（0の場合はレコード自体がない）
+$permissions['can_readfull'] 全文閲覧権限 viewcontent.php へのアクセス権限
+$permissions['can_post'] 投稿権限 これだけだと投稿されてもvisible=0
+$permissions['can_edit'] 変更権限 他者のエントリも変更できる。*_waitingに収まる
+$permissions['can_delete'] 削除権限 他者のエントリも削除できる
+$permissions['post_auto_approved'] 投稿したらvisible=1、編集したら*_waitingに収めることもスキップしていきなり書き換わる
+$permissions['can_makesubcategory'] サブカテゴリー作成権限
+$permissions['is_moderator'] カテゴリーモデレータ・不可視コンテンツが見える/承認権限がある/カテゴリー編集権限がある等。管理画面での操作（直接の権限設定等）は出来ない。また、INSECURE指定されたフィルター(evalやxoopstpl等)を利用できるのもモデレータ（と管理者）だけ
+
+contents.visible 0なら、管理者/モデレータ以外には見えない
+contents.approval 表示/非表示とは直接関係ない。0は単に「待っている」ことを示す
+contents.show_in_navi ページナビゲーションに表示されるかどうか
+contents.show_in_menu メニューブロック・自動生成メニューに表示されるかどうか
+contents.created_time 未来の日時なら掲示前
+
+
+●ページラップの仕様 （大きく分けて３パターン）
+(mydirname)/index.php/foo.gif
+  拡張子に合ったHTTPヘッダつけて単純転送 (wrapsと同じ)
+
+(mydirname)/index.php/foo.html
+・contentsテーブルにある場合
+  content_idを求め、そこからは通常のコンテンツ処理
+  filtersに"wraps"があればラップされるし、なければDBの内容
+  キャッシュに収めることが出来るので、検索対象にもなる
+・contentsテーブルになく、かつ、対応するファイルがある場合
+  cat_idをpathから求める（なければtopカテゴリー扱い)
+  headerとfooterをつけて転送
+  <body></body>の内側をコンテンツ扱い
+  最初の<title></title>の内側をsubject扱い
+  エンコード変換も行う
+  「友達に知らせる」機能はとりあえず強制OFF（将来的には修正すべきか？）
+  ページナビゲーションも強制OFF
+
+
+●1.70以降の公開側処理フロー
+
+- パンくず初期化 (AltsysBreadcrumbs シングルトン)
+- URIからリクエストを取得$picoRequest (UriMapper)
+-- $picoRequestの中身はすべて正規化済
+-- path_infoによる指定で自動登録が有効ならcontentsに登録してそのidをリクエストへ
+-- path_infoによる指定で自動登録が無効かつHTMLの場合はwraps的処理
+-- path_infoによる指定でHTML以外の場合は単に転送してその場で終了
+- 該当dirnameのパーミッション取得 (Permission シングルトン)
+- リクエストから判定されたカテゴリーの取得
+-- 該当cat_idがなければ、トップへリダイレクト
+-- この段階ではパーミッションチェックは行わない
+- $GLOBALS['xoopsModuleConfig'] をオーバーライドしておく
+- パンくずにカテゴリーツリーを積む
+- controller/view の最割り当て ( UriMapper::modifyRequest() )
+- リクエストcontrollerに応じたコントローラObj作成
+-- content (viewcontent)
+-- category (listcontents)
+-- menu (menu)
+- リクエストを渡してコントローラexecute() (データ取得・アサイン等)
+- render header/footer のinlcudeが必要なものは一応グローバルレベルで処理する
+-- それ以外はコントローラのrender()に任せる
+
+
+●役割分担
+
+・エントリポイント (main/*.php)
+- 適切なController/viewを選択し、呼び出す（なるべくそれ以外の仕事はしない）
+- パンくずの初期化
+- カテゴリーIDの存在確認
+
+・Model (class/PicoModel*.class.php)
+- パーミッションチェックは積極的に行わない
+- Handlerで全体を取得する時だけが例外。（今後はここでも全部返すようにする*1）
+- ['can_read'] で判定する
+- SQLを発行して良いのは唯一このクラスだけ
+- 逆にGPCSの取得・利用は原則禁止。
+
+・Controller (class/PicoController*.class.php)
+- パーミッションチェック・リダイレクト処理はここで行う
+- 原則的にSQL禁止
+
+・View (templates/*.html)
+- 実体はテンプレートそのもの
+- 表示・非表示のコントロールは基本的にはすべてここで行う（Model*1 と連動)
+
+
+
+
+AltsysBreadcrumbsをaltsysへ移動

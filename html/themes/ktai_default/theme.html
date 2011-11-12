@@ -1,0 +1,163 @@
+<html>
+<head>
+<meta name="format-detection" content="telephone=no,address=no,email=no" /><meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta name="robots" content="<{$xoops_meta_robots}>" />
+<meta name="keywords" content="<{$xoops_meta_keywords}>" />
+<meta name="description" content="<{$xoops_meta_description}>" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author}>" />
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<meta name="generator" content="XOOPS" />
+<title><{$xoops_pagetitle}> - <{$xoops_sitename}></title>
+<link rel="alternate" type="application/rss+xml" title="RSS of <{$xoops_sitename}>" href="<{$xoops_url}>/backend.php" />
+<link rel="stylesheet" type="text/css" media="handheld" href="<{$xoops_url}>/themes/<{$xoops_theme}>/handheld.css" />
+<link rel="stylesheet" type="text/css" media="docomo" href="<{$xoops_url}>/themes/<{$xoops_theme}>/docomo.css" />
+<link rel="stylesheet" type="text/css" media="au" href="<{$xoops_url}>/themes/<{$xoops_theme}>/au.css" />
+<link rel="stylesheet" type="text/css" media="softbank" href="<{$xoops_url}>/themes/<{$xoops_theme}>/softbank.css" />
+<link rel="stylesheet" type="text/css" media="willcom" href="<{$xoops_url}>/themes/<{$xoops_theme}>/willcom.css" />
+<link rel="stylesheet" type="text/css" media="iphone,ipod,ipad,android,windows phone" href="<{$xoops_url}>/themes/<{$xoops_theme}>/smart.css" />
+<{$xoops_module_header}>
+<{$xoops_block_header}>
+<script type="text/javascript">
+<!--
+<{$xoops_js}>
+//-->
+</script>
+</head>
+<body>
+
+<!--headerlogo-->
+<a href="<{$xoops_url}>/"><img src="<{$xoops_url}>/themes/<{$xoops_theme}>/images/logo.jpg"></a>
+<!--/headerlogo-->
+
+<!--headerbar-->
+
+<!--/headerbar-->
+
+<{if $xoops_breadcrumbs}>
+<!--breadcrumbs-->
+<div style="font-size:small;color:#FFFFFF;background-color:#A9A9A9">
+	<a href="<{$xoops_url}>/">Home</a>
+	<{foreach from=$xoops_breadcrumbs item="item"}>
+		&gt;
+		<{if $item.url}>
+			<a href="<{$item.url}>"><{$item.name}></a>
+		<{else}>
+			<{$item.name}>
+		<{/if}>
+	<{/foreach}>
+</div>
+<!--/breadcrumbs-->
+<{/if}>
+
+<{if $xoops_showcblock == 1 && $xoops_ccblocks}>
+<!--centerCcolumn-->
+<div class="centercolumn">
+<{foreach item=block from=$xoops_ccblocks}>
+	<!--KTaiBlock_<{$block.id}>-->
+	<ns>
+	<div style="text-align:center;background-color:#ccccff">
+		<h2 style="text-align:center;background-color:#ccccff">
+		<!--KTaiTitle--><{$block.title}><!--/KTaiTitle-->
+		</h2>
+	</div>
+	<div><{$block.content}></div>
+	</ns>
+	<!--/KTaiBlock-->
+<{/foreach}>
+</div>
+<!--/centerCcolumn-->
+<{/if}>
+
+<!--content-->
+<{if $xoops_contents}>
+<h2<{if $smarty.const.HYP_K_TAI_RENDER < 2}> style="text-align:center;font-size:x-large;background-color:#99CCFF"<{/if}>>
+<{if $xoops_modulename}><{$xoops_modulename}><{else}>Main<{/if}>
+</h2>
+<{$xoops_contents}>
+<{/if}>
+<!--/content-->
+
+<{if $xoops_clblocks}>
+<!--centerLcolumn-->
+<{foreach item=block from=$xoops_clblocks}>
+	<!--KTaiBlock_<{$block.id}>-->
+	<ns>
+	<div style="text-align:center;background-color:#ccccff">
+		<h2 style="text-align:center;background-color:#ccccff">
+		<!--KTaiTitle--><{$block.title}><!--/KTaiTitle-->
+		</h2>
+	</div>
+	<div><{$block.content}></div>
+	</ns>
+	<!--/KTaiBlock-->
+<{/foreach}>
+<!--/centerLcolumn-->
+<{/if}>
+
+<{if $xoops_crblocks}>
+<!--centerRcolumn-->
+<{foreach item=block from=$xoops_crblocks}>
+	<!--KTaiBlock_<{$block.id}>-->
+	<ns>
+	<div style="text-align:center;background-color:#ccccff">
+		<h2 style="text-align:center;background-color:#ccccff">
+		<!--KTaiTitle--><{$block.title}><!--/KTaiTitle-->
+		</h2>
+	</div>
+	<div><{$block.content}></div>
+	</ns>
+	<!--/KTaiBlock-->
+<{/foreach}>
+<!--/centerRcolumn-->
+<{/if}>
+
+<{if $xoops_lblocks}>
+<!--leftcolumn-->
+<div id="leftcolumn">
+<{foreach item=block from=$xoops_lblocks}>
+	<!--KTaiBlock_<{$block.id}>-->
+	<ns>
+	<div style="text-align:center;background-color:#ccccff">
+		<h2 style="text-align:center;background-color:#ccccff">
+		<!--KTaiTitle--><{$block.title}><!--/KTaiTitle-->
+		</h2>
+	</div>
+	<div><{$block.content}></div>
+	</ns>
+	<!--/KTaiBlock-->
+<{/foreach}>
+</div>
+<!--/leftcolumn-->
+<{/if}>
+
+<{if $xoops_showrblock == 1 && $xoops_rblocks}>
+<!--rightcolumn-->
+<div id="rightcolumn">
+<{foreach item=block from=$xoops_rblocks}>
+	<!--KTaiBlock_<{$block.id}>-->
+	<ns>
+	<div style="text-align:center;background-color:#ccccff">
+		<h2 style="text-align:center;background-color:#ccccff">
+		<!--KTaiTitle--><{$block.title}><!--/KTaiTitle-->
+		</h2>
+	</div>
+	<div><{$block.content}></div>
+	</ns>
+	<!--/KTaiBlock-->
+<{/foreach}>
+</div>
+<!--/rightcolumn-->
+<{/if}>
+
+<!--footerbar-->
+<div style="text-align:center;color:#FFFFFF;background-color:#A9A9A9;font-size:0.9em">
+Powered by <a href="http://xoopscube.sourceforge.net/">XOOPS</a> with <a href="http://xoops.hypweb.net/">K-Tai Render</a>
+</div>
+<!--/footerbar-->
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<table width='100%' cellspacing='0' cellpadding='0' border='0'>
+	<tr>
+		<{foreach item=photo key=count from=$block.photo}>
+			<td align='center' style='margin:0px;padding:5px 0px;'>
+				<a href="<{$block.mod_url}>/index.php?lid=<{$photo.lid}>&amp;cid=<{$photo.cid}>"><{$photo.title}></a> <br />
+				<a href="<{$block.mod_url}>/index.php?lid=<{$photo.lid}>&amp;cid=<{$photo.cid}>">
+					<{if $photo.item}> 
+						<img src="<{$photo.item}>" alt="<{$photo.title}>" title="<{$photo.title}>" />
+					<{else}>
+						<img src="<{$photo.thumbs_url}>/<{$photo.lid}>.<{$photo.ext}>" <{$photo.img_attribs}> alt="<{$photo.title}>" title="<{$photo.title}>" />
+					<{/if}>
+				</a>
+				<br />
+				<{$photo.date}>&nbsp;
+				<{if $photo.is_newphoto}>&nbsp;<img src='<{$block.mod_url}>/images/new.gif' border='0' alt='NEW'/><{/if}>
+				<{if $photo.is_updatedphoto}>&nbsp;<img src='<{$block.mod_url}>/images/update.gif' border='0' alt='UPDATE'/><{/if}>
+				<{if $photo.is_popularphoto}>&nbsp;<img src='<{$block.mod_url}>/images/pop.gif' border='0' alt='POPLAR'/><{/if}>
+			</td>
+			<{if $count is div by $block.cols }>
+				</tr>
+				<tr>
+			<{/if}>
+		<{/foreach}>
+	</tr>
+</table>

@@ -1,0 +1,197 @@
+<div class="d3pipes_admin_pipe_edit" id="<{$mydirname}>_admin_pipe_edit">
+
+<!-- link to public view of this pipe -->
+<{if $pipe.id > 0 }>
+	<div style="float:right;">
+		<a href="<{$mod_url}>/index.php?page=eachpipe&amp;pipe_id=<{$pipe.id}>"><{$smarty.const._MD_A_D3PIPES_LINK_PUBLICVIEW}></a>
+	</div>
+<{/if}>
+
+<!-- page title -->
+<h2><{$mod_name}> - 
+<{if $pipe_id>0}>
+	<{$pipe_id|string_format:$smarty.const._MD_A_D3PIPES_H2_PIPEADMINEDIT_FMT}>
+<{else}>
+	<{$smarty.const._MD_A_D3PIPES_H2_PIPEADMINNEW}>
+<{/if}>
+</h2>
+
+<form action="<{$mod_url}>/admin/index.php?page=pipe" id="joint_edit_form" method="post">
+
+	<!-- pipe properties -->
+	<div align="left" class="head" style="margin: 12px;">
+		<p>
+		<label for="pipename"><{$smarty.const._MD_A_D3PIPES_TH_PIPENAME}></label>: <input type="text" name="name" id="pipename" value="<{$pipe.name4xml}>" size="40" />
+		</p>
+		<p>
+		<label for="pipeurl"><{$smarty.const._MD_A_D3PIPES_TH_PIPEURL}></label>: <input type="text" name="url" id="pipeurl" value="<{$pipe.url4xml}>" size="60" />
+		</p>
+		<p>
+		<label for="pipeimage"><{$smarty.const._MD_A_D3PIPES_TH_PIPEIMAGE}></label>: <input type="text" name="image" id="pipeimage" value="<{$pipe.image4xml}>" size="60" />
+		</p>
+		<p>
+		<label for="pipedescription"><{$smarty.const._MD_A_D3PIPES_TH_PIPEDESCRIPTION}></label>: <textarea name="description" id="pipedescription" style="width:480px; height:80px;"><{$pipe.description_raw|escape}></textarea>
+		</p>
+	</div>
+
+	<!-- buttons -->
+	<div align="center" style="margin: 12px;">
+		<input type="submit" name="do_update" value="<{$smarty.const._MD_A_D3PIPES_BTN_SAVE}>" />
+		<{if $pipe_id>0}>
+			<input type="submit" name="do_saveas" value="<{$smarty.const._MD_A_D3PIPES_BTN_SAVEASNEWPIPE}>" />
+			<input type="reset" value="<{$smarty.const._MD_A_D3PIPES_BTN_RESET}>" />
+			<input type="submit" name="do_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_A_D3PIPES_CNFM_PIPEDELETE}>');" />
+			<input type="hidden" name="pipe_id" value="<{$pipe_id}>" />
+		<{/if}>
+		<{$gticket_hidden}>
+	</div>
+
+	<!-- joints -->
+	<ul id="pipe_main">
+	<{foreach from=$pipe.joints item="joint" key="index"}>
+
+		<li id="index_<{$index}>">
+
+			<div class="joint_element handle">
+				<{$smarty.const._MD_A_D3PIPES_TH_WEIGHT}><br />
+				<input type="text" name="joint_weights[<{$index}>]" value="<{$index*10}>" size="3" style="text-align:right;" id="joint_weights_<{$index}>" />
+			</div>
+
+			<div class="joint_element">
+				<label for="joint_classes_<{$index}>" id="joint_classes_label_<{$index}>"><{$all_joints[$joint.joint]}></label>
+				<br />
+
+				<{* joint class *}>
+				<{assign var="joint_class_default" value="%s::%s"|sprintf:$joint.joint:$joint.joint_class}>
+				<select name="joint_classes[<{$index}>]" id="joint_classes_<{$index}>" onchange="d3pipes_update_jointclasses(<{$index}>,false)">
+					<{html_options options=$joint_classes_options selected=$joint_class_default}>
+				</select>
+				<br />
+
+				<{* link to pipe analyzer *}>
+				<{if $pipe_id>0}>
+					<{if $joint.joint}>
+						<a href="<{$mod_url}>/index.php?page=pipe_analyze&amp;pipe_id=<{$pipe_id}>&amp;step=<{$index}>" target="_blank"><{$smarty.const._MD_A_D3PIPES_LINK_ANALYZETHEJOINT}></a>
+					<{/if}>
+				<{/if}>
+			</div>
+
+			<div class="joint_element">
+				<label for="joint_option_<{$index}>"><{$smarty.const._MD_A_D3PIPES_TH_OPTION}></label>
+				<br />
+				<span id="joint_option_span_<{$index}>">
+					<input type="text" name="joint_option[<{$index}>]" id="joint_option_<{$index}>" value="<{$joint.option|escape}>" size="40" />
+				</span>
+			</div>
+
+		</li>
+	<{/foreach}>
+	</ul>
+
+</form>
+
+<script type="text/javascript" src="<{$xoops_url}>/common/lib/prototype.js"></script>
+<script type="text/javascript" src="<{$xoops_url}>/common/lib/scriptaculous.js"></script>
+
+<script type="text/javascript">
+// <![CDATA[
+
+	Sortable.create(
+		'pipe_main', 
+		{
+			constraint: false,
+			handle: 'handle',
+			onUpdate: function( ele ) {
+				var weight_counter = 0 ;
+				Sortable.sequence( ele ).each(
+					function( num ) {
+						$('joint_weights_'+num).value = weight_counter ;
+						weight_counter += 10 ;
+					}
+				) ;
+
+			}
+		}
+	);
+
+
+function d3pipes_delete_all_options( class_select )
+{
+	var optionIndex = class_select.options.length ;
+	for( i = 0 ; i <= optionIndex ; i++ ) {
+		class_select.options[0] = null ;
+	}
+}
+
+var joint_type_labels = {
+	<{foreach from=$all_joints item="type_name" key="type"}>
+		'<{$type}>' : '<{$type_name}>' ,
+	<{/foreach}>
+	'' : '' } ;
+
+function d3pipes_update_jointclasses( index , init_mode )
+{
+	class_select = $( 'joint_classes_' + index ) ;
+	option_input = $( 'joint_option_' + index ) ;
+	type_label = $( 'joint_classes_label_' + index ) ;
+	type_class = class_select.value.split( '::' )  ;
+	type_label.innerHTML = joint_type_labels[ type_class[0] ] ;
+	if( ! init_mode || type_class[0] ) {
+		params = $H( {page:'joint_class_option', index:index, type_class:class_select.value, option_value:(option_input?option_input.value:'')} ).toQueryString() ;
+		new Ajax.Updater( 'joint_option_span_' + index , '<{$mod_url}>/admin/index.php' , { method: 'get' , parameters: params } ) ;
+	}
+}
+
+window.onload = d3pipes_initialize_all_joints ;
+//$('joint_edit_form').onreset = d3pipes_initialize_all_joints ;
+
+function d3pipes_initialize_all_joints()
+{
+	joint_count = document.getElementsByClassName( 'handle' ).length ;
+	for( i = 0 ; i < joint_count ; i ++ ) {
+		d3pipes_update_jointclasses( i , true ) ;
+	}
+}
+
+
+// ]]>
+</script>
+
+
+<style type="text/css">
+
+ul#pipe_main {
+}
+
+ul#pipe_main li {
+  list-style: none outside;
+  margin: 10px 0px;
+  padding:0px;
+  height:7.5em;
+  min-width:600px;
+  border:1px solid #E8A400;
+  background-color: #FFF4D8;
+  clear: both;
+}
+
+div.joint_element {
+  float:left;
+  padding: 2px;
+  vertical-align: middle;
+  height: 7.2em;
+}
+
+div.handle {
+  background-color: #E8A400;
+  color:white;
+  font-weight:bold;
+  cursor: move;
+}
+
+div.debug {
+  float: right;
+}
+</style>
+
+
+</div>

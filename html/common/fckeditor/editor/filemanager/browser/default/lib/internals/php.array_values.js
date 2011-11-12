@@ -1,0 +1,1 @@
+function array_values(R){var C,d=0,Z=[];for(C in R){if(!R.hasOwnProperty(C)){continue;}Z[d++]=R[C];}return Z;}

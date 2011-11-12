@@ -1,0 +1,283 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!--
+	guiedit - PukiWiki Plugin
+
+	License:
+	  GNU General Public License Version 2 or later (GPL)
+	  http://www.gnu.org/licenses/gpl.html
+
+	Copyright (C) 2006-2007 garand
+	PukiWiki : Copyright (C) 2001-2006 PukiWiki Developers Team
+	FCKeditor : Copyright (C) 2003-2007 Frederico Caldeira Knabben
+-->
+<html>
+	<head>
+		<title>PukiWikiPlugin Properties</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta content="noindex, nofollow" name="robots">
+		<script language="javascript">
+
+//	ダイアログの共通スクリプトの読み込み
+var src = window.parent.FCKConfig.BasePath + 'dialog/common/fck_dialog_common.js';
+document.write('<script type="text/javascript" src="' + src + '"><\/script>');
+
+
+var dialog = window.parent ;
+var oEditor = window.parent.InnerDialogLoaded();
+var FCKSelection = oEditor.FCKSelection;
+var FCKLang = oEditor.FCKLang;
+var FCKConfig = oEditor.FCKConfig;
+var PukiWikiPlugin = oEditor.PukiWikiPlugin;
+var eSelected;
+
+var blocks = '';
+var inlines = '';
+var usage = {};
+
+window.onload = function ()
+{
+	// First of all, translate the dialog box texts
+	oEditor.FCKLanguageManager.TranslatePage(document);
+
+	BuildPluginSelect();
+	
+	eSelected = PukiWikiPlugin.GetSelectedElement2();
+	
+	LoadSelected();
+	SetUsage();
+	
+	// Show the "Ok" button.
+	window.parent.SetOkButton(true);
+	setTimeout(function(){window.parent.SetAutoSize(true)}, 100);
+}
+
+function BuildPluginSelect() {
+	var plugins;
+	var myAjax = new dialog.window.parent.Ajax.Request(
+		FCKConfig.xpWiki_myPath + "?plugin=pluginlist", 
+		{
+			method: 'get',
+			asynchronous : true,
+			onSuccess: function (oj){
+				var jsonData = oj.responseText;
+				if (!!jsonData) {
+					plugins = eval('(' + jsonData + ')');
+					
+					blocks = '<option>' + FCKLang.PukiWikiPluginDlgSelect + '</option>';
+					inlines = '<option>' + FCKLang.PukiWikiPluginDlgSelect + '</option>';
+					for (var name in plugins) {
+						//alert(name);
+						usage[name + '_block'] = usage[name + '_inline'] = FCKLang.PukiWikiPluginNoExists? FCKLang.PukiWikiPluginNoExists : 'No exists.';
+						if (typeof plugins[name].block_usage == 'string') {
+							var title = (plugins[name].title)? ' (' + plugins[name].title + ')' : '';
+							title = HtmlSpecialChar(title);
+							
+							blocks += '<option value="' + name + '">' + name + title + '</option>';
+							usage[name + '_block'] = plugins[name].block_usage;
+						}
+						if (typeof plugins[name].inline_usage == 'string') {
+							var title = (plugins[name].title)? ' (' + plugins[name].title + ')' : '';
+							title = HtmlSpecialChar(title);
+							
+							inlines += '<option value="' + name + '">' + name + title + '</option>';
+							usage[name + '_inline'] = plugins[name].inline_usage;
+						}
+					}
+					SetPluginSelect();
+				}
+			}
+		});
+}
+
+function SetPluginSelect() {
+	if (GetE('div').checked) {
+		GetE('pluginSelect').innerHTML = '<select onchange="OnNameSelect(this)">' + blocks + '</select>';
+		GetE('argblock').style.display = '';
+		GetE('arginline').style.display = 'none';
+	} else {
+		GetE('pluginSelect').innerHTML = '<select onchange="OnNameSelect(this)">' + inlines + '</select>';
+		GetE('argblock').style.display = 'none';
+		GetE('arginline').style.display = '';
+	}
+	SetUsage();
+}
+
+function SetUsage() {
+	var type = (GetE('div').checked)? '_block' : '_inline';
+	var name = GetE('name').value;
+	if (!!usage[name + type]) {
+		GetE('usage').innerHTML = MakeUsageText(usage[name + type]);
+	} else {
+		GetE('usage').innerHTML = '';
+	}
+}
+
+function MakeUsageText(str) {
+	str = HtmlSpecialChar(str);
+	str = str.replace(/((?:(?:#|&amp;)[a-z0-9_]+)|(?:};)|[(),{}])/ig, '<span style="color:gray;font-weight:bold;">$1</span>');
+	str = str.replace(/([|\[\]])/g, '<span style="color:black;">$1</span>');
+	str = str.replace(/(&lt;.+?&gt;)/g, '<span style="color:#ff8c00;">$1</span>');
+	str = str.replace(/(\r\n|\r|\n)/g, '<br />');
+	return str;
+}
+
+function HtmlSpecialChar(str) {
+	str = str.replace(/&/g, '&amp;');
+	str = str.replace(/ /g, '&nbsp;');
+	str = str.replace(/</g, '&lt;');
+	str = str.replace(/>/g, '&gt;');
+	return str;
+}
+
+function LoadSelected() {
+	if (eSelected && eSelected.className == 'plugin') {
+		FCKSelection.SelectNode(eSelected);
+		var text = eSelected.innerHTML;
+		if (eSelected.tagName == 'DIV') {
+			text = text.match(/^#([0-9a-z_]+)(\((.*?)\))?(\{+<BR[^>]*>(.*?)<BR[^>]*>\}+)?$/i);
+		}
+		else {
+			text = text.match(/^&amp;([0-9a-z_]+)(\((.*?)\))?(\{(.*)\})?;$/i);
+		}
+		
+		var name = text[1];
+		var option = text[3];
+		var inline = text[5];
+
+		GetE('name').value = name;
+		
+		if (option) {
+			option = HTMLDecode(option);
+			option = option.split(',');
+			GetE('option1').value = option.shift();
+			GetE('option2').value = (option.length > 0) ? option.shift() : '';
+			GetE('option3').value = (option.length > 0) ? option.join(',') : '';
+		}
+		if (inline) {
+			inline = HTMLDecode(inline);
+			GetE('text').value = inline.replace(/<BR[^>]*?>/gi, "\n");
+		}
+		
+		if (eSelected.tagName == 'SPAN') {
+			GetE('span').checked = true;
+		}
+	}
+	else {
+		if (FCKSelection.GetType() == 'Text') {
+			GetE('text').value = PukiWikiPlugin.GetSelectedHtml();
+		}
+		eSelected == null;
+	}
+}
+
+function Ok() {
+	var sValue = new Array();
+	sValue['class'] = 'plugin';
+	sValue['name'] = GetE('name').value;
+	sValue['type'] = GetE('div').checked ? 'DIV' : 'SPAN';
+	sValue['option1'] = GetE('option1').value;
+	sValue['option2'] = GetE('option2').value;
+	sValue['option3'] = GetE('option3').value;
+	sValue['text'] = GetE('text').value.replace(/&nbsp;/g, ' ');
+
+	if (sValue['name'].length == 0) {
+		alert(FCKLang.PukiWikiPluginErrNoName);
+		return false;
+	}
+	
+	if (sValue['type'] == 'DIV') {
+		var aTags = ['H2', 'H3', 'H4', 'H5', 'H6'];
+		for (i = 0; i < aTags.length; i++) {
+			if (FCKSelection.HasAncestorNode(aTags[i])) {
+				alert(FCKLang.PukiWikiPluginErrInsert);
+				return false;
+			}
+		}
+	}
+	if (FCKSelection.HasAncestorNode('PRE')) {
+		alert(FCKLang.PukiWikiPluginErrInsert);
+		return false;
+	}
+
+	if (eSelected) {
+		PukiWikiPlugin.Change(eSelected, sValue);
+		return true;
+	}
+
+	PukiWikiPlugin.Add(sValue);
+	return true;
+}
+
+function Cancel() {
+	FCKSelection.Collapse();
+}
+
+
+function OnNameSelect(element) {
+	if (element.selectedIndex != '0') {
+		GetE('name').value = element.value;
+		SetUsage();
+	}
+}
+
+function HTMLDecode(text) {
+	if ( !text )
+		return '' ;
+
+	text = text.replace( /&nbsp;/g, ' ' ) ;
+	text = text.replace( /&gt;/g, '>' ) ;
+	text = text.replace( /&lt;/g, '<' ) ;
+	text = text.replace( /&amp;/g, '&' ) ;
+
+	return text ;
+}
+		</script>
+	</head>
+	<body scroll="no" style="OVERFLOW: hidden">
+		<table height="100%" cellSpacing="0" cellPadding="0" width="100%" border="0">
+			<tr>
+				<td>
+					<table cellSpacing="0" cellPadding="2" align="center" border="0" width="100%">
+						<tr>
+							<td nowrap="nowrap"><span fckLang="PukiWikiPluginDlgType">Type</span>:</td>
+							<td>
+								<input id="div" name="type" type="radio" onclick="SetPluginSelect()" checked>
+								<label for="div" fckLang="PukiWikiPluginDlgDiv">Block</label>
+								<input id="span" name="type" type="radio" onclick="SetPluginSelect()">
+								<label for="span" fckLang="PukiWikiPluginDlgSpan">Inline</label>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top" nowrap="nowrap"><span fckLang="PukiWikiPluginDlgName">Plugin Name</span>:</td>
+							<td>
+								<div id="pluginSelect">
+									<select onchange="OnNameSelect(this)">
+										<option fckLang="PukiWikiPluginDlgSelect"></option>
+										<option fckLang="PukiWikiPluginDlgLoading">Now loading...</option>
+									</select>
+								</div>
+								<input id="name" type="text" style="width: 100%" onkeyup="SetUsage()">
+							</td>
+						</tr>
+						<tr>
+							<td valign="top" nowrap="nowrap"><span fckLang="PukiWikiPluginDlgOption">Option</span>:</td>
+							<td><input id="option1" type="text" style="width: 100%"><br>
+								<input id="option2" type="text" style="width: 100%"><br>
+								<input id="option3" type="text" style="width: 100%">
+							</td>
+						</tr>
+						<tr>
+							<td valign="top" nowrap="nowrap"><span id="argblock" fckLang="PukiWikiPluginDlgArgBlock">Multi lines argument</span><span id="arginline" fckLang="PukiWikiPluginDlgArgInline" style="display:none">Inline argument</span>:</td>
+							<td><textarea id="text" rows="5" cols="20" style="width: 100%"></textarea></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<div id="usage" style="width:100%;height:4em;color:blue;background-color:fafafa;overflow:auto;border:1px solid silver"></div>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

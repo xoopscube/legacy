@@ -1,0 +1,13 @@
+[en]
+To make the image thumbnail made by "HypCommonFunc::make_thumb()" again,
+this file is preserved in this directory as "remake_thumb.chk".
+When a thumbnail that is older than the time stamp of "remake_thumb.chk" is referred, it is made again.
+Please delete "remake_thumb.chk" when the re-creation is unnecessary.
+[/en]
+
+[ja]
+"HypCommonFunc::make_thumb()" で作成される画像サムネイルを再作成したい時に
+このファイルを "remake_thumb.chk" としてこのディレクトリに保存します。
+"remake_thumb.chk" のタイムスタンプより古いサムネイルが参照された場合に再作成されます。
+再作成が必要ない場合は、"remake_thumb.chk" を削除してください。
+[/ja]

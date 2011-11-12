@@ -1,0 +1,9 @@
+<ul style="margin:0px 0px 0px 20px;list-style:square outside;"><_EACH_></ul>
+
+<!--EACH(3)-->
+<li><_LINKED_SIMG_>...<a href="<_URL_>" target="_blank" rel="nofollow"><span style="font-size:11px;color:3366FF;"><_TITLE_></span></a> <span style="font-size:10px;"><_PRESENTER_></span></li>
+<!--/EACH-->
+
+<!--IMG-->
+<a href="<_URL_>" title="<_TITLE_>" target="_blank" rel="nofollow"><img src="<_IMGSRC_>" height="24" alt="<_TITLE_>" style="border:none;margin:0px;" /></a>
+<!--/IMG-->

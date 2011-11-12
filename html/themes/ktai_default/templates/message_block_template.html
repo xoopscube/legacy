@@ -1,0 +1,21 @@
+<div>
+<ul id="privatemessages">
+    <li>
+    <{if $block>0}>
+    
+    <a class="highlight" href="<{$message_url}>?action=index"> 
+    <{$smarty.const._MD_MESSAGE_TEMPLATE15}> (<span style="color:#ff0000; font-weight: bold;"><{$block}></span>/<{$incount}>)
+    </a>
+      <{else}>
+    <a href="<{$message_url}>?action=index"> <{$smarty.const._MD_MESSAGE_TEMPLATE15}> (<{$incount}>)</a>
+    <{/if}>
+    </li>
+    <li><a href="<{$message_url}>?action=send"> <{$smarty.const._MD_MESSAGE_TEMPLATE7}> (<{$outcount}>)</a></li>
+    <li><a href="<{$message_url}>?action=new"> <{$smarty.const._MD_MESSAGE_TEMPLATE8}></a></li>
+    <li><a href="<{$message_url}>?action=settings"> <{$smarty.const._MI_MESSAGE_SUB_SETTINGS}></a></li>
+    <{if $UserSearch}>
+        <li><a href="<{$message_url}>?action=search"> <{$smarty.const._MI_MESSAGE_SUB_SEARCH}></a></li>
+        <li><a href="<{$message_url}>?action=favorites"> <{$smarty.const._MI_MESSAGE_SUB_FAVORITES}></a></li>
+    <{/if}>
+</ul>
+</div>

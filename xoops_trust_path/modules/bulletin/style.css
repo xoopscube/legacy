@@ -1,0 +1,10 @@
+dl.accordion dt {
+	cursor:			pointer;
+	color:			#fff;
+	padding-left:		3em;
+	background:		url(/img/icon/menu.open.gif) no-repeat left center #003;
+	border-bottom:		solid 1px #ffe;
+}
+dl.accordion dt.opened {
+	background:		url(/img/icon/menu.close.gif) no-repeat left center #007;
+}

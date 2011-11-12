@@ -1,0 +1,73 @@
+/////////////////////////////////
+// HypGetQueryWord ENGINE DEFS //
+// http://hypweb.net           //
+// $ID$
+/////////////////////////////////
+
+/////////////////////////////
+// Japanese Search Engines //
+/////////////////////////////
+
+Yahoo!Japan|http://*yahoo.co.jp/*|p=
+OCN(goo)|http://ocnsearch.goo.ne.jp/*|MT=
+goo|http://*goo.ne.jp/*|MT=
+infoseek|http://www.infoseek.co.jp/*|qt=
+BIGLOBE|http://cgi.search.biglobe.ne.jp/*|q=
+BIGLOBE|http://jword.search.biglobe.ne.jp/*|q=
+So-net(Excite)|http://so-net.excite.co.jp/*|search=
+DION(Excite)|http://dion.excite.co.jp/*|search=
+ODN(Excite)|http://odn.excite.co.jp/*|search=
+Excite Japan|http://*excite.co.jp/*|search=
+@nifty|http://*nifty.com/*|Text=
+freshEYE|http://*fresheye.com/*|kw=
+CEEK.JP|http://www.ceek.jp/*|q=
+
+/////////////////////////////
+//   World Search Engines  //
+/////////////////////////////
+
+Google|http://*google*|q=
+
+abcsearch.com|http://*abcsearch.com/*|terms=
+Abacho|http://*.abacho.com/*|q=
+100Links|http://100links.supereva.it/*|q= 
+Alltheweb|http://*alltheweb.com/*|q=
+Altavista|http://*altavista.com/*|q=
+Aol|http://*aol.com/*|query=
+Ask.com|http://*ask.com/*|ask=
+Arianna|http://arianna.libero.it/*|query=
+DMOZ|http://search.dmoz.org/*|search= 
+Dogpile.com|http://*dogpile.com/*|q=
+Excite|http://*excite.it/*|key=
+Excite|http://*excite.com/*|qkw=
+Godago|http://*godado.it/*|keywords=
+HotBot|http://*hotbot.com/*|query=
+Il Trovatore|http://categorie.iltrovatore.it/*|query=
+Il Trovatore|http://search.iltrovatore.it/*|q=
+ixquick|http://*ixquick.com/*|query=
+Lycos|http://*lycos.*/*|q=
+Lycos|http://*lycos.*/*|query=
+Metacrawler|http://*metacrawler.com/*|q=
+Netscape Search|http://search.netscape.com/*|query=
+MSN.it|http://*msn.it/*|q=
+MSN.de|http://*msn.de/*|q=
+MSN.dk|http://*msn.dk/*|q=
+MSN|http://*msn.*/*|q=
+Netster R|http://www.netster.com/*|Keywords=
+Search.ch|http://*search.ch/search*|q=
+Search.com|http://*search.com/*|q=
+Supereva|http://*.supereva.it/*|q=
+Tiscali|http://search-dyn.tiscali.it/*|key=
+Virgilio|http://search.virgilio.it/*|qs=
+Voil?Fr|http://*voila.fr/*|kw=
+Web.de|http://*web.de/*|su=
+Yahoo!|http://*yahoo.com/*|p=
+LemmeFind|http://*lemmefind*/*|t=
+
+////////OTHER/////////
+|http://*|q=
+|http://*|query=
+|http://*|word=
+|http://*|key=
+|http://*|keyword=
+|http://*|keywords=

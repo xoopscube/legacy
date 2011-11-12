@@ -1,0 +1,45 @@
+<{strip}>
+<form action="index.php?mode=admin" method="post">
+<table class="outer" cellspacing="1" width="100%">
+  <tbody>
+    <tr>
+      <th><{$smarty.const._AM_TOPICID}></th>
+      <th><{$smarty.const._AM_TOPICNAME}>(<{$smarty.const._AM_FOLLOW_TOPICS_IS_DELETED}>)</th>
+      <th><{$smarty.const._AM_DESTINATION_OF_STORIES}></th>
+    </tr>
+    <{foreach item=i from=$topics}>
+    <tr class="<{cycle values="even,odd"}>">
+      <td><{$i.id}></td>
+      <td><{$i.title}></td>
+      <td>
+        <select size="1" name="topics[<{$i.id}>]">
+          <option value="0"><{$smarty.const._DELETE}></option>
+          <{foreach key=key item=j from=$remain_topics}>
+          <option value="<{$key}>"><{$j.title}></option>
+          <{/foreach}>
+        </select>
+      </td>
+    </tr>
+    <{/foreach}>
+    <tr>
+      <td colspan="3" class="foot" align="center">
+        <br />
+        <{$smarty.const._AM_WAYSYWTDTTAL}><br />
+        <br />
+        <input name="confirm_submit" value="<{$smarty.const._GO}>" type="submit">&nbsp;
+        <input name="confirm_back" value="<{$smarty.const._CANCEL}>" onclick="javascript:history.go(-1);" type="button"><br />
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<input name="op" value="delTopic" type="hidden" />
+<input name="topic_id" value="<{$topicid}>" type="hidden" />
+<input name="ok" value="1" type="hidden">
+
+</form>
+
+<{include file="$template_path/bulletin_footer.html"}>
+
+<{/strip}>

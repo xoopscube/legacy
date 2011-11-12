@@ -1,0 +1,34 @@
+<!-- start comment post -->
+<hr />
+<p><a id="comment<{$comment.id}>"></a> <{$comment.poster.uname}></p>
+<{$lang_posted}>: <{$comment.date_posted}><br />
+<{$lang_updated}>: <{$comment.date_modified}><br />
+
+    <{if $comment.poster.id != 0}>
+<!--      <{$comment.poster.rank_title}>
+          <img class="comUserRankImg" src="<{$xoops_upload_url}>/<{$comment.poster.rank_image}>" alt="" /> -->
+
+        <img class="comUserImg" src="<{$xoops_upload_url}>/<{$comment.poster.avatar}>" alt="" /><br />
+        <{$lang_joined}>: <{$comment.poster.regdate}><br />
+        <{$lang_from}>: <{$comment.poster.from}><br />
+        <{$lang_posts}>: <{$comment.poster.postnum}><br />
+        <{$comment.poster.status}><br />
+    <{/if}>
+
+	<{$comment.image}><{$comment.title}><br />
+      	<{$comment.text}><br />
+
+    <{if $xoops_iscommentadmin == true}>
+        <a href="<{$editcomment_link}>&amp;com_id=<{$comment.id}>"><img src="<{$xoops_url}>/images/icons/edit.gif" alt="<{$lang_edit}>" title="<{$lang_edit}>" /></a>
+        <a href="<{$deletecomment_link}>&amp;com_id=<{$comment.id}>"><img src="<{$xoops_url}>/images/icons/delete.gif" alt="<{$lang_delete}>" title="<{$lang_delete}>" /></a>
+        <a href="<{$replycomment_link}>&amp;com_id=<{$comment.id}>"><img src="<{$xoops_url}>/images/icons/reply.gif" alt="<{$lang_reply}>" title="<{$lang_reply}>" /></a>
+
+    <{elseif $xoops_isuser == true && $xoops_userid == $comment.poster.id}>
+        <a href="<{$editcomment_link}>&amp;com_id=<{$comment.id}>"><img src="<{$xoops_url}>/images/icons/edit.gif" alt="<{$lang_edit}>" title="<{$lang_edit}>" /></a>
+        <a href="<{$replycomment_link}>&amp;com_id=<{$comment.id}>"><img src="<{$xoops_url}>/images/icons/reply.gif" alt="<{$lang_reply}>" title="<{$lang_reply}>" /></a>
+
+    <{elseif $xoops_isuser == true || ($xoops_isuser == false && $com_anonpost == true)}>
+        <a href="<{$replycomment_link}>&amp;com_id=<{$comment.id}>"><img src="<{$xoops_url}>/images/icons/reply.gif" alt="<{$lang_reply}>" title="<{$lang_reply}>" /></a>
+
+    <{/if}>
+<!-- end comment post -->

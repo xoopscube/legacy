@@ -1,0 +1,76 @@
+<{if $user_ownpage == true && $enableSelfDelete == true && $xoops_isadmin == false}>
+  <div style="text-align:right;">
+      <a href="<{$xoops_url}>/user.php?op=delete"><{$smarty.const._MD_USER_LANG_DELACCOUNT}></a>
+  </div>
+<{elseif $xoops_isadmin == true}>
+  <div style="text-align:right;">
+    <a href="<{$xoops_url}>/edituser.php?uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_EDITPROFILE}></a> - 
+    <a href="<{$xoops_url}>/edituser.php?op=avatarform&amp;uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_AVATAR_EDIT}></a> -
+    <a href="<{$xoops_url}>/modules/user/admin/index.php?action=UserDelete&amp;uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_DELACCOUNT}></a>
+  </div>
+<{/if}>
+
+<ul>
+<li><{$smarty.const._MD_USER_LANG_ALLABOUT|replace:"%s":$thisUser->getShow('uname')}>
+      <{if $user_ownpage == true}>
+      	<a href="<{$xoops_url}>/edituser.php?uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_EDITPROFILE}></a>
+      <{/if}>
+</li>
+<li><{$lang_avatar}>
+          <{if $thisUser->get('user_avatar') != "blank.gif" }>
+            <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$thisUser->getShow('user_avatar')}>" alt="Avatar" title="Avatar" />
+          <{else}>
+            <img src="<{$smarty.const.XOOPS_URL}>/modules/user/images/no_avatar.gif" alt="No Avatar" title="No Avatar" />
+          <{/if}>
+          <{if $user_ownpage == true}>
+            <br /><a href="<{$xoops_url}>/edituser.php?op=avatarform&amp;uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_AVATAR_EDIT}></a>
+          <{/if}>
+</li>
+<li><{$smarty.const._MD_USER_LANG_NAME}> <{$thisUser->getShow('name')}></li>
+<li><{$smarty.const._MD_USER_LANG_WEBSITE}> <a href="<{$thisUser->getShow('url')}>" target="_blank"><{$thisUser->getShow('url')}></a></li>
+<{if $thisUser->get('user_viewemail') == 1 || $user_ownpage == true || $xoops_isadmin == true }>
+	<li><{$smarty.const._MD_USER_LANG_EMAIL}> <{mailto address=$thisUser->get('email') encode="javascript"}></li>
+<{/if}>
+<{if $xoops_isuser == true && $pmliteUrl != ''}>
+<li><{$smarty.const._MD_USER_LANG_PM}> 
+
+<a href="<{$pmliteUrl|xoops_escape:link}>">
+            <img src="<{$smarty.const.XOOPS_URL}>/images/icons/pm.gif" alt="<{$smarty.const._SENDPMTO|replace:"%s":$thisUser->getShow('uname')}>" title="<{$smarty.const._SENDPMTO|replace:"%s":$thisUser->getShow('uname')}>" /></a></li>
+<{/if}>
+
+<{* <li><{$smarty.const._MD_USER_LANG_USER_ICQ}> <{$thisUser->getShow('user_icq')}></li> *}>
+<{* <li><{$smarty.const._MD_USER_LANG_USER_AIM} <{$thisUser->getShow('user_aim')}></li> *}>
+<{* <li><{$smarty.const._MD_USER_LANG_USER_YIM}> <{$thisUser->getShow('user_yim')}></li> *}>
+<{* <li><{$smarty.const._MD_USER_LANG_USER_MSNM}> <{$thisUser->getShow('user_msnm')}></li> *}>
+<li><{$smarty.const._MD_USER_LANG_USER_FROM}> <{$thisUser->getShow('user_from')}></li>
+<li><{$smarty.const._MD_USER_LANG_USER_OCC}> <{$thisUser->getShow('user_occ')}></li>
+<li><{$smarty.const._MD_USER_LANG_USER_INTREST}> <{$thisUser->getShow('user_intrest')}></li>
+<li><{$smarty.const._MD_USER_LANG_BIO}> <{$thisUser->getShow('bio')}></li>
+ 
+<li><{$smarty.const._MD_USER_LANG_STATISTICS}></li>
+<li><{$smarty.const._MD_USER_LANG_USER_REGDATE}> <{$thisUser->get('user_regdate')|xoops_formattimestamp:l}></li>
+<li><{$smarty.const._MD_USER_LANG_RANK}> <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$rank->getShow('rank_image')}>" alt="<{$rank->getShow('rank_title')}>" title="<{$rank->getShow('rank_title')}>" /><br />
+            <{$rank->getShow('rank_title')}></li>
+<li><{$smarty.const._MD_USER_LANG_POSTS}> <{$thisUser->getShow('posts')}></li>
+<li><{$smarty.const._MD_USER_LANG_LAST_LOGIN}> <{$thisUser->get('last_login')|xoops_formattimestamp:l}></li>
+<li><{$smarty.const._MD_USER_LANG_USER_SIG}> <{$thisUser->getShow('user_sig')}></li>
+</ul>
+
+<hr width=50% />
+<!-- start module search results loop -->
+<{foreach item=module from=$searchResults}>
+  <p>
+  <h4><{$module.name}></h4>
+
+  <!-- start results item loop -->
+  <{foreach item=result from=$module.results}>
+    <img src="<{$result.image}>" alt="<{$module.name}>" title="<{$module.name}>" /><b><a href="<{$result.link}>"><{$result.title}></a></b><br /><small>(<{$result.time|xoops_formattimestampGMT:l}>)</small><br />
+  <{/foreach}>
+  <!-- end results item loop -->
+
+  <{if $module.has_more}>
+    <a href="<{$smarty.const.XOOPS_URL}>/search.php?action=showallbyuser&amp;mid=<{$module.mid|xoops_escape}>&amp;uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_SHOWALL}></a>
+  <{/if}>
+  </p>
+<{/foreach}>
+<!-- end module search results loop -->

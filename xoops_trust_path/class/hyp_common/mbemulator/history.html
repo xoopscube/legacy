@@ -1,0 +1,1031 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=shift_jis">
+  <title>変更履歴</title>
+
+
+  <meta name="GENERATOR" content="OpenOffice.org 1.1.3 (Win32)">
+
+  <meta name="CREATED" content="20050130;2310982">
+
+  <meta name="CHANGED" content="20050130;2372139">
+
+</head>
+
+
+<body style="direction: ltr;" lang="ja-JP">
+
+<h2>変更履歴</h2>
+
+<h3><font face="Times New Roman, serif"><span lang="en-US">mbstringエミュレータ for Japanese Ver.0.84</span></font>（<font face="Times New Roman, serif"><span lang="en-US">2006/1/23</span></font>）</h3>
+
+<ul>
+
+  <li>シフトJISで半角カンマの処理がおかしかったのを修正しました</li>
+</ul>
+
+<h3><font face="Times New Roman, serif"><span lang="en-US">mbstringエミュレータ for Japanese Ver.0.83</span></font>（<font face="Times New Roman, serif"><span lang="en-US">2005/12/15</span></font>）</h3>
+
+<ul>
+
+  <li>mb_send_mailでmb_languageがjaだったときに対応しました</li>
+  <li>mb_send_mailで日本語処理の最後にbreakがなかったので加えました</li>
+</ul>
+
+<h3><font face="Times New Roman, serif"><span lang="en-US">mbstringエミュレータ for Japanese Ver.0.82</span></font>（<font face="Times New Roman, serif"><span lang="en-US">2005/11/28</span></font>）</h3>
+
+<ul>
+
+  <li>mb_languageでパラメータがなかった場合にwarningが出てしまうのを修正しました</li>
+  <li>mb_send_mail内部で_is_encodedを呼び出しているのを_check_encodingを呼ぶように修正しました</li>
+</ul>
+
+<h3><font face="Times New Roman, serif"><span lang="en-US">mbstringエミュレータ for Japanese Ver.0.81</span></font>（<font face="Times New Roman, serif"><span lang="en-US">2005/10/09</span></font>）</h3>
+
+<ul>
+
+  <li>$jis_matchが未定義だったバグを修正しました</li>
+</ul>
+
+<h3><font face="Times New Roman, serif"><span lang="en-US">mbstringエミュレータ for Japanese Ver.0.8</span></font>（<font face="Times New Roman, serif"><span lang="en-US">2005/8/23</span></font>）</h3>
+
+<ul>
+
+  <li>名称をmbstringエミュレータ for Japaneseに変更しました</li>
+  <li>
+mb_substitute_characterサポートしました
+  </li>
+
+  <li>
+mb_convert_caseサポートしました
+  </li>
+
+  <li>
+mb_get_infoサポートしました
+  </li>
+
+  <li>
+mb_strtolowerサポートしました
+  </li>
+
+  <li>
+mb_strtoupperサポートしました</li>
+  <li>MB_CASE_UPPER，MB_CASE_LOWER，MB_CASE_CASEを定義しました</li>
+
+  <li>グローバル変数を$mbemu_internalsに集約しました</li>
+
+  <li>エンコーディングにSHIFT_JIS，ISO-8859-1を追加しました</li>
+
+  <li>変換テーブルを必要時に読み込むように修正しました</li>
+  <li>
+		mb_convert_kanaのエンコーディングが指定されていないとき，internal_encodingの値を使うように修正しました</li>
+
+</ul>
+
+<h3><font face="Times New Roman, serif"><span lang="en-US">Ver.0.37</span></font>（<font face="Times New Roman, serif"><span lang="en-US">2005/1/30</span></font>）</h3>
+
+<ul>
+
+  <li>
+    <p><font face="Times New Roman, serif"><span lang="en-US">JIS</span></font>のマッチングのバグを再び修正しました。
+    </p>
+
+  </li>
+
+</ul>
+
+<h3><font face="Times New Roman, serif"><span lang="en-US">Ver.0.36</span></font>（<font face="Times New Roman, serif"><span lang="en-US">2004/11/13</span></font>）</h3>
+
+<ul>
+
+  <li>
+    <p><font face="Times New Roman, serif"><span lang="en-US">JIS</span></font>のマッチングのバグを修正しました。 </p>
+
+  </li>
+
+</ul>
+
+<h3><font face="Times New Roman, serif"><span lang="en-US">Ver.0.35</span></font>（<font face="Times New Roman, serif"><span lang="en-US">2004/9/26</span></font>）</h3>
+
+<ul>
+
+  <li>
+    <p><font face="Times New Roman, serif"><span lang="en-US">mb_send_mail</span></font>のバグを修正しまし
+た。 </p>
+
+  </li>
+
+</ul>
+
+<h3><font face="Times New Roman, serif"><span lang="en-US">Ver.0.341</span></font>（<font face="Times New Roman, serif"><span lang="en-US">2004/9/16</span></font>）</h3>
+
+<ul>
+
+  <li>
+    <p><font face="Times New Roman, serif"><span lang="en-US">mb_convert_kana</span></font>のバグを修正し
+ました。 </p>
+
+  </li>
+
+</ul>
+
+<h3><font face="Times New Roman, serif"><span lang="en-US">Ver.0.34</span></font>（<font face="Times New Roman, serif"><span lang="en-US">2004/9/15</span></font>）</h3>
+
+<ul>
+
+  <li>
+    <p><font face="Times New Roman, serif"><span lang="en-US">mb_convert_kana</span></font>のバグを修正し
+ました。 </p>
+
+  </li>
+
+</ul>
+
+<h3><font face="Times New Roman, serif"><span lang="en-US">Ver.0.33</span></font>（<font face="Times New Roman, serif"><span lang="en-US">2004/8/27</span></font>）</h3>
+
+<ul>
+
+  <li>
+    <p style="margin-bottom: 0cm;"><font face="Times New Roman, serif"><span lang="en-US">mb_encode_numericentity,
+mb_decode_numericentity</span></font>をサポートしました。 </p>
+
+  </li>
+
+  <li>
+    <p style="margin-bottom: 0cm;"><font face="Times New Roman, serif"><span lang="en-US">mb_convert_encoding</span></font>で<font face="Times New Roman, serif"><span lang="en-US">UTF-16</span></font>か
+らの変換をサポートしました。 </p>
+
+  </li>
+
+  <li>
+    <p style="margin-bottom: 0cm;">シフト<font face="Times New Roman, serif"><span lang="en-US">JIS</span></font>の
+処理を<font face="Times New Roman, serif"><span lang="en-US">SJIS-WIN</span></font>互換にしました。<font face="Times New Roman, serif"><span lang="en-US"><br>
+
+mbstring</span></font>本家とは異なり，<font face="Times New Roman, serif"><span lang="en-US">SJIS</span></font>と<font face="Times New Roman, serif"><span lang="en-US">SJIS-WIN</span></font>の
+動作は同じです。 </p>
+
+  </li>
+
+  <li>
+    <p style="margin-bottom: 0cm;"><font face="Times New Roman, serif"><span lang="en-US">mb_strcut</span></font>の
+バグを修正しました。 </p>
+
+  </li>
+
+  <li>
+    <p>変更履歴を<font face="Times New Roman, serif"><span lang="en-US">HTML</span></font>に変えました。 </p>
+
+  </li>
+
+</ul>
+
+<h3><font face="Times New Roman, serif"><span lang="en-US">Ver.0.32(2004/8/19)</span></font></h3>
+
+<ul>
+
+  <li>
+    <p><font face="Times New Roman, serif"><span lang="en-US">mb_http_input, mb_http_output,
+mb_output_handler </span></font>をサポートしました<font face="Times New Roman, serif"><span lang="en-US"><br>
+
+    </span></font>ただし，<font face="Times New Roman, serif"><span lang="en-US">mb_http_input</span></font>に関しては文字コー
+ド変換を行わないため，常に<font face="Times New Roman, serif"><span lang="en-US">FALSE</span></font>を返します。 </p>
+
+  </li>
+
+</ul>
+
+<h3><font face="Times New Roman, serif"><span lang="en-US">Ver.0.31(2004/8/16)</span></font></h3>
+
+<ul>
+
+  <li>
+    <p style="margin-bottom: 0cm;"><font face="Times New Roman, serif"><span lang="en-US">mb_decode_mimeheader</span></font>の
+バグを修正しました </p>
+
+  </li>
+
+  <li>
+    <p><font face="Times New Roman, serif"><span lang="en-US">mb_convert_variables</span></font>の初
+期設定チェックのバグを修正しました </p>
+
+  </li>
+
+</ul>
+
+<h3><font face="Times New Roman, serif"><span lang="en-US">Ver.0.3(2004/8/8)</span></font></h3>
+
+<ul>
+
+  <li>
+    <p style="margin-bottom: 0cm;">バグつぶし<font face="Times New Roman, serif"><span lang="en-US"><br>
+
+    </span></font>入れ子のファンクションで二重宣言になってしまう場合があるので外部に出しました。 </p>
+
+  </li>
+
+  <li>
+    <p style="margin-bottom: 0cm;">バグつぶし<font face="Times New Roman, serif"><span lang="en-US"><br>
+
+mb_strcut</span></font>のバグを修正しました </p>
+
+  </li>
+
+  <li>
+    <p style="margin-bottom: 0cm;"><font face="Times New Roman, serif"><span lang="en-US">mb_encode_mimeheader,
+mb_decode_mimeheader</span></font>をサポートしました。 </p>
+
+  </li>
+
+  <li>
+    <p><font face="Times New Roman, serif"><span lang="en-US">mb_convert_variables</span></font>で配
+列からの変換をサポートしました。<font face="Times New Roman, serif"><span lang="en-US"><br>
+
+    </span></font>これに伴い<font face="Times New Roman, serif"><span lang="en-US">mb_convert_variables</span></font>を<font face="Times New Roman, serif"><span lang="en-US">2</span></font>パ
+ターンにし，初期設定で変更できるようにしました。<font face="Times New Roman, serif"><span lang="en-US"><br>
+
+    </span></font>初期設定ファイルの<font face="Times New Roman, serif"><span lang="en-US">convert-variables-arrayonly</span></font>が<font face="Times New Roman, serif"><span lang="en-US">no</span></font>の
+場合（デフォルト），これまでと同じように配列でなくても変換します。また，最初の要素が配列の場合，それだけを変換します。ただし，こちらの場合，呼び
+出し時に引数に<font face="Times New Roman, serif"><span lang="en-US">&amp;</span></font>を付けて明示的に参照渡しに
+する必要があります。<font face="Times New Roman, serif"><span lang="en-US"><br>
+
+convert-variables-arrayonly</span></font>が<font face="Times New Roman, serif"><span lang="en-US">no</span></font>で
+ない場合，変換する引数は配列だけになります。その代わり，<font face="Times New Roman, serif"><span lang="en-US">&amp;</span></font>は不要です。 </p>
+
+  </li>
+
+</ul>
+
+<h3><font face="Times New Roman, serif"><span lang="en-US">Ver.0.25(2004/7/7)</span></font></h3>
+
+<ul>
+
+  <li>
+    <p>バグつぶし<font face="Times New Roman, serif"><span lang="en-US"><br>
+
+    </span></font>入れ子のファンクションで二重宣言になってしまう場合があるので外部に出しました。 </p>
+
+  </li>
+
+</ul>
+
+<h3><font face="Times New Roman, serif"><span lang="en-US">ver.0.24(2004/6/8)</span></font></h3>
+
+<ul>
+
+  <li>
+    <p><font face="Times New Roman, serif"><span lang="en-US">mb_strpos, mb_substr_count,
+mb_preferred_mime_name</span></font>をサポートしました。 </p>
+
+  </li>
+
+</ul>
+
+<h3><font face="Times New Roman, serif"><span lang="en-US">ver.0.23(2004/5/19)</span></font></h3>
+
+<ul>
+
+  <li>
+    <p><font face="Times New Roman, serif"><span lang="en-US">mb_convert_encoding</span></font>で<font face="Times New Roman, serif"><span lang="en-US">UTF-16</span></font>へ
+の変換をサポートしました。<font face="Times New Roman, serif"><span lang="en-US"><br>
+
+    <br>
+
+usage:<br>
+
+$str = mb_convert_encoding($str, 'UTF-16', 'EUC-JP, UTF-8');<br>
+
+    <br>
+
+    </span></font>返すのは<font face="Times New Roman, serif"><span lang="en-US">BOM</span></font>なしのビッグ・エンディアンになります。
+    </p>
+
+  </li>
+
+</ul>
+
+<h3><font face="Times New Roman, serif"><span lang="en-US">ver.0.22(2004/5/11)</span></font></h3>
+
+<ul>
+
+  <li>
+    <p style="margin-bottom: 0cm;">バグつぶし </p>
+
+  </li>
+
+  <li>
+    <p style="margin-bottom: 0cm;"><font face="Times New Roman, serif"><span lang="en-US">mb_convert_variables</span></font>を
+暫定サポート </p>
+
+  </li>
+
+  <li>
+    <p><font face="Times New Roman, serif"><span lang="en-US">mb_strwidth</span></font>をサポート </p>
+
+  </li>
+
+</ul>
+
+<h3><font face="Times New Roman, serif"><span lang="en-US">ver.0.21(2004/4/28)</span></font></h3>
+
+<ul>
+
+  <li>
+    <p style="margin-bottom: 0cm;">初期設定を<font face="Times New Roman, serif"><span lang="en-US">mb-emulator.ini</span></font>か
+ら読むように変更 </p>
+
+  </li>
+
+  <li>
+    <p style="margin-bottom: 0cm;"><font face="Times New Roman, serif"><span lang="en-US">EUC</span></font>と<font face="Times New Roman, serif"><span lang="en-US">UTF-8</span></font>間
+を直接変換するように変更 </p>
+
+  </li>
+
+  <li>
+    <p>バグつぶし </p>
+
+  </li>
+
+</ul>
+
+<h3><font face="Times New Roman, serif"><span lang="en-US">ver.0.2(2004/4/27)</span></font></h3>
+
+<ul>
+
+  <li>
+    <p><font face="Times New Roman, serif"><span lang="en-US">jcode</span></font>を使わない形で独立しました。<font face="Times New Roman, serif"><span lang="en-US">12</span></font>関
+数サポート<font face="Times New Roman, serif"><span lang="en-US"><br>
+
+mb_language, mb_internal_encoding, mb_convert_encoding,
+mb_convert_kana, mb_send_mail, mb_strimwidth, mb_detect_encoding,
+mb_detect_order, mb_strlen, mb_substr, mb_strcut, mb_strrpos </span></font>
+    </p>
+
+  </li>
+
+</ul>
+
+<h2>関数サポート状況（<font face="Times New Roman, serif"><span lang="en-US">2004/8/19</span></font>）</h2>
+
+<table cellpadding="2" cellspacing="2">
+
+  <tbody>
+
+    <tr>
+
+      <td width="150">
+      <p><font face="Times New Roman, serif"><span lang="en-US"><b>mbstring</b></span></font><b>関
+数名</b></p>
+
+      </td>
+
+      <td width="300">
+      <p><b>今後のサポート予定</b></p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_convert_case</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート可能だけど結構大変そう。あまり使いそうにない気がする。もしニーズがあれば</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_convert_encoding</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_convert_kana</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_convert_variables</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_decode_mimeheader</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_decode_numericentity</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_detect_encoding</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_detect_order</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_encode_mimeheader</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_encode_numericentity</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_ereg_match</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート不可能</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_ereg_replace</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート不可能</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_ereg_search_getpos</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート不可能</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_ereg_search_getregs</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート不可能</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_ereg_search_init</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート不可能</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_ereg_search_pos</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート不可能</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_ereg_search_regs</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート不可能</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_ereg_search_setpos</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート不可能</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_ereg_search</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート不可能</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_ereg</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート不可能</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_eregi_replace</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート不可能</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_eregi</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート不可能</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_get_info</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート可能</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_http_input</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み（常に<font face="Times New Roman, serif"><span lang="en-US">FALSE</span></font>を返す）</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_http_output</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_internal_encoding</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_language</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み（ただし指定しても何も変わらない）</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_output_handler</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_parse_str</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート可能</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_preferred_mime_name</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_regex_encoding</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート不可能</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_regex_set_options</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート不可能</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_send_mail</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_split</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート不可能</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_strcut</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_strimwidth</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_strlen</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_strpos</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_strrpos</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_strtolower</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート可能だけど大変そう</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_strtoupper</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート可能だけど大変そう</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_strwidth</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_substitute_character</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート難しそう</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_substr_count</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <p><font face="Times New Roman, serif"><span lang="en-US">mb_substr</span></font></p>
+
+      </td>
+
+      <td>
+      <p>サポート済み</p>
+
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<p><br>
+
+<br>
+
+</p>
+
+</body>
+</html>

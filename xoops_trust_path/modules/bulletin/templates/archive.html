@@ -1,0 +1,66 @@
+<{strip}>
+
+<{include file="db:`$mydirname`_head.html"}>
+
+<table class="outer" cellspacing="1">
+  <tr>
+    <th colspan="13"><{$smarty.const._MD_NEWSARCHIVES}></th>
+  </tr>
+
+  <{foreach item=year from=$years}>
+    <tr>
+      <td class="head"><{$year.string}></td>
+      <{foreach item=month from=$year.months}>
+        <{if $month.current}>
+          <td class="even" align="center" style="background-color:#fcc;color:#0000ff;"><b><{$month.string}></b></td>
+        <{elseif $month.link}>
+          <td class="even" align="center"><a href="<{$mydirurl}>/index.php?page=archive&amp;year=<{$year.number}>&month=<{$month.number}>"><{$month.string}></a></td>
+        <{else}>
+          <td class="odd" align="center"><{$month.string}></td>
+        <{/if}>
+      <{/foreach}>
+    </tr>
+  <{/foreach}>
+  
+</table>
+<br />
+
+<{if $show_articles == true}>
+
+  <table class="outer" cellspacing="1">
+    <tr>
+      <th><{$smarty.const._MD_ARTICLES}></th>
+      <{if $disp_print_icon or $disp_tell_icon}>
+        <th align="center"><{$smarty.const._MD_ACTIONS}></th>
+      <{/if}>
+      <th align="center"><{$smarty.const._MD_VIEWS}></th>
+      <th align="center"><{$smarty.const._MD_DATE}></th>
+    </tr>
+
+    <{foreach item=story from=$stories}>
+    <tr class="<{cycle values="even, odd"}>">
+      <td><a href="<{$mydirurl}>/index.php?storytopic=<{$story.topicid}>"><{$story.topic}></a> : <a href="<{$mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>"><{$story.title}></a></td>
+      <{if $disp_print_icon or $disp_tell_icon}>
+        <td align="center">
+          <{if $disp_print_icon}>
+            <a href="<{$story.print_link}>">
+            <img src="<{$mydirurl}>/images/print.gif" alt="<{$smarty.const._MD_PRINTERFRIENDLY}>" /></a>&nbsp;
+          <{/if}>
+          <{if $disp_tell_icon}>
+            <a href="<{$story.mail_link}>" target="_top" />
+            <img src="<{$mydirurl}>/images/friend.gif" alt="<{$smarty.const._MD_SENDSTORY}>" /></a>
+          <{/if}>
+        </td>
+      <{/if}>
+      <td align="center"><{$story.counter}></td>
+      <td align="center"><{$story.date}></td>
+    </tr>
+    <{/foreach}>
+
+  </table>
+
+  <div><{$lang_storytotal}></div>
+
+<{/if}>
+
+<{/strip}>

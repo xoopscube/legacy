@@ -1,0 +1,45 @@
+<style>
+	dt { font-weight: bold; }
+	dd { margin-left: 100px; }
+</style>
+
+
+<h3><{$mod_name}></h3>
+
+<{assign var="extra" value=$extras.0}>
+
+<h2 class="head"><{$smarty.const._MD_A_PICO_H2_EXTRAS}> - <{$extra.id}></h2>
+
+
+<dl>
+	<dt><{$smarty.const._MD_A_PICO_TH_ID}></dt>
+	<dd>
+			<{$extra.id}>
+	</dd>
+</dl>
+<dl>
+	<dt><{$smarty.const._MD_PICO_TH_SUBJECT}></dt>
+	<dd>
+		<a href="<{$mod_url}>/<{$extra.link}>">
+			<{$extra.content_subject}>
+		</a>
+	</dd>
+</dl>
+<dl>
+	<dt><{$smarty.const._MD_PICO_CREATED}></dt>
+	<dd>
+		<{$extra.created_time_formatted}>
+	</dd>
+</dl>
+<dl>
+	<dt><{$smarty.const._MD_A_PICO_TH_TYPE}></dt>
+	<dd>
+		<{$extra.extra_type_formatted}>
+	</dd>
+</dl>
+<dl>
+	<dt><{$smarty.const._MD_A_PICO_TH_SUMMARY}></dt>
+	<dd>
+		<{$extra.data_summary_raw|escape|nl2br}>
+	</dd>
+</dl>

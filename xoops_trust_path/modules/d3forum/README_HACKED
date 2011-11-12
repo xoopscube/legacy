@@ -1,0 +1,72 @@
+This module package is hacked version of GIJOE's d3forum-0.85.
+
+revision notes
+
+2011-09-14
+- On post view and postslist , overrides the meta tag 'description' of html_header by post's text.
+- Added anti spam class 'D3forumAntispamDefaultmobilesmart.class.php' for execute the check via
+  smart phone with HYP_K_TAI_RENDER . To use it, fill the prefference anti-spam class to 'defaultmobilesmart'.
+
+2011-08-17
+- added extras folder with piCal plugins that enable d3comment former entry's permission.
+
+2011-08-07
+- version 0.86 with merging domifara's php5+ hack and added hack for php5.3+ and MySQL5.5+.
+
+2011-07-26
+- Modified pagenavi and tree display (thx nao-pon)
+
+2011-07-23
+- Fixed bug which cannot disable vote function.
+   see  http://www.xugj.org/modules/d3forum/index.php?topic_id=875
+- Modified d3comment module page's pagenavi when using rewrite like xpWiki (thx nao-pon!).
+- Modified tree style on listpost page to avoid meanless top/bottom margin on divided page.
+
+2011-07-15
+- Added page navigation on postlist page and d3comment integration flat display mode.
+-- Note: for comment integration, please add blow to the (root_path)/xoops.css or each theme's CSS.
+
+/*  Page Navigation */
+
+div.boxNavi .itemBody {
+	margin: 1px 2px 5px 2px;
+	text-align:center;
+	list-style-type: none;
+	background-color: transparent;
+}
+div.boxNavi .itemBody li{
+	display: inline;
+	margin: 1px 2px 1px 2px;
+	padding: 5px 0px 5px 0px;
+	font-weight: bold;
+	text-align:center;
+	border-top: 1px solid lightgrey;
+	border-bottom: 1px solid lightgrey;
+	border-left: 1px solid lightgrey;
+	border-right: 1px solid lightgrey;
+}
+
+div.boxNavi .itemBody li.txt span,
+div.boxNavi .itemBody li.this span,
+div.boxNavi .itemBody li a {
+	margin: 0;
+	padding: 5px 7px 5px 10px;
+	text-decoration: none;
+}
+div.boxNavi .itemBody li.this span {
+	background-color: #CCCCCC;
+}
+
+2011-05-29
+- Deleted d3comment_tree plugin and added some hack to avoid upgrade failure on JPEx core.
+
+2011-05-15 naao
+- Fixed d3comment object failed in case of not included D3comment class modules. (thx domifara)
+
+***************
+
+OLD Hacked items are:
+
+2011-05-11 naao
+see http://www.naaon.com/modules/plactice/index.php/home/hobby/xoops/d3com_auth.htm (JAPANESE)
+

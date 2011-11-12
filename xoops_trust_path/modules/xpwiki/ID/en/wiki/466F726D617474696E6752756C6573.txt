@@ -1,0 +1,702 @@
+#freeze
+#nofollow
+#norelated
+#contents
+*Text Formatting Rules [#te82f1fe]
+
+Most text is displayed as it is written.
+
+- HTML tags cannot be used. They are just displayed as texts (e.g., <font color="red">text</font>).
+- Place an empty line after each paragraph. Lines without an empty line between them are interpreted and displayed as a single paragraph.
+
+Use the formatting rules below to decorate texts. For the formatting with plugins, only the most commonly used ones are explained here. See [[PukiWiki/1.4/Manual/Plugin]] for the details of the plugin options.
+
+----
+
+The input text of PukiWiki is usually shown in the same way as it was entered. However, you can use the following rules to enhance your texts. The use of HTML tags is forbidden. Instead, special characters can be used to format text. Formatting rules usually apply to a certain part of the text. Such a part of a text is called a text Element. 
+**&aname(elements);Elements [#vec0ef3a]
+First of all, let's describe the "world" of PukiWiki. PukiWiki treats text as a set of Elements. An empty line indicates the end of an Element. Elements can contain other Elements. Such contained Elements are called "Child Elements". The element which contains "Child Elements" is called a "Parent Element". 
+
+Example:
+These two lines:
+ ~This is a paragraph. It is the parent element which contains an emphasized text element.  
+ ''This is emphasized text, which is the child element of the paragraph element.''
+Will be formatted like this:
+~This is a paragraph. It is the parent element which contains an emphasized text element. 
+''This is emphasized text, which is the child element of the paragraph element.''
+
+There are two kinds of elements in PukiWiki: "Block Elements", and "Inline Elements". 
+Block Elements, as the name suggests, consist of a whole block of text. Inline Elements
+only consist of a part of a text block. In essence, the difference between Block Elements and Inline Elements is as follows:  
+-A Block Element:
+--Can contain other Block and Inline Elements.
+--Can be the Child Element of another Block Element.
+-An Inline Element:
+--Is always the Child Element of another Element.
+--''Can'' contain other Inline Elements as its Child Elements.
+--''Cannot'' contain other Block Elements as its Child Elements.
+
+Next, we'll decribe the two different kinds of elements in detail.
+
+**&aname(block);Block Elements [#d2efdb6c]
+-A Block Element can contain other Block Elements and Inline Elements as its Child Elements. However, a Paragraph, a Heading, a Horizontal Line, and a #(Plugin[Block]) cannot contain other Block Elements as their Child Elements.
+-As we said before, an empty line after a Block Element closes all the Child Elements and Block Elements above at once.
+-Block Elements can be Child Elements of other Block Elements.
+--List and Quotation Elements can contain other Block Elements as their Child Elements. Block Elements in Child Elements inherit the indent level of its Parent Element. As always, an empty line ends the Block Element.
+--List and Quotation have three levels of depth, which are all independent. So, if you want to contain a List Element in a Quotation Element, or a Quotation Element in a List Element, you don't need to increase the indentation level of the Parent Element.
+&br;&br;
+But if you want to contain a List Element in another List Element, or Quotation in another Quotation as its Child Elements, you need to increase the indentation level of Parent Element.
+&br;&br;
+It may seem difficult explained like this, but it's probably more simple than it seems. Please check "Nesting Elements" for concrete examples.
+-"<","<<",and "<<<" enable you to close a Quotation in a Child Element without closing the Parent Element it belongs to.
+--"<" lets you get out of the Quotation Level1 Element.
+--"<<" lets you get out of the Quotation Level2 Element.
+--"<<<" lets you get out of the Quotation Level3 Element.
+-Empty Line closes not only the Quotation Element but also the Block Element it belongs to.
+-# indicates the beginning of Plugin Block. (Plugin has 2 modes:Block and Inline.)
+
+***&aname(paragraph);Paragraph [#g3ebf1a7]
+ Inline Elements
+PukiWiki assumes that each new Block is the beginning of a new paragraph, unless you instruct it to format the text differently, by using the formatting codes of other Block Elements.  
+ ~Inline Elements
+A line that starts with "~" indicates the beginning of a new paragraph. "~" also enables you escape the special characters (~, -, +, :, >, |, #, //) that are normally used as "Formatting Characters". Normally, these characters indicate the beginning of another kind of Element. Thus, the only way to put the special characters as a normal text at the beginning of a Paragraph is by putting a "~" in front of them.
+-The first line of a Paragraph and a Paragraph in a Definition List are indented. But neiher a List nor a Quotation are indented.
+-Each Paragraph continues until the appearance of a new Block Element.
+-Paragraphs ''can'' be Child Elements of other Block Elements.
+-Paragraphs ''cannot'' contain other Block Elements as its Child Elements.
+***&aname(quotation);Quotation [#j2411a69]
+ >Inline Element
+A ">" character indicates the beginning of Quotation. Quotation has 3 indentation levels, indicated by: ">", ">>", and ">>>".
+-A Quotation can contain other Block Elements as its Child Elements.
+-As with all Block elements, a Quotation continues until the next empty line.
+-A Paragraph in a Quotation continues until the beginning of another Quotation or Block Element.
+-Quotations can be Child Elements of Other Block Elements. (Look at Nesting Elements for concrete examples.)
+--When Quotation is a Child Element of another Quotation, you need to increase the inentation level by 1.
+--When Quotation is a Child Element of List, you don't need to increase the indentation level.
+-When Quotation contains List as its Child Element, you don't need to increase the level.
+-If you want to close a Quotation in a List, and keep the List Element opened, you have to start a Quotation Element with "<","<<","<<<" instead of ">",">>",">>>".
+-"<","<<",and "<<<" enable you to close Quotation in List without closing the List it belongs to.
+
+***&aname(lists);List [#adf32d50]
+ -Inline Element
+At the beginning of a line,"-" indicates the beginning of an Unordered List. Unordered lists have three levels, namely:"-", "--", and "---".
+-Unordered List may be contained by anoother Block Elements.
+-Increase the level by one when it is contained by other List. If it is contained by a Quotation, you do not have to increase the indentation level.
+-Unordered List may contain a Paragraph by writing "~" right after "-".
+-Unordered List may contain another Block Element by writing it in the next line ''as long as the beginning of Child Element is Inline Element or Paragraph''.
+ +Inline Element
+At the beginning of a line, "+" indicates the beginning of Numbered List. Numbered List has three levels namely:"+", "++", and "+++".
+-Numbered List may be contained by another Block Elemnt.
+-Increase the level by one when it is contained by other List. If it is contained by a Quotation, you do not have to increase the indentation level.
+-Numbered List may contain a Paragraph by writing "~" right after "+".
+-Numbered List may contain another Block Element by writing it in the next line ''as long as the beginning of Child Element is Inline Element or Paragraph''.
+
+ :Item|Item's Definition
+Definition List is a line starting with ":" and seperated by "|" in the middle. There are three indentation levels for Definition List: ":", "::", and ":::".
+
+You may ommit the Item or the Definition. You may give mutiple definitions to an  item by writing a sequence of Definition List and ommiting the Item after the first one. 
+-Definition List must have "|" in the line.
+-Item and Item's Definition must be an Inline Element.
+-Definition List may be contained by another Block Element.
+-Increase the indentation level by one when it is contained by other List. If it is contained by a Quotation, you do not have to increase the indentation level.
+-Definition List may contain a Paragaph by writing "~" right after "|".
+-Definition List may contain other Block Elements by writing a Block Element in the line right after the Definition List.
+***&aname(preformed);Preformatted Texts [#x97a82ed]
+"White Space" at the beginning of a line indicates the beginning of Preformatted Text. Line breaks are not automatically inserted in Prefomatted Text.
+//#br
+-Preformatted Text can be the Child Element of other Block Elements.
+-Preformatted Text cannot contain other Block Elements as its Child Element.
+-Preformatted Text Elements will never be parsed by PukiWiki. Thus its contents are displayed "as is".
+***&aname(table);Table [#we5546ee]
+ |Inline Element|Inline Element|
+Inline Elements that are separated by "|", will be formatted as a Table. Remember that there needs to be a "|" character as well before the first Element of the table.
+-Incorrect
+ AAAA|BBB|CCC|DDD
+-Correct
+ |AAA|BBB|CCC|DDD|
+
+|AAA|BBB|CCC|DDD|
+
+//#br
+-The following codes can be used in conjunction with a table. They are placed at the beginning of the Child Element, and yield three posible text alignments.
+ LEFT:
+ CENTER:
+ RIGHT:
+ BGCOLOR(colorcode):
+ COLOR(colorcode):
+ SIZE(unit:px):
+--These codes determine how and where Child Elements should be displayed. The default setting is Left
+//#br
+|Here is a Sample|regarding to the placements |of elements in each cell|
+|Flush Left|CENTER:Centered|RIGHT:Flush Right|
+|RIGHT:Flush Right|Flush Left|CENTER:Centered|
+|aaaaa|foot|aaaaa|f
+|bbbb|bbbb|H E A D|h
+|rowapn|BGCOLOR(blue):BLUE|COLOR(red):RED|
+|~|>|colspan|
+//#br
+- The line arrangement in the cell can be expressed by using one or more spaces or "<", "=", ">".
+ |           ~Table with alignment          |||h
+ |         right|    center    |left          |
+ |left          |         right|    center    |
+ | xxxxxxxxxxxx | xxxxxxxxxxxx | xxxxxxxxxxxx |
+ 
+ |=~Table with alignment                    |||h
+ |>right        |=center       |<left         |
+ |<left         |>right        |=center       |
+ | xxxxxxxxxxxx | xxxxxxxxxxxx | xxxxxxxxxxxx |
+|           ~Table with alignment          |||h
+|         right|    center    |left          |
+|left          |         right|    center    |
+| xxxxxxxxxxxx | xxxxxxxxxxxx | xxxxxxxxxxxx |
+-"c" at the end of the line indicates the line to be Formatting Row. The following code may be used in the Formatting Row.
+ LEFT:
+ CENTER:
+ RIGHT:
+ BGCOLOR(colorcode):
+ COLOR(colorcode):
+ SIZE(unit:px):
+--By using these specific numbers, you can assign an exact width (in px units) to a cell.
+-"h" at the end of the line indicates the line to be the Header Row (thead).
+-"f" at the end of the line indicates the line to be the Footer Row (tfood).
+-Cell containing Inline Element starting with "~" indicates the Cell to be a Header Cell (th).
+- A blank cell is connected with a left cell. (Connect it with a right cell when there is 
+no cell to the left.)
+-Cell containing only ">" will be concatenated with the right Cell (colspan).
+-Cell containing only "<" will be concatenated with the left Cell (colspan).
+-Cell containing only "~" or "^" will be concatenated with the Cell above it (rowapn).
+
+//#br
+-Table may be contained by another Block Element.
+-As a general rule, a Table may not contain other Block Element.
+
+***&aname(csv);CSV Style Table [#b1645d3b]
+ ,Inline Element,Inline Element,...
+~Inline Elements that are separated by ","(comma), will be formatted as a Table. Note that you must write "," before the first Element of the CSV Style Table.
+//#br
+-You may enclose Inline Elements with Double Quotation ("), which enables you to contain comma(,) in Inline Elements.
+-In the Inline Elements enclosed by Double Quotation ("), you may write two consecutive Double Quotations ("") to express Inline Element containing a Double Quotation (").
+-Two consecutive Equal Signs (==) in the place of Inline Element indicates colspan.
+-More than one white space on the left of Inline Element makes it right aligned; more than one whilte space on both right and left sides of Inline Element makes it center aligned.
+
+,aaaaaaaaa,bbbbbbb,ccccccc
+,left , center , right
+,COLOR(red):colspan -->,==, test
+
+//#br
+-CSV Style Table may be contained by another Block Element.
+-CSV Style Table may not contain other Block Elements.
+
+***&aname(headline);Heading [#a191d5ac]
+ *Inline Element
+A line that starts wit an "*" character becomes a Heading Element. There are three levels of heading Elements, namely: "*", "**",and "***".
+//#br
+-Heading may not be contained by other Block Elements.
+Heading closes other Block Elements.
+-Heading may not contain other Block Elements.
+***&aname(contents);Table of Contents [#be7ec652]
+ #contents
+"#contents" at the beginning of the line creates Table of Contents based on the Headings.  Generally, "#contents" are written on the top part of the page.
+//#br
+-Table of Contents should not be contained by other Block Elements. Although Table of Contents may be contained by other Block Elements, left margin is set, assuing it is placed at the top-level.
+-Table of Contents may not contain other Block Elements.
+***&aname(align);LEFT-CENTERED-RIGHT [#f3dbd6f2]
+ LEFT:Inline Element
+ CENTER:Inline Element
+ RIGHT:Inline Element
+Writing "LEFT:", "CENTER:", or "RIGHT:" at the beginning of the line aligns the Inline Element.
+//#br
+-All three Elements may be contained by other Block Elements.
+-All three Elements may not contain other Block Elements.
+***&aname(horizon);Horizontal Rule[#a60a5ced]
+ ----
+Four or more "-" placed at the beginning of a line are shown as a horizontal rule.
+-Horizontal Line may not be contained by other Block Elements. Horizontal Line terminates other Block Elements.
+-Horizontal Line may not contain other Block Elements.
+
+***&aname(space);Line Break [#oa1708ba]
+ #br
+"#br" placed at the beginning of a line makes a line break in a block element or between block elements. ((#br placed right after an empty line next to a block element makes a line break that separates blocks. #br placed right after a block element makes a line break inside that block element. Unlike a line break in a wiki text, #br preserves the format of the line following it.)).
+//#br
+-Line Break may not be contained by other Block Elements. Horizontal Line terminates other Block Elements.
+-Line Break may not contain other Block Elements.
+
+***&aname(ref);Embedding Files and Images [#y1fe2c06]
+
+ #ref(file name)
+ #ref(URL of the file)
+
+You can attach a file by writing #ref(file name) at the beginning of a line.
+You can place a hypertext link by writing #ref(URL of the file) at the beginning of a line.
+If the file attached or linked is an image, the image is displayed. 
+
+//#br
+-You can specify certain parameters by demarcating them with commas. When unspecified, the default values are used. 
+ Page of the attachment file
+--You can specify the page name of the attachment file. The name may be in WikiName or BracketName. When unspecified, the current page serves as the default. 
+--The following parameters can be specified immediately after the page name. 
+-
+ left
+ center
+ right
+--It specifies where to place the link or the image within the page. Center is the default. 
+-
+ wrap
+ no wrap
+--Specifies if the link or the image should be placed in a box. The default is to use no box. 
+-
+ around
+--Specifies if the text should wrap around the link or image. No wrapping by default. 
+--If you want to stop the wrapping, you can use "#img(,clear)". 
+-
+ nolink
+--Nolink overrides and eliminates the default linking to the attached file. 
+-
+ Substitute Strings
+--You can display a Substitute Strings instead of a file name and images. When unspecified, the file name is used by default. 
+--The Substitute Strings accept only String Inline Elements. WikiName, BracketName, and other things will be interpreted as a String. 
+--This option must be stated as the last parameter when you use this option.
+-#ref may be contained by other Block Elements. 
+-#ref may not accept other Block Element as a Child Element. 
+
+***&aname(clear);Disabling text wraparound [#w72effe8]
+ #clear 
+#clear placed at the beginning of the line cancels the text wraparound set in #ref. Wraparound is always cancelled at the end of the texts even without #clear.
+//#br
+-#clear may not be contained by other Block Elements. Horizontal Line terminates other Block Elements.
+-#clear may not contain other Block Elements.
+
+***&aname(form);Form [#v55d5a1f]
+ #comment
+"#comment" at the beginning of the line embeds a form to post comments.
+//#br
+-#comment should not be contained by other Block Elements. Although #comment may be contained by other Block Elements, left margin is set, assuing it is placed at the top-level.
+-#comment may not accept other Block Elments as Child Element.
+
+ #pcomment
+"#pcomment" at the beginning of the line embeds a form to post comments. Unlike "#comment", posted comments are recorded on a seperate page. Also, responses to a comment is displayed as tree structure.
+//#br
+-#pcomment should not be contained by other Block Elements. Although #pcomment may be contained by other Block Elements, left margin is set, assuing it is placed at the top-level.
+-#pcomment may not accept other Block Elements as Child Element.
+
+ #article
+"#article" at the beginning of the line embeds a simple forum.
+//#br
+-#article should not be contained by other Block Elements. Although #article may be contained by other Block Elements, left margin is set, assuing it is placed at the top-level.
+-#article may not accept other Block Elements as Child Element.
+
+ #vote(Option1,Option2,...)
+"#vote" at the beginning of the line embeds a simple form for voting.
+//#br
+-The options may contain string, WikiName, BracketName, InterWiki, and link. Other Inline Elements may not be included as an option.
+-#vote should not be contained by other Block Elements. Although #vote may be contained by other Block Elements, left margin is set, assuing it is placed at the top-level.
+-#vote may not accept other Block Elements as Child Element.
+**&aname(inline);Inline Elements [#t1de0d4e]
+-Inline Element must be contained by a Block Element.
+--If the parent Block Element is not explicitly specified at the beginning of the line, Inline Elements is silently contained by a Paragraph.
+--If the parent Block Element is explicitly specified at the beginning of the line, Inline Elements is contained by the Block Element.
+-Inline Element may accept other Inline Elements as a Child Element.
+-Inline Elements follow the &#38;foobar; format (user-defined format).
+***&aname(string);Strings [#g6d1c119]
+ Strings
+Strings are an Inline Element.
+//#br
+-Strings may be contained by other Inline Elements.
+-Strings may not accept other Inline Elemnts as a Child Element.
+***&aname(linefeed);Line Breaks [#v1a2144b]
+ Inline Element~
+Writing "~" at the end of the line inserts End of Line a line break. End of Line is a line break within a Block Element.
+//#br
+-End of Line voids any Block Element specified at the beginning of the next line, and turns it into a String.
+-End of Line may not be contained by other Inline Elements.
+-End of Line may not accept other Inline Elements as a Child Element.
+-End of Line may not be used within the Item of Definition List, Item of a Table, or in the parameter of Block Elements starting with "#".
+
+ &br;
+Writing &#38;br; breaks the line. Unlike "~" at the end of the line, Line Break may be used within the Item of Definition List, Item of a Table, or in the parameter of Block Elements starting with "#". 
+//#br
+-Line Break may not be contained by other Inline Elements.
+-Line Break may not accept other Inline Elements as a Child Element.
+***&aname(emphasis);Emphasis [#p46f371d]
+ ''Inline Element''
+Enclosing Inline Element with &#39;&#39; puts emphasis on the element (Bold font).
+//#br
+-Emphasis (Bold) may be contained by other Inline Elements.
+-Emphasis (Bold) may accept other Inline Elements as a Child Element.
+
+ '''Inline Element'''
+Enclosing Inline Element with &#39;&#39;&#39; puts emphasis on the element (Italics).
+//#br
+-Emphasis (Italics) may be contained by other Inline Elements.
+-Emphasis (Italics) may accept other Inline Elements as a Child Element.
+
+***&aname(size);Font Size [#t6e5d501]
+ &size(Size){Inline Elements};
+&#38;size sets the size of inline elements in pixels (px).
+//#br
+-&#38;size; may be contained by another inline elements.
+-&#38;size; may contain other inline elements.
+
+***&aname(color);Font Color [#le009418]
+ &color(color){Inline Elements};
+&#38;color sets the color of inline elements.
+//#br
+-The color can be specified by one of the following:
+--Color Code
+--#rrggbb
+--#rgb
+-&#38;color; may be contained by another inline elements.
+-&#38;color; may contain other inline elements.
+
+***&aname(delete);Line Strikethrough [#zaf0da74]
+ %%Inline Elements%%
+Inline elements enclosed with &#37;&#37; makes texts with strikethrough.
+//#br
+-Line strikethrough may be contained by another inline elements.
+-Like strikethrough may contain other inline elements.
+
+***&aname(note);Footnote [#o74286ea]
+ ((Inline Elements))
+Inline elements enclosed with &#40;&#40; and &#41;&#41; makes a footnote. A link to the footnote is created in the text. Footnotes cannot be nested.
+//#br
+-Footnote may be contained by another inline elements EXCEPT another footnote.
+-Footnote may contain other inline elements.
+
+//&p;
+//&#38;p; written inside a footnote breaks a paragraph. ((Although a paragraph break is supposed to be a block element, since PukiWiki treats a footnote as an inline element, it must be placed inline. It must not be contained in other inline elements.)).
+//#br
+//-Paragraph break inside a footnot must not be contained by another inline elements.
+//-Paragraph break inside a footnot must not contain other inline elements.
+
+***&aname(ref2);Embedded Files and Images [#w04aa19e]
+ &ref(File Name[,parameters]){alternative string};
+ {{File Name[,parameters]|alternative string}}
+ 
+ &ref(URL[,parameters]){alternative string};
+ {{URL[,parameters]|alternative string}}
+
+&#38;ref or {&#123; &#125;} makes a link to an attachment file or a URL. If the attachment is an image file, the image is displayed.
+//#br
+- When the attached file name is omitted, it becomes a link for the file up-loading. When the file is up-loaded by using the link, it is substituted for the file display that the link part appended.
+-&#38;ref can have the following parameters, separated by cammas. Default values are used for unspecified parameters.
+ The page where the attachment file is uploaded.
+--This parameter defines the page (WikiName, BracketName) where the attachment file is stored. The default is the current page.
+--This parameter must be set right after the file name.
+-- The attached file name can be assumed to be "Page name/attached file name".
+-
+ nolink
+--By default &#38;ref creates the link to the attachment file. With nolink, the link is not created.
+-
+ alternative string
+--An alternative string is displayed instead of the file name. By default, the file name is displayed.
+--The string must not contain any inline elements other than a simple string. WikiName, BracketName, or other inline elements are all treated as a simple string.
+--This parameter must be the last of all parameters.
+-&#38;ref; may be contained by another inline elements.
+-&#38;ref; must not contain other inline elements.
+
+***&aname(ruby);Ruby [#c74c4c49]
+ &ruby(ruby string){Inline Elements};
+&#38;ruby makes a ruby (short runs of text alongside the base text) for inline elements. In a browser does not support a ruby, it is displayed as texts surrounded by ( ).
+//#br
+-Although any inline elements may become a ruby string, it may not be displayed as expected.
+-&#38;ruby; may be contained by other inline elements.
+-&#38;ruby; may contain other inline elements.
+-A ruby must not be nested.
+-The use of a ruby should be avoided inside a footnote or in other places with small text size.
+
+***&aname(anchor);Anchor [#x9c38f18]
+ &aname(anchor name);
+ &aname(anchor name){Inline Elements};
+&#38;aname; makes an anchor for a link.
+//#br
+-The anchor name must be a string beginning with an alphabet and consisting of alphabets, digits, hiphens, and underscores.
+-The anchor name must not contain multi-byte characters, spaces, or other symbol characters.
+-&#38;anchor; may be contained by other inline elements.
+-&#38;anchor; may contain other inline elements.
+
+***&aname(counter);Counter [#p695e822]
+ &counter;
+ &counter(options);
+&#38;counter; makes a counter that displays the number of accesses to the page.
+//#br
+-&#38;counter; can have the following options. If no options are provided, "all" is used by default.
+ today
+--Displays the number of accesses of today
+-
+ yesterday
+--Displays the number of accesses of yesterday
+-
+ all
+--Displays the total number of accesses
+
+//#br
+-&#38;counter; may be contained by other inline elements.
+-&#38;counter; must not contain other inline elements.
+
+***&aname(online);Online Viewers [#r8045aa7]
+ &online;
+&#38;online; displays the number of current accesses.
+
+//#br
+-&#38;online; may be contained by other inline elements.
+-&#38;online; must not contain other inline elements.
+
+***&aname(version);Version [#g4b02c96]
+ &version;
+&#38;version displays the version of PukiWiki.
+
+//#br
+-&#38;version; may be contained by other inline elements.
+-&#38;version; must not contain other inline elements.
+
+***&aname(wikiname);WikiName [#d89f7c04]
+ WikiName
+WikiName stands for two or more Capitalized Words joined together without spaces, muti-byte characters, symbols, and numbers.
+//#br
+-WikiName cannot contain multi-byte character, spaces, symbols, or numbers.
+-WikiName indicates a link to a page in Pukiwiki. If the page already exists, the link is automatically made. And if it doesn't exist, the WikiName will have a ? mark behind it, which will be linked to to a page where you can add new contents for that name.
+-WikiName can be a Child Element of other Inline Elements.
+-WikiName cannot contain other Inline Elements as its Child Elements.
+***&aname(bracketname);BracketName [#y97a88fc]
+ [[BracketName]]
+A string enclosed with &#91;&#91; and &#93;&#93; makes BrancketName, which is another link style in Pukiwiki.
+//#br
+-BracketName can contain multi-byte character, spaces, symbols, and numbers.
+-BracketName cannot contain "#&#38;<> .
+-BracketName indicates a link to a page in Pukiwiki. If the page already exists, the link is automatically made. And if it doesn't exist, the BracketName will have a ? mark behind it, which will be linked to to a page where you can add new contents for that name.
+-BracketName can be a Child Element of other Inline Elements.
+-BracketName cannot contain other Inline Elements as its Child Elements.
+
+***&aname(interwiki);InterWiki [#ccc1aafb]
+ [[InterWikiName:PageName]]
+By seperating a BracketName with : , you can create an InterWiki block, which is another link style in Pukiwiki. The former part must contain an InterWikiName which is defined at InterWikiName which contains a list of defined InterWikiName. (What does this mean? It's not very clear.) The latter part must contain a WikiName or a BracketName without &#91;&#91; and &#93;&#93;.
+//#br
+-InterWikiName can contain muti-byte characters and spaces.
+-InterWiki can be a Child Element of other Inline Elements.
+-InterWiki cannot contain other Inline Elements as its Child Elements.
+
+***&aname(link);Link [#w8e3c0dc]
+ [[Link Name:URL]]
+By seperating a BracketName with : , you can creat a Link block, which is yet another link style in Pukiwiki. The former part can contain a certain string which is used for the displayed name of a link. The latter part must contain a URL.
+//#br
+-Link Name can contain multi-byte characters and spaces in addition to alphabets, digits and a number of symbols.
+
+ http://...
+ https://...
+ ftp://...
+ news://...
+ mailto:...
+-You can also make a direct link by using the styles listed above.
+-If an image is linked, it is shown on the page. (I'm lazy. Please write the ideal way, to insert a link for image if you already know how. --- Olorin)
+
+//#br
+-Link can be a Child Element of other Inline Elements.
+-Link cannot contain other Inline Elements as its Child Elements.
+
+***&aname(alias);Alias [#u896260b]
+ [[Alias>PageName]]
+By seperating a BracketName with > , you can creat an Alias, which is another link style in Pukiwiki. The former part can contain a certain string which is used for a name of a link. The latter part must contain a WikiName or a BracketName styled string without &#91;&#91; and &#93;&#93;.
+
+Alias enables you to make a link to a page in Pukiwiki with a different name.
+
+You can also use an "anchor" to direct you to a certain part of a page. When you use an anchor as an internal link, you can omit a PageName.:|
+ [[Alias>PageName#anchor]]
+ [[Alias>#anchor]]
+
+//#br
+-Alias can contain muti-byte characters and spaces.
+-Relative link is available.
+-Alias can be a Child Element of other Inline Elements.
+-Alias can contain other Inline Elements as its Child Elements.
+
+***&aname(entity);Entity [#ve8c2454]
+
+-Entity is converted to a certain value when you submit a page.
+-Entity can be a Child Element of other Inline Elements.
+-Entity cannot contain other Inline Elements as its Child Elements.
+****&aname(page);Page Name Entity [#b2f92a7e]
+ &page;
+&#38;page; is converted to the name of current editing page.
+//#br
+-Page Name Entity is converted when the artile saved.
+-Page Name Entity can be a Child Element of other Inline Elements.
+-Page Name Entity cannot contain other Inline Elements as its Child Elements.
+****&aname(date);Date Entity [#g57b899a]
+ &date;
+ &time;
+ &now;
+&#38;date; is converted to the current date.
+
+&#38;time; is converted to the current time.
+
+&#38;now; is converted to the current date and time.
+//#br
+- Date Entity is converted when the artile saved.
+- Date Entity may not be contained by other Inline Elements.
+- Date Entity may not accept other Inline Elements as a Child Element.
+
+****&aname(refer_string);Character Entities[#m072caf3]
+In addition to the character entities defined in SGML (e.g., &#38;copy;, &#38;reg;, etc.), the following entities can be used.
+ &#38;heart;
+ &#38;smile;
+ &#38;bigsmile;
+ &#38;huh;
+ &#38;oh;
+ &#38;wink;
+ &#38;sad;
+ &#38;worried;
+-&#38;heart; is displayed as: &heart;
+-&#38;smile; is displayed as: &smile;
+-&#38;bigsmile; is displayed as: &bigsmile;
+-&#38;huh; is displayed as: &huh;
+-&#38;oh; is displayed as: &oh;
+-&#38;wink; is displayed as: &wink;
+-&#38;sad; is displayed as: &sad;
+-&#38;worried; is displayed as: &worried;
+
+-Character entities are converted when displayed.
+-Character entities may be contained by other Inline Elements.
+-Character entities may not accept other Inline Elements as a Child Element.
+
+****&aname(refer_numeral);Numeric Entity [#cdae2296]
+ &#Decimal-number;
+ &#xHexadecimal-number;
+By writing a decimal number between &#38;# and ; or a hexadecimal number between &#38;#x and ;, a Unicode character can be displayed. You may use this inline element to insert characters which you cannot directly type with your keyboard. 
+
+Take a look at the examples in the following table: 
+
+|''Special entity''|''Code''|''Comments''|h
+|&#19990;|&amp;#19990;|You can use characters from all over the world!|
+|&#8734;|&amp;#8734;|We could go on like this forever...|
+|&#937;|&amp;#937;|But here it must end.|
+
+//#br
+-Numeric Entity are converted when display.
+-Numeric Entity may be contained by other Inline Elements.
+-Numeric Entity may not accept other Inline Elements as a Child Element.
+-Hexadecimal number must be written in small letter. (XHTML 1.0 rev 2 or newer allows only small letters.)
+
+**&aname(etc); Others  [#ba8c703c]
+***&aname(comment);Commnet line [#v455ee74]
+ // Comments
+A line beginning with // is a comment. It is not displayed on the wiki page.
+//#br
+-The commnet line can be placed in any position.
+-The commnet line doesn't affect other elements.
+
+&br;
+
+**Prohibition [#vc1bb6c0]
+|LEFT:|CENTER:|CENTER:|c
+|''Block Element''|''can contain other block elements''|''can be contained by other block elements''|h
+|''Paragraph''|CENTER:no|CENTER:yes|
+|''Prefpmatted''|CENTER:no|CENTER:yes|
+|''Headings''|CENTER:no|CENTER:no|
+|''Table''|CENTER:no|CENTER:yes|
+|''Table(CSV)''|CENTER:no|CENTER:yes|
+|''List(unordered)''|CENTER:yes*|CENTER:yes|
+|''List(ordered)''|CENTER:yes*|CENTER:yes|
+|''Quote''|CENTER:yes*&sup2;|CENTER:yes|
+|''Horizontal Line''|CENTER:no|CENTER:yes|
+|''LEFT:/CENTER:/RIGHT:''|CENTER:no|CENTER:yes|
+|''#ref''|CENTER:no|CENTER:yes|
+|''#contents''|CENTER:no|CENTER:yes*&sup3;|
+|''#comment''|CENTER:no|CENTER:yes*&sup3;|
+|''#pcomment''|CENTER:no|CENTER:yes*&sup3;|
+|''#article''|CENTER:no|CENTER:yes*&sup3;|
+|''#vote(choice1,choice2,...)''|CENTER:no|CENTER:yes*&sup3;|
+~* As long as the beginning of Child Element is Inline Element or Paragraph, 
+you can insert a Block Element to the next line. (Please refer to "Nesting Element" for an example.)
+~*&sup2;When Quotation is a Child Element of another Quotation, you need to increase the inentation level by 1.
+~*&sup3; Due to pukiwiki's default setting of left margin, this is not recommended.
+
+&br;
+
+**Compare Link Styles [#v3d91c05]
+Here is a section to explain the differences between WikiName, BracketName, InterWiki, Link, and Alias.
+***WikiName and BracketName [#nce9618f]
+As you know by now, all of them are used in Pukiwiki to make a link to a page.
+And the difference betweem them is whether or not you can use spaces, multibyte-characters, symbols, and numbers. Thus, a BracketName would be a better choice if you want to avoid the typical WikiName capitalized link style.  Usually, all Capitalized strings will be shown as a link. However, you can disable WikiNames in pukiwiki.ini.php if you think they are annoying. 
+
+***InterWiki, Link, and Alias [#aae92bd2]
+These styles are very similar, so they might be confusing. But each of them has it's own purpose. If you understand the differences, they are all very useful.
+
+First let's focus on their grammatical styles.
+ [[pukiwiki:Use PukiWiki]]..........[a]
+ [[whatever u like:http://pukiwiki.sourceforge.jp/?Use%20PukiWiki]]...[b]
+ [[Another Name>Text Formatting Rule]]......[c]
+
+[a] is an InterWiki styled link. And [b] is a Link styled link.
+Finaly, both of them will direct us the same page: http://pukiwiki.sourceforge.jp/?Use%20PukiWiki .
+This is so, because pukiwi is defined in the InterWikiName as followins:
+ [http://pukiwiki.sourceforge.jp/? pukiwiki] utf8
+Thus InterWiki combines two pieces of information. The first piece is a URL defined in InterWikiName, and the other is the information provided by the right side attribute.
+InterWikiName is a kind of short cut. You can define any URL for an InterWikiName.
+
+For example, when you create an link to external/internal wiki page, it is annoying to have to type the whole URL each time you want to use it. In this case, as an alternative, you can define an InterWikiName.
+
+As you can see, [c] is a Alias styled link. You can use it to display a different link text for a link to a page in PukiWiki.
+
+In conclusion, the most important difference you need to understand is
+'' Which side is which?''
+
+|Link Style|Left Side|Right Side|
+|InterWiki|InterWikiName(Defined URL)|Additional URL|
+|Link|Link text|Real URL|
+|Alias|Link text|Real URL(WikiName/BracketName)|
+
+&br;
+
+**&aname(compare);Nesting Elements[#y4860837]
+***Paragraph Element-Emphasize Element [#ned5fa77]
+ ~This is the paragraph, which is the parent element that contains the emphasized. 
+ ''This is the emphasized text that is the child element of the paragraph element.''
+ 
+~This is the paragraph, which is the parent element that contains the emphasized. 
+''This is the emphasized text that is the child element of the paragraph element.''
+
+***Quotation Element-List Element [#a0650018]
+ Level[0]
+ >Quotation Level[1]AAA
+ >Quotation Level[1]BBB
+ >>Quotation Level[2]AAA
+ >>Quotation Level[2]BBB
+ >>>Quotation Level[3]
+ -Child Element-List Level[1]
+ |TABLE|ELEMENT|NEXT|to|inline|element|in list|
+ --Child Element-List Level[2]
+ &br;Line Break in a Element
+ ---Child Element-List Level[3]
+ --Child Element-List Level[2]
+ ---Child Element-List Level[3]
+ >Quotation Level[1]
+ >>Quotation Level[2]
+ <<Get out of the Quotation Level2 Element
+ >>>Quotation Level[3]AAA
+ >>>Quotation Level[3]BBB
+ -Child Element-List Level[1]
+ --Child Element-List Level[2]
+ ---Child Element-List Level[3]
+
+
+Level[0]
+>Quotation Level[1]AAA
+>Quotation Level[1]BBB
+>>Quotation Level[2]AAA
+>>Quotation Level[2]BBB
+>>>Quotation Level[3]
+-Child Element-List Level[1]
+|TABLE|ELEMENT|NEXT|to|the Inline|element|in a list|
+--Child Element-List Level[2]
+&br;Line Break in a Element
+---Child Element-List Level[3]
+--Child Element-List Level[2]
+---Child Element-List Level[3]
+>Quotation Level[1]
+>>Quotation Level[2]
+<<Get out of the Quotation Level2 Element
+>>>Quotation Level[3]AAA
+>>>Quotation Level[3]BBB
+-Child Element-List Level[1]
+--Child Element-List Level[2]
+---Child Element-List Level[3]

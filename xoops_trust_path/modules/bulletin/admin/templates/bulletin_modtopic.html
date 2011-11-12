@@ -1,0 +1,49 @@
+<{strip}>
+
+<form method="post" action="index.php?mode=admin">
+  <table class="outer" cellspacing="1" width="100%">
+    <tbody>
+      <tr>
+        <th colspan="2"><{$smarty.const._AM_MODIFYTOPIC}></th>
+      </tr>
+      <tr>
+        <td class="head" width="100"><{$smarty.const._AM_TOPICNAME}></td>
+        <td class="even"><input type="text" name="topic_title" size="20" maxlength="40" value="<{$topic_title}>" /> <{$smarty.const._AM_MAX40CHAR}></td>
+      </tr>
+      <tr>
+        <td class="head" width="100"><{$smarty.const._AM_PARENTTOPIC}></td>
+        <td class="even"><{$topicselbox}></td>
+      </tr>
+      <tr>
+        <td class="head" width="100"><{$smarty.const._AM_TOPICIMG}></td>
+        <td class="even">
+          <{if $topic_imgurl}>
+            <img src="<{$topic_imgdir}><{$topic_imgurl}>" alt="" /><br />
+          <{/if}>
+          <select size="1" name="topic_imgurl" id="topic_imgurl" onchange='showImgSelected("topicimage", "topic_imgurl", "<{$imagebase}>", "", "<{$imagedirname}>")'>
+          <option value="">------</option>
+          <{foreach item=i from=$images}>
+            <option value="<{$i.image}>" <{$i.option}>><{$i.image}></option>
+          <{/foreach}>
+          </select><br />
+          <img src="<{$xoops_url}>/images/blank.gif" name="topicimage" id="topicimage" alt="" vspace="4" /><br />
+          <{$imagelocation}>
+        </td>
+      </tr>
+      <tr>
+        <td class="head"></td>
+        <td class="even">
+          <input type="hidden" name="op" value="modTopicS" />
+          <input type="hidden" name="topic_id" value="<{$topic_id}>" />
+          <input type="button" value="<{$smarty.const._DELETE}>" onclick="location='index.php?mode=admin&amp;topic_pid=<{$topic_pid}>&amp;topic_id=<{$topic_id}>&amp;op=delTopic'" />
+          &nbsp;<input type="submit" value="<{$smarty.const._AM_SAVECHANGE}>" />
+          &nbsp;<input type="button" value="<{$smarty.const._CANCEL}>" onclick="javascript:history.go(-1)" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+
+<{include file="$template_path/bulletin_footer.html"}>
+
+<{/strip}>

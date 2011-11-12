@@ -1,0 +1,23 @@
+<div style="word-break:break-all;"><_EACH_><div style="clear: both;"></div></div>
+
+<!--EACH(10)-->
+<form method="POST" action="http://www.amazon.co.jp/exec/obidos/handle-buy-box=<_ASIN_>" target="_blank" rel="nofollow">
+<_count!=6_><div style="float:left;width:19%;padding: 0px 1px;"><_/count_>
+<_count=6_><div style="float:left;width:19%;padding: 0px 1px;clear:left;"><_/count_>
+<_LINKED_SIMG_><br />
+<a href="<_URL_>" target="_blank" rel="nofollow"><span style="font-size:12px;color:#3366FF;"><_TITLE_></span></a>
+<span style="font-size:12px;">(<_CATEGORY_>)</span><br />
+<span style="font-size:12px;"><_PRESENTER_></span><br />
+<span style="font-family:Arial;font-size:14px;color:#990000;"><_PRICE_FORMATTED_></span>
+<input type="hidden" name="asin" value="<_ASIN_>" />
+<input type="hidden" name="asin.<_ASIN_>" value="1" />
+<input type="hidden" name="tag-value" value="<_ASSTAG_>" />
+<input type="hidden" name="dev-tag-value" value="<_DEVKEY_>" />
+<input type="image" name="submit" value="ショッピングカートに入れる" style="border:none;" alt="ショッピングカートに入れる" title="ショッピングカートに入れる" src="http://xoops.hypweb.net/download/tocart_s.gif" width="30" height="18" />
+</form>
+</div>
+<!--/EACH-->
+
+<!--IMG-->
+<a href="<_URL_>" title="<_TITLE_>" target="_blank" rel="nofollow"><img src="<_IMGSRC_>" alt="<_TITLE_>"<_IMGSIZE_> style="border:none;margin:2px;" /></a>
+<!--/IMG-->

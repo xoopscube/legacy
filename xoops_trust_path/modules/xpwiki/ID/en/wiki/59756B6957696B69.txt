@@ -1,0 +1,5 @@
+YukiWiki is another Wiki engine for Perl CGI environment, by Hiroshi Yuki.
+
+PukiWiki was started from PHP porting of YukiWiki.
+
+[[YukiWiki Site:http://www.hyuki.com/]]

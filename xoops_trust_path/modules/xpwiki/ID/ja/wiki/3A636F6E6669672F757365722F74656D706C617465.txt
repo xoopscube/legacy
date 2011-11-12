@@ -1,0 +1,7 @@
+#freeze
+* ユーザー設定 [#n68c474e]
+
+** XML-RPC [#l2f98cf3]
+
+|~項目|~設定値|~説明|h
+|MyBlog|[[$3/blog]]|Blogger API, metaWeblog API を使用する場合のブログページを指定します。|

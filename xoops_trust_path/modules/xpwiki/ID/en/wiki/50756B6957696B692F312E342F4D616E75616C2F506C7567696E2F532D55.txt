@@ -1,0 +1,330 @@
+#freeze
+#nofollow
+#norelated
+#navi(../)
+#contents
+------------------------------
+* S [#mee1bd43]
+
+**search [#ba94ddfd]
+:Plugin type|
+~Command type
+~Block type
+:Importance|
+~*****
+:Synopsis|
+''?cmd=search''{
+[&color(blue){&word='''search_string'''};]
+[&color(blue){&type=OR};]
+}
+~''#search''
+:Description|
+~Display a query form for searching the pages containing the entered search string.
+:Parameters|
+~The parameters control the search conditions
+--word - the search string is specified by '''search_string'''. If this parameter is omitted, a query form page is displayed.
+--type - If 'OR' is specified, OR search (querying the pages containing one of the keywords) is performed. The default is AND search (querying the pages containing all keywords).
+:Constants|~
+--PLUGIN_SEARCH_DISABLE_GET_ACCESS - deny the query with the GET method (to prevent DoS attacks, SPAMbot, or worm)
+--PLUGIN_SEARCH_MAX_LENGTH - the maximum length of the search string
+
+**server [#d69aa1d0]
+:Plugin type|
+~Block type
+:Importance|
+~*
+:Synopsis|
+''#server''
+:Description|
+~Display the server information (server name, server software, and administrator)
+
+**setlinebreak [#va79297e]
+:Plugin type|
+~Block type
+:Importance|
+~*
+:Synopsis|
+''#setlinebreak(''
+[&color(blue){on};|&color(blue){off};|&color(blue){default};]
+'')''
+:Description|
+~Determine whether the line breaks in input texts are displayed as line breaks.
+~The default behavior of PukiWiki with line breaks in input texts is set by the $line_break paremeter in pukiwiki.ini as follow
+|Texts|$line_break=0;|$line_break=1;|h
+|Text_1&br;Text_2|Text_1 Text_2|Text_1&br;Text_2|
+~The setlinebreak plugin changes this $line_break setting after the line it is placed in the page.
+:Parameters|
+~The parameter sets the the treatment of line breaks.
+If the parameters is omitted, the plugin toggles the current setting.
+--on - Display the line breaks in the subsquent texts as line breaks ($line_break=1).
+--off - Ignore the line breaks in the subsquent texts ($line_break=0).
+To explicitly make line breaks, write a tilde at the end of the line, or use the [[br pluging>../A-D#g693034c]].
+--default - Set the line break setting to the default (i.e., the value of the $line_break)
+
+**showrss [#v7316017]
+:Plugin type|
+~Block type
+:Importance|
+~*
+:Synopsis|
+''#showrss(''
+&color(blue){'''RSS_location'''};
+[,[&color(blue){default};|&color(blue){menubar};|&color(blue){recent};]
+[,[&color(blue){'''cache_timeout'''};]
+[,&color(blue){1};
+]]]
+'')''
+:Description|
+~Obtain an RSS feed and display it on the page
+~By default, this plugin tries to obtain an RSS feed every time the page is accessed. If you place the showrss plugin in a frequently accessed page, use the cache functionality. The value of the cache timeout should be set properly depending on how frequently the target site is updated.
+:Parameters|
+~'''RSS_location''' - the file path or the URL of the RSS feed
+~The template parameter determines the display format of the RSS. The default value is 'default'.
+--default - simple list of pages
+--menubar - display a bullet before the page name (useful in a page like MenuBar, which has a limit in page width)
+--recent - display the timestamp of the pages name like the recent plugin
+:|
+~'''cache_timeout''' - the cache expiration time (in hours). The default is to disable caches.
+~The last parameter determines whether the plugin displays the timestamp of the RSS feed. The timestamp is displayed if 1 is set. The default is not to display the RSS timestamp.
+:Note|
+~This plugin requires the xml extension of PHP.
+
+**size [#e5db48c0]
+:Plugin type|
+~Inline type
+:Importance|
+~***
+:Synopsis|
+''&size(''
+&color(blue){'''fontsize'''};
+''){''
+&color(blue){'''string'''};
+''};''
+:Description|
+~Display a string in a specified font size
+:Parameters|
+~'''fontsize''' - font size (in pixels)
+~'''string''' - the string to be displayed
+:Constants|~
+--PLUGIN_SIZE_MAX - maximum font size allowed
+--PLUGIN_SIZE_MIN - minimum font size allowed
+--PLUGIN_SIZE_USAGE - usage texts upon an error (when parameters were not given)
+
+**source [#k23d3e24]
+:Plugin type|
+~Command type
+:Importance|
+~*
+:Synopsis|
+''?cmd=source''
+&color(blue){&page='''PageName'''};
+:Description|
+~Display the source texts of the specified page
+:Parameters|
+~'''PageName''' - the page name of which the source texts are displayed. It must be URL-encoded.
+
+**stationary [#ifad4486]
+:Plugin type|
+~Command type
+~Block type
+~Inline type
+:Importance|
+~*
+:Synopsis|
+~''?plugin=stationary''
+~''#stationary''
+~''&stationary;''
+:Description|
+~The stationary plugin is a template created for developers of a PukiWiki plugin.~
+It does not do anything other than displaying a simple text.
+:Constants|~
+--PLUGIN_STATIONARY_MAX - the sample to show how the constant is defined in the plugin
+
+------------------------------
+* T [#u58dc027]
+
+**tb [#s5056787]
+:Plugin type|
+~Command type
+:Importance|
+~*
+:Synopsis|
+''?plugin=tb''
+&color(blue){&tb_id=TrackBackID};
+&color(blue){&__mode=};
+&color(blue){view};|
+&color(blue){rss};
+:Description|
+~Display the list of the trackbacks
+~It can respond to the trackback from other sites when called by a POST request.
+:Parameters|
+~&tb_id - the trackback ID of the target page
+~&__mode - the format of the trackback list
+--view - display the list in the human-readable format
+--rss - display the list in the RSS format
+:Constants|~
+--PLUGIN_TB_LANGUAGE - the language of the trackback RSS
+--PLUGIN_TB_ERROR - the return code for error
+--PLUGIN_TB_NOERROR - the return code for success
+:Note|
+~To use this plugin, the $trackback in pukiwiki.ini.php must be set to 1.
+
+**template [#j2adfc3d]
+:Plugin type|
+~Command type
+:Importance|
+~****
+:Synopsis|
+''?plugin=template''
+&color(blue){&refer='''TemplatePage'''};
+:Description|
+~Create a new page using an existing page as template.
+~This is similar to the function of 'creating a new page' using a skeleton page, but while 'create new' always reads the entire page, thie plugin can specify which part of the existing page should be used as a template.
+:Parameters|
+~'''TemplatePage''' - The page used as a template. It must be URL-encoded.
+:Constants|~
+--MAX_LEN - The maximum length of the templated (displayed on the form to specify the location of the tamplate page.)
+
+**topicpath [#vd55c067]
+:Plugin type|
+~Inline type
+~Block type
+:Importance|
+~*
+:Synopsis|
+~''&topicpath''
+'';''
+~''#topicpath''
+:Description|
+~Display the UI which displays the 'topic path'.
+~The topic path is a hierachical representation of the page structure. For example, If #topicpath is written on the page named [[PukiWiki/Tour]], the plugin displays the following links.
+ [[Top>FrontPage]]/[[PukiWiki>PukiWiki]]/[[Tour>PukiWiki/Tour]]
+~The intended uses of this plugin are as follows.
+++ Help page transition between the pages with more than 2-3 levels (e.g., "Foo/Bar/Baz")
+++ Display the topic path instead of the URL shown below the page title (by using this plugin in the skin)
+:Constants|~
+--PLUGIN_TOPICPATH_TOP_DISPLAY - whether to display the link to the default page
+--PLUGIN_TOPICPATH_TOP_LABEL - the label for $defaultpage
+--PLUGIN_TOPICPATH_TOP_SEPARATOR - the level separator
+--PLUGIN_TOPICPATH_THIS_PAGE_DISPLAY - whether to display the link to the current page
+--PLUGIN_TOPICPATH_THIS_PAGE_LINK whether to link to the current page
+:Note|
+~If this plugin is used in the skin, set SKIN_DEFAULT_DISABLE_TOPICPATH to 0 in pukiwiki.skin.php.
+
+**touchgraph [#p93402bd]
+:Plugin type|
+~Command type
+:Importance|
+~*
+:Synopsis|
+''?plugin=touchgraph''
+:Description|
+~Create the index for the TouchGraphWikiBrowser
+
+**tracker [#rf5296e2]
+:Plugin type|
+~(Command type)
+~Block type
+:Importance|
+~****
+:Synopsis|
+~''#tracker(''
+[&color(blue){'''TemplateName'''};]
+[,&color(blue){BasePageName};]
+'')''
+:Description|
+~Display an input form for creating stylized pages.
+~Unlike the [[bugtrack>../A-D#a83293e8]] plugin, in which the items are fixed, the tracker plugin can create arbitrary input fields on the stylized page. The potential use of this plugin is to create FAQ, BBS, book reviews, TODO list, etc.
+~The input fields can be defined by creating a template page under :config/plugin/tracker/ according to specific formats. For a reference, the template equivalent to the [[bugtrack>../A-D#a83293e8]] pluging is placed at :config/plugin/tracker/default.
+:Parameters|
+~'''TemplateName''' - the template template name (e.g., #tracker(hoge)). If omitted, :config/plugin/tracker/default is used.
+~It is possible to specify the form name or the list name after the template name. This is useful when you want to use multiple form/list formats for the same template. For example, #tracker(foo/form_alternative) uses :config/plugin/tracker/foo/form_alternative, and #tracker_list(foo/list_alternative) uses :config/plugin/tracker/foo/list_alternative for layout.
+~'''BasePageName' - the top-level page created by the plugin. The default is the current page.
+:Constants|~
+--TRACKER_LIST_EXCLUDE_PATTERN - the regular expression that defines the pages excluded from the pages shown by the tracker_list plugin
+--TRACKER_LIST_SHOW_ERROR_PAGE - whether to display the pages in the list if the items couldn't be extracted from them
+:Templates syntax|~
+~For each tracker, the following 4 pages should be created as a template.
+--:config/plugin/tracker/foo
+~the descreiption of the foo template
+--:config/plugin/tracker/foo/form
+~definitions of input fields and layouts
+--:config/plugin/tracker/foo/page
+~format of the page to be created
+--:config/plugin/tracker/foo/list
+~layout of the list displayed by the tracker_list plugin. Special rules apply to the format definition (c), header(h), and footer(f) are a table (|...|)
+:Keywords|~
+--The keywords that can be used in forms
+---[_name] : display a field to enter the page name to store an entry (optional)
+---[_submit] : display the [Add] button
+--The keywords that can be used in pages and lists
+---[_date] : submission timestamp
+---[_page] : the page name (with brackets) created
+---[_refer] : the page in which #tracker was placed
+---[_base] : the page prefix. If the second parameter of tracker()/tracker_list()  is omitted, the value of [_refer] is used.
+---[_name] : the value of the [_name] in the form. This is used as part of the page name in which the entry is stored.
+---[_real] : The generated page name exluding [_refer] + '/'. By default, this is the same value as [_name]. If one of the following conditions hold, the [[tracker>./#rf5296e2]] plugin creates the page name by adding serial numbers to [_real].~
+(1) the form does not contain a [_name] field~
+(2) [_name] is empty, or it contains an invalid character for a page name~
+(2) the page named [_refer] / [_name] already exists~
+--The keywords that can be used in lists
+---[_update] : last update date of the page
+---[_past] : time since the last update date
+
+**tracker_list [#t78d6d0a]
+:Plugin type|
+~(Command type)
+~Block type
+:Importance|
+~****
+:Synopsis|
+''#tracker_list(''
+[&color(blue){'''TemplateName'''};]
+[,[&color(blue){'''BasePageName'''};]
+[,[[&color(blue){'''sort_item'''};]
+:[&color(blue){'''sort_order'''};]]
+[,&color(blue){'''max_pages'''};]
+]]]
+'')''
+:Description|
+~Display the list of pages created by the [[tracker>./#rf5296e2]] plugin
+:Parameters|
+~'''TemplateName''' - the template name used in the [[tracker>./#rf5296e2]] plugin. The default is :config/plugin/tracker/default.
+~'''BasePageName''' - the base page name used in the [[tracker>./#rf5296e2]] plugin. If the base page name was not specified by the [[tracker>./#rf5296e2]] plugin, this should be the page in which the [[tracker>./#rf5296e2]] plugin is placed. The default is the current page.
+~The third parameter specifies the key item for sorting and the sort order. '''sort_item''' should be selected from the fields defined in :config/plugin/tracker/TemplateName. The default is PageName. '''sort_order''' is either ASC((ascending order)), DESC((descending order)), SORT_ASC((ascending order, changable by viewers)), or SORT_DESC((descending order, changable by viewers)), and it should be written after the colon (:). Use semicolons (;) to specify multiple sort keys (and orders). For example, #tracker_list(,,state:SORT_ASC;priority:SORT_ASC;_real:SORT_DESC) display the items sorted by (1) [state] in the ascending order, (2) [priority] in the ascending order, and (3) [_real] in the descending order with the priority of this order.
+~'''max_pages''' - maximum number of pages displayed on the list. The default is to display all pages.
+
+------------------------------
+* U [#q0183edd]
+
+**unfreeze [#v039be15]
+:Plugin type|
+~Command type
+:Importance|
+~***
+:Synopsis|
+''?plugin=unfreeze''
+&color(blue){&page='''PageName'''};
+:Description|
+~Unfreeze the page
+:Parameters|
+~'''PageName''' - the page name to be unfrozen. It must be URL-encoded.
+:Constants|~
+--PLUGIN_UNFREEZE_EDIT - whether to show the edit page when the page unfrozen.
+
+**update_entities [#r62603ec]
+:Plugin type|
+~Command type
+:Importance|
+~*
+:Synopsis|
+''?plugin=update_entities''
+:Description|
+~Create the CACHE_DIR/entities.dat file.
+~Thie file stores the table which determines the HTML entities. Users and administrators usually don't have to see it.
+:Constants|~
+--W3C_XHTML_DTD_LOCATION - the location of the DTD
+:Note|
+~This plugin is usually unnecessary, as the PukiWiki releases are distributed with entities.dat.
+
+#navi(../)

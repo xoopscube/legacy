@@ -1,0 +1,31 @@
+<div class="d3pipes_admin_joint" id="<{$mydirname}>_admin_joint">
+
+	<h2><{$mod_name}> - <{$smarty.const._MD_A_D3PIPES_H2_JOINTADMIN}></h2>
+
+	<form action="<{$mod_url}>/admin/index.php?page=joint" method="post">
+
+		<table class="outer">
+			<tr>
+				<th><{$smarty.const._MD_A_D3PIPES_TH_JOINT}></th>
+				<th><{$smarty.const._MD_A_D3PIPES_TH_JOINTCLASS}></th>
+			</tr>
+		<{foreach from=$joints item="joint" key="type"}>
+			<tr class="<{cycle values="odd,even"}>">
+				<td><{$joint.name}></td>
+				<td>
+					<select name="jointclass[<{$joint.type}>]">
+						<{html_options options=$joint.classes selected=$joint.selected_class}>
+					</select>
+				</td>
+			</tr>
+		<{/foreach}>
+		</table>
+
+		<div style="margin: 12px;">
+			<input type="submit" name="do_update" value="<{$smarty.const._MD_A_D3PIPES_BTN_UPDATE}>" />
+			<input type="reset" value="<{$smarty.const._MD_A_D3PIPES_BTN_RESET}>" />
+		</div>
+
+	</form>
+
+</div>

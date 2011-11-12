@@ -1,0 +1,190 @@
+#lightbox {
+	position: absolute;
+	top: 40px;
+	left: 0;
+	width: 100%;
+	z-index: 1000;
+	text-align: center;
+	line-height: 0;
+}
+
+#lightbox a img {
+	border: none;
+}
+
+#outerImageContainer {
+	position: relative;
+	background-color: #fff;
+	width: 250px;
+	height: 250px;
+	margin: 0 auto;
+}
+
+#imageContainer {
+	padding: 10px;
+}
+
+#loading {
+	position: absolute;
+	top: 40%;
+	left: 0%;
+	height: 25%;
+	width: 100%;
+	text-align: center;
+	line-height: 0;
+}
+
+#hoverNav {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 10;
+}
+
+#imageContainer>#hoverNav {
+	left: 0;
+}
+
+#hoverNav a {
+	outline: none;
+}
+
+#prevLink,
+#nextLink {
+	width: 49%;
+	height: 100%;
+	background: transparent url(./loader.php?src=blank.gif) no-repeat; /* Trick IE into showing hover */
+	display: block;
+}
+
+#prevLink {
+	left: 0; float: left;
+}
+
+#nextLink {
+	right: 0; float: right;
+}
+
+#prevLink:hover,
+#prevLink:visited:hover {
+	background: url(./loader.php?src=prevlabel.gif) left 15% no-repeat;
+}
+
+#nextLink:hover,
+#nextLink:visited:hover {
+	background: url(./loader.php?src=nextlabel.gif) right 15% no-repeat;
+}
+
+#imageDataContainer {
+	font: 90% Verdana, Helvetica, sans-serif;
+	background-color: #fff;
+	margin: 0 auto;
+	font-family : "Arial",sans-serif;
+}
+
+#imageData {
+	padding:0 10px;
+}
+#imageData #imageDetails {
+	float: left;
+	text-align: left;
+}
+
+#imageData #caption {
+	font-weight: bold;
+	word-break: break-all;
+	white-space: -moz-pre-wrap; /* Mozilla */
+	white-space: -pre-wrap;     /* Opera 4-6 */
+	white-space: -o-pre-wrap;   /* Opera 7 */
+	white-space: pre-wrap;      /* CSS3 */
+	word-wrap: break-word;      /* IE 5.5+ */
+}
+
+#imageData #numberDisplay {
+	display: block;
+	clear: left;
+	padding-bottom: 1.0em;
+}
+
+#imageData #bottomNavClose,
+#imageData #originalLink,
+#imageData #originalLinkNew {
+	background-image: url(./loader.php?src=buttons.png);
+	background-repeat: no-repeat;
+	display: block;
+	height: 36px;
+	float: right;
+	text-indent: -1000em;
+	text-decoration: none;
+	margin-bottom: 8px;
+	outline: none;
+	position: relative;
+}
+
+
+#imageData #bottomNavClose {
+	width: 79px;
+	background-position: 0px 0px;
+	margin-left: 6px;
+	z-index: 4;
+}
+
+#imageData #bottomNavClose:hover {
+	background-position: 0px -36px;
+}
+
+#imageData #originalLink {
+	width: 112px;
+	background-position: -79px 0px;
+	z-index: 2;
+}
+
+#imageData #originalLink:hover {
+	background-position: -79px -36px;
+}
+
+#imageData #originalLinkNew {
+	width: 36px;
+	background-position: -191px 0px;
+	margin-left: -36px;
+	z-index: 3;
+}
+
+#imageData #originalLinkNew:hover {
+	background-position: -191px -36px;
+}
+
+#overlay{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 990;
+	width: 100%;
+	height: 500px;
+	background-color: #000;
+	filter:alpha(opacity=20);
+	-moz-opacity: 0.2;
+	opacity: 0.2;
+}
+
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+* html>body .clearfix {
+	display: inline-block;
+	width: 100%;
+}
+
+* html .clearfix {
+	/* Hides from IE-mac \*/
+	height: 1%;
+	/* End hide from IE-mac */
+}

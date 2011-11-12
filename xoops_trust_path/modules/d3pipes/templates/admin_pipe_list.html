@@ -1,0 +1,61 @@
+<div class="d3pipes_admin_pipe_list" id="<{$mydirname}>_admin_pipe_list">
+
+	<h2><{$mod_name}> - <{$smarty.const._MD_A_D3PIPES_H2_PIPEADMINLIST}></h2>
+
+	<p>
+		<a href="<{$mod_url}>/admin/index.php?page=wizard_fetch"><{$smarty.const._MD_A_D3PIPES_LINK_WIZARDFETCH}></a>
+		|
+		<a href="<{$mod_url}>/admin/index.php?page=wizard_inner"><{$smarty.const._MD_A_D3PIPES_LINK_WIZARDINNER}></a>
+		|
+		<a href="<{$mod_url}>/admin/index.php?page=pipe&amp;pipe_id=-1"><{$smarty.const._MD_A_D3PIPES_LINK_MAKENEWPIPE}></a>
+	</p>
+	
+	<form action="<{$mod_url}>/admin/index.php?page=pipe" method="post">
+
+		<table class="outer">
+			<tr>
+				<th><{$smarty.const._MD_A_D3PIPES_TH_PIPEID}></th>
+				<th><{$smarty.const._MD_A_D3PIPES_TH_PIPETYPE}></th>
+				<th><{$smarty.const._MD_A_D3PIPES_TH_PIPENAME}></th>
+				<th><{$smarty.const._MD_A_D3PIPES_TH_PIPEWEIGHT}></th>
+				<th><{$smarty.const._MD_A_D3PIPES_TH_MAINDISP}></th>
+				<th><{$smarty.const._MD_A_D3PIPES_TH_MAINLIST}></th>
+				<th><{$smarty.const._MD_A_D3PIPES_TH_MAINAGGR}></th>
+				<th><{$smarty.const._MD_A_D3PIPES_TH_MAINRSS}></th>
+				<th><{$smarty.const._MD_A_D3PIPES_TH_BLOCKDISP}></th>
+				<th><{$smarty.const._MD_A_D3PIPES_TH_INSUBMENU}></th>
+				<th><{$smarty.const._MD_A_D3PIPES_TH_MODIFIED}></th>
+				<th><{$smarty.const._MD_A_D3PIPES_TH_LASTFETCH}></th>
+				<th><{$smarty.const._MD_A_D3PIPES_TH_ACTIONS}></th>
+			</tr>
+		<{foreach from=$pipes item="pipe"}>
+			<tr class="<{cycle values="odd,even"}>">
+				<td><{$pipe.id}></td>
+				<td><{$pipe.type}></td>
+				<td><input type="text" name="name[<{$pipe.id}>]" value="<{$pipe.name4xml}>" size="16" /></td>
+				<td><input type="text" name="weight[<{$pipe.id}>]" value="<{$pipe.weight}>" size="2" style="text-align:right;" /></td>
+				<td><input type="checkbox" name="main_disp[<{$pipe.id}>]" value="1" <{if $pipe.main_disp}>checked="checked"<{/if}> title="<{$smarty.const._MD_A_D3PIPES_TITLE_MAINDISP}>" /></td>
+				<td><input type="checkbox" name="main_list[<{$pipe.id}>]" value="1" <{if $pipe.main_list}>checked="checked"<{/if}> title="<{$smarty.const._MD_A_D3PIPES_TITLE_MAINLIST}>" /></td>
+				<td><input type="checkbox" name="main_aggr[<{$pipe.id}>]" value="1" <{if $pipe.main_aggr}>checked="checked"<{/if}> title="<{$smarty.const._MD_A_D3PIPES_TITLE_MAINAGGR}>" /></td>
+				<td><input type="checkbox" name="main_rss[<{$pipe.id}>]" value="1" <{if $pipe.main_rss}>checked="checked"<{/if}> title="<{$smarty.const._MD_A_D3PIPES_TITLE_MAINRSS}>" /></td>
+				<td><input type="checkbox" name="block_disp[<{$pipe.id}>]" value="1" <{if $pipe.block_disp}>checked="checked"<{/if}> title="<{$smarty.const._MD_A_D3PIPES_TITLE_BLOCKDISP}>" /></td>
+				<td><input type="checkbox" name="in_submenu[<{$pipe.id}>]" value="1" <{if $pipe.in_submenu}>checked="checked"<{/if}> title="<{$smarty.const._MD_A_D3PIPES_TITLE_INSUBMENU}>" /></td>
+				<td><{$pipe.modified_time_formatted}></td>
+				<td><{$pipe.lastfetch_time_formatted}></td>
+				<td style="white-space: nowrap;">
+					<div style="float:left;padding:2px;"><a href="<{$mod_url}>/admin/index.php?page=pipe&amp;pipe_id=<{$pipe.id}>"><{$smarty.const._EDIT}></a></div>
+					<div style="float:left;padding:2px;"><a href="<{$mod_url}>/index.php?page=eachpipe&amp;pipe_id=<{$pipe.id}>"><{$smarty.const._MD_A_D3PIPES_TH_MAINDISP}></a></div>
+				</td>
+			</tr>
+		<{/foreach}>
+		</table>
+
+		<div align="center" style="margin: 12px;">
+			<input type="submit" name="do_batchupdate" value="<{$smarty.const._MD_A_D3PIPES_BTN_UPDATE}>" />
+			<input type="reset" value="<{$smarty.const._MD_A_D3PIPES_BTN_RESET}>" />
+			<{$gticket_hidden}>
+		</div>
+
+	</form>
+
+</div>

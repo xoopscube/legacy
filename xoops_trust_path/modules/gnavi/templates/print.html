@@ -1,0 +1,102 @@
+<html>
+	<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=<{$charset}>" />
+    <title><{$photo.title}></title>
+
+    <style><!--
+		#ptbl td{
+			border-bottom:dotted 1px #ccc;
+		}
+		#ptblm{
+			border:solid 1px #ccc;
+		}
+		.pcaption{
+			font-size:70%;
+			font-weight:bold;
+		}
+		#wrap{
+			width:640px;border:solid 1px #6699ff;padding:10px;text-align:left;
+		}
+    --></style>
+
+	<{$xoops_module_header}>
+
+  </head>
+
+<body>
+<center>
+<{* TITLE *}>
+<div id="wrap">
+
+<{include file="db:`$mydirname`_header.html"}>
+<h1 align="center"><{$photo.title}></h1>
+
+<{* INFO date,owner,hits *}>
+<div style="text-align:right;margin:10px;">
+	<{$photo.datetime}>&nbsp;<{$lang_submitter}>:&nbsp;
+	<{$photo.submitter_name}>
+</div>
+
+<{* DESCRIPTION *}>
+<div>
+	<{$photo.description}>
+</div>
+
+<{* CATEGORY LIST *}>
+<div class="gn_rsmall">
+	(<{$photo.mycat}>)
+</div>
+
+
+<{* FILE1 *}>
+<table align="center"><tr valign="top">
+<{if $photo.ext}><td>
+	<{if $photo.img==1}><img src="<{$photo.imgsrc_photo}>" alt="<{$photo.caption}>" <{$photo.width_height}> />
+	<{elseif $photo.img==2}><img src="<{$photo.imgsrc_photo}>" alt="<{$photo.caption}>" <{$photo.width_height}> />
+	<{else}><img src="<{$photo.imgsrc_photo}>" alt="<{$photo.caption}>" /></a><{/if}>
+	<{if $photo.caption}><div class="pcaption" <{$photo.captionstyle}>><{$photo.caption}></div><{/if}>
+</td><{/if}>
+
+<{* FILE2 *}>
+<{if $photo.ext1}><td>
+	<{if $photo.img1==1}><img src="<{$photo.imgsrc_photo1}>" alt="<{$photo.caption1}>" <{$photo.width_height1}> />
+	<{elseif $photo.img1==2}><img src="<{$photo.imgsrc_photo1}>" alt="<{$photo.caption1}>" <{$photo.width_height1}> />
+	<{else}><img src="<{$photo.imgsrc_photo1}>" alt="<{$photo.caption1}>" /></a><{/if}>
+	<{if $photo.caption1}><div class="pcaption" <{$photo.captionstyle1}>><{$photo.caption1}></div><{/if}>
+</td><{/if}>
+
+<{* FILE3 *}>
+<{if $photo.ext2}><td>
+	<{if $photo.img2==1}><img src="<{$photo.imgsrc_photo2}>" alt="<{$photo.caption2}>" <{$photo.width_height2}> />
+	<{elseif $photo.img2==2}><img src="<{$photo.imgsrc_photo2}>" alt="<{$photo.caption2}>" <{$photo.width_height2}> />
+	<{else}><img src="<{$photo.imgsrc_photo2}>" alt="<{$photo.caption2}>" /><{/if}>
+	<{if $photo.caption2}><div class="pcaption" <{$photo.captionstyle2}>><{$photo.caption2}></div><{/if}>
+</td><{/if}>
+
+<tr></table>
+
+<{* ITEM INFORMATIONS *}>
+<table id="ptblm" style="width:600px;" cellspacing="2" align="center">
+	<{if $map}>
+		<tr><td style="text-align:left;padding-left:10px;"><strong><{$lang_map}></strong></td></tr>
+		<tr><td><div id="map" style="height:320px;"></div></td></tr>
+	<{/if}>
+</table>
+
+<br />
+
+<table id="ptbl" style="width:600px;" align="center">
+	<{if $photo.url}><tr><td><{$lang_url}></td><td><a href='<{$photo.url}>' target="_blank" ><{$photo.url}></a></td></tr><{/if}>
+	<{if $photo.tel}><tr><td><{$lang_tel}></td><td><{$photo.tel}></td></tr><{/if}>
+	<{if $photo.fax}><tr><td><{$lang_fax}></td><td><{$photo.fax}></td></tr><{/if}>
+	<{if $photo.zip}><tr><td><{$lang_zip}></td><td><{$photo.zip}></td></tr><{/if}>
+	<{if $photo.address}><tr><td><{$lang_address}></td><td><{$photo.address}></td></tr><{/if}>
+	<{foreach from=$photo.addinfo item=addinfo}>
+	            <tr><td><{$addinfo.title}></td><td><{$addinfo.desc}></td></tr>
+	<{/foreach}>
+</table>
+
+</div>
+</center>
+</body>
+</html>

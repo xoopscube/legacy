@@ -1,0 +1,99 @@
+<h1>cubeUtils モジュール </h1>
+<p class="empty">
+</p>
+<h3><a name="ct26_1_1"></a>1.これは何? </h3>
+<p>
+CubeUtilsモジュールは、XOOPS Cube2.1に対する、ある程度実用的なユーティリティー群です。<br>
+</p>
+
+<p>
+XOOPS 2.0.x JP用のSysUtilモジュールにて用意していたGIJOE氏開発の以下のHACKと同等機能を、<br>
+XOOPS Cube2.1のPreload機能及びDelegate機構を使用して実装したモジュールです。
+</p>
+<ul class="list1" style="padding-left: 18px; margin-left: 18px;"><li>AutoLogin
+</li><li>EMLH(Easiest Multi Language Hack)
+</li><li>iGoogle Gadget Block (試験実装)<br></li></ul>
+<p class="empty">
+</p>
+<p>
+
+</p>
+
+<h3><a name="ct26_1_2"></a>2.どうやって使うの? </h3>
+<p>
+このモジュールが動く環境は、XOOPS Cube2.1以降が前提となります。
+</p>
+<p class="empty">
+</p>
+<ul class="list1" style="padding-left: 18px; margin-left: 18px;"><li style="list-style-position: outside;">
+    <b>AutoLoginを有効にする場合</b><br>
+    管理画面でcubeUtilsモジュールの一般設定にて、
+<ul class="list2" style="padding-left: 8px; margin-left: 8px;"><li>「Auto Login 機能を使用する」を「はい」に設定
+</li><li>「Auto Login の持続時間」にて、どの程度の期間AutoLogin状態を保持するかを設定して下さい。
+</li></ul><br>
+</li><li style="list-style-position: outside;">
+    <b>Multi Languageを使用される場合</b><br>
+    標準では、日本語と英語の切替ができるような設定になっていますが、
+    これ以外の言語切替を行いたい場合には、/modules/cubeUtils/include/conf_ml.dist.php を
+    conf_ml.phpにコピーを行って、カストマイズを行って下さい。<br><br>
+    但し、Hodajuku Distribution同梱のものでは、preloadが無効になっています。必要な場合には、<br>
+    /preload/disabled ディレクトリー内のMultiLanguagePreLoad.class.phpを/preloadに移動して下さい。
+
+</li></ul>
+<p class="empty">
+</p>
+<blockquote style="margin-left:40px;border: 1px solid rgb(128, 128, 128); padding: 4px; margin-left: 15px;">
+<p class="quotation" >
+&#91;ja]日本語&#91;/ja]&#91;en]English&#91;/en]
+</p>
+</blockquote>
+<p class="empty">
+</p>
+<p style="margin-left: 40px;">
+
+の様に記述することによって、日英両対応のコンテンツが作成出来ます。
+</p>
+<blockquote style="margin-left:40px;border: 1px solid rgb(128, 128, 128); padding: 4px; margin-left: 15px;">
+<p class="quotation" >
+&#91;ja]mlimg&#91;/ja]
+</p>
+</blockquote>
+<p class="empty">
+</p>
+<p style="margin-left: 40px;">
+を文書に挿入すると、言語切り替え用国旗イメージを表示する事ができます。
+</p><ul><li><b>iGoogleを使用される場合(試験実装)</b><br>この機能は、Xoops Cube Legacyのブロックを、iGoogleのガジェットとして公開可能にする機能です。対象となるブロックは、ゲストユーザが参照可能なブロックに限定しています。<br>公開の手順としては、<br><ol><li>互換モジュールの「ブロックのインストール」にて「iGoogle Gadgetブロック」を追加し、このオプションで、実際にGadgetとして公開したいブロックを指定します。</li><li>この設定を行うと、もとのブロックを参照した新ブロックが作成され、ブロックが２重に表示されますので、元のブロックのほうを削除します。(ALTSYSのブロック管理で非表示に設定するほうが簡単です）<br></li><li>新しいブロックには左下に「+Google」アイコンが表示されますので、これをクリックすることによってこのブロックをiGoogle上に表示することが可能となります。<br></li></ol></li></ul><p><br></p>
+
+<h3><a name="ct26_1_3"></a>3.どのように作られているの  </h3>
+<h4><a name="ct26_1_4"></a>1) AutoLogin </h4>
+<p>
+AutoLogin機能は、基本的には、<b>Legacy_Controller.SetupUser</b>のDelegate関数を実装する事によって実現されています。<br>
+実際には、ログインブロックでの入力内容をクッキーに記憶したり、破棄したりするためにそのほかにも幾つかのDelegate関数が実装されています。
+</p>
+<dl><dt><b>Legacy_Controller.SetupUser</b></dt><dd>セッションが継続していなくても、クッキーにログイン情報が格納してれば、自動ログインを試みる</dd><dt><b>Site.CheckLogin.Success</b></dt><dd>ログイン画面にてログインが成功したときにログイン情報をもとにしてクッキーを生成する</dd><dt><b>Site.Logout</b></dt><dd>ログアウト時に、保存したクッキーを破棄する</dd><dt><b>Legacypage.User.Access</b></dt><dd>RemenberMe付きのログイン画面を表示させる</dd></dl>
+<p class="empty">
+</p>
+<p>
+これらのDelegate関数の定義と実装については、モジュールPreload機能によって自動的に読み込まれるようになっています。<br>
+(/modules/cubeUtils/preload/AutoLoginHack.class.php)
+
+</p>
+<h4><a name="ct26_1_5"></a>2)EMLH(Easiest Multi Language Hack) </h4>
+<p>
+Legacy_Controller.GetLanguageName Delegate関数の実装を行い、この関数内でGETパラメータ、クッキー、ブラウザの<br>
+プリファレンスを元にして、表示言語を決定します。<br>
+このDelegate関数の定義については、preFilter()の段階で行う必要があるため、モジュール内Preloadでは無く、<br>
+/preloadにMultiLanguagePreLoad.class.php を配置しています。<br>
+言語タグの扱いについては、EMLHと同様 ob_filteringにて実現しています。<br>
+別途CacheSystemでのID生成にもフックを加えて、言語毎のCacheを保存する事を可能にしています。
+</p>
+<h3><a name="ct26_1_6"></a>4.変更履歴 </h3>
+
+<p>
+
+</p>
+<ul class="list1" style="padding-left: 18px; margin-left: 18px;"><li>2006-08-21 : Version 0.1リリース
+</li><li>2006-09-02 : GIJOE氏からの不具合報告に対応した Version 0.2リリース
+</li><li>2006-09-04 : plusangel氏からの不具合報告に対応した Version 0.3リリース
+</li><li>2006-09-25 : XOOPS Cube 2.1 Alpha5以降で変更になったCacheシステムに対応したVersion 0.4リリース
+</li><li>2006-10-22 : XOOPS Cube 2.1 Beta1に対応したVersion 0.5リリース</li><li>2008-02-27 : Hodajuku Distribution同梱に対応して、XOOPS Cube 2.1 Beta時代の古いロジックを削除して、Version 0.6リリース</li><li>2008-03-16 : iGoogle Gadgetブロック機能を追加、ログオン画面の表示方法を変更し、Version 0.7リリース<br></li></ul>

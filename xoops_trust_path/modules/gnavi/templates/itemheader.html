@@ -1,0 +1,86 @@
+<script type="text/javascript" src="js/prototype.js"></script>
+<script type="text/javascript" src="js/scriptaculous.js?load=effects"></script>
+<script type="text/javascript" src="js/lightbox.js"></script>
+<link rel="stylesheet" href="css/lightbox.css" type="text/css" media="screen" />
+
+<{strip}>
+<{* TITLE *}>
+<div id="gnn_title">
+	<{$photo.title}>
+	<{if $photo.is_newphoto}>&nbsp;<img src='<{$mod_url}>/images/new.gif' border='0' alt='<{$lang_new}>' title='<{$lang_new}>' /><{/if}>
+	<{if $photo.is_updatedphoto}>&nbsp;<img src='<{$mod_url}>/images/update.gif' border='0' alt='<{$lang_updated}>' title='<{$lang_updated}>' /><{/if}>
+	<{if $photo.is_popularphoto}>&nbsp;<img src='<{$mod_url}>/images/pop.gif' border='0' alt='<{$lang_popular}>' title='<{$lang_popular}>' /><{/if}>
+	<{if $map}><span>&nbsp;[<a href="index.php<{$maplink_option}>"><{$map}></a>]</span><{/if}>
+	<{if $photo.can_edit}><span>[<a href="index.php?page=submit&lid=<{$photo.lid}>"><{$lang_editthisphoto}></a>]</span><{/if}>
+</div>
+
+<{* INFO date,owner,hits *}>
+<div class="gn_rsmall">
+	<{$photo.datetime}>&nbsp;<{$lang_submitter}>:&nbsp;
+	<{if $photo.submitter > 0}>
+		<a href='<{$xoops_url}>/userinfo.php?uid=<{$photo.submitter}>'><{$photo.submitter_name}></a>&nbsp;
+		(<a href='<{$mod_url}>/index.php?uid=<{$photo.submitter}>'><{$lang_itemlist}></a>)
+	<{else}>
+		<{$photo.submitter_name}>
+	<{/if}>
+	&nbsp;[&nbsp;<{$photo.hits}>hit&nbsp;]
+</div>
+
+<{* DESCRIPTION *}>
+<div id="gn_desc">
+	<{$photo.description}>
+</div>
+
+<{* CATEGORY LIST *}>
+<div class="gn_rsmall">
+	(<{$photo.mycat}>)
+</div>
+
+
+<{* FILE1 *}>
+<{if $photo.ext}><div class="gn_file">
+	<{if $photo.img==1}><a href="<{$photo.ahref_photo}>" title="<{$photo.caption}>" rel="lightbox[]"><img src="<{$photo.imgsrc_photo}>" alt="<{$photo.caption}>" <{$photo.width_height}> /></a>
+	<{elseif $photo.img==2}><img src="<{$photo.imgsrc_photo}>" alt="<{$photo.caption}>" <{$photo.width_height}> />
+	<{else}><a href="<{$photo.ahref_photo}>" target="_blank"><img src="<{$photo.imgsrc_photo}>" alt="<{$photo.caption}>" /></a><{/if}>
+	<{if $photo.caption}><div class="gn_caption" <{$photo.captionstyle}>><{$photo.caption}></div><{/if}>
+</div><{/if}>
+
+<{* FILE2 *}>
+<{if $photo.ext1}><div class="gn_file">
+	<{if $photo.img1==1}><a href="<{$photo.ahref_photo1}>" title="<{$photo.caption1}>" rel="lightbox[]"><img src="<{$photo.imgsrc_photo1}>" alt="<{$photo.caption1}>" <{$photo.width_height1}> /></a>
+	<{elseif $photo.img1==2}><img src="<{$photo.imgsrc_photo1}>" alt="<{$photo.caption1}>" <{$photo.width_height1}> />
+	<{else}><a href="<{$photo.ahref_photo1}>" target="_blank"><img src="<{$photo.imgsrc_photo1}>" alt="<{$photo.caption1}>" /></a><{/if}>
+	<{if $photo.caption1}><div class="gn_caption" <{$photo.captionstyle1}>><{$photo.caption1}></div><{/if}>
+</div><{/if}>
+
+<{* FILE3 *}>
+<{if $photo.ext2}><div class="gn_file">
+	<{if $photo.img2==1}><a href="<{$photo.ahref_photo2}>" title="<{$photo.caption2}>" rel="lightbox[]"><img src="<{$photo.imgsrc_photo2}>" alt="<{$photo.caption2}>" <{$photo.width_height2}> /></a>
+	<{elseif $photo.img2==2}><img src="<{$photo.imgsrc_photo2}>" alt="<{$photo.caption2}>" <{$photo.width_height2}> />
+	<{else}><a href="<{$photo.ahref_photo2}>" target="_blank"><img src="<{$photo.imgsrc_photo2}>" alt="<{$photo.caption2}>" /></a><{/if}>
+	<{if $photo.caption2}><div class="gn_caption" <{$photo.captionstyle2}>><{$photo.caption2}></div><{/if}>
+</div><{/if}>
+
+<div style="clear:both;"></div>
+
+<{* ITEM INFORMATIONS *}>
+<table class="gn_outer">
+	<{if $map}>
+		<tr><td colspan="2" class="gn_head" style="text-align:left;padding-left:10px;"><{$lang_map}>&nbsp;&nbsp;[<a href="kml.php?lid=<{$photo.lid}>">KML</a>]&nbsp;[<a href="index.php<{$maplink_option}>"><{$map}></a>]</td></tr>
+		<tr><td colspan="2" ><div id="map" style="height:320px;"></div></td></tr>
+	<{/if}>
+	<{if $photo.url}><tr><td class="gn_head"><{$lang_url}></td><td class="gn_odd"><a href='<{$photo.url}>' target="_blank" ><{$photo.url}></a></td></tr><{/if}>
+	<{if $photo.tel}><tr><td class="gn_head"><{$lang_tel}></td><td class="gn_odd"><{$photo.tel}></td></tr><{/if}>
+	<{if $photo.fax}><tr><td class="gn_head"><{$lang_fax}></td><td class="gn_odd"><{$photo.fax}></td></tr><{/if}>
+	<{if $photo.zip}><tr><td class="gn_head"><{$lang_zip}></td><td class="gn_odd"><{$photo.zip}></td></tr><{/if}>
+	<{if $photo.address}><tr><td class="gn_head"><{$lang_address}></td><td class="gn_odd"><{$photo.address}></td></tr><{/if}>
+	<{foreach from=$photo.addinfo item=addinfo}>
+	            <tr><td class="gn_head"><{$addinfo.title}></td><td class="gn_odd"><{$addinfo.desc}></td></tr>
+	<{/foreach}>
+	<{if $qrimg}>
+		<tr><td class="gn_head"><{$lng_show_mobile}></td><td class="gn_odd" style="vertical-align:middle;"><img src="<{$qrimg}>"  align="absmiddle"/> 
+		&nbsp;&nbsp;<a href="mailto:?body=<{$mod_url}>/?lid=<{$photo.lid}>"><{$lng_send_mobile}></a></td></tr>
+	<{/if}>
+</table>
+
+<{/strip}>

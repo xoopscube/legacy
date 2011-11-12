@@ -1,0 +1,103 @@
+<HTML>
+<HEAD>
+	<meta http-equiv="content-type" content="text/HTML; charset=<{$charset}>" />
+	<TITLE><{$xoops_sitename}> - <{$xoops_pagetitle}></TITLE>
+</HEAD>
+<BODY>
+	<A HREF=<{$cat_link}>cid=<{$cat.cid}>&zoom=<{$mapkeys.zoom}>&lng=<{$mapkeys.lngdown}>&lat=<{$mapkeys.latup}><{$agent}> accesskey=1 ></A>
+	<A HREF=<{$cat_link}>cid=<{$cat.cid}>&zoom=<{$mapkeys.zoom}>&lng=<{$mapkeys.lng}>&lat=<{$mapkeys.latup}><{$agent}> accesskey=2 ></A>
+	<A HREF=<{$cat_link}>cid=<{$cat.cid}>&zoom=<{$mapkeys.zoom}>&lng=<{$mapkeys.lngup}>&lat=<{$mapkeys.latup}><{$agent}> accesskey=3 ></A>
+	<A HREF=<{$cat_link}>cid=<{$cat.cid}>&zoom=<{$mapkeys.zoom}>&lng=<{$mapkeys.lngdown}>&lat=<{$mapkeys.lat}><{$agent}> accesskey=4 ></A>
+	<A HREF=<{$cat_link}>cid=<{$cat.cid}>&zoom=<{$mapkeys.zoomup}>&lng=<{$mapkeys.lng}>&lat=<{$mapkeys.lat}><{$agent}> accesskey=5 ></A>
+	<A HREF=<{$cat_link}>cid=<{$cat.cid}>&zoom=<{$mapkeys.zoom}>&lng=<{$mapkeys.lngup}>&lat=<{$mapkeys.lat}><{$agent}> accesskey=6 ></A>
+	<A HREF=<{$cat_link}>cid=<{$cat.cid}>&zoom=<{$mapkeys.zoom}>&lng=<{$mapkeys.lngdown}>&lat=<{$mapkeys.latdown}><{$agent}> accesskey=7 ></A>
+	<A HREF=<{$cat_link}>cid=<{$cat.cid}>&zoom=<{$mapkeys.zoom}>&lng=<{$mapkeys.lng}>&lat=<{$mapkeys.latdown}><{$agent}> accesskey=8 ></A>
+	<A HREF=<{$cat_link}>cid=<{$cat.cid}>&zoom=<{$mapkeys.zoom}>&lng=<{$mapkeys.lngup}>&lat=<{$mapkeys.latdown}><{$agent}> accesskey=9 ></A>
+	<A HREF=<{$cat_link}>cid=<{$cat.cid}>&zoom=<{$mapkeys.doublezoomup}>&lng=<{$mapkeys.lng}>&lat=<{$mapkeys.lat}><{$agent}> accesskey=* ></A>
+	<A HREF=<{$cat_link}>cid=<{$cat.cid}>&zoom=<{$mapkeys.zoomdown}>&lng=<{$mapkeys.lng}>&lat=<{$mapkeys.lat}><{$agent}> accesskey=0 ></A>
+	<A HREF=<{$cat_link}>cid=<{$cat.cid}>&zoom=<{$mapkeys.doublezoomdown}>&lng=<{$mapkeys.lng}>&lat=<{$mapkeys.lat}><{$agent}> accesskey=# ></A>
+
+	<TABLE WIDTH=100% BGCOLOR="#FFE566"><TR><TD><{$album_sub_title}></TD></TR></TABLE>
+
+	<CENTER>
+		<{if $result}>
+			<FONT COLOR=RED><{$result}></FONT><BR>
+		<{/if}>
+		<IMG SRC=<{$mymap}>><BR>
+		<IMG SRC=images/mnavi.gif>
+	</CENTER>
+
+	<HR COLOR="#99ccff">
+
+	<TABLE WIDTH=100% BGCOLOR="#99ccff"><TR><TD><{$lng_mobile_mklist}></TD></TR></TABLE>
+
+	<HR COLOR="#99ccff">
+
+	<FONT COLOR=#6699ff>
+
+		<{if $markerlist}>
+			<{foreach from=$markerlist item=marker key=count}>
+				&nbsp;<{$marker.abc}>:<A HREF=?cid=<{$cat.cid}>&lid=<{$marker.lid}><{$agent}>><{$marker.title}></A><BR>
+			<{/foreach}>
+		<{else}>
+			<{$lng_mobile_nomark}>
+		<{/if}>
+
+	</FONT>
+
+	<HR COLOR="#ff9999">
+	<TABLE WIDTH=100% BGCOLOR="#ff9999"><TR><TD><{$lng_mobile_search_desc}></TD></TR></TABLE>
+	<HR COLOR="#ff9999">
+
+	<form action="?" method="get">
+		<INPUT TYPE="text" name="q" value="<{$query}>" SIZE="15" MAXLENGTH="25" />
+		<INPUT TYPE="hidden" name="page" value="map" />
+		<INPUT TYPE="hidden" name="zoom" value="<{$mapkeys.zoom}>" />
+		<INPUT TYPE="hidden" name="lat" value="<{$mapkeys.lat}>" />
+		<INPUT TYPE="hidden" name="lng" value="<{$mapkeys.lng}>" />
+		<INPUT TYPE="hidden" name="agent" value="<{$_agent}>" />
+		<INPUT TYPE="submit" value="<{$lng_mobile_search}>" />
+	</form>
+
+
+	<HR COLOR="#99ccff">
+
+	<TABLE WIDTH=100% BGCOLOR="#99ccff"><TR>
+		<TD><{$album_sub_title}><{if !$indexpage}>(<{$photo_num_total}>)<{/if}></TD>
+	</TR></TABLE>
+
+	<HR COLOR="#99ccff">
+
+	<{if $indexpage}>
+		<TABLE WIDTH=100% BGCOLOR="#EFEFEF"><TR>
+			<TD><FONT SIZE=1><{$photo_num_total}></FONT></TD>
+		</TR></TABLE>
+	<{/if}>
+
+	<{if $subcategories}>
+		<FONT COLOR=#009900>
+			<UL>
+				<{foreach from=$subcategories item=cat key=count}>
+					<LI><A HREF=<{$cat_link}>cid=<{$cat.cid}><{$agent}>><{$cat.title}></A>&nbsp;(<{$cat.photo_total_sum}>)
+				<{/foreach}>
+			</UL>
+		</FONT>
+
+		<HR COLOR="#EFEFEF">
+	<{/if}>
+
+	<TABLE WIDTH=100% BGCOLOR="#EFEFEF"><TR>
+		<TD><FONT SIZE=1>&nbsp;<A HREF="index.php<{$link_option}><{$agent}>"><{$lang_itemlist}></A></FONT></TD>
+		<{if !$indexpage}><TD align=right><FONT SIZE=1><A HREF="<{$mod_url}>/index.php?page=map<{if $parent_id}>&cid=<{$parent_id}><{/if}><{$agent}>"><{$lng_mobile_updir}></A>&nbsp;</FONT></TD><{/if}>
+	</TR></TABLE>
+
+	<HR COLOR="#FFE566">
+
+	<TABLE WIDTH=100% BGCOLOR="#EFEFEF">
+		<TR>
+			<TD ALIGN=CENTER><FONT SIZE=1><A HREF=index.php><{$lang_top_link}></A></FONT></TD>
+		</TR>
+	</TABLE>
+
+</BODY>
+</HTML>

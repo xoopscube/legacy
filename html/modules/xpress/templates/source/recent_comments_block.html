@@ -1,0 +1,41 @@
+<{* **************************  usage ****************************
+ 	The template tag of the following list can be used. 
+ 		<{$block.err_message}> 					// When the block cannot be displayed, this outputs the reason. Please do not delete it.
+		<{$block.data_count}>					// The number of contents is displayed. 
+		<{$block.contents}>						// Data array of contents. 
+		// Examples of <{$block.contents}>
+		<{foreach from=$block.contents item=content}>	// Loop
+		<{$content.from_auther_to_post}>		// It is displayed by "Author of the comment on the post" format. Each link is included in it. 
+		<{$content.comment_ID}>					// Displays the numeric ID of a comment.
+		<{$content.comment_post_ID}>			// Displays the numeric ID of the target post for the comment is displayed. 
+		<{$content.comment_date}>				// Displays the published date of a comment. Format at date set by general setting of Wordpress.
+		<{$content.comment_date_time}>			// Displays the published date-time of a comment. Format at date-time set by general setting of Wordpress.
+		<{$content.comment_content}>			// Displays the contents of a comment.
+		<{$content.comment_excerpt}>			// Displays the excerpt contents of a comment.
+		<{$content.comment_link}>				// Displays the comment link.
+		<{$content.comment_title}>				// Displays the title of a comment.
+		<{$content.comment_title_link}>			// Displays the comment link, where the link text value is the comment's title name.
+		<{$content.post_link}>					// Displays a link to the post a comment belongs to.
+		<{$content.post_title}>					// Displays a title to the post a comment belongs to.
+		<{$content.post_title_link}>			// Displays the post's permalink, where the link text value is the posts title name.
+		<{$content.author_link}>				// Displays the link of comment author's web homepages.
+		<{$content.author_name}>				// Displays the comment author's name.
+		<{$content.author_name_link}>			// Displays the link of comment author's web homepages, where the link text value is the author's name.
+		<{$content.comment_type}>				// Displays the comment type. (type is comment,truckback or pingback)
+		<{/foreach}>							// End of Loop
+   ************************* End of usage ************************ *}>
+<{* Start Template *}>
+
+<div class="xpress_block">
+	<{$block.err_message}>
+	<div class="xpress_recent_comments_block">
+		<ul>
+		<{foreach from=$block.contents item=content}>
+			<li>
+				<{$content.from_auther_to_post}><br />
+				<{$content.comment_date_time}>
+			</li>
+		<{/foreach}>
+		</ul>
+	</div>
+</div>

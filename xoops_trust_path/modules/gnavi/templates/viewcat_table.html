@@ -1,0 +1,97 @@
+<{strip}>
+
+<{* BREADCRUMBS *}>
+<{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
+
+<{* GNAVI HEADER *}>
+<{if $indexpage}>
+	<{include file="db:`$mydirname`_header.html"}>
+<{/if}>
+
+<{* TITLE *}>
+<div id="gnn_title"><{$album_sub_title}><span>(<{$photo_num_total}>)</span></div>
+
+<{* CATEGORY DESCRIPTION *}>
+<{if $category_imgurl}><img src="<{$category_imgurl}>" align="left" title="<{$album_sub_title}>" /><{/if}>
+<{if $category_desc}><div style="margin:0 10px 10px 10px;"><{$category_desc}></div><{/if}>
+
+<{* PAGE NAVIGATION *}>
+<{if !$indexpage}><span id="gnn_up"><a href="<{$mod_url}>/index.php<{if $parent_id}>?cid=<{$parent_id}><{/if}>"><{$lang_movepid}></a></span><{/if}>
+<{if $map}><span id="gnn_map"><a href="index.php<{$maplink_option}>"><{$map}></a></span><{/if}>
+<{if $lang_add_photo}><span id="gnn_edit"><a href="index.php?page=submit<{if $category_id}>&cid=<{$category_id}><{/if}>"><{$lang_add_photo}></a></span><{/if}>
+<{if $am_cat_edit}><span id="gnn_edit"><a href="admin/index.php?page=category"><{$am_cat_edit}></a></span><{/if}>
+
+<br style="clear:both; "/>
+
+<{* CATEGORY NAVIGATION *}>
+<{if count( $subcategories ) > 0 }>
+    <{include file="db:`$mydirname`_categories.html"}>
+<{/if}>
+
+<div style="clear:both;"></div>
+
+<{if $photo_small_sum < 1 }>
+	<{* NO POSTS *}>
+	<div align="center">
+		<{$lang_nomatch}>
+	</div>
+<{else}>
+
+	<{if $photo_small_sum > 1 }>
+		<{* SORT BOX *}>
+		<table id="gnn_sort" cellspacing="0"><tr>
+			<td><{$lang_sortby}></td>
+			<td>|</td><td><a href="index.php?orderby=<{if $my_order=='titleD'}>titleA<{else}>titleD<{/if}><{$catlink_option}>"><{$lang_title}><{if $my_order=='titleD'}>&nbsp;<img src="images/down.gif" /><{elseif $my_order=='titleA'}>&nbsp;<img src="images/up.gif" /><{/if}></a></td>
+			<td>|</td><td><a href="index.php?orderby=<{if $my_order=='dateD'}>dateA<{else}>dateD<{/if}><{$catlink_option}>"><{$lang_date}><{if $my_order=='dateD'}>&nbsp;<img src="images/down.gif" /><{elseif $my_order=='dateA'}>&nbsp;<img src="images/up.gif" /><{/if}></a></td>
+			<{if $canrateview && $canvote }>
+			<td>|</td><td><a href="index.php?orderby=<{if $my_order=='ratingD'}>ratingA<{else}>ratingD<{/if}><{$catlink_option}>"><{$lang_rating}><{if $my_order=='ratingD'}>&nbsp;<img src="images/down.gif" /><{elseif $my_order=='ratingA'}>&nbsp;<img src="images/up.gif" /><{/if}></a></td>
+			<{/if}>
+			<td>|</td><td><a href="index.php?orderby=<{if $my_order=='hitsD'}>hitsA<{else}>hitsD<{/if}><{$catlink_option}>"><{$lang_popularity}><{if $my_order=='hitsD'}>&nbsp;<img src="images/down.gif" /><{elseif $my_order=='hitsA'}>&nbsp;<img src="images/up.gif" /><{/if}></a></td>
+			<td>|</td><td><nobr><{$lang_cursortedby}></nobr></td>
+		</tr></table>
+		<{* PAGE NAVIGATION *}>
+		<div class="gnn_navi" style="margin-bottom:15px;"><{$photonavinfo}>&nbsp;&nbsp;&nbsp;<{$photonav}></div>
+	<{/if}>
+
+	<{* MAIN ITEM LIST *}>
+	<table class="gn_outer">
+		<tr>
+			<{foreach from=$photos item=photo}>
+				<td class='gn_odd' style="padding:10px 2px 2px 2px;text-align:center;<{$colstbl_width}>">
+					<a href='<{$mod_url}>/index.php?lid=<{$photo.lid}><{if $category_id}>&cid=<{$category_id}><{/if}>'>
+						<{if $photo.ext}>
+							<img src='<{$photo.imgsrc_thumb}>'  alt='<{$photo.title}>' />
+							
+						<{else}><img src='images/noimage.gif' alt='<{$photo.title}>' /><{/if}>
+					</a>
+					<br /><a href='<{$mod_url}>/index.php?lid=<{$photo.lid}><{if $category_id}>&cid=<{$category_id}><{/if}>'><{$photo.title}></a>
+				</td>
+				<{if $photo.count is div by $colsoftableview }>
+					</tr>
+					<tr>
+				<{/if}>
+			<{/foreach}>
+		</tr>
+	</table>
+
+	<{if $photo_small_sum > 1 }>
+		<{* PAGE NAVIGATION *}>
+		<div class="gnn_navi" style="margin-top:15px;"><{$photonavinfo}>&nbsp;&nbsp;&nbsp;<{$photonav}></div>
+	<{/if}>
+
+<{/if}>
+
+<{if $qrimg}>
+	<div style="padding:20px 50px;">
+		<img src="<{$qrimg}>" align="middle" /> 
+		&nbsp;&nbsp;<a href="mailto:?body=<{$mod_url}>"><{$lng_send_mobile}></a>
+	</div>
+<{/if}>
+
+<{* NOTIFICATION *}>
+<{include file='db:system_notification_select.html'}>
+
+<{* GNAVI FOOTER *}>
+<{include file="db:`$mydirname`_footer.html"}>
+
+<{/strip}>

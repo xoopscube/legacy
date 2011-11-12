@@ -1,0 +1,43 @@
+<?php
+/*
+Custom event files are included in this directory.
+
+Script filename is '[NAME].inc.php'.
+
+You can use next variables here.
+
+$xpwiki_func : XpWiki Function object
+$page        : page name
+$postdata    : text data of page
+$notimestamp : no change time stamp flag (TRUE or FALSE)
+$mode        : Action mode (insert, update or delete)
+$diffdata    : DIFF data.
+
+*/
+
+// Here is a sample code.
+
+function xpwiki_onPageWriteAfter_[NAME] (&$xpwiki_func, &$page, &$postdata, &$notimestamp, &$mode, &$diffdata) {
+
+	// This block always execute.
+	
+	// Get plugin instance
+	$plugin = & $xpwiki_func->get_plugin_instance('PLUGIN_NAME');
+	
+	// exec plugin function with arguments.
+	$aryargs = array('hoge', 'hege');
+	$result  = call_user_func_array(array(& $plugin, 'PLUGIN_FUNCTION_NAME'), $aryargs);
+	
+	if ( $mode === 'insert' ) {
+		// Only page create time.
+	
+	} else if ( $mode === 'update' ) {
+		// Only page update time.
+	
+	} else if ( $mode === 'delete' ) {
+		// Only page delete time.
+	
+	}
+
+}
+?>

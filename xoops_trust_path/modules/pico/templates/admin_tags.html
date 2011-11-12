@@ -1,0 +1,85 @@
+<h3><{$mod_name}></h3>
+
+<!-- tags form -->
+<h2 class="head"><{$smarty.const._MD_A_PICO_H2_TAGS}></h2>
+
+<form method="get" action="<{$mod_url}>/admin/index.php" class="pico_pagenav">
+	<input type="hidden" name="page" value="tags" />
+	<label>
+		<{$smarty.const._MD_PICO_NUM}>
+		<select name="num">
+			<{assign var="nums" value=","|explode:"10,30,100,300,1000"}>
+			<{html_options values=$nums output=$nums selected=$num}>
+		</select>
+	</label>
+	<label>
+		<{$smarty.const._MD_A_PICO_LABEL_ORDER}>
+		<select name="order">
+			<{html_options values=$allowed_orders output=$allowed_orders selected=$order}>
+		</select>
+	</label>
+	<input type="submit" value="<{$smarty.const._GO}>" />
+	<{$pagenav}>
+</form>
+
+<form name="tags" action="<{$mod_url}>/admin/index.php?page=tags" method="post" style="margin:20px 0px;">
+	<{$gticket_hidden}>
+	<table class="outer">
+		<tr>
+			<th>
+				<{$smarty.const._MD_A_PICO_TH_TAG}>
+			</th>
+			<th>
+				<{$smarty.const._MD_PICO_TH_WEIGHT}>
+			</th>
+			<th>
+				<{$smarty.const._MD_A_PICO_TH_USED}>
+			</th>
+			<th>
+				<{$smarty.const._MD_A_PICO_TH_SUMMARY}>
+			</th>
+			<th>
+				<{$smarty.const._MD_PICO_CREATED}>
+			</th>
+			<th>
+				<{$smarty.const._MD_A_PICO_TH_EXTRASACTIONS}>
+				<input type="checkbox" onclick="with(document.tags){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_action_')>=0){elements[i].checked=this.checked;}}}">
+			</th>
+		</tr>
+		<{foreach from=$tags item="tag"}>
+			<tr class="<{cycle values="even,odd"}>">
+				<td>
+					<input type="text" size="10" name="labels[<{$tag.label_raw|escape}>]" value="<{$tag.label_raw|escape}>" />
+				</td>
+				<td>
+					<input type="text" size="3" name="weights[<{$tag.label_raw|escape}>]" value="<{$tag.weight}>" />
+				</td>
+				<td>
+					<{$tag.count}>
+				</td>
+				<td>
+					<{foreach from=$tag.contents item="content"}>
+						<!--<a href="<{$mod_url}>/<{$content.link}>"><{$content.subject}></a>-->
+						<a href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>"><{$content.subject}></a>
+					<{/foreach}>
+				</td>
+				<td>
+					<{$tag.created_time|formatTimestamp}>
+				</td>
+				<td align="<{$smarty.const._ALIGN_START}>">
+					<input type="checkbox" name="action_selects[<{$tag.label}>]" id="col_action_<{$tag.id}>" value="1" />
+				</td>
+			</tr>
+		<{/foreach}>
+		<tr>
+			<th colspan="4" style="text-align:center;">
+				<input type="submit" name="tags_update" value="<{$smarty.const._SUBMIT}>" />
+			</th>
+			<th colspan="2" style="text-align:<{$smarty.const._ALIGN_END}>;">
+				<{$smarty.const._MD_A_PICO_LABEL_EXTRASRIGHTCHECKED}>
+				<input type="submit" name="tags_delete" value="<{$smarty.const._MD_A_PICO_BTN_DELETE}>" onclick="return confirm('<{$smarty.const._MD_A_PICO_CONFIRM_DELETE}>');" />
+			</th>
+		</tr>
+	</table>
+</form>
+

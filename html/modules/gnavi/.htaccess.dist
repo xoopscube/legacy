@@ -1,0 +1,11 @@
+AddType application/vnd.google-earth.kml+xml kml
+AddType "application/xml; charset=UTF-8" xml rdf
+php_value upload_max_filesize 5M 
+php_value post_max_size 15M 
+php_value memory_limit 15M 
+php_value max_execution_time 1000
+php_value max_input_time 1000
+php_value default_socket_timeout 1000
+php_value ignore_user_abort 1
+LimitRequestBody 51200000
+php_flag output_buffering Off

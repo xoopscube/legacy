@@ -1,0 +1,13 @@
+<{* **************************  usage ****************************
+ 	The template tag of the following list can be used. 
+ 		<{$block.err_message}> 					// When the block cannot be displayed, this outputs the reason. Please do not delete it.
+		<{$block.archive}>						// Displays Archives from wp_get_archives() function
+************************* End of usage ************************ *}>
+<{* Start Template *}>
+
+<div class="xpress_block">
+	<{$block.err_message}>
+	<div class="xpress_archive_block">
+		<{$block.archive}>
+	</div>
+</div>

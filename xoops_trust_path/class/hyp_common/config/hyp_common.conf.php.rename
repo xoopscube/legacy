@@ -1,0 +1,9 @@
+<?php
+//// Use "X-Sendfile" header?
+// 0: none,
+// 1: Lighttpd < 1.5,
+// 2: Apache 2 (mod_xsendfile) or Lighttpd >= 1.5,
+// 3: Apache 2 (mod_xsendfile with hypweb patch)
+//// mod_xsendfile: http://tn123.ath.cx/mod_xsendfile/
+
+if (! defined('HYP_X_SENDFILE_MODE')) define('HYP_X_SENDFILE_MODE', 0);

@@ -1,0 +1,400 @@
+#freeze
+#nofollow
+#norelated
+#navi(../)
+#contents
+------------------------------
+* O [#c4c5830a]
+
+**online [#vc9c6801]
+:Plugin type|
+~Block type
+~Inline type
+:Importance|
+~**
+:Synopsis|
+~''#online''
+~''&online'''';''
+:Description|
+~Display the approximate number of the current visitors to the wiki.
+~The visitors are determined by recording the IP addresses and timestamps, and  counting the number of unique accesses within the past 5 minutes (by default).
+:Constants|~
+--PLUGIN_ONLINE_TIMEOUT - timeout threshold (in seconds)
+--PLUGIN_ONLINE_USER_LIST - the file name storing visitor info
+--PLUGIN_ONLINE_LIST_REGEX - the regular expression for recording visitors
+:Note|
+~The visitors are counted throughout the entire wiki, not per page, so it makes more sense to place this plugin in the MenuBar, the skin, etc.
+
+------------------------------
+* P [#eb773236]
+
+**paint [#v8e0f909]
+:Plugin type|
+~(Command type)
+~Block type
+:Importance|
+~*
+:Synopsis|
+''#paint(''
+[&color(blue){'''width'''};]
+[,&color(blue){'''height'''};]
+'')''
+:Description|
+~Upload and display the image drawn by the Java applet. This plugin requires [[BBSPainter.jar:http://www.geocities.co.jp/SiliconValley-SanJose/8609/java/bbspainter/]]  distributed at [[this website:http://www.geocities.co.jp/SiliconValley-SanJose/8609/]]. 
+(The site is written in Japanese only. Just look for the link to bbspainter_120.zip and download it. Put the BBSPainter.jar file in the directory where PukiWiki is installed.)
+~'''width''' and '''height''' are the default campus size. By default, (80,60) is used.
+:Constants|~
+--PAINT_INSERT_INS - whether to insert the image at the top or bottom
+--PAINT_DEFAULT_WIDTH - the default width of the campus
+--PAINT_DEFAULT_HEIGHT - the default height of the campus
+--PAINT_MAX_WIDTH - the maximum width of the campus
+--PAINT_MAX_HEIGHT - the maximum height of the campus
+--PAINT_APPLET_WIDTH - the width of the Applet
+--PAINT_APPLET_HEIGHT - the height of the Applet
+--PAINT_NAME_FORMAT - the format of the name form
+--PAINT_MSG_FORMAT - the format of the comment form
+--PAINT_NOW_FORMAT - the format of timestamp
+--PAINT_FORMAT - the format with messages
+--PAINT_FORMAT_NOMSG - the format without message
+:Note|
+~ Put the BBSPainter.jar file in the directory where PukiWiki is installed. Otherwise this plugin does not work.
+
+**pcomment [#n889950d]
+:Plugin type|
+~(Command type)
+~Block type
+:Importance|
+~***
+:Synopsis|
+''#pcomment(''{
+[&color(blue){'''CommentPage'''};],
+[&color(blue){'''num_items'''};],
+[&color(blue){noname};],
+[&color(blue){nodate};],
+[&color(blue){above};],
+[&color(blue){below};],
+[&color(blue){reply};]
+}'')''
+:Description|
+~Record comments on a separate page. It can display only the recent comments on the place the plugin is placed, or it can display a radio button to specify where to display the comment.
+:Parameters|
+~'''CommentPage''' - the page to record comments. If omitted, the page specified by the PLUGIN_PCOMMENT_PAGE constant is used. The default value is [Comment/(current page name)]. If the specified page does not exist, it will be created when the first comment is posted.
+~'''num_items''' - the number of top-level items to be displayed. If omitted, the default value specified by the PLUGIN_PCOMMENT_NUM_COMMENTS constant is used.~
+This parameter must be placed after the comment page name. If you don't want to specify '''CommentPage''', just put a camma before '''num_items''' (e.g., #pcomment(,15))
+~noname,nodate,above,below,reply - parameters to specify how to enter/display the comments
+--noname - Do not display the name input form
+--nodate - Do not display the timestamp
+--above - Display the comments above the form, in the chronological order (the oldest at the top)
+--below - Display the comments below the form, in the reverse chronological order (the newest at the top)
+--reply - Display radio buttons to specify which comment to reply to
+:Constants|~
+--PLUGIN_PCOMMENT_PAGE - the default comment page name (%s is replaced by the value of $vars['page'])
+--PLUGIN_PCOMMENT_NUM_COMMENTS - the default number of recent comments to be displayed
+--PLUGIN_PCOMMENT_SIZE_NAME - the width of the name form
+--PLUGIN_PCOMMENT_SIZE_MSG - the width of the comment form
+--PLUGIN_PCOMMENT_DIRECTION_DEFAULT - whether to display the posted comments abov or below the form
+--PLUGIN_PCOMMENT_FORMAT_NAME - the format of the name form
+--PLUGIN_PCOMMENT_FORMAT_MSG - the format of the comment form
+--PLUGIN_PCOMMENT_FORMAT_NOW - the format of the timestamp
+--PLUGIN_PCOMMENT_FORMAT_STRING - the format of the entire comment
+--PLUGIN_PCOMMENT_AUTO_LOG - the number of comments per page when recording old comments (setting this value to 0 will disable the logging.)
+--PLUGIN_PCOMMENT_TIMESTAMP - whether to keep the timestamp of the comment page unchanged and instead update the page where the plugin is placed
+:Note|
+~When there is a conflict (i.e., multiple comments were posted at the same time), the comment is displayed at the top or at the bottom (according to the setting) even if the radio button is checked. This is to prevent the comment from being inserted to a strange place.
+~When a comment is posted, the plugin displays the message indicating that the page where the plugin is placed has been updated. However, it is the comment page that has been actually updated.
+~Since the page containing #pcomment is not updated, it doesn't show up on the "recent changes" page.
+~Avoid using a relative reference (e.g. [ [../] ]) in comments, as it may not be converted as expected. (Keep in mind that the page in which you are writing comment is different from the page that will display it.)
+~The logging of the old comments is invoked when the number of comments reached to (PLUGIN_PCOMMENT_AUTO_LOG + PLUGIN_PCOMMENT_NUM_COMMENTS).
+
+**popular [#aa6d5e99]
+:Plugin type|
+~Block type
+:Importance|
+~**
+:Synopsis|
+''#popular(''
+[[&color(blue){'''num_pages'''};]
+[,[&color(blue){'''ExcludedPage'''};]
+[,&color(blue){true};|&color(blue){false};]
+]]
+'')''
+:Description|
+~The list of frequently visited pages
+:Parameters|
+~'''num_pages''' - the number of pages to be displayed. The default value is defined as the PLUGIN_POPULAR_DEFAULT constant.
+~'''ExcludedPage''' - the regular expression that definees the pages which should be excluded from the list. The typical examples are FrontPage, MenuBar, etc.
+~true, false - whether to use the number of today's visitors only. The default is false.
+--true - use the number of visitors of today only
+--false - use the total number of visitors
+:Constants|~
+--PLUGIN_POPULAR_DEFAULT - the default number of pages to be displayed
+:Note|
+~Since this plugin depends on the information recorded by the [[counter>../A-D#zedb02cf]] plugin, the page without the counter plugin is excluded from the list. A simple way to ensure that all pages are counted is to put the plugin in the Menubar or the skin.
+
+------------------------------
+* R [#heb39161]
+
+**random [#bdab4a5d]
+:Plugin type|
+~(Command type)
+~Block type
+:Importance|
+~*
+:Synopsis|
+''#random(''
+[&color(blue){'''string'''};]
+'')''
+:Description|
+~Display the link to a randomly selected page.
+~The pages to be selected from are those under the page where the plugin is placed.
+:Parameters|
+~'''string''' the message string displayed on the link. The default value is 'press here.'
+:Note|
+~When the page is reloaded, a different random link is displayed.
+
+**read [#qd5d7395]
+:Plugin type|
+~Command type
+:Importance|
+~*****
+:Synopsis|
+''?cmd=read''
+&color(blue){&page='''PageName'''};
+:Description|
+~Display the specified page. If the page doesn't exist, it will be opened in the edit mode. If the page name is an InterWiki, the plugin will resolve it.
+~This plugin is internally used when plugin= and cmd= are not specified. Users usually don't have to use it explicitly.
+:Parameters|
+~'''PageName''' - the page name to be displayed. This must be URL-encoded.
+
+**recent [#f6f25416]
+:Plugin type|
+~Block type
+:Importance|
+~*****
+:Synopsis|
+''#recent(''
+[&color(blue){pattern};]
+[,&color(blue){num_pages};]
+'')''
+:Description|
+~show an updated page recently of page name that starts by the specified pattern.
+:Parameters|
+~A common part of displayed PageName is specified for the pattern. When omitting it, it means "All Pages".&br;
+And, It is possible also to do list up of another xpWiki on
+the same system, with "&font(Blue,b){Dirctory Name};&font(Red,b){:};&font(Blue,b){Page Pattern};".
+~num_pages - the number of pages to be displayed. The default value is defined as the PLUGIN_POPULAR_DEFAULT constant.
+:Constants|~
+--PLUGIN_POPULAR_DEFAULT - the default number of pages to be displayed.
+--PLUGIN_RECENT_CACHE - RecentChanges directory.
+--PLUGIN_RECENT_USAGE - help that is displayed at the time of Parameters non-parameters.
+
+**ref [#h9e797dc]
+:Plugin type|
+~Block type
+~Inline type
+:Importance|
+~****
+:Synopsis|
+~''#ref(''
+&color(blue){Attached file name};|
+&color(blue){PageName/Attached file name};|
+&color(blue){URL};
+[,&color(blue){PageName};]
+{,
+[&color(blue){left};|&color(blue){center};|&color(blue){right};],
+[&color(blue){wrap};|&color(blue){nowrap};],
+[&color(blue){around};],
+[&color(blue){noicon};],
+[&color(blue){noimg};],
+[&color(blue){nolink};],
+[&color(blue){zoom};],
+[&color(blue){999x999};],
+[&color(blue){999%};]
+}
+[,&color(blue){Title};]
+'')''
+~''&ref(''
+&color(blue){Attached file name};|
+&color(blue){PageName/Attached file name};|
+&color(blue){URL};
+[,&color(blue){PageName};]
+{,
+[&color(blue){noicon};],
+[&color(blue){noimg};],
+[&color(blue){nolink};],
+[&color(blue){zoom};],
+[&color(blue){999x999};],
+[&color(blue){999%};]
+}
+[,&color(blue){Title};]
+'');''
+:Description|
+~The file appended to the page by '#attach' is developed with a specified position. The image is displayed when the attached file is an image, and the link for download is displayed besides. 
+:Parameters|
+~The attached file name to the page is specified for the attached file name (When omitting it, become an error). The attached file on another page can be specified by the thing assumed to be another PageName/attached file name. 
+~The page that appends the file is specified for PageName with WikiName or BracketName. Please describe this option first (following of the attached file name). Omitting it is a page set up. 
+~The method of developing the file can be specified for the parameter. 
+--left|center|right - The position of the display is specified. Omitting it is left (It is possible to change). 
+--wrap|nowrap - It is specified not to enclose or the enclosure with the table tag. Omitting it is nowrap (It is possible to change). 
+--around - The turn crowding of the text is enabled. When omitting it, it turns and it doesn't crowd. 
+--noicon - The icon displayed, except when the file is an image is not displayed. When omitting it, it displays it. 
+--noimg - When the file is an image, the image is not progressed. When omitting it, it develops. 
+--nolink - The link to the former file is not put. When omitting it, it links. 
+--zoom - The aspect ratio is maintained. When omitting it, it follows the size specification. 
+--999x999 - The size is specified (height of width x). When omitting it, it follows the size of the expansion rate or the object image. 
+--999% - The size is specified (expansion rate). Omitting it is 100%. 
+--Title - Parameters other than the above-mentioned are used as an alternative character string in the image and a title attribute of the link. When the character string seen PageName and the parameter is used, the comma is extra put ahead of the title like # ref(hoge.png,,zoom). 
+:Constants|~
+--PLUGIN_REF_USAGE Help displayed when Parameters is unspecified
+--PLUGIN_REF_IMAGE Regular expression that considers specified file to be image when matching it
+--FILE_ICON File of icon image
+--PLUGIN_REF_DEFAULT_ALIGN Position where it is displayed to omit right left and center
+--PLUGIN_REF_WRAP_TABLE When nowrap, wrap is omitted do you enclose it with the table tag?
+--PLUGIN_REF_URL_GET_IMAGE_SIZE When URL is specified, is the image size acquired?
+--PLUGIN_REF_DIRECT_ACCESS Do you directly access the data of UPLOAD_DIR by the image display of the attached file?
+
+:Note|
+~Please use the clear plug-in or the img plug-in to release specification with around ..going.. turning and crowding. 
+~The method of describing two following kinds of when the attached file "fuga.jpg" on another page "hoge" is referred by the in-line plug-in form exists. 
+ (1)  &ref(hoge/fuga.jpg);
+ (2)  &ref(fuga.jpg,[[hoge]]);
+~The description method recommended by the one prepared to maintain the previous version and interchangeability is (1) in the description method of (2) among two above-mentioned kinds of descriptions. &br;
+Operation general even if it is which description method is the same. However, it is likely not to function normally when the following specification is done so that the image displayed like a so-called banner image may become a link to another page. 
+ (1)  [[&ref(hoge/fuga.jpg,nolink,Site name);>URL of target site]] 
+ (2)  [[&ref(fuga.jpg,[[hoge]],nolink,Site name);>URL of target site]] 
+(1) is no problem. However, (2) is not linked well. &br;
+Moreover, the image appended to the page named "hoge" when you display the parameter in the page specifying it (For instance, in half the ratio)
+ (3)  &ref(./fuga.jpg,50%);
+ (4)  &ref(hoge/fuga.jpg,50%);
+ (5)  &ref(fuga.jpg,[[hoge]],50%);
+ (6)  &ref(fuga.jpg,50%);
+(3) - (5) It peels off and there is no problem. (6) It becomes an error the peel. 
+Because Synopsis of (6) is a description method of (2) in this The purpose is to expect PageName of the following Parameters of attached file name fuga.jpg. 
+ (7)  &ref(fuga.jpg);
+(7) It is a description that looks like as peel (6). However, it doesn't become an error. Because the following Parameters of the attached file name is omitted.
+
+**referer [#l8d62a01]
+:Plugin type|
+~Command type
+:Importance|
+~***
+:Synopsis|
+''?plugin=referer''
+[&color(blue){&page=PageName};]
+[&color(blue){&sort=};
+&color(blue){0d};|&color(blue){0a};|
+&color(blue){1d};|&color(blue){1a};|
+&color(blue){2d};|&color(blue){2a};|
+&color(blue){3};
+]
+:Description|
+~Reference former URL(Referer) of the user who inquires the page list is displayed. 
+:Parameters|
+~PageName that displays Referer is specified for PageName. It is necessary to encode PageName. When omitting it, the list of the page where Referer is recorded is displayed. 
+~The order of sorting of the Referer list is specified with &font(b){sort};. 
+--0d - Last updated date and time(newly arrived the order)
+--0a - Last updated date and time(date the order)
+--1d - Registration first time date(newly arrived the order)
+--1a - Registration first time date(date the order)
+--2d - Counter(large the order)
+--2a - Counter(small the order)
+--3 - Referer
+:Constants|~
+--&font(b){CONFIG_REFERER}; Page that specifies disregarded URI
+:Note|
+~It is necessary to do the setting ($referer=1 is specified) that uses Referer with pukiwiki.ini.php.
+
+**related [#v4da5475]
+:Plugin type|
+~Command type
+~PseudoBlock type
+:Importance|
+~***
+:Synopsis|
+~''?plugin=related''
+[&color(blue){&page=PageName};]
+~''#related''
+:Description|
+~The list of the page to refer to the page of the object is displayed. 
+:Parameters|
+~When executing it by the block type, the page set up becomes an object. 
+~When executing it with Command type, the page that becomes an object can be specified for PageName. It is considered that top page is specified when omitting it.
+
+**rename [#m95d6531]
+:Plugin type|
+~Command type
+:Importance|
+~***
+:Synopsis|
+''?plugin=rename''
+[&color(blue){&refer=PageName};]
+:Description|
+~The name of an existing page is changed. The admin authority is necessary for execution. 
+~The difference, the backup, the attached file, and the counter of specified PageName besides the text on the page are renamed at a dash. :Parameters|
+~The name of the changed page is specified for PageName. When omitting it, the selection of PageName or the character string input screen for the regular expression substitution is displayed. 
+~The execution result is a page of the conversion result. (It specifies it with PLUGIN_RENAME_LOGPAGE. The standard: RenameLog. )Is added. 
+:Constants|~
+--&font(b){PLUGIN_RENAME_LOGPAGE}; PageName The conversion result is output PageName. 
+:Note|
+~The link is not rewritten in the page. Please deal with yetlist etc. by making good use of. 
+~Information on TrackBack and Referer is not updated. 
+~It is not checked whether the page to be renamed has been frozen. 
+~When two or more charactors to be renamed are included in a related page, the correspondence is lost.
+--For instance, when "hoge" page is renamed to "fuga" (A related page is included) when there are two pages "hoge" and "hoge/hoge", the name of "hoge/hoge" page becomes "fuga/fuga".
+
+**rss [#iaac8b70]
+:Plugin type|
+~Command type
+:Importance|
+~*
+:Synopsis|
+~''?plugin=rss''
+[&color(blue){&ver=};&color(blue){0.91};|
+&color(blue){1.0};|
+&color(blue){2.0};]
+:Description|
+~RecentChanges is converted into RSS and it outputs it. 
+:Parameters|
+~RSS output with &font(b){ver}; is specified. When omitting it, 0.91 is output.
+:Note|
+~RSS is XML format used to deliver the summary of the site. RSS 1.0 is a succession of RSS 0.9 based on RDF(Resource Description Framework) format. In RSS 0.91, it is mounting RSS not to be original, and RSS 2.0 is a succession of RSS 0.91 and 0.92 format to RDF. It is different respectively what abbreviation the acronym named RSS is.
+~''RSS 0.9 and 1.0'': RDF Site Summary
+~''RSS 0.91 and 0.92'': Rich Site Summary
+~''RSS 2.0'': Really Simple Syndication
+
+**rss10 [#v879eb4d]
+:Plugin type|
+~Command type
+:Importance|
+~*
+:Synopsis|
+~''?cmd=rss10''
+:Description|
+~RecentChanges is converted into RSS(RDF Site Summary) 1.0 and it outputs it.
+:Note|
+~This plug-in exists only for interchangeability with the past because the function of the rss10 plug-in was merged with the rss plug-in. (There is a possibility to be deleted in the future. )
+~It is redirected to URI of the rss plug-in that specifies the ver=1.0 option that it accesses this plug-in with HTTP status code 301(Moved Permanently).
+
+**ruby [#u3fad1fe]
+:Plugin type|
+~Inline type
+:Importance|
+~*
+:Synopsis|
+''&ruby(''
+&color(blue){Ruby};
+''){''
+&color(blue){Word};
+''};''
+:Description|
+~The ruby is put on the word. 
+:Parameters|
+~The displayed ruby is specified for the ruby. 
+~The word to which the ruby is put is specified for the word. 
+:Constants|~
+--&font(b){PLUGIN_RUBY_USAGE}; Help displayed when Parameters is unspecified.
+:Note|
+~If it is not a browser corresponding to the ruby of XHTML 1.1, it is not displayed as a ruby. It is possible to display it in IE5.5/6. If XHTML Ruby Support:http://white.sakura.ne.jp/~piro/xul/_rubysupport.html is built in in Netscape 7/Mozilla, it is possible to display it. 
+~The ruby is put in () and displayed just behind the word to which the ruby is put in a browser that doesn't correspond to the ruby. 
+
+#navi(../)

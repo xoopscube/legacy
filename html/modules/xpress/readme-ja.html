@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>WordPress オリジナルから日本語版への変更点</title>
+	<link rel="stylesheet" href="wp-admin/css/install.css?ver=20100228" type="text/css" />
+</head>
+<body>
+<h1>WordPress オリジナルから日本語版への変更点</h1>
+
+<dl>
+  <dt>readme-ja.html</dt>
+  <dd>追加 (オリジナルにはない)。このファイル。日本語版でオリジナルから変更したファイルとその内容について解説しています。</dd>
+  <dt>readme.html</dt>
+  <dd>翻訳しました。リンク先のいくつかを日本語情報のものに追加しました。</dd>
+  <dt>wp-config-sample.php</dt>
+  <dd>コメント部分を翻訳しました。<br />
+	WPLANG に ja を設定し、そのことをコメントに書き加えました。</dd>
+  <dt>wp-admin/setup-config.php</dt>
+  <dd>メッセージを翻訳しました。</dd>
+  <dt>wp-admin/includes/schema.php</dt>
+  <dd>gmt_offset （UTC との時差の初期オプション値）をサーバーのローカル時間との時差から日本時間との時差 (9) に変更しました。この値は管理画面より変更可能です。<br />
+	rss_language の初期オプション値を en から ja に変更しました。この値は管理画面より変更可能です。</dd>
+  <dt>wp-admin/includes/dashboard.php</dt>
+  <dd>blogsearch.google.com の検索対象を en から ja に変更しました。この値は管理画面より変更可能です。</dd>
+  <dt>wp-includes/functions.php</dt>
+  <dd>メッセージを翻訳しました。</dd>
+  <dt>wp-content/plugins/akismet/akismet.php</dt>
+  <dd>Description を翻訳しました。</dd>
+  <dt>wp-content/plugins/hello.php</dt>
+  <dd>Description を翻訳しました。</dd>
+  <dt>wp-content/plugins/wp-multibyte-patch/*</dt>
+  <dd>追加 (オリジナルにはない)。マルチバイト文字の取り扱いに関する不具合の累積的修正と強化を行うプラグインです。詳しくはこのディレクトリの下の readme-ja.txt をご覧ください。</dd>
+  <dt>wp-content/themes/twentyten/style.css</dt>
+  <dd>Description を翻訳しました。それに伴い、先頭に @charset "utf-8" と指定しました。</dd>
+  <dt>wp-content/languages/ja.mo<br />
+	wp-content/languages/ja.po<br />
+	wp-content/languages/ms-ja.mo<br />
+	wp-content/languages/ms-ja.po<br />
+	wp-content/languages/continents-cities-ja.mo<br />
+	wp-content/languages/continents-cities-ja.po<br />
+	wp-content/themes/twentyten/languages/ja.mo<br />
+	wp-content/themes/twentyten/languages/ja.po<br />
+	wp-content/themes/twentyeleven/languages/ja.mo<br />
+	wp-content/themes/twentyeleven/languages/ja.po<br />
+  <dd>追加 (オリジナルにはない)。メッセージを翻訳しました。<br />
+	リンク先のいくつかを日本語情報のもの (wordpress.org/support/ を ja.forums.wordpress.org に、codex.wordpress.org をwpdocs.sourceforge.jp に、など) に差し替えました。<br />
+	wp-admin/includes/dashboard.php 内のメッセージで URL が http://wordpress.org/news/ のところを http://ja.wordpress.org/ に差し替えました。また http://planet.wordpress.org/ を http://ja.forums.wordpress.org/ に差し替えました。</dd>
+</dl>
+
+<h1>著作権</h1>
+<p>日本語版で変更・追加したファイルは、WordPress 本体と<a href="license.txt">同じライセンス</a>のもと配布されています。</p>
+
+<h1><a href="http://groups.google.com/group/wp-ja-pkg" >WordPress 日本語版作成チーム / WP ja translation team</a></h1>
+<p>
+誤字脱字誤訳、あるいはよりよい訳などありましたら以下までぜひお知らせください。
+また、翻訳、校正、コミットをお手伝いしていただける方も随時募集中です。
+連絡先 / Contact: wpja.team あっと gmail.com (件名か内容に「日本語リソース」と入れてください)
+</p>
+</body>
+</html>

@@ -1,0 +1,42 @@
+- myblocksadmin -
+
+
+SUMMARY:
+
+This files add blocks admin into your module.
+
+
+BACKGROUND:
+
+XOOPS's admin of blocks and groups will be hard to use,
+when many modules is installed.
+If each module has the block management screen for itself,
+webmasters using XOOPS will feel it easy, I think.
+I will recommend it to the module developers by all means.
+
+
+HOW TO USE:
+
+1) copy these 3 files into XOOPS_ROOT_PATH./modules/(your module)/admin/
+2) edit admin/menu.php and add a menu item like this:
+
+	$adminmenu[] = array( 'title' => _MI_SYSTEM_ADMENU2 ,
+	                      'link' => "admin/myblocksadmin.php" ) ;
+
+That's all !
+
+
+
+CHANGELOG:
+
+2003-12-18 0.03 for XOOPS <= 2.0.3 patch
+                (gperm_handler->deleteByModule() has only 1 parameter)
+2003-12-12 0.02 'module_read' and 'module_admin' to be able to change
+2003-12-4  0.01 first release
+
+
+
+COPYRIGHT:
+
+I do not insist on the right of these codes, and don't guarantee.
+

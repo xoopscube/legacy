@@ -1,0 +1,13 @@
+<{* **************************  usage ****************************
+ 	The template tag of the following list can be used. 
+ 		<{$block.err_message}> 					// When the block cannot be displayed, this outputs the reason. Please do not delete it.
+		<{$block.authors}>						// Displays Authors from wp_list_authors() function
+************************* End of usage ************************ *}>
+<{* Start Template *}>
+
+<div class="xpress_block">
+	<{$block.err_message}>
+	<div class="xpress_authors_block">
+		<{$block.authors}>
+	</div>
+</div>

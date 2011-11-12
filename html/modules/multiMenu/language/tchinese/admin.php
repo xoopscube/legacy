@@ -1,0 +1,30 @@
+<?php
+define("_AD_MULTIMENU_ADMIN", 	"Administration : multiMenu");
+define("_AD_MULTIMENU_ADMIN_01", 	"????由選單之?");
+define("_AD_MULTIMENU_ADMIN_02", 	"????由選單之?");
+define("_AD_MULTIMENU_ADMIN_03", 	"????由選單之?");
+define("_AD_MULTIMENU_ADMIN_04", 	"????由選單之?");
+define("_AD_MULTIMENU_ADMIN_05", 	"Administration : multiMenu05");
+define("_AD_MULTIMENU_ADMIN_06", 	"Administration : multiMenu06");
+define("_AD_MULTIMENU_ADMIN_07", 	"Administration : multiMenu07");
+define("_AD_MULTIMENU_ADMIN_08", 	"Administration : multiMenu08");
+define("_AD_MULTIMENU_EDITIMENU", 	"?輯");
+define("_AD_MULTIMENU_NEWIMENU", 	"??結");
+define("_AD_MULTIMENU_NEW",		"???結");
+define("_AD_MULTIMENU_TITLE",		"標?");
+define("_AD_MULTIMENU_HIDE",		"隱藏");
+define("_AD_MULTIMENU_TARGET",	"?結屬?(Target)");
+define("_AD_MULTIMENU_GROUPS",	"?組");
+define("_AD_MULTIMENU_LINK",		"?結");
+define("_AD_MULTIMENU_OPERATION",	"??");
+define("_AD_MULTIMENU_UP",		"??");
+define("_AD_MULTIMENU_DOWN",		"??");
+define("_AD_MULTIMENU_TARG_SELF",	"self");
+define("_AD_MULTIMENU_TARG_BLANK",	"blank");
+define("_AD_MULTIMENU_TARG_PARENT",	"parent");
+define("_AD_MULTIMENU_TARG_TOP",	"top");
+define("_AD_MULTIMENU_SUREDELETE",	"????除???結嗎?");
+define("_AD_MULTIMENU_UPDATED",	"資???????");
+define("_AD_MULTIMENU_NOTUPDATED",	"資???失敗?");
+define("_AD_MULTIMENU_SUBMIT", 	"??");
+?>

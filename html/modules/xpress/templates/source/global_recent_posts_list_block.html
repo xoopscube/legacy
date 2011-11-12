@@ -1,0 +1,68 @@
+<{* **************************  usage ****************************
+ 	The template tag of the following list can be used. 
+ 		<{$block.err_message}>					// When the block cannot be displayed, this outputs the reason. Please do not delete it. 
+ 		<{$block.shown_for_each_blog}>			// Shown for each blog
+ 		<{$block.data_count}>					// The number of contents is displayed.
+		<{$block.contents}>						// Data array of contents. 
+		// Examples of <{$block.contents}>
+		<{foreach from=$block.contents item=content}>	// Loop
+		<{$content.post_id}>					// Displays the numeric ID of the post.
+		<{$content.blog_id}>					// Displays the numeric ID of the blog.
+		<{$content.post_permalink}>				// Displays the post's permalink.
+		<{$content.title_link}>					// Displays the post's permalink, where the link text value is the posts title name.
+		<{$content.the_content}>				// Displays the contents of the post.
+		<{$content.the_full_content}>				// Displays the contents of the post.
+		<{$content.post_modified_date}>			// Displays the modified date of a post. Format at date set by general setting of Wordpress.
+		<{$content.post_modified_time}>			// Displays the modified date of a post. Format at date set by general setting of Wordpress.
+		<{$content.post_modified_date_time}>	// Displays the modified date-time of a post.
+		<{$content.post_unix_time}>				// Displays the published unix time stanp of a post.
+		<{$content.post_date}>					// Displays the published date of a post. Format at date set by general setting of Wordpress.
+		<{$content.post_time}>					// Displays the published time of a post. Format at time set by general setting of Wordpress.
+		<{$content.post_date_time}>				// Displays the published date-time of a post. Format at time set by general setting of Wordpress.
+		<{$content.comments_link}>				// Displays a link to the comments popup window if comments_popup_script() is used, otherwise it displays a normal link to comments. 
+		<{$content.post_author}>				// Displays the author's archive link, where the link text value is the user's Display name. 
+		<{$content.post_category}>				// Displays a link to the category or categories a post belongs to.
+		<{$content.post_tags}>					// Displays a link to the tag or tags a post belongs to.
+		<{$content.post_views}>					// Displays the number of posts viewer.
+		<{$content.new_mark}>					// The mark is displayed. The mark is different according to lapsed days from the release date. 
+		<{/foreach}>							// End of Loop
+************************* End of usage ************************ *}>
+<{* Start Template *}>
+<div class="xpress_block">
+	<{$block.err_message}>
+	<div class="xpress_global_recent_post_list_block">
+		<ul>
+		<{if $block.shown_for_each_blog}>
+			<{ assign var="b_id" value=0 }>
+			<{foreach from=$block.contents item=content}>
+				<{if $b_id != $content.blog_id}>
+					<{if $b_id != 0}>
+							</ul>
+						</li>
+					<{/if}>
+						<li><{$content.blog_link}>
+							<ul>
+					<{ assign var="b_id" value=$content.blog_id }>
+				<{/if}>
+								<li>
+									<{$content.new_mark}> <{$content.title_link}><br />
+									<{$content.post_thumbnail}><br />
+									<{$content.post_date_time}><br />
+									<{$content.author_avatar}><{$content.post_author}><br />
+								</li>
+			<{/foreach}>
+							</ul>
+						</li>
+		<{else}>
+			<{foreach from=$block.contents item=content}>
+				<li>
+				<{$content.new_mark}> <{$content.title_link}><br />
+				<{$content.post_date_time}><br />
+				<{$content.blog_link}><br />
+				<{$content.post_author}><br />
+				</li>
+			<{/foreach}>
+		<{/if}>
+		</ul>
+	</div>
+</div>

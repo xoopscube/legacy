@@ -1,0 +1,1 @@
+var jsmarty_resource_id=[function(k,Z,C){var o;try{Z.put("src",document.getElementById(k).innerHTML);return true;}catch(d){C.trigger_error(d);}return false;},function(k,o,Z){try{o.put("timestamp",JSmarty.System.timestamp(document.lastModified));}catch(C){o.put("timestamp",JSmarty.System.timestamp());}return true;},function(){return true;},function(){return true;}];

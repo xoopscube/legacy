@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+	<channel>
+		<title><{$pipe.name4xml}></title>
+		<link><{$mod_url}>/index.php?page=eachpipe&amp;pipe_id=<{$pipe.id}></link>
+		<description></description>
+		<lastBuildDate><{"r"|date:$pipe.lastfetch_time}></lastBuildDate>
+		<docs>http://backend.userland.com/rss/</docs>
+		<generator>XOOPS - d3pipes</generator>
+		<category>d3pipes</category>
+		<webMaster><{$xoops_config_utf8.slogan|escape}></webMaster>
+		<language><{$smarty.const._LANGCODE}></language>
+
+		<{foreach from=$entries item="entry"}>
+		<item>
+			<title><{$entry.headline|escape}></title>
+			<{if $link_prefer == 'clipping' && $entry.clipping_id}>
+			<link><{$mod_url}>/index.php?page=clipping&amp;clipping_id=<{$entry.clipping_id}></link>
+			<{else}>
+			<link><{$entry.link|escape}></link>
+			<{/if}>
+			<description><{$entry.description|escape}></description>
+			<{if $entry.content_encoded}>
+				<content:encoded> <![CDATA[ <{$entry.content_encoded}> ]]> </content:encoded>
+			<{/if}>
+			<guid><{$entry.fingerprint|escape}></guid>
+			<pubDate><{"r"|date:$entry.pubtime}></pubDate>
+			<category><{$entry.category}></category>
+		</item>
+		<{/foreach}>
+
+	</channel>
+</rss>

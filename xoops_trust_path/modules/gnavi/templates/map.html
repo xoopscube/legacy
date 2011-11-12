@@ -1,0 +1,65 @@
+<{strip}>
+
+<{* BREADCRUMBS *}>
+<{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
+
+<{* TITLE *}>
+<div id="gnn_title"><{$album_sub_title}><span>(<{$photo_num_total}>)</span></div>
+
+<{* CATEGORY DESCRIPTION *}>
+<{if $category_imgurl}><img src="<{$category_imgurl}>" align="left" title="<{$album_sub_title}>" /><{/if}>
+<{if $category_desc}><div style="margin:0 10px 10px 10px;"><{$category_desc}></div><{/if}>
+
+<{* PAGE NAVIGATION *}>
+<{if !$indexpage}><span id="gnn_up"><a href="<{$mod_url}>/index.php?page=map<{if $parent_id}>&cid=<{$parent_id}><{/if}>"><{$lang_movepid}></a></span><{/if}>
+<span id="gnn_map"><a href="index.php<{$catlink_option}>"><{$rowlist}></a></span>
+<{if $lang_add_photo}><span id="gnn_edit"><a href="index.php?page=submit<{if $category_id}>&cid=<{$category_id}><{/if}>"><{$lang_add_photo}></a></span><{/if}>
+
+<br style="clear:both; "/>
+
+<{* CATEGORY NAVIGATION *}>
+<{if count( $subcategories ) > 0 }>
+	<{include file="db:`$mydirname`_categories.html"}>
+<{/if}>
+
+<div style="clear:both;background-color:#efefff;padding:3px;">
+	&nbsp;<{$lng_map_show}>&nbsp;<input type='text' name='address' id='address' size='50' maxlength='255' value='' onKeyUp="showAddress2(document.getElementById('address').value);" />
+	&nbsp;<{$lng_map_show_desc}>
+</div>
+
+<{* MAIN MAP *}>
+<table border="0" cellspacing="3" cellpadding="0" id="gn_map">
+	<tr>
+		<td rowspan="3" width="100%"><div id="map">&nbsp;</div></td>
+		<td width="150" bgcolor="#dedede"><div id="gn_mkhead"><{$lang_markerlist}></div></td>
+	</tr>
+	<tr>
+		<td><div id="gn_mklist"><{$lang_loading}></div></td>
+	</tr>
+	<tr>
+		<td><a href="<{$mod_url}>/kml.php<{$link_option}>"><img src="images/img_kml.gif" /></a></td>
+	</tr>
+</table>
+<div id='peui'></div>
+
+<{* LAT LNG *}>
+<div id='gn_latlng'>
+	<{$lang_lat}>:&nbsp;<span id='slat'><{$default_lat}></span>&nbsp;&nbsp;&nbsp;
+	<{$lang_lng}>:&nbsp;<span id='slng'><{$default_lng}></span>&nbsp;&nbsp;&nbsp;
+	<{$lang_zoom}>:&nbsp;<span id='sz'><{$default_zoom}></span>
+</div>
+
+<{* GET DATA FOR SUBMIT *}>
+<form method="GET" action="index.php" name="frmlatlng" > 
+	<input type='hidden' name='lat' id='lat' value='<{$default_lat}>' />
+	<input type='hidden' name='lng' id='lng' value='<{$default_lng}>' />
+	<input type='hidden' name='z' id='z' value='<{$default_zoom}>' />
+	<input type='hidden' name='mt' id='mt' value='<{$default_mtype}>' />
+	<input type='hidden' name='page' id='page'  value='submit' />
+	<{if $category_id}><input type='hidden' name='cid' id='cid'  value='<{$category_id}>' /><{/if}>
+</form>
+
+<{* GNAVI FOOTER *}>
+<{include file="db:`$mydirname`_footer.html"}>
+
+<{/strip}>

@@ -1,0 +1,69 @@
+#freeze
+#nofollow
+#norelated
+#navi(../)
+#contents
+------------------------------
+* E [#q45dc325]
+
+**edit [#i1e8d3e8]
+:Plugin type|
+~Command type
+~Inline type
+:Importance|
+~*****
+:Synopsis|
+''?cmd=edit''
+&color(blue){&page='''PageName'''};
+~''&edit(''
+[&color(blue){'''PageName'''};
+{[,&color(blue){nolabel};]
+[,&color(blue){noicon};]}]
+''){''
+&color(blue){'''label'''};
+''};''
+
+:Description|
+~Display the edit screen for the specified page
+:Parameters|
+~To use the plugin as command type, '''PageName''' parameter must be set to specify the page to edit. The page name must be URL-encoded.
+~To use the plugin as inline type, '''PageName''' parameter is the name of the page to edit. The default is the current page.
+~nolabel, noicon, and '''label''' are the parameters to specify the format of the link.
+--nolabel - Do not display the label for the edit link. When used with noicon, the label is displayed in an abbreviated form.
+--noicon - Do not display the image for the edit link
+--'''label''' - Display the specified label string for the edit link
+:Constants|~
+--PLUGIN_EDIT_FREEZE_REGEX - the regular expression to prevent a direct 'freeze' operation other than the freeze plugin
+
+------------------------------
+* F [#n4aa1621]
+
+**filelist [#zfddbc2e]
+:Plugin type|
+~Command type
+:Importance|
+~*
+:Synopsis|
+''?cmd=filelist''
+:Description|
+~Display the list of the pages with the file names they are stored
+:Note|
+~This plugin is intended for maintenance by the administrator
+
+**freeze [#le1aaa47]
+:Plugin type|
+~Command type
+~(Block type)
+:Importance|
+~***
+:Synopsis|
+''?cmd=freeze''
+&color(blue){&page='''PageName'''};
+~''#freeze''
+:Description|
+~Freeze the specified page so that it cannot be edited
+:Parameters|
+~'''PageName''' - the page name to be frozen. It must be URL-encoded. If the freeze plugin is used as command type, the block type plugin is inserted at the beginning of the page. (When the page is unfrozen, the block type plugin is deleted.)
+~The block type of the freeze plugin is internally used by PukiWiki, and it's usually not visible to users
+
+#navi(../)

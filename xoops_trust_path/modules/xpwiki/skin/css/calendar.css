@@ -1,0 +1,255 @@
+/* boxdate.inc.php */
+
+$class div.boxdate_base {
+	background: #F5F5F5 url(./loader.php?src=shadow.png) repeat-x scroll center bottom;
+	border-top: 1px solid lightgrey;
+	border-bottom: 1px solid lightgrey;
+	border-left: 1px solid lightgrey;
+	border-right: 1px solid lightgrey;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	padding: .5em 0;
+	margin: 0px 20px 10px 0px;
+	text-align: center;
+	float: left;
+}
+
+$class span.boxdate {
+	width: 80px;
+	font-family: Arial;
+	display: block;
+	clear: both;
+}
+
+$class span.boxdate span.dweek {
+	font-size: 12px;
+	font-weight: bold;
+	/*font-family: "Times New Roman";*/
+	background: #445588;
+	color: #FFFFFF;
+	display: block;
+}
+
+$class span.boxdate span.day {
+	font-size: 28px;
+	color: #333333;
+	font-weight: bold;
+	font-family: "Times New Roman";
+	line-height: 1em;
+	text-shadow: 2px 2px 2px #999;
+	display: block;
+}
+
+$class span.boxdate span.wSat {
+	color: #00ffff;
+}
+
+$class span.boxdate span.wSun {
+	color: #ff6347;
+}
+
+$class span.boxdate span.dSat {
+	color: blue;
+}
+
+$class span.boxdate span.dSun {
+	color: red;
+}
+
+$class span.boxdate span.month {
+	font-size: 14px;
+	font-weight: bold;
+	font-family: "Times New Roman";
+	color: #445588;
+	display: block;
+}
+
+$class span.boxdate span.year {
+	font-size: 11px;
+	font-weight: bold;
+	background: #223355;
+	color: #FFFFFF;
+	display: block;
+}
+
+$class span.boxdate a {
+	color: inherit;
+}
+
+$class div.boxdate_spacer {
+	margin: 0;
+	padding: 0;
+	height: 30px;
+}
+
+/* calendar*.inc.php */
+
+$class div.calendar_calendar {
+	width: auto;
+	float: left;
+}
+
+$class div.calendar_navi {
+	width: auto;
+	float: left;
+	color: dimgray;
+	border: 1px solid gray;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	margin: 10px;
+
+}
+
+$class div.calendar_navi_title {
+	font-size: 120%;
+	font-family: "Times New Roman";
+	padding-left: 5px;
+	/*background-color: silver;*/
+}
+
+$class div.calendar_navi_title:first-letter {
+	font-size: 180%;
+}
+
+$class div.calendar_navi dl {
+	font-family: Verdana,Arial,sans-serif;
+	margin: 5px 10px;
+}
+
+$class div.calendar_navi dt {
+	margin: 10px 5px;
+	display: inline;
+}
+
+$class div.calendar_navi dd {
+	margin: 10px 5px;
+	display: inline;
+}
+
+$class div.calendar_navi a,
+$class div.calendar_navi a:link,
+$class div.calendar_navi a:active,
+$class div.calendar_navi a:visited,
+$class div.calendar_navi a:hover {
+	font-weight: normal;
+}
+
+
+$class div.calendar_navi span {
+	padding: 1px 2px;
+	margin: 0 1px;
+	font-size: 12px; 
+	border: 1px solid gray;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+$class div.calendar_navi span.calendar_navi_have:hover {
+	border: 1px solid #ffd700;
+}
+
+$class div.calendar_navi span.calendar_navi_empty {
+	filter: alpha(opacity=25)
+	-moz-opacity: 0.25;
+	opacity: 0.25;
+}
+*html $class div.calendar_navi span.calendar_navi_empty,
+*+html $class div.calendar_navi span.calendar_navi_empty {
+	color: silver;
+	border-color: #dcdcdc;
+}
+
+$class div.calendar_entry_base {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	clear: both;
+}
+
+$class div.calendar_entry {
+	/*margin-top: 20px;*/
+}
+
+$class div.calendar_hr {
+	clear: both;
+	margin: 0;
+	padding: 0;
+	height: 15px;
+	background: #FFF url(./loader.php?src=buttonbg.gif) repeat-x scroll center bottom;
+	overflow: hidden;
+}
+
+$class div.calendar_hr hr {
+	position: relative;
+	top: 7px;
+	border: none;
+	height: 0;
+	margin: 0;
+	padding: 0;
+	color: transparent;
+}
+
+$class div.calendar_viewer {
+	clear: both;
+}
+
+$class table.style_calendar {
+	border: none;
+	padding: 0px;
+	border: 0px;
+	margin: 3px;
+	color: inherit;
+	background-color: #CCD5DD;
+	text-align: center;
+}
+
+$class table.style_calendar td {
+	text-align: center;
+	vertical-align: middle;
+	width: 2em;
+	height: 2em;
+	font-size: 0.9em;
+	overflow: hidden;
+	background-color: #F5F5F5;
+}
+
+$class table.style_calendar td.style_td_caltop {
+	font-size: 80%;
+	width: auto;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+$class table.style_calendar td.style_td_week {
+	background-color: #DDE5EE;
+	font-size: 80%;
+	font-weight: bold;
+}
+
+$class table.style_calendar td.style_td_today {
+	background-color: #FFFFDD;
+}
+
+$class table.style_calendar td.style_td_sat {
+	background-color: #DDE5FF;
+}
+
+$class table.style_calendar td.style_td_sun {
+	background-color: #FFEEEE;
+}
+
+$class table.style_calendar td.style_td_blank {
+
+}
+
+$class table.style_calendar td.style_td_day {
+	background-color: #FFFFFF;
+}
+
+$class table.style_calendar td div.style_td_written {
+	font-weight: bold;
+	background-image: url("loader.php?src=written.png");
+	background-repeat: no-repeat;
+}

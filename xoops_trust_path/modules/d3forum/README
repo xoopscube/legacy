@@ -1,0 +1,528 @@
+[mlimg]
+[xlang:en]
+============ D3FORUM ==============
+
+The REAL Innovative and Basic forum module for XOOPS.
+I -GIJOE- release this module with convidence though this module might be still buggy.
+
+Enjoy D3 World!
+
+
+[b]INSTALL[/b]
+
+(If necessary)
+- set up XOOPS_TRUST_PATH
+- install the latest altsys module (0.61 or upper)
+
+- Copy all files into your XOOPS.
+- Install it as usual D3 module. Of course, you can name the directory under modules/ freely.
+
+
+[b]AUTHOR[/b]
+
+GIJOE -basic designing and PHP coding-
+jidaikobo -template coding-
+
+
+[b]CHANGES[/b]
+
+0.85 beta (2009-01-19)
+- removed extra trim() handling post_text at post and edit
+- fixed compatibilities among autolink and the end of quotation tag
+- fixed D3commentAbstract triggers empty 'comment' events (thx spaceship)
+- added an option the order of comments
+- modified comment integration class can override can_vote etc.
+- modifeid templates easy to use
+- updated language files
+-- persian (thx stranger)
+-- portuguesebr (thx leco1)
+
+0.84 beta (2008-08-18)
+- fixed the post_id is passed for onUpdate() in comment-integration (thx toychee)
+- fixed a notice in output RSS
+- modified some exit()s to redirect_header()s (thx dekki)
+- modified comment-integration can notify new 'comment' from X2 (thx naao)
+- fixed external_link_id without external_link_fmt would be blank
+- added total topics/counts as redundant information for categories (thx suin)
+- modified default subject in the notifications
+- modified the history controller for admin
+- modified xoops_version for XCL2.1 friendly
+- modified d3forum.textsanitizer XCL2.1 preload friendly
+
+0.83 beta (2008-05-19)
+- added smarty plugin function.d3comment.php (don't forget copy it)
+- modified comment-integration the CLASS has a larger privileges
+- fixed small bugs
+- fixed legacy comment-integration cause fatal error (thx DJ_okamOTO) 0.83a
+
+0.82 beta (2008-02-24)
+- added import from cbb (not implemented - permissions, votes) (thx MrTheme)
+- fixed invalid html in some templates (thx hi-debow)
+- modified [1] won't be converted as a link automatically
+- updated language files
+-- persian (thx stranger)
+- added language files
+-- spanish (thx debianus)
+-- german (thx wuddels) 0.82a
+
+0.81 beta (2007-11-16)
+- modified post form reflects "Always attach my signature" of user data
+- modified new posts will be checked by "censor string"
+- fixed cutandpaste loses external_link_id
+- added RSS outputs
+
+0.80 beta (2007-10-11)
+- fixed Script Insertion in guest_url (thx kentaro)
+- updated language files
+-- french (thx gigamaster)
+- added language files
+-- fr_utf8 (thx gigamaster)
+- modified [ siteimg] is displayed as internal image (thx ask35) 0.80a
+- fixed {TOPIC_TITLE} is not assigned (thx ask35) 0.80a
+
+0.78 alpha (2007-09-28) update this module
+- added a configuration of default_options
+- changed default meaning of solved (solved=0 must mean unsolved)
+- added a batch action "turn all topics as solved" into category manager
+- added solved controller into listtopics_over_categories
+- added marking controller into listtopics_over_categories
+- fixed a wrong behavior of a checkbox for appoval
+- fixed a wrong error of "empty message" with a WYSIWYG editor
+- modified mysql.sql removing "NOT NULL" from text fields (thx moegiiro) 0.78a
+- fixed typo of method name in textsanitizer (thx enhiro) 0.78a
+- fixed typo in some templates (thx enhiro) 0.78b
+
+0.77 alpha (2007-09-27)
+- modified posts allowing HTML must be filtered by HTMLPurifier
+- added WYSIWYG editor (common/fckxoops)
+- modified the target for redirectiion after posting by quick form
+
+0.76 alpha (2007-09-26) update this module
+- added post's histories feature
+- modified templates of menu
+- fixed quick form with anti-spam (thx Ron)
+- added language files
+-- portuguese (thx Mikhail)
+-- pt_utf8 (thx Mikhail)
+-- portuguesebr (thx X-TRAD team)
+
+0.75 alpha (2007-08-22)
+- added quick post form into viewpost
+- added quick post form into listposts
+- modified a comment from quick form will be a member of existing topics
+- modified D3comment class adding methods like getPostsCount()
+
+0.74 alpha (2007-08-11)
+- fixed wrong " escaping in [ code] block with XCL2.1 (thx sippu)
+- added an option selecting forum into blocks
+- added a sorting option "average"
+- modified listtopics templates for some sites without voting feature
+- added an input form for topic_external_link_id ihnto topicmanager
+- modified forum/category form about overriding option
+- updated language files
+-- persian (thx voltan)
+
+0.73 alpha (2007-06-05)
+- modified AntiSPAM class japanese
+- modified some templates
+- changed some specs of comment integration class
+- added smarty's plugin function.d3forum_comment_postscount.php
+- added language files
+-- polish (thx kurak_bu)
+-- ja_utf8 (formerly japaneseutf) 0.73a
+
+0.72 alpha (2007-05-27)
+- modified templates by jidaikobo
+
+0.71 alpha (2007-05-21)
+- modified templates by jidaikobo
+- fixed comment's form does not have antiSpam elements
+- fixed escaping subject on d3comment integration
+- added an antiSPAM class
+-- japanese (only for Japanese. input reading of kanji) 0.71a
+- fixed typo in comment_functions.php (thx fanrun7) 0.71b
+
+0.70 alpha (2007-05-18)
+- changed the structure "altsys essential"
+- added language constants override system (with altsys>=0.5)
+- templatized mymenu (with altsys>=0.5)
+- changed a post without body will be refused
+- modified checking bbcode (number of quote) of post's body
+- modified d3comment will redirect to target of the comment after posting
+- added external_link_id validation system into class of d3comment
+- modfied the field of external_link_id from integer to varchar
+- templated index.css
+- added callback system into d3comment class
+- added a plugin for waiting module
+- modified d3comment can be selected its view from thread or flat
+- added guest's deletion
+- added antiSPAM system
+- added an antiSPAM class
+-- default (using JavaScript)
+
+0.60 (2007-05-14)
+- 1st release as beta
+- fixed export topic/forum into the other d3forum
+- fixed sync topic
+- updated D3 system
+- added language files
+-- japaneseutf
+- fixed incompatibility with XC Legacy 2.1 (0.60a)
+
+0.49
+- updated D3 system
+
+0.48
+- fixed xoops_breadcrumbs
+- fixed a config of posts_per_topic
+- fixed child link in listposts
+
+0.47
+- added hierarchical submenu
+
+0.46
+- added topic move/copy into the other d3forum in topicmanager
+- added forum move/copy into the other d3forum in forummanager
+
+0.45
+- fixed a bug in sync (thx nao-pon)
+- added xoops_breadcrumbs
+- added language files
+-- french (thx gigamaster)
+
+0.44
+- fixed minor bugs (thx Konstantine)
+- modified some templates
+- added language files
+-- persian (thx voltan)
+-- russian (thx Konstantine)
+
+0.43
+- merged the latest templates from jidaikobo
+
+0.42
+- implement native comment-integration
+
+0.41
+- merged jidaikobo's templates and images
+- language fixes
+
+0.40
+- update the module!
+- some fixes, new smarty plugin counting comments
+
+
+[b]How to use "comment-integration"[/b]
+
+== for conventional modules ==
+
+1. copy a plugin function.d3forum_comment of the archive into XOOPS_ROOT_PATH/class/smarty/plugins/
+2. make a new forum for integration under appropriate category.
+3. import from xoopscomments of a module into the forum.
+4. edit template like this.
+[/xlang:en]
+[xlang:ja]
+============ D3FORUM ==============
+
+XOOPS2用に0から設計し直したフォーラムモジュール。
+私-GIJOE-が、自信を持ってリリースしています。
+まだいくつかバグはあるでしょうが、D3モジュール群の中核を成す存在であり、D3モジュールを利用する以上はインストールが推奨されます。
+
+
+●インストール手順
+
+
+もしまだなら)
+- XOOPS_TRUST_PATH をセットアップする
+- 最新のaltsysモジュールをインストールする (0.61以上)
+
+- 利用中のXOOPSにアーカイブを展開してコピーする。この際、Smartyプラグインのコピーを忘れないこと
+- 通常のD3モジュールとしてインストールします。もちろん、ディレクトリ名は自由に決めることが出来ます
+
+
+●変更履歴
+
+0.85 beta (2009-01-19)
+- 投稿文を勝手に trim() するのを修正した
+- 自動リンクの直後に [ /quote] が来るとおかしくなるのを修正
+- コメント統合基底クラスが空のコメントをトリガーするのを修正 (thx spaceship)
+- コメント表示順をコントロールできるようにした
+- コメント統合クラス側で、can_vote などをコントロールできるようにした
+- 少しでも使いやすいようにテンプレートに管理者用リンクを追加した
+- 言語ファイル更新
+-- persian (thx stranger)
+-- portuguesebr (thx leco1)
+
+0.84 beta (2008-08-18)
+- コメント統合で常にpost_idがonUpdate()に渡るように修正 (thx toychee)
+- コメント統合で標準イベント通知である「コメント追加」に対応した (thx naao)
+- RSS出力時のNotice修正
+- exitで強制終了するうちのいくつかをuser.phpへのリダイレクトに変更 (thx dekki)
+- コメント統合用ではないフォーラムにコピーされたトピックの処理を修正
+- 総トピック数/投稿数の実装 (thx suin)
+- イベント通知で、極力投稿題名をSubjectに渡すように修正
+- 投稿履歴画面を使いやすくした
+- xoops_versionにXCL2.1風の定義をいつか追加した
+- textsanitizerのオーバーライドがXCL2.1用preloadとなるべく当たらないようにした
+
+0.83 beta (2008-05-19)
+- コメント統合プラグインをfunction.d3comment.php にまとめた （コピー忘れ注意！）
+- コメント統合において、コメント統合用クラスへ大きく権限委譲した
+- いくつかの細かいバグ修正
+- 旧タイプのコメント統合がエラーを引き起こすのを修正 (thx DJ_okamOTO) 0.83a
+
+0.82 beta (2008-02-24)
+- CBBからのインポートを実装した（ただし権限と投票は未実装）(thx MrTheme)
+- </li>のつけ忘れなどテンプレートのtypoを修正 (thx hi-debow)
+- [1] は自動リンクにならないよう仕様変更
+- 言語ファイル更新
+-- persian (thx stranger)
+- 言語ファイル追加
+-- spanish (thx debianus)
+-- german (thx wuddels) 0.82a
+
+0.81 beta (2007-11-16)
+- 「投稿に署名を必ず追加する」の反映
+- 禁止用語設定に対応（表示ではなく受取時に変換）
+- コメント統合でトピック分割するとexternal_link_idが保存されないバグを修正
+- RSS出力を追加
+
+0.80 beta (2007-10-11)
+- ゲストURLのScriptInsertion修正 (thx kentaro)
+- 言語ファイル更新
+-- french (thx gigamaster)
+- 言語ファイル追加
+-- fr_utf8 (thx gigamaster)
+- 外部画像表示がOFFでも[ siteimg]が表示されるように変更 (thx ask35) 0.80a
+- {TOPIC_TITLE} がアサインされていなかったのを修正 (thx ask35) 0.80a
+
+0.78 alpha (2007-09-28) 要モジュールアップデート
+- 投稿オプションの初期値を追加した
+- 解決済の処理を根本的に変更した（利用しない==全部解決済み）
+- カテゴリーマネージャに解決済バッチ処理を追加
+- トピック一覧からの解決済変更実装
+- トピック一覧からの注目変更実装
+- 投稿の承認チェックボックスの表示条件がおかしかったのを修正
+- WYSIWYGエディタがONだと「本文がありません」となってしまう不具合の修正
+- mysql.sql 内のtext NOT NULL,を修正 (thx moegiiro) 0.78a
+- テキストサニタイザのメソッド名typoを修正 (thx enhiro) 0.78a
+- テンプレートの細かなtypoを修正 (thx enhiro) 0.78b
+
+0.77 alpha (2007-09-27)
+- HTML許可時には無条件でHTMLPurifierを通過するようにした
+- common/fckxoops での編集を可能にした (HTML許可時のみ)
+- クイック投稿フォームからのリダイレクト先をトピック内投稿一覧に変更した
+
+0.76 alpha (2007-09-26) 要モジュールアップデート
+- 編集・削除ヒストリ機能追加（専用テーブルも追加）
+- テンプレート微調整
+- クイック投稿フォームにAnti-SPAM情報が渡っていなかったのを修正 (thx Ron)
+- 言語ファイル追加
+-- portuguese (thx Mikhail)
+-- pt_utf8 (thx Mikhail)
+-- portuguesebr (thx X-TRAD team)
+
+0.75 alpha (2007-08-22)
+- 投稿詳細内クイック投稿フォームの実装
+- 投稿一覧内クイック投稿フォームの実装
+- コメント投稿のクイックフォームからは、直前のトピックの子となるようにした
+- コメントコールバッククラスにd3forum側の投稿数などをカウントするメソッドを実装
+
+0.74 alpha (2007-08-11)
+- XCL2.1だと[ code]内の"が\"になってしまっているバグを修正 (thx sippu)
+- トピック・投稿一覧ブロックに、フォーラム指定を追加
+- トピックソートに平均点を追加
+- 投票機能を使わない時の表示方法を修正
+- トピック管理で、topic_external_link_idを編集可能とした
+- オプションオーバーライドをpicoと同等に判りやすくした
+- 言語ファイル更新
+-- persian (thx voltan)
+
+0.73 alpha (2007-06-05)
+- AntiSPAMクラスjapaneseの動作改善
+- テンプレートの微調整
+- コメント処理クラスの仕様一部変更
+- 投稿数をカウントするSmartyプラグイン function.d3forum_comment_postscount.php
+- 言語ファイル追加
+-- polish (thx kurak_bu)
+-- ja_utf8 (以前のjapaneseutfをリネーム) 0.73a
+
+0.72 alpha (2007-05-27)
+- jidaikoboさんのテンプレートを一通りマージ完了した
+
+0.71 alpha (2007-05-21)
+- jidaikoboさんのテンプレートを一部マージした
+- 直接コメントをつけるフォームにantiSpam要素が含まれていなかったのを修正
+- コメント統合時のサブジェクトエスケープ処理修正
+- AntiSPAMクラス追加
+-- japanese (漢字の読み方を入力してもらう方法) 0.71a
+- comment_functions.php に残っていたvar_dump()を削除 (thx fanrun7) 0.71b
+
+0.70 alpha (2007-05-18)
+- 正式にaltsys必須とした
+- 文字定数オーバーライドシステムを導入した（要altsys-0.5以上）
+- mymenuのテンプレート化（要altsys-0.5以上）
+- 本文のない投稿を弾くようにした
+- テーマを壊すようなbbcode (quote) を弾くようにした
+- コメント統合で、投稿後にできるだけ元のページに戻すようにした
+- コメント統合のリンクIDのvalidationを出来る仕組みを作った
+- リンクIDを整数型から文字列型に変更した（より広く活用できるように）
+- index.cssのテンプレート化
+- コメント統合のコールバック処理を実装した
+- waitingプラグイン追加
+- コメント統合をスレッドビューかフラットビューから選べるようにした
+- ゲストがパスワードで削除出来る機能を実装した
+- AntiSPAMシステムを実装した
+- AntiSPAMクラス追加
+-- default (JavaScriptによるもの)
+
+0.60 (2007-05-14)
+- β版としての最初のリリース
+- トピック/フォーラムのエクスポート機能で、親子関係が壊れていたのを修正
+- トピック同期のバグを修正
+- D3システムの更新（管理者メニューなど）
+- 言語ファイル追加
+-- japaneseutf
+- XC Legacy 2.1の非互換性修正 0.60a
+
+0.49
+- D3システムの更新
+
+0.48
+- xoops_breadcrumbsがバグっていたのを修正
+- トピック内投稿数の設定が効いていなかったのを修正
+- 子投稿のリンクがおかしかったのを修正
+
+0.47
+- 階層サブメニューに対応
+
+0.46
+- 他のd3forumへ、トピック単位の移動/コピーを実装
+- 他のd3forumへ、フォーラム単位の移動/コピーを実装
+
+0.45
+- 同期処理のバグを修正 (thx nao-pon)
+- xoops_breadcrumbs を実装
+- 言語ファイル追加
+-- french (thx gigamaster)
+
+0.44
+- いくつかの細かなバグの修正 (thx Konstantine)
+- テンプレートの微修正
+- 言語ファイル追加
+-- persian (thx voltan)
+-- russian (thx Konstantine)
+
+0.43
+- jidaikobo作の最新のテンプレートをマージした
+
+0.42
+- ネイティブなコメント統合機能の実装 (作成法はpicoを参照のこと）
+
+0.41
+- jidaikobo作の最新のテンプレートをマージした
+- 言語ファイルの修正
+
+0.40 ※要モジュールアップデート
+- 細かなバグフィックス
+- コメント数を表示するプラグイン作成
+
+
+●d3forumコメント統合の利用法
+
+・d3forumコメント統合対応モジュールに対して
+
+d3forumコメント統合を謳っているモジュールであれば、d3forum側で何の設定も必要ありません。必要に応じて、フォーラムを新規に作って、そのフォーラム番号をモジュール側に指定するだけです。
+
+・通常モジュールへのd3forumコメント統合
+
+1. アーカイブ内の function.d3forum_comment が、XOOPS_ROOT_PATH/class/smarty/plugins/ に存在することを確認
+2. コメント統合用に新規にフォーラムを作成する
+3. （必要に応じて）管理画面からxoopscommentsをそのフォーラムにインポートする
+4. 対象モジュールのテンプレートを以下の様に編集する
+[/xlang:ja]
+
+
+original:
+[code]
+<div style="text-align: center; padding: 3px; margin:3px;">
+  <{$commentsnav}>
+  <{$lang_notice}>
+</div>
+
+<div style="margin:3px; padding: 3px;">
+<!-- start comments loop -->
+<{if $comment_mode == "flat"}>
+  <{include file="db:system_comments_flat.html"}>
+<{elseif $comment_mode == "thread"}>
+  <{include file="db:system_comments_thread.html"}>
+<{elseif $comment_mode == "nest"}>
+  <{include file="db:system_comments_nest.html"}>
+<{/if}>
+<!-- end comments loop -->
+</div>
+[/code]
+
+modified:
+[code]
+<{d3forum_comment dirname=d3forum forum_id=[i](number)[/i] itemname="id" subject=$title}>
+[/code]
+
+
+[b]mydownloads[/b]
+mydownloads_singlefile.html
+[code]
+<{d3forum_comment dirname=d3forum forum_id=[i](number)[/i] itemname="lid" subject=$file.title|regex_replace:"/&nbsp;.*/":""}>
+[/code]
+mydownloads_download.html
+[code]
+<{d3forum_comment_topicscount dirname=d3forum forum_id=[i](number)[/i] link_id=$down.id}>
+[/code]
+
+
+[b]myAlbum-P[/b]
+myalbum_photo.html
+[code]
+<{d3forum_comment dirname=d3forum forum_id=[i](number)[/i] itemname="lid" subject=$photo.title}>
+[/code]
+[code]
+<{d3forum_comment_topicscount dirname=d3forum forum_id=[i](number)[/i] link_id=$photo.lid}>
+[/code]
+myalbum_photo_in_list.html
+[code]
+<{d3forum_comment_topicscount dirname=d3forum forum_id=[i](number)[/i] link_id=$photo.lid}>
+[/code]
+
+
+[b]bulletin2[/b]
+{dirname}_article.html
+[code]
+<{d3forum_comment dirname=d3forum forum_id=[i](number)[/i] itemname="storyid" subject=$story.title}>
+[/code]
+{dirname}_item.html (instead of <{$story.comentstotal}>)
+[code]
+Comments(<{d3forum_comment_topicscount dirname=d3forum forum_id=[i](number)[/i] link_id=$story.id}>)
+[/code]
+
+
+[b]xoopspoll[/b]
+xoopspoll_results.html
+[code]
+<{d3forum_comment dirname=d3forum forum_id=[i](number)[/i] itemname="poll_id" subject=$poll.question}>
+[/code]
+
+
+[b]TinyD[/b]
+tinycontent*_index.html
+[code]
+<{d3forum_comment dirname=d3forum forum_id=[i](number)[/i] itemname="id" subject=$xoops_pagetitle}>
+[/code]
+
+
+[b]PukiWikiMod[/b]
+tinycontent*_index.html
+[code]
+<{d3forum_comment dirname=d3forum forum_id=[i](number)[/i] itemname="pgid" subject=$xoops_pagetitle}>
+[/code]
+
+

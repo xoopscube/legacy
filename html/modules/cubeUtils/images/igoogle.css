@@ -1,0 +1,12 @@
+div.xoops-content ,
+div.xoops-content div,
+div.xoops-content table,
+div.xoops-content th,
+div.xoops-content tr,
+div.xoops-content td
+{
+	margin: 0px;
+	padding: 0px;
+	table-layout: fixed;
+    font-size: 9pt;
+}
