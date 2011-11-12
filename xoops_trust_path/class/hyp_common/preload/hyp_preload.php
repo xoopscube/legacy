@@ -252,6 +252,12 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 					}
 				}
 			}
+			if (isset($this->k_tai_conf['disabledBlockIds#'.XOOPS_URL])) {
+				$this->k_tai_conf['disabledBlockIds#'.XOOPS_URL] = array_filter($this->k_tai_conf['disabledBlockIds#'.XOOPS_URL]);
+			}
+			if (isset($this->k_tai_conf['limitedBlockIds#'.XOOPS_URL])) {
+				$this->k_tai_conf['limitedBlockIds#'.XOOPS_URL] = array_filter($this->k_tai_conf['limitedBlockIds#'.XOOPS_URL]);
+			}
 		}
 
 		parent::XCube_ActionFilter($controller);
@@ -411,12 +417,9 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 			}
 		}
 		if (! empty($this->k_tai_conf['limitedBlockIds']) && is_array($this->k_tai_conf['limitedBlockIds'])) {
-			$this->k_tai_conf['limitedBlockIds'] = array_filter($this->k_tai_conf['limitedBlockIds']);
-			if ($this->k_tai_conf['limitedBlockIds']) {
-				if (! in_array($block->getVar('bid'), $this->k_tai_conf['limitedBlockIds'])) {
-					$retBlock = new HypXCLDisabledBlock();
-					return;
-				}
+			if (! in_array($block->getVar('bid'), $this->k_tai_conf['limitedBlockIds'])) {
+				$retBlock = new HypXCLDisabledBlock();
+				return;
 			}
 		}
 	}
