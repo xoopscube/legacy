@@ -40,10 +40,10 @@ $modversion['hasMain'] = 1 ;
 
 // Submenu (just for mainmenu)
 $modversion['sub'] = array() ;
-if( is_object( @$GLOBALS['xoopsModule'] ) && $GLOBALS['xoopsModule']->getVar('dirname') == $mydirname ) {
+//if( is_object( @$GLOBALS['xoopsModule'] ) && $GLOBALS['xoopsModule']->getVar('dirname') == $mydirname ) {
 	require_once dirname(__FILE__).'/include/common_functions.php' ;
 	$modversion['sub'] = pico_common_get_submenu( $mydirname ) ;
-}
+//}	// for XCL2.1 distribution pack
 
 // All Templates can't be touched by modulesadmin.
 $modversion['templates'] = array() ;

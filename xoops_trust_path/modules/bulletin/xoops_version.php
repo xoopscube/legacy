@@ -88,10 +88,10 @@ $modversion['sub'][2]['url']  = 'index.php?page=archive';
 
 // Submenu (just for mainmenu)
 $modversion['sub'] = array() ;
-if( is_object( @$GLOBALS['xoopsModule'] ) && $GLOBALS['xoopsModule']->getVar('dirname') == $mydirname ) {
+//if( is_object( @$GLOBALS['xoopsModule'] ) && $GLOBALS['xoopsModule']->getVar('dirname') == $mydirname ) {
 	require_once dirname(__FILE__).'/include/common_functions.php' ;
 	$modversion['sub'] = bulletin_get_submenu( $mydirname ) ;
-}
+//}	// for XCL2.1 distribution pack
 
 // Search
 $modversion['hasSearch'] = 1 ;
