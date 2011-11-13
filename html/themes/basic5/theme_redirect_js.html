@@ -1,0 +1,16 @@
+<{** --------- jgrowl -----------**}>
+<{if $is_redirected}>
+	<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_imageurl}>jquery.jgrowl.css" />
+	<{if ! in_array('jquery.jgrowl.js', $xugj_already_js) }>
+	<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery.jgrowl.js"></script>
+	<{/if}>
+<{literal}>
+	<script type="text/javascript">
+	jQuery(document).ready(function($){
+<{/literal}>
+		$.jGrowl("<{$redirect_message}>");
+<{literal}>
+	});
+	</script>
+<{/literal}>
+<{/if}>

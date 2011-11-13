@@ -1,0 +1,56 @@
+<!-- begin simple comment form -->
+<{if $forum.can_post && ! $plugin_params.no_form}>
+	<{include file="db:`$mydirname`_inc_post_form_quick.html" h2_title=$smarty.const._MD_D3FORUM_POSTASCOMMENTTOP quick_form_mode="sametopic"}>
+<{/if}>
+<!-- end simple comment form -->
+
+<h2 class="head"><{if $plugin_params.h2_comments}><{$plugin_params.h2_comments}><{else}><{$smarty.const._MD_D3FORUM_COMMENTSLIST}><{/if}></h2>
+
+<{if $pagenav}><div class="d3f_pagenav"><{$pagenav}></div><{/if}>
+
+<{if $forum.can_post && $plugin_params.no_form}>
+
+	<!-- link to comment input form -->
+	<div><a href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>&amp;external_link_id=<{$external_link_id|escape:"url"}>&amp;subject=<{$subject|escape:"url"}>"><{if $plugin_params.link_to_form}><{$plugin_params.link_to_form}><{else}><{$smarty.const._MD_D3FORUM_POSTASCOMMENTTOP}><{/if}></a></div>
+
+<{/if}>
+
+
+<!-- top of posts -->
+<div class="d3f_wrap" id="d3comment_listposts_flat">
+<{foreach item=post from=$posts}>
+
+<div class="head d3f_head">
+	<a href="<{$mod_url}>/index.php?post_id=<{$post.id}>" id="post_path<{$post.unique_path}>" name="post_path<{$post.unique_path}>"><{$post.subject}></a>
+</div>
+<div class="d3f_info_ctrl d3f_info_ctrl02">
+	<{if $post.can_edit}>
+	<a href="<{$mod_url}>/index.php?page=edit&amp;post_id=<{$post.id}>"><{$smarty.const._MD_D3FORUM_POSTEDIT}></a> |
+	<{/if}>
+	
+	<{if $post.can_delete}>
+	<a href="<{$mod_url}>/index.php?page=delete&amp;post_id=<{$post.id}>"><{$smarty.const._MD_D3FORUM_POSTDELETE}></a> |
+	<{/if}>
+	
+	<{if $post.can_reply}>
+	<a href="<{$mod_url}>/index.php?page=reply&amp;post_id=<{$post.id}>"><{$smarty.const._MD_D3FORUM_POSTREPLY}></a>
+	<{/if}>
+</div>
+<div class="d3f_info even">
+	<{if $post.poster_uid != 0}><a href="<{$xoops_url}>/userinfo.php?uid=<{$post.poster_uid}>"><{$post.poster_uname}></a><{else}><{$post.poster_uname}> <span class="d3f_trip"><{$post.guest_trip}></trip><{/if}>&nbsp;
+
+	<{$smarty.const._MD_D3FORUM_ON}> <{$post.post_time_formatted}> <{if $post.post_time < $post.modified_time}> | <span title="<{$post.modified_time_formatted}>"><{$smarty.const._MD_D3FORUM_LASTMODIFIED}></span><{/if}>
+</div>
+<div class="d3f_body d3f_body02">
+	<{$post.post_text}>
+</div>
+
+
+<{/foreach}>
+</div>
+<!-- bottom of posts -->
+
+<div class="d3f_link"><a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>&amp;external_link_id=<{$external_link_id|escape:"url"}>"><{$smarty.const._MD_D3FORUM_LINK_LISTALLCOMMENTS}></a></div>
+
+<{if $pagenav}><div class="d3f_pagenav"><{$pagenav}></div><{/if}>
+

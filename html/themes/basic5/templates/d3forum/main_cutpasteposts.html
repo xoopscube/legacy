@@ -1,0 +1,49 @@
+<!-- start module contents -->
+<{* toggle *}>
+<{if $mod_config.show_breadcrumbs}>
+<div class="d3f_breadcrumbs">
+	<a href="<{$mod_url}>/index.php"><{$smarty.const._MD_D3FORUM_TOP}></a>
+	&nbsp;&gt;&nbsp;
+	<a href="<{$mod_url}>/index.php?cat_id=<{$category.id}>"><{$category.title}></a> &nbsp;&gt;&nbsp;
+	<a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>"><{$forum.title}></a>&nbsp;&gt;&nbsp;
+	<{if $topic.id}><a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>"><{$topic.title}></a>&nbsp;&gt;&nbsp;<{/if}>
+	<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>
+</div>
+<{/if}>
+
+<h1 class="d3f_title"><{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}></h1>
+
+<dl id="post_reference" class="outer">
+	<dt class="head"><{$reference_subject}></dt>
+	<dd class="even"><{$smarty.const._MD_D3FORUM_BY}>: <{$reference_name}> <{$smarty.const._MD_D3FORUM_ON}>: <{$reference_date}></dd>
+	<dd class="odd"><{$reference_message}></dd>
+	<dd class="even"><{$smarty.const._MD_D3FORUM_CHILDREN_COUNT}> : <{$children_count}><br /><{$smarty.const._MD_D3FORUM_PARENT_POSTID}> : <{$post.pid}></dd>
+</dl>
+
+<h2 class="d3f_head"><{$smarty.const._MD_D3FORUM_CUTPASTEBYPOSTIDSBJ}></h2>
+
+<form name="cutpastebypostid" id="cutpastebypostid" action="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$post_id}>" method="post">
+
+	<p><{$smarty.const._MD_D3FORUM_CUTPASTEBYPOSTIDDSC}></p>
+	<p class="d3f_bbsviewctrl"><label for="pid"><{$smarty.const._MD_D3FORUM_CUTPASTEBYPOSTID_DEST}></label>
+	<input type="text" name="pid" id="pid" size="12" maxlength="12" value="" style="ime-mode:disabled;text-align:right;" />
+	<input type="submit" name="cutpastepostsok" id="cutpastepostsok" value="<{$smarty.const._SUBMIT}>" /></p>
+
+</form>
+
+<{if $post.pid}>
+	<h2 class="d3f_head"><{$smarty.const._MD_D3FORUM_CUTPASTETOPICDIVSBJ}></h2>
+	<p><{$smarty.const._MD_D3FORUM_CUTPASTETOPICDIVDSC}></p>
+<{else}>
+	<h2 class="d3f_head"><{$smarty.const._MD_D3FORUM_CUTPASTEBYFORUMIDSBJ}></h2>
+	<p><{$smarty.const._MD_D3FORUM_CUTPASTEBYFORUMIDDSC}></p>
+<{/if}>
+
+<form name="cutpastebyforumid" id="cutpastebyforumid" action="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$post_id}>" method="post">
+
+	<p class="d3f_bbsviewctrl"><label for="forum_id"><{$smarty.const._MD_D3FORUM_CUTPASTEBYFORUMID_DEST}></label>
+	<select name="forum_id"><{$forum_jumpbox_options}></select>
+	<input type="submit" name="cutpastepostsok" id="cutpastepostsok" value="<{$smarty.const._SUBMIT}>" /></p>
+
+</form>
+<!-- end module contents -->

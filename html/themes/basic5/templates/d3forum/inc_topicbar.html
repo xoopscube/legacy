@@ -1,0 +1,66 @@
+<{strip}>
+
+<!-- forum controller -->
+<ul class="d3f_ctrl">
+	<!-- new topic -->
+	<{if $forum.external_link_format}>
+		<li><{$smarty.const._MD_D3FORUM_FORUMASCOMMENT_DESC}></li>
+	<{elseif $forum.can_post}>
+		<li><a href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>"><{$smarty.const._MD_D3FORUM_POSTASNEWTOPICTOTHISFORUM}></a></li>
+	<{else}>
+		<li><{$smarty.const._MD_D3FORUM_CANTCREATENEWTOPICTHISFORUM}></li>
+	<{/if}>
+	
+	<{if ! $xoops_isuser}>
+		<!-- guest can post or not -->
+		<{if $forum.can_post}>
+			<li><{$smarty.const._MD_D3FORUM_GUESTSCANPOST_DESC}></li>
+		<{else}>
+			<li><{$smarty.const._MD_D3FORUM_GUESTSCANNOTPOST_DESC}></li>
+		<{/if}>
+	<{/if}>
+</ul>
+
+<{capture name="topic_controller"}>
+	<{if $topic.locked}>
+		<!-- locked -->
+		<li><strong><{$smarty.const._MD_D3FORUM_TOPICLOCKED_DESC}></strong></li>
+	<{/if}>
+
+	<{if $uid && $mod_config.allow_mark}>
+		<!-- marked -->
+		<{if $topic.u2t_marked}><li><{$smarty.const._MD_D3FORUM_MARKEDYES_DESC}> : <a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>"><{$smarty.const._MD_D3FORUM_MARK_TURNOFF}></a></li>
+		<{else}>
+		<li><{$smarty.const._MD_D3FORUM_MARKEDNO_DESC}> : <a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>"><{$smarty.const._MD_D3FORUM_MARK_TURNON}></a></li>
+		<{/if}>
+	<{/if}>
+	
+	<{if $forum.isadminormod && $mod_config.use_solved}>
+		<!-- solved -->
+		<{if $topic.solved}>
+		<li><{$smarty.const._MD_D3FORUM_SOLVEDYES_DESC}> : <a href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>"><{$smarty.const._MD_D3FORUM_SOLVED_TURNOFF}></a></li>
+		<{else}>
+		<li><{$smarty.const._MD_D3FORUM_SOLVEDNO_DESC}> : <a href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>"><{$smarty.const._MD_D3FORUM_SOLVED_TURNON}></a></li>
+		<{/if}>
+	<{/if}>
+	
+	<{if $forum.isadminormod}>
+
+		<{if $topic.invisible}>
+			<!-- invisible -->
+			<li><strong><{$smarty.const._MD_D3FORUM_TOPICINVISIBLE}></strong></li>
+		<{/if}>
+
+		<!-- topic manager -->
+		<li><a href="<{$mod_url}>/index.php?page=topicmanager&amp;topic_id=<{$topic.id}>" title="<{$smarty.const._MD_D3FORUM_TOPICMANAGER_DESC}>"><{$smarty.const._MD_D3FORUM_TOPICMANAGER}></a></li>
+	<{/if}>
+<{/capture}>
+
+<{if $smarty.capture.topic_controller}>
+<!-- topic controller -->
+<ul class="d3f_ctrl">
+	<{$smarty.capture.topic_controller}>
+</ul>
+<{/if}>
+
+<{/strip}>

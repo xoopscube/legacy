@@ -1,0 +1,226 @@
+<{* $Id: page_detail.html,v 1.5 2010/11/04 02:24:16 ohwada Exp $ *}>
+<!--- page detail --->
+
+<{* === gmap js === *}>
+<{if $show_gmap }>
+  <{include file="db:`$mydirname`_inc_gmap_js.html" }>
+  <{include file="db:`$mydirname`_inc_gmap_icons.html" }>
+  <{include file="db:`$mydirname`_inc_gmap_makers.html" }>
+<{/if}>
+<{* === gmap js end === *}>
+
+<{* === timeline js === *}>
+<{if $show_timeline }>
+  <{$timeline_js }>
+<{/if}>
+<{* === timeline js end === *}>
+
+<{* === windows js === *}>
+<{if $show_js_window }>
+<script type="text/javascript">
+//<![CDATA[
+<{if $show_js_boxlist }>
+  var webphoto_box_list = "<{$js_boxlist}>";
+<{/if}>
+<{if $show_js_load }>
+  window.onload   = <{$js_load}>;
+<{/if}>
+<{if $show_js_unload }>
+  window.onunload = <{$js_unload}>;
+<{/if}>
+//]]>
+</script>
+<{/if}>
+<{* === windows js end === *}>
+
+<{if $show_index_desc && ($cfg_index_desc != '') }>
+  <div class="webphoto_index_desc">
+  <{$cfg_index_desc}>
+  </div>
+<{/if}>
+
+<{* === tag cloud === *}>
+<{if $show_tagcloud }>
+  <div id="webphoto_box_tagcloud_b">
+  <a href="javascript:webphoto_box_visible_flip('webphoto_box_tagcloud', 0)">
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/box_minus.png" width="16" height="16" border="0" alt="minus" />
+  <{$lang_tagcloud_off}></a> <br />
+  <div class="webphoto_tagcloud" >
+  <{foreach from=$tagcloud item=tagc }>
+    <a href="<{$tagc.link}>" style="text-decoration:none;padding:2px;font-size:<{$tagc.size}>px;">
+    <{$tagc.name|escape}></a>
+  <{/foreach}>
+  </div>
+  </div>
+
+  <div id="webphoto_box_tagcloud_a" style="display:none">
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/box_plus.png" width="16" height="16" border="0" alt="minus" />
+  <a href="javascript:webphoto_box_visible_flip('webphoto_box_tagcloud', 1)">
+  <{$lang_tagcloud_on}></a>
+  </div>
+<{/if}>
+
+<{* === cat list === *}>
+<{if $show_catlist }>
+  <div id="webphoto_box_catlist_a" style="display:none">
+  <a href="javascript:webphoto_box_visible_flip('webphoto_box_catlist', 1)">
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/box_minus.png" width="16" height="16" border="0" alt="minus" />
+  <{$lang_catlist_off}></a> <br />
+  <div class="webphoto_categories" >
+  <{include file="db:`$mydirname`_inc_catlist.html"}>
+  </div>
+  </div>
+
+  <div id="webphoto_box_catlist_b">
+  <a href="javascript:webphoto_box_visible_flip('webphoto_box_catlist', 0)">
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/box_plus.png" width="16" height="16" border="0" alt="minus" />
+  <{$lang_catlist_on}></a>
+  </div>
+<{/if}>
+
+<{* === timeline === *}>
+<{if $show_timeline }>
+  <div id="webphoto_box_timeline_b">
+  <a href="javascript:webphoto_box_timeline_off()">
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/box_minus.png" width="16" height="16" border="0" alt="minus" />
+  <{$lang_timeline_off}></a> <br />
+
+  <{if $show_timeline_large }>
+    <div class="webphoto_timeline_navi">
+    <{if $cfg_use_pathinfo }>
+      <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php/timeline/">
+    <{else}>
+      <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?op=timeline">
+    <{/if}>
+    <{$lang_timeline_large}></a> 
+    </div>
+  <{/if}>
+
+  <{if $show_timeline_unit }>
+    <div class="webphoto_timeline_navi">
+    <a href="#" onClick="return webphoto_timeline_zoom( this,'<{$mode}>','decade')">
+    <{$lang_timeline_scale_decade}></a> |
+    <a href="#" onClick="return webphoto_timeline_zoom( this,'<{$mode}>','year')">
+    <{$lang_timeline_scale_year}></a> |
+    <a href="#" onClick="return webphoto_timeline_zoom( this,'<{$mode}>','month')">
+    <{$lang_timeline_scale_month}></a> |
+    <a href="#" onClick="return webphoto_timeline_zoom( this,'<{$mode}>','week')">
+    <{$lang_timeline_scale_week}></a> 
+    </div>
+  <{/if}>
+
+  <div id="<{$timeline_element}>" class="<{$timeline_class}>">Loading ...</div>
+
+  <div class="webphoto_timeline_caution">
+  <{$lang_timeline_caution_ie}>
+  </div>
+
+  </div>
+
+  <div id="webphoto_box_timeline_a" style="display:none">
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/box_plus.png" width="16" height="16" border="0" alt="minus" />
+  <a href="javascript:webphoto_box_timeline_on()">
+  <{$lang_timeline_on}></a> </a>
+  </div>
+
+  <br />
+<{/if}>
+
+<{* === gmap === *}>
+<{if $show_gmap }>
+  <div id="webphoto_box_gmap_b">
+  <a href="javascript:webphoto_box_gmap_off()">
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/box_minus.png" width="16" height="16" border="0" alt="minus" />
+  <{$lang_gmap_off}></a> <br />
+  <{$lang_gmap_desc}><br />
+
+  <{if $show_map_large }>
+    <div class="webphoto_gmap_navi">
+    <{if $cfg_use_pathinfo }>
+      <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php/map/">
+    <{else}>
+      <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?op=map">
+    <{/if}>
+    <{$lang_map_large}></a> 
+    </div>
+  <{/if}>
+
+  <div id="webphoto_gmap_map" class="<{$gmap_class}>">Loading ...</div>
+  <div id="webphoto_gmap_not_compatible" class="webphoto_error"></div>
+  </div>
+
+  <div id="webphoto_box_gmap_a" style="display:none">
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/box_plus.png" width="16" height="16" border="0" alt="minus" />
+  <a href="javascript:webphoto_box_gmap_on()">
+  <{$lang_gmap_on}></a> </a>
+  </div>
+
+  <br />
+<{/if}>
+
+<{* === title for normal === *}>
+<{if $show_title && $sub_title_s }>
+  <div class="webphoto_sub_title_total">
+  <span class="webphoto_sub_title"><{$sub_title_s}></span>
+  Total <{$photo_total}>
+<{if $show_rss_icon }>
+  <{include file="db:`$mydirname`_inc_rss_icon.html" }>
+<{/if}>
+  </div>
+<{/if}>
+<{* === title end === *}>
+
+<{if $cat_desc_disp != '' }>
+  <div class="webphoto_cat_desc"><{$cat_desc_disp}></div>
+<{/if}>
+
+<{if $sub_desc_s != '' }>
+  <div class="webphoto_sub_desc"><{$sub_desc_s}></div>
+<{/if}>
+
+
+<{if $show_random_more }>
+  <div class="webphoto_sub_desc">
+  <{if $cfg_use_pathinfo }>
+    <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php/random/">
+  <{else}>
+    <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?op=random">
+  <{/if}>
+  <{$lang_random_more}></a>
+  </div>
+<{/if}>
+
+
+<{* === photo list === *}>
+<{if $show_photo_list }>
+  <{include file="db:`$mydirname`_inc_photo_list.html" }>
+<{/if}>
+<{* === photo list end === *}>
+
+<{* === photo footer end === *}>
+<{if $show_navi }>
+  <div class="webphoto_index_photo_footer">
+  <{include file="db:`$mydirname`_inc_navi.html" }>
+  </div>
+<{/if}>
+<{* === photo footer end === *}>
+
+
+<{* === notification === *}>
+<{if $show_notification_select }>
+  <div align="center">
+    <{include file="db:`$mydirname`_inc_notification_select.html"}>
+  </div>
+  <br />
+<{/if}>
+
+<hr />
+<noscript>
+  <div class="webphoto_error"><{$lang_js_invalid}></div>
+</noscript>
+
+
+<{if $is_module_admin }>
+  <br />
+  <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/admin/index.php"><{$lang_goto_admin}></a>
+<{/if}>

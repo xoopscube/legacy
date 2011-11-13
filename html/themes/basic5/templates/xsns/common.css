@@ -1,0 +1,84 @@
+td.even {
+}
+
+td.odd {
+}
+
+th.userMenu {
+	background-color: #4682b4;
+}
+
+span.selectedPage{
+	background-color: #cceeff;
+}
+
+tr td.bg0 {
+	background-color: #d6e1ea;
+}
+
+tr td.bg1 {
+	background-color: #c2cdd6;
+}
+
+span.red {
+	font-weight: normal;
+	color: #ff0000;
+}
+
+div#mainFrame { /* marine modifi width:600px to 100% */
+	width: 100%;
+}
+
+input.submit {
+	width: 80px;
+	cursor: pointer;
+}
+
+input.submitS {
+	width: 40px;
+	cursor: pointer;
+}
+
+input.submitL {
+	width: 150px;
+	cursor: pointer;
+}
+
+.centerH {
+	text-align: center;
+}
+
+.centerV {
+	vertical-align: middle;
+}
+
+.centerHV {
+	text-align: center;
+	vertical-align: middle;
+}
+
+td.msgFrame {
+	text-align: center;
+	vertical-align: middle;
+	padding: 15px 0 15px 15px;
+}
+
+div.msgFrame {
+	text-align: left;
+	vertical-align: middle;
+	margin: 15px 0 15px 15px;
+}
+
+td.submitFrame {
+	text-align: center;
+	padding: 15px 0 15px 0;
+}
+
+td.blankRow {
+	padding: 3px 0 3px 0;
+}
+
+textarea {
+	font-size: 10pt;
+}
+

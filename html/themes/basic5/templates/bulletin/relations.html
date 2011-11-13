@@ -1,0 +1,18 @@
+<{strip}>
+
+<{if $relations}>
+<br />
+<div class="item">
+  <div class="itemHead"><{$smarty.const._MD_RELATION}></div>
+  <div class="itemInfo">
+  <ul>
+  <{foreach item=r from=$relations}>
+    <li><a href="<{$r.url}>/index.php?page=article&amp;storyid=<{$r.storyid}>"><{$r.title}></a> (<{$r.date}>)</li>
+  <{/foreach}>
+  </ul>
+  </div>
+</div>
+
+<{/if}>
+
+<{/strip}>
