@@ -8,43 +8,43 @@ header("Cache-Control: public, max-age=$icon_cache_limit");
 header("Last-Modified: ".date('r',intval(time()/$icon_cache_limit)*$icon_cache_limit));
 header("Content-type: image/png");
 
-// file name
-if( ! empty( $_GET['file'] ) ) {
-	$file_base = preg_replace( '/[^0-9a-z_]/' , '' , $_GET['file'] ) ;
-} else {
-	$file_base = 'module_icon' ;
-}
-
-// branches by cores
-//if( defined( 'ICMS_TRUST_PATH' ) ) {
-//	$draw_dirname = false ;
-//	$file_base .= '_icms' ;
-//} else if( defined( 'XOOPS_CUBE_LEGACY' ) ) {
-if( defined( 'XOOPS_CUBE_LEGACY' ) ) {
-	$draw_dirname = true ;
-	$file_base .= '_xcl' ;
-	$px_y = 8;
-	$strwidth = 7 * strlen( $mydirname );
-	if ($strwidth > 79) {
-		$px = max(0, 126 - $strwidth);
-	} else {
-		$px = 47;
-		$px = ( 79 - $strwidth ) / 2 + 47 ;
-	}
-} else {
-	$draw_dirname = true ;
-	$px_y = 34;
-	$px = ( 92 - 6 * strlen( $mydirname ) ) / 2 ;
-}
-
-// icon files must be PNG
-$file = $file_base . '.png' ;
-
 // custom icon
-if( file_exists( $mydirpath.'/'.$file ) ) {
+if( file_exists( $mydirpath.'/module_icon.png' ) ) {
 	$draw_dirname = false ;
 	$icon_fullpath = $mydirpath.'/module_icon.png' ;
 } else {
+	// file name
+	if( ! empty( $_GET['file'] ) ) {
+		$file_base = preg_replace( '/[^0-9a-z_]/' , '' , $_GET['file'] ) ;
+	} else {
+		$file_base = 'module_icon' ;
+	}
+
+	// branches by cores
+	//if( defined( 'ICMS_TRUST_PATH' ) ) {
+	//	$draw_dirname = false ;
+	//	$file_base .= '_icms' ;
+	//} else if( defined( 'XOOPS_CUBE_LEGACY' ) ) {
+	if( defined( 'XOOPS_CUBE_LEGACY' ) ) {
+		$draw_dirname = true ;
+		$file_base .= '_xcl' ;
+		$px_y = 8;
+		$strwidth = 7 * strlen( $mydirname );
+		if ($strwidth > 79) {
+			$px = max(0, 126 - $strwidth);
+		} else {
+			$px = 47;
+			$px = ( 79 - $strwidth ) / 2 + 47 ;
+		}
+	} else {
+		$draw_dirname = true ;
+		$px_y = 34;
+		$px = ( 92 - 6 * strlen( $mydirname ) ) / 2 ;
+	}
+
+	// icon files must be PNG
+	$file = $file_base . '.png' ;
+
 	$icon_fullpath = dirname(__FILE__).'/images/'.$file ;
 }
 
