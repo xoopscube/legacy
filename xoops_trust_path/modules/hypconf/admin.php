@@ -55,7 +55,7 @@ if( ! empty( $_GET['lib'] ) ) {
 		die( 'wrong request' ) ;
 	}
 } else {
-	include_once dirname(__FILE__).'/include/func.php' ;
+	include_once dirname(__FILE__).'/include/admin_func.php' ;
 	$constpref = '_MI_' . strtoupper( $mydirname ) ;
 
 	// load language files (main.php & admin.php)

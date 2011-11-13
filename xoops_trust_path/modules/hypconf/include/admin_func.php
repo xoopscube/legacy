@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2011/11/09 by nao-pon http://xoops.hypweb.net/
- * $Id: func.php,v 1.1 2011/11/10 12:31:33 nao-pon Exp $
+ * $Id: admin_func.php,v 1.1 2011/11/13 00:01:26 nao-pon Exp $
  */
 
 function hypconfSetValue(& $config, $page) {
