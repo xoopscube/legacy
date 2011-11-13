@@ -282,7 +282,8 @@ p {
 .subContainer .btnList li {
 	border: 0 none;
 }
-.subContainer .btnList li a {
+.subContainer .btnList li a ,
+#mainmenu li a.menuSub {
 	padding-left: 1.5em;
 	padding-top: 10px;
 	padding-bottom: 10px;
