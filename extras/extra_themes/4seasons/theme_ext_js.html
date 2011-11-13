@@ -1,0 +1,26 @@
+<!--[if IE 6]>
+<script type="text/javascript" src="<{$xoops_imageurl}>js/DD_belatedPNG_0.0.8a-min.js"></script>
+	<script>
+		DD_belatedPNG.fix('img, #h_img,#breadcrumbs, #Sitename, #middleline_c, #Wrapper, #CenterWrapper, #Footer');
+	</script>
+<![endif]-->
+<script src="<{$xoops_imageurl}>js/jquery.socialbutton-1.8.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($){
+	// Twitter / Tweet Button
+	jQuery('.twitter').socialbutton('twitter', {
+		button: 'horizontal',
+      //  text: 'twitter', // text
+      //  via: 'marine' // name
+	});
+	// Facebook / Like button
+	jQuery('.facebook_like').socialbutton('facebook_like', {
+		button: 'button_count'
+	});
+	// Facebook / Share button
+	jQuery('.facebook_share').socialbutton('facebook_share', {
+		button: 'button',
+       //  text: 'share'  
+	});
+});
+</script>

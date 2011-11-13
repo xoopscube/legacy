@@ -1,0 +1,194 @@
+/******************************************************************************/
+/* css for header-menu */
+/******************************************************************************/
+
+
+/* Header Menu */
+#menu_m {
+	position:relative;
+	height:30px;
+  width:990px;
+	margin-left:20px ;
+}
+#menu_m a:link,
+#menu_m a:visited {	
+    color: #000;
+	text-decoration: none;
+}
+#menu_m a:hover {	
+    color: blue;
+}
+
+#menu_m ul {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 30px;
+}
+#menu_m ul li {
+	display: block;
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 30px;
+	line-height:30px;
+}
+#menu_m ul li a {
+	text-decoration: none;
+	display: block;
+	font-size: 14px;
+	padding: 3px 20px 0 20px;
+	outline: none;
+}
+* html #menu_m ul li {
+	display: inline;
+}
+* html #menu_m ul li a {
+	display: inline;
+}
+
+#menu_s {
+	position:relative;
+	padding:0;
+	padding-top:6px;
+	height:30px;
+	width:100%;
+}
+#menu_ss {
+	text-align:center;
+	margin: 20 auto;
+	font-size:12px;
+}
+
+
+/* Header Menu colors */
+#menu_m a:link,
+#menu_m a:visited {	
+    color: #000;
+}
+#menu_m a:hover {	
+    color: blue;
+}
+
+#menu_m ul {
+}
+#menu_m ul li {
+  background: transparent;
+	float:left;
+	margin-right:3px;
+}
+#menu_m ul li a {
+	color: #000;
+}
+* html #menu_m ul li a:hover {
+	display:inline;
+}
+
+#menu_m ul li a.mm_home,
+#menu_m ul li a.mm_a ,
+#menu_m ul li a.mm_b ,
+#menu_m ul li a.mm_c ,
+#menu_m ul li a.mm_d ,
+#menu_m ul li a.mm_e ,
+#menu_m ul li a.mm_f ,
+#menu_m ul li a.mm_g ,
+#menu_m ul li a.mm_h ,
+#menu_m ul li a.mm_i ,
+#menu_m ul li a.mm_j {
+	margin-top:0px;
+}
+#menu_m ul li a.mm_home:hover ,
+#menu_m ul li a.mm_a:hover ,
+#menu_m ul li a.mm_b:hover ,
+#menu_m ul li a.mm_c:hover ,
+#menu_m ul li a.mm_d:hover ,
+#menu_m ul li a.mm_e:hover ,
+#menu_m ul li a.mm_f:hover ,
+#menu_m ul li a.mm_g:hover ,
+#menu_m ul li a.mm_h:hover ,
+#menu_m ul li a.mm_i:hover ,
+#menu_m ul li a.mm_j:hover {
+  background: #ddd;
+}
+* html #menu_m ul li a.mm_home:hover ,
+* html #menu_m ul li a.mm_a:hover ,
+* html #menu_m ul li a.mm_b:hover ,
+* html #menu_m ul li a.mm_c:hover ,
+* html #menu_m ul li a.mm_d:hover ,
+* html #menu_m ul li a.mm_e:hover ,
+* html #menu_m ul li a.mm_f:hover ,
+* html #menu_m ul li a.mm_g:hover ,
+* html #menu_m ul li a.mm_h:hover ,
+* html #menu_m ul li a.mm_i:hover ,
+* html #menu_m ul li a.mm_j:hover {
+	padding:20px;
+}
+
+#menu_m ul li a.mm_homes ,
+#menu_m ul li a.mm_as ,
+#menu_m ul li a.mm_bs ,
+#menu_m ul li a.mm_cs ,
+#menu_m ul li a.mm_ds ,
+#menu_m ul li a.mm_es ,
+#menu_m ul li a.mm_fs ,
+#menu_m ul li a.mm_gs ,
+#menu_m ul li a.mm_hs ,
+#menu_m ul li a.mm_js {
+	padding: 0 20px;
+	height: 36px;
+	font-size:14px;
+	font-weight:bold;
+	line-height:30px;
+	margin-top:0px;
+	margin-bottom:-2px;
+	border-bottm:1px solid #fafafa;
+}
+
+#menu_m ul li div.act {
+	height: 33px;
+	line-height:28px;
+	margin-top:5px;
+	margin-bottom:-2px;
+	background:#fafafa;
+	-webkit-border-top-left-radius: 10px;	/* Safari,Google Chrome用 */
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-topleft: 10px;	/* Firefox用 */
+	-moz-border-radius-topright: 10px;
+-moz-box-shadow: 1px 1px 3px #000;
+-webkit-box-shadow: 1px 1px 3px #000;
+}
+* html #menu_m ul li div.act , * html #menu_m ul li div.act a:link , * html #menu_m ul li div.act a:visited {
+	float:left;
+	display:inline;
+	witespase:nowrap;
+	background:#fafafa;
+}
+
+#menu_m ul li div a:hover {
+	height: 24px;
+	line-height:24px;
+	margin-top:4px;
+	margin-bottom:0px;
+	-webkit-border-top-left-radius: 10px;	/* Safari,Google Chrome用 */
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-topleft: 10px;	/* Firefox用 */
+	-moz-border-radius-topright: 10px;
+	-webkit-box-shadow: inset 0px 0px 3px 0px #777; /* Safari, Chrome用 */
+	-moz-box-shadow: inset 0px 0px 3px 0px #777; /* Firefox用 */
+	box-shadow: inset 0px 0px 3px 0px #777; /* CSS3 */
+}
+
+#menu_s {
+	text-align:center;
+}
+
+#menu_s a:link,
+#menu_s a:visited {	
+    color: #000;
+}
+#menu_s a:hover {	
+    color: blue;
+}
+
+

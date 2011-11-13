@@ -1,0 +1,286 @@
+body {
+  background:url(images/wood13.jpg);
+}
+#Header {
+  background:transparent;
+}
+#h_img {
+  background:url(images/image11.png) no-repeat;
+}
+#outerwrapper {
+  background:url(images/base11.jpg) repeat-x;
+}
+#middleline {
+  background:transparent;
+}
+#middleline_c {
+  background:url(images/mc_back11.png) no-repeat;
+}
+#Container {
+  background:transparent;
+}
+#Wrapper {
+  background:url(images/w_back_b.png) bottom center no-repeat;
+}
+#CenterWrapper {
+  background:url(images/w_back.png) repeat-y;
+}
+
+* html #menu_m ul li ,* html #menu_m ul li a{
+	float:left;
+	display:inline;
+	witespase:nowrap;
+}
+
+/* Header Menu colors */
+#menu_m a:link,
+#menu_m a:visited {	
+  color: #fffacd  ;
+	font-weight:bold;
+}
+#menu_m a:hover {	
+  color: #1e90ff ;
+}
+/* Header Menu Selected colors */
+#menu_m ul li a.mm_homes:link ,#menu_m ul li a.mm_homes:visited ,
+#menu_m ul li a.mm_as:link ,#menu_m ul li a.mm_as:visited ,
+#menu_m ul li a.mm_bs:link ,#menu_m ul li a.mm_bs:visited ,
+#menu_m ul li a.mm_cs:link ,#menu_m ul li a.mm_cs:visited ,
+#menu_m ul li a.mm_ds:link ,#menu_m ul li a.mm_ds:visited ,
+#menu_m ul li a.mm_es:link ,#menu_m ul li a.mm_es:visited ,
+#menu_m ul li a.mm_fs:link ,#menu_m ul li a.mm_fs:visited ,
+#menu_m ul li a.mm_gs:link ,#menu_m ul li a.mm_gs:visited ,
+#menu_m ul li a.mm_hs:link ,#menu_m ul li a.mm_hs:visited ,
+#menu_m ul li a.mm_is:link ,#menu_m ul li a.mm_is:visited ,
+#menu_m ul li a.mm_js:link,#menu_m ul li a.mm_js:visited {
+	color:#000;
+  background: url(images/check.gif) right 5px no-repeat;
+}
+
+* html #menu_m ul li a.mm_home:hover ,
+* html #menu_m ul li a.mm_a:hover ,
+* html #menu_m ul li a.mm_b:hover ,
+* html #menu_m ul li a.mm_c:hover ,
+* html #menu_m ul li a.mm_d:hover ,
+* html #menu_m ul li a.mm_e:hover ,
+* html #menu_m ul li a.mm_f:hover ,
+* html #menu_m ul li a.mm_g:hover ,
+* html #menu_m ul li a.mm_h:hover ,
+* html #menu_m ul li a.mm_i:hover ,
+* html #menu_m ul li a.mm_j:hover {
+	color:#000 ;
+	height:30px;
+	line-height:30px;
+	margin-top:0px;
+	margin-bottom:0px;
+	padding-top:0px;
+	padding-bottom:0px;
+  background:transparent;
+}
+* html #menu_m ul li div.act a:hover {
+	height:28px;
+	line-height:28px;
+	margin-top:3px;
+	margin-bottom:10px;
+}
+
+/* Content */
+#CenterColumn {
+  background:transparent;
+}
+
+#CenterColumn  h2.BlockTitle {
+	padding-left:1.6em;
+	color: #000;
+	background: url(images/cl_004.gif) left center no-repeat;
+	border-bottom: #ccc 1px dashed;
+}
+#CenterColumn .BlockContent, #ModuleContents {
+	background:transparent ;
+}
+
+/* Center LR Column */
+#CenterLColumn {
+	background:transparent ;
+}
+#CenterRColumn {
+	background:transparent ;
+}
+
+
+/* Left Right Column */
+#LeftColumn {
+	background:transparent ;
+}
+#RightColumn {
+	background:transparent ;
+}
+
+/* Left Right Column Title */
+#LeftColumn h2.BlockTitle_a {
+	padding-left:1.6em;
+	color: #000;
+	background: url(images/cl_004.gif) left center no-repeat;
+	border-bottom: #ccc 1px dashed;
+}
+#LeftColumn h2.BlockTitle_b {
+	padding-left:1.6em;
+	color: #000;
+	background: url(images/cl_004.gif) left center no-repeat;
+	border-bottom: #ccc 1px dashed;
+}
+#LeftColumn h2.BlockTitle_c {
+	padding-left:1.6em;
+	color: #000;
+	background: url(images/cl_004.gif) left center no-repeat;
+	border-bottom: #ccc 1px dashed;
+}
+
+#RightColumn h2.BlockTitle_a {
+	padding-left:1.6em;
+	color: #000;
+	background: url(images/cl_004.gif) left center no-repeat;
+	border-bottom: #ccc 1px dashed;
+}
+#RightColumn h2.BlockTitle_b {
+	padding-left:1.6em;
+	color: #000;
+	background: url(images/cl_004.gif) left center no-repeat;
+	border-bottom: #ccc 1px dashed;
+}
+#RightColumn h2.BlockTitle_c {
+	padding-left:1.6em;
+	color: #000;
+	background: url(images/cl_004.gif) left center no-repeat;
+	border-bottom: #ccc 1px dashed;
+}
+
+/* Left Right Column Content */
+#LeftColumn .BlockContent_a {
+	color: #000;
+	background:transparent ;
+}
+#LeftColumn .BlockContent_b {
+	color: #000;
+	background:transparent ;
+}
+#LeftColumn .BlockContent_c {
+	color: #000;
+	background:transparent ;
+}
+
+#RightColumn .BlockContent_a {
+	color: #000;
+	background:transparent ;
+}
+#RightColumn .BlockContent_b {
+	color: #000;
+	background:transparent ;
+}
+#RightColumn .BlockContent_c {
+	color: #000;
+	background:transparent ;
+}
+
+#breadcrumbs {
+	color:#fff;
+	background:url(images/cl_004.gif) no-repeat;
+}
+#breadcrumbs a:link{
+	color:#fff;
+}
+#breadcrumbs a:visited{
+	color:#fff;
+}
+#breadcrumbs a:hover{
+	color:#fff;
+}
+#breadcrumbs a:active{
+	color:#fff;
+}
+
+/* Footer */
+#Footer {
+	color:#ffffe0  ;
+	background: url(images/footer.png) repeat-x;
+}
+#Footer a {
+	color:#000  ;
+}
+
+#Bottom {
+	color:#ffffe0  ;
+	background: url(images/footer_cr.png) ;
+}
+
+#BottomColumn {
+}
+#BottomColumn h2.BlockTitle {
+	color:#ffffe0  ;
+}
+#BottomColumn .BlockContent {
+	color:#ffffe0  ;
+}
+
+/* XOOPS Main Menu */
+#mainmenu, #usermenu {
+}
+#mainmenu li, #usermenu li {
+}
+#mainmenu a {
+}
+#mainmenu a:hover {
+	color:#006e54 ;
+	border-right:5px solid #00a381 ;
+}
+#mainmenu a.menuTop {
+	padding-left:2em;
+	background: url(images/cl_001.gif) left center no-repeat;
+}
+#mainmenu a.menuMain {
+	padding-left:2em;
+	background: url(images/cl_002.gif) left center no-repeat;
+}
+#mainmenu a.menuSub {
+	margin-left:1em;
+	padding-left:1.4em;
+	background: url(images/ya_006.gif) left center no-repeat;
+}
+
+/* XOOPS User Menu */
+#usermenu a {
+}
+#usermenu a:hover {
+	color:#006e54 ;
+	border-right:5px solid #00a381 ;
+}
+#usermenu a.menuTop {}
+#usermenu a.highlight {
+}
+
+#usermenu li.userMenuTop a {
+	padding-left:2em;
+	background: url(images/a03.gif) no-repeat;
+}
+#usermenu li.userMenuEdit a {
+	padding-left:2em;
+	background: url(images/a04.gif) no-repeat;
+}
+#usermenu li.userMenuComments a {
+	padding-left:2em;
+	background: url(images/mobilephone.gif) no-repeat;
+}
+#usermenu li.userMenuLogout a {
+	padding-left:2em;
+	background: url(images/xx001.gif) no-repeat;
+}
+#usermenu li.userMenuEmail a {
+	padding-left:2em;
+	background: url(images/mailto.gif) no-repeat;
+}
+#usermenu li.userMenuAdmin a {
+	padding-left:2em;
+	background: url(images/pc.gif) no-repeat;
+}
+
+

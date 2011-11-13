@@ -1,0 +1,353 @@
+/******************************************************************************/
+/* Colors */
+/******************************************************************************/
+
+/* LinkColor */
+a:link		{
+  color: #336699;
+}
+a:visited	{
+  color: #6699cc;
+}
+a:hover		{
+  color: #cc6666;
+}
+a:active	{
+  color: #cc6666;
+}
+
+/* Layout */
+body {
+  color: #333;
+  background:url(images/back01.gif);
+}
+#outerwrapper {
+  background:url(images/base.jpg) repeat-x;
+}
+#Wrapper {
+  background:url(images/w_back_b.png) bottom center no-repeat;
+}
+#CenterWrapper {
+  background:url(images/w_back.png) repeat-y;
+}
+
+#Container {
+	background:transparent;
+}
+
+/* Header */
+#Header {
+  color: #fff;
+	background:transparent;
+}
+#h_img {
+  background:url(images/header_c.png) no-repeat;
+}
+#Header a:link,
+#Header a:visited {	
+  color: #000;
+}
+.homeh {
+  color: #d0af4c;
+}
+#Sitename {
+	color:#fafafa;
+  background:url(images/b2.png) repeat-x;
+}
+
+#Slogan {
+	color:#fafafa;
+}
+
+/* Breadcrumb */
+#breadcrumb, #theme_breadcrumbs {
+  border-bottom: #DDD solid 1px;
+	color:#ddd;
+}
+
+#breadcrumbs {
+	color:#fff;
+	background:url(images/clover.gif) no-repeat;
+}
+#breadcrumbs a:link{
+	color:#fff;
+}
+#breadcrumbs a:visited{
+	color:#fff;
+}
+#breadcrumbs a:hover{
+	color:#fff;
+}
+#breadcrumbs a:active{
+	color:#fff;
+}
+
+#middleline {
+  background:url(images/m_back7.png) repeat-x;
+}
+#middleline_c {
+	background: transparent;
+}
+
+/* Decoration */
+em {
+  color: #FF0000;
+}
+
+/* Content */
+#CenterColumn {
+  background:#FAFAFA;
+}
+
+#CenterColumn  h2.BlockTitle {
+  border-bottom: #DDD dashed 1px;
+}
+#CenterColumn .BlockContent, #ModuleContents {
+  font-size: 1em;
+  line-height: 1.6;
+  padding: 0;
+  clear:both;
+}
+
+/* Center LR Column */
+#CenterLColumn {
+  float: left;
+  width: 49%;
+}
+#CenterRColumn {
+  float: right;
+  width: 49%;
+}
+
+.CenterCblock {
+  clear: both;
+	margin-bottom:20px;
+}
+
+
+/* Left Right Column */
+#LeftColumn {
+	background-color:#fafafa ;
+}
+#RightColumn {
+	background-color:#fafafa ;
+}
+
+/* Left Right Column Title */
+#LeftColumn h2.BlockTitle_a {
+	background-color:#fafafa ;
+	color: #915c8b;
+	border-bottom: #ccc 1px dashed;
+}
+#LeftColumn h2.BlockTitle_b {
+	background-color:#fafafa ;
+	color: #5c9291;
+	border-bottom: #ccc 1px dashed;
+}
+#LeftColumn h2.BlockTitle_c {
+	background-color:#fafafa ;
+	color: #d0af4c;
+	border-bottom: #ccc 1px dashed;
+}
+
+#RightColumn h2.BlockTitle_a {
+	color: #FFF;
+	background-color:#915c8b ;
+}
+#RightColumn h2.BlockTitle_b {
+	background-color:#5c9291 ;
+	color: #FFF;
+}
+#RightColumn h2.BlockTitle_c {
+	color: #FFF;
+	background-color:#d0af4c ;
+}
+
+/* Left Right Column Content */
+#LeftColumn .BlockContent_a {
+	background-color:#fafafa ;
+}
+#LeftColumn .BlockContent_b {
+	background-color:#fafafa ;
+}
+#LeftColumn .BlockContent_c {
+	background-color:#fafafa ;
+}
+
+#RightColumn .BlockContent_a {
+	background-color:#fff1cf ;
+}
+#RightColumn .BlockContent_b {
+	background-color:#f8f4e6 ;
+}
+#RightColumn .BlockContent_c {
+	background-color:#e0ebaf ;
+}
+
+/* Bottom Column by marine add*/
+#Bottom {
+	color:#fafafa;
+	background: navy;
+}
+
+#BottomColumn {
+}
+#BottomColumn h2.BlockTitle {
+	color:#fafafa;
+}
+#BottomColumn .BlockContent {
+	color:#fafafa;
+}
+
+/* Footer */
+#Footer {
+	color:#000;
+	background: url(images/footer.png) repeat-x;
+}
+
+#Footer p {
+	background:#ddd;
+	color:#000;
+}
+
+/* footer menu */
+#footermenu {
+	background: transparent;
+}
+
+#footermenu a{
+	color:#000;
+}
+#footermenu a:hover{
+	color:green;
+	background:#ccc;
+}
+
+/* XOOPS Main Menu */
+#mainmenu a {
+  border-bottom: #DDD solid 1px;
+}
+#mainmenu a:hover {
+  background-color: #EEE;
+}
+
+#usermenu a {
+  border-bottom: #DDD solid 1px;
+}
+#usermenu a:hover {
+  background-color: #EEE;
+}
+#usermenu a.highlight {
+  background-color: #FCC;
+}
+
+#user_menu_block a:hover{
+	color:green;
+	background:#ccc;
+}
+
+
+/******************************************************************************/
+/* XOOPS table */
+.head {
+  background-color: #CCC;
+}
+.even {
+  background-color: #EEE;
+}
+.odd {
+  background-color: #FAFAFA;
+}
+
+tr.even td {
+  background-color: #EEE;
+}
+tr.odd td {
+  background-color: #FAFAFA;
+}
+
+
+/******************************************************************************/
+/* XOOPS item */
+.item {}
+.itemHead {
+  background-color: #666;
+  color: #FFF;
+}
+.itemInfo {
+  background-color: #EFEFEF;
+}
+.itemTitle a {
+  color: #FFF;
+  background-color: transparent;
+}
+.itemFoot {
+  background-color: #EFEFEF;
+}
+
+
+/******************************************************************************/
+
+
+/* XOOPS Error Msg */
+.errorMsg {
+  background-color: #FFCCCC;
+  border-top: 1px solid #DDDDFF;
+  border-left: 1px solid #DDDDFF;
+  border-right: 1px solid #AAAAAA;
+  border-bottom: 1px solid #AAAAAA;
+}
+.confirmMsg {
+  background-color: #DDFFDF;
+  color: #136C99;
+  border-top: 1px solid #DDDDFF;
+  border-left: 1px solid #DDDDFF;
+  border-right: 1px solid #AAAAAA;
+  border-bottom: 1px solid #AAAAAA;
+}
+.resultMsg {
+  background-color : #CCCCCC;
+  color: #333333;
+  border-top: 1px solid silver;
+  border-left: 1px solid silver;
+  border-right: 1px solid #666666;
+  border-bottom: 1px solid #666666;
+}
+
+/* XOOPS Code & Quote */
+.xoopsCode {
+  background: #FAFAFA;
+  border: 1px inset #000080;
+}
+.xoopsQuote {
+  background-color:#FAFAFA;
+  border: #336699 solid 1px;
+}
+
+/* XOOPS com */
+.comUserStat {
+  color: #2F5376;
+  border: 1px solid silver;
+  background-color: #ffffff;
+}
+.comUserStatus {
+  color: #2F5376;
+}
+
+#main_img {
+	border-top:6px solid #E6E5C0;
+	border-bottom:6px solid #E6E5C0;
+}
+
+#user_info {
+	color:#D2691E;
+}
+
+#redirect_message {
+	border:#666 1px solid;
+	border-right:pink 30px solid;
+	border-bottom:#ccc 3px solid;
+	background:#f8f4e6;
+}
+
+

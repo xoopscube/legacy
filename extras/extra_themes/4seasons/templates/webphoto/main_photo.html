@@ -1,0 +1,176 @@
+<{* $Id: webphoto_main_photo.html,v 1.22 2010/11/04 02:35:57 ohwada Exp $ *}>
+
+<a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php">
+<{$xoops_modulename}></a> &gt;&gt;
+<{include file="db:`$mydirname`_inc_catpath.html" }>
+ &gt; <b><{$photo.title_s}></b>
+<br /><br />
+
+<{* === gmap js === *}>
+<{if $show_gmap }>
+  <{include file="db:`$mydirname`_inc_gmap_js.html" }>
+  <{include file="db:`$mydirname`_inc_gmap_icons.html" }>
+
+<script type="text/javascript">
+//<![CDATA[
+
+  webphoto_gmap_info[0] = new Array( <{$gmap_photo.gmap_latitude}>, <{$gmap_photo.gmap_longitude}>, <{$gmap_photo.gmap_icon_id}>, '<{$gmap_photo.gmap_info}>' );
+
+//]]>
+</script>
+<{/if}>
+<{* === gmap js end === *}>
+
+<{* === windows js === *}>
+<{if $show_js_window }>
+<script type="text/javascript">
+//<![CDATA[
+<{if $show_js_boxlist }>
+  var webphoto_box_list = "<{$js_boxlist}>";
+<{/if}>
+<{if $show_js_load }>
+  window.onload   = <{$js_load}>;
+<{/if}>
+<{if $show_js_unload }>
+  window.onunload = <{$js_unload}>;
+<{/if}>
+//]]>
+</script>
+<{/if}>
+<{* === windows js end === *}>
+
+<{* === menue === *}>
+<{include file="db:`$mydirname`_inc_menu.html" }>
+
+<{* === search form === *}>
+<{include file="db:`$mydirname`_inc_search.html" }>
+
+<{* === gmap === *}>
+<{if $show_gmap }>
+  <div id="webphoto_box_gmap_b">
+  <a href="javascript:webphoto_box_gmap_off()">
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/box_minus.png" width="16" height="16" border="0" alt="minus" />
+  <{$lang_gmap_off}></a> <br />
+  <{$lang_gmap_desc}><br />
+  <div id="webphoto_gmap_not_compatible" class="webphoto_error"></div>
+  <div id="webphoto_gmap_map" class="webphoto_gmap_normal">Loading ...</div>
+  </div>
+
+  <div id="webphoto_box_gmap_a" style="display:none">
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/box_plus.png" width="16" height="16" border="0" alt="minus" />
+  <a href="javascript:webphoto_box_gmap_on()">
+  <{$lang_gmap_on}></a> </a>
+  </div>
+
+  <br />
+<{/if}>
+
+<div class="webphoto_page_title">
+  <{include file="db:`$mydirname`_inc_catpath.html" }>
+  &gt; <{$photo.title_s}>
+<{if $show_rss_icon }>
+  <{include file="db:`$mydirname`_inc_rss_icon.html" }>
+<{/if}>
+</div>
+
+<div align="center">
+  <{$photo_nav}>
+</div>
+<br />
+
+<div align="center">
+  <{include file="db:`$mydirname`_inc_photo_view.html"}>
+</div><br />
+
+<{if $photo.show_codebox }>
+  <div align="center">
+    <{include file="db:`$mydirname`_inc_photo_codebox.html"}>
+  </div><br />
+<{/if}>
+
+<div align="left">
+  <{include file="db:`$mydirname`_inc_photo_info.html"}>
+  <{include file="db:`$mydirname`_inc_photo_desc.html"}>
+</div>
+
+<{* EDIT ICON *}>
+<{if $photo.can_edit}>
+  <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?fct=edit&amp;photo_id=<{$photo.photo_id}>">
+  <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/edit.png" border="0" alt="<{$lang_title_edit}>" title="<{$lang_title_edit}>" /><{$lang_title_edit}></a><br />
+<{/if}>
+
+<div align="center">
+<img src="<{$qrs_url}>/<{$mobile_qr_image}>" border="0" alt="qr_image" /><br />
+<a href="mailto:<{$mobile_email}>?subject=webphoto_url&amp;body=<{$mobile_url}>"><{$lang_mobile_mailto}></a><br />
+</div>
+<br />
+
+<{if $show_tagedit }>
+  <div align="center">
+  <div class="webphoto_tagedit_form">
+  <{$lang_dsc_tag_editable}> <br />
+  <{$lang_dsc_tag_divid}> <br />
+  <form action="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php" method="post">
+  <input type="hidden" name="<{$token_name}>" value="<{$token_value}>" />
+  <input type="hidden" name="fct" value="photo" />
+  <input type="hidden" name="op"  value="tagedit" />
+  <input type="hidden" name="photo_id"  value="<{$photo_id}>" />
+  <input type="text" name="tags" size="50" maxlength="255" value="<{$tags}>" class="webphoto_tagedit" /> <br />
+  <input type="submit" name="submit" value="<{$lang_edit_tag}>" />
+  </form>
+  </div>
+  </div>
+  <br />
+<{/if}>
+
+<div align="center">
+  <{$photo_nav}>
+</div>
+<br />
+
+<{* d3forum comment integration *}>
+<{if $cfg_comment_dirname && $cfg_comment_forum_id }>
+  <{* remove asterrisk (*) in the folloing, if you use *}>
+<br />
+  <{d3forum_comment dirname=$cfg_comment_dirname forum_id=$cfg_comment_forum_id class="WebphotoD3commentContent" mytrustdirname="webphoto" id=$photo.photo_id subject=$photo.title_s subject_escaped=1 view=$cfg_comment_view posts_num=10}>
+<{else}>
+<div class="webphoto_commentsnav">
+  <{$commentsnav}>
+  <{$lang_notice}>
+</div>
+
+<div class="webphoto_comments">
+<{* start comments loop *}>
+<{if $comment_mode == "flat"}>
+  <{include file="db:system_comments_flat.html"}>
+<{elseif $comment_mode == "thread"}>
+  <{include file="db:system_comments_thread.html"}>
+<{elseif $comment_mode == "nest"}>
+  <{include file="db:system_comments_nest.html"}>
+<{/if}>
+<{* end comments loop *}>
+</div>
+<br />
+<{/if}>
+
+<{if $show_notification_select }>
+  <div align="center">
+    <{include file="db:`$mydirname`_inc_notification_select.html"}>
+  </div>
+  <br />
+<{/if}>
+
+<hr />
+<noscript>
+  <div class="webphoto_error"><{$lang_js_invalid}></div>
+</noscript>
+
+<div class="webphoto_execution_time">execution time : <{$execution_time}> sec </div>
+<{if $is_module_admin && ($memory_usage > 0)}>
+	<div class="webphoto_memory_usage">memory usage : <{$memory_usage}> MB </div>
+<{/if}>
+
+<{if $is_module_admin }>
+  <br />
+  <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/admin/index.php"><{$lang_goto_admin}></a>
+<{/if}>

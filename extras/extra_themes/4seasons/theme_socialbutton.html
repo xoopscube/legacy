@@ -1,0 +1,15 @@
+<{* Socialbutton *}>
+<{if $xoops_isadmin}>
+	<{if $xoops_dirname == "wordpress"}>
+		<div id="socialbutton2">
+	<{elseif $xoops_dirname == "xpressme"}>
+		<div id="socialbutton2">
+	<{else}>
+		<div id="socialbutton">
+	<{/if}>
+<{else}>
+		<div id="socialbutton">
+<{/if}>
+	<div class="twitter"></div>
+	<div class="facebook_like"></div>
+</div>

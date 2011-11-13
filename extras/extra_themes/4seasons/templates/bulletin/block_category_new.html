@@ -1,0 +1,51 @@
+<{strip}>
+
+<{foreach item=topic from=$block.topics}>
+
+  <div class="itemHead">
+    <span class="itemTitle"><a href="<{$block.mydirurl}>/index.php?storytopic=<{$topic.id}>"><{$topic.title}></a></span>
+  </div>
+
+  <{if $topic.fullstories}>
+
+    <{assign var="lang_postedby" value=$block.lang_postedby}>
+    <{assign var="lang_on" value=$block.lang_on}>
+    <{assign var="lang_reads" value=$block.lang_reads}>
+    <{assign var="lang_readmore" value=$block.lang_readmore}>
+    <{assign var="mydirurl" value=$block.mydirurl}>
+    <{assign var="mydirname" value=$block.mydirname}>
+    <{assign var="mod_config" value=$block.mod_config}>
+
+    <{foreach item=story from=$topic.fullstories}>
+      <{include file="db:`$block.mydirname`_item.html" story=$story}>
+      <br />
+    <{/foreach}>
+
+  <{/if}>
+
+
+  <{if $topic.stories}>
+
+          <ul class="bulletin_block_category_new">
+            <{foreach item=story from=$topic.stories}>
+              <li><a href="<{$block.mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>"><{$story.title}></a>
+              <{if strstr( $block.type , "counter" )}>
+                (<{$story.hits}>)
+              <{else}>
+                (<{$story.date}>)
+              <{/if}>
+              </li>
+            <{/foreach}>
+          </ul>
+
+  <{/if}>
+
+  <{if $topic.morelink}>
+    <div style="text-align:right">
+      <span class="itemPermaLink"><a href="<{$block.mydirurl}>/index.php?storytopic=<{$topic.id}>"><{$block.lang_morelink}></a></span>
+    </div>
+  <{/if}>
+
+<{/foreach}>
+
+<{/strip}>

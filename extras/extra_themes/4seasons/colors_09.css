@@ -1,0 +1,340 @@
+body {
+  background:transparent url(images/cosmos011.jpg) no-repeat;
+}
+#Header {
+  background:transparent;
+}
+#h_img {
+  background:transparent;
+}
+#outerwrapper {
+  background:transparent;
+}
+#middleline {
+  background:transparent;
+}
+#middleline_c {
+  background:transparent;
+}
+#Container {
+  background:transparent url(images/cosmos015r.jpg) right bottom no-repeat;
+}
+#Wrapper {
+  background:transparent;
+}
+#CenterWrapper {
+  background:transparent;
+}
+* html #menu_m ul li ,* html #menu_m ul li a{
+	float:left;
+	display:inline;
+	witespase:nowrap;
+}
+
+/* Header Menu colors */
+#menu_m a:link,
+#menu_m a:visited {	
+  color: #191970 ;
+	font-weight:bold;
+}
+#menu_m a:hover {	
+  color: #1e90ff ;
+}
+/* Header Menu Selected colors */
+#menu_m ul li a.mm_home:hover ,
+#menu_m ul li a.mm_a:hover ,
+#menu_m ul li a.mm_b:hover ,
+#menu_m ul li a.mm_c:hover ,
+#menu_m ul li a.mm_d:hover ,
+#menu_m ul li a.mm_e:hover ,
+#menu_m ul li a.mm_f:hover ,
+#menu_m ul li a.mm_g:hover ,
+#menu_m ul li a.mm_h:hover ,
+#menu_m ul li a.mm_i:hover ,
+#menu_m ul li a.mm_j:hover {
+	color:#000;
+	height:50px;
+	line-height:50px;
+	margin-top:-10px;
+  background:transparent url(images/m_c_bak.jpg)  center center no-repeat;
+}
+#menu_m ul li div a:hover {
+	height: 30px;
+	line-height:30px;
+	margin-top:4px;
+	margin-bottom:0px;
+	-webkit-border-radius: 20px;	/* Safari,Google Chrome用 */
+	-moz-border-radius: 20px;	/* Firefox用 */
+	-webkit-box-shadow: inset 0px 0px 3px 0px #777; /* Safari, Chrome用 */
+	-moz-box-shadow: inset 0px 0px 3px 0px #777; /* Firefox用 */
+	box-shadow: inset 0px 0px 3px 0px #777; /* CSS3 */
+}
+
+* html #menu_m ul li a.mm_home:hover ,
+* html #menu_m ul li a.mm_a:hover ,
+* html #menu_m ul li a.mm_b:hover ,
+* html #menu_m ul li a.mm_c:hover ,
+* html #menu_m ul li a.mm_d:hover ,
+* html #menu_m ul li a.mm_e:hover ,
+* html #menu_m ul li a.mm_f:hover ,
+* html #menu_m ul li a.mm_g:hover ,
+* html #menu_m ul li a.mm_h:hover ,
+* html #menu_m ul li a.mm_i:hover ,
+* html #menu_m ul li a.mm_j:hover {
+	color:#000 ;
+	height:30px;
+	line-height:30px;
+	margin-top:0px;
+	margin-bottom:0px;
+	padding-top:0px;
+	padding-bottom:0px;
+  background:transparent;
+}
+
+#menu_m ul li a.mm_homes:link ,#menu_m ul li a.mm_homes:visited ,
+#menu_m ul li a.mm_as:link ,#menu_m ul li a.mm_as:visited ,
+#menu_m ul li a.mm_bs:link ,#menu_m ul li a.mm_bs:visited ,
+#menu_m ul li a.mm_cs:link ,#menu_m ul li a.mm_cs:visited ,
+#menu_m ul li a.mm_ds:link ,#menu_m ul li a.mm_ds:visited ,
+#menu_m ul li a.mm_es:link ,#menu_m ul li a.mm_es:visited ,
+#menu_m ul li a.mm_fs:link ,#menu_m ul li a.mm_fs:visited ,
+#menu_m ul li a.mm_gs:link ,#menu_m ul li a.mm_gs:visited ,
+#menu_m ul li a.mm_hs:link ,#menu_m ul li a.mm_hs:visited ,
+#menu_m ul li a.mm_is:link ,#menu_m ul li a.mm_is:visited ,
+#menu_m ul li a.mm_js:link,#menu_m ul li a.mm_js:visited {
+	color:#000;
+	height:50px;
+	line-height:50px;
+	margin-top:-10px;
+  background:transparent url(images/m_c_bak.jpg)  right center no-repeat;
+}
+
+#menu_m ul li div.act {
+	height: 33px;
+	line-height:28px;
+	margin-top:5px;
+	margin-bottom:-2px;
+	background:#fafafa;
+	-webkit-border-top-left-radius: 10px;	/* Safari,Google Chrome用 */
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-topleft: 10px;	/* Firefox用 */
+	-moz-border-radius-topright: 10px;
+-moz-box-shadow: 0px 0px 0px #fafafa;
+-webkit-box-shadow: 0px 0px 0px #fafafa;
+}
+* html #menu_m ul li div.act a:link , * html #menu_m ul li div.act a:visited {
+  background:transparent url(images/m_c_bak.jpg)  right center no-repeat;
+}
+* html #menu_m ul li div.act a:hover {
+	margin-top:-10px;
+	margin-bottom:-2px;
+}
+
+/* Content */
+#CenterColumn {
+  background:transparent;
+}
+
+#CenterColumn  h2.BlockTitle {
+	padding-left:1.6em;
+	color: #000;
+	background: url(images/cl_007.gif) left center no-repeat;
+	border-bottom: #ccc 1px dashed;
+}
+#CenterColumn .BlockContent, #ModuleContents {
+	background:transparent ;
+}
+
+/* Center LR Column */
+#CenterLColumn {
+	background:transparent ;
+}
+#CenterRColumn {
+	background:transparent ;
+}
+
+
+/* Left Right Column */
+#LeftColumn {
+	background:transparent ;
+}
+#RightColumn {
+	background:transparent ;
+}
+
+/* Left Right Column Title */
+#LeftColumn h2.BlockTitle_a {
+	padding-left:1.6em;
+	color: #000;
+	background: url(images/tama_04.gif) left center no-repeat;
+	border-bottom: #ccc 1px dashed;
+}
+#LeftColumn h2.BlockTitle_b {
+	padding-left:1.6em;
+	color: #000;
+	background: url(images/tama_04.gif) left center no-repeat;
+	border-bottom: #ccc 1px dashed;
+}
+#LeftColumn h2.BlockTitle_c {
+	padding-left:1.6em;
+	color: #000;
+	background: url(images/tama_04.gif) left center no-repeat;
+	border-bottom: #ccc 1px dashed;
+}
+
+#RightColumn h2.BlockTitle_a {
+	padding-left:1.6em;
+	color: #000;
+	background: url(images/tama_04.gif) left center no-repeat;
+	border-bottom: #ccc 1px dashed;
+}
+#RightColumn h2.BlockTitle_b {
+	padding-left:1.6em;
+	color: #000;
+	background: url(images/tama_04.gif) left center no-repeat;
+	border-bottom: #ccc 1px dashed;
+}
+#RightColumn h2.BlockTitle_c {
+	padding-left:1.6em;
+	color: #000;
+	background: url(images/tama_04.gif) left center no-repeat;
+	border-bottom: #ccc 1px dashed;
+}
+
+/* Left Right Column Content */
+#LeftColumn .BlockContent_a {
+	color: #000;
+	background:transparent ;
+}
+#LeftColumn .BlockContent_b {
+	color: #000;
+	background:transparent ;
+}
+#LeftColumn .BlockContent_c {
+	color: #000;
+	background:transparent ;
+}
+
+#RightColumn .BlockContent_a {
+	color: #000;
+	background:transparent ;
+}
+#RightColumn .BlockContent_b {
+	color: #000;
+	background:transparent ;
+}
+#RightColumn .BlockContent_c {
+	color: #000;
+	background:transparent ;
+}
+
+#breadcrumbs {
+	color:#000;
+	background:transparent url(images/tama_06.gif) no-repeat;
+}
+#breadcrumbs a:link{
+	color:#000;
+}
+#breadcrumbs a:visited{
+	color:#000;
+}
+#breadcrumbs a:hover{
+	color:blue;
+}
+#breadcrumbs a:active{
+	color:#000;
+}
+
+#Sitename {
+	color:#000;
+  background:url(images/b2.png) repeat-x;
+}
+#Slogan {
+	color:#000;
+}
+
+/* Footer */
+#Footer {
+	color:#000;
+	background: url(images/footer.png) repeat-x;
+}
+#Footer a {
+	color:#000;
+}
+
+#Bottom {
+	color:#000;
+	background: #c0c0c0 ;
+}
+
+#BottomColumn {
+}
+#BottomColumn h2.BlockTitle {
+	color:#000;
+}
+#BottomColumn .BlockContent {
+	color:#000;
+}
+
+/* XOOPS Main Menu */
+#mainmenu, #usermenu {
+}
+#mainmenu li, #usermenu li {
+}
+#mainmenu a {
+}
+#mainmenu a:hover {
+	color:#006e54 ;
+	border-right:5px solid #00a381 ;
+}
+#mainmenu a.menuTop {
+	padding-left:2em;
+	background: url(images/wa-ore.png) left center no-repeat;
+}
+#mainmenu a.menuMain {
+	padding-left:2em;
+	background: url(images/wa-midori.png) left center no-repeat;
+}
+#mainmenu a.menuSub {
+	margin-left:1em;
+	padding-left:1.4em;
+	background: url(images/wa-mizu.png) left center no-repeat;
+}
+
+/* XOOPS User Menu */
+#usermenu a {
+}
+#usermenu a:hover {
+	color:#006e54 ;
+	border-right:5px solid #00a381 ;
+}
+#usermenu a.menuTop {}
+#usermenu a.highlight {
+}
+
+#usermenu li.userMenuTop a {
+	padding-left:2em;
+	background: url(images/a03.gif) no-repeat;
+}
+#usermenu li.userMenuEdit a {
+	padding-left:2em;
+	background: url(images/a04.gif) no-repeat;
+}
+#usermenu li.userMenuComments a {
+	padding-left:2em;
+	background: url(images/mobilephone.gif) no-repeat;
+}
+#usermenu li.userMenuLogout a {
+	padding-left:2em;
+	background: url(images/xx001.gif) no-repeat;
+}
+#usermenu li.userMenuEmail a {
+	padding-left:2em;
+	background: url(images/mailto.gif) no-repeat;
+}
+#usermenu li.userMenuAdmin a {
+	padding-left:2em;
+	background: url(images/pc.gif) no-repeat;
+}
+
+

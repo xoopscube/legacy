@@ -1,0 +1,13 @@
+<{strip}>
+<ul>
+<{foreach item=comment from=$block.comments}>
+  <li><a href="<{$comment.url}>"><{$comment.title}></a> (<{$comment.time}>)&nbsp;
+   <{if $comment.uid}>
+     <a href="<{$xoops_url}>/userinfo.php?uid=<{$comment.uid}>"><{$comment.poster}></a>
+   <{else}>
+     <{$comment.poster}>
+   <{/if}>
+  </li>
+<{/foreach}>
+</ul>
+<{/strip}>

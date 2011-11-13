@@ -1,0 +1,52 @@
+<{* $Id: inc_photo_list.html,v 1.1 2010/01/25 10:05:02 ohwada Exp $ *}>
+
+<div class="webphoto_index_photo_body">
+
+<{* -- list type -- *}>
+<{if $cfg_viewtype == 'list'}>
+  <div id="webphoto_box_photo_a">
+<{else}>
+  <div id="webphoto_box_photo_a" style="display:none">
+<{/if}>
+
+  <{foreach name=webphoto_list item=photo from=$photo_list}>
+    <{assign var="webphoto_list_num" value=$smarty.foreach.webphoto_list.iteration }>
+    <{include file="db:`$mydirname`_inc_photo_in_list.html"}>
+  <{/foreach}>
+
+</div>
+<{* -- list type end -- *}>
+
+
+<{* -- table type -- *}>
+<{if $cfg_viewtype == 'table'}>
+  <div id="webphoto_box_photo_b">
+<{else}>
+  <div id="webphoto_box_photo_b" style="display:none">
+<{/if}>
+
+  <table border="0">
+  <{foreach name=webphoto_list item=photo from=$photo_list}>
+
+<{* -- open table photo -- *}>
+  <{if $smarty.foreach.webphoto_list.iteration mod $cfg_colsoftableview == 1}>
+    <tr>
+  <{/if}>
+<{* -- open table column -- *}>
+  <td width="<{$width_of_tableview}>%">
+    <{include file="db:`$mydirname`_inc_photo_in_table.html"}>
+  </td>
+<{* -- close table column -- *}>
+  <{if ($smarty.foreach.webphoto_list.iteration is div by $cfg_colsoftableview) || $smarty.foreach.webphoto_list.last}>
+    </tr>
+  <{/if}>
+<{* -- close table photo -- *}>
+
+  <{/foreach}>
+  </table>
+
+</div>
+<{* -- table type end -- *}>
+
+<br />
+</div>

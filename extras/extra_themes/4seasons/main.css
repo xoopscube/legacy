@@ -1,0 +1,763 @@
+/******************************************************************************/
+/* main.css for 4seasons */
+/******************************************************************************/
+
+html {
+	height:100%;
+	font-size:62.5%;
+	overflow-y:scroll;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+}
+form {
+  margin: 0;
+}
+
+/* Headline */
+h1 {
+  font-size: 1.6em;
+	margin:0 0 10px;
+}
+h2, h3 {
+  font-size: 1.4em;
+}
+h4, h5 {
+  font-size: 1.2em;
+}
+
+/* Decoration */
+ul, ol {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+p {
+  margin: 10px 0;
+  clear:both;
+  margin-bottom: 10px;
+}
+
+/* Layout */
+body {
+	height:100%;
+	font-family:'ƒqƒ‰ƒMƒmŠpƒS Pro W3','Hiragino Kaku Gothic Pro','ƒƒCƒŠƒI',Meiryo,'‚l‚r ‚oƒSƒVƒbƒN',sans-serif;
+  text-align: center;
+}
+#outerwrapper {
+	position:relative;
+ 	width: 100%;   
+	height:auto!important;
+	height:100%;
+	min-height:100%;
+  margin: 0px;
+}
+body>#outerwrapper {
+	height:auto;
+}
+#Container {
+	position:relative;
+	height:auto;
+  width: 100%;
+  margin: 0px;
+  padding-bottom:75px;
+  text-align: left;
+}
+
+
+/* Header */
+#Header {
+	position:relative;
+	float: left;
+  width: 100%;
+  height: 160px;
+}
+#h_img {
+	position:relative;
+  width: 1010px;
+  height: 160px;
+  margin: 0px auto;
+}
+#Logo {
+	position:absolute;
+	left:20px;
+	top:30px;
+  height: 105px;
+  width: 500px;
+}
+#Logo img {
+	height:105px;
+	width:500px;
+}
+#Sitename {
+	position:absolute;
+	left:30px;
+	top:45px;
+	font-size: 3em;
+	font-weight: bold;
+}
+#Slogan {
+	position:absolute;
+	left:60px;
+	top:90px;
+	font-size: 1.6em;
+	font-weight: bold;
+}
+#Header a:link,
+#Header a:visited {	
+	text-decoration: none;
+}
+
+#middleline {
+	position:relative;
+	float: left;
+	width:100%;
+	height:30px;
+}
+#middleline_c {
+	position:relative;
+	width:1010px;
+	height:30px;
+  margin: 0px auto;
+}
+
+/* Contents */
+#Wrapper {
+	position:relative;
+	float: left;
+	width:100%;
+	margin-top:5px;
+	padding-bottom:40px;
+	font-size:1.2em;
+}
+
+#CenterWrapper {
+	width:1010px;
+  margin: 0px auto;
+}
+* html #CenterWrapper {
+	width:1010px;
+  margin: -5px auto -2px ;
+}
+
+/* Center Column */
+body.L0R0 #CenterColumn {
+	position:relative;
+  float: left;
+  width: 940px;
+	margin-left:30px;
+}
+* html body.L0R0 #CenterColumn { /* IE6 */
+	margin-left:15px;
+}
+
+/* Left Center Column */
+body.L1R0 #CenterColumn {
+	position:relative;
+  float: left;
+  width: 700px;
+	margin-left:285px;
+}
+body.L1R0 #LeftColumn {
+	position:relative;
+  float: left;
+  width: 240px;
+	margin-left:-960px;
+	margin-top:-15px;
+}
+
+* html body.L1R0 #CenterColumn { /* IE6 */
+	margin-left:137px;
+}
+* html body.L1R0 #LeftColumn { /* IE6 */
+	margin-left:-960px;
+	margin-top:-15px;
+}
+
+/* Center Right Column */
+body.L0R1 #CenterColumn {
+	position:relative;
+  float: left;
+  width: 700px;
+	margin-left:25px;
+}
+body.L0R1 #RightColumn {
+	position:relative;
+  float: left;
+  width: 240px;
+	margin-left:15px;
+	margin-top:-15px;
+}
+* html body.L0R1 #CenterColumn { /* IE6 */
+	margin-left:15px;
+}
+* html body.L0R1 #RightColumn { /* IE6 */
+	margin-left:15px;
+	margin-top:-15px;
+}
+
+/* Left Center Right Column */
+body.L1R1 #CenterColumn {
+	position:relative;
+  float: left;
+  width:520px;
+	padding:0 10px 0 15px;
+	margin-left:225px;
+}
+body.L1R1 #LeftColumn {
+	position:relative;
+  float: left;
+  width: 200px;
+	margin-left:-745px;
+	margin-top:-10px;
+}
+body.L1R1 #RightColumn {
+	position:relative;
+  float: left;
+  width: 200px;
+	margin-left:10px;
+	margin-top:-15px;
+}
+
+#CenterColumn img {
+	max-width:98%;
+}
+
+* html body.L1R1 #CenterColumn { /* IE6 */
+  width:540px;
+	margin-left:110px;
+}
+* html body.L1R1 #LeftColumn { /* IE6 */
+	margin-left:-760px;
+	margin-top:-15px;
+}
+* html body.L1R1 #RightColumn { /* IE6 */
+	margin-left:10px;
+	margin-top:-15px;
+}
+
+/* Breadcrumb */
+#breadcrumbs {
+	position:absolute;
+	top:5px;
+	left:15px;
+	height:30px;
+	width:1010px;
+	padding-left:23px;
+	line-height:18px;
+	text-align:left;
+	font-size:1em;
+}
+#breadcrumb, #theme_breadcrumbs {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+
+/* Content */
+#CenterColumn  h2.BlockTitle {
+  font-size: 1.2em;
+	line-height: 1.6;
+	padding-top:2px;
+	margin-bottom:10px;
+}
+#CenterColumn .BlockContent, #ModuleContents {
+  font-size: 1em;
+  line-height: 1.6;
+  padding: 0;
+  clear:both;
+}
+
+/* Center LR Column */
+#CenterLColumn {
+  float: left;
+  width: 49%;
+}
+#CenterRColumn {
+  float: right;
+  width: 49%;
+}
+
+.CenterCblock {
+  clear: both;
+	margin-bottom:20px;
+}
+.CenterLblock {
+  clear: both;
+}
+.CenterRblock {
+  clear: both;
+}
+
+
+.LeftBlock, .RightBlock {
+	padding: 10px 0;
+}
+
+/* Left Right Column Title */
+#LeftColumn h2.BlockTitle_a, 
+#LeftColumn h2.BlockTitle_b, 
+#LeftColumn h2.BlockTitle_c, 
+#RightColumn h2.BlockTitle_a,
+#RightColumn h2.BlockTitle_b,
+#RightColumn h2.BlockTitle_c {
+  font-size: 1.2em;
+	line-height: 1.6;
+	margin-bottom: 0;
+	padding-top:2px;
+	padding-left:10px;
+}
+
+/* Left Right Column Content */
+#LeftColumn .BlockContent_a,
+#LeftColumn .BlockContent_b,
+#LeftColumn .BlockContent_c,
+#RightColumn .BlockContent_a,
+#RightColumn .BlockContent_b,
+#RightColumn .BlockContent_c {
+  font-size: 1em;
+  text-align:left;
+	padding:8px;
+	padding-left:0.8em;
+}
+#LeftColumn .BlockContent_a p,
+#LeftColumn .BlockContent_b p,
+#LeftColumn .BlockContent_c p,
+#RightColumn .BlockContent_a p,
+#RightColumn .BlockContent_b p,
+#RightColumn .BlockContent_c p {
+  text-align:left;
+}
+#LeftColumn .BlockContent_a a,
+#LeftColumn .BlockContent_b a,
+#LeftColumn .BlockContent_c a,
+#RightColumn .BlockContent_a a,
+#RightColumn .BlockContent_b a,
+#RightColumn .BlockContent_c a {
+	text-decoration: none;
+}
+
+#BacktoTop {
+  text-align: right;
+  margin-right: 100px;
+	padding-top:20px;
+  clear: both;
+  font-size:0.8em;
+}
+
+/* Bottom Column by marine add */
+#Bottom {
+	position:relative;
+	width:100%;
+	height:auto;
+	min-height:300px;
+	padding-top:15px;
+	padding-bottom:15px;
+}
+
+#BottomColumn {
+	position:relative;
+  width: 935px;
+	height:auto;
+  text-align: left;
+	margin:0 auto;
+	padding-bottom:20px;
+}
+#BottomColumn .BottomBlock {
+  float: left;
+	width:212px;
+	height:280px;
+  text-align: left;
+	padding: 10px;
+	overflow: auto;
+}
+#BottomColumn h2.BlockTitle {
+  margin: 0 0 5px 0;
+	padding: 0 10px;
+	line-height: 1.5;
+}
+#BottomColumn .BlockContent {
+	padding-bottom:10px;
+  text-align: left;
+	line-height:20px;
+}
+
+#BottomColumn .BottomBlock2 {
+  float: left;
+	width:915px;
+	height:280px;
+  text-align: left;
+	padding: 10px;
+	overflow: auto;
+}
+
+/* Footer */
+#Footer {
+	position:absolute;
+	bottom:0px;
+	left:0px;
+  width: 100%;
+  height:80px;
+	font-size:1.2em;
+	clear:both;
+}
+
+#Footer p {
+  margin: 0 10px;
+  padding: 10px 0;
+  text-align:center;
+}
+
+/* footer menu */
+#footermenu {
+	position:relative;
+	height:12px;
+  margin: 0 auto;
+	text-align:center;
+	padding: 5px;
+	padding-top:20px;
+}
+
+#footermenu a{
+	padding:5px;
+	text-decoration:none;
+}
+#footermenu a:hover{
+	text-decoration: none;
+}
+
+#user_menu_block {
+	position:relative;
+	height:12px;
+  margin: 0 auto;
+	text-align:center;
+	padding: 5px;
+}
+#user_menu_block a{
+	padding: 5px;
+	text-decoration: none;
+}
+#user_menu_block a:hover{
+	text-decoration: none;
+}
+
+#Banner {
+  clear: both;
+  width: 100%;
+  margin: 0 auto;
+	padding: 20px 0;
+}
+
+#XoopsBanner {
+	position:absolute;
+	top:30px;
+	left:50%;
+	margin-left:-234px;
+}
+
+/* for accessibility */
+.Skip {	
+  position: absolute;
+  left: -999em;
+}
+
+/******************************************************************************/
+
+/* clearfix */
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.clearfix {
+  display: inline-table;
+}
+
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+
+/******************************************************************************/
+
+/* XOOPS Main Menu */
+#mainmenu, #usermenu {
+  margin:0;
+  padding:0;
+  text-align:left;
+}
+#mainmenu li, #usermenu li {
+  display: inline;
+}
+#mainmenu a {
+  display: block;
+	margin:0 1px;
+	text-decoration: none;
+}
+#mainmenu a:hover {
+	text-decoration: none;
+}
+#mainmenu a.menuTop {
+  padding: 5px 10px;
+}
+#mainmenu a.menuMain {
+  padding: 5px 10px;
+}
+#mainmenu a.menuSub {
+  padding: 5px 5px 5px 15px;
+}
+
+#usermenu a {
+  display: block;
+	text-decoration: none;
+	margin:0 1px;
+  padding: 5px 10px;
+}
+#usermenu a:hover {
+	text-decoration: none;
+}
+#usermenu a.menuTop {}
+#usermenu a.highlight {
+}
+
+/* XOOPS table */
+table {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+td {
+  padding: 5px;
+  vertical-align: top;
+}
+* html td {
+  font-size: 1em;
+} /* IE6 */
+
+.outer {}
+.head {
+  padding: 5px;
+  font-weight: bold;
+}
+.even {
+  padding: 5px;
+}
+.odd {
+  padding: 5px;
+}
+.foot {
+  padding: 5px;
+}
+
+tr.even td {
+  padding: 5px;
+}
+tr.odd td {
+  padding: 5px;
+}
+
+/******************************************************************************/
+
+/* XOOPS item */
+.item {}
+.itemHead {
+  padding: 3px;
+}
+.itemInfo {
+  text-align: right;
+  padding: 3px;
+}
+.itemTitle a {
+  font-weight: bold;
+  font-variant: small-caps;
+}
+.itemPoster {
+  font-size: 0.8em;
+}
+.itemPostDate {
+  font-size: 0.8em;
+}
+.itemStats {
+  font-size: 0.8em;
+}
+.itemBody {
+  padding-left: 0px;
+}
+.itemText {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  line-height: 100%;
+}
+.itemText:first-letter {}
+.itemFoot {
+  text-align: right;
+  padding: 3px;
+}
+.itemAdminLink {
+  font-size: 0.8em;
+}
+.itemPermaLink {
+  font-size: 0.8em;
+}
+
+/* XOOPS Error Msg */
+.errorMsg {
+  text-align: center;
+  font-weight: bold;
+  padding: 10px;
+}
+.confirmMsg {
+  text-align: center;
+  font-weight: bold;
+  padding: 10px;
+}
+.resultMsg {
+  text-align: center;
+  padding: 10px;
+}
+
+/* XOOPS Code & Quote */
+.xoopsCode {
+  font-family: "Courier New",Courier,monospace;
+  padding: 0px 6px 6px 6px;
+}
+.xoopsQuote {
+  padding: 3px;
+}
+
+/* XOOPS com */
+.comTitle {
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+.comText {
+  padding: 2px;
+}
+.comUserStat {
+  font-size: 1em;
+  font-weight:bold;
+  margin: 2px;
+  padding: 2px;
+}
+.comUserStatCaption {
+  font-weight: normal;
+}
+.comUserStatus {
+  margin-left: 2px;
+  margin-top: 10px;
+  font-weight:bold;
+  font-size: 1em;
+}
+.comUserRank {
+  margin: 2px;
+}
+.comUserRankText {
+  font-size: 1em;
+  font-weight:bold;
+}
+.comUserRankImg {
+  border: 0;
+}
+.comUserName {}
+.comUserImg {
+  margin: 2px;
+}
+.comDate {
+  font-weight: normal;
+  font-style: italic;
+  font-size: 0.8em;
+}
+.comDateCaption {
+  font-weight: bold;
+  font-style: normal;
+}
+
+#main_img {
+	z-index:5;
+	display: none;
+	height:32px;
+}
+
+#user_info {
+	position:absolute;
+	top:0px;
+	right:10px;
+	font-size:0.8em;
+}
+
+span.uname {
+	font-size:1.6em;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+#redirect_message {
+	position:absolute;
+	top:10px;
+	right:200px;
+	width:200px;
+	min-height:40px;
+	padding-left:10px;
+	padding-right:10px;
+}
+
+#stylechange {
+	position:absolute;
+	top:2px;
+	right:20px;
+	height:20px;
+	weight:80px;
+}
+
+
+#LeftColumn .BlockContent_a ul li,
+#LeftColumn .BlockContent_b ul li,
+#LeftColumn .BlockContent_c ul li,
+#RightColumn .BlockContent_a ul li,
+#RightColumn .BlockContent_b ul li,
+#RightColumn .BlockContent_c ul li{
+	line-height:1.5;
+	margin-bottom:5px;
+}
+
+/* Socialbutton */
+#socialbutton {
+	position:absolute;
+	top:0px;
+	right:200px;
+	width:270px;
+	height:20px;
+	padding:5px;
+	text-align:right;
+	z-index:110;
+}
+#socialbutton div {
+	float:left;
+	margin-right:10px;
+}
+#socialbutton2 {
+	position:absolute;
+	top:30px;
+	right:200px;
+	width:480px;
+	height:20px;
+	padding:5px;
+	z-index:110;
+}
+#socialbutton2 div {
+	float:left;
+	margin-right:10px;
+}

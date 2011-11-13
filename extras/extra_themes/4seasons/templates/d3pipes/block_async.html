@@ -1,0 +1,12 @@
+<{*
+<a href="<{$block.mod_url}>/index.php?page=jsbackend&amp;pipe_ids=<{","|implode:$block.pipe_ids}>&amp;max_entries=<{$block.max_entries}>&amp;union_class=<{$block.union_class}>&amp;link2clipping=<{$block.link2clipping}>&amp;unique_id=<{$block.unique_id}>">DEBUG</a>
+*}>
+
+<div class="d3pipes_async_block" id="<{$block.mydirname}>_async_block_<{$block.unique_id}>"></div>
+
+<script type="text/javascript">
+<!-- 
+	d3pipes_add_script( "<{$block.mod_url}>/index.php?page=jsbackend&pipe_ids=<{","|implode:$block.pipe_ids|escape:"url"}>&max_entries=<{$block.max_entries}>&union_class=<{$block.union_class}>&link2clipping=<{$block.link2clipping}>&keep_pipeinfo=<{$block.keep_pipeinfo}>&unique_id=<{$block.unique_id}>" ) ;
+//-->
+</script>
+<noscript><{$block.lang_async_noscript}></noscript>

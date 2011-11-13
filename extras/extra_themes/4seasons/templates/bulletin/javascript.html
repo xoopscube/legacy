@@ -1,0 +1,71 @@
+function submitRelations(form, check)
+{
+	var content = getContents();
+	content += bulid(form, check);
+	setContents(content, 1);
+}
+
+function updateRelations(form, check)
+{
+
+	var content = bulid(form, check);
+	setContents(content, 0);
+}
+
+function bulid(form, check)
+{
+	ret = '';
+
+	var MyFrom = document.forms[form].elements;
+
+	if(MyFrom['storyidR[]']){
+		if( MyFrom['storyidR[]'].length ){
+			for(i=0;i<MyFrom['storyidR[]'].length;i++){
+				if( MyFrom['storyidR[]'][i].checked == check){
+					storyid = MyFrom['storyidR[]'][i].value;
+					title = MyFrom['titleR[]'][i].value;
+					dirname = MyFrom['dirnameR[]'][i].value;
+					ret += '<input type="checkbox" name="storyidR[]" value="' + storyid + '" />';
+					ret += '<input type="hidden" name="titleR[]" value="' + title + '" />';
+					ret += '<input type="hidden" name="dirnameR[]" value="' + dirname + '" />';
+					ret += '<input type="hidden" name="storyidRH[]" value="' + storyid + '" />';
+					ret += ''+title+'<br />';
+				}
+			}
+		}else{
+			if( MyFrom['storyidR[]'].checked == check){
+				storyid = MyFrom['storyidR[]'].value;
+				title = MyFrom['titleR[]'].value;
+				dirname = MyFrom['dirnameR[]'].value;
+				ret += '<input type="checkbox" name="storyidR[]" value="' + storyid + '" />';
+				ret += '<input type="hidden" name="titleR[]" value="' + title + '" />';
+				ret += '<input type="hidden" name="dirnameR[]" value="' + dirname + '" />';
+				ret += '<input type="hidden" name="storyidRH[]" value="' + storyid + '" />';
+				ret += ''+title+'<br />';
+			}
+		}
+	}
+	return ret;
+}
+
+function getContents()
+{
+	if (document.getElementById){
+		var ret = window.opener.document.getElementById("relation").innerHTML;
+		return ret;
+	}
+	return false;
+}
+
+function setContents(content, subwindow)
+{
+	if (document.getElementById){
+		if( subwindow ){
+			window.opener.document.getElementById("relation").innerHTML=content;
+		}else{
+			document.getElementById("relation").innerHTML=content;
+		}
+		return true;
+	}
+	return false;
+}

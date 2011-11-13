@@ -1,0 +1,136 @@
+<!-- start each post -->
+<div class="d3f_head">
+<{if $post.poster_avatar}>
+	<{if $post.poster_avatar.height > 80}>
+		<img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" height="80" alt="" class="d3f_avatar" />
+	<{else}>
+		<img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" width="<{$post.poster_avatar.width}>" height="<{$post.poster_avatar.height}>" alt="" class="d3f_avatar" />
+	<{/if}>
+<{/if}>
+	<h2<{if $post.invisible || ! $post.approval }> class="<{if $post.invisible}> invisible<{elseif ! $post.approval}> yetapproval<{/if}>"<{/if}>>
+	<a id="post_id<{$post.id}>" name="post_id<{$post.id}>"><img src="<{$xoops_imageurl}>images/posticon<{$post.icon}>.gif" alt="<{$icon_meanings[$post.icon]}>" /></a>
+	<{if $caller == 'listposts'}>
+		<a href="<{$mod_url}>/index.php?post_id=<{$post.id}>" id="post_path<{$post.unique_path}>" name="post_path<{$post.unique_path}>"><{$post.subject}></a>
+	<{else}>
+		<{$post.subject}>
+	<{/if}>
+	</h2>
+	<span class="d3f_msgnum"><{$smarty.const._MD_D3FORUM_UNIQUEPATHPREFIX}> <{$post.unique_path}></span>
+</div>
+<!-- read control -->
+<div class="d3f_info">
+<{if $postorder < 2 || $caller == 'viewpost'}>
+	<dl class="d3f_head_tree_depth" style="width:<{$post.depth_in_tree*5|min:100}>%;">
+	<dt>depth:</dt>
+		<dd><{$post.depth_in_tree}></dd>
+	</dl>
+<{/if}>
+	<div class="d3f_info_val">
+	<{if $post.prev_id}>
+		<a href="<{$post.prev_id|string_format:$inner_link_format}>"><{$smarty.const._MD_D3FORUM_LINK_PREVPOST}></a>
+	<{else}>
+		<{$smarty.const._MD_D3FORUM_LINK_PREVPOST}>
+	<{/if}> -
+
+	<{if $post.next_id}>
+		<a href="<{$post.next_id|string_format:$inner_link_format}>"><{$smarty.const._MD_D3FORUM_LINK_NEXTPOST}></a>
+	<{else}>
+		<{$smarty.const._MD_D3FORUM_LINK_NEXTPOST}>
+	<{/if}> |
+
+	<{if $post.pid}>
+		<a href="<{$post.pid|string_format:$inner_link_format}>"><{$smarty.const._MD_D3FORUM_PARENTPOST}></a>
+	<{else}>
+		<{$smarty.const._MD_D3FORUM_PARENTPOST}>
+	<{/if}> -
+	
+	<{if $post.first_child_id}>
+		<{foreach from=$post.f1s key="f1_id" item="f1_leaf_number" name="f1_loop"}>
+			<a href="<{$f1_id|string_format:$inner_link_format}>"><{if $smarty.foreach.f1_loop.first}><{$smarty.const._MD_D3FORUM_CHILDPOSTS}><{/if}><{$f1_leaf_number}></a>
+		<{/foreach}>
+	<{else}>
+		<{$smarty.const._MD_D3FORUM_NOCHILDPOSTS}>
+	<{/if}> |
+	
+	<{$smarty.const._MD_D3FORUM_ON}> <{$post.post_time_formatted}> <{if $post.post_time < $post.modified_time}> | <span title="<{$post.modified_time_formatted}>"><{$smarty.const._MD_D3FORUM_LASTMODIFIED}></span><{/if}>
+	</div>
+</div>
+<!-- poster info -->
+<div class="d3f_info_sub">
+<{if $post.poster_uid != 0}><a href="<{$xoops_url}>/userinfo.php?uid=<{$post.poster_uid}>"><{/if}><{$post.poster_uname}><{if $post.poster_uid != 0}></a><{/if}>&nbsp;
+<{if $post.poster_uid != 0}>
+	<{if $post.poster_rank_title}>
+		<img src="<{$xoops_upload_url}>/<{$post.poster_rank_image}>" alt="<{$post.poster_rank_title}>"  title="<{$post.poster_rank_title}>" />
+	<{/if}>
+	<{* <{$smarty.const._MD_D3FORUM_POSTERJOINED}>: <{$post.poster_regdate_formatted}> *}>
+	<{if $post.poster_from}><{$smarty.const._MD_D3FORUM_POSTERFROM}>: <{$post.poster_from}><{/if}>&nbsp;
+	<{$smarty.const._MD_D3FORUM_POSTERPOSTS}>: <{$post.poster_posts_count}>
+	<{if $post.poster_is_online}><{$smarty.const._MD_D3FORUM_POSTERISONLINE}><{/if}>
+<{else}>
+	<{if $post.guest_url || $post.guest_trip}>
+	<{* <{$post.guest_email}> *}>
+	<{* <{if $post.guest_url}><a href="<{$post.guest_url}>" title="<{$post.guest_url}>"><{$smarty.const._MD_D3FORUM_TH_GUESTURL}></a><{/if}> *}>
+	<{if $post.guest_trip}><{$smarty.const._MD_D3FORUM_TH_GUESTTRIP}>: <{$post.guest_trip}><{/if}>
+	<{/if}>
+<{/if}>
+</div>
+<!-- post -->
+<div class="d3f_body">
+<{$post.post_text}>
+<{if $post.signature}>
+	<p>-- <br /><{$post.signature}></p>
+<{/if}>
+</div>
+
+<!-- post foot control -->
+<div class="d3f_info_ctrl">
+<{if $forum.isadminormod}>
+	<a href="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$post.id}>" class="cutpaste"><img src="<{$xoops_imageurl}>images/adminicon_cutpaste.gif" alt="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>" /></a> |
+<{/if}>
+
+<{if ! $post.approval && $forum.isadminormod}>
+	<a href="<{$mod_url}>/index.php?page=update_post_approval&amp;post_id=<{$post.id}>&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>"><{$smarty.const._MD_D3FORUM_LABEL_DOAPPROVAL}></a> |
+<{/if}>
+
+<{if $mod_config.use_vote && ! $post.invisible && $post.approval}>
+	<span class="d3f_vote">
+		<{$smarty.const._MD_D3FORUM_VOTECOUNT}>:<{$post.votes_count}>
+		<{$smarty.const._MD_D3FORUM_VOTEPOINTAVG}>:<{$post.votes_avg|string_format:"%.2f"}>
+	</span>
+	<{if $post.can_vote}>
+		<form action="<{$mod_url}>/index.php" method="get" style="display:inline;">
+			<input type="hidden" name="page" value="vote_to_post" />
+			<input type="hidden" name="post_id" value="<{$post.id}>" />
+			<input type="hidden" name="point" value="10" />
+			<{if $caller == 'listposts'}>
+				<input type="hidden" name="ret_name" value="topic_id" />
+				<input type="hidden" name="ret_val" value="<{$topic.id}>" />
+			<{/if}>
+			<input type="submit" value="<{$smarty.const._MD_D3FORUM_VOTEPOINTDSCBEST}>" />
+		</form>
+		<form action="<{$mod_url}>/index.php" method="get" style="display:inline;">
+			<input type="hidden" name="page" value="vote_to_post" />
+			<input type="hidden" name="post_id" value="<{$post.id}>" />
+			<input type="hidden" name="point" value="0" />
+			<{if $caller == 'listposts'}>
+				<input type="hidden" name="ret_name" value="topic_id" />
+				<input type="hidden" name="ret_val" value="<{$topic.id}>" />
+			<{/if}>
+			<input type="submit" value="<{$smarty.const._MD_D3FORUM_VOTEPOINTDSCWORST}>" />
+		</form>
+	<{/if}>
+<{/if}>
+
+<{if $post.can_edit}>
+ | <a href="<{$mod_url}>/index.php?page=edit&amp;post_id=<{$post.id}>"><{$smarty.const._MD_D3FORUM_POSTEDIT}></a> |
+<{/if}>
+
+<{if $post.can_delete}>
+<a href="<{$mod_url}>/index.php?page=delete&amp;post_id=<{$post.id}>"><{$smarty.const._MD_D3FORUM_POSTDELETE}></a> |
+<{/if}>
+
+<{if $post.can_reply}>
+<a href="<{$mod_url}>/index.php?page=reply&amp;post_id=<{$post.id}>"><{$smarty.const._MD_D3FORUM_POSTREPLY}></a>
+<{/if}>
+</div>
+<!-- end each post -->
