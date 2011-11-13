@@ -88,10 +88,19 @@ $modversion['sub'][2]['url']  = 'index.php?page=archive';
 
 // Submenu (just for mainmenu)
 $modversion['sub'] = array() ;
-//if( is_object( @$GLOBALS['xoopsModule'] ) && $GLOBALS['xoopsModule']->getVar('dirname') == $mydirname ) {
+if( is_object( @$GLOBALS['xoopsModule'] ) && $GLOBALS['xoopsModule']->getVar('dirname') == $mydirname ) {
 	require_once dirname(__FILE__).'/include/common_functions.php' ;
 	$modversion['sub'] = bulletin_get_submenu( $mydirname ) ;
-//}	// for XCL2.1 distribution pack
+} else {
+	$_sub_menu_cache = XOOPS_TRUST_PATH . '/cache/'. urlencode(substr(XOOPS_URL, 7)) . '_' . $mydirname . '_' . (is_object(@$GLOBALS['xoopsUser'])? join('-', $GLOBALS['xoopsUser']->getGroups()):XOOPS_GROUP_ANONYMOUS)  . '_' . $GLOBALS['xoopsConfig']['language'] . '.submenu';
+	if (is_file($_sub_menu_cache) && time() - 3600 < filemtime($_sub_menu_cache)) {
+		$modversion['sub'] = unserialize(file_get_contents($_sub_menu_cache));
+	} else {
+		require_once dirname(__FILE__).'/include/common_functions.php' ;
+		$modversion['sub'] = bulletin_get_submenu( $mydirname ) ;
+		file_put_contents($_sub_menu_cache, serialize($modversion['sub']));
+	}
+}
 
 // Search
 $modversion['hasSearch'] = 1 ;

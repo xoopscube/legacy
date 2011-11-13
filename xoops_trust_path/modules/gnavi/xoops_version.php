@@ -37,43 +37,21 @@ $modversion['search']['func'] = $mydirname.'_global_search' ;
 // Menu
 global $xoopsDB , $xoopsUser , $gnavi_catonsubmenu ,$gnavi_usevote, $table_cat ,$gnavi_usegooglemap,$gnavi_indexpage ;
 $modversion['hasMain'] = 1 ;
-$subcount = 1 ;
-include dirname( __FILE__ ) . '/include/get_perms.php' ;
-if( isset( $gnavi_usegooglemap ) && $gnavi_usegooglemap ) {
-	if( isset( $gnavi_indexpage ) && $gnavi_indexpage == 'map' ) {
-			$modversion['sub'][$subcount]['name'] = constant($constpref.'_TEXT_SMNAME6');
-			$modversion['sub'][$subcount++]['url'] = "index.php?page=category";
-	}else{
-			$modversion['sub'][$subcount]['name'] = constant($constpref.'_TEXT_SMNAME5');
-			$modversion['sub'][$subcount++]['url'] = "index.php?page=map";
-	}
-}
-if( isset( $gnavi_catonsubmenu ) && $gnavi_catonsubmenu ) {
-	$crs = $xoopsDB->query( "SELECT cid, title FROM $table_cat WHERE pid=0 ORDER BY weight,title") ;
-	if( $crs !== false ) {
-		while( list( $cid , $title ) = $xoopsDB->fetchRow( $crs ) ) {
-			$modversion['sub'][$subcount]['name'] = "$title" ;
-			$modversion['sub'][$subcount++]['url'] = "index.php?cid=$cid" ;
-		}
-	}
-}
-if( $global_perms & 1 ) {	// GNAV_GPERM_INSERTABLE
-	$modversion['sub'][$subcount]['name'] = constant($constpref.'_TEXT_SMNAME1');
-	$modversion['sub'][$subcount++]['url'] = "index.php?page=submit";
-	if($xoopsUser){
-		$modversion['sub'][$subcount]['name'] = constant($constpref.'_TEXT_SMNAME4');
-		$modversion['sub'][$subcount++]['url'] = "index.php?uid=-1";
-	}
-}
-$modversion['sub'][$subcount]['name'] = constant($constpref.'_TEXT_SMNAME2');
-$modversion['sub'][$subcount++]['url'] = "index.php?page=topten&amp;hit=1";
-if( $global_perms & 256 ) {	// GNAV_GPERM_RATEVIEW
-	if( isset( $gnavi_usevote ) && $gnavi_usevote ) {
-		$modversion['sub'][$subcount]['name'] = constant($constpref.'_TEXT_SMNAME3');
-		$modversion['sub'][$subcount++]['url'] = "index.php?page=topten&amp;rate=1";
-	}
-}
 
+if( is_object( @$GLOBALS['xoopsModule'] ) && $GLOBALS['xoopsModule']->getVar('dirname') == $mydirname ) {
+	require_once dirname(__FILE__).'/include/common_functions.php' ;
+	$modversion['sub'] = gnavi_get_submenu( $mydirname ) ;
+
+} else {
+	$_sub_menu_cache = XOOPS_TRUST_PATH . '/cache/'. urlencode(substr(XOOPS_URL, 7)) . '_' . $mydirname . '_' . (is_object(@$GLOBALS['xoopsUser'])? join('-', $GLOBALS['xoopsUser']->getGroups()):XOOPS_GROUP_ANONYMOUS)  . '_' . $GLOBALS['xoopsConfig']['language'] . '.submenu';
+	if (is_file($_sub_menu_cache) && time() - 3600 < filemtime($_sub_menu_cache)) {
+		$modversion['sub'] = unserialize(file_get_contents($_sub_menu_cache));
+	} else {
+		require_once dirname(__FILE__).'/include/common_functions.php' ;
+		$modversion['sub'] = gnavi_get_submenu( $mydirname ) ;
+		file_put_contents($_sub_menu_cache, serialize($modversion['sub']));
+	}
+}
 
 // All Templates can't be touched by modulesadmin.
 $modversion['templates'] = array() ;

@@ -1272,4 +1272,54 @@ function gnavi_mobile_templete_disp($templete){
 
 }
 
+// added by XCL2.2 distribution pack
+function gnavi_get_submenu( $mydirname ){
+	global $xoopsDB , $xoopsUser , $gnavi_catonsubmenu ,$gnavi_usevote, $table_cat ,
+				$gnavi_usegooglemap,$gnavi_indexpage ;
+	$constpref = '_MI_' . strtoupper( $mydirname ) ;
+	$subcount = 1 ;
+
+	static $submenus_cache ;
+
+	include dirname( __FILE__ ) . '/get_perms.php' ;
+	if( isset( $gnavi_usegooglemap ) && $gnavi_usegooglemap ) {
+		if( isset( $gnavi_indexpage ) && $gnavi_indexpage == 'map' ) {
+			$modversion['sub'][$subcount]['name'] = constant($constpref.'_TEXT_SMNAME6');
+			$sub[$subcount++]['url'] = "index.php?page=category";
+		}else{
+			$sub[$subcount]['name'] = constant($constpref.'_TEXT_SMNAME5');
+			$sub[$subcount++]['url'] = "index.php?page=map";
+		}
+	}
+	if( isset( $gnavi_catonsubmenu ) && $gnavi_catonsubmenu ) {
+		$crs = $xoopsDB->query( "SELECT cid, title FROM $table_cat WHERE pid=0 ORDER BY weight,title") ;
+		if( $crs !== false ) {
+		    while( list( $cid , $title ) = $xoopsDB->fetchRow( $crs ) ) {
+			$sub[$subcount]['name'] = "$title" ;
+			$sub[$subcount++]['url'] = "index.php?cid=$cid" ;
+		    }
+		}
+	}
+	if( $global_perms & 1 ) {	// GNAV_GPERM_INSERTABLE
+		$sub[$subcount]['name'] = constant($constpref.'_TEXT_SMNAME1');
+		$sub[$subcount++]['url'] = "index.php?page=submit";
+		if($xoopsUser){
+			$sub[$subcount]['name'] = constant($constpref.'_TEXT_SMNAME4');
+			$sub[$subcount++]['url'] = "index.php?uid=-1";
+		}
+	}
+	$sub[$subcount]['name'] = constant($constpref.'_TEXT_SMNAME2');
+	$sub[$subcount++]['url'] = "index.php?page=topten&amp;hit=1";
+	if( $global_perms & 256 ) {	// GNAV_GPERM_RATEVIEW
+		if( isset( $gnavi_usevote ) && $gnavi_usevote ) {
+			$sub[$subcount]['name'] = constant($constpref.'_TEXT_SMNAME3');
+			$sub[$subcount++]['url'] = "index.php?page=topten&amp;rate=1";
+		}
+	}
+
+	$submenus_cache[$mydirname] = $sub ;
+	return $submenus_cache[$mydirname] ;
+
+}
+
 ?>
