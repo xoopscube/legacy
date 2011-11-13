@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/11 by nao-pon http://hypweb.net/
-// $Id: xoops_wrapper.php,v 1.59 2011/11/04 06:38:29 nao-pon Exp $
+// $Id: xoops_wrapper.php,v 1.60 2011/11/13 15:27:15 nao-pon Exp $
 //
 class XpWikiXoopsWrapper extends XpWikiBackupFunc {
 
@@ -23,9 +23,9 @@ class XpWikiXoopsWrapper extends XpWikiBackupFunc {
 			$config_handler =& xoops_gethandler('config');
 
 			$this->root->module = $XoopsModule->getInfo();
-			$this->root->module['title'] = $XoopsModule->name();
-			$this->root->module['mid']   = $XoopsModule->mid();
-			$this->root->module['config'] =& $config_handler->getConfigsByCat(0, $XoopsModule->mid());
+			$this->root->module['title'] = $XoopsModule->getVar('name');
+			$this->root->module['mid']   = $XoopsModule->getVar('mid');
+			$this->root->module['config'] =& $config_handler->getConfigsByCat(0, $this->root->module['mid']);
 			$this->root->module['platform'] = "xoops";
 			$this->root->module['version'] = XPWIKI_VERSION;
 
