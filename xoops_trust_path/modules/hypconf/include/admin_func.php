@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2011/11/09 by nao-pon http://xoops.hypweb.net/
- * $Id: admin_func.php,v 1.1 2011/11/13 00:01:26 nao-pon Exp $
+ * $Id: admin_func.php,v 1.2 2011/11/13 15:19:29 nao-pon Exp $
  */
 
 function hypconfSetValue(& $config, $page) {
@@ -64,7 +64,7 @@ function hypconfGetModuleName($mid) {
 	$module_handler =& xoops_gethandler('module');
 	$module =& $module_handler->get($mid);
 
-	$ret[$mid] = $module->name();
+	$ret[$mid] = $module->getVar('name');
 
 	return $ret[$mid];
 }
