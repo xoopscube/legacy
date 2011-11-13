@@ -231,15 +231,26 @@ p {
 .inlineList li {
 	white-space: normal;
 }
-.btnList {
+.btnList,
+#mainmenu,
+#usermenu,
+#privatemessage {
 	border: solid 1px #ccc;
 	border-radius: 5px;
 }
-.btnList li {
+.btnList li ,
+#mainmenu li ,
+#usermenu li ,
+#privatemessage li {
 	padding: 0;
 	margin: 0;
 }
-.btnList li a {
+.btnList li a ,
+#mainmenu li a ,
+#mainmenu li a.menuTop ,
+#mainmenu li a.menuMain ,
+#usermenu li a ,
+#privatemessage li a {
 	display: block;
 	border-bottom: solid 1px #ccc;
 	margin: 0;
