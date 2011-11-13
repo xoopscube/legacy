@@ -583,7 +583,7 @@ function &xoops_gethandler($name, $optional = false )
         require_once XOOPS_ROOT_PATH.'/kernel/'.$name.'.php';
         $class = 'Xoops'.ucfirst($name).'Handler';
         if (XC_CLASS_EXISTS($class)) {
-	    $handlers[$name] = $handler = &new $class($GLOBALS['xoopsDB']);
+	    $handlers[$name] = $handler = new $class($GLOBALS['xoopsDB']);
 	    return $handler;
 		}
 
