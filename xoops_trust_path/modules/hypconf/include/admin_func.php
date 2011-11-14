@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2011/11/09 by nao-pon http://xoops.hypweb.net/
- * $Id: admin_func.php,v 1.2 2011/11/13 15:19:29 nao-pon Exp $
+ * $Id: admin_func.php,v 1.3 2011/11/14 00:27:49 nao-pon Exp $
  */
 
 function hypconfSetValue(& $config, $page) {
@@ -41,11 +41,12 @@ function hypconfGetBlocks() {
 		foreach($blocks as $block) {
 			$name = ($block->getVar("block_type") != "C") ? $block->getVar("name") : $block->getVar("title");
 			$bid = $block->getVar("bid");
-			$module = hypconfGetModuleName($block->getVar("mid"));
-			$ret[$module . ':' . $name] = array(
-				'confop_value' => $bid,
-				'confop_name' => $module . ':' . $name
-			);
+			if ($module = hypconfGetModuleName($block->getVar("mid"))) {
+				$ret[$module . ':' . $name] = array(
+					'confop_value' => $bid,
+					'confop_name' => $module . ':' . $name
+				);
+			}
 		}
 		ksort($ret);
 	}
@@ -64,7 +65,11 @@ function hypconfGetModuleName($mid) {
 	$module_handler =& xoops_gethandler('module');
 	$module =& $module_handler->get($mid);
 
-	$ret[$mid] = $module->getVar('name');
+	if (is_object($module)) {
+		$ret[$mid] = $module->getVar('name');
+	} else {
+		$ret[$mid] = false;
+	}
 
 	return $ret[$mid];
 }
