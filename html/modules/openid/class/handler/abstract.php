@@ -137,7 +137,7 @@ class Openid_Handler_Abstract
         if ($result =& $this->_query($sql, 1)) {
             if ($row = $this->_db->fetchArray($result)) {
                 require_once XOOPS_ROOT_PATH . '/modules/openid/class/context.php';
-                $record =& new Openid_Context();
+                $record = new Openid_Context();
             	foreach ($row as $key => $value) {
                     $record->set($key, $value);
                 }
@@ -160,7 +160,7 @@ class Openid_Handler_Abstract
         if ($result =& $this->_query($sql, $limit, $start)) {
             require_once XOOPS_ROOT_PATH . '/modules/openid/class/context.php';
             while ($row = $this->_db->fetchArray($result)) {
-                $record =& new Openid_Context();
+                $record = new Openid_Context();
                 foreach ($row as $key => $value) {
                     $record->set($key, $value);
                 }

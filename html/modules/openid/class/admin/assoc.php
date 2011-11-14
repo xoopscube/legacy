@@ -48,7 +48,7 @@ class Openid_Admin_Assoc extends Openid_Admin_Controller
             echo '</table>';
 
             require_once XOOPS_ROOT_PATH.'/class/pagenav.php';
-            $pageNav =& new XoopsPageNav($this->_handler->getCount(), 30, $start, 'start', 'controller=' . $this->_control);
+            $pageNav = new XoopsPageNav($this->_handler->getCount(), 30, $start, 'start', 'controller=' . $this->_control);
             echo $pageNav->renderNav();
             echo '<p><a href="' . $this->_url . '&op=garbage">' . _AD_OPENID_LANG_CLEANUP . '</a></p>';
         } else {
@@ -60,7 +60,7 @@ class Openid_Admin_Assoc extends Openid_Admin_Controller
     function garbageAction()
     {
     	require_once XOOPS_ROOT_PATH . '/modules/openid/class/library.php';
-        $library =& new Openid_Library();
+        $library = new Openid_Library();
 
         echo $library->cleanupStore();
     }

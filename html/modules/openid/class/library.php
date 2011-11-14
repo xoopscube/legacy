@@ -51,7 +51,11 @@ class OpenID_Library
             define('Auth_OpenID_CURLOPT_CAINFO_FILE', $cainfo);
         }
 
-        $path_extra = XOOPS_ROOT_PATH . '/modules/openid/class/php-openid';
+        if (version_compare(PHP_VERSION, '5.0.0', '>=')) {
+        	$path_extra = XOOPS_ROOT_PATH . '/modules/openid/class/php5-openid';
+        } else {
+        	$path_extra = XOOPS_ROOT_PATH . '/modules/openid/class/php-openid';
+        }
         $path = ini_get('include_path');
         $path = $path_extra . PATH_SEPARATOR . $path;
         ini_set('include_path', $path);
@@ -84,8 +88,8 @@ class OpenID_Library
         require_once 'xoopsDBconnection.php';
         require_once 'ExMySQLStore.php';
 
-        $connection =& new OpenID_XoopsDBconnection($GLOBALS['xoopsDB']);
-        $store =& new OpenID_ExMySQLStore($connection,
+        $connection = new OpenID_XoopsDBconnection($GLOBALS['xoopsDB']);
+        $store = new OpenID_ExMySQLStore($connection,
                                 $GLOBALS['xoopsDB']->prefix('openid_assoc'),
                                 $GLOBALS['xoopsDB']->prefix('openid_nonce')
                                 );
@@ -153,7 +157,7 @@ class OpenID_Library
         $store =& $this->getStore();
 
         require_once 'exConsumer.php';
-        $consumer =& new OpenID_ExConsumer($store);
+        $consumer = new OpenID_ExConsumer($store);
         return $consumer;
     }
 

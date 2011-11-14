@@ -44,7 +44,7 @@ class OpenID_Utils
             include_once XOOPS_ROOT_PATH . "/modules/openid/class/{$name}.php";
             $className = 'Openid_' . ucfirst($name);
         }
-        $instance =& new $className();
+        $instance = new $className();
         return $instance;
     }
 

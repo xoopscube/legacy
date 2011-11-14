@@ -48,4 +48,14 @@ define('_AD_OPENID_LANG_TYPE', '種別');
 define('_AD_OPENID_LANG_TYPE_SERVER', 'OP-Identifier');
 define('_AD_OPENID_LANG_TYPE_SINON', 'OpenIDフォーマット');
 define('_AD_OPENID_LANG_RANGE', 'ユーザー固有ID範囲(start,size)');
+
+define('_AD_OPENID_LANG_UPDATE_CERT', 'CURLの証明書(PEM)ファイルの更新');
+define('_AD_OPENID_LANG_UPDATE_CERT_CAUTION', '一般設定で指定された場所にCURLの追加の証明書(PEM)ファイルをダウンロードします。PHPによって書き込み可能な場所が指定されている必要があります。同名のファイルが既にあった場合は上書きされます。');
+define('_AD_OPENID_ERROR_NO_RAND_SOURCE', '一般設定で指定された乱数生成デバイスが使用できません。正しいパスを指定するか、使用できない場合は空欄にしてください。');
+define('_AD_OPENID_ERROR_NO_CAINFO', '一般設定で指定された場所にCURLの追加の証明書(PEM)ファイルが見つかりません。');
+define('_AD_OPENID_ERROR_NOT_WRITABLE', '指定されたファイルは書き込みできません');
+define('_AD_OPENID_ERROR_NOT_WRITABLE_DIR', '指定されたディレクトリは書き込みできません');
+define('_AD_OPENID_ERROR_NOT_EXIST_DIR', '指定されたディレクトリは存在しません');
+define('_AD_OPENID_ERROR_NOT_CONECT', '配布サイトに接続できませんでした');
+define('_AD_OPENID_ERROR_NOT_UPDATE_CONFIG', 'ファイルの更新に成功しました。一般設定に以下の値を設定してください。<br>');
 ?>

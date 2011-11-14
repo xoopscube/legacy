@@ -65,13 +65,13 @@ class Openid_Admin_Filter extends Openid_Admin_Controller
         echo '<br />';
         if ($auth) {
         require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-        $form =& new XoopsSimpleForm('', 'openid_generator', $this->_url, 'post', true);
+        $form = new XoopsSimpleForm('', 'openid_generator', $this->_url, 'post', true);
 
         $form->addElement(new XoopsFormHidden('controller', 'filter'));
         $form->addElement(new XoopsFormHidden('op', 'generate'));
         $form->addElement(new XoopsFormHidden('auth', $auth));
         
-        $element =& new XoopsFormSelect(_AD_OPENID_LANG_GENERATOR_KEY, 'type');
+        $element = new XoopsFormSelect(_AD_OPENID_LANG_GENERATOR_KEY, 'type');
         
         $filterItems =& $this->getFilterItems();
         $options = array();
@@ -89,7 +89,7 @@ class Openid_Admin_Filter extends Openid_Admin_Controller
     function newAction()
     {
         require_once XOOPS_ROOT_PATH . '/modules/openid/class/context.php';
-        $record =& new Openid_Context();
+        $record = new Openid_Context();
         $record->accept('pattern', 'string', 'get');
         $record->accept('auth', 'int', 'get');
         $this->_showForm($record, 'insert');
@@ -106,7 +106,7 @@ class Openid_Admin_Filter extends Openid_Admin_Controller
         $auth = $record->get('auth');
         require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
         $title = constant('_AD_OPENID_LANG_FILTER_' . $auth);
-        $form =& new XoopsThemeForm($title, 'openid_filter', $this->_url, 'post', true);
+        $form = new XoopsThemeForm($title, 'openid_filter', $this->_url, 'post', true);
 
         $form->addElement(new XoopsFormHidden('controller', 'filter'));
         $form->addElement(new XoopsFormHidden('op', $op));
@@ -128,7 +128,7 @@ class Openid_Admin_Filter extends Openid_Admin_Controller
             } else {
                 $value = array(0);
             }
-            $element =& new XoopsFormSelect(_AD_OPENID_LANG_GROUP, 'groupid', $value, count($groups), true);  
+            $element = new XoopsFormSelect(_AD_OPENID_LANG_GROUP, 'groupid', $value, count($groups), true);  
             $element->addOptionArray($groups);
             $form->addElement($element);
         }
@@ -173,7 +173,7 @@ class Openid_Admin_Filter extends Openid_Admin_Controller
         $this->_checkToken();
 
         require_once XOOPS_ROOT_PATH . '/modules/openid/class/context.php';
-        $post =& new Openid_Context();
+        $post = new Openid_Context();
         $post->set('groupid', '0');
         $post->set('auth', OPENID_AUTH_ALLOW);
 

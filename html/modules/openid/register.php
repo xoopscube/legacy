@@ -13,7 +13,7 @@ if (!is_object($openid)) {
     Openid_Utils::redirect('Bad operation !');
 }
 
-$post =& new Openid_Context();
+$post = new Openid_Context();
 $post->accept('uname');
 $post->accept('omode', 'int');
 

@@ -46,4 +46,14 @@ define('_AD_OPENID_LANG_TYPE', 'type');
 define('_AD_OPENID_LANG_TYPE_SERVER', 'OP-Identifier');
 define('_AD_OPENID_LANG_TYPE_SINON', 'User OpenID');
 define('_AD_OPENID_LANG_RANGE', 'range of user identity(start,size)');
+
+define('_AD_OPENID_LANG_UPDATE_CERT', 'Update CURL cert file');
+define('_AD_OPENID_LANG_UPDATE_CERT_CAUTION', '');
+define('_AD_OPENID_ERROR_NO_RAND_SOURCE', 'Can\'t use rand source.');
+define('_AD_OPENID_ERROR_NO_CAINFO', 'Don\'t exist ca info file.');
+define('_AD_OPENID_ERROR_NOT_WRITABLE', 'File don\'t writable.');
+define('_AD_OPENID_ERROR_NOT_WRITABLE_DIR', 'Directory don\'t writable.');
+define('_AD_OPENID_ERROR_NOT_EXIST_DIR', 'Directory don\'t exist.');
+define('_AD_OPENID_ERROR_NOT_CONECT', 'Can\'t conect to site');
+define('_AD_OPENID_ERROR_NOT_UPDATE_CONFIG', 'Update config<br>');
 ?>

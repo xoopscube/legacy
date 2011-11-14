@@ -17,7 +17,7 @@ class Openid_Admin_Identifier extends Openid_Admin_Controller
 		$start = isset($_GET['start']) ? intval($_GET['start']) : 0;
 
         require_once XOOPS_ROOT_PATH.'/class/pagenav.php';
-        $pageNav =& new XoopsPageNav($this->_handler->getCount(), 30, $start);
+        $pageNav = new XoopsPageNav($this->_handler->getCount(), 30, $start);
         $nav_html = $pageNav->renderNav();
 
         echo '
@@ -55,7 +55,7 @@ class Openid_Admin_Identifier extends Openid_Admin_Controller
         }
 
         require_once XOOPS_ROOT_PATH . '/modules/openid/class/member.php';
-        $member =& new Openid_Member();
+        $member = new Openid_Member();
         $users =& $member->getUsers($uids);
 
         $mode = array(_AD_OPENID_LANG_INACTIVE, _AD_OPENID_LANG_PRIVATE,
@@ -88,7 +88,7 @@ class Openid_Admin_Identifier extends Openid_Admin_Controller
     function _showForm(&$record, $op)
     {
         require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-        $form =& new XoopsThemeForm('Identifier', 'openid_identifier',
+        $form = new XoopsThemeForm('Identifier', 'openid_identifier',
             XOOPS_URL . '/modules/openid/admin/index.php', 'post', true);
 
         $form->addElement(new XoopsFormHidden('controller', 'identifier'));
@@ -100,7 +100,7 @@ class Openid_Admin_Identifier extends Openid_Admin_Controller
         $form->addElement(new XoopsFormText('Claimed ID', 'claimed', 64, 255, $record->get4Show('claimed_id')));
         $form->addElement(new XoopsFormSelectUser(_AD_OPENID_LANG_USER, 'uid', false, $record->get4Show('uid')));
 
-        $element =& new XoopsFormSelect(_AD_OPENID_LANG_MODE, 'omode', $record->get4Show('omode'));
+        $element = new XoopsFormSelect(_AD_OPENID_LANG_MODE, 'omode', $record->get4Show('omode'));
         $element->addOptionArray(array(_AD_OPENID_LANG_INACTIVE, _AD_OPENID_LANG_PRIVATE,
             _AD_OPENID_LANG_OPEN2MEMBER, _AD_OPENID_LANG_PUBLIC));
         $form->addElement($element);

@@ -65,11 +65,11 @@ class Openid_Admin_Buttons extends Openid_Admin_Controller
             }
         }
         require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-        $form =& new XoopsSimpleForm('', 'openid_generator', $this->_url, 'post', true);
+        $form = new XoopsSimpleForm('', 'openid_generator', $this->_url, 'post', true);
         $form->addElement(new XoopsFormHidden('controller', $this->_control));
         $form->addElement(new XoopsFormHidden('op', 'generate'));
 
-        $element =& new XoopsFormSelect(_ADD, 'offset');
+        $element = new XoopsFormSelect(_ADD, 'offset');
         $element->addOptionArray($options);
         $form->addElement($element);
 
@@ -86,7 +86,7 @@ class Openid_Admin_Buttons extends Openid_Admin_Controller
     function _showForm(&$record, $op)
     {
         require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-        $form =& new XoopsThemeForm(_AD_OPENID_LANG_BUTTONS, 'openid_buttons', $this->_url, 'post', true);
+        $form = new XoopsThemeForm(_AD_OPENID_LANG_BUTTONS, 'openid_buttons', $this->_url, 'post', true);
 
         $form->addElement(new XoopsFormHidden('controller', $this->_control));
         $form->addElement(new XoopsFormHidden('op', $op));
@@ -99,7 +99,7 @@ class Openid_Admin_Buttons extends Openid_Admin_Controller
             $form->addElement(new XoopsFormHidden('id', $record->get4Show('id')));
             $form->addElement(new XoopsFormHidden('type', $record->get4Show('type')));
         } else {
-            $element =& new XoopsFormRadio(_AD_OPENID_LANG_TYPE, 'type', $record->get4Show('type'));
+            $element = new XoopsFormRadio(_AD_OPENID_LANG_TYPE, 'type', $record->get4Show('type'));
             $element->addOptionArray(array(_AD_OPENID_LANG_TYPE_SERVER, _AD_OPENID_LANG_TYPE_SINON));
             $form->addElement($element);
         }
@@ -138,7 +138,7 @@ class Openid_Admin_Buttons extends Openid_Admin_Controller
 
         if (isset($_POST['offset']) && $item = $filterItems[intval($_POST['offset'])]) {
             require_once XOOPS_ROOT_PATH . '/modules/openid/class/context.php';
-            $record =& new Openid_Context();
+            $record = new Openid_Context();
             if (isset($item['op_identifier'])) {
                 $record->set('type', 0);
                 $record->set('identifier', $item['op_identifier']);

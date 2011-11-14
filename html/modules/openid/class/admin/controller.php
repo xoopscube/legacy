@@ -22,9 +22,9 @@ class Openid_Admin_Controller
      * @var Openid_Handler
      */
     var $_handler;
-    
+
     var $_control;
-    
+
     var $_defaultOp = 'list';
 
     /**
@@ -32,12 +32,14 @@ class Openid_Admin_Controller
      */
     var $_allowed = array('list', 'new', 'edit');
     var $_allowedAction = array('save', 'insert', 'delete', 'deleteok');
-    
+
+    var $_template;
+
     function Openid_Admin_Controller()
     {
         require_once XOOPS_ROOT_PATH . "/modules/openid/class/handler/{$this->_control}.php";
         $className = 'Openid_Handler_' . ucfirst($this->_control);
-        $this->_handler =& new $className();
+        $this->_handler = new $className();
         $this->_keyField = $this->_handler->_keyField;
         $this->_url = xoops_getenv('PHP_SELF') . '?controller=' . $this->_control;
     }
@@ -64,7 +66,7 @@ class Openid_Admin_Controller
     function newAction()
     {
         require_once XOOPS_ROOT_PATH . '/modules/openid/class/context.php';
-        $record =& new Openid_Context();
+        $record = new Openid_Context();
         //No initial value
         $this->_showForm($record, 'insert');
     }
@@ -72,7 +74,7 @@ class Openid_Admin_Controller
     function editAction()
     {
         require_once XOOPS_ROOT_PATH . '/modules/openid/class/context.php';
-        $request =& new Openid_Context();
+        $request = new Openid_Context();
         if (!$request->accept($this->_keyField, 'string', 'get')) {
             redirect_header($this->_url, 2, 'Bad operation');
         }
@@ -96,7 +98,7 @@ class Openid_Admin_Controller
         $this->_checkToken();
 
         require_once XOOPS_ROOT_PATH . '/modules/openid/class/context.php';
-        $post =& new Openid_Context();
+        $post = new Openid_Context();
         $this->_getRequest($post, 'insert');
 
         if ($this->_handler->insert($post)) {
@@ -113,7 +115,7 @@ class Openid_Admin_Controller
         $this->_checkToken();
 
         require_once XOOPS_ROOT_PATH . '/modules/openid/class/context.php';
-        $request =& new Openid_Context();
+        $request = new Openid_Context();
         if (!$request->accept($this->_keyField)) {
             exit;
         }
@@ -133,14 +135,14 @@ class Openid_Admin_Controller
     {
         require_once XOOPS_ROOT_PATH . '/modules/openid/class/utils.php';
         if (!OpenID_Utils::validateToken()) {
-            redirect_header($this->_url, 2, 'Token Error');            
+            redirect_header($this->_url, 2, 'Token Error');
         }
     }
 
     /**
      * Get form vars
      *
-     * @abstract 
+     * @abstract
      * @param Openid_Context $post
      * @param string $op
      */
@@ -165,7 +167,7 @@ class Openid_Admin_Controller
         $this->_checkToken();
 
         require_once XOOPS_ROOT_PATH . '/modules/openid/class/context.php';
-        $post =& new Openid_Context();
+        $post = new Openid_Context();
         if ($post->accept($this->_keyField)) {
             if ($this->_handler->delete($post->get($this->_keyField))) {
                 $message = 'Record Delete Success';
@@ -179,6 +181,23 @@ class Openid_Admin_Controller
         redirect_header($this->_url, 2, $message);
     }
 
+    function listAction()
+    {
+        require_once XOOPS_ROOT_PATH.'/class/template.php';
+        $view = new XoopsTpl();
+        $view->assign('url', $this->_url);
+        $this->_list($view);
+        $view->display($this->_template);
+    }
+
+    /**
+     * @abstract
+     * @param XoopsTpl $view
+     */
+    function _list($view)
+    {
+    }
+
     /**
      * @static
      * @return void
@@ -187,12 +206,16 @@ class Openid_Admin_Controller
     {
         global $xoopsConfig;
         include_once XOOPS_ROOT_PATH . '/modules/openid/language/' . $xoopsConfig['language'] . '/modinfo.php';
-    	include XOOPS_ROOT_PATH . '/modules/openid/include/admin_menu.php';
-        $controller = isset($_REQUEST['controller']) ? $_REQUEST['controller'] : 'identifier';
+        // for X2
+        if (!defined('XOOPS_CUBE_LEGACY')) {
+            include_once XOOPS_ROOT_PATH . '/modules/openid/language/' . $xoopsConfig['language'] . '/admin.php';
+        }
+     	include XOOPS_ROOT_PATH . '/modules/openid/include/admin_menu.php';
+        $controller = isset($_REQUEST['controller']) ? $_REQUEST['controller'] : $openid_default_controller;
         if (@in_array($controller, $openid_allowed_controller)) {
             require_once XOOPS_ROOT_PATH . "/modules/openid/class/admin/{$controller}.php";
             $className = 'Openid_Admin_' . ucfirst($controller);
-            $instance =& new $className();
+            $instance = new $className();
             $instance->execute($adminmenu);
         } else {
             exit(htmlspecialchars($controller, ENT_QUOTES));

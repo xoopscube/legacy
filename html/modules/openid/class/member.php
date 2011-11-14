@@ -45,7 +45,7 @@ class OpenID_Member
         }
 
         $member_handler =& xoops_gethandler('member');
-        $criteria =& new CriteriaCompo(new Criteria('uname', $uname));
+        $criteria = new CriteriaCompo(new Criteria('uname', $uname));
         if ($member_handler->getUserCount($criteria) > 0) {
             $this->_error = '"' . $uname . '": ' . _MD_OPENID_ERROR_NICKNAMETAKEN;
             return false;

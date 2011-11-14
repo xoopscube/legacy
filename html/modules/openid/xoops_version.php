@@ -9,7 +9,7 @@
  * @link $URL$
  */
 $modversion['name'] = _MI_OPENID_NAME;
-$modversion['version'] = 0.28;
+$modversion['version'] = 0.29;
 $modversion['description'] = _MI_OPENID_DESC;
 $modversion['credits'] = '"OpenID Auth Module" Development Committee<br />
 Original author Nat Sakimura( http://www.sakimura.org/ )<br />';
@@ -67,6 +67,8 @@ $modversion['templates'][1]['file'] = 'openid_consumer.html';
 $modversion['templates'][1]['description'] = 'OpenID Consumer Screen';
 $modversion['templates'][2]['file'] = 'openid_new_user.html';
 $modversion['templates'][2]['description'] = 'New OpenID User Dialog';
+$modversion['templates'][3]['file'] = 'openid_admin_default.html';
+$modversion['templates'][3]['description'] = 'Template for admin panel';
 
 // Config
 $modversion['hasconfig'] = 1;
