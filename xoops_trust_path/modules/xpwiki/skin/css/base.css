@@ -143,11 +143,9 @@ div.toc_pin {
 	opacity: 0.8;
 	cursor: pointer;
 }
-div.toc_handle {
-	float: left;
+span.toc_handle {
 	margin-left: -1.3em;
-	margin-right: 0.5em;
-	padding-top: 4px;
+	margin-right: 0.2em;
 	cursor: pointer;
 }
 div.contentsFixed {

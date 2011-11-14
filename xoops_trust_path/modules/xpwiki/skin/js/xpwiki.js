@@ -690,7 +690,7 @@ var XpWiki = {
 					var li = lis[li_i];
 					var ul = li.getElementsByTagName('ul');
 					if (ul.length && li.firstChild.nodeName.toUpperCase() != 'UL') {
-						var handle = document.createElement('div');
+						var handle = document.createElement('span');
 						handle.innerHTML = '<img src="' + wikihelper_root_url + '/skin/loader.php?src=minus.gif" />';
 						handle.id = 'xpwiki_toc_hd' + tocId + '_' + licnt;
 						handle.className = 'toc_handle';
