@@ -7,12 +7,12 @@
  */
 class getMultiMenu {
   var $block = array();
-  
+
   function getMultiMenu(){
   }
   function getblock( $options, $db_name  ) {
-	global $xoopsDB, $xoopsUser, $xoopsModule;	
-	
+	global $xoopsDB, $xoopsUser, $xoopsModule;
+
 	$myts =& MyTextSanitizer::getInstance();
 	$block = array();
 	$inum = 0;
@@ -20,6 +20,7 @@ class getMultiMenu {
 	$db = $xoopsDB->prefix( $db_name );
 	$sql = "SELECT groups, link, title, target FROM ".$db." WHERE hide=0 ORDER BY weight ASC";
 	$result = $xoopsDB->query($sql);
+	$parent_active = false;
 	while ( $myrow = $xoopsDB->fetchArray($result) ) {
 		//$title = $myts->makeTboxData4Show($myrow["title"]);
 		$title = $myts->stripSlashesGPC($myrow["title"]);	// by bluemoon
@@ -32,108 +33,121 @@ class getMultiMenu {
 		$myrow['link'] = preg_replace("/\[XOOPS_URL\]/",XOOPS_URL,$myrow['link']);
 		$groups = explode(" ",$myrow['groups']);
 		if (count(array_intersect($group,$groups)) > 0) {
-			// hacked by nobunobu start
-			if (preg_match("/^[\s\-].*/",$myrow['link'])) {
-				$link =  preg_replace("/^[\s\-]/","",$myrow['link']);
-				$isub =count($block['contents'][$inum-1]['sublinks']);
-				if ($parent_active) {
-					$block['contents'][$inum-1]['sublinks'][$isub]['name'] = $title;
-					if (eregi("^\[([a-z0-9_\-]+)\]((.)*)$", $link, $moduledir)) {
-						$module_handler = & xoops_gethandler( 'module' );
-						$module =& $module_handler->getByDirname($moduledir[1]);
-						if ( is_object( $module ) && $module->getVar( 'isactive' ) ) {
-							$link = XOOPS_URL."/modules/".$moduledir[1]."/".$moduledir[2];
-						}
-					}
-					$block['contents'][$inum-1]['sublinks'][$isub]['url'] = $link;
-				}
-				continue;
-			}
-			// hacked by nobunobu end
+			$imenu = array();
 			$imenu['title'] = $title;
 			$imenu['target'] = $myrow['target'];
 			$imenu['sublinks'] = array();
-
-			// [module_name]xxxx.php?aa=aa&bb=bb
-			if (eregi("^\[([a-z0-9_\-]+)\]((.)*)$", $myrow['link'], $moduledir)) {
-				$module_handler = & xoops_gethandler( 'module' );
-				$module =& $module_handler->getByDirname($moduledir[1]);
-				if ( is_object( $module ) && $module->getVar( 'isactive' ) ) {
-					$imenu['link'] = XOOPS_URL."/modules/".$moduledir[1]."/".$moduledir[2];
-					$parent_active = true;
-				}
-
-			// +[module_name]xxxx.php?aa=aa&bb=bb	view submenu
-			}elseif (eregi("^\+\[([a-z0-9_\-]+)\]((.)*)$", $myrow['link'], $moduledir)) {
-				$module_handler = & xoops_gethandler( 'module' );
-				$module =& $module_handler->getByDirname($moduledir[1]);
-				if ( is_object( $module ) && $module->getVar( 'isactive' ) ) {
-					$imenu['link'] = XOOPS_URL."/modules/".$moduledir[1]."/".$moduledir[2];
-					$parent_active = true;
-
-					$mid = $module->getVar('mid');
-					$sublinks =& $module->subLink();
-					if (count($sublinks) > 0)  {
-						foreach($sublinks as $sublink){
-							if ( !XOOPS_USE_MULTIBYTES ) {
-								if (strlen($sublink['name']) >= $options[0]) {
-									$sublink['name'] = $myts->makeTboxData4Show(substr($sublink['name'],0,($options[0]-1)))."...";
-								}
+			$imenu['link'] = '';
+			$head = $myrow['link'][0];
+			switch($head) {
+				case ' ':
+				case '-':
+					// hacked by nobunobu start
+					$link =  substr($myrow['link'], 1);
+					$isub =count($block['contents'][$inum-1]['sublinks']);
+					if ($parent_active) {
+						$block['contents'][$inum-1]['sublinks'][$isub]['name'] = $title;
+						if (preg_match('/^\[([a-z0-9_\-]+)\](.*)$/i', $link, $moduledir)) {
+							$module_handler = & xoops_gethandler( 'module' );
+							$module =& $module_handler->getByDirname($moduledir[1]);
+							if ( is_object( $module ) && $module->getVar( 'isactive' ) ) {
+								$link = XOOPS_URL."/modules/".$moduledir[1]."/".$moduledir[2];
 							}
-							$imenu['sublinks'][] = array('name' => $sublink['name'], 'url' => XOOPS_URL.'/modules/'.$moduledir[1].'/'.$sublink['url'] );
+						}
+						$block['contents'][$inum-1]['sublinks'][$isub]['url'] = $link;
+					}
+					continue 2;
+					// hacked by nobunobu end
+					break;
+				case '[':
+					// [module_name]xxxx.php?aa=aa&bb=bb
+					if (preg_match('/^\[([a-z0-9_\-]+)\](.*)$/i', $myrow['link'], $moduledir)) {
+						$module_handler = & xoops_gethandler( 'module' );
+						$module =& $module_handler->getByDirname($moduledir[1]);
+						if ( is_object( $module ) && $module->getVar( 'isactive' ) ) {
+							$imenu['link'] = XOOPS_URL."/modules/".$moduledir[1]."/".$moduledir[2];
+							$parent_active = true;
 						}
 					}
-				}
+					break;
+				case '+':
+					// +[module_name]xxxx.php?aa=aa&bb=bb	view submenu
+					if (preg_match('/^\+\[([a-z0-9_\-]+)\](.*)$/i', $myrow['link'], $moduledir)) {
+						$module_handler = & xoops_gethandler( 'module' );
+						$module =& $module_handler->getByDirname($moduledir[1]);
+						if ( is_object( $module ) && $module->getVar( 'isactive' ) ) {
+							$imenu['link'] = XOOPS_URL."/modules/".$moduledir[1]."/".$moduledir[2];
+							$parent_active = true;
 
-			// @[module_name]xxxx.php?aa=aa&bb=bb	view submennu
-			}elseif (eregi("^\@\[([a-z0-9_\-]+)\]((.)*)$", $myrow['link'], $moduledir)) {
-				$module_handler = & xoops_gethandler( 'module' );
-				$module =& $module_handler->getByDirname($moduledir[1]);
-				if ( is_object( $module ) && $module->getVar( 'isactive' ) ) {
-					$imenu['link'] = XOOPS_URL."/modules/".$moduledir[1]."/".$moduledir[2];
+							$mid = $module->getVar('mid');
+							$sublinks =& $module->subLink();
+							if (count($sublinks) > 0)  {
+								foreach($sublinks as $sublink){
+									if ( !XOOPS_USE_MULTIBYTES ) {
+										if (strlen($sublink['name']) >= $options[0]) {
+											$sublink['name'] = $myts->makeTboxData4Show(substr($sublink['name'],0,($options[0]-1)))."...";
+										}
+									}
+									$imenu['sublinks'][] = array('name' => $sublink['name'], 'url' => XOOPS_URL.'/modules/'.$moduledir[1].'/'.$sublink['url'] );
+								}
+							}
+						}
+					}
+					break;
+				case '@':
+					if (preg_match('/^\@\[([a-z0-9_\-]+)\](.*)$/i', $myrow['link'], $moduledir)) {
+						$module_handler = & xoops_gethandler( 'module' );
+						$module =& $module_handler->getByDirname($moduledir[1]);
+						if ( is_object( $module ) && $module->getVar( 'isactive' ) ) {
+							$imenu['link'] = XOOPS_URL."/modules/".$moduledir[1]."/".$moduledir[2];
 
-					$mid = $module->getVar('mid');
-					$sublinks =& $module->subLink();
+							$mid = $module->getVar('mid');
+							$sublinks =& $module->subLink();
 
-					// hacked by nobunobu start
-					if ( (!empty($xoopsModule)) && ($moduledir[1] == $xoopsModule->getVar('dirname')) ){
-						$parent_active = true;
-						if (count($sublinks) > 0) {
-							foreach($sublinks as $sublink){
-								if ( !XOOPS_USE_MULTIBYTES ) {
-									if (strlen($sublink['name']) >= $options[0]) {
-										$sublink['name'] = $myts->makeTboxData4Show(substr($sublink['name'],0,($options[0]-1)))."...";
+							// hacked by nobunobu start
+							if ( (!empty($xoopsModule)) && ($moduledir[1] == $xoopsModule->getVar('dirname')) ){
+								$parent_active = true;
+								if (count($sublinks) > 0) {
+									foreach($sublinks as $sublink){
+										if ( !XOOPS_USE_MULTIBYTES ) {
+											if (strlen($sublink['name']) >= $options[0]) {
+												$sublink['name'] = $myts->makeTboxData4Show(substr($sublink['name'],0,($options[0]-1)))."...";
+											}
+										}
+										$imenu['sublinks'][] = array('name' => $sublink['name'], 'url' => XOOPS_URL.'/modules/'.$moduledir[1].'/'.$sublink['url'] );
 									}
 								}
-								$imenu['sublinks'][] = array('name' => $sublink['name'], 'url' => XOOPS_URL.'/modules/'.$moduledir[1].'/'.$sublink['url'] );
+							} else {
+								$parent_active = false;
+							// hacked by nobunobu end
 							}
 						}
-					} else {
-						$parent_active = false;
-					// hacked by nobunobu end
 					}
-				}
+					break;
+				case '&':
+					// &[module_name]xxxx.php?aa=aa&bb=bb	view submenu // hacked by nobunobu
+					if (preg_match('/^\&\[([a-z0-9_\-]+)\](.*)$/i', $myrow['link'], $moduledir)) {
+						$module_handler = & xoops_gethandler( 'module' );
+						$module =& $module_handler->getByDirname($moduledir[1]);
+						if ( is_object( $module ) && $module->getVar( 'isactive' ) ) {
+							$imenu['link'] = XOOPS_URL."/modules/".$moduledir[1]."/".$moduledir[2];
 
-			// &[module_name]xxxx.php?aa=aa&bb=bb	view submenu // hacked by nobunobu
-			} elseif (eregi("^\&\[([a-z0-9_\-]+)\]((.)*)$", $myrow['link'], $moduledir)) {
-				$module_handler = & xoops_gethandler( 'module' );
-				$module =& $module_handler->getByDirname($moduledir[1]);
-				if ( is_object( $module ) && $module->getVar( 'isactive' ) ) {
-					$imenu['link'] = XOOPS_URL."/modules/".$moduledir[1]."/".$moduledir[2];
-
-					$mid = $module->getVar('mid');
-					if ( (!empty($xoopsModule)) && ($moduledir[1] == $xoopsModule->getVar('dirname')) ){
-						$parent_active = true;
-					} else {
-						$parent_active = false;
+							$mid = $module->getVar('mid');
+							if ( (!empty($xoopsModule)) && ($moduledir[1] == $xoopsModule->getVar('dirname')) ){
+								$parent_active = true;
+							} else {
+								$parent_active = false;
+							}
+						}
 					}
-				}
-
-			} else {
-				$imenu['link'] = $myrow['link'];
+					break;
+				default:
+					$imenu['link'] = $myrow['link'];
 			}
-			$block['contents'][$inum] = $imenu;
-			$inum++;
+			if ($imenu['link']) {
+				$block['contents'][$inum] = $imenu;
+				$inum++;
+			}
 		}
 	}
 	//var_dump($block);die;
@@ -142,7 +156,7 @@ class getMultiMenu {
   }
   function replace_userinfo($str) {
 	global $xoopsUser;
-	if ($xoopsUser){ 
+	if ($xoopsUser){
 		$str = preg_replace("/\[xoops_uid\]/",$xoopsUser->uid(),$str);
 	}
 	return $str;
