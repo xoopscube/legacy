@@ -3,7 +3,6 @@ body {
 	font-size:12px;
 	line-height:130%;
 	font:12px/1.5em Arial, Helvetica, sans-serif;
-	background:#fff url(img/bg_page.jpg) top left repeat-x;
 }
 
 a {
@@ -13,7 +12,7 @@ a {
 }
 a:hover {
 	text-decoration:none;
-	color:#CC6600;
+	color:#00d;
 	font-weight:bold;
 }
 
@@ -31,19 +30,18 @@ img {border:0;}
 
 #container {
 	position:relative;
-	top:20px;
 	width:740px;
 	margin:0 auto;
 	text-align:left;
 	border:1px solid #ccc;
 }
 
+#container .maincontents {background:#fff; padding:15px 15px; line-height:150%;}
 
 #mainbody {border-top:1px solid #eee; border-bottom:1px solid #eee;}
-#mainbody .maincontents {background:#FFFFFF; padding:15px 20px; line-height:150%;}
-#mainbody h3 {margin-top:10px; margin-bottom:5px; padding:10px; background:#EEEEFF; font-size:14px;}
-
-#footer {background:#EEEEFF; padding:15px; text-align:right;}
+#title {background:#eee; padding:15px; text-align:left;}
+#title h1 {margin:0; font-size:1.5em;}
+#footer {background:#eee; padding:15px; text-align:right; vertical-align: middle;}
 
 .separate {border-collapse:separate;}
 
@@ -57,8 +55,8 @@ form {
 }
 input, .bg1 {
 	border-top:1px solid #999;
-	border-right:1px solid #CCC;
-	border-bottom:1px solid #DDD;
+	border-right:1px solid #ccc;
+	border-bottom:1px solid #ddd;
 	border-left:1px solid #999;
 	padding:2px;
 	background:url(img/bg_data.gif) top left repeat;
@@ -92,18 +90,18 @@ select option {
 .confirmInfo {
 	color:#000000;
 	font-size:15px;
-	border:1px solid #6B94C5;
+	border:1px solid #aaa;
 	padding:8px 8px 8px 35px;
 	margin:15px 10px;
-	background:#EEEEFF url(img/info.png) no-repeat 5px 4px;
+	background:#eee url(img/info.png) no-repeat 5px 4px;
 }
 
 .confirmMsg {
 	color:#000000;
-	border:1px solid #ff6633;
+	border:1px solid #f66;
 	padding:8px 8px 8px 35px;
 	margin:15px 10px;
-	background:#fff8ee url(img/important.png) no-repeat 5px 4px;
+	background:#fee url(important.png) no-repeat 5px 4px;
 }
 
 .confirmOk {
@@ -112,4 +110,8 @@ select option {
 	padding:8px 8px 8px 35px;
 	margin:15px 10px;
 	background:#f8fff8 url(img/yes.png) no-repeat 5px 4px;
+}
+
+.clear {
+	clear:both;
 }

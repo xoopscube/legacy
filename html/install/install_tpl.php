@@ -23,18 +23,10 @@
 <div id="container">
 <form action="index.php" method="post" style="margin:0">
 
+<?php if(!empty($title)) { ?>
+<div id="title"><h1><?php echo $title; ?><?php } ?></h1></div>
 
-<br />
-<table id="mainbody" cellspacing="0">
-<tr>
-<td>
-<p align="center"><?php if(!empty($title)) { ?></p>
-<h3><?php echo $title; ?></h3><?php } ?>
-
-
-<div class="maincontents"><?php echo $content; ?></div></td>
-</tr>
-</table>
+<div class="maincontents"><?php echo $content; ?></div>
 
 <div id="footer">
 <?php echo b_back($b_back); ?>&nbsp;&nbsp;&nbsp;
@@ -42,7 +34,6 @@
 <?php echo b_next($b_next); ?>
 </div>
 </form>
-
 </div>
 </body>
 </html>
