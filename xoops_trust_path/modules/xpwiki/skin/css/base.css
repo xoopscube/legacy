@@ -1,159 +1,164 @@
-#xpwiki_loading {
-	background-color: yellow;
-	position: absolute;
-	text-align: center;
-	z-index: 200;
-	filter:alpha(opacity=20);
-	-moz-opacity: 0.2;
-	opacity: 0.2;
-	cursor: wait;
+div#xpwiki_loading {
+	background-color: yellow !important;
+	position: absolute !important;
+	text-align: center !important;
+	z-index: 200 !important;
+	filter:alpha(opacity=20) !important;
+	-moz-opacity: 0.2 !important;
+	opacity: 0.2 !important;
+	cursor: wait !important;
 }
 
-#xpwiki_loading_text {
-	color: #000;
-	font-size: 40px;
-	font-weight: bold;
-	position: relative;
-	text-align: center;
-	top: 20%;
+div#xpwiki_loading_text {
+	color: #000 !important;
+	font-size: 40px !important;
+	font-weight: bold !important;
+	position: relative !important;
+	text-align: center !important;
+	top: 20% !important;
 }
 
-#XpWikiPopup {
-	border-left: solid gray 1px;
-	background-color: white;
+div#XpWikiPopup {
+	border-left: solid gray 1px !important;
+	background-color: white !important;
 }
 
-#XpWikiPopupHeader {
-	background-color: #9C9C9C;
-	color: white;
-	font-weight:bold;
+div#XpWikiPopupHeader {
+	background-color: #9C9C9C !important;
+	color: white !important;
+	font-weight:bold !important;
 }
 
-#XpWikiPopupBody {
-	background-color: white;
+div#XpWikiPopupBody {
+	background-color: white !important;
+}
+
+img#lightboxImage {
+	max-height: none !important;;
+	max-width: none !important;;
 }
 
 body.popup_body_default {
-	font-size:75%;
+	font-size:75% !important;
 }
 
 div.resizableResizeX {
-	position: absolute;
-	right: -5px;
-	width: 4px;
-	top: 0px;
-	height:100%;
-	border: none;
-	padding: 0px;
-	margin: 0px;
-	background-color: #b0c4de;
-	filter:alpha(opacity=60);
-	-moz-opacity: 0.6;
-	opacity: 0.6;
+	position: absolute !important;
+	right: -5px !important;
+	width: 4px !important;
+	top: 0px !important;
+	height:100% !important;
+	border: none !important;
+	padding: 0px !important;
+	margin: 0px !important;
+	background-color: #b0c4de !important;
+	filter:alpha(opacity=60) !important;
+	-moz-opacity: 0.6 !important;
+	opacity: 0.6 !important;
 }
 
 div.resizableResizeY {
-	position: absolute;
-	bottom: -5px;
-	height: 4px;
-	left: 0px;
-	width:100%;
-	border: none;
-	padding: 0px;
-	margin: 0px;
-	background-color: #b0c4de;
-	filter:alpha(opacity=60);
-	-moz-opacity: 0.6;
-	opacity: 0.6;
-	overflow: hidden;	/* for IE6 */
+	position: absolute !important;
+	bottom: -5px !important;
+	height: 4px !important;
+	left: 0px !important;
+	width:100% !important;
+	border: none !important;
+	padding: 0px !important;
+	margin: 0px !important;
+	background-color: #b0c4de !important;
+	filter:alpha(opacity=60) !important;
+	-moz-opacity: 0.6 !important;
+	opacity: 0.6 !important;
+	overflow: hidden !important;	/* for IE6 */
 }
 
 div.resizableResizeXY {
-	position: absolute;
-	bottom: -5px;
-	height: 6px;
-	right: -5px;
-	width: 6px;
-	border: none;
-	padding: 0px;
-	margin: 0px;
-	background-color: #b0c4de;
-	filter:alpha(opacity=60);
-	-moz-opacity: 0.6;
-	opacity: 0.6;
-	overflow: hidden;	/* for IE6 */
+	position: absolute !important;
+	bottom: -5px !important;
+	height: 6px !important;
+	right: -5px !important;
+	width: 6px !important;
+	border: none !important;
+	padding: 0px !important;
+	margin: 0px !important;
+	background-color: #b0c4de !important;
+	filter:alpha(opacity=60) !important;
+	-moz-opacity: 0.6 !important;
+	opacity: 0.6 !important;
+	overflow: hidden !important;	/* for IE6 */
 }
 
 img.xpwikiFavicon {
-	border: none;
-	padding: 0px 1px 0px 0px;
-	margin: 0px;
+	border: none !important;
+	padding: 0px 1px 0px 0px !important;
+	margin: 0px !important;
 }
 
 div.xpwikiWrapBtn {
-	float: right;
-	width: auto;
-	font-size: 11px;
-	margin-top: 2px;
-	margin-right: 1px;
-	padding: 1px 5px;
-	border: 1px solid gray;
-	cursor: pointer;
-	background: #F5F5F5 url(./loader.php?src=buttonbg.gif) repeat-x scroll center bottom;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
+	float: right !important;
+	width: auto !important;
+	font-size: 11px !important;;
+	margin-top: 2px !important;;
+	margin-right: 1px !important;;
+	padding: 1px 5px !important;;
+	border: 1px solid gray !important;;
+	cursor: pointer !important;
+	background: #F5F5F5 url(./loader.php?src=buttonbg.gif) repeat-x scroll center bottom !important;
+	-moz-border-radius: 4px !important;
+	-webkit-border-radius: 4px !important;
+	border-radius: 4px !important;
 }
 div.xpwikiWrapBtn:hover {
-	padding: 0px 4px;
-	border: 2px solid orange;
-	border-top-color: gold;
-	border-left-color: gold;
+	padding: 0px 4px !important;;
+	border: 2px solid orange !important;;
+	border-top-color: gold !important;;
+	border-left-color: gold !important;;
 }
 
 div.xpwikiFckBtn {
-	float: right;
-	width: auto;
-	font-size: 11px;
-	margin-top: 2px;
-	margin-right: 1px;
-	padding: 1px 5px;
-	border: 1px solid gray;
-	cursor: pointer;
-	background: #F5F5F5 url(./loader.php?src=buttonbg.gif) repeat-x scroll center bottom;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
+	float: right !important;
+	width: auto !important;
+	font-size: 11px !important;;
+	margin-top: 2px !important;;
+	margin-right: 1px !important;;
+	padding: 1px 5px !important;;
+	border: 1px solid gray !important;;
+	cursor: pointer !important;
+	background: #F5F5F5 url(./loader.php?src=buttonbg.gif) repeat-x scroll center bottom !important;
+	-moz-border-radius: 4px !important;
+	-webkit-border-radius: 4px !important;
+	border-radius: 4px !important;
 }
 div.xpwikiFckBtn:hover {
-	padding: 0px 4px;
-	border: 2px solid orange;
-	border-top-color: gold;
-	border-left-color: gold;
+	padding: 0px 4px !important;;
+	border: 2px solid orange !important;;
+	border-top-color: gold !important;;
+	border-left-color: gold !important;;
 }
 
 /* contents (Functionality) */
 div.toc_pin {
-	float: right;
-	width: 16px;
-	height: 16px;
-	background-image : url(loader.php?src=pin.gif);
-	filter: alpha(opacity=80);
-	-moz-opacity: 0.8;
-	opacity: 0.8;
-	cursor: pointer;
+	float: right !important;
+	width: 16px !important;
+	height: 16px !important;
+	background-image : url(loader.php?src=pin.gif) !important;
+	filter: alpha(opacity=80) !important;
+	-moz-opacity: 0.8 !important;
+	opacity: 0.8 !important;
+	cursor: pointer !important;
 }
 span.toc_handle {
-	margin-left: -1.3em;
-	margin-right: 0.2em;
-	cursor: pointer;
+	margin-left: -1.3em !important;
+	margin-right: 0.2em !important;
+	cursor: pointer !important;
 }
 div.contentsFixed {
-	float: none;
-	border: none;
-	margin: 0px;
-	position: fixed;
-	filter: alpha(opacity=80);
-	-moz-opacity: 0.8;
-	opacity: 0.8;
+	float: none !important;
+	border: none !important;
+	margin: 0px !important;
+	position: fixed !important;
+	filter: alpha(opacity=80) !important;
+	-moz-opacity: 0.8 !important;
+	opacity: 0.8 !important;
 }
