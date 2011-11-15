@@ -25,11 +25,26 @@
 <{include file="$xoops_theme/theme_redirect_js.html"}>
 <link rel="stylesheet" type="text/css" href="<{$xoops_imageurl}>modules.css" />
 <link rel="stylesheet" type="text/css" href="<{$xoops_imageurl}>media-queries.css" />
+<script type="text/javascript">
+   var GuideSentence = '<{$smarty.const._BASIC_SEARCH}>';
+   function ShowFormGuide(obj) {
+      if( obj.value == '' ) {
+         obj.value = GuideSentence;
+         obj.style.color = '#808080';
+      }
+   }
+   function HideFormGuide(obj) {
+      if( obj.value == GuideSentence ) {
+         obj.value='';
+         obj.style.color = '#000000';
+      }
+   }
+</script>
 </head>
 <body id="home" class="L<{$xoops_showlblock}>R<{$xoops_showrblock}> <{if $smarty.server.SCRIPT_FILENAME|basename == "index.php" and $smarty.server.SCRIPT_FILENAME|dirname|basename == $smarty.const.XOOPS_ROOT_PATH|basename}>home<{else}><{if !$xoops_dirname == ""}><{$xoops_dirname}><{else}>ather<{/if}><{/if}>">
 
 	<div id="wrapper">
-		<header>
+		<header id="header">
 			<h1><a href="<{$xoops_url}>/"><{$xoops_sitename}></a></h1>
 				<{if $xoops_dirname == ""}>
 				  <h2>Welcome to <{$xoops_sitename}>&nbsp;&nbsp;&nbsp;&nbsp;<{$xoops_slogan}></h2>
@@ -44,14 +59,36 @@
 					<a href="<{$xoops_url}>/" class="menu_c<{cycle values="1,2,3,4,5,6,7"}>"><{$smarty.const._BASIC_HOME_NAME}></a>
 				<{/if}>
 				<{foreach from=$xugj_menus item="menu0"}>
+							<{if $menu0.dirname == $xoops_dirname}>
+									<{assign var="xugj_menus1" value=$menu0.sub}>
+									<{assign var="menu0_class" value="s"}>
+							<{else}>
+									<{assign var="menu0_class" value=""}>
+							<{/if}>
+
 					<a href="<{$xoops_url}>/modules/<{$menu0.dirname}>/<{$menu0.url}>" <{if $menu0.dirname == $xoops_dirname}> class="act"<{else}> class="menu_c<{cycle values="1,2,3,4,5,6,7"}>"<{/if}>><{$menu0.name}></a>
 				<{/foreach}>
 				<div class="clearfix"></div>
 		</div>
 		</nav>
+
 		</header>
 
 		<section id="main-content">
+			<div id="menu_s"><{* -- Submenu *}>
+				<{if $xugj_menus1}> |&nbsp;
+					<{foreach from=$xugj_menus1 item="menu1"}>
+							<{if stristr( $smarty.server.REQUEST_URI , $menu1.url )}>
+								<{assign var="xugj_menus2" value=$menu1.sub}>
+								<{assign var="menu1_class" value=" selected"}>
+							<{else}>
+								<{assign var="menu1_class" value=""}>
+							<{/if}>
+							<a href="<{$xoops_url}>/modules/<{$menu1.dirname}>/<{$menu1.url}>" class="menu_level1<{$menu1_class}>"><{$menu1.name}></a>&nbsp;|&nbsp;
+					<{/foreach}>
+				<{/if}>
+			</div><{* -- End Submenu *}>
+
 			<div id="featured">
 
 				<{if $xoops_showcblock == 1}>
@@ -69,6 +106,7 @@
 				<{/if}>
 
 			</div> <!-- END Featured -->
+
 			<div id="latest">
 				<section class="left-col">
 					<{* CenterColumn BlockWeight>0 *}><{include file="$xoops_theme/theme_centercolumn.html"}>
@@ -116,6 +154,14 @@
 		<footer>
 			<{include file="$xoops_theme/theme_footer.html"}>
 		</footer>		
+
+		<div id="search">
+		  <form id="searchform" name="searchform" action="<{$xoops_url}>/search.php" method="get" class="searchform">
+		  <input id="keywords" type="text" name="query" value="<{$smarty.const._BASIC_SEARCH}>" style="color: #808080;" onFocus="HideFormGuide(this);" onBlur="ShowFormGuide(this);" class="textbox" />
+		  <input type="hidden" name="action" value="results" />
+		  <input type="image" src="<{$xoops_imageurl}>images/search-icon.png" name="searchSubmit" value="<{$smarty.const._BASIC_SEARCH}>" id="searchBtn" class="button"/>
+		  </form>
+		</div>
 
 	</div> <!-- END Wrapper -->
 </body>

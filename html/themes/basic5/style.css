@@ -17,7 +17,6 @@ a:active 			{ outline: none; position: relative; top: 2px; }
 /*------------------------------------*\
   MAIN
 \*------------------------------------*/
-
 body 				{
 	background: #F9F9F9; color: #222; font-family: 'Droid Serif', serif; font-size: 16px;
 	-webkit-transition-property: font-size;
@@ -31,8 +30,11 @@ body 				{
 	transition-timing function: linear, ease-in;
 }
 
-#wrapper 			{ margin: 10px auto; max-width: 980px; width: 90%; background: #fff; padding: 10px 0; }
-header 				{ padding: 3px; }
+#wrapper 			{ position:relative; margin: 5px auto; max-width: 980px; width: 90%; background: #fff; padding: 0 5px 10px; }
+
+header 				{ padding-top:15px; margin-top:5px;
+/* background:url(images/header.png) no-repeat; */
+}
 
 h1 {font-size:1.6em; }
 header h1 					{ font-size: 90px; font-family: 'Droid Serif', serif; line-height: 75px; padding: 10px;
@@ -96,14 +98,19 @@ h4 a:hover 			{  }
 	margin-bottom:6px;
 }
 
-
-#featured	{ padding: 20px; }
+#featured	{ padding: 0 20px;}
 #latest	{ padding: 20px; }
 #about	{ padding: 20px; }
 
 #featured div	{
 	line-height: 1.5;
 	padding-bottom:20px;
+}
+
+#menu_s {
+	text-align:center;
+	padding-bottom16px;
+/* 	display:none; */
 }
 
 body.L0R0 .sidebar {
@@ -126,6 +133,44 @@ ul li 				{ margin: 0 5px; }
 footer 				{ padding: 5px; text-align:center;}
 
 pre					{ overflow: auto; font-size: 12px; }
+
+/* search */
+#search {
+	position:absolute;
+	height:30px;
+	width:202px;
+	top:2px;
+	right:10px;
+}
+#searchform {
+	width: 200px;
+	background: transparent; 
+	display: block;
+	height: 30px;
+}
+#keywords	{
+	position: absolute;
+	top: 0px;
+	left: 12px;
+	width: 156px;
+	height: 20px;
+	padding-left:6px;
+	background-image:-moz-linear-gradient(top, #D7D7D7, #E7E7E7);
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#D7D7D7), to(#E7E7E7), color-stop(1,#E7E7E7));
+	border:1px solid #AFAFAF;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	box-shadow: inset 1px 1px 1px rgba(0,0,0,0.25);
+	-moz-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.25);
+	-webkit-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.25);
+}
+#searchBtn	{
+	position: absolute;
+	top: 3px;
+	left: 182px;
+}
+
 
 /* XOOPS Code & Quote */
 .xoopsCode {

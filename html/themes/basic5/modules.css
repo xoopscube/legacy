@@ -80,9 +80,11 @@ ul.d3pipes_block_sync_aggregated li dl dd {
 }
 
 /* webphoto */
+/* comment out -------------
 .webphoto_page_title , .webphoto_catpath , .webphoto_page_menu, .webphoto_search_form , .webphoto_tagedit_form , .webphoto_breadcrumbs{
 	display:none;
 }
+ ------------- comment out */
 
 #ModuleContents .webphoto_photo_type , #ModuleContents .webphoto_index_photo_header , #ModuleContents .webphoto_index_photo_body , #ModuleContents .webphoto_index_photo_footer{
 	border:none;
@@ -206,7 +208,7 @@ body.wordpress #ModuleContents .xpress-body #xpress_page{
 	float: left;
 	width: 100%;
 	margin:0 auto;
-	margin-top:-10px;
+	margin-top:0px;
 	padding-left:12px;
 }
 
@@ -303,9 +305,20 @@ div.xpress-post div.large_thumbnail {
 	text-align: left;
 	font-size: 0.8em;
 }
+
+/* comment out  -------------
 #xpress_wrap #xpress_content .xpress-post-title {
 	display:none;
 }
+#xpress-header-bar {
+	display:none;
+}
+.says {
+	display:none;
+}
+ ------------- comment out */
+
+
 #xpress_wrap #xpress_content .xpress-post-g .xpress-post-title {
 	display:block;
 	width:74%;
@@ -346,9 +359,6 @@ div.xpress-post div.large_thumbnail {
 	margin-right:10px;
 	font-size:1.2em;
 }
-#xpress-header-bar {
-	display:none;
-}
 #xpress_commentlist div.comment-author {
 	position:relative;
 	top:10px;
@@ -366,9 +376,6 @@ div.comment div.comment-meta {
 }
 #xpress_commentlist div.comment p{
 	padding-left:260px;
-}
-.says {
-	display:none;
 }
 #xpress-comments-block {
 	width:100%;

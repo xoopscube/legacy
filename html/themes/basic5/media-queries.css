@@ -2,6 +2,8 @@
 	header h1 { font-size: 70px; padding: 1px; }
 	h2 { font-size: 13px; padding: 1px; }
 	body { font-size: 13px; }
+	#menu_s a { display:inline-block;padding:10px; }
+
 	#d3f_post_form_quick table.d3f_postform {width:90%;	margin:0 auto;}
 	#d3f_post_form_quick table.d3f_postform td.head {	width:70px;}
 	#d3f_post_form_quick table.d3f_postform textarea{	width:100%;}
@@ -72,8 +74,8 @@
 		text-decoration:none;
 		color: #4F4F4F;
 	}
-#CenterLColumn { float: left; width: 100%;}
-#CenterRColumn { float: left; width: 100%;}
+	#CenterLColumn { float: left; width: 100%;}
+	#CenterRColumn { float: left; width: 100%;}
 
 }
 
