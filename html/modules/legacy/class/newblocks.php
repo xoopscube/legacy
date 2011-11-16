@@ -28,6 +28,11 @@ class LegacyNewblocksObject extends XoopsSimpleObject
 
 	function LegacyNewblocksObject()
 	{
+		static $initVars;
+		if (isset($initVars)) {
+			$this->mVars = $initVars;
+			return;
+		}
 		$this->initVar('bid', XOBJ_DTYPE_INT, '0', true);
 		$this->initVar('mid', XOBJ_DTYPE_INT, '0', true);
 		$this->initVar('func_num', XOBJ_DTYPE_INT, '0', true);
@@ -48,6 +53,7 @@ class LegacyNewblocksObject extends XoopsSimpleObject
 		$this->initVar('template', XOBJ_DTYPE_STRING, '', true, 50);
 		$this->initVar('bcachetime', XOBJ_DTYPE_INT, '0', true);
 		$this->initVar('last_modified', XOBJ_DTYPE_INT, time(), true);
+		$initVars = $this->mVars;
 	}
 	
 	function loadModule()
