@@ -1,8 +1,10 @@
 <?php
 //
 // Created on 2006/10/18 by nao-pon http://hypweb.net/
-// $Id: index.php,v 1.2 2006/10/18 05:07:15 nao-pon Exp $
+// $Id: index.php,v 1.3 2011/11/16 12:56:58 nao-pon Exp $
 //
+
+define( 'PROTECTOR_SKIP_FILESCHECKER' , 1 );
 
 require '../../mainfile.php' ;
 if( ! defined( 'XOOPS_TRUST_PATH' ) ) die( 'set XOOPS_TRUST_PATH in mainfile.php' ) ;

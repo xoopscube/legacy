@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2007/06/29 by nao-pon http://hypweb.net/
- * $Id: gate.php,v 1.2 2008/10/31 07:25:28 nao-pon Exp $
+ * $Id: gate.php,v 1.3 2011/11/16 12:56:58 nao-pon Exp $
  */
 
 $xwGateOption = array();
@@ -24,6 +24,8 @@ if ($xwGateOption['nodos']) { define('PROTECTOR_SKIP_DOS_CHECK', TRUE); }
 if ($xwGateOption['noumb']) { define('BIGUMBRELLA_DISABLED', TRUE); }
 
 if ($xwGateOption['hypmode'] === 1) { define('HYP_COMMON_SKIP_POST_FILTER', TRUE); }
+
+define( 'PROTECTOR_SKIP_FILESCHECKER' , 1 );
 
 require '../../mainfile.php' ;
 if( ! defined( 'XOOPS_TRUST_PATH' ) ) die( 'set XOOPS_TRUST_PATH in mainfile.php' ) ;
