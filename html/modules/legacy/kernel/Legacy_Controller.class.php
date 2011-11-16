@@ -264,7 +264,7 @@ class Legacy_Controller extends XCube_Controller
 	    $arr = localtime($iTime);
 	    $arr[5] += 1900; 
 	    $arr[4]++;
-	    $iTztime = gmmktime($arr[2], $arr[1], $arr[0], $arr[4], $arr[3], $arr[5], $arr[8]);
+	    $iTztime = gmmktime($arr[2], $arr[1], $arr[0], $arr[4], $arr[3], $arr[5]);
 	    $offset = doubleval(($iTztime-$iTime)/(60*60));
 	    $zonelist = 
 	    array
@@ -775,17 +775,15 @@ class Legacy_Controller extends XCube_Controller
 				$dir = XOOPS_ROOT_PATH . '/modules/' . $mod_dir . $dirname . '/';
 				if(is_dir($dir)) {
 					$files = glob($dir.'*.class.php');
-					if (is_array($files)) {
+					if ($files) {
 						foreach($files as $file) {
 							require_once $file;
-							if (preg_match("/(\w+)\.class\.php/", $file, $matches)) {
-								$className = ucfirst($mod_dir) . "_" . $matches[1];
+								$className = ucfirst($mod_dir) . "_" . basename($file, '.class.php');
 						
 								if (XC_CLASS_EXISTS($className) && !isset($this->_mLoadedFilterNames[$className])) {
 									$this->_mLoadedFilterNames[$className] = true;
 									$this->addActionFilter(new $className($this));
 								}
-							}
 						}
 					}
 				}

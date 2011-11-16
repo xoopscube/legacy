@@ -61,7 +61,7 @@ class XoopsSimpleObject extends AbstractXoopsObject
 			'data_type' => $dataType,
 			'value' => null,
 			'required' => $required ? true : false,
-			'maxlength' => $size ? intval($size) : null
+			'maxlength' => $size ? (int)$size : null
 		);
 		
 		$this->assignVar($key, $value);
@@ -75,28 +75,23 @@ class XoopsSimpleObject extends AbstractXoopsObject
 		switch ($vars['data_type']) {
 			case XOBJ_DTYPE_BOOL:
 				$vars['value'] = $value ? 1 : 0;
-				break;
+				return;
 
 			case XOBJ_DTYPE_INT:
-				$vars['value'] = $value !== null ? intval($value) : null;
-				break;
+				$vars['value'] = $value !== null ? (int)$value : null;
+				return;
 
 			case XOBJ_DTYPE_FLOAT:
-				$vars['value'] = $value !== null ? floatval($value) : null;
-				break;
+				$vars['value'] = $value !== null ? (float)$value : null;
+				return;
 
 			case XOBJ_DTYPE_STRING:
-				if ($vars['maxlength'] !== null && strlen($value) > $vars['maxlength']) {
-					$vars['value'] = xoops_substr($value, 0, $vars['maxlength'], null);
-				}
-				else {
-					$vars['value'] = $value;
-				}
-				break;
+				$vars['value'] = ($vars['maxlength'] !== null && strlen($value) > $vars['maxlength']) ? xoops_substr($value, 0, $vars['maxlength'], null) : $value;
+				return;
 
 			case XOBJ_DTYPE_TEXT:
 				$vars['value'] = $value;
-				break;
+				return;
 		}
 	}
 	
@@ -157,20 +152,17 @@ class XoopsSimpleObject extends AbstractXoopsObject
 			case XOBJ_DTYPE_BOOL:
 			case XOBJ_DTYPE_INT:
 			case XOBJ_DTYPE_FLOAT:
-				$value = $vars['value'];
-				break;
+				return $vars['value'];
 
 			case XOBJ_DTYPE_STRING:
 				$root =& XCube_Root::getSingleton();
 				$textFilter =& $root->getTextFilter();
-				$value = $textFilter->toShow($vars['value']);
-				break;
+				return $textFilter->toShow($vars['value']);
 
 			case XOBJ_DTYPE_TEXT:
 				$root =& XCube_Root::getSingleton();
 				$textFilter =& $root->getTextFilter();
-				$value = $textFilter->toShowTarea($vars['value'], 0, 1, 1, 1, 1);
-				break;
+				return $textFilter->toShowTarea($vars['value'], 0, 1, 1, 1, 1);
 		}
 		
 		return $value;
