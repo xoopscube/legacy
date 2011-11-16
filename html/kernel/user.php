@@ -151,11 +151,10 @@ class XoopsUser extends XoopsObject
             $member_handler =& xoops_gethandler('member');
             $user =& $member_handler->getUser($userid);
             if (is_object($user)) {
-                $ts =& MyTextSanitizer::getInstance();
                 if ( $usereal ) { 
-					return $ts->htmlSpecialChars($user->getVar('name'));
+					return $user->getVar('name');
             	} else {
-					return $ts->htmlSpecialChars($user->getVar('uname'));
+					return $user->getVar('uname');
 				}
             }
         }
@@ -270,7 +269,7 @@ class XoopsUser extends XoopsObject
     {
         if (!isset($this->_isOnline)) {
             $onlinehandler =& xoops_gethandler('online');
-            $this->_isOnline = ($onlinehandler->getCount(new Criteria('online_uid', $this->getVar('uid'))) > 0) ? true : false;
+            $this->_isOnline = ($onlinehandler->getCount(new Criteria('online_uid', $this->getVar('uid', 'N'))) > 0) ? true : false;
         }
         return $this->_isOnline;
     }
@@ -288,7 +287,7 @@ class XoopsUser extends XoopsObject
      */
     function uid()
     {
-        return $this->getVar("uid");
+        return $this->getVar('uid');
     }
     
     /**

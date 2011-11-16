@@ -172,34 +172,23 @@ class XoopsBlock extends XoopsObject
         if ( $this->getVar('block_type', 'N') != 'C' ) {
             // get block display function
             $show_func = $this->getVar('show_func', 'N');
-            if ( !$show_func ) {
-                return $ret;
-            }
+            if ( !$show_func ) return $ret;
             // must get lang files b4 execution of the function
             if ( file_exists($path = XOOPS_ROOT_PATH.'/modules/'.($dirname = $this->getVar('dirname', 'N')).'/blocks/'.$this->getVar('func_file', 'N')) ) {
                 $root=&XCube_Root::getSingleton();
                 $root->mLanguageManager->loadBlockMessageCatalog($dirname);
 
                 require_once $path;
-                $options = explode('|', $this->getVar('options', 'N'));
                 if ( function_exists($show_func) ) {
                     // execute the function
-                    $block = $show_func($options);
-                    if ( !$block ) {
-                        return $ret;
-                    }
-                } else {
-                    return $ret;
-                }
-            } else {
-                return $ret;
-            }
+                    $block = $show_func(explode('|', $this->getVar('options', 'N')));
+                    if ( !$block ) return $ret;
+                } else return $ret;
+            } else return $ret;
         } else {
             // it is a custom block, so just return the contents
             $block['content'] = $this->getContent('S',$this->getVar('c_type', 'N'));
-            if (empty($block['content'])) {
-                return $ret;
-            }
+            if (empty($block['content'])) return $ret;
         }
         return $block;
     }
@@ -251,9 +240,9 @@ class XoopsBlock extends XoopsObject
             if (!$edit_func) {
                 return false;
             }
-            if (file_exists($path = XOOPS_ROOT_PATH.'/modules/'.$this->getVar('dirname', 'N').'/blocks/'.$this->getVar('func_file', 'N'))) {
+            if (file_exists($path = XOOPS_ROOT_PATH.'/modules/'.($dirname=$this->getVar('dirname', 'N')).'/blocks/'.$this->getVar('func_file', 'N'))) {
 				$root =& XCube_Root::getSingleton();
-				$root->mLanguageManager->loadBlockMessageCatalog($this->getVar('dirname'));
+				$root->mLanguageManager->loadBlockMessageCatalog($dirname);
 				
                 include_once $path;
                 $options = explode('|', $this->getVar('options', 'N'));
