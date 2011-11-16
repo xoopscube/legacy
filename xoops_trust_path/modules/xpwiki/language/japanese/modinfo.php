@@ -8,15 +8,28 @@ if( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref.'_LOADED' ) ) {
 // a flag for this language file has already been read or not.
 define( $constpref.'_LOADED' , 1 ) ;
 
+// Main menu
+define( $constpref.'_MENU_NEWPAGE',  '新規ページ作成');
+define( $constpref.'_MENU_RECENT',   '最新ページ一覧');
+define( $constpref.'_MENU_PAGELIST', '全ページ一覧');
+define( $constpref.'_MENU_HELP',     'ヘルプ');
+define( $constpref.'_MENU_RELAYTED', '関連ページ');
+define( $constpref.'_MENU_EDIT',     '編集する');
+define( $constpref.'_MENU_SOURCE',   'Wikiソース');
+define( $constpref.'_MENU_DIFF',     '編集履歴');
+define( $constpref.'_MENU_BACKUPS',  'バックアップ一覧');
+define( $constpref.'_MENU_ATTACHES', '添付ファイル一覧');
+define( $constpref.'_MENU_REFERER',  'リンク元一覧');
+
 // Names of blocks for this module (Not all module has blocks)
-define( $constpref."_BNAME_A_PAGE","ページ表示 ({$mydirname})");
-define( $constpref."_BDESC_A_PAGE","ページ名を指定してその内容をブロックに表示することができます");
-define( $constpref."_BNAME_NOTIFICATION","イベント通知 ({$mydirname})");
-define( $constpref."_BDESC_NOTIFICATION","イベント通知オプションを設定します");
-define( $constpref."_BNAME_FUSEN","付箋機能 ({$mydirname})");
-define( $constpref."_BDESC_FUSEN","付箋プラグインのコントロールメニューを表示します。");
-define( $constpref."_BNAME_MENUBAR","MenuBar ({$mydirname})");
-define( $constpref."_BDESC_MENUBAR","MenuBar を表示します。");
+define( $constpref.'_BNAME_A_PAGE', 'ページ表示 ('.$mydirname.')');
+define( $constpref.'_BDESC_A_PAGE', 'ページ名を指定してその内容をブロックに表示することができます');
+define( $constpref.'_BNAME_NOTIFICATION', 'イベント通知 ('.$mydirname.')');
+define( $constpref.'_BDESC_NOTIFICATION', 'イベント通知オプションを設定します');
+define( $constpref.'_BNAME_FUSEN', '付箋機能 ('.$mydirname.')');
+define( $constpref.'_BDESC_FUSEN', '付箋プラグインのコントロールメニューを表示します。');
+define( $constpref.'_BNAME_MENUBAR', 'MenuBar ('.$mydirname.')');
+define( $constpref.'_BDESC_MENUBAR', 'MenuBar を表示します。');
 
 define( $constpref.'_MODULE_DESCRIPTION' , 'PukiWikiベースのWikiモジュール' ) ;
 
@@ -56,5 +69,3 @@ define($constpref.'_NOTIFY_PAGE_UPDATESBJ', '[{X_SITENAME}] {X_MODULE}:{PAGE_NAM
 define($constpref.'_NOTIFY_GLOBAL_UPDATECAP', 'モジュール内のいずれかのページが更新された場合に通知する');
 
 }
-
-?>

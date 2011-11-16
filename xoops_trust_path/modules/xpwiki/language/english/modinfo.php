@@ -8,15 +8,28 @@ if( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref.'_LOADED' ) ) {
 // a flag for this language file has already been read or not.
 define( $constpref.'_LOADED' , 1 ) ;
 
+// Main menu
+define( $constpref.'_MENU_NEWPAGE',  'New Page');
+define( $constpref.'_MENU_RECENT',   'Recent Changes');
+define( $constpref.'_MENU_PAGELIST', 'Page List');
+define( $constpref.'_MENU_HELP',     'Help');
+define( $constpref.'_MENU_RELAYTED', 'Relayted');
+define( $constpref.'_MENU_EDIT',     'Edit');
+define( $constpref.'_MENU_SOURCE',   'Wiki Source');
+define( $constpref.'_MENU_DIFF',     'Edit History');
+define( $constpref.'_MENU_BACKUPS',  'Backups');
+define( $constpref.'_MENU_ATTACHES', 'Attachments');
+define( $constpref.'_MENU_REFERER',  'Referers');
+
 // Names of blocks for this module (Not all module has blocks)
-define( $constpref."_BNAME_A_PAGE","Show page  ({$mydirname})");
-define( $constpref."_BDESC_A_PAGE","The content can be displayed in the block by specifying page name.");
-define( $constpref."_BNAME_NOTIFICATION","Notifications ({$mydirname})");
-define( $constpref."_BDESC_NOTIFICATION","Set up about notifications.");
-define( $constpref."_BNAME_FUSEN","Fusen(Tag) ({$mydirname})");
-define( $constpref."_BDESC_FUSEN","The control menu of the Fusen(Tag) plugin is displayed.");
-define( $constpref."_BNAME_MENUBAR","MenuBar ({$mydirname})");
-define( $constpref."_BDESC_MENUBAR","Show MenuBar");
+define( $constpref.'_BNAME_A_PAGE','Show page  ('.$mydirname.')');
+define( $constpref.'_BDESC_A_PAGE','The content can be displayed in the block by specifying page name.');
+define( $constpref.'_BNAME_NOTIFICATION','Notifications ('.$mydirname.')');
+define( $constpref.'_BDESC_NOTIFICATION','Set up about notifications.');
+define( $constpref.'_BNAME_FUSEN','Fusen(Tag) ('.$mydirname.')');
+define( $constpref.'_BDESC_FUSEN','The control menu of the Fusen(Tag) plugin is displayed.');
+define( $constpref.'_BNAME_MENUBAR','MenuBar ('.$mydirname.')');
+define( $constpref.'_BDESC_MENUBAR','Show MenuBar');
 
 define( $constpref.'_MODULE_DESCRIPTION' , 'A wiki module based on PukiWiki.' ) ;
 
@@ -56,5 +69,3 @@ define($constpref.'_NOTIFY_PAGE_UPDATESBJ', '[{X_SITENAME}] {X_MODULE}:{PAGE_NAM
 define($constpref.'_NOTIFY_GLOBAL_UPDATECAP', 'Notify me of edited any page in this module.');
 
 }
-
-?>

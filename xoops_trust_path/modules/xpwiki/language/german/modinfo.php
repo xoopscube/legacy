@@ -13,6 +13,19 @@ if( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref.'_LOADED' ) ) {
 // a flag for this language file has already been read or not.
 define( $constpref.'_LOADED' , 1 ) ;
 
+// Main menu
+define( $constpref.'_MENU_NEWPAGE',  'New Page');
+define( $constpref.'_MENU_RECENT',   'Recent Changes');
+define( $constpref.'_MENU_PAGELIST', 'Page List');
+define( $constpref.'_MENU_HELP',     'Help');
+define( $constpref.'_MENU_RELAYTED', 'Relayted');
+define( $constpref.'_MENU_EDIT',     'Edit');
+define( $constpref.'_MENU_SOURCE',   'Wiki Source');
+define( $constpref.'_MENU_DIFF',     'Edit History');
+define( $constpref.'_MENU_BACKUPS',  'Backups');
+define( $constpref.'_MENU_ATTACHES', 'Attachments');
+define( $constpref.'_MENU_REFERER',  'Referers');
+
 // Names of blocks for this module (Not all module has blocks)
 define( $constpref."_BNAME_A_PAGE","Zeige Seite  ({$mydirname})");
 define( $constpref."_BDESC_A_PAGE","Der Inhalt kann im Block angezeigt werden, indem der Seiten Name spezifiziert wird.");
@@ -61,5 +74,3 @@ define($constpref.'_NOTIFY_PAGE_UPDATESBJ', '[{X_SITENAME}] {X_MODULE}:{PAGE_NAM
 define($constpref.'_NOTIFY_GLOBAL_UPDATECAP', 'Benachrichtige mich über sämtliche Änderungen in diesem Modul.');
 
 }
-
-?>

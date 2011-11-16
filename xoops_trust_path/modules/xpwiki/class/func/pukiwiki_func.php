@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/02 by nao-pon http://hypweb.net/
-// $Id: pukiwiki_func.php,v 1.228 2011/09/17 07:51:01 nao-pon Exp $
+// $Id: pukiwiki_func.php,v 1.229 2011/11/16 15:49:27 nao-pon Exp $
 //
 class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 
@@ -1054,7 +1054,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 
 //----- Start convert_html.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone
-	// $Id: pukiwiki_func.php,v 1.228 2011/09/17 07:51:01 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.229 2011/11/16 15:49:27 nao-pon Exp $
 	// Copyright (C)
 	//   2002-2005 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -1366,7 +1366,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 
 //----- Start func.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.228 2011/09/17 07:51:01 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.229 2011/11/16 15:49:27 nao-pon Exp $
 	// Copyright (C)
 	//   2002-2006 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -2219,7 +2219,7 @@ EOD;
 
 //----- Start make_link.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.228 2011/09/17 07:51:01 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.229 2011/11/16 15:49:27 nao-pon Exp $
 	// Copyright (C)
 	//   2003-2005 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -3260,7 +3260,7 @@ EOD;
 
 //----- Start html.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.228 2011/09/17 07:51:01 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.229 2011/11/16 15:49:27 nao-pon Exp $
 	// Copyright (C)
 	//   2002-2006 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -3410,6 +3410,7 @@ EOD;
 		$GLOBALS['Xpwiki_'.$this->root->mydirname]['is_top']      = $is_top = ($_page === $this->root->defaultpage)? TRUE : FALSE;
 		$GLOBALS['Xpwiki_'.$this->root->mydirname]['page']        = $_page;
 		$GLOBALS['Xpwiki_'.$this->root->mydirname]['pgid']        = (int)@$this->root->get['pgid'];
+		$GLOBALS['Xpwiki_'.$this->root->mydirname]['sw_referer']  = $sw_referer = $this->root->referer;
 
 		$trackback_javascript = $this->root->trackback_javascript;
 
@@ -4050,7 +4051,7 @@ EOD;
 
 //----- Start mail.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.228 2011/09/17 07:51:01 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.229 2011/11/16 15:49:27 nao-pon Exp $
 	// Copyright (C)
 	//   2003-2005 PukiWiki Developers Team
 	//   2003      Originally written by upk
@@ -4353,7 +4354,7 @@ EOD;
 
 //----- Start link.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone
-	// $Id: pukiwiki_func.php,v 1.228 2011/09/17 07:51:01 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.229 2011/11/16 15:49:27 nao-pon Exp $
 	// Copyright (C) 2003-2006 PukiWiki Developers Team
 	// License: GPL v2 or (at your option) any later version
 	//
