@@ -68,11 +68,11 @@ function xoops_error($message, $title='', $style='errorMsg')
     $renderTarget =& $renderSystem->createRenderTarget('main');
     
     $renderTarget->setAttribute('legacy_module', 'legacy');
-    $renderTarget->setTemplateName("legacy_xoops_error.html");
+    $renderTarget->setTemplateName('legacy_xoops_error.html');
     
-    $renderTarget->setAttribute("style", $style);
-    $renderTarget->setAttribute("title", $title);
-    $renderTarget->setAttribute("message", $message);
+    $renderTarget->setAttribute('style', $style);
+    $renderTarget->setAttribute('title', $title);
+    $renderTarget->setAttribute('message', $message);
 
     $renderSystem->render($renderTarget);
     
@@ -90,10 +90,10 @@ function xoops_result($message, $title='')
     $renderTarget =& $renderSystem->createRenderTarget('main');
     
     $renderTarget->setAttribute('legacy_module', 'legacy');
-    $renderTarget->setTemplateName("legacy_xoops_result.html");
+    $renderTarget->setTemplateName('legacy_xoops_result.html');
     
-    $renderTarget->setAttribute("title", $title);
-    $renderTarget->setAttribute("message", $message);
+    $renderTarget->setAttribute('title', $title);
+    $renderTarget->setAttribute('message', $message);
 
     $renderSystem->render($renderTarget);
     
@@ -119,14 +119,14 @@ function xoops_confirm($hiddens, $action, $message, $submit = '', $addToken = tr
     $renderTarget =& $renderSystem->createRenderTarget('main');
     
     $renderTarget->setAttribute('legacy_module', 'legacy');
-    $renderTarget->setTemplateName("legacy_xoops_confirm.html");
+    $renderTarget->setTemplateName('legacy_xoops_confirm.html');
 
-    $renderTarget->setAttribute("action", $action);
-    $renderTarget->setAttribute("message", $message);
-    $renderTarget->setAttribute("hiddens", $hiddens);
-    $renderTarget->setAttribute("submit", $submit);
-    $renderTarget->setAttribute("tokenName", $token->getTokenName());
-    $renderTarget->setAttribute("tokenValue", $token->getTokenValue());
+    $renderTarget->setAttribute('action', $action);
+    $renderTarget->setAttribute('message', $message);
+    $renderTarget->setAttribute('hiddens', $hiddens);
+    $renderTarget->setAttribute('submit', $submit);
+    $renderTarget->setAttribute('tokenName', $token->getTokenName());
+    $renderTarget->setAttribute('tokenValue', $token->getTokenValue());
 
     $renderSystem->render($renderTarget);
     
@@ -161,12 +161,12 @@ function xoops_refcheck($docheck=1)
     return true;
 }
 
-function xoops_getUserTimestamp($time, $timeoffset="")
+function xoops_getUserTimestamp($time, $timeoffset='')
 {
     global $xoopsConfig, $xoopsUser;
     if ($timeoffset == '') {
         if ($xoopsUser) {
-            $timeoffset = $xoopsUser->getVar("timezone_offset");
+            $timeoffset = $xoopsUser->getVar('timezone_offset', 'n');
         } else {
             $timeoffset = $xoopsConfig['default_TZ'];
         }
@@ -178,7 +178,7 @@ function xoops_getUserTimestamp($time, $timeoffset="")
 /*
  * Function to display formatted times in user timezone
  */
-function formatTimestamp($time, $format="l", $timeoffset="")
+function formatTimestamp($time, $format='l', $timeoffset='')
 {
     global $xoopsConfig, $xoopsUser;
     $usertimestamp = xoops_getUserTimestamp($time, $timeoffset);
@@ -188,13 +188,13 @@ function formatTimestamp($time, $format="l", $timeoffset="")
 /*
  * Function to display formatted times in user timezone
  */
-function formatTimestampGMT($time, $format="l", $timeoffset="")
+function formatTimestampGMT($time, $format='l', $timeoffset='')
 {
     global $xoopsConfig, $xoopsUser;
     
     if ($timeoffset == '') {
         if ($xoopsUser) {
-            $timeoffset = $xoopsUser->getVar("timezone_offset");
+            $timeoffset = $xoopsUser->getVar('timezone_offset', 'n');
         } else {
             $timeoffset = $xoopsConfig['default_TZ'];
         }
@@ -204,7 +204,7 @@ function formatTimestampGMT($time, $format="l", $timeoffset="")
     return _formatTimeStamp($usertimestamp, $format);
 }
 
-function _formatTimeStamp($time, $format="l")
+function _formatTimeStamp($time, $format='l')
 {
     switch (strtolower($format)) {
     case 's':
@@ -214,10 +214,10 @@ function _formatTimeStamp($time, $format="l")
         $datestring = _MEDIUMDATESTRING;
         break;
     case 'mysql':
-        $datestring = "Y-m-d H:i:s";
+        $datestring = 'Y-m-d H:i:s';
         break;
     case 'rss':
-        $datestring = "r";
+        $datestring = 'r';
         break;
     case 'l':
         $datestring = _DATESTRING;
@@ -248,13 +248,13 @@ function userTimeToServerTime($timestamp, $userTZ=null)
 
 function xoops_makepass() {
     $makepass = '';
-    $syllables = array("er","in","tia","wol","fe","pre","vet","jo","nes","al","len","son","cha","ir","ler","bo","ok","tio","nar","sim","ple","bla","ten","toe","cho","co","lat","spe","ak","er","po","co","lor","pen","cil","li","ght","wh","at","the","he","ck","is","mam","bo","no","fi","ve","any","way","pol","iti","cs","ra","dio","sou","rce","sea","rch","pa","per","com","bo","sp","eak","st","fi","rst","gr","oup","boy","ea","gle","tr","ail","bi","ble","brb","pri","dee","kay","en","be","se");
+    $syllables = array('er','in','tia','wol','fe','pre','vet','jo','nes','al','len','son','cha','ir','ler','bo','ok','tio','nar','sim','ple','bla','ten','toe','cho','co','lat','spe','ak','er','po','co','lor','pen','cil','li','ght','wh','at','the','he','ck','is','mam','bo','no','fi','ve','any','way','pol','iti','cs','ra','dio','sou','rce','sea','rch','pa','per','com','bo','sp','eak','st','fi','rst','gr','oup','boy','ea','gle','tr','ail','bi','ble','brb','pri','dee','kay','en','be','se');
     srand((double)microtime()*1000000);
     for ($count = 1; $count <= 4; $count++) {
         if (rand()%10 == 1) {
-            $makepass .= sprintf("%0.0f",(rand()%50)+1);
+            $makepass .= sprintf('%0.0f',(rand()%50)+1);
         } else {
-            $makepass .= sprintf("%s",$syllables[rand()%62]);
+            $makepass .= sprintf('%s',$syllables[rand()%62]);
         }
     }
     return $makepass;
@@ -265,14 +265,14 @@ function xoops_makepass() {
  */
 function OpenWaitBox()
 {
-    echo "<div id='waitDiv' style='position:absolute;left:40%;top:50%;visibility:hidden;text-align: center;'>
-    <table cellpadding='6' border='2' class='bg2'>
+    echo '<div id="waitDiv" style="position:absolute;left:40%;top:50%;visibility:hidden;text-align: center;">
+    <table cellpadding="6" border="2" class="bg2">
       <tr>
-        <td align='center'><b><big>" ._FETCHING."</big></b><br /><img src='".XOOPS_URL."/images/await.gif' alt='' /><br />" ._PLEASEWAIT."</td>
+        <td align="center"><b><big>' ._FETCHING.'</big></b><br /><img src="'.XOOPS_URL.'/images/await.gif" alt="" /><br />' ._PLEASEWAIT.'</td>
       </tr>
     </table>
     </div>
-    <script type='text/javascript'>
+    <script type="text/javascript">
     <!--//
     var DHTML = (document.getElementById || document.all || document.layers);
     function ap_getObj(name) {
@@ -289,7 +289,7 @@ function OpenWaitBox()
             return;
         }
         var x = ap_getObj(div);
-        x.visibility = (flag) ? 'visible' : 'hidden';
+        x.visibility = (flag) ? "visible" : "hidden";
         if (!document.getElementById) {
             if (document.layers) {
                 x.left=280/2;
@@ -297,29 +297,29 @@ function OpenWaitBox()
         }
         return true;
     }
-    ap_showWaitMessage('waitDiv', 1);
+    ap_showWaitMessage("waitDiv", 1);
     //-->
-    </script>";
+    </script>';
 }
 
 function CloseWaitBox()
 {
-    echo "<script type='text/javascript'>
+    echo '<script type="text/javascript">
     <!--//
-    ap_showWaitMessage('waitDiv', 0);
+    ap_showWaitMessage("waitDiv", 0);
     //-->
     </script>
-    ";
+    ';
 }
 
 function checkEmail($email,$antispam = false)
 {
-    if (!$email || !preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i",$email)){
+    if (!$email || !preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i',$email)){
         return false;
     }
     if ($antispam) {
-        $email = str_replace("@", " at ", $email);
-        $email = str_replace(".", " dot ", $email);
+        $email = str_replace('@', ' at ', $email);
+        $email = str_replace('.', ' dot ', $email);
         return $email;
     } else {
         return true;
@@ -330,7 +330,7 @@ function formatURL($url)
 {
     $url = trim($url);
     if ($url != '') {
-        if ((!preg_match("/^http[s]*:\/\//i", $url)) && (!preg_match("/^ftp*:\/\//i", $url)) && (!preg_match("/^ed2k*:\/\//i", $url)) ) {
+        if ((!preg_match('/^http[s]*:\/\//i', $url)) && (!preg_match('/^ftp*:\/\//i', $url)) && (!preg_match('/^ed2k*:\/\//i', $url)) ) {
             $url = 'http://'.$url;
         }
     }
@@ -404,7 +404,7 @@ function xoops_getbanner()
 function redirect_header($url, $time = 3, $message = '', $addredirect = true)
 {
     global $xoopsConfig, $xoopsRequestUri;
-    if (preg_match("/[\\0-\\31]/", $url) || preg_match("/^(javascript|vbscript|about):/i", $url)) {
+    if (preg_match('/[\\0-\\31]/', $url) || preg_match('/^(javascript|vbscript|about):/i', $url)) {
         $url = XOOPS_URL;
     }
     if (!defined('XOOPS_CPFUNC_LOADED')) {
@@ -532,7 +532,7 @@ function xoops_getcss($theme = '')
     $uagent = xoops_getenv('HTTP_USER_AGENT');
     if (stristr($uagent, 'mac')) {
         $str_css = 'styleMAC.css';
-    } elseif (preg_match("/MSIE ([0-9]\.[0-9]{1,2})/i", $uagent)) {
+    } elseif (preg_match('/MSIE ([0-9]\.[0-9]{1,2})/i', $uagent)) {
         $str_css = 'style.css';
     } else {
         $str_css = 'styleNN.css';
@@ -551,10 +551,10 @@ function &getMailer()
 {
     global $xoopsConfig;
     $ret = null;
-    require_once XOOPS_ROOT_PATH."/class/xoopsmailer.php";
-    if ( file_exists(XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/xoopsmailerlocal.php") ) {
-        require_once XOOPS_ROOT_PATH."/language/".$xoopsConfig['language']."/xoopsmailerlocal.php";
-        if ( XC_CLASS_EXISTS("XoopsMailerLocal") ) {
+    require_once XOOPS_ROOT_PATH.'/class/xoopsmailer.php';
+    if ( file_exists(XOOPS_ROOT_PATH.'/language/'.$xoopsConfig['language'].'/xoopsmailerlocal.php') ) {
+        require_once XOOPS_ROOT_PATH.'/language/'.$xoopsConfig['language'].'/xoopsmailerlocal.php';
+        if ( XC_CLASS_EXISTS('XoopsMailerLocal') ) {
             $ret = new XoopsMailerLocal();
             return $ret;
         }
@@ -602,7 +602,7 @@ function &xoops_getmodulehandler($name = null, $module_dir = null, $optional = f
     if (!isset($module_dir)) {
         //if a module is loaded
         if (is_object($GLOBALS['xoopsModule'])) {
-            $module_dir = $GLOBALS['xoopsModule']->getVar('dirname');
+            $module_dir = $GLOBALS['xoopsModule']->getVar('dirname', 'n');
         } else {
             trigger_error('No Module is loaded', E_USER_ERROR);
         }
@@ -646,9 +646,9 @@ function xoops_getrank($rank_id =0, $posts = 0)
     $myts =& MyTextSanitizer::getInstance();
     $rank_id = (int)$rank_id;
     if ($rank_id != 0) {
-        $sql = "SELECT rank_title AS title, rank_image AS image, rank_id AS id FROM ".$db->prefix('ranks')." WHERE rank_id = ".$rank_id;
+        $sql = 'SELECT rank_title AS title, rank_image AS image, rank_id AS id FROM '.$db->prefix('ranks').' WHERE rank_id = '.$rank_id;
     } else {
-        $sql = "SELECT rank_title AS title, rank_image AS image, rank_id AS id FROM ".$db->prefix('ranks')." WHERE rank_min <= ".$posts." AND rank_max >= ".$posts." AND rank_special = 0";
+        $sql = 'SELECT rank_title AS title, rank_image AS image, rank_id AS id FROM '.$db->prefix('ranks').' WHERE rank_min <= '.$posts.' AND rank_max >= '.$posts.' AND rank_special = 0';
     }
     $rank = $db->fetchArray($db->query($sql));
     $rank['title'] = $myts->makeTboxData4Show($rank['title']);
@@ -742,7 +742,7 @@ function xoops_comment_delete($module_id, $item_id)
             for ($i = 0; $i < $count; $i++) {
                 if (false != $comment_handler->delete($comments[$i])) {
                     // store poster ID and deleted post number into array for later use
-                    $poster_id = $comments[$i]->getVar('com_uid');
+                    $poster_id = $comments[$i]->getVar('com_uid', 'n');
                     if ($poster_id != 0) {
                         $deleted_num[$poster_id] = !isset($deleted_num[$poster_id]) ? 1 : ($deleted_num[$poster_id] + 1);
                     }
@@ -753,7 +753,7 @@ function xoops_comment_delete($module_id, $item_id)
                 // update user posts
                 $com_poster = $member_handler->getUser($user_id);
                 if (is_object($com_poster)) {
-                    $member_handler->updateUserByField($com_poster, 'posts', $com_poster->getVar('posts') - $post_num);
+                    $member_handler->updateUserByField($com_poster, 'posts', $com_poster->getVar('posts', 'n') - $post_num);
                 }
             }
             return true;
