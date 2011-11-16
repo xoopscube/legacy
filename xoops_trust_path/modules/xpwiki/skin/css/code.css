@@ -202,3 +202,32 @@ $class a.code_outline:active
     border: 1px solid #888888;
     text-decoration: none;
 }
+
+/* mobile profile */
+$class_mobile table.code_table pre.code_number,
+$class_mobile table.code_table pre.pre_number,
+$class_mobile table.code_table pre.code_outline {
+	display: none !important;
+}
+$class_mobile div.pre,
+$class_mobile div.code_table,
+$class_mobile div.pre_table,
+$class_mobile pre,
+$class_mobile code {
+	/*font-size: 10pt !important;*/
+	height: auto !important;
+	max-height: none !important;
+	width: auto !important;
+	max-width: none !important;
+	padding 0 !important;
+	margin 0 !important;
+    white-space: pre-wrap !important;
+    white-space: -moz-pre-wrap !important;
+    white-space: -o-pre-wrap !important;
+    white-space: -pre-wrap !important;
+    word-wrap: break-word !important;
+    overflow: visible !important;
+    /*overflow-x: hidden !important;*/
+    letter-spacing: 0px !important;
+    /*page-break-before: avoid !important;*/
+}

@@ -43,50 +43,50 @@ body.popup_body_default {
 }
 
 div.resizableResizeX {
-	position: absolute !important;
-	right: -5px !important;
-	width: 4px !important;
-	top: 0px !important;
-	height:100% !important;
-	border: none !important;
-	padding: 0px !important;
-	margin: 0px !important;
-	background-color: #b0c4de !important;
-	filter:alpha(opacity=60) !important;
-	-moz-opacity: 0.6 !important;
-	opacity: 0.6 !important;
+	position: absolute;
+	right: -5px;
+	width: 4px;
+	top: 0px;
+	height:100%;
+	border: none;
+	padding: 0px;
+	margin: 0px;
+	background-color: #b0c4de;
+	filter:alpha(opacity=60);
+	-moz-opacity: 0.6;
+	opacity: 0.6;
 }
 
 div.resizableResizeY {
-	position: absolute !important;
-	bottom: -5px !important;
-	height: 4px !important;
-	left: 0px !important;
-	width:100% !important;
-	border: none !important;
-	padding: 0px !important;
-	margin: 0px !important;
-	background-color: #b0c4de !important;
-	filter:alpha(opacity=60) !important;
-	-moz-opacity: 0.6 !important;
-	opacity: 0.6 !important;
-	overflow: hidden !important;	/* for IE6 */
+	position: absolute;
+	bottom: -5px;
+	height: 4px;
+	left: 0px;
+	width:100%;
+	border: none;
+	padding: 0px;
+	margin: 0px;
+	background-color: #b0c4de;
+	filter:alpha(opacity=60);
+	-moz-opacity: 0.6;
+	opacity: 0.6;
+	overflow: hidden;	/* for IE6 */
 }
 
 div.resizableResizeXY {
-	position: absolute !important;
-	bottom: -5px !important;
-	height: 6px !important;
-	right: -5px !important;
-	width: 6px !important;
-	border: none !important;
-	padding: 0px !important;
-	margin: 0px !important;
-	background-color: #b0c4de !important;
-	filter:alpha(opacity=60) !important;
-	-moz-opacity: 0.6 !important;
-	opacity: 0.6 !important;
-	overflow: hidden !important;	/* for IE6 */
+	position: absolute;
+	bottom: -5px;
+	height: 6px;
+	right: -5px;
+	width: 6px;
+	border: none;
+	padding: 0px;
+	margin: 0px;
+	background-color: #b0c4de;
+	filter:alpha(opacity=60);
+	-moz-opacity: 0.6;
+	opacity: 0.6;
+	overflow: hidden;	/* for IE6 */
 }
 
 img.xpwikiFavicon {
