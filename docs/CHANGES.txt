@@ -2,15 +2,17 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
-2011/10/XX: Package Revision 2.2.1 Beta2
+2011/11/XX: Package Revision 2.2.1 Beta2
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
+- Fix Bug #3307977 - site_custom.ini for multisite
 - Fix Bug #3313462 - trigger_error('...',E_USER_ERROR) may not halt execution
 - Fix Bug #3314175 - user module admin UserView error
 - Fix Bug #3317712 - class/module.errorhandler.php bug
 - Fix Bug #3357632 - category path list should contain terminal cat
 - Fix Bug #3362690 - smarty pluigin legacy_category_select missing array key
 - Fix Bug #3366737 - Missing preload file SetupAltsysLangMgr.class.php
+- Fix Bug #3387719 - Users can not delete your own account
 - Fix Bug #3395113 - 500 error / Apache fatal error
 - Fix Bug #3398687 - Users can not register  at UserDataUploadAction
 - Fix Bug #3409051 - when get profiledata fatal error ,modifier.xoops_user.php
@@ -22,18 +24,26 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Feature Request #3352820 - Add new MIME type
 - Feature Request #3381570 - Check client data before delete category
 - Feature Request #3383519 - Check child category before delete category
+- Feature Request #3390357 - when install ,select time zone for japanese
+- Feature Request #3398822 - Firefox, Chrome, Opera BBcode
 - Feature Request #3408918 - when no_avatar.gif, 0width modifier.xoops_user_avatarize.php
 - Feature Request #3412833 - array request handling in PageNavi
+- Feature Request #3423505 - Add $xoops_module_header on dialog
+- Feature Request #3423584 - Not to select branch options in function.legacy_category_sel
 
 [Other Changes/Enhancements]
 - Update portuguese/pt_utf8 language files
 - Update interfaces: AbstractObject.class.php, AbstractImageObject.class.php, AbstractClientObjectHandler.class.php, ImageDelegateInterface.class.php
+- Speed up by nbuy
 
 [Staff]
+- bindi
 - bluemooninc
 - domifara
 - kilica
 - Mikhail Miguel
+- nao-pon
+- nbuy
 - onlineco
 
 ----------------------------------------
