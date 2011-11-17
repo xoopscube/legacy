@@ -1,6 +1,6 @@
 <?php
 // PukiWiki - Yet another WikiWikiWeb clone
-// $Id: pukiwiki.ini.php,v 1.111 2011/10/28 13:47:19 nao-pon Exp $
+// $Id: pukiwiki.ini.php,v 1.112 2011/11/17 00:00:15 nao-pon Exp $
 // Copyright (C)
 //   2002-2006 PukiWiki Developers Team
 //   2001-2002 Originally written by yu-ji
@@ -731,11 +731,6 @@ $root->auto_template_rules = array(
 $root->footnote_categories = array();
 
 /////////////////////////////////////////////////
-// Number of heading that inserts "#contents" automatically
-// 0: Disabled
-$root->contents_auto_insertion = 4;
-
-/////////////////////////////////////////////////
 // Automatically add fixed heading anchor
 $root->fixed_heading_anchor = 1;
 
@@ -985,7 +980,6 @@ $const['PKWK_PGINFO_REGEX'] = '/^(?:#pginfo\(.*\)[\r\n]*)+/m';
 // The following settings are overwrited when the environment of the management screen is set,
 // and go in the setting change by an environmental setting, please.
 // 以下の設定は、管理画面の環境設定をした場合に上書きされますので、設定変更は環境設定で行ってください。
-
 $const['PKWK_READONLY'] = 0; // 0 or 1
 $root->function_freeze = 1;
 $root->adminpass = '{x-php-md5}!';
@@ -1021,6 +1015,7 @@ $root->plugin_follow_freeze = 1;
 $root->line_break = 0;
 $root->fixed_heading_anchor_edit = 1;
 $root->paraedit_partarea = 'compat';
+$root->contents_auto_insertion = 4;
 $root->pagecache_min = 0;
 $root->pre_width = 'auto';
 $root->pre_width_ie = '700px';

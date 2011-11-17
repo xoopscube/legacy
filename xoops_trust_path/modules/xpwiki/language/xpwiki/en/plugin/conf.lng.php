@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2008/01/24 by nao-pon http://hypweb.net/
- * $Id: conf.lng.php,v 1.17 2010/06/05 00:45:27 nao-pon Exp $
+ * $Id: conf.lng.php,v 1.18 2011/11/17 00:00:15 nao-pon Exp $
  */
 
 $msg = array(
@@ -225,6 +225,11 @@ $msg = array(
 		               . 'The range in the chapter is begun by the head line that starts by * of the Wiki format.',
 		'compat'      => 'Up to next',
 		'level'       => 'Up to equality or higher level',
+	),
+
+	'contents_auto_insertion' => array(
+		'caption'     => 'Auto TOC',
+		'description' => 'Number of heading that inserts TOC("#contents") automatically. ( 0: Disabled )',
 	),
 
 	'amazon_AssociateTag' => array(

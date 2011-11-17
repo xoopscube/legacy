@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2008/01/24 by nao-pon http://hypweb.net/
- * $Id: conf.lng.php,v 1.1 2010/03/06 08:20:30 nao-pon Exp $
+ * $Id: conf.lng.php,v 1.2 2011/11/17 00:00:15 nao-pon Exp $
  */
 
 $msg = array(
@@ -44,12 +44,12 @@ $msg = array(
 		'caption'     => 'Nome do Administrador',
 		'description' => '',
 	),
-	
+
 	'modifierlink' => array(
 		'caption'     => 'Administer\'s site URL',
 		'description' => '',
 	),
-	
+
 	'notify' => array(
 		'caption'     => 'Mail notified on page updated?',
 		'description' => 'Mail is notified to the administer when page updated.',
@@ -64,26 +64,26 @@ $msg = array(
 		'caption'     => 'Default page',
 		'description' => 'It is a top page, displayed when the page is not specified.',
 	),
-	
+
 	'page_case_insensitive' => array(
 		'caption'     => 'Is case insensitive of the page name?',
 		'description' => 'Neither lower case nor upper case are distinguished of the page name.',
 	),
-	
+
 	'SKIN_NAME' => array(
 		'caption'     => 'Default Skin name',
 		'description' => 'The skin name of default is specified.',
 		'normalskin'  => 'Normal skins',
-		'tdiarytheme' => 't-Diary\'s themes', 
+		'tdiarytheme' => 't-Diary\'s themes',
 	),
-	
+
 	'skin_navigator_cmds' => array(
 		'caption'     => 'Menus on Skin',
 		'description' => 'The command name of the menu assumed to be able to display by the skin is input by comma (,) delimitation.<br />'
 	                   . 'All menus are enabled to be displayed when "all" is input.<br />'
 		               . '" add, atom, attaches, back, backup, copy, diff, edit, filelist, freeze, help, list, new, newsub, pginfo, print, rdf, recent, refer, related, reload, rename, rss, rss10, rss20, search, top, topage, trackback, unfreeze, upload " can be specified. However, it is controlled whether displayed by the skin.' ,
 	),
-	
+
 	'skin_navigator_disabled' => array(
 		'caption'     => 'Dsabled menus on Skin',
 		'description' => 'The command name of the menu assumed not to be able to display by the skin is input by comma (,) delimitation. <br />'
@@ -95,15 +95,15 @@ $msg = array(
 		'description' => 'The user comes to be able to select skin by selecting "Yes".<br />'
 		               . 'Moreover, specifying the tdiary plugin etc. on each use page becomes possible.',
 	),
-	
+
 	'referer' => array(
 		'caption'     => 'Do get referer information?',
 		'description' => 'It is a function to total where those who inspected it visited page each page.',
 	),
-	
+
 	'allow_pagecomment' => array(
 		'caption'     => 'Is page comment effective?',
-		'description' => 'The comment integration of d3forum modules is provided and the comment function of 
+		'description' => 'The comment integration of d3forum modules is provided and the comment function of
 each use page can be provided.<br />'
 		               . 'It is necessary to set the comment integration by a general setting to actually use it.',
 	),
@@ -226,6 +226,11 @@ each use page can be provided.<br />'
 		               . 'The range in the chapter is begun by the head line that starts by * of the Wiki format.',
 		'compat'      => 'Up to next',
 		'level'       => 'Up to equality or higher level',
+	),
+
+	'contents_auto_insertion' => array(
+		'caption'     => 'Auto TOC',
+		'description' => 'Number of heading that inserts TOC("#contents") automatically. ( 0: Disabled )',
 	),
 
 	'fckeditor_path' => array(

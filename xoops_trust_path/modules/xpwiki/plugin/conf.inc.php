@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2008/01/24 by nao-pon http://hypweb.net/
- * $Id: conf.inc.php,v 1.25 2011/10/28 13:53:03 nao-pon Exp $
+ * $Id: conf.inc.php,v 1.26 2011/11/17 00:00:15 nao-pon Exp $
  */
 
 class xpwiki_plugin_conf extends xpwiki_plugin {
@@ -203,6 +203,11 @@ class xpwiki_plugin_conf extends xpwiki_plugin {
 					$this->msg['paraedit_partarea']['compat'] => 'compat',
 					$this->msg['paraedit_partarea']['level']  => 'level',
 				),
+			),
+			'contents_auto_insertion' => array(
+				'kind' => 'root',
+				'type' => 'integer',
+				'form' => 'text,size="3"',
 			),
 			'amazon_AssociateTag' => array(
 				'kind' => 'root',

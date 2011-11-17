@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2008/01/24 by nao-pon http://hypweb.net/
- * $Id: conf.lng.php,v 1.17 2010/06/05 00:45:27 nao-pon Exp $
+ * $Id: conf.lng.php,v 1.18 2011/11/17 00:00:14 nao-pon Exp $
  */
 
 $msg = array(
@@ -225,6 +225,11 @@ $msg = array(
 		               . '章の範囲は、Wiki書式の * で始まる見出し行で開始されます。',
 		'compat'      => '次の見出しまで',
 		'level'       => '同レベル以上の見出しまで',
+	),
+
+	'contents_auto_insertion' => array(
+		'caption'     => 'TOCの自動挿入',
+		'description' => 'TOC("#contents")の自動挿入を行う章の数。( 0: 無効 )',
 	),
 
 	'amazon_AssociateTag' => array(
