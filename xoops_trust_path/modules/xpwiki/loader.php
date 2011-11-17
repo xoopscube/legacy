@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/25 by nao-pon http://hypweb.net/
-// $Id: loader.php,v 1.66 2011/09/26 11:53:11 nao-pon Exp $
+// $Id: loader.php,v 1.67 2011/11/17 13:54:47 nao-pon Exp $
 //
 
 ignore_user_abort(FALSE);
@@ -378,6 +378,9 @@ if ($type === 'js' || $type === 'css' || is_file($src_file)) {
 						if ($xpwiki->root->mydirname === XPWIKI_RENDERER_DIR) {
 							$RendererPage = $xpwiki->root->render_attach;
 							$skinname = $xpwiki->cont['SKIN_NAME'];
+							if (defined('XPWIKI_RENDERER_USE_WIKIHELPER')) {
+								$UseWikihelperAtAll = XPWIKI_RENDERER_USE_WIKIHELPER? 'true' : 'false';
+							}
 						} else {
 							$renderer = new XpWiki(XPWIKI_RENDERER_DIR);
 							$renderer->init('#RenderMode');

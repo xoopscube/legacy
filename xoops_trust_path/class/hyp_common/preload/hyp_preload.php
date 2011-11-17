@@ -235,11 +235,14 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 		if (! isset($this->k_tai_conf['urlRewrites'])) $this->k_tai_conf['urlRewrites'] = null;
 		if (! isset($this->k_tai_conf['urlImgRewrites'])) $this->k_tai_conf['urlImgRewrites'] = null;
 
+		if (! isset($this->xpwiki_render_dirname)) $this->xpwiki_render_dirname = '';
+		if (! isset($this->xpwiki_render_use_wikihelper)) $this->xpwiki_render_use_wikihelper = 0;
+
 		$this->detect_order_org = mb_detect_order();
 
 		// Load conf file.
 		$conffile = XOOPS_TRUST_PATH . HYP_COMMON_PRELOAD_CONF;
-		$sections = array('main_switch');
+		$sections = array('main_switch', 'xpwiki_render');
 		if (is_file($conffile) && $conf = parse_ini_file($conffile, true)) {
 			foreach($conf as $name => $section) {
 				if ($name === 'k_tai_conf') {
@@ -359,6 +362,14 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 			} else {
 				define('HYP_K_TAI_RENDER', FALSE);
 			}
+		}
+
+		// xpWiki renderer setting
+		if (defined('XOOPS_CUBE_LEGACY') && !defined('XPWIKI_RENDERER_DIR') && $this->xpwiki_render_dirname) {
+			if (! defined('XPWIKI_RENDERER_DIR')) define('XPWIKI_RENDERER_DIR', $this->xpwiki_render_dirname);
+			if (! defined('XPWIKI_RENDERER_USE_WIKIHELPER')) define('XPWIKI_RENDERER_USE_WIKIHELPER', $this->xpwiki_render_use_wikihelper);
+			include_once XOOPS_TRUST_PATH . '/class/hyp_common/xc_classes/Hyp_TextFilter.php';
+			$this->mController->mSetupTextFilter->add('Hyp_TextFilter::getInstance', XCUBE_DELEGATE_PRIORITY_FINAL-2);
 		}
 	}
 
@@ -1051,6 +1062,13 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 
 	function addHeadTag( $s ) {
 		if ($s === '' || strpos($s, '<html') === FALSE) return false;
+
+		if ($this->xpwiki_render_dirname && $this->xpwiki_render_use_wikihelper) {
+			$js = '<script type="text/javascript" src="'.XOOPS_URL.'/modules/'.$this->xpwiki_render_dirname.'/skin/loader.php?src=wikihelper_loader.js"></script>';
+			if (empty($GLOBALS['hyp_preload_head_tag']) || strpos($GLOBALS['hyp_preload_head_tag'], $js) === false) {
+				$GLOBALS['hyp_preload_head_tag'] .= "\n" . $js;
+			}
+		}
 
 		if (! empty($GLOBALS['hyp_preload_head_tag'])) {
 			$s = str_replace('</head>', $GLOBALS['hyp_preload_head_tag'] . '</head>', $s);

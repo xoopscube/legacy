@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2011/11/09 by nao-pon http://xoops.hypweb.net/
- * $Id: admin_func.php,v 1.3 2011/11/14 00:27:49 nao-pon Exp $
+ * $Id: admin_func.php,v 1.4 2011/11/17 13:53:50 nao-pon Exp $
  */
 
 function hypconfSetValue(& $config, $page) {
@@ -9,6 +9,7 @@ function hypconfSetValue(& $config, $page) {
 	$dum = null;
 	$hyp_preload = new HypCommonPreLoad($dum);
 	foreach($config as $key => $conf) {
+		if ($key === 'error') continue;
 		$name = $conf['name'];
 		if ($page === 'k_tai_conf') {
 			// Reset each site values.
@@ -18,11 +19,17 @@ function hypconfSetValue(& $config, $page) {
 				$val = $hyp_preload->k_tai_conf[$name];
 			}
 		} else {
-			$val = $hyp_preload->$name;
+			if (isset($hyp_preload->$name)) {
+				$val = $hyp_preload->$name;
+			} else {
+				$val = '';
+			}
 		}
 		$config[$key]['value'] = $val;
 		if (isset($conf['options']) && $conf['options'] === 'blocks') {
 			$config[$key]['options'] = hypconfGetBlocks();
+		} else if (isset($conf['options']) && $conf['options'] === 'xpwikis') {
+			$config[$key]['options'] = hypconfGetxpWikis();
 		}
 	}
 	return;
@@ -74,6 +81,25 @@ function hypconfGetModuleName($mid) {
 	return $ret[$mid];
 }
 
+function hypconfGetxpWikis() {
+	global $constpref;
+
+	$ret = array('#' => array('confop_value' => '', 'confop_name' => hypconf_constant($constpref . '_XPWIKI_RENDER_NONE')));
+	$module_handler =& xoops_gethandler('module');
+	$criteria = new CriteriaCompo(new Criteria('isactive', 1));
+	$modules =& $module_handler->getObjects($criteria);
+	foreach($modules as $module) {
+		if ($module->getInfo('trust_dirname') === 'xpwiki') {
+			$ret[$module->getVar('dirname')] = array(
+				'confop_value' => $module->getVar('dirname'),
+				'confop_name' => $module->getVar('name')
+			);
+		}
+	}
+	ksort($ret);
+	return $ret;
+}
+
 function hypconfSaveConf($config) {
 	global $constpref, $mydirname;
 
@@ -118,7 +144,13 @@ function hypconfSaveConf($config) {
 	} else {
 		$data = $ini;
 	}
-	file_put_contents(XOOPS_TRUST_PATH . HYP_COMMON_PRELOAD_CONF, $data);
+	if (file_put_contents(XOOPS_TRUST_PATH . HYP_COMMON_PRELOAD_CONF, $data)) {
+		if ($section === 'xpwiki_render') {
+			if (isset($_POST['xpwiki_render_dirname']) && $_POST['xpwiki_render_dirname']) {
+				@ touch(XOOPS_ROOT_PATH . '/modules/'.$_POST['xpwiki_render_dirname'].'/private/cache/pukiwiki.ini.php');
+			}
+		}
+	}
 
 	redirect_header(XOOPS_URL  . '/modules/' . $mydirname . '/admin/index.php', 0, hypconf_constant($constpref . '_MSG_SAVED'));
 
@@ -126,110 +158,116 @@ function hypconfSaveConf($config) {
 
 function hypconfShowForm($config) {
 	global $constpref, $mydirname, $mydirpath, $mytrustdirpath, $page, $xoopsConfig, $xoopsGTicket;
-	$count = count($config);
-	if ($count < 1) {
+	if (! $config) {
 		die( 'no configs' ) ;
 	}
-	include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
-	include_once dirname(dirname(__FILE__)).'/class/formcheckbox.php';
-	if (! XC_CLASS_EXISTS('XoopsFormBreak')) {
-		include_once dirname(dirname(__FILE__)).'/class/formbreak.php';
+	if (isset($config['error'])) {
+		echo '<div class="error">' . join('</div><div class="error">', $config['error']) . '</div>';
+		unset($config['error']);
 	}
-
-	$form = new XoopsThemeForm( hypconf_constant($constpref . '_ADMENU_' . strtoupper($page)) , 'pref_form', 'index.php');
-	$button_tray = new XoopsFormElementTray("");
-
-	for ($i = 0; $i < $count; $i++) {
-		$description = defined($config[$i]['description'])? constant($config[$i]['description']) : '';
-		//$title4tray = (!$description) ? hypconf_constant($config[$i]['title']) : hypconf_constant($config[$i]['title']).'<br /><br /><span style="font-weight:normal;">'.hypconf_constant($config[$i]['description']).'</span>'; // GIJ
-		$title4tray = hypconf_constant($config[$i]['title']);
-		$title = '' ; // GIJ
-		switch ($config[$i]['formtype']) {
-		case 'textarea':
-			$myts =& MyTextSanitizer::getInstance();
-			if ($config[$i]['valuetype'] == 'array') {
-				// this is exceptional.. only when value type is arrayneed a smarter way for this
-				$ele = ($config[$i]['value'] != '') ? new XoopsFormTextArea($title, $config[$i]['name'], $myts->htmlspecialchars(implode('|', $config[$i]['value'])), 5, 50) : new XoopsFormTextArea($title, $config[$i]['name'], '', 5, 50);
-			} else {
-				$ele = new XoopsFormTextArea($title, $config[$i]['name'], $myts->htmlspecialchars($config[$i]['value']), 5, 50);
-			}
-			break;
-		case 'select':
-			$size = 1;
-			if (! empty($config[$i]['size'])) {
-				$size = $config[$i]['size'];
-			}
-			$ele = new XoopsFormSelect($title, $config[$i]['name'], $config[$i]['value'], $size);
-			$options = $config[$i]['options'];
-			$opcount = count($options);
-			foreach($options as $option) {
-				$optval = defined($option['confop_value']) ? constant($option['confop_value']) : $option['confop_value'];
-				$optkey = defined($option['confop_name']) ? constant($option['confop_name']) : $option['confop_name'];
-				$ele->addOption($optval, $optkey);
-			}
-			break;
-		case 'select_multi':
-			$size = 5;
-			if (! empty($config[$i]['size'])) {
-				$size = $config[$i]['size'];
-			}
-			$ele = new XoopsFormSelect($title, $config[$i]['name'], $config[$i]['value'], $size, true);
-			$options = $config[$i]['options'];
-			foreach($options as $option) {
-				$optval = defined($option['confop_value']) ? constant($option['confop_value']) : $option['confop_value'];
-				$optkey = defined($option['confop_name']) ? constant($option['confop_name']) : $option['confop_name'];
-				$ele->addOption($optval, $optkey);
-			}
-			break;
-		case 'check':
-			$ele = new HypconfFormCheckBox($title, $config[$i]['name'], $config[$i]['value']);
-			if (! empty($config[$i]['width'])) {
-				//$ele->setWidth($config[$i]['width']);
-			}
-			$options = $config[$i]['options'];
-			foreach($options as $option) {
-				$optval = defined($option['confop_value']) ? hypconf_constant($option['confop_value']) : $option['confop_value'];
-				$optkey = defined($option['confop_name']) ? hypconf_constant($option['confop_name']) : $option['confop_name'];
-				$ele->addOption($optval, $optkey);
-			}
-			break;
-		case 'yesno':
-			$ele = new XoopsFormRadioYN($title, $config[$i]['name'], $config[$i]['value'], _YES, _NO);
-			break;
-		case 'password':
-			$size = 50;
-			if (! empty($config[$i]['size'])) {
-				$size = $config[$i]['size'];
-			}
-			$myts =& MyTextSanitizer::getInstance();
-			$ele = new XoopsFormPassword($title, $config[$i]['name'], $size, 255, $myts->htmlspecialchars($config[$i]['value']));
-			break;
-		case 'textbox':
-		default:
-			$size = 50;
-			if (! empty($config[$i]['size'])) {
-				$size = $config[$i]['size'];
-			}
-			$myts =& MyTextSanitizer::getInstance();
-			$ele = new XoopsFormText($title, $config[$i]['name'], $size, 255, $myts->htmlspecialchars($config[$i]['value']));
-			break;
+	if ($config) {
+		$count = count($config);
+		include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
+		include_once dirname(dirname(__FILE__)).'/class/formcheckbox.php';
+		if (! XC_CLASS_EXISTS('XoopsFormBreak')) {
+			include_once dirname(dirname(__FILE__)).'/class/formbreak.php';
 		}
-		$ele_tray = new XoopsFormElementTray( $title4tray , '' ) ;
-		$ele_tray->addElement($ele);
-		$form->addElement( $ele_tray ) ;
-		if ($description) {
-			$form->insertBreak('<span style="font-weight:normal;">' . $description .'</span>', 'odd');
+
+		$form = new XoopsThemeForm( hypconf_constant($constpref . '_ADMENU_' . strtoupper($page)) , 'pref_form', 'index.php');
+		$button_tray = new XoopsFormElementTray("");
+
+		for ($i = 0; $i < $count; $i++) {
+			$description = defined($config[$i]['description'])? constant($config[$i]['description']) : '';
+			//$title4tray = (!$description) ? hypconf_constant($config[$i]['title']) : hypconf_constant($config[$i]['title']).'<br /><br /><span style="font-weight:normal;">'.hypconf_constant($config[$i]['description']).'</span>'; // GIJ
+			$title4tray = hypconf_constant($config[$i]['title']);
+			$title = '' ; // GIJ
+			switch ($config[$i]['formtype']) {
+			case 'textarea':
+				$myts =& MyTextSanitizer::getInstance();
+				if ($config[$i]['valuetype'] == 'array') {
+					// this is exceptional.. only when value type is arrayneed a smarter way for this
+					$ele = ($config[$i]['value'] != '') ? new XoopsFormTextArea($title, $config[$i]['name'], $myts->htmlspecialchars(implode('|', $config[$i]['value'])), 5, 50) : new XoopsFormTextArea($title, $config[$i]['name'], '', 5, 50);
+				} else {
+					$ele = new XoopsFormTextArea($title, $config[$i]['name'], $myts->htmlspecialchars($config[$i]['value']), 5, 50);
+				}
+				break;
+			case 'select':
+				$size = 1;
+				if (! empty($config[$i]['size'])) {
+					$size = $config[$i]['size'];
+				}
+				$ele = new XoopsFormSelect($title, $config[$i]['name'], $config[$i]['value'], $size);
+				$options = $config[$i]['options'];
+				$opcount = count($options);
+				foreach($options as $option) {
+					$optval = defined($option['confop_value']) ? constant($option['confop_value']) : $option['confop_value'];
+					$optkey = defined($option['confop_name']) ? constant($option['confop_name']) : $option['confop_name'];
+					$ele->addOption($optval, $optkey);
+				}
+				break;
+			case 'select_multi':
+				$size = 5;
+				if (! empty($config[$i]['size'])) {
+					$size = $config[$i]['size'];
+				}
+				$ele = new XoopsFormSelect($title, $config[$i]['name'], $config[$i]['value'], $size, true);
+				$options = $config[$i]['options'];
+				foreach($options as $option) {
+					$optval = defined($option['confop_value']) ? constant($option['confop_value']) : $option['confop_value'];
+					$optkey = defined($option['confop_name']) ? constant($option['confop_name']) : $option['confop_name'];
+					$ele->addOption($optval, $optkey);
+				}
+				break;
+			case 'check':
+				$ele = new HypconfFormCheckBox($title, $config[$i]['name'], $config[$i]['value']);
+				if (! empty($config[$i]['width'])) {
+					//$ele->setWidth($config[$i]['width']);
+				}
+				$options = $config[$i]['options'];
+				foreach($options as $option) {
+					$optval = defined($option['confop_value']) ? hypconf_constant($option['confop_value']) : $option['confop_value'];
+					$optkey = defined($option['confop_name']) ? hypconf_constant($option['confop_name']) : $option['confop_name'];
+					$ele->addOption($optval, $optkey);
+				}
+				break;
+			case 'yesno':
+				$ele = new XoopsFormRadioYN($title, $config[$i]['name'], $config[$i]['value'], _YES, _NO);
+				break;
+			case 'password':
+				$size = 50;
+				if (! empty($config[$i]['size'])) {
+					$size = $config[$i]['size'];
+				}
+				$myts =& MyTextSanitizer::getInstance();
+				$ele = new XoopsFormPassword($title, $config[$i]['name'], $size, 255, $myts->htmlspecialchars($config[$i]['value']));
+				break;
+			case 'textbox':
+			default:
+				$size = 50;
+				if (! empty($config[$i]['size'])) {
+					$size = $config[$i]['size'];
+				}
+				$myts =& MyTextSanitizer::getInstance();
+				$ele = new XoopsFormText($title, $config[$i]['name'], $size, 255, $myts->htmlspecialchars($config[$i]['value']));
+				break;
+			}
+			$ele_tray = new XoopsFormElementTray( $title4tray , '' ) ;
+			$ele_tray->addElement($ele);
+			$form->addElement( $ele_tray ) ;
+			if ($description) {
+				$form->insertBreak('<span style="font-weight:normal;">' . $description .'</span>', 'odd');
+			}
+			unset($ele_tray);
+			unset($ele);
 		}
-		unset($ele_tray);
-		unset($ele);
+		$button_tray->addElement(new XoopsFormHidden('op', 'save'));
+		$button_tray->addElement(new XoopsFormHidden('page', $page));
+		$xoopsGTicket->addTicketXoopsFormElement( $button_tray , __LINE__ , 1800 , 'hypconf' ) ;
+		$button_tray->addElement(new XoopsFormButton('', 'button', _GO, 'submit'));
+		$form->addElement( $button_tray ) ;
+
+		$form->display();
 	}
-	$button_tray->addElement(new XoopsFormHidden('op', 'save'));
-	$button_tray->addElement(new XoopsFormHidden('page', $page));
-	$xoopsGTicket->addTicketXoopsFormElement( $button_tray , __LINE__ , 1800 , 'hypconf' ) ;
-	$button_tray->addElement(new XoopsFormButton('', 'button', _GO, 'submit'));
-	$form->addElement( $button_tray ) ;
-
-	$form->display();
 }
 
 function hypconf_constant($const) {

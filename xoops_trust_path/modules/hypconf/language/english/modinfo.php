@@ -57,4 +57,14 @@ define($constpref.'_LIMITEDBLOCKIDS_DESC', 'Enables the selected block when the 
 define($constpref.'_SHOWBLOCKIDS', 'Expand Block');
 define($constpref.'_SHOWBLOCKIDS_DESC', 'Block mobile access to view every time. <br />When using jQuery Mobile will initially be deployed collapse. <br />In a conventional mobile phone selected block is displayed, the non-selected block is the link to view the block.');
 
+// xpwiki_render
+define($constpref.'_XPWIKI_RENDER_NONE', 'Do not use');
+define($constpref.'_XPWIKI_RENDER_DIRNAME', 'xpWiki renderer');
+define($constpref.'_XPWIKI_RENDER_DIRNAME_DESC', 'Please select a "xpWiki" to be used as xpWiki renderer in the site-wide.<br />By using the site-wide xpWiki renderer, can be use xpWiki (PukiWiki) text formatter.');
+define($constpref.'_XPWIKI_RENDER_USE_WIKIHELPER', 'Site-wide Wiki Helper');
+define($constpref.'_XPWIKI_RENDER_USE_WIKIHELPER_DESC', 'If "Yes" is chosen, will be able to uses Wiki helper & Rich editor at site-wide.');
+define($constpref.'_REQUERE_XCL', 'This setting is only available in XOOPS Cube Legacy system.');
+define($constpref.'_XCL_REQUERE_2_2_1', 'This feature will be available since XOOPS Cube Legacy 2.2.1 .However,  If you have a edited "class/module.textsanitizer.php" for this feature already. Please ignore this message.');
+define($constpref.'_TEXTFILTER_ALREADY_EXISTS', 'There is a "SetupHyp_TextFilter.class.php" in "preload" directory so this setting will be disabled.');
+
 }

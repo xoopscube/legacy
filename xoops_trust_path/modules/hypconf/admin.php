@@ -30,15 +30,17 @@ if( ! file_exists( $langmanpath ) ) die( 'install the latest altsys' ) ;
 require_once( $langmanpath ) ;
 $langman =& D3LanguageManager::getInstance() ;
 
+include_once dirname(__FILE__).'/include/admin_func.php' ;
+
 if( ! empty( $_GET['lib'] ) ) {
 	// common libs (eg. altsys)
 	$lib = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , $_GET['lib'] ) ;
 	$page = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , @$_GET['page'] ) ;
 
-	if ($lib === 'altsys' && $page === 'mypreferences' && (empty($_SERVER['HTTP_REFERER']) || strpos($_SERVER['HTTP_REFERER'], $_SERVER['REQUEST_URI']) !== false)) {
-		header('Location: ' . XOOPS_URL  . '/modules/' . $mydirname . '/admin/index.php');
-		exit();
-	}
+//	if ($lib === 'altsys' && $page === 'mypreferences' && (empty($_SERVER['HTTP_REFERER']) || strpos($_SERVER['HTTP_REFERER'], $_SERVER['REQUEST_URI']) !== false)) {
+//		header('Location: ' . XOOPS_URL  . '/modules/' . $mydirname . '/admin/index.php');
+//		exit();
+//	}
 
 	// check the page can be accessed (make controllers.php just under the lib)
 	$controllers = array() ;
@@ -55,7 +57,6 @@ if( ! empty( $_GET['lib'] ) ) {
 		die( 'wrong request' ) ;
 	}
 } else {
-	include_once dirname(__FILE__).'/include/admin_func.php' ;
 	$constpref = '_MI_' . strtoupper( $mydirname ) ;
 
 	// load language files (main.php & admin.php)
