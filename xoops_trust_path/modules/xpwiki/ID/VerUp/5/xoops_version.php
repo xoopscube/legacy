@@ -56,7 +56,7 @@ if (@$GLOBALS['Xpwiki_'.$mydirname]['pgid']) {
 
 	$modversion['sub'][] = array(
 		'name' => '&#187; '.constant($constpref . '_MENU_ATTACHES') ,
-		'url'  => '?plugin=attach&amp;pcmd=list&amp;pgid=' . $GLOBALS['Xpwiki_xpwiki']['pgid'] . '#'.$mydirname.'navigator' );
+		'url'  => '?plugin=attach&amp;pcmd=list&amp;pgid=' . $GLOBALS['Xpwiki_'.$mydirname]['pgid'] . '#'.$mydirname.'navigator' );
 
 	if (@$GLOBALS['Xpwiki_'.$mydirname]['sw_referer']) {
 		$modversion['sub'][] = array(
