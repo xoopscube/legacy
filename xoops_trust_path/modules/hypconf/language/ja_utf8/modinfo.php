@@ -20,6 +20,7 @@ define($constpref.'_ADMENU_CONTENTSADMIN' , '設定の確認');
 define($constpref.'_ADMENU_MAIN_SWITCH' , 'メイン スイッチ');
 define($constpref.'_ADMENU_K_TAI_CONF' , 'モバイル対応の設定');
 define($constpref.'_ADMENU_MYBLOCKSADMIN' , 'アクセス権限設定');
+define($constpref.'_ADMENU_XPWIKI_RENDER', 'xpWikiレンダラー設定');
 
 // main_switch
 define($constpref.'_USE_SET_QUERY_WORDS', '検索ワードを定数にセット');
