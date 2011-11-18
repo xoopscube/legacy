@@ -1,22 +1,22 @@
 <?php
 /*
  * Created on 2007/05/13 by nao-pon http://hypweb.net/
- * $Id: setup.php,v 1.7 2008/11/18 00:30:53 nao-pon Exp $
+ * $Id: setup.php,v 1.8 2011/11/18 14:33:49 nao-pon Exp $
  */
 
 $ng = $out = '';
 
 // Install setting
 if (! file_exists($mydirpath . '/.installed')) {
-	
+
 	// Set imagemagick, jpegtran path.
 	$out .= "* Now imagemagick & jpegtran path setting.\n";
 	$dat = $path = "";
-	
-	if ( substr(PHP_OS, 0, 3) !== 'WIN' ) { 
-		
+
+	if ( substr(PHP_OS, 0, 3) !== 'WIN' ) {
+
 		$dat .= "<?php\n";
-		
+
 		if (file_exists(XOOPS_ROOT_PATH.'/class/hyp_common/image_magick.cgi')) {
 			$image_magick_cgi = XOOPS_ROOT_PATH.'/class/hyp_common/image_magick.cgi';
 		} else {
@@ -47,7 +47,7 @@ if (! file_exists($mydirpath . '/.installed')) {
 			$path = (preg_match("#^(/.+/)convert$#",$path[1],$match))? $match[1] : "";
 			$dat .= "define('HYP_IMAGEMAGICK_PATH', '{$path}');\n";
 		}
-		
+
 		$exec = array();
 		@ exec( "whereis -b jpegtran" , $exec) ;
 		if ($exec)
@@ -57,14 +57,14 @@ if (! file_exists($mydirpath . '/.installed')) {
 			$dat .= "define('HYP_JPEGTRAN_PATH', '{$path}');\n";
 		}
 		$dat .= "?>\n";
-		
+
 		if (!$ng) {
 			@ touch ($mydirpath . '/.installed');
 		}
 	}
-	
+
 	$filename = XOOPS_TRUST_PATH . '/class/hyp_common/execpath.inc.php';
-	
+
 	if ($dat && ($fp = @fopen($filename,"wb")))
 	{
 		fputs($fp, $dat);
@@ -75,7 +75,7 @@ if (! file_exists($mydirpath . '/.installed')) {
 	{
 		$ng .= "Edited a file ( {$filename} ) - NG\n";
 	}
-	
+
 	// permission
 	$out .= "* Now permission setting.\n";
 
@@ -114,7 +114,7 @@ if (@ $myhtml_version < 2) {
 	$rmfiles = array('blocks.php');
 	$mkdirs = array('blocks');
 	$cpfiles = array('mytrustdirname.php','attach/s/.htaccess','blocks/blocks.php');
-	
+
 	files_copy ($base, $trust, $rmfiles, $mkdirs, $cpfiles);
 }
 
@@ -135,7 +135,7 @@ if (@ $myhtml_version < 3) {
 		'skin/pukiwiki/pukiwiki.skin.php',
 		'skin/xpwiki/pukiwiki.skin.php',
 	);
-	
+
 	files_copy ($base, $trust, $rmfiles, $mkdirs, $cpfiles);
 }
 
@@ -150,7 +150,26 @@ if (@ $myhtml_version < 4) {
 		'gate.php',
 		'mytrustdirname.php'
 	);
-	
+
+	files_copy ($base, $trust, $rmfiles, $mkdirs, $cpfiles);
+}
+
+// VerUP to 5
+if (@ $myhtml_version < 5) {
+
+	$base = $mydirpath . '/';
+	$trust = XOOPS_TRUST_PATH . '/modules/' . $mytrustdirname . '/ID/VerUp/5/';
+	$rmfiles = array();
+	$mkdirs = array();
+	$cpfiles = array(
+		'gate.php',
+		'index.php',
+		'mytrustdirname.php',
+		'xoops_version.php',
+		'skin/loader.php',
+		'skin/plain/pukiwiki.skin.php'
+	);
+
 	files_copy ($base, $trust, $rmfiles, $mkdirs, $cpfiles);
 }
 
@@ -184,9 +203,9 @@ exit();
 
 function files_copy ($base, $trust, $rmfiles, $mkdirs, $cpfiles) {
 	global $out, $ng;
-	
+
 	$out .= "* Now copying new files.\n";
-	
+
 	foreach($rmfiles as $file) {
 		if (file_exists($base . $file)) {
 			if (@ unlink($base . $file)) {
@@ -206,7 +225,7 @@ function files_copy ($base, $trust, $rmfiles, $mkdirs, $cpfiles) {
 			}
 		}
 	}
-	
+
 	foreach($cpfiles as $file) {
 		if (@ copy($trust . $file, $base . $file)) {
 			$out .= '- File copy ('.$trust . $file .' TO ' . $base . $file . ' ) - OK.' . "\n";
