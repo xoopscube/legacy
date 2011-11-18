@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2011/11/17 by nao-pon http://xoops.hypweb.net/
- * $Id: xpwiki_render.php,v 1.1 2011/11/17 13:53:50 nao-pon Exp $
+ * $Id: xpwiki_render.php,v 1.2 2011/11/18 04:49:14 nao-pon Exp $
  */
 
 if (defined('XOOPS_CUBE_LEGACY')) {
@@ -27,6 +27,15 @@ if (defined('XOOPS_CUBE_LEGACY')) {
 		'formtype' => 'yesno',
 		'valuetype' => 'int',
 		'default' => 0,
+		);
+
+	$config[] = array(
+		'name' => 'xpwiki_render_notuse_wikihelper_modules',
+		'title' => $constpref.'_XPWIKI_RENDER_NOTUSE_WIKIHELPER_MODULES',
+		'description' => $constpref.'_XPWIKI_RENDER_NOTUSE_WIKIHELPER_MODULES_DESC',
+		'formtype' => 'check',
+		'valuetype' => 'array',
+		'options' => 'modules'
 		);
 
 } else {

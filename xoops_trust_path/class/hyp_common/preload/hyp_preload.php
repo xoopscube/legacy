@@ -237,7 +237,10 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 
 		if (! isset($this->xpwiki_render_dirname)) $this->xpwiki_render_dirname = '';
 		if (! isset($this->xpwiki_render_use_wikihelper)) $this->xpwiki_render_use_wikihelper = 0;
+		if (! isset($this->xpwiki_render_notuse_wikihelper_modules)) $this->xpwiki_render_notuse_wikihelper_modules = array();
 
+		// init
+		$this->nowModuleDirname = '';
 		$this->detect_order_org = mb_detect_order();
 
 		// Load conf file.
@@ -255,6 +258,7 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 					}
 				}
 			}
+			$this->xpwiki_render_notuse_wikihelper_modules = array_filter($this->xpwiki_render_notuse_wikihelper_modules);
 			if (isset($this->k_tai_conf['disabledBlockIds#'.XOOPS_URL])) {
 				$this->k_tai_conf['disabledBlockIds#'.XOOPS_URL] = array_filter($this->k_tai_conf['disabledBlockIds#'.XOOPS_URL]);
 			}
@@ -482,7 +486,11 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 			}
 		}
 
-		global $xoopsUser, $xoopsUserIsAdmin;
+		global $xoopsUser, $xoopsUserIsAdmin, $xoopsModule;
+
+		if (is_object($xoopsModule)) {
+			$this->nowModuleDirname = $xoopsModule->getVar('dirname');
+		}
 
 		if (! empty($_POST)) {
 			// Input フィルター (remove "\0")
@@ -1064,9 +1072,15 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 		if ($s === '' || strpos($s, '<html') === FALSE) return false;
 
 		if ($this->xpwiki_render_dirname && $this->xpwiki_render_use_wikihelper) {
-			$js = '<script type="text/javascript" src="'.XOOPS_URL.'/modules/'.$this->xpwiki_render_dirname.'/skin/loader.php?src=wikihelper_loader.js"></script>';
-			if (empty($GLOBALS['hyp_preload_head_tag']) || strpos($GLOBALS['hyp_preload_head_tag'], $js) === false) {
-				$GLOBALS['hyp_preload_head_tag'] .= "\n" . $js;
+			$notUseWikihelper = false;
+			if ($this->nowModuleDirname) {
+				$notUseWikihelper = in_array($this->nowModuleDirname, $this->xpwiki_render_notuse_wikihelper_modules);
+			}
+			if (! $notUseWikihelper) {
+				$js = '<script type="text/javascript" src="'.XOOPS_URL.'/modules/'.$this->xpwiki_render_dirname.'/skin/loader.php?src=wikihelper_loader.js"></script>';
+				if (empty($GLOBALS['hyp_preload_head_tag']) || strpos($GLOBALS['hyp_preload_head_tag'], $js) === false) {
+					$GLOBALS['hyp_preload_head_tag'] .= "\n" . $js;
+				}
 			}
 		}
 

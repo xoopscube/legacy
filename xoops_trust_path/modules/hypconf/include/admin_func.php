@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2011/11/09 by nao-pon http://xoops.hypweb.net/
- * $Id: admin_func.php,v 1.4 2011/11/17 13:53:50 nao-pon Exp $
+ * $Id: admin_func.php,v 1.6 2011/11/18 05:12:25 nao-pon Exp $
  */
 
 function hypconfSetValue(& $config, $page) {
@@ -28,8 +28,10 @@ function hypconfSetValue(& $config, $page) {
 		$config[$key]['value'] = $val;
 		if (isset($conf['options']) && $conf['options'] === 'blocks') {
 			$config[$key]['options'] = hypconfGetBlocks();
+		} else if (isset($conf['options']) && $conf['options'] === 'modules') {
+			$config[$key]['options'] = hypconfGetModules();
 		} else if (isset($conf['options']) && $conf['options'] === 'xpwikis') {
-			$config[$key]['options'] = hypconfGetxpWikis();
+			$config[$key]['options'] = hypconfGetModules('xpwiki', true);
 		}
 	}
 	return;
@@ -81,22 +83,28 @@ function hypconfGetModuleName($mid) {
 	return $ret[$mid];
 }
 
-function hypconfGetxpWikis() {
+function hypconfGetModules($trust_dirname = '', $add_notuse = false) {
 	global $constpref;
 
-	$ret = array('#' => array('confop_value' => '', 'confop_name' => hypconf_constant($constpref . '_XPWIKI_RENDER_NONE')));
+	if ($add_notuse) {
+		$ret = array(array('confop_value' => '', 'confop_name' => hypconf_constant($constpref . '_XPWIKI_RENDER_NONE')));
+		$sorter = array('#');
+	} else {
+		$sorter = $ret = array();
+	}
 	$module_handler =& xoops_gethandler('module');
 	$criteria = new CriteriaCompo(new Criteria('isactive', 1));
 	$modules =& $module_handler->getObjects($criteria);
 	foreach($modules as $module) {
-		if ($module->getInfo('trust_dirname') === 'xpwiki') {
-			$ret[$module->getVar('dirname')] = array(
+		if (! $trust_dirname || $module->getInfo('trust_dirname') === $trust_dirname) {
+			$ret[] = array(
 				'confop_value' => $module->getVar('dirname'),
 				'confop_name' => $module->getVar('name')
 			);
+			$sorter[] = $module->getVar('name');
 		}
 	}
-	ksort($ret);
+	array_multisort($sorter, SORT_ASC, SORT_STRING, $ret);
 	return $ret;
 }
 

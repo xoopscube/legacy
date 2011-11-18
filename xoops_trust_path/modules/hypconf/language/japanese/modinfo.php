@@ -64,6 +64,8 @@ define($constpref.'_XPWIKI_RENDER_DIRNAME', 'xpWiki レンダラー');
 define($constpref.'_XPWIKI_RENDER_DIRNAME_DESC', 'サイトワイド xpWiki レンダラー機能で使用する xpWiki を指定してください。<br />サイトワイドで xpWiki レンダラー機能を使用すると、ほとんどのモジュールで xpWiki(PukiWiki)の記法が使えるようになります。');
 define($constpref.'_XPWIKI_RENDER_USE_WIKIHELPER', 'サイトワイド Wiki ヘルパー');
 define($constpref.'_XPWIKI_RENDER_USE_WIKIHELPER_DESC', '「はい」を選択するとテキストエリアが機能拡張され Wiki ヘルパー及びリッチエディタをサイトワイドで使用できるようになります。');
+define($constpref.'_XPWIKI_RENDER_NOTUSE_WIKIHELPER_MODULES', 'Wiki ヘルパー無効');
+define($constpref.'_XPWIKI_RENDER_NOTUSE_WIKIHELPER_MODULES_DESC', 'サイトワイド Wiki ヘルパーを無効にするモジュールを選択して下さい。');
 define($constpref.'_REQUERE_XCL', 'この設定は XOOPS Cube Legacy システムでのみ利用可能です。');
 define($constpref.'_XCL_REQUERE_2_2_1', 'この機能は、XOOPS Cube Legacy 2.2.1 以降で有効になります。ただし、独自に "class/module.textsanitizer.php" を書き換えてこの機能を有効にしている場合は、このメッセージは無視して下さい。');
 define($constpref.'_TEXTFILTER_ALREADY_EXISTS', 'preload ディレクトリに "SetupHyp_TextFilter.class.php" があります。それを削除するまでここでの設定は反映されません。');
