@@ -88,7 +88,7 @@ $modversion['config'][]=array (
 		"description"=>"_MI_LR_META_COPYRIGHT_DESC",
 		"formtype"=>"textbox",
 		"valuetype"=>"text",
-		"default"=>"Copyright &copy; 2001-2010"
+		"default"=>"Copyright &copy; 2001-2011"
 	);
 
 $modversion['config'][]=array (
@@ -97,7 +97,7 @@ $modversion['config'][]=array (
 		"description"=>"_MI_LR_FOOTER_DESC",
 		"formtype"=>"textarea",
 		"valuetype"=>"text",
-		"default"=>"Powered by <a href=\"http://xoopscube.org/\" rel=\"external\">XOOPS Cube</a> 2.2 &copy; 2001-2010 <a href=\"http://xoopscube.sourceforge.net/\" rel=\"external\">XOOPS Cube Project</a>"
+		"default"=>"Powered by <a href=\"http://xoopscube.org/\" rel=\"external\">XOOPS Cube</a> 2.2 &copy; 2001-2011 <a href=\"http://xoopscube.sourceforge.net/\" rel=\"external\">XOOPS Cube Project</a>"
 	);
 
 $modversion['config'][]=array (
