@@ -618,7 +618,8 @@ class XCube_DelegateUtils
     function raiseEvent()
     {
         if (func_num_args()) {
-            return call_user_func_array(array('XCube_DelegateUtils','call'),func_get_args());
+			$args = func_get_args();
+            return call_user_func_array(array('XCube_DelegateUtils','call'), $args);
         }
     }
 
