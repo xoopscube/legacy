@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2009/11/19 by nao-pon http://xoops.hypweb.net/
- * $Id: xmlrpc.inc.php,v 1.7 2011/11/20 12:13:36 nao-pon Exp $
+ * $Id: xmlrpc.inc.php,v 1.8 2011/11/20 15:41:31 nao-pon Exp $
  */
 
 class xpwiki_plugin_xmlrpc extends xpwiki_plugin {
@@ -322,13 +322,13 @@ EOD;
 
 						if (strpos($set_data, '// flickr description')) {
 							// change image size 500 to 1024
-							$set_data = preg_replace('#(http://farm\d+\.static\.flickr\.com/\d+/\d+_[a-f0-9]+)\.jpg#', '$1_b.jpg', $set_data);
+							$set_data = preg_replace('#(http://farm\d+\.static\.?flickr\.com/\d+/\d+_[a-f0-9]+)\.jpg#', '$1_b.jpg', $set_data);
 
 							// get description
 							if (preg_match('#// *flickr description start(.+?)// *flickr description end#is', $set_data, $_match)) {
 								$description = trim($_match[1]);
 								$id = '';
-								if (preg_match('#http://farm\d+\.static\.flickr\.com/\d+/(\d+)_#', $set_data, $_match)) {
+								if (preg_match('#http://farm\d+\.static\.?flickr\.com/\d+/(\d+)_#', $set_data, $_match)) {
 									$id = $_match[1];
 								}
 								if ($id && (!$description || $description === $subject)) {
