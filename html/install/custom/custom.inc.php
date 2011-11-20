@@ -1,6 +1,6 @@
 <?php
 
-	$wizardSeq->insertAfter('modcheck', 'modcheckext', _INSTALL_L81,'modcheck',_INSTALL_L82,true);
+	$wizardSeq->insertAfter('modcheck', 'modcheckext', _INSTALL_L81,'start',_INSTALL_L80,true);
 	$wizardSeq->insertAfter('modcheck_trust', 'modcheck_trustext', 'trust is_writeable Check','modcheck_trust',_INSTALL_L166,true);
 	$wizardSeq->insertAfter('siteInit', 'insertData_theme', _INSTALL_L117);
 	$wizardSeq->add('insertData_theme',  _INSTALL_L116, 'finish',     _INSTALL_L117);
