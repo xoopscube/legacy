@@ -1,6 +1,6 @@
 <?php
 // PukiWiki - Yet another WikiWikiWeb clone
-// $Id: pukiwiki.ini.php,v 1.113 2011/11/20 05:36:03 nao-pon Exp $
+// $Id: pukiwiki.ini.php,v 1.114 2011/11/20 12:10:06 nao-pon Exp $
 // Copyright (C)
 //   2002-2006 PukiWiki Developers Team
 //   2001-2002 Originally written by yu-ji
@@ -42,7 +42,7 @@ $const['PKWK_DISABLE_INLINE_IMAGE_FROM_URI'] = 0;
 $const['SHOW_EXTIMG_BY_REF'] = TRUE;
 
 // ref で内部サイトとみなす URL の正規表現 (PCRE)
-$const['NO_REF_EXTIMG_REG'] = '#^http://[^/]+\.(?:static\.flickr\.com|photozou\.jp)#i';
+$const['NO_REF_EXTIMG_REG'] = '#^http://[^/]+\.(?:static\.?flickr\.com|photozou\.jp)#i';
 
 // In-line display setting of Flash file
 // The file owner is ... Disable of all: 0, Only the manager: 1, Only the registered user :2, Allow of all: 3.

@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2009/11/19 by nao-pon http://xoops.hypweb.net/
- * $Id: xmlrpc.inc.php,v 1.6 2011/10/28 13:38:20 nao-pon Exp $
+ * $Id: xmlrpc.inc.php,v 1.7 2011/11/20 12:13:36 nao-pon Exp $
  */
 
 class xpwiki_plugin_xmlrpc extends xpwiki_plugin {
@@ -662,17 +662,21 @@ EOD;
 		return $tags;
 	}
 
-	function getInfoFromFlickr($id) {
+	function getInfoFromFlickr($id, $retry = 3, $interval = 3) {
 		static $rets = array();
 		if (isset($rets[$id])) {
 			return $rets[$id];
 		}
 		$ret[$id] = false;
 		if ($this->flickrApiKey) {
-			$url = 'http://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key='.$this->flickrApiKey.'&photo_id='.$id.'&format=php_serial';
-			$res = $this->func->http_request($url);
-			if ($res['rc'] == 200) {
-				$ret[$id] = @ unserialize($res['data']);
+			$i = 0;
+			while(! $ret[$id] && $i++ < $retry) {
+				$url = 'http://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key='.$this->flickrApiKey.'&photo_id='.$id.'&format=php_serial';
+				$res = $this->func->http_request($url);
+				if ($res['rc'] == 200) {
+					$ret[$id] = @ unserialize($res['data']);
+				}
+				if (!$ret[$id] && $interval) sleep($interval);
 			}
 		}
 		return $ret[$id];
