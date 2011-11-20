@@ -39,4 +39,6 @@ $root->adminpass = '{x-php-md5}!';
 //$root->adminpass = '{MD5}Gh3JHJBzJcaScd3wyUS8cg==';               // LDAP MD5   'pass'
 //$root->adminpass = '{SMD5}o7lTdtHFJDqxFOVX09C8QnlmYmZnd2Qx';      // LDAP SMD5  'pass'
 
-?>
+// For XCL Pack2011
+// Image pack name ( ex. 'extra' is $const['IMAGE_DIR'] become "$const['IMAGE_DIR']extra/" )
+$root->image_pack_name = 'pack2011';
