@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/25 by nao-pon http://hypweb.net/
-// $Id: loader.php,v 1.67 2011/11/17 13:54:47 nao-pon Exp $
+// $Id: loader.php,v 1.68 2011/11/20 05:36:03 nao-pon Exp $
 //
 
 ignore_user_abort(FALSE);
@@ -362,9 +362,10 @@ if ($type === 'js' || $type === 'css' || is_file($src_file)) {
 					}
 					$encode_hint = $xpwiki->cont['PKWK_ENCODING_HINT'];
 					if (!$face_remake) {
+						$face_tag_ver .= $xpwiki->root->image_pack_name;
 						@ list($face_tag, $face_tag_full, $_face_tag_ver, $fck_smileys) = array_pad(file($face_cache), 3, '');
 						if (!$face_tag_full) $face_tag_full = $face_tag;
-						if ($_face_tag_ver < $face_tag_ver) {
+						if (trim($_face_tag_ver) != $face_tag_ver) {
 							$face_remake = true;
 						}
 					}
@@ -375,12 +376,12 @@ if ($type === 'js' || $type === 'css' || is_file($src_file)) {
 					$UseWikihelperAtAll = $xpwiki->root->render_UseWikihelperAtAll? 'true' : 'false';
 					if (defined('XPWIKI_RENDERER_DIR')) {
 						$RendererDir = XPWIKI_RENDERER_DIR;
+						if (defined('XPWIKI_RENDERER_USE_WIKIHELPER')) {
+							$UseWikihelperAtAll = XPWIKI_RENDERER_USE_WIKIHELPER? 'true' : 'false';
+						}
 						if ($xpwiki->root->mydirname === XPWIKI_RENDERER_DIR) {
 							$RendererPage = $xpwiki->root->render_attach;
 							$skinname = $xpwiki->cont['SKIN_NAME'];
-							if (defined('XPWIKI_RENDERER_USE_WIKIHELPER')) {
-								$UseWikihelperAtAll = XPWIKI_RENDERER_USE_WIKIHELPER? 'true' : 'false';
-							}
 						} else {
 							$renderer = new XpWiki(XPWIKI_RENDERER_DIR);
 							$renderer->init('#RenderMode');
@@ -397,9 +398,10 @@ if ($type === 'js' || $type === 'css' || is_file($src_file)) {
 					}
 					$fckxpwiki_path = $xpwiki->cont['ROOT_URL'] . trim($xpwiki->root->fckxpwiki_path, '/') . '/';
 					$ie6JsPass = ($xpwiki->root->ie6JsPass)? 'true' : 'false';
+					$imageDir = $xpwiki->cont['IMAGE_DIR'];
 					$_out = str_replace(
-						array('$face_tag_full', '$face_tag', '$fck_smileys', '$module_url', '$encode_hint', '$charset',                       '$ieDomLoadedDisabled', '$faviconSetClass',                   '$faviconReplaceClass',                   '$UseWikihelperAtAll', '$RendererDir', '$RendererPage', '$fckeditor_path', '$fckxpwiki_path', '$skinname', '$ie6JsPass'),
-						array( $face_tag_full,   $face_tag,   $fck_smileys,   $module_url,   $encode_hint,   $xpwiki->cont['SOURCE_ENCODING'], $ieDomLoadedDisabled,   $xpwiki->root->favicon_set_classname, $xpwiki->root->favicon_replace_classname, $UseWikihelperAtAll,   $RendererDir,   $RendererPage,   $fckeditor_path,   $fckxpwiki_path,   $skinname,   $ie6JsPass ),
+						array('$face_tag_full', '$face_tag', '$fck_smileys', '$module_url', '$encode_hint', '$charset',                       '$ieDomLoadedDisabled', '$faviconSetClass',                   '$faviconReplaceClass',                   '$UseWikihelperAtAll', '$RendererDir', '$RendererPage', '$fckeditor_path', '$fckxpwiki_path', '$skinname', '$ie6JsPass', '$imageDir'),
+						array( $face_tag_full,   $face_tag,   $fck_smileys,   $module_url,   $encode_hint,   $xpwiki->cont['SOURCE_ENCODING'], $ieDomLoadedDisabled,   $xpwiki->root->favicon_set_classname, $xpwiki->root->favicon_replace_classname, $UseWikihelperAtAll,   $RendererDir,   $RendererPage,   $fckeditor_path,   $fckxpwiki_path,   $skinname,   $ie6JsPass,   $imageDir ),
 					$_out);
 				}
 				if (in_array($_src, $js_replaces)) {

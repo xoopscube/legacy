@@ -1,6 +1,6 @@
 <?php
 // PukiWiki - Yet another WikiWikiWeb clone
-// $Id: pukiwiki.ini.php,v 1.112 2011/11/17 00:00:15 nao-pon Exp $
+// $Id: pukiwiki.ini.php,v 1.113 2011/11/20 05:36:03 nao-pon Exp $
 // Copyright (C)
 //   2002-2006 PukiWiki Developers Team
 //   2001-2002 Originally written by yu-ji
@@ -321,7 +321,8 @@ $const['TDIARY_DIR'] = 'skin/tdiary_theme/';
 // Static image files
 $const['IMAGE_DIR'] = $const['HOME_URL'].'image/';
 // Keep this directory shown via web browsers like
-// ./IMAGE_DIR from index.php.
+// Image pack name ( ex. 'extra' is $const['IMAGE_DIR'] become "$const['IMAGE_DIR']extra/" )
+$root->image_pack_name = '';
 
 // loader.php URL
 $const['LOADER_URL'] = $const['HOME_URL'].'skin/loader.php';

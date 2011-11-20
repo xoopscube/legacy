@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/13 by nao-pon http://hypweb.net/
-// $Id: init.php,v 1.76 2011/11/04 06:42:53 nao-pon Exp $
+// $Id: init.php,v 1.77 2011/11/20 05:36:03 nao-pon Exp $
 //
 
 $root = & $this->root;
@@ -144,6 +144,11 @@ $root->weeklabels = $root->_msg_week;
 // INI_FILE: Init $script
 
 $root->script = $const['HOME_URL'];
+
+// INI_FILE: image_pack_name
+if ($root->image_pack_name) {
+	$const['IMAGE_DIR'] .= trim($root->image_pack_name, '/') . '/';
+}
 
 /////////////////////////////////////////////////
 // INI_FILE: $agents:  UserAgent§Œº± Ã

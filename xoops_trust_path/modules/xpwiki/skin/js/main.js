@@ -39,6 +39,7 @@ XpWiki.FCKSmileys = $fck_smileys;
 XpWiki.FCKeditor_path = '$fckeditor_path';
 XpWiki.FCKxpwiki_path = '$fckxpwiki_path';
 XpWiki.ie6JsPass = $ie6JsPass;
+XpWiki.imageDir = '$imageDir';
 $skinname
 
 // Load CSS
@@ -135,10 +136,10 @@ function wikihelper_show_fontset_img()
 		str = str + '<span class="button" title="'+wikihelper_msg_to_easy_t+'" onclick="wikihelper_adv_swich()">' + 'Easy' + '<'+'/'+'span>';
 
 		wikihelper_adv_tag =
-			'<img src="$wikihelper_root_url/image/clip.png" width="18" height="16" border="0" title="'+wikihelper_msg_attach+'" alt="&amp;ref;" onClick="javascript:wikihelper_ins(\'&ref();\'); return false;" '+'/'+'>'+
-			'<img src="$wikihelper_root_url/image/ncr.gif" width="22" height="16" border="0" title="'+wikihelper_msg_to_ncr+'" alt="'+wikihelper_msg_to_ncr+'" onClick="javascript:wikihelper_charcode(); return false;" '+'/'+'>'+
-			'<img src="$wikihelper_root_url/image/br.gif" width="18" height="16" border="0" title="&amp;br;" alt="&amp;br;" onClick="javascript:wikihelper_ins(\'&br;\'); return false;" '+'/'+'>'+
-			'<img src="$wikihelper_root_url/image/iplugin.gif" width="18" height="16" border="0" title="Inline Plugin" alt="Inline Plugin" onClick="javascript:wikihelper_ins(\'&(){};\'); return false;" '+'/'+'>';
+			'<img src="' + XpWiki.imageDir + 'clip.png" width="18" height="16" border="0" title="'+wikihelper_msg_attach+'" alt="&amp;ref;" onClick="javascript:wikihelper_ins(\'&ref();\'); return false;" '+'/'+'>'+
+			'<img src="' + XpWiki.imageDir + 'ncr.gif" width="22" height="16" border="0" title="'+wikihelper_msg_to_ncr+'" alt="'+wikihelper_msg_to_ncr+'" onClick="javascript:wikihelper_charcode(); return false;" '+'/'+'>'+
+			'<img src="' + XpWiki.imageDir + 'br.gif" width="18" height="16" border="0" title="&amp;br;" alt="&amp;br;" onClick="javascript:wikihelper_ins(\'&br;\'); return false;" '+'/'+'>'+
+			'<img src="' + XpWiki.imageDir + 'iplugin.gif" width="18" height="16" border="0" title="Inline Plugin" alt="Inline Plugin" onClick="javascript:wikihelper_ins(\'&(){};\'); return false;" '+'/'+'>';
 	} else {
 		str = str + '<span class="button" title="'+wikihelper_msg_to_adv_t+'" onclick="wikihelper_adv_swich()">' + 'Adv.' + '<'+'/'+'span>';
 	}
@@ -146,11 +147,11 @@ function wikihelper_show_fontset_img()
 	str += ' <a href="#" title="Close" onclick="javascript:wikihelper_mouseover=false;wikihelper_hide_helper();return false;"><img src="$wikihelper_root_url/skin/loader.php?src=close.gif" border="0" alt="Close" '+'/'+'><'+'/'+'a>';
 
 	var wikihelper_helper_img =
-		'<img src="$wikihelper_root_url/image/buttons.gif" width="103" height="16" border="0" usemap="#map_button" tabindex="-1" '+'/'+'>'+
+		'<img src="' + XpWiki.imageDir + 'buttons.gif" width="103" height="16" border="0" usemap="#map_button" tabindex="-1" '+'/'+'>'+
 		' '+
 		wikihelper_adv_tag +
 		' '+
-		'<img class="img_zoom4" src="$wikihelper_root_url/image/colors.gif" width="64" height="16" border="0" usemap="#map_color" tabindex="-1" '+'/'+'> '+
+		'<img class="img_zoom4" src="' + XpWiki.imageDir + 'colors.gif" width="64" height="16" border="0" usemap="#map_color" tabindex="-1" '+'/'+'> '+
 		str+
 		'<br '+'/'+'>';
 
