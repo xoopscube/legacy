@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/02 by nao-pon http://hypweb.net/
-// $Id: xpwiki_func.php,v 1.242 2011/10/31 16:04:47 nao-pon Exp $
+// $Id: xpwiki_func.php,v 1.243 2011/11/20 14:53:38 nao-pon Exp $
 //
 class XpWikiFunc extends XpWikiXoopsWrapper {
 
@@ -419,15 +419,21 @@ class XpWikiFunc extends XpWikiXoopsWrapper {
 		return "UTC".$time_string;
 	}
 
+	function cookie_sanitizer($str) {
+		$str = preg_replace('/[\x00-\x1f\x7f]+/', '', $str);
+		$str = trim($str);
+		return $str;
+	}
+
 	function load_cookie () {
 		$cookies = array();
 		if (isset($_COOKIE[$this->root->mydirname])) {
 			$cookies = explode("\t", $_COOKIE[$this->root->mydirname]);
 		}
-		$this->root->cookie['ucd'] = (isset($cookies[0])) ? $cookies[0] : "";
-		$this->root->cookie['name'] = (isset($cookies[1])) ? $cookies[1] : "";
-		$this->root->cookie['skin'] = (isset($cookies[2])) ? $cookies[2] : "";
-		$this->root->cookie['lang'] = (isset($cookies[3])) ? $cookies[3] : "";
+		$this->root->cookie['ucd'] = (isset($cookies[0])) ? $this->cookie_sanitizer($cookies[0]) : '';
+		$this->root->cookie['name'] = (isset($cookies[1])) ? $this->cookie_sanitizer($cookies[1]) : '';
+		$this->root->cookie['skin'] = (isset($cookies[2])) ? $this->cookie_sanitizer($cookies[2]) : '';
+		$this->root->cookie['lang'] = (isset($cookies[3])) ? $this->cookie_sanitizer($cookies[3]) : '';
 		if (empty($this->root->userinfo['uname'])) {
 			if (empty($this->root->cookie['name'])) {
 				$this->root->userinfo['uname'] = $this->root->siteinfo['anonymous'];
