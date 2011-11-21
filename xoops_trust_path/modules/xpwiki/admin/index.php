@@ -8,17 +8,21 @@ if (!$xw->func->get_pgid_by_name($xw->root->defaultpage)) {
 }
 
 $check_dir = array(
-	$xw->cont['DATA_DIR']        ,
-	$xw->cont['DIFF_DIR']        ,
+	$xw->cont['UPLOAD_DIR']      ,
+	$xw->cont['UPLOAD_DIR'].'s'  ,
 	$xw->cont['BACKUP_DIR']      ,
 	$xw->cont['CACHE_DIR']       ,
-	$xw->cont['UPLOAD_DIR']      ,
-	$xw->cont['UPLOAD_DIR'].'s' ,
-	//$xw->cont['COUNTER_DIR']     ,
+	$xw->cont['CACHE_DIR'].'page',
+	$xw->cont['CACHE_DIR'].'plugin',
+	$xw->cont['DIFF_DIR']        ,
+	//$xw->cont['COUNTER_DIR']   ,
 	$xw->cont['TRACKBACK_DIR']   ,
-	$xw->cont['PLUGIN_DIR']      ,
-	$xw->cont['RENDER_CACHE_DIR']
+	$xw->cont['RENDER_CACHE_DIR'],
+	$xw->cont['DATA_DIR']
 );
+
+$check_dir = array_unique($check_dir);
+sort($check_dir);
 
 $dir_res = array();
 
