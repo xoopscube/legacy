@@ -71,11 +71,11 @@ class Legacy_AbstractModule
      *     Basically, only Legacy_Controller and its utility functions should call the
      *     constructor.
      */
-    function Legacy_AbstractModule(&$module)
+    function Legacy_AbstractModule(&$module, $loadConfig=true)
     {
         $this->setXoopsModule($module);
         
-        if ($module->get('hasconfig') == 1 || $module->get('hascomments') == 1 || $module->get('hasnotification') == 1) {
+        if ($loadConfig && ($module->get('hasconfig') == 1 || $module->get('hascomments') == 1 || $module->get('hasnotification') == 1)) {
             $handler =& xoops_gethandler('config');
             $this->setModuleConfig($handler->getConfigsByCat(0, $module->get('mid')));
         }
@@ -399,9 +399,9 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
      */
     var $mAdminMenu = null;
     
-    function Legacy_ModuleAdapter($module)
+    function Legacy_ModuleAdapter($module, $loadConfig=true)
     {
-        parent::Legacy_AbstractModule($module);
+        parent::Legacy_AbstractModule($module, $loadConfig);
     }
 
     /**
@@ -606,7 +606,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
             return $this->mAdminMenu;
         }
         
-        $dmy =& $this->mXoopsModule->getInfo();
+        $info =& $this->mXoopsModule->getInfo();
         $root =& XCube_Root::getSingleton();
 
         //
@@ -614,8 +614,8 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
         //
         $this->mXoopsModule->loadAdminMenu();
         if ($this->mXoopsModule->get('hasnotification')
-            || ($this->mXoopsModule->getInfo('config') && is_array($this->mXoopsModule->getInfo('config')))
-            || ($this->mXoopsModule->getInfo('comments') && is_array($this->mXoopsModule->getInfo('comments')))) {
+            || ($info['config'] && is_array($info['config']))
+            || ($info['comments'] && is_array($info['comments']))) {
                 $this->mXoopsModule->adminmenu[] = array(
                     'link' => $root->mController->getPreferenceEditUrl($this->mXoopsModule),
                     'title' => _PREFERENCES,
@@ -631,9 +631,10 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
         $this->_mAdminMenuLoadedFlag = true;
         
         if ($this->mXoopsModule->adminmenu) {
+			$dirname = $this->mXoopsModule->get('dirname');
             foreach ($this->mXoopsModule->adminmenu as $menu) {
                 if (!isset($menu['absolute']) || (isset($menu['absolute']) && $menu['absolute'] != true)) {
-                    $menu['link'] = XOOPS_MODULE_URL . '/' . $this->mXoopsModule->get('dirname') . '/' . $menu['link'];
+                    $menu['link'] = XOOPS_MODULE_URL . '/' . $dirname . '/' . $menu['link'];
                 }
                 $this->mAdminMenu[] = $menu;
             }

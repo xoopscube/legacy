@@ -101,9 +101,9 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
 		
 		$handler =& xoops_gethandler('module');
 		
-		while($row = $db->fetchArray($result)) {
-			$xoopsModule =& $handler->get($row['mid']);
-			$module =& Legacy_Utils::createModule($xoopsModule);
+		while(list($mid) = $db->fetchRow($result)) {
+			$xoopsModule = & $handler->get($mid);
+			$module =& Legacy_Utils::createModule($xoopsModule, false);
 
 			$this->mModules[] =& $module;
 			unset($module);
