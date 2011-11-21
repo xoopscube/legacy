@@ -71,6 +71,11 @@ class Legacy_Controller extends XCube_Controller
 	var $mSetBlockCachePolicy = null;
 	
 	/**
+	 * @var XoopsModule[]
+	 */
+	var $mActiveModules = null;
+
+	/**
 	 * @var XCube_Delegate
 	 */
 	var $mSetModuleCachePolicy = null;
@@ -767,9 +772,13 @@ class Legacy_Controller extends XCube_Controller
 		// Auto pre-loading for Module.
 		//
 		if ($this->mRoot->getSiteConfig('Legacy', 'AutoPreload') == 1) {
+			if ($this->mActiveModules) $moduleObjects = $this->mActiveModules;
+			else {
 			$moduleHandler =& xoops_gethandler('module');
 			$criteria = new Criteria('isactive', 1);
+			$this->mActiveModules =
 			$moduleObjects =& $moduleHandler->getObjects($criteria);
+			}
 			foreach ($moduleObjects as $moduleObject) {
 				$mod_dir = $moduleObject->getVar('dirname');
 				$dir = XOOPS_ROOT_PATH . '/modules/' . $mod_dir . $dirname . '/';
