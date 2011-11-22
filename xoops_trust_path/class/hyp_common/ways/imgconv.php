@@ -2,7 +2,7 @@
 /*
  * Created on 2008/07/24 by nao-pon http://hypweb.net/
  * License: GPL v2 or (at your option) any later version
- * $Id: imgconv.php,v 1.9 2010/05/19 11:20:56 nao-pon Exp $
+ * $Id: imgconv.php,v 1.10 2011/11/22 09:07:53 nao-pon Exp $
  */
 
 // clear output buffer
@@ -61,13 +61,13 @@ switch($mode) {
 				exit();
 			}
 
+			include_once $trustpath . '/class/hyp_common/hyp_common_func.php';
+
 			// GC
 			$gc = $cachepath . '/i4k.gc';
 			if (! is_file($gc) || filemtime($gc) < UNIX_TIME - $maxage) {
 				GC_i4k($cachepath, $TTL);
 			}
-
-			include_once $trustpath . '/class/hyp_common/hyp_common_func.php';
 
 			$h = new Hyp_HTTP_Request();
 
@@ -114,11 +114,12 @@ switch($mode) {
 			} else {
 				HypCommonFunc::flock_put_contents($file, '');
 				if ($h->rc !== 404) {
-					touch($file, (UNIX_TIME - $TTL + 86400)); // Set TTL 1 day.
+					HypCommonFunc::touch($file, (UNIX_TIME - $TTL + 86400)); // Set TTL 1 day.
 				}
 				exit();
 			}
 		} else if ($gc) {
+			include_once $trustpath . '/class/hyp_common/hyp_common_func.php';
 			GC_i4k($cachepath, $TTL, TRUE);
 		}
 		break;
@@ -129,7 +130,7 @@ function save_i4ks($size_file, $size, $mime) {
 }
 
 function GC_i4k($cachepath, $TTL, $showResult = FALSE) {
-	touch($cachepath . '/i4k.gc');
+	HypCommonFunc::touch($cachepath . '/i4k.gc');
 	$i = 0;
 	$i2 = 0;
 	if ($handle = opendir($cachepath)) {

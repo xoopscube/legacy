@@ -2,7 +2,7 @@
 /*
  * Created on 2008/09/04 by nao-pon http://hypweb.net/
  * License: GPL v2 or (at your option) any later version
- * $Id: redirect.php,v 1.3 2009/11/17 04:54:34 nao-pon Exp $
+ * $Id: redirect.php,v 1.4 2011/11/22 09:07:53 nao-pon Exp $
  */
 
 // clear output buffer
@@ -64,13 +64,14 @@ function get_url_info ($url) {
 		if (isset($ret['lasturl'])) return $ret;
 	}
 
+	include_once XOOPS_TRUST_PATH . '/class/hyp_common/hyp_common_func.php';
+
 	// GC
 	$gc = $cachepath . '/rdi.gc';
 	if (! is_file($gc) || filemtime($gc) < UNIX_TIME - 86400) {
 		GC_rdi($cachepath, 86400 * 30);
 	}
 
-	include_once XOOPS_TRUST_PATH . '/class/hyp_common/hyp_common_func.php';
 
 	$h = new Hyp_HTTP_Request();
 	$h->url = $url;
@@ -107,7 +108,7 @@ function get_url_info ($url) {
 }
 
 function GC_rdi($cachepath, $TTL, $showResult = FALSE) {
-	touch($cachepath . '/rdi.gc');
+	HypCommonFunc::touch($cachepath . '/rdi.gc');
 	$i = 0;
 	$i2 = 0;
 	if ($handle = opendir($cachepath)) {

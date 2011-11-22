@@ -1,5 +1,5 @@
 <?php
-// $Id: hyp_common_func.php,v 1.79 2011/11/02 00:22:32 nao-pon Exp $
+// $Id: hyp_common_func.php,v 1.80 2011/11/22 09:07:53 nao-pon Exp $
 // HypCommonFunc Class by nao-pon http://hypweb.net
 ////////////////////////////////////////////////
 
@@ -548,7 +548,7 @@ class HypCommonFunc
 							HypCommonFunc::gd_resizer($imageresize,$gd_ver,$dst_im,$src_im,$width,$height,$org_w,$org_h);
 							if (function_exists('imagetruecolortopalette')) imagetruecolortopalette ($dst_im, false, imagecolorstotal($src_im));
 						}
-						touch($s_file);
+						HypCommonFunc::touch($s_file);
 						if ($s_ext == "jpg")
 						{
 							imagejpeg($dst_im,$s_file,$quality);
@@ -573,7 +573,7 @@ class HypCommonFunc
 				if ($src_im) {
 					$dst_im = $imagecreate($width,$height);
 					HypCommonFunc::gd_resizer($imageresize,$gd_ver,$dst_im,$src_im,$width,$height,$org_w,$org_h);
-					touch($s_file);
+					HypCommonFunc::touch($s_file);
 					imagejpeg($dst_im,$s_file,$quality);
 					$o_file = $s_file;
 				}
@@ -608,7 +608,7 @@ class HypCommonFunc
 						$dst_im = $imagecreate($width,$height);
 						HypCommonFunc::gd_resizer($imageresize,$gd_ver,$dst_im,$src_im,$width,$height,$org_w,$org_h);
 					}
-					touch($s_file);
+					HypCommonFunc::touch($s_file);
 					if ($s_ext == "jpg")
 					{
 						imagejpeg($dst_im,$s_file,$quality);
@@ -1935,7 +1935,7 @@ EOD;
 								flock($handle, LOCK_UN);
 							}
 						}
-						if ($return === FALSE) usleep(50000); // Wait 500ms
+						if ($return === FALSE) usleep(50000); // Wait 50ms
 					}
 					fclose($handle);
 				}
@@ -1952,8 +1952,9 @@ EOD;
 				while ($return === FALSE && $maxRetry > $i++) {
 					if (flock($handle, LOCK_EX)) {
 						$return = fwrite($handle, $src);
+						flock($handle, LOCK_UN);
 					}
-					if ($return === FALSE) usleep(50000); // Wait 500ms
+					if ($return === FALSE) usleep(50000); // Wait 50ms
 				}
 				fclose($handle);
 			}
@@ -2028,6 +2029,95 @@ EOD;
 			return $data;
 		} else {
 			return file_get_contents($filename, $incpath, $resource_context, $offset, $maxlen);
+		}
+	}
+
+	function chown($filename, $preserve_time = TRUE) {
+		static $php_uid; // PHP's UID
+
+		if (! isset($php_uid)) {
+			if (extension_loaded('posix')) {
+				$php_uid = posix_getuid(); // Unix
+			} else {
+				$php_uid = 0; // Windows
+			}
+		}
+
+		// Check owner
+		$stat = stat($filename) or
+			die('HypCommonFunc::chown(): stat() failed for: '  . basename(htmlspecialchars($filename)));
+		if ($stat[4] === $php_uid) {
+			// NOTE: Windows always here
+			$result = TRUE; // Seems the same UID. Nothing to do
+		} else {
+
+			$tmp = $filename . '.tmp';
+
+			$i = 0;
+			while($donot = is_file($tmp)) {
+				if (++$i > 100) break;
+				clearstatcache();
+				usleep(50000); // wait 50ms
+			}
+			if ($donot) {
+				if (filemtime($tmp) + 30 < time()) {
+					if (! @ unlink($tmp)) {
+						die('HypCommonFunc::chown(): failed. Not writable a flie. "'.basename(htmlspecialchars($tmp)).'"');
+					}
+				} else {
+					die('HypCommonFunc::chown(): failed. Already exists "'.basename(htmlspecialchars($tmp)).'"');
+				}
+			}
+
+
+			// Lock source $filename to avoid file corruption
+			// NOTE: Not 'r+'. Don't check write permission here
+			$ffile = fopen($filename, 'r') or
+				die('HypCommonFunc::chown(): fopen() failed for: ' .
+					basename(htmlspecialchars($filename)));
+
+			// Try to chown by re-creating files
+			// NOTE:
+			//   * touch() before copy() is for 'rw-r--r--' instead of 'rwxr-xr-x' (with umask 022).
+			//   * (PHP 4 < PHP 4.2.0) touch() with the third argument is not implemented and retuns NULL and Warn.
+			//   * @unlink() before rename() is for Windows but here's for Unix only
+			$i = 0;
+			while(! $lock = flock($ffile, LOCK_EX)) {
+				if (++$i > 100) break;
+				usleep(50000); // wait 50ms
+			}
+			if ($lock) {
+				$result = touch($tmp) && copy($filename, $tmp) &&
+					($preserve_time ? (touch($tmp, $stat[9], $stat[8]) || touch($tmp, $stat[9])) : TRUE) &&
+					rename($tmp, $filename);
+				flock($ffile, LOCK_UN);
+				fclose($ffile) or die('pkwk_chown(): fclose() failed');
+				if ($result === FALSE) @unlink($tmp);
+			} else {
+				fclose($ffile);
+				@unlink($tmp);
+				die('HypCommonFunc::chown(): flock() failed for: ' .
+					basename(htmlspecialchars($filename)));
+			}
+		}
+
+		return $result;
+	}
+
+	function touch($filename, $time = FALSE, $atime = FALSE) {
+		// Is the owner incorrected and unable to correct?
+		if (! is_file($filename) || HypCommonFunc::chown($filename)) {
+			if ($time === FALSE) {
+				$result = touch($filename);
+			} else if ($atime === FALSE) {
+				$result = touch($filename, $time);
+			} else {
+				$result = touch($filename, $time, $atime);
+			}
+			return $result;
+		} else {
+			die('HypCommonFunc::touch(): Invalid UID and (not writable for the directory or not a flie): ' .
+				htmlspecialchars(basename($filename)));
 		}
 	}
 }

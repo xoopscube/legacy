@@ -1,5 +1,5 @@
 <?php
-// $Id: hyp_kakasi.php,v 1.5 2010/05/19 11:08:18 nao-pon Exp $
+// $Id: hyp_kakasi.php,v 1.6 2011/11/22 09:07:53 nao-pon Exp $
 // Hyp_KAKASI Class by nao-pon http://hypweb.net
 ////////////////////////////////////////////////
 
@@ -75,7 +75,8 @@ class Hyp_KAKASHI
 			// キャッシュ
 			if (file_exists($tmpfile))
 			{
-				touch($tmpfile);
+				include_once dirname(__FILE__) . '/hyp_common_func.php';
+				HypCommonFunc::touch($tmpfile);
 				$str = join("",file($tmpfile));
 				return true;
 			}

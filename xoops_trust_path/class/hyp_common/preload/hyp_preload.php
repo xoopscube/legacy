@@ -1748,7 +1748,7 @@ EOD;
 				$mtime = filemtime($mail_tmp);
 				if ($mtime + $this->send_mail_interval * 60 > time()) {
 					if (HypCommonFunc::flock_put_contents($mail_tmp, $message, 'ab')) {
-						touch($mail_tmp, $mtime);
+						HypCommonFunc::touch($mail_tmp, $mtime);
 					}
 					return;
 				} else {

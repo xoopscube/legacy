@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2008/02/11 by nao-pon http://hypweb.net/
- * $Id: favicon.php,v 1.18 2011/11/11 02:36:26 nao-pon Exp $
+ * $Id: favicon.php,v 1.19 2011/11/22 09:07:53 nao-pon Exp $
  */
 
 /**
@@ -166,7 +166,8 @@ function update_cache($url)
     // Garbage Collection
     $garbage = FAVICON_CACHE_DIR . '.garbage.time';
     if (! is_file($garbage) || filemtime($garbage) + 86400 < UNIX_TIME) {
-    	touch($garbage);
+    	include_once dirname(dirname(__FILE__)) . '/hyp_common_func.php';
+    	HypCommonFunc::touch($garbage);
     	clear_cache();
     }
 

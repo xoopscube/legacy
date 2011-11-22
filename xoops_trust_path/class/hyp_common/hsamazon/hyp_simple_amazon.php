@@ -158,7 +158,7 @@ class HypSimpleAmazon
 			$this->xml = '';
 			$this->error = 'Request Error: Too busy.';
 		} else {
-			if ($this->OneRequestPerSec) @touch($timer);
+			if ($this->OneRequestPerSec) HypCommonFunc::touch($timer);
 			$ht = new Hyp_HTTP_Request();
 			$ht->init();
 			$this->url = $ht->url = $url;
