@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/02 by nao-pon http://hypweb.net/
-// $Id: xpwiki_func.php,v 1.243 2011/11/20 14:53:38 nao-pon Exp $
+// $Id: xpwiki_func.php,v 1.244 2011/11/22 09:17:00 nao-pon Exp $
 //
 class XpWikiFunc extends XpWikiXoopsWrapper {
 
@@ -517,7 +517,8 @@ class XpWikiFunc extends XpWikiXoopsWrapper {
 		$sendcookie = TRUE;
 	}
 
-	function save_name2cookie ($name) {
+	function save_name2cookie (& $name) {
+		$name = $this->cookie_sanitizer($name);
 		$this->root->cookie['name'] = $name;
 		$this->save_cookie();
 	}
@@ -1215,6 +1216,16 @@ class XpWikiFunc extends XpWikiXoopsWrapper {
 			$this->root->rtf['useJavascriptInHead'] = TRUE;
 			$this->root->rtf['HeadJsAjaxSafe'] = NULL;
 		}
+	}
+
+	function add_meta_head ($meta) {
+		static $done = array();
+		if ($this->root->render_mode !== 'render') {
+			if (isset($done[$this->xpwiki->pid][$meta])) { return; }
+			$done[$this->xpwiki->pid][$meta] = TRUE;
+		}
+		$key = $this->get_headtag_key('0', $meta);
+		$this->root->head_pre_tags[$key] = $meta;
 	}
 
 	function get_headtag_key ($type, $key) {
@@ -2913,6 +2924,14 @@ EOD;
 
 	function file_get_contents($filename, $incpath = false, $resource_context = null, $offset = -1, $maxlen = -1) {
 		return HypCommonFunc::file_get_contents($filename, $incpath, $resource_context, $offset, $maxlen);
+	}
+
+	function flock_get_contents($filename, $maxRetry = 10) {
+		return HypCommonFunc::flock_get_contents($filename, $maxRetry);
+	}
+
+	function flock_put_contents($filename, $src, $mode = 'wb', $maxRetry = 10) {
+		return HypCommonFunc::flock_put_contents($filename, $src, $mode, $maxRetry);
 	}
 
 	function get_popup_pos($params) {

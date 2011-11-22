@@ -1049,6 +1049,14 @@ $class .clear {
 	margin:0px;
 	clear:both;
 }
+$class .clear_left {
+	margin:0px;
+	clear:left;
+}
+$class .clear_right {
+	margin:0px;
+	clear:right;
+}
 
 /* counter.inc.php */
 $class div.counter { font-size:70%; }

@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2008/03/24 by nao-pon http://hypweb.net/
- * $Id: attach.php,v 1.34 2011/11/08 06:30:22 nao-pon Exp $
+ * $Id: attach.php,v 1.35 2011/11/22 09:12:12 nao-pon Exp $
  */
 
 //-------- епеще╣
@@ -199,6 +199,7 @@ class XpWikiAttachFile
 		{
 			fwrite($fp,$value."\n");
 		}
+		flock($fp, LOCK_UN);
 		fclose($fp);
 	}
 

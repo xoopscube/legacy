@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/02 by nao-pon http://hypweb.net/
-// $Id: pukiwiki_func.php,v 1.229 2011/11/16 15:49:27 nao-pon Exp $
+// $Id: pukiwiki_func.php,v 1.230 2011/11/22 09:15:06 nao-pon Exp $
 //
 class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 
@@ -55,6 +55,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 			}
 
 			if ($lock) {
+				flock($fp, LOCK_UN);
 				@fclose($fp);
 			}
 		}
@@ -575,6 +576,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 			if ($line !== FALSE) $array[] = $line;
 			if (++$index >= $count) break;
 		}
+		if ($lock) flock($fp, LOCK_UN);
 		if (! fclose($fp)) return FALSE;
 
 		return $array;
@@ -989,13 +991,6 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 			}
 		}
 
-		// Lock for pkwk_chown()
-		$lockfile = $this->cont['CACHE_DIR'] . 'pkwk_chown.lock';
-		$flock = fopen($lockfile, 'a') or
-			die('pkwk_chown(): fopen() failed for: CACHEDIR/' .
-				basename(htmlspecialchars($lockfile)));
-		flock($flock, LOCK_EX);
-
 		// Check owner
 		$stat = stat($filename) or
 			die('pkwk_chown(): stat() failed for: '  . basename(htmlspecialchars($filename)));
@@ -1003,7 +998,25 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 			// NOTE: Windows always here
 			$result = TRUE; // Seems the same UID. Nothing to do
 		} else {
-			$tmp = $filename . '.' . getmypid() . '.tmp';
+
+			$tmp = $filename . '.tmp';
+
+			$i = 0;
+			while($donot = is_file($tmp)) {
+				if (++$i > 100) break;
+				clearstatcache();
+				usleep(50000); // wait 50ms
+			}
+			if ($donot) {
+				if (filemtime($tmp) + 30 < time()) {
+					if (! @ unlink($tmp)) {
+						die('pkwk_chown(): failed. Not writable a flie. "'.basename(htmlspecialchars($tmp)).'"');
+					}
+				} else {
+					die('pkwk_chown(): failed. Already exists "'.basename(htmlspecialchars($tmp)).'"');
+				}
+			}
+
 
 			// Lock source $filename to avoid file corruption
 			// NOTE: Not 'r+'. Don't check write permission here
@@ -1016,18 +1029,25 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 			//   * touch() before copy() is for 'rw-r--r--' instead of 'rwxr-xr-x' (with umask 022).
 			//   * (PHP 4 < PHP 4.2.0) touch() with the third argument is not implemented and retuns NULL and Warn.
 			//   * @unlink() before rename() is for Windows but here's for Unix only
-			flock($ffile, LOCK_EX);
-			$result = touch($tmp) && copy($filename, $tmp) &&
-				($preserve_time ? (touch($tmp, $stat[9], $stat[8]) || touch($tmp, $stat[9])) : TRUE) &&
-				rename($tmp, $filename);
-
-			fclose($ffile) or die('pkwk_chown(): fclose() failed');
-
-			if ($result === FALSE) @unlink($tmp);
+			$i = 0;
+			while(! $lock = flock($ffile, LOCK_EX)) {
+				if (++$i > 100) break;
+				usleep(50000); // wait 50ms
+			}
+			if ($lock) {
+				$result = touch($tmp) && copy($filename, $tmp) &&
+					($preserve_time ? (touch($tmp, $stat[9], $stat[8]) || touch($tmp, $stat[9])) : TRUE) &&
+					rename($tmp, $filename);
+				flock($ffile, LOCK_UN);
+				fclose($ffile) or die('pkwk_chown(): fclose() failed');
+				if ($result === FALSE) @unlink($tmp);
+			} else {
+				fclose($ffile);
+				@unlink($tmp);
+				die('pkwk_chown(): flock() failed for: ' .
+					basename(htmlspecialchars($filename)));
+			}
 		}
-
-		// Unlock for pkwk_chown()
-		fclose($flock) or die('pkwk_chown(): fclose() failed for lock');
 
 		return $result;
 	}
@@ -1054,7 +1074,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 
 //----- Start convert_html.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone
-	// $Id: pukiwiki_func.php,v 1.229 2011/11/16 15:49:27 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.230 2011/11/22 09:15:06 nao-pon Exp $
 	// Copyright (C)
 	//   2002-2005 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -1366,7 +1386,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 
 //----- Start func.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.229 2011/11/16 15:49:27 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.230 2011/11/22 09:15:06 nao-pon Exp $
 	// Copyright (C)
 	//   2002-2006 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -1459,6 +1479,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 			flock($fp, LOCK_SH);
 			rewind($fp);
 			$buffer = fgets($fp, 9);
+			flock($fp, LOCK_UN);
 			fclose($fp) or die('is_freeze(): fclose() failed: ' . htmlspecialchars($page));
 
 			$is_freeze[$this->root->mydirname][$page] = ($buffer !== FALSE && rtrim($buffer, "\r\n") === '#freeze');
@@ -2219,7 +2240,7 @@ EOD;
 
 //----- Start make_link.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.229 2011/11/16 15:49:27 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.230 2011/11/22 09:15:06 nao-pon Exp $
 	// Copyright (C)
 	//   2003-2005 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -2718,6 +2739,7 @@ EOD;
 			// $data[$key] = URL
 			$result[rawurldecode($data[$key])] = $data;
 		}
+		flock($fp, LOCK_UN);
 		fclose ($fp);
 
 		return $result;
@@ -3260,7 +3282,7 @@ EOD;
 
 //----- Start html.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.229 2011/11/16 15:49:27 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.230 2011/11/22 09:15:06 nao-pon Exp $
 	// Copyright (C)
 	//   2002-2006 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -4051,7 +4073,7 @@ EOD;
 
 //----- Start mail.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.229 2011/11/16 15:49:27 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.230 2011/11/22 09:15:06 nao-pon Exp $
 	// Copyright (C)
 	//   2003-2005 PukiWiki Developers Team
 	//   2003      Originally written by upk
@@ -4354,7 +4376,7 @@ EOD;
 
 //----- Start link.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone
-	// $Id: pukiwiki_func.php,v 1.229 2011/11/16 15:49:27 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.230 2011/11/22 09:15:06 nao-pon Exp $
 	// Copyright (C) 2003-2006 PukiWiki Developers Team
 	// License: GPL v2 or (at your option) any later version
 	//

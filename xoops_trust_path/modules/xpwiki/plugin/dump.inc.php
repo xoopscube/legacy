@@ -1,5 +1,5 @@
 <?php
-// $Id: dump.inc.php,v 1.20 2011/09/17 03:38:21 nao-pon Exp $
+// $Id: dump.inc.php,v 1.21 2011/11/22 09:12:12 nao-pon Exp $
 //
 // Remote dump / restore plugin
 // Originated as tarfile.inc.php by teanan / Interfair Laboratory 2004.
@@ -1369,7 +1369,7 @@ class XpWikitarlib
 					fwrite($fpw, $buff, $size);
 					@chmod($name, 0666);
 					@touch($name, $mtime);
-
+					flock($fpw, LOCK_UN);
 					fclose($fpw);
 					$files['ok'][] = $shortname;
 					$files['dir'][basename(dirname($name))] = true;

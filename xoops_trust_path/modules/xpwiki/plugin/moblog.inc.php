@@ -1,5 +1,5 @@
 <?php
-// $Id: moblog.inc.php,v 1.22 2011/10/31 16:05:40 nao-pon Exp $
+// $Id: moblog.inc.php,v 1.23 2011/11/22 09:12:12 nao-pon Exp $
 // Author: nao-pon http://hypweb.net/
 // Bace script is pop.php of mailbbs by Let's PHP!
 // Let's PHP! Web: http://php.s3.to/
@@ -1126,6 +1126,7 @@ class xpwiki_plugin_moblog extends xpwiki_plugin {
 	// イメージ出力
 	function plugin_moblog_output () {
 		if ($this->chk_fp) {
+			flock($this->chk_fp, LOCK_UN);
 			fclose($this->chk_fp);
 		}
 		$this->debug_write();

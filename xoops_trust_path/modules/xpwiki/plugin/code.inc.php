@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/25 by nao-pon http://hypweb.net/
-// $Id: code.inc.php,v 1.21 2009/04/11 00:53:10 nao-pon Exp $
+// $Id: code.inc.php,v 1.22 2011/11/22 09:12:12 nao-pon Exp $
 //
 
 class xpwiki_plugin_code extends xpwiki_plugin {
@@ -65,10 +65,10 @@ class xpwiki_plugin_code extends xpwiki_plugin {
 
 		$this->cont['PLUGIN_CODE_CONFIG_PAGE_MIME'] =  'plugin/code/mimetype';
 		$this->cont['PLUGIN_CODE_CONFIG_PAGE_EXTENSION'] =  'plugin/code/extension';
-		
+
 		$this->cont['PLUGIN_CODE_LINE_MAX'] = 25; // Show max line count
 		$this->cont['PLUGIN_CODE_LINE_HEIGHT'] = 1.2; // style line-height: (em)
-		
+
 		$this->config['codehighlightClassFile'] = $this->root->mytrustdirpath . '/plugin/code/codehighlight.php';
 		$this->config['codehighlightClassName'] = 'XpWikiCodeHighlight';
 	}
@@ -143,7 +143,7 @@ class xpwiki_plugin_code extends xpwiki_plugin {
 			if (! $this->_plugin_code_check_argment($args[$i], $option))
 				$this->_plugin_code_get_region($args[$i], $end, $begin);
 		}
-				
+
 		$data = array();
 		$multiline = $this->_plugin_code_multiline_argment($arg, $data, $lang, $option, $end, $begin);
 
@@ -156,7 +156,7 @@ class xpwiki_plugin_code extends xpwiki_plugin {
 			$option['nonumber'] = TRUE;
 			$option['nooutline'] = TRUE;
 		}
-		
+
 		if ($this->cont['PLUGIN_CODE_CACHE'] && ! $multiline) {
 			if ($_ary = $this->_plugin_code_read_cache($arg, $option)) {
 				list($html, $option) = $_ary;
@@ -166,17 +166,17 @@ class xpwiki_plugin_code extends xpwiki_plugin {
 				return $html;
 			}
 		}
-		
+
 		$data['data'] = rtrim($data['data']) . "\n";
 		$line_cnt = count(explode("\n", $data['data']));
-		
+
 		$lines = $data['data'];
 		$title = @ $data['title'];
-		
+
 		if (is_null($end)) {
 			$end = substr_count($lines, "\n") + $begin - 1;
 		}
-		
+
 		$_err = error_reporting(E_ALL ^ E_NOTICE); // orz...
 		$highlight = new $this->config['codehighlightClassName']($this->xpwiki);
 		$lines = $highlight->highlight($lang, $lines, $option, $end, $begin);
@@ -184,11 +184,11 @@ class xpwiki_plugin_code extends xpwiki_plugin {
 		$highlight = NULL;
 
 		if ($option['outline']) $line_cnt += 1 * $this->cont['PLUGIN_CODE_LINE_HEIGHT'];
-				
+
 		$styles = array();
 		$styles[] = 'height:' . (min($line_cnt, $this->cont['PLUGIN_CODE_LINE_MAX']) * $this->cont['PLUGIN_CODE_LINE_HEIGHT'] + 0.3) . 'em;';
 		$styles[] = 'overflow:auto;';
-		
+
 		if ($lang === 'pre') {
 			$lines = '<div class="'.$lang.' notranslate" style="'.join('',$styles).'">'.$lines.'</div>';
 		} else {
@@ -229,7 +229,7 @@ class xpwiki_plugin_code extends xpwiki_plugin {
 		//	$file =  $this->func->encode($page) . '_' . $this->func->encode($fname);
 		}
 		$file = $this->func->encode($page) . '_' . $this->func->encode($fname);
-		
+
 		// md5ハッシュ取得
 		list(,,,,,,,,$md5) = array_pad(@file($this->cont['UPLOAD_DIR'].$file.".log"),9,"");
 		$md5 = trim($md5);
@@ -246,6 +246,7 @@ class xpwiki_plugin_code extends xpwiki_plugin {
 		flock($fp, LOCK_EX);
 		rewind($fp);
 		fputs($fp, $data);
+		flock($fp, LOCK_UN);
 		fclose($fp);
 	}
 
@@ -277,7 +278,7 @@ class xpwiki_plugin_code extends xpwiki_plugin {
 		// md5
 		list(,,,,,,,,$md5) = array_pad(@ file($this->cont['UPLOAD_DIR'].$file.".log"), 9, '');
 		$md5 = trim($md5);
-		
+
 		$cache = $this->cont['CACHE_DIR'].'plugin/'.$file.(($this->cont['UA_PROFILE'] === 'keitai')? '.k' : '').'.code';
 		if (!file_exists($cache)) {
 			$option['id'] = $md5;
@@ -291,7 +292,7 @@ class xpwiki_plugin_code extends xpwiki_plugin {
 			$option['id'] = $md5;
 			return false;
 		}
-		
+
 		return $dat;
 	}
 
@@ -421,7 +422,7 @@ class xpwiki_plugin_code extends xpwiki_plugin {
 					$lang = 'pre';
 				}
 			}
-			
+
 	        $params = $this->_plugin_code_read_file_data($arg, $end, $begin);
 	        if (isset($params['_error']) && $params['_error'] != '') {
 	            $data['_error'] = '<p class="error">'.$params['_error'].';</p>';
@@ -529,7 +530,7 @@ class xpwiki_plugin_code extends xpwiki_plugin {
 	    $fname = $name;
 
 	    $is_url = $this->func->is_url($fname);
-		
+
 	    /* Check file location */
 	    if ($is_url) { // URL
 			if (! $this->cont['PLUGIN_CODE_READ_URL']) {
@@ -668,7 +669,7 @@ class xpwiki_plugin_code extends xpwiki_plugin {
 	{
 		if ($number === null && $outline === null)
 			return $text;
-		
+
 		$html = '';
 		if ($this->cont['PLUGIN_CODE_TABLE']) {
 			$html .= '<table class="'.$this->cont['PLUGIN_CODE_HEADER']

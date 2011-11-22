@@ -1,5 +1,5 @@
 <?php
-// $Id: ref.inc.php,v 1.58 2011/09/04 12:09:47 nao-pon Exp $
+// $Id: ref.inc.php,v 1.59 2011/11/22 09:20:38 nao-pon Exp $
 /*
 
 	*プラグイン ref
@@ -303,6 +303,7 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 			'btn'     => '',    // アップロードリンクのテキスト指定
 			'auth'    => FALSE, // アップロードリンク表示時編集権限チェック
 			'set'     => FALSE, // パラメータのセット
+			'og'      => FALSE, // Output "og:image" in meta tag
 			'_size'   => FALSE, // サイズ指定あり
 			'_w'      => 0,     // 幅
 			'_h'      => 0,     // 高さ
@@ -578,6 +579,12 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 			// URL のローカルパスをURIパスに変換
 			$lvar['url'] = str_replace($this->cont['DATA_HOME'], $this->cont['HOME_URL'], $lvar['url']);
 			if ($lvar['link']) $lvar['link'] = str_replace($this->cont['DATA_HOME'], $this->cont['HOME_URL'], $lvar['link']);
+
+			// og:image mata tag
+			if ($params['og']) {
+				$this->func->add_meta_head('<meta property="og:image" content="' . ($lvar['link']? $lvar['link'] : $lvar['url']) . '" />');
+			}
+
 			$lvar['text'] = '';
 			if (! empty($lvar['title'])) {
 				$lvar['title'] = $this->func->make_line_rules(htmlspecialchars(join(', ', $lvar['title'])));

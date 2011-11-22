@@ -10,7 +10,7 @@
 
 /*
  * Created on 2008/02/07 by nao-pon http://hypweb.net/
- * $Id: ajaxtree.inc.php,v 1.10 2010/01/08 14:00:51 nao-pon Exp $
+ * $Id: ajaxtree.inc.php,v 1.11 2011/11/22 09:12:12 nao-pon Exp $
  */
 
 class xpwiki_plugin_ajaxtree extends xpwiki_plugin {
@@ -494,6 +494,7 @@ class xpwiki_plugin_ajaxtree extends xpwiki_plugin {
 		fflush($fp);
 		ftruncate($fp, ftell($fp));
 		ignore_user_abort($last);
+		flock($fp, LOCK_UN);
 		fclose($fp);
 		return true;
 	}
