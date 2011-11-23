@@ -51,6 +51,7 @@ function list_blocks()
 	// blocks displaying loop
 	if( defined( 'XOOPS_CUBE_LEGACY' ) ) {
 		$blockAdmin = XOOPS_URL."/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=";
+		$blockInstallAdmin = XOOPS_URL."/modules/legacy/admin/index.php?action=BlockInstallEdit&amp;bid=";
 	}else{
 		$blockAdmin = $xoops_system_url."/admin.php?fct=blocksadmin&amp;op=edit&amp;bid=";
 	}
@@ -70,9 +71,13 @@ function list_blocks()
 		<td class='$class' align='center'>$side_desc</td>
 		<td class='$class' align='center'>$weight</td>
 		<td class='$class' align='center' nowrap>$visible</td>
-		<td class='$class' align='right'>
-		<a href='$blockAdmin$bid' target='_blank'>"._EDIT."</a>
-		</td>
+		<td class='$class' align='right'>";
+		if ($visible === _YES) {
+			echo "<a href='$blockAdmin$bid' target='_blank'>"._EDIT."</a>";
+		} else {
+			echo "<a href='$blockInstallAdmin$bid' target='_blank'>"._INSTALL."</a>";
+		}
+		echo "</td>
 		</tr>\n" ;
 		
 		$class = ( $class == 'even' ) ? 'odd' : 'even' ;
