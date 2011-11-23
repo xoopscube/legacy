@@ -29,10 +29,14 @@ class Profile_Delegate
         }
         $defHandler = Legacy_Utils::getModuleHandler('definitions', 'profile');
         $defObjs = $defHandler->getFields4DataEdit();
-        foreach($defObjs as $def){
-        	$obj->setField($def->get('field_name'), $actionForm->get($def->get('field_name')));
+        if (!empty($defObjs)) {
+          foreach($defObjs as $def){
+            $obj->setField($def->get('field_name'), $actionForm->get($def->get('field_name')));
+          }
+          $ret = $handler->insert($obj, true);
+        } else {
+          $ret = true;
         }
-        $ret = $handler->insert($obj, true);
     }
 
     /**

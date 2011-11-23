@@ -243,10 +243,6 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 		else {
 			$sql = $this->_update($obj);
 		}
-
-		if ($sql === null) {
-			return true;
-		}
 		
 		$result = $force ? $this->db->queryF($sql) : $this->db->query($sql);
 		
@@ -300,10 +296,6 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 			else {
 				$set_lists[] = "`${_name}`=${_value}";
 			}
-		}
-
-		if (empty($set_lists)) {
-			return null;
 		}
 
 		$sql = @sprintf("UPDATE `" . $this->mTable . "` SET %s WHERE %s", implode(",",$set_lists), $where);
