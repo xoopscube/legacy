@@ -12,6 +12,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #3357632 - category path list should contain terminal cat
 - Fix Bug #3362690 - smarty pluigin legacy_category_select missing array key
 - Fix Bug #3366737 - Missing preload file SetupAltsysLangMgr.class.php
+- Fix Bug #3380517 - user module edit error
 - Fix Bug #3387719 - Users can not delete your own account
 - Fix Bug #3395113 - 500 error / Apache fatal error
 - Fix Bug #3398687 - Users can not register  at UserDataUploadAction
@@ -37,11 +38,14 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Speed up by nbuy
 
 [Staff]
+- asunta
 - bindi
 - bluemooninc
 - domifara
+- hamaco
 - kilica
 - Mikhail Miguel
+- Metal
 - nao-pon
 - nbuy
 - onlineco
