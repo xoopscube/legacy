@@ -113,6 +113,7 @@
       <label><{xoops_input type=radio name=user_mailok value=1 default=$actionForm->get('user_mailok')}><{$smarty.const._YES}></label>
       <label><{xoops_input type=radio name=user_mailok value=0 default=$actionForm->get('user_mailok')}><{$smarty.const._NO}></label>
     </li>
+	<{legacy_profile template=profile_inc_data_edit.html action=edit actionForm=$actionForm}>
   </ul>
   <input type="submit" value="<{$smarty.const._MD_USER_LANG_SAVECHANGES}>" />
 </form>
