@@ -20,6 +20,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #3409729 - xoops_meta_description set
 
 [Feature Request - From Feature Requests Legacy Tracker]
+- Feature Request #2976820 - MyTextSanitizer delegate
 - Feature Request #3165296 - Replace resource.db.php with HD version
 - Feature Request #3317730 - please add ja_utf8 language files to XUpgrade
 - Feature Request #3352820 - Add new MIME type
@@ -32,6 +33,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Feature Request #3423505 - Add $xoops_module_header on dialog
 - Feature Request #3423584 - Not to select branch options in function.legacy_category_sel
 
+
 [Other Changes/Enhancements]
 - Update portuguese/pt_utf8 language files
 - Update interfaces: AbstractObject.class.php, AbstractImageObject.class.php, AbstractClientObjectHandler.class.php, ImageDelegateInterface.class.php
@@ -42,13 +44,15 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - bindi
 - bluemooninc
 - domifara
-- hamaco
+- hamanaka
 - kilica
 - Mikhail Miguel
 - Metal
+- naao
 - nao-pon
 - nbuy
 - onlineco
+- SAK-AXYZ
 
 ----------------------------------------
 2011/06/05: Package Revision 2.2.1 Beta1
