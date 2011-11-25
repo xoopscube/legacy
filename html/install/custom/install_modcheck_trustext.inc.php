@@ -10,7 +10,7 @@
 	// checking XOOPS_ROOT_PATH and XOOPS_URL
 	include_once '../mainfile.php';
 
-	$writeok = array('cache/', 'templates_c', 'uploads/','uploads/hyp_common/');
+	$writeok = array('cache/', 'templates_c', 'uploads/','uploads/hyp_common/','modules/protector/configs/');
 	$error = false;
 	foreach ($writeok as $wok) {
 		if (!is_dir(XOOPS_TRUST_PATH. '/'. $wok)) {
