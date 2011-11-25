@@ -58,13 +58,13 @@ class MyTextSanitizer
      * @deprecated
 	 */
 	var $mMakeClickablePostFilter = null;
-	
+
 	/**
 	 * @var XCube_Delegate
      * @deprecated
 	 */
 	var $mXoopsCodePostFilter = null;
-	
+
     /*
     * Constructor of this class
     *
@@ -78,10 +78,10 @@ class MyTextSanitizer
     */
     function MyTextSanitizer()
     {
-		
+
 		$this->mMakeClickablePostFilter =new XCube_Delegate();
 		$this->mMakeClickablePostFilter->register('MyTextSanitizer.MakeClickablePostFilter');
-		
+
 		$this->mXoopsCodePostFilter =new XCube_Delegate();
 		$this->mXoopsCodePostFilter->register('MyTextSanitizer.XoopsCodePostFilter');
 
@@ -142,7 +142,7 @@ class MyTextSanitizer
 
         // RaiseEvent : 'MyTextSanitizer.MakeClickablePostFilter'
         //  Delegate may convert output text with quickApplyFilter rule
-        //  Args : 
+        //  Args :
         //      'string'       [I/O] : Text to convert;
         //
         $this->mMakeClickablePostFilter->call(new XCube_Ref($text));
@@ -160,10 +160,10 @@ class MyTextSanitizer
     function &xoopsCodeDecode($text, $allowimage = 1)
     {
         $text = $this->mTextFilter->convertXCode($text, $allowimage);
-        
+
         // RaiseEvent : 'MyTextSanitizer.XoopsCodePostFilter'
         //  Delegate may convert output text with quickApplyFilter rule
-        //  Args : 
+        //  Args :
         //      'string'       [I/O] : Text to convert;
         //      'allowimage'   [I]   : xoopsCodeDecode $allowimage parameter
         //
@@ -286,7 +286,7 @@ class MyTextSanitizer
      * @param   bool    $br     convert linebreaks?
      * @return  string
      **/
-    
+
     function _ToShowTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1) {
         $text = $this->codePreConv($text, $xcode);
         if ($html != 1) $text = $this->htmlSpecialChars($text);
@@ -311,7 +311,7 @@ class MyTextSanitizer
      **/
     function &displayTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1)
     {
-        $text = $this->_ToShowTarea($text, $html, $smiley, $xcode, $image, $br);
+        $text = $this->mTextFilter->toShowTarea($text, $html, $smiley, $xcode, $image, $br, true);
         return $text;
     }
 
@@ -329,7 +329,7 @@ class MyTextSanitizer
     function &previewTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1)
     {
         $text =& $this->stripSlashesGPC($text);
-        $text = $this->_ToShowTarea($text, $html, $smiley, $xcode, $image, $br);
+        $text = $this->mTextFilter->toPreviewTarea($text, $html, $smiley, $xcode, $image, $br, true);
         return $text;
     }
 

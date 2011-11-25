@@ -163,6 +163,23 @@ class Legacy_TextFilter extends XCube_TextFilter
 	}
 
 	/**
+	 * Filters textarea data for preview
+	 *
+	 * @param	string	$text
+	 * @param	bool	$html	allow html?
+	 * @param	bool	$smiley allow smileys?
+	 * @param	bool	$xcode	allow xoopscode?
+	 * @param	bool	$image	allow inline images?
+	 * @param	bool	$br 	convert linebreaks?
+	 * @param	string	$x2comat
+	 * @return	string
+	 **/
+	function toPreviewTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1, $x2comat=false)
+	{
+		return $this->toShowTarea($text, $html, $smiley, $xcode, $image, $br, $x2comat);
+	}
+
+	/**
 	 * purifyHtml
 	 * 
 	 * @param	string	$html
