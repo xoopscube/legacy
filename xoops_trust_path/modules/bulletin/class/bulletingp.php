@@ -114,8 +114,10 @@ class BulletinGP{
 	}
 	function makeOnTopics( $type ){
 		$ret = array();
-		foreach($this->topicPermissions as $row){
-			if ( $row[$type]==true) $ret[] = $row['topic_id'] ;
+		if (is_array($this->topicPermissions)) {
+			foreach($this->topicPermissions as $row){
+				if ( $row[$type]==true) $ret[] = $row['topic_id'] ;
+			}
 		}
 		return $ret ;
 	}
