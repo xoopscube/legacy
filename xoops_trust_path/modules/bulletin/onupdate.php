@@ -31,7 +31,7 @@ function bulletin_onupdate_base( $module, $prev_version , $mydirname )
 		$sql = sprintf("SHOW TABLES LIKE '%s'", $xoopsDB->prefix("{$mydirname}_relation") );
 		list($result) = $xoopsDB->fetchRow($xoopsDB->query($sql));
 		if( empty($result) ){
-			$sql = "CREATE TABLE `".$xoopsDB->prefix("{$mydirname}_relation")."` (  `storyid` int(8) NOT NULL default '0',  `linkedid` int(8) NOT NULL default '0',  `dirname` varchar(25) NOT NULL default '') ENGINE=MyISAM;";
+			$sql = "CREATE TABLE `".$xoopsDB->prefix("{$mydirname}_relation")."` (  `storyid` int(8) NOT NULL default '0',  `linkedid` int(8) NOT NULL default '0',  `dirname` varchar(25) NOT NULL default '') TYPE=MyISAM;";
 			if( $xoopsDB->query($sql) ){
 				$msgs[] = '&nbsp;&nbsp;Table <b>'.htmlspecialchars($xoopsDB->prefix("{$mydirname}_relation")).'</b> created.';
 			}else{

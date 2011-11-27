@@ -1,8 +1,4 @@
 <?php
-
-//¥Æ¥ó¥×¥ì¡¼¥È
-$xoopsOption['template_main'] = "{$mydirname}_index.html";
-
 require XOOPS_ROOT_PATH.'/header.php';
 
 $storytopic = isset($_GET['storytopic']) ? intval($_GET['storytopic']) : 0 ;
@@ -11,17 +7,85 @@ $start      = isset($_GET['start'])      ? intval($_GET['start'])      : 0 ;
 $caldate    = isset($_GET['caldate'])    ? $_GET['caldate']            : '' ;
 $storynum   = ($storynum > 30)           ? $bulletin_storyhome         : $storynum ;
 
-// ¥Ê¥Ó¥²¡¼¥¿
+/*
+ * comment list for storytopic
+ */
+$op = isset($_GET['op']) ? $_GET['op'] : "" ;
+if ($op == "comments"){
+	$cmttbl = $xoopsModuleConfig['comment_dirname'];
+	$whr_forum = "t.forum_id=" . $xoopsModuleConfig['comment_forum_id'];
+	$odr = $xoopsModuleConfig['comment_order'];
+	$posttbl = $commenttbl . "_posts";
+	if($storytopic){
+		$sql = "SELECT b.topic_id,b.topic_title,s.storyid,p.uid,u.uname,p.post_time,p.post_text FROM "
+		.$xoopsDB->prefix("bulletin_topics")." b LEFT JOIN "
+		.$xoopsDB->prefix("bulletin_stories")." s ON b.topic_id=s.topicid LEFT JOIN "
+		.$xoopsDB->prefix($cmttbl."_topics")." t ON s.storyid=t.topic_external_link_id LEFT JOIN "
+		.$xoopsDB->prefix($cmttbl."_posts")." p ON t.topic_last_post_id=p.post_id LEFT JOIN "
+		.$xoopsDB->prefix("users")." u ON p.uid=u.uid "
+		."WHERE ! t.topic_invisible AND (".$whr_forum." AND b.topic_id=".$storytopic.") ORDER BY p.post_time ".$odr ;
+		$ret=$xoopsDB->query($sql);
+		while($myrow=$xoopsDB->fetchArray($ret)){
+			$topic_id = $myrow['topic_id'];
+			$topic_title = $myrow['topic_title'];
+			$comments[]=$myrow;
+		}
+		$xoopsTpl->assign('topic_id', $topic_id);
+		$xoopsTpl->assign('topic_title', $topic_title);
+		$xoopsTpl->assign('comments', $comments);
+		$xoopsOption['template_main'] = "{$mydirname}_comments.html";
+	}else{
+		$sql = "SELECT b.topic_id,b.topic_title,count(p.post_id) as comment FROM "
+		.$xoopsDB->prefix("bulletin_topics")." b LEFT JOIN "
+		.$xoopsDB->prefix("bulletin_stories")." s ON b.topic_id=s.topicid LEFT JOIN "
+		.$xoopsDB->prefix($cmttbl."_topics")." t ON s.storyid=t.topic_external_link_id LEFT JOIN "
+		.$xoopsDB->prefix($cmttbl."_posts")." p ON t.topic_last_post_id=p.post_id "
+		."WHERE ! t.topic_invisible AND (".$whr_forum." ) GROUP BY b.topic_id";
+		$ret=$xoopsDB->query($sql);
+		while($myrow=$xoopsDB->fetchArray($ret)){
+			$topicInfo[$myrow['topic_id']]['topic_id']=$myrow['topic_id'];
+			$topicInfo[$myrow['topic_id']]['title']=$myrow['topic_title'];
+			$topicInfo[$myrow['topic_id']]['comment']=$myrow['comment'];
+		}
+		$sql = "SELECT b.topic_id,b.topic_title,count(i.content_id) as iine FROM "
+		.$xoopsDB->prefix("bulletin_topics")." b LEFT JOIN "
+		.$xoopsDB->prefix("bulletin_stories")." s ON b.topic_id=s.topicid LEFT JOIN "
+		.$xoopsDB->prefix("iine_votes").' i ON s.storyid=i.content_id WHERE i.dirname="bulletin" '
+		."GROUP BY b.topic_id";
+		$ret=$xoopsDB->query($sql);
+		while($myrow=$xoopsDB->fetchArray($ret)){
+			$topicInfo[$myrow['topic_id']]['topic_id']=$myrow['topic_id'];
+			$topicInfo[$myrow['topic_id']]['title']=$myrow['topic_title'];
+			$topicInfo[$myrow['topic_id']]['iine']=$myrow['iine'];
+		}
+		$sql = "SELECT b.topic_id,b.topic_title,count(m.inbox_id) as message FROM "
+		.$xoopsDB->prefix("bulletin_topics")." b LEFT JOIN "
+		.$xoopsDB->prefix("bulletin_stories")." s ON b.topic_id=s.topicid LEFT JOIN "
+		.$xoopsDB->prefix("message_inbox")." m ON m.from_uid=s.uid "
+		."WHERE m.uid=" . $xoopsUser->uid() . " GROUP BY b.topic_id";
+		$ret=$xoopsDB->query($sql);
+		while($myrow=$xoopsDB->fetchArray($ret)){
+			$topicInfo[$myrow['topic_id']]['topic_id']=$myrow['topic_id'];
+			$topicInfo[$myrow['topic_id']]['title']=$myrow['topic_title'];
+			$topicInfo[$myrow['topic_id']]['message']=$myrow['message'];
+		}
+		$xoopsTpl->assign('topicinfo', $topicInfo);
+		$xoopsOption['template_main'] = "{$mydirname}_topicinfo.html";
+	}
+	require_once XOOPS_ROOT_PATH.'/footer.php';
+	exit;
+}
+// ãƒŠãƒ“ã‚²ãƒ¼ã‚¿
 if ( $bulletin_displaynav == 1 ) {
 	
-	// ¥Ê¥Ó¤ò»È¤¦¤ÈÀë¸À
+	// ãƒŠãƒ“ã‚’ä½¿ã†ã¨å®£è¨€
 	$xoopsTpl->assign('displaynav', true);
 	
-	// ¥»¥ì¥¯¥¿¤ò¥¢¥µ¥¤¥ó
+	// ã‚»ãƒ¬ã‚¯ã‚¿ã‚’ã‚¢ã‚µã‚¤ãƒ³
 	$bt = new BulletinTopic( $mydirname ) ;
 	$xoopsTpl->assign('topic_select', $bt->makeTopicSelBox( true , $storytopic , 'storytopic' ) ) ;
 	
-/*	// ¥ª¥×¥·¥ç¥ó¤ò¥¢¥µ¥¤¥ó
+/*	// ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’ã‚¢ã‚µã‚¤ãƒ³
 	for ( $i = 5; $i <= 30; $i = $i + 5 ) {
 		$option = array();
 		$option['sel']    = ($i == $storynum) ? ' selected="selected"' : '' ;
@@ -33,18 +97,19 @@ if ( $bulletin_displaynav == 1 ) {
 	$xoopsTpl->assign('displaynav', false);
 }
 
-// ¥«¥ì¥ó¥À¤«¤é¤Î¥ê¥ó¥¯¡ÊÆüÉÕ»ØÄê¤¬Í­¤Ã¤¿¾ì¹ç¡Ë
+// ã‚«ãƒ¬ãƒ³ãƒ€ã‹ã‚‰ã®ãƒªãƒ³ã‚¯ï¼ˆæ—¥ä»˜æŒ‡å®šãŒæœ‰ã£ãŸå ´åˆï¼‰
 if( !empty($caldate) && preg_match('/([0-9]{4})-([0-9]{2})-([0-9]{2})/', $caldate, $datearr) ){
 	$articles = Bulletin::getAllToday( $mydirname , $storynum, $start, $caldate);
 	$xoopsTpl->assign('displaynav', false);
 }else{
-// ÄÌ¾ïÉ½¼¨¤Î¾ì¹ç
+// é€šå¸¸è¡¨ç¤ºã®å ´åˆ
 	$articles = Bulletin::getAllPublished( $mydirname , $storynum, $start, $storytopic, 1, true, true);
 }
 
 $scount = count($articles);
+$gperm = new BulletinGP();
 
-// µ­»ö¤Î¥ë¡¼¥×
+// è¨˜äº‹ã®ãƒ«ãƒ¼ãƒ—
 for ( $i = 0; $i < $scount; $i++ ) {
 	$story = array();
 	
@@ -56,19 +121,22 @@ for ( $i = 0; $i < $scount; $i++ ) {
 	$story['title']      = $articles[$i]->getVar('title');
 	$story['hits']       = $articles[$i]->getVar('counter');
 	$story['title_link'] = true;
+
+	$topic_perm = $gperm->getTopicPermission($story['topicid']);
+	$story = array_merge($story,$topic_perm);
 	
-	//¥æ¡¼¥¶¾ğÊó¤ò¥¢¥µ¥¤¥ó
+	//ãƒ¦ãƒ¼ã‚¶æƒ…å ±ã‚’ã‚¢ã‚µã‚¤ãƒ³
 	$story['uid']        = $articles[$i]->getVar('uid');
 	$story['uname']      = $articles[$i]->getUname();
 	$story['realname']   = $articles[$i]->getRealname();
 	
-	// Ê¸»ú¿ô¥«¥¦¥ó¥È½èÍı
+	// æ–‡å­—æ•°ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
 	if ( $articles[$i]->strlenBodytext() > 1 ) {
 		$story['bytes']    = sprintf(_MD_BYTESMORE, $articles[$i]->strlenBodytext());
 		$story['readmore'] = true;
 	}
 	
-	// ¥³¥á¥ó¥È¤Î¿ô¤ò¥¢¥µ¥¤¥ó
+	// ã‚³ãƒ¡ãƒ³ãƒˆã®æ•°ã‚’ã‚¢ã‚µã‚¤ãƒ³
 	$ccount = $articles[$i]->getVar('comments');
 	if( $ccount == 0 ){
 		$story['comentstotal'] = _MD_COMMENTS;
@@ -78,13 +146,13 @@ for ( $i = 0; $i < $scount; $i++ ) {
 		$story['comentstotal'] = sprintf(_MD_NUMCOMMENTS, $ccount);
 	}
 	
-	// ´ÉÍı¼ÔÍÑ¥ê¥ó¥¯
+	// ç®¡ç†è€…ç”¨ãƒªãƒ³ã‚¯
 	$story['adminlink'] = 0;
 	if ( $xoopsUser && $xoopsUser->isAdmin($xoopsModule->mid()) ) {
 		$story['adminlink'] = 1;
 	}
 	
-	// ¥¢¥¤¥³¥ó²èÁü
+	// ã‚¢ã‚¤ã‚³ãƒ³ç”»åƒ
 	if ( $articles[$i]->showTopicimg() ) {
 		$story['topic_url'] = $articles[$i]->imglink($bulletin_topicon_path);
 		$story['align']     = $articles[$i]->getTopicalign();
@@ -93,7 +161,7 @@ for ( $i = 0; $i < $scount; $i++ ) {
 	$xoopsTpl->append('stories', $story);
 }
 
-// ¥Ú¡¼¥¸¥Ê¥Ó
+// ãƒšãƒ¼ã‚¸ãƒŠãƒ“
 if( !empty($caldate) && preg_match('/([0-9]{4})-([0-9]{2})-([0-9]{2})/', $caldate, $datearr) ){
 	$totalcount = Bulletin::countPublishedByDate( $mydirname , $caldate);
 	$query      = 'caldate='.$caldate;
@@ -118,7 +186,7 @@ if($bulletin_assing_rssurl_head){
 
 // GIJ
 $breadcrumbs = array( array( 'name' => $xoopsModule->getVar('name') , 'url' => XOOPS_URL.'/modules/'.$mydirname.'/' ) ) ;
-$topic = new BulletinTopic( $mydirname , $storytopic ) ;
+$topic =& new BulletinTopic( $mydirname , $storytopic ) ;
 if( $storytopic ) {
 	$pankuzu4assign = $topic->makePankuzuForHTML( $storytopic ) ;
 	foreach( $pankuzu4assign as $p4a ) {
@@ -128,6 +196,8 @@ if( $storytopic ) {
 }
 $xoopsTpl->assign( 'xoops_breadcrumbs' , $breadcrumbs ) ;
 $xoopsTpl->assign( 'mod_config' , $xoopsModuleConfig ) ;
+//ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
+$xoopsOption['template_main'] = "{$mydirname}_index.html";
 
 require_once XOOPS_ROOT_PATH.'/footer.php';
 ?>

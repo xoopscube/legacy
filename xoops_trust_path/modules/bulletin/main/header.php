@@ -20,6 +20,6 @@ if($gperm->group_perm(1)){
 }
 
 // RSS Feed in <header>
-$rss_feed = '<link rel="alternate" type="application/rss+xml" title="RSS2.0" href="'.$mydirurl.'/index.php?page=rss" />'
+$rss_feed = '<link rel="alternate" type="application/rss+xml" title="RSS2.0" href="'.$mydirurl.'/index.php?page=rss" />';
 
 ?>

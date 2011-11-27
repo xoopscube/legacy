@@ -1,12 +1,15 @@
 <{strip}>
 
+<{if $can_post}>
 <div align="right">
-  |&nbsp;<a href="<{$mydirurl}>/index.php?page=archive"><{$smarty.const._MD_ARCHIVES}></a>
-    &nbsp;|&nbsp;<a href="<{$mydirurl}>/index.php?page=submit"><{$smarty.const._MD_SUBMITNEWS}></a>
+ |&nbsp;<a href="<{$mydirurl}>/index.php?page=archive"><{$smarty.const._MD_ARCHIVES}></a>
+    &nbsp;
+|&nbsp;<a href="<{$mydirurl}>/index.php?page=submit"><{$smarty.const._MD_SUBMITNEWS}></a>
   <{if $disp_rss_link}>
     &nbsp;|&nbsp;<a href="<{$mydirurl}>/index.php?page=rss"><{$smarty.const._MD_RSS}></a>
   <{/if}>
   &nbsp;|
 </div>
+<{/if}>
 
 <{/strip}>

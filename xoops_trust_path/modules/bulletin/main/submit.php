@@ -260,7 +260,8 @@ if( $op == 'form' ){
 	if (!$topics || !$proceed){ die(_NOPERM); exit(); }
 	
 	$xoopsTpl->assign('topic_selbox', $BTopic->makeMyTopicList($topicid,$topics) );
-
+	//H.Onuma
+	$xoopsTpl->assign('topic_selbox2', $BTopic->makeMyTopicList2($topicid,$topics) );
 	if( $storyid  && $story->getVar('text', 'n') == '' ){
 		$story->unifyHomeTextAndBodyText();
 	}
@@ -303,10 +304,10 @@ if( $op == 'form' ){
 
 if( $op == 'delete' ){
 	if(!$gperm->proceed4topic("can_delete",$topicid)){ die(_NOPERM); exit(); }
-	if(!$isadmin){
+	/*if(!$isadmin){
 		die(_NOPERM);
 		exit();
-	}
+	}*/
 	$storyid = isset( $_GET['storyid'] ) ? intval( $_GET['storyid'] ) : 0 ;
 	
 	if ( !empty( $_POST['ok'] ) ){

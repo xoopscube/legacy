@@ -3,13 +3,13 @@
 $storyid   = isset($_GET['storyid']) ? intval($_GET['storyid']) : 0 ;
 $storypage = isset($_GET['storypage']) ? intval($_GET['storypage']) : 0 ;
 
-// µ­»ö¤¬Â¸ºß¤·¤Ê¤¤¾ì¹ç
+// è¨˜äº‹ãŒå­˜åœ¨ã—ãªã„å ´åˆ
 if( !Bulletin::isPublishedExists( $mydirname , $storyid) ){
 	redirect_header($mydirurl.'/index.php',2,_MD_NOSTORY);
 	exit();
 }
 
-//¥Æ¥ó¥×¥ì¡¼¥È
+//ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
 $xoopsOption['template_main'] = "{$mydirname}_article.html";
 
 require_once XOOPS_ROOT_PATH.'/header.php';
@@ -30,7 +30,7 @@ if ( $bodytext != '' ) {
 	$story_pages = count($articletext);
 	$storypage   = ( $story_pages - 1 >= $storypage ) ? $storypage : 0 ;
 
-	// [pagebreak]¤ÇÊ£¿ô¥Ú¡¼¥¸¤Î¥³¥ó¥Æ¥ó¥Ä¤¬¹½À®¤µ¤ì¤Æ¤¤¤ë¾ì¹ç
+	// [pagebreak]ã§è¤‡æ•°ãƒšãƒ¼ã‚¸ã®ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ãŒæ§‹æˆã•ã‚Œã¦ã„ã‚‹å ´åˆ
 	if ($story_pages > 1 ) {
 		require_once XOOPS_ROOT_PATH.'/class/pagenav.php';
 		$pagenav = new XoopsPageNav($story_pages, 1, $storypage, 'storypage', 'page=article&storyid='.$storyid);
@@ -46,7 +46,7 @@ if ( $bodytext != '' ) {
     }
 }
 
-//¥æ¡¼¥¶¾ğÊó¤ò¥¢¥µ¥¤¥ó
+//ãƒ¦ãƒ¼ã‚¶æƒ…å ±ã‚’ã‚¢ã‚µã‚¤ãƒ³
 $story['uid']      = $article->getVar('uid');
 $story['uname']    = $article->getUname();
 $story['realname'] = $article->getRealname();
@@ -62,7 +62,7 @@ if ( $article->showTopicimg()  ) {
 	$story['align']     = $article->getTopicalign();
 }
 
-// ´ØÏ¢µ­»ö
+// é–¢é€£è¨˜äº‹
 if($bulletin_use_relations){
 	$relations = $article->getRelated();
 	foreach($relations as $relation){
@@ -83,7 +83,7 @@ if($bulletin_use_relations){
 	}
 }
 
-// ¥«¥Æ¥´¥ê¤ÎºÇ¿·µ­»ö
+// ã‚«ãƒ†ã‚´ãƒªã®æœ€æ–°è¨˜äº‹
 if($bulletin_disp_list_of_cat && $bulletin_stories_of_cat > 0){
 	$category_storeis = Bulletin::getAllPublished( $mydirname , $bulletin_stories_of_cat, 0, $article->getVar('topicid'), 0);
 	foreach($category_storeis as $category_story){
@@ -99,7 +99,7 @@ if($bulletin_disp_list_of_cat && $bulletin_stories_of_cat > 0){
 	}
 }
 
-// Tell A Frined¤ò»È¤¦¾ì¹ç
+// Tell A Frinedã‚’ä½¿ã†å ´åˆ
 if($bulletin_use_tell_a_frined){
 	$mail_link = XOOPS_URL.'/modules/tellafriend/index.php?target_uri='.rawurlencode( "$mydirurl/index.php?page=article&storyid=$storyid" ).'&amp;subject='.rawurlencode(sprintf(_MD_INTARTFOUND,$xoopsConfig['sitename'])) ;
 }else{
@@ -110,7 +110,7 @@ $xoopsTpl->assign('story', $story);
 $xoopsTpl->assign('mail_link', $mail_link);
 $xoopsTpl->assign('disp_print_icon', $bulletin_disp_print_icon);
 $xoopsTpl->assign('disp_tell_icon', $bulletin_disp_tell_icon );
-// ¥Ñ¥ó¤¯¤º¥ê¥¹¥È
+// ãƒ‘ãƒ³ããšãƒªã‚¹ãƒˆ
 if($bulletin_use_pankuzu) $xoopsTpl->assign('pankuzu', $article->topics->makePankuzuForHTML($article->getVar('topicid')) );
 
 if( $bulletin_titile_as_sitename ) $xoopsTpl->assign('xoops_pagetitle', $article->getVar('title'));
@@ -122,7 +122,7 @@ if($bulletin_assing_rssurl_head){
 }
 $xoopsTpl->assign($assing_array);
 
-// ±ÜÍ÷¿ô¤ò¥«¥¦¥ó¥È¥¢¥Ã¥×¤¹¤ë
+// é–²è¦§æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 if (empty($_GET['com_id']) && !isset($_GET['storypage'])) {
 	$article->updateCounter();
 }

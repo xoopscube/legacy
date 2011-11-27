@@ -4,21 +4,17 @@ if( !function_exists('myStrlenText') ){
 
 	function myStrlenText($str){
 
-		// Remove HTML tags
+		// HTMLタグを削除
 		$str = strip_tags($str);
-		// Remove the line breaks
+		// 改行を削除
 		$str = preg_replace("/(\015\012)|(\015)|(\012)/", "", $str);
-		// contiguous space Counted as one half a space
+		// 連続する半角スペースを半角スペース１としてカウント
 		$str = preg_replace('!\s+!', " ", $str);
-		// HTML special characters counts to as Single-byte character
-//HACK by domifara for php5.3+
-		//$str = ereg_replace("&[a-zA-Z]{1,5};", " ", $str);
-		$str = preg_replace("/&[a-zA-Z]{1,6};/", " ", $str);
-		// Hexadecimal characters Unicode10 counts to as Single-byte character
-//HACK by domifara for php5.3+
-		//$str = ereg_replace("&#[0-9]{1,5};", " ", $str);
-		$str = preg_replace("/&#[0-9]{1,5};/", " ", $str);
-		// PHP support multi-byte
+		// HTML特殊文字を半角1文字としてカウント
+		$str = ereg_replace("&[a-zA-Z]{1,5};", " ", $str);
+		// Unicode10進文字を半角1文字としてカウント
+		$str = ereg_replace("&#[0-9]{1,5};", " ", $str);
+		// PHPマルチバイト対応
 		if( function_exists('mb_strlen') ){
 			$result = mb_strlen($str);
 		}else{
@@ -42,7 +38,7 @@ if( !function_exists('myStrlenText') ){
 			case 1 : return "right";
 			case 2 : return "left";
 		}
-
+		
 		return fasle;
 	}
 

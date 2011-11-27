@@ -6,6 +6,13 @@ class BulletinGP{
 		global $mydirname;
 		$this->bulletin_get_topic_permissions_of_current_user($mydirname);
 	}
+	function getTopicPermission($topic_id){
+		if ( isset($this->topicPermissions[$topic_id]) )
+			return $this->topicPermissions[$topic_id];
+		else
+			return NULL;
+	}	
+	
 	function checkRight($gperm_name, $gperm_itemid, $gperm_groupid, $gperm_modid = 1)
 	{
 		$criteria = new CriteriaCompo(new Criteria('gperm_modid', $gperm_modid));
@@ -103,7 +110,7 @@ class BulletinGP{
 		} else {
 			$whr = "`groupid`=".intval(XOOPS_GROUP_ANONYMOUS) ;
 		}
-		$sql = "SELECT topic_id,SUM(can_post) AS can_post,SUM(can_edit) AS can_edit,SUM(can_delete),SUM(post_auto_approved) AS post_auto_approved FROM ".$db->prefix($mydirname."_topic_access")." WHERE ($whr) GROUP BY topic_id" ;
+		$sql = "SELECT topic_id,SUM(can_post) AS can_post,SUM(can_edit) AS can_edit,SUM(can_delete) AS can_delete,SUM(post_auto_approved) AS post_auto_approved FROM ".$db->prefix($mydirname."_topic_access")." WHERE ($whr) GROUP BY topic_id" ;
 		$result = $db->query( $sql );
 		if( $result ) while( $row = $db->fetchArray( $result ) ) {
 			$ret[ $row['topic_id'] ] = $row ;

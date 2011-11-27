@@ -75,7 +75,7 @@ if( ! empty( $_POST['user_update'] ) && empty( $invaild_topic_id ) ) {
 		$post_auto_approved = empty( $_POST['new_post_auto_approveds'][$i] ) ? 0 : 1 ;
 
 		if( empty( $uid ) ) {
-			$criteria = new Criteria( 'uname' , addslashes( @$_POST['new_unames'][$i] ) ) ;
+			$criteria =& new Criteria( 'uname' , addslashes( @$_POST['new_unames'][$i] ) ) ;
 			@list( $user ) = $member_handler->getUsers( $criteria ) ;
 		} else {
 			$user =& $member_handler->getUser( intval( $uid ) ) ;
@@ -180,7 +180,7 @@ for( $i = 0 ; $i < 5 ; $i ++ ) {
 
 xoops_cp_header();
 include dirname(__FILE__).'/mymenu.php' ;
-$tpl = new XoopsTpl() ;
+$tpl =& new XoopsTpl() ;
 $tpl->assign( array(
 	'mydirname' => $mydirname ,
 	'mod_name' => $xoopsModule->getVar('name') ,

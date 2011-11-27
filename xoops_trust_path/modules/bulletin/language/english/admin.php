@@ -62,4 +62,26 @@ define("_AM_CREDIT","Bulletin(xoops.suinyeze.com)");
 // It is able to change a following line into the TRANSLATER's name and website. Follow appears at admin page.
 define("_AM_TRANSLATER","English Translation by Marcelo Yuji Himoro (http://yuji.ws) and Suin (http://xoops.suinyeze.com)");
 // example : define("_AM_TRANSLATER","English patch(www.english-tranlater.com)");
+
+// Added by Bluemoon inc.
+// forum_access and category_access
+define('_MD_A_D3FORUM_LABEL_SELECTFORUM','Select a forum');
+define('_MD_A_D3FORUM_LABEL_SELECTCATEGORY','Select a category');
+define('_MD_A_D3FORUM_H2_GROUPPERMS','Permissions about each groups');
+define('_MD_A_D3FORUM_H2_USERPERMS','Permissions about each users');
+define('_MD_A_D3FORUM_TH_CAN_READ','View');
+define('_MD_A_D3FORUM_TH_CAN_POST','Post');
+define('_MD_A_D3FORUM_TH_CAN_EDIT','Edit');
+define('_MD_A_D3FORUM_TH_CAN_DELETE','Delete');
+define('_MD_A_D3FORUM_TH_POST_AUTO_APPROVED','AutoApproval');
+define('_MD_A_D3FORUM_TH_IS_MODERATOR','Moderator');
+define('_MD_A_D3FORUM_TH_CAN_MAKEFORUM','Making forums');
+define('_MD_A_D3FORUM_TH_UID','uid');
+define('_MD_A_D3FORUM_TH_UNAME','uname');
+define('_MD_A_D3FORUM_TH_GROUPNAME','groupname');
+define('_MD_A_D3FORUM_NOTICE_ADDUSERS','Input either uid or uname.');
+define('_MD_A_D3FORUM_ERR_CREATECATEGORYFIRST','Create a category first');
+define('_MD_A_D3FORUM_ERR_CREATEFORUMFIRST','Create a forum first');
+
+
 ?>

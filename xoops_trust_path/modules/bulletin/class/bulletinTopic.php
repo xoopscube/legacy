@@ -92,6 +92,8 @@ class BulletinTopic extends XoopsTopic{
 	}
 	// Bluemoon
 	function makeMyTopicList($preset_id=0, $row=NULL){
+		$this->id = "topic_id";
+		$this->pid = "topic_pid";
 		$title = "topic_title";
 		$order = "topic_title";
 		$onchange = "";
@@ -102,7 +104,7 @@ class BulletinTopic extends XoopsTopic{
 			$ret .= " onchange='".$onchange."'";
 		}
 		$ret .= ">\n";
-		$sql = "SELECT topic_id,topic_title FROM ".$this->table;
+		$sql = "SELECT ".$this->id.",".$title." FROM ".$this->table." WHERE ".$this->pid."=0";
 		if ( $order != "" ) {
 			$sql .= " ORDER BY $order";
 		}
@@ -123,6 +125,48 @@ class BulletinTopic extends XoopsTopic{
 		return $ret;
 	}
 	
+	//H.Onuma
+	function makeMyTopicList2($preset_id=0, $row=NULL){
+		global $xoopsUser ;
+
+	// 2011.11.21 S.Uchi modify start
+		//グループID一覧を取得
+		$groups = $xoopsUser->getGroups();
+
+		//自分が所属しているグループが投稿権限を持っているトピックを取得。
+		$from2 = $this->db->prefix( "bulletin_topic_access" );
+		$this->id = "topic_id";
+		foreach($groups as $groupname){
+		
+			$sql =  "SELECT ".$this->id." FROM ".$from2." WHERE groupid = " .$groupname;
+			$sql .= " AND can_post = 1 AND can_edit = 1"; 		
+			$result = $this->db->query($sql);
+			if( list($catid) = $this->db->fetchRow($result) ) {
+				$ret = $catid;
+				break;
+			}
+		}
+		return $ret;
+
+		
+//		if( is_object( $xoopsUser ) ) {
+//			$uid = intval( $xoopsUser->getVar('uid') ) ;
+//		}
+//		$this->id = "topic_id";
+//		$myts =& MyTextSanitizer::getInstance();
+//		$from1 = $this->db->prefix( "groups_users_link" );
+//		$from2 = $this->db->prefix( "bulletin_topic_access" );
+//		$sql = "SELECT ".$this->id." FROM ".$from1." LEFT JOIN ".$from2." ON ".$from1.".groupid = ".$from2.".groupid WHERE ".$from1.".uid = ".$uid." ORDER BY ".$this->id;
+//		$result = $this->db->query($sql);
+////		print_r($sql);
+////		die();
+//		$ret = "0";
+//		IF ( list($catid) = $this->db->fetchRow($result) ) {
+//			$ret = $catid;
+//		}
+//		return $ret;
+	// 2011.11.21 S.Uchi modify end
+	}
 
 	// override
 	function store()
