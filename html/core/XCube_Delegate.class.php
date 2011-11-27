@@ -289,7 +289,7 @@ class XCube_Delegate
 		
 		for ($i=0 ; $i<$num ;$i++) {
 			$arg = &$args[$i];
-			if (is_a($arg, 'XCube_Ref')) $args[$i] =& $arg->getObject();
+			if ($arg instanceof XCube_Ref) $args[$i] =& $arg->getObject();
 
 			if ($hasSig) {
 				if (!isset($mSigs[$i])) return false;
@@ -541,7 +541,7 @@ class XCube_DelegateUtils
     /**
      * @deprecated raiseEvent()
      */
-    function call()
+    static function call()
     {
         $args = func_get_args();
         $num = func_num_args();

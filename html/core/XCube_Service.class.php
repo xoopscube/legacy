@@ -140,7 +140,7 @@ class XCube_AbstractServiceClient
 		$this->mUser =& $user;
 	}
 
-	function call()
+	function call($operation, $params)
 	{
 	}
 	

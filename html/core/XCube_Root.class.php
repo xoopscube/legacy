@@ -127,7 +127,7 @@ class XCube_Root
 	 * @brief [Static] Gets a object of XCube_Root as singleton.
 	 * @return XCube_Root
 	 */
-	function &getSingleton()
+	static function &getSingleton()
 	{
 		static $instance;
 		
