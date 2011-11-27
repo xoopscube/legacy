@@ -12,7 +12,7 @@ class Bulletin extends XoopsObject{
 	var $newstopic = null ;
 	var $table = '' ;
 
-	// •≥•Û•»•È•π•ø
+	// Constructor
 	function Bulletin( $mydirname , $id=null )
 	{
 		$this->db =& Database::getInstance();
@@ -78,13 +78,13 @@ class Bulletin extends XoopsObject{
 		$this->newstopic = $this->topic() ;
 	}
 	
-	// ¥À‹ΩËÕ˝
+	// Basic Processing
 	function topic()
 	{
 		return new BulletinTopic( $this->mydirname , $this->getVar('topicid')); // GIJ
 	}
 	
-	// ¥À‹ΩËÕ˝
+	// Basic Processing
 	function store()
 	{
 		if ( !$this->cleanVars() ) {
@@ -114,7 +114,7 @@ class Bulletin extends XoopsObject{
 		return $storyid;
 	}
 	
-	// ¥À‹ΩËÕ˝
+	// Basic Processing
 	function load($id)
 	{
 		$sql = "SELECT * FROM ".$this->table." WHERE storyid=".intval($id)."";
@@ -122,7 +122,7 @@ class Bulletin extends XoopsObject{
 		$this->assignVars($myrow);
 	}
 	
-	// ¥À‹ΩËÕ˝
+	// Basic Processing
 	function delete()
 	{
 		$sql = sprintf("DELETE FROM %s WHERE storyid = %u", $this->table , $this->getVar("storyid"));
@@ -134,7 +134,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// ¥À‹ΩËÕ˝
+	// Basic Processing
 	function &getAll( $mydirname , $criteria=array() , $asobject=true, $orderby="published DESC", $limit=0, $start=0)
 	{
 		$db =& Database::getInstance();
@@ -166,7 +166,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// ¥À‹ΩËÕ˝
+	// Basic Processing
 	function &countAll( $mydirname , $criteria=array())
 	{
 		$db =& Database::getInstance();
@@ -189,7 +189,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// ∑«∫‹√Ê§Œµ≠ªˆ∞ÏÕ˜§ÚºË∆¿
+	// To gets a list of published articles
 	function getAllPublished( $mydirname , $limit4sql=0, $start4sql=0, $topic4sql=0, $ihome=1, $asobject=true, $topic_recursive=false)
 	{
 		$topic4sql = intval($topic4sql);
@@ -223,7 +223,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// •¢°º•´•§•÷Õ—µ≠ªˆ∞ÏÕ˜§ÚºË∆¿
+	// To get a list of articles for the Archives
 	function getArchives( $mydirname , $monstart4sql=null, $monend4sql=null, $limit4sql=0, $start4sql=0, $asobject=true)
 	{
 		$monstart4sql = intval($monstart4sql);
@@ -243,7 +243,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// æµ«ß¬‘§¡§Œµ≠ªˆ∞ÏÕ˜§ÚºË∆¿
+	// To get a list of awaiting approval articles
 	function getAllSubmitted( $mydirname , $limit4sql=0, $asobject=true)
 	{
 		$limit4sql = intval($limit4sql);
@@ -255,7 +255,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// ∑«∫‹ÕΩƒÍ§Œµ≠ªˆ∞ÏÕ˜§ÚºË∆¿
+	// To get a list of articles to be published
 	function getAllAutoStory( $mydirname , $limit4sql=0, $asobject=true)
 	{
 		$limit4sql = intval($limit4sql);
@@ -268,7 +268,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// ¥¸∏¬¿⁄§Ï§Œµ≠ªˆ∞ÏÕ˜§ÚºË∆¿
+	// To get a list of expired articles
 	function getAllExpired( $mydirname , $limit4sql=0, $start4sql=0, $topic4sql=0, $ihome=0, $asobject=true)
 	{
 		$limit4sql = intval($limit4sql);
@@ -291,7 +291,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// ∆¸…’§Ú§‚§»§Àµ≠ªˆ∞ÏÕ˜§ÚºË∆¿
+	// To get a list of articles based on the date
 	function getAllToday( $mydirname , $limit4sql=0, $start4sql=0, $caldate, $asobject=true)
 	{
 		$limit4sql    = intval($limit4sql);
@@ -320,7 +320,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// •»•‘•√•Ø§À¬∞§π§Îµ≠ªˆ§π§Ÿ§∆§ÚºË∆¿
+	// To get all the articles belonging to the topic
 	function getAllByTopic( $mydirname , $topicid )
 	{
 		$criteria = array();
@@ -329,7 +329,7 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// •»•‘•√•Ø≤Ë¡¸§ÚºË∆¿§π§Î
+	// Get the picture topic
 	function imglink($topic_path)
 	{
 		if ($this->newstopic->topic_imgurl() != '' && file_exists($topic_path.$this->newstopic->topic_imgurl())) {
@@ -339,21 +339,21 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// •Ê°º•∂§ŒÀ‹Ãæ§ÚºË∆¿§π§Î
+	// To get  the real name of the user
 	function getRealname()
 	{
 		return XoopsUser::getUnameFromId($this->getVar('uid'), 1);
 	}
 
 
-	// uname§ÚºË∆¿§π§Î
+	// To get the uname
 	function getUname()
 	{
 		return XoopsUser::getUnameFromId($this->getVar('uid'));
 	}
 
 
-	// •Ê°º•∂§¨¬∏∫ﬂ§π§Î§´
+	// Is there a user?
 	function isActiveUser()
 	{
 		$uid = $this->getVar('uid');
@@ -365,7 +365,7 @@ class Bulletin extends XoopsObject{
 		return true;
 	}
 	
-	// •»•‘•√•Ø≤Ë¡¸§Œ∞Ã√÷§ÚºË∆¿
+	// To get the position of the topic
 	function getTopicalign()
 	{
 		$ret = "";
@@ -380,7 +380,7 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// •»•‘•√•Ø≤Ë¡¸§Ú…Ωé¶§π§Î§´§…§¶§´
+	// Whether to display an image topic
 	function showTopicimg()
 	{
 		
@@ -394,7 +394,7 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// •»•‘•√•Ø§Œ•ø•§•»•Î§ÚºË∆¿
+	// Get the title of the topic
 	function topic_title()
 	{
 		if( is_object( $this->newstopic ) ) return $this->newstopic->topic_title();
@@ -402,7 +402,7 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// ±‹Õ˜øÙ§Ú≤√ªª
+	// Adding views counter
 	function updateCounter()
 	{
 		$sql = sprintf("UPDATE %s SET counter = counter+1 WHERE storyid = %u", $this->table , $this->getVar('storyid'));
@@ -414,7 +414,7 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// hometext§Ú∆¿§Î
+	// get hometext
 	function hometext()
 	{
 		$html = 1;
@@ -424,7 +424,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// µ≠ªˆ§¨¬∏∫ﬂ§π§Î§´§…§¶§´
+	// Whether there is a post
 	function isPublishedExists( $mydirname , $storyid=0)
 	{
 		$storyid = intval($storyid);
@@ -480,7 +480,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// ∑«∫‹√Ê§Œµ≠ªˆøÙ§ÚøÙ§®§Î
+	// Count the number of articles published
 	function countPublished( $mydirname , $topicid=0,$topic_recursive=false)
 	{
 		$criteria = array();
@@ -505,7 +505,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// æµ«ß¬‘§¡§Œµ≠ªˆøÙ§ÚøÙ§®§Î
+	// Count the number of awaiting approval articles
 	function countSubmitted( $mydirname )
 	{
 		$criteria = array();
@@ -515,7 +515,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// ∑«∫‹ÕΩƒÍ§Œµ≠ªˆøÙ§ÚøÙ§®§Î
+	// Count the number of articles to be published
 	function countAutoStory( $mydirname )
 	{
 		$criteria = array();
@@ -526,7 +526,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// ¥¸∏¬¿⁄§Ï§Œµ≠ªˆøÙ§ÚøÙ§®§Î
+	// Count the number of expired articles
 	function countExpired( $mydirname , $topic4sql=0, $ihome=0)
 	{
 		$topic4sql = intval($topic4sql);
@@ -547,7 +547,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// §Ω§Œ∆¸§Œµ≠ªˆøÙ§ÚøÙ§®§Î
+	// Count the number of articles of the day
 	function countPublishedByDate( $mydirname , $caldate)
 	{
 		if( preg_match('/([0-9]{4})-([0-9]{2})-([0-9]{2})/', $caldate, $datearr) ){
@@ -571,7 +571,7 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// •≥•·•Û•»øÙ§Ú≤√ªª
+	// Adding comments count
 	function updateComments($total)
 	{
 		$sql = sprintf("UPDATE %s SET comments = %u WHERE storyid = %u", $this->table , $total, $this->getVar('storyid'));
@@ -583,7 +583,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// µ≠ªˆ§¨≈Íπ∆§Œ•ø•§•‡•π•ø•Û•◊§Ú«€ŒÛ§« ÷§π
+	// Returns an array with the time stamp of posts
 	function getPublishedDays( $mydirname , $limit=0 , $start=0 )
 	{
 		$db =& Database::getInstance();
@@ -597,20 +597,24 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// hometext §Œ ∏ª˙øÙ§Ú•´•¶•Û•»§π§Î
+	// Count the number of characters hometext
 	function strlenHometext(){
 		
-		// HTML•ø•∞§Ú∫ÔΩ¸
+		// emove HTML tags
 		$hometext = strip_tags($this->getVar('hometext'));
-		// ≤˛π‘§Ú∫ÔΩ¸
+		// emove the line breaks
 		$hometext = preg_replace("/(\015\012)|(\015)|(\012)/", "", $hometext);
-		// œ¢¬≥§π§Î»æ≥—•π•⁄°º•π§Ú»æ≥—•π•⁄°º•π£±§»§∑§∆•´•¶•Û•»
+		// ÈÄ£contiguous space Counted as one half a space
 		$hometext = preg_replace('!\s+!', " ", $hometext);
-		// HTML∆√ºÏ ∏ª˙§Ú»æ≥—1 ∏ª˙§»§∑§∆•´•¶•Û•»
-		$hometext = ereg_replace("&[a-zA-Z]{1,5};", " ", $hometext);
-		// Unicode10ø  ∏ª˙§Ú»æ≥—1 ∏ª˙§»§∑§∆•´•¶•Û•»
-		$hometext = ereg_replace("&#[0-9]{1,5};", " ", $hometext);
-		// PHP•ﬁ•Î•¡•–•§•»¬–±˛
+		// HTML special characters counts to as Single-byte character
+//HACK by domifara for php5.3+
+//		$hometext = ereg_replace("&[a-zA-Z]{1,5};", " ", $hometext);
+		$hometext = preg_replace("/&[a-zA-Z]{1,6};/", " ", $hometext);
+		// Hexadecimal characters Unicode10 counts to as Single-byte character
+//HACK by domifara for php5.3+
+//		$hometext = ereg_replace("&#[0-9]{1,5};", " ", $hometext);
+		$hometext = preg_replace("/&#[0-9]{1,5};/", " ", $hometext);
+		//PHP support multi-byte
 		if( function_exists('mb_strlen') ){
 			$result = mb_strlen($hometext);
 		}else{
@@ -622,22 +626,26 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// bodytext §Œ ∏ª˙øÙ§Ú•´•¶•Û•»§π§Î
+	// Count the number of characters in bodytext
 	function strlenBodytext(){
 		
-		// HTML•ø•∞§Ú∫ÔΩ¸
+		// Remove HTML tags
 		$bodytext = strip_tags($this->getVar('bodytext'));
-		// ≤˛π‘§Ú∫ÔΩ¸
+		// emove the line breaks
 		$bodytext = preg_replace("/(\015\012)|(\015)|(\012)/", "", $bodytext);
-		// œ¢¬≥§π§Î»æ≥—•π•⁄°º•π§Ú»æ≥—•π•⁄°º•π£±§»§∑§∆•´•¶•Û•»
+		// ÈÄ£Á∂öontiguous space Counted as one half a spac
 		$bodytext = preg_replace('!\s+!', " ", $bodytext);
-		// HTML∆√ºÏ ∏ª˙§Ú»æ≥—1 ∏ª˙§»§∑§∆•´•¶•Û•»
-		$bodytext = ereg_replace("&[a-zA-Z]{1,5};", " ", $bodytext);
-		// Unicode10ø  ∏ª˙§Ú»æ≥—1 ∏ª˙§»§∑§∆•´•¶•Û•»
-		$bodytext = ereg_replace("&#[0-9]{1,5};", " ", $bodytext);
-		// [pagebreak]§Ú•´•¶•Û•»¬–æ›≥∞§À§π§Î
+		// HTML special characters counts to as Single-byte character
+//HACK by domifara for php5.3+
+//		$bodytext = ereg_replace("&[a-zA-Z]{1,5};", " ", $bodytext);
+		$bodytext = preg_replace("/&[a-zA-Z]{1,6};/", " ", $bodytext);
+		// UHexadecimal characters Unicode10 counts to as Single-byte character
+//HACK by domifara for php5.3+
+//		$bodytext = ereg_replace("&#[0-9]{1,5};", " ", $bodytext);
+		$bodytext = preg_replace("/&#[0-9]{1,5};/", " ", $bodytext);
+		// To exclude [pagebreak] count
 		$bodytext = str_replace('[pagebreak]', '', $bodytext);
-		// PHP•ﬁ•Î•¡•–•§•»¬–±˛
+		// PHP support multi-byte
 		if( function_exists('mb_strlen') ){
 			$result = mb_strlen($bodytext);
 		}else{
@@ -648,7 +656,7 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// hometext §» bodytext §Œ ∏ª˙øÙ§Œ¡Ìœ¬§Úµ·§·§Î
+	// determine the sum of the length of hometext and bodytext
 	function strlenHomeAndBody(){
 	
 		return $this->strlenHometext() + $this->strlenBodytext();
@@ -656,7 +664,7 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// [pagebreak]§Ú«§∞’§Œ ∏ª˙ŒÛ§À —¥π§π§Î
+	// Convert any string to [pagebreak]
 	function getDividedBodytext($dividing_str = '<br style="page-break-after:always;" />'){
 	
 		return str_replace('[pagebreak]', $dividing_str, $this->getVar('bodytext'));
@@ -664,7 +672,7 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// $text §» $hometext §» $bodytext §À ¨≤Ú§π§Î
+	// to decompose $text into $bodytext and $hometext 
 	function devideHomeTextAndBodyText()
 	{
 		$text_arr = explode('[pagebreak]', $this->getVar('text', 'n'));
@@ -673,7 +681,7 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// $hometext §» $bodytext §Ú $text §À≈˝∞Ï§π§Î
+	// $text ,to compose $hometext and $bodytext
 	function unifyHomeTextAndBodyText()
 	{
 		$text = $this->getVar('hometext', 'n');
