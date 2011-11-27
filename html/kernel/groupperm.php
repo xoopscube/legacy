@@ -89,13 +89,13 @@ class XoopsGroupPerm extends XoopsObject
     	// because the validation code accesses handlers.
     	// But, this follows traditional architecture of XOOPS2.
     	
-    	$gHandler =& xoops_gethandler('group');
+    	$gHandler = xoops_gethandler('group');
     	$group =& $gHandler->get($this->get('gperm_groupid'));
     	if (!is_object($group)) {
     		return false;
     	}
 
-    	$mHandler =& xoops_gethandler('module');
+    	$mHandler = xoops_gethandler('module');
     	
     	if ($this->get('gperm_modid') != 1) {
 			$module =& $mHandler->get($this->get('gperm_modid'));
@@ -107,14 +107,14 @@ class XoopsGroupPerm extends XoopsObject
     	if ($this->get('gperm_name') == GROUPPERM_VAL_MODREAD
     	    || $this->get('gperm_name') == GROUPPERM_VAL_MODADMIN)
     	{
-    		$mHandler =& xoops_gethandler('module');
+    		$mHandler = xoops_gethandler('module');
     		$module =& $mHandler->get($this->get('gperm_itemid'));
     		if (!is_object($module)) {
     			return false;
 	    	}
     	}
     	else if ($this->get('gperm_name') == GROUPPERM_VAL_BLOCKREAD) {
-    		$bHandler =& xoops_gethandler('block');
+    		$bHandler = xoops_gethandler('block');
     		$block =& $bHandler->get($this->get('gperm_itemid'));
     		if (!is_object($block)) {
     			return false;

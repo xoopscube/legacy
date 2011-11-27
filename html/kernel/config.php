@@ -241,7 +241,7 @@ class XoopsConfigHandler
 	function &getConfigsByDirname($dirname, $category = 0)
 	{
 		$ret = null;;
-		$handler =& xoops_gethandler('module');;
+		$handler = xoops_gethandler('module');;
 		$module =& $handler->getByDirname($dirname);
 		if (!is_object($module)) {
 			return $ret;

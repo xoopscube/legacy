@@ -112,7 +112,7 @@ class XoopsConfigItem extends XoopsObject
 	 */
 	function &getOptionItems()
 	{
-		$handler =& xoops_gethandler('config');
+		$handler = xoops_gethandler('config');
 		$optionArr =& $handler->getConfigOptions(new Criteria('conf_id', $this->get('conf_id')));
 		
 		return $optionArr;
@@ -123,7 +123,7 @@ class XoopsConfigItem extends XoopsObject
 	 */
 	function getRoledModuleList()
 	{
-		$handler =& xoops_gethandler('config');
+		$handler = xoops_gethandler('config');
 		$optionArr =& $handler->getConfigOptions(new Criteria('conf_id', $this->get('conf_id')));
 		$list = array();
 		foreach($optionArr as $opt){
@@ -291,7 +291,7 @@ class XoopsConfigItem extends XoopsObject
 		}
 		
 		if (isset($configInfo['options']) && is_array($configInfo['options'])) {
-			$configHandler =& xoops_gethandler('config');
+			$configHandler = xoops_gethandler('config');
 			foreach ($configInfo['options'] as $key => $value) {
 				$configOption =& $configHandler->createConfigOption();
 				$configOption->setVar('confop_name', $key, true);

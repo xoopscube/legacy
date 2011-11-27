@@ -322,7 +322,7 @@ class XoopsModule extends XoopsObject
 	}
 	function &getByDirName($dirname)
 	{
-		$modhandler =& xoops_gethandler('module');
+		$modhandler = xoops_gethandler('module');
 		$ret =& $modhandler->getByDirname($dirname);
 		return $ret;
 	}
@@ -346,7 +346,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
 	var $_tmp;	
 	
 	/**
-	 * holds an array of cached module references, indexed by module id
+	 * holds an array of cached module references, indexed by module id/dirname
 	 *
 	 * @var    array
 	 * @access private
@@ -592,12 +592,19 @@ class XoopsModuleHandler extends XoopsObjectHandler
 			return $ret;
 		}
 		while ($myrow = $db->fetchArray($result)) {
-			$module =new XoopsModule();
-			$module->assignVars($myrow);
+			$mid = $myrow['mid'];
+			if (isset($this->_cachedModule_mid[$mid])) {
+				$module = $this->_cachedModule_mid[$mid];
+			} else {
+				$module =new XoopsModule();
+				$module->assignVars($myrow);
+				$this->_cachedModule_mid[$mid] = $module;
+				$this->_cachedModule_dirname[$myrow['dirname']] = $module;
+			}
 			if (!$id_as_key) {
 				$ret[] =& $module;
 			} else {
-				$ret[$myrow['mid']] =& $module;
+				$ret[$mid] =& $module;
 			}
 			unset($module);
 		}

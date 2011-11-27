@@ -62,7 +62,7 @@ class XoopsPrivmessage extends XoopsObject
     
     function &getFromUser()
     {
-		$userHandler=&xoops_gethandler('user');
+		$userHandler=xoops_gethandler('user');
 		$user=&$userHandler->get($this->getVar('from_userid'));
 		return $user;
 	}

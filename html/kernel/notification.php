@@ -94,7 +94,7 @@ class XoopsNotification extends XoopsObject
 	{
 		// Check the user's notification preference.
 
-		$member_handler =& xoops_gethandler('member');
+		$member_handler = xoops_gethandler('member');
 		$user =& $member_handler->getUser($this->getVar('not_uid'));
 		if (!is_object($user)) {
 			return true;
@@ -106,7 +106,7 @@ class XoopsNotification extends XoopsObject
 		switch($method) {
 		case XOOPS_NOTIFICATION_METHOD_PM:
 			$xoopsMailer->usePM();
-			$config_handler =& xoops_gethandler('config');
+			$config_handler = xoops_gethandler('config');
 			$xoopsMailerConfig =& $config_handler->getConfigsByCat(XOOPS_CONF_MAILER);
 			$xoopsMailer->setFromUser($member_handler->getUser($xoopsMailerConfig['fromuid']));
 			foreach ($tags as $k=>$v) {
@@ -138,7 +138,7 @@ class XoopsNotification extends XoopsObject
 		// If send-once-then-wait, disable notification
 
 		include_once XOOPS_ROOT_PATH . '/include/notification_constants.php';
-		$notification_handler =& xoops_gethandler('notification');
+		$notification_handler = xoops_gethandler('notification');
 
 		if ($this->getVar('not_mode') == XOOPS_NOTIFICATION_MODE_SENDONCETHENDELETE) {
 			$notification_handler->delete($this);
@@ -614,7 +614,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
             $module =& $xoopsModule;
             $module_id = !empty($xoopsModule) ? $xoopsModule->getVar('mid') : 0;
         } else {
-            $module_handler =& xoops_gethandler('module');
+            $module_handler = xoops_gethandler('module');
             $module =& $module_handler->get($module_id);
         }
 		// Get Config Array form xoops_version.php
@@ -667,7 +667,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
 		}
 
 		// Check if event is enabled
-		$config_handler =& xoops_gethandler('config');
+		$config_handler = xoops_gethandler('config');
 		$mod_config =& $config_handler->getConfigsByCat(0,$module->getVar('mid'));
 		if (empty($mod_config['notification_enabled'])) {
 			return false;
