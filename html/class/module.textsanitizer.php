@@ -311,8 +311,7 @@ class MyTextSanitizer
      **/
     function &displayTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1)
     {
-        //$text = $this->_ToShowTarea($text, $html, $smiley, $xcode, $image, $br);
-        $text = $this->mTextFilter->ToShowTarea($text, $html, $smiley, $xcode, $image, $br, true);
+        $text = $this->mTextFilter->toShowTarea($text, $html, $smiley, $xcode, $image, $br, true);
         return $text;
     }
 
@@ -330,8 +329,7 @@ class MyTextSanitizer
     function &previewTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1)
     {
         $text =& $this->stripSlashesGPC($text);
-        //$text = $this->_ToShowTarea($text, $html, $smiley, $xcode, $image, $br);
-        $text = $this->mTextFilter->ToShowTarea($text, $html, $smiley, $xcode, $image, $br, true);
+        $text = $this->mTextFilter->toPreviewTarea($text, $html, $smiley, $xcode, $image, $br, true);
         return $text;
     }
 
