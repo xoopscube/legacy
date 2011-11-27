@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/02 by nao-pon http://hypweb.net/
-// $Id: pukiwiki_func.php,v 1.230 2011/11/22 09:15:06 nao-pon Exp $
+// $Id: pukiwiki_func.php,v 1.231 2011/11/26 12:03:10 nao-pon Exp $
 //
 class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 
@@ -18,7 +18,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 			// Compat for foreach(get_source($file) as $line) {} not to warns
 
 		$path = $this->get_filename($page);
-		if (file_exists($path)) {
+		if (is_file($path)) {
 
 			if ($lock) {
 				$fp = @fopen($path, 'r');
@@ -607,7 +607,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 		$page = $this->strip_bracket($page);
 
 		$file = $dir . $this->encode($page) . '.txt';
-		$file_exists = file_exists($file);
+		$file_exists = is_file($file);
 
 		// ----
 		// Delete?
@@ -832,7 +832,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 			if($unknownPage) {
 				switch(strtolower($this->root->pagereading_kanji2kana_converter)) {
 				case 'chasen':
-					if(! file_exists($this->root->pagereading_chasen_path))
+					if(! is_file($this->root->pagereading_chasen_path))
 						$this->die_message('ChaSen not found: ' . $this->root->pagereading_chasen_path);
 
 					$tmpfname = tempnam(realpath($this->cont['CACHE_DIR']), 'PageReading');
@@ -868,7 +868,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 
 				case 'kakasi':	/*FALLTHROUGH*/
 				case 'kakashi':
-					if(! file_exists($this->root->pagereading_kakasi_path))
+					if(! is_file($this->root->pagereading_kakasi_path))
 						$this->die_message('KAKASI not found: ' . $this->root->pagereading_kakasi_path);
 
 					$tmpfname = tempnam(realpath($this->cont['CACHE_DIR']), 'PageReading');
@@ -1056,7 +1056,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 	function pkwk_touch_file($filename, $time = FALSE, $atime = FALSE)
 	{
 		// Is the owner incorrected and unable to correct?
-		if (! file_exists($filename) || $this->pkwk_chown($filename)) {
+		if (! is_file($filename) || $this->pkwk_chown($filename)) {
 			if ($time === FALSE) {
 				$result = touch($filename);
 			} else if ($atime === FALSE) {
@@ -1074,7 +1074,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 
 //----- Start convert_html.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone
-	// $Id: pukiwiki_func.php,v 1.230 2011/11/22 09:15:06 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.231 2011/11/26 12:03:10 nao-pon Exp $
 	// Copyright (C)
 	//   2002-2005 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -1386,7 +1386,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 
 //----- Start func.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.230 2011/11/22 09:15:06 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.231 2011/11/26 12:03:10 nao-pon Exp $
 	// Copyright (C)
 	//   2002-2006 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -1442,7 +1442,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 			}
 		}
 		if (! isset($cache[$this->root->mydirname][$page])) {
-			$cache[$this->root->mydirname][$page] = file_exists($this->get_filename($page));
+			$cache[$this->root->mydirname][$page] = is_file($this->get_filename($page));
 		}
 
 		return $cache[$this->root->mydirname][$page];
@@ -1858,7 +1858,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 EOD;
 
 		$this->pkwk_common_headers();
-		if(isset($this->cont['SKIN_FILE']) && file_exists($this->cont['SKIN_FILE']) && is_readable($this->cont['SKIN_FILE'])) {
+		if(isset($this->cont['SKIN_FILE']) && is_file($this->cont['SKIN_FILE']) && is_readable($this->cont['SKIN_FILE'])) {
 			$this->catbody($title, $page, $body);
 		} else {
 			header('Content-Type: text/html; charset='.$this->cont['CONTENT_CHARSET']);
@@ -2240,7 +2240,7 @@ EOD;
 
 //----- Start make_link.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.230 2011/11/22 09:15:06 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.231 2011/11/26 12:03:10 nao-pon Exp $
 	// Copyright (C)
 	//   2003-2005 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -2484,7 +2484,7 @@ EOD;
 
 		if (! isset($interwikinames[$this->root->mydirname])) {
 			$interwiki_dat = $this->cont['CACHE_DIR'] . 'interwiki.dat';
-			if (file_exists($interwiki_dat)) {
+			if (is_file($interwiki_dat)) {
 				$interwikinames[$this->root->mydirname] = unserialize(file_get_contents($interwiki_dat));
 			} else {
 				$interwikinames[$this->root->mydirname] = $this->interwiki_dat_update($this->get_source($this->root->interwiki));
@@ -2660,7 +2660,7 @@ EOD;
 	function tb_count($page, $ext = '.txt')
 	{
 		$filename = $this->tb_get_filename($page, $ext);
-		return file_exists($filename) ? count(file($filename)) : 0;
+		return is_file($filename) ? count(file($filename)) : 0;
 	}
 
 	// Send TrackBack ping(s) automatically
@@ -2720,13 +2720,13 @@ EOD;
 	function tb_delete($page)
 	{
 		$filename = $this->tb_get_filename($page);
-		if (file_exists($filename)) @unlink($filename);
+		if (is_file($filename)) @unlink($filename);
 	}
 
 	// Import TrackBack ping data from file
 	function tb_get($file, $key = 1)
 	{
-		if (! file_exists($file)) return array();
+		if (! is_file($file)) return array();
 
 		$result = array();
 
@@ -3186,7 +3186,7 @@ EOD;
 	}
 	function _backup_file_exists($page)
 	{
-		return file_exists($this->_backup_get_filename($page));
+		return is_file($this->_backup_get_filename($page));
 	}
 
 	function _backup_get_filetime($page)
@@ -3282,7 +3282,7 @@ EOD;
 
 //----- Start html.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.230 2011/11/22 09:15:06 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.231 2011/11/26 12:03:10 nao-pon Exp $
 	// Copyright (C)
 	//   2002-2006 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -4073,7 +4073,7 @@ EOD;
 
 //----- Start mail.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.230 2011/11/22 09:15:06 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.231 2011/11/26 12:03:10 nao-pon Exp $
 	// Copyright (C)
 	//   2003-2005 PukiWiki Developers Team
 	//   2003      Originally written by upk
@@ -4376,7 +4376,7 @@ EOD;
 
 //----- Start link.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone
-	// $Id: pukiwiki_func.php,v 1.230 2011/11/22 09:15:06 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.231 2011/11/26 12:03:10 nao-pon Exp $
 	// Copyright (C) 2003-2006 PukiWiki Developers Team
 	// License: GPL v2 or (at your option) any later version
 	//
@@ -4409,7 +4409,7 @@ EOD;
 	function links_get_related_db($page)
 	{
 		$ref_name = $this->cont['CACHE_DIR'] . $this->encode($page) . '.ref';
-		if (! file_exists($ref_name)) return array();
+		if (! is_file($ref_name)) return array();
 
 		$times = array();
 		foreach (file($ref_name) as $line) {
@@ -4431,7 +4431,7 @@ EOD;
 
 		$rel_old        = array();
 		$rel_file       = $this->cont['CACHE_DIR'] . $this->encode($page) . '.rel';
-		$rel_file_exist = file_exists($rel_file);
+		$rel_file_exist = is_file($rel_file);
 		if ($rel_file_exist === TRUE) {
 			$lines = file($rel_file);
 			unlink($rel_file);
@@ -4495,7 +4495,7 @@ EOD;
 		$ref_file = $this->cont['CACHE_DIR'] . $this->encode($page) . '.ref';
 
 		// $pageが削除されたときに、
-		if (! $time && file_exists($ref_file)) {
+		if (! $time && is_file($ref_file)) {
 			foreach (file($ref_file) as $line) {
 				list($ref_page, $ref_auto) = explode("\t", rtrim($line));
 
@@ -4574,7 +4574,7 @@ EOD;
 			$ref      = $page . "\t" . ($all_auto ? 1 : 0) . "\n";
 
 			$ref_file = $this->cont['CACHE_DIR'] . $this->encode($_page) . '.ref';
-			if (file_exists($ref_file)) {
+			if (is_file($ref_file)) {
 				foreach (file($ref_file) as $line) {
 					list($ref_page, $ref_auto) = explode("\t", rtrim($line));
 					if (! $ref_auto) $all_auto = FALSE;
@@ -4597,7 +4597,7 @@ EOD;
 
 		foreach ($del as $_page) {
 			$ref_file = $this->cont['CACHE_DIR'] . $this->encode($_page) . '.ref';
-			if (! file_exists($ref_file)) continue;
+			if (! is_file($ref_file)) continue;
 
 			$all_auto = TRUE;
 			$is_page = $this->is_page($_page);

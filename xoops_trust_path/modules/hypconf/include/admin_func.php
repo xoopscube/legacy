@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2011/11/09 by nao-pon http://xoops.hypweb.net/
- * $Id: admin_func.php,v 1.6 2011/11/18 05:12:25 nao-pon Exp $
+ * $Id: admin_func.php,v 1.7 2011/11/27 06:39:57 nao-pon Exp $
  */
 
 function hypconfSetValue(& $config, $page) {
@@ -9,7 +9,7 @@ function hypconfSetValue(& $config, $page) {
 	$dum = null;
 	$hyp_preload = new HypCommonPreLoad($dum);
 	foreach($config as $key => $conf) {
-		if ($key === 'error') continue;
+		if ($key === 'error' || $key === 'contents') continue;
 		$name = $conf['name'];
 		if ($page === 'k_tai_conf') {
 			// Reset each site values.
@@ -172,6 +172,10 @@ function hypconfShowForm($config) {
 	if (isset($config['error'])) {
 		echo '<div class="error">' . join('</div><div class="error">', $config['error']) . '</div>';
 		unset($config['error']);
+	}
+	if (isset($config['contents'])) {
+		echo $config['contents'];
+		unset($config['contents']);
 	}
 	if ($config) {
 		$count = count($config);

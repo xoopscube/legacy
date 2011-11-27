@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/11/07 by nao-pon http://hypweb.net/
-// $Id: check.func.php,v 1.18 2010/05/03 00:32:57 nao-pon Exp $
+// $Id: check.func.php,v 1.20 2011/11/26 12:03:10 nao-pon Exp $
 //
 
 // when onInstall & onUpdate
@@ -86,7 +86,7 @@ function xpwikifunc_defdata_check ($mydirname, $mode = 'install') {
 			while (false !== ($file = readdir($handle))) {
 				if ($file !== '.' && $file !== '..' && ! is_dir($from.'/'.$file)) {
 					if ($mode === 'install' || $dir !== 'wiki' || substr($file, -4) !== '.txt') {
-						if (! file_exists($to.'/'.$file)) {
+						if (! is_file($to.'/'.$file)) {
 							copy($from.'/'.$file, $to.'/'.$file);
 							if ($utf8from) {
 								xpwikifunc_conv_utf($to.'/'.$file, $utf8from);
@@ -98,8 +98,8 @@ function xpwikifunc_defdata_check ($mydirname, $mode = 'install') {
 						}
 					} else {
 						// wiki pages
-						$_file_exist = file_exists($to.'/'.$file);
-						if (! $_file_exist || filemtime($to.'/'.$file) < $timestamp[$file]) {
+						$_file_exist = is_file($to.'/'.$file);
+						if (! $_file_exist || (isset($timestamp[$file]) && filemtime($to.'/'.$file) < $timestamp[$file])) {
 							if (! isset($xpwiki)) {
 								include_once dirname(dirname(__FILE__)) . '/include.php';
 								$xpwiki = new XpWiki($mydirname);

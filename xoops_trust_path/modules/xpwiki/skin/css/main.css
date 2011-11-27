@@ -26,10 +26,15 @@ $class p {
 }
 
 $class p {
-	margin-left: 1em;
 	margin-top: 1em;
 	margin-bottom: 1em;
 }
+
+$class > p,
+$class div > p {
+	margin-left: 1em;
+}
+
 
 $class blockquote {
 	border: 1px dotted gray;
@@ -297,9 +302,16 @@ $class h6.none {
 	margin: 0;
 }
 
+$class dl {
+	margin-left:1em;
+}
+
 $class dt {
 	font-weight:bold;
 	margin-top:1em;
+}
+
+$class dd {
 	margin-left:1em;
 }
 

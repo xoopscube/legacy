@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/25 by nao-pon http://hypweb.net/
-// $Id: code.inc.php,v 1.22 2011/11/22 09:12:12 nao-pon Exp $
+// $Id: code.inc.php,v 1.23 2011/11/26 12:03:10 nao-pon Exp $
 //
 
 class xpwiki_plugin_code extends xpwiki_plugin {
@@ -94,7 +94,7 @@ class xpwiki_plugin_code extends xpwiki_plugin {
 	function plugin_code_convert()
 	{
 
-		if (file_exists($this->config['codehighlightClassFile']))
+		if (is_file($this->config['codehighlightClassFile']))
 			require_once($this->config['codehighlightClassFile']);
 		else
 			$this->func->die_message('file ' . $this->config['codehighlightClassFile'] . ' not exist or not readable.');
@@ -280,7 +280,7 @@ class xpwiki_plugin_code extends xpwiki_plugin {
 		$md5 = trim($md5);
 
 		$cache = $this->cont['CACHE_DIR'].'plugin/'.$file.(($this->cont['UA_PROFILE'] === 'keitai')? '.k' : '').'.code';
-		if (!file_exists($cache)) {
+		if (!is_file($cache)) {
 			$option['id'] = $md5;
 			return false;
 		}
@@ -481,7 +481,7 @@ class xpwiki_plugin_code extends xpwiki_plugin {
 	{
 		//$lang = $this->cont['PLUGIN_CODE_LANGUAGE']; // default
 
-		//if (! file_exists($filename)) return $lang;
+		//if (! is_file($filename)) return $lang;
 
 		if (! strncasecmp($name, 'makefile', 8))
 			return 'make';

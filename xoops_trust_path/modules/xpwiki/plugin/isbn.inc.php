@@ -2,7 +2,7 @@
 /////////////////////////////////////////////////
 // PukiWiki - Yet another WikiWikiWeb clone.
 //
-// $Id: isbn.inc.php,v 1.16 2010/06/04 07:09:35 nao-pon Exp $
+// $Id: isbn.inc.php,v 1.17 2011/11/26 12:03:10 nao-pon Exp $
 //
 // *0.5: URL が存在しない場合、画像を表示しない。
 //			 Thanks to reimy.
@@ -339,7 +339,7 @@ EOD;
 
 		$error = '';
 
-		if (!file_exists($filename) ||
+		if (!is_file($filename) ||
 			($check && $this->config['ISBN_AMAZON_EXPIRE_TIT'] * 3600 * 24 < $this->cont['UTC'] - filemtime($filename))) {
 			// データを取りに行く
 			include_once XOOPS_TRUST_PATH . '/class/hyp_common/hsamazon/hyp_simple_amazon.php';

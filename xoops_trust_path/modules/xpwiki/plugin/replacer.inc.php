@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2008/03/25 by nao-pon http://hypweb.net/
- * $Id: replacer.inc.php,v 1.4 2009/05/25 04:52:36 nao-pon Exp $
+ * $Id: replacer.inc.php,v 1.5 2011/11/26 12:03:10 nao-pon Exp $
  */
 
 class xpwiki_plugin_replacer extends xpwiki_plugin {
@@ -322,7 +322,7 @@ EOD;
 			$dones = NULL;
 		}
 		if (is_null($dones)) {
-			if (file_exists($this->config['doneCache'])) {
+			if (is_file($this->config['doneCache'])) {
 				$dones = file($this->config['doneCache']);
 				$dones = array_map('trim', $dones);
 			} else {

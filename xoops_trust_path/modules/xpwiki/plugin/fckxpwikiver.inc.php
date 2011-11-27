@@ -2,7 +2,7 @@
 /*
  * Created on 2008/12/05 by nao-pon http://hypweb.net/
  * License: GPL v2 or (at your option) any later version
- * $Id: fckxpwikiver.inc.php,v 1.2 2009/06/30 23:35:18 nao-pon Exp $
+ * $Id: fckxpwikiver.inc.php,v 1.3 2011/11/26 12:03:10 nao-pon Exp $
  */
 class xpwiki_plugin_fckxpwikiver extends xpwiki_plugin {
 
@@ -23,7 +23,7 @@ class xpwiki_plugin_fckxpwikiver extends xpwiki_plugin {
 		
 		$c_file = $this->cont['CACHE_DIR'] . 'plugin/fckxpwikiver.dat';
 		
-		if (file_exists($c_file) && filemtime($c_file) + $this->time_limit > $this->cont['UTC']) {
+		if (is_file($c_file) && filemtime($c_file) + $this->time_limit > $this->cont['UTC']) {
 			return file_get_contents($c_file);
 		}
 		

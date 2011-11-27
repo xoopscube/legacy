@@ -2,7 +2,7 @@
 /////////////////////////////////////////////////
 // PukiWiki - Yet another WikiWikiWeb clone.
 //
-//  $Id: attach.inc.php,v 1.61 2011/11/06 05:08:01 nao-pon Exp $
+//  $Id: attach.inc.php,v 1.62 2011/11/26 12:03:10 nao-pon Exp $
 //  ORG: attach.inc.php,v 1.31 2003/07/27 14:15:29 arino Exp $
 //
 /*
@@ -407,7 +407,7 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 			if ( is_uploaded_file($tmpname) )
 			{
 				$_pagecss_file = $this->cont['CACHE_DIR'].$this->func->get_pgid_by_name($page).".css";
-				if (file_exists($_pagecss_file)) unlink($_pagecss_file);
+				if (is_file($_pagecss_file)) unlink($_pagecss_file);
 				if (move_uploaded_file($tmpname,$_pagecss_file))
 				{
 					$this->attach_chmod($_pagecss_file);
@@ -512,7 +512,7 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 				}
 				return array('result'=>FALSE, 'msg'=>$this->root->_attach_messages['err_exists']);
 			}
-			if (file_exists($obj->filename)) {
+			if (is_file($obj->filename)) {
 				unlink($obj->filename);
 				$_action = "update";
 			}
@@ -817,7 +817,7 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 		$imagesize = $status['imagesize'];
 		$type = 'application/octet-stream'; //default
 
-		if (!file_exists($filename))
+		if (!is_file($filename))
 		{
 			return $type;
 		}

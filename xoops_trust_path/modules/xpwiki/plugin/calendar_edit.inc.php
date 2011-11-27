@@ -6,7 +6,7 @@ class xpwiki_plugin_calendar_edit extends xpwiki_plugin {
 
 	}
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: calendar_edit.inc.php,v 1.1 2006/10/13 13:17:49 nao-pon Exp $
+	// $Id: calendar_edit.inc.php,v 1.2 2011/11/26 12:03:10 nao-pon Exp $
 	// Copyright (C)
 	//   2003,2005 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -18,7 +18,7 @@ class xpwiki_plugin_calendar_edit extends xpwiki_plugin {
 	{
 	//	global $command;
 	
-		if (! file_exists($this->cont['PLUGIN_DIR'] . 'calendar.inc.php')) return FALSE;
+		if (! is_file($this->cont['PLUGIN_DIR'] . 'calendar.inc.php')) return FALSE;
 	
 		require_once $this->cont['PLUGIN_DIR'] . 'calendar.inc.php';
 		if (! function_exists('plugin_calendar_convert')) return FALSE;

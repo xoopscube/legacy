@@ -1,5 +1,5 @@
 <?php
-// $Id: moblog.inc.php,v 1.23 2011/11/22 09:12:12 nao-pon Exp $
+// $Id: moblog.inc.php,v 1.24 2011/11/26 12:03:10 nao-pon Exp $
 // Author: nao-pon http://hypweb.net/
 // Bace script is pop.php of mailbbs by Let's PHP!
 // Let's PHP! Web: http://php.s3.to/
@@ -134,7 +134,7 @@ class xpwiki_plugin_moblog extends xpwiki_plugin {
 
 
 		$chk_file = $this->cont['CACHE_DIR']."moblog.chk";
-		if (! file_exists($chk_file)) {
+		if (! is_file($chk_file)) {
 			touch($chk_file);
 		} else if ($refresh_min * 60 > $this->cont['UTC'] - filemtime($chk_file) && empty($this->root->vars['now'])) {
 			$this->plugin_moblog_output();

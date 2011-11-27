@@ -1,6 +1,6 @@
 <?php
 // PukiWiki - Yet another WikiWikiWeb clone.
-// $Id: amazon.inc.php,v 1.13 2010/01/08 13:52:09 nao-pon Exp $
+// $Id: amazon.inc.php,v 1.14 2011/11/26 12:03:10 nao-pon Exp $
 // Id: amazon.inc.php,v 1.1 2003/07/24 13:00:00 閑舎
 //
 // Amazon plugin: Book-review maker via amazon.com/amazon.jp
@@ -310,11 +310,11 @@ EOD;
 		$nocache = $nocachable = 0;
 		$error = $title = $image = $creator = '';
 
-		$cache_dir = $this->cont['CACHE_DIR'] . 'plugin/';
+		$cache_dir = $this->cont['CACHE_DIR'] . 'plugin';
 
-		if (file_exists($cache_dir) === FALSE || is_writable($cache_dir) === FALSE) $nocachable = 1; // キャッシュ不可の場合
+		if (is_dir($cache_dir) === FALSE || is_writable($cache_dir) === FALSE) $nocachable = 1; // キャッシュ不可の場合
 
-		$dat = $this->plugin_amazon_cache_fetch($cache_dir, $asin);
+		$dat = $this->plugin_amazon_cache_fetch($cache_dir.'/', $asin);
 
 		if ($dat && count($dat) === 3) {
 			list($title, $image, $author) = $dat;

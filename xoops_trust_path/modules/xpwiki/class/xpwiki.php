@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/09/29 by nao-pon http://hypweb.net/
-// $Id: xpwiki.php,v 1.100 2011/10/28 13:55:57 nao-pon Exp $
+// $Id: xpwiki.php,v 1.101 2011/11/26 12:03:10 nao-pon Exp $
 //
 
 class XpWiki {
@@ -58,7 +58,7 @@ class XpWiki {
 		$this->db =& $this->func->get_db_connection();
 
 		// Check pukiwiki.ini.php
-		if (! $this->root->module['checkRight'] || ! file_exists($this->cont['DATA_HOME'] . 'private/ini/pukiwiki.ini.php')) {
+		if (! $this->root->module['checkRight'] || ! is_file($this->cont['DATA_HOME'] . 'private/ini/pukiwiki.ini.php')) {
 			$this->isXpWiki = FALSE;
 		}
 
@@ -289,7 +289,7 @@ class XpWiki {
 
 	function catbody () {
 		// Check Skin name
-		if (! file_exists($this->cont['SKIN_FILE']) || $this->root->runmode === 'xoops_admin') {
+		if (! is_file($this->cont['SKIN_FILE']) || $this->root->runmode === 'xoops_admin') {
 			$this->cont['SKIN_NAME'] = 'default';
 			$this->cont['SKIN_DIR'] = 'skin/' . $this->cont['SKIN_NAME'] . '/';
 			$this->cont['SKIN_FILE'] = $this->cont['DATA_HOME'] . $this->cont['SKIN_DIR'] . 'pukiwiki.skin.php';
@@ -303,7 +303,7 @@ class XpWiki {
 					//tDiary's theme
 					$theme_name = substr($this->cont['SKIN_NAME'],3);
 					$theme_css = $this->cont['DATA_HOME'] . $this->cont['TDIARY_DIR'] . $theme_name . '/' . $theme_name . '.css';
-					if (file_exists($theme_css)) {
+					if (is_file($theme_css)) {
 						$this->cont['SKIN_FILE'] = $this->cont['DATA_HOME'] . $this->cont['TDIARY_DIR'] . 'tdiary.skin.php';
 						$this->cont['TDIARY_THEME'] =  $theme_name;
 					}
@@ -311,7 +311,7 @@ class XpWiki {
 					//PukiWiki's skin
 					$skindir = "skin/" . $this->cont['SKIN_NAME'] . "/";
 					$skin = $this->cont['DATA_HOME'] . $skindir . 'pukiwiki.skin.php';
-					if (file_exists($skin)) {
+					if (is_file($skin)) {
 						$this->cont['SKIN_DIR'] = $skindir;
 						$this->cont['SKIN_FILE'] = $skin;
 					}
@@ -326,7 +326,7 @@ class XpWiki {
 				$skindir = 'skin/' . $this->cont['SKIN_NAME'] . '/';
 			}
 			$skin = $this->cont['DATA_HOME'] . $skindir . 'print.skin.php';
-			if (file_exists($skin)) {
+			if (is_file($skin)) {
 				$this->cont['SKIN_DIR'] = $skindir;
 				$this->cont['SKIN_FILE'] = $skin;
 			} else {
@@ -443,7 +443,7 @@ class XpWiki {
 					//PukiWiki's skin
 					$skindir = "skin/" . $this->cont['SKIN_NAME'] . "/";
 					$skin = $this->cont['DATA_HOME'] . $skindir . 'pukiwiki.skin.php';
-					if (file_exists($skin)) {
+					if (is_file($skin)) {
 						$this->cont['SKIN_DIR'] = $skindir;
 					}
 				}
@@ -527,7 +527,7 @@ EOD;
 				$op .= serialize($this->iniVar['const']);
 			}
 			$cache = $this->cont['RENDER_CACHE_DIR'] . 'render_' . sha1($text.$op) . '.' .  $this->cont['UI_LANG'] . (($this->cont['UA_PROFILE'] === 'default')? '' : '.' . $this->cont['UA_PROFILE']);
-			if (file_exists($cache) &&
+			if (is_file($cache) &&
 				@ filemtime($this->cont['CACHE_DIR'] . 'pagemove.time') < filemtime($cache) &&
 				(empty($this->root->render_cache_min) || ((filemtime($cache) +  $this->root->render_cache_min * 60) > $this->cont['UTC']))
 			) {

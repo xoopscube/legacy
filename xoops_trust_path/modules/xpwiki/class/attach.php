@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2008/03/24 by nao-pon http://hypweb.net/
- * $Id: attach.php,v 1.35 2011/11/22 09:12:12 nao-pon Exp $
+ * $Id: attach.php,v 1.36 2011/11/26 12:03:10 nao-pon Exp $
  */
 
 //-------- クラス
@@ -56,7 +56,7 @@ class XpWikiAttachFile
 			$this->exist = TRUE;
 			$this->time = $this->dbinfo['mtime'];
 		} else {
-			$this->exist = file_exists($this->filename);
+			$this->exist = is_file($this->filename);
 			$this->time = $this->exist ? filemtime($this->filename) - $this->cont['LOCALZONE'] : 0;
 		}
 		$this->owner_id = 0;
@@ -150,7 +150,7 @@ class XpWikiAttachFile
 	// ファイル情報取得
 	function getstatus()
 	{
-		if (! $this->exist && ! file_exists($this->logname)) {
+		if (! $this->exist && ! is_file($this->logname)) {
 			return FALSE;
 		} else {
 			// ログファイル取得
@@ -575,7 +575,7 @@ EOD;
 			$this->status['age'] = max(array_keys($this->status['count']));
 			do {
 				$age = ++$this->status['age'];
-			} while (file_exists($this->basename.'.'.$age));
+			} while (is_file($this->basename.'.'.$age));
 
 			if (!rename($this->basename,$this->basename.'.'.$age)) {
 				// 削除失敗 why?
@@ -617,7 +617,7 @@ EOD;
 		$this->status['org_fname'] = $newname;
 
 		$newbase = $this->cont['UPLOAD_DIR'] . $this->func->encode($this->page) . '_' . $this->func->encode($fname);
-		if (file_exists($newbase)) {
+		if (is_file($newbase)) {
 			return array('msg'=>$this->root->_attach_messages['err_exists']);
 		}
 		if (! $this->cont['PLUGIN_ATTACH_RENAME_ENABLE'] || ! rename($this->basename, $newbase)) {
@@ -634,7 +634,7 @@ EOD;
 		$this->filename = $this->basename;
 		$this->logname  = $this->basename . '.log';
 
-		if (file_exists($this->logname)) {
+		if (is_file($this->logname)) {
 			// found backup
 			$_arr = file($this->logname);
 			$counts = explode(',', rtrim($_arr[0]));
@@ -873,7 +873,7 @@ EOD;
 		for ($i = 1; $i < 100; $i++)
 		{
 			$file = $root . $i . '_' . $_file;
-			if (file_exists($file))
+			if (is_file($file))
 			{
 				unlink($file);
 			}
@@ -892,7 +892,7 @@ EOD;
 			$base    = $root.$this->func->encode($i."%");
 			$file    = $base.$this->func->encode($this->file);
 			$newfile = $base.$this->func->encode($newname);
-			if (file_exists($file))
+			if (is_file($file))
 			{
 				rename($file, $newfile);
 			}

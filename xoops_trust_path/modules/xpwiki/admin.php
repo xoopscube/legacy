@@ -19,10 +19,10 @@ require XOOPS_ROOT_PATH.'/include/cp_functions.php' ;
 
 // language files (admin.php)
 $language = empty( $xoopsConfig['language'] ) ? 'english' : $xoopsConfig['language'] ;
-if( file_exists( "$mydirpath/language/$language/admin.php" ) ) {
+if( is_file( "$mydirpath/language/$language/admin.php" ) ) {
 	// user customized language file
 	include_once "$mydirpath/language/$language/admin.php" ;
-} else if( file_exists( "$mytrustdirpath/language/$language/admin.php" ) ) {
+} else if( is_file( "$mytrustdirpath/language/$language/admin.php" ) ) {
 	// default language file
 	include_once "$mytrustdirpath/language/$language/admin.php" ;
 } else {
@@ -35,9 +35,9 @@ if( ! empty( $_GET['lib'] ) ) {
 	$lib = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , $_GET['lib'] ) ;
 	$page = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , @$_GET['page'] ) ;
 	
-	if( file_exists( XOOPS_TRUST_PATH.'/libs/'.$lib.'/'.$page.'.php' ) ) {
+	if( is_file( XOOPS_TRUST_PATH.'/libs/'.$lib.'/'.$page.'.php' ) ) {
 		include XOOPS_TRUST_PATH.'/libs/'.$lib.'/'.$page.'.php' ;
-	} else if( file_exists( XOOPS_TRUST_PATH.'/libs/'.$lib.'/index.php' ) ) {
+	} else if( is_file( XOOPS_TRUST_PATH.'/libs/'.$lib.'/index.php' ) ) {
 		include XOOPS_TRUST_PATH.'/libs/'.$lib.'/index.php' ;
 	} else {
 		die( 'wrong request' ) ;
@@ -46,9 +46,9 @@ if( ! empty( $_GET['lib'] ) ) {
 	// fork each pages of this module
 	$page = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , @$_GET['page'] ) ;
 	
-	if( file_exists( "$mytrustdirpath/admin/$page.php" ) ) {
+	if( is_file( "$mytrustdirpath/admin/$page.php" ) ) {
 		include "$mytrustdirpath/admin/$page.php" ;
-	} else if( file_exists( "$mytrustdirpath/admin/index.php" ) ) {
+	} else if( is_file( "$mytrustdirpath/admin/index.php" ) ) {
 		include "$mytrustdirpath/admin/index.php" ;
 	} else {
 		die( 'wrong request' ) ;

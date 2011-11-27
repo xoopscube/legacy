@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/11/17 by nao-pon http://hypweb.net/
-// $Id: dbsync.inc.php,v 1.43 2011/07/29 07:14:25 nao-pon Exp $
+// $Id: dbsync.inc.php,v 1.44 2011/11/26 12:03:10 nao-pon Exp $
 //
 
 class xpwiki_plugin_dbsync extends xpwiki_plugin {
@@ -63,7 +63,7 @@ class xpwiki_plugin_dbsync extends xpwiki_plugin {
 			$not = array();
 			foreach(array("i","c","p","a") as $type)
 			{
-				if (file_exists($this->cont['CACHE_DIR']."dbsync_".$type.".dat"))
+				if (is_file($this->cont['CACHE_DIR']."dbsync_".$type.".dat"))
 				{
 					$not[$type] = '<span style="color:red;font-weight:bold;"> *</span>';
 				}
@@ -268,7 +268,7 @@ __EOD__;
 			$work = $this->cont['CACHE_DIR']."dbsync_i.dat";
 			$domix = $dones = array();
 			$done = 0;
-			if (file_exists($work))
+			if (is_file($work))
 			{
 				$dones = unserialize(file_get_contents($work));
 				if (!isset($dones[1])) $dones[1] = array();
@@ -469,7 +469,7 @@ __EOD__;
 			$work = $this->cont['CACHE_DIR']."dbsync_c.dat";
 			$domix = $dones = array();
 			$done = 0;
-			if (file_exists($work))
+			if (is_file($work))
 			{
 				$dones = unserialize(file_get_contents($work));
 				if (!isset($dones[1])) $dones[1] = array();
@@ -511,7 +511,7 @@ __EOD__;
 
 				$page = $this->func->decode(trim(preg_replace("/\.count$/"," ",$file)));
 				// 存在しないページ
-				if ($page === $this->root->whatsnew || !file_exists($this->cont['DATA_DIR'].$this->func->encode($page).".txt"))
+				if ($page === $this->root->whatsnew || !is_file($this->cont['DATA_DIR'].$this->func->encode($page).".txt"))
 				{
 					@unlink($this->cont['COUNTER_DIR'].$file);
 					$dones[0][] = $file;
@@ -594,7 +594,7 @@ __EOD__;
 			$work = $this->cont['CACHE_DIR']."dbsync_p.dat";
 			$domix = $dones = array();
 			$done = 0;
-			if (file_exists($work))
+			if (is_file($work))
 			{
 				$dones = unserialize(file_get_contents($work));
 				if (!isset($dones[1])) $dones[1] = array();
@@ -733,7 +733,7 @@ __EOD__;
 			$work = $this->cont['CACHE_DIR']."dbsync_a.dat";
 			$domix = $dones = array();
 			$done = 0;
-			if (file_exists($work))
+			if (is_file($work))
 			{
 				$dones = unserialize(file_get_contents($work));
 				if (!isset($dones[1])) $dones[1] = array();

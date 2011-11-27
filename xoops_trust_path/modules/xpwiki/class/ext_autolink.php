@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2007/04/23 by nao-pon http://hypweb.net/
- * $Id: ext_autolink.php,v 1.33 2011/06/01 04:14:57 nao-pon Exp $
+ * $Id: ext_autolink.php,v 1.34 2011/11/26 12:03:10 nao-pon Exp $
  */
 class XpWikiPukiExtAutoLink {
 	// External AutoLinks
@@ -145,7 +145,7 @@ class XpWikiPukiExtAutoLink {
 
 		$cache_min = intval(max($autolink['cache'], 10));
 		// 自己xpWiki以外 & キャッシュあり & キャッシュが有効範囲
-		if ($this->ext_autolink_own !== '' && file_exists($cache) && filemtime($cache) + $cache_min * 60 > $this->cont['UTC']) {
+		if ($this->ext_autolink_own !== '' && is_file($cache) && filemtime($cache) + $cache_min * 60 > $this->cont['UTC']) {
 			$pat = file_get_contents($cache);
 			if ($this->ext_autolink_own !== false) {
 					$obj = & XpWiki::getInitedSingleton($this->ext_autolink_own);

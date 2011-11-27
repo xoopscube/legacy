@@ -9,7 +9,7 @@ header("Last-Modified: ".date('r',intval(time()/$icon_cache_limit)*$icon_cache_l
 header("Content-type: image/png");
 
 // custom icon
-if( file_exists( $mydirpath.'/module_icon.png' ) ) {
+if( is_file( $mydirpath.'/module_icon.png' ) ) {
 	$draw_dirname = false ;
 	$icon_fullpath = $mydirpath.'/module_icon.png' ;
 } else {

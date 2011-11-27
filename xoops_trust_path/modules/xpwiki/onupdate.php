@@ -33,7 +33,7 @@ function xpwiki_onupdate_base( $module , $mydirname )
 		if( file_exists( $sql_file_path ) ) {
 			$ret[] = "SQL file found at <b>".htmlspecialchars($sql_file_path)."</b>.<br /> Creating tables...";
 
-			if( file_exists( XOOPS_ROOT_PATH.'/class/database/oldsqlutility.php' ) ) {
+			if( is_file( XOOPS_ROOT_PATH.'/class/database/oldsqlutility.php' ) ) {
 				include_once XOOPS_ROOT_PATH.'/class/database/oldsqlutility.php' ;
 				$sqlutil =& new OldSqlUtility ;
 			} else {

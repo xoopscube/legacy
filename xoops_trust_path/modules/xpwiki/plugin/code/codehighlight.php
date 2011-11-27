@@ -71,11 +71,11 @@ class XpWikiCodeHighlight {
             // ライン表示用補正
             $src = preg_replace('/^$/m',' ',$src);
         }
-		if (file_exists(dirname(__FILE__).'/keyword.'.$lang.'.php')) {
+		if (is_file(dirname(__FILE__).'/keyword.'.$lang.'.php')) {
 			// 言語定義ファイルが有る言語
 			$data = $this->srcToHTML($src, $lang, $option, $end, $begin);
 			$src = '<pre class="code"><code class="'.$lang.'">'.$data['src'].'</code></pre>';
-		} else if (file_exists(dirname(__FILE__).'/line.'.$lang.'.php')) {
+		} else if (is_file(dirname(__FILE__).'/line.'.$lang.'.php')) {
 			// 行指向解析設定ファイルが有る言語
 			$data = $this->lineToHTML($src, $lang, $option, $end, $begin);
 			$src = '<pre class="code"><code class="'.$lang.'">'.$data['src'].'</code></pre>';

@@ -1,5 +1,5 @@
 <?php
-// $Id: ref.inc.php,v 1.59 2011/11/22 09:20:38 nao-pon Exp $
+// $Id: ref.inc.php,v 1.60 2011/11/26 12:03:10 nao-pon Exp $
 /*
 
 	*プラグイン ref
@@ -134,7 +134,7 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 			return array('header' => 'HTTP/1.0 403 Forbidden', 'msg' => '403 Forbidden.');
 		}
 
-		if(! file_exists($ref)) {
+		if(! is_file($ref)) {
 			return array('header' => 'HTTP/1.0 404 Not Found', 'msg' => 'File Not Found.');
 		}
 
@@ -1385,7 +1385,7 @@ _HTML_;
 			'imagesize'=> NULL,
 			'noinline' => 0
 		);
-		if (file_exists($file.'.log'))
+		if (is_file($file.'.log'))
 		{
 			$data = array_pad(file($file.'.log'), count($status), '');
 			foreach ($status as $key=>$value)
@@ -1427,7 +1427,7 @@ _HTML_;
 
 		$cache = FALSE;
 		$size = array();
-		if (!file_exists($filename)) {
+		if (!is_file($filename)) {
 			$ht = new Hyp_HTTP_Request();
 			$ht->init();
 			$ht->ua = 'Mozilla/5.0';

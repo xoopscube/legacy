@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/16 by nao-pon http://hypweb.net/
-// $Id: compat.php,v 1.13 2011/10/28 13:17:29 nao-pon Exp $
+// $Id: compat.php,v 1.14 2011/11/26 12:03:10 nao-pon Exp $
 //
 
 // const
@@ -10,7 +10,7 @@ if (! defined('FILE_USE_INCLUDE_PATH')) define('FILE_USE_INCLUDE_PATH', 1);
 
 //// mbstring ////
 if (! extension_loaded('mbstring') && ! XC_CLASS_EXISTS('HypMBString')) {
-	if (file_exists(XOOPS_TRUST_PATH . '/class/hyp_common/mbemulator/mb-emulator.php')) {
+	if (is_file(XOOPS_TRUST_PATH . '/class/hyp_common/mbemulator/mb-emulator.php')) {
 		require_once(XOOPS_TRUST_PATH . '/class/hyp_common/mbemulator/mb-emulator.php');
 	} else {
 		require_once(dirname(__FILE__) . '/mbstring.php');
@@ -54,7 +54,7 @@ if (! function_exists('md5_file')) {
 
 	function md5_file($filename)
 	{
-		if (! file_exists($filename)) return FALSE;
+		if (! is_file($filename)) return FALSE;
 
 		$fd = fopen($filename, 'rb');
 		if ($fd === FALSE ) return FALSE;
@@ -94,7 +94,7 @@ function file_get_contents($filename, $incpath = false, $resource_context = null
  * @copyright   2004-2007 Aidan Lister <aidan@php.net>, Arpad Ray <arpad@php.net>
  * @link        http://php.net/function.file_put_contents
  * @author      Aidan Lister <aidan@php.net>
- * @version     $Revision: 1.13 $
+ * @version     $Revision: 1.14 $
  * @internal    resource_context is not supported
  * @since       PHP 5
  * @require     PHP 4.0.0 (user_error)

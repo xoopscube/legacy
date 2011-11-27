@@ -2,9 +2,9 @@
 
 $_parentdirname = dirname(__FILE__);
 // language file (modinfo.php)
-if( file_exists( $_parentdirname.'/language/'.@$xoopsConfig['language'].'/modinfo.php' ) ) {
+if( is_file( $_parentdirname.'/language/'.@$xoopsConfig['language'].'/modinfo.php' ) ) {
 	include $_parentdirname.'/language/'.@$xoopsConfig['language'].'/modinfo.php' ;
-} else if( file_exists( $_parentdirname.'/language/english/modinfo.php' ) ) {
+} else if( is_file( $_parentdirname.'/language/english/modinfo.php' ) ) {
 	include $_parentdirname.'/language/english/modinfo.php' ;
 }
 $constpref = '_MI_' . strtoupper( $mydirname ) ;
@@ -42,6 +42,11 @@ $modversion['hasMain'] = 1 ;
 
 // There are no submenu (use menu moudle instead of mainmenu)
 $modversion['sub'] = array() ;
+if (@$GLOBALS['Xpwiki_'.$mydirname]['is_admin']) {
+	$modversion['sub'][] = array(
+		'name' => constant($constpref . '_ADMIN_TOOLS').' <img width="16" height="16" alt="Admin tools" src="skin/loader.php?src=cog.png">' ,
+		'url'  => '?:AdminTools' );
+}
 
 // All Templates can't be touched by modulesadmin.
 $modversion['templates'] = array() ;

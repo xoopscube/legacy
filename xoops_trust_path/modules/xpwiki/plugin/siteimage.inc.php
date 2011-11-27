@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2007/11/16 by nao-pon http://hypweb.net/
- * $Id: siteimage.inc.php,v 1.6 2009/10/22 08:41:10 nao-pon Exp $
+ * $Id: siteimage.inc.php,v 1.7 2011/11/26 12:03:10 nao-pon Exp $
  */
 
 class xpwiki_plugin_siteimage extends xpwiki_plugin {
@@ -125,7 +125,7 @@ class xpwiki_plugin_siteimage extends xpwiki_plugin {
 		$thumb_file = $this->cont['CACHE_DIR'] . 'ASIN_SITEIMAGE_' . $sha1 . '_' . $prm_size . '.jpg';
 		
 		$cache = $this->cont['CACHE_DIR'] . 'plugin/' . $sha1 . '.siteimage';
-		$is_new = (!file_exists($cache));
+		$is_new = (!is_file($cache));
 		if ($is_new || ($count < $this->get_max_once && filemtime($cache) + $this->cache_day * 86400 < $this->cont['UTC'])) {
 			
 			$count ++;
@@ -154,7 +154,7 @@ class xpwiki_plugin_siteimage extends xpwiki_plugin {
 			}
 		}
 		
-		if (!file_exists($thumb_file)) {
+		if (!is_file($thumb_file)) {
 			copy($cache, $thumb_file);
 			HypCommonFunc::ImageResize($thumb_file, $size);
 			HypCommonFunc::ImageMagickRoundCorner($thumb_file, '', 5, 2);

@@ -195,7 +195,7 @@ class xpwiki_plugin_tag extends xpwiki_plugin {
 	}
 
 }
-	// $Id: tag.inc.php,v 1.16 2010/06/23 08:12:19 nao-pon Exp $
+	// $Id: tag.inc.php,v 1.17 2011/11/26 12:03:10 nao-pon Exp $
 
 class XpWikiPluginTag
 {
@@ -247,7 +247,7 @@ class XpWikiPluginTag
 	function read_tagcloud($limit = NULL)
 	{
 		$cache = $this->cont['CACHE_DIR'] . 'plugin/tagcloud.tag';
-		if (! file_exists($cache)) return array();
+		if (! is_file($cache)) return array();
 
 		//if (isset($limit))
 		//$lines = file_head($cache, $limit); // pukiwiki API
@@ -355,12 +355,12 @@ class XpWikiPluginTag
 
 		$tag = array_shift($tags);
 		$storage = $this->get_tagstorage($tag);
-		if (! file_exists($storage)) return FALSE;
+		if (! is_file($storage)) return FALSE;
 		$pages = array_map('rtrim', file($storage));
 		if (! $noenhance) {
 			foreach ($tags as $i => $tag) {
 				$storage = $this->get_tagstorage($tag);
-				if (! file_exists($storage)) return FALSE;
+				if (! is_file($storage)) return FALSE;
 				$intersect	= array_intersect($pages, array_map('rtrim', file($storage)));
 				switch ($ops[$i]) {
 				case 'intersect':
@@ -395,7 +395,7 @@ class XpWikiPluginTag
 	{
 		$pagestamp	= $this->func->is_page($page) ? filemtime($this->func->get_filename($page)) : 0;
 		$cache		= $this->get_pagestorage($page);
-		$cachestamp = file_exists($cache) ? filemtime($cache) : 0;
+		$cachestamp = is_file($cache) ? filemtime($cache) : 0;
 		return $pagestamp > $cachestamp;
 	}
 
@@ -413,7 +413,7 @@ class XpWikiPluginTag
 	function del_page($tag, $page)
 	{
 		$storage = $this->get_tagstorage($tag);
-		if (! file_exists($storage)) return FALSE;
+		if (! is_file($storage)) return FALSE;
 		$pages = file($storage);
 		$pages = array_diff($pages, array($this->func->get_pgid_by_name($page) . "\n"));
 		if (empty($pages)) {
@@ -428,7 +428,7 @@ class XpWikiPluginTag
 	{
 		$storage = $this->get_tagstorage($tag);
 		$pages = array();
-		if (file_exists($storage)) {
+		if (is_file($storage)) {
 			$pages = file($storage);
 		}
 		array_push($pages, $this->func->get_pgid_by_name($page) . "\n");
@@ -440,7 +440,7 @@ class XpWikiPluginTag
 	function get_tag_diff($page, $newtags)
 	{
 		$storage = $this->get_pagestorage($page);
-		if (! file_exists($storage)) {
+		if (! is_file($storage)) {
 			$oldtags = array();
 		} else {
 			$oldtags = array_map('rtrim', file($storage));

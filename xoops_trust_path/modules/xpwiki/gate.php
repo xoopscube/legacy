@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2007/06/29 by nao-pon http://hypweb.net/
- * $Id: gate.php,v 1.10 2011/11/04 06:43:28 nao-pon Exp $
+ * $Id: gate.php,v 1.11 2011/11/26 12:03:10 nao-pon Exp $
  */
 
 /*
@@ -43,7 +43,7 @@ if ($way === 'w2x' && (version_compare(PHP_VERSION, '5.0.0', '>='))) {
 }
 
 $file_php = $mytrustdirpath . '/ways/' . $way . '.php';
-if (file_exists($file_php)) {
+if (is_file($file_php)) {
 	include $file_php;
 } else {
 	xpWikiGate_goOut(204);

@@ -2,7 +2,7 @@
 /*
  * Created on 2009/01/19 by nao-pon http://hypweb.net/
  * License: GPL v2 or (at your option) any later version
- * $Id: relatedview.inc.php,v 1.2 2009/03/13 08:18:49 nao-pon Exp $
+ * $Id: relatedview.inc.php,v 1.3 2011/11/26 12:03:10 nao-pon Exp $
  */
 
 // #relatedview([noautolink][,nowikiname][,eachpage][,search:<PageName or Regex with "#">][,nosearch:<PageName or Regex with "#">])
@@ -104,7 +104,7 @@ class xpwiki_plugin_relatedview extends xpwiki_plugin {
 		if(! empty($args['nosearch']) && !preg_match('/^#.*#$/', $args['nosearch']))
 			$args['nosearch'] = '#^'.preg_quote($this->func->get_fullname($args['nosearch'], $category), '#').'#';
 		$follow_wikiname = !$this->root->nowikiname && !$args['nowikiname'] && preg_match('/^'.$this->root->WikiName.'$/', $category);
-		$follow_autolink = $this->root->autolink && !$args['noautolink'] && file_exists($this->cont['CACHE_DIR'] . 'autolink.dat');
+		$follow_autolink = $this->root->autolink && !$args['noautolink'] && is_file($this->cont['CACHE_DIR'] . 'autolink.dat');
 		if($follow_autolink){
 			$fp = fopen($this->cont['CACHE_DIR'] . 'autolink.dat', 'r');
 			flock($fp, LOCK_SH);

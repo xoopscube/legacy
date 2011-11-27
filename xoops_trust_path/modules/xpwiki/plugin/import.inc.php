@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2007/05/22 by nao-pon http://hypweb.net/
- * $Id: import.inc.php,v 1.12 2008/11/17 02:34:23 nao-pon Exp $
+ * $Id: import.inc.php,v 1.13 2011/11/26 12:03:10 nao-pon Exp $
  */
 
 class xpwiki_plugin_import extends xpwiki_plugin {
@@ -54,8 +54,8 @@ class xpwiki_plugin_import extends xpwiki_plugin {
 		if ($dh = opendir($dir)) {
 			while (($item = readdir($dh)) !== false) {
 				if (is_dir($dir.'/'.$item)) {
-					if (file_exists($dir.'/'.$item.'/pukiwiki.ini.php')) {
-						if (file_exists($dir.'/'.$item.'/db_func.php')) {
+					if (is_file($dir.'/'.$item.'/pukiwiki.ini.php')) {
+						if (is_file($dir.'/'.$item.'/db_func.php')) {
 							$items[$item] = 'pwm';
 						} else {
 							$items[$item] = 'bwiki';
@@ -343,7 +343,7 @@ EOD;
 				}
 				
 				if ($op['keep_page'] === 2) {
-					if (file_exists($to.$newfile)) continue;
+					if (is_file($to.$newfile)) continue;
 				}
 				
 				// target_page check
@@ -425,7 +425,7 @@ EOD;
 		}
 		
 		// 要書式コンバートページデータファイル作成
-		if (file_exists($this->cont['CACHE_DIR'].'convert.import')) {
+		if (is_file($this->cont['CACHE_DIR'].'convert.import')) {
 			$_pages = file($this->cont['CACHE_DIR'].'convert.import');
 			$_pages = array_map('trim', $_pages);
 			array_shift($_pages);
@@ -448,7 +448,7 @@ EOD;
 		if ($_files) {
 			return $this->do_more_form ('do_copy', $this->msg['more_copy_note'], count($_files));
 		}
-		if (file_exists($this->cont['CACHE_DIR'].'convert.import')) {
+		if (is_file($this->cont['CACHE_DIR'].'convert.import')) {
 			if ($op['type'] === 'pwm') {
 				$this->set_pgid($op);
 			}

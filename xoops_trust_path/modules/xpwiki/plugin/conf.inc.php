@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2008/01/24 by nao-pon http://hypweb.net/
- * $Id: conf.inc.php,v 1.26 2011/11/17 00:00:15 nao-pon Exp $
+ * $Id: conf.inc.php,v 1.27 2011/11/26 12:03:10 nao-pon Exp $
  */
 
 class xpwiki_plugin_conf extends xpwiki_plugin {
@@ -595,7 +595,7 @@ EOD;
 			while (false !== ($file = readdir($dir))) {
 				if (is_dir($base.'/'.$file)
 				 && !in_array($file, $nomatch)
-				 && file_exists("{$base}/{$file}/pukiwiki.skin.php")) {
+				 && is_file("{$base}/{$file}/pukiwiki.skin.php")) {
 					$normals[$file] = $file;
 				}
 			}
@@ -608,7 +608,7 @@ EOD;
 			while (false !== ($file = readdir($dir))) {
 				if (is_dir($base.'/'.$file)
 				 && !in_array($file, $nomatch)
-				 && file_exists("{$base}/{$file}/{$file}.css")) {
+				 && is_file("{$base}/{$file}/{$file}.css")) {
 					$tdiarys[$file] = 'tD-' . $file;
 				}
 			}

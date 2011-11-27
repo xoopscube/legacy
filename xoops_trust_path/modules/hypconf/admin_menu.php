@@ -18,6 +18,10 @@ $adminmenu = array(
 	array(
 		'title' => hypconf_constant( $constpref.'_ADMENU_XPWIKI_RENDER' ) ,
 		'link' => 'admin/index.php?mode=admin&page=xpwiki_render' ,
+	),
+	array(
+		'title' => 'PHP info' ,
+		'link' => 'admin/index.php?mode=admin&page=phpinfo' ,
 	)
 ) ;
 

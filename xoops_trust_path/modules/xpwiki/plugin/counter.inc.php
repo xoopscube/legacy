@@ -1,6 +1,6 @@
 <?php
 // PukiWiki - Yet another WikiWikiWeb clone
-// $Id: counter.inc.php,v 1.7 2010/05/03 00:32:57 nao-pon Exp $
+// $Id: counter.inc.php,v 1.8 2011/11/26 12:03:10 nao-pon Exp $
 // Copyright (C)
 //   2002-2005 PukiWiki Developers Team
 //   2002 Y.MASUI GPL2 http://masui.net/pukiwiki/ masui@masui.net
@@ -100,7 +100,7 @@ EOD;
 		}
 
 		//$file = $this->cont['COUNTER_DIR'] . $this->func->encode($page) . $this->cont['PLUGIN_COUNTER_SUFFIX'];
-		//$fp = fopen($file, file_exists($file) ? 'r+' : 'w+')
+		//$fp = fopen($file, is_file($file) ? 'r+' : 'w+')
 		//	or die('counter.inc.php: Cannot open COUTER_DIR/' . basename($file));
 		//if (flock($fp, LOCK_EX)) {
 		//	set_file_buffer($fp, 0);

@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/20 by nao-pon http://hypweb.net/
-// $Id: skin_changer.inc.php,v 1.6 2008/04/18 06:47:26 nao-pon Exp $
+// $Id: skin_changer.inc.php,v 1.7 2011/11/26 12:03:10 nao-pon Exp $
 //
 class xpwiki_plugin_skin_changer extends xpwiki_plugin {
 	function plugin_skin_changer_init () {
@@ -18,7 +18,7 @@ class xpwiki_plugin_skin_changer extends xpwiki_plugin {
 			while (false !== ($file = readdir($dir))) {
 				if (is_dir($base.'/'.$file)
 				 && !in_array($file, $nomatch)
-				 && file_exists("{$base}/{$file}/pukiwiki.skin.php")) {
+				 && is_file("{$base}/{$file}/pukiwiki.skin.php")) {
 					$skins[$file] = $file;
 				}
 			}
@@ -31,7 +31,7 @@ class xpwiki_plugin_skin_changer extends xpwiki_plugin {
 			while (false !== ($file = readdir($dir))) {
 				if (is_dir($base.'/'.$file)
 				 && !in_array($file, $nomatch)
-				 && file_exists("{$base}/{$file}/{$file}.css")) {
+				 && is_file("{$base}/{$file}/{$file}.css")) {
 					$t_skins[$file] = 'tD-'.$file;
 				}
 			}

@@ -5,7 +5,7 @@ class xpwiki_plugin_paint extends xpwiki_plugin {
 
 	// PukiWiki - Yet another WikiWikiWeb clone
 	//
-	// $Id: paint.inc.php,v 1.3 2008/11/18 04:10:40 nao-pon Exp $
+	// $Id: paint.inc.php,v 1.4 2011/11/26 12:03:10 nao-pon Exp $
 	//
 	// Paint plugin
 	
@@ -66,7 +66,7 @@ class xpwiki_plugin_paint extends xpwiki_plugin {
 			$attachname = preg_replace('/^[^\.]+/',$filename,$file['name']);
 			//すでに存在した場合、 ファイル名に'_0','_1',...を付けて回避(姑息)
 			$count = '_0';
-			while (file_exists($this->cont['UPLOAD_DIR'].$this->func->encode($this->root->vars['refer']).'_'.$this->func->encode($attachname)))
+			while (is_file($this->cont['UPLOAD_DIR'].$this->func->encode($this->root->vars['refer']).'_'.$this->func->encode($attachname)))
 			{
 				$attachname = preg_replace('/^[^\.]+/',$filename.$count++,$file['name']);
 			}

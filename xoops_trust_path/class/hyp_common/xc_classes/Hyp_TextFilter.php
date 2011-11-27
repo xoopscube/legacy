@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2011/11/17 by nao-pon http://xoops.hypweb.net/
- * $Id: Hyp_TextFilter.php,v 1.1 2011/11/17 13:52:51 nao-pon Exp $
+ * $Id: Hyp_TextFilter.php,v 1.2 2011/11/27 05:51:58 nao-pon Exp $
  */
 
 class Hyp_TextFilter extends Legacy_TextFilter
@@ -46,6 +46,11 @@ class Hyp_TextFilter extends Legacy_TextFilter
         if ($html) $text = $this->postConvertXCode($text, $xcode, $image);
         return $text;
     }
+
+	// Over write
+	function toPreviewTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1, $x2comat=false) {
+		return $this->toShowTarea($text, $html, $smiley, $xcode, $image, $br, $x2comat, 0);
+	}
 
     // Original function
     function renderWiki_getEscTags () {

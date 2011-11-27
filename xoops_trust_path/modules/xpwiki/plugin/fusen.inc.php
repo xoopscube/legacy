@@ -31,7 +31,7 @@
 //
 // fusen.inc.php for xpWiki by nao-pon
 // http://xoops.hypweb.net
-// $Id: fusen.inc.php,v 1.32 2011/11/22 09:12:12 nao-pon Exp $
+// $Id: fusen.inc.php,v 1.33 2011/11/26 12:03:10 nao-pon Exp $
 //
 
 class xpwiki_plugin_fusen extends xpwiki_plugin {
@@ -519,7 +519,7 @@ EOD;
 	function plugin_fusen_data($page, $convert=true)
 	{
 		$fname = $this->func->encode($page) . '_' . $this->func->encode($this->cont['FUSEN_ATTACH_FILENAME']);
-		if (!file_exists($this->cont['UPLOAD_DIR'] . $fname)) return array();
+		if (!is_file($this->cont['UPLOAD_DIR'] . $fname)) return array();
 		$data = file($this->cont['UPLOAD_DIR'] . $fname);
 
 		$head = trim(array_shift($data));

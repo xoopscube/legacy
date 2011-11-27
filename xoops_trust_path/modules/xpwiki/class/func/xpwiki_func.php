@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/02 by nao-pon http://hypweb.net/
-// $Id: xpwiki_func.php,v 1.244 2011/11/22 09:17:00 nao-pon Exp $
+// $Id: xpwiki_func.php,v 1.245 2011/11/26 12:03:10 nao-pon Exp $
 //
 class XpWikiFunc extends XpWikiXoopsWrapper {
 
@@ -29,11 +29,11 @@ class XpWikiFunc extends XpWikiXoopsWrapper {
 
 		$const['INI_FILE'] = $const['DATA_HOME'] . 'private/ini/pukiwiki.ini.php';
 		$die = '';
-		if (! file_exists($const['INI_FILE']) || ! is_readable($const['INI_FILE'])) {
+		if (! is_file($const['INI_FILE']) || ! is_readable($const['INI_FILE'])) {
 			$die .= 'File is not found. (INI_FILE)' . "\n";
 		} else {
 			require($const['INI_FILE']);
-			if (file_exists($const['CACHE_DIR'] . 'pukiwiki.ini.php')) {
+			if (is_file($const['CACHE_DIR'] . 'pukiwiki.ini.php')) {
 				include ($const['CACHE_DIR'] . 'pukiwiki.ini.php');
 			}
 		}
@@ -77,10 +77,10 @@ class XpWikiFunc extends XpWikiXoopsWrapper {
 	function get_plugin_filename ($name) {
 
 		$files = array();
-		if (file_exists($this->root->mydirpath . '/private/plugin/' . $name . '.inc.php')) {
+		if (is_file($this->root->mydirpath . '/private/plugin/' . $name . '.inc.php')) {
 			$files['user'] = $this->root->mydirpath . '/private/plugin/' . $name . '.inc.php';
 		}
-		if (file_exists($this->root->mytrustdirpath . '/plugin/' . $name . '.inc.php')) {
+		if (is_file($this->root->mytrustdirpath . '/plugin/' . $name . '.inc.php')) {
 			$files['system'] = $this->root->mytrustdirpath . '/plugin/' . $name . '.inc.php';
 		}
 		return $files;
@@ -386,12 +386,12 @@ class XpWikiFunc extends XpWikiXoopsWrapper {
 				foreach($match[1] as $lang) {
 					$lang = strtolower($lang);
 					if ($allowall || in_array(substr($lang, 0, 2), $allows)) {
-						if (file_exists($this->root->mytrustdirpath."/language/xpwiki/{$lang}/lng.php")) {
+						if (is_file($this->root->mytrustdirpath."/language/xpwiki/{$lang}/lng.php")) {
 							return $lang;
 						}
 						if (strpos($lang, '-') !== FALSE) {
 							$lang = preg_replace('/-.+$/', '', $lang);
-							if (file_exists($this->root->mytrustdirpath."/language/xpwiki/{$lang}/lng.php")) {
+							if (is_file($this->root->mytrustdirpath."/language/xpwiki/{$lang}/lng.php")) {
 								return $lang;
 							}
 						}
@@ -490,7 +490,7 @@ class XpWikiFunc extends XpWikiXoopsWrapper {
 		} else {
 			$skin_dir = $this->cont['DATA_HOME'] . 'skin/' . $skin;
 		}
-		if (file_exists($skin_dir)) {
+		if (is_dir($skin_dir)) {
 			$this->root->cookie['skin'] = $skin;
 		} else {
 			$this->root->cookie['skin'] = '';
@@ -542,13 +542,13 @@ class XpWikiFunc extends XpWikiXoopsWrapper {
 			$_uaprofile = $this->cont['UA_PROFILE'];
 			$this->cont['UA_PROFILE'] = 'default';
 
-			if (file_exists($cache_file)) {
+			if (is_file($cache_file)) {
 				$use_cache = TRUE;
 			} else {
 				$use_cache = FALSE;
 			}
 		} else {
-			$use_cache = ($this->root->userinfo['uid'] === 0 && $this->root->pagecache_min > 0 && file_exists($cache_file) && (filemtime($cache_file) + $this->root->pagecache_min * 60) > $this->cont['UTC']);
+			$use_cache = ($this->root->userinfo['uid'] === 0 && $this->root->pagecache_min > 0 && is_file($cache_file) && (filemtime($cache_file) + $this->root->pagecache_min * 60) > $this->cont['UTC']);
 		}
 
 		if ($use_cache) {
@@ -1535,7 +1535,7 @@ class XpWikiFunc extends XpWikiXoopsWrapper {
 
 		$id = $this->get_pgid_by_name($page);
 		$add_file = $this->cont['DIFF_DIR'].$id.".add";
-		if (file_exists($add_file)) {
+		if (is_file($add_file)) {
 			return file_get_contents($add_file);
 		} else {
 			return '';
@@ -1550,7 +1550,7 @@ class XpWikiFunc extends XpWikiXoopsWrapper {
 
 		// トップページ
 		$pgid = $this->get_pgid_by_name($this->root->defaultpage);
-		if (file_exists($this->cont['CACHE_DIR'].$pgid.'.css'))
+		if (is_file($this->cont['CACHE_DIR'].$pgid.'.css'))
 		{
 			$ret .= '<link rel="stylesheet" type="text/css" media="all" href="'.$this->cont['LOADER_URL'].'?'.$block.'src='.$pgid.'.page.css" />'."\n";
 		}
@@ -1560,7 +1560,7 @@ class XpWikiFunc extends XpWikiXoopsWrapper {
 			$_page = ($_page)? $_page."/".$val : $val;
 			if ($_page !== $this->root->defaultpage) {
 				$pgid = $this->get_pgid_by_name($_page);
-				if (file_exists($this->cont['CACHE_DIR'].$pgid.'.css'))
+				if (is_file($this->cont['CACHE_DIR'].$pgid.'.css'))
 				{
 					$ret .= '<link rel="stylesheet" type="text/css" media="all" href="'.$this->cont['LOADER_URL'].'?'.$block.'src='.$pgid.'.page.css" />'."\n";
 				}
@@ -1729,7 +1729,7 @@ class XpWikiFunc extends XpWikiXoopsWrapper {
 	function save_config ($file = '', $section = '', $data = '') {
 		if (!$file || !$data || !$section) return;
 		$file = $this->cont['CACHE_DIR'].$file;
-		if (!file_exists($file)) {
+		if (!is_file($file)) {
 			touch($file);
 			$org = '';
 		} else {
@@ -2229,7 +2229,7 @@ EOD;
 	}
 
 	function isXpWikiDirname ($dirname) {
-		return (preg_match('/^[a-z0-9_-]+$/i', $dirname) && file_exists($this->cont['ROOT_PATH'].$this->cont['MOD_DIR_NAME'].$dirname.'/private/ini/pukiwiki.ini.php'));
+		return (preg_match('/^[a-z0-9_-]+$/i', $dirname) && is_file($this->cont['ROOT_PATH'].$this->cont['MOD_DIR_NAME'].$dirname.'/private/ini/pukiwiki.ini.php'));
 	}
 
 
@@ -3457,7 +3457,7 @@ EOD;
 				$yetlists = array();
 				$notyets = array_keys($pobj->notyets);
 
-				if (file_exists($this->cont['CACHE_DIR']."yetlist.dat"))
+				if (is_file($this->cont['CACHE_DIR']."yetlist.dat"))
 				{
 					$yetlists = unserialize(file_get_contents($this->cont['CACHE_DIR']."yetlist.dat"));
 				}
@@ -4118,7 +4118,7 @@ EOD;
 		// Execute ChaSen/KAKASI, and get annotation
 		switch(strtolower($this->root->pagereading_kanji2kana_converter)) {
 		case 'chasen':
-			if(! file_exists($this->root->pagereading_chasen_path))
+			if(! is_file($this->root->pagereading_chasen_path))
 				$this->die_message('ChaSen not found: ' . $this->root->pagereading_chasen_path);
 
 			$tmpfname = tempnam(realpath($this->cont['CACHE_DIR']), 'PageReading');
@@ -4147,7 +4147,7 @@ EOD;
 
 		case 'kakasi':	/*FALLTHROUGH*/
 		case 'kakashi':
-			if(! file_exists($this->root->pagereading_kakasi_path))
+			if(! is_file($this->root->pagereading_kakasi_path))
 				$this->die_message('KAKASI not found: ' . $this->root->pagereading_kakasi_path);
 
 			$tmpfname = tempnam(realpath($this->cont['CACHE_DIR']), 'PageReading');

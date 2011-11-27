@@ -3,7 +3,7 @@
 $this->root->runmode = "standalone";
 
 // PukiWiki - Yet another WikiWikiWeb clone.
-// $Id: tdiary.skin.php,v 1.34 2009/03/14 09:04:15 nao-pon Exp $
+// $Id: tdiary.skin.php,v 1.35 2011/11/26 12:03:10 nao-pon Exp $
 // Copyright (C)
 //   2002-2006 PukiWiki Developers Team
 //   2001-2002 Originally written by yu-ji
@@ -57,7 +57,7 @@ if (! isset($this->cont['TDIARY_THEME']) || $this->cont['TDIARY_THEME'] == '') {
 } else {
 	$theme = rawurlencode($this->cont['TDIARY_THEME']); // Supress all nasty letters
 	$theme_css = $this->cont['DATA_HOME'] . 'skin/tdiary_theme/' . $theme . '/' . $theme . '.css';
-	if (! file_exists($theme_css)) {
+	if (! is_file($theme_css)) {
 		echo 'tDiary theme wrapper: ';
 		echo 'Theme not found: ' . htmlspecialchars($theme_css) . '<br />';
 		echo 'You can get tdiary-theme from: ';

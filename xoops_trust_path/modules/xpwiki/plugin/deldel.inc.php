@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id: deldel.inc.php,v 1.14 2011/09/17 07:35:56 nao-pon Exp $
+ * $Id: deldel.inc.php,v 1.15 2011/11/26 12:03:10 nao-pon Exp $
  * ORG: deldel.inc.php 161 2005-06-28 12:58:13Z okkez $
  *
  * 色んなものを一括削除するプラグイン
@@ -275,7 +275,7 @@ class xpwiki_plugin_deldel extends xpwiki_plugin {
 						$pgid = $this->func->get_pgid_by_name($page);
 						$target = $this->func->encode($page);
 
-						if(file_exists($this->func->get_filename($page)) && !$this->func->is_freeze($page)){
+						if(is_file($this->func->get_filename($page)) && !$this->func->is_freeze($page)){
 							$flag[$s_page] = true;
 							$this->func->page_write($page, '');
 						}else{
@@ -284,22 +284,22 @@ class xpwiki_plugin_deldel extends xpwiki_plugin {
 						if ($this->root->vars['cascade'] == 1) {
 							// BACKUP
 							$f_page = $this->get_filename2('backup',$page);
-							if(file_exists($f_page)){
+							if(is_file($f_page)){
 								$flag[$s_page] = unlink($f_page);
 							}
 							// DIFF
 							$f_page = $this->get_filename2('diff',$page);
-							if(file_exists($f_page)){
+							if(is_file($f_page)){
 								$flag[$s_page] = unlink($f_page);
 							}
 							// COUNTER
 							$f_page = $this->get_filename2('counter',$page);
-							if(file_exists($f_page)){
+							if(is_file($f_page)){
 								$flag[$s_page] = unlink($f_page);
 							}
 							// REFERER
 							$f_page = $this->get_filename2('referer',$page);
-							if(file_exists($f_page)){
+							if(is_file($f_page)){
 								$flag[$s_page] = unlink($f_page);
 							}
 							// CACHE
@@ -316,7 +316,7 @@ class xpwiki_plugin_deldel extends xpwiki_plugin {
 								{
 									$name = $target."_".$this->func->encode($del_file);
 									// 添付ファイル
-									if (file_exists($this->cont['UPLOAD_DIR'].$name))
+									if (is_file($this->cont['UPLOAD_DIR'].$name))
 									{
 										unlink($this->cont['UPLOAD_DIR'].$name);
 										$att[] = $del_file." [$name]";
@@ -325,7 +325,7 @@ class xpwiki_plugin_deldel extends xpwiki_plugin {
 									for ($i = 1; $i < 100; $i++)
 									{
 										$file = $target.'_'.$this->func->encode($i."%").$this->func->encode($del_file);
-										if (file_exists($this->cont['UPLOAD_DIR']."s/".$file))
+										if (is_file($this->cont['UPLOAD_DIR']."s/".$file))
 										{
 											unlink($this->cont['UPLOAD_DIR']."s/".$file);
 											$thm[] = $i.'%'.$del_file." [$name]";
@@ -342,7 +342,7 @@ class xpwiki_plugin_deldel extends xpwiki_plugin {
 						@set_time_limit($execution_time);
 						$s_page = htmlspecialchars($page, ENT_QUOTES);
 						$f_page = $this->get_filename2($mes,$page);
-						if(file_exists($f_page) && !$this->func->is_freeze($page)){
+						if(is_file($f_page) && !$this->func->is_freeze($page)){
 							$flag[$s_page] = unlink($f_page);
 						}else{
 							$flag[$s_page] = false;
@@ -379,7 +379,7 @@ class xpwiki_plugin_deldel extends xpwiki_plugin {
 						@set_time_limit($execution_time);
 						$s_page = htmlspecialchars($page, ENT_QUOTES);
 						$f_page = $this->get_filename2($mes,$page);
-						if(file_exists($f_page) && !$this->func->is_freeze($spage)){
+						if(is_file($f_page) && !$this->func->is_freeze($spage)){
 							$flag[$s_page] = unlink($f_page);
 						}else{
 							$flag[$s_page] = false;
@@ -392,7 +392,7 @@ class xpwiki_plugin_deldel extends xpwiki_plugin {
 						@set_time_limit($execution_time);
 						$s_page = htmlspecialchars($page, ENT_QUOTES);
 						$f_page = $this->get_filename2($mes,$page);
-						if(file_exists($f_page) && !$this->func->is_freeze($spage)){
+						if(is_file($f_page) && !$this->func->is_freeze($spage)){
 							$flag[$s_page] = unlink($f_page);
 						}else{
 							$flag[$s_page] = false;
@@ -405,7 +405,7 @@ class xpwiki_plugin_deldel extends xpwiki_plugin {
 						@set_time_limit($execution_time);
 						$s_page = htmlspecialchars($page, ENT_QUOTES);
 						$f_page = $this->get_filename2($mes,$page);
-						if(file_exists($f_page)){
+						if(is_file($f_page)){
 							$flag[$s_page] = unlink($f_page);
 						}else{
 							$flag[$s_page] = false;
@@ -551,7 +551,7 @@ class xpwiki_plugin_deldel extends xpwiki_plugin {
 			if ($dh = opendir($_dir)) {
 				while (($item = readdir($dh)) !== false) {
 					if (is_dir($_dir.'/'.$item)) {
-						if ($this->root->mydirname !== $item && file_exists($_dir.'/'.$item.'/private/ini/pukiwiki.ini.php')) {
+						if ($this->root->mydirname !== $item && is_file($_dir.'/'.$item.'/private/ini/pukiwiki.ini.php')) {
 							$obj =& XpWiki::getInitedSingleton($item);
 							if ($obj->root->module['mid']) {
 								$items[] = $item;
@@ -770,7 +770,7 @@ class xpwiki_plugin_deldel extends xpwiki_plugin {
 		foreach(array('wiki', 'backup', 'diff', 'referer') as $dir) {
 			$from = $this->get_filename2($dir, $page);
 			$to = $this->get_filename2($dir, $page, $to_obj);
-			if (file_exists($from)) {
+			if (is_file($from)) {
 				$move_files[$from] = $to;
 			}
 		}
@@ -779,7 +779,7 @@ class xpwiki_plugin_deldel extends xpwiki_plugin {
 
 		// Add
 		$from = $this->cont['DIFF_DIR'] . $pgid . '.add' ;
-		if (file_exists($from)) {
+		if (is_file($from)) {
 			$toid = $to_obj->func->get_pgid_by_name($page, true, true);
 			$to = $to_obj->cont['DIFF_DIR'] . $toid . '.add' ;
 			$move_files[$from] = $to;
@@ -787,7 +787,7 @@ class xpwiki_plugin_deldel extends xpwiki_plugin {
 
 		// CSS
 		$from = $this->cont['CACHE_DIR'] . $pgid . '.css' ;
-		if (file_exists($from)) {
+		if (is_file($from)) {
 			$toid = $to_obj->func->get_pgid_by_name($page, true, true);
 			$to = $to_obj->cont['CACHE_DIR'] . $toid . '.css' ;
 			$move_files[$from] = $to;
@@ -805,14 +805,14 @@ class xpwiki_plugin_deldel extends xpwiki_plugin {
 
 			$from = $this->cont['UPLOAD_DIR'].$filename;
 			$to = $to_obj->cont['UPLOAD_DIR'].$filename;
-			if (file_exists($from)) {
+			if (is_file($from)) {
 				$move_files[$from] = $to;
 			}
 
 			if (empty($_done[$basename])) {
 				$from = $this->cont['UPLOAD_DIR'].$logname;
 				$to = $to_obj->cont['UPLOAD_DIR'].$logname;
-				if (file_exists($from)) {
+				if (is_file($from)) {
 					$move_files[$from] = $to;
 				}
 			}

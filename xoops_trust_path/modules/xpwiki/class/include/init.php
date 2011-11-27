@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/13 by nao-pon http://hypweb.net/
-// $Id: init.php,v 1.77 2011/11/20 05:36:03 nao-pon Exp $
+// $Id: init.php,v 1.78 2011/11/26 12:03:10 nao-pon Exp $
 //
 
 $root = & $this->root;
@@ -77,7 +77,7 @@ if (empty($this->cont['LC_CTYPE'])) $this->cont['LC_CTYPE'] = $this->get_LC_CTYP
 
 $_lang = $this->root->mytrustdirpath.'/language/xpwiki/' . $const['LANG'] . $const['FILE_ENCORD_EXT'] . '/' . 'conf.php';
 // None
-if (! file_exists($_lang)) {
+if (! is_file($_lang)) {
 	$_lang = $this->root->mytrustdirpath.'/language/xpwiki/en/conf.php';
 	$const['LANG'] = 'en';
 }
@@ -88,7 +88,7 @@ require($_lang);
 
 $_lang = $this->root->mytrustdirpath.'/language/xpwiki/Conf_' . strtoupper($const['CONTENT_CHARSET']) . '.php';
 // none
-if (! file_exists($_lang)) {
+if (! is_file($_lang)) {
 	$_lang = $this->root->mytrustdirpath.'/language/xpwiki/Conf_ISO-8859-1.php';
 }
 require($_lang);
@@ -108,7 +108,7 @@ if (! in_array($_uilang, $const['OFFICIAL_LANGS'])) {
 }
 
 $_lang = $this->root->mytrustdirpath.'/language/xpwiki/' . $const['UI_LANG'] . $const['FILE_ENCORD_EXT'] . '/' . 'lng.php';
-if (file_exists($_lang)) {
+if (is_file($_lang)) {
 	require($_lang);
 } else {
 	$_uilang = 'en';
@@ -116,7 +116,7 @@ if (file_exists($_lang)) {
 
 // It overwrites if it is on the HTML side.
 $_lang = $const['DATA_HOME'] . 'language/xpwiki/' . $_uilang . '/' . 'lng.php';
-if (file_exists($_lang)) {
+if (is_file($_lang)) {
 	require($_lang);
 }
 

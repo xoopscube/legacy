@@ -1,13 +1,13 @@
 <?php
 /*
  * Created on 2007/05/13 by nao-pon http://hypweb.net/
- * $Id: setup.php,v 1.8 2011/11/18 14:33:49 nao-pon Exp $
+ * $Id: setup.php,v 1.9 2011/11/26 12:03:10 nao-pon Exp $
  */
 
 $ng = $out = '';
 
 // Install setting
-if (! file_exists($mydirpath . '/.installed')) {
+if (! is_file($mydirpath . '/.installed')) {
 
 	// Set imagemagick, jpegtran path.
 	$out .= "* Now imagemagick & jpegtran path setting.\n";
@@ -17,7 +17,7 @@ if (! file_exists($mydirpath . '/.installed')) {
 
 		$dat .= "<?php\n";
 
-		if (file_exists(XOOPS_ROOT_PATH.'/class/hyp_common/image_magick.cgi')) {
+		if (is_file(XOOPS_ROOT_PATH.'/class/hyp_common/image_magick.cgi')) {
 			$image_magick_cgi = XOOPS_ROOT_PATH.'/class/hyp_common/image_magick.cgi';
 		} else {
 			$image_magick_cgi = $mydirpath . '/include/hyp_common/image_magick.cgi';
@@ -207,7 +207,7 @@ function files_copy ($base, $trust, $rmfiles, $mkdirs, $cpfiles) {
 	$out .= "* Now copying new files.\n";
 
 	foreach($rmfiles as $file) {
-		if (file_exists($base . $file)) {
+		if (is_file($base . $file)) {
 			if (@ unlink($base . $file)) {
 				$out .= '- Delete file( '.$base . $file .' ) - OK.' . "\n";
 			} else {
@@ -217,7 +217,7 @@ function files_copy ($base, $trust, $rmfiles, $mkdirs, $cpfiles) {
 	}
 
 	foreach($mkdirs as $dir) {
-		if (! file_exists($base . $dir)) {
+		if (! is_dir($base . $dir)) {
 			if (@ mkdir($base . $dir)) {
 				$out .= '- Make dirctory( '.$base . $dir .' ) - OK.' . "\n";
 			} else {

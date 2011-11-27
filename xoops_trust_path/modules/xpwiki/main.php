@@ -102,10 +102,10 @@ if ($xpwiki->runmode === 'xoops') {
 	$mydirpath = $xpwiki->root->mydirpath;
 	$mytrustdirpath = $xpwiki->root->mytrustdirpath ;
 	$language = empty( $xoopsConfig['language'] ) ? 'english' : $xoopsConfig['language'] ;
-	if( file_exists( "$mydirpath/language/$language/admin.php" ) ) {
+	if( is_file( "$mydirpath/language/$language/admin.php" ) ) {
 		// user customized language file
 		include_once "$mydirpath/language/$language/admin.php" ;
-	} else if( file_exists( "$mytrustdirpath/language/$language/admin.php" ) ) {
+	} else if( is_file( "$mytrustdirpath/language/$language/admin.php" ) ) {
 		// default language file
 		include_once "$mytrustdirpath/language/$language/admin.php" ;
 	} else {

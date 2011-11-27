@@ -920,7 +920,7 @@ class XpWikiLink_autolink extends XpWikiLink {
 
 		parent :: XpWikiLink($xpwiki, $start);
 
-		if (!$this->root->autolink || !file_exists($this->cont['CACHE_DIR'].$this->cont['PKWK_AUTOLINK_REGEX_CACHE']))
+		if (!$this->root->autolink || !is_file($this->cont['CACHE_DIR'].$this->cont['PKWK_AUTOLINK_REGEX_CACHE']))
 			return;
 
 		@ list ($auto, $auto_a, $forceignorepages) = file($this->cont['CACHE_DIR'].$this->cont['PKWK_AUTOLINK_REGEX_CACHE']);
@@ -976,7 +976,7 @@ class XpWikiLink_autoalias extends XpWikiLink {
 
 		parent :: XpWikiLink($xpwiki, $start);
 
-		if (!$this->root->autoalias || !file_exists($this->cont['CACHE_DIR'].$this->cont['PKWK_AUTOALIAS_REGEX_CACHE']) || $this->page === $this->root->aliaspage) {
+		if (!$this->root->autoalias || !is_file($this->cont['CACHE_DIR'].$this->cont['PKWK_AUTOALIAS_REGEX_CACHE']) || $this->page === $this->root->aliaspage) {
 			return;
 		}
 

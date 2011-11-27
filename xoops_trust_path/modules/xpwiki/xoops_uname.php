@@ -13,6 +13,7 @@ $enc = strtoupper(str_replace("\0","",$enc));
 $encs = array( 'EUC-JP' , 'SJIS', 'EUCJP-WIN', 'SJIS-WIN', 'JIS', 'ISO-2022-JP' );
 $use_mb = (in_array($enc, $encs));
 $use_utf8 = ($enc === 'UTF-8');
+$use_ujis = ($enc === 'EUC-JP');
 
 if ($q !== "") {
 
@@ -32,6 +33,9 @@ if ($q !== "") {
 	if ($use_utf8) {
 		mysql_query( "/*!40101 SET NAMES utf8 */" );
 		mysql_query( "/*!40101 SET SESSION collation_connection=utf8_japanese_ci */" );
+	} else if ($use_ujis) {
+		mysql_query( "/*!40101 SET NAMES ujis */" );
+		mysql_query( "/*!40101 SET SESSION collation_connection=ujis_japanese_ci */" );
 	}
 
 	$query = "SELECT `uid`, `uname` FROM `".XOOPS_DB_PREFIX."_users`".$where1.$order." LIMIT ".$limit;
@@ -90,4 +94,3 @@ function addslashesGPC($str) {
 	}
 	return $str;
 }
-?>

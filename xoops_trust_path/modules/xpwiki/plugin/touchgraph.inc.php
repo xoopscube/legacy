@@ -6,7 +6,7 @@ class xpwiki_plugin_touchgraph extends xpwiki_plugin {
 
 	}
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: touchgraph.inc.php,v 1.2 2010/01/08 13:34:00 nao-pon Exp $
+	// $Id: touchgraph.inc.php,v 1.3 2011/11/26 12:03:10 nao-pon Exp $
 	//
 	// Output an index for 'TouchGraph WikiBrowser'
 	// http://www.touchgraph.com/
@@ -42,7 +42,7 @@ class xpwiki_plugin_touchgraph extends xpwiki_plugin {
 			if ($this->func->check_non_list($page)) continue;
 
 			$file = $this->cont['CACHE_DIR'] . $this->func->encode($page) . '.rel';
-			if (file_exists($file)) {
+			if (is_file($file)) {
 				echo $page;
 				$data = file($file);
 				foreach(explode("\t", trim($data[0])) as $name) {
@@ -61,7 +61,7 @@ class xpwiki_plugin_touchgraph extends xpwiki_plugin {
 			if ($this->func->check_non_list($page)) continue;
 
 			$file = $this->cont['CACHE_DIR'] . $this->func->encode($page) . '.ref';
-			if (file_exists($file)) {
+			if (is_file($file)) {
 				echo $page;
 				foreach (file($file) as $line) {
 					list($name) = explode("\t", $line);

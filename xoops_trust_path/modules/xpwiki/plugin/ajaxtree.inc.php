@@ -10,7 +10,7 @@
 
 /*
  * Created on 2008/02/07 by nao-pon http://hypweb.net/
- * $Id: ajaxtree.inc.php,v 1.11 2011/11/22 09:12:12 nao-pon Exp $
+ * $Id: ajaxtree.inc.php,v 1.12 2011/11/26 12:03:10 nao-pon Exp $
  */
 
 class xpwiki_plugin_ajaxtree extends xpwiki_plugin {
@@ -483,7 +483,7 @@ class xpwiki_plugin_ajaxtree extends xpwiki_plugin {
 
 	function plugin_ajaxtree_write_file($filename, $data)
 	{
-		$fp = fopen($filename, file_exists($filename) ? 'r+b' : 'wb');
+		$fp = fopen($filename, is_file($filename) ? 'r+b' : 'wb');
 		if ($fp === false) {
 			return false;
 		}

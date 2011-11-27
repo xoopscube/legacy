@@ -6,7 +6,7 @@ class xpwiki_plugin_diff extends xpwiki_plugin {
 
 	}
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: diff.inc.php,v 1.5 2008/11/17 02:34:23 nao-pon Exp $
+	// $Id: diff.inc.php,v 1.6 2011/11/26 12:03:10 nao-pon Exp $
 	// Copyright (C)
 	//   2002-2005 PukiWiki Developers Team
 	//   2002      Originally written by yu-ji
@@ -53,7 +53,7 @@ class xpwiki_plugin_diff extends xpwiki_plugin {
 		}
 	
 		$filename = $this->cont['DIFF_DIR'] . $this->func->encode($page) . '.txt';
-		if (file_exists($filename)) {
+		if (is_file($filename)) {
 			if (! $this->cont['PKWK_READONLY']) {
 				$menu[] = '<li><a href="' . $this->root->script . '?cmd=diff&amp;action=delete&amp;page=' .
 				$r_page . '">' . str_replace('$1', $s_page, $this->root->_title_diff_delete) . '</a></li>';
@@ -86,7 +86,7 @@ EOD;
 		$filename = $this->cont['DIFF_DIR'] . $this->func->encode($page) . '.txt';
 		$body = '';
 		if (! $this->func->is_pagename($page))     $body = 'Invalid page name';
-		if (! file_exists($filename)) $body = $this->func->make_pagelink($page) . '\'s diff seems not found';
+		if (! is_file($filename)) $body = $this->func->make_pagelink($page) . '\'s diff seems not found';
 		if ($body) return array('msg'=>$this->root->_title_diff_delete, 'body'=>$body);
 	
 		if (isset($this->root->vars['pass'])) {

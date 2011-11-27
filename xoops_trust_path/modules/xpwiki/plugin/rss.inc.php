@@ -1,6 +1,6 @@
 <?php
 // PukiWiki - Yet another WikiWikiWeb clone
-// $Id: rss.inc.php,v 1.39 2011/10/29 08:17:04 nao-pon Exp $
+// $Id: rss.inc.php,v 1.40 2011/11/26 12:03:10 nao-pon Exp $
 //
 // RSS plugin: Publishing RSS of RecentChanges
 //
@@ -57,7 +57,7 @@ class xpwiki_plugin_rss extends xpwiki_plugin {
 		$description = htmlspecialchars(preg_replace('/&([^;]+)?$/', '', $description));
 
 		$tags = array();
-		if (file_exists($this->cont['CACHE_DIR'] . $this->func->encode($page) . '_page.tag')) {
+		if (is_file($this->cont['CACHE_DIR'] . $this->func->encode($page) . '_page.tag')) {
 			$tags = file($this->cont['CACHE_DIR'] . $this->func->encode($page) . '_page.tag');
 		}
 
@@ -111,7 +111,7 @@ class xpwiki_plugin_rss extends xpwiki_plugin {
 		// キャッシュファイル名
 		$c_file = $this->cont['CACHE_DIR'] . 'plugin/' . md5($version.$base.$count.$uid.$this->cont['ROOT_URL']) . $this->cont['UI_LANG'] . '.rss';
 
-		if (!$cache_clear && file_exists($c_file)) {
+		if (!$cache_clear && is_file($c_file)) {
 			$filetime = filemtime($c_file);
 			$etag = md5($c_file.$filetime);
 

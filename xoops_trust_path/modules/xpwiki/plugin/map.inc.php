@@ -1,6 +1,6 @@
 <?php
 // PukiWiki - Yet another WikiWikiWeb clone.
-// $Id: map.inc.php,v 1.4 2008/02/11 01:02:41 nao-pon Exp $
+// $Id: map.inc.php,v 1.5 2011/11/26 12:03:10 nao-pon Exp $
 //
 // Site map plugin
 
@@ -126,7 +126,7 @@ class XpWikiMapNode
 			$this->yetlists = $yetlists[$this->root->mydirname];
 		} else {
 			$_yetlists = array();
-			if (file_exists($this->cont['CACHE_DIR']."yetlist.dat")) {
+			if (is_file($this->cont['CACHE_DIR']."yetlist.dat")) {
 				$_yetlists = unserialize(file_get_contents($this->cont['CACHE_DIR']."yetlist.dat"));
 			}
 			foreach($_yetlists as $notyet => $refs) {

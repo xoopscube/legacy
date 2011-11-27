@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/11 by nao-pon http://hypweb.net/
-// $Id: xoops_wrapper.php,v 1.60 2011/11/13 15:27:15 nao-pon Exp $
+// $Id: xoops_wrapper.php,v 1.61 2011/11/26 12:03:10 nao-pon Exp $
 //
 class XpWikiXoopsWrapper extends XpWikiBackupFunc {
 
@@ -44,7 +44,7 @@ class XpWikiXoopsWrapper extends XpWikiBackupFunc {
 
 		$this->root->enable_pagecomment = TRUE;
 		if (empty($this->root->module['config']['comment_forum_id']) ||
-			!file_exists(XOOPS_ROOT_PATH . '/modules/' . $this->root->module['config']['comment_dirname'])) {
+			!is_dir(XOOPS_ROOT_PATH . '/modules/' . $this->root->module['config']['comment_dirname'])) {
 			$this->root->enable_pagecomment = FALSE;
 		}
 	}
@@ -541,10 +541,10 @@ class XpWikiXoopsWrapper extends XpWikiBackupFunc {
 
 		// language file
 		$language = empty( $xoopsConfig['language'] ) ? 'english' : $xoopsConfig['language'] ;
-		if( file_exists( $this->root->mydirpath."/language/$language/mail_template/" ) ) {
+		if( is_dir( $this->root->mydirpath."/language/$language/mail_template" ) ) {
 			// user customized language file
 			$mail_template_dir = $this->root->mydirpath."/language/$language/mail_template/" ;
-		} else if( file_exists( $this->root->mytrustdirpath."/language/$language/mail_template/" ) ) {
+		} else if( is_dir( $this->root->mytrustdirpath."/language/$language/mail_template" ) ) {
 			// default language file
 			$mail_template_dir = $this->root->mytrustdirpath."/language/$language/mail_template/";
 		} else {

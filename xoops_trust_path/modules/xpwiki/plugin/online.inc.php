@@ -3,7 +3,7 @@ class xpwiki_plugin_online extends xpwiki_plugin {
 	function plugin_online_init () {
 
 
-	// $Id: online.inc.php,v 1.4 2011/11/22 09:12:12 nao-pon Exp $
+	// $Id: online.inc.php,v 1.5 2011/11/26 12:03:10 nao-pon Exp $
 	// Copyright (C)
 	//   2002-2005 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -77,7 +77,7 @@ class xpwiki_plugin_online extends xpwiki_plugin {
 	// & $count == Number of online users
 	function plugin_online_check_online(& $count, $host = '')
 	{
-		if (! file_exists($this->cont['PLUGIN_ONLINE_USER_LIST']) &&
+		if (! is_file($this->cont['PLUGIN_ONLINE_USER_LIST']) &&
 		    ! @touch($this->cont['PLUGIN_ONLINE_USER_LIST']))
 			return FALSE;
 

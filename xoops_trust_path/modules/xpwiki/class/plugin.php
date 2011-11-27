@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/05 by nao-pon http://hypweb.net/
-// $Id: plugin.php,v 1.21 2011/06/01 06:27:51 nao-pon Exp $
+// $Id: plugin.php,v 1.22 2011/11/26 12:03:10 nao-pon Exp $
 //
 
 
@@ -40,7 +40,7 @@ class xpwiki_plugin {
 			}
 
 			$lang = $this->root->mytrustdirpath.'/language/xpwiki/' . $uilang . '/plugin/'.$this->name.'.lng.php';
-			if (file_exists($lang)) {
+			if (is_file($lang)) {
 				include ($lang);
 				$this->msg = array_merge($this->msg, $msg);
 			} else {
@@ -54,7 +54,7 @@ class xpwiki_plugin {
 
 			// html側にファイルがあれば上書き
 			$lang = $this->root->mydirpath.'/language/xpwiki/' . $uilang . '/plugin/'.$this->name.'.lng.php';
-			if (file_exists($lang)) {
+			if (is_file($lang)) {
 				include ($lang);
 				$this->msg = array_merge($this->msg, $msg);
 			}
