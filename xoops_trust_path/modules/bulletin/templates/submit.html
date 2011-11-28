@@ -52,7 +52,7 @@
 </div>
 <div id="jquery-ui-accordion">
   <div align="center">
-  <{*
+
 	<div class="jquery-ui-accordion-title"><{$smarty.const._MD_TOPIC}></div>
     <div class="jquery-ui-accordion-contents">
       <{if $storyid}>
@@ -68,9 +68,10 @@
           <option value="0"<{if $topicimg==0}> selected="selected"<{/if}>><{$smarty.const._MD_TOPIC_DISABLE}></option>
       </select>
 	</div>
-  *}>
+  <{*
   <input type="hidden" name="topicid" value="<{$topic_selbox2}>">
   <input type="hidden" name="topicimg" value="0">
+  *}>
     <{if $can_use_date}>
       <div class="jquery-ui-accordion-title"><{$smarty.const._MD_PUBLISHED}></div>
       <div class="jquery-ui-accordion-contents">
