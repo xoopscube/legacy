@@ -58,4 +58,5 @@ define('_AD_OPENID_ERROR_NOT_WRITABLE_DIR', '指定されたディレクトリ�
 define('_AD_OPENID_ERROR_NOT_EXIST_DIR', '指定されたディレクトリは存在しません');
 define('_AD_OPENID_ERROR_NOT_CONECT', '配布サイトに接続できませんでした');
 define('_AD_OPENID_ERROR_NOT_UPDATE_CONFIG', 'ファイルの更新に成功しました。一般設定に以下の値を設定してください。<br>');
+define('_AD_OPENID_ERROR_NO_SSL', 'Web サーバーの PHP で OpenSSL 拡張機能が有効になっていないため、この環境では HTTPS URL の探索ができません。');
 ?>

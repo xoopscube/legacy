@@ -58,4 +58,5 @@ define('_AD_OPENID_ERROR_NOT_WRITABLE_DIR', '╗╪─ъд╡дьд┐е╟егеьепе╚еъд╧╜ёдн╣■д▀д╟д
 define('_AD_OPENID_ERROR_NOT_EXIST_DIR', '╗╪─ъд╡дьд┐е╟егеьепе╚еъд╧┬╕║▀д╖д▐д╗дє');
 define('_AD_OPENID_ERROR_NOT_CONECT', '╟█╔█е╡еде╚д╦└▄┬│д╟днд▐д╗дєд╟д╖д┐');
 define('_AD_OPENID_ERROR_NOT_UPDATE_CONFIG', 'е╒ебедеыд╬╣╣┐╖д╦└о╕∙д╖д▐д╖д┐бг░ь╚╠└▀─ъд╦░╩▓╝д╬├═дЄ└▀─ъд╖д╞дпд└д╡ддбг<br>');
+define('_AD_OPENID_ERROR_NO_SSL', 'Web е╡б╝е╨б╝д╬ PHP д╟ OpenSSL │╚─е╡б╟╜дм═н╕·д╦д╩д├д╞ддд╩ддд┐дсбвд│д╬┤─╢нд╟д╧ HTTPS URL д╬├╡║ўдмд╟днд▐д╗дєбг');
 ?>

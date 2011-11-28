@@ -56,4 +56,5 @@ define('_AD_OPENID_ERROR_NOT_WRITABLE_DIR', 'Directory don\'t writable.');
 define('_AD_OPENID_ERROR_NOT_EXIST_DIR', 'Directory don\'t exist.');
 define('_AD_OPENID_ERROR_NOT_CONECT', 'Can\'t conect to site');
 define('_AD_OPENID_ERROR_NOT_UPDATE_CONFIG', 'Update config<br>');
+define('_AD_OPENID_ERROR_NO_SSL', 'PHP doesn\'t support SSL, we can\'t do discovery on an HTTPS URL.');
 ?>

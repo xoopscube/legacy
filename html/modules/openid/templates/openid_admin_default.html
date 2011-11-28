@@ -9,6 +9,9 @@ $URL$
 <{if $no_cainfo}>
 <div class="error"><{$smarty.const._AD_OPENID_ERROR_NO_CAINFO}></div>
 <{/if}>
+<{if $no_ssl}>
+<div class="error"><{$smarty.const._AD_OPENID_ERROR_NO_SSL}></div>
+<{/if}>
 
 <h3><{$smarty.const._AD_OPENID_LANG_UPDATE_CERT}></h3>
 <div class="confirm"><{$smarty.const._AD_OPENID_LANG_UPDATE_CERT_CAUTION}></div>

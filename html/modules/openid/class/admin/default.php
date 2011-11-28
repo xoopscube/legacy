@@ -35,6 +35,10 @@ class Openid_Admin_Default extends Openid_Admin_Controller
                 $view->assign('no_rand_source', true);
             }
         }
+
+        if (! function_exists('openssl_open')) {
+        	$view->assign('no_ssl', true);
+        }
     }
 
     function updateCertAction()
