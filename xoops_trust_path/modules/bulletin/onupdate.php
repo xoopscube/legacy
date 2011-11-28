@@ -31,7 +31,7 @@ function bulletin_onupdate_base( $module, $prev_version , $mydirname )
 		$sql = sprintf("SHOW TABLES LIKE '%s'", $xoopsDB->prefix("{$mydirname}_relation") );
 		list($result) = $xoopsDB->fetchRow($xoopsDB->query($sql));
 		if( empty($result) ){
-			$sql = "CREATE TABLE `".$xoopsDB->prefix("{$mydirname}_relation")."` (  `storyid` int(8) NOT NULL default '0',  `linkedid` int(8) NOT NULL default '0',  `dirname` varchar(25) NOT NULL default '') TYPE=MyISAM;";
+			$sql = "CREATE TABLE `".$xoopsDB->prefix("{$mydirname}_relation")."` (  `storyid` int(8) NOT NULL default '0',  `linkedid` int(8) NOT NULL default '0',  `dirname` varchar(25) NOT NULL default '') ENGINE=MyISAM;";
 			if( $xoopsDB->query($sql) ){
 				$msgs[] = '&nbsp;&nbsp;Table <b>'.htmlspecialchars($xoopsDB->prefix("{$mydirname}_relation")).'</b> created.';
 			}else{
@@ -82,6 +82,32 @@ function bulletin_onupdate_base( $module, $prev_version , $mydirname )
 		$db->queryF( "ALTER TABLE ".$db->prefix($mydirname.'_topics')." ADD `topic_created` int(10) unsigned NOT NULL default 0, ADD `topic_modified` int(10) unsigned NOT NULL default 0, MODIFY `topic_imgurl` varchar(255) NOT NULL default '', MODIFY `topic_title` varchar(255) NOT NULL default ''" ) ;
 		$db->queryF( "ALTER TABLE ".$db->prefix($mydirname.'_stories')." MODIFY `uid` mediumint(8) unsigned NOT NULL default 0" ) ;
 		$db->queryF( "ALTER TABLE ".$db->prefix($mydirname.'_relation')." ADD KEY (`storyid`), ADD PRIMARY KEY (`storyid`,`linkedid`,`dirname`)" ) ;
+	}
+//ver2.22->ver3.0
+	$sql = sprintf("SHOW TABLES LIKE '%s'", $db->prefix("{$mydirname}_topic_access") );
+	list($result) = $db->fetchRow($db->query($sql));
+	if( empty($result) ){
+		$sql ="CREATE TABLE ".$db->prefix("{$mydirname}_topic_access")." (
+		topic_id smallint(5) unsigned NOT NULL default 0,
+		uid mediumint(8) default NULL,
+		groupid smallint(5) default NULL,
+		can_post tinyint(1) NOT NULL default 0,
+		can_edit tinyint(1) NOT NULL default 0,
+		can_delete tinyint(1) NOT NULL default 0,
+		post_auto_approved tinyint(1) NOT NULL default 0,
+		UNIQUE KEY (topic_id,uid),
+		UNIQUE KEY (topic_id,groupid),
+		KEY (topic_id),
+		KEY (uid),
+		KEY (groupid),
+		KEY (can_post)
+		) ENGINE=MyISAM;
+		";
+		if( $db->query($sql) ){
+			$msgs[] = '&nbsp;&nbsp;Table <b>'.htmlspecialchars($db->prefix("{$mydirname}_topic_access")).'</b> created.';
+		}else{
+			$msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">Invalid SQL <b>'.htmlspecialchars($sql).'</b></span>';
+		}
 	}
 
 	// TEMPLATES (all templates have been already removed by modulesadmin)
@@ -218,7 +244,7 @@ function bulletin_onupdate_base( $module, $prev_version , $mydirname )
 	return true ;
 }
 
-function bulletin_message_append_onupdate( &$controller , &$eventArgs )
+function bulletin_message_append_onupdate( &$module_obj , &$log )
 {
 	if( is_array( @$GLOBALS['msgs'] ) ) {
 		foreach( $GLOBALS['msgs'] as $message ) {
