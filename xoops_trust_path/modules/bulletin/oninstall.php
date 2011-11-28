@@ -16,7 +16,7 @@ function bulletin_oninstall_base( $module , $mydirname )
 	if( defined('XOOPS_CUBE_LEGACY')) {
 		$isCube = true ;
 		$root =& XCube_Root::getSingleton();
-		$root->mDelegateManager->add("Module.Legacy.ModuleInstall.Success", 'bulletin_message_append_oninstall') ;
+		$root->mDelegateManager->add( 'Legacy.Admin.Event.ModuleInstall.' . ucfirst($mydirname) . '.Success' , 'bulletin_message_append_oninstall' ) ;
 		$ret = array() ;
 	} else {
 		$isCube = false ;
@@ -149,13 +149,15 @@ function bulletin_oninstall_base( $module , $mydirname )
 	return true ;
 }
 
-function bulletin_message_append_oninstall( &$controller , &$eventArgs )
+function bulletin_message_append_oninstall( &$module_obj , &$log )
 {
 	if( is_array( @$GLOBALS['ret'] ) ) {
 		foreach( $GLOBALS['ret'] as $message ) {
-			$controller->mLog->add( $message ) ;
+			$log->add( strip_tags( $message ) ) ;
 		}
 	}
+
+	// use mLog->addWarning() or mLog->addError() if necessary
 }
 
 ?>
