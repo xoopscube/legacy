@@ -11,7 +11,7 @@ function bulletin_onupdate_base( $module, $prev_version , $mydirname )
 	if( defined( 'XOOPS_CUBE_LEGACY' ) ) {
 		$isCube = true ;
 		$root =& XCube_Root::getSingleton();
-		$root->mDelegateManager->add("Module.Legacy.ModuleUpdate.Success", 'bulletin_message_append_onupdate') ;
+		$root->mDelegateManager->add( 'Legacy.Admin.Event.ModuleUpdate.' . ucfirst($mydirname) . '.Success', 'bulletin_message_append_onupdate' ) ;
 		$msgs = array() ;
 	} else {
 		$isCube = false ;
@@ -248,7 +248,7 @@ function bulletin_message_append_onupdate( &$module_obj , &$log )
 {
 	if( is_array( @$GLOBALS['msgs'] ) ) {
 		foreach( $GLOBALS['msgs'] as $message ) {
-			$controller->mLog->add( $message ) ;
+			$log->add( strip_tags( $message ) ) ;
 		}
 	}
 }
