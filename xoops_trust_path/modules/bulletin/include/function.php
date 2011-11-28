@@ -4,17 +4,17 @@ if( !function_exists('myStrlenText') ){
 
 	function myStrlenText($str){
 
-		// HTMLタグを削除
+		// Remove HTML tags
 		$str = strip_tags($str);
-		// 改行を削除
+		// Remove the line breaks
 		$str = preg_replace("/(\015\012)|(\015)|(\012)/", "", $str);
-		// 連続する半角スペースを半角スペース１としてカウント
+		// contiguous space Counted as one half a space
 		$str = preg_replace('!\s+!', " ", $str);
-		// HTML特殊文字を半角1文字としてカウント
-		$str = ereg_replace("&[a-zA-Z]{1,5};", " ", $str);
-		// Unicode10進文字を半角1文字としてカウント
-		$str = ereg_replace("&#[0-9]{1,5};", " ", $str);
-		// PHPマルチバイト対応
+		// HTML special characters counts to as Single-byte character
+		$str = preg_replace("/&[a-zA-Z]{1,6};/", " ", $str);
+		// Hexadecimal characters Unicode10 counts to as Single-byte character
+		$str = preg_replace("/&#[0-9]{1,5};/", " ", $str);
+		// PHP support multi-byte
 		if( function_exists('mb_strlen') ){
 			$result = mb_strlen($str);
 		}else{
@@ -38,7 +38,7 @@ if( !function_exists('myStrlenText') ){
 			case 1 : return "right";
 			case 2 : return "left";
 		}
-		
+
 		return fasle;
 	}
 

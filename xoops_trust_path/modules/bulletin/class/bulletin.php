@@ -12,7 +12,7 @@ class Bulletin extends XoopsObject{
 	var $newstopic = null ;
 	var $table = '' ;
 
-	// コントラスタ
+	// Constructor
 	function Bulletin( $mydirname , $id=null )
 	{
 		$this->db =& Database::getInstance();
@@ -78,13 +78,13 @@ class Bulletin extends XoopsObject{
 		$this->newstopic = $this->topic() ;
 	}
 	
-	// 基本処理
+	// Basic Processing
 	function topic()
 	{
 		return new BulletinTopic( $this->mydirname , $this->getVar('topicid')); // GIJ
 	}
 	
-	// 基本処理
+	// Basic Processing
 	function store()
 	{
 		if ( !$this->cleanVars() ) {
@@ -114,7 +114,7 @@ class Bulletin extends XoopsObject{
 		return $storyid;
 	}
 	
-	// 基本処理
+	// Basic Processing
 	function load($id)
 	{
 		$sql = "SELECT * FROM ".$this->table." WHERE storyid=".intval($id)."";
@@ -122,7 +122,7 @@ class Bulletin extends XoopsObject{
 		$this->assignVars($myrow);
 	}
 	
-	// 基本処理
+	// Basic Processing
 	function delete()
 	{
 		$sql = sprintf("DELETE FROM %s WHERE storyid = %u", $this->table , $this->getVar("storyid"));
@@ -134,7 +134,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// 基本処理
+	// Basic Processing
 	function &getAll( $mydirname , $criteria=array() , $asobject=true, $orderby="published DESC", $limit=0, $start=0)
 	{
 		$db =& Database::getInstance();
@@ -166,7 +166,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// 基本処理
+	// Basic Processing
 	function &countAll( $mydirname , $criteria=array())
 	{
 		$db =& Database::getInstance();
@@ -189,7 +189,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// 掲載中の記事一覧を取得
+	// To gets a list of published articles
 	function getAllPublished( $mydirname , $limit4sql=0, $start4sql=0, $topic4sql=0, $ihome=1, $asobject=true, $topic_recursive=false)
 	{
 		$topic4sql = intval($topic4sql);
@@ -204,7 +204,7 @@ class Bulletin extends XoopsObject{
 		
 		if ( !empty($topic4sql) ) {
 			if( $topic_recursive ) {
-				$topic =& new BulletinTopic( $mydirname , intval( $topic4sql ) ) ;
+				$topic = new BulletinTopic( $mydirname , intval( $topic4sql ) ) ;
 				$topics = $topic->getAllChildId() ;
 				$topics[] = intval( $topic4sql ) ;
 				$criteria[] = "topicid IN (".implode(',',$topics).")";
@@ -223,7 +223,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// アーカイブ用記事一覧を取得
+	// To get a list of articles for the Archives
 	function getArchives( $mydirname , $monstart4sql=null, $monend4sql=null, $limit4sql=0, $start4sql=0, $asobject=true)
 	{
 		$monstart4sql = intval($monstart4sql);
@@ -243,7 +243,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// 承認待ちの記事一覧を取得
+	// To get a list of awaiting approval articles
 	function getAllSubmitted( $mydirname , $limit4sql=0, $asobject=true)
 	{
 		$limit4sql = intval($limit4sql);
@@ -255,7 +255,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// 掲載予定の記事一覧を取得
+	// To get a list of articles to be published
 	function getAllAutoStory( $mydirname , $limit4sql=0, $asobject=true)
 	{
 		$limit4sql = intval($limit4sql);
@@ -268,7 +268,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// 期限切れの記事一覧を取得
+	// To get a list of expired articles
 	function getAllExpired( $mydirname , $limit4sql=0, $start4sql=0, $topic4sql=0, $ihome=0, $asobject=true)
 	{
 		$limit4sql = intval($limit4sql);
@@ -291,7 +291,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// 日付をもとに記事一覧を取得
+	// To get a list of articles based on the date
 	function getAllToday( $mydirname , $limit4sql=0, $start4sql=0, $caldate, $asobject=true)
 	{
 		$limit4sql    = intval($limit4sql);
@@ -320,7 +320,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// トピックに属する記事すべてを取得
+	// To get all the articles belonging to the topic
 	function getAllByTopic( $mydirname , $topicid )
 	{
 		$criteria = array();
@@ -329,7 +329,7 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// トピック画像を取得する
+	// Get the picture topic
 	function imglink($topic_path)
 	{
 		if ($this->newstopic->topic_imgurl() != '' && file_exists($topic_path.$this->newstopic->topic_imgurl())) {
@@ -339,21 +339,21 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// ユーザの本名を取得する
+	// To get  the real name of the user
 	function getRealname()
 	{
 		return XoopsUser::getUnameFromId($this->getVar('uid'), 1);
 	}
 
 
-	// unameを取得する
+	// To get the uname
 	function getUname()
 	{
 		return XoopsUser::getUnameFromId($this->getVar('uid'));
 	}
 
 
-	// ユーザが存在するか
+	// Is there a user?
 	function isActiveUser()
 	{
 		$uid = $this->getVar('uid');
@@ -365,7 +365,7 @@ class Bulletin extends XoopsObject{
 		return true;
 	}
 	
-	// トピック画像の位置を取得
+	// To get the position of the topic
 	function getTopicalign()
 	{
 		$ret = "";
@@ -380,7 +380,7 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// トピック画像を表ｦするかどうか
+	// Whether to display an image topic
 	function showTopicimg()
 	{
 		
@@ -394,7 +394,7 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// トピックのタイトルを取得
+	// Get the title of the topic
 	function topic_title()
 	{
 		if( is_object( $this->newstopic ) ) return $this->newstopic->topic_title();
@@ -402,7 +402,7 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// 閲覧数を加算
+	// Adding views counter
 	function updateCounter()
 	{
 		$sql = sprintf("UPDATE %s SET counter = counter+1 WHERE storyid = %u", $this->table , $this->getVar('storyid'));
@@ -414,7 +414,7 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// hometextを得る
+	// get hometext
 	function hometext()
 	{
 		$html = 1;
@@ -424,7 +424,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// 記事が存在するかどうか
+	// Whether there is a post
 	function isPublishedExists( $mydirname , $storyid=0)
 	{
 		$storyid = intval($storyid);
@@ -480,7 +480,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// 掲載中の記事数を数える
+	// Count the number of articles published
 	function countPublished( $mydirname , $topicid=0,$topic_recursive=false)
 	{
 		$criteria = array();
@@ -490,7 +490,7 @@ class Bulletin extends XoopsObject{
 		$criteria[] = '(expired = 0 OR expired > '.time().')';
 		if ( !empty($topicid) ) {
 			if( $topic_recursive ) {
-				$topic =& new BulletinTopic( $mydirname , intval( $topicid ) ) ;
+				$topic = new BulletinTopic( $mydirname , intval( $topicid ) ) ;
 				$topics = $topic->getAllChildId() ;
 				$topics[] = intval( $topicid ) ;
 				$criteria[] = "topicid IN (".implode(',',$topics).")";
@@ -505,7 +505,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// 承認待ちの記事数を数える
+	// Count the number of awaiting approval articles
 	function countSubmitted( $mydirname )
 	{
 		$criteria = array();
@@ -515,7 +515,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// 掲載予定の記事数を数える
+	// Count the number of articles to be published
 	function countAutoStory( $mydirname )
 	{
 		$criteria = array();
@@ -526,7 +526,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// 期限切れの記事数を数える
+	// Count the number of expired articles
 	function countExpired( $mydirname , $topic4sql=0, $ihome=0)
 	{
 		$topic4sql = intval($topic4sql);
@@ -547,7 +547,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// その日の記事数を数える
+	// Count the number of articles of the day
 	function countPublishedByDate( $mydirname , $caldate)
 	{
 		if( preg_match('/([0-9]{4})-([0-9]{2})-([0-9]{2})/', $caldate, $datearr) ){
@@ -571,7 +571,7 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// コメント数を加算
+	// Adding comments count
 	function updateComments($total)
 	{
 		$sql = sprintf("UPDATE %s SET comments = %u WHERE storyid = %u", $this->table , $total, $this->getVar('storyid'));
@@ -583,7 +583,7 @@ class Bulletin extends XoopsObject{
 
 
 	// class method
-	// 記事が投稿のタイムスタンプを配列で返す
+	// Returns an array with the time stamp of posts
 	function getPublishedDays( $mydirname , $limit=0 , $start=0 )
 	{
 		$db =& Database::getInstance();
@@ -597,20 +597,20 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// hometext の文字数をカウントする
+	// Count the number of characters hometext
 	function strlenHometext(){
 		
-		// HTMLタグを削除
+		// emove HTML tags
 		$hometext = strip_tags($this->getVar('hometext'));
-		// 改行を削除
+		// emove the line breaks
 		$hometext = preg_replace("/(\015\012)|(\015)|(\012)/", "", $hometext);
-		// 連続する半角スペースを半角スペース１としてカウント
+		// contiguous space Counted as one half a space
 		$hometext = preg_replace('!\s+!', " ", $hometext);
-		// HTML特殊文字を半角1文字としてカウント
-		$hometext = ereg_replace("&[a-zA-Z]{1,5};", " ", $hometext);
-		// Unicode10進文字を半角1文字としてカウント
-		$hometext = ereg_replace("&#[0-9]{1,5};", " ", $hometext);
-		// PHPマルチバイト対応
+		// HTML special characters counts to as Single-byte character
+		$hometext = preg_replace("/&[a-zA-Z]{1,6};/", " ", $hometext);
+		// Hexadecimal characters Unicode10 counts to as Single-byte character
+		$hometext = preg_replace("/&#[0-9]{1,5};/", " ", $hometext);
+		//PHP support multi-byte
 		if( function_exists('mb_strlen') ){
 			$result = mb_strlen($hometext);
 		}else{
@@ -622,22 +622,22 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// bodytext の文字数をカウントする
+	// Count the number of characters in bodytext
 	function strlenBodytext(){
 		
-		// HTMLタグを削除
+		// Remove HTML tags
 		$bodytext = strip_tags($this->getVar('bodytext'));
-		// 改行を削除
+		// emove the line breaks
 		$bodytext = preg_replace("/(\015\012)|(\015)|(\012)/", "", $bodytext);
-		// 連続する半角スペースを半角スペース１としてカウント
+		// contiguous space Counted as one half a spac
 		$bodytext = preg_replace('!\s+!', " ", $bodytext);
-		// HTML特殊文字を半角1文字としてカウント
-		$bodytext = ereg_replace("&[a-zA-Z]{1,5};", " ", $bodytext);
-		// Unicode10進文字を半角1文字としてカウント
-		$bodytext = ereg_replace("&#[0-9]{1,5};", " ", $bodytext);
-		// [pagebreak]をカウント対象外にする
+		// HTML special characters counts to as Single-byte character
+		$bodytext = preg_replace("/&[a-zA-Z]{1,6};/", " ", $bodytext);
+		// UHexadecimal characters Unicode10 counts to as Single-byte character
+		$bodytext = preg_replace("/&#[0-9]{1,5};/", " ", $bodytext);
+		// To exclude [pagebreak] count
 		$bodytext = str_replace('[pagebreak]', '', $bodytext);
-		// PHPマルチバイト対応
+		// PHP support multi-byte
 		if( function_exists('mb_strlen') ){
 			$result = mb_strlen($bodytext);
 		}else{
@@ -648,7 +648,7 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// hometext と bodytext の文字数の総和を求める
+	// determine the sum of the length of hometext and bodytext
 	function strlenHomeAndBody(){
 	
 		return $this->strlenHometext() + $this->strlenBodytext();
@@ -656,7 +656,7 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// [pagebreak]を任意の文字列に変換する
+	// Convert any string to [pagebreak]
 	function getDividedBodytext($dividing_str = '<br style="page-break-after:always;" />'){
 	
 		return str_replace('[pagebreak]', $dividing_str, $this->getVar('bodytext'));
@@ -664,7 +664,7 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// $text と $hometext と $bodytext に分解する
+	// to decompose $text into $bodytext and $hometext 
 	function devideHomeTextAndBodyText()
 	{
 		$text_arr = explode('[pagebreak]', $this->getVar('text', 'n'));
@@ -673,7 +673,7 @@ class Bulletin extends XoopsObject{
 	}
 
 
-	// $hometext と $bodytext を $text に統一する
+	// $text ,to compose $hometext and $bodytext
 	function unifyHomeTextAndBodyText()
 	{
 		$text = $this->getVar('hometext', 'n');

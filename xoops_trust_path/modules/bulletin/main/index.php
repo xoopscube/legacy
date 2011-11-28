@@ -77,14 +77,14 @@ if ($op == "comments"){
 }
 // ナビゲータ
 if ( $bulletin_displaynav == 1 ) {
-	
+
 	// ナビを使うと宣言
 	$xoopsTpl->assign('displaynav', true);
-	
+
 	// セレクタをアサイン
 	$bt = new BulletinTopic( $mydirname ) ;
 	$xoopsTpl->assign('topic_select', $bt->makeTopicSelBox( true , $storytopic , 'storytopic' ) ) ;
-	
+
 /*	// オプションをアサイン
 	for ( $i = 5; $i <= 30; $i = $i + 5 ) {
 		$option = array();
@@ -92,7 +92,7 @@ if ( $bulletin_displaynav == 1 ) {
 		$option['option'] = $i ;
 		$xoopsTpl->append('option', $option);
 	}*/
-	
+
 } else {
 	$xoopsTpl->assign('displaynav', false);
 }
@@ -112,7 +112,7 @@ $gperm = new BulletinGP();
 // 記事のループ
 for ( $i = 0; $i < $scount; $i++ ) {
 	$story = array();
-	
+
 	$story['id']         = $articles[$i]->getVar('storyid');
 	$story['posttime']   = formatTimestamp($articles[$i]->getVar('published'), $bulletin_date_format);
 	$story['text']       = $articles[$i]->getVar('hometext');
@@ -124,18 +124,18 @@ for ( $i = 0; $i < $scount; $i++ ) {
 
 	$topic_perm = $gperm->getTopicPermission($story['topicid']);
 	$story = array_merge($story,$topic_perm);
-	
+
 	//ユーザ情報をアサイン
 	$story['uid']        = $articles[$i]->getVar('uid');
 	$story['uname']      = $articles[$i]->getUname();
 	$story['realname']   = $articles[$i]->getRealname();
-	
+
 	// 文字数カウント処理
 	if ( $articles[$i]->strlenBodytext() > 1 ) {
 		$story['bytes']    = sprintf(_MD_BYTESMORE, $articles[$i]->strlenBodytext());
 		$story['readmore'] = true;
 	}
-	
+
 	// コメントの数をアサイン
 	$ccount = $articles[$i]->getVar('comments');
 	if( $ccount == 0 ){
@@ -145,19 +145,19 @@ for ( $i = 0; $i < $scount; $i++ ) {
 	}else{
 		$story['comentstotal'] = sprintf(_MD_NUMCOMMENTS, $ccount);
 	}
-	
+
 	// 管理者用リンク
 	$story['adminlink'] = 0;
 	if ( $xoopsUser && $xoopsUser->isAdmin($xoopsModule->mid()) ) {
 		$story['adminlink'] = 1;
 	}
-	
+
 	// アイコン画像
 	if ( $articles[$i]->showTopicimg() ) {
 		$story['topic_url'] = $articles[$i]->imglink($bulletin_topicon_path);
 		$story['align']     = $articles[$i]->getTopicalign();
 	}
-	
+
 	$xoopsTpl->append('stories', $story);
 }
 
@@ -186,7 +186,7 @@ if($bulletin_assing_rssurl_head){
 
 // GIJ
 $breadcrumbs = array( array( 'name' => $xoopsModule->getVar('name') , 'url' => XOOPS_URL.'/modules/'.$mydirname.'/' ) ) ;
-$topic =& new BulletinTopic( $mydirname , $storytopic ) ;
+$topic = new BulletinTopic( $mydirname , $storytopic ) ;
 if( $storytopic ) {
 	$pankuzu4assign = $topic->makePankuzuForHTML( $storytopic ) ;
 	foreach( $pankuzu4assign as $p4a ) {
