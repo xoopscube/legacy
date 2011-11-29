@@ -33,7 +33,7 @@ class BulletinGP{
 		}
 		if (is_array($gperm_groupid)) {
 			$criteria2 = new CriteriaCompo();
-			foreach ($gperm_groupid as $gid) {
+			foreach ($gperm_groupid as $key => $gid) {
 				$criteria2->add(new Criteria('gperm_groupid', $gid), 'OR');
 			}
 			$criteria->add($criteria2);

@@ -151,9 +151,9 @@ class BulletinTopic extends XoopsTopic{
 		$from2 = $this->db->prefix( $this->mydirname."_topic_access" );
 		$this->id = "topic_id";
 		$ret="";
-		foreach($groups as $groupname){
+		foreach($groups as $key => $gid){
 
-			$sql =  "SELECT ".$this->id." FROM ".$from2." WHERE groupid = " .$groupname;
+			$sql =  "SELECT ".$this->id." FROM ".$from2." WHERE groupid = " .$gid;
 			$sql .= " AND can_post = 1 AND can_edit = 1";
 			$result = $this->db->query($sql);
 			if( list($catid) = $this->db->fetchRow($result) ) {
