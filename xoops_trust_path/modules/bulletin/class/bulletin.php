@@ -212,7 +212,7 @@ class Bulletin extends XoopsObject{
 		if ( !empty($topic4sql) ) {
 			if( $topic_recursive ) {
 				$topic = new BulletinTopic( $mydirname , intval( $topic4sql ) ) ;
-				$topics = $topic->getAllChildId() ;
+				$topics = $topic->getAllChildId( null , $gpermited) ;
 				$topics[] = intval( $topic4sql ) ;
 				$criteria[] = "topicid IN (".implode(',',$topics).")";
 			} else {
@@ -516,7 +516,7 @@ class Bulletin extends XoopsObject{
 		if ( !empty($topicid) ) {
 			if( $topic_recursive ) {
 				$topic = new BulletinTopic( $mydirname , intval( $topicid ) ) ;
-				$topics = $topic->getAllChildId() ;
+				$topics = $topic->getAllChildId( null , $gpermited) ;
 				$topics[] = intval( $topicid ) ;
 				$criteria[] = "topicid IN (".implode(',',$topics).")";
 			} else {
