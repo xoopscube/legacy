@@ -99,15 +99,15 @@ if ( $bulletin_displaynav == 1 ) {
 
 // カレンダからのリンク（日付指定が有った場合）
 if( !empty($caldate) && preg_match('/([0-9]{4})-([0-9]{2})-([0-9]{2})/', $caldate, $datearr) ){
-	$articles = Bulletin::getAllToday( $mydirname , $storynum, $start, $caldate);
+	$articles = Bulletin::getAllToday( $mydirname , $storynum, $start, $caldate, true , true);
 	$xoopsTpl->assign('displaynav', false);
 }else{
 // 通常表示の場合
-	$articles = Bulletin::getAllPublished( $mydirname , $storynum, $start, $storytopic, 1, true, true);
+	$articles = Bulletin::getAllPublished( $mydirname , $storynum, $start, $storytopic, 1, true, true, true);
 }
 
 $scount = count($articles);
-$gperm = new BulletinGP();
+$gperm =& BulletinGP::getInstance() ;
 
 // 記事のループ
 for ( $i = 0; $i < $scount; $i++ ) {
@@ -163,10 +163,10 @@ for ( $i = 0; $i < $scount; $i++ ) {
 
 // ページナビ
 if( !empty($caldate) && preg_match('/([0-9]{4})-([0-9]{2})-([0-9]{2})/', $caldate, $datearr) ){
-	$totalcount = Bulletin::countPublishedByDate( $mydirname , $caldate);
+	$totalcount = Bulletin::countPublishedByDate( $mydirname , $caldate , true);
 	$query      = 'caldate='.$caldate;
 }else{
-	$totalcount = Bulletin::countPublished( $mydirname , $storytopic,true);
+	$totalcount = Bulletin::countPublished( $mydirname , $storytopic , true ,true);
 	$query      = 'storytopic='.$storytopic;
 }
 if ( $totalcount > $scount ) {

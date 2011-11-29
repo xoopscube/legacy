@@ -5,6 +5,7 @@ require_once XOOPS_ROOT_PATH."/class/xoopsuser.php";
 require_once XOOPS_ROOT_PATH."/class/xoopsobject.php";
 require_once dirname(__FILE__).'/relation.php' ;
 require_once dirname(__FILE__).'/bulletinTopic.php' ;
+require_once dirname(__FILE__).'/bulletingp.php' ;
 
 class Bulletin extends XoopsObject{
 
@@ -77,26 +78,26 @@ class Bulletin extends XoopsObject{
 
 		$this->newstopic = $this->topic() ;
 	}
-	
+
 	// Basic Processing
 	function topic()
 	{
 		return new BulletinTopic( $this->mydirname , $this->getVar('topicid')); // GIJ
 	}
-	
+
 	// Basic Processing
 	function store()
 	{
 		if ( !$this->cleanVars() ) {
 			return false;
 		}
-		
+
 		foreach ( $this->cleanVars as $k=>$v ) {
 			$$k = $v;
 		}
 		if ( empty($storyid) ) {
 			$storyid = $this->db->genId($this->table."_storyid_seq");
-			
+
 			$sql = sprintf("INSERT INTO %s (storyid, uid, title, created, published, expired, hostname, html, smiley, hometext, bodytext, counter, topicid, ihome, type, topicimg, comments, br, xcode, block) VALUES (%u, %u, %s, %u, %u, %u, %s, %u, %u, %s, %s, %u, %u, %u, %u, %u, %u, %u, %u, %u)", $this->table , $storyid, $uid, $this->db->quoteString($title), time(), $published, $expired, $this->db->quoteString($hostname), $html, $smiley, $this->db->quoteString($hometext), $this->db->quoteString($bodytext), $counter, $topicid, $ihome, $type, $topicimg, $comments, $br, $xcode, $block);
 		} else {
 			$sql = sprintf("UPDATE %s SET uid=%u, title=%s, created=%u, published=%u, expired=%u, hostname=%s, html=%u, smiley=%u, hometext=%s, bodytext=%s, counter=%u, topicid=%u, ihome=%u, type=%u, topicimg=%u, comments=%u, br=%u, xcode=%u, block=%u WHERE storyid=%u", $this->table , $uid, $this->db->quoteString($title), $created, $published, $expired, $this->db->quoteString($hostname), $html, $smiley, $this->db->quoteString($hometext), $this->db->quoteString($bodytext), $counter, $topicid, $ihome, $type, $topicimg, $comments, $br, $xcode, $block, $storyid);
@@ -108,12 +109,12 @@ class Bulletin extends XoopsObject{
 		if ( empty($storyid) ) {
 			$storyid = $this->db->getInsertId();
 		}
-		
+
 		$this->setVar('storyid', $storyid);
-		
+
 		return $storyid;
 	}
-	
+
 	// Basic Processing
 	function load($id)
 	{
@@ -121,7 +122,7 @@ class Bulletin extends XoopsObject{
 		$myrow = $this->db->fetchArray($this->db->query($sql));
 		$this->assignVars($myrow);
 	}
-	
+
 	// Basic Processing
 	function delete()
 	{
@@ -178,11 +179,11 @@ class Bulletin extends XoopsObject{
 			}
 			$where_query = substr($where_query, 0, -4);
 		}
-		
+
 		$sql = "SELECT COUNT(*) FROM ".$db->prefix($mydirname.'_stories')." ".$where_query;
 		$result = $db->query($sql);
 		list($ret) = $db->fetchRow($result);
-		
+
 		//echo $sql;
 		return $ret;
 	}
@@ -190,18 +191,24 @@ class Bulletin extends XoopsObject{
 
 	// class method
 	// To gets a list of published articles
-	function getAllPublished( $mydirname , $limit4sql=0, $start4sql=0, $topic4sql=0, $ihome=1, $asobject=true, $topic_recursive=false)
+	function getAllPublished( $mydirname , $limit4sql=0, $start4sql=0, $topic4sql=0, $ihome=1, $asobject=true, $topic_recursive=false, $gpermited=false)
 	{
 		$topic4sql = intval($topic4sql);
 		$limit4sql = intval($limit4sql);
 		$start4sql = intval($start4sql);
-				
+
 		$criteria = array();
 		$criteria[] = "type > 0";
 		$criteria[] = "published > 0";
 		$criteria[] = "published <= ".time();
 		$criteria[] = "(expired = 0 OR expired > ".time().")";
-		
+//ver3.0
+		if( $gpermited ){
+			$gperm =& BulletinGP::getInstance() ;
+			$can_read_topic_ids = $gperm->makeOnTopics('read');
+			$criteria[] = "topicid IN (".implode(',',$can_read_topic_ids).")";
+		}
+
 		if ( !empty($topic4sql) ) {
 			if( $topic_recursive ) {
 				$topic = new BulletinTopic( $mydirname , intval( $topic4sql ) ) ;
@@ -224,20 +231,26 @@ class Bulletin extends XoopsObject{
 
 	// class method
 	// To get a list of articles for the Archives
-	function getArchives( $mydirname , $monstart4sql=null, $monend4sql=null, $limit4sql=0, $start4sql=0, $asobject=true)
+	function getArchives( $mydirname , $monstart4sql=null, $monend4sql=null, $limit4sql=0, $start4sql=0, $asobject=true, $gpermited=false)
 	{
 		$monstart4sql = intval($monstart4sql);
 		$monend4sql   = intval($monend4sql);
 		$limit4sql    = intval($limit4sql);
 		$start4sql    = intval($start4sql);
-				
+
 		$criteria = array();
 		$criteria[] = "type > 0";
 		$criteria[] = "published >= $monstart4sql";
-		$criteria[] = "published <= $monend4sql";		
+		$criteria[] = "published <= $monend4sql";
 		$criteria[] = "published > 0";
 		$criteria[] = "published <= ".time();
 		$criteria[] = "(expired = 0 OR expired > ".time().")";
+//ver3.0
+		if( $gpermited ){
+			$gperm =& BulletinGP::getInstance() ;
+			$can_read_topic_ids = $gperm->makeOnTopics('read');
+			$criteria[] = "topicid IN (".implode(',',$can_read_topic_ids).")";
+		}
 		return Bulletin::getAll( $mydirname , $criteria, $asobject, "published DESC", $limit4sql, $start4sql);
 	}
 
@@ -292,28 +305,34 @@ class Bulletin extends XoopsObject{
 
 	// class method
 	// To get a list of articles based on the date
-	function getAllToday( $mydirname , $limit4sql=0, $start4sql=0, $caldate, $asobject=true)
+	function getAllToday( $mydirname , $limit4sql=0, $start4sql=0, $caldate, $asobject=true, $gpermited=false)
 	{
 		$limit4sql    = intval($limit4sql);
 		$start4sql    = intval($start4sql);
-		
+
 		if( preg_match('/([0-9]{4})-([0-9]{2})-([0-9]{2})/', $caldate, $datearr) ){
 			$year  = $datearr[1];
 			$month = $datearr[2];
 			$day   = $datearr[3];
 			$startday4sql = mktime(0,0,0,$month,$day,$year);
 			$endday4sql   = mktime(0,0,0,$month,$day+1,$year);
-			
+
 			$criteria = array();
 			$criteria[] = "published > 0";
 			$criteria[] = "published <= ".time();
 			$criteria[] = "(expired = 0 OR expired > ".time().")";
 			$criteria[] = "$startday4sql <= published";
 			$criteria[] = "published < $endday4sql";
+//ver3.0
+			if( $gpermited ){
+				$gperm =& BulletinGP::getInstance() ;
+				$can_read_topic_ids = $gperm->makeOnTopics('read');
+				$criteria[] = "topicid IN (".implode(',',$can_read_topic_ids).")";
+			}
 
 			return Bulletin::getAll( $mydirname , $criteria, $asobject, "published DESC", $limit4sql, $start4sql);
 		}else{
-		
+
 			return false;
 		}
 	}
@@ -364,18 +383,18 @@ class Bulletin extends XoopsObject{
 		}
 		return true;
 	}
-	
+
 	// To get the position of the topic
 	function getTopicalign()
 	{
 		$ret = "";
-		
+
 		if( $this->getVar('topicimg') == 1 ){
 			$ret = "right";
 		}elseif( $this->getVar('topicimg') == 2 ){
 			$ret = "left";
 		}
-		
+
 		return $ret;
 	}
 
@@ -383,13 +402,13 @@ class Bulletin extends XoopsObject{
 	// Whether to display an image topic
 	function showTopicimg()
 	{
-		
+
 		if( $this->getVar('topicimg') == 1 ){
 			return true;
 		}elseif( $this->getVar('topicimg') == 2 ){
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -428,27 +447,27 @@ class Bulletin extends XoopsObject{
 	function isPublishedExists( $mydirname , $storyid=0)
 	{
 		$storyid = intval($storyid);
-		
+
 		if( empty($storyid) ){
 			return false;
 		}
-		
+
 		$db =& Database::getInstance();
 		$sql = "SELECT COUNT(*) FROM ".$db->prefix($mydirname.'_stories')." WHERE type > 0 AND published > 0 AND published <= ".time()." AND (expired = 0 OR expired > ".time().") AND storyid =".$storyid;
 		$result = $db->query($sql);
 		list($count) = $db->fetchRow($result);
-		
+
 		if( $count > 0 ){
 			return true;
 		}
-		
+
 		return false;
 	}
 
 
 	/*
 	function getTreeCategories($topic_pid = 0, $so = 0 ,$cat_tree = array()){
-	
+
 		$db =& Database::getInstance();
 
 		$result = ( "SELECT `topic_id`, `topic_title` FROM ".$this->topic_table." WHERE `topic_pid` = '$topic_pid'" );
@@ -481,13 +500,19 @@ class Bulletin extends XoopsObject{
 
 	// class method
 	// Count the number of articles published
-	function countPublished( $mydirname , $topicid=0,$topic_recursive=false)
+	function countPublished( $mydirname , $topicid=0,$topic_recursive=false, $gpermited=false)
 	{
 		$criteria = array();
 		$criteria[] = 'type > 0';
 		$criteria[] = 'published > 0';
 		$criteria[] = 'published <= '.time();
 		$criteria[] = '(expired = 0 OR expired > '.time().')';
+//ver3.0
+		if( $gpermited ){
+			$gperm =& BulletinGP::getInstance() ;
+			$can_read_topic_ids = $gperm->makeOnTopics('read');
+			$criteria[] = "topicid IN (".implode(',',$can_read_topic_ids).")";
+		}
 		if ( !empty($topicid) ) {
 			if( $topic_recursive ) {
 				$topic = new BulletinTopic( $mydirname , intval( $topicid ) ) ;
@@ -530,7 +555,7 @@ class Bulletin extends XoopsObject{
 	function countExpired( $mydirname , $topic4sql=0, $ihome=0)
 	{
 		$topic4sql = intval($topic4sql);
-		
+
 		$criteria = array();
 		$criteria[] = "expired <= ".time();
 		$criteria[] = "expired > 0";
@@ -548,7 +573,7 @@ class Bulletin extends XoopsObject{
 
 	// class method
 	// Count the number of articles of the day
-	function countPublishedByDate( $mydirname , $caldate)
+	function countPublishedByDate( $mydirname , $caldate, $gpermited=false)
 	{
 		if( preg_match('/([0-9]{4})-([0-9]{2})-([0-9]{2})/', $caldate, $datearr) ){
 			$year  = $datearr[1];
@@ -556,7 +581,7 @@ class Bulletin extends XoopsObject{
 			$day   = $datearr[3];
 			$startday4sql = mktime(0,0,0,$month,$day,$year);
 			$endday4sql   = mktime(0,0,0,$month,$day+1,$year);
-			
+
 			$criteria = array();
 			$criteria[] = 'type > 0';
 			$criteria[] = 'published > 0';
@@ -564,9 +589,15 @@ class Bulletin extends XoopsObject{
 			$criteria[] = '(expired = 0 OR expired > '.time().')';
 			$criteria[] = $startday4sql.' <= published';
 			$criteria[] = 'published < '.$endday4sql;
+//ver3.0
+			if( $gpermited ){
+				$gperm =& BulletinGP::getInstance() ;
+				$can_read_topic_ids = $gperm->makeOnTopics('read');
+				$criteria[] = "topicid IN (".implode(',',$can_read_topic_ids).")";
+			}
 			return Bulletin::countAll( $mydirname , $criteria);
 		}
-		
+
 		return false;
 	}
 
@@ -599,7 +630,7 @@ class Bulletin extends XoopsObject{
 
 	// Count the number of characters hometext
 	function strlenHometext(){
-		
+
 		// emove HTML tags
 		$hometext = strip_tags($this->getVar('hometext'));
 		// emove the line breaks
@@ -616,15 +647,15 @@ class Bulletin extends XoopsObject{
 		}else{
 			$result = strlen($hometext);
 		}
-		
+
 		return $result;
-	
+
 	}
 
 
 	// Count the number of characters in bodytext
 	function strlenBodytext(){
-		
+
 		// Remove HTML tags
 		$bodytext = strip_tags($this->getVar('bodytext'));
 		// emove the line breaks
@@ -641,30 +672,30 @@ class Bulletin extends XoopsObject{
 		if( function_exists('mb_strlen') ){
 			$result = mb_strlen($bodytext);
 		}else{
-			$result = strlen($bodytext);	
+			$result = strlen($bodytext);
 		}
-		
+
 		return $result;
 	}
 
 
 	// determine the sum of the length of hometext and bodytext
 	function strlenHomeAndBody(){
-	
+
 		return $this->strlenHometext() + $this->strlenBodytext();
-	
+
 	}
 
 
 	// Convert any string to [pagebreak]
 	function getDividedBodytext($dividing_str = '<br style="page-break-after:always;" />'){
-	
+
 		return str_replace('[pagebreak]', $dividing_str, $this->getVar('bodytext'));
-	
+
 	}
 
 
-	// to decompose $text into $bodytext and $hometext 
+	// to decompose $text into $bodytext and $hometext
 	function devideHomeTextAndBodyText()
 	{
 		$text_arr = explode('[pagebreak]', $this->getVar('text', 'n'));
@@ -686,7 +717,7 @@ class Bulletin extends XoopsObject{
 
 
 	function getRelated(){
-	
+
 		$relations = $this->relation->getRelations($this->getVar('storyid'));
 
 		$ret = array();
@@ -696,7 +727,7 @@ class Bulletin extends XoopsObject{
 			$result['dirname'] = $relation['dirname'];
 			$ret[] = new Bulletin( $this->mydirname , $result);
 		}
-		
+
 		return $ret;
 	}
 

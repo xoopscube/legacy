@@ -12,7 +12,7 @@ $assing_array = array(
 	'mydirname' => $mydirname,
 	);
 
-$gperm = new BulletinGP;
+$gperm =& BulletinGP::getInstance() ;
 if (!empty($gperm->topicPermissions)){
 	$can_post_topics = $gperm->makeOnTopics('can_post');
 }else{

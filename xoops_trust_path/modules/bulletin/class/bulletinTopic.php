@@ -1,6 +1,7 @@
 <?php
 
 require_once XOOPS_ROOT_PATH."/class/xoopstopic.php";
+require_once dirname(__FILE__).'/bulletingp.php' ;
 
 class BulletinTopic extends XoopsTopic{
 
@@ -59,17 +60,30 @@ class BulletinTopic extends XoopsTopic{
 
 
 	// GIJ
-	function getAllChildId( $topic_ids = null )
+	function getAllChildId( $topic_ids = null ,$gpermited = false)
 	{
 		$db =& $this->db ;
 
-		if( empty( $topic_ids ) ) $topic_ids = array( $this->topic_id ) ;
-		$result = $db->query( "SELECT distinct topic_id FROM ".$this->table." WHERE topic_pid IN (".implode(',',$topic_ids).")" ) ;
+		if( empty( $topic_ids ) ){
+			$topic_ids = array( $this->topic_id ) ;
+		}
+		$sql = "SELECT distinct topic_id FROM ";
+		$sql .= $this->table ;
+		$sql .= " WHERE topic_pid IN (".implode(',',$topic_ids).")" ;
+		if( $gpermited ){
+			$gperm =& BulletinGP::getInstance() ;
+			$can_read_topic_ids = $gperm->makeOnTopics('read');
+			$sql .= " AND topic_id IN (".implode(',',$can_read_topic_ids).")" ;
+		}
+		$result = $db->query( $sql ) ;
 		$children = array() ;
-		while( list( $child_id ) = $db->fetchRow( $result ) ) $children[] = $child_id ;
-		if( empty( $children ) ) return array() ;
-		else {
-			return array_merge( $children , $this->getAllChildId( $children ) ) ;
+		while( list( $child_id ) = $db->fetchRow( $result ) ){
+			$children[] = $child_id ;
+		}
+		if( empty( $children ) ){
+			return array() ;
+		}else{
+			return array_merge( $children , $this->getAllChildId( $children ,$gpermited) ) ;
 		}
 	}
 

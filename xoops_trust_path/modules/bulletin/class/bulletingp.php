@@ -6,6 +6,16 @@ class BulletinGP{
 		global $mydirname;
 		$this->bulletin_get_topic_permissions_of_current_user($mydirname);
 	}
+
+	function &getInstance()
+	{
+		static $instance;
+		if (!isset($instance)) {
+			$instance = new BulletinGP();
+		}
+		return $instance;
+	}
+
 	function getTopicPermission($topic_id){
 		if ( isset($this->topicPermissions[$topic_id]) )
 			return $this->topicPermissions[$topic_id];
@@ -133,7 +143,9 @@ class BulletinGP{
 			return $ret ;
 		}
 		foreach($this->topicPermissions as $row){
-			if ( $row[$type]==true){
+			if ($type=="read"){
+				$ret[] = $row['topic_id'];
+			}elseif ( $row[$type]==true){
 				$ret[] = $row['topic_id'] ;
 			}
 		}
