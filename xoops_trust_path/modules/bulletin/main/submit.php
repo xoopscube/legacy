@@ -94,7 +94,15 @@ if( empty( $storyid ) ){
 }
 
 if( $op == 'post' ){
-	if(!$gperm->proceed4topic("can_post",$topicid)){ die(_NOPERM); exit(); }
+	//need can post of group premition
+	if (!$gperm->group_perm(1)){
+		die(_NOPERM);
+	}
+	//category ca_post
+	if(!$gperm->proceed4topic("can_post",$topicid)){
+		die(_NOPERM);
+	}
+
 	$time = time();
 	$auto['year']  = isset( $_POST['auto']['year'] )  ? intval( $_POST['auto']['year'] )  : formatTimestamp($time, 'Y');
 	$auto['month'] = isset( $_POST['auto']['month'] ) ? intval( $_POST['auto']['month'] ) : formatTimestamp($time, 'n');
@@ -142,9 +150,15 @@ if( $op == 'post' ){
 		}
 		$is_new = true;
 	}else{
-		// edited post
-
-		if(!$gperm->proceed4topic("can_edit",$topicid)){ die(_NOPERM); exit(); }
+		// edited edit
+		//need can post of group premition
+		if (!$gperm->group_perm(1)){
+			die(_NOPERM);
+		}
+		//category can_edit
+		if(!$gperm->proceed4topic("can_edit",$topicid)){
+			die(_NOPERM);
+		}
 		$story->devideHomeTextAndBodyText();
 
 		// approve this article
@@ -254,12 +268,22 @@ if( $op == 'preview' ){
 	$op = 'form';
 }
 if( $op == 'form' ){
-	// for edit
+	// for post
+	if (!$gperm->group_perm(1)){
+		die(_NOPERM);
+	}
+	//notice when no can_post access
 	$topics = $gperm->makeOnTopics("can_post");
-	if (empty($topics)){ die(_NOPERM); exit(); }//notice
-	if ($topicid==0) $topicid = $topics[0];
+	if (empty($topics)){
+		die(_NOPERM);
+	}
+	if ($topicid==0){
+		$topicid = $topics[0];
+	}
 	$proceed = $gperm->proceed4topic("can_post",$topicid);
-	if (!$topics || !$proceed){ die(_NOPERM); exit(); }
+	if (!$topics || !$proceed){
+		die(_NOPERM);
+	}
 
 	$xoopsTpl->assign('topic_selbox', $BTopic->makeMyTopicList($topicid,$topics) );
 	//H.Onuma
@@ -305,6 +329,16 @@ if( $op == 'form' ){
 }
 
 if( $op == 'delete' ){
+	//need can post of group premition
+	if (!$gperm->group_perm(1)){
+		die(_NOPERM);
+	}
+	//notice when no can_post access
+	$topics = $gperm->makeOnTopics("can_delete");
+	if (empty($topics)){
+		die(_NOPERM);
+	}
+	//category can_edit
 	if(!$gperm->proceed4topic("can_delete",$topicid)){ die(_NOPERM); exit(); }
 	/*if(!$isadmin){
 		die(_NOPERM);
