@@ -3,14 +3,14 @@
 require_once XOOPS_ROOT_PATH."/class/xoopstopic.php";
 
 class BulletinTopic extends XoopsTopic{
-	
+
 	function BulletinTopic( $mydirname , $topicid=0 )
 	{
 		$this->db =& Database::getInstance();
 		$this->mydirname = $mydirname ;
 		$this->table = $this->db->prefix( "{$mydirname}_topics" );
 		$this->ts =& MyTextSanitizer::getInstance();
-		
+
 		if ( is_array($topicid) ) {
 			$this->makeTopic($topicid);
 		} elseif ( $topicid != 0 ) {
@@ -20,7 +20,7 @@ class BulletinTopic extends XoopsTopic{
 		}
 	}
 
-	function topicExists() 
+	function topicExists()
 	{
 		$sql = "SELECT COUNT(*) from ".$this->table;
 		$result = $this->db->query($sql);
@@ -62,7 +62,7 @@ class BulletinTopic extends XoopsTopic{
 	function getAllChildId( $topic_ids = null )
 	{
 		$db =& $this->db ;
-		
+
 		if( empty( $topic_ids ) ) $topic_ids = array( $this->topic_id ) ;
 		$result = $db->query( "SELECT distinct topic_id FROM ".$this->table." WHERE topic_pid IN (".implode(',',$topic_ids).")" ) ;
 		$children = array() ;
@@ -85,7 +85,7 @@ class BulletinTopic extends XoopsTopic{
 		$tree->makeMySelBox( "topic_title" , "topic_title" , $seltopic , $none , $selname , $onchange ) ;
 
 		$ret = ob_get_contents();
-		ob_end_clean();	
+		ob_end_clean();
 
 		//$ret = str_replace('topic_id','topicid', $ret); // non-sense code?
 		return $ret;
@@ -104,7 +104,7 @@ class BulletinTopic extends XoopsTopic{
 			$ret .= " onchange='".$onchange."'";
 		}
 		$ret .= ">\n";
-		$sql = "SELECT ".$this->id.",".$title." FROM ".$this->table." WHERE ".$this->pid."=0";
+		$sql = "SELECT ".$this->id.",".$title." FROM ".$this->table;
 		if ( $order != "" ) {
 			$sql .= " ORDER BY $order";
 		}
@@ -124,7 +124,7 @@ class BulletinTopic extends XoopsTopic{
 		$ret .= "</select>\n";
 		return $ret;
 	}
-	
+
 	//H.Onuma
 	function makeMyTopicList2($preset_id=0, $row=NULL){
 		global $xoopsUser ;
@@ -136,10 +136,11 @@ class BulletinTopic extends XoopsTopic{
 		//自分が所属しているグループが投稿権限を持っているトピックを取得。
 		$from2 = $this->db->prefix( "bulletin_topic_access" );
 		$this->id = "topic_id";
+		$ret="";
 		foreach($groups as $groupname){
-		
+
 			$sql =  "SELECT ".$this->id." FROM ".$from2." WHERE groupid = " .$groupname;
-			$sql .= " AND can_post = 1 AND can_edit = 1"; 		
+			$sql .= " AND can_post = 1 AND can_edit = 1";
 			$result = $this->db->query($sql);
 			if( list($catid) = $this->db->fetchRow($result) ) {
 				$ret = $catid;
@@ -148,7 +149,7 @@ class BulletinTopic extends XoopsTopic{
 		}
 		return $ret;
 
-		
+
 //		if( is_object( $xoopsUser ) ) {
 //			$uid = intval( $xoopsUser->getVar('uid') ) ;
 //		}
