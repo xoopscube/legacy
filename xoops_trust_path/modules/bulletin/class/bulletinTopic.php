@@ -134,7 +134,7 @@ class BulletinTopic extends XoopsTopic{
 		$groups = $xoopsUser->getGroups();
 
 		//自分が所属しているグループが投稿権限を持っているトピックを取得。
-		$from2 = $this->db->prefix( "bulletin_topic_access" );
+		$from2 = $this->db->prefix( $this->mydirname."_topic_access" );
 		$this->id = "topic_id";
 		$ret="";
 		foreach($groups as $groupname){

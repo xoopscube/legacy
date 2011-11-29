@@ -1,7 +1,7 @@
 <?php
 class BulletinGP{
 	var $topicPermissions;
-	
+
 	function BulletinGP(){
 		global $mydirname;
 		$this->bulletin_get_topic_permissions_of_current_user($mydirname);
@@ -11,8 +11,8 @@ class BulletinGP{
 			return $this->topicPermissions[$topic_id];
 		else
 			return NULL;
-	}	
-	
+	}
+
 	function checkRight($gperm_name, $gperm_itemid, $gperm_groupid, $gperm_modid = 1)
 	{
 		$criteria = new CriteriaCompo(new Criteria('gperm_modid', $gperm_modid));
@@ -54,14 +54,14 @@ class BulletinGP{
 
 	function group_perm($perm_itemid){
 
-		global $xoopsUser,$xoopsModule;	
-		
+		global $xoopsUser,$xoopsModule;
+
 		if ($xoopsUser) {
 			$groups = $xoopsUser->getGroups();
 		} else {
 			$groups = XOOPS_GROUP_ANONYMOUS;
 		}
-		
+
 		$module_id = $xoopsModule->getVar('mid');
 //		$gperm_handler =& xoops_gethandler('groupperm');
 		if ($this->checkRight('bulletin_permit', $perm_itemid, $groups, $module_id)) {
@@ -72,7 +72,7 @@ class BulletinGP{
 
 	function getAdminUsers(){
 
-		global $xoopsDB, $xoopsModule;	
+		global $xoopsDB, $xoopsModule;
 		$mid = $xoopsModule->mid();
 
 		$groups = array();
@@ -89,14 +89,14 @@ class BulletinGP{
 				$users[] = $myrow['uid'];
 			}
 		}
-		
+
 		$users = array_unique($users);
-		
+
 		sort($users);
-		
+
 		return $users;
 	}
-	
+
 	// By yoshis
 	function bulletin_get_topic_permissions_of_current_user( $mydirname ){
 		global $xoopsUser ;
@@ -105,35 +105,52 @@ class BulletinGP{
 		if( is_object( $xoopsUser ) ) {
 			$uid = intval( $xoopsUser->getVar('uid') ) ;
 			$groups = $xoopsUser->getGroups() ;
-			if( ! empty( $groups ) ) $whr = "`uid`=$uid || `groupid` IN (".implode(",",$groups).")" ;
-			else $whr = "`uid`=$uid" ;
+			if( ! empty( $groups ) ){
+				$whr = "`uid`=$uid || `groupid` IN (".implode(",",$groups).")" ;
+			}else{
+				$whr = "`uid`=$uid" ;
+			}
 		} else {
 			$whr = "`groupid`=".intval(XOOPS_GROUP_ANONYMOUS) ;
 		}
+		$ret = "";
 		$sql = "SELECT topic_id,SUM(can_post) AS can_post,SUM(can_edit) AS can_edit,SUM(can_delete) AS can_delete,SUM(post_auto_approved) AS post_auto_approved FROM ".$db->prefix($mydirname."_topic_access")." WHERE ($whr) GROUP BY topic_id" ;
 		$result = $db->query( $sql );
 		if( $result ) while( $row = $db->fetchArray( $result ) ) {
 			$ret[ $row['topic_id'] ] = $row ;
 		}
 		$this->topicPermissions = $ret;
-		if( empty( $ret ) ) return array( 0 => array() ) ;
-		else return $ret ;
+		if( empty( $ret ) ){
+			$ret = "";
+			return array( $ret ) ;
+		}else{
+			return $ret ;
+		}
 	}
 	function makeOnTopics( $type ){
 		$ret = array();
-		if (is_array($this->topicPermissions)) {
-			foreach($this->topicPermissions as $row){
-				if ( $row[$type]==true) $ret[] = $row['topic_id'] ;
+		if (!is_array($this->topicPermissions)) {
+			return $ret ;
+		}
+		foreach($this->topicPermissions as $row){
+			if ( $row[$type]==true){
+				$ret[] = $row['topic_id'] ;
 			}
 		}
 		return $ret ;
 	}
 	function proceed4topic($type,$topic_id=0){
 		$ret = false;
-		if ($topic_id==0) return $ret;
+		if (!is_array($this->topicPermissions)) {
+			return $ret ;
+		}
+		if ($topic_id==0) {
+			return $ret;
+		}
 		if (isset($this->topicPermissions[$topic_id])){
-			if ($type=="read") $ret = true;
-			elseif ($this->topicPermissions[$topic_id][$type]==true){
+			if ($type=="read"){
+				$ret = true;
+			}elseif ($this->topicPermissions[$topic_id][$type]==true){
 				$ret = true;
 			}
 		}
