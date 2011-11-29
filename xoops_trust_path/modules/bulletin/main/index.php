@@ -18,8 +18,8 @@ if ($op == "comments"){
 	$posttbl = $commenttbl . "_posts";
 	if($storytopic){
 		$sql = "SELECT b.topic_id,b.topic_title,s.storyid,p.uid,u.uname,p.post_time,p.post_text FROM "
-		.$xoopsDB->prefix("bulletin_topics")." b LEFT JOIN "
-		.$xoopsDB->prefix("bulletin_stories")." s ON b.topic_id=s.topicid LEFT JOIN "
+		.$xoopsDB->prefix($mydirname."_topics")." b LEFT JOIN "
+		.$xoopsDB->prefix($mydirname."_stories")." s ON b.topic_id=s.topicid LEFT JOIN "
 		.$xoopsDB->prefix($cmttbl."_topics")." t ON s.storyid=t.topic_external_link_id LEFT JOIN "
 		.$xoopsDB->prefix($cmttbl."_posts")." p ON t.topic_last_post_id=p.post_id LEFT JOIN "
 		.$xoopsDB->prefix("users")." u ON p.uid=u.uid "
@@ -36,8 +36,8 @@ if ($op == "comments"){
 		$xoopsOption['template_main'] = "{$mydirname}_comments.html";
 	}else{
 		$sql = "SELECT b.topic_id,b.topic_title,count(p.post_id) as comment FROM "
-		.$xoopsDB->prefix("bulletin_topics")." b LEFT JOIN "
-		.$xoopsDB->prefix("bulletin_stories")." s ON b.topic_id=s.topicid LEFT JOIN "
+		.$xoopsDB->prefix($mydirname."_topics")." b LEFT JOIN "
+		.$xoopsDB->prefix($mydirname."_stories")." s ON b.topic_id=s.topicid LEFT JOIN "
 		.$xoopsDB->prefix($cmttbl."_topics")." t ON s.storyid=t.topic_external_link_id LEFT JOIN "
 		.$xoopsDB->prefix($cmttbl."_posts")." p ON t.topic_last_post_id=p.post_id "
 		."WHERE ! t.topic_invisible AND (".$whr_forum." ) GROUP BY b.topic_id";
@@ -48,8 +48,8 @@ if ($op == "comments"){
 			$topicInfo[$myrow['topic_id']]['comment']=$myrow['comment'];
 		}
 		$sql = "SELECT b.topic_id,b.topic_title,count(i.content_id) as iine FROM "
-		.$xoopsDB->prefix("bulletin_topics")." b LEFT JOIN "
-		.$xoopsDB->prefix("bulletin_stories")." s ON b.topic_id=s.topicid LEFT JOIN "
+		.$xoopsDB->prefix($mydirname."_topics")." b LEFT JOIN "
+		.$xoopsDB->prefix($mydirname."_stories")." s ON b.topic_id=s.topicid LEFT JOIN "
 		.$xoopsDB->prefix("iine_votes").' i ON s.storyid=i.content_id WHERE i.dirname="bulletin" '
 		."GROUP BY b.topic_id";
 		$ret=$xoopsDB->query($sql);
@@ -59,8 +59,8 @@ if ($op == "comments"){
 			$topicInfo[$myrow['topic_id']]['iine']=$myrow['iine'];
 		}
 		$sql = "SELECT b.topic_id,b.topic_title,count(m.inbox_id) as message FROM "
-		.$xoopsDB->prefix("bulletin_topics")." b LEFT JOIN "
-		.$xoopsDB->prefix("bulletin_stories")." s ON b.topic_id=s.topicid LEFT JOIN "
+		.$xoopsDB->prefix($mydirname."_topics")." b LEFT JOIN "
+		.$xoopsDB->prefix($mydirname."_stories")." s ON b.topic_id=s.topicid LEFT JOIN "
 		.$xoopsDB->prefix("message_inbox")." m ON m.from_uid=s.uid "
 		."WHERE m.uid=" . $xoopsUser->uid() . " GROUP BY b.topic_id";
 		$ret=$xoopsDB->query($sql);
