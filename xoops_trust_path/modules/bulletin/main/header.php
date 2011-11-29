@@ -13,9 +13,13 @@ $assing_array = array(
 	);
 
 $gperm = new BulletinGP;
-
+if (!empty($gperm->topicPermissions)){
+	$can_post_topics = $gperm->makeOnTopics('can_post');
+}else{
+	$can_post_topics = false;
+}
 // User has the right to post.
-if($gperm->group_perm(1)){
+if($gperm->group_perm(1) && !empty($can_post_topics)){
 	$assing_array['can_post'] = 1;
 }
 

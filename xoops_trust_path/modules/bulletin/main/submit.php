@@ -44,6 +44,7 @@ if( !$BTopic->topicExists() ){
 	die(_MD_NO_TOPICS);
 	exit;
 }
+
 $xoopsTpl->assign('topic_title', $BTopic->topic_title());
 
 // Chanege the WSYWIG editor
@@ -142,7 +143,7 @@ if( $op == 'post' ){
 		$is_new = true;
 	}else{
 		// edited post
-		
+
 		if(!$gperm->proceed4topic("can_edit",$topicid)){ die(_NOPERM); exit(); }
 		$story->devideHomeTextAndBodyText();
 
@@ -255,10 +256,11 @@ if( $op == 'preview' ){
 if( $op == 'form' ){
 	// for edit
 	$topics = $gperm->makeOnTopics("can_post");
+	if (empty($topics)){ die(_NOPERM); exit(); }//notice
 	if ($topicid==0) $topicid = $topics[0];
 	$proceed = $gperm->proceed4topic("can_post",$topicid);
 	if (!$topics || !$proceed){ die(_NOPERM); exit(); }
-	
+
 	$xoopsTpl->assign('topic_selbox', $BTopic->makeMyTopicList($topicid,$topics) );
 	//H.Onuma
 	$xoopsTpl->assign('topic_selbox2', $BTopic->makeMyTopicList2($topicid,$topics) );
@@ -309,7 +311,7 @@ if( $op == 'delete' ){
 		exit();
 	}*/
 	$storyid = isset( $_GET['storyid'] ) ? intval( $_GET['storyid'] ) : 0 ;
-	
+
 	if ( !empty( $_POST['ok'] ) ){
 
 		//check ticket
