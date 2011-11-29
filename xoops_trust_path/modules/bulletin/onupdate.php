@@ -108,6 +108,87 @@ function bulletin_onupdate_base( $module, $prev_version , $mydirname )
 		}else{
 			$msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">Invalid SQL <b>'.htmlspecialchars($sql).'</b></span>';
 		}
+//ver2.22->ver3.0  creat data to topic_access
+		$can_groups = array();
+		$can_read_topic_id = array();
+		$topic_access_data = "";
+		$sql = "SELECT gperm_groupid FROM ".$db->prefix('group_permission');
+		$sql .= " WHERE gperm_itemid = ".$mid;
+		$sql .= " AND gperm_modid = 1";
+		$sql .= " AND gperm_name = 'module_read'";
+		$result = $db->query($sql);
+		if (empty($result)){
+			$msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">Invalid SQL <b>'.htmlspecialchars($sql).'</b></span>';
+		}else{
+			while ($myrow = $db->fetchArray($result)) {
+				$can_groups[$myrow['gperm_groupid']]['can_read'] = 1;
+				$can_groups[$myrow['gperm_groupid']]['can_post'] = 0;
+				$can_groups[$myrow['gperm_groupid']]['can_edit'] = 0;
+				$can_groups[$myrow['gperm_groupid']]['can_delete'] = 0;
+				$can_groups[$myrow['gperm_groupid']]['post_auto_approved'] = 0;
+			}
+			if (!empty($can_groups)){
+				//ca_post,post_auto_approved
+				$sql = "SELECT * FROM ".$db->prefix('group_permission');
+				$sql .= " WHERE gperm_modid = ".$mid;
+				$sql .= " AND gperm_name = 'bulletin_permit'";
+				$result = $db->query($sql);
+				if (empty($result)){
+					$msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">Invalid SQL <b>'.htmlspecialchars($sql).'</b></span>';
+				}else{
+					while ($myrow = $db->fetchArray($result)) {
+						if(isset($can_groups[$myrow['gperm_groupid']])){
+							switch ($myrow['gperm_itemid']) {
+							case 1:
+								$can_groups[$myrow['gperm_groupid']]['can_post'] = 1;
+								break;
+							case 2:
+								$can_groups[$myrow['gperm_groupid']]['post_auto_approved'] = 1;
+								break;
+							}
+						}
+					}
+					$sql = "SELECT gperm_groupid FROM ".$db->prefix('group_permission');
+					$sql .= " WHERE gperm_itemid = ".$mid;
+					$sql .= " AND gperm_modid = 1";
+					$sql .= " AND gperm_name = 'module_admin'";
+					$result = $db->query($sql);
+					if (empty($result)){
+						$msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">Invalid SQL <b>'.htmlspecialchars($sql).'</b></span>';
+					}else{
+						while ($myrow = $db->fetchArray($result)) {
+							if(isset($can_groups[$myrow['gperm_groupid']])){
+								$can_groups[$myrow['gperm_groupid']]['can_edit'] = 1;
+								$can_groups[$myrow['gperm_groupid']]['can_delete'] = 1;
+							}
+						}
+						$sql = "SELECT topic_id FROM ".$db->prefix("{$mydirname}_topics");
+						$result = $db->query($sql);
+						if (empty($result)){
+							$msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">Invalid SQL <b>'.htmlspecialchars($sql).'</b></span>';
+						}else{
+							while ($myrow = $db->fetchArray($result)) {
+								$can_read_topic_id[] = $myrow['topic_id'];
+							}
+							if (!empty($can_read_topic_id)){
+								foreach ($can_read_topic_id as $topic_id) {
+									foreach ($can_groups as $groupid => $value) {
+										$sql = "INSERT INTO `".$db->prefix("{$mydirname}_topic_access")."`";
+										$sql .= " (`topic_id`, `uid`, `groupid`, `can_post`, `can_edit`, `can_delete`, `post_auto_approved`)";
+										$sql .= " VALUES (".$topic_id.", NULL, ".$groupid.", ".$value['can_post'].", ".$value['can_edit'].", ".$value['can_delete'].", ".$value['post_auto_approved'].")";
+										if ($db->query($sql)){
+											$msgs[] = '&nbsp;&nbsp;Table <b>'.htmlspecialchars($db->prefix("{$mydirname}_topic_access")).'</b> add '.$topic_id.' for group '.$groupid ;
+										}else{
+											$msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">Invalid SQL <b>'.htmlspecialchars($sql).'</b></span>';
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	// TEMPLATES (all templates have been already removed by modulesadmin)
