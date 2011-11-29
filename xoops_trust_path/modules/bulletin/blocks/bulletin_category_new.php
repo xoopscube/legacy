@@ -28,12 +28,12 @@ function b_bulletin_category_new_show($options) {
 	$mytree = new XoopsTree($table_topics,'topic_id','topic_pid');
 
 	$arr = array();
-	// ¥ë¡¼¥È¥«¥Æ¥´¥ê¤òÆÀ¤ë¥¯¥¨¥ê
+	// ãƒ«ãƒ¼ãƒˆã‚«ãƒ†ã‚´ãƒªã‚’å¾—ã‚‹ã‚¯ã‚¨ãƒª
 	if( empty($options[4]) ){
-		// Á´¥ë¡¼¥È¥«¥Æ¥´¥ê¤òÆÀ¤ë
+		// å…¨ãƒ«ãƒ¼ãƒˆã‚«ãƒ†ã‚´ãƒªã‚’å¾—ã‚‹
 		$result = $xoopsDB->query("SELECT topic_id, topic_title, topic_imgurl FROM $table_topics WHERE topic_pid=0 ORDER BY topic_title");
 	}else{
-		// »ØÄê¥«¥Æ¥´¥ê¤Î¤ß
+		// æŒ‡å®šã‚«ãƒ†ã‚´ãƒªã®ã¿
 		$result = $xoopsDB->query("SELECT topic_id, topic_title, topic_imgurl FROM $table_topics WHERE topic_id=".$options[4]);
 	}
 
@@ -44,14 +44,14 @@ function b_bulletin_category_new_show($options) {
 		$topic['title'] = $myts->makeTboxData4Show($topic_title);
 		$topic['id'] = $topic_id;
 
-		// ¥È¥Ô¥Ã¥¯²èÁü¤ò¥»¥Ã¥È
+		// ãƒˆãƒ”ãƒƒã‚¯ç”»åƒã‚’ã‚»ãƒƒãƒˆ
 		if ($topic_imgurl != '' && file_exists($bulletin_topicon_path.$topic_imgurl) && $options[6]) {
 			$topic['topic_url'] = str_replace(XOOPS_ROOT_PATH,XOOPS_URL,$bulletin_topicon_path).$topic_imgurl;
 		}
 
 		$where = sprintf("s.type > 0 AND s.published < %u AND s.published > 0 AND (s.expired = 0 OR s.expired > %1\$u) AND s.block = 1 AND (s.topicid=%u", time(), $topic_id);
 
-		// »Ò¥Ç¥£¥ì¥¯¥È¥ê¤òÂÐ¾Ý¤Ë´Þ¤á¤ë
+		// å­ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’å¯¾è±¡ã«å«ã‚ã‚‹
 		$arr = $mytree->getAllChildId($topic_id);
 		$size = count($arr);
 		for($i=0;$i<$size;$i++){
@@ -61,14 +61,14 @@ function b_bulletin_category_new_show($options) {
 		$where .= ")";
 		$order = "ORDER BY $selected_order";
 
-		// more ¤ò¥»¥Ã¥È
+		// more ã‚’ã‚»ãƒƒãƒˆ
 		$sql = sprintf('SELECT COUNT(*) FROM %s s WHERE %s', $table_stories, $where);
 		list($count) = $xoopsDB->fetchRow($xoopsDB->query($sql));
 		if($count>$options[2]){
 			$topic['morelink'] = 1;
 		}
 
-		// ËÜÊ¸¤òÉ½¼¨¤¹¤ë
+		// æœ¬æ–‡ã‚’è¡¨ç¤ºã™ã‚‹
 		if($options[5] > 0){
 
 			$sql  = sprintf('SELECT s.storyid, s.topicid, s.title, s.hometext, s.bodytext, s.published, s.expired, s.counter, s.comments, s.uid, s.topicimg, s.html, s.smiley, s.br, s.xcode, t.topic_title, t. topic_imgurl FROM %s s, %s t WHERE %s AND s.topicid = t.topic_id %s', $table_stories, $table_topics, $where, $order);
@@ -87,13 +87,13 @@ function b_bulletin_category_new_show($options) {
 				$fullstory['text']     = $myts->displayTarea($myrow['hometext'],$myrow['html'],$myrow['smiley'],$myrow['xcode'],1,$myrow['br']);
 				$fullstory['hits']     = $myrow['counter'];
 				$fullstory['title_link'] = true;
-				//¥æ¡¼¥¶¾ðÊó¤ò¥¢¥µ¥¤¥ó
+				//ãƒ¦ãƒ¼ã‚¶æƒ…å ±ã‚’ã‚¢ã‚µã‚¤ãƒ³
 				$fullstory['uid']      = $myrow['uid'];
 				$fullstory['uname']    = XoopsUser::getUnameFromId($myrow['uid']);
 				$fullstory['realname'] = XoopsUser::getUnameFromId($myrow['uid'], 1);
 				$fullstory['morelink'] = '';
 
-				// Ê¸»ú¿ô¥«¥¦¥ó¥È½èÍý
+				// æ–‡å­—æ•°ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
 				if ( myStrlenText($myrow['bodytext']) > 1 ) {
 					$fullstory['bytes']    = sprintf(_MB_BULLETIN_BYTESMORE, myStrlenText($myrow['bodytext']));
 					$fullstory['readmore'] = true;
@@ -102,7 +102,7 @@ function b_bulletin_category_new_show($options) {
 					$fullstory['readmore'] = false;
 				}
 
-				// ¥³¥á¥ó¥È¤Î¿ô¤ò¥¢¥µ¥¤¥ó
+				// ã‚³ãƒ¡ãƒ³ãƒˆã®æ•°ã‚’ã‚¢ã‚µã‚¤ãƒ³
 				$ccount = $myrow['comments'];
 				if( $ccount == 0 ){
 					$fullstory['comentstotal'] = _MB_BULLETIN_COMMENTS;
@@ -112,10 +112,10 @@ function b_bulletin_category_new_show($options) {
 					$fullstory['comentstotal'] = sprintf(_MB_BULLETIN_NUMCOMMENTS, $ccount);
 				}
 
-				// ´ÉÍý¼ÔÍÑ¤Î¥ê¥ó¥¯
+				// ç®¡ç†è€…ç”¨ã®ãƒªãƒ³ã‚¯
 				$fullstory['adminlink'] = 0;
 
-				// ¥È¥Ô¥Ã¥¯²èÁü
+				// ãƒˆãƒ”ãƒƒã‚¯ç”»åƒ
 				if ( $myrow['topicimg'] ) {
 					$fullstory['topic_url'] = makeTopicImgURL($bulletin_topicon_path, $myrow['topic_imgurl']);
 					$fullstory['align']     = topicImgAlign($myrow['topicimg']);
@@ -134,7 +134,7 @@ function b_bulletin_category_new_show($options) {
 
 			while ( $myrow = $xoopsDB->fetchArray($result3) ) {
 
-				// ¥Þ¥ë¥Á¥Ð¥¤¥È´Ä¶­¤ËÂÐ±þ
+				// ãƒžãƒ«ãƒãƒã‚¤ãƒˆç’°å¢ƒã«å¯¾å¿œ
 				$story['title']    = $myts->makeTboxData4Show(xoops_substr($myrow['title'], 0 ,$options[3] + 3, '...'));
 				$story['id']       = $myrow['storyid'];
 				$story['date']     = formatTimestamp($myrow['published'], $bulletin_date_format);
@@ -173,7 +173,7 @@ function b_bulletin_category_new_edit($options) {
 	$selected_order = empty( $options[1] ) || ! in_array( $options[1] , b_bulletin_category_new_allowed_order() ) ? 'published DESC' : $options[1] ;
 
 	require_once XOOPS_ROOT_PATH.'/class/template.php' ;
-	$tpl =& new XoopsTpl() ;
+	$tpl = new XoopsTpl() ;
 	$tpl->assign( array(
 		'mydirname' => $mydirname ,
 		'options' => $options ,
