@@ -90,7 +90,12 @@ if( empty( $storyid ) ){
 	}
 	if( !$gperm->group_perm(2) ){
 		$story->setVar('approve', 0);
+	}else{
+		if( !empty($topicid) && !$gperm->proceed4topic("post_auto_approved",$topicid)){
+			$story->setVar('approve', 0);
+		}
 	}
+
 }
 
 if( $op == 'post' ){
@@ -125,7 +130,9 @@ if( $op == 'post' ){
 		// 自動承認かどうか
 		if( $gperm->group_perm(2) ){
 			$story->setVar('type', $story->getVar('approve') ); // GIJ
-			if(!$gperm->proceed4topic("post_auto_approved",$topicid)){ $story->setVar('type', 0); }
+			if(!$gperm->proceed4topic("post_auto_approved",$topicid)){
+				$story->setVar('type', 0);
+			}
 		}else{
 			$story->setVar('type', 0);
 		}
@@ -164,7 +171,9 @@ if( $op == 'post' ){
 		// approve this article
 		$approved = 0;
 		if ( $story->getVar('approve') == 1 ){
-			if( $story->getVar('type') == 0) $approved = 1;
+			if( $story->getVar('type') == 0){
+				$approved = 1;
+			}
 			$story->setVar('type', 1);
 		}else{
 			$story->setVar('type', 0);
@@ -210,7 +219,7 @@ if( $op == 'post' ){
 		$tags = array();
 		$tags['STORY_NAME'] = $myts->stripSlashesGPC($story->getVar('title', 'n'));
 		$tags['STORY_URL']  = $mydirurl.'/index.php?page=article&storyid=' . $story->getVar('storyid');
-		if($gperm->group_perm(2)){
+		if($gperm->group_perm(2) && $gperm->proceed4topic("post_auto_approved",$topicid)){
 			$notification_handler->triggerEvent('global', 0, 'new_story', $tags);
 		} else {
 			// admin only
@@ -218,16 +227,16 @@ if( $op == 'post' ){
 			$notification_handler->triggerEvent('global', 0, 'story_submit', $tags, $gperm->getAdminUsers());
 		}
 		// 承認したときに通知を受け取る
-		if ($story->getVar('notifypub') == 1 && !$gperm->group_perm(2)) {
+		if ($story->getVar('notifypub') == 1 && (!$gperm->group_perm(2) || !$gperm->proceed4topic("post_auto_approved",$topicid) )) {
 			require_once XOOPS_ROOT_PATH.'/include/notification_constants.php';
 			$notification_handler->subscribe('story', $story->getVar('storyid'), 'approve', XOOPS_NOTIFICATION_MODE_SENDONCETHENDELETE);
 		}
 		//投稿数加算処理
-		if ($gperm->group_perm(2) && is_object($xoopsUser) && $bulletin_plus_posts == 1) {
+		if ($gperm->group_perm(2) && $gperm->proceed4topic("post_auto_approved",$topicid) && is_object($xoopsUser) && $bulletin_plus_posts == 1) {
 			$xoopsUser->incrementPost();
 		}
 		// 自動承認のときはメッセージを変える
-		if($gperm->group_perm(2)){
+		if($gperm->group_perm(2) && $gperm->proceed4topic("post_auto_approved",$topicid) ){
 			redirect_header($mydirurl.'/index.php', 2, _MD_THANKS_AUTOAPPROVE);
 			exit;
 		}
@@ -331,11 +340,6 @@ if( $op == 'form' ){
 if( $op == 'delete' ){
 	//need can post of group premition
 	if (!$gperm->group_perm(1)){
-		die(_NOPERM);
-	}
-	//notice when no can_post access
-	$topics = $gperm->makeOnTopics("can_delete");
-	if (empty($topics)){
 		die(_NOPERM);
 	}
 	//category can_edit
