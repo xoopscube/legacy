@@ -103,4 +103,7 @@ define('_MD_ARCHIVES','アーカイブ'); // ver 2.00 added
 define('_MD_BULLETIN_CATEGORY','カテゴリー');
 define('_MD_BULLETIN_MSG_UPDATED','更新しました');
 
+//mailto
+define('_MD_MAILTO_ENCODING','UTF-8');
+
 ?>

@@ -3,7 +3,7 @@
 $fromyear  = (isset($_GET['year']))  ? intval($_GET['year'])  : 0 ;
 $frommonth = (isset($_GET['month'])) ? intval($_GET['month']) : 0 ;
 
-//テンプレート
+//Template
 $xoopsOption['template_main'] = "{$mydirname}_archive.html";
 
 require_once XOOPS_ROOT_PATH.'/header.php';
@@ -14,10 +14,10 @@ if (!$result) {
 	redirect_header($mydirurl.'/index.php',3,_MD_NO_ARCIVES);
 }
 
-// 月名のリスト
+// list of month names
 $months_arr = array(1=>_MD_JANUARY, 2=>_MD_FEBRUARY, 3=>_MD_MARCH, 4=>_MD_APRIL, 5=>_MD_MAY, 6=>_MD_JUNE, 7=>_MD_JULY, 8=>_MD_AUGUST, 9=>_MD_SEPTEMBER, 10=>_MD_OCTOBER, 11=>_MD_NOVEMBER, 12=>_MD_DECEMBER);
 
-// タイムゾーン
+// Time zone
 $useroffset = $xoopsConfig['default_TZ'];
 if($xoopsUser){
 	$timezone = $xoopsUser->timezone();
@@ -26,7 +26,7 @@ if($xoopsUser){
 	}
 }
 
-// 記事が存在する期間のカレンダー配列を作る
+// make array of calendar for presented time of articles display
 $start_year = formatTimestamp(reset($result), "Y", $useroffset);
 $end_year   = formatTimestamp(end($result),   "Y", $useroffset);
 $year_arr = array();
@@ -34,7 +34,7 @@ for($i=$start_year;$i<=$end_year;$i++){
 	$year_arr[$i] = array(1=>1,2,3,4,5,6,7,8,9,10,11,12);
 }
 
-// 記事が存在する月のリスト配列を作る
+// make array of month for presented time of articles display
 $exist_arr = array();
 $total = count($result);
 for($i=0;$i<$total;$i++){
@@ -43,7 +43,7 @@ for($i=0;$i<$total;$i++){
 	$exist_arr[$this_year][$this_month] = $this_month;
 }
 
-// カレンダーのassing
+// Assing Calendar
 $i = 0;
 $years  = array();
 foreach($year_arr as $caly => $calms){
@@ -67,7 +67,7 @@ foreach($year_arr as $caly => $calms){
 }
 $xoopsTpl->assign('years', $years);
 
-// 記事のリストassign
+// Assign list of articles
 if ($fromyear != 0 && $frommonth != 0) {
 	$xoopsTpl->assign('show_articles', true);
 	$xoopsTpl->assign('currentmonth', $months_arr[$frommonth]);
@@ -92,11 +92,20 @@ if ($fromyear != 0 && $frommonth != 0) {
 		$story['date']       = formatTimestamp($article[$i]->getVar('published'), $bulletin_date_format, $useroffset);
 		$story['print_link'] = 'index.php?page=print&amp;storyid='.$article[$i]->getVar('storyid');
 
-		// Tell A Frined使用する場合
+		// If you are using Tell A Frined module
 		if($bulletin_use_tell_a_frined){
 			$story['mail_link'] = XOOPS_URL.'/modules/tellafriend/index.php?target_uri='.rawurlencode( "$mydirurl/index.php?page=article&amp;storyid=".$article[$i]->getVar('storyid') ).'&amp;subject='.rawurlencode(sprintf(_MD_INTARTFOUND,$xoopsConfig['sitename'])) ;
 		}else{
-			$story['mail_link'] = 'mailto:?subject='.sprintf(_MD_INTARTICLE, $xoopsConfig['sitename']).'&amp;body='.sprintf(_MD_INTARTFOUND, $xoopsConfig['sitename']).':  '.$mydirurl.'/index.php?page=article&amp;storyid='.$article[$i]->getVar('storyid');
+	//		$story['mail_link'] = 'mailto:?subject='.sprintf(_MD_INTARTICLE, $xoopsConfig['sitename']).'&amp;body='.sprintf(_MD_INTARTFOUND, $xoopsConfig['sitename']).':  '.$mydirurl.'/index.php?page=article&amp;storyid='.$article[$i]->getVar('storyid');
+			$mail_subject = sprintf(_MD_INTARTICLE,$xoopsConfig['sitename']);
+			$mail_body = sprintf(_MD_INTARTFOUND, $xoopsConfig['sitename']).':  '.$mydirurl.'/index.php?page=article&amp;storyid='.$article[$i]->getVar('storyid');
+			if (defined('_MD_MAILTO_ENCODING')){
+				if ( strcasecmp(_MD_MAILTO_ENCODING,_CHARSET) && function_exists('mb_convert_encoding') && @mb_internal_encoding(_CHARSET) ) {
+					$mail_subject =mb_convert_encoding( $mail_subject  , _MD_MAILTO_ENCODING , _CHARSET) ;
+					$mail_body =mb_convert_encoding( $mail_body  , _MD_MAILTO_ENCODING , _CHARSET) ;
+				}
+			}
+			$story['mail_link'] = 'mailto:?subject='.rawurlencode($mail_subject).'&amp;body='.rawurlencode( $mail_body );
 		}
 
 		$xoopsTpl->append('stories', $story);

@@ -1,8 +1,10 @@
 <?php
 // Blocks
 
-define('_MB_BULLETIN_NOTYET','本日のトップニュースはありません');
-define('_MB_BULLETIN_TMRSI','本日最も読まれたニュース記事は：');
+//define('_MB_BULLETIN_NOTYET','本日のトップニュースはありません');
+//define('_MB_BULLETIN_TMRSI','本日最も読まれたニュース記事は：');
+define('_MB_BULLETIN_NOTYET','本日のトップコンテンツはありません');
+define('_MB_BULLETIN_TMRSI','本日最も読まれたコンテンツは：');
 define('_MB_BULLETIN_ORDER','並び順');
 define('_MB_BULLETIN_DATE','掲載日時');
 define('_MB_BULLETIN_HITS','ヒット数');
