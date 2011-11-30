@@ -49,8 +49,27 @@ if ( $bodytext != '' ) {
 		}
 	} else {
 		$story['text'] = $story['text'].'<br /><br />'.$bodytext;
-    }
+	}
 }
+	$topic_perm = $gperm->getTopicPermission($story['topicid']);
+	if (empty($topic_perm)){
+		$topic_perm['topic_id'] = $articles[$i]->getVar('topicid');
+		$topic_perm['can_post'] = 0;
+		$topic_perm['can_edit'] = 0;
+		$topic_perm['can_delete'] = 0;
+		$topic_perm['post_auto_approved'] = 0;
+		$story = array_merge($story,$topic_perm);
+	}else{
+		if (!$gperm->group_perm(1)){
+			$topic_perm['can_post'] = 0;
+			$topic_perm['can_edit'] = 0;
+			$topic_perm['can_delete'] = 0;
+		}
+		if (!$gperm->group_perm(2)){
+			$topic_perm['post_auto_approved'] = 0;
+		}
+		$story = array_merge($story,$topic_perm);
+	}
 
 //ユーザ情報をアサイン
 $story['uid']      = $article->getVar('uid');

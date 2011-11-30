@@ -289,9 +289,11 @@ if( $op == 'form' ){
 	if ($topicid==0){
 		$topicid = $topics[0];
 	}else{
-		$proceed = $gperm->proceed4topic("can_edit",$topicid);
-		if (!$topics || !$proceed){
-			die(_NOPERM);
+		if ( !empty( $storyid ) ){// for edit
+			$proceed = $gperm->proceed4topic("can_edit",$topicid);
+			if (!$topics || !$proceed){
+				die(_NOPERM);
+			}
 		}
 	}
 	$proceed = $gperm->proceed4topic("can_post",$topicid);
