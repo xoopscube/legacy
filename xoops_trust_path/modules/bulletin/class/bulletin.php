@@ -615,10 +615,18 @@ class Bulletin extends XoopsObject{
 
 	// class method
 	// Returns an array with the time stamp of posts
-	function getPublishedDays( $mydirname , $limit=0 , $start=0 )
+	function getPublishedDays( $mydirname , $limit=0 , $start=0 , $gpermited=false )
 	{
 		$db =& Database::getInstance();
-		$sql = "SELECT published FROM ".$db->prefix($mydirname.'_stories')." WHERE type > 0 AND published>0 AND published<=".time()." AND expired <= ".time()." ORDER BY published ASC";
+		$sql = "SELECT published FROM ".$db->prefix($mydirname.'_stories');
+		$sql .= " WHERE type > 0 AND published>0 AND published<=".time()." AND expired <= ".time();
+//ver3.0
+		if( $gpermited ){
+			$gperm =& BulletinGP::getInstance() ;
+			$can_read_topic_ids = $gperm->makeOnTopics('can_read');
+			$sql .= " AND topicid IN (".implode(',',$can_read_topic_ids).")";
+		}
+		$sql .= " ORDER BY published ASC";
 		$result = $db->query($sql,intval($limit),intval($start));
 		$ret = array();
 		while ( list($myrow) = $db->fetchRow($result) ) {
