@@ -143,7 +143,7 @@ class BulletinGP{
 			return $ret ;
 		}
 		foreach($this->topicPermissions as $row){
-			if ($type=="read"){
+			if ($type=='can_read'){
 				$ret[] = $row['topic_id'];
 			}elseif ( $row[$type]==true){
 				$ret[] = $row['topic_id'] ;
@@ -160,7 +160,7 @@ class BulletinGP{
 			return $ret;
 		}
 		if (isset($this->topicPermissions[$topic_id])){
-			if ($type=="read"){
+			if ($type=='can_read'){
 				$ret = true;
 			}elseif ($this->topicPermissions[$topic_id][$type]==true){
 				$ret = true;

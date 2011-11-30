@@ -205,7 +205,7 @@ class Bulletin extends XoopsObject{
 //ver3.0
 		if( $gpermited ){
 			$gperm =& BulletinGP::getInstance() ;
-			$can_read_topic_ids = $gperm->makeOnTopics('read');
+			$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 			$criteria[] = "topicid IN (".implode(',',$can_read_topic_ids).")";
 		}
 
@@ -248,7 +248,7 @@ class Bulletin extends XoopsObject{
 //ver3.0
 		if( $gpermited ){
 			$gperm =& BulletinGP::getInstance() ;
-			$can_read_topic_ids = $gperm->makeOnTopics('read');
+			$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 			$criteria[] = "topicid IN (".implode(',',$can_read_topic_ids).")";
 		}
 		return Bulletin::getAll( $mydirname , $criteria, $asobject, "published DESC", $limit4sql, $start4sql);
@@ -326,7 +326,7 @@ class Bulletin extends XoopsObject{
 //ver3.0
 			if( $gpermited ){
 				$gperm =& BulletinGP::getInstance() ;
-				$can_read_topic_ids = $gperm->makeOnTopics('read');
+				$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 				$criteria[] = "topicid IN (".implode(',',$can_read_topic_ids).")";
 			}
 
@@ -510,7 +510,7 @@ class Bulletin extends XoopsObject{
 //ver3.0
 		if( $gpermited ){
 			$gperm =& BulletinGP::getInstance() ;
-			$can_read_topic_ids = $gperm->makeOnTopics('read');
+			$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 			$criteria[] = "topicid IN (".implode(',',$can_read_topic_ids).")";
 		}
 		if ( !empty($topicid) ) {
@@ -592,7 +592,7 @@ class Bulletin extends XoopsObject{
 //ver3.0
 			if( $gpermited ){
 				$gperm =& BulletinGP::getInstance() ;
-				$can_read_topic_ids = $gperm->makeOnTopics('read');
+				$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 				$criteria[] = "topicid IN (".implode(',',$can_read_topic_ids).")";
 			}
 			return Bulletin::countAll( $mydirname , $criteria);

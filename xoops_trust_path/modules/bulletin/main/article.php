@@ -16,6 +16,12 @@ require_once XOOPS_ROOT_PATH.'/header.php';
 
 $article = new Bulletin( $mydirname , $storyid);
 
+$gperm =& BulletinGP::getInstance() ;
+if( ! $gperm->proceed4topic('can_read',$article->getVar('topicid')) ){
+	redirect_header($mydirurl.'/index.php',2,_NOPERM);
+	exit();
+}
+
 $story['id']       = $storyid;
 $story['posttime'] = formatTimestamp($article->getVar('published'), $bulletin_date_format);
 $story['topicid']  = $article->getVar('topicid');

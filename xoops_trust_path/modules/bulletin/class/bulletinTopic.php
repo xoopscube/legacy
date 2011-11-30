@@ -72,7 +72,7 @@ class BulletinTopic extends XoopsTopic{
 		$sql .= " WHERE topic_pid IN (".implode(',',$topic_ids).")" ;
 		if( $gpermited ){
 			$gperm =& BulletinGP::getInstance() ;
-			$can_read_topic_ids = $gperm->makeOnTopics('read');
+			$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 			$sql .= " AND topic_id IN (".implode(',',$can_read_topic_ids).")" ;
 		}
 		$result = $db->query( $sql ) ;
