@@ -13,7 +13,6 @@
 	<{/if}>
 	</span>
   </div>
-<{*
   <div class="itemInfo">
     <span class="itemPoster"><{$smarty.const._MD_POSTEDBY}>&nbsp;:&nbsp;
 	<{if $story.uid}>
@@ -24,7 +23,6 @@
 	</span>
 	<span class="itemPostDate"><{$smarty.const._ON}> <{$story.posttime}></span> (<span class="itemStats"><{$story.hits}> <{$smarty.const._READS}></span>)
   </div>
-*}>
   <div class="itemBody">
     <{if $story.topic_url}>
       <a href="<{$mydirurl}>/index.php?storytopic=<{$story.topicid}>"><img src="<{$story.topic_url}>" alt="<{$story.topic}>" hspace="10" vspace="10" align="<{$story.align}>" /></a>
@@ -34,15 +32,17 @@
   <div style="clear:both;"></div>
   <div class="itemFoot">
     <span class="itemAdminLink">
-<{*    <{if $story.can_edit || $story.adminlink}>*}>
-    <{if $story.can_edit }>
+    <{if $story.can_edit or $story.can_delete}>
     &nbsp;[&nbsp;
-    	<a href="<{$mydirurl}>/index.php?page=submit&amp;storyid=<{$story.id}>"><{$smarty.const._EDIT}></a>
+      <{if $story.can_edit }>
+        <a href="<{$mydirurl}>/index.php?page=submit&amp;storyid=<{$story.id}>"><{$smarty.const._EDIT}></a>
+      <{/if}>
+      <{if $story.can_edit and $story.can_delete}>
     &nbsp;|&nbsp;
-    <{/if}>
-<{*    <{if $story.can_delete || $story.adminlink}>*}>
-    <{if $story.can_delete }>
-	   	 <a href="<{$mydirurl}>/index.php?page=submit&amp;op=delete&amp;storyid=<{$story.id}>"><{$smarty.const._DELETE}></a>
+      <{/if}>
+      <{if $story.can_delete }>
+         <a href="<{$mydirurl}>/index.php?page=submit&amp;op=delete&amp;storyid=<{$story.id}>"><{$smarty.const._DELETE}></a>
+      <{/if}>
 	&nbsp;]&nbsp;
     <{/if}>
 	</span>
@@ -55,14 +55,17 @@
 
 	<{d3comment class="BulletinD3commentStory" mydirname=$mydirname mode="count" var="comments_count"}>
 
-<!-- <{if $comments_count}>
+<{else}>
+<{*
+	<{if $comments_count}>
 		<a href="<{$mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>"><{$comments_count|string_format:$smarty.const._MD_NUMCOMMENTS}></a>
 	<{else}>
  		<{$smarty.const._MD_COMMENTS}>
 	<{/if}>
--->
-<{else}>
+*}>
+	<{if $story.comentstotal}>
 	<a href="<{$mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>"><{$story.comentstotal}></a>
+	<{/if}>
 <{/if}>
 </span>
   </div>
