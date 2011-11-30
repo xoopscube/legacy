@@ -3,13 +3,13 @@
 $storyid   = isset($_GET['storyid']) ? intval($_GET['storyid']) : 0 ;
 $storypage = isset($_GET['storypage']) ? intval($_GET['storypage']) : 0 ;
 
-// 記事が存在しない場合
-if( !Bulletin::isPublishedExists( $mydirname , $storyid) ){
+// If there are no articles
+if( empty($storyid) || !Bulletin::isPublishedExists( $mydirname , $storyid) ){
 	redirect_header($mydirurl.'/index.php',2,_MD_NOSTORY);
 	exit();
 }
 
-//テンプレート
+//Template
 $xoopsOption['template_main'] = "{$mydirname}_article.html";
 
 require_once XOOPS_ROOT_PATH.'/header.php';
@@ -36,7 +36,7 @@ if ( $bodytext != '' ) {
 	$story_pages = count($articletext);
 	$storypage   = ( $story_pages - 1 >= $storypage ) ? $storypage : 0 ;
 
-	// [pagebreak]で複数ページのコンテンツが構成されている場合
+	// [pagebreak]If the content is configured in [pagebreak] multi-page articles
 	if ($story_pages > 1 ) {
 		require_once XOOPS_ROOT_PATH.'/class/pagenav.php';
 		$pagenav = new XoopsPageNav($story_pages, 1, $storypage, 'storypage', 'page=article&storyid='.$storyid);
@@ -71,7 +71,17 @@ if ( $bodytext != '' ) {
 		$story = array_merge($story,$topic_perm);
 	}
 
-//ユーザ情報をアサイン
+	// Assign a number of comments
+	$ccount = $article->getVar('comments');
+	if( $ccount == 0 ){
+		$story['comentstotal'] = _MD_COMMENTS;
+	}elseif( $ccount == 1 ) {
+		$story['comentstotal'] = _MD_ONECOMMENT;
+	}else{
+		$story['comentstotal'] = sprintf(_MD_NUMCOMMENTS, $ccount);
+	}
+
+//Assign the user information
 $story['uid']      = $article->getVar('uid');
 $story['uname']    = $article->getUname();
 $story['realname'] = $article->getRealname();
@@ -87,7 +97,7 @@ if ( $article->showTopicimg()  ) {
 	$story['align']     = $article->getTopicalign();
 }
 
-// 関連記事
+// Related article
 if($bulletin_use_relations){
 	$relations = $article->getRelated();
 	foreach($relations as $relation){
@@ -108,7 +118,7 @@ if($bulletin_use_relations){
 	}
 }
 
-// カテゴリの最新記事
+// Recent Posts from Category
 if($bulletin_disp_list_of_cat && $bulletin_stories_of_cat > 0){
 	$category_storeis = Bulletin::getAllPublished( $mydirname , $bulletin_stories_of_cat, 0, $article->getVar('topicid'), 0);
 	foreach($category_storeis as $category_story){
@@ -124,18 +134,27 @@ if($bulletin_disp_list_of_cat && $bulletin_stories_of_cat > 0){
 	}
 }
 
-// Tell A Frinedを使う場合
+// If you are using Tell A Frined module
 if($bulletin_use_tell_a_frined){
 	$mail_link = XOOPS_URL.'/modules/tellafriend/index.php?target_uri='.rawurlencode( "$mydirurl/index.php?page=article&storyid=$storyid" ).'&amp;subject='.rawurlencode(sprintf(_MD_INTARTFOUND,$xoopsConfig['sitename'])) ;
 }else{
-	$mail_link = 'mailto:?subject='.rawurlencode(sprintf(_MD_INTARTICLE,$xoopsConfig['sitename'])).'&amp;body='.rawurlencode(sprintf(_MD_INTARTFOUND, $xoopsConfig['sitename']).':  '.$mydirurl.'/index.php?page=article&storyid='.$storyid);
+//	$mail_link = 'mailto:?subject='.rawurlencode(sprintf(_MD_INTARTICLE,$xoopsConfig['sitename'])).'&amp;body='.rawurlencode(sprintf(_MD_INTARTFOUND, $xoopsConfig['sitename']).':  '.$mydirurl.'/index.php?page=article&storyid='.$storyid);
+	$mail_subject = sprintf(_MD_INTARTICLE,$xoopsConfig['sitename']);
+	$mail_body = sprintf(_MD_INTARTFOUND, $xoopsConfig['sitename']).':  '.$mydirurl.'/index.php?page=article&storyid='.$storyid;
+	if (defined('_MD_MAILTO_ENCODING')){
+		if ( strcasecmp(_MD_MAILTO_ENCODING,_CHARSET) && function_exists('mb_convert_encoding') && @mb_internal_encoding(_CHARSET) ) {
+			$mail_subject =mb_convert_encoding( $mail_subject  , _MD_MAILTO_ENCODING , _CHARSET) ;
+			$mail_body =mb_convert_encoding( $mail_body  , _MD_MAILTO_ENCODING , _CHARSET) ;
+		}
+	}
+	$mail_link = 'mailto:?subject='.rawurlencode($mail_subject).'&amp;body='.rawurlencode( $mail_body );
 }
 
 $xoopsTpl->assign('story', $story);
 $xoopsTpl->assign('mail_link', $mail_link);
 $xoopsTpl->assign('disp_print_icon', $bulletin_disp_print_icon);
 $xoopsTpl->assign('disp_tell_icon', $bulletin_disp_tell_icon );
-// パンくずリスト
+// Breadcrumbs
 if($bulletin_use_pankuzu) $xoopsTpl->assign('pankuzu', $article->topics->makePankuzuForHTML($article->getVar('topicid')) );
 
 if( $bulletin_titile_as_sitename ) $xoopsTpl->assign('xoops_pagetitle', $article->getVar('title'));
@@ -147,7 +166,7 @@ if($bulletin_assing_rssurl_head){
 }
 $xoopsTpl->assign($assing_array);
 
-// 閲覧数をカウントアップする
+// Count up the number of views
 if (empty($_GET['com_id']) && !isset($_GET['storypage'])) {
 	$article->updateCounter();
 }
