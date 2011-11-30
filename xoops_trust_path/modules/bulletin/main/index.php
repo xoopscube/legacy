@@ -107,7 +107,7 @@ if( !empty($caldate) && preg_match('/([0-9]{4})-([0-9]{2})-([0-9]{2})/', $caldat
 }
 
 $scount = count($articles);
-$gperm =& BulletinGP::getInstance() ;
+$gperm =& BulletinGP::getInstance($mydirname) ;
 
 // 記事のループ
 for ( $i = 0; $i < $scount; $i++ ) {

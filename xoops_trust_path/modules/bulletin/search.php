@@ -8,6 +8,8 @@ function '.$mydirname.'_global_search( $keywords , $andor , $limit , $offset , $
 ' ) ;
 
 if( ! function_exists( 'bulletin_search_base' ) ) {
+//ver3.0
+include_once XOOPS_TRUST_PATH."/modules/bulletin/class/bulletingp.php";
 
 function bulletin_search_base( $mydirname , $queryarray , $andor , $limit , $offset , $userid ){
 	global $xoopsDB;
@@ -18,7 +20,11 @@ function bulletin_search_base( $mydirname , $queryarray , $andor , $limit , $off
 	}else{
 		$sql = "SELECT storyid,uid,title,published FROM ".$xoopsDB->prefix($mydirname."_stories")." WHERE published > 0 AND published <= ".time()." AND (expired = 0 OR expired >= ".time()." )";
 	}
-	
+//ver3.0
+	$gperm =& BulletinGP::getInstance($mydirname) ;
+	$can_read_topic_ids = $gperm->makeOnTopics('can_read');
+	$sql .= " AND topicid IN (".implode(',',$can_read_topic_ids).")";
+
 	if ( $userid != 0 ) {
 		$sql .= " AND uid=".$userid." ";
 	}
@@ -36,10 +42,10 @@ function bulletin_search_base( $mydirname , $queryarray , $andor , $limit , $off
 	$result = $xoopsDB->query($sql,$limit,$offset);
 	$ret = array();
 	$i = 0;
-	
+
 	$myts =& MyTextSanitizer::getInstance();
-	
-	
+
+
  	while($myrow = $xoopsDB->fetchArray($result)){
 		$ret[$i]['image'] = 'images/forum.gif';
 		$ret[$i]['link']  = 'index.php?page=article&amp;storyid='.$myrow['storyid'];

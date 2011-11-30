@@ -10,7 +10,7 @@ if( !Bulletin::isPublishedExists( $mydirname , $com_itemid) ){
 
 $article = new Bulletin( $mydirname , $com_itemid);
 
-$gperm =& BulletinGP::getInstance() ;
+$gperm =& BulletinGP::getInstance($mydirname) ;
 if( ! $gperm->proceed4topic('can_read',$article->getVar('topicid')) ){
 	redirect_header($mydirurl.'/index.php',2,_NOPERM);
 	exit();

@@ -11,7 +11,7 @@ $groups = is_object($xoopsUser) ? $xoopsUser -> getGroups() : XOOPS_GROUP_ANONYM
 $gperm_handler = & xoops_gethandler( 'groupperm' );
 $available_modules = $gperm_handler->getItemIds('module_read', $groups);
 
-// ½ÅÊ£¤·¤Ê¤¤¤è¤¦¤Ë¡¢ÃÍ¤òÃÖ¤­´¹¤¨¤ë
+// é‡è¤‡ã—ãªã„ã‚ˆã†ã«ã€å€¤ã‚’ç½®ãæ›ãˆã‚‹
 $my_true_trustdirname = $mytrustdirname;
 
 $modules = array();
@@ -32,7 +32,7 @@ foreach($available_modules as $mid){
 
 unset($mid);
 
-// ½ÅÊ£¤·¤Ê¤¤¤è¤¦¤Ë¤·¤¿ÃÍ¤ò¸µ¤ËÌá¤¹
+// é‡è¤‡ã—ãªã„ã‚ˆã†ã«ã—ãŸå€¤ã‚’å…ƒã«æˆ»ã™
 $mytrustdirname = $my_true_trustdirname;
 
 $query = isset($_GET['query']) ? $myts->stripslashesGPC($_GET['query']) : '';
@@ -82,12 +82,19 @@ if($action == 'results' ){
 		echo ' "<b>'.htmlspecialchars(stripslashes($queries[0])).'</b>"';
 	}
 
+//ver3.0
+	include_once XOOPS_TRUST_PATH."/modules/bulletin/class/bulletingp.php";
+
 	echo '<form name="stories">';
 	$time = time();
 	foreach ($mids as $mid) {
 		$mid = intval($mid);
 		if ( in_array($mid, $modules_mid) ) {
 			$sql = "SELECT storyid, title, published FROM ".$xoopsDB->prefix( $modules_dir[$mid].'_stories' )." WHERE type > 0 AND published > 0 AND published <= $time AND (expired = 0 OR expired > $time)";
+//ver3.0
+			$gperm =& BulletinGP::getInstance($modules_dir[$mid]) ;
+			$can_read_topic_ids = $gperm->makeOnTopics('can_read');
+			$sql .= " AND topicid IN (".implode(',',$can_read_topic_ids).")";
 
 			if ( is_array($queries) && $count = count($queries) ) {
 				$sql .= " AND ((hometext LIKE '%$queries[0]%' OR bodytext LIKE '%$queries[0]%' OR title LIKE '%$queries[0]%')";
@@ -98,7 +105,7 @@ if($action == 'results' ){
 				$sql .= ") ";
 			}
 			$sql .= "ORDER BY published DESC";
-			
+
 			$result = $xoopsDB->query($sql, ($showall > 0 )?0:5, 0);
 
 			$count = 0;

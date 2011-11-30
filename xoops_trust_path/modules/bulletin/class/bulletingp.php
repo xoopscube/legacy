@@ -1,18 +1,22 @@
 <?php
 class BulletinGP{
 	var $topicPermissions;
+	var $mydirname;
 
-	function BulletinGP(){
-		global $mydirname;
-		$this->bulletin_get_topic_permissions_of_current_user($mydirname);
+	function BulletinGP($mydirname){
+		if ( $this->mydirname != $mydirname ) {
+			$this->bulletin_get_topic_permissions_of_current_user($mydirname);
+		}
+		$this->mydirname = $mydirname;
 	}
 
-	function &getInstance()
+	function &getInstance($mydirname)
 	{
 		static $instance;
 		if (!isset($instance)) {
-			$instance = new BulletinGP();
+			$instance = new BulletinGP($mydirname);
 		}
+		$instance->BulletinGP($mydirname);
 		return $instance;
 	}
 

@@ -204,7 +204,7 @@ class Bulletin extends XoopsObject{
 		$criteria[] = "(expired = 0 OR expired > ".time().")";
 //ver3.0
 		if( $gpermited ){
-			$gperm =& BulletinGP::getInstance() ;
+			$gperm =& BulletinGP::getInstance($mydirname) ;
 			$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 			$criteria[] = "topicid IN (".implode(',',$can_read_topic_ids).")";
 		}
@@ -247,7 +247,7 @@ class Bulletin extends XoopsObject{
 		$criteria[] = "(expired = 0 OR expired > ".time().")";
 //ver3.0
 		if( $gpermited ){
-			$gperm =& BulletinGP::getInstance() ;
+			$gperm =& BulletinGP::getInstance($mydirname) ;
 			$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 			$criteria[] = "topicid IN (".implode(',',$can_read_topic_ids).")";
 		}
@@ -325,7 +325,7 @@ class Bulletin extends XoopsObject{
 			$criteria[] = "published < $endday4sql";
 //ver3.0
 			if( $gpermited ){
-				$gperm =& BulletinGP::getInstance() ;
+				$gperm =& BulletinGP::getInstance($mydirname) ;
 				$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 				$criteria[] = "topicid IN (".implode(',',$can_read_topic_ids).")";
 			}
@@ -509,7 +509,7 @@ class Bulletin extends XoopsObject{
 		$criteria[] = '(expired = 0 OR expired > '.time().')';
 //ver3.0
 		if( $gpermited ){
-			$gperm =& BulletinGP::getInstance() ;
+			$gperm =& BulletinGP::getInstance($mydirname) ;
 			$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 			$criteria[] = "topicid IN (".implode(',',$can_read_topic_ids).")";
 		}
@@ -591,7 +591,7 @@ class Bulletin extends XoopsObject{
 			$criteria[] = 'published < '.$endday4sql;
 //ver3.0
 			if( $gpermited ){
-				$gperm =& BulletinGP::getInstance() ;
+				$gperm =& BulletinGP::getInstance($mydirname) ;
 				$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 				$criteria[] = "topicid IN (".implode(',',$can_read_topic_ids).")";
 			}
@@ -622,7 +622,7 @@ class Bulletin extends XoopsObject{
 		$sql .= " WHERE type > 0 AND published>0 AND published<=".time()." AND expired <= ".time();
 //ver3.0
 		if( $gpermited ){
-			$gperm =& BulletinGP::getInstance() ;
+			$gperm =& BulletinGP::getInstance($mydirname) ;
 			$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 			$sql .= " AND topicid IN (".implode(',',$can_read_topic_ids).")";
 		}
