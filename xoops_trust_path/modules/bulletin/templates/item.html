@@ -34,19 +34,21 @@
   <div style="clear:both;"></div>
   <div class="itemFoot">
     <span class="itemAdminLink">
-    <{if $story.can_edit || $story.adminlink}>
-    &nbsp;[&nbsp; 
+<{*    <{if $story.can_edit || $story.adminlink}>*}>
+    <{if $story.can_edit }>
+    &nbsp;[&nbsp;
     	<a href="<{$mydirurl}>/index.php?page=submit&amp;storyid=<{$story.id}>"><{$smarty.const._EDIT}></a>
-    &nbsp;|&nbsp; 
+    &nbsp;|&nbsp;
     <{/if}>
-    <{if $story.can_delete || $story.adminlink}>
-	   	 <a href="<{$mydirurl}>/index.php?page=submit&amp;op=delete&amp;storyid=<{$story.id}>"><{$smarty.const._DELETE}></a> 
+<{*    <{if $story.can_delete || $story.adminlink}>*}>
+    <{if $story.can_delete }>
+	   	 <a href="<{$mydirurl}>/index.php?page=submit&amp;op=delete&amp;storyid=<{$story.id}>"><{$smarty.const._DELETE}></a>
 	&nbsp;]&nbsp;
     <{/if}>
 	</span>
 <span class="itemPermaLink">
 <{if $story.readmore}>
-<a href="<{$mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>"><{$smarty.const._MD_READMORE}></a> | <{$story.bytes}> | 
+<a href="<{$mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>"><{$smarty.const._MD_READMORE}></a> | <{$story.bytes}> |
 <{/if}>
 
 <{if $mod_config.comment_dirname != '' && $mod_config.comment_forum_id > 0}>
