@@ -3,21 +3,21 @@
 $fromyear  = (isset($_GET['year']))  ? intval($_GET['year'])  : 0 ;
 $frommonth = (isset($_GET['month'])) ? intval($_GET['month']) : 0 ;
 
-//¥Æ¥ó¥×¥ì¡¼¥È
+//ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
 $xoopsOption['template_main'] = "{$mydirname}_archive.html";
 
 require_once XOOPS_ROOT_PATH.'/header.php';
 
-$result = Bulletin::getPublishedDays( $mydirname ) ;
+$result = Bulletin::getPublishedDays( $mydirname , 0 , 0 , true) ;
 
 if (!$result) {
 	redirect_header($mydirurl.'/index.php',3,_MD_NO_ARCIVES);
 }
 
-// ·îÌ¾¤Î¥ê¥¹¥È
+// æœˆåã®ãƒªã‚¹ãƒˆ
 $months_arr = array(1=>_MD_JANUARY, 2=>_MD_FEBRUARY, 3=>_MD_MARCH, 4=>_MD_APRIL, 5=>_MD_MAY, 6=>_MD_JUNE, 7=>_MD_JULY, 8=>_MD_AUGUST, 9=>_MD_SEPTEMBER, 10=>_MD_OCTOBER, 11=>_MD_NOVEMBER, 12=>_MD_DECEMBER);
 
-// ¥¿¥¤¥à¥¾¡¼¥ó
+// ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³
 $useroffset = $xoopsConfig['default_TZ'];
 if($xoopsUser){
 	$timezone = $xoopsUser->timezone();
@@ -26,7 +26,7 @@ if($xoopsUser){
 	}
 }
 
-// µ­»ö¤¬Â¸ºß¤¹¤ë´ü´Ö¤Î¥«¥ì¥ó¥À¡¼ÇÛÎó¤òºî¤ë
+// è¨˜äº‹ãŒå­˜åœ¨ã™ã‚‹æœŸé–“ã®ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼é…åˆ—ã‚’ä½œã‚‹
 $start_year = formatTimestamp(reset($result), "Y", $useroffset);
 $end_year   = formatTimestamp(end($result),   "Y", $useroffset);
 $year_arr = array();
@@ -34,7 +34,7 @@ for($i=$start_year;$i<=$end_year;$i++){
 	$year_arr[$i] = array(1=>1,2,3,4,5,6,7,8,9,10,11,12);
 }
 
-// µ­»ö¤¬Â¸ºß¤¹¤ë·î¤Î¥ê¥¹¥ÈÇÛÎó¤òºî¤ë
+// è¨˜äº‹ãŒå­˜åœ¨ã™ã‚‹æœˆã®ãƒªã‚¹ãƒˆé…åˆ—ã‚’ä½œã‚‹
 $exist_arr = array();
 $total = count($result);
 for($i=0;$i<$total;$i++){
@@ -43,7 +43,7 @@ for($i=0;$i<$total;$i++){
 	$exist_arr[$this_year][$this_month] = $this_month;
 }
 
-// ¥«¥ì¥ó¥À¡¼¤Îassing
+// ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã®assing
 $i = 0;
 $years  = array();
 foreach($year_arr as $caly => $calms){
@@ -67,7 +67,7 @@ foreach($year_arr as $caly => $calms){
 }
 $xoopsTpl->assign('years', $years);
 
-// µ­»ö¤Î¥ê¥¹¥Èassign
+// è¨˜äº‹ã®ãƒªã‚¹ãƒˆassign
 if ($fromyear != 0 && $frommonth != 0) {
 	$xoopsTpl->assign('show_articles', true);
 	$xoopsTpl->assign('currentmonth', $months_arr[$frommonth]);
@@ -78,8 +78,8 @@ if ($fromyear != 0 && $frommonth != 0) {
 	$monthstart = mktime(0 - $timeoffset, 0, 0, $frommonth, 1, $fromyear);
 	$monthend   = mktime(23 - $timeoffset, 59, 59, $frommonth + 1, 0, $fromyear);
 	$monthend   = ($monthend > time()) ? time() : $monthend;
-	
-	$article = Bulletin::getArchives( $mydirname , $monthstart,$monthend);
+
+	$article = Bulletin::getArchives( $mydirname , $monthstart , $monthend , 0 , true ,true );
 	$scount = count($article);
 
 	for ( $i = 0; $i < $scount; $i++ ) {
@@ -91,14 +91,14 @@ if ($fromyear != 0 && $frommonth != 0) {
 		$story['counter']    = $article[$i]->getVar('counter');
 		$story['date']       = formatTimestamp($article[$i]->getVar('published'), $bulletin_date_format, $useroffset);
 		$story['print_link'] = 'index.php?page=print&amp;storyid='.$article[$i]->getVar('storyid');
-		
-		// Tell A Frined»ÈÍÑ¤¹¤ë¾ì¹ç
+
+		// Tell A Frinedä½¿ç”¨ã™ã‚‹å ´åˆ
 		if($bulletin_use_tell_a_frined){
 			$story['mail_link'] = XOOPS_URL.'/modules/tellafriend/index.php?target_uri='.rawurlencode( "$mydirurl/index.php?page=article&amp;storyid=".$article[$i]->getVar('storyid') ).'&amp;subject='.rawurlencode(sprintf(_MD_INTARTFOUND,$xoopsConfig['sitename'])) ;
 		}else{
 			$story['mail_link'] = 'mailto:?subject='.sprintf(_MD_INTARTICLE, $xoopsConfig['sitename']).'&amp;body='.sprintf(_MD_INTARTFOUND, $xoopsConfig['sitename']).':  '.$mydirurl.'/index.php?page=article&amp;storyid='.$article[$i]->getVar('storyid');
 		}
-		
+
 		$xoopsTpl->append('stories', $story);
 	}
 
