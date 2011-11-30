@@ -75,13 +75,13 @@ if ($op == "comments"){
 	require_once XOOPS_ROOT_PATH.'/footer.php';
 	exit;
 }
-// ナビゲータ
+// Navigator
 if ( $bulletin_displaynav == 1 ) {
 
-	// ナビを使うと宣言
+	// Use the navigation declared
 	$xoopsTpl->assign('displaynav', true);
 
-	// セレクタをアサイン
+	// Assign Selector
 	$bt = new BulletinTopic( $mydirname ) ;
 	$xoopsTpl->assign('topic_select', $bt->makeTopicSelBox( true , $storytopic , 'storytopic' ) ) ;
 
@@ -97,19 +97,19 @@ if ( $bulletin_displaynav == 1 ) {
 	$xoopsTpl->assign('displaynav', false);
 }
 
-// カレンダからのリンク（日付指定が有った場合）
+// Links from the calendar (if there is a date)
 if( !empty($caldate) && preg_match('/([0-9]{4})-([0-9]{2})-([0-9]{2})/', $caldate, $datearr) ){
 	$articles = Bulletin::getAllToday( $mydirname , $storynum, $start, $caldate, true , true);
 	$xoopsTpl->assign('displaynav', false);
 }else{
-// 通常表示の場合
+// If the normal display
 	$articles = Bulletin::getAllPublished( $mydirname , $storynum, $start, $storytopic, 1, true, true, true);
 }
 
 $scount = count($articles);
 $gperm =& BulletinGP::getInstance($mydirname) ;
 
-// 記事のループ
+// Loop of the article
 for ( $i = 0; $i < $scount; $i++ ) {
 	$story = array();
 
@@ -141,18 +141,18 @@ for ( $i = 0; $i < $scount; $i++ ) {
 		}
 		$story = array_merge($story,$topic_perm);
 	}
-	//ユーザ情報をアサイン
+	//Assign the user information
 	$story['uid']        = $articles[$i]->getVar('uid');
 	$story['uname']      = $articles[$i]->getUname();
 	$story['realname']   = $articles[$i]->getRealname();
 
-	// 文字数カウント処理
+	// Length counting process
 	if ( $articles[$i]->strlenBodytext() > 1 ) {
 		$story['bytes']    = sprintf(_MD_BYTESMORE, $articles[$i]->strlenBodytext());
 		$story['readmore'] = true;
 	}
 
-	// コメントの数をアサイン
+	// Assign a number of comments
 	$ccount = $articles[$i]->getVar('comments');
 	if( $ccount == 0 ){
 		$story['comentstotal'] = _MD_COMMENTS;
@@ -162,13 +162,13 @@ for ( $i = 0; $i < $scount; $i++ ) {
 		$story['comentstotal'] = sprintf(_MD_NUMCOMMENTS, $ccount);
 	}
 
-	// 管理者用リンク
+	// Administrative links
 	$story['adminlink'] = 0;
 	if ( $xoopsUser && $xoopsUser->isAdmin($xoopsModule->mid()) ) {
 		$story['adminlink'] = 1;
 	}
 
-	// アイコン画像
+	// Icon image
 	if ( $articles[$i]->showTopicimg() ) {
 		$story['topic_url'] = $articles[$i]->imglink($bulletin_topicon_path);
 		$story['align']     = $articles[$i]->getTopicalign();
@@ -177,7 +177,7 @@ for ( $i = 0; $i < $scount; $i++ ) {
 	$xoopsTpl->append('stories', $story);
 }
 
-// ページナビ
+// Page Navigation
 if( !empty($caldate) && preg_match('/([0-9]{4})-([0-9]{2})-([0-9]{2})/', $caldate, $datearr) ){
 	$totalcount = Bulletin::countPublishedByDate( $mydirname , $caldate , true);
 	$query      = 'caldate='.$caldate;
@@ -212,7 +212,7 @@ if( $storytopic ) {
 }
 $xoopsTpl->assign( 'xoops_breadcrumbs' , $breadcrumbs ) ;
 $xoopsTpl->assign( 'mod_config' , $xoopsModuleConfig ) ;
-//テンプレート
+//Template
 $xoopsOption['template_main'] = "{$mydirname}_index.html";
 
 require_once XOOPS_ROOT_PATH.'/footer.php';

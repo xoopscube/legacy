@@ -144,10 +144,10 @@ class BulletinTopic extends XoopsTopic{
 		global $xoopsUser ;
 
 	// 2011.11.21 S.Uchi modify start
-		//グループID一覧を取得
+		//Get the list of Group ID
 		$groups = $xoopsUser->getGroups();
 
-		//自分が所属しているグループが投稿権限を持っているトピックを取得。
+		//Obtain a topic that has permission to post the groups they belong to
 		$from2 = $this->db->prefix( $this->mydirname."_topic_access" );
 		$this->id = "topic_id";
 		$ret="";

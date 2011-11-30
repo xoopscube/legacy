@@ -2,7 +2,7 @@
 
 $com_itemid = isset($_GET['com_itemid']) ? intval($_GET['com_itemid']) : 0 ;
 
-// 記事が無い場合
+// If there are no articles
 if( !Bulletin::isPublishedExists( $mydirname , $com_itemid) ){
 	redirect_header($mydirurl.'/index.php',2,_MD_NOSTORY);
 	exit();

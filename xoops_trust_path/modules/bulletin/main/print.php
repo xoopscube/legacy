@@ -2,7 +2,7 @@
 
 $storyid = isset($_GET['storyid']) ? intval($_GET['storyid']) : 0;
 
-// 記事が存在しない場合
+// If there are no articles
 if( !Bulletin::isPublishedExists( $mydirname , $storyid) ){
 	redirect_header($mydirurl.'/index.php',2,_MD_NOSTORY);
 	exit();

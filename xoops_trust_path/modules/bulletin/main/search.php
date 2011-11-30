@@ -11,7 +11,7 @@ $groups = is_object($xoopsUser) ? $xoopsUser -> getGroups() : XOOPS_GROUP_ANONYM
 $gperm_handler = & xoops_gethandler( 'groupperm' );
 $available_modules = $gperm_handler->getItemIds('module_read', $groups);
 
-// 重複しないように、値を置き換える
+// To avoid duplicate to replace the value
 $my_true_trustdirname = $mytrustdirname;
 
 $modules = array();
@@ -32,7 +32,7 @@ foreach($available_modules as $mid){
 
 unset($mid);
 
-// 重複しないようにした値を元に戻す
+// Restore the value to avoid duplication
 $mytrustdirname = $my_true_trustdirname;
 
 $query = isset($_GET['query']) ? $myts->stripslashesGPC($_GET['query']) : '';

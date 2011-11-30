@@ -83,7 +83,7 @@ if( $gperm->group_perm(7) && $bulletin_use_relations ){
 }
 
 if( empty( $storyid ) ){
-	// 権限がない場合HTMLをOFF
+	// If you do not have HTML permission to OFF
 	if( !$gperm->group_perm(4) ){
 		$story->setVar('html', 0);
 		$story->setVar('br', 1);
@@ -127,7 +127,7 @@ if( $op == 'post' ){
 		$story->setVar('uid', $my_uid);
 		$story->devideHomeTextAndBodyText();
 
-		// 自動承認かどうか
+		// Whether the automatic approval
 		if( $gperm->group_perm(2) ){
 			$story->setVar('type', $story->getVar('approve') ); // GIJ
 			if(!$gperm->proceed4topic("post_auto_approved",$topicid)){
@@ -137,7 +137,7 @@ if( $op == 'post' ){
 			$story->setVar('type', 0);
 		}
 
-		// 掲載予定日設定のルーチン
+		// Routine setting date published
 		if ( $story->getVar('autodate') == 1 && $gperm->group_perm(3) ){
 			$pubdate = mktime( $auto['hour'], $auto['min'], $auto['sec'], $auto['month'], $auto['day'], $auto['year'] );
 			$offset  = $xoopsUser->timezone() - $xoopsConfig['server_TZ'];
@@ -146,7 +146,7 @@ if( $op == 'post' ){
 		}else{
 			$story->setVar('published', time());
 		}
-		// 掲載終了日設定のルーティン
+		// Routines set end date published
 		if ( $story->getVar('autoexpdate') == 1 && $gperm->group_perm(3) ){
 			$expdate = mktime( $autoexp['hour'], $autoexp['min'], $autoexp['sec'], $autoexp['month'], $autoexp['day'], $autoexp['year'] );
 			$offset = $xoopsUser -> timezone() - $xoopsConfig['server_TZ'];
@@ -179,7 +179,7 @@ if( $op == 'post' ){
 			$story->setVar('type', 0);
 		}
 
-		// 掲載予定日設定のルーチン
+		// Routine setting date published
 		if ( $story->getVar('autodate') == 1 ){
 			$pubdate = mktime( $auto['hour'], $auto['min'], $auto['sec'], $auto['month'], $auto['day'], $auto['year'] );
 			$offset = $xoopsUser -> timezone();
@@ -190,7 +190,7 @@ if( $op == 'post' ){
 			$story->setVar('published', $time);
 		}
 
-		// 掲載終了日設定のルーティン
+		// Routines set end date published
 		if ( $story->getVar('autoexpdate') == 1 ){
 			$expdate = mktime( $autoexp['hour'], $autoexp['min'], $autoexp['sec'], $autoexp['month'], $autoexp['day'], $autoexp['year'] );
 			if ( !empty( $autoexpdate ) ) $offset = $xoopsUser -> timezone() - $xoopsConfig['server_TZ'];
@@ -201,7 +201,7 @@ if( $op == 'post' ){
 		}
 		$is_new = false;
 	}
-	//DB挿入時にエラーが発生したら
+	//If an error occurs when inserting DB
 	if(!$story->store()) {
 		die(_MD_THANKS_BUT_ERROR);
 	}
@@ -214,7 +214,7 @@ if( $op == 'post' ){
 	}
 
 	if( $is_new ){
-		// イベント通知処理
+		// Event notification process
 		$notification_handler =& xoops_gethandler('notification');
 		$tags = array();
 		$tags['STORY_NAME'] = $myts->stripSlashesGPC($story->getVar('title', 'n'));
@@ -226,16 +226,16 @@ if( $op == 'post' ){
 			$tags['WAITINGSTORIES_URL'] = $mydirurl.'/index.php?mode=admin&op=newarticle';
 			$notification_handler->triggerEvent('global', 0, 'story_submit', $tags, $gperm->getAdminUsers());
 		}
-		// 承認したときに通知を受け取る
+		// Notified when approval
 		if ($story->getVar('notifypub') == 1 && (!$gperm->group_perm(2) || !$gperm->proceed4topic("post_auto_approved",$topicid) )) {
 			require_once XOOPS_ROOT_PATH.'/include/notification_constants.php';
 			$notification_handler->subscribe('story', $story->getVar('storyid'), 'approve', XOOPS_NOTIFICATION_MODE_SENDONCETHENDELETE);
 		}
-		//投稿数加算処理
+		//Adding process Posts
 		if ($gperm->group_perm(2) && $gperm->proceed4topic("post_auto_approved",$topicid) && is_object($xoopsUser) && $bulletin_plus_posts == 1) {
 			$xoopsUser->incrementPost();
 		}
-		// 自動承認のときはメッセージを変える
+		// When the automatic approval to change the message
 		if($gperm->group_perm(2) && $gperm->proceed4topic("post_auto_approved",$topicid) ){
 			redirect_header($mydirurl.'/index.php', 2, _MD_THANKS_AUTOAPPROVE);
 			exit;
@@ -243,12 +243,12 @@ if( $op == 'post' ){
 		redirect_header($mydirurl.'/index.php', 3, _MD_THANKS);
 		exit;
 	}else{
-		// イベント通知処理
+		// Event notification process
 		$notification_handler =& xoops_gethandler('notification');
 		$tags = array();
 		$tags['STORY_NAME'] = $myts->stripSlashesGPC($story->getVar('title', 'n'));
 		$tags['STORY_URL']  = $mydirurl.'/index.php?page=article&storyid=' . $story->getVar('storyid');
-		// 承認の通知
+		// Notification of Approval
 		if ( $approved == 1 ){
 			$notification_handler->triggerEvent( 'story', $story->getVar('storyid'), 'approve', $tags );
 			$notification_handler->triggerEvent('global', 0, 'new_story', $tags);
@@ -308,7 +308,7 @@ if( $op == 'form' ){
 		$story->unifyHomeTextAndBodyText();
 	}
 
-	// 掲載日時
+	// Published Date
 	if( isset($_POST['auto']) && is_array($_POST['auto']) ){
 		$auto = mktime( $_POST['auto']['hour'], $_POST['auto']['min'], @$_POST['auto']['sec'], $_POST['auto']['month'], $_POST['auto']['day'], $_POST['auto']['year'] );
 	} elseif ( $story->getVar('published') > 0 ) {
@@ -318,7 +318,7 @@ if( $op == 'form' ){
 		$auto = time();
 	}
 
-	// 掲載終了日時
+	// Published end date
 	if( isset($_POST['auto']) && is_array($_POST['autoexp']) ){
 		$autoexp = mktime( $_POST['autoexp']['hour'], $_POST['autoexp']['min'], @$_POST['autoexp']['sec'], $_POST['autoexp']['month'], $_POST['autoexp']['day'], $_POST['autoexp']['year'] );
 	} elseif ( $story->getVar('expired') > 0 ) {
@@ -376,7 +376,7 @@ if( $op == 'delete' ){
 			die( _MD_EMPTYNODELETE );
 			exit();
 		}
-		// 関連記事削除
+		// Remove the related articles
 		$story->relation->queryUnlinkById($storyid);
 		$story->relation->queryDelete(1);
 		$story -> delete();

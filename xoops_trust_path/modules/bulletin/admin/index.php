@@ -2,7 +2,7 @@
 define('MODULE_ROOT_PATH', $mydirpath);
 define('MODULE_URL', $mydirurl);
 $constpref = '_MI_' . strtoupper( $mydirname ) ;
-// 言語ファイル読み込み
+// Reading language file
 if ( file_exists( $mytrustdirpath.'/language/'.$xoopsConfig['language'].'/modinfo.php') ) {
 	require_once dirname(dirname(__FILE__)).'/language/'.$xoopsConfig['language'].'/modinfo.php';
 } else {
@@ -15,20 +15,20 @@ require_once XOOPS_ROOT_PATH.'/class/xoopsform/grouppermform.php';
 require_once dirname(dirname(__FILE__)).'/class/bulletin.php';
 require_once dirname(dirname(__FILE__)).'/class/bulletinTopic.php';
 
-// サニタイザー
+// Sanitizer
 $myts =& MyTextSanitizer::getInstance();
-// テンプレート
+// Template
 $tpl = new XoopsTpl();
-// オペレーションを決める
+// Determine the operation
 $op = isset($_REQUEST['op']) ? $_REQUEST['op'] : 'default';
-// チケットの確認
+// Ticket confirmation
 if ($op == 'preview' || $op == 'save') {
 	if (!XoopsMultiTokenHandler::quickValidate('news_admin_submit')) {
 		$op = 'newarticle';
 	}
 }
 
-// トピックがひとつもない
+// If there are no topics
 if( $op == 'form' ) {
 	$BTopic = new BulletinTopic( $mydirname );
 	if( !$BTopic->topicExists() ){
@@ -53,9 +53,9 @@ default:
 		'published' => newSubmissions('Published', 10),
 		'expired' => newSubmissions('Expired')
 	);
-	
+
 	break;
-	
+
 case 'listall':
 	xoops_cp_header();
 	include dirname(__FILE__).'/mymenu.php' ;
@@ -64,40 +64,40 @@ case 'listall':
 	$limit = isset( $_GET['limit'] ) ? intval( $_GET['limit'] ) : 20 ;
 	$start = isset( $_GET['start'] ) ? intval( $_GET['start'] ) : 0 ;
 	$statu = isset( $_GET['statu'] ) ? trim( $_GET['statu'] )   : 'Published' ;
-	
+
 	switch( $statu ){
 	case 'newsubmission':
-	
+
 		$total = Bulletin::countSubmitted( $mydirname );
 		$story_list = newSubmissions('newSubmissions', $limit, $start);
 		$table_title = _AM_WAITING_ARTICLES;
 		$mode = 'newsubmission';
 		break;
-	
+
 	case 'autostory':
-	
+
 		$total = Bulletin::countAutoStory( $mydirname );
 		$story_list = newSubmissions('autoStories', $limit, $start);
 		$table_title = _AM_AUTOARTICLES;
 		$mode = 'autostory';
 		break;
-		
+
 	case 'expstory':
-	
+
 		$total = Bulletin::countExpired( $mydirname );
 		$story_list = newSubmissions('Expired', $limit, $start);
 		$table_title = _AM_EXPARTS;
 		$mode = '';
 		break;
-	
+
 	default:
-	
+
 		$total = Bulletin::countPublished( $mydirname );
 		$story_list = newSubmissions('Published', $limit, $start);
 		$table_title = _AM_PUB_ARTICLES;
 		$mode = '';
 		break;
-		
+
 	}
 
 	$navi = '';
@@ -105,17 +105,17 @@ case 'listall':
 		$pagenav = new XoopsPageNav($total, $limit, $start, 'start', 'op=listall&amp;statu='.$statu);
 		$navi = $pagenav->renderNav();
 	}
-	
+
 	$asssigns = array(
 		'table_title' => $table_title,
 		'stories' => $story_list,
 		'mode' => $mode,
 		'navi' => $navi
 	);
-	
+
     break;
 
-//グループによる投稿許可設定画面
+//Allow each group configuration screen post
 case 'permition':
 	xoops_cp_header();
 	include dirname(__FILE__).'/mymenu.php' ;
@@ -131,7 +131,7 @@ case 'permition':
 //	$form->addItem(5, _AM_RIGHT_XCODE);
 //	$form->addItem(6, _AM_RIGHT_SMILEY);
 	$form->addItem(7, _AM_RIGHT_RELATION);
-	
+
 	$asssigns = array(
 		'form' => $form->render()
 	);
@@ -166,7 +166,7 @@ case 'topicsmanager':
 	);
 	$tpl->assign( $asssigns ) ;
 	//$tpl->display( 'db:'.$mydirname.'_admin_category.html' ) ;
-	
+
 	break;
 
 case 'modTopic':
@@ -201,29 +201,29 @@ case 'modTopic':
 case 'addTopic':
 
 	$BTopic = new BulletinTopic( $mydirname );
-	
+
 	$BTopic->setTopicPid( $_POST['topic_pid'] );
-	
+
 	if( empty( $_POST['topic_title'] ) ){
 		redirect_header( "index.php?op=topicsmanager", 2, _AM_ERRORTOPICNAME );
 	}
-	
+
 	$BTopic->setTopicTitle( $_POST['topic_title'] );
-	
+
 	if( isset( $_POST['topic_imgurl'] ) && $_POST['topic_imgurl'] != "" ){
 		$BTopic -> setTopicImgurl( $_POST['topic_imgurl'] );
 	}
-	
+
 	$BTopic->store();
-	
+
 	$notification_handler = & xoops_gethandler( 'notification' );
-	
+
 	$tags = array();
 	$tags['TOPIC_NAME'] = $_POST['topic_title'];
-	
-	// 新しいトピックが作られた時、イベント通知
+
+	// Was created when a new topic, event notification
 	$notification_handler->triggerEvent( 'global', 0, 'new_category', $tags );
-		
+
 	redirect_header( 'index.php?op=topicsmanager', 1, _AM_DBUPDATED );
 
 	break;
@@ -231,17 +231,17 @@ case 'addTopic':
 case 'delTopic':
 
 	if( empty($_POST['ok']) ){
-	
+
 		xoops_cp_header();
 		include dirname(__FILE__).'/mymenu.php' ;
 		$template = 'bulletin_deltopic.html';
 
 		$BTopic = new BulletinTopic( $mydirname , $_GET['topic_id'] );
-		
-		// すべてのサブトピックを取得
+
+		// Get the all subtopics
 		$topic_arr = $BTopic->getAllChildTopics();
 
-		// 残るトピックを取得
+		// Get the topic remains
 		$remain_topics = $BTopic->getTopicsList();
 
 		array_push( $topic_arr, $BTopic );
@@ -261,43 +261,43 @@ case 'delTopic':
 		);
 
 	}else{
-	
+
 		$BTopic = new BulletinTopic( $mydirname , $_POST['topic_id'] );
-		
-		// すべてのサブトピックを取得
+
+		// Get the all subtopics
 		$topic_arr = $BTopic->getAllChildTopics();
 
-		// 記事を残すトピック
+		// Leave an article topic
 		$move_topics = $_POST['topics'];
 
 		array_push( $topic_arr, $BTopic );
-		
+
 		foreach( $topic_arr as $eachtopic ){
-		
+
 			if( $move_topics[$eachtopic->topic_id()] == 0 ){
-			
-				// すべての記事を取得
+
+				// Gets all articles
 				$story_arr = Bulletin::getAllByTopic( $mydirname , $eachtopic->topic_id() );
 				foreach( $story_arr as $eachstory ){
 					if ( false != $eachstory->delete() ){
-						//コメントを削除
+						//Delete Comment
 						xoops_comment_delete( $xoopsModule->getVar( 'mid' ), $eachstory->getVar('storyid') );
-						//イベント通知を削除
+						//Delete an event notification
 						xoops_notification_deletebyitem( $xoopsModule->getVar( 'mid' ), 'story', $eachstory->getVar('storyid') );
 					}
 				}
-			
+
 			}else{
-			
-				// すべての記事を取得
+
+				// Gets all articles
 				$story_arr = Bulletin::getAllByTopic( $mydirname , $eachtopic->topic_id() );
 				foreach( $story_arr as $eachstory ){
 					$eachstory->setVar('topicid', $move_topics[$eachtopic->topic_id()]);
 					$eachstory->store();
 				}
 			}
-			
-			// トピックを削除
+
+			// Delete the topic
 			$eachtopic->delete();
 			xoops_notification_deletebyitem( $xoopsModule->getVar( 'mid' ), 'category', $eachtopic->topic_id );
 		}
@@ -326,23 +326,23 @@ case 'modTopicS':
 	redirect_header( 'index.php?op=topicsmanager', 1, _AM_DBUPDATED );
 
 	break;
-	
+
 case 'convert':
 	xoops_cp_header();
 	include dirname(__FILE__).'/mymenu.php' ;
 
 	if( empty($_POST['ok']) ){
-	
+
 		xoops_confirm( array( 'op' => 'convert', 'ok' => 1 ), 'index.php', _AM_DO_YOU_CONVERT );
-		
+
 	}else{
 
-		// トピックのコンバート
+		// Topic Convert
 		$sql = "SELECT * FROM ".$xoopsDB->prefix('topics')." ORDER BY topic_id";
 		$result =$xoopsDB->query($sql);
 
 		while( $topic = $xoopsDB->fetchArray($result)){
-		
+
 			$sql = sprintf("INSERT INTO %s (topic_id, topic_pid, topic_imgurl, topic_title, topic_created, topic_modified) VALUES (%u, %u, %s, %s, UNIX_TIMESTAMP(), UNIX_TIMESTAMP())", $xoopsDB->prefix("{$mydirname}_topics"), $topic['topic_id'], $topic['topic_pid'], $xoopsDB->quoteString($topic['topic_imgurl']), $xoopsDB->quoteString($topic['topic_title']));
 
 			if($xoopsDB->query($sql)){
@@ -350,10 +350,10 @@ case 'convert':
 			}else{
 				echo '<br /><b>Topic "'.htmlspecialchars($topic['topic_title']).'" Erorr : '.$xoopsDB->error().'</b>';
 			}
-		
+
 		}
-		
-		// ニュース記事のコンバート
+
+		// Convert of the article
 		$sql = "SELECT * FROM ".$xoopsDB->prefix('stories')." ORDER BY published";
 		$result =$xoopsDB->query($sql);
 
@@ -391,9 +391,9 @@ case 'convert':
 			}else{
 				echo '<br /><b>Failed to convert : '.htmlspecialchars($story['title']).'</b>';
 			}
-		
+
 		}
-		
+
 		echo '<br /><a href="index.php">'._BACK.'</a>';
 	}
 
