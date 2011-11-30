@@ -2,13 +2,19 @@
 
 $com_itemid = isset($_GET['com_itemid']) ? intval($_GET['com_itemid']) : 0 ;
 
-// µ­»ö¤¬Ìµ¤¤¾ì¹ç
+// è¨˜äº‹ãŒç„¡ã„å ´åˆ
 if( !Bulletin::isPublishedExists( $mydirname , $com_itemid) ){
 	redirect_header($mydirurl.'/index.php',2,_MD_NOSTORY);
 	exit();
 }
 
 $article = new Bulletin( $mydirname , $com_itemid);
+
+$gperm =& BulletinGP::getInstance() ;
+if( ! $gperm->proceed4topic('can_read',$article->getVar('topicid')) ){
+	redirect_header($mydirurl.'/index.php',2,_NOPERM);
+	exit();
+}
 
 $com_replytext = _POSTEDBY.'&nbsp;<b>'.$article->getUname().'</b>&nbsp;'._DATE.'&nbsp;<b>'.formatTimestamp($article->getvar('published')).'</b><br /><br />'.$article->getVar('hometext');
 $bodytext = $article->getDividedBodytext();

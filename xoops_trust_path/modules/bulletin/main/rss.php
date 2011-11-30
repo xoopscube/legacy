@@ -11,7 +11,7 @@ $tpl = new XoopsTpl();
 $tpl->xoops_setCaching(2);
 $tpl->xoops_setCacheTime(0);
 if (!$tpl->is_cached("db:{$mydirname}_rss.html")) {
-	$articles = Bulletin::getAllPublished( $mydirname , 10 , 0 ) ;
+	$articles = Bulletin::getAllPublished( $mydirname , 10 , 0 , 0 , 1 , true , true ,true ) ;
 	if (is_array($articles)) {
 		$tpl->assign('channel_title', bulletin_utf8_encode(htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES)));
 		$tpl->assign('channel_link', XOOPS_URL.'/');
@@ -46,11 +46,11 @@ if (!$tpl->is_cached("db:{$mydirname}_rss.html")) {
 				$hometext = easiestml( $hometext ) ;
 			}
 			$tpl->append('items', array(
-				'title' => htmlspecialchars(bulletin_utf8_encode($article->getVar('title', 'n')), ENT_QUOTES), 
-				'category' => htmlspecialchars(bulletin_utf8_encode($article->newstopic->topic_title), ENT_QUOTES), 
-				'link' => $mydirurl.'/index.php?page=article&amp;storyid='.$article->getVar('storyid'), 
-				'guid' => $mydirurl.'/index.php?page=article&amp;storyid='.$article->getVar('storyid'), 
-//				'pubdate' => formatTimestamp($article->getVar('published'), 'rss'), 
+				'title' => htmlspecialchars(bulletin_utf8_encode($article->getVar('title', 'n')), ENT_QUOTES),
+				'category' => htmlspecialchars(bulletin_utf8_encode($article->newstopic->topic_title), ENT_QUOTES),
+				'link' => $mydirurl.'/index.php?page=article&amp;storyid='.$article->getVar('storyid'),
+				'guid' => $mydirurl.'/index.php?page=article&amp;storyid='.$article->getVar('storyid'),
+//				'pubdate' => formatTimestamp($article->getVar('published'), 'rss'),
 				'pubdate' => date( 'r' , $article->getVar('published') ) , // GIJ
 				'description' => bulletin_utf8_encode(htmlspecialchars(strip_tags($myts->xoopsCodeDecode($hometext)), ENT_QUOTES)),
 				'content' => bulletin_utf8_encode($content4html),
