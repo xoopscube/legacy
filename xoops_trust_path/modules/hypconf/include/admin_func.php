@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2011/11/09 by nao-pon http://xoops.hypweb.net/
- * $Id: admin_func.php,v 1.7 2011/11/27 06:39:57 nao-pon Exp $
+ * $Id: admin_func.php,v 1.8 2011/12/01 13:18:58 nao-pon Exp $
  */
 
 function hypconfSetValue(& $config, $page) {
@@ -201,6 +201,7 @@ function hypconfShowForm($config) {
 					$ele = ($config[$i]['value'] != '') ? new XoopsFormTextArea($title, $config[$i]['name'], $myts->htmlspecialchars(implode('|', $config[$i]['value'])), 5, 50) : new XoopsFormTextArea($title, $config[$i]['name'], '', 5, 50);
 				} else {
 					$ele = new XoopsFormTextArea($title, $config[$i]['name'], $myts->htmlspecialchars($config[$i]['value']), 5, 50);
+					$ele->setExtra('class="norich"');
 				}
 				break;
 			case 'select':

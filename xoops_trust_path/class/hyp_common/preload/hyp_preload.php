@@ -135,6 +135,10 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 		if (! isset($this->k_tai_conf['jquery_theme_content'])) $this->k_tai_conf['jquery_theme_content'] = 'd';
 		if (! isset($this->k_tai_conf['jquery_theme_block'])) $this->k_tai_conf['jquery_theme_block'] = 'c';
 		if (! isset($this->k_tai_conf['jquery_no_reduce'])) $this->k_tai_conf['jquery_no_reduce'] = true;
+		if (! isset($this->k_tai_conf['jquery_remove_flash'])) $this->k_tai_conf['jquery_remove_flash'] = '';
+		if (! isset($this->k_tai_conf['jquery_resolve_table'])) $this->k_tai_conf['jquery_resolve_table'] = false;
+		if (! isset($this->k_tai_conf['jquery_image_convert'])) $this->k_tai_conf['jquery_image_convert'] = 0;
+
 		if (! isset($this->k_tai_conf['rebuilds'])) $this->k_tai_conf['rebuilds'] = array(
 			'header'         => array( 'above' => '',
 			                          'below' => ''),
@@ -318,6 +322,9 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 
 				// use jquery mobile?
 				$this->HypKTaiRender->Config_jquery = $use_jqm = (in_array($this->HypKTaiRender->vars['ua']['carrier'], explode(',', $this->k_tai_conf['jquery_profiles'])));
+				$this->HypKTaiRender->Config_jquery_remove_flash = $this->k_tai_conf['jquery_remove_flash'];
+				$this->HypKTaiRender->Config_jquery_resolve_table = $this->k_tai_conf['jquery_resolve_table'];
+				$this->HypKTaiRender->Config_jquery_image_convert = $this->k_tai_conf['jquery_image_convert'];
 
 				// jQuery use: 2, Normal: 1
 				define('HYP_K_TAI_RENDER', ($use_jqm? 2 : 1));
@@ -1949,6 +1956,12 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 
 		// jQuery 使用時はHTMLの携帯用変換を行わない
 		$this->k_tai_conf['jquery_no_reduce'] = true;
+		// jQuery Mobile 適用時に Flash を除去するプロファイル名をカンマ区切りで記述。
+		$this->k_tai_conf['jquery_remove_flash'] = ''; // 'iphone,ipod,ipad'
+		// jQuery Mobile 適用時に入れ子になっているテーブルを展開する。
+		$this->k_tai_conf['jquery_resolve_table'] = false;
+		// jQuery Mobile 適用時に画像を指定幅[px]サイズまで縮小する。「0」で無効。
+		$this->k_tai_conf['jquery_image_convert'] = 0;
 
 		// HTML再構築用タグ設定
 		$this->k_tai_conf['rebuilds'] = array(

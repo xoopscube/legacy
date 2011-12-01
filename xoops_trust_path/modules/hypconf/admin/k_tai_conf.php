@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2011/11/09 by nao-pon http://xoops.hypweb.net/
- * $Id: k_tai_conf.php,v 1.1 2011/11/10 12:31:33 nao-pon Exp $
+ * $Id: k_tai_conf.php,v 1.2 2011/12/01 13:18:58 nao-pon Exp $
  */
 
 $config[] = array(
@@ -42,6 +42,28 @@ $config[] = array(
 	'formtype' => 'select',
 	'valuetype' => 'text',
 	'options' => array('a','b','c','d','e','f','g','h')
+	);
+$config[] = array(
+	'name' => 'jquery_remove_flash',
+	'title' => $constpref.'_JQUERY_REMOVE_FLASH',
+	'description' => $constpref.'_JQUERY_REMOVE_FLASH_DESC',
+	'formtype' => 'textbox',
+	'valuetype' => 'text'
+	);
+$config[] = array(
+	'name' => 'jquery_resolve_table',
+	'title' => $constpref.'_JQUERY_RESOLVE_TABLE',
+	'description' => $constpref.'_JQUERY_RESOLVE_TABLE_DESC',
+	'formtype' => 'yesno',
+	'valuetype' => 'int'
+	);
+$config[] = array(
+	'name' => 'jquery_image_convert',
+	'title' => $constpref.'_JQUERY_IMAGE_CONVERT',
+	'description' => $constpref.'_JQUERY_IMAGE_CONVERT_DESC',
+	'formtype' => 'textbox',
+	'valuetype' => 'int',
+	'size' => 4
 	);
 $config[] = array(
 	'name' => 'disabledBlockIds',

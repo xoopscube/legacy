@@ -2,7 +2,7 @@
 /*
  * Created on 2008/06/17 by nao-pon http://hypweb.net/
  * License: GPL v2 or (at your option) any later version
- * $Id: hyp_ktai_render.php,v 1.56 2011/11/02 00:22:32 nao-pon Exp $
+ * $Id: hyp_ktai_render.php,v 1.57 2011/12/01 13:17:45 nao-pon Exp $
  */
 
 if (! function_exists('XC_CLASS_EXISTS')) {
@@ -59,6 +59,9 @@ class HypKTaiRender
 	var $Config_docomoGuidTTL = 300;
 	var $Config_imageTwiceDisplayWidth = 0;
 	var $Config_no_diet = false;
+	var $Config_jquery_remove_flash = '';
+	var $Config_jquery_resolve_table = false;
+	var $Config_jquery_image_convert = 0;
 
 	function HypKTaiRender () {
 
@@ -468,6 +471,29 @@ class HypKTaiRender
 
 	function html_reduce_smart($body) {
 
+		// Flash 除去
+		if ($this->Config_jquery_remove_flash) {
+			$ua_arr = explode(',', $this->Config_jquery_remove_flash);
+			$ua_arr = array_map('trim', $ua_arr);
+			if (in_array($this->vars['ua']['carrier'], $ua_arr)) {
+				$body = str_replace(array('<object', '/object>'), array("\x01", "\x02"), $body);
+				$body = preg_replace_callback('#\x01[^\x01\x02]+?(?:\x01[^\x01\x02]+?\x02)?[^\x01\x02]+?\x02|<embed.+?/embed>|<embed[^>]+?>#s', array(& $this, '_remove_flash'), $body);
+				$body = str_replace(array("\x01", "\x02"), array('<object', '/object>'), $body);
+			}
+		}
+
+		// img src のチェック
+		if ($this->Config_jquery_image_convert) {
+			$this->Config_pictSizeMax = intval($this->Config_jquery_image_convert);
+			$this->check_img_src($body);
+		}
+
+		// 入れ子テーブルの展開
+		if ($this->Config_jquery_resolve_table) {
+			$this->resolve_table($body, false);
+		}
+
+		// "on*" 属性のあるフォームエレメントは jqm で装飾しない
 		$body = preg_replace('#(<(?:input|select|textarea))([^>]+? on[^>]+>)#iS', '$1 data-role="none"$2', $body);
 
 		// give data-ajax="false"
@@ -483,8 +509,19 @@ class HypKTaiRender
 		return $match[3].$match[4].' data-ajax="false"'.$match[7];
 	}
 
+	function _remove_flash ($match) {
+		if (preg_match('#\.swf\b|x-shockwave-flash|swflash\.cab#i', $match[0])) {
+			return 'hoge';
+		} else {
+			return $match[0];
+		}
+	}
+
 	// HTML を携帯端末用にシェイプアップする
 	function html_reduce ($body) {
+		// タグを小文字に統一
+		$body = preg_replace('#</?[a-zA-Z]+#eS', 'strtolower("$0")', $body);
+
 		if ($this->Config_no_diet) {
 			$body = $this->html_reduce_smart($body);
 			return $body;
@@ -500,10 +537,6 @@ class HypKTaiRender
 			$arr2 = array_pad(explode('<!--/HypKTaiIgnore-->', $arr1[1], 2), 2, '');
 			$body = $arr1[0] . $arr2[1];
 		}
-
-
-		// タグを小文字に統一
-		$body = preg_replace('#</?[a-zA-Z]+#eS', 'strtolower("$0")', $body);
 
 		// 半角カナに変換
 		if (function_exists('mb_convert_kana')) {
@@ -666,34 +699,7 @@ class HypKTaiRender
 
 		// <table>を正規化
 		// 入れ子テーブルを展開
-		$body = str_replace('<table', "\x01", $body);
-		$args = preg_split('#(\x01[^>]*?'.'>[^\x01]+?</table>)#sS', $body, -1, PREG_SPLIT_DELIM_CAPTURE);
-		if (isset($args[1])) {
-			$reg = '#^(\x01[^>]*?)\s+(?:align|width|border)=(?:\'[^\']*?\'|"[^"]*?")([^>]*?>)#S';
-			$body = '';
-			$table_attrs = array('border' => '1', 'cellspacing' => '0', 'align' => 'center');
-			foreach($args as $val) {
-				if ($val[0] === "\x01") {
-					// remove tag attribute
-					$val = str_replace('\\"', "\x08", $val);
-					while(preg_match($reg, $val)) {
-						$val = preg_replace($reg, '$1$2', $val);
-					}
-					$val = str_replace("\x08", '\\"', $val);
-					$_attr = '';
-					foreach($table_attrs as $_check => $_val) {
-						if (! preg_match('#^\x01[^>]*?\s+_ktai_'.$_check.'=#S', $val)) $_attr .= ' '.$_check.'="'.$_val.'"';
-					}
-					$val = str_replace("\x01", '<table' . $_attr, $val);
-				} else {
-					$val = str_replace("\x01", '<table', $val);
-					$val = preg_replace('#(</?)(?:t(?:able|r|h))[^>]*?>#S', '$1div>', $val);
-					$val = preg_replace('#</td>#S', ' ', $val);
-					$val = preg_replace('#</?(?:col|t(?:d|body|head|foot))[^>]*?>#S', '', $val);
-				}
-				$body .= $val;
-			}
-		}
+		$this->resolve_table($body);
 
 		// Remove empty elements
 		$body = preg_replace('#<([bipqsu]|(?!textarea|td)[a-z]{2,})(?: [^>]+)?></\\1>#', '', $body);
@@ -711,6 +717,41 @@ class HypKTaiRender
 		$body = preg_replace('#(<[^>]+? (?:href|src)=[\'"]?)'.preg_quote($this->myRoot, '#').'/?#iS', '$1/', $body);
 
 		return $body;
+	}
+
+	// <table>を正規化
+	// 入れ子テーブルを展開
+	function resolve_table(& $body, $remove_attr = true) {
+		$body = str_replace('<table', "\x01", $body);
+		$args = preg_split('#(\x01[^>]*?'.'>[^\x01]+?</table>)#sS', $body, -1, PREG_SPLIT_DELIM_CAPTURE);
+		if (isset($args[1])) {
+			$reg = '#^(\x01[^>]*?)\s+(?:align|width|border)=(?:\'[^\']*?\'|"[^"]*?")([^>]*?>)#S';
+			$body = '';
+			$table_attrs = array('border' => '1', 'cellspacing' => '0', 'align' => 'center');
+			foreach($args as $val) {
+				if ($val[0] === "\x01") {
+					$_attr = '';
+					if ($remove_attr) {
+						// remove tag attribute
+						$val = str_replace('\\"', "\x08", $val);
+						while(preg_match($reg, $val)) {
+							$val = preg_replace($reg, '$1$2', $val);
+						}
+						$val = str_replace("\x08", '\\"', $val);
+						foreach($table_attrs as $_check => $_val) {
+							if (! preg_match('#^\x01[^>]*?\s+_ktai_'.$_check.'=#S', $val)) $_attr .= ' '.$_check.'="'.$_val.'"';
+						}
+					}
+					$val = str_replace("\x01", '<table' . $_attr, $val);
+				} else {
+					$val = str_replace("\x01", '<table', $val);
+					$val = preg_replace('#(</?)(?:t(?:able|r|h))[^>]*?>#S', '$1div>', $val);
+					$val = preg_replace('#</td>#S', ' ', $val);
+					$val = preg_replace('#</?(?:col|t(?:d|body|head|foot))[^>]*?>#S', '', $val);
+				}
+				$body .= $val;
+			}
+		}
 	}
 
 	// HTML を指定サイズ内に収まるように分割する
@@ -803,8 +844,9 @@ class HypKTaiRender
 		$html = str_replace('<a', "\x08", $html);
 
 		// Check IMG & INPUT src
-		$html = preg_replace_callback('#(<(img|input)[^>]*?) src=([\'"])?([^\s"\'>]+)(?:\\3)?([^>]*>)([^\x08]*?</a>)?#isS',
-				array(& $this, '_html_check_img_src'), $html);
+		//$html = preg_replace_callback('#(<(img|input)[^>]*?) src=([\'"])?([^\s"\'>]+)(?:\\3)?([^>]*>)([^\x08]*?</a>)?#isS',
+		//		array(& $this, '_html_check_img_src'), $html);
+		$this->check_img_src($html);
 
 		// Check A href
 		$html = preg_replace_callback('#(\x08[^>]*? href=([\'"])?)([^\s"\'>]+)(\\2)?#isS',
@@ -825,6 +867,23 @@ class HypKTaiRender
 		}
 
 		return $html;
+	}
+
+	function check_img_src (& $html, $a_conv = false) {
+		if ($a_conv) {
+			// For regex simplify
+			$html = str_replace('<a', "\x08", $html);
+		}
+
+		// Check IMG & INPUT src
+		$html = preg_replace_callback('#(<(img|input)[^>]*?) src=([\'"])?([^\s"\'>]+)(?:\\3)?([^>]*>)([^\x08]*?</a>)?#isS',
+				array(& $this, '_html_check_img_src'), $html);
+
+		if ($a_conv) {
+			// Back to "<a" from "\x08"
+			$html = str_replace("\x08", '<a', $html);
+		}
+
 	}
 
 	function checkIp ($address, $carrier) {

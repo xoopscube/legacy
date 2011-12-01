@@ -128,6 +128,12 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 
 		// jQuery 使用時はHTMLの携帯用変換を行わない
 		$this->k_tai_conf['jquery_no_reduce'] = true;
+		// jQuery Mobile 適用時に Flash を除去するプロファイル名をカンマ区切りで記述。
+		$this->k_tai_conf['jquery_remove_flash'] = ''; // 'iphone,ipod,ipad'
+		// jQuery Mobile 適用時に入れ子になっているテーブルを展開する。
+		$this->k_tai_conf['jquery_resolve_table'] = false;
+		// jQuery Mobile 適用時に画像を指定幅[px]サイズまで縮小する。「0」で無効。
+		$this->k_tai_conf['jquery_image_convert'] = 0;
 
 		// HTML再構築用タグ設定
 		$this->k_tai_conf['rebuilds'] = array(
