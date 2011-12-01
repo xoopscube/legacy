@@ -13,6 +13,14 @@ $storynum   = ($storynum > 30)           ? $bulletin_storyhome         : $storyn
 $op = isset($_GET['op']) ? $_GET['op'] : "" ;
 //op=comments is d3forum comment
 if ($op == "comments" && !empty($xoopsModuleConfig['comment_dirname']) && !empty($xoopsModuleConfig['comment_forum_id']) ){
+	require_once dirname(dirname(__FILE__)).'/class/bulletingp.php' ;
+//ver3.0 can_read access
+	$gperm =& BulletinGP::getInstance($mydirname) ;
+	$can_read_topic_ids = $gperm->makeOnTopics('can_read');
+	if (empty($can_read_topic_ids)){
+		die(_NOPERM);
+	}
+
 	$cmttbl = $xoopsModuleConfig['comment_dirname'];
 	$whr_forum = "t.forum_id=" . $xoopsModuleConfig['comment_forum_id'];
 	$odr = $xoopsModuleConfig['comment_order'];
@@ -24,7 +32,9 @@ if ($op == "comments" && !empty($xoopsModuleConfig['comment_dirname']) && !empty
 		.$xoopsDB->prefix($cmttbl."_topics")." t ON s.storyid=t.topic_external_link_id LEFT JOIN "
 		.$xoopsDB->prefix($cmttbl."_posts")." p ON t.topic_last_post_id=p.post_id LEFT JOIN "
 		.$xoopsDB->prefix("users")." u ON p.uid=u.uid "
-		."WHERE ! t.topic_invisible AND (".$whr_forum." AND b.topic_id=".$storytopic.") ORDER BY p.post_time ".$odr ;
+		."WHERE ! t.topic_invisible AND (".$whr_forum." AND b.topic_id=".$storytopic.")"
+		." AND b.topic_id IN (".implode(",",$can_read_topic_ids).")"
+		." ORDER BY p.post_time ".$odr ;
 		$ret=$xoopsDB->query($sql);
 		while($myrow=$xoopsDB->fetchArray($ret)){
 			$topic_id = $myrow['topic_id'];
@@ -36,22 +46,27 @@ if ($op == "comments" && !empty($xoopsModuleConfig['comment_dirname']) && !empty
 		$xoopsTpl->assign('comments', $comments);
 		$xoopsOption['template_main'] = "{$mydirname}_comments.html";
 	}else{
+//TODO
 		$sql = "SELECT b.topic_id,b.topic_title,count(p.post_id) as comment FROM "
 		.$xoopsDB->prefix($mydirname."_topics")." b LEFT JOIN "
 		.$xoopsDB->prefix($mydirname."_stories")." s ON b.topic_id=s.topicid LEFT JOIN "
 		.$xoopsDB->prefix($cmttbl."_topics")." t ON s.storyid=t.topic_external_link_id LEFT JOIN "
 		.$xoopsDB->prefix($cmttbl."_posts")." p ON t.topic_last_post_id=p.post_id "
-		."WHERE ! t.topic_invisible AND (".$whr_forum." ) GROUP BY b.topic_id";
+		."WHERE ! t.topic_invisible AND (".$whr_forum." )"
+		." AND b.topic_id IN (".implode(",",$can_read_topic_ids).")"
+		." GROUP BY b.topic_id";
 		$ret=$xoopsDB->query($sql);
 		while($myrow=$xoopsDB->fetchArray($ret)){
 			$topicInfo[$myrow['topic_id']]['topic_id']=$myrow['topic_id'];
 			$topicInfo[$myrow['topic_id']]['title']=$myrow['topic_title'];
 			$topicInfo[$myrow['topic_id']]['comment']=$myrow['comment'];
 		}
+/*TODO iine_vote
 		$sql = "SELECT b.topic_id,b.topic_title,count(i.content_id) as iine FROM "
 		.$xoopsDB->prefix($mydirname."_topics")." b LEFT JOIN "
 		.$xoopsDB->prefix($mydirname."_stories")." s ON b.topic_id=s.topicid LEFT JOIN "
-		.$xoopsDB->prefix("iine_votes").' i ON s.storyid=i.content_id WHERE i.dirname="bulletin" '
+		.$xoopsDB->prefix("iine_votes")." i ON s.storyid=i.content_id WHERE i.dirname='".$mydirname."' "
+		." AND b.topic_id IN (".implode(",",$can_read_topic_ids).")"
 		."GROUP BY b.topic_id";
 		$ret=$xoopsDB->query($sql);
 		while($myrow=$xoopsDB->fetchArray($ret)){
@@ -59,16 +74,22 @@ if ($op == "comments" && !empty($xoopsModuleConfig['comment_dirname']) && !empty
 			$topicInfo[$myrow['topic_id']]['title']=$myrow['topic_title'];
 			$topicInfo[$myrow['topic_id']]['iine']=$myrow['iine'];
 		}
-		$sql = "SELECT b.topic_id,b.topic_title,count(m.inbox_id) as message FROM "
-		.$xoopsDB->prefix($mydirname."_topics")." b LEFT JOIN "
-		.$xoopsDB->prefix($mydirname."_stories")." s ON b.topic_id=s.topicid LEFT JOIN "
-		.$xoopsDB->prefix("message_inbox")." m ON m.from_uid=s.uid "
-		."WHERE m.uid=" . $xoopsUser->uid() . " GROUP BY b.topic_id";
-		$ret=$xoopsDB->query($sql);
-		while($myrow=$xoopsDB->fetchArray($ret)){
-			$topicInfo[$myrow['topic_id']]['topic_id']=$myrow['topic_id'];
-			$topicInfo[$myrow['topic_id']]['title']=$myrow['topic_title'];
-			$topicInfo[$myrow['topic_id']]['message']=$myrow['message'];
+*/
+		if (defined('LEGACY_MODULE_VERSION') && version_compare(LEGACY_MODULE_VERSION, '2.2', '>=')) {
+		// For XCL 2.2
+			$sql = "SELECT b.topic_id,b.topic_title,count(m.inbox_id) as message FROM "
+			.$xoopsDB->prefix($mydirname."_topics")." b LEFT JOIN "
+			.$xoopsDB->prefix($mydirname."_stories")." s ON b.topic_id=s.topicid LEFT JOIN "
+			.$xoopsDB->prefix("message_inbox")." m ON m.from_uid=s.uid "
+			."WHERE m.uid=" . $xoopsUser->uid()
+			." AND b.topic_id IN (".implode(",",$can_read_topic_ids).")"
+			." GROUP BY b.topic_id";
+			$ret=$xoopsDB->query($sql);
+			while($myrow=$xoopsDB->fetchArray($ret)){
+				$topicInfo[$myrow['topic_id']]['topic_id']=$myrow['topic_id'];
+				$topicInfo[$myrow['topic_id']]['title']=$myrow['topic_title'];
+				$topicInfo[$myrow['topic_id']]['message']=$myrow['message'];
+			}
 		}
 		$xoopsTpl->assign('topicinfo', $topicInfo);
 		$xoopsOption['template_main'] = "{$mydirname}_topicinfo.html";
