@@ -18,23 +18,50 @@ function b_bulletin_category_new_allowed_order()
 
 function b_bulletin_category_new_show($options) {
 
-	$mydirname = $options[0] ;
+	$mydirname = empty( $options[0] ) ? basename( dirname( dirname( __FILE__ ) ) ) : $options[0] ;
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
 	$selected_order = empty( $options[1] ) || ! in_array( $options[1] , b_bulletin_category_new_allowed_order() ) ? 'published DESC' : $options[1] ;
+	$display_count = empty($options[2]) ? 0 :intval($options[2]);//Number display for each category
+	$Length_title = empty($options[3]) ? 255 :intval($options[3]);//Length of the title
+	$categories = empty($options[4]) ? 0 : array_map( 'intval' , explode( ',' , $options[4] ) ) ;//(0=show all)
+	$show_body = empty($options[5]) ? 0 :intval($options[5]);//Number of articles showing body for each category
+	$show_category_icon = empty($options[6]) ? 0 :intval($options[6]);//(yes or no) ,Display category icon
+//ver3.0 fix
+	if ($show_body > $display_count){
+		$show_body = $display_count;
+	}
 
 	require dirname( dirname( __FILE__ ) ).'/include/configs.inc.php';
 	require_once XOOPS_ROOT_PATH.'/class/xoopstree.php';
-	
+	require_once dirname(dirname(__FILE__)).'/class/bulletingp.php' ;
+
 	$mytree = new XoopsTree($table_topics,'topic_id','topic_pid');
 
 	$arr = array();
-	// ルートカテゴリを得るクエリ
-	if( empty($options[4]) ){
-		// 全ルートカテゴリを得る
-		$result = $xoopsDB->query("SELECT topic_id, topic_title, topic_imgurl FROM $table_topics WHERE topic_pid=0 ORDER BY topic_title");
+//ver3.0 can_read access
+	$gperm =& BulletinGP::getInstance($mydirname) ;
+	$can_read_topic_ids = $gperm->makeOnTopics('can_read');
+	if (empty($can_read_topic_ids)){
+		return false;
+	}
+
+	// Query to get the root category
+		$sql_topics = "SELECT topic_id, topic_title, topic_imgurl";
+		$sql_topics .= " FROM ".$xoopsDB->prefix($mydirname."_topics") ;
+	if( empty($categories) ){
+		// Get categories all from route
+		$sql_topics .= " WHERE topic_pid=0";
+		$sql_topics .= " AND topic_id IN (".implode(",",$can_read_topic_ids).")";
+		$sql_topics .= " ORDER BY topic_title";
 	}else{
-		// 指定カテゴリのみ
-		$result = $xoopsDB->query("SELECT topic_id, topic_title, topic_imgurl FROM $table_topics WHERE topic_id=".$options[4]);
+		// when category
+		$sql_topics .= " WHERE topic_id IN (".implode(",",$categories).")";
+		$sql_topics .= " AND topic_id IN (".implode(",",$can_read_topic_ids).")";
+	}
+	$result = $xoopsDB->query($sql_topics);
+	$topics_count = $xoopsDB->getRowsNum($result);
+	if (empty($topics_count)){
+		return false;
 	}
 
 	$block = array();
@@ -44,36 +71,46 @@ function b_bulletin_category_new_show($options) {
 		$topic['title'] = $myts->makeTboxData4Show($topic_title);
 		$topic['id'] = $topic_id;
 
-		// トピック画像をセット
-		if ($topic_imgurl != '' && file_exists($bulletin_topicon_path.$topic_imgurl) && $options[6]) {
+		// Set the image topic
+		if ($topic_imgurl != '' && file_exists($bulletin_topicon_path.$topic_imgurl) && $show_category_icon) {
 			$topic['topic_url'] = str_replace(XOOPS_ROOT_PATH,XOOPS_URL,$bulletin_topicon_path).$topic_imgurl;
+			$topic['show_category_icon'] = 1;
+		}else{
+			$topic['show_category_icon'] = 0;
 		}
 
 		$where = sprintf("s.type > 0 AND s.published < %u AND s.published > 0 AND (s.expired = 0 OR s.expired > %1\$u) AND s.block = 1 AND (s.topicid=%u", time(), $topic_id);
 
-		// 子ディレクトリを対象に含める
+		// View the directory to include children categorys
 		$arr = $mytree->getAllChildId($topic_id);
 		$size = count($arr);
 		for($i=0;$i<$size;$i++){
 			$where .= " OR s.topicid=".$arr[$i];
 		}
-
 		$where .= ")";
-		$order = "ORDER BY $selected_order";
+//ver3.0 can_read access
+		$where .= " AND s.topicid IN (".implode(',',$can_read_topic_ids).")";
 
-		// more をセット
-		$sql = sprintf('SELECT COUNT(*) FROM %s s WHERE %s', $table_stories, $where);
+		// see more... for topics
+		$sql = sprintf("SELECT COUNT(*) FROM %s s WHERE %s", $xoopsDB->prefix($mydirname."_stories"), $where);
 		list($count) = $xoopsDB->fetchRow($xoopsDB->query($sql));
-		if($count>$options[2]){
+		if($count>$display_count){
 			$topic['morelink'] = 1;
 		}
+		$topic['lang_morelink'] = _MORE;
 
-		// 本文を表示する
-		if($options[5] > 0){
+//ver3.0
+		$sql = "SELECT s.*, t.topic_pid, t.topic_imgurl, t.topic_title, t.topic_created, t.topic_modified";
+		$sql .= " FROM " . $xoopsDB->prefix($mydirname."_stories") . " s, " . $xoopsDB->prefix($mydirname."_topics") . " t";
+		$sql .= " WHERE " . $where . " AND s.topicid = t.topic_id";
+		$sql .= " ORDER BY $selected_order";
 
-			$sql  = sprintf('SELECT s.storyid, s.topicid, s.title, s.hometext, s.bodytext, s.published, s.expired, s.counter, s.comments, s.uid, s.topicimg, s.html, s.smiley, s.br, s.xcode, t.topic_title, t. topic_imgurl FROM %s s, %s t WHERE %s AND s.topicid = t.topic_id %s', $table_stories, $table_topics, $where, $order);
+		// Show body
+		if($show_body > 0){
 
-			$result2 = $xoopsDB->query($sql,$options[5],0);
+//ver2.0	$sql  = sprintf('SELECT s.storyid, s.topicid, s.title, s.hometext, s.bodytext, s.published, s.expired, s.counter, s.comments, s.uid, s.topicimg, s.html, s.smiley, s.br, s.xcode, t.topic_title, t. topic_imgurl FROM %s s, %s t WHERE %s AND s.topicid = t.topic_id %s', $table_stories, $table_topics, $where, $order);
+
+			$result2 = $xoopsDB->query($sql,$show_body,0);
 
 			while ( $myrow = $xoopsDB->fetchArray($result2) ) {
 				$fullstory = array() ; // GIJ
@@ -87,13 +124,13 @@ function b_bulletin_category_new_show($options) {
 				$fullstory['text']     = $myts->displayTarea($myrow['hometext'],$myrow['html'],$myrow['smiley'],$myrow['xcode'],1,$myrow['br']);
 				$fullstory['hits']     = $myrow['counter'];
 				$fullstory['title_link'] = true;
-				//ユーザ情報をアサイン
+				//Assign the user information
 				$fullstory['uid']      = $myrow['uid'];
 				$fullstory['uname']    = XoopsUser::getUnameFromId($myrow['uid']);
 				$fullstory['realname'] = XoopsUser::getUnameFromId($myrow['uid'], 1);
 				$fullstory['morelink'] = '';
 
-				// 文字数カウント処理
+				// Length counting process
 				if ( myStrlenText($myrow['bodytext']) > 1 ) {
 					$fullstory['bytes']    = sprintf(_MB_BULLETIN_BYTESMORE, myStrlenText($myrow['bodytext']));
 					$fullstory['readmore'] = true;
@@ -102,7 +139,7 @@ function b_bulletin_category_new_show($options) {
 					$fullstory['readmore'] = false;
 				}
 
-				// コメントの数をアサイン
+				// Assign a number of comments
 				$ccount = $myrow['comments'];
 				if( $ccount == 0 ){
 					$fullstory['comentstotal'] = _MB_BULLETIN_COMMENTS;
@@ -112,30 +149,31 @@ function b_bulletin_category_new_show($options) {
 					$fullstory['comentstotal'] = sprintf(_MB_BULLETIN_NUMCOMMENTS, $ccount);
 				}
 
-				// 管理者用のリンク
+				// Links for administrato //old verssion
 				$fullstory['adminlink'] = 0;
 
-				// トピック画像
+				// Image Topic
 				if ( $myrow['topicimg'] ) {
 					$fullstory['topic_url'] = makeTopicImgURL($bulletin_topicon_path, $myrow['topic_imgurl']);
 					$fullstory['align']     = topicImgAlign($myrow['topicimg']);
 				}
+				$fullstory['raw_data'] = $myrow;
 
 				$topic['fullstories'][] = $fullstory;
 
 			}
 		}
 
-		if( $options[2] - $options[5] > 0 ){
+		if( $display_count - $show_body > 0 ){
 
-			$sql  = sprintf('SELECT s.storyid, s.title, s.published, s.expired, s.counter, s.uid FROM %s s WHERE %s %s', $table_stories, $where, $order);
+//ver2.0	$sql  = sprintf('SELECT s.storyid, s.title, s.published, s.expired, s.counter, s.uid FROM %s s WHERE %s %s', $table_stories, $where, $order);
 
-			$result3 = $xoopsDB->query($sql,$options[2]-$options[5],$options[5]);
+			$result3 = $xoopsDB->query($sql,$display_count-$show_body,$show_body);
 
 			while ( $myrow = $xoopsDB->fetchArray($result3) ) {
 
-				// マルチバイト環境に対応
-				$story['title']    = $myts->makeTboxData4Show(xoops_substr($myrow['title'], 0 ,$options[3] + 3, '...'));
+				// Also supports multi-byte
+				$story['title']    = $myts->makeTboxData4Show(xoops_substr($myrow['title'], 0 ,intval($Length_title) + 3, '...'));
 				$story['id']       = $myrow['storyid'];
 				$story['date']     = formatTimestamp($myrow['published'], $bulletin_date_format);
 				$story['published'] = intval($myrow['published']);
@@ -143,6 +181,8 @@ function b_bulletin_category_new_show($options) {
 				$story['uid']      = $myrow['uid'];
 				$story['uname']    = XoopsUser::getUnameFromId($myrow['uid']);
 				$story['realname'] = XoopsUser::getUnameFromId($myrow['uid'], 1);
+
+				$story['raw_data'] = $myrow;
 
 				$topic['stories'][] = $story;
 			}
@@ -168,7 +208,7 @@ function b_bulletin_category_new_show($options) {
 
 function b_bulletin_category_new_edit($options) {
 
-	$mydirname = $options[0] ;
+	$mydirname = empty( $options[0] ) ? basename( dirname( dirname( __FILE__ ) ) ) : $options[0] ;
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
 	$selected_order = empty( $options[1] ) || ! in_array( $options[1] , b_bulletin_category_new_allowed_order() ) ? 'published DESC' : $options[1] ;
 

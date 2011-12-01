@@ -3,7 +3,12 @@
 <{foreach item=topic from=$block.topics}>
 
   <div class="itemHead">
-    <span class="itemTitle"><a href="<{$block.mydirurl}>/index.php?storytopic=<{$topic.id}>"><{$topic.title}></a></span>
+    <span class="itemTitle">
+    <{if $topic.show_category_icon and $topic.topic_url}>
+      <a href="<{$block.mydirurl}>/index.php?storytopic=<{$topic.id}>" title="<{$topic.title}>"><img src="<{$topic.topic_url}>" alt="<{$topic.title}>" hspace="10" vspace="0"  /></a>
+    <{/if}>
+    <a href="<{$block.mydirurl}>/index.php?storytopic=<{$topic.id}>"><{$topic.title}></a>
+    </span>
   </div>
 
   <{if $topic.fullstories}>
@@ -42,7 +47,7 @@
 
   <{if $topic.morelink}>
     <div style="text-align:right">
-      <span class="itemPermaLink"><a href="<{$block.mydirurl}>/index.php?storytopic=<{$topic.id}>"><{$block.lang_morelink}></a></span>
+      <span class="itemPermaLink"><a href="<{$block.mydirurl}>/index.php?storytopic=<{$topic.id}>"><{$topic.lang_morelink}></a></span>
     </div>
   <{/if}>
 

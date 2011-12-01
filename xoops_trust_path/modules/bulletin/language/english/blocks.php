@@ -1,33 +1,41 @@
 <?php /* English Translation by Marcelo Yuji Himoro <http://yuji.ws> */
 // Blocks
+$constpref = '_MB_' . strtoupper( $mydirname ) ;
 
-define("_MB_BULLETIN_NOTYET","There is no top story today, yet.");
-define("_MB_BULLETIN_TMRSI","Today's most read story is:");
-define("_MB_BULLETIN_ORDER","Order by");
-define("_MB_BULLETIN_DATE","published date");
-define("_MB_BULLETIN_HITS","number of hits");
-define("_MB_BULLETIN_DISP","Display");
-define("_MB_BULLETIN_ARTCLS","articles");
-define("_MB_BULLETIN_CHARS","Length of the title at");
-define("_MB_BULLETIN_LENGTH","bytes");
-define("_MB_BULLETIN_MON","MO");
-define("_MB_BULLETIN_TUE","TU");
-define("_MB_BULLETIN_WED","WE");
-define("_MB_BULLETIN_THE","TH");
-define("_MB_BULLETIN_FRI","FR");
-define("_MB_BULLETIN_SAT","<span style=\"color:blue\">SA</span>");
-define("_MB_BULLETIN_SUN","<span style=\"color:red\">SU</span>");
-define("_MB_BULLETIN_DATE_FORMAT","m/Y");
+if( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref.'_LOADED' ) ) {
 
-define("_MB_BULLETIN_DISP_TOPICID","Display category (0=show all)");
-define("_MB_BULLETIN_DISP_HOMETEXT","Number of news showing hometext");
-define("_MB_BULLETIN_DIPS_ICON","Display category icon");
+// a flag for this language file has already been read or not.
+define( $constpref.'_LOADED' , 1 ) ;
 
-define("_MB_BULLETIN_READMORE","Read more...");
-define("_MB_BULLETIN_COMMENTS","0 comments");
-define("_MB_BULLETIN_ONECOMMENT","1 comment");
-define("_MB_BULLETIN_BYTESMORE","%s bytes to go");
-define("_MB_BULLETIN_NUMCOMMENTS","%s comments");
+define($constpref."_NOTYET","There is no top story today, yet.");
+define($constpref."_TMRSI","Today's most read story is:");
+define($constpref."_ORDER","Order by");
+define($constpref."_DATE","published date");
+define($constpref."_HITS","number of hits");
+define($constpref."_DISP","Display");
+define($constpref."_ARTCLS","articles");
+define($constpref."_CHARS","Length of the title at");
+define($constpref."_LENGTH","bytes");
+define($constpref."_MON","MO");
+define($constpref."_TUE","TU");
+define($constpref."_WED","WE");
+define($constpref."_THE","TH");
+define($constpref."_FRI","FR");
+define($constpref."_SAT","<span style=\"color:blue\">SA</span>");
+define($constpref."_SUN","<span style=\"color:red\">SU</span>");
+define($constpref."_DATE_FORMAT","m/Y");
 
-define("_MB_BULLETIN_MORE","See more news");
+define($constpref."_DISP_TOPICID","Display category ! Subcategories directly belonging to this parent category will be displayed. <br/>you can specify parent categories multiply by numbers separated with comma. <br/>(0=show all)");
+define($constpref."_DISP_HOMETEXT","Number of news showing hometext");
+define($constpref."_DIPS_ICON","Display category icon");
+
+define($constpref."_READMORE","Read more...");
+define($constpref."_COMMENTS","0 comments");
+define($constpref."_ONECOMMENT","1 comment");
+define($constpref."_BYTESMORE","%s bytes to go");
+define($constpref."_NUMCOMMENTS","%s comments");
+
+define($constpref."_MORE","See more news");
+
+}
 ?>

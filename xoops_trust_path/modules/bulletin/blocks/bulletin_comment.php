@@ -3,7 +3,8 @@ function b_bulletin_recent_comments_show($options) {
 
 	global $xoopsDB;
 
-	$mydirname = $options[0] ;
+	$mydirname = empty( $options[0] ) ? basename( dirname( dirname( __FILE__ ) ) ) : $options[0] ;
+	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
 
 	$rs = $xoopsDB->query( "SELECT mid FROM ".$xoopsDB->prefix('modules')." WHERE dirname='$mydirname'" ) ;
 	list( $bulletin_mid ) = $xoopsDB->fetchRow( $rs ) ;
@@ -39,11 +40,11 @@ function b_bulletin_recent_comments_show($options) {
 				$com['poster'] = $poster->getVar('uname');
 			}
 		}
-		
+
 		$block['comments'][] =& $com;
 		unset($com);
 	}
-	
+
 	return $block;
 }
 

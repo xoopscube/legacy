@@ -18,25 +18,44 @@ function b_bulletin_new_allowed_order()
 
 function b_bulletin_new_show($options) {
 
-	$mydirname = $options[0] ;
+	$mydirname = empty( $options[0] ) ? basename( dirname( dirname( __FILE__ ) ) ) : $options[0] ;
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
 	$selected_order = empty( $options[1] ) || ! in_array( $options[1] , b_bulletin_new_allowed_order() ) ? 'published DESC' : $options[1] ;
+	$display_count = empty($options[2]) ? 0 :intval($options[2]);//Number display for each category
+	$Length_title = empty($options[3]) ? 255 :intval($options[3]);//Length of the title
+	$categories = empty($options[4]) ? 0 : array_map( 'intval' , explode( ',' , $options[4] ) ) ;//(0=show all)
+	$show_body = empty($options[5]) ? 0 :intval($options[5]);//Number of articles showing body for each category
 
 	require dirname( dirname( __FILE__ ) ).'/include/configs.inc.php';
+	require_once dirname(dirname(__FILE__)).'/class/bulletingp.php' ;
 
 	$module_handler  =& xoops_gethandler('module');
 	$module =& $module_handler->getByDirname($mydirname);
-		
+
 	$block = array();
 
-	// 
-	if($options[4] > 0){
+//ver3.0 can_read access
+	$gperm =& BulletinGP::getInstance($mydirname) ;
+	$can_read_topic_ids = $gperm->makeOnTopics('can_read');
+	if (empty($can_read_topic_ids)){
+		return false;
+	}
 
-		$sql  = sprintf('SELECT s.storyid, s.topicid, s.title, s.hometext, s.bodytext, s.published, s.expired, s.counter, s.comments, s.uid, s.topicimg, s.html, s.smiley, s.br, s.xcode, t.topic_title, t. topic_imgurl FROM %s s, %s t WHERE s.type > 0 AND s.published < %u AND s.published > 0 AND (s.expired = 0 OR s.expired > %3$u) AND s.topicid = t.topic_id AND s.block = 1 ORDER BY %s', $table_stories, $table_topics, time(), $selected_order);
+	$sql = "SELECT s.*, t.topic_pid, t.topic_imgurl, t.topic_title, t.topic_created, t.topic_modified";
+	$sql .= ' FROM ' . $xoopsDB->prefix($mydirname.'_stories') . ' s, ' . $xoopsDB->prefix($mydirname.'_topics') . ' t';
+	$sql .= ' WHERE s.type > 0 AND s.published < '.time().' AND s.published > 0 AND (s.expired = 0 OR s.expired > '.time().') AND s.topicid = t.topic_id AND s.block = 1';
+	if (!empty($categories)){
+		$sql .= ' AND s.topicid IN ('.implode(',',$categories).')';
+	}
+	$sql .= ' AND s.topicid IN ('.implode(',',$can_read_topic_ids).')';
+	$sql .= ' ORDER BY '. $selected_order;
+	//
+	if($show_body > 0){
 
-		$result = $xoopsDB->query($sql,$options[4],0);
+//ver2.0$sql  = sprintf('SELECT s.storyid, s.topicid, s.title, s.hometext, s.bodytext, s.published, s.expired, s.counter, s.comments, s.uid, s.topicimg, s.html, s.smiley, s.br, s.xcode, t.topic_title, t. topic_imgurl FROM %s s, %s t WHERE s.type > 0 AND s.published < %u AND s.published > 0 AND (s.expired = 0 OR s.expired > %3$u) AND s.topicid = t.topic_id AND s.block = 1 ORDER BY %s', $table_stories, $table_topics, time(), $selected_order);
+		$result = $xoopsDB->query($sql,$show_body,0);
 
-		
+
 		while ( $myrow = $xoopsDB->fetchArray($result) ) {
 			$fullstory = array() ; // GIJ
 			$fullstory['id']       = $myrow['storyid'];
@@ -54,7 +73,7 @@ function b_bulletin_new_show($options) {
 			$fullstory['uname']    = XoopsUser::getUnameFromId($myrow['uid']);
 			$fullstory['realname'] = XoopsUser::getUnameFromId($myrow['uid'], 1);
 			$fullstory['morelink'] = '';
-		
+
 			//
 			if ( myStrlenText($myrow['bodytext']) > 1 ) {
 				$fullstory['bytes']    = sprintf(_MB_BULLETIN_BYTESMORE, myStrlenText($myrow['bodytext']));
@@ -63,7 +82,7 @@ function b_bulletin_new_show($options) {
 				$fullstory['bytes']    = 0;
 				$fullstory['readmore'] = false;
 			}
-	
+
 			//
 			$ccount = $myrow['comments'];
 			if( $ccount == 0 ){
@@ -73,32 +92,34 @@ function b_bulletin_new_show($options) {
 			}else{
 				$fullstory['comentstotal'] = sprintf(_MB_BULLETIN_NUMCOMMENTS, $ccount);
 			}
-		
+
 			//
 			$fullstory['adminlink'] = 0;
-		
-			// 
+
+			//
 			if ( $myrow['topicimg'] ) {
 				$fullstory['topic_url'] = makeTopicImgURL($bulletin_topicon_path, $myrow['topic_imgurl']);
 				$fullstory['align']     = topicImgAlign($myrow['topicimg']);
 			}
+
+			$fullstory['raw_data'] = $myrow;
 
 			$block['fullstories'][] = $fullstory;
 
 		}
 	}
 
-	if( $options[2] - $options[4] > 0 ){
+	if( $display_count - $show_body > 0 ){
 
-		$sql  = sprintf('SELECT storyid, title, published, expired, counter, uid FROM %s WHERE type > 0 AND published < %u AND published > 0 AND (expired = 0 OR expired > %2$u) AND block = 1 ORDER BY %s', $table_stories, time(), $selected_order);
+//ver2.0$sql  = sprintf('SELECT storyid, title, published, expired, counter, uid FROM %s WHERE type > 0 AND published < %u AND published > 0 AND (expired = 0 OR expired > %2$u) AND block = 1 ORDER BY %s', $table_stories, time(), $selected_order);
 
-		$result = $xoopsDB->query($sql,$options[2]-$options[4],$options[4]);
+		$result = $xoopsDB->query($sql,$display_count-$show_body,$show_body);
 
 		while ( $myrow = $xoopsDB->fetchArray($result) ) {
 			$story = array();
 
-			// 
-			$story['title']    = $myts->makeTboxData4Show(xoops_substr($myrow['title'], 0 ,$options[3] + 3, '...'));
+			//
+			$story['title']    = $myts->makeTboxData4Show(xoops_substr($myrow['title'], 0 ,$Length_title + 3, '...'));
 			$story['id']       = $myrow['storyid'];
 			$story['date']     = formatTimestamp($myrow['published'], $bulletin_date_format);
 			$story['published'] = intval($myrow['published']);
@@ -106,6 +127,8 @@ function b_bulletin_new_show($options) {
 			$story['uid']      = $myrow['uid'];
 			$story['uname']    = XoopsUser::getUnameFromId($myrow['uid']);
 			$story['realname'] = XoopsUser::getUnameFromId($myrow['uid'], 1);
+
+			$story['raw_data'] = $myrow;
 
 			$block['stories'][] = $story;
 		}
@@ -129,8 +152,8 @@ function b_bulletin_new_show($options) {
 
 
 function b_bulletin_new_edit($options) {
-	
-	$mydirname = $options[0] ;
+
+	$mydirname = empty( $options[0] ) ? basename( dirname( dirname( __FILE__ ) ) ) : $options[0] ;
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
 	$selected_order = empty( $options[1] ) || ! in_array( $options[1] , b_bulletin_new_allowed_order() ) ? 'published DESC' : $options[1] ;
 

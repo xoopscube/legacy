@@ -44,6 +44,7 @@ $modversion['blocks'][$i]['file']        = "blocks.php";
 $modversion['blocks'][$i]['name']        = constant($constpref.'_BNAME2');
 $modversion['blocks'][$i]['description'] = constant($constpref.'_BDESC2');
 $modversion['blocks'][$i]['show_func']   = "b_bulletin_bigstory_show";
+$modversion['blocks'][$i]['edit_func']   = "b_bulletin_bigstory_edit";//ver3.0 added
 $modversion['blocks'][$i]['options']     = $mydirname;
 $modversion['blocks'][$i]['template']    = "{$mydirname}_block_bigstory.html";
 $i++;
@@ -58,7 +59,7 @@ $modversion['blocks'][$i]['name']        = constant($constpref.'_BNAME4');
 $modversion['blocks'][$i]['description'] = constant($constpref.'_BDESC4');
 $modversion['blocks'][$i]['show_func']   = "b_bulletin_new_show";
 $modversion['blocks'][$i]['edit_func']   = "b_bulletin_new_edit";
-$modversion['blocks'][$i]['options']     = "$mydirname|published DESC|10|255|0";
+$modversion['blocks'][$i]['options']     = "$mydirname|published DESC|10|255|0|0";//ver3.0 changed
 $modversion['blocks'][$i]['template']    = "{$mydirname}_block_new.html";
 $modversion['blocks'][$i]['can_clone']   = true ;
 $i++;
@@ -67,7 +68,7 @@ $modversion['blocks'][$i]['name']        = constant($constpref.'_BNAME5');
 $modversion['blocks'][$i]['description'] = constant($constpref.'_BDESC5');
 $modversion['blocks'][$i]['show_func']   = "b_bulletin_category_new_show";
 $modversion['blocks'][$i]['edit_func']   = "b_bulletin_category_new_edit";
-$modversion['blocks'][$i]['options']     = "$mydirname|published DESC|5|255|0|0|1";
+$modversion['blocks'][$i]['options']     = "$mydirname|published DESC|5|255|0|0|0";//ver3.0 changed
 $modversion['blocks'][$i]['template']    = "{$mydirname}_block_category_new.html";
 $modversion['blocks'][$i]['can_clone']   = true ;
 $i++;
