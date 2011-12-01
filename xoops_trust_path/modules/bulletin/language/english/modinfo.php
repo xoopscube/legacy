@@ -93,6 +93,11 @@ define($constpref.'_COM_VIEW','View of comment-integration');
 define($constpref.'_COM_ORDER','Order of comment-integration');
 define($constpref.'_COM_POSTSNUM','Max posts displayed in comment-integration');
 
+// by yoshis
+define($constpref.'_ADMENU_CATEGORYACCESS' , 'Permissions of Categories' ) ;
+define($constpref.'_IMAGES_DIR','Directory for image files');
+define($constpref.'_IMAGES_DIRDSC','relative path should be set in the module directory. default: images');
+
 // Text for notifications
 define($constpref."_GLOBAL_NOTIFY","Global");
 define($constpref."_GLOBAL_NOTIFYDSC","Global news notification options.");
