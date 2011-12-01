@@ -13,7 +13,6 @@ $storynum   = ($storynum > 30)           ? $bulletin_storyhome         : $storyn
 $op = isset($_GET['op']) ? $_GET['op'] : "" ;
 //op=comments is d3forum comment
 if ($op == "comments" && !empty($xoopsModuleConfig['comment_dirname']) && !empty($xoopsModuleConfig['comment_forum_id']) ){
-	require_once dirname(dirname(__FILE__)).'/class/bulletingp.php' ;
 //ver3.0 can_read access
 	$gperm =& BulletinGP::getInstance($mydirname) ;
 	$can_read_topic_ids = $gperm->makeOnTopics('can_read');
@@ -25,7 +24,9 @@ if ($op == "comments" && !empty($xoopsModuleConfig['comment_dirname']) && !empty
 	$whr_forum = "t.forum_id=" . $xoopsModuleConfig['comment_forum_id'];
 	$odr = $xoopsModuleConfig['comment_order'];
 	$posttbl = $commenttbl . "_posts";
+//TODO when over count display
 	if($storytopic){
+		$comments = array();
 		$sql = "SELECT b.topic_id,b.topic_title,s.storyid,p.uid,u.uname,p.post_time,p.post_text FROM "
 		.$xoopsDB->prefix($mydirname."_topics")." b LEFT JOIN "
 		.$xoopsDB->prefix($mydirname."_stories")." s ON b.topic_id=s.topicid LEFT JOIN "
@@ -35,7 +36,7 @@ if ($op == "comments" && !empty($xoopsModuleConfig['comment_dirname']) && !empty
 		."WHERE ! t.topic_invisible AND (".$whr_forum." AND b.topic_id=".$storytopic.")"
 		." AND b.topic_id IN (".implode(",",$can_read_topic_ids).")"
 		." ORDER BY p.post_time ".$odr ;
-		$ret=$xoopsDB->query($sql);
+		$ret=$xoopsDB->query($sql,50,0);//TODO Limit display
 		while($myrow=$xoopsDB->fetchArray($ret)){
 			$topic_id = $myrow['topic_id'];
 			$topic_title = $myrow['topic_title'];
@@ -46,7 +47,8 @@ if ($op == "comments" && !empty($xoopsModuleConfig['comment_dirname']) && !empty
 		$xoopsTpl->assign('comments', $comments);
 		$xoopsOption['template_main'] = "{$mydirname}_comments.html";
 	}else{
-//TODO
+		$topicInfo = array();
+		//TODO
 		$sql = "SELECT b.topic_id,b.topic_title,count(p.post_id) as comment FROM "
 		.$xoopsDB->prefix($mydirname."_topics")." b LEFT JOIN "
 		.$xoopsDB->prefix($mydirname."_stories")." s ON b.topic_id=s.topicid LEFT JOIN "
@@ -91,6 +93,10 @@ if ($op == "comments" && !empty($xoopsModuleConfig['comment_dirname']) && !empty
 				$topicInfo[$myrow['topic_id']]['message']=$myrow['message'];
 			}
 		}
+		//TODO Limit diplay count
+//		if (!empty($topicInfo)){
+//			$topicInfo = array_slice($topicInfo, 0, 50);
+//		}
 		$xoopsTpl->assign('topicinfo', $topicInfo);
 		$xoopsOption['template_main'] = "{$mydirname}_topicinfo.html";
 	}
