@@ -11,7 +11,8 @@ $storynum   = ($storynum > 30)           ? $bulletin_storyhome         : $storyn
  * comment list for storytopic
  */
 $op = isset($_GET['op']) ? $_GET['op'] : "" ;
-if ($op == "comments"){
+//op=comments is d3forum comment
+if ($op == "comments" && !empty($xoopsModuleConfig['comment_dirname']) && !empty($xoopsModuleConfig['comment_forum_id']) ){
 	$cmttbl = $xoopsModuleConfig['comment_dirname'];
 	$whr_forum = "t.forum_id=" . $xoopsModuleConfig['comment_forum_id'];
 	$odr = $xoopsModuleConfig['comment_order'];
