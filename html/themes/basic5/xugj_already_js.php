@@ -35,7 +35,7 @@ $this->assign( 'xugj_jquery_is_already' , xugj_jquery_is_already($this->_tpl_var
 function xugj_jquery_is_already($document)
 {
 	$ret = false;
-	if (preg_match('/(www\.google\.com\/jsapi|jquery.*\.js)/isx',$document)) {
+	if (preg_match('/(www\.google\.com\/jsapi|jquery([0-9\.-]+?)\.js|jquery([0-9\.-]+?)\.min\.js)/isx',$document)) {
 		$ret = true;
 	}
 	return $ret;
