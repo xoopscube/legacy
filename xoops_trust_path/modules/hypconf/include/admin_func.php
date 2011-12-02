@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2011/11/09 by nao-pon http://xoops.hypweb.net/
- * $Id: admin_func.php,v 1.8 2011/12/01 13:18:58 nao-pon Exp $
+ * $Id: admin_func.php,v 1.9 2011/12/02 01:58:12 nao-pon Exp $
  */
 
 function hypconfSetValue(& $config, $page) {
@@ -44,11 +44,11 @@ function hypconfGetBlocks() {
 
 	include_once(XOOPS_ROOT_PATH."/class/xoopsblock.php");
 	$bobj = new XoopsBlock();
-	$blocks = $bobj->getAllBlocks();
+	$blocks = $bobj->getAllBlocks('object', null, true);
 	$ret = array();
 	if ($blocks) {
 		foreach($blocks as $block) {
-			$name = ($block->getVar("block_type") != "C") ? $block->getVar("name") : $block->getVar("title");
+			$name = $block->getVar('title')? $block->getVar('title') : $block->getVar('name');
 			$bid = $block->getVar("bid");
 			if ($module = hypconfGetModuleName($block->getVar("mid"))) {
 				$ret[$module . ':' . $name] = array(
