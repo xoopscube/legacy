@@ -12,8 +12,20 @@ function bulletin_get_submenu( $mydirname )
 
 	$categories = array( 0 => array( 'pid' => -1 , 'name' => '' , 'url' => '' , 'sub' => array() ) ) ;
 
+	require_once dirname(dirname(__FILE__)).'/class/bulletingp.php' ;
+//ver3.0 can_read access
+	$gperm =& BulletinGP::getInstance($mydirname) ;
+	$can_read_topic_ids = $gperm->makeOnTopics('can_read');
+	if (empty($can_read_topic_ids)){
+		return array() ;
+	}
 	// categories query
-	$sql = "SELECT topic_id,topic_pid,topic_title FROM ".$db->prefix($mydirname."_topics")." ORDER BY topic_title" ;
+//ver2.0 $sql = "SELECT topic_id,topic_pid,topic_title FROM ".$db->prefix($mydirname."_topics")." ORDER BY topic_title" ;
+//ver3.0
+	$sql = 'SELECT topic_id,topic_pid,topic_title';
+	$sql .= ' FROM '.$db->prefix($mydirname.'_topics');
+	$sql .= ' WHERE topic_id IN ('.implode(',',$can_read_topic_ids).')';
+	$sql .= ' ORDER BY topic_title' ;
 	$crs = $db->query( $sql ) ;
 	if( $crs ) while( $cat_row = $db->fetchArray( $crs ) ) {
 		$topic_id = intval( $cat_row['topic_id'] ) ;
