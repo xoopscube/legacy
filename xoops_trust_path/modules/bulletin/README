@@ -41,6 +41,29 @@ http://www.xugj.org/modules/d3forum/index.php?topic_id=106
 
 
 =CHANEGLOG=
+ver3.0 (2011-11-02) beta3
+--206~305	 domifara 	新着用ブロックのカテゴリーの指定で、複数カテゴリー指定がほしい
+--302~304	 domifara 	ndex.php?op=commentsの時にエラーになる
+--299	 domifara 	ver3.0で変更、追加になったenglish言語が変更されていません #84 http://www.xoopscube.net/redmine/issues/84
+--295	 domifara 	テンプレートitem.htmlで、itemInfoメッセージがコメント行になっている http://www.xoopscube.net/redmine/issues/74
+--305	 domifara 	「カテゴリ別最新コンテンツ」もっと..と表示されるはずだが、表示されない
+--297	 domifara 	記事を表示したときに、meta description のセット
+--295	 domifara 	テンプレートitem.htmlで、itemInfoメッセージがコメント行になっている http://www.xoopscube.net/redmine/issues/74
+--287	 domifara 	category topicPermissions for index.php and #65 http://www.xoopscube.net/redmine/issues/65
+--277	 domifara 	投稿権があるのに、サブカテゴリーが選択コンポリスト表示にでない
+--277	 domifara 	投稿権が無い時に、リスト表示のヘッダー部のアーカイブ とRSSの表示も消えてしまう
+--276	 domifara 	#59 ver2.22->ver3.0 onupdate suport add data to topic_access
+--271	 domifara 	oninstall,onuninstall message #60,#61 http://www.xoopscube.net/redmine/issues/60
+--270	 domifara 	onupdate.php内のテーブル変更メッセージが表示されない #59 http://www.xoopscube.net/redmine/issues/59
+--267~305	 domifara 	閲覧権限のないグループ(ゲストを含む)のリスト表示 #64 http://www.xoopscube.net/redmine/issues/64
+- 279 	 domifara 	 投稿権がない場合noticeがでる #71
+- 268 	 domifara 	 deprecated　for php5.3+ http://www.xoopscube.net/redmine/issues/57
+
+ver3.0 (2011-11-02) beta2
+- 267 	 dashboard 	 Group permission fix
+
+ver3.0 (2011-11-02) beta1
+- 171 	 2 weeks 	 naao 	 Add all modules and other files from pack2011/trunk rev.164 base.
 
 HD-2.22 (2009-10-31)
 - fixed new blocks missing initializations (thx chossa2000)
