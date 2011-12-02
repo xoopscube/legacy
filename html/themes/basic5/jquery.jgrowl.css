@@ -29,11 +29,11 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer {
     color:              #000080;
 */
 	background-color: 		#EBFBFE;
-	opacity: 				.70;
-    -ms-filter: 			"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
-    filter: 				progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+	opacity: 				.90;
+	-ms-filter: 			"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+    filter: 				progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
 	zoom: 					1;
-    color:              #000080;
+    color:              #000033;
 
     width:              100%;
     padding:            .5em;
