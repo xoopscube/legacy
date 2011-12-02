@@ -3,26 +3,26 @@ function b_xpwiki_notification_show( $options )
 {
 	$mydirname = empty( $options[0] ) ? 'xpwiki' : $options[0] ;
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
-	
+
 	$pgid = (!empty($_GET['pgid']))? intval($_GET['pgid']) : 0;
-	
+
 	if (!isset($GLOBALS['Xpwiki_'.$mydirname]) || !$pgid) return false;
-	
+
 	$this_template = empty( $options[1] ) ? 'db:'.$mydirname.'_block_notification.html' : trim( $options[1] ) ;
-	
+
 	include_once XOOPS_TRUST_PATH."/modules/xpwiki/include.php";
 	$xw =& XpWiki::getInitedSingleton($mydirname);
-	
+
 	$notification = $xw->func->get_notification_select($pgid);
 
 	if ($notification) {
-		$block = array( 
+		$block = array(
 			'mydirname' => $mydirname ,
 			'mod_url' => XOOPS_URL.'/modules/'.$mydirname ,
 			'content'  => $notification ,
 		) ;
 		require_once XOOPS_ROOT_PATH.'/class/template.php' ;
-		$tpl =& new XoopsTpl() ;
+		$tpl = new XoopsTpl() ;
 		$tpl->assign( 'block' , $block ) ;
 		$ret['content'] = $tpl->fetch( $this_template ) ;
 	} else {
@@ -35,7 +35,7 @@ function b_xpwiki_notification_edit( $options )
 {
 	$mydirname = empty( $options[0] ) ? 'xpwiki' : $options[0] ;
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
-	
+
 	$defs[1] = 'db:'.$mydirname.'_block_notification.html';
 	$this_template = empty( $options[1] ) ? $defs[1] : trim( $options[1] ) ;
 
@@ -55,7 +55,7 @@ function b_xpwiki_a_page_show( $options )
 
 	// 必要なファイルの読み込み (固定値:変更の必要なし)
 	include_once XOOPS_TRUST_PATH."/modules/xpwiki/include.php";
-	 
+
 	// インスタンス化 (引数: モジュールディレクトリ名)
 	$xw = new XpWiki($mydirname);
 
@@ -67,35 +67,35 @@ function b_xpwiki_a_page_show( $options )
 	$disabled_pagecache = empty($options[6])? false : true;
 	$head_tag_place = empty($options[7])? 'body' : trim($options[7]);
 	$configs = array();
-	
+
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
-	
+
 	// ページキャッシュを常に無効にする?
 	if ($disabled_pagecache) {
 		$configs['root']['pagecache_min'] = 0;
 	}
-	
+
 	// ブロック用として取得 (引数: ページ名, 表示幅)
 	list($str, $head) = $xw->get_html_for_block($page, $width, $div_class, $css, $configs, TRUE);
-	 
+
 	// オブジェクトを破棄
 	$xw = null;
-	unset($xw); 
+	unset($xw);
 
 	if ($head_tag_place === 'body' || !b_xpwiki_insert_headtag($head, $head_tag_place)) {
 		$str = $head . $str;
-	} 
+	}
 
 	$constpref = '_MB_' . strtoupper( $mydirname ) ;
 
-	$block = array( 
+	$block = array(
 		'mydirname' => $mydirname ,
 		'mod_url' => XOOPS_URL.'/modules/'.$mydirname ,
 		'pagename' => $page ,
 		'content'  => $str ,
 	) ;
 
-	$tpl =& new XoopsTpl() ;
+	$tpl = new XoopsTpl() ;
 	$tpl->assign( 'block' , $block ) ;
 	$ret['content'] = $tpl->fetch( $this_template ) ;
 	return $ret ;
@@ -112,7 +112,7 @@ function b_xpwiki_a_page_edit( $options )
 	$defs[5] = 'main.css';
 	$defs[6] = 'No';
 	$defs[7] = 'body';
-	
+
 	$page = empty( $options[1] ) ? '' : $options[1] ;
 	$width = empty( $options[2] ) ? $defs[2] : $options[2] ;
 	$this_template = empty( $options[3] ) ? $defs[3] : trim( $options[3] ) ;
@@ -124,7 +124,7 @@ function b_xpwiki_a_page_edit( $options )
 	$head_tag_place = empty($options[7])? $defs[7] : trim($options[7]);
 	$check_headtag = array('module' => '', 'block' => '', 'body' => '');
 	$check_headtag[$head_tag_place] = ' checked="checked"';
-	
+
 	$form = "
 		<input type='hidden' name='options[0]' value='$mydirname' />
 		<label for='pagename'>"._MB_XPWIKI_PAGENAME."</label>&nbsp;:
@@ -175,7 +175,7 @@ function b_xpwiki_block_show( $options, $src, $nocache = false )
 
 	// 必要なファイルの読み込み (固定値:変更の必要なし)
 	include_once XOOPS_TRUST_PATH."/modules/xpwiki/include.php";
-	 
+
 	// インスタンス化 (引数: モジュールディレクトリ名)
 	$xw = new XpWiki($mydirname);
 
@@ -186,41 +186,41 @@ function b_xpwiki_block_show( $options, $src, $nocache = false )
 	$head_tag_place = empty($options[5])? 'module' : trim($options[5]);
 
 	$configs = array();
-	
+
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
-	
+
 	// ページキャッシュを常に無効にする
 	if ($nocache) $configs['root']['pagecache_min'] = 0;
-	
+
 	// Wikiソース
 	$arg = array('source' => $src);
-	
+
 	// ブロック用として取得 (引数: Wikiソース, 表示幅)
 	list($str, $head) = $xw->get_html_for_block($arg, $width, $div_class, $css, $configs, TRUE);
-	
+
 	// MenuBar の ページCSS を読み込み
 	if (isset($options['menubar'])) {
 		$head .= $xw->func->get_page_css_tag('MenuBar');
 	}
-	
+
 	// オブジェクトを破棄
 	$xw = null;
-	unset($xw); 
-	
+	unset($xw);
+
 	if ($head_tag_place === 'body' || !b_xpwiki_insert_headtag($head, $head_tag_place)) {
 		$str = $head . $str;
-	} 
+	}
 
 	if (! $str) return FALSE;
-	
-	$block = array( 
+
+	$block = array(
 		'mydirname' => $mydirname ,
 		'mod_url' => XOOPS_URL.'/modules/'.$mydirname ,
 		'pagename' => '' ,
 		'content'  => $str ,
 	) ;
 
-	$tpl =& new XoopsTpl() ;
+	$tpl = new XoopsTpl() ;
 	$tpl->assign( 'block' , $block ) ;
 	$ret['content'] = $tpl->fetch( $this_template ) ;
 	return $ret ;
@@ -236,7 +236,7 @@ function b_xpwiki_block_edit( $options )
 	$defs[3] = 'xpwiki_b_' . $mydirname;
 	$defs[4] = 'main.css';
 	$defs[5] = 'module';
-	
+
 	$width = empty( $options[1] ) ? $defs[1] : $options[1] ;
 	$this_template = empty( $options[2] ) ? $defs[2] : trim( $options[2] ) ;
 	$div_class = empty( $options[3] ) ? $defs[3] : trim( $options[3] );
@@ -245,7 +245,7 @@ function b_xpwiki_block_edit( $options )
 	$check_headtag = array('module' => '', 'block' => '', 'body' => '');
 	$check_headtag[$head_tag_place] = ' checked="checked"';
 
-	
+
 	$form = "
 		<input type='hidden' name='options[0]' value='$mydirname' />
 		<label for='blockwidth'>"._MB_XPWIKI_WIDTH."</label>&nbsp;:

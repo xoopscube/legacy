@@ -224,7 +224,7 @@ $class h2 {
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
 	padding: .3em .3em .5em .5em;
-	margin:0px 0px 1.5em 0px;
+	margin:1em 0px 1.5em 0px;
 	text-align: left;
 	clear:none !important;
 }
@@ -246,7 +246,7 @@ $class h3 {
 	color:inherit;
 	/*background-color:#FFFFFF;*/
 	padding: .3em .3em .1em .5em;
-	margin:0px 0px 1em 0px;
+	margin:1em 0px 1em 0px;
 	text-align: left;
 }
 $class h4 {
@@ -260,7 +260,7 @@ $class h4 {
 	color:inherit;
 	background-color:#FFFFFF;
 	padding: .3em .3em .1em .5em;
-	margin:0px 0px 1em 0px;
+	margin:1em 0px 1em 0px;
 	text-align: left;
 }
 $class h5,
@@ -276,7 +276,7 @@ $class h6 {
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
- 	margin:0px 0px .5em 0px;
+ 	margin:.5em 0px .5em 0px;
 	text-align: left;
 }
 
