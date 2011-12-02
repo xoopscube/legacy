@@ -62,7 +62,8 @@ function b_bulletin_bigstory_edit($options) {
 	require_once XOOPS_ROOT_PATH.'/class/template.php' ;
 	$tpl = new XoopsTpl() ;
 	$tpl->assign( array(
-		'mydirname' => $mydirname
+		'mydirname' => $mydirname,
+		'options' => $options
 	) ) ;
 	return $tpl->fetch( 'db:'.$mydirname.'_blockedit_bigstory.html' ) ;
 }

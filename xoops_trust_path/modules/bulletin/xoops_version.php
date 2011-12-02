@@ -45,7 +45,7 @@ $modversion['blocks'][$i]['name']        = constant($constpref.'_BNAME2');
 $modversion['blocks'][$i]['description'] = constant($constpref.'_BDESC2');
 $modversion['blocks'][$i]['show_func']   = "b_bulletin_bigstory_show";
 $modversion['blocks'][$i]['edit_func']   = "b_bulletin_bigstory_edit";//ver3.0 added
-$modversion['blocks'][$i]['options']     = $mydirname;
+$modversion['blocks'][$i]['options']     = "$mydirname|0";//ver3.0 changed
 $modversion['blocks'][$i]['template']    = "{$mydirname}_block_bigstory.html";
 $i++;
 $modversion['blocks'][$i]['file']        = "blocks.php";
@@ -76,7 +76,8 @@ $modversion['blocks'][$i]['file']        = "blocks.php";
 $modversion['blocks'][$i]['name']        = constant($constpref.'_BNAME6');
 $modversion['blocks'][$i]['description'] = constant($constpref.'_BDESC6');
 $modversion['blocks'][$i]['show_func']   = "b_bulletin_recent_comments_show";
-$modversion['blocks'][$i]['options']     = $mydirname;
+$modversion['blocks'][$i]['edit_func']   = "b_bulletin_recent_comments_edit";//ver3.0 added
+$modversion['blocks'][$i]['options']     = "$mydirname|0";//ver3.0 changed
 $modversion['blocks'][$i]['template']    = "{$mydirname}_block_comments.html";
 
 // Menu
