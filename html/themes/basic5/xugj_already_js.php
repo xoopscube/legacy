@@ -31,7 +31,11 @@ function xcl22_jquery_is_already($configArr)
 /*  assign true or false.                            */
 /*  xoops_module_header ,jquery is already           */
 /* ------------------------------------------------- */
-$this->assign( 'xugj_jquery_is_already' , xugj_jquery_is_already($this->_tpl_vars["xoops_module_header"]) ) ;
+if(isset($this->_tpl_vars["xoops_module_header"])){
+	$this->assign( 'xugj_jquery_is_already' , xugj_jquery_is_already($this->_tpl_vars["xoops_module_header"]) ) ;
+}else{
+	$this->assign( 'xugj_jquery_is_already' , false ) ;
+}
 function xugj_jquery_is_already($document)
 {
 	$ret = false;
@@ -45,7 +49,11 @@ function xugj_jquery_is_already($document)
 /*  assign arry for  etc.                            */
 /*  xoops_module_header js file name arry            */
 /* ------------------------------------------------- */
-
+if(isset($this->_tpl_vars["xoops_module_header"])){
+	$this->assign( 'xugj_already_js' , xugj_jquery_is_already($this->_tpl_vars["xoops_module_header"]) ) ;
+}else{
+	$this->assign( 'xugj_already_js' , array() ) ;
+}
 $this->assign( 'xugj_already_js' , xugj_strip_xoops_module_header_links($this->_tpl_vars["xoops_module_header"]) ) ;
 function xugj_strip_xoops_module_header_links($document)
 {

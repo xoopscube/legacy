@@ -1,128 +1,56 @@
-
-div.jGrowl {
-	padding: 			10px;
-	z-index: 			9999;
-	color: 				#fff;
-	font-size: 			12px;
-}
-
-/** Special IE6 Style Positioning **/
-div.ie6 {
-	position: 			absolute;
-}
-
-div.ie6.top-right {
-	right: 				auto;
-	bottom: 			auto;
-	left: 				expression( ( 0 - jGrowl.offsetWidth + ( document.documentElement.clientWidth ? document.documentElement.clientWidth : document.body.clientWidth ) + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
-  	top: 				expression( ( 0 + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
-}
-
-div.ie6.top-left {
-	left: 				expression( ( 0 + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
-	top: 				expression( ( 0 + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
-}
-
-div.ie6.bottom-right {
-	left: 				expression( ( 0 - jGrowl.offsetWidth + ( document.documentElement.clientWidth ? document.documentElement.clientWidth : document.body.clientWidth ) + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
-	top: 				expression( ( 0 - jGrowl.offsetHeight + ( document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
-}
-
-div.ie6.bottom-left {
-	left: 				expression( ( 0 + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
-	top: 				expression( ( 0 - jGrowl.offsetHeight + ( document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
-}
-
-div.ie6.center {
-	left: 				expression( ( 0 + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
-	top: 				expression( ( 0 + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
-	width: 				100%;
-}
-
-/** Normal Style Positions **/
-body > div.jGrowl {
-	position:			fixed;
-}
-
-body > div.jGrowl.top-left {
-	left: 				0px;
-	top: 				0px;
-}
-
-body > div.jGrowl.top-right {
-	right: 				0px;
-	top: 				0px;
-}
-
-body > div.jGrowl.bottom-left {
-	left: 				0px;
-	bottom:				0px;
-}
-
-body > div.jGrowl.bottom-right {
-	right: 				0px;
-	bottom: 			0px;
-}
-
-body > div.jGrowl.center {
-	top: 				0px;
-	width: 				50%;
-	left: 				25%;
-}
-
-/** Cross Browser Styling **/
-div.center div.jGrowl-notification, div.center div.jGrowl-closer {
-	margin-left: 		auto;
-	margin-right: 		auto;
-}
-
+/**
+ * XOOPS jGrowl redirection css form xoops.css
+ *
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @license     GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+ * @version     $Id: xoops.css 5690 2010-11-05 14:48:38Z kris_fr $ $
+ */
+/* jGrowl redirection */
+div.jGrowl {padding: 1em; z-index: 9999;}
+/* JGrowl Box position in the page */
+body > div.jGrowl {position: fixed;}
+body > div.jGrowl.top-right {right: 25%; left: 25%; top: 20px;}
+body > div.jGrowl.bottom-left {left:0; bottom:0;}
+body > div.jGrowl.bottom-right {right:0; bottom:0;}
+body > div.jGrowl.center {top:0; left:0;}
+body > div.jGrowl.top-left {left:0; top:0;}
+/* jGrowl Box style */
+div.center div.jGrowl-notification, div.center div.jGrowl-closer {margin-left: auto; margin-right: auto;}
 div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer {
-	background-color: 		#000;
-	opacity: 				.85;
-    -ms-filter: 			"progid:DXImageTransform.Microsoft.Alpha(Opacity=85)"; 
-    filter: 				progid:DXImageTransform.Microsoft.Alpha(Opacity=85); 
+/*
+    background-color:         #EBFBFE;
+    color:              #000080;
+*/
+	background-color: 		#EBFBFE;
+	opacity: 				.70;
+    -ms-filter: 			"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    filter: 				progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
 	zoom: 					1;
-	width: 					235px;
-	padding: 				10px;
-	margin-top: 			5px;
-	margin-bottom: 			5px;
-	font-family: 			Tahoma, Arial, Helvetica, sans-serif;
-	font-size: 				1em;
-	text-align: 			left;
-	display: 				none;
-	-moz-border-radius: 	5px;
-	-webkit-border-radius:	5px;
-}
+    color:              #000080;
 
-div.jGrowl div.jGrowl-notification {
-	min-height: 			40px;
+    width:              100%;
+    padding:            .5em;
+    margin-top:         .5em;
+    margin-bottom:      .5em;
+	font-family: 'Hiragino Kaku Gothic Pro', 'ÉqÉâÉMÉmäpÉS Pro W3', 'ÉÅÉCÉäÉI',Meiryo, 'ÇlÇr ÇoÉSÉVÉbÉN', Verdana, Arial, Helvetica, sans-serif ;
+    font-size:          1.2em;
+    text-align:         center;
+    border:             1px solid #6699FF;
+    display:            none;
+	border-radius:		5px;
+		-moz-border-radius:     5px;
+		-webkit-border-radius:  5px;
+		-khtml-border-radius:   5px;
 }
-
-div.jGrowl div.jGrowl-notification div.header {
-	font-weight: 			bold;
-	font-size:				.85em;
-}
-
-div.jGrowl div.jGrowl-notification div.close {
-	z-index:				99;
-	float: 					right;
-	font-weight: 			bold;
-	font-size: 				1em;
-	cursor:					pointer;
-}
-
-div.jGrowl div.jGrowl-closer {
-	padding-top: 			4px;
-	padding-bottom: 		4px;
-	cursor: 				pointer;
-	font-size:				.9em;
-	font-weight: 			bold;
-	text-align: 			center;
-}
-
-/** Hide jGrowl when printing **/
-@media print {
-	div.jGrowl {
-		display: 			none;
-	}
-}
+div.jGrowl div.jGrowl-notification {min-height: 40px;}
+div.jGrowl div.jGrowl-notification div.header {font-weight: bold; font-size: 10px;}
+/* jGrowl Close button */
+div.jGrowl div.jGrowl-notification div.close {float: right; font-weight: bold; font-size: 12px; cursor: pointer;}
+div.jGrowl div.jGrowl-closer {height: 15px; padding-top: 4px; padding-bottom: 4px; cursor: pointer; font-size: 11px; font-weight: bold; text-align: center;}
