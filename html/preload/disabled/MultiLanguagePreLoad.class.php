@@ -22,7 +22,7 @@ class MultiLanguagePreLoad extends XCube_ActionFilter
         $this->mController->mSetModuleCachePolicy->add(array(&$this, 'addLanguageAsIdentity'), XCUBE_DELEGATE_PRIORITY_FIRST + 20);
     }
 
-    function createLanguageManager(&$langManager, $languageName) 
+    function createLanguageManager(&$langManager, $languageName)
     {
         if (defined('CUBE_UTILS_ML_OUTPUT_CHARSET')) {
             if (!defined('_CHARSET')) define('_CHARSET', CUBE_UTILS_ML_OUTPUT_CHARSET);
@@ -32,7 +32,7 @@ class MultiLanguagePreLoad extends XCube_ActionFilter
         }
     }
 
-    function setupTextFilter(&$instance) 
+    function setupTextFilter(&$instance)
     {
         if (defined('CUBE_UTILS_ML_DBSETUP_LANGUAGE')) {
             $filename = XOOPS_MODULE_PATH . '/legacy/language/' . CUBE_UTILS_ML_DBSETUP_LANGUAGE . '/charset_' . XOOPS_DB_TYPE . '.php';
@@ -42,8 +42,8 @@ class MultiLanguagePreLoad extends XCube_ActionFilter
         }
     }
 
-    function addLanguageAsIdentity(&$cacheInfo)
-    {   
+    function addLanguageAsIdentity($cacheInfo)
+    {
         $language = $this->mController->mRoot->mLanguageManager->getLanguage();
         $cacheInfo->mIdentityArr[] = "Module_cubeUtils_Language:".$language;
     }
