@@ -45,25 +45,27 @@ function xugj_jquery_is_already($document)
 /*  assign arry for  etc.                            */
 /*  xoops_module_header js file name arry            */
 /* ------------------------------------------------- */
-/*
+
 $this->assign( 'xugj_already_js' , xugj_strip_xoops_module_header_links($this->_tpl_vars["xoops_module_header"]) ) ;
 function xugj_strip_xoops_module_header_links($document)
 {
- preg_match_all("'<\s*script\s.*?src\s*=\s*			# find <script src=
+	// catenate the non-empty matches from the conditional subpattern
+	$match =array();
+	if (empty($document)){
+		return array();
+	}
+	preg_match_all("'<\s*script\s.*?src\s*=\s*			# find <script src=
 					([\"\'])?					# find single or double quote
 					(?(1) (.*?)\\1 | ([^\s\>]+))		# if quote found, match up to next matching
 												# quote, otherwise match up to next space
 					'isx",$document,$links);
 
-	// catenate the non-empty matches from the conditional subpattern
-	$match =array();
 	while(list($key,$val) = each($links[2]))
 	{
 		if(!empty($val)){
 			$match[] = $val;
 		}
 	}
-
 	while(list($key,$val) = each($links[3]))
 	{
 		if(!empty($val)){
@@ -71,6 +73,9 @@ function xugj_strip_xoops_module_header_links($document)
 		}
 	}
 	$match_js =array();
+	if (empty($match)){
+		return array();
+	}
 	while(list($key,$val) = each($match))
 	{
 		$jsbase_name=pathinfo($val,PATHINFO_BASENAME );
@@ -86,5 +91,5 @@ function xugj_strip_xoops_module_header_links($document)
 	return $match_js;
 
 }
-*/
+
 ?>

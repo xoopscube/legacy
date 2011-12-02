@@ -37,41 +37,34 @@
       </td>
     </tr>
     <tr align="left" valign="top">
-      <td class="head"><{$smarty.const._MD_THESCOOP}>
+      <td class="head"><{$smarty.const._MD_THESCOOP}></td>
 <{php}>
 $this->assign( 'common_fck_installed' , file_exists( XOOPS_ROOT_PATH.'/common/fckeditor/fckeditor.js' ) ) ;
 <{/php}>
-<{if ! $common_fck_installed and $use_fckeditor}>
-	<{if $smarty.const._MYCKEDITOR_MODULE_LOADED == 1}>
-		<{php}>
-			$_makescript = & xoops_getmodulehandler('makescript','myckeditor');
-			$params = array('id'=>'text','editor'=>'bbcode','myckeditor'=>'display');
-			$_makescript->makeheader($params);
-		<{/php}>
-	<br />
-	<input type="button" class="formButton" value="CKEeditorOn" name="myckeditorOn" onclick="text_myckeditor_exec();document.getElementById('switch_bbcode').checked=false;document.getElementById('text_bbcode_buttons_pre').style.display='none';document.getElementById('text_bbcode_buttons_post').style.display='none';"/>
-	<br />
-	<input type="button" class="formButton" value="CKEeditorOff" name="myckeditorOff" onclick="text_myckeditor_remove();"/>
-	<{/if}>
-<{/if}>
-      </td>
       <td class="even">
-      <{if ! $common_fck_installed}>
-        <div id="area_dhtmltarea">
-          <label><input id="switch_bbcode" type="checkbox" onclick="var pre=xoopsGetElementById('text_bbcode_buttons_pre');var post=xoopsGetElementById('text_bbcode_buttons_post');if(this.checked){pre.style.display='block';post.style.display='block';text_myckeditor_remove();}else{pre.style.display='none';post.style.display='none'};" /><{$smarty.const._MD_INPUTHELPER}></label>
-          <br />
-          <{xoopsdhtmltarea name="text" cols=$bulletin_post_tray_col rows=$bulletin_post_tray_row value=$text pre_style="display:none;" post_style="display:none;"}>
-        </div>
-      <{else}>
-        <{if $use_fckeditor}>
+        <{if $use_fckeditor && $common_fck_installed}>
           <label><input type="checkbox" name="using_fck" checked="checked" onclick="var td=xoopsGetElementById('area_dhtmltarea');var tf=xoopsGetElementById('area_fckxoops');if(this.checked){tf.style.display='block';td.style.display='none';}else{td.style.display='block';tf.style.display='none';};" /><{$smarty.const._MD_FCKXOOPS_ONOFF}></label>
         <{/if}>
         <div id="area_dhtmltarea">
-          <label><input type="checkbox" onclick="var pre=xoopsGetElementById('text_bbcode_buttons_pre');var post=xoopsGetElementById('text_bbcode_buttons_post');if(this.checked){pre.style.display='block';post.style.display='block'}else{pre.style.display='none';post.style.display='none'};" /><{$smarty.const._MD_INPUTHELPER}></label>
-          <br />
-          <{xoopsdhtmltarea name="text" cols=$bulletin_post_tray_col rows=$bulletin_post_tray_row value=$text pre_style="display:none;" post_style="display:none;"}>
+         <{if $use_fckeditor && ! $common_fck_installed}>
+             <{if $html=="1" }>
+                   <{if $xcode=="1" || $br=="1" || $smiley=="1" }>
+                        <{xoops_dhtmltarea cols=$bulletin_post_tray_col rows=$bulletin_post_tray_row name="body" id="body" value="`$text_raw`" myckeditor=true 'editor="bbcode"}>
+                   <{else}>
+                        <{xoops_dhtmltarea cols=$bulletin_post_tray_col rows=$bulletin_post_tray_row name="body" id="body" value="`$text_raw`" myckeditor=true 'editor="html"}>
+                   <{/if}>
+             <{else}>
+                 <label><input type="checkbox" onclick="var pre=xoopsGetElementById('text_bbcode_buttons_pre');var post=xoopsGetElementById('text_bbcode_buttons_post');if(this.checked){pre.style.display='block';post.style.display='block'}else{pre.style.display='none';post.style.display='none'};" /><{$smarty.const._MD_INPUTHELPER}></label>
+                 <br />
+                 <{xoopsdhtmltarea name="text" cols=$bulletin_post_tray_col rows=$bulletin_post_tray_row value=$text pre_style="display:none;" post_style="display:none;"}>
+             <{/if}>
+         <{else}>
+             <label><input type="checkbox" onclick="var pre=xoopsGetElementById('text_bbcode_buttons_pre');var post=xoopsGetElementById('text_bbcode_buttons_post');if(this.checked){pre.style.display='block';post.style.display='block'}else{pre.style.display='none';post.style.display='none'};" /><{$smarty.const._MD_INPUTHELPER}></label>
+             <br />
+              <{xoopsdhtmltarea name="text" cols=$bulletin_post_tray_col rows=$bulletin_post_tray_row value=$text pre_style="display:none;" post_style="display:none;"}>
+         <{/if}>
         </div>
-        <{if $use_fckeditor}>
+        <{if $use_fckeditor && $common_fck_installed}>
           <div id="area_fckxoops">
             <script type="text/javascript" src="<{$xoops_url}>/common/fckeditor/fckeditor.js"></script>
             <script type="text/javascript">
@@ -88,7 +81,6 @@ $this->assign( 'common_fck_installed' , file_exists( XOOPS_ROOT_PATH.'/common/fc
             </script>
           </div>
         <{/if}>
-      <{/if}>
         <div><{$smarty.const._MULTIPAGE}></div>
       </td>
     </tr>
