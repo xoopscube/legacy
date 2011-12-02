@@ -218,6 +218,35 @@
 :Constants|~
 --PLUGIN_BACKUP_DISABLE_BACKUP_RENDERING - Whether to disable the functionality of displaying the backup data.
 
+**block [#m924c8c0]
+:Plugin type|
+~Block type
+:Importance|
+~***
+:Synopsis|
+~''#block( ''[&font(Blue){clear};[&font(Blue){:right};] [&font(Blue){:left};]] [,&font(Blue){w[idth]:DIGIT[CSS unit]};] [,&font(Blue){height:DIGIT[CSS unit]};] [,[&font(Blue){left};] [&font(Blue){right};] [&font(Blue){center};]] [,&font(Blue){around};] [,&font(Blue){class:[@]CLASS NAME};] [,&font(Blue){font-size:DIGIT[CSS unit]};] [,&font(Blue){round};]'' ){&#123;''&br;&font(Blue){[Multi Lines Argument]};&br;''&#125;}''
+:Description|
+~Output contents of "Multi Lines Argument" into "<div>" block.
+~The contents of the multiline argument are orthopedically operated as a Wiki form as usual.
+::clear[:right][:left]|
+The clear attribute of CSS is outputted. Only if clear, it is treated as clear:both.
+::w:[Value] &#124; width:[Value] &#124; height:[Value]|
+The width of this block element and height are specified. It will be set to px if a unit is not specified.~
+"w" is the shortcut of "width".
+::left &#124; right &#124; center|
+Arrangement of this block element itself is specified. 
+Since it becomes "width:100%" when not specifying width, please specify width suitably.
+::around|
+A float attribute is given to this block element. 
+It uses with argument "left" or "right".
+::class:ClassName|
+A class name is specified. "@" is the shortcut of " block_" . 
+~"@round", "@info", "@caution", and "@ban" are prepared for the class name by the default.~
+"@round" can be used in combination with other class. 
+~The "html side xpwiki installation directory"/skin/css/block.css to newly add a CSS class (creating, if it does not exist).
+::round|
+The round frame which uses an image is added.
+
 **br [#g693034c]
 :Plugin type|
 ~Block type
@@ -371,7 +400,7 @@ If the page name is omitted, the current page is used.
 :Importance|
 ~*
 :Synopsis|
-''#clear''
+''#clear([left][,right])''
 :Description|
 ~Disable text wraparound which was set by the around option of the ref plugin.
 :Note|

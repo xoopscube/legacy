@@ -222,6 +222,33 @@
 :プラグイン内設定|~
 --PLUGIN_BACKUP_DISABLE_BACKUP_RENDERING　バックアップデータをレンダリングする機能を無効にする。
 
+**block [#vdcd11f7]
+:種別|
+~ブロック型プラグイン
+:重要度|
+~★★★☆☆
+:書式|
+~''#block( ''[&font(Blue){clear};[&font(Blue){:right};] [&font(Blue){:left};]] [,&font(Blue){w[idth]:数値[CSS単位]};] [,&font(Blue){height:数値[CSS単位]};] [,[&font(Blue){left};] [&font(Blue){right};] [&font(Blue){center};]] [,&font(Blue){around};] [,&font(Blue){class:[@]クラス名};] [,&font(Blue){font-size:数値[CSS単位]};] [,&font(Blue){round};]'' ){&#123;''&br;&font(Blue){[複数行引数]};&br;''&#125;}''
+:概要|
+~複数行引数の内容を<div>で囲まれたブロック要素へ出力します。
+~複数行引数の内容は通常の通りWiki書式として整形されます。
+::clear[:right][:left]|
+CSS の clear 属性を出力します。単に clear とすると clear:both として扱われます。
+::w:値 &#124; width:値 &#124; height:値|
+このブロック要素の幅、高さを指定します。単位を指定しないと px となります。~
+w は width のショートカットです。
+::left &#124; right &#124; center|
+このブロック要素自体の配置を指定します。幅を指定しないと width:100% となるので、この指定は意味をなさなくなるので、適宜幅を指定してください。
+::around|
+このブロック要素に float 属性を与え、続く要素に回り込みを許可します。left, right 引数と共に使います。
+::class:クラス名|
+クラス名を指定します。"@" は " block_" のショートカットになっています。
+~クラス名にはデフォルトで "@round", "@info", "@caution", "@ban" が用意されています。 ~
+"@round" は他のクラスと組み合わせて使用できます。 
+~新たにCSSクラスを追加したい場合は、html側xpwikiインストールディレクトリ/skin/css/block.css に（存在しなければ作成して）記述します。
+記述方法は、trust側/modules/xpwiki/skin/css/block.css の "$class div.block_round" あたりを参照してください。
+::round|
+画像を使用した角丸枠を付加します。
 
 **br [#g693034c]
 :種別|
@@ -381,9 +408,10 @@
 :重要度|
 ~★☆☆☆☆
 :書式|
-''#clear''
+''#clear([left][,right])''
 :概要|
 ~refプラグインのaroundオプションで有効となったテキスト回り込み指定を解除します。
+~引数を省略するとCSSで clear:both 相当、 "left" は clear:left 、"right" は clear:right 相当です。
 :備考|
 ~imgプラグインのclearオプション指定時と処理内容は同等です。
 
@@ -448,7 +476,7 @@ Yellow = "#FFFF00"
 --above − 入力したコメントがコメント入力欄の上に追加します
 --below − 入力したコメントがコメント入力欄の下に追加します（省略時はaboveが指定されたとみなします）
 --nodate − 挿入するコメントに、挿入時刻を付加しない（省略時は付加します）
---noname − コメント記入者名の入力欄を非表示とします（省略時は表示します） 
+--noname − コメント記入者名の入力欄を非表示とします（省略時は表示します）
 :プラグイン内設定|~
 --PLUGIN_COMMENT_DIRECTION_DEFAULT　コメントを入力欄の前後どちらに挿入するか
 --PLUGIN_COMMENT_SIZE_MSG　コメントのテキストエリアの表示幅
