@@ -2,10 +2,10 @@
 	Class: prettyPhoto
 	Use: Lightbox clone for jQuery
 	Author: Stephane Caron (http://www.no-margin-for-errors.com)
-	Version: 3.1.2
+	Version: 3.1.3
 ------------------------------------------------------------------------- */
 (function($) {
-	$.prettyPhoto = {version: '3.1.2'};
+	$.prettyPhoto = {version: '3.1.3'};
 
 	$.fn.prettyPhoto = function(pp_settings) {
 		pp_settings = jQuery.extend({
@@ -56,7 +56,7 @@
 												<a href="#" class="pp_arrow_next">Next</a> \
 											</div> \
 											<p class="pp_description"></p> \
-											{pp_social} \
+											<div class="pp_social">{pp_social}</div> \
 											<a class="pp_close" href="#">Close</a> \
 										</div> \
 									</div> \
@@ -86,7 +86,7 @@
 			iframe_markup: '<iframe src ="{path}" width="{width}" height="{height}" frameborder="no"></iframe>',
 			inline_markup: '<div class="pp_inline">{content}</div>',
 			custom_markup: '',
-			social_tools: '<div class="pp_social"><div class="twitter"><a href="http://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div><div class="facebook"><iframe src="http://www.facebook.com/plugins/like.php?locale=en_US&href='+location.href+'&amp;layout=button_count&amp;show_faces=true&amp;width=500&amp;action=like&amp;font&amp;colorscheme=light&amp;height=23" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:500px; height:23px;" allowTransparency="true"></iframe></div></div>' /* html or false to disable */
+			social_tools: '<div class="twitter"><a href="http://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div><div class="facebook"><iframe src="http://www.facebook.com/plugins/like.php?locale=en_US&href={location_href}&amp;layout=button_count&amp;show_faces=true&amp;width=500&amp;action=like&amp;font&amp;colorscheme=light&amp;height=23" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:500px; height:23px;" allowTransparency="true"></iframe></div>' /* html or false to disable */
 		}, pp_settings);
 
 		// Global variables accessible only by prettyPhoto
@@ -151,6 +151,8 @@
 			pp_titles = (isSet) ? jQuery.map(matchedObjects, function(n, i){ if($(n).attr('rel').indexOf(theRel) != -1) return ($(n).find('img').attr('alt')) ? $(n).find('img').attr('alt') : ""; }) : $.makeArray($(this).find('img').attr('alt'));
 			pp_descriptions = (isSet) ? jQuery.map(matchedObjects, function(n, i){ if($(n).attr('rel').indexOf(theRel) != -1) return ($(n).attr('title')) ? $(n).attr('title') : ""; }) : $.makeArray($(this).attr('title'));
 
+			if(pp_images.length > 30) settings.overlay_gallery = false;
+
 			set_position = jQuery.inArray($(this).attr('href'), pp_images); // Define where in the array the clicked item is positionned
 			rel_index = (isSet) ? set_position : $("a[rel^='"+theRel+"']").index($(this));
 
@@ -173,7 +175,6 @@
 		* @param description {String,Array} The description to be displayed with the picture, can also be an array containing all the descriptions.
 		*/
 		$.prettyPhoto.open = function(event) {
-
 			if(typeof settings == "undefined"){ // Means it's an API call, need to manually get the settings and set the variables
 				settings = pp_settings;
 				if($.browser.msie && $.browser.version == 6) settings.theme = "light_square"; // Fallback to a supported theme for IE6
@@ -193,6 +194,15 @@
 
 			$('.pp_loaderIcon').show();
 
+			if(settings.deeplinking)
+				setHashtag();
+
+			// Rebuild Facebook Like Button with updated href
+			if(settings.social_tools){
+				facebook_like_link = settings.social_tools.replace('{location_href}', encodeURIComponent(location.href));
+				$pp_pic_holder.find('.pp_social').html(facebook_like_link);
+			}
+
 			// Fade the content in
 			if($ppt.is(':hidden')) $ppt.css('opacity',0).show();
 			$pp_overlay.show().fadeTo(settings.animation_speed,settings.opacity);
@@ -201,7 +211,6 @@
 			$pp_pic_holder.find('.currentTextHolder').text((set_position+1) + settings.counter_separator_label + $(pp_images).size());
 
 			// Set the description
-//HACK by domifara
 			if(typeof pp_descriptions[set_position] != 'undefined' && pp_descriptions[set_position] != ""){
 				$pp_pic_holder.find('.pp_description').show().html(unescape(pp_descriptions[set_position]));
 			}else{
@@ -256,7 +265,21 @@
 					case 'youtube':
 						pp_dimensions = _fitToViewport(movie_width,movie_height); // Fit item to viewport
 
-						movie = 'http://www.youtube.com/embed/'+getParam('v',pp_images[set_position]);
+						// Regular youtube link
+						movie_id = getParam('v',pp_images[set_position]);
+
+						// youtu.be link
+						if(movie_id == ""){
+							movie_id = pp_images[set_position].split('youtu.be/');
+							movie_id = movie_id[1];
+							if(movie_id.indexOf('?') > 0)
+								movie_id = movie_id.substr(0,movie_id.indexOf('?')); // Strip anything after the ?
+
+							if(movie_id.indexOf('&') > 0)
+								movie_id = movie_id.substr(0,movie_id.indexOf('&')); // Strip anything after the &
+						}
+
+						movie = 'http://www.youtube.com/embed/'+movie_id;
 						(getParam('rel',pp_images[set_position])) ? movie+="?rel="+getParam('rel',pp_images[set_position]) : movie+="?rel=1";
 
 						if(settings.autoplay) movie += "&autoplay=1";
@@ -451,6 +474,8 @@
 
 				$(window).unbind('scroll.prettyphoto');
 
+				clearHashtag();
+
 				settings.callback();
 
 				doresize = true;
@@ -500,9 +525,6 @@
 				}
 
 				if(settings.autoplay_slideshow && !pp_slideshow && !pp_open) $.prettyPhoto.startSlideshow();
-
-				if(settings.deeplinking)
-					setHashtag();
 
 				settings.changepicturecallback(); // Callback!
 
@@ -607,7 +629,6 @@
 
 			// Get the titles height, to do so, I need to clone it since it's invisible
 			$pp_title = $pp_pic_holder.find('.ppt');
-
 			$pp_title.width(width);
 			titleHeight = parseFloat($pp_title.css('marginTop')) + parseFloat($pp_title.css('marginBottom'));
 			$pp_title = $pp_title.clone().appendTo($('body')).css({
@@ -625,7 +646,7 @@
 		}
 
 		function _getFileType(itemSrc){
-			if (itemSrc.match(/youtube\.com\/watch/i)) {
+			if (itemSrc.match(/youtube\.com\/watch/i) || itemSrc.match(/youtu\.be/i)) {
 				return 'youtube';
 			}else if (itemSrc.match(/vimeo\.com/i)) {
 				return 'vimeo';
@@ -719,8 +740,11 @@
 		}
 
 		function _build_overlay(caller){
+			// Inject Social Tool markup into General markup
+			if(settings.social_tools)
+				facebook_like_link = settings.social_tools.replace('{location_href}', encodeURIComponent(location.href));
 
-			settings.markup=settings.markup.replace('{pp_social}',(settings.social_tools)?settings.social_tools:'');
+			settings.markup=settings.markup.replace('{pp_social}',(settings.social_tools)?facebook_like_link:'');
 
 			$('body').append(settings.markup); // Inject the markup
 
@@ -860,6 +884,13 @@
 		if(typeof theRel == 'undefined') return; // theRel is set on normal calls, it's impossible to deeplink using the API
 		location.hash = '!' + theRel + '/'+rel_index+'/';
 	};
+
+	function clearHashtag(){
+		// Clear the hashtag only if it was set by prettyPhoto
+		url = location.href;
+		hashtag = (url.indexOf('#!prettyPhoto')) ? true : false;
+		if(hashtag) location.hash = "!prettyPhoto";
+	}
 
 	function getParam(name,url){
 	  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
