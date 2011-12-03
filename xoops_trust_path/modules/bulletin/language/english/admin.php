@@ -39,7 +39,7 @@ define("_AM_WAITING_ARTICLES","Awaiting news");
 define("_AM_ARTICLE_ADMIN","News manager");
 define("_AM_NOSUBJECT","No subject");
 define("_AM_RIGHT_TO_POST","Allow post");
-define("_AM_RIGHT_TO_APPROVE","Approve publication automatically");
+define("_AM_RIGHT_TO_APPROVE","Allowed approve");
 define("_AM_RIGHT_TO_CHOSE_DATE","Allow published date setting");
 define("_AM_RIGHT_HTML","Allow HTML");
 define("_AM_RIGHT_XCODE","Allow XOOPS Code");

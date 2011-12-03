@@ -43,7 +43,7 @@ define('_AM_WAITING_ARTICLES','承認待ちのコンテンツ');
 define('_AM_ARTICLE_ADMIN','コンテンツの管理');
 define('_AM_NOSUBJECT','題名なし');
 define('_AM_RIGHT_TO_POST','投稿を許可');
-define('_AM_RIGHT_TO_APPROVE','掲載を自動承認');
+define('_AM_RIGHT_TO_APPROVE','承認を許可');
 define('_AM_RIGHT_TO_CHOSE_DATE','掲載日時設定');
 define('_AM_RIGHT_HTML','HTMLの使用');
 define('_AM_RIGHT_XCODE','XOOPSコードの使用');
