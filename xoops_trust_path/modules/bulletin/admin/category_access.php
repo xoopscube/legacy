@@ -1,6 +1,7 @@
 <?php
 require_once dirname(dirname(__FILE__)).'/include/common_functions.php' ;
 require_once dirname(dirname(__FILE__)).'/class/gtickets.php' ;
+require_once dirname(dirname(__FILE__)).'/class/bulletinTopic.php' ;
 $db =& Database::getInstance() ;
 
 // get right $topic_id
@@ -66,7 +67,7 @@ if( ! empty( $_POST['user_update'] ) && empty( $invaild_topic_id ) ) {
 			$db->query( "INSERT INTO ".$db->prefix($mydirname."_topic_access")." SET topic_id=$topic_id, uid=$uid, can_post=$can_post, can_edit=$can_edit, can_delete=$can_delete, post_auto_approved=$post_auto_approved" ) ;
 		}
 	}
-	
+
 	$member_hander =& xoops_gethandler( 'member' ) ;
 	if( is_array( @$_POST['new_uids'] ) ) foreach( $_POST['new_uids'] as $i => $uid ) {
 		$can_post = empty( $_POST['new_can_posts'][$i] ) ? 0 : 1 ;
@@ -84,7 +85,7 @@ if( ! empty( $_POST['user_update'] ) && empty( $invaild_topic_id ) ) {
 			$db->query( "INSERT INTO ".$db->prefix($mydirname."_topic_access")." SET topic_id=$topic_id, uid=".$user->getVar('uid').", can_post=$can_post, can_edit=$can_edit, can_delete=$can_delete, post_auto_approved=$post_auto_approved" ) ;
 		}
 	}
-	
+
 	redirect_header( XOOPS_URL."/modules/$mydirname/admin/index.php?page=category_access&amp;topic_id=$topic_id" , 3 , _MD_BULLETIN_MSG_UPDATED ) ;
 	exit ;
 }
@@ -95,12 +96,16 @@ if( ! empty( $_POST['user_update'] ) && empty( $invaild_topic_id ) ) {
 //
 
 // create jump box options as array
+//TODO WHY
 $sql = "SELECT topic_id,topic_title,topic_pid FROM ".$db->prefix($mydirname."_topics")." ORDER BY topic_pid,topic_title";
 $crs = $db->query( $sql ) ;
 $topic_options = array() ;
 while( list( $id , $title , $depth ) = $db->fetchRow( $crs ) ) {
 	$topic_options[ $id ] = str_repeat( '--' , $depth ) . htmlspecialchars( $title , ENT_QUOTES ) ;
 }
+// Assign Selector ,add ver3.0beta3
+$bt = new BulletinTopic( $mydirname ) ;
+$topicselbox = $bt->makeTopicSelBox( false , $topic_id , 'topic_id' );
 
 // create group form
 $group_handler =& xoops_gethandler( 'group' ) ;
@@ -194,6 +199,7 @@ $tpl->assign( array(
 	'user_trs' => $user_trs ,
 	'newuser_trs' => $newuser_trs ,
 	'gticket_hidden' => $xoopsGTicket->getTicketHtml( __LINE__ , 1800 , 'bulletin_admin') ,
+	'topicselbox' => $topicselbox ,
 ) ) ;
 $tpl->display( 'db:'.$mydirname.'_admin_category_access.html' ) ;
 xoops_cp_footer();

@@ -3,10 +3,14 @@
 <!-- category selection -->
 <form name="selectcategory" action="<{$mod_url}>/admin/index.php" method="get" style="margin: 20px 0px">
 	<input type="hidden" name="page" value="category_access" />
+	<label><{$smarty.const._MD_A_BULLETIN_LABEL_SELECTCATEGORY}></label>:
+	<{$topicselbox}>
+<{*
 	<label for="select_topic_id"><{$smarty.const._MD_A_BULLETIN_LABEL_SELECTCATEGORY}></label>:
 	<select name="topic_id" id="select_topic_id">
 		<{html_options options=$topic_options selected=$topic_id}>
 	</select>
+*}>
 	<input type="submit" value="<{$smarty.const._SUBMIT}>" />
 </form>
 
