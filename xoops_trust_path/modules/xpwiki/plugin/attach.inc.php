@@ -2,7 +2,7 @@
 /////////////////////////////////////////////////
 // PukiWiki - Yet another WikiWikiWeb clone.
 //
-//  $Id: attach.inc.php,v 1.64 2011/12/05 08:50:48 nao-pon Exp $
+//  $Id: attach.inc.php,v 1.65 2011/12/05 10:42:12 nao-pon Exp $
 //  ORG: attach.inc.php,v 1.31 2003/07/27 14:15:29 arino Exp $
 //
 /*
@@ -234,7 +234,7 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 					$input = fopen('php://input', 'rb');
 					$_file['tmp_name'] = tempnam($this->cont['CACHE_DIR'], 'atf');
 					$fp = fopen($_file['tmp_name'], 'wb');
-					fseek($_file['tmp_name'], 0, SEEK_SET);
+					fseek($fp, 0, SEEK_SET);
 					stream_copy_to_stream($input, $fp);
 					fclose($fp);
 					fclose($input);
