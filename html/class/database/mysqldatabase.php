@@ -476,8 +476,7 @@ class XoopsMySQLDatabaseProxy extends XoopsMySQLDatabase
 	function &query($sql, $limit=0, $start=0)
 	{
 	    $sql = ltrim($sql);
-		if (strtolower(substr($sql, 0, 6)) == 'select') {
-		//if (preg_match('/^SELECT.*/i', $sql)) {
+		if (preg_match('/^SELECT/i', $sql)) {
 			$ret = $this->queryF($sql, $limit, $start);
 			return $ret;
 		}
