@@ -127,10 +127,10 @@ define($constpref.'_GLOBAL_NEWCATEGORY_NOTIFYSBJ', '[{X_SITENAME}] {X_MODULE}: ┐
 //define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFYDSC', '┐╖╡ме╦ехб╝е╣д╬┼ъ╣╞дмдвд├д┐╛ь╣чд╦─╠├╬д╣ды');
 //define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFYSBJ', '[{X_SITENAME}] {X_MODULE}: ┐╖╡ме╦ехб╝е╣д╬┼ъ╣╞дмдвдъд▐д╖д┐');
 //define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFY', '┐╖╡ме│еєе╞еєе─┼ъ╣╞');
-define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFY', 'е│еєе╞еєе─┐╖╡м║ю└о');
-define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFYCAP', '┐╖╡ме│еєе╞еєе─д╬┼ъ╣╞дмдвд├д┐╛ь╣чд╦─╠├╬д╣ды');
-define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFYDSC', '┐╖╡ме│еєе╞еєе─д╬┼ъ╣╞дмдвд├д┐╛ь╣чд╦─╠├╬д╣ды');
-define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFYSBJ', '[{X_SITENAME}] {X_MODULE}: ┐╖╡ме│еєе╞еєе─д╬┼ъ╣╞дмдвдъд▐д╖д┐');
+define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFY', 'е│еєе╞еєе─┐╖╡м╛╡╟з┬╘д┴');
+define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFYCAP', '┐╖╡м╛╡╟з┬╘д┴е│еєе╞еєе─д╬┼ъ╣╞дмдвд├д┐╛ь╣чд╦─╠├╬д╣ды');
+define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFYDSC', '┐╖╡м╛╡╟з┬╘д┴е│еєе╞еєе─д╬┼ъ╣╞дмдвд├д┐╛ь╣чд╦─╠├╬д╣ды');
+define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFYSBJ', '[{X_SITENAME}] {X_MODULE}: ┐╖╡м╛╡╟з┬╘д┴е│еєе╞еєе─д╬┼ъ╣╞дмдвдъд▐д╖д┐');
 
 //define($constpref.'_GLOBAL_NEWSTORY_NOTIFY', '┐╖╡ме╦ехб╝е╣╡н╗Ў╖╟║▄');
 //define($constpref.'_GLOBAL_NEWSTORY_NOTIFYCAP', '┐╖╡ме╦ехб╝е╣╡н╗Ўдм╖╟║▄д╡дьд┐╛ь╣чд╦─╠├╬д╣ды');

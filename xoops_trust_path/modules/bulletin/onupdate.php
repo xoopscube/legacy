@@ -158,8 +158,10 @@ function bulletin_onupdate_base( $module, $prev_version , $mydirname )
 					}else{
 						while ($myrow = $db->fetchArray($result)) {
 							if(isset($can_groups[$myrow['gperm_groupid']])){
+								$can_groups[$myrow['gperm_groupid']]['can_post'] = 1;
 								$can_groups[$myrow['gperm_groupid']]['can_edit'] = 1;
 								$can_groups[$myrow['gperm_groupid']]['can_delete'] = 1;
+								$can_groups[$myrow['gperm_groupid']]['post_auto_approved'] = 1;
 							}
 						}
 						$sql = "SELECT topic_id FROM ".$db->prefix("{$mydirname}_topics");

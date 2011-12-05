@@ -111,6 +111,43 @@ class BulletinGP{
 		return $users;
 	}
 
+	function getCanApproveUsers( $mydirname ){
+
+		$db =& Database::getInstance() ;
+
+		$module_handler =& xoops_gethandler('module');
+		$module = $module_handler->getByDirname($mydirname);
+		$mid = $module->mid();
+
+		$groups = array();
+		$rs = $db->query( "SELECT gperm_groupid FROM ".$db->prefix('group_permission')." WHERE  gperm_itemid='$mid' AND gperm_name='module_admin'" ) ;
+		while( list( $id ) = $db->fetchRow( $rs ) ) {
+			$groups[] = $id ;
+		}
+		//can approve
+		$rs = $db->query( "SELECT gperm_groupid FROM ".$db->prefix('group_permission')." WHERE  gperm_modid='$mid' AND gperm_name='bulletin_permit' AND gperm_itemid=2" ) ;
+		while( list( $id ) = $db->fetchRow( $rs ) ) {
+			$groups[] = $id ;
+		}
+		$groups = array_unique($groups);
+
+
+		$users = array();
+		foreach( $groups as $groupid ){
+			$sql = 'SELECT uid FROM '.$db->prefix('groups_users_link').' WHERE groupid='.intval($groupid);
+			$result = $db->query($sql);
+			while ($myrow = $db->fetchArray($result)) {
+				$users[] = $myrow['uid'];
+			}
+		}
+
+		$users = array_unique($users);
+
+		sort($users);
+
+		return $users;
+	}
+
 	// By yoshis
 	function bulletin_get_topic_permissions_of_current_user( $mydirname ){
 		global $xoopsUser ;

@@ -61,8 +61,12 @@ foreach( $str_arr as $k ){
 foreach( $int_arr as $k ){
 	if( isset($_POST[$k]) ) $story->setVar($k, $_POST[$k]);
 }
+$notifypub_pre_data = 0;
 foreach( $bai_arr as $k ){
 	if( $_SERVER['REQUEST_METHOD'] == 'POST' ){
+		if( $k == 'notifypub' ){
+			$notifypub_pre_data = $story->getVar('notifypub');
+		}
 		$_POST[$k] = isset( $_POST[$k] ) ? 1 : 0 ;
 		$story->setVar($k, $_POST[$k]);
 	}
@@ -81,18 +85,28 @@ if( $gperm->group_perm(7) && $bulletin_use_relations ){
 		$relations = array();
 	}
 }
-
+//new story
 if( empty( $storyid ) ){
 	// If you do not have HTML permission to OFF
 	if( !$gperm->group_perm(4) ){
 		$story->setVar('html', 0);
 		$story->setVar('br', 1);
 	}
-	if( !$gperm->group_perm(2) ){
-		$story->setVar('approve', 0);
-	}else{
-		if( !empty($topicid) && !$gperm->proceed4topic("post_auto_approved",$topicid)){
+	//post approve
+	if( empty($topicid)){
+		//initial new post approve
+		if( $gperm->group_perm(2) || $gperm->proceed4topic("post_auto_approved",$topicid)){
+			$story->setVar('approve', 1);
+		}else{
 			$story->setVar('approve', 0);
+		}
+	}else{
+		if( !$gperm->group_perm(2) ){
+			if( $gperm->proceed4topic("post_auto_approved",$topicid)){
+				$story->setVar('approve', 1);
+			}else{
+				$story->setVar('approve', 0);
+			}
 		}
 	}
 
@@ -128,13 +142,19 @@ if( $op == 'post' ){
 		$story->devideHomeTextAndBodyText();
 
 		// Whether the automatic approval
+		// approve this article
+		$approved = 0;
 		if( $gperm->group_perm(2) ){
 			$story->setVar('type', $story->getVar('approve') ); // GIJ
-			if(!$gperm->proceed4topic("post_auto_approved",$topicid)){
-				$story->setVar('type', 0);
-			}
+			$approved = $story->getVar('approve');
 		}else{
-			$story->setVar('type', 0);
+			if( $gperm->proceed4topic("post_auto_approved",$topicid)){
+				$story->setVar('type', 1);
+				$approved = 1;
+			}else{
+				$story->setVar('type', 0);
+				$approved = 0;
+			}
 		}
 
 		// Routine setting date published
@@ -171,10 +191,8 @@ if( $op == 'post' ){
 		// approve this article
 		$approved = 0;
 		if ( $story->getVar('approve') == 1 ){
-			if( $story->getVar('type') == 0){
-				$approved = 1;
-			}
 			$story->setVar('type', 1);
+			$approved = 1;
 		}else{
 			$story->setVar('type', 0);
 		}
@@ -219,24 +237,38 @@ if( $op == 'post' ){
 		$tags = array();
 		$tags['STORY_NAME'] = $myts->stripSlashesGPC($story->getVar('title', 'n'));
 		$tags['STORY_URL']  = $mydirurl.'/index.php?page=article&storyid=' . $story->getVar('storyid');
-		if($gperm->group_perm(2) && $gperm->proceed4topic("post_auto_approved",$topicid)){
-			$notification_handler->triggerEvent('global', 0, 'new_story', $tags);
-		} else {
-			// admin only
-			$tags['WAITINGSTORIES_URL'] = $mydirurl.'/index.php?mode=admin&op=newarticle';
-			$notification_handler->triggerEvent('global', 0, 'story_submit', $tags, $gperm->getAdminUsers());
-		}
 		// Notified when approval
-		if ($story->getVar('notifypub') == 1 && (!$gperm->group_perm(2) || !$gperm->proceed4topic("post_auto_approved",$topicid) )) {
-			require_once XOOPS_ROOT_PATH.'/include/notification_constants.php';
-			$notification_handler->subscribe('story', $story->getVar('storyid'), 'approve', XOOPS_NOTIFICATION_MODE_SENDONCETHENDELETE);
+		//when new post is  auto approve
+		if($story->getVar('type')==1){
+			//new story
+			$notification_handler->triggerEvent('global', 0, 'new_story', $tags);
+			//for one time notifiction
+			$story->setVar('notifypub', 0);
+		}else{
+			//appoved event one time subscribe
+			if ($story->getVar('notifypub') == 1) {
+				require_once XOOPS_ROOT_PATH.'/include/notification_constants.php';
+				$notification_handler->subscribe('story', $story->getVar('storyid'), 'approve', XOOPS_NOTIFICATION_MODE_SENDONCETHENDELETE);
+			}
+			//can approve user and adinm only
+			$tags['WAITINGSTORIES_URL'] = $mydirurl.'/index.php?page=submit&storyid=' . $story->getVar('storyid');
+			// admin only
+			$tags['ADMIN_WAITINGSTORIES_URL'] = $mydirurl.'/index.php?mode=admin&op=newarticle';
+			$notification_handler->triggerEvent('global', 0, 'story_submit', $tags, $gperm->getCanApproveUsers( $mydirname ));
+			//for one time notifiction
+			$story->setVar('notifypub', 1);
+		}
+		//save notifypub for one time notifiction
+		if(!$story->store()) {
+			die(_MD_THANKS_BUT_ERROR);
 		}
 		//Adding process Posts
-		if ($gperm->group_perm(2) && $gperm->proceed4topic("post_auto_approved",$topicid) && is_object($xoopsUser) && $bulletin_plus_posts == 1) {
+		if (is_object($xoopsUser) && $bulletin_plus_posts == 1) {
 			$xoopsUser->incrementPost();
 		}
+
 		// When the automatic approval to change the message
-		if($gperm->group_perm(2) && $gperm->proceed4topic("post_auto_approved",$topicid) ){
+		if($story->getVar('type')==1 ){
 			redirect_header($mydirurl.'/index.php', 2, _MD_THANKS_AUTOAPPROVE);
 			exit;
 		}
@@ -249,10 +281,21 @@ if( $op == 'post' ){
 		$tags['STORY_NAME'] = $myts->stripSlashesGPC($story->getVar('title', 'n'));
 		$tags['STORY_URL']  = $mydirurl.'/index.php?page=article&storyid=' . $story->getVar('storyid');
 		// Notification of Approval
-		if ( $approved == 1 ){
+		if ( $approved == 1 && $notifypub_pre_data == 1){
 			$notification_handler->triggerEvent( 'story', $story->getVar('storyid'), 'approve', $tags );
 			$notification_handler->triggerEvent('global', 0, 'new_story', $tags);
+
+			//for one time event post
+			if($story->getVar('notifypub')==1){
+				$story->setVar('notifypub', 0);
+				//If an error occurs when rewriting DB for notifypub reset
+				if(!$story->store()) {
+					die(_MD_THANKS_BUT_ERROR);
+				}
+			}
+
 		}
+
 		if ( $return == 1 || $story->getVar('published') > time() ){
 			redirect_header($mydirurl.'/index.php?mode=admin&op=list', 3, _MD_DBPUDATED);
 		}else{

@@ -349,7 +349,7 @@ $modversion['notification']['event'][1]['mail_subject']  = constant($constpref.'
 
 $modversion['notification']['event'][2]['name']          = 'story_submit';
 $modversion['notification']['event'][2]['category']      = 'global';
-$modversion['notification']['event'][2]['admin_only']    = 1;
+//$modversion['notification']['event'][2]['admin_only']    = 1;//ver3.0beta3 changed
 $modversion['notification']['event'][2]['title']         = constant($constpref.'_GLOBAL_STORYSUBMIT_NOTIFY');
 $modversion['notification']['event'][2]['caption']       = constant($constpref.'_GLOBAL_STORYSUBMIT_NOTIFYCAP');
 $modversion['notification']['event'][2]['description']   = constant($constpref.'_GLOBAL_STORYSUBMIT_NOTIFYDSC');

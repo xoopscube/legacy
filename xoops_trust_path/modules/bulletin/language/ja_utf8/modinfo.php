@@ -127,10 +127,10 @@ define($constpref.'_GLOBAL_NEWCATEGORY_NOTIFYSBJ', '[{X_SITENAME}] {X_MODULE}: �
 //define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFYDSC', '新規ニュースの投稿があった場合に通知する');
 //define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFYSBJ', '[{X_SITENAME}] {X_MODULE}: 新規ニュースの投稿がありました');
 //define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFY', '新規コンテンツ投稿');
-define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFY', 'コンテンツ新規作成');
-define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFYCAP', '新規コンテンツの投稿があった場合に通知する');
-define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFYDSC', '新規コンテンツの投稿があった場合に通知する');
-define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFYSBJ', '[{X_SITENAME}] {X_MODULE}: 新規コンテンツの投稿がありました');
+define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFY', 'コンテンツ新規承認待ち');
+define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFYCAP', '新規承認待ちコンテンツの投稿があった場合に通知する');
+define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFYDSC', '新規承認待ちコンテンツの投稿があった場合に通知する');
+define($constpref.'_GLOBAL_STORYSUBMIT_NOTIFYSBJ', '[{X_SITENAME}] {X_MODULE}: 新規承認待ちコンテンツの投稿がありました');
 
 //define($constpref.'_GLOBAL_NEWSTORY_NOTIFY', '新規ニュース記事掲載');
 //define($constpref.'_GLOBAL_NEWSTORY_NOTIFYCAP', '新規ニュース記事が掲載された場合に通知する');

@@ -51,7 +51,20 @@ $xoopsTpl->assign('use_relation', $use_relation);
 
 // options
 // event notifaction (if mode is edit, not display.)
+//ver2.0
+/*
 if ($use_notify = ($xoopsUser && $storyid == 0 && !$gperm->group_perm(2))) {
+	$xoopsTpl->assign('notifypub', $story->getVar('notifypub'));
+}
+*/
+//ver3.0
+$use_notify = false;
+if ($xoopsUser && $storyid == 0 ) {
+	if ( $gperm->group_perm(2) || !$gperm->proceed4topic("post_auto_approved",$story->getVar('topicid'))) {
+		$use_notify = true;
+	}
+}
+if ($use_notify) {
 	$xoopsTpl->assign('notifypub', $story->getVar('notifypub'));
 }
 $xoopsTpl->assign('use_notify', $use_notify);

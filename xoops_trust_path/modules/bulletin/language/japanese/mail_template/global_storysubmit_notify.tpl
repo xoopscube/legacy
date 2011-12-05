@@ -4,6 +4,10 @@
 
 記事タイトル：　{STORY_NAME}
 
+{WAITINGSTORIES_URL}
+
+{ADMIN_WAITINGSTORIES_URL}
+
 -----------
 
 このメールはXOOPSの自動通知機能によって送信されています
@@ -12,7 +16,7 @@
 {X_UNSUBSCRIBE_URL}
 
 -----------
-{X_SITENAME} ({X_SITEURL}) 
+{X_SITENAME} ({X_SITEURL})
 管理人
 {X_ADMINMAIL}
 -----------
