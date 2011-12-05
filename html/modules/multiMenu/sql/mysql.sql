@@ -7,7 +7,7 @@ CREATE TABLE multimenu01 (
   target varchar(10) default NULL,
   groups varchar(255) default NULL,
   PRIMARY KEY (id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 
 CREATE TABLE multimenu02 (
@@ -19,7 +19,7 @@ CREATE TABLE multimenu02 (
   target varchar(10) default NULL,
   groups varchar(255) default NULL,
   PRIMARY KEY (id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE multimenu03 (
   id int(5) unsigned NOT NULL auto_increment,
@@ -30,7 +30,7 @@ CREATE TABLE multimenu03 (
   target varchar(10) default NULL,
   groups varchar(255) default NULL,
   PRIMARY KEY (id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
  
 CREATE TABLE multimenu04 (
@@ -42,7 +42,7 @@ CREATE TABLE multimenu04 (
   target varchar(10) default NULL,
   groups varchar(255) default NULL,
   PRIMARY KEY (id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE multimenu05 (
   id int(5) unsigned NOT NULL auto_increment,
@@ -53,7 +53,7 @@ CREATE TABLE multimenu05 (
   target varchar(10) default NULL,
   groups varchar(255) default NULL,
   PRIMARY KEY (id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 
 CREATE TABLE multimenu06 (
@@ -65,7 +65,7 @@ CREATE TABLE multimenu06 (
   target varchar(10) default NULL,
   groups varchar(255) default NULL,
   PRIMARY KEY (id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE multimenu07 (
   id int(5) unsigned NOT NULL auto_increment,
@@ -76,7 +76,7 @@ CREATE TABLE multimenu07 (
   target varchar(10) default NULL,
   groups varchar(255) default NULL,
   PRIMARY KEY (id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
  
 CREATE TABLE multimenu08 (
@@ -88,4 +88,4 @@ CREATE TABLE multimenu08 (
   target varchar(10) default NULL,
   groups varchar(255) default NULL,
   PRIMARY KEY (id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
