@@ -1,6 +1,6 @@
 <?php
 // PukiWiki - Yet another WikiWikiWeb clone.
-// $Id: lng.php,v 1.5 2011/11/06 05:08:01 nao-pon Exp $
+// $Id: lng.php,v 1.6 2011/12/05 07:58:09 nao-pon Exp $
 // Copyright (C)
 //   2002-2005 PukiWiki Developers Team
 //   2001-2002 Originally written by yu-ji
@@ -288,6 +288,8 @@ $root->_attach_messages = array(
 	'msg_select_manyitems' => 'Páginas com muitos arquivos',
 	'msg_noupload' => 'Não foi posspivel enviar alguns arquivos para $1.',
 	'msg_send_mms' => 'Send by MMS Mail',
+	'msg_drop_files_here' => 'Drop files here to upload',
+	'msg_for_upload' => 'There is no authority uploaded to this page.<br />In order to upload, please choose a page with <img src="'.$const['LOADER_URL'].'?src=upload_16.png" alt="&uarr;" /> icon from the <img src="'.$const['LOADER_URL'].'?src=page_attach.png" alt="Page" /> page selection.',
 );
 
 ///////////////////////////////////////

@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2008/03/24 by nao-pon http://hypweb.net/
- * $Id: attach.php,v 1.36 2011/11/26 12:03:10 nao-pon Exp $
+ * $Id: attach.php,v 1.37 2011/12/05 07:58:09 nao-pon Exp $
  */
 
 //-------- епеще╣
@@ -1131,7 +1131,11 @@ class XpWikiAttachFiles
 		if ($this->is_popup && !$fromall) {
 			if (empty($this->root->vars['start'])) {
 				$attach =& $this->func->get_plugin_instance('attach');
-				$form = $attach->attach_form($this->page);
+				if ($attach->attachable($this->page)) {
+					$form = $attach->attach_form($this->page);
+				} else {
+					$form = $this->root->_attach_messages['msg_for_upload'];
+				}
 				if ($form) $form .= '<hr />';
 			}
 		}
@@ -1357,6 +1361,8 @@ class XpWikiAttachPages
 
 			$otherPages = array();
 			$shown = array($this->root->vars['base']);
+			$attach =& $this->func->get_plugin_instance('attach');
+
 			if ($this->root->pages_for_attach) {
 				$otherPages[] = '<optgroup label="' . $this->root->_attach_messages['msg_select_useful'] . '">';
 				foreach(explode('#', $this->root->pages_for_attach) as $_page) {
@@ -1374,9 +1380,13 @@ class XpWikiAttachPages
 						} else {
 							$count = ' (0)';
 						}
-						//echo $query;
-						$_page = htmlspecialchars($_page);
-						$otherPages[] = '<option value="' . rawurlencode($_page) . '"' . $selected . '>' . $_page . $count . '</option>';
+						$_attachable = '';
+						$_class = 'readable';
+						if ($attach->attachable($_page)) {
+							$_class = 'attachable';
+							if ($this->cont['UA_PROFILE'] !== 'default') $_attachable = '&uarr;';
+						}
+						$otherPages[] = '<option class="'.$_class.'" value="' . rawurlencode($_page) . '"' . $selected . '>' . $_attachable . htmlspecialchars($_page) . $count . '</option>';
 					}
 				}
 				$otherPages[] = '</optgroup>';
@@ -1390,7 +1400,13 @@ class XpWikiAttachPages
 						if (in_array($row[0], $shown)) continue;
 						$selected = ($row[0] === $page)? ' selected="selected"' : '';
 						$_page = htmlspecialchars($row[0]);
-						$otherPages[] = '<option value="' . rawurlencode($_page) . '"' . $selected . '>' . $_page . ' (' . $row[1] . ')</option>';
+						$_attachable = '';
+						$_class = 'readable';
+						if ($attach->attachable($_page)) {
+							$_class = 'attachable';
+							if ($this->cont['UA_PROFILE'] !== 'default') $_attachable = '&uarr;';
+						}
+						$otherPages[] = '<option class="'.$_class.'" value="' . rawurlencode($_page) . '"' . $selected . '>' . $_attachable . htmlspecialchars($_page) . ' (' . $row[1] . ')</option>';
 					}
 				}
 				$otherPages[] = '</optgroup>';

@@ -2,7 +2,7 @@
 /////////////////////////////////////////////////
 // PukiWiki - Yet another WikiWikiWeb clone.
 //
-//  $Id: attach.inc.php,v 1.62 2011/11/26 12:03:10 nao-pon Exp $
+//  $Id: attach.inc.php,v 1.63 2011/12/05 07:58:09 nao-pon Exp $
 //  ORG: attach.inc.php,v 1.31 2003/07/27 14:15:29 arino Exp $
 //
 /*
@@ -218,20 +218,43 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 			if ($pcmd == 'upload')
 			{
 				//アップロード
-				if ($this->cont['ATTACH_UPLOAD_ADMIN_ONLY'])
-				{
-					$check = $this->root->userinfo['admin'];
-				}
-				else
-				{
-					if ($this->cont['ATTACH_UPLOAD_EDITER_ONLY'])
-					{
-						$check = $this->func->check_editable($this->root->vars['refer'], false, false);
+				$check = $this->attachable($this->root->vars['refer']);
+
+				if (isset($this->root->get['qqfile'])) {
+					if (! $check) {
+						$this->output_json($this->root->_attach_messages['err_noparm']);
 					}
-					else
-					{
-						$check = $this->func->check_readable($this->root->vars['refer'], false, false);
+
+					$_file = array();
+					$_file['size'] = (isset($_SERVER['CONTENT_LENGTH']))? (int)$_SERVER['CONTENT_LENGTH'] : 0;
+					if ($_file['size'] > $this->cont['PLUGIN_ATTACH_MAX_FILESIZE']) {
+						$this->output_json($this->root->_attach_messages['err_exceed']);
 					}
+
+					$input = fopen('php://input', 'rb');
+					$_file['tmp_name'] = tempnam($this->cont['CACHE_DIR'], 'atf');
+					$fp = fopen($_file['tmp_name'], 'wb');
+					fseek($_file['tmp_name'], 0, SEEK_SET);
+					stream_copy_to_stream($input, $fp);
+					fclose($fp);
+					fclose($input);
+
+					if (filesize($_file['tmp_name']) != $_file['size']){
+						$this->output_json('No files were uploaded.');
+					}
+
+					$_file['name'] = $this->root->get['qqfile'];
+					$_file['not_files'] = true;
+
+					$pass = (!empty($this->root->get['_pass'])) ? md5($this->root->get['_pass']) : NULL;
+					$copyright = (isset($this->root->get['copyright']))? TRUE : FALSE;
+
+					$ret = $this->attach_upload($_file, $this->root->vars['refer'], $pass, $copyright);
+
+					if ($ret['result'] === FALSE) {
+						$this->output_json($ret['msg']);
+					}
+					$this->output_json(0); // return success
 				}
 
 				if (!$check) {
@@ -304,6 +327,19 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 		return false;
 	}
 
+	function attachable($page) {
+		if ($this->cont['ATTACH_UPLOAD_ADMIN_ONLY']) {
+			$check = $this->root->userinfo['admin'];
+		} else {
+			if ($this->cont['ATTACH_UPLOAD_EDITER_ONLY']) {
+				$check = $this->func->check_editable($page, false, false);
+			} else {
+				$check = $this->func->check_readable($page, false, false);
+			}
+		}
+		return $check;
+	}
+
 	//-------- call from skin
 	function attach_filelist($isbn=false)
 	{
@@ -328,7 +364,7 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 		// $pass=NULL : パスワードが指定されていない
 		// $pass=TRUE : アップロード許可
 
-		if ($file['tmp_name'] == '' or !is_uploaded_file($file['tmp_name']) or !$file['size'])
+		if ($file['tmp_name'] == '' or (empty($file['not_files']) && !is_uploaded_file($file['tmp_name'])) or !$file['size'])
 		{
 			return array('result'=>FALSE);
 		}
@@ -567,6 +603,16 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 			'msg'      => $this->root->_attach_messages['msg_uploaded'],
 			'name'     => $obj->file
 		);
+	}
+
+	function output_json($msg = 0, $page = '') {
+		if (! $msg) {
+			$this->func->send_json(array('success' => true));
+		}
+		if (! $page) $page = $this->root->vars['refer'];
+		$msg = str_replace('$1', $page, $msg);
+		$msg = mb_convert_encoding($msg, 'UTF-8', $this->cont['SOURCE_ENCODING']);
+		$this->func->send_json(array('error' => $msg));
 	}
 
 	// ref プラグインのソース置換
@@ -901,8 +947,10 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 			'&nbsp;&nbsp;<input type="text" name="thumb_r" size="3">% or ' .
 			'W:<input type="text" name="thumb_w" size="3" value="'.$thumb_px.'" /> x ' .
 			'H:<input type="text" name="thumb_h" size="3" value="'.$thumb_px.'" />(Max)</p>' : '';
-		$filename = (!empty($this->root->vars['filename']))? '<input type="hidden" name="filename" value="'.htmlspecialchars($this->root->vars['filename']).'" />' : '';
-		$returi = (!empty($this->root->vars['returi']))? '<input type="hidden" name="returi" value="'.htmlspecialchars($this->root->vars['returi']).'" />' : '';
+		$_filename = (!empty($this->root->vars['filename']))? $this->root->vars['filename'] : '';
+		$filename = ($_filename)? '<input type="hidden" name="filename" value="'.htmlspecialchars($this->root->vars['filename']).'" />' : '';
+		$_returi = (!empty($this->root->vars['returi']))? $this->root->vars['returi'] : '';
+		$returi = ($_returi)? '<input type="hidden" name="returi" value="'.htmlspecialchars($this->root->vars['returi']).'" />' : '';
 
 		$r_page = rawurlencode($page);
 		$s_page = htmlspecialchars($page);
@@ -963,16 +1011,21 @@ EOD;
 
 		//$uid = get_pg_auther($this->page);
 		$pass = '';
+		$_needpass = 0;
 		//if (ATTACH_PASSWORD_REQUIRE && !ATTACH_UPLOAD_ADMIN_ONLY && ((!$X_admin && $X_uid !== $uid) || $X_uid == 0))
 		if ($this->cont['ATTACH_PASSWORD_REQUIRE'] && !$this->cont['ATTACH_UPLOAD_ADMIN_ONLY'] && !$this->root->userinfo['uid'])
 		{
-			$title = $this->root->_attach_messages[$this->cont['ATTACH_UPLOAD_ADMIN_ONLY'] ? 'msg_adminpass' : 'msg_password'];
-			$pass = '<br />'.$title.': <input type="password" name="pass" size="8" />';
+			$pass_title = $this->root->_attach_messages[$this->cont['ATTACH_UPLOAD_ADMIN_ONLY'] ? 'msg_adminpass' : 'msg_password'];
+			$pass = '<br />'.$pass_title.': <input type="password" name="pass" size="8" />';
+			$_needpass = 1;
 		}
 
 		$allow_extensions = $this->get_allow_extensions();
+		$_allow_extensions = '[]';
 		$antar_tag = "<input type=\"checkbox\" id=\"_p_attach_untar_mode_{$pgid}_{$load[$this->xpwiki->pid][$page]}\" name=\"untar_mode\"><label for=\"_p_attach_untar_mode_{$pgid}_{$load[$this->xpwiki->pid][$page]}\">{$this->root->_attach_messages['msg_untar']}</label>";
 		if ($allow_extensions && !$this->func->is_owner($page)) {
+			//ex. ['jpg', 'jpeg', 'png', 'gif'] or []
+			$_allow_extensions = '[\'' . join('\', \'', $allow_extensions) . '\']';
 			$allow_extensions = str_replace('$1',join(", ",$allow_extensions),$this->root->_attach_messages['msg_extensions'])."<br />";
 			$antar_tag = "";
 		} else {
@@ -1008,6 +1061,78 @@ EOD;
  </div>
 </form>
 EOD;
+		if ($this->cont['UA_PROFILE'] === 'default' && preg_match('/firefox|chrome|safari/i', $_SERVER['HTTP_USER_AGENT']) && function_exists('stream_copy_to_stream')) {
+			// file-uploader
+			$this->func->add_tag_head('fileuploader.js');
+			$_domid = $this->get_domid('fileuploader');
+			$form = <<<EOD
+<div id="{$_domid}_check" style="display:none;"><input type="checkbox" id="_p_attach_copyright_{$pgid}_{$load[$this->xpwiki->pid][$page]}" name="copyright" value="1" /> <label for="_p_attach_copyright_{$pgid}_{$load[$this->xpwiki->pid][$page]}">{$this->root->_attach_messages['msg_copyright']}</label></div>
+<div id="{$_domid}">
+	<noscript>$form</noscript>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+XpWiki.domInitFunctions.push(
+	function (){
+		var doing = 0;
+		var needpass = {$_needpass};
+		var returi = '{$_returi}';
+		var uploader = new qq.FileUploader({
+			element: document.getElementById('{$_domid}'),
+			action: '{$script}',
+			params: {
+				plugin: 'attach',
+				pcmd: 'upload',
+				refer: '{$page}',
+				filenmame: '{$_filename}',
+				refid: '{$_refid}',
+				encode_hint: '{$this->cont['PKWK_ENCODING_HINT']}'
+			},
+			allowedExtensions: {$_allow_extensions},
+			sizeLimit: {$maxsize},
+			onSubmit: function(id, fileName){
+				if (needpass) {
+					var pass = prompt('{$pass_title}', '');
+					if (! pass) return false;
+					this.params['_pass'] = pass;
+					needpass = 0;
+				}
+				if ($('_p_attach_copyright_{$pgid}_{$load[$this->xpwiki->pid][$page]}').checked) {
+					this.params['copyright'] = 1;
+				}
+				++doing;
+			},
+			onComplete: function(id, fileName, responseJSON){
+				if (! --doing) {this.reload();}
+			},
+			onCancel: function(id, fileName){
+				if (! --doing) {this.reload();}
+			},
+			showMessage: function(message){
+				window.focus();
+				alert(message);
+        	},
+			debug: false,
+			template: '<div class="qq-uploader">' +
+				'<div class="qq-upload-drop-area"><span>{$this->root->_attach_messages['msg_drop_files_here']}</span></div>' +
+				'<div class="qq-upload-button" title="{$this->root->_attach_messages['msg_drop_files_here']}">{$this->root->_attach_messages['btn_upload']} (D&D)</div>' +
+				'<ul class="qq-upload-list"></ul>' +
+				'</div>',
+			reload: function() {
+				if (returi) {
+					location.href = returi;
+				} else {
+					location.reload();
+				}
+			}
+		});
+		$('{$_domid}_check').style.display = '';
+	}
+);
+//]]>
+</script>
+EOD;
+		}
 
 		// iPhone, iPad 用は sms: リンク & Picup
 		if (preg_match('/iP(?:hone|ad)/i', $_SERVER['HTTP_USER_AGENT'])) {
@@ -1127,10 +1252,13 @@ EOD;
 <html>
 <body>
 <script type="text/javascript">
-var w = window.open('{$url}', 'XpWikiPopupBody');
+var w = window.open('{$s_url}', 'XpWikiPopupBody');
 w.focus();
 window.close();
 </script>
+<div style="font-size:20px;">
+<a href="javascript:window.open('{$s_url}', 'XpWikiPopupBody');window.close()">{$this->root->_LANG['skin']['topage']}</a>
+</div>
 </body>
 </html>
 EOD;

@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/02 by nao-pon http://hypweb.net/
-// $Id: xpwiki_func.php,v 1.245 2011/11/26 12:03:10 nao-pon Exp $
+// $Id: xpwiki_func.php,v 1.246 2011/12/05 07:58:09 nao-pon Exp $
 //
 class XpWikiFunc extends XpWikiXoopsWrapper {
 
@@ -1880,6 +1880,21 @@ class XpWikiFunc extends XpWikiXoopsWrapper {
 		}
 
 		return $url;
+	}
+
+	function send_json ($res) {
+		error_reporting(0);
+
+		// clear output buffer
+		$this->clear_output_buffer();
+
+		$json = htmlspecialchars(json_encode($res), ENT_NOQUOTES);
+
+		header('Content-Type: text/javascript; charset=utf-8');
+		header('Content-Length: '. strlen($json));
+
+		echo $json;
+		exit;
 	}
 
 	function send_xml ($res, $encode = 'UTF-8', $version = '1.0') {
