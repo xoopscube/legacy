@@ -15,14 +15,14 @@ CREATE TABLE `openid_identifier` (
   KEY (`uid`),
   KEY (`omode`),
   KEY (`local_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `openid_nonce` (
   `server_url` varchar(255) NOT NULL default '',
   `timestamp` int(10) unsigned NOT NULL default '0',
   `salt` varchar(40) NOT NULL default '',
   UNIQUE KEY `server_url` (`server_url`,`timestamp`,`salt`)
-) TYPE=MyISAM /*!40100 DEFAULT CHARACTER SET=binary*/;
+) ENGINE=MyISAM /*!40100 DEFAULT CHARACTER SET=binary*/;
 
 CREATE TABLE `openid_assoc` (
   `server_url` varchar(255) NOT NULL default '',
@@ -32,7 +32,7 @@ CREATE TABLE `openid_assoc` (
   `lifetime` int(10) unsigned NOT NULL default '0',
   `assoc_type` varchar(64) NOT NULL default '',
   PRIMARY KEY (`server_url`(245),`handle`)
-) TYPE=MyISAM /*!40100 DEFAULT CHARACTER SET=binary*/;
+) ENGINE=MyISAM /*!40100 DEFAULT CHARACTER SET=binary*/;
 
 CREATE TABLE `openid_filter` (
   `id` smallint(5) unsigned NOT NULL auto_increment,
@@ -41,13 +41,13 @@ CREATE TABLE `openid_filter` (
   `groupid` varchar(32) NOT NULL default '',
   PRIMARY KEY (`id`),
   KEY `pattern` (`pattern`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `openid_extension` (
   `dirname` varchar(25) NOT NULL default '',
   `options` varchar(255) NOT NULL default '',
   PRIMARY KEY (`dirname`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `openid_buttons` (
   `id` tinyint(3) unsigned NOT NULL auto_increment,
@@ -57,4 +57,4 @@ CREATE TABLE `openid_buttons` (
   `range` varchar(5) NOT NULL default '',
   `description` varchar(255) NOT NULL default '',
   PRIMARY KEY (`id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
