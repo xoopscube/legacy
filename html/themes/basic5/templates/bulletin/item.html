@@ -24,8 +24,18 @@
   </div>
   <div style="clear:both;"></div>
   <div class="itemFoot">
-    <{if $story.adminlink}>
-    <span class="itemAdminLink">&nbsp;[ <a href="<{$mydirurl}>/index.php?page=submit&amp;storyid=<{$story.id}>"><{$smarty.const._EDIT}></a> | <a href="<{$mydirurl}>/index.php?page=submit&amp;op=delete&amp;storyid=<{$story.id}>"><{$smarty.const._DELETE}></a> ]&nbsp;</span>&nbsp;
+    <{if $story.can_edit or $story.can_delete}>
+    &nbsp;[&nbsp;
+      <{if $story.can_edit }>
+        <a href="<{$mydirurl}>/index.php?page=submit&amp;storyid=<{$story.id}>"><{$smarty.const._EDIT}></a>
+      <{/if}>
+      <{if $story.can_edit and $story.can_delete}>
+    &nbsp;|&nbsp;
+      <{/if}>
+      <{if $story.can_delete }>
+         <a href="<{$mydirurl}>/index.php?page=submit&amp;op=delete&amp;storyid=<{$story.id}>"><{$smarty.const._DELETE}></a>
+      <{/if}>
+	&nbsp;]&nbsp;
     <{/if}>
 <span class="itemPermaLink">
 <{if $story.readmore}>

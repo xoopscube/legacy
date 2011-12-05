@@ -4,7 +4,7 @@
 <script type="text/javascript">
 <!--//
 jQuery(document).ready(function($){
-	$('a.prettyPhoto').prettyPhoto({theme: 'dark_rounded'});
+  $('a.prettyPhoto').prettyPhoto({theme: 'dark_rounded'});
 });
 //-->
 </script>
@@ -88,19 +88,32 @@ window.top.opener.focus() ;
 <script type="text/javascript">
 <!--//
 function appendCode(addCode) {
-	var targetDom = window.opener.xoopsGetElementById('<{$target}>');
-	if (targetDom.createTextRange && targetDom.caretPos){
-  		var caretPos = targetDom.caretPos;
-		caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? addCode + ' ' : addCode;
-	} else if (targetDom.getSelection && targetDom.caretPos){
-		var caretPos = targetDom.caretPos;
-		caretPos.text = caretPos.text.charat(caretPos.text.length - 1) == ' ' ? addCode + ' ' : addCode;
-	} else {
-		targetDom.value = targetDom.value + addCode;
-  	}
-	window.close();
-	return;
+  var targetDom = window.opener.xoopsGetElementById('<{$target}>');
+    if (window.opener.document.selection) { //for IE
+      if (targetDom.createTextRange && targetDom.caretPos){
+        var caretPos = targetDom.caretPos;
+        caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? addCode + ' ' : addCode;
+      } else if (targetDom.getSelection && targetDom.caretPos){
+        var caretPos = targetDom.caretPos;
+        caretPos.text = caretPos.text.charat(caretPos.text.length - 1) == ' ' ? addCode + ' ' : addCode;
+      } else {
+        targetDom.value = targetDom.value + addCode;
+      }
+    } else if (targetDom.setSelectionRange) { // for Fx, Chrome, Opera
+        var startPos = targetDom.selectionStart;
+        var endPos = targetDom.selectionEnd;
+        var lastPos = startPos + addCode.length;
+        targetDom.value = targetDom.value.substring(0, startPos) + addCode
+                       + targetDom.value.substring(endPos, targetDom.value.length);
+        targetDom.setSelectionRange(lastPos, lastPos); // Move caret to inserted text end
+    } else { // for Other Browser
+        targetDom.value = targetDom.value + addCode;
+    }
+
+  window.close();
+  return;
 }
+
 //-->
 </script>
 

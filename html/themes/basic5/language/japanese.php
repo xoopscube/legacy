@@ -18,21 +18,6 @@ define('_BASIC_USER_ACCOUNT', '¥¢¥«¥¦¥ó¥È¾ðÊó');
 define('_BASIC_EDIT_ACCOUNT', 'ÊÔ½¸');
 define('_BASIC_VIEWPMSG', '¼õ¿®È¢');
 define('_BASIC_USER_NAME', '¥æ¡¼¥¶¡¼Ì¾');
-define('_BASIC_NOMAL', 'É¸½à');
-define('_BASIC_BIG', '³ÈÂç');
-define('_BASIC_BASIC', '´ðËÜ¥¹¥¿¥¤¥ë');
-define('_BASIC_JAN', '£±·î');
-define('_BASIC_FEB', '£²·î');
-define('_BASIC_MAR', '£³·î');
-define('_BASIC_APR', '£´·î');
-define('_BASIC_MAY', '£µ·î');
-define('_BASIC_JUN', '£¶·î');
-define('_BASIC_JUL', '£··î');
-define('_BASIC_AUG', '£¸·î');
-define('_BASIC_SEP', '£¹·î');
-define('_BASIC_OCT', '£±£°·î');
-define('_BASIC_NOV', '£±£±·î');
-define('_BASIC_DEC', '£±£²·î');
 define('_BASIC_SEARCH', '¥µ¥¤¥ÈÆâ¸¡º÷');
 
 ?>

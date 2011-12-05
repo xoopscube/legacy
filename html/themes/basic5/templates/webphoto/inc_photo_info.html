@@ -207,7 +207,11 @@
 
 <{* COMMENT COUNTS *}>
 <img src="<{$xoops_url}>/modules/<{$xoops_dirname}>/images/icons/comments.png" width="16" height="16" alt="<{$lang_icon_comments}>" title="<{$lang_icon_comments}>" />
-<{$photo.comments}> &nbsp; &nbsp;
+<{if $cfg_comment_dirname && $cfg_comment_forum_id }>
+ <{d3forum_comment_postscount dirname=$cfg_comment_dirname forum_id=$cfg_comment_forum_id link_id=$photo.photo_id}> &nbsp; &nbsp;
+<{else}>
+ <{$photo.comments}> &nbsp; &nbsp;
+<{/if}>
 
 <{* RANK & RATING *}>
 <{if $show_rateview}>

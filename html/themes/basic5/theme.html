@@ -8,13 +8,18 @@
 <head>
 <meta charset="<{$xoops_charset}>" />
 <title><{$xoops_sitename}> - <{if $xoops_pagetitle}><{$xoops_pagetitle}><{else}><{$xoops_slogan}><{/if}></title>
+<meta name="robots" content="<{$xoops_meta_robots}>" />
+<meta name="keywords" content="<{$xoops_meta_keywords}>" />
+<meta name="description" content="<{$xoops_meta_description}>" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author}>" />
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
 <link rel="stylesheet" type="text/css" href="<{$xoops_imageurl}>reset.css" />
 <link rel="stylesheet" type="text/css" media="all" href="<{$xoops_url}>/xoops.css" />
 <link rel="stylesheet" type="text/css" href="<{$xoops_imageurl}>style.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-<link href='http://fonts.googleapis.com/css?family=Droid+Serif:700,400,400italic,700italic' rel='stylesheet' type='text/css'>
-<!--[if IE]>
+<link href='http://fonts.googleapis.com/css?family=Droid+Serif:700,400,400italic,700italic' rel='stylesheet' type='text/css'><!--[if IE]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 <script type="text/javascript"><{$xoops_js|regex_replace:"/(\/\/\-\->|<!\-\-)/":""}></script>
@@ -42,7 +47,6 @@
 </script>
 </head>
 <body id="home" class="L<{$xoops_showlblock}>R<{$xoops_showrblock}> <{if $smarty.server.SCRIPT_FILENAME|basename == "index.php" and $smarty.server.SCRIPT_FILENAME|dirname|basename == $smarty.const.XOOPS_ROOT_PATH|basename}>home<{else}><{if !$xoops_dirname == ""}><{$xoops_dirname}><{else}>ather<{/if}><{/if}>">
-
 	<div id="wrapper">
 		<header id="header">
 			<h1><a href="<{$xoops_url}>/"><{$xoops_sitename}></a></h1>
@@ -110,7 +114,7 @@
 			<div id="latest">
 				<section class="left-col">
 					<{* CenterColumn BlockWeight>0 *}><{include file="$xoops_theme/theme_centercolumn.html"}>
-				</section> <!-- END Left Column -->
+				</section> <!-- END Left Column -->	
 
 				<aside class="sidebar">
 					<{if $xoops_showlblock == 1}>
@@ -153,7 +157,7 @@
 
 		<footer>
 			<{include file="$xoops_theme/theme_footer.html"}>
-		</footer>
+		</footer>		
 
 		<div id="search">
 		  <form id="searchform" name="searchform" action="<{$xoops_url}>/search.php" method="get" class="searchform">

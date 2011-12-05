@@ -18,21 +18,6 @@ define('_BASIC_USER_ACCOUNT', 'アカウント情報');
 define('_BASIC_EDIT_ACCOUNT', '編集');
 define('_BASIC_VIEWPMSG', '受信箱');
 define('_BASIC_USER_NAME', 'ユーザー名');
-define('_BASIC_NOMAL', '標準');
-define('_BASIC_BIG', '拡大');
-define('_BASIC_BASIC', '基本スタイル');
-define('_BASIC_JAN', '１月');
-define('_BASIC_FEB', '２月');
-define('_BASIC_MAR', '３月');
-define('_BASIC_APR', '４月');
-define('_BASIC_MAY', '５月');
-define('_BASIC_JUN', '６月');
-define('_BASIC_JUL', '７月');
-define('_BASIC_AUG', '８月');
-define('_BASIC_SEP', '９月');
-define('_BASIC_OCT', '１０月');
-define('_BASIC_NOV', '１１月');
-define('_BASIC_DEC', '１２月');
 define('_BASIC_SEARCH', 'サイト内検索');
 
 ?>

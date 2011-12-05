@@ -47,33 +47,53 @@
 </select>
 </div>
 <!-- entry -->
-<label for="contents" class="label">
-<{$smarty.const._MD_D3BLOG_LANG_BLOG_CONTENTS}>
-<{if $moduleConfig.wysiwyg_editor && $currentUser.user_perm.allow_html}>
-  <{if $moduleConfig.wysiwyg_editor eq 1 }>
-	<{if $smarty.const._MYCKEDITOR_MODULE_LOADED == 1}>
-		<{php}>
-			$_makescript = & xoops_getmodulehandler('makescript','myckeditor');
-			$params = array('id'=>'contents','editor'=>'bbcode','myckeditor'=>true);
-			$_makescript->makeheader($params);
-		<{/php}>
-	<br />
-	<input type="button" class="formButton" value="CKEeditorOn" name="myckeditorOn" onclick="contents_myckeditor_exec();document.getElementById('dohtml').checked=true;document.getElementById('doxcode').checked=true;document.getElementById('dobr').checked=true;document.getElementById('switch_bbcode').checked=false;document.getElementById('contents_bbcode_buttons_pre').style.display='none';document.getElementById('contents_bbcode_buttons_post').style.display='none';"/>
-	<br />
-	<input type="button" class="formButton" value="CKEeditorOff" name="myckeditorOff" onclick="contents_myckeditor_remove();"/>
+<{php}>
+$this->assign( 'common_fck_installed' , file_exists( XOOPS_ROOT_PATH.'/common/fckeditor/fckeditor.js' ) ) ;
+<{/php}>
+	<label for="contents" class="label" ><{$smarty.const._MD_D3BLOG_LANG_BLOG_CONTENTS}>
+	<{if $moduleConfig.wysiwyg_editor }>
+		<{if $moduleConfig.wysiwyg_editor eq 1 && ! $common_fck_installed && $currentUser.user_perm.allow_html }>
+			<{if $entry.dohtml == "1" && $entry.doxcode!="1" && $entry.dobr!="1" }>
+				<br />
+				<input type="button" class="formButton" value="CKEeditorON" name="myckeditorOn" id="myckeditorOn" onclick="if(this.value=='CKEeditorON'){this.value='CKEeditorOFF';contents_myckeditor_exec();document.getElementById('dohtml').checked=true;document.getElementById('doxcode').checked=false;document.getElementById('dobr').checked=false;document.getElementById('switch_bbcode').checked=false;document.getElementById('contents_bbcode_buttons_pre').style.display='none';document.getElementById('contents_bbcode_buttons_post').style.display='none';}else{this.value='CKEeditorON';contents_myckeditor_remove();}"/>
+			<{else}>
+				<br />
+				<input type="button" class="formButton" value="CKEeditorON" name="myckeditorOn" id="myckeditorOn" onclick="if(this.value=='CKEeditorON'){this.value='CKEeditorOFF';contents_myckeditor_exec();document.getElementById('dohtml').checked=true;document.getElementById('doxcode').checked=true;document.getElementById('dobr').checked=true;document.getElementById('switch_bbcode').checked=false;document.getElementById('contents_bbcode_buttons_pre').style.display='none';document.getElementById('contents_bbcode_buttons_post').style.display='none';}else{this.value='CKEeditorON';contents_myckeditor_remove();}"/>
+			<{/if}>
+		<{/if}>
 	<{/if}>
-  <{/if}>
-<{/if}>
-</label>
+	</label>
 <div class="control">
 <{if $moduleConfig.wysiwyg_editor && $currentUser.user_perm.allow_html}>
   <{if $moduleConfig.wysiwyg_editor eq 1 }>
 <{* FCK editor *}>
-<{*<textarea id="contents" name="contents"><{$entry.contents4edit}></textarea><script>fckeditor_exec("100%", "350", "<{$xoops_url}>");</script><br />*}>
-<{*<{xoops_dhtmltarea cols=74 rows=15 name="contents" id="contents" value="`$entry.contents4editrow`" myckeditor=true}><br />*}>
-<div><input type="checkbox" id="switch_bbcode" onclick="if(this.checked){contents_myckeditor_remove();document.getElementById('contents_bbcode_buttons_pre').style.display='block';document.getElementById('contents_bbcode_buttons_post').style.display='block';}else{document.getElementById('contents_bbcode_buttons_pre').style.display='none';document.getElementById('contents_bbcode_buttons_post').style.display='none'};" />
-<label for="switch_bbcode"><{$smarty.const._MD_D3BLOG_LANG_DISPLAY_XCODE_PALLET}></label></div>
-<{xoopsdhtmltarea name=contents cols=65 rows=15 value=$entry.contents4edit pre_style="display:none;" post_style="display:none;"}>
+		<{if $common_fck_installed}>
+			<textarea id="contents" name="contents"><{$entry.contents4edit}></textarea><script>fckeditor_exec("100%", "350", "<{$xoops_url}>");</script><br />
+		<{else}>
+			<{if $entry.dohtml == "1" && $entry.doxcode!="1" && $entry.dobr!="1" }>
+				<{php}>
+					$_makescript = & xoops_getmodulehandler('makescript','myckeditor');
+					$params = array('id'=>'contents','editor'=>'html','myckeditor'=>true);
+					if (@is_object( $_makescript )){
+						$this->assign( 'common_myck_installed' , true ) ;
+						$_makescript->makeheader($params);
+					}
+				<{/php}>
+				<textarea id="contents" name="contents" cols=65 rows=20 ><{$entry.contents4edit}></textarea><br />
+			<{else}>
+				<{php}>
+					$_makescript = & xoops_getmodulehandler('makescript','myckeditor');
+					$params = array('id'=>'contents','editor'=>'bbcode','myckeditor'=>true);
+					if (@is_object( $_makescript )){
+						$this->assign( 'common_myck_installed' , true ) ;
+						$_makescript->makeheader($params);
+					}
+				<{/php}>
+				<div><input type="checkbox" id="switch_bbcode" onclick="if(this.checked){document.getElementById('contents_bbcode_buttons_pre').style.display='block';document.getElementById('contents_bbcode_buttons_post').style.display='block';document.getElementById('myckeditorOn').value='CKEeditorON';contents_myckeditor_remove();}else{document.getElementById('contents_bbcode_buttons_pre').style.display='none';document.getElementById('contents_bbcode_buttons_post').style.display='none';}" />
+				<label for="switch_bbcode"><{$smarty.const._MD_D3BLOG_LANG_DISPLAY_XCODE_PALLET}></label></div>
+				<{xoopsdhtmltarea name=contents cols=65 rows=20 value=$entry.contents4edit pre_style="display:none;" post_style="display:none;"}>
+			<{/if}>
+		<{/if}>
   <{else}>
   <{* QuickTag *}>
 <script type="text/javascript">edToolbar();</script>
@@ -85,11 +105,11 @@
 <label for="switch_bbcode"><{$smarty.const._MD_D3BLOG_LANG_DISPLAY_XCODE_PALLET}></label></div>
 <{xoopsdhtmltarea name=contents cols=65 rows=10 value=$entry.contents4edit pre_style="display:none;" post_style="display:none;"}>
 <{/if}>
-<{*   separator   *}>
+<{*   seperator   *}>
 <div id="d3blogSeperator">
-<input type="button" id="entry_separator" value="<{$smarty.const._MD_D3BLOG_LANG_INSERT_SEPERATOR}>" onclick='xoopsCodeSmilie("contents", "\n[separator]\n");' />
+<input type="button" id="entry_seperator" value="<{$smarty.const._MD_D3BLOG_LANG_INSERT_SEPERATOR}>" onclick='xoopsCodeSmilie("contents", "\n[seperator]\n");' />
 <input type="checkbox" id="switch_help" name="switch_help" onclick="if(this.checked){document.getElementById('show_help').style.display='block';}else{document.getElementById('show_help').style.display='none';};" /><label for="switch_help"><{$smarty.const._MD_D3BLOG_LANG_INSERT_HELP}></label>
-<label for="entry_separator" id="show_help" style="display:none;"><{$smarty.const._MD_D3BLOG_LANG_INSERT_SEPERATOR_ON_CLICK}></label>
+<label for="entry_seperator" id="show_help" style="display:none;"><{$smarty.const._MD_D3BLOG_LANG_INSERT_SEPERATOR_ON_CLICK}></label>
 </div>
 </div>
 <{*   groups    *}>
@@ -122,8 +142,6 @@
 <!-- publish date -->
 <{html_select_date time=$form.published_ start_year="-1" end_year="+2" month_format="%m" day_format="%d" field_order="YMD" field_array="published"}>
 <{html_select_time time=$form.published_ minute_interval="10" display_seconds=false field_array="published"}><br />
-<!-- tb_acceptable -->
-<input type="checkbox" name="tb_acceptable" id="tb_acceptable" value="1"<{if $entry.tb_acceptable}> checked="checked"<{/if}> /><label for="tb_acceptable"><{$smarty.const._MD_D3BLOG_LANG_TRACKBACK_ACCEPTABLE}></label><br />
 <!-- update ping -->
     <{if $currentUser.user_perm.blog_autoapprove}>
 <input type="checkbox" name="update_ping" id="update_ping" value="1"<{if $form.update_ping_}> checked="checked"<{/if}> /><label for="update_ping"><{$smarty.const._MD_D3BLOG_LANG_UPDATE_PING}></label><br />

@@ -1,9 +1,9 @@
 【テーマ名　】 basic5
-【バージョン】 0.03a
+【バージョン】 0.04
 【作　成　者】 marine / mistgreen
 【動作　環境】 XOOPS Cube Legacy 2.1x (HD1.04)、2.2
 【ライセンス】 MIT
-【公 開 日　】 2011-11-15
+【公 開 日　】 2011-11-13
 
 ======================================================
 説明（概要）
@@ -50,8 +50,6 @@
 
 　■　　中央中央カラム　表示順 ０　（トップカラム）
 　■　　中央中央カラム　表示順５００以上　（ボットムカラム）
-
-　詳しくは、同封している basic5.jpg をご覧ください。
 
 
 ======================================================
@@ -137,38 +135,6 @@
 　　http://xodomifara.lolipop.jp/doxo/modules/d3downloads/index.php?cid=2
 
 
-【ヘッダー画像の追加】
-
-style.css 内のheader記述部分
-	header 				{ padding-top:15px; margin-top:5px;
-	/* background:url(images/header.png) no-repeat; */
-}
-につき、
-	style.css 内のheader記述部分
-		header 				{ padding-top:15px; margin-top:5px;
-		background:url(images/header.png) no-repeat;
-	}
-とするとヘッダー部分に画像が表示されます。
-
-imagesにheader.pngがありますが、お好きな画像に差し替えてお使いいただくのもよろしいかと。
-
-
-
-【最大表示幅の変更など】
-
-このテーマでは、最大幅980pxで表示するようになっていますが、style.cssの次の記述部分を変更することにより、最大表示幅を変更したり、リキッドデザイン（画面一杯に広がる）にすることができます。
-
-	#wrapper 			{ position:relative; margin: 5px auto; max-width: 980px; width: 90%; background: #fff; padding: 0 5px 10px; }
-
-このぶぶん　max-width: 980px;　を好きな数字に変更すると最大表示幅が変わります。
-　例：max-width: 1280px;
-
-また、max-width: 980px; そのものを消すと、リキッドデザインになります。
-width: 90%;　を width: 100%;　に変更すると、画面一杯に広がります。
-
-色々とお試しください。
-
-
 ======================================================
 利用について
 ======================================================
@@ -186,12 +152,32 @@ width: 90%;　を width: 100%;　に変更すると、画面一杯に広がります。
 
 2011-11-13 ver0.01
 　とりあえず公開してみる。
+
 2011-11-13 ver0.02
 	480px以下のブラウザ表示の場合、CenterL、R をフロートさせて、下に回り込む設定とした。
-2011-11-14 ver0.03
+
+2011-11-13 ver0.03
 	各所を調整してみた。ナビの下にサブメニューを表示するようにした。
+
 2011-11-15 ver0.03a
 　画面幅調整の説明などを追記
+
+2011-12-05 ver0.04
+　xugj_already_js.php を新版に差し替えた。
+　jquery.jgrowl.js を最小版に差し替えた。
+　jGrowlの動作を中央上に表示するようにし、横幅を広げて透過度変更、boxshadowを表示するようにした。
+　テーマ下言語ファイルに english を追加。
+　style.cssにつき、次の記述間違いを修正
+
+  　間違い
+		-webkit-transition-timing function: linear, ease-in;
+		-moz-transition-timing function: linear, ease-in;
+		transition-timing function: linear, ease-in;
+
+　　正解（functionの前にハイフンあり）
+		-webkit-transition-timing-function: linear, ease-in;
+		-moz-transition-timing-function: linear, ease-in;
+		transition-timing-function: linear, ease-in;
 
 
 ======================================================

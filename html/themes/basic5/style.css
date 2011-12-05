@@ -44,9 +44,9 @@ header h1 					{ font-size: 90px; font-family: 'Droid Serif', serif; line-height
 	-webkit-transition-duration: 0.5s, 0.5s;
 	-moz-transition-duration: 0.5s, 0.5s;
 	transition-duration: 0.5s, 0.5s;
-	-webkit-transition-timing-function: linear, ease-in;
-	-moz-transition-timing-function: linear, ease-in;
-	transition-timing-function: linear, ease-in;
+	-webkit-transition-timing function: linear, ease-in;
+	-moz-transition-timing function: linear, ease-in;
+	transition-timing function: linear, ease-in;
 }
 h1 a 			{ text-decoration: none;  color:#222;}
 h1 a:hover 			{ text-decoration: none; color: #27B3CF; }
@@ -58,9 +58,9 @@ header h2 					{ font-family: 'Helvetica'; font-size: 18px; padding: 10px;
 	-webkit-transition-duration: 0.5s, 0.5s;
 	-moz-transition-duration: 0.5s, 0.5s;
 	transition-duration: 0.5s, 0.5s;
-	-webkit-transition-timing-function: linear, ease-in;
-	-moz-transition-timing-function: linear, ease-in;
-	transition-timing-function: linear, ease-in;
+	-webkit-transition-timing function: linear, ease-in;
+	-moz-transition-timing function: linear, ease-in;
+	transition-timing function: linear, ease-in;
 }
 h2 {font-size:1.4em; }
 h2 a 			{ text-decoration: none;}
@@ -83,9 +83,9 @@ h4 a:hover 			{  }
 	-webkit-transition-duration: 0.5s, 0.5s;
 	-moz-transition-duration: 0.5s, 0.5s;
 	transition-duration: 0.5s, 0.5s;
-	-webkit-transition-timing-function: linear, ease-in;
-	-moz-transition-timing-function: linear, ease-in;
-	transition-timing-function: linear, ease-in;
+	-webkit-transition-timing function: linear, ease-in;
+	-moz-transition-timing function: linear, ease-in;
+	transition-timing function: linear, ease-in;
 }
 
 .left-col div , .sidebar div {
@@ -144,7 +144,7 @@ pre					{ overflow: auto; font-size: 12px; }
 }
 #searchform {
 	width: 200px;
-	background: transparent;
+	background: transparent; 
 	display: block;
 	height: 30px;
 }

@@ -167,16 +167,17 @@ function webphoto_gmap_disp_on()
   <br /><br />
   <span class="webphoto_submit_cap_dsc"><{$lang_submit_cap_dsc_description}></span>
 <{/if}>
-<{if $smarty.const._MYCKEDITOR_MODULE_LOADED == 1}>
-	<{php}>
-		$_makescript = & xoops_getmodulehandler('makescript','myckeditor');
-		$params = array('id'=>'item_description','editor'=>'bbcode');
+<{php}>
+	$_makescript = & xoops_getmodulehandler('makescript','myckeditor');
+	$params = array('id'=>'item_description','editor'=>'bbcode');
+	if (@is_object( $_makescript )){
+		$this->assign( 'common_myck_installed' , true ) ;
 		$_makescript->makeheader($params);
-	<{/php}>
+	}
+<{/php}>
+<{if $common_myck_installed }>
 <br />
-<input type="button" class="formButton" value="CKEeditorOn" name="myckeditorOn" onclick="item_description_myckeditor_exec();"/>
-<br />
-<input type="button" class="formButton" value="CKEeditorOff" name="myckeditorOff" onclick="item_description_myckeditor_remove();"/>
+<input type="button" class="formButton" value="CKEeditorON" name="myckeditorOn" onclick="if(this.value=='CKEeditorON'){this.value='CKEeditorOFF';item_description_myckeditor_exec();document.getElementById('item_description_html').checked=true;}else{this.value='CKEeditorON';item_description_myckeditor_remove();}"/>
 <{/if}>
 </td>
 <td class="odd">
