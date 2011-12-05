@@ -2,7 +2,7 @@
 /////////////////////////////////////////////////
 // PukiWiki - Yet another WikiWikiWeb clone.
 //
-//  $Id: attach.inc.php,v 1.63 2011/12/05 07:58:09 nao-pon Exp $
+//  $Id: attach.inc.php,v 1.64 2011/12/05 08:50:48 nao-pon Exp $
 //  ORG: attach.inc.php,v 1.31 2003/07/27 14:15:29 arino Exp $
 //
 /*
@@ -934,7 +934,8 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 		$pgid = $this->func->get_pgid_by_name($page);
 
 		// refid »ØÄê
-		$refid = (!empty($this->root->vars['refid']))? '<input type="hidden" name="refid" value="'.htmlspecialchars($this->root->vars['refid']).'" />' : '';
+		$_refid = (!empty($this->root->vars['refid']))? $this->root->vars['refid'] : '';
+		$refid = ($_refid)? '<input type="hidden" name="refid" value="'.htmlspecialchars($_refid).'" />' : '';
 
 		if (! empty($this->root->vars['popup'])) {
 			$this->root->vars['returi'] = $_SERVER['REQUEST_URI'];
