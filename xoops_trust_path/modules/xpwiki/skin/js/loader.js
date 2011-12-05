@@ -1,6 +1,6 @@
 //
 // Created on 2007/10/03 by nao-pon http://hypweb.net/
-// $Id: loader.js,v 1.9 2011/09/17 07:15:24 nao-pon Exp $
+// $Id: loader.js,v 1.10 2011/12/05 09:11:47 nao-pon Exp $
 //
 
 //// JavaScript optimizer by amachang.
@@ -101,5 +101,7 @@ if (wikihelper_WinIE && wikihelper_WinIE < 9) {
 } else {
 	xpwiki_scripts += ',other';
 }
+
+xpwiki_scripts += ',option';
 
 document.write ('<script type="text/javascript" src="' + wikihelper_root_url + '/skin/loader.php?src=' + xpwiki_scripts + '.js"></script>');

@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/25 by nao-pon http://hypweb.net/
-// $Id: loader.php,v 1.68 2011/11/20 05:36:03 nao-pon Exp $
+// $Id: loader.php,v 1.69 2011/12/05 09:11:47 nao-pon Exp $
 //
 
 ignore_user_abort(FALSE);
@@ -195,6 +195,10 @@ switch ($type) {
 				}
 			} else if ($_src === 'wikihelper_loader') {
 				$js_replaces[] = $_src;
+			} else if ($_src === 'option') {
+				if (is_file($skin_dirname . '/js/option.js')) {
+					$src_file = $skin_dirname . '/js/option.js';
+				}
 			}
 			if (!$src_file) {
 				$src_file = dirname(__FILE__).'/skin/'.$basedir.$type.'/'.$_src.'.'.$type;
