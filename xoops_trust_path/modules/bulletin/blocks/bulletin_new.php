@@ -23,8 +23,9 @@ function b_bulletin_new_show($options) {
 	$selected_order = empty( $options[1] ) || ! in_array( $options[1] , b_bulletin_new_allowed_order() ) ? 'published DESC' : $options[1] ;
 	$display_count = empty($options[2]) ? 0 :intval($options[2]);//Number display for each category
 	$Length_title = empty($options[3]) ? 255 :intval($options[3]);//Length of the title
-	$categories = empty($options[4]) ? 0 : array_map( 'intval' , explode( ',' , $options[4] ) ) ;//(0=show all)
-	$show_body = empty($options[5]) ? 0 :intval($options[5]);//Number of articles showing body for each category
+	$show_body = empty($options[4]) ? 0 :intval($options[4]);//Number of articles showing body for each category
+	$options[5] = isset($options[5]) ? $options[5] : 0 ;//(0=show all for d3pipes)
+	$categories = empty($options[5]) ? 0 : array_map( 'intval' , explode( ',' , $options[5] ) ) ;//(0=show all)
 
 	require dirname( dirname( __FILE__ ) ).'/include/configs.inc.php';
 	require_once dirname(dirname(__FILE__)).'/class/bulletingp.php' ;
