@@ -165,10 +165,6 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 	function _loadFile($filename)
 	{
 		if (file_exists($filename)) {
-			global $xoopsDB, $xoopsTpl, $xoopsRequestUri, $xoopsModule, $xoopsModuleConfig,
-				   $xoopsModuleUpdate, $xoopsUser, $xoopsUserIsAdmin, $xoopsTheme,
-				   $xoopsConfig, $xoopsOption, $xoopsCachedTemplate, $xoopsLogger, $xoopsDebugger;
-
 			require_once $filename;
 			return true;
 		}

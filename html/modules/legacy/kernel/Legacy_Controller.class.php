@@ -10,26 +10,26 @@
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
 if (!defined('XOOPS_TRUST_PATH')){
-	echo "XOOPS_TRUST_PATH is required after XOOPS Cube Legacy 2.2 in mainfile.php";exit();
+	echo 'XOOPS_TRUST_PATH is required after XOOPS Cube Legacy 2.2 in mainfile.php';exit();
 }
 
-define("LEGACY_MODULE_VERSION", "2.2");
+define('LEGACY_MODULE_VERSION', '2.2');
 
-define("LEGACY_CONTROLLER_STATE_PUBLIC", 1);
-define("LEGACY_CONTROLLER_STATE_ADMIN", 2);
+define('LEGACY_CONTROLLER_STATE_PUBLIC', 1);
+define('LEGACY_CONTROLLER_STATE_ADMIN', 2);
 
-define("LEGACY_XOOPS_MODULE_MANIFESTO_FILENAME", "xoops_version.php");
+define('LEGACY_XOOPS_MODULE_MANIFESTO_FILENAME', 'xoops_version.php');
 
-require_once XOOPS_ROOT_PATH . "/modules/legacy/kernel/Legacy_BlockProcedure.class.php";
-require_once XOOPS_ROOT_PATH . "/modules/legacy/class/Legacy_Utils.class.php";
-require_once XOOPS_ROOT_PATH . "/modules/legacy/class/Enum.class.php";
-require_once XOOPS_ROOT_PATH . "/modules/legacy/kernel/Legacy_Identity.class.php";
-require_once XOOPS_ROOT_PATH . "/modules/legacy/kernel/Legacy_RoleManager.class.php";
+require_once XOOPS_ROOT_PATH . '/modules/legacy/kernel/Legacy_BlockProcedure.class.php';
+require_once XOOPS_ROOT_PATH . '/modules/legacy/class/Legacy_Utils.class.php';
+require_once XOOPS_ROOT_PATH . '/modules/legacy/class/Enum.class.php';
+require_once XOOPS_ROOT_PATH . '/modules/legacy/kernel/Legacy_Identity.class.php';
+require_once XOOPS_ROOT_PATH . '/modules/legacy/kernel/Legacy_RoleManager.class.php';
 
-require_once XOOPS_ROOT_PATH . "/modules/legacy/kernel/Legacy_CacheInformation.class.php";
-require_once XOOPS_ROOT_PATH . "/modules/legacy/kernel/Legacy_PublicControllerStrategy.class.php";
-require_once XOOPS_ROOT_PATH . "/modules/legacy/kernel/Legacy_TextFilter.class.php";
-require_once XOOPS_ROOT_PATH . "/modules/legacy/class/Legacy_Debugger.class.php";
+require_once XOOPS_ROOT_PATH . '/modules/legacy/kernel/Legacy_CacheInformation.class.php';
+require_once XOOPS_ROOT_PATH . '/modules/legacy/kernel/Legacy_PublicControllerStrategy.class.php';
+require_once XOOPS_ROOT_PATH . '/modules/legacy/kernel/Legacy_TextFilter.class.php';
+require_once XOOPS_ROOT_PATH . '/modules/legacy/class/Legacy_Debugger.class.php';
 
 /**
  * This class is a virtual controller that has the compatibility with XOOPS 2.0.x.
@@ -110,19 +110,19 @@ class Legacy_Controller extends XCube_Controller
 		//
 		// Setup member properties as member delegates.
 		//
-		$this->mSetupUser->register("Legacy_Controller.SetupUser");
+		$this->mSetupUser->register('Legacy_Controller.SetupUser');
 		
 		$this->mCheckLogin =new XCube_Delegate();
-		$this->mCheckLogin->register("Site.CheckLogin");
+		$this->mCheckLogin->register('Site.CheckLogin');
 		
 		$this->mLogout =new XCube_Delegate();
-		$this->mLogout->register("Site.Logout");
+		$this->mLogout->register('Site.Logout');
 		
 		$this->mCreateLanguageManager = new XCube_Delegate();
-		$this->mCreateLanguageManager->register("Legacy_Controller.CreateLanguageManager");
+		$this->mCreateLanguageManager->register('Legacy_Controller.CreateLanguageManager');
 		
 		$this->mGetLanguageName = new XCube_Delegate();
-		$this->mGetLanguageName->register("Legacy_Controller.GetLanguageName");
+		$this->mGetLanguageName->register('Legacy_Controller.GetLanguageName');
 		
 		$this->mSetBlockCachePolicy = new XCube_Delegate();
 		$this->mSetModuleCachePolicy = new XCube_Delegate();
@@ -151,22 +151,15 @@ class Legacy_Controller extends XCube_Controller
 		
 		$adminStateFlag = false;
 		if (count($urlInfo) >= 3) {
-			if (strtolower($urlInfo[0]) == "modules" && strtolower($urlInfo[2]) == "admin"){
-				$adminStateFlag = true;
+			if (strtolower($urlInfo[0]) == 'modules') {
+				if (strtolower($urlInfo[2]) == 'admin')	$adminStateFlag = true;
+				elseif ($urlInfo[1] == 'legacy' && $urlInfo[2] == 'include') $adminStateFlag = true;
+				elseif ($urlInfo[1] == 'system' && substr($urlInfo[2], 0, 9) == 'admin.php') $adminStateFlag = true;
 			}
-			elseif ($urlInfo[0] == "modules" && $urlInfo[1] == "legacy" && $urlInfo[2] == "include") {
-				$adminStateFlag = true;
-			}
-			elseif ($urlInfo[0] == "modules" && $urlInfo[1] == "system" && substr($urlInfo[2], 0, 9) == "admin.php") {
-				$adminStateFlag = true;
-			}
-		}
-		if (substr($urlInfo[0], 0, 9) == "admin.php") {
-			$adminStateFlag = true;
-		}
+		} elseif (substr($urlInfo[0], 0, 9) == 'admin.php') $adminStateFlag = true;
 
 		if ($adminStateFlag) {
-			require_once XOOPS_ROOT_PATH . "/modules/legacy/kernel/Legacy_AdminControllerStrategy.class.php";
+			require_once XOOPS_ROOT_PATH . '/modules/legacy/kernel/Legacy_AdminControllerStrategy.class.php';
 			$this->_mStrategy = new Legacy_AdminControllerStrategy($this);
 		}
 		else {
@@ -185,7 +178,7 @@ class Legacy_Controller extends XCube_Controller
 		$this->_setupFilterChain();
 		$this->_processFilter();
 
-		if (!defined("OH_MY_GOD_HELP_ME")) {
+		if (!defined('OH_MY_GOD_HELP_ME')) {
 			error_reporting(0);
 		}
 	
@@ -321,7 +314,7 @@ class Legacy_Controller extends XCube_Controller
 		require_once XOOPS_ROOT_PATH.'/include/version.php';
 		
 		require_once XOOPS_TRUST_PATH.'/settings/definition.inc.php';
-		define("XOOPS_LEGACY_PATH",XOOPS_MODULE_PATH."/".XOOPS_LEGACY_PROC_NAME);
+		define('XOOPS_LEGACY_PATH',XOOPS_MODULE_PATH.'/'.XOOPS_LEGACY_PROC_NAME);
 
 		require_once XOOPS_ROOT_PATH.'/include/functions.php';
 
@@ -495,7 +488,7 @@ class Legacy_Controller extends XCube_Controller
 			return;
 		}
 		
-		if (!file_exists(XOOPS_ROOT_PATH . "/modules/" . $dirname . "/" . LEGACY_XOOPS_MODULE_MANIFESTO_FILENAME)) {
+		if (!file_exists(XOOPS_ROOT_PATH . '/modules/' . $dirname . '/' . LEGACY_XOOPS_MODULE_MANIFESTO_FILENAME)) {
 			return;
 		}
 		
@@ -564,7 +557,7 @@ class Legacy_Controller extends XCube_Controller
 			
 			// Guard for XSS string of PHP_SELF
 			// @todo I must move this logic to preload plugin.
-			if(preg_match("/[\<\>\"\'\(\)]/",xoops_getenv('REQUEST_URI')))
+			if(preg_match('/[\<\>\"\'\(\)]/',xoops_getenv('REQUEST_URI')))
 				die();
 		}
 
@@ -583,7 +576,7 @@ class Legacy_Controller extends XCube_Controller
 		//
 		// Set member handler to global variables for compatibility with XOOPS 2.0.x.
 		//		
-		$GLOBALS['xoopsMemberHandler'] =& xoops_gethandler('member');
+		$GLOBALS['xoopsMemberHandler'] = xoops_gethandler('member');
 		$GLOBALS['member_handler'] =& $GLOBALS['xoopsMemberHandler'];
 	}
 	
@@ -628,14 +621,14 @@ class Legacy_Controller extends XCube_Controller
 	 */
 	function _setupLanguage()
 	{
-		require_once XOOPS_LEGACY_PATH."/kernel/Legacy_LanguageManager.class.php";
+		require_once XOOPS_LEGACY_PATH.'/kernel/Legacy_LanguageManager.class.php';
 		
 		$language = null;
 		
 		$this->mGetLanguageName->call(new XCube_Ref($language));
 		
 		if ($language == null) {
-			$handler =& xoops_gethandler('config');
+			$handler = xoops_gethandler('config');
 			$criteria = new CriteriaCompo(new Criteria('conf_modid', 0));
 			$criteria->add(new Criteria('conf_catid', XOOPS_CONF));
 			$criteria->add(new Criteria('conf_name', 'language'));
@@ -675,14 +668,14 @@ class Legacy_Controller extends XCube_Controller
 	 */ 
 	function &_createLanguageManager($language)
 	{
-		require_once XOOPS_LEGACY_PATH . "/kernel/Legacy_LanguageManager.class.php";
+		require_once XOOPS_LEGACY_PATH . '/kernel/Legacy_LanguageManager.class.php';
 
 		$languageManager = null;
 		
 		$this->mCreateLanguageManager->call(new XCube_Ref($languageManager), $language);
 		
 		if (!is_object($languageManager)) {
-			$className = "Legacy_LanguageManager_" . ucfirst(strtolower($language));
+			$className = 'Legacy_LanguageManager_' . ucfirst(strtolower($language));
 			
 			//
 			// If the class exists, create a instance. Else, load the file, and
@@ -692,7 +685,7 @@ class Legacy_Controller extends XCube_Controller
 				$languageManager = new $className();
 			}
 			else {
-				$filePath = XOOPS_ROOT_PATH . "/language/" . $language . "/LanguageManager.class.php";
+				$filePath = XOOPS_ROOT_PATH . '/language/' . $language . '/LanguageManager.class.php';
 				if (file_exists($filePath)) {
 					require_once $filePath;
 				}
@@ -714,14 +707,14 @@ class Legacy_Controller extends XCube_Controller
 
 	function _setupConfig()
 	{
-		$configHandler = &xoops_gethandler('config');
+		$configHandler = xoops_gethandler('config');
 		
 		$this->mRoot->mContext->mXoopsConfig =& $configHandler->getConfigsByCat(XOOPS_CONF);
 
 		$this->mRoot->mContext->mXoopsConfig['language'] = $this->mRoot->mLanguageManager->getLanguage();
 		$GLOBALS['xoopsConfig'] =& $this->mRoot->mContext->mXoopsConfig; // Compatiblity for 2.0.x
 		$GLOBALS['config_handler'] =& $configHandler;
-		$GLOBALS['module_handler'] =& xoops_gethandler('module');
+		$GLOBALS['module_handler'] = xoops_gethandler('module');
 
 		if(count($this->mRoot->mContext->mXoopsConfig) == 0) {
 			return;
@@ -750,7 +743,7 @@ class Legacy_Controller extends XCube_Controller
 		error_reporting(0);
 	
 		$debug_mode = $this->mRoot->mContext->mXoopsConfig['debug_mode'];
-		if (defined("OH_MY_GOD_HELP_ME")) {
+		if (defined('OH_MY_GOD_HELP_ME')) {
 			$debug_mode = XOOPS_DEBUG_PHP;
 		}
 
@@ -774,7 +767,7 @@ class Legacy_Controller extends XCube_Controller
 		if ($this->mRoot->getSiteConfig('Legacy', 'AutoPreload') == 1) {
 			if ($this->mActiveModules) $moduleObjects = $this->mActiveModules;
 			else {
-			$moduleHandler =& xoops_gethandler('module');
+			$moduleHandler = xoops_gethandler('module');
 			$criteria = new Criteria('isactive', 1);
 			$this->mActiveModules =
 			$moduleObjects =& $moduleHandler->getObjects($criteria);
@@ -787,7 +780,7 @@ class Legacy_Controller extends XCube_Controller
 					if ($files) {
 						foreach($files as $file) {
 							require_once $file;
-								$className = ucfirst($mod_dir) . "_" . basename($file, '.class.php');
+								$className = ucfirst($mod_dir) . '_' . basename($file, '.class.php');
 						
 								if (XC_CLASS_EXISTS($className) && !isset($this->_mLoadedFilterNames[$className])) {
 									$this->_mLoadedFilterNames[$className] = true;
@@ -898,7 +891,7 @@ class Legacy_Controller extends XCube_Controller
 					}
 				}
 				
-				$renderTarget->setAttribute("stdout_buffer", ob_get_contents());
+				$renderTarget->setAttribute('stdout_buffer', ob_get_contents());
 			}
 	
 			ob_end_clean();
@@ -932,7 +925,7 @@ class Legacy_Controller extends XCube_Controller
 		//
 		$theme =& $this->_mStrategy->getMainThemeObject();
 		if (!is_object($theme)) {
-			die("Could not found any themes.");
+			die('Could not found any themes.');
 		}
 		
 		$renderSystem =& $this->mRoot->getRenderSystem($theme->get('render_system'));
@@ -974,7 +967,7 @@ class Legacy_Controller extends XCube_Controller
 	{
 		$delegateManager =& parent::_createDelegateManager();
 		
-		$file = XOOPS_ROOT_PATH . "/modules/legacy/kernel/Legacy_EventFunctions.class.php";
+		$file = XOOPS_ROOT_PATH . '/modules/legacy/kernel/Legacy_EventFunctions.class.php';
 		
 		$delegateManager->add('Legacypage.Notifications.Access', 'Legacy_EventFunction::notifications', $file);
 		$delegateManager->add('Legacyfunction.Notifications.Select', 'Legacy_EventFunction::notifications_select', $file);
@@ -991,7 +984,7 @@ class Legacy_Controller extends XCube_Controller
 	{
 		$serviceManager =& parent::_createServiceManager();
 		
-		require_once XOOPS_ROOT_PATH . "/modules/legacy/service/LegacySearchService.class.php";
+		require_once XOOPS_ROOT_PATH . '/modules/legacy/service/LegacySearchService.class.php';
 		$searchService = new Legacy_SearchService();
 		$searchService->prepare();
 		
@@ -1029,10 +1022,10 @@ class Legacy_Controller extends XCube_Controller
 				
 				// RMV-NOTIFY
 				// Perform some maintenance of notification records
-				$notification_handler =& xoops_gethandler('notification');
+				$notification_handler = xoops_gethandler('notification');
 				$notification_handler->doLoginMaintenance($this->mRoot->mContext->mXoopsUser->get('uid'));
 
-				XCube_DelegateUtils::call("Site.CheckLogin.Success", new XCube_Ref($this->mRoot->mContext->mXoopsUser));
+				XCube_DelegateUtils::call('Site.CheckLogin.Success', new XCube_Ref($this->mRoot->mContext->mXoopsUser));
 
 				//
 				// Fall back process for login success.
@@ -1052,12 +1045,12 @@ class Legacy_Controller extends XCube_Controller
 				$this->executeRedirect($url, 1, XCube_Utils::formatMessage(_MD_LEGACY_MESSAGE_LOGIN_SUCCESS, $this->mRoot->mContext->mXoopsUser->get('uname')));
 			}
 			else {
-				XCube_DelegateUtils::call("Site.CheckLogin.Fail", new XCube_Ref($this->mRoot->mContext->mXoopsUser));
+				XCube_DelegateUtils::call('Site.CheckLogin.Fail', new XCube_Ref($this->mRoot->mContext->mXoopsUser));
 				
 				//
 				// Fall back process for login fail.
 				//
-				$this->executeRedirect(XOOPS_URL . "/user.php", 1, _MD_LEGACY_ERROR_INCORRECTLOGIN);
+				$this->executeRedirect(XOOPS_URL . '/user.php', 1, _MD_LEGACY_ERROR_INCORRECTLOGIN);
 			}
 		}
 		else {
@@ -1081,11 +1074,11 @@ class Legacy_Controller extends XCube_Controller
 			
 			$this->mLogout->call(new XCube_Ref($successFlag), $xoopsUser);
 			if ($successFlag) {
-				XCube_DelegateUtils::call("Site.Logout.Success", $xoopsUser);
+				XCube_DelegateUtils::call('Site.Logout.Success', $xoopsUser);
 				$this->executeRedirect(XOOPS_URL . '/', 1, array(_MD_LEGACY_MESSAGE_LOGGEDOUT, _MD_LEGACY_MESSAGE_THANKYOUFORVISIT));
 			}
 			else {
-				XCube_DelegateUtils::call("Site.Logout.Fail", $xoopsUser);
+				XCube_DelegateUtils::call('Site.Logout.Fail', $xoopsUser);
 			}
 		}
 		else {
@@ -1179,16 +1172,16 @@ class Legacy_Controller extends XCube_Controller
 		//
 		// Check the following by way of caution.
 		//
-		if (preg_match("/(javascript|vbscript):/si", $url)) {
+		if (preg_match('/(javascript|vbscript):/si', $url)) {
 			$url = XOOPS_URL;
 		}
 		
-		$displayMessage = "";
+		$displayMessage = '';
 		if (is_array($message)) {
 			foreach (array_keys($message) as $key) {
 				$message[$key] = htmlspecialchars($message[$key], ENT_QUOTES);
 			}
-			$displayMessage = implode("<br/>", $message);
+			$displayMessage = implode('<br/>', $message);
 		}
 		else {
 			$displayMessage = $message;
@@ -1225,15 +1218,12 @@ class Legacy_Controller extends XCube_Controller
 		if (!defined('XOOPS_CPFUNC_LOADED')) {
 			require_once XOOPS_ROOT_PATH.'/class/template.php';
 			$xoopsTpl = new XoopsTpl();
-			$xoopsTpl->assign('xoops_sitename', htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES));
-			$xoopsTpl->assign('sitename', htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES));
-			$xoopsTpl->assign('langcode', _LANGCODE);
-			$xoopsTpl->assign('charset', _CHARSET);
-			$xoopsTpl->assign('time', $time);
-
-			$xoopsTpl->assign('url', $url);
-			$xoopsTpl->assign('message', $displayMessage);
-			$xoopsTpl->assign('lang_ifnotreload', sprintf(_IFNOTRELOAD, $url));
+			$xoopsTpl->assign(array('xoops_sitename'=>htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES),
+									'sitename'=>htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES),
+									'langcode'=>_LANGCODE, 'charset'=>_CHARSET,
+									'time'=>$time, 'url'=>$url,
+									'message'=>$displayMessage,
+									'lang_ifnotreload'=>sprintf(_IFNOTRELOAD, $url)));
 			$GLOBALS['xoopsModuleUpdate'] = 1;
 			$xoopsTpl->display('db:system_redirect.html');
 		} else {
@@ -1305,7 +1295,7 @@ class Legacy_Controller extends XCube_Controller
 	 */ 
 	function cacheRenderTarget($filepath, &$renderTarget)
 	{
-		$fp = fopen($filepath, "wb");
+		$fp = fopen($filepath, 'wb');
 		if ($fp) {
 			fwrite($fp, $renderTarget->getResult());
 			fclose($fp);
@@ -1330,7 +1320,7 @@ class Legacy_Controller extends XCube_Controller
 	
 	function &_createContext()
 	{
-		require_once XOOPS_ROOT_PATH . "/modules/legacy/kernel/Legacy_HttpContext.class.php";
+		require_once XOOPS_ROOT_PATH . '/modules/legacy/kernel/Legacy_HttpContext.class.php';
 		
 		$context = new Legacy_HttpContext();
 		$request = new XCube_HttpRequest();
@@ -1406,7 +1396,7 @@ class Legacy_AbstractControllerStrategy
 		// Auto pre-loading.
 		//
 		if($this->mController->mRoot->getSiteConfig('Legacy', 'AutoPreload') == 1) {
-			$this->mController->_processPreload(XOOPS_ROOT_PATH . "/preload");
+			$this->mController->_processPreload(XOOPS_ROOT_PATH . '/preload');
 		}
 	}
 
@@ -1421,12 +1411,12 @@ class Legacy_AbstractControllerStrategy
 	 */ 
 	function setupModuleContext(&$context, $dirname)
 	{
-		$handler =& xoops_gethandler('module');
+		$handler = xoops_gethandler('module');
 		$module =& $handler->getByDirname($dirname);
 
 		if (!is_object($module)) {
 			XCube_DelegateUtils::call('Legacy.Event.Exception.XoopsModuleNotFound', $dirname);
-			$this->mController->executeRedirect(XOOPS_URL . '/', 1, "You can't access this URL.");	// TODO need message catalog.
+			$this->mController->executeRedirect(XOOPS_URL . '/', 1, 'You can\'t access this URL.');	// TODO need message catalog.
 			die();
 		}
 		
