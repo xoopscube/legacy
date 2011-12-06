@@ -131,7 +131,7 @@ if( !empty($caldate) && preg_match('/([0-9]{4})-([0-9]{2})-([0-9]{2})/', $caldat
 	$xoopsTpl->assign('displaynav', false);
 }else{
 // If the normal display
-	$articles = Bulletin::getAllPublished( $mydirname , $storynum, $start, $storytopic, 1, true, true, true);
+	$articles = Bulletin::getAllPublished( $mydirname , $storynum, $start, $storytopic, 1, true, true, true);//ver3.0 changed
 }
 
 $scount = count($articles);

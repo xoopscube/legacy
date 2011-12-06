@@ -254,7 +254,7 @@ if( $op == 'post' ){
 			$tags['WAITINGSTORIES_URL'] = $mydirurl.'/index.php?page=submit&storyid=' . $story->getVar('storyid');
 			// admin only
 			$tags['ADMIN_WAITINGSTORIES_URL'] = $mydirurl.'/index.php?mode=admin&op=newarticle';
-			$notification_handler->triggerEvent('global', 0, 'story_submit', $tags, $gperm->getCanApproveUsers( $mydirname ));
+			$notification_handler->triggerEvent('global', 0, 'story_submit', $tags, $gperm->getCanApproveUsers());
 			//for one time notifiction
 			$story->setVar('notifypub', 1);
 		}

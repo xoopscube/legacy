@@ -191,6 +191,9 @@ class BulletinTopic extends XoopsTopic{
 		if( $mode == 'insert' ) {
 			$this->topic_id = $this->db->getInsertId() ;
 			$this->db->query( "UPDATE ".$this->table." SET topic_created=UNIX_TIMESTAMP(),topic_modified=UNIX_TIMESTAMP() WHERE topic_id=".$this->topic_id ) ;
+//ver3.0
+			$gperm =& BulletinGP::getInstance($this->mydirname) ;
+			$result = $gperm->insertdefaultpermissions($this->topic_id);
 		} else {
 			$this->db->query( "UPDATE ".$this->table." SET topic_modified=UNIX_TIMESTAMP() WHERE topic_id=".$this->topic_id ) ;
 		}

@@ -52,7 +52,7 @@ class BulletinGP{
 
 	function getCount($criteria = null)
 	{
-		global $xoopsDB;
+		$xoopsDB =& Database::getInstance() ;
 		$sql = 'SELECT COUNT(*) FROM '.$xoopsDB->prefix('group_permission');
 		if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
 			$sql .= ' '.$criteria->renderWhere();
@@ -68,7 +68,7 @@ class BulletinGP{
 
 	function group_perm($perm_itemid){
 
-		global $xoopsUser,$xoopsModule;
+		global $xoopsUser;
 
 		if ($xoopsUser) {
 			$groups = $xoopsUser->getGroups();
@@ -76,7 +76,9 @@ class BulletinGP{
 			$groups = XOOPS_GROUP_ANONYMOUS;
 		}
 
-		$module_id = $xoopsModule->getVar('mid');
+		$module_handler =& xoops_gethandler('module');
+		$module = $module_handler->getByDirname($this->mydirname);
+		$module_id = $module->mid();
 //		$gperm_handler =& xoops_gethandler('groupperm');
 		if ($this->checkRight('bulletin_permit', $perm_itemid, $groups, $module_id)) {
 			return true;
@@ -86,14 +88,20 @@ class BulletinGP{
 
 	function getAdminUsers(){
 
-		global $xoopsDB, $xoopsModule;
-		$mid = $xoopsModule->mid();
+		$xoopsDB =& Database::getInstance() ;
+
+		$module_handler =& xoops_gethandler('module');
+		$module = $module_handler->getByDirname($this->mydirname);
+		$mid = $module->mid();
 
 		$groups = array();
-		$rs = $xoopsDB->query( "SELECT gperm_groupid FROM ".$xoopsDB->prefix('group_permission')." WHERE  gperm_itemid='$mid' AND gperm_name='module_admin'" ) ;
-		while( list( $id ) = $xoopsDB->fetchRow( $rs ) ) {
-			$groups[] = $id ;
-		}
+//		$rs = $xoopsDB->query( "SELECT gperm_groupid FROM ".$xoopsDB->prefix('group_permission')." WHERE  gperm_itemid='$mid' AND gperm_name='module_admin'" ) ;
+//		while( list( $id ) = $xoopsDB->fetchRow( $rs ) ) {
+//			$groups[] = $id ;
+//		}
+		$gperm_name = 'module_admin';
+		$gperm_handler = & xoops_gethandler( 'groupperm' );
+		$groups_admin = $gperm_handler->getGroupIds( $gperm_name, $mid) ;
 
 		$users = array();
 		foreach( $groups as $groupid ){
@@ -111,26 +119,26 @@ class BulletinGP{
 		return $users;
 	}
 
-	function getCanApproveUsers( $mydirname ){
+	function getCanApproveUsers(){
 
 		$db =& Database::getInstance() ;
 
 		$module_handler =& xoops_gethandler('module');
-		$module = $module_handler->getByDirname($mydirname);
+		$module = $module_handler->getByDirname($this->mydirname);
 		$mid = $module->mid();
 
 		$groups = array();
-		$rs = $db->query( "SELECT gperm_groupid FROM ".$db->prefix('group_permission')." WHERE  gperm_itemid='$mid' AND gperm_name='module_admin'" ) ;
-		while( list( $id ) = $db->fetchRow( $rs ) ) {
-			$groups[] = $id ;
-		}
-		//can approve
-		$rs = $db->query( "SELECT gperm_groupid FROM ".$db->prefix('group_permission')." WHERE  gperm_modid='$mid' AND gperm_name='bulletin_permit' AND gperm_itemid=2" ) ;
-		while( list( $id ) = $db->fetchRow( $rs ) ) {
-			$groups[] = $id ;
-		}
-		$groups = array_unique($groups);
+		$groups_admin = array();
+		$groups_approve = array();
+		$gperm_handler = & xoops_gethandler( 'groupperm' );
 
+		$gperm_name = 'module_admin';
+		$groups_admin = $gperm_handler->getGroupIds( $gperm_name, $mid) ;
+
+		$gperm_name = 'bulletin_permit';
+		$groups_approve = $gperm_handler->getGroupIds( $gperm_name, 2, $mid) ;
+
+		$groups = array_unique(array_merge($groups_admin,$groups_approve));
 
 		$users = array();
 		foreach( $groups as $groupid ){
@@ -151,6 +159,7 @@ class BulletinGP{
 	// By yoshis
 	function bulletin_get_topic_permissions_of_current_user( $mydirname ){
 		global $xoopsUser ;
+
 		$db =& Database::getInstance() ;
 
 		if( is_object( $xoopsUser ) ) {
@@ -208,6 +217,76 @@ class BulletinGP{
 			}
 		}
 		return $ret;
+	}
+
+	function insertdefaultpermissions($topic_id=0){
+
+		if (empty($topic_id)){
+			return true;
+		}
+		$db =& Database::getInstance() ;
+
+		$module_handler =& xoops_gethandler('module');
+		$module = $module_handler->getByDirname($this->mydirname);
+		$mid = $module->mid();
+
+		$can_groups = array();
+
+		$gperm_handler = & xoops_gethandler( 'groupperm' );
+
+		$gperm_name = 'module_read';
+		$groups = $gperm_handler->getGroupIds( $gperm_name, $mid) ;
+		if (empty($groups)){
+			return ;
+		}
+		foreach ($groups as $gid){
+			$can_groups[$gid]['can_read'] = 1;
+			$can_groups[$gid]['can_post'] = 0;
+			$can_groups[$gid]['can_edit'] = 0;
+			$can_groups[$gid]['can_delete'] = 0;
+			$can_groups[$gid]['post_auto_approved'] = 0;
+		}
+
+		$gperm_name = 'module_admin';
+		$groups = $gperm_handler->getGroupIds( $gperm_name, $mid) ;
+		if (!empty($groups)){
+			foreach ($groups as $gid){
+				if(isset($can_groups[$gid])){
+					$can_groups[$gid]['can_post'] = 1;
+					$can_groups[$gid]['can_edit'] = 1;
+					$can_groups[$gid]['can_delete'] = 1;
+					$can_groups[$gid]['post_auto_approved'] = 1;
+				}
+			}
+		}
+
+		$gperm_name = 'bulletin_permit';
+		$groups = $gperm_handler->getGroupIds( $gperm_name, 1, $mid) ;
+		if (!empty($groups)){
+			foreach ($groups as $gid){
+				if(isset($can_groups[$gid])){
+					$can_groups[$gid]['can_post'] = 1;
+					$can_groups[$gid]['post_auto_approved'] = 1;
+				}
+			}
+		}
+		$groups = $gperm_handler->getGroupIds( $gperm_name, 2, $mid) ;
+		if (!empty($groups)){
+			foreach ($groups as $gid){
+				if(isset($can_groups[$gid])){
+					$can_groups[$gid]['can_post'] = 1;
+					$can_groups[$gid]['can_edit'] = 1;
+					$can_groups[$gid]['post_auto_approved'] = 1;
+				}
+			}
+		}
+
+		foreach ($can_groups as $groupid => $value) {
+			$sql = "INSERT INTO `".$db->prefix($this->mydirname."_topic_access")."`";
+			$sql .= " (`topic_id`, `uid`, `groupid`, `can_post`, `can_edit`, `can_delete`, `post_auto_approved`)";
+			$sql .= " VALUES (".$topic_id.", NULL, ".$groupid.", ".$value['can_post'].", ".$value['can_edit'].", ".$value['can_delete'].", ".$value['post_auto_approved'].")";
+			$result = $db->query($sql);
+		}
 	}
 }
 ?>

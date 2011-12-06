@@ -145,7 +145,9 @@ case 'topicsmanager':
 	$BTopic = new BulletinTopic( $mydirname );
 	$topics_array = XoopsLists :: getImgListAsArray( $xoopsModuleConfig['topicon_path'] );
 	$images = array();
-	foreach($topics_array as $v) $images[]['image'] = htmlspecialchars($v);
+	foreach($topics_array as $v) {
+		$images[]['image'] = htmlspecialchars($v);
+	}
 	$topics_exists = ( $BTopic->topicExists() ) ? 1 : 0 ;
 	//ob_start();
 	//$BTopic->makeTopicSelBox( 1, 0, 'topic_pid' );

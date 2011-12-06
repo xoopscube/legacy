@@ -120,7 +120,7 @@ if($bulletin_use_relations){
 
 // Recent Posts from Category
 if($bulletin_disp_list_of_cat && $bulletin_stories_of_cat > 0){
-	$category_storeis = Bulletin::getAllPublished( $mydirname , $bulletin_stories_of_cat, 0, $article->getVar('topicid'), 0);
+	$category_storeis = Bulletin::getAllPublished( $mydirname , $bulletin_stories_of_cat, 0, $article->getVar('topicid'), 0, true, false, true);//ver3.0 changed
 	foreach($category_storeis as $category_story){
 		$category_story_asign['storyid']  = $category_story->getVar('storyid');
 		$category_story_asign['title']    = $category_story->getVar('title');

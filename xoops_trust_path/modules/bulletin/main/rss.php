@@ -11,7 +11,7 @@ $tpl = new XoopsTpl();
 $tpl->xoops_setCaching(2);
 $tpl->xoops_setCacheTime(0);
 if (!$tpl->is_cached("db:{$mydirname}_rss.html")) {
-	$articles = Bulletin::getAllPublished( $mydirname , 10 , 0 , 0 , 1 , true , true ,true ) ;
+	$articles = Bulletin::getAllPublished( $mydirname , 10 , 0 , 0 , 1 , true , true ,true ) ;//ver3.0 changed
 	if (is_array($articles)) {
 		$tpl->assign('channel_title', bulletin_utf8_encode(htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES)));
 		$tpl->assign('channel_link', XOOPS_URL.'/');

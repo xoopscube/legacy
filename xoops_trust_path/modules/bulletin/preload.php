@@ -34,7 +34,7 @@ class BulletinPreloadBase extends XCube_ActionFilter
 		}
 
 		$myts =& MyTextSanitizer::getInstance();
-		$articles = Bulletin::getAllPublished( $this->mydirname , 10 , 0 ) ;
+		$articles = Bulletin::getAllPublished( $this->mydirname , 10 , 0 , 0 , 1 , true, true, true) ;//ver3.0 changed
 		foreach( $articles as $article ) {
 			$hometext = $article->getVar('hometext','n') ;
 			if( function_exists( 'easiestml' ) ) {
@@ -42,8 +42,8 @@ class BulletinPreloadBase extends XCube_ActionFilter
 			}
 			$items[] = array(
 				'pubdate' => $article->getVar('published') ,
-				'title' => htmlspecialchars(bulletin_utf8_encode($article->getVar('title', 'n')), ENT_QUOTES), 
-				'category' => htmlspecialchars(bulletin_utf8_encode($article->newstopic->topic_title), ENT_QUOTES), 
+				'title' => htmlspecialchars(bulletin_utf8_encode($article->getVar('title', 'n')), ENT_QUOTES),
+				'category' => htmlspecialchars(bulletin_utf8_encode($article->newstopic->topic_title), ENT_QUOTES),
 				'link' => XOOPS_URL.'/modules/'.$this->mydirname.'/index.php?page=article&amp;storyid='.$article->getVar('storyid') ,
 				'guid' => XOOPS_URL.'/modules/'.$this->mydirname.'/index.php?page=article&amp;storyid='.$article->getVar('storyid') ,
 				'description' => bulletin_utf8_encode(htmlspecialchars(strip_tags($myts->xoopsCodeDecode($hometext)), ENT_QUOTES)),
