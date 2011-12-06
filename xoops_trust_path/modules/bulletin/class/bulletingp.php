@@ -52,16 +52,16 @@ class BulletinGP{
 
 	function getCount($criteria = null)
 	{
-		$xoopsDB =& Database::getInstance() ;
-		$sql = 'SELECT COUNT(*) FROM '.$xoopsDB->prefix('group_permission');
+		$db =& Database::getInstance() ;
+		$sql = 'SELECT COUNT(*) FROM '.$db->prefix('group_permission');
 		if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
 			$sql .= ' '.$criteria->renderWhere();
 		}
-		$result = $xoopsDB->query($sql);
+		$result = $db->query($sql);
 		if (!$result) {
 			return 0;
 		}
-		list($count) = $xoopsDB->fetchRow($result);
+		list($count) = $db->fetchRow($result);
 		return $count;
 	}
 
@@ -88,27 +88,29 @@ class BulletinGP{
 
 	function getAdminUsers(){
 
-		$xoopsDB =& Database::getInstance() ;
+		$db =& Database::getInstance() ;
 
 		$module_handler =& xoops_gethandler('module');
 		$module = $module_handler->getByDirname($this->mydirname);
 		$mid = $module->mid();
 
-		$groups = array();
-//		$rs = $xoopsDB->query( "SELECT gperm_groupid FROM ".$xoopsDB->prefix('group_permission')." WHERE  gperm_itemid='$mid' AND gperm_name='module_admin'" ) ;
-//		while( list( $id ) = $xoopsDB->fetchRow( $rs ) ) {
+//		$groups = array();
+//		$rs = $db->query( "SELECT gperm_groupid FROM ".$db->prefix('group_permission')." WHERE  gperm_itemid='$mid' AND gperm_name='module_admin'" ) ;
+//		while( list( $id ) = $db->fetchRow( $rs ) ) {
 //			$groups[] = $id ;
 //		}
 		$gperm_name = 'module_admin';
 		$gperm_handler = & xoops_gethandler( 'groupperm' );
-		$groups_admin = $gperm_handler->getGroupIds( $gperm_name, $mid) ;
+		$groups = $gperm_handler->getGroupIds( $gperm_name, $mid) ;
 
 		$users = array();
 		foreach( $groups as $groupid ){
-			$sql = 'SELECT uid FROM '.$xoopsDB->prefix('groups_users_link').' WHERE groupid='.intval($groupid);
-			$result = $xoopsDB->query($sql);
-			while ($myrow = $xoopsDB->fetchArray($result)) {
-				$users[] = $myrow['uid'];
+			$sql = 'SELECT uid FROM '.$db->prefix('groups_users_link').' WHERE groupid='.intval($groupid);
+			$result = $db->query($sql);
+			if ( $result ){
+				while ($myrow = $db->fetchArray($result)) {
+					$users[] = $myrow['uid'];
+				}
 			}
 		}
 
@@ -141,11 +143,13 @@ class BulletinGP{
 		$groups = array_unique(array_merge($groups_admin,$groups_approve));
 
 		$users = array();
-		foreach( $groups as $groupid ){
+		foreach( $groups as $key => $groupid ){
 			$sql = 'SELECT uid FROM '.$db->prefix('groups_users_link').' WHERE groupid='.intval($groupid);
 			$result = $db->query($sql);
-			while ($myrow = $db->fetchArray($result)) {
-				$users[] = $myrow['uid'];
+			if ( $result ){
+				while ($myrow = $db->fetchArray($result)) {
+					$users[] = $myrow['uid'];
+				}
 			}
 		}
 
@@ -155,6 +159,54 @@ class BulletinGP{
 
 		return $users;
 	}
+
+	function getCanReadUsersByTopic( $topic_id ){
+
+		$db =& Database::getInstance() ;
+
+		$module_handler =& xoops_gethandler('module');
+		$module = $module_handler->getByDirname($this->mydirname);
+		$mid = $module->mid();
+
+		$groups = array();
+		$sql = "SELECT groupid FROM ".$db->prefix($this->mydirname."_topic_access");
+		$sql .= " WHERE topic_id=".intval($topic_id );
+		$sql .= " AND NOT(`groupid`=".intval(XOOPS_GROUP_ANONYMOUS).")" ;
+		$result = $db->query( $sql );
+		if( $result ) {
+			while( $row = $db->fetchArray( $result ) ) {
+				$groups[] = $row['groupid'] ;
+			}
+		}
+
+		$groups_users = array();
+		foreach( $groups as $key => $groupid ){
+			$sql = 'SELECT uid FROM '.$db->prefix('groups_users_link').' WHERE groupid='.intval($groupid);
+			$result = $db->query($sql);
+			if ( $result ){
+				while ($myrow = $db->fetchArray($result)) {
+					$groups_users[] = $myrow['uid'];
+				}
+			}
+		}
+
+		$topic_can_read_user = array();
+		$sql = "SELECT uid FROM ".$db->prefix($this->mydirname."_topic_access");
+		$sql .= " WHERE topic_id=".intval($topic_id )." AND uid>0";
+		$result = $db->query($sql);
+		if ( $result ){
+			while ($myrow = $db->fetchArray($result)) {
+				$topic_can_read_user[] = $myrow['uid'];
+			}
+		}
+
+		$users = array_unique(array_merge($groups_users,$topic_can_read_user));
+
+		sort($users);
+
+		return $users;
+	}
+
 
 	// By yoshis
 	function bulletin_get_topic_permissions_of_current_user( $mydirname ){
@@ -176,8 +228,10 @@ class BulletinGP{
 		$ret = "";
 		$sql = "SELECT topic_id,SUM(can_post) AS can_post,SUM(can_edit) AS can_edit,SUM(can_delete) AS can_delete,SUM(post_auto_approved) AS post_auto_approved FROM ".$db->prefix($mydirname."_topic_access")." WHERE ($whr) GROUP BY topic_id" ;
 		$result = $db->query( $sql );
-		if( $result ) while( $row = $db->fetchArray( $result ) ) {
-			$ret[ $row['topic_id'] ] = $row ;
+		if( $result ){
+			while( $row = $db->fetchArray( $result ) ) {
+				$ret[ $row['topic_id'] ] = $row ;
+			}
 		}
 		$this->topicPermissions = $ret;
 		if( empty( $ret ) ){

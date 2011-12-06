@@ -241,7 +241,7 @@ if( $op == 'post' ){
 		//when new post is  auto approve
 		if($story->getVar('type')==1){
 			//new story
-			$notification_handler->triggerEvent('global', 0, 'new_story', $tags);
+			$notification_handler->triggerEvent('global', 0, 'new_story', $tags, $gperm->getCanReadUsersByTopic($topicid) );
 			//for one time notifiction
 			$story->setVar('notifypub', 0);
 		}else{
@@ -283,7 +283,7 @@ if( $op == 'post' ){
 		// Notification of Approval
 		if ( $approved == 1 && $notifypub_pre_data == 1){
 			$notification_handler->triggerEvent( 'story', $story->getVar('storyid'), 'approve', $tags );
-			$notification_handler->triggerEvent('global', 0, 'new_story', $tags);
+			$notification_handler->triggerEvent('global', 0, 'new_story', $tags, $gperm->getCanReadUsersByTopic($topicid) );
 
 			//for one time event post
 			if($story->getVar('notifypub')==1){
