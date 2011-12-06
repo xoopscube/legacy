@@ -10,7 +10,6 @@ define( 'XUGJ_ASSIGN_FMT_MENU_ID' , 'menu_level%d_%s_%s' ) ;
 define( 'XUGJ_ASSIGN_FMT_MENU_CLASS' , 'menu_level%d' ) ;
 define( 'SITE_SALT' , substr( md5( XOOPS_URL . XOOPS_DB_PREFIX ) , -4 ) ) ;
 $theme_name = basename( dirname(__FILE__) ) ;
-$menu_cache_file = XOOPS_TRUST_PATH.'/cache/theme_'.$theme_name.'_menus_'.SITE_SALT.'.php' ;
 
 // root controllers
 @include_once XOOPS_ROOT_PATH.'/language/'.$GLOBALS['xoopsConfig']['language'].'/user.php' ;
@@ -71,6 +70,8 @@ $this->assign( array(
 	'xoops_modulename' => $modname ,
 	'xoops_dirname' => $dirname ,
 ) ) ;
+//-- for cache by group
+$menu_cache_file = XOOPS_TRUST_PATH.'/cache/theme_'.$theme_name.'_menus_'.$site_salt;
 
 // PM
 if( is_object( @$xoopsUser ) ) {
@@ -86,11 +87,14 @@ if( is_object( @$xoopsUser ) ) {
 	$groups = $member_handler->getGroupsByUser( $xoopsUser->getVar('uid') , true ) ;
 	foreach( $groups as $group ) {
 		$groups4assign[] = array( 'id' => $group->getVar('groupid') , 'name' => $group->getVar('name') ) ;
+		$menu_cache_file .= $group->getVar('groupid');
 	}
 } else {
 	$groups4assign[] = array( 'id' => XOOPS_GROUP_ANONYMOUS , 'name' => _GUESTS ) ;
+	$menu_cache_file .= '0';
 }
 $this->assign( "xugj_groups" , $groups4assign ) ;
+$menu_cache_file .= $GLOBALS['xoopsConfig']['language'].'.php' ;
 
 /* for speed up hack :-) original
 if( ! empty( $_SESSION['redirect_message'] ) ) {
@@ -218,18 +222,18 @@ if( empty( $menus ) ) {
 			}
 		}
 	}
-	
+
 	// restore
 	if( is_object( @$xoopsModuleBackup ) ) {
 		$GLOBALS['xoopsModule'] =& $xoopsModuleBackup ;
 		$GLOBALS['xoopsModuleConfig'] =& $xoopsModuleBackup ;
 	}
-	
+
 	ob_start() ;
 	var_export( $menus ) ;
 	$menus4cache = ob_get_contents() ;
 	ob_end_clean() ;
-	
+
 	$fp = fopen( $menu_cache_file , 'wb' ) ;
 	if( empty( $fp ) ) return ;
 	fwrite( $fp , "<?php\n\$menus = ".$menus4cache.";\n?>" ) ;
