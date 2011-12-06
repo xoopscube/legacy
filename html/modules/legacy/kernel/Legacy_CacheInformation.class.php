@@ -216,8 +216,8 @@ class Legacy_BlockCacheInformation extends Legacy_AbstractCacheInformation
         $this->mGetCacheFilePath->call(new XCube_Ref($filepath), $this);
         
         if (!$filepath) {
-            $id = md5(XOOPS_SALT . "(" . implode("_", $this->mIdentityArr) . ")" . implode("_", $this->mGroupArr));
-            $filepath = XOOPS_CACHE_PATH . "/bid".$this->mBlock->get('bid') . '_' . $id . ".cache.html";
+            $id = md5(XOOPS_SALT . '(' . implode('_', $this->mIdentityArr) . ')' . implode('_', $this->mGroupArr));
+            $filepath = XOOPS_CACHE_PATH . '/' . urlencode(XOOPS_URL) . '_bid'. $this->mBlock->get('bid') . '_' . $id . '.cache.html';
         }
         
         return $filepath;
