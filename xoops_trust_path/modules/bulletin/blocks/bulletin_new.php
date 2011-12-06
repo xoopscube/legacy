@@ -30,9 +30,6 @@ function b_bulletin_new_show($options) {
 	require dirname( dirname( __FILE__ ) ).'/include/configs.inc.php';
 	require_once dirname(dirname(__FILE__)).'/class/bulletingp.php' ;
 
-	$module_handler  =& xoops_gethandler('module');
-	$module =& $module_handler->getByDirname($mydirname);
-
 	$block = array();
 
 //ver3.0 can_read access
