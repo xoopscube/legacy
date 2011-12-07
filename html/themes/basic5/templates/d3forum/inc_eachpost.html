@@ -43,7 +43,7 @@
 	<{else}>
 		<{$smarty.const._MD_D3FORUM_PARENTPOST}>
 	<{/if}> -
-	
+
 	<{if $post.first_child_id}>
 		<{foreach from=$post.f1s key="f1_id" item="f1_leaf_number" name="f1_loop"}>
 			<a href="<{$f1_id|string_format:$inner_link_format}>"><{if $smarty.foreach.f1_loop.first}><{$smarty.const._MD_D3FORUM_CHILDPOSTS}><{/if}><{$f1_leaf_number}></a>
@@ -51,7 +51,7 @@
 	<{else}>
 		<{$smarty.const._MD_D3FORUM_NOCHILDPOSTS}>
 	<{/if}> |
-	
+
 	<{$smarty.const._MD_D3FORUM_ON}> <{$post.post_time_formatted}> <{if $post.post_time < $post.modified_time}> | <span title="<{$post.modified_time_formatted}>"><{$smarty.const._MD_D3FORUM_LASTMODIFIED}></span><{/if}>
 	</div>
 </div>
@@ -85,7 +85,7 @@
 <!-- post foot control -->
 <div class="d3f_info_ctrl">
 <{if $forum.isadminormod}>
-	<a href="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$post.id}>" class="cutpaste"><img src="<{$xoops_imageurl}>images/adminicon_cutpaste.gif" alt="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>" /></a> |
+	<a href="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$post.id}>" class="cutpaste"><img src="<{$mod_imageurl}>/adminicon_cutpaste.gif" alt="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>" /></a> |
 <{/if}>
 
 <{if ! $post.approval && $forum.isadminormod}>

@@ -42,7 +42,7 @@
 <{/if}>
 	<a href="<{$mod_url}>/index.php?post_id=<{$eachpost.id}>" id="post_path<{$eachpost.unique_path}>" name="post_path<{$eachpost.unique_path}>"><img src="<{$xoops_imageurl}>images/posticon<{$eachpost.icon}>.gif" alt="<{$icon_meanings[$eachpost.icon]}>" /> <{$eachpost.subject}></a>
 	(<{$eachpost.poster_uname}>, <{$eachpost.post_time_formatted}>)
-	<{if $forum.isadminormod}><a href="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$eachpost.id}>"><img src="<{$xoops_imageurl}>images/adminicon_cutpaste.gif" alt="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>" /></a><{/if}></span>
+	<{if $forum.isadminormod}><a href="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$eachpost.id}>"><img src="<{$mod_imageurl}>/adminicon_cutpaste.gif" alt="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>" /></a><{/if}></span>
 <{$eachpost.ul_out}>
 <{/foreach}>
 <!-- end topic tree -->

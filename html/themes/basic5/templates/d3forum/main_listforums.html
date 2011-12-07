@@ -5,7 +5,7 @@
 	<{strip}>
 	<a href="<{$mod_url}>/index.php?cat_ids=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LISTTOPICSINCATEGORY}></a>
 	<{if $mod_config.show_breadcrumbs}>
-	 | 
+	 |
 	<a href="<{$mod_url}>/index.php"><{$smarty.const._MD_D3FORUM_TOP}></a>
 	<{foreach name=catgorybreadcrumbs from=$category.paths_raw key=parent_id item=parent_title_raw}>
 		<{if ! $smarty.foreach.catgorybreadcrumbs.last}>
@@ -27,13 +27,13 @@
 	<{if $xoops_isadmin}>
 	<{strip}>
 		<li><a href="<{$mod_url}>/index.php?page=makecategory&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_MAKESUBCATEGORY}></a><{$smarty.const._MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY}></li>
-		<li><a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}><img src="<{$xoops_imageurl}>images/icon_pencil22.gif" alt="<{$smarty.const._EDIT}>" width="16" height="16" /></a></li>
+		<li><a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}><img src="<{$mod_imageurl}>/icon_pencil22.gif" alt="<{$smarty.const._EDIT}>" width="16" height="16" /></a></li>
 	<{/strip}>
 	<{/if}>
 	<{if $xoops_isadmin}>
 		<li><a href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYACCESS}></a></li>
 	<{/if}>
-	<li><a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$category.id}>&amp;odr=1"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}><img src="<{$xoops_imageurl}>/images/icon_rss.png" alt="RSS" width="16" height="16" /></a></li>
+	<li><a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$category.id}>&amp;odr=1"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}><img src="<{$xoops_imageurl}>images/icon_rss.png" alt="RSS" width="16" height="16" /></a></li>
 </ul>
 <{/if}>
 
@@ -42,9 +42,9 @@
 <ul class="d3f_subcategories">
 <{foreach item=subcategory from=$subcategories}>
 	<li>
-		<a href="<{$mod_url}>/index.php?cat_id=<{$subcategory.id}>"<{if $subcategory.desc}> title="<{$subcategory.desc}>"<{/if}>><img src="<{$xoops_imageurl}>images/category_<{$subcategory.bit_new}>.gif" alt="<{$subcategory.title}>" width="16" height="16" /> <{$subcategory.title}></a> (<{$smarty.const._MD_D3FORUM_TOTALTOPICSCOUNT}>: <{$subcategory.topics_count_in_tree}>, <{$smarty.const._MD_D3FORUM_TOTALPOSTSCOUNT}>: <{$subcategory.posts_count_in_tree}>)
-		<{if $xoops_isadmin}><a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$subcategory.id}>"><img src="<{$xoops_imageurl}>images/icon_pencil22.gif" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>" width="16" height="16" /></a><{/if}>
-		<a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$subcategory.id}>&amp;odr=1"><img src="<{$xoops_imageurl}>/images/icon_rss.png" alt="RSS" title="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}>" width="16" height="16" /></a>
+		<a href="<{$mod_url}>/index.php?cat_id=<{$subcategory.id}>"<{if $subcategory.desc}> title="<{$subcategory.desc}>"<{/if}>><img src="<{$mod_imageurl}>/category_<{$subcategory.bit_new}>.gif" alt="<{$subcategory.title}>" width="16" height="16" /> <{$subcategory.title}></a> (<{$smarty.const._MD_D3FORUM_TOTALTOPICSCOUNT}>: <{$subcategory.topics_count_in_tree}>, <{$smarty.const._MD_D3FORUM_TOTALPOSTSCOUNT}>: <{$subcategory.posts_count_in_tree}>)
+		<{if $xoops_isadmin}><a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$subcategory.id}>"><img src="<{$mod_imageurl}>/icon_pencil22.gif" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>" width="16" height="16" /></a><{/if}>
+		<a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$subcategory.id}>&amp;odr=1"><img src="<{$xoops_imageurl}>images/icon_rss.png" alt="RSS" title="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}>" width="16" height="16" /></a>
 	</li>
 <{/foreach}>
 </ul>
@@ -66,16 +66,16 @@
 <{foreach item=forum from=$forums}>
 <tr class="<{cycle values="even,odd"}>">
 <{strip}>
-	<td class="d3f_mainicon"><img src="<{$xoops_imageurl}>images/forum_<{$forum.bit_new}>.gif" alt="<{$forum.title}>" /></td>
+	<td class="d3f_mainicon"><img src="<{$mod_imageurl}>/forum_<{$forum.bit_new}>.gif" alt="<{$forum.title}>" /></td>
 	<td>
 		<dl>
 		<dt>
 			<a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>"><{$forum.title}></a>
 		&nbsp;
 			<{if $forum.isadminormod}>
-				<a href="<{$mod_url}>/index.php?page=forummanager&amp;forum_id=<{$forum.id}>"><img src="<{$xoops_imageurl}>images/icon_pencil22.gif" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._MD_D3FORUM_LINK_FORUMMANAGER}>" width="16" height="16" /></a>
+				<a href="<{$mod_url}>/index.php?page=forummanager&amp;forum_id=<{$forum.id}>"><img src="<{$mod_imageurl}>/icon_pencil22.gif" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._MD_D3FORUM_LINK_FORUMMANAGER}>" width="16" height="16" /></a>
 			<{/if}>
-			<a href="<{$mod_url}>/index.php?page=rss&amp;forum_id=<{$forum.id}>"><img src="<{$xoops_imageurl}>/images/icon_rss.png" alt="RSS" title="<{$smarty.const._MD_D3FORUM_LINK_FORUMRSS}>" width="16" height="16" /></a>
+			<a href="<{$mod_url}>/index.php?page=rss&amp;forum_id=<{$forum.id}>"><img src="<{$xoops_imageurl}>images/icon_rss.png" alt="RSS" title="<{$smarty.const._MD_D3FORUM_LINK_FORUMRSS}>" width="16" height="16" /></a>
 		</dt>
 		<dd><{$forum.desc}></dd>
 		<dd class="d3f_td_topicinfo">
@@ -89,7 +89,7 @@
 	</dl></td>
 	<td><{$forum.topics_count}></td>
 	<td><{$forum.posts_count}></td>
-	<td class="d3f_posters"><{if $forum.last_post_time}><{$forum.last_post_time_formatted}><br /><{$forum.last_post_uname}> <a href="<{$mod_url}>/index.php?post_id=<{$forum.last_post_id}>"><img src="<{$xoops_imageurl}>images/posticon<{$forum.last_post_icon}>.gif" alt="<{$forum.last_post_subject}>" title="<{$forum.last_post_subject}>" /></a><{/if}></td>
+	<td class="d3f_posters"><{if $forum.last_post_time}><{$forum.last_post_time_formatted}><br /><{$forum.last_post_uname}> <a href="<{$mod_url}>/index.php?post_id=<{$forum.last_post_id}>"><img src="<{$mod_imageurl}>/posticon<{$forum.last_post_icon}>.gif" alt="<{$forum.last_post_subject}>" title="<{$forum.last_post_subject}>" /></a><{/if}></td>
 <{/strip}>
 </tr>
 <{/foreach}>
@@ -98,10 +98,10 @@
 
 <div class="d3f_iconexps">
 <ul class="d3f_iconexp">
-	<li><img src="<{$xoops_imageurl}>images/forum_1.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_ALT_NEWPOSTS}></li>
+	<li><img src="<{$mod_imageurl}>/forum_1.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_ALT_NEWPOSTS}></li>
 </ul>
 <ul class="d3f_iconexp">
-	<li><img src="<{$xoops_imageurl}>images/forum_0.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_ALT_NONEWPOSTS}></li>
+	<li><img src="<{$mod_imageurl}>/forum_0.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_ALT_NONEWPOSTS}></li>
 </ul>
 </div>
 <{/if}>

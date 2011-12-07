@@ -62,17 +62,17 @@
 	<td class="d3f_mainicon"><img src="<{$topic_icon_src}>" alt="<{$topic_icon_alt}>" /></td>
 	<td class="d3f_topictitle">
 	<{if $topic.locked}>
-		<img src="<{$xoops_imageurl}>images/topic_status_locked1.gif" alt="<{$smarty.const._MD_D3FORUM_TOPICLOCKED}>" />
+		<img src="<{$mod_imageurl}>/topic_status_locked1.gif" alt="<{$smarty.const._MD_D3FORUM_TOPICLOCKED}>" />
 	<{/if}>
 	<{if ! $topic.solved}>
 		<{if $topic.forum_isadminormod}>
-			<a href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=cat_ids&amp;ret_val=<{$cat_ids}>" title="<{$smarty.const._MD_D3FORUM_SOLVED_TURNON}>"><img src="<{$xoops_imageurl}>images/topic_status_solved0.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>" /></a>
+			<a href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=cat_ids&amp;ret_val=<{$cat_ids}>" title="<{$smarty.const._MD_D3FORUM_SOLVED_TURNON}>"><img src="<{$mod_imageurl}>/topic_status_solved0.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>" /></a>
 		<{else}>
-			<img src="<{$xoops_imageurl}>images/topic_status_solved0.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>" />
+			<img src="<{$mod_imageurl}>/topic_status_solved0.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>" />
 		<{/if}>
 	<{/if}>
 	<{if $uid && $topic.u2t_marked}>
-		<a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=cat_ids&amp;ret_val=<{$cat_ids}>" title="<{$smarty.const._MD_D3FORUM_MARK_TURNOFF}>"><img src="<{$xoops_imageurl}>images/topic_status_marked1.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}>" /></a>
+		<a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=cat_ids&amp;ret_val=<{$cat_ids}>" title="<{$smarty.const._MD_D3FORUM_MARK_TURNOFF}>"><img src="<{$mod_imageurl}>/topic_status_marked1.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}>" /></a>
 	<{/if}>
 	<a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>"><{$topic.title}></a><{$topic.topic_page_jump}>
 	<br />
@@ -99,15 +99,15 @@
 
 <div class="d3f_iconexps">
 <ul class="d3f_iconexp">
-	<li><img src="<{$xoops_imageurl}>images/topic_11.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICNEWPOSTS}></li>
-	<li><img src="<{$xoops_imageurl}>images/topic_01.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICNONEWPOSTS}></li>
-	<li><img src="<{$xoops_imageurl}>images/topic_invisible.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICINVISIBLE}></li>
-	<li><img src="<{$xoops_imageurl}>images/topic_sticky0.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICSTICKY}></li>
+	<li><img src="<{$mod_imageurl}>/topic_11.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICNEWPOSTS}></li>
+	<li><img src="<{$mod_imageurl}>/topic_01.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICNONEWPOSTS}></li>
+	<li><img src="<{$mod_imageurl}>/topic_invisible.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICINVISIBLE}></li>
+	<li><img src="<{$mod_imageurl}>/topic_sticky0.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICSTICKY}></li>
 </ul>
 <ul class="d3f_iconexp">
-	<li><img src="<{$xoops_imageurl}>images/topic_status_locked1.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICLOCKED}></li>
-	<li><img src="<{$xoops_imageurl}>images/topic_status_solved0.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}></li>
-	<li><img src="<{$xoops_imageurl}>images/topic_status_marked1.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}></li>
+	<li><img src="<{$mod_imageurl}>/topic_status_locked1.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICLOCKED}></li>
+	<li><img src="<{$mod_imageurl}>/topic_status_solved0.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}></li>
+	<li><img src="<{$mod_imageurl}>/topic_status_marked1.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}></li>
 </ul>
 </div>
 <!-- forum jumpbox -->

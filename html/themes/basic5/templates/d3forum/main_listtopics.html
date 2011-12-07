@@ -29,7 +29,7 @@
 	<{else}>
 		<li><{$smarty.const._MD_D3FORUM_CANTCREATENEWTOPICTHISFORUM}></li>
 	<{/if}>
-	
+
 	<!-- guest can post or not -->
 	<{if ! $xoops_isuser}>
 		<{if $forum.can_post}>
@@ -106,17 +106,17 @@
 <tr class="<{cycle values="even,odd"}>">
 	<td class="d3f_mainicon"><img src="<{$topic_icon_src}>" alt="<{$topic_icon_alt}>" /></td>
 	<td class="d3f_topictitle"><{if $topic.locked}>
-		<img src="<{$xoops_imageurl}>images/topic_status_locked1.gif" alt="<{$smarty.const._MD_D3FORUM_TOPICLOCKED}>" />
+		<img src="<{$mod_imageurl}>/topic_status_locked1.gif" alt="<{$smarty.const._MD_D3FORUM_TOPICLOCKED}>" />
 	<{/if}>
 	<{if $mod_config.use_solved && ! $topic.solved}>
 		<{if $forum.isadminormod}>
-			<a href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=forum_id&amp;ret_val=<{$forum.id}>" title="<{$smarty.const._MD_D3FORUM_SOLVED_TURNON}>"><img src="<{$xoops_imageurl}>images/topic_status_solved0.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>" /></a>
+			<a href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=forum_id&amp;ret_val=<{$forum.id}>" title="<{$smarty.const._MD_D3FORUM_SOLVED_TURNON}>"><img src="<{$mod_imageurl}>/topic_status_solved0.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>" /></a>
 		<{else}>
-			<img src="<{$xoops_imageurl}>images/topic_status_solved0.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>" />
+			<img src="<{$mod_imageurl}>/topic_status_solved0.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>" />
 		<{/if}>
 	<{/if}>
 	<{if $mod_config.allow_mark && $uid && $topic.u2t_marked}>
-		<a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=forum_id&amp;ret_val=<{$forum.id}>" title="<{$smarty.const._MD_D3FORUM_MARK_TURNOFF}>"><img src="<{$xoops_imageurl}>images/topic_status_marked1.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}>" /></a>
+		<a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=forum_id&amp;ret_val=<{$forum.id}>" title="<{$smarty.const._MD_D3FORUM_MARK_TURNOFF}>"><img src="<{$mod_imageurl}>/topic_status_marked1.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}>" /></a>
 	<{/if}>
 	<a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>"><{$topic.title}></a><{$topic.topic_page_jump}></td>
 	<td><{$topic.replies}></td>
@@ -140,18 +140,18 @@
 
 <div class="d3f_iconexps">
 <ul class="d3f_iconexp">
-	<li><img src="<{$xoops_imageurl}>images/topic_11.gif" alt="" width="18"  height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICNEWPOSTS}></li>
-	<li><img src="<{$xoops_imageurl}>images/topic_01.gif" alt="" width="18"  height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICNONEWPOSTS}></li>
-	<li><img src="<{$xoops_imageurl}>images/topic_invisible.gif" alt="" width="18"  height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICINVISIBLE}></li>
-	<li><img src="<{$xoops_imageurl}>images/topic_sticky0.gif" alt="" width="18"  height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICSTICKY}></li>
+	<li><img src="<{$mod_imageurl}>/topic_11.gif" alt="" width="18"  height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICNEWPOSTS}></li>
+	<li><img src="<{$mod_imageurl}>/topic_01.gif" alt="" width="18"  height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICNONEWPOSTS}></li>
+	<li><img src="<{$mod_imageurl}>/topic_invisible.gif" alt="" width="18"  height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICINVISIBLE}></li>
+	<li><img src="<{$mod_imageurl}>/topic_sticky0.gif" alt="" width="18"  height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICSTICKY}></li>
 </ul>
 <ul class="d3f_iconexp">
-	<li><img src="<{$xoops_imageurl}>images/topic_status_locked1.gif" alt="" width="18"  height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICLOCKED}></li>
+	<li><img src="<{$mod_imageurl}>/topic_status_locked1.gif" alt="" width="18"  height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICLOCKED}></li>
 <{if $mod_config.use_solved && ! $topic.solved}><!-- marine modifi -->
-	<li><img src="<{$xoops_imageurl}>images/topic_status_solved0.gif" alt="" width="18"  height="18" /> = <{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}></li>
+	<li><img src="<{$mod_imageurl}>/topic_status_solved0.gif" alt="" width="18"  height="18" /> = <{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}></li>
 <{/if}><!-- marine modifi -->
 <{if $mod_config.allow_mark && $uid && $topic.u2t_marked}><!-- marine modifi -->
-	<li><img src="<{$xoops_imageurl}>images/topic_status_marked1.gif" alt="" width="18"  height="18" /> = <{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}></li>
+	<li><img src="<{$mod_imageurl}>/topic_status_marked1.gif" alt="" width="18"  height="18" /> = <{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}></li>
 <{/if}><!-- marine modifi -->
 </ul>
 </div>
