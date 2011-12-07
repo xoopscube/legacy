@@ -19,7 +19,7 @@ class D3pipesBlockD3forumrevSubstance extends D3pipesBlockAbstract {
 
 		// configurations (file, name, block_options)
 		$this->func_file = XOOPS_ROOT_PATH.'/modules/'.$this->target_dirname.'/blocks/blocks.php' ;
-	   if (intval( $params[4] )>0) {
+	   if ( isset($params[4]) && intval( $params[4] )>0 ) {
 	   	//posts
 		$this->func_name = 'b_d3forum_list_posts_show' ;
 		$this->block_options = array(
@@ -56,7 +56,7 @@ class D3pipesBlockD3forumrevSubstance extends D3pipesBlockAbstract {
 		   foreach( $data['topics'] as $topic ) {
 			$entry = array(
 				'pubtime' => $topic['last_post_time'] , // timestamp
-				'link' => $data['mod_url'].'/index.php?topic_id='.$topic['id'].'#post_id'.$post['last_post_id'] ,
+				'link' => $data['mod_url'].'/index.php?topic_id='.$topic['id'].'#post_id'.$topic['last_post_id'] ,
 				//'headline' => $topic['title'] ,
 				'headline' => '['.$topic['forum_title'].'] '.$topic['title'] ,
 				'description' => $topic['post_text'] ,
