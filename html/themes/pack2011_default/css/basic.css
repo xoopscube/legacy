@@ -4,7 +4,7 @@
 * MediaQuery MultiDevice Template ver 0.1β
 * @Author: funnythingz
 * @Url:    http://hiropo.co.uk
-* 
+*
 * basic.css
 */
 
@@ -298,7 +298,7 @@ p {
 /* link */
 .link {
 	padding-left: 18px;
-	background: url(/public/resources/common/images/dummy_icon.gif) no-repeat 0 0;
+	background: url(../images/dummy_icon.gif) no-repeat 0 0;
 }
 
 
@@ -314,7 +314,7 @@ p {
 	margin: 0 0 1em;
 }
 .dotList li {
-	background: url(/public/resources/common/images/icn_dot.gif) no-repeat 0 0.6em;
+	background: url(../images/icn_dot.gif) no-repeat 0 0.6em;
 	padding-left: 0.7em;
 	margin-top: 0.5em;
 }
@@ -487,7 +487,7 @@ textarea {
 
 /* background */
 .bgClear {
-	background: url(/public/resources/common/images/bg_clear.png) repeat 0 0;
+	background: url(../images/bg_clear.png) repeat 0 0;
 }
 
 /* clearfix */
@@ -502,4 +502,8 @@ textarea {
 }
 .inlineList {
 	zoom: 1;
+}
+/* fix for XCL2.2
+#mainmenu li a.menuSub {
+	padding: 5px 10px 5px 20px;
 }

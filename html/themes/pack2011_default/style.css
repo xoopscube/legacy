@@ -18,17 +18,17 @@ a:active 			{ outline: none; position: relative; top: 2px; }
   MAIN
 \*------------------------------------*/
 
-body 				{ 
-	background: #F9F9F9; color: #222; font-family: 'Droid Serif', serif; font-size: 16px; 
+body 				{
+	background: #F9F9F9; color: #222; font-family: 'Droid Serif', serif; font-size: 16px;
 	-webkit-transition-property: font-size;
 	-moz-transition-property: font-size;
 	transition-property: font-size;
 	-webkit-transition-duration: 0.5s, 0.5s;
 	-moz-transition-duration: 0.5s, 0.5s;
-	transition-duration: 0.5s, 0.5s; 
-	-webkit-transition-timing function: linear, ease-in;
-	-moz-transition-timing function: linear, ease-in; 
-	transition-timing function: linear, ease-in; 
+	transition-duration: 0.5s, 0.5s;
+	-webkit-transition-timing-function: linear, ease-in;
+	-moz-transition-timing-function: linear, ease-in;
+	transition-timing-function: linear, ease-in;
 }
 
 #wrapper 			{ margin: 10px auto; max-width: 980px; width: 90%; background: #fff; padding: 10px 0; }
@@ -38,33 +38,33 @@ body 				{
 }
 
 h1 {
-	font-size: 90px; font-family: 'Droid Serif', serif; line-height: 50px; padding: 10px; 
+	font-size: 90px; font-family: 'Droid Serif', serif; line-height: 50px; padding: 10px;
 	-webkit-transition-property: font-size;
 	-moz-transition-property: font-size;
 	transition-property: font-size;
 	-webkit-transition-duration: 0.5s, 0.5s;
 	-moz-transition-duration: 0.5s, 0.5s;
-	transition-duration: 0.5s, 0.5s; 
-	-webkit-transition-timing function: linear, ease-in;
-	-moz-transition-timing function: linear, ease-in; 
-	transition-timing function: linear, ease-in;  
+	transition-duration: 0.5s, 0.5s;
+	-webkit-transition-timing-function: linear, ease-in;
+	-moz-transition-timing-function: linear, ease-in;
+	transition-timing-function: linear, ease-in;
 }
 h1 img {
 	position : relative;
-	top: -11px;  
+	top: -11px;
 }
 h1 a:hover 			{ text-decoration: none; color: #27B3CF; }
 
-h2 					{ font-family: 'Helvetica'; font-size: 18px; padding: 10px; 
+h2 					{ font-family: 'Helvetica'; font-size: 18px; padding: 10px;
 	-webkit-transition-property: font-size;
 	-moz-transition-property: font-size;
 	transition-property: font-size;
 	-webkit-transition-duration: 0.5s, 0.5s;
 	-moz-transition-duration: 0.5s, 0.5s;
-	transition-duration: 0.5s, 0.5s; 
-	-webkit-transition-timing function: linear, ease-in;
-	-moz-transition-timing function: linear, ease-in; 
-	transition-timing function: linear, ease-in;
+	transition-duration: 0.5s, 0.5s;
+	-webkit-transition-timing-function: linear, ease-in;
+	-moz-transition-timing-function: linear, ease-in;
+	transition-timing-function: linear, ease-in;
 }
 h3 					{ font-family: 'Droid Serif', serif; font-size: 30px; }
 h4 					{ font-family: 'Droid Serif', serif; padding: 3px; margin: 5px 0 0 0; }
@@ -78,16 +78,16 @@ nav a:hover			{ text-decoration: none; background: #27B3CF; }
 nav a:active		{ position: relative; top: 0; }
 
 .left-col 			{ width: 70%; float: left; }
-.sidebar 			{ width: 20%; float: right; margin-bottom: 10px; 
+.sidebar 			{ width: 20%; float: right; margin-bottom: 10px;
 	-webkit-transition-property: width;
 	-moz-transition-property: width;
 	transition-property: width;
 	-webkit-transition-duration: 0.5s, 0.5s;
 	-moz-transition-duration: 0.5s, 0.5s;
-	transition-duration: 0.5s, 0.5s; 
-	-webkit-transition-timing function: linear, ease-in;
-	-moz-transition-timing function: linear, ease-in; 
-	transition-timing function: linear, ease-in;
+	transition-duration: 0.5s, 0.5s;
+	-webkit-transition-timing-function: linear, ease-in;
+	-moz-transition-timing-function: linear, ease-in;
+	transition-timing-function: linear, ease-in;
 }
 
 #featured 			{ padding: 20px; }
@@ -110,35 +110,35 @@ pre					{ overflow: scroll; font-size: 10px; }
 
 /*------------------------------------------------------- ITEMS */
 
-.breadcrumbs 
+.breadcrumbs
 	{
 	style="margin:12px 6px;
 	}
 
-.item 
+.item
 	{
 	padding: 10px 0px;
 	}
 
-.itemHead 
+.itemHead
 	{
 	padding: 4px;
 	border-bottom:#E2E2FC 1px solid;
 	}
 
-.itemTitle 
+.itemTitle
 	{
 	color: #344587;
-	font-size: 1.7em; 
+	font-size: 1.7em;
 	}
 
-#container .itemTitle a, #container .itemTitle a:visited 
+#container .itemTitle a, #container .itemTitle a:visited
 	{
 	color: #344587;
 	text-decoration: none;
 	}
 
-#container  .itemTitle a:hover 
+#container  .itemTitle a:hover
 	{
 	color:#F89D07;
 	}
@@ -149,33 +149,33 @@ pre					{ overflow: scroll; font-size: 10px; }
 	padding:3px 5px;
 	}
 
-.itemBody 
+.itemBody
 	{
 	padding:4px 0px;
 	}
 
-.itemInfo 
-	{	
+.itemInfo
+	{
 	background: url(images/bg_hbar.gif) repeat-x;
 	padding: 1.5em 1em;
 	text-align: right;
 	}
 
-.itemText 
+.itemText
 	{
 	margin:0px;
 	padding: 8px 4px;
 	line-height: 1.5em;
 	}
 
-.itemFoot 
+.itemFoot
 	{
 	text-align: right;
 	margin: 0;
 	padding: 4px;
 	}
 
-.itemInfo, .itemPoster, .itemPostDate, .itemStats, .itemAdminLink, .itemPermaLink 
+.itemInfo, .itemPoster, .itemPostDate, .itemStats, .itemAdminLink, .itemPermaLink
 	{
 	font-size: 0.9em;
 	}

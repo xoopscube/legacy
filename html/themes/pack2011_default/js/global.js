@@ -1,8 +1,8 @@
 /**
-* MediaQuery MultiDevice Template ver 0.1ƒÀ
+* MediaQuery MultiDevice Template ver 0.1ï¿½ï¿½
 * @Author: funnythingz
 * @Url:    http://hiropo.co.uk
-* 
+*
 * global.js
 */
 
@@ -50,7 +50,7 @@ ProjectName.META = {
 		var rtn = '<meta name="apple-mobile-web-app-capable" content="yes">' + "\n"
 				+ '<meta name="format-detection" content="telephone=no">' + "\n"
 				+ '<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0">' + "\n"
-				+ '<link rel="apple-touch-icon" href="/public/resources/common/images/icon.png">' + "\n"
+				+ '<link rel="apple-touch-icon" href="../images/logo.png">' + "\n"
 		;
 		return rtn;
 	}

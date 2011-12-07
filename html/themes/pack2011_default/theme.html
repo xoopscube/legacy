@@ -35,7 +35,7 @@
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-jktab.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-jcflick.js"></script>
 <!--[if lt IE 7]>
-<script type="text/javascript" src="/public/resources/common/js/DD_belatedPNG_0.0.8a-min.js"></script>
+<script type="text/javascript" src="<{$xoops_imageurl}>js/DD_belatedPNG_0.0.8a-min.js"></script>
 <script type="text/javascript">
 	DD_belatedPNG.fix('img');
 </script>
@@ -204,9 +204,9 @@ jQuery(function($){
 			<{if ! $block.title|strstr:"none"}>
 			<h2 class="level2"><{$block.title}></h2>
 			<{/if}>
-			<ul class="btnList">
+			<div class="btnList">
 			<{$block.content}>
-			</ul>
+			</div>
 			<{/foreach}>
 		<{/if}>
 		<{if $xoops_showrblock}>
@@ -215,9 +215,9 @@ jQuery(function($){
 			<{if ! $block.title|strstr:"none"}>
 			<h2 class="level2"><{$block.title}></h2>
 			<{/if}>
-			<ul class="btnList">
+			<div class="btnList">
 			<{$block.content}>
-			</ul>
+			</div>
 			<{/foreach}>
 		<{/if}>
 		</div><!-- /.subContainer -->
