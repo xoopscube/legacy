@@ -121,7 +121,11 @@ class Bulletin extends XoopsObject{
 	{
 		$sql = "SELECT * FROM ".$this->table." WHERE storyid=".intval($id)."";
 		$myrow = $this->db->fetchArray($this->db->query($sql));
-		$this->assignVars($myrow);
+		//ver3.0 add check for when empty data
+		// Warning [PHP]: Invalid argument supplied for foreach() in file kernel/object.php line 256
+		if (!empty($myrow)){
+			$this->assignVars($myrow);
+		}
 	}
 
 	// Basic Processing

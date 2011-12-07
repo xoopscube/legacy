@@ -32,8 +32,13 @@ $topicid = isset($_POST['topicid']) ? intval($_POST['topicid']) : $topicid;
  * Data loading section
  */
 $story = new Bulletin( $mydirname , $storyid );
+
 if ( $storyid ){
 	$topicid = $story->getVar('topicid');
+	if( empty($topicid) ){
+		die(_MD_NO_TOPICS);
+		exit;
+	}
 }
 if( $topicid ){
 	$story->setVar('topicid', $topicid);
@@ -56,10 +61,14 @@ $str_arr = array('title','text');
 $int_arr = array('topicid','type','topicimg','published','expired');
 $bai_arr = array('html','smiley','br','xcode','autodate','autoexpdate','notifypub','block','ihome','approve');
 foreach( $str_arr as $k ){
-	if( isset($_POST[$k]) ) $story->setVar($k, $_POST[$k]);
+	if( isset($_POST[$k]) ){
+		$story->setVar($k, $_POST[$k]);
+	}
 }
 foreach( $int_arr as $k ){
-	if( isset($_POST[$k]) ) $story->setVar($k, $_POST[$k]);
+	if( isset($_POST[$k]) ){
+		$story->setVar($k, $_POST[$k]);
+	}
 }
 $notifypub_pre_data = 0;
 foreach( $bai_arr as $k ){
@@ -188,13 +197,15 @@ if( $op == 'post' ){
 		}
 		$story->devideHomeTextAndBodyText();
 
-		// approve this article
+		// approve this article when edit
 		$approved = 0;
-		if ( $story->getVar('approve') == 1 ){
-			$story->setVar('type', 1);
-			$approved = 1;
-		}else{
-			$story->setVar('type', 0);
+		if ( $gperm->group_perm(2)){
+			if ( $story->getVar('approve') == 1 ){
+				$story->setVar('type', 1);
+				$approved = 1;
+			}else{
+				$story->setVar('type', 0);
+			}
 		}
 
 		// Routine setting date published
@@ -332,16 +343,35 @@ if( $op == 'form' ){
 	if ($topicid==0){
 		$topicid = $topics[0];
 	}else{
+		$proceed = $gperm->proceed4topic("can_post",$topicid);
+		if (!$proceed){
+			die(_NOPERM);
+		}
+		//TODO edit access
 		if ( !empty( $storyid ) ){// for edit
 			$proceed = $gperm->proceed4topic("can_edit",$topicid);
-			if (!$topics || !$proceed){
+			if (!$proceed){
 				die(_NOPERM);
 			}
+
+			//TODO user only
+			if (!is_object($xoopsUser)) {
+				die(_NOPERM);//XOOPS_GROUP_ANONYMOUS
+			}
+			//user time limit,you can delete one day
+			if (!$xoopsUser->isAdmin()){
+				if (!$gperm->group_perm(2)){
+					if ($story->getVar('uid') === $xoopsUser->uid()){
+						if ($story->getVar('published') < (time() - 86400) ){//if user,one day only
+							die(_NOPERM);//when user,only article of user
+						}
+					}else{
+						die(_NOPERM);//when user,only article of user
+					}
+				}
+			}
+
 		}
-	}
-	$proceed = $gperm->proceed4topic("can_post",$topicid);
-	if (!$topics || !$proceed){
-		die(_NOPERM);
 	}
 
 	$xoopsTpl->assign('topic_selbox', $BTopic->makeMyTopicList($topicid,$topics) );
@@ -388,17 +418,35 @@ if( $op == 'form' ){
 }
 
 if( $op == 'delete' ){
+	if(empty($storyid)){
+		die(_NOPERM);
+		exit();
+	}
 	//need can post of group premition
 	if (!$gperm->group_perm(1)){
 		die(_NOPERM);
 	}
-	//category can_edit
-	if(!$gperm->proceed4topic("can_delete",$topicid)){ die(_NOPERM); exit(); }
-	/*if(!$isadmin){
+	//category can_delete
+	if(!$gperm->proceed4topic("can_delete",$topicid)){
 		die(_NOPERM);
-		exit();
-	}*/
-	$storyid = isset( $_GET['storyid'] ) ? intval( $_GET['storyid'] ) : 0 ;
+	}
+
+	//user
+	if (!is_object($xoopsUser)) {
+		die(_NOPERM);//XOOPS_GROUP_ANONYMOUS
+	}
+	//user time limit,you can delete one day
+	if (!$xoopsUser->isAdmin()){
+		if (!$gperm->group_perm(2)){
+			if ($story->getVar('uid') === $xoopsUser->uid()){
+				if ($story->getVar('published') < (time() - 86400) ){//if user,one day only
+					die(_NOPERM);//when user,only article of user
+				}
+			}else{
+				die(_NOPERM);//when user,only article of user
+			}
+		}
+	}
 
 	if ( !empty( $_POST['ok'] ) ){
 
@@ -433,7 +481,7 @@ if( $op == 'delete' ){
 		exit();
 	}else{
 		require_once XOOPS_ROOT_PATH.'/header.php';
-		xoops_confirm( array( 'op' => 'delete', 'storyid' => $storyid, 'ok' => 1, 'return' => $return, 'XOOPS_G_TICKET'=>$xoopsGTicket->issue( __LINE__ ) ), 'index.php?page=submit', _MD_RUSUREDEL );
+		xoops_confirm( array( 'op' => 'delete', 'storyid' => $storyid, 'ok' => 1, 'return' => $return, 'XOOPS_G_TICKET'=>$xoopsGTicket->issue( __LINE__ ) ), 'index.php?page=submit', $story->getVar('title').'<br/><br/>'._MD_RUSUREDEL );
 		require_once XOOPS_ROOT_PATH.'/footer.php';
 	}
 }

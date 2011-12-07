@@ -55,17 +55,14 @@
 
 	<{d3comment class="BulletinD3commentStory" mydirname=$mydirname mode="count" var="comments_count"}>
 
-<{else}>
-<{*
 	<{if $comments_count}>
 		<a href="<{$mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>"><{$comments_count|string_format:$smarty.const._MD_NUMCOMMENTS}></a>
 	<{else}>
- 		<{$smarty.const._MD_COMMENTS}>
+		<{$smarty.const._MD_COMMENTS}>
 	<{/if}>
-*}>
-	<{if $story.comentstotal}>
+
+<{else}>
 	<a href="<{$mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>"><{$story.comentstotal}></a>
-	<{/if}>
 <{/if}>
 </span>
   </div>

@@ -25,9 +25,9 @@
           <{$smarty.const._MD_INPUTHELPER}>
           </label>
           <br />
-          <{xoopsdhtmltarea name="text" cols=$bulletin_post_tray_col rows=$bulletin_post_tray_row value=$text pre_style="width: 95%; height: auto;" post_style="width: 95%; height: auto;"}>
+          <{xoopsdhtmltarea name="text" cols=$bulletin_post_tray_col rows=$bulletin_post_tray_row value=$text pre_style="display:none;width: 95%; height: auto;" post_style="display:none;width: 95%; height: auto;"}>
      </div>
-     <{if $use_fckeditor}>
+     <{if $use_fckeditor && $common_fck_installed && $xcode!="1" && $br!="1" && $smiley!="1" }>
           <div id="area_fckxoops">
             <script type="text/javascript" src="<{$xoops_url}>/common/fckeditor/fckeditor.js"></script>
             <script type="text/javascript">

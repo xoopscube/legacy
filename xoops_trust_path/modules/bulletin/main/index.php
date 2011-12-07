@@ -151,24 +151,37 @@ for ( $i = 0; $i < $scount; $i++ ) {
 	$story['title_link'] = true;
 
 	$topic_perm = $gperm->getTopicPermission($story['topicid']);
-	if (empty($topic_perm)){
-		$topic_perm['topic_id'] = $articles[$i]->getVar('topicid');
+	if (empty($topic_perm) || !$gperm->group_perm(1) ){
 		$topic_perm['can_post'] = 0;
 		$topic_perm['can_edit'] = 0;
 		$topic_perm['can_delete'] = 0;
 		$topic_perm['post_auto_approved'] = 0;
-		$story = array_merge($story,$topic_perm);
-	}else{
-		if (!$gperm->group_perm(1)){
-			$topic_perm['can_post'] = 0;
-			$topic_perm['can_edit'] = 0;
-			$topic_perm['can_delete'] = 0;
-		}
+	}
+	//TODO user only---------------
+	//user time limit,you can delete one day
+	if (!is_object($xoopsUser) ){
+		$topic_perm['can_post'] = 0;
+		$topic_perm['can_edit'] = 0;
+		$topic_perm['can_delete'] = 0;
+		$topic_perm['post_auto_approved'] = 0;
+	}elseif (!$xoopsUser->isAdmin()){
 		if (!$gperm->group_perm(2)){
 			$topic_perm['post_auto_approved'] = 0;
+
+			if ($articles[$i]->getVar('uid') === $xoopsUser->uid()){
+				if ($articles[$i]->getVar('published') < (time() - 86400) ){//if user,one day only
+					$topic_perm['can_edit'] = 0;
+					$topic_perm['can_delete'] = 0;
+				}
+			}else{
+					$topic_perm['can_edit'] = 0;
+					$topic_perm['can_delete'] = 0;
+			}
 		}
-		$story = array_merge($story,$topic_perm);
 	}
+
+	$story = array_merge($story,$topic_perm);
+
 	//Assign the user information
 	$story['uid']        = $articles[$i]->getVar('uid');
 	$story['uname']      = $articles[$i]->getUname();

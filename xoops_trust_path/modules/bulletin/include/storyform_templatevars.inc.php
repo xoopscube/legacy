@@ -23,10 +23,6 @@ $xoopsTpl->assign('topicid', $story->getVar('topicid'));
 $xoopsTpl->assign('topicimg', $story->getVar('topicimg'));
 
 
-// fckeditor
-$xoopsTpl->assign( 'use_fckeditor' , ! empty( $xoopsModuleConfig['use_fckeditor'] ) && $gperm->group_perm(4) ) ;
-
-
 // if user has right to set date.
 if( $can_use_date = $gperm->group_perm(3) ){
 	// autodate
@@ -69,16 +65,31 @@ if ($use_notify) {
 }
 $xoopsTpl->assign('use_notify', $use_notify);
 
+
 // If the user has a right to use HTML
-if( $use_html = $gperm->group_perm(4) ){
-	$xoopsTpl->assign('html', $story->getVar('html'));
-}
+$use_html = $gperm->group_perm(4);
 $xoopsTpl->assign('use_html', $use_html);
 
+// fckeditor
+$use_fckeditor = ! empty( $xoopsModuleConfig['use_fckeditor'] ) && $use_html;
+$common_fck_installed = file_exists( XOOPS_ROOT_PATH.'/common/fckeditor/fckeditor.js');
+$xoopsTpl->assign( 'use_fckeditor' , $use_fckeditor ) ;
+$xoopsTpl->assign( 'common_fck_installed' , $common_fck_installed ) ;
+
+if( ! isset($_POST['topicid']) && $story->getVar('topicid')==0 && $use_fckeditor && $common_fck_installed ){
+	//initial option for fckeditor
+	$story->setVar('html', 1);
+	$story->setVar('br', 0);
+	$story->setVar('smiley', 0);
+	$story->setVar('xcode', 0);
+}
+
+$xoopsTpl->assign('html', $story->getVar('html'));
 // br (GIJ)
 $xoopsTpl->assign('br', $story->getVar('br'));
 $xoopsTpl->assign('smiley', $story->getVar('smiley'));
 $xoopsTpl->assign('xcode', $story->getVar('xcode'));
+
 $xoopsTpl->assign('block', $story->getVar('block'));
 $xoopsTpl->assign('ihome', $story->getVar('ihome'));
 $xoopsTpl->assign('html', $story->getVar('html'));
