@@ -2,8 +2,12 @@
 class BulletinGP{
 	var $topicPermissions;
 	var $mydirname;
+	var $table_topic_access = '' ;
 
 	function BulletinGP($mydirname){
+		$this->db =& Database::getInstance();
+		$this->table_topic_access = $this->db->prefix($mydirname."_topic_access") ;
+
 		if ( $this->mydirname != $mydirname ) {
 			$this->bulletin_get_topic_permissions_of_current_user($mydirname);
 		}
@@ -52,7 +56,7 @@ class BulletinGP{
 
 	function getCount($criteria = null)
 	{
-		$db =& Database::getInstance() ;
+		$db =& $this->db ;
 		$sql = 'SELECT COUNT(*) FROM '.$db->prefix('group_permission');
 		if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
 			$sql .= ' '.$criteria->renderWhere();
@@ -78,9 +82,8 @@ class BulletinGP{
 
 		$module_handler =& xoops_gethandler('module');
 		$module = $module_handler->getByDirname($this->mydirname);
-		$module_id = $module->mid();
-//		$gperm_handler =& xoops_gethandler('groupperm');
-		if ($this->checkRight('bulletin_permit', $perm_itemid, $groups, $module_id)) {
+		$mid = $module->mid();
+		if ($this->checkRight('bulletin_permit', $perm_itemid, $groups, $mid)) {
 			return true;
 		}
 		return false;
@@ -88,7 +91,7 @@ class BulletinGP{
 
 	function getAdminUsers(){
 
-		$db =& Database::getInstance() ;
+		$db =& $this->db ;
 
 		$module_handler =& xoops_gethandler('module');
 		$module = $module_handler->getByDirname($this->mydirname);
@@ -123,7 +126,7 @@ class BulletinGP{
 
 	function getCanApproveUsers(){
 
-		$db =& Database::getInstance() ;
+		$db =& $this->db;
 
 		$module_handler =& xoops_gethandler('module');
 		$module = $module_handler->getByDirname($this->mydirname);
@@ -160,59 +163,11 @@ class BulletinGP{
 		return $users;
 	}
 
-	function getCanReadUsersByTopic( $topic_id ){
-
-		$db =& Database::getInstance() ;
-
-		$module_handler =& xoops_gethandler('module');
-		$module = $module_handler->getByDirname($this->mydirname);
-		$mid = $module->mid();
-
-		$groups = array();
-		$sql = "SELECT groupid FROM ".$db->prefix($this->mydirname."_topic_access");
-		$sql .= " WHERE topic_id=".intval($topic_id );
-		$sql .= " AND NOT(`groupid`=".intval(XOOPS_GROUP_ANONYMOUS).")" ;
-		$result = $db->query( $sql );
-		if( $result ) {
-			while( $row = $db->fetchArray( $result ) ) {
-				$groups[] = $row['groupid'] ;
-			}
-		}
-
-		$groups_users = array();
-		foreach( $groups as $key => $groupid ){
-			$sql = 'SELECT uid FROM '.$db->prefix('groups_users_link').' WHERE groupid='.intval($groupid);
-			$result = $db->query($sql);
-			if ( $result ){
-				while ($myrow = $db->fetchArray($result)) {
-					$groups_users[] = $myrow['uid'];
-				}
-			}
-		}
-
-		$topic_can_read_user = array();
-		$sql = "SELECT uid FROM ".$db->prefix($this->mydirname."_topic_access");
-		$sql .= " WHERE topic_id=".intval($topic_id )." AND uid>0";
-		$result = $db->query($sql);
-		if ( $result ){
-			while ($myrow = $db->fetchArray($result)) {
-				$topic_can_read_user[] = $myrow['uid'];
-			}
-		}
-
-		$users = array_unique(array_merge($groups_users,$topic_can_read_user));
-
-		sort($users);
-
-		return $users;
-	}
-
-
 	// By yoshis
 	function bulletin_get_topic_permissions_of_current_user( $mydirname ){
 		global $xoopsUser ;
 
-		$db =& Database::getInstance() ;
+		$db =& $this->db ;
 
 		if( is_object( $xoopsUser ) ) {
 			$uid = intval( $xoopsUser->getVar('uid') ) ;
@@ -226,7 +181,7 @@ class BulletinGP{
 			$whr = "`groupid`=".intval(XOOPS_GROUP_ANONYMOUS) ;
 		}
 		$ret = "";
-		$sql = "SELECT topic_id,SUM(can_post) AS can_post,SUM(can_edit) AS can_edit,SUM(can_delete) AS can_delete,SUM(post_auto_approved) AS post_auto_approved FROM ".$db->prefix($mydirname."_topic_access")." WHERE ($whr) GROUP BY topic_id" ;
+		$sql = "SELECT topic_id,SUM(can_post) AS can_post,SUM(can_edit) AS can_edit,SUM(can_delete) AS can_delete,SUM(post_auto_approved) AS post_auto_approved FROM ".$this->table_topic_access." WHERE ($whr) GROUP BY topic_id" ;
 		$result = $db->query( $sql );
 		if( $result ){
 			while( $row = $db->fetchArray( $result ) ) {
@@ -255,6 +210,7 @@ class BulletinGP{
 		}
 		return $ret ;
 	}
+
 	function proceed4topic($type,$topic_id=0){
 		$ret = false;
 		if (!is_array($this->topicPermissions)) {
@@ -273,12 +229,59 @@ class BulletinGP{
 		return $ret;
 	}
 
+	function getCanReadUsersByTopic( $topic_id ){
+
+		$db =& $this->db ;
+
+		$module_handler =& xoops_gethandler('module');
+		$module = $module_handler->getByDirname($this->mydirname);
+		$mid = $module->mid();
+
+		$groups = array();
+		$sql = "SELECT groupid FROM ".$this->table_topic_access;
+		$sql .= " WHERE topic_id=".intval($topic_id );
+		$sql .= " AND NOT(`groupid`=".intval(XOOPS_GROUP_ANONYMOUS).")" ;
+		$result = $db->query( $sql );
+		if( $result ) {
+			while( $row = $db->fetchArray( $result ) ) {
+				$groups[] = $row['groupid'] ;
+			}
+		}
+
+		$groups_users = array();
+		foreach( $groups as $key => $groupid ){
+			$sql = 'SELECT uid FROM '.$db->prefix('groups_users_link').' WHERE groupid='.intval($groupid);
+			$result = $db->query($sql);
+			if ( $result ){
+				while ($myrow = $db->fetchArray($result)) {
+					$groups_users[] = $myrow['uid'];
+				}
+			}
+		}
+
+		$topic_can_read_user = array();
+		$sql = "SELECT uid FROM ".$this->table_topic_access;
+		$sql .= " WHERE topic_id=".intval($topic_id )." AND uid>0";
+		$result = $db->query($sql);
+		if ( $result ){
+			while ($myrow = $db->fetchArray($result)) {
+				$topic_can_read_user[] = $myrow['uid'];
+			}
+		}
+
+		$users = array_unique(array_merge($groups_users,$topic_can_read_user));
+
+		sort($users);
+
+		return $users;
+	}
+
 	function insertdefaultpermissions($topic_id=0){
 
 		if (empty($topic_id)){
 			return true;
 		}
-		$db =& Database::getInstance() ;
+		$db =& $this->db ;
 
 		$module_handler =& xoops_gethandler('module');
 		$module = $module_handler->getByDirname($this->mydirname);
@@ -336,11 +339,19 @@ class BulletinGP{
 		}
 
 		foreach ($can_groups as $groupid => $value) {
-			$sql = "INSERT INTO `".$db->prefix($this->mydirname."_topic_access")."`";
+			$sql = "INSERT INTO `".$this->table_topic_access."`";
 			$sql .= " (`topic_id`, `uid`, `groupid`, `can_post`, `can_edit`, `can_delete`, `post_auto_approved`)";
 			$sql .= " VALUES (".$topic_id.", NULL, ".$groupid.", ".$value['can_post'].", ".$value['can_edit'].", ".$value['can_delete'].", ".$value['post_auto_approved'].")";
 			$result = $db->query($sql);
 		}
 	}
+
+	function delete_topic_access($topic_id){
+		$db =& $this->db ;
+		$sql = "DELETE FROM ".$this->table_topic_access;
+		$sql .= " WHERE topic_id=".intval($topic_id );
+		$result = $db->query( $sql );
+	}
+
 }
 ?>

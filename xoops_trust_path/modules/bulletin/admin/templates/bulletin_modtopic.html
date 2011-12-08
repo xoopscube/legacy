@@ -33,6 +33,7 @@
       <tr>
         <td class="head"></td>
         <td class="even">
+          <{$gticket_hidden}>
           <input type="hidden" name="op" value="modTopicS" />
           <input type="hidden" name="topic_id" value="<{$topic_id}>" />
           <input type="button" value="<{$smarty.const._DELETE}>" onclick="location='index.php?mode=admin&amp;topic_pid=<{$topic_pid}>&amp;topic_id=<{$topic_id}>&amp;op=delTopic'" />

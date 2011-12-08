@@ -8,6 +8,8 @@ if ( file_exists( $mytrustdirpath.'/language/'.$xoopsConfig['language'].'/modinf
 } else {
 	require_once dirname(dirname(__FILE__)).'/language/english/modinfo.php';
 }
+require_once dirname(dirname(__FILE__)).'/include/gtickets.php' ;
+
 require_once XOOPS_ROOT_PATH.'/class/xoopslists.php';
 require_once XOOPS_ROOT_PATH.'/class/template.php';
 require_once XOOPS_ROOT_PATH.'/class/pagenav.php';
@@ -161,6 +163,7 @@ case 'topicsmanager':
 	$topicselbox2 = $BTopic->makeTopicSelBox() ;
 
 	$asssigns = array(
+		'gticket_hidden' => $xoopsGTicket->getTicketHtml( __LINE__ , 1800 , 'bulletin_admin') ,
 		'images' => $images,
 		'topics_exists' => $topics_exists,
 		'topicselbox' => $topicselbox,
@@ -190,6 +193,7 @@ case 'modTopic':
 	//ob_end_clean();
 	$topicselbox = $BTopic->makeTopicSelBox( true , $BTopic->topic_pid() ,  'topic_pid' ) ;
 	$asssigns = array(
+		'gticket_hidden' => $xoopsGTicket->getTicketHtml( __LINE__ , 1800 , 'bulletin_admin') ,
 		'images' => $images,
 		'topic_id' => $BTopic->topic_id(),
 		'topic_pid' => $BTopic->topic_pid(),
@@ -201,6 +205,10 @@ case 'modTopic':
 	break;
 
 case 'addTopic':
+//ver3.0
+	if ( ! $xoopsGTicket->check( true , 'bulletin_admin' ) ) {
+		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
+	}
 
 	$BTopic = new BulletinTopic( $mydirname );
 
@@ -239,7 +247,13 @@ case 'delTopic':
 		$template = 'bulletin_deltopic.html';
 
 		$BTopic = new BulletinTopic( $mydirname , $_GET['topic_id'] );
-
+//ver3.0
+		if (empty($BTopic)){
+			redirect_header( 'index.php?op=topicsmanager', 1, _TAKINGBACK );
+		}
+		if (empty($BTopic->topic_id)){
+			redirect_header( 'index.php?op=topicsmanager', 1, _TAKINGBACK );
+		}
 		// Get the all subtopics
 		$topic_arr = $BTopic->getAllChildTopics();
 
@@ -257,20 +271,37 @@ case 'delTopic':
 		}
 
 		$asssigns = array(
+			'gticket_hidden' => $xoopsGTicket->getTicketHtml( __LINE__ , 1800 , 'bulletin_admin') ,
 			'topics' => $topics,
 			'remain_topics' => $remain_topics,
 			'topicid' => intval($_GET['topic_id'])
 		);
 
 	}else{
+//ver3.0
+		if ( ! $xoopsGTicket->check( true , 'bulletin_admin' ) ) {
+			redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
+		}
 
-		$BTopic = new BulletinTopic( $mydirname , $_POST['topic_id'] );
+		$BTopic = new BulletinTopic( $mydirname , intval($_POST['topic_id']) );
+		if (empty($BTopic)){
+			redirect_header( 'index.php?op=topicsmanager', 1, _TAKINGBACK );
+		}
+		if (empty($BTopic->topic_id)){
+			redirect_header( 'index.php?op=topicsmanager', 1, _TAKINGBACK );
+		}
 
 		// Get the all subtopics
 		$topic_arr = $BTopic->getAllChildTopics();
 
 		// Leave an article topic
-		$move_topics = $_POST['topics'];
+//ver3.0
+		if (!is_array($_POST['topics'])){
+			redirect_header( 'index.php?op=topicsmanager', 1, _TAKINGBACK );
+		}else{
+			$move_topics = array_map( 'intval' , $_POST['topics'] ) ;
+		}
+		$gperm =& BulletinGP::getInstance($mydirname) ;
 
 		array_push( $topic_arr, $BTopic );
 
@@ -301,8 +332,12 @@ case 'delTopic':
 
 			// Delete the topic
 			$eachtopic->delete();
+			//ver3.0
+			$gperm->delete_topic_access($eachtopic->topic_id());
+
 			xoops_notification_deletebyitem( $xoopsModule->getVar( 'mid' ), 'category', $eachtopic->topic_id );
 		}
+
 		redirect_header( 'index.php?op=topicsmanager', 1, _AM_DBUPDATED );
 
 	}
@@ -311,7 +346,19 @@ case 'delTopic':
 
 case 'modTopicS':
 
+//ver3.0
+	if ( ! $xoopsGTicket->check( true , 'bulletin_admin' ) ) {
+		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
+	}
+
 	$BTopic = new BulletinTopic( $mydirname , $_POST['topic_id'] ) ;
+	if (empty($BTopic)){
+		redirect_header( 'index.php?op=topicsmanager', 1, _TAKINGBACK );
+	}
+	if (empty($BTopic->topic_id)){
+		redirect_header( 'index.php?op=topicsmanager', 1, _TAKINGBACK );
+	}
+
 	if ( $_POST['topic_pid'] == $_POST['topic_id'] )
 	{
 		echo "ERROR: Cannot select this topic for parent topic!";
