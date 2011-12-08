@@ -11,6 +11,7 @@ $content = <<<EOD
 EOD;
 
 $check_dir = array(
+	XOOPS_ROOT_PATH .'/class/hyp_common/cache',
 	XOOPS_TRUST_PATH.'/cache',
 	XOOPS_TRUST_PATH.'/class/hyp_common/favicon/cache',
 	XOOPS_TRUST_PATH.'/uploads/hyp_common',

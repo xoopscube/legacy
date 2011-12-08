@@ -194,6 +194,7 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 			'blockMenu'      => array( 'above' => '</div><div data-role="footer" data-position="fixed" style="line-height:1">',
 			                          'below' => ''),
 		);
+		if (! isset($this->k_tai_conf['jqm_css'])) $this->k_tai_conf['jqm_css'] = '';
 
 		if (! isset($this->k_tai_conf['themeSet'])) $this->k_tai_conf['themeSet'] = 'ktai_default';
 		if (! isset($this->k_tai_conf['templateSet'])) $this->k_tai_conf['templateSet'] = 'ktai';
@@ -268,6 +269,11 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 			}
 			if (isset($this->k_tai_conf['limitedBlockIds#'.XOOPS_URL])) {
 				$this->k_tai_conf['limitedBlockIds#'.XOOPS_URL] = array_filter($this->k_tai_conf['limitedBlockIds#'.XOOPS_URL]);
+			}
+			if (isset($this->k_tai_conf['jquery_theme#'.XOOPS_URL])) {
+				$this->k_tai_conf['rebuildsEx']['jqm']['header']['above'] = preg_replace('/data-theme="[a-z]"/', 'data-theme="' . $this->k_tai_conf['jquery_theme#'.XOOPS_URL] . '"', $this->k_tai_conf['rebuildsEx']['jqm']['header']['above']);
+				$this->k_tai_conf['rebuildsEx']['jqm']['body']['above']   = preg_replace('/data-theme="[a-z]"/', 'data-theme="' . $this->k_tai_conf['jquery_theme#'.XOOPS_URL] . '"', $this->k_tai_conf['rebuildsEx']['jqm']['body']['above']);
+				$this->k_tai_conf['rebuildsEx']['jqm']['footer']['above'] = preg_replace('/data-theme="[a-z]"/', 'data-theme="' . $this->k_tai_conf['jquery_theme#'.XOOPS_URL] . '"', $this->k_tai_conf['rebuildsEx']['jqm']['footer']['above']);
 			}
 		}
 
@@ -350,6 +356,21 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 					$this->k_tai_conf['rebuilds'] = array_merge($this->k_tai_conf['rebuilds'], $this->k_tai_conf['rebuildsEx']['jqm']);
 				}
 
+				// jqm.css
+				if ($use_jqm && !empty($this->k_tai_conf['jqm_css'])) {
+					$use_jqm_css = false;
+					list($this->k_tai_conf['jqm_css'], $time) = explode(':', $this->k_tai_conf['jqm_css'], 2);
+					$jqm_css = '/class/hyp_common/cache/' . $this->k_tai_conf['jqm_css'];
+					if (! is_file(XOOPS_ROOT_PATH . $jqm_css) || filemtime(XOOPS_ROOT_PATH . $jqm_css) < $time) {
+						if (@ copy(XOOPS_TRUST_PATH . '/uploads/hyp_common/' . urlencode(substr(XOOPS_URL, 7)) . '_' . $this->k_tai_conf['jqm_css'], XOOPS_ROOT_PATH . $jqm_css)) {
+							$this->k_tai_conf['jqm_css'] = XOOPS_URL . $jqm_css;
+						} else {
+							$this->k_tai_conf['jqm_css'] = '';
+						}
+					} else {
+						$this->k_tai_conf['jqm_css'] = XOOPS_URL . $jqm_css;
+					}
+				}
 
 				// Session setting
 				@ ini_set('session.use_trans_sid', 0);
@@ -500,8 +521,6 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 		}
 
 		if (! empty($_POST)) {
-			// Input フィルター (remove "\0")
-			$_POST = HypCommonFunc::input_filter($_POST);
 
 			// POST 文字列の文字エンコードを判定
 			$enchint = (isset($_POST[$this->encodehint_name]))? $_POST[$this->encodehint_name] : ((isset($_POST['encode_hint']))? $_POST['encode_hint'] : '');
@@ -515,6 +534,9 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 			if ((defined('HYP_K_TAI_RENDER') && HYP_K_TAI_RENDER) || isset($_SERVER['HTTP_X_ORIGINAL_USER_AGENT'])) {
 				$_POST = $this->_modKtaiEmojiEncode($_POST);
 			}
+
+			// Input フィルター (remove "\0")
+			$_POST = HypCommonFunc::input_filter($_POST);
 
 			// Proxy Check
 			if ($this->use_proxy_check) {
@@ -714,7 +736,7 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 				}
 			}
 
-						// 言語定数セット
+			// 言語定数セット
 			foreach($this->k_tai_conf['msg'] as $key => $val) {
 				define('KTAI_RENDER_MSG_' . strtoupper($key), $val);
 			}
@@ -805,7 +827,7 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 			}
 		}
 
-		$GLOBALS['hyp_preload_head_tag'] = '';
+		if (! isset($GLOBALS['hyp_preload_head_tag'])) $GLOBALS['hyp_preload_head_tag'] = '';
 		ob_start(array(& $this, 'addHeadTag'));
 
 		// Restor mb_detect_order
@@ -1019,7 +1041,7 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 					$euc = TRUE;
 					$from_encode = MPC_FROM_CHARSET_SJIS; // fake
 					// EUC-JP なフォームからで絵文字が化けている場合に備えて除去。結果的に絵文字対応できない。
-					$vars = preg_replace('/[\x00-\x08\x11-\x12\x14-\x1f\x7f]+/', '', $vars);
+					$vars = preg_replace('/[\x00-\x08\x0b-\x0c\x0e\x10-\x1a\x1c-\x1f\x7f]+/', '', $vars);
 					if ($vars !== $vars) {
 						$from_encode = '';
 					}
@@ -1578,6 +1600,9 @@ EOD;
 
 			if ($use_jquery) {
 				$_head .= '<link href="'.XOOPS_THEME_URL.'/'.$this->k_tai_conf['themeSet'].'/jquery.mobile.min.css" rel="stylesheet" type="text/css" />';
+				if ($this->k_tai_conf['jqm_css']) {
+					$_head .= '<link href="'.$this->k_tai_conf['jqm_css'].'" rel="stylesheet" type="text/css" />';
+				}
 				if (! $rebuild_found) {
 					$_head .= '<link href="'.XOOPS_THEME_URL.'/'.$this->k_tai_conf['themeSet'].'/smart.css" rel="stylesheet" type="text/css" />';
 				}

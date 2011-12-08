@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2011/11/09 by nao-pon http://xoops.hypweb.net/
- * $Id: k_tai_conf.php,v 1.2 2011/12/01 13:18:58 nao-pon Exp $
+ * $Id: k_tai_conf.php,v 1.3 2011/12/08 07:44:02 nao-pon Exp $
  */
 
 $config[] = array(
@@ -14,53 +14,61 @@ $config[] = array(
 	);
 $config[] = array(
 	'name' => 'jquery_profiles',
-	'title' => $constpref.'_JQUERY_PROFILES',
-	'description' => $constpref.'_JQUERY_PROFILES_DESC',
+	'title' => $constpref.'_JQM_PROFILES',
+	'description' => $constpref.'_JQM_PROFILES_DESC',
 	'formtype' => 'textbox',
 	'valuetype' => 'text'
 	);
 $config[] = array(
 	'name' => 'jquery_theme',
-	'title' => $constpref.'_JQUERY_THEME',
-	'description' => $constpref.'_JQUERY_THEME_DESC',
+	'title' => $constpref.'_JQM_THEME',
+	'description' => $constpref.'_JQM_THEME_DESC',
 	'formtype' => 'select',
 	'valuetype' => 'text',
-	'options' => array('a','b','c','d','e','f','g','h')
+	'options' => array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','x','y','z')
 	);
 $config[] = array(
 	'name' => 'jquery_theme_content',
-	'title' => $constpref.'_JQUERY_THEME_CONTENT',
-	'description' => $constpref.'_JQUERY_THEME_CONTENT_DESC',
+	'title' => $constpref.'_JQM_THEME_CONTENT',
+	'description' => $constpref.'_JQM_THEME_CONTENT_DESC',
 	'formtype' => 'select',
 	'valuetype' => 'text',
-	'options' => array('a','b','c','d','e','f','g','h')
+	'options' => array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','x','y','z')
 	);
 $config[] = array(
 	'name' => 'jquery_theme_block',
-	'title' => $constpref.'_JQUERY_THEME_BLOCK',
-	'description' => $constpref.'_JQUERY_THEME_BLOCK_DESC',
+	'title' => $constpref.'_JQM_THEME_BLOCK',
+	'description' => $constpref.'_JQM_THEME_BLOCK_DESC',
 	'formtype' => 'select',
 	'valuetype' => 'text',
-	'options' => array('a','b','c','d','e','f','g','h')
+	'options' => array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','x','y','z')
+	);
+$config[] = array(
+	'name' => 'jqm_css',
+	'title' => $constpref.'_JQM_CSS',
+	'description' => $constpref.'_JQM_CSS_DESC',
+	'formtype' => 'textarea',
+	'valuetype' => 'file:jqm-custom.css',
+	'size' => 80
 	);
 $config[] = array(
 	'name' => 'jquery_remove_flash',
-	'title' => $constpref.'_JQUERY_REMOVE_FLASH',
-	'description' => $constpref.'_JQUERY_REMOVE_FLASH_DESC',
+	'title' => $constpref.'_JQM_REMOVE_FLASH',
+	'description' => $constpref.'_JQM_REMOVE_FLASH_DESC',
 	'formtype' => 'textbox',
 	'valuetype' => 'text'
 	);
 $config[] = array(
 	'name' => 'jquery_resolve_table',
-	'title' => $constpref.'_JQUERY_RESOLVE_TABLE',
-	'description' => $constpref.'_JQUERY_RESOLVE_TABLE_DESC',
+	'title' => $constpref.'_JQM_RESOLVE_TABLE',
+	'description' => $constpref.'_JQM_RESOLVE_TABLE_DESC',
 	'formtype' => 'yesno',
 	'valuetype' => 'int'
 	);
 $config[] = array(
 	'name' => 'jquery_image_convert',
-	'title' => $constpref.'_JQUERY_IMAGE_CONVERT',
-	'description' => $constpref.'_JQUERY_IMAGE_CONVERT_DESC',
+	'title' => $constpref.'_JQM_IMAGE_CONVERT',
+	'description' => $constpref.'_JQM_IMAGE_CONVERT_DESC',
 	'formtype' => 'textbox',
 	'valuetype' => 'int',
 	'size' => 4
@@ -72,7 +80,6 @@ $config[] = array(
 	'formtype' => 'check',
 	'valuetype' => 'array',
 	'options' => 'blocks',
-	//'width' => '10em'
 	);
 $config[] = array(
 	'name' => 'limitedBlockIds',

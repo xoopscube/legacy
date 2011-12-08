@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2011/11/09 by nao-pon http://xoops.hypweb.net/
- * $Id: admin_func.php,v 1.9 2011/12/02 01:58:12 nao-pon Exp $
+ * $Id: admin_func.php,v 1.10 2011/12/08 07:44:02 nao-pon Exp $
  */
 
 function hypconfSetValue(& $config, $page) {
@@ -25,13 +25,18 @@ function hypconfSetValue(& $config, $page) {
 				$val = '';
 			}
 		}
-		$config[$key]['value'] = $val;
-		if (isset($conf['options']) && $conf['options'] === 'blocks') {
-			$config[$key]['options'] = hypconfGetBlocks();
-		} else if (isset($conf['options']) && $conf['options'] === 'modules') {
-			$config[$key]['options'] = hypconfGetModules();
-		} else if (isset($conf['options']) && $conf['options'] === 'xpwikis') {
-			$config[$key]['options'] = hypconfGetModules('xpwiki', true);
+		if (substr($conf['valuetype'], 0, 5) === 'file:') {
+			$file = substr($conf['valuetype'], 5);
+			$config[$key]['value'] = @ file_get_contents(hypconf_get_data_filename($file));
+		} else {
+			$config[$key]['value'] = $val;
+			if (isset($conf['options']) && $conf['options'] === 'blocks') {
+				$config[$key]['options'] = hypconfGetBlocks();
+			} else if (isset($conf['options']) && $conf['options'] === 'modules') {
+				$config[$key]['options'] = hypconfGetModules();
+			} else if (isset($conf['options']) && $conf['options'] === 'xpwikis') {
+				$config[$key]['options'] = hypconfGetModules('xpwiki', true);
+			}
 		}
 	}
 	return;
@@ -116,7 +121,7 @@ function hypconfSaveConf($config) {
 	$lines = array('['.$section.']');
 	foreach($config as $conf){
 		if (isset($_POST[$conf['name']]) || $conf['valuetype'] === 'array') {
-			switch ($conf['valuetype']) {
+			switch (substr($conf['valuetype'], 0, 5)) {
 				case 'int':
 					$lines[] = $conf['name'] . ' = ' . (int)$_POST[$conf['name']];
 					break;
@@ -133,6 +138,16 @@ function hypconfSaveConf($config) {
 						foreach($_POST[$conf['name']] as $key => $val) {
 							$lines[] = $conf['name'] . '[] = "' . str_replace('"', '\\"', trim($val)) . '"';
 						}
+					}
+					break;
+				case 'file:':
+					$file = substr($conf['valuetype'], 5);
+					if ($_POST[$conf['name']]) {
+						file_put_contents(hypconf_get_data_filename($file), $_POST[$conf['name']]);
+						$lines[] = $conf['name'] . ' = "' . $file . ':' . time() . '"';
+					} else {
+						@ unlink(hypconf_get_data_filename($file));
+						$lines[] = $conf['name'] . ' = ""';
 					}
 					break;
 
@@ -281,6 +296,10 @@ function hypconfShowForm($config) {
 
 		$form->display();
 	}
+}
+
+function hypconf_get_data_filename($file) {
+	return XOOPS_TRUST_PATH . '/uploads/hyp_common/' . urlencode(substr(XOOPS_URL, 7)) . '_' . $file;
 }
 
 function hypconf_constant($const) {
