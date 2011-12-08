@@ -2,7 +2,7 @@
 /////////////////////////////////////////////////
 // PukiWiki - Yet another WikiWikiWeb clone.
 //
-//  $Id: attach.inc.php,v 1.65 2011/12/05 10:42:12 nao-pon Exp $
+//  $Id: attach.inc.php,v 1.66 2011/12/08 07:01:00 nao-pon Exp $
 //  ORG: attach.inc.php,v 1.31 2003/07/27 14:15:29 arino Exp $
 //
 /*
@@ -140,6 +140,7 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 				$nolist |= ($arg == 'nolist');
 				$noform |= ($arg == 'noform');
 				$noattach |= ($arg == 'noattach');
+				$imglist  |= ($arg == 'imglist');
 			}
 		}
 		$ret = '';
@@ -150,7 +151,11 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 		}
 		if (!$nolist)
 		{
-			$obj = &new XpWikiAttachPages($this->xpwiki, $page);
+			if ($imglist) {
+				$obj = new XpWikiAttachPages($this->xpwiki, $page, NULL, TRUE, 40, 0, FALSE, 'time', 'imglist');
+			} else {
+				$obj = new XpWikiAttachPages($this->xpwiki, $page);
+			}
 			$ret .= $obj->toString($page, FALSE);
 			$this->listed = TRUE;
 		}
@@ -235,12 +240,15 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 					$_file['tmp_name'] = tempnam($this->cont['CACHE_DIR'], 'atf');
 					$fp = fopen($_file['tmp_name'], 'wb');
 					fseek($fp, 0, SEEK_SET);
-					stream_copy_to_stream($input, $fp);
+					$real_size = stream_copy_to_stream($input, $fp);
 					fclose($fp);
 					fclose($input);
 
-					if (filesize($_file['tmp_name']) != $_file['size']){
-						$this->output_json('No files were uploaded.');
+					if ($real_size > $this->cont['PLUGIN_ATTACH_MAX_FILESIZE']) {
+						$this->output_json($this->root->_attach_messages['err_exceed']);
+					}
+					if ($_file['size'] && $real_size != $_file['size']){
+						$this->output_json('No files were uploaded.(Upload error)');
 					}
 
 					$_file['name'] = $this->root->get['qqfile'];
@@ -346,7 +354,7 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 	//	global $vars,$_attach_messages;
 		if ($this->listed) return '';
 
-		$obj = &new XpWikiAttachPages($this->xpwiki, $this->root->vars['page'],0,$isbn,20);
+		$obj = new XpWikiAttachPages($this->xpwiki, $this->root->vars['page'],0,$isbn,20);
 		if ($obj->err === 1) return '<span style="color:red;font-size:150%;font-weight:bold;">DB ERROR!: Please initialize an attach file database on an administrator screen.</span>';
 
 		if (!array_key_exists($this->root->vars['page'],$obj->pages))
@@ -501,8 +509,8 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 		$org_fname = $fname;
 
 		// 格納ファイル名指定あり
-		if (!empty($this->root->post['filename'])) {
-			$fname = $this->root->post['filename'];
+		if (!empty($this->root->vars['filename'])) {
+			$fname = $this->root->vars['filename'];
 		}
 
 		// 格納ファイル名文字数チェック(SQL varchar(255) - strlen('_\d\d\d'))
@@ -835,7 +843,7 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 		$f_order = (isset($this->root->vars['order']))? $this->root->vars['order'] : "";
 		$mode = ($mode == "imglist")? $mode : "";
 
-		$obj = &new XpWikiAttachPages($this->xpwiki, $refer,NULL,TRUE,$max,$start,FALSE,$f_order,$mode);
+		$obj = new XpWikiAttachPages($this->xpwiki, $refer,NULL,TRUE,$max,$start,FALSE,$f_order,$mode);
 		if ($refer !== '' && $this->func->is_page($refer) && $obj->err === 1) return array('msg'=>'DB ERROR!','body'=>'Please initialize an attach file database on an administrator screen.');
 
 		$body = ($refer === '' or array_key_exists($refer,$obj->pages)) ?
@@ -922,6 +930,9 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 			return str_replace('$1', htmlspecialchars($page), $this->root->_attach_messages['msg_noupload']);
 		}
 
+		// Use fileuploader.js
+		$use_fileuploader = ($this->cont['UA_PROFILE'] === 'default' && preg_match('/firefox|chrome|safari/i', $_SERVER['HTTP_USER_AGENT']) && function_exists('stream_copy_to_stream'));
+
 		if (!isset($load[$this->xpwiki->pid])) {$load[$this->xpwiki->pid] = array();}
 
 		$this->func->exist_plugin('attach');
@@ -936,10 +947,6 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 		// refid 指定
 		$_refid = (!empty($this->root->vars['refid']))? $this->root->vars['refid'] : '';
 		$refid = ($_refid)? '<input type="hidden" name="refid" value="'.htmlspecialchars($_refid).'" />' : '';
-
-		if (! empty($this->root->vars['popup'])) {
-			$this->root->vars['returi'] = $_SERVER['REQUEST_URI'];
-		}
 
 		$thumb_px = $this->cont['ATTACH_CONFIG_REF_THUMB'];
 		$thumb = (!empty($this->root->vars['refid']) && !empty($this->root->vars['thumb']))?
@@ -956,6 +963,17 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 		$r_page = rawurlencode($page);
 		$s_page = htmlspecialchars($page);
 		$is_popup = isset($this->root->vars['popup']);
+
+		$target = '';
+		if ($is_popup) {
+			if (empty($this->root->vars['returi'])) {
+				if (! $use_fileuploader) {
+					$this->root->vars['returi'] = $_SERVER['REQUEST_URI'];
+				}
+			} else {
+				$target = ' target="top"';
+			}
+		}
 
 		$navi = '';
 		if (! $is_popup) {
@@ -1038,7 +1056,7 @@ EOD;
 		$script = $this->func->get_script_uri();
 		// アップロードフォーム
 		$form = <<<EOD
-<form enctype="multipart/form-data" action="{$script}" method="post">
+<form enctype="multipart/form-data" action="{$script}" method="post"{$target}>
  <div>
   <input type="hidden" name="plugin" value="attach" />
   <input type="hidden" name="pcmd" value="upload" />
@@ -1062,8 +1080,9 @@ EOD;
  </div>
 </form>
 EOD;
-		if ($this->cont['UA_PROFILE'] === 'default' && preg_match('/firefox|chrome|safari/i', $_SERVER['HTTP_USER_AGENT']) && function_exists('stream_copy_to_stream')) {
+		if ($use_fileuploader) {
 			// file-uploader
+			$this->func->add_tag_head('attach.css');
 			$this->func->add_tag_head('fileuploader.js');
 			$_domid = $this->get_domid('fileuploader');
 			$form = <<<EOD
@@ -1076,6 +1095,7 @@ EOD;
 XpWiki.domInitFunctions.push(
 	function (){
 		var doing = 0;
+		var comp = 0;
 		var needpass = {$_needpass};
 		var returi = '{$_returi}';
 		var uploader = new qq.FileUploader({
@@ -1085,7 +1105,7 @@ XpWiki.domInitFunctions.push(
 				plugin: 'attach',
 				pcmd: 'upload',
 				refer: '{$page}',
-				filenmame: '{$_filename}',
+				filename: '{$_filename}',
 				refid: '{$_refid}',
 				encode_hint: '{$this->cont['PKWK_ENCODING_HINT']}'
 			},
@@ -1101,16 +1121,20 @@ XpWiki.domInitFunctions.push(
 				if ($('_p_attach_copyright_{$pgid}_{$load[$this->xpwiki->pid][$page]}').checked) {
 					this.params['copyright'] = 1;
 				}
+				//alert(uploader._listElement.style.display);
+				uploader._listElement.style.visibility = 'visible';
 				++doing;
 			},
 			onComplete: function(id, fileName, responseJSON){
+				comp++;
 				if (! --doing) {this.reload();}
 			},
 			onCancel: function(id, fileName){
-				if (! --doing) {this.reload();}
+				if (! --doing) {
+					if (comp) this.reload(); else uploader._listElement.style.visibility = 'hidden';
+				}
 			},
 			showMessage: function(message){
-				window.focus();
 				alert(message);
         	},
 			debug: false,
@@ -1121,13 +1145,23 @@ XpWiki.domInitFunctions.push(
 				'</div>',
 			reload: function() {
 				if (returi) {
-					location.href = returi;
+					top.location.href = returi;
 				} else {
 					location.reload();
 				}
 			}
 		});
 		$('{$_domid}_check').style.display = '';
+		var dropArea = uploader._find(uploader._element, 'drop');
+		var listArea = uploader._find(uploader._element, 'list');
+		qq.attach(document, 'mouseover', function(e){
+			if (dropArea.style.display != 'none') dropArea.style.display = 'none';
+		});
+        qq.attach(document, 'dragenter', function(e){
+            dropArea.style.top = Math.max(0, Event.pointerY(e) - (document.documentElement.scrollTop || document.body.scrollTop) - 65) + 'px';
+        	listArea.style.top = dropArea.style.top;
+        });
+
 	}
 );
 //]]>

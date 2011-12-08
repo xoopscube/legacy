@@ -1,6 +1,6 @@
 <?php
 // PukiWiki - Yet another WikiWikiWeb clone.
-// $Id: lng.php,v 1.29 2011/12/05 07:58:09 nao-pon Exp $
+// $Id: lng.php,v 1.30 2011/12/08 07:01:00 nao-pon Exp $
 // Copyright (C)
 //   2002-2005 PukiWiki Developers Team
 //   2001-2002 Originally written by yu-ji
@@ -295,7 +295,7 @@ $root->_attach_messages = array(
 	'msg_page_select' => 'ページを選択',
 	'msg_send_mms' => 'MMS でメール送信',
 	'msg_drop_files_here' => 'アップロードするには、ここにファイルをドロップ',
-	'msg_for_upload' => 'このページにアップロードする権限がありません。<br />アップロードするには、<img src="'.$const['LOADER_URL'].'?src=page_attach.png" alt="Page" />ページ選択で、<img src="'.$const['LOADER_URL'].'?src=upload_16.png" alt="&uarr;" />アイコンのあるページを選択して下さい。',
+	'msg_for_upload' => 'このページにアップロードする権限がありません。<br />アップロードするには、<img src="'.$const['LOADER_URL'].'?src=page_attach.png" alt="Page" />ページ選択で "<span class="attachable">このような表示</span>" のページを選択して下さい。',
 );
 
 ///////////////////////////////////////

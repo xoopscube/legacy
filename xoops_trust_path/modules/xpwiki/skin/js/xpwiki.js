@@ -874,7 +874,7 @@ var XpWiki = {
 		to.appendChild(cln);
 	},
 
-	fileupFormPopup: function (mode, page) {
+	fileupFormPopup: function (mode, page, option) {
 
 		if (typeof page != "undefined") {
 			this.dir = mode;
@@ -888,15 +888,23 @@ var XpWiki = {
 			mode = '';
 		}
 
-		var cols = (this.useJQueryMobile)? '2' : '1';
-		var url = this.MyUrl + '/' + this.dir + '/?plugin=attach&pcmd=imglist&refer=';
-		url += encodeURIComponent(this.UploadPage);
-		url += '&base=' + encodeURIComponent(this.UploadPage);
-		url += '&basedir=' + this.dir;
+		if (typeof option != "undefined") {
+			var url = this.MyUrl + '/' + this.dir + '/?plugin=attach&pcmd=upload&page=';
+			url += encodeURIComponent(this.UploadPage);
+			if (typeof option['refid'] != "undefined") url += '&refid=' + encodeURIComponent(option['filename']);
+			if (typeof option['filename'] != "undefined") url += '&filename=' + encodeURIComponent(option['filename']);
+			if (typeof option['returi'] != "undefined") url += '&returi=' + encodeURIComponent(option['returi']);
+		} else {
+			var cols = (this.useJQueryMobile)? '2' : '1';
+			var url = this.MyUrl + '/' + this.dir + '/?plugin=attach&pcmd=imglist&refer=';
+			url += encodeURIComponent(this.UploadPage);
+			url += '&base=' + encodeURIComponent(this.UploadPage);
+			url += '&basedir=' + this.dir;
+			url += '&cols=' + cols;
+			url += '&max=10';
+			url += '&mode=' + mode;
+		}
 		url += '&popup=_self';
-		url += '&cols=' + cols;
-		url += '&max=10';
-		url += '&mode=' + mode;
 		url += '&encode_hint=' + encodeURIComponent(this.EncHint);
 
 		this.PopupUrl = url;

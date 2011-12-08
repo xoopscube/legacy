@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2008/03/24 by nao-pon http://hypweb.net/
- * $Id: attach.php,v 1.37 2011/12/05 07:58:09 nao-pon Exp $
+ * $Id: attach.php,v 1.38 2011/12/08 07:01:00 nao-pon Exp $
  */
 
 //-------- епеще╣
@@ -1015,6 +1015,9 @@ class XpWikiAttachFiles
 				$otherprams[] = rawurlencode($key) . '=' . rawurlencode($this->root->vars[$key]);
 			}
 		}
+		if (! isset($this->root->vars['max'])) {
+			$otherprams[] = 'max=' . $this->max;
+		}
 		if ($otherprams) {
 			$otherparm = '&amp;' . join('&amp;', $otherprams);
 		}
@@ -1030,7 +1033,7 @@ class XpWikiAttachFiles
 			if ($this->is_popup) {
 				$mode_tag = '';
 			} else {
-				$mode_tag = ($mode == "imglist")? "[ <a href=\"$url3\">{$this->root->_attach_messages['msg_list_view']}<a> ]":"[ <a href=\"$url3\">{$this->root->_attach_messages['msg_image_view']}</a> ]";
+				$mode_tag = ($mode == "imglist")? "[ <a href=\"$url3\">{$this->root->_attach_messages['msg_list_view']}</a> ]":"[ <a href=\"$url3\">{$this->root->_attach_messages['msg_image_view']}</a> ]";
 			}
 
 			if ($this->max < $this->count)
@@ -1481,7 +1484,7 @@ EOD;
 		if ($this->is_popup) {
 			$mode_tag = '';
 		} else {
-			$mode_tag = ($this->mode == "imglist")? "[ <a href=\"$url3\">{$this->root->_attach_messages['msg_list_view']}<a> ]":"[ <a href=\"$url3\">{$this->root->_attach_messages['msg_image_view']}</a> ]";
+			$mode_tag = ($this->mode == "imglist")? "[ <a href=\"$url3\">{$this->root->_attach_messages['msg_list_view']}</a> ]":"[ <a href=\"$url3\">{$this->root->_attach_messages['msg_image_view']}</a> ]";
 		}
 		$_start = $this->start + 1;
 		$_end = $this->start + $this->max;

@@ -1,5 +1,5 @@
 <?php
-// $Id: ref.inc.php,v 1.60 2011/11/26 12:03:10 nao-pon Exp $
+// $Id: ref.inc.php,v 1.61 2011/12/08 07:01:00 nao-pon Exp $
 /*
 
 	*プラグイン ref
@@ -1550,11 +1550,14 @@ _HTML_;
 			$returi = ($this->root->render_mode !== 'render')? '' :
 				'&amp;returi='.rawurlencode($_SERVER['REQUEST_URI']);
 			$name = (!empty($lvar['refid']))? '&amp;refid=' . rawurlencode($lvar['refid']) : (($lvar['name'])? '&amp;filename=' . rawurlencode($lvar['name']) : '');
+			$js_option = '{returi:\''.str_replace('\'', '\\\'', $_SERVER['REQUEST_URI']).'\'';
+			$js_option .= (!empty($lvar['refid']))? ',refid: \''.str_replace('\'', '\\\'', $lvar['refid']).'\'}' : (($lvar['name'])? ',filename: \''.str_replace('\'', '\\\'', $lvar['name']).'\'}' : '}');
+			$js = ' onclick="return XpWiki.fileupFormPopup(\''.$this->root->mydirname.'\',\''.str_replace('\'', '\\\'', $lvar['page']).'\','.$js_option.')"';
 			$params['_body'] = '<a href="'.$this->root->script.
 				'?plugin=attach&amp;pcmd=upload'.$name.
 				'&amp;page='.rawurlencode($lvar['page']).
 				$returi.
-				'" title="'.$this->root->_LANG['skin']['upload'].'">'.
+				'" title="'.$this->root->_LANG['skin']['upload'].'"'.$js.'>'.
 				'<img src="'.$this->cont['IMAGE_DIR'].'file.png" width="20" height="20" alt="'.$this->root->_LANG['skin']['upload'].'" title="'.$this->root->_LANG['skin']['upload'].'">'.
 				$params['btn'].'</a>';
 		}

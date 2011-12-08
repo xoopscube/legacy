@@ -1,5 +1,5 @@
 <?php
-
+if (! defined('XOOPS_MODULE_URL')) define('XOOPS_MODULE_PATH', XOOPS_URL . '/modules');
 $_parentdirname = dirname(__FILE__);
 // language file (modinfo.php)
 if( is_file( $_parentdirname.'/language/'.@$xoopsConfig['language'].'/modinfo.php' ) ) {
@@ -44,7 +44,7 @@ $modversion['hasMain'] = 1 ;
 $modversion['sub'] = array() ;
 if (@$GLOBALS['Xpwiki_'.$mydirname]['is_admin']) {
 	$modversion['sub'][] = array(
-		'name' => constant($constpref . '_ADMIN_TOOLS').' <img width="16" height="16" alt="Admin tools" src="skin/loader.php?src=cog.png">' ,
+		'name' => '<img width="16" height="16" style="vertical-align: middle;" alt="Admin tools" src="'.XOOPS_MODULE_URL.'/'.$mydirname.'/skin/loader.php?src=cog.png">' . constant($constpref . '_ADMIN_TOOLS') ,
 		'url'  => '?:AdminTools' );
 }
 
