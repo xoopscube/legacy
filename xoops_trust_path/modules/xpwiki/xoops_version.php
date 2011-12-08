@@ -1,5 +1,5 @@
 <?php
-if (! defined('XOOPS_MODULE_URL')) define('XOOPS_MODULE_PATH', XOOPS_URL . '/modules');
+if (! defined('XOOPS_MODULE_URL')) define('XOOPS_MODULE_URL', XOOPS_URL . '/modules');
 $_parentdirname = dirname(__FILE__);
 // language file (modinfo.php)
 if( is_file( $_parentdirname.'/language/'.@$xoopsConfig['language'].'/modinfo.php' ) ) {
