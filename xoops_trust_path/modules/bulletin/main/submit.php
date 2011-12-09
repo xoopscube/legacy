@@ -5,7 +5,7 @@ $op = isset($_GET['op']) && $_GET['op'] == 'delete' ? 'delete' : $op;
 // error log
 $errors = array();
 // Ticket function loading
-require_once dirname(dirname(__FILE__))."/class/gtickets.php";
+require_once dirname(dirname(__FILE__))."/include/gtickets.php";
 if ( !empty($_POST['preview']) ) {
 	if ( ! $xoopsGTicket->check() ) {
 		$errors['ticket'] = 'Ticket Error';
