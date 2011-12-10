@@ -355,19 +355,11 @@ if( $op == 'form' ){
 			}
 
 			//TODO user only
-			if (!is_object($xoopsUser)) {
-				die(_NOPERM);//XOOPS_GROUP_ANONYMOUS
-			}
-			//user time limit,you can delete one day
-			if (!$xoopsUser->isAdmin()){
-				if (!$gperm->group_perm(2)){
-					if ($story->getVar('uid') === $xoopsUser->uid()){
-						if ($story->getVar('published') < (time() - 86400) ){//if user,one day only
-							die(_NOPERM);//when user,only article of user
-						}
-					}else{
-						die(_NOPERM);//when user,only article of user
-					}
+			//you can edit only your article
+			$topic_perm = $gperm->get_viewtopic_perm_of_current_user($story->getVar('topicid') , $story->getVar('uid'));
+			if (!empty($topic_perm)){
+				if (!$topic_perm['can_edit']){
+					die(_NOPERM);//when user,only article of user
 				}
 			}
 
@@ -431,20 +423,12 @@ if( $op == 'delete' ){
 		die(_NOPERM);
 	}
 
-	//user
-	if (!is_object($xoopsUser)) {
-		die(_NOPERM);//XOOPS_GROUP_ANONYMOUS
-	}
-	//user time limit,you can delete one day
-	if (!$xoopsUser->isAdmin()){
-		if (!$gperm->group_perm(2)){
-			if ($story->getVar('uid') === $xoopsUser->uid()){
-				if ($story->getVar('published') < (time() - 86400) ){//if user,one day only
-					die(_NOPERM);//when user,only article of user
-				}
-			}else{
-				die(_NOPERM);//when user,only article of user
-			}
+	//TODO user only
+	//you can edit only your article
+	$topic_perm = $gperm->get_viewtopic_perm_of_current_user($story->getVar('topicid') , $story->getVar('uid'));
+	if (!empty($topic_perm)){
+		if (!$topic_perm['can_delete']){
+			die(_NOPERM);//when user,only article of user
 		}
 	}
 

@@ -5,6 +5,9 @@ function b_bulletin_recent_comments_show($options) {
 
 	$mydirname = empty( $options[0] ) ? basename( dirname( dirname( __FILE__ ) ) ) : $options[0] ;
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
+	if (!isset($options[1])){
+		$options[1] = 0 ;//(0=show all for d3pipes)
+	}
 	$categories = empty($options[1]) ? 0 : array_map( 'intval' , explode( ',' , $options[1] ) ) ;//(0=show all)
 
 	$rs = $xoopsDB->query( "SELECT mid FROM ".$xoopsDB->prefix('modules')." WHERE dirname='$mydirname'" ) ;

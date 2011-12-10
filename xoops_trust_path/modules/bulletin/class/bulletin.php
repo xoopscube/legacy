@@ -198,18 +198,26 @@ class Bulletin extends XoopsObject{
 	// To gets a list of published articles
 	function getAllPublished( $mydirname , $limit4sql=0, $start4sql=0, $topic4sql=0, $ihome=1, $asobject=true, $topic_recursive=false, $gpermited=false)
 	{
+		$gperm =& BulletinGP::getInstance($mydirname) ;
+
 		$topic4sql = intval($topic4sql);
 		$limit4sql = intval($limit4sql);
 		$start4sql = intval($start4sql);
 
 		$criteria = array();
-		$criteria[] = "type > 0";
+//ver2.0$criteria[] = "type > 0";
+//ver3.0
+		if (!$gpermited ){
+			$criteria[] = "type > 0";
+		}elseif (!$gperm->group_perm(2)){
+			$criteria[] = "type > 0";
+		}
+
 		$criteria[] = "published > 0";
 		$criteria[] = "published <= ".time();
 		$criteria[] = "(expired = 0 OR expired > ".time().")";
 //ver3.0
 		if( $gpermited ){
-			$gperm =& BulletinGP::getInstance($mydirname) ;
 			$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 			$criteria[] = "topicid IN (".implode(',',$can_read_topic_ids).")";
 		}
@@ -238,13 +246,20 @@ class Bulletin extends XoopsObject{
 	// To get a list of articles for the Archives
 	function getArchives( $mydirname , $monstart4sql=null, $monend4sql=null, $limit4sql=0, $start4sql=0, $asobject=true, $gpermited=false)
 	{
+		$gperm =& BulletinGP::getInstance($mydirname) ;
+
 		$monstart4sql = intval($monstart4sql);
 		$monend4sql   = intval($monend4sql);
 		$limit4sql    = intval($limit4sql);
 		$start4sql    = intval($start4sql);
 
 		$criteria = array();
-		$criteria[] = "type > 0";
+//ver2.0$criteria[] = "type > 0";
+//ver3.0
+		if (!$gperm->group_perm(2)){
+			$criteria[] = "type > 0";
+		}
+
 		$criteria[] = "published >= $monstart4sql";
 		$criteria[] = "published <= $monend4sql";
 		$criteria[] = "published > 0";
@@ -312,6 +327,8 @@ class Bulletin extends XoopsObject{
 	// To get a list of articles based on the date
 	function getAllToday( $mydirname , $limit4sql=0, $start4sql=0, $caldate, $asobject=true, $gpermited=false)
 	{
+		$gperm =& BulletinGP::getInstance($mydirname) ;
+
 		$limit4sql    = intval($limit4sql);
 		$start4sql    = intval($start4sql);
 
@@ -329,6 +346,10 @@ class Bulletin extends XoopsObject{
 			$criteria[] = "$startday4sql <= published";
 			$criteria[] = "published < $endday4sql";
 //ver3.0
+			if (!$gperm->group_perm(2)){
+				$criteria[] = "type > 0";
+			}
+
 			if( $gpermited ){
 				$gperm =& BulletinGP::getInstance($mydirname) ;
 				$can_read_topic_ids = $gperm->makeOnTopics('can_read');
@@ -458,7 +479,14 @@ class Bulletin extends XoopsObject{
 		}
 
 		$db =& Database::getInstance();
-		$sql = "SELECT COUNT(*) FROM ".$db->prefix($mydirname.'_stories')." WHERE type > 0 AND published > 0 AND published <= ".time()." AND (expired = 0 OR expired > ".time().") AND storyid =".$storyid;
+		$gperm =& BulletinGP::getInstance($mydirname) ;
+//ver2.0$sql = "SELECT COUNT(*) FROM ".$db->prefix($mydirname.'_stories')." WHERE type > 0 AND published > 0 AND published <= ".time()." AND (expired = 0 OR expired > ".time().") AND storyid =".$storyid;
+//ver3.0
+		$sql = "SELECT COUNT(*) FROM ".$db->prefix($mydirname.'_stories');
+		$sql .= " WHERE published > 0 AND published <= ".time()." AND (expired = 0 OR expired > ".time().") AND storyid =".$storyid;
+		if (!$gperm->group_perm(2)){
+			$sql .= " AND type > 0";
+		}
 		$result = $db->query($sql);
 		list($count) = $db->fetchRow($result);
 
@@ -507,14 +535,19 @@ class Bulletin extends XoopsObject{
 	// Count the number of articles published
 	function countPublished( $mydirname , $topicid=0,$topic_recursive=false, $gpermited=false)
 	{
+		$gperm =& BulletinGP::getInstance($mydirname) ;
+
 		$criteria = array();
-		$criteria[] = 'type > 0';
+		if ($gpermited && !$gperm->group_perm(2)){
+			$criteria[] = 'type > 0';
+		}else{
+			$criteria[] = 'type > 0';
+		}
 		$criteria[] = 'published > 0';
 		$criteria[] = 'published <= '.time();
 		$criteria[] = '(expired = 0 OR expired > '.time().')';
 //ver3.0
 		if( $gpermited ){
-			$gperm =& BulletinGP::getInstance($mydirname) ;
 			$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 			$criteria[] = "topicid IN (".implode(',',$can_read_topic_ids).")";
 		}
@@ -580,6 +613,8 @@ class Bulletin extends XoopsObject{
 	// Count the number of articles of the day
 	function countPublishedByDate( $mydirname , $caldate, $gpermited=false)
 	{
+		$gperm =& BulletinGP::getInstance($mydirname) ;
+
 		if( preg_match('/([0-9]{4})-([0-9]{2})-([0-9]{2})/', $caldate, $datearr) ){
 			$year  = $datearr[1];
 			$month = $datearr[2];
@@ -588,7 +623,13 @@ class Bulletin extends XoopsObject{
 			$endday4sql   = mktime(0,0,0,$month,$day+1,$year);
 
 			$criteria = array();
-			$criteria[] = 'type > 0';
+//ver2.0	$criteria[] = 'type > 0';
+//ver3.0
+			if ($gpermited && !$gperm->group_perm(2)){
+				$criteria[] = 'type > 0';
+			}else{
+				$criteria[] = 'type > 0';
+			}
 			$criteria[] = 'published > 0';
 			$criteria[] = 'published <= '.time();
 			$criteria[] = '(expired = 0 OR expired > '.time().')';
@@ -596,7 +637,6 @@ class Bulletin extends XoopsObject{
 			$criteria[] = 'published < '.$endday4sql;
 //ver3.0
 			if( $gpermited ){
-				$gperm =& BulletinGP::getInstance($mydirname) ;
 				$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 				$criteria[] = "topicid IN (".implode(',',$can_read_topic_ids).")";
 			}
@@ -623,11 +663,18 @@ class Bulletin extends XoopsObject{
 	function getPublishedDays( $mydirname , $limit=0 , $start=0 , $gpermited=false )
 	{
 		$db =& Database::getInstance();
+		$gperm =& BulletinGP::getInstance($mydirname) ;
+
 		$sql = "SELECT published FROM ".$db->prefix($mydirname.'_stories');
-		$sql .= " WHERE type > 0 AND published>0 AND published<=".time()." AND expired <= ".time();
+//ver2.0$sql .= " WHERE type > 0 AND published>0 AND published<=".time()." AND expired <= ".time();
 //ver3.0
+		$sql .= " WHERE published>0 AND published<=".time()." AND expired <= ".time();
+		if (!$gpermited ){
+			$sql .= " AND type > 0";
+		}elseif (!$gperm->group_perm(2)){
+			$sql .= " AND type > 0";
+		}
 		if( $gpermited ){
-			$gperm =& BulletinGP::getInstance($mydirname) ;
 			$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 			$sql .= " AND topicid IN (".implode(',',$can_read_topic_ids).")";
 		}

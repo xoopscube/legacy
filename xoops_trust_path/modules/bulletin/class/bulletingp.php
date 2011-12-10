@@ -3,6 +3,7 @@ class BulletinGP{
 	var $topicPermissions;
 	var $mydirname;
 	var $table_topic_access = '' ;
+	var $gpermission;
 
 	function BulletinGP($mydirname){
 		$this->db =& Database::getInstance();
@@ -33,6 +34,14 @@ class BulletinGP{
 
 	function checkRight($gperm_name, $gperm_itemid, $gperm_groupid, $gperm_modid = 1)
 	{
+//ver3.0 by domifara
+		if (isset($gpermission[$gperm_name])
+		 && isset($gpermission[$gperm_name][$gperm_itemid])
+		 && isset($gpermission[$gperm_name][$gperm_itemid][serialize($gperm_groupid)])
+		 && isset($gpermission[$gperm_name][$gperm_itemid][serialize($gperm_groupid)][$gperm_modid]) ){
+			return $gpermission[$gperm_name][$gperm_itemid][serialize($gperm_groupid)][$gperm_modid];
+		}
+
 		$criteria = new CriteriaCompo(new Criteria('gperm_modid', $gperm_modid));
 		$criteria->add(new Criteria('gperm_name', $gperm_name));
 		$gperm_itemid = intval($gperm_itemid);
@@ -196,6 +205,59 @@ class BulletinGP{
 			return $ret ;
 		}
 	}
+
+	// By domifara
+	function get_viewtopic_perm_of_current_user( $topic_id ,$topic_uid , $published=0 , $can_edit_day=0  ){
+		global $xoopsUser ;
+		$topic_perm = $this->getTopicPermission($topic_id);
+		if (empty($topic_perm)) {
+			$topic_perm['can_read'] = 0;
+			$topic_perm['can_post'] = 0;
+			$topic_perm['can_edit'] = 0;
+			$topic_perm['can_delete'] = 0;
+			$topic_perm['post_auto_approved'] = 0;
+			return $topic_perm ;
+		}
+		$topic_perm['can_read'] = 1;
+
+		if (empty($topic_perm) || !$this->group_perm(1) ){
+			$topic_perm['can_post'] = 0;
+			$topic_perm['can_edit'] = 0;
+			$topic_perm['can_delete'] = 0;
+			$topic_perm['post_auto_approved'] = 0;
+			return $topic_perm ;
+		}
+		//TODO user only---------------
+		if (!is_object($xoopsUser) ){
+			$topic_perm['can_edit'] = 0;
+			$topic_perm['can_delete'] = 0;
+			return $topic_perm ;
+		}
+		$module_handler =& xoops_gethandler('module');
+		$module = $module_handler->getByDirname($this->mydirname);
+		$mid = $module->mid();
+		//user time limit,you can delete one day
+		if (!$xoopsUser->isAdmin($mid)){
+			if (!$this->group_perm(2)){
+				//your aritcle
+				if ($topic_uid === $xoopsUser->uid()){
+					//TODO if user,one day(86400) limit
+					if ($can_edit_day !=0 && $published < (time() - (86400 * float($can_edit_day))) ){
+						$topic_perm['can_edit'] = 0;
+						$topic_perm['can_delete'] = 0;
+					}
+				}else{
+						$topic_perm['can_edit'] = 0;
+						$topic_perm['can_delete'] = 0;
+				}
+			}
+		}
+
+		return $topic_perm ;
+
+	}
+
+
 	function makeOnTopics( $type ){
 		$ret = array();
 		if (!is_array($this->topicPermissions)) {

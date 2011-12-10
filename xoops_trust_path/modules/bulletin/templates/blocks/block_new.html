@@ -11,7 +11,11 @@
 
 <ul>
   <{foreach item=story from=$block.stories}>
-  <li><a href="<{$mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>"><{$story.title}></a>
+  <li>
+  <{if $story.type == 0}>
+    <a href="<{$mydirurl}>/index.php?page=submit&amp;storyid=<{$story.id}>" title="<{$smarty.const._MD_APPROVE}>">[*]</a>
+  <{/if}>
+  <a href="<{$mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>"><{$story.title}></a>
   <{if strstr( $block.type , "counter" )}>
     (<{$story.hits}>)
   <{else}>

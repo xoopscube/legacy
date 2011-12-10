@@ -33,7 +33,11 @@
 
           <ul class="bulletin_block_category_new">
             <{foreach item=story from=$topic.stories}>
-              <li><a href="<{$block.mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>"><{$story.title}></a>
+              <li>
+              <{if $story.type == 0}>
+                <a href="<{$mydirurl}>/index.php?page=submit&amp;storyid=<{$story.id}>" title="<{$smarty.const._MD_APPROVE}>">[*]</a>
+              <{/if}>
+              <a href="<{$block.mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>"><{$story.title}></a>
               <{if strstr( $block.type , "counter" )}>
                 (<{$story.hits}>)
               <{else}>

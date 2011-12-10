@@ -115,7 +115,7 @@ case 'listall':
 		'navi' => $navi
 	);
 
-    break;
+	break;
 
 //Allow each group configuration screen post
 case 'permition':

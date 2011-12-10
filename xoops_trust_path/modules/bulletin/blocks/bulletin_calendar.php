@@ -40,6 +40,13 @@ function b_bulletin_calendar_show($options) {
 	$sql = "SELECT published FROM ".$xoopsDB->prefix( "{$mydirname}_stories" );
 	if (!empty($can_read_topic_ids)){
 		$sql .= ' WHERE topicid IN ('.implode(',',$can_read_topic_ids).')';
+		if (!$gperm->group_perm(2)){
+			$sql .= " AND type > 0";
+		}
+	}else{
+		if (!$gperm->group_perm(2)){
+			$sql .= " WHERE type > 0";
+		}
 	}
 	$sql .= " ORDER BY published ASC";
 	list($startday) = $xoopsDB->fetchRow($xoopsDB->query($sql));
@@ -47,6 +54,13 @@ function b_bulletin_calendar_show($options) {
 	$sql = "SELECT published FROM ".$xoopsDB->prefix( "{$mydirname}_stories" );
 	if (!empty($can_read_topic_ids)){
 		$sql .= ' WHERE topicid IN ('.implode(',',$can_read_topic_ids).')';
+		if (!$gperm->group_perm(2)){
+			$sql .= " AND type > 0";
+		}
+	}else{
+		if (!$gperm->group_perm(2)){
+			$sql .= " WHERE type > 0";
+		}
 	}
 	$sql .= " ORDER BY published DESC";
 	list($endday) = $xoopsDB->fetchRow($xoopsDB->query($sql));
@@ -60,6 +74,9 @@ function b_bulletin_calendar_show($options) {
 		$sql .= ' AND topicid IN ('.implode(',',$can_read_topic_ids).')';
 	}else{
 		$sql .= ' AND topicid IN (0)';
+	}
+	if (!$gperm->group_perm(2)){
+		$sql .= " AND type > 0";
 	}
 	$result = $xoopsDB->query($sql);
 

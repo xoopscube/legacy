@@ -51,36 +51,10 @@ if ( $bodytext != '' ) {
 		$story['text'] = $story['text'].'<br /><br />'.$bodytext;
 	}
 }
-	$topic_perm = $gperm->getTopicPermission($story['topicid']);
-	if (empty($topic_perm) || !$gperm->group_perm(1) ){
-		$topic_perm['can_post'] = 0;
-		$topic_perm['can_edit'] = 0;
-		$topic_perm['can_delete'] = 0;
-		$topic_perm['post_auto_approved'] = 0;
-	}
-	//TODO user only---------------
-	//user time limit,you can delete one day
-	if (!is_object($xoopsUser) ){
-		$topic_perm['can_post'] = 0;
-		$topic_perm['can_edit'] = 0;
-		$topic_perm['can_delete'] = 0;
-		$topic_perm['post_auto_approved'] = 0;
-	}elseif (!$xoopsUser->isAdmin()){
-		if (!$gperm->group_perm(2)){
-			$topic_perm['post_auto_approved'] = 0;
 
-			if ($article->getVar('uid') === $xoopsUser->uid()){
-				if ($article->getVar('published') < (time() - 86400) ){//if user,one day only
-					$topic_perm['can_edit'] = 0;
-					$topic_perm['can_delete'] = 0;
-				}
-			}else{
-					$topic_perm['can_edit'] = 0;
-					$topic_perm['can_delete'] = 0;
-			}
-		}
-	}
+	$topic_perm = $gperm->get_viewtopic_perm_of_current_user($story['topicid'] , $article->getVar('uid'));
 	$story = array_merge($story,$topic_perm);
+	$story['type'] = $article->getVar('type');
 
 	// Assign a number of comments
 	$ccount = $article->getVar('comments');

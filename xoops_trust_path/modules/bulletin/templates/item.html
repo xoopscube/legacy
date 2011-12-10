@@ -1,6 +1,9 @@
 <{strip}>
 <div class="item">
   <div class="itemHead">
+	<{if $story.type == 0}>
+		<a href="<{$mydirurl}>/index.php?page=submit&amp;storyid=<{$story.id}>" title="<{$smarty.const._MD_APPROVE}>">[*]</a>
+	<{/if}>
   	<span class="itemTitle">
   	<a href="<{$mydirurl}>/index.php?storytopic=<{$story.topicid}>">
   	<{$story.topic}>

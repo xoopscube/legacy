@@ -79,7 +79,10 @@ function b_bulletin_category_new_show($options) {
 			$topic['show_category_icon'] = 0;
 		}
 
-		$where = sprintf("s.type > 0 AND s.published < %u AND s.published > 0 AND (s.expired = 0 OR s.expired > %1\$u) AND s.block = 1 AND (s.topicid=%u", time(), $topic_id);
+		$where = sprintf("s.published < %u AND s.published > 0 AND (s.expired = 0 OR s.expired > %1\$u) AND s.block = 1 AND (s.topicid=%u", time(), $topic_id);
+		if (!$gperm->group_perm(2)){
+			$where .= " AND s.type > 0";
+		}
 
 		// View the directory to include children categorys
 		$arr = $mytree->getAllChildId($topic_id);
@@ -157,6 +160,11 @@ function b_bulletin_category_new_show($options) {
 					$fullstory['topic_url'] = makeTopicImgURL($bulletin_topicon_path, $myrow['topic_imgurl']);
 					$fullstory['align']     = topicImgAlign($myrow['topicimg']);
 				}
+//ver3.0
+				$topic_perm = $gperm->get_viewtopic_perm_of_current_user($myrow['topicid'] , $myrow['uid']);
+				$fullstory = array_merge($fullstory,$topic_perm);
+
+				$fullstory['type']     = $myrow['type'];
 				$fullstory['raw_data'] = $myrow;
 
 				$topic['fullstories'][] = $fullstory;
@@ -182,6 +190,10 @@ function b_bulletin_category_new_show($options) {
 				$story['uname']    = XoopsUser::getUnameFromId($myrow['uid']);
 				$story['realname'] = XoopsUser::getUnameFromId($myrow['uid'], 1);
 
+//ver3.0
+				$topic_perm = $gperm->get_viewtopic_perm_of_current_user($myrow['topicid'] , $myrow['uid']);
+				$story = array_merge($story,$topic_perm);
+				$story['type']     = $myrow['type'];
 				$story['raw_data'] = $myrow;
 
 				$topic['stories'][] = $story;

@@ -24,7 +24,9 @@ function b_bulletin_new_show($options) {
 	$display_count = empty($options[2]) ? 0 :intval($options[2]);//Number display for each category
 	$Length_title = empty($options[3]) ? 255 :intval($options[3]);//Length of the title
 	$show_body = empty($options[4]) ? 0 :intval($options[4]);//Number of articles showing body for each category
-	$options[5] = isset($options[5]) ? $options[5] : 0 ;//(0=show all for d3pipes)
+	if (!isset($options[5])){
+		$options[5] = 0 ;//(0=show all for d3pipes)
+	}
 	$categories = empty($options[5]) ? 0 : array_map( 'intval' , explode( ',' , $options[5] ) ) ;//(0=show all)
 
 	require dirname( dirname( __FILE__ ) ).'/include/configs.inc.php';
@@ -41,7 +43,10 @@ function b_bulletin_new_show($options) {
 
 	$sql = "SELECT s.*, t.topic_pid, t.topic_imgurl, t.topic_title, t.topic_created, t.topic_modified";
 	$sql .= ' FROM ' . $xoopsDB->prefix($mydirname.'_stories') . ' s, ' . $xoopsDB->prefix($mydirname.'_topics') . ' t';
-	$sql .= ' WHERE s.type > 0 AND s.published < '.time().' AND s.published > 0 AND (s.expired = 0 OR s.expired > '.time().') AND s.topicid = t.topic_id AND s.block = 1';
+	$sql .= ' WHERE s.published < '.time().' AND s.published > 0 AND (s.expired = 0 OR s.expired > '.time().') AND s.topicid = t.topic_id AND s.block = 1';
+	if (!$gperm->group_perm(2)){
+		$sql .= " AND s.type > 0";
+	}
 	if (!empty($categories)){
 		$sql .= ' AND s.topicid IN ('.implode(',',$categories).')';
 	}
@@ -99,7 +104,11 @@ function b_bulletin_new_show($options) {
 				$fullstory['topic_url'] = makeTopicImgURL($bulletin_topicon_path, $myrow['topic_imgurl']);
 				$fullstory['align']     = topicImgAlign($myrow['topicimg']);
 			}
+//ver3.0
+			$topic_perm = $gperm->get_viewtopic_perm_of_current_user($myrow['topicid'] , $myrow['uid']);
+			$fullstory = array_merge($fullstory,$topic_perm);
 
+			$fullstory['type']     = $myrow['type'];
 			$fullstory['raw_data'] = $myrow;
 
 			$block['fullstories'][] = $fullstory;
@@ -126,6 +135,11 @@ function b_bulletin_new_show($options) {
 			$story['uname']    = XoopsUser::getUnameFromId($myrow['uid']);
 			$story['realname'] = XoopsUser::getUnameFromId($myrow['uid'], 1);
 
+
+//ver3.0
+			$topic_perm = $gperm->get_viewtopic_perm_of_current_user($myrow['topicid'] , $myrow['uid']);
+			$story = array_merge($story,$topic_perm);
+			$story['type']     = $myrow['type'];
 			$story['raw_data'] = $myrow;
 
 			$block['stories'][] = $story;
