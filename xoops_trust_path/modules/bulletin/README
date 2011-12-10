@@ -41,6 +41,24 @@ http://www.xugj.org/modules/d3forum/index.php?topic_id=106
 
 
 =CHANEGLOG=
+ver3.0 (2011-11-11) beta4
+--305~347	 domifara 	[bulletin]編集権限の動作
+--347	 domifara 	[bulletin]管理者を除いて、他の投稿者の記事を編集できないようにしてほしい
+--345,346	 domifara 	[bulletin]class/gtickets.php->include/gtickets.php
+--345,346	 domifara 	admin/index.phph gticketsの適用
+--345	 domifara 	[bulletin]カテゴリーを削除したとき、カテゴリーアクセス権限のデータの削除
+--339	 domifara 	[bulletin]一般設定で「common/fckeditorを利用する」はいにする、既存記事の「編集」のときまでFCKEditorになってしまう
+--339	 domifara 	[bulletin]コンテンツ新規作成画面になると、入力支援機能のON/OFFにチェックが入っていないのに、コンテンツ新規作成画面で「入力支援機能」が表示される
+--339	 domifara 	[bulletin]permissions do when ca_edit,can_delete .some templates change etc.use_fck judge
+--337	 domifara 	[bulletin]whatsnewプラグインで「閲覧権限」との連動
+--335	 domifara 	[bulletin]triggerEvent limit user
+--334	 domifara 	[bulletin]when add category,default permission set ,some class code change
+--333	 domifara 	[bulletin]新着用ブロックのカテゴリーの指定で、複数カテゴリー指定がほしい
+--330	 domifara 	[bulletin]イベント通知 承認待ち投稿のイベント通知がこない
+--323	 domifara 	[bulletin]MySQL5.5以上でインストールに失敗する
+--314	 domifara 	[bulletin]閲覧権限のないグループ(ゲストを含む)のリスト表示
+--313,347	 domifara 	[bulletin]「カレンダーブロックに閲覧権限の無いの記事までリンク有りとされる
+
 ver3.0 (2011-11-02) beta3
 --206~305	 domifara 	新着用ブロックのカテゴリーの指定で、複数カテゴリー指定がほしい
 --302~304	 domifara 	ndex.php?op=commentsの時にエラーになる
@@ -63,7 +81,7 @@ ver3.0 (2011-11-02) beta2
 - 267 	 dashboard 	 Group permission fix
 
 ver3.0 (2011-11-02) beta1
-- 171 	 2 weeks 	 naao 	 Add all modules and other files from pack2011/trunk rev.164 base.
+- 171 	 naao 	 Add all modules and other files from pack2011/trunk rev.164 base.
 
 HD-2.22 (2009-10-31)
 - fixed new blocks missing initializations (thx chossa2000)

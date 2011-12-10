@@ -1,8 +1,9 @@
 <?php
 // Module Info
 
-if( defined( 'FOR_XOOPS_LANG_CHECKER' ) ) $mydirname = 'bulletin' ;
-$constpref = '_MI_' . strtoupper( $mydirname ) ;
+$bulletin_dirname = basename( dirname ( dirname ( dirname( __FILE__ ) ) ) ) ;
+if( defined( 'FOR_XOOPS_LANG_CHECKER' ) ) $bulletin_dirname = 'bulletin' ;
+$constpref = '_MI_' . strtoupper( $bulletin_dirname ) ;
 
 if( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref.'_LOADED' ) ) {
 

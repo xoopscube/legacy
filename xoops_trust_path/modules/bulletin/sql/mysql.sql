@@ -31,7 +31,7 @@ CREATE TABLE `stories` (
   KEY `published_ihome` (`published`,`ihome`),
   KEY `title` (`title`),
   KEY `created` (`created`)
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 # --------------------------------------------------------
 
 #
@@ -47,9 +47,13 @@ CREATE TABLE `topics` (
   `topic_modified` int(10) unsigned NOT NULL default 0,
   PRIMARY KEY (`topic_id`),
   KEY `pid` (`topic_pid`)
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 
 INSERT INTO `topics` VALUES (1,0,'','TOP',UNIX_TIMESTAMP(),0);
+
+#
+# Table structure for table `topic_access`
+#
 
 CREATE TABLE topic_access (
   topic_id smallint(5) unsigned NOT NULL default 0,
@@ -65,7 +69,11 @@ CREATE TABLE topic_access (
   KEY (uid),
   KEY (groupid),
   KEY (can_post)
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
+
+INSERT INTO `topic_access` VALUES (1,null,1,1,1,1,1);
+INSERT INTO `topic_access` VALUES (1,null,2,1,0,0,1);
+INSERT INTO `topic_access` VALUES (1,null,3,0,0,0,0);
 
 #
 # Table structure for table `relation`
@@ -77,4 +85,4 @@ CREATE TABLE `relation` (
   `dirname` varchar(25) NOT NULL default '',
   KEY (`storyid`),
   PRIMARY KEY (`storyid`,`linkedid`,`dirname`)
-) ENGINE=MyISAM;
+) TYPE=MyISAM;

@@ -1,8 +1,9 @@
 <?php /* English Translation by Marcelo Yuji Himoro <http://yuji.ws> & Suin <http://xoops.suinyeze.com/>*/
 // Module Info
 
-if( defined( 'FOR_XOOPS_LANG_CHECKER' ) ) $mydirname = 'bulletin' ;
-$constpref = '_MI_' . strtoupper( $mydirname ) ;
+$bulletin_dirname = basename( dirname ( dirname ( dirname( __FILE__ ) ) ) ) ;
+if( defined( 'FOR_XOOPS_LANG_CHECKER' ) ) $bulletin_dirname = 'bulletin' ;
+$constpref = '_MI_' . strtoupper( $bulletin_dirname ) ;
 
 if( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref.'_LOADED' ) ) {
 
@@ -110,12 +111,12 @@ define($constpref."_GLOBAL_NEWCATEGORY_NOTIFYCAP","Notify me when a new category
 define($constpref."_GLOBAL_NEWCATEGORY_NOTIFYDSC","Notify me when a new category is created.");
 define($constpref."_GLOBAL_NEWCATEGORY_NOTIFYSBJ","[{X_SITENAME}] {X_MODULE}: New category created");
 
-define($constpref."_GLOBAL_STORYSUBMIT_NOTIFY","New story submitted");       
-define($constpref."_GLOBAL_STORYSUBMIT_NOTIFYCAP","Notify me when a new story is submitted.");                           
-define($constpref."_GLOBAL_STORYSUBMIT_NOTIFYDSC","Notify me when a new story is submitted.");                
-define($constpref."_GLOBAL_STORYSUBMIT_NOTIFYSBJ","[{X_SITENAME}] {X_MODULE}: New story submitted");                      
+define($constpref."_GLOBAL_STORYSUBMIT_NOTIFY","New story submitted");
+define($constpref."_GLOBAL_STORYSUBMIT_NOTIFYCAP","Notify me when a new story is submitted.");
+define($constpref."_GLOBAL_STORYSUBMIT_NOTIFYDSC","Notify me when a new story is submitted.");
+define($constpref."_GLOBAL_STORYSUBMIT_NOTIFYSBJ","[{X_SITENAME}] {X_MODULE}: New story submitted");
 
-define($constpref."_GLOBAL_NEWSTORY_NOTIFY","New story published");       
+define($constpref."_GLOBAL_NEWSTORY_NOTIFY","New story published");
 define($constpref."_GLOBAL_NEWSTORY_NOTIFYCAP","Notify me when a new story is published.");
 define($constpref."_GLOBAL_NEWSTORY_NOTIFYDSC","Notify me when a new story is published.");
 define($constpref."_GLOBAL_NEWSTORY_NOTIFYSBJ","[{X_SITENAME}] {X_MODULE}: New news published");
