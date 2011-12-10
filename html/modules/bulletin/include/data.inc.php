@@ -4,7 +4,6 @@
 // $category_option  に表示するカテゴリ番号をカンマ(,)で区切って記入。空欄なら全カテゴリー表示。
 // $intree を '1' にすると、配下のサブカテゴリも表示することができます。
 $category_option = '' ;
-$intree = '0' ;
 
 // --- option end ---
 
