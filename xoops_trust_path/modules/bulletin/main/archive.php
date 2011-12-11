@@ -79,7 +79,7 @@ if ($fromyear != 0 && $frommonth != 0) {
 	$monthend   = mktime(23 - $timeoffset, 59, 59, $frommonth + 1, 0, $fromyear);
 	$monthend   = ($monthend > time()) ? time() : $monthend;
 
-	$article = Bulletin::getArchives( $mydirname , $monthstart , $monthend , 0 , true ,true );
+	$article = Bulletin::getArchives( $mydirname , $monthstart , $monthend , 0 , 0 , true ,true );
 	$scount = count($article);
 
 	for ( $i = 0; $i < $scount; $i++ ) {
