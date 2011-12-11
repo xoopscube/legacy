@@ -16,8 +16,8 @@ class Bulletin_Cal
 	var $startday;
 	var $endday;
 	var $query = 'today';
-	
-	
+
+
 	function setDate($today="", $startday=0, $endday=0)
 	{
 		if(preg_match('/([0-9]{4})-([0-9]{2})/', $today, $todayarr)){
@@ -27,22 +27,22 @@ class Bulletin_Cal
 			$year  = date('Y');
 			$month = date('m');
 		}
-		
+
 		if(!checkdate($month,1,$year)){
 			$year  = date('Y');
 			$month = date('m');
 		}
-		
+
 		//if( !empty($startday) && $year*100+$month < intval(date('Ym',$startday))){
 		//	$year  = date('Y', $startday);
 		//	$month = date('m', $startday);
 		//}
-		
+
 		//if( !empty($endday) && $year*100+$month > intval(date('Ym',$endday))){
 		//	$year  = date('Y', $endday);
 		//	$month = date('m', $endday);
 		//}
-		
+
 		if( !empty($endday) && date('Ym') > intval(date('Ym',$endday))){
 			$endday = time();
 		}
@@ -56,7 +56,7 @@ class Bulletin_Cal
 		$this->endday    = intval( $endday );
 		$this->timestamp = mktime(0,0,0,$month,1,$year);
 	}
-	
+
 	function setWeekName($week="")
 	{
 		if( is_array($week) && count($week)==7){
@@ -65,13 +65,13 @@ class Bulletin_Cal
 		}
 		return false;
 	}
-	
+
 	function setLink($day, $url)
 	{
 		$day = intval($day);
 		$this->link[$day] = $url;
 	}
-	
+
 	function setTitle($title = 'Y-m')
 	{
 		$this->title = date($title, $this->timestamp);
@@ -81,14 +81,14 @@ class Bulletin_Cal
 	{
 		$this->query = $query;
 	}
-	
+
 	function getCalendar()
 	{
 		$w = $this->weekday;
 		$m = $this->month;
 		$y = $this->year;
 		$d = $this->day;
-		
+
 		$ret  = array();
 
 		for($i=0; $i<7; $i++){
@@ -103,61 +103,61 @@ class Bulletin_Cal
 		$i = 1;
 		$l = 1;
 		while(checkdate($m,$i,$y)){
-		
+
 			if( isset($this->link[$i]) ){
 				$ret[$l][$w]['link'] = $this->link[$i];
 			}else{
 				$ret[$l][$w]['link'] = '';
 			}
-			
-			     if($w == 0){ 
-				$ret[$l][$w]['label'] = $i; 
-			}elseif($w == 1){ 
-				$ret[$l][$w]['label'] = $i; 
-			}elseif($w == 2){ 
-				$ret[$l][$w]['label'] = $i; 
-			}elseif($w == 3){ 
-				$ret[$l][$w]['label'] = $i; 
-			}elseif($w == 4){ 
-				$ret[$l][$w]['label'] = $i; 
-			}elseif($w == 5){ 
-				$ret[$l][$w]['label'] = $i; 
-			}elseif($w == 6){ 
-				$ret[$l][$w]['label'] = $i; 
+
+			     if($w == 0){
+				$ret[$l][$w]['label'] = $i;
+			}elseif($w == 1){
+				$ret[$l][$w]['label'] = $i;
+			}elseif($w == 2){
+				$ret[$l][$w]['label'] = $i;
+			}elseif($w == 3){
+				$ret[$l][$w]['label'] = $i;
+			}elseif($w == 4){
+				$ret[$l][$w]['label'] = $i;
+			}elseif($w == 5){
+				$ret[$l][$w]['label'] = $i;
+			}elseif($w == 6){
+				$ret[$l][$w]['label'] = $i;
 			}
-			
+
 			if($w == 6){
 				$l++;
 			}
-			
+
 			$i++;
 			$w++;
 			$w = $w % 7;
 		}
-		
+
 		if($w > 0){
 			while($w < 7){
-				$ret[$l][$w]['label'] = ''; 
-				$ret[$l][$w]['link']  = ''; 
+				$ret[$l][$w]['label'] = '';
+				$ret[$l][$w]['link']  = '';
 				$w++;
 			}
 		}
-		
+
 		return $ret;
 	}
 
-	
+
 	function getThemeCalendar()
 	{
 		$w = $this->weekday;
 		$m = $this->month;
 		$y = $this->year;
-		
+
 		$ret  = '<table border="0" class="outer" cellspacing="1">';
 		$ret .= $this->getTitleBar();
-		
+
 		foreach( $this->getCalendar() as $line => $weeks ){
-		
+
 			$ret .= '<tr align="center">';
 			foreach($weeks as $weekday){
 				$style = ( $line > 0 ) ? 'even' : 'head';
@@ -167,20 +167,20 @@ class Bulletin_Cal
 				$ret .= '<td class="'.$style.'">'.$text.'</td>';
 			}
 			$ret .= '</tr>';
-		
+
 		}
-		
-		$ret .= '</tr></table>';
-		
+
+		$ret .= '</table>';
+
 		return $ret;
 	}
-	
+
 	function getTitleBar()
 	{
 		$w = $this->weekday;
 		$m = $this->month;
 		$y = $this->year;
-		
+
 		if( !empty($this->title)){
 			$p_month = date("Y-m", mktime(0,0,0,$m,0,$y));
 			$n_month = date("Y-m", mktime(0,0,0,$m+1,1,$y));
@@ -198,7 +198,7 @@ class Bulletin_Cal
 			}
 			$ret .= '</th></tr>';
 		}
-		
+
 		return $ret;
 	}
 }
