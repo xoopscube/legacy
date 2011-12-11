@@ -35,11 +35,11 @@ class BulletinGP{
 	function checkRight($gperm_name, $gperm_itemid, $gperm_groupid, $gperm_modid = 1)
 	{
 //ver3.0 by domifara
-		if (isset($gpermission[$gperm_name])
-		 && isset($gpermission[$gperm_name][$gperm_itemid])
-		 && isset($gpermission[$gperm_name][$gperm_itemid][serialize($gperm_groupid)])
-		 && isset($gpermission[$gperm_name][$gperm_itemid][serialize($gperm_groupid)][$gperm_modid]) ){
-			return $gpermission[$gperm_name][$gperm_itemid][serialize($gperm_groupid)][$gperm_modid];
+		if (isset($this->gpermission[$gperm_name])
+		 && isset($this->gpermission[$gperm_name][$gperm_itemid])
+		 && isset($this->gpermission[$gperm_name][$gperm_itemid][serialize($gperm_groupid)])
+		 && isset($this->gpermission[$gperm_name][$gperm_itemid][serialize($gperm_groupid)][$gperm_modid]) ){
+			return $this->gpermission[$gperm_name][$gperm_itemid][serialize($gperm_groupid)][$gperm_modid];
 		}
 
 		$criteria = new CriteriaCompo(new Criteria('gperm_modid', $gperm_modid));
@@ -57,10 +57,12 @@ class BulletinGP{
 		} else {
 			$criteria->add(new Criteria('gperm_groupid', $gperm_groupid));
 		}
+		$ret = false;
 		if ($this->getCount($criteria) > 0) {
-			return true;
+			$ret = true;
 		}
-		return false;
+		$this->gpermission[$gperm_name][$gperm_itemid][serialize($gperm_groupid)][$gperm_modid]=false;
+		return $ret;
 	}
 
 	function getCount($criteria = null)
