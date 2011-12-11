@@ -41,7 +41,7 @@ if (restore) selObj.selectedIndex=0;
 }
 -->
 </script>";
-    $block['content'] .= '<div align="center"><select name="'.CUBE_UTILS_ML_PARAM_NAME.'" onchange="SelLang_jumpMenu(\'parent\',this,0)">';
+    $block['content'] .= '<div style="align=\'center\';"><select name="'.CUBE_UTILS_ML_PARAM_NAME.'" onchange="SelLang_jumpMenu(\'parent\',this,0)">';
     $languages = XoopsLists::getLangList();
     $langnames = explode(',',CUBE_UTILS_ML_LANGDESCS);
     $langs = explode(',',CUBE_UTILS_ML_LANGS);
