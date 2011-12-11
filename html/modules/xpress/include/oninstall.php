@@ -142,7 +142,7 @@ function xpress_oninstall_base( $module , $mydirname )
   		module_id smallint(5) unsigned NOT NULL default '0' ,
   		omit_user_id varchar(20) NOT NULL default '' ,
   		KEY notify_reserve_id (notify_reserve_id)
-		)TYPE=MyISAM";
+		)ENGINE=MyISAM";
 	dbDelta($queries);
 	$ret[] = "$notify_reserve table of XPressME was made.<br />";
 

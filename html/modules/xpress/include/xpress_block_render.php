@@ -182,7 +182,7 @@ if(!defined('XPRESS_BLOCK_RENDER_FUNCTION_READ')){
 			$templates_file = 'db:'.$mydirname. '_' . str_replace(".php", ".html", $block_function_name);
 		}
 		
-		$tpl =& new XoopsTpl() ;
+		$tpl = new XoopsTpl() ;
 		$tpl->template_dir = $xoops_config->module_path . '/templates';
 		if (!$tpl->template_exists($templates_file)){
 			$src_file_path = $xoops_config->module_path . '/templates/' .$mydirname. '_' . str_replace(".php", ".html", $block_function_name);

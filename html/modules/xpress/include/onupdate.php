@@ -193,7 +193,7 @@ function xpress_table_make($module, $mydirname)
   		post_id bigint(20) unsigned NOT NULL default '0',
   		post_views bigint(20) unsigned NOT NULL default '0',
   		KEY post_id (post_id)
-		) TYPE=MyISAM";
+		) ENGINE=MyISAM";
 		$db->queryF( $queries ) ;
 		$msgs[] = "$views_table table of XPressME was made.";
 	} else {
@@ -231,7 +231,7 @@ function xpress_table_make($module, $mydirname)
 			forum_id bigint(20) unsigned NOT NULL default '0',
 			blog_id bigint(20) unsigned NOT NULL default '0',
 	  		KEY post_id (post_id)
-			)TYPE=MyISAM";
+			)";
 		$db->queryF( $queries ) ;
 		$msgs[] = "$d3forum_link table of XPressME was made.";
 	} else {
@@ -264,7 +264,7 @@ function xpress_table_make($module, $mydirname)
 			role varchar(20)  NOT NULL default '' ,
 			login_all smallint(5) unsigned NOT NULL default '0' ,
 	  		KEY groupid (groupid)
-			)TYPE=MyISAM";
+			)";
 		$db->queryF( $queries ) ;
 		$sql = "INSERT INTO $group_role (groupid, role) VALUES (1, 'administrator')";
 		$db->queryF( $sql ) ;
@@ -293,7 +293,7 @@ function xpress_table_make($module, $mydirname)
 	  		module_id smallint(5) unsigned NOT NULL default '0' ,
 	  		omit_user_id varchar(20) NOT NULL default '' ,
 	  		KEY notify_reserve_id (notify_reserve_id)
-			)TYPE=MyISAM";
+			)";
 		$db->queryF( $queries ) ;
 		$msgs[] = "$notify_reserve table of XPressME was made.";
 	}

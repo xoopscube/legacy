@@ -15,7 +15,7 @@
 ###################################################################################
 if( ! function_exists( 'xpress_XML_unserialize' ) ) : // d3pipe Used function
 function & xpress_XML_unserialize(&$xml){
-	$xml_parser = &new xpress_XML();
+	$xml_parser = new xpress_XML();
 	$data = &$xml_parser->parse($xml);
 	$xml_parser->destruct();
 	return $data;
