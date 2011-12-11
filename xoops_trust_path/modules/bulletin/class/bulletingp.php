@@ -61,7 +61,7 @@ class BulletinGP{
 		if ($this->getCount($criteria) > 0) {
 			$ret = true;
 		}
-		$this->gpermission[$gperm_name][$gperm_itemid][serialize($gperm_groupid)][$gperm_modid]=false;
+		$this->gpermission[$gperm_name][$gperm_itemid][serialize($gperm_groupid)][$gperm_modid]=$ret;
 		return $ret;
 	}
 
