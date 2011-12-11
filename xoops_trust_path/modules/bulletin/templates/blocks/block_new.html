@@ -15,7 +15,7 @@
   <{if $story.type == 0}>
     <a href="<{$mydirurl}>/index.php?page=submit&amp;storyid=<{$story.id}>" title="<{$smarty.const._MD_APPROVE}>">[*]</a>
   <{/if}>
-  <a href="<{$mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>"><{$story.title}></a>
+  <a href="<{$mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>" title="<{$story.title}>"><{$story.title}></a>
   <{if strstr( $block.type , "counter" )}>
     (<{$story.hits}>)
   <{else}>

@@ -34,17 +34,17 @@
 
 <{if $disp_print_icon or $disp_tell_icon}>
   <div style="text-align: right;">
-  
+
   <{if $disp_print_icon}>
-    <a href="<{$mydirurl}>/index.php?page=print&amp;storyid=<{$story.id}>">
+    <a href="<{$mydirurl}>/index.php?page=print&amp;storyid=<{$story.id}>" title="<{$smarty.const._MD_PRINTERFRIENDLY}>">
     <img src="<{$mydirurl}>/images/print.gif" border="0" alt="<{$smarty.const._MD_PRINTERFRIENDLY}>" /></a>&nbsp;
   <{/if}>
-  
+
   <{if $disp_tell_icon}>
-    <a target="_top" href="<{$mail_link}>">
+    <a target="_top" href="<{$mail_link}>" title="<{$smarty.const._MD_SENDSTORY}>">
     <img src="<{$mydirurl}>/images/friend.gif" border="0" alt="<{$smarty.const._MD_SENDSTORY}>" /></a>
   <{/if}>
-  
+
   </div>
 <{/if}>
 <br />
