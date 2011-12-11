@@ -62,7 +62,12 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
 		
 		$controller =& $root->mController;
 		$user =& $root->mController->mRoot->mContext->mXoopsUser;
+		$cachePath = XOOPS_CACHE_PATH.'/admin_side_menu_'.md5(XOOPS_SALT . implode('_',$user->groups())).'.html';
 		$render =& $this->getRenderTarget();
+		if (file_exists($cachePath)) {
+			$render->mRenderBuffer = file_get_contents($cachePath);
+			return;
+		}
 		$render->setAttribute('legacy_module', 'legacy');
 		
 		$this->mCurrentModule =& $controller->mRoot->mContext->mXoopsModule;
@@ -126,6 +131,7 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
 		$renderSystem =& $root->getRenderSystem($this->getRenderSystemName());
 		
 		$renderSystem->renderBlock($render);
+		file_put_contents($cachePath, $render->mRenderBuffer);
 	}
 }
 

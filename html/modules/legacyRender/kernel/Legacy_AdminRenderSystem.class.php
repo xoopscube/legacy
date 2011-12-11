@@ -293,14 +293,33 @@ function Legacy_function_stylesheet($params, &$smarty)
 	// TEMP
 	// TODO We must return FALLBACK_URL here.
 	if ($infoArr['file'] != null) {
-		$request = array();
-		foreach ($infoArr as $key => $value) {
-			if ($value != null) {
-				$request[] = "${key}=${value}";
+		if ($params['static']) {
+			$theme=$infoArr['theme'];
+			$dirname=$infoArr['dirname'];
+			$file='stylesheets/'.$file;
+			if (!empty($theme) && !empty($dirname)) {
+				$url = XOOPS_THEME_URL . "/$theme/modules/$dirname/$file";
+			} elseif (!empty($theme)) {
+				$url = XOOPS_THEME_URL . "/$theme/$file";
 			}
+			elseif (!empty($infoArr['dirname'])) {
+				$url = XOOPS_MODULE_URL . "/$dirname/admin/templates/$file";
+			} else {
+				$url = LEGACY_ADMIN_RENDER_FALLBACK_URL . "/$file";
+			}
+		} else {
+			if ($infoArr['file'] != null) {
+				$request = array();
+				foreach ($infoArr as $key => $value) {
+					if ($value != null) {
+						$request[] = "${key}=${value}";
+					}
+				}
+			}
+			$url = XOOPS_MODULE_URL . '/legacyRender/admin/css.php?' . implode('&amp;', $request);
 		}
-		$url = XOOPS_MODULE_URL . '/legacyRender/admin/css.php?' . implode('&amp;', $request);
-		print '<link rel="stylesheet" type="text/css" media="'. $media .'" href="' . $url . '" />';
+
+		return '<link rel="stylesheet" type="text/css" media="'. $media .'" href="' . $url . '" />';
 	}
 }
 
@@ -310,9 +329,10 @@ function Legacy_get_override_file($file, $prefix = null, $isSpDirname = false)
 	$moduleObject =& $root->mContext->mXoopsModule;
 
 	if ($isSpDirname && is_object($moduleObject) && $moduleObject->get('dirname') == 'legacy' && isset($_REQUEST['dirname'])) {
-		if (preg_match('/^[a-z0-9_]+$/i', xoops_getrequest('dirname'))) {
+		$dirname = xoops_getrequest('dirname');
+		if (preg_match('/^[a-z0-9_]+$/i', $dirname)) {
 			$handler = xoops_gethandler('module');
-			$moduleObject =& $handler->getByDirname(xoops_getrequest('dirname'));
+			$moduleObject =& $handler->getByDirname($dirname);
 		}
 	}
 
