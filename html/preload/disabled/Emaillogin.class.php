@@ -24,7 +24,7 @@ class Emaillogin extends XCube_ActionFilter
 
     $userHandler =& xoops_getmodulehandler('users', 'user');
     
-    $criteria =& new CriteriaCompo();
+    $criteria = new CriteriaCompo();
     if ( xoops_getrequest('uname') != "" && strpos(xoops_getrequest('uname'), '@') !== false ) {
       $criteria->add(new Criteria('email', xoops_getrequest('uname')));
     } else {
