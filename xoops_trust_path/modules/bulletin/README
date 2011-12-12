@@ -19,63 +19,79 @@ They are the same files included in the other "D3 modules".
 
 [/xlang:en]
 [xlang:ja]
-====  bulletinHD ¥Û¥À½Î¥Ç¥£¥¹¥È¥ê¥Ó¥å¡¼¥·¥ç¥óÈÇbulletin2  ===
+====  bulletinHD ãƒ›ãƒ€å¡¾ãƒ‡ã‚£ã‚¹ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ã‚·ãƒ§ãƒ³ç‰ˆbulletin2  ===
 
-¤³¤Á¤é¤Î¥È¥Ô¥Ã¥¯¤ò¤ªÆÉ¤ß¤¯¤À¤µ¤¤
+ã“ã¡ã‚‰ã®ãƒˆãƒ”ãƒƒã‚¯ã‚’ãŠèª­ã¿ãã ã•ã„
 http://www.xugj.org/modules/d3forum/index.php?topic_id=106
 
-2.04-009°Ê¹ß¡¢altsysÉ¬¿Ü¥â¥¸¥å¡¼¥ë¤È¤Ê¤ê¤Ş¤·¤¿¡£Àè¤Ëaltsys¤ò¥¤¥ó¥¹¥È¡¼¥ë¤·¤Æ¤ª¤¤¤Æ¤¯¤À¤µ¤¤¡£
+2.04-009ä»¥é™ã€altsyså¿…é ˆãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¨ãªã‚Šã¾ã—ãŸã€‚å…ˆã«altsysã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã—ã¦ãŠã„ã¦ãã ã•ã„ã€‚
 
-¥¢¡¼¥«¥¤¥ÖÆâ¤ÎSmarty¥×¥é¥°¥¤¥ó¤âËº¤ì¤º¤Ë¥³¥Ô¡¼¤·¤Æ¤¯¤À¤µ¤¤¡£
+ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®Smartyãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚‚å¿˜ã‚Œãšã«ã‚³ãƒ”ãƒ¼ã—ã¦ãã ã•ã„ã€‚
 - html/class/smarty/plugins/function.d3comment.php
 - html/class/smarty/plugins/function.xoopsdhtmltarea.php
-¤³¤ì¤é¤Ï¡¢Â¾¤ÎD3¥â¥¸¥å¡¼¥ë¤Ë´Ş¤Ş¤ì¤Æ¤¤¤ë¤â¤Î¤ÈÆ±¤¸¤Ê¤Î¤Ç¡¢¤¹¤Ç¤Ë¥³¥Ô¡¼ºÑ¤Ê¤éÌäÂê¤¢¤ê¤Ş¤»¤ó¡£
+ã“ã‚Œã‚‰ã¯ã€ä»–ã®D3ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã«å«ã¾ã‚Œã¦ã„ã‚‹ã‚‚ã®ã¨åŒã˜ãªã®ã§ã€ã™ã§ã«ã‚³ãƒ”ãƒ¼æ¸ˆãªã‚‰å•é¡Œã‚ã‚Šã¾ã›ã‚“ã€‚
 
 
-£±Ç¯¶á¤¯¡¢¥Ï¥Ã¥¯ÈÇ¤È¤·¤Æ¥á¥ó¥Æ¤·¤Æ¤­¤Ş¤·¤¿¤¬¡¢¥Û¥À½Î¥Ç¥£¥¹¥È¥ê¥Ó¥å¡¼¥·¥ç¥ó¤Ë¼ıÏ¿¤¹¤ë¤ËÅö¤¿¤Ã¤Æ¡¢ÌäÂê¤Î¤¢¤ê¤½¤¦¤Ê¥³¡¼¥É¤ò¤«¤Ê¤êÂç¸µ¤«¤é½ñ¤­Ä¾¤·¤Ş¤·¤¿¡£
+ï¼‘å¹´è¿‘ãã€ãƒãƒƒã‚¯ç‰ˆã¨ã—ã¦ãƒ¡ãƒ³ãƒ†ã—ã¦ãã¾ã—ãŸãŒã€ãƒ›ãƒ€å¡¾ãƒ‡ã‚£ã‚¹ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ã‚·ãƒ§ãƒ³ã«åéŒ²ã™ã‚‹ã«å½“ãŸã£ã¦ã€å•é¡Œã®ã‚ã‚Šãã†ãªã‚³ãƒ¼ãƒ‰ã‚’ã‹ãªã‚Šå¤§å…ƒã‹ã‚‰æ›¸ãç›´ã—ã¾ã—ãŸã€‚
 
-µÕ¤Ë¡¢¿·¤¿¤ÊÆ°ºîÉÔÎÉ¤Ê¤É¤òÀ¸¤ß½Ğ¤·¤Æ¤·¤Ş¤Ã¤¿²ÄÇ½À­¤â¤¢¤ë¤¿¤á¡¢¥Û¥À½Î¥Ç¥£¥¹¥È¥ê¥Ó¥å¡¼¥·¥ç¥óÈÇbulletin ¤¹¤Ê¤ï¤Á bulletinHD ¤È¤·¤Æ¿·¤·¤¯¥á¥ó¥Æ¤¹¤ë¤³¤È¤Ë¤·¤Ş¤·¤¿¡£¤¿¤À°ìÉô¤Ç¸í²ò¤¬¤¢¤ë¤è¤¦¤Ç¤¹¤¬¡¢bulletinHD¤Ë¤ÏXCL2.1¤Ç¤·¤«Æ°¤«¤Ê¤¤¡¢¤Ê¤ó¤Æ°ÕÌ£¤Ï¤¢¤ê¤Ş¤»¤ó¡£Â¾¤ÎD3¥â¥¸¥å¡¼¥ëÆ±ÍÍ¡¢bulletinHD¤ÏX2¤ÇÅöÁ³¤ËÆ°ºî¤·¤Ş¤¹¤·¡¢ImpressCMS¤âXCL2.1¤âÆ°ºîÂĞ¾İ¥³¥¢¤Ç¤¹¡£
+é€†ã«ã€æ–°ãŸãªå‹•ä½œä¸è‰¯ãªã©ã‚’ç”Ÿã¿å‡ºã—ã¦ã—ã¾ã£ãŸå¯èƒ½æ€§ã‚‚ã‚ã‚‹ãŸã‚ã€ãƒ›ãƒ€å¡¾ãƒ‡ã‚£ã‚¹ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ã‚·ãƒ§ãƒ³ç‰ˆbulletin ã™ãªã‚ã¡ bulletinHD ã¨ã—ã¦æ–°ã—ããƒ¡ãƒ³ãƒ†ã™ã‚‹ã“ã¨ã«ã—ã¾ã—ãŸã€‚ãŸã ä¸€éƒ¨ã§èª¤è§£ãŒã‚ã‚‹ã‚ˆã†ã§ã™ãŒã€bulletinHDã«ã¯XCL2.1ã§ã—ã‹å‹•ã‹ãªã„ã€ãªã‚“ã¦æ„å‘³ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚ä»–ã®D3ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«åŒæ§˜ã€bulletinHDã¯X2ã§å½“ç„¶ã«å‹•ä½œã—ã¾ã™ã—ã€ImpressCMSã‚‚XCL2.1ã‚‚å‹•ä½œå¯¾è±¡ã‚³ã‚¢ã§ã™ã€‚
 
 [/xlang:ja]
 
 
 
 =CHANEGLOG=
+ver3.0 (2011-11-12) RC1
+--372	 domifara 	[bulletin]rev.RC1 README(EUC-JP-UTF8)
+--359ï½362	 domifara 	[bulletin]template change for W3C(HTML)
+--366	 domifara 	[bulletin]colspan=7 -> colspan="7" for W3C
+--369	 domifara 	[Bulletin] ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåã‚’å¤‰æ›´ã—ã¦ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã™ã‚‹ã¨ã€ãƒ–ãƒ­ãƒƒã‚¯ç·¨é›†ã®è¨€èªå®šæ•°ãŒç„¡ã„ #144
+--366	 domifara 	[bulletin]colspan=7 -> colspan="7" for W3C
+--366	 domifara 	[bulletin]template typo
+--356	 domifara 	[bu[bulletin]ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚¿ã‚°ã®é–‰ã˜ãŒãŠã‹ã—ã„
+--355	 domifara 	[bulletin]rev.beta4 add link title element of template
+--354	 domifara 	[bulletin]rev.beta4 ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã«é–²è¦§æ¨©é™ã®ãªã„è¨˜äº‹ãŒãƒªã‚¹ãƒˆã•ã‚Œã‚‹
+--353	 domifara 	[bulletin]rev.beta4 commit mistake ->ENGINE=MyISAM
+--351	 domifara 	[bulletin]rev.beta4 Typo line 64 in bulletingp.php
+--350	 domifara 	[bulletin]beta4 typo $gpermission -> $this->gpermission in bulletingp.php
+--348	 domifara 	[bulletin]rev.beta4 README etc.
+
 ver3.0 (2011-11-11) beta4
---305¢·347	 domifara 	[bulletin]ÊÔ½¸¸¢¸Â¤ÎÆ°ºî
---347	 domifara 	[bulletin]´ÉÍı¼Ô¤ò½ü¤¤¤Æ¡¢Â¾¤ÎÅê¹Æ¼Ô¤Îµ­»ö¤òÊÔ½¸¤Ç¤­¤Ê¤¤¤è¤¦¤Ë¤·¤Æ¤Û¤·¤¤
+--305ï½347	 domifara 	[bulletin]ç·¨é›†æ¨©é™ã®å‹•ä½œ
+--347	 domifara 	[bulletin]ç®¡ç†è€…ã‚’é™¤ã„ã¦ã€ä»–ã®æŠ•ç¨¿è€…ã®è¨˜äº‹ã‚’ç·¨é›†ã§ããªã„ã‚ˆã†ã«ã—ã¦ã»ã—ã„
 --345,346	 domifara 	[bulletin]class/gtickets.php->include/gtickets.php
---345,346	 domifara 	admin/index.phph gtickets¤ÎÅ¬ÍÑ
---345	 domifara 	[bulletin]¥«¥Æ¥´¥ê¡¼¤òºï½ü¤·¤¿¤È¤­¡¢¥«¥Æ¥´¥ê¡¼¥¢¥¯¥»¥¹¸¢¸Â¤Î¥Ç¡¼¥¿¤Îºï½ü
---339	 domifara 	[bulletin]°ìÈÌÀßÄê¤Ç¡Öcommon/fckeditor¤òÍøÍÑ¤¹¤ë¡×¤Ï¤¤¤Ë¤¹¤ë¡¢´ûÂ¸µ­»ö¤Î¡ÖÊÔ½¸¡×¤Î¤È¤­¤Ş¤ÇFCKEditor¤Ë¤Ê¤Ã¤Æ¤·¤Ş¤¦
---339	 domifara 	[bulletin]¥³¥ó¥Æ¥ó¥Ä¿·µ¬ºîÀ®²èÌÌ¤Ë¤Ê¤ë¤È¡¢ÆşÎÏ»Ù±çµ¡Ç½¤ÎON/OFF¤Ë¥Á¥§¥Ã¥¯¤¬Æş¤Ã¤Æ¤¤¤Ê¤¤¤Î¤Ë¡¢¥³¥ó¥Æ¥ó¥Ä¿·µ¬ºîÀ®²èÌÌ¤Ç¡ÖÆşÎÏ»Ù±çµ¡Ç½¡×¤¬É½¼¨¤µ¤ì¤ë
+--345,346	 domifara 	admin/index.phph gticketsã®é©ç”¨
+--345	 domifara 	[bulletin]ã‚«ãƒ†ã‚´ãƒªãƒ¼ã‚’å‰Šé™¤ã—ãŸã¨ãã€ã‚«ãƒ†ã‚´ãƒªãƒ¼ã‚¢ã‚¯ã‚»ã‚¹æ¨©é™ã®ãƒ‡ãƒ¼ã‚¿ã®å‰Šé™¤
+--339	 domifara 	[bulletin]ä¸€èˆ¬è¨­å®šã§ã€Œcommon/fckeditorã‚’åˆ©ç”¨ã™ã‚‹ã€ã¯ã„ã«ã™ã‚‹ã€æ—¢å­˜è¨˜äº‹ã®ã€Œç·¨é›†ã€ã®ã¨ãã¾ã§FCKEditorã«ãªã£ã¦ã—ã¾ã†
+--339	 domifara 	[bulletin]ã‚³ãƒ³ãƒ†ãƒ³ãƒ„æ–°è¦ä½œæˆç”»é¢ã«ãªã‚‹ã¨ã€å…¥åŠ›æ”¯æ´æ©Ÿèƒ½ã®ON/OFFã«ãƒã‚§ãƒƒã‚¯ãŒå…¥ã£ã¦ã„ãªã„ã®ã«ã€ã‚³ãƒ³ãƒ†ãƒ³ãƒ„æ–°è¦ä½œæˆç”»é¢ã§ã€Œå…¥åŠ›æ”¯æ´æ©Ÿèƒ½ã€ãŒè¡¨ç¤ºã•ã‚Œã‚‹
 --339	 domifara 	[bulletin]permissions do when ca_edit,can_delete .some templates change etc.use_fck judge
---337	 domifara 	[bulletin]whatsnew¥×¥é¥°¥¤¥ó¤Ç¡Ö±ÜÍ÷¸¢¸Â¡×¤È¤ÎÏ¢Æ°
+--337	 domifara 	[bulletin]whatsnewãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã§ã€Œé–²è¦§æ¨©é™ã€ã¨ã®é€£å‹•
 --335	 domifara 	[bulletin]triggerEvent limit user
 --334	 domifara 	[bulletin]when add category,default permission set ,some class code change
---333	 domifara 	[bulletin]¿·ÃåÍÑ¥Ö¥í¥Ã¥¯¤Î¥«¥Æ¥´¥ê¡¼¤Î»ØÄê¤Ç¡¢Ê£¿ô¥«¥Æ¥´¥ê¡¼»ØÄê¤¬¤Û¤·¤¤
---330	 domifara 	[bulletin]¥¤¥Ù¥ó¥ÈÄÌÃÎ ¾µÇ§ÂÔ¤ÁÅê¹Æ¤Î¥¤¥Ù¥ó¥ÈÄÌÃÎ¤¬¤³¤Ê¤¤
---323	 domifara 	[bulletin]MySQL5.5°Ê¾å¤Ç¥¤¥ó¥¹¥È¡¼¥ë¤Ë¼ºÇÔ¤¹¤ë
---314	 domifara 	[bulletin]±ÜÍ÷¸¢¸Â¤Î¤Ê¤¤¥°¥ë¡¼¥×(¥²¥¹¥È¤ò´Ş¤à)¤Î¥ê¥¹¥ÈÉ½¼¨
---313,347	 domifara 	[bulletin]¡Ö¥«¥ì¥ó¥À¡¼¥Ö¥í¥Ã¥¯¤Ë±ÜÍ÷¸¢¸Â¤ÎÌµ¤¤¤Îµ­»ö¤Ş¤Ç¥ê¥ó¥¯Í­¤ê¤È¤µ¤ì¤ë
+--333	 domifara 	[bulletin]æ–°ç€ç”¨ãƒ–ãƒ­ãƒƒã‚¯ã®ã‚«ãƒ†ã‚´ãƒªãƒ¼ã®æŒ‡å®šã§ã€è¤‡æ•°ã‚«ãƒ†ã‚´ãƒªãƒ¼æŒ‡å®šãŒã»ã—ã„
+--330	 domifara 	[bulletin]ã‚¤ãƒ™ãƒ³ãƒˆé€šçŸ¥ æ‰¿èªå¾…ã¡æŠ•ç¨¿ã®ã‚¤ãƒ™ãƒ³ãƒˆé€šçŸ¥ãŒã“ãªã„
+--323	 domifara 	[bulletin]MySQL5.5ä»¥ä¸Šã§ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã«å¤±æ•—ã™ã‚‹
+--314	 domifara 	[bulletin]é–²è¦§æ¨©é™ã®ãªã„ã‚°ãƒ«ãƒ¼ãƒ—(ã‚²ã‚¹ãƒˆã‚’å«ã‚€)ã®ãƒªã‚¹ãƒˆè¡¨ç¤º
+--313,347	 domifara 	[bulletin]ã€Œã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ã«é–²è¦§æ¨©é™ã®ç„¡ã„ã®è¨˜äº‹ã¾ã§ãƒªãƒ³ã‚¯æœ‰ã‚Šã¨ã•ã‚Œã‚‹
 
 ver3.0 (2011-11-02) beta3
---206¢·305	 domifara 	¿·ÃåÍÑ¥Ö¥í¥Ã¥¯¤Î¥«¥Æ¥´¥ê¡¼¤Î»ØÄê¤Ç¡¢Ê£¿ô¥«¥Æ¥´¥ê¡¼»ØÄê¤¬¤Û¤·¤¤
---302¢·304	 domifara 	ndex.php?op=comments¤Î»ş¤Ë¥¨¥é¡¼¤Ë¤Ê¤ë
---299	 domifara 	ver3.0¤ÇÊÑ¹¹¡¢ÄÉ²Ã¤Ë¤Ê¤Ã¤¿english¸À¸ì¤¬ÊÑ¹¹¤µ¤ì¤Æ¤¤¤Ş¤»¤ó #84 http://www.xoopscube.net/redmine/issues/84
---295	 domifara 	¥Æ¥ó¥×¥ì¡¼¥Èitem.html¤Ç¡¢itemInfo¥á¥Ã¥»¡¼¥¸¤¬¥³¥á¥ó¥È¹Ô¤Ë¤Ê¤Ã¤Æ¤¤¤ë http://www.xoopscube.net/redmine/issues/74
---305	 domifara 	¡Ö¥«¥Æ¥´¥êÊÌºÇ¿·¥³¥ó¥Æ¥ó¥Ä¡×¤â¤Ã¤È..¤ÈÉ½¼¨¤µ¤ì¤ë¤Ï¤º¤À¤¬¡¢É½¼¨¤µ¤ì¤Ê¤¤
---297	 domifara 	µ­»ö¤òÉ½¼¨¤·¤¿¤È¤­¤Ë¡¢meta description ¤Î¥»¥Ã¥È
---295	 domifara 	¥Æ¥ó¥×¥ì¡¼¥Èitem.html¤Ç¡¢itemInfo¥á¥Ã¥»¡¼¥¸¤¬¥³¥á¥ó¥È¹Ô¤Ë¤Ê¤Ã¤Æ¤¤¤ë http://www.xoopscube.net/redmine/issues/74
+--206ï½305	 domifara 	æ–°ç€ç”¨ãƒ–ãƒ­ãƒƒã‚¯ã®ã‚«ãƒ†ã‚´ãƒªãƒ¼ã®æŒ‡å®šã§ã€è¤‡æ•°ã‚«ãƒ†ã‚´ãƒªãƒ¼æŒ‡å®šãŒã»ã—ã„
+--302ï½304	 domifara 	ndex.php?op=commentsã®æ™‚ã«ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹
+--299	 domifara 	ver3.0ã§å¤‰æ›´ã€è¿½åŠ ã«ãªã£ãŸenglishè¨€èªãŒå¤‰æ›´ã•ã‚Œã¦ã„ã¾ã›ã‚“ #84 http://www.xoopscube.net/redmine/issues/84
+--295	 domifara 	ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆitem.htmlã§ã€itemInfoãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚³ãƒ¡ãƒ³ãƒˆè¡Œã«ãªã£ã¦ã„ã‚‹ http://www.xoopscube.net/redmine/issues/74
+--305	 domifara 	ã€Œã‚«ãƒ†ã‚´ãƒªåˆ¥æœ€æ–°ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ã€ã‚‚ã£ã¨..ã¨è¡¨ç¤ºã•ã‚Œã‚‹ã¯ãšã ãŒã€è¡¨ç¤ºã•ã‚Œãªã„
+--297	 domifara 	è¨˜äº‹ã‚’è¡¨ç¤ºã—ãŸã¨ãã«ã€meta description ã®ã‚»ãƒƒãƒˆ
+--295	 domifara 	ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆitem.htmlã§ã€itemInfoãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚³ãƒ¡ãƒ³ãƒˆè¡Œã«ãªã£ã¦ã„ã‚‹ http://www.xoopscube.net/redmine/issues/74
+--290	 domifara 	[bulletin]archive.php for can_read permission
 --287	 domifara 	category topicPermissions for index.php and #65 http://www.xoopscube.net/redmine/issues/65
---277	 domifara 	Åê¹Æ¸¢¤¬¤¢¤ë¤Î¤Ë¡¢¥µ¥Ö¥«¥Æ¥´¥ê¡¼¤¬ÁªÂò¥³¥ó¥İ¥ê¥¹¥ÈÉ½¼¨¤Ë¤Ç¤Ê¤¤
---277	 domifara 	Åê¹Æ¸¢¤¬Ìµ¤¤»ş¤Ë¡¢¥ê¥¹¥ÈÉ½¼¨¤Î¥Ø¥Ã¥À¡¼Éô¤Î¥¢¡¼¥«¥¤¥Ö ¤ÈRSS¤ÎÉ½¼¨¤â¾Ã¤¨¤Æ¤·¤Ş¤¦
+--277	 domifara 	æŠ•ç¨¿æ¨©ãŒã‚ã‚‹ã®ã«ã€ã‚µãƒ–ã‚«ãƒ†ã‚´ãƒªãƒ¼ãŒé¸æŠã‚³ãƒ³ãƒãƒªã‚¹ãƒˆè¡¨ç¤ºã«ã§ãªã„
+--277	 domifara 	æŠ•ç¨¿æ¨©ãŒç„¡ã„æ™‚ã«ã€ãƒªã‚¹ãƒˆè¡¨ç¤ºã®ãƒ˜ãƒƒãƒ€ãƒ¼éƒ¨ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ– ã¨RSSã®è¡¨ç¤ºã‚‚æ¶ˆãˆã¦ã—ã¾ã†
 --276	 domifara 	#59 ver2.22->ver3.0 onupdate suport add data to topic_access
 --271	 domifara 	oninstall,onuninstall message #60,#61 http://www.xoopscube.net/redmine/issues/60
---270	 domifara 	onupdate.phpÆâ¤Î¥Æ¡¼¥Ö¥ëÊÑ¹¹¥á¥Ã¥»¡¼¥¸¤¬É½¼¨¤µ¤ì¤Ê¤¤ #59 http://www.xoopscube.net/redmine/issues/59
---267¢·305	 domifara 	±ÜÍ÷¸¢¸Â¤Î¤Ê¤¤¥°¥ë¡¼¥×(¥²¥¹¥È¤ò´Ş¤à)¤Î¥ê¥¹¥ÈÉ½¼¨ #64 http://www.xoopscube.net/redmine/issues/64
-- 279 	 domifara 	 Åê¹Æ¸¢¤¬¤Ê¤¤¾ì¹çnotice¤¬¤Ç¤ë #71
-- 268 	 domifara 	 deprecated¡¡for php5.3+ http://www.xoopscube.net/redmine/issues/57
+--270	 domifara 	onupdate.phpå†…ã®ãƒ†ãƒ¼ãƒ–ãƒ«å¤‰æ›´ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒè¡¨ç¤ºã•ã‚Œãªã„ #59 http://www.xoopscube.net/redmine/issues/59
+--267ï½305	 domifara 	é–²è¦§æ¨©é™ã®ãªã„ã‚°ãƒ«ãƒ¼ãƒ—(ã‚²ã‚¹ãƒˆã‚’å«ã‚€)ã®ãƒªã‚¹ãƒˆè¡¨ç¤º #64 http://www.xoopscube.net/redmine/issues/64
+- 279 	 domifara 	 æŠ•ç¨¿æ¨©ãŒãªã„å ´åˆnoticeãŒã§ã‚‹ #71
+- 268 	 domifara 	 deprecatedã€€for php5.3+ http://www.xoopscube.net/redmine/issues/57
 
 ver3.0 (2011-11-02) beta2
 - 267 	 dashboard 	 Group permission fix

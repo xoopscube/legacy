@@ -163,7 +163,7 @@ class Bulletin_Cal
 				$style = ( $line > 0 ) ? 'even' : 'head';
 				//$style = ( $style == 'even' && !empty($weekday['link']) ) ? 'odd' : $style;
 				$text = empty($weekday['label']) ? '&nbsp;' : $weekday['label'] ;
-				$text = empty($weekday['link'])  ? $text    : '<a href="'.$weekday['link'].'">'.$text.'</a>';
+				$text = empty($weekday['link'])  ? $text    : '<a href="'.$weekday['link'].'" style="text-decoration:underline;">'.$text.'</a>';
 				$ret .= '<td class="'.$style.'">'.$text.'</td>';
 			}
 			$ret .= '</tr>';
