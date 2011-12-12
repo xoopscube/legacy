@@ -28,7 +28,7 @@
   </div>
   <div class="itemBody">
     <{if $story.topic_url}>
-      <a href="<{$mydirurl}>/index.php?storytopic=<{$story.topicid}>" title="<{$story.topic}>"><img src="<{$story.topic_url}>" alt="<{$story.topic}>" hspace="10" vspace="10" align="<{$story.align}>" /></a>
+      <div style="float:<{$story.align}>;"><a href="<{$mydirurl}>/index.php?storytopic=<{$story.topicid}>" title="<{$story.topic}>"><img src="<{$story.topic_url}>" alt="<{$story.topic}>" style="hspace:'10'; vspace:'0'; " /></a></div>
     <{/if}>
     <p class="itemText"><{$story.text}></p>
   </div>
