@@ -240,12 +240,13 @@ jQuery(function($){
 				<div class="group">
 					<{foreach item=block from=$xoops_ccblocks name=ccloop}>
 						<{if $block.weight < 100 }>
+							<div class="fsL">
 							<{if ! $block.title|strstr:"none"}>
 								<h2 class="level2"><{$block.title}></h2>
 							<{/if}>
-							<div class="fsL">
 							<div class="BlockContent"><{$block.content}></div>
 							</div>
+							<p class="fsL"></p>
 						<{/if}>
 					<{/foreach}>
 				</div>
@@ -264,6 +265,7 @@ jQuery(function($){
 							<{/if}>
 							<div class="BlockContent"><{$block.content}></div>
 							</div>
+							<p class="fsL"></p>
 						<{/if}>
 					<{/foreach}>
 					</div>
@@ -281,6 +283,7 @@ jQuery(function($){
 							<{/if}>
 							<div class="BlockContent"><{$block.content}></div>
 							</div>
+							<p class="fsL"></p>
 						<{/if}>
 					<{/foreach}>
 					</div>
@@ -317,12 +320,13 @@ jQuery(function($){
 				<div class="group">
 					<{foreach item=block from=$xoops_ccblocks name=ccloop}>
 						<{if $block.weight >= 100 }>
+							<div class="fsL">
 							<{if ! $block.title|strstr:"none"}>
 								<h2 class="level2"><{$block.title}></h2>
 							<{/if}>
-							<div class="fsL">
 							<div class="BlockContent"><{$block.content}></div>
 							</div>
+							<p class="fsL"></p>
 						<{/if}>
 					<{/foreach}>
 				</div>
@@ -341,6 +345,7 @@ jQuery(function($){
 							<{/if}>
 							<div class="BlockContent"><{$block.content}></div>
 							</div>
+							<p class="fsL"></p>
 						<{/if}>
 					<{/foreach}>
 					</div>
@@ -358,6 +363,7 @@ jQuery(function($){
 							<{/if}>
 							<div class="BlockContent"><{$block.content}></div>
 							</div>
+							<p class="fsL"></p>
 						<{/if}>
 					<{/foreach}>
 					</div>
