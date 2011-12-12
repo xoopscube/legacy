@@ -1,9 +1,8 @@
 <?php /* English Translation by Marcelo Yuji Himoro <http://yuji.ws> & Suin <http://xoops.suinyeze.com/>*/
 // Module Info
 
-$bulletin_dirname = basename( dirname ( dirname ( dirname( __FILE__ ) ) ) ) ;
-if( defined( 'FOR_XOOPS_LANG_CHECKER' ) ) $bulletin_dirname = 'bulletin' ;
-$constpref = '_MI_' . strtoupper( $bulletin_dirname ) ;
+if( defined( 'FOR_XOOPS_LANG_CHECKER' ) ) $mydirname = 'bulletin' ;
+$constpref = '_MI_' . strtoupper( $mydirname ) ;
 
 if( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref.'_LOADED' ) ) {
 

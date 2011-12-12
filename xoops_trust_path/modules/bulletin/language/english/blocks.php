@@ -1,13 +1,10 @@
 <?php /* English Translation by Marcelo Yuji Himoro <http://yuji.ws> */
 // Blocks
-$bulletin_dirname = basename( dirname ( dirname ( dirname( __FILE__ ) ) ) ) ;
-if( defined( 'FOR_XOOPS_LANG_CHECKER' ) ) $bulletin_dirname = 'bulletin' ;
-$constpref = '_MB_' . strtoupper( $bulletin_dirname ) ;
 
-if( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref.'_LOADED' ) ) {
+if( defined( "FOR_XOOPS_LANG_CHECKER" ) || ! defined( "_MB_BULLETIN_LOADED" ) ) {
 
 // a flag for this language file has already been read or not.
-define( $constpref.'_LOADED' , 1 ) ;
+define( "_MB_BULLETIN_LOADED" , 1 ) ;
 
 define("_MB_BULLETIN_NOTYET","There is no top story today, yet.");
 define("_MB_BULLETIN_TMRSI","Today's most read story is:");
