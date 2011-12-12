@@ -8,7 +8,7 @@
   <{include file="db:`$block.mydirname`_item.html" story=$fullstory}>
   <br />
 <{/foreach}>
-
+<{if !empty($block.stories) }>
 <ul>
   <{foreach item=story from=$block.stories}>
   <li>
@@ -24,5 +24,5 @@
   </li>
   <{/foreach}>
 </ul>
-
+<{/if}>
 <{/strip}>

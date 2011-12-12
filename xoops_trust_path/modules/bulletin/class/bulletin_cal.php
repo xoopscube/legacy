@@ -158,13 +158,13 @@ class Bulletin_Cal
 
 		foreach( $this->getCalendar() as $line => $weeks ){
 
-			$ret .= '<tr style="align=\'center\';">';
-			foreach($weeks as $weekday){
+				$ret .= '<tr align="center">';
+				foreach($weeks as $weekday){
 				$style = ( $line > 0 ) ? 'even' : 'head';
 				//$style = ( $style == 'even' && !empty($weekday['link']) ) ? 'odd' : $style;
 				$text = empty($weekday['label']) ? '&nbsp;' : $weekday['label'] ;
 				$text = empty($weekday['link'])  ? $text    : '<a href="'.$weekday['link'].'" style="text-decoration:underline;">'.$text.'</a>';
-				$ret .= '<td class="'.$style.'">'.$text.'</td>';
+				$ret .= '<td class="'.$style.'" style="text-align: center;">'.$text.'</td>';
 			}
 			$ret .= '</tr>';
 
@@ -186,7 +186,7 @@ class Bulletin_Cal
 			$n_month = date("Y-m", mktime(0,0,0,$m+1,1,$y));
 
 			$ret  = '<tr>';
-			$ret .= '<th colspan="7" style="align=\'center\'; nowrap=\'nowrap\'; ">';
+			$ret .= '<th colspan="7" style="align=\'center\'; nowrap=\'nowrap\'; text-align: center; ">';
 			if( empty($this->startday) || $y*100+$m-1 >= intval(date('Ym',$this->startday))){
 				$ret .= '<a href="?'.$this->query.'='.$p_month.'">'.$this->lang_p_mon.'</a>';
 			}
