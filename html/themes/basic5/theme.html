@@ -13,13 +13,17 @@
 <meta name="description" content="<{$xoops_meta_description}>" />
 <meta name="rating" content="<{$xoops_meta_rating}>" />
 <meta name="author" content="<{$xoops_meta_author}>" />
+<{* meta copyright is not HTML5 *}>
+<!--[if IE]>
 <meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<![endif]-->
 <link rel="stylesheet" type="text/css" href="<{$xoops_imageurl}>reset.css" />
 <link rel="stylesheet" type="text/css" media="all" href="<{$xoops_url}>/xoops.css" />
 <link rel="stylesheet" type="text/css" href="<{$xoops_imageurl}>style.css" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-<link href='http://fonts.googleapis.com/css?family=Droid+Serif:700,400,400italic,700italic' rel='stylesheet' type='text/css'><!--[if IE]>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link href='http://fonts.googleapis.com/css?family=Droid+Serif:700,400,400italic,700italic' rel='stylesheet' type='text/css' />
+<!--[if IE]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 <script type="text/javascript"><{$xoops_js|regex_replace:"/(\/\/\-\->|<!\-\-)/":""}></script>
@@ -114,7 +118,7 @@
 			<div id="latest">
 				<section class="left-col">
 					<{* CenterColumn BlockWeight>0 *}><{include file="$xoops_theme/theme_centercolumn.html"}>
-				</section> <!-- END Left Column -->	
+				</section> <!-- END Left Column -->
 
 				<aside class="sidebar">
 					<{if $xoops_showlblock == 1}>
@@ -157,13 +161,13 @@
 
 		<footer>
 			<{include file="$xoops_theme/theme_footer.html"}>
-		</footer>		
+		</footer>
 
 		<div id="search">
 		  <form id="searchform" name="searchform" action="<{$xoops_url}>/search.php" method="get" class="searchform">
 		  <input id="keywords" type="text" name="query" value="<{$smarty.const._BASIC_SEARCH}>" style="color: #808080;" onFocus="HideFormGuide(this);" onBlur="ShowFormGuide(this);" class="textbox" />
 		  <input type="hidden" name="action" value="results" />
-		  <input type="image" src="<{$xoops_imageurl}>images/search-icon.png" name="searchSubmit" value="<{$smarty.const._BASIC_SEARCH}>" id="searchBtn" class="button"/>
+		  <input type="image" src="<{$xoops_imageurl}>images/search-icon.png" name="searchSubmit" alt="<{$smarty.const._BASIC_SEARCH}>"  title="<{$smarty.const._BASIC_SEARCH}>" id="searchBtn" class="button" />
 		  </form>
 		</div>
 
