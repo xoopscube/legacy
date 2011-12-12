@@ -10,6 +10,8 @@
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
+define('LEGACY_ADMINMENU_CACHEPREFIX', XOOPS_CACHE_PATH.'/'.urlencode(XOOPS_URL).'_admin_menu_');
+
 /**
  * This is test menu block for control panel of legacy module.
  * This loads module objects by a permission of the current user.
@@ -62,7 +64,12 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
 		
 		$controller =& $root->mController;
 		$user =& $root->mController->mRoot->mContext->mXoopsUser;
+		$cachePath = LEGACY_ADMINMENU_CACHEPREFIX . md5(XOOPS_SALT . implode('_',$user->groups())).'.html';
 		$render =& $this->getRenderTarget();
+		if (file_exists($cachePath)) {
+			$render->mRenderBuffer = file_get_contents($cachePath);
+			return;
+		}
 		$render->setAttribute('legacy_module', 'legacy');
 		
 		$this->mCurrentModule =& $controller->mRoot->mContext->mXoopsModule;
@@ -126,6 +133,17 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
 		$renderSystem =& $root->getRenderSystem($this->getRenderSystemName());
 		
 		$renderSystem->renderBlock($render);
+		file_put_contents($cachePath, $render->mRenderBuffer);
+	}
+
+	static function clearCache()
+	{
+		$adminMenucache = glob(LEGACY_ADMINMENU_CACHEPREFIX . '*.html');
+		if ($adminMenucache) {
+			foreach ($adminMenucache as $file) {
+				unlink($file);
+			}
+		}
 	}
 }
 

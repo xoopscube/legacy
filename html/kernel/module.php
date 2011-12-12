@@ -491,7 +491,11 @@ class XoopsModuleHandler extends XoopsObjectHandler
 		
 		$this->_cachedModule_dirname[$dirname] =& $module;
 		$this->_cachedModule_mid[$mid] =& $module;
-		
+
+		if (XC_CLASS_EXISTS('Legacy_AdminSideMenu')) {
+			Legacy_AdminSideMenu::clearCache();
+		}
+
 		return true;
 	}
 
