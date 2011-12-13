@@ -5,7 +5,7 @@ require_once dirname(dirname(__FILE__)).'/class/bulletinTopic.php' ;
 $db =& Database::getInstance() ;
 
 // get right $topic_id
-$topic_id = intval( $_GET['topic_id'] ) ;
+$topic_id = isset( $_GET['topic_id'] ) ? intval( $_GET['topic_id'] ) : 0;
 $sql = "SELECT topic_id,topic_title FROM ".$db->prefix($mydirname."_topics")." WHERE topic_id=$topic_id";
 list( $topic_id , $topic_title ) = $db->fetchRow( $db->query( $sql ) ) ;
 if( empty( $topic_id ) ) {
