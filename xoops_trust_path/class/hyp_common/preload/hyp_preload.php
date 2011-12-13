@@ -1538,7 +1538,7 @@ EOD;
 					if ($header_template) $header = $header_template;
 					if ($body_template) $body = $body_template;
 					if ($footer_template) $footer = $footer_template;
-				} elseif ($use_jquery) {
+				} elseif ($use_jquery && ! $is_rss) {
 					return false;
 				}
 			}
