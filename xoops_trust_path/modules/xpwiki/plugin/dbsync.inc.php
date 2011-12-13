@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/11/17 by nao-pon http://hypweb.net/
-// $Id: dbsync.inc.php,v 1.44 2011/11/26 12:03:10 nao-pon Exp $
+// $Id: dbsync.inc.php,v 1.45 2011/12/13 07:45:14 nao-pon Exp $
 //
 
 class xpwiki_plugin_dbsync extends xpwiki_plugin {
@@ -264,6 +264,7 @@ __EOD__;
 
 		if ($dir = @opendir($this->cont['DATA_DIR']))
 		{
+			$this->root->rtf['is_init'] = true;
 			// 処理済ファイルデーター
 			$work = $this->cont['CACHE_DIR']."dbsync_i.dat";
 			$domix = $dones = array();
@@ -290,6 +291,9 @@ __EOD__;
 			{
 				$files[] = $file;
 			}
+			sort($files);
+
+			$pginfo_obj =& $this->func->get_plugin_instance('pginfo');
 
 			foreach(array_diff($files,$domix) as $file)
 			{
@@ -301,6 +305,9 @@ __EOD__;
 
 				$name=$aids=$gids=$vaids=$vgids= "";
 				$buildtime=$editedtime=$lastediter=$uid=$freeze=$unvisible = 0;
+
+				unset($this->root->post['uid'], $this->root->post['einherit'], $this->root->post['vinherit'],
+					$this->root->post['eaid'], $this->root->post['egid'], $this->root->post['vaid'], $this->root->post['vgid']);
 
 				$page = $this->func->decode(trim(preg_replace("/\.txt$/"," ",$file)));
 
@@ -332,23 +339,36 @@ __EOD__;
 				}
 				if (!$buildtime || $buildtime > $editedtime) $buildtime = $editedtime;
 
-				$checkpostdata = $this->func->get_source($page, TRUE, TRUE);
-				if (!$checkpostdata)
-				{
+				$src = $this->func->get_source($page, TRUE, TRUE);
+				if (! $src) {
 					@unlink($this->cont['DATA_DIR'].$file);
 					continue;
 				}
 
-				//echo $page."<hr />";
 				// 凍結？
-				$arg = array();
-				if (preg_match("/^#freeze\s*\n/",$checkpostdata,$arg))
-				{
+				if (preg_match("/^#freeze\s*?\n/", $src)) {
 					$freeze = 1;
 				}
 
+				// 初回 or 所有者情報がないページ
+				if (! $id || ! preg_match('/^#pginfo\b.*$/sm', $src)) {
+					$this->root->post['uid'] = $this->root->userinfo['uid'];
+				}
+
+				// 管理領域設定 (#xoopsadmin)
+				if (preg_match('/^#xoopsadmin\b.*$/sm', $src)) {
+					$this->root->post['einherit'] = $this->root->post['vinherit'] = 0;
+					//$pginfo['einherit'] = $pginfo['vinherit'] = 0;
+					$this->root->post['eaid'] = $this->root->post['egid'] = $this->root->post['vaid'] = $this->root->post['vgid'] = 'none';
+					//$pginfo['eaids'] = $pginfo['egids'] = $pginfo['vaids'] = $pginfo['vgids'] = 'none';
+				}
+
+				$pginfo_res = $pginfo_obj->save_parm($page);
+
 				// pginfo
-				$pginfo = $this->func->get_pginfo($page, false);
+				// $pginfo = $this->func->get_pginfo($page, false);
+				// $pginfo = $this->func->get_pginfo($page, substr($src, 0, 4096));
+				$pginfo = $pginfo_res['pginfo'];
 
 				foreach (array('uid', 'ucd', 'uname', 'einherit', 'vinherit', 'lastuid', 'lastucd', 'lastuname', 'pgorder') as $key) {
 					$$key = addslashes($pginfo[$key]);

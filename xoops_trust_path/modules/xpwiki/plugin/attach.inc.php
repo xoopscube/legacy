@@ -2,7 +2,7 @@
 /////////////////////////////////////////////////
 // PukiWiki - Yet another WikiWikiWeb clone.
 //
-//  $Id: attach.inc.php,v 1.66 2011/12/08 07:01:00 nao-pon Exp $
+//  $Id: attach.inc.php,v 1.67 2011/12/13 07:20:06 nao-pon Exp $
 //  ORG: attach.inc.php,v 1.31 2003/07/27 14:15:29 arino Exp $
 //
 /*
@@ -1031,6 +1031,7 @@ EOD;
 		//$uid = get_pg_auther($this->page);
 		$pass = '';
 		$_needpass = 0;
+		$pass_title = '';
 		//if (ATTACH_PASSWORD_REQUIRE && !ATTACH_UPLOAD_ADMIN_ONLY && ((!$X_admin && $X_uid !== $uid) || $X_uid == 0))
 		if ($this->cont['ATTACH_PASSWORD_REQUIRE'] && !$this->cont['ATTACH_UPLOAD_ADMIN_ONLY'] && !$this->root->userinfo['uid'])
 		{

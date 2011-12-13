@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/02 by nao-pon http://hypweb.net/
-// $Id: pukiwiki_func.php,v 1.231 2011/11/26 12:03:10 nao-pon Exp $
+// $Id: pukiwiki_func.php,v 1.232 2011/12/13 07:45:14 nao-pon Exp $
 //
 class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 
@@ -219,6 +219,12 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 
 		if ($mode !== 'delete') {
 			// Set pginfo
+			// ´ÉÍýÎÎ°èÀßÄê (#xoopsadmin)
+			if (preg_match('/^#xoopsadmin\b.*$/sm', $postdata)) {
+				$pginfo['einherit'] = $pginfo['vinherit'] = 0;
+				$pginfo['eaids'] = $pginfo['egids'] = $pginfo['vaids'] = $pginfo['vgids'] = 'none';
+			}
+
 			if ($mode === 'insert') {
 				if ($pginfo['eaids'] !== 'none' && $pginfo['eaids'] !== 'all') {
 					$_aids = array();
@@ -1074,7 +1080,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 
 //----- Start convert_html.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone
-	// $Id: pukiwiki_func.php,v 1.231 2011/11/26 12:03:10 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.232 2011/12/13 07:45:14 nao-pon Exp $
 	// Copyright (C)
 	//   2002-2005 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -1386,7 +1392,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 
 //----- Start func.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.231 2011/11/26 12:03:10 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.232 2011/12/13 07:45:14 nao-pon Exp $
 	// Copyright (C)
 	//   2002-2006 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -2187,17 +2193,25 @@ EOD;
 	function input_filter($param)
 	{
 		static $magic_quotes_gpc = NULL;
+
 		if ($magic_quotes_gpc === NULL)
 		    $magic_quotes_gpc = get_magic_quotes_gpc();
 
-		if (is_array($param)) {
-			return array_map(array(& $this, 'input_filter'), $param);
+		if (HypCommonFunc::get_version() > 20111122) {
+			$result = HypCommonFunc::input_filter($param, 2, (defined('HYP_POST_ENCODING')? HYP_POST_ENCODING : null));
+			if (! defined( 'HYP_COMMON_INPUT_FILTER_STRIPSLASHES') && $magic_quotes_gpc) {
+				$result = array_map('stripslashes', $result);
+			}
 		} else {
-			$result = str_replace(array("\0", '&#8203;', "\xE2\x80\x8B"), '', $param);
-			$result = $this->remove_bom($result);
-			if ($magic_quotes_gpc) $result = stripslashes($result);
-			return $result;
+			if (is_array($param)) {
+				return array_map(array(& $this, 'input_filter'), $param);
+			} else {
+				$result = str_replace(array("\0", '&#8203;', "\xE2\x80\x8B"), '', $param);
+				$result = $this->remove_bom($result);
+				if ($magic_quotes_gpc) $result = stripslashes($result);
+			}
 		}
+		return $result;
 	}
 
 	// Compat for 3rd party plugins. Remove this later
@@ -2240,7 +2254,7 @@ EOD;
 
 //----- Start make_link.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.231 2011/11/26 12:03:10 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.232 2011/12/13 07:45:14 nao-pon Exp $
 	// Copyright (C)
 	//   2003-2005 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -3282,7 +3296,7 @@ EOD;
 
 //----- Start html.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.231 2011/11/26 12:03:10 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.232 2011/12/13 07:45:14 nao-pon Exp $
 	// Copyright (C)
 	//   2002-2006 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -4073,7 +4087,7 @@ EOD;
 
 //----- Start mail.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.231 2011/11/26 12:03:10 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.232 2011/12/13 07:45:14 nao-pon Exp $
 	// Copyright (C)
 	//   2003-2005 PukiWiki Developers Team
 	//   2003      Originally written by upk
@@ -4376,7 +4390,7 @@ EOD;
 
 //----- Start link.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone
-	// $Id: pukiwiki_func.php,v 1.231 2011/11/26 12:03:10 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.232 2011/12/13 07:45:14 nao-pon Exp $
 	// Copyright (C) 2003-2006 PukiWiki Developers Team
 	// License: GPL v2 or (at your option) any later version
 	//

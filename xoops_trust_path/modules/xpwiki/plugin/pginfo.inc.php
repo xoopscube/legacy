@@ -2,7 +2,7 @@
 /////////////////////////////////////////////////
 // PukiWiki - Yet another WikiWikiWeb clone.
 //
-// $Id: pginfo.inc.php,v 1.32 2011/08/30 02:23:30 nao-pon Exp $
+// $Id: pginfo.inc.php,v 1.33 2011/12/13 07:45:14 nao-pon Exp $
 //
 
 class xpwiki_plugin_pginfo extends xpwiki_plugin {
@@ -61,6 +61,21 @@ class xpwiki_plugin_pginfo extends xpwiki_plugin {
 			// ページ情報読み込み
 			$pginfo = $this->func->get_pginfo($page);
 
+			$is_init = (! empty($this->root->rtf['is_init']));
+			if ($is_init) {
+				// post チェック for dbsync.inc.php
+				foreach(array('uid', 'einherit', 'vinherit') as $_key) {
+					if (! isset($this->root->post[$_key])) {
+						$this->root->post[$_key] = $pginfo[$_key];
+					}
+				}
+				foreach(array('eaid', 'egid', 'vaid', 'vgid') as $_key) {
+					if (! isset($this->root->post[$_key])) {
+						$this->root->post[$_key] = $pginfo[$_key . 's'];
+					}
+				}
+			}
+
 			// 下層ページの一覧
 			$cpages = $this->func->get_existpages(NULL, $page.'/');
 			sort($cpages, SORT_STRING);
@@ -69,11 +84,17 @@ class xpwiki_plugin_pginfo extends xpwiki_plugin {
 			$change_uid = FALSE;
 			if ($this->root->userinfo['admin']) {
 				$uid = intval($this->root->post['uid']);
-				if ($pginfo['uid'] !== $uid) {
+				if ($is_init || $pginfo['uid'] !== $uid) {
 					$userinfo = $this->func->get_userinfo_by_id($uid);
 					$pginfo['uid'] = $userinfo['uid'];
+					$pginfo['ucd'] = '';
 					$pginfo['uname'] = $userinfo['uname_s'];
 					$change_uid = TRUE;
+					if ($is_init) {
+						$pginfo['lastuid'] = $userinfo['uid'];
+						$pginfo['lastucd'] = '';
+						$pginfo['lastuname'] = $userinfo['uname_s'];
+					}
 				}
 			}
 			if ($pginfo['einherit'] !== 4)
@@ -204,7 +225,7 @@ class xpwiki_plugin_pginfo extends xpwiki_plugin {
 			$src = $buf . $pginfo_str . $src;
 
 			// get_pginfo() のキャッシュを破棄
-			$this->func->get_pginfo('', '', TRUE);
+			$this->func->get_pginfo($page, FALSE, TRUE);
 
 			// ページ保存
 			if ($this->func->is_page($page)) {
@@ -219,8 +240,10 @@ class xpwiki_plugin_pginfo extends xpwiki_plugin {
 				$this->func->file_write($this->cont['DATA_DIR'], $page, $src, TRUE);
 			}
 
-			// pginfo DB 更新
-			$this->func->pginfo_perm_db_write($page, $pginfo, $change_uid);
+			if (! $is_init) {
+				// pginfo DB 更新
+				$this->func->pginfo_perm_db_write($page, $pginfo, $change_uid);
+			}
 
 		} else {
 
@@ -298,12 +321,14 @@ EOD;
 			$redirect = $this->root->script.'?cmd=pginfo';
 		}
 
-		// 下層ページ更新
-		$this->save_parm_child ($child_dat);
+		if (! $is_init) {
+			// 下層ページ更新
+			$this->save_parm_child ($child_dat);
+		}
 
 		$msg  = $this->msg['done_ok'];
 		$body = '';
-		return array('msg'=>$msg, 'body'=>$body, 'redirect'=>$redirect);
+		return array('msg'=>$msg, 'body'=>$body, 'redirect'=>$redirect, 'pginfo'=>$pginfo);
 
 	}
 
@@ -365,6 +390,9 @@ EOD;
 				// #pginfo 差し替え
 				$src = preg_replace("/^#pginfo\(.*\)[\r\n]*/m", '', join('', $src));
 				$src = $buf . $pginfo_str . $src;
+
+				// get_pginfo() のキャッシュを破棄
+				$this->func->get_pginfo($page, FALSE, TRUE);
 
 				// ページ保存
 				$this->func->file_write($this->cont['DATA_DIR'], $page, $src, TRUE);
@@ -579,8 +607,14 @@ EOD;
 
 	// ページ毎の権限設定フォーム
 	function show_page_form ($page) {
-		$ret['msg'] = $this->msg['title_permission'];
-		$ret['body'] = $this->get_form($page);
+		$src = $this->func->get_source($page, TRUE, TRUE);
+		// 管理領域設定 (#xoopsadmin)
+		if (preg_match('/^#xoopsadmin\b.*$/sm', $src)) {
+			$this->func->redirect_header($this->func->get_page_uri($page, true), 1, 'Found "#xoopsadmin"');
+		} else {
+			$ret['msg'] = $this->msg['title_permission'];
+			$ret['body'] = $this->get_form($page);
+		}
 		return $ret;
 	}
 

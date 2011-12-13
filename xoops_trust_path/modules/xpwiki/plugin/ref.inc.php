@@ -1,5 +1,5 @@
 <?php
-// $Id: ref.inc.php,v 1.61 2011/12/08 07:01:00 nao-pon Exp $
+// $Id: ref.inc.php,v 1.62 2011/12/13 07:19:23 nao-pon Exp $
 /*
 
 	*プラグイン ref
@@ -424,12 +424,16 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 
 		if ($lvar['type'] === 1) {
 			// URL画像
-			if ($this->cont['PLUGIN_REF_URL_GET_IMAGE_SIZE'] && (bool)ini_get('allow_url_fopen')) {
+			$size = false;
+			if ($lvar['isurl'] === 'inner') {
+				// 自サイト内静的ファイル
+				$size = $this->getimagesize(str_replace($this->cont['ROOT_URL'], $this->cont['ROOT_PATH'], $lvar['name']));
+			} else if ($this->cont['PLUGIN_REF_URL_GET_IMAGE_SIZE'] && (bool)ini_get('allow_url_fopen')) {
 				$size = $this->getimagesize($lvar['name']);
-				if (is_array($size)) {
-					$img['org_w'] = $size[0];
-					$img['org_h'] = $size[1];
-				}
+			}
+			if (is_array($size)) {
+				$img['org_w'] = $size[0];
+				$img['org_h'] = $size[1];
 			}
 
 			// イメージ表示サイズの取得
@@ -647,6 +651,8 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 					$align = ' align="right" style="float:right;"';
 				} else if ($params['left']) {
 					$align = ' align="left" style="float:left;"';
+				} else if ($params['center']) {
+					$align = ' style="display:block;margin-left:auto;margin-right:auto;"';
 				}
 			}
 			// 画像ファイル
@@ -1069,7 +1075,11 @@ _HTML_;
 				! $this->cont['PKWK_DISABLE_INLINE_IMAGE_FROM_URI'] &&
 				preg_match($this->cont['PLUGIN_REF_IMAGE_REGEX'], $lvar['name'])) {
 				// 画像
-				if ($params['nocache']) {
+				if (strpos($lvar['name'], $this->cont['ROOT_URL']) === 0 && strpos($lvar['name'], '?') === false) {
+					// 自サイト内静的ファイル
+					$lvar['type'] = 1;
+					$lvar['isurl'] = 'inner';
+				} else if ($params['nocache']) {
 					// キャッシュしない指定
 					$lvar['type'] = 2;
 				} else {
@@ -1495,16 +1505,20 @@ _HTML_;
 		}
 		foreach ($params['_args'] as $arg){
 			$m = array();
-			if (preg_match("/^(m)?w(?:idth)?:([0-9]+)$/i",$arg,$m)){
-				$params['_size'] = TRUE;
-				$params['_w'] = $m[2];
-				$params['zoom'] = ($m[1])? TRUE: FALSE;
-				$params['_max'] = $params['zoom'];
-			} else if (preg_match("/^(m)?h(?:eight)?:([0-9]+)$/i",$arg,$m)){
-				$params['_size'] = TRUE;
-				$params['_h'] = $m[2];
-				$params['zoom'] = ($m[1])? TRUE: FALSE;
-				$params['_max'] = $params['zoom'];
+			if (preg_match("/^(m)?w(?:idth)?:([0-9]+)?$/i",$arg,$m)){
+				if (!empty($m[2])) {
+					$params['_size'] = TRUE;
+					$params['_w'] = $m[2];
+					$params['zoom'] = ($m[1])? TRUE: FALSE;
+					$params['_max'] = $params['zoom'];
+				}
+			} else if (preg_match("/^(m)?h(?:eight)?:([0-9]+)?$/i",$arg,$m)){
+				if (!empty($m[2])) {
+					$params['_size'] = TRUE;
+					$params['_h'] = $m[2];
+					$params['zoom'] = ($m[1])? TRUE: FALSE;
+					$params['_max'] = $params['zoom'];
+				}
 			} else if (preg_match("/^([0-9.]+)%$/i",$arg,$m)){
 				$params['_%'] = $m[1];
 			} else if (preg_match("/^t:(.*)$/i",$arg,$m)){
