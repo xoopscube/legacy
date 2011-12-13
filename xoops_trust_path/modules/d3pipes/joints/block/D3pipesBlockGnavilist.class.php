@@ -35,6 +35,10 @@ class D3pipesBlockGnavilist extends D3pipesBlockAbstract {
 	function reassign( $data )
 	{
 		$entries = array() ;
+		//add domifara 2011/12/14
+		if (!isset($data['photo'])){
+			return $entries ;
+		}
 		foreach( $data['photo'] as $content ) {
 			$entry = array(
 				'pubtime' => $content['unixtime'] , // timestamp
