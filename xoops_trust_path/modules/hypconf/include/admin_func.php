@@ -1,15 +1,25 @@
 <?php
 /*
  * Created on 2011/11/09 by nao-pon http://xoops.hypweb.net/
- * $Id: admin_func.php,v 1.10 2011/12/08 07:44:02 nao-pon Exp $
+ * $Id: admin_func.php,v 1.11 2011/12/13 08:12:18 nao-pon Exp $
  */
 
 function hypconfSetValue(& $config, $page) {
+	global $constpref;
+
 	require_once XOOPS_TRUST_PATH .'/class/hyp_common/preload/hyp_preload.php' ;;
 	$dum = null;
 	$hyp_preload = new HypCommonPreLoad($dum);
+	$error = array();
 	foreach($config as $key => $conf) {
 		if ($key === 'error' || $key === 'contents') continue;
+		if ($key === 'main_switch') {
+			if (! $hyp_preload->$conf) {
+				$error[] = str_replace('$1', hypconf_constant($constpref . '_' . strtoupper($conf)), hypconf_constant($constpref . '_MAIN_SWITCH_NOT_ENABLE'));
+			}
+			unset($config['main_switch']);
+			continue;
+		}
 		$name = $conf['name'];
 		if ($page === 'k_tai_conf') {
 			// Reset each site values.
@@ -22,12 +32,14 @@ function hypconfSetValue(& $config, $page) {
 			if (isset($hyp_preload->$name)) {
 				$val = $hyp_preload->$name;
 			} else {
-				$val = '';
+				$val = null;
 			}
 		}
 		if (substr($conf['valuetype'], 0, 5) === 'file:') {
 			$file = substr($conf['valuetype'], 5);
 			$config[$key]['value'] = @ file_get_contents(hypconf_get_data_filename($file));
+		} elseif ($conf['valuetype'] === 'int' && is_null($val)) {
+			$config[$key]['value'] = 'null';
 		} else {
 			$config[$key]['value'] = $val;
 			if (isset($conf['options']) && $conf['options'] === 'blocks') {
@@ -38,6 +50,10 @@ function hypconfSetValue(& $config, $page) {
 				$config[$key]['options'] = hypconfGetModules('xpwiki', true);
 			}
 		}
+	}
+	if ($error) {
+		if (!isset($config['error'])) $config['error'] = array();
+		$config['error'] = array_merge($config['error'], $error);
 	}
 	return;
 }
@@ -123,7 +139,11 @@ function hypconfSaveConf($config) {
 		if (isset($_POST[$conf['name']]) || $conf['valuetype'] === 'array') {
 			switch (substr($conf['valuetype'], 0, 5)) {
 				case 'int':
-					$lines[] = $conf['name'] . ' = ' . (int)$_POST[$conf['name']];
+					if (strtolower($_POST[$conf['name']]) === 'null') {
+						$lines[] = $conf['name'] . ' = -1';
+					} else {
+						$lines[] = $conf['name'] . ' = ' . (int)$_POST[$conf['name']];
+					}
 					break;
 				case 'float':
 					$lines[] = $conf['name'] . ' = ' . (float)$_POST[$conf['name']];
@@ -277,6 +297,7 @@ function hypconfShowForm($config) {
 				}
 				$myts =& MyTextSanitizer::getInstance();
 				$ele = new XoopsFormText($title, $config[$i]['name'], $size, 255, $myts->htmlspecialchars($config[$i]['value']));
+				if ($config[$i]['valuetype'] === 'int') $ele->setExtra(' style="text-align:right;"');
 				break;
 			}
 			$ele_tray = new XoopsFormElementTray( $title4tray , '' ) ;

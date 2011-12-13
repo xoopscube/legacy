@@ -1,8 +1,10 @@
 <?php
 /*
  * Created on 2011/11/09 by nao-pon http://xoops.hypweb.net/
- * $Id: k_tai_conf.php,v 1.3 2011/12/08 07:44:02 nao-pon Exp $
+ * $Id: k_tai_conf.php,v 1.4 2011/12/13 08:12:18 nao-pon Exp $
  */
+
+$config['main_switch'] = 'use_k_tai_render';
 
 $config[] = array(
 	'name' => 'ua_regex',

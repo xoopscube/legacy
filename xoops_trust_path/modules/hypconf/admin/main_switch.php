@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2011/11/09 by nao-pon http://xoops.hypweb.net/
- * $Id: main_switch.php,v 1.1 2011/11/10 12:31:33 nao-pon Exp $
+ * $Id: main_switch.php,v 1.2 2011/12/13 08:12:18 nao-pon Exp $
  */
 
 $config[] = array(
@@ -27,6 +27,16 @@ $config[] = array(
 	'formtype' => 'yesno',
 	'valuetype' => 'int',
 	'default' => 0,
+	);
+$config[] = array(
+	'name' => 'input_filter_strength',
+	'title' => $constpref.'_INPUT_FILTER_STRENGTH',
+	'description' => $constpref.'_INPUT_FILTER_STRENGTH_DESC',
+	'formtype' => 'select',
+	'valuetype' => 'int',
+	'options' => array(array('confop_value' => 0, 'confop_name' => $constpref.'_INPUT_FILTER_STRENGTH_0'),
+	                   array('confop_value' => 1, 'confop_name' => $constpref.'_INPUT_FILTER_STRENGTH_1'),
+	                   array('confop_value' => 2, 'confop_name' => $constpref.'_INPUT_FILTER_STRENGTH_2')),
 	);
 $config[] = array(
 	'name' => 'use_dependence_filter',

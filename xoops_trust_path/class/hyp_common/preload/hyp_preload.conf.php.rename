@@ -34,6 +34,10 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 		$this->no_proxy_check  = '/^(127\.0\.0\.1|192\.168\.1\.)/'; // 除外IP
 		$this->msg_proxy_check = 'Can not post from public proxy.';
 
+		// Input filter 制御文字の除去
+		// 0: null 以外許可, 1: SoftBankの絵文字と\t,\r,\n は許可, 2: \t,\r,\n のみ許可
+		$this->input_filter_strength = 0;
+
 		// POST SPAM
 		$this->use_mail_notify    = 1;    // POST SPAM メール通知 0:なし, 1:SPAM判定のみ, 2:すべて
 		$this->send_mail_interval = 60;   // まとめ送りのインターバル(分) (0 で随時送信)
@@ -79,7 +83,7 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 			// '/^[\x00-\x7f\s]{65,}$/' => 15,
 
 			// 無効な文字コードがある 31pt
-			'/[\x00-\x08\x11-\x12\x14-\x1f\x7f]+/' => 31,
+			'/[\x01-\x08\x0b-\x0c\x0e\x10-\x1a\x1c-\x1f\x7f]+/' => 31,
 
 			// よくあるSPAM 15pt
 			'/^\s*(?:Hi|Aloha)! (?:<a[^>]+?href=|\[url=|http:\/\/)/i' => 15,
@@ -101,7 +105,7 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 		$this->extlink_class_name = 'ext';
 
 		// KAKASI での分かち書き結果のキャッシュ先
-		$this->kakasi_cache_dir = XOOPS_ROOT_PATH.'/cache2/kakasi/';
+		$this->kakasi_cache_dir = XOOPS_TRUST_PATH.'/uploads/hyp_common/kakasi/';
 
 		// スマートリダイレクトのポップアップ最短秒数
 		$this->smart_redirect_min_sec = 5;
@@ -301,7 +305,6 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 
 		// 携帯対応レンダー設定 以上
 		/////////////////////////////
-
 
 		///////////////////////////////
 		// 以下は変更してはいけません。

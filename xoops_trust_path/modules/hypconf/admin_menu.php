@@ -20,6 +20,10 @@ $adminmenu = array(
 		'link' => 'admin/index.php?mode=admin&page=xpwiki_render' ,
 	),
 	array(
+		'title' => hypconf_constant( $constpref.'_ADMENU_SPAM_BLOCK' ) ,
+		'link' => 'admin/index.php?mode=admin&page=spam_block' ,
+	),
+	array(
 		'title' => 'PHP info' ,
 		'link' => 'admin/index.php?mode=admin&page=phpinfo' ,
 	)

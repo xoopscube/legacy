@@ -20,6 +20,11 @@ define($constpref.'_ADMENU_CONTENTSADMIN' , 'Configuration Verify');
 define($constpref.'_ADMENU_MAIN_SWITCH' , 'Main Switch');
 define($constpref.'_ADMENU_K_TAI_CONF' , 'Setup for mobile');
 define($constpref.'_ADMENU_MYBLOCKSADMIN' , 'Permissions Setting');
+define($constpref.'_ADMENU_XPWIKI_RENDER', 'xpWiki renderer');
+define($constpref.'_ADMENU_SPAM_BLOCK', 'SPAM blocker');
+
+// notice error
+define($constpref.'_MAIN_SWITCH_NOT_ENABLE', '"<b>$1</b>" is invalid with the main switch. In order to operate a setup here, please validate "<b>$1</b>" with a main switch.');
 
 // main_switch
 define($constpref.'_USE_SET_QUERY_WORDS', 'Set to a constant search words.');
@@ -28,6 +33,8 @@ define($constpref.'_USE_WORDS_HIGHLIGHT', 'Highlight search words.');
 define($constpref.'_USE_WORDS_HIGHLIGHT_DESC', '');
 define($constpref.'_USE_PROXY_CHECK', 'Check that the proxy when posting.');
 define($constpref.'_USE_PROXY_CHECK_DESC', '');
+define($constpref.'_INPUT_FILTER_STRENGTH', 'GET, POST control character filter intensity');
+define($constpref.'_INPUT_FILTER_STRENGTH_DESC', '');
 define($constpref.'_USE_DEPENDENCE_FILTER', 'Environment-dependent character filter.');
 define($constpref.'_USE_DEPENDENCE_FILTER_DESC', 'This is a feature of the Japanese environment.');
 define($constpref.'_USE_POST_SPAM_FILTER', 'SPAM Filter.');
@@ -38,6 +45,10 @@ define($constpref.'_USE_K_TAI_RENDER', 'To enable the feature on mobile phones.'
 define($constpref.'_USE_K_TAI_RENDER_DESC', '');
 define($constpref.'_USE_SMART_REDIRECT', 'To enable smart redirection.');
 define($constpref.'_USE_SMART_REDIRECT_DESC', '');
+// main_switch value
+define($constpref.'_INPUT_FILTER_STRENGTH_0', 'Controls allowed in a non-NULL');
+define($constpref.'_INPUT_FILTER_STRENGTH_1', '\t, \r, \n and EMOJI of SoftBank are allowed in controls');
+define($constpref.'_INPUT_FILTER_STRENGTH_2', '\t, \r and \n are allowed in controls');
 
 // k_tai_render
 define($constpref.'_UA_REGEX', 'User agent');
@@ -76,5 +87,39 @@ define($constpref.'_XPWIKI_RENDER_NOTUSE_WIKIHELPER_MODULES_DESC', 'Please choos
 define($constpref.'_REQUERE_XCL', 'This setting is only available in XOOPS Cube Legacy system.');
 define($constpref.'_XCL_REQUERE_2_2_1', 'This feature will be available since XOOPS Cube Legacy 2.2.1 .However,  If you have a edited "class/module.textsanitizer.php" for this feature already. Please ignore this message.');
 define($constpref.'_TEXTFILTER_ALREADY_EXISTS', 'There is a "SetupHyp_TextFilter.class.php" in "preload" directory so this setting will be disabled.');
+
+// spam_block
+define($constpref.'_USE_MAIL_NOTIFY', 'POST SPAM mail notification 0: No 1: determination only SPAM, 2: all');
+define($constpref.'_USE_MAIL_NOTIFY_DESC', '');
+define($constpref.'_SEND_MAIL_INTERVAL', 'Digest interval in minutes (0: from time to time send)');
+define($constpref.'_SEND_MAIL_INTERVAL_DESC', '');
+define($constpref.'_POST_SPAM_A', 'Points per tag &lt;a&gt;');
+define($constpref.'_POST_SPAM_A_DESC', '');
+define($constpref.'_POST_SPAM_BB', 'Points per BBcode link');
+define($constpref.'_POST_SPAM_BB_DESC', '');
+define($constpref.'_POST_SPAM_URL', 'Points per URL');
+define($constpref.'_POST_SPAM_URL_DESC', '');
+define($constpref.'_POST_SPAM_UNHOST', 'Addition point of unknown Host');
+define($constpref.'_POST_SPAM_UNHOST_DESC', '');
+define($constpref.'_POST_SPAM_HOST', 'Addition point of Spam Host');
+define($constpref.'_POST_SPAM_HOST_DESC', '');
+define($constpref.'_POST_SPAM_WORD', 'Addition point of Spam Word');
+define($constpref.'_POST_SPAM_WORD_DESC', '');
+define($constpref.'_POST_SPAM_FILED', 'Addition point of Honeypot input');
+define($constpref.'_POST_SPAM_FILED_DESC', '');
+define($constpref.'_POST_SPAM_TRAP', 'Filed name of Honeypot');
+define($constpref.'_POST_SPAM_TRAP_DESC', '');
+define($constpref.'_POST_SPAM_USER', 'Threshold of Spam judging: Login user');
+define($constpref.'_POST_SPAM_USER_DESC', '');
+define($constpref.'_POST_SPAM_GUEST', 'Threshold of Spam judging: Guest');
+define($constpref.'_POST_SPAM_GUEST_DESC', '');
+define($constpref.'_POST_SPAM_BADIP', 'Threshold value registered to an access refusal list');
+define($constpref.'_POST_SPAM_BADIP_DESC', '');
+define($constpref.'_POST_SPAM_BADIP_TTL', '<b>Protector cooperation</b>: Denial of Access Denied duration [s] (0: unlimited, null: unused Protector)');
+define($constpref.'_POST_SPAM_BADIP_TTL_DESC', '');
+define($constpref.'_POST_SPAM_BADIP_FOREVER', '<b>Protector cooperation</b>: Access denied permanent threshold');
+define($constpref.'_POST_SPAM_BADIP_FOREVER_DESC', '');
+define($constpref.'_POST_SPAM_BADIP_TTL0', '<b>Protector cooperation</b>: Indefinite duration access denied [s] (0: indeed indefinitely)');
+define($constpref.'_POST_SPAM_BADIP_TTL0_DESC', '');
 
 }

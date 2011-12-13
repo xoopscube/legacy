@@ -85,6 +85,8 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 		if (! isset($this->no_proxy_check)) $this->no_proxy_check  = '/^(127\.0\.0\.1|192\.168\.1\.)/';
 		if (! isset($this->msg_proxy_check)) $this->msg_proxy_check = 'Can not post from public proxy.';
 
+		if (! isset($this->input_filter_strength)) $this->input_filter_strength = 0;
+
 		if (! isset($this->use_mail_notify)) $this->use_mail_notify = 1;
 		if (! isset($this->send_mail_interval)) $this->send_mail_interval = 60;
 		if (! isset($this->post_spam_a)) $this->post_spam_a   = 1;
@@ -112,7 +114,7 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 		);
 		if (! isset($this->post_spam_rules)) $this->post_spam_rules = array(
 			"/((?:ht|f)tps?:\/\/[!~*'();\/?:\@&=+\$,%#\w.-]+).+?\\1.+?\\1/i" => 11,
-			'/[\x00-\x08\x11-\x12\x14-\x1f\x7f]+/' => 31,
+			'/[\x01-\x08\x0b-\x0c\x0e\x10-\x1a\x1c-\x1f\x7f]+/' => 31,
 			'/^\s*(?:Hi|Aloha)! (?:<a[^>]+?href=|\[url=|http:\/\/)/i' => 15,
 		);
 		if (! isset($this->ignore_fileds)) $this->ignore_fileds = array();
@@ -250,7 +252,7 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 
 		// Load conf file.
 		$conffile = XOOPS_TRUST_PATH . HYP_COMMON_PRELOAD_CONF;
-		$sections = array('main_switch', 'xpwiki_render');
+		$sections = array('main_switch', 'xpwiki_render', 'spam_block');
 		if (is_file($conffile) && $conf = parse_ini_file($conffile, true)) {
 			foreach($conf as $name => $section) {
 				if ($name === 'k_tai_conf') {
@@ -274,6 +276,9 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 				$this->k_tai_conf['rebuildsEx']['jqm']['header']['above'] = preg_replace('/data-theme="[a-z]"/', 'data-theme="' . $this->k_tai_conf['jquery_theme#'.XOOPS_URL] . '"', $this->k_tai_conf['rebuildsEx']['jqm']['header']['above']);
 				$this->k_tai_conf['rebuildsEx']['jqm']['body']['above']   = preg_replace('/data-theme="[a-z]"/', 'data-theme="' . $this->k_tai_conf['jquery_theme#'.XOOPS_URL] . '"', $this->k_tai_conf['rebuildsEx']['jqm']['body']['above']);
 				$this->k_tai_conf['rebuildsEx']['jqm']['footer']['above'] = preg_replace('/data-theme="[a-z]"/', 'data-theme="' . $this->k_tai_conf['jquery_theme#'.XOOPS_URL] . '"', $this->k_tai_conf['rebuildsEx']['jqm']['footer']['above']);
+			}
+			if ($this->post_spam_badip_ttl == -1) {
+				$this->post_spam_badip_ttl = null;
 			}
 		}
 
@@ -507,10 +512,13 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 			$enchint = (isset($_GET[$this->encodehint_name]))? $_GET[$this->encodehint_name] : ((isset($_GET['encode_hint']))? $_GET['encode_hint'] : '');
 			if ($enchint && function_exists('mb_detect_encoding')) {
 				define ('HYP_GET_ENCODING', strtoupper(mb_detect_encoding($enchint)));
+				$_GET = HypCommonFunc::input_filter($_GET, $this->input_filter_strength, HYP_GET_ENCODING);
 				if (HYP_GET_ENCODING !== $this->encode) {
 					mb_convert_variables($this->encode, HYP_GET_ENCODING, $_GET);
 					if (isset($_GET['charset'])) $_GET['charset'] = $this->encode;
 				}
+			} else {
+				$_GET = HypCommonFunc::input_filter($_GET, $this->input_filter_strength);
 			}
 		}
 
@@ -536,11 +544,11 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 			}
 
 			// Input フィルター (remove "\0")
-			$_POST = HypCommonFunc::input_filter($_POST);
+			$_POST = HypCommonFunc::input_filter($_POST, $this->input_filter_strength, (defined('HYP_POST_ENCODING')? HYP_POST_ENCODING : null));
 
 			// Proxy Check
 			if ($this->use_proxy_check) {
-				if (! defined('HYP_K_TAI_RENDER') || ! HYP_K_TAI_RENDER || ! $this->HypKTaiRender->vars['ua']['inIPRange']) {
+				if (! defined('HYP_K_TAI_RENDER') || HYP_K_TAI_RENDER !== 1 || ! $this->HypKTaiRender->vars['ua']['inIPRange']) {
 					HypCommonFunc::BBQ_Check($this->no_proxy_check, $this->msg_proxy_check, NULL, $this->post_spam_checkers);
 				}
 			}
@@ -1003,6 +1011,9 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 	}
 
 	function _modKtaiEmojiEncode ($vars) {
+
+		if (! defined('HYP_POST_ENCODING')) return $vars;
+
 		if (is_array($vars)) {
 			foreach($vars as $key=>$var) {
 				$vars[$key] = $this->_modKtaiEmojiEncode($var);
@@ -1527,6 +1538,8 @@ EOD;
 					if ($header_template) $header = $header_template;
 					if ($body_template) $body = $body_template;
 					if ($footer_template) $footer = $footer_template;
+				} elseif ($use_jquery) {
+					return false;
 				}
 			}
 		} else {
@@ -1887,6 +1900,10 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 		$this->no_proxy_check  = '/^(127\.0\.0\.1|192\.168\.1\.)/'; // 除外IP
 		$this->msg_proxy_check = 'Can not post from public proxy.';
 
+		// Input filter 制御文字の除去
+		// 0: null 以外許可, 1: SoftBankの絵文字と\t,\r,\n は許可, 2: \t,\r,\n のみ許可
+		$this->input_filter_strength = 0;
+
 		// POST SPAM
 		$this->use_mail_notify    = 1;    // POST SPAM メール通知 0:なし, 1:SPAM判定のみ, 2:すべて
 		$this->send_mail_interval = 60;   // まとめ送りのインターバル(分) (0 で随時送信)
@@ -1932,7 +1949,7 @@ class HypCommonPreLoad extends HypCommonPreLoadBase {
 			// '/^[\x00-\x7f\s]{65,}$/' => 15,
 
 			// 無効な文字コードがある 31pt
-			'/[\x00-\x08\x11-\x12\x14-\x1f\x7f]+/' => 31,
+			'/[\x01-\x08\x0b-\x0c\x0e\x10-\x1a\x1c-\x1f\x7f]+/' => 31,
 
 			// よくあるSPAM 15pt
 			'/^\s*(?:Hi|Aloha)! (?:<a[^>]+?href=|\[url=|http:\/\/)/i' => 15,

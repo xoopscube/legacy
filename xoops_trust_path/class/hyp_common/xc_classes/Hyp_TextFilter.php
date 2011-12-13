@@ -1,14 +1,19 @@
 <?php
 /*
  * Created on 2011/11/17 by nao-pon http://xoops.hypweb.net/
- * $Id: Hyp_TextFilter.php,v 1.2 2011/11/27 05:51:58 nao-pon Exp $
+ * $Id: Hyp_TextFilter.php,v 1.3 2011/12/13 07:15:29 nao-pon Exp $
  */
 
 class Hyp_TextFilter extends Legacy_TextFilter
 {
+    var $hypInternalTags = array('email', 'siteimg', 'img', 'siteurl', 'url');
+    var $hypEscTags      = array('quote', 'color', 'font', 'size', 'b', 'c', 'd', 'i', 'u');
+    var $hypBypassTags   = array('fig');
+
     function Hyp_TextFilter() {
         parent::Legacy_TextFilter();
         $this->mMakeXCodeConvertTable->add('Hyp_TextFilter::makeXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_3);
+        $this->mMakeXCodeConvertTable->add(array(& $this, 'getXcodeBBcode'), XCUBE_DELEGATE_PRIORITY_FINAL);
     }
 
     function makeXCodeConvertTable(& $patterns, & $replacements) {
@@ -20,6 +25,16 @@ class Hyp_TextFilter extends Legacy_TextFilter
         }
         $patterns[] = "/\[quote sitecite=([^\"'<>]*)\]/sU";
         $replacements[0][] = $replacements[1][] = '<div class="paragraph">'._QUOTEC.'<div class="xoopsQuote"><blockquote cite="'.XOOPS_URL.'/\\1">';
+    }
+
+    function getXcodeBBcode($patterns, $replacements) {
+    	$_arr = $this->hypBypassTags;
+    	foreach($patterns as $_pat) {
+    		if (preg_match('#^/\\\\\[([a-zA-Z0-9_-]+)\b#', $_pat, $_match)) {
+   				$_arr[] = $_match[1];
+    		}
+    	}
+    	$this->hypBypassTags = array_unique(array_diff($_arr, $this->hypEscTags, $this->hypInternalTags));
     }
 
     // Over write
@@ -54,12 +69,14 @@ class Hyp_TextFilter extends Legacy_TextFilter
 
     // Original function
     function renderWiki_getEscTags () {
-        return array('quote', 'color', 'font', 'size', 'b', 'c', 'd', 'i', 'u');
+        rsort($this->hypEscTags);
+        return $this->hypEscTags;
     }
 
     // Original function
     function renderWiki_getBypassTags () {
-        return array('siteimg', 'fig', 'img');
+        rsort($this->hypBypassTags);
+        return $this->hypBypassTags;
     }
 
     // Original function
@@ -121,13 +138,29 @@ class Hyp_TextFilter extends Legacy_TextFilter
 
                 if ($image) {
                     // BB Code image with align
-                    $pat[$className][$image][] = '/\[img\s+align=([\'"]?)(left|center|right)\\1]([!~*\'();\/?:\@&=+\$,%#\w.-]+)\[\/img\]/US';
-                    $rep[$className][$image][] = '&ref($3,$2);';
+                    $pat[$className][$image][] = '/\[img\s+align=([\'"]?)(left|center|right)\1(?:\s+title=([\'"]?)([^\'"][^\]\s]*?)\3)?(?:\s+w(?:idth)?=([\'"]?)([\d]+?)\5)?(?:\s+h(?:eight)?=([\'"]?)([\d]+?)\7)?]([!~*\'();\/?:\@&=+\$,%#\w.-]+)\[\/img\]/US';
+                    $rep[$className][$image][] = '&ref($9,$2,"t:$4",mw:$6,mw:$8);';
 
                     // BB Code image normal
-                    $pat[$className][$image][] = '/\[img]([!~*\'();\/?:\@&=+\$,%#\w.-]+)\[\/img\]/US';
-                    $rep[$className][$image][] = '&ref($1);';
+                    $pat[$className][$image][] = '/\[img(?:\s+title=([\'"]?)([^\'"][^\]\s]*?)\1)?(?:\s+w(?:idth)?=([\'"]?)([\d]+?)\3)?(?:\s+h(?:eight)?=([\'"]?)([\d]+?)\5)?]([!~*\'();\/?:\@&=+\$,%#\w.-]+)\[\/img\]/US';
+                    $rep[$className][$image][] = '&ref($7,"t:$2",mw:$4,mw:$6);';
+                } else {
+                    // BB Code image with align
+                    $pat[$className][$image][] = '/\[img\s+align=([\'"]?)(left|center|right)\1(?:\s+title=([\'"]?)([^\'"][^\]\s]*?)\3)?(?:\s+w(?:idth)?=([\'"]?)([\d]+?)\5)?(?:\s+h(?:eight)?=([\'"]?)([\d]+?)\7)?]([!~*\'();\/?:\@&=+\$,%#\w.-]+)\[\/img\]/US';
+                    $rep[$className][$image][] = '&ref($9,"t:$4",noimg);';
+
+                    // BB Code image normal
+                    $pat[$className][$image][] = '/\[img(?:\s+title=([\'"]?)([^\'"][^\]\s]*?)\1)?(?:\s+w(?:idth)?=([\'"]?)([\d]+?)\3)?(?:\s+h(?:eight)?=([\'"]?)([\d]+?)\5)?]([!~*\'();\/?:\@&=+\$,%#\w.-]+)\[\/img\]/US';
+                    $rep[$className][$image][] = '&ref($7,"t:$2",noimg);';
                 }
+
+				// BB Code siteimage with align
+				$pat[$className][$image][] = '/\[siteimg\s+align=([\'"]?)(left|center|right)\1(?:\s+title=([\'"]?)([^\'"][^\]\s]*?)\3)?(?:\s+w(?:idth)?=([\'"]?)([\d]+?)\5)?(?:\s+h(?:eight)?=([\'"]?)([\d]+?)\7)?]\/?([!~*\'();?\@&=+\$,%#\w.-][!~*\'();\/?\@&=+\$,%#\w.-]+?)\[\/siteimg\]/US';
+				$rep[$className][$image][] = '&ref('.XOOPS_URL.'/$9,$2,"t:$4",mw:$6,mw:$8);';
+
+				// BB Code siteimage normal
+				$pat[$className][$image][] = '/\[siteimg(?:\s+title=([\'"]?)([^\'"][^\]\s]*?)\1)?(?:\s+w(?:idth)?=([\'"]?)([\d]+?)\3)?(?:\s+h(?:eight)?=([\'"]?)([\d]+?)\5)?]\/?([!~*\'();?\@&=+\$,%#\w.-][!~*\'();\/?\@&=+\$,%#\w.-]+?)\[\/siteimg\]/US';
+				$rep[$className][$image][] = '&ref('.XOOPS_URL.'/$7,"t:$2",mw:$4,mw:$6);';
 
                 // Some BB Code Tags, Contents allows xpWiki rendering.
                 if ($_reg = join('|', $this->renderWiki_getEscTags())) {
@@ -137,7 +170,7 @@ class Hyp_TextFilter extends Legacy_TextFilter
 
                 // Other or Unknown BB Code Tags, All part escapes.
                 if ($_reg = join('|', $this->renderWiki_getBypassTags())) {
-                    $pat[$className][$image][] = '/\[(' . $_reg . ')(?:\s[^\]]+)?].+\[\/\\1\]/esUS';
+                    $pat[$className][$image][] = '/\[(' . $_reg . ')(?:\b[^\]]+)?].+\[\/\\1\]/esUS';
                     $rep[$className][$image][] = '\'[ b 6 4 ]\' . base64_encode(\'$0\') . \'[ / b 6 4 ]\'';
                 }
 

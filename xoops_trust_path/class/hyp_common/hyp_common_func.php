@@ -1,5 +1,5 @@
 <?php
-// $Id: hyp_common_func.php,v 1.80 2011/11/22 09:07:53 nao-pon Exp $
+// $Id: hyp_common_func.php,v 1.81 2011/12/13 01:46:20 nao-pon Exp $
 // HypCommonFunc Class by nao-pon http://hypweb.net
 ////////////////////////////////////////////////
 
@@ -1425,15 +1425,51 @@ return ($ok)? $match[0] : ($match[1] . "\x08" . $match[2]);');
 	}
 
 	// Input フィルター
-	function input_filter($param) {
+	// $strength - 0: null 以外許可, 1: SoftBankの絵文字と\t,\r,\n は許可, 2: \t,\r,\n のみ許可
+	function input_filter($param, $strength = 2, $encode = null) {
+
+		static $done = array('POST' => 0, 'GET' => 0);
+
 		if (is_array($param)) {
+			$is = array();
+			// Check done
+			if ($param === $_GET) {
+				if ($done['GET'] > $strength) return $param;
+				$is['GET'] = true;
+			} elseif ($param === $_POST) {
+				if ($done['POST'] > $strength) return $param;
+				$is['POST'] = true;
+			}
 			foreach ($param as $key => $val) {
-				$param[$key] = HypCommonFunc::input_filter($val);
+				$param[$key] = HypCommonFunc::input_filter($val, $strength, $encode);
+			}
+			if (isset($is['GET'])) {
+				$done['GET'] = $strength + 1;
+			} elseif (isset($is['POST'])) {
+				$done['POST'] = $strength + 1;
 			}
 			return $param;
 		} else {
-			$result = str_replace(array("\0", '&#8203;', "\xE2\x80\x8B"), '', $param);
-			return $result;
+			$param = str_replace(array("\0", '&#8203;'), '', $param);
+			if ($encode === 'UTF-8') {
+				// \xEF\xBB\xBF: BOM, \xE2\x80\x8B: ZERO WIDTH SPACE(&#8203;)
+				$param = str_replace(array("\xEF\xBB\xBF", "\xE2\x80\x8B"), '', $param);
+			}
+			if (defined('HYP_COMMON_INPUT_FILTER_REGEX')) {
+				$param = preg_replace(HYP_COMMON_INPUT_FILTER_REGEX, '', $param);
+			} else {
+				switch((int)$strength) {
+					case 1:
+						$param = preg_replace('/[\x01-\x08\x0b-\x0c\x0e\x10-\x1a\x1c-\x1f\x7f]+/', '', $param);
+						break;
+					case 2:
+						$param = preg_replace('/[\x01-\x08\x0b\x0c\x0e-\x1f\x7f]+/', '', $param);
+						break;
+					default:
+				}
+			}
+			if (defined('HYP_COMMON_INPUT_FILTER_STRIPSLASHES')) $param = stripslashes($param);
+			return $param;
 		}
 	}
 

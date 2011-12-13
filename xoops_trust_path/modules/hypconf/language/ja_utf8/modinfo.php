@@ -21,6 +21,10 @@ define($constpref.'_ADMENU_MAIN_SWITCH' , 'メイン スイッチ');
 define($constpref.'_ADMENU_K_TAI_CONF' , 'モバイル対応の設定');
 define($constpref.'_ADMENU_MYBLOCKSADMIN' , 'アクセス権限設定');
 define($constpref.'_ADMENU_XPWIKI_RENDER', 'xpWikiレンダラー設定');
+define($constpref.'_ADMENU_SPAM_BLOCK', 'スパム防止設定');
+
+// notice error
+define($constpref.'_MAIN_SWITCH_NOT_ENABLE', 'メインスイッチで「<b>$1</b>」が無効になっています。ここでの設定を機能させるためには、メインスイッチで「<b>$1</b>」を有効にしてください。');
 
 // main_switch
 define($constpref.'_USE_SET_QUERY_WORDS', '検索ワードを定数にセット');
@@ -29,6 +33,8 @@ define($constpref.'_USE_WORDS_HIGHLIGHT', '検索ワードをハイライト表�
 define($constpref.'_USE_WORDS_HIGHLIGHT_DESC', '');
 define($constpref.'_USE_PROXY_CHECK', '投稿時にプロキシチェックをする');
 define($constpref.'_USE_PROXY_CHECK_DESC', '');
+define($constpref.'_INPUT_FILTER_STRENGTH', 'GET, POST 制御文字フィルター強度');
+define($constpref.'_INPUT_FILTER_STRENGTH_DESC', '');
 define($constpref.'_USE_DEPENDENCE_FILTER', '機種依存文字フィルター');
 define($constpref.'_USE_DEPENDENCE_FILTER_DESC', '');
 define($constpref.'_USE_POST_SPAM_FILTER', 'POST SPAM フィルター');
@@ -39,6 +45,10 @@ define($constpref.'_USE_K_TAI_RENDER', 'モバイル対応機能を有効にす�
 define($constpref.'_USE_K_TAI_RENDER_DESC', '');
 define($constpref.'_USE_SMART_REDIRECT', 'スマートリダイレクトを有効にする');
 define($constpref.'_USE_SMART_REDIRECT_DESC', '');
+// main_switch value
+define($constpref.'_INPUT_FILTER_STRENGTH_0', '制御文字の内 NULL 以外は許可');
+define($constpref.'_INPUT_FILTER_STRENGTH_1', '制御文字の内 SoftBankの絵文字と\t,\r,\n は許可');
+define($constpref.'_INPUT_FILTER_STRENGTH_2', '制御文字の内 \t,\r,\n のみ許可');
 
 // k_tai_render
 define($constpref.'_UA_REGEX', 'User agent');
@@ -77,5 +87,39 @@ define($constpref.'_XPWIKI_RENDER_NOTUSE_WIKIHELPER_MODULES_DESC', 'サイトワ
 define($constpref.'_REQUERE_XCL', 'この設定は XOOPS Cube Legacy システムでのみ利用可能です。');
 define($constpref.'_XCL_REQUERE_2_2_1', 'この機能は、XOOPS Cube Legacy 2.2.1 以降で有効になります。ただし、独自に "class/module.textsanitizer.php" を書き換えてこの機能を有効にしている場合は、このメッセージは無視して下さい。');
 define($constpref.'_TEXTFILTER_ALREADY_EXISTS', 'preload ディレクトリに "SetupHyp_TextFilter.class.php" があります。それを削除するまでここでの設定は反映されません。');
+
+// spam_block
+define($constpref.'_USE_MAIL_NOTIFY', 'POST SPAM メール通知 0:なし, 1:SPAM判定のみ, 2:すべて');
+define($constpref.'_USE_MAIL_NOTIFY_DESC', '');
+define($constpref.'_SEND_MAIL_INTERVAL', 'まとめ送りのインターバル(分) (0 で随時送信)');
+define($constpref.'_SEND_MAIL_INTERVAL_DESC', '');
+define($constpref.'_POST_SPAM_A', '&lt;a&gt; タグ 1個あたりのポイント');
+define($constpref.'_POST_SPAM_A_DESC', '');
+define($constpref.'_POST_SPAM_BB', 'BBリンク 1個あたりのポイント');
+define($constpref.'_POST_SPAM_BB_DESC', '');
+define($constpref.'_POST_SPAM_URL', 'URL 1個あたりのポイント');
+define($constpref.'_POST_SPAM_URL_DESC', '');
+define($constpref.'_POST_SPAM_UNHOST', '不明 HOST の加算ポイント');
+define($constpref.'_POST_SPAM_UNHOST_DESC', '');
+define($constpref.'_POST_SPAM_HOST', 'Spam HOST の加算ポイント');
+define($constpref.'_POST_SPAM_HOST_DESC', '');
+define($constpref.'_POST_SPAM_WORD', 'Spam Word の加算ポイント');
+define($constpref.'_POST_SPAM_WORD_DESC', '');
+define($constpref.'_POST_SPAM_FILED', 'Spam 罠用無効フィールド入力時の加算ポイント');
+define($constpref.'_POST_SPAM_FILED_DESC', '');
+define($constpref.'_POST_SPAM_TRAP', 'Spam 罠用無効フィールド名');
+define($constpref.'_POST_SPAM_TRAP_DESC', '');
+define($constpref.'_POST_SPAM_USER', 'Spam 判定の閾値: ログインユーザー');
+define($constpref.'_POST_SPAM_USER_DESC', '');
+define($constpref.'_POST_SPAM_GUEST', 'Spam 判定の閾値: ゲスト');
+define($constpref.'_POST_SPAM_GUEST_DESC', '');
+define($constpref.'_POST_SPAM_BADIP', 'アクセス拒否リストへ登録する閾値');
+define($constpref.'_POST_SPAM_BADIP_DESC', '');
+define($constpref.'_POST_SPAM_BADIP_TTL', '<b>Protector連携</b>: アクセス拒否の拒否継続時間[秒] (0:無期限, null:Protector不使用)');
+define($constpref.'_POST_SPAM_BADIP_TTL_DESC', '');
+define($constpref.'_POST_SPAM_BADIP_FOREVER', '<b>Protector連携</b>: 無期限アクセス拒否閾値');
+define($constpref.'_POST_SPAM_BADIP_FOREVER_DESC', '');
+define($constpref.'_POST_SPAM_BADIP_TTL0', '<b>Protector連携</b>: 無期限アクセス拒否継続時間[秒] (0:本当に無期限)');
+define($constpref.'_POST_SPAM_BADIP_TTL0_DESC', '');
 
 }
