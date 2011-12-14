@@ -18,23 +18,30 @@ $xoopsOption['pagetype'] = 'admin' ;
 require XOOPS_ROOT_PATH.'/include/cp_functions.php' ;
 
 // language files (admin.php)
-$language = empty( $xoopsConfig['language'] ) ? 'english' : $xoopsConfig['language'] ;
-if( is_file( "$mydirpath/language/$language/admin.php" ) ) {
-	// user customized language file
-	include_once "$mydirpath/language/$language/admin.php" ;
-} else if( is_file( "$mytrustdirpath/language/$language/admin.php" ) ) {
-	// default language file
-	include_once "$mytrustdirpath/language/$language/admin.php" ;
+$langmanpath = XOOPS_TRUST_PATH.'/libs/altsys/class/D3LanguageManager.class.php' ;
+if(is_file( $langmanpath)) {
+	require_once( $langmanpath ) ;
+	$langman =& D3LanguageManager::getInstance() ;
+	$langman->read( 'admin.php' , $mydirname , $mytrustdirname , false ) ;
 } else {
-	// fallback english
-	include_once "$mytrustdirpath/language/english/admin.php" ;
+	$language = empty( $xoopsConfig['language'] ) ? 'english' : $xoopsConfig['language'] ;
+	if( is_file( "$mydirpath/language/$language/admin.php" ) ) {
+		// user customized language file
+		include_once "$mydirpath/language/$language/admin.php" ;
+	} else if( is_file( "$mytrustdirpath/language/$language/admin.php" ) ) {
+		// default language file
+		include_once "$mytrustdirpath/language/$language/admin.php" ;
+	} else {
+		// fallback english
+		include_once "$mytrustdirpath/language/english/admin.php" ;
+	}
 }
 
 if( ! empty( $_GET['lib'] ) ) {
 	// common libs (eg. altsys)
 	$lib = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , $_GET['lib'] ) ;
 	$page = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , @$_GET['page'] ) ;
-	
+
 	if( is_file( XOOPS_TRUST_PATH.'/libs/'.$lib.'/'.$page.'.php' ) ) {
 		include XOOPS_TRUST_PATH.'/libs/'.$lib.'/'.$page.'.php' ;
 	} else if( is_file( XOOPS_TRUST_PATH.'/libs/'.$lib.'/index.php' ) ) {
@@ -45,7 +52,7 @@ if( ! empty( $_GET['lib'] ) ) {
 } else {
 	// fork each pages of this module
 	$page = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , @$_GET['page'] ) ;
-	
+
 	if( is_file( "$mytrustdirpath/admin/$page.php" ) ) {
 		include "$mytrustdirpath/admin/$page.php" ;
 	} else if( is_file( "$mytrustdirpath/admin/index.php" ) ) {
@@ -54,5 +61,3 @@ if( ! empty( $_GET['lib'] ) ) {
 		die( 'wrong request' ) ;
 	}
 }
-
-?>

@@ -1,12 +1,22 @@
 <?php
 if (! defined('XOOPS_MODULE_URL')) define('XOOPS_MODULE_URL', XOOPS_URL . '/modules');
+
 $_parentdirname = dirname(__FILE__);
+
 // language file (modinfo.php)
-if( is_file( $_parentdirname.'/language/'.@$xoopsConfig['language'].'/modinfo.php' ) ) {
-	include $_parentdirname.'/language/'.@$xoopsConfig['language'].'/modinfo.php' ;
-} else if( is_file( $_parentdirname.'/language/english/modinfo.php' ) ) {
-	include $_parentdirname.'/language/english/modinfo.php' ;
+$langmanpath = XOOPS_TRUST_PATH.'/libs/altsys/class/D3LanguageManager.class.php' ;
+if(is_file( $langmanpath)) {
+	require_once( $langmanpath ) ;
+	$langman =& D3LanguageManager::getInstance() ;
+	$langman->read( 'modinfo.php' , $mydirname , $mytrustdirname , false ) ;
+} else {
+	if( is_file( $_parentdirname.'/language/'.@$xoopsConfig['language'].'/modinfo.php' ) ) {
+		include $_parentdirname.'/language/'.@$xoopsConfig['language'].'/modinfo.php' ;
+	} else if( is_file( $_parentdirname.'/language/english/modinfo.php' ) ) {
+		include $_parentdirname.'/language/english/modinfo.php' ;
+	}
 }
+
 $constpref = '_MI_' . strtoupper( $mydirname ) ;
 
 include $_parentdirname . '/version.php';
@@ -238,5 +248,3 @@ if ( ! defined( 'XOOPS_CUBE_LEGACY' ) && substr( XOOPS_VERSION , 6 , 3 ) < 2.1 &
 	// keep block's options
 	include $_parentdirname.'/include/x20_keepblockoptions.inc.php' ;
 }
-
-?>

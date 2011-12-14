@@ -6,17 +6,24 @@ if( defined( 'XOOPS_ORETEKI' ) ) return ;
 if( ! isset( $module ) || ! is_object( $module ) ) $module = $xoopsModule ;
 else if( ! is_object( $xoopsModule ) ) die( '$xoopsModule is not set' )  ;
 
-// language files (modinfo.php)
-$language = empty( $xoopsConfig['language'] ) ? 'english' : $xoopsConfig['language'] ;
-if( is_file( "$mydirpath/language/$language/modinfo.php" ) ) {
-	// user customized language file
-	include_once "$mydirpath/language/$language/modinfo.php" ;
-} else if( is_file( "$mytrustdirpath/language/$language/modinfo.php" ) ) {
-	// default language file
-	include_once "$mytrustdirpath/language/$language/modinfo.php" ;
+// language file (modinfo.php)
+$langmanpath = XOOPS_TRUST_PATH.'/libs/altsys/class/D3LanguageManager.class.php' ;
+if(is_file( $langmanpath)) {
+	require_once( $langmanpath ) ;
+	$langman =& D3LanguageManager::getInstance() ;
+	$langman->read( 'modinfo.php' , $mydirname , $mytrustdirname , false ) ;
 } else {
-	// fallback english
-	include_once "$mytrustdirpath/language/english/modinfo.php" ;
+	$language = empty( $xoopsConfig['language'] ) ? 'english' : $xoopsConfig['language'] ;
+	if( is_file( "$mydirpath/language/$language/modinfo.php" ) ) {
+		// user customized language file
+		include_once "$mydirpath/language/$language/modinfo.php" ;
+	} else if( is_file( "$mytrustdirpath/language/$language/modinfo.php" ) ) {
+		// default language file
+		include_once "$mytrustdirpath/language/$language/modinfo.php" ;
+	} else {
+		// fallback english
+		include_once "$mytrustdirpath/language/english/modinfo.php" ;
+	}
 }
 
 include dirname(__FILE__).'/admin_menu.php' ;
@@ -82,5 +89,3 @@ foreach( $adminmenu as $menuitem ) {
 	echo "<div style='float:left;height:1.5em;'><nobr><a href='".htmlspecialchars($menuitem['link'],ENT_QUOTES)."' style='background-color:{$menuitem['color']};font:normal normal bold 9pt/12pt;'>".htmlspecialchars($menuitem['title'],ENT_QUOTES)."</a> | </nobr></div>\n" ;
 }
 echo "</div>\n<hr style='clear:left;display:block;' />\n" ;
-
-?>
