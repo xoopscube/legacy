@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="<{$xoops_charset}>"?>
+<{strip}>
+<{include_php file="`$smarty.const.XOOPS_THEME_PATH`/`$xoops_theme`/xugj_already_js.php"}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<{/strip}>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
@@ -25,9 +28,13 @@
 <link rel="stylesheet" href="<{$xoops_imageurl}>css/jquery-jcflick.css" media="all" type="text/css" />
 <link rel="stylesheet" href="<{$xoops_imageurl}>css/jquery-megaDropdown.css" media="all" type="text/css" />
 <link rel="stylesheet" href="<{$xoops_imageurl}>css/jquery-jktab.css" media="all" type="text/css" />
+<{if ! $xcl22_jquery_is_already }>
+<link rel="stylesheet" href="<{$xoops_imageurl}>css/smoothness/jquery-ui-1.8.16.custom.css" media="all" type="text/css" />
+<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-ui-1.8.16.custom.min.js"></script>
+<{/if}>
 <{if $xoops_module_header}><{$xoops_module_header}><{/if}>
 <{if $xoops_block_header}><{$xoops_block_header}><{/if}>
-<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery.hoverIntent.minified.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/global.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-megaDropdown.js"></script>
@@ -114,6 +121,9 @@ jQuery(function($){
 <div id="globalHeaderContainer">
 	<div id="headerInner">
 		<{if $xoops_isuser === true}>
+			<span id="headerRss">
+			<a href="<{$xugj_feed_url}>" title="rss"><img src="<{$xoops_imageurl}>images/rss.png" alt="rss" /></a>
+			</span>
 			<span id="headerName">
 			<a href="<{$xoops_url}>/user.php"><img src="<{$xoops_userid|xoops_user_avatarize}>" /></a>
 			<{user_uname2name uname=$xoops_uname}>

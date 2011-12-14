@@ -98,6 +98,10 @@ body {
 	vertical-align: text-bottom;
 }
 
+#headerRss {
+	padding: 3px;
+	border-right: dotted 1px #aaa;
+}
 #headerName {
 	padding: 3px;
 	border-right: dotted 1px #aaa;
