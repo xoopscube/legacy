@@ -2,7 +2,7 @@
 /////////////////////////////////////////////////
 // PukiWiki - Yet another WikiWikiWeb clone.
 //
-//  $Id: attach.inc.php,v 1.67 2011/12/13 07:20:06 nao-pon Exp $
+//  $Id: attach.inc.php,v 1.68 2011/12/14 08:24:29 nao-pon Exp $
 //  ORG: attach.inc.php,v 1.31 2003/07/27 14:15:29 arino Exp $
 //
 /*
@@ -1122,7 +1122,6 @@ XpWiki.domInitFunctions.push(
 				if ($('_p_attach_copyright_{$pgid}_{$load[$this->xpwiki->pid][$page]}').checked) {
 					this.params['copyright'] = 1;
 				}
-				//alert(uploader._listElement.style.display);
 				uploader._listElement.style.visibility = 'visible';
 				++doing;
 			},
@@ -1162,7 +1161,8 @@ XpWiki.domInitFunctions.push(
             dropArea.style.top = Math.max(0, Event.pointerY(e) - (document.documentElement.scrollTop || document.body.scrollTop) - 65) + 'px';
         	listArea.style.top = dropArea.style.top;
         });
-
+		var imgPrefetch = new Image();
+		imgPrefetch.src = "{$this->cont['LOADER_URL']}?src=loading_15.gif";
 	}
 );
 //]]>
