@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/02 by nao-pon http://hypweb.net/
-// $Id: xpwiki_func.php,v 1.247 2011/12/13 07:45:14 nao-pon Exp $
+// $Id: xpwiki_func.php,v 1.248 2011/12/15 14:01:52 nao-pon Exp $
 //
 class XpWikiFunc extends XpWikiXoopsWrapper {
 
@@ -1254,7 +1254,7 @@ class XpWikiFunc extends XpWikiXoopsWrapper {
 	function refcheck($blank = 0, $ref = NULL)
 	{
 		if (is_null($ref) && isset($_SERVER['HTTP_REFERER'])) $ref = $_SERVER['HTTP_REFERER'];
-		if (!$blank && !$ref) return TRUE;
+		if (!$blank && (! $ref || $ref === '-')) return TRUE;
 		if (strpos($ref, $this->cont['ROOT_URL']) === 0 ) return TRUE;
 
 		return FALSE;

@@ -1,5 +1,5 @@
 <?php
-// $Id: ref.inc.php,v 1.62 2011/12/13 07:19:23 nao-pon Exp $
+// $Id: ref.inc.php,v 1.63 2011/12/15 14:03:18 nao-pon Exp $
 /*
 
 	*プラグイン ref
@@ -119,12 +119,13 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 		$mtime = filemtime($ref);
 		$etag = '"' . $mtime . '"';
 		$expires = 'Expires: ' . gmdate( "D, d M Y H:i:s", $this->cont['UTC'] + $this->cont['BROWSER_CACHE_MAX_AGE'] ) . ' GMT';
+		$cache_ctr = ($this->root->userinfo['uid'])? ' private, max-age=' . $this->cont['BROWSER_CACHE_MAX_AGE'] : '';
 
 		if ($etag == @ $_SERVER["HTTP_IF_NONE_MATCH"]) {
 			// clear output buffer
 			$this->func->clear_output_buffer();
 			header('HTTP/1.1 304 Not Modified' );
-			header('Cache-Control: private, max-age=' . $this->cont['BROWSER_CACHE_MAX_AGE']);
+			header('Cache-Control:'.$cache_ctr);
 			header('Pragma:');
 			header($expires);
 			exit();
@@ -214,12 +215,12 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 		// clear output buffer
 		$this->func->clear_output_buffer();
 		$this->func->pkwk_common_headers();
-		header('Content-Disposition: inline; filename="' . $filename . '"');
+		if (! $this->cont['PLUGIN_REF_SHORTURL']) header('Content-Disposition: inline; filename="' . $filename . '"');
 		header('Content-Length: ' . $size);
 		header('Content-Type: '   . $type);
 		header('Last-Modified: '  . gmdate( "D, d M Y H:i:s", $mtime ) . " GMT" );
 		header('Etag: '           . $etag );
-		header('Cache-Control: private, max-age=' . $this->cont['BROWSER_CACHE_MAX_AGE']);
+		header('Cache-Control:'.$cache_ctr);
 		header('Pragma:');
 		header($expires);
 
@@ -561,8 +562,7 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 				// URI for in-line image output
 				if (! $this->cont['PLUGIN_REF_DIRECT_ACCESS']) {
 					// With ref plugin (faster than attach)
-					$lvar['url'] = $this->cont['DATA_HOME'] . 'gate.php?way=ref&amp;_nodos&amp;_noumb&amp;page=' . rawurlencode($lvar['page']) .
-					'&amp;src=' . rawurlencode($lvar['name']); // Show its filename at the last
+					$lvar['url'] = $this->get_ref_url($lvar['page'], $lvar['name']);
 				} else {
 					// Try direct-access, if possible
 					$lvar['url'] = $lvar['file'];
@@ -572,8 +572,7 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 				// URI for in-line image output
 				if (! $this->cont['PLUGIN_REF_DIRECT_ACCESS']) {
 					// With ref plugin (faster than attach)
-					$lvar['link'] = $this->cont['DATA_HOME'] . 'gate.php?way=ref&amp;_nodos&amp;_noumb&amp;page=' . rawurlencode($lvar['page']) .
-					'&amp;src=' . rawurlencode($lvar['name']); // Show its filename at the last
+					$lvar['link'] = $this->get_ref_url($lvar['page'], $lvar['name']);
 				} else {
 					// Try direct-access, if possible
 					$lvar['link'] = $lvar['file'];
@@ -698,8 +697,7 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 					// Net Video
 					$url = htmlspecialchars($lvar['name']);
 				} else {
-					$url = $this->cont['HOME_URL'] . 'gate.php/'.rawurlencode($lvar['name']).'?way=ref&amp;_nodos&amp;_noumb&amp;page=' . rawurlencode($lvar['page']) .
-					'&amp;src=' . rawurlencode($lvar['name']); // Show its filename at the last
+					$url = $this->get_ref_url($lvar['page'], $lvar['name'], true);
 				}
 
 				$domid = $this->get_domid('media');
@@ -951,8 +949,7 @@ EOD;
 				}
 			} else {
 				$f_path = rtrim($this->cont['HOME_URL'], '/');
-				$f_name = 'gate.php?way=ref&_nodos&page=' . rawurlencode($lvar['page']) .
-						'&src=' . rawurlencode($lvar['name']);
+				$f_name = $this->get_ref_url($lvar['page'], $lvar['name']);
 				$f_file = $f_path . '/' . $f_name;
 				$f_title = mb_convert_encoding($lvar['name'], 'UTF-8', $this->cont['SOURCE_ENCODING']);
 			}
@@ -996,6 +993,16 @@ swfobject.embedSWF("$f_file", "$cid", "{$img['width']}", "{$img['height']}", "{$
 
 _HTML_;
 		$this->func->add_js_var_head($js);
+	}
+
+	function get_ref_url($page, $name, $use_pathinfo = false) {
+		if ($this->cont['PLUGIN_REF_SHORTURL']) {
+			return $this->cont['DATA_HOME'] . 'ref/' . str_replace('%2F', '%252F', rawurlencode($page)) . '/' . rawurlencode($name);
+		} else {
+			$path_name = ($use_pathinfo)? '/' . rawurlencode($name) : '';
+			return $this->cont['DATA_HOME'] . 'gate.php' . $path_name . '?way=ref&amp;_nodos&amp;_noumb&amp;page=' . rawurlencode($page) .
+					'&amp;src=' . rawurlencode($name); // Show its filename at the last
+		}
 	}
 
 	// spanで包む (inline-block)

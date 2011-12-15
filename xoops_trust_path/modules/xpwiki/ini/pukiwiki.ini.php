@@ -1,6 +1,6 @@
 <?php
 // PukiWiki - Yet another WikiWikiWeb clone
-// $Id: pukiwiki.ini.php,v 1.114 2011/11/20 12:10:06 nao-pon Exp $
+// $Id: pukiwiki.ini.php,v 1.115 2011/12/15 14:03:18 nao-pon Exp $
 // Copyright (C)
 //   2002-2006 PukiWiki Developers Team
 //   2001-2002 Originally written by yu-ji
@@ -247,6 +247,12 @@ $const['PLUGIN_REF_NETVIDEOS']['slidesix'] = array(
 // 0:チェックしない, 1:未定義は許可, 2:未定義も不許可
 // 未設定 = URL直打ち, ノートンなどでリファラを遮断 など。
 $const['OPEN_MEDIA_REFCHECK'] = 1;
+
+// ref でのファイル参照にShortUrl を使用する
+// .htaccess での設定が必要
+//   RewriteEngine on
+//   RewriteRule ^ref/([^/]+)/([^/]+)$ gate.php?way=ref&_nodos&_noumb&page=$1&src=$2 [L]
+$const['PLUGIN_REF_SHORTURL'] = 0;
 
 // PKWK_QUERY_STRING_MAX
 //   Max length of GET method, prohibits some worm attack ASAP
