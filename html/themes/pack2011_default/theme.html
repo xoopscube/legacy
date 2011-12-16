@@ -41,7 +41,7 @@
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-jktab.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-jcflick.js"></script>
 <script type="text/javascript">
-<!--
+//<![CDATA[
 (function(){
 	if( ProjectName.ua.iPhone || ProjectName.ua.Android || ProjectName.ua.WP7 ){
 		ProjectName.MOD.print_r( ProjectName.META.iOS() );
@@ -107,12 +107,14 @@ jQuery(function($){
 			}
 		} ) ;
 });
-//-->
+//]]>
 </script>
 <!--[if IE 6]>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/DD_belatedPNG_0.0.8a-min.js"></script>
 <script type="text/javascript">
+//<![CDATA[
 	DD_belatedPNG.fix('img');
+//]]>
 </script>
 <![endif]-->
 <script type="text/javascript"><{$xoops_js|regex_replace:"/(\/\/\-\->|<!\-\-)/":""}></script>
