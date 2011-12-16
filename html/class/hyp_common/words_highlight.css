@@ -1,0 +1,54 @@
+div.highlight_search_words {
+	padding: 5px;
+	font-size: 12px;
+	color: #003399;
+	line-height: 130%;
+	text-align: left;
+	background-color: #F6FAFD;
+	border-right: #c2cdd6 1px dashed;
+	border-top: #c2cdd6 1px dashed;
+	border-left: #c2cdd6 1px dashed;
+	border-bottom: #c2cdd6 1px dashed;
+	margin-bottom:10px;
+}
+
+strong.word0 {
+	background-color:#FFFFB3;
+	color:black;
+}
+strong.word1 {
+	background-color:#D1FFB3;
+	color:black;
+}
+strong.word2 {
+	background-color:#B3FFC2;
+	color:black;
+}
+strong.word3 {
+	background-color:#B3FFF0;
+	color:black;
+}
+strong.word4 {
+	background-color:#B3E1FF;
+	color:black;
+}
+strong.word5 {
+	background-color:#B3B3FF;
+	color:black;
+}
+strong.word6 {
+	background-color:#E1B3FF;
+	color:black;
+}
+strong.word7 {
+	background-color:#FFB3F0;
+	color:black;
+}
+strong.word8 {
+	background-color:#FFB3C2;
+	color:black;
+}
+strong.word9 {
+	background-color:#FFD1B3;
+	color:black;
+}

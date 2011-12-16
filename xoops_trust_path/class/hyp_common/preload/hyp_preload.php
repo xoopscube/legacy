@@ -827,15 +827,19 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 
 		}
 
+		if (! isset($GLOBALS['hyp_preload_head_tag'])) $GLOBALS['hyp_preload_head_tag'] = '';
+
 		// Set Query Words
 		if ($this->use_set_query_words) {
 			HypCommonFunc::set_query_words($this->q_word, $this->q_word2, $this->se_name, $this->kakasi_cache_dir, $this->encode);
 			if ($this->use_words_highlight) {
+				if (constant($this->q_word)) {
+					$GLOBALS['hyp_preload_head_tag'] .= '<link rel="stylesheet" type="text/css" href="'.XOOPS_URL.'/class/hyp_common/words_highlight.css" />';
+				}
 				ob_start(array(& $this, 'obFilter'));
 			}
 		}
 
-		if (! isset($GLOBALS['hyp_preload_head_tag'])) $GLOBALS['hyp_preload_head_tag'] = '';
 		ob_start(array(& $this, 'addHeadTag'));
 
 		// Restor mb_detect_order
@@ -1137,7 +1141,7 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 		if (function_exists('mb_convert_encoding') && $this->configEncoding && $this->encode !== $this->configEncoding) {
 			$this->msg_words_highlight = mb_convert_encoding($this->msg_words_highlight, $this->encode, $this->configEncoding);
 		}
-		return HypGetQueryWord::word_highlight($s, (defined($this->q_word2)? constant($this->q_word2) : constant($this->q_word)), $this->encode, $this->msg_words_highlight, $this->extlink_class_name);
+		return HypGetQueryWord::word_highlight($s, (defined($this->q_word2)? constant($this->q_word) . ' ' . constant($this->q_word2) : constant($this->q_word)), $this->encode, $this->msg_words_highlight, $this->extlink_class_name);
 	}
 
 	function smartRedirect( $s ) {
