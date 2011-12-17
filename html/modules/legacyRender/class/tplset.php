@@ -6,10 +6,16 @@ class LegacyRenderModuletplObject extends XoopsSimpleObject
 {
 	function LegacyRenderModuletplObject()
 	{
+		static $initVars;
+		if (isset($initVars)) {
+			$this->mVars = $initVars;
+			return;
+		}
 		$this->initVar('mid', XOBJ_DTYPE_INT, '', true);
 		$this->initVar('name', XOBJ_DTYPE_STRING, '', true, 150);
 		$this->initVar('dirname', XOBJ_DTYPE_STRING, '', true, 150);
 		$this->initVar('count', XOBJ_DTYPE_INT, 0, true);
+		$initVars=$this->mVars;
 	}
 }
 
@@ -19,11 +25,17 @@ class LegacyRenderTplsetObject extends XoopsSimpleObject
 	
 	function LegacyRenderTplsetObject()
 	{
+		static $initVars;
+		if (isset($initVars)) {
+			$this->mVars = $initVars;
+			return;
+		}
 		$this->initVar('tplset_id', XOBJ_DTYPE_INT, '', true);
 		$this->initVar('tplset_name', XOBJ_DTYPE_STRING, '', true, 50);
 		$this->initVar('tplset_desc', XOBJ_DTYPE_STRING, '', true, 255);
 		$this->initVar('tplset_credits', XOBJ_DTYPE_TEXT, '', true);
 		$this->initVar('tplset_created', XOBJ_DTYPE_INT, time(), true);
+		$initVars=$this->mVars;
 	}
 	
 	function loadModuletpl()

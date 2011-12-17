@@ -14,6 +14,11 @@ class LegacyRenderTplfileObject extends XoopsSimpleObject
 	
 	function LegacyRenderTplfileObject()
 	{
+		static $initVars;
+		if (isset($initVars)) {
+			$this->mVars = $initVars;
+			return;
+		}
 		$this->initVar('tpl_id', XOBJ_DTYPE_INT, '', true);
 		$this->initVar('tpl_refid', XOBJ_DTYPE_INT, '0', true);
 		$this->initVar('tpl_module', XOBJ_DTYPE_STRING, '', true, 25);
@@ -23,6 +28,7 @@ class LegacyRenderTplfileObject extends XoopsSimpleObject
 		$this->initVar('tpl_lastmodified', XOBJ_DTYPE_INT, '0', true);
 		$this->initVar('tpl_lastimported', XOBJ_DTYPE_INT, '0', true);
 		$this->initVar('tpl_type', XOBJ_DTYPE_STRING, '', true, 20);
+		$initVars=$this->mVars;
 	}
 	
 	function loadSource()

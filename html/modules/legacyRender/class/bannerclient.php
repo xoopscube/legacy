@@ -21,6 +21,11 @@ class LegacyRenderBannerclientObject extends XoopsSimpleObject
 
 	function LegacyRenderBannerclientObject()
 	{
+		static $initVars;
+		if (isset($initVars)) {
+			$this->mVars = $initVars;
+			return;
+		}
 		$this->initVar('cid', XOBJ_DTYPE_INT, '', false);
 		$this->initVar('name', XOBJ_DTYPE_STRING, '', true, 60);
 		$this->initVar('contact', XOBJ_DTYPE_STRING, '', true, 60);
@@ -28,6 +33,7 @@ class LegacyRenderBannerclientObject extends XoopsSimpleObject
 		$this->initVar('login', XOBJ_DTYPE_STRING, '', true, 10);
 		$this->initVar('passwd', XOBJ_DTYPE_STRING, '', true, 10);
 		$this->initVar('extrainfo', XOBJ_DTYPE_TEXT, '', true);
+		$initVars=$this->mVars;
 	}
 
 	function loadBanner()
