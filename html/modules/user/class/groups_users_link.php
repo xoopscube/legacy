@@ -6,9 +6,15 @@ class UserGroups_users_linkObject extends XoopsSimpleObject
 {
 	function UserGroups_users_linkObject()
 	{
+		static $initVars;
+		if (isset($initVars)) {
+			$this->mVars = $initVars;
+			return;
+		}
 		$this->initVar('linkid', XOBJ_DTYPE_INT, '0', true);
 		$this->initVar('groupid', XOBJ_DTYPE_INT, '0', true);
 		$this->initVar('uid', XOBJ_DTYPE_INT, '0', true);
+		$initVars=$this->mVars;
 	}
 }
 

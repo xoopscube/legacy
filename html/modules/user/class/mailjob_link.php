@@ -6,10 +6,16 @@ class UserMailjob_linkObject extends XoopsSimpleObject
 {
 	function UserMailjob_linkObject()
 	{
+		static $initVars;
+		if (isset($initVars)) {
+			$this->mVars = $initVars;
+			return;
+		}
 		$this->initVar('mailjob_id', XOBJ_DTYPE_INT, '0', true);
 		$this->initVar('uid', XOBJ_DTYPE_INT, '0', true);
 		$this->initVar('retry', XOBJ_DTYPE_INT, '0', true);
 		$this->initVar('message', XOBJ_DTYPE_STRING, '', false, 255);
+		$initVars=$this->mVars;
 	}
 }
 

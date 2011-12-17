@@ -6,12 +6,18 @@ class UserRanksObject extends XoopsSimpleObject
 {
 	function UserRanksObject()
 	{
+		static $initVars;
+		if (isset($initVars)) {
+			$this->mVars = $initVars;
+			return;
+		}
 		$this->initVar('rank_id', XOBJ_DTYPE_INT, 0, true);
 		$this->initVar('rank_title', XOBJ_DTYPE_STRING, '', true, 50);
 		$this->initVar('rank_min', XOBJ_DTYPE_INT, '0', true);
 		$this->initVar('rank_max', XOBJ_DTYPE_INT, '0', true);
 		$this->initVar('rank_special', XOBJ_DTYPE_BOOL, '0', true);
 		$this->initVar('rank_image', XOBJ_DTYPE_STRING, '', false, 255);
+		$initVars=$this->mVars;
 	}
 }
 
