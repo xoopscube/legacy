@@ -648,7 +648,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
 	{
 		$ret = array();
 		$modules =& $this->getObjects($criteria, true);
-		foreach (array_keys($modules) as $i=>$module) {
+		foreach ($modules as $i=>$module) {
 			if (!$dirname_as_key) {
 				$ret[$i] =& $module->getVar('name');
 			} else {
