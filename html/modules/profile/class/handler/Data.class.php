@@ -81,7 +81,7 @@ class Profile_DataHandler extends XoopsObjectGenericHandler
 		if(count($obj->mDef)===0){
 			return true;
 		}
-		parent::insert(&$obj, $force = false);
+		parent::insert($obj, $force = false);
 	}
 
 }
