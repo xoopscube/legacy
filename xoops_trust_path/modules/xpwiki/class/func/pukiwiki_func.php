@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/02 by nao-pon http://hypweb.net/
-// $Id: pukiwiki_func.php,v 1.232 2011/12/13 07:45:14 nao-pon Exp $
+// $Id: pukiwiki_func.php,v 1.233 2011/12/18 00:38:16 nao-pon Exp $
 //
 class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 
@@ -1080,7 +1080,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 
 //----- Start convert_html.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone
-	// $Id: pukiwiki_func.php,v 1.232 2011/12/13 07:45:14 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.233 2011/12/18 00:38:16 nao-pon Exp $
 	// Copyright (C)
 	//   2002-2005 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -1392,7 +1392,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 
 //----- Start func.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.232 2011/12/13 07:45:14 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.233 2011/12/18 00:38:16 nao-pon Exp $
 	// Copyright (C)
 	//   2002-2006 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -1405,13 +1405,14 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 			return preg_match('/^' . $this->root->InterWikiName . '$/', $str);
 	}
 
-	function is_pagename($str)
+	function is_pagename($str, $strict = true)
 	{
 		$is_pagename = (! $this->is_interwiki($str) &&
 			  preg_match('/^(?!\/)' . $this->root->BracketName . '$(?<!\/$)/', $str) &&
 			! preg_match('#(^|/)\.{1,2}(/|$)#', $str));
 
-		if (isset($this->cont['SOURCE_ENCODING'])) {
+		if ($strict && $is_pagename && isset($this->cont['SOURCE_ENCODING'])) {
+			$pattern = null;
 			switch($this->cont['SOURCE_ENCODING']){
 			case 'UTF-8': $pattern =
 				'/^(?:[\x00-\x7F]|(?:[\xC0-\xDF][\x80-\xBF])|(?:[\xE0-\xEF][\x80-\xBF][\x80-\xBF]))+$/';
@@ -2200,7 +2201,7 @@ EOD;
 		if (HypCommonFunc::get_version() > 20111122) {
 			$result = HypCommonFunc::input_filter($param, 2, (defined('HYP_POST_ENCODING')? HYP_POST_ENCODING : null));
 			if (! defined( 'HYP_COMMON_INPUT_FILTER_STRIPSLASHES') && $magic_quotes_gpc) {
-				$result = array_map('stripslashes', $result);
+				$result =$this->stripslashes($result);
 			}
 		} else {
 			if (is_array($param)) {
@@ -2212,6 +2213,15 @@ EOD;
 			}
 		}
 		return $result;
+	}
+
+	// array support stripslashes
+	function stripslashes($param) {
+		if (is_array($param)) {
+			return array_map(array(& $this, 'stripslashes'), $param);
+		} else {
+			return stripslashes($param);
+		}
 	}
 
 	// Compat for 3rd party plugins. Remove this later
@@ -2254,7 +2264,7 @@ EOD;
 
 //----- Start make_link.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.232 2011/12/13 07:45:14 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.233 2011/12/18 00:38:16 nao-pon Exp $
 	// Copyright (C)
 	//   2003-2005 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -3296,7 +3306,7 @@ EOD;
 
 //----- Start html.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.232 2011/12/13 07:45:14 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.233 2011/12/18 00:38:16 nao-pon Exp $
 	// Copyright (C)
 	//   2002-2006 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -4087,7 +4097,7 @@ EOD;
 
 //----- Start mail.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.232 2011/12/13 07:45:14 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.233 2011/12/18 00:38:16 nao-pon Exp $
 	// Copyright (C)
 	//   2003-2005 PukiWiki Developers Team
 	//   2003      Originally written by upk
@@ -4390,7 +4400,7 @@ EOD;
 
 //----- Start link.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone
-	// $Id: pukiwiki_func.php,v 1.232 2011/12/13 07:45:14 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.233 2011/12/18 00:38:16 nao-pon Exp $
 	// Copyright (C) 2003-2006 PukiWiki Developers Team
 	// License: GPL v2 or (at your option) any later version
 	//

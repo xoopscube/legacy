@@ -1,6 +1,6 @@
 <?php
 // PukiWiki - Yet another WikiWikiWeb clone.
-// $Id: read.inc.php,v 1.12 2011/07/03 04:45:00 nao-pon Exp $
+// $Id: read.inc.php,v 1.13 2011/12/18 00:35:06 nao-pon Exp $
 //
 // Read plugin: Show a page and InterWiki
 
@@ -36,7 +36,7 @@ class xpwiki_plugin_read extends xpwiki_plugin {
 		if (! $this->cont['PKWK_SAFE_MODE'] && $this->func->is_interwiki($page)) {
 			return $this->func->do_plugin_action('interwiki'); // InterWikiName¤ò½èÍı
 
-		} else if ($this->func->is_pagename($page)) {
+		} else if ($this->func->is_pagename($page, false)) {
 			// Case insensitive ?
 			if (@ $this->root->page_case_insensitive) {
 				if ($this->func->is_page($this->func->get_pagename_realcase($page))) {

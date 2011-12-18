@@ -1,6 +1,6 @@
 <?php
 // PukiWiki - Yet another WikiWikiWeb clone
-// $Id: showrss.inc.php,v 1.15 2011/09/17 07:30:12 nao-pon Exp $
+// $Id: showrss.inc.php,v 1.16 2011/12/18 00:31:38 nao-pon Exp $
 //  Id:showrss.inc.php,v 1.40 2003/03/18 11:52:58 hiro Exp
 // Copyright (C):
 //     2002-2006 PukiWiki Developers Team
@@ -208,15 +208,18 @@ class XpWikiShowRSS_html
 				foreach ($items as $item) {
 					if ($count > $max) break;
 					$count++;
-					$link  = $item['LINK'];
+					$link = @ $item['LINK'];
 
 					$this->func->encode_numericentity($item['TITLE'], $this->cont['SOURCE_ENCODING'], 'UTF-8');
 					$linkstr = mb_convert_encoding($item['TITLE'], $this->cont['SOURCE_ENCODING'], 'UTF-8');
 					$linkstr = strip_tags($this->func->unhtmlspecialchars($linkstr, ENT_QUOTES));
 					$title = $this->func->format_date($item['_TIMESTAMP']);
 					$passage = $this->func->get_passage($item['_TIMESTAMP']);
-					$link = '<a href="' . $link . '" title="' .  $title . ' ' .
-						$passage . '" rel="nofollow">' . $linkstr . '</a>';
+					if ($link) {
+						$link = '<a href="' . $link . '" title="' .  $title . ' ' . $passage . '" rel="nofollow">' . $linkstr . '</a>';
+					} else {
+						$link = '<span title="' .  $title . ' ' . $passage . '">' . $linkstr . '</span>';
+					}
 
 					if ($show_description) {
 						if (isset($item['DESCRIPTION']) || isset($item['CONTENT'])) {

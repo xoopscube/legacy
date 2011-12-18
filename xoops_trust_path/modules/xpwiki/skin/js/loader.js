@@ -1,6 +1,6 @@
 //
 // Created on 2007/10/03 by nao-pon http://hypweb.net/
-// $Id: loader.js,v 1.10 2011/12/05 09:11:47 nao-pon Exp $
+// $Id: loader.js,v 1.11 2011/12/18 00:30:54 nao-pon Exp $
 //
 
 //// JavaScript optimizer by amachang.
@@ -86,12 +86,20 @@ if (typeof(document.evaluate) != 'function') {
 // resizable.js
 // xpwiki.js
 // main.js
-if (wikihelper_WinIE && wikihelper_WinIE < 9) {
+if (wikihelper_WinIE && wikihelper_WinIE < 9 && (typeof Prototype == 'undefined' || Prototype.Version != '1.6.0.3')) {
 	xpwiki_scripts += 'prototype_1.6.0.3,';
-} else {
+} else if (typeof Prototype == 'undefined' || Prototype.Version != '1.7') {
 	xpwiki_scripts += 'prototype,';
 }
-xpwiki_scripts += 'effects,dragdrop,resizable,xpwiki,main';
+if (xpwiki_scripts.match('prototype')) {
+	// check builder,controls,slider,sound and reload
+	if (typeof Builder != 'undefined') xpwiki_scripts += 'builder,';
+	if (typeof Autocompleter != 'undefined') xpwiki_scripts += 'effects,controls,';
+	if (typeof Control != 'undefined' && typeof Control.Slider != 'undefined') xpwiki_scripts += 'slider,';
+	if (typeof Sound != 'undefined') xpwiki_scripts += 'sound,';
+}
+if (! xpwiki_scripts.match('effects')) xpwiki_scripts += 'effects,';
+xpwiki_scripts += 'dragdrop,resizable,xpwiki,main';
 
 // Branch.
 if (wikihelper_WinIE && wikihelper_WinIE < 9) {
