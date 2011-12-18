@@ -276,11 +276,12 @@ class XCube_Root
 		// We don't decide the style of SiteConfig.
 		//
 		$controllerName = $this->mSiteConfig['Cube']['Controller'];
-        if(isset($this->mSiteConfig[$controllerName]['root'])) {
-            $this->mController =& $this->_createInstance($this->mSiteConfig[$controllerName]['class'], $this->mSiteConfig[$controllerName]['path'], $this->mSiteConfig[$controllerName]['root']);
+		$controller =& $this->mSiteConfig[$controllerName];
+        if(isset($controller['root'])) {
+            $this->mController =& $this->_createInstance($controller['class'], $controller['path'], $controller['root']);
         }
         else {
-            $this->mController =& $this->_createInstance($this->mSiteConfig[$controllerName]['class'], $this->mSiteConfig[$controllerName]['path']);
+            $this->mController =& $this->_createInstance($controller['class'], $controller['path']);
         }
 		$this->mController->prepare($this);
 	}
@@ -371,28 +372,31 @@ class XCube_Root
 	 */
 	function &getRenderSystem($name)
 	{
-		if (isset($this->_mRenderSystems[$name])) {
-			return $this->_mRenderSystems[$name];
+		$mRS =& $this->_mRenderSystems;
+		if (isset($mRS[$name])) {
+			return $mRS[$name];
 		}
 		
 		//
 		// create
 		//
-		$chunkName = $this->mSiteConfig['RenderSystems'][$name];
-		if (isset($this->mSiteConfig[$chunkName]['root'])) {
-			$this->_mRenderSystems[$name] =& $this->_createInstance($this->mSiteConfig[$chunkName]['class'], $this->mSiteConfig[$chunkName]['path'], $this->mSiteConfig[$chunkName]['root']);
+		$config =& $this->mSiteConfig;
+		$chunkName = $config['RenderSystems'][$name];
+		$chunk =& $config[$chunkName];
+		if (isset($config[$chunkName]['root'])) {
+			$mRS[$name] =& $this->_createInstance($chunk['class'], $chunk['path'], $chunk['root']);
 		}
 		else {
-			$this->_mRenderSystems[$name] =& $this->_createInstance($this->mSiteConfig[$chunkName]['class'], $this->mSiteConfig[$chunkName]['path']);
+			$mRS[$name] =& $this->_createInstance($chunk['class'], $chunk['path']);
 		}
 		
-		if (!is_object($this->_mRenderSystems[$name])) {
+		if (!is_object($mRS[$name])) {
 			die("NO");
 		}
 		
-		$this->_mRenderSystems[$name]->prepare($this->mController);
+		$mRS[$name]->prepare($this->mController);
 		
-		return $this->_mRenderSystems[$name];
+		return $mRS[$name];
 	}
 	
 	/**

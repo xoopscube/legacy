@@ -151,10 +151,10 @@ class XCube_Delegate
 	 */
 	function XCube_Delegate()
 	{
-		if ($n = func_num_args()) {
-			$this->_setSignatures($n);
+		if (func_num_args()) {
+			$this->_setSignatures(func_get_args());
 		}
-		$this->_mUniqueID = md5(uniqid(rand(), true));
+		$this->_mUniqueID = uniqid(rand(), true);
 	}
 	
 	/**
@@ -168,12 +168,11 @@ class XCube_Delegate
 	 */
 	function _setSignatures($args)
 	{
-		$this->_mSignatures = $args;
-		for ($i=0 ; $i<count($args) ; $i++) {
-			$idx = strpos($this->_mSignatures[$i], " &");
-			if ($idx !== false) {
-				$this->_mSignatures[$i] = substr($this->_mSignatures[$i], 0, $idx);
-			}
+		$this->_mSignatures =& $args;
+		for ($i=0, $max=count($args); $i<$max ; $i++) {
+			$arg = $args[$i];
+			$idx = strpos($arg, ' &');
+			if ($idx !== false) $args[$i] = substr($arg, 0, $idx);
 		}
 		$this->_mHasCheckSignatures = true;
 	}
@@ -218,19 +217,17 @@ class XCube_Delegate
 		$priority = XCUBE_DELEGATE_PRIORITY_NORMAL;
 		$filepath = null;
 		
-		if (!is_array($callback) && strstr($callback, '::') !== false) {
-			$tmp = explode("::", $callback);
-			if (count($tmp) == 2) {
-				$callback = array ($tmp[0], $tmp[1]);
-			}
+		if (!is_array($callback) && strstr($callback, '::')) {
+			if (count($tmp = explode('::', $callback)) == 2) $callback = $tmp;
 		}
 		
-		if ($param2 !== null && is_int($param2)) {
-			$priority = $param2;
-			$filepath = ($param3 !== null && is_string($param3)) ? $param3 : null;
-		}
-		elseif ($param2 !== null && is_string($param2)) {
-			$filepath = $param2;
+		if ($param2 !== null) {
+			if (is_int($param2)) {
+				$priority = $param2;
+				$filepath = ($param3 !== null && is_string($param3)) ? $param3 : null;
+			} elseif (is_string($param2)) {
+				$filepath = $param2;
+			}
 		}
 		
 		$this->_mCallbacks[$priority][] = array($callback, $filepath);
@@ -406,23 +403,22 @@ class XCube_DelegateManager
 	 */
 	function register($name, &$delegate)
 	{
-		$id=$delegate->getID();
 		$mDelegate =& $this->_mDelegates[$name];
-		if (!isset($mDelegate[$id])) {
+		if (isset($mDelegate[$id=$delegate->getID()])) {
+			return false;
+		}
+		else {
 			$mDelegate[$id] =& $delegate;
 			
 			$mcb = &$this->_mCallbacks[$name];
 			if (isset($mcb) && count($mcb) > 0) {
-				foreach (array_keys($mcb) as $key) {
+				foreach ($mcb as $key=>$func) {
 					list($a, $b) = $this->_mCallbackParameters[$name][$key];
-					$delegate->add($mcb[$key], $a, $b);
+					$delegate->add($func, $a, $b);
 				}
 			}
 			
 			return true;
-		}
-		else {
-			return false;
 		}
 	}
 	
@@ -442,8 +438,8 @@ class XCube_DelegateManager
 	function add($name, $callback, $param3 = null, $param4 = null)
 	{
 		if (isset($this->_mDelegates[$name])) {
-		    foreach(array_keys($this->_mDelegates[$name]) as $key) {
-			    $this->_mDelegates[$name][$key]->add($callback, $param3, $param4);
+		    foreach($this->_mDelegates[$name] as $func) {
+			    $func->add($callback, $param3, $param4);
 			}
 		}
 		$this->_mCallbacks[$name][] = $callback;
