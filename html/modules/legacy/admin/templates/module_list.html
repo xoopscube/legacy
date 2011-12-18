@@ -57,36 +57,36 @@
     <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
   </tr>
   <{foreach item=module from=$moduleObjects}>
-    <{if $module->get('hasmain') && $module->getShow('weight','e') != 0 }>
+    <{if $module->getVar('hasmain') && $module->getVar('weight','e') != 0 }>
       <tr class="<{cycle values='odd,even'}> active">
     <{else}>
     <tr class="<{cycle values='odd,even'}>">
     <{/if}>
-      <td class="legacy_list_id"><{$module->getShow('mid')}></td>
-      <td class="legacy_list_image"><img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->getShow('name')}>" /><br />
-        <input type="text" size="24" name="name[<{$module->getShow('mid')}>]" value="<{$module->getShow('name')}>" /></td>
+      <td class="legacy_list_id"><{$module->getVar('mid')}></td>
+      <td class="legacy_list_image"><img src="<{$xoops_url}>/modules/<{$module->getVar('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->getVar('name')}>" /><br />
+        <input type="text" size="24" name="name[<{$module->getVar('mid')}>]" value="<{$module->getVar('name')}>" /></td>
       <td class="legacy_list_order">
         <{if $module->hasNeedUpdate()}>
           <strong class="legacy_module_versionMsg"><{$module->getRenderedVersion()}></strong>
-          <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getShow('dirname')}>"><img src="<{"icons/upgrade.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" /></a>
+          <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getVar('dirname')}>"><img src="<{"icons/upgrade.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" /></a>
         <{else}>
           <{$module->getRenderedVersion()}>
         <{/if}>
       </td>
-      <td class="legacy_list_date"><{$module->get('last_update')|xoops_formattimestamp:l}></td>
+      <td class="legacy_list_date"><{$module->getVar('last_update')|xoops_formattimestamp:l}></td>
       <td class="legacy_list_select">
-        <input type="text" size="4" maxlength="4" name="weight[<{$module->getShow('mid')}>]" value="<{$module->getShow('weight','e')}>" class=legacy_list_number />
+        <input type="text" size="4" maxlength="4" name="weight[<{$module->getVar('mid')}>]" value="<{$module->getVar('weight','e')}>" class=legacy_list_number />
       </td>
-      <td class="legacy_list_select"><input type="checkbox" name="isactive[<{$module->getShow('mid')}>]" value="1" <{if $module->get('isactive')}>checked="checked"<{/if}> /></td>
+      <td class="legacy_list_select"><input type="checkbox" name="isactive[<{$module->getVar('mid')}>]" value="1" <{if $module->getVar('isactive')}>checked="checked"<{/if}> /></td>
       <td class="legacy_list_control">
-        <{if $module->get('isactive') == 1 }>
-          <a href="index.php?action=ModuleEdit&amp;mid=<{$module->getShow('mid')}>"><img src="<{"icons/module_edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+        <{if $module->getVar('isactive') == 1 }>
+          <a href="index.php?action=ModuleEdit&amp;mid=<{$module->getVar('mid')}>"><img src="<{"icons/module_edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
         <{/if}>
-        <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getShow('dirname')}>"><img src="<{"icons/update.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" /></a>
-        <{if $module->get('isactive') == 0 }>
-          <a href="index.php?action=ModuleUninstall&amp;dirname=<{$module->getShow('dirname')}>"><img src="<{"icons/module_remove.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" title="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" /></a>
+        <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getVar('dirname')}>"><img src="<{"icons/update.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" /></a>
+        <{if $module->getVar('isactive') == 0 }>
+          <a href="index.php?action=ModuleUninstall&amp;dirname=<{$module->getVar('dirname')}>"><img src="<{"icons/module_remove.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" title="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" /></a>
         <{/if}>
-        <a href="index.php?action=ModuleInfo&amp;dirname=<{$module->getShow('dirname')}>"><img src="<{"icons/info.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>" title="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>" /></a>
+        <a href="index.php?action=ModuleInfo&amp;dirname=<{$module->getVar('dirname')}>"><img src="<{"icons/info.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>" title="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>" /></a>
       </td>
     </tr>
   <{/foreach}>

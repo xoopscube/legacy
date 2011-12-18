@@ -30,8 +30,6 @@ class XoopsSimpleObject extends AbstractXoopsObject
 	public $mIsNew = true;
 	public $mDirname = null;
 	
-	var $_mAllowType = array(XOBJ_DTYPE_BOOL, XOBJ_DTYPE_INT, XOBJ_DTYPE_FLOAT, XOBJ_DTYPE_STRING, XOBJ_DTYPE_TEXT);
-	
 	function XoopsSimpleObject()
 	{
 	}
@@ -53,7 +51,9 @@ class XoopsSimpleObject extends AbstractXoopsObject
 	
 	function initVar($key, $dataType, $value = null, $required = false, $size = null)
 	{
-		if (!in_array($dataType, $this->_mAllowType)) {
+		static $_mAllowType = array(XOBJ_DTYPE_BOOL=>XOBJ_DTYPE_BOOL, XOBJ_DTYPE_INT=>XOBJ_DTYPE_INT, XOBJ_DTYPE_FLOAT=>XOBJ_DTYPE_FLOAT, XOBJ_DTYPE_STRING=>XOBJ_DTYPE_STRING, XOBJ_DTYPE_TEXT=>XOBJ_DTYPE_TEXT);
+	
+		if (!$_mAllowType[$dataType]) {
 			die();	// TODO
 		}
 		
@@ -86,7 +86,8 @@ class XoopsSimpleObject extends AbstractXoopsObject
 				return;
 
 			case XOBJ_DTYPE_STRING:
-				$vars['value'] = ($vars['maxlength'] !== null && strlen($value) > $vars['maxlength']) ? xoops_substr($value, 0, $vars['maxlength'], null) : $value;
+				$len = $vars['maxlength'];
+				$vars['value'] = ($len !== null && strlen($value) > $len) ? xoops_substr($value, 0, $len, null) : $value;
 				return;
 
 			case XOBJ_DTYPE_TEXT:

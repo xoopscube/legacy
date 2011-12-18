@@ -156,41 +156,44 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
 		//
 		// Assign from attributes of the render-target.
 		//
+		$smarty = $this->mSmarty;
+		$vars = array('stdout_buffer'=>$this->_mStdoutBuffer);
 		foreach($target->getAttributes() as $key=>$value) {
-			$this->mSmarty->assign($key,$value);
+			$vars[$key] = $value;
 		}
-		
-		$this->mSmarty->assign('stdout_buffer', $this->_mStdoutBuffer);
-	
+
 		//jQuery Ready functions
-		XCube_DelegateUtils::call('Site.JQuery.AddFunction', new XCube_Ref($this->mController->mRoot->mContext->mAttributes['headerScript']));
-		$headerScript = $this->mController->mRoot->mContext->getAttribute('headerScript');
+		$context = $this->mController->mRoot->mContext;
+		XCube_DelegateUtils::call('Site.JQuery.AddFunction', new XCube_Ref($context->mAttributes['headerScript']));
+		$headerScript = $context->getAttribute('headerScript');
 		$moduleHeader =  $headerScript->createLibraryTag() . $headerScript->createOnloadFunctionTag();
-		$this->mSmarty->assign('xoops_module_header', $moduleHeader);
+		$vars['xoops_module_header'] = $moduleHeader;
 	
 		//
 		// Get a virtual current module object from the controller and assign it.
 		//
 		$moduleObject =& $this->mController->getVirtualCurrentModule();
-		$this->mSmarty->assign('currentModule', $moduleObject);
+		$vars['currentModule'] = $moduleObject;
 
 		//
 		// Other attributes
 		//
-		$this->mSmarty->assign('legacy_sitename', $this->mController->mRoot->mContext->getAttribute('legacy_sitename'));
-		$this->mSmarty->assign('legacy_pagetitle', $this->mController->mRoot->mContext->getAttribute('legacy_pagetitle'));
-		$this->mSmarty->assign('legacy_slogan', $this->mController->mRoot->mContext->getAttribute('legacy_slogan'));
+		$vars['legacy_sitename'] = $context->getAttribute('legacy_sitename');
+		$vars['legacy_pagetitle'] = $context->getAttribute('legacy_pagetitle');
+		$vars['legacy_slogan'] = $context->getAttribute('legacy_slogan');
 		
 		//
 		// Theme rendering
 		//
 		$blocks = array();
-		foreach($this->mController->mRoot->mContext->mAttributes['legacy_BlockContents'][0] as $key => $result) {
-			// $this->mSmarty->append('xoops_lblocks', $result);
+		foreach($context->mAttributes['legacy_BlockContents'][0] as $key => $result) {
+			// $smarty->append('xoops_lblocks', $result);
 			$blocks[$result['name']] = $result;
 		}
-		$this->mSmarty->assign('xoops_lblocks', $blocks);
+		$vars['xoops_lblocks'] = $blocks;
 
+		$smarty->assign($vars);
+		
 		//
 		// Check Theme or Fallback
 		//
@@ -198,14 +201,14 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
 		$theme = $root->mSiteConfig['Legacy']['Theme'];
 		
 		if (file_exists(XOOPS_ROOT_PATH.'/themes/'.$theme.'/admin_theme.html')) {
-			$this->mSmarty->template_dir=XOOPS_THEME_PATH.'/'.$theme;
+			$smarty->template_dir=XOOPS_THEME_PATH.'/'.$theme;
 		}
 		else {
-			$this->mSmarty->template_dir=LEGACY_ADMIN_RENDER_FALLBACK_PATH;
+			$smarty->template_dir=LEGACY_ADMIN_RENDER_FALLBACK_PATH;
 		}
 
-		$this->mSmarty->setModulePrefix('');
-		$result=$this->mSmarty->fetch('file:admin_theme.html');
+		$smarty->setModulePrefix('');
+		$result=$smarty->fetch('file:admin_theme.html');
 
 		$target->setResult($result);
 	}

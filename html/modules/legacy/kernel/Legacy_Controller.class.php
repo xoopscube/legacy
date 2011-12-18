@@ -140,7 +140,7 @@ class Legacy_Controller extends XCube_Controller
 	
 	function prepare(&$root)
 	{
-		parent::prepare($root);
+		if (empty($GLOBALS['xoopsOption']['nocommon'])) parent::prepare($root);
 		
 		//
 		// Decide status. [TEST]
@@ -902,12 +902,9 @@ class Legacy_Controller extends XCube_Controller
 				//
 				// Cache Control
 				//
-				if ($this->isEnableCacheFeature() && $this->mRoot->mContext->mModule->isEnableCache()) {
-					if ($this->mRoot->mContext->mModule->mCacheInfo->isEnableCache()) {
-						$this->cacheRenderTarget($this->mRoot->mContext->mModule->mCacheInfo->getCacheFilePath(), $renderTarget);
-					}
-				}
-				else {
+				$module = $this->mRoot->mContext->mModule;
+				if ($this->isEnableCacheFeature() && $module->isEnableCache() && $module->mCacheInfo->isEnableCache()) {
+					$this->cacheRenderTarget($module->mCacheInfo->getCacheFilePath(), $renderTarget);
 				}
 			}
 		}

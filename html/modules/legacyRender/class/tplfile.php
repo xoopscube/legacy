@@ -134,23 +134,15 @@ class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
 		$objs =& $this->getObjects($criteria);
 		
 		$ret = array();
+		$dobjs = array();
+		foreach ($objs as $obj) {
+			$set = $obj->get('tpl_tplset');
+			if ($set == 'default') $ret[] = $obj;
+			if ($set == $tplset) $dobjs[$obj->get('tpl_file')] = $obj;
+		}
 		
-		$i = 0;
-		foreach (array_keys($objs) as $srckey) {
-			if ($objs[$srckey]->get('tpl_tplset') == 'default') {
-				$ret[$i] =& $objs[$srckey];
-				
-				//
-				// Find the same object in $tplset, set it to mOverride.
-				//
-				foreach (array_keys($objs) as $destkey) {
-					if ($objs[$srckey]->get('tpl_file') == $objs[$destkey]->get('tpl_file') && $objs[$destkey]->get('tpl_tplset') == $tplset) {
-						$ret[$i]->mOverride =& $objs[$destkey];
-					}
-				}
-				
-				$i++;
-			}
+		foreach ($ret as $obj) {
+			$obj->mOverride = $dobjs[$obj->get('tpl_file')];
 		}
 		
 		return $ret;
