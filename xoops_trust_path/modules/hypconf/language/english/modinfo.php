@@ -30,7 +30,7 @@ define($constpref.'_MAIN_SWITCH_NOT_ENABLE', '"<b>$1</b>" is invalid with the ma
 define($constpref.'_USE_SET_QUERY_WORDS', 'Set to a constant search words.');
 define($constpref.'_USE_SET_QUERY_WORDS_DESC', '');
 define($constpref.'_USE_WORDS_HIGHLIGHT', 'Highlight search words.');
-define($constpref.'_USE_WORDS_HIGHLIGHT_DESC', '');
+define($constpref.'_USE_WORDS_HIGHLIGHT_DESC', 'It becomes effective when "Set to a constant search words" is "yes".<br />A highlight list is inserted directly under a &lt;body&gt; tag. It will be inserted in the portion to insert in arbitrary places if "&lt;!--HIGHLIGHT_SEARCH_WORD--&gt;" is described in a theme. ');
 define($constpref.'_USE_PROXY_CHECK', 'Check that the proxy when posting.');
 define($constpref.'_USE_PROXY_CHECK_DESC', '');
 define($constpref.'_INPUT_FILTER_STRENGTH', 'GET, POST control character filter intensity');

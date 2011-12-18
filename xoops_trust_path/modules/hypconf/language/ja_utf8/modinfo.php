@@ -30,7 +30,7 @@ define($constpref.'_MAIN_SWITCH_NOT_ENABLE', 'メインスイッチで「<b>$1</
 define($constpref.'_USE_SET_QUERY_WORDS', '検索ワードを定数にセット');
 define($constpref.'_USE_SET_QUERY_WORDS_DESC', '');
 define($constpref.'_USE_WORDS_HIGHLIGHT', '検索ワードをハイライト表示');
-define($constpref.'_USE_WORDS_HIGHLIGHT_DESC', '');
+define($constpref.'_USE_WORDS_HIGHLIGHT_DESC', '「検索ワードを定数にセット」が有効の場合に機能します。<br />ハイライト一覧が &lt;body&gt; タグ直下に挿入されます。任意の場所に挿入したい場合は、テーマ内に &lt;!--HIGHLIGHT_SEARCH_WORD--&gt; を記述するとその部分に挿入されます。');
 define($constpref.'_USE_PROXY_CHECK', '投稿時にプロキシチェックをする');
 define($constpref.'_USE_PROXY_CHECK_DESC', '');
 define($constpref.'_INPUT_FILTER_STRENGTH', 'GET, POST 制御文字フィルター強度');

@@ -30,7 +30,7 @@ define($constpref.'_MAIN_SWITCH_NOT_ENABLE', '¥á¥¤¥ó¥¹¥¤¥Ã¥Á¤Ç¡Ö<b>$1</b>¡×¤¬Ìµ¸
 define($constpref.'_USE_SET_QUERY_WORDS', '¸¡º÷¥ï¡¼¥É¤òÄê¿ô¤Ë¥»¥Ã¥È');
 define($constpref.'_USE_SET_QUERY_WORDS_DESC', '');
 define($constpref.'_USE_WORDS_HIGHLIGHT', '¸¡º÷¥ï¡¼¥É¤ò¥Ï¥¤¥é¥¤¥ÈÉ½¼¨');
-define($constpref.'_USE_WORDS_HIGHLIGHT_DESC', '');
+define($constpref.'_USE_WORDS_HIGHLIGHT_DESC', '¡Ö¸¡º÷¥ï¡¼¥É¤òÄê¿ô¤Ë¥»¥Ã¥È¡×¤¬Í­¸ú¤Î¾ì¹ç¤Ëµ¡Ç½¤·¤Þ¤¹¡£<br />¥Ï¥¤¥é¥¤¥È°ìÍ÷¤¬ &lt;body&gt; ¥¿¥°Ä¾²¼¤ËÁÞÆþ¤µ¤ì¤Þ¤¹¡£Ç¤°Õ¤Î¾ì½ê¤ËÁÞÆþ¤·¤¿¤¤¾ì¹ç¤Ï¡¢¥Æ¡¼¥ÞÆâ¤Ë &lt;!--HIGHLIGHT_SEARCH_WORD--&gt; ¤òµ­½Ò¤¹¤ë¤È¤½¤ÎÉôÊ¬¤ËÁÞÆþ¤µ¤ì¤Þ¤¹¡£');
 define($constpref.'_USE_PROXY_CHECK', 'Åê¹Æ»þ¤Ë¥×¥í¥­¥·¥Á¥§¥Ã¥¯¤ò¤¹¤ë');
 define($constpref.'_USE_PROXY_CHECK_DESC', '');
 define($constpref.'_INPUT_FILTER_STRENGTH', 'GET, POST À©¸æÊ¸»ú¥Õ¥£¥ë¥¿¡¼¶¯ÅÙ');
