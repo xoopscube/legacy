@@ -60,7 +60,7 @@ class XoopsLogger
      *
      * @access  private
      */
-    function XoopsLogger()
+    public function XoopsLogger()
     {
 
     }
@@ -70,7 +70,7 @@ class XoopsLogger
      *
      * @return  object XoopsLogger  reference to the only instance
      */
-    function &instance()
+    public static function &instance()
     {
         static $instance;
         if (!isset($instance)) {
