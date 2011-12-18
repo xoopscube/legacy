@@ -1,9 +1,9 @@
 	<{if $errors && $xoops_isadmin}>
 		<{foreach from=$errors item="error"}>
-			<div class="errorMsg"><{$error|escape|nl2br|regex_replace:"/\((\d+)\)/":"<a data-ajax="false" href='`$mod_url`/admin/index.php?page=pipe&amp;pipe_id=\\1'>(\\1)</a>"}></div>
+			<div class="errorMsg"><{$error|escape|nl2br|regex_replace:"/\((\d+)\)/":"<a data-ajax='false' href='`$mod_url`/admin/index.php?page=pipe&amp;pipe_id=\\1'>(\\1)</a>"}></div>
 		<{/foreach}>
 	<{/if}>
-	
+
 	<{if $pipes_entries}>
 		<{* SEPARATED VIEW *}>
 		<{foreach from=$pipes_entries item="pipe"}>
