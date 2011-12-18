@@ -793,8 +793,8 @@ class XoopsBlockHandler extends XoopsObjectHandler
         }
         $result = $db->query($sql);
         $blockids = array();
-        while ( $myrow = $db->fetchArray($result) ) {
-            $blockids[] = $myrow['gperm_itemid'];
+        while ( list($itemid) = $db->fetchRow($result) ) {
+            $blockids[] = $itemid;
         }
         if (!empty($blockids)) {
             $sql = 'SELECT b.* FROM '.$db->prefix('newblocks').' b, '.$db->prefix('block_module_link').' m WHERE m.block_id=b.bid';
@@ -829,8 +829,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
 				$sql .= ' AND (' . implode(' OR ', $arr) . ')';
 			}
 
-			$sql .= ' AND b.bid IN ('.implode(',', $blockids).')';
-            $sql .= ' ORDER BY '.addslashes($orderby);
+			$sql .= ' AND b.bid IN ('.implode(',', $blockids).')' . ' ORDER BY '.addslashes($orderby);
             $result = $db->query($sql);
             while ( $myrow = $db->fetchArray($result) ) {
                 $block =& $this->create(false);

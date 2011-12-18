@@ -173,8 +173,9 @@ class XoopsModule extends XoopsObject
 	 */
 	function loadAdminMenu()
 	{
-		if ($this->getInfo('adminmenu') && $this->getInfo('adminmenu') != '' && file_exists(XOOPS_ROOT_PATH.'/modules/'.$this->getVar('dirname').'/'.$this->getInfo('adminmenu'))) {
-			include XOOPS_ROOT_PATH.'/modules/'.$this->getVar('dirname').'/'.$this->getInfo('adminmenu');
+		$menu = $this->getInfo('adminmenu');
+		if ($menu && file_exists($path = XOOPS_ROOT_PATH.'/modules/'.$this->getVar('dirname').'/'.$menu)) {
+			include $path;
 			$this->adminmenu =& $adminmenu;
 		}
 	}
@@ -267,7 +268,7 @@ class XoopsModule extends XoopsObject
 	 */
 	function getRenderedVersion()
 	{
-		return sprintf("%01.2f", $this->get('version') / 100);
+		return sprintf('%01.2f', $this->getVar('version') / 100);
 	}
 
 	/**
@@ -301,7 +302,7 @@ class XoopsModule extends XoopsObject
 	function hasNeedUpdate()
 	{
 		$info =& $this->getInfo();
-		return ($this->get('version') < Legacy_Utils::convertVersionFromModinfoToInt($info['version']));
+		return ($this->getVar('version') < Legacy_Utils::convertVersionFromModinfoToInt($info['version']));
 	}
 	
 	/**#@+
@@ -647,11 +648,11 @@ class XoopsModuleHandler extends XoopsObjectHandler
 	{
 		$ret = array();
 		$modules =& $this->getObjects($criteria, true);
-		foreach (array_keys($modules) as $i) {
+		foreach (array_keys($modules) as $i=>$module) {
 			if (!$dirname_as_key) {
-				$ret[$i] =& $modules[$i]->getVar('name');
+				$ret[$i] =& $module->getVar('name');
 			} else {
-				$ret[$modules[$i]->getVar('dirname')] =& $modules[$i]->getVar('name');
+				$ret[$module->getVar('dirname')] =& $module->getVar('name');
 			}
 		}
 		return $ret;

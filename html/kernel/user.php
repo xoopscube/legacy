@@ -148,15 +148,14 @@ class XoopsUser extends XoopsObject
 		$userid = (int)$userid;
 		$usereal = (int)$usereal;
 		if ($userid > 0) {
+			static $nameCache;
+			$field = $usereal?'name':'uname';
+			if (isset($nameCache[$field][$userid])) return $nameCache[$field][$userid];
             $member_handler = xoops_gethandler('member');
             $user =& $member_handler->getUser($userid);
             if (is_object($user)) {
-                if ( $usereal ) { 
-					return $user->getVar('name');
-            	} else {
-					return $user->getVar('uname');
-				}
-            }
+				return ($nameCache[$field][$userid] = $user->getVar($field));
+			}
         }
         return $GLOBALS['xoopsConfig']['anonymous'];
     }
@@ -231,8 +230,9 @@ class XoopsUser extends XoopsObject
 	 * @return bool is the user admin of that module?
      */
     function isAdmin( $module_id = null ) {
-		if ( is_null( $module_id ) ) {
-			$module_id = isset($GLOBALS['xoopsModule']) ? $GLOBALS['xoopsModule']->getVar( 'mid', 'n' ) : 1;
+		if ( $module_id === null ) {
+			global $xoopsModule;
+			$module_id = isset($xoopsModule) ? $xoopsModule->getVar( 'mid', 'n' ) : 1;
 		} elseif ( (int)$module_id < 1 ) {
 			$module_id = 0;
 		}
