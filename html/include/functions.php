@@ -164,9 +164,10 @@ function xoops_refcheck($docheck=1)
 function xoops_getUserTimestamp($time, $timeoffset='')
 {
     global $xoopsConfig, $xoopsUser;
-    if ($timeoffset == '') {
+    if ($timeoffset === '') {
         if ($xoopsUser) {
-            $timeoffset = $xoopsUser->getVar('timezone_offset', 'n');
+            static $offset;
+            $timeoffset = isset($offset)?$offset:$offset = $xoopsUser->getVar('timezone_offset', 'n');
         } else {
             $timeoffset = $xoopsConfig['default_TZ'];
         }
@@ -180,7 +181,6 @@ function xoops_getUserTimestamp($time, $timeoffset='')
  */
 function formatTimestamp($time, $format='l', $timeoffset='')
 {
-    global $xoopsConfig, $xoopsUser;
     $usertimestamp = xoops_getUserTimestamp($time, $timeoffset);
     return _formatTimeStamp($usertimestamp, $format);
 }
@@ -190,13 +190,12 @@ function formatTimestamp($time, $format='l', $timeoffset='')
  */
 function formatTimestampGMT($time, $format='l', $timeoffset='')
 {
-    global $xoopsConfig, $xoopsUser;
-    
-    if ($timeoffset == '') {
+    if ($timeoffset === '') {
+        global $xoopsUser;
         if ($xoopsUser) {
             $timeoffset = $xoopsUser->getVar('timezone_offset', 'n');
         } else {
-            $timeoffset = $xoopsConfig['default_TZ'];
+            $timeoffset = $GLOBALS['xoopsConfig']['default_TZ'];
         }
     }
     
@@ -531,16 +530,16 @@ function xoops_getcss($theme = '')
     }
     $uagent = xoops_getenv('HTTP_USER_AGENT');
     if (stristr($uagent, 'mac')) {
-        $str_css = 'styleMAC.css';
+        $str_css = '/styleMAC.css';
     } elseif (preg_match('/MSIE ([0-9]\.[0-9]{1,2})/i', $uagent)) {
-        $str_css = 'style.css';
+        $str_css = '/style.css';
     } else {
-        $str_css = 'styleNN.css';
+        $str_css = '/styleNN.css';
     }
-    if (is_dir(XOOPS_THEME_PATH.'/'.$theme)) {
-        if (file_exists(XOOPS_THEME_PATH.'/'.$theme.'/'.$str_css)) {
-            return XOOPS_THEME_URL.'/'.$theme.'/'.$str_css;
-        } elseif (file_exists(XOOPS_THEME_PATH.'/'.$theme.'/style.css')) {
+    if (is_dir($path = XOOPS_THEME_PATH.'/'.$theme)) {
+        if (file_exists($path.$str_css)) {
+            return XOOPS_THEME_URL.'/'.$theme.$str_css;
+        } elseif (file_exists($path.'/style.css')) {
             return XOOPS_THEME_URL.'/'.$theme.'/style.css';
         }
     }
@@ -569,7 +568,7 @@ function &getMailer()
  */
 function &xoops_gethandler($name, $optional = false )
 {
-    static $handlers;
+    static $handlers=array();
     $name = strtolower(trim($name));
     if (isset($handlers[$name])) return $handlers[$name];
 
@@ -581,8 +580,7 @@ function &xoops_gethandler($name, $optional = false )
         if ($handler) return $handlers[$name] =& $handler;
 
         require_once XOOPS_ROOT_PATH.'/kernel/'.$name.'.php';
-        $class = 'Xoops'.ucfirst($name).'Handler';
-        if (XC_CLASS_EXISTS($class)) {
+        if (XC_CLASS_EXISTS($class = 'Xoops'.ucfirst($name).'Handler')) {
 	    $handlers[$name] = $handler = new $class($GLOBALS['xoopsDB']);
 	    return $handler;
 		}
@@ -601,8 +599,9 @@ function &xoops_getmodulehandler($name = null, $module_dir = null, $optional = f
     // if $module_dir is not specified
     if (!isset($module_dir)) {
         //if a module is loaded
-        if (is_object($GLOBALS['xoopsModule'])) {
-            $module_dir = $GLOBALS['xoopsModule']->getVar('dirname', 'n');
+        global $xoopsModule;
+        if (is_object($xoopsModule)) {
+            $module_dir = $xoopsModule->getVar('dirname', 'n');
         } else {
             trigger_error('No Module is loaded', E_USER_ERROR);
         }
