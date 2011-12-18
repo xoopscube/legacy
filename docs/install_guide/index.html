@@ -1,0 +1,339 @@
+<!doctype html>  
+<!--[if IE 6 ]><html lang="en-us" class="ie6"> <![endif]-->
+<!--[if IE 7 ]><html lang="en-us" class="ie7"> <![endif]-->
+<!--[if IE 8 ]><html lang="en-us" class="ie8"> <![endif]-->
+<!--[if (gt IE 7)|!(IE)]><!-->
+<html lang="en-us"><!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	
+	<title>XOOPS Cube Legacy - Installation guide</title>
+	
+	<meta name="description" content="XOOPS Cube Legacy Installation Guide. If you have any questions that are beyond the scope of this help file, please feel free to join XOOPS Cube Project's community.
+Have Fun creating!">
+	<meta name="author" content="Xoops Cube">
+	<meta name="copyright" content="Xoops Cube">
+	<meta name="generator" content="Documenter v1.6 http://rxa.li/documenter">
+	<meta name="date" content="2011-12-12T00:00:00+01:00">
+	
+	<link rel="stylesheet" href="css/documenter_style.css" media="all">
+	
+	
+	<script src="js/jquery.1.6.4.js"></script>
+	
+	<script src="js/jquery.scrollTo-1.4.2-min.js"></script>
+	<script src="js/jquery.easing.js"></script>
+	
+	
+	<script>document.createElement('section');var duration=700,easing='swing';</script>
+	<script src="js/script.js"></script>
+	
+	<style>
+		html{background-color:#EEEEEE;color:#383838;}
+		::-moz-selection{background:#333636;color:#E6AD27;}
+		::selection{background:#333636;color:#E6AD27;}
+		#documenter_sidebar #documenter_logo{background-image:url(assets/images/image_1.png);}
+		a{color:#3581E6;}
+		hr{border-top:1px solid #D4D4D4;border-bottom:1px solid #FFFFFF;}
+		#documenter_sidebar, #documenter_sidebar ol a{background-color:#343838;color:#FFFFFF;}
+		#documenter_sidebar ol a{-webkit-text-shadow:1px 1px 0px #494F4F;-moz-text-shadow:1px 1px 0px #494F4F;text-shadow:1px 1px 0px #494F4F;}
+		#documenter_sidebar ol{border-top:1px solid #212424;}
+		#documenter_sidebar ol a{border-top:1px solid #494F4F;border-bottom:1px solid #212424;color:#FFFFFF;}
+		#documenter_sidebar ol a:hover{background:#333636;color:#E6AD27;border-top:1px solid #333636;}
+		#documenter_sidebar ol a.current{background:#333636;color:#E6AD27;border-top:1px solid #333636;}
+		#documenter_copyright{display:block !important;visibility:visible !important;}
+	</style>
+	
+</head>
+<body>
+	<div id="documenter_sidebar">
+		<a href="#documenter_cover" id="documenter_logo"></a>
+		<ol id="documenter_nav">
+			<li><a class="current" href="#documenter_cover">Start</a></li>
+			<li><a href="#preface">Preface</a></li>
+			<li><a href="#acquisition_and_unpacking">Acquisition and Unpacking</a></li>
+			<li><a href="#folders_and_files">Folders and Files</a></li>
+			<li><a href="#local_installation">Local Installation</a></li>
+			<li><a href="#hosting_platform">Hosting platform</a></li>
+			<li><a href="#install_wizard">Install Wizard</a></li>
+			<li><a href="#congratulations">Congratulations!</a></li>
+
+		</ol>
+		<div id="documenter_copyright">Copyright Xoops Cube 2011<br>
+		made with the <a href="http://rxa.li/documenter">Documenter v1.6</a> 
+		</div>
+	</div>
+	<div id="documenter_content">
+	<section id="documenter_cover"><h1>XOOPS Cube Legacy</h1><h2>Installation guide</h2><hr><ul><li>Created: 01/11/2011</li><li>latest Update: 12/12/2011</li><li>By: Xoops Cube</li><li><a href="http://xoopscube.sourceforge.net/site/index.php">xoopscube.sourceforge.net/site/index.php</a></li><li>Email: <a href="mailto:&#120;&#111;&#111;&#112;&#115;&#99;&#117;&#98;&#101;&#45;&#109;&#111;&#100;&#117;&#108;&#101;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#120;&#111;&#111;&#112;&#115;&#99;&#117;&#98;&#101;&#45;&#109;&#111;&#100;&#117;&#108;&#101;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></li></ul><p>XOOPS Cube Legacy Installation Guide. If you have any questions that are beyond the scope of this help file, please feel free to join <a href="http://xoopscube.org/">XOOPS Cube Project's community</a>.
+Have Fun creating!</p></section><section id="preface">
+	<h3>Preface</h3><hr class="notop">
+<p>
+	Before starting the installation process, we (the XOOPS Cube team) aim to provide <span class="st">the information you need</span> to install and support XOOPS Cube Legacy.<br>
+	Since XOOPS Cube Legacy is server based, we try to make it as easy to install as normal desktop software.<br>
+	Get familiar with setting up and installing the software listed below.<br>
+	Usually 80% of our support questions wind up being improper configurations with the server components or two pieces of software conflict.</p>
+<p>
+	<span class="st">Verify that your web server is <em>configured to run</em> the operations that are required by XOOPS Cube Legacy web application</span>.</p>
+<p>
+	To install XOOPS Cube Legacy for the first time, we recommend you to have the following server software pre-installed:</p>
+<ul>
+	<li>
+		HTTP Server (<a href="http://www.apache.org/">Apache</a> or IIS) &quot;Note, XCL only officially supports Apache&quot;</li>
+	<li>
+		<a href="http://www.php.net/">PHP</a> 5.x.x and higher</li>
+	<li>
+		<a href="http://www.mysql.com/">MySQL</a> Database 5.x.x and higher</li>
+</ul>
+<p>
+	Before starting the XOOPS Cube Legacy Installation Wizard, be sure to have:</p>
+<ul>
+	<li>
+		Setup the HTTP, PHP and MySQL database server properly.</li>
+	<li>
+		Create a database for your <a href="http://xoopscube.sourceforge.net/">XOOPS Cube Legacy</a> installation<br>
+		(Have your hosting company create one if you can&#39;t.<br>
+		The install script does provide this capability with the proper privileges).</li>
+	<li>
+		Setup a MySQL user account with the proper database permissions.</li>
+	<li>
+		Setup a FTP user account with proper permissions.</li>
+	<li>
+		The ability to set the directories and files permissions (world writeable, read/write, chmod 777).</li>
+	<li>
+		Enable cookies and <span class="missingpage">JavaScript</span> support in your browser.</li>
+</ul>
+</section>
+<section id="acquisition_and_unpacking">
+	<h3>Acquisition and Unpacking</h3><hr class="notop">
+<p>
+	Download the latest release package from the<a href="http://sourceforge.net/projects/xoopscube/files/legacy/"> XOOPS Cube Legacy download page</a>.<br>
+	&nbsp;</p>
+<ol>
+	<li>
+		Select either .gzip or .zip as you prefer.</li>
+	<li>
+		Create a logically named folder (e.g., xcl22-unpacked) on your local drive.</li>
+	<li>
+		Unpack (unzip) the XOOPS Cube Legacy package into the folder you create.</li>
+</ol>
+<p>
+	You can now get familiar with the XOOPS Cube Legacy folder/file structure<br>
+	before running through the setup processs.</p>
+</section>
+<section id="folders_and_files">
+	<h3>Folders and Files</h3><hr class="notop">
+<p>
+	All folders and files in the unzipped package are organized under a directory named after the current release.<br>
+	You will install the files and folders contained within this directory (but not the full file tree);<br>
+	do not install the container directory itself!<br>
+	<br>
+	<strong>XOOPS Cube Legacy</strong> is designed to work exactly as the folders and files are organized in the unzipped package,<br>
+	it is critical that you do not move, nor rename, any of the folders or files;<br>
+	doing so will cause XOOPS Cube Legacy to not function.<br>
+	<br>
+	The unzipped package will contain two directories that contents must be upload :</p>
+<p style="margin-left: 40px;">
+	<strong>html/<br>
+	xoops_trust_path/</strong></p>
+<p>
+	The folders in the package are:</p>
+<h2>
+	<img alt="folder" src="assets/images/image_2.png" style="width: 32px; height: 32px; vertical-align: text-bottom;"> docs</h2>
+<p>
+	Provides instruction on installing and upgrading, changelog and copyright notice.</p>
+<h2>
+	<img alt="folder" src="assets/images/image_2.png" style="width: 32px; height: 32px; vertical-align: text-bottom;"> extras</h2>
+<p>
+	Provides common css framework, images, extra_interfaces (php class), extra_languages, modules, preload, themes installer-ftp, utility_tools.</p>
+<h2>
+	<img alt="folder" src="assets/images/image_2.png" style="width: 32px; height: 32px; vertical-align: text-bottom;"> html</h2>
+<p>
+	All the core scripting and modules functionality is kept in this folder.</p>
+<h2 style="margin-left: 40px;">
+	<img alt="folder" src="assets/images/image_2.png" style="width: 32px; height: 32px; vertical-align: text-bottom;"> class</h2>
+<h2 style="margin-left: 40px;">
+	<img alt="folder" src="assets/images/image_2.png" style="width: 32px; height: 32px; vertical-align: text-bottom;"> common</h2>
+<h2 style="margin-left: 40px;">
+	<img alt="folder" src="assets/images/image_2.png" style="width: 32px; height: 32px; vertical-align: text-bottom;"> core</h2>
+<h2 style="margin-left: 40px;">
+	<img alt="folder" src="assets/images/image_2.png" style="width: 32px; height: 32px; vertical-align: text-bottom;"> images</h2>
+<h2 style="margin-left: 40px;">
+	<img alt="folder" src="assets/images/image_2.png" style="width: 32px; height: 32px; vertical-align: text-bottom;"> include</h2>
+<h2 style="margin-left: 40px;">
+	<img alt="folder" src="assets/images/image_2.png" style="width: 32px; height: 32px; vertical-align: text-bottom;"> install</h2>
+<h2 style="margin-left: 40px;">
+	<img alt="folder" src="assets/images/image_2.png" style="width: 32px; height: 32px; vertical-align: text-bottom;"> kernel</h2>
+<h2 style="margin-left: 40px;">
+	<img alt="folder" src="assets/images/image_2.png" style="width: 32px; height: 32px; vertical-align: text-bottom;"> language</h2>
+<h2 style="margin-left: 40px;">
+	<img alt="folder" src="assets/images/image_2.png" style="width: 32px; height: 32px; vertical-align: text-bottom;"> modules</h2>
+<h2 style="margin-left: 40px;">
+	<img alt="folder" src="assets/images/image_2.png" style="width: 32px; height: 32px; vertical-align: text-bottom;"> preload</h2>
+<h2 style="margin-left: 40px;">
+	<img alt="folder" src="assets/images/image_2.png" style="width: 32px; height: 32px; vertical-align: text-bottom;"> themes</h2>
+<h2 style="margin-left: 40px;">
+	<img alt="folder" src="assets/images/image_2.png" style="width: 32px; height: 32px; vertical-align: text-bottom;"> uploads</h2>
+<h2>
+	<img alt="file" src="assets/images/image_11.png" style="width: 32px; height: 32px; vertical-align: text-bottom;"> Files :</h2>
+<p style="margin-left: 40px;">
+	<strong>admin.php<br>
+	backend.php<br>
+	banners.php<br>
+	edituser.php<br>
+	favicon.ico<br>
+	footer.php<br>
+	header.php<br>
+	image.php<br>
+	imagemanager.php<br>
+	index.php<br>
+	lostpass.php<br>
+	mainfile.dist.php<br>
+	mainfile.php<br>
+	misc.php<br>
+	notifications.php<br>
+	pmlite.php<br>
+	readmsg.php<br>
+	register.php<br>
+	robots.txt<br>
+	search.php<br>
+	user.php<br>
+	userinfo.php<br>
+	viewpmsg.php<br>
+	xoops.css</strong></p>
+<h2>
+	<img alt="folder" src="assets/images/image_2.png" style="width: 32px; height: 32px; vertical-align: text-bottom;"> xoops_trust_path</h2>
+<p>
+	XOOPS_TRUST_PATH was introduced by GIJOE (based on minahito&rsquo;s idea as GIJOE credited).<br>
+	The concept of XOOPS_TRUST_PATH is to secure a XOOPS Cube Legacy module by moving all of the module&rsquo;s PHP files out of web root or DOCUMENT_ROOT.</p>
+<p>
+	The second benefit of using XOOPS_TRUST_PATH is that D3 modules duplication become easily manageable.<br>
+	With the introduction of XOOPS_TRUST_PATH and duplicable modules &ndash; or Duplicable V3/D3, webmasters are free to duplicate and rename installed modules. A XOOPS Cube Legacy website can have many instances of the same module with each own template files and MySQL table files, and all run securely from a single module outside of the web root directory. So far there are many modules that take advantage of the idea, and most of Japanese developers release modules based on D3.</p>
+<ul>
+	<li>
+		<strong>The folder XOOPS_TRUST_PATH can be renamed to whatever name you wish.</strong></li>
+	<li>
+		<strong>The module name under XOOPS_TRUST_PATH can not be changed.</strong></li>
+	<li>
+		<strong>To differentiate the two instance of a module, you can customize template files</strong></li>
+</ul>
+<p>
+	<strong><u>/!\</u> of Caution Using D3</strong><br>
+	The template files are centralized - if your UPDATE the module, the template files of all duplicated modules will be overwritten.</p>
+</section>
+<section id="local_installation">
+	<h3>Local Installation</h3><hr class="notop">
+<p>
+	If you&#39;re running a local environment for development or testing, make sure that you have met the previous requirements.</p>
+<p>
+	Once this is done :</p>
+<ol>
+	<li>
+		copy the contents of the <strong>HTML</strong> directory to the root document path of your web environment.</li>
+	<li>
+		copy the contents of the <strong>XOOPS_TRUST_PATH</strong> directory to the root document path of your web environment.</li>
+	<li>
+		Create a database</li>
+</ol>
+<p>
+	Once the files are copied there, you can start the install by typing <strong>http://localhost/html/</strong></p>
+<p>
+	This will start the install process.</p>
+</section>
+<section id="hosting_platform">
+	<h3>Hosting platform</h3><hr class="notop">
+<p>
+	If you&#39;re running in a hosted environment, unpack the XOOPS Cube Legacy files locally or on the server if you have telnet or SSH access.</p>
+<p>
+	Once this is done :</p>
+<ol>
+	<li>
+		copy the contents of the <strong>HTML</strong> directory to the root document path of your web environment<strong>*</strong></li>
+	<li>
+		copy the contents of the <strong>XOOPS_TRUST_PATH</strong> directory to the root document path of your web environment.</li>
+	<li>
+		Create a database</li>
+</ol>
+<p>
+	Once the files are copied there, you can start the install by typing <strong>http://my-site-domain.com/</strong>.<br>
+	This will start the install process.</p>
+<p>
+	<strong>*</strong> your provider usually provides this location with directions.</p>
+</section>
+<section id="install_wizard">
+	<h3>Install Wizard</h3><hr class="notop">
+<p>
+	After performing the above procedures, you&#39;re ready to continue installing XOOPS Cube Legacy with the Install Wizard.<br>
+	The first screen in the install Wizard takes you to will be the welcome screen.</p>
+<p>
+	<img alt="Step 1" height="330" src="assets/images/image_3.png" width="780"></p>
+<p>
+	Click the Next button to continue on to the next screen.</p>
+<p>
+	&nbsp;</p>
+<p>
+	<img alt="Step 2" height="834" src="assets/images/image_9.png" style="width: 780px; height: 834px;" width="780"></p>
+<p>
+	The next part of the install Wizard is designed to check your file and directory permissions.<br>
+	If you&#39;re running in a Win32 environment, this should be a pretty painless install.<br>
+	If you&#39;re running in a UNIX environment, the Wizard will display any problems and the corrective actions to take if there are problems.</p>
+<p>
+	<img alt="Step 3" src="assets/images/image_8.png" style="width: 780px; height: 320px;"></p>
+<p>
+	If all lights are green on the Wizard, click Next to continue.<br>
+	If not, please read the screen and perform the necessary actions recommended by the Wizard</p>
+<p>
+	The next part of the Wizard is for writing the settings to the mainfile.php file.</p>
+<p>
+	<img alt="Step 4" src="assets/images/image_10.png" style="width: 640px; height: 640px;"></p>
+<p>
+	The General Settings screen is self explanatory so, input the required information into the form and click next.</p>
+<p>
+	The next four Wizard screens are informational displaying the settings from the General Settings screen<br>
+	for your confirmation and to show that the values were written correctly.</p>
+<p>
+	<img alt="Step 5" src="assets/images/image_7.png" style="width: 780px; height: 580px;"></p>
+<p>
+	If you seen any Red lights, please click the Back button to make the proper corrections.<br>
+	The next Wizard screen is will be to show the progress for accessing the database.</p>
+<p>
+	<img alt="Step 8" src="assets/images/image_6.png" style="width: 780px; height: 330px;"></p>
+<p>
+	If you&#39;re in a hosted environment without the proper access to create databases, please check with your provider for help in getting a database.<br>
+	If your provider (or you) created the database, all lights should be green.<br>
+	If you get a red light stating the DB does not exist and your user name has the ability to create databases, and then click next<br>
+	and the install Wizard will attempt to create the database for you.<br>
+	If your user id does not have the rights to create a database, please correct this and continue the install.<br>
+	The next two screens are informational on trying to create and access the database.<br>
+	Click Next or Back depending on the Wizard screen.</p>
+<p>
+	After clicking next a couple of times, you will come to an informational screen showing the results of table creation.<br>
+	If there is a problem, please refer to the <a href="http://xoopscube.org/modules/pukiwiki/">FAQ</a> or <a href="http://www.xoopscube.org/">XOOPS Cube Forums</a> for further assistance.</p>
+<p>
+	&nbsp;</p>
+<p>
+	If all lights are green, you&#39;re ready to proceed by clicking Next.<br>
+	The next Wizard screen is for inputting site administrative information.</p>
+<p>
+	<img alt="Step Admin User" src="assets/images/image_5.png" style="width: 780px; height: 570px;"></p>
+<p>
+	Please be careful here and write down or remember your administrative password.<br>
+	You&#39;ll need this after the install to continue setting up your XOOPS Cube website.<br>
+	Once you have completed inputting the correct information, click Next to continue.<br>
+	<br>
+	* Note, try to refrain from using names with spaces for the Admin name.<br>
+	<br>
+	The next screen is informational. If all the lights are green, click Next to continue.</p>
+<p>
+	<img alt="Install Wizard Legacy Modules" src="assets/images/image_4.png" style="width: 780px; height: 640px;"></p>
+</section>
+<section id="congratulations">
+	<h3>Congratulations!</h3><hr class="notop">
+<p>
+	Your installation should now be complete. You can check the site out by clicking the &quot;HERE&quot; text on the last screen.<br>
+	If all went well, then your new site should be up and running.<br>
+	If not, please refer to the <a href="http://xoopscube.org/modules/pukiwiki/">FAQ</a> or <a href="http://www.xoopscube.org/">XOOPS Cube Forums</a> for further assistance.</p>
+</section>
+
+	</div>
+</body>
+</html>

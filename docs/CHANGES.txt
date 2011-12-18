@@ -35,6 +35,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 
 [Other Changes/Enhancements]
+- add /install_guide to /docs
 - Update portuguese/pt_utf8 language files
 - Update interfaces: AbstractObject.class.php, AbstractImageObject.class.php, AbstractClientObjectHandler.class.php, ImageDelegateInterface.class.php
 - Speed up by nbuy
@@ -44,6 +45,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - bindi
 - bluemooninc
 - domifara
+- gigamaster (xoopserver)
 - hamanaka
 - kilica
 - Mikhail Miguel
