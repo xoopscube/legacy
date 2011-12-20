@@ -109,7 +109,8 @@ $xoopsTpl->assign('gticket', $xoopsGTicket->getTicketHtml( __LINE__ ));
 
 $mod_header = "
 <script type=\"text/javascript\">
-$ ( function () {
+//<![CDATA[
+jQuery(document).ready(function($){
     var stop = false;
     $ ( '.jquery-ui-accordion-title' )
         . click ( function ( event ){
@@ -135,6 +136,7 @@ $ ( function () {
             }
         } ) ;
 } ) ;
+//]]>
 </script>";
 
 
