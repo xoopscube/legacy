@@ -126,25 +126,27 @@ class Legacy_SearchService extends XCube_Service
         //
         // At first, get active module IDs.
         //
+        static $ret;
+        if (isset($ret)) return $ret;
+
         $handler =& xoops_gethandler('module');
         
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('isactive', 1));
         $criteria->add(new Criteria('hassearch', 1));
-        $moduleArr =& $handler->getObjects($criteria);
 
+		// shortcut for speedup
+		$db = $handler->db;
+		$result = $db->query('SELECT mid,name FROM '.$db->prefix('modules').' '.$criteria->renderWhere());
 
         $handler =& xoops_gethandler('groupperm');
         $groupArr = Legacy_SearchUtils::getUserGroups();
 
         $ret = array();
-        foreach ($moduleArr as $module) {
-            if ($handler->checkRight('module_read', $module->get('mid'), $groupArr)) {
-                $ret[] = array(
-                    'mid' => $module->get('mid'),
-                    'name' => $module->get('name')
-                );
-            }
+        while (list($mid, $name) = $db->fetchRow($result)) {
+            if ($handler->checkRight('module_read', $mid, $groupArr)) {
+				$ret[] = array('mid' => $mid, 'name' => $name);
+			}
         }
         
         return $ret;
@@ -194,19 +196,15 @@ class Legacy_SearchService extends XCube_Service
     {
         $ret = array();
 
-        $modleArr = $this->getActiveModules();
-        
-        $flag = false;
-        foreach ($modleArr as $module) {
-            if ($mid == $module['mid']) {
-                $flag = true;
-                break;
-            }
-        }
-        
-        if (!$flag) {
-            return $ret;
-        }
+		static $moduleArr;
+		if (!isset($moduleArr)) {
+			$moduleArr = array();
+			foreach ($this->getActiveModules() as $mod) {
+				$moduleArr[$mod['mid']] = $mod['name'];
+			}
+		}
+
+        if (!isset($mid)) return $ret;
         
         $root =& XCube_Root::getSingleton();
         $timezone = $root->mContext->getXoopsConfig('server_TZ') * 3600;
