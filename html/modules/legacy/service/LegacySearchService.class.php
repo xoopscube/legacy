@@ -137,7 +137,12 @@ class Legacy_SearchService extends XCube_Service
 
 		// shortcut for speedup
 		$db = $handler->db;
-		$result = $db->query('SELECT mid,name FROM '.$db->prefix('modules').' '.$criteria->renderWhere());
+
+		$sort = $criteria->getSort();
+		$sql = 'SELECT mid,name FROM '.$db->prefix('modules').' '.$criteria->renderWhere().
+			($sort?' ORDER BY '.$sort.' '.$criteria->getOrder():' ORDER BY weight '.$criteria->getOrder().', mid ASC');
+
+		$result = $db->query($sql);
 
         $handler =& xoops_gethandler('groupperm');
         $groupArr = Legacy_SearchUtils::getUserGroups();
