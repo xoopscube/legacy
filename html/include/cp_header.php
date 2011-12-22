@@ -17,9 +17,19 @@ if (!defined('XOOPS_ROOT_PATH')) {
 	// Strange code? This file is used from files in admin directories having no include "mainfile.php".
 	// Ummm..., such uses is deprecated in Legacy.
 	//
-	if (!file_exists("../../../mainfile.php")) exit();
-	
-	require_once "../../../mainfile.php";
+	/*
+	 * If you use open_basedir in php.ini and use file_exists for file outside open_basedir path,
+	 * you will not be warned at log and file_exists returns false even if file really exists.
+	 */
+	if (!file_exists("../../../mainfile.php")) {
+		if (!file_exists("../../mainfile.php")) {
+			exit();
+		} else {
+			require_once "../../mainfile.php";
+		}
+	} else {
+		require_once "../../../mainfile.php";
+	}
 }
 
 if (!defined('XOOPS_CPFUNC_LOADED')) require_once XOOPS_ROOT_PATH . "/include/cp_functions.php";
