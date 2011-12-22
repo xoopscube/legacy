@@ -16,7 +16,6 @@ function alterChangeColumn()
 {
 	$db = _getDB();
 
-    // ALTER TABLE `e557bf_bannerclient` CHANGE COLUMN email email VARCHAR(255);
 	$column = array(
         array('bannerclient','email'),
         array('config','conf_title'),
@@ -26,15 +25,12 @@ function alterChangeColumn()
 
     foreach($column as $value) {
         $alterSql = 'ALTER TABLE `' . $db->prefix($value[0]) . '` MODIFY ' . $value[1] . ' VARCHAR(255) DEFAULT ""';
-        echo $alterSql . "<br />\n"; // debug
         if (!$db->queryF($alterSql)) {
             _error_message($db);
             return false;
         }
     }
 
-    echo 'success.';
-    die();
     return true;
 }
 
