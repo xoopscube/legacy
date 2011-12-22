@@ -41,7 +41,10 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
 	public function insert(/*** XoopsSimpleObject ***/ $obj, /*** bool ***/ $force=false)
 	{
 		$ret = parent::insert($obj, $force);
-		$this->_setClientData($obj);
+		if ($ret == true)
+		{
+			$ret = $this->_setClientData($obj);
+		}
 	
 		return $ret;
 	}
