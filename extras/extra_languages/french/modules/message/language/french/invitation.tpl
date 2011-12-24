@@ -1,15 +1,15 @@
-Hello,
+Bonjour,
 
-You have a new message from {$uname},
-at {$sitename}.
+Vous avez un nouveau message de {$uname},
+sur {$sitename}.
 
 ------
 {$note}
 ------
 
-This is only a notification!
+Ceci est seulement une notification!
 
-Please do not reply to this mail.
+S'il vous plaÓt, ne pas rÈpondre ‡ ce courriel. 
 
 ---{$sitename}---
 URL ÅF {$siteurl}
