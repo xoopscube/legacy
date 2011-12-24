@@ -84,4 +84,9 @@ define("_MD_THISCOMESFROM","You can read more news at %s.");// %s represents you
 //          header.php          //
 define("_MD_RSS", "RSS");
 define("_MD_ARCHIVES","Archive"); // ver 2.00 added
+
+// added 3.0
+define('_MD_BULLETIN_CATEGORY','Category');
+define('_MD_BULLETIN_MSG_UPDATED','Database Updated Successfully!');
+
 ?>
