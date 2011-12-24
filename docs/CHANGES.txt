@@ -18,6 +18,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #3398687 - Users can not register  at UserDataUploadAction
 - Fix Bug #3409051 - when get profiledata fatal error ,modifier.xoops_user.php
 - Fix Bug #3409729 - xoops_meta_description set
+- Fix Bug #3461994 - Image manager cannot filter categories
 
 [Feature Request - From Feature Requests Legacy Tracker]
 - Feature Request #2976820 - MyTextSanitizer delegate
