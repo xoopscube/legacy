@@ -90,17 +90,16 @@ class LegacyThemeHandler extends XoopsObjectHandler
 			
 			foreach ($t_themeArr as $theme) {
 				$obj =& $this->create();
-				$obj->set('name', $theme->mName);
-				$obj->set('dirname', $theme->mDirname);
-				$obj->set('screenshot', $theme->mScreenShot);
-				$obj->set('description', $theme->mDescription);
-				$obj->set('format', $theme->mFormat);
-				$obj->set('render_system', $theme->mRenderSystemName);
-				$obj->set('version', $theme->mVersion);
-				$obj->set('author', $theme->mAuthor);
-				$obj->set('url', $theme->mUrl);
-				$obj->set('licence', $theme->mLicense);
-				$obj->set('license', $theme->mLicence);
+				$obj->assignVars(array('name'			=> $theme->mName,
+									   'dirname'		=> $theme->mDirname,
+									   'screenshot'		=> $theme->mScreenShot,
+									   'description'	=> $theme->mDescription,
+									   'format'			=> $theme->mFormat,
+									   'render_system'	=> $theme->mRenderSystemName,
+									   'version'		=> $theme->mVersion,
+									   'author'			=> $theme->mAuthor,
+									   'url'			=> $theme->mUrl,
+									   'license'		=> $theme->mLicence));
 				$this->_mResults[] =& $obj;
 				unset($obj);
 			}

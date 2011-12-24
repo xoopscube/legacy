@@ -165,15 +165,7 @@ class Legacy_SearchService extends XCube_Service
         $root =& XCube_Root::getSingleton();
         $request =& $root->mContext->mRequest;
         
-        $mid = intval($request->getRequest('mid'));
-        $queries = $request->getRequest('queries');
-        $andor = $request->getRequest('andor');
-        $maxhit = intval($request->getRequest('maxhit'));
-        $start = intval($request->getRequest('start'));
-        
-        $ret = $this->_searchItems($mid, $queries, $andor, $maxhit, $start, 0);
-        
-        return $ret;
+        return $this->_searchItems((int)$request->getRequest('mid'), $request->getRequest('queries'), $request->getRequest('andor'), (int)$request->getRequest('maxhit'), (int)$request->getRequest('start'), 0);
     }
     
     function searchItemsOfUser()
@@ -184,20 +176,13 @@ class Legacy_SearchService extends XCube_Service
         $root =& XCube_Root::getSingleton();
         $request =& $root->mContext->mRequest;
         
-        $mid = intval($request->getRequest('mid'));
-        $maxhit = intval($request->getRequest('maxhit'));
-        $start = intval($request->getRequest('start'));
-        $uid = intval($request->getRequest('uid'));
-        
-        $ret = $this->_searchItems($mid, null, 'and', $maxhit, $start, $uid);
-        
-        return $ret;
+        return $this->_searchItems((int)$request->getRequest('mid'), null, 'and', (int)$request->getRequest('maxhit'), (int)$request->getRequest('start'), (int)$request->getRequest('uid'));
     }
     
     /**
      * @access private
      */
-    function _searchItems($mid, $queries, $andor, $max_hit, $start, $uid)
+    private function _searchItems($mid, $queries, $andor, $max_hit, $start, $uid)
     {
         $ret = array();
 
@@ -209,10 +194,13 @@ class Legacy_SearchService extends XCube_Service
 			}
 		}
 
-        if (!isset($mid)) return $ret;
-        
-        $root =& XCube_Root::getSingleton();
-        $timezone = $root->mContext->getXoopsConfig('server_TZ') * 3600;
+        if (!isset($moduleArr[$mid])) return $ret;
+
+        static $timezone;
+        if (!isset($timezone)) {
+            $root =& XCube_Root::getSingleton();
+            $timezone = $root->mContext->getXoopsConfig('server_TZ') * 3600;
+        }
 
         $handler =& xoops_gethandler('module');
         $xoopsModule =& $handler->get($mid);
@@ -224,18 +212,17 @@ class Legacy_SearchService extends XCube_Service
             return $ret;
         }
 
-        $module =& Legacy_Utils::createModule($xoopsModule);
+        $module =& Legacy_Utils::createModule($xoopsModule, false);
         $results = $module->doLegacyGlobalSearch($queries, $andor, $max_hit, $start, $uid);
                 
         if (is_array($results) && count($results) > 0) {
             foreach (array_keys($results) as $key) {
+                $timeval =& $results[$key]['time'];
                 //
                 // TODO If this service will come to web service, we should
                 // change format from unixtime to string by timeoffset.
                 //
-                if ($results[$key]['time'] != 0) {
-                    $results[$key]['time'] = $results[$key]['time'] - $timezone;
-                }
+                if ($timeval) $timeval -= $timezone;
             }
         }
         

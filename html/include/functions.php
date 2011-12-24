@@ -597,41 +597,42 @@ function &xoops_getmodulehandler($name = null, $module_dir = null, $optional = f
 {
     static $handlers;
     // if $module_dir is not specified
-    if (!isset($module_dir)) {
+    if ($module_dir) {
+        $module_dir = trim($module_dir);
+    } else {
         //if a module is loaded
         global $xoopsModule;
-        if (is_object($xoopsModule)) {
+        if ($xoopsModule) {
             $module_dir = $xoopsModule->getVar('dirname', 'n');
         } else {
             trigger_error('No Module is loaded', E_USER_ERROR);
         }
-    } else {
-        $module_dir = trim($module_dir);
     }
-    $name = (!isset($name)) ? $module_dir : trim($name);
+    $name = $name ? trim($name) : $module_dir;
     $mhdr = &$handlers[$module_dir];
-    if (!isset($mhdr[$name])) {
+    if (isset($mhdr[$name])) return $mhdr[$name];
         //
         // Cube Style
         //
-        if (file_exists($hnd_file = XOOPS_ROOT_PATH . '/modules/'.$module_dir.'/class/handler/' . ucfirst($name) . '.class.php')) {
+        
+        if (file_exists($hnd_file = XOOPS_ROOT_PATH . '/modules/'.$module_dir.'/class/handler/' . ($ucname = ucfirst($name)) . '.class.php')) {
             include_once $hnd_file;
         }
         elseif ( file_exists( $hnd_file = XOOPS_ROOT_PATH . '/modules/'.$module_dir.'/class/'.$name.'.php' ) ) {
             include_once $hnd_file;
         }
         
-        $className = ucfirst(strtolower($module_dir)) . '_' . ucfirst($name) . 'Handler';
+        $className = ($ucdir = ucfirst(strtolower($module_dir))) . '_' . $ucname . 'Handler';
         if (XC_CLASS_EXISTS($className)) {
             $mhdr[$name] = new $className($GLOBALS['xoopsDB']);
         }
         else {
-            $className = ucfirst(strtolower($module_dir)) . ucfirst($name) . 'Handler';
+            $className = $ucdir . $ucname . 'Handler';
             if (XC_CLASS_EXISTS($className)) {
                 $mhdr[$name] = new $className($GLOBALS['xoopsDB']);
             }
         }
-    }
+
     if (!isset($mhdr[$name]) && !$optional) {
         trigger_error('Handler does not exist<br />Module: '.$module_dir.'<br />Name: '.$name, E_USER_ERROR);
     }

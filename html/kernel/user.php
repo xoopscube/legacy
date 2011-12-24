@@ -236,7 +236,8 @@ class XoopsUser extends XoopsObject
 		} elseif ( (int)$module_id < 1 ) {
 			$module_id = 0;
 		}
-        $moduleperm_handler = xoops_gethandler('groupperm');
+		static $moduleperm_handler;
+		isset($moduleperm_handler) || $moduleperm_handler = xoops_gethandler('groupperm');
         return $moduleperm_handler->checkRight('module_admin', $module_id, $this->getGroups());
     }
     /**
