@@ -18,3 +18,10 @@ How to Use
 
 Note: This module changes textarea input field only. This means showing this area is not changed. So if the filed is escaped when showing, this module wouldn't work at all.
 
+Update History
+--------------
+ver 0.1(2011.12.25)
+- Update ckeditor script to 3.6.2
+
+
+
