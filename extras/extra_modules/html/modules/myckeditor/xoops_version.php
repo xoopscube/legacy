@@ -39,7 +39,7 @@ $modversion['templates'][]['file'] = 'myckeditor_textarea.html';
 //
 // Admin panel setting
 //
-$modversion['hasAdmin'] = 0;
+$modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "admin/index.php";
 $modversion['adminmenu'] = "admin/menu.php";
 
