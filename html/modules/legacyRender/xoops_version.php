@@ -88,7 +88,7 @@ $modversion['config'][]=array (
 		"description"=>"_MI_LR_META_COPYRIGHT_DESC",
 		"formtype"=>"textbox",
 		"valuetype"=>"text",
-		"default"=>"Copyright &copy; 2001-2010"
+		"default"=>"Copyright &copy; 2001-2012"
 	);
 
 $modversion['config'][]=array (
