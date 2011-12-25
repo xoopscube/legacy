@@ -2,18 +2,16 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
-2011/11/XX: Package Revision 2.2.1 Beta2
+2011/12/25: Package Revision 2.2.1 Beta2
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
-- Fix Bug #3192004 - resulting path disclosure problem in some servers configurations with open_basedir active
-- Fix Bug #3298931 - Fail upgrade xoops2.1.6 to XCL2.2 Duplicate entry '48'
+- Fix Bug #3298931 - xoops2.1.6 upgrade to XCL2.2 fail
 - Fix Bug #3307977 - site_custom.ini for multisite
-- Fix Bug #3313462 - trigger_error('...',E_USER_ERROR) may not halt execution
+- Fix Bug #3313462 - trigger_error('…',E_USER_ERROR) may not halt execution
 - Fix Bug #3314175 - user module admin UserView error
 - Fix Bug #3317712 - class/module.errorhandler.php bug
 - Fix Bug #3357632 - category path list should contain terminal cat
 - Fix Bug #3362690 - smarty pluigin legacy_category_select missing array key
-- Fix Bug #3365492 - update table layout not changed only modify column. (not all fixed)
 - Fix Bug #3366737 - Missing preload file SetupAltsysLangMgr.class.php
 - Fix Bug #3380517 - user module edit error
 - Fix Bug #3387719 - Users can not delete your own account
@@ -21,12 +19,12 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #3398687 - Users can not register  at UserDataUploadAction
 - Fix Bug #3409051 - when get profiledata fatal error ,modifier.xoops_user.php
 - Fix Bug #3409729 - xoops_meta_description set
-- Fix Bug #3461994 - Image manager cannot filter categories
 - Fix Bug #3464105 - Timing of the client data set
 
 [Feature Request - From Feature Requests Legacy Tracker]
 - Feature Request #2976820 - MyTextSanitizer delegate
 - Feature Request #3165296 - Replace resource.db.php with HD version
+- Feature Request #3314900 - please ckeditor version up
 - Feature Request #3317730 - please add ja_utf8 language files to XUpgrade
 - Feature Request #3352820 - Add new MIME type
 - Feature Request #3381570 - Check client data before delete category
@@ -37,23 +35,19 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Feature Request #3412833 - array request handling in PageNavi
 - Feature Request #3423505 - Add $xoops_module_header on dialog
 - Feature Request #3423584 - Not to select branch options in function.legacy_category_sel
-- Feature Request #3433865 - Notification Method.
 
 [Other Changes/Enhancements]
-- add /install_guide to /docs
-- Update french language files
 - Update portuguese/pt_utf8 language files
+- Update french language files
 - Update interfaces: AbstractObject.class.php, AbstractImageObject.class.php, AbstractClientObjectHandler.class.php, ImageDelegateInterface.class.php
 - Speed up by nbuy
-- Change list of timezone
-- Timezones are used in the installer, using the system time zone.
+- Update CKEditor script to 3.6.2
 
 [Staff]
 - asunta
 - bindi
 - bluemooninc
 - domifara
-- gigamaster (xoopserver)
 - hamanaka
 - kilica
 - Mikhail Miguel
@@ -63,6 +57,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - nbuy
 - onlineco
 - SAK-AXYZ
+- xoopserver
 
 ----------------------------------------
 2011/06/05: Package Revision 2.2.1 Beta1
