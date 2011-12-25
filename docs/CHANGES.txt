@@ -1,4 +1,4 @@
-
+﻿
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
@@ -42,6 +42,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Update interfaces: AbstractObject.class.php, AbstractImageObject.class.php, AbstractClientObjectHandler.class.php, ImageDelegateInterface.class.php
 - Speed up by nbuy
 - Update CKEditor script to 3.6.2
+- Update MyCKEditor with admin and help file
 
 [Staff]
 - asunta
@@ -57,7 +58,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - nbuy
 - onlineco
 - SAK-AXYZ
-- xoopserver
+- xoopserver (gigamaster)
 
 ----------------------------------------
 2011/06/05: Package Revision 2.2.1 Beta1
