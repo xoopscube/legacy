@@ -49,9 +49,9 @@ $this->assign( 'common_fck_installed' , file_exists( XOOPS_ROOT_PATH.'/common/fc
          <{if $use_fckeditor && ! $common_fck_installed}>
              <{if $html=="1" }>
                    <{if $xcode=="1" || $br=="1" || $smiley=="1" }>
-                        <{xoops_dhtmltarea cols=$bulletin_post_tray_col rows=$bulletin_post_tray_row name="body" id="body" value="`$text_raw`" myckeditor=true 'editor="bbcode"}>
+                        <{xoops_dhtmltarea cols=$bulletin_post_tray_col rows=$bulletin_post_tray_row name="text" id="text" value="`$text_raw`" myckeditor=true 'editor="bbcode"}>
                    <{else}>
-                        <{xoops_dhtmltarea cols=$bulletin_post_tray_col rows=$bulletin_post_tray_row name="body" id="body" value="`$text_raw`" myckeditor=true 'editor="html"}>
+                        <{xoops_dhtmltarea cols=$bulletin_post_tray_col rows=$bulletin_post_tray_row name="text" id="text" value="`$text_raw`" myckeditor=true 'editor="html"}>
                    <{/if}>
              <{else}>
                  <label><input type="checkbox" onclick="var pre=xoopsGetElementById('text_bbcode_buttons_pre');var post=xoopsGetElementById('text_bbcode_buttons_post');if(this.checked){pre.style.display='block';post.style.display='block'}else{pre.style.display='none';post.style.display='none'};" /><{$smarty.const._MD_INPUTHELPER}></label>
