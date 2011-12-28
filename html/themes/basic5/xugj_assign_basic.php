@@ -71,7 +71,7 @@ $this->assign( array(
 	'xoops_dirname' => $dirname ,
 ) ) ;
 //-- for cache by group
-$menu_cache_file = XOOPS_TRUST_PATH.'/cache/theme_'.$theme_name.'_menus_'.$site_salt;
+$menu_cache_file = XOOPS_TRUST_PATH.'/cache/theme_'.$theme_name.'_menus_'.SITE_SALT;
 
 // PM
 if( is_object( @$xoopsUser ) ) {
