@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/11/27 by nao-pon http://hypweb.net/
-// $Id: xoopsSearch.php,v 1.9 2010/07/25 06:14:59 nao-pon Exp $
+// $Id: xoopsSearch.php,v 1.10 2011/12/31 16:10:53 nao-pon Exp $
 //
 class XpWikiExtension_xoopsSearch extends XpWikiExtension {
 
@@ -27,6 +27,7 @@ class XpWikiExtension_xoopsSearch extends XpWikiExtension {
 		}
 
 		if ( is_array($keywords) && $keywords ) {
+			$keywords = array_map('stripslashes', $keywords);
 			// 英数字は半角,カタカナは全角,ひらがなはカタカナに
 			$sql .= "AND (";
 			$i = 0;
@@ -54,7 +55,7 @@ class XpWikiExtension_xoopsSearch extends XpWikiExtension {
 		$sword = rawurlencode(join(' ',$keywords));
 
 		$context = '' ;
-		$make_context_func = function_exists( 'search_make_context' )? 'search_make_context' : (function_exists( 'xoops_make_context' )? 'xoops_make_context' : '');
+		$make_context_func = function_exists( 'xoops_make_context' )? 'xoops_make_context' : (function_exists( 'search_make_context' )? 'search_make_context' : '');
 
 		while($myrow = $this->xpwiki->db->fetchArray($result)) {
 			// get context for module "search"
@@ -66,7 +67,7 @@ class XpWikiExtension_xoopsSearch extends XpWikiExtension {
 				$pobj->root->rtf['use_cache_always'] = TRUE;
 				$pobj->execute();
 				$text = $pobj->body;
-				$text = preg_replace('/<(script|style).+?<\/\\1>/i', '', $text);
+				$text = preg_replace('/<!--description ignore-->.+?<!--\/description ignore-->|<(script|style).+?<\/\\1>/is', '', $text);
 
 				// 付箋
 				if (empty($GLOBALS['Xpwiki_'.$this->root->mydirname]['cache']['fusen']['loaded'])){
@@ -95,6 +96,8 @@ class XpWikiExtension_xoopsSearch extends XpWikiExtension {
 				'page'    => $myrow['name'],
 				'context' => $context );
 		}
+		// for xoops search module
+		$GLOBALS['md_search_flg_zenhan_support'] = true;
 		return $ret;
 	}
 }

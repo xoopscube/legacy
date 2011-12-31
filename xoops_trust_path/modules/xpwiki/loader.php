@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/25 by nao-pon http://hypweb.net/
-// $Id: loader.php,v 1.69 2011/12/05 09:11:47 nao-pon Exp $
+// $Id: loader.php,v 1.70 2011/12/31 16:07:00 nao-pon Exp $
 //
 
 ignore_user_abort(FALSE);
@@ -358,6 +358,7 @@ if ($type === 'js' || $type === 'css' || is_file($src_file)) {
 				if ($_src === 'main') {
 					if (! isset($xpwiki)) {
 						chdir($root_path);
+						$GLOBALS['xoopsOption']['nocommon'] = false;
 						include_once XOOPS_ROOT_PATH.'/include/common.php';
 						chdir($skin_dirname);
 						include_once dirname( __FILE__ ) . '/include.php';

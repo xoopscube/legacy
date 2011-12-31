@@ -3,9 +3,9 @@ class xpwiki_plugin_areaedit extends xpwiki_plugin {
 /////////////////////////////////////////////////
 // PukiWiki - Yet another WikiWikiWeb clone.
 //
-// $Id: areaedit.inc.php,v 1.13 2008/11/18 04:10:40 nao-pon Exp $
+// $Id: areaedit.inc.php,v 1.14 2011/12/31 16:07:55 nao-pon Exp $
 //
-/* 
+/*
 *プラグイン areaedit
  指定した位置のみ編集可能にする
 
@@ -14,23 +14,23 @@ class xpwiki_plugin_areaedit extends xpwiki_plugin {
  &areaedit([nofreeze|noauth|preview[:<num>]]){<text>};
 
 */
-	
+
 	function plugin_areaedit_init() {
 		// 言語ファイルの読み込み
 		$this->load_language();
 	}
-	
+
 	//========================================================
 	function plugin_areaedit_convert() {
 		static $numbers = array();
 		if (!isset($numbers[$this->xpwiki->pid])) {$numbers[$this->xpwiki->pid] = array();}
 		static $starts = array();
 		if (!isset($starts[$this->xpwiki->pid])) {$starts[$this->xpwiki->pid] = array();}
-	
+
 		$page = $this->root->vars['page'];
 		if (!array_key_exists($page,$numbers[$this->xpwiki->pid]))	$numbers[$this->xpwiki->pid][$page] = 0;
 		$areaedit_no = $numbers[$this->xpwiki->pid][$page]++;
-	
+
 		$end_flag = $nofreeze = $noauth =  0;
 		$collect = '';
 		$btn_name = $this->msg['btn_name'];
@@ -70,11 +70,11 @@ class xpwiki_plugin_areaedit extends xpwiki_plugin {
 			$nofreeze = 0;
 			$noauth = 0;
 		}
-		
+
 		$id = "area".substr(md5($page.$areaedit_no), mt_rand(0, 24), 7);
-		
+
 		$f_page	  = rawurlencode($page);
-		
+
 		if ( $noauth == 0 and  ! $this->func->edit_auth($page,FALSE,FALSE) ){
 			return <<<EOD
 <div style="margin:0px 0px 0px auto;text-align:right;" title="$areaedit_start_no">
@@ -131,13 +131,13 @@ EOD;
 	function plugin_areaedit_inline() {
 		static $numbers = array();
 		if (!isset($numbers[$this->xpwiki->pid])) {$numbers[$this->xpwiki->pid] = array();}
-	
+
 		$page = $this->root->vars['page'];
-		
+
 		if (!array_key_exists($page,$numbers[$this->xpwiki->pid])){$numbers[$this->xpwiki->pid][$page] = 0;}
-		
+
 		if (empty($this->root->pwm_plugin_flg['system']['contents_convert'])){$areaedit_no = $numbers[$this->xpwiki->pid][$page]++;}
-	
+
 		$args = func_get_args();
 		$str = array_pop($args);
 		$string = "";
@@ -179,44 +179,44 @@ EOD;
 			}
 		}
 		$f_page	  = rawurlencode($page);
-		
+
 		if ($this->root->plugin_follow_editauth) {
 			$nofreeze = 0;
 			$noauth = 0;
 		}
-		
+
 		if ( $noauth == 0 and  ! $this->func->edit_auth($page,FALSE,FALSE) ){
-			return $string . $this->msg['msg_cannotedit_inline'];
-		}
-		if ( $nofreeze == 0 and $this->func->is_freeze($page) ){
-			 return	 <<<EOD
-$string<a href="{$this->root->script}?cmd=unfreeze&amp;page=$f_page">{$this->msg['msg_unfreeze_inline']}</a>
+			$ret = $this->msg['msg_cannotedit_inline'];
+		} else if ( $nofreeze == 0 and $this->func->is_freeze($page) ){
+			 $ret = <<<EOD
+<a href="{$this->root->script}?cmd=unfreeze&amp;page=$f_page">{$this->msg['msg_unfreeze_inline']}</a>
+EOD;
+		} else {
+			$f_digest = rawurlencode($ndigest);
+			$btn_name = $this->msg['btn_name_inline'];
+
+			$ret = <<<EOD
+<a href="{$this->root->script}?plugin=areaedit&amp;areaedit_no=$areaedit_no&amp;page=$f_page&amp;inline_plugin=1&amp;inline_preview=$inline_preview&amp;digest=$f_digest" title="{$this->msg['btn_name']}:$areaedit_no"{$js_tag}>$btn_name</a>
 EOD;
 		}
-	
-		$f_digest = rawurlencode($ndigest);
-		$btn_name = $this->msg['btn_name_inline'];
-		
-		return <<<EOD
-$string<a href="{$this->root->script}?plugin=areaedit&amp;areaedit_no=$areaedit_no&amp;page=$f_page&amp;inline_plugin=1&amp;inline_preview=$inline_preview&amp;digest=$f_digest" title="{$this->msg['btn_name']}:$areaedit_no"{$js_tag}>$btn_name</a>
-EOD;
+		return $string . $this->func->wrap_description_ignore($ret);
 	}
 	//========================================================
 	function plugin_areaedit_action() {
-		
+
 		if ( ! $this->func->is_page($this->root->vars['page']) ){
 			$error = str_replace('$1', $this->root->vars['page'], $this->msg['no_page_error']);
 			return array(
-				'msg'  => $this->msg['title_error'], 
+				'msg'  => $this->msg['title_error'],
 			'body' => $error,
 		);
 		}
-		
+
 		if (!empty($this->root->vars['areaedit_msg'])) $this->root->vars['areaedit_msg'] = preg_replace("/\x0D\x0A|\x0D|\x0A/","\n",$this->root->vars['areaedit_msg']);
-		
+
 		if ($_SERVER['REQUEST_METHOD'] == "POST" && !array_key_exists('preview',$this->root->vars))
 			$this->root->vars['write'] = TRUE;
-		
+
 		if ( array_key_exists('inline_plugin', $this->root->vars) ) {
 			if ( $this->root->vars['inline_plugin'] == 1 ) {
 				return $this->plugin_areaedit_action_inline();
@@ -226,7 +226,7 @@ EOD;
 			}
 		}
 		return array(
-			'msg'  => $this->msg['title_error'], 
+			'msg'  => $this->msg['title_error'],
 			'body' => $this->msg['body_error'],
 		);
 	}
@@ -236,24 +236,24 @@ EOD;
 		$str_areaedit = 'areaedit';
 		$len_areaedit = strlen($str_areaedit) + 1;
 		$title = $body = $headdata = $targetdata = $taildata =	'';
-	
+
 		$areaedit_no = 0;
 		if ( array_key_exists('areaedit_no', $this->root->vars) ) $_areaedit_no = $areaedit_no = $this->root->vars['areaedit_no'];
-		
-	
+
+
 		$postdata_old =	array();
 		$page = $this->root->vars['page'];
 		$inline_preview = array_key_exists('inline_preview',$this->root->vars) ? $this->root->vars['inline_preview'] : 0;
-	
+
 		if (  ! array_key_exists('preview',$this->root->vars) ) {
 			if ( array_key_exists('write',$this->root->vars)) {
-				$postdata_old = preg_replace('/$/',"\n", 
+				$postdata_old = preg_replace('/$/',"\n",
 					explode("\n", $this->root->vars['headdata'] . $this->root->vars['taildata']));
 			}
 			else {
-				$postdata_old = $this->func->get_source($page);	
+				$postdata_old = $this->func->get_source($page);
 			}
-	
+
 		$ic = new XpWikiInlineConverter($this->xpwiki, array('plugin'));
 		$areaedit_ct = $skipflag = 0;
 		$found_nofreeze = $found_noauth =  0;
@@ -293,7 +293,7 @@ EOD;
 				}
 				if ( $areaedit_ct++ < $areaedit_no ) continue;
 				$r_line = substr($line,$pos+strlen($obj->text)-$len_areaedit-1); // };.....
-			
+
 				$add_flag = 0;
 				switch ( substr($line,$pos,1) ) {
 					case '(':
@@ -337,9 +337,9 @@ EOD;
 						}
 					}
 				}
-	
+
 	//echo '/param=',$obj->param;
-	
+
 				$headdata .= $l_line;
 				$targetdata = $obj->body;
 				$taildata = $r_line;
@@ -372,7 +372,7 @@ EOD;
 			$headdata = $this->root->vars['headdata'];
 			$taildata = $this->root->vars['taildata'];
 		}
-	
+
 		if ( array_key_exists('areaedit_msg', $this->root->vars) ){
 			// 改行有効
 			$targetdata = $this->root->vars['areaedit_msg'];
@@ -386,9 +386,9 @@ EOD;
 		//echo "ok";
 		//exit;
 		$retval = $this->plugin_areaedit_preview($page, $targetdata, $headdata, $taildata, $inline_preview);
-		
+
 		if (array_key_exists('preview',$this->root->vars) ) return $retval;
-		
+
 		$title = str_replace('$1',$this->func->strip_bracket($page),$this->msg['title_edit']);
 		$title = str_replace('$2',$this->root->vars['areaedit_start_no'],$title);
 		return array(
@@ -398,35 +398,35 @@ EOD;
 	}
 	//========================================================
 	function plugin_areaedit_action_block() {
-		
+
 		$page	 = $this->root->vars['page'];
 		$collect = array_key_exists('refer', $this->root->vars) ? $this->root->vars['refer'] : '';
-		
+
 		// 改行有効
 		//if (!empty($this->root->vars['enter_enable'])) $this->root->vars['areaedit_msg'] = $this->func->auto_br($this->root->vars['areaedit_msg']);
-		
+
 		$headdata = $targetdata = $taildata = $para = $tailpara = '';
 		if (  ! array_key_exists('preview',$this->root->vars) ) {
 			if ( array_key_exists('write',$this->root->vars)) {
-				$postdata_old = preg_replace('/$/',"\n", 
+				$postdata_old = preg_replace('/$/',"\n",
 					explode("\n", $this->root->vars['headdata'] . "\n" . $this->root->vars['taildata']));
 			}
 			else {
-				$postdata_old = $this->func->get_source($page);	
+				$postdata_old = $this->func->get_source($page);
 				$postdata_old = str_replace("\r",'', $postdata_old);
 			}
 			$options = array();
 			$areaedit_ct = $areaedit_start_no = 0;
 			$areaedit_no = 0;
 			if ( array_key_exists('areaedit_no', $this->root->vars) ) $areaedit_no = $this->root->vars['areaedit_no'];
-		
+
 			$flag = $para_flag = $found_end = $found_nofreeze = $found_noauth = 0;
 			foreach ( $postdata_old as $line ){
 				if ( $flag == 0 ) {
 					$headdata .= $line;
 				}
 				$matches = array();
-				if ( ( $flag == 0 or $flag == 1 ) and 
+				if ( ( $flag == 0 or $flag == 1 ) and
 					preg_match('/^#areaedit(?:\(([^)]+)\))?\s*$/', $line, $matches) ){
 					$options = preg_split('/\s*,\s*/', $matches[1]);
 					if ( $areaedit_ct ++ == $areaedit_no ) {
@@ -489,7 +489,7 @@ EOD;
 				$taildata	= $tailpara;
 			}
 			$this->root->vars['areaedit_start_no'] = $areaedit_start_no;
-	
+
 			if ( $found_noauth == 0 ){
 				$this->func->edit_auth($page,true,true);
 			}
@@ -508,7 +508,7 @@ EOD;
 		}
 		else {
 		}
-		
+
 		$update_flag = FALSE;
 		if ( array_key_exists('areaedit_msg', $this->root->vars) ){
 			$lines = split("\n", str_replace("\r",'',$this->root->vars['areaedit_msg']));
@@ -543,7 +543,7 @@ EOD;
 		}
 		$retval = $this->plugin_areaedit_preview($page, $targetdata, $headdata, $taildata, 0);
 		if (array_key_exists('preview',$this->root->vars) ) return $retval;
-	
+
 		$title = str_replace('$1',$this->func->strip_bracket($page),$this->msg['title_edit']);
 		$title = str_replace('$2',$this->root->vars['areaedit_start_no'],$title);
 		return array(
@@ -555,7 +555,7 @@ EOD;
 	function plugin_areaedit_collect($page,$postdata_old){
 		$str_areaedit = 'areaedit';
 		$len_areaedit = strlen($str_areaedit) + 1;
-	
+
 		$ic = new XpWikiInlineConverter(array('plugin'));
 		$outputs = array();
 		$areaedit_ct = 0;
@@ -584,7 +584,7 @@ EOD;
 		$msg = $postdata_input = $targetdata;
 		$msg = $this->func->remove_pginfo($msg);
 		$postdata_input = $msg;
-		
+
 		$preview_above = '';
 		if ( $inline_flag ){
 			$append = "";
@@ -609,16 +609,16 @@ EOD;
 			$preview_above = $this->func->drop_submit($this->func->convert_html($preview_above));
 			$preview_above = $this->plugin_areaedit_strip_link($preview_above);
 		}
-	
+
 		$body = "{$this->root->_msg_preview}<br />\n";
 		$body .= "<br />\n" . $preview_above;
-	
+
 		if ($postdata_input != '')
 		{
 			$postdata_input = $this->func->make_str_rules($postdata_input);
 			$postdata_input = explode("\n",$postdata_input);
 			$postdata_input = $this->func->drop_submit($this->func->convert_html($postdata_input));
-			
+
 			$body .= <<<EOD
 <div class="preview">
   $postdata_input
@@ -626,7 +626,7 @@ EOD;
 EOD;
 		}
 		$body .= $this->areaedit_form($refer,$msg,$headdata,$taildata,$this->root->vars['digest']);
-		
+
 		$title = str_replace('$1',$refer,$this->msg['title_preview']);
 		$title = str_replace('$2',$this->root->vars['areaedit_start_no'],$title);
 		return array(
@@ -645,11 +645,11 @@ EOD;
 	{
 
 		$retvars = array();
-		
+
 		$oldpagesrc = $this->func->get_source($refer, TRUE, TRUE);
 		$oldpagemd5 = $this->func->get_digests($oldpagesrc);
 		$oldpagesrc = $this->func->remove_pginfo($oldpagesrc);
-		
+
 		if ($oldpagemd5 != $this->root->vars['digest']) {
 			$retvars['msg'] = str_replace('$1',htmlspecialchars($this->func->strip_bracket($this->root->vars['page'])),$this->root->_title_collided);
 			$retvars['body'] = str_replace('$1',$this->func->make_pagelink($this->root->vars['page']),$this->msg['msg__collided']);
@@ -660,34 +660,34 @@ EOD;
 			if ( TRUE ){
 
 				$this->func->page_write($refer,$postdata,$notimestamp);
-				
+
 				$retvars["msg"] =  $this->root->_title_updated;
 				$retvars["body"] = "";
 				$this->root->vars["refer"] = $this->root->vars["page"];
-				
+
 				return $retvars;
 			}
 			else if ( $postdata != '' ) {
 				return array('msg'=>'test view', 'body'=>$this->func->convert_html($postdata));
 			}
-	
+
 			$retvars['msg'] = $this->root->_title_deleted;
 			$retvars['body'] = str_replace('$1',htmlspecialchars($refer),$this->root->_title_deleted);
 			$this->func->tb_delete($refer);
 		}
-		
+
 		return $retvars;
 	}
 	//========================================================
 	// 編集フォームの表示
 	function areaedit_form($page, $postdata_input, $headdata, $taildata, $digest = 0)
 	{
-		
+
 		if ($digest == 0) {
 			$digest = $this->func->get_digests($this->func->get_source($page, TRUE, TRUE));
 		}
 		$checked_time = array_key_exists('notimestamp',$this->root->vars) ? ' checked="checked"' : '';
-		
+
 		$r_page	  = rawurlencode($page);
 		$s_page	  = htmlspecialchars($page);
 		$r_digest = rawurlencode($digest);
@@ -705,7 +705,7 @@ EOD;
 			$enter_enable = (!empty($this->root->vars['enter_enable']))? " checked=\"true\"" : "";
 		else
 			$enter_enable = " checked=\"true\"";
-		
+
 		$block = (empty($this->root->vars['block']))? '' : '1';
 		$inline_plugin = (empty($this->root->vars['inline_plugin']))? '' : '1';
 		$inline_preview = (isset($this->root->vars['inline_preview']))? intval($this->root->vars['inline_preview']) : '';
@@ -735,7 +735,7 @@ EOD;
  </div>
 </form>
 EOD;
-		
+
 		if (array_key_exists('help',$this->root->vars)) {
 			$body .= $this->root->hr.$this->func->catrule();
 		}
