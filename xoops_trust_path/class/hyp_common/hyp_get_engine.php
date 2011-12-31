@@ -1,5 +1,5 @@
 <?php
-// $Id: hyp_get_engine.php,v 1.16 2011/12/16 16:41:23 nao-pon Exp $
+// $Id: hyp_get_engine.php,v 1.17 2011/12/31 15:52:04 nao-pon Exp $
 // HypGetQueryWord Class by nao-pon http://hypweb.net
 ////////////////////////////////////////////////
 
@@ -28,6 +28,9 @@ class HypGetQueryWord
 		$_query = HypCommonFunc::stripslashes_gpc($_query);
 
 		$query = (isset($_query['query']))? $_query['query'] : '';
+		if ($query) {
+			$query = preg_replace('/^("|\')(.+)\1$/', '$2', $query);
+		}
 		if (!$query) $query = (isset($_query['word']))? $_query['word'] : '';
 		if (!$query) $query = (isset($_query['mes']))? $_query['mes'] : '';
 
@@ -229,7 +232,6 @@ class HypGetQueryWord
 		$php5_1 = (version_compare(PHP_VERSION, '5.1.0', '>='));
 		foreach ($keys as $key=>$pattern) {
 			$s_key = preg_replace('/&amp;#(\d+;)/', '&#$1', htmlspecialchars($key));
-			$search_word .= " <strong class=\"word$id\">$s_key</strong>";
 			$_count = 0;
 			$pattern = ($s_key{0} == '&') ?
 				('/(<head.*?<\/head>|<script.*?<\/script>|<style.*?<\/style>|<textarea.*?<\/textarea>|<strong class="word\d+">.*?<\/strong>|<[^>]*>)|('.$pattern.')/isS'.$utf8):
@@ -240,6 +242,7 @@ class HypGetQueryWord
 					'if ($arr[1]) {return $arr[1];} else {$GLOBALS[\'HypGetQueryWord_Highlighted\'] = true; return \'<strong class="word'.$id.'">\'.$arr[2].\'</strong>\';}'), $body);
 			if ($GLOBALS['HypGetQueryWord_Highlighted']) {
 				$body = $_body;
+				$search_word .= ' <strong class="word'.$id.'">'.$s_key.'</strong>';
 				$id++;
 			}
 		}
@@ -247,7 +250,7 @@ class HypGetQueryWord
 			$_count = 0;
 			$body = str_replace('<!--HIGHLIGHT_SEARCH_WORD-->','<div class="highlight_search_words">'.$msg.': '.$search_word.'</div>',$body, $_count);
 			if (! $_count) {
-				$body = preg_replace('/<body[^>]*?>/', '$0<div class="highlight_search_words">'.$msg.': '.$search_word.'</div>', $body);
+				$body = preg_replace('/<body[^>]*?>/', '$0<div class="highlight_search_words">'.str_replace('\\', '\\\\', $msg).': '.str_replace('\\', '\\\\', $search_word).'</div>', $body);
 			}
 		}
 		return $body;

@@ -1,5 +1,5 @@
 <?php
-// $Id: hyp_common_func.php,v 1.81 2011/12/13 01:46:20 nao-pon Exp $
+// $Id: hyp_common_func.php,v 1.82 2011/12/31 16:02:12 nao-pon Exp $
 // HypCommonFunc Class by nao-pon http://hypweb.net
 ////////////////////////////////////////////////
 
@@ -105,7 +105,7 @@ class HypCommonFunc
 	function phrase_split($str)
 	{
 		$words = array();
-		$str = preg_replace("/(\"|'|”|’)(.+?)(?:\\1)/e","str_replace(' ','\x08','$2')",$str);
+		$str = preg_replace("/(\"|')(.+?)(?:\\1)/e","str_replace(' ','\x08','$2')",$str);
 		$words = preg_split('/\s+/',$str,-1,PREG_SPLIT_NO_EMPTY);
 		$words = str_replace("\x08"," ",$words);
 		return $words;
@@ -200,10 +200,14 @@ class HypCommonFunc
 	function make_context($text, $words=array(), $l=255, $parts=3, $delimiter='...', $caseInsensitive = TRUE, $whitespaceCompress = TRUE)
 	{
 		static $strcut = '';
-		if (!$strcut)
-			$strcut = create_function ( '$a,$b,$c', (function_exists('mb_strcut'))?
-				'return mb_strcut($a,$b,$c);':
+		if (!$strcut) {
+			$strcut = create_function ( '$a,$b,$c', (function_exists('mb_substr'))?
+				'return mb_substr($a,$b,$c);':
 				'return substr($a,$b,$c);');
+		}
+
+		static $strlen = '';
+		if (!$strlen) $strlen = (function_exists('mb_strlen'))? 'mb_strlen' : 'strlen';
 
 		$limit = $parts + 1;
 		$text = str_replace(array('&lt;','&gt;','&quot;','&#039;','&amp;'),array('<','>','"',"'",'&'),$text);
@@ -244,7 +248,7 @@ class HypCommonFunc
 					}
 					$key = $i + 1;
 					if (isset($arr[$key])) {
-						$mc = $mc - strlen($arr[$key]);
+						$mc = $mc - $strlen($arr[$key]);
 					}
 					if (isset($arr[$i-1]) && isset($arr[$key])) {
 						$type = 'middle';
@@ -256,17 +260,17 @@ class HypCommonFunc
 							$type = 'last';
 						}
 					}
-					$len = strlen($arr[$i]);
+					$len = $strlen($arr[$i]);
 					if ($len > $mc && $type !== 'last') {
 						if ($type === 'middle') {
 							// キーワードとキーワードで挟まれた部分
-							$mc = $mc - strlen($delimiter);
+							$mc = $mc - $strlen($delimiter);
 							$ret .= $strcut($arr[$i], 0, $mc / 2);
 							$ret .= $delimiter;
 							$ret .= $strcut($arr[$i], max($len - $mc / 2 + 1, 0), $mc / 2);
 						} else {
 							// 最初の部分
-							$mc = $mc - strlen($delimiter);
+							$mc = $mc - $strlen($delimiter);
 							$ret .= $delimiter;
 							$ret .= $strcut($arr[$i], max($len - $mc + 1 , 0), $mc);
 						}
@@ -282,14 +286,14 @@ class HypCommonFunc
 			}
 		}
 
-		if (strlen($ret) > $l) {
-			$l = $l - strlen($delimiter);
+		if ($strlen($ret) > $l) {
+			$l = $l - $strlen($delimiter);
 			$ret = $strcut($ret, 0, $l);
-			$ret = preg_replace('/&#?[A-Za-z0-9]{2,6}$/', '', $ret);
+			$ret = preg_replace('/&#?[A-Za-z0-9]{0,6}$/', '', $ret);
 			$ret .= $delimiter;
 		}
 
-		$ret = htmlspecialchars($ret, ENT_NOQUOTES);
+		$ret = htmlspecialchars($ret);
 		$ret = preg_replace('/&amp;(#?[A-Za-z0-9]{2,6}?;)/', '&$1', $ret);
 
 		return $ret;
@@ -1591,6 +1595,9 @@ return ($ok)? $match[0] : ($match[1] . "\x08" . $match[2]);');
 				define($qw2, "");
 				define($en , "");
 			}
+			define('HYP_QUERY_WORD_CONST_NAME', $qw);
+			define('HYP_QUERY_WORD2_CONST_NAME', $qw2);
+			define('HYP_SEARCH_ENGINE_NAME_CONST_NAME', $en);
 		}
 	}
 
@@ -2155,6 +2162,79 @@ EOD;
 			die('HypCommonFunc::touch(): Invalid UID and (not writable for the directory or not a flie): ' .
 				htmlspecialchars(basename($filename)));
 		}
+	}
+
+	// 検索語を展開する
+	function get_search_words($words, $special=false, $enc='EUC-JP')
+	{
+		$retval = array();
+
+		//if (defined('XOOPS_USE_MULTIBYTES') && XOOPS_USE_MULTIBYTES && (!function_exists('mb_strlen') || !function_exists('mb_substr'))) return $retval;
+
+		// Perlメモ - 正しくパターンマッチさせる
+		// http://www.din.or.jp/~ohzaki/perl.htm#JP_Match
+		$eucpre = $eucpost = '';
+		$enc = strtoupper($enc);
+		$is_utf8 = false;
+		if ($enc === 'EUC-JP' || $enc === 'EUCJP-WIN')
+		{
+			$eucpre = '(?<!\x8F)';
+			// # JIS X 0208 が 0文字以上続いて # ASCII, SS2, SS3 または終端
+			$eucpost = '(?=(?:[\xA1-\xFE][\xA1-\xFE])*(?:[\x00-\x7F\x8E\x8F]|\z))';
+		} else if ($enc === 'UTF-8') {
+			$is_utf8 = true;
+		}
+		// $special : htmlspecialchars()を通すか
+		$quote_func = create_function('$str',$special ?
+			'return preg_quote($str,"/");' :
+			'return preg_quote(htmlspecialchars($str),"/");'
+		);
+		// LANG=='ja'で、mb_convert_kanaが使える場合はmb_convert_kanaを使用
+		$convert_kana_exists = function_exists('mb_convert_kana');
+		$convert_kana = create_function('$str,$option,$enc',
+			($convert_kana_exists) ?
+				'return mb_convert_kana($str,$option,$enc);' : 'return $str;'
+		);
+		$mb_strlen = create_function('$str,$enc',
+			(function_exists('mb_strlen')) ?
+				'return mb_strlen($str,$enc);' : 'return strlen($str);'
+		);
+		$mb_substr = create_function('$str,$start,$len,$enc',
+			(function_exists('mb_substr')) ?
+				'return mb_substr($str,$start,$len,$enc);' : 'return substr($str,$start,$len);'
+		);
+
+		foreach ($words as $word)
+		{
+			// 英数字は半角,カタカナは全角,ひらがなはカタカナに
+			$word_zk = $convert_kana($word,'aKCV',$enc);
+			$chars = array();
+			for ($pos = 0; $pos < $mb_strlen($word_zk,$enc);$pos++)
+			{
+				$char = $mb_substr($word_zk,$pos,1,$enc);
+				$arr = array($quote_func($char));
+				if (strlen($char) == 1) // 英数字
+				{
+					$arr[] = $quote_func($char); // 英文字
+					if ($convert_kana_exists) {
+						$arr[] = $quote_func($convert_kana(strtoupper($char),"A",$enc)); // 全角大文字
+						$arr[] = $quote_func($convert_kana(strtolower($char),"A",$enc)); // 全角小文字
+					}
+				}
+				else // マルチバイト文字
+				{
+					$arr[] = $quote_func($convert_kana($char,"c",$enc)); // ひらがな
+					$arr[] = $quote_func($convert_kana($char,"k",$enc)); // 半角カタカナ
+				}
+				if ($is_utf8) {
+					$chars[] = '['.join('',array_unique($arr)).']';
+				} else {
+					$chars[] = '(?:'.join('|',array_unique($arr)).')';
+				}
+			}
+			$retval[$word] = $eucpre.join('',$chars).$eucpost;
+		}
+		return $retval;
 	}
 }
 

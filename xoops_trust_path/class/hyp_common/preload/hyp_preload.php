@@ -686,6 +686,20 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 			}
 		}
 
+		// Insert tag into <head>
+		ob_start(array(& $this, 'addHeadTag'));
+
+		// Set Query Words
+		if ($this->use_set_query_words) {
+			HypCommonFunc::set_query_words($this->q_word, $this->q_word2, $this->se_name, $this->kakasi_cache_dir, $this->encode);
+			if ($this->use_words_highlight) {
+				if (constant($this->q_word)) {
+					$GLOBALS['hyp_preload_head_tag'] .= '<link rel="stylesheet" type="text/css" href="'.XOOPS_URL.'/class/hyp_common/words_highlight.css" />';
+				}
+				ob_start(array(& $this, 'wordsHighlight'));
+			}
+		}
+
 		// Use K_TAI Render
 		if (defined('HYP_K_TAI_RENDER') && HYP_K_TAI_RENDER) {
 
@@ -827,20 +841,8 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 
 		}
 
+		// For addHeadTag()
 		if (! isset($GLOBALS['hyp_preload_head_tag'])) $GLOBALS['hyp_preload_head_tag'] = '';
-
-		// Set Query Words
-		if ($this->use_set_query_words) {
-			HypCommonFunc::set_query_words($this->q_word, $this->q_word2, $this->se_name, $this->kakasi_cache_dir, $this->encode);
-			if ($this->use_words_highlight) {
-				if (constant($this->q_word)) {
-					$GLOBALS['hyp_preload_head_tag'] .= '<link rel="stylesheet" type="text/css" href="'.XOOPS_URL.'/class/hyp_common/words_highlight.css" />';
-				}
-				ob_start(array(& $this, 'obFilter'));
-			}
-		}
-
-		ob_start(array(& $this, 'addHeadTag'));
 
 		// Restor mb_detect_order
 		if ($this->detect_order_org) {
@@ -1134,7 +1136,7 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 		return $s;
 	}
 
-	function obFilter( $s ) {
+	function wordsHighlight( $s ) {
 
 		if ($s === '' || strpos($s, '<html') === FALSE) return false;
 

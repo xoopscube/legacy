@@ -10,45 +10,57 @@ div.highlight_search_words {
 	border-left: #c2cdd6 1px dashed;
 	border-bottom: #c2cdd6 1px dashed;
 	margin-bottom:10px;
+    font-weight: normal;
+    text-shadow: none;
 }
 
 strong.word0 {
 	background-color:#FFFFB3;
 	color:black;
+	font-weight: bold;
 }
 strong.word1 {
 	background-color:#D1FFB3;
 	color:black;
+	font-weight: bold;
 }
 strong.word2 {
 	background-color:#B3FFC2;
 	color:black;
+	font-weight: bold;
 }
 strong.word3 {
 	background-color:#B3FFF0;
 	color:black;
+	font-weight: bold;
 }
 strong.word4 {
 	background-color:#B3E1FF;
 	color:black;
+	font-weight: bold;
 }
 strong.word5 {
 	background-color:#B3B3FF;
 	color:black;
+	font-weight: bold;
 }
 strong.word6 {
 	background-color:#E1B3FF;
 	color:black;
+	font-weight: bold;
 }
 strong.word7 {
 	background-color:#FFB3F0;
 	color:black;
+	font-weight: bold;
 }
 strong.word8 {
 	background-color:#FFB3C2;
 	color:black;
+	font-weight: bold;
 }
 strong.word9 {
 	background-color:#FFD1B3;
 	color:black;
+	font-weight: bold;
 }
