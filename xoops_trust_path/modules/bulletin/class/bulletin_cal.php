@@ -158,7 +158,7 @@ class Bulletin_Cal
 
 		foreach( $this->getCalendar() as $line => $weeks ){
 
-				$ret .= '<tr align="center">';
+				$ret .= '<tr style="align:center;">';
 				foreach($weeks as $weekday){
 				$style = ( $line > 0 ) ? 'even' : 'head';
 				//$style = ( $style == 'even' && !empty($weekday['link']) ) ? 'odd' : $style;
