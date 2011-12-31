@@ -88,7 +88,8 @@ h4 a:hover 			{  }
 	transition-timing function: linear, ease-in;
 }
 
-.left-col div , .sidebar div {
+/*.left-col div , .sidebar div {*/
+.left-col>div ,.sidebar div {
 	padding-bottom:20px;
 }
 .left-col div h3 , .sidebar div h4 {
@@ -123,7 +124,12 @@ body.L0R0 .left-col {
 /* Center LR Column */
 #CenterLColumn { float: left;  width: 49%;}
 #CenterRColumn { float: right; width: 49%;}
-#CenterLColumn div , #CenterRColumn div { clear: both; }
+#CenterLColumn div ,
+#CenterRColumn div {
+	line-height: 1.5;
+	padding-bottom:20px;
+	clear: both;
+}
 
 p 					{ padding: 0 5px 0 5px; }
 
