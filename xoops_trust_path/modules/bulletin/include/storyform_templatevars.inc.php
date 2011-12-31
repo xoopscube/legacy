@@ -76,12 +76,21 @@ $common_fck_installed = file_exists( XOOPS_ROOT_PATH.'/common/fckeditor/fckedito
 $xoopsTpl->assign( 'use_fckeditor' , $use_fckeditor ) ;
 $xoopsTpl->assign( 'common_fck_installed' , $common_fck_installed ) ;
 
-if( ! isset($_POST['topicid']) && $story->getVar('topicid')==0 && $use_fckeditor && $common_fck_installed ){
-	//initial option for fckeditor
-	$story->setVar('html', 1);
-	$story->setVar('br', 0);
-	$story->setVar('smiley', 0);
-	$story->setVar('xcode', 0);
+//initial option
+if( ! isset($_POST['topicid']) && $story->getVar('topicid')==0 ){
+	if ( $use_fckeditor && $common_fck_installed ){
+		//for fckeditor
+		$story->setVar('html', 1);
+		$story->setVar('br', 0);
+		$story->setVar('smiley', 0);
+		$story->setVar('xcode', 0);
+	}elseif ($use_html){
+		//for other
+		$story->setVar('html', 1);
+		$story->setVar('br', 0);
+		$story->setVar('smiley', 0);
+		$story->setVar('xcode', 0);
+	}
 }
 
 $xoopsTpl->assign('html', $story->getVar('html'));
