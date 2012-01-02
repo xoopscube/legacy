@@ -179,7 +179,7 @@ $this->assign( 'common_fck_installed' , file_exists( XOOPS_ROOT_PATH.'/common/fc
 			<td class="d3downloads_head"><label for="description">
 			<{$smarty.const._MD_D3DOWNLOADS_SUBMIT_DESCRIPTION}>
 			<{php}>
-				$_makescript = & xoops_getmodulehandler('makescript','myckeditor');
+				$_makescript = & xoops_getmodulehandler('makescript','myckeditor' , true );
 				$params = array('id'=>'desc','editor'=>'bbcode','myckeditor'=>true);
 				if (@is_object( $_makescript )){
 					$this->assign( 'common_myck_installed' , true ) ;

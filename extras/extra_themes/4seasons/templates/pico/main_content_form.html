@@ -127,31 +127,52 @@
 		<{/if}>
 
 		<!-- body -->
-		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
-			<th class="head"><label for="body"><{$smarty.const._MD_PICO_TH_BODY}></label>
 <{php}>
 $this->assign( 'common_fck_installed' , file_exists( XOOPS_ROOT_PATH.'/common/fckeditor/fckeditor.js' ) ) ;
 <{/php}>
-			<{if $mod_config.body_editor != "common_fckeditor" and $common_fck_installed }><input type="submit" class="formButton" name="contentman_preview"  id="contentman_swith_to_fckeditor" value="fckeditor" onclick="xoopsGetElementById('body_editor').value='common_fckeditor'" /><{/if}></th>
+		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
+			<th class="head"><label for="body"><{$smarty.const._MD_PICO_TH_BODY}></label>
+			<{if $mod_config.body_editor != "common_fckeditor" and $common_fck_installed }><input type="submit" class="formButton" name="contentman_preview"  id="contentman_swith_to_fckeditor" value="fckeditor" onclick="xoopsGetElementById('body_editor').value='common_fckeditor'" /><{/if}>
+			</th>
 			<td class="even">
-				<{*<{if $body_wysiwyg && ! $content.filter_infos.eval.enabled}>*}>
-					<{*<{$body_wysiwyg}>*}>
-				<{if $content.filter_infos.eval.enabled}>
-					<{xoopsdhtmltarea name="body" cols="60" rows="15" value=$content.body pre_style="display:none;" post_style="display:none;"}>
+				<{if $body_wysiwyg && $common_fck_installed && ! $content.filter_infos.eval.enabled}>
+					<{$body_wysiwyg}>
 				<{else}>
-					<input type="checkbox" id="body_bbcode_onoff" onclick="if(this.checked){xoopsGetElementById('body_bbcode_buttons_pre').style.display='block';xoopsGetElementById('body_bbcode_buttons_post').style.display='block';body_myckeditor_remove()}else{xoopsGetElementById('body_bbcode_buttons_pre').style.display='none';xoopsGetElementById('body_bbcode_buttons_post').style.display='none'};" />
-					<label for="body_bbcode_onoff"><{$smarty.const._MD_PICO_LABEL_INPUTHELPER}></label>
-										<{if $smarty.const._MYCKEDITOR_MODULE_LOADED == 1}>
+					<{if $content.filter_infos.eval.enabled or $content.filter_infos.htmlspecialchars.enabled or $content.filter_infos.wraps.enabled or $content.filter_infos.textwiki.enabled}>
+						<{xoopsdhtmltarea name="body" cols="60" rows="20" value=$content.body pre_style="display:none;" post_style="display:none;"}>
+					<{elseif $content.filter_infos.xcode.enabled or $content.filter_infos.nl2br.enabled or $content.filter_infos.smiley.enabled }>
 						<{php}>
-							$_makescript = & xoops_getmodulehandler('makescript','myckeditor');
+							$_makescript = & xoops_getmodulehandler('makescript','myckeditor' , true );
 							$params = array('id'=>'body','editor'=>'bbcode','myckeditor'=>'on');
-							$_makescript->makeheader($params);
+							if (@is_object( $_makescript )){
+								$this->assign( 'common_myck_installed' , true ) ;
+								$_makescript->makeheader($params);
+							}
 						<{/php}>
-					<input type="button" class="formButton" value="CKEeditorOn" name="myckeditorOn" onclick="body_myckeditor_exec();document.getElementById('body_bbcode_onoff').checked=false;document.getElementById('body_bbcode_buttons_pre').style.display='none';document.getElementById('body_bbcode_buttons_post').style.display='none';"/>
-					<input type="button" class="formButton" value="CKEeditorOff" name="myckeditorOff" onclick="body_myckeditor_remove();"/>
+						<input type="checkbox" id="body_bbcode_onoff" onclick="if(this.checked){xoopsGetElementById('body_bbcode_buttons_pre').style.display='block';xoopsGetElementById('body_bbcode_buttons_post').style.display='block';body_myckeditor_remove()}else{xoopsGetElementById('body_bbcode_buttons_pre').style.display='none';xoopsGetElementById('body_bbcode_buttons_post').style.display='none'};" />
+						<label for="body_bbcode_onoff"><{$smarty.const._MD_PICO_LABEL_INPUTHELPER}></label>
+						<{if $common_myck_installed}>
+							<input type="button" class="formButton" value="CKEeditorON" name="myckeditorOn" onclick="if(this.value=='CKEeditorON'){this.value='CKEeditorOFF';body_myckeditor_exec();document.getElementById('body_bbcode_onoff').checked=false;document.getElementById('body_bbcode_buttons_pre').style.display='none';document.getElementById('body_bbcode_buttons_post').style.display='none';}else{this.value='CKEeditorON';body_myckeditor_remove();}"/>
+							<br />
+						<{/if}>
+						<{xoopsdhtmltarea name="body" cols="60" rows="20" value=$content.body pre_style="display:none;" post_style="display:none;"}>
+					<{else}>
+						<{php}>
+							$_makescript = & xoops_getmodulehandler('makescript','myckeditor' , true );
+							$params = array('id'=>'body','editor'=>'html','myckeditor'=>'on');
+							if (@is_object( $_makescript )){
+								$this->assign( 'common_myck_installed' , true ) ;
+								$_makescript->makeheader($params);
+							}
+						<{/php}>
+						<input type="checkbox" id="body_bbcode_onoff" onclick="if(this.checked){xoopsGetElementById('body_bbcode_buttons_pre').style.display='block';xoopsGetElementById('body_bbcode_buttons_post').style.display='block';body_myckeditor_remove()}else{xoopsGetElementById('body_bbcode_buttons_pre').style.display='none';xoopsGetElementById('body_bbcode_buttons_post').style.display='none'};" />
+						<label for="body_bbcode_onoff"><{$smarty.const._MD_PICO_LABEL_INPUTHELPER}></label>
+						<{if $common_myck_installed}>
+							<input type="button" class="formButton" value="CKEeditorON" name="myckeditorOn" onclick="if(this.value=='CKEeditorON'){this.value='CKEeditorOFF';body_myckeditor_exec();document.getElementById('body_bbcode_onoff').checked=false;document.getElementById('body_bbcode_buttons_pre').style.display='none';document.getElementById('body_bbcode_buttons_post').style.display='none';}else{this.value='CKEeditorON';body_myckeditor_remove();}"/>
+							<br />
+						<{/if}>
+						<{xoopsdhtmltarea name="body" cols="60" rows="20" value=$content.body pre_style="display:none;" post_style="display:none;"}>
 					<{/if}>
-					<br />
-					<{xoopsdhtmltarea name="body" cols="60" rows="15" value=$content.body pre_style="display:none;" post_style="display:none;"}>
 				<{/if}>
 			</td>
 		</tr>

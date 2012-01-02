@@ -142,7 +142,7 @@ $this->assign( 'common_fck_installed' , file_exists( XOOPS_ROOT_PATH.'/common/fc
 						<{xoopsdhtmltarea name="body" cols="60" rows="20" value=$content.body pre_style="display:none;" post_style="display:none;"}>
 					<{elseif $content.filter_infos.xcode.enabled or $content.filter_infos.nl2br.enabled or $content.filter_infos.smiley.enabled }>
 						<{php}>
-							$_makescript = & xoops_getmodulehandler('makescript','myckeditor');
+							$_makescript = & xoops_getmodulehandler('makescript','myckeditor' , true );
 							$params = array('id'=>'body','editor'=>'bbcode','myckeditor'=>'on');
 							if (@is_object( $_makescript )){
 								$this->assign( 'common_myck_installed' , true ) ;
@@ -158,7 +158,7 @@ $this->assign( 'common_fck_installed' , file_exists( XOOPS_ROOT_PATH.'/common/fc
 						<{xoopsdhtmltarea name="body" cols="60" rows="20" value=$content.body pre_style="display:none;" post_style="display:none;"}>
 					<{else}>
 						<{php}>
-							$_makescript = & xoops_getmodulehandler('makescript','myckeditor');
+							$_makescript = & xoops_getmodulehandler('makescript','myckeditor' , true );
 							$params = array('id'=>'body','editor'=>'html','myckeditor'=>'on');
 							if (@is_object( $_makescript )){
 								$this->assign( 'common_myck_installed' , true ) ;

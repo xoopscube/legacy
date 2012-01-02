@@ -172,32 +172,40 @@
 				</td>
 			</tr>
 		<{/if}>
+<{php}>
+$this->assign( 'common_fck_installed' , file_exists( XOOPS_ROOT_PATH.'/common/fckeditor/fckeditor.js' ) ) ;
+<{/php}>
 		<tr valign="top" align="left">
 			<td class="d3downloads_head"><label for="description">
 			<{$smarty.const._MD_D3DOWNLOADS_SUBMIT_DESCRIPTION}>
-			<{if $smarty.const._MYCKEDITOR_MODULE_LOADED == 1 && $canhtml && !$body_wysiwyg}>
-				<{php}>
-					$_makescript = & xoops_getmodulehandler('makescript','myckeditor');
-					$params = array('id'=>'desc','editor'=>'bbcode','myckeditor'=>true);
+			<{php}>
+				$_makescript = & xoops_getmodulehandler('makescript','myckeditor' , true );
+				$params = array('id'=>'desc','editor'=>'bbcode','myckeditor'=>true);
+				if (@is_object( $_makescript )){
+					$this->assign( 'common_myck_installed' , true ) ;
 					$_makescript->makeheader($params);
-				<{/php}>
-			<br />
-			<input type="button" class="formButton" value="CKEeditorOn" name="myckeditorOn" onclick="desc_myckeditor_exec();document.getElementById('switch_bbcode').checked=false;document.getElementById('desc_bbcode_buttons_pre').style.display='none';document.getElementById('desc_bbcode_buttons_post').style.display='none';"/>
-			<br />
-			<input type="button" class="formButton" value="CKEeditorOff" name="myckeditorOff" onclick="desc_myckeditor_remove();"/>
+				}
+			<{/php}>
+			<{if $canhtml && ! $common_fck_installed && $common_myck_installed}>
+				<br />
+				<input type="button" class="formButton" value="CKEeditorON" name="myckeditorOn" id="myckeditorOn" onclick="if(this.value=='CKEeditorON'){this.value='CKEeditorOFF';desc_myckeditor_exec();document.getElementById('html').checked=true;document.getElementById('switch_bbcode').checked=false;document.getElementById('desc_bbcode_buttons_pre').style.display='none';document.getElementById('desc_bbcode_buttons_post').style.display='none';}else{this.value='CKEeditorON';desc_myckeditor_remove();}"/>
 			<{/if}>
 			</label>
 				<{if $mod_config.body_editor != "common_fckeditor" && $canhtml}><br /><div id="editor_selector" style="display:none;"></div><{/if}>
 			</td>
 			<td class="d3downloads_even">
-				<{if $body_wysiwyg && $canhtml}>
+				<{if $body_wysiwyg && $canhtml && $common_fck_installed}>
 					<{$body_wysiwyg}><br />
-				<{elseif  $smarty.const._MYCKEDITOR_MODULE_LOADED == 1 && $canhtml }>
-					<div><input checked type="checkbox" id="switch_bbcode" onclick="if(this.checked){document.getElementById('desc_bbcode_buttons_pre').style.display='block';document.getElementById('desc_bbcode_buttons_post').style.display='block';desc_myckeditor_remove();}else{document.getElementById('desc_bbcode_buttons_pre').style.display='none';document.getElementById('desc_bbcode_buttons_post').style.display='none'};" />
-					<label for="switch_bbcode">BBCode Tool</label></div>
-					<{xoopsdhtmltarea name="desc" id="desc" cols="60" rows="15" value=$download.description"}>
 				<{else}>
-					<{xoopsdhtmltarea name="desc" id="desc" cols="60" rows="15" value=$download.description"}><br />
+					<{if $common_myck_installed && $canhtml }>
+						<div><input checked type="checkbox" id="switch_bbcode" onclick="if(this.checked){document.getElementById('desc_bbcode_buttons_pre').style.display='block';document.getElementById('desc_bbcode_buttons_post').style.display='block';document.getElementById('myckeditorOn').value='CKEeditorON';desc_myckeditor_remove();}else{document.getElementById('desc_bbcode_buttons_pre').style.display='none';document.getElementById('desc_bbcode_buttons_post').style.display='none'};" />
+						<label for="switch_bbcode">BBCode Tool</label></div>
+						<{xoopsdhtmltarea name="desc" id="desc" cols="60" rows="20" value=$download.description"}>
+					<{else}>
+						<div><input checked type="checkbox" id="switch_bbcode" onclick="if(this.checked){document.getElementById('desc_bbcode_buttons_pre').style.display='block';document.getElementById('desc_bbcode_buttons_post').style.display='block';}else{document.getElementById('desc_bbcode_buttons_pre').style.display='none';document.getElementById('desc_bbcode_buttons_post').style.display='none'};" />
+						<label for="switch_bbcode">BBCode Tool</label></div>
+						<{xoopsdhtmltarea name="desc" id="desc" cols="60" rows="20" value=$download.description"}>
+					<{/if}>
 				<{/if}>
 				<div class="d3downloads_submit_help">
 					<{$smarty.const._MD_D3DOWNLOADS_SUBMIT_DESCRIPTION_DESC}>

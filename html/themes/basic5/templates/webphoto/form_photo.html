@@ -168,7 +168,7 @@ function webphoto_gmap_disp_on()
   <span class="webphoto_submit_cap_dsc"><{$lang_submit_cap_dsc_description}></span>
 <{/if}>
 <{php}>
-	$_makescript = & xoops_getmodulehandler('makescript','myckeditor');
+	$_makescript = & xoops_getmodulehandler('makescript','myckeditor' , true );
 	$params = array('id'=>'item_description','editor'=>'bbcode');
 	if (@is_object( $_makescript )){
 		$this->assign( 'common_myck_installed' , true ) ;

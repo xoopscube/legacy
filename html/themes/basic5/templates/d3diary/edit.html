@@ -230,7 +230,7 @@ $this->assign( 'common_fck_installed' , file_exists( XOOPS_ROOT_PATH.'/common/fc
 <{else}>
 	<{if $allow_html }>
 		<{php}>
-			$_makescript = & xoops_getmodulehandler('makescript','myckeditor');
+			$_makescript = & xoops_getmodulehandler('makescript','myckeditor' , true );
 			$params = array('id'=>'diary','editor'=>'html','myckeditor'=>'on');
 			if (@is_object( $_makescript )){
 				$this->assign( 'common_myck_installed' , true ) ;
