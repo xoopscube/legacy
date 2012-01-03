@@ -140,7 +140,7 @@ class Legacy_Controller extends XCube_Controller
 	
 	function prepare(&$root)
 	{
-		if (empty($GLOBALS['xoopsOption']['nocommon'])) parent::prepare($root);
+		parent::prepare($root);
 		
 		//
 		// Decide status. [TEST]
