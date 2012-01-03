@@ -2,7 +2,7 @@
 /*
  * Created on 2008/10/09 by nao-pon http://hypweb.net/
  * License: GPL v2 or (at your option) any later version
- * $Id: build_js.inc.php,v 1.6 2011/09/26 12:06:26 nao-pon Exp $
+ * $Id: build_js.inc.php,v 1.7 2012/01/03 04:54:57 nao-pon Exp $
  */
 
 class xpwiki_plugin_build_js extends xpwiki_plugin {
@@ -44,6 +44,21 @@ class xpwiki_plugin_build_js extends xpwiki_plugin {
 			}
 
 			return '<span'.$attr.' onclick="' . $jsfunc . '(\''.htmlspecialchars($args[1], ENT_QUOTES).'\',\''.$args[2].'\')">'.$this->root->_attach_messages['msg_insert'].'</span>';
+
+			break;
+		case 'attachDel':
+			$page = isset($args[1])? $args[1] : '';
+			$file = isset($args[2])? $args[2] : '';
+			$age = isset($args[3])? $args[3] : '';
+			$returi = isset($args[4])? $args[4] : '';
+			if (!$page || !$file) return false;
+			$param = '&amp;refer='.rawurlencode($page)
+			       . ($age ? '&amp;age='.$age : '')
+			       . '&amp;';
+			$param .= 'file='.rawurlencode($file);
+			if ($returi) $param .= '&amp;returi='.rawurlencode($returi);
+
+			return '<a href="'.$this->root->script.'?plugin=attach&pcmd=delete'.$param.'" title="'.$this->root->_btn_delete.'" onclick="return confirm(\''.htmlspecialchars($file, ENT_QUOTES).': '.htmlspecialchars($this->root->_attach_messages['msg_delete'], ENT_QUOTES).'\')"><img src="'.$this->cont['LOADER_URL'].'?src=trash_16.gif" alt="'.$this->root->_btn_delete.'" /></a>';
 
 			break;
 		default :

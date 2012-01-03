@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2008/03/24 by nao-pon http://hypweb.net/
- * $Id: attach.php,v 1.38 2011/12/08 07:01:00 nao-pon Exp $
+ * $Id: attach.php,v 1.39 2012/01/03 04:54:57 nao-pon Exp $
  */
 
 //-------- епеще╣
@@ -241,6 +241,7 @@ class XpWikiAttachFile
 	function toString($showicon,$showinfo,$mode="")
 	{
 		$this->getstatus();
+		$is_owner = $this->is_owner();
 		$param = '&amp;refer='.rawurlencode($this->page)
 		       . ($this->age ? '&amp;age='.$this->age : '')
 		       . '&amp;';
@@ -259,12 +260,15 @@ class XpWikiAttachFile
 		if ($showinfo) {
 			$_title = str_replace('$1',rawurlencode($this->file),$this->root->_attach_messages['msg_info']);
 			if (isset($this->root->vars['popup']) && $this->root->vars['cmd'] !== 'read') {
-				$info = '&build_js(refInsert,"'.str_replace('|', '&#124;', htmlspecialchars($this->file, ENT_QUOTES)).'",'.$this->type.');';
+				$info = '&build_js(refInsert,"'.str_replace('|', '&#124;', $this->file).'",'.$this->type.');';
 			} else {
+				$returi = $_SERVER['REQUEST_URI'];
 				if ($mode == "imglist") {
 					$info = "[ [[{$this->root->_attach_messages['btn_info']}:{$this->root->script}?plugin=attach&pcmd=info".str_replace("&amp;","&", ($param . $param2))."]] ]";
+					if ($is_owner) $info .= ' &build_js(attachDel,'.str_replace('|', '&#124;', $this->page).','.str_replace('|', '&#124;', $this->file).','.$this->age.','.$returi.');';
 				} else {
 					$info = "\n<span class=\"small\">[<a href=\"{$this->root->script}?plugin=attach&amp;pcmd=info{$param}{$param2}\" title=\"$_title\">{$this->root->_attach_messages['btn_info']}</a>]</span>";
+					if ($is_owner) $info .= '<a href="'.$this->root->script.'?plugin=attach&pcmd=delete'.$param.$param2.'&amp;returi='.rawurlencode($returi).'" title="'.$this->root->_btn_delete.'" onclick="return confirm(\''.htmlspecialchars($this->file, ENT_QUOTES).': '.htmlspecialchars($this->root->_attach_messages['msg_delete'], ENT_QUOTES).'\')"><img src="'.$this->cont['LOADER_URL'].'?src=trash_16.gif" alt="'.$this->root->_btn_delete.'" /></a>';
 				}
 			}
 			$count = ($showicon and !empty($this->status['count'][$this->age])) ?
@@ -593,7 +597,9 @@ EOD;
 			$this->func->touch_page($this->page, NULL, TRUE);
 		}
 
-		return array('msg'=>$this->root->_attach_messages['msg_deleted'],'redirect'=>$this->root->script."?plugin=attach&pcmd=upload&page=".rawurlencode($this->page));
+		$redirect = ($this->root->vars['returi'])? $this->root->siteinfo['host'] . $this->root->vars['returi'] : $this->root->script."?plugin=attach&pcmd=upload&page=".rawurlencode($this->page);
+
+		return array('msg'=>$this->root->_attach_messages['msg_deleted'],'redirect'=>$redirect);
 	}
 
 	function rename($pass, $newname)
