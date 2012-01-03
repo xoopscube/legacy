@@ -2,7 +2,7 @@
 /////////////////////////////////////////////////
 // PukiWiki - Yet another WikiWikiWeb clone.
 //
-//  $Id: attach.inc.php,v 1.68 2011/12/14 08:24:29 nao-pon Exp $
+//  $Id: attach.inc.php,v 1.69 2012/01/03 04:52:27 nao-pon Exp $
 //  ORG: attach.inc.php,v 1.31 2003/07/27 14:15:29 arino Exp $
 //
 /*
@@ -240,14 +240,16 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 					$_file['tmp_name'] = tempnam($this->cont['CACHE_DIR'], 'atf');
 					$fp = fopen($_file['tmp_name'], 'wb');
 					fseek($fp, 0, SEEK_SET);
-					$real_size = stream_copy_to_stream($input, $fp);
+					$real_size = stream_copy_to_stream($input, $fp, $this->cont['PLUGIN_ATTACH_MAX_FILESIZE'] + 1);
 					fclose($fp);
 					fclose($input);
 
 					if ($real_size > $this->cont['PLUGIN_ATTACH_MAX_FILESIZE']) {
+						@ unlink($_file['tmp_name']);
 						$this->output_json($this->root->_attach_messages['err_exceed']);
 					}
 					if ($_file['size'] && $real_size != $_file['size']){
+						@ unlink($_file['tmp_name']);
 						$this->output_json('No files were uploaded.(Upload error)');
 					}
 
@@ -260,6 +262,7 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 					$ret = $this->attach_upload($_file, $this->root->vars['refer'], $pass, $copyright);
 
 					if ($ret['result'] === FALSE) {
+						@ unlink($_file['tmp_name']);
 						$this->output_json($ret['msg']);
 					}
 					$this->output_json(0); // return success
