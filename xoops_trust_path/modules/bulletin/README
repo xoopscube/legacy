@@ -41,6 +41,17 @@ http://www.xugj.org/modules/d3forum/index.php?topic_id=106
 
 
 =CHANEGLOG=
+ver3.0 (2012-01-04) RC2
+--413	 domifara 	[bulletin]add fuction onUpdate comment count BulletinD3commentStory.class.php and rev.RC2 README
+--410	 domifara 	mymenu.php lost define _GLOBAL_LEFT ,Because admin menu caching from XCL2.2.1beta2 #201,#202,#203,#204 http://www.xoopscube.net/redmine/issues/201
+--403	 domifara 	[bulletin]intilal option for editor other than FCKeditor #196 http://www.xoopscube.net/redmine/issues/196
+--402	 domifara 	[bulletin]W3C CHECK tr tag align="center" -> style="align:center;" #195 http://www.xoopscube.net/redmine/issues/195
+--398	 domifara 	[bulletin]monthly link style="text-decoration:underline;" in archive.html
+--397	 domifara 	[bulletin]japanese language 「コンテンツ」→「ニュース」にもどす
+--395	 domifara 	[bulletin]script Conflict with the rich text editor xpwiki　in storyform_templatevars.inc.php
+--374	 domifara 	[bulletin]Notice [PHP]: Undefined index: topic_id in file category_access.php line 8 #148 http://www.xoopscube.net/redmine/issues/149
+--373	 domifara 	[bulletin]rev.RC1 template chanhe for W3C and #148 http://www.xoopscube.net/redmine/issues/148
+
 ver3.0 (2011-11-12) RC1
 --372	 domifara 	[bulletin]rev.RC1 README(EUC-JP-UTF8)
 --359～362	 domifara 	[bulletin]template change for W3C(HTML)

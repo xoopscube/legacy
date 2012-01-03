@@ -66,7 +66,27 @@ function getSubjectRaw( $params )
 	$story = $this->smarty->get_template_vars( 'story' ) ;
 	return $this->unhtmlspecialchars( $story['title'] , ENT_QUOTES ) ;
 }
+//ver3.0 add
+function onUpdate( $mode , $link_id , $forum_id , $topic_id , $post_id = 0 )
+{
+	$db =& Database::getInstance() ;
 
+	$sql1  = 'SELECT COUNT(*) FROM ';
+	$sql1 .= $db->prefix( $this->d3forum_dirname.'_posts' ) .' p ';
+	$sql1 .= ' LEFT JOIN ';
+	$sql1 .= $db->prefix( $this->d3forum_dirname.'_topics' ) .' t ';
+	$sql1 .= ' ON t.topic_id=p.topic_id ';
+	$sql1 .= ' WHERE t.forum_id='. intval( $forum_id );
+	$sql1 .= ' AND t.topic_external_link_id='. intval( $link_id );
+
+	list( $count ) = $db->fetchRow( $db->query( $sql1 ) ) ;
+
+	$sql2  = 'UPDATE '. $db->prefix( $this->mydirname.'_stories' );
+	$sql2 .= ' SET comments='. intval( $count );
+	$sql2 .= ' WHERE storyid='. intval( $link_id );
+
+	return $db->queryF( $sql2 ) ;
+}
 
 
 }
