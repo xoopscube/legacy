@@ -18,7 +18,7 @@ CKEDITOR.editorConfig = function( config )
 //-------------
 /* esample Full  or Basic toolbar display */
 
-//	config.toolbar = 'Full';
+	config.toolbar = 'Full';
 
 /* or */
 
@@ -26,8 +26,8 @@ CKEDITOR.editorConfig = function( config )
 
 
 /* esample xclfull toolbar display */
-	config.toolbar = 'mycustom';
-	config.removePlugins = 'save,newpage,print,tab,pagebreak,preview,scayt';
+//	config.toolbar = 'mycustom';
+//	config.removePlugins = 'save,newpage,print,tab,pagebreak,preview,scayt';
 
 /* esample xclfull xclsimple display */
 //	config.toolbar = 'simple';
