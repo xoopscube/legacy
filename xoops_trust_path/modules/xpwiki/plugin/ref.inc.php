@@ -1,5 +1,5 @@
 <?php
-// $Id: ref.inc.php,v 1.63 2011/12/15 14:03:18 nao-pon Exp $
+// $Id: ref.inc.php,v 1.64 2012/01/03 04:50:40 nao-pon Exp $
 /*
 
 	*プラグイン ref
@@ -580,8 +580,8 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 			}
 
 			// URL のローカルパスをURIパスに変換
-			$lvar['url'] = str_replace($this->cont['DATA_HOME'], $this->cont['HOME_URL'], $lvar['url']);
-			if ($lvar['link']) $lvar['link'] = str_replace($this->cont['DATA_HOME'], $this->cont['HOME_URL'], $lvar['link']);
+			if (strpos($lvar['url'], $this->cont['DATA_HOME']) === 0) $lvar['url'] = str_replace($this->cont['DATA_HOME'], $this->cont['HOME_URL'], $lvar['url']);
+			if ($lvar['link'] && strpos($lvar['link'], $this->cont['DATA_HOME']) === 0) $lvar['link'] = str_replace($this->cont['DATA_HOME'], $this->cont['HOME_URL'], $lvar['link']);
 
 			// og:image mata tag
 			if ($params['og']) {
@@ -997,10 +997,10 @@ _HTML_;
 
 	function get_ref_url($page, $name, $use_pathinfo = false) {
 		if ($this->cont['PLUGIN_REF_SHORTURL']) {
-			return $this->cont['DATA_HOME'] . 'ref/' . str_replace('%2F', '%252F', rawurlencode($page)) . '/' . rawurlencode($name);
+			return $this->cont['HOME_URL'] . 'ref/' . str_replace('%2F', '%252F', rawurlencode($page)) . '/' . rawurlencode($name);
 		} else {
 			$path_name = ($use_pathinfo)? '/' . rawurlencode($name) : '';
-			return $this->cont['DATA_HOME'] . 'gate.php' . $path_name . '?way=ref&amp;_nodos&amp;_noumb&amp;page=' . rawurlencode($page) .
+			return $this->cont['HOME_URL'] . 'gate.php' . $path_name . '?way=ref&amp;_nodos&amp;_noumb&amp;page=' . rawurlencode($page) .
 					'&amp;src=' . rawurlencode($name); // Show its filename at the last
 		}
 	}
