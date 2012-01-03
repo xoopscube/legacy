@@ -16,7 +16,7 @@
 // -----------------------------------------------------------------------------------
 //
 //  edited by nao-pon - http://hypweb.net/
-//  $Id: lightbox.js,v 1.18 2009/10/01 23:37:22 nao-pon Exp $
+//  $Id: lightbox.js,v 1.19 2012/01/03 04:49:34 nao-pon Exp $
 //
 // -----------------------------------------------------------------------------------
 
@@ -30,7 +30,7 @@ var resizeSpeed = 9;	// controls the speed of the image resizing (1=slowest and 
 
 var borderSize = 10;	//if you adjust the padding in the CSS, you will need to update this variable
 
-var lightbox_timeout = 10000; // Timeout for load a image.(ms)
+var lightbox_timeout = 30000; // Timeout for load a image.(ms)
 // -----------------------------------------------------------------------------------
 
 //
@@ -111,18 +111,18 @@ Lightbox.prototype = {
 
 	initialize: function() {
 		if (!document.getElementsByTagName){ return; }
-		
+
 		this.timer = null;
 		this.imgPreloader = null;
 		this.myAjax = null;
-		
+
 		//regexp my host name
 		this.myhost = location.protocol+"//"+location.host;
 		var reg = /([\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\\])/g;
 		//for NN4.x bug
 		this.myhost = this.myhost.replace(reg, "##__BACK_SLASH__##$1").replace(/##__BACK_SLASH__##/g, '\\');
 		this.myhost = new RegExp("^"+this.myhost,"i");
-		
+
 		var objBody = document.getElementsByTagName('body')[0];
 		var r = document.evaluate('descendant::a[@type="img"][@href!=""]', objBody, null, 7, null);
 		for (var i=0; i<r.snapshotLength; i++){
@@ -130,11 +130,11 @@ Lightbox.prototype = {
 			anchor.setAttribute("rel", "lightbox[stack]");
 			anchor.onclick = function () {myLightbox.start(this); return false;}
 		}
-		
+
 		if ($('lightbox')) {
 			Element.remove($('lightbox'));
 		}
-		
+
 		var objOverlay = document.createElement("div");
 		objOverlay.setAttribute('id','overlay');
 		objOverlay.style.display = 'none';
@@ -256,7 +256,7 @@ Lightbox.prototype = {
 		imageNum = 0;
 
 		if (!document.getElementsByTagName){ return; }
-		
+
 		var myrel = imageLink.getAttribute('rel');
 		if((myrel == 'lightbox')){
 			// add single image to imageArray
@@ -314,34 +314,54 @@ Lightbox.prototype = {
 			Element.setSrc('lightboxImage', this.imgPreloader.src);
 			this.resizeImageContainer(this.imgPreloader.width, this.imgPreloader.height);
 		}.bind(this);
-		
+
+		this.imgPreloader.onerror=function(){
+			if (this.timer) {clearTimeout(this.timer);this.timer=null;};
+			this.myAjax = null;
+			this.imgPreloader.src = wikihelper_root_url + '/skin/loader.php?src=notfound.gif';
+		}.bind(this);
+
 		if (this.timer) {clearTimeout(this.timer);this.timer=null;}
 			this.timer = setTimeout(function(){
 			this.imgPreloader.src = wikihelper_root_url + '/skin/loader.php?src=timeout.gif';
 		}.bind(this),lightbox_timeout);
-		
+
 		// Check URL found or notfound?
 		//if (this.imgPreloader.src.match(/^http/i) && !this.imgPreloader.src.match(this.myhost))
 		//{
 		//	this.checkUrl(this.imgPreloader.src);
 		//}
-		
+
 		this.imgPreloader.src = imageArray[activeImage][0];
+
+		// prefetch image
+		var prefetchPrev;
+		var prefetchNext;
+
+		if (! prefetchPrev) prefetchPrev = new Image();
+		if (! prefetchNext) prefetchNext = new Image();
+
+		if (activeImage != 0) {
+			prefetchPrev.src = imageArray[activeImage - 1][0];
+		}
+		if (activeImage != (imageArray.length - 1)) {
+			prefetchNext.src = imageArray[activeImage + 1][0];
+		}
 	},
-	
-	
+
+
 	// Check URL by ajax
 	checkUrl: function(url) {
 		var url = './plugin_data/lightbox/checkurl.php?q=' + encodeURIComponent(url);
 		this.myAjax = new Ajax.Request(
-			url, 
+			url,
 			{
 				method: 'GET',
 				requestHeaders: ['Referer',document.location],
 				onComplete: this.onCheckedUrl.bind(this)
 			});
 	},
-	
+
 	// Checked URL
 	onCheckedUrl: function(Req) {
 		var rc = eval(Req.responseText);
@@ -350,7 +370,7 @@ Lightbox.prototype = {
 			this.imgPreloader.src = wikihelper_root_url + '/skin/loader.php?src=notfound.gif';
 		}
 	},
-	
+
 	//
 	//	resizeImageContainer()
 	//
@@ -362,7 +382,7 @@ Lightbox.prototype = {
 		var boxHeight = imgHeight + 36 + (borderSize * 3);
 		var boxWidth = imgWidth + (borderSize * 2);
 		var ratio = 0.96;
-		
+
 		if(arrayPageSize[3] <= boxHeight | arrayPageSize[2] <= boxWidth){
 			if(arrayPageSize[3] <= boxHeight) {
 				imgRatio = imgWidth / imgHeight;
@@ -396,11 +416,11 @@ Lightbox.prototype = {
 		document.getElementById('originalLinkNew').style.display = 'block';
 		document.getElementById('originalLink').style.display = 'block';
 		}
-		
+
 
 		document.getElementById('lightboxImage').width = imgWidth;
 		document.getElementById('lightboxImage').height = imgHeight;
-		
+
 		imageDetails_w = imgWidth - 220;
 		if (imageDetails_w < 1) imageDetails_w = imgWidth;
 		document.getElementById('imageDetails').style.width = imageDetails_w + 'px';
@@ -609,9 +629,9 @@ function getPageScroll(){
 function getPageSize(){
 
 	var xScroll, yScroll;
-	
+
 	var documentBody = (document.documentElement || document.body);
-	
+
 	if (window.innerHeight && window.scrollMaxY) {
 		xScroll = documentBody.scrollWidth;
 		yScroll = window.innerHeight + window.scrollMaxY;
