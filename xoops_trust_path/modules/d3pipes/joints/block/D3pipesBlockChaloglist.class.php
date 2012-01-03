@@ -20,7 +20,7 @@ class D3pipesBlockChaloglist extends D3pipesBlockAbstract {
 
 		// configurations (file, name, block_options)
 		$this->func_file = XOOPS_MODULE_PATH.'/'.$this->target_dirname.'/blocks/recent.php' ;
-		$this->class_name = 'Chalog_RecentBlock' ;
+		$this->func_name = 'cl::RecentBlock' ;
 
 		$this->block_options = array(
 			0 =>  empty( $params[0] ) ? 5 : intval( $params[0] )  // max entries
