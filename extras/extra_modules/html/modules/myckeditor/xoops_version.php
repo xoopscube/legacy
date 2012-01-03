@@ -11,11 +11,11 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 // Define a basic manifesto.
 //
 $modversion['name'] = _MI_MYCKEDITOR_LANG_MYCKEDITOR;
-$modversion['version'] = 0.01;
+$modversion['version'] = 0.01;//pack2011 add class
 $modversion['description'] = _MI_MYCKEDITOR_DESC_MYCKEDITOR;
 $modversion['author'] = "HIKAWA Kilica http://xoopsdev.com/";
 $modversion['credits'] = "HIKAWA Kilica";
-$modversion['help'] = "help.html";
+$modversion['help'] = "CHANGES.html";
 $modversion['license'] = "GPL";
 $modversion['official'] = 0;
 $modversion['image'] = "images/mydhtml.png";
