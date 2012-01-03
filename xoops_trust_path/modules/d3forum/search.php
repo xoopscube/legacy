@@ -39,6 +39,8 @@ function d3forum_global_search_base( $mydirname , $keywords , $andor , $limit , 
 	}
 	// naao to
 
+	$charset = strtoupper(_CHARSET);
+
 	// XOOPS Search module
 	$showcontext = empty( $_GET['showcontext'] ) ? 0 : 1 ;
 	$select4con = $showcontext ? "p.post_text" : "'' AS post_text" ;
@@ -49,29 +51,39 @@ function d3forum_global_search_base( $mydirname , $keywords , $andor , $limit , 
 	$whr_uid = $userid > 0 ? "p.uid=$userid" : "1" ;
 
 	$whr_query = $andor == 'OR' ? '0' : '1' ;
-	if( is_array( $keywords ) ) foreach( $keywords as $word ) {
+	if( is_array( $keywords ) ) {
 		// I know this is not a right escaping, but I can't believe $keywords :-)
-		$word4sql = addslashes( stripslashes( $word ) ) ;
-		$whr_query .= $andor == 'EXACT' ? ' AND' : ' '.$andor ;
-		$whr_query .= " (p.subject LIKE '%$word4sql%' OR p.post_text LIKE '%$word4sql%')" ;
+		$keywords = array_map('stripslashes', $keywords);
+		foreach( $keywords as $word ) {
+			$word4sql = addslashes($word);
+			$word_or = array('p.subject LIKE \'%'.$word4sql.'%\' OR p.post_text LIKE \'%'.$word4sql.'%\'');
+			if (($charset === 'UTF-8' || $charset === 'EUC-JP') && function_exists('mb_convert_kana')) {
+				foreach(array('a', 'A', 'k', 'KV', 'h', 'HV', 'c', 'C') as $_op) {
+					$_word = mb_convert_kana($word, $_op, $charset);
+					if ($_word !== $word) {
+						$word4sql = addslashes($_word);
+						$word_or[] = 'p.subject LIKE \'%'.$word4sql.'%\' OR p.post_text LIKE \'%'.$word4sql.'%\'';
+					}
+				}
+			}
+			$word4sql = join(' OR ', $word_or);
+			$whr_query .= $andor == 'EXACT' ? ' AND' : ' '.$andor ;
+			$whr_query .= ' (' . $word4sql . ')' ;
+		}
 	}
-
 	//$sql = "SELECT p.post_id,p.topic_id,p.post_time,p.uid,p.subject,p.html,p.smiley,p.xcode,p.br,$select4con FROM ".$db->prefix($mydirname."_posts")." p LEFT JOIN ".$db->prefix($mydirname."_topics")." t ON t.topic_id=p.topic_id WHERE ($whr_forum) AND ($whr_uid) AND ($whr_query) AND ! topic_invisible ORDER BY p.post_time DESC" ;
-	
+
 	//naao
 	$sql = "SELECT p.post_id,p.topic_id,p.post_time,p.uid,p.subject,p.html,p.smiley,p.xcode,p.br,$select4con,t.topic_external_link_id,f.forum_id FROM ".$db->prefix($mydirname."_posts")." p LEFT JOIN ".$db->prefix($mydirname."_topics")." t ON t.topic_id=p.topic_id  LEFT JOIN ".$db->prefix($mydirname."_forums")." f ON t.forum_id = f.forum_id WHERE ($whr_forum) AND ($whr_uid) AND ($whr_query) AND ! topic_invisible ORDER BY p.post_time DESC" ;
 
 	$result = $db->query( $sql , $limit , $offset ) ;
 	$ret = array() ;
 	$context = '' ;
- 	while( list( $post_id , $topic_id , $post_time , $uid , $subject , $html , $smiley , $xcode , $br , $text , $external_link_id, $forum_id ) = $db->fetchRow( $result ) ) {
 
-		// get context for module "search"
-		if( function_exists( 'search_make_context' ) && $showcontext ) {
-			if( function_exists( 'easiestml' ) ) $text = easiestml( $text ) ;
-			$full_context = strip_tags( $myts->displayTarea( $text , $html , $smiley , $xcode , 1 , $br ) ) ;
-			$context = search_make_context( $full_context , $keywords ) ;
-		}
+	// nao-pon
+	$make_context_func = function_exists( 'xoops_make_context' )? 'xoops_make_context' : (function_exists( 'search_make_context' )? 'search_make_context' : '');
+
+ 	while( list( $post_id , $topic_id , $post_time , $uid , $subject , $html , $smiley , $xcode , $br , $text , $external_link_id, $forum_id ) = $db->fetchRow( $result ) ) {
 
 		// naao from
 		$can_display = true;	//default
@@ -81,7 +93,19 @@ function d3forum_global_search_base( $mydirname , $keywords , $andor , $limit , 
 				$can_display = false;
 			}
 		}
-		if ($can_display == true) {
+		if ($can_display == true) { // naao to
+			// get context for module "search"
+
+			// nao-pon
+			//if( function_exists('search_make_context') && $showcontext ) {
+			if( $make_context_func && $showcontext ) {
+				if( function_exists( 'easiestml' ) ) $text = easiestml( $text ) ;
+				$full_context = strip_tags( $myts->displayTarea( $text , $html , $smiley , $xcode , 1 , $br ) ) ;
+				// nao-pon
+				//$context = search_make_context( $full_context , $keywords ) ;
+				$context = $make_context_func( $full_context , $keywords ) ;
+			}
+
 			$ret[] = array(
 				'link' => "index.php?post_id=$post_id" ,
 				'title' => htmlspecialchars( $subject, ENT_QUOTES ) ,
@@ -89,13 +113,15 @@ function d3forum_global_search_base( $mydirname , $keywords , $andor , $limit , 
 				'uid' => $uid ,
 				'context' => $context ,
 			) ;
-		}	// naao to
+		}	// naao
 	}
+	// for xoops search module
+	$GLOBALS['md_search_flg_zenhan_support'] = true;
+
 	return $ret;
 
 }
 
 }
-
 
 ?>
