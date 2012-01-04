@@ -6,6 +6,7 @@
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
+require_once XOOPS_MODULE_PATH . "/user/class/ActionFrame.class.php";
 define ('USER_USERINFO_MAXHIT', 5);
 
 /***
