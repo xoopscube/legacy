@@ -86,7 +86,11 @@ class D3pipesBlockAbstract extends D3pipesJointAbstract {
 		//only no xoos_trust_path module class type , convert class_name to func_name
 		//you need to set $this->func_name when xoos_trust_path module class type
 		if ( !empty($this->class_name) && empty($this->func_name)) {
-			$this->func_name = 'cl::'.preg_replace('/^'.$this->target_dirname.'_/i','',$this->class_name ) ;
+			if ( !empty($this->trustdirname)) {
+				$this->func_name = 'cl::'.preg_replace('/^'.$this->trustdirname.'_/i','',$this->class_name ) ;
+			}else{
+				$this->func_name = 'cl::'.preg_replace('/^'.$this->target_dirname.'_/i','',$this->class_name ) ;
+			}
 		}
 
 		//get bid
