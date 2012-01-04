@@ -66,48 +66,8 @@
         </tr>
       <{/if}>
       
-      	<{foreach item=def from=$definitions}>
-			<tr valign="top">
-			  <td class="head"><{$def.label}></td>
-			  <td class="<{cycle values='odd,even'}>">
-			  	<{assign var="defkey" value=$def.field_name}>
-			    <{$data.$defkey|xoops_escape}>
-			  </td>
-			</tr>
-			<{/foreach}>
+      <{legacy_profile uid=$thisUser->getShow('uid')}>
             
-      <tr valign="top">
-        <td class="head"><{$smarty.const._MD_USER_LANG_USER_ICQ}></td>
-        <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('user_icq')}></td>
-      </tr>
-      <tr valign="top">
-        <td class="head"><{$smarty.const._MD_USER_LANG_USER_AIM}></td>
-        <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('user_aim')}></td>
-      </tr>
-      <tr valign="top">
-        <td class="head"><{$smarty.const._MD_USER_LANG_USER_YIM}></td>
-        <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('user_yim')}></td>
-      </tr>
-      <tr valign="top">
-        <td class="head"><{$smarty.const._MD_USER_LANG_USER_MSNM}></td>
-        <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('user_msnm')}></td>
-      </tr>
-      <tr valign="top">
-        <td class="head"><{$smarty.const._MD_USER_LANG_USER_FROM}></td>
-        <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('user_from')}></td>
-      </tr>
-      <tr valign="top">
-        <td class="head"><{$smarty.const._MD_USER_LANG_USER_OCC}></td>
-        <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('user_occ')}></td>
-      </tr>
-      <tr valign="top">
-        <td class="head"><{$smarty.const._MD_USER_LANG_USER_INTREST}></td>
-        <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('user_intrest')}></td>
-      </tr>
-      <tr valign="top">
-        <td class="head"><{$smarty.const._MD_USER_LANG_BIO}></td>
-        <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('bio')}></td>
-      </tr>
     </table>
     </td>
     <td width="50%">
