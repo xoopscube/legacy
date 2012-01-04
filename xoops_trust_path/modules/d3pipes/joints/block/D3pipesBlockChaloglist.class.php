@@ -15,6 +15,12 @@ class D3pipesBlockChaloglist extends D3pipesBlockAbstract {
 
 	function init()
 	{
+		// parse and check option for this class
+		$params = array_map( 'trim' , explode( '|' , $this->option ) ) ;
+		if( empty( $params[0] ) ) {
+			$this->errors[] = _MD_D3PIPES_ERR_INVALIDDIRNAMEINBLOCK."\n($this->pipe_id)" ;
+			return false ;
+		}
 		// language files
 		$this->includeLanguageBlock() ;
 
