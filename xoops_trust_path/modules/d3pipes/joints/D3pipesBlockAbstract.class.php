@@ -66,9 +66,25 @@ class D3pipesBlockAbstract extends D3pipesJointAbstract {
 			return array() ;
 		}
 
-		$db =& Database::getInstance() ;
+		// file check
+		if( ! file_exists( $this->func_file ) ) {
+			$this->errors[] = _MD_D3PIPES_ERR_INVALIDFILEINBLOCK."\n".$this->func_file.' ('.get_class( $this ).')' ;
+			return array() ;
+		}
+		require_once $this->func_file ;
 
-		//only no d3module type ,convertable class_name to func_name
+		//d3module and function type module check
+		if( function_exists( $this->func_name ) || array_key_exists ( 'disable_renderer' , $this->block_options )) {
+			$block = $this->executeStandard($dummy , $max_entries );
+			return $block;
+		}
+
+		//----------  get block object  ----------//
+		//XCL modules
+		$db =& Database::getInstance() ;
+		//chanhe class_name -> func_name
+		//only no xoos_trust_path module class type , convert class_name to func_name
+		//you need to set $this->func_name when xoos_trust_path module class type
 		if ( !empty($this->class_name) && empty($this->func_name)) {
 			$this->func_name = 'cl::'.preg_replace('/^'.$this->target_dirname.'_/i','',$this->class_name ) ;
 		}
@@ -89,21 +105,6 @@ class D3pipesBlockAbstract extends D3pipesJointAbstract {
 		if ( ! is_object($blockObject)) {
 			$this->errors[] = _MD_D3PIPES_ERR_INVALIDFILEINBLOCK."\n".' block object not found : target_dirname='.$this->target_dirname.' func_name='.$this->func_name.' ('.get_class( $this ).')' ;
 			return array() ;
-		}
-
-		// file check
-		if( ! file_exists( $this->func_file ) ) {
-			$this->errors[] = _MD_D3PIPES_ERR_INVALIDFILEINBLOCK."\n".$this->func_file.' ('.get_class( $this ).')' ;
-			return array() ;
-		}
-		require_once $this->func_file ;
-
-		//d3module check
-		$b_template = $blockObject->getVar('template');
-
-		if( (function_exists( $this->func_name ) && empty($b_template)) || array_key_exists ( 'disable_renderer' , $this->block_options )) {
-			$block = $this->executeStandard($dummy , $max_entries );
-			return $block;
 		}
 
 		//XCL AND other Xoops single module
