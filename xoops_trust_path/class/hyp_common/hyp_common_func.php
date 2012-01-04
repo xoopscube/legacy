@@ -1,5 +1,5 @@
 <?php
-// $Id: hyp_common_func.php,v 1.82 2011/12/31 16:02:12 nao-pon Exp $
+// $Id: hyp_common_func.php,v 1.83 2012/01/04 14:13:12 nao-pon Exp $
 // HypCommonFunc Class by nao-pon http://hypweb.net
 ////////////////////////////////////////////////
 
@@ -197,20 +197,27 @@ class HypCommonFunc
 		unset($p);
 	}
 
-	function make_context($text, $words=array(), $l=255, $parts=3, $delimiter='...', $caseInsensitive = TRUE, $whitespaceCompress = TRUE)
+	function make_context($text, $words=array(), $l=255, $parts=3, $delimiter='...', $caseInsensitive = TRUE, $whitespaceCompress = TRUE, $encode = null)
 	{
-		static $strcut = '';
-		if (!$strcut) {
-			$strcut = create_function ( '$a,$b,$c', (function_exists('mb_substr'))?
-				'return mb_substr($a,$b,$c);':
-				'return substr($a,$b,$c);');
+		if (! $encode) {
+			if (defined(_CHARSET)) {
+				$encode = _CHARSET;
+			} else {
+				$encode = mb_internal_encoding();
+			}
 		}
+
+		static $strcut = '';
+		if (!$strcut) $strcut = (function_exists('mb_substr'))? 'mb_substr' : 'substr';
 
 		static $strlen = '';
 		if (!$strlen) $strlen = (function_exists('mb_strlen'))? 'mb_strlen' : 'strlen';
 
 		$limit = $parts + 1;
-		$text = str_replace(array('&lt;','&gt;','&quot;','&#039;','&amp;'),array('<','>','"',"'",'&'),$text);
+		$ret = str_replace(array('&lt;','&gt;','&quot;','&#039;','&amp;'),array('<','>','"',"'",'&'), $text);
+
+		// short text
+		if ($strlen($ret) <= $l) return htmlspecialchars($ret);
 
 		if (is_array($words)) {
 			$words = join(' ', $words);
@@ -223,8 +230,8 @@ class HypCommonFunc
 		}
 
 		$match = array();
-		$ret = $text;
 		$reg = '/(' . $q_word . ')/S';
+		if ($encode === 'UTF-8') $reg .= 'u';
 		if ($caseInsensitive) {
 			$reg .= 'i';
 		}
@@ -248,7 +255,7 @@ class HypCommonFunc
 					}
 					$key = $i + 1;
 					if (isset($arr[$key])) {
-						$mc = $mc - $strlen($arr[$key]);
+						$mc = $mc - $strlen($arr[$key], $encode);
 					}
 					if (isset($arr[$i-1]) && isset($arr[$key])) {
 						$type = 'middle';
@@ -260,19 +267,19 @@ class HypCommonFunc
 							$type = 'last';
 						}
 					}
-					$len = $strlen($arr[$i]);
+					$len = $strlen($arr[$i], $encode);
 					if ($len > $mc && $type !== 'last') {
 						if ($type === 'middle') {
 							// キーワードとキーワードで挟まれた部分
-							$mc = $mc - $strlen($delimiter);
-							$ret .= $strcut($arr[$i], 0, $mc / 2);
+							$mc = $mc - $strlen($delimiter, $encode);
+							$ret .= $strcut($arr[$i], 0, $mc / 2, $encode);
 							$ret .= $delimiter;
-							$ret .= $strcut($arr[$i], max($len - $mc / 2 + 1, 0), $mc / 2);
+							$ret .= $strcut($arr[$i], max($len - $mc / 2 + 1, 0), $mc / 2, $encode);
 						} else {
 							// 最初の部分
-							$mc = $mc - $strlen($delimiter);
+							$mc = $mc - $strlen($delimiter, $encode);
 							$ret .= $delimiter;
-							$ret .= $strcut($arr[$i], max($len - $mc + 1 , 0), $mc);
+							$ret .= $strcut($arr[$i], max($len - $mc + 1 , 0), $mc, $encode);
 						}
 						$add = 0;
 					} else {
@@ -286,9 +293,9 @@ class HypCommonFunc
 			}
 		}
 
-		if ($strlen($ret) > $l) {
-			$l = $l - $strlen($delimiter);
-			$ret = $strcut($ret, 0, $l);
+		if ($strlen($ret, $encode) > $l) {
+			$l = $l - $strlen($delimiter, $encode);
+			$ret = $strcut($ret, 0, $l, $encode);
 			$ret = preg_replace('/&#?[A-Za-z0-9]{0,6}$/', '', $ret);
 			$ret .= $delimiter;
 		}

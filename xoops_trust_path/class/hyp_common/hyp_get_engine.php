@@ -1,5 +1,5 @@
 <?php
-// $Id: hyp_get_engine.php,v 1.18 2012/01/03 08:16:20 nao-pon Exp $
+// $Id: hyp_get_engine.php,v 1.19 2012/01/04 14:11:20 nao-pon Exp $
 // HypGetQueryWord Class by nao-pon http://hypweb.net
 ////////////////////////////////////////////////
 
@@ -95,20 +95,15 @@ class HypGetQueryWord
 
 			$query2 = $query;
 			if ($use_kakasi && $query2) {
-				if ($enc !== 'EUC-JP') {
-					$query2 = mb_convert_encoding($query2, 'EUC-JP', $enc);
-				}
 				// 分かち書き
 				include_once(dirname(__FILE__).'/hyp_kakasi.php');
 				$kakasi = new Hyp_KAKASHI();
+				$kakasi->encoding = $enc;
 				if ($tmpdir && is_writable($tmpdir))
 				{
 					$kakasi->tmp_dir = $tmpdir;
 				}
 				$kakasi->get_wakatigaki($query2);
-				if ($enc !== 'EUC-JP') {
-					$query2 = mb_convert_encoding($query2, $enc, 'EUC-JP');
-				}
 			}
 		}
 

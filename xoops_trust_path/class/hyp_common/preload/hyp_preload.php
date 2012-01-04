@@ -528,6 +528,9 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 			$this->nowModuleDirname = $xoopsModule->getVar('dirname');
 		}
 
+		// For addHeadTag()
+		if (! isset($GLOBALS['hyp_preload_head_tag'])) $GLOBALS['hyp_preload_head_tag'] = '';
+
 		if (! empty($_POST)) {
 
 			// POST 文字列の文字エンコードを判定
@@ -840,9 +843,6 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 			}
 
 		}
-
-		// For addHeadTag()
-		if (! isset($GLOBALS['hyp_preload_head_tag'])) $GLOBALS['hyp_preload_head_tag'] = '';
 
 		// Restor mb_detect_order
 		if ($this->detect_order_org) {
