@@ -68,7 +68,7 @@ class D3pipesBlockAbstract extends D3pipesJointAbstract {
 
 		$db =& Database::getInstance() ;
 
-		//convert class_name to func_name
+		//only no d3module type ,convertable class_name to func_name
 		if ( !empty($this->class_name) && empty($this->func_name)) {
 			$this->func_name = 'cl::'.preg_replace('/^'.$this->target_dirname.'_/i','',$this->class_name ) ;
 		}
@@ -117,12 +117,8 @@ class D3pipesBlockAbstract extends D3pipesJointAbstract {
 		$target =& $blockProcedure->getRenderTarget();
 		$buffer = $target->getAttributes() ;
 
-		if (array_key_exists('block',$buffer)){
-			$block = $buffer['block'];
-		}else{
-			//class type
-			$block = $buffer;
-		}
+		//class type
+		$block = $buffer;
 		// update lastfetch_time
 		$db->queryF( "UPDATE ".$db->prefix($this->mydirname."_pipes")." SET lastfetch_time=UNIX_TIMESTAMP() WHERE pipe_id=$this->pipe_id" ) ;
 
