@@ -53,7 +53,6 @@ define("_MD_USER_LANG_NO","Não");
 define("_MD_USER_LANG_NOACTTPADM","O cadastro do associado selecionado foi desabilitado ou ainda não foi habilitado.<br />Entre em contato com o administrador para mais informações.");
 define("_MD_USER_LANG_NOPROBLEM","Escreva o e-mail com o qual você se cadastrou em nosso portal.");
 define("_MD_USER_LANG_NOREGISTER","Lamento, mas o cadastro de novos associados está bloqueado.");
-define("_MD_USER_LANG_NOTIFY","Notificações");
 define("_MD_USER_LANG_NOTIFY_METHOD","Método de notificação: ao monitorar uma seção do portal, como você deseja receber as notificações de atualização?");
 define("_MD_USER_LANG_NOTIFY_MODE","Método de notificação padrão");
 define("_MD_USER_LANG_NOTREGISTERED","Você ainda não se cadastrou? <a rel='nofollow' href='register.php'>Clique aqui!</a>");
