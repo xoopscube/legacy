@@ -1,13 +1,13 @@
 <h3><{$lang_search_results}></h3>
 <{$lang_keyword}>:
 <{foreach item=keyword from=$keywords}>
-<strong><{$keyword.key}></strong> 
+<strong><{$keyword.key}></strong>
 <{/foreach}>
 <{if $lang_ignoredwors!=""}>
   <br />
   <{$lang_ignoredwors}>
   <{foreach item=bad from=$badkeywords}>
-  <strong><{$bad.key}></strong> 
+  <strong><{$bad.key}></strong>
   <{/foreach}>
 <{/if}>
 <{*<{if $lang_sugwords!=""}>
@@ -16,11 +16,10 @@
   <{foreach item=sug from=$sug_keys}>
   <a href="<{$sug.url}>">
   <{$sug.key}>
-  </a> 
+  </a>
   <{/foreach}>
 <{/if}>*}>
 <{foreach item=module from=$modules}>
-<{if $module.no_match==""}>
 <div>
 <h4><{$module.name}></h4>
   <{foreach item=result from=$module.results}>
@@ -31,11 +30,11 @@
 <br />
 <{$module.showall_link}>
 </div>
-<{else}>
+<{/foreach}>
+<{if $no_matches}>
 <div>
-  <h4><{$module.name}></h4>
-  <{$module.no_match}>
+ <h4><{", "|join:$no_matches}></h4>
+ <{$no_match}>
 </div>
 <{/if}>
-<{/foreach}>
 <{$search_form}>

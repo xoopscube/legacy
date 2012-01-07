@@ -25,11 +25,5 @@ define('_MD_KEY_SPACE','Divide in <strong>space</strong>, when search by two or 
 define('_MD_ZENKAKU_EISU','(ZENKAKU)');
 define('_MD_HANKAKU_EISU','(HANKAKU)');
 define('_MD_SHOW_CONTEXT','Show context');
-//Do not change the following as long as there is no necessity. 
+//Do not change the following as long as there is no necessity.
 define('_MD_NBSP',' '); //
-define('_MD_PREG_ZESU','/\xA3[\xC1-\xFA]/');
-define('_MD_PREG_HESU','/[A-Za-z0-9]/');
-define('_MD_PREG_ZKANA','/\xA5[\xA1-\xF6]/');
-define('_MD_PREG_HKANA','/\x8E[\xA6-\xDF]/');
-
-?>

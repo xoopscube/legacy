@@ -51,7 +51,11 @@ $showcontext= isset($_REQUEST['showcontext']) 	? intval($_REQUEST['showcontext']
 $mids_p	= isset($_REQUEST['mids'])  	? $_REQUEST['mids']	 	: "";
 $mids = array();
 if( is_array($mids_p) ) { foreach($mids_p as $e){  $mids[] = intval($e); } }
-$query	= mb_ereg_replace(_MD_NBSP, " ", $query);
+
+if ($andor != 'exact') {
+	$query	= mb_ereg_replace(_MD_NBSP, " ", $query);
+}
+
 $queries = array();
 $mb_suggest = array();
 $mb_suggest_w = array();
@@ -91,32 +95,50 @@ if ( $andor != "OR" && $andor != "exact" && $andor != "AND" ) {
 	$andor = "AND";
 }
 
+$query_for_search = $query;
+//$query_for_search = preg_replace('/"(?:([^"\s]+)\s)+"/', "$1\x01", $query_for_search);
+
+$strlen_func = (function_exists('mb_strlen'))? 'mb_strlen' : 'strlen';
 if ($action != 'showallbyuser') {
 	if ( $andor != "exact" ) {
 		$ignored_queries = array(); // holds kewords that are shorter than allowed minimum length
-		$temp_queries = preg_split('/[\s]+/', $query);
+		if (defined('HYP_QUERY_WORD2_CONST_NAME') && constant(HYP_QUERY_WORD2_CONST_NAME)) {
+			$query_for_search .= ' ' . constant(HYP_QUERY_WORD2_CONST_NAME);
+		}
+		$temp_queries = array_unique(preg_split('/"([^"]+)"|\'([^\']+)\'|[\s]+/', $query_for_search, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY));
 		foreach ($temp_queries as $q) {
 			$q = trim($q);
-			if (strlen($q) >= $xoopsConfigSearch['keyword_min']) {
+			if ($strlen_func($q) >= $xoopsConfigSearch['keyword_min']) {
 				$queries[] = addSlashes($q);
-				//for EUC-JP
-				if(function_exists('mb_convert_kana') && function_exists('mb_detect_encoding')){
-					if(preg_match(_MD_PREG_ZESU, $q)){ //Zenkaku Eisu
-						$mb_suggest[] = mb_convert_kana(addSlashes($q), 'a')._MD_HANKAKU_EISU;
-						$mb_suggest_w[] = mb_convert_kana(addSlashes($q), 'a');
-					}elseif(preg_match(_MD_PREG_HESU, $q)){ //Hankaku Eisu
-						$mb_suggest[] = mb_convert_kana(addSlashes($q), 'A')._MD_ZENKAKU_EISU;
-						$mb_suggest_w[] = mb_convert_kana(addSlashes($q), 'A');
-					}elseif(preg_match(_MD_PREG_ZKANA, $q)){ //Zenkaku Katakana
-						$mb_suggest[] = mb_convert_kana(addSlashes($q), 'k')._MD_HANKAKU_EISU;
-						$mb_suggest_w[] = mb_convert_kana(addSlashes($q), 'k');
-					}elseif(preg_match(_MD_PREG_HKANA, $q)){ //Hankaku Katakana
-						$mb_suggest[] = mb_convert_kana(addSlashes($q), 'KV')._MD_ZENKAKU_EISU;
-						$mb_suggest_w[] = mb_convert_kana(addSlashes($q), 'KV');
-					}else{
-					//	$mb_suggest_w[] = addSlashes($q);
+				//for Japanese
+				if(function_exists('mb_convert_kana')){
+					//Zenkaku Eisu
+					$_mbq = mb_convert_kana($q, 'a');
+					if ($q !== $_mbq) {
+						$mb_suggest[] = $_mbq._MD_HANKAKU_EISU;
+						$mb_suggest_w[] = addSlashes($_mbq);
+					}
+					//Hankaku Eisu
+					$_mbq = mb_convert_kana($q, 'A');
+					if ($q !== $_mbq) {
+						$mb_suggest[] = $_mbq._MD_HANKAKU_EISU;
+						$mb_suggest_w[] = addSlashes($_mbq);
+					}
+					//Zenkaku Katakana
+					$_mbq = mb_convert_kana($q, 'k');
+					if ($q !== $_mbq) {
+						$mb_suggest[] = $_mbq._MD_HANKAKU_EISU;
+						$mb_suggest_w[] = addSlashes($_mbq);
+					}
+					//Hankaku Katakana
+					$_mbq = mb_convert_kana($q, 'KV');
+					if ($q !== $_mbq) {
+						$mb_suggest[] = $_mbq._MD_HANKAKU_EISU;
+						$mb_suggest_w[] = addSlashes($_mbq);
 					}
 				}
+			} else if ($q) {
+				$ignored_queries[] = $q;
 			}
 		}
  		if (count($queries) == 0) {
@@ -125,11 +147,11 @@ if ($action != 'showallbyuser') {
 		}
 	} else {
 		$query = trim($query);
-		if (strlen($query) < $xoopsConfigSearch['keyword_min']) {
+		if ($strlen_func($query) < $xoopsConfigSearch['keyword_min']) {
 			redirect_header('index.php', 2, sprintf(_MD_KEYTOOSHORT, $xoopsConfigSearch['keyword_min'], ceil($xoopsConfigSearch['keyword_min']/2) ));
  			exit();
 		}
-		$queries = array(addSlashes($query));
+		$queries = array(addSlashes($query_for_search));
 	}
 }
 switch ($action) {
@@ -188,30 +210,33 @@ case "results":
 		$xoopsTpl->assign('sug_url', $sug_url );
 		foreach ($mb_suggest as $k=>$m) {
 			$sug_keys = array();
-			$sug_keys['key'] = htmlspecialchars(stripslashes($m));
+			$sug_keys['key'] = htmlspecialchars($m);
 			$sug_keys['url'] = $sug_url."&query=".urlencode(stripslashes($mb_suggest_w[$k]));
 			$xoopsTpl->append('sug_keys', $sug_keys);
 		}
 	}
+	$no_matches = array();
 	foreach ($mids as $mid) {
 		$mid = intval($mid);
 		if ( in_array($mid, $available_modules) ) {
  			$module =& $modules[$mid];
+			if (!is_object($module)) continue;
 			$this_mod_dir = $module->getVar('dirname');
 			$use_context = false;
+			$GLOBALS['md_search_flg_zenhan_support'] = false;
 			if( file_exists( XOOPS_ROOT_PATH.'/modules/'.$mydirname.'/plugin/'.$this_mod_dir.'/'.$this_mod_dir.'.php' ) && $xoopsModuleConfig['search_display_text']==1 ){
 				include_once XOOPS_ROOT_PATH.'/modules/'.$mydirname.'/plugin/'.$this_mod_dir.'/'.$this_mod_dir.'.php';
 				$func = 'b_search_'.$this_mod_dir;
-				$results1 =& context_search($func, $queries, $andor, 5, 0);
+				$results1 = context_search($func, $queries, $andor, 5, 0);
 				$use_context = true;
 			}else{
-				$results1 =& $module->search($queries, $andor, 5, 0);
+				$results1 = $module->search($queries, $andor, 5, 0);
 			}
-			if(count($mb_suggest_w)>0){
+			if(! $GLOBALS['md_search_flg_zenhan_support'] && count($mb_suggest_w) > 0){
 				if($use_context){
-					$results2 =& context_search($func, $mb_suggest_w, $andor, 5, 0);
+					$results2 = context_search($func, $mb_suggest_w, $andor, 5, 0);
 				}else{
-					$results2 =& $module->search($mb_suggest_w, $andor, 5, 0);
+					$results2 = $module->search($mb_suggest_w, $andor, 5, 0);
 				}
 			}else{
 				$results2 = array();
@@ -224,8 +249,9 @@ case "results":
 				$count = 5;
 			}
  			if (!is_array($results) || $count == 0) {
-				$no_match = _MD_NOMATCH;
-				$showall_link = '';
+				//$no_match = _MD_NOMATCH;
+				//$showall_link = '';
+				$no_matches[] = $module->getVar('name');
 			} else {
 				$no_match = "";
 				for ($i = 0; $i < $count; $i++) {
@@ -249,21 +275,33 @@ case "results":
 				} else {
 					$showall_link = '';
 				}
+  				$xoopsTpl->append('modules', array('name' => $module->getVar('name'), 'results' => $results, 'showall_link' => $showall_link, 'no_match' => $no_match ));
 			}
-  			$xoopsTpl->append('modules', array('name' => $module->getVar('name'), 'results' => $results, 'showall_link' => $showall_link, 'no_match' => $no_match ));
+  			//$xoopsTpl->append('modules', array('name' => $module->getVar('name'), 'results' => $results, 'showall_link' => $showall_link, 'no_match' => $no_match ));
 		}
 		unset($results1);
 		unset($results2);
 		unset($results);
 		unset($module);
 	}
+	if ($no_matches) {
+		$xoopsTpl->assign('no_matches', $no_matches);
+		$xoopsTpl->assign('no_match', _MD_NOMATCH);
+	}
 	include "include/searchform.php";
 	$search_form  = $search_form->render();
 	//Do not remove follows
 	$search_form .= '<p><a href="http://suin.asia" target="_blank">search</a>(<a href="http://xoopscube.jp/" target="_blank">original</a>)</p>';
 	$xoopsTpl->assign('search_form', $search_form);
+
+	if (defined('LEGACY_MODULE_VERSION') && version_compare(LEGACY_MODULE_VERSION, '2.2', '>=')) {
+		// For XCL >= 2.2
+		$xclRoot =& XCube_Root::getSingleton();
+		$xclRoot->mContext->setAttribute('legacy_pagetitle', Legacy_Utils::formatPagetitle($xoopsModule->getVar('name'), htmlspecialchars(join(' ', $queries)), $andor));
+	}
+
 	break;
-	
+
 case "showall":
 case "showallbyuser":
 	include XOOPS_ROOT_PATH."/header.php";
@@ -283,6 +321,7 @@ case "showallbyuser":
 	$module =& $module_handler->get($mid);
 	$this_mod_dir = $module->getVar('dirname');
 	$use_context = false;
+	$GLOBALS['md_search_flg_zenhan_support'] = false;
 	if( file_exists( XOOPS_ROOT_PATH.'/modules/'.$mydirname.'/plugin/'.$this_mod_dir.'/'.$this_mod_dir.'.php' )  && $xoopsModuleConfig['search_display_text']==1 ){
 		include_once XOOPS_ROOT_PATH.'/modules/'.$mydirname.'/plugin/'.$this_mod_dir.'/'.$this_mod_dir.'.php';
 		$func = 'b_search_'.$this_mod_dir;
@@ -291,7 +330,7 @@ case "showallbyuser":
 	}else{
 		$results1 =& $module->search($queries, $andor, 20, $start, $uid);
 	}
-	if(count($mb_suggest_w)>0){
+	if(!$GLOBALS['md_search_flg_zenhan_support'] && count($mb_suggest_w)>0){
 		if($use_context){
 			$results2 =& context_search($func, $mb_suggest_w, $andor, 20, $start, $uid);
 		}else{
