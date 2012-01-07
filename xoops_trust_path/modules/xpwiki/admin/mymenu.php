@@ -1,76 +1,47 @@
 <?php
 
+/********* mymenu for D3 modules always require altsys>=0.5 ********/
+
+// Deny direct access
+if( preg_replace( '/[^a-zA-Z0-9_-]/' , '' , @$_GET['page'] ) == 'mymenu' ) exit ;
+
 // Skip for ORETEKI XOOPS
 if( defined( 'XOOPS_ORETEKI' ) ) return ;
 
-if( ! isset( $module ) || ! is_object( $module ) ) $module = $xoopsModule ;
-else if( ! is_object( $xoopsModule ) ) die( '$xoopsModule is not set' )  ;
+global $xoopsModule ;
+if( ! is_object( $xoopsModule ) ) die( '$xoopsModule is not set' )  ;
 
-// language file (modinfo.php)
+
+// language files (modinfo.php)
 $langmanpath = XOOPS_TRUST_PATH.'/libs/altsys/class/D3LanguageManager.class.php' ;
-if(is_file( $langmanpath)) {
-	require_once( $langmanpath ) ;
-	$langman =& D3LanguageManager::getInstance() ;
-	$langman->read( 'modinfo.php' , $mydirname , $mytrustdirname , false ) ;
-} else {
-	$language = empty( $xoopsConfig['language'] ) ? 'english' : $xoopsConfig['language'] ;
-	if( is_file( "$mydirpath/language/$language/modinfo.php" ) ) {
-		// user customized language file
-		include_once "$mydirpath/language/$language/modinfo.php" ;
-	} else if( is_file( "$mytrustdirpath/language/$language/modinfo.php" ) ) {
-		// default language file
-		include_once "$mytrustdirpath/language/$language/modinfo.php" ;
-	} else {
-		// fallback english
-		include_once "$mytrustdirpath/language/english/modinfo.php" ;
-	}
-}
+if( ! file_exists( $langmanpath ) ) die( 'install the latest altsys' ) ;
+require_once( $langmanpath ) ;
+$langman =& D3LanguageManager::getInstance() ;
+$langman->read( 'modinfo.php' , $mydirname , $mytrustdirname ) ;
 
 include dirname(__FILE__).'/admin_menu.php' ;
 
-if( is_file( XOOPS_TRUST_PATH.'/libs/altsys/mytplsadmin.php' ) ) {
-	// mytplsadmin (TODO check if this module has tplfile)
-	$title = defined( '_MD_A_MYMENU_MYTPLSADMIN' ) ? _MD_A_MYMENU_MYTPLSADMIN : 'tplsadmin' ;
-	array_push( $adminmenu , array( 'title' => $title , 'link' => 'admin/index.php?mode=admin&lib=altsys&page=mytplsadmin' ) ) ;
-}
-
-if( is_file( XOOPS_TRUST_PATH.'/libs/altsys/myblocksadmin.php' ) ) {
-	// myblocksadmin
-	$title = defined( '_MD_A_MYMENU_MYBLOCKSADMIN' ) ? _MD_A_MYMENU_MYBLOCKSADMIN : 'blocksadmin' ;
-	array_push( $adminmenu , array( 'title' => $title , 'link' => 'admin/index.php?mode=admin&lib=altsys&page=myblocksadmin' ) ) ;
-}
-
-// preferences
-$config_handler =& xoops_gethandler('config');
-if( count( $config_handler->getConfigs( new Criteria( 'conf_modid' , $module->mid() ) ) ) > 0 ) {
-	if( is_file( XOOPS_TRUST_PATH.'/libs/altsys/mypreferences.php' ) ) {
-		// mypreferences
-		$title = defined( '_MD_A_MYMENU_MYPREFERENCES' ) ? _MD_A_MYMENU_MYPREFERENCES : _PREFERENCES ;
-		array_push( $adminmenu , array( 'title' => $title , 'link' => 'admin/index.php?mode=admin&lib=altsys&page=mypreferences' ) ) ;
-	} else {
-		// system->preferences
-		array_push( $adminmenu , array( 'title' => _PREFERENCES , 'link' => XOOPS_URL.'/modules/system/admin.php?fct=preferences&op=showmod&mod='.$module->mid() ) ) ;
-	}
-}
+$adminmenu = array_merge( $adminmenu , $adminmenu4altsys ) ;
 
 $mymenu_uri = empty( $mymenu_fake_uri ) ? $_SERVER['REQUEST_URI'] : $mymenu_fake_uri ;
 $mymenu_link = substr( strstr( $mymenu_uri , '/admin/' ) , 1 ) ;
 
 
-
-// highlight (you can customize the colors)
+// highlight
 foreach( array_keys( $adminmenu ) as $i ) {
 	if( $mymenu_link == $adminmenu[$i]['link'] ) {
-		$adminmenu[$i]['color'] = '#FFCCCC' ;
+		$adminmenu[$i]['selected'] = true ;
 		$adminmenu_hilighted = true ;
+		$GLOBALS['altsysAdminPageTitle'] = $adminmenu[$i]['title'] ;
 	} else {
-		$adminmenu[$i]['color'] = '#DDDDDD' ;
+		$adminmenu[$i]['selected'] = false ;
 	}
 }
 if( empty( $adminmenu_hilighted ) ) {
 	foreach( array_keys( $adminmenu ) as $i ) {
 		if( stristr( $mymenu_uri , $adminmenu[$i]['link'] ) ) {
-			$adminmenu[$i]['color'] = '#FFCCCC' ;
+			$adminmenu[$i]['selected'] = true ;
+			$GLOBALS['altsysAdminPageTitle'] = $adminmenu[$i]['title'] ;
 			break ;
 		}
 	}
@@ -83,9 +54,12 @@ foreach( array_keys( $adminmenu ) as $i ) {
 	}
 }
 
-// display (you can customize htmls)
-echo "<div style='text-align:left;width:98%;'>" ;
-foreach( $adminmenu as $menuitem ) {
-	echo "<div style='float:left;height:1.5em;'><nobr><a href='".htmlspecialchars($menuitem['link'],ENT_QUOTES)."' style='background-color:{$menuitem['color']};font:normal normal bold 9pt/12pt;'>".htmlspecialchars($menuitem['title'],ENT_QUOTES)."</a> | </nobr></div>\n" ;
-}
-echo "</div>\n<hr style='clear:left;display:block;' />\n" ;
+// display
+require_once XOOPS_TRUST_PATH.'/libs/altsys/class/D3Tpl.class.php' ;
+$tpl = new D3Tpl() ;
+$tpl->assign( array(
+	'adminmenu' => $adminmenu ,
+) ) ;
+$tpl->display( 'db:altsys_inc_mymenu.html' ) ;
+
+?>

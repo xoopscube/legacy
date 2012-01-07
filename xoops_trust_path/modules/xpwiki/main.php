@@ -19,6 +19,11 @@ $xpwiki = new XpWiki($mydirname);
 // initialize
 $xpwiki->init();
 
+// XCL >= 2.2 Use "Legacy_Utils::formatPagetitle"
+if (defined('LEGACY_MODULE_VERSION') && version_compare(LEGACY_MODULE_VERSION, '2.2', '>=')) {
+	$xpwiki->root->html_head_title = trim(str_replace('$module_title', '', $xpwiki->root->html_head_title), ' -');
+}
+
 // execute
 $xpwiki->execute();
 
@@ -63,8 +68,9 @@ if ($xpwiki->runmode === 'xoops') {
 	);
 
 	if (defined('LEGACY_MODULE_VERSION') && version_compare(LEGACY_MODULE_VERSION, '2.2', '>=')) {
-		// For XCL 2.2
+		// For XCL >= 2.2
 		$xclRoot =& XCube_Root::getSingleton();
+		$xclRoot->mContext->setAttribute('legacy_pagetitle', Legacy_Utils::formatPagetitle($xpwiki->root->module_title, $xpwiki->root->pagetitle, $xpwiki->root->pagetitle_action));
 		$headerScript = $xclRoot->mContext->getAttribute('headerScript');
 		$headerScript->addMeta('description', $xpwiki->root->meta_description);
 	} elseif (isset($xoTheme) && is_object($xoTheme)) {
@@ -100,25 +106,10 @@ if ($xpwiki->runmode === 'xoops') {
 
 	// language files
 	$langmanpath = XOOPS_TRUST_PATH.'/libs/altsys/class/D3LanguageManager.class.php' ;
-	if(is_file( $langmanpath)) {
-		require_once( $langmanpath ) ;
-		$langman =& D3LanguageManager::getInstance() ;
-		$langman->read( 'admin.php' , $mydirname , $mytrustdirname , false ) ;
-	} else {
-		$mydirpath = $xpwiki->root->mydirpath;
-		$mytrustdirpath = $xpwiki->root->mytrustdirpath ;
-		$language = empty( $xoopsConfig['language'] ) ? 'english' : $xoopsConfig['language'] ;
-		if( is_file( "$mydirpath/language/$language/admin.php" ) ) {
-			// user customized language file
-			include_once "$mydirpath/language/$language/admin.php" ;
-		} else if( is_file( "$mytrustdirpath/language/$language/admin.php" ) ) {
-			// default language file
-			include_once "$mytrustdirpath/language/$language/admin.php" ;
-		} else {
-			// fallback english
-			include_once "$mytrustdirpath/language/english/admin.php" ;
-		}
-	}
+	if( ! file_exists( $langmanpath ) ) die( 'install the latest altsys' ) ;
+	require_once( $langmanpath ) ;
+	$langman =& D3LanguageManager::getInstance() ;
+	$langman->read( 'admin.php' , $mydirname , $mytrustdirname , false ) ;
 
 	// xoops admin header
 	xoops_cp_header() ;

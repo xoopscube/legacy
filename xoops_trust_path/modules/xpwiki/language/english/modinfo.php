@@ -37,6 +37,10 @@ define( $constpref.'_PLUGIN_CONVERTER' , 'Plugin Converter' ) ;
 define( $constpref.'_SKIN_CONVERTER' , 'Skin Converter' ) ;
 define( $constpref.'_ADMIN_CONF' , 'Preference' ) ;
 define( $constpref.'_ADMIN_TOOLS' , 'Admin Tools' ) ;
+define( $constpref.'_ADMENU_MYLANGADMIN','Languages');
+define( $constpref.'_ADMENU_MYTPLSADMIN','Templates');
+define( $constpref.'_ADMENU_MYBLOCKSADMIN','Blocks/Permissions');
+define( $constpref.'_ADMENU_MYPREFERENCES','Preferences');
 
 define( $constpref.'_COM_DIRNAME','Comment-integration: dirname of d3forum');
 define( $constpref.'_COM_FORUM_ID','Comment-integration: forum ID');

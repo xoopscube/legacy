@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/09/29 by nao-pon http://hypweb.net/
-// $Id: xpwiki.php,v 1.101 2011/11/26 12:03:10 nao-pon Exp $
+// $Id: xpwiki.php,v 1.102 2012/01/07 07:52:19 nao-pon Exp $
 //
 
 class XpWiki {
@@ -261,7 +261,7 @@ class XpWiki {
 										array('$page_title', '$content_title', '$module_title'),
 										array($page_title, $content_title, $root->module_title),
 										$root->html_head_title));
-
+				$root->pagetitle_action = isset($root->_LANG['skin'][$root->vars['cmd']])? htmlspecialchars($root->_LANG['skin'][$root->vars['cmd']]) : '';
 				$this->title         = $title;
 				$this->page          = $base;
 				$this->skin_title    = $page;

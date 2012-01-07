@@ -5,17 +5,11 @@ $_parentdirname = dirname(__FILE__);
 
 // language file (modinfo.php)
 $langmanpath = XOOPS_TRUST_PATH.'/libs/altsys/class/D3LanguageManager.class.php' ;
-if(is_file( $langmanpath)) {
-	require_once( $langmanpath ) ;
-	$langman =& D3LanguageManager::getInstance() ;
-	$langman->read( 'modinfo.php' , $mydirname , $mytrustdirname , false ) ;
-} else {
-	if( is_file( $_parentdirname.'/language/'.@$xoopsConfig['language'].'/modinfo.php' ) ) {
-		include $_parentdirname.'/language/'.@$xoopsConfig['language'].'/modinfo.php' ;
-	} else if( is_file( $_parentdirname.'/language/english/modinfo.php' ) ) {
-		include $_parentdirname.'/language/english/modinfo.php' ;
-	}
-}
+if( ! file_exists( $langmanpath ) ) die( 'install the latest altsys' ) ;
+require_once( $langmanpath ) ;
+$langman =& D3LanguageManager::getInstance() ;
+$langman->read( 'modinfo.php' , $mydirname , $mytrustdirname , false ) ;
+
 
 $constpref = '_MI_' . strtoupper( $mydirname ) ;
 

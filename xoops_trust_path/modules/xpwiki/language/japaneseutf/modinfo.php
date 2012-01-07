@@ -37,6 +37,10 @@ define( $constpref.'_PLUGIN_CONVERTER' , 'プラグイン変換ツール' ) ;
 define( $constpref.'_SKIN_CONVERTER' , 'スキン変換ツール' ) ;
 define( $constpref.'_ADMIN_CONF' , '環境設定' ) ;
 define( $constpref.'_ADMIN_TOOLS' , '管理用ツール一覧' ) ;
+define( $constpref.'_ADMENU_MYLANGADMIN' , '言語定数管理' ) ;
+define( $constpref.'_ADMENU_MYTPLSADMIN' , 'テンプレート管理' ) ;
+define( $constpref.'_ADMENU_MYBLOCKSADMIN' , 'ブロック管理/アクセス権限' ) ;
+define( $constpref.'_ADMENU_MYPREFERENCES' , '一般設定' ) ;
 
 define( $constpref.'_COM_DIRNAME','コメント統合するd3forumのdirname');
 define( $constpref.'_COM_FORUM_ID','コメント統合するフォーラムの番号');

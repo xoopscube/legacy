@@ -17,25 +17,9 @@ if( ! is_object( @$xoopsUser ) || ! $moduleperm_handler->checkRight( 'module_adm
 $xoopsOption['pagetype'] = 'admin' ;
 require XOOPS_ROOT_PATH.'/include/cp_functions.php' ;
 
-// language files (admin.php)
+// D3LanguageManager
 $langmanpath = XOOPS_TRUST_PATH.'/libs/altsys/class/D3LanguageManager.class.php' ;
-if(is_file( $langmanpath)) {
-	require_once( $langmanpath ) ;
-	$langman =& D3LanguageManager::getInstance() ;
-	$langman->read( 'admin.php' , $mydirname , $mytrustdirname , false ) ;
-} else {
-	$language = empty( $xoopsConfig['language'] ) ? 'english' : $xoopsConfig['language'] ;
-	if( is_file( "$mydirpath/language/$language/admin.php" ) ) {
-		// user customized language file
-		include_once "$mydirpath/language/$language/admin.php" ;
-	} else if( is_file( "$mytrustdirpath/language/$language/admin.php" ) ) {
-		// default language file
-		include_once "$mytrustdirpath/language/$language/admin.php" ;
-	} else {
-		// fallback english
-		include_once "$mytrustdirpath/language/english/admin.php" ;
-	}
-}
+if( ! file_exists( $langmanpath ) ) die( 'install the latest altsys' ) ;
 
 if( ! empty( $_GET['lib'] ) ) {
 	// common libs (eg. altsys)
@@ -50,6 +34,11 @@ if( ! empty( $_GET['lib'] ) ) {
 		die( 'wrong request' ) ;
 	}
 } else {
+	// language files (admin.php)
+	require_once( $langmanpath ) ;
+	$langman =& D3LanguageManager::getInstance() ;
+	$langman->read( 'admin.php' , $mydirname , $mytrustdirname , false ) ;
+
 	// fork each pages of this module
 	$page = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , @$_GET['page'] ) ;
 

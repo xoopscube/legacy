@@ -37,6 +37,10 @@ define( $constpref.'_PLUGIN_CONVERTER' , 'Conversor de Plugin' ) ;
 define( $constpref.'_SKIN_CONVERTER' , 'Convertor de Skin ' ) ;
 define( $constpref.'_ADMIN_CONF' , 'Preferências' ) ;
 define( $constpref.'_ADMIN_TOOLS' , 'Ferramentas administrativas' ) ;
+define( $constpref.'_ADMENU_MYLANGADMIN','Idiomas');
+define( $constpref.'_ADMENU_MYTPLSADMIN','Modelos');
+define( $constpref.'_ADMENU_MYBLOCKSADMIN','Blocos e permissões');
+define( $constpref.'_ADMENU_MYPREFERENCES','Preferências');
 
 define( $constpref.'_COM_DIRNAME','Integração de comentários: nome do diretório do d3forum');
 define( $constpref.'_COM_FORUM_ID','Integração de comentários: ID do fórum');
