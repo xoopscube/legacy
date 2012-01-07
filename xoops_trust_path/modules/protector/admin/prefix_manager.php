@@ -56,7 +56,7 @@ if( ! empty( $_POST['copy'] ) && ! empty( $_POST['old_prefix'] ) ) {
 	exit ;
 
 // DUMP INTO A LOCAL FILE
-} else if( ! empty( $_POST['backup'] ) && ! empty( $_POST['prefix'] ) ) {
+} else if( ! empty( $_POST['prefix'] ) && (! empty( $_POST['backup']) || ! empty( $_POST['download_zip'])  || ! empty( $_POST['download_tgz']) ) ){
 
 	if( preg_match( '/[^0-9A-Za-z_-]/' , $_POST['prefix'] ) ) die( 'wrong prefix' ) ;
 
@@ -65,7 +65,13 @@ if( ! empty( $_POST['copy'] ) && ! empty( $_POST['old_prefix'] ) ) {
 		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
 	}
 
-	$prefix = $_POST['prefix'] ;
+	$prefix = $_POST['prefix'] ;//check line 61
+//HACK by suin & nao-pon 2012/01/06
+	while ( ob_get_level() > 0 ) {
+		if (! ob_end_clean()) {
+			break;
+		}
+	}
 
 	// get table list
 	$srs = $db->queryF( 'SHOW TABLE STATUS FROM `'.XOOPS_DB_NAME.'`' ) ;
@@ -127,8 +133,34 @@ if( ! empty( $_POST['copy'] ) && ! empty( $_POST['old_prefix'] ) ) {
 
 	}
 
+	$sqlfile_name =  $prefix.'_'.date('YmdHis').'.sql';
+
+//by domifara for add action zip ,ta.gzdownload
+	if( ! empty( $_POST['download_zip'] ) ) {
+		require_once XOOPS_ROOT_PATH.'/class/zipdownloader.php' ;
+		$downloader = new XoopsZipDownloader();
+		$downloader->addFileData( $export_string , $sqlfile_name , time() ) ;
+		$downloader->download( $sqlfile_name , true ) ;
+		exit;
+	} else if( ! empty( $_POST['download_tgz'] ) ) {
+		require_once XOOPS_ROOT_PATH.'/class/tardownloader.php' ;
+		$downloader = new XoopsTarDownloader();
+		$downloader->addFileData( $export_string , $sqlfile_name , time() ) ;
+		$downloader->download( $sqlfile_name , true ) ;
+		exit;
+	}
+
+//fix for mb_http_output setting and for add any browsers
+	if (function_exists('mb_http_output')) {
+		mb_http_output('pass');
+	}
+	header("Pragma: public"); // required
+	header("Expires: 0");
+	header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+	header("Cache-Control: private",false); // required for certain browsers
 	header('Content-Type: Application/octet-stream') ;
-	header('Content-Disposition: attachment; filename="'.$prefix.'_'.date('YmdHis').'.sql"') ;
+	header('Content-Disposition: attachment; filename="'.$sqlfile_name.'"') ;
+	header("Content-Transfer-Encoding: binary");
 	header('Content-Length: '.strlen($export_string)) ;
 	set_time_limit( 0 ) ;
 	echo $export_string ;
@@ -251,8 +283,14 @@ foreach( $prefixes as $prefix ) {
 				$ticket_input
 				<input type='hidden' name='prefix' value='$prefix4disp' />
 				$del_button
-				<input type='submit' name='backup' value='backup' onclick='this.form.target=\"_blank\"' />
-			</form>
+				<input type='submit' name='backup' value='backup' onclick='this.form.target=\"_blank\"' />";
+				if ( function_exists("gzcompress") ) {
+					echo "<input type='submit' name='download_zip' value='zip' onclick='this.form.target=\"_blank\"' />" ;
+				}
+				if ( function_exists("gzencode") ) {
+					echo "<input type='submit' name='download_tgz' value='tar.gz' onclick='this.form.target=\"_blank\"' />";
+				}
+	echo "	</form>
 		</td>
 	</tr>\n" ;
 
