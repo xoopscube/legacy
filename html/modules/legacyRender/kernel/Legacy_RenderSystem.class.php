@@ -247,7 +247,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 					  'xoops_themecss'=>xoops_getcss($themeName),
 					  'xoops_sitename'=>$textFilter->toShow($context->getAttribute('legacy_sitename')),
 					  'xoops_pagetitle'=>$textFilter->toShow($context->getAttribute('legacy_pagetitle')),
-					  'xoops_slogan', $textFilter->toShow($context->getAttribute('legacy_slogan')));
+					  'xoops_slogan'=>$textFilter->toShow($context->getAttribute('legacy_slogan')));
 
 		//
 		// Assign module informations.
