@@ -166,6 +166,17 @@ if( ! empty( $_POST['as_dw_extension_zip'] ) ) {
 }
 
 if( ! empty( $do_download ) ) {
+//fix for mb_http_output setting and for add any browsers
+	if (function_exists('mb_http_output')) {
+		mb_http_output('pass');
+	}
+	//ob_buffer over flow
+//HACK by suin & nao-pon 2012/01/06
+	while ( ob_get_level() > 0 ) {
+		if (! ob_end_clean()) {
+			break;
+		}
+	}
 	// make files for each tplsvars
 	foreach( $tplsvarsinfo_total as $key => $val ) {
 		$name = substr( $key , 1 ) ;
@@ -189,8 +200,8 @@ if( ! empty( $do_download ) ) {
 		$mxi_body = get_mxi_body( $mod_name , $file_entries ) ;
 		$downloader->addFileData( $mxi_body , $mod_name.'.mxi' ) ;
 	}
-
-	echo $downloader->download( 'tplsvarsinfo' , true ) ;
+//bugfix by nao-pon ,echo is not necessary for downloader
+	$downloader->download( 'tplsvarsinfo' , true ) ;
 }
 
 ?>
