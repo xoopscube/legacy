@@ -52,6 +52,15 @@ $mids_p	= isset($_REQUEST['mids'])  	? $_REQUEST['mids']	 	: "";
 $mids = array();
 if( is_array($mids_p) ) { foreach($mids_p as $e){  $mids[] = intval($e); } }
 
+//by domifara add rawurldecode for firefox
+$query = rawurldecode($query);
+if(function_exists('mb_detect_encoding') && function_exists('mb_convert_encoding')){
+	$from_encode = mb_detect_encoding($query);
+	if ($from_encode && $from_encode !== _CHARSET){
+		$query = mb_convert_encoding($query , _CHARSET , $from_encode);
+	}
+}
+
 if ($andor != 'exact') {
 	$query	= mb_ereg_replace(_MD_NBSP, " ", $query);
 }
@@ -241,6 +250,13 @@ case "results":
 			}else{
 				$results2 = array();
 			}
+				//by domifara  Warning [PHP]: array_merge() [function.array-merge]: Argument #1 or #2 is not an array
+				if (!is_array($results1)){
+					$results1 = array();
+				}
+				if (!is_array($results2)){
+					$results2 = array();
+				}
 			$results = array_map('unserialize', array_unique(array_map('serialize', array_merge($results1,$results2))));
 			usort($results, 'sort_by_date');
 			$count = count($results);
