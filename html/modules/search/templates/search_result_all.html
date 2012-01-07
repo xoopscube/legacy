@@ -1,0 +1,21 @@
+<{if $no_match==""}>
+<h3><{$lang_search_results}></h3>
+<{if $lang_keyword!=""}><{$lang_keyword}>:<{/if}>
+<{foreach item=keyword from=$keywords}>
+<strong><{$keyword.key}></strong> 
+<{/foreach}>
+<{$showing}>
+<h5><{$module_name}></h5>
+<p>
+  <{foreach item=result from=$results}>
+  <img src="<{$xoops_url}><{$result.image}>" alt="<{$module_name}>" /><strong><a href="<{$xoops_url}><{$result.link}>"><{$result.title}></a></strong><br />
+<small><{if $result.uid!=0}><a href="<{$xoops_url}>/userinfo.php?uid=<{$result.uid}>"><{$result.uname}></a><{/if}><{if $result.time!=""}> (<{$result.time}>)<{/if}></small><br />
+<{if $result.context!=""}><div class="context"><{$result.context}></div><{/if}>
+  <{/foreach}>
+<br />
+</p>
+<{$navi}>
+<{else}>
+<p><{$no_match}></p>
+<{/if}>
+<{$search_form}>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-type" content="text/html; charset=US-ASCII" />
+<title>XOOPS Search module</title>
+</head>
+<body>
+<h4>About this module</h4>
+This module has renewal of search function in XOOPS, because it is not gentle with Japanese(multi byte). The retrieval block is included, too.<br />
+<h4>Function<span style="font-size:small">(difference between original search function)</span></h4>
+<ul>
+  <li>It show the number of lowest characters by single and multi byte.</li>
+  <li>Brushup some language resources.</li>
+  <li>The result can be laid out with the template, so you may select various plug-in, as you like.</li>
+  <li>It changes like showing that there is no module that can be retrieved when there is no module that can be retrieved.</li>
+  <li>extract() is removed and the variable pollution is prevented.</li>
+  <li>It having separated from a core of XOOPS.</li>
+  <li>Administrator can manage freely set &quot;module to be retrieved&quot;.</li>
+  <li>The text of the result can be displayed(extension-free in the plug-in).</li>
+  <li>This module has block that redirects automatically when there was request in http:// your site/search.php. If you don't use original search function, you have to set block completely as displayed in all pages and all groups.</li>
+</ul>
+* A part of the function optimized to Japanese is not worked if server doesn't support mbstring.
+<h4>Module list for which text display can be used(alphabetical)</h4>
+The following modules are corresponded by plug-ins.<br />
+<br />
+<a href="http://blues.naono.net/">BluesBB</a><br />
+<a href="http://suin.asia/">comment_search</a><br />
+<a href="http://sourceforge.jp/projects/xoops/downloads/21281/">mydownloads / mylinks / newbb / news</a><br />
+<a href="http://sourceforge.jp/projects/xoops/downloads/21281/">XoopsFAQ</a><br />
+<a href="http://www.kanpyo.net/">Xwords</a><br />
+<br />
+The following modules corresponds by themself. therefore, the plug-ins is not enclosed.<br />
+<a href="http://www.kuri3.net/">d3blog</a><br />
+<a href="http://xoops.peak.ne.jp/">myAlbum-P</a><br />
+<a href="http://xoops.peak.ne.jp/">piCal</a><br />
+<a href="http://xoops.peak.ne.jp/">pico</a><br />
+<a href="http://xoops.peak.ne.jp/">TinyD</a><br />
+<a href="http://xoops.peak.ne.jp">wraps</a><br />
+<br />
+The following modules are, the author is distributing the plug-in.<br />
+<a href="http://linux.ohwada.jp/">rssc</a><br />
+<a href="http://linux.ohwada.jp/">weblinks</a><br />
+<a href="http://linux.ohwada.jp/">xfsection</a><br />
+<h4>Immunity and Guarantee</h4>
+<ul>
+  <li>The influence that this application gives you is assumed to be not responsible at all to those who produce.</li>
+  <li>Those who produce abdicate all responsibility for the user of this application.</li>
+  <li>The user of this application doesn't have a previous notice and those who produce do not assume the responsibility to those who produce for those having the right to decide the discontinuance of time and development that changes and distributes this application etc. freely, and giving it to the user at all.</li>
+  <li>It is not production person's obligation though those who produce make an effort to the solution of the trouble of this application.</li>
+  <li>The user assumes that he or she assumes all responsibilities of this application when this application is used and agreed to the above-mentioned matter.</li>
+</ul>
+<h4>Installation</h4>
+<ol>
+  <li>The data compressed file is defrosted and it uploads it to the module directory.</li>
+  <li>Please install it in the &quot;Module Management&quot;.</li>
+  <li>Please set it variously by &quot;General setting&quot; of this module.</li>
+  <li>Please set the block as the group.</li>
+</ol>
+<h4>Uninstallation</h4>
+Please execute uninstallation from the &quot;Module Management&quot; a usual similar module.
+<h4>Tips for more secure</h4>
+This module patches the security hole in the core of XOOPS 2.0.x.<br />
+In search.php, the weakness exists that executes extract() two times. So, I will introduce the method of closing it by hucking the core.<br />
+<br />
+search.php(before):
+<div style="border:1px inset #000080; padding:0px 6px 6px 6px; margin:0.5em;">
+<pre>$xoopsOption['pagetype'] = &quot;search&quot;;
+
+include 'mainfile.php';
+$config_handler =&amp; xoops_gethandler('config');
+$xoopsConfigSearch =&amp; $config_handler-&gt;getConfigsByCat(XOOPS_CONF_SEARCH);
+
+if ($xoopsConfigSearch['enable_search'] != 1) {
+    header('Location: '.XOOPS_URL.'/index.php');
+    exit();
+}
+
+extract($_GET);
+extract($_POST, EXTR_OVERWRITE);</pre>
+</div>
+<br />
+search.php(after):
+<div style="border:1px inset #000080; padding:0px 6px 6px 6px; margin:0.5em;">
+<pre>$xoopsOption['pagetype'] = &quot;search&quot;;
+
+include 'mainfile.php';
+<span style="color:red">
+// xoops search japanese optimization START
+if(file_exists(XOOPS_ROOT_PATH.&quot;/modules/search/index.php&quot;)){
+        $module_handler =&amp; xoops_gethandler('module');
+        $module =&amp; $module_handler-&gt;getByDirname('search');
+        if( $module-&gt;getVar('isactive') == 1){
+                header(&quot;Location: &quot;.XOOPS_URL.&quot;/modules/&quot;.$mydirname.&quot;/index.php?&quot;.$_SERVER['QUERY_STRING']);
+                exit();
+        }
+}
+// xoops search japanese optimization END</span>
+
+$config_handler =&amp; xoops_gethandler('config');
+$xoopsConfigSearch =&amp; $config_handler-&gt;getConfigsByCat(XOOPS_CONF_SEARCH);
+
+if ($xoopsConfigSearch['enable_search'] != 1) {
+    header('Location: '.XOOPS_URL.'/index.php');
+    exit();
+}
+
+extract($_GET);
+extract($_POST, EXTR_OVERWRITE);</pre>
+</div>
+<h4>Revision History</h4>
+<table border="1" cellpadding="0" cellspacing="0" summary="Changes">
+  <col span="3" />
+  <tbody>
+    <tr>
+      <th style="text-align:center;" abbr="version">Version</th>
+      <th style="text-align:center;" abbr="date">Date</th>
+      <th style="text-align:center;" abbr="version">News</th>
+    </tr>
+    <tr>
+      <td style="white-space:nowrap;">1.0</td>
+      <td style="white-space:nowrap;">2005-01-19</td>
+      <td style="white-space:nowrap;">First release</td>
+    </tr>
+    <tr>
+      <td>2.0</td>
+      <td>2006-06-02</td>
+      <td>Rewrited the typo that causes SQL Injection.<br />
+      [Bug]The text was not displayed when retrieving from the block.</td>
+    </tr>
+    <tr>
+      <td>2.01</td>
+      <td>2007-12-05</td>
+      <td>Deleted link to Amethyst Blue site.</td>
+    </tr>
+    <tr>
+      <td>2.01a</td>
+      <td>2008-12-16</td>
+      <td>[Bug]The search is not done correctly when words that include comma.</td>
+    </tr>
+    <tr>
+      <td>2.01b</td>
+      <td>2008-12-18</td>
+      <td>Added two language files(English and Ja_utf8) and help file(this file).</td>
+    </tr>
+    <tr>
+      <td>2.01c</td>
+      <td>-----</td>
+      <td>Extended the range of the retrieval for Japanese.</td>
+    </tr>
+    <tr>
+      <td>2.01d</td>
+      <td>2009-01-13</td>
+      <td>[Bug?]Corrected the point that failed in cutting out the retrieval result unusually.<br />Assumed the display range specification to be character number conversion from byte conversion.</td>
+    </tr>
+    <tr>
+      <td>2.01e</td>
+      <td>2009-02-01</td>
+      <td>added mymenu, said &quot;good-bye&quot; to system modules and &quot;welcome&quot; to altsys.</td>
+    </tr>
+    <tr>
+      <td>2.02</td>
+      <td>2009-03-19</td>
+      <td>Hack version Release.</td>
+    </tr>
+    <tr>
+      <td>2.02a</td>
+      <td>2009-04-27</td>
+      <td>[Bug]Corrected entity reference("&amp;" -&gt; "&amp;amp;")in mymenu.<br />2 templates and help(this file) were updated.</td>
+    </tr>
+    <tr>
+      <td>2.03</td>
+      <td>2010-03-24</td>
+      <td>[Bug]Excluded modules Options were not saved.<br />help(this file) were updated.</td>
+    </tr>
+  </tbody>
+</table>
+<h4>Special Thanks:</h4>
+Content display hack by nao-pon &lt;<a href="http://hypweb.net/xoops/">http://hypweb.net/xoops/</a>&gt;<br />
+Idea that "when retrieving, the module can be selected" by dendeke.<br />
+myblocksadmin by GIJOE &lt;<a href="http://xoops.peak.ne.jp/">http://xoops.peak.ne.jp/</a>&gt;<br />
+<h4>Copyrights</h4>
+Original search module was developed by <a href="http://suin.asia/">SUIN</a>.
+and new version(&gt; 2.01) was hacked by <a href="http://9demaio.com">Shigeto Yoshida</a>.

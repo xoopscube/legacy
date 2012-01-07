@@ -1,0 +1,12 @@
+/* nao-pon's hack */
+div.context{
+	border: blue 1px dotted;
+	color:#444444;
+	background-color:#FFFFEE;
+	padding: 3px 10px;
+	margin: 5px 5px 5px 25px;
+	font-size: 100%;
+	text-align: left;
+	line-height: 130%;
+	word-break: break-all;
+}

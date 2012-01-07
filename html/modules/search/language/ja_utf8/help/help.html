@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>XOOPS検索</title>
+</head>
+<body>
+<div class="help"><h4>このモジュールについて</h4>
+日本語に優しくないXOOPSの検索機能を日本語(マルチバイト)向けに改良しモジュール化したものです。検索ブロックも付属しています。<br />
+<h4>機能説明<span style="font-size:small">(付属の検索機能とこのモジュールとの違い)</span></h4>
+<ul>
+  <li>最低文字数の表示を半角と全角で示すように変更。</li>
+  <li>用語の一般化「検索対象のモジュール」→「検索対象のページ」</li>
+  <li>用語の一般化「検索ルール」→「検索上の注意」</li>
+  <li>テンプレートで出力するので検索結果のレイアウトができる。</li>
+  <li>テンプレートで出力するので<a href="http://ryus.co.jp/modules/d3downloads/index.php?page=singlefile&amp;cid=4&amp;lid=7" target="_blank">ryus_date</a>などのプラグインを自由に使える。</li>
+  <li>全角スペースでもAND検索できるように変更。</li>
+  <li>全角英数でも半角英数にヒットするように変更(要mbstring)。</li>
+  <li>全角カナでも半角カナにヒットするように変更(要mbstring)。</li>
+  <li>全角記号でも半角記号にヒットするように変更(要mbstring)。</li>
+  <li>半角英数でも全角英数にヒットするように変更(要mbstring)。</li>
+  <li>半角カナでも全角カナにヒットするように変更(要mbstring)。</li>
+  <li>半角記号でも全角記号にヒットするように変更(要mbstring)。</li>
+  <li>検索できるモジュールが無い場合、検索できるモジュールがないことを示すように変更。</li>
+  <li>extract()による展開を止めて変数汚染を予防。</li>
+  <li>コアの一部から切り離したことで改造することに抵抗がなくなった。</li>
+  <li>「検索対象のモジュール」を管理者が自由に設定できる。</li>
+  <li>検索結果の本文を表示できる。(プラグインで拡張可能)</li>
+  <li>「サイト検索[転送用]」ブロック…http://あなたのサイト/search.phpにリクエストが有った際、このモジュールに自動的に転送するためのブロック。XOOPS付属のsearch.phpを全く使用したく無い場合は、全てのページ、全てのグループで表示されるように設定してください。</li>
+</ul>
+*mbstringが無くても作動しますが日本語に最適化された機能の一部が使用できなくなります。機能の一部が使えなくなるわけで動作不能になるわけではありません。
+<h4>本文表示が使えるモジュール名一覧(アルファベット順)</h4>
+下記のモジュールは同梱のプラグインで対応しています。<br />
+<a href="http://blues.naono.net/">BluesBB</a><br />
+<a href="http://suin.asia/">comment_search</a><br />
+<a href="http://sourceforge.jp/projects/xoops/downloads/21281/">mydownloads / mylinks / newbb / news</a><br />
+<a href="http://sourceforge.jp/projects/xoops/downloads/21281/">XoopsFAQ</a><br />
+<a href="http://www.kanpyo.net/">Xwords</a><br />
+<br />
+下記のモジュールはそれ自体が対応しているためプラグイン不要です。<br />
+<a href="http://www.kuri3.net/">d3blog</a><br />
+<a href="http://xoops.peak.ne.jp/">myAlbum-P</a><br />
+<a href="http://xoops.peak.ne.jp/">piCal</a><br />
+<a href="http://xoops.peak.ne.jp/">pico</a><br />
+<a href="http://xoops.peak.ne.jp/">TinyD</a><br />
+<a href="http://linux.ohwada.jp/">weblinks</a><br />
+<h4>免責と保証</h4>
+<ul>
+  <li>このアプリケーションがあなたに与える影響に関して制作者には一切の責任はないとする。</li>
+  <li>このアプリケーションの利用者に対して制作者は一切の責任を放棄する。</li>
+  <li>制作者はこのアプリケーションの利用者に予告無くこのアプリケーションを変更・配布する時期・開発の中止等を自由に決定する権利を持つと共に、それらが利用者に与えることに関して制作者は一切の責任を負わない。</li>
+  <li>制作者はこのアプリケーションの不具合を解決することに努力するが、それは制作者の義務ではない。</li>
+  <li>利用者はこのアプリケーションを利用した時点でこのアプリケーションの全責任を負うと共に上記の事項に同意したとする。</li>
+</ul>
+<h4>インストール方法</h4>
+<ol>
+  <li>圧縮ファイルを解凍してモジュールディレクトリにアップロード。</li>
+  <li>モジュール管理にてインストールしてください。</li>
+  <li>このモジュールの「一般設定」で各種設定を行って下さい。</li>
+  <li>グループとブロックの設定を行って下さい。</li>
+</ol>
+<h4>アンインストール方法</h4>
+通常のモジュール同様にモジュール管理よりアンインストールを実行してください。
+<h4>Tips - よりセキュアに -</h4>
+このモジュールでは2.0.xバージョンのコアのセキュリティーホールを埋める機能も果たせます。<br />
+グローバルサーチを受け持つsearch.phpにはextract()を2回実行する脆弱が存在します。ここではコアをハックして、それを塞ぐ方法を紹介します。<br />
+<br />
+1.変更前、変更後を参考に、下記のように赤い部分を追加して下さい。<br />
+<br />
+search.php 変更前：
+<div style="border:1px inset #000080; padding:0px 6px 6px 6px; margin:0.5em;">
+<pre>$xoopsOption['pagetype'] = &quot;search&quot;;
+
+include 'mainfile.php';
+$config_handler =&amp; xoops_gethandler('config');
+$xoopsConfigSearch =&amp; $config_handler-&gt;getConfigsByCat(XOOPS_CONF_SEARCH);
+
+if ($xoopsConfigSearch['enable_search'] != 1) {
+    header('Location: '.XOOPS_URL.'/index.php');
+    exit();
+}
+
+extract($_GET);
+extract($_POST, EXTR_OVERWRITE);</pre>
+</div>
+変更後：
+<div style="border:1px inset #000080; padding:0px 6px 6px 6px; margin:0.5em;">
+<pre>$xoopsOption['pagetype'] = &quot;search&quot;;
+
+include 'mainfile.php';
+<span style="color:red">
+// xoops search japanese optimization START
+if(file_exists(XOOPS_ROOT_PATH.&quot;/modules/search/index.php&quot;)){
+        $module_handler =&amp; xoops_gethandler('module');
+        $module =&amp; $module_handler-&gt;getByDirname('search');
+        if( $module-&gt;getVar('isactive') == 1){
+                header(&quot;Location: &quot;.XOOPS_URL.&quot;/modules/&quot;.$mydirname.&quot;/index.php?&quot;.$_SERVER['QUERY_STRING']);
+                exit();
+        }
+}
+// xoops search japanese optimization END</span>
+
+$config_handler =&amp; xoops_gethandler('config');
+$xoopsConfigSearch =&amp; $config_handler-&gt;getConfigsByCat(XOOPS_CONF_SEARCH);
+
+if ($xoopsConfigSearch['enable_search'] != 1) {
+    header('Location: '.XOOPS_URL.'/index.php');
+    exit();
+}
+
+extract($_GET);
+extract($_POST, EXTR_OVERWRITE);</pre>
+</div>
+<h4>更新履歴</h4>
+<table border="1" cellpadding="0" cellspacing="0" summary="Changes">
+  <col span="3" />
+  <tbody>
+    <tr>
+      <th style="text-align:center;" abbr="version">バージョン</th>
+      <th style="text-align:center;" abbr="date">更新日</th>
+      <th style="text-align:center;" abbr="version">更新内容</th>
+    </tr>
+    <tr>
+      <td style="white-space:nowrap;">1.0</td>
+      <td style="white-space:nowrap;">2005-01-19</td>
+      <td style="white-space:nowrap;">ファーストリリース</td>
+    </tr>
+    <tr>
+      <td>1.1</td>
+      <td>2005-01-20</td>
+      <td>全角文字と半角文字を区別しないように変更</td>
+    </tr>
+    <tr>
+      <td>1.2</td>
+      <td>2005-01-24</td>
+      <td>検索するモジュールを制限できるような管理機能を追加。権限のないモジュールの検索結果が見えてしまう欠陥を修復。<br />mbstringの無い環境で記事が重複してしまうバグを修正。日本語の修正。</td>
+    </tr>
+    <tr>
+      <td>1.3</td>
+      <td>2005-01-26</td>
+      <td>nao-ponさんの本文表示ハックを導入しました。あいまい検索発動時に「すべて表示」が表示されなくなるバグを修正。<br />「サイト検索[転送用]」ブロック追加。</td>
+    </tr>
+    <tr>
+      <td>1.4</td>
+      <td>2005-02-01</td>
+      <td>テンプレートのバグを修正。</td>
+    </tr>
+    <tr>
+      <td>1.5</td>
+      <td>2005-02-02</td>
+      <td>bluesさんから頂いたBluesBB用のプラグインを同封しました。セキュリティバグ修正。</td>
+    </tr>
+    <tr>
+      <td>1.6</td>
+      <td>2005-02-04</td>
+      <td>XSSを実行しうる脆弱を直しました。1.5以下からのアップグレードは、index.phpを必ず上書きしてください。</td>
+    </tr>
+    <tr>
+      <td>1.7</td>
+      <td>2005-02-12</td>
+      <td>aibaさんから頂いたXwords用のプラグインを同封しました。</td>
+    </tr>
+    <tr>
+      <td>1.8</td>
+      <td>2005-02-20</td>
+      <td>本文を表示するかどうか選択できるようにしました。</td>
+    </tr>
+    <tr>
+      <td>1.9</td>
+      <td>2005-03-23</td>
+      <td>[バグ修正]「次のページ &gt;&gt;」などのURLが&amp;amp;になるのを修正。</td>
+    </tr>
+    <tr>
+      <td>2.0</td>
+      <td>2006-06-02</td>
+      <td>[セキュリティ]SQL Injectionの可能性があるtypoを修正。<br />[バグ修正]ブロックから検索すると本文が表示されなかったバグを修正。</td>
+    </tr>
+    <tr>
+      <td>2.01</td>
+      <td>2007-12-05</td>
+      <td>作者サイトへのリンクを削除</td>
+    </tr>
+    <tr>
+      <td>2.01a</td>
+      <td>2008-12-16</td>
+      <td>検索ワードに半角のカンマが含まれているときに正しく検索されなかった点を修正。</td>
+    </tr>
+    <tr>
+      <td>2.01b</td>
+      <td>2008-12-18</td>
+      <td>日本語(ja_utf8)、英語の言語リソースとヘルプファイルを追加。</td>
+    </tr>
+    <tr>
+      <td>2.01c</td>
+      <td>-----</td>
+      <td>検索範囲を拡張(機能説明の項目を参照)。</td>
+    </tr>
+    <tr>
+      <td>2.01d</td>
+      <td>2009-01-13</td>
+      <td>まれに検索結果の切り出し時に検索ワードの直前の半角文字が欠落する点を修正。<br />本文表示ハックの表示範囲指定をバイト換算から文字数換算にした。</td>
+    </tr>
+    <tr>
+      <td>2.01e</td>
+      <td>2009-02-01</td>
+      <td>mymenuを追加し、systemモジュール依存だった部分をaltsysモジュールへ移行。</td>
+    </tr>
+    <tr>
+      <td>2.02</td>
+      <td>2009-03-19</td>
+      <td>ハック版リリース。suinさんのサイトのアドレスをhttp://suin.asia/に変更。</td>
+    </tr>
+    <tr>
+      <td>2.02a</td>
+      <td>2009-04-27</td>
+      <td>[バグ修正]mymenu内の各URLに含まれる&amp;を正しい実体参照表記に修正。<br />テンプレートを2点更新。ヘルプファイルの内容修正。</td>
+    </tr>
+    <tr>
+      <td>2.03</td>
+      <td>2010-03-24</td>
+      <td>[バグ修正]除外モジュールの設定が保存されないバグを修正。<br />ヘルプファイルを修正し、XOOPS2でも表示できるように変更。</td>
+    </tr>
+  </tbody>
+</table>
+<h4>謝辞</h4>
+本文表示ハックをnao-ponさんからお借りしました。&lt;<a href="http://hypweb.net/xoops/">http://hypweb.net/xoops/</a>&gt;<br />
+ヘルプファイルの実装ルーチンをのぶのぶさんからお借りしました。&lt;<a href="http://myht.org/">http://myht.org/</a>&gt;<br />
+dendekeさんの「検索対象とするモジュールを選択できる」ようにするというアイディアをお借りしました。<br />
+myblocksadminをGIJOEさんからお借りしました。&lt;<a href="http://xoops.peak.ne.jp/">http://xoops.peak.ne.jp/</a>&gt;<br />
+<h4>Copyrights</h4>
+このモジュールのオリジナルの作者:<a href="http://suin.asia/">SUIN</a><br />
+2.01以降のハック版:<a href="http://9demaio.com">Shigeto Yoshida</a>
+</div></body>
+</html>
