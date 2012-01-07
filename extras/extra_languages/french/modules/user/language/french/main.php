@@ -52,6 +52,7 @@ define('_MD_USER_LANG_NO', "Non");
 define('_MD_USER_LANG_NOACTTPADM', "L'utilisateur sélectionné a été désactivé ou n'a pas encore activé son compte.");
 define('_MD_USER_LANG_NOPROBLEM', "Veuillez indiquer l'adresse email utilisée lors de la création de votre compte.");
 define('_MD_USER_LANG_NOREGISTER', "Nous avons actuellement fermé le site à l'enregistrement de nouveaux utilisateurs.");
+define('_MD_USER_LANG_NOTIFY', "Notifications");
 define('_MD_USER_LANG_NOTIFY_METHOD', "Méthode de Notification : comment souhaitez-vous recevoir les notifications et mises à jour?");
 define('_MD_USER_LANG_NOTIFY_MODE', "Mode de Notification par défaut");
 define('_MD_USER_LANG_NOTREGISTERED', "Non enregistré?");
