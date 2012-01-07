@@ -614,8 +614,8 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
         //
         $this->mXoopsModule->loadAdminMenu();
         if ($this->mXoopsModule->get('hasnotification')
-            || ($info['config'] && is_array($info['config']))
-            || ($info['comments'] && is_array($info['comments']))) {
+            || (isset($info['config']) && is_array($info['config']))
+            || (isset($info['comments']) && is_array($info['comments']))) {
                 $this->mXoopsModule->adminmenu[] = array(
                     'link' => $root->mController->getPreferenceEditUrl($this->mXoopsModule),
                     'title' => _PREFERENCES,
