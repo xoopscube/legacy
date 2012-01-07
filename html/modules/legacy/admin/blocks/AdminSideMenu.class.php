@@ -58,13 +58,15 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
 		$root =& XCube_Root::getSingleton();
 		
 		// load message catalog of legacy for _AD_LEGACY_LANG_NO_SETTING, even if the current module is not Legacy.
-		$root->mLanguageManager->loadModuleAdminMessageCatalog('legacy'); 
+		$langMgr =& $root->mLanguageManager;
+		$langMgr->loadModuleAdminMessageCatalog('legacy'); 
 		//
-		$root->mLanguageManager->loadModinfoMessageCatalog('legacy');
+		$langMgr->loadModinfoMessageCatalog('legacy');
 		
 		$controller =& $root->mController;
-		$user =& $root->mController->mRoot->mContext->mXoopsUser;
-		$cachePath = LEGACY_ADMINMENU_CACHEPREFIX . md5(XOOPS_SALT . implode('_',$user->groups())).'.html';
+		$user =& $root->mContext->mXoopsUser;
+		$groups = implode(",", $user->getGroups());
+		$cachePath = LEGACY_ADMINMENU_CACHEPREFIX . md5(XOOPS_SALT . "($groups)". $langMgr->mLanguageName).'.html';
 		$render =& $this->getRenderTarget();
 		if (file_exists($cachePath)) {
 			$render->mRenderBuffer = file_get_contents($cachePath);
@@ -88,7 +90,6 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
 
 		$mod = $db->prefix("modules");
 		$perm = $db->prefix("group_permission");
-		$groups = implode(",", $user->getGroups());
 		
 		//
 		// Users who are belong to ADMIN GROUP have every permissions, so we have to prepare two kinds of SQL.
