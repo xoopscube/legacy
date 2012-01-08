@@ -106,20 +106,14 @@ if ( $andor != "OR" && $andor != "exact" && $andor != "AND" ) {
 	$andor = "AND";
 }
 
-$query_for_search = $query;
-//$query_for_search = preg_replace('/"(?:([^"\s]+)\s)+"/', "$1\x01", $query_for_search);
-
 $strlen_func = (function_exists('mb_strlen'))? 'mb_strlen' : 'strlen';
 if ($action != 'showallbyuser') {
 	if ( $andor != "exact" ) {
 		$ignored_queries = array(); // holds kewords that are shorter than allowed minimum length
-		if (defined('HYP_QUERY_WORD2_CONST_NAME') && constant(HYP_QUERY_WORD2_CONST_NAME)) {
-			$query_for_search .= ' ' . constant(HYP_QUERY_WORD2_CONST_NAME);
-		}
-		$temp_queries = array_unique(preg_split('/"([^"]+)"|\'([^\']+)\'|[\s]+/', $query_for_search, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY));
+		$temp_queries = array_unique(preg_split('/"([^"]+)"|\'([^\']+)\'|[\s]+/', $query, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY));
 		foreach ($temp_queries as $q) {
 			$q = trim($q);
-			if ($strlen_func($q) >= $xoopsConfigSearch['keyword_min']) {
+			if ($q && $strlen_func($q) >= $xoopsConfigSearch['keyword_min']) {
 				$queries[] = addSlashes($q);
 				//for Japanese
 				if(function_exists('mb_convert_kana')){
@@ -162,7 +156,7 @@ if ($action != 'showallbyuser') {
 			redirect_header('index.php', 2, sprintf(_MD_KEYTOOSHORT, $xoopsConfigSearch['keyword_min'], ceil($xoopsConfigSearch['keyword_min']/2) ));
  			exit();
 		}
-		$queries = array(addSlashes($query_for_search));
+		$queries = array(addSlashes($query));
 	}
 }
 switch ($action) {
