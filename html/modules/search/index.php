@@ -39,21 +39,23 @@ if ($xoopsConfigSearch['enable_search'] != 1) {
 	header('Location: '.XOOPS_URL.'/index.php');
 	exit();
 }
+$request = array();
+if (! empty($_GET)) $request = $_GET;
+if (! empty($_POST)) $request = array_merge($_POST, $request);
 $myts =& MyTextSanitizer::getInstance();
-$action	= isset($_REQUEST['action']) 	? $myts->stripSlashesGPC($_REQUEST['action']) 	: "search";
-$query	= isset($_REQUEST['query']) 	? $myts->stripSlashesGPC($_REQUEST['query']) 	: "";
-$andor	= isset($_REQUEST['andor']) 	? $myts->stripSlashesGPC($_REQUEST['andor']) 	: "AND";
-$mid 	= isset($_REQUEST['mid']) 	? intval($_REQUEST['mid']) 	: 0;
-$uid 	= isset($_REQUEST['uid']) 	? intval($_REQUEST['uid']) 	: 0;
-$start 	= isset($_REQUEST['start']) 	? intval($_REQUEST['start']) 	: 0;
-$sug 	= isset($_REQUEST['sug']) 	? intval($_REQUEST['sug']) 	: 0;
-$showcontext= isset($_REQUEST['showcontext']) 	? intval($_REQUEST['showcontext']) 	: 1 ;
-$mids_p	= isset($_REQUEST['mids'])  	? $_REQUEST['mids']	 	: "";
+$action	= isset($request['action']) 	? $myts->stripSlashesGPC($request['action']) 	: "search";
+$query	= isset($request['query']) 	? $myts->stripSlashesGPC($request['query']) 	: "";
+$andor	= isset($request['andor']) 	? $myts->stripSlashesGPC($request['andor']) 	: "AND";
+$mid 	= isset($request['mid']) 	? intval($request['mid']) 	: 0;
+$uid 	= isset($request['uid']) 	? intval($request['uid']) 	: 0;
+$start 	= isset($request['start']) 	? intval($request['start']) 	: 0;
+$sug 	= isset($request['sug']) 	? intval($request['sug']) 	: 0;
+$showcontext= isset($request['showcontext']) 	? intval($request['showcontext']) 	: 1 ;
+$mids_p	= isset($request['mids'])  	? $request['mids']	 	: "";
 $mids = array();
 if( is_array($mids_p) ) { foreach($mids_p as $e){  $mids[] = intval($e); } }
 
 //by domifara add rawurldecode for firefox
-$query = rawurldecode($query);
 if(function_exists('mb_detect_encoding') && function_exists('mb_convert_encoding')){
 	$from_encode = mb_detect_encoding($query);
 	if ($from_encode && $from_encode !== _CHARSET){
@@ -236,40 +238,31 @@ case "results":
 			if( file_exists( XOOPS_ROOT_PATH.'/modules/'.$mydirname.'/plugin/'.$this_mod_dir.'/'.$this_mod_dir.'.php' ) && $xoopsModuleConfig['search_display_text']==1 ){
 				include_once XOOPS_ROOT_PATH.'/modules/'.$mydirname.'/plugin/'.$this_mod_dir.'/'.$this_mod_dir.'.php';
 				$func = 'b_search_'.$this_mod_dir;
-				$results1 = context_search($func, $queries, $andor, 5, 0);
+				$results = context_search($func, $queries, $andor, 5, 0);
 				$use_context = true;
 			}else{
-				$results1 = $module->search($queries, $andor, 5, 0);
+				$results = $module->search($queries, $andor, 5, 0);
 			}
+			if (empty($results)) $results = array();
 			if(! $GLOBALS['md_search_flg_zenhan_support'] && count($mb_suggest_w) > 0){
 				if($use_context){
 					$results2 = context_search($func, $mb_suggest_w, $andor, 5, 0);
 				}else{
 					$results2 = $module->search($mb_suggest_w, $andor, 5, 0);
 				}
-			}else{
-				$results2 = array();
-			}
-				//by domifara  Warning [PHP]: array_merge() [function.array-merge]: Argument #1 or #2 is not an array
-				if (!is_array($results1)){
-					$results1 = array();
+				if ($results2) {
+					$results = array_map('unserialize', array_unique(array_map('serialize', array_merge($results,$results2))));
 				}
-				if (!is_array($results2)){
-					$results2 = array();
-				}
-			$results = array_map('unserialize', array_unique(array_map('serialize', array_merge($results1,$results2))));
-			usort($results, 'sort_by_date');
-			$count = count($results);
-			if ( $count > 5 ) {
-				$results  = array_slice($results,0,5);
-				$count = 5;
 			}
- 			if (!is_array($results) || $count == 0) {
-				//$no_match = _MD_NOMATCH;
-				//$showall_link = '';
+			if (! $results) {
 				$no_matches[] = $module->getVar('name');
 			} else {
-				$no_match = "";
+				$count = count($results);
+				usort($results, 'sort_by_date');
+				if ( $count > 5 ) {
+					$results  = array_slice($results, 0, 5);
+					$count = 5;
+				}
 				for ($i = 0; $i < $count; $i++) {
 					if (isset($results[$i]['image']) && $results[$i]['image'] != '') {
 						$results[$i]['image'] = '/modules/'.$this_mod_dir.'/'.$results[$i]['image'];
@@ -291,9 +284,8 @@ case "results":
 				} else {
 					$showall_link = '';
 				}
-  				$xoopsTpl->append('modules', array('name' => $module->getVar('name'), 'results' => $results, 'showall_link' => $showall_link, 'no_match' => $no_match ));
+				$xoopsTpl->append('modules', array('name' => $module->getVar('name'), 'results' => $results, 'showall_link' => $showall_link));
 			}
-  			//$xoopsTpl->append('modules', array('name' => $module->getVar('name'), 'results' => $results, 'showall_link' => $showall_link, 'no_match' => $no_match ));
 		}
 		unset($results1);
 		unset($results2);
