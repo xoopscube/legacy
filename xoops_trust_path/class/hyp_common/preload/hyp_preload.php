@@ -1131,7 +1131,9 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 		}
 
 		if (! empty($GLOBALS['hyp_preload_head_tag'])) {
-			$s = str_replace('</head>', $GLOBALS['hyp_preload_head_tag'] . '</head>', $s);
+			list($head, $body) = array_pad(explode('</head>', $s, 2), 2, '');
+			if (! $body) return false;
+			$s = $head . $GLOBALS['hyp_preload_head_tag'] . '</head>' . $body;
 		}
 		return $s;
 	}
@@ -1336,23 +1338,27 @@ EOD;
 				$arr2 = array_pad(explode('<!--/KTaiBlock-->', $arr1[1], 2), 2, '');
 				list($id, $bcontent) = explode('-->', $arr2[0], 2);
 				$title = preg_replace('#^.*?<!--KTaiTitle-->(.+?)<!--/KTaiTitle-->.*?$#s', '$1', $bcontent);
+				$no_title = false;
 				if ($title === $bcontent || ! $title) {
 					$title = 'Block No.' . $id;
+					$no_title = true;
 				}
 				if ($use_jquery) {
 					$bcontent = preg_replace('#<h[1-6].*?<!--KTaiTitle-->(.+?)<!--/KTaiTitle-->.*?/h[1-6]>#s', '', $bcontent);
-					if (in_array($id, $this->k_tai_conf['showBlockIds'])) {
-						$body = $arr1[0] . '<div id="ktaiblock'.$id.'" data-role="collapsible" data-theme="'.$this->k_tai_conf['jquery_theme_block'].'" data-content-theme="'.$this->k_tai_conf['jquery_theme_block'].'" data-collapsed="false"><h3>'.$title.'</h3>' . $bcontent. '</div>' . $arr2[1];
-						//$showblocks['ktaiblock'.$id] = $title;
+					if ($no_title) {
+						$body = $arr1[0] . '<div id="ktaiblock'.$id.'">' . $bcontent . '</div>' .  $arr2[1];
 					} else {
-						$body = $arr1[0] . '<div id="ktaiblock'.$id.'" data-role="collapsible" data-theme="'.$this->k_tai_conf['jquery_theme_block'].'" data-content-theme="'.$this->k_tai_conf['jquery_theme_block'].'" data-collapsed="true"><h3>'.$title.'</h3>' . $bcontent. '</div>' . $arr2[1];
-						//$_showblocks['ktaiblock'.$id] = $title;
+						if (in_array($id, $this->k_tai_conf['showBlockIds'])) {
+							$body = $arr1[0] . '<div id="ktaiblock'.$id.'" data-role="collapsible" data-theme="'.$this->k_tai_conf['jquery_theme_block'].'" data-content-theme="'.$this->k_tai_conf['jquery_theme_block'].'" data-collapsed="false"><h3>'.$title.'</h3>' . $bcontent. '</div>' . $arr2[1];
+						} else {
+							$body = $arr1[0] . '<div id="ktaiblock'.$id.'" data-role="collapsible" data-theme="'.$this->k_tai_conf['jquery_theme_block'].'" data-content-theme="'.$this->k_tai_conf['jquery_theme_block'].'" data-collapsed="true"><h3>'.$title.'</h3>' . $bcontent. '</div>' . $arr2[1];
+						}
+						$blockmenu[$id] = '<a href="#ktaiblock'.$id.'" data-ajax="false">' . $title . '</a>';
 					}
-					$blockmenu[$id] = '<a href="#ktaiblock'.$id.'" data-ajax="false">' . $title . '</a>';
 				} else {
-					if (in_array($id, $this->k_tai_conf['showBlockIds'])) {
+					if ($no_title || in_array($id, $this->k_tai_conf['showBlockIds'])) {
 						$body = $arr1[0] . '<div id="ktaiblock'.$id.'">' . $bcontent. '</div>' . $arr2[1];
-						$showblocks['ktaiblock'.$id] = $title;
+						if (! $no_title) $showblocks['ktaiblock'.$id] = $title;
 					} else {
 						$blocks[$id]['content'] = $bcontent;
 						if ($bid != $id) {
