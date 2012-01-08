@@ -1,5 +1,5 @@
 <?php
-// $Id: hyp_kakasi.php,v 1.6 2011/11/22 09:07:53 nao-pon Exp $
+// $Id: hyp_kakasi.php,v 1.7 2012/01/08 16:12:36 nao-pon Exp $
 // Hyp_KAKASI Class by nao-pon http://hypweb.net
 ////////////////////////////////////////////////
 
@@ -85,7 +85,7 @@ class Hyp_KAKASHI
 		$put = $str;
 		$nwa = "";
 		$match = array();
-		if (preg_match_all("/((\"|'|กษ|กว).+?(?:\\2))/",$put,$match,PREG_PATTERN_ORDER))
+		if (preg_match_all("/((\"|').+?(?:\\2))/",$put,$match,PREG_PATTERN_ORDER))
 		{
 			$match[1] = array_unique($match[1]);
 			foreach($match[1] as $rep)
