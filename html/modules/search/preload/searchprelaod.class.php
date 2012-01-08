@@ -16,31 +16,26 @@ if (!class_exists('Search_Preload_BASE')) {
 										 XCUBE_DELEGATE_PRIORITY_FIRST);
 		}
 
-
 		function overRideDefaultSearch()
 		{
-			$myts =& MyTextSanitizer::getInstance();
-			$action	= isset($_REQUEST['action']) 	? $myts->stripSlashesGPC($_REQUEST['action']) 	: "search";
-			$query	= isset($_REQUEST['query']) 	? $myts->stripSlashesGPC($_REQUEST['query']) 	: "";
-			if (isset($_REQUEST['showcontext'])){
-				$showcontext=  "" ;
-			}else{
-				$showcontext=  "&showcontext=1" ;
+			$query = isset($_SERVER['QUERY_STRING'])? $_SERVER['QUERY_STRING'] : '';
+			if ($query) {
+				$query = '?' . $query;
+				if (isset($_REQUEST['showcontext'])){
+					$query .= '&showcontext=' . ($_REQUEST['showcontext']? '1' : '0') ;
+				}else{
+					$query .= '&showcontext=1' ;
+				}
 			}
 			$mydirname = basename(dirname(dirname(__FILE__)));
-			if (empty($query) && $action == "results"){
-				header("Location: ".XOOPS_URL."/modules/".$mydirname."/index.php");
-				exit();
-			}else{
-				$query = rawurlencode($query);
-				header("Location: ".XOOPS_URL."/modules/".$mydirname."/index.php?".$query.$showcontext);
-				exit();
+			while(ob_get_level()) {
+				if (! ob_end_clean()) break;
 			}
+			header('Location: '.XOOPS_URL.'/modules/'.$mydirname.'/index.php' . $query);
+			exit();
 
 		}
 	}
 }
 eval('class '.ucfirst(basename(dirname(dirname(__FILE__)))).'_searchprelaod extends Search_Preload_BASE{}');
 
-
-?>
