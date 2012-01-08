@@ -2,7 +2,7 @@
 /////////////////////////////////////////////////
 // PukiWiki - Yet another WikiWikiWeb clone.
 //
-//  $Id: attach.inc.php,v 1.69 2012/01/03 04:52:27 nao-pon Exp $
+//  $Id: attach.inc.php,v 1.70 2012/01/08 16:49:12 nao-pon Exp $
 //  ORG: attach.inc.php,v 1.31 2003/07/27 14:15:29 arino Exp $
 //
 /*
@@ -117,7 +117,7 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 			return 'file_uploads disabled';
 		}
 
-		$noattach = $nolist = $noform = FALSE;
+		$noattach = $nolist = $noform = $imglist = FALSE;
 		$page = $this->root->vars['page'];
 
 		// Render mode
