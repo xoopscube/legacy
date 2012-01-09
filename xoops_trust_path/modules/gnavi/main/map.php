@@ -298,7 +298,7 @@ if($GNAVI_MOBILE){
 
 		$xoopsTpl->assign('query',$query);
 		if(!$latlng && $query){
-			$pagetitle =  ;
+			$pagetitle =  "";
 			//$xoopsTpl->assign('result',$query."は見つかりません");
 			$xoopsTpl->assign('result',sprintf( constant('_MD_GNAV_MOBILE_NOTFOUND'), $query ));
 		}elseif($latlng && $query){
