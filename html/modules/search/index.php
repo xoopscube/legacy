@@ -179,8 +179,8 @@ case "results":
 		unset($mids);
 		$mids = array_keys($modules);
 	}
-	include XOOPS_ROOT_PATH."/header.php";
-	$xoopsTpl->assign("xoops_module_header",'<link rel="stylesheet" type="text/css" media="screen" href="'.XOOPS_URL.'/modules/'.$mydirname.'/include/search.css" />');
+	include XOOPS_ROOT_PATH . '/header.php';
+	$xoopsTpl->assign('xoops_module_header', $xoopsTpl->get_template_vars('xoops_module_header') . '<link rel="stylesheet" type="text/css" media="screen" href="'.XOOPS_URL.'/modules/'.$mydirname.'/include/search.css" />');
 	$xoopsOption['template_main'] = 'search_result.html';
 	$xoopsTpl->assign('lang_search_results', _MD_SEARCHRESULTS);
 	$xoopsTpl->assign('lang_keyword', _MD_KEYWORDS);

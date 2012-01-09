@@ -30,6 +30,7 @@ global $xoopsUser;
 
 // create form
 $search_form = new XoopsThemeForm(_MD_SEARCH, "search", "index.php", 'get');
+$search_form->setExtra('accept-charset="utf-8"');
 
 // create form elements
 $search_form->addElement(new XoopsFormText(_MD_KEYWORDS, "query", 30, 255, htmlspecialchars($query, ENT_QUOTES)), true);
