@@ -26,7 +26,7 @@
 	// --></script>
 	<{else}>
 	<{php}>
-		$_makescript = & xoops_getmodulehandler('makescript','myckeditor');
+		$_makescript = & xoops_getmodulehandler('makescript','myckeditor',true);
 		$params = array('id'=>'textarea_content','editor'=>'html','myckeditor'=>true);
 		if (@is_object( $_makescript )){
 			$this->assign( 'common_myck_installed' , true ) ;
@@ -36,7 +36,7 @@
 	<{/if}>
 <{else}>
 	<{php}>
-		$_makescript = & xoops_getmodulehandler('makescript','myckeditor');
+		$_makescript = & xoops_getmodulehandler('makescript','myckeditor',true);
 		$params = array('id'=>'textarea_content','editor'=>'bbcode','myckeditor'=>true);
 		if (@is_object( $_makescript )){
 			$this->assign( 'common_myck_installed' , true ) ;
