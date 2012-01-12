@@ -19,6 +19,7 @@ $modversion['license'] = "GPL" ;
 $modversion['official'] = 0 ;
 $modversion['image'] = file_exists( $mydirpath.'/module_icon.png' ) ? 'module_icon.png' : 'module_icon.php' ;
 $modversion['dirname'] = $mydirname ;
+$modversion['trust_dirname'] = $mytrustdirname ;
 
 // Any tables can't be touched by modulesadmin.
 $modversion['sqlfile'] = false ;
@@ -135,7 +136,7 @@ $modversion['blocks'][7] = array(
 
 // Comments
 $modversion['hasComments'] = 0 ;
-// Comments 
+// Comments
 /* if use Xoops Comments.
 $modversion['hasComments'] = 1;
 $modversion['comments']['itemName'] = 'lid';

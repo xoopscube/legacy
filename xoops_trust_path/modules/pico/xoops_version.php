@@ -19,6 +19,7 @@ $modversion['license'] = "GPL" ;
 $modversion['official'] = 0 ;
 $modversion['image'] = file_exists( $mydirpath.'/module_icon.png' ) ? 'module_icon.png' : 'module_icon.php' ;
 $modversion['dirname'] = $mydirname ;
+$modversion['trust_dirname'] = $mytrustdirname ;
 $modversion['read_any'] = true ;
 
 // Any tables can't be touched by modulesadmin.
