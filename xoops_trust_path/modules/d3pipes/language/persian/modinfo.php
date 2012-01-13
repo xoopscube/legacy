@@ -72,6 +72,7 @@ define($constpref.'_IMAGES_DIR','محل قرار گیری تصاویر');
 define($constpref.'_IMAGES_DIRDSC','مسیر مورد نظر را در شاخه های ماژول تنظیم کنید. پیش فرض: images');
 define($constpref.'_COM_DIRNAME','یکسان سازی پیام ها: نام انجمن در d3forum');
 define($constpref.'_COM_FORUM_ID','یکسان سازی پیام ها:ID انجمن');
+define($constpref.'_BACKEND_PIPE_ID','(غیر فعال : 0) backend.php برای ID لوله');
 
 }
 

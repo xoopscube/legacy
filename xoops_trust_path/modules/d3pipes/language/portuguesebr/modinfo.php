@@ -63,6 +63,7 @@ define($constpref.'_COM_FORUM_ID','Integração dos comentários: ID do fórum');
 define($constpref.'_COM_VIEW','Vizualiação da integração dos comentários');
 define($constpref.'_COM_ORDER','Ordem da integração dos comentários');
 define($constpref.'_COM_POSTSNUM','Máximo de posts mostrados na Integração dos comentários');
+define($constpref.'_BACKEND_PIPE_ID','ID do tubo para backend.php (Disabled: 0)');
 
 }
 

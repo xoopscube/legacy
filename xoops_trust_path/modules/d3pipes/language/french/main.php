@@ -81,6 +81,8 @@ define('_MD_D3PIPES_CLASS_SORTHEADLINESTRASC','Dictionnaire par ordre ASC');
 define('_MD_D3PIPES_CLASS_SORTHEADLINEINTASC','Entier par ordre ASC');
 define('_MD_D3PIPES_CLASS_UNIONMERGESORT','Agrégation et Trier');
 define('_MD_D3PIPES_CLASS_UNIONSEPARATED','Parallèle sans Trier');
+define('_MD_D3PIPES_CLASS_CACHETRUSTPATHGUESTONLY','(Invité seulement) Placer en cache sur trust/cache/');
+define('_MD_D3PIPES_CLASS_CACHETRUSTPATHEACHUSER','Placer en chaque utilisateur cache sur trust/cache/');
 
 define('_MD_D3PIPES_TH_PUBTIME','Heure de la publication');
 define('_MD_D3PIPES_TH_PIPENAME','nom');

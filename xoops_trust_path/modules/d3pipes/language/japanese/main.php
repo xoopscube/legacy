@@ -70,6 +70,8 @@ define('_MD_D3PIPES_CLASS_SORTHEADLINEINTASC','エントリ名数字順昇順ソート');
 define('_MD_D3PIPES_CLASS_UNIONMERGESORT','新着順アグリゲーション');
 define('_MD_D3PIPES_CLASS_UNIONSEPARATED','並列化（ソート無）');
 define('_MD_D3PIPES_CLASS_UNIONTHEOTHERD3PIPES','他d3pipesからの連結');
+define('_MD_D3PIPES_CLASS_CACHETRUSTPATHGUESTONLY','ゲストのみ、この時点のキャッシュ(trust/cache)');
+define('_MD_D3PIPES_CLASS_CACHETRUSTPATHEACHUSER','この時点のユーザー別キャッシュ(trust/cache)');
 
 define('_MD_D3PIPES_TH_PUBTIME','発行日時');
 define('_MD_D3PIPES_TH_PIPENAME','パイプ名');

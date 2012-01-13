@@ -63,6 +63,7 @@ define($constpref.'_COM_FORUM_ID','Comment-integration: forum ID');
 define($constpref.'_COM_VIEW','View of comment-integration');
 define($constpref.'_COM_ORDER','Order of comment-integration');
 define($constpref.'_COM_POSTSNUM','Max posts displayed in comment-integration');
+define($constpref.'_BACKEND_PIPE_ID','Pipe ID for backend.php (Disabled: 0)');
 
 }
 

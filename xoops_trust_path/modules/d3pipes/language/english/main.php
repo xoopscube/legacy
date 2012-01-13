@@ -70,6 +70,8 @@ define('_MD_D3PIPES_CLASS_SORTHEADLINEINTASC','Integer order ASC');
 define('_MD_D3PIPES_CLASS_UNIONMERGESORT','Aggregation and Sort');
 define('_MD_D3PIPES_CLASS_UNIONSEPARATED','Parallel without Sort');
 define('_MD_D3PIPES_CLASS_UNIONTHEOTHERD3PIPES','From the other d3pipes');
+define('_MD_D3PIPES_CLASS_CACHETRUSTPATHGUESTONLY','(Guest only) Make cache under trust/cache/');
+define('_MD_D3PIPES_CLASS_CACHETRUSTPATHEACHUSER','Make each user\'s cache under trust/cache/');
 
 define('_MD_D3PIPES_TH_PUBTIME','published time');
 define('_MD_D3PIPES_TH_PIPENAME','name');

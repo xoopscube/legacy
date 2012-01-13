@@ -73,6 +73,7 @@ define($constpref.'_IMAGES_DIR','Repértoire pour les fichiers images');
 define($constpref.'_IMAGES_DIRDSC','le chemin relatif devrait être configuré dans le repértoire du module. défaut: images');
 define($constpref.'_COM_DIRNAME','Integration-Commentaires: dirname de d3forum');
 define($constpref.'_COM_FORUM_ID','Intégration-Commentaires: ID forum');
+define($constpref.'_BACKEND_PIPE_ID','Tuyau d\'identité pour backend.php (handicapés: 0)');
 
 }
 

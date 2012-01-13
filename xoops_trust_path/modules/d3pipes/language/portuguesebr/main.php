@@ -74,6 +74,8 @@ define('_MD_D3PIPES_CLASS_SORTHEADLINEINTASC','ordem inteira -Ascendente');
 define('_MD_D3PIPES_CLASS_UNIONMERGESORT','Agregação e classificação');
 define('_MD_D3PIPES_CLASS_UNIONSEPARATED','Classificação sem paralelo');
 define('_MD_D3PIPES_CLASS_UNIONTHEOTHERD3PIPES','De outros d3pipes');
+define('_MD_D3PIPES_CLASS_CACHETRUSTPATHGUESTONLY','(Somente convidados) Fazer cache sob trust/cache/');
+define('_MD_D3PIPES_CLASS_CACHETRUSTPATHEACHUSER','Fazer cache de cada usuário sob trust/cache/');
 
 define('_MD_D3PIPES_TH_PUBTIME','Data e Hora');
 define('_MD_D3PIPES_TH_PIPENAME','Canal');
