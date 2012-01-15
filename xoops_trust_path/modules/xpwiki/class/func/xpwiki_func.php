@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/02 by nao-pon http://hypweb.net/
-// $Id: xpwiki_func.php,v 1.248 2011/12/15 14:01:52 nao-pon Exp $
+// $Id: xpwiki_func.php,v 1.250 2012/01/14 11:56:35 nao-pon Exp $
 //
 class XpWikiFunc extends XpWikiXoopsWrapper {
 
@@ -219,7 +219,7 @@ class XpWikiFunc extends XpWikiXoopsWrapper {
 					$this->cont['PKWK_ENCODING_HINT'] . '" /></div>', $retvar['body']);
 			}
 			// set meta_description
-			$this->root->meta_description = $this->get_meta_description($retvar['body']);
+			$this->root->meta_description = $this->get_description($retvar['body'], $this->root->description_max_length_meta);
 		}
 
 		return $retvar;
@@ -632,9 +632,12 @@ class XpWikiFunc extends XpWikiXoopsWrapper {
 			while ($file = readdir($handle)) {
 				if (preg_match('/^[\w]{2}(-[\w]+)?(_utf8)?$/',$file)) {
 					foreach ($clr_pages as $_page) {
+						// meta description
+						$this->cache_del_db($this->get_pgid_by_name($_page), 'core:description');
 						@unlink ($this->cont['CACHE_DIR']."page/".$this->encode($_page).".".$file);
 						@unlink ($this->cont['CACHE_DIR']."page/b_".$this->encode($_page).".".$file);
-						@unlink ($this->cont['CACHE_DIR']."page/r_".$this->encode($_page).".".$file);					}
+						@unlink ($this->cont['CACHE_DIR']."page/r_".$this->encode($_page).".".$file);
+					}
 				}
 			}
 			closedir($handle);
@@ -649,7 +652,7 @@ class XpWikiFunc extends XpWikiXoopsWrapper {
 		return ;
 	}
 
-	function get_meta_description ($html, $len = 120, $pre_crop = 204800) {
+	function get_description ($html, $len = 250, $pre_crop = 512000) {
 
 		$ret = substr($html, 0, $pre_crop);
 
@@ -659,11 +662,27 @@ class XpWikiFunc extends XpWikiXoopsWrapper {
 		$ret = str_replace(array('&nbsp;'), ' ', $ret);
 		$ret = trim(preg_replace('/\s{2,}/', ' ', $ret));
 
-		$ret = htmlspecialchars_decode($ret, ENT_QUOTES);
-		$ret = mb_substr($ret, 0, $len);
-		$ret = htmlspecialchars($ret);
+		$ret = $this->substr_entity($ret, 0, $len);
 
 		return $ret;
+	}
+
+	function get_description_cache($page, $len = null, $html = '') {
+		$pgid = $this->get_pgid_by_name($page);
+		$ttl_check = ($html);
+		$description = $this->cache_get_db($pgid, 'core:description', false, false, $ttl_check);
+		if (! $description && $html) {
+			$description = $this->get_description($html, $this->root->description_max_length_save);
+			$this->put_description_cache($description, $pgid);
+		}
+		if (! is_null($len)) {
+			$description = $this->substr_entity($description, 0, $len);
+		}
+		return $description;
+	}
+
+	function put_description_cache($description, $pgid) {
+		$this->cache_save_db($description, 'core:description', 864000, $pgid);
 	}
 
 	function wrap_description_ignore ($html) {
@@ -1272,7 +1291,7 @@ class XpWikiFunc extends XpWikiXoopsWrapper {
 		$ret = array();
 		if (function_exists('exif_read_data')) {
 			$arr = array();
-			if ($arr = $this->cache_get_db ($key = sha1($file), 'exif')) {
+			if ($arr = $this->cache_get_db ($key = sha1($file), 'exif', false, true)) {
 				$arr = unserialize($arr);
 				if (!isset($arr['ret'])) {
 					// Old type cache
@@ -2249,7 +2268,11 @@ EOD;
 	}
 
 	function isXpWikiDirname ($dirname) {
-		return (preg_match('/^[a-z0-9_-]+$/i', $dirname) && is_file($this->cont['ROOT_PATH'].$this->cont['MOD_DIR_NAME'].$dirname.'/private/ini/pukiwiki.ini.php'));
+		static $ret = array();
+		if (! isset($ret[$dirname])) {
+			$ret[$dirname] = (preg_match('/^[a-z0-9_-]+$/i', $dirname) && is_file($this->cont['ROOT_PATH'].$this->cont['MOD_DIR_NAME'].$dirname.'/private/ini/pukiwiki.ini.php'));
+		}
+		return $ret[$dirname];
 	}
 
 
@@ -2612,7 +2635,7 @@ EOD;
 
 	function send_update_ping () {
 		if ($this->root->update_ping && HypCommonFunc::get_version() >= 20080515) {
-			if (! $this->cache_get_db('xmlrpc_ping_send', 'system')) {
+			if (! $this->cache_get_db('xmlrpc_ping_send', 'system', false, true)) {
 
 				$this->cache_save_db('done', 'system', 1800, 'xmlrpc_ping_send'); // TTL = 1800 sec.
 
@@ -2870,7 +2893,7 @@ EOD;
 			|| ($this->root->bitly_domain_external && preg_match('#^http://'.preg_quote($this->root->bitly_domain_external, '#').'/#i', $url))
 			    ) {
 				$ret = $url;
-			} else if (! $cache || ! $ret = $this->cache_get_db($sha1 = sha1($url), 'bitly')) {
+			} else if (! $cache || ! $ret = $this->cache_get_db($sha1 = sha1($url), 'bitly', false, true)) {
 				$domain = '';
 				if ($this->root->bitly_domain_internal || $this->root->bitly_domain_external) {
 					if (preg_match('/^' . preg_quote($this->cont['ROOT_URL'], '/') . '/i', $url)) {
@@ -2967,6 +2990,11 @@ EOD;
 		return $popup_pos;
 	}
 
+	function nl2br($text, $escaped_quote = false) {
+        if ($escaped_quote) $text = str_replace('\\"', '"', $text);
+        return str_replace(array("\r\n", "\r", "\n"), '&br;', $text);
+	}
+
 	// clear output buffer
 	function clear_output_buffer() {
 		while( ob_get_level() ) {
@@ -2974,6 +3002,21 @@ EOD;
 				break;
 			}
 		}
+	}
+
+	// entity を考慮した substr
+	function substr_entity($str, $start, $len = null, $htmlspecialchar = true) {
+		$str = htmlspecialchars_decode($str, ENT_QUOTES);
+		if (is_null($len)) {
+			$str = mb_substr($str, $start);
+		} else {
+			$str = mb_substr($str, $start, $len);
+		}
+		// 末尾に分断された実態参照があれば削除
+		$str = preg_replace('/&([^;]+)?$/', '', $str);
+		// サニタイズ
+		if ($htmlspecialchar) $str = str_replace('&amp;', '&', htmlspecialchars($str));
+		return $str;
 	}
 
 /*----- DB Functions -----*/
@@ -4513,7 +4556,7 @@ EOD;
 		}
 	}
 
-	function cache_get_db ($key, $plugin='core', $delete=FALSE, $update=TRUE) {
+	function cache_get_db ($key, $plugin='core', $delete=FALSE, $life=FALSE, $ttl_check=FALSE) {
 		if (is_null($key)) {
 			$select = ', `key`';
 			$key = '';
@@ -4521,6 +4564,9 @@ EOD;
 		} else {
 			$select = '';
 			$key = '`key`=\''.addslashes($key) .'\' AND ';
+			if ($ttl_check) {
+				$key .= '`ttl` > 0 AND (`mtime` + `ttl`) >= '.$this->cont['UTC'].' AND ';
+			}
 			$limit = ' LIMIT 1';
 		}
 		$plugin = addslashes($plugin);
@@ -4536,7 +4582,7 @@ EOD;
 					$this->xpwiki->db->queryF($sql);
 					$sql = 'OPTIMIZE TABLE `'.$dbtable.'`';
 					$this->xpwiki->db->queryF($sql);
-				} else if ($update) {
+				} else if ($life) {
 					$sql = 'UPDATE `'.$dbtable.'`';
 					$sql .= ' SET `mtime`=\''.$this->cont['UTC'].'\'';
 					$sql .= ' WHERE '.$key.'`plugin`=\''.$plugin.'\'';

@@ -40,6 +40,7 @@ XpWiki.FCKeditor_path = '$fckeditor_path';
 XpWiki.FCKxpwiki_path = '$fckxpwiki_path';
 XpWiki.ie6JsPass = $ie6JsPass;
 XpWiki.imageDir = '$imageDir';
+XpWiki.filemanagerTag = '$filemanagerTag';
 $skinname
 
 // Load CSS
@@ -148,6 +149,7 @@ function wikihelper_show_fontset_img()
 	var wikihelper_helper_img =
 		'<img src="' + XpWiki.imageDir + 'buttons.gif" width="103" height="16" border="0" usemap="#map_button" tabindex="-1" '+'/'+'>'+
 		'<img src="' + XpWiki.imageDir + 'clip.png" width="18" height="16" border="0" title="'+wikihelper_msg_attach+'" alt="&amp;ref;" onClick="javascript:wikihelper_ins(\'&ref();\'); return false;" '+'/'+'>'+
+		XpWiki.filemanagerTag +
 		' '+
 		wikihelper_adv_tag +
 		' '+

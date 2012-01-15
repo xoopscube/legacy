@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2008/01/24 by nao-pon http://hypweb.net/
- * $Id: conf.lng.php,v 1.14 2011/11/17 00:00:15 nao-pon Exp $
+ * $Id: conf.lng.php,v 1.15 2012/01/14 11:56:35 nao-pon Exp $
  */
 //
 // German Translation Version 1.0 (11.03.2008)
@@ -109,6 +109,11 @@ $msg = array(
 		'caption'     => 'Sollen Kommentare möglich sein?',
 		'description' => 'Die Kommentar-Integration kann hier eingestellt werden.<br />'
 		               . 'Es ist wichtig die Kommentarfunktion unter den allgemeinen Einstellungen zu aktivieren um sie wirklich nutzen zu können.',
+	),
+
+	'use_root_image_manager' => array(
+		'caption'     => 'Use Image manager',
+		'description' => 'The standard image manager for a site is used and it enables it to insert a picture.',
 	),
 
 	'use_title_make_search' => array(

@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/25 by nao-pon http://hypweb.net/
-// $Id: loader.php,v 1.70 2011/12/31 16:07:00 nao-pon Exp $
+// $Id: loader.php,v 1.72 2012/01/15 01:32:48 nao-pon Exp $
 //
 
 ignore_user_abort(FALSE);
@@ -404,9 +404,14 @@ if ($type === 'js' || $type === 'css' || is_file($src_file)) {
 					$fckxpwiki_path = $xpwiki->cont['ROOT_URL'] . trim($xpwiki->root->fckxpwiki_path, '/') . '/';
 					$ie6JsPass = ($xpwiki->root->ie6JsPass)? 'true' : 'false';
 					$imageDir = $xpwiki->cont['IMAGE_DIR'];
+					if ($xpwiki->root->use_root_image_manager && is_file( $xpwiki->cont['ROOT_PATH'] . 'imagemanager.php')) {
+						$filemanagerTag = str_replace('\'', '\\\'', '<span title="ImageManager" onclick="XpWiki.fireImageManager(openWithSelfMain,[\''.$xpwiki->cont['ROOT_URL'].'imagemanager.php?target=[TARGET]\',\'imgmanager\',400,430],0)"><img src="'.$xpwiki->cont['ROOT_URL'].'images/image.gif" alt="Img" /></a></span>');
+					} else {
+						$filemanagerTag = '';
+					}
 					$_out = str_replace(
-						array('$face_tag_full', '$face_tag', '$fck_smileys', '$module_url', '$encode_hint', '$charset',                       '$ieDomLoadedDisabled', '$faviconSetClass',                   '$faviconReplaceClass',                   '$UseWikihelperAtAll', '$RendererDir', '$RendererPage', '$fckeditor_path', '$fckxpwiki_path', '$skinname', '$ie6JsPass', '$imageDir'),
-						array( $face_tag_full,   $face_tag,   $fck_smileys,   $module_url,   $encode_hint,   $xpwiki->cont['SOURCE_ENCODING'], $ieDomLoadedDisabled,   $xpwiki->root->favicon_set_classname, $xpwiki->root->favicon_replace_classname, $UseWikihelperAtAll,   $RendererDir,   $RendererPage,   $fckeditor_path,   $fckxpwiki_path,   $skinname,   $ie6JsPass,   $imageDir ),
+						array('$face_tag_full', '$face_tag', '$fck_smileys', '$module_url', '$encode_hint', '$charset',                       '$ieDomLoadedDisabled', '$faviconSetClass',                   '$faviconReplaceClass',                   '$UseWikihelperAtAll', '$RendererDir', '$RendererPage', '$fckeditor_path', '$fckxpwiki_path', '$skinname', '$ie6JsPass', '$imageDir', '$filemanagerTag'),
+						array( $face_tag_full,   $face_tag,   $fck_smileys,   $module_url,   $encode_hint,   $xpwiki->cont['SOURCE_ENCODING'], $ieDomLoadedDisabled,   $xpwiki->root->favicon_set_classname, $xpwiki->root->favicon_replace_classname, $UseWikihelperAtAll,   $RendererDir,   $RendererPage,   $fckeditor_path,   $fckxpwiki_path,   $skinname,   $ie6JsPass,   $imageDir,   $filemanagerTag ),
 					$_out);
 				}
 				if (in_array($_src, $js_replaces)) {

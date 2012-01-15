@@ -1,5 +1,5 @@
 <?php
-// $Id: ref.inc.php,v 1.64 2012/01/03 04:50:40 nao-pon Exp $
+// $Id: ref.inc.php,v 1.66 2012/01/14 14:36:03 nao-pon Exp $
 /*
 
 	*プラグイン ref
@@ -605,10 +605,15 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 			if (empty($lvar['link'])) {
 				$filename = $lvar['status']['org_fname'];
 				$filename = str_replace(array(':', '*', '?', '"', '<', '>', '|'), '_', $filename);
-				$filename = '/' . rawurlencode($filename);
-				$noinline = ($params['noinline'])? '&amp;ni=1' : '';
-				$lvar['link'] = $this->cont['HOME_URL'] . 'gate.php' . $filename . '?way=attach&amp;_noumb' . $noinline . '&amp;refer=' . rawurlencode($lvar['page']) .
+				if ($this->cont['PLUGIN_ATTACH_SHORTURL']) {
+					$lvar['link'] = $this->cont['HOME_URL'] . 'ref' . ($params['noinline']? 1:0) . '/' . rawurlencode(str_replace('/', '%2F', $lvar['page'])) .
+						'/' . rawurlencode($lvar['name']) . (($lvar['name'] !== $filename)? ('/'.rawurlencode($filename)):''); // Show its filename at the last
+				} else {
+					$filename = '/' . rawurlencode($filename);
+					$noinline = ($params['noinline'])? '&amp;ni=1' : '';
+					$lvar['link'] = $this->cont['HOME_URL'] . 'gate.php' . $filename . '?way=attach&amp;_noumb' . $noinline . '&amp;refer=' . rawurlencode($lvar['page']) .
 						'&amp;openfile=' . rawurlencode($lvar['name']); // Show its filename at the last
+				}
 				if (! empty($lvar['title'])) {
 					// タイトルが指定されている
 					$lvar['text'] = htmlspecialchars(join(', ', $lvar['title']));
@@ -1076,6 +1081,7 @@ _HTML_;
 		// 5:添付その他
 
 		if ($this->func->is_url($lvar['name'])) {
+			$lvar['name'] = preg_replace('#^https?:///#', $this->cont['ROOT_URL'], $lvar['name']);
 			$lvar['isurl'] = $lvar['name'];
 			// URL
 			if (! $params['noimg'] &&

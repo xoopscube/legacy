@@ -986,6 +986,17 @@ var XpWiki = {
 		}
 	},
 
+	fireImageManager: function(func, args, include_target_arg) {
+		if (!wikihelper_elem) {
+			alert(wikihelper_msg_elem);
+			return false;
+		}
+		if (typeof include_target_arg == 'number') {
+			args[include_target_arg] = args[include_target_arg].replace('[TARGET]', wikihelper_elem.id);
+		}
+		func((args[0]||''),(args[1]||''),(args[2]||''),(args[3]||''),(args[4]||''),(args[5]||''));
+	},
+
 	refInsert: function(file, type) {
 		if (!wikihelper_elem) {
 			alert(wikihelper_msg_elem);

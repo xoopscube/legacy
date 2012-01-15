@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2008/01/24 by nao-pon http://hypweb.net/
- * $Id: conf.inc.php,v 1.27 2011/11/26 12:03:10 nao-pon Exp $
+ * $Id: conf.inc.php,v 1.28 2012/01/14 11:56:35 nao-pon Exp $
  */
 
 class xpwiki_plugin_conf extends xpwiki_plugin {
@@ -85,6 +85,11 @@ class xpwiki_plugin_conf extends xpwiki_plugin {
 				'form' => 'yesno',
 			),
 			'allow_pagecomment' => array(
+				'kind' => 'root',
+				'type' => 'integer',
+				'form' => 'yesno',
+			),
+			'use_root_image_manager' => array(
 				'kind' => 'root',
 				'type' => 'integer',
 				'form' => 'yesno',

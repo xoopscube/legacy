@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2008/03/24 by nao-pon http://hypweb.net/
- * $Id: attach.php,v 1.39 2012/01/03 04:54:57 nao-pon Exp $
+ * $Id: attach.php,v 1.40 2012/01/14 03:34:28 nao-pon Exp $
  */
 
 //-------- クラス
@@ -242,10 +242,12 @@ class XpWikiAttachFile
 	{
 		$this->getstatus();
 		$is_owner = $this->is_owner();
-		$param = '&amp;refer='.rawurlencode($this->page)
+		$file_e = rawurlencode($this->file);
+		$page_e = rawurlencode($this->page);
+		$param = '&amp;refer='.$page_e
 		       . ($this->age ? '&amp;age='.$this->age : '')
 		       . '&amp;';
-		$param2 = 'file='.rawurlencode($this->file);
+		$param2 = 'file='.$file_e;
 		$title = $this->time_str.' '.$this->size_str;
 		$label = ($showicon ? $this->cont['FILE_ICON'] : '').htmlspecialchars($this->status['org_fname']);
 		if ($this->age) {
@@ -258,7 +260,7 @@ class XpWikiAttachFile
 
 		$info = $count = '';
 		if ($showinfo) {
-			$_title = str_replace('$1',rawurlencode($this->file),$this->root->_attach_messages['msg_info']);
+			$_title = str_replace('$1',$file_e,$this->root->_attach_messages['msg_info']);
 			if (isset($this->root->vars['popup']) && $this->root->vars['cmd'] !== 'read') {
 				$info = '&build_js(refInsert,"'.str_replace('|', '&#124;', $this->file).'",'.$this->type.');';
 			} else {
@@ -284,8 +286,17 @@ class XpWikiAttachFile
 		} else {
 			$filename = $this->status['org_fname'];
 			$filename = str_replace(array(':', '*', '?', '"', '<', '>', '|'), '_', $filename);
-			$filename = '/' . rawurlencode($filename);
-			return "<a href=\"{$this->cont['HOME_URL']}gate.php{$filename}?way=attach&amp;_noumb{$param}open{$param2}\" title=\"{$title}\">{$label}</a>{$count}{$info}";
+			if (! $this->age && $this->cont['PLUGIN_ATTACH_SHORTURL']) {
+				if ($filename !== $this->file) {
+					$filename = '/' . rawurlencode($filename);
+				} else {
+					$filename = '';
+				}
+				return '<a href="'.$this->cont['HOME_URL'].'ref0/'.str_replace('%2F', '%252F', $page_e).'/'.$file_e.$filename.'" title="'.$title.'">'.$label.'</a>'.$count.$info;
+			} else {
+				$filename = '/' . rawurlencode($filename);
+				return "<a href=\"{$this->cont['HOME_URL']}gate.php{$filename}?way=attach&amp;_noumb{$param}open{$param2}\" title=\"{$title}\">{$label}</a>{$count}{$info}";
+			}
 		}
 	}
 	// 情報表示

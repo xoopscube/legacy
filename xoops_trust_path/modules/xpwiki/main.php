@@ -43,6 +43,15 @@ if ($xpwiki->root->userinfo['admin']) {
 
 if ($xpwiki->runmode === 'xoops') {
 
+	// For XCL >= 2.2.1.1 (clear cache of modinfo)
+	// Is it XCL's bug? need check next
+	// http://xoopscube.svn.sourceforge.net/viewvc/xoopscube/Package_Legacy/trunk/html/kernel/module.php?view=log
+	if (defined('LEGACY_BASE_VERSION') && version_compare(LEGACY_BASE_VERSION, '2.2.1.1', '>=')) {
+		$module_handler =& xoops_gethandler('module');
+		$thisModule =& $module_handler->getByDirname($xpwiki->root->mydirname);
+		$thisModule->modinfo = null;
+	}
+
 	// xoops header
 	include XOOPS_ROOT_PATH.'/header.php';
 

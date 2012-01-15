@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/29 by nao-pon http://hypweb.net/
-// $Id: whatsnew.php,v 1.17 2011/09/26 12:03:58 nao-pon Exp $
+// $Id: whatsnew.php,v 1.18 2012/01/14 03:40:01 nao-pon Exp $
 //
 
 class XpWikiExtension_whatsnew extends XpWikiExtension {
@@ -49,7 +49,7 @@ class XpWikiExtension_whatsnew extends XpWikiExtension {
 
 			// 指定ページの本文などを取得
 			$pginfo = $this->func->get_pginfo($base);
-			$description = $this->func->cache_get_db($this->func->get_pgid_by_name($base), 'core:description');
+			$description = $this->func->get_description_cache($base, $this->root->description_max_length_rss);
 
 			$ret[$i]['description'] = strip_tags(($added ? $added . '&#182;' : '') . $description);
 			$ret[$i]['hits']        = $this->func->get_page_views($base);

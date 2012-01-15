@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/02 by nao-pon http://hypweb.net/
-// $Id: pukiwiki_func.php,v 1.233 2011/12/18 00:38:16 nao-pon Exp $
+// $Id: pukiwiki_func.php,v 1.235 2012/01/14 11:56:35 nao-pon Exp $
 //
 class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 
@@ -519,8 +519,13 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 			//if ($modify === FALSE) continue;
 
 			// Replace with $str_rules
-			foreach ($this->root->str_rules as $pattern => $replacement)
-				$line = preg_replace('/' . $pattern . '/', $replacement, $line);
+			foreach ($this->root->str_rules as $pattern => $replacement) {
+				if (is_array($replacement)) {
+					$line = preg_replace($replacement[0], $replacement[1], $line);
+				} else {
+					$line = preg_replace('/' . $pattern . '/', $replacement, $line);
+				}
+			}
 
 			// Adding fixed anchor into headings
 			if ($this->root->fixed_heading_anchor &&
@@ -1080,7 +1085,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 
 //----- Start convert_html.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone
-	// $Id: pukiwiki_func.php,v 1.233 2011/12/18 00:38:16 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.235 2012/01/14 11:56:35 nao-pon Exp $
 	// Copyright (C)
 	//   2002-2005 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -1152,12 +1157,8 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 		if ($real_nest[$this->xpwiki->pid] === 1) {
 
 			if ($this->root->render_mode === 'main' && $this->root->vars['cmd'] === 'read') {
-				$pgid = $this->get_pgid_by_name($this->root->vars['page']);
-				if (! $this->root->meta_description = $this->cache_get_db($pgid, 'core:description')) {
-					// set meta_description
-					$this->root->meta_description = $this->get_meta_description($ret);
-					$this->cache_save_db($this->root->meta_description, 'core:description', 864000, $pgid);
-				}
+				// set meta_description & save cache if need.
+				$this->root->meta_description = $this->get_description_cache($this->root->vars['page'], $this->root->description_max_length_meta, $ret);
 			}
 
 			$ext_autolink_obj = null;
@@ -1392,7 +1393,7 @@ class XpWikiPukiWikiFunc extends XpWikiBaseFunc {
 
 //----- Start func.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.233 2011/12/18 00:38:16 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.235 2012/01/14 11:56:35 nao-pon Exp $
 	// Copyright (C)
 	//   2002-2006 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -2264,7 +2265,7 @@ EOD;
 
 //----- Start make_link.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.233 2011/12/18 00:38:16 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.235 2012/01/14 11:56:35 nao-pon Exp $
 	// Copyright (C)
 	//   2003-2005 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -3306,7 +3307,7 @@ EOD;
 
 //----- Start html.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.233 2011/12/18 00:38:16 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.235 2012/01/14 11:56:35 nao-pon Exp $
 	// Copyright (C)
 	//   2002-2006 PukiWiki Developers Team
 	//   2001-2002 Originally written by yu-ji
@@ -4097,7 +4098,7 @@ EOD;
 
 //----- Start mail.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone.
-	// $Id: pukiwiki_func.php,v 1.233 2011/12/18 00:38:16 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.235 2012/01/14 11:56:35 nao-pon Exp $
 	// Copyright (C)
 	//   2003-2005 PukiWiki Developers Team
 	//   2003      Originally written by upk
@@ -4400,7 +4401,7 @@ EOD;
 
 //----- Start link.php -----//
 	// PukiWiki - Yet another WikiWikiWeb clone
-	// $Id: pukiwiki_func.php,v 1.233 2011/12/18 00:38:16 nao-pon Exp $
+	// $Id: pukiwiki_func.php,v 1.235 2012/01/14 11:56:35 nao-pon Exp $
 	// Copyright (C) 2003-2006 PukiWiki Developers Team
 	// License: GPL v2 or (at your option) any later version
 	//

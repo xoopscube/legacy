@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/13 by nao-pon http://hypweb.net/
-// $Id: init.php,v 1.78 2011/11/26 12:03:10 nao-pon Exp $
+// $Id: init.php,v 1.79 2012/01/14 11:56:34 nao-pon Exp $
 //
 
 $root = & $this->root;
@@ -67,18 +67,18 @@ $const['CONTENT_CHARSET'] = $this->get_content_charset();
 $const['SOURCE_ENCODING'] = $const['CONTENT_CHARSET'];
 
 // Is this site UTF-8?
-$this->cont['FILE_ENCORD_EXT'] = ($const['CONTENT_CHARSET'] === 'UTF-8')? '_utf8' : '';
+$const['FILE_ENCORD_EXT'] = ($const['CONTENT_CHARSET'] === 'UTF-8')? '_utf8' : '';
 
 // Locale
-if (empty($this->cont['LC_CTYPE'])) $this->cont['LC_CTYPE'] = $this->get_LC_CTYPE();
+if (empty($const['LC_CTYPE'])) $const['LC_CTYPE'] = $this->get_LC_CTYPE();
 
 /////////////////////////////////////////////////
 // INI_FILE: Require Lang Conf
 
-$_lang = $this->root->mytrustdirpath.'/language/xpwiki/' . $const['LANG'] . $const['FILE_ENCORD_EXT'] . '/' . 'conf.php';
+$_lang = $root->mytrustdirpath.'/language/xpwiki/' . $const['LANG'] . $const['FILE_ENCORD_EXT'] . '/' . 'conf.php';
 // None
 if (! is_file($_lang)) {
-	$_lang = $this->root->mytrustdirpath.'/language/xpwiki/en/conf.php';
+	$_lang = $root->mytrustdirpath.'/language/xpwiki/en/conf.php';
 	$const['LANG'] = 'en';
 }
 require($_lang);
@@ -86,10 +86,10 @@ require($_lang);
 /////////////////////////////////////////////////
 // INI_FILE: Encode Hint & Accept lang
 
-$_lang = $this->root->mytrustdirpath.'/language/xpwiki/Conf_' . strtoupper($const['CONTENT_CHARSET']) . '.php';
+$_lang = $root->mytrustdirpath.'/language/xpwiki/Conf_' . strtoupper($const['CONTENT_CHARSET']) . '.php';
 // none
 if (! is_file($_lang)) {
-	$_lang = $this->root->mytrustdirpath.'/language/xpwiki/Conf_ISO-8859-1.php';
+	$_lang = $root->mytrustdirpath.'/language/xpwiki/Conf_ISO-8859-1.php';
 }
 require($_lang);
 
@@ -100,14 +100,14 @@ $const['UI_LANG'] = $this->get_accept_language();
 // INI_FILE: Require UI Lang file
 $const['OFFICIAL_LANGS'] = array('ja', 'ja_utf8', 'en');
 
-$_uilang = $this->cont['UI_LANG'] . $this->cont['FILE_ENCORD_EXT'];
+$_uilang = $const['UI_LANG'] . $const['FILE_ENCORD_EXT'];
 
 if (! in_array($_uilang, $const['OFFICIAL_LANGS'])) {
 	// Load base language file.
-	require($this->root->mytrustdirpath.'/language/xpwiki/en/lng.php');
+	require($root->mytrustdirpath.'/language/xpwiki/en/lng.php');
 }
 
-$_lang = $this->root->mytrustdirpath.'/language/xpwiki/' . $const['UI_LANG'] . $const['FILE_ENCORD_EXT'] . '/' . 'lng.php';
+$_lang = $root->mytrustdirpath.'/language/xpwiki/' . $const['UI_LANG'] . $const['FILE_ENCORD_EXT'] . '/' . 'lng.php';
 if (is_file($_lang)) {
 	require($_lang);
 } else {
@@ -249,7 +249,7 @@ if (isset($const['page_show'])) {
 				$die .= 'Directory is not found or not writable (' . $dir . ')' . "\n";
 		}
 
-		if (! $this->root->can_not_connect_www && HypCommonFunc::get_version() >= '20080213') {
+		if (! $root->can_not_connect_www && HypCommonFunc::get_version() >= '20080213') {
 			$dir = $const['TRUST_PATH'] . 'class/hyp_common/favicon/cache';
 			if (! is_writable($dir))
 				$die .= 'Directory is not found or not writable (' . $dir . ')' . "\n";
@@ -277,7 +277,7 @@ if (isset($const['page_show'])) {
 		}
 
 		// page aliases (case-insensitive data)
-		if ($this->root->page_aliases && ! $this->root->page_aliases_i) {
+		if ($root->page_aliases && ! $root->page_aliases_i) {
 			$this->save_page_alias();
 		}
 
@@ -368,7 +368,7 @@ if (isset($const['page_show'])) {
 	$arg = $this->input_filter($arg); // \0 除去
 
 	// URI を urlencode せずに入力した場合に対処する
-	if ($this->root->accept_not_encoded_query) {
+	if ($root->accept_not_encoded_query) {
 		// mb_convert_variablesのバグ(?)対策: 配列で渡さないと落ちる
 		$arg = array($arg);
 		mb_convert_variables($const['SOURCE_ENCODING'], 'auto', $arg);
@@ -448,16 +448,16 @@ if (isset($const['page_show'])) {
 
 	// Special view mode
 	if (!empty($root->vars['ajax'])) {
-		$this->root->viewmode = 'ajax';
+		$root->viewmode = 'ajax';
 		$arg = preg_replace('/[&?]ajax=?[^&]*/', '', $arg);
 	} else if (!empty($root->vars['popup'])) {
-		$this->root->viewmode = 'popup';
+		$root->viewmode = 'popup';
 		$arg = preg_replace('/[&?]popup=?[^&]*/', '', $arg);
 	} else if (!empty($root->vars['print'])) {
-		$this->root->viewmode = 'print';
+		$root->viewmode = 'print';
 		$arg = preg_replace('/[&?]print=?[^&]*/', '', $arg);
 	} else {
-		$this->root->viewmode = 'normal';
+		$root->viewmode = 'normal';
 	}
 
 	// cmdもpluginも指定されていない場合は、QUERY_STRINGをページ名かInterWikiNameであるとみなす
@@ -482,7 +482,7 @@ if (isset($const['page_show'])) {
 
 		if ($arg === '') {
 			$arg = $root->defaultpage;
-		} else if ($this->root->url_encode_utf8 && $const['SOURCE_ENCODING'] !== 'UTF-8') {
+		} else if ($root->url_encode_utf8 && $const['SOURCE_ENCODING'] !== 'UTF-8') {
 			if (! $this->is_pagename($arg) || ! $this->get_pgid_by_name($arg)) {
 				$arg = mb_convert_encoding($arg, $const['SOURCE_ENCODING'], 'UTF-8');
 			}
@@ -520,7 +520,7 @@ if (isset($const['page_show'])) {
 	if ($root->userinfo['admin'] && $root->vars['cmd'] === 'read') {
 		$query = 'SELECT `pgid` FROM ' . $this->xpwiki->db->prefix($root->mydirname.'_pginfo') . ' LIMIT 1' ;
 		if (! $this->xpwiki->db->getRowsNum($this->xpwiki->db->query($query))) {
-			$this->redirect_header($this->root->script . '?cmd=dbsync', 0, 'Welcome to xpWiki Database Sync.');
+			$this->redirect_header($root->script . '?cmd=dbsync', 0, 'Welcome to xpWiki Database Sync.');
 		}
 	}
 
@@ -530,13 +530,28 @@ if (isset($const['page_show'])) {
 $const['PageForRef'] = $const['PAGENAME'] = '';
 if (isset($root->vars['page']) && $root->vars['page'] !== '') {
 	$const['PageForRef'] = $const['PAGENAME'] = $root->vars['page'];
-	if ($const['PAGENAME'] !== $this->root->notepage && strpos($const['PAGENAME'], $this->root->notepage . '/') === 0) {
-		$const['PageForRef'] = substr($const['PAGENAME'], strlen($this->root->notepage) + 1);
+	if ($const['PAGENAME'] !== $root->notepage && strpos($const['PAGENAME'], $root->notepage . '/') === 0) {
+		$const['PageForRef'] = substr($const['PAGENAME'], strlen($root->notepage) + 1);
 	}
 }
 
 /////////////////////////////////////////////////
 // 初期設定(ユーザ定義ルール読み込み)
+
 require($const['DATA_HOME'] . 'private/ini/rules.ini.php');
 
-?>
+if ($root->use_root_image_manager) {
+	$root->rules_extentions .= ',bbcode_image';
+}
+$root->rules_extentions = trim($root->rules_extentions, ',');
+if ($root->rules_extentions) {
+	foreach(explode(',', $root->rules_extentions) as $_rules_extention) {
+		$_rules_extention = trim($_rules_extention);
+		$_rules_extention = $root->mytrustdirpath . '/class/include/' . $_rules_extention . '.php';
+		if (is_file($_rules_extention)) {
+			require($_rules_extention);
+		} else {
+			die('[TrustPath]/class/include/' . basename($_rules_extention) . ' was not found.');
+		}
+	}
+}

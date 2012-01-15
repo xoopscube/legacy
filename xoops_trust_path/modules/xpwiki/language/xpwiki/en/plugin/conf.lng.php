@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2008/01/24 by nao-pon http://hypweb.net/
- * $Id: conf.lng.php,v 1.18 2011/11/17 00:00:15 nao-pon Exp $
+ * $Id: conf.lng.php,v 1.19 2012/01/14 11:56:35 nao-pon Exp $
  */
 
 $msg = array(
@@ -105,6 +105,11 @@ $msg = array(
 		'caption'     => 'Is page comment effective?',
 		'description' => 'The comment integration of d3forum modules is provided and the comment function of each use page can be provided.<br />'
 		               . 'It is necessary to set the comment integration by a general setting to actually use it.',
+	),
+
+	'use_root_image_manager' => array(
+		'caption'     => 'Use Image manager',
+		'description' => 'The standard image manager for a site is used and it enables it to insert a picture.',
 	),
 
 	'use_title_make_search' => array(

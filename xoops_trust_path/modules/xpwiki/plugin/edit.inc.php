@@ -1,6 +1,6 @@
 <?php
 // PukiWiki - Yet another WikiWikiWeb clone.
-// $Id: edit.inc.php,v 1.72 2011/07/29 07:14:25 nao-pon Exp $
+// $Id: edit.inc.php,v 1.73 2012/01/14 03:39:51 nao-pon Exp $
 // Copyright (C) 2001-2006 PukiWiki Developers Team
 // License: GPL v2 or (at your option) any later version
 //
@@ -328,7 +328,7 @@ EOD;
 
 		// Get original data from cache DB.
 		if (! empty($this->root->vars['orgkey'])) {
-			$original = (string)$this->func->cache_get_db($this->root->vars['orgkey'], 'edit');
+			$original = (string)$this->func->cache_get_db($this->root->vars['orgkey'], 'edit', true);
 			$original = $this->func->remove_pginfo($original);
 		}
 

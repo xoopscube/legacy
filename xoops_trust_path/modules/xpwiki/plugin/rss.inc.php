@@ -1,6 +1,6 @@
 <?php
 // PukiWiki - Yet another WikiWikiWeb clone
-// $Id: rss.inc.php,v 1.40 2011/11/26 12:03:10 nao-pon Exp $
+// $Id: rss.inc.php,v 1.41 2012/01/14 03:39:51 nao-pon Exp $
 //
 // RSS plugin: Publishing RSS of RecentChanges
 //
@@ -18,67 +18,74 @@ class xpwiki_plugin_rss extends xpwiki_plugin {
 	function plugin_rss_init () {
 		// リストアップ最大ページ数
 		$this->maxcount = 100;
+		$this->description_len = 250;
 	}
 
-	function get_content ($page) {
+	function get_content ($page, $get_body = true) {
+		$html = null;
+
+		$description = $this->func->get_description_cache($page, $this->root->description_max_length_rss);
+
 		// 追加情報取得
 		$added = $this->func->get_page_changes($page);
 		$added = $this->func->emoji2img($added);
 
-		// 指定ページの本文取得
-		$a_page = & XpWiki::getSingleton($this->root->mydirname);
-		$a_page->init($page);
-		$GLOBALS['Xpwiki_'.$this->root->mydirname]['cache'] = null;
-		$a_page->root->rtf['use_cache_always'] = TRUE;
-		$a_page->execute();
-		$html = $a_page->body;
+		if ($get_body) {
+			// 指定ページの本文取得
+			$a_page = & XpWiki::getSingleton($this->root->mydirname);
+			$a_page->init($page);
+			$GLOBALS['Xpwiki_'.$this->root->mydirname]['cache'] = null;
+			$a_page->root->rtf['use_cache_always'] = TRUE;
+			$a_page->execute();
+			$html = $a_page->body;
 
-		// 付箋
-		if (empty($GLOBALS['Xpwiki_'.$this->root->mydirname]['cache']['fusen']['loaded'])){
-			if ($fusen = $this->func->get_plugin_instance('fusen')) {
-				if ($fusen_data = $fusen->plugin_fusen_data($page)) {
-					if ($fusen_tag = $fusen->plugin_fusen_gethtml($fusen_data, '')) {
-						$html .= '<fieldset><legend> fusen.dat </legend>' . $fusen_tag . '</fieldset>';
+			if (! $description) {
+				// html から description 作成してキャッシュ
+				$description = $this->func->get_description_cache($page, $this->root->description_max_length_rss, $html);
+			}
+
+			// 付箋
+			if (empty($GLOBALS['Xpwiki_'.$this->root->mydirname]['cache']['fusen']['loaded'])){
+				if ($fusen = $this->func->get_plugin_instance('fusen')) {
+					if ($fusen_data = $fusen->plugin_fusen_data($page)) {
+						if ($fusen_tag = $fusen->plugin_fusen_gethtml($fusen_data, '')) {
+							$html .= '<fieldset><legend> fusen.dat </legend>' . $fusen_tag . '</fieldset>';
+						}
 					}
 				}
 			}
+
+			$html = $this->func->emoji2img($html);
+
+			$html = $this->func->add_MyHostUrl($html);
+
+			if ($added) $html = '<dl><dt>Changes</dt><dd>' . $added . '</dd></dl><hr />' . $html;
+
+			// ]]> をクォート
+			$html = str_replace(']]>', ']]&gt;', $html);
+
+			// 無効なタグを削除
+			$html = preg_replace('#<(script|form|embed|object).+?/\\1>#is', '',$html);
+			$html = preg_replace('#<(link|wbr).*?>#is', '',$html);
+
+			// 相対指定リンクを削除
+			$html = preg_replace('#<a[^>]+href=(?!(?:"|\')?\w+://)[^>]+>(.*?)</a>#is', '$1', $html);
+
+			// タグ中の無効な属性を削除
+			$_reg = '/(<[^>]*)\s+(?:id|class|name|on[^=]+)=("|\').*?\\2([^>]*>)/s';
+			while(preg_match($_reg, $html)) {
+				$html = preg_replace($_reg, '$1$3', $html);
+			}
 		}
 
-		$html = $this->func->emoji2img($html);
-
-		$html = $this->func->add_MyHostUrl($html);
-
-
-		$description = strip_tags(($added ? $added . '&#182;' : '') . $html);
-		//$description = preg_replace('/(\s+|&'.$this->root->entity_pattern.';)/i', ' ', $description);
-		$description = preg_replace('/[\r\n]+/', "\n", $description);
-		$description = mb_substr($description, 0, 250);
-		// 末尾に分断された実態参照があれば削除->サニタイズ
-		$description = htmlspecialchars(preg_replace('/&([^;]+)?$/', '', $description));
+		$description = ($added ? ($this->func->substr_entity(htmlspecialchars(trim(preg_replace('/\s+/', ' ', strip_tags($added)))), 0, 250) . '&#182;') : '') . $description;
 
 		$tags = array();
 		if (is_file($this->cont['CACHE_DIR'] . $this->func->encode($page) . '_page.tag')) {
 			$tags = file($this->cont['CACHE_DIR'] . $this->func->encode($page) . '_page.tag');
 		}
 
-		if ($added) $html = '<dl><dt>Changes</dt><dd>' . $added . '</dd></dl><hr />' . $html;
 		$pginfo = $this->func->get_pginfo($page);
-
-		// ]]> をクォート
-		$html = str_replace(']]>', ']]&gt;', $html);
-
-		// 無効なタグを削除
-		$html = preg_replace('#<(script|form|embed|object).+?/\\1>#is', '',$html);
-		$html = preg_replace('#<(link|wbr).*?>#is', '',$html);
-
-		// 相対指定リンクを削除
-		$html = preg_replace('#<a[^>]+href=(?!(?:"|\')?\w+://)[^>]+>(.*?)</a>#is', '$1', $html);
-
-		// タグ中の無効な属性を削除
-		$_reg = '/(<[^>]*)\s+(?:id|class|name|on[^=]+)=("|\').*?\\2([^>]*>)/s';
-		while(preg_match($_reg, $html)) {
-			$html = preg_replace($_reg, '$1$3', $html);
-		}
 
 		return array($description, $html, $pginfo, $tags);
 

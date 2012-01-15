@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2008/01/24 by nao-pon http://hypweb.net/
- * $Id: conf.lng.php,v 1.18 2011/11/17 00:00:15 nao-pon Exp $
+ * $Id: conf.lng.php,v 1.19 2012/01/14 11:56:35 nao-pon Exp $
  */
 
 $msg = array(
@@ -105,6 +105,11 @@ $msg = array(
 		'caption'     => 'ページコメント機能を有効にする',
 		'description' => 'd3forum モジュールのコメント統合を使いページ毎にコメント機能を持たせることができます。<br />'
 		               . '実際に使用するには、一般設定でコメント統合の設定をする必要があります。',
+	),
+
+	'use_root_image_manager' => array(
+		'caption'     => 'イメージマネージャーを使用する',
+		'description' => 'サイト標準のイメージマネージャーを利用し画像を挿入できるようにします。',
 	),
 
 	'use_title_make_search' => array(

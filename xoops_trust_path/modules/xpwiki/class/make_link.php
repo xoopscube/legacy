@@ -210,7 +210,7 @@ class XpWikiLink {
 				$alias = preg_replace('#</?a[^>]*>#i', '', $alias);
 
 				// Is image only? (on render mode)
-				if ($this->root->render_mode === 'render') {
+				if ($this->root->render_mode === 'render' || $this->root->use_root_image_manager) {
 					if (strpos($this->name, $this->root->siteinfo['rooturl']) === 0
 					 && preg_match('/^<img[^>]+>$/s', trim($alias))
 					 && preg_match('/(?:jpe?g|png|gif)$/i', $this->name)) {
