@@ -1,144 +1,114 @@
 <?php
-// $Id: blocksadmin.php,v 1.2 2005/03/18 12:52:49 onokazu Exp $
-//%%%%%%	Admin Module Name  Blocks 	%%%%%
-define("_AM_DBUPDATED", "データテーブルがアップデートされました");
-
-//%%%%%%	blocks.php 	%%%%%
-define("_AM_BADMIN", "ブロック管理");
-define("_AM_ADDBLOCK", "Add a new block");
-define("_AM_LISTBLOCK", "List all blocks");
-define("_AM_SIDE", "表示サイド");
-define("_AM_BLKDESC", "ブロック説明");
-define("_AM_TITLE", "タイトル");
-define("_AM_WEIGHT", "並び順");
-define("_AM_ACTION", "操作");
-define("_AM_BLKTYPE", "Block Type");
-define("_AM_LEFT", "左");
-define("_AM_RIGHT", "右");
-define("_AM_CENTER", "中央");
-define("_AM_VISIBLE", "可視");
-define("_AM_POSCONTT", "Position of the additional content");
-define("_AM_ABOVEORG", "Above the original content");
-define("_AM_AFTERORG", "After the original content");
-define("_AM_EDIT", "Edit");
-define("_AM_DELETE", "Delete");
-define("_AM_SBLEFT", "サイド - 左");
-define("_AM_SBRIGHT", "サイド - 右");
-define("_AM_CBLEFT", "センター - 左");
-define("_AM_CBRIGHT", "センター - 右");
-define("_AM_CBCENTER", "センター - 中央");
-define("_AM_CONTENT", "Content");
-define("_AM_OPTIONS", "Options");
-define("_AM_CTYPE", "Content Type");
-define("_AM_HTML", "HTML");
-define("_AM_PHP", "PHP Script");
-define("_AM_AFWSMILE", "Auto Format (smilies enabled)");
-define("_AM_AFNOSMILE", "Auto Format (smilies disabled)");
-define("_AM_SUBMIT", "Submit");
-define("_AM_CUSTOMHTML", "Custom Block (HTML)");
-define("_AM_CUSTOMPHP", "Custom Block (PHP)");
-define("_AM_CUSTOMSMILE", "Custom Block (Auto Format + smilies)");
-define("_AM_CUSTOMNOSMILE", "Custom Block (Auto Format)");
-define("_AM_DISPRIGHT", "Display only rightblocks");
-define("_AM_SAVECHANGES", "Save Changes");
-define("_AM_EDITBLOCK", "Edit a block");
-define("_AM_SYSTEMCANT", "System blocks cannot be deleted!");
-define("_AM_MODULECANT", "This block cannot be deleted directly! If you wish to disable this block, deactivate the module.");
-define("_AM_RUSUREDEL", "Are you sure you want to delete block <b>%s</b>?");
-define("_AM_NAME", "Name");
-define("_AM_USEFULTAGS", "Useful Tags:");
-define("_AM_BLOCKTAG1", "%s will print %s");
-define('_AM_SVISIBLEIN', 'Show blocks visible in %s');
-define('_AM_TOPPAGE', 'Top Page');
-define('_AM_VISIBLEIN', 'Visible in');
-define('_AM_ALLPAGES', 'All Pages');
-define('_AM_TOPONLY', 'Top Page Only');
-define('_AM_ADVANCED', 'Advanced Settings');
-define('_AM_BCACHETIME', 'Cache lifetime');
-define('_AM_BALIAS', 'Alias name');
-define('_AM_CLONE', 'Clone'); // clone a block
-define('_AM_CLONEBLK', 'Clone'); // cloned block
-define('_AM_CLONEBLOCK', 'Create a clone block');
-define('_AM_NOTSELNG', "'%s' is not selected!"); // error message
-define('_AM_EDITTPL', 'Edit Template');
-define('_AM_MODULE', 'Module');
-define('_AM_GROUP', 'Group');
-define('_AM_UNASSIGNED', 'Unassigned');
-// $Id: groups.php 184 2006-01-22 22:34:51Z skalpa $
-//%%%%%%  Admin Module Name  AdminGroup      %%%%%
-define("_AM_EDITADG","Edit Groups");
-define("_AM_MODIFY","Modify");
-
-define("_AM_CREATENEWADG","Create New Group");
-
-define("_AM_DESCRIPTION","Description");
-define("_AM_INDICATES","* indicates required fields");
-define("_AM_SYSTEMRIGHTS","System Admin rights");
-define("_AM_ACTIVERIGHTS","モジュール管理権限");
-define("_AM_IFADMIN","If admin right for a module is checked, access right for the module will always be enabled.");
-define("_AM_ACCESSRIGHTS","モジュール利用権限");
-define("_AM_UPDATEADG","Update Group");
-define("_AM_MODIFYADG","Modify Group");
-define("_AM_DELETEADG","Delete Group");
-define("_AM_AREUSUREDEL","Are you sure you want to delete this group?");
-define("_AM_YES","Yes");
-define("_AM_NO","No");
-define("_AM_EDITMEMBER","Edit Members of this Group");
-define("_AM_MEMBERS","Members");
-define("_AM_NONMEMBERS","Non-members");
-define("_AM_ADDBUTTON"," add --> ");
-define("_AM_DELBUTTON","<--delete");
-define("_AM_UNEED2ENTER","You need to enter required info!");
-// $Id: admin.php,v 1.1 2007/05/15 02:35:27 minahito Exp $
-//%%%%%%	File Name  admin.php 	%%%%%
-define('_MD_AM_DBUPDATED','Database Updated Successfully!');
-// Admin Module Names
-define('_MD_AM_ADGS','グループ権限');
-define('_MD_AM_BANS','Banners');
-define('_MD_AM_BKAD','Blocks');
-define('_MD_AM_MDAD','Modules');
-define('_MD_AM_SMLS','Smilies');
-define('_MD_AM_RANK','User Ranks');
-define('_MD_AM_USER','Edit Users');
-define('_MD_AM_FINDUSER', 'Find Users');
-define('_MD_AM_PREF','Preferences');
-define('_MD_AM_VRSN','Version');
-define('_MD_AM_MLUS', 'Mail Users');
-define('_MD_AM_IMAGES', 'Image Manager');
-define('_MD_AM_AVATARS', 'Avatars');
-define('_MD_AM_TPLSETS', 'Templates');
-define('_MD_AM_COMMENTS', 'Comments');
-
-/*
- * Modules/multiMenu
- */
-
-define("_AD_MULTIMENU_ADMIN", 	"設定:マルチメニュー");
-define("_AD_MULTIMENU_ADMIN_01", 	"設定:メニュー01");
-define("_AD_MULTIMENU_ADMIN_02", 	"設定:メニュー02");
-define("_AD_MULTIMENU_ADMIN_03", 	"設定:メニュー03");
-define("_AD_MULTIMENU_ADMIN_04", 	"設定:メニュー04");
-define("_AD_MULTIMENU_ADMIN_05", 	"設定:メニュー05");
-define("_AD_MULTIMENU_ADMIN_06", 	"設定:メニュー06");
-define("_AD_MULTIMENU_ADMIN_07", 	"設定:メニュー07");
-define("_AD_MULTIMENU_ADMIN_08", 	"設定:メニュー08");
-define("_AD_MULTIMENU_EDITIMENU", 	"編集");
-define("_AD_MULTIMENU_NEWIMENU", 	"新しいリンク");
-define("_AD_MULTIMENU_NEW",		"リンク追加");
-define("_AD_MULTIMENU_TITLE",		"タイトル");
-define("_AD_MULTIMENU_HIDE",		"隠す");
-define("_AD_MULTIMENU_TARGET",	"表示先(Target)");
-define("_AD_MULTIMENU_GROUPS",	"グループ");
-define("_AD_MULTIMENU_LINK",		"リンク");
-define("_AD_MULTIMENU_OPERATION",	"機能");
-define("_AD_MULTIMENU_UP",		"上へ");
-define("_AD_MULTIMENU_DOWN",		"下へ");
-define("_AD_MULTIMENU_TARG_SELF",	"self");
-define("_AD_MULTIMENU_TARG_BLANK",	"blank");
-define("_AD_MULTIMENU_TARG_PARENT",	"parent");
-define("_AD_MULTIMENU_TARG_TOP",	"top");
-define("_AD_MULTIMENU_SUREDELETE",	"このリンクを削除してもいいですか?");
-define("_AD_MULTIMENU_UPDATED",	"データベースを更新しました!");
-define("_AD_MULTIMENU_NOTUPDATED",	"データベースを更新できませんでした!");
-define("_AD_MULTIMENU_SUBMIT", 	"実行");
+define('_AD_MULTIMENU_ADMIN', 	'設定:マルチメニュー');
+define('_AD_MULTIMENU_ADMIN_01', 	'設定:メニュー01');
+define('_AD_MULTIMENU_ADMIN_02', 	'設定:メニュー02');
+define('_AD_MULTIMENU_ADMIN_03', 	'設定:メニュー03');
+define('_AD_MULTIMENU_ADMIN_04', 	'設定:メニュー04');
+define('_AD_MULTIMENU_ADMIN_05', 	'設定:メニュー05');
+define('_AD_MULTIMENU_ADMIN_06', 	'設定:メニュー06');
+define('_AD_MULTIMENU_ADMIN_07', 	'設定:メニュー07');
+define('_AD_MULTIMENU_ADMIN_08', 	'設定:メニュー08');
+define('_AD_MULTIMENU_EDITIMENU', 	'編集');
+define('_AD_MULTIMENU_NEWIMENU', 	'新しいリンク');
+define('_AD_MULTIMENU_NEW',		'リンク追加');
+define('_AD_MULTIMENU_TITLE',		'タイトル');
+define('_AD_MULTIMENU_HIDE',		'隠す');
+define('_AD_MULTIMENU_TARGET',	'表示先(Target)');
+define('_AD_MULTIMENU_GROUPS',	'グループ');
+define('_AD_MULTIMENU_LINK',		'リンク');
+define('_AD_MULTIMENU_OPERATION',	'機能');
+define('_AD_MULTIMENU_UP',		'上へ');
+define('_AD_MULTIMENU_DOWN',		'下へ');
+define('_AD_MULTIMENU_TARG_SELF',	'self');
+define('_AD_MULTIMENU_TARG_BLANK',	'blank');
+define('_AD_MULTIMENU_TARG_PARENT',	'parent');
+define('_AD_MULTIMENU_TARG_TOP',	'top');
+define('_AD_MULTIMENU_SUREDELETE',	'このリンクを削除してもいいですか?');
+define('_AD_MULTIMENU_UPDATED',	'データベースを更新しました!');
+define('_AD_MULTIMENU_NOTUPDATED',	'データベースを更新できませんでした!');
+define('_AD_MULTIMENU_SUBMIT', 	'実行');
+if ( !defined('_AM_BADMIN') ) {
+  define('_AM_BADMIN','ブロック管理');
+  define('_AM_ADDBLOCK','新規ブロック作成');
+  define('_AM_LISTBLOCK','全てのブロックを表示');
+  define('_AM_SIDE','表示サイド');
+  define('_AM_BLKDESC','ブロックの説明');
+  define('_AM_TITLE','タイトル');
+  define('_AM_WEIGHT','並び順');
+  define('_AM_ACTION','操作');
+  define('_AM_BLKTYPE','ブロックのタイプ');
+  define('_AM_LEFT','左側');
+  define('_AM_RIGHT','右側');
+  define('_AM_CENTER','中央');
+  define('_AM_VISIBLE','表示 / 非表示');
+  define('_AM_POSCONTT','追加コンテンツを挿入する位置');
+  define('_AM_ABOVEORG','元のコンテンツの上');
+  define('_AM_AFTERORG','元のコンテンツの下');
+  define('_AM_EDIT','編集');
+  define('_AM_DELETE','削除');
+  define('_AM_SBLEFT','サイドブロック - 左');
+  define('_AM_SBRIGHT','サイドブロック - 右');
+  define('_AM_CBLEFT','中央ブロック - 左');
+  define('_AM_CBRIGHT','中央ブロック - 右');
+  define('_AM_CBCENTER','中央ブロック - 中央');
+  define('_AM_CONTENT','コンテンツ');
+  define('_AM_OPTIONS','オプション');
+  define('_AM_CTYPE','コンテンツのタイプ');
+  define('_AM_HTML','HTMLタグ');
+  define('_AM_PHP','PHPスクリプト');
+  define('_AM_AFWSMILE','自動フォーマット（顔アイコン有効）');
+  define('_AM_AFNOSMILE','自動フォーマット（顔アイコン無効）');
+  define('_AM_SUBMIT','送信');
+  define('_AM_CUSTOMHTML','カスタム（HTML）');
+  define('_AM_CUSTOMPHP','カスタム（PHP）');
+  define('_AM_CUSTOMSMILE','カスタム（顔アイコン無効）');
+  define('_AM_CUSTOMNOSMILE','カスタム（顔アイコン無効）');
+  define('_AM_DISPRIGHT','右ブロックのみ表示');
+  define('_AM_SAVECHANGES','変更を保存');
+  define('_AM_EDITBLOCK','ブロックを編集');
+  define('_AM_SYSTEMCANT','システムブロックは削除できません');
+  define('_AM_MODULECANT','このブロックを直接削除することはできません。先にこのブロックのモジュールを非アクティブにしてください');
+  define('_AM_RUSUREDEL','<b>%s</b>ブロックを本当に削除してもいいですか？');
+  define('_AM_NAME','名称');
+  define('_AM_USEFULTAGS','使用可能なタグ');
+  define('_AM_BLOCKTAG1','%s は %s を表示します');
+  define('_AM_SVISIBLEIN', '表示する画面： %s ');//Show blocks visible in %s');
+  define('_AM_TOPPAGE', 'トップページ');
+  define('_AM_VISIBLEIN', '表示する画面');
+  define('_AM_ALLPAGES', 'すべてのページ');
+  define('_AM_TOPONLY', 'トップページのみ');
+  define('_AM_ADVANCED', '高度な設定');
+  define('_AM_BCACHETIME', 'キャッシュの寿命');
+  define('_AM_BALIAS', 'エリアス名');
+  define('_AM_CLONE', '複製');  // clone a block
+  define('_AM_CLONEBLK', '複製'); // cloned block
+  define('_AM_CLONEBLOCK', '複製ブロックの作成');
+  define('_AM_NOTSELNG', "'%s' は選択されていません!"); // error message
+  define('_AM_EDITTPL', 'テンプレートを編集');
+  define('_AM_MODULE', 'モジュール');
+  define('_AM_GROUP', 'グループ');
+  define('_AM_UNASSIGNED', '未割り当て');
+}
+if ( !defined('_MD_AM_ADGS') ) {
+  define('_MD_AM_DBUPDATED','データベースを更新しました');
+  define('_MD_AM_ADGS','グループ管理');
+  define('_MD_AM_BANS','バナー管理');
+  define('_MD_AM_BKAD','ブロック管理');
+  define('_MD_AM_MDAD','モジュール管理');
+  define('_MD_AM_SMLS','顔アイコン設定');
+  define('_MD_AM_RANK','ユーザランキング設定');
+  define('_MD_AM_USER','ユーザ管理');
+  define('_MD_AM_FINDUSER', 'ユーザ検索');
+  define('_MD_AM_PREF','一般設定');
+  define('_MD_AM_VRSN','バージョン');
+  define('_MD_AM_MLUS', 'ユーザ宛にメール送信');
+  define('_MD_AM_IMAGES', 'イメージ・マネジャー');
+  define('_MD_AM_AVATARS', 'アバター・マネジャー');
+  define('_MD_AM_TPLSETS', 'テンプレート');
+  define('_MD_AM_COMMENTS', 'コメント');
+}
+if ( !defined('_AM_ACTIVERIGHTS') ) {
+  define('_AM_ACTIVERIGHTS','モジュール管理者権限');
+  define('_AM_ACCESSRIGHTS','モジュールアクセス権限');
+}
 ?>

@@ -114,12 +114,13 @@ if( ! empty( $_POST['submit'] ) ) {
 
 xoops_cp_header() ;
 
-echo "" ;
-
 // for multimenu admin menu
 //echo "<h3 style='text-align:left;'>".$xoopsModule->name()."</h3>\n" ;
 require 'admin_function.php';
-mm_admin_menu(0, _AM_BADMIN );
+$class = new multimenu($menu_num);
+
+$class->mm_admin_menu(0, _AM_BADMIN );
+
 //echo "<h4 style='text-align:left;'>"._AM_BADMIN."</h4>\n" ;
 list_blocks() ;
 if( !defined( 'XOOPS_CUBE_LEGACY' ) ) {

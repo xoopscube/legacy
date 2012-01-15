@@ -29,25 +29,5 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-$adminmenu[0]['title'] = _IM_MULTIMENU_NAME;
-$adminmenu[0]['link'] = "admin/index01.php";
-$adminmenu[1]['title'] = _IM_MULTIMENU_NAME_1;
-$adminmenu[1]['link'] = "admin/index02.php";
-$adminmenu[2]['title'] = _IM_MULTIMENU_NAME_2;
-$adminmenu[2]['link'] = "admin/index03.php";
-$adminmenu[3]['title'] = _IM_MULTIMENU_NAME_3;
-$adminmenu[3]['link'] = "admin/index04.php";
-$adminmenu[4]['title'] = _IM_MULTIMENU_NAME_4;
-$adminmenu[4]['link'] = "admin/index05.php";
-$adminmenu[5]['title'] = _IM_MULTIMENU_NAME_5;
-$adminmenu[5]['link'] = "admin/index06.php";
-$adminmenu[6]['title'] = _IM_MULTIMENU_NAME_6;
-$adminmenu[6]['link'] = "admin/index07.php";
-$adminmenu[7]['title'] = _IM_MULTIMENU_NAME_7;
-$adminmenu[7]['link'] = "admin/index08.php";
 
-// link to myblocksadmin.php add by Tom Thanks GIJ
-//$adminmenu[8]['title'] = _MI_SYSTEM_ADMENU2;
-$adminmenu[8]['title'] = _IM_MULTIMENU_NAME_BL;
-$adminmenu[8]['link'] = "admin/myblocksadmin.php";
 ?>

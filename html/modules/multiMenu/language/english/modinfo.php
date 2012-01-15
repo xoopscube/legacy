@@ -8,8 +8,7 @@ define("_IM_MULTIMENU_NAME_4",	"multiMenu 5");
 define("_IM_MULTIMENU_NAME_5",	"multiMenu 6");
 define("_IM_MULTIMENU_NAME_6",	"multiMenu 7");
 define("_IM_MULTIMENU_NAME_7",	"multiMenu 8");
+define("_IM_MULTIMENU_FLOW",	"Flow Menu");
 define("_IM_MULTIMENU_NAME_BL",	"block admin");
-define("_IM_MULTIMENU_DESC",	"Allow to create up to 8 different Custom Menus.<br />
-Preference can be set as css and smarty outout as xoops_block_header.<br />
-Title can be set as HTMLtag such like a img.");
+define("_IM_MULTIMENU_DESC",	"Allow to create up to 4 different Custom Menus.");
 ?>
