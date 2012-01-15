@@ -1,5 +1,5 @@
 <?php
-// $Id: hyp_common_func.php,v 1.83 2012/01/04 14:13:12 nao-pon Exp $
+// $Id: hyp_common_func.php,v 1.84 2012/01/14 15:06:58 nao-pon Exp $
 // HypCommonFunc Class by nao-pon http://hypweb.net
 ////////////////////////////////////////////////
 
@@ -1002,9 +1002,9 @@ class HypCommonFunc
 			// ビットマップ展開時のメモリー上のサイズ
 			$bitmap_size = $w * $h * 3 + 54;
 
-			$now_use_mem = intval(memory_get_usage());
+			$now_use_mem = intval(memory_get_usage(true));
 			if (!$now_use_mem) {
-				$now_use_mem = 2 * 1024 * 1024;
+				$now_use_mem = 4 * 1024 * 1024;
 			}
 			if ($bitmap_size > ($memory_limit - $now_use_mem - (1 * 1024 * 1024)))
 			{
@@ -1313,7 +1313,7 @@ return ($ok)? $match[0] : ($match[1] . "\x08" . $match[2]);');
 					$counter += HypCommonFunc::URL_Check($post[$key]);
 				}
 			} else {
-				$post = preg_replace_callback('#(https?://)([^\s]+)#i', $func, $post);
+				$post = preg_replace_callback('#(https?://)([^/][^\s]+)#i', $func, $post);
 				$counter += substr_count($post, "\x08");
 				$post = str_replace("\x08", ' ', $post);
 			}
@@ -1611,9 +1611,11 @@ return ($ok)? $match[0] : ($match[1] . "\x08" . $match[2]);');
 	// php.ini のサイズ記述をバイト値に変換
 	function return_bytes($val) {
 		$val = trim(strval($val));
-		if ($val === '-1') $val = '';
+		if ($val === '-1') $val = 0;
 		if ($val) {
-			$last = strtolower($val{strlen($val)-1});
+			// for ex. 1mb, 1KB
+			$val = rtrim($val, 'bB');
+			$last = strtolower(substr($val, -1));
 			switch($last) {
 				// 'G' は、PHP 5.1.0 より有効となる
 				case 'g':
@@ -1622,7 +1624,8 @@ return ($ok)? $match[0] : ($match[1] . "\x08" . $match[2]);');
 					$val *= 1024;
 				case 'k':
 					$val *= 1024;
-		   }
+			}
+			$val = floor($val);
 		}
 		return $val;
 	}

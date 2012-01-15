@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2011/11/17 by nao-pon http://xoops.hypweb.net/
- * $Id: Hyp_TextFilter.php,v 1.3 2011/12/13 07:15:29 nao-pon Exp $
+ * $Id: Hyp_TextFilter.php,v 1.4 2012/01/15 00:08:40 nao-pon Exp $
  */
 
 class Hyp_TextFilter extends Legacy_TextFilter
@@ -127,7 +127,7 @@ class Hyp_TextFilter extends Legacy_TextFilter
                 $pat[$className][$image][] = '/\[url=([\'"]?)([!~*\'();\/?:\@&=+\$,%#\w.-]+)\\1\](.+)\[\/url\]/esUS';
                 $rep[$className][$image][] = '\'[[\'.Hyp_TextFilter::renderWiki_ret2br(\'$3\').\':http://$2]]\'';
 
-                $pat[$className][$image][] = '/\[siteurl=([\'"]?)([!~*\'();\/?:\@&=+\$,%#\w.-]+)\\1\](.+)\[\/siteurl\]/esUS';
+                $pat[$className][$image][] = '/\[siteurl=([\'"]?)\/?([!~*\'();?:\@&=+\$,%#\w.-][!~*\'();\/?:\@&=+\$,%#\w.-]+)\\1\](.+)\[\/siteurl\]/esUS';
                 $rep[$className][$image][] = '\'[[\'.Hyp_TextFilter::renderWiki_ret2br(\'$3\').\':http:///$2]]\'';
 
                 // BB Code quote
@@ -156,11 +156,11 @@ class Hyp_TextFilter extends Legacy_TextFilter
 
 				// BB Code siteimage with align
 				$pat[$className][$image][] = '/\[siteimg\s+align=([\'"]?)(left|center|right)\1(?:\s+title=([\'"]?)([^\'"][^\]\s]*?)\3)?(?:\s+w(?:idth)?=([\'"]?)([\d]+?)\5)?(?:\s+h(?:eight)?=([\'"]?)([\d]+?)\7)?]\/?([!~*\'();?\@&=+\$,%#\w.-][!~*\'();\/?\@&=+\$,%#\w.-]+?)\[\/siteimg\]/US';
-				$rep[$className][$image][] = '&ref('.XOOPS_URL.'/$9,$2,"t:$4",mw:$6,mw:$8);';
+				$rep[$className][$image][] = '&ref(http:///$9,$2,"t:$4",mw:$6,mw:$8);';
 
 				// BB Code siteimage normal
 				$pat[$className][$image][] = '/\[siteimg(?:\s+title=([\'"]?)([^\'"][^\]\s]*?)\1)?(?:\s+w(?:idth)?=([\'"]?)([\d]+?)\3)?(?:\s+h(?:eight)?=([\'"]?)([\d]+?)\5)?]\/?([!~*\'();?\@&=+\$,%#\w.-][!~*\'();\/?\@&=+\$,%#\w.-]+?)\[\/siteimg\]/US';
-				$rep[$className][$image][] = '&ref('.XOOPS_URL.'/$7,"t:$2",mw:$4,mw:$6);';
+				$rep[$className][$image][] = '&ref(http:///$7,"t:$2",mw:$4,mw:$6);';
 
                 // Some BB Code Tags, Contents allows xpWiki rendering.
                 if ($_reg = join('|', $this->renderWiki_getEscTags())) {

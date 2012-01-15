@@ -2,7 +2,7 @@
 /*
  * Created on 2008/06/17 by nao-pon http://hypweb.net/
  * License: GPL v2 or (at your option) any later version
- * $Id: hyp_ktai_render.php,v 1.57 2011/12/01 13:17:45 nao-pon Exp $
+ * $Id: hyp_ktai_render.php,v 1.58 2012/01/15 00:09:54 nao-pon Exp $
  */
 
 if (! function_exists('XC_CLASS_EXISTS')) {
@@ -317,7 +317,7 @@ class HypKTaiRender
 		}
 
 		$googleAdsenseHtml = '';
-		if ($this->Config_googleAdSenseConfig && is_file($this->Config_googleAdSenseConfig)) {
+		if (! defined('HYP_NO_ADS') && $this->Config_googleAdSenseConfig && is_file($this->Config_googleAdSenseConfig)) {
 			include $this->Config_googleAdSenseConfig;
 			@ include_once dirname(__FILE__) . '/googleAdsense.php';
 			if (XC_CLASS_EXISTS('googleAdsense')) {
