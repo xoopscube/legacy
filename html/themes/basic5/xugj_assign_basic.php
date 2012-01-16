@@ -75,10 +75,25 @@ $menu_cache_file = XOOPS_TRUST_PATH.'/cache/theme_'.$theme_name.'_menus_'.SITE_S
 
 // PM
 if( is_object( @$xoopsUser ) ) {
-	$pm_handler =& xoops_gethandler('privmessage') ;
-	$criteria = new CriteriaCompo(new Criteria('read_msg', 0));
-	$criteria->add(new Criteria('to_userid', $xoopsUser->getVar('uid')));
-	$this->assign( 'pm' , array( new_messages => $pm_handler->getCount( $criteria ) ) ) ;
+	if (defined('LEGACY_MODULE_VERSION') && version_compare(LEGACY_MODULE_VERSION, '2.2', '>=')) {
+		$url = null;
+		$root = XCube_Root::getSingleton();
+		$service =& $root->mServiceManager->getService('privateMessage');
+		if ($service != null) {
+			$client =& $root->mServiceManager->createClient($service);
+			$url = $client->call('getPmInboxUrl', array('uid' => $xoopsUser->get('uid')));
+
+			if ($url != null) {
+				$this->assign( 'pm_inbox_url' , $url ) ;
+				$this->assign( 'pm' , $client->call('getCountUnreadPM', array('uid' => $xoopsUser->get('uid'))) ) ;
+			}
+		}
+	}else{
+		$pm_handler =& xoops_gethandler('privmessage') ;
+		$criteria = new CriteriaCompo(new Criteria('read_msg', 0));
+		$criteria->add(new Criteria('to_userid', $xoopsUser->getVar('uid')));
+		$this->assign( 'pm' , array( new_messages => $pm_handler->getCount( $criteria ) ) ) ;
+	}
 }
 
 // groups
