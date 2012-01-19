@@ -1,41 +1,13 @@
 <?php
-
 include "../../../include/cp_header.php";
-include_once ('admin_function.php');
-$menu_num = "06";
-$op = '';
-foreach ($_POST as $k => $v) {
-	${$k} = $v;
-}
-
-if (isset($_GET['op'])) {
-	$op = $_GET['op'];
-	if (isset($_GET['id'])) {
-		$id = intval($_GET['id']);
-	}
-	if (isset($_GET['weight'])) {
-		$weight = intval($_GET['weight']);
-	}
-}
-switch($op) {
-case "new":
-	im_admin_new($menu_num);
-	break;
-case "edit":
-	im_admin_edit($menu_num, $id);
-	break;
-case "update":
-	im_admin_update($menu_num, $id, $title, $link, $hide, $groups, $target);
-	break;
-case "del":
-	im_admin_del($menu_num, $id, $del);
-	break;
-case "move":
-	im_admin_move($menu_num, $id, $weight);
-	im_admin_list($menu_num);
-	break;
-default:
-	im_admin_list($menu_num);
-	break;
-}
+xoops_cp_header();
+$myfilename = basename(__FILE__);
+echo "<a target='_self' href='index.php'>"._AD_MULTIMENU_ADMIN."</a>";
+echo "<br/>";
+echo "-------- attention please --------";
+echo "<br/>";
+echo "This file (multiMenu/admin/".$myfilename.") is not required at multiMenu ver1.20 of pack2011:Please delete this file from your site.";
+echo "<br/>";
+echo "このファイル (multiMenu/admin/".$myfilename.") はpack2011 multiMenu ver1.20 では不要になりました。あなたのサイトからこのファイルを削除してください";
+xoops_cp_footer();
 ?>

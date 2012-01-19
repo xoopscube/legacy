@@ -5,7 +5,7 @@ class multimenu{
   private $mnum;
   private $db;
   private $root;
-  
+
   public function __construct($menu_num = '01'){
     $this->root = XCube_Root::getSingleton();
     $this->mnum = $menu_num;
@@ -27,7 +27,7 @@ class multimenu{
     echo '<li style="list-style: none; margin: 0; display: inline; ">
     <a href="index.php?mnum=99" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: '.$tblColors[99].'; text-decoration: none; ">'._AD_MULTIMENU_ADMIN_99.'</a></li>';
     echo '</ul></div>';
-    
+
     echo '<div id="navcontainer">
     <ul style="padding: 3px 0; margin-left: 0; font: bold 12px Verdana, sans-serif; ">';
     echo '<li style="list-style: none; margin: 0; display: inline; "><a href="index.php?mnum=5" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: '.$tblColors[5].'; text-decoration: none; ">'._AD_MULTIMENU_ADMIN_05.'</a></li>';
@@ -37,7 +37,7 @@ class multimenu{
     echo '<li style="list-style: none; margin: 0; display: inline; ">
     <a href="myblocksadmin.php" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: '.$tblColors[0].'; text-decoration: none; ">'._AM_BADMIN.'</a></li>';
     echo '</ul></div>';
-    
+
     echo '<br />';
   }
   private function im_admin_clean(){
@@ -53,15 +53,15 @@ class multimenu{
   public function im_admin_list(){
     xoops_cp_header();
     $this->mm_admin_menu(intval($this->mnum), _AD_MULTIMENU_ADMIN.$this->mnum );
-    
-    echo '<fieldset style="padding: 5px;"><legend style="font-weight: bold; color: #900;">'. _AD_MULTIMENU_ADMIN . $this->mnum . '</legend>'; 
+
+    echo '<fieldset style="padding: 5px;"><legend style="font-weight: bold; color: #900;">'. _AD_MULTIMENU_ADMIN . $this->mnum . '</legend>';
     echo '<form action="index.php?mnum='.$this->mnum.'&op=new" method="post" name="form1">
     <table width="100%" border="0" cellspacing="1" cellpadding="0" class="outer"><tr>
     <th align="center">'._AD_MULTIMENU_TITLE.'</th>
     <th align="center">'._AD_MULTIMENU_HIDE.'</th>
     <th align="center">'._AD_MULTIMENU_LINK.'</th>
     <th align="center">'._AD_MULTIMENU_OPERATION.'</th></tr>';
-    
+
     $modhand = xoops_getmodulehandler('menu');
     $modhand->setTable($this->mnum);
     $mCriteria = new CriteriaCompo();
@@ -71,15 +71,17 @@ class multimenu{
     $class = 'even';
     foreach ( $objcts as $obj ) {
       if ($obj->get('weight') != 0) {
-        $moveup = "<a href='index.php?mnum=".$this->mnum."&op=move&id=".$obj->get('id')."&weight=".($obj->get('weight')-1)."'>["._AD_MULTIMENU_UP."]</a>";
+        $moveup = "<a href='index.php?mnum=".$this->mnum."&op=move&id=".$obj->get('id')."&weight=".($obj->get('weight')-1).$gticket_param."'>["._AD_MULTIMENU_UP."]</a>";
       } else {
         $moveup = "["._AD_MULTIMENU_UP."]";
       }
       if ($obj->get('weight') != (count($objcts)  - 1)) {
-        $movedown = "<a href='index.php?mnum=".$this->mnum."&op=move&id=".$obj->get('id')."&weight=".($obj->get('weight')+2)."'>["._AD_MULTIMENU_DOWN."]</a>";
+        $movedown = "<a href='index.php?mnum=".$this->mnum."&op=move&id=".$obj->get('id')."&weight=".($obj->get('weight')+2).$gticket_param."'>["._AD_MULTIMENU_DOWN."]</a>";
       } else {
         $movedown = "["._AD_MULTIMENU_DOWN."]";
       }
+//fix by domifara Notice [PHP]: Undefined variable: status
+      $status = $obj->get('hide')? _YES :_NO ;
       echo "<tr>
         <td class='$class'>".$obj->get('title')."</td>
         <td class='$class' align='center'>$status</td>
@@ -88,17 +90,22 @@ class multimenu{
         <a href='index.php?mnum=".$this->mnum."&op=edit&id=".$obj->get('id')."'>["._EDIT."]</a>".$moveup.$movedown."</small></td></tr>";
       $class = ($class == 'odd') ? 'even' : 'odd';
     }
-    echo "<tr><td class='foot' colspan='4' align='right'>
-    <input type='submit' name='submit' value='"._AD_MULTIMENU_NEW."'>
+    echo "<tr><td class='foot' colspan='4' align='right'>";
+//	echo $GLOBALS['xoopsSecurity']->getTokenHTML();
+	echo $GLOBALS['xoopsGTicket']->getTicketHtml( __LINE__ );
+    echo "<input type='submit' name='submit' value='"._AD_MULTIMENU_NEW."'>
     </td></tr></table></form>";
-    echo "</fieldset><br />"; 
+    echo "</fieldset><br />";
     xoops_cp_footer();
   }
   public function im_admin_new() {
-    global $xoopsDB;
+	if ( ! $GLOBALS['xoopsGTicket']->check() ) {
+		redirect_header('index.php',3,$GLOBALS['xoopsGTicket']->getErrors());
+	}
+  	global $xoopsDB;
     xoops_cp_header();
     $this->mm_admin_menu(intval($this->mnum), _AD_MULTIMENU_ADMIN.$this->mnum );
-    echo "<fieldset style='padding: 5px;'><legend style='font-weight: bold; color: #900;'>". _AD_MULTIMENU_ADMIN . $this->mnum . "</legend>"; 
+    echo "<fieldset style='padding: 5px;'><legend style='font-weight: bold; color: #900;'>". _AD_MULTIMENU_ADMIN . $this->mnum . "</legend>";
 
     $id = 0;
     $title = '';
@@ -113,7 +120,7 @@ class multimenu{
     for ($i = 0; $i < $count; $i++)  $groups[] = $xoopsgroups[$i]->getVar('groupid');
     include XOOPS_ROOT_PATH."/class/xoopsformloader.php";
     $form = new XoopsThemeForm(_AD_MULTIMENU_NEWIMENU, "newform", "index.php?mnum=".$this->mnum);
-    
+
     $formtitle = new XoopsFormText(_AD_MULTIMENU_TITLE, "title", 50, 150, "");
     $formlink = new XoopsFormText(_AD_MULTIMENU_LINK, "link", 50, 255, "");
     $formhide = new XoopsFormSelect(_AD_MULTIMENU_HIDE, "hide", "");
@@ -135,8 +142,12 @@ class multimenu{
     $form->addElement(new XoopsFormHidden("id", 0));
     $form->addElement(new XoopsFormHidden("op", "update"));
     $form->addElement($submit_button);
+
+//for gticket by domifara
+    $GLOBALS['xoopsGTicket']->addTicketXoopsFormElement( $form , __LINE__  ) ;
+
     $form->display();
-    echo "</fieldset><br />"; 
+    echo "</fieldset><br />";
     xoops_cp_footer();
   }
 /*
@@ -149,7 +160,7 @@ class multimenu{
   	$groups = isset($_POST['groups']) ? $_POST['groups'] : '';
   	$groups = (is_array($groups)) ? implode(" ", $groups) : '';
   	$target = isset($_POST['target']) ? $_POST['target'] : '_self';
-  	
+
   	$obj->set('block_id', $block_id);
   	$obj->set('parent_id', $parent_id);
   	$obj->set('title', $title);
@@ -161,12 +172,12 @@ class multimenu{
   }
 */
   private function im_admin_update_menu(&$obj){
-  	$title = isset($_POST['title']) ? $_POST['title'] : 'NoTitle';
-  	$link = isset($_POST['link']) ? $_POST['link'] : 'http://www.google.co.jp/';
+  	$title = isset($_POST['title']) ? $this->root->mContext->mRequest->getRequest('title') : 'NoTitle';
+  	$link = isset($_POST['link']) ? $this->root->mContext->mRequest->getRequest('link') : 'http://www.google.co.jp/';
   	$hide = empty($_POST['hide']) ? 0 : 1;
-  	$groups = isset($_POST['groups']) ? $_POST['groups'] : '';
-  	$groups = (is_array($groups)) ? implode(" ", $groups) : '';
-  	$target = isset($_POST['target']) ? $_POST['target'] : '_self';
+  	$groups = isset($_POST['groups']) ? $this->root->mContext->mRequest->getRequest('groups') : '';
+  	$groups = (is_array($groups)) ? implode(" ", array_map( 'intval' , $groups ) ) : '';
+  	$target = isset($_POST['target']) ? $this->root->mContext->mRequest->getRequest('target') : '_self';
   	//$obj->set('id', $id);
   	$obj->set('title', $title);
   	$obj->set('hide', $hide);
@@ -176,6 +187,9 @@ class multimenu{
   	$obj->set('groups', $groups);
   }
   public function im_admin_update(){
+	if ( ! $GLOBALS['xoopsGTicket']->check() ) {
+		redirect_header('index.php',3,$GLOBALS['xoopsGTicket']->getErrors());
+	}
   	$modhand = xoops_getmodulehandler('menu');
     $modhand->setTable($this->mnum);
   	$id = isset($_POST['id']) ? intval($_POST['id']) : 0;
@@ -194,16 +208,16 @@ class multimenu{
     }
     exit();
   }
-  public function im_admin_edit ($menu_num, $id) {
+  public function im_admin_edit () {
     xoops_cp_header();
     $this->mm_admin_menu(intval($this->mnum), _AD_MULTIMENU_ADMIN.$this->mnum );
-    echo "<fieldset style='padding: 5px;'><legend style='font-weight: bold; color: #900;'>". _AD_MULTIMENU_ADMIN . $this->mnum . "</legend>"; 
-    
+    echo "<fieldset style='padding: 5px;'><legend style='font-weight: bold; color: #900;'>". _AD_MULTIMENU_ADMIN . $this->mnum . "</legend>";
+
     $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
     $modhand = xoops_getmodulehandler('menu');
     $modhand->setTable($this->mnum);
     $obj = $modhand->get($id);
-    
+
     $groups = explode(" ", $obj->get('groups'));
     include XOOPS_ROOT_PATH."/class/xoopsformloader.php";
     $form = new XoopsThemeForm(_AD_MULTIMENU_EDITIMENU, "editform", "index.php?mnum=".$this->mnum);
@@ -234,20 +248,27 @@ class multimenu{
     $form->addElement(new XoopsFormHidden("id", $id));
     $form->addElement(new XoopsFormHidden("op", "update"));
     $form->addElement($submit_button);
+
+//for gticket by domifara
+    $GLOBALS['xoopsGTicket']->addTicketXoopsFormElement( $form , __LINE__  ) ;
+
     $form->display();
-    echo "</fieldset><br />"; 
+    echo "</fieldset><br />";
     xoops_cp_footer();
   }
   public function im_admin_del () {
     $del = isset($_POST['del']) ? 1 : 0;
     $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-    
+
     if ( $del == 1 ) {
+		if ( ! $GLOBALS['xoopsGTicket']->check() ) {
+			redirect_header('index.php',3,$GLOBALS['xoopsGTicket']->getErrors());
+		}
       $id = isset($_POST['id']) ? intval($_POST['id']) : $id;
       $modhand = xoops_getmodulehandler('menu');
       $modhand->setTable($this->mnum);
       $obj = $modhand->get($id);
-      
+
       if ( $modhand->delete($obj) ) {
         $modhand->im_admin_clean($this->mnum);
         redirect_header("index.php?mnum=".$this->mnum, 2, _AD_MULTIMENU_UPDATED);
@@ -258,7 +279,7 @@ class multimenu{
     } else {
       xoops_cp_header();
       echo "<h4>"._AD_MULTIMENU_ADMIN.$this->mnum."</h4>";
-      xoops_confirm(array('op' => 'del', 'id' => $id, 'del' => 1), 'index'.$this->mnum.'.php', _AD_MULTIMENU_SUREDELETE);
+      xoops_confirm(array('op' => 'del', 'id' => $id, 'del' => 1) + $GLOBALS['xoopsGTicket']->getTicketArray( __LINE__ ), 'index.php?op=del&mnum='.$this->mnum, _AD_MULTIMENU_SUREDELETE);
       xoops_cp_footer();
     }
   }

@@ -1,8 +1,9 @@
 <?php
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
-$op = isset($_GET['op']) ? $_GET['op'] : '';
-$op = isset($_POST['op']) ? $_POST['op'] : $op;
+$root = XCube_Root::getSingleton();
+$op = $root->mContext->mRequest->getRequest('op') ;
+$op = empty($op) ? '' : $op;
 $class = new multimenu($menu_num);
 
 switch($op) {

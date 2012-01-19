@@ -2,7 +2,7 @@
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
 function a_multimenu_show($options) {
-	$block = getMultiMenu( $options, 'multimenu01' ); 
+	$block = getMultiMenu( $options, 'multimenu01' );
 	return $block;
 }
 function a_multimenu_edit($options) {
@@ -12,7 +12,7 @@ function a_multimenu_edit($options) {
 
 
 function b_multimenu_show($options) {
-	$block = getMultiMenu( $options, 'multimenu02' ); 
+	$block = getMultiMenu( $options, 'multimenu02' );
 	return $block;
 }
 function b_multimenu_edit($options) {
@@ -22,7 +22,7 @@ function b_multimenu_edit($options) {
 
 
 function c_multimenu_show($options) {
-	$block = getMultiMenu( $options, 'multimenu03' ); 
+	$block = getMultiMenu( $options, 'multimenu03' );
 	return $block;
 }
 function c_multimenu_edit($options) {
@@ -87,11 +87,11 @@ function flow_menu_edit($options) {
 }
 
 /**
- * 
+ *
  * @ MultiMenu block main function
  *
  */
-function getMultiMenu( $options, $db_name  ) 
+function getMultiMenu( $options, $db_name  )
 {
 	global $xoopsDB, $xoopsUser, $xoopsModule;
 	$myts = MyTextSanitizer::getInstance();
@@ -115,7 +115,8 @@ function getMultiMenu( $options, $db_name  )
 				if ($parent_active) {
 					$block['contents'][$inum-1]['sublinks'][$isub]['name'] = $title;
 					$link =  preg_replace("/^[\s\-]/","",$myrow['link']);
-					if (eregi("^\[([a-z0-9_\-]+)\]((.)*)$", $link, $moduledir)) {
+//fix by domifara eregi -> preg_match for php5.3+
+					if (preg_match("/^\[([a-z0-9_\-]+)\]((.)*)$/i", $link, $moduledir)) {
 						$module_handler = xoops_gethandler( 'module' );
 						$module =& $module_handler->getByDirname($moduledir[1]);
 						if ( is_object( $module ) && $module->getVar( 'isactive' ) ) {
@@ -132,7 +133,8 @@ function getMultiMenu( $options, $db_name  )
 			$imenu['sublinks'] = array();
 
 			// [module_name]xxxx.php?aa=aa&bb=bb
-			if (eregi("^\[([a-z0-9_\-]+)\]((.)*)$", $myrow['link'], $moduledir)) {
+//fix by domifara eregi -> preg_match for php5.3+
+			if (preg_match("/^\[([a-z0-9_\-]+)\]((.)*)$/i", $myrow['link'], $moduledir)) {
 				$module_handler = xoops_gethandler( 'module' );
 				$module = $module_handler->getByDirname($moduledir[1]);
 				if ( is_object( $module ) && $module->getVar( 'isactive' ) ) {
@@ -141,7 +143,8 @@ function getMultiMenu( $options, $db_name  )
 				}
 
 			// +[module_name]xxxx.php?aa=aa&bb=bb	view submenu
-			}elseif (eregi("^\+\[([a-z0-9_\-]+)\]((.)*)$", $myrow['link'], $moduledir)) {
+//fix by domifara eregi -> preg_match for php5.3+
+			}elseif (preg_match("/^\+\[([a-z0-9_\-]+)\]((.)*)$/i", $myrow['link'], $moduledir)) {
 				$module_handler = xoops_gethandler( 'module' );
 				$module = $module_handler->getByDirname($moduledir[1]);
 				if ( is_object( $module ) && $module->getVar( 'isactive' ) ) {
@@ -163,7 +166,8 @@ function getMultiMenu( $options, $db_name  )
 				}
 
 			// @[module_name]xxxx.php?aa=aa&bb=bb	view submennu
-			}elseif (eregi("^\@\[([a-z0-9_\-]+)\]((.)*)$", $myrow['link'], $moduledir)) {
+//fix by domifara eregi -> preg_match for php5.3+
+			}elseif (preg_match("/^\@\[([a-z0-9_\-]+)\]((.)*)$/i", $myrow['link'], $moduledir)) {
 				$module_handler = xoops_gethandler( 'module' );
 				$module = $module_handler->getByDirname($moduledir[1]);
 				if ( is_object( $module ) && $module->getVar( 'isactive' ) ) {
@@ -192,7 +196,8 @@ function getMultiMenu( $options, $db_name  )
 				}
 
 			// &[module_name]xxxx.php?aa=aa&bb=bb	view submenu // hacked by nobunobu
-			} elseif (eregi("^\&\[([a-z0-9_\-]+)\]((.)*)$", $myrow['link'], $moduledir)) {
+//fix by domifara eregi -> preg_match for php5.3+
+			} elseif (preg_match("/^\&\[([a-z0-9_\-]+)\]((.)*)$/i", $myrow['link'], $moduledir)) {
 				$module_handler = xoops_gethandler( 'module' );
 				$module = $module_handler->getByDirname($moduledir[1]);
 				if ( is_object( $module ) && $module->getVar( 'isactive' ) ) {

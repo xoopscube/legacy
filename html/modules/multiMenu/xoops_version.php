@@ -9,6 +9,7 @@ $modversion['license'] = "GPL see LICENSE";
 $modversion['official'] = 0;
 $modversion['image'] = "images/slogo.png";
 $modversion['dirname'] = "multiMenu";
+$modversion['cube_style'] = true;
 
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 $modversion['tables'][0] = "multimenu01";
@@ -23,9 +24,12 @@ $modversion['tables'][8] = "multimenu99";
 $modversion['tables'][9] = "multimenu_log";
 
 // Menu
-$modversion['hasMain'] = 1;
+$modversion['hasMain'] = 0;// 1 flow Reserved Process
+/************************************************* Reserved Process
 $modversion['sub'][1]['name'] = "Flow Start";
 $modversion['sub'][1]['url'] = "index.php?action=index";
+***************************************************/
+
 // Templates
 $modversion['templates'][1]['file'] = 'multimenu_flow.html';
 $modversion['templates'][1]['description'] = '';
@@ -135,4 +139,7 @@ $modversion['config'][] = array(
 		),
 		'default'     => 0
 );
+
+$modversion['onUpdate'] = 'include/onupdate.inc.php' ;
+
 ?>
