@@ -1,0 +1,707 @@
+    <h1> ***** multiMenu Module ******</h1>
+    <h2> [ Setting method ]</h2>
+    <h3> </h3>
+    <h3>You can use the following ways to customize to link at config
+      menu of MultiMenu.</h3>
+    <h4> * You can specify by full length of path.</h4>
+    <p> &nbsp;&nbsp;&nbsp;&nbsp;Example:
+      http://www.hogehoge.co.jp/xoops/index.php&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      etc</p>
+    <h4> * You can specify by module name.</h4>
+    <h6>[module_name]</h6>
+    <h6>[module_name]xxxx.php?xxxx=xxxx</h6>
+    <br/>
+    <table style="width: 500px; height: 200px;" border="0" cellpadding="1"
+      cellspacing="1">
+      <tbody>
+        <tr>
+          <td style="text-align: right;">example:</td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> <br/>
+          </td>
+          <td> link</td>
+          <td> ==&gt;</td>
+          <td> [news]</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> &nbsp;</td>
+          <td> title</td>
+          <td> ==&gt;</td>
+          <td> News</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">&nbsp; View:</td>
+          <td> &darr;</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> <br/>
+          </td>
+          <td> News</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+        </tr>
+        <tr>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">&nbsp; example:</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> <br/>
+          </td>
+          <td> link</td>
+          <td> ==&gt;</td>
+          <td> [news]article.php?storyid=11</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> &nbsp;</td>
+          <td> title</td>
+          <td> ==&gt;</td>
+          <td> Important News</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">&nbsp; View:</td>
+          <td> &darr;</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> <br/>
+          </td>
+          <td> Important News</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+        </tr>
+      </tbody>
+    </table>
+    <br/>
+    <h5> *You can show submenu always.</h5>
+    <h6>+[module_name]</h6>
+    <h6>+[module_name]xxxx.php?xxxx=xxxx</h6>
+    <br/>
+    <table style="width: 500px; height: 300px;" border="0" cellpadding="1"
+      cellspacing="1">
+      <tbody>
+        <tr>
+          <td style="text-align: right;"> example:</td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td> link</td>
+          <td> ==&gt;</td>
+          <td> +[news]</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> &nbsp;</td>
+          <td> title</td>
+          <td> ==&gt;</td>
+          <td> News</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">&nbsp; View:</td>
+          <td> &darr;</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> <br/>
+          </td>
+          <td> News</td>
+          <td> &nbsp;</td>
+          <td> (Always shows submenu.)</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> &nbsp;</td>
+          <td> &nbsp;&nbsp;&nbsp;&nbsp;Submit news</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> &nbsp;</td>
+          <td> &nbsp;&nbsp;&nbsp;&nbsp;Archive</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> &nbsp;</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">example:</td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> <br/>
+          </td>
+          <td> link</td>
+          <td> ==&gt;</td>
+          <td>+[news]article.php?storyid=11</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> &nbsp;</td>
+          <td> title</td>
+          <td> ==&gt;</td>
+          <td> Important News</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">&nbsp; View:</td>
+          <td> &darr;</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td> Important News</td>
+          <td> &nbsp;</td>
+          <td>(Always shows submenu.)</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>&nbsp;&nbsp;Submit news</td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>&nbsp;&nbsp;Archive</td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>&nbsp;<br/>
+    </p>
+    <h4> * You can show sub menu of the module you access.(Same as
+      mainmenu.)</h4>
+    <h6>@[module_name]</h6>
+    <h6>@[module_name]xxxx.php?xxxx=xxxx</h6>
+    <br/>
+    <table style="width: 500px; height: 400px;" border="0" cellpadding="1"
+      cellspacing="1">
+      <tbody>
+        <tr>
+          <td style="text-align: right;">example:</td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td> link</td>
+          <td> ==&gt;</td>
+          <td> @[news]</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> &nbsp;</td>
+          <td> title</td>
+          <td> ==&gt;</td>
+          <td> News</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">&nbsp; View:</td>
+          <td> &darr;</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>News</td>
+          <td><br/>
+          </td>
+          <td>(Usual)</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">View: </td>
+          <td> &darr;</td>
+          <td> &nbsp;</td>
+          <td> <br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>News</td>
+          <td><br/>
+          </td>
+          <td>(When you access it.)</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> &nbsp;</td>
+          <td> &nbsp;&nbsp;&nbsp;&nbsp;Submit news</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> &nbsp;</td>
+          <td> &nbsp;&nbsp;&nbsp;&nbsp;Archive</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> &nbsp;</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">example:</td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> <br/>
+          </td>
+          <td> link</td>
+          <td> ==&gt;</td>
+          <td>@[news]article.php?storyid=11</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> &nbsp;</td>
+          <td> title</td>
+          <td> ==&gt;</td>
+          <td> Important News</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">&nbsp; View:</td>
+          <td> &darr;</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> <br/>
+          </td>
+          <td> Important News</td>
+          <td><br/>
+          </td>
+          <td>(Usual)</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">View: </td>
+          <td>&darr;</td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>Important News</td>
+          <td><br/>
+          </td>
+          <td>(When you access it.)</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>&nbsp;&nbsp;Submit news</td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>&nbsp;&nbsp;Archive</td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br/>
+    <h4> * You can show sub menu customised.</h4>
+    <h6>-[module_name]</h6>
+    <h6>-[module_name]xxxx.php?xxxx=xxxx</h6>
+    <h6>-http://www.hogehoge.co.jp/xoops/index.php</h6>
+    <br/>
+    <p>&nbsp;&nbsp; The menu with a symbolic link begins with the - add
+      to the menu with a symbolic link not to begin with - as submenu.</p>
+    <p>&nbsp;&nbsp; How it is showed changes by parent element as the
+      follwing example.</p>
+    <p>&nbsp;&nbsp; If you show the customized submenu with the submenu
+      of original module, it is added to at the bottom of the submenu of
+      the original module.</p>
+    <table style="width: 500px; height: 700px;" border="0" cellpadding="1"
+      cellspacing="1">
+      <tbody>
+        <tr>
+          <td style="text-align: right;">example:</td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td> link</td>
+          <td> ==&gt;</td>
+          <td> [news]</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> &nbsp;</td>
+          <td> title</td>
+          <td> ==&gt;</td>
+          <td> News</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> &nbsp;</td>
+          <td> link</td>
+          <td>==&gt;</td>
+          <td> -[news]article.php?storyid=2?storyid=2 </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>title</td>
+          <td>==&gt; </td>
+          <td>Important News</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">View: </td>
+          <td> &darr;</td>
+          <td> &nbsp;</td>
+          <td> <br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>News</td>
+          <td><br/>
+          </td>
+          <td>(Always shows submenu.)</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> &nbsp;</td>
+          <td> &nbsp;&nbsp;&nbsp;&nbsp;Important News</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> &nbsp;</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">&nbsp; example:</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> <br/>
+          </td>
+          <td> link</td>
+          <td> ==&gt;</td>
+          <td>+[news]</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> &nbsp;</td>
+          <td> title</td>
+          <td> ==&gt;</td>
+          <td> News </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> &nbsp;</td>
+          <td> link</td>
+          <td>==&gt;</td>
+          <td> -[news]article.php?storyid=2?storyid=2</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> <br/>
+          </td>
+          <td> title</td>
+          <td>==&gt; </td>
+          <td>Important News</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">View: </td>
+          <td>&darr;</td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>Important News</td>
+          <td><br/>
+          </td>
+          <td>(Always shows submenu.)</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>&nbsp;&nbsp;Submit news</td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>&nbsp;&nbsp;Archive</td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>&nbsp;&nbsp;Important News</td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">example: </td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>link </td>
+          <td>==&gt; </td>
+          <td>&amp;[news]</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>title</td>
+          <td>==&gt; </td>
+          <td>News</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>link</td>
+          <td>==&gt; </td>
+          <td>-[news]article.php?storyid=2?storyid=2</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>title</td>
+          <td>==&gt; </td>
+          <td>Important News</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">View: </td>
+          <td>&darr;</td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>News</td>
+          <td><br/>
+          </td>
+          <td>(Usual)</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">View: </td>
+          <td>&darr;</td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>News</td>
+          <td><br/>
+          </td>
+          <td>(When you access it.)</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>&nbsp;&nbsp;Submit news</td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>&nbsp;&nbsp;Archive</td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>&nbsp;&nbsp;Important News</td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h4> * You can show only customized submenu, when you access the
+      module. (Don't show the submenu of original module.)</h4>
+    <h6>&amp;[module_name]</h6>
+    <h6>&amp;[module_name]xxxx.php?xxxx=xxxx</h6>
+    <br/>
+    <table style="width: 500px; height: 200px;" border="0" cellpadding="1"
+      cellspacing="1">
+      <tbody>
+        <tr>
+          <td style="text-align: right;">example:</td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+          <td><br/>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> <br/>
+          </td>
+          <td> link</td>
+          <td> ==&gt;</td>
+          <td> &amp;[news]</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> &nbsp;</td>
+          <td> title</td>
+          <td> ==&gt;</td>
+          <td> News</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> &nbsp;</td>
+          <td> link</td>
+          <td> ==&gt; <br/>
+          </td>
+          <td>-[news]article.php?storyid=2?storyid=2</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td>title</td>
+          <td>==&gt;</td>
+          <td> Important News</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">&nbsp;View: </td>
+          <td>&darr;</td>
+          <td><br/>
+          </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td> News<br/>
+          </td>
+          <td><br/>
+          </td>
+          <td>&nbsp;(Usual)</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">&nbsp; View:</td>
+          <td>&darr;</td>
+          <td> &nbsp;</td>
+          <td> &nbsp;</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> <br/>
+          </td>
+          <td>News</td>
+          <td><br/>
+          </td>
+          <td>(When you access it.)</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br/>
+          </td>
+          <td> &nbsp;&nbsp;&nbsp;&nbsp;Important News</td>
+          <td> &nbsp;</td>
+          <td><br/>
+          </td>
+        </tr>
+      </tbody>
+    </table>

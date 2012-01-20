@@ -26,9 +26,9 @@ class multimenu{
     echo '<li style="list-style: none; margin: 0; display: inline;"><a href="index.php?mnum=4" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: '.$tblColors[4].'; text-decoration: none; ">'._AD_MULTIMENU_ADMIN_04.'</a></li>';
     echo '<li style="list-style: none; margin: 0; display: inline; ">
     <a href="index.php?mnum=99" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: '.$tblColors[99].'; text-decoration: none; ">'._AD_MULTIMENU_ADMIN_99.'</a></li>';
-    echo '</ul></div>';
+    echo '</ul>';
 
-    echo '<div id="navcontainer">
+    echo '
     <ul style="padding: 3px 0; margin-left: 0; font: bold 12px Verdana, sans-serif; ">';
     echo '<li style="list-style: none; margin: 0; display: inline; "><a href="index.php?mnum=5" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: '.$tblColors[5].'; text-decoration: none; ">'._AD_MULTIMENU_ADMIN_05.'</a></li>';
     echo '<li style="list-style: none; margin: 0; display: inline; "><a href="index.php?mnum=6" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: '.$tblColors[6].'; text-decoration: none; ">'._AD_MULTIMENU_ADMIN_06.'</a></li>';
@@ -36,6 +36,10 @@ class multimenu{
     echo '<li style="list-style: none; margin: 0; display: inline; "><a href="index.php?mnum=8" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: '.$tblColors[8].'; text-decoration: none; ">'._AD_MULTIMENU_ADMIN_08.'</a></li>';
     echo '<li style="list-style: none; margin: 0; display: inline; ">
     <a href="myblocksadmin.php" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: '.$tblColors[0].'; text-decoration: none; ">'._AM_BADMIN.'</a></li>';
+    echo '<li style="list-style: none; margin: 0; display: inline; ">
+    <a href="'.XOOPS_MODULE_URL.'/legacy/admin/index.php?action=PreferenceEdit&confmod_id='.$this->root->mContext->mModule->mXoopsModule->get('mid').'" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: #DDE; text-decoration: none; ">'._PREFERENCES.'</a></li>';
+    echo '<li style="list-style: none; margin: 0; display: inline; ">
+    <a href="'.XOOPS_MODULE_URL.'/legacy/admin/index.php?action=Help&dirname=multiMenu" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: #DDE; text-decoration: none; ">'._HELP.'</a></li>';
     echo '</ul></div>';
 
     echo '<br />';

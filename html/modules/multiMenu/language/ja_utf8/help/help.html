@@ -1,261 +1,700 @@
-<html>
-<head>
-<meta http-equiv=Content-Type content="text/html; charset=utf-8">
-<title>multiMenu Module help</title>
-</head>
-
-<body>
-
-<h1>***** multiMenu Module ******</h1>
-
-<h2>[ 設定方法 ]</h2>
-
-<h3>MultiMen管理画面における、リンクの記述方法には、以下の方法が使用できます。</h3>
-
-
-<h4>* 通常どおり、フルパスによるURL指定</h4>
-
-
-<p>　　例 :
-http://www.hogehoge.co.jp/xoops/index.php&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; など</p>
-
-
-<h4>* モジュール名による指定</h4>
-
-<p>　　[module_name]</p>
-
-<p>　　[module_name]xxxx.php?xxxx=xxxx</p>
-
-
-<p>　　例 : リンク&nbsp;&nbsp; ==&gt;[news] </p>
-
-<p>　　　　 タイトル
-==&gt; ニュース</p>
-
-<p>　　　↓</p>
-
-<p>　　表示 :</p>
-
-<p>　　　　ニュース</p>
-
-
-<p>　　例： リンク
-==&gt; [news]article.php?storyid=11</p>
-
-<p>　　　　 タイトル
-==&gt; 大事なニュース</p>
-
-<p>　　　↓</p>
-
-<p>　　表示 :</p>
-
-<p>　　　　大事なニュース</p>
-
-
-
-<h4>* 常時、サブメニューを表示する</h4>
-
-<p>　　+[module_name]</p>
-
-<p>　　+[module_name]xxxx.php?xxxx=xxxx</p>
-
-
-<p>　　例： リンク
-==&gt; +[news]</p>
-
-<p>　　　　 タイトル
-==&gt; ニュース</p>
-
-<p>　　　↓</p>
-
-<p>　　表示 :　（常時表示しています）</p>
-
-<p>　　　　ニュース</p>
-
-<p>　　　　　ニュース投稿</p>
-
-<p>　　　　　アーカイブ</p>
-
-
-<p>　　例： リンク
-==&gt; @[news]article.php?storyid=11</p>
-
-<p>　　　　 タイトル
-==&gt; 大事なニュース</p>
-
-<p>　　　↓</p>
-
-<p>　　表示 :　（常時表示しています）</p>
-
-<p>　　　　大事なニュース</p>
-
-<p>　　　　　ニュース投稿</p>
-
-<p>　　　　　アーカイブ</p>
-
-
-
-<h4>* 該当するモジュールを表示してる時だけ、サブメニューを表示する（メインメニューと同じ動作）</h4>
-
-<p>　　@[module_name]</p>
-
-<p>　　@[module_name]xxxx.php?xxxx=xxxx</p>
-
-
-<p>　　例： リンク
-==&gt; @[news]</p>
-
-<p>　　　　 タイトル
-==&gt; ニュース</p>
-
-<p>　　　↓</p>
-
-<p>　　表示 :　（通常）</p>
-
-<p>　　　　ニュース</p>
-
-<p>　　　↓</p>
-
-<p>　　表示 :　（該当するモジュールを表示してる時）</p>
-
-<p>　　　　ニュース</p>
-
-<p>　　　　　ニュース投稿</p>
-
-<p>　　　　　アーカイブ</p>
-
-
-<p>　　例： リンク
-==&gt; @[news]article.php?storyid=11</p>
-
-<p>　　　　 タイトル
-==&gt; 大事なニュース</p>
-
-<p>　　　↓</p>
-
-<p>　　表示 :　（通常）</p>
-
-<p>　　　　大事なニュース</p>
-
-<p>　　　↓</p>
-
-<p>　　表示 :　（該当するモジュールを表示してる時）</p>
-
-<p>　　　　大事なニュース</p>
-
-<p>　　　　　ニュース投稿</p>
-
-<p>　　　　　アーカイブ</p>
-
-
-
-<h4>* カスタムサブメニューとして表示</h4>
-
-<p>　　-[module_name]</p>
-
-<p>　　-[module_name]xxxx.php?xxxx=xxxx</p>
-
-<p>　　-http://www.hogehoge.co.jp/xoops/index.php</p>
-
-<p>　　</p>
-
-<p>　　-記号で始まるリンクを持つメニューは、-記号で始まらないリンクを持つメニューのサブメニューに追加されます。</p>
-
-<p>　　親メニューの属性によってサブメニューの表示のされ方は以下の例のように変わりますが、モジュール本来の</p>
-
-<p>　　サブメニューと同時に表示される場合は、モジュールのサブメニューの一番下にカスタムサブメニューが追加されます。</p>
-
-
-<p>　　例：リンク
-==&gt; [news] 　　　　　　　　　　　　　　　　　　　タイトル ==&gt; ニュース</p>
-
-<p>　　　　リンク
-==&gt; -[news]article.php?storyid=2?storyid=2 　　　タイトル
-==&gt; 大事なニュース</p>
-
-<p>　　　↓</p>
-
-<p>　　表示 :　（常時表示しています）</p>
-
-<p>　　　　ニュース</p>
-
-<p>　　　　　大事なニュース</p>
-
-
-<p>　　例：リンク
-==&gt; +[news]　　　　　　　　　　　　　　　　　　　タイトル ==&gt; ニュース</p>
-
-<p>　　　　リンク
-==&gt; -[news]article.php?storyid=2?storyid=2 　　　タイトル
-==&gt; 大事なニュース</p>
-
-<p>　　　↓</p>
-
-<p>　　表示 :　（常時表示しています）</p>
-
-<p>　　　　ニュース</p>
-
-<p>　　　　　ニュース投稿</p>
-
-<p>　　　　　アーカイブ</p>
-
-<p>　　　　　大事なニュース</p>
-
-
-<p>　　例：リンク
-==&gt; &amp;[news]　　　　　　　　　　　　　　　　　　　タイトル ==&gt; ニュース</p>
-
-<p>　　　　リンク
-==&gt; -[news]article.php?storyid=2?storyid=2 　　　タイトル
-==&gt; 大事なニュース</p>
-
-<p>　　　↓</p>
-
-<p>　　表示 :　（通常）</p>
-
-<p>　　　　ニュース</p>
-
-<p>　　　↓</p>
-
-<p>　　表示 :　（該当するモジュールを表示してる時）</p>
-
-<p>　　　　ニュース</p>
-
-<p>　　　　　ニュース投稿</p>
-
-<p>　　　　　アーカイブ</p>
-
-<p>　　　　　大事なニュース</p>
-
-
-<h4>* 該当するモジュールを表示してる時だけ、カスタムサブメニューを表示する（モジュール本来のサブメニューは表示しない）</h4>
-
-<p>　　&amp;[module_name]</p>
-
-<p>　　&amp;[module_name]xxxx.php?xxxx=xxxx</p>
-
-<p>　　例：リンク
-==&gt; &amp;[news]　　　　　　　　　　　　　　　　　　　タイトル ==&gt; ニュース</p>
-
-<p>　　　　リンク
-==&gt; -[news]article.php?storyid=2?storyid=2 　　　タイトル
-==&gt; 大事なニュース</p>
-
-<p>　　　↓</p>
-
-<p>　　表示 :　（通常）</p>
-
-<p>　　　　ニュース</p>
-
-<p>　　　↓</p>
-
-<p>　　表示 :　（該当するモジュールを表示してる時）</p>
-
-<p>　　　　ニュース</p>
-
-<p>　　　　　大事なニュース</p>
-
-
-</body>
-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title></title>
+  </head>
+  <body>
+    <h1>***** multiMenu Module ******<br />
+    </h1>
+    <h2>[ 設定方法 ]</h2>
+    <h3>MultiMen管理画面における、リンクの記述方法には、以下の方法が使用できます。</h3>
+    <h4>* 通常どおり、フルパスによるURL指定</h4>
+    <p>　　例 : http://www.hogehoge.co.jp/xoops/index.php      など</p>
+    <h4>* モジュール名による指定</h4>
+    <h6>[module_name]</h6>
+    <h6>[module_name]xxxx.php?xxxx=xxxx</h6>
+    <br />
+    <table cellspacing="1" cellpadding="1" border="0"
+      style="width: 500px; height: 200px;">
+      <tbody>
+        <tr>
+          <td style="text-align: right;">例 :</td>
+          <td>リンク</td>
+          <td>==&gt;</td>
+          <td>[news]</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>タイトル</td>
+          <td>==&gt;</td>
+          <td>ニュース</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">表示 :</td>
+          <td>↓</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>ニュース</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">例 :</td>
+          <td>リンク</td>
+          <td>==&gt;</td>
+          <td>[news]article.php?storyid=11</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>タイトル</td>
+          <td>==&gt;</td>
+          <td>大事なニュース</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">表示 :</td>
+          <td>↓</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>大事なニュース</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <h5>* 常時、サブメニューを表示する</h5>
+    <h6>+[module_name]</h6>
+    <h6>+[module_name]xxxx.php?xxxx=xxxx</h6>
+    <br />
+    <table cellspacing="1" cellpadding="1" border="0"
+      style="width: 500px; height: 250px;">
+      <tbody>
+        <tr>
+          <td style="text-align: right;">例 :</td>
+          <td>リンク</td>
+          <td>==&gt;</td>
+          <td>+[news]</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>タイトル</td>
+          <td>==&gt;</td>
+          <td>ニュース</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">表示 :</td>
+          <td>↓</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>ニュース</td>
+          <td><br />
+          </td>
+          <td>（常時表示しています）</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;ニュース投稿</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;アーカイブ</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">例 :</td>
+          <td>リンク</td>
+          <td>==&gt;</td>
+          <td>+[news]article.php?storyid=11</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>タイトル</td>
+          <td>==&gt;</td>
+          <td>大事なニュース</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">表示 :</td>
+          <td>↓</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>大事なニュース</td>
+          <td><br />
+          </td>
+          <td>（常時表示しています）</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;ニュース投稿</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;アーカイブ</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p><br />
+    </p>
+    <h4>* 該当するモジュールを表示してる時だけ、サブメニューを表示する（メインメニューと同じ動作）</h4>
+    <h6>@[module_name]</h6>
+    <h6>@[module_name]xxxx.php?xxxx=xxxx</h6>
+    <br />
+    <table cellspacing="1" cellpadding="1" border="0"
+      style="width: 500px; height: 300px;">
+      <tbody>
+        <tr>
+          <td style="text-align: right;">例 :</td>
+          <td>リンク</td>
+          <td>==&gt;</td>
+          <td>@[news]</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>タイトル</td>
+          <td>==&gt;</td>
+          <td>ニュース</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">表示 :</td>
+          <td>↓</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>ニュース</td>
+          <td><br />
+          </td>
+          <td>（通常）</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">表示 :</td>
+          <td>↓</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>ニュース</td>
+          <td><br />
+          </td>
+          <td>（該当するモジュールを表示してる時）</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;ニュース投稿</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;アーカイブ</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">例 :</td>
+          <td>リンク</td>
+          <td>==&gt;</td>
+          <td>@[news]article.php?storyid=11</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>タイトル</td>
+          <td>==&gt;</td>
+          <td>大事なニュース</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">表示 :</td>
+          <td>↓</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>大事なニュース</td>
+          <td><br />
+          </td>
+          <td>（通常）</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">表示 :</td>
+          <td>↓</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>大事なニュース</td>
+          <td><br />
+          </td>
+          <td>（該当するモジュールを表示してる時）</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;ニュース投稿</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;アーカイブ</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <h4>* カスタムサブメニューとして表示</h4>
+    <h6>-[module_name]</h6>
+    <h6>-[module_name]xxxx.php?xxxx=xxxx</h6>
+    <h6>-http://www.hogehoge.co.jp/xoops/index.php</h6>
+    <br />
+    <p>　　-記号で始まるリンクを持つメニューは、-記号で始まらないリンクを持つメニューのサブメニューに追加されます。</p>
+    <p>　　親メニューの属性によってサブメニューの表示のされ方は以下の例のように変わりますが、モジュール本来の</p>
+    <p>　　サブメニューと同時に表示される場合は、モジュールのサブメニューの一番下にカスタムサブメニューが追加されます。</p>
+    <table cellspacing="1" cellpadding="1" border="0"
+      style="width: 500px; height: 600px;">
+      <tbody>
+        <tr>
+          <td style="text-align: right;">例 :</td>
+          <td>リンク</td>
+          <td>==&gt;</td>
+          <td>[news]</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>タイトル</td>
+          <td>==&gt;</td>
+          <td>ニュース</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>リンク</td>
+          <td>==&gt;</td>
+          <td>-[news]article.php?storyid=2?storyid=2</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>タイトル</td>
+          <td>==&gt;</td>
+          <td>大事なニュース</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">表示:</td>
+          <td>↓</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>ニュース</td>
+          <td><br />
+          </td>
+          <td>（常時表示しています）</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;大事なニュース</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">例 :</td>
+          <td>リンク</td>
+          <td>==&gt;</td>
+          <td>+[news]</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>タイトル</td>
+          <td>==&gt;</td>
+          <td>ニュース</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>リンク</td>
+          <td>==&gt;</td>
+          <td>-[news]article.php?storyid=2?storyid=2</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>タイトル</td>
+          <td>==&gt;</td>
+          <td>大事なニュース</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">表示:</td>
+          <td>↓</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>大事なニュース</td>
+          <td><br />
+          </td>
+          <td>（常時表示しています）</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;ニュース投稿</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;アーカイブ</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;大事なニュース</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">例 :</td>
+          <td>リンク</td>
+          <td><br />
+          </td>
+          <td>&amp;[news]</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>タイトル</td>
+          <td><br />
+          </td>
+          <td>ニュース</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>リンク</td>
+          <td><br />
+          </td>
+          <td>-[news]article.php?storyid=2?storyid=2</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>タイトル</td>
+          <td><br />
+          </td>
+          <td>大事なニュース</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">表示:</td>
+          <td>↓</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>ニュース</td>
+          <td><br />
+          </td>
+          <td>（通常）</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">表示:</td>
+          <td>↓</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>ニュース</td>
+          <td><br />
+          </td>
+          <td>（該当するモジュールを表示してる時）</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;ニュース投稿</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;アーカイブ</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;大事なニュース</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h4>* 該当するモジュールを表示してる時だけ、カスタムサブメニューを表示する（モジュール本来のサブメニューは表示しない）</h4>
+    <h6>&amp;[module_name]</h6>
+    <h6>&amp;[module_name]xxxx.php?xxxx=xxxx</h6>
+    <br />
+    <table cellspacing="1" cellpadding="1" border="0"
+      style="width: 500px; height: 200px;">
+      <tbody>
+        <tr>
+          <td style="text-align: right;">例 :</td>
+          <td>リンク</td>
+          <td>==&gt;</td>
+          <td>&amp;[news]<br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>タイトル</td>
+          <td>==&gt;</td>
+          <td>ニュース</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>リンク</td>
+          <td>==&gt;</td>
+          <td>-[news]article.php?storyid=2?storyid=2</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>タイトル</td>
+          <td>==&gt;</td>
+          <td>大事なニュース</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"> 表示 :</td>
+          <td>↓</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>ニュース</td>
+          <td><br />
+          </td>
+          <td> （通常）</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">表示 :</td>
+          <td>↓</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>ニュース</td>
+          <td><br />
+          </td>
+          <td>（該当するモジュールを表示してる時）</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><br />
+          </td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;大事なニュース</td>
+          <td><br />
+          </td>
+          <td><br />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+  </body>
 </html>

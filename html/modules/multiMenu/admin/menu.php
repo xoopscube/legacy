@@ -1,33 +1,28 @@
 <?php
-// $Id: menu.php,v 1.7 2003/03/01 16:10:57 okazu Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+// $Id: menu.php,v 1.20 2012/01/21 02:07:00 domifara Exp $
+if (!defined('XOOPS_ROOT_PATH')) exit();
 
+$adminmenu[0]['title'] = _IM_MULTIMENU_NAME;
+$adminmenu[0]['link'] = "admin/index.php?mnum=1";
+$adminmenu[1]['title'] = _IM_MULTIMENU_NAME_1;
+$adminmenu[1]['link'] = "admin/index.php?mnum=2";
+$adminmenu[2]['title'] = _IM_MULTIMENU_NAME_2;
+$adminmenu[2]['link'] = "admin/index.php?mnum=3";
+$adminmenu[3]['title'] = _IM_MULTIMENU_NAME_3;
+$adminmenu[3]['link'] = "admin/index.php?mnum=4";
+$adminmenu[4]['title'] = _IM_MULTIMENU_NAME_4;
+$adminmenu[4]['link'] = "admin/index.php?mnum=5";
+$adminmenu[5]['title'] = _IM_MULTIMENU_NAME_5;
+$adminmenu[5]['link'] = "admin/index.php?mnum=6";
+$adminmenu[6]['title'] = _IM_MULTIMENU_NAME_6;
+$adminmenu[6]['link'] = "admin/index.php?mnum=7";
+$adminmenu[7]['title'] = _IM_MULTIMENU_NAME_7;
+$adminmenu[7]['link'] = "admin/index.php?mnum=8";
+$adminmenu[8]['title'] = _IM_MULTIMENU_FLOW;
+$adminmenu[8]['link'] = "admin/index.php?mnum=99";
+
+// link to myblocksadmin.php add by Tom Thanks GIJ
+$adminmenu[9]['title'] = _IM_MULTIMENU_NAME_BL;
+$adminmenu[9]['link'] = "admin/myblocksadmin.php";
 
 ?>
