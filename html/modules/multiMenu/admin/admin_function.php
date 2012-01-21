@@ -18,6 +18,7 @@ class multimenu{
     echo '<table width=100% class="outer"><tr><td align="right">
           <font size="2"><b>'.$this->root->mContext->mModule->mXoopsModule->getShow('name').' : '.$breadcrumb.'</b></font>
           </td></tr></table><br />';
+/*
     echo '<div id="navcontainer">
     <ul style="padding: 3px 0; margin-left: 0; font: bold 12px Verdana, sans-serif; ">';
     echo '<li style="list-style: none; margin: 0; display: inline;"><a href="index.php?mnum=1" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: '.$tblColors[1].'; text-decoration: none; ">'._AD_MULTIMENU_ADMIN_01.'</a></li>';
@@ -41,6 +42,25 @@ class multimenu{
     echo '<li style="list-style: none; margin: 0; display: inline; ">
     <a href="'.XOOPS_MODULE_URL.'/legacy/admin/index.php?action=Help&dirname=multiMenu" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: #DDE; text-decoration: none; ">'._HELP.'</a></li>';
     echo '</ul></div>';
+*/
+    echo '<div id="navcontainer">';
+    echo '<div style="float:left; height:2.0em;"><a href="index.php?mnum=1" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: '.$tblColors[1].'; text-decoration: none; ">'._AD_MULTIMENU_ADMIN_01.'</a></div>';
+    echo '<div style="float:left; height:2.0em;"><a href="index.php?mnum=2" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: '.$tblColors[2].'; text-decoration: none; ">'._AD_MULTIMENU_ADMIN_02.'</a></div>';
+    echo '<div style="float:left; height:2.0em;"><a href="index.php?mnum=3" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: '.$tblColors[3].'; text-decoration: none; ">'._AD_MULTIMENU_ADMIN_03.'</a></div>';
+    echo '<div style="float:left; height:2.0em;"><a href="index.php?mnum=4" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: '.$tblColors[4].'; text-decoration: none; ">'._AD_MULTIMENU_ADMIN_04.'</a></div>';
+    echo '<div style="clear: both ; height:0px; visibility:hidden;"></div>';
+
+    echo '<div style="float:left; height:2.0em;"><a href="index.php?mnum=5" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: '.$tblColors[5].'; text-decoration: none; ">'._AD_MULTIMENU_ADMIN_05.'</a></div>';
+    echo '<div style="float:left; height:2.0em;"><a href="index.php?mnum=6" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: '.$tblColors[6].'; text-decoration: none; ">'._AD_MULTIMENU_ADMIN_06.'</a></div>';
+    echo '<div style="float:left; height:2.0em;"><a href="index.php?mnum=7" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: '.$tblColors[7].'; text-decoration: none; ">'._AD_MULTIMENU_ADMIN_07.'</a></div>';
+    echo '<div style="float:left; height:2.0em;"><a href="index.php?mnum=8" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: '.$tblColors[8].'; text-decoration: none; ">'._AD_MULTIMENU_ADMIN_08.'</a></div>';
+
+    echo '<div style="float:left; height:2.0em;"><a href="index.php?mnum=99" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: '.$tblColors[99].'; text-decoration: none; ">'._AD_MULTIMENU_ADMIN_99.'</a></div>';
+    echo '<div style="float:left; height:2.0em;"><a href="myblocksadmin.php" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: '.$tblColors[0].'; text-decoration: none; ">'._AM_BADMIN.'</a></div>';
+    echo '<div style="float:left; height:2.0em;"><a href="'.XOOPS_MODULE_URL.'/legacy/admin/index.php?action=PreferenceEdit&confmod_id='.$this->root->mContext->mModule->mXoopsModule->get('mid').'" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: #DDE; text-decoration: none; ">'._PREFERENCES.'</a></div>';
+    echo '<div style="float:left; height:2.0em;"><a href="'.XOOPS_MODULE_URL.'/legacy/admin/index.php?action=Help&dirname=multiMenu" style="padding: 3px 0.5em; margin-left: 3px; border: 1px solid #778; background: #DDE; text-decoration: none; ">'._HELP.'</a></div>';
+    echo '<div style="clear: both ; height:0px; visibility:hidden;"></div>';
+    echo '</div>';
 
     echo '<br />';
   }
