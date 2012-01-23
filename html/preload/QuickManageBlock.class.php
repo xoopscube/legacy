@@ -95,10 +95,15 @@ class QuickManageBlock extends XCube_ActionFilter
 				$urlBlockEdit = $this->_getBlockEditUrl($block['id'], $blockTypes);
 				$urluninstall = sprintf($baseUrluninstall, $block['id']);
 
-				$block['title'] .= '<span style="float:right;" class="block_controller">';
-				$block['title'] .= '<a href="'.$urlBlockEdit.'" ><img src="'.XOOPS_URL.'/modules/legacy/admin/theme/icons/edit.png" /></a>';
-				$block['title'] .= '<a href="'.$urluninstall.'"><img src="'.XOOPS_URL.'/modules/legacy/admin/theme/icons/uninstall.png" /></a>';
-				$block['title'] .= '</span>';
+				$block_control = '<span style="float:right;" class="block_controller">';
+				$block_control .= '<a href="'.$urlBlockEdit.'" ><img src="'.XOOPS_URL.'/modules/legacy/admin/theme/icons/edit.png" /></a>';
+				$block_control .= '<a href="'.$urluninstall.'"><img src="'.XOOPS_URL.'/modules/legacy/admin/theme/icons/uninstall.png" /></a>';
+				$block_control .= '</span>';
+				if( strstr( $block['title'], 'none' ) ==true ) {
+					$block['content'] = $block_control . $block['content'];
+				} else {
+					$block['title'] .= $block_control;
+				}
 				$blockIds[] = $block['id'];
 			}
 
