@@ -39,7 +39,7 @@ if(isset($this->_tpl_vars["xoops_module_header"])){
 function xugj_jquery_is_already($document)
 {
 	$ret = false;
-	if (preg_match('/(www\.google\.com\/jsapi|jquery([0-9\.-]+?)\.js|jquery([0-9\.-]+?)\.min\.js)/isx',$document)) {
+	if (preg_match('/(www\.google\.com\/jsapi|jquery([0-9\.-]+?)\.min\.js)/isx',$document) || preg_match('/[^(ckeditor\/adapters\/)](jquery\.js)/isx',$document)) {
 		$ret = true;
 	}
 	return $ret;

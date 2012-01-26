@@ -27,10 +27,10 @@
 <![endif]-->
 <script type="text/javascript"><{$xoops_js|regex_replace:"/(\/\/\-\->|<!\-\-)/":""}></script>
 <{if ! $xcl22_jquery_is_already and ! $xugj_jquery_is_already}>
-<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery.js"></script>
+<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-1.7.1.min.js"></script>
 <{/if}>
 <{if $xoops_module_header}><{$xoops_module_header}><{/if}><{if $xoops_block_header}><{$xoops_block_header}><{/if}>
-<{include file="$xoops_theme/theme_redirect_js.html"}>
+<{include file="`$xoops_theme`/theme_redirect_js.html"}>
 <link rel="stylesheet" type="text/css" href="<{$xoops_imageurl}>modules.css" />
 <link rel="stylesheet" type="text/css" href="<{$xoops_imageurl}>media-queries.css" />
 <script type="text/javascript">
@@ -49,14 +49,26 @@
    }
 </script>
 </head>
-<body id="home" class="L<{$xoops_showlblock}>R<{$xoops_showrblock}> <{if $smarty.server.SCRIPT_FILENAME|basename == "index.php" and $smarty.server.SCRIPT_FILENAME|dirname|basename == $smarty.const.XOOPS_ROOT_PATH|basename}>home<{else}><{if !$xoops_dirname == ""}><{$xoops_dirname}><{else}>ather<{/if}><{/if}>">
+<body id="home" class="L<{$xoops_showlblock}>R<{$xoops_showrblock}> <{strip}>
+<{if $smarty.server.SCRIPT_FILENAME|basename == "index.php" and $smarty.server.SCRIPT_FILENAME|dirname|basename == $smarty.const.XOOPS_ROOT_PATH|basename}>
+	home
+<{else}>
+	<{if $xugj_trustdirname }>
+		<{$xugj_trustdirname}>
+	<{elseif !$xoops_dirname == ""}>
+		<{$xoops_dirname}>
+	<{else}>
+		ather
+	<{/if}>
+<{/if}>
+"><{/strip}>
 	<div id="wrapper">
 		<header id="header">
 			<h1><a href="<{$xoops_url}>/"><{$xoops_sitename}></a></h1>
 				<{if $xoops_dirname == ""}>
 				  <h2>Welcome to <{$xoops_sitename}>&nbsp;&nbsp;&nbsp;&nbsp;<{$xoops_slogan}></h2>
 				<{else}>
-					<{* module title *}><{include file="$xoops_theme/theme_moduletitle.html"}>
+					<{* module title *}><{include file="`$xoops_theme`/theme_moduletitle.html"}>
 				<{/if}>
 		<nav>
 		<div id="navigation">
@@ -116,7 +128,7 @@
 
 			<div id="latest">
 				<section class="left-col">
-					<{* CenterColumn BlockWeight>0 *}><{include file="$xoops_theme/theme_centercolumn.html"}>
+					<{* CenterColumn BlockWeight>0 *}><{include file="`$xoops_theme`/theme_centercolumn.html"}>
 				</section> <!-- END Left Column -->
 
 				<aside class="sidebar">
@@ -159,7 +171,7 @@
 		<hr/>
 
 		<footer>
-			<{include file="$xoops_theme/theme_footer.html"}>
+			<{include file="`$xoops_theme`/theme_footer.html"}>
 		</footer>
 
 		<div id="headerSearch">
@@ -169,7 +181,7 @@
 		  <input type="image" src="<{$xoops_imageurl}>images/search-icon.png" name="searchSubmit" alt="<{$smarty.const._BASIC_SEARCH}>"  title="<{$smarty.const._BASIC_SEARCH}>" id="headerSearch-searchBtn" class="button" />
 		  </form>
 		</div>
-
 	</div> <!-- END Wrapper -->
+	<div id="xugj_pm_new_message" class="top-right"></div>
 </body>
 </html>

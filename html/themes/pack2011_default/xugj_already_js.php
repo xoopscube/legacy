@@ -31,7 +31,6 @@ function xcl22_jquery_is_already($configArr)
 /*  assign true or false.                            */
 /*  xoops_module_header ,jquery is already           */
 /* ------------------------------------------------- */
-/*必要ならコメントはずして使ってください
 if(isset($this->_tpl_vars["xoops_module_header"])){
 	$this->assign( 'xugj_jquery_is_already' , xugj_jquery_is_already($this->_tpl_vars["xoops_module_header"]) ) ;
 }else{
@@ -40,17 +39,16 @@ if(isset($this->_tpl_vars["xoops_module_header"])){
 function xugj_jquery_is_already($document)
 {
 	$ret = false;
-	if (preg_match('/(www\.google\.com\/jsapi|jquery([0-9\.-]+?)\.js|jquery([0-9\.-]+?)\.min\.js)/isx',$document)) {
+	if (preg_match('/(www\.google\.com\/jsapi|jquery([0-9\.-]+?)\.min\.js)/isx',$document) || preg_match('/[^(ckeditor\/adapters\/)](jquery\.js)/isx',$document)) {
 		$ret = true;
 	}
 	return $ret;
 }
-*/
+
 /* ------------------------------------------------- */
 /*  assign arry for  etc.                            */
 /*  xoops_module_header js file name arry            */
 /* ------------------------------------------------- */
-/*
 if(isset($this->_tpl_vars["xoops_module_header"])){
 	$this->assign( 'xugj_already_js' , xugj_jquery_is_already($this->_tpl_vars["xoops_module_header"]) ) ;
 }else{
@@ -101,5 +99,5 @@ function xugj_strip_xoops_module_header_links($document)
 	return $match_js;
 
 }
-*/
+
 ?>

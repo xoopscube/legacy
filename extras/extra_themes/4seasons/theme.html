@@ -27,10 +27,10 @@
 <link rel="stylesheet" type="text/css" media="all" href="<{$xoops_themecss}>" />
 <script type="text/javascript"><{$xoops_js|regex_replace:"/(\/\/\-\->|<!\-\-)/":""}></script>
 <{if ! $xcl22_jquery_is_already and ! $xugj_jquery_is_already}>
-<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery.js"></script>
+<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-1.7.1.min.js"></script>
 <{/if}>
 <{if $xoops_module_header}><{$xoops_module_header}><{/if}><{if $xoops_block_header}><{$xoops_block_header}><{/if}>
-<{include file="$xoops_theme/theme_redirect_js.html"}>
+<{include file="`$xoops_theme`/theme_redirect_js.html"}>
 <!--[if IE 6]>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/DD_belatedPNG_0.0.8a-min.js"></script>
 	<script>
@@ -43,7 +43,7 @@ function getCSS()
 {
  datetoday = new Date();
  thisMonth = datetoday.getMonth() + 1;
- if (thisMonth == 12) 
+ if (thisMonth == 12)
   display = "<{$xoops_imageurl}>colors_12.css";
  else if (thisMonth == 11)
   display = "<{$xoops_imageurl}>colors_11.css";
@@ -84,7 +84,16 @@ getCSS();
 // --></script>
 <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_imageurl}>modules.css" charset="utf-8" />
 </head>
-<body  id="<{if !$xoops_dirname == ""}><{$xoops_dirname}><{else}>home<{/if}>" class="L<{$xoops_showlblock}>R<{$xoops_showrblock}>">
+<body  id="<{strip}>
+<{if $xugj_trustdirname }>
+	<{$xugj_trustdirname}>
+<{elseif empty($xoops_contents)}>
+	home
+<{elseif !$xoops_dirname == ""}>
+	<{$xoops_dirname}>
+<{else}>
+	ather
+<{/if}><{/strip}>" class="L<{$xoops_showlblock}>R<{$xoops_showrblock}>">
 <div id="outerwrapper"><!-- OuterWrapper -->
 <div id="Container" class="clearfix"><!-- Container -->
 <!-- Start Header -->
@@ -185,7 +194,7 @@ getCSS();
 	 <{/if}><!-- marine modifi -->
    <{/foreach}>
    <!-- End Center Center Column -->
-   <{/if}>	
+   <{/if}>
    <{if $xoops_clblocks}>
    <!-- Start Center Left Column -->
    <div id="CenterLColumn">
@@ -306,5 +315,7 @@ getCSS();
    <option value="<{$xoops_imageurl}>colors_12.css"><{$smarty.const._4seasons_DEC}></option>
 </select>
 </div>
+
+<div id="xugj_pm_new_message" class="top-left"></div>
 </body>
 </html>

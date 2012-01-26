@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="<{$xoops_charset}>"?>
 <{strip}>
+<{include_php file="`$smarty.const.XOOPS_THEME_PATH`/`$xoops_theme`/xugj_assign_pm.php"}>
 <{include_php file="`$smarty.const.XOOPS_THEME_PATH`/`$xoops_theme`/xugj_already_js.php"}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <{/strip}>
@@ -29,9 +30,9 @@
 <link rel="stylesheet" href="<{$xoops_imageurl}>css/jquery-megaDropdown.css" media="all" type="text/css" />
 <link rel="stylesheet" href="<{$xoops_imageurl}>css/jquery-jktab.css" media="all" type="text/css" />
 <{if ! $xcl22_jquery_is_already }>
-<link rel="stylesheet" href="<{$xoops_url}>/common/css/smoothness/jquery-ui-1.8.16.custom.css" media="all" type="text/css" />
+<link rel="stylesheet" href="<{$xoops_url}>/common/css/smoothness-1_8_17/jquery-ui-1.8.17.custom.css" media="all" type="text/css" />
 <script type="text/javascript" src="<{$xoops_url}>/common/js/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="<{$xoops_url}>/common/js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="<{$xoops_url}>/common/js/jquery-ui-1.8.17.custom.min.js"></script>
 <{/if}>
 <{if $xoops_module_header}><{$xoops_module_header}><{/if}>
 <{if $xoops_block_header}><{$xoops_block_header}><{/if}>
@@ -40,6 +41,7 @@
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-megaDropdown.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-jktab.js"></script>
 <script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-jcflick.js"></script>
+<{include file="`$xoops_theme`/xugj_assign_pm_js.html"}>
 <script type="text/javascript">
 //<![CDATA[
 (function(){
@@ -398,5 +400,6 @@ jQuery(function($){
 		<p><{if $xoops_footer}><{$xoops_footer}><{/if}> Distributed by XOOPS Cube 2.2 Distribution Pack 2011 Team.</p>
 	</div><{* /#footerInner *}>
 </div><{* /#globalFooterContainer *}>
+<div id="xugj_pm_new_message" class="top-right"></div>
 </body>
 </html>

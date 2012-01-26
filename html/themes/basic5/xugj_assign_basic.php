@@ -75,17 +75,29 @@ $menu_cache_file = XOOPS_TRUST_PATH.'/cache/theme_'.$theme_name.'_menus_'.SITE_S
 
 // PM
 if( is_object( @$xoopsUser ) ) {
-	if (defined('LEGACY_MODULE_VERSION') && version_compare(LEGACY_MODULE_VERSION, '2.2', '>=')) {
+	if (defined('XOOPS_CUBE_LEGACY')) {
 		$url = null;
 		$root = XCube_Root::getSingleton();
 		$service =& $root->mServiceManager->getService('privateMessage');
 		if ($service != null) {
 			$client =& $root->mServiceManager->createClient($service);
-			$url = $client->call('getPmInboxUrl', array('uid' => $xoopsUser->get('uid')));
-
+			$url = $client->call('getPmInboxUrl', array('uid' => $root->mContext->mXoopsUser->get('uid')));
 			if ($url != null) {
-				$this->assign( 'pm_inbox_url' , $url ) ;
-				$this->assign( 'pm' , $client->call('getCountUnreadPM', array('uid' => $xoopsUser->get('uid'))) ) ;
+				$xugj_pm_new_count = $client->call('getCountUnreadPM', array('uid' => $root->mContext->mXoopsUser->get('uid')));
+				if(intval($xugj_pm_new_count)>0){
+					$root->mLanguageManager->loadModuleMessageCatalog('message');
+					$xugj_pm_new_message = XCube_Utils::formatString(_MD_MESSAGE_NEWMESSAGE, $xugj_pm_new_count);
+					$this->assign( 'xugj_pm_new_message' , $xugj_pm_new_message."<br/><a href='".$url."'>"._MD_MESSAGE_TEMPLATE15."</a>" ) ;
+				}
+				$this->assign( 'xugj_pm_new_count' , intval($xugj_pm_new_count) ) ;
+				$this->assign( 'xugj_pm_inbox_url' , $url ) ;
+			}
+		}else{
+			$pm_handler =& xoops_gethandler('privmessage' ,true) ;
+			if (is_object($pm_handler)){
+				$criteria = new CriteriaCompo(new Criteria('read_msg', 0));
+				$criteria->add(new Criteria('to_userid', $root->mContext->mXoopsUser->get('uid')));
+				$this->assign( 'pm' , array( new_messages => $pm_handler->getCount( $criteria ) ) ) ;
 			}
 		}
 	}else{
@@ -111,24 +123,18 @@ if( is_object( @$xoopsUser ) ) {
 $this->assign( "xugj_groups" , $groups4assign ) ;
 $menu_cache_file .= $GLOBALS['xoopsConfig']['language'].'.php' ;
 
-/* for speed up hack :-) original
+// for speed up hack
 if( ! empty( $_SESSION['redirect_message'] ) ) {
-	if( empty( $this->_tpl_vars['xoops_lblocks'] ) ) $this->_tpl_vars['xoops_lblocks'] = array() ;
-	array_unshift( $this->_tpl_vars['xoops_lblocks'] , array( 'title' => 'Message' , 'content' => $_SESSION['redirect_message'] , 'weight' => 0 ) ) ;
-	$this->_tpl_vars['xoops_showlblock'] = 1 ;
+	if( empty( $this->_tpl_vars['xoops_ccblocks'] ) ) $this->_tpl_vars['xoops_ccblocks'] = array() ;
+	array_unshift( $this->_tpl_vars['xoops_ccblocks'] , array( 'title' => 'Message' , 'content' => '<font color="red">'.$_SESSION['redirect_message'].'</font>' , 'weight' => 0 ) ) ;
+	$this->_tpl_vars['xoops_showcblock'] = 1 ;
 	$is_redirected = true ;
+
+	$this->assign( 'redirect_message',$_SESSION['redirect_message'] ) ;
+	$this->assign( 'is_redirected',TRUE ) ;
+	$target_block = (isset($params['target_block']))? strtolower($params['target_block']) : 'none';
 	unset( $_SESSION['redirect_message'] ) ;
 }
-*/
-
-// for speed up hack by marine
-    if( ! empty( $_SESSION['redirect_message'] ) ) {
-			$this->assign( 'redirect_message',$_SESSION['redirect_message'] ) ;
-			$this->assign( 'is_redirected',TRUE ) ;
-        $target_block = (isset($params['target_block']))? strtolower($params['target_block']) : 'none';
-        unset($_SESSION['redirect_message']);
-    }
-
 
 // xoops_breadcrumbs
 if( ! is_array( @$this->_tpl_vars['xoops_breadcrumbs'] ) ) {
@@ -286,4 +292,14 @@ function xugj_assign_display_menu_ul_recursively( $level_menus , $dirname = '' )
 	}
 	return $ret . "</ul>\n" ;
 }
+// xugj_trustdirname
+$xugj_trustdirname = false;
+if (isset($GLOBALS['mytrustdirname'])){
+	$xugj_trustdirname = $GLOBALS['mytrustdirname'];
+}elseif (is_object($GLOBALS['xoopsModule'])){
+	$GLOBALS['xoopsModule']->loadInfo( $GLOBALS['xoopsModule']->getVar('dirname') ) ;
+	$xugj_trustdirname = $GLOBALS['xoopsModule']->getInfo('trust_dirname') ;
+}
+$this->assign( 'xugj_trustdirname' , $xugj_trustdirname) ;
+
 ?>
