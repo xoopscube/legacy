@@ -51,9 +51,9 @@
 })();
 
 jQuery(function($){
-	window.onload = function(){
-		ProjectName.PARTS.hideAdBar();
-	};
+
+	$(window).bind( 'onload', function(){ ProjectName.PARTS.hideAdBar(); } );
+
 	if ( typeof window.onorientationchange === 'object' && !ProjectName.ua.Android ) {
 		$(window).bind( 'orientationchange', function(){ ProjectName.PARTS.hideAdBar(); } );
 	} else {
