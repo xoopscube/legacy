@@ -78,15 +78,15 @@ XOOPS changes onokazu <webmaster@xoops.org>
 
 /**
  * tar Class
- * 
+ *
  * This class reads and writes Tape-Archive (TAR) Files and Gzip
  * compressed TAR files, which are mainly used on UNIX systems.
  * This class works on both windows AND unix systems, and does
  * NOT rely on external applications!! Woohoo!
- * 
+ *
  * @author	Josh Barger <joshb@npt.com>
  * @copyright	Copyright (C) 2002  Josh Barger
- * 
+ *
  * @package     kernel
  * @subpackage  core
  */
@@ -121,9 +121,9 @@ class tar
 	/**
 	 * Computes the unsigned Checksum of a file's header
      * to try to ensure valid file
-     * 
+     *
      * @param	string  $bytestring
-     * 
+     *
      * @access	private
 	 */
 	function __computeUnsignedChecksum($bytestring)
@@ -141,11 +141,11 @@ class tar
 
 	/**
 	 * Converts a NULL padded string to a non-NULL padded string
-	 * 
+	 *
 	 * @param   string  $string
-     * 
-	 * @return  string 
-     * 
+     *
+	 * @return  string
+     *
      * @access	private
 	 **/
 	function __parseNullPaddedString($string)
@@ -156,9 +156,9 @@ class tar
 
 	/**
 	 * This function parses the current TAR file
-	 * 
+	 *
 	 * @return  bool    always TRUE
-     * 
+     *
      * @access	private
 	 **/
 	function __parseTar()
@@ -262,10 +262,10 @@ class tar
 
 	/**
 	 * Read a non gzipped tar file in for processing.
-	 * 
+	 *
 	 * @param   string  $filename   full filename
 	 * @return  bool    always TRUE
-     * 
+     *
      * @access	private
 	 **/
 	function __readTar($filename='')
@@ -296,9 +296,9 @@ class tar
 
 	/**
 	 * Generates a TAR file from the processed data
-	 * 
+	 *
 	 * @return  bool    always TRUE
-     * 
+     *
      * @access	private
 	 **/
 	function __generateTAR()
@@ -395,9 +395,9 @@ class tar
 
 	/**
 	 * Open a TAR file
-	 * 
+	 *
 	 * @param   string  $filename
-	 * @return  bool 
+	 * @return  bool
 	 **/
 	function openTAR($filename)
 	{
@@ -424,7 +424,7 @@ class tar
 
 	/**
 	 * Appends a tar file to the end of the currently opened tar file.
-	 * 
+	 *
 	 * @param   string  $filename
 	 * @return  bool
 	 **/
@@ -441,7 +441,7 @@ class tar
 
 	/**
 	 * Retrieves information about a file in the current tar archive
-	 * 
+	 *
 	 * @param   string  $filename
 	 * @return  string  FALSE on fail
 	 **/
@@ -459,7 +459,7 @@ class tar
 
 	/**
 	 * Retrieves information about a directory in the current tar archive
-	 * 
+	 *
 	 * @param   string  $dirname
 	 * @return  string  FALSE on fail
 	 **/
@@ -477,7 +477,7 @@ class tar
 
 	/**
 	 * Check if this tar archive contains a specific file
-	 * 
+	 *
 	 * @param   string  $filename
 	 * @return  bool
 	 **/
@@ -494,7 +494,7 @@ class tar
 
 	/**
 	 * Check if this tar archive contains a specific directory
-	 * 
+	 *
 	 * @param   string  $dirname
 	 * @return  bool
 	 **/
@@ -512,7 +512,7 @@ class tar
 
 	/**
 	 * Add a directory to this tar archive
-	 * 
+	 *
 	 * @param   string  $dirname
 	 * @return  bool
 	 **/
@@ -540,7 +540,7 @@ class tar
 
 	/**
 	 * Add a file to the tar archive
-	 * 
+	 *
 	 * @param   string  $filename
 	 * @param   boolean $binary     Binary file?
 	 * @return  bool
@@ -581,14 +581,16 @@ class tar
 		$activeFile["checksum"]		= isset($checksum) ? $checksum : '';
 		$activeFile["user_name"]	= "";
 		$activeFile["group_name"]	= "";
-		$activeFile["file"]		= trim($file_contents);
+		// "trim" May be needless. by nao-pon
+		//$activeFile["file"]		= trim($file_contents);
+		$activeFile["file"]		= $file_contents;
 
 		return true;
 	}
 
 	/**
 	 * Remove a file from the tar archive
-	 * 
+	 *
 	 * @param   string  $filename
 	 * @return  bool
 	 **/
@@ -608,7 +610,7 @@ class tar
 
 	/**
 	 * Remove a directory from the tar archive
-	 * 
+	 *
 	 * @param   string  $dirname
 	 * @return  bool
 	 **/
@@ -628,8 +630,8 @@ class tar
 
 	/**
 	 * Write the currently loaded tar archive to disk
-	 * 
-	 * @return  bool 
+	 *
+	 * @return  bool
 	 **/
 	function saveTar()
 	{
@@ -645,7 +647,7 @@ class tar
 
 	/**
 	 * Saves tar archive to a different file than the current file
-	 * 
+	 *
 	 * @param   string  $filename
 	 * @param   bool    $useGzip    Use GZ compression?
 	 * @return  bool
@@ -681,7 +683,7 @@ class tar
 
 	/**
 	 * Sends tar archive to stdout
-	 * 
+	 *
 	 * @param   string  $filename
 	 * @param   bool    $useGzip    Use GZ compression?
 	 * @return  string
