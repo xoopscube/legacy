@@ -40,5 +40,17 @@
 		$wizard->assign('message',_INSTALL_L46);
 		$wizard->setReload(true);
 	}
+	
+	install_modcheck_trust_mkdir($directory);
+	
 	$wizard->render('install_modcheck.tpl.php');
+
+	function install_modcheck_trust_mkdir(/*** string ***/ $directory)
+	{
+		if(! is_dir($directory)){
+			umask(0);
+			mkdir($directory, 0777);
+		}
+	}
+
 ?>
