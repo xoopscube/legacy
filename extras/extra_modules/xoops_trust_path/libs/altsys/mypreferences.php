@@ -172,9 +172,14 @@ if ($op == 'save') {
 	}
 	require_once XOOPS_ROOT_PATH.'/class/template.php' ;
 	$xoopsTpl = new XoopsTpl();
-	$xoopsTpl->clear_all_cache();
-	// regenerate admin menu file
-	xoops_module_write_admin_menu(xoops_module_get_admin_menu());
+//HACK by domifara for new XOOPS and XCL etc.
+//old xoops
+	$core_type = intval(altsys_get_core_type());
+	if ($core_type <= 10 ){
+		$xoopsTpl->clear_all_cache();
+		// regenerate admin menu file
+		xoops_module_write_admin_menu(xoops_module_get_admin_menu());
+	}
 	if ( !empty($_POST['conf_ids']) ) { $conf_ids = $_POST['conf_ids']; }
 	$count = count($conf_ids);
 	$tpl_updated = false;

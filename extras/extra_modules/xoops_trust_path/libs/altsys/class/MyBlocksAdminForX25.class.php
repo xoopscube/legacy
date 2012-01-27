@@ -239,10 +239,25 @@ function form_edit( $bid , $mode = 'edit' )
 	$tpl = new D3Tpl() ;
 //dhtml
 	include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
-	$form = new XoopsFormDhtmlTextArea('','textarea_content',$block_data['content'] , 80 , 20);
-	$rendered = $form->render();
-	$rendered = '<div id="textarea_content_bbcode_buttons_pre" style="display:block;">'.str_replace( array( '<textarea' , '</textarea><br />' ) , array( '</div><textarea' , '</textarea><div id="textarea_content_bbcode_buttons_post" style="display:block;">' ) , $rendered ) . '</div>' ;
-	$tpl->assign( 'altsys_x25_dhtmltextarea' , $rendered ) ;
+
+	if ($block_data['ctype']=='H' || empty($block_data['ctype'])){
+		$editor_configs=array();
+		$editor_configs["name"] ="content_block";
+		$editor_configs["value"] = $block_data['content'];
+		$editor_configs["rows"] = 20;
+		$editor_configs["cols"] = 100;
+		$editor_configs["width"] = "100%";
+		$editor_configs["height"] = "400px";
+		$editor_configs["editor"] = xoops_getModuleOption('blocks_editor', 'system');
+		$form= new XoopsFormEditor('', "textarea_content", $editor_configs);
+		$rendered = $form->render();
+		$tpl->assign( 'altsys_x25_dhtmltextarea' , $rendered ) ;
+	}else{
+		$form = new XoopsFormDhtmlTextArea('','textarea_content',$block_data['content'] , 80 , 20);
+		$rendered = $form->render();
+		$rendered = '<div id="textarea_content_bbcode_buttons_pre" style="display:block;">'.str_replace( array( '<textarea' , '</textarea><br />' ) , array( '</div><textarea' , '</textarea><div id="textarea_content_bbcode_buttons_post" style="display:block;">' ) , $rendered ) . '</div>' ;
+		$tpl->assign( 'altsys_x25_dhtmltextarea' , $rendered ) ;
+	}
 
 	$tpl->assign( array(
 		'target_dirname' => $this->target_dirname ,
