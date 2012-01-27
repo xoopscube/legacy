@@ -11,7 +11,7 @@ div.jGrowl div.redirect div.jGrowl-closer {
 	-ms-filter: 			"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
 	filter: 				progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
 	zoom: 					1;
-	width: 					335px;
+	width: 					50%;
 	padding: 				10px;
 	margin-top: 			5px;
 	margin-bottom: 			5px;
@@ -25,4 +25,8 @@ div.jGrowl div.redirect div.jGrowl-closer {
 	-webkit-box-shadow: 10px 10px 10px rgba(0,0,0,0.4);
 	-o-box-shadow: 10px 10px 10px rgba(0,0,0,0.4);
 	-ms-box-shadow: 10px 10px 10px rgba(0,0,0,0.4);
+}
+div.jGrowl div.redirect div.jGrowl-closer {
+	cursor: pointer;
+	text-align: center;
 }
