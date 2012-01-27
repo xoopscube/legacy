@@ -2,7 +2,22 @@
 div.jGrowl div.redirect {
 	min-height: 			40px;
 }
-
+	div.jGrowl div.redirect ,
+	div.jGrowl div.redirect div.jGrowl-closer {
+		width: 60%;
+	}
+@media screen and (max-width: 780px) 	{
+	div.jGrowl div.redirect ,
+	div.jGrowl div.redirect div.jGrowl-closer {
+		width: 80%;
+	}
+}
+@media screen and (max-width: 480px) 	{
+	div.jGrowl div.redirect ,
+	div.jGrowl div.redirect div.jGrowl-closer {
+		width: 99%;
+	}
+}
 div.jGrowl div.redirect ,
 div.jGrowl div.redirect div.jGrowl-closer {
 	background-color: 		#000;
@@ -11,7 +26,6 @@ div.jGrowl div.redirect div.jGrowl-closer {
 	-ms-filter: 			"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
 	filter: 				progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
 	zoom: 					1;
-	width: 					50%;
 	padding: 				10px;
 	margin-top: 			5px;
 	margin-bottom: 			5px;
