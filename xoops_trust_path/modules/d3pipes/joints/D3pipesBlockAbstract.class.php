@@ -81,7 +81,7 @@ class D3pipesBlockAbstract extends D3pipesJointAbstract {
 
 		//----------  get block object  ----------//
 		//XCL modules
-		$db =& Database::getInstance() ;
+		$db =& XoopsDatabaseFactory::getDatabaseConnection();
 		//chanhe class_name -> func_name
 		//only no xoos_trust_path module class type , convert class_name to func_name
 		//you need to set $this->func_name when xoos_trust_path module class type
@@ -102,6 +102,13 @@ class D3pipesBlockAbstract extends D3pipesJointAbstract {
 		if( empty( $bid ) ) {
 			$block = $this->executeStandard($dummy , $max_entries );
 			return $block;
+		}
+		//----------  module object check ----------//
+		$module_handler =& xoops_gethandler('module');
+		$module = $module_handler->getByDirname($this->target_dirname);
+		if (!is_object($module) || !$module->getVar('isactive')){
+			$this->errors[] = _MD_D3PIPES_ERR_INVALIDFILEINBLOCK."\n".$this->func_file.' ('.get_class( $this ).')' ;
+			return array() ;
 		}
 		//----------  get block object  ----------//
 		$blockHandler =& xoops_gethandler('block');
