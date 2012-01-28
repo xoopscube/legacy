@@ -1,0 +1,38 @@
+<{* <p>"Finish Download"|t}></p> *}>
+<{if $xupdate_items }>
+	<div>
+	<ul>
+	<{foreach item=_item from $xupdate_items}>
+		<li><a href="<{$_item.url}>"><{$_item.dirname}></a></li>
+	<{/foreach}>
+	</ul>
+	</div>
+<{/if}>
+
+<div><{$xupdate_content}></div>
+<div><{$xupdate_message}></div>
+
+<script>
+<{*
+  $(document).ready(function(){
+    $("#install_progress").load("index.php?controller=install&action=unzip&target_key=<{$target_key}> #message");
+  });
+*}>
+
+$(document).ready(function(){
+    $.get("index.php", 
+        {
+            controller:"install",
+            action:"unzip",
+            target_key:"<{$target_key}>",
+            target_type:"<{$target_type}>",
+            
+            ajaxmode: 1
+        },
+        function(data){
+            $("#install_progress").append(data);
+        }
+        );
+});
+
+</script>
