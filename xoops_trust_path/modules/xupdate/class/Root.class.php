@@ -44,8 +44,8 @@ class Xupdate_Root extends XoopsSimpleObject {
 			//adump($this->params['temp_dirname']);
 		$this->params['temp_path'] = dirname(dirname(dirname(dirname(__FILE__)))).'/'.trim($this->mod_config['temp_path'],'/') ;
 			//adump($this->params['temp_path']);
-		$this->params['is_writable']['path'] = rtrim($this->params['temp_path'], '/');
-		$this->params['is_writable']['result'] = is_writable( $this->params['is_writable']['path'] );
+		$tmpf = $this->params['is_writable']['path'] = rtrim($this->params['temp_path'], '/');
+		$this->params['is_writable']['result'] = is_writable( $tmpf ) && is_executable( $tmpf ) ;
 
 		// Ftp class
 		require_once dirname(__FILE__) . '/Ftp.class.php';
