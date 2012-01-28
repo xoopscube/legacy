@@ -78,15 +78,16 @@ class D3pipesBlockXccklist extends D3pipesBlockAbstract {
 		$ret_0 .= '</select>' ;
 
 		// options[1]  (max_entries)
-		$options[1] = empty( $options[1] ) ? 5 : intval( $options[1] ) ;
+		$options[1] = !isset( $options[1] ) ? 5 : intval( $options[1] ) ;
 		$ret_1 = _MD_D3PIPES_N4J_MAXENTRIES.'<input type="text" name="joint_options['.$index.'][1]" value="'.$options[1].'" size="2" style="text-align:right;" />' ;
 
 		// options[2]  (cat_ids)
+		$options[2] = !isset( $options[2] ) ? '' : $options[2] ;
 		$options[2] = preg_replace( '/[^0-9,]/' , '' , @$options[2] ) ;
 		$ret_2 = _MD_D3PIPES_N4J_CID.'<input type="text" name="joint_options['.$index.'][2]" value="'.$options[2].'" size="20" />' ;
 
 		// options[3]  (display)
-		$options[3] = empty($options[3]) ? 1 : intval($options[3]);
+		$options[3] = !isset($options[3]) ? 1 : intval($options[3]);
 		$ret_3 = _MD_D3PIPES_N4J_EXTRAOPTIONS.'<input type="text" name="joint_options['.$index.'][3]" value="'.$options[3].'" size="10" style="text-align:left;" />' ;
 
 			return '<input type="hidden" name="joint_option['.$index.']" id="joint_option_'.$index.'" value="" />'.$ret_0.' '.$ret_1.'<br />'.$ret_2.' '.$ret_3 ;

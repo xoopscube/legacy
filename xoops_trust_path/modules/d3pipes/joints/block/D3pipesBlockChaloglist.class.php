@@ -63,7 +63,7 @@ class D3pipesBlockChaloglist extends D3pipesBlockAbstract {
 			$options = explode('|', $current_value);
 
 			// options[1]  (max_entries)
-			$options[0] = empty($options[0]) ? 5 : intval($options[0]);
+			$options[0] = !isset($options[0]) ? 5 : intval($options[0]);
 			$ret_0 = _MD_D3PIPES_N4J_MAXENTRIES.'<input type="text" name="joint_options['.$index.'][0]" value="'.$options[0].'" size="2" style="text-align:right;" />' ;
 
 			return '<input type="hidden" name="joint_option['.$index.']" id="joint_option_'.$index.'" value="" />'.$ret_0 ;
