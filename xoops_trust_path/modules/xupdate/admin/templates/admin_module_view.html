@@ -1,4 +1,5 @@
 <{* <p>"Finish Download"|t}></p> *}>
+<h3><{$smarty.const._AD_XUPDATE_LANG_MODULES}></h3>
 <{if $xupdate_items }>
 	<div>
 	<ul>
@@ -8,6 +9,18 @@
 	</ul>
 	</div>
 <{/if}>
+
+<h3><{$smarty.const._AD_XUPDATE_LANG_WRITABLE_RESULT}></h3>
+	<div>
+	<ul>
+	<li><{$xupdate_writable.path}>&nbsp;:&nbsp;
+ 	<{if $xupdate_writable.result==true}>
+		(<span style="color:green;font-weight:bold;">OK</span>)
+	<{else}>
+		(<span style="color:red;font-weight:bold;">NG</span>)
+	<{/if}>
+	</li></ul>
+	</div>
 
 <div><{$xupdate_content}></div>
 <div><{$xupdate_message}></div>

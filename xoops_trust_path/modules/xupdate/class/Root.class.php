@@ -2,17 +2,17 @@
 
 class Xupdate_Root extends XoopsSimpleObject {
 
-	var $mRoot ;
-	var $xoops_root_path ;
-	var $mydirname ;
-	var $mid = 0 ;
-	var $mname = null ;
-	var $mod_config ;
-	var $myts ;
-	var $db = null ;	// Database instance
-	var $Ftp = null ;	// Ftp instance
-	var $func = null ;	// Functions instance
-	var $params = array() ;	//some parameters
+	public $mRoot ;
+	public $xoops_root_path ;
+	public $mydirname ;
+	public $mid = 0 ;
+	public $mname = null ;
+	public $mod_config ;
+	public $myts ;
+	public $db = null ;	// Database instance
+	public $Ftp = null ;	// Ftp instance
+	public $func = null ;	// Functions instance
+	public $params = array() ;	//some parameters
 
 	public function __construct()
 	{
@@ -20,7 +20,6 @@ class Xupdate_Root extends XoopsSimpleObject {
         {
             exit;
         }
-
 
 		$this->xoops_root_path = XOOPS_ROOT_PATH;
 
@@ -35,7 +34,7 @@ class Xupdate_Root extends XoopsSimpleObject {
 		$this->mydirname = $this_module->get('dirname');
 		// module config
 		$this->mod_config = $root->mContext->mModuleConfig;
-	//	adump($this->mod_config);
+		//adump($this->mod_config);
 
 		// mytextsanitizer   ToDo --> Cube Style ??
 		$this->myts =& MyTextSanitizer::getInstance();
@@ -45,6 +44,8 @@ class Xupdate_Root extends XoopsSimpleObject {
 			//adump($this->params['temp_dirname']);
 		$this->params['temp_path'] = dirname(dirname(dirname(dirname(__FILE__)))).'/'.trim($this->mod_config['temp_path'],'/') ;
 			//adump($this->params['temp_path']);
+		$this->params['is_writable']['path'] = rtrim($this->params['temp_path'], '/');
+		$this->params['is_writable']['result'] = is_writable( $this->params['is_writable']['path'] );
 
 		// Ftp class
 		require_once dirname(__FILE__) . '/Ftp.class.php';
@@ -55,18 +56,19 @@ class Xupdate_Root extends XoopsSimpleObject {
 		$this->func = new Xupdate_Func($this) ;
 	}
 
-    public function get($name, $default = null)
-    {
-        return $this->mRoot->mContext->mRequest->getRequest($name);
-        //$request = ( isset($_GET[$name]) ) ? $_GET[$name] : $default;
-        //return $request;
-    }
-    public function post($name, $default = null)
-    {
-        return $this->mRoot->mContext->mRequest->getRequest($name);
-        //$request = ( isset($_POST[$name]) ) ? $_POST[$name] : $default;
-        //return $request;
-    }
+	public function get($key, $default = null) {
+
+		return $this->mRoot->mContext->mRequest->getRequest($key);
+		//$request = ( isset($_GET[$key]) ) ? $_GET[$key] : $default;
+		//return $request;
+	}
+
+	public function post($key, $default = null) {
+
+		return $this->mRoot->mContext->mRequest->getRequest($key);
+		//$request = ( isset($_POST[$key]) ) ? $_POST[$key] : $default;
+		//return $request;
+	}
 
 } // end class
 

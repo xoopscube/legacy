@@ -2,7 +2,7 @@
 
 ○ 動作環境
 
-- PHP 5.2.0 以上
+- PHP 5.2.0 以上, curlとzlibライブラリ上のZipArchiveが使用できること。
 - コア XOOPS Cube Legacy 2.1.x 以上 (2.2.0 以上推奨）
 
 ○ 履歴

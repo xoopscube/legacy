@@ -25,13 +25,13 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 	protected $Ftp  ;	// FTP instance
 	protected $Func ;	// Functions instance
 	protected $mod_config ;
-    protected $content ;
+	protected $content ;
 
-    protected $downloadDirPath;
-    protected $exploredDirPath;
-    protected $downloadUrlFormat;
-    protected $targetKeyName;
-    protected $targetType;
+	protected $downloadDirPath;
+	protected $exploredDirPath;
+	protected $downloadUrlFormat;
+	protected $targetKeyName;
+	protected $targetType;
 
 	/**
 	 * getDefaultView
@@ -87,20 +87,24 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 
 	public function executeViewSuccess(&$render)
 	{
-        $this->_downloadFile();
-        if($this->_unzipFile()==true) {
-            // ToDo port , timeout
-            if($this->Ftp->app_login("127.0.0.1")==true) {
-                $this->uploadFiles();
-            }
-        }
-        $this->Ftp->app_logout();
-            $this->content.= 'cleaning up... <br />';
-        $this->_cleanup($this->exploredDirPath);
-            $this->content.= 'completed <br /><br />';
-            $this->content.= $this->_get_nextlink($this->targetKeyName);
+ 
+		if( $this->Xupdate->params['is_writable']['result'] === true ) {
+			$this->_downloadFile();
+			if($this->_unzipFile()==true) {
+				// ToDo port , timeout
+				if($this->Ftp->app_login("127.0.0.1")==true) {
+					$this->uploadFiles();
+				}
+			}
+			$this->Ftp->app_logout();
+			$this->content.= 'cleaning up... <br />';
+			$this->_cleanup($this->exploredDirPath);
+			$this->content.= 'completed <br /><br />';
+			$this->content.= $this->_get_nextlink($this->targetKeyName);
+		}
 
-        $render->setAttribute('xupdate_content', $this->content);
+		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
+       		$render->setAttribute('xupdate_content', $this->content);
 		$render->setAttribute('xupdate_message', $this->Ftp->getMes());
 
 		$render->setTemplateName('admin_module_install.html');

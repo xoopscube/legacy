@@ -72,8 +72,10 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 	public function executeViewSuccess(&$render)
 	{
 		$this->_storelist();
-		$render->setAttribute('xupdate_content', $this->content);
 		$render->setAttribute('xupdate_items', $this->items);
+
+		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
+		$render->setAttribute('xupdate_content', $this->content);
 
 		$render->setTemplateName('admin_module_view.html');
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
