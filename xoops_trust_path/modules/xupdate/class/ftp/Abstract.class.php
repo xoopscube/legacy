@@ -85,7 +85,7 @@ class Xupdate_Ftp_Abstract {
 		$this->SetUmask(0022);
 		$this->SetType(FTP_AUTOASCII);
 		$this->SetTimeout(30);
-		$this->Passive(!$this->_port_available);
+		//$this->Passive(!$this->_port_available);
 		$this->_login="anonymous";
 		$this->_password="anon@ftp.com";
 		$this->_features=array();
