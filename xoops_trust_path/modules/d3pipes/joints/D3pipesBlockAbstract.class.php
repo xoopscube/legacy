@@ -107,14 +107,14 @@ class D3pipesBlockAbstract extends D3pipesJointAbstract {
 		$module_handler =& xoops_gethandler('module');
 		$module = $module_handler->getByDirname($this->target_dirname);
 		if (!is_object($module) || !$module->getVar('isactive')){
-			$this->errors[] = _MD_D3PIPES_ERR_INVALIDFILEINBLOCK."\n".$this->func_file.' ('.get_class( $this ).')' ;
+			$this->errors[] = _MD_D3PIPES_ERR_INVALIDPIPEIDINBLOCK."\n".' modulet not found : target_dirname='.$this->target_dirname.' func_name='.$this->func_name.' ('.get_class( $this ).')' ;
 			return array() ;
 		}
 		//----------  get block object  ----------//
 		$blockHandler =& xoops_gethandler('block');
 		$blockObject =& $blockHandler->get($bid);
 		if ( ! is_object($blockObject)) {
-			$this->errors[] = _MD_D3PIPES_ERR_INVALIDFILEINBLOCK."\n".' block object not found : target_dirname='.$this->target_dirname.' func_name='.$this->func_name.' ('.get_class( $this ).')' ;
+			$this->errors[] = _MD_D3PIPES_ERR_INVALIDPIPEIDINBLOCK."\n".' block object not found : target_dirname='.$this->target_dirname.' func_name='.$this->func_name.' ('.get_class( $this ).')' ;
 			return array() ;
 		}
 
