@@ -19,21 +19,21 @@ class CustomBB extends XCube_ActionFilter
 /************ not Security ,do not use
 		// Replacement rules for [mod_jump]
 		$patterns[] = '/\[mod_jump (.*?)\]/es';
-		$replacements[] = "CustomBB::mod_jump('\\1');";
+		$replacements[0][] = $replacements[1][] = "CustomBB::mod_jump('\\1');";
 		// Replacement rules for [iine_bulletintopic_count] tag
 		$patterns[] = '/\[iine_bulletintopic_count (.*?)\]/es';
-		$replacements[] = "CustomBB::iine_bulletintopic_count('\\1');";
+		$replacements[0][] = $replacements[1][] = "CustomBB::iine_bulletintopic_count('\\1');";
 		// Replacement rules for [pm_count] tag
 		$patterns[] = '/\[pm_count (.*?)\]/es';
-		$replacements[] = "CustomBB::pm_count('\\1');";
+		$replacements[0][] = $replacements[1][] = "CustomBB::pm_count('\\1');";
 		$patterns[] = '/\[pm_count\]/es';
-		$replacements[] = "CustomBB::pm_count();";
+		$replacements[0][] = $replacements[1][] = "CustomBB::pm_count();";
 		// Replacement rules for [d3comment_count] tag
 		$patterns[] = '/\[d3comment_count (.*?)\]/es';
-		$replacements[] = "CustomBB::d3comment_count('\\1');";
+		$replacements[0][] = $replacements[1][] = "CustomBB::d3comment_count('\\1');";
 		// Replacement rules for [d3comment_unread] tag
 		$patterns[] = '/\[d3comment_unread (.*?)\]/es';
-		$replacements[] = "CustomBB::d3comment_unread('\\1');";
+		$replacements[0][] = $replacements[1][] = "CustomBB::d3comment_unread('\\1');";
 */
 
 	}
