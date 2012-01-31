@@ -4,6 +4,20 @@ require_once dirname(dirname(__FILE__)).'/include/gtickets.php' ;
 require_once dirname(dirname(__FILE__)).'/class/bulletinTopic.php' ;
 $db =& Database::getInstance() ;
 
+/*
+ * topic_access table clean up 2012-2-1 by Yoshis
+*/
+$sql = "SELECT topic_id FROM ".$db->prefix($mydirname."_topic_access")." GROUP BY topic_id";
+$result = $db->query($sql);
+while(list($topic_id)=$db->fetchRow( $result ) ){
+	$sql = "SELECT count(*) FROM ".$db->prefix($mydirname."_topics")." WHERE topic_id=$topic_id";
+	list( $cnt ) = $db->fetchRow( $db->query($sql) );
+	if ($cnt==0){
+		$sql = "DELETE FROM ".$db->prefix($mydirname."_topic_access")." WHERE topic_id=$topic_id";
+		$db->queryF( $sql ) ;
+	}
+}
+
 // get right $topic_id
 $topic_id = isset( $_GET['topic_id'] ) ? intval( $_GET['topic_id'] ) : 0;
 $sql = "SELECT topic_id,topic_title FROM ".$db->prefix($mydirname."_topics")." WHERE topic_id=$topic_id";
