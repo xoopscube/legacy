@@ -266,7 +266,8 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 		}
 		if(!$this->_exec("MDTM ".$pathname, "mdtm")) return FALSE;
 		if(!$this->_checkCode()) return FALSE;
-		$mdtm = ereg_replace("^[0-9]{3} ([0-9]+)".CRLF, "\\1", $this->_message);
+		//$mdtm = ereg_replace("^[0-9]{3} ([0-9]+)".CRLF, "\\1", $this->_message);
+		$mdtm = preg_replace("/^[0-9]{3} ([0-9]+)".CRLF."/", "\\1", $this->_message);
 		$date = sscanf($mdtm, "%4d%2d%2d%2d%2d%2d");
 		$timestamp = mktime($date[3], $date[4], $date[5], $date[1], $date[2], $date[0]);
 		return $timestamp;
@@ -589,8 +590,10 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 	protected function glob_regexp($pattern,$probe) {
 		$sensitive=(PHP_OS!='WIN32');
 		return ($sensitive?
-			ereg($pattern,$probe):
-			eregi($pattern,$probe)
+			//ereg($pattern,$probe):
+			//eregi($pattern,$probe)
+			ereg('/'.$pattern.'/',$probe):
+			eregi('/'.$pattern.'/',$probe)
 		);
 	}
 // <!-- --------------------------------------------------------------------------------------- -->

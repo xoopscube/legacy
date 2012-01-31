@@ -68,7 +68,8 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract {
 			$this->SendMSG("pwd command failed".CRLF);
 			return FALSE;
 		} else {
-			$this->SendMSG(ereg_replace("^[0-9]{3} \"(.+)\" .+".CRLF, "\\1", $rtn));
+			//$this->SendMSG(ereg_replace("^[0-9]{3} \"(.+)\" .+".CRLF, "\\1", $rtn));
+			$this->SendMSG(preg_replace("/^[0-9]{3} \"(.+)\" .+".CRLF.'/', "\\1", $rtn));
 			return TRUE;
 		}
 	}
