@@ -16,10 +16,10 @@ class Xupdate_Root extends XoopsSimpleObject {
 
 	public function __construct()
 	{
-        if(!defined('XOOPS_ROOT_PATH'))
-        {
-            exit;
-        }
+		if(!defined('XOOPS_ROOT_PATH'))
+		{
+			exit;
+		}
 
 		$this->xoops_root_path = XOOPS_ROOT_PATH;
 
@@ -28,7 +28,7 @@ class Xupdate_Root extends XoopsSimpleObject {
 		$this->db = $root->mController->mDB;
 
 		// module ID & name
-		$this_module = $root->mContext->mXoopsModule; 
+		$this_module = $root->mContext->mXoopsModule;
 		$this->mid = $this_module->get('mid');
 		$this->mname = $this_module->get('name');
 		$this->mydirname = $this_module->get('dirname');
@@ -41,30 +41,39 @@ class Xupdate_Root extends XoopsSimpleObject {
 
 		// set temp_path
 		$this->params['temp_dirname'] = trim( strrchr( trim($this->mod_config['temp_path'],'/'), '/'), '/') ;
-			//adump($this->params['temp_dirname']);
+		//adump($this->params['temp_dirname']);
 		$this->params['temp_path'] = dirname(dirname(dirname(dirname(__FILE__)))).'/'.trim($this->mod_config['temp_path'],'/') ;
-			//adump($this->params['temp_path']);
-		$tmpf = $this->params['is_writable']['path'] = rtrim($this->params['temp_path'], '/');
+		//adump($this->params['temp_path']);
+
+		$tmpf = rtrim($this->params['temp_path'], '/');
+		$tmpf_realpath = realpath($tmpf);
+		if (empty($tmpf_realpath)){
+			$this->params['is_writable']['path'] = $tmpf ;//NG
+		}else{
+			$this->params['is_writable']['path'] = $tmpf_realpath ;//OK
+		}
+		//fix for windows
+//		$this->params['is_writable']['result'] = is_writable( realpath($tmpf) ) && is_executable( realpath($tmpf) ) ;
+//
+		$is_writable_result = false;
+		if (!empty($tmpf_realpath) && is_dir($tmpf_realpath)) {
+			@chmod($tmpf_realpath, 0705);
+			if(strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'){
+				if ( is_writeable($tmpf_realpath)  ) {
+					$is_writable_result = true;
+				}
+			}else{
+				if ( is_writeable($tmpf_realpath) && is_executable($tmpf_realpath) ) {
+					$is_writable_result = true;
+				}
+			}
+		}
+		$this->params['is_writable']['result'] = $is_writable_result ;
+
 
 		// Ftp class
 		require_once dirname(__FILE__) . '/Ftp.class.php';
 		$this->Ftp = new Xupdate_Ftp($this) ;
-
-		$is_writable_result = false;
-		$tmpf_realpath = realpath($tmpf);
-			if (!empty($tmpf_realpath) && is_dir($tmpf_realpath)) {
-				@chmod($tmpf_realpath, 0705);
-				if(strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'){
-					if ( is_writeable($tmpf_realpath)  ) {
-						$is_writable_result = true;
-					}
-				}else{
-					if ( is_writeable($tmpf_realpath) && is_executable($tmpf_realpath) ) {
-						$is_writable_result = true;
-					}
-				}
-			}
-		$this->params['is_writable']['result'] = $is_writable_result ;
 
 		// Func class
 		require_once dirname(__FILE__).'/Func.class.php' ;

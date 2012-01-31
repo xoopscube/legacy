@@ -68,8 +68,8 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract {
 			$this->SendMSG("pwd command failed".CRLF);
 			return FALSE;
 		} else {
-			//$this->SendMSG(ereg_replace("^[0-9]{3} \"(.+)\" .+".CRLF, "\\1", $rtn));
-			$this->SendMSG(preg_replace("/^[0-9]{3} \"(.+)\" .+".CRLF.'/', "\\1", $rtn));
+//fix ereg_replace -> preg_replace for php5.3+
+			$this->SendMSG(preg_replace("/^[0-9]{3} \"(.+)\" .+".CRLF."/"., "\\1", $rtn));
 			return TRUE;
 		}
 	}
@@ -131,6 +131,8 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract {
 
 	protected function get($remotefile, $localfile=NULL, $rest=0) {
 		$pi=pathinfo($remotefile);
+//fix set '' to ["extension"] , when $pi["extension"] is nothing in pathinfo
+		$pi["extension"] = !isset($pi["extension"]) ? '' : $pi["extension"];
 		if($this->_type==FTP_ASCII or ($this->_type==FTP_AUTOASCII and in_array(strtoupper($pi["extension"]), $this->AutoAsciiExt))) {
 			$mode=FTP_ASCII;
 		} else {
@@ -141,6 +143,8 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract {
 
 	protected function put($localfile, $remotefile=NULL, $rest=0) {
 		$pi=pathinfo($remotefile);
+//fix set '' to ["extension"] , when $pi["extension"] is nothing in pathinfo
+		$pi["extension"] = !isset($pi["extension"]) ? '' : $pi["extension"];
 		if($this->_type==FTP_ASCII or ($this->_type==FTP_AUTOASCII and in_array(strtoupper($pi["extension"]), $this->AutoAsciiExt))) {
 			$mode=FTP_ASCII;
 		} else {

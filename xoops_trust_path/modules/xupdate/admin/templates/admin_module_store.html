@@ -1,0 +1,139 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=ModuleStore"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTOREDEC}></a></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_XUPDATE_LANG_MODULES}></h3>
+
+<div class="tips">
+<ul>
+<li>
+<{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>: <{$ModuleTotal}>
+</li>
+	<li><{$smarty.const._MI_XUPDATE_TEMP_PATH}> <{$xupdate_writable.path}>&nbsp;:&nbsp;
+	<{if $xupdate_writable.result==true}>
+		(<span style="color:green;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_WRITABLE_RESULT}> OK</span>)
+	<{else}>
+		(<span style="color:red;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_WRITABLE_RESULT}> NG</span>)
+	<{/if}>
+	</li>
+</ul>
+</div>
+
+<ul class="toptab">
+  <li class="addModule"><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></li>
+</ul>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form method="post" action="">
+<{xoops_token form=$actionForm}>
+<table class="outer">
+  <tr>
+    <th>id
+<{* sort
+      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_MID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_MID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+*}>
+      </th>
+    <th><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}>
+<{*
+      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_NAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_NAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+*}>
+      </th>
+    <th><{$smarty.const._AD_LEGACY_LANG_VERSION}>
+<{*
+      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+*}>
+      </th>
+    <th><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}>
+<{*
+      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+*}>
+      </th>
+    <th>ルートディレクトリ名
+<{*
+      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_WEIGHT}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_WEIGHT}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+*}>
+      </th>
+    <th>タイプ
+<{*
+      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_ISACTIVE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_ISACTIVE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+*}>
+      </th>
+    <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
+    <th>一括インストール<br><input id="rapidInstallCheckboxAll" type="checkbox" /></th>
+  </tr>
+  <{foreach item=module from=$moduleObjects}>
+    <{if $module->getVar('hasmain') && $module->getVar('weight','e') != 0 }>
+    <tr class="<{cycle values='odd,even'}> active">
+    <{else}>
+    <tr class="<{cycle values='odd,even'}>">
+    <{/if}>
+      <td class="legacy_list_id"><{$module->getVar('id')}></td>
+      <td class="legacy_list_image">
+<{*      <img src="<{$xoops_url}>/modules/<{$module->getVar('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->getVar('dirname')}>" />*}>
+         <{$module->getVar('name')}>
+      </td>
+      <td class="legacy_list_order">
+        <{if $module->hasNeedUpdate()}>
+          <strong class="legacy_module_versionMsg"><{$module->getRenderedVersion()}></strong>
+          <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getVar('dirname')}>"><img src="<{"icons/upgrade.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" /></a>
+        <{else}>
+          <{$module->getRenderedVersion()}>
+        <{/if}>
+      </td>
+      <td class="legacy_list_date"><{$module->getVar('last_update')|xoops_formattimestamp:l}></td>
+      <td class="legacy_list_select">
+        <{if $module->getVar('type') == 'TrustModule' }>
+<{*        <input type="text" size="24" name="rootdirname[<{$module->getVar('mid')}>]" value="<{$module->getVar('rootdirname')}>" />*}>
+          <{$module->getVar('rootdirname')}>
+        <{else}>
+<{*        <input type="hidden" size="24" name="rootdirname[<{$module->getVar('mid')}>]" value="<{$module->getVar('rootdirname')}>" />*}>
+          <{$module->getVar('rootdirname')}>
+        <{/if}>
+      </td>
+      <td class="legacy_list_select">
+        <{$module->getVar('type')}>
+      </td>
+      <td class="legacy_list_control">
+      <{if $xupdate_writable.result==true}>
+        <{if $module->getVar('mid') > 0 }><{*TODO $module->hasNeedUpdate() check*}>
+          <a href="<{$module->getVar('storeurl')}>" title="<{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTOREDEC}>"><img src="<{"icons/update.png"|theme}>" alt="<{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTOREDEC}>" /></a>
+          <a href="<{$module->getVar('updateurl')}>"></a>
+        <{else}>
+          <a href="<{$module->getVar('storeurl')}>" title="<{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTOREDEC}>"><img src="<{"icons/module_add.png"|theme}>" alt="<{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTOREDEC}>" /></a>
+          <a href="<{$module->getVar('installurl')}>"></a>
+        <{/if}>
+     <{/if}>
+         <a href="index.php?action=ModuleInfo&amp;dirname=<{$module->getVar('dirname')}>" title="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>"><img src="<{"icons/info.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>" /></a>
+      </td>
+      <td class="legacy_list_select">
+         <input type="checkbox" class="rapidInstallCheckbox" />
+      </td>
+    </tr>
+  <{/foreach}>
+  <tr>
+    <td class="foot" colspan="7">
+    </td>
+    <td class="foot">
+    <{if $xupdate_writable.result==true}>
+      <input type="submit" value="一括インストール"  id="rapidModuleInstallButton" class="formButton" />
+    <{/if}>
+    </td>
+  </tr>
+</table>
+</form>

@@ -42,7 +42,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 			$v["perms"]+=04000*(int)in_array($ret[2]{2}, array("S","s"));
 			$v["perms"]+=02000*(int)in_array($ret[2]{5}, array("S","s"));
 			$v["perms"]+=01000*(int)in_array($ret[2]{8}, array("T","t"));
-		} 
+		}
 		return $v;
 	}
 /* moved into Abstract
@@ -201,8 +201,8 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 	protected function pwd() {
 		if(!$this->_exec("PWD", "pwd")) return FALSE;
 		if(!$this->_checkCode()) return FALSE;
-		//return ereg_replace("^[0-9]{3} \"(.+)\" .+".CRLF, "\\1", $this->_message);
-        return preg_replace("/^[0-9]{3} \"(.+)\" .+".CRLF."/", "\\1", $this->_message);
+//fix ereg_replace -> preg_replace for php5.3+
+		return preg_replace("/^[0-9]{3} \"(.+)\" .+".CRLF."/", "\\1", $this->_message);
 	}
 
 	protected function cdup() {
@@ -246,8 +246,8 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 		}
 		if(!$this->_exec("SIZE ".$pathname, "filesize")) return FALSE;
 		if(!$this->_checkCode()) return FALSE;
-		//return ereg_replace("^[0-9]{3} ([0-9]+)".CRLF, "\\1", $this->_message);
-		return preg_replace("/^[0-9]{3} ([0-9]+)".CRLF.'/', "\\1", $this->_message);
+//fix ereg_replace -> preg_replace for php5.3+
+		return preg_replace("/^[0-9]{3} ([0-9]+)".CRLF."/", "\\1", $this->_message);
 	}
 
 	protected function abort() {
@@ -267,7 +267,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 		}
 		if(!$this->_exec("MDTM ".$pathname, "mdtm")) return FALSE;
 		if(!$this->_checkCode()) return FALSE;
-		//$mdtm = ereg_replace("^[0-9]{3} ([0-9]+)".CRLF, "\\1", $this->_message);
+//fix ereg_replace -> preg_replace for php5.3+
 		$mdtm = preg_replace("/^[0-9]{3} ([0-9]+)".CRLF."/", "\\1", $this->_message);
 		$date = sscanf($mdtm, "%4d%2d%2d%2d%2d%2d");
 		$timestamp = mktime($date[3], $date[4], $date[5], $date[1], $date[2], $date[0]);
@@ -359,6 +359,8 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 		}
 		if($this->_can_restore and $rest!=0) fseek($fp, $rest);
 		$pi=pathinfo($remotefile);
+//fix set '' to ["extension"] , when $pi["extension"] is nothing in pathinfo
+		$pi["extension"] = !isset($pi["extension"]) ? '' : $pi["extension"];
 		if($this->_type==FTP_ASCII or ($this->_type==FTP_AUTOASCII and in_array(strtoupper($pi["extension"]), $this->AutoAsciiExt))) $mode=FTP_ASCII;
 		else $mode=FTP_BINARY;
 		if(!$this->_data_prepare($mode)) {
@@ -397,6 +399,8 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 		}
 		if($this->_can_restore and $rest!=0) fseek($fp, $rest);
 		$pi=pathinfo($localfile);
+//fix set '' to ["extension"] , when $pi["extension"] is nothing in pathinfo
+		$pi["extension"] = !isset($pi["extension"]) ? '' : $pi["extension"];
 		if($this->_type==FTP_ASCII or ($this->_type==FTP_AUTOASCII and in_array(strtoupper($pi["extension"]), $this->AutoAsciiExt))) $mode=FTP_ASCII;
 		else $mode=FTP_BINARY;
 		if(!$this->_data_prepare($mode)) {
@@ -452,7 +456,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 			}
 		}
 		return $ret;
-		
+
 	}
 
 	protected function mget($remote, $local=".", $continious=false) {
@@ -500,13 +504,13 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 			$this->PushError("mdel","can't read remote folder list", "Can't read remote folder \"".$remote."\" contents");
 			return false;
 		}
-	
+
 		foreach($list as $k=>$v) {
 			$list[$k]=$this->parselisting($v);
 			if($list[$k]["name"]=="." or $list[$k]["name"]=="..") unset($list[$k]);
 		}
 		$ret=true;
-	
+
 		foreach($list as $el) {
 			if($el["type"]=="d") {
 				if(!$this->mdel($remote."/".$el["name"], $continious)) {
@@ -521,7 +525,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 				}
 			}
 		}
-	
+
 		if(!$this->rmdir($remote)) {
 			$this->PushError("mdel", "can't delete folder", "Can't delete remote folder \"".$remote."/".$el["name"]."\"");
 			$ret=false;
@@ -590,11 +594,10 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 
 	protected function glob_regexp($pattern,$probe) {
 		$sensitive=(PHP_OS!='WIN32');
+//fix ereg,eregi -> preg_match for php5.3+
 		return ($sensitive?
-			//ereg($pattern,$probe):
-			//eregi($pattern,$probe)
-			ereg('/'.$pattern.'/',$probe):
-			eregi('/'.$pattern.'/',$probe)
+			preg_match('/'.$pattern.'/',$probe):
+			preg_match('/'.$pattern.'/i',$probe)
 		);
 	}
 // <!-- --------------------------------------------------------------------------------------- -->
@@ -641,7 +644,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 		$this->SendMSG($fctname.': '.$msg.$tmp);
 		return(array_push($this->_error_array,$error));
 	}
-	
+
 // R�cup�re une erreur externe
 	protected function PopError(){
 		if(count($this->_error_array)) return(array_pop($this->_error_array));

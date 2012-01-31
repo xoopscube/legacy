@@ -25,9 +25,9 @@ class Xupdate_AssetManager
 
     /**
      * __construct
-     * 
+     *
      * @param   string  $dirname
-     * 
+     *
      * @return  void
     **/
     public function __construct(/*** string ***/ $dirname)
@@ -37,9 +37,9 @@ class Xupdate_AssetManager
 
     /**
      * &getInstance
-     * 
+     *
      * @param   string  $dirname
-     * 
+     *
      * @return  Xupdate_AssetManager
     **/
     public function &getInstance(/*** string ***/ $dirname)
@@ -48,23 +48,23 @@ class Xupdate_AssetManager
          *  @var    Xupdate_AssetManager[]
         **/
         static $instance = array();
-    
+
         if(!isset($instance[$dirname]))
         {
             $instance[$dirname] = new self($dirname);
         }
-    
+
         return $instance[$dirname];
     }
 
     /**
      * &getObject
-     * 
+     *
      * @param   string  $type
      * @param   string  $name
      * @param   bool  $isAdmin
      * @param   string  $mode
-     * 
+     *
      * @return  &object<XCube_ActionFilter,XCube_ActionForm,XoopsObjectGenericHandler>
     **/
     public function &getObject(/*** string ***/ $type,/*** string ***/ $name,/*** bool ***/ $isAdmin = false,/*** string ***/ $mode = null)
@@ -73,30 +73,30 @@ class Xupdate_AssetManager
         {
             return $this->_mCache[$type][$name];
         }
-    
+
         $instance = null;
-        
+
         $methodName = 'create' . ucfirst($name) . ucfirst($mode) . ucfirst($type);
         if(method_exists($this,$methodName))
         {
             $instance =& $this->$methodName();
         }
-    
+
         if($instance === null)
         {
             $instance =& $this->_fallbackCreate($type,$name,$isAdmin,$mode);
         }
-    
+
         $this->_mCache[$type][$name] =& $instance;
-    
+
         return $instance;
     }
 
     /**
      * getRoleName
-     * 
+     *
      * @param   string  $role
-     * 
+     *
      * @return  string
     **/
     public function getRoleName(/*** string ***/ $role)
@@ -104,21 +104,56 @@ class Xupdate_AssetManager
         return 'Module.' . $this->mDirname . '.' . $role;
     }
 
+	/**
+	 * @public
+	 */
+	public function &load($type, $name)
+	{
+		if (isset($this->_mCache[$type][$name])) {
+			return $this->_mCache[$type][$name];
+		}
+
+		return $this->create($type, $name);
+	}
+	/**
+	 * @public
+	 */
+	public function &create($type, $name)
+	{
+		$instance = null;
+
+		// TODO:Insert your creation code.
+
+		// fallback
+		if ($instance === null) {
+			$instance =& $this->_fallbackCreate($type, $name);
+		}
+
+		$this->_mCache[$type][$name] =& $instance;
+
+		return $instance;
+	}
+
+
+
+
+
+
     /**
      * &_fallbackCreate
-     * 
+     *
      * @param   string  $type
      * @param   string  $name
      * @param   bool  $isAdmin
      * @param   string  $mode
-     * 
+     *
      * @return  &object<XCube_ActionFilter,XCube_ActionForm,XoopsObjectGenericHandler>
     **/
     private function &_fallbackCreate(/*** string ***/ $type,/*** string ***/ $name,/*** bool ***/ $isAdmin = false,/*** string ***/ $mode = null)
     {
         $className = null;
         $instance = null;
-    
+
         if(isset($this->mAssetList[$type][$name]['class']))
         {
             $asset = $this->mAssetList[$type][$name];
@@ -126,21 +161,21 @@ class Xupdate_AssetManager
             {
                 $className = $asset['class'];
             }
-    
+
             if($className == null && isset($asset['path']))
             {
                 if($this->_loadClassFile($this->_getPublicPath() . $asset['path'],$asset['class']))
                 {
                     $className = $asset['class'];
                 }
-    
+
                 if($className == null && $this->_loadClassFile($this->_getTrustPath() . $asset['path'],$asset['class']))
                 {
                     $className = $asset['class'];
                 }
             }
         }
-    
+
         if($className == null)
         {
             switch($type)
@@ -158,7 +193,7 @@ class Xupdate_AssetManager
                     return $instance;
             }
         }
-    
+
         if($type == 'handler')
         {
             $root =& XCube_Root::getSingleton();
@@ -173,10 +208,10 @@ class Xupdate_AssetManager
 
     /**
      * _getFilterName
-     * 
+     *
      * @param   string  $name
      * @param   bool  $isAdmin
-     * 
+     *
      * @return  string
     **/
     private function _getFilterName(/*** string ***/ $name,/*** bool ***/ $isAdmin = false)
@@ -192,11 +227,11 @@ class Xupdate_AssetManager
 
     /**
      * _getActionFormName
-     * 
+     *
      * @param   string  $name
      * @param   bool  $isAdmin
      * @param   string  $mode
-     * 
+     *
      * @return  string
     **/
     private function _getActionFormName(/*** string ***/ $name,/*** bool ***/ $isAdmin = false,/*** string ***/ $mode = null)
@@ -212,9 +247,9 @@ class Xupdate_AssetManager
 
     /**
      * _getHandlerName
-     * 
+     *
      * @param   string  $name
-     * 
+     *
      * @return  string
     **/
     private function _getHandlerName(/*** string ***/ $name)
@@ -224,15 +259,15 @@ class Xupdate_AssetManager
         return (
             $this->_loadClassFile($this->_getPublicPath() . $path,$className) ||
             $this->_loadClassFile($this->_getTrustPath() . $path,$className)
-        ) ? $className : null;
+            ) ? $className : null;
     }
 
     /**
      * _loadClassFile
-     * 
+     *
      * @param   string  $path
      * @param   string  $class
-     * 
+     *
      * @return  bool
     **/
     private function _loadClassFile(/*** string ***/ $path,/*** string ***/ $class)
@@ -242,15 +277,15 @@ class Xupdate_AssetManager
             return false;
         }
         require_once $path;
-    
+
         return class_exists($class);
     }
 
     /**
      * _getPublicPath
-     * 
+     *
      * @param   bool  $isAdmin
-     * 
+     *
      * @return  string
     **/
     private function _getPublicPath(/*** bool ***/ $isAdmin = false)
@@ -260,9 +295,9 @@ class Xupdate_AssetManager
 
     /**
      * _getTrustPath
-     * 
+     *
      * @param   bool  $isAdmin
-     * 
+     *
      * @return  string
     **/
     private function _getTrustPath(/*** bool ***/ $isAdmin = false)

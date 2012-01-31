@@ -21,7 +21,7 @@ class Xupdate_Ftp_Abstract {
 	protected $Verbose;
 	protected $OS_local;
 	protected $OS_remote;
-	
+
 	/* Private variables */
 	protected $_lastaction;
 	protected $_errors;
@@ -105,7 +105,7 @@ class Xupdate_Ftp_Abstract {
 	protected function parselisting($list) {
 		return false ;
 	}
-	
+
 	protected function SendMSG($message = "", $crlf=true) {
 		if ($this->Verbose) {
 			$this->mes.= $message.($crlf?CRLF."<br />" : "");
@@ -310,13 +310,13 @@ class Xupdate_Ftp_Abstract {
 	protected function PushError($fctname,$msg,$desc=false){
 		return false ;
 	}
-	
+
 // Recupere une erreur externe
 	protected function PopError(){
 		return false ;
 	}
 
-// 
+//
 	protected function _settimeout($sock) {
 		return false ;
 	}

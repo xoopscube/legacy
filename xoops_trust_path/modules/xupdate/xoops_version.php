@@ -92,7 +92,7 @@ $modversion['adminindex'] = 'admin/index.php?action=ModuleView';
 $modversion['adminmenu'] = array(
 	array(
         'title'		=> _MI_XUPDATE_ADMENU_MODULE,
-        'link'	=> 'admin/index.php?action=ModuleView',
+        'link'	=> 'admin/index.php?action=ModuleStore',
         'keywords'	=> _MI_XUPDATE_ADMENU_MODULE,
         'show'	=> true,
         'absolute' => false
@@ -158,8 +158,8 @@ $modversion['config'] = array(
 		'formtype'	=> 'select',
 		'valuetype'	=> 'int',
 		'default'	=> '0',
-		'options'	=> array( '_MI_XUPDATE_CUSTOM_FTP' => 0, 
-			  			'_MI_XUPDATE_PHP_FTP' => 1, 
+		'options'	=> array( '_MI_XUPDATE_CUSTOM_FTP' => 0,
+			  			'_MI_XUPDATE_PHP_FTP' => 1,
 			  			//'_MI_XUPDATE_CUSTOM_SFTP' => 2
                         )
 	) ,
