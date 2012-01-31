@@ -246,7 +246,8 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 		}
 		if(!$this->_exec("SIZE ".$pathname, "filesize")) return FALSE;
 		if(!$this->_checkCode()) return FALSE;
-		return ereg_replace("^[0-9]{3} ([0-9]+)".CRLF, "\\1", $this->_message);
+		//return ereg_replace("^[0-9]{3} ([0-9]+)".CRLF, "\\1", $this->_message);
+		return preg_replace("/^[0-9]{3} ([0-9]+)".CRLF.'/', "\\1", $this->_message);
 	}
 
 	protected function abort() {
