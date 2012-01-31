@@ -5,9 +5,9 @@ if(!defined("FTP_AUTOASCII")) define("FTP_AUTOASCII", -1);
 if(!defined("FTP_BINARY")) define("FTP_BINARY", 1);
 if(!defined("FTP_ASCII")) define("FTP_ASCII", 0);
 if(!defined('FTP_FORCE')) define('FTP_FORCE', TRUE);
-define('FTP_OS_Unix','u');
-define('FTP_OS_Windows','w');
-define('FTP_OS_Mac','m');
+if(!defined('FTP_OS_Unix')) define('FTP_OS_Unix','u');
+if(!defined('FTP_OS_Windows')) define('FTP_OS_Windows','w');
+if(!defined('FTP_OS_Mac')) define('FTP_OS_Mac','m');
 
 // Abstract Class for xupdate ftp
 class Xupdate_Ftp_Abstract {
