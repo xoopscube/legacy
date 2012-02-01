@@ -504,7 +504,7 @@ EOD;
 	function set($arr, $page) {
 		list (,, $alias, $name) = $this->splice($arr);
 		// https?:/// -> $this->cont['ROOT_URL']
-		$name = preg_replace('#^https?:///#', $this->cont['ROOT_URL'], $name);
+		$name = preg_replace('#^(?:site:|https?:/)//#', $this->cont['ROOT_URL'], $name);
 		return parent :: setParam($page, htmlspecialchars($name), '', 'url', $alias === '' ? $name : $alias);
 	}
 
@@ -556,7 +556,7 @@ EOD;
 		}
 		$name = $scheme . $mail . $host;
 		// https?:/// -> $this->cont['ROOT_URL']
-		$name = preg_replace('#^https?:///#', $this->cont['ROOT_URL'], $name) . $uri;
+		$name = preg_replace('#^(?:site:|https?:/)//#', $this->cont['ROOT_URL'], $name) . $uri;
 		if (!$alias) {
 			$alias = (strtolower(substr($host, 0, 4)) === 'xn--')?
 				($scheme . $mail . $this->func->convertIDN($host, 'decode') . $uri)
@@ -616,7 +616,7 @@ EOD;
 	function set($arr, $page) {
 		list (, $name, $alias) = $this->splice($arr);
 		// https?:/// -> $this->cont['ROOT_URL']
-		$name = preg_replace('#^https?:///#', $this->cont['ROOT_URL'], $name);
+		$name = preg_replace('#^(?:site:|https?:/)//#', $this->cont['ROOT_URL'], $name);
 		return parent :: setParam($page, htmlspecialchars($name), '', 'url', $alias);
 	}
 

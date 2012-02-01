@@ -1,6 +1,6 @@
 <?php
 // PukiWiki - Yet another WikiWikiWeb clone
-// $Id: pukiwiki.ini.php,v 1.118 2012/01/14 11:56:35 nao-pon Exp $
+// $Id: pukiwiki.ini.php,v 1.119 2012/01/30 11:59:09 nao-pon Exp $
 // Copyright (C)
 //   2002-2006 PukiWiki Developers Team
 //   2001-2002 Originally written by yu-ji
@@ -73,6 +73,8 @@ $const['PLUGIN_REF_MIME_INLINE']['video/x-matroska']            = 'divx';
 $const['PLUGIN_REF_MIME_INLINE']['application/vnd.rn-realmedia']= 'real';
 $const['PLUGIN_REF_MIME_INLINE']['video/ogg']                   = 'html5_video';
 $const['PLUGIN_REF_MIME_INLINE']['video/webm']                  = 'html5_video';
+$const['PLUGIN_REF_MIME_INLINE']['application/pdf']             = 'google_document_viewer';
+$const['PLUGIN_REF_MIME_INLINE']['application/ms-powerpoint']   = 'google_document_viewer';
 
 // プラグインプレーヤーの設定 (<object> 用)
 $const['PLUGIN_REF_PLAYERS'] = array();
@@ -414,8 +416,12 @@ $root->note_popup_position = array(
 	'height' => '300px'
 );
 
+// root_image_manager window size
+$root->root_image_manager_width  = 400;
+$root->root_image_manager_height = 430;
+
 // str_rules extensions (join with ',')
-// "bbcode_image" is auto load when "root->use_root_image_manager = 1"
+// Auto load "bbcode_image" when "root->use_root_image_manager = 1"
 $root->rules_extentions = '';
 
 /////////////////////////////////////////////////

@@ -1,6 +1,6 @@
 <?php
 // PukiWiki - Yet another WikiWikiWeb clone
-// $Id: tracker.inc.php,v 1.24 2011/09/09 07:33:23 nao-pon Exp $
+// $Id: tracker.inc.php,v 1.25 2012/01/26 06:05:30 nao-pon Exp $
 // ORG: tracker.inc.php,v 1.57 2007/09/20 15:17:20 henoheno Exp $
 // Issue tracker plugin (See Also bugtrack plugin)
 
@@ -532,10 +532,7 @@ class XpWikiTracker_field_format extends XpWikiTracker_field
 
 	function XpWikiTracker_field_format(& $xpwiki, $field, $base, $refer, &$config)
 	{
-		$this->xpwiki =& $xpwiki;
-		$this->root   =& $xpwiki->root;
-		$this->cont   =& $xpwiki->cont;
-		$this->func   =& $xpwiki->func;
+
 		parent::XpWikiTracker_field($xpwiki, $field, $base, $refer, $config);
 
 		foreach ($this->config->get($this->name) as $option) {

@@ -1,7 +1,7 @@
 <?php
 /*
  * Created on 2008/03/24 by nao-pon http://hypweb.net/
- * $Id: attach.php,v 1.40 2012/01/14 03:34:28 nao-pon Exp $
+ * $Id: attach.php,v 1.41 2012/01/30 12:04:06 nao-pon Exp $
  */
 
 //-------- епеще╣
@@ -29,7 +29,8 @@ class XpWikiAttachFile
 			'admins'   => 0,
 			'org_fname'=> '',
 			'imagesize'=> NULL,
-			'noinline' => 0
+			'noinline' => 0,
+			'mime'     => ''
 		);
 	var $action = 'update';
 	var $dbinfo = array();
@@ -167,11 +168,15 @@ class XpWikiAttachFile
 			} else {
 				$this->status['imagesize'] = unserialize($this->status['imagesize']);
 			}
+			if (! $this->status['mime']) {
+				$this->status['mime'] = $this->type = isset($this->dbinfo['type'])? $this->dbinfo['type'] : xpwiki_plugin_attach::attach_mime_content_type($this->filename, $this->status);
+			} elseif (! $this->type) {
+				$this->type = $this->status['mime'];
+			}
 		}
 		$this->time_str = $this->func->get_date('Y/m/d H:i:s',$this->time);
 		$this->size = isset($this->dbinfo['size'])? $this->dbinfo['size'] : filesize($this->filename);
 		$this->size_str = $this->func->bytes2KMT($this->size);
-		$this->type = isset($this->dbinfo['type'])? $this->dbinfo['type'] : xpwiki_plugin_attach::attach_mime_content_type($this->filename, $this->status);
 		$this->owner_id = intval($this->status['owner']);
 		$user = $this->func->get_userinfo_by_id($this->status['owner']);
 		$user = $user['uname_s'];
@@ -1323,6 +1328,7 @@ class XpWikiAttachPages
 		$otherkeys = array('cols', 'max', 'base', 'mode', 'winop', 'basedir', 'encode_hint', 'word');
 		if ($this->is_popup) {
 			$otherkeys[] = 'popup';
+			if ($this->cont['UA_PROFILE'] === 'mobile') $this->func->add_tag_head('<!--jqm_theme_d-->');
 		}
 		if (! isset($this->root->vars['basedir'])) {
 			$this->root->vars['basedir'] = $this->root->mydirname;
@@ -1524,7 +1530,7 @@ EOD;
 		$next = ($next < $total)? "<a href=\"".$url.$next * $this->max."\" title=\"Next\"><span class=\"button\"> <img src=\"{$this->cont['LOADER_URL']}?src=next.png\" width=\"6\" height=\"12\" alt=\"Next\"> </span></a>" : "";
 		$navi = "<div class=\"page_navi\">| $navi |<br />[{$prev} $_start - $_end / ".$this->count." pages {$next}]<br />{$sort_time}{$sort_name}{$mode_tag}</div>";
 
-		$ret = "";
+		$ret = '';
 		$pages = array_keys($this->pages);
 		if ($pages) {
 			foreach ($pages as $page)
@@ -1535,8 +1541,7 @@ EOD;
 			$navi = '';
 		}
 
-		return "\n<div class=\"attach_list\">$select_js$otherDir$select$search$navi".($navi? "<hr />":"")."\n$ret\n".($navi? "<hr />":"")."$navi</div>\n";
-
+		return "\n<div class=\"attach_list\">$select_js$otherDir$select$search$navi".($navi? "<hr />":"")."\n$ret\n".($navi? "<hr />":"")."$navi</div>\n";;
 	}
 
 }

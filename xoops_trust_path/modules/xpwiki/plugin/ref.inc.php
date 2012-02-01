@@ -1,5 +1,5 @@
 <?php
-// $Id: ref.inc.php,v 1.66 2012/01/14 14:36:03 nao-pon Exp $
+// $Id: ref.inc.php,v 1.67 2012/01/30 12:04:37 nao-pon Exp $
 /*
 
 	*プラグイン ref
@@ -177,8 +177,11 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 			break;
 		default:
 			$noimg = TRUE;
-			if ($status['imagesize'] && !empty($status['imagesize']['mime']) && ($status['noinline'] < 0 || ($status['admins'] && $status['noinline'] < 1))) {
-				$noimg = (empty($this->cont['PLUGIN_REF_MIME_INLINE'][strtolower($status['imagesize']['mime'])]));
+			if (($status['mime'] || ($status['imagesize'] && !empty($status['imagesize']['mime']))) && ($status['noinline'] < 0 || ($status['admins'] && $status['noinline'] < 1))) {
+				if (! $status['mime']) {
+					$status['mime'] = $status['imagesize']['mime'];
+				}
+				$noimg = (empty($this->cont['PLUGIN_REF_MIME_INLINE'][strtolower($status['mime'])]));
 				$type = $status['imagesize']['mime'];
 			}
 			if ($noimg) return array('header' => 'HTTP/1.0 403 Forbidden', 'msg' => '403 Forbidden.');
@@ -382,12 +385,16 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 		}
 
 		// サムネイルを作成せず表示する最大サイズ
+
 		if (!$params['_size']) {
+			$flg_set_img_max = true;
 			$params['_size'] = true;
 			$params['zoom'] = true;
 			$params['_max'] = true;
 			$params['_w'] = $this->cont['PLUGIN_REF_IMG_MAX_WIDTH'];
 			$params['_h'] = $this->cont['PLUGIN_REF_IMG_MAX_HEIGHT'];
+		} else {
+			$flg_set_img_max = false;
 		}
 
 		if ($lvar['type'] > 2 && $lvar['file']) {
@@ -428,25 +435,69 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 			$size = false;
 			if ($lvar['isurl'] === 'inner') {
 				// 自サイト内静的ファイル
-				$size = $this->getimagesize(str_replace($this->cont['ROOT_URL'], $this->cont['ROOT_PATH'], $lvar['name']));
+				$lvar['file'] = str_replace($this->cont['ROOT_URL'], $this->cont['ROOT_PATH'], rawurldecode($lvar['name']));
+				$size = $this->getimagesize($lvar['file']);
 			} else if ($this->cont['PLUGIN_REF_URL_GET_IMAGE_SIZE'] && (bool)ini_get('allow_url_fopen')) {
 				$size = $this->getimagesize($lvar['name']);
 			}
 			if (is_array($size)) {
 				$img['org_w'] = $size[0];
 				$img['org_h'] = $size[1];
+			} elseif ($flg_set_img_max) {
+				$params['_w'] = 0;
+				$params['_h'] = 0;
 			}
 
 			// イメージ表示サイズの取得
 			$this->get_show_imagesize($img, $params);
 			$lvar['img'] = $img;
-			$lvar['url'] = htmlspecialchars($lvar['name']);
-			$lvar['link'] = $lvar['url'];
 			$lvar['text'] = '';
 
-			if (in_array('title', $this->conf['imgTitles'])) {
-				$lvar['title'] = $lvar['title'];
+
+			// サイト内画像 サムネイル作成
+			if ($size && $lvar['isurl'] === 'inner') {
+
+				$quality = $this->conf['thumb_quality'];
+
+				// 携帯用画像サイズ再設定
+				if ($this->cont['UA_PROFILE'] === 'keitai') {
+					$quality = $this->conf['thumb_quality_ktai'];
+					if ($img['width'] > $this->root->keitai_img_px || $img['height'] > $this->root->keitai_img_px) {
+						$params['_h'] = $params['_w'] = $this->root->keitai_img_px;
+						$params['zoom'] = TRUE;
+						$params['_%'] = '';
+						$this->get_show_imagesize($img, $params);
+					}
+				}
+
+				$lvar['url'] = $lvar['file'];
+				if ($params['_%'] && $params['_%'] < 95) {
+					$_file = preg_split('/(\.[a-zA-Z]+)?$/', $lvar['name'], -1, PREG_SPLIT_DELIM_CAPTURE);
+					if (! empty($_file[1])) {
+						// サムネイルチェック、なければ作成される
+						$s_file = $this->cont['UPLOAD_DIR'].'s/_i_'.md5($lvar['name']).'_'.$params['_%'].$_file[1];
+						$lvar['url'] = $this->make_thumb($lvar['file'], $s_file, $img['width'], $img['height'],$quality);
+					}
+				}
+
+				// サムネイル作成チェック
+				if ($lvar['url'] !== $lvar['file']) {
+					// サムネイルあり
+					// URL のローカルパスをURIパスに変換
+					$lvar['url'] = str_replace($this->cont['DATA_HOME'], $this->cont['HOME_URL'], $lvar['url']);
+					$lvar['link'] = htmlspecialchars($lvar['name']);
+				} else {
+					// サムネイルなし
+					$lvar['url'] = htmlspecialchars($lvar['name']);
+					$lvar['link'] = $lvar['url'];
+				}
+
 			} else {
+				$lvar['url'] = htmlspecialchars($lvar['name']);
+				$lvar['link'] = $lvar['url'];
+			}
+
+			if (! in_array('title', $this->conf['imgTitles'])) {
 				$lvar['title'] = array();
 			}
 			if (in_array('title', $this->conf['imgAlts'])) {
@@ -460,6 +511,7 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 			if (in_array('name', $this->conf['imgAlts'])) $lvar['alt'][] = $_filename;
 
 			$lvar['title'] = htmlspecialchars(join(', ', $lvar['title']));
+
 		} else if ($lvar['type'] === 2) {
 			// URL画像以外
 			$lvar['url'] = '';
@@ -484,9 +536,7 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 				$lvar['link'] = '';
 			}
 
-			if (in_array('title', $this->conf['imgTitles'])) {
-				$lvar['title'] = $lvar['title'];
-			} else {
+			if (! in_array('title', $this->conf['imgTitles'])) {
 				$lvar['title'] = array();
 			}
 			if (in_array('title', $this->conf['imgAlts'])) {
@@ -594,11 +644,6 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 			} else {
 				$lvar['title'] = '';
 			}
-			if (! empty($lvar['alt'])) {
-				$lvar['alt'] = $this->func->make_line_rules(htmlspecialchars(join(', ', $lvar['alt'])));
-			} else {
-				$lvar['alt'] = '';
-			}
 		} else {
 			// Flashと添付その他
 			$lvar['url'] = '';
@@ -630,6 +675,12 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 		}
 
 		if (! $lvar['caption']) $lvar['caption'] = $lvar['title'];
+
+		if (empty($lvar['alt'])) {
+			$lvar['alt'] = '';
+		} elseif (is_array($lvar['alt'])) {
+			$lvar['alt'] = $this->func->make_line_rules(htmlspecialchars(join(', ', $lvar['alt'])));
+		}
 
 		// 出力組み立て
 		if ($lvar['url']) {
@@ -682,8 +733,12 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 	}
 
 	function set_object_tag(&$params, $lvar) {
-		if ($lvar['status']['imagesize'] && ! empty($lvar['status']['imagesize']['mime'])) {
-			$mime = strtolower($lvar['status']['imagesize']['mime']);
+
+		if ($lvar['status']['mime'] || ($lvar['status']['imagesize'] && ! empty($lvar['status']['imagesize']['mime']))) {
+			if (! $lvar['status']['mime']) {
+				$lvar['status']['mime'] = $lvar['status']['imagesize']['mime'];
+			}
+			$mime = strtolower($lvar['status']['mime']);
 			if (! empty($this->cont['PLUGIN_REF_MIME_INLINE'][$mime])) {
 				$use_html5_video = $params['html5'];
 				$object_type = $this->cont['PLUGIN_REF_MIME_INLINE'][$mime];
@@ -720,7 +775,7 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 					'title' => array(),
 					'class' => ' class="img_margin"'
 				);
-				$size = $lvar['status']['imagesize'];
+				$size = isset($lvar['status']['imagesize'])? $lvar['status']['imagesize'] : false;
 				if (is_array($size)) {
 					$img['org_w'] = $size[0];
 					$img['org_h'] = $size[1];
@@ -829,6 +884,15 @@ EOD;
 EOD;
 				} else if ($template === 'html5_video') {
 					$use_html5_video = true;
+				} else if ($template === 'google_document_viewer') {
+					$this->root->rtf['disable_render_cache'] = true;
+					$this->root->pagecache_profiles = 'default';
+					if ($this->cont['UA_PROFILE'] === 'default') {
+						$rurl = rawurlencode($url);
+						$params['_body'] = <<<EOD
+<iframe src="http://docs.google.com/viewer?url={$rurl}&amp;embedded=true" style="border:none;"{$size_tag}></iframe>
+EOD;
+					}
 				} else {
 					$params['_body'] = <<<EOD
 <object id="{$domid}"{$object_attr}{$size_tag}>
@@ -1081,7 +1145,7 @@ _HTML_;
 		// 5:添付その他
 
 		if ($this->func->is_url($lvar['name'])) {
-			$lvar['name'] = preg_replace('#^https?:///#', $this->cont['ROOT_URL'], $lvar['name']);
+			$lvar['name'] = preg_replace('#^(?:site:|https?:/)//#', $this->cont['ROOT_URL'], $lvar['name']);
 			$lvar['isurl'] = $lvar['name'];
 			// URL
 			if (! $params['noimg'] &&
@@ -1347,6 +1411,7 @@ _HTML_;
 		// 指定されたサイズを使用する
 		$width = $img['org_w'];
 		$height = $img['org_h'];
+		$choose = '';
 		if (!$params['_%'] && $params['_size']) {
 			if ($width === 0 && $height === 0) {
 				$width  = $params['_w'];
@@ -1354,6 +1419,7 @@ _HTML_;
 			} else if ($params['zoom']) {
 				$_w = $params['_w'] ? $width  / $params['_w'] : 0;
 				$_h = $params['_h'] ? $height / $params['_h'] : 0;
+				$choose = ($_w > $_h)? 'w' : 'h';
 				$zoom = max($_w, $_h);
 				$params['_%'] = round(100 / $zoom);
 			} else {
@@ -1366,8 +1432,18 @@ _HTML_;
 				$width = $img['org_w'];
 				$height = $img['org_h'];
 			} else {
-				$width  = (int)($width  * $params['_%'] / 100);
-				$height = (int)($height * $params['_%'] / 100);
+				if ($choose) {
+					if ($choose === 'w') {
+						$height = (int)($params['_w']/$width * $height);
+						$width  = $params['_w'];
+					} else {
+						$width  = (int)($params['_h']/$height * $width);
+						$height = $params['_h'];
+					}
+				} else {
+					$width  = (int)($width  * $params['_%'] / 100);
+					$height = (int)($height * $params['_%'] / 100);
+				}
 			}
 			$params['_%'] = round($params['_%']);
 		}
@@ -1406,7 +1482,8 @@ _HTML_;
 			'admins'   => 0,
 			'org_fname'=> '',
 			'imagesize'=> NULL,
-			'noinline' => 0
+			'noinline' => 0,
+			'mime'     => ''
 		);
 		if (is_file($file.'.log'))
 		{
@@ -1431,8 +1508,17 @@ _HTML_;
 			}
 			return FALSE;
 		} else {
-			// URL の場合、一応取得してみる
-			return @ getimagesize($file);
+			// URL又はサイト内ローカルファイルの場合
+			// check cache
+			$key = 'isize_' . sha1($file);
+			$ret = $this->func->cache_get_db($key, 'ref', false, true);
+			if ($ret) {
+				return unserialize($ret);
+			} else {
+				$ret = @ getimagesize($file);
+				$this->func->cache_save_db(serialize($ret), 'ref', 864000, $key);
+				return $ret;
+			}
 		}
 	}
 
@@ -1505,9 +1591,9 @@ _HTML_;
 	}
 
 	// サムネイル画像を作成
-	function make_thumb($url,$s_file,$width,$height,$quality)
+	function make_thumb($o_file,$s_file,$width,$height,$quality)
 	{
-		return HypCommonFunc::make_thumb($url,$s_file,$width,$height,"1,95",FALSE,$quality);
+		return HypCommonFunc::make_thumb($o_file,$s_file,$width,$height,"1,95",FALSE,$quality);
 	}
 
 	// 拡張パラメーターの処理

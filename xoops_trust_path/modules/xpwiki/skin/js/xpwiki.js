@@ -143,7 +143,8 @@ var XpWiki = {
 				overflow: 'auto',
 				border: 'none',
 				width: '100%',
-				height: '480px'
+				height: '480px',
+				backgroundColor: 'inherit'
 			});
 			this.PopupDiv.appendChild(elem);
 
