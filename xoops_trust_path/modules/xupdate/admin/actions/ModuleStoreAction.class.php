@@ -251,10 +251,6 @@ jQuery(function($){
 					installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
 					updateModuleStatus();
 				}
-			}else{
-					installationModule.td.html('<span style="color:red;">スキップ</span>');
-					installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
-					updateModuleStatus();
 			}
 
 
