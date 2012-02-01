@@ -165,7 +165,7 @@ function list_blocks()
 		} else {
 			$can_clone = false ;
 			foreach( $block_configs as $bconf ) {
-				if( $block_arr[$i]->getVar("show_func") == $bconf['show_func'] && $block_arr[$i]->getVar("func_file") == $bconf['file'] && isset(['template']) && $block_arr[$i]->getVar("template") == $bconf['template'] ) {
+				if( $block_arr[$i]->getVar("show_func") == $bconf['show_func'] && $block_arr[$i]->getVar("func_file") == $bconf['file'] && isset($bconf['template']) && $block_arr[$i]->getVar("template") == $bconf['template'] ) {
 					if( ! empty( $bconf['can_clone'] ) ) $can_clone = true ;
 				}
 			}
