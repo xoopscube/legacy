@@ -232,7 +232,7 @@ jQuery(function($){
 			installationModule = this;
 			isInstallation     = true;
 
-			if (typeof installationModule.storehref == 'undefined'){
+			if (typeof installationModule.storehref != 'undefined'){
 
 				installationModule.td.html("展開中");
 				try
