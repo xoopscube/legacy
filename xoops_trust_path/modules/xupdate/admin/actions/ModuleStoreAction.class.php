@@ -98,6 +98,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 	function execute(&$controller, &$xoopsUser)
 	{
+
 		$form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
 		if ($form_cancel != null) {
 			return XUPDATE_FRAME_VIEW_CANCEL;
@@ -107,15 +108,15 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$this->mActionForm->validate();
 
 		if ($this->mActionForm->hasError()) {
-			return $this->_processConfirm($controller, $xoopsUser);
+			return XUPDATE_FRAME_VIEW_ERROR;
+		//			return $this->_processConfirm($controller, $xoopsUser);
 		}
 		else {
-			return $this->_processSave($controller, $xoopsUser);
+			return XUPDATE_FRAME_VIEW_SUCCESS;
+		//			return $this->_processSave($controller, $xoopsUser);
 		}
 
 	}
-
-
 
 	/**
 	 * executeViewSuccess
