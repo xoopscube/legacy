@@ -93,37 +93,17 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 		$modHand = & $this->_getHandler();
 		$this->mModuleObjects =& $modHand->getObjects($this->mFilter->getCriteria());
-		return XUPDATE_FRAME_VIEW_SUCCESS;
-	}
-
-	function execute(&$controller, &$xoopsUser)
-	{
-/*
-		$form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-		if ($form_cancel != null) {
-			return XUPDATE_FRAME_VIEW_CANCEL;
-		}
-*/
-		$this->mActionForm->fetch();
-		$this->mActionForm->validate();
-
-		if ($this->mActionForm->hasError()) {
-			return XUPDATE_FRAME_VIEW_ERROR;
-		}
-		else {
-			return XUPDATE_FRAME_VIEW_SUCCESS;
-		}
-
+		return XUPDATE_FRAME_VIEW_INDEX;
 	}
 
 	/**
-	 * executeViewSuccess
+	 * executeViewIndex
 	 *
 	 * @param	XCube_RenderTarget	&$render
 	 *
 	 * @return	void
 	**/
-	public function executeViewSuccess(&$render)
+	public function executeViewIndex(&$render)
 	{
 		$render->setTemplateName('admin_module_store.html');
 
@@ -147,6 +127,31 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$render->setAttribute('actionForm', $this->mActionForm);
 
 
+	}
+
+	function execute()
+	{
+		$this->mActionForm->fetch();
+		$this->mActionForm->validate();
+
+		if ($this->mActionForm->hasError()) {
+			return XUPDATE_FRAME_VIEW_ERROR;
+		}
+		else {
+			return XUPDATE_FRAME_VIEW_SUCCESS;
+//			return $this->_processSave();
+		}
+
+	}
+
+	function executeViewSuccess(&$renderer)
+	{
+		$this->mRoot->mController->executeForward('./index.php?action=ModuleStore');
+	}
+
+	function executeViewError(&$renderer)
+	{
+		$this->mRoot->mController->executeRedirect('./index.php?action=ModuleStore', 1, _MD_XUPDATE_ERROR_DBUPDATE_FAILED);
 	}
 
 	/**
