@@ -232,7 +232,7 @@ jQuery(function($){
 			installationModule = this;
 			isInstallation     = true;
 
-			if (typeof installationModule.storehref != 'undefined'){
+			if (typeof installationModule.storehref == 'undefined'){
 
 				installationModule.td.html("展開中");
 				try
@@ -252,7 +252,9 @@ jQuery(function($){
 					updateModuleStatus();
 				}
 			}else{
-				installationModule.td.html("エラー");
+					installationModule.td.html('<span style="color:red;">スキップ</span>');
+					installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
+					updateModuleStatus();
 			}
 
 
@@ -275,7 +277,9 @@ jQuery(function($){
 					updateModuleStatus();
 				}
 			}else{
-				installationModule.td.html("エラー");
+					installationModule.td.html('<span style="color:red;">スキップ</span>');
+					installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
+					updateModuleStatus();
 			}
 
 		});
