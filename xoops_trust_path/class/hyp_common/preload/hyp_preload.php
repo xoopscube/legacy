@@ -1550,7 +1550,7 @@ EOD;
 					if ($header_template) $header = $header_template;
 					if ($body_template) $body = $body_template;
 					if ($footer_template) $footer = $footer_template;
-				} elseif ($use_jquery && ! $is_rss) {
+				} elseif ($use_jquery && ! $is_rss && strpos($head, '<!--jqm_theme') === false) {
 					return false;
 				}
 			}
@@ -1639,6 +1639,12 @@ EOD;
 				$_head .= '<script type="text/javascript" src="'.XOOPS_THEME_URL.'/'.$this->k_tai_conf['themeSet'].'/jquery.mobile.min.js"></script>';
 				$_head .= join('', $jquery_script);
 				$_head .= '<script type="text/javascript" src="'.XOOPS_THEME_URL.'/'.$this->k_tai_conf['themeSet'].'/jquery.extra.js"></script>';
+				if (preg_match('/<!--jqm_theme_([a-z])/', $head, $_match)) {
+					$this->k_tai_conf['jquery_theme'] = $_match[1];
+					$this->k_tai_conf['rebuilds']['header']['above'] = preg_replace('/data-theme="[a-z]"/', 'data-theme="' . $this->k_tai_conf['jquery_theme'] . '"', $this->k_tai_conf['rebuilds']['header']['above']);
+					$this->k_tai_conf['rebuilds']['body']['above']   = preg_replace('/data-theme="[a-z]"/', 'data-theme="' . $this->k_tai_conf['jquery_theme'] . '"', $this->k_tai_conf['rebuilds']['body']['above']);
+					$this->k_tai_conf['rebuilds']['footer']['above'] = preg_replace('/data-theme="[a-z]"/', 'data-theme="' . $this->k_tai_conf['jquery_theme'] . '"', $this->k_tai_conf['rebuilds']['footer']['above']);
+				}
 			}
 
 			$_head .= '</head>';
@@ -1683,7 +1689,7 @@ EOD;
 
 		$r->inputEncode = $encode;
 		$r->outputEncode = $use_jquery? $encode : 'SJIS';
-		$r->outputMode = 'xhtml';
+		$r->outputMode = $use_jquery? 'html5' : 'xhtml';
 		$r->langcode = _LANGCODE;
 
 		$r->doOptimize();

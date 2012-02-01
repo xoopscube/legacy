@@ -2,7 +2,7 @@
 /*
  * Created on 2008/06/17 by nao-pon http://hypweb.net/
  * License: GPL v2 or (at your option) any later version
- * $Id: hyp_ktai_render.php,v 1.58 2012/01/15 00:09:54 nao-pon Exp $
+ * $Id: hyp_ktai_render.php,v 1.59 2012/01/30 11:38:20 nao-pon Exp $
  */
 
 if (! function_exists('XC_CLASS_EXISTS')) {
@@ -919,7 +919,9 @@ class HypKTaiRender
 			     . $this->xmlDocType
 			     . '<html xmlns="http://www.w3.org/1999/xhtml">';
 		} else {
-			$dec = '<html>';
+			$dec = '';
+			if ($this->outputMode === 'html5') $dec = '<!DOCTYPE html>';
+			$dec .= '<html>';
 		}
 		return $dec;
 	}
@@ -961,7 +963,7 @@ class HypKTaiRender
 
 		$url = $this->googleAnalyticsGetImgSrc($gaid, $title);
 
-		return $url? '<img src="' . str_replace('&', '&amp;', $url) . '" width="1" height="1" />' : '';
+		return $url? '<img class="ga_img" src="' . str_replace('&', '&amp;', $url) . '" width="1" height="1" />' : '';
 	}
 
 	function googleAnalyticsGetImgSrc($id, $title = '-') {

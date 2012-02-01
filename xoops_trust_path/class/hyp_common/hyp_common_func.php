@@ -1,5 +1,5 @@
 <?php
-// $Id: hyp_common_func.php,v 1.84 2012/01/14 15:06:58 nao-pon Exp $
+// $Id: hyp_common_func.php,v 1.85 2012/01/30 11:45:26 nao-pon Exp $
 // HypCommonFunc Class by nao-pon http://hypweb.net
 ////////////////////////////////////////////////
 
@@ -472,7 +472,7 @@ class HypCommonFunc
 	function make_thumb($o_file, $s_file, $max_width, $max_height, $zoom_limit="1,95", $refresh=FALSE, $quality=75)
 	{
 		// すでに作成済み
-		if (! $refresh && file_exists($s_file)) {
+		if (! $refresh && is_file($s_file)) {
 			// make_thumb.chk のタイムスタンプと比較
 			$make_thumb_chk = HYP_COMMON_ROOT_PATH . '/config/remake_thumb.chk';
 			if (! is_file($make_thumb_chk) || filemtime($make_thumb_chk) < filemtime($s_file)) {
@@ -805,14 +805,14 @@ class HypCommonFunc
 		$org_h = intval($org_h);
 
 		$ro_file = realpath($o_file);
+		if (! is_file($ro_file)) return $o_file;
 		$rs_file = realpath(dirname($s_file))."/".basename($s_file);
 
 		// Make Thumb and check success
 		if ( ini_get('safe_mode') != "1" )
 		{
-//			exec( HYP_IMAGEMAGICK_PATH."convert -size {$org_w}x{$org_h} -geometry {$zoom}% -quality {$quality} +profile \"*\" -unsharp 1.5x1.2+1.0+0.10 {$ro_file} {$rs_file}" ) ;
 			list($amount, $radius, $threshold) = HypCommonFunc::get_unsharp_mask_params();
-			exec( HYP_IMAGEMAGICK_PATH."convert -thumbnail {$zoom}% -quality {$quality} -unsharp ".number_format(($radius * 2) - 1, 2).'x1+'.number_format($amount / 100, 2).'+'.number_format($threshold / 100, 2)." {$ro_file} {$rs_file}" ) ;
+			exec( HYP_IMAGEMAGICK_PATH."convert -thumbnail {$zoom}% -quality {$quality} -unsharp ".number_format(($radius * 2) - 1, 2).'x1+'.number_format($amount / 100, 2).'+'.number_format($threshold / 100, 2)." \"{$ro_file}\" \"{$rs_file}\"" ) ;
 			//@chmod($s_file, 0666);
 		}
 		else
@@ -893,11 +893,12 @@ class HypCommonFunc
 			$is_own = TRUE;
 		}
 
-		$size = @getimagesize($o_file);
-		if (!$size) return $o_file;//画像ファイルではない
-
 		$ro_file = realpath($o_file);
+		if (! is_file($ro_file)) return $o_file;
 		$rs_file = realpath(dirname($s_file))."/".basename($s_file);
+
+		$size = @ getimagesize($ro_file);
+		if (!$size) return $o_file;//画像ファイルではない
 
 		if (file_exists($rs_file)) unlink($rs_file);
 
@@ -914,11 +915,11 @@ class HypCommonFunc
 
 			$tmpfile = $rs_file . '_tmp.png';
 
-			$cmd = 'convert -size '.$imw.'x'.$imh.' xc:none -channel RGBA -fill white -draw "roundrectangle '.max(0,($edge-1)).','.max(1,($edge-1)).' '.($imw-$edge).','.($imh-$edge).' '.$corner.','.$corner.'" '.$ro_file.' -compose src_in -composite '.$tmpfile;
+			$cmd = 'convert -size '.$imw.'x'.$imh.' xc:none -channel RGBA -fill white -draw "roundrectangle '.max(0,($edge-1)).','.max(1,($edge-1)).' '.($imw-$edge).','.($imh-$edge).' '.$corner.','.$corner.'" "'.$ro_file.'" -compose src_in -composite "'.$tmpfile.'"';
 			exec( HYP_IMAGEMAGICK_PATH . $cmd ) ;
 
 			if ($edge) {
-				$cmd = 'convert -size '.$imw.'x'.$imh.' xc:none -fill none -stroke white -strokewidth '.$edge.' -draw "roundrectangle '.($edge-1).','.($edge-1).' '.($imw-$edge).','.($imh-$edge).' '.$corner.','.$corner.'" -shade 135x25 -blur 0x1 -normalize '.$tmpfile.' -compose overlay -composite '.$tmpfile;
+				$cmd = 'convert -size '.$imw.'x'.$imh.' xc:none -fill none -stroke white -strokewidth '.$edge.' -draw "roundrectangle '.($edge-1).','.($edge-1).' '.($imw-$edge).','.($imh-$edge).' '.$corner.','.$corner.'" -shade 135x25 -blur 0x1 -normalize "'.$tmpfile.'" -compose overlay -composite "'.$tmpfile.'"';
 				exec( HYP_IMAGEMAGICK_PATH . $cmd ) ;
 			}
 			copy ($tmpfile, $rs_file);
@@ -1020,7 +1021,7 @@ class HypCommonFunc
 	{
 		$src = realpath($src);
 
-		if (!file_exists($src)) {
+		if (! is_file($src)) {
 			return false;
 		}
 
@@ -1038,7 +1039,7 @@ class HypCommonFunc
 			{
 				$ret = true;
 				$tmpfname = @tempnam(dirname($src), "tmp_");
-				exec( HYP_JPEGTRAN_PATH."jpegtran -rotate {$angle} -copy all {$src} > {$tmpfname}" );
+				exec( HYP_JPEGTRAN_PATH."jpegtran -rotate {$angle} -copy all \"{$src}\" ") . '>' . " \"{$tmpfname}\"" ;
 				if ( ! @filesize($tmpfname) || ! @unlink($src) )
 				{
 					$ret = false;
@@ -1069,7 +1070,7 @@ class HypCommonFunc
 			{
 				$ret = true;
 				$out = array();
-				exec( HYP_IMAGEMAGICK_PATH."convert -size {$w}x{$h} -rotate +{$angle} -quality {$quality} {$src} {$src}", $out ) ;
+				exec( HYP_IMAGEMAGICK_PATH."convert -size {$w}x{$h} -rotate +{$angle} -quality {$quality} \"{$src}\" \"{$src}\"", $out ) ;
 				if ($out)
 				{
 					$ret = false;

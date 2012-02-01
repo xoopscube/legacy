@@ -32,6 +32,10 @@ ul,ol,li {
 	margin-left:0 !important;
 }
 
+img.ga_img {
+	float: left;
+}
+
 /* touch icon image (base class name is "image_button_base") */
 .image_button_base {
 	width: 90% !important;
@@ -111,21 +115,21 @@ span.button a {
 	border: 1px solid silver;
 }
 .head {
-	background-color: #E0E0FF; 
-	padding: 5px; 
+	background-color: #E0E0FF;
+	padding: 5px;
 	font-weight: bold;
 	white-space: nowrap;
 }
 .even {
-	background-color: #E0E0FF; 
+	background-color: #E0E0FF;
 	padding: 5px;
 }
 .odd {
-	background-color: #E9E9E9; 
+	background-color: #E9E9E9;
 	padding: 5px;
 }
 .foot {
-	background-color: #E0E0FF; 
-	padding: 5px; 
+	background-color: #E0E0FF;
+	padding: 5px;
 	font-weight: bold;
 }

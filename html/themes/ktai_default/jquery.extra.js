@@ -5,8 +5,8 @@ $(document).ready(function (){
 		$(this).css('min-height', '15em');
 	});
 
-	
-	$("#keitaiblockmenu a, #keitaifixedbar_main").bind('tap', function(){
+
+	$("#keitaiblockmenu a, #keitaifixedbar_main").bind('click', function(){
 		return $.keitaiShowBlock( $.mobile.path.stripHash($(this).attr('href')) );
 	});
 
@@ -27,13 +27,12 @@ $.extend({
 				$.mobile.silentScroll(2);
 			} else {
 				target.trigger('expand');
-				top = offset.top;
 				$.mobile.silentScroll(offset.top);
 			}
 		}
 		return false;
 	},
-	
+
 	keitaiSwitchToPc: function() {
 		var expires = new Date();
 		expires.setDate(expires.getDate() + 7);
