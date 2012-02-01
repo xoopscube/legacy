@@ -40,11 +40,12 @@ if ( $storyid ){
 		exit;
 	}
 }
+// In case of No Topic
+$BTopic = new BulletinTopic( $mydirname, $topicid );
+$topicid = $BTopic->getTopicIdByPermissionCheck($topicid);
 if( $topicid ){
 	$story->setVar('topicid', $topicid);
 }
-// In case of No Topic
-$BTopic = new BulletinTopic( $mydirname, $topicid );
 if( !$BTopic->topicExists() ){
 	die(_MD_NO_TOPICS);
 	exit;

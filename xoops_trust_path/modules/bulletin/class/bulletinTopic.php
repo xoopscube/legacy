@@ -138,7 +138,36 @@ class BulletinTopic extends XoopsTopic{
 		$ret .= "</select>\n";
 		return $ret;
 	}
-
+	/*
+	 * 2012-2-1 Add by Yoshis
+	*/
+	function getTopicIdByPermissionCheck($topic_id=0){
+		global $xoopsUser ;
+	
+		$groups = $xoopsUser->getGroups();
+		$tbl = $this->db->prefix( $this->mydirname."_topic_access" );
+		$ret = NULL;
+		foreach($groups as $key => $gid){
+			$sql =  "SELECT topic_id FROM " . $tbl . " WHERE topic_id = " .$topic_id. " AND groupid = " .$gid. " AND can_post = 1 AND can_edit = 1";
+			$result = $this->db->query($sql);
+			if( list($catid) = $this->db->fetchRow($result) ) {
+				$ret = $catid;
+				break;
+			}
+		}
+		if (is_null($ret)){
+			foreach($groups as $key => $gid){
+				$sql =  "SELECT topic_id FROM " . $tbl . " WHERE groupid = " .$gid. " AND can_post = 1 AND can_edit = 1";
+				$result = $this->db->query($sql);
+				if( list($catid) = $this->db->fetchRow($result) ) {
+					$ret = $catid;
+					break;
+				}
+			}
+		}
+		return $ret;
+	}
+	
 	//H.Onuma
 	function makeMyTopicList2($preset_id=0, $row=NULL){
 		global $xoopsUser ;
