@@ -18,31 +18,32 @@ class Xupdate_ModuleStore extends Xupdate_Root {
 		XOBJ_DTYPE_STRING=>XOBJ_DTYPE_STRING,
 		XOBJ_DTYPE_TEXT=>XOBJ_DTYPE_TEXT);
 */
+
 		//TODO モジュールオブジェクトの項目をコピーしただけ
-		$this->initVar('mid', XOBJ_DTYPE_FLOAT, null, false);
+		$this->initVar('mid', XOBJ_DTYPE_INT, null, false);
 		$this->initVar('name', XOBJ_DTYPE_STRING, null, false, 150);
-		$this->initVar('version', XOBJ_DTYPE_FLOAT, 100, false);
-		$this->initVar('last_update', XOBJ_DTYPE_FLOAT, null, false);
-		$this->initVar('weight', XOBJ_DTYPE_FLOAT, 0, false);
-		$this->initVar('isactive', XOBJ_DTYPE_BOOL, 1, false);
+		$this->initVar('version', XOBJ_DTYPE_INT, 100, false);
+		$this->initVar('last_update', XOBJ_DTYPE_INT, null, false);
+		$this->initVar('weight', XOBJ_DTYPE_INT, 0, false);
+		$this->initVar('isactive', XOBJ_DTYPE_INT, 1, false);
 		$this->initVar('dirname', XOBJ_DTYPE_STRING, null, false);
 		$this->initVar('trust_dirname', XOBJ_DTYPE_STRING, null, false);
 		$this->initVar('role', XOBJ_DTYPE_STRING, null, false);
-		$this->initVar('hasmain', XOBJ_DTYPE_BOOL, 0, false);
-		$this->initVar('hasadmin', XOBJ_DTYPE_BOOL, 0, false);
-		$this->initVar('hassearch', XOBJ_DTYPE_BOOL, 0, false);
-		$this->initVar('hasconfig', XOBJ_DTYPE_BOOL, 0, false);
-		$this->initVar('hascomments', XOBJ_DTYPE_BOOL, 0, false);
+		$this->initVar('hasmain', XOBJ_DTYPE_INT, 0, false);
+		$this->initVar('hasadmin', XOBJ_DTYPE_INT, 0, false);
+		$this->initVar('hassearch', XOBJ_DTYPE_INT, 0, false);
+		$this->initVar('hasconfig', XOBJ_DTYPE_INT, 0, false);
+		$this->initVar('hascomments', XOBJ_DTYPE_INT, 0, false);
 		// RMV-NOTIFY
-		$this->initVar('hasnotification', XOBJ_DTYPE_FLOAT, 0, false);
+		$this->initVar('hasnotification', XOBJ_DTYPE_INT, 0, false);
 
 		//custom カスタム項目
-		$this->initVar('id', XOBJ_DTYPE_FLOAT, 0, false);
-		$this->initVar('type', XOBJ_DTYPE_STRING, null, false);
-		$this->initVar('rootdirname', XOBJ_DTYPE_STRING, null, false);
-		$this->initVar('storeurl', XOBJ_DTYPE_STRING, null, false);
-		$this->initVar('installurl', XOBJ_DTYPE_STRING, null, false);
-		$this->initVar('updateurl', XOBJ_DTYPE_STRING, null, false);
+		$this->initVar('id', XOBJ_DTYPE_INT, 0, false);
+		$this->initVar('type', XOBJ_DTYPE_STRING, '', false);
+		$this->initVar('rootdirname', XOBJ_DTYPE_STRING, '', false);
+		$this->initVar('storeurl', XOBJ_DTYPE_STRING, '', false);
+		$this->initVar('installurl', XOBJ_DTYPE_STRING, '', false);
+		$this->initVar('updateurl', XOBJ_DTYPE_STRING, '', false);
 
 	}
 
