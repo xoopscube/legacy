@@ -183,7 +183,7 @@ class getMultiMenu {
 	$module = $module_handler->getByDirname($modname);
 	$mid = $module->getVar('mid');
 	$theme_menu = $this->getModuleConfig('theme_menu',$mid);
-	return $theme_menu[0];
+	return intval($theme_menu[0]);
   }
 }
 ?>

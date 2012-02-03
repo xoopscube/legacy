@@ -19,17 +19,20 @@ class multiMenuPreload extends XCube_ActionFilter{
 		$module_handler = & xoops_gethandler( 'module' );
 		$module =& $module_handler->getByDirname("multiMenu");
 		if ( !is_object( $module ) || !$module->getVar( 'isactive' ) ) {
-			return NULL;
+			return ;
 		}
 		$gmm = new getMultiMenu();
 		$options=array("40");
-		$block = $gmm->getblock( $options, "multimenu0" . $gmm->theme_menu() );
-		$xoopsTpl->assign( 'multiMenuToTheme' , $block ) ;	// Insert smarty for entire site theme
+		$menu_num = $gmm->theme_menu();
+		if ( !empty($menu_num) ) {
+			$block = $gmm->getblock( $options, "multimenu0" . $menu_num );
+			$xoopsTpl->assign( 'multiMenuToTheme' , $block ) ;	// Insert smarty for entire site theme
+		}
 		$flow = new multiMenuFlow($gmm);
 		if ($flow->nextLink){
 			$this->mController->executeForward($flow->nextLink);
 		}
-		
+
 	}
 }
 /*
@@ -99,7 +102,7 @@ class multimenuFlow {
 			." SET id=" . $id . " WHERE uid=".$xoopsUser->uid().";";
 			$ret = $xoopsDB->queryF($sql);
 		}
-		//echo $sql;		
+		//echo $sql;
 	}
 	private function linkComp($requestUrl,$flowLink){
 		$req = parse_url($requestUrl);
