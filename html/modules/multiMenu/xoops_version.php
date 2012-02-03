@@ -9,19 +9,20 @@ $modversion['license'] = "GPL see LICENSE";
 $modversion['official'] = 0;
 $modversion['image'] = "images/slogo.png";
 $modversion['dirname'] = "multiMenu";
-$modversion['cube_style'] = true;
 
+$modversion['cube_style'] = true;
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
-$modversion['tables'][0] = "multimenu01";
-$modversion['tables'][1] = "multimenu02";
-$modversion['tables'][2] = "multimenu03";
-$modversion['tables'][3] = "multimenu04";
-$modversion['tables'][4] = "multimenu05";
-$modversion['tables'][5] = "multimenu06";
-$modversion['tables'][6] = "multimenu07";
-$modversion['tables'][7] = "multimenu08";
-$modversion['tables'][8] = "multimenu99";
-$modversion['tables'][9] = "multimenu_log";
+
+$modversion['tables'][0] = "{prefix}_multimenu01";
+$modversion['tables'][1] = "{prefix}_multimenu02";
+$modversion['tables'][2] = "{prefix}_multimenu03";
+$modversion['tables'][3] = "{prefix}_multimenu04";
+$modversion['tables'][4] = "{prefix}_multimenu05";
+$modversion['tables'][5] = "{prefix}_multimenu06";
+$modversion['tables'][6] = "{prefix}_multimenu07";
+$modversion['tables'][7] = "{prefix}_multimenu08";
+$modversion['tables'][8] = "{prefix}_multimenu99";
+$modversion['tables'][9] = "{prefix}_multimenu_log";
 
 // Menu
 $modversion['hasMain'] = 0;// 1 flow Reserved Process
