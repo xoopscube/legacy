@@ -50,7 +50,6 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	}
 	function prepare()
 	{
-
 		$this->mActionForm =new Xupdate_Admin_ModuleStoreForm();
 		$this->mActionForm->prepare();
 	}
@@ -109,6 +108,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$render->setTemplateName('admin_module_store.html');
 
 		$render->setAttribute('xupdate_items', $this->items);
+		$render->setAttribute('mod_config', $this->mod_config);
 
 		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
 		$render->setAttribute('xupdate_content', $this->content);
@@ -144,8 +144,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 		if ($this->mActionForm->hasError()) {
 			return $this->_processConfirm();
-		}
-		else {
+		} else {
 			return $this->_processSave();
 		}
 
@@ -222,6 +221,13 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	public function RapidModuleInstall_js()
 	{
 
+		$message_Install = _INSTALL;
+		$message_Error = _ERRORS;
+		$message_Waiting = _AD_XUPDATE_LANG_MESSAGE_WAITING;
+		$message_Success = _AD_XUPDATE_LANG_MESSAGE_SUCCESS;
+		$message_Getting_files = _AD_XUPDATE_LANG_MESSAGE_GETTING_FILES;
+		$message_Processing = _AD_XUPDATE_LANG_MESSAGE_PROCESSING;
+
 		$ret =<<< HTML
 jQuery(function($){
 
@@ -276,7 +282,7 @@ jQuery(function($){
 
 		$(installationModules).each(function()
 		{
-			this.td.html("待機中");
+			this.td.html("{$message_Waiting}");
 		});
 
 		doInstall();
@@ -296,7 +302,7 @@ jQuery(function($){
 
 			if (typeof installationModule.storehref != 'undefined'){
 
-				installationModule.td.html("展開中");
+				installationModule.td.html("{$message_Getting_files}{$message_Processing}");
 				try
 				{
 					$.ajax({
@@ -309,19 +315,19 @@ jQuery(function($){
 				}
 				catch ( e )
 				{
-					installationModule.td.html('<span style="color:red;">エラー</span>');
+					installationModule.td.html('<span style="color:red;">{$message_Error}</span>');
 					installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
 					updateModuleStatus();
 				}
 			}
 			var result =installationModule.td.text();
-			if (result != '展開完了'){
+			if (result != '{$message_Getting_files}{$message_Success}'){
 				installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
 				updateModuleStatus();
 			}else{
 				if (typeof installationModule.installhref != 'undefined'){
 
-					installationModule.td.html("インストール中");
+					installationModule.td.html("{$message_Install}{$message_Processing}");
 					try
 					{
 						$.ajax({
@@ -333,12 +339,12 @@ jQuery(function($){
 					}
 					catch ( e )
 					{
-						installationModule.td.html('<span style="color:red;">エラー</span>');
+						installationModule.td.html('<span style="color:red;">{$message_Error}</span>');
 						installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
 						updateModuleStatus();
 					}
 				}else{
-						installationModule.td.html('<span style="color:red;">スキップ</span>');
+						installationModule.td.html('<span style="color:red;">{$message_Error}</span>');
 						installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
 						updateModuleStatus();
 				}
@@ -349,10 +355,10 @@ jQuery(function($){
 	var getStoreSuccess = function(html)
 	{
 		var result = $(html).find('#contentBody a').text();
-		if (result == 'インストール'){
-			installationModule.td.html('<span style="color:green;">展開完了</span>');
+		if (result == '{$message_Install}'){
+			installationModule.td.html('<span style="color:green;">{$message_Getting_files}{$message_Success}</span>');
 		}else{
-			installationModule.td.html('<span style="color:red;">展開エラー</span>');
+			installationModule.td.html('<span style="color:red;">{$message_Getting_files}{$message_Error}</span>');
 		}
 	}
 
@@ -375,14 +381,14 @@ jQuery(function($){
 	var postFormSuccess = function(html)
 	{
 		var result = $(html).find('li.legacy_module_message:last').text();
-		installationModule.td.hide().html('<span style="color:green;">完了</span>').fadeIn();
+		installationModule.td.hide().html('<span style="color:green;">{$message_Success}</span>').fadeIn();
 		installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
 		updateModuleStatus();
 	}
 
 	var ajaxFailed = function(XMLHttpRequest, textStatus, errorThrown)
 	{
-		throw "Ajaxエラー";
+		throw "Ajax{$message_Error}";
 	}
 
 	var installInstallStatus = function(installedModuleTotal, installationModuleTotal)
@@ -391,7 +397,7 @@ jQuery(function($){
 
 		if ( installedModuleTotal == installationModuleTotal )
 		{
-			$('#rapidInstallStatus').text("完了")
+			$('#rapidInstallStatus').text("{$message_Success}")
 			return installedModuleTotal;
 		}
 
@@ -403,7 +409,7 @@ jQuery(function($){
 	{
 		installationModule.status = 1;
 		isInstallation = false;
-		doInstall(); // 次のモジュールへ
+		doInstall(); // Next module
 	}
 
 	var checkAll = function()

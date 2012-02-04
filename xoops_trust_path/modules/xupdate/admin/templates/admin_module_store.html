@@ -10,11 +10,19 @@
 <li>
 <{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>: <{$ModuleTotal}>
 </li>
-	<li><{$smarty.const._MI_XUPDATE_TEMP_PATH}> <{$xupdate_writable.path}>&nbsp;:&nbsp;
+	<li><{$smarty.const._MI_XUPDATE_TEMP_PATH}> <{$xupdate_writable.path}>
 	<{if $xupdate_writable.result==true}>
 		(<span style="color:green;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_WRITABLE_RESULT}> OK</span>)
 	<{else}>
 		(<span style="color:red;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_WRITABLE_RESULT}> NG</span>)
+	<{/if}>
+	</li>
+	<li><{$mod_config.FTP_UserName}>
+<{* TODO FTP CHECK *}>
+	<{if $mod_config.FTP_UserName }>
+		(<span style="color:green;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_FTP_PASS_RESULT}> OK</span>)
+	<{else}>
+		(<span style="color:red;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_FTP_PASS_RESULT}> NG</span>)
 	<{/if}>
 	</li>
 </ul>
@@ -37,7 +45,6 @@
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
 <{/if}>
 <form method="post" >
-<{xoops_token form=$actionForm}>
 <table class="outer">
   <tr>
     <th>id
@@ -60,12 +67,12 @@
       <a href="index.php?action=ModuleStore&amp;sort=<{$smarty.const.MODULE_SORT_KEY_ROOTDIRNAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
       <a href="index.php?action=ModuleStore&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_ROOTDIRNAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
-    <th>タイプ
+    <th><{$smarty.const._AD_XUPDATE_LANG_TYPE}>
       <a href="index.php?action=ModuleStore&amp;sort=<{$smarty.const.MODULE_SORT_KEY_TYPE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
       <a href="index.php?action=ModuleStore&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_TYPE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
     <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
-    <th>一括インストール<br><input id="rapidInstallCheckboxAll" type="checkbox" /></th>
+    <th><{$smarty.const._AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL}><br><input id="rapidInstallCheckboxAll" type="checkbox" /></th>
   </tr>
   <{foreach item=module from=$moduleObjects}>
     <tr class="<{cycle values='odd,even'}>">
@@ -123,11 +130,12 @@
   <{/foreach}>
   <tr>
     <td class="foot" colspan="7">
-<{*      <input type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" class="formButton" />*}>
+      <{xoops_token form=$actionForm}>
+      <input type="submit" value="<{$smarty.const._AD_LEGACY_LANG_MOD_NAME}><{$smarty.const._EDIT}>" class="formButton" />
     </td>
     <td class="foot">
     <{if $xupdate_writable.result==true}>
-      <input type="submit" value="一括インストール"  id="rapidModuleInstallButton" class="formButton" />
+      <input type="submit" value="<{$smarty.const._AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL}>"  id="rapidModuleInstallButton" class="formButton" />
     <{/if}>
     </td>
   </tr>

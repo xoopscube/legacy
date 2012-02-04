@@ -19,11 +19,19 @@ class Xupdate_Admin_ModuleStoreForm extends XCube_ActionForm
 		//
 		//
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			return "module.xupdate.ModuleSettingsForm.TOKEN";
+			return "module.xupdate.Admin_ModuleStorForm.TOKEN";
 		}
 		else {
 			return null;
 		}
+	}
+	/***
+	 * For displaying the confirm-page, don't show CSRF error.
+	 * Always return null.
+	 */
+	function getTokenErrorMessage()
+	{
+		return null;
 	}
 
 
