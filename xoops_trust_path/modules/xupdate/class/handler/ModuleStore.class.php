@@ -7,43 +7,23 @@ require_once XUPDATE_TRUST_PATH .'/class/Root.class.php';
 */
 class Xupdate_ModuleStore extends Xupdate_Root {
 
+	public $mModule ;
+	public $modinfo = array();
+
 	public function __construct()
 	{
 		parent::__construct() ;
-/*
-		static $_mAllowType = array(
-		XOBJ_DTYPE_BOOL=>XOBJ_DTYPE_BOOL,
-		XOBJ_DTYPE_INT=>XOBJ_DTYPE_INT,
-		XOBJ_DTYPE_FLOAT=>XOBJ_DTYPE_FLOAT,
-		XOBJ_DTYPE_STRING=>XOBJ_DTYPE_STRING,
-		XOBJ_DTYPE_TEXT=>XOBJ_DTYPE_TEXT);
-*/
 
-		//TODO モジュールオブジェクトの項目をコピーしただけ
-		$this->initVar('mid', XOBJ_DTYPE_INT, null, false);
-		$this->initVar('name', XOBJ_DTYPE_STRING, null, false, 150);
+		//項目
+		$this->initVar('id', XOBJ_DTYPE_INT, '0', false);//Primary key
+		$this->initVar('sid', XOBJ_DTYPE_INT, '0', false);//store join
+
+		$this->initVar('dirname', XOBJ_DTYPE_STRING, '', false);
+		$this->initVar('type', XOBJ_DTYPE_STRING, '', false);
 		$this->initVar('version', XOBJ_DTYPE_INT, 100, false);
 		$this->initVar('last_update', XOBJ_DTYPE_INT, null, false);
-		$this->initVar('weight', XOBJ_DTYPE_INT, 0, false);
-		$this->initVar('isactive', XOBJ_DTYPE_INT, 1, false);
-		$this->initVar('dirname', XOBJ_DTYPE_STRING, null, false);
-		$this->initVar('trust_dirname', XOBJ_DTYPE_STRING, null, false);
-		$this->initVar('role', XOBJ_DTYPE_STRING, null, false);
-		$this->initVar('hasmain', XOBJ_DTYPE_INT, 0, false);
-		$this->initVar('hasadmin', XOBJ_DTYPE_INT, 0, false);
-		$this->initVar('hassearch', XOBJ_DTYPE_INT, 0, false);
-		$this->initVar('hasconfig', XOBJ_DTYPE_INT, 0, false);
-		$this->initVar('hascomments', XOBJ_DTYPE_INT, 0, false);
-		// RMV-NOTIFY
-		$this->initVar('hasnotification', XOBJ_DTYPE_INT, 0, false);
-
-		//custom カスタム項目
-		$this->initVar('id', XOBJ_DTYPE_INT, 0, false);
-		$this->initVar('type', XOBJ_DTYPE_STRING, '', false);
+		$this->initVar('trust_dirname', XOBJ_DTYPE_STRING, '', false);
 		$this->initVar('rootdirname', XOBJ_DTYPE_STRING, '', false);
-		$this->initVar('storeurl', XOBJ_DTYPE_STRING, '', false);
-		$this->initVar('installurl', XOBJ_DTYPE_STRING, '', false);
-		$this->initVar('updateurl', XOBJ_DTYPE_STRING, '', false);
 
 	}
 
@@ -55,38 +35,121 @@ class Xupdate_ModuleStore extends Xupdate_Root {
 		return sprintf('%01.2f', $this->getVar('version') / 100);
 	}
 	/**
+	 * @
+	 */
+	public function setmModule()
+	{
+		$hModule = Xupdate_Utils::getXoopsHandler('module');
+		$this->mModule =& $hModule->getByDirname($this->getVar('dirname')) ;
+		if (is_object($this->mModule)){
+			$this->modinfo =& $this->mModule->getInfo();
+		}else{
+			$this->mModule = new XoopsModule();//空のobject
+			$this->mModule->cleanVars();
+		}
+	}
+	/**
 	 * @return bool
 	 */
-	function hasNeedUpdate()
+	public function isTrustDirnameError()
 	{
-//		$info =& $this->getInfo();
-//		return ($this->getVar('version') < Legacy_Utils::convertVersionFromModinfoToInt($info['version']));
-		return false;
-
+		$ret = false;
+		if ( $this->getVar('type') == 'TrustModule' ){
+			$trust_dirname = $this->mModule->getVar('trust_dirname');
+			if ( !empty($trust_dirname) && $this->getVar('trust_dirname') != $trust_dirname
+				&& (isset($this->modinfo['trust_dirname']) && $this->getVar('trust_dirname') != $this->modinfo['trust_dirname'] ) ){
+				$ret = true;
+			}
+		}
+		return $ret;
+	}
+	/**
+	 * @return bool
+	 */
+	public function hasNeedUpdate()
+	{
+		if (empty($this->modinfo)){
+			return false;
+		}else{
+			return ($this->getVar('version') < Legacy_Utils::convertVersionFromModinfoToInt($this->modinfo['version']));
+		}
 	}
 
+	public function get_StoreUrl()
+	{
+		//TODO for test dirname ?
+		$ret = XOOPS_URL .'/modules/xupdate/admin/index.php?action=ModuleInstall&target_key='
+			.$this->getVar('dirname') .'&target_type='.$this->getVar('type');
+		return $ret;
+	}
+	public function get_InstallUrl()
+	{
+		$ret = XOOPS_URL .'/modules/legacy/admin/index.php?action=ModuleInstall&dirname='
+			.$this->getVar('dirname') ;
+		return $ret;
+	}
+	public function get_UpdateUrl()
+	{
+		$ret = XOOPS_URL .'/modules/legacy/admin/index.php?action=ModuleUpdate&dirname='
+			.$this->getVar('dirname') ;
+		return $ret;
+	}
 
 } // end class
 
 /**
-* XoopsObjectHandler extends
+* XoopsObjectGenericHandler extends
 */
-class Xupdate_ModuleStoreHandler extends XoopsObjectHandler
+class Xupdate_ModuleStoreHandler extends XoopsObjectGenericHandler
 {
-	public $mTable = '{dirname}_module_data';//TODO not datbase ,test now ダミーです
+//	public $mTable = '{dirname}_modulestore';//TODO not datbase ,test now ダミーです
+	public $mTable = 'xupdate_modulestore';//TODO not datbase ,test now ダミーです
 	public $mPrimary = 'id';
 	//XoopsSimpleObject
 	public $mClass = 'Xupdate_ModuleStore';
 
 	public $items = array();
+	public $store = array();
+	public $mSiteModuleObjects = array();
 
 	public function Xupdate_ModuleStoreHandler(&$db) {
 
-		parent::XoopsObjectHandler($db);
+		parent::__construct($db);
 
 		//for test start ---------------------------
 		$this->_storelist();
 		//for test end ---------------------------
+
+		//テストのためこの該当サイト登録済みデータを全部確認する
+		$criteria = new CriteriaCompo();
+		$criteria->add(new Criteria( 'sid', $this->store['sid'] ) );
+		asynop('XoopsObjectHandler');
+		$siteModuleStoreObjects = parent::getObjects($criteria);
+		foreach($siteModuleStoreObjects as $key => $mobj){
+			$_ismodulestore = false;
+			if ($mobj->getVar('type') == 'TrustModule' ){
+				foreach($this->items as $key => $myrow){
+					if ($mobj->getVar('trust_dirname') == $myrow['dirname']){
+						$this->mSiteModuleObjects[$mobj->getVar('dirname')]=$mobj;
+						$_ismodulestore = true;
+						break;
+					}
+				}
+			}else{
+				foreach($this->items as $key => $myrow){
+					if ($mobj->getVar('trust_dirname') == '' && $mobj->getVar('dirname') == $myrow['dirname'] ){
+						$this->mSiteModuleObjects[$mobj->getVar('dirname')]=$mobj;
+						$_ismodulestore = true;
+						break;
+					}
+				}
+			}
+			//もう登録されていない
+			if ($_ismodulestore == false){
+				$this->delete($mobj);
+			}
+		}
+
 	}
 
 	public function &getObjects($criteria = null, $id_as_key = false)
@@ -97,89 +160,139 @@ class Xupdate_ModuleStoreHandler extends XoopsObjectHandler
 		if ( !is_array($this->items)) {
 			return $ret;
 		}
-		if ( ! empty($this->items) ){
-			usort($this->items, array('Xupdate_ModuleStoreHandler','dirname_asc_sort') );
-		}
-
-		$hModule =& xoops_gethandler('module');
-		foreach($this->items as $key => $myrow){
-			$ccmodule = new $this->mClass();
-			$ccmodule->assignVars($myrow);
-
-			$id = $ccmodule->getVar('id');
-			$ccmodule->assignVar('name',$ccmodule->getVar('dirname'));
-
-			$MyhModule =& $hModule->getByDirname($ccmodule->getVar('dirname')) ;
-			if ( is_object($MyhModule) ) {
-				$ccmodule->assignVar('mid',$MyhModule->getVar('mid'));
-				$ccmodule->assignVar('dirname',$MyhModule->getVar('dirname'));
-				$ccmodule->assignVar('trust_dirname',$MyhModule->getVar('trust_dirname'));
-				$ccmodule->assignVar('version',$MyhModule->getVar('version'));
-				$ccmodule->assignVar('last_update',$MyhModule->getVar('last_update'));
-				$ccmodule->assignVar('isactive',$MyhModule->getVar('isactive'));
-				$ccmodule->assignVar('updateurl',$this->get_UpdateUrl($ccmodule));
-			}
-
-			$ccmodule->assignVar('rootdirname',$ccmodule->getVar('dirname'));
-			$ccmodule->assignVar('storeurl',$this->get_StoreUrl($ccmodule));
-			$ccmodule->assignVar('installurl',$this->get_InstallUrl($ccmodule));
-
-			if ($id_as_key) {
-				$ret[$id] =& $ccmodule;
-			}else{
-				$ret[$key] =& $ccmodule;
-			}
-			unset($ccmodule);
-		}
 		//for test end ---------------------------
 
+		//未登録のデータは自動で登録
+		foreach($this->items as $key => $myrow){
+			if ($myrow['type'] == 'TrustModule' ){
+
+				//インストール済みの同じtrustモージュールのリストを取得
+				$list = Legacy_Utils::getDirnameListByTrustDirname($myrow['dirname']);
+
+				if (empty($list)){
+					//インストール済みの同じtrustモージュール無し
+					$mModuleStore = new $this->mClass();
+					$mModuleStore->assignVars($myrow);
+					$mModuleStore->set('sid',$this->store['sid']);
+
+					$mModuleStore->assignVar('trust_dirname',$myrow['dirname']);
+					$mModuleStore->assignVar('rootdirname',$myrow['dirname']);
+
+					$mModuleStore->setmModule();
+					$mModuleStore->assignVar('last_update',$mModuleStore->mModule->getVar('last_update') );
+					if (isset($this->mSiteModuleObjects[$myrow['dirname']])){
+						$mModuleStore->assignVar('id',$this->mSiteModuleObjects[$myrow['dirname']]->getVar('id') );
+						$this->_storeupdate($mModuleStore , $this->mSiteModuleObjects[$myrow['dirname']]);
+					}else{
+						$mModuleStore->setNew();
+						$this->insert($mModuleStore ,true);
+					}
+					unset($mModuleStore);
+
+				}else{
+
+					$_isrootdirmodule = false;
+					foreach($list as $dirname){
+						$mModuleStore = new $this->mClass();
+						$mModuleStore->assignVars($myrow);
+						$mModuleStore->assignVar('sid',$this->store['sid']);
+
+						$mModuleStore->assignVar('dirname',$dirname);
+						$mModuleStore->assignVar('trust_dirname',$myrow['dirname']);
+						$mModuleStore->assignVar('rootdirname',$myrow['dirname']);
+						$mModuleStore->setmModule();
+						$mModuleStore->assignVar('last_update',$mModuleStore->mModule->getVar('last_update') );
+
+						if ( $dirname == $myrow['dirname'] ){
+							$_isrootdirmodule = true;
+						}
+						if (isset($this->mSiteModuleObjects[$dirname])){
+							$mModuleStore->assignVar('id',$this->mSiteModuleObjects[$dirname]->getVar('id') );
+							$this->_storeupdate($mModuleStore , $this->mSiteModuleObjects[$myrow['dirname']]);
+						}else{
+							$mModuleStore->setNew();
+							$this->insert($mModuleStore ,true);
+						}
+						unset($mModuleStore);
+					}
+					//そのままインストールしていない場合、そのまま追加可能なので
+					if ( $_isrootdirmodule == false ){
+						$mModuleStore = new $this->mClass();
+						$mModuleStore->assignVars($myrow);
+						$mModuleStore->assignVar('sid',$this->store['sid']);
+
+						$mModuleStore->assignVar('trust_dirname',$myrow['dirname']);
+						$mModuleStore->assignVar('rootdirname',$myrow['dirname']);
+
+						$mModuleStore->setmModule();
+						$mModuleStore->assignVar('last_update',$mModuleStore->mModule->getVar('last_update') );
+						if (isset($this->mSiteModuleObjects[$myrow['dirname']])){
+							$mModuleStore->assignVar('id',$this->mSiteModuleObjects[$myrow['dirname']]->getVar('id') );
+							$this->_storeupdate($mModuleStore , $this->mSiteModuleObjects[$myrow['dirname']]);
+						}else{
+							$mModuleStore->setNew();
+							$this->insert($mModuleStore ,true);
+						}
+						unset($mModuleStore);
+					}
+				}
+			}else{
+				//trusモジュールでない(複製可能なものはどうしよう)
+				$mModuleStore = new $this->mClass();
+				$mModuleStore->assignVars($myrow);
+				$mModuleStore->assignVar('sid',$this->store['sid']);
+
+				$mModuleStore->assignVar('rootdirname',$myrow['dirname']);
+
+				$mModuleStore->setmModule();
+				$mModuleStore->assignVar('last_update',$mModuleStore->mModule->getVar('last_update') );
+
+				if (isset($this->mSiteModuleObjects[$myrow['dirname']])){
+					$mModuleStore->assignVar('id',$this->mSiteModuleObjects[$myrow['dirname']]->getVar('id') );
+					$this->_storeupdate($mModuleStore , $this->mSiteModuleObjects[$myrow['dirname']]);
+				}else{
+					$mModuleStore->setNew();
+					$this->insert($mModuleStore ,true);
+				}
+				unset($mModuleStore);
+			}
+		}
+
+		//追加後の表示データ criteria付き
+		$mObjects = parent::getObjects($criteria ,null,null, $id_as_key);
+		foreach($mObjects as $key => $mobj){
+			$mobj->setmModule();//判定用のインストール済みのモジュール情報の保持を追加
+			if ($id_as_key) {
+				$id = $mobj->getVar('id');
+				$ret[$id] =& $mobj;
+			}else{
+				$ret[] =& $mobj;
+			}
+			unset($mobj);
+		}
 		return $ret;
 	}
 
-	function getCount($criteria = null){
-		$ret=0;
-		if (is_array($this->items)) {
-			 $ret = count(array_keys($this->items));
+	private function _storeupdate ($obj , $oldobj)
+	{
+//		$newdata['last_update'] = $obj->getVar('last_update');
+		$newdata['version'] = $obj->getVar('version');
+//		$olddata['last_update'] = $oldobj->getVar('last_update');
+		$olddata['version'] = $oldobj->getVar('version');
+		if (count(array_diff_assoc($olddata, $newdata)) > 0 ) {
+			$obj->unsetNew();
+			$this->insert($obj ,true);
 		}
-		return $ret;
+
 	}
 
 	private function _storelist ()
 	{
 		include dirname(dirname(dirname(__FILE__))) .'/admin/actions/modules.ini';
-
 		$this->items = $items;
+		include dirname(dirname(dirname(__FILE__))) .'/admin/actions/store.ini';
+		$this->store = $store;
 
-	}
-
-	private function get_StoreUrl($obj)
-	{
-		//TODO for test dirname ?
-		$ret = XOOPS_URL .'/modules/xupdate/admin/index.php?action=ModuleInstall&target_key='
-			.$obj->getVar('dirname') .'&target_type='.$obj->getVar('type');
-		return $ret;
-	}
-
-	private function get_InstallUrl($obj)
-	{
-		$ret = XOOPS_URL .'/modules/legacy/admin/index.php?action=ModuleInstall&dirname='
-			.$obj->getVar('dirname') ;
-		return $ret;
-	}
-	private function get_UpdateUrl($obj)
-	{
-		$ret = XOOPS_URL .'/modules/legacy/admin/index.php?action=ModuleUpdate&dirname='
-			.$obj->getVar('dirname') ;
-		return $ret;
-	}
-
-	static function name_asc_sort($a, $b)
-	{
-		return strcmp($a['name'], $b['name']);
-	}
-	static function dirname_asc_sort($a, $b)
-	{
-		return strcmp($a['dirname'], $b['dirname']);
 	}
 
 //for test end ---------------------------

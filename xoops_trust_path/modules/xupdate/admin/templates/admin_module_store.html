@@ -33,101 +33,97 @@
   </ul>
 </div>
 <{/if}>
-
+<{if isset($pageNavi) }>
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+<{/if}>
 <form method="post" action="">
 <{xoops_token form=$actionForm}>
 <table class="outer">
   <tr>
     <th>id
-<{* sort
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_MID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_MID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
-*}>
+      <a href="index.php?action=ModuleStore&amp;sort=<{$smarty.const.MODULE_SORT_KEY_ID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_ID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
     <th><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}>
-<{*
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_NAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_NAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
-*}>
+      <a href="index.php?action=ModuleStore&amp;sort=<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
     <th><{$smarty.const._AD_LEGACY_LANG_VERSION}>
-<{*
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
-*}>
+      <a href="index.php?action=ModuleStore&amp;sort=<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
     <th><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}>
-<{*
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
-*}>
+      <a href="index.php?action=ModuleStore&amp;sort=<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
-    <th>ルートディレクトリ名
-<{*
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_WEIGHT}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_WEIGHT}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
-*}>
+    <th>TRUST or <{$smarty.const._AD_LEGACY_LANG_MOD_NAME}>
+      <a href="index.php?action=ModuleStore&amp;sort=<{$smarty.const.MODULE_SORT_KEY_ROOTDIRNAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_ROOTDIRNAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
     <th>タイプ
-<{*
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_ISACTIVE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_ISACTIVE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
-*}>
+      <a href="index.php?action=ModuleStore&amp;sort=<{$smarty.const.MODULE_SORT_KEY_TYPE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_TYPE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
     <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
     <th>一括インストール<br><input id="rapidInstallCheckboxAll" type="checkbox" /></th>
   </tr>
   <{foreach item=module from=$moduleObjects}>
-    <{if $module->getVar('hasmain') && $module->getVar('weight','e') != 0 }>
-    <tr class="<{cycle values='odd,even'}> active">
-    <{else}>
     <tr class="<{cycle values='odd,even'}>">
-    <{/if}>
       <td class="legacy_list_id"><{$module->getVar('id')}></td>
       <td class="legacy_list_image">
 <{*      <img src="<{$xoops_url}>/modules/<{$module->getVar('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->getVar('dirname')}>" />*}>
-         <{$module->getVar('name')}>
+        <{if $module->getVar('type') == 'TrustModule' }>
+<{*        <input type="text" size="24" name="rootdirname[<{$module->getVar('id')}>]" value="<{$module->getVar('dirname')}>" />*}>
+         <{$module->getVar('dirname')}>
+        <{else}>
+          <{$module->getVar('dirname')}>
+        <{/if}>
       </td>
       <td class="legacy_list_order">
         <{if $module->hasNeedUpdate()}>
           <strong class="legacy_module_versionMsg"><{$module->getRenderedVersion()}></strong>
-          <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getVar('dirname')}>"><img src="<{"icons/upgrade.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" /></a>
         <{else}>
           <{$module->getRenderedVersion()}>
         <{/if}>
       </td>
       <td class="legacy_list_date"><{$module->getVar('last_update')|xoops_formattimestamp:l}></td>
       <td class="legacy_list_select">
-        <{if $module->getVar('type') == 'TrustModule' }>
-<{*        <input type="text" size="24" name="rootdirname[<{$module->getVar('mid')}>]" value="<{$module->getVar('rootdirname')}>" />*}>
           <{$module->getVar('rootdirname')}>
-        <{else}>
-<{*        <input type="hidden" size="24" name="rootdirname[<{$module->getVar('mid')}>]" value="<{$module->getVar('rootdirname')}>" />*}>
-          <{$module->getVar('rootdirname')}>
-        <{/if}>
       </td>
       <td class="legacy_list_select">
         <{$module->getVar('type')}>
       </td>
       <td class="legacy_list_control">
       <{if $xupdate_writable.result==true}>
-        <{if $module->getVar('mid') > 0 }><{*TODO $module->hasNeedUpdate() check*}>
-          <a href="<{$module->getVar('storeurl')}>" title="<{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTOREDEC}>"><img src="<{"icons/update.png"|theme}>" alt="<{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTOREDEC}>" /></a>
-          <a href="<{$module->getVar('updateurl')}>"></a>
+        <{if $module->mModule->getVar('mid') > 0}>
+          <{if $module->mModule->getVar('isactive')}>
+          <a href="<{$module->get_StoreUrl()}>" title="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>"><img src="<{"icons/update.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" /></a>
+          <a href="<{$module->get_UpdateUrl()}>"></a>
+          <{else}>
+          <img src="<{"icons/error.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>" title="<{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>" />
+          <{/if}>
         <{else}>
-          <a href="<{$module->getVar('storeurl')}>" title="<{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTOREDEC}>"><img src="<{"icons/module_add.png"|theme}>" alt="<{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTOREDEC}>" /></a>
-          <a href="<{$module->getVar('installurl')}>"></a>
+          <a href="<{$module->get_StoreUrl()}>" title="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>"><img src="<{"icons/module_add.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>" /></a>
+          <a href="<{$module->get_InstallUrl()}>"></a>
         <{/if}>
      <{/if}>
-         <a href="index.php?action=ModuleInfo&amp;dirname=<{$module->getVar('dirname')}>" title="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>"><img src="<{"icons/info.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>" /></a>
       </td>
       <td class="legacy_list_select">
+      <{if $xupdate_writable.result==true}>
+        <{if $module->mModule->getVar('mid') > 0 }>
+          <{if $module->mModule->getVar('isactive')}>
          <input type="checkbox" class="rapidInstallCheckbox" />
+          <{/if}>
+        <{/if}>
+     <{else}>
+         <input type="checkbox" class="rapidInstallCheckbox" />
+     <{/if}>
       </td>
     </tr>
   <{/foreach}>
   <tr>
     <td class="foot" colspan="7">
+<{*      <input type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" class="formButton" />*}>
     </td>
     <td class="foot">
     <{if $xupdate_writable.result==true}>

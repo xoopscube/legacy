@@ -8,21 +8,15 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 
 require_once XUPDATE_TRUST_PATH . "/class/AbstractFilterForm.class.php";
 
-define("MODULE_SORT_KEY_MID",         1);
-define("MODULE_SORT_KEY_NAME",        2);
+define("MODULE_SORT_KEY_ID",          1);
+define("MODULE_SORT_KEY_DIRNAME",     2);
 define("MODULE_SORT_KEY_VERSION",     3);
 define("MODULE_SORT_KEY_LASTUPDATE",  4);
-define("MODULE_SORT_KEY_WEIGHT",      5);
-define("MODULE_SORT_KEY_ISACTIVE",    6);
-define("MODULE_SORT_KEY_DIRNAME",     7);
-define("MODULE_SORT_KEY_HASMAIN",     8);
-define("MODULE_SORT_KEY_HASADMIN",    9);
-define("MODULE_SORT_KEY_HASSEARCH",  10);
-define("MODULE_SORT_KEY_HASCONFIG",  11);
-define("MODULE_SORT_KEY_HASCOMMENTS",12);
+define("MODULE_SORT_KEY_ROOTDIRNAME", 5);
+define("MODULE_SORT_KEY_TYPE",        6);
 
-define("MODULE_SORT_KEY_DEFAULT",     MODULE_SORT_KEY_WEIGHT);
-define("MODULE_SORT_KEY_MAXVALUE",   12);
+define("MODULE_SORT_KEY_DEFAULT",     MODULE_SORT_KEY_ID);
+//define("MODULE_SORT_KEY_MAXVALUE",   12);
 
 /***
  * @internal
@@ -34,18 +28,12 @@ class Xupdate_Admin_ModuleStoreFilterForm extends Xupdate_AbstractFilterForm
 	var $mSpecial = null;
 
 	var $mSortKeys = array(
-		MODULE_SORT_KEY_MID         => "mid",
-		MODULE_SORT_KEY_NAME        => "name",
+		MODULE_SORT_KEY_ID         => "id",
+		MODULE_SORT_KEY_DIRNAME     => "dirname",
 		MODULE_SORT_KEY_VERSION     => "version",
 		MODULE_SORT_KEY_LASTUPDATE  => "last_update",
-		MODULE_SORT_KEY_WEIGHT      => "weight",
-		MODULE_SORT_KEY_ISACTIVE    => "isactive",
-		MODULE_SORT_KEY_DIRNAME     => "dirname",
-		MODULE_SORT_KEY_HASMAIN     => "hasmain",
-		MODULE_SORT_KEY_HASADMIN    => "hasadmin",
-		MODULE_SORT_KEY_HASSEARCH   => "hassearch",
-		MODULE_SORT_KEY_HASCONFIG   => "hasconfig",
-		MODULE_SORT_KEY_HASCOMMENTS => "hascomments"
+		MODULE_SORT_KEY_ROOTDIRNAME      => "rootdirname",
+		MODULE_SORT_KEY_TYPE    => "type"
 	);
 
 	function  Xupdate_Admin_ModuleStoreFilterForm()
@@ -54,7 +42,7 @@ class Xupdate_Admin_ModuleStoreFilterForm extends Xupdate_AbstractFilterForm
 	}
 	public function prepare(/*** XCube_PageNavigator ***/ &$navi,/*** XoopsObjectGenericHandler ***/ &$handler)
 	{
-		parent::prepare($navi , $handle);
+		parent::prepare($navi , $handler);
 	}
 
 	function getDefaultSortKey()
@@ -66,24 +54,9 @@ class Xupdate_Admin_ModuleStoreFilterForm extends Xupdate_AbstractFilterForm
 	{
 		$this->fetchSort();
 
-		if (isset($_REQUEST['special'])) {
-			$this->mSpecial = intval(xoops_getreqeust('special'));
-		}
-
-//		$this->_mCriteria->add(new Criteria('mid', 0, '>'));
-
 		$this->_mCriteria->addSort($this->getSort(), $this->getOrder());
 	}
 
-	function getCriteria($start = null, $limit = null)
-	{
-		$criteria = $this->_mCriteria;
-
-		$criteria->setStart(0);
-		$criteria->setLimit(0);
-
-		return $criteria;
-	}
 }
 
 ?>

@@ -59,6 +59,7 @@ $modversion['tables'] = array(
 //	  '{prefix}_{dirname}_xxxx',
 ##[cubson:tables]
     '{prefix}_{dirname}_store',
+    '{prefix}_{dirname}_modulestore',
 ##[/cubson:tables]
 );
 

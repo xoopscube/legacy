@@ -27,9 +27,9 @@ abstract class Xupdate_AbstractFilterForm
 
     /**
      * _getId
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  int
     **/
     protected function _getId()
@@ -38,9 +38,9 @@ abstract class Xupdate_AbstractFilterForm
 
     /**
      * &_getHandler
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  XoopsObjectGenericHandler
     **/
     protected function &_getHandler()
@@ -49,9 +49,9 @@ abstract class Xupdate_AbstractFilterForm
 
     /**
      * __construct
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     public function __construct()
@@ -61,25 +61,25 @@ abstract class Xupdate_AbstractFilterForm
 
     /**
      * prepare
-     * 
+     *
      * @param   XCube_PageNavigator  &$navi
      * @param   XoopsObjectGenericHandler  &$handler
-     * 
+     *
      * @return  void
     **/
     public function prepare(/*** XCube_PageNavigator ***/ &$navi,/*** XoopsObjectGenericHandler ***/ &$handler)
     {
         $this->mNavi =& $navi;
         $this->_mHandler =& $handler;
-    
+
         $this->mNavi->mGetTotalItems->add(array(&$this, 'getTotalItems'));
     }
 
     /**
      * getTotalItems
-     * 
+     *
      * @param   int  &$total
-     * 
+     *
      * @return  void
     **/
     public function getTotalItems(/*** int ***/ &$total)
@@ -89,29 +89,32 @@ abstract class Xupdate_AbstractFilterForm
 
     /**
      * fetchSort
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     protected function fetchSort()
     {
         $root =& XCube_Root::getSingleton();
+//fix pagenavi
+		$this->mNavi->setStart(intval($root->mContext->mRequest->getRequest($this->mNavi->mPrefix . 'start')));
+
         $this->mSort = intval($root->mContext->mRequest->getRequest($this->mNavi->mPrefix . 'sort'));
-    
+
         if(!isset($this->mSortKeys[abs($this->mSort)]))
         {
             $this->mSort = $this->getDefaultSortKey();
         }
-    
+
         $this->mNavi->mSort[$this->mNavi->mPrefix . 'sort'] = $this->mSort;
     }
 
     /**
      * fetch
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     public function fetch()
@@ -122,9 +125,9 @@ abstract class Xupdate_AbstractFilterForm
 
     /**
      * getSort
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  Enum
     **/
     public function getSort()
@@ -135,9 +138,9 @@ abstract class Xupdate_AbstractFilterForm
 
     /**
      * getOrder
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  Enum
     **/
     public function getOrder()
@@ -147,19 +150,19 @@ abstract class Xupdate_AbstractFilterForm
 
     /**
      * &getCriteria
-     * 
+     *
      * @param   int  $start
      * @param   int  $limit
-     * 
+     *
      * @return  Criteria
     **/
     public function &getCriteria(/*** int ***/ $start = null,/*** int ***/ $limit = null)
     {
         $t_start = ($start === null) ? $this->mNavi->getStart() : intval($start);
         $t_limit = ($limit === null) ? $this->mNavi->getPerpage() : intval($limit);
-    
+
         $criteria = $this->_mCriteria;
-    
+
         $criteria->setStart($t_start);
         $criteria->setLimit($t_limit);
         return $criteria;

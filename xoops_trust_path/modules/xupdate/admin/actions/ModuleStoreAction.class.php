@@ -70,7 +70,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	function &_getPageNavi()
 	{
 		$navi =& parent::_getPageNavi();
-		$navi->setPerpage(10);
+		$navi->setPerpage(30);//TODO
 
 		return $navi;
 	}
@@ -88,10 +88,11 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 	function getDefaultView()
 	{
+		$modHand = & $this->_getHandler();
+
 		$this->mFilter = $this->_getFilterForm();
 		$this->mFilter->fetch();
 
-		$modHand = & $this->_getHandler();
 		$this->mModuleObjects =& $modHand->getObjects($this->mFilter->getCriteria());
 		return XUPDATE_FRAME_VIEW_INDEX;
 	}
@@ -118,10 +119,12 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 		$modHand = & $this->_getHandler();
 		$module_total = $modHand->getCount();
-//		$active_module_total = $modHand->getCount(new Criteria('isactive', 1));
+
+		if ($module_total > $this->mFilter->mNavi->getPerpage() ){
+			$render->setAttribute('pageNavi', $this->mFilter->mNavi);
+		}
+
 		$render->setAttribute('ModuleTotal', $module_total);
-//		$render->setAttribute('activeModuleTotal', $active_module_total );
-//		$render->setAttribute('inactiveModuleTotal', $module_total - $active_module_total);
 
 
 		$render->setAttribute('actionForm', $this->mActionForm);
