@@ -36,7 +36,7 @@
 <{if isset($pageNavi) }>
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
 <{/if}>
-<form method="post" action="">
+<form method="post" >
 <{xoops_token form=$actionForm}>
 <table class="outer">
   <tr>
@@ -73,8 +73,8 @@
       <td class="legacy_list_image">
 <{*      <img src="<{$xoops_url}>/modules/<{$module->getVar('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->getVar('dirname')}>" />*}>
         <{if $module->getVar('type') == 'TrustModule' }>
-<{*        <input type="text" size="24" name="rootdirname[<{$module->getVar('id')}>]" value="<{$module->getVar('dirname')}>" />*}>
-         <{$module->getVar('dirname')}>
+        <input type="text" size="24" name="dirname[<{$module->getVar('id')}>]" value="<{$module->getVar('dirname')}>" />
+<{*         <{$module->getVar('dirname')}>*}>
         <{else}>
           <{$module->getVar('dirname')}>
         <{/if}>
@@ -114,9 +114,9 @@
           <{if $module->mModule->getVar('isactive')}>
          <input type="checkbox" class="rapidInstallCheckbox" />
           <{/if}>
-        <{/if}>
-     <{else}>
+        <{else}>
          <input type="checkbox" class="rapidInstallCheckbox" />
+        <{/if}>
      <{/if}>
       </td>
     </tr>

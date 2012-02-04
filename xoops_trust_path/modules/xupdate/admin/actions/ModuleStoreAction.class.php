@@ -134,17 +134,68 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 	function execute()
 	{
+		$form_cancel = $this->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
+		if ($form_cancel != null) {
+			return XUPDATE_FRAME_VIEW_CANCEL;
+		}
+
 		$this->mActionForm->fetch();
 		$this->mActionForm->validate();
 
 		if ($this->mActionForm->hasError()) {
-			return XUPDATE_FRAME_VIEW_ERROR;
+			return $this->_processConfirm();
 		}
 		else {
-			return XUPDATE_FRAME_VIEW_SUCCESS;
-//			return $this->_processSave();
+			return $this->_processSave();
 		}
 
+	}
+
+	function _processConfirm()
+	{
+		$modHand = & $this->_getHandler();
+		$this->mModuleObjects =& $modHand->getObjects(null ,true);
+
+		return XUPDATE_FRAME_VIEW_INPUT;
+	}
+
+	/**
+	 * To support a template writer, this send the list of mid that actionForm kept.
+	 */
+	function executeViewInput(&$render)
+	{
+		$render->setTemplateName("admin_module_store_confirm.html");
+		$render->setAttribute('moduleObjects', $this->mModuleObjects);
+		$render->setAttribute('actionForm', $this->mActionForm);
+		// To support a template writer, this send the list of id that
+		// actionForm kept.
+		//
+		$t_arr = $this->mActionForm->get('dirname');
+		$render->setAttribute('ids', array_keys($t_arr));
+	}
+
+	function _processSave()
+	{
+		$modHand = & $this->_getHandler();
+		$t_objectArr =& $modHand->getObjects();//TODO bug $id_as_key=true
+
+		$successFlag = true;
+		$newdata_dirname_arr = $this->mActionForm->get('dirname');
+		foreach($t_objectArr as $obj) {
+			$id = $obj->getVar('id');
+			$olddata['dirname'] = $obj->getVar('dirname');
+			$newdata['dirname'] = $newdata_dirname_arr[$id];
+			if (count(array_diff_assoc($olddata, $newdata)) > 0 ) {
+				$obj->set('dirname', $newdata_dirname_arr[$id]);
+				if ($modHand->insert($obj)) {
+					$successFlag &= true;
+				}else{
+					$successFlag = false;
+				}
+			}
+		}
+
+		return $successFlag ? XUPDATE_FRAME_VIEW_SUCCESS : XUPDATE_FRAME_VIEW_ERROR;
 	}
 
 	function executeViewSuccess(&$renderer)
@@ -155,6 +206,10 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	function executeViewError(&$renderer)
 	{
 		$this->mRoot->mController->executeRedirect('./index.php?action=ModuleStore', 1, _MD_XUPDATE_ERROR_DBUPDATE_FAILED);
+	}
+	function executeViewCancel(&$renderer)
+	{
+		$this->mRoot->mController->executeForward('./index.php?action=ModuleStore');
 	}
 
 	/**
@@ -196,7 +251,7 @@ jQuery(function($){
 	var addDelegates = function()
 	{
 		$('body').delegate('#rapidModuleInstallButton', 'click', clickRapidModuleInstallButton)
-		         .delegate('#rapidInstallCheckboxAll', 'click', checkAll);
+						 .delegate('#rapidInstallCheckboxAll', 'click', checkAll);
 	}
 
 	var clickRapidModuleInstallButton = function()

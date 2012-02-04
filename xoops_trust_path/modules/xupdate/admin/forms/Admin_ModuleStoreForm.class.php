@@ -1,11 +1,12 @@
 <?php
 /**
- *
- */
+*
+*/
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
 require_once XOOPS_ROOT_PATH."/core/XCube_ActionForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 class Xupdate_Admin_ModuleStoreForm extends XCube_ActionForm
 {
@@ -25,14 +26,6 @@ class Xupdate_Admin_ModuleStoreForm extends XCube_ActionForm
 		}
 	}
 
-	/***
-	 * For displaying the confirm-page, don't show CSRF error.
-	 * Always return null.
-	 */
-	function getTokenErrorMessage()
-	{
-		return null;
-	}
 
 	function prepare()
 	{
@@ -47,6 +40,8 @@ class Xupdate_Admin_ModuleStoreForm extends XCube_ActionForm
 		$this->mFieldProperties['dirname']->addVar("maxlength",25);
 
 	}
+
+
 }
 
 ?>
