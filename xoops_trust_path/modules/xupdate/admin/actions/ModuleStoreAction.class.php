@@ -259,37 +259,46 @@ jQuery(function($){
 					updateModuleStatus();
 				}
 			}
-
-
-			if (typeof installationModule.installhref != 'undefined'){
-
-				installationModule.td.html("インストール中");
-				try
-				{
-					$.ajax({
-						type: 'GET',
-						url: installationModule.installhref,
-						success: getConfirmFormSuccess,
-						error: ajaxFailed
-					});
-				}
-				catch ( e )
-				{
-					installationModule.td.html('<span style="color:red;">エラー</span>');
-					installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
-					updateModuleStatus();
-				}
+			var result =installationModule.td.text();
+			if (result != '展開完了'){
+				installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
+				updateModuleStatus();
 			}else{
-					installationModule.td.html('<span style="color:red;">スキップ</span>');
-					installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
-					updateModuleStatus();
+				if (typeof installationModule.installhref != 'undefined'){
+
+					installationModule.td.html("インストール中");
+					try
+					{
+						$.ajax({
+							type: 'GET',
+							url: installationModule.installhref,
+							success: getConfirmFormSuccess,
+							error: ajaxFailed
+						});
+					}
+					catch ( e )
+					{
+						installationModule.td.html('<span style="color:red;">エラー</span>');
+						installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
+						updateModuleStatus();
+					}
+				}else{
+						installationModule.td.html('<span style="color:red;">スキップ</span>');
+						installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
+						updateModuleStatus();
+				}
 			}
 
 		});
 	}
 	var getStoreSuccess = function(html)
 	{
-		installationModule.td.hide().html('<span style="color:green;">展開完了</span>').fadeIn();
+		var result = $(html).find('#contentBody a').text();
+		if (result == 'インストール'){
+			installationModule.td.html('<span style="color:green;">展開完了</span>');
+		}else{
+			installationModule.td.html('<span style="color:red;">展開エラー</span>');
+		}
 	}
 
 	var getConfirmFormSuccess = function(html)
