@@ -69,7 +69,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract {
 			return FALSE;
 		} else {
 //fix ereg_replace -> preg_replace for php5.3+
-			$this->SendMSG(preg_replace("/^[0-9]{3} \"(.+)\" .+".CRLF."/"., "\\1", $rtn));
+			$this->SendMSG(preg_replace("/^[0-9]{3} \"(.+)\" .+".CRLF."/", "\\1", $rtn));
 			return TRUE;
 		}
 	}
