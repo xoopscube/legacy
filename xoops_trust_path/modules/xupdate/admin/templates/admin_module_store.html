@@ -93,7 +93,11 @@
           <{$module->getRenderedVersion()}>
         <{/if}>
       </td>
-      <td class="legacy_list_date"><{$module->getVar('last_update')|xoops_formattimestamp:l}></td>
+      <td class="legacy_list_date">
+        <{if $module->mModule->getVar('mid')}>
+        <{$module->getVar('last_update')|xoops_formattimestamp:l}>
+        <{/if}>
+      </td>
       <td class="legacy_list_select">
           <{$module->getVar('rootdirname')}>
       </td>

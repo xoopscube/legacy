@@ -8,8 +8,6 @@
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
 require_once XUPDATE_TRUST_PATH . '/class/AbstractListAction.class.php';
-require_once XUPDATE_TRUST_PATH . "/admin/forms/Admin_ModuleStoreFilterForm.class.php";
-require_once XUPDATE_TRUST_PATH . "/admin/forms/Admin_ModuleStoreForm.class.php";
 
 class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 {
@@ -18,7 +16,9 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	protected $Func ;	// Functions instance
 	protected $mod_config ;
 	protected $content ;
+
 	protected $items ;
+	protected $sid = 1;
 
 	var $mModuleObjects = array();
 	var $mFilter = null;
@@ -40,23 +40,26 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$this->Ftp = $this->Xupdate->Ftp ;		// FTP instance
 		$this->Func = $this->Xupdate->func ;		// Functions instance
 		$this->mod_config = $this->mRoot->mContext->mModuleConfig ;	// mod_config
-		//	adump($this->mod_config);
-		//	adump($this->Ftp);
 
 		$jQuery = $this->mRoot->mContext->getAttribute('headerScript');
 		$jQuery->addScript($this->RapidModuleInstall_js(),false);
 
 
 	}
+
 	function prepare()
 	{
-		$this->mActionForm =new Xupdate_Admin_ModuleStoreForm();
+		$this->mActionForm =& $this->mAsset->getObject('form', 'ModuleStore',true);
 		$this->mActionForm->prepare();
+
+		$this->sid = $this->_getId();
+		$modHand = & $this->_getHandler();
+		$modHand->prepare($this->sid);
 	}
 
 	function &_getFilterForm()
 	{
-		$filter = new Xupdate_Admin_ModuleStoreFilterForm();
+		$filter =& $this->mAsset->getObject('filter', 'ModuleStore' , true );
 		$filter->prepare($this->_getPageNavi(), $this->_getHandler());
 		return $filter;
 	}
@@ -76,11 +79,24 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 
 	/**
+	 * _getId
+	 *
+	 * @param   void
+	 *
+	 * @return  int
+	**/
+	protected function _getId()
+	{
+		$this->sid = (int)$this->mRoot->mContext->mRequest->getRequest('sid');
+		$this->sid = empty($this->sid)? 1 : $this->sid;
+		return $this->sid;
+	}
+	/**
 	 * @protected
 	 */
 	protected function &_getHandler()
 	{
-		$handler =& $this->mAsset->load('handler', "ModuleStore");
+		$handler =& $this->mAsset->getObject('handler', 'ModuleStore',false);
 		return $handler;
 	}
 
@@ -92,7 +108,12 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$this->mFilter = $this->_getFilterForm();
 		$this->mFilter->fetch();
 
-		$this->mModuleObjects =& $modHand->getObjects($this->mFilter->getCriteria());
+		$criteria = $this->mFilter->getCriteria();
+		if (!empty($this->sid)){
+			$criteria->add(new Criteria( 'sid', $this->sid ) );
+		}
+
+		$this->mModuleObjects =& $modHand->getObjects($criteria);
 		return XUPDATE_FRAME_VIEW_INDEX;
 	}
 
@@ -118,14 +139,20 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$render->setAttribute('moduleObjects', $this->mModuleObjects);
 
 		$modHand = & $this->_getHandler();
-		$module_total = $modHand->getCount();
+
+		if (empty( $this->sid)){
+			$criteria = new CriteriaCompo();
+			$criteria->add(new Criteria( 'sid', $this->sid ) );
+			$module_total = $modHand->getCount($criteria);
+		}else{
+			$module_total = $modHand->getCount();
+		}
 
 		if ($module_total > $this->mFilter->mNavi->getPerpage() ){
 			$render->setAttribute('pageNavi', $this->mFilter->mNavi);
 		}
 
 		$render->setAttribute('ModuleTotal', $module_total);
-
 
 		$render->setAttribute('actionForm', $this->mActionForm);
 
@@ -153,7 +180,14 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	function _processConfirm()
 	{
 		$modHand = & $this->_getHandler();
-		$this->mModuleObjects =& $modHand->getObjects(null ,true);
+
+		if (empty( $this->sid)){
+			$criteria = new CriteriaCompo();
+			$criteria->add(new Criteria( 'sid', $this->sid ) );
+			$this->mModuleObjects =& $modHand->getObjects($criteria ,true);
+		}else{
+			$this->mModuleObjects =& $modHand->getObjects(null ,true);
+		}
 
 		return XUPDATE_FRAME_VIEW_INPUT;
 	}
@@ -176,7 +210,13 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	function _processSave()
 	{
 		$modHand = & $this->_getHandler();
-		$t_objectArr =& $modHand->getObjects();//TODO bug $id_as_key=true
+		if (empty( $this->sid)){
+			$criteria = new CriteriaCompo();
+			$criteria->add(new Criteria( 'sid', $this->sid ) );
+			$t_objectArr =& $modHand->getObjects($criteria);//TODO bug $id_as_key=true
+		}else{
+			$t_objectArr =& $modHand->getObjects();//TODO bug $id_as_key=true
+		}
 
 		$successFlag = true;
 		$newdata_dirname_arr = $this->mActionForm->get('dirname');
@@ -190,6 +230,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 					$successFlag &= true;
 				}else{
 					$successFlag = false;
+					break;
 				}
 			}
 		}
@@ -257,7 +298,7 @@ jQuery(function($){
 	var addDelegates = function()
 	{
 		$('body').delegate('#rapidModuleInstallButton', 'click', clickRapidModuleInstallButton)
-						 .delegate('#rapidInstallCheckboxAll', 'click', checkAll);
+						.delegate('#rapidInstallCheckboxAll', 'click', checkAll);
 	}
 
 	var clickRapidModuleInstallButton = function()

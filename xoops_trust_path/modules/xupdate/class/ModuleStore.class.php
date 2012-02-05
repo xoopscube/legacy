@@ -1,11 +1,11 @@
 <?php
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
-require_once XUPDATE_TRUST_PATH .'/class/Root.class.php';
+//require_once XUPDATE_TRUST_PATH .'/class/Root.class.php';
 /**
 * XoopsSimpleObject
 */
-class Xupdate_ModuleStore extends Xupdate_Root {
+class Xupdate_ModuleStore extends XoopsSimpleObject {
 
 	public $mModule ;
 	public $modinfo = array();
