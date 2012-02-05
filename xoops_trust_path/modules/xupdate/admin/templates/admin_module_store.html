@@ -101,7 +101,16 @@
         <{/if}>
       </td>
       <td class="legacy_list_select">
+        <{if $module->isDirnameError()}>
+          <{if $module->modinfo.trust_dirname}>
+            (<{$module->modinfo.trust_dirname}>)
+          <{else}>
+            (<{$module->modinfo.dirname}>)
+          <{/if}>
+          <strong class="legacy_module_warning"><{$module->getVar('rootdirname')}></strong>
+        <{else}>
           <{$module->getVar('rootdirname')}>
+        <{/if}>
       </td>
       <td class="legacy_list_select">
         <{$module->getVar('type')}>
@@ -124,7 +133,7 @@
       <td class="legacy_list_select">
       <{if $xupdate_writable.result==true}>
         <{if $module->mModule->getVar('mid') > 0 }>
-          <{if $module->mModule->getVar('isactive')}>
+          <{if $module->mModule->getVar('isactive') && $module->isDirnameError() == false}>
          <input type="checkbox" class="rapidInstallCheckbox" />
           <{/if}>
         <{else}>

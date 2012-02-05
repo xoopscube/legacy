@@ -42,7 +42,28 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 		$hModule = Xupdate_Utils::getXoopsHandler('module');
 		$this->mModule =& $hModule->getByDirname($this->getVar('dirname')) ;
 		if (is_object($this->mModule)){
+			$this->setVar('last_update', $this->mModule->getVar('last_update'));
 			$this->modinfo =& $this->mModule->getInfo();
+			$trust_dirname = $this->mModule->getVar('trust_dirname');
+
+			if ( empty($trust_dirname) ){
+				if ( isset($this->modinfo['trust_dirname']) || !empty($this->modinfo['trust_dirname']) ){
+					$this->mModule->setVar('trust_dirname',$this->modinfo['trust_dirname']);
+				}elseif ( !isset($this->modinfo['trust_dirname']) || empty($this->modinfo['trust_dirname']) ){
+					//for d3modules
+					if ( file_exists(XOOPS_MODULE_PATH.'/'.$this->getVar('dirname').'/mytrustdirname.php') ) {
+						$mytrustdirname='';
+						include XOOPS_MODULE_PATH.'/'.$this->getVar('dirname').'/mytrustdirname.php';
+						$this->modinfo['trust_dirname'] = $mytrustdirname;
+						$this->mModule->setVar('trust_dirname',$mytrustdirname);
+					}
+				}
+			}else{
+				if ( !isset($this->modinfo['trust_dirname']) || empty($this->modinfo['trust_dirname']) ){
+					$this->modinfo['trust_dirname'] = $trust_dirname;
+				}
+			}
+
 		}else{
 			$this->mModule = new XoopsModule();//空のobject
 			$this->mModule->cleanVars();
@@ -51,17 +72,37 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 	/**
 	 * @return bool
 	 */
-	public function isTrustDirnameError()
+	public function isDirnameError()
 	{
-		$ret = false;
+
 		if ( $this->getVar('type') == 'TrustModule' ){
-			$trust_dirname = $this->mModule->getVar('trust_dirname');
-			if ( !empty($trust_dirname) && $this->getVar('trust_dirname') != $trust_dirname
-				&& (isset($this->modinfo['trust_dirname']) && $this->getVar('trust_dirname') != $this->modinfo['trust_dirname'] ) ){
-				$ret = true;
+			if ( is_object($this->mModule) ){
+				if ( $this->mModule->getVar('mid') ){
+					if ( $this->getVar('trust_dirname') == $this->mModule->getVar('trust_dirname') ){
+						return false;//upadte
+					}
+					if ( !isset($this->modinfo['trust_dirname']) ){
+						return true;
+					}
+					if ( empty($this->modinfo['trust_dirname']) ){
+						return true;
+					}
+					if ( $this->modinfo['trust_dirname'] != $this->getVar('trust_dirname') ){
+						return true;
+					}
+				}
+			}
+		}else{
+			if ( is_object($this->mModule) ){
+				if ( $this->mModule->getVar('mid') ){
+					if ( isset($this->modinfo['trust_dirname']) && !empty($this->modinfo['trust_dirname']) ){
+						return true;
+					}
+				}
 			}
 		}
-		return $ret;
+		return false;
+
 	}
 	/**
 	 * @return bool
@@ -71,7 +112,7 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 		if (empty($this->modinfo)){
 			return false;
 		}else{
-			return ($this->getVar('version') < Legacy_Utils::convertVersionFromModinfoToInt($this->modinfo['version']));
+			return ($this->getVar('version') != Legacy_Utils::convertVersionFromModinfoToInt($this->modinfo['version']));
 		}
 	}
 

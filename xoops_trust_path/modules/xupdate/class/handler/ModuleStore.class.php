@@ -113,7 +113,6 @@ class Xupdate_ModuleStoreHandler extends XoopsObjectGenericHandler
 		$mModuleStore->assignVar('rootdirname',$myrow['dirname']);
 
 		$mModuleStore->setmModule();
-		$mModuleStore->assignVar('last_update',$mModuleStore->mModule->getVar('last_update') );
 
 		if (isset($this->mSiteModuleObjects[$sid][$myrow['dirname']])){
 			$mModuleStore->assignVar('id',$this->mSiteModuleObjects[$sid][$myrow['dirname']]->getVar('id') );
@@ -140,7 +139,7 @@ class Xupdate_ModuleStoreHandler extends XoopsObjectGenericHandler
 			$mModuleStore->assignVar('rootdirname',$myrow['dirname']);
 
 			$mModuleStore->setmModule();
-			$mModuleStore->assignVar('last_update',$mModuleStore->mModule->getVar('last_update') );
+
 			if (isset($this->mSiteModuleObjects[$sid][$myrow['dirname']])){
 				$mModuleStore->assignVar('id',$this->mSiteModuleObjects[$sid][$myrow['dirname']]->getVar('id') );
 				$this->_storeupdate($mModuleStore , $this->mSiteModuleObjects[$sid][$myrow['dirname']]);
@@ -162,7 +161,6 @@ class Xupdate_ModuleStoreHandler extends XoopsObjectGenericHandler
 				$mModuleStore->assignVar('trust_dirname',$myrow['dirname']);
 				$mModuleStore->assignVar('rootdirname',$myrow['dirname']);
 				$mModuleStore->setmModule();
-				$mModuleStore->assignVar('last_update',$mModuleStore->mModule->getVar('last_update') );
 
 				if ( $dirname == $myrow['dirname'] ){
 					$_isrootdirmodule = true;
@@ -186,7 +184,6 @@ class Xupdate_ModuleStoreHandler extends XoopsObjectGenericHandler
 				$mModuleStore->assignVar('rootdirname',$myrow['dirname']);
 
 				$mModuleStore->setmModule();
-				$mModuleStore->assignVar('last_update',$mModuleStore->mModule->getVar('last_update') );
 
 				if (isset($this->mSiteModuleObjects[$sid][$myrow['dirname']])){
 					$mModuleStore->assignVar('id',$this->mSiteModuleObjects[$sid][$myrow['dirname']]->getVar('id') );
