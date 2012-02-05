@@ -206,8 +206,10 @@ class Xupdate_ModuleStoreHandler extends XoopsObjectGenericHandler
  */
 	private function _storeupdate ($obj , $oldobj)
 	{
+		$newdata['type'] = $obj->getVar('type');
 		$newdata['last_update'] = $obj->getVar('last_update');
 		$newdata['version'] = $obj->getVar('version');
+		$olddata['type'] = $oldobj->getVar('type');
 		$olddata['last_update'] = $oldobj->getVar('last_update');
 		$olddata['version'] = $oldobj->getVar('version');
 		if (count(array_diff_assoc($olddata, $newdata)) > 0 ) {

@@ -83,6 +83,7 @@
         <input type="text" size="24" name="dirname[<{$module->getVar('id')}>]" value="<{$module->getVar('dirname')}>" />
 <{*         <{$module->getVar('dirname')}>*}>
         <{else}>
+        <input type="hidden" size="24" name="dirname[<{$module->getVar('id')}>]" value="<{$module->getVar('dirname')}>" />
           <{$module->getVar('dirname')}>
         <{/if}>
       </td>
