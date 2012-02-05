@@ -89,6 +89,7 @@
       </td>
       <td class="legacy_list_order">
         <{if $module->hasNeedUpdate()}>
+          (<{$module->mModule->getRenderedVersion()}>)
           <strong class="legacy_module_versionMsg"><{$module->getRenderedVersion()}></strong>
         <{else}>
           <{$module->getRenderedVersion()}>
