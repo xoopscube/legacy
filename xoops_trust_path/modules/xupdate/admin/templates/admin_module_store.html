@@ -64,8 +64,8 @@
       <a href="index.php?action=ModuleStore&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
     <th>TRUST or <{$smarty.const._AD_LEGACY_LANG_MOD_NAME}>
-      <a href="index.php?action=ModuleStore&amp;sort=<{$smarty.const.MODULE_SORT_KEY_ROOTDIRNAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleStore&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_ROOTDIRNAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;sort=<{$smarty.const.MODULE_SORT_KEY_TARGET_KEY}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_TARGET_KEY}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
     <th><{$smarty.const._AD_XUPDATE_LANG_TYPE}>
       <a href="index.php?action=ModuleStore&amp;sort=<{$smarty.const.MODULE_SORT_KEY_TYPE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
@@ -107,9 +107,9 @@
           <{else}>
             (<{$module->modinfo.dirname}>)
           <{/if}>
-          <strong class="legacy_module_warning"><{$module->getVar('rootdirname')}></strong>
+          <strong class="legacy_module_warning"><{$module->getVar('target_key')}></strong>
         <{else}>
-          <{$module->getVar('rootdirname')}>
+          <{$module->getVar('target_key')}>
         <{/if}>
       </td>
       <td class="legacy_list_select">

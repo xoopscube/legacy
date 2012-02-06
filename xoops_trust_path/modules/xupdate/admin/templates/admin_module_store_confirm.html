@@ -36,7 +36,7 @@
       <{/if}>
     </td>
     <td class="legacy_list_select">
-    <{ $moduleObjects[$id]->getShow('rootdirname') }>
+    <{ $moduleObjects[$id]->getShow('target_key') }>
       <input type="hidden" name="dirname[<{$id}>]" value="<{$actionForm->get('dirname',$id)|xoops_escape:edit}>" />
     </td>
   </tr>

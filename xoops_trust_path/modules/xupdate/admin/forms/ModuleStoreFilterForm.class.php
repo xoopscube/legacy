@@ -12,7 +12,7 @@ define("MODULE_SORT_KEY_ID",          1);
 define("MODULE_SORT_KEY_DIRNAME",     2);
 define("MODULE_SORT_KEY_VERSION",     3);
 define("MODULE_SORT_KEY_LASTUPDATE",  4);
-define("MODULE_SORT_KEY_ROOTDIRNAME", 5);
+define("MODULE_SORT_KEY_TARGET_KEY" , 5);
 define("MODULE_SORT_KEY_TYPE",        6);
 
 define("MODULE_SORT_KEY_DEFAULT",     MODULE_SORT_KEY_ID);
@@ -32,7 +32,7 @@ class Xupdate_Admin_ModuleStoreFilterForm extends Xupdate_AbstractFilterForm
 		MODULE_SORT_KEY_DIRNAME     => "dirname",
 		MODULE_SORT_KEY_VERSION     => "version",
 		MODULE_SORT_KEY_LASTUPDATE  => "last_update",
-		MODULE_SORT_KEY_ROOTDIRNAME      => "rootdirname",
+		MODULE_SORT_KEY_TARGET_KEY      => "target_key",
 		MODULE_SORT_KEY_TYPE    => "type"
 	);
 

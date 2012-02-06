@@ -19,6 +19,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 	protected $items ;
 	protected $sid = 1;
+	protected $mSiteModuleObjects = array();
 
 	var $mModuleObjects = array();
 	var $mFilter = null;
@@ -53,8 +54,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$this->mActionForm->prepare();
 
 		$this->sid = $this->_getId();
-		$modHand = & $this->_getHandler();
-		$modHand->prepare($this->sid);
+
 	}
 
 	function &_getFilterForm()
@@ -103,6 +103,34 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 	function getDefaultView()
 	{
+
+//データの自動作成と削除
+		//for test start ---------------------------
+		include dirname(__FILE__) .'/modules.ini';
+		//このストアーごとのアイテム配列をセットしてください
+		//テストなので$sid = 1のみ
+		$sid = empty($this->sid)? 1:  (int)$this->sid ;
+		if ($sid != 1){
+			$this->items = array();
+		}else{
+			$this->items[1] = $items;
+		}
+		//for test end ---------------------------
+		//上記を使用して
+		//登録済のデータをマージします
+		$this->_setmSiteModuleObjects($sid);
+		//未登録のデータは自動で登録
+		foreach($this->items as $sid => $items){
+			foreach($items as $key => $item){
+				if ($item['type'] == 'TrustModule' ){
+					$this->_setDataTrustModule($sid , $item);
+				}else{
+					$this->_setDataSingleModule($sid , $item);
+				}
+			}
+		}
+//-----------------------------------------------
+
 		$modHand = & $this->_getHandler();
 
 		$this->mFilter = $this->_getFilterForm();
@@ -128,7 +156,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	{
 		$render->setTemplateName('admin_module_store.html');
 
-		$render->setAttribute('xupdate_items', $this->items);
+//		$render->setAttribute('xupdate_items', $this->items);
 		$render->setAttribute('mod_config', $this->mod_config);
 
 		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
@@ -184,9 +212,9 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		if (empty( $this->sid)){
 			$criteria = new CriteriaCompo();
 			$criteria->add(new Criteria( 'sid', $this->sid ) );
-			$this->mModuleObjects =& $modHand->getObjects($criteria ,true);
+			$this->mModuleObjects =& $modHand->getObjects($criteria ,null , null , true);
 		}else{
-			$this->mModuleObjects =& $modHand->getObjects(null ,true);
+			$this->mModuleObjects =& $modHand->getObjects(null ,null , null , true);
 		}
 
 		return XUPDATE_FRAME_VIEW_INPUT;
@@ -252,6 +280,160 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$this->mRoot->mController->executeForward('./index.php?action=ModuleStore');
 	}
 
+//------------------prepare
+	private function _setmSiteModuleObjects($sid = null)
+	{
+		$modHand = & $this->_getHandler();
+		//この該当サイト登録済みデータを全部確認する
+		if ( empty($sid)){
+			$siteModuleStoreObjects =& $modHand->getObjects();
+		}else{
+			$criteria = new CriteriaCompo();
+			$criteria->add(new Criteria( 'sid', $sid ) );
+			$siteModuleStoreObjects =& $modHand->getObjects($criteria);
+		}
+		if (empty($siteModuleStoreObjects)){
+			return;
+		}
+		foreach($siteModuleStoreObjects as $id => $mobj){
+
+			if (isset($this->items[$sid])){
+				$is_sitedata = false;
+				foreach($this->items[$sid] as $key => $item){
+					if ($item['dirname'] == $mobj->getVar('target_key') ){
+						$is_sitedata = true;
+						break;
+					}
+				}
+				//このサイトデータに無い
+				if ($is_sitedata == false){
+					$modHand->delete($mobj,true);
+				}
+			}
+
+			if (isset($this->mSiteModuleObjects[$mobj->getVar('sid')][$mobj->getVar('target_key')][$mobj->getVar('dirname')])){
+				//データ重複
+				$modHand->delete($mobj,true);
+			}else{
+				$this->mSiteModuleObjects[$mobj->getVar('sid')][$mobj->getVar('target_key')][$mobj->getVar('dirname')]=$mobj;
+			}
+		}
+
+	}
+
+	private function _setDataSingleModule($sid , $item)
+	{
+		$modHand = & $this->_getHandler();
+		//trustモジュールでない(複製可能なものはどうしよう)
+		$mModuleStore = new $modHand->mClass();
+		$mModuleStore->assignVars($item);
+		$mModuleStore->assignVar('sid', $sid);
+		$mModuleStore->assignVar('target_key',$item['dirname']);
+
+		$mModuleStore->setmModule();
+
+		if (isset($this->mSiteModuleObjects[$sid][$item['dirname']][$item['dirname']])){
+			$mModuleStore->assignVar('id',$this->mSiteModuleObjects[$sid][$item['dirname']][$item['dirname']]->getVar('id') );
+			$this->_storeupdate($mModuleStore , $this->mSiteModuleObjects[$sid][$item['dirname']][$item['dirname']]);
+		}else{
+			$mModuleStore->setNew();
+			$modHand->insert($mModuleStore ,true);
+		}
+		unset($mModuleStore);
+
+	}
+	private function _setDataTrustModule($sid ,$item)
+	{
+		$modHand = & $this->_getHandler();
+		//インストール済みの同じtrustモージュールのリストを取得
+		$list = Legacy_Utils::getDirnameListByTrustDirname($item['dirname']);
+
+		if (empty($list)){
+			//インストール済みの同じtrustモージュール無し、注意 is_active
+			$mModuleStore = new $modHand->mClass();
+			$mModuleStore->assignVars($item);
+			$mModuleStore->set('sid',$sid);
+			$mModuleStore->assignVar('trust_dirname',$item['dirname']);
+			$mModuleStore->assignVar('target_key',$item['dirname']);
+
+			$mModuleStore->setmModule();
+
+			if (isset($this->mSiteModuleObjects[$sid][$item['dirname']][$item['dirname']])){
+				$mModuleStore->assignVar('id',$this->mSiteModuleObjects[$sid][$item['dirname']][$item['dirname']]->getVar('id') );
+				$this->_storeupdate($mModuleStore , $this->mSiteModuleObjects[$sid][$item['dirname']][$item['dirname']]);
+			}else{
+				$mModuleStore->setNew();
+				$modHand->insert($mModuleStore ,true);
+			}
+			unset($mModuleStore);
+
+		}else{
+
+			$_isrootdirmodule = false;
+			foreach($list as $dirname){
+				$mModuleStore = new $modHand->mClass();
+				$mModuleStore->assignVars($item);
+				$mModuleStore->assignVar('sid',$sid);
+
+				$mModuleStore->assignVar('dirname',$dirname);
+				$mModuleStore->assignVar('trust_dirname',$item['dirname']);
+				$mModuleStore->assignVar('target_key',$item['dirname']);
+				$mModuleStore->setmModule();
+
+				if ( $dirname == $item['dirname'] ){
+					$_isrootdirmodule = true;
+				}
+				if (isset($this->mSiteModuleObjects[$sid][$dirname])){
+					$mModuleStore->assignVar('id',$this->mSiteModuleObjects[$sid][$item['dirname']][$dirname]->getVar('id') );
+					$this->_storeupdate($mModuleStore , $this->mSiteModuleObjects[$sid][$item['dirname']][$item['dirname']]);
+				}else{
+					$mModuleStore->setNew();
+					$modHand->insert($mModuleStore ,true);
+				}
+				unset($mModuleStore);
+			}
+			//そのままインストールしていない場合、そのまま追加可能なので
+			if ( $_isrootdirmodule == false ){
+				$mModuleStore = new $modHand->mClass();
+				$mModuleStore->assignVars($item);
+				$mModuleStore->assignVar('sid',$sid);
+
+				$mModuleStore->assignVar('trust_dirname',$item['dirname']);
+				$mModuleStore->assignVar('target_key',$item['dirname']);
+
+				$mModuleStore->setmModule();
+
+				if (isset($this->mSiteModuleObjects[$sid][$item['dirname']][$item['dirname']])){
+					$mModuleStore->assignVar('id',$this->mSiteModuleObjects[$sid][$item['dirname']][$item['dirname']]->getVar('id') );
+					$this->_storeupdate($mModuleStore , $this->mSiteModuleObjects[$sid][$item['dirname']][$item['dirname']]);
+				}else{
+					$mModuleStore->setNew();
+					$modHand->insert($mModuleStore ,true);
+				}
+				unset($mModuleStore);
+			}
+		}
+
+	}
+
+/*
+ * このサイトのデータをデータベースに再セットする
+ */
+	private function _storeupdate ($obj , $oldobj)
+	{
+		$modHand = & $this->_getHandler();
+		$newdata['type'] = $obj->getVar('type');
+		$newdata['last_update'] = $obj->getVar('last_update');
+		$newdata['version'] = $obj->getVar('version');
+		$olddata['type'] = $oldobj->getVar('type');
+		$olddata['last_update'] = $oldobj->getVar('last_update');
+		$olddata['version'] = $oldobj->getVar('version');
+		if (count(array_diff_assoc($olddata, $newdata)) > 0 ) {
+			$obj->unsetNew();
+			$modHand->insert($obj ,true);
+		}
+
+	}
 	/**
 	 * RapidModuleStore_js
 	 *
@@ -262,7 +444,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	public function RapidModuleInstall_js()
 	{
 
-		$message_Install = _INSTALL;
+		$message_Install = _MI_XUPDATE_LANG_UPDATE;
 		$message_Error = _ERRORS;
 		$message_Waiting = _AD_XUPDATE_LANG_MESSAGE_WAITING;
 		$message_Success = _AD_XUPDATE_LANG_MESSAGE_SUCCESS;
