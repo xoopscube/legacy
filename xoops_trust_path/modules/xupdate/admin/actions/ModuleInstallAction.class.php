@@ -35,9 +35,9 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 
 	/**
 	 * getDefaultView
-	 * 
+	 *
 	 * @param	void
-	 * 
+	 *
 	 * @return	Enum
 	**/
 
@@ -87,7 +87,7 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 
 	public function executeViewSuccess(&$render)
 	{
- 
+
 		if( $this->Xupdate->params['is_writable']['result'] === true ) {
 			$this->_downloadFile();
 			if($this->_unzipFile()==true) {
@@ -233,10 +233,22 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
         }
     }
 
-    private function _get_nextlink($targetKeyName)
-    {
-        return '<a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=ModuleInstall&dirname='.$targetKeyName.'">'._MI_XUPDATE_LANG_UPDATE.'</a>';
-    }
+	private function _get_nextlink($targetKeyName)
+	{
+		$ret ='';
+		$hModule = Xupdate_Utils::getXoopsHandler('module');
+		$module =& $hModule->getByDirname($targetKeyName) ;
+		if (is_object($module)){
+			if ($module->getVar('isactive') ){
+				$ret ='<a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=ModuleUpdate&dirname='.$targetKeyName.'">'._MI_XUPDATE_LANG_UPDATE.'</a>';
+			}else{
+				$ret =_AD_LEGACY_LANG_BLOCK_INACTIVETOTAL;
+			}
+		}else{
+			$ret ='<a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=ModuleInstall&dirname='.$targetKeyName.'">'._MI_XUPDATE_LANG_UPDATE.'</a>';
+		}
+		return $ret;
+	}
 
 
 
