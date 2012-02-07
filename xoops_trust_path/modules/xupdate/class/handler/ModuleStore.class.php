@@ -122,7 +122,7 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 		$modDirname = $root->mContext->mModule->mAssetManager->mDirname;
 		$ret = XOOPS_MODULE_URL .'/'.$modDirname.'/admin/index.php?action=ModuleInstall'
 			.'&target_key='.$this->getVar('target_key') .'&target_type='.$this->getVar('type')
-			.'&dirname='.$this->getVar('dirname') .'&sid='.$this->getVar('sid');
+			.'&trust_dirname='.$this->getVar('trust_dirname') .'&dirname='.$this->getVar('dirname');
 		return $ret;
 	}
 	public function get_InstallUrl()

@@ -100,6 +100,20 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
         $this->_ftpPutNakami($sourcePath, $targetPath);
         return true;
     }
+    //for module rename uploading
+    public function uploadNakami_To_module($sourcePath, $targetPath , $trust_dirname , $dirname)
+    {
+        $this->mes .= " start uploading ".$dirname."..<br>\n";
+        $this->_ftpPutNakami_To_module($sourcePath, $targetPath , $trust_dirname , $dirname );
+        return true;
+    }
+    //for other than module uploading
+    public function uploadNakami_OtherThan_module($sourcePath, $targetPath , $trust_dirname , $dirname)
+    {
+        $this->mes .= " start uploading ..<br>\n";
+        $this->_ftpPutNakami_OtherThan_module($sourcePath, $targetPath , $trust_dirname , $dirname );
+        return true;
+    }
 
     public function app_logout(){
         $this->quit() ;
@@ -145,7 +159,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
         }
 
         //throw new Exception(t("seekFTP fail"), 1);
-        $this->mes .= " seekFTP fail<br>\n";
+        $this->mes .= " seekFTP fail<br>\n";//TODO WHY fail?
         return false;
     }
 
@@ -201,30 +215,115 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
         ////adump($remote_path);
         $this->_ftpPutSub($local_path, $remote_path, $remote_pos);
     }
+    protected function _ftpPutNakami_To_module($local_path, $remote_path , $trust_dirname , $dirname )
+    {
+        $remote_pos = strlen($local_path) + 1;
+        $this->mes .= $remote_pos. "<br>\n";
+        ////adump($local_path);
+        ////adump($remote_path);
+        $this->_ftpPutSub_To_module($local_path, $remote_path, $remote_pos , $trust_dirname , $dirname );
+    }
+    protected function _ftpPutNakami_OtherThan_module($local_path, $remote_path , $trust_dirname , $dirname )
+    {
+        $remote_pos = strlen($local_path) + 1;
+        $this->mes .= $remote_pos. "<br>\n";
+        ////adump($local_path);
+        ////adump($remote_path);
+        $this->_ftpPutSub_OtherThan_module($local_path, $remote_path, $remote_pos , $trust_dirname , $dirname );
+    }
 
     protected function _ftpPutSub($local_path, $remote_path, $remote_pos)
     {
         $ftp_root = $this->seekFTPRoot();
         $file_list = $this->getFileList($local_path);
-        $dir = $file_list['dir'];
-        krsort($dir);
-
-        foreach ($dir as $directory){
-            $remote_directory = $remote_path.substr($directory, $remote_pos);
-            if (!is_dir($remote_directory)){
-                $this->ftp_mkdir($remote_directory);
+        if (isset($file_list['dir']) && is_array($file_list['dir']) ){
+            $dir = $file_list['dir'];
+            krsort($dir);
+            foreach ($dir as $directory){
+                $remote_directory = $remote_path.substr($directory, $remote_pos);
+                if (!is_dir($remote_directory)){
+                    $this->ftp_mkdir($remote_directory);
+                }
             }
         }
 
         /// put files
         $this->chdir('/');
-        foreach ($file_list['file'] as $l_file){
-            $r_file = $remote_path.substr($l_file, $remote_pos ); // +1 is remove first flash
-            $ftp_remote_file = substr($r_file, strlen($ftp_root));
-            //$l_file = str_replace( '/','\\',$l_file );
-            //$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
-            //$this->put($l_file, $ftp_remote_file, FTP_BINARY);
-            $this->put($l_file, $ftp_remote_file);
+        if (isset($file_list['file']) && is_array($file_list['file']) ){
+            foreach ($file_list['file'] as $l_file){
+                $r_file = $remote_path.substr($l_file, $remote_pos ); // +1 is remove first flash
+                $ftp_remote_file = substr($r_file, strlen($ftp_root));
+                //$l_file = str_replace( '/','\\',$l_file );
+                //$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
+                //$this->put($l_file, $ftp_remote_file, FTP_BINARY);
+                $this->put($l_file, $ftp_remote_file);
+            }
+        }
+    }
+
+    protected function _ftpPutSub_To_module($local_path, $remote_path, $remote_pos , $trust_dirname , $dirname )
+    {
+        $ftp_root = $this->seekFTPRoot();
+        $file_list = $this->getFileList($local_path);
+        if (isset($file_list['dir']) && is_array($file_list['dir']) ){
+            $dir = $file_list['dir'];
+            krsort($dir);
+            foreach ($dir as $directory){
+                $directory = str_replace('/'.$trust_dirname,'/'.$dirname ,$directory);
+                $remote_directory = $remote_path.substr($directory, $remote_pos);
+                if (!is_dir($remote_directory)){
+                    $this->ftp_mkdir($remote_directory);
+                }
+            }
+        }
+
+        /// put files
+        $this->chdir('/');
+        if (isset($file_list['file']) && is_array($file_list['file']) ){
+            foreach ($file_list['file'] as $l_file){
+                //rename dirname
+                $r_file = $remote_path.substr(str_replace('/'.$trust_dirname.'/','/'.$dirname.'/' ,$l_file), $remote_pos ); // +1 is remove first flash
+                $ftp_remote_file = substr($r_file, strlen($ftp_root));
+                //$l_file = str_replace( '/','\\',$l_file );
+                //$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
+                //$this->put($l_file, $ftp_remote_file, FTP_BINARY);
+                $this->put($l_file, $ftp_remote_file);
+            }
+        }
+    }
+    protected function _ftpPutSub_OtherThan_module($local_path, $remote_path, $remote_pos , $trust_dirname , $dirname )
+    {
+        $ftp_root = $this->seekFTPRoot();
+        $file_list = $this->getFileList($local_path);
+        if (isset($file_list['dir']) && is_array($file_list['dir']) ){
+            $dir = $file_list['dir'];
+            krsort($dir);
+
+            foreach ($dir as $directory){
+                if (strstr($directory ,'/modules/'.$trust_dirname)){
+                    continue;
+                }
+                $remote_directory = $remote_path.substr($directory, $remote_pos);
+                if (!is_dir($remote_directory)){
+                    $this->ftp_mkdir($remote_directory);
+                }
+            }
+        }
+
+        /// put files
+        $this->chdir('/');
+        if (isset($file_list['file']) && is_array($file_list['file']) ){
+            foreach ($file_list['file'] as $l_file){
+                if (strstr($l_file ,'/modules/'.$trust_dirname.'/')){
+                    continue;
+                }
+                $r_file = $remote_path.substr($l_file, $remote_pos ); // +1 is remove first flash
+                $ftp_remote_file = substr($r_file, strlen($ftp_root));
+                //$l_file = str_replace( '/','\\',$l_file );
+                //$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
+                //$this->put($l_file, $ftp_remote_file, FTP_BINARY);
+                $this->put($l_file, $ftp_remote_file);
+            }
         }
     }
 
