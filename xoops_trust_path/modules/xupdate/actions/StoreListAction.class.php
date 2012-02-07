@@ -19,9 +19,9 @@ class Xupdate_StoreListAction extends Xupdate_AbstractListAction
 {
     /**
      * &_getHandler
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  Xupdate_StoreHandler
     **/
     protected function &_getHandler()
@@ -32,9 +32,9 @@ class Xupdate_StoreListAction extends Xupdate_AbstractListAction
 
     /**
      * &_getFilterForm
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  Xupdate_StoreFilterForm
     **/
     protected function &_getFilterForm()
@@ -46,9 +46,9 @@ class Xupdate_StoreListAction extends Xupdate_AbstractListAction
 
     /**
      * _getBaseUrl
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  string
     **/
     protected function _getBaseUrl()
@@ -58,9 +58,9 @@ class Xupdate_StoreListAction extends Xupdate_AbstractListAction
 
     /**
      * executeViewIndex
-     * 
+     *
      * @param   XCube_RenderTarget  &$render
-     * 
+     *
      * @return  void
     **/
     public function executeViewIndex(/*** XCube_RenderTarget ***/ &$render)

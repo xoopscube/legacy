@@ -176,9 +176,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 			$module_total = $modHand->getCount();
 		}
 
-		if ($module_total > $this->mFilter->mNavi->getPerpage() ){
-			$render->setAttribute('pageNavi', $this->mFilter->mNavi);
-		}
+		$render->setAttribute('pageNavi', $this->mFilter->mNavi);
 
 		$render->setAttribute('ModuleTotal', $module_total);
 

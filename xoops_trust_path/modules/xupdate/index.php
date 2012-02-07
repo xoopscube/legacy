@@ -6,12 +6,14 @@
  * @version $Id$
 **/
 
-require_once XOOPS_ROOT_PATH . '/header.php';
-
 $root =& XCube_Root::getSingleton();
 
+$root->mController->executeHeader();
 $root->mController->execute();
 
-require_once XOOPS_ROOT_PATH . '/footer.php';
+
+$xoopsLogger=&$root->mController->getLogger();
+$xoopsLogger->stopTime();
+$root->mController->executeView();
 
 ?>

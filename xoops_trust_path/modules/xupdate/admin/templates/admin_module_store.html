@@ -41,35 +41,35 @@
   </ul>
 </div>
 <{/if}>
-<{if isset($pageNavi) }>
+<{if $pageNavi->getPerpage() < $pageNavi->getTotalItems() }>
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
 <{/if}>
 <form method="post" >
 <table class="outer">
   <tr>
     <th>id
-      <a href="index.php?action=ModuleStore&amp;sort=<{$smarty.const.MODULE_SORT_KEY_ID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleStore&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_ID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.MODULE_SORT_KEY_ID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.MODULE_SORT_KEY_ID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
     <th><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}>
-      <a href="index.php?action=ModuleStore&amp;sort=<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleStore&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
     <th><{$smarty.const._AD_LEGACY_LANG_VERSION}>
-      <a href="index.php?action=ModuleStore&amp;sort=<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleStore&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
     <th><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}>
-      <a href="index.php?action=ModuleStore&amp;sort=<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleStore&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
     <th>TRUST or <{$smarty.const._AD_LEGACY_LANG_MOD_NAME}>
-      <a href="index.php?action=ModuleStore&amp;sort=<{$smarty.const.MODULE_SORT_KEY_TARGET_KEY}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleStore&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_TARGET_KEY}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.MODULE_SORT_KEY_TARGET_KEY}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.MODULE_SORT_KEY_TARGET_KEY}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
     <th><{$smarty.const._AD_XUPDATE_LANG_TYPE}>
-      <a href="index.php?action=ModuleStore&amp;sort=<{$smarty.const.MODULE_SORT_KEY_TYPE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleStore&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_TYPE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.MODULE_SORT_KEY_TYPE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.MODULE_SORT_KEY_TYPE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
     <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
     <th><{$smarty.const._AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL}><br><input id="rapidInstallCheckboxAll" type="checkbox" /></th>
@@ -156,3 +156,6 @@
   </tr>
 </table>
 </form>
+<{if $pageNavi->getPerpage() < $pageNavi->getTotalItems() }>
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+<{/if}>

@@ -210,6 +210,7 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 			$this->_set_error_log($e->getMessage());
 			return false;
 		}
+
 		$fp = fopen($downloadedFilePath, "w");
 
 		try {
@@ -243,6 +244,8 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 			$this->Ftp->appendMes('curl exec OK<br />');
 		} catch (Exception $e) {
 			$this->_set_error_log($e->getMessage());
+
+			fclose($fp);
 			return false;
 		}
 
@@ -255,6 +258,11 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 	{
 		// local file name
 		$downloadPath = $this->_getDownloadFilePath();
+		$downloadPath = realpath($downloadPath);
+		if (empty($downloadPath) ) {
+			$this->_set_error_log('getDownloadFilePath not found error in: '.$this->_getDownloadFilePath());
+			return false;
+		}
 
 		if (! chdir($this->exploredDirPath) ) {
 			$this->_set_error_log('chdir error in: '.$this->exploredDirPath);
@@ -263,7 +271,7 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 
 		try {
 			if(!class_exists('ZipArchive') ){
-				throw new Exception('ZipArchive class fail',1);
+				throw new Exception('ZipArchive class not found fail',1);
 			}
 		} catch (Exception $e) {
 			$this->_set_error_log($e->getMessage());
