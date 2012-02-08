@@ -127,7 +127,7 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
   {
 	if($module->getInfo('trust_dirname') == 'xupdate'){
 		$db = $this->mRoot->mController->mDB;
-		$sql = sprintf("SHOW TABLES LIKE `%s`", $db->prefix("xupdate_modulestore") );
+		$sql = sprintf("SHOW TABLES LIKE '%s'", $db->prefix("xupdate_modulestore") );
 		list($result) = $db->fetchRow($db->query($sql));
 		if( empty($result) ){
 			$sql ="CREATE TABLE ".$db->prefix("xupdate_modulestore")." (
