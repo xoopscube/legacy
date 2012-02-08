@@ -27,9 +27,9 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 
 	/**
 	 * getDefaultView
-	 * 
+	 *
 	 * @param	void
-	 * 
+	 *
 	 * @return	Enum
 	**/
 
@@ -41,7 +41,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 		$this->mRoot =& XCube_Root::getSingleton();
         	$this->mModule =& $this->mRoot->mContext->mModule;
         	$this->mAsset =& $this->mModule->mAssetManager;
- 
+
 		// Xupdate_ftp class object
 		require_once XUPDATE_TRUST_PATH .'/class/Root.class.php';
 
@@ -64,9 +64,9 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 
 	/**
 	 * executeViewSuccess
-	 * 
+	 *
 	 * @param	XCube_RenderTarget	&$render
-	 * 
+	 *
 	 * @return	void
 	**/
 	public function executeViewSuccess(&$render)
@@ -94,15 +94,22 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 	{
 		include dirname(__FILE__) .'/modules.ini';
 
-       		$this->items = $this->get_storeItems($items);
+		$this->items = $this->get_storeItems($items);
 	}
 
 	private function get_storeItems($items)
 	{
 		foreach ($items as $item ){
-		        // for test
-       	 	$item['url'] = XOOPS_URL .'/modules/'.$this->mAsset->mDirname.'/admin/index.php?action=ModuleInstall&target_key='
-					.$item['dirname'] .'&target_type='.$item['type'];
+			// for test
+			if ($item['type']=='TrustModule'){
+				$item['url'] = XOOPS_URL .'/modules/'.$this->mAsset->mDirname.'/admin/index.php?action=ModuleInstall'
+					.'&target_key='.$item['dirname'] .'&target_type='.$item['type']
+					.'&dirname='.$item['dirname'] .'&trust_dirname='.$item['dirname'];
+			}else{
+				$item['url'] = XOOPS_URL .'/modules/'.$this->mAsset->mDirname.'/admin/index.php?action=ModuleInstall'
+					.'&target_key='.$item['dirname'] .'&target_type='.$item['type']
+					.'&dirname='.$item['dirname'];
+			}
 			$rtn_items[] = $item;
 		}
 		return $rtn_items;

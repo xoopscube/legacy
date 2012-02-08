@@ -15,7 +15,6 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	protected $Ftp  ;	// FTP instance
 	protected $Func ;	// Functions instance
 	protected $mod_config ;
-	protected $content ;
 
 	protected $items ;
 	protected $sid = 1;
@@ -47,14 +46,33 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 
 	}
-
+	/**
+	 * prepare
+	 *
+	 * @param   void
+	 *
+	 * @return  bool
+	**/
 	function prepare()
+	{
+		parent::prepare();
+		$this->_setupActionForm();
+
+		$this->sid = $this->_getId();
+		return true;
+
+	}
+	/**
+	 * _setupActionForm
+	 *
+	 * @param   void
+	 *
+	 * @return  void
+	**/
+	protected function _setupActionForm()
 	{
 		$this->mActionForm =& $this->mAsset->getObject('form', 'ModuleStore',true);
 		$this->mActionForm->prepare();
-
-		$this->sid = $this->_getId();
-
 	}
 
 	function &_getFilterForm()
@@ -160,7 +178,6 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$render->setAttribute('mod_config', $this->mod_config);
 
 		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
-		$render->setAttribute('xupdate_content', $this->content);
 
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 
@@ -498,7 +515,7 @@ jQuery(function($){
 			var storehref = $(this).parent('td').parent('tr').find('a[href*="xupdate/admin/index.php?action=ModuleInstall"]').attr('href');
 			var installhref = $(this).parent('td').parent('tr').find('a[href*="legacy/admin/index.php?action=Module"]').attr('href');
 			var td = $(this).parent('td');
-			installationModules.push({'storehref':storehref,'installhref':installhref, 'td':td, 'status':0});
+			installationModules.push({'storehref':storehref , 'installhref':installhref , 'td':td , 'status':0});
 		});
 
 		$(installationModules).each(function()
@@ -530,7 +547,7 @@ jQuery(function($){
 						type: 'GET',
 						async:false,
 						url: installationModule.storehref,
-						success: getStoreSuccess,
+						success: getStoreConfirmFormSuccess,
 						error: ajaxFailed
 					});
 				}
@@ -573,6 +590,24 @@ jQuery(function($){
 
 		});
 	}
+	var getStoreConfirmFormSuccess = function(html)
+	{
+		var form = $(html).find('#contentBody form');
+		var formdata = form.serialize();
+
+		if (typeof installationModule.installhref != 'undefined'){
+			$.ajax({
+				type: 'POST',
+				async:false,
+				url: installationModule.storehref,
+				data: formdata,
+				success: getStoreSuccess,
+				error: ajaxFailed
+			});
+		}
+	}
+
+
 	var getStoreSuccess = function(html)
 	{
 		var result = $(html).find('#contentBody a').text();

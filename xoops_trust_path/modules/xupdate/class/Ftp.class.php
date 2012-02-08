@@ -213,7 +213,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
         $this->mes .= $remote_pos. "<br>\n";
         ////adump($local_path);
         ////adump($remote_path);
-        $this->_ftpPutSub($local_path, $remote_path, $remote_pos);
+        return $this->_ftpPutSub($local_path, $remote_path, $remote_pos);
     }
     protected function _ftpPutNakami_To_module($local_path, $remote_path , $trust_dirname , $dirname )
     {
@@ -221,7 +221,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
         $this->mes .= $remote_pos. "<br>\n";
         ////adump($local_path);
         ////adump($remote_path);
-        $this->_ftpPutSub_To_module($local_path, $remote_path, $remote_pos , $trust_dirname , $dirname );
+        return $this->_ftpPutSub_To_module($local_path, $remote_path, $remote_pos , $trust_dirname , $dirname );
     }
     protected function _ftpPutNakami_OtherThan_module($local_path, $remote_path , $trust_dirname , $dirname )
     {
@@ -229,12 +229,15 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
         $this->mes .= $remote_pos. "<br>\n";
         ////adump($local_path);
         ////adump($remote_path);
-        $this->_ftpPutSub_OtherThan_module($local_path, $remote_path, $remote_pos , $trust_dirname , $dirname );
+        return $this->_ftpPutSub_OtherThan_module($local_path, $remote_path, $remote_pos , $trust_dirname , $dirname );
     }
 
     protected function _ftpPutSub($local_path, $remote_path, $remote_pos)
     {
         $ftp_root = $this->seekFTPRoot();
+        if ($ftp_root===false){
+            return false;
+        }
         $file_list = $this->getFileList($local_path);
         if (isset($file_list['dir']) && is_array($file_list['dir']) ){
             $dir = $file_list['dir'];
@@ -259,11 +262,15 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
                 $this->put($l_file, $ftp_remote_file);
             }
         }
+        return true;
     }
 
     protected function _ftpPutSub_To_module($local_path, $remote_path, $remote_pos , $trust_dirname , $dirname )
     {
         $ftp_root = $this->seekFTPRoot();
+        if ($ftp_root===false){
+            return false;
+        }
         $file_list = $this->getFileList($local_path);
         if (isset($file_list['dir']) && is_array($file_list['dir']) ){
             $dir = $file_list['dir'];
@@ -290,10 +297,14 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
                 $this->put($l_file, $ftp_remote_file);
             }
         }
+        return true;
     }
     protected function _ftpPutSub_OtherThan_module($local_path, $remote_path, $remote_pos , $trust_dirname , $dirname )
     {
         $ftp_root = $this->seekFTPRoot();
+        if ($ftp_root===false){
+            return false;
+        }
         $file_list = $this->getFileList($local_path);
         if (isset($file_list['dir']) && is_array($file_list['dir']) ){
             $dir = $file_list['dir'];
@@ -325,6 +336,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
                 $this->put($l_file, $ftp_remote_file);
             }
         }
+        return true;
     }
 
     private function  getFileList($dir, $list=array('dir'=> array(), 'file' => array()))

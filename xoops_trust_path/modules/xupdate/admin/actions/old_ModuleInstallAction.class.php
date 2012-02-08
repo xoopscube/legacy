@@ -79,87 +79,14 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 		$this->downloadUrlFormat = $this->mod_config['Mod_download_Url_format'];
 
 	}
-	/**
-	 * prepare
-	 *
-	 * @param   void
-	 *
-	 * @return  bool
-	**/
-	public function prepare()
-	{
-		parent::prepare();
-		$this->_setupActionForm();
-		return true;
-	}
-	/**
-	 * @public
-	 */
-	protected function &_getHandler()
-	{
-//		$handler =& $this->mAsset->getObject('handler', 'ModuleStore',false);
-//		return $handler;
-	}
-	/**
-	 * _setupActionForm
-	 *
-	 * @param   void
-	 *
-	 * @return  void
-	**/
-	protected function _setupActionForm()
-	{
-		$this->mActionForm =& $this->mAsset->getObject('form', 'ModuleInstall', true);
-		$this->mActionForm->prepare();
-	}
 
 	public function execute(&$controller, &$xoopsUser)
 	{
-		$form_cancel = $this->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-		if ($form_cancel != null) {
-			return XUPDATE_FRAME_VIEW_CANCEL;
-		}
-
-		$this->mActionForm->fetch();
-		$this->mActionForm->validate();
-
-		if ($this->mActionForm->hasError()) {
-			return XUPDATE_FRAME_VIEW_INDEX;
-		} else {
-			return XUPDATE_FRAME_VIEW_SUCCESS;
-		}
 	}
 
 	public function getDefaultView()
 	{
-		return XUPDATE_FRAME_VIEW_INDEX;
-	}
-	/**
-	 * executeViewIndex
-	 *
-	 * @param	XCube_RenderTarget	&$render
-	 *
-	 * @return	void
-	**/
-	public function executeViewIndex(&$render)
-	{
-		$render->setTemplateName('admin_module_install_confirm.html');
-
-		$render->setAttribute('mod_config', $this->mod_config);
-
-		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
-
-		//TODO
-		$render->setAttribute('id', 1);//TEST dummy
-		$render->setAttribute('sid', 1);//TEST dummy
-
-		$render->setAttribute('target_key', $this->targetKeyName);
-		$render->setAttribute('target_type', $this->targetType);
-		$render->setAttribute('trust_dirname', $this->trust_dirname);
-		$render->setAttribute('dirname', $this->dirname);
-
-		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
-		$render->setAttribute('actionForm', $this->mActionForm);
+		return XUPDATE_FRAME_VIEW_SUCCESS;
 	}
 
 	/**
@@ -180,10 +107,7 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 				if($this->_unzipFile()==true) {
 					// ToDo port , timeout
 					if($this->Ftp->app_login("127.0.0.1")==true) {
-						if (!$this->uploadFiles()){
-							$this->_set_error_log('Ftp uploadFiles false');
-							$result = false;
-						}
+						$this->uploadFiles();
 					}else{
 						$this->_set_error_log('Ftp->app_login false');
 						$result = false;
@@ -222,10 +146,15 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 	}
 
-	function executeViewCancel(&$renderer)
+	/**
+	 * @public
+	 */
+	protected function &_getHandler()
 	{
-		$this->mRoot->mController->executeForward('./index.php?action=ModuleView');
+	//	$handler =& $this->mAsset->load('handler', "Module");
+	//	return $handler;
 	}
+
 
 	private function _downloadFile()
 		{
@@ -413,25 +342,17 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 				// copy xoops_trust_path
 				$uploadPath = XOOPS_TRUST_PATH . '/' ;
 				$unzipPath =  $this->exploredDirPath . '/xoops_trust_path';
-				$result = $this->Ftp->uploadNakami($unzipPath, $uploadPath);
-				if (!$result){
-					return false;
-				}
+				$this->Ftp->uploadNakami($unzipPath, $uploadPath);
+
 				// rename copy html module
 				$uploadPath = XOOPS_ROOT_PATH . '/modules/' ;
 				$unzipPath =  $this->exploredDirPath .'/html/modules';
-				$result = $this->Ftp->uploadNakami_To_module($unzipPath, $uploadPath ,$this->trust_dirname,$this->dirname);
-				if (!$result){
-					return false;
-				}
+				$this->Ftp->uploadNakami_To_module($unzipPath, $uploadPath ,$this->trust_dirname,$this->dirname);
 
 				// rename copy html module
 				$uploadPath = XOOPS_ROOT_PATH . '/' ;
 				$unzipPath =  $this->exploredDirPath .'/html';
-				$result = $this->Ftp->uploadNakami_OtherThan_module($unzipPath, $uploadPath ,$this->trust_dirname,$this->dirname);
-				if (!$result){
-					return false;
-				}
+				$this->Ftp->uploadNakami_OtherThan_module($unzipPath, $uploadPath ,$this->trust_dirname,$this->dirname);
 
 			}else{
 
@@ -443,23 +364,18 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 				// copy html
 				$uploadPath = XOOPS_ROOT_PATH . '/' ;
 				$unzipPath =  $this->exploredDirPath .'/html';
-				$result = $this->Ftp->uploadNakami($unzipPath, $uploadPath);
-				if (!$result){
-					return false;
-				}
+				$this->Ftp->uploadNakami($unzipPath, $uploadPath);
 			}
 		}else{
 
 			// copy html
 			$uploadPath = XOOPS_ROOT_PATH . '/' ;
 			$unzipPath =  $this->exploredDirPath .'/html';
-			$result = $this->Ftp->uploadNakami($unzipPath, $uploadPath);
-			if (!$result){
-				return false;
-			}
+			$this->Ftp->uploadNakami($unzipPath, $uploadPath);
 		}
 
-		return true;
+
+
 	}
 
 	private function _getDownloadFilePath()
