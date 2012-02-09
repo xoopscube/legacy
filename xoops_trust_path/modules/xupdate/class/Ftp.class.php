@@ -97,22 +97,22 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
     public function uploadNakami($sourcePath, $targetPath)
     {
         $this->mes .= " start uploading..<br>\n";
-        $this->_ftpPutNakami($sourcePath, $targetPath);
-        return true;
+        $result = $this->_ftpPutNakami($sourcePath, $targetPath);
+        return $result;
     }
     //for module rename uploading
     public function uploadNakami_To_module($sourcePath, $targetPath , $trust_dirname , $dirname)
     {
         $this->mes .= " start uploading ".$dirname."..<br>\n";
-        $this->_ftpPutNakami_To_module($sourcePath, $targetPath , $trust_dirname , $dirname );
-        return true;
+        $result = $this->_ftpPutNakami_To_module($sourcePath, $targetPath , $trust_dirname , $dirname );
+        return $result;
     }
     //for other than module uploading
     public function uploadNakami_OtherThan_module($sourcePath, $targetPath , $trust_dirname , $dirname)
     {
         $this->mes .= " start uploading ..<br>\n";
-        $this->_ftpPutNakami_OtherThan_module($sourcePath, $targetPath , $trust_dirname , $dirname );
-        return true;
+        $result = $this->_ftpPutNakami_OtherThan_module($sourcePath, $targetPath , $trust_dirname , $dirname );
+        return $result;
     }
 
     public function app_logout(){
@@ -213,7 +213,8 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
         $this->mes .= $remote_pos. "<br>\n";
         ////adump($local_path);
         ////adump($remote_path);
-        return $this->_ftpPutSub($local_path, $remote_path, $remote_pos);
+        $result = $this->_ftpPutSub($local_path, $remote_path, $remote_pos);
+        return $result;
     }
     protected function _ftpPutNakami_To_module($local_path, $remote_path , $trust_dirname , $dirname )
     {
@@ -221,7 +222,8 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
         $this->mes .= $remote_pos. "<br>\n";
         ////adump($local_path);
         ////adump($remote_path);
-        return $this->_ftpPutSub_To_module($local_path, $remote_path, $remote_pos , $trust_dirname , $dirname );
+        $result = $this->_ftpPutSub_To_module($local_path, $remote_path, $remote_pos , $trust_dirname , $dirname );
+        return $result;
     }
     protected function _ftpPutNakami_OtherThan_module($local_path, $remote_path , $trust_dirname , $dirname )
     {
@@ -229,7 +231,8 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
         $this->mes .= $remote_pos. "<br>\n";
         ////adump($local_path);
         ////adump($remote_path);
-        return $this->_ftpPutSub_OtherThan_module($local_path, $remote_path, $remote_pos , $trust_dirname , $dirname );
+        $result = $this->_ftpPutSub_OtherThan_module($local_path, $remote_path, $remote_pos , $trust_dirname , $dirname );
+        return $result;
     }
 
     protected function _ftpPutSub($local_path, $remote_path, $remote_pos)

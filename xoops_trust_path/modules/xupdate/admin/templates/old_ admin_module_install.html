@@ -1,0 +1,40 @@
+<{* <p>"Finish Download"|t}></p> *}>
+
+<h3><{$smarty.const._AD_XUPDATE_LANG_WRITABLE_RESULT}></h3>
+	<div>
+	<ul>
+	<li><{$xupdate_writable.path}>&nbsp;:&nbsp;
+ 	<{if $xupdate_writable.result==true}>
+		(<span style="color:green;font-weight:bold;">OK</span>)
+	<{else}>
+		(<span style="color:red;font-weight:bold;">NG</span>)
+	<{/if}>
+	</li></ul>
+	</div>
+
+<{$xupdate_content}>
+<{$xupdate_message}>
+<script>
+<{*
+  $(document).ready(function(){
+    $("#install_progress").load("index.php?controller=install&action=unzip&target_key=<{$target_key}> #message");
+  });
+*}>
+
+jQuery(document).ready(function() {
+    $.get("index.php",
+        {
+            controller:"install",
+            action:"unzip",
+            target_key:"<{$target_key}>",
+            target_type:"<{$target_type}>",
+
+            ajaxmode: 1
+        },
+        function(data){
+            $("#install_progress").append(data);
+        }
+        );
+});
+
+</script>

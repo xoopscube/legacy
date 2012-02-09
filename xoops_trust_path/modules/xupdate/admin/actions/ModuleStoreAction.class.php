@@ -11,11 +11,6 @@ require_once XUPDATE_TRUST_PATH . '/class/AbstractListAction.class.php';
 
 class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 {
-	protected $Xupdate  ;	// Xupdate instance
-	protected $Ftp  ;	// FTP instance
-	protected $Func ;	// Functions instance
-	protected $mod_config ;
-
 	protected $items ;
 	protected $sid = 1;
 	protected $mSiteModuleObjects = array();
@@ -29,21 +24,8 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	{
 		parent::__construct();
 
-		$this->mRoot =& XCube_Root::getSingleton();
-		$this->mModule =& $this->mRoot->mContext->mModule;
-		$this->mAsset =& $this->mModule->mAssetManager;
-
-// Xupdate_ftp class object
-//		require_once XUPDATE_TRUST_PATH .'/class/Root.class.php';
-
-		$this->Xupdate = new Xupdate_Root ;// Xupdate instance
-		$this->Ftp = $this->Xupdate->Ftp ;		// FTP instance
-		$this->Func = $this->Xupdate->func ;		// Functions instance
-		$this->mod_config = $this->mRoot->mContext->mModuleConfig ;	// mod_config
-
 		$jQuery = $this->mRoot->mContext->getAttribute('headerScript');
 		$jQuery->addScript($this->RapidModuleInstall_js(),false);
-
 
 	}
 	/**

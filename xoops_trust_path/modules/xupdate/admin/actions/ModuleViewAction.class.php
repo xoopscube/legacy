@@ -18,11 +18,7 @@ require_once XUPDATE_TRUST_PATH . '/class/AbstractAction.class.php';
 class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 {
 
-	protected $Xupdate  ;	// Xupdate instance
-	protected $Ftp  ;	// FTP instance
-	protected $Func ;	// Functions instance
-	protected $mod_config ;
-	protected $content ;
+//	protected $content ;
 	protected $items ;
 
 	/**
@@ -38,19 +34,6 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 	{
 		parent::__construct();
 
-		$this->mRoot =& XCube_Root::getSingleton();
-        	$this->mModule =& $this->mRoot->mContext->mModule;
-        	$this->mAsset =& $this->mModule->mAssetManager;
-
-		// Xupdate_ftp class object
-		require_once XUPDATE_TRUST_PATH .'/class/Root.class.php';
-
-		$this->Xupdate = new Xupdate_Root ;// Xupdate instance
-		$this->Ftp = $this->Xupdate->Ftp ;		// FTP instance
-		$this->Func = $this->Xupdate->func ;		// Functions instance
-		$this->mod_config = $this->mRoot->mContext->mModuleConfig ;	// mod_config
-		//	adump($this->mod_config);
-		//	adump($this->Ftp);
 	}
 
 	public function execute(&$controller, &$xoopsUser)
@@ -75,7 +58,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 		$render->setAttribute('xupdate_items', $this->items);
 
 		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
-		$render->setAttribute('xupdate_content', $this->content);
+//		$render->setAttribute('xupdate_content', $this->content);
 
 		$render->setTemplateName('admin_module_view.html');
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
@@ -102,11 +85,11 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 		foreach ($items as $item ){
 			// for test
 			if ($item['type']=='TrustModule'){
-				$item['url'] = XOOPS_URL .'/modules/'.$this->mAsset->mDirname.'/admin/index.php?action=ModuleInstall'
+				$item['url'] = XOOPS_MODULE_URL .'/'.$this->mAsset->mDirname.'/admin/index.php?action=ModuleInstall'
 					.'&target_key='.$item['dirname'] .'&target_type='.$item['type']
 					.'&dirname='.$item['dirname'] .'&trust_dirname='.$item['dirname'];
 			}else{
-				$item['url'] = XOOPS_URL .'/modules/'.$this->mAsset->mDirname.'/admin/index.php?action=ModuleInstall'
+				$item['url'] = XOOPS_MODULE_URL .'/'.$this->mAsset->mDirname.'/admin/index.php?action=ModuleInstall'
 					.'&target_key='.$item['dirname'] .'&target_type='.$item['type']
 					.'&dirname='.$item['dirname'];
 			}

@@ -15,48 +15,48 @@ if(!defined('XOOPS_ROOT_PATH'))
 **/
 abstract class Xupdate_AbstractAction
 {
-    public /*** XCube_Root ***/ $mRoot = null;
+	public /*** XCube_Root ***/ $mRoot = null;
 
-    public /*** Xupdate_Module ***/ $mModule = null;
+	public /*** Xupdate_Module ***/ $mModule = null;
 
-    public /*** Xupdate_AssetManager ***/ $mAsset = null;
+	public /*** Xupdate_AssetManager ***/ $mAsset = null;
 
 
-	protected $Xupdate  ;	// Xupdate instance
-	protected $Ftp  ;	// FTP instance
-	protected $Func ;	// Functions instance
-	protected $mod_config ;
+	public $Xupdate  ;	// Xupdate instance
+	public $Ftp  ;	// FTP instance
+	public $Func ;	// Functions instance
+	public $mod_config ;
 
 
     /**
      * __construct
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     public function __construct()
     {
-        $this->mRoot =& XCube_Root::getSingleton();
-        $this->mModule =& $this->mRoot->mContext->mModule;
-        $this->mAsset =& $this->mModule->mAssetManager;
- 
-	// Xupdate_ftp class object
-	require_once XUPDATE_TRUST_PATH .'/class/Root.class.php';
+		$this->mRoot =& XCube_Root::getSingleton();
+		$this->mModule =& $this->mRoot->mContext->mModule;
+		$this->mAsset =& $this->mModule->mAssetManager;
 
-	$this->Xupdate = new Xupdate_Root ;// Xupdate instance
-	$this->Ftp = $this->Xupdate->Ftp ;		// FTP instance
-	$this->Func = $this->Xupdate->func ;		// Functions instance
-	$this->mod_config = $this->mRoot->mContext->mModuleConfig ;	// mod_config
-	//	adump($this->mod_config);
+		// Xupdate_ftp class object
+		require_once XUPDATE_TRUST_PATH .'/class/Root.class.php';
+
+		$this->Xupdate = new Xupdate_Root ;// Xupdate instance
+		$this->Ftp = $this->Xupdate->Ftp ;		// FTP instance
+		$this->Func = $this->Xupdate->func ;		// Functions instance
+		$this->mod_config = $this->mRoot->mContext->mModuleConfig ;	// mod_config
+		//	adump($this->mod_config);
 
    }
 
     /**
      * getPageTitle
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  string
     **/
     public function getPagetitle()
@@ -68,9 +68,9 @@ abstract class Xupdate_AbstractAction
 
     /**
      * _getPageTitle
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  string
     **/
     protected function _getPagetitle()
@@ -80,9 +80,9 @@ abstract class Xupdate_AbstractAction
 
     /**
      * _getActionName
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  string
     **/
     protected function _getActionName()
@@ -92,9 +92,9 @@ abstract class Xupdate_AbstractAction
 
     /**
      * _getStylesheet
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  String
     **/
     protected function _getStylesheet()
@@ -104,9 +104,9 @@ abstract class Xupdate_AbstractAction
 
     /**
      * setHeaderScript
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     public function setHeaderScript()
@@ -117,9 +117,9 @@ abstract class Xupdate_AbstractAction
 
     /**
      * prepare
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  bool
     **/
     public function prepare()
@@ -129,9 +129,9 @@ abstract class Xupdate_AbstractAction
 
     /**
      * hasPermission
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  bool
     **/
     public function hasPermission()
@@ -141,9 +141,9 @@ abstract class Xupdate_AbstractAction
 
     /**
      * getDefaultView
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  Enum
     **/
     public function getDefaultView()
@@ -153,9 +153,9 @@ abstract class Xupdate_AbstractAction
 
     /**
      * execute
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  Enum
     **/
     public function execute()
@@ -165,9 +165,9 @@ abstract class Xupdate_AbstractAction
 
     /**
      * executeViewSuccess
-     * 
+     *
      * @param   XCube_RenderTarget  &$render
-     * 
+     *
      * @return  void
     **/
     public function executeViewSuccess(/*** XCube_RenderTarget ***/ &$render)
@@ -176,9 +176,9 @@ abstract class Xupdate_AbstractAction
 
     /**
      * executeViewError
-     * 
+     *
      * @param   XCube_RenderTarget  &$render
-     * 
+     *
      * @return  void
     **/
     public function executeViewError(/*** XCube_RenderTarget ***/ &$render)
@@ -187,9 +187,9 @@ abstract class Xupdate_AbstractAction
 
     /**
      * executeViewIndex
-     * 
+     *
      * @param   XCube_RenderTarget  &$render
-     * 
+     *
      * @return  void
     **/
     public function executeViewIndex(/*** XCube_RenderTarget ***/ &$render)
@@ -198,9 +198,9 @@ abstract class Xupdate_AbstractAction
 
     /**
      * executeViewInput
-     * 
+     *
      * @param   XCube_RenderTarget  &$render
-     * 
+     *
      * @return  void
     **/
     public function executeViewInput(/*** XCube_RenderTarget ***/ &$render)
@@ -209,9 +209,9 @@ abstract class Xupdate_AbstractAction
 
     /**
      * executeViewPreview
-     * 
+     *
      * @param   XCube_RenderTarget  &$render
-     * 
+     *
      * @return  void
     **/
     public function executeViewPreview(/*** XCube_RenderTarget ***/ &$render)
@@ -220,9 +220,9 @@ abstract class Xupdate_AbstractAction
 
     /**
      * executeViewCancel
-     * 
+     *
      * @param   XCube_RenderTarget  &$render
-     * 
+     *
      * @return  void
     **/
     public function executeViewCancel(/*** XCube_RenderTarget ***/ &$render)

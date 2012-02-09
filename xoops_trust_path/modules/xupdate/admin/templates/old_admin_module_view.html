@@ -22,6 +22,30 @@
 	</li></ul>
 	</div>
 
-<{*<div><{$xupdate_content}></div>*}>
+<div><{$xupdate_content}></div>
 <div><{$xupdate_message}></div>
 
+<script type="text/javascript">
+<{*
+  $(document).ready(function(){
+    $("#install_progress").load("index.php?controller=install&action=unzip&target_key=<{$target_key}> #message");
+  });
+*}>
+
+jQuery(document).ready(function($){
+    $.get("index.php",
+        {
+            controller:"install",
+            action:"unzip",
+            target_key:"<{$target_key}>",
+            target_type:"<{$target_type}>",
+
+            ajaxmode: 1
+        },
+        function(data){
+            $("#install_progress").append(data);
+        }
+        );
+});
+
+</script>

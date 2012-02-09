@@ -30,7 +30,7 @@ $modversion['credits'] = _MI_XUPDATE_LANG_CREDITS;
 $modversion['help'] = 'help.html';
 $modversion['license'] = 'GPL';
 $modversion['official'] = 0;
-$modversion['image'] = 'images/module_icon.png';
+$modversion['image'] = 'module_icon.php';
 $modversion['dirname'] = $myDirName;
 $modversion['trust_dirname'] = $basename;
 
