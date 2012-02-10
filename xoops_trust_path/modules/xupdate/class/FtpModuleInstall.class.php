@@ -5,6 +5,24 @@ require_once XUPDATE_TRUST_PATH .'/class/FtpCommonFunc.class.php';
 
 class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonFunc {
 
+/*parent public
+	public $mRoot ;
+	public $mModule ;
+	public $mAsset ;
+
+	public $Xupdate  ;	// Xupdate instance
+	public $Ftp  ;	// FTP instance
+	public $Func ;	// Functions instance
+	public $mod_config ;
+	public $content ;
+	public $downloadDirPath;
+	public $exploredDirPath;
+	public $downloadUrlFormat;
+
+	public $target_key;
+	public $target_type;
+*/
+
 	public $trust_dirname;
 	public $dirname;
 
@@ -12,6 +30,18 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonFunc {
 
 		parent::__construct();
 
+	}
+
+	/**
+	* execute
+	 *
+	 * @return	strig
+	 **/
+	public function _getDownloadUrl()
+	{
+		// TODO ファイルNotFound対策
+		$url = sprintf($this->downloadUrlFormat, $this->target_key);
+		return $url;
 	}
 	/**
 	 * execute
@@ -51,6 +81,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonFunc {
 			$this->_cleanup($this->exploredDirPath);
 			//
 			$downloadPath= $this->_getDownloadFilePath() ;
+//TODO unlink ok?
 			unlink( $downloadPath );
 
 			$this->content.= 'completed <br /><br />';

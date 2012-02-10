@@ -7,9 +7,7 @@ require_once XUPDATE_TRUST_PATH . '/class/Ftp.class.php';
 class Xupdate_FtpCommonFunc {
 
 	public /*** XCube_Root ***/ $mRoot = null;
-
 	public /*** Xupdate_Module ***/ $mModule = null;
-
 	public /*** Xupdate_AssetManager ***/ $mAsset = null;
 
 	public $Xupdate  ;	// Xupdate instance
@@ -74,7 +72,8 @@ class Xupdate_FtpCommonFunc {
 		}
 
 		// TODO ファイルNotFound対策
-		$url = sprintf($this->downloadUrlFormat, $this->target_key);
+		$url = $this->_getDownloadUrl();
+
 		$downloadedFilePath = $this->_getDownloadFilePath();
 
 		try {
@@ -115,8 +114,8 @@ class Xupdate_FtpCommonFunc {
 
 		try {
 			try {
-				if(!function_exists('curl_init') ){
-					throw new Exception('curl_init function not found fail',4);
+				if(!function_exists('curl_exec') ){
+					throw new Exception('curl_exec function not found fail',4);
 				}
 			} catch (Exception $e) {
 				$this->_set_error_log($e->getMessage());
@@ -214,6 +213,13 @@ class Xupdate_FtpCommonFunc {
 		//$this->uploadFiles();
 		//$this->Ftp->app_logout();
 
+	}
+
+	public function _getDownloadUrl()
+	{
+		// TODO ファイルNotFound対策
+		$url = sprintf($this->downloadUrlFormat, $this->target_key);
+		return $url;
 	}
 
 	public function _getDownloadFilePath()

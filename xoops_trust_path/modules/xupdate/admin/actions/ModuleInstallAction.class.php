@@ -47,16 +47,6 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 	{
 		parent::__construct();
 
-		$this->target_key = $this->Xupdate->get('target_key');
-		$this->target_key = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , $this->target_key ) ;
-		$this->target_type = $this->Xupdate->get('target_type');
-		$this->target_type = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , $this->target_type ) ;
-
-		$this->trust_dirname = $this->Xupdate->get('trust_dirname');
-		$this->trust_dirname = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , $this->trust_dirname ) ;
-		$this->dirname = $this->Xupdate->get('dirname');
-		$this->dirname = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , $this->dirname ) ;
-
 	}
 	/**
 	 * prepare
@@ -112,6 +102,16 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 	public function getDefaultView()
 	{
 
+		$this->target_key = $this->Xupdate->get('target_key');
+		$this->target_key = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , $this->target_key ) ;
+		$this->target_type = $this->Xupdate->get('target_type');
+		$this->target_type = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , $this->target_type ) ;
+
+		$this->trust_dirname = $this->Xupdate->get('trust_dirname');
+		$this->trust_dirname = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , $this->trust_dirname ) ;
+		$this->dirname = $this->Xupdate->get('dirname');
+		$this->dirname = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , $this->dirname ) ;
+
 		return XUPDATE_FRAME_VIEW_INDEX;
 	}
 	/**
@@ -153,8 +153,16 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 	 **/
 	public function executeViewSuccess(&$render)
 	{
+		$this->target_key = $this->mActionForm->get('target_key');
+		$this->target_type = $this->mActionForm->get('target_type');
+		$this->trust_dirname = $this->mActionForm->get('trust_dirname');
+		$this->dirname = $this->mActionForm->get('dirname');
+
 		$xupdateFtpModuleInstall = new Xupdate_FtpModuleInstall ;// Xupdate instance
 		//setup
+		$xupdateFtpModuleInstall->downloadDirPath = $this->Xupdate->params['temp_path'];
+		$xupdateFtpModuleInstall->downloadUrlFormat = $this->mod_config['Mod_download_Url_format'];
+
 		$xupdateFtpModuleInstall->target_key = $this->target_key;
 		$xupdateFtpModuleInstall->target_type = $this->target_type;
 		$xupdateFtpModuleInstall->trust_dirname = $this->trust_dirname;
