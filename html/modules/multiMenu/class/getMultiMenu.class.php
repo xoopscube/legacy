@@ -139,9 +139,11 @@ class getMultiMenu {
 			} else {
 				$imenu['link'] = $myrow['link'];
 			}
-			$slash = substr( $imenu['link'], strlen($imenu['link'])-1, 1 );
-			if ( $slash == '/' ) {
-				$imenu['link'] .= "index.php";
+			if (isset($imenu['link'])){
+				$slash = substr( $imenu['link'], strlen($imenu['link'])-1, 1 );
+				if ( $slash == '/' ) {
+					$imenu['link'] .= "index.php";
+				}
 			}
 			$block['contents'][$inum] = $imenu;
 			$inum++;
