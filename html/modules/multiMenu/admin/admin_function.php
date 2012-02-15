@@ -247,10 +247,13 @@ class multimenu{
     $form = new XoopsThemeForm(_AD_MULTIMENU_EDITIMENU, "editform", "index.php?mnum=".$this->mnum);
     $formtitle = new XoopsFormText(_AD_MULTIMENU_TITLE, "title", 50, 150, $obj->get('title'));
     $formlink = new XoopsFormText(_AD_MULTIMENU_LINK, "link", 50, 255, $obj->get('link'));
-    if ($this->mnum=="99"){
+    /*
+     * for future reqest 
+     if ($this->mnum=="99"){
     	$block_id  = new XoopsFormText(_AD_MULTIMENU_BLOCKID , "block_id" , 5, 5, $obj->get('block_id'));
     	$parent_id = new XoopsFormText(_AD_MULTIMENU_PARENTID, "parent_id", 5, 5, $obj->get('parent_id'));
     }
+     */
     $formhide = new XoopsFormSelect(_AD_MULTIMENU_HIDE, "hide", $obj->get('hide'));
     $formhide->addOption("0", _NO);
     $formhide->addOption("1", _YES);
