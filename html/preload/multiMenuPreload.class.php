@@ -61,30 +61,26 @@ class multimenuFlow {
 				}
 				if ($b['id'] == $id){
 					$this->flowLink = $nextLink = $b['link'];	// selected flow link
+					$link_option = $b['link_option'];
+					//echo $link_option;var_dump($b);die;
 					$mid = $b['mid'];				// module id
 				}
-				/*
-				 * Back to Flow Top When same as top link
-				 */
-				if( $this->linkComp($requestUrl,$b['link'])==true && $_POST){
-					$this->moveFlowPosition($b['id']);
-				}
+			}
+			/*
+			 * Back to Flow Top When same as top link
+			 */
+			if( $this->linkComp($requestUrl,$block['contents'][0]['link'])==true ){
+				//echo "TOPMENU:".$requestUrl."<br />".$block['contents'][0]['link'];
+				//$_SESSION['multiMenuFlow']=array();
+				$this->moveFlowPosition($block['contents'][0]['id']);
 			}
 			/*
 			 * Check and Move Flow
 			 */
-			//echo "requestUrl: ".$requestUrl . "<br />"
-			// . "flowLink: ". $this->flowLink ."<br />"
-			// . "nextLink: ". $nextLink ."<br />";
-			$this->linkComp($requestUrl,$this->flowLink);
-			//echo $this->pathMatch;
-			//var_dump($_GET);
-			//var_dump($_POST);die;
+			//echo "requestUrl: ".$requestUrl . "<br />flowLink: ". $this->flowLink ."<br />nextLink: ". $nextLink ."<br />";
+			$ret = $this->linkComp($requestUrl,$this->flowLink,$link_option);
 			// Redirect to new Flow menu
-			if ( $this->pathMatch && (isset($_POST['submit']) || isset($_POST['insert'])) ){
-				// store to session
-				$_SESSION['multiMenuFlow'][$mid] = $_POST;
-				//var_dump($_POST);die;
+			if ( $ret && (isset($_POST['submit']) || isset($_POST['insert'])) ){
 				$this->nextLink = $nextLink;
 				$this->moveFlowPosition($nextId);
 			}
@@ -102,40 +98,50 @@ class multimenuFlow {
 			." SET id=" . $id . " WHERE uid=".$xoopsUser->uid().";";
 			$ret = $xoopsDB->queryF($sql);
 		}
-		//echo $sql;
+		//echo "<br />".$sql;		
 	}
-	private function linkComp($requestUrl,$flowLink){
+	private function linkComp($requestUrl,$flowLink,$option=""){
+		//echo "<hr>requestUrl: ".$requestUrl . "<br />"
+		//. "flowLink: ". $flowLink ."<br />";
 		$req = parse_url($requestUrl);
 		$flo = parse_url($flowLink);
-		$r = $parse = array();
+		$r = $parse = array('query'=>true);
+		if ( substr($req['path'], -1)=="/") $req['path'] .= "index.php";
 		foreach($flo as $key => $val){
-			if (!isset($req[$key])){ $parse[$key] = false; break; }
+			if ($key=="path" && substr($val, -1)=="/") $val .= "index.php";
+			if (!isset($req[$key])){
+				if ($key!="query") $parse[$key] = false; 
+				break; 
+			}
+			//echo "<br />" . $key . ":" . $val . "<->" . $req[$key];
 			if (strcmp($val,$req[$key])==0){
 				$parse[$key] = true;
+			}else{
+				$parse[$key] = false;
 			}
 			if ($key=="query"){
 				$f_prm = explode("&",$val);
 				$r_prm = explode("&",$req[$key]);
+				$r_prm = array_merge($r_prm, explode("&",$option));
+				//echo "<br />req: "; var_dump($r_prm);
+				$parse[$key] = false;
 				foreach($f_prm as $k=>$v){
-					if(in_array($v,$r_prm)) $r[] = true;
-				}
-				if (!$r || in_array(false,$r)){
-					$parse[$key] = false;
-					break;
-				}else{
-					$parse[$key] = true;
+					if(in_array($v,$r_prm)){
+						//echo "<br />v: ".$v;
+						$parse[$key] = true;
+					}
 				}
 			}
 		}
-		//var_dump($flo); var_dump($req); var_dump($parse);
-		//echo $requestUrl."<br />".$flowLink."<br />";
 		if ( isset($parse['path']) ){
 			$this->pathMatch = $parse['path'];
 		}
 		$ret = true;
-		if (!$parse || in_array(false,$parse)){
+		if ($parse && in_array(false,$parse)){
 			$ret = false;
 		}
+		//var_dump($parse);
+		//if ($ret==true) "Move Ok.<br />";
 		return $ret;
 	}
 }
