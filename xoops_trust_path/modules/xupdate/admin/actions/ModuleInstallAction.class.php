@@ -188,7 +188,8 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 		//setup
 		$xupdateFtpModuleInstall->downloadDirPath = $this->Xupdate->params['temp_path'];
 
-		$xupdateFtpModuleInstall->downloadUrlFormat = $this->mActionForm->get('addon_url');
+		$addon_url = $this->mActionForm->get('addon_url');
+		$xupdateFtpModuleInstall->downloadUrlFormat = htmlspecialchars_decode($addon_url,ENT_QUOTES);
 
 		$xupdateFtpModuleInstall->target_key =  $this->mActionForm->get('target_key');
 		$xupdateFtpModuleInstall->target_type = $this->mActionForm->get('target_type');
