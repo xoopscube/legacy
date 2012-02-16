@@ -141,7 +141,7 @@ class Xupdate_ModulesIniDadaSet
 	{
 		//trustモジュールでない(複製可能なものはどうしよう)
 		$mobj = new $this->modHand->mClass();
-		$item['version']= intval(floatval($item['version'])*100);
+		$item['version']= round(floatval($item['version'])*100);
 		$mobj->assignVars($item);
 		$mobj->assignVar('sid', $sid);
 		$mobj->assignVar('target_key',$item['dirname']);
@@ -160,7 +160,7 @@ class Xupdate_ModulesIniDadaSet
 	}
 	private function _setDataTrustModule($sid ,$item)
 	{
-		$item['version']= intval(floatval($item['version'])*100);
+		$item['version']= round(floatval($item['version'])*100);
 		//インストール済みの同じtrustモージュールのリストを取得
 		$list = Legacy_Utils::getDirnameListByTrustDirname($item['dirname']);
 

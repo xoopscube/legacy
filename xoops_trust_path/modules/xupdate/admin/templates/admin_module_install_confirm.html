@@ -94,7 +94,7 @@
     <{if $target_type == 'TrustModule'}>
         <{xoops_input type=text name=dirname value=$dirname }>
     <{else}>
-        <{xoops_input type=hidden name=trust_dirname value=$dirname }>
+        <{xoops_input type=hidden name=dirname value=$dirname }>
         <{$dirname|xoops_escape:show}>
     <{/if}>
     </td>
