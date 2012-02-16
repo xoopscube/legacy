@@ -11,6 +11,7 @@ if(!defined('XOOPS_ROOT_PATH'))
 }
 
 require_once XUPDATE_TRUST_PATH . '/class/AbstractAction.class.php';
+require_once XUPDATE_TRUST_PATH . '/include/ModulesIniDadaSet.class.php';
 
 /**
  * Xupdate_Admin_StoreAction
@@ -18,8 +19,47 @@ require_once XUPDATE_TRUST_PATH . '/class/AbstractAction.class.php';
 class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 {
 
-//	protected $content ;
-	protected $items ;
+//	protected $stores ;
+//	protected $items ;
+
+	public function __construct()
+	{
+		parent::__construct();
+	}
+	/**
+	 * prepare
+	 *
+	 * @param   void
+	 *
+	 * @return  bool
+	**/
+	function prepare()
+	{
+		//データの自動作成と削除
+		$inidataset = new Xupdate_ModulesIniDadaSet;
+		$inidataset->storeHand =  & $this->_getStoreHandler();
+		$inidataset->modHand = & $this->_getModStoreHandler();
+		$inidataset->execute();
+		//-----------------------------------------------
+		return true;
+
+	}
+	/**
+	 * @protected
+	 */
+	protected function &_getStoreHandler()
+	{
+		$handler =& $this->mAsset->getObject('handler', 'Store',false);
+		return $handler;
+	}
+	/**
+	 * @protected
+	 */
+	protected function &_getModStoreHandler()
+	{
+		$handler =& $this->mAsset->getObject('handler', 'ModuleStore',false);
+		return $handler;
+	}
 
 	/**
 	 * getDefaultView
@@ -28,18 +68,6 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 	 *
 	 * @return	Enum
 	**/
-
-
-	public function __construct()
-	{
-		parent::__construct();
-
-	}
-
-	public function execute(&$controller, &$xoopsUser)
-	{
-	}
-
 	public function getDefaultView()
 	{
 		return XUPDATE_FRAME_VIEW_SUCCESS;
@@ -54,48 +82,41 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 	**/
 	public function executeViewSuccess(&$render)
 	{
-		$this->_storelist();
-		$render->setAttribute('xupdate_items', $this->items);
+		$render->setAttribute('xupdate_items', $this->get_storeItems());
 
 		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
-//		$render->setAttribute('xupdate_content', $this->content);
+		$render->setAttribute('mod_config', $this->mod_config);
 
 		$render->setTemplateName('admin_module_view.html');
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
+
 	}
 
-	/**
-	 * @public
-	 */
-	protected function &_getHandler()
-	{
-	//	$handler =& $this->mAsset->load('handler', "Module");
-	//	return $handler;
-	}
 
-	private function _storelist ()
+	private function get_storeItems()
 	{
-		include dirname(__FILE__) .'/modules.ini';
+		$store_mod_arr=array();
+		$storeHand =  & $this->_getStoreHandler();
+		$modHand = & $this->_getModStoreHandler();
 
-		$this->items = $this->get_storeItems($items);
-	}
+		$storeObjects =& $storeHand->getObjects(null,null,null,true);
 
-	private function get_storeItems($items)
-	{
-		foreach ($items as $item ){
-			// for test
-			if ($item['type']=='TrustModule'){
-				$item['url'] = XOOPS_MODULE_URL .'/'.$this->mAsset->mDirname.'/admin/index.php?action=ModuleInstall'
-					.'&target_key='.$item['dirname'] .'&target_type='.$item['type']
-					.'&dirname='.$item['dirname'] .'&trust_dirname='.$item['dirname'];
-			}else{
-				$item['url'] = XOOPS_MODULE_URL .'/'.$this->mAsset->mDirname.'/admin/index.php?action=ModuleInstall'
-					.'&target_key='.$item['dirname'] .'&target_type='.$item['type']
-					.'&dirname='.$item['dirname'];
+		foreach($storeObjects as $sid => $store){
+			$store_mod_arr[$sid]['storeobj']=$store;
+
+			$criteria = new CriteriaCompo();
+			$criteria->add(new Criteria( 'sid', $sid ) );
+			$siteModuleStoreObjects =& $modHand->getObjects($criteria);
+
+			$itemsobj = array();
+			foreach($siteModuleStoreObjects as $key => $mobj){
+				$itemsobj[]=$mobj;
 			}
-			$rtn_items[] = $item;
+			$store_mod_arr[$sid]['itemsobj']=$itemsobj;
+			$store_mod_arr[$sid]['items_count']=count($itemsobj);
 		}
-		return $rtn_items;
+
+		return $store_mod_arr;
 	}
 
 }

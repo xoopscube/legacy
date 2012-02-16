@@ -120,52 +120,56 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
         }
     }
 
-  /**
-   *  @public
-  */
-  public function tableupdateXupdate(&$module, &$log)
-  {
-	if($module->getInfo('trust_dirname') == 'xupdate'){
-		$dirname = $module->getInfo('dirname');
-		$db = $this->mRoot->mController->mDB;
-		$sql = sprintf("SHOW TABLES LIKE '%s'", $db->prefix($dirname."_modulestore") );
-		list($result) = $db->fetchRow($db->query($sql));
-		if( empty($result) ){
-			$sql ="CREATE TABLE ".$db->prefix($dirname."_modulestore")." (
-					`id` int(11) unsigned NOT NULL  auto_increment,
-					`sid` int(11) unsigned NOT NULL default 0,
-					`dirname` varchar(25) NOT NULL default '',
-					`version` smallint(5) unsigned default '100',
-					`last_update` int(10) unsigned default '0',
-					`type` varchar(255) NOT NULL default '',
-					`trust_dirname` varchar(25) default '',
-					`target_key` varchar(255) NOT NULL default '',
-				PRIMARY KEY  (`id`),
-				KEY sid (sid),
-				KEY dirname (dirname)
-				 ) ENGINE=MyISAM;
-			";
-			if( $db->query($sql) ){
-				$log->add('Table '.htmlspecialchars($db->prefix($dirname."_modulestore")).' created.', ENT_QUOTES , _CHARSET);
-			}else{
-				$log->add('Invalid SQL '.htmlspecialchars($sql), ENT_QUOTES , _CHARSET);
-			}
-		}else{
-			//alpha verion
-			$check_sql = sprintf("SELECT `rootdirname` FROM `%s`", $db->prefix($dirname."_modulestore") );
-			if( $db->query( $check_sql ) !== false ) {
-				$sql = "ALTER TABLE ".$db->prefix($dirname."_modulestore")." CHANGE `rootdirname` `target_key` VARCHAR( 255 ) NOT NULL DEFAULT ''"  ;
+	/**
+	 *  @public
+	 */
+	public function tableupdateXupdate(&$module, &$log)
+	{
+		if($module->getInfo('trust_dirname') == 'xupdate'){
+
+/*
+			$dirname = $module->getInfo('dirname');
+			$db = $this->mRoot->mController->mDB;
+			$sql = sprintf("SHOW TABLES LIKE '%s'", $db->prefix($dirname."_modulestore") );
+			list($result) = $db->fetchRow($db->query($sql));
+			if( empty($result) ){
+				$sql ="CREATE TABLE ".$db->prefix($dirname."_modulestore")." (
+						`id` int(11) unsigned NOT NULL  auto_increment,
+						`sid` int(11) unsigned NOT NULL default 0,
+						`dirname` varchar(25) NOT NULL default '',
+						`version` smallint(5) unsigned default '100',
+						`last_update` int(10) unsigned default '0',
+						`type` varchar(255) NOT NULL default '',
+						`trust_dirname` varchar(25) default '',
+						`target_key` varchar(255) NOT NULL default '',
+					PRIMARY KEY  (`id`),
+					KEY sid (sid),
+					KEY dirname (dirname)
+					 ) ENGINE=MyISAM;
+				";
 				if( $db->query($sql) ){
-					$log->add('Table '.htmlspecialchars($db->prefix($dirname."_modulestore")).' rootdirname ->target_key changed.', ENT_QUOTES , _CHARSET);
+					$log->add('Table '.htmlspecialchars($db->prefix($dirname."_modulestore")).' created.', ENT_QUOTES , _CHARSET);
 				}else{
 					$log->add('Invalid SQL '.htmlspecialchars($sql), ENT_QUOTES , _CHARSET);
 				}
+			}else{
+				//alpha verion
+				$check_sql = sprintf("SELECT `rootdirname` FROM `%s`", $db->prefix($dirname."_modulestore") );
+				if( $db->query( $check_sql ) !== false ) {
+					$sql = "ALTER TABLE ".$db->prefix($dirname."_modulestore")." CHANGE `rootdirname` `target_key` VARCHAR( 255 ) NOT NULL DEFAULT ''"  ;
+					if( $db->query($sql) ){
+						$log->add('Table '.htmlspecialchars($db->prefix($dirname."_modulestore")).' rootdirname ->target_key changed.', ENT_QUOTES , _CHARSET);
+					}else{
+						$log->add('Invalid SQL '.htmlspecialchars($sql), ENT_QUOTES , _CHARSET);
+					}
+				}
+
 			}
+*/
 
 		}
-	}
 
-  }
+	}
 
 }//END CLASS
 

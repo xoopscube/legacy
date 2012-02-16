@@ -4,6 +4,16 @@
 </div>
 
 <h3 class="admintitle"><{$smarty.const._AD_XUPDATE_LANG_MODULES}></h3>
+  <div id="menunavi">
+  <{if !empty($adminMenu) }>
+    <ul class="submenunavi">
+      <{foreach item=menu from=$adminMenu}>
+          <li><a href="<{$menu.link|xoops_escape:link}>"><{$menu.title|xoops_escape}></a></li>
+      <{/foreach}>
+          <li style="background:#87CEFA;"><a href="<{$xoops_url}>/admin.php" style="color:#ffffff;"><{$smarty.const._CPHOME}></a></li>
+    </ul>
+  <{/if}>
+  </div>
 
 <div class="tips">
 <ul>
@@ -68,8 +78,8 @@
       <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.MODULE_SORT_KEY_TARGET_KEY}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
     <th><{$smarty.const._AD_XUPDATE_LANG_TYPE}>
-      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.MODULE_SORT_KEY_TYPE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.MODULE_SORT_KEY_TYPE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.MODULE_SORT_KEY_TARGET_TYPE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.MODULE_SORT_KEY_TARGET_TYPE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
     <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
     <th><{$smarty.const._AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL}><br><input id="rapidInstallCheckboxAll" type="checkbox" /></th>
@@ -78,10 +88,8 @@
     <tr class="<{cycle values='odd,even'}>">
       <td class="legacy_list_id"><{$module->getVar('id')}></td>
       <td class="legacy_list_image">
-<{*      <img src="<{$xoops_url}>/modules/<{$module->getVar('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->getVar('dirname')}>" />*}>
-        <{if $module->getVar('type') == 'TrustModule' }>
+        <{if $module->getVar('target_type') == 'TrustModule' }>
         <input type="text" size="24" name="dirname[<{$module->getVar('id')}>]" value="<{$module->getVar('dirname')}>" />
-<{*         <{$module->getVar('dirname')}>*}>
         <{else}>
         <input type="hidden" size="24" name="dirname[<{$module->getVar('id')}>]" value="<{$module->getVar('dirname')}>" />
           <{$module->getVar('dirname')}>
@@ -113,7 +121,7 @@
         <{/if}>
       </td>
       <td class="legacy_list_select">
-        <{$module->getVar('type')}>
+        <{$module->getVar('target_type')}>
       </td>
       <td class="legacy_list_control">
       <{if $xupdate_writable.result==true}>

@@ -35,10 +35,14 @@ class Xupdate_Admin_ModuleInstallForm extends XCube_ActionForm
 		//
 		$this->mFormProperties['id'] = new XCube_IntProperty('id');
 		$this->mFormProperties['sid'] = new XCube_IntProperty('sid');
-		$this->mFormProperties['target_key'] = new XCube_StringProperty('target_key');
-		$this->mFormProperties['target_type'] = new XCube_StringProperty('target_type');
+
+		$this->mFormProperties['addon_url'] = new XCube_StringProperty('addon_url');
+
 		$this->mFormProperties['trust_dirname'] = new XCube_StringProperty('trust_dirname');
 		$this->mFormProperties['dirname'] = new XCube_StringProperty('dirname');
+
+		$this->mFormProperties['target_key'] = new XCube_StringProperty('target_key');
+		$this->mFormProperties['target_type'] = new XCube_StringProperty('target_type');
 
 
 		//
@@ -51,6 +55,21 @@ class Xupdate_Admin_ModuleInstallForm extends XCube_ActionForm
 		$this->mFieldProperties['sid']->setDependsByArray(array('required'));
 		$this->mFieldProperties['sid']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, _MD_XUPDATE_LANG_SID);
 
+		$this->mFieldProperties['addon_url'] = new XCube_FieldProperty($this);
+		$this->mFieldProperties['addon_url']->setDependsByArray(array('required'));
+		$this->mFieldProperties['addon_url']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, 'addon_url');
+
+		$this->mFieldProperties['trust_dirname'] = new XCube_FieldProperty($this);
+		$this->mFieldProperties['trust_dirname']->setDependsByArray(array('maxlength'));
+		$this->mFieldProperties['trust_dirname']->addMessage("maxlength",_MD_XUPDATE_ERROR_MAXLENGTH,'trust_dirname',"25");
+		$this->mFieldProperties['trust_dirname']->addVar("maxlength",25);
+
+		$this->mFieldProperties['dirname'] = new XCube_FieldProperty($this);
+		$this->mFieldProperties['dirname']->setDependsByArray(array('required','maxlength'));
+		$this->mFieldProperties['dirname']->addMessage("required",_MD_XUPDATE_ERROR_REQUIRED,_MD_XUPDATE_LANG_NAME,"25");
+		$this->mFieldProperties['dirname']->addMessage("maxlength",_MD_XUPDATE_ERROR_MAXLENGTH,_MD_XUPDATE_LANG_NAME,"25");
+		$this->mFieldProperties['dirname']->addVar("maxlength",25);
+
 		$this->mFieldProperties['target_key'] = new XCube_FieldProperty($this);
 		$this->mFieldProperties['target_key']->setDependsByArray(array('required'));
 		$this->mFieldProperties['target_key']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, 'target_key');
@@ -58,16 +77,6 @@ class Xupdate_Admin_ModuleInstallForm extends XCube_ActionForm
 		$this->mFieldProperties['target_type'] = new XCube_FieldProperty($this);
 		$this->mFieldProperties['target_type']->setDependsByArray(array('required'));
 		$this->mFieldProperties['target_type']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, 'target_type');
-
-		$this->mFieldProperties['trust_dirname'] = new XCube_FieldProperty($this);
-		$this->mFieldProperties['trust_dirname']->setDependsByArray(array('maxlength'));
-		$this->mFieldProperties['trust_dirname']->addMessage("maxlength",_MD_XUPDATE_ERROR_MAXLENGTH,'trust_dirname',"25");
-		$this->mFieldProperties['trust_dirname']->addVar("maxlength",25);
-		$this->mFieldProperties['dirname'] = new XCube_FieldProperty($this);
-		$this->mFieldProperties['dirname']->setDependsByArray(array('required','maxlength'));
-		$this->mFieldProperties['dirname']->addMessage("required",_MD_XUPDATE_ERROR_REQUIRED,_MD_XUPDATE_LANG_NAME,"25");
-		$this->mFieldProperties['dirname']->addMessage("maxlength",_MD_XUPDATE_ERROR_MAXLENGTH,_MD_XUPDATE_LANG_NAME,"25");
-		$this->mFieldProperties['dirname']->addVar("maxlength",25);
 
 	}
 

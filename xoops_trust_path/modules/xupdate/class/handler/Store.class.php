@@ -17,19 +17,16 @@ class Xupdate_StoreObject extends XoopsSimpleObject
 {
 	/**
 	 * __construct
-	 * 
+	 *
 	 * @param	void
-	 * 
+	 *
 	 * @return	void
 	**/
 	public function __construct()
 	{
 		$this->initVar('sid', XOBJ_DTYPE_INT, '0', false);
-		$this->initVar('uid', XOBJ_DTYPE_INT, '0', false);
-		$this->initVar('valid', XOBJ_DTYPE_INT, '0', false);
 		$this->initVar('name', XOBJ_DTYPE_STRING, '', false, 255);
 		$this->initVar('addon_url', XOBJ_DTYPE_STRING, '', false, 255);
-		$this->initVar('theme_url', XOBJ_DTYPE_STRING, '', false, 255);
 		$this->initVar('reg_unixtime', XOBJ_DTYPE_INT, '0', false);
 
 	}
@@ -49,10 +46,10 @@ class Xupdate_StoreHandler extends XoopsObjectGenericHandler
 
 	/**
 	 * __construct
-	 * 
+	 *
 	 * @param	XoopsDatabase  &$db
 	 * @param	string	$dirname
-	 * 
+	 *
 	 * @return	void
 	**/
 	public function __construct(/*** XoopsDatabase ***/ &$db,/*** string ***/ $dirname)
@@ -60,6 +57,7 @@ class Xupdate_StoreHandler extends XoopsObjectGenericHandler
 		$this->mTable = strtr($this->mTable,array('{dirname}' => $dirname));
 		parent::XoopsObjectGenericHandler($db);
 	}
+
 
 }
 

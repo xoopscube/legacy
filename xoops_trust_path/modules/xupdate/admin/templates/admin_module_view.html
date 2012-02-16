@@ -1,27 +1,50 @@
 <{* <p>"Finish Download"|t}></p> *}>
 <h3><{$smarty.const._AD_XUPDATE_LANG_MODULES}></h3>
-<{if $xupdate_items }>
+  <div id="menunavi">
+  <{if !empty($adminMenu) }>
+    <ul class="submenunavi">
+      <{foreach item=menu from=$adminMenu}>
+          <li><a href="<{$menu.link|xoops_escape:link}>"><{$menu.title|xoops_escape}></a></li>
+      <{/foreach}>
+          <li style="background:#87CEFA;"><a href="<{$xoops_url}>/admin.php" style="color:#ffffff;"><{$smarty.const._CPHOME}></a></li>
+    </ul>
+  <{/if}>
+  </div>
+<div class="tips">
+<ul>
+	<li><{$smarty.const._MI_XUPDATE_TEMP_PATH}> <{$xupdate_writable.path}>
+	<{if $xupdate_writable.result==true}>
+		(<span style="color:green;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_WRITABLE_RESULT}> OK</span>)
+	<{else}>
+		(<span style="color:red;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_WRITABLE_RESULT}> NG</span>)
+	<{/if}>
+	</li>
+	<li><{$mod_config.FTP_UserName}>
+<{* TODO FTP CHECK *}>
+	<{if $mod_config.FTP_UserName }>
+		(<span style="color:green;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_FTP_PASS_RESULT}> OK</span>)
+	<{else}>
+		(<span style="color:red;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_FTP_PASS_RESULT}> NG</span>)
+	<{/if}>
+	</li>
+</ul>
+</div>
+
+<{if !empty($xupdate_items) }>
 	<div>
 	<ul>
-	<{foreach item=_item from=$xupdate_items}>
-		<li><a href="<{$_item.url}>"><{$_item.dirname}></a></li>
+	<{foreach item=data from=$xupdate_items}>
+		<li><{$data.storeobj->getShow('name')}></li>
+		<li>
+		<{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>: <{$data.items_count}>
+		</li>
+		<ul>
+		<{foreach item=itemsobj from=$data.itemsobj}>
+			<li><a href="index.php?action=ModuleInstall&amp;id=<{$itemsobj->getShow('id')}>"><{$itemsobj->getShow('dirname')}></a></li>
+		<{/foreach}>
+		</ul>
 	<{/foreach}>
 	</ul>
 	</div>
 <{/if}>
-
-<h3><{$smarty.const._AD_XUPDATE_LANG_WRITABLE_RESULT}></h3>
-	<div>
-	<ul>
-	<li><{$xupdate_writable.path}>&nbsp;:&nbsp;
- 	<{if $xupdate_writable.result==true}>
-		(<span style="color:green;font-weight:bold;">OK</span>)
-	<{else}>
-		(<span style="color:red;font-weight:bold;">NG</span>)
-	<{/if}>
-	</li></ul>
-	</div>
-
-<{*<div><{$xupdate_content}></div>*}>
-<div><{$xupdate_message}></div>
 

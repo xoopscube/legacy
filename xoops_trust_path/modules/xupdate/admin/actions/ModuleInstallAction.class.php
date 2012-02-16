@@ -14,11 +14,11 @@ require_once XUPDATE_TRUST_PATH . '/class/AbstractAction.class.php';
 // Xupdate_ftp class object
 require_once XUPDATE_TRUST_PATH . '/class/Root.class.php';
 
-require_once XUPDATE_TRUST_PATH . '/class/FtpModuleInstall.class.php';
+require_once XUPDATE_TRUST_PATH . '/include/FtpModuleInstall.class.php';
 
 /**
  * Xupdate_Admin_StoreAction
-*
+ *
  * @property mixed downloadUrlFormat
  */
 class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
@@ -29,19 +29,15 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 //	protected $Func ;	// Functions instance
 //	protected $mod_config ;
 
+	protected $id;
+	protected $sid;
+
+	protected $addon_url;
+
 	protected $target_key;
 	protected $target_type;
 	protected $trust_dirname;
 	protected $dirname;
-
-	/**
-	 * getDefaultView
-	 *
-	 * @param	void
-	 *
-	 * @return	Enum
-	**/
-
 
 	public function __construct()
 	{
@@ -62,12 +58,20 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 		return true;
 	}
 	/**
-	 * @public
+	 * @protected
 	 */
-	protected function &_getHandler()
+	protected function &_getStoreHandler()
 	{
-//		$handler =& $this->mAsset->getObject('handler', 'ModuleStore',false);
-//		return $handler;
+		$handler =& $this->mAsset->getObject('handler', 'Store',false);
+		return $handler;
+	}
+	/**
+	 * @protected
+	 */
+	protected function &_getModuleStoreHandler()
+	{
+		$handler =& $this->mAsset->getObject('handler', 'ModuleStore',false);
+		return $handler;
 	}
 	/**
 	 * _setupActionForm
@@ -99,18 +103,42 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 		}
 	}
 
+	/**
+	 * getDefaultView
+	 *
+	 * @param	void
+	 *
+	 * @return	Enum
+	**/
 	public function getDefaultView()
 	{
 
-		$this->target_key = $this->Xupdate->get('target_key');
-		$this->target_key = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , $this->target_key ) ;
-		$this->target_type = $this->Xupdate->get('target_type');
-		$this->target_type = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , $this->target_type ) ;
+		$this->id = intval($this->Xupdate->get('id'));
+		$this->sid = intval($this->Xupdate->get('sid'));
 
-		$this->trust_dirname = $this->Xupdate->get('trust_dirname');
-		$this->trust_dirname = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , $this->trust_dirname ) ;
-		$this->dirname = $this->Xupdate->get('dirname');
-		$this->dirname = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , $this->dirname ) ;
+		$modHand =& $this->_getModuleStoreHandler();
+		$storeHand =  & $this->_getStoreHandler();
+
+		$mobj =& $modHand->get($this->id);
+		if (is_object($mobj)){
+			$this->id = $mobj->getShow('id');
+			$this->sid = $mobj->getShow('sid');
+
+			$this->target_key = $mobj->getShow('target_key');
+			$this->target_type = $mobj->getShow('target_type');
+			$this->trust_dirname = $mobj->getShow('trust_dirname');
+
+			$this->dirname = $this->Xupdate->get('dirname');
+			$this->dirname = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , $this->dirname ) ;
+			if (empty($this->dirname)){
+				$this->dirname = $mobj->getShow('dirname');
+			}
+
+			$sobj =& $storeHand->get($this->sid);
+			if (is_object($sobj)){
+				$this->addon_url = $sobj->getShow('addon_url');
+			}
+		}
 
 		return XUPDATE_FRAME_VIEW_INDEX;
 	}
@@ -132,8 +160,10 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 		$render->setAttribute('xupdate_writable', $xupdateRoot->params['is_writable']);
 
 		//TODO
-		$render->setAttribute('id', 1);//TEST dummy
-		$render->setAttribute('sid', 1);//TEST dummy
+		$render->setAttribute('id', $this->id);
+		$render->setAttribute('sid', $this->sid);
+
+		$render->setAttribute('addon_url', $this->addon_url);
 
 		$render->setAttribute('target_key', $this->target_key);
 		$render->setAttribute('target_type', $this->target_type);
@@ -153,20 +183,17 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 	 **/
 	public function executeViewSuccess(&$render)
 	{
-		$this->target_key = $this->mActionForm->get('target_key');
-		$this->target_type = $this->mActionForm->get('target_type');
-		$this->trust_dirname = $this->mActionForm->get('trust_dirname');
-		$this->dirname = $this->mActionForm->get('dirname');
 
 		$xupdateFtpModuleInstall = new Xupdate_FtpModuleInstall ;// Xupdate instance
 		//setup
 		$xupdateFtpModuleInstall->downloadDirPath = $this->Xupdate->params['temp_path'];
-		$xupdateFtpModuleInstall->downloadUrlFormat = $this->mod_config['Mod_download_Url_format'];
 
-		$xupdateFtpModuleInstall->target_key = $this->target_key;
-		$xupdateFtpModuleInstall->target_type = $this->target_type;
-		$xupdateFtpModuleInstall->trust_dirname = $this->trust_dirname;
-		$xupdateFtpModuleInstall->dirname = $this->dirname;
+		$xupdateFtpModuleInstall->downloadUrlFormat = $this->mActionForm->get('addon_url');
+
+		$xupdateFtpModuleInstall->target_key =  $this->mActionForm->get('target_key');
+		$xupdateFtpModuleInstall->target_type = $this->mActionForm->get('target_type');
+		$xupdateFtpModuleInstall->trust_dirname = $this->mActionForm->get('trust_dirname');
+		$xupdateFtpModuleInstall->dirname = $this->mActionForm->get('dirname');
 		//execute
 		$result = $xupdateFtpModuleInstall->execute();
 

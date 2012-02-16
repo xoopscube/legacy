@@ -61,6 +61,13 @@
     </td>
   </tr>
   <tr class="<{cycle values='odd,even'}>">
+    <td class="legacy_list_select"><{$smarty.const._MI_XUPDATE_FTP_ADDON_URL}></td>
+    <td class="legacy_list_select">
+        <{xoops_input type=hidden name=addon_url value=$addon_url }>
+        <{$addon_url|xoops_escape:show}>
+    </td>
+  </tr>
+  <tr class="<{cycle values='odd,even'}>">
     <td class="legacy_list_select">target_key</td>
     <td class="legacy_list_select">
         <{xoops_input type=hidden name=target_key value=$target_key }>

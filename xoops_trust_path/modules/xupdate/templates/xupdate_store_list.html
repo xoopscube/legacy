@@ -15,6 +15,7 @@
 		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.XUPDATE_STORE_SORT_KEY_SID}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
 		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.XUPDATE_STORE_SORT_KEY_SID}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
 		</th>
+<{*
 		<th>
 		  <{$smarty.const._MD_XUPDATE_LANG_UID}><br />
 		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.XUPDATE_STORE_SORT_KEY_UID}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
@@ -25,6 +26,7 @@
 		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.XUPDATE_STORE_SORT_KEY_VALID}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
 		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.XUPDATE_STORE_SORT_KEY_VALID}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
 		</th>
+*}>
 		<th>
 		  <{$smarty.const._MD_XUPDATE_LANG_NAME}><br />
 		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.XUPDATE_STORE_SORT_KEY_NAME}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
@@ -35,11 +37,13 @@
 		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.XUPDATE_STORE_SORT_KEY_ADDON_URL}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
 		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.XUPDATE_STORE_SORT_KEY_ADDON_URL}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
 		</th>
+<{*
 		<th>
 		  <{$smarty.const._MD_XUPDATE_LANG_THEME_URL}><br />
 		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.XUPDATE_STORE_SORT_KEY_THEME_URL}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
 		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.XUPDATE_STORE_SORT_KEY_THEME_URL}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
 		</th>
+*}>
 		<th>
 		  <{$smarty.const._MD_XUPDATE_LANG_REG_UNIXTIME}><br />
 		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.XUPDATE_STORE_SORT_KEY_REG_UNIXTIME}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
@@ -53,11 +57,15 @@
       <{foreach item=obj from=$objects}>
         <tr class="<{cycle values='odd,even'}>">
 		  <td><{$obj->getShow('sid')}></td>
+<{*
 		  <td><{$obj->getShow('uid')}></td>
 		  <td><{$obj->getShow('valid')}></td>
+*}>
 		  <td><{$obj->getShow('name')}></td>
 		  <td><{$obj->getShow('addon_url')}></td>
+<{*
 		  <td><{$obj->getShow('theme_url')}></td>
+*}>
 		  <td><{$obj->getShow('reg_unixtime')}></td>
 
           <td>

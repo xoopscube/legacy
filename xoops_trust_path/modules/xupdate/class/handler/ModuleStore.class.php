@@ -16,11 +16,11 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 		$this->initVar('sid', XOBJ_DTYPE_INT, '0', false);//store join
 
 		$this->initVar('dirname', XOBJ_DTYPE_STRING, '', false);
-		$this->initVar('type', XOBJ_DTYPE_STRING, '', false);
+		$this->initVar('trust_dirname', XOBJ_DTYPE_STRING, '', false);
 		$this->initVar('version', XOBJ_DTYPE_INT, 100, false);
 		$this->initVar('last_update', XOBJ_DTYPE_INT, null, false);
-		$this->initVar('trust_dirname', XOBJ_DTYPE_STRING, '', false);
 		$this->initVar('target_key', XOBJ_DTYPE_STRING, '', false);
+		$this->initVar('target_type', XOBJ_DTYPE_STRING, '', false);
 
 		parent::__construct() ;
 
@@ -74,7 +74,7 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 	public function isDirnameError()
 	{
 
-		if ( $this->getVar('type') == 'TrustModule' ){
+		if ( $this->getVar('target_type') == 'TrustModule' ){
 			if ( is_object($this->mModule) ){
 				if ( $this->mModule->getVar('mid') ){
 					if ( $this->getVar('trust_dirname') == $this->mModule->getVar('trust_dirname') ){
@@ -121,8 +121,7 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 		$root =& XCube_Root::getSingleton();
 		$modDirname = $root->mContext->mModule->mAssetManager->mDirname;
 		$ret = XOOPS_MODULE_URL .'/'.$modDirname.'/admin/index.php?action=ModuleInstall'
-			.'&target_key='.$this->getVar('target_key') .'&target_type='.$this->getVar('type')
-			.'&trust_dirname='.$this->getVar('trust_dirname') .'&dirname='.$this->getVar('dirname');
+			.'&id='.$this->getVar('id') .'&dirname='.$this->getVar('dirname');
 		return $ret;
 	}
 	public function get_InstallUrl()
