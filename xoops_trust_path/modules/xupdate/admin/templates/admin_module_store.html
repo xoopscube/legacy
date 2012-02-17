@@ -61,6 +61,10 @@
       <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.MODULE_SORT_KEY_ID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
       <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.MODULE_SORT_KEY_ID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
+    <th><{$smarty.const._MD_XUPDATE_LANG_SID}>
+      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.MODULE_SORT_KEY_SID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.MODULE_SORT_KEY_SID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+      </th>
     <th><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}>
       <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
       <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
@@ -86,13 +90,14 @@
   </tr>
   <{foreach item=module from=$moduleObjects}>
     <tr class="<{cycle values='odd,even'}>">
-      <td class="legacy_list_id"><{$module->getVar('id')}></td>
+      <td class="legacy_list_id"><{$module->getShow('id')}></td>
+      <td class="legacy_list_id"><{$module->getShow('sid')}></td>
       <td class="legacy_list_image">
-        <{if $module->getVar('target_type') == 'TrustModule' }>
-        <input type="text" size="24" name="dirname[<{$module->getVar('id')}>]" value="<{$module->getVar('dirname')}>" />
+        <{if $module->getShow('target_type') == 'TrustModule' && $module->getShow('replicatable') }>
+        <input type="text" size="24" name="dirname[<{$module->get('id')}>]" value="<{$module->get('dirname')}>" />
         <{else}>
-        <input type="hidden" size="24" name="dirname[<{$module->getVar('id')}>]" value="<{$module->getVar('dirname')}>" />
-          <{$module->getVar('dirname')}>
+        <input type="hidden" size="24" name="dirname[<{$module->get('id')}>]" value="<{$module->get('dirname')}>" />
+          <{$module->getShow('dirname')}>
         <{/if}>
       </td>
       <td class="legacy_list_order">
@@ -115,13 +120,13 @@
           <{else}>
             (<{$module->modinfo.dirname}>)
           <{/if}>
-          <strong class="legacy_module_warning"><{$module->getVar('target_key')}></strong>
+          <strong class="legacy_module_warning"><{$module->getShow('target_key')}></strong>
         <{else}>
-          <{$module->getVar('target_key')}>
+          <{$module->getShow('target_key')}>
         <{/if}>
       </td>
       <td class="legacy_list_select">
-        <{$module->getVar('target_type')}>
+        <{$module->getShow('target_type')}>
       </td>
       <td class="legacy_list_control">
       <{if $xupdate_writable.result==true}>
@@ -152,7 +157,7 @@
     </tr>
   <{/foreach}>
   <tr>
-    <td class="foot" colspan="7">
+    <td class="foot" colspan="8">
       <{xoops_token form=$actionForm}>
       <input type="submit" value="<{$smarty.const._AD_LEGACY_LANG_MOD_NAME}><{$smarty.const._EDIT}>" class="formButton" />
     </td>

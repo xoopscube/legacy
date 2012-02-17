@@ -112,10 +112,12 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	{
 
 //データの自動作成と削除
+
 		$inidataset = new Xupdate_ModulesIniDadaSet;
 		$inidataset->storeHand =  & $this->_getStoreHandler();
 		$inidataset->modHand = & $this->_getHandler();
 		$inidataset->execute();
+
 //-----------------------------------------------
 
 		$modHand = & $this->_getHandler();
@@ -154,12 +156,12 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 		$modHand = & $this->_getHandler();
 
-		if (!empty( $this->sid)){
+		if (empty( $this->sid)){
+			$module_total = $modHand->getCount();
+		}else{
 			$criteria = new CriteriaCompo();
 			$criteria->add(new Criteria( 'sid', $this->sid ) );
 			$module_total = $modHand->getCount($criteria);
-		}else{
-			$module_total = $modHand->getCount();
 		}
 
 		$render->setAttribute('pageNavi', $this->mFilter->mNavi);
@@ -196,11 +198,11 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$modHand = & $this->_getHandler();
 
 		if (empty( $this->sid)){
+			$this->mModuleObjects =& $modHand->getObjects(null ,null , null , true);
+		}else{
 			$criteria = new CriteriaCompo();
 			$criteria->add(new Criteria( 'sid', $this->sid ) );
 			$this->mModuleObjects =& $modHand->getObjects($criteria ,null , null , true);
-		}else{
-			$this->mModuleObjects =& $modHand->getObjects(null ,null , null , true);
 		}
 
 		return XUPDATE_FRAME_VIEW_INPUT;
@@ -226,21 +228,24 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	{
 		$modHand = & $this->_getHandler();
 		if (empty( $this->sid)){
+			$t_objectArr =& $modHand->getObjects(null,null,null,true);
+		}else{
 			$criteria = new CriteriaCompo();
 			$criteria->add(new Criteria( 'sid', $this->sid ) );
-			$t_objectArr =& $modHand->getObjects($criteria);//TODO bug $id_as_key=true
-		}else{
-			$t_objectArr =& $modHand->getObjects();//TODO bug $id_as_key=true
+			$t_objectArr =& $modHand->getObjects($criteria,null,null,true);
 		}
 
 		$successFlag = true;
 		$newdata_dirname_arr = $this->mActionForm->get('dirname');
-		foreach($t_objectArr as $obj) {
-			$id = $obj->getVar('id');
+		foreach($newdata_dirname_arr  as $id => $new_dirname) {
+			if (empty($new_dirname) || empty($id)){
+				continue;
+			}
+			$obj=$t_objectArr[$id];
 			$olddata['dirname'] = $obj->getVar('dirname');
-			$newdata['dirname'] = $newdata_dirname_arr[$id];
+			$newdata['dirname'] = $new_dirname;
 			if (count(array_diff_assoc($olddata, $newdata)) > 0 ) {
-				$obj->set('dirname', $newdata_dirname_arr[$id]);
+				$obj->set('dirname', $new_dirname);
 				if ($modHand->insert($obj)) {
 					$successFlag &= true;
 				}else{

@@ -23,7 +23,7 @@ $basename = basename($dirname);
 // Define a basic manifesto.
 //
 $modversion['name'] = _MI_XUPDATE_LANG_XUPDATE;
-$modversion['version'] = 0.01;//a
+$modversion['version'] = '0.01a';//alpha
 $modversion['description'] = _MI_XUPDATE_DESC_XUPDATE;
 $modversion['author'] = _MI_XUPDATE_LANG_AUTHOR;
 $modversion['credits'] = _MI_XUPDATE_LANG_CREDITS;
@@ -58,8 +58,8 @@ $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 $modversion['tables'] = array(
 //	  '{prefix}_{dirname}_xxxx',
 ##[cubson:tables]
-    '{prefix}_{dirname}_store',
-    '{prefix}_{dirname}_modulestore',
+	'{prefix}_{dirname}_store',
+	'{prefix}_{dirname}_modulestore',
 ##[/cubson:tables]
 );
 
@@ -74,11 +74,11 @@ $modversion['templates'] = array(
 	),
 */
 ##[cubson:templates]
-        //array('file' => '{dirname}_admin_storeview.html','admin' => 'adminmenu'),
-        array('file' => '{dirname}_store_delete.html','description' => _MI_XUPDATE_TPL_STORE_DELETE),
-        array('file' => '{dirname}_store_edit.html','description' => _MI_XUPDATE_TPL_STORE_EDIT),
-        array('file' => '{dirname}_store_list.html','description' => _MI_XUPDATE_TPL_STORE_LIST),
-        array('file' => '{dirname}_store_view.html','description' => _MI_XUPDATE_TPL_STORE_VIEW),
+		//array('file' => '{dirname}_admin_storeview.html','admin' => 'adminmenu'),
+		array('file' => '{dirname}_store_delete.html','description' => _MI_XUPDATE_TPL_STORE_DELETE),
+		array('file' => '{dirname}_store_edit.html','description' => _MI_XUPDATE_TPL_STORE_EDIT),
+		array('file' => '{dirname}_store_list.html','description' => _MI_XUPDATE_TPL_STORE_LIST),
+		array('file' => '{dirname}_store_view.html','description' => _MI_XUPDATE_TPL_STORE_VIEW),
 ##[/cubson:templates]
 );
 
@@ -92,12 +92,12 @@ $modversion['adminindex'] = 'admin/index.php?action=ModuleView';
 ##[cubson:adminmenu]
 $modversion['adminmenu'] = array(
 	array(
-        'title'		=> _MI_XUPDATE_ADMENU_MODULE,
-        'link'	=> 'admin/index.php?action=ModuleStore',
-        'keywords'	=> _MI_XUPDATE_ADMENU_MODULE,
-        'show'	=> true,
-        'absolute' => false
-    )
+		'title'		=> _MI_XUPDATE_ADMENU_MODULE,
+		'link'	=> 'admin/index.php?action=ModuleStore',
+		'keywords'	=> _MI_XUPDATE_ADMENU_MODULE,
+		'show'	=> true,
+		'absolute' => false
+	)
 );
 //
 // Public side control setting
@@ -160,9 +160,9 @@ $modversion['config'] = array(
 		'valuetype'	=> 'int',
 		'default'	=> '0',
 		'options'	=> array( '_MI_XUPDATE_CUSTOM_FTP' => 0,
-			  			'_MI_XUPDATE_PHP_FTP' => 1,
-			  			//'_MI_XUPDATE_CUSTOM_SFTP' => 2
-                        )
+						'_MI_XUPDATE_PHP_FTP' => 1,
+						//'_MI_XUPDATE_CUSTOM_SFTP' => 2
+						)
 	) ,
 
 	array(
@@ -196,26 +196,15 @@ $modversion['config'] = array(
 		'options'	=> array(),
 	) ,
 
-    array(
-        'name'		=> 'Show_debug',
-        'title'		=> '_MI_XUPDATE_DEBUG' ,
-        'description'	=> '',
-        'formtype'	=> 'yesno',
-        'valuetype'	=> 'int',
-        'default'	=> 0 ,
-        'options'	=> array(),
-    ) ,
-
 	array(
-		'name'		=> 'Mod_download_Url_format',
-		'title'		=> '_MI_XUPDATE_FTP_ADDON_URL' ,
+		'name'		=> 'Show_debug',
+		'title'		=> '_MI_XUPDATE_DEBUG' ,
 		'description'	=> '',
-		'formtype'	=> 'text',
-		'valuetype'	=> 'string',
-		'default'	=> 'http://www.naaon.com/uploads/xupdate/%s.zip',
+		'formtype'	=> 'yesno',
+		'valuetype'	=> 'int',
+		'default'	=> 0 ,
 		'options'	=> array(),
 	) ,
-
 	array(
 		'name'		=> 'Theme_download_Url_format',
 		'title'		=> '_MI_XUPDATE_FTP_THEME_URL' ,
@@ -225,16 +214,6 @@ $modversion['config'] = array(
 		'default'	=> 'http://cmsthemefinder.com/modules/lica/index.php?controller=download&id=%u',
 		'options'	=> array(),
 	) ,
-
-	array(
-		'name'		=> 'addon_store_url',
-		'title'		=> '_MI_XUPDATE_FTP_STORE_URL' ,
-		'description'	=> '',
-		'formtype'	=> 'text',
-		'valuetype'	=> 'string',
-		'default'	=> 'http://tokyopen.jp/addonstore/',
-		'options'	=> array(),
-	)
 
 ##[cubson:config]
 ##[/cubson:config]

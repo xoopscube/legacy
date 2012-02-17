@@ -22,6 +22,8 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 		$this->initVar('target_key', XOBJ_DTYPE_STRING, '', false);
 		$this->initVar('target_type', XOBJ_DTYPE_STRING, '', false);
 
+		$this->initVar('replicatable', XOBJ_DTYPE_INT, '0', false);
+
 		parent::__construct() ;
 
 	}

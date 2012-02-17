@@ -9,14 +9,15 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 require_once XUPDATE_TRUST_PATH . "/class/AbstractFilterForm.class.php";
 
 define("MODULE_SORT_KEY_ID",          1);
-define("MODULE_SORT_KEY_DIRNAME",     2);
-define("MODULE_SORT_KEY_VERSION",     3);
-define("MODULE_SORT_KEY_LASTUPDATE",  4);
-define("MODULE_SORT_KEY_TARGET_KEY" , 5);
-define("MODULE_SORT_KEY_TARGET_TYPE", 6);
+define("MODULE_SORT_KEY_SID",         2);
+define("MODULE_SORT_KEY_DIRNAME",     3);
+define("MODULE_SORT_KEY_VERSION",     4);
+define("MODULE_SORT_KEY_LASTUPDATE",  5);
+define("MODULE_SORT_KEY_TARGET_KEY" , 6);
+define("MODULE_SORT_KEY_TARGET_TYPE", 7);
 
 define("MODULE_SORT_KEY_DEFAULT",     MODULE_SORT_KEY_ID);
-//define("MODULE_SORT_KEY_MAXVALUE",   12);
+define("MODULE_SORT_KEY_MAXVALUE",   7);
 
 /***
  * @internal
@@ -28,12 +29,13 @@ class Xupdate_Admin_ModuleStoreFilterForm extends Xupdate_AbstractFilterForm
 	var $mSpecial = null;
 
 	var $mSortKeys = array(
-		MODULE_SORT_KEY_ID         => "id",
+		MODULE_SORT_KEY_ID          => "id",
+		MODULE_SORT_KEY_SID         => "sid",
 		MODULE_SORT_KEY_DIRNAME     => "dirname",
 		MODULE_SORT_KEY_VERSION     => "version",
 		MODULE_SORT_KEY_LASTUPDATE  => "last_update",
-		MODULE_SORT_KEY_TARGET_KEY      => "target_key",
-		MODULE_SORT_KEY_TARGET_TYPE    => "target_type"
+		MODULE_SORT_KEY_TARGET_KEY  => "target_key",
+		MODULE_SORT_KEY_TARGET_TYPE => "target_type"
 	);
 
 	function  Xupdate_Admin_ModuleStoreFilterForm()

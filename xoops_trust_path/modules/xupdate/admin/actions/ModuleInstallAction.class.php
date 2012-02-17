@@ -113,33 +113,6 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 	public function getDefaultView()
 	{
 
-		$this->id = intval($this->Xupdate->get('id'));
-		$this->sid = intval($this->Xupdate->get('sid'));
-
-		$modHand =& $this->_getModuleStoreHandler();
-		$storeHand =  & $this->_getStoreHandler();
-
-		$mobj =& $modHand->get($this->id);
-		if (is_object($mobj)){
-			$this->id = $mobj->getShow('id');
-			$this->sid = $mobj->getShow('sid');
-
-			$this->target_key = $mobj->getShow('target_key');
-			$this->target_type = $mobj->getShow('target_type');
-			$this->trust_dirname = $mobj->getShow('trust_dirname');
-
-			$this->dirname = $this->Xupdate->get('dirname');
-			$this->dirname = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , $this->dirname ) ;
-			if (empty($this->dirname)){
-				$this->dirname = $mobj->getShow('dirname');
-			}
-
-			$sobj =& $storeHand->get($this->sid);
-			if (is_object($sobj)){
-				$this->addon_url = $sobj->getShow('addon_url');
-			}
-		}
-
 		return XUPDATE_FRAME_VIEW_INDEX;
 	}
 	/**
@@ -151,6 +124,33 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 	**/
 	public function executeViewIndex(&$render)
 	{
+		$this->id = intval($this->Xupdate->get('id'));
+		$this->sid = intval($this->Xupdate->get('sid'));
+
+		$modHand =& $this->_getModuleStoreHandler();
+		$storeHand =  & $this->_getStoreHandler();
+
+		$mobj =& $modHand->get($this->id);
+		if (is_object($mobj)){
+			$this->id = $mobj->get('id');
+			$this->sid = $mobj->get('sid');
+
+			$this->target_key = $mobj->get('target_key');
+			$this->target_type = $mobj->get('target_type');
+			$this->trust_dirname = $mobj->get('trust_dirname');
+
+			$this->dirname = $this->Xupdate->get('dirname');
+			$this->dirname = preg_replace( '/[^a-zA-Z0-9_-]/' , '' , $this->dirname ) ;
+			if (empty($this->dirname)){
+				$this->dirname = $mobj->get('dirname');
+			}
+
+			$sobj =& $storeHand->get($this->sid);
+			if (is_object($sobj)){
+				$this->addon_url = $sobj->get('addon_url');
+			}
+		}
+
 		$xupdateRoot = new Xupdate_Root ;// Xupdate instance
 
 		$render->setTemplateName('admin_module_install_confirm.html');
@@ -188,8 +188,7 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 		//setup
 		$xupdateFtpModuleInstall->downloadDirPath = $this->Xupdate->params['temp_path'];
 
-		$addon_url = $this->mActionForm->get('addon_url');
-		$xupdateFtpModuleInstall->downloadUrlFormat = htmlspecialchars_decode($addon_url,ENT_QUOTES);
+		$xupdateFtpModuleInstall->downloadUrlFormat = $this->mActionForm->get('addon_url');
 
 		$xupdateFtpModuleInstall->target_key =  $this->mActionForm->get('target_key');
 		$xupdateFtpModuleInstall->target_type = $this->mActionForm->get('target_type');

@@ -75,6 +75,7 @@ class Xupdate_ModulesIniDadaSet
 				$sobj->assignVar('reg_unixtime',time());
 				$sobj->setNew();
 				$this->storeHand->insert($sobj ,true);
+				$this->mSiteObjects[$sid] = $sobj;
 			}
 		}
 
@@ -140,8 +141,10 @@ class Xupdate_ModulesIniDadaSet
 	private function _setDataSingleModule($sid , $item)
 	{
 		//trustモジュールでない(複製可能なものはどうしよう)
-		$mobj = new $this->modHand->mClass();
 		$item['version']= round(floatval($item['version'])*100);
+		$item['replicatable']= isset($item['replicatable']) ? intval($item['replicatable']): 0 ;
+
+		$mobj = new $this->modHand->mClass();
 		$mobj->assignVars($item);
 		$mobj->assignVar('sid', $sid);
 		$mobj->assignVar('target_key',$item['dirname']);
@@ -154,6 +157,7 @@ class Xupdate_ModulesIniDadaSet
 		}else{
 			$mobj->setNew();
 			$this->modHand->insert($mobj ,true);
+			$this->mSiteModuleObjects[$sid][$item['dirname']][$item['dirname']] = $mobj;
 		}
 		unset($mobj);
 
@@ -161,6 +165,7 @@ class Xupdate_ModulesIniDadaSet
 	private function _setDataTrustModule($sid ,$item)
 	{
 		$item['version']= round(floatval($item['version'])*100);
+		$item['replicatable']= isset($item['replicatable']) ? intval($item['replicatable']): 0 ;
 		//インストール済みの同じtrustモージュールのリストを取得
 		$list = Legacy_Utils::getDirnameListByTrustDirname($item['dirname']);
 
@@ -180,6 +185,7 @@ class Xupdate_ModulesIniDadaSet
 			}else{
 				$mobj->setNew();
 				$this->modHand->insert($mobj ,true);
+				$this->mSiteModuleObjects[$sid][$item['dirname']][$item['dirname']] = $mobj;
 			}
 			unset($mobj);
 
@@ -200,12 +206,13 @@ class Xupdate_ModulesIniDadaSet
 				if ( $dirname == $item['dirname'] ){
 					$_isrootdirmodule = true;
 				}
-				if (isset($this->mSiteModuleObjects[$sid][$dirname])){
+				if (isset($this->mSiteModuleObjects[$sid][$item['dirname']][$dirname])){
 					$mobj->assignVar('id',$this->mSiteModuleObjects[$sid][$item['dirname']][$dirname]->getVar('id') );
 					$this->_ModuleStoreUpdate($mobj , $this->mSiteModuleObjects[$sid][$item['dirname']][$item['dirname']]);
 				}else{
 					$mobj->setNew();
 					$this->modHand->insert($mobj ,true);
+					$this->mSiteModuleObjects[$sid][$item['dirname']][$dirname] = $mobj;
 				}
 				unset($mobj);
 			}
@@ -226,6 +233,7 @@ class Xupdate_ModulesIniDadaSet
 				}else{
 					$mobj->setNew();
 					$this->modHand->insert($mobj ,true);
+					$this->mSiteModuleObjects[$sid][$item['dirname']][$item['dirname']] = $mobj;
 				}
 				unset($mobj);
 			}

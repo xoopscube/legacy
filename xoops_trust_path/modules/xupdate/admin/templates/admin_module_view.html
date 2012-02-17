@@ -34,7 +34,7 @@
 	<div>
 	<ul>
 	<{foreach item=data from=$xupdate_items}>
-		<li><{$data.storeobj->getShow('name')}></li>
+		<li><a href="index.php?action=ModuleStore&amp;sid=<{$data.storeobj->get('sid')}>"><{$data.storeobj->getShow('name')}></a></li>
 		<li>
 		<{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>: <{$data.items_count}>
 		</li>

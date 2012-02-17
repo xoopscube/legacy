@@ -35,7 +35,7 @@ class Xupdate_FtpCommonFunc {
 		$this->mod_config = $this->mRoot->mContext->mModuleConfig ;	// mod_config
 
 		$this->downloadDirPath = $this->Xupdate->params['temp_path'];
-		$this->downloadUrlFormat = $this->mod_config['Mod_download_Url_format'];
+//		$this->downloadUrlFormat = $this->mod_config['Mod_download_Url_format'];
 
 	}
 
@@ -73,6 +73,10 @@ class Xupdate_FtpCommonFunc {
 
 		// TODO ファイルNotFound対策
 		$url = $this->_getDownloadUrl();
+		if (empty($url)){
+			$this->_set_error_log('_getDownloadUrl false');
+			return false;
+		}
 
 		$downloadedFilePath = $this->_getDownloadFilePath();
 
