@@ -9,6 +9,7 @@ define('_AD_XUPDATE_LANG_WRITABLE_RESULT', "フォルダ権限チェック結果
 define('_AD_XUPDATE_LANG_FTP_PASS_RESULT', "FTP設定チェック結果");
 
 define('_AD_XUPDATE_LANG_MODULES', "モジュール一覧");
+define('_AD_XUPDATE_LANG_THEME_FINDER', "テーマファインダー");
 
 define('_AD_XUPDATE_LANG_TYPE', "タイプ");
 

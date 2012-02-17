@@ -1,19 +1,10 @@
 <div class="adminnavi">
-  <a href="./index.php"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></a>
+  <a href="./index.php?action=ModuleStore"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></a>
   &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=ModuleStore"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTOREDEC}></a></span>
 </div>
 
 <h3 class="admintitle"><{$smarty.const._AD_XUPDATE_LANG_MODULES}></h3>
-  <div id="menunavi">
-  <{if !empty($adminMenu) }>
-    <ul class="submenunavi">
-      <{foreach item=menu from=$adminMenu}>
-          <li><a href="<{$menu.link|xoops_escape:link}>"><{$menu.title|xoops_escape}></a></li>
-      <{/foreach}>
-          <li style="background:#87CEFA;"><a href="<{$xoops_url}>/admin.php" style="color:#ffffff;"><{$smarty.const._CPHOME}></a></li>
-    </ul>
-  <{/if}>
-  </div>
+<{include file="admin_menunavi.html"}>
 
 <div class="tips">
 <ul>
@@ -162,11 +153,12 @@
   <tr>
     <td class="foot" colspan="8">
       <{xoops_token form=$actionForm}>
-      <input type="submit" value="<{$smarty.const._AD_LEGACY_LANG_MOD_NAME}><{$smarty.const._EDIT}>" class="formButton" />
+      <input class="formButton" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_MOD_NAME}><{$smarty.const._EDIT}>" />
+      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
     </td>
     <td class="foot">
     <{if $xupdate_writable.result==true}>
-      <input type="submit" value="<{$smarty.const._AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL}>"  id="rapidModuleInstallButton" class="formButton" />
+      <input class="formButton" type="submit" value="<{$smarty.const._AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL}>"  id="rapidModuleInstallButton" />
     <{/if}>
     </td>
   </tr>

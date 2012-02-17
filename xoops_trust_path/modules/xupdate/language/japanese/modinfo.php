@@ -69,6 +69,7 @@ define('_MI_XUPDATE_ADMENU_ADDONSTOREDEC' , '¤ª¹¥¤ß¤Î¥¢¥É¥ª¥ó¤ò¥À¥¦¥ó¥í¡¼¥É¤Ç¤­¤
 define('_MI_XUPDATE_ADMENU_MODULE' , '¥â¥¸¥å¡¼¥ë');
 define('_MI_XUPDATE_ADMENU_MYBLOCKSADMIN' , '¥¢¥¯¥»¥¹¸¢¸ÂÀßÄê');
 define('_MI_XUPDATE_ADMENU_MYPREFERENCES' , '°ìÈÌÀßÄê');
+define('_MI_XUPDATE_ADMENU_THEME' , '¥Æ¡¼¥Þ');
 
 // admin constant
 define('_MI_XUPDATE_TEMP_PATH' , '°µ½Ì¥Õ¥¡¥¤¥ë¥À¥¦¥ó¥í¡¼¥É¡¦Å¸³«ÍÑ¥Õ¥©¥ë¥À');

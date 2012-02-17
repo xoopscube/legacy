@@ -1,15 +1,7 @@
 <{* <p>"Finish Download"|t}></p> *}>
 <h3><{$smarty.const._AD_XUPDATE_LANG_MODULES}></h3>
-  <div id="menunavi">
-  <{if !empty($adminMenu) }>
-    <ul class="submenunavi">
-      <{foreach item=menu from=$adminMenu}>
-          <li><a href="<{$menu.link|xoops_escape:link}>"><{$menu.title|xoops_escape}></a></li>
-      <{/foreach}>
-          <li style="background:#87CEFA;"><a href="<{$xoops_url}>/admin.php" style="color:#ffffff;"><{$smarty.const._CPHOME}></a></li>
-    </ul>
-  <{/if}>
-  </div>
+<{include file="admin_menunavi.html"}>
+
 <div class="tips">
 <ul>
 	<li><{$smarty.const._MI_XUPDATE_TEMP_PATH}> <{$xupdate_writable.path}>

@@ -2,7 +2,7 @@
 
 <div class="adminnavi">
   <a href="./index.php?action=ModuleStore"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></a>
-  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=ModuleStore"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTOREDEC}></a></span>
+  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=ThemeFinder"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTOREDEC}></a></span>
 </div>
 
 <h3 class="admintitle"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></h3>
@@ -38,7 +38,7 @@
   </ul>
 </div>
 <{/if}>
-<form action="index.php?action=ModuleInstall" method="post">
+<form action="index.php?action=ThemeFinderInstall" method="post">
   <{xoops_token form=$actionForm}>
   <{xoops_input type=hidden name=confirm value=1}>
 
@@ -46,20 +46,6 @@
   <tr>
     <th>name</th>
     <th>value</th>
-  </tr>
-  <tr class="<{cycle values='odd,even'}>">
-    <td class="legacy_list_select">id</td>
-    <td class="legacy_list_select">
-        <{xoops_input type=hidden name=id value=$id }>
-        <{$id|xoops_escape:show}>
-    </td>
-  </tr>
-  <tr class="<{cycle values='odd,even'}>">
-    <td class="legacy_list_select"><{$smarty.const._MD_XUPDATE_LANG_SID}></td>
-    <td class="legacy_list_select">
-        <{xoops_input type=hidden name=sid value=$sid }>
-        <{$sid|xoops_escape:show}>
-    </td>
   </tr>
   <tr class="<{cycle values='odd,even'}>">
     <td class="legacy_list_select"><{$smarty.const._MI_XUPDATE_FTP_ADDON_URL}></td>
@@ -82,25 +68,6 @@
         <{$target_type|xoops_escape:show}>
     </td>
   </tr>
-  <tr class="<{cycle values='odd,even'}>">
-    <td class="legacy_list_select">trust_dirname</td>
-    <td class="legacy_list_select">
-        <{xoops_input type=hidden name=trust_dirname value=$trust_dirname }>
-        <{$trust_dirname|xoops_escape:show}>
-    </td>
-  </tr>
-  <tr class="<{cycle values='odd,even'}>">
-    <td class="legacy_list_select">dirname</td>
-    <td class="legacy_list_select">
-    <{if $target_type == 'TrustModule'}>
-        <{xoops_input type=text name=dirname value=$dirname }>
-    <{else}>
-        <{xoops_input type=hidden name=dirname value=$dirname }>
-        <{$dirname|xoops_escape:show}>
-    <{/if}>
-    </td>
-  </tr>
-
   <tr>
     <td class="foot" colspan="2">
        <{if !$actionForm->getErrorMessages()}>

@@ -39,7 +39,11 @@ class Xupdate_FtpCommonFunc {
 
 	}
 
-
+	/**
+	 * _downloadFile
+	 *
+	 * @return	bool
+	 **/
 	public function _downloadFile()
 		{
 		$realDirPath = $this->downloadDirPath;
@@ -143,7 +147,11 @@ class Xupdate_FtpCommonFunc {
 		return true;
 	}
 
-
+	/**
+	 * _unzipFile
+	 *
+	 * @return	bool
+	 **/
 	public function _unzipFile()
 	{
 		// local file name
@@ -211,6 +219,11 @@ class Xupdate_FtpCommonFunc {
 		return true;
 	}
 
+	/**
+	 * _upload
+	 *
+	 * @return	void
+	 **/
 	public function _upload () {
 
 		$this->Ftp->app_login("127.0.0.1") ;
@@ -219,6 +232,11 @@ class Xupdate_FtpCommonFunc {
 
 	}
 
+	/**
+	 * _getDownloadUrl
+	 *
+	 * @return	string
+	 **/
 	public function _getDownloadUrl()
 	{
 		// TODO ファイルNotFound対策
@@ -226,6 +244,11 @@ class Xupdate_FtpCommonFunc {
 		return $url;
 	}
 
+	/**
+	 * _getDownloadFilePath
+	 *
+	 * @return	string
+	 **/
 	public function _getDownloadFilePath()
 	{
 		//$downloadPath = sprintf( $this->downloadUrlFormat, 'd3diary') ;
@@ -234,6 +257,11 @@ class Xupdate_FtpCommonFunc {
 		return $downloadPath;
 	}
 
+	/**
+	 * _cleanup
+	 *
+	 * @return	void
+	 **/
 	public function _cleanup($dir)
 	{
 		if ($handle = opendir("$dir")) {
@@ -252,7 +280,13 @@ class Xupdate_FtpCommonFunc {
 		}
 	}
 
-
+	/**
+	 * _set_error_log
+	 *
+	 * @param   string  $msg
+	 *
+	 * @return	void
+	 **/
 	public function _set_error_log($msg)
 	{
 		$this->Ftp->appendMes('<span style="color:red;">'.$msg.'</span><br />');

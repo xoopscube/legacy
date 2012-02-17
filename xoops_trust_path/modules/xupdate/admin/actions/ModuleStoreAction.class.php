@@ -8,6 +8,7 @@
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
 require_once XUPDATE_TRUST_PATH . '/class/AbstractListAction.class.php';
+
 require_once XUPDATE_TRUST_PATH . '/include/ModulesIniDadaSet.class.php';
 
 class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
@@ -70,7 +71,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	function &_getPageNavi()
 	{
 		$navi =& parent::_getPageNavi();
-		$navi->setPerpage(30);//TODO
+		$navi->setPerpage(50);//TODO
 
 		return $navi;
 	}
@@ -133,13 +134,11 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	{
 		$render->setTemplateName('admin_module_store.html');
 
-		$render->setAttribute('sid', $this->sid);
-
 		$render->setAttribute('mod_config', $this->mod_config);
-
 		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
 
-		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
+		$render->setAttribute('sid', $this->sid);
+
 
 		$render->setAttribute('moduleObjects', $this->mModuleObjects);
 
@@ -158,7 +157,6 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$render->setAttribute('ModuleTotal', $module_total);
 
 		$render->setAttribute('actionForm', $this->mActionForm);
-
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 
 
@@ -202,16 +200,23 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	 */
 	function executeViewInput(&$render)
 	{
-		$render->setAttribute('sid', $this->sid);
 
 		$render->setTemplateName("admin_module_store_confirm.html");
+
+		$render->setAttribute('mod_config', $this->mod_config);
+		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
+
+		$render->setAttribute('sid', $this->sid);
+
 		$render->setAttribute('moduleObjects', $this->mModuleObjects);
 		$render->setAttribute('actionForm', $this->mActionForm);
 		// To support a template writer, this send the list of id that
 		// actionForm kept.
-		//
 		$t_arr = $this->mActionForm->get('dirname');
 		$render->setAttribute('ids', array_keys($t_arr));
+
+		$render->setAttribute('actionForm', $this->mActionForm);
+		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 
 	}
 
@@ -436,7 +441,7 @@ jQuery(function($){
 
 	var getStoreSuccess = function(html)
 	{
-		var result = $(html).find('#contentBody a').text();
+		var result = $(html).find('#xupdate_content a').text();
 		if (result == '{$message_Install}'){
 			installationModule.td.html('<span style="color:green;">{$message_Getting_files}{$message_Success}</span>');
 		}else{

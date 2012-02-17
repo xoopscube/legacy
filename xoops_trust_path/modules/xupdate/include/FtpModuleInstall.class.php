@@ -33,22 +33,10 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonFunc {
 	}
 
 	/**
-	* execute
-	 *
-	 * @return	strig
-	 **/
-	public function _getDownloadUrl()
-	{
-		// TODO ファイルNotFound対策
-		$url = sprintf($this->downloadUrlFormat, $this->target_key);
-		return $url;
-	}
-	/**
 	 * execute
 	 *
-	 * @return	void
+	 * @return	bool
 	 **/
-
 	public function execute()
 	{
 
@@ -82,7 +70,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonFunc {
 			//
 			$downloadPath= $this->_getDownloadFilePath() ;
 //TODO unlink ok?
-			unlink( $downloadPath );
+			@unlink( $downloadPath );
 
 			$this->content.= 'completed <br /><br />';
 		}else{
@@ -97,6 +85,23 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonFunc {
 		return $result;
 	}
 
+	/**
+	 * _getDownloadUrl
+	 *
+	 * @return	string
+	 **/
+	public function _getDownloadUrl()
+	{
+		// TODO ファイルNotFound対策
+		$url = sprintf($this->downloadUrlFormat, $this->target_key);
+		return $url;
+	}
+
+	/**
+	 * uploadFiles
+	 *
+	 * @return	bool
+	 **/
 	private function uploadFiles()
 	{
 		//$this->Ftp->connect();
@@ -159,6 +164,13 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonFunc {
 		return true;
 	}
 
+	/**
+	 * _get_nextlink
+	 *
+	 * @param   string  $dirname
+	 *
+	 * @return	string
+	 **/
 	private function _get_nextlink($dirname)
 	{
 		$ret ='';

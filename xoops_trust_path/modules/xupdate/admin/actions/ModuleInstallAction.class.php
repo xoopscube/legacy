@@ -11,8 +11,6 @@ if(!defined('XOOPS_ROOT_PATH'))
 }
 
 require_once XUPDATE_TRUST_PATH . '/class/AbstractAction.class.php';
-// Xupdate_ftp class object
-require_once XUPDATE_TRUST_PATH . '/class/Root.class.php';
 
 require_once XUPDATE_TRUST_PATH . '/include/FtpModuleInstall.class.php';
 
@@ -150,14 +148,12 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 				$this->addon_url = $sobj->get('addon_url');
 			}
 		}
-
-		$xupdateRoot = new Xupdate_Root ;// Xupdate instance
+		//-------------------------------------------
 
 		$render->setTemplateName('admin_module_install_confirm.html');
 
 		$render->setAttribute('mod_config', $this->mod_config);
-
-		$render->setAttribute('xupdate_writable', $xupdateRoot->params['is_writable']);
+		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
 
 		//TODO
 		$render->setAttribute('id', $this->id);
@@ -197,12 +193,17 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 		//execute
 		$result = $xupdateFtpModuleInstall->execute();
 
-		$render->setAttribute('xupdate_writable', $xupdateFtpModuleInstall->Xupdate->params['is_writable']);
+		//--------------------------------//
+		$render->setTemplateName('admin_module_install.html');
+
+		$render->setAttribute('mod_config', $this->mod_config);
+		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
+
 		$render->setAttribute('xupdate_content', $xupdateFtpModuleInstall->content);
 		$render->setAttribute('xupdate_message', $xupdateFtpModuleInstall->Ftp->getMes());
 
-		$render->setTemplateName('admin_module_install.html');
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
+		$render->setAttribute('actionForm', $this->mActionForm);
 	}
 
 	/**
@@ -212,7 +213,7 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 	 *
 	 * @return	void
 	 **/
-	public function executeViewCancel(&$renderer)
+	public function executeViewCancel(&$render)
 	{
 		$this->mRoot->mController->executeForward('./index.php?action=ModuleView');
 	}

@@ -9,6 +9,7 @@ define('_AD_XUPDATE_LANG_WRITABLE_RESULT', "Result of the check folder permissio
 define('_AD_XUPDATE_LANG_FTP_PASS_RESULT', "FTP configuration check results");
 
 define('_AD_XUPDATE_LANG_MODULES', "Module list");
+define('_AD_XUPDATE_LANG_THEME_FINDER', "Theme Finder");
 
 define('_AD_XUPDATE_LANG_TYPE', "Type");
 

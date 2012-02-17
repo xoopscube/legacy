@@ -97,8 +97,15 @@ $modversion['adminmenu'] = array(
 		'keywords'	=> _MI_XUPDATE_ADMENU_MODULE,
 		'show'	=> true,
 		'absolute' => false
+	),
+	array(
+		'title'		=> _MI_XUPDATE_ADMENU_THEME,
+		'link'	=> 'admin/index.php?action=ThemeFinder',
+		'keywords'	=> _MI_XUPDATE_ADMENU_THEME,
+		'show'	=> true,
+		'absolute' => false
 	)
-);
+	);
 //
 // Public side control setting
 //

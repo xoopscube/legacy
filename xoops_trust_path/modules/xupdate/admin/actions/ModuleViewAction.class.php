@@ -11,6 +11,7 @@ if(!defined('XOOPS_ROOT_PATH'))
 }
 
 require_once XUPDATE_TRUST_PATH . '/class/AbstractAction.class.php';
+
 require_once XUPDATE_TRUST_PATH . '/include/ModulesIniDadaSet.class.php';
 
 /**
@@ -82,12 +83,13 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 	**/
 	public function executeViewSuccess(&$render)
 	{
+		$render->setTemplateName('admin_module_view.html');
+
+		$render->setAttribute('mod_config', $this->mod_config);
+		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
+
 		$render->setAttribute('xupdate_items', $this->get_storeItems());
 
-		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
-		$render->setAttribute('mod_config', $this->mod_config);
-
-		$render->setTemplateName('admin_module_view.html');
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 
 	}

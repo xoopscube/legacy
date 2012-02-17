@@ -69,6 +69,7 @@ define('_MI_XUPDATE_ADMENU_ADDONSTOREDEC' , 'お好みのアドオンをダウ�
 define('_MI_XUPDATE_ADMENU_MODULE' , 'モジュール');
 define('_MI_XUPDATE_ADMENU_MYBLOCKSADMIN' , 'アクセス権限設定');
 define('_MI_XUPDATE_ADMENU_MYPREFERENCES' , '一般設定');
+define('_MI_XUPDATE_ADMENU_THEME' , 'テーマ');
 
 // admin constant
 define('_MI_XUPDATE_TEMP_PATH' , '圧縮ファイルダウンロード・展開用フォルダ');
