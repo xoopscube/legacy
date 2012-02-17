@@ -23,8 +23,8 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	{
 		parent::__construct();
 
-		$jQuery = $this->mRoot->mContext->getAttribute('headerScript');
-		$jQuery->addScript($this->RapidModuleInstall_js(),false);
+		$this->sid = (int)$this->mRoot->mContext->mRequest->getRequest('sid');
+		$this->sid = empty($this->sid)? 0 : intval($this->sid);
 
 	}
 	/**
@@ -39,7 +39,6 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		parent::prepare();
 		$this->_setupActionForm();
 
-		$this->sid = $this->_getId();
 		return true;
 
 	}
@@ -78,20 +77,6 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 
 	/**
-	 * _getId
-	 *
-	 * @param   void
-	 *
-	 * @return  int
-	**/
-	protected function _getId()
-	{
-		$this->sid = (int)$this->mRoot->mContext->mRequest->getRequest('sid');
-		$this->sid = empty($this->sid)? 0 : intval($this->sid);
-		return $this->sid;
-	}
-
-	/**
 	 * @protected
 	 */
 	protected function &_getStoreHandler()
@@ -120,6 +105,9 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 //-----------------------------------------------
 
+		$jQuery = $this->mRoot->mContext->getAttribute('headerScript');
+		$jQuery->addScript($this->RapidModuleInstall_js(),false);
+
 		$modHand = & $this->_getHandler();
 
 		$this->mFilter = $this->_getFilterForm();
@@ -145,7 +133,8 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	{
 		$render->setTemplateName('admin_module_store.html');
 
-//		$render->setAttribute('xupdate_items', $this->items);
+		$render->setAttribute('sid', $this->sid);
+
 		$render->setAttribute('mod_config', $this->mod_config);
 
 		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
@@ -213,6 +202,8 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	 */
 	function executeViewInput(&$render)
 	{
+		$render->setAttribute('sid', $this->sid);
+
 		$render->setTemplateName("admin_module_store_confirm.html");
 		$render->setAttribute('moduleObjects', $this->mModuleObjects);
 		$render->setAttribute('actionForm', $this->mActionForm);
@@ -260,16 +251,28 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 	function executeViewSuccess(&$renderer)
 	{
-		$this->mRoot->mController->executeForward('./index.php?action=ModuleStore');
+		if (empty($this->sid)){
+			$this->mRoot->mController->executeForward('./index.php?action=ModuleStore');
+		}else{
+			$this->mRoot->mController->executeForward('./index.php?action=ModuleStore&sid='.$this->sid);
+		}
 	}
 
 	function executeViewError(&$renderer)
 	{
-		$this->mRoot->mController->executeRedirect('./index.php?action=ModuleStore', 1, _MD_XUPDATE_ERROR_DBUPDATE_FAILED);
+		if (empty($this->sid)){
+			$this->mRoot->mController->executeRedirect('./index.php?action=ModuleStore', 1, _MD_XUPDATE_ERROR_DBUPDATE_FAILED);
+		}else{
+			$this->mRoot->mController->executeRedirect('./index.php?action=ModuleStore&sid='.$this->sid , 1, _MD_XUPDATE_ERROR_DBUPDATE_FAILED);
+		}
 	}
 	function executeViewCancel(&$renderer)
 	{
-		$this->mRoot->mController->executeForward('./index.php?action=ModuleStore');
+		if (empty($this->sid)){
+			$this->mRoot->mController->executeForward('./index.php?action=ModuleStore');
+		}else{
+			$this->mRoot->mController->executeForward('./index.php?action=ModuleStore&sid='.$this->sid);
+		}
 	}
 
 	/**

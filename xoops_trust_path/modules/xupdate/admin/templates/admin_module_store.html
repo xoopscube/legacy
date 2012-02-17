@@ -54,7 +54,10 @@
 <{if $pageNavi->getPerpage() < $pageNavi->getTotalItems() }>
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
 <{/if}>
+
 <form  action="index.php?action=ModuleStore" method="post" >
+<{xoops_input type=hidden name=sid value=$sid}>
+
 <table class="outer">
   <tr>
     <th>id
