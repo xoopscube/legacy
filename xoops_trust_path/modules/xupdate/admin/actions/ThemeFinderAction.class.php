@@ -66,7 +66,7 @@ class Xupdate_Admin_ThemeFinderAction extends Xupdate_AbstractAction
 	public function getDefaultView()
 	{
 		$jQuery = $this->mRoot->mContext->getAttribute('headerScript');
-		$jQuery->addLibrary('/modules/xupdate/admin/js/ThemeFinder.js', true);
+		$jQuery->addLibrary('/modules/'.$this->mAsset->mDirname.'/admin/js/ThemeFinder.js', true);
 		$src =<<< HTML
 jQuery(function($){
 	var themeFinder = new Legacy_ThemeFinder();
