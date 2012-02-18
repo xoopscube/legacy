@@ -88,7 +88,7 @@ HTML;
 	function executeViewIndex(&$render)
 	{
 
-		$render->setTemplateName("theme_finder.html");
+		$render->setTemplateName("admin_themefinder.html");
 
 		$render->setAttribute('mod_config', $this->mod_config);
 		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);

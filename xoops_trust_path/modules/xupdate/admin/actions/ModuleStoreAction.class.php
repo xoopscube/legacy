@@ -71,7 +71,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	function &_getPageNavi()
 	{
 		$navi =& parent::_getPageNavi();
-		$navi->setPerpage(50);//TODO
+		$navi->setPerpage(30);//TODO
 
 		return $navi;
 	}

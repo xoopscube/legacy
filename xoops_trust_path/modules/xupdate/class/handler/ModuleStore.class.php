@@ -24,6 +24,7 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 
 		$this->initVar('replicatable', XOBJ_DTYPE_INT, '0', false);
 		$this->initVar('description', XOBJ_DTYPE_STRING, '', false);
+		$this->initVar('unzipdirlevel', XOBJ_DTYPE_INT, '0', false);
 
 		parent::__construct() ;
 

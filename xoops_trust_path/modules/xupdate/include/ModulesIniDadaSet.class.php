@@ -59,6 +59,7 @@ class Xupdate_ModulesIniDadaSet
 				$this->_StoreUpdate ($sobj , $oldsobj);
 				$this->mSiteObjects[$sid]=$sobj;
 			}else{
+				//TODO delete ok?
 				$criteria = new CriteriaCompo();
 				$criteria->add(new Criteria( 'sid', $sid ) );
 				$siteModuleStoreObjects =& $this->modHand->getObjects($criteria);
@@ -87,6 +88,7 @@ class Xupdate_ModulesIniDadaSet
 	{
 		$newdata['name'] = $obj->getVar('name');
 		$newdata['addon_url'] = $obj->getVar('addon_url');
+
 		$olddata['name'] = $oldobj->getVar('name');
 		$olddata['addon_url'] = $oldobj->getVar('addon_url');
 		if (count(array_diff_assoc($olddata, $newdata)) > 0 ) {
@@ -143,7 +145,7 @@ class Xupdate_ModulesIniDadaSet
 	private function _setDataSingleModule($sid , $item)
 	{
 		//trustモジュールでない(複製可能なものはどうしよう)
-		$item['version']= round(floatval($item['version'])*100);
+		$item['version']= isset($item['version']) ? round(floatval($item['version'])*100): 0 ;
 		$item['replicatable']= isset($item['replicatable']) ? intval($item['replicatable']): 0 ;
 		$item['target_key']= isset($item['target_key']) ? $item['target_key']: $item['dirname'] ;
 		$item['trust_dirname']= '' ;
@@ -153,6 +155,7 @@ class Xupdate_ModulesIniDadaSet
 				$item['description'] = mb_convert_encoding($item['description'] , _CHARSET , 'UTF-8');
 			}
 		}
+		$item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
 
 		$mobj = new $this->modHand->mClass();
 		$mobj->assignVars($item);
@@ -173,7 +176,7 @@ class Xupdate_ModulesIniDadaSet
 	}
 	private function _setDataTrustModule($sid ,$item)
 	{
-		$item['version']= round(floatval($item['version'])*100);
+		$item['version']= isset($item['version']) ? round(floatval($item['version'])*100): 0 ;
 		$item['replicatable']= isset($item['replicatable']) ? intval($item['replicatable']): 0 ;
 		$item['target_key']= isset($item['target_key']) ? $item['target_key']: $item['dirname'] ;
 		$item['trust_dirname']= isset($item['trust_dirname']) ? $item['trust_dirname']: $item['dirname'] ;
@@ -183,6 +186,7 @@ class Xupdate_ModulesIniDadaSet
 				$item['description'] = mb_convert_encoding($item['description'] , _CHARSET , 'UTF-8');
 			}
 		}
+		$item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
 
 		//インストール済みの同じtrustモージュールのリストを取得
 		$list = Legacy_Utils::getDirnameListByTrustDirname($item['trust_dirname']);
@@ -264,6 +268,7 @@ class Xupdate_ModulesIniDadaSet
 		$newdata['last_update'] = $obj->getVar('last_update');
 		$newdata['version'] = $obj->getVar('version');
 		$newdata['description'] = $obj->getVar('description');
+		$newdata['unzipdirlevel'] = $obj->getVar('unzipdirlevel');
 
 		$olddata['dirname'] = $oldobj->getVar('dirname');
 		$olddata['trust_dirname'] = $oldobj->getVar('trust_dirname');
@@ -272,6 +277,7 @@ class Xupdate_ModulesIniDadaSet
 		$olddata['last_update'] = $oldobj->getVar('last_update');
 		$olddata['version'] = $oldobj->getVar('version');
 		$olddata['description'] = $oldobj->getVar('description');
+		$olddata['unzipdirlevel'] = $oldobj->getVar('unzipdirlevel');
 		if (count(array_diff_assoc($olddata, $newdata)) > 0 ) {
 			$obj->unsetNew();
 			$this->modHand->insert($obj ,true);

@@ -110,7 +110,11 @@ class Xupdate_FtpCommonFunc {
 			$setopt1 = curl_setopt($ch, CURLOPT_FILE, $fp);
 			$setopt2 = curl_setopt($ch, CURLOPT_HEADER, 0);
 			$setopt3 = curl_setopt($ch, CURLOPT_FAILONERROR, true);
-			if(!$setopt1 || !$setopt2 || !$setopt3 ){
+			//redirect suport
+			$setopt4 = curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+			$setopt5 = curl_setopt($ch, CURLOPT_MAXREDIRS, 1);
+
+			if(!$setopt1 || !$setopt2 || !$setopt3 || !$setopt4 || !$setopt5 ){
 				throw new Exception('curl_setopt fail',3);
 			}
 		} catch (Exception $e) {
@@ -118,6 +122,23 @@ class Xupdate_FtpCommonFunc {
 
 			fclose($fp);
 			return false;
+		}
+
+		//SSL NO VERIFY setting
+		$URI_PARTS = parse_url($url);
+		if (strtolower($URI_PARTS["scheme"]) == 'https' ){
+			try {
+				$setopt6 = curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+				$setopt7 = curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+				if(!$setopt6 || !$setopt7 ){
+					throw new Exception('curl_setopt SSL fail',3);
+				}
+			} catch (Exception $e) {
+				$this->_set_error_log($e->getMessage());
+
+				fclose($fp);
+				return false;
+			}
 		}
 
 		try {

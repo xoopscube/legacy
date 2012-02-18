@@ -44,6 +44,7 @@ class Xupdate_Admin_ModuleInstallForm extends XCube_ActionForm
 		$this->mFormProperties['target_key'] = new XCube_StringProperty('target_key');
 		$this->mFormProperties['target_type'] = new XCube_StringProperty('target_type');
 
+		$this->mFormProperties['unzipdirlevel'] = new XCube_StringProperty('unzipdirlevel');
 
 		//
 		// Set field properties
@@ -77,6 +78,10 @@ class Xupdate_Admin_ModuleInstallForm extends XCube_ActionForm
 		$this->mFieldProperties['target_type'] = new XCube_FieldProperty($this);
 		$this->mFieldProperties['target_type']->setDependsByArray(array('required'));
 		$this->mFieldProperties['target_type']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, 'target_type');
+
+		$this->mFieldProperties['unzipdirlevel'] = new XCube_FieldProperty($this);
+		$this->mFieldProperties['unzipdirlevel']->setDependsByArray(array('required'));
+		$this->mFieldProperties['unzipdirlevel']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, 'unzipdirlevel');
 
 	}
 

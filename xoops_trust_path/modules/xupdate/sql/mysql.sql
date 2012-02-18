@@ -1,5 +1,5 @@
 CREATE TABLE `{prefix}_{dirname}_store` (
-	`sid` int(11) unsigned NOT NULL  auto_increment,
+	`sid` int(11) unsigned  NOT NULL  auto_increment,
 	`name` varchar(255) NOT NULL default '',
 	`addon_url` varchar(255) NOT NULL default '',
 	`reg_unixtime` int(11) unsigned NOT NULL default 0,
@@ -17,6 +17,7 @@ CREATE TABLE `{prefix}_{dirname}_modulestore` (
 	`target_type` varchar(255) NOT NULL default '',
 	`replicatable` tinyint(1) unsigned NOT NULL default '0',
 	`description` varchar(255) NOT NULL default '',
+	`unzipdirlevel` tinyint(1) unsigned NOT NULL default '0',
 PRIMARY KEY  (`id`),
 KEY sid (sid),
 KEY dirname (dirname)

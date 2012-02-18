@@ -25,6 +25,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonFunc {
 
 	public $trust_dirname;
 	public $dirname;
+	public $unzipdirlevel;
 
 	public function __construct() {
 
@@ -45,7 +46,13 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonFunc {
 
 			if ($this->_downloadFile()){
 				if($this->_unzipFile()==true) {
-					// ToDo port , timeout
+					//一つディレクトリ階層を下げる
+					$downdir_result = false;
+					if (!empty($this->unzipdirlevel)){
+						$downdir_result = $this->_exploredDirPath_DownDir();
+					}
+
+					// TODO port , timeout
 					if($this->Ftp->app_login("127.0.0.1")==true) {
 						if (!$this->uploadFiles()){
 							$this->_set_error_log('Ftp uploadFiles false');
@@ -55,6 +62,12 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonFunc {
 						$this->_set_error_log('Ftp->app_login false');
 						$result = false;
 					}
+
+					//一つディレクトリ階層を戻す
+					if ($downdir_result){
+						$this->_exploredDirPath_UpDir();
+					}
+
 				}else{
 					$this->_set_error_log('unzipFile false false');
 					$result = false;
@@ -186,6 +199,48 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonFunc {
 			$ret ='<a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=ModuleInstall&dirname='.$dirname.'">'._MI_XUPDATE_LANG_UPDATE.'</a>';
 		}
 		return $ret;
+	}
+
+	/**
+	 * _exploredDirPath_DownDir
+	 *
+	 * @param   void
+	 *
+	 * @return	void
+	 **/
+	private function _exploredDirPath_DownDir()
+	{
+		$ret = false;
+		$dir = $this->exploredDirPath;
+		foreach (scandir($dir) as $item) {
+			if ($item == '.' || $item == '..'){
+				continue;
+			}
+			if ($item =='html' || $item =='xoops_trust_path') {
+				$ret = false;
+				break;
+			}
+			if (is_dir($dir.'/'.$item)) {
+				$this->exploredDirPath = realpath($dir.'/'.$item);
+				$this->Ftp->appendMes('down dir exploredDirPath: '.$this->exploredDirPath.'<br />');
+				$ret = true;
+				break;
+			}
+		}
+		return $ret;
+	}
+
+	/**
+	 * _exploredDirPath_UpDir
+	 *
+	 * @param   void
+	 *
+	 * @return	void
+	 **/
+	private function _exploredDirPath_UpDir()
+	{
+		$this->exploredDirPath = dirname($this->exploredDirPath);
+		$this->Ftp->appendMes('up dir exploredDirPath: '.$this->exploredDirPath.'<br />');
 	}
 
 } // end class

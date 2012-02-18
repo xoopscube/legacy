@@ -27,8 +27,8 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 //	protected $Func ;	// Functions instance
 //	protected $mod_config ;
 
-	protected $id;
-	protected $sid;
+	protected $id;//modulestore key
+	protected $sid;//store key
 
 	protected $addon_url;
 
@@ -37,10 +37,12 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 	protected $trust_dirname;
 	protected $dirname;
 
+	protected $unzipdirlevel;
+
+
 	public function __construct()
 	{
 		parent::__construct();
-
 	}
 	/**
 	 * prepare
@@ -142,6 +144,7 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 			if (empty($this->dirname)){
 				$this->dirname = $mobj->get('dirname');
 			}
+			$this->unzipdirlevel = $mobj->get('unzipdirlevel');
 
 			$sobj =& $storeHand->get($this->sid);
 			if (is_object($sobj)){
@@ -166,6 +169,8 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 		$render->setAttribute('trust_dirname', $this->trust_dirname);
 		$render->setAttribute('dirname', $this->dirname);
 
+		$render->setAttribute('unzipdirlevel', $this->unzipdirlevel);
+
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 		$render->setAttribute('actionForm', $this->mActionForm);
 	}
@@ -183,13 +188,14 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 		$xupdateFtpModuleInstall = new Xupdate_FtpModuleInstall ;// Xupdate instance
 		//setup
 		$xupdateFtpModuleInstall->downloadDirPath = $this->Xupdate->params['temp_path'];
-
 		$xupdateFtpModuleInstall->downloadUrlFormat = $this->mActionForm->get('addon_url');
-
 		$xupdateFtpModuleInstall->target_key =  $this->mActionForm->get('target_key');
 		$xupdateFtpModuleInstall->target_type = $this->mActionForm->get('target_type');
 		$xupdateFtpModuleInstall->trust_dirname = $this->mActionForm->get('trust_dirname');
 		$xupdateFtpModuleInstall->dirname = $this->mActionForm->get('dirname');
+
+		$xupdateFtpModuleInstall->unzipdirlevel = $this->mActionForm->get('unzipdirlevel');
+
 		//execute
 		$result = $xupdateFtpModuleInstall->execute();
 
@@ -215,7 +221,7 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 	 **/
 	public function executeViewCancel(&$render)
 	{
-		$this->mRoot->mController->executeForward('./index.php?action=ModuleView');
+		$this->mRoot->mController->executeForward('./index.php?action=ModuleStore');
 	}
 
 
