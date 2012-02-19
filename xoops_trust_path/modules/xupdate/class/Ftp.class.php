@@ -86,7 +86,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
         if(!$this->Passive(TRUE)) $this->mes.= "Passive FAILS!<br />\n";
 
         // SET BINARY MODE
-        $ret = $this->SetType('FTP_BINARY');
+        $ret = $this->SetType(FTP_BINARY);//bugfix 'FTP_BINARY'->FTP_BINARY
 
         $this->mes.= "PWD:";
         $this->pwd();

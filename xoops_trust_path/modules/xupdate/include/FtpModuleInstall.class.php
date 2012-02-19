@@ -79,11 +79,11 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonFunc {
 
 			$this->Ftp->app_logout();
 			$this->content.= 'cleaning up... <br />';
-			$this->_cleanup($this->exploredDirPath);
+//			$this->_cleanup($this->exploredDirPath);
 			//
 			$downloadPath= $this->_getDownloadFilePath() ;
 //TODO unlink ok?
-			@unlink( $downloadPath );
+//			@unlink( $downloadPath );
 
 			$this->content.= 'completed <br /><br />';
 		}else{
