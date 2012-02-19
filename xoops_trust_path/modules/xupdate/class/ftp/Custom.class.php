@@ -654,8 +654,14 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 
 $mod_sockets=TRUE;
 if (!extension_loaded('sockets')) {
-	$prefix = (PHP_SHLIB_SUFFIX == 'dll') ? 'php_' : '';
-	if(!@dl($prefix . 'sockets.' . PHP_SHLIB_SUFFIX)) $mod_sockets=FALSE;
+	if (function_exists('dl')){
+		$prefix = (PHP_SHLIB_SUFFIX == 'dll') ? 'php_' : '';adump($prefix . 'sockets.' . PHP_SHLIB_SUFFIX);
+		if(!@dl($prefix . 'sockets.' . PHP_SHLIB_SUFFIX)){
+			$mod_sockets=FALSE;
+		}
+	}else{
+		$mod_sockets=FALSE;
+	}
 }
 require_once "Custom_".($mod_sockets?"sockets":"pure").".class.php";
 ?>
