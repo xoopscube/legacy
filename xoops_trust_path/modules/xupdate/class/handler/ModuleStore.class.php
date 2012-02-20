@@ -47,6 +47,7 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 		if (is_object($this->mModule)){
 			$this->setVar('last_update', $this->mModule->getVar('last_update'));
 			$this->modinfo =& $this->mModule->getInfo();
+			$this->modinfo['version'] = sprintf('%01.2f', $this->mModule->getVar('version') / 100);
 			$trust_dirname = $this->mModule->getVar('trust_dirname');
 
 			if ( empty($trust_dirname) ){
