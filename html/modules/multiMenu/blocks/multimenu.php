@@ -110,12 +110,12 @@ function getMultiMenu( $options, $db_name  )
 		$groups = explode(" ",$myrow['groups']);
 		if (count(array_intersect($group,$groups)) > 0) {
 			// hacked by nobunobu start
-			if (preg_match("/^[\s\-].*/",$myrow['link'])) {
+			if (preg_match("/^[\s\-].*/",$myrow['link']) && inum > 0) {
 				$isub =count($block['contents'][$inum-1]['sublinks']);
 				if ($parent_active) {
 					$block['contents'][$inum-1]['sublinks'][$isub]['name'] = $title;
 					$link =  preg_replace("/^[\s\-]/","",$myrow['link']);
-//fix by domifara eregi -> preg_match for php5.3+
+					//fix by domifara eregi -> preg_match for php5.3+
 					if (preg_match("/^\[([a-z0-9_\-]+)\]((.)*)$/i", $link, $moduledir)) {
 						$module_handler = xoops_gethandler( 'module' );
 						$module =& $module_handler->getByDirname($moduledir[1]);
@@ -131,9 +131,8 @@ function getMultiMenu( $options, $db_name  )
 			$imenu['title'] = $title;
 			$imenu['target'] = $myrow['target'];
 			$imenu['sublinks'] = array();
-
 			// [module_name]xxxx.php?aa=aa&bb=bb
-//fix by domifara eregi -> preg_match for php5.3+
+			//fix by domifara eregi -> preg_match for php5.3+
 			if (preg_match("/^\[([a-z0-9_\-]+)\]((.)*)$/i", $myrow['link'], $moduledir)) {
 				$module_handler = xoops_gethandler( 'module' );
 				$module = $module_handler->getByDirname($moduledir[1]);
@@ -141,16 +140,14 @@ function getMultiMenu( $options, $db_name  )
 					$imenu['link'] = XOOPS_URL."/modules/".$moduledir[1]."/".$moduledir[2];
 					$parent_active = true;
 				}
-
 			// +[module_name]xxxx.php?aa=aa&bb=bb	view submenu
-//fix by domifara eregi -> preg_match for php5.3+
+			//fix by domifara eregi -> preg_match for php5.3+
 			}elseif (preg_match("/^\+\[([a-z0-9_\-]+)\]((.)*)$/i", $myrow['link'], $moduledir)) {
 				$module_handler = xoops_gethandler( 'module' );
 				$module = $module_handler->getByDirname($moduledir[1]);
 				if ( is_object( $module ) && $module->getVar( 'isactive' ) ) {
 					$imenu['link'] = XOOPS_URL."/modules/".$moduledir[1]."/".$moduledir[2];
 					$parent_active = true;
-
 					$mid = $module->getVar('mid');
 					$sublinks = $module->subLink();
 					if (count($sublinks) > 0)  {
@@ -164,18 +161,15 @@ function getMultiMenu( $options, $db_name  )
 						}
 					}
 				}
-
 			// @[module_name]xxxx.php?aa=aa&bb=bb	view submennu
-//fix by domifara eregi -> preg_match for php5.3+
+			//fix by domifara eregi -> preg_match for php5.3+
 			}elseif (preg_match("/^\@\[([a-z0-9_\-]+)\]((.)*)$/i", $myrow['link'], $moduledir)) {
 				$module_handler = xoops_gethandler( 'module' );
 				$module = $module_handler->getByDirname($moduledir[1]);
 				if ( is_object( $module ) && $module->getVar( 'isactive' ) ) {
 					$imenu['link'] = XOOPS_URL."/modules/".$moduledir[1]."/".$moduledir[2];
-
 					$mid = $module->getVar('mid');
 					$sublinks = $module->subLink();
-
 					// hacked by nobunobu start
 					if ( (!empty($xoopsModule)) && ($moduledir[1] == $xoopsModule->getVar('dirname')) ){
 						$parent_active = true;
@@ -194,15 +188,13 @@ function getMultiMenu( $options, $db_name  )
 					// hacked by nobunobu end
 					}
 				}
-
 			// &[module_name]xxxx.php?aa=aa&bb=bb	view submenu // hacked by nobunobu
-//fix by domifara eregi -> preg_match for php5.3+
+			//fix by domifara eregi -> preg_match for php5.3+
 			} elseif (preg_match("/^\&\[([a-z0-9_\-]+)\]((.)*)$/i", $myrow['link'], $moduledir)) {
 				$module_handler = xoops_gethandler( 'module' );
 				$module = $module_handler->getByDirname($moduledir[1]);
 				if ( is_object( $module ) && $module->getVar( 'isactive' ) ) {
 					$imenu['link'] = XOOPS_URL."/modules/".$moduledir[1]."/".$moduledir[2];
-
 					$mid = $module->getVar('mid');
 					if ( (!empty($xoopsModule)) && ($moduledir[1] == $xoopsModule->getVar('dirname')) ){
 						$parent_active = true;
@@ -210,14 +202,13 @@ function getMultiMenu( $options, $db_name  )
 						$parent_active = false;
 					}
 				}
-
 			} else {
 				$imenu['link'] = $myrow['link'];
 			}
 			$block['contents'][] = $imenu;
 		}
+		$inum++;
 	}
 	return $block;
 }
-
 ?>
