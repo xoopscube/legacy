@@ -1,9 +1,3 @@
-<div class="adminnavi"><{$smarty.const._MYLANGADMIN_H3_MODULE}> &raquo;&raquo; <{$target_mname}> &raquo;&raquo; <{$target_lang|escape}> &raquo;&raquo; <{$target_file|escape}></div>
-
-<div class="altsys_mylangadmin_notice">
-	<{$notice}>
-</div>
-
 <form name="SelectLangFile" action="index.php" method="get">
 	<input type="hidden" name="mode" value="admin" />
 	<input type="hidden" name="lib" value="altsys" />
@@ -18,24 +12,18 @@
 	<input type="submit" value="<{$smarty.const._SUBMIT}>" />
 </form>
 
+<h3 style="text-align:<{$smarty.const._GLOBAL_LEFT}>;"><{$smarty.const._MYLANGADMIN_H3_MODULE}> : <{$target_mname}> : <{$target_lang|escape}> : <{$target_file|escape}></h3>
 
+<dl class="altsys_langman_information">
 	<{if $use_my_language}>
-    
-	<h4><{$smarty.const._MYLANGADMIN_DT_MYLANGFILENAME}></h4>
-	<div class="resultMsg"><{$mylang_file_name}></div>
+	<dt><{$smarty.const._MYLANGADMIN_DT_MYLANGFILENAME}></dt>
+	<dd><{$mylang_file_name}></dd>
 	<{/if}>
-	
-    <h4><{$smarty.const._MYLANGADMIN_DT_CACHEFILENAME}></h4>
-	<div class="resultMsg"><{$cache_file_name}></div>
-	
-    <h4><{$smarty.const._MYLANGADMIN_DT_CACHESTATUS}></h4>
-	
-    <{if $cache_file_mtime}>
-    <div class="resultMsg"><{$smarty.const._MYLANGADMIN_CREATED}> (<{"Y-m-d H:i:s"|date:$cache_file_mtime+$timezone_offset}>)
-    <{else}>
-    <div class="tips"><{$smarty.const._MYLANGADMIN_NOTCREATED}></div>
-    <{/if}>
-    
+	<dt><{$smarty.const._MYLANGADMIN_DT_CACHEFILENAME}></dt>
+	<dd><{$cache_file_name}></dd>
+	<dt><{$smarty.const._MYLANGADMIN_DT_CACHESTATUS}></dt>
+	<dd><{if $cache_file_mtime}><{$smarty.const._MYLANGADMIN_CREATED}> (<{"Y-m-d H:i:s"|date:$cache_file_mtime+$timezone_offset}>)<{else}><{$smarty.const._MYLANGADMIN_NOTCREATED}><{/if}></dd>
+</dl>
 
 <form name="MainForm" action="index.php?mode=admin&amp;lib=altsys&amp;page=mylangadmin&amp;dirname=<{$target_dirname}>&amp;target_lang=<{$target_lang}>&amp;target_file=<{$target_file}>" method="post">
 	<table class="outer">
@@ -70,16 +58,12 @@
 		</tr>
 		<{/foreach}>
 
-        <tr>
-            <td colspan="3" class="foot">
-            
-                <input type="submit" name="do_update" value="<{$smarty.const._MYLANGADMIN_BTN_UPDATE}>" />
-                <input type="reset" value="<{$smarty.const._MYLANGADMIN_BTN_RESET}>" />
-                <{$gticket_hidden}>
-        
-            </td>
-        </tr>
-    </table>
+	</table>
+	<div align="center">
+		<input type="submit" name="do_update" value="<{$smarty.const._MYLANGADMIN_BTN_UPDATE}>" />
+		<input type="reset" value="<{$smarty.const._MYLANGADMIN_BTN_RESET}>" />
+		<{$gticket_hidden}>
+	</div>
 </form>
 
 <div class="altsys_mylangadmin_notice">

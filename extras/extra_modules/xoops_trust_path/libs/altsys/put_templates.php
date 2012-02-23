@@ -21,6 +21,17 @@ altsys_include_language_file( 'compilehookadmin' ) ;
 $db =& Database::getInstance() ;
 
 if( empty( $_FILES['tplset_archive']['tmp_name'] ) || ! is_uploaded_file( $_FILES['tplset_archive']['tmp_name'] ) ) die( _TPLSADMIN_ERR_NOTUPLOADED ) ;
+//fix for mb_http_output setting and for add any browsers
+	if (function_exists('mb_http_output')) {
+		mb_http_output('pass');
+	}
+//ob_buffer over flow
+//HACK by suin & nao-pon 2012/01/06
+	while ( ob_get_level() > 0 ) {
+		if (! ob_end_clean()) {
+			break;
+		}
+	}
 
 //
 // EXTRACT STAGE

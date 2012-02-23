@@ -1,11 +1,12 @@
-<div class="adminnavi"><{$target_mname}> &raquo;&raquo; <{$smarty.const._MD_A_MYBLOCKSADMIN_BLOCKADMIN}></div>
+<h3 style='text-align:<{$smarty.const._GLOBAL_LEFT}>;'><{$target_mname}></h3>
 
+<h4 style="text-align:<{$smarty.const._GLOBAL_LEFT}>;"><{$smarty.const._MD_A_MYBLOCKSADMIN_BLOCKADMIN}></h4>
 <style>
 	td.blockposition	{width:135px;white-space:nowrap;}
-	div.blockposition	{float:<{$smarty.const._GLOBAL_LEFT}>;border:solid 1px #444;padding:1px;}
-	div.unselected		{background-color:#ddd;}
-	div.selected		{background-color:#00CC33;}
-	div.disabled		{background-color:#FF3300;}
+	div.blockposition	{float:<{$smarty.const._GLOBAL_LEFT}>;border:solid 1px #333333;padding:1px;}
+	div.unselected		{background-color:#FFFFFF;}
+	div.selected		{background-color:#00FF00;}
+	div.disabled		{background-color:#FF0000;}
 	input[type='radio'] {margin:2px;}
 	input[type='text'] {min-width:0%;}
 	label				{display:inline;}
@@ -46,15 +47,15 @@
 			</td>
 			<td align="<{$smarty.const._GLOBAL_RIGHT}>">
 				<{if $block.can_edit}>
-					<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;op=edit&amp;bid=<{$block.bid}>"><img src="<{$xoops_url}>/images/icons/block_edit.png" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
+					<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;op=edit&amp;bid=<{$block.bid}>"><{$smarty.const._EDIT}></a>
 				<{/if}>
-				
+				<br />
 				<{if $block.can_delete}>
-					<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;op=delete&amp;bid=<{$block.bid}>"><img src="<{$xoops_url}>/images/icons/block_delete.png" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
+					<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;op=delete&amp;bid=<{$block.bid}>"><{$smarty.const._DELETE}></a>
 				<{/if}>
-				
+				<br />
 				<{if $block.can_clone}>
-					<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;op=clone&amp;bid=<{$block.bid}>"><img src="<{$xoops_url}>/images/icons/block_add.png" alt="<{if $block.can_clone == 2}><{$smarty.const._CLONE}><{else}><{$smarty.const._MD_A_MYBLOCKSADMIN_LINK_FORCECLONE}><{/if}>" title="<{if $block.can_clone == 2}><{$smarty.const._CLONE}><{else}><{$smarty.const._MD_A_MYBLOCKSADMIN_LINK_FORCECLONE}><{/if}>" /></a>
+					<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;op=clone&amp;bid=<{$block.bid}>"><{if $block.can_clone == 2}><{$smarty.const._CLONE}><{else}><{$smarty.const._MD_A_MYBLOCKSADMIN_LINK_FORCECLONE}><{/if}></a>
 				<{/if}>
 			</td>
 		</tr>
