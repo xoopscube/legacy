@@ -170,8 +170,11 @@ class XoopsTarDownloader extends XoopsDownloader
 	 **/
 	function download($name, $gzip = true)
 	{
+		$file = $this->archiver->toTarOutput($name.$this->ext, $gzip);
 		$this->_header($name.$this->ext);
-		echo $this->archiver->toTarOutput($name.$this->ext, $gzip);
+		header(\'Content-Type: application/x-tar\') ;
+		header(\'Content-Length: \'.floatval(@strlen($file))) ;
+		echo $file;
 	}
 }
 ?>
