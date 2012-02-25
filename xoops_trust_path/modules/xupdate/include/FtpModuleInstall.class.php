@@ -1,9 +1,13 @@
 <?php
 
 // Xupdate_ftp excutr function
-require_once XUPDATE_TRUST_PATH .'/include/FtpCommonFunc.class.php';
+if(!class_exists('ZipArchive') ){
+	require_once XUPDATE_TRUST_PATH .'/include/FtpCommonFileArchive.class.php';
+}else{
+	require_once XUPDATE_TRUST_PATH .'/include/FtpCommonZipArchive.class.php';
+}
 
-class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonFunc {
+class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 
 /*parent public
 	public $mRoot ;

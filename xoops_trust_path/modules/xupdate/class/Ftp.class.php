@@ -148,7 +148,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			throw new Exception(t("make temporary directory fail"), 1);
 		}
 	}
-
+/*
 	protected function _doUnzip($file)
 	{
 		chdir($this->params['temp_path']);
@@ -163,7 +163,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 
 		return true;
 	}
-
+*/
 	// remove directories recursively
 	protected function removeDirectory($dir) {
 		if ($handle = opendir("$dir")) {
