@@ -546,7 +546,7 @@ class Net_SFTP extends Net_SSH2 {
     function chdir($dir)
     {
         if (!($this->bitmap & NET_SSH2_MASK_LOGIN)) {
-            return false;
+        	return false;
         }
 
         if ($dir[strlen($dir) - 1] != '/') {
@@ -556,7 +556,7 @@ class Net_SFTP extends Net_SSH2 {
 
         // confirm that $dir is, in fact, a valid directory
         if (!$this->_send_sftp_packet(NET_SFTP_OPENDIR, pack('Na*', strlen($dir), $dir))) {
-            return false;
+        	return false;
         }
 
         // see Net_SFTP::nlist() for a more thorough explanation of the following
@@ -570,12 +570,12 @@ class Net_SFTP extends Net_SSH2 {
                 $this->sftp_errors[] = $this->status_codes[$status] . ': ' . $this->_string_shift($response, $length);
                 return false;
             default:
-                user_error('Expected SSH_FXP_HANDLE or SSH_FXP_STATUS', E_USER_NOTICE);
+            	user_error('Expected SSH_FXP_HANDLE or SSH_FXP_STATUS', E_USER_NOTICE);
                 return false;
         }
 
         if (!$this->_send_sftp_packet(NET_SFTP_CLOSE, pack('Na*', strlen($handle), $handle))) {
-            return false;
+        	return false;
         }
 
         $response = $this->_get_sftp_packet();
@@ -1021,7 +1021,7 @@ class Net_SFTP extends Net_SSH2 {
      */
     function put($remote_file, $data, $mode = NET_SFTP_STRING)
     {
-        if (!($this->bitmap & NET_SSH2_MASK_LOGIN)) {
+    	if (!($this->bitmap & NET_SSH2_MASK_LOGIN)) {
             return false;
         }
 
@@ -1053,7 +1053,7 @@ class Net_SFTP extends Net_SSH2 {
 
         // http://tools.ietf.org/html/draft-ietf-secsh-filexfer-13#section-8.2.3
         if ($mode == NET_SFTP_LOCAL_FILE) {
-            if (!is_file($data)) {
+        	if (!is_file($data)) {
                 user_error("$data is not a valid file", E_USER_NOTICE);
                 return false;
             }

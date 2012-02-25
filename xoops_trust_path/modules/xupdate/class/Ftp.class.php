@@ -46,7 +46,11 @@ switch ( $mod_config['ftp_method'] ) {
 
 class Xupdate_Ftp extends Xupdate_Ftp_ {
 
-// <!-- --------------------------------------------------------------------------------------- -->
+	/* Constructor */
+	public function __construct($XupdateObj, $port_mode=FALSE, $verb=FALSE, $le=FALSE) {
+		parent::__construct($XupdateObj);
+	}
+	// <!-- --------------------------------------------------------------------------------------- -->
 // <!--	   public functions																  -->
 // <!-- --------------------------------------------------------------------------------------- -->
 
@@ -213,28 +217,35 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			return false;
 		}
 		$file_list = $this->getFileList($local_path);
-		if (isset($file_list['dir']) && is_array($file_list['dir']) ){
-			$dir = $file_list['dir'];
-			krsort($dir);
-			foreach ($dir as $directory){
-				$remote_directory = $remote_path.substr($directory, $remote_pos);
-				if (!is_dir($remote_directory)){
-					$this->ftp_mkdir($remote_directory);
-				}
+		if (!isset($file_list['dir']) ){
+			return true;
+		}
+		if (!is_array($file_list['dir']) ){
+			return true;
+		}
+		$dir = $file_list['dir'];
+		krsort($dir);
+		foreach ($dir as $directory){
+			$remote_directory = $remote_path.substr($directory, $remote_pos);
+			if (!is_dir($remote_directory)){
+				$this->ftp_mkdir($remote_directory);
 			}
 		}
 
 		/// put files
-		$this->chdir('/');
-		if (isset($file_list['file']) && is_array($file_list['file']) ){
-			foreach ($file_list['file'] as $l_file){
-				$r_file = $remote_path.substr($l_file, $remote_pos ); // +1 is remove first flash
-				$ftp_remote_file = substr($r_file, strlen($ftp_root));
-				//$l_file = str_replace( '/','\\',$l_file );
-				//$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
-				//$this->put($l_file, $ftp_remote_file, FTP_BINARY);
-				$this->put($l_file, $ftp_remote_file);
+		if (! $this->chdir('/') ){
+			return false;
+		}
+		foreach ($file_list['file'] as $l_file){
+			$r_file = $remote_path.substr($l_file, $remote_pos ); // +1 is remove first flash
+			$ftp_remote_file = substr($r_file, strlen($ftp_root));
+			//$l_file = str_replace( '/','\\',$l_file );
+			//$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
+			//$this->put($l_file, $ftp_remote_file, FTP_BINARY);
+			if (!$this->put($l_file, $ftp_remote_file)){
+				return false;
 			}
+
 		}
 		return true;
 	}
@@ -246,29 +257,35 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			return false;
 		}
 		$file_list = $this->getFileList($local_path);
-		if (isset($file_list['dir']) && is_array($file_list['dir']) ){
-			$dir = $file_list['dir'];
-			krsort($dir);
-			foreach ($dir as $directory){
-				$directory = str_replace('/'.$trust_dirname,'/'.$dirname ,$directory);
-				$remote_directory = $remote_path.substr($directory, $remote_pos);
-				if (!is_dir($remote_directory)){
-					$this->ftp_mkdir($remote_directory);
-				}
+		if (!isset($file_list['dir']) ){
+			return true;
+		}
+		if (!is_array($file_list['dir']) ){
+			return true;
+		}
+		$dir = $file_list['dir'];
+		krsort($dir);
+		foreach ($dir as $directory){
+			$directory = str_replace('/'.$trust_dirname,'/'.$dirname ,$directory);
+			$remote_directory = $remote_path.substr($directory, $remote_pos);
+			if (!is_dir($remote_directory)){
+				$this->ftp_mkdir($remote_directory);
 			}
 		}
 
 		/// put files
-		$this->chdir('/');
-		if (isset($file_list['file']) && is_array($file_list['file']) ){
-			foreach ($file_list['file'] as $l_file){
-				//rename dirname
-				$r_file = $remote_path.substr(str_replace('/'.$trust_dirname.'/','/'.$dirname.'/' ,$l_file), $remote_pos ); // +1 is remove first flash
-				$ftp_remote_file = substr($r_file, strlen($ftp_root));
-				//$l_file = str_replace( '/','\\',$l_file );
-				//$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
-				//$this->put($l_file, $ftp_remote_file, FTP_BINARY);
-				$this->put($l_file, $ftp_remote_file);
+		if (! $this->chdir('/') ){
+			return false;
+		}
+		foreach ($file_list['file'] as $l_file){
+			//rename dirname
+			$r_file = $remote_path.substr(str_replace('/'.$trust_dirname.'/','/'.$dirname.'/' ,$l_file), $remote_pos ); // +1 is remove first flash
+			$ftp_remote_file = substr($r_file, strlen($ftp_root));
+			//$l_file = str_replace( '/','\\',$l_file );
+			//$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
+			//$this->put($l_file, $ftp_remote_file, FTP_BINARY);
+			if (!$this->put($l_file, $ftp_remote_file)){
+				return false;
 			}
 		}
 		return true;
@@ -280,34 +297,40 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			return false;
 		}
 		$file_list = $this->getFileList($local_path);
-		if (isset($file_list['dir']) && is_array($file_list['dir']) ){
-			$dir = $file_list['dir'];
-			krsort($dir);
+		if (!isset($file_list['dir']) ){
+			return true;
+		}
+		if (!is_array($file_list['dir']) ){
+			return true;
+		}
+		$dir = $file_list['dir'];
+		krsort($dir);
 
-			foreach ($dir as $directory){
-				if (strstr($directory ,'/modules/'.$trust_dirname)){
-					continue;
-				}
-				$remote_directory = $remote_path.substr($directory, $remote_pos);
-				if (!is_dir($remote_directory)){
-					$this->ftp_mkdir($remote_directory);
-				}
+		foreach ($dir as $directory){
+			if (strstr($directory ,'/modules/'.$trust_dirname)){
+				continue;
+			}
+			$remote_directory = $remote_path.substr($directory, $remote_pos);
+			if (!is_dir($remote_directory)){
+				$this->ftp_mkdir($remote_directory);
 			}
 		}
 
 		/// put files
-		$this->chdir('/');
-		if (isset($file_list['file']) && is_array($file_list['file']) ){
-			foreach ($file_list['file'] as $l_file){
-				if (strstr($l_file ,'/modules/'.$trust_dirname.'/')){
-					continue;
-				}
-				$r_file = $remote_path.substr($l_file, $remote_pos ); // +1 is remove first flash
-				$ftp_remote_file = substr($r_file, strlen($ftp_root));
-				//$l_file = str_replace( '/','\\',$l_file );
-				//$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
-				//$this->put($l_file, $ftp_remote_file, FTP_BINARY);
-				$this->put($l_file, $ftp_remote_file);
+		if (! $this->chdir('/') ){
+			return false;
+		}
+		foreach ($file_list['file'] as $l_file){
+			if (strstr($l_file ,'/modules/'.$trust_dirname.'/')){
+				continue;
+			}
+			$r_file = $remote_path.substr($l_file, $remote_pos ); // +1 is remove first flash
+			$ftp_remote_file = substr($r_file, strlen($ftp_root));
+			//$l_file = str_replace( '/','\\',$l_file );
+			//$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
+			//$this->put($l_file, $ftp_remote_file, FTP_BINARY);
+			if (! $this->put($l_file, $ftp_remote_file)){
+				return false;
 			}
 		}
 		return true;

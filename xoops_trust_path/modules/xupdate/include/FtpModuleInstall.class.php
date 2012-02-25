@@ -51,7 +51,6 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonFunc {
 					if (!empty($this->unzipdirlevel)){
 						$downdir_result = $this->_exploredDirPath_DownDir();
 					}
-
 					// TODO port , timeout
 					if($this->Ftp->app_login("127.0.0.1")==true) {
 						if (!$this->uploadFiles()){
