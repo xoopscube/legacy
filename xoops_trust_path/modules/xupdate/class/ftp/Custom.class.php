@@ -703,7 +703,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 }
 
 $mod_sockets=false;
-if (extension_loaded('sockets')) {
+if (!extension_loaded('sockets')) {
 	if (function_exists('dl')){
 		$prefix = (PHP_SHLIB_SUFFIX == 'dll') ? 'php_' : '';
 		if(@dl($prefix . 'sockets.' . PHP_SHLIB_SUFFIX)){

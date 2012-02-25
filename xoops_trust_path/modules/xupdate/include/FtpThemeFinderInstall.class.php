@@ -3,7 +3,7 @@
 // Xupdate_ftp excutr function
 if(!class_exists('ZipArchive') ){
 	$mod_zip=false;
-	if (extension_loaded('zip')) {
+	if (!extension_loaded('zip')) {
 		if (function_exists('dl')){
 			$prefix = (PHP_SHLIB_SUFFIX == 'dll') ? 'php_' : '';
 			if(@dl($prefix . 'zip.' . PHP_SHLIB_SUFFIX)){
