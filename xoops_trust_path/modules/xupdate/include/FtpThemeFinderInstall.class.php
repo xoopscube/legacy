@@ -11,10 +11,10 @@ if(!class_exists('ZipArchive') ){
 			}
 		}
 	}
-	if ($mod_zip){
-		require_once XUPDATE_TRUST_PATH .'/include/FtpCommonZipArchive.class.php';
-	}else{
+	if(!class_exists('ZipArchive') ){
 		require_once XUPDATE_TRUST_PATH .'/include/FtpCommonFileArchive.class.php';
+	}else{
+		require_once XUPDATE_TRUST_PATH .'/include/FtpCommonZipArchive.class.php';
 	}
 }else{
 	require_once XUPDATE_TRUST_PATH .'/include/FtpCommonZipArchive.class.php';
