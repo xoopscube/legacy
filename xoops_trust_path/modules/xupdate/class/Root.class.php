@@ -63,8 +63,13 @@ class Xupdate_Root extends XoopsSimpleObject {
 					$is_writable_result = true;
 				}
 			}else{
-				if ( is_writeable($tmpf_realpath) && is_executable($tmpf_realpath) ) {
-					$is_writable_result = true;
+				$fper_str = substr(sprintf('%o', fileperms($tmpf_realpath)), -3);
+				$fper_str1 = substr($fper_str, 0,1);
+				$fper_str_1 = substr($fper_str, -1);
+				if ( $fper_str1 == '7' ) {
+					if ( $fper_str_1 == '7' || $fper_str_1 == '5' ) {
+						$is_writable_result = true;
+					}
 				}
 			}
 		}
