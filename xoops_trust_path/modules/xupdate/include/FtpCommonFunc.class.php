@@ -198,7 +198,6 @@ class Xupdate_FtpCommonFunc {
 		}
 		$zip = new ZipArchive;
 
-//		if ($zip->open($downloadPath) === TRUE) {
 		try {
 			 $result = $zip->open($downloadPath);
 			if($result !==true ){

@@ -165,7 +165,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract {
 	}
 
 	public function put($localfile, $remotefile=NULL, $rest=0) {
-		return $this->sftp->put($localfile, $remotefile,NET_SFTP_LOCAL_FILE);
+		return $this->sftp->put( $remotefile , $localfile ,NET_SFTP_LOCAL_FILE);
 	}
 
 
