@@ -168,7 +168,7 @@ $modversion['config'] = array(
 		'default'	=> '0',
 		'options'	=> array( '_MI_XUPDATE_CUSTOM_FTP' => 0,
 						'_MI_XUPDATE_PHP_FTP' => 1,
-						//'_MI_XUPDATE_CUSTOM_SFTP' => 2
+						'_MI_XUPDATE_CUSTOM_SFTP' => 2
 						)
 	) ,
 

@@ -10,6 +10,59 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract {
 
 	}
 
+// <!-- --------------------------------------------------------------------------------------- -->
+// <!--       Public functions                                                                  -->
+// <!-- --------------------------------------------------------------------------------------- -->
+	/**
+	 * app_login
+	 *
+	 * @param   string  $server
+	 *
+	 * @return	bool
+	 **/
+	public function app_login($server){
+
+		$ftp_use_ssl = $this->mod_config['FTP_SSL'];
+		$ftp_id = $this->mod_config['FTP_UserName'];
+		$ftp_pass = $this->mod_config['FTP_password'];
+
+		// LOGIN
+
+		$this->Verbose = TRUE;
+		$this->LocalEcho = FALSE;
+		//$this->Passive(TRUE);
+
+		if(!$this->SetServer($server,21,true)) {
+			$this->quit();
+			$this->mes.= "Setiing server failed<br />\n";
+		}
+
+		if ( $ftp_use_ssl ) {
+			$ftp_connected = $this->ssl_connect();
+		} else {
+			$ftp_connected = $this->connect();
+		}
+		if ( $ftp_connected !== TRUE ) {
+			$this->mes.= "Cannot connect<br />\n";
+		} else {
+
+			if( $ret = $this->login($ftp_id, $ftp_pass) !== TRUE){
+				$this->mes.= "login failed<br />\n";
+			} else {
+				$this->mes.= "login succeeded<br />\n";
+			}
+		}
+		if(!$this->Passive(TRUE)) $this->mes.= "Passive FAILS!<br />\n";
+
+		// SET BINARY MODE
+		$ret = $this->SetType(FTP_BINARY);//bugfix 'FTP_BINARY'->FTP_BINARY
+
+		$this->mes.= "PWD:";
+		$this->pwd();
+		//$this->mes .= " start uploading..<br>\n";
+		return true;
+	}
+
 	protected function Passive($pasv=false) {
 		//fix Fatal error: Call to undefined function ftp_pasv()
 		if (!function_exists('ftp_pasv')){
