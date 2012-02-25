@@ -2,7 +2,20 @@
 
 // Xupdate_ftp excutr function
 if(!class_exists('ZipArchive') ){
-	require_once XUPDATE_TRUST_PATH .'/include/FtpCommonFileArchive.class.php';
+	$mod_zip=false;
+	if (extension_loaded('zip')) {
+		if (function_exists('dl')){
+			$prefix = (PHP_SHLIB_SUFFIX == 'dll') ? 'php_' : '';
+			if(@dl($prefix . 'zip.' . PHP_SHLIB_SUFFIX)){
+				$mod_zip=true;
+			}
+		}
+	}
+	if ($mod_zip){
+		require_once XUPDATE_TRUST_PATH .'/include/FtpCommonZipArchive.class.php';
+	}else{
+		require_once XUPDATE_TRUST_PATH .'/include/FtpCommonFileArchive.class.php';
+	}
 }else{
 	require_once XUPDATE_TRUST_PATH .'/include/FtpCommonZipArchive.class.php';
 }
