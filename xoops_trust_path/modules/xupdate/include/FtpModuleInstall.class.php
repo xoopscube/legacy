@@ -74,6 +74,8 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 							$this->_set_error_log('Ftp uploadFiles false');
 							$result = false;
 						}
+						$this->Ftp->app_logout();
+
 					}else{
 						$this->_set_error_log('Ftp->app_login false');
 						$result = false;
@@ -93,7 +95,6 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 				$result = false;
 			}
 
-			$this->Ftp->app_logout();
 			$this->content.= 'cleaning up... <br />';
 			$this->_cleanup($this->exploredDirPath);
 			//
