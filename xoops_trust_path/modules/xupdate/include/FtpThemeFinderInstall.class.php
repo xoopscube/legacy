@@ -70,11 +70,11 @@ class Xupdate_FtpThemeFinderInstall extends Xupdate_FtpCommonZipArchive {
 						$result = false;
 					}
 				}else{
-					$this->_set_error_log('unzipFile false false');
+					$this->_set_error_log('unzipFile false ');
 					$result = false;
 				}
 			}else{
-				$this->_set_error_log('downloadFile fale');
+				$this->_set_error_log('downloadFile false');
 				$result = false;
 			}
 

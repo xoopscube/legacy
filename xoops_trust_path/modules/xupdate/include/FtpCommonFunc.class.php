@@ -110,11 +110,8 @@ class Xupdate_FtpCommonFunc {
 			$setopt1 = curl_setopt($ch, CURLOPT_FILE, $fp);
 			$setopt2 = curl_setopt($ch, CURLOPT_HEADER, 0);
 			$setopt3 = curl_setopt($ch, CURLOPT_FAILONERROR, true);
-			//redirect suport
-			$setopt4 = curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-			$setopt5 = curl_setopt($ch, CURLOPT_MAXREDIRS, 1);
 
-			if(!$setopt1 || !$setopt2 || !$setopt3 || !$setopt4 || !$setopt5 ){
+			if(!$setopt1 || !$setopt2 || !$setopt3 ){
 				throw new Exception('curl_setopt fail',3);
 			}
 		} catch (Exception $e) {
@@ -124,6 +121,21 @@ class Xupdate_FtpCommonFunc {
 			return false;
 		}
 
+		//safe_mode  CURLOPT_FOLLOWLOCATION cannot be activated when in safe_mode
+		if (ini_get('safe_mode')){
+			try {
+				//redirect suport
+				$setopt4 = curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+				$setopt5 = curl_setopt($ch, CURLOPT_MAXREDIRS, 1);
+
+				if(!$setopt4 || !$setopt5 ){
+					throw new Exception('curl_setopt CURLOPT_FOLLOWLOCATION fail skip',4);
+				}
+			} catch (Exception $e) {
+				$this->_set_error_log($e->getMessage());
+			}
+		}
+
 		//SSL NO VERIFY setting
 		$URI_PARTS = parse_url($url);
 		if (strtolower($URI_PARTS["scheme"]) == 'https' ){
@@ -131,7 +143,7 @@ class Xupdate_FtpCommonFunc {
 				$setopt6 = curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 				$setopt7 = curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 				if(!$setopt6 || !$setopt7 ){
-					throw new Exception('curl_setopt SSL fail',3);
+					throw new Exception('curl_setopt SSL fail',5);
 				}
 			} catch (Exception $e) {
 				$this->_set_error_log($e->getMessage());
@@ -144,7 +156,7 @@ class Xupdate_FtpCommonFunc {
 		try {
 			try {
 				if(!function_exists('curl_exec') ){
-					throw new Exception('curl_exec function not found fail',4);
+					throw new Exception('curl_exec function not found fail',6);
 				}
 			} catch (Exception $e) {
 				$this->_set_error_log($e->getMessage());
@@ -153,7 +165,7 @@ class Xupdate_FtpCommonFunc {
 
 			$result = curl_exec($ch);
 			if($result === false ){
-				throw new Exception('curl_exec fail',5);
+				throw new Exception('curl_exec fail',7);
 			}
 			$this->Ftp->appendMes('curl exec OK<br />');
 		} catch (Exception $e) {
