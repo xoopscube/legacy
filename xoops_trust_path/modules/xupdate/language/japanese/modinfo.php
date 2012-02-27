@@ -50,7 +50,7 @@ define('_MI_XUPDATE_INSTALL_MSG_MODULE_UPDATED', '¤â¤¸¤å¡¼¤ë¡Ø{0}¡Ù¤ò¤¢¤Ã¤×¤Ç¡¼¤
 define('_MI_XUPDATE_INSTALL_ERROR_MODULE_UPDATED', '¤â¤¸¤å¡¼¤ë¡Ø{0}¡Ù¤¬¤¢¤Ã¤×¤Ç¡¼¤È¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿¡£');
 define('_MI_XUPDATE_LANG_XUPDATE', '¥¢¥Ã¥×¥Ç¡¼¥¿');
 define('_MI_XUPDATE_DESC_XUPDATE', '¥â¥¸¥å¡¼¥ë¤Î¹¹¿·¤ò¼êÁá¤¯¹Ô¤¨¤Þ¤¹');
-define('_MI_XUPDATE_LANG_AUTHOR', 'XCL Pack201X DISTRIBUTION TEAM<br />naao,');
+define('_MI_XUPDATE_LANG_AUTHOR', 'XCL Pack201X DISTRIBUTION TEAM');
 define('_MI_XUPDATE_LANG_CREDITS', 'xoopscube.net');
 define('_MI_XUPDATE_TPL_STORE_LIST', 'STORE_LIST');
 define('_MI_XUPDATE_TPL_STORE_EDIT', 'STORE_EDIT');

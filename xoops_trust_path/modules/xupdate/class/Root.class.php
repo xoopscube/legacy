@@ -52,9 +52,6 @@ class Xupdate_Root extends XoopsSimpleObject {
 		}else{
 			$this->params['is_writable']['path'] = $tmpf_realpath ;//OK
 		}
-		//fix for windows
-//		$this->params['is_writable']['result'] = is_writable( realpath($tmpf) ) && is_executable( realpath($tmpf) ) ;
-//
 		$is_writable_result = false;
 		if (!empty($tmpf_realpath) && is_dir($tmpf_realpath)) {
 			@chmod($tmpf_realpath, 0705);

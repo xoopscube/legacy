@@ -59,7 +59,6 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract {
 
 		$this->mes.= "PWD:";
 		$this->pwd();
-		//$this->mes .= " start uploading..<br>\n";
 		return true;
 	}
 

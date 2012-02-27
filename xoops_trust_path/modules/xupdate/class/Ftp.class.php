@@ -61,7 +61,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	}
 
 	public function appendMes($message){
-			$this->mes.= $message;
+		$this->mes.= $message;
 	}
 
 
@@ -71,21 +71,21 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 
 	public function uploadNakami($sourcePath, $targetPath)
 	{
-		$this->mes .= " start uploading..<br>\n";
+		$this->mes .= " start uploadNakami ".htmlspecialchars($targetPath ,ENT_QUOTES ,_CHARSET)." ..<br>\n";
 		$result = $this->_ftpPutNakami($sourcePath, $targetPath);
 		return $result;
 	}
 	//for module rename uploading
 	public function uploadNakami_To_module($sourcePath, $targetPath , $trust_dirname , $dirname)
 	{
-		$this->mes .= " start uploading ".$dirname."..<br>\n";
+		$this->mes .= " start uploadNakami_To_module ".htmlspecialchars($targetPath."->".$dirname ,ENT_QUOTES ,_CHARSET)." ..<br>\n";
 		$result = $this->_ftpPutNakami_To_module($sourcePath, $targetPath , $trust_dirname , $dirname );
 		return $result;
 	}
 	//for other than module uploading
 	public function uploadNakami_OtherThan_module($sourcePath, $targetPath , $trust_dirname , $dirname)
 	{
-		$this->mes .= " start uploading ..<br>\n";
+		$this->mes .= " start uploadNakami_OtherThan_module ".htmlspecialchars($targetPath ,ENT_QUOTES ,_CHARSET)." ..<br>\n";
 		$result = $this->_ftpPutNakami_OtherThan_module($sourcePath, $targetPath , $trust_dirname , $dirname );
 		return $result;
 	}

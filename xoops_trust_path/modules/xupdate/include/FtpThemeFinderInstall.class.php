@@ -134,9 +134,11 @@ class Xupdate_FtpThemeFinderInstall extends Xupdate_FtpCommonZipArchive {
 		$unzipPath =  $this->exploredDirPath .'/';
 		$result = $this->Ftp->uploadNakami($unzipPath, $uploadPath);
 		if (!$result){
+			$this->Ftp->appendMes( 'fail upload themes uploadNakami<br />');
 			return false;
 		}
 
+		$this->Ftp->appendMes( 'end uploaded success<br />');
 		return true;
 	}
 

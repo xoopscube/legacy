@@ -122,7 +122,6 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	 **/
 	public function _getDownloadUrl()
 	{
-		// TODO ファイルNotFound対策
 		$url = sprintf($this->downloadUrlFormat, $this->target_key);
 		return $url;
 	}
@@ -147,6 +146,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 				$unzipPath =  $this->exploredDirPath . '/xoops_trust_path';
 				$result = $this->Ftp->uploadNakami($unzipPath, $uploadPath);
 				if (!$result){
+					$this->Ftp->appendMes( 'fail upload xoops_trust_path uploadNakami<br />');
 					return false;
 				}
 				// rename copy html module
@@ -154,6 +154,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 				$unzipPath =  $this->exploredDirPath .'/html/modules';
 				$result = $this->Ftp->uploadNakami_To_module($unzipPath, $uploadPath ,$this->trust_dirname,$this->dirname);
 				if (!$result){
+					$this->Ftp->appendMes( 'fail upload html/modules uploadNakami_To_module<br />');
 					return false;
 				}
 
@@ -162,6 +163,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 				$unzipPath =  $this->exploredDirPath .'/html';
 				$result = $this->Ftp->uploadNakami_OtherThan_module($unzipPath, $uploadPath ,$this->trust_dirname,$this->dirname);
 				if (!$result){
+					$this->Ftp->appendMes( 'fail upload html uploadNakami_OtherThan_module<br />');
 					return false;
 				}
 
@@ -170,13 +172,18 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 				// copy xoops_trust_path
 				$uploadPath = XOOPS_TRUST_PATH . '/' ;
 				$unzipPath =  $this->exploredDirPath . '/xoops_trust_path';
-				$this->Ftp->uploadNakami($unzipPath, $uploadPath);
+				$result = $this->Ftp->uploadNakami($unzipPath, $uploadPath);
+				if (!$result){
+					$this->Ftp->appendMes( 'fail upload xoops_trust_path uploadNakami<br />');
+					return false;
+				}
 
 				// copy html
 				$uploadPath = XOOPS_ROOT_PATH . '/' ;
 				$unzipPath =  $this->exploredDirPath .'/html';
 				$result = $this->Ftp->uploadNakami($unzipPath, $uploadPath);
 				if (!$result){
+					$this->Ftp->appendMes( 'fail upload html uploadNakami<br />');
 					return false;
 				}
 			}
@@ -187,10 +194,12 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			$unzipPath =  $this->exploredDirPath .'/html';
 			$result = $this->Ftp->uploadNakami($unzipPath, $uploadPath);
 			if (!$result){
+				$this->Ftp->appendMes( 'fail upload html uploadNakami<br />');
 				return false;
 			}
 		}
 
+		$this->Ftp->appendMes( 'end uploaded success<br />');
 		return true;
 	}
 

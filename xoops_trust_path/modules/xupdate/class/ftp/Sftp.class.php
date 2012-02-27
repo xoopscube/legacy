@@ -21,14 +21,13 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract {
 	 **/
 	public function app_login($server){
 
-//		$ftp_use_ssl = $this->mod_config['FTP_SSL'];
 		$ftp_id = $this->mod_config['FTP_UserName'];
 		$ftp_pass = $this->mod_config['FTP_password'];
 
 		// LOGIN
-
-		@define('NET_SFTP_LOGGING', NET_SFTP_LOG_COMPLEX);
-		$this->Verbose = TRUE;
+//		@define('NET_SFTP_LOGGING', NET_SFTP_LOG_COMPLEX);
+		@define('NET_SFTP_LOGGING', NET_SFTP_LOG_SIMPLE);
+		$this->Verbose = TRUE;//TRUE or FALSE
 		$this->LocalEcho = FALSE;
 		//$this->Passive(TRUE);
 
