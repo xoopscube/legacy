@@ -35,7 +35,7 @@ class xpwiki_plugin_moblog extends xpwiki_plugin {
 		$this->config['amazon'] = '#aws(w5,blended,__KEYWORD__)';
 
 		// 最大添付量（バイト・1ファイルにつき）※超えるものは保存しない
-		$this->config['maxbyte'] = 3145728; //3MB
+		$this->config['maxbyte'] = $this->func->return_bytes(ini_get('upload_max_filesize'));
 
 		// 本文文字制限（半角で
 		$this->config['body_limit'] = 6000;
