@@ -1,7 +1,7 @@
 <?php
 //
 // Created on 2006/10/25 by nao-pon http://hypweb.net/
-// $Id: loader.php,v 1.72 2012/01/15 01:32:48 nao-pon Exp $
+// $Id: loader.php,v 1.73 2012/02/19 07:48:51 nao-pon Exp $
 //
 
 ignore_user_abort(FALSE);
@@ -405,7 +405,7 @@ if ($type === 'js' || $type === 'css' || is_file($src_file)) {
 					$ie6JsPass = ($xpwiki->root->ie6JsPass)? 'true' : 'false';
 					$imageDir = $xpwiki->cont['IMAGE_DIR'];
 					if ($xpwiki->root->use_root_image_manager && is_file( $xpwiki->cont['ROOT_PATH'] . 'imagemanager.php')) {
-						$filemanagerTag = str_replace('\'', '\\\'', '<span title="ImageManager" onclick="XpWiki.fireImageManager(openWithSelfMain,[\''.$xpwiki->cont['ROOT_URL'].'imagemanager.php?target=[TARGET]\',\'imgmanager\',400,430],0)"><img src="'.$xpwiki->cont['ROOT_URL'].'images/image.gif" alt="Img" /></a></span>');
+						$filemanagerTag = str_replace('\'', '\\\'', '<span title="ImageManager" onclick="XpWiki.fireImageManager(openWithSelfMain,[\''.$xpwiki->cont['ROOT_URL'].'imagemanager.php?target=[TARGET]&amp;cb=xpwiki\',\'imgmanager\','.$xpwiki->root->root_image_manager_width.','.$xpwiki->root->root_image_manager_height.'],0)"><img src="'.$xpwiki->cont['ROOT_URL'].'images/image.gif" alt="Img" /></a></span>');
 					} else {
 						$filemanagerTag = '';
 					}

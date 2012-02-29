@@ -1,5 +1,5 @@
 <?php
-// $Id: ref.inc.php,v 1.67 2012/01/30 12:04:37 nao-pon Exp $
+// $Id: ref.inc.php,v 1.68 2012/02/19 07:48:50 nao-pon Exp $
 /*
 
 	*プラグイン ref
@@ -100,6 +100,13 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 
 		// ビデオをラップするタグ( div 又は span )のクラス名
 		$this->conf['videoWrapClass'] = 'video';
+		
+		// サイト内画像のローカルファイルパス変換テーブル
+		$this->conf['local_dir_mapper'] = array(
+			// xelfinder
+			'#^.+/([a-zA-Z0-9_-]+)/index\.php/view/(\d+)/.*?$#'
+			=> $this->cont['TRUST_PATH'] . 'uploads/xelfinder/' . rawurlencode(rtrim(substr($this->cont['ROOT_URL'], 7), '/')) . '_$1_$2',
+		);
 
 	}
 
@@ -435,7 +442,17 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 			$size = false;
 			if ($lvar['isurl'] === 'inner') {
 				// 自サイト内静的ファイル
-				$lvar['file'] = str_replace($this->cont['ROOT_URL'], $this->cont['ROOT_PATH'], rawurldecode($lvar['name']));
+				$_count = 0;
+				if ($this->conf['local_dir_mapper']) {
+					foreach($this->conf['local_dir_mapper'] as $_reg => $_to) {
+						$_count = 0;
+						$lvar['file'] = preg_replace($_reg, $_to, $lvar['name'], -1, $_count);
+						if ($_count) break;
+					}
+				}
+				if (! $_count) {
+					$lvar['file'] = str_replace($this->cont['ROOT_URL'], $this->cont['ROOT_PATH'], rawurldecode($lvar['name']));
+				}
 				$size = $this->getimagesize($lvar['file']);
 			} else if ($this->cont['PLUGIN_REF_URL_GET_IMAGE_SIZE'] && (bool)ini_get('allow_url_fopen')) {
 				$size = $this->getimagesize($lvar['name']);
@@ -888,7 +905,7 @@ EOD;
 					$this->root->rtf['disable_render_cache'] = true;
 					$this->root->pagecache_profiles = 'default';
 					if ($this->cont['UA_PROFILE'] === 'default') {
-						$rurl = rawurlencode($url);
+						$rurl = rawurlencode(str_replace('&amp;', '&', $url));
 						$params['_body'] = <<<EOD
 <iframe src="http://docs.google.com/viewer?url={$rurl}&amp;embedded=true" style="border:none;"{$size_tag}></iframe>
 EOD;
