@@ -14,7 +14,7 @@ define("_MD_PROFILE_LANG_FIELD_TIP6","Selectbox - permite múltiplas opções, v
 define("_MD_PROFILE_LANG_UNAME","Codinome");
 define("_MD_PROFILE_ERROR_CONTENT_IS_NOT_FOUND","Conteúdo não encontrado");
 define("_MD_PROFILE_ERROR_DBUPDATE_FAILED","Houve uma falha ao tentar atualizar o banco de dados.");
-define("_MD_PROFILE_ERROR_EMAIL","Foi escrito um endereço de e-mail considerado incorreto pelo sistema.");
+define("_MD_PROFILE_ERROR_EMAIL","Foi escrito um endereço de <i>e-mail</i> considerado incorreto pelo sistema.");
 define("_MD_PROFILE_ERROR_EXTENSION","Foi enviado um tipo de arquivo cuja extensão não confere com nenhuma das permitidas pelo sistema.");
 define("_MD_PROFILE_ERROR_INTRANGE","Entrada incorreta em {0}.");
 define("_MD_PROFILE_ERROR_MAX","Entrada {0} com {1} ou menos o valor numérico");

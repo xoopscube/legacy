@@ -45,7 +45,7 @@ define("_DISABLESMILEY","Desabilitar ícones emotivos");
 define("_EDIT","Editar");
 define("_ENDSWITH","Termina com");
 define("_ENTERCODE","Escreva os códigos que você deseja incluir.");
-define("_ENTEREMAIL","Escreva o e-mail que você deseja incluir.");
+define("_ENTEREMAIL","Escreva o <i>e-mail</i> que você deseja incluir.");
 define("_ENTERIMGPOS","Agora, escreva a posição da figura.");
 define("_ENTERIMGURL","Escreva o endereço da imagem que você deseja incluir no texto:");
 define("_ENTERQUOTE","Escreva o texto que você deseja citar.");

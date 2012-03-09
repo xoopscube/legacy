@@ -153,7 +153,7 @@ define("_INSTALL_L7","A sua configuração:");
 define("_INSTALL_L70","Por favor, altere as permissões do arquivo mainfile.php de forma que ele se torne executável pelo servidor (por exemplo: chmod 777 mainfile.php em um servidor UNIX/LINUX, ou verfique as prorpriedades do arquivo e assegure-se que a opção");
 define("_INSTALL_L71","Pressione o botão abaixo para prosseguir.");
 define("_INSTALL_L72","Os seguintes diretórios devem possuir permissões de leitura e escrita pelo servidor (<q>chmod 777 directory_name</q> em um servidor UNIX/LINUX).");
-define("_INSTALL_L73","Endereço de e-mail inválido.");
+define("_INSTALL_L73","Endereço de <i>e-mail</i> inválido.");
 define("_INSTALL_L74","Confirme a senha");
 define("_INSTALL_L75","Caminho físico do XOOPS_TRUST_PATH ");
 define("_INSTALL_L76","Diretório completo de onde está localizada a pasta XOOPS_TRUST_PATH, sem a barra no final.<br />Essa pasta deverá estar fora do PUBLIC_HTML, e os seus arquivos não deverão ser acessados via Web.");
