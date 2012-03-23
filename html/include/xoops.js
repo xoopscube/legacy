@@ -30,7 +30,7 @@ function justReturn() {
 }
 
 function openWithSelfMain(url, name, width, height, returnwindow) {
-    var options = "width=" + width + ",height=" + height + "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no";
+    var options = "width=" + width + ",height=" + height + ",toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no";
     new_window = window.open(url, name, options);
     window.self.name = "main";
     new_window.document.clear();
