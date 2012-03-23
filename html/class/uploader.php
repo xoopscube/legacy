@@ -156,14 +156,13 @@ class XoopsMediaUploader
             return false;
         } elseif (is_array($_FILES[$media_name]['name']) && isset($index)) {
             $index = intval($index);
-            $this->mediaName = (get_magic_quotes_gpc()) ? stripslashes($_FILES[$media_name]['name'][$index]) : $_FILES[$media_name]['name'][$index];
+            $this->mediaName = $_FILES[$media_name]['name'][$index];
             $this->mediaType = $_FILES[$media_name]['type'][$index];
             $this->mediaSize = $_FILES[$media_name]['size'][$index];
             $this->mediaTmpName = $_FILES[$media_name]['tmp_name'][$index];
             $this->mediaError = !empty($_FILES[$media_name]['error'][$index]) ? $_FILES[$media_name]['errir'][$index] : 0;
         } else {
             $media_name =& $_FILES[$media_name];
-            $this->mediaName = (get_magic_quotes_gpc()) ? stripslashes($media_name['name']) : $media_name['name'];
             $this->mediaName = $media_name['name'];
             $this->mediaType = $media_name['type'];
             $this->mediaSize = $media_name['size'];
