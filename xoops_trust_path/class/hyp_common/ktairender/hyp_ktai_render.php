@@ -496,8 +496,10 @@ class HypKTaiRender
 		// "on*" 属性のあるフォームエレメントは jqm で装飾しない
 		$body = preg_replace('#(<(?:input|select|textarea))([^>]+? on[^>]+>)#iS', '$1 data-role="none"$2', $body);
 
-		// jqm 1.1.0 から checkbox, radio に <label> が必須になった？
+		// jqm 1.1.0 から checkbox, radio に <label for=...> が必須になった？
 		// @todo jqm バージョンアップ時に確認すること
+		// <label>...<input>...</label> は対応したっぽい
+		// https://github.com/jquery/jquery-mobile/commit/cf21c53520a60a689d57c3187daba1cf25f160b5
 		$body = preg_replace_callback('#(<[^>]+>[^<>]*)(<input[^>]+type=["\']?(?:checkbox|radio)[^>/]+)/?'.'>([^<>]*<[^>]+>)#i', array(& $this, '_check_checkbox_smart'), $body);
 		
 		// give data-ajax="false"
@@ -515,7 +517,7 @@ class HypKTaiRender
 	}
 	
 	function _check_checkbox_smart($match) {
-		static $reg = '#<label[^>]+for=#i';
+		static $reg = '#<label#i';
 		if (preg_match($reg, $match[1]) || preg_match($reg, $match[3])) {
 			return $match[0];
 		}
