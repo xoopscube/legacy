@@ -438,19 +438,19 @@ class HypKTaiRender
 		$body = str_replace(array('<ns>', '</ns>'), '', $body);
 
 		if (! $this->Config_no_diet) {
-		// Optimize query strings
-		$_func = create_function(
-			'$match',
-			'if ($match[3][0] === \'?\') $match[3] = preg_replace(\'/^.*?'.$h_reg.'(#[^#]+)?$/\', \'?' . str_replace("'", "\\'", $this->SERVER['QUERY_STRING']) . '$1\', $match[3]);' .
-			'$match[3] = preg_replace(\'/(?:&(?:amp;)?)+/\', \'&amp;\', $match[3]);' .
-			'$match[3] = str_replace(\'?&amp;\', \'?\', $match[3]);' .
-			'$match[3] = str_replace(array(\'?#\', \'&amp;#\'), \'#\', $match[3]);' .
-			'return $match[1] . $match[3] . (isset($match[4])? $match[4] : \'\');'
-		);
-		$_reg = '#(<a[^>]*? href=([\'"])?)([^\s"\'>]+)(\\2)?#isS';
-		$header = preg_replace_callback($_reg, $_func, $header);
-		$body   = preg_replace_callback($_reg, $_func, $body);
-		$footer = preg_replace_callback($_reg, $_func, $footer);
+			// Optimize query strings
+			$_func = create_function(
+				'$match',
+				'if ($match[3][0] === \'?\') $match[3] = preg_replace(\'/^.*?'.$h_reg.'(#[^#]+)?$/\', \'?' . str_replace("'", "\\'", $this->SERVER['QUERY_STRING']) . '$1\', $match[3]);' .
+				'$match[3] = preg_replace(\'/(?:&(?:amp;)?)+/\', \'&amp;\', $match[3]);' .
+				'$match[3] = str_replace(\'?&amp;\', \'?\', $match[3]);' .
+				'$match[3] = str_replace(array(\'?#\', \'&amp;#\'), \'#\', $match[3]);' .
+				'return $match[1] . $match[3] . (isset($match[4])? $match[4] : \'\');'
+			);
+			$_reg = '#(<a[^>]*? href=([\'"])?)([^\s"\'>]+)(\\2)?#isS';
+			$header = preg_replace_callback($_reg, $_func, $header);
+			$body   = preg_replace_callback($_reg, $_func, $body);
+			$footer = preg_replace_callback($_reg, $_func, $footer);
 		}
 
 		if ($googleAdsenseHtml) {
@@ -496,12 +496,32 @@ class HypKTaiRender
 		// "on*" 属性のあるフォームエレメントは jqm で装飾しない
 		$body = preg_replace('#(<(?:input|select|textarea))([^>]+? on[^>]+>)#iS', '$1 data-role="none"$2', $body);
 
+		// jqm 1.1.0 から checkbox, radio に <label> が必須になった？
+		// @todo jqm バージョンアップ時に確認すること
+		$body = preg_replace_callback('#(<[^>]+>[^<>]*)(<input[^>]+type=["\']?(?:checkbox|radio)[^>/]+)/?'.'>([^<>]*<[^>]+>)#i', array(& $this, '_check_checkbox_smart'), $body);
+		
 		// give data-ajax="false"
 		$body = preg_replace_callback('#(<script.+?/script>)|((<(?:a|form)[^>]+?)((?:href|action)=("|\')([^>]+?)\\5)([^>]*?>))#isS', array(& $this, '_check_href_smart'), $body);
 
 		return $body;
 	}
 
+	function _check_checkbox_smart_check($tag) {
+		if (preg_match('#([^<>]*<input[^>]+type=["\']?(?:checkbox|radio)[^>/]+)/?>([^<>]*)#i', $tag, $match)) {
+			return $match[1].' data-role="none">'.$match[2];
+		} else {
+			return $tag;
+		}
+	}
+	
+	function _check_checkbox_smart($match) {
+		static $reg = '#<label[^>]+for=#i';
+		if (preg_match($reg, $match[1]) || preg_match($reg, $match[3])) {
+			return $match[0];
+		}
+		return $this->_check_checkbox_smart_check($match[1]).$match[2].' data-role="none">'.$this->_check_checkbox_smart_check($match[3]);
+	}
+	
 	function _check_href_smart($match) {
 		if ($match[1] || strpos($match[2], 'data-ajax=') !== false) {
 			return $match[0];

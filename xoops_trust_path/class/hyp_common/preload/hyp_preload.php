@@ -61,6 +61,7 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 
 	var $wizMobileUse = FALSE;
 	var $detect_order_org = array();
+	var $changeContentLength = false;
 
 	// コンストラクタ
 	function HypCommonPreLoadBase (& $controller) {
@@ -300,8 +301,9 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 					unset($_COOKIE['_hypktaipc']);
 				}
 			}
+			$_k_tai_ua_regex = isset($this->k_tai_conf['ua_regex#'.XOOPS_URL])? $this->k_tai_conf['ua_regex#'.XOOPS_URL] : $this->k_tai_conf['ua_regex'];
 			if (empty($_COOKIE['_hypktaipc']) && isset($_SERVER['HTTP_USER_AGENT']) &&
-				preg_match($this->k_tai_conf['ua_regex'], $_SERVER['HTTP_USER_AGENT'])) {
+				preg_match($_k_tai_ua_regex, $_SERVER['HTTP_USER_AGENT'])) {
 
 				// Reset each site values.
 				foreach (array_keys($this->k_tai_conf) as $key) {
@@ -1134,7 +1136,18 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 			list($head, $body) = array_pad(explode('</head>', $s, 2), 2, '');
 			if (! $body) return false;
 			$s = $head . $GLOBALS['hyp_preload_head_tag'] . '</head>' . $body;
+			$this->changeContentLength = true;
 		}
+
+		if ($this->changeContentLength && function_exists('headers_list')) {
+			foreach (headers_list() as $header) {
+				if (preg_match('/^Content-Length:/i', $header)) {
+					header('Content-Length: ' . strlen($s));
+					break;
+				}
+			}
+ 		}
+ 		
 		return $s;
 	}
 
@@ -1145,7 +1158,14 @@ class HypCommonPreLoadBase extends XCube_ActionFilter {
 		if (function_exists('mb_convert_encoding') && $this->configEncoding && $this->encode !== $this->configEncoding) {
 			$this->msg_words_highlight = mb_convert_encoding($this->msg_words_highlight, $this->encode, $this->configEncoding);
 		}
-		return HypGetQueryWord::word_highlight($s, (defined($this->q_word2)? constant($this->q_word) . ' ' . constant($this->q_word2) : constant($this->q_word)), $this->encode, $this->msg_words_highlight, $this->extlink_class_name);
+		
+		$ret = HypGetQueryWord::word_highlight($s, (defined($this->q_word2)? constant($this->q_word) . ' ' . constant($this->q_word2) : constant($this->q_word)), $this->encode, $this->msg_words_highlight, $this->extlink_class_name);
+		
+		if (strlen($s) === $ret) return false;
+		
+		$this->changeContentLength = true;
+		
+		return $ret;
 	}
 
 	function smartRedirect( $s ) {
@@ -1217,6 +1237,7 @@ EOD;
 				$s = preg_replace('#</body>#i', $js_foot . '$0', $s);
 			}
 			unset($_SESSION['hyp_redirect_message'], $_SESSION['hyp_redirect_wait']);
+			$this->changeContentLength = true;
 			return $s;
 		}
 	}
@@ -1242,9 +1263,13 @@ EOD;
 		}
 		if ($insert) {
 			$insert = "\n".$insert."\n";
-			return preg_replace('/<form[^>]+?>/isS' ,
-				"$0".$insert, $s);
+			return preg_replace_callback('#(<script.+?/script>)|<form[^>]+?>#isS',
+				create_function('$match','
+					if ($match[1]) return $match[0];
+					return $match[0].\''.$insert.'\';
+				'), $s);
 		}
+		$this->changeContentLength = true;
 		return $s;
 	}
 
@@ -1394,17 +1419,17 @@ EOD;
 				$blockmenu = join('</li><li>', $blockmenu);
 				$body .= <<<EOD
 <!--blockMenu-->
-<div data-role="header">
+<div id="keitaiblockmenu" data-role="footer">
+ <div data-role="navbar">
+  <ul><li>{$blockmenu}</li></ul>
+ </div>
+</div>
+<div data-role="footer">
  <a href="{$_url}" data-ajax="false" data-icon="home" data-iconpos="notext">Home</a>
  <h4>
   <a id="keitaifixedbar_main" href="#keitaiMainContents" data-ajax="false" style="display:inline;text-decoration:none;"><pagetitle></a>
  </h4>
  <a id="keitaifixedbar_block" href="#" data-ajax="false" data-icon="grid" data-iconpos="notext">block</a>
- <div id="keitaiblockmenu" style="display:none" data-role="header">
-  <div data-role="navbar">
-   <ul><li>{$blockmenu}</li></ul>
-  </div>
- </div>
 </div>
 <!--/blockMenu-->
 EOD;
@@ -1724,7 +1749,9 @@ EOD;
 		header('Content-Type: ' . $ctype . '; charset=' . $charset);
 		header('Content-Length: ' . strlen($s));
 		header('Cache-Control: no-cache');
-
+		
+		$this->changeContentLength = true;
+		
 		return $s;
 	}
 
@@ -1741,7 +1768,9 @@ EOD;
 			$mpc->setString($str, FALSE);
 			$str = $mpc->autoConvertModKtai();
 		}
-
+		
+		$this->changeContentLength = true;
+		
 		return $str;
 	}
 
@@ -1752,6 +1781,9 @@ EOD;
 
 			$str = mb_convert_encoding($str, 'UTF-8', $this->encode);
 			header('Content-Type: text/html; charset=UTF-8');
+			
+			$this->changeContentLength = true;
+			
 			return $str;
 		} else {
 			return false;

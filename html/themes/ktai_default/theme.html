@@ -59,11 +59,11 @@
 <{foreach item=block from=$xoops_ccblocks}>
 	<!--KTaiBlock_<{$block.id}>-->
 	<ns>
-	<div style="text-align:center;background-color:#ccccff">
+	<{if ! $block.title|strstr:"none"}><div style="text-align:center;background-color:#ccccff">
 		<h2 style="text-align:center;background-color:#ccccff">
 		<!--KTaiTitle--><{$block.title}><!--/KTaiTitle-->
 		</h2>
-	</div>
+	</div><{/if}>
 	<div><{$block.content}></div>
 	</ns>
 	<!--/KTaiBlock-->

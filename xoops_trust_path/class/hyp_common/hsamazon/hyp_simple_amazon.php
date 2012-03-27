@@ -541,12 +541,12 @@ class HypSimpleAmazon
 				$_price = $this->get_price($item);
 				$_item['PRICE']= $_price[0];
 				$_item['MERCHANTID'] = $this->get_merchantid($item);
-				if ($_item['MERCHANTID']) {
+				if ($this->searchHost === 'www.javari.jp') {
+					$_item['GUIDEURL'] = 'free';
+				} else if ($_item['MERCHANTID']) {
 					$_item['GUIDEURL'] = 'http://' . $this->searchHost . str_replace(array('<url>', '<tag>'), array(rawurlencode('http://www.amazon.co.jp/gp/help/seller/shipping.html?ie=UTF8&asin='.$_item['ASIN'].'&seller='.$_item['MERCHANTID']), $this->AssociateTag), $this->redirectQuery);
 				} else if (! $_item['AVAILABILITY']) {
 					$_item['GUIDEURL'] = 'http://' . $this->searchHost . str_replace(array('<url>', '<tag>'), array(rawurlencode('http://www.amazon.co.jp/gp/help/customer/display.html?nodeId=1104814'), $this->AssociateTag), $this->redirectQuery);
-				} else if ($_item['PRICE'] < 1500) {
-					$_item['GUIDEURL'] = 'http://' . $this->searchHost . str_replace(array('<url>', '<tag>'), array(rawurlencode('http://www.amazon.co.jp/gp/help/customer/display.html?nodeId=642982'), $this->AssociateTag), $this->redirectQuery);
 				} else {
 					$_item['GUIDEURL'] = 'free';
 				}
