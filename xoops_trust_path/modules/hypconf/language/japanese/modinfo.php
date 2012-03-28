@@ -25,6 +25,7 @@ define($constpref.'_ADMENU_SPAM_BLOCK', 'スパム防止設定');
 
 // notice error
 define($constpref.'_MAIN_SWITCH_NOT_ENABLE', 'メインスイッチで「<b>$1</b>」が無効になっています。ここでの設定を機能させるためには、メインスイッチで「<b>$1</b>」を有効にしてください。');
+define($constpref.'_THERE_ARE_NO_CONFIG' , '現在設定されている項目はありません。すべて規定値が適用されます。');
 
 // main_switch
 define($constpref.'_USE_SET_QUERY_WORDS', '検索ワードを定数にセット');

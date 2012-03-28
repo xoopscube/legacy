@@ -25,6 +25,7 @@ define($constpref.'_ADMENU_SPAM_BLOCK', 'SPAM blocker');
 
 // notice error
 define($constpref.'_MAIN_SWITCH_NOT_ENABLE', '"<b>$1</b>" is invalid with the main switch. In order to operate a setup here, please validate "<b>$1</b>" with a main switch.');
+define($constpref.'_THERE_ARE_NO_CONFIG' , 'No item has been set up. All the values are applied with default.');
 
 // main_switch
 define($constpref.'_USE_SET_QUERY_WORDS', 'Set to a constant search words.');
