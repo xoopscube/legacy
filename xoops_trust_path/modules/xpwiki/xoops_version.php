@@ -18,7 +18,7 @@ include $_parentdirname . '/version.php';
 $modversion['name'] = $mydirname ;
 $modversion['version'] = $xpwiki_version ;
 $modversion['description'] = constant($constpref.'_MODULE_DESCRIPTION') ;
-$modversion['credits'] = '&copy; 2006-2011 hypweb.net.';
+$modversion['credits'] = '&copy; 2006-2012 hypweb.net.';
 $modversion['author'] = 'nao-pon' ;
 $modversion['help'] = '' ;
 $modversion['license'] = 'GPL' ;
@@ -51,6 +51,12 @@ if (@$GLOBALS['Xpwiki_'.$mydirname]['is_admin']) {
 		'name' => '<img width="16" height="16" style="vertical-align: middle;" alt="Admin tools" src="'.XOOPS_MODULE_URL.'/'.$mydirname.'/skin/loader.php?src=cog.png">' . constant($constpref . '_ADMIN_TOOLS') ,
 		'url'  => '?:AdminTools' );
 }
+if (is_object(@$GLOBALS['xoopsUser'])) {
+	$modversion['sub'][] = array(
+		'name' => constant($constpref . '_MENU_USERPREF') ,
+		'url'  => '?cmd=user_pref' );
+}
+
 
 // All Templates can't be touched by modulesadmin.
 $modversion['templates'] = array() ;

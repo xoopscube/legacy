@@ -1,5 +1,4 @@
 <?php
-// $Id: moblog.inc.php,v 1.24 2011/11/26 12:03:10 nao-pon Exp $
 // Author: nao-pon http://hypweb.net/
 // Bace script is pop.php of mailbbs by Let's PHP!
 // Let's PHP! Web: http://php.s3.to/

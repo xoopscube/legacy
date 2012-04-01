@@ -960,8 +960,6 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 			'H:<input type="text" name="thumb_h" size="3" value="'.$thumb_px.'" />(Max)</p>' : '';
 		$_filename = (!empty($this->root->vars['filename']))? $this->root->vars['filename'] : '';
 		$filename = ($_filename)? '<input type="hidden" name="filename" value="'.htmlspecialchars($this->root->vars['filename']).'" />' : '';
-		$_returi = (!empty($this->root->vars['returi']))? $this->root->vars['returi'] : '';
-		$returi = ($_returi)? '<input type="hidden" name="returi" value="'.htmlspecialchars($this->root->vars['returi']).'" />' : '';
 
 		$r_page = rawurlencode($page);
 		$s_page = htmlspecialchars($page);
@@ -978,6 +976,9 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 			}
 		}
 
+		$_returi = (!empty($this->root->vars['returi']))? $this->root->vars['returi'] : '';
+		$returi = ($_returi)? '<input type="hidden" name="returi" value="'.htmlspecialchars($this->root->vars['returi']).'" />' : '';
+		
 		$navi = '';
 		if (! $is_popup) {
 			$navi = "<h3>".str_replace('$1', $this->func->make_pagelink($page), $this->root->_attach_messages['msg_upload'])."</h3>";
@@ -1284,19 +1285,19 @@ EOD;
 		if (!empty($this->root->vars['to'])) {
 			if ($to = $this->func->cache_get_db($this->root->vars['to'], 'attach:to')) {
 				$url = $this->root->siteinfo['host'] . $to;
-				$s_url = htmlspecialchars($url);
+				$s_url = str_replace('&amp;', '&', htmlspecialchars($url));
 				// clear output buffer
 				$this->func->clear_output_buffer();
 				$output = <<<EOD
 <html>
 <body>
 <script type="text/javascript">
-var w = window.open('{$s_url}', 'XpWikiPopupBody');
-w.focus();
-window.close();
+	var w = window.open('{$s_url}', 'XpWikiPopupBody');
+	setTimeout(function(){window.close();}, 100);
+	w.focus();
 </script>
 <div style="font-size:20px;">
-<a href="javascript:window.open('{$s_url}', 'XpWikiPopupBody');window.close()">{$this->root->_LANG['skin']['topage']}</a>
+	<a href="javascript:window.open('{$s_url}', 'XpWikiPopupBody');window.close()">{$this->root->_LANG['skin']['topage']}</a>
 </div>
 </body>
 </html>

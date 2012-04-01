@@ -491,7 +491,7 @@ class XpWikiLink_url extends XpWikiLink {
  (?:>|:)
 )?
 (                 # (3) url
- (?:(?:https?|ftp|news):\/\/|mailto:)[\w\/\@\$()!?&%#:;.,~'=*+-]+
+ (?:(?:https?|ftp|news|site):\/\/|mailto:)[\w\/\@\$()!?&%#:;.,~'=*+-]+
 )
 (?($s1)\]\])      # close bracket
 EOD;
@@ -531,7 +531,7 @@ class XpWikiLink_url_i18n extends XpWikiLink {
  )?
 )?
 (                  # (3) scheme
- (?:(?:https?|ftp|news):\/\/|mailto:)
+ (?:(?:https?|ftp|news|site):\/\/|mailto:)
 )
 ([\w.-]+@)?        # (4) mailto name
 ([^\/"<>\s]+|\/)   # (5) host

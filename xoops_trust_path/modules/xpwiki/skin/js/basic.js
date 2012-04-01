@@ -213,7 +213,7 @@ function wikihelper_getTextLength(s)
 
 function wikihelper_getSelection(s)
 {
-	return (s.value).substring(wikihelper_getSelectStart(s), wikihelper_getSelectEnd(s))
+	return (s.value).substring(wikihelper_getSelectStart(s), wikihelper_getSelectEnd(s));
 }
 
 function wikihelper_setMozSelection(a,z)

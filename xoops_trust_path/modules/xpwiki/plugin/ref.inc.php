@@ -1,5 +1,5 @@
 <?php
-// $Id: ref.inc.php,v 1.68 2012/02/19 07:48:50 nao-pon Exp $
+// ref.inc.php by nao-pon
 /*
 
 	*プラグイン ref
@@ -104,7 +104,7 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 		// サイト内画像のローカルファイルパス変換テーブル
 		$this->conf['local_dir_mapper'] = array(
 			// xelfinder
-			'#^.+/([a-zA-Z0-9_-]+)/index\.php/view/(\d+)/.*?$#'
+			'#^.+/([a-zA-Z0-9_-]+)/index\.php(?:/|\?page=)view(?:/|&file=)(\d+)/.*?$#'
 			=> $this->cont['TRUST_PATH'] . 'uploads/xelfinder/' . rawurlencode(rtrim(substr($this->cont['ROOT_URL'], 7), '/')) . '_$1_$2',
 		);
 
@@ -337,6 +337,7 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 			'page'    => $this->cont['PageForRef'], // ページ名
 			'name'    => array_shift($args), // 添付ファイル名を取得(第一引数)
 			'isurl'   => FALSE,
+			'file'    => '',
 			'caption' => '',
 			'title'   => array()
 		);
@@ -440,19 +441,8 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 		if ($lvar['type'] === 1) {
 			// URL画像
 			$size = false;
-			if ($lvar['isurl'] === 'inner') {
+			if ($lvar['file']) {
 				// 自サイト内静的ファイル
-				$_count = 0;
-				if ($this->conf['local_dir_mapper']) {
-					foreach($this->conf['local_dir_mapper'] as $_reg => $_to) {
-						$_count = 0;
-						$lvar['file'] = preg_replace($_reg, $_to, $lvar['name'], -1, $_count);
-						if ($_count) break;
-					}
-				}
-				if (! $_count) {
-					$lvar['file'] = str_replace($this->cont['ROOT_URL'], $this->cont['ROOT_PATH'], rawurldecode($lvar['name']));
-				}
 				$size = $this->getimagesize($lvar['file']);
 			} else if ($this->cont['PLUGIN_REF_URL_GET_IMAGE_SIZE'] && (bool)ini_get('allow_url_fopen')) {
 				$size = $this->getimagesize($lvar['name']);
@@ -472,7 +462,7 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 
 
 			// サイト内画像 サムネイル作成
-			if ($size && $lvar['isurl'] === 'inner') {
+			if ($size && $lvar['file']) {
 
 				$quality = $this->conf['thumb_quality'];
 
@@ -1168,27 +1158,49 @@ _HTML_;
 			if (! $params['noimg'] &&
 				! $this->cont['PKWK_DISABLE_INLINE_IMAGE_FROM_URI'] &&
 				preg_match($this->cont['PLUGIN_REF_IMAGE_REGEX'], $lvar['name'])) {
+				
 				// 画像
-				if (strpos($lvar['name'], $this->cont['ROOT_URL']) === 0 && strpos($lvar['name'], '?') === false) {
-					// 自サイト内静的ファイル
+				if (strpos($lvar['name'], $this->cont['ROOT_URL']) === 0) {
+					// 自サイト内画像ファイル
 					$lvar['type'] = 1;
-					$lvar['isurl'] = 'inner';
-				} else if ($params['nocache']) {
-					// キャッシュしない指定
-					$lvar['type'] = 2;
-				} else {
-					// キャッシュする
-					$this->cache_image_fetch($lvar);
-					if ($lvar['file']) {
-						// キャッシュOK
-						if ($this->is_picture($lvar['file'])) {
-							$lvar['type'] = 3;
-						} else {
-							$lvar['type'] = 5;
+					
+					// 実体ファイルのパスを $lvar['file'] にセット
+					$_count = 0;
+					if ($this->conf['local_dir_mapper']) {
+						foreach($this->conf['local_dir_mapper'] as $_reg => $_to) {
+							$_count = 0;
+							$lvar['file'] = preg_replace($_reg, $_to, $lvar['name'], -1, $_count);
+							if ($_count) break;
 						}
-					} else {
-						// キャッシュNG
+					}
+					if (! $_count) {
+						if (strpos($lvar['name'], '?') === false) {
+							$lvar['file'] = str_replace($this->cont['ROOT_URL'], $this->cont['ROOT_PATH'], rawurldecode($lvar['name']));
+						} else {
+							// 実体が取得できない
+							$lvar['file'] = '';
+						}
+					}
+				}
+				
+				if (! $lvar['file']) {
+					if ($params['nocache']) {
+						// キャッシュしない指定
 						$lvar['type'] = 2;
+					} else {
+						// キャッシュする
+						$this->cache_image_fetch($lvar);
+						if ($lvar['file']) {
+							// キャッシュOK
+							if ($this->is_picture($lvar['file'])) {
+								$lvar['type'] = 3;
+							} else {
+								$lvar['type'] = 5;
+							}
+						} else {
+							// キャッシュNG
+							$lvar['type'] = 2;
+						}
 					}
 				}
 			} else {

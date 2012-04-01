@@ -5,7 +5,7 @@
     	var nextUniqueID = 1;
 	    window.HTMLElement.prototype.__defineGetter__('uniqueID', function() {
 	        var uniqueID = 'id' + nextUniqueID++;
-	        this.__defineGetter__("uniqueID", function(){return uniqueID});
+	        this.__defineGetter__("uniqueID", function(){return uniqueID;});
 	        return uniqueID;
 	    });
     }
@@ -41,7 +41,7 @@ XpWiki.FCKxpwiki_path = '$fckxpwiki_path';
 XpWiki.ie6JsPass = $ie6JsPass;
 XpWiki.imageDir = '$imageDir';
 XpWiki.filemanagerTag = '$filemanagerTag';
-$skinname
+$skinname;
 
 // Load CSS
 XpWiki.addCssInHead('base.css');
@@ -211,7 +211,7 @@ function wikihelper_check(f) {
 		}
 	}
 
-	for (i = 0; i < f.elements.length; i++) {
+	for (var i = 0; i < f.elements.length; i++) {
 		oElement = f.elements[i];
 		if (oElement.type == "submit" && (!oElement.name || oElement.name == "comment")) {
 			oElement.disabled = true;
@@ -265,8 +265,8 @@ function wikihelper_initTexts(obj)
 	wikihelper_show_fontset_img();
 
 	if (Prototype.Browser.IE) {
-		var oElements = obj.getElementsByTagName("form");
-		for (i = 0; i < oElements.length; i++)
+		oElements = obj.getElementsByTagName("form");
+		for (var i = 0; i < oElements.length; i++)
 		{
 			oElement = oElements[i];
 			var onkeyup = oElement.onkeyup;
@@ -305,7 +305,7 @@ function wikihelper_initTexts(obj)
 				return	function(){
 					elm._focused = false;
 					wikihelper_hide_helper();
-				}
+				};
 			}(oElement)
 		);
 		Element.observe(oElement, 'mouseout',
@@ -326,7 +326,6 @@ function wikihelper_initTexts(obj)
 	};
 
 	var x = document.evaluate('descendant::input[@type!="hidden"] | descendant::textarea[@rel="wikihelper"] | descendant::select', obj, null, 6, null);
-	var n = 0;
 	for (var i = 0; i < x.snapshotLength; i++) {
 		var elm = x.snapshotItem(i);
 		if (String(elm.getAttribute('rel')) == 'wikihelper') {
@@ -341,7 +340,7 @@ function wikihelper_setActive(elem, istimer)
 {
 	if (! istimer) {
 		wikihelper_mouseover = true;
-		setTimeout(function(elem){return function(){wikihelper_setActive(elem, true)}}(elem), 500);
+		setTimeout(function(elem){return function(){wikihelper_setActive(elem, true);};}(elem), 500);
 		return;
 	}
 
@@ -373,7 +372,7 @@ function wikihelper_setActive(elem, istimer)
 
 		if (XpWiki.isIE6) {
 			oElements = document.getElementsByTagName("select");
-			for (i = 0; i < oElements.length; i++)
+			for (var i = 0; i < oElements.length; i++)
 			{
 				oElement = oElements[i];
 				oElement.style.visibility = "hidden";
@@ -406,7 +405,7 @@ function wikihelper_hide_helper(time) {
 		Element.hide(helper);
 		if (wikihelper_WinIE && XpWiki.isIE6) {
 			oElements = document.getElementsByTagName("select");
-			for (i = 0; i < oElements.length; i++)
+			for (var i = 0; i < oElements.length; i++)
 			{
 				oElement = oElements[i];
 				oElement.style.visibility = "";
@@ -450,10 +449,11 @@ function xpwiki_now_loading(mode, id) {
 		}
 		if (!objSrc) return;
 
+		var objBack;
 		wikihelper_hide_helper();
 		if (!$("xpwiki_loading")) {
 			var objBody = XpWiki.getDomBody();
-			var objBack = document.createElement("div");
+			objBack = document.createElement("div");
 			objBack.id = 'xpwiki_loading';
 			objBack.style.display = 'none';
 			objBack.style.position = 'absolute';
@@ -464,7 +464,7 @@ function xpwiki_now_loading(mode, id) {
 			objBack.appendChild(txtBox);
 			objBody.appendChild(objBack);
 		} else {
-			var objBack = $("xpwiki_loading");
+			objBack = $("xpwiki_loading");
 		}
 
 		//var pos = objSrc.positionedOffset();
@@ -509,7 +509,7 @@ function xpwiki_ajax_edit(url, id) {
 	pars += 'cmd=edit';
 	if (id) pars += '&paraid=' + encodeURIComponent(id);
 	pars += '&ajax=1';
-	var myAjax = new Ajax.Request(
+	new Ajax.Request(
 		url,
 		{
 			method: 'get',
@@ -592,7 +592,7 @@ function xpwiki_ajax_edit_submit(IsTemplate) {
 	}
 
 	var failure = false;
-	var myAjax = new Ajax.Request(
+	new Ajax.Request(
 		url,
 		{
 			asynchronous: false,

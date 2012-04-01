@@ -102,7 +102,9 @@ var XpWiki = {
 		if (typeof arg == 'undefined') {
 			var arg = [];
 		}
-
+		
+		var isMobile = (navigator.userAgent.indexOf('Mobile') > 0);
+		
 		if (!$('XpWikiPopup')) {
 
 			// base
@@ -127,6 +129,10 @@ var XpWiki = {
 					top: jQuery( window ).scrollTop() + 'px',
 					left: '0'
 				});
+			} else if (isMobile) {
+				Element.setStyle(this.PopupDiv,{
+					overflow: 'auto'
+				});
 			}
 
 			// body (iframe)
@@ -148,22 +154,24 @@ var XpWiki = {
 			});
 			this.PopupDiv.appendChild(elem);
 
-			// cover for event
-			var elem = document.createElement('div');
-			elem.id = 'XpWikiPopupCover';
-			Element.setStyle(elem,{
-				position: 'absolute',
-				top: '22px',
-				left: '0px',
-				margin: '0px',
-				padding: '0px',
-				overflow: 'hidden',
-				border: 'none',
-				width: '100%',
-				height: '100%',
-				zIndex: '10000'
-			});
-			this.PopupDiv.appendChild(elem);
+			if (! isMobile && ! this.useJQueryMobile) {
+				// cover for event
+				var elem = document.createElement('div');
+				elem.id = 'XpWikiPopupCover';
+				Element.setStyle(elem,{
+					position: 'absolute',
+					top: '22px',
+					left: '0px',
+					margin: '0px',
+					padding: '0px',
+					overflow: 'hidden',
+					border: 'none',
+					width: '100%',
+					height: '100%',
+					zIndex: '10000'
+				});
+				this.PopupDiv.appendChild(elem);
+			}
 
 			// header
 			elem = document.createElement('div');
@@ -208,7 +216,7 @@ var XpWiki = {
 				if (!!arg.right) {
 					this.PopupDiv.style.right = this.PopupRight = arg.right;
 				} else if (!!this.PopupRight) {
-					this.PopupDiv.style.right = this.PopupRight
+					this.PopupDiv.style.right = this.PopupRight;
 				}
 
 				if (!!arg.left) {
@@ -242,11 +250,13 @@ var XpWiki = {
 				$('XpWikiPopupHeaderTitle').innerHTML = this.title.replace(/(\w|&#[0-9A-Za-z]+;)/g, "$1&#8203;");
 			}.bind(this));
 
-			Element.hide('XpWikiPopupCover');
-
-			if (! this.useJQueryMobile) {
-				new Draggable(this.PopupDiv.id, {handle:'XpWikiPopupHeader', starteffect:this.dragStart, endeffect:this.dragEnd });
-				new Resizable(this.PopupDiv.id, {mode:'xy', element:'XpWikiPopupBody', starteffect:this.dragStart, endeffect:this.dragEnd });
+			if (! isMobile && ! this.useJQueryMobile) {
+				Element.hide('XpWikiPopupCover');
+	
+				if (! this.useJQueryMobile) {
+					new Draggable(this.PopupDiv.id, {handle:'XpWikiPopupHeader', starteffect:this.dragStart, endeffect:this.dragEnd });
+					new Resizable(this.PopupDiv.id, {mode:'xy', element:'XpWikiPopupBody', starteffect:this.dragStart, endeffect:this.dragEnd });
+				}
 			}
 		}
 		Element.hide(this.PopupDiv);
@@ -346,7 +356,7 @@ var XpWiki = {
 		pars += '&ajax=1';
 		pars += '&encode_hint=' + encodeURIComponent(this.EncHint);
 
-		var myAjax = new Ajax.Request(
+		new Ajax.Request(
 			url,
 			{
 				method: 'get',
@@ -362,7 +372,7 @@ var XpWiki = {
 		if (xmlRes.getElementsByTagName('xpwiki').length) {
 
 			var item = xmlRes.getElementsByTagName('xpwiki')[0];
-			var str = item.getElementsByTagName('content')[0].firstChild.nodeValue;
+			//var str = item.getElementsByTagName('content')[0].firstChild.nodeValue;
 			var mode = item.getElementsByTagName('mode')[0].firstChild.nodeValue;
 
 			if (mode == 'read') {
@@ -409,12 +419,13 @@ var XpWiki = {
 	textaraWrap: function (id) {
 	    var txtarea = $(id);
 	    var wrap = txtarea.getAttribute('wrap');
+	    var ret;
 	    if(wrap && wrap.toLowerCase() == 'off'){
 	        txtarea.setAttribute('wrap', 'soft');
-	        var ret = wikihelper_msg_nowrap;
+	        ret = wikihelper_msg_nowrap;
 	    }else{
 	        txtarea.setAttribute('wrap', 'off');
-	        var ret = wikihelper_msg_wrap;
+	        ret = wikihelper_msg_wrap;
 	    }
 	    // Fix display for mozilla
 	    var parNod = txtarea.parentNode;
@@ -447,11 +458,12 @@ var XpWiki = {
 		var refNode = ($(id + '_resize_base_resizeXY'))? $(id + '_resize_base_resizeXY') : $(id);
 		this.DOMNode_insertAfter(btn, refNode);
 
+		var mydir;
 		if (txtarea.getAttribute("rel") == "wikihelper" && ! txtarea.className.match('norich')) {
 			if (id.match(/^[a-z0-9_-]+:/i)) {
-				var mydir = id.replace(/^([a-z0-9_-]+):.+$/i, "$1");
+				mydir = id.replace(/^([a-z0-9_-]+):.+$/i, "$1");
 			} else {
-				var mydir = this.RendererDir;
+				mydir = this.RendererDir;
 			}
 			this.addFckButton(id, mydir);
 		}
@@ -525,12 +537,13 @@ var XpWiki = {
 		var ins_img = new Array();
 		this.faviconSetDone[id] = true;
 		var time_limit = 3000; // (ms)
+		var x;
 		time_limit += new Date().getTime();
 		if (this.useSelector) {
-			var x = body.querySelectorAll('a.' + this.faviconSetClass);
+			x = body.querySelectorAll('a.' + this.faviconSetClass);
 			x.snapshotLength = x.length;
 		} else {
-			var x = document.evaluate('descendant::a[@class="' + this.faviconSetClass + '"]', body, null, 6, null);
+			x = document.evaluate('descendant::a[@class="' + this.faviconSetClass + '"]', body, null, 6, null);
 		}
 		var n = 0;
 		for (var i = 0; i < x.snapshotLength; i++) {
@@ -560,7 +573,7 @@ var XpWiki = {
 				img.style.height = height;
 				img.className = 'xpwikiFavicon';
 
-				ins_a[n] = obj
+				ins_a[n] = obj;
 				ins_img[n] = img;
 
 				n++;
@@ -627,14 +640,15 @@ var XpWiki = {
 		var pres = new Array();
 		var tocId = 0;
 		var tocCond = this.cookieLoad('_xwtoc');
+		var x;
 
 		if (! this.useJQueryMobile) {
 			if (this.isIE6) {
-				var x = document.evaluate('descendant::div[contains(@class,"pre")]', target, null, 6, null);
+				x = document.evaluate('descendant::div[contains(@class,"pre")]', target, null, 6, null);
 			} else {
-				var x = document.evaluate('descendant::div[contains(@class,"pre")][ancestor::td]', target, null, 6, null);
+				x = document.evaluate('descendant::div[contains(@class,"pre")][ancestor::td]', target, null, 6, null);
 			}
-			var n = 0;
+
 			for (var i = 0; i < x.snapshotLength; i++) {
 				var obj = x.snapshotItem(i);
 				var overflow = (obj.style.overflow || obj.style.overflowX);
@@ -654,12 +668,12 @@ var XpWiki = {
 		}
 
 		if (this.useSelector) {
-			var x = target.querySelectorAll('div.toc_header');
+			x = target.querySelectorAll('div.toc_header');
 			x.snapshotLength = x.length;
 		} else {
-			var x = document.evaluate('descendant::div[@class="toc_header"]', target, null, 6, null);
+			x = document.evaluate('descendant::div[@class="toc_header"]', target, null, 6, null);
 		}
-		var n = 0;
+
 		for (var i = 0; i < x.snapshotLength; i++) {
 			var obj = (this.useSelector)? x[i] : x.snapshotItem(i);
 			obj.id = 'xpwiki_toc_header' + tocId;
@@ -773,13 +787,14 @@ var XpWiki = {
 
 	listTreeToggle: function (id) {
 		var elms = $(id).parentNode.childNodes;
+		var src;
 		for (var i=0; i<elms.length; i++) {
 			if (elms[i].nodeName.toUpperCase() == 'UL' || elms[i].nodeName.toUpperCase() == 'OL') {
 				Element.toggle(elms[i]);
 				if (elms[i].style.display == 'none') {
-					var src = 'plus';
+					src = 'plus';
 				} else {
-					var src = 'minus';
+					src = 'minus';
 				}
 				$(id).innerHTML = '<img src="' + wikihelper_root_url + '/skin/loader.php?src=' + src + '.gif" />';
 				break;
@@ -876,7 +891,8 @@ var XpWiki = {
 	},
 
 	fileupFormPopup: function (mode, page, option) {
-
+		var url;
+		
 		if (typeof page != "undefined") {
 			this.dir = mode;
 			this.UploadPage = page;
@@ -890,14 +906,14 @@ var XpWiki = {
 		}
 
 		if (typeof option != "undefined") {
-			var url = this.MyUrl + '/' + this.dir + '/?plugin=attach&pcmd=upload&page=';
+			url = this.MyUrl + '/' + this.dir + '/?plugin=attach&pcmd=upload&page=';
 			url += encodeURIComponent(this.UploadPage);
 			if (typeof option['refid'] != "undefined") url += '&refid=' + encodeURIComponent(option['filename']);
 			if (typeof option['filename'] != "undefined") url += '&filename=' + encodeURIComponent(option['filename']);
 			if (typeof option['returi'] != "undefined") url += '&returi=' + encodeURIComponent(option['returi']);
 		} else {
 			var cols = (this.useJQueryMobile)? '2' : '1';
-			var url = this.MyUrl + '/' + this.dir + '/?plugin=attach&pcmd=imglist&refer=';
+			url = this.MyUrl + '/' + this.dir + '/?plugin=attach&pcmd=imglist&refer=';
 			url += encodeURIComponent(this.UploadPage);
 			url += '&base=' + encodeURIComponent(this.UploadPage);
 			url += '&basedir=' + this.dir;
@@ -947,7 +963,7 @@ var XpWiki = {
 
 			if (this.useJQueryMobile) {
 				Element.setStyle(this.PopupDiv,{
-					top: jQuery( window ).scrollTop() + 'px',
+					top: jQuery( window ).scrollTop() + 'px'
 				});
 			}
 
@@ -961,8 +977,8 @@ var XpWiki = {
 	setUploadVar: function (elm) {
 		if (!!elm) {
 			elm = $(elm);
+			var form = null;
 			if (elm.id.match(/^[a-z0-9_-]+:/i)) {
-				var form;
 				var element = elm;
 				 while (element = element.parentNode) {
 					if (element.nodeName.toUpperCase() == 'FORM') {
@@ -999,16 +1015,15 @@ var XpWiki = {
 	},
 
 	refInsert: function(file, type) {
+		var size = '';
 		if (!wikihelper_elem) {
 			alert(wikihelper_msg_elem);
 			return false;
 		}
-		var size = '';
 		if (type == 'image') {
 			inp = prompt(wikihelper_msg_thumbsize, this.refImageSize);
 			if (inp == null) { return; }
 			inp = this.z2h_digit(inp);
-			var size = '';
 			if (inp.match(/[\d]{1,3}[^\d]+[\d]{1,3}/)) {
 				size = inp.replace(/([\d]{1,3})[^\d]+([\d]{1,3})/, ",mw:$1,mh:$2");
 			} else if (inp.match(/[\d]{1,3}/)) {
@@ -1165,15 +1180,17 @@ var XpWiki = {
 
 	toggle_norich: function(id) {
 		var form = this.getParentForm(id);
+		var obj;
+		var x;
 		if (form) {
 			if (this.useSelector) {
-				var x = form.querySelectorAll('.norich');
+				x = form.querySelectorAll('.norich');
 				x.snapshotLength = x.length;
 			} else {
-				var x = document.evaluate('descendant::*[@class="norich"]', form, null, 6, null);
+				x = document.evaluate('descendant::*[@class="norich"]', form, null, 6, null);
 			}
 			for (var i = 0; i < x.snapshotLength; i++) {
-				var obj = (this.useSelector)? x[i] : x.snapshotItem(i);
+				obj = (this.useSelector)? x[i] : x.snapshotItem(i);
 				Element.toggle(obj);
 			}
 		}

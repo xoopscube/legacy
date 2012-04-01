@@ -11,7 +11,7 @@ XpWikiUnameSuggest.prototype = {
 		this.gettag_pram = "";
 
 		this._suggest = new XpWikiSuggest(baseurl, e_input, e_slist, enc);
-		this._suggest.finishedTagList = $(e_list)
+		this._suggest.finishedTagList = $(e_list);
 		this._suggest.clickAdd = function(tag){this.add_func(tag);}.bind(this);
 
 		this.tags = this.getTagArrayFromHtml();
@@ -163,7 +163,7 @@ XpWikiUnameSuggest.prototype = {
 		}
 	}
 
-}
+};
 
 var XpWikiSuggest = Class.create();
 XpWikiSuggest.prototype = {
@@ -185,7 +185,7 @@ XpWikiSuggest.prototype = {
 		{
 			Form.Element.Observer.prototype.onTimerEvent=function(){
 				try{
-					var node = this.element.parentNode.tagName;
+					this.element.parentNode.tagName;
 				}catch(e){
 					this.clearTimerEvent();
 				}
@@ -364,7 +364,7 @@ XpWikiSuggest.prototype = {
 				{
 					this.focus = true;
 					this.updateTagText(ele.innerHTML);
-					setTimeout(function(){this.focus=false}.bind(this),1);
+					setTimeout(function(){this.focus=false;}.bind(this),1);
 				}
 			}.bind(this);
 			li.onmouseover = function(event){
@@ -450,7 +450,7 @@ XpWikiSuggest.prototype = {
 
 	markPrevious: function() {
 		Element.removeClassName(this.getEntry(this.selectedCandidateTagsIndex),"selected");
-		if(this.selectedCandidateTagsIndex > 0) this.selectedCandidateTagsIndex--
+		if(this.selectedCandidateTagsIndex > 0) this.selectedCandidateTagsIndex--;
 			else this.selectedCandidateTagsIndex = this.candidateTags.length-1;
 		Element.addClassName(this.getEntry(this.selectedCandidateTagsIndex),"selected");
 		$(this.tagText).value = this.quoteTag(this.getEntry(this.selectedCandidateTagsIndex).innerHTML);
@@ -460,7 +460,7 @@ XpWikiSuggest.prototype = {
 	markNext: function() {
 
 		Element.removeClassName(this.getEntry(this.selectedCandidateTagsIndex),"selected");
-		if(this.selected && this.selectedCandidateTagsIndex < this.candidateTags.length-1) this.selectedCandidateTagsIndex++
+		if(this.selected && this.selectedCandidateTagsIndex < this.candidateTags.length-1) this.selectedCandidateTagsIndex++;
 			else this.selectedCandidateTagsIndex = 0;
 		Element.addClassName(this.getEntry(this.selectedCandidateTagsIndex),"selected");
 		$(this.tagText).value = this.quoteTag(this.getEntry(this.selectedCandidateTagsIndex).innerHTML);
@@ -538,4 +538,4 @@ XpWikiSuggest.prototype = {
 	regQuote : function(v) {
 		return v.replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g,"\\$1");
 	}
-}
+};

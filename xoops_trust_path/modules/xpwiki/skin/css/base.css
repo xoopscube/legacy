@@ -21,6 +21,7 @@ div#xpwiki_loading_text {
 div#XpWikiPopup {
 	border-left: solid gray 1px !important;
 	background-color: white !important;
+	-webkit-overflow-scrolling: touch !important;
 }
 
 div#XpWikiPopupHeader {

@@ -20,6 +20,7 @@ define( $constpref.'_MENU_DIFF',     'Edit History');
 define( $constpref.'_MENU_BACKUPS',  'Backups');
 define( $constpref.'_MENU_ATTACHES', 'Attachments');
 define( $constpref.'_MENU_REFERER',  'Referers');
+define( $constpref.'_MENU_USERPREF', 'Your preference');
 
 // Names of blocks for this module (Not all module has blocks)
 define( $constpref.'_BNAME_A_PAGE','Show page  ('.$mydirname.')');

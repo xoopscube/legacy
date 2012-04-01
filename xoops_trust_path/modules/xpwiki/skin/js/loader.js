@@ -65,12 +65,12 @@ var wikihelper_WebKit = (navigator.userAgent.indexOf('AppleWebKit/') > -1);
 
 if (wikihelper_WinIE) {
 	 wikihelper_WinIE = (function(){
-     var undef, v = 3, div = document.createElement('div');
+     var lower = 3, v = 3, div = document.createElement('div');
      while (
          div.innerHTML = '<!--[if gt IE '+(++v)+']><I></I><![endif]-->',
          div.getElementsByTagName('i')[0]
      );
-     return v> 4 ? v : undef;
+     return v> 4 ? v : lower;
 	}());
 }
 

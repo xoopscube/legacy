@@ -1,7 +1,5 @@
 <?php
 // PukiWiki - Yet another WikiWikiWeb clone
-// $Id: showrss.inc.php,v 1.16 2011/12/18 00:31:38 nao-pon Exp $
-//  Id:showrss.inc.php,v 1.40 2003/03/18 11:52:58 hiro Exp
 // Copyright (C):
 //     2002-2006 PukiWiki Developers Team
 //     2002      PANDA <panda@arino.jp>

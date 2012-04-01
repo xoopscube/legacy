@@ -212,6 +212,7 @@ function wikihelper_initTexts(obj)
 	}
 	var oElements;
 	var oElement;
+	var i = 0;
 	wikihelper_initLoad = 1;
 	wikihelper_elem = null;
 	wikihelper_show_fontset_img();
@@ -262,7 +263,7 @@ function wikihelper_getTextLength(s)
 
 function wikihelper_getMozSelection(s)
 {
-	return (s.value).substring(wikihelper_getSelectStart(s), wikihelper_getSelectEnd(s))
+	return (s.value).substring(wikihelper_getSelectStart(s), wikihelper_getSelectEnd(s));
 }
 
 function wikihelper_setMozSelection(a,z)

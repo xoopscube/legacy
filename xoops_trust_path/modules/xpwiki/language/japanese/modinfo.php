@@ -20,6 +20,7 @@ define( $constpref.'_MENU_DIFF',     '編集履歴');
 define( $constpref.'_MENU_BACKUPS',  'バックアップ一覧');
 define( $constpref.'_MENU_ATTACHES', '添付ファイル一覧');
 define( $constpref.'_MENU_REFERER',  'リンク元一覧');
+define( $constpref.'_MENU_USERPREF', 'ユーザー毎設定');
 
 // Names of blocks for this module (Not all module has blocks)
 define( $constpref.'_BNAME_A_PAGE', 'ページ表示 ('.$mydirname.')');
