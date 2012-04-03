@@ -1,0 +1,2 @@
+<?php
+$mytrustdirname = 'xelfinder';

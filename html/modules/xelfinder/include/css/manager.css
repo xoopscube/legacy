@@ -1,0 +1,30 @@
+#elfinder .elfinder-navbar {
+	width:180px;
+}
+#elfinder .elfinder-resize-preview {
+	height: 320px;
+}
+
+.elfinder-button-icon-perm      { background-position: 0 -48px; }
+
+.toast-container {
+	width: 180px;
+}
+.toast-item {
+	background-size: contain;
+	background-origin: border-box;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+.file_info {
+	font-family: Verdana,Arial,sans-serif;
+	font-size: 0.9em;
+	text-shadow: 0 -1px 1px #000,
+		-1px 0 1px #000,
+		1px 0 1px #000,
+		0 1px 1px #000,
+		1px 1px 1px #FFF,
+		2px 2px 2px #FFF,
+		3px 3px 3px #FFF;
+	color: #FFF;
+}
