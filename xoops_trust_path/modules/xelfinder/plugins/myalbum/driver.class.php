@@ -150,10 +150,9 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 		$this->dirsCache[$path] = array();
 
 		if ($path === '_') {
-			$cid = $lid = 0;
+			$cid = 0;
 		} else {
-			list($cid, $lid) = explode('_', substr($path, 1));
-			list($lid) = explode('', $lid);
+			list($cid) = explode('_', substr($path, 1), 2);
 		}
 
 		$row_def = array(
@@ -197,39 +196,37 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 			}
 		}
 
-		// photos
-		$sql = 'SELECT c.pid, lid, f.cid, concat( lid, ".", ext ) AS id, res_x AS width, res_y AS height, `date` AS ts, concat( f.title, ".", ext ) AS name
-				FROM '.$this->tbf.' AS f
-				LEFT JOIN '.$this->tbc.' AS c ON c.cid=f.cid
-				WHERE f.cid="'.$cid.'" AND status=1';
-
-		$res = $this->query($sql);
-		if ($res) {
-			while ($row = $this->db->fetchArray($res)) {
-				$row = array_merge($row_def, $row);
-				if (! $cid) {
-					$row['phash'] = $this->encode('_');
-				} else {
-					$row['phash'] = $this->encode('_'.$row['cid'].'_');
-				}
-				$id = '_'.$row['cid'].'_'.$row['id'];
-				//$row['target'] = $id;
-				$row['url'] = $this->options['URL'].$row['id'];
-				$realpath = realpath($this->options['filePath'].$row['id']);
-				if (is_file($realpath)) {
-					$row['dim'] = $row['width'].'x'.$row['height'];
-					$row['size'] = filesize($realpath);
-					$row['ts'] = filemtime($realpath);
-					$row['mime'] = $this->mimetypeInternalDetect($row['id']);
-					$row['simg'] = trim($this->options['smallImg'], '/');
-					unset($row['pid'], $row['lid'], $row['cid'], $row['id']);
-					if (($stat = $this->updateCache($id, $row)) && empty($stat['hidden'])) {
-						$this->dirsCache[$path][] = $id;
+		if ($cid) {
+			// photos
+			$sql = 'SELECT lid, concat( lid, ".", ext ) AS id, res_x AS width, res_y AS height, `date` AS ts, concat( title, ".", ext ) AS name
+					FROM '.$this->tbf.'
+					WHERE cid="'.$cid.'" AND status>0';
+	
+			$res = $this->query($sql);
+			if ($res) {
+				while ($row = $this->db->fetchArray($res)) {
+					$row = array_merge($row_def, $row);
+					if (! $cid) {
+						$row['phash'] = $this->encode('_');
+					} else {
+						$row['phash'] = $this->encode('_'.$cid.'_');
+					}
+					$id = '_'.$cid.'_'.$row['id'];
+					$row['url'] = $this->options['URL'].$row['id'];
+					$realpath = realpath($this->options['filePath'].$row['id']);
+					if (is_file($realpath)) {
+						$row['dim'] = $row['width'].'x'.$row['height'];
+						$row['size'] = filesize($realpath);
+						$row['mime'] = $this->mimetypeInternalDetect($row['id']);
+						$row['simg'] = trim($this->options['smallImg'], '/');
+						unset($row['pid'], $row['lid'], $row['id']);
+						if (($stat = $this->updateCache($id, $row)) && empty($stat['hidden'])) {
+							$this->dirsCache[$path][] = $id;
+						}
 					}
 				}
 			}
 		}
-
 	}
 
 	/**
@@ -279,7 +276,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 		if ($path === '_') {
 			return '';
 		} else {
-			list($cid, $name) = explode('_', substr($path, 1));
+			list($cid, $name) = explode('_', substr($path, 1), 2);
 			return $name;
 		}
 	}
@@ -296,10 +293,10 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 		if ($dir === '_') {
 			$cid = 0;
 		} else {
-			list($cid) = explode('_', substr($dir, 1));
+			list($cid) = explode('_', substr($dir, 1), 2);
 		}
 		list($lid) = explode('.', $name);
-		$sql = 'SELECT lid, cid FROM '.$this->tbf.' WHERE cid="'.$cid.'" AND name="'.(int)$lid.'"';
+		$sql = 'SELECT lid, cid FROM '.$this->tbf.' WHERE cid="'.(int)$cid.'" AND lid="'.(int)$lid.'"';
 		if (($res = $this->query($sql)) && ($r = $this->db->fetchArray($res))) {
 			$id = '_'.$r['cid'].'_'.$r['lid'];
 			$this->updateCache($id, $this->_stat($id));
@@ -394,7 +391,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 		if ($path === '_') {
 			$cid = $lid = 0;
 		} else {
-			list($cid, $lid) = explode('_', substr($path, 1));
+			list($cid, $lid) = explode('_', substr($path, 1), 2);
 			list($lid) = explode('.', $lid);
 		}
 		$stat_def = array(
@@ -434,25 +431,22 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 				unset($stat['cid'], $stat['pid']);
 				return $stat;
 			}
-		} else {
+		} elseif ($cid) {
 			// photos
-			$sql = 'SELECT c.pid, f.lid, f.cid, concat( f.lid, ".", f.ext ) AS id, f.res_x AS width, f.res_y AS height, f.`date` AS ts, concat( f.title, ".", ext ) AS name
-					FROM '.$this->tbf.' AS f
-					LEFT JOIN '.$this->tbc.' AS c ON c.cid=f.cid
-					WHERE f.lid="'.$lid.'" AND status=1 LIMIT 1';
+			$sql = 'SELECT lid, cid, concat( lid, ".", ext ) AS id, res_x AS width, res_y AS height, `date` AS ts, concat( title, ".", ext ) AS name
+					FROM '.$this->tbf.'
+					WHERE lid="'.$lid.'" AND status>0 LIMIT 1';
 			$res = $this->query($sql);
 			if ($res) {
 				$stat = $this->db->fetchArray($res);
 				$stat = array_merge($stat_def, $stat);
-				$stat['phash'] = $this->encode('_'.$stat['pid'].'_');
-				//$stat['target'] = '_'.$stat['pid'].'_'.$stat['lid'];
+				$stat['phash'] = $this->encode('_'.$cid.'_');
 				$stat['url'] = $this->options['URL'].$stat['id'];
 				$realpath = realpath($this->options['filePath'].$stat['id']);
 				$stat['size'] = filesize($realpath);
-				$stat['ts'] = filemtime($realpath);
 				$stat['mime'] = $this->mimetypeInternalDetect($stat['id']);
 				$stat['simg'] = trim($this->options['smallImg'], '/');
-				unset($stat['pid'], $stat['lid'], $stat['cid'], $stat['id']);
+				unset($stat['lid'], $stat['cid'], $stat['id']);
 				return $stat;
 			}
 		}
@@ -484,19 +478,6 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 		return ($stat = $this->stat($path)) && $stat['width'] && $stat['height'] ? $stat['width'].'x'.$stat['height'] : '';
 	}
 
-// 	/************************* thumbnails **************************/
-
-// 	/**
-// 	* Return thumbnail file name for required file
-// 	*
-// 	* @param array $stat file stat
-// 	* @return string
-// 	* @author Dmitry (dio) Levashov
-// 	**/
-// 	protected function tmbname($stat) {
-// 		return $this->mydirname.'_'.parent::tmbname($stat);
-// 	}
-
 	/******************** file/dir content *********************/
 
 	/**
@@ -508,7 +489,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 	 **/
 	protected function readlink($path) {
 		if ($path !== '_') {
-			list(, $name) = explode('_', substr($path, 1));
+			list(, $name) = explode('_', substr($path, 1), 2);
 			if ($name) {
 				return realpath($this->options['filePath'] . $name);
 			}

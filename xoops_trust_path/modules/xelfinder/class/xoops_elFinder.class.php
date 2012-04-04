@@ -28,6 +28,7 @@ class xoops_elFinder {
 			$_confs = explode(':', $_conf);
 			$_confs = array_map('trim', $_confs);
 			list($mydirname, $plugin, $path, $title, $options) = array_pad($_confs, 6, '');
+			if (! $this->moduleCheckRight($mydirname)) continue;
 			if ($title === '') $title = $mydirname;
 			$path = '/' . trim($path, '/') . '/';
 			$volume = $pluginPath . $plugin . '/volume.php';
@@ -43,5 +44,22 @@ class xoops_elFinder {
 		}
 		return $roots;
 	}
+	
+	private function moduleCheckRight($dirname) {
+		global $xoopsUser;
+		static $module_handler = null;
 
+		$ret = false;
+		
+		if (is_null($module_handler)) {
+			$module_handler =& xoops_gethandler('module');
+		}
+		
+		if ($XoopsModule = $module_handler->getByDirname($dirname)) {
+			$moduleperm_handler =& xoops_gethandler('groupperm');
+			$ret = ($moduleperm_handler->checkRight('module_read', $XoopsModule->getVar('mid'), (is_object($xoopsUser)? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS)));
+		}
+		
+		return $ret;
+	}
 }
