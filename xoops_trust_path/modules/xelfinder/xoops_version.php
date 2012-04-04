@@ -56,14 +56,14 @@ $modversion['hasComments'] = 0 ;
 $modversion['config'][] = array(
 	'name'			=> 'volume_setting' ,
 	'title'			=> $constpref.'_VOLUME_SETTING' ,
-	'description'	=> '' ,
+	'description'	=> $constpref.'_VOLUME_SETTING_DESC' ,
 	'formtype'		=> 'textarea' ,
 	'valuetype'		=> 'text' ,
 	'default'		=> 'xelfinder:xelfinder_db:uploads/xelfinder:'.constant($constpref.'_SHARE_HOLDER' ).'
-#xelfinder:xelfinder:uploads/elfinder:elFinder
-#myalbum:myalbum:uploads/photos:MyAlbum
-#gnavi:gnavi:uploads/gnavi:GNAVI
-#mailbbs:mailbbs:modules/mailbbs/imgs:MailBBS'
+xelfinder:xelfinder:uploads/elfinder:elFinder
+myalbum:myalbum:uploads/photos:MyAlbum
+gnavi:gnavi:uploads/gnavi:GNAVI
+mailbbs:mailbbs:modules/mailbbs/imgs:MailBBS'
 ) ;
 $modversion['config'][] = array(
 		'name'			=> 'thumbnail_size' ,
