@@ -5,6 +5,7 @@ require_once dirname(dirname(__FILE__)) . '/myalbum/driver.class.php';
  * Simple elFinder driver for MySQL.
  *
  * @author Dmitry (dio) Levashov
+ * @author Naoki Sawada
  **/
 class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 
@@ -23,6 +24,7 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 	 * @param  string  $path  dir path
 	 * @return void
 	 * @author Dmitry Levashov
+	 * @author Naoki Sawada
 	 **/
 	protected function cacheDir($path) {
 		$this->dirsCache[$path] = array();
@@ -140,6 +142,7 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 	 * @param  string  $name
 	 * @return string
 	 * @author Dmitry (dio) Levashov
+	 * @author Naoki Sawada
 	 **/
 	protected function _joinPath($dir, $name) {
 		if ($dir === '_') {
@@ -181,6 +184,7 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 	 * @param  string  $path    file path
 	 * @return array|false
 	 * @author Dmitry (dio) Levashov
+	 * @author Naoki Sawada
 	 **/
 	protected function _stat($path) {
 		if ($path === '_') {
@@ -252,4 +256,19 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 
 		return array();
 	}
+	
+	/**
+	* Return thumbnail file name for required file
+	*
+	* @param  array  $stat  file stat
+	* @return string
+	* @author Dmitry (dio) Levashov
+	* @author Naoki Sawada
+	**/
+	protected function tmbname($stat) {
+		$path = $this->decode($stat['hash']);
+		list(, $lid) = explode('_', substr($path, 1), 2);
+		return $this->encode($lid).$stat['ts'].'.png';
+	}
+	
 } // END class
