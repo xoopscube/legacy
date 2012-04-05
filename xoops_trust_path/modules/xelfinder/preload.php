@@ -21,6 +21,7 @@ class xelfinderPreloadBase extends XCube_ActionFilter {
 	function overRideDefaultImageManager() {
 		$mydirname = $this->mydirname;
 		$mydirpath = $this->mydirpath;
+		$use_bbcode_siteimg = 1;
 		require dirname(__FILE__).'/manager.php';
 	}
 	

@@ -133,6 +133,7 @@ function insertCode(align, thumb, format) {
 	var code = '';
 	var size = '';
 	var isImg = (itemObject.mime.match(/^image/));
+	var imgTag = useSiteImg? 'siteimg' : 'img';
 	if (isImg && $('#resize_px')) {
 		size = $('#resize_px').val();
 		if (size && ! size.match(/[\d]{1,4}/)) {
@@ -149,9 +150,9 @@ function insertCode(align, thumb, format) {
 				}
 			}
 			if (thumb && imgThumb) {
-				code = '[siteurl='+itemPath+'][siteimg align='+align+']'+imgThumb+'[/siteimg][/siteurl]';
+				code = '[siteurl='+itemPath+']['+imgTag+' align='+align+']'+ (useSiteImg? '' : rootUrl+'/') + imgThumb + '[/'+imgTag+'][/siteurl]';
 			} else {
-				code = '[siteimg align='+align+']'+itemPath+'[/siteimg]';
+				code = '['+imgTag+' align='+align+']' + (useSiteImg? '' : rootUrl+'/') + itemPath + '[/'+imgTag+']';
 			}
 		} else {
 			code = '[siteurl='+itemPath+']'+itemObject.name+'[/siteurl]';

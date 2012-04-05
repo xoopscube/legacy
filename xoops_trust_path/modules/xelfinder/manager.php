@@ -6,6 +6,8 @@ $target = isset($_GET['target'])? (preg_match('/^[a-zA-Z0-9_:.-]+$/', $_GET['tar
 $callback = isset($_GET['cb'])? (preg_match('/^[a-zA-Z0-9_]+$/', $_GET['cb'])? $_GET['cb'] : '') : 'bbcode';
 $callback = 'getFileCallback_' . $callback;
 
+$siteimg = (empty($_GET['si']) && empty($use_bbcode_siteimg))? 0 : 1;
+
 $myurl = XOOPS_URL . '/modules/' . $mydirname;
 $elfurl = XOOPS_URL . '/common/elfinder';
 
@@ -174,6 +176,7 @@ while(ob_get_level()) {
 			var rootUrl = '<?php echo XOOPS_URL ?>';
 			var myUrl = rootUrl + '/modules/<?php echo $mydirname?>/';
 			var imgUrl = myUrl + 'images/';
+			var useSiteImg = <?php echo $siteimg ?>;
 			var imgThumb = '';
 			var itemPath = '';
 			var itemObject = [];
