@@ -236,20 +236,28 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 						$this->output_json($this->root->_attach_messages['err_exceed']);
 					}
 
-					$input = fopen('php://input', 'rb');
-					$_file['tmp_name'] = tempnam($this->cont['CACHE_DIR'], 'atf');
-					$fp = fopen($_file['tmp_name'], 'wb');
-					fseek($fp, 0, SEEK_SET);
-					$real_size = stream_copy_to_stream($input, $fp, $this->cont['PLUGIN_ATTACH_MAX_FILESIZE'] + 1);
-					fclose($fp);
-					fclose($input);
+					$real_size = 0;
+					if ($_file['tmp_name'] = tempnam($this->cont['CACHE_DIR'], 'atf')) {
+						if ($fp = fopen($_file['tmp_name'], 'wb')) {
+							fseek($fp, 0, SEEK_SET);
+							$input = fopen('php://input', 'rb');
+							$real_size = stream_copy_to_stream($input, $fp, $this->cont['PLUGIN_ATTACH_MAX_FILESIZE'] + 1);
+							fclose($input);
+							fclose($fp);
+						}
+					}
+					if (! $real_size) {
+						if ($_file['tmp_name']) @ unlink($_file['tmp_name']);
+						$this->output_json('No files were uploaded.(Cache dirctory is not writable)');
+					}
 
 					if ($real_size > $this->cont['PLUGIN_ATTACH_MAX_FILESIZE']) {
-						@ unlink($_file['tmp_name']);
+						if ($_file['tmp_name']) @ unlink($_file['tmp_name']);
 						$this->output_json($this->root->_attach_messages['err_exceed']);
 					}
+					
 					if ($_file['size'] && $real_size != $_file['size']){
-						@ unlink($_file['tmp_name']);
+						if ($_file['tmp_name']) @ unlink($_file['tmp_name']);
 						$this->output_json('No files were uploaded.(Upload error)');
 					}
 
