@@ -108,7 +108,12 @@ $.fn.extend({
 		if (o) {
 			o.focus();
 			if (jQuery.browser.msie) {
-				var r = document.selection.createRange();
+				var r;
+				if (typeof o.caretPos == 'object') {
+					r = o.caretPos;
+				} else {
+					r = document.selection.createRange();
+				}
 				r.text = v;
 				r.select();
 			} else {
@@ -160,17 +165,16 @@ function insertCode(align, thumb, format) {
 	} else if (format == 'xpwiki') {
 		var pa = null;
 		var o = null;
-		//if (target) {
+		try {
+			pa = window.opener;
+			o = pa.document.getElementById(target);
+		} catch(e) {
 			try {
-				pa = window.opener;
+				pa = window.parent;
 				o = pa.document.getElementById(target);
-			} catch(e) {
-				try {
-					pa = window.parent;
-					o = pa.document.getElementById(target);
-				} catch(e) {}
-			}
-		//}
+			} catch(e) {}
+		}
+
 		if (isImg) {
 			if (size) {
 				size = ',mw:'+size+',mh:'+size
@@ -178,19 +182,13 @@ function insertCode(align, thumb, format) {
 			if (thumb || o.tagName != 'TEXTAREA') {
 				code = '&ref(site://'+itemPath+','+align+size+');';
 			} else {
-				code = '#ref(site://'+itemPath+','+align+size+')\n\n';
+				code = '\n#ref(site://'+itemPath+','+align+size+')\n';
 			}
 		} else {
 			code = '[['+itemObject.name+':site://'+itemPath+']]';
 		}
 	}
-	//if (target) {
-		$().insertAtCaret(code);
-		window.close();
-	//} else {
-	//	// for debug
-	//	$().toastmessage( 'showSuccessToast', code );
-	//}
+	$().insertAtCaret(code);
 }
 
 var getFileCallback_bbcode = function (file, fm) {
@@ -211,7 +209,6 @@ var getFileCallback_bbcode = function (file, fm) {
 	itemPath = encodeURI(path);
 	itemObject = file;
 
-	//var fileinfo = 'Size: ' + file.width + 'x' + file.height;
 	if (isImg) {
 		var buttons = '<span onclick="insertCode(\'left\',1);"><img src="'+imgUrl+'alignleft.gif" alt="" /></span> <span onclick="insertCode(\'center\',1)"><img src="'+imgUrl+'aligncenter.gif" alt="" /></span> <span onclick="insertCode(\'right\',1)"><img src="'+imgUrl+'alignright.gif" alt="" /></span>'
 					+ '<br>'
@@ -249,7 +246,6 @@ var getFileCallback_xpwiki = function (file, fm) {
 	itemPath = encodeURI(path);
 	itemObject = file;
 
-	//var fileinfo = 'Size: ' + file.width + 'x' + file.height;
 	if (isImg) {
 		var buttons = '<span onclick="insertCode(\'left\',1,\'xpwiki\');"><img src="'+imgUrl+'alignleft.gif" alt="" /></span> <span onclick="insertCode(\'center\',1,\'xpwiki\')"><img src="'+imgUrl+'aligncenter.gif" alt="" /></span> <span onclick="insertCode(\'right\',1,\'xpwiki\')"><img src="'+imgUrl+'alignright.gif" alt="" /></span>'
 					+ '<br>'
