@@ -102,7 +102,7 @@ if (! xpwiki_scripts.match('effects')) xpwiki_scripts += 'effects,';
 xpwiki_scripts += 'dragdrop,resizable,xpwiki,main';
 
 // Branch.
-if (wikihelper_WinIE && wikihelper_WinIE < 9) {
+if (wikihelper_WinIE) {
 	xpwiki_scripts += ',winie';
 } else if (wikihelper_Gecko || wikihelper_Opera || wikihelper_WebKit || wikihelper_WinIE) {
 	xpwiki_scripts += ',basic';

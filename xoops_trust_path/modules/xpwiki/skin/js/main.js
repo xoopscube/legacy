@@ -113,6 +113,7 @@ function wikihelper_show_fontset_img()
 
 		if (Prototype.Browser.IE) {
 			$('wikihelper_base').observe('mousedown', function(){wikihwlper_caretPos();});
+			$('wikihelper_map').observe('mousedown', function(){wikihwlper_caretPos();});
 		}
 
 		new Draggable('wikihelper_base');

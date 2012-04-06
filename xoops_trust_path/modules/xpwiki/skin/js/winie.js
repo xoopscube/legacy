@@ -73,6 +73,7 @@ function wikihelper_ins(v)
 	}
 
 	wikihelper_elem.caretPos.text = v;
+	wikihelper_elem.caretPos.select();
 	wikihelper_elem.focus();
 }
 
@@ -90,6 +91,7 @@ function wikihelper_face(v)
 	else
 		wikihelper_elem.caretPos.text = ' ' + v + ' ';
 
+	wikihelper_elem.caretPos.select();
 	wikihelper_elem.focus();
 }
 
