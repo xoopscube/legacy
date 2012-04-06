@@ -27,7 +27,7 @@ class xpwiki_plugin_fckxpwikiver extends xpwiki_plugin {
 			return file_get_contents($c_file);
 		}
 		
-		$url = 'http://sourceforge.jp/cvs/view/hypweb/XOOPS_HTML/common/fckxpwiki/version.php?view=co&content-type=text%2Fplain';
+		$url = 'https://raw.github.com/nao-pon/xpWiki/master/html/common/fckxpwiki/version.php';
 		
 		$dat = $this->func->http_request($url);
 		
