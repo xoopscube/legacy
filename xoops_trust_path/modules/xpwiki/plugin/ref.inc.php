@@ -1154,13 +1154,14 @@ _HTML_;
 		if ($this->func->is_url($lvar['name'])) {
 			$lvar['name'] = preg_replace('#^(?:site:|https?:/)//#', $this->cont['ROOT_URL'], $lvar['name']);
 			$lvar['isurl'] = $lvar['name'];
+			$isInner = (strpos($lvar['name'], $this->cont['ROOT_URL']) === 0);
 			// URL
 			if (! $params['noimg'] &&
-				! $this->cont['PKWK_DISABLE_INLINE_IMAGE_FROM_URI'] &&
+				($isInner || ! $this->cont['PKWK_DISABLE_INLINE_IMAGE_FROM_URI']) &&
 				preg_match($this->cont['PLUGIN_REF_IMAGE_REGEX'], $lvar['name'])) {
 				
 				// 画像
-				if (strpos($lvar['name'], $this->cont['ROOT_URL']) === 0) {
+				if ($isInner) {
 					// 自サイト内画像ファイル
 					$lvar['type'] = 1;
 					
