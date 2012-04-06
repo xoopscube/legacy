@@ -191,6 +191,9 @@ switch ($type) {
 					$chk[] = XOOPS_TRUST_PATH . '/modules/xpwiki/ini/pukiwiki.ini.php';
 					$chk[] = $root_path . '/private/ini/pukiwiki.ini.php';
 					$chk[] = $cache_path . 'pukiwiki.ini.php';
+					if (defined('HYP_COMMON_PRELOAD_CONF')) {
+						$chk[] = HYP_COMMON_PRELOAD_CONF;
+					}
 					$addtime = get_filemtime($chk);
 				}
 			} else if ($_src === 'wikihelper_loader') {
