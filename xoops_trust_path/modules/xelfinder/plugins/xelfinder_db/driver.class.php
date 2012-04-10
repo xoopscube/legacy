@@ -3,7 +3,8 @@
 /**
  * Simple elFinder driver for MySQL.
  *
- * @author Dmitry (dio) Levashov
+ * @author Dmitry (dio) Levashov,
+ * @author Naoki Sawada
  **/
 class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 
@@ -64,7 +65,6 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	 **/
 	protected $dbError = '';
 
-	protected $debugMsg = array();
 
 
 	/**
@@ -79,8 +79,9 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		$this->options['separator'] = '/';
 		$this->options['mydirname'] = 'xelfinder';
 		$this->options['checkSubfolders'] = true;
-		$this->options['tmbPath'] = XOOPS_ROOT_PATH . '/modules/'._MD_ELFINDER_MYDIRNAME.'/cache/tmb/';
-		$this->options['tmbURL'] = XOOPS_URL . '/modules/'._MD_ELFINDER_MYDIRNAME.'/cache/tmb/';
+		$this->options['tempPath'] = XOOPS_ROOT_PATH . '/modules/'._MD_ELFINDER_MYDIRNAME.'/cache';
+		$this->options['tmbPath'] = $this->options['tempPath'].'/tmb/';
+		$this->options['tmbURL'] = $this->options['tempPath'].'/tmb/';
 		$this->options['default_umask'] = '8bb';
 	}
 
@@ -195,7 +196,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 			$this->x_uid = $xoopsUser->getVar('uid');
 			$this->x_uname = $this->strToUTF8($xoopsUser->uname('n'));
 			$this->x_groups = $xoopsUser->getGroups();
-			$this->x_isAdmin = $xoopsUser->isAdmin($this->x_mid);
+			$this->x_isAdmin = (!empty($_GET['admin']) && $xoopsUser->isAdmin($this->x_mid));
 		} else {
 			$this->x_uid = 0;
 			$this->x_groups = array(XOOPS_GROUP_ANONYMOUS);
@@ -243,7 +244,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	 * @param  string  $sql  query
 	 * @return misc
 	 * @author Dmitry (dio) Levashov
-	 * @author nao-pon
+	 * @author Naoki Sawada
 	 **/
 	protected function query($sql) {
 		$this->sqlCnt++;
@@ -262,7 +263,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	 * @param  string  $mime  mime type
 	 * @return bool
 	 * @author Dmitry (dio) Levashov
-	 * @author nao-pon
+	 * @author Naoki Sawada
 	 **/
 	protected function make($path, $name, $mime, $home_of = 'NULL') {
 
@@ -323,7 +324,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	* @return array|false
 	* @author Dmitry (dio) Levashov
 	* @author Alexey Sukhotin
-	* @author nao-pon
+	* @author Naoki Sawada
 	**/
 	public function resize($hash, $width, $height, $x, $y, $mode = 'resize', $bg = '', $degree = 0) {
 		if ($this->commandDisabled('resize')) {
@@ -411,11 +412,6 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 			$base = 0xfff;
 		}
 		return strval(dechex($base - intval($umask, 16)));
-	}
-
-	protected function getAuthByPerm($perm, $check) {
-		// 0110 4bit [0-9a-f]
-		// hrwl hidden, read, write, lock
 	}
 
 	protected function getGroupsByUid($uid) {
@@ -518,11 +514,144 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 			}
 		}
 	}
+
 	protected function strToUTF8($str) {
 		if (strtoupper(_CHARSET) !== 'UTF-8') {
 			$str = mb_convert_encoding($str, 'UTF-8', _CHARSET);
 		}
 		return $str;
+	}
+
+	/**
+	* Copy files & directories into tempDir as local file
+	*
+	* @param  string  $mkdir  make dirctory name
+	* @param  array   $files  files names list
+	* @param  string  $dir    current dirctory name
+	* @return array
+	* @author Naoki Sawada
+	**/
+	protected function copyToLocalTemp(& $mkdir, $files, $dir = null) {
+		$res = array();
+		$tempDir = $this->options['tempPath'].DIRECTORY_SEPARATOR.$mkdir;
+		if (! @ mkdir($tempDir)) {
+			$tempDir = $this->options['tempPath'];
+			$mkdir = '';
+		}
+		foreach($files as $file) {
+			$id = (is_null($dir))? $file : $this->_joinPath($dir, $file);
+			$stat = $this->stat($id);
+			if ($stat['mime'] === 'directory') {
+				if ($mkdir && $cids = $this->_scandir($id)) {
+					$_cdir = $mkdir.DIRECTORY_SEPARATOR.$stat['name'];
+					if ($this->copyToLocalTemp($_cdir, $cids)) {
+						$res[] = $stat['name'];
+					}
+				}
+			} else {
+				if ($realpath = $this->readlink($id)) {
+					if (@ copy($realpath, $tempDir.DIRECTORY_SEPARATOR.$stat['name'])) {
+						$res[] = $stat['name'];
+					}
+				}
+			}
+		}
+		return $res;
+	}
+
+	/**
+	 * Save file or dirctory from loacl file system
+	 *
+	 * @param  string  $localpath          local file (or dirctory) path
+	 * @param  string  $dir                directory name to save
+	 * @param  string  $check_mime_accept  do check mime accept (upload spec.)
+	 * @return string|bool
+	 * @author Naoki Sawada
+	 **/
+	protected function localFileSave($localpath, $dir, $check_mime_accept = false) {
+		$path = -1;
+		$localpath = rtrim($localpath, DIRECTORY_SEPARATOR);
+		//$localpath = mb_convert_encoding($localpath, 'UTF-8', 'AUTO');
+		$name = basename($localpath);
+		$this->_debug($localpath);
+		if ($this->nameAccepted($name)) {
+			$width = $height = 0;
+			if (is_dir($localpath)) {
+				$path = $this->_mkdir($dir, $name);
+				if ($path > 0) {
+					$_ok = false;
+					foreach (scandir($localpath) as $c_name) {
+						if ($c_name != '.' && $c_name != '..') {
+							$_res = $this->localFileSave($localpath.DIRECTORY_SEPARATOR.$c_name, $path, $check_mime_accept);
+							if (!$_ok && $_res > 0) $_ok = true;
+						}
+					}
+					if (! $_ok) {
+						$path = -1;
+						$this->_rmdir($path);
+					}
+				}
+			} else {
+				$mime = $this->mimetype($localpath);
+				$upload = true; // default to allow
+				if ($check_mime_accept) {
+					// logic based on http://httpd.apache.org/docs/2.2/mod/mod_authz_host.html#order
+					$allow  = $this->mimeAccepted($mime, $this->uploadAllow, null);
+					$deny   = $this->mimeAccepted($mime, $this->uploadDeny,  null);
+					if (strtolower($this->uploadOrder[0]) == 'allow') {
+						// array('allow', 'deny'), default is to 'deny'
+						$upload = false; // default is deny
+						if (!$deny && ($allow === true)) {
+							// match only allow
+							$upload = true;
+						}// else (both match | no match | match only deny) { deny }
+					} else { // array('deny', 'allow'), default is to 'allow' - this is the default rule
+						$upload = true; // default is allow
+						if (($deny === true) && !$allow) {
+							// match only deny
+							$upload = false;
+						} // else (both match | no match | match only allow) { allow }
+					}
+				}
+				if ($upload) {
+					if (strpos($mime, 'image') === 0) {
+						if ($size = getimagesize($localpath)) {
+							$width = $size[1];
+							$height = $size[2];
+						}
+					}
+					if ($fp = fopen($localpath, 'rb')) {
+						if ($id = $this->_save($fp, $dir, $name, $mime, $width, $height)) {
+							$path = $id;
+						}
+						fclose($fp);
+						@ unlink($localpath);
+					}
+				}
+			}
+		}
+		return $path;
+	}
+
+	/**
+	 * Recursively remove a directory
+	 *
+	 * @param  string $dir  path to the dirctory
+	 * @return bool
+	 * @author Naoki Sawada
+	 **/
+	protected function rrmdir($dir) {
+		foreach (scandir($dir) as $file) {
+			if ($file != '.' && $file != '..') {
+				$file = $dir.DIRECTORY_SEPARATOR.$file;
+				if(is_dir($file)) {
+					$this->rrmdir($file);
+				} else {
+					@ unlink($file);
+				}
+			}
+		}
+		return rmdir($dir);
 	}
 
 	/*********************************************************************/
@@ -668,13 +797,9 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	 **/
 	protected function _joinPath($dir, $name) {
 		$sql = 'SELECT `file_id` FROM '.$this->tbf.' WHERE parent_id="'.$dir.'" AND name="'.mysql_escape_string($name).'"';
-		// echo $sql;
-		// $this->_debug('_joinPath:'.$sql);
-		//if (($res = $this->query($sql)) && ($r = $this->db->fetchArray($res))) {
 		if (($res = $this->query($sql)) && $this->db->getRowsNum($res) > 0) {
 			$r = $this->db->fetchArray($res);
-			// $this->_debug('got '.$r['file_id']);
-			$this->updateCache($r['file_id'], $this->_stat($r['file_id']));
+			//$this->updateCache($r['file_id'], $this->_stat($r['file_id']));
 			return $r['file_id'];
 		}
 		return -1;
@@ -829,7 +954,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	}
 
 	/******************** file/dir content *********************/
-
+	
 	/**
 	* Return symlink target file
 	*
@@ -1018,11 +1143,14 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _save($fp, $dir, $name, $mime, $w, $h) {
+		
+		if ($name === '') return false;
+		
 		$this->clearcache();
 
 		$id = $this->_joinPath($dir, $name);
 
-		$this->rmTmb($id);
+		if ($id > 0) $this->rmTmb($id);
 		rewind($fp);
 		$stat = fstat($fp);
 		$size = $stat['size'];
@@ -1104,12 +1232,101 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	}
 
 	/**
-	 * Detect available archivers
-	 *
-	 * @return void
-	 **/
+	* Detect available archivers
+	*
+	* @return void
+	**/
 	protected function _checkArchivers() {
-		return;
+		if (!function_exists('exec')) {
+			$this->options['archivers'] = $this->options['archive'] = array();
+			return;
+		}
+		$arcs = array(
+			'create'  => array(),
+			'extract' => array()
+			);
+		
+		//exec('tar --version', $o, $ctar);
+		$this->procExec('tar --version', $o, $ctar);
+
+		if ($ctar == 0) {
+			$arcs['create']['application/x-tar']  = array('cmd' => 'tar', 'argc' => '-cf', 'ext' => 'tar');
+			$arcs['extract']['application/x-tar'] = array('cmd' => 'tar', 'argc' => '-xf', 'ext' => 'tar');
+			//$test = exec('gzip --version', $o, $c);
+			unset($o);
+			$test = $this->procExec('gzip --version', $o, $c);
+
+			if ($c == 0) {
+				$arcs['create']['application/x-gzip']  = array('cmd' => 'tar', 'argc' => '-czf', 'ext' => 'tgz');
+				$arcs['extract']['application/x-gzip'] = array('cmd' => 'tar', 'argc' => '-xzf', 'ext' => 'tgz');
+			}
+			unset($o);
+			//$test = exec('bzip2 --version', $o, $c);
+			$test = $this->procExec('bzip2 --version', $o, $c);
+			if ($c == 0) {
+				$arcs['create']['application/x-bzip2']  = array('cmd' => 'tar', 'argc' => '-cjf', 'ext' => 'tbz');
+				$arcs['extract']['application/x-bzip2'] = array('cmd' => 'tar', 'argc' => '-xjf', 'ext' => 'tbz');
+			}
+		}
+		unset($o);
+		//exec('zip --version', $o, $c);
+		$this->procExec('zip -v', $o, $c);
+		if ($c == 0) {
+			$arcs['create']['application/zip']  = array('cmd' => 'zip', 'argc' => '-r9', 'ext' => 'zip');
+		}
+		unset($o);
+		$this->procExec('unzip --help', $o, $c);
+		if ($c == 0) {
+			$arcs['extract']['application/zip'] = array('cmd' => ($this->options['unzip_lang_value']? 'LANG='.$this->options['unzip_lang_value'].' ' : '').'unzip', 'argc' => '',  'ext' => 'zip');
+		}
+		unset($o);
+		//exec('rar --version', $o, $c);
+		$this->procExec('rar --version', $o, $c);
+		if ($c == 0 || $c == 7) {
+			$arcs['create']['application/x-rar']  = array('cmd' => 'rar', 'argc' => 'a -inul', 'ext' => 'rar');
+			$arcs['extract']['application/x-rar'] = array('cmd' => 'rar', 'argc' => 'x -y',    'ext' => 'rar');
+		} else {
+			unset($o);
+			//$test = exec('unrar', $o, $c);
+			$test = $this->procExec('unrar', $o, $c);
+			if ($c==0 || $c == 7) {
+				$arcs['extract']['application/x-rar'] = array('cmd' => 'unrar', 'argc' => 'x -y', 'ext' => 'rar');
+			}
+		}
+		unset($o);
+		//exec('7za --help', $o, $c);
+		$this->procExec('7za --help', $o, $c);
+		if ($c == 0) {
+			$arcs['create']['application/x-7z-compressed']  = array('cmd' => '7za', 'argc' => 'a', 'ext' => '7z');
+			$arcs['extract']['application/x-7z-compressed'] = array('cmd' => '7za', 'argc' => 'e -y', 'ext' => '7z');
+			
+			if (empty($arcs['create']['application/x-gzip'])) {
+				$arcs['create']['application/x-gzip'] = array('cmd' => '7za', 'argc' => 'a -tgzip', 'ext' => 'tar.gz');
+			}
+			if (empty($arcs['extract']['application/x-gzip'])) {
+				$arcs['extract']['application/x-gzip'] = array('cmd' => '7za', 'argc' => 'e -tgzip -y', 'ext' => 'tar.gz');
+			}
+			if (empty($arcs['create']['application/x-bzip2'])) {
+				$arcs['create']['application/x-bzip2'] = array('cmd' => '7za', 'argc' => 'a -tbzip2', 'ext' => 'tar.bz');
+			}
+			if (empty($arcs['extract']['application/x-bzip2'])) {
+				$arcs['extract']['application/x-bzip2'] = array('cmd' => '7za', 'argc' => 'a -tbzip2 -y', 'ext' => 'tar.bz');
+			}
+			if (empty($arcs['create']['application/zip'])) {
+				$arcs['create']['application/zip'] = array('cmd' => '7za', 'argc' => 'a -tzip -l', 'ext' => 'zip');
+			}
+			if (empty($arcs['extract']['application/zip'])) {
+				$arcs['extract']['application/zip'] = array('cmd' => '7za', 'argc' => 'e -tzip -y', 'ext' => 'zip');
+			}
+			if (empty($arcs['create']['application/x-tar'])) {
+				$arcs['create']['application/x-tar'] = array('cmd' => '7za', 'argc' => 'a -ttar -l', 'ext' => 'tar');
+			}
+			if (empty($arcs['extract']['application/x-tar'])) {
+				$arcs['extract']['application/x-tar'] = array('cmd' => '7za', 'argc' => 'e -ttar -y', 'ext' => 'tar');
+			}
+		}
+		
+		$this->archivers = $arcs;
 	}
 
 	/**
@@ -1121,8 +1338,13 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 * @author Alexey Sukhotin
 	 **/
-	protected function _unpack($path, $arc) {
-		return;
+	protected function _unpack($realpath, $arc) {
+		$cwd = getcwd();
+		$dir = dirname($realpath);
+		chdir($dir);
+		$cmd = $arc['cmd'].' '.$arc['argc'].' '.escapeshellarg(basename($realpath));
+		$this->procExec($cmd, $o, $c);
+		chdir($cwd);
 	}
 
 	/**
@@ -1132,7 +1354,27 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	 * @return bool
 	 * @author Dmitry (dio) Levashov
 	 **/
-	protected function _findSymlinks($path) {
+	protected function _findSymlinks($realpath) {
+		if (is_link($realpath)) {
+			return true;
+		}
+		if (is_dir($realpath)) {
+			foreach (scandir($realpath) as $name) {
+				if ($name != '.' && $name != '..') {
+					$p = $realpath.DIRECTORY_SEPARATOR.$name;
+					if (is_link($p)) {
+						return true;
+					}
+					if (is_dir($p) && $this->_findSymlinks($p)) {
+						return true;
+					} elseif (is_file($p)) {
+						$this->archiveSize += filesize($p);
+					}
+				}
+			}
+		} else {
+			$this->archiveSize += filesize($realpath);
+		}
 		return false;
 	}
 
@@ -1142,26 +1384,122 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	 * @param  string  $path  archive path
 	 * @param  array   $arc   archiver command and arguments (same as in $this->archivers)
 	 * @return true
-	 * @author Dmitry (dio) Levashov,
+	 * @author Dmitry (dio) Levashov, 
 	 * @author Alexey Sukhotin
 	 **/
-	protected function _extract($path, $arc) {
+	protected function _extract($id, $arc) {
+		
+		$localpath = $this->readlink($id);
+		$stat = $this->stat($id);
+		
+		$localdir = XOOPS_TRUST_PATH.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.str_replace(' ', '_', microtime()).basename($localpath);
+		$archive = $localdir.DIRECTORY_SEPARATOR.basename($localpath);
+		if (!@mkdir($localdir)) {
+			return false;
+		}
+		
+		chmod($localdir, 0777);
+		
+		// copy in quarantine
+		if (!copy($localpath, $archive)) {
+			return false;
+		}
+		
+		// extract in quarantine
+		$this->_unpack($archive, $arc);
+		@unlink($archive);
+		
+		// find symlinks
+		$this->archiveSize = 0;
+		if ($this->_findSymlinks($localdir)) {
+			// remove arc copy
+			$this->rrmdir($localdir);
+			return $this->setError(elFinder::ERROR_ARC_SYMLINKS);
+		}
+		
+		// check max files size
+		if ($this->options['maxArcFilesSize'] > 0 && $this->options['maxArcFilesSize'] < $this->archiveSize) {
+			$this->rrmdir($localdir);
+			return $this->setError(elFinder::ERROR_ARC_MAXSIZE);
+		}
+		
+		// get files list
+		$ls = array();
+		$dir = $this->decode($stat['phash']);
+
+		// create unique name for directory
+		$name = $stat['name'];
+		if (preg_match('/\.((tar\.(gz|bz|bz2|z|lzo))|cpio\.gz|ps\.gz|xcf\.(gz|bz2)|[a-z0-9]{1,4})$/i', $name, $m)) {
+			$name = substr($name, 0,  strlen($name)-strlen($m[0]));
+		}
+
+		if ($this->_joinPath($dir, $name) > -1) {
+			$name = $this->uniqueName($dir, $name, '-', false);
+		}
+		$dir = $this->_mkdir($dir, $name);
+		
+		if ($dir < 1) return false;
+		
+		$_ok = false;
+		foreach (scandir($localdir) as $name) {
+			if ($name != '.' && $name != '..') {
+				$res = $this->localFileSave($localdir.DIRECTORY_SEPARATOR.$name, $dir, true);
+				if (!$_ok && $res > 0) $_ok = true;
+			}
+		}
+		
+		$this->rrmdir($localdir);
+		
+		if ($_ok) {
+			return $dir;
+		} else {
+			$this->_rmdir($dir);
+		}
+
+		// no files - extract error ?
 		return false;
 	}
 
 	/**
-	 * Create archive and return its path
-	 *
-	 * @param  string  $dir    target dir
-	 * @param  array   $files  files names list
-	 * @param  string  $name   archive name
-	 * @param  array   $arc    archiver options
-	 * @return string|bool
-	 * @author Dmitry (dio) Levashov,
-	 * @author Alexey Sukhotin
-	 **/
+	* Create archive and return its path
+	*
+	* @param  string  $dir    target dir
+	* @param  array   $files  files names list
+	* @param  string  $name   archive name
+	* @param  array   $arc    archiver options
+	* @return string|bool
+	* @author Dmitry (dio) Levashov,
+	* @author Alexey Sukhotin
+	**/
 	protected function _archive($dir, $files, $name, $arc) {
-		return false;
+		$cwd = getcwd();
+		
+		if (! chdir($this->options['tempPath'])) return false;
+
+		$mkdir = md5(microtime() . join('_', $files));
+		$_tmpfiles = $_files = $this->copyToLocalTemp($mkdir, $files, $dir);
+		
+		$_dir = rtrim($this->options['tempPath'].DIRECTORY_SEPARATOR.$mkdir, DIRECTORY_SEPARATOR);
+		
+		$_files = array_map('escapeshellarg', $_files);
+		chdir($_dir);
+		
+		$cmd = $arc['cmd'].' '.$arc['argc'].' '.escapeshellarg($name).' '.implode(' ', $_files).'';
+		$this->procExec($cmd, $o, $c);
+
+		chdir($cwd);
+		
+		$ret = $this->localFileSave($_dir.DIRECTORY_SEPARATOR.$name, $dir);
+
+		if ($mkdir) {
+			$this->rrmdir($_dir);
+		} else {
+			foreach($_tmpfiles as $file) {
+				@ unlink($_dir.DIRECTORY_SEPARATOR.$file);
+			}
+		}
+		
+		return $ret;
 	}
 
 } // END class

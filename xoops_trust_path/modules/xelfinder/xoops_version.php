@@ -12,7 +12,7 @@ $constpref = '_MI_' . strtoupper( $mydirname ) ;
 $modversion['name'] = 'xelFinder' ;
 //$modversion['name'] = $constpref.'_NAME') ;
 $modversion['description'] = constant($constpref.'_DESC');
-$modversion['version'] = 0.08 ;
+$modversion['version'] = 0.09 ;
 $modversion['credits'] = "Hypweb.net";
 $modversion['author'] = "nao-pon" ;
 $modversion['help'] = "" ;
@@ -248,6 +248,14 @@ $modversion['config'][] = array(
 	'formtype'		=> 'yesno' ,
 	'valuetype'		=> 'int' ,
 	'default'		=> 1
+) ;
+$modversion['config'][] = array(
+	'name'			=> 'unzip_lang_value' ,
+	'title'			=> $constpref.'_UNZIP_LANG_VALUE',
+	'description'	=> $constpref.'_UNZIP_LANG_VALUE_DESC',
+	'formtype'		=> 'textbox' ,
+	'valuetype'		=> 'string' ,
+	'default'		=> ''
 ) ;
 $modversion['config'][] = array(
 	'name'			=> 'debug' ,

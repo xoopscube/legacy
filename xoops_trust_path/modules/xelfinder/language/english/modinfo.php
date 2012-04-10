@@ -74,6 +74,9 @@ define( $constpref.'_DISABLE_PATHINFO_DESC' ,   '' );
 define( $constpref.'_EDIT_DISABLE_LINKED' ,     'Write-protect of linked file' );
 define( $constpref.'_EDIT_DISABLE_LINKED_DESC' ,'Write-protect automatically of referenced linked files  for order to prevent inadvertent overwriting or broken links.' );
 
+define( $constpref.'_UNZIP_LANG_VALUE' ,        'Local for unzip' );
+define( $constpref.'_UNZIP_LANG_VALUE_DESC' ,   'Local (LANG) for unzip exec' );
+
 define( $constpref.'_DEBUG' ,                   'Enable Debug mode' );
 define( $constpref.'_DEBUG_DESC' ,              'If it is set in a debug mode, an individual file will be read instead of "elfinder.min.css" and "elfinder.min.js" by elFinder.<br />Moreover, debugging information is included in the response of JavaScript.<br />We recommend "No debug" for performance improvement.' );
 

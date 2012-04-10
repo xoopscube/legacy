@@ -8,6 +8,8 @@ $callback = 'getFileCallback_' . $callback;
 
 $siteimg = (empty($_GET['si']) && empty($use_bbcode_siteimg))? 0 : 1;
 
+$admin = (isset($_GET['admin']))? 1 : 0;
+
 $myurl = XOOPS_URL . '/modules/' . $mydirname;
 $elfurl = XOOPS_URL . '/common/elfinder';
 
@@ -182,6 +184,7 @@ while(ob_get_level()) {
 			var itemObject = [];
 			var defaultTmbSize = <?php echo $default_tmbsize?>;
 			var lang = '<?php echo $userLang?>';
+			var adminMode = <?php echo $admin?>;
 		</script>
 		<script type="text/javascript" src="<?php echo $myurl ?>/include/js/commands/perm.js" charset="utf-8"></script>
 		<script type="text/javascript" src="<?php echo $myurl ?>/include/js/manager.js" charset="utf-8"></script>

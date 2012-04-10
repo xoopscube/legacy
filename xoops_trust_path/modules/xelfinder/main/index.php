@@ -5,6 +5,8 @@
  */
 
 $xelfinderOpenJs = 'openWithSelfMain("'.XOOPS_URL.'/modules/'.$mydirname.'/manager.php", "elfinder", 750, 500);';
+$xelfinderAdminOpenJs = 'openWithSelfMain("'.XOOPS_URL.'/modules/'.$mydirname.'/manager.php?admin=1", "elfinder", 750, 500);';
+
 
 include XOOPS_ROOT_PATH.'/header.php' ;
 
@@ -20,12 +22,13 @@ echo '<script>
 			if (windowonload) {
 				windowonload();
 			}
-			'.$xelfinderOpenJs.'
+			'.$xelfinderAdminOpenJs.'
 		};
 	}());
 </script>';
 
-echo '<a href="#" onclick="'.htmlspecialchars($xelfinderOpenJs).'return false;">Open elFinder window</span>';
+echo '<p><a href="#" onclick="'.htmlspecialchars($xelfinderOpenJs).'return false;">Open elFinder window</span></p>';
+echo '<p><a href="#" onclick="'.htmlspecialchars($xelfinderAdminOpenJs).'return false;">Open elFinder window (Admin mode)</span></p>';
 
 include XOOPS_ROOT_PATH.'/footer.php';
 

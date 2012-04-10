@@ -31,6 +31,7 @@ $().ready(function() {
 	$('#elfinder').elfinder({
 		lang: lang,
 		url : myUrl + 'connector.php',
+		customData : { admin : adminMode },
 		height: $(window).height() - 20,
 		getFileCallback : callbackFunc,
 		uiOptions : {
@@ -46,7 +47,7 @@ $().ready(function() {
 				['copy', 'cut', 'paste'],
 				['rm'],
 				['duplicate', 'rename', 'edit', 'resize', 'pixlr'],
-				//['extract', 'archive'],
+				['extract', 'archive'],
 				['search'],
 				['view', 'sort'],
 				['help']
@@ -68,7 +69,7 @@ $().ready(function() {
     		'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook',
     		'download', 'rm', 'duplicate', 'rename', 'mkdir', 'mkfile', 'upload', 'copy',
     		'cut', 'paste', 'edit',
-    		//'extract', 'archive',
+    		'extract', 'archive',
     		'search', 'info', 'view', 'help', 'resize', 'sort', 'pixlr', 'perm'
     	],
 		commandsOptions : {
@@ -85,7 +86,7 @@ $().ready(function() {
 			cwd    : ['reload', 'back', '|', 'upload', 'mkdir', 'mkfile', 'paste', '|', 'sort', '|', 'info', 'perm'],
 			// current directory file menu
 			files  : ['getfile', '|','open', 'quicklook', '|', 'download', '|', 'copy', 'cut', 'paste', 'duplicate', '|', 'rm', '|', 'edit', 'rename', 'resize', 'pixlr',
-			          //'|', 'archive', 'extract',
+			          '|', 'archive', 'extract',
 			          '|', 'info', 'perm']
 		}
 	}).elfinder('instance');

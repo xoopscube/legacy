@@ -1,6 +1,6 @@
 /*!
  * elFinder - file manager for web
- * Version 2.0 rc1 (2012-04-02)
+ * Version 2.0 rc1 (2012-04-10)
  * http://elfinder.org
  * 
  * Copyright 2009-2011, Studio 42
@@ -690,8 +690,16 @@ window.elFinder = function(node, opts) {
 		if (cwdOptions.url) {
 			return cwdOptions.url + $.map(this.path2array(hash), function(n) { return encodeURIComponent(n); }).slice(1).join('/')
 		}
-		
-		return this.options.url + (this.options.url.indexOf('?') === -1 ? '?' : '&') + (this.oldAPI ? 'cmd=open&current='+file.phash : 'cmd=file') + '&target=' + file.hash;
+
+		var params = $.extend({}, this.customData, {
+			cmd: 'file',
+			target: file.hash
+		});
+		if (this.oldAPI) {
+			params.cmd = 'open';
+			params.current = file.phash;
+		}
+		return this.options.url + (this.options.url.indexOf('?') === -1 ? '?' : '&') + $.param(params, true);
 	}
 	
 	/**
@@ -1428,7 +1436,7 @@ window.elFinder = function(node, opts) {
 			if (!enabled && self.visible() && self.ui.overlay.is(':hidden')) {
 				enabled = true;
 				$('texarea:focus,input:focus,button').blur();
-				node.removeClass('elfinder-disabled')
+				node.removeClass('elfinder-disabled');
 			}
 		})
 		.disable(function() {
@@ -3855,7 +3863,8 @@ $.fn.dialogelfinder = function(opts) {
 				.css('position', 'absolute')
 				.hide()
 				.appendTo('body')
-				.draggable({ handle : '.dialogelfinder-drag'})
+				.draggable({ handle : '.dialogelfinder-drag',
+					     containment : 'parent' })
 				.elfinder(opts)
 				.prepend(toolbar),
 			elfinder = node.elfinder('instance');
@@ -5505,7 +5514,8 @@ $.fn.elfinderdialog = function(opts) {
 				.hide()
 				.append(self)
 				.appendTo(parent)
-				.draggable({ handle : '.ui-dialog-titlebar'})
+				.draggable({ handle : '.ui-dialog-titlebar',
+					     containment : $('body') })
 				.css({
 					width  : opts.width,
 					height : opts.height
@@ -5561,7 +5571,10 @@ $.fn.elfinderdialog = function(opts) {
 						})
 					} else {
 						// return focus to parent
-						parent.mousedown();
+						setTimeout(function() {
+							parent.mousedown().click();
+						}, 10);
+						
 					}
 					
 					if (typeof(opts.close) == 'function') {
@@ -6376,17 +6389,20 @@ $.fn.elfindertoolbar = function(fm, opts) {
 		self.prev().length && self.parent().prepend(this);
 
 		while (l--) {
-			panel = $('<div class="ui-widget-content ui-corner-all elfinder-buttonset"/>');
-			i = panels[l].length;
-			while (i--) {
-				if ((cmd = commands[panels[l][i]])) {
-					button = 'elfinder'+cmd.options.ui;
-					$.fn[button] && panel.prepend($('<div/>')[button](cmd));
+			if (panels[l]) {
+				panel = $('<div class="ui-widget-content ui-corner-all elfinder-buttonset"/>');
+				i = panels[l].length;
+				while (i--) {
+					if ((cmd = commands[panels[l][i]])) {
+						button = 'elfinder'+cmd.options.ui;
+						$.fn[button] && panel.prepend($('<div/>')[button](cmd));
+					}
 				}
+				
+				panel.children().length && self.prepend(panel);
+				panel.children(':not(:last),:not(:first):not(:last)').after('<span class="ui-widget-content elfinder-toolbar-button-separator"/>');
+
 			}
-			
-			panel.children().length && self.prepend(panel);
-			panel.children(':not(:last),:not(:first):not(:last)').after('<span class="ui-widget-content elfinder-toolbar-button-separator"/>');
 		}
 		
 		self.children().length && self.show();
@@ -6676,7 +6692,7 @@ $.fn.elfindertree = function(fm, opts) {
 					tree.find('.'+navdir+'.'+active).removeClass(active);
 					current.addClass(active);
 				}
-				
+
 				if (opts.syncTree) {
 					if (current.length) {
 						current.parentsUntil('.'+root).filter('.'+subtree).show().prev('.'+navdir).addClass(expanded);
@@ -7255,7 +7271,7 @@ elFinder.prototype.commands.download = function() {
 					});
 				}, $.browser.mozilla? (20000 + (10000 * i)) : 1000); // give mozilla 20 sec + 10 sec for each file to be saved
 			});
-
+		fm.trigger('download', {files : files});
 		return dfrd.resolve(hashes);
 	}
 
@@ -9438,13 +9454,18 @@ elFinder.prototype.commands.rename = function() {
 					var parent = input.parent(),
 						name   = fm.escape(file.name);
 
-					error && fm.error(error);
+					
 					if (parent.length) {
 						input.remove();
 						parent.html(name);
 					} else {
 						cwd.find('#'+file.hash).find(filename).html(name);
+						setTimeout(function() {
+							cwd.find('#'+file.hash).click();
+						}, 50);
 					}
+					
+					error && fm.error(error);
 				})
 				.always(function() {
 					fm.enable();
