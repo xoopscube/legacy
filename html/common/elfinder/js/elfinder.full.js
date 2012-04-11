@@ -1,9 +1,9 @@
 /*!
  * elFinder - file manager for web
- * Version 2.0 rc1 (2012-04-10)
+ * Version 2.0 rc1 (2012-04-11)
  * http://elfinder.org
  * 
- * Copyright 2009-2011, Studio 42
+ * Copyright 2009-2012, Studio 42
  * Licensed under a 3 clauses BSD license
  */
 (function($) {
@@ -3063,7 +3063,7 @@ elFinder.prototype._options = {
 			['quicklook'],
 			['copy', 'cut', 'paste'],
 			['rm'],
-			['duplicate', 'rename', 'edit', 'resize'],
+			['duplicate', 'rename', 'edit', 'resize', 'pixlr'],
 			['extract', 'archive'],
 			['search'],
 			['view', 'sort'],
@@ -3936,8 +3936,8 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 		translator : 'Troex Nevelin &lt;troex@fury.scancode.ru&gt;',
 		language   : 'English',
 		direction  : 'ltr',
-		dateFormat : 'M d, Y h:i A',
-		fancyDateFormat : '$1 h:i A', // will produce smth like: Today 10 PM 12:25
+		dateFormat : 'M d, Y h:i A', // Mar 13, 2012 05:27 PM
+		fancyDateFormat : '$1 h:i A', // will produce smth like: Today 12:25 PM
 		messages   : {
 			
 			/********************************** errors **********************************/
@@ -5308,14 +5308,17 @@ $.fn.elfindercwd = function(fm) {
 			.bind('open search', function(e) {
 				content(e.data.files, e.type=='search');
 			})
-			.bind('searchend sortchange', function() {
-				if (query) content(fm.files());
+			.bind('searchend', function() {
+				query && content(fm.files());
 			})
 			.bind('searchstart', function(e) {
 				query = e.data.query;
 			})
 			.bind('searchend', function() {
 				query = '';
+			})
+			.bind('sortchange', function() {
+				content(fm.files());
 			})
 			.bind('viewchange', function() {
 				var sel = fm.selected(),
@@ -6245,28 +6248,24 @@ $.fn.elfindersortbutton = function(cmd) {
 			hover    = fm.res(c, 'hover'),
 			item     = 'elfinder-button-menu-item',
 			selected = 'elfinder-button-menu-item-selected',
+			sort     = 'elfinder-menu-item-sort-',
 			menu,
 			button   = $(this).addClass('ui-state-default elfinder-button elfiner-button-'+cmd.name)
 				.attr('title', cmd.title)
 				.append('<span class="elfinder-button-icon elfinder-button-icon-'+cmd.name+'"/>')
 				.hover(function(e) { !button.is('.'+disabled) && button.toggleClass(hover); })
 				.click(function(e) { 
-					if (!button.is('.'+disabled)) {
-						if (menu && cmd.variants.length > 1) {
-							// close other menus
-							menu.is(':hidden') && cmd.fm.getUI().click();
-							e.stopPropagation();
-							menu.slideToggle(100);
-						} else {
-							cmd.exec();
-						}
-						
+					if (!button.is('.'+disabled) && menu && cmd.variants.length > 1) {
+						// close other menus
+						menu.is(':hidden') && cmd.fm.getUI().click();
+						e.stopPropagation();
+						menu.slideToggle(100);
 					}
 				}),
 			hideMenu = function() {
 				menu.hide();
 			};
-			
+
 		// if command has variants create menu
 		if ($.isArray(cmd.variants)) {
 			button.addClass('elfinder-menubutton');
@@ -6280,25 +6279,30 @@ $.fn.elfindersortbutton = function(cmd) {
 					e.preventDefault();
 					e.stopPropagation();
 					button.removeClass(hover);
-					cmd.exec(cmd.fm.selected(), $(this).data('value'));
+					cmd.exec([], $(this).data('value'));
 				});
 
 			cmd.fm.bind('disable select', hideMenu).getUI().click(hideMenu);
-			
-			cmd.change(function() {
-				menu.html('');
-				$.each(cmd.variants, function(i, variant) {
-					menu.append($('<div class="'+item+' '+(variant[0] == cmd.value ? selected : '')+' elfinder-menu-item-sort-'+cmd.fm.sortDirect+'"><span class="elfinder-menu-item-sort-dir"/>'+variant[1]+'</div>').data('value', variant[0]));
-				});
+
+			$.each(cmd.variants, function(i, variant) {
+				menu.append($('<div class="'+item+' '+(variant[0] == cmd.value ? selected : '')+' '+sort+fm.sortDirect+'"><span class="elfinder-menu-item-sort-dir"/>'+variant[1]+'</div>').data('value', variant[0]));
 			});
 		}	
 			
 		cmd.change(function() {
+
 			if (cmd.disabled()) {
 				button.removeClass(active+' '+hover).addClass(disabled);
 			} else {
 				button.removeClass(disabled);
 				button[cmd.active() ? 'addClass' : 'removeClass'](active);
+				menu.children('.'+item).each(function() {
+					var item = $(this).removeClass(sort+'asc '+sort+'desc')
+
+					item.data('value') == cmd.value
+						? item.addClass(selected+' '+sort+fm.sortDirect)
+						: item.removeClass(selected);
+				});
 			}
 		})
 		.change();
@@ -7831,6 +7835,7 @@ elFinder.prototype.commands.help = function() {
 			html.push(atpl[r](author, 'Dmitry "dio" Levashov &lt;dio@std42.ru&gt;')[r](work, fm.i18n('chiefdev')));
 			html.push(atpl[r](author, 'Troex Nevelin &lt;troex@fury.scancode.ru&gt;')[r](work, fm.i18n('maintainer')));
 			html.push(atpl[r](author, 'Alexey Sukhotin &lt;strogg@yandex.ru&gt;')[r](work, fm.i18n('contributor')));
+			html.push(atpl[r](author, 'Naoki Sawada &lt;hypweb@gmail.com&gt;')[r](work, fm.i18n('contributor')));
 			
 			fm.i18[fm.lang].translator && html.push(atpl[r](author, fm.i18[fm.lang].translator)[r](work, fm.i18n('translator')+' ('+fm.i18[fm.lang].language+')'));
 			
@@ -8831,7 +8836,7 @@ elFinder.prototype.commands.quicklook = function() {
 						tpl.replace(/\{value\}/, file.name)
 						+ tpl.replace(/\{value\}/, fm.mime2kind(file))
 						+ (file.mime == 'directory' ? '' : tpl.replace(/\{value\}/, fm.formatSize(file.size)))
-						+ tpl.replace(/\{value\}/, fm.i18n('modify')+': '+ fm.formatDate(file.date))
+						+ tpl.replace(/\{value\}/, fm.i18n('modify')+': '+ fm.formatDate(file))
 					)
 				icon.addClass('elfinder-cwd-icon ui-corner-all '+fm.mime2class(file.mime));
 
@@ -10505,7 +10510,7 @@ elFinder.prototype.commands.sort = function() {
 	 */
 	this.options = {ui : 'sortbutton'};
 	
-	this.value = 1;
+	this.value = sorts[0];
 	this.variants = [];
 	
 	for (i = 0; i < sorts.length; i++) {
@@ -10525,7 +10530,7 @@ elFinder.prototype.commands.sort = function() {
 	
 	this.exec = function(hashes, type) {
 		var dir = $.inArray(type, sorts)+1 == this.fm.sort ? (this.fm.sortDirect == 'asc' ? 'desc' : 'asc') : this.fm.sortDirect;
-
+		// console.log(type, dir)
 		this.fm.setSort(type, dir);
 	}
 

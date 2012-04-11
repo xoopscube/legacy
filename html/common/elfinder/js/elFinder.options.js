@@ -223,7 +223,7 @@ elFinder.prototype._options = {
 			['quicklook'],
 			['copy', 'cut', 'paste'],
 			['rm'],
-			['duplicate', 'rename', 'edit', 'resize'],
+			['duplicate', 'rename', 'edit', 'resize', 'pixlr'],
 			['extract', 'archive'],
 			['search'],
 			['view', 'sort'],
