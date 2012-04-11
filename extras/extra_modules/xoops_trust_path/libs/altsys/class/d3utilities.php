@@ -43,13 +43,11 @@ class D3Utilities {
 		switch( $col['type'] ) {
 			case 'text' :
 			case 'blob' :
-				if( get_magic_quotes_gpc() ) $value = stripslashes( $value ) ;
 				$length = empty( $col['length'] ) ? 65535 : intval( $col['length'] ) ;
 				return "`{$col['name']}`='".addslashes( xoops_substr( $value , 0 , $length ) )."'" ;
 			case 'char' :
 			case 'varchar' :
 			case 'string' :
-				if( get_magic_quotes_gpc() ) $value = stripslashes( $value ) ;
 				$length = empty( $col['length'] ) ? 255 : intval( $col['length'] ) ;
 				return "`{$col['name']}`='".addslashes( xoops_substr( $value , 0 , $length ) )."'" ;
 			case 'int' :
