@@ -61,7 +61,7 @@
 	  <{else}>
 	    <{$topic_selbox}>
 	  <{/if}>&nbsp;
-	  <{$smarty.const._MD_TOPIC_IMAGE}></td>
+	  <{$smarty.const._MD_TOPIC_IMAGE}>
       <select name="topicimg">
           <option value="1"<{if $topicimg==1}> selected="selected"<{/if}>><{$smarty.const._MD_TOPIC_RIGHT}></option>
           <option value="2"<{if $topicimg==2}> selected="selected"<{/if}>><{$smarty.const._MD_TOPIC_LEFT}></option>
@@ -111,7 +111,11 @@
       <div class="jquery-ui-accordion-contents">
         <div align="left">
         <{if $use_notify}>
-          <label><input type="checkbox" value="1" name="notifypub" <{if $notifypub}>checked="checked"<{/if}> /><{$smarty.const._MD_NOTIFYPUBLISH}></label><br />
+          <label>
+            <input type="checkbox" value="1" name="notifypub" />
+            <{$smarty.const._MD_NOTIFYPUBLISH}>
+          </label>
+          <br />
         <{/if}>
         <{if $use_html}>
           <label><input type="checkbox" value="1" name="html" <{if $html}>checked="checked"<{/if}> /><{$smarty.const._MD_USE_HTML}></label><br />
