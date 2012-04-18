@@ -30,6 +30,13 @@ function xelfinder_onupdate_base( $module , $mydirname )
 		$db->queryF('ALTER TABLE `'.$db->prefix($mydirname."_file").'` ADD `gids` VARCHAR( 255 ) NOT NULL');
 	}
 	
+	// from v 0.10
+	$query = "SELECT `mime_filter` FROM ".$db->prefix($mydirname."_file") ;
+	if(! $db->query($query)) {
+		$db->queryF('ALTER TABLE `'.$db->prefix($mydirname."_file").'` ADD `mime_filter` VARCHAR( 255 ) NOT NULL');
+		$db->queryF('ALTER TABLE `'.$db->prefix($mydirname."_file").'` CHANGE `mime` `mime` varchar(60) NOT NULL DEFAULT \'unknown\'');
+	}
+	
 
 	// TEMPLATES (all templates have been already removed by modulesadmin)
 	$tplfile_handler =& xoops_gethandler( 'tplfile' ) ;

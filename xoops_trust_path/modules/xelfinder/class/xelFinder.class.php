@@ -10,7 +10,7 @@ class xelFinder extends elFinder {
 	 **/
 	public function __construct($opts) {
 		parent::__construct($opts);
-		$this->commands['perm'] = array('target' => true, 'perm' => true, 'umask' => false, 'gids' => false);
+		$this->commands['perm'] = array('target' => true, 'perm' => true, 'umask' => false, 'gids' => false, 'filter' => false);
 	}
 
 	/**
@@ -34,7 +34,8 @@ class xelFinder extends elFinder {
 					$groups = $volume->getGroups($target);
 					return $groups? $groups : array('error' => $this->error($volume->error()));
 				} else {
-					$file = $volume->savePerm($target, $args['perm'], $args['umask'], $args['gids']);
+					if (!isset($args['filter'])) $args['filter'] = '';
+					$file = $volume->savePerm($target, $args['perm'], $args['umask'], $args['gids'], $args['filter']);
 					return $file? array('changed' => array($file)) : array('error' => $this->error($volume->error()));
 				}
 			}

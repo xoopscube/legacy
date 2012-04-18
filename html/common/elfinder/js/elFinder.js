@@ -758,7 +758,7 @@ window.elFinder = function(node, opts) {
 	 * @todo
 	 * @return $.Deferred
 	 */
-	this.request = function(options) {
+	this.request = function(options) { console.log(options)
 		var self     = this,
 			o        = this.options,
 			dfrd     = $.Deferred(),
@@ -1337,7 +1337,7 @@ window.elFinder = function(node, opts) {
 	
 	/*************  init stuffs  ****************/
 	// set sort variant
-	this.setSort(this.options.sort, this.options.sortDirect);
+	this.setSort(this.storage('sort') || this.options.sort, this.storage('sortDirect') || this.options.sortDirect);
 	
 	// check jquery ui
 	if (!($.fn.selectable && $.fn.draggable && $.fn.droppable)) {
@@ -1667,6 +1667,24 @@ window.elFinder = function(node, opts) {
 			}, self.options.sync)
 			
 		}
+
+		// self.request({
+		// 	data : {
+		// 		cmd : 'netmount',
+		// 		protocol : 'ftp',
+		// 		host : 'ftp://work.std42.ru',
+		// 		path : '/',
+		// 		user : 'dio',
+		// 		pass : 'wallrus',
+		// 		alias : 'Sora',
+		// 		options : {main : 42}
+
+		// 	},
+		// 	// preventDone : true
+		// })
+		// .done(function(data) {
+		// 	console.log(data);
+		// })
 	});
 	
 	// self.timeEnd('load'); 
@@ -1836,8 +1854,11 @@ elFinder.prototype = {
 	},
 	
 	setSort : function(type, dir) {
+		type = this.sorts[type] ? type : 1;
 		this.sort = this.sorts[type] || 1;
 		this.sortDirect = dir == 'asc' || dir == 'desc' ? dir : 'asc';
+		this.storage('sort', type);
+		this.storage('sortDirect', this.sortDirect);
 		this.trigger('sortchange');
 	},
 	
@@ -1980,13 +2001,35 @@ elFinder.prototype = {
 					}),
 				checkFile   = function(files) {
 					if (typeof files[0] == 'string') {
+						//console.log(files[0]);
 						var ret = [];
 						var regex = /<img[^>]+src=["']?([^"'> ]+)/ig;
 						var m = [];
 						var url = '';
+						var links;
 						while (m = regex.exec(files[0])) {
 							url = m[1].replace(/&amp;/g, '&');
 							if (url.match(/^http/) && $.inArray(url, ret) == -1) ret.push(url);
+						}
+						links = files[0].match(/<\/a>/i);
+						if (links && links.length == 1) {
+							regex = /<a[^>]+href=["']?([^"'> ]+)((?:.|\s)+)<\/a>/i;
+							if (m = regex.exec(files[0])) {
+								if (! m[2].match(/<img/i)) {
+									url = m[1].replace(/&amp;/g, '&');
+									if (url.match(/^http/) && $.inArray(url, ret) == -1) ret.push(url);
+								}
+							}
+						}
+						links = files[0].match(/<\/a>/i);
+						if (links && links.length == 1) {
+							regex = /<a[^>]+href=["']?([^"'> ]+)((?:.|\s)+)<\/a>/i;
+							if (m = regex.exec(files[0])) {
+								if (! m[2].match(/<img/i)) {
+									url = m[1].replace(/&amp;/g, '&');
+									if (url.match(/^http/) && $.inArray(url, ret) == -1) ret.push(url);
+								}
+							}
 						}
 						return ret;
 					} else {
@@ -2728,7 +2771,8 @@ elFinder.prototype = {
 			n = 1024;
 			u = 'KB';
 		}
-		return (s > 0 ? Math.round(s/n) : 0) +' '+u;
+		s = s/n;
+		return (s > 0 ? n >= 1048576 ? s.toFixed(2) : Math.round(s) : 0) +' '+u;
 	},
 	
 	

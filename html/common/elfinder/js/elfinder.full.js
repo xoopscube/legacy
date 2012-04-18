@@ -1,6 +1,6 @@
 /*!
  * elFinder - file manager for web
- * Version 2.0 rc1 (2012-04-11)
+ * Version 2.0 rc1 (2012-04-18)
  * http://elfinder.org
  * 
  * Copyright 2009-2012, Studio 42
@@ -772,7 +772,7 @@ window.elFinder = function(node, opts) {
 	 * @todo
 	 * @return $.Deferred
 	 */
-	this.request = function(options) {
+	this.request = function(options) { console.log(options)
 		var self     = this,
 			o        = this.options,
 			dfrd     = $.Deferred(),
@@ -1351,7 +1351,7 @@ window.elFinder = function(node, opts) {
 	
 	/*************  init stuffs  ****************/
 	// set sort variant
-	this.setSort(this.options.sort, this.options.sortDirect);
+	this.setSort(this.storage('sort') || this.options.sort, this.storage('sortDirect') || this.options.sortDirect);
 	
 	// check jquery ui
 	if (!($.fn.selectable && $.fn.draggable && $.fn.droppable)) {
@@ -1681,6 +1681,24 @@ window.elFinder = function(node, opts) {
 			}, self.options.sync)
 			
 		}
+
+		// self.request({
+		// 	data : {
+		// 		cmd : 'netmount',
+		// 		protocol : 'ftp',
+		// 		host : 'ftp://work.std42.ru',
+		// 		path : '/',
+		// 		user : 'dio',
+		// 		pass : 'wallrus',
+		// 		alias : 'Sora',
+		// 		options : {main : 42}
+
+		// 	},
+		// 	// preventDone : true
+		// })
+		// .done(function(data) {
+		// 	console.log(data);
+		// })
 	});
 	
 	// self.timeEnd('load'); 
@@ -1850,8 +1868,11 @@ elFinder.prototype = {
 	},
 	
 	setSort : function(type, dir) {
+		type = this.sorts[type] ? type : 1;
 		this.sort = this.sorts[type] || 1;
 		this.sortDirect = dir == 'asc' || dir == 'desc' ? dir : 'asc';
+		this.storage('sort', type);
+		this.storage('sortDirect', this.sortDirect);
 		this.trigger('sortchange');
 	},
 	
@@ -1994,13 +2015,35 @@ elFinder.prototype = {
 					}),
 				checkFile   = function(files) {
 					if (typeof files[0] == 'string') {
+						//console.log(files[0]);
 						var ret = [];
 						var regex = /<img[^>]+src=["']?([^"'> ]+)/ig;
 						var m = [];
 						var url = '';
+						var links;
 						while (m = regex.exec(files[0])) {
 							url = m[1].replace(/&amp;/g, '&');
 							if (url.match(/^http/) && $.inArray(url, ret) == -1) ret.push(url);
+						}
+						links = files[0].match(/<\/a>/i);
+						if (links && links.length == 1) {
+							regex = /<a[^>]+href=["']?([^"'> ]+)((?:.|\s)+)<\/a>/i;
+							if (m = regex.exec(files[0])) {
+								if (! m[2].match(/<img/i)) {
+									url = m[1].replace(/&amp;/g, '&');
+									if (url.match(/^http/) && $.inArray(url, ret) == -1) ret.push(url);
+								}
+							}
+						}
+						links = files[0].match(/<\/a>/i);
+						if (links && links.length == 1) {
+							regex = /<a[^>]+href=["']?([^"'> ]+)((?:.|\s)+)<\/a>/i;
+							if (m = regex.exec(files[0])) {
+								if (! m[2].match(/<img/i)) {
+									url = m[1].replace(/&amp;/g, '&');
+									if (url.match(/^http/) && $.inArray(url, ret) == -1) ret.push(url);
+								}
+							}
 						}
 						return ret;
 					} else {
@@ -2742,7 +2785,8 @@ elFinder.prototype = {
 			n = 1024;
 			u = 'KB';
 		}
-		return (s > 0 ? Math.round(s/n) : 0) +' '+u;
+		s = s/n;
+		return (s > 0 ? n >= 1048576 ? s.toFixed(2) : Math.round(s) : 0) +' '+u;
 	},
 	
 	
@@ -4004,7 +4048,9 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'errResize'            : 'Unable to resize "$1".',
 			'errUsupportType'      : 'Unsupported file type.',
 			'errNotUTF8Content'    : 'File "$1" is not in UTF-8 and cannot be edited.',  // added 9.11.2011
-			
+			'errNetMount'          : 'Unable to mount "$1".', // added 17.04.2012
+			'errNetMountNoDriver'  : 'Unsupported protocol.',     // added 17.04.2012
+			'errNetMountFailed'    : 'Mount failed.',         // added 17.04.2012
 			/******************************* commands names ********************************/
 			'cmdarchive'   : 'Create archive',
 			'cmdback'      : 'Back',
@@ -4600,6 +4646,8 @@ $.fn.elfindercwd = function(fm) {
 			 */
 			query = '',
 			
+			lastSearch = [],
+
 			/**
 			 * File templates
 			 *
@@ -5090,7 +5138,7 @@ $.fn.elfindercwd = function(fm) {
 			 */
 			content = function(files, any) {
 				var phash = fm.cwd().hash; 
-			
+				// console.log(files)
 				try {
 					// to avoid problem with draggable
 					cwd.children('table,'+fileSelector).remove().end();
@@ -5305,20 +5353,23 @@ $.fn.elfindercwd = function(fm) {
 		}
 
 		fm
-			.bind('open search', function(e) {
-				content(e.data.files, e.type=='search');
+			.bind('open', function(e) {
+				content(e.data.files);
+			})
+			.bind('search', function(e) {
+				lastSearch = e.data.files;
+				content(lastSearch, true);
 			})
 			.bind('searchend', function() {
 				query && content(fm.files());
+				lastSearch = [];
+				query = '';
 			})
 			.bind('searchstart', function(e) {
 				query = e.data.query;
 			})
-			.bind('searchend', function() {
-				query = '';
-			})
 			.bind('sortchange', function() {
-				content(fm.files());
+				content(query ? lastSearch : fm.files(), !!query);
 			})
 			.bind('viewchange', function() {
 				var sel = fm.selected(),
@@ -6363,7 +6414,7 @@ $.fn.elfinderstat = function(fm) {
 
 			$.each(files, function(i, file) {
 				c++;
-				s += parseInt(file.size)||0;
+				s += file.size||0;
 			});
 
 			sel.html(c ? titlesel+': '+c+', '+titlesize+': '+fm.formatSize(s) : '&nbsp;');
@@ -7595,7 +7646,7 @@ elFinder.prototype.commands.extract = function() {
 		var sel = this.files(sel),
 			cnt = sel.length;
 		
-		return !this._disabled && cnt && filter(sel).length == cnt ? 0 : -1;
+		return !this._disabled && cnt && this.fm.cwd().write && filter(sel).length == cnt ? 0 : -1;
 	}
 	
 	this.exec = function(hashes) {
@@ -8317,7 +8368,6 @@ elFinder.prototype.commands.open = function() {
  **/
 elFinder.prototype.commands.paste = function() {
 	
-	this.disableOnSearch = true;
 	this.updateOnSelect  = false;
 	
 	this.handlers = {
@@ -8452,7 +8502,7 @@ elFinder.prototype.commands.paste = function() {
 							});
 					}
 					;
-				
+
 				if (self._disabled || !files.length) {
 					return dfrd.resolve();
 				}
@@ -8485,6 +8535,7 @@ elFinder.prototype.commands.paste = function() {
 
 
 		if (!cnt || !dst || dst.mime != 'directory') {
+			console.log('here')
 			return dfrd.reject();
 		}
 			
@@ -8550,7 +8601,7 @@ elFinder.prototype.commands.pixlr = function() {
 	this.getstate = function(sel) {
 		var fm = this.fm;
 		var sel = fm.selectedFiles();
-		return !this._disabled && sel.length == 1 && sel[0].read && sel[0].mime.indexOf('image/') !== -1 && fm.file(sel[0].phash).write ? 0 : -1;
+		return !this._disabled && sel.length == 1 && sel[0].read && sel[0].mime.indexOf('image/') !== -1 && fm.file(sel[0].phash) && fm.file(sel[0].phash).write ? 0 : -1;
 	};
 
 	this.exec = function(hashes) {
@@ -10516,8 +10567,6 @@ elFinder.prototype.commands.sort = function() {
 	for (i = 0; i < sorts.length; i++) {
 		this.variants.push([sorts[i], this.fm.i18n('sort' + sorts[i])])
 	}
-	
-	this.disableOnSearch = true;
 	
 	this.fm.bind('load sortchange', function() {
 		self.value = sorts[self.fm.sort-1];

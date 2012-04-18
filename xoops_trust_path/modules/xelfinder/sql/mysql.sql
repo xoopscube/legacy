@@ -10,10 +10,11 @@ CREATE TABLE `file` (
   `uid` int(10) unsigned NOT NULL,
   `gid` int(10) unsigned NOT NULL,
   `home_of` int(10) DEFAULT NULL,
-  `mime` varchar(25) NOT NULL DEFAULT 'unknown',
+  `mime` varchar(60) NOT NULL DEFAULT 'unknown',
   `width` int(11) NOT NULL,
   `height` int(11) NOT NULL,
   `gids` varchar(255) NOT NULL,
+  `mime_filter` varchar(255) NOT NULL,
   PRIMARY KEY (`file_id`),
   UNIQUE KEY `parent_name` (`parent_id`,`name`),
   KEY `parent_id` (`parent_id`)

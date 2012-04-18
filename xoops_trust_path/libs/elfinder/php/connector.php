@@ -38,7 +38,20 @@ function debug($o) {
  * @author Troex Nevelin
  **/
 function logger($cmd, $result, $args, $elfinder) {
-	$log = sprintf('[%s] %s:', date('r'), strtoupper($cmd));
+
+	
+	$log = sprintf("[%s] %s: %s \n", date('r'), strtoupper($cmd), var_export($result, true));
+	$logfile = '../files/temp/log.txt';
+	$dir = dirname($logfile);
+	if (!is_dir($dir) && !mkdir($dir)) {
+		return;
+	}
+	if (($fp = fopen($logfile, 'a'))) {
+		fwrite($fp, $log);
+		fclose($fp);
+	}
+	return;
+
 	foreach ($result as $key => $value) {
 		if (empty($value)) {
 			continue;
@@ -55,7 +68,7 @@ function logger($cmd, $result, $args, $elfinder) {
 			} else { // other value (ex. header)
 				array_push($data, $value);
 			}
-					}
+		}
 		$log .= sprintf(' %s(%s)', $key, implode(', ', $data));
 	}
 	$log .= "\n";
@@ -222,7 +235,8 @@ $logger = new elFinderSimpleLogger('../files/temp/log.txt');
 $opts = array(
 	'locale' => 'en_US.UTF-8',
 	'bind' => array(
-		'mkdir mkfile rename duplicate upload rm paste' => 'logger'
+		'*' => 'logger'
+		// 'mkdir mkfile rename duplicate upload rm paste' => 'logger'
 	),
 	'debug' => true,
 	'roots' => array(
@@ -260,14 +274,14 @@ $opts = array(
 		// 			'hidden' => true,
 		// 			'locked' => false
 		// 		),
-		// 		array(
-		// 			'pattern' => '~/replace/.+png$~',
-		// 			// 'pattern' => '/^\/\./',
-		// 			'read' => false,
-		// 			'write' => false,
-		// 			// 'hidden' => true,
-		// 			'locked' => true
-		// 		)
+				// array(
+				// 	'pattern' => '~/replace/.+png$~',
+				// 	// 'pattern' => '/^\/\./',
+				// 	'read' => false,
+				// 	'write' => false,
+				// 	// 'hidden' => true,
+				// 	'locked' => true
+				// )
 		// 	),
 		// 	// 'defaults' => array('read' => false, 'write' => true)
 		// ),
@@ -295,7 +309,7 @@ $opts = array(
 		// 	'driver' => 'FTP',
 		// 	'host' => 'work.std42.ru',
 		// 	'user' => 'dio',
-		// 	'pass' => '123456',
+		// 	'pass' => 'wallrus',
 		// 	'path' => '/',
 		// 	'tmpPath' => '../files/ftp',
 		// ),
@@ -305,7 +319,7 @@ $opts = array(
 		// 	'user' => 'frontrow',
 		// 	'pass' => 'frontrow',
 		// 	'path' => '/'
-		// )
+		// ),
 		
 		// array(
 		// 	'driver'     => 'LocalFileSystem',

@@ -12,6 +12,7 @@ $().ready(function() {
 	elFinder.prototype.i18.en.messages.unlock  = 'Unlock';
 	elFinder.prototype.i18.en.messages.hidden  = 'Hidden';
 	elFinder.prototype.i18.en.messages.targetgroups  = 'Target groups';
+	elFinder.prototype.i18.en.messages.mimeserach    = 'MIME type Serach';
 
 	if (typeof elFinder.prototype.i18.jp != "undefined") {
 		elFinder.prototype.i18.jp.messages.ntfperm = 'アイテム属性を変更';
@@ -24,6 +25,7 @@ $().ready(function() {
 		elFinder.prototype.i18.jp.messages.unlock  = 'ロック解除';
 		elFinder.prototype.i18.jp.messages.hidden  = '非表示';
 		elFinder.prototype.i18.jp.messages.targetgroups  = '対象グループ';
+		elFinder.prototype.i18.jp.messages.mimeserach    = 'MIMEタイプで検索';
 
 		elFinder.prototype.i18.ja = elFinder.prototype.i18.jp;
 	}
@@ -263,3 +265,27 @@ var getFileCallback_xpwiki = function (file, fm) {
 		insertCode('',0,'xpwiki');
 	}
 };
+
+// for FCKEditor
+// Url: '[XOOPS_URL]/modules/xelfinder/manager.php?cb=fckeditor'
+var getFileCallback_fckeditor = function (file, fm) {
+	window.opener.SetUrl(file.url) ;
+	window.close();
+};
+
+// for CKEditor
+// Url: '[XOOPS_URL]/modules/xelfinder/manager.php?cb=ckeditor'
+var getFileCallback_ckeditor = function (file, fm) {
+	var funcNum = window.location.search.replace(/^.*CKEditorFuncNum=(\d+).*$/, "$1");
+	window.opener.CKEDITOR.tools.callFunction(funcNum, file.url);
+	window.close();
+};
+
+// for tinyMCE
+// Url: '[XOOPS_URL]/modules/xelfinder/manager.php?cb=tinymce'
+var getFileCallback_tinymce = function (file, fm) {
+	window.tinymceFileWin.document.forms[0].elements[window.tinymceFileField].value = file.url;
+	window.tinymceFileWin.focus();
+	window.close();
+};
+

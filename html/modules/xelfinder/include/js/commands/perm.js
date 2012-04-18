@@ -22,7 +22,8 @@ elFinder.prototype.commands.perm = function() {
 
 	this.tpl = {
 		main       : '<div class="ui-helper-clearfix elfinder-info-title"><span class="elfinder-cwd-icon {class} ui-corner-all"/>{title}</div>'
-					+'{dataTable}{targetGroups}',
+					+'{filter}{dataTable}{targetGroups}',
+		filter     : '<div>'+fm.i18n('mimeserach')+': <input id="{id}-filter" type="textbox" name="filter" size="30" value="{value}"></div>',
 		itemTitle  : '<strong>{name}</strong><span id="elfinder-info-kind">{kind}</span> ('+fm.i18n('owner')+':<span id="{id}-owner-name"><span class="'+spclass+'"/></span>)',
 		dataTable  : '<table id="{id}-table-{type}"><tr><td>{0}</td><td>{1}</td><td>{2}</td></tr></table>'
 					+'<div class="">'+msg.perm+': <input id="{id}-{type}" type="text" size="4" maxlength="3" value="{value}"></div>',
@@ -44,7 +45,7 @@ elFinder.prototype.commands.perm = function() {
 	this.getstate = function(sel) {
 		var fm = this.fm;
 		sel = sel || fm.selected();
-		return !this._disabled && sel.length == 1 && fm.file(sel[0]).isowner ? 0 : -1;
+		return !this._disabled && sel.length == 1 && fm.file(sel[0]).isowner && !fm.file(sel[0]).alias ? 0 : -1;
 	};
 
 	this.exec = function(hashes) {
@@ -68,6 +69,7 @@ elFinder.prototype.commands.perm = function() {
 			var perm = $('#'+id+'-perm').val();
 			var umask = $('#'+id+'-umask').val();
 			var gids = [];
+			var filter = $('#'+id+'-filter').val();
 			$('#'+id+'-fieldset-groups input[name=gids]:checked').map(function() {
 				 gids.push($(this).val());
 			});
@@ -86,7 +88,8 @@ elFinder.prototype.commands.perm = function() {
 					target : file.hash,
 					perm   : perm,
 					umask  : umask,
-					gids   : gids
+					gids   : gids,
+					filter : filter
 				},
 				notify : {type : 'perm', cnt : 1}
 			})
@@ -171,7 +174,7 @@ elFinder.prototype.commands.perm = function() {
 			close : function() { $(this).elfinderdialog('destroy'); }
 		},
 		dialog = fm.getUI().find('#'+id),
-		tmb = '', title, dataTable, targetGroups;
+		tmb = '', title, dataTable, targetGroups, filter;
 
 		if (dialog.length) {
 			dialog.elfinderdialog('toTop');
@@ -187,13 +190,15 @@ elFinder.prototype.commands.perm = function() {
 
 		if (file.mime == 'directory') {
 			dataTable = tpl.tab.replace('{permTable}', makeDataTable(file.perm, 'perm')).replace('{umaskTable}', makeDataTable(file.umask, 'umask'));
+			filter = tpl.filter.replace('{value}', file.filter);
 		} else {
 			dataTable = makeDataTable(file.perm, 'perm');
+			filter = '';
 		}
 		//dataTable = dataTable.replace(/{id}/g, id);
 		targetGroups = tpl.groups;
 
-		view = view.replace('{title}', title).replace('{dataTable}', dataTable).replace('{targetGroups}', targetGroups).replace(/{id}/g, id);
+		view = view.replace('{title}', title).replace('{filter}', filter).replace('{dataTable}', dataTable).replace('{targetGroups}', targetGroups).replace(/{id}/g, id);
 
 		buttons[fm.i18n('btnCancel')] = function() { dialog.elfinderdialog('close'); };
 		buttons[fm.i18n('btnApply')] = save;
@@ -223,6 +228,9 @@ elFinder.prototype.commands.perm = function() {
 				setcheck($(this).val(), 'perm');
 			}
 		});
+		$('#' + id + '-filter').keydown(function(e) {
+			e.stopPropagation();
+		});
 		if (file.mime == 'directory') {
 			$('#' + id + '-tab').tabs();
 			$('#' + id + '-table-umask :checkbox').click(function(){setperm('umask');});
@@ -246,7 +254,7 @@ elFinder.prototype.commands.perm = function() {
 			preventDefault : true
 		})
 		.fail(function() {
-			replSpinner(msg.unknown);
+			replSpinner(msg.unknown, id+'-groups');
 		})
 		.done(function(data) {
 			var groups = data.groups;
