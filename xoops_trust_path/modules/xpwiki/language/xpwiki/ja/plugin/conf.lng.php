@@ -70,6 +70,11 @@ $msg = array(
 		'description' => 'ページ名の内、英字(アルファベット)の大文字・小文字を区別しません。',
 	),
 
+	'skin_change_profiles' => array(
+			'caption'     => 'スキン変更を適用するプロファイル',
+			'description' => 'スキン変更を適用する User-agent プロファイルをカンマ(,)区切りで入力します。<br />デフォルトでは default, mobile, keitai が選択できます。',
+	),
+
 	'SKIN_NAME' => array(
 		'caption'     => 'デフォルトのスキン名',
 		'description' => 'デフォルトのスキン名を指定します。',

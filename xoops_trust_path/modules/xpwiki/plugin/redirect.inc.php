@@ -10,5 +10,18 @@ class xpwiki_plugin_redirect extends xpwiki_plugin {
 		$to = preg_replace('#^(\.*/)+#' , '', trim($this->root->vars['to']));
 		$this->func->send_location('', '', $this->cont['ROOT_URL'].$to);
 	}
+	
+	function plugin_redirect_convert() {
+		if ($arg = func_get_args()) {
+		    $page = $this->root->vars['page'];
+		    if (! $this->func->is_editable_only_admin($page)) {
+		        $page = htmlspecialchars($page);
+		        return str_replace('$page', $page, '<p>#redirect([path]): require set to editable only admin</p>');
+		    }
+			$path = $arg[0];
+			$location = $this->cont['ROOT_URL'] . ltrim($path, '/');
+			$this->func->send_location('', '', $location);
+		}
+		return '<p>#redirect([path])</p>';
+	}
 }
-?>

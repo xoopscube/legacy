@@ -908,7 +908,7 @@ var XpWiki = {
 		if (typeof option != "undefined") {
 			url = this.MyUrl + '/' + this.dir + '/?plugin=attach&pcmd=upload&page=';
 			url += encodeURIComponent(this.UploadPage);
-			if (typeof option['refid'] != "undefined") url += '&refid=' + encodeURIComponent(option['filename']);
+			if (typeof option['refid'] != "undefined") url += '&refid=' + encodeURIComponent(option['refid']);
 			if (typeof option['filename'] != "undefined") url += '&filename=' + encodeURIComponent(option['filename']);
 			if (typeof option['returi'] != "undefined") url += '&returi=' + encodeURIComponent(option['returi']);
 		} else {

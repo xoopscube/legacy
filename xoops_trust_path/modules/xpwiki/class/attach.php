@@ -120,7 +120,7 @@ class XpWikiAttachFile
 				$getID3 = null;
 				unset($getID3);
 			}
-		} else if ($type === 'image') {
+		} else if ($type === 'image' || $mime === 'application/x-shockwave-flash') {
 			$size = @ getimagesize($this->filename);
 			if (! $size) {
 				$size = array();
@@ -169,7 +169,7 @@ class XpWikiAttachFile
 				$this->status['imagesize'] = unserialize($this->status['imagesize']);
 			}
 			if (! $this->status['mime']) {
-				$this->status['mime'] = $this->type = isset($this->dbinfo['type'])? $this->dbinfo['type'] : xpwiki_plugin_attach::attach_mime_content_type($this->filename, $this->status);
+				$this->status['mime'] = $this->type = !empty($this->dbinfo['type'])? $this->dbinfo['type'] : xpwiki_plugin_attach::attach_mime_content_type($this->filename, $this->status);
 			} elseif (! $this->type) {
 				$this->type = $this->status['mime'];
 			}

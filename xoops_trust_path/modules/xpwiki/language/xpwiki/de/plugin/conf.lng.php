@@ -94,6 +94,11 @@ $msg = array(
 	                   . 'The command that can be specified is the same as "Menus on Skin". ' ,
 	),
 
+	'skin_change_profiles' => array(
+		'caption'     => 'Allow skin change Profiles',
+		'description' => 'The User-agent profile which allows skin change<br /> default, mobile, keitai  can be specified.',
+	),
+
 	'SKIN_CHANGER' => array(
 		'caption'     => 'Sind Änderungen am Skin erlaubt?',
 		'description' => 'Der Benutzer kann einen Skin wählen wenn hier "Ja" gewählt wird.<br />'

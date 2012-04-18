@@ -59,6 +59,11 @@ class xpwiki_plugin_conf extends xpwiki_plugin {
 				'type' => 'integer',
 				'form' => 'yesno',
 			),
+			'skin_change_profiles' => array(
+				'kind' => 'root',
+				'type' => 'string',
+				'form' => 'text,size="50"',
+			),
 			'SKIN_NAME' => array(
 				'kind' => 'const',
 				'type' => 'string',

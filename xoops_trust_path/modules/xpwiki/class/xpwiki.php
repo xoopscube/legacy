@@ -288,15 +288,20 @@ class XpWiki {
 	}
 
 	function catbody () {
-		// Check Skin name
-		if (! is_file($this->cont['SKIN_FILE']) || $this->root->runmode === 'xoops_admin') {
-			$this->cont['SKIN_NAME'] = 'default';
-			$this->cont['SKIN_DIR'] = 'skin/' . $this->cont['SKIN_NAME'] . '/';
-			$this->cont['SKIN_FILE'] = $this->cont['DATA_HOME'] . $this->cont['SKIN_DIR'] . 'pukiwiki.skin.php';
+		$skin_protect_profile = false;
+		if ($this->cont['SKIN_NAME'] !== 'default') {
+			$skin_protect_profile = in_array($this->cont['UA_PROFILE'], explode(',', str_replace(' ', '', $this->root->skin_change_profiles)));
+			// Check Skin name
+			if (! is_file($this->cont['SKIN_FILE']) || $this->root->runmode === 'xoops_admin') {
+				$this->cont['SKIN_NAME'] = 'default';
+				$this->cont['SKIN_DIR'] = 'skin/' . $this->cont['SKIN_NAME'] . '/';
+				$this->cont['SKIN_FILE'] = $this->cont['DATA_HOME'] . $this->cont['SKIN_DIR'] . 'pukiwiki.skin.php';
+			}
 		}
 
 		// SKIN select from Cookie or Plugin.
-		if ($this->cont['SKIN_CHANGER'] && $this->cont['UA_PROFILE'] !== 'keitai' && (!empty($this->root->cookie['skin']) || is_string($this->cont['SKIN_CHANGER']))) {
+		if ($this->cont['SKIN_CHANGER'] && ! $skin_protect_profile && (!empty($this->root->cookie['skin']) || is_string($this->cont['SKIN_CHANGER']))
+		    && in_array($this->cont['UA_PROFILE'], explode(',', str_replace(' ', '', $this->root->skin_change_profiles)))) {
 			$this->cont['SKIN_NAME'] = empty($this->root->cookie['skin'])? $this->cont['SKIN_CHANGER'] : $this->root->cookie['skin'];
 			if (preg_match('/^[\w-]+$/', $this->cont['SKIN_NAME'])) {
 				if (substr($this->cont['SKIN_NAME'],0,3) === "tD-") {

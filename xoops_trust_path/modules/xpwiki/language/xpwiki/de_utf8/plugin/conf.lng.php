@@ -74,6 +74,11 @@ $msg = array(
 		'description' => 'Groß- und Kleinschreibung wird in Seitennamen nicht berücksichtigt.',
 	),
 
+	'skin_change_profiles' => array(
+		'caption'     => 'Allow skin change Profiles',
+		'description' => 'The User-agent profile which allows skin change<br /> default, mobile, keitai  can be specified.',
+	),
+
 	'SKIN_NAME' => array(
 		'caption'     => 'Standard Skin Name',
 		'description' => 'Der standardmäßige Skin-Name wird hier festgelegt.',

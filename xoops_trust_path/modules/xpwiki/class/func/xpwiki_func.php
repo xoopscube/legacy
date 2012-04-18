@@ -2998,7 +2998,7 @@ EOD;
 	// clear output buffer
 	function clear_output_buffer() {
 		while( ob_get_level() ) {
-			if (! ob_end_clean()) {
+			if (! @ ob_end_clean()) {
 				break;
 			}
 		}

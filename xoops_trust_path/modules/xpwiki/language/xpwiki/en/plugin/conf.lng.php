@@ -70,6 +70,11 @@ $msg = array(
 		'description' => 'Neither lower case nor upper case are distinguished of the page name.',
 	),
 
+	'skin_change_profiles' => array(
+		'caption'     => 'Allow skin change Profiles',
+		'description' => 'The User-agent profile which allows skin change<br /> default, mobile, keitai  can be specified.',
+	),
+
 	'SKIN_NAME' => array(
 		'caption'     => 'Default Skin name',
 		'description' => 'The skin name of default is specified.',

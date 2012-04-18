@@ -1021,6 +1021,7 @@ $root->notify = 0;
 $root->notify_diff_only = 1;
 $root->defaultpage  = 'FrontPage';
 $root->page_case_insensitive = 0;
+$root->skin_change_profiles = 'default';
 $const['SKIN_NAME'] = 'default';
 $root->skin_navigator_cmds = 'all';
 $root->skin_navigator_disabled = '';

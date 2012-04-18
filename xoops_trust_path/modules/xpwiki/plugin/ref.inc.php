@@ -255,7 +255,7 @@ class xpwiki_plugin_ref extends xpwiki_plugin {
 			$ret = $params['_error'];
 		} else {
 			$ret = $params['_body'];
-			if ($params['_is_video']) {
+			if (! empty($params['_is_video'])) {
 				$ret = '<span class="'.$this->conf['videoWrapClass'].'">' . $ret . '</span>';
 			}
 			if ($params['caption']) {
@@ -1014,22 +1014,23 @@ EOD;
 		if (isset($lvar['is_net_service'])) {
 			$f_file = $lvar['name'];
 		} else {
+			$f_title = '';
 			if ($lvar['isurl']) {
 				$f_file = $lvar['name'];
-				if (preg_match('#^(.+)/([^/]+)$#', $f_file, $match)) {
-					$f_path = $match[1];
-					$f_title = $f_name = $match[2];
-				} else {
-					$f_title = $f_path = $f_file;
-					$f_name = '';
-				}
 			} else {
-				$f_path = rtrim($this->cont['HOME_URL'], '/');
-				$f_name = $this->get_ref_url($lvar['page'], $lvar['name']);
-				$f_file = $f_path . '/' . $f_name;
+				$f_file = str_replace('&amp;', '&', $this->get_ref_url($lvar['page'], $lvar['name']));
 				$f_title = mb_convert_encoding($lvar['name'], 'UTF-8', $this->cont['SOURCE_ENCODING']);
 			}
-
+			if (preg_match('#^(.+)/([^/]+)$#', $f_file, $match)) {
+				$f_path = $match[1];
+				$f_name = $match[2];
+				if (! $f_title) $f_title = $match[2];
+			} else {
+				$f_path = $f_file;
+				$f_name = '';
+				if (! $f_title) $f_title = $f_file;
+			}
+			
 			if (! empty($lvar['status']['imagesize']['mime']) && substr($lvar['status']['imagesize']['mime'], 0, 5) === 'video') {
 				if (! empty($this->cont['PLUGIN_REF_FLV_PLAYER_VARS'])) {
 					$f_v = strtr($this->cont['PLUGIN_REF_FLV_PLAYER_VARS'],
@@ -1430,7 +1431,7 @@ _HTML_;
 
 		if (is_null($size))	$size = $this->getimagesize($file);
 
-		if ($size[2] === 4 || $size[2] === 13) {
+		if ( is_array($size) && (isset($size[2]) && ($size[2] === 4 || $size[2] === 13)) ) {
 			return TRUE;
 		} else {
 			return FALSE;

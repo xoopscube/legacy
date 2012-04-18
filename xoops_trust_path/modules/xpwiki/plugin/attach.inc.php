@@ -237,28 +237,39 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 					}
 
 					$real_size = 0;
+					$error = '';
 					if ($_file['tmp_name'] = tempnam($this->cont['CACHE_DIR'], 'atf')) {
-						if ($fp = fopen($_file['tmp_name'], 'wb')) {
-							fseek($fp, 0, SEEK_SET);
-							$input = fopen('php://input', 'rb');
-							$real_size = stream_copy_to_stream($input, $fp, $this->cont['PLUGIN_ATTACH_MAX_FILESIZE'] + 1);
-							fclose($input);
+						if ($fp = @ fopen($_file['tmp_name'], 'wb')) {
+							if ($input = @ fopen('php://input', 'rb')) {
+								rewind($fp);
+								rewind($input);
+								if (function_exists('stream_copy_to_stream')) {
+									$real_size = stream_copy_to_stream($input, $fp);
+								} else {
+									while (!feof($input)) $real_size += fwrite($fp, fread($input, 8192));
+								}
+								fclose($input);
+							}
 							fclose($fp);
 						}
-					}
-					if (! $real_size) {
-						if ($_file['tmp_name']) @ unlink($_file['tmp_name']);
-						$this->output_json('No files were uploaded.(Cache dirctory is not writable)');
-					}
-
-					if ($real_size > $this->cont['PLUGIN_ATTACH_MAX_FILESIZE']) {
-						if ($_file['tmp_name']) @ unlink($_file['tmp_name']);
-						$this->output_json($this->root->_attach_messages['err_exceed']);
+					} else {
+						$error = 'No files were uploaded.(Cache dirctory is not writable)';
 					}
 					
-					if ($_file['size'] && $real_size != $_file['size']){
+					if (!$error && !$real_size) {
+						$error = 'No files were uploaded.(Can not get input stream)';
+					}
+					
+					if (!$error && $real_size > $this->cont['PLUGIN_ATTACH_MAX_FILESIZE']) {
+						$error = $this->root->_attach_messages['err_exceed'];
+					}
+					
+					if (!$error && $_file['size'] && $real_size != $_file['size']){
+						$error = 'No files were uploaded.(Upload error)';
+					}
+					if ($error) {
 						if ($_file['tmp_name']) @ unlink($_file['tmp_name']);
-						$this->output_json('No files were uploaded.(Upload error)');
+						$this->output_json($error);
 					}
 
 					$_file['name'] = $this->root->get['qqfile'];
@@ -275,7 +286,8 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 					}
 					$this->output_json(0); // return success
 				}
-
+				
+				// normal upload (non d&d)
 				if (!$check) {
 					$ret = array(
 						'result' => FALSE,
@@ -305,6 +317,7 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 					}
 					if (!empty($this->root->post['returi'])) {
 						$ret['redirect'] = $this->root->siteinfo['host'].$this->root->post['returi'];
+						$this->root->viewmode = 'normal'; // for target="_top" notset popup=1 in func->redirect_header() (ex. has refid)
 					}
 					return $ret;
 				}
@@ -507,12 +520,12 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 			if (preg_match('/<(?:script|\?php)/i', $checkStr)) {
 				return array('result' => FALSE, 'msg' => 'It isn\'t a image file.');
 			}
-		}
 
-		// Flashファイルの検査
-		if ($this->cont['ATTACH_UPLOAD_FLASH_ADMIN_ONLY']) {
-			if (!$this->root->userinfo['admin'] && ($_size[2] === 4 || $_size[2] === 13)) {
-				return array('result'=>FALSE,'msg'=>$this->root->_attach_messages['err_isflash']);
+			// Flashファイルの検査
+			if ($this->cont['ATTACH_UPLOAD_FLASH_ADMIN_ONLY']) {
+				if (!$this->root->userinfo['admin'] && ($_size[2] === 4 || $_size[2] === 13)) {
+					return array('result'=>FALSE,'msg'=>$this->root->_attach_messages['err_isflash']);
+				}
 			}
 		}
 
@@ -610,6 +623,7 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 		$obj->status['admins'] = $_admins;
 		$obj->status['org_fname'] = $org_fname;
 		$obj->status['imagesize'] = $obj->getimagesize($obj->filename);
+		$obj->status['mime'] = $this->attach_mime_content_type($obj->filename, $obj->status);
 		$obj->action = $_action;
 		$obj->putstatus();
 
@@ -886,7 +900,7 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 		{
 			return $type;
 		}
-		if (is_array($imagesize))
+		if (is_array($imagesize) && !empty($imagesize[2]))
 		{
 			if (isset($imagesize['mime'])) return $imagesize['mime']; // PHP >= 4.3.0
 			switch ($imagesize[2])
@@ -898,7 +912,9 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 				case 3:
 					return 'image/png';
 				case 4:
+				case 13:
 					return 'application/x-shockwave-flash';
+				default:
 			}
 		}
 
@@ -942,7 +958,7 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 		}
 
 		// Use fileuploader.js
-		$use_fileuploader = ($this->cont['UA_PROFILE'] === 'default' && preg_match('/firefox|chrome|safari/i', $_SERVER['HTTP_USER_AGENT']) && function_exists('stream_copy_to_stream'));
+		$use_fileuploader = ($this->cont['UA_PROFILE'] === 'default' && preg_match('/firefox|chrome|safari/i', $_SERVER['HTTP_USER_AGENT']));
 
 		if (!isset($load[$this->xpwiki->pid])) {$load[$this->xpwiki->pid] = array();}
 
@@ -980,7 +996,7 @@ class xpwiki_plugin_attach extends xpwiki_plugin {
 					$this->root->vars['returi'] = $_SERVER['REQUEST_URI'];
 				}
 			} else {
-				$target = ' target="top"';
+				$target = ' target="_top"';
 			}
 		}
 

@@ -15,7 +15,11 @@ class xpwiki_plugin_lookup extends xpwiki_plugin {
 		$this->cont['PLUGIN_LOOKUP_USAGE'] =  '#lookup(interwikiname[,button_name[,default]])';
 
 	}
-
+	
+	function can_call_otherdir_convert() {
+		return 1;
+	}
+	
 	function plugin_lookup_convert()
 	{
 	//	global $vars;
