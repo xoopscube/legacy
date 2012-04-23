@@ -20,13 +20,23 @@ require _MD_ELFINDER_LIB_PATH . '/php/elFinder.class.php';
 require _MD_ELFINDER_LIB_PATH . '/php/elFinderVolumeDriver.class.php';
 require _MD_ELFINDER_LIB_PATH . '/php/elFinderVolumeLocalFileSystem.class.php';
 
-
 //////////////////////////////////////////////////////
 // for XOOPS
+if (! defined('XOOPS_MODULE_PATH')) define('XOOPS_MODULE_PATH', XOOPS_ROOT_PATH . '/modules');
+if (! defined('XOOPS_MODULE_URL')) define('XOOPS_MODULE_URL', XOOPS_URL . '/modules');
 
 define('_MD_ELFINDER_MYDIRNAME', $mydirname);
+if (empty($_REQUEST['xoopsUrl'])) {
+	define('_MD_XELFINDER_SITEURL', XOOPS_URL);
+	define('_MD_XELFINDER_MODULE_URL', XOOPS_MODULE_URL);
+} else {
+	define('_MD_XELFINDER_SITEURL', $_REQUEST['xoopsUrl']);
+	define('_MD_XELFINDER_MODULE_URL', str_replace(XOOPS_URL, _MD_XELFINDER_SITEURL, XOOPS_MODULE_URL));
+	header('Access-Control-Allow-Origin: ' . _MD_XELFINDER_SITEURL);
+}
 
 require dirname(__FILE__) . '/class/xelFinder.class.php';
+require dirname(__FILE__) . '/class/xelFinderVolumeFTP.class.php';
 
 $isAdmin = false;
 $memberUid = 0;
@@ -76,11 +86,11 @@ if (! $config['uploadAllow'] || $config['uploadAllow'] === 'none') {
 $config['autoResize'] = (int)$config['autoResize'];
 
 if (! empty($xoopsConfig['cool_uri'])) {
-	$config['URL'] = XOOPS_URL . '/' . $mydirname . '/view/';
+	$config['URL'] = _MD_XELFINDER_SITEURL . '/' . $mydirname . '/view/';
 } else if (empty($config['disable_pathinfo'])) {
-	$config['URL'] = XOOPS_URL . '/modules/' . $mydirname . '/index.php/view/';
+	$config['URL'] = _MD_XELFINDER_MODULE_URL . '/' . $mydirname . '/index.php/view/';
 } else {
-	$config['URL'] = XOOPS_URL . '/modules/' . $mydirname . '/index.php?page=view&file=';
+	$config['URL'] = _MD_XELFINDER_MODULE_URL . '/' . $mydirname . '/index.php?page=view&file=';
 }
 
 if (! isset($extras[$mydirname.':xelfinder_db'])) {
@@ -100,6 +110,33 @@ $xoops_elFinder = new xoops_elFinder();
 
 // Get volumes
 $rootVolumes = $xoops_elFinder->getRootVolumes($config['volume_setting'], $extras);
+
+// Add net(FTP) volume
+if ($isAdmin && !empty($config['ftp_host']) && !empty($config['ftp_port']) && !empty($config['ftp_user']) && !empty($config['ftp_pass'])) {
+	$ftp = array(
+		'driver'  => 'FTPx',
+		'alias'   => $config['ftp_name'],
+		'host'    => $config['ftp_host'],
+		'port'    => $config['ftp_port'],
+		'path'    => $config['ftp_path'],
+		'user'    => $config['ftp_user'],
+		'pass'    => $config['ftp_pass'],
+		'enable_search' => !empty($config['ftp_search']),
+		'tmpPath' => XOOPS_MODULE_PATH . '/'._MD_ELFINDER_MYDIRNAME.'/cache',
+		'utf8fix' => true,
+		'defaults' => array('read' => true, 'write' => true, 'hidden' => false, 'locked' => false),
+		'attributes' => array(
+			array(
+				'pattern' => '~/\.~',
+				'read' => false,
+				'write' => false,
+				'hidden' => true,
+				'locked' => false
+			),
+		)
+	);
+	$rootVolumes[] = $ftp;
+}
 
 // End for XOOPS
 //////////////////////////////////////////////////////

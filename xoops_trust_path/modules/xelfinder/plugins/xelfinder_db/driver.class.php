@@ -79,7 +79,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		$this->options['separator'] = '/';
 		$this->options['mydirname'] = 'xelfinder';
 		$this->options['checkSubfolders'] = true;
-		$this->options['tempPath'] = XOOPS_ROOT_PATH . '/modules/'._MD_ELFINDER_MYDIRNAME.'/cache';
+		$this->options['tempPath'] = XOOPS_MODULE_PATH . '/'._MD_ELFINDER_MYDIRNAME.'/cache';
 		$this->options['tmbPath'] = $this->options['tempPath'].'/tmb/';
 		$this->options['tmbURL'] = $this->options['tempPath'].'/tmb/';
 		$this->options['default_umask'] = '8bb';
@@ -198,7 +198,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 			$this->x_uid = $xoopsUser->getVar('uid');
 			$this->x_uname = $this->strToUTF8($xoopsUser->uname('n'));
 			$this->x_groups = $xoopsUser->getGroups();
-			$this->x_isAdmin = (!empty($_GET['admin']) && $xoopsUser->isAdmin($this->x_mid));
+			$this->x_isAdmin = (!empty($_REQUEST['admin']) && $xoopsUser->isAdmin($this->x_mid));
 		} else {
 			$this->x_uid = 0;
 			$this->x_groups = array(XOOPS_GROUP_ANONYMOUS);
@@ -1239,12 +1239,6 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		$umask = $this->getUmask($dir, $gid);
 		$perm = $this->getDefaultPerm($mime, $umask);
 		$gigs = join(',', $this->getGroupsByUid($uid));
-		
-		if ($mime === 'application/octet-stream' && substr($name, -3) === '.7z' && fread($fp, 2) === '7z') {
-			// @todo need check file contents (it's realy 7z?)
-			$mime = 'application/x-7z-compressed';
-		}
-		rewind($fp);
 		
 		$sql = $id > 0
 			? 'REPLACE INTO %s (`file_id`, `parent_id`, `name`, `size`, `ctime`, `mtime`, `perm`, `umask`, `uid`, `gid`, `mime`, `width`, `height`, `gids`) VALUES ('.$id.', %d, "%s", %d, %d, %d, "%s", "%s", %d, %d, "%s", %d, %d, "%s")'

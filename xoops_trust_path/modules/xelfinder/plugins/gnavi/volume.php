@@ -19,7 +19,7 @@ if (is_dir(XOOPS_ROOT_PATH . $path)) {
 		'mydirname' => $mydirname,
 		'path'      => '_',
 		'filePath'  => XOOPS_ROOT_PATH . $path,
-		'URL'       => XOOPS_URL . $path,
+		'URL'       => _MD_XELFINDER_SITEURL . $path,
 		'alias'     => $title,
 		'smallImg'  => $myConfig['gnavi_thumbspath']
 	);

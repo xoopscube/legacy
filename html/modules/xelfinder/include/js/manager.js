@@ -30,16 +30,32 @@ $().ready(function() {
 		elFinder.prototype.i18.ja = elFinder.prototype.i18.jp;
 	}
 	
+	var customData = { admin : adminMode };
+	if (! connectorUrl) {
+		connectorUrl = myUrl + 'connector.php';
+	} else {
+		customData.xoopsUrl = rootUrl;
+	}
+	if (sessionName) {
+		var reg = new RegExp(sessionName+'=([^;]+)');
+		if (document.cookie.match(reg)) {
+			customData.sessionId = RegExp.$1;
+		}
+	}
+	
 	$('#elfinder').elfinder({
 		lang: lang,
-		url : myUrl + 'connector.php',
-		customData : { admin : adminMode },
+		url : connectorUrl,
+		urlUpload : myUrl + 'connector.php',
+		customData : customData,
+		requestType : 'POST',
 		height: $(window).height() - 20,
 		getFileCallback : callbackFunc,
 		uiOptions : {
 			// toolbar configuration
 			toolbar : [
 				['back', 'forward'],
+				['netmount'],
 				// ['reload'],
 				// ['home', 'up'],
 				['mkdir', 'mkfile', 'upload'],
@@ -72,7 +88,7 @@ $().ready(function() {
     		'download', 'rm', 'duplicate', 'rename', 'mkdir', 'mkfile', 'upload', 'copy',
     		'cut', 'paste', 'edit',
     		'extract', 'archive',
-    		'search', 'info', 'view', 'help', 'resize', 'sort', 'pixlr', 'perm'
+    		'search', 'info', 'view', 'help', 'resize', 'sort', 'netmount', 'pixlr', 'perm'
     	],
 		commandsOptions : {
 			  getfile : {
@@ -201,7 +217,9 @@ var getFileCallback_bbcode = function (file, fm) {
 	}
 	var path = file.url.replace(rootUrl+'/', '');
 	var basename = path.replace( /^.*\//, '' );
-	var module = path.replace( /^.*?(?:modules|uploads)\/([^\/]+)\/.*$/, '$1' );
+	var modules_basename = moduleUrl.replace(rootUrl, '').replace(/\//g, '');
+	var reg = new RegExp('^.*?(?:'+modules_basename+'|uploads)\/([^\/]+)\/.*$');
+	var module = path.replace(reg, '$1');
 	var thumb = '';
 	var isImg = (file.mime.match(/^image/))? true : false;
 	if (isImg && module.match(/^[a-zA-Z0-9_-]+$/)) {
@@ -238,7 +256,9 @@ var getFileCallback_xpwiki = function (file, fm) {
 	}
 	var path = file.url.replace(rootUrl+'/', '');
 	var basename = path.replace( /^.*\//, '' );
-	var module = path.replace( /^.*?(?:modules|uploads)\/([^\/]+)\/.*$/, '$1' );
+	var modules_basename = moduleUrl.replace(rootUrl, '').replace(/\//g, '');
+	var reg = new RegExp('^.*?(?:'+modules_basename+'|uploads)\/([^\/]+)\/.*$');
+	var module = path.replace(reg, '$1');
 	var thumb = '';
 	var isImg = (file.mime.match(/^image/))? true : false;
 	if (isImg && module.match(/^[a-zA-Z0-9_-]+$/)) {

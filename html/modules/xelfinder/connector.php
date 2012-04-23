@@ -5,6 +5,10 @@ define('BIGUMBRELLA_DISABLED', TRUE);
 define('HYP_COMMON_SKIP_POST_FILTER', TRUE);
 define('PROTECTOR_SKIP_FILESCHECKER' , 1 );
 
+if (isset($_POST['sessionId'])) {
+	session_id($_POST['sessionId']);
+}
+
 include '../../mainfile.php';
 
 if( ! defined( 'XOOPS_TRUST_PATH' ) ) die( 'set XOOPS_TRUST_PATH in mainfile.php' ) ;

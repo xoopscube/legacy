@@ -60,8 +60,8 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 		$this->options['separator'] = '/';
 		$this->options['mydirname'] = 'myalbum';
 		$this->options['checkSubfolders'] = true;
-		$this->options['tmbPath'] = XOOPS_ROOT_PATH . '/modules/'._MD_ELFINDER_MYDIRNAME.'/cache/tmb/';
-		$this->options['tmbURL'] = XOOPS_URL . '/modules/'._MD_ELFINDER_MYDIRNAME.'/cache/tmb/';
+		$this->options['tmbPath'] = XOOPS_MODULE_PATH . '/'._MD_ELFINDER_MYDIRNAME.'/cache/tmb/';
+		$this->options['tmbURL'] = _MD_XELFINDER_MODULE_URL . '/'._MD_ELFINDER_MYDIRNAME.'/cache/tmb/';
 
 	}
 

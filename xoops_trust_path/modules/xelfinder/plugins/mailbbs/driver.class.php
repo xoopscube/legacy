@@ -14,10 +14,10 @@ class elFinderVolumeXoopsMailbbs extends elFinderVolumeLocalFileSystem {
 
 	protected function set_mailbbs_enabledFiles() {
 
-		include(XOOPS_ROOT_PATH.'/modules/'.$this->mydirname.'/config.php');
+		include(XOOPS_MODULE_PATH.'/'.$this->mydirname.'/config.php');
 
 		$log = preg_replace('#^\./#', '', $log);
-		$logfile = XOOPS_ROOT_PATH.'/modules/'.$this->mydirname.'/'.$log;
+		$logfile = XOOPS_MODULE_PATH.'/'.$this->mydirname.'/'.$log;
 		$logs = file($logfile);
 
 		$ret = array();
@@ -41,15 +41,15 @@ class elFinderVolumeXoopsMailbbs extends elFinderVolumeLocalFileSystem {
 		$this->options['alias']    = '';              // alias to replace root dir name
 		$this->options['dirMode']  = 0755;            // new dirs mode
 		$this->options['fileMode'] = 0644;            // new files mode
-		$this->options['quarantine'] = XOOPS_ROOT_PATH . '/modules/'._MD_ELFINDER_MYDIRNAME.'/cache/tmb/.quarantine';  // quarantine folder name - required to check archive (must be hidden)
+		$this->options['quarantine'] = XOOPS_MODULE_PATH . '/'._MD_ELFINDER_MYDIRNAME.'/cache/tmb/.quarantine';  // quarantine folder name - required to check archive (must be hidden)
 		$this->options['maxArcFilesSize'] = 0;        // max allowed archive files size (0 - no limit)
 
 		$this->options['path'] = '';
 		$this->options['separator'] = '/';
 		$this->options['mydirname'] = 'mailbbs';
 		$this->options['mimeDetect'] = 'internal';
-		$this->options['tmbPath'] = XOOPS_ROOT_PATH . '/modules/'._MD_ELFINDER_MYDIRNAME.'/cache/tmb/';
-		$this->options['tmbURL'] = XOOPS_URL . '/modules/'._MD_ELFINDER_MYDIRNAME.'/cache/tmb/';
+		$this->options['tmbPath'] = XOOPS_MODULE_PATH . '/'._MD_ELFINDER_MYDIRNAME.'/cache/tmb/';
+		$this->options['tmbURL'] = _MD_XELFINDER_MODULE_URL . '/'._MD_ELFINDER_MYDIRNAME.'/cache/tmb/';
 
 	}
 

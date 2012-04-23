@@ -1,12 +1,13 @@
 <?php
 /*
  * Created on 2012/01/22 by nao-pon http://hypweb.net/
- * $Id: index.php,v 1.1 2012/01/22 20:26:49 nao-pon Exp $
  */
 
-$xelfinderOpenJs = 'openWithSelfMain("'.XOOPS_URL.'/modules/'.$mydirname.'/manager.php", "elfinder", 750, 500);';
-$xelfinderAdminOpenJs = 'openWithSelfMain("'.XOOPS_URL.'/modules/'.$mydirname.'/manager.php?admin=1", "elfinder", 750, 500);';
+if (! defined('XOOPS_MODULE_PATH')) define('XOOPS_MODULE_PATH', XOOPS_ROOT_PATH . '/modules');
+if (! defined('XOOPS_MODULE_URL')) define('XOOPS_MODULE_URL', XOOPS_URL . '/modules');
 
+$xelfinderOpenJs = 'openWithSelfMain("'.XOOPS_MODULE_URL.'/'.$mydirname.'/manager.php", "elfinder", 750, 500);';
+$xelfinderAdminOpenJs = 'openWithSelfMain("'.XOOPS_MODULE_URL.'/'.$mydirname.'/manager.php?admin=1", "elfinder", 750, 500);';
 
 include XOOPS_ROOT_PATH.'/header.php' ;
 

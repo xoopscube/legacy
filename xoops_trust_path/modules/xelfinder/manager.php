@@ -1,5 +1,7 @@
 <?php
 if (! defined('XOOPS_TRUST_PATH')) exit;
+if (! defined('XOOPS_MODULE_PATH')) define('XOOPS_MODULE_PATH', XOOPS_ROOT_PATH . '/modules');
+if (! defined('XOOPS_MODULE_URL')) define('XOOPS_MODULE_URL', XOOPS_URL . '/modules');
 
 $target = isset($_GET['target'])? (preg_match('/^[a-zA-Z0-9_:.-]+$/', $_GET['target'])? $_GET['target'] : '') : '';
 
@@ -10,13 +12,21 @@ $siteimg = (empty($_GET['si']) && empty($use_bbcode_siteimg))? 0 : 1;
 
 $admin = (isset($_GET['admin']))? 1 : 0;
 
-$myurl = XOOPS_URL . '/modules/' . $mydirname;
+$myurl = XOOPS_MODULE_URL . '/' . $mydirname;
 $elfurl = XOOPS_URL . '/common/elfinder';
+$modules_basename = trim(str_replace(XOOPS_URL, '', XOOPS_MODULE_URL), '/');
 
 $module_handler =& xoops_gethandler('module');
 $xelfinderModule = $module_handler->getByDirname($mydirname);
 $config_handler =& xoops_gethandler('config');
 $config = $config_handler->getConfigsByCat(0, $xelfinderModule->getVar('mid'));
+
+if (!empty($config['ssl_connector_url'])) {
+	$conector_url = $config['ssl_connector_url'];
+	$session_name = session_name();
+} else {
+	$session_name = $conector_url = '';
+}
 
 $managerJs = '';
 $_plugin_dir = dirname(__FILE__) . '/plugins/';
@@ -26,7 +36,7 @@ foreach(explode("\n", $config['volume_setting']) as $_vol) {
 	if (! $_vol || $_vol[0] === '#') continue;
 	list(, $_plugin, $_dirname) = explode(':', $_vol);
 	$_plugin = trim($_plugin);
-	if (preg_match('#(?:uploads|modules)/([^/]+)#i', trim($_dirname), $_match)) {
+	if (preg_match('#(?:uploads|'.$modules_basename.')/([^/]+)#i', trim($_dirname), $_match)) {
 		$_dirname = $_match[1];
 	} else {
 		$_dirname = $_plugin;
@@ -75,7 +85,7 @@ while(ob_get_level()) {
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>Image Manager - elFinder 2.0</title>
 		<?php echo $viewport ?>
-		<base href="<?php echo XOOPS_URL ?>/modules/<?php echo $mydirname?>/">
+		<base href="<?php echo XOOPS_MODULE_URL ?>/<?php echo $mydirname?>/">
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/<?php echo $jQueryVersion?>/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/<?php echo $jQueryUIVersion?>/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
@@ -155,6 +165,7 @@ while(ob_get_level()) {
 		<script src="<?php echo $elfurl ?>/js/commands/view.js"      type="text/javascript" charset="utf-8"></script>
 		<script src="<?php echo $elfurl ?>/js/commands/resize.js"    type="text/javascript" charset="utf-8"></script>
 		<script src="<?php echo $elfurl ?>/js/commands/sort.js"      type="text/javascript" charset="utf-8"></script>
+		<script src="<?php echo $elfurl ?>/js/commands/netmount.js"  type="text/javascript" charset="utf-8"></script>
 		<script src="<?php echo $elfurl ?>/js/commands/pixlr.js"     type="text/javascript" charset="utf-8"></script>
 	
 		<!-- elfinder languages -->
@@ -176,8 +187,11 @@ while(ob_get_level()) {
 		<script type="text/javascript" charset="utf-8">
 			var target = '<?php echo $target ?>';
 			var rootUrl = '<?php echo XOOPS_URL ?>';
-			var myUrl = rootUrl + '/modules/<?php echo $mydirname?>/';
+			var moduleUrl = '<?php echo XOOPS_MODULE_URL ?>';
+			var myUrl = moduleUrl + '/<?php echo $mydirname?>/';
 			var imgUrl = myUrl + 'images/';
+			var connectorUrl = '<?php echo $conector_url?>';
+			var sessionName = '<?php echo $session_name?>';
 			var useSiteImg = <?php echo $siteimg ?>;
 			var imgThumb = '';
 			var itemPath = '';

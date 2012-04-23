@@ -12,7 +12,7 @@ if (is_dir(XOOPS_ROOT_PATH . $path)) {
 		'driver'     => 'XoopsMailbbs',
 		'mydirname'  => $mydirname,
 		'path'       => XOOPS_ROOT_PATH . $path,
-		'URL'        => XOOPS_URL . $path,
+		'URL'        => _MD_XELFINDER_SITEURL . $path,
 		'alias'      => $title,
 		'defaults' => array('read' => true, 'write' => false),
 		'attributes' => array(

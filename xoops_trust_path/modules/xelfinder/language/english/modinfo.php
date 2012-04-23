@@ -20,6 +20,20 @@ define( $constpref.'_ADMENU_MYPREFERENCES','Preferences');
 define( $constpref.'_VOLUME_SETTING' ,          'Volume Drivers' );
 define( $constpref.'_VOLUME_SETTING_DESC' ,     '[Module directory name]:[Plugin name]:[Saved files dirctory path]:[View name]<br />Written line by line. Will be ignored and put a "#" at the beginning.' );
 define( $constpref.'_SHARE_HOLDER' ,            'Share holder' );
+define( $constpref.'_FTP_NAME' ,                'Name of FTP net volume' );
+define( $constpref.'_FTP_NAME_DESC' ,           'The display name of the FTP connection net volume for administrators.' );
+define( $constpref.'_FTP_HOST' ,                'FTP Host name' );
+define( $constpref.'_FTP_HOST_DESC' ,           '' );
+define( $constpref.'_FTP_PORT' ,                'FTP port' );
+define( $constpref.'_FTP_PORT_DESC' ,           'default: 21' );
+define( $constpref.'_FTP_PATH' ,                'Directory as root' );
+define( $constpref.'_FTP_PATH_DESC' ,           '' );
+define( $constpref.'_FTP_USER' ,                'FTP user name' );
+define( $constpref.'_FTP_USER_DESC' ,           '' );
+define( $constpref.'_FTP_PASS' ,                'FTP password' );
+define( $constpref.'_FTP_PASS_DESC' ,           '' );
+define( $constpref.'_FTP_SEARCH' ,              'FTP volume include in search results' );
+define( $constpref.'_FTP_SEARCH_DESC' ,         'If in search results include FTP net volume, the search may time out.' );
 define( $constpref.'_THUMBNAIL_SIZE' ,          'Thumbnail size of image insertion' );
 define( $constpref.'_THUMBNAIL_SIZE_DESC' ,     'The default value (px) of the thumbnail size at picture insertion by BBcode.' );
 define( $constpref.'_DEFAULT_ITEM_PERM' ,       'Permission of new items' );
@@ -73,6 +87,9 @@ define( $constpref.'_DISABLE_PATHINFO_DESC' ,   '' );
 
 define( $constpref.'_EDIT_DISABLE_LINKED' ,     'Write-protect of linked file' );
 define( $constpref.'_EDIT_DISABLE_LINKED_DESC' ,'Write-protect automatically of referenced linked files  for order to prevent inadvertent overwriting or broken links.' );
+
+define( $constpref.'_SSL_CONNECTOR_URL' ,       'Secure connection URL' );
+define( $constpref.'_SSL_CONNECTOR_URL_DESC' ,  'When only communication with a back-end uses secure environment, please specify URL of "connector.php" which begins from "https://".' );
 
 define( $constpref.'_UNZIP_LANG_VALUE' ,        'Local for unzip' );
 define( $constpref.'_UNZIP_LANG_VALUE_DESC' ,   'Local (LANG) for unzip exec' );

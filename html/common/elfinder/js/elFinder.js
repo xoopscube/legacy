@@ -264,7 +264,10 @@ window.elFinder = function(node, opts) {
 				});
 				
 				// prevent tab out of elfinder
-				code == 9 && e.preventDefault();
+				if (code == 9 && !$(e.target).is(':input')) {
+					e.preventDefault();
+				}
+
 			}
 		},
 		date = new Date(),
@@ -469,7 +472,23 @@ window.elFinder = function(node, opts) {
 		refreshPositions : true,
 		cursor     : 'move',
 		cursorAt   : {left : 50, top : 47},
-		drag       : function(e, ui) { ui.helper.toggleClass('elfinder-drag-helper-plus', e.shiftKey||e.ctrlKey||e.metaKey); },
+		drag       : function(e, ui) {
+			if (! ui.helper.data('locked')) {
+				ui.helper.toggleClass('elfinder-drag-helper-plus', e.shiftKey||e.ctrlKey||e.metaKey);
+			}
+		},
+		start      : function(e, ui) {
+			var targets = $.map(ui.helper.data('files')||[], function(h) { return h || null ;}),
+			cnt, h;
+			cnt = targets.length;
+			while (cnt--) {
+				h = targets[cnt];
+				if (files[h].locked) {
+					ui.helper.addClass('elfinder-drag-helper-plus').data('locked', true);
+					break;
+				}
+			}
+		},
 		stop       : function() { self.trigger('focus').trigger('dragstop'); },
 		helper     : function(e, ui) {
 			var element = this.id ? $(this) : $(this).parents('[id]:first'),
@@ -483,7 +502,7 @@ window.elFinder = function(node, opts) {
 				? self.selected() 
 				: [self.navId2Hash(element.attr('id'))];
 			
-			helper.append(icon(files[hashes[0]].mime)).data('files', hashes);
+			helper.append(icon(files[hashes[0]].mime)).data('files', hashes).data('locked', false);
 
 			if ((l = hashes.length) > 1) {
 				helper.append(icon(files[hashes[l-1]].mime) + '<span class="elfinder-drag-num">'+l+'</span>');
@@ -527,7 +546,7 @@ window.elFinder = function(node, opts) {
 				
 				if (result.length) {
 					ui.helper.hide();
-					self.clipboard(result, !(e.ctrlKey||e.shiftKey||e.metaKey));
+					self.clipboard(result, !(e.ctrlKey||e.shiftKey||e.metaKey||ui.helper.data('locked')));
 					self.exec('paste', hash).always(function() { self.clipboard([]); });
 					self.trigger('drop', {files : targets});
 				}
@@ -758,7 +777,7 @@ window.elFinder = function(node, opts) {
 	 * @todo
 	 * @return $.Deferred
 	 */
-	this.request = function(options) { console.log(options)
+	this.request = function(options) { 
 		var self     = this,
 			o        = this.options,
 			dfrd     = $.Deferred(),
@@ -875,6 +894,10 @@ window.elFinder = function(node, opts) {
 				
 				if (response.options) {
 					cwdOptions = $.extend({}, cwdOptions, response.options);
+				}
+
+				if (response.netDrivers) {
+					self.netDrivers = response.netDrivers;
 				}
 
 				dfrd.resolve(response);
@@ -1668,23 +1691,6 @@ window.elFinder = function(node, opts) {
 			
 		}
 
-		// self.request({
-		// 	data : {
-		// 		cmd : 'netmount',
-		// 		protocol : 'ftp',
-		// 		host : 'ftp://work.std42.ru',
-		// 		path : '/',
-		// 		user : 'dio',
-		// 		pass : 'wallrus',
-		// 		alias : 'Sora',
-		// 		options : {main : 42}
-
-		// 	},
-		// 	// preventDone : true
-		// })
-		// .done(function(data) {
-		// 	console.log(data);
-		// })
 	});
 	
 	// self.timeEnd('load'); 
@@ -1737,11 +1743,44 @@ elFinder.prototype = {
 			'application/postscript'        : 'Postscript',
 			'application/vnd.ms-office'     : 'MsOffice',
 			'application/vnd.ms-word'       : 'MsWord',
+			'application/vnd.openxmlformats-officedocument.wordprocessingml.document' : 'MsWord',
+			'application/vnd.ms-word.document.macroEnabled.12'                        : 'MsWord',
+			'application/vnd.openxmlformats-officedocument.wordprocessingml.template' : 'MsWord',
+			'application/vnd.ms-word.template.macroEnabled.12'                        : 'MsWord',
+			'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'       : 'MsWord',
 			'application/vnd.ms-excel'      : 'MsExcel',
+			'application/vnd.ms-excel.sheet.macroEnabled.12'                          : 'MsExcel',
+			'application/vnd.openxmlformats-officedocument.spreadsheetml.template'    : 'MsExcel',
+			'application/vnd.ms-excel.template.macroEnabled.12'                       : 'MsExcel',
+			'application/vnd.ms-excel.sheet.binary.macroEnabled.12'                   : 'MsExcel',
+			'application/vnd.ms-excel.addin.macroEnabled.12'                          : 'MsExcel',
 			'application/vnd.ms-powerpoint' : 'MsPP',
+			'application/vnd.openxmlformats-officedocument.presentationml.presentation' : 'MsPP',
+			'application/vnd.ms-powerpoint.presentation.macroEnabled.12'              : 'MsPP',
+			'application/vnd.openxmlformats-officedocument.presentationml.slideshow'  : 'MsPP',
+			'application/vnd.ms-powerpoint.slideshow.macroEnabled.12'                 : 'MsPP',
+			'application/vnd.openxmlformats-officedocument.presentationml.template'   : 'MsPP',
+			'application/vnd.ms-powerpoint.template.macroEnabled.12'                  : 'MsPP',
+			'application/vnd.ms-powerpoint.addin.macroEnabled.12'                     : 'MsPP',
+			'application/vnd.openxmlformats-officedocument.presentationml.slide'      : 'MsPP',
+			'application/vnd.ms-powerpoint.slide.macroEnabled.12'                     : 'MsPP',
 			'application/pdf'               : 'PDF',
 			'application/xml'               : 'XML',
 			'application/vnd.oasis.opendocument.text' : 'OO',
+			'application/vnd.oasis.opendocument.text-template'         : 'OO',
+			'application/vnd.oasis.opendocument.text-web'              : 'OO',
+			'application/vnd.oasis.opendocument.text-master'           : 'OO',
+			'application/vnd.oasis.opendocument.graphics'              : 'OO',
+			'application/vnd.oasis.opendocument.graphics-template'     : 'OO',
+			'application/vnd.oasis.opendocument.presentation'          : 'OO',
+			'application/vnd.oasis.opendocument.presentation-template' : 'OO',
+			'application/vnd.oasis.opendocument.spreadsheet'           : 'OO',
+			'application/vnd.oasis.opendocument.spreadsheet-template'  : 'OO',
+			'application/vnd.oasis.opendocument.chart'                 : 'OO',
+			'application/vnd.oasis.opendocument.formula'               : 'OO',
+			'application/vnd.oasis.opendocument.database'              : 'OO',
+			'application/vnd.oasis.opendocument.image'                 : 'OO',
+			'application/vnd.openofficeorg.extension'                  : 'OO',
 			'application/x-shockwave-flash' : 'AppFlash',
 			'application/flash-video'       : 'Flash video',
 			'application/x-bittorrent'      : 'Torrent',

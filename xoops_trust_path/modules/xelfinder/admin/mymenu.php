@@ -50,7 +50,7 @@ if( empty( $adminmenu_hilighted ) ) {
 // link conversion from relative to absolute
 foreach( array_keys( $adminmenu ) as $i ) {
 	if( stristr( $adminmenu[$i]['link'] , XOOPS_URL ) === false ) {
-		$adminmenu[$i]['link'] = XOOPS_URL."/modules/$mydirname/" . $adminmenu[$i]['link'] ;
+		$adminmenu[$i]['link'] = XOOPS_MODULE_URL."/$mydirname/" . $adminmenu[$i]['link'] ;
 	}
 }
 

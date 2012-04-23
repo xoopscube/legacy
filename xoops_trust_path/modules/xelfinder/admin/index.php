@@ -1,8 +1,10 @@
 <?php
+if (! defined('XOOPS_MODULE_PATH')) define('XOOPS_MODULE_PATH', XOOPS_ROOT_PATH . '/modules');
+if (! defined('XOOPS_MODULE_URL')) define('XOOPS_MODULE_URL', XOOPS_URL . '/modules');
 
 $check_dir = array(
-	XOOPS_ROOT_PATH .'/modules/'.$mydirname.'/cache',
-	XOOPS_ROOT_PATH .'/modules/'.$mydirname.'/cache/tmb',
+	XOOPS_MODULE_PATH .'/'.$mydirname.'/cache',
+	XOOPS_MODULE_PATH .'/'.$mydirname.'/cache/tmb',
 		XOOPS_TRUST_PATH.'/uploads/xelfinder'
 );
 
