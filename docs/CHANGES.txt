@@ -4,11 +4,23 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 
 ----------------------------------------
-2012/02/XX: Package Revision 2.2.1 Beta3
+2012/04/XX: Package Revision 2.2.1 Beta3
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
 - Fix Bug #3470535 - Smarty cache directory
 - Fix Bug #3470792 - download the template, the extra null at the end of defect
+- Fix Bug #3492904 - Error Message after Profile edit
+- Fix Bug #3505585 - xoops.js additional comma required
+- Fix Bug #3509194 - Deprecated Function get_magic_quotes_gpc: class/uploader.php
+- Fix Bug #3509214 - PHPMailer 5.1 with several bugs closed in PHPMailer 5.2.1
+- Fix Bug #3512942 - Magic Quotes REMOVED from PHP 5.4 and deprecated in PHP 5.3
+
+[Feature Request - From Feature Requests Legacy Tracker]
+- Feature Request #3470809 - template download info is  [File type : File (-1 bytes)]
+- Feature Request #3470813 - prevent out of ob_buffer memory during to backup
+
+[Bug Fix - From XCube core Bug Tracker]
+- Fix Bug #3502519 - Array PropertyForm null value
 
 [Staff]
 - bluemooninc
