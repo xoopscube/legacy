@@ -34,6 +34,10 @@ define( $constpref.'_FTP_PASS' ,                'FTP password' );
 define( $constpref.'_FTP_PASS_DESC' ,           '' );
 define( $constpref.'_FTP_SEARCH' ,              'FTP volume include in search results' );
 define( $constpref.'_FTP_SEARCH_DESC' ,         'If in search results include FTP net volume, the search may time out.' );
+define( $constpref.'_DROPBOX_TOKEN' ,           'Dropbox.com App key' );
+define( $constpref.'_DROPBOX_TOKEN_DESC' ,      'Developers - Dropbox [ https://www.dropbox.com/developers ]' );
+define( $constpref.'_DROPBOX_SECKEY' ,          'Dropbox.com App secret' );
+define( $constpref.'_DROPBOX_SECKEY_DESC' ,     '' );
 define( $constpref.'_THUMBNAIL_SIZE' ,          'Thumbnail size of image insertion' );
 define( $constpref.'_THUMBNAIL_SIZE_DESC' ,     'The default value (px) of the thumbnail size at picture insertion by BBcode.' );
 define( $constpref.'_DEFAULT_ITEM_PERM' ,       'Permission of new items' );
@@ -89,7 +93,7 @@ define( $constpref.'_EDIT_DISABLE_LINKED' ,     'Write-protect of linked file' )
 define( $constpref.'_EDIT_DISABLE_LINKED_DESC' ,'Write-protect automatically of referenced linked files  for order to prevent inadvertent overwriting or broken links.' );
 
 define( $constpref.'_SSL_CONNECTOR_URL' ,       'Secure connection URL' );
-define( $constpref.'_SSL_CONNECTOR_URL_DESC' ,  'When only communication with a back-end uses secure environment, please specify URL of "connector.php" which begins from "https://".' );
+define( $constpref.'_SSL_CONNECTOR_URL_DESC' ,  'When only communication with a back-end uses secure environment, please specify URL of "connector.php" which begins from "https://".<br />It\'s supports only "Firefox", "Chrome" & "Safari".' );
 
 define( $constpref.'_UNZIP_LANG_VALUE' ,        'Local for unzip' );
 define( $constpref.'_UNZIP_LANG_VALUE_DESC' ,   'Local (LANG) for unzip exec' );

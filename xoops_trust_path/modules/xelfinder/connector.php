@@ -13,6 +13,13 @@ ini_set('mbstring.func_overload', 2);
 
 //error_reporting(E_ALL | E_STRICT); // Set E_ALL for debuging
 
+// Add PEAR Dirctory into include path
+$incPath = get_include_path();
+$addPath = XOOPS_TRUST_PATH . '/PEAR';
+if (strpos($incPath, $addPath) === FALSE) {
+	set_include_path( $incPath . PATH_SEPARATOR . $addPath );
+}
+
 define('_MD_ELFINDER_LIB_PATH', XOOPS_TRUST_PATH . '/libs/elfinder');
 
 require _MD_ELFINDER_LIB_PATH . '/php/elFinderConnector.class.php';
@@ -54,6 +61,14 @@ $config = $xoopsModuleConfig;
 if (strtoupper(_CHARSET) !== 'UTF-8') {
 	mb_convert_variables('UTF-8', _CHARSET, $config);
 }
+
+// dropbox
+if (!empty($config['dropbox_token']) && !empty($config['dropbox_seckey'])) {
+	require dirname(__FILE__) . '/class/xelFinderVolumeDropbox.class.php';
+	define('ELFINDER_DROPBOX_CONSUMERKEY',    $config['dropbox_token']);
+	define('ELFINDER_DROPBOX_CONSUMERSECRET', $config['dropbox_seckey']);
+}
+
 // set umask
 foreach(array('default', 'users_dir', 'guest_dir', 'group_dir') as $_key) {
 	$config[$_key.'_umask'] = strval(dechex(0xfff - intval(strval($config[$_key.'_item_perm']), 16)));

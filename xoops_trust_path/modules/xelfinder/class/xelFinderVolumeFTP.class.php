@@ -6,10 +6,12 @@ elFinder::$netDrivers['ftp'] = 'FTPx';
 class elFinderVolumeFTPx extends elFinderVolumeFTP {
 	
 	protected function configure() {
-		$this->tmbPath = XOOPS_MODULE_PATH . '/'._MD_ELFINDER_MYDIRNAME.'/cache';
-		
 		parent::configure();
-
+		
+		$this->tmp = XOOPS_MODULE_PATH.'/'._MD_ELFINDER_MYDIRNAME.'/cache';
+		$this->tmbURL = '';
+		$this->tmbPath = '';
+		
 		$this->disabled[] = 'pixlr';
 	}
 	

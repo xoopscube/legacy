@@ -34,6 +34,10 @@ define( $constpref.'_FTP_PASS' ,                'FTP パスワード' );
 define( $constpref.'_FTP_PASS_DESC' ,           '' );
 define( $constpref.'_FTP_SEARCH' ,              'FTP ボリュームを検索対象にする' );
 define( $constpref.'_FTP_SEARCH_DESC' ,         'FTP ネットボリュームを検索対象にすると、検索に時間がかかりタイムアウトすることがあります。<br />有効にした場合は問題なく検索できるかの確認をお忘れなく。' );
+define( $constpref.'_DROPBOX_TOKEN' ,           'Dropbox.com アプリケーション Key' );
+define( $constpref.'_DROPBOX_TOKEN_DESC' ,      'Developers - Dropbox [ https://www.dropbox.com/developers ]' );
+define( $constpref.'_DROPBOX_SECKEY' ,          'Dropbox.com アプリケーション Secret key' );
+define( $constpref.'_DROPBOX_SECKEY_DESC' ,     '' );
 define( $constpref.'_THUMBNAIL_SIZE' ,          '画像挿入時のサムネイルサイズ' );
 define( $constpref.'_THUMBNAIL_SIZE_DESC' ,     'BBコードでの画像挿入時のサムネイルサイズの規定値(px)' );
 define( $constpref.'_DEFAULT_ITEM_PERM' ,       '作成されるアイテムのパーミッション' );
@@ -89,7 +93,7 @@ define( $constpref.'_EDIT_DISABLE_LINKED' ,     'リンク済みファイルの�
 define( $constpref.'_EDIT_DISABLE_LINKED_DESC' ,'リンク切れや不用意な上書きを防止するためにリンク・参照されたファイルを自動的に書き込み禁止に設定します。' );
 
 define( $constpref.'_SSL_CONNECTOR_URL' ,       'セキュア接続 URL' );
-define( $constpref.'_SSL_CONNECTOR_URL_DESC' ,  'バックエンドとの通信のみセキュアな環境を利用する場合に https:// から始まる connector.php の URL を指定してください。' );
+define( $constpref.'_SSL_CONNECTOR_URL_DESC' ,  'バックエンドとの通信のみセキュアな環境を利用する場合に https:// から始まる connector.php の URL を指定してください。<br />ブラウザの User Agent に "Firefox" "Chrome" "Safari" が含まれる場合のみ有効になります。' );
 
 define( $constpref.'_UNZIP_LANG_VALUE' ,        'unzip 実行時のロケール' );
 define( $constpref.'_UNZIP_LANG_VALUE_DESC' ,   'アーカイブ解凍のコマンド unzip 使用時の言語ロケール設定。<br />通常は指定なしで問題ないと思われるが、解凍後のファイル名が文字化けする場合には ja_JP.Shift_JIS などとすると解消される場合がある。' );

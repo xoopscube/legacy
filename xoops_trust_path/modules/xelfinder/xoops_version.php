@@ -12,7 +12,7 @@ $constpref = '_MI_' . strtoupper( $mydirname ) ;
 $modversion['name'] = 'xelFinder' ;
 //$modversion['name'] = $constpref.'_NAME') ;
 $modversion['description'] = constant($constpref.'_DESC');
-$modversion['version'] = 0.14 ;
+$modversion['version'] = 0.15 ;
 $modversion['credits'] = "Hypweb.net";
 $modversion['author'] = "nao-pon" ;
 $modversion['help'] = "" ;
@@ -120,6 +120,22 @@ $modversion['config'][] = array(
 		'formtype'		=> 'yesno' ,
 		'valuetype'		=> 'int' ,
 		'default'		=> '0'
+) ;
+$modversion['config'][] = array(
+		'name'			=> 'dropbox_token' ,
+		'title'			=> $constpref.'_DROPBOX_TOKEN' ,
+		'description'	=> $constpref.'_DROPBOX_TOKEN_DESC' ,
+		'formtype'		=> 'textbox' ,
+		'valuetype'		=> 'text' ,
+		'default'		=> ''
+) ;
+$modversion['config'][] = array(
+		'name'			=> 'dropbox_seckey' ,
+		'title'			=> $constpref.'_DROPBOX_SECKEY' ,
+		'description'	=> $constpref.'_DROPBOX_SECKEY_DESC' ,
+		'formtype'		=> 'textbox' ,
+		'valuetype'		=> 'text' ,
+		'default'		=> ''
 ) ;
 $modversion['config'][] = array(
 		'name'			=> 'thumbnail_size' ,

@@ -21,7 +21,7 @@ $xelfinderModule = $module_handler->getByDirname($mydirname);
 $config_handler =& xoops_gethandler('config');
 $config = $config_handler->getConfigsByCat(0, $xelfinderModule->getVar('mid'));
 
-if (!empty($config['ssl_connector_url'])) {
+if (!empty($config['ssl_connector_url']) && preg_match('/Firefox|Chrome|Safari/', $_SERVER['HTTP_USER_AGENT'])) {
 	$conector_url = $config['ssl_connector_url'];
 	$session_name = session_name();
 } else {
