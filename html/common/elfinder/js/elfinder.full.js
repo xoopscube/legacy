@@ -1,6 +1,6 @@
 /*!
  * elFinder - file manager for web
- * Version 2.0 rc1 (2012-04-26)
+ * Version 2.0 rc1 (2012-04-27)
  * http://elfinder.org
  * 
  * Copyright 2009-2012, Studio 42
@@ -3121,20 +3121,19 @@ elFinder.prototype._options = {
 				inputs: {
 					host     : $('<span id="elfinder-cmd-netmout-dropbox-host"><span class="elfinder-info-spinner"/></span></span><input type="hidden" value="dropbox"/>'),
 					path     : $('<input type="text" value="/"/>'),
-					user     : $('<input id="elfinder-cmd-netmout-dropbox-user" type="text" readonly="readonly"/>'),
-					pass     : $('<input id="elfinder-cmd-netmout-dropbox-pass" type="text" readonly="readonly"/>')
+					user     : $('<input id="elfinder-cmd-netmout-dropbox-user" type="hidden"/>'),
+					pass     : $('<input id="elfinder-cmd-netmout-dropbox-pass" type="hidden"/>')
 				},
 				select: function(fm){
 					if ($('#elfinder-cmd-netmout-dropbox-host').find('span').length) {
 						fm.request({
 							data : {cmd : 'netmount', protocol: 'dropbox', host: 'dropbox.com', user: 'init', pass: 'init', options: {url: fm.uploadURL}},
 							preventDefault : true
-						}).fail(function(){
 						}).done(function(data){
 							$('#elfinder-cmd-netmout-dropbox-host')
 							.html(data.body.replace(/\{msg:([^}]+)\}/g, function(whole,s1){return fm.i18n(s1,'Dropbox.com');}));
-						});
-					}
+						}).fail(function(){});
+					}					
 				}
 			}
 		},
@@ -8399,18 +8398,26 @@ elFinder.prototype.commands.netmount = function() {
 						},
 						buttons        : {}
 					},
-					content = $('<table class="elfinder-info-tb elfinder-netmount-tb"/>');
+					content = $('<table class="elfinder-info-tb elfinder-netmount-tb"/>'),
+					hidden  = $('<div/>');
 
 				content.append($('<tr/>').append($('<td>'+fm.i18n('protocol')+'</td>')).append($('<td/>').append(inputs.protocol)));
 
 				$.each(self.drivers, function(i, protocol) {
 					inputs.protocol.append('<option value="'+protocol+'">'+fm.i18n(protocol)+'</option>');
 					$.each(o[protocol].inputs, function(name, input) {
-						input.addClass('ui-corner-all elfinder-netmount-inputs-'+protocol);
 						input.attr('name', name);
-						content.append($('<tr/>').addClass('elfinder-netmount-tr elfinder-netmount-tr-'+protocol).append($('<td>'+fm.i18n(name)+'</td>')).append($('<td/>').append(input)));
+						if (input.attr('type') != 'hidden') {
+							input.addClass('ui-corner-all elfinder-netmount-inputs-'+protocol);
+							content.append($('<tr/>').addClass('elfinder-netmount-tr elfinder-netmount-tr-'+protocol).append($('<td>'+fm.i18n(name)+'</td>')).append($('<td/>').append(input)));
+						} else {
+							input.addClass('elfinder-netmount-inputs-'+protocol);
+							hidden.append(input);
+						}
 					});
 				});
+				
+				content.append(hidden);
 				
 				content.find('.elfinder-netmount-tr').hide();
 				inputs.protocol.change();
@@ -8419,8 +8426,12 @@ elFinder.prototype.commands.netmount = function() {
 					var protocol = inputs.protocol.val();
 					var data = {cmd : 'netmount', protocol: protocol};
 					$.each(content.find('input.elfinder-netmount-inputs-'+protocol), function(name, input) {
-						var val = $.trim(input.value || input.val());
-
+						var val;
+						if (typeof input.val == 'function') {
+							val = $.trim(input.val());
+						} else {
+							val = $.trim(input.value);
+						}
 						if (val) {
 							data[input.name] = val;
 						}

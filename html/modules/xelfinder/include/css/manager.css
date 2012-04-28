@@ -7,6 +7,8 @@
 
 .elfinder-button-icon-perm      { background-position: 0 -48px; }
 
+.elfinder-navbar .ui-state-hover  { color:#000; background-color:#edf1f4; border-color:#bdcbd8; }
+
 .toast-container {
 	width: 180px;
 }
