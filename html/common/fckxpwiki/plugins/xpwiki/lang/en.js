@@ -1,1 +1,0 @@
-﻿FCKLang.WikiSource			= "WikiSource";

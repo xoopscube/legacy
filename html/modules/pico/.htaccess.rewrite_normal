@@ -1,4 +1,0 @@
-RewriteEngine on
-
-RewriteRule ^content(.*).html$ index.php?content_id=$1 [QSA,L]
-RewriteRule ^category(.*).html$ index.php?cat_id=$1 [QSA,L]
