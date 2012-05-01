@@ -5,10 +5,16 @@
 * @version $Id$
 **/
 
+// Xupdate class object
+require_once XUPDATE_TRUST_PATH .'/class/Root.class.php';
+
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
 class Xupdate_ModulesIniDadaSet
 {
+
+	public $Xupdate  ;	// Xupdate instance
+	public $Func ;	// Functions instance
 
 	public $storeHand;
 	public $modHand;
@@ -19,22 +25,30 @@ class Xupdate_ModulesIniDadaSet
 	protected $mSiteObjects = array();
 	protected $mSiteModuleObjects = array();
 
+	public function __construct() {
+
+		$this->Xupdate = new Xupdate_Root ;// Xupdate instance
+		//$this->Ftp =& $this->Xupdate->Ftp ;		// FTP instance
+		$this->Func =& $this->Xupdate->func ;		// Functions instance
+
+	}
 
 	public function execute()
 	{
 //データの自動作成と削除
 		//for test start ---------------------------
-		include dirname(__FILE__) .'/modules.ini';
+		include dirname(__FILE__) . '/stores.inc.php';
 		$this->stores = $stores;
 		$this->_setmStoreObjects();
 
 		//このストアーごとのアイテム配列をセットしてください
-		$this->items = $items;
+/*			$this->items = $items;
+*/
 		//for test end ---------------------------
 		//上記を使用して
 		//登録済のデータをマージします
 		//未登録のデータは自動で登録
-		foreach($this->items as $sid => $items){
+/*		foreach($this->items as $sid => $items){
 			$this->_setmSiteModuleObjects($sid);
 			foreach($items as $key => $item){
 				if ($item['target_type'] == 'TrustModule' ){
@@ -44,6 +58,27 @@ class Xupdate_ModulesIniDadaSet
 				}
 			}
 		}
+*/
+		$downloadedFilePath = '';
+		foreach($this->stores as $sid => $store){
+			$downloadUrl = $store['addon_url'];
+			$target_key = 'modules.ini';
+			$tempFilename = 'modules'.(int)$store['sid'].'.ini.php';
+			if ($this->Func->_downloadFile($target_key, $downloadUrl, $tempFilename, $downloadedFilePath) && file_exists(($downloadedFilePath))){
+				//adump($downloadUrl,$downloadedFilePath);
+				$this->_setmSiteModuleObjects($sid);
+				include ($downloadedFilePath);
+				foreach($items as $key => $item){
+					if ($item['target_type'] == 'TrustModule' ){
+						$this->_setDataTrustModule($sid , $item);
+					}else{
+						$this->_setDataSingleModule($sid , $item);
+					}
+				}
+			}
+
+		}
+
 	}
 
 
@@ -156,6 +191,27 @@ class Xupdate_ModulesIniDadaSet
 			}
 		}
 		$item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
+		$item['addon_url']= isset($item['addon_url']) ? $item['addon_url']: '' ;
+
+		if(isset($item['writable_file']) || isset($item['writable_dir']) || isset($item['install_only'])){
+			$item_arr=array();
+			if(isset($item['writable_file'])){
+				$item_arr['writable_file']= $item['writable_file'] ;
+				unset ($item['writable_file']);
+			}
+			if(isset($item['writable_dir'])){
+				$item_arr['writable_dir']= $item['writable_dir'] ;
+				unset ($item['writable_dir']);
+			}
+			if(isset($item['install_only'])){
+				$item_arr['install_only']= $item['install_only'] ;
+				unset ($item['install_only']);
+			}
+			$item['options']= serialize($item_arr) ;
+			//adump($item['options']);
+		} else{
+			$item['options']= '';
+		}
 
 		$mobj = new $this->modHand->mClass();
 		$mobj->assignVars($item);
@@ -187,6 +243,27 @@ class Xupdate_ModulesIniDadaSet
 			}
 		}
 		$item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
+		$item['addon_url']= isset($item['addon_url']) ? $item['addon_url']: '' ;
+
+		if(isset($item['writable_file']) || isset($item['writable_dir']) || isset($item['install_only'])){
+			$item_arr=array();
+			if(isset($item['writable_file'])){
+				$item_arr['writable_file']= $item['writable_file'] ;
+				unset ($item['writable_file']);
+			}
+			if(isset($item['writable_dir'])){
+				$item_arr['writable_dir']= $item['writable_dir'] ;
+				unset ($item['writable_dir']);
+			}
+			if(isset($item['install_only'])){
+				$item_arr['install_only']= $item['install_only'] ;
+				unset ($item['install_only']);
+			}
+			$item['options']= serialize($item_arr) ;
+			//adump($item['options']);
+		} else{
+			$item['options']= '';
+		}
 
 		//インストール済みの同じtrustモージュールのリストを取得
 		$list = Legacy_Utils::getDirnameListByTrustDirname($item['trust_dirname']);
@@ -269,6 +346,8 @@ class Xupdate_ModulesIniDadaSet
 		$newdata['version'] = $obj->getVar('version');
 		$newdata['description'] = $obj->getVar('description');
 		$newdata['unzipdirlevel'] = $obj->getVar('unzipdirlevel');
+		$newdata['addon_url'] = $obj->getVar('addon_url');
+		$newdata['options'] = $obj->getVar('options');
 
 		$olddata['dirname'] = $oldobj->getVar('dirname');
 		$olddata['trust_dirname'] = $oldobj->getVar('trust_dirname');
@@ -278,6 +357,9 @@ class Xupdate_ModulesIniDadaSet
 		$olddata['version'] = $oldobj->getVar('version');
 		$olddata['description'] = $oldobj->getVar('description');
 		$olddata['unzipdirlevel'] = $oldobj->getVar('unzipdirlevel');
+		$olddata['addon_url'] = $oldobj->getVar('addon_url');
+		$olddata['options'] = $oldobj->getVar('options');
+
 		if (count(array_diff_assoc($olddata, $newdata)) > 0 ) {
 			$obj->unsetNew();
 			$this->modHand->insert($obj ,true);

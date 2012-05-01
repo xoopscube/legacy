@@ -85,15 +85,13 @@ class Xupdate_Root extends XoopsSimpleObject {
 	public function get($key, $default = null) {
 
 		return $this->Delete_Nullbyte($this->mRoot->mContext->mRequest->getRequest($key));
-		//$request = ( isset($_GET[$key]) ) ? $_GET[$key] : $default;
-		//return $request;
+
 	}
 
 	public function post($key, $default = null) {
 
 		return $this->Delete_Nullbyte($this->mRoot->mContext->mRequest->getRequest($key));
-		//$request = ( isset($_POST[$key]) ) ? $_POST[$key] : $default;
-		//return $request;
+
 	}
 
 	private function Delete_Nullbyte( $value )

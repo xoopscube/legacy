@@ -18,6 +18,8 @@ CREATE TABLE `{prefix}_{dirname}_modulestore` (
 	`replicatable` tinyint(1) unsigned NOT NULL default '0',
 	`description` varchar(255) NOT NULL default '',
 	`unzipdirlevel` tinyint(1) unsigned NOT NULL default '0',
+	`addon_url` varchar(255) NOT NULL default '',
+	`options` text,
 PRIMARY KEY  (`id`),
 KEY sid (sid),
 KEY dirname (dirname)

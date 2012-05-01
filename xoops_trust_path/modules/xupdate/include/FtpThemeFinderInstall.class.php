@@ -57,7 +57,8 @@ class Xupdate_FtpThemeFinderInstall extends Xupdate_FtpCommonZipArchive {
 		$result = true;
 		if( $this->Xupdate->params['is_writable']['result'] === true ) {
 
-			if ($this->_downloadFile()){
+			$downloadUrl = $this->Func->_getDownloadUrl( $this->target_key, $this->downloadUrlFormat );
+			if ($this->Func->_downloadFile( $this->target_key, $downloadUrl, $this->downloadedFilePath )){
 				if($this->_unzipFile()==true) {
 					// ToDo port , timeout
 					if($this->Ftp->app_login("127.0.0.1")==true) {

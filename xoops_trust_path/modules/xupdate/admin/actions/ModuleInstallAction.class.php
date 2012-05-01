@@ -145,10 +145,11 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 				$this->dirname = $mobj->get('dirname');
 			}
 			$this->unzipdirlevel = $mobj->get('unzipdirlevel');
+			$this->addon_url = $mobj->get('addon_url');
 
 			$sobj =& $storeHand->get($this->sid);
 			if (is_object($sobj)){
-				$this->addon_url = $sobj->get('addon_url');
+				//$this->addon_url = $sobj->get('addon_url');
 			}
 		}
 		//-------------------------------------------

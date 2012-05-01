@@ -17,18 +17,20 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 	 *
 	 * @return	bool
 	 **/
-	public function _unzipFile()
+	public function _unzipFile( )
 	{
 		// local file name
-		$downloadFilePath = $this->_getDownloadFilePath();
-		$downloadFilePath = realpath($downloadFilePath);
+		//$downloadFilePath = $this->_getDownloadFilePath();
+		$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
+		$downloadFilePath = $this->Xupdate->params['temp_path'].'/'.$this->target_key .'.tgz';
+		$exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
 		if (empty($downloadFilePath) ) {
 			$this->_set_error_log('getDownloadFilePath not found error in: '.$this->_getDownloadFilePath());
 			return false;
 		}
 
-		if (! chdir($this->exploredDirPath) ) {
-			$this->_set_error_log('chdir error in: '.$this->exploredDirPath);
+		if (! chdir($exploredDirPath) ) {
+			$this->_set_error_log('chdir error in: '.$exploredDirPath);
 			return false;//chdir error
 		}
 
@@ -45,7 +47,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 		try {
 			 $result = $zip->open($downloadFilePath);
 			if($result !==true ){
-				throw new Exception('ZipArchive open fail ',2);
+				throw new Exception('ZipArchive open fail '.$downloadFilePath ,2);
 			}
 		} catch (Exception $e) {
 			$zip_open_error_arr = array(
@@ -77,8 +79,8 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 		}
 
 		$zip->close();
-		$this->Ftp->appendMes('explored in: '.$this->exploredDirPath.'<br />');
-		$this->content.= 'explored in: '.$this->exploredDirPath.'<br />';
+		$this->Ftp->appendMes('explored in: '.$exploredDirPath.'<br />');
+		$this->content.= 'explored in: '.$exploredDirPath.'<br />';
 
 		return true;
 	}
