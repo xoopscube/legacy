@@ -67,8 +67,11 @@ class Xupdate_ModulesIniDadaSet
 			if ($this->Func->_downloadFile($target_key, $downloadUrl, $tempFilename, $downloadedFilePath) && file_exists(($downloadedFilePath))){
 				//adump($downloadUrl,$downloadedFilePath);
 				$this->_setmSiteModuleObjects($sid);
-				include ($downloadedFilePath);
+				$items = parse_ini_file($downloadedFilePath, true);
+				adump($items);
+				//include ($downloadedFilePath);
 				foreach($items as $key => $item){
+					$item['sid'] = $sid ;
 					if ($item['target_type'] == 'TrustModule' ){
 						$this->_setDataTrustModule($sid , $item);
 					}else{

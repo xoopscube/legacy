@@ -18,7 +18,7 @@
 		$_store = array();
 		$_store['sid'] = '2';
 		$_store['name'] = 'Xoops X (Ten) - GitHub';
-		$_store['addon_url'] = 'http://www.naaon.com/uploads/xupdate/modules_xoopsx.txt';
+		$_store['addon_url'] = 'http://www.naaon.com/uploads/xupdate/modules_xoopsx.ini';
 		$stores[$_store['sid']]=$_store;
 
 //-------------------------------------
@@ -36,7 +36,7 @@
 		$_store = array();
 		$_store['sid'] = '4';
 		$_store['name'] = 'naao - GitHub';
-		$_store['addon_url'] = 'http://www.naaon.com/uploads/xupdate/modules_naao.txt';
+		$_store['addon_url'] = 'http://www.naaon.com/uploads/xupdate/modules_naao.ini';
 		$stores[$_store['sid']]=$_store;
 
 //-------------------------------------
