@@ -42,42 +42,49 @@ class Xupdate_ModulesIniDadaSet
 		$this->_setmStoreObjects();
 
 		//このストアーごとのアイテム配列をセットしてください
-/*			$this->items = $items;
-*/
-		//for test end ---------------------------
-		//上記を使用して
 		//登録済のデータをマージします
 		//未登録のデータは自動で登録
-/*		foreach($this->items as $sid => $items){
-			$this->_setmSiteModuleObjects($sid);
-			foreach($items as $key => $item){
-				if ($item['target_type'] == 'TrustModule' ){
-					$this->_setDataTrustModule($sid , $item);
-				}else{
-					$this->_setDataSingleModule($sid , $item);
-				}
-			}
-		}
-*/
+
+		$root =& XCube_Root::getSingleton();
+		$language = $root->mContext->getXoopsConfig('language');
+		$downloadDirPath = $this->Xupdate->params['temp_path'];
+		$realDirPath = realpath($downloadDirPath);
+
 		$downloadedFilePath = '';
 		foreach($this->stores as $sid => $store){
 			$downloadUrl = $store['addon_url'];
 			$target_key = 'modules.ini';
 			$tempFilename = 'modules'.(int)$store['sid'].'.ini.php';
+
+			// make language directory
+			$languagePath = $this->Func->makeDirectory( $downloadDirPath, 'language' );
+			$languageEachPath = $this->Func->makeDirectory( $languagePath, $language );
+
 			if ($this->Func->_downloadFile($target_key, $downloadUrl, $tempFilename, $downloadedFilePath) && file_exists(($downloadedFilePath))){
-				//adump($downloadUrl,$downloadedFilePath);
-				$this->_setmSiteModuleObjects($sid);
-				$items = parse_ini_file($downloadedFilePath, true);
-				adump($items);
-				//include ($downloadedFilePath);
-				foreach($items as $key => $item){
-					$item['sid'] = $sid ;
-					if ($item['target_type'] == 'TrustModule' ){
-						$this->_setDataTrustModule($sid , $item);
-					}else{
-						$this->_setDataSingleModule($sid , $item);
+				$p = pathinfo( $downloadUrl);
+				$f = basename ( $downloadUrl, ".{$p['extension']}" );
+				$u = preg_replace("/.[^.]+$/","",$downloadUrl);
+				//$downloadLangUrl = $u. '/language/'._CHARSET.'/'.$f.'.'.$p['extension'];
+				$downloadLangUrl = $u. '/language/'.$language.'/'.$f.'.ini';
+				$tempLangFilename = 'language/'.$language.'/modules'.(int)$store['sid'].'.ini.php';
+				//adump($downloadLangUrl);
+				if ($this->Func->_downloadFile($target_key, $downloadLangUrl, $tempLangFilename, $downloadedLangFilePath) && file_exists(($downloadedLangFilePath))){
+					//adump($downloadUrl,$downloadedFilePath);
+					$this->_setmSiteModuleObjects($sid);
+					$items = parse_ini_file($downloadedFilePath, true);
+					$items_lang = parse_ini_file($downloadedLangFilePath, true);
+					//adump($items, $items_lang);
+					foreach($items as $key => $item){
+						$item['sid'] = $sid ;
+						$item['description'] = $items_lang[$item['target_key']]['description'] ;
+						if ($item['target_type'] == 'TrustModule' ){
+							$this->_setDataTrustModule($sid , $item);
+						}else{
+							$this->_setDataSingleModule($sid , $item);
+						}
 					}
 				}
+
 			}
 
 		}

@@ -38,33 +38,17 @@ class Xupdate_Func {
 	 **/
 	public function _downloadFile( $target_key, $downloadUrl, $tempFilename, &$downloadedFilePath )
 	{
+
 		$downloadDirPath = $this->Xupdate->params['temp_path'];
 		$realDirPath = realpath($downloadDirPath);
 
-		if (empty($realDirPath) ) {
-			$this->_set_error_log('downloadDirPath not found error in: '.$downloadDirPath);
-			return false;
-		}
-		if (! chdir($realDirPath) ) {
-			$this->_set_error_log('chdir error in: '.$downloadDirPath);
-			return false;//chdir error
-		}
-		@mkdir($target_key);
-		$exploredDirPath = realpath($downloadDirPath.'/'.$target_key);
-		//directory traversal check
-		if (strpos($exploredDirPath, $realDirPath) === false){
-			$this->_set_error_log('directory traversal error in: '.$downloadDirPath.'/'.$target_key);
-			return false;
-		}
-		if (!is_dir($exploredDirPath)){
-			$this->_set_error_log('not is_dir error in: '.$downloadDirPath.'/'.$target_key);
-			return false;//chdir error
-		}
+		// make exploring directory
+		$exploredDirPath = $this->makeDirectory( $downloadDirPath, $target_key );
 
 		$this->Ftp->appendMes('downladed in: '.$downloadDirPath.'<br />');
 		$this->content.= 'downladed in: '.$downloadDirPath.'<br />';
 		if (! chdir($exploredDirPath) ) {
-			$this->_set_error_log('chdir error in: '.$downloadDirPath);
+			$this->_set_error_log('chdir error in: '.$exploredDirPath);
 			return false;//chdir error
 		}
 
@@ -171,6 +155,38 @@ class Xupdate_Func {
 		fclose($fp);
 
 		return true;
+	}
+
+	/**
+	 * makeDirectory
+	 *
+	 * @param string $realDirPath
+	 * @param string $directoryName
+	 *
+	 * @return	string
+	 **/
+	public function makeDirectory( $realDirPath, $directoryName )
+	{
+		if (empty($realDirPath) ) {
+			$this->_set_error_log('directory path not found error in: '.$realDirPath);
+			return null;
+		}
+		if (! chdir($realDirPath) ) {
+			$this->_set_error_log('chdir error in: '.$realDirPath);
+			return null;//chdir error
+		}
+		@mkdir($directoryName);
+		$newDirPath = realpath($realDirPath.'/'.$directoryName);
+
+		if (strpos($newDirPath, $realDirPath) === false){
+			$this->_set_error_log('directory traversal error in: '.$newDirPath);
+			return null;
+		}
+		if (!is_dir($newDirPath)){
+			$this->_set_error_log('not is_dir error in: '.$newDirPath);
+			return null;//chdir error
+		}
+		return $newDirPath;
 	}
 
 	/**
