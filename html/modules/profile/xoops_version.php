@@ -13,9 +13,9 @@ $mydirpath = basename( dirname( __FILE__ ) ) ;
 // Define a basic manifesto.
 //
 $modversion['name'] = _MI_PROFILE_LANG_PROFILE;
-$modversion['version'] = 2.01;
+$modversion['version'] = 2.02;
 $modversion['description'] = _MI_PROFILE_DESC_PROFILE;
-$modversion['author'] = "kilica";
+$modversion['author'] = "kilica and Y.SAKAI";
 $modversion['credits'] = "";
 $modversion['help'] = "help.html";
 $modversion['license'] = "GPL";

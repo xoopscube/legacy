@@ -58,13 +58,7 @@ class Profile_AbstractListAction extends Profile_AbstractAction
 		return PROFILE_FRAME_VIEW_INDEX;
 	}
 
-	/**
-	 * @public
-	 */
-	function execute()
-	{
-		return $this->getDefaultView();
-	}
+
 }
 
 ?>

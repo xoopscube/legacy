@@ -85,8 +85,7 @@ class Profile_Module extends Legacy_ModuleAdapter
 		if ($this->mAdminFlag) {
 			$className = "Profile_Admin_" . ucfirst($this->mActionName) . "Action";
 			$fileName = XOOPS_MODULE_PATH . "/profile/admin/actions/${fileName}.class.php";
-		}
-		else {
+		} else {
 			$className = "Profile_" . ucfirst($this->mActionName) . "Action";
 			$fileName = XOOPS_MODULE_PATH . "/profile/actions/${fileName}.class.php";
 		}
@@ -129,14 +128,13 @@ class Profile_Module extends Legacy_ModuleAdapter
 	
 		if (xoops_getenv("REQUEST_METHOD") == "POST") {
 			$viewStatus = $this->mAction->execute();
-		}
-		else {
+		} else {
 			$viewStatus = $this->mAction->getDefaultView();
 		}
 	
 		switch ($viewStatus) {
 			case PROFILE_FRAME_VIEW_SUCCESS:
-				$this->mAction->executeViewSuccess($controller->mRoot->mContext->mModule->getRenderTarget());
+				$this->mAction->executeViewSuccess($controller,$controller->mRoot->mContext->mModule->getRenderTarget());
 				break;
 			case PROFILE_FRAME_VIEW_ERROR:
 				$this->mAction->executeViewError($controller->mRoot->mContext->mModule->getRenderTarget());
