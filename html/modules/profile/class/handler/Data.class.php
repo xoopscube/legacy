@@ -76,6 +76,14 @@ class Profile_DataHandler extends XoopsObjectGenericHandler
 	var $mPrimary = 'uid';
 	var $mClass = 'Profile_DataObject';
 
+	public function insert(&$obj, $force = false)
+	{
+		if(count($obj->mDef)===0){
+			return true;
+		}
+		parent::insert($obj, $force = false);
+	}
+
 }
 
 ?>

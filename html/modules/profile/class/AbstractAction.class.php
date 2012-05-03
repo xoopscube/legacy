@@ -16,101 +16,51 @@ class Profile_AbstractAction
 	/**
 	 * @public
 	 */
-	function Profile_AbstractAction()
-	{
+	function &_getHandler(){
+	}
+	function Profile_AbstractAction(){
 		$this->mRoot =& XCube_Root::getSingleton();
 		$this->mModule =& $this->mRoot->mContext->mModule;
 		$this->mAsset =& $this->mModule->mAssetManager;
 	}
-
-	/**
-	 * @public
-	 */
-	function isMemberOnly()
-	{
+	function isMemberOnly(){
 		return false;
 	}
-
-	/**
-	 * @public
-	 */
-	function isAdminOnly()
-	{
+	function isAdminOnly(){
 		return false;
 	}
-
-	/**
-	 * @public
-	 */
-	function prepare()
-	{
+	function prepare(){
 		return true;
 	}
 
-	/**
-	 * @public
-	 */
-	function hasPermission()
-	{
+	function hasPermission(){
 		return true;
 	}
 
-	/**
-	 * @public
-	 */
-	function getDefaultView()
-	{
+	function getDefaultView(){
 		return Profile_FRAME_VIEW_NONE;
 	}
 
-	/**
-	 * @public
-	 */
-	function execute()
-	{
+	function execute(){
 		return Profile_FRAME_VIEW_NONE;
 	}
 
-	/**
-	 * @public
-	 */
-	function executeViewSuccess(&$render)
-	{
+	function executeViewSuccess(&$controller,&$render){
 	}
 
-	/**
-	 * @public
-	 */
-	function executeViewError(&$render)
-	{
+	function executeViewError(&$render){
 	}
 
-	/**
-	 * @public
-	 */
-	function executeViewIndex(&$render)
-	{
+	function executeViewIndex(&$render){
 	}
 
-	/**
-	 * @public
-	 */
-	function executeViewInput(&$render)
-	{
+	function executeViewInput(&$render){
 	}
 
-	/**
-	 * @public
-	 */
-	function executeViewPreview(&$render)
-	{
+	function executeViewPreview(&$render){
 	}
 
-	/**
-	 * @public
-	 */
-	function executeViewCancel(&$render)
-	{
+	function executeViewCancel(&$render){
 	}
 
 }
