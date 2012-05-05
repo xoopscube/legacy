@@ -19,7 +19,7 @@ require_once XUPDATE_TRUST_PATH . '/include/FtpModuleInstall.class.php';
  *
  * @property mixed downloadUrlFormat
  */
-class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
+class Xupdate_Admin_ThemeInstallAction extends Xupdate_AbstractAction
 {
 
 //	protected $Xupdate  ;	// Xupdate instance
@@ -154,7 +154,7 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 		}
 		//-------------------------------------------
 
-		$render->setTemplateName('admin_module_install_confirm.html');
+		$render->setTemplateName('admin_theme_install_confirm.html');
 
 		$render->setAttribute('mod_config', $this->mod_config);
 		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
@@ -198,10 +198,10 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 		$xupdateFtpModuleInstall->unzipdirlevel = $this->mActionForm->get('unzipdirlevel');
 
 		//execute
-		$result = $xupdateFtpModuleInstall->execute('module');
+		$result = $xupdateFtpModuleInstall->execute('theme');
 
 		//--------------------------------//
-		$render->setTemplateName('admin_module_install.html');
+		$render->setTemplateName('admin_theme_install.html');
 
 		$render->setAttribute('mod_config', $this->mod_config);
 		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
@@ -222,7 +222,7 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 	 **/
 	public function executeViewCancel(&$render)
 	{
-		$this->mRoot->mController->executeForward('./index.php?action=ModuleStore');
+		$this->mRoot->mController->executeForward('./index.php?action=ThemeStore');
 	}
 
 

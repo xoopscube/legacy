@@ -1,0 +1,64 @@
+{
+"sourceforge.jp":
+{
+"sid":"1",
+"name":"sourceforge.jp pack2012 \u5c0e\u5165\u63a8\u5968modules",
+"contents":"module",
+"setting_type":"ini",
+"addon_url":"http:\/\/sourceforge.jp\/projects\/xoopscube22x\/svn\/view\/files\/%s.zip?view=co&root=xoopscube22x"
+},
+
+"XoopsX":
+{
+"sid":"2",
+"name":"Xoops X (Ten) - GitHub",
+"contents":"module",
+"setting_type":"ini",
+"addon_url":"http:\/\/www.naaon.com\/uploads\/xupdate\/modules_xoopsx.txt"
+},
+
+"sourceforge.jp-2":
+{
+"sid":"3",
+"name":"sourceforge.jp pack2012 \u9078\u629e\u5c0e\u5165\u53ef\u80fdX2Module modules",
+"contents":"module",
+"setting_type":"ini",
+"addon_url":"http:\/\/sourceforge.jp\/projects\/xoopscube22x\/svn\/view\/files\/%s.zip?view=co&root=xoopscube22x"
+},
+
+"naao":
+{
+"sid":"4",
+"name":"naao - GitHub",
+"contents":"module",
+"setting_type":"ini",
+"addon_url":"http:\/\/www.naaon.com\/uploads\/xupdate\/modules_naao.txt"
+},
+
+"domifara":
+{
+"sid":"5",
+"name":"xodomifara.lolipop.jp test",
+"contents":"module",
+"setting_type":"json",
+"addon_url":"http:\/\/xodomifara.lolipop.jp\/karidown\/%s.zip"
+},
+
+"nao-pon":
+{
+"sid":"6",
+"name":"nao-pon - GitHub",
+"contents":"module",
+"setting_type":"json",
+"addon_url":"https:\/\/github.com\/nao-pon\/%s\/zipball\/master"
+},
+
+"xoops123":
+{
+"sid":"7",
+"name":"xoops123 - GitHub",
+"contents":"theme",
+"setting_type":"ini",
+"addon_url":"http:\/\/www.naaon.com\/uploads\/xupdate\/themes_xoops123.ini"
+}
+}

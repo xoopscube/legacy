@@ -58,7 +58,10 @@ class Xupdate_FtpThemeFinderInstall extends Xupdate_FtpCommonZipArchive {
 		if( $this->Xupdate->params['is_writable']['result'] === true ) {
 
 			$downloadUrl = $this->Func->_getDownloadUrl( $this->target_key, $this->downloadUrlFormat );
-			if ($this->Func->_downloadFile( $this->target_key, $downloadUrl, $this->downloadedFilePath )){
+			$tempFilename = $this->target_key . '.tgz';
+			if ($this->Func->_downloadFile( $this->target_key, $downloadUrl, $tempFilename, $this->downloadedFilePath )){
+				$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
+				$this->exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
 				if($this->_unzipFile()==true) {
 					// ToDo port , timeout
 					if($this->Ftp->app_login("127.0.0.1")==true) {
@@ -85,9 +88,10 @@ class Xupdate_FtpThemeFinderInstall extends Xupdate_FtpCommonZipArchive {
 			$this->content.= 'cleaning up... <br />';
 			$this->_cleanup($this->exploredDirPath);
 			//
-			$downloadPath= $this->_getDownloadFilePath() ;
+			//$downloadPath= $this->_getDownloadFilePath() ;
 //TODO unlink ok?
-			@unlink( $downloadPath );
+			//@unlink( $downloadPath );
+			@unlink( $this->downloadedFilePath );
 
 			$this->content.= 'completed <br /><br />';
 		}else{

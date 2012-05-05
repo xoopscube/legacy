@@ -26,7 +26,9 @@ class Xupdate_StoreObject extends XoopsSimpleObject
 	{
 		$this->initVar('sid', XOBJ_DTYPE_INT, '0', false);
 		$this->initVar('name', XOBJ_DTYPE_STRING, '', false, 255);
+		$this->initVar('contents', XOBJ_DTYPE_STRING, '', false, 255);
 		$this->initVar('addon_url', XOBJ_DTYPE_STRING, '', false, 255);
+		$this->initVar('setting_type', XOBJ_DTYPE_INT, '0', false);
 		$this->initVar('reg_unixtime', XOBJ_DTYPE_INT, '0', false);
 
 	}

@@ -70,6 +70,7 @@ define('_MI_XUPDATE_ADMENU_MODULE' , 'モジュール');
 define('_MI_XUPDATE_ADMENU_MYBLOCKSADMIN' , 'アクセス権限設定');
 define('_MI_XUPDATE_ADMENU_MYPREFERENCES' , '一般設定');
 define('_MI_XUPDATE_ADMENU_THEME' , 'テーマ');
+define('_MI_XUPDATE_ADMENU_THEMEFINDER' , 'テーマファインダ');
 
 // admin constant
 define('_MI_XUPDATE_TEMP_PATH' , '圧縮ファイルダウンロード・展開用フォルダ');

@@ -46,7 +46,9 @@ class Xupdate_StoreEditForm extends XCube_ActionForm
 //		$this->mFormProperties['uid'] = new XCube_IntProperty('uid');
 //		$this->mFormProperties['valid'] = new XCube_IntProperty('valid');
 		$this->mFormProperties['name'] = new XCube_StringProperty('name');
+	    $this->mFormProperties['contents'] = new XCube_StringProperty('contents');
 		$this->mFormProperties['addon_url'] = new XCube_StringProperty('addon_url');
+	    $this->mFormProperties['setting_type'] = new XCube_IntProperty('setting_type');
 //		$this->mFormProperties['theme_url'] = new XCube_StringProperty('theme_url');
 		$this->mFormProperties['reg_unixtime'] = new XCube_IntProperty('reg_unixtime');
 
@@ -70,11 +72,20 @@ class Xupdate_StoreEditForm extends XCube_ActionForm
 		$this->mFieldProperties['name']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, _MD_XUPDATE_LANG_NAME);
 		$this->mFieldProperties['name']->addMessage('maxlength', _MD_XUPDATE_ERROR_MAXLENGTH, _MD_XUPDATE_LANG_NAME, '255');
 		$this->mFieldProperties['name']->addVar('maxlength', '255');
+	    $this->mFieldProperties['contents'] = new XCube_FieldProperty($this);
+	    $this->mFieldProperties['contents']->setDependsByArray(array('required','maxlength'));
+	    $this->mFieldProperties['contents']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, _MD_XUPDATE_LANG_NAME);
+	    $this->mFieldProperties['contents']->addMessage('maxlength', _MD_XUPDATE_ERROR_MAXLENGTH, _MD_XUPDATE_LANG_NAME, '255');
+	    $this->mFieldProperties['contents']->addVar('maxlength', '255');
 		$this->mFieldProperties['addon_url'] = new XCube_FieldProperty($this);
 		$this->mFieldProperties['addon_url']->setDependsByArray(array('required','maxlength'));
 		$this->mFieldProperties['addon_url']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, _MD_XUPDATE_LANG_ADDON_URL);
 		$this->mFieldProperties['addon_url']->addMessage('maxlength', _MD_XUPDATE_ERROR_MAXLENGTH, _MD_XUPDATE_LANG_ADDON_URL, '255');
 		$this->mFieldProperties['addon_url']->addVar('maxlength', '255');
+
+	    $this->mFieldProperties['setting_type'] = new XCube_FieldProperty($this);
+	    $this->mFieldProperties['setting_type']->setDependsByArray(array('required'));
+	    $this->mFieldProperties['setting_type']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, _MD_XUPDATE_LANG_SETTING_TYPE);
 /*
 		$this->mFieldProperties['theme_url'] = new XCube_FieldProperty($this);
 		$this->mFieldProperties['theme_url']->setDependsByArray(array('required','maxlength'));
@@ -101,7 +112,8 @@ class Xupdate_StoreEditForm extends XCube_ActionForm
 // 	   $this->set('uid', $obj->get('uid'));
 // 	   $this->set('valid', $obj->get('valid'));
  	   $this->set('name', $obj->get('name'));
- 	   $this->set('addon_url', $obj->get('addon_url'));
+	   $this->set('contents', $obj->get('contents'));
+	   $this->set('addon_url', $obj->get('addon_url'));
 // 	   $this->set('theme_url', $obj->get('theme_url'));
  	   $this->set('reg_unixtime', $obj->get('reg_unixtime'));
 

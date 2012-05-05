@@ -34,6 +34,11 @@ class Xupdate_Func {
 	/**
 	 * _downloadFile
 	 *
+	 * @param string $target_key
+	 * @param string $downloadUrl
+	 * @param string $tempFilename
+	 * @byref string $downloadedFilePath
+	 *
 	 * @return	bool
 	 **/
 	public function _downloadFile( $target_key, $downloadUrl, $tempFilename, &$downloadedFilePath )
@@ -103,7 +108,7 @@ class Xupdate_Func {
 			try {
 				//redirect suport
 				$setopt4 = curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-				$setopt5 = curl_setopt($ch, CURLOPT_MAXREDIRS, 1);
+				$setopt5 = curl_setopt($ch, CURLOPT_MAXREDIRS, 2);
 
 				if(!$setopt4 || !$setopt5 ){
 					throw new Exception('curl_setopt CURLOPT_FOLLOWLOCATION fail skip',4);
@@ -142,7 +147,7 @@ class Xupdate_Func {
 
 			$result = curl_exec($ch);
 			if($result === false ){
-				throw new Exception('curl_exec fail',7);
+				throw new Exception('curl_exec fail:'.$downloadUrl.'<br />'.$downloadedFilePath,7);
 			}
 			$this->Ftp->appendMes('curl exec OK<br />');
 		} catch (Exception $e) {

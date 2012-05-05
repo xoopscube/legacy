@@ -100,8 +100,16 @@ $modversion['adminmenu'] = array(
 	),
 	array(
 		'title'		=> _MI_XUPDATE_ADMENU_THEME,
-		'link'	=> 'admin/index.php?action=ThemeFinder',
+		//'link'	=> 'admin/index.php?action=ThemeStore',
+		'link'	=> 'admin/index.php?action=ThemeStore',
 		'keywords'	=> _MI_XUPDATE_ADMENU_THEME,
+		'show'	=> true,
+		'absolute' => false
+	),
+	array(
+		'title'		=> _MI_XUPDATE_ADMENU_THEMEFINDER,
+		'link'	=> 'admin/index.php?action=ThemeFinder',
+		'keywords'	=> _MI_XUPDATE_ADMENU_THEMEFINDER,
 		'show'	=> true,
 		'absolute' => false
 	)

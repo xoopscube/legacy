@@ -102,7 +102,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$inidataset = new Xupdate_ModulesIniDadaSet;
 		$inidataset->storeHand =  & $this->_getStoreHandler();
 		$inidataset->modHand = & $this->_getHandler();
-		$inidataset->execute();
+		$inidataset->execute( 'module' );
 
 //-----------------------------------------------
 
@@ -115,10 +115,13 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$this->mFilter->fetch();
 
 		$criteria = $this->mFilter->getCriteria();
-		if (!empty($this->sid)){
+		$cri_compo = new CriteriaCompo();
+		$cri_compo->add(new Criteria( 'target_type', 'TrustModule' ) );
+		$cri_compo->add(new Criteria( 'target_type', 'X2Module'), 'OR' ) ;
+		$criteria->add( $cri_compo );
+		if (!empty( $this->sid)){
 			$criteria->add(new Criteria( 'sid', $this->sid ) );
 		}
-
 		$this->mModuleObjects =& $modHand->getObjects($criteria);
 		return XUPDATE_FRAME_VIEW_INDEX;
 	}
@@ -143,14 +146,15 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$render->setAttribute('moduleObjects', $this->mModuleObjects);
 
 		$modHand = & $this->_getHandler();
-
-		if (empty( $this->sid)){
-			$module_total = $modHand->getCount();
-		}else{
-			$criteria = new CriteriaCompo();
+		$criteria = new CriteriaCompo();
+		$cri_compo = new CriteriaCompo();
+		$cri_compo->add(new Criteria( 'target_type', 'TrustModule' ) );
+		$cri_compo->add(new Criteria( 'target_type', 'X2Module'), 'OR' ) ;
+		$criteria->add( $cri_compo );
+		if (!empty( $this->sid)){
 			$criteria->add(new Criteria( 'sid', $this->sid ) );
-			$module_total = $modHand->getCount($criteria);
 		}
+			$module_total = $modHand->getCount($criteria);
 
 		$render->setAttribute('pageNavi', $this->mFilter->mNavi);
 
@@ -184,13 +188,15 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	{
 		$modHand = & $this->_getHandler();
 
-		if (empty( $this->sid)){
-			$this->mModuleObjects =& $modHand->getObjects(null ,null , null , true);
-		}else{
-			$criteria = new CriteriaCompo();
+		$criteria = new CriteriaCompo();
+		$cri_compo = new CriteriaCompo();
+		$cri_compo->add(new Criteria( 'target_type', 'TrustModule' ) );
+		$cri_compo->add(new Criteria( 'target_type', 'X2Module'), 'OR' ) ;
+		$criteria->add( $cri_compo );
+		if (!empty( $this->sid)){
 			$criteria->add(new Criteria( 'sid', $this->sid ) );
-			$this->mModuleObjects =& $modHand->getObjects($criteria ,null , null , true);
 		}
+		$this->mModuleObjects =& $modHand->getObjects($criteria ,null , null , true);
 
 		return XUPDATE_FRAME_VIEW_INPUT;
 	}
@@ -228,6 +234,10 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		}else{
 			$criteria = new CriteriaCompo();
 			$criteria->add(new Criteria( 'sid', $this->sid ) );
+			$cri_compo = new CriteriaCompo();
+			$cri_compo->add(new Criteria( 'target_type', 'TrustModule' ) );
+			$cri_compo->add(new Criteria( 'target_type', 'X2Module'), 'OR' ) ;
+			$criteria->add( $cri_compo );
 			$t_objectArr =& $modHand->getObjects($criteria,null,null,true);
 		}
 

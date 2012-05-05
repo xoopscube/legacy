@@ -53,9 +53,11 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	/**
 	 * execute
 	 *
+	 * @param string $caller
+	 *
 	 * @return	bool
 	 **/
-	public function execute()
+	public function execute( $caller )
 	{
 
 		$result = true;
@@ -112,7 +114,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 		}
 
 		if ($result){
-			$this->content.= $this->_get_nextlink($this->dirname);
+			$this->content.= $this->_get_nextlink($this->dirname, $caller);
 		}else{
 			$this->content.= _ERRORS;
 		}
@@ -214,19 +216,24 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	 *
 	 * @return	string
 	 **/
-	private function _get_nextlink($dirname)
+	private function _get_nextlink($dirname, $caller)
 	{
 		$ret ='';
-		$hModule = Xupdate_Utils::getXoopsHandler('module');
-		$module =& $hModule->getByDirname($dirname) ;
-		if (is_object($module)){
-			if ($module->getVar('isactive') ){
-				$ret ='<a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=ModuleUpdate&dirname='.$dirname.'">'._MI_XUPDATE_LANG_UPDATE.'</a>';
+		if ($caller == 'module'){
+			$hModule = Xupdate_Utils::getXoopsHandler('module');
+			$module =& $hModule->getByDirname($dirname) ;
+			if (is_object($module)){
+				if ($module->getVar('isactive') ){
+					$ret ='<a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=ModuleUpdate&dirname='.$dirname.'">'._MI_XUPDATE_LANG_UPDATE.'</a>';
+				}else{
+					$ret =_AD_LEGACY_LANG_BLOCK_INACTIVETOTAL;
+				}
 			}else{
-				$ret =_AD_LEGACY_LANG_BLOCK_INACTIVETOTAL;
+				$ret ='<a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=ModuleInstall&dirname='.$dirname.'">'._MI_XUPDATE_LANG_UPDATE.'</a>';
 			}
-		}else{
-			$ret ='<a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=ModuleInstall&dirname='.$dirname.'">'._MI_XUPDATE_LANG_UPDATE.'</a>';
+
+		} elseif ($caller == 'theme'){
+			$ret ='<a href="'.XOOPS_MODULE_URL.'/legacy/admin/index.php?action=ThemeList">'._MI_XUPDATE_LANG_UPDATE.'</a>';
 		}
 		return $ret;
 	}
