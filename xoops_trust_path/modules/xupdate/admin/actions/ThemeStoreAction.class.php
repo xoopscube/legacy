@@ -106,6 +106,9 @@ class Xupdate_Admin_ThemeStoreAction extends Xupdate_AbstractListAction
 
 //-----------------------------------------------
 
+		$jQuery = $this->mRoot->mContext->getAttribute('headerScript');
+		$jQuery->addScript($this->RapidModuleInstall_js(),false);
+
 		$modHand = & $this->_getHandler();
 
 		$this->mFilter = $this->_getFilterForm();
@@ -274,6 +277,245 @@ class Xupdate_Admin_ThemeStoreAction extends Xupdate_AbstractListAction
 			$this->mRoot->mController->executeForward('./index.php?action=ThemeStore&sid='.$this->sid);
 		}
 	}
+
+	/**
+	 * RapidModuleStore_js
+	 *
+	 * @param
+	 *
+	 * @return	void
+	 **/
+	public function RapidModuleInstall_js()
+	{
+
+		$message_Install = _MI_XUPDATE_LANG_UPDATE;
+		$message_Error = _ERRORS;
+		$message_Waiting = _AD_XUPDATE_LANG_MESSAGE_WAITING;
+		$message_Success = _AD_XUPDATE_LANG_MESSAGE_SUCCESS;
+		$message_Getting_files = _AD_XUPDATE_LANG_MESSAGE_GETTING_FILES;
+		$message_Processing = _AD_XUPDATE_LANG_MESSAGE_PROCESSING;
+
+		$ret =<<< HTML
+jQuery(function($){
+
+	var rapidModuleInstallButton = '#rapidModuleInstallButton';
+
+	var installationModuleTotal = 0;
+	var installedModuleTotal  = 0;
+	var installationModules = [];
+	var installationModule  = null;
+	var isInstallation = false;
+
+	var main = function()
+	{
+		if ( location.href.search('ThemeStore') == -1 && location.href.search(/legacy\/admin\/index.php$/) == -1 )
+		{
+			return;
+		}
+
+		if ( $('#legacy_xoopsform_confirm').length > 0 )
+		{
+			return;
+		}
+
+		addDelegates();
+	}
+
+	var addDelegates = function()
+	{
+		$('body').delegate('#rapidModuleInstallButton', 'click', clickRapidModuleInstallButton)
+						.delegate('#rapidInstallCheckboxAll', 'click', checkAll);
+	}
+
+	var clickRapidModuleInstallButton = function()
+	{
+		installationModuleTotal = $('.rapidInstallCheckbox:checked').length;
+		installedModuleTotal  = 0;
+
+		if ( installationModuleTotal < 1 )
+		{
+			return;
+		}
+
+		$(this).replaceWith('<span id="rapidInstallStatus">(<span class="total">'+installedModuleTotal+'</span>/'+installationModuleTotal+')インストール中</span>');
+
+		$('.rapidInstallCheckbox:checked').each(function()
+		{
+			var storehref = $(this).parent('td').parent('tr').find('a[href*="xupdate/admin/index.php?action=ThemeInstall"]').attr('href');
+			var installhref = $(this).parent('td').parent('tr').find('a[href*="legacy/admin/index.php?action=Theme"]').attr('href');
+			var td = $(this).parent('td');
+			installationModules.push({'storehref':storehref , 'installhref':installhref , 'td':td , 'status':0});
+		});
+
+		$(installationModules).each(function()
+		{
+			this.td.html("{$message_Waiting}");
+		});
+
+		doInstall();
+	}
+
+	var doInstall = function()
+	{
+		$(installationModules).each(function()
+		{
+			if ( this.status == 1 || isInstallation == true )
+			{
+				return;
+			}
+
+			installationModule = this;
+			isInstallation     = true;
+
+			if (typeof installationModule.storehref != 'undefined'){
+
+				installationModule.td.html("{$message_Getting_files}{$message_Processing}");
+				try
+				{
+					$.ajax({
+						type: 'GET',
+						async:false,
+						url: installationModule.storehref,
+						success: getStoreConfirmFormSuccess,
+						error: ajaxFailed
+					});
+				}
+				catch ( e )
+				{
+					installationModule.td.html('<span style="color:red;">{$message_Error}</span>');
+					installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
+					updateModuleStatus();
+				}
+			}
+			var result =installationModule.td.text();
+			if (result != '{$message_Getting_files}{$message_Success}'){
+				installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
+				updateModuleStatus();
+			}else{
+				if (typeof installationModule.installhref != 'undefined'){
+
+					installationModule.td.html("{$message_Install}{$message_Processing}");
+					try
+					{
+						$.ajax({
+							type: 'GET',
+							url: installationModule.installhref,
+							success: getConfirmFormSuccess,
+							error: ajaxFailed
+						});
+					}
+					catch ( e )
+					{
+						installationModule.td.html('<span style="color:red;">{$message_Error}</span>');
+						installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
+						updateModuleStatus();
+					}
+				}else{
+						installationModule.td.html('<span style="color:red;">{$message_Error}</span>');
+						installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
+						updateModuleStatus();
+				}
+			}
+
+		});
+	}
+	var getStoreConfirmFormSuccess = function(html)
+	{
+		var form = $(html).find('#contentBody form');
+		var formdata = form.serialize();
+
+		if (typeof installationModule.installhref != 'undefined'){
+			$.ajax({
+				type: 'POST',
+				async:false,
+				url: installationModule.storehref,
+				data: formdata,
+				success: getStoreSuccess,
+				error: ajaxFailed
+			});
+		}
+	}
+
+
+	var getStoreSuccess = function(html)
+	{
+		var result = $(html).find('#xupdate_content a').text();
+		if (result == '{$message_Install}'){
+			installationModule.td.html('<span style="color:green;">{$message_Getting_files}{$message_Success}</span>');
+		}else{
+			installationModule.td.html('<span style="color:red;">{$message_Getting_files}{$message_Error}</span>');
+		}
+	}
+
+	var getConfirmFormSuccess = function(html)
+	{
+		var form = $(html).find('#contentBody form');
+		var formdata = form.serialize();
+
+		if (typeof installationModule.installhref != 'undefined'){
+			$.ajax({
+				type: 'POST',
+				url: installationModule.installhref,
+				data: formdata,
+				success: postFormSuccess,
+				error: ajaxFailed
+			});
+		}
+	}
+
+	var postFormSuccess = function(html)
+	{
+		var result = $(html).find('li.legacy_module_message:last').text();
+		installationModule.td.hide().html('<span style="color:green;">{$message_Success}</span>').fadeIn();
+		installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
+		updateModuleStatus();
+	}
+
+	var ajaxFailed = function(XMLHttpRequest, textStatus, errorThrown)
+	{
+		throw "Ajax{$message_Error}";
+	}
+
+	var installInstallStatus = function(installedModuleTotal, installationModuleTotal)
+	{
+		installedModuleTotal += 1;
+
+		if ( installedModuleTotal == installationModuleTotal )
+		{
+			$('#rapidInstallStatus').text("{$message_Success}")
+			return installedModuleTotal;
+		}
+
+		$('#rapidInstallStatus .total').text(installedModuleTotal);
+		return installedModuleTotal;
+	}
+
+	var updateModuleStatus = function()
+	{
+		installationModule.status = 1;
+		isInstallation = false;
+		doInstall(); // Next module
+	}
+
+	var checkAll = function()
+	{
+		var isChecked = $(this).attr('checked');
+		if ( isChecked == 'checked' )
+		{
+			$('.rapidInstallCheckbox').attr('checked', 'checked');
+		}else{
+			$('.rapidInstallCheckbox').attr('checked', false);
+		}
+	}
+
+
+	main();
+});
+HTML;
+
+		return $ret;
+	}
+
 
 } // end class
 

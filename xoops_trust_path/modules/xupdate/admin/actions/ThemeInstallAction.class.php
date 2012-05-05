@@ -145,6 +145,7 @@ class Xupdate_Admin_ThemeInstallAction extends Xupdate_AbstractAction
 				$this->dirname = $mobj->get('dirname');
 			}
 			$this->unzipdirlevel = $mobj->get('unzipdirlevel');
+				//adump($this->unzipdirlevel);
 			$this->addon_url = $mobj->get('addon_url');
 
 			$sobj =& $storeHand->get($this->sid);

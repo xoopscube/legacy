@@ -8,7 +8,7 @@
 <{include file="admin_tips.html"}>
 
 <ul class="toptab">
-  <li class="addModule"><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></li>
+  <li class="addModule"><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ThemeList"><{$smarty.const._AD_LEGACY_LANG_THEME}></a></li>
 </ul>
 
 <{if $actionForm->hasError()}>
@@ -24,7 +24,10 @@
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
 <{/if}>
 
-<table class="outer">
+<form  action="index.php?action=ThemeStore" method="post" >
+    <{xoops_input type=hidden name=sid value=$sid}>
+
+    <table class="outer">
   <tr>
     <th>id
       <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.MODULE_SORT_KEY_ID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
@@ -55,13 +58,15 @@
       <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.MODULE_SORT_KEY_TARGET_TYPE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
       </th>
     <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
+      <th><{$smarty.const._AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL}><br><input id="rapidInstallCheckboxAll" type="checkbox" /></th>
   </tr>
   <{foreach item=module from=$moduleObjects}>
     <tr class="<{cycle values='odd,even'}>">
       <td class="legacy_list_id"><{$module->getShow('id')}></td>
       <td class="legacy_list_id"><{$module->getShow('sid')}></td>
       <td class="legacy_list_image">
-          <{$module->getShow('dirname')}>
+          <input type="hidden" size="24" name="dirname[<{$module->get('id')}>]" value="<{$module->get('dirname')}>" />
+         <{$module->getShow('dirname')}>
       </td>
       <td class="legacy_list_order">
         <{if $module->hasNeedUpdate()}>
@@ -98,9 +103,31 @@
         <{/if}>
      <{/if}>
       </td>
+        <td class="legacy_list_select">
+            <{if $xupdate_writable.result==true}>
+            <{if $module->mModule->getVar('mid') > 0 }>
+            <{if $module->mModule->getVar('isactive') && $module->isDirnameError() == false}>
+            <input type="checkbox" class="rapidInstallCheckbox" />
+            <{/if}>
+            <{else}>
+            <input type="checkbox" class="rapidInstallCheckbox" />
+            <{/if}>
+            <{/if}>
+        </td>
     </tr>
   <{/foreach}>
+    <tr>
+        <td class="foot" colspan="8">
+            <{xoops_token form=$actionForm}>
+       </td>
+        <td class="foot">
+            <{if $xupdate_writable.result==true}>
+            <input class="formButton" type="submit" value="<{$smarty.const._AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL}>"  id="rapidModuleInstallButton" />
+            <{/if}>
+        </td>
+    </tr>
 </table>
+</form>
 <{if $pageNavi->getPerpage() < $pageNavi->getTotalItems() }>
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
 <{/if}>
