@@ -10,6 +10,8 @@ CREATE TABLE IF NOT EXISTS `{prefix}_{dirname}_cat` (
   KEY `p_id` (`p_id`),
   KEY `weight` (`weight`)
 ) ENGINE=MyISAM;
+INSERT INTO `{prefix}_{dirname}_cat` (`cat_id`, `title`, `p_id`, `modules`, `description`, `weight`, `options`) VALUES
+(1, 'General', 0, '', '', 10, '');
 
 CREATE TABLE IF NOT EXISTS `{prefix}_{dirname}_permit` (
   `permit_id` mediumint(8) unsigned NOT NULL auto_increment,
