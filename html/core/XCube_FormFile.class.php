@@ -110,7 +110,7 @@ class XCube_FormFile
 	{
 		$ret = null;
 		$filename=$this->getFileName();
-		if (preg_match("/\.([a-z\.]+)$/", $filename, $match)) {
+		if (preg_match("/\.([a-z\.]+)$/i", $filename, $match)) {
 			$ret=$match[1];
 		}
 		
