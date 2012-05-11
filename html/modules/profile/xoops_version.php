@@ -45,6 +45,7 @@ $modversion['templates'][3]['file'] = 'profile_data_view.html';
 $modversion['templates'][4]['file'] = 'profile_data_list.html';
 $modversion['templates'][5]['file'] = 'profile_inc_data_edit.html';
 $modversion['templates'][6]['file'] = 'profile_inc_data_view.html';
+$modversion['templates'][7]['file'] = 'profile_inc_data_resister.html';
 ##[/cubson:templates]
 
 //
