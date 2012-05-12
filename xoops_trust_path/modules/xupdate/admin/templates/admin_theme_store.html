@@ -70,14 +70,14 @@
       </td>
       <td class="legacy_list_order">
         <{if $module->hasNeedUpdate()}>
-          (<{$module->mModule->getRenderedVersion()}>)
+          (<{ $module->mModule && $module->mModule->getRenderedVersion()}>)
           <strong class="legacy_module_versionMsg"><{$module->getRenderedVersion()}></strong>
         <{else}>
           <{$module->getRenderedVersion()}>
         <{/if}>
       </td>
       <td class="legacy_list_date">
-        <{if $module->mModule->getVar('mid')}>
+        <{if $module->mModule && $module->mModule->getVar('mid')}>
         <{$module->getVar('last_update')|xoops_formattimestamp:l}>
         <{/if}>
       </td>
@@ -90,7 +90,7 @@
       </td>
       <td class="legacy_list_control">
       <{if $xupdate_writable.result==true}>
-        <{if $module->mModule->getVar('mid') > 0}>
+        <{if $module->mModule && $module->mModule->getVar('mid') > 0}>
           <{if $module->mModule->getVar('isactive')}>
           <a href="<{$module->get_StoreUrl()}>" title="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>"><img src="<{"icons/update.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" /></a>
           <a href="<{$module->get_UpdateUrl()}>"></a>
@@ -105,7 +105,7 @@
       </td>
         <td class="legacy_list_select">
             <{if $xupdate_writable.result==true}>
-            <{if $module->mModule->getVar('mid') > 0 }>
+            <{if $module->mModule && $module->mModule->getVar('mid') > 0 }>
             <{if $module->mModule->getVar('isactive') && $module->isDirnameError() == false}>
             <input type="checkbox" class="rapidInstallCheckbox" />
             <{/if}>

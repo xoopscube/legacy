@@ -33,6 +33,12 @@
 "approved":"true"
 },
 
+"none":
+{
+"target_key":"none",
+"approved":"true"
+},
+
 "pico":
 {
 "target_key":"pico",

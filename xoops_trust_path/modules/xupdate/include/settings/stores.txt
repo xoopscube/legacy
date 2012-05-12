@@ -2,7 +2,7 @@
 "sourceforge.jp":
 {
 "sid":"1",
-"name":"sourceforge.jp pack2012 \u5c0e\u5165\u63a8\u5968modules",
+"name":"sourceforge.jp pack2012 recommend modules",
 "contents":"module",
 "setting_type":"ini",
 "addon_url":"http:\/\/sourceforge.jp\/projects\/xoopscube22x\/svn\/view\/files\/%s.zip?view=co&root=xoopscube22x"
@@ -14,13 +14,13 @@
 "name":"Xoops X (Ten) - GitHub",
 "contents":"module",
 "setting_type":"ini",
-"addon_url":"http:\/\/www.naaon.com\/uploads\/xupdate\/modules_xoopsx.txt"
+"addon_url":"http:\/\/www.naaon.com\/uploads\/xupdate\/modules_xoopsx.ini"
 },
 
 "sourceforge.jp-2":
 {
 "sid":"3",
-"name":"sourceforge.jp pack2012 \u9078\u629e\u5c0e\u5165\u53ef\u80fdX2Module modules",
+"name":"sourceforge.jp pack2012 regular modules",
 "contents":"module",
 "setting_type":"ini",
 "addon_url":"http:\/\/sourceforge.jp\/projects\/xoopscube22x\/svn\/view\/files\/%s.zip?view=co&root=xoopscube22x"

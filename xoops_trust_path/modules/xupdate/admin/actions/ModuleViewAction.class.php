@@ -40,7 +40,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 		$inidataset = new Xupdate_ModulesIniDadaSet;
 		$inidataset->storeHand =  & $this->_getStoreHandler();
 		$inidataset->modHand = & $this->_getModStoreHandler();
-		$inidataset->execute();
+		$inidataset->execute('module');
 		//-----------------------------------------------
 		return true;
 
@@ -101,7 +101,10 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 		$storeHand =  & $this->_getStoreHandler();
 		$modHand = & $this->_getModStoreHandler();
 
-		$storeObjects =& $storeHand->getObjects(null,null,null,true);
+		$criteria = new CriteriaCompo();
+		$criteria->add(new Criteria( 'contents', 'module' ) );
+
+		$storeObjects =& $storeHand->getObjects($criteria,null,null,true);
 
 		foreach($storeObjects as $sid => $store){
 			$store_mod_arr[$sid]['storeobj']=$store;
@@ -117,7 +120,6 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 			$store_mod_arr[$sid]['itemsobj']=$itemsobj;
 			$store_mod_arr[$sid]['items_count']=count($itemsobj);
 		}
-
 		return $store_mod_arr;
 	}
 

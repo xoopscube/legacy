@@ -177,7 +177,10 @@ class Xupdate_ModulesIniDadaSet
 				foreach($siteModuleStoreObjects as $id => $mobj){
 					$this->modHand->delete($mobj ,true);
 				}
-				$this->storeHand->delete($storeObjects[$sid] ,true);
+
+				if ( !empty($storeObjects[$sid]) ) {
+					$this->storeHand->delete($storeObjects[$sid] ,true);
+				}
 			}
 		}
 
@@ -403,7 +406,7 @@ class Xupdate_ModulesIniDadaSet
 					$_isrootdirmodule = true;
 				}
 				if (isset($this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']])){
-					$mobj->assignVar('id',$this->mSiteModuleObjects[$sid][$item['target_key']][$dirname]->getVar('id') );
+					$mobj->assignVar('id',$this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]->getVar('id') );
 					$this->_ModuleStoreUpdate($mobj , $this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]);
 				}else{
 					$mobj->setNew();
