@@ -127,7 +127,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		$current_path = '';
 		for ($i=count($path)-1; $i>=0 ;$i--){
 			$current_path = '/'.$path[$i].$current_path;
-			if ($this->chdir($current_path)){
+			if ( file_exists($current_path) && $this->chdir($current_path)){
 				$ftp_root = substr($xoops_root_path, 0, strrpos($xoops_root_path, $current_path));
 				return $ftp_root;
 			}
@@ -266,10 +266,11 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		$dir = $file_list['dir'];
 		krsort($dir);
 		foreach ($dir as $directory){
-			$directory = str_replace('/'.$trust_dirname,'/'.$dirname ,$directory);
+			$directory = str_replace('/modules/'.$trust_dirname,'/modules/'.$dirname ,$directory);
 			$remote_directory = $remote_path.substr($directory, $remote_pos);
+			//adump( '/modules/'.$trust_dirname,'/modules/'.$dirname ,$directory, $remote_path, $remote_directory);
 			if (!is_dir($remote_directory)){
-				$this->ftp_mkdir($remote_directory);
+				$mkdir_result = $this->ftp_mkdir($remote_directory);
 			}
 		}
 
@@ -279,11 +280,8 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		}
 		foreach ($file_list['file'] as $l_file){
 			//rename dirname
-			$r_file = $remote_path.substr(str_replace('/'.$trust_dirname.'/','/'.$dirname.'/' ,$l_file), $remote_pos ); // +1 is remove first flash
+			$r_file = $remote_path.substr(str_replace('/modules/'.$trust_dirname.'/','/modules/'.$dirname.'/' ,$l_file), $remote_pos ); // +1 is remove first flash
 			$ftp_remote_file = substr($r_file, strlen($ftp_root));
-			//$l_file = str_replace( '/','\\',$l_file );
-			//$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
-			//$this->put($l_file, $ftp_remote_file, FTP_BINARY);
 			if (!$this->put($l_file, $ftp_remote_file)){
 				return false;
 			}
