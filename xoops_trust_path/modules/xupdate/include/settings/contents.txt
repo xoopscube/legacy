@@ -1,7 +1,19 @@
-﻿{
+{
 "2":
 {
 "store_name":"XoopsX",
+
+"bulletin":
+{
+"target_key":"bulletin",
+"approved":"true"
+},
+
+"cubeUtils":
+{
+"target_key":"cubeUtils",
+"approved":"true"
+},
 
 "d3forum":
 {
@@ -12,12 +24,6 @@
 "d3pipes":
 {
 "target_key":"d3pipes",
-"approved":"true"
-},
-
-"bulletin":
-{
-"target_key":"bulletin",
 "approved":"true"
 },
 
@@ -33,15 +39,33 @@
 "approved":"true"
 },
 
+"multiMenu":
+{
+"target_key":"multiMenu",
+"approved":"true"
+},
+
 "none":
 {
 "target_key":"none",
 "approved":"true"
 },
 
+"piCal":
+{
+"target_key":"piCal",
+"approved":"true"
+},
+
 "pico":
 {
 "target_key":"pico",
+"approved":"true"
+},
+
+"search":
+{
+"target_key":"search",
 "approved":"true"
 },
 

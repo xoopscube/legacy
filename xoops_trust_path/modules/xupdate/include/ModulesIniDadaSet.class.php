@@ -406,7 +406,7 @@ class Xupdate_ModulesIniDadaSet
 					$_isrootdirmodule = true;
 				}
 				if (isset($this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']])){
-					$mobj->assignVar('id',$this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]->getVar('id') );
+					$mobj->assignVar('id',$this->mSiteModuleObjects[$sid][$item['target_key']][$dirname]->getVar('id') );
 					$this->_ModuleStoreUpdate($mobj , $this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]);
 				}else{
 					$mobj->setNew();

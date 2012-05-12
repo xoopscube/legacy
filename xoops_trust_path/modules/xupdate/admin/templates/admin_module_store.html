@@ -65,7 +65,7 @@
       <td class="legacy_list_id"><{$module->getShow('id')}></td>
       <td class="legacy_list_id"><{$module->getShow('sid')}></td>
       <td class="legacy_list_image">
-        <{if $module->getShow('target_type') == 'TrustModule' && $module->getShow('replicatable') }>
+        <{if $module->getShow('target_type') == 'TrustModule' && $module->getShow('replicatable') && (!$module->mModule->getVar('mid') || $module->get('dirname') == $module->get('trust_dirname')  ) }>
         <input type="text" size="24" name="dirname[<{$module->get('id')}>]" value="<{$module->get('dirname')}>" />
         <{else}>
         <input type="hidden" size="24" name="dirname[<{$module->get('id')}>]" value="<{$module->get('dirname')}>" />
