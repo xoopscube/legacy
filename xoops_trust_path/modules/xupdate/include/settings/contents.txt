@@ -71,6 +71,30 @@
 
 },
 
+"6":
+{
+"store_name":"nao-pon",
+
+"HypCommon":
+{
+"target_key":"HypCommon",
+"approved":"true"
+},
+
+"xpwiki":
+{
+"target_key":"xpwiki",
+"approved":"true"
+},
+
+"xelfinder":
+{
+"target_key":"xelfinder",
+"approved":"true"
+}
+
+},
+
 "7":
 {
 "store_name":"xoops123",

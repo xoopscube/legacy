@@ -49,8 +49,8 @@
 "sid":"6",
 "name":"nao-pon - GitHub",
 "contents":"module",
-"setting_type":"json",
-"addon_url":"https:\/\/github.com\/nao-pon\/%s\/zipball\/master"
+"setting_type":"ini",
+"addon_url":"http:\/\/www.naaon.com\/uploads\/xupdate\/modules_nao-pon.ini"
 },
 
 "xoops123":

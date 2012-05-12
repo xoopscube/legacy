@@ -172,6 +172,8 @@ class Xupdate_ModuleStoreHandler extends XoopsObjectGenericHandler
 		$ret = array();
 
 		$mObjects =& parent::getObjects($criteria ,$limit,$start, $id_as_key);
+		//return $mObjects;
+
 		foreach($mObjects as $key => $mobj){
 			$mobj->setmModule();//判定用のインストール済みのモジュール情報の保持を追加
 			if ($id_as_key) {

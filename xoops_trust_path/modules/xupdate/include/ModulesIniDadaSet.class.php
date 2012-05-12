@@ -64,15 +64,18 @@ class Xupdate_ModulesIniDadaSet
 		$_read_str = fread($fp, filesize($json_fname));
 		fclose($fp);
 		$stores = json_decode($_read_str, true);
+			//adump($stores);
 		$this->stores = $stores;
 		$this->_setmStoreObjects( $caller );
 			//adump($this->stores);
+			//adump($this->mSiteObjects);
 
 		$json_fname = dirname(__FILE__) . '/settings/contents.txt';
 		$fp = fopen($json_fname, "r");
-		$arr_master = json_decode(fread($fp, filesize($json_fname)), true);
+		$fread_ = fread($fp, filesize($json_fname));
+		$arr_master = json_decode($fread_, true);
 		fclose($fp);
-			//adump($arr_master);
+			//adump($fread_, $arr_master);
 
 		// temp end
 
@@ -82,6 +85,7 @@ class Xupdate_ModulesIniDadaSet
 				continue;
 			}
 			$downloadUrl = $store['addon_url'];
+			//adump($store);
 			switch ($store['contents']){
 				case 'theme':
 					$target_key = 'themes.ini';
@@ -114,19 +118,20 @@ class Xupdate_ModulesIniDadaSet
 					//adump($items, $items_lang);
 					foreach($items as $key => $item){
 						//adump($store['sid'],$item['target_key']);
-						if (isset($arr_master[$store['sid']][$item['target_key']])){
+							if (isset($arr_master[$store['sid']][$item['target_key']])){
 							$master = $arr_master[$store['sid']][$item['target_key']];
-							if ( $item['target_key'] == $master['target_key'] ) {
+							if ( $item['target_key'] == $master['target_key']  && $master['approved'] == 'true' ) {
+								//adump($store['sid'],$key);
 								$item['sid'] = $store['sid'] ;
 								$item['description'] = isset($items_lang[$item['target_key']]['description']) ? $items_lang[$item['target_key']]['description'] : '' ;
 								switch($item['target_type']){
 									case 'TrustModule':
-										$this->_setDataTrustModule($store['sid'] , $item);
+										$this->_setDataTrustModule($item['sid'] , $item);
 										break;
 									case 'X2Module':
 									case 'Theme':
 									default:
-										$this->_setDataSingleModule($store['sid'] , $item);
+										$this->_setDataSingleModule($item['sid'] , $item);
 								}
 							}
 						}
@@ -145,13 +150,15 @@ class Xupdate_ModulesIniDadaSet
 		//この該当サイト登録済みデータを全部確認する
 		$storeObjects =& $this->storeHand->getObjects(null,null,null,true);
 
-		foreach($storeObjects as $sid => $sobj){
-			if (isset($this->stores[$sid])){
-				$oldsobj = clone $sobj;
-				$sobj->assignVars($this->stores[$sid]);
-				$this->_StoreUpdate ($sobj , $oldsobj);
-				$this->mSiteObjects[$sid]=$sobj;
+		foreach($this->stores as $sname => $store){
+			$sid = (int)$store['sid'];
+			if (isset($storeObjects[$sid])){
+				$oldsobj = clone $storeObjects[$sid];
+				$storeObjects[$sid]->assignVars($store);
+				$this->_StoreUpdate ($storeObjects[$sid] , $oldsobj);
+				$this->mSiteObjects[$sid]=$storeObjects[$sid];
 			}else{
+
 				//TODO delete ok?
 				$criteria = new CriteriaCompo();
 				if ($caller === 'theme'){
@@ -170,17 +177,18 @@ class Xupdate_ModulesIniDadaSet
 				foreach($siteModuleStoreObjects as $id => $mobj){
 					$this->modHand->delete($mobj ,true);
 				}
-				$this->storeHand->delete($sobj ,true);
+				$this->storeHand->delete($storeObjects[$sid] ,true);
 			}
 		}
+
 		foreach($this->stores as $sname => $store){
 			$sid=(int)$store['sid'];
-			if (!isset($this->mSiteObjects[$sid]) && isset($this->stores[$sid])){
+			if (!isset($this->mSiteObjects[$sid]) && $this->stores[$sname]){
 				$sobj = new $this->storeHand->mClass();
-				$sobj->assignVars($this->stores[$sid]);
+				$sobj->assignVars($this->stores[$sname]);
 				$sobj->assignVar('reg_unixtime',time());
 
-				$setting_type = $this->stores[$sid]['setting_type'];
+				$setting_type = $store['setting_type'];
 				switch ($setting_type){
 					case 'json':
 						$sobj->assignVar('setting_type',1);
@@ -190,8 +198,10 @@ class Xupdate_ModulesIniDadaSet
 					$sobj->assignVar('setting_type',0);
 				}
 				$sobj->setNew();
+				//adump($this->stores[$sname],$sobj);
 				$this->storeHand->insert($sobj ,true);
-				$this->mSiteObjects[$sid] = $sobj;
+				//$this->mSiteObjects[$sid] = $sobj;
+				$this->mSiteObjects[$sname] = $sobj;
 			}
 		}
 
@@ -232,16 +242,15 @@ class Xupdate_ModulesIniDadaSet
 			$criteria->add( $cri_compo );
 		}
 		if ( !empty($sid) ){
-			$criteria->add(new Criteria( 'sid', $sid ) );
+			$criteria->add(new Criteria( 'sid', (int)$sid ) );
 		}
-		$siteModuleStoreObjects =& $this->modHand->getObjects($criteria);
+		$siteModuleStoreObjects =& $this->modHand->getObjects($criteria, null, null, true);
 
-		//adump($siteModuleStoreObjects, $sid);
 		if (empty($siteModuleStoreObjects)){
-			return;
+		//	return;
 		}
 
-		foreach($siteModuleStoreObjects as $id => $mobj){
+		foreach($siteModuleStoreObjects as $sid => $mobj){
 			if (isset($this->items[$sid])){
 				$is_sitedata = false;
 				foreach($this->items[$sid] as $key => $item){
@@ -323,6 +332,7 @@ class Xupdate_ModulesIniDadaSet
 	}
 	private function _setDataTrustModule($sid ,$item)
 	{
+		//$sid = (int)$sid;
 		$item['version']= isset($item['version']) ? round(floatval($item['version'])*100): 0 ;
 		$item['replicatable']= isset($item['replicatable']) ? intval($item['replicatable']): 0 ;
 		$item['target_key']= isset($item['target_key']) ? $item['target_key']: $item['dirname'] ;
@@ -392,7 +402,7 @@ class Xupdate_ModulesIniDadaSet
 				if ( $dirname == $item['dirname'] ){
 					$_isrootdirmodule = true;
 				}
-				if (isset($this->mSiteModuleObjects[$sid][$item['target_key']][$dirname])){
+				if (isset($this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']])){
 					$mobj->assignVar('id',$this->mSiteModuleObjects[$sid][$item['target_key']][$dirname]->getVar('id') );
 					$this->_ModuleStoreUpdate($mobj , $this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]);
 				}else{
