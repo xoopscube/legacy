@@ -51,6 +51,12 @@
 "approved":"true"
 },
 
+"openID":
+{
+"target_key":"openID",
+"approved":"true"
+},
+
 "piCal":
 {
 "target_key":"piCal",
