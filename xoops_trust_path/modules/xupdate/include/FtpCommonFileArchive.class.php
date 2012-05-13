@@ -28,35 +28,25 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 	public function _unzipFile()
 	{
 		// local file name
-		$downloadFilePath = $this->_getDownloadFilePath();
-		$downloadFilePath = realpath($downloadFilePath);
+		$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
+		$downloadFilePath = $this->Xupdate->params['temp_path'].'/'.$this->target_key .'.tgz';
+		$exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
 		if (empty($downloadFilePath) ) {
 			$this->_set_error_log('getDownloadFilePath not found error in: '.$this->_getDownloadFilePath());
 			return false;
 		}
 
-		if (! chdir($this->exploredDirPath) ) {
-			$this->_set_error_log('chdir error in: '.$this->exploredDirPath);
+		if (! chdir($exploredDirPath) ) {
+			$this->_set_error_log('chdir error in: '.$exploredDirPath);
 			return false;//chdir error
 		}
+
 		File_Archive::extract(
-			File_Archive::read($downloadFilePath.'/'),
-			File_Archive::appender($this->exploredDirPath)
+			File_Archive::read($downloadFilePath),
+			File_Archive::appender($exploredDirPath)
 		);
 		return true;
 	}
-	/**
-	 * _getDownloadFilePath
-	 *
-	 * @return	string
-	 **/
-	public function _getDownloadFilePath()
-	{
-		$downloadPath = $this->downloadDirPath .'/'. $this->target_key . '.zip';
-		return $downloadPath;
-	}
-
-
 
 } // end class
 
