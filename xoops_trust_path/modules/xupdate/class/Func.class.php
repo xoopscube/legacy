@@ -108,7 +108,7 @@ class Xupdate_Func {
 			try {
 				//redirect suport
 				$setopt4 = curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-				$setopt5 = curl_setopt($ch, CURLOPT_MAXREDIRS, 2);
+				$setopt5 = curl_setopt($ch, CURLOPT_MAXREDIRS, 4);
 
 				if(!$setopt4 || !$setopt5 ){
 					throw new Exception('curl_setopt CURLOPT_FOLLOWLOCATION fail skip',4);
