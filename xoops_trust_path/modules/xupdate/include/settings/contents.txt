@@ -15,6 +15,12 @@
 "approved":"true"
 },
 
+"d3downloads":
+{
+"target_key":"d3downloads",
+"approved":"true"
+},
+
 "d3forum":
 {
 "target_key":"d3forum",
