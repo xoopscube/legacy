@@ -70,7 +70,6 @@ class mainfile_manager {
         foreach($this->rewrite as $key => $val){
             if(is_int($val) &&
              preg_match("/(define\()([\"'])(".$key.")\\2,\s*([0-9]+)\s*\)/",$content)){
-
                 $content = preg_replace("/(define\()([\"'])(".$key.")\\2,\s*([0-9]+)\s*\)/"
                 , "define('".$key."', ".$val.")"
                 , $content);
@@ -78,7 +77,7 @@ class mainfile_manager {
             }
             elseif(preg_match("/(define\()([\"'])(".$key.")\\2,\s*([\"'])(.*?)\\4\s*\)/",$content)){
                 $content = preg_replace("/(define\()([\"'])(".$key.")\\2,\s*([\"'])(.*?)\\4\s*\)/"
-                , "define('".$key."', '".addslashes($val)."')"
+                , "define('".$key."', '".$this->sanitize($val)."')"
                 , $content);
                 $this->report[] = _OKIMG.sprintf(_INSTALL_L121, '<b>'.$key.'</b>', $val);
 
@@ -111,6 +110,12 @@ class mainfile_manager {
     function error(){
         return $this->error;
     }
+
+	function sanitize($val)
+	{
+		$val = addslashes($val);
+		return str_replace('$', '\$', $val);
+	}
 }
 
 ?>
