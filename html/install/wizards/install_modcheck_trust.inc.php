@@ -41,7 +41,7 @@
 		$wizard->setReload(true);
 	}
 	
-	install_modcheck_trust_mkdir($directory);
+	//install_modcheck_trust_mkdir($directory);
 	
 	$wizard->render('install_modcheck.tpl.php');
 
