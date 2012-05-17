@@ -194,11 +194,19 @@ class XCube_HttpRequest extends XCube_AbstractRequest
 		
 		$value = isset($_GET[$key]) ? $_GET[$key] : $_POST[$key];
 		
-		return $value;
+		if (!get_magic_quotes_gpc()) {
+			return $value;
+		}
+		
+		if (is_array($value)) {
+			return $this->_getArrayRequest($value);
+		}
+		
+		return stripslashes($value);
 	}
 	
 	/**
-	 * DEPRECATED because this method is for magic_quote_gpc now removed. Supports getRequest().
+	 * Supports getRequest().
 	 *
 	 * @private
 	 * @param Array $arr

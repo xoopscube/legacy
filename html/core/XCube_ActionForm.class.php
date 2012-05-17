@@ -307,6 +307,10 @@ class XCube_ActionForm
 			$key = strtr($this->getTokenName(), '.', '_');
 			$token = isset($_REQUEST[$key]) ? $_REQUEST[$key] : null;
 			
+			if (get_magic_quotes_gpc()) {
+				$token = stripslashes($token);
+			}
+			
 			$flag = true;
 			
 			if (!isset($_SESSION['XCUBE_TOKEN'][$this->getTokenName()])) {
