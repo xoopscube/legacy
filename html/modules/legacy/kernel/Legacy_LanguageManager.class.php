@@ -67,11 +67,12 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 
 	function loadGlobalMessageCatalog()
 	{
-		if (!$this->_loadFile(XOOPS_ROOT_PATH . "/modules/legacy/language/" . $this->mLanguageName . "/global.php")) {
-			$this->_loadFile(XOOPS_ROOT_PATH . "/modules/legacy/language/english/global.php");
+		$lpath = XOOPS_ROOT_PATH . '/modules/legacy/language/' . $this->mLanguageName;
+		if (!$this->_loadFile($lpath . '/global.php')) {
+			$this->_loadFile(XOOPS_ROOT_PATH . '/modules/legacy/language/' . $this->getFallbackLanguage() . '/global.php');
 		}
-		if (!$this->_loadFile(XOOPS_ROOT_PATH . "/modules/legacy/language/" . $this->mLanguageName . "/setting.php")) {
-			$this->_loadFile(XOOPS_ROOT_PATH . "/modules/legacy/language/english/setting.php");
+		if (!$this->_loadFile($lpath . '/setting.php')) {
+			$this->_loadFile(XOOPS_ROOT_PATH . '/modules/legacy/language/' . $this->getFallbackLanguage() . '/setting.php');
 		}
 
 		//
@@ -92,10 +93,8 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 	function loadPageTypeMessageCatalog($type)
 	{
 		if (strpos($type, '.') === false) {
-			$filename = XOOPS_ROOT_PATH . "/language/" . $this->mLanguageName . "/" . $type . ".php";
-			if (!$this->_loadFile($filename)) {
-				$filename = XOOPS_ROOT_PATH . "/language/" . $this->getFallbackLanguage() . "/" . $type . ".php";
-				$this->_loadFile($filename);
+			if (!$this->_loadFile(XOOPS_ROOT_PATH . '/language/' . $this->mLanguageName . '/' . $type . '.php')) {
+				$this->_loadFile(XOOPS_ROOT_PATH . '/language/' . $this->getFallbackLanguage() . '/' . $type . '.php');
 			}
 		}
 	}
@@ -108,7 +107,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 	 */
 	function loadModuleMessageCatalog($moduleName)
 	{
-		$this->_loadLanguage($moduleName, "main");
+		$this->_loadLanguage($moduleName, 'main');
 	}
 	
 	/**
@@ -119,7 +118,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 	 */
 	function loadModuleAdminMessageCatalog($dirname)
 	{
-		$this->_loadLanguage($dirname, "admin");
+		$this->_loadLanguage($dirname, 'admin');
 	}
 
 	/**
@@ -130,7 +129,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 	 */
 	function loadBlockMessageCatalog($dirname)
 	{
-		$this->_loadLanguage($dirname, "blocks");
+		$this->_loadLanguage($dirname, 'blocks');
 	}
 
 	/**
@@ -141,7 +140,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 	 */
 	function loadModinfoMessageCatalog($dirname)
 	{
-		$this->_loadLanguage($dirname, "modinfo");
+		$this->_loadLanguage($dirname, 'modinfo');
 	}
 
 	/**
@@ -151,10 +150,8 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 	 */
 	function _loadLanguage($dirname, $fileBodyName)
 	{
-		$fileName = XOOPS_MODULE_PATH . "/" . $dirname . "/language/" . $this->mLanguageName . "/" . $fileBodyName . ".php";
-		if (!$this->_loadFile($fileName)) {
-			$fileName = XOOPS_MODULE_PATH . "/" . $dirname . "/language/english/" . $fileBodyName . ".php";
-			$this->_loadFile($fileName);
+		if (!$this->_loadFile(XOOPS_MODULE_PATH . '/' . $dirname . '/language/' . $this->mLanguageName . '/' . $fileBodyName . '.php')) {
+			$this->_loadFile(XOOPS_MODULE_PATH . '/' . $dirname . '/language/' . $this->getFallbackLanguage() . '/' . $fileBodyName . '.php');
 		}
 	}
 
@@ -165,10 +162,6 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 	function _loadFile($filename)
 	{
 		if (file_exists($filename)) {
-			global $xoopsDB, $xoopsTpl, $xoopsRequestUri, $xoopsModule, $xoopsModuleConfig,
-				   $xoopsModuleUpdate, $xoopsUser, $xoopsUserIsAdmin, $xoopsTheme,
-				   $xoopsConfig, $xoopsOption, $xoopsCachedTemplate, $xoopsLogger, $xoopsDebugger;
-
 			require_once $filename;
 			return true;
 		}
@@ -186,14 +179,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 	 */	
 	function existFile($section, $filename)
 	{
-		if ($section != null) {
-			$filePath = XOOPS_ROOT_PATH . "/languages/" . $this->mLanguageName . "/${section}/${filename}";
-		}
-		else {
-			$filePath = XOOPS_ROOT_PATH . "/languages/" . $this->mLanguageName . "/${filename}";
-		}
-		
-		return file_exists($filePath);
+		return file_exists(XOOPS_ROOT_PATH . '/languages/' . $this->mLanguageName . ($section?"/$section/$filename":"/$filename"));
 	}
 	
 	/**
@@ -206,24 +192,13 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 	 */	
 	function getFilepath($section, $filename)
 	{
-		$filepath = null;
-		if ($section != null) {
-			$filepath = XOOPS_ROOT_PATH . "/languages/" . $this->mLanguageName . "/${section}/${filename}";
-		}
-		else {
-			$filepath = XOOPS_ROOT_PATH . "/languages/" . $this->mLanguageName . "/${filename}";
-		}
+		$filepath = XOOPS_ROOT_PATH . '/languages/' . $this->mLanguageName . ($section?"/${section}/${filename}":"/${filename}");
 		
 		if (file_exists($filepath)) {
 			return $filepath;
 		}
 		else {
-			if ($section != null) {
-				return XOOPS_ROOT_PATH . "/languages/" . $this->getFallbackLanguage() . "/${section}/${filename}";
-			}
-			else {
-				return XOOPS_ROOT_PATH . "/languages/" . $this->getFallbackLanguage() . "/${filename}";
-			}
+			return XOOPS_ROOT_PATH . '/languages/' . $this->getFallbackLanguage() . ($section?"/${section}/${filename}":"/${filename}");
 		}
 	}
 
@@ -243,7 +218,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 	
 	function getFallbackLanguage()
 	{
-		return "english";
+		return 'english';
 	}
 
 	function encodeUTF8($text)

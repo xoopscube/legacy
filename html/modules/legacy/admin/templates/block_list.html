@@ -37,11 +37,11 @@
     <option value="0"><{$smarty.const._ALL}></option>
     <{foreach from=$modules item=module}>
       <{if is_object($filterForm->mModule)}>
-        <option value="<{$module->getShow('dirname')}>" <{if $filterForm->mModule->get('dirname') == $module->get('dirname')}>selected="selected"<{/if}> >
-        <{$module->getShow('name')}></option>
+        <option value="<{$module->getVar('dirname')}>" <{if $filterForm->mModule->getVar('dirname') == $module->getVar('dirname')}>selected="selected"<{/if}> >
+        <{$module->getVar('name')}></option>
       <{else}>
-        <option value="<{$module->getShow('dirname')}>">
-        <{$module->getShow('name')}></option>
+        <option value="<{$module->getVar('dirname')}>">
+        <{$module->getVar('name')}></option>
       <{/if}>
     <{/foreach}>
      <option value="-1"  <{if $filterForm->mModule == "cblock"}>selected="selected"<{/if}>><{$smarty.const._AD_LEGACY_LANG_CUSTOMBLOCK_EDIT}></option>
@@ -125,7 +125,7 @@
         <td class="legacy_list_id"><{$obj->getShow('bid')}></td>
         <td class="legacy_list_name">
           <{if $obj->mModule}>
-            <span class="legacy_blocktype_module"><{$obj->mModule->getShow('name')}></span>
+            <span class="legacy_blocktype_module"><{$obj->mModule->getVar('name')}></span>
           <{else}>
             <span class="legacy_blocktype_custom">
             <{if $obj->get('c_type') == "H" }><{$smarty.const._AD_LEGACY_LANG_CUSTOM_HTML}>

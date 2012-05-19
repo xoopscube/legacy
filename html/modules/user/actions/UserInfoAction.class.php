@@ -6,6 +6,7 @@
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
+require_once XOOPS_MODULE_PATH . "/user/class/ActionFrame.class.php";
 define ('USER_USERINFO_MAXHIT', 5);
 
 /***
@@ -83,22 +84,24 @@ class User_UserInfoAction extends User_Action
 			$client =& $root->mServiceManager->createClient($service);
 			
 			$moduleArr = $client->call('getActiveModules', array());
+			$uid = $this->mObject->get('uid');
 			
 			foreach ($moduleArr as $t_module) {
-				$module = array();
-				$module['name'] = $t_module['name'];
-				$module['mid'] = $t_module['mid'];
-				
-				$params['mid'] = $t_module['mid'];
-				$params['uid'] = $this->mObject->get('uid');
-				$params['maxhit'] = USER_USERINFO_MAXHIT;
-				$params['start'] = 0;
-				
-				$module['results'] = $client->call('searchItemsOfUser', $params);
-				
-				if (count($module['results']) > 0) {
-					$module['has_more'] = (count($module['results']) >= USER_USERINFO_MAXHIT) ? true : false;
-					$this->mSearchResults[] = $module;
+
+				$params = array('mid' => $t_module['mid'],
+								'uid' => $uid,
+								'maxhit' => USER_USERINFO_MAXHIT,
+								'start' => 0);
+
+				$module = array('name' => $t_module['name'],
+								'mid' => $t_module['mid'],
+								'results' => $client->call('searchItemsOfUser', $params));
+
+				$nresult = count($module['results']);
+				if ($nresult) {
+					$module['has_more'] = $nresult >= USER_USERINFO_MAXHIT;
+					$this->mSearchResults[] = &$module;
+					unset($module);
 				}
 			}
 		}

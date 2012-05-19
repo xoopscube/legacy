@@ -16,7 +16,7 @@ class XoopsDatabaseFactory
      * @staticvar   object  The only instance of database class
      * @return      object  Reference to the only instance of database class
 	 */
-	function &getDatabaseConnection()
+	public static function &getDatabaseConnection()
 	{
 		static $instance;
 		if (!isset($instance)) {
@@ -49,7 +49,7 @@ class XoopsDatabaseFactory
      * @staticvar   object  The only instance of database class
      * @return      object  Reference to the only instance of database class
 	 */
-	function &getDatabase()
+	public static function &getDatabase()
 	{
 		static $database;
 		if (!isset($database)) {

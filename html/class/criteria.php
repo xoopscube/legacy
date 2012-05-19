@@ -389,9 +389,11 @@ class CriteriaCompo extends CriteriaElement
         $ret = '';
         $count = count($this->criteriaElements);
         if ($count > 0) {
-            $ret = '('. $this->criteriaElements[0]->render();
+			$elems =& $this->criteriaElements;
+			$conds =& $this->conditions;
+            $ret = '('. $elems[0]->render();
             for ($i = 1; $i < $count; $i++) {
-                $ret .= ' '.$this->conditions[$i].' '.$this->criteriaElements[$i]->render();
+                $ret .= ' '.$conds[$i].' '.$elems[$i]->render();
             }
             $ret .= ')';
         }
@@ -512,13 +514,13 @@ class Criteria extends CriteriaElement
     function render() {
         $value = $this->value;
         if (!in_array(strtoupper($this->operator), array('IN', 'NOT IN'))) {
-            $value = "'".$value."'";
+            $value = "'$value'";
         }
-        $clause = (!empty($this->prefix) ? "{$this->prefix}." : "") . $this->column;
+        $clause = (!empty($this->prefix) ? $this->prefix.'.' : '') . $this->column;
         if ( !empty($this->function) ) {
             $clause = sprintf($this->function, $clause);
         }
-        $clause .= " {$this->operator} $value";
+        $clause .= ' '.$this->operator.' '.$value;
         return $clause;
     }
 	

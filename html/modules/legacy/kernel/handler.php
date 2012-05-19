@@ -76,13 +76,13 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 	{
 		$ret = array();
 
-		$sql = "SELECT * FROM `" . $this->mTable . '`';
+		$sql = 'SELECT * FROM `' . $this->mTable . '`';
 		
 		if($criteria !== null && is_a($criteria, 'CriteriaElement')) {
 			$where = $this->_makeCriteria4sql($criteria);
 			
 			if (trim($where)) {
-				$sql .= " WHERE " . $where;
+				$sql .= ' WHERE ' . $where;
 			}
 			
 			$sorts = array();
@@ -90,7 +90,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 				$sorts[] = '`' . $sort['sort'] . '` ' . $sort['order']; 
 			}
 			if ($criteria->getSort() != '') {
-				$sql .= " ORDER BY " . implode(',', $sorts);
+				$sql .= ' ORDER BY ' . implode(',', $sorts);
 			}
 			
 			if ($limit === null) {
@@ -111,13 +111,14 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 			}
 		}
 
-		$result = $this->db->query($sql, $limit, $start);
+		$db = $this->db;
+		$result = $db->query($sql, $limit, $start);
 
 		if (!$result) {
 			return $ret;
 		}
 
-		while($row = $this->db->fetchArray($result)) {
+		while($row = $db->fetchArray($result)) {
 			$obj =new $this->mClass();
 			$obj->mDirname = $this->getDirname();
 			$obj->assignVars($row);
@@ -346,16 +347,14 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 	 */	
 	function _makeCriteriaElement4sql($criteria, &$obj)
 	{
-		if (is_a($criteria, "CriteriaElement")) {
+		if (is_a($criteria, 'CriteriaElement')) {
 			if ($criteria->hasChildElements()) {
-				$queryString = "";
 				$maxCount = $criteria->getCountChildElements();
-				$queryString = '('. $this->_makeCriteria4sql($criteria->getChildElement(0));
+				$queryString = $this->_makeCriteria4sql($criteria->getChildElement(0));
 				for ($i = 1; $i < $maxCount; $i++) {
-					$queryString .= " " . $criteria->getCondition($i) . " " . $this->_makeCriteria4sql($criteria->getChildElement($i));
+					$queryString .= ' ' . $criteria->getCondition($i) . ' ' . $this->_makeCriteria4sql($criteria->getChildElement($i));
 				}
-				$queryString .= ')';
-				return $queryString;
+				return '('.$queryString.')';
 			} else {
 				//
 				// Render
@@ -364,18 +363,19 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 				$value = $criteria->getValue();
 				if ($name != null && isset($obj->mVars[$name])) {
 					if ($value === null) {
-						$criteria->operator = $criteria->getOperator() == '=' ? "IS" : "IS NOT";
-						$value = "NULL";
+						$criteria->operator = $criteria->getOperator() == '=' ? 'IS' : 'IS NOT';
+						$value = 'NULL';
 					} elseif (in_array(strtoupper($criteria->operator), array('IN', 'NOT IN'))) {
 						$value = is_array($value) ? $value : explode(',', $value);
+						$typ = $obj->mVars[$name]['data_type'];
 						foreach ( $value as $val ) {
-							$tmp[] = $this->_escapeValue($val, $obj->mVars[$name]['data_type']);
+							$tmp[] = $this->_escapeValue($val, $typ);
 						}
-						if(! isset($tmp)){
-							$value = '("")';
+						if(isset($tmp)){
+							$value = '('.implode(',', $tmp).')';
 						}
 						else{
-							$value = '('.implode(',', $tmp).')';
+							$value = '("")';
 						}
 					} else {
 						$value = $this->_escapeValue($value, $obj->mVars[$name]['data_type']);
@@ -384,11 +384,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 					$value = $this->db->quoteString($value);
 				}
 
-				if ($name != null) {
-					return $name . " " . $criteria->getOperator() . " " . $value;
-				} else {
-					return null;
-				}
+				return $name != null?$name . ' ' . $criteria->getOperator() . ' ' . $value : null;
 			}
 		}
 	}
@@ -397,22 +393,15 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 	{
 		switch ($type) {
 			case XOBJ_DTYPE_BOOL:
-				$value = $value ? "1" : "0";
-				break;
+				return $value ? 1 : 0;
 			case XOBJ_DTYPE_INT:
-				$value = intval($value);
-				break;
+				return (int)$value;
 			case XOBJ_DTYPE_FLOAT:
-				$value = floatval($value);
-				break;
-			case XOBJ_DTYPE_STRING:
-			case XOBJ_DTYPE_TEXT:
-				$value = $this->db->quoteString($value);
-				break;
+				return (float)$value;
 			default:
-				$value = $this->db->quoteString($value);
+				return $this->db->quoteString($value);
 		}
-		return $value;
+		return null;
 	}
 
 	/**

@@ -41,10 +41,10 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 /**
  * base class
  */
-include_once XOOPS_ROOT_PATH."/class/database/database.php";
+include_once XOOPS_ROOT_PATH.'/class/database/database.php';
 
-if (!defined("MYSQL_CLIENT_FOUND_ROWS")) {
-	define("MYSQL_CLIENT_FOUND_ROWS", 2);
+if (!defined('MYSQL_CLIENT_FOUND_ROWS')) {
+	define('MYSQL_CLIENT_FOUND_ROWS', 2);
 }
 
 /**
@@ -224,7 +224,7 @@ class XoopsMySQLDatabase extends XoopsDatabase
      */
     function quoteString($str)
     {
-         $str = "'".mysql_real_escape_string($str, $this->conn)."'";
+         $str = '\''.mysql_real_escape_string($str, $this->conn).'\'';
          return $str;
     }
 
@@ -241,7 +241,7 @@ class XoopsMySQLDatabase extends XoopsDatabase
 	{
 		if ( !empty($limit) ) {
 			if (empty($start)) {
-                $sql .= ' LIMIT ' . intval($limit);
+                $sql .= ' LIMIT ' . (int)$limit;
 			}
             else
             {
@@ -343,13 +343,13 @@ class XoopsMySQLDatabase extends XoopsDatabase
 	function prepare($query)
 	{
 		$count=0;
-		while(($pos=strpos($query,"?"))!==false) {
+		while(($pos=strpos($query,'?'))!==false) {
 			$pre=substr($query,0,$pos);
-			$after="";
+			$after='';
 			if($pos+1<=strlen($query))
 				$after=substr($query,$pos+1);
 				
-			$query=$pre."{".$count."}".$after;
+			$query=$pre.'{'.$count.'}'.$after;
 			$count++;
 		}
 		$this->mPrepareQuery=$query;
@@ -372,21 +372,21 @@ class XoopsMySQLDatabase extends XoopsDatabase
 		$searches=array();
 		$replaces=array();
 		for($i=0;$i<$count;$i++) {
-			$searches[$i]="{".$i."}";
+			$searches[$i]='{'.$i.'}';
 			switch(substr($types,$i,1)) {
-				case "i":
-					$replaces[$i]=intval(func_get_arg($i+1));
+				case 'i':
+					$replaces[$i]=(int)func_get_arg($i+1);
 					break;
 
-				case "s":
+				case 's':
 					$replaces[$i]=$this->quoteString(func_get_arg($i+1));
 					break;
 
-				case "d":
+				case 'd':
 					$replaces[$i]=doubleval(func_get_arg($i+1));
 					break;
 				
-				case "b":
+				case 'b':
 					// Exception
 					die();
 			}
@@ -476,8 +476,7 @@ class XoopsMySQLDatabaseProxy extends XoopsMySQLDatabase
 	function &query($sql, $limit=0, $start=0)
 	{
 	    $sql = ltrim($sql);
-		if (strtolower(substr($sql, 0, 6)) == 'select') {
-		//if (preg_match("/^SELECT.*/i", $sql)) {
+		if (preg_match('/^SELECT/i', $sql)) {
 			$ret = $this->queryF($sql, $limit, $start);
 			return $ret;
 		}

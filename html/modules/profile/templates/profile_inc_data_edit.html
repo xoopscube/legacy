@@ -21,7 +21,7 @@
       <{elseif $def->get('type')=="selectbox"}>
       <select name="<{$def->getShow('field_name')}>" id="legacy_xoopsform_<{$def->getShow('field_name')}>">
       <{foreach item=option from=$def->mFieldType->getOption($def)}>
-      	<option value="<{$option}>"<{if $profile->get($def->getShow('field_name'))==$option}> selected="selected"<{/if}>><{$option}></option>
+      	<option value="<{$option}>"<{if $profileForm->get($def->getShow('field_name'))==$option}> selected="selected"<{/if}>><{$option}></option>
 	    <{/foreach}>
       </select>
       <{elseif $def->get('type')=="uri"}>

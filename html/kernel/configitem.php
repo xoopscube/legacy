@@ -112,7 +112,7 @@ class XoopsConfigItem extends XoopsObject
 	 */
 	function &getOptionItems()
 	{
-		$handler =& xoops_gethandler('config');
+		$handler = xoops_gethandler('config');
 		$optionArr =& $handler->getConfigOptions(new Criteria('conf_id', $this->get('conf_id')));
 		
 		return $optionArr;
@@ -123,7 +123,7 @@ class XoopsConfigItem extends XoopsObject
 	 */
 	function getRoledModuleList()
 	{
-		$handler =& xoops_gethandler('config');
+		$handler = xoops_gethandler('config');
 		$optionArr =& $handler->getConfigOptions(new Criteria('conf_id', $this->get('conf_id')));
 		$list = array();
 		foreach($optionArr as $opt){
@@ -144,7 +144,7 @@ class XoopsConfigItem extends XoopsObject
      */
     function &getConfValueForOutput()
     {
-        switch ($this->getVar('conf_valuetype', 'N')) {
+        switch ($this->getVar('conf_valuetype')) {
         case 'int':
             $ret = (int)$this->getVar('conf_value', 'N');
             return $ret;
@@ -291,7 +291,7 @@ class XoopsConfigItem extends XoopsObject
 		}
 		
 		if (isset($configInfo['options']) && is_array($configInfo['options'])) {
-			$configHandler =& xoops_gethandler('config');
+			$configHandler = xoops_gethandler('config');
 			foreach ($configInfo['options'] as $key => $value) {
 				$configOption =& $configHandler->createConfigOption();
 				$configOption->setVar('confop_name', $key, true);
@@ -343,11 +343,12 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
         $ret = false;
         $id = (int)$id;
         if ($id > 0) {
-            $sql = 'SELECT * FROM '.$this->db->prefix('config').' WHERE conf_id='.$id;
-            if ($result = $this->db->query($sql)) {
-                $numrows = $this->db->getRowsNum($result);
+			$db = &$this->db;
+            $sql = 'SELECT * FROM '.$db->prefix('config').' WHERE conf_id='.$id;
+            if ($result = $db->query($sql)) {
+                $numrows = $db->getRowsNum($result);
                 if ($numrows == 1) {
-                    $myrow = $this->db->fetchArray($result);
+                    $myrow = $db->fetchArray($result);
                         $config =new XoopsConfigItem();
                     $config->assignVars($myrow);
                         $ret =& $config;
@@ -377,17 +378,18 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
         foreach ($config->cleanVars as $k => $v) {
             ${$k} = $v;
         }
+		$db = &$this->db;
         if ($config->isNew()) {
-            $conf_id = $this->db->genId('config_conf_id_seq');
-            $sql = sprintf("INSERT INTO %s (conf_id, conf_modid, conf_catid, conf_name, conf_title, conf_value, conf_desc, conf_formtype, conf_valuetype, conf_order) VALUES (%u, %u, %u, %s, %s, %s, %s, %s, %s, %u)", $this->db->prefix('config'), $conf_id, $conf_modid, $conf_catid, $this->db->quoteString($conf_name), $this->db->quoteString($conf_title), $this->db->quoteString($conf_value), $this->db->quoteString($conf_desc), $this->db->quoteString($conf_formtype), $this->db->quoteString($conf_valuetype), $conf_order);
+            $conf_id = $db->genId('config_conf_id_seq');
+            $sql = sprintf('INSERT INTO %s (conf_id, conf_modid, conf_catid, conf_name, conf_title, conf_value, conf_desc, conf_formtype, conf_valuetype, conf_order) VALUES (%u, %u, %u, %s, %s, %s, %s, %s, %s, %u)', $db->prefix('config'), $conf_id, $conf_modid, $conf_catid, $db->quoteString($conf_name), $db->quoteString($conf_title), $db->quoteString($conf_value), $db->quoteString($conf_desc), $db->quoteString($conf_formtype), $db->quoteString($conf_valuetype), $conf_order);
         } else {
-            $sql = sprintf("UPDATE %s SET conf_modid = %u, conf_catid = %u, conf_name = %s, conf_title = %s, conf_value = %s, conf_desc = %s, conf_formtype = %s, conf_valuetype = %s, conf_order = %u WHERE conf_id = %u", $this->db->prefix('config'), $conf_modid, $conf_catid, $this->db->quoteString($conf_name), $this->db->quoteString($conf_title), $this->db->quoteString($conf_value), $this->db->quoteString($conf_desc), $this->db->quoteString($conf_formtype), $this->db->quoteString($conf_valuetype), $conf_order, $conf_id);
+            $sql = sprintf('UPDATE %s SET conf_modid = %u, conf_catid = %u, conf_name = %s, conf_title = %s, conf_value = %s, conf_desc = %s, conf_formtype = %s, conf_valuetype = %s, conf_order = %u WHERE conf_id = %u', $db->prefix('config'), $conf_modid, $conf_catid, $db->quoteString($conf_name), $db->quoteString($conf_title), $db->quoteString($conf_value), $db->quoteString($conf_desc), $db->quoteString($conf_formtype), $db->quoteString($conf_valuetype), $conf_order, $conf_id);
         }
-        if (!$result = $this->db->query($sql)) {
+        if (!$result = $db->query($sql)) {
             return false;
         }
         if (empty($conf_id)) {
-            $conf_id = $this->db->getInsertId();
+            $conf_id = $db->getInsertId();
         }
         $config->assignVar('conf_id', $conf_id);
         return true;
@@ -404,7 +406,7 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
         if (strtolower(get_class($config)) != 'xoopsconfigitem') {
             return false;
         }
-        $sql = sprintf("DELETE FROM %s WHERE conf_id = %u", $this->db->prefix('config'), $config->getVar('conf_id'));
+        $sql = sprintf('DELETE FROM %s WHERE conf_id = %u', $this->db->prefix('config'), $config->getVar('conf_id'));
         if (!$result = $this->db->query($sql)) {
             return false;
         }
@@ -456,15 +458,16 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
     function getCount($criteria = null)
     {
         $limit = $start = 0;
-        $sql = 'SELECT * FROM '.$this->db->prefix('config');
+		$db = &$this->db;
+        $sql = 'SELECT * FROM '.$db->prefix('config');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             $sql .= ' '.$criteria->renderWhere();
         }
-        $result =& $this->db->query($sql);
+        $result = $db->query($sql);
         if (!$result) {
             return false;
         }
-        list($count) = $this->db->fetchRow($result);
+        list($count) = $db->fetchRow($result);
         return $count;
     }
 }

@@ -301,6 +301,9 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
 				$this->_set($t_key, $t_value);
 			}
 		}
+		elseif($arg1===null && $arg2===null){	//ex) all checkbox options are off
+			$this->reset();
+		}
 		elseif ($arg1 !== null && $arg2 !== null) {
 			$this->_set($arg1, $arg2);
 		}

@@ -211,7 +211,7 @@ class XoopsConfigHandler
      */
     function &getConfigsByCat($category, $module = 0)
     {
-        static $_cachedConfigs;
+        static $_cachedConfigs=array();
 		if (!empty($_cachedConfigs[$module][$category])) {
 			return $_cachedConfigs[$module][$category];
 		} else {
@@ -220,14 +220,17 @@ class XoopsConfigHandler
         	if (!empty($category)) {
             	$criteria->add(new Criteria('conf_catid', (int)$category));
         	}
-        	$configs =& $this->getConfigs($criteria, true);
-			if (is_array($configs)) {
-            	foreach (array_keys($configs) as $i) {
-					$conf = &$configs[$i];
-                	$ret[$conf->getVar('conf_name')] = $conf->getConfValueForOutput();
-            	}
-        	}
-			$_cachedConfigs[$module][$category] =& $ret;
+
+			// get config values
+			$configs = array();
+			$db = $this->_cHandler->db;
+			$result = $db->query('SELECT conf_name,conf_value,conf_valuetype FROM '.$db->prefix('config').' '.$criteria->renderWhere().' ORDER BY conf_order ASC');
+			if ($result) {
+				while (list($name, $value, $type) = $db->fetchRow($result)) {
+					$ret[$name] = $type == 'array'?unserialize($value):$value;
+				}
+				$_cachedConfigs[$module][$category] =& $ret;
+			}
         	return $ret;
 		}
     }
@@ -241,7 +244,7 @@ class XoopsConfigHandler
 	function &getConfigsByDirname($dirname, $category = 0)
 	{
 		$ret = null;;
-		$handler =& xoops_gethandler('module');;
+		$handler = xoops_gethandler('module');;
 		$module =& $handler->getByDirname($dirname);
 		if (!is_object($module)) {
 			return $ret;

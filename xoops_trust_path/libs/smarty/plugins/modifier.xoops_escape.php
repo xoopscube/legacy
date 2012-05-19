@@ -25,8 +25,11 @@
 
 function smarty_modifier_xoops_escape($string, $esc_type = 'show')
 {
-    $root =& XCube_Root::getSingleton();
-    $textFilter =& $root->getTextFilter();
+	static $textFilter;
+    if (!isset($textFilter)) {
+        $root =& XCube_Root::getSingleton();
+        $textFilter = $root->getTextFilter();
+    }
     switch ($esc_type) {
         case 'show':
             return $textFilter->toShow($string);

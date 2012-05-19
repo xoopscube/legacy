@@ -46,17 +46,13 @@ class XCube_IniHandler
 	{
 		if(file_exists($this->_mFilePath)){
 			$key = null;
-			$file = fopen($this->_mFilePath, 'r');
-			for($lineNum=1; $line=fgets($file);$lineNum++){
+			foreach (explode("\n", file_get_contents($this->_mFilePath)) as $line) {
+				//case: comment line
+				if(preg_match('/^\s*([;#]|\/\/)/', $line)) continue;
 				//remove CR
 				$line = preg_replace('/\r/', '', $line);
-			
-				//case: comment line
-				if(substr($line,1,1)==';'||substr($line,1,1)=='#'||substr($line,1,2)=='//'){
-					continue;
-				}
 				//case: section line
-				elseif(preg_match('/\[(.*)\]/', $line, $str)){
+				if (preg_match('/\[(.*)\]/', $line, $str)) {
 					if($this->_mSectionFlag===true){
 						$key = $str[1];
 						$this->_mConfig[$key] = array();
@@ -64,15 +60,17 @@ class XCube_IniHandler
 				}
 				//case: key/value line
 				elseif(preg_match('/^(.*)=(.*)$/', $line, $str)){
-					if(preg_match('/^"(.*)"$/', $str[2], $body)||preg_match('/^\'(.*)\'$/', $str[2], $body)){
-						$str[2] = $body[1];
+					$name =& $str[1];
+					$val =& $str[2];
+					if(preg_match('/^"(.*)"$/', $val, $body)||preg_match('/^\'(.*)\'$/', $val, $body)){
+						$val =& $body[1];
 					}
 				
 					if($this->_mSectionFlag===true){
-						$this->_mConfig[$key][$str[1]] = $str[2];
+						$this->_mConfig[$key][$name] = $val;
 					}
 					else{
-						$this->_mConfig[$str[1]] = $str[2];
+						$this->_mConfig[$name] = $val;
 					}
 				}
 			}

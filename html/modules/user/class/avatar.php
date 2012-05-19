@@ -6,6 +6,11 @@ class UserAvatarObject extends XoopsSimpleObject
 {
 	function UserAvatarObject()
 	{
+		static $initVars;
+		if (isset($initVars)) {
+			$this->mVars = $initVars;
+			return;
+		}
 		$this->initVar('avatar_id', XOBJ_DTYPE_INT, 0, true);
 		$this->initVar('avatar_file', XOBJ_DTYPE_STRING, '', true, 30);
 		$this->initVar('avatar_name', XOBJ_DTYPE_STRING, '', true, 100);
@@ -14,6 +19,7 @@ class UserAvatarObject extends XoopsSimpleObject
 		$this->initVar('avatar_display', XOBJ_DTYPE_BOOL, '1', true);
 		$this->initVar('avatar_weight', XOBJ_DTYPE_INT, '0', true);
 		$this->initVar('avatar_type', XOBJ_DTYPE_STRING, 'S', true, 1);
+		$initVars=$this->mVars;
 	}
 	
 	function getUsingCount()

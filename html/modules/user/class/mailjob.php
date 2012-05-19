@@ -26,6 +26,10 @@ class UserMailjobObject extends XoopsSimpleObject
 	
 	function UserMailjobObject()
 	{
+		static $initVars;
+		if (isset($initVars)) {
+			$this->mVars = $initVars;
+		} else {
 		$this->initVar('mailjob_id', XOBJ_DTYPE_INT, '', false);
 		$this->initVar('title', XOBJ_DTYPE_STRING, '', true, 255);
 		$this->initVar('body', XOBJ_DTYPE_TEXT, '', true);
@@ -34,6 +38,8 @@ class UserMailjobObject extends XoopsSimpleObject
 		$this->initVar('is_pm', XOBJ_DTYPE_BOOL, '0', true);
 		$this->initVar('is_mail', XOBJ_DTYPE_BOOL, '0', true);
 		$this->initVar('create_unixtime', XOBJ_DTYPE_INT, time(), true);
+		$initVars=$this->mVars;
+		}
 		
 		$this->mGetReplaceTitle =new XCube_Delegate();
 		$this->mGetReplaceTitle->register('UserMailjobObject.GetReplaceTitle');

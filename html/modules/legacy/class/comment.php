@@ -18,6 +18,11 @@ class LegacyCommentObject extends XoopsSimpleObject
 	
 	function LegacyCommentObject()
 	{
+		static $initVars;
+		if (isset($initVars)) {
+			$this->mVars = $initVars;
+			return;
+		}
 		$this->initVar('com_id', XOBJ_DTYPE_INT, '', true);
 		$this->initVar('com_pid', XOBJ_DTYPE_INT, '0', true);
 		$this->initVar('com_rootid', XOBJ_DTYPE_INT, '0', true);
@@ -38,6 +43,7 @@ class LegacyCommentObject extends XoopsSimpleObject
 		$this->initVar('doxcode', XOBJ_DTYPE_BOOL, '1', true);
 		$this->initVar('doimage', XOBJ_DTYPE_BOOL, '1', true);
 		$this->initVar('dobr', XOBJ_DTYPE_BOOL, '1', true);
+		$initVars=$this->mVars;
 	}
 	
 	/**

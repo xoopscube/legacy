@@ -15,6 +15,11 @@ class UserUsersObject extends XoopsSimpleObject
 	
 	function UserUsersObject()
 	{
+		static $initVars;
+		if (isset($initVars)) {
+			$this->mVars = $initVars;
+			return;
+		}
 		$this->initVar('uid', XOBJ_DTYPE_INT, 0, true);
 		$this->initVar('name', XOBJ_DTYPE_STRING, '', false, 60);
 		$this->initVar('uname', XOBJ_DTYPE_STRING, '', true, 25);
@@ -46,6 +51,7 @@ class UserUsersObject extends XoopsSimpleObject
 		$this->initVar('bio', XOBJ_DTYPE_TEXT, '', false);
 		$this->initVar('user_intrest', XOBJ_DTYPE_STRING, '', false, 150);
 		$this->initVar('user_mailok', XOBJ_DTYPE_BOOL, '1', false);
+		$initVars=$this->mVars;
 	}
 	
 	function getGroups()

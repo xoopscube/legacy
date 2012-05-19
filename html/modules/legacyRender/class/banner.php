@@ -9,6 +9,11 @@ class LegacyRenderBannerObject extends XoopsSimpleObject
 
 	function LegacyRenderBannerObject()
 	{
+		static $initVars;
+		if (isset($initVars)) {
+			$this->mVars = $initVars;
+			return;
+		}
 		$this->initVar('bid', XOBJ_DTYPE_INT, '', false);
 		$this->initVar('cid', XOBJ_DTYPE_INT, '0', true);
 		$this->initVar('imptotal', XOBJ_DTYPE_INT, '0', true);
@@ -19,6 +24,7 @@ class LegacyRenderBannerObject extends XoopsSimpleObject
 		$this->initVar('date', XOBJ_DTYPE_INT, time(), true);
 		$this->initVar('htmlbanner', XOBJ_DTYPE_BOOL, '0', true);
 		$this->initVar('htmlcode', XOBJ_DTYPE_TEXT, '', true);
+		$initVars=$this->mVars;
 	}
 
 	function loadBannerclient()

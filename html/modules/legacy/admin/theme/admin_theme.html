@@ -8,8 +8,8 @@
 <title><{$legacy_sitename|xoops_escape}> : <{$smarty.const._CPHOME}> : <{$legacy_pagetitle|xoops_escape}></title>
 <script type="text/javascript" src="<{$xoops_url}>/include/xoops.js"></script>
 
-<{stylesheet file=style.css}>
-<{stylesheet file=module.css}>
+<{stylesheet file=style.css static=true}>
+<{stylesheet file=module.css static=true}>
 
 <script type="text/javascript">
 <!-- <![CDATA[
@@ -204,7 +204,7 @@ function ccOpenCid()
 
 <noscript>
   <div id="menunavi">
-  <h2><{$currentModule->mXoopsModule->getShow('name')}></h2>
+  <h2><{$currentModule->mXoopsModule->getVar('name')}></h2>
   <{if $currentModule->getAdminMenu()}>
     <ul class="submenunavi">
       <{foreach item=menu from=$currentModule->getAdminMenu()}>
@@ -213,23 +213,23 @@ function ccOpenCid()
         <{/if}>
       <{/foreach}>
 
-          <{if $currentModule->mXoopsModule->getInfo('blocks') && $currentModule->mXoopsModule->getShow('dirname') != "legacy" && $currentModule->mXoopsModule->getShow('dirname') != "altsys" && $currentModule->mXoopsModule->getShow('dirname') != "system"}>
-          <li><img src="<{"icons/upgrade.png"|theme}>" alt="" title="" />&nbsp;<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList&amp;dirname=<{$currentModule->mXoopsModule->getShow('dirname')}>"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a></li>
-          <li><img src="<{"icons/upgrade.png"|theme}>" alt="" title="" />&nbsp;<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockInstallList&amp;dirname=<{$currentModule->mXoopsModule->getShow('dirname')}>"><{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}></a></li>
+          <{if $currentModule->mXoopsModule->getInfo('blocks') && $currentModule->mXoopsModule->getVar('dirname', 'N') != "legacy" && $currentModule->mXoopsModule->getVar('dirname', 'N') != "altsys" && $currentModule->mXoopsModule->getVar('dirname', 'N') != "system"}>
+          <li><img src="<{"icons/upgrade.png"|theme}>" alt="" title="" />&nbsp;<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList&amp;dirname=<{$currentModule->mXoopsModule->getVar('dirname', 'N')}>"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a></li>
+          <li><img src="<{"icons/upgrade.png"|theme}>" alt="" title="" />&nbsp;<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockInstallList&amp;dirname=<{$currentModule->mXoopsModule->getVar('dirname', 'N')}>"><{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}></a></li>
           <{/if}>
-          <{if $currentModule->mXoopsModule->getInfo('templates') && $currentModule->mXoopsModule->getShow('dirname') != "legacyRender" && $currentModule->mXoopsModule->getShow('dirname') != "altsys" && $currentModule->mXoopsModule->getShow('dirname') != "system"}>
-          <li><img src="<{"icons/upgrade.png"|theme}>" alt="" title="" />&nbsp;<a href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplfileList&amp;tpl_module=<{$currentModule->mXoopsModule->getShow('dirname')}>&amp;sort=-9"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}></a></li>
+          <{if $currentModule->mXoopsModule->getInfo('templates') && $currentModule->mXoopsModule->getVar('dirname', 'N') != "legacyRender" && $currentModule->mXoopsModule->getVar('dirname', 'N') != "altsys" && $currentModule->mXoopsModule->getVar('dirname', 'N') != "system"}>
+          <li><img src="<{"icons/upgrade.png"|theme}>" alt="" title="" />&nbsp;<a href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplfileList&amp;tpl_module=<{$currentModule->mXoopsModule->getVar('dirname', 'N')}>&amp;sort=-9"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}></a></li>
           <{/if}>
           <{if $currentModule->mXoopsModule->getInfo('hasComments')}>
-          <li><img src="<{"icons/upgrade.png"|theme}>" alt="" title="" />&nbsp;<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=CommentList&amp;com_modid=<{$currentModule->mXoopsModule->getShow('mid')}>&amp;sort=-8"><{$smarty.const._MI_LEGACY_MENU_COMMENT_MANAGE}></a></li>
+          <li><img src="<{"icons/upgrade.png"|theme}>" alt="" title="" />&nbsp;<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=CommentList&amp;com_modid=<{$currentModule->mXoopsModule->getVar('mid')}>&amp;sort=-8"><{$smarty.const._MI_LEGACY_MENU_COMMENT_MANAGE}></a></li>
           <{/if}>
         <{if $currentModule->mXoopsModule->hasNeedUpdate()}>
-          <li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$currentModule->mXoopsModule->getShow('dirname')}>"><{$smarty.const._AD_LEGACY_LANG_UPGRADE}>&nbsp;<img src="<{"icons/update.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" /></a></li>
+          <li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$currentModule->mXoopsModule->getVar('dirname', 'N')}>"><{$smarty.const._AD_LEGACY_LANG_UPGRADE}>&nbsp;<img src="<{"icons/update.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" /></a></li>
         <{else}>
-          <li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$currentModule->mXoopsModule->getShow('dirname')}>"><img src="<{"icons/upgrade.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" />&nbsp;<{$smarty.const._AD_LEGACY_LANG_UPGRADE}></a></li>
+          <li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$currentModule->mXoopsModule->getVar('dirname', 'N')}>"><img src="<{"icons/upgrade.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" />&nbsp;<{$smarty.const._AD_LEGACY_LANG_UPGRADE}></a></li>
         <{/if}>
-          <li><img src="<{"icons/upgrade.png"|theme}>" alt="" title="" />&nbsp;<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleEdit&amp;mid=<{$currentModule->mXoopsModule->getShow('mid')}>"><{$smarty.const._EDIT}></a></li>
-          <li><img src="<{"icons/upgrade.png"|theme}>" alt="" title="" />&nbsp;<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleInfo&amp;dirname=<{$currentModule->mXoopsModule->getShow('dirname')}>"><{$smarty.const._AD_LEGACY_LANG_INFORMATION}></a></li>
+          <li><img src="<{"icons/upgrade.png"|theme}>" alt="" title="" />&nbsp;<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleEdit&amp;mid=<{$currentModule->mXoopsModule->getVar('mid')}>"><{$smarty.const._EDIT}></a></li>
+          <li><img src="<{"icons/upgrade.png"|theme}>" alt="" title="" />&nbsp;<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleInfo&amp;dirname=<{$currentModule->mXoopsModule->getVar('dirname', 'N')}>"><{$smarty.const._AD_LEGACY_LANG_INFORMATION}></a></li>
     </ul>
   <{/if}>
   </div>
@@ -243,7 +243,7 @@ function ccOpenCid()
 </table>
 </div>
 
-<div id="footer">Powered by&nbsp;<{$smarty.const.XOOPS_VERSION}> &copy; 2001-2009 <a href="http://sourceforge.net/projects/xoopscube/" rel="external">The XOOPS Cube Project<br />
+<div id="footer">Powered by&nbsp;<{$smarty.const.XOOPS_VERSION}> &copy; 2001-2012 <a href="http://sourceforge.net/projects/xoopscube/" rel="external">The XOOPS Cube Project<br />
 </a>Help Us to Improve <a href="http://xoopscube.org/" rel="external">XOOPS Cube</a> - Report All Bugs to: <a href="http://sourceforge.net/tracker/?group_id=159211"> Project Bug Tracker <img src="<{"icons/bug.png"|theme}>" alt="Bug report" /></a></div>
 
 </div>

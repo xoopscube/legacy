@@ -98,7 +98,7 @@ class MyTextSanitizer
      * @static
      * @staticvar   object
      */
-    function &getInstance()
+    public function &getInstance()
     {
         static $instance;
         if (!isset($instance)) {

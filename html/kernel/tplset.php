@@ -197,8 +197,9 @@ class XoopsTplsetHandler extends XoopsObjectHandler
 	{
         $ret = array();
 		$tplsets =& $this->getObjects($criteria, true);
-		foreach (array_keys($tplsets) as $i) {
-            $ret[$tplsets[$i]->getVar('tplset_name')] = $tplsets[$i]->getVar('tplset_name');
+		foreach ($tplsets as $tpl) {
+			$name = $tpl->getVar('tplset_name');
+            $ret[$name] = $name;
         }
 		return $ret;
 	}

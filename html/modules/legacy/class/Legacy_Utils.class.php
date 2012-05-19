@@ -54,14 +54,14 @@ class Legacy_Utils
 	 * @param XoopsModule $module
 	 * @return Legacy_Module
 	 */
-	function &createModule($module)
+	function &createModule($module, $loadConfig=true)
 	{
 		$instance = null;
 
 		//
 		// TODO need cache here?
 		//
-		XCube_DelegateUtils::call('Legacy_Utils.CreateModule', new XCube_Ref($instance), $module);
+		XCube_DelegateUtils::call('Legacy_Utils.CreateModule', new XCube_Ref($instance), $module, $loadConfig);
 		
 		if (is_object($instance) && is_a($instance, 'Legacy_AbstractModule')) {
 			return $instance;
@@ -81,10 +81,10 @@ class Legacy_Utils
 		}
 		
 		if (XC_CLASS_EXISTS($className)) {
-			$instance = new $className($module);
+			$instance = new $className($module, $loadConfig);
 		}
 		else {
-			$instance = new Legacy_ModuleAdapter($module);
+			$instance = new Legacy_ModuleAdapter($module, $loadConfig);
 		}
 		
 		return $instance;

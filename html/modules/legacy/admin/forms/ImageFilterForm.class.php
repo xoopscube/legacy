@@ -64,6 +64,7 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
 	
 		if (isset($_REQUEST['imgcat_id'])) {
 			$this->mNavi->addExtra('imgcat_id', xoops_getrequest('imgcat_id'));
+			$this->_mCriteria->add(new Criteria('imgcat_id', xoops_getrequest('imgcat_id')));
 		}
 
 

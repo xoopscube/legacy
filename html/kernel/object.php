@@ -269,9 +269,10 @@ class XoopsObject extends AbstractXoopsObject
 	function setVar($key, $value, $not_gpc = false)
 	{
 		if (!empty($key) && isset($value) && isset($this->vars[$key])) {
-			$this->vars[$key]['value'] =& $value;
-			$this->vars[$key]['not_gpc'] = $not_gpc;
-			$this->vars[$key]['changed'] = true;
+			$var =& $this->vars[$key];
+			$var['value'] =& $value;
+			$var['not_gpc'] = $not_gpc;
+			$var['changed'] = true;
 			$this->setDirty();
 		}
 	}

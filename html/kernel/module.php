@@ -173,8 +173,9 @@ class XoopsModule extends XoopsObject
 	 */
 	function loadAdminMenu()
 	{
-		if ($this->getInfo('adminmenu') && $this->getInfo('adminmenu') != '' && file_exists(XOOPS_ROOT_PATH.'/modules/'.$this->getVar('dirname').'/'.$this->getInfo('adminmenu'))) {
-			include XOOPS_ROOT_PATH.'/modules/'.$this->getVar('dirname').'/'.$this->getInfo('adminmenu');
+		$menu = $this->getInfo('adminmenu');
+		if ($menu && file_exists($path = XOOPS_ROOT_PATH.'/modules/'.$this->getVar('dirname').'/'.$menu)) {
+			include $path;
 			$this->adminmenu =& $adminmenu;
 		}
 	}
@@ -267,7 +268,7 @@ class XoopsModule extends XoopsObject
 	 */
 	function getRenderedVersion()
 	{
-		return sprintf("%01.2f", $this->get('version') / 100);
+		return sprintf('%01.2f', $this->getVar('version') / 100);
 	}
 
 	/**
@@ -301,7 +302,7 @@ class XoopsModule extends XoopsObject
 	function hasNeedUpdate()
 	{
 		$info =& $this->getInfo();
-		return ($this->get('version') < Legacy_Utils::convertVersionFromModinfoToInt($info['version']));
+		return ($this->getVar('version') < Legacy_Utils::convertVersionFromModinfoToInt($info['version']));
 	}
 	
 	/**#@+
@@ -322,7 +323,7 @@ class XoopsModule extends XoopsObject
 	}
 	function &getByDirName($dirname)
 	{
-		$modhandler =& xoops_gethandler('module');
+		$modhandler = xoops_gethandler('module');
 		$ret =& $modhandler->getByDirname($dirname);
 		return $ret;
 	}
@@ -346,7 +347,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
 	var $_tmp;	
 	
 	/**
-	 * holds an array of cached module references, indexed by module id
+	 * holds an array of cached module references, indexed by module id/dirname
 	 *
 	 * @var    array
 	 * @access private
@@ -491,7 +492,11 @@ class XoopsModuleHandler extends XoopsObjectHandler
 		
 		$this->_cachedModule_dirname[$dirname] =& $module;
 		$this->_cachedModule_mid[$mid] =& $module;
-		
+
+		if (XC_CLASS_EXISTS('Legacy_AdminSideMenu')) {
+			Legacy_AdminSideMenu::clearCache();
+		}
+
 		return true;
 	}
 
@@ -592,12 +597,19 @@ class XoopsModuleHandler extends XoopsObjectHandler
 			return $ret;
 		}
 		while ($myrow = $db->fetchArray($result)) {
-			$module =new XoopsModule();
-			$module->assignVars($myrow);
+			$mid = $myrow['mid'];
+			if (isset($this->_cachedModule_mid[$mid])) {
+				$module = $this->_cachedModule_mid[$mid];
+			} else {
+				$module =new XoopsModule();
+				$module->assignVars($myrow);
+				$this->_cachedModule_mid[$mid] = $module;
+				$this->_cachedModule_dirname[$myrow['dirname']] = $module;
+			}
 			if (!$id_as_key) {
 				$ret[] =& $module;
 			} else {
-				$ret[$myrow['mid']] =& $module;
+				$ret[$mid] =& $module;
 			}
 			unset($module);
 		}
@@ -636,11 +648,11 @@ class XoopsModuleHandler extends XoopsObjectHandler
 	{
 		$ret = array();
 		$modules =& $this->getObjects($criteria, true);
-		foreach (array_keys($modules) as $i) {
+		foreach ($modules as $i=>$module) {
 			if (!$dirname_as_key) {
-				$ret[$i] =& $modules[$i]->getVar('name');
+				$ret[$i] =& $module->getVar('name');
 			} else {
-				$ret[$modules[$i]->getVar('dirname')] =& $modules[$i]->getVar('name');
+				$ret[$module->getVar('dirname')] =& $module->getVar('name');
 			}
 		}
 		return $ret;

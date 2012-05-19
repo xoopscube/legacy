@@ -97,12 +97,10 @@ if ( !defined("XOOPS_MAINFILE_INCLUDED") ) {
     //    But $xoopsOption['nocommon'] is deprecated.
     //
     if (!defined('_LEGACY_PREVENT_LOAD_CORE_') && XOOPS_ROOT_PATH != '') {
-        include XOOPS_TRUST_PATH.'/modules/protector/include/precheck.inc.php' ;
         include_once XOOPS_ROOT_PATH.'/include/cubecore_init.php';
         if (!isset($xoopsOption['nocommon']) && !defined('_LEGACY_PREVENT_EXEC_COMMON_')) {
             include XOOPS_ROOT_PATH.'/include/common.php';
         }
-        include XOOPS_TRUST_PATH.'/modules/protector/include/postcheck.inc.php' ;
     }
 }
 ?>
