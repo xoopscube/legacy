@@ -2,7 +2,7 @@
 // ******************************************************************** //
 // ** XOOPS Cube Legacy - Profile Module - Portuguese
 // ** Por Mikhail Miguel <mikhail.miguel@gmail.com> - http://xoops.net.br/
-// ** $Id$
+// ** $Id: modinfo.php 1150 2012-05-03 17:01:06Z mikhail $
 // **	License http://creativecommons.org/licenses/by/2.5/br/
 // ******************************************************************** //
 define("_MI_PROFILE_DESC_PROFILE","Módulo para personalizar o formulário de cadastro dos associados e o que será mostrado na página perfis.");
@@ -15,4 +15,9 @@ define("_MI_PROFILE_NAME", "Editor de perfis");
 define("_MI_PROFILE_ADMENU_DATA_DOWNLOAD", "Download dos dados dos cadastros");
 define("_MI_PROFILE_LANG_DOWNLOAD", "Exportar perfis");
 define("_MI_PROFILE_KEYWORD_DOWNLOAD", "Exportar dados dos perfis no formato CVS");
+//
+define("_MI_PROFILE_DATA_DOWNLOAD", "Exportar perfis");
+define('_MI_PROFILE_LANG_CSVUPLOAD', 'Importar perfis');
+define('_MI_PROFILE_KEYWORD_CSVUPLOAD', 'Envio de dados de perfis utilizando um arquivo no formato CSV');
+define('_MI_PROFILE_DATA_CSVUPLOAD', 'Envio em lote de perfis utilizando um arquivo no formato CSV');
 ?>

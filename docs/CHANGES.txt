@@ -1,40 +1,94 @@
-
+﻿
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
+
+
 ----------------------------------------
-2011/10/XX: Package Revision 2.2.1 Beta2
+2012/05/19: Package Revision 2.2.1 Beta3
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
-- Fix Bug #3313462 - trigger_error('...',E_USER_ERROR) may not halt execution
+- Fix Bug #3470535 - Smarty cache directory
+- Fix Bug #3470792 - download the template, the extra null at the end of defect
+- Fix Bug #3492904 - Error Message after Profile edit
+- Fix Bug #3505585 - xoops.js additional comma required
+- Fix Bug #3509194 - Deprecated Function get_magic_quotes_gpc: class/uploader.php
+- Fix Bug #3509214 - PHPMailer 5.1 with several bugs closed in PHPMailer 5.2.1
+- Fix Bug #3512942 - Magic Quotes REMOVED from PHP 5.4 and deprecated in PHP 5.3
+
+[Feature Request - From Feature Requests Legacy Tracker]
+- Feature Request #3470809 - template download info is  [File type : File (-1 bytes)]
+- Feature Request #3470813 - prevent out of ob_buffer memory during to backup
+
+[Bug Fix - From XCube core Bug Tracker]
+- Fix Bug #3502519 - Array PropertyForm null value
+
+[Staff]
+- Bluemooninc
+- Domifara
+- Kilica
+- Mikhail Miguel
+- Naao
+- Nao-pon
+- Nbuy
+
+----------------------------------------
+2011/12/25: Package Revision 2.2.1 Beta2
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #3298931 - xoops2.1.6 upgrade to XCL2.2 fail
+- Fix Bug #3307977 - site_custom.ini for multisite
+- Fix Bug #3313462 - trigger_error('…',E_USER_ERROR) may not halt execution
 - Fix Bug #3314175 - user module admin UserView error
 - Fix Bug #3317712 - class/module.errorhandler.php bug
 - Fix Bug #3357632 - category path list should contain terminal cat
 - Fix Bug #3362690 - smarty pluigin legacy_category_select missing array key
 - Fix Bug #3366737 - Missing preload file SetupAltsysLangMgr.class.php
+- Fix Bug #3380517 - user module edit error
+- Fix Bug #3387719 - Users can not delete your own account
 - Fix Bug #3395113 - 500 error / Apache fatal error
 - Fix Bug #3398687 - Users can not register  at UserDataUploadAction
 - Fix Bug #3409051 - when get profiledata fatal error ,modifier.xoops_user.php
 - Fix Bug #3409729 - xoops_meta_description set
+- Fix Bug #3464105 - Timing of the client data set
 
 [Feature Request - From Feature Requests Legacy Tracker]
+- Feature Request #2976820 - MyTextSanitizer delegate
 - Feature Request #3165296 - Replace resource.db.php with HD version
+- Feature Request #3314900 - please ckeditor version up
 - Feature Request #3317730 - please add ja_utf8 language files to XUpgrade
 - Feature Request #3352820 - Add new MIME type
 - Feature Request #3381570 - Check client data before delete category
 - Feature Request #3383519 - Check child category before delete category
+- Feature Request #3390357 - when install ,select time zone for japanese
+- Feature Request #3398822 - Firefox, Chrome, Opera BBcode
 - Feature Request #3408918 - when no_avatar.gif, 0width modifier.xoops_user_avatarize.php
 - Feature Request #3412833 - array request handling in PageNavi
+- Feature Request #3423505 - Add $xoops_module_header on dialog
+- Feature Request #3423584 - Not to select branch options in function.legacy_category_sel
 
 [Other Changes/Enhancements]
 - Update portuguese/pt_utf8 language files
+- Update french language files
 - Update interfaces: AbstractObject.class.php, AbstractImageObject.class.php, AbstractClientObjectHandler.class.php, ImageDelegateInterface.class.php
+- Speed up by nbuy
+- Update CKEditor script to 3.6.2
+- Update MyCKEditor with admin and help file
 
 [Staff]
+- asunta
+- bindi
 - bluemooninc
 - domifara
+- hamanaka
 - kilica
 - Mikhail Miguel
+- Metal
+- naao
+- nao-pon
+- nbuy
 - onlineco
+- SAK-AXYZ
+- xoopserver (gigamaster)
 
 ----------------------------------------
 2011/06/05: Package Revision 2.2.1 Beta1
@@ -117,7 +171,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - kilica
 - marine
 - Mikhail Miguel
-- ohwada 
+- ohwada
 
 ----------------------------------------
 2010/12/26: Package Revision 2.2.0 Beta3
@@ -250,7 +304,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #2993385 - AbstractCategoryObject.class.php syntax error
 - Fix Bug #2993394 - FATAL ERROR in include/module_icon.php
 - Fix Bug #2993397 - fileManager/admin/menu.php with 4 undefined constants
-- Fix Bug #2998179 - 12 index.html files with 0 byte 
+- Fix Bug #2998179 - 12 index.html files with 0 byte
 - Fix Bug #2998189 - xoops_trust_path with empty folders
 - Fix Bug #2998205 - robots.txt without references about the new XCL 2.2 modules
 - Fix Bug #2993377 - syntax error in phpmailer.lang-cn.php with path disclosure
@@ -417,7 +471,7 @@ http://sourceforge.net/apps/mediawiki/xoopscube/index.php?title=Release_Logs:XOO
 - Fix Bug #2949716 - The value of start and limit might be not corresponding between Criteria and PageNavi.
 - Fix Bug #2951068 - It becomes Fatal Error when the installation of XUpgrade.
 - Fix Bug #2955659 - invalid url exists in lostpass2.tpl.
-- Fix Bug #2963974 - Fatal error when ja_utf8 enabled without mbstring support. 
+- Fix Bug #2963974 - Fatal error when ja_utf8 enabled without mbstring support.
 
 [Pathes]
 - Patch #2933635 - Mr Marijuana's patch.

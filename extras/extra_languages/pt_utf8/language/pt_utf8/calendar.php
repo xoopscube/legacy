@@ -1,7 +1,7 @@
 <?php
 // *************************************************************************
 // ** XOOPS Cube Legacy - versão em português por Mikhail Miguel
-// ** $Id$
+// ** $Id: calendar.php 1040 2011-11-06 05:24:00Z mikhail $
 // ** License: http://creativecommons.org/licenses/by/2.5/br/
 // ** http://sf.net/users/mikhail | http://code.google.com/u/mikhail.miguel
 // *************************************************************************

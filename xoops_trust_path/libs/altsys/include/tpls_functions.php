@@ -138,6 +138,10 @@ function tplsadmin_get_basefilepath( $dirname , $type , $tpl_file )
 			$mid_path = $mytrustdirname == 'altsys' ? '/libs/' : '/modules/' ;
 
 			$path = XOOPS_TRUST_PATH.$mid_path.$mytrustdirname.'/templates/'.($type=='block'?'blocks/':'').substr( $tpl_file , strlen( $dirname ) + 1 ) ;
+			//new for xcck etc.other trust_module
+			if (! file_exists( $path )){
+				$path = XOOPS_TRUST_PATH.$mid_path.$mytrustdirname.'/templates/'.($type=='block'?'blocks/':'').$tpl_file ;
+			}
 		}
 	}
 

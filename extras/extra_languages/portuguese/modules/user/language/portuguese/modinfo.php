@@ -1,5 +1,5 @@
 <?php
-// $Id$
+// $Id: modinfo.php 1040 2011-11-06 05:24:00Z mikhail $
 // License http://creativecommons.org/licenses/by/2.5/br/
 define("_MI_USER_ADMENU_AVATAR_MANAGE","Avatares");
 define("_MI_USER_ADMENU_GROUP_LIST","Grupos e permissões");

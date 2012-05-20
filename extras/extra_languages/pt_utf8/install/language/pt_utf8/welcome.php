@@ -1,6 +1,6 @@
 <?php
-// $Id$
-// $HeadURL$
+// $Id: welcome.php 1040 2011-11-06 05:24:00Z mikhail $
+// $HeadURL: https://xoopscube.svn.sourceforge.net/svnroot/xoopscube/Package_Legacy/tags/r2_2_01_Beta_3/extras/extra_languages/pt_utf8/install/language/pt_utf8/welcome.php $
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português

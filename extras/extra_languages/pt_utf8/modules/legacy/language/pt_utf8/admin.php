@@ -1,5 +1,5 @@
 <?php
-// $Id$
+// $Id: admin.php 1040 2011-11-06 05:24:00Z mikhail $
 // TRANSLATION INFO
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //

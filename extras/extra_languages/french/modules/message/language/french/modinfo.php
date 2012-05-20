@@ -1,24 +1,24 @@
 <?php
-define('_MI_MESSAGE_NAME', 'Private Message');
-define('_MI_MESSAGE_DESC', 'This module provides Private Message functionality.');
-define('_MI_MESSAGE_SUB_NEW', 'Compose Message');
-define('_MI_MESSAGE_SUB_SEND', 'Sent Box');
-define('_MI_MESSAGE_SUB_SEARCH', 'User search');
-define('_MI_MESSAGE_SUB_FAVORITES', 'Favorites Users');
-define('_MI_MESSAGE_SUB_SETTINGS', 'Settings');
+define('_MI_MESSAGE_NAME', 'Message Privé');
+define('_MI_MESSAGE_DESC', 'Ce module fournit une fonctionnalité de messagerie privée.');
+define('_MI_MESSAGE_SUB_NEW', 'Nouveau Message');
+define('_MI_MESSAGE_SUB_SEND', 'Messages Envoyés');
+define('_MI_MESSAGE_SUB_SEARCH', 'Rechercher un utilisateur');
+define('_MI_MESSAGE_SUB_FAVORITES', 'Utilisateurs favoris');
+define('_MI_MESSAGE_SUB_SETTINGS', 'Paramêtres');
 
-define('_MI_MESSAGE_PAGENUM', 'Row number');
-define('_MI_MESSAGE_PAGENUM_DESC', 'Messages displayed per page.');
-define('_MI_MESSAGE_SAVEDAYS', 'Message purge schedule');
-define('_MI_MESSAGE_SAVEDAYS_DESC', 'How many Days a message should be preserved?');
-define('_MI_MESSAGE_NEWALERT', 'Use block : New Messages');
-define('_MI_MESSAGE_NEWALERT_DESC', 'Requires installation of module MyFriend and the block New Messages.');
-define('_MI_MESSAGE_USERINFO', 'Replace user_userinfo.html?');
-define('_MI_MESSAGE_USERINFO_DESC', 'Change User profile template user_userinfo.html to the one of this module?');
-define('_MI_MESSAGE_DELTYPE', 'Purge unread messages?');
-define('_MI_MESSAGE_DELTYPE_DESC', 'The unread message are automatically deleted during purge process.');
+define('_MI_MESSAGE_PAGENUM', 'Nombre de rangées');
+define('_MI_MESSAGE_PAGENUM_DESC', 'Nombre de messages affichés par page.');
+define('_MI_MESSAGE_SAVEDAYS', 'Planification de la purge des messages');
+define('_MI_MESSAGE_SAVEDAYS_DESC', 'Combien de jours un message doit être préservé?');
+define('_MI_MESSAGE_NEWALERT', 'Utiliser le bloc : Nouveaux Messages');
+define('_MI_MESSAGE_NEWALERT_DESC', 'Nécessite l\'installation du module MyFriend et du bloc Nouveaux Messages.');
+define('_MI_MESSAGE_USERINFO', 'Remplacer user_userinfo.html?');
+define('_MI_MESSAGE_USERINFO_DESC', 'Changer le template du profil utilisateur (user_userinfo.html) par celui de ce module?');
+define('_MI_MESSAGE_DELTYPE', 'Purger les messages non-lus?');
+define('_MI_MESSAGE_DELTYPE_DESC', 'Les messages non-lus sont automatiquement supprimés durant le processus de purge.');
 
-define('_MI_MESSAGE_BLOCK_NAME', 'New Messages');
-define('_MI_INQUIRY_INSTALL_ERROR', 'This module only works with PHP5.');
-define('_MI_MESSAGE_INSTALL_ERROR2', 'Please uninstall the default PM module of XCL package.');
+define('_MI_MESSAGE_BLOCK_NAME', 'Nouveaux Messages');
+define('_MI_INQUIRY_INSTALL_ERROR', 'Ce module ne fonctionne qu\'avec PHP5.');
+define('_MI_MESSAGE_INSTALL_ERROR2', 'Veuillez désinstaller le module PM par défaut du paquet XCL.');
 ?>

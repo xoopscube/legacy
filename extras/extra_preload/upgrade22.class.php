@@ -2,6 +2,9 @@
 
 if(! defined('XOOPS_ROOT_PATH')) exit();
 
+if(alterChangeColumn()==false){
+	echo 'unable to alter change column for XCL2.2 upgrade';die();
+}
 if(alterModulesTable()==false){
 	echo 'unable to alter modules table for XCL2.2 upgrade';die();
 }
@@ -9,9 +12,31 @@ if(insertXoopsConfig()==false){
 	echo 'unable to insert cool_uri config for XCL2.2 upgrade';die();
 }
 
+function alterChangeColumn()
+{
+	$db = _getDB();
+
+	$column = array(
+        array('bannerclient','email'),
+        array('config','conf_title'),
+        array('config','conf_desc'),
+        array('users','email'),
+    );
+
+    foreach($column as $value) {
+        $alterSql = 'ALTER TABLE `' . $db->prefix($value[0]) . '` MODIFY ' . $value[1] . ' VARCHAR(255) DEFAULT ""';
+        if (!$db->queryF($alterSql)) {
+            _error_message($db);
+            return false;
+        }
+    }
+
+    return true;
+}
+
 function alterModulesTable()
 {
-	$db = _getDb();
+	$db = _getDB();
 
 	$checkSql = 'DESC `'.$db->prefix('modules').'`';
 
@@ -24,7 +49,13 @@ function alterModulesTable()
 			return true;
 		}
 	}
-	return $db->queryF($alterSql);
+    
+    if (!$db->queryF($alterSql)) {
+        _error_message($db);
+        return false;
+    }
+    
+    return true;
 }
 
 function insertXoopsConfig()
@@ -40,7 +71,16 @@ function insertXoopsConfig()
 			return true;
 		}
 	}
-	return $db->queryF($insertSql);
+	
+    if (!$db->queryF($insertSql)) {
+        $insertSql = 'INSERT INTO `'.$db->prefix('config').'` VALUES (null,0,1,"cool_uri","_MD_AM_COOLURI","0","_MD_AM_COOLURIDSC","yesno","int",17)';
+        if (!$db->queryF($insertSql)) {
+            _error_message($db);
+            return false;
+        }
+    }
+    
+    return true;
 }
 
 /**
@@ -53,21 +93,28 @@ function _getDB()
 	$root = XCube_Root::getSingleton();
 	if(!defined('XOOPS_DB_CHKREF'))
 		define('XOOPS_DB_CHKREF', 1);
-	else
-		define('XOOPS_DB_CHKREF', 0);
 
 	require_once XOOPS_ROOT_PATH.'/class/database/databasefactory.php';
 
 	if ($root->getSiteConfig('Legacy', 'AllowDBProxy') == true) {
 		if (xoops_getenv('REQUEST_METHOD') != 'POST' || !xoops_refcheck(XOOPS_DB_CHKREF)) {
-			define('XOOPS_DB_PROXY', 1);
+			if(!defined('XOOPS_DB_PROXY'))
+				define('XOOPS_DB_PROXY', 1);
 		}
 	}
 	elseif (xoops_getenv('REQUEST_METHOD') != 'POST') {
-		define('XOOPS_DB_PROXY', 1);
+		if(!defined('XOOPS_DB_PROXY'))
+			define('XOOPS_DB_PROXY', 1);
 	}
 
 	return XoopsDatabaseFactory::getDatabaseConnection();
+}
+
+function _error_message($db) {
+    if (is_object($db) && $db->errno()) {
+        $err_msg = '#' . $db->errno() . ' - ' . $db->error() . "<br />\n";
+        echo $err_msg;
+    }
 }
 
 ?>
