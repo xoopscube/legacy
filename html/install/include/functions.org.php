@@ -36,7 +36,7 @@ function getLanguage() {
 			'ja' => 'japanese',
 			'ko' => 'korean',
 //			'nl' => 'dutch',
-			'pt' => 'portuguese',
+			'pt' => 'pt_utf8',
 			'ru' => 'russian',
 			'zh' => 'schinese',
 

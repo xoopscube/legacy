@@ -36,7 +36,7 @@ function getLanguage() {
 			'ja' => 'japanese',
 			'ko' => 'korean',
 //			'nl' => 'dutch',
-			'pt' => 'portuguese',
+			'pt' => 'pt_utf8',
 			'ru' => 'russian',
 			'zh' => 'schinese',
 
@@ -70,9 +70,9 @@ function getLanguage() {
 	                    break;
 	                }
 	            }
-				if ( file_exists(dirname(dirname(__FILE__)).'/language/'.$al.'_utf8') ) {
-					$language = $al.'_utf8';
-				}
+		    if ( file_exists(dirname(dirname(__FILE__)).'/language/'.$al.'_utf8') ) {
+		    	$language = $al.'_utf8';
+		    }
 	        } else if (isset($_SERVER['HTTP_ACCEPT_CHARSET'])) {
 				foreach ($charset_array as $ac => $lg) {
 					if (strstr($_SERVER['HTTP_ACCEPT_CHARSET'],$ac)) {
@@ -183,6 +183,15 @@ function b_reload($option=''){
     if (!defined('_INSTALL_L200')) {
         define('_INSTALL_L200', 'Reload');
     }
+
+    if(!empty($_POST['op'])) {
+    	$op = $_POST['op'];
+    } elseif(!empty($_GET['op'])) {
+    	$op = $_GET['op'];
+    } else {
+    	$op = 'langselect';
+    }
+
     return  '<input type="image" src="img/reload.png" class="reload" title="Reload" value="'._INSTALL_L200.'" onclick="location.reload();" />';
 }
 
