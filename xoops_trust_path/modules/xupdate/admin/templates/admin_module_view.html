@@ -1,0 +1,23 @@
+<{* <p>"Finish Download"|t}></p> *}>
+<h3><{$smarty.const._AD_XUPDATE_LANG_MODULES}></h3>
+<{include file="admin_menunavi.html"}>
+<{include file="admin_tips.html"}>
+
+<{if !empty($xupdate_items) }>
+	<div>
+	<ul>
+	<{foreach item=data from=$xupdate_items}>
+		<li><a href="index.php?action=ModuleStore&amp;sid=<{$data.storeobj->get('sid')}>"><{$data.storeobj->getShow('name')}></a></li>
+		<li>
+		<{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>: <{$data.items_count}>
+		</li>
+		<ul>
+		<{foreach item=itemsobj from=$data.itemsobj}>
+			<li><a href="index.php?action=ModuleInstall&amp;id=<{$itemsobj->getShow('id')}>"><{$itemsobj->getShow('dirname')}></a></li>
+		<{/foreach}>
+		</ul>
+	<{/foreach}>
+	</ul>
+	</div>
+<{/if}>
+

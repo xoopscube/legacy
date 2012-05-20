@@ -1,0 +1,39 @@
+<div id="xupdate">
+<{if $actionForm->hasError()}>
+  <ul class="error">
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+<{/if}>
+<form action="index.php?action=StoreEdit" method="post">
+  <dl>
+	<dt><{$smarty.const._MD_XUPDATE_LANG_SID}></dt>
+	  <dd><{xoops_input type=text name=sid value=$actionForm->get('sid') size=10}></dd>
+<{*
+	<dt><{$smarty.const._MD_XUPDATE_LANG_UID}></dt>
+	  <dd><{xoops_input type=text name=uid value=$actionForm->get('uid') size=10}></dd>
+	<dt><{$smarty.const._MD_XUPDATE_LANG_VALID}></dt>
+	  <dd><{xoops_input type=text name=valid value=$actionForm->get('valid') size=10}></dd>
+*}>
+	<dt><{$smarty.const._MD_XUPDATE_LANG_NAME}></dt>
+	  <dd><{xoops_input type=text name=name value=$actionForm->get('name') size=20 maxlength=255}></dd>
+	<dt><{$smarty.const._MD_XUPDATE_LANG_ADDON_URL}></dt>
+	  <dd><{xoops_input type=text name=addon_url value=$actionForm->get('addon_url') size=20 maxlength=255}></dd>
+<{*
+	<dt><{$smarty.const._MD_XUPDATE_LANG_THEME_URL}></dt>
+	  <dd><{xoops_input type=text name=theme_url value=$actionForm->get('theme_url') size=20 maxlength=255}></dd>
+*}>
+	<dt><{$smarty.const._MD_XUPDATE_LANG_REG_UNIXTIME}></dt>
+	  <dd><{xoops_input type=text name=reg_unixtime value=$actionForm->get('reg_unixtime') size=10}></dd>
+
+    <dt></dt>
+    <dd>
+      <{xoops_token form=$actionForm}>
+      <{xoops_input type=hidden name=sid value=$actionForm->get('sid')}>
+      <input type="submit" value="<{$smarty.const._SUBMIT}>" />
+      <input type="submit" value="<{$smarty.const._CANCEL}>" name="_form_control_cancel" />
+    </dd>
+  </dl>
+</form>
+</div>

@@ -1,0 +1,84 @@
+<div id="xupdate">
+<ul class="toptab">
+  <li><a href="index.php?action=StoreEdit"><{$smarty.const._MD_XUPDATE_LANG_ADD_A_NEW_STORE}></a></li>
+</ul>
+
+<{if count($objects) > 0}>
+<{if $pageNavi->getPerpage() < $pageNavi->getTotalItems() }>
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+<{/if}>
+  <table class="outer" summary="">
+    <thead>
+      <tr>
+		<th>
+		  <{$smarty.const._MD_XUPDATE_LANG_SID}><br />
+		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.XUPDATE_STORE_SORT_KEY_SID}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.XUPDATE_STORE_SORT_KEY_SID}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+		</th>
+<{*
+		<th>
+		  <{$smarty.const._MD_XUPDATE_LANG_UID}><br />
+		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.XUPDATE_STORE_SORT_KEY_UID}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.XUPDATE_STORE_SORT_KEY_UID}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+		</th>
+		<th>
+		  <{$smarty.const._MD_XUPDATE_LANG_VALID}><br />
+		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.XUPDATE_STORE_SORT_KEY_VALID}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.XUPDATE_STORE_SORT_KEY_VALID}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+		</th>
+*}>
+		<th>
+		  <{$smarty.const._MD_XUPDATE_LANG_NAME}><br />
+		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.XUPDATE_STORE_SORT_KEY_NAME}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.XUPDATE_STORE_SORT_KEY_NAME}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+		</th>
+		<th>
+		  <{$smarty.const._MD_XUPDATE_LANG_ADDON_URL}><br />
+		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.XUPDATE_STORE_SORT_KEY_ADDON_URL}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.XUPDATE_STORE_SORT_KEY_ADDON_URL}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+		</th>
+<{*
+		<th>
+		  <{$smarty.const._MD_XUPDATE_LANG_THEME_URL}><br />
+		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.XUPDATE_STORE_SORT_KEY_THEME_URL}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.XUPDATE_STORE_SORT_KEY_THEME_URL}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+		</th>
+*}>
+		<th>
+		  <{$smarty.const._MD_XUPDATE_LANG_REG_UNIXTIME}><br />
+		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.XUPDATE_STORE_SORT_KEY_REG_UNIXTIME}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+		  <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.XUPDATE_STORE_SORT_KEY_REG_UNIXTIME}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+		</th>
+
+        <th><{$smarty.const._MD_XUPDATE_LANG_CONTROL}></th>
+      </tr>
+    </thead>
+    <tbody>
+      <{foreach item=obj from=$objects}>
+        <tr class="<{cycle values='odd,even'}>">
+		  <td><{$obj->getShow('sid')}></td>
+<{*
+		  <td><{$obj->getShow('uid')}></td>
+		  <td><{$obj->getShow('valid')}></td>
+*}>
+		  <td><{$obj->getShow('name')}></td>
+		  <td><{$obj->getShow('addon_url')}></td>
+<{*
+		  <td><{$obj->getShow('theme_url')}></td>
+*}>
+		  <td><{$obj->getShow('reg_unixtime')}></td>
+
+          <td>
+            <a href="./index.php?action=StoreView&amp;sid=<{$obj->getShow('sid')}>"><{$smarty.const._VIEW}></a>
+            <a href="./index.php?action=StoreEdit&amp;sid=<{$obj->getShow('sid')}>"><{$smarty.const._EDIT}></a>
+            <a href="./index.php?action=StoreDelete&amp;sid=<{$obj->getShow('sid')}>"><{$smarty.const._DELETE}></a>
+          </td>
+        </tr>
+      <{/foreach}>
+    </tbody>
+  </table>
+<{if $pageNavi->getPerpage() < $pageNavi->getTotalItems() }>
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+<{/if}>
+<{/if}>
+</div>
