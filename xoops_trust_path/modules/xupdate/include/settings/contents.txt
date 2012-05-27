@@ -51,6 +51,12 @@
 "approved":"true"
 },
 
+"mobile_templates":
+{
+"target_key":"mobile_templates",
+"approved":"true"
+},
+
 "none":
 {
 "target_key":"none",
