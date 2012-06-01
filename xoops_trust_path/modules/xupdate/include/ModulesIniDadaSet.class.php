@@ -117,13 +117,13 @@ class Xupdate_ModulesIniDadaSet
 					$items_lang = parse_ini_file($downloadedLangFilePath, true);
 					//adump($items, $items_lang);
 					foreach($items as $key => $item){
-						//adump($store['sid'],$item['target_key']);
-							if (isset($arr_master[$store['sid']][$item['target_key']])){
-							$master = $arr_master[$store['sid']][$item['target_key']];
-							if ( $item['target_key'] == $master['target_key']  && $master['approved'] == 'true' ) {
+						//adump($store['sid'],$item['target_key'],$key);
+							if (isset($arr_master[$store['sid']][$key])){
+							$master = $arr_master[$store['sid']][$key];
+							if ( $key == $master['target_key']  && $master['approved'] == 'true' ) {
 								//adump($store['sid'],$key);
 								$item['sid'] = $store['sid'] ;
-								$item['description'] = isset($items_lang[$item['target_key']]['description']) ? $items_lang[$item['target_key']]['description'] : '' ;
+								$item['description'] = isset($items_lang[$key]['description']) ? $items_lang[$key]['description'] : '' ;
 								switch($item['target_type']){
 									case 'TrustModule':
 										$this->_setDataTrustModule($item['sid'] , $item);

@@ -29,20 +29,19 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 	{
 		// local file name
 		$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
-		$downloadFilePath = $this->Xupdate->params['temp_path'].'/'.$this->target_key .'.tgz';
+		$downloadFilePath = $this->Xupdate->params['temp_path'].'/'.$this->target_key .'.zip';
 		$exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
 		if (empty($downloadFilePath) ) {
 			$this->_set_error_log('getDownloadFilePath not found error in: '.$this->_getDownloadFilePath());
 			return false;
 		}
-
 		if (! chdir($exploredDirPath) ) {
 			$this->_set_error_log('chdir error in: '.$exploredDirPath);
 			return false;//chdir error
 		}
 
 		File_Archive::extract(
-			File_Archive::read($downloadFilePath),
+			File_Archive::read($downloadFilePath.'/'),
 			File_Archive::appender($exploredDirPath)
 		);
 		return true;
