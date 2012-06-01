@@ -12,6 +12,8 @@ define('_AD_XUPDATE_LANG_MODULES', "Module list");
 define('_AD_XUPDATE_LANG_THEME_FINDER', "Theme Finder");
 
 define('_AD_XUPDATE_LANG_TYPE', "Type");
+define('_AD_XUPDATE_LANG_LICENSE', "License");
+define('_AD_XUPDATE_LANG_REQUIRED', "Required Level");
 
 define('_AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL', "Batch install");
 define('_AD_XUPDATE_LANG_MESSAGE_WAITING', "Waiting");

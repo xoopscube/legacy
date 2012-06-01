@@ -18,6 +18,8 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 		$this->initVar('dirname', XOBJ_DTYPE_STRING, '', false);
 		$this->initVar('trust_dirname', XOBJ_DTYPE_STRING, '', false);
 		$this->initVar('version', XOBJ_DTYPE_INT, 100, false);
+		$this->initVar('license', XOBJ_DTYPE_STRING, '', false);
+		$this->initVar('required', XOBJ_DTYPE_STRING, '', false);
 		$this->initVar('last_update', XOBJ_DTYPE_INT, null, false);
 		$this->initVar('target_key', XOBJ_DTYPE_STRING, '', false);
 		$this->initVar('target_type', XOBJ_DTYPE_STRING, '', false);
@@ -143,6 +145,21 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 		$ret = XOOPS_MODULE_URL .'/legacy/admin/index.php?action=ModuleUpdate&dirname='
 			.$this->getVar('dirname') ;
 		return $ret;
+	}
+
+	/**
+	 * get_DetailUrl
+	 *
+	 * @param string $downloadUrlFormat
+	 * @param string $target_key
+	 *
+	 * @return	string
+	 **/
+	public function get_DetailUrl( $target_key, $downloadUrlFormat )
+	{
+		// TODO ファイルNotFound対策
+		$url = sprintf( $downloadUrlFormat, $target_key );
+		return $url;
 	}
 
 } // end class

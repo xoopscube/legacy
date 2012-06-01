@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 // Xupdate_ftp excutr function
 if(!class_exists('ZipArchive') ){
@@ -35,6 +35,8 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	public $downloadDirPath;
 	public $exploredDirPath;
 	public $downloadUrlFormat;
+
+	public $nextlink ;
 
 	public $target_key;
 	public $target_type;
@@ -114,7 +116,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 		}
 
 		if ($result){
-			$this->content.= $this->_get_nextlink($this->dirname, $caller);
+			$this->nextlink = $this->_get_nextlink($this->dirname, $caller);
 		}else{
 			$this->content.= _ERRORS;
 		}

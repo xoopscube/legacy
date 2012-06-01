@@ -12,6 +12,8 @@ define('_AD_XUPDATE_LANG_MODULES', "モジュール一覧");
 define('_AD_XUPDATE_LANG_THEME_FINDER', "テーマファインダー");
 
 define('_AD_XUPDATE_LANG_TYPE', "タイプ");
+define('_AD_XUPDATE_LANG_LICENSE', "ライセンス");
+define('_AD_XUPDATE_LANG_REQUIRED', "推奨度");
 
 define('_AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL', "一括インストール");
 define('_AD_XUPDATE_LANG_MESSAGE_WAITING', "待機中");
