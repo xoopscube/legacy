@@ -15,13 +15,16 @@ class Xupdate_FtpCommonFunc {
 	public $Func ;	// Functions instance
 	public $mod_config ;
 	public $content ;
-
 	public $downloadDirPath;
 	public $exploredDirPath;
 	public $downloadUrlFormat;
 
+	public $nextlink = "";
+
 	public $target_key;
 	public $target_type;
+
+	public $options = array();
 
 	public function __construct() {
 

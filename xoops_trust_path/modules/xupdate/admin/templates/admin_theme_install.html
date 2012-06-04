@@ -11,5 +11,17 @@
 
 <div id="xupdate_content">
 <{$xupdate_content}>
+</div>
+
+<{if $xupdate_nextlink}>
+<ul class="toptab">
+<li id="xupdate_addModule" class="addModule" style="float:left;">
+  <{$xupdate_nextlink}>
+</li>
+</ul>
+<div style="clear:both;"></div>
+<{/if}>
+
+<div id="xupdate_message">
 <{$xupdate_message}>
 </div>

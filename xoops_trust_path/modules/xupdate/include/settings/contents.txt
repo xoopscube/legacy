@@ -39,15 +39,21 @@
 "approved":"true"
 },
 
-"myalbum-p":
+"myalbum":
 {
-"target_key":"myalbum-p",
+"target_key":"myalbum",
 "approved":"true"
 },
 
 "multiMenu":
 {
 "target_key":"multiMenu",
+"approved":"true"
+},
+
+"mobile_templates":
+{
+"target_key":"mobile_templates",
 "approved":"true"
 },
 
@@ -113,7 +119,7 @@
 
 },
 
-"6":
+"5":
 {
 "store_name":"nao-pon",
 
@@ -132,6 +138,30 @@
 "xelfinder":
 {
 "target_key":"xelfinder",
+"approved":"true"
+}
+
+},
+
+"6":
+{
+"store_name":"domifara",
+
+"xugjmcdel":
+{
+"target_key":"xugjmcdel",
+"approved":"true"
+},
+
+"myckeditor":
+{
+"target_key":"myckeditor",
+"approved":"true"
+},
+
+"chalog":
+{
+"target_key":"chalog",
 "approved":"true"
 }
 

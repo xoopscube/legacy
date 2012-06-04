@@ -148,7 +148,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract {
 	}
 
 	public function chmod($pathname, $mode) {
-		return $this->sftp->chmod($mode, $filename);
+		return $this->sftp->chmod($mode, $pathname);
 	}
 
 	public function rawlist($pathname="", $arg="") {

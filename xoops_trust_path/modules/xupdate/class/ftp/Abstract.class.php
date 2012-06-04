@@ -59,6 +59,8 @@ class Xupdate_Ftp_Abstract {
 
 	protected $mes = "";
 
+	protected $no_overwrite;
+
 	/* Constructor */
 	public function __construct( $XupdateObj, $verb=FALSE, $le=FALSE, $port_mode=FALSE ) {
 		// ToDo Cube流に直し

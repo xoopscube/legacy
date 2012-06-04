@@ -32,25 +32,25 @@
 "name":"naao - GitHub",
 "contents":"module",
 "setting_type":"ini",
-"addon_url":"http:\/\/www.naaon.com\/uploads\/xupdate\/modules_naao.txt"
-},
-
-"domifara":
-{
-"sid":"5",
-"name":"xodomifara.lolipop.jp test",
-"contents":"module",
-"setting_type":"json",
-"addon_url":"http:\/\/xodomifara.lolipop.jp\/karidown\/%s.zip"
+"addon_url":"http:\/\/www.naaon.com\/uploads\/xupdate\/modules_naao.ini"
 },
 
 "nao-pon":
 {
-"sid":"6",
+"sid":"5",
 "name":"nao-pon - GitHub",
 "contents":"module",
 "setting_type":"ini",
-"addon_url":"http:\/\/www.naaon.com\/uploads\/xupdate\/modules_nao-pon.ini"
+"addon_url":"https:\/\/raw.github.com\/nao-pon\/xoops_xupdate_store\/master\/xupdate_modules.ini"
+},
+
+"domifara":
+{
+"sid":"6",
+"name":"xodomifara.lolipop.jp test",
+"contents":"module",
+"setting_type":"ini",
+"addon_url":"http:\/\/www.naaon.com\/uploads\/xupdate\/modules_domifara.ini"
 },
 
 "xoops123":
