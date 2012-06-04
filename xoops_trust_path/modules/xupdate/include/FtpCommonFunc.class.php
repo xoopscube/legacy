@@ -24,6 +24,8 @@ class Xupdate_FtpCommonFunc {
 	public $target_key;
 	public $target_type;
 
+	public $options = array();
+
 	public function __construct() {
 
 		$this->mRoot =& XCube_Root::getSingleton();

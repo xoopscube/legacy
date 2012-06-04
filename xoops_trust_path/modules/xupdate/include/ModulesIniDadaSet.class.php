@@ -296,78 +296,42 @@ class Xupdate_ModulesIniDadaSet
 		$item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
 		$item['addon_url']= isset($item['addon_url']) ? $item['addon_url']: '' ;
 
-		if(isset($item['writable_file']) || isset($item['writable_dir']) || isset($item['install_only'])){
-			$item_arr=array();
-			if(isset($item['writable_file'])){
-				$item_arr['writable_file']= $item['writable_file'] ;
-				unset ($item['writable_file']);
-			}
-			if(isset($item['writable_dir'])){
-				$item_arr['writable_dir']= $item['writable_dir'] ;
-				unset ($item['writable_dir']);
-			}
-			if(isset($item['install_only'])){
-				$item_arr['install_only']= $item['install_only'] ;
-				unset ($item['install_only']);
-			}
-			$item['options']= serialize($item_arr) ;
-			//adump($item['options']);
-		} else{
-			$item['options']= '';
-		}
+		$item = $this->_createItemOptions($item);
 
-		$mobj = new $this->modHand->mClass();
-		$mobj->assignVars($item);
-		$mobj->assignVar('sid', $sid);
+		  $mobj = new $this->modHand->mClass();
+		  $mobj->assignVars($item);
+		  $mobj->assignVar('sid', $sid);
 
-		$mobj->setmModule();
+		  $mobj->setmModule();
 
-		if (isset($this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']])){
-			$mobj->assignVar('id',$this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]->getVar('id') );
-			$this->_ModuleStoreUpdate($mobj , $this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]);
-		}else{
-			$mobj->setNew();
-			$this->modHand->insert($mobj ,true);
-			$this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']] = $mobj;
-		}
-		unset($mobj);
+		  if (isset($this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']])){
+			  $mobj->assignVar('id',$this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]->getVar('id') );
+			  $this->_ModuleStoreUpdate($mobj , $this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]);
+		  }else{
+			  $mobj->setNew();
+			  $this->modHand->insert($mobj ,true);
+			  $this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']] = $mobj;
+		  }
+		  unset($mobj);
 
-	}
-	private function _setDataTrustModule($sid ,$item)
-	{
-		//$sid = (int)$sid;
-		$item['version']= isset($item['version']) ? round(floatval($item['version'])*100): 0 ;
-		$item['replicatable']= isset($item['replicatable']) ? intval($item['replicatable']): 0 ;
-		$item['target_key']= isset($item['target_key']) ? $item['target_key']: $item['dirname'] ;
-		$item['trust_dirname']= isset($item['trust_dirname']) ? $item['trust_dirname']: $item['dirname'] ;
-		$item['description']= isset($item['description']) ? $item['description']: '' ;
-		if(function_exists('mb_convert_encoding')){
-			if ('UTF-8' != _CHARSET){
-				$item['description'] = mb_convert_encoding($item['description'] , _CHARSET , 'UTF-8');
-			}
-		}
-		$item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
-		$item['addon_url']= isset($item['addon_url']) ? $item['addon_url']: '' ;
+	  }
+	  private function _setDataTrustModule($sid ,$item)
+	  {
+		  //$sid = (int)$sid;
+		  $item['version']= isset($item['version']) ? round(floatval($item['version'])*100): 0 ;
+		  $item['replicatable']= isset($item['replicatable']) ? intval($item['replicatable']): 0 ;
+		  $item['target_key']= isset($item['target_key']) ? $item['target_key']: $item['dirname'] ;
+		  $item['trust_dirname']= isset($item['trust_dirname']) ? $item['trust_dirname']: $item['dirname'] ;
+		  $item['description']= isset($item['description']) ? $item['description']: '' ;
+		  if(function_exists('mb_convert_encoding')){
+			  if ('UTF-8' != _CHARSET){
+				  $item['description'] = mb_convert_encoding($item['description'] , _CHARSET , 'UTF-8');
+			  }
+		  }
+		  $item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
+		  $item['addon_url']= isset($item['addon_url']) ? $item['addon_url']: '' ;
 
-		if(isset($item['writable_file']) || isset($item['writable_dir']) || isset($item['install_only'])){
-			$item_arr=array();
-			if(isset($item['writable_file'])){
-				$item_arr['writable_file']= $item['writable_file'] ;
-				unset ($item['writable_file']);
-			}
-			if(isset($item['writable_dir'])){
-				$item_arr['writable_dir']= $item['writable_dir'] ;
-				unset ($item['writable_dir']);
-			}
-			if(isset($item['install_only'])){
-				$item_arr['install_only']= $item['install_only'] ;
-				unset ($item['install_only']);
-			}
-			$item['options']= serialize($item_arr) ;
-			//adump($item['options']);
-		} else{
-			$item['options']= '';
-		}
+		  $item = $this->_createItemOptions($item);
 
 		//インストール済みの同じtrustモージュールのリストを取得
 		$list = Legacy_Utils::getDirnameListByTrustDirname($item['trust_dirname']);
@@ -437,6 +401,29 @@ class Xupdate_ModulesIniDadaSet
 
 	}
 
+	private function _createItemOptions( $item )
+	{
+		if(isset($item['writable_file']) || isset($item['writable_dir']) || isset($item['install_only'])){
+			$item_arr=array();
+			if(isset($item['writable_file'])){
+				$item_arr['writable_file']= $item['writable_file'] ;
+				unset ($item['writable_file']);
+			}
+			if(isset($item['writable_dir'])){
+				$item_arr['writable_dir']= $item['writable_dir'] ;
+				unset ($item['writable_dir']);
+			}
+			if(isset($item['install_only'])){
+				$item_arr['install_only']= $item['install_only'] ;
+				unset ($item['install_only']);
+			}
+			$item['options']= serialize($item_arr) ;
+			//adump($item['options']);
+		} else{
+			$item['options']= '';
+		}
+		return $item;
+	}
 /*
  * このサイトのデータをデータベースに再セットする
  */

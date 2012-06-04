@@ -78,10 +78,23 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 					}
 					// TODO port , timeout
 					if($this->Ftp->app_login("127.0.0.1")==true) {
+						// overwrite control
+						if(isset($this->options['no_overwrite'])){
+							$this->Ftp->set_no_overwrite($this->options['no_overwrite']);
+						}
 						if (!$this->uploadFiles()){
 							$this->_set_error_log('Ftp uploadFiles false');
 							$result = false;
 						}
+						// change directories to writable
+						if(isset($this->options['writable_dir'])){
+							array_map(array($this, '_chmod_dir'),$this->options['writable_dir']);
+						}
+						// change files to writable
+						if(isset($this->options['writable_file'])){
+							array_map(array($this, '_chmod_file'),$this->options['writable_file']);
+						}
+
 						$this->Ftp->app_logout();
 
 					}else{
@@ -117,6 +130,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 
 		if ($result){
 			$this->nextlink = $this->_get_nextlink($this->dirname, $caller);
+
 		}else{
 			$this->content.= _ERRORS;
 		}
@@ -280,6 +294,34 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	{
 		$this->exploredDirPath = dirname($this->exploredDirPath);
 		$this->Ftp->appendMes('up dir exploredDirPath: '.$this->exploredDirPath.'<br />');
+	}
+
+	/**
+	 * _chmod_dir
+	 *
+	 * @param   string $directory
+	 *
+	 * @return	void
+	 **/
+	private function _chmod_dir( &$directory)
+	{
+		if(file_exists($directory) && is_dir($directory)){
+			$this->Ftp->chmod($directory, 0707);
+		}
+	}
+
+	/**
+	 * _chmod_file
+	 *
+	 * @param   string $directory
+	 *
+	 * @return	void
+	 **/
+	private function _chmod_file( &$directory)
+	{
+		if(file_exists($directory) && !is_dir($directory)){
+			$this->Ftp->chmod($directory, 0707);
+		}
 	}
 
 } // end class

@@ -95,6 +95,18 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		return true;
 	}
 
+	public function chmod($pathname, $mode) {
+		return parent::chmod($pathname, $mode);
+	}
+
+	/**
+	 *  set_no_overwrite
+	 * @param array $no_overwrite
+	 * @return void
+	 */
+	public function set_no_overwrite($no_overwrite) {
+		$this->no_overwrite = $no_overwrite;
+	}
 
 // <!-- --------------------------------------------------------------------------------------- -->
 // <!--	   protected functions																  -->
@@ -216,7 +228,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		if ($ftp_root===false){
 			return false;
 		}
-		$file_list = $this->getFileList($local_path);
+		$file_list = $this->_getFileList($local_path);
 		if (!isset($file_list['dir']) ){
 			return true;
 		}
@@ -242,10 +254,10 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			//$l_file = str_replace( '/','\\',$l_file );
 			//$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
 			//$this->put($l_file, $ftp_remote_file, FTP_BINARY);
-			if (!$this->put($l_file, $ftp_remote_file)){
+			$dont_overwrite = $this->_dont_overwrite($ftp_remote_file, $this->no_overwrite);
+			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
 				return false;
 			}
-
 		}
 		return true;
 	}
@@ -256,7 +268,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		if ($ftp_root===false){
 			return false;
 		}
-		$file_list = $this->getFileList($local_path);
+		$file_list = $this->_getFileList($local_path);
 		if (!isset($file_list['dir']) ){
 			return true;
 		}
@@ -282,7 +294,8 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			//rename dirname
 			$r_file = $remote_path.substr(str_replace('/modules/'.$trust_dirname.'/','/modules/'.$dirname.'/' ,$l_file), $remote_pos ); // +1 is remove first flash
 			$ftp_remote_file = substr($r_file, strlen($ftp_root));
-			if (!$this->put($l_file, $ftp_remote_file)){
+			$dont_overwrite = $this->_dont_overwrite($ftp_remote_file, $this->no_overwrite);
+			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
 				return false;
 			}
 		}
@@ -294,7 +307,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		if ($ftp_root===false){
 			return false;
 		}
-		$file_list = $this->getFileList($local_path);
+		$file_list = $this->_getFileList($local_path);
 		if (!isset($file_list['dir']) ){
 			return true;
 		}
@@ -327,14 +340,15 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			//$l_file = str_replace( '/','\\',$l_file );
 			//$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
 			//$this->put($l_file, $ftp_remote_file, FTP_BINARY);
-			if (! $this->put($l_file, $ftp_remote_file)){
+			$dont_overwrite = $this->_dont_overwrite($ftp_remote_file, $this->no_overwrite);
+			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
 				return false;
 			}
 		}
 		return true;
 	}
 
-	private function  getFileList($dir, $list=array('dir'=> array(), 'file' => array()))
+	private function _getFileList($dir, $list=array('dir'=> array(), 'file' => array()))
 	{
 		if (is_dir($dir) == false) {
 			return;
@@ -347,7 +361,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 					continue;
 				}
 				else if (is_dir("$dir/$file")) {
-					$list = $this->getFileList("$dir/$file", $list);
+					$list = $this->_getFileList("$dir/$file", $list);
 					$list['dir'][] = "$dir/$file";
 				}
 				else {
@@ -357,6 +371,20 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		}
 		closedir($dh);
 		return $list;
+	}
+
+	private function _dont_overwrite($file, $chk_array)
+	{
+		if(count($chk_array)<=0){
+			return false;
+		}
+		foreach ($chk_array as $item){
+			if( strlen( strstr($file, $item) ) >0 && file_exists($file)){
+				//adump($file, $chk_array);
+					return true;
+			}
+		}
+		return false;
 	}
 
 	/**

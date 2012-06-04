@@ -451,7 +451,7 @@ jQuery(function($){
 
 	var getStoreSuccess = function(html)
 	{
-		var result = $(html).find('#xupdate_content a').text();
+		var result = $(html).find('#xupdate_addModule a').text();
 		if (result == '{$message_Install}'){
 			installationModule.td.html('<span style="color:green;">{$message_Getting_files}{$message_Success}</span>');
 		}else{
