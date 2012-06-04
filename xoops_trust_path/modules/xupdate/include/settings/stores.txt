@@ -41,7 +41,7 @@
 "name":"nao-pon - GitHub",
 "contents":"module",
 "setting_type":"ini",
-"addon_url":"http:\/\/www.naaon.com\/uploads\/xupdate\/modules_nao-pon.ini"
+"addon_url":"https:\/\/raw.github.com\/nao-pon\/xoops_xupdate_store\/master\/xupdate_modules.ini"
 },
 
 "domifara":
