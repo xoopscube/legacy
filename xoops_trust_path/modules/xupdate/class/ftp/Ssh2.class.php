@@ -6,7 +6,6 @@ include_once dirname(__FILE__) . '/phpseclib/Net/SFTP.php';
 
 class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract {
 
-	public $ssh2;
 
 	/* Constructor */
 	public function __construct($XupdateObj, $port_mode=FALSE, $verb=FALSE, $le=FALSE) {
