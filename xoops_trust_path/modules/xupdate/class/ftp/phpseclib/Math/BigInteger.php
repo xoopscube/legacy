@@ -1578,7 +1578,13 @@ class Math_BigInteger {
     {
         $n = $this->bitmask !== false && $this->bitmask->compare($n) < 0 ? $this->bitmask : $n->abs();
 
-        if ($e->compare(new Math_BigInteger()) < 0) {
+ 	    // naao added to avoid fatal error
+		if (!is_object($e)){
+			$temp = new Math_BigInteger();
+			return $this->_normalize($temp);
+		}
+
+       if ($e->compare(new Math_BigInteger()) < 0) {
             $e = $e->abs();
 
             $temp = $this->modInverse($n);

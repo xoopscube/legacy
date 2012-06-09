@@ -10,7 +10,8 @@ if(!defined('XOOPS_ROOT_PATH'))
 if (!defined('_XUPDATE_FTP_CUSTOM')){
 	define ('_XUPDATE_FTP_CUSTOM',	'0' ) ;
 	define ('_XUPDATE_FTP_PHP_MODULE',	'1' ) ;
-	define ('_XUPDATE_FTP_CUSTOM_SSH',	'2' ) ;
+	define ('_XUPDATE_FTP_CUSTOM_SFTP',	'2' ) ;
+	define ('_XUPDATE_FTP_CUSTOM_SSH2',	'3' ) ;
 }
 
 // module config
@@ -25,7 +26,7 @@ switch ( $mod_config['ftp_method'] ) {
 	case _XUPDATE_FTP_PHP_MODULE :
 		require_once dirname(__FILE__) . '/ftp/Phpfunc.class.php';
 		break;
-	case _XUPDATE_FTP_CUSTOM_SSH :
+	case _XUPDATE_FTP_CUSTOM_SFTP :
 		// To Do
 		if (!defined('PATH_SEPARATOR')) {
 			if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN') {
@@ -36,6 +37,18 @@ switch ( $mod_config['ftp_method'] ) {
 		}
 		set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__) . '/ftp/phpseclib');
 		require_once dirname(__FILE__) . '/ftp/Sftp.class.php';
+		break;
+	case _XUPDATE_FTP_CUSTOM_SSH2 :
+		// To Do
+		if (!defined('PATH_SEPARATOR')) {
+			if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN') {
+				define('PATH_SEPARATOR', ':');
+			} else {
+				define('PATH_SEPARATOR', ';');
+			}
+		}
+		set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__) . '/ftp/phpseclib');
+		require_once dirname(__FILE__) . '/ftp/Ssh2.class.php';
 		break;
 	default:
 } // end switch

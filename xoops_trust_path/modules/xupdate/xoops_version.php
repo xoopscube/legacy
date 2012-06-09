@@ -23,7 +23,7 @@ $basename = basename($dirname);
 // Define a basic manifesto.
 //
 $modversion['name'] = _MI_XUPDATE_LANG_XUPDATE;
-$modversion['version'] = '0.03';//alpha2
+$modversion['version'] = '0.04';//alpha3
 $modversion['description'] = _MI_XUPDATE_DESC_XUPDATE;
 $modversion['author'] = _MI_XUPDATE_LANG_AUTHOR;
 $modversion['credits'] = _MI_XUPDATE_LANG_CREDITS;
@@ -176,7 +176,8 @@ $modversion['config'] = array(
 		'default'	=> '0',
 		'options'	=> array( '_MI_XUPDATE_CUSTOM_FTP' => 0,
 						'_MI_XUPDATE_PHP_FTP' => 1,
-						'_MI_XUPDATE_CUSTOM_SFTP' => 2
+						'_MI_XUPDATE_CUSTOM_SFTP' => 2,
+						'_MI_XUPDATE_CUSTOM_SSH2' => 3
 						)
 	) ,
 
@@ -193,8 +194,7 @@ $modversion['config'] = array(
 	array(
 		'name'		=> 'FTP_UserName' ,
 		'title'		=> '_MI_XUPDATE_FTP_UNAME',
-		'description'	=> '_MI_XUPDATE_FTP_UNAMEDSC
-',
+		'description'	=> '_MI_XUPDATE_FTP_UNAMEDSC',
 		'formtype'	=> 'text',
 		'valuetype'	=> 'string',
 		'default'	=> '',
@@ -204,9 +204,29 @@ $modversion['config'] = array(
 	array(
 		'name'		=> 'FTP_password',
 		'title'		=> '_MI_XUPDATE_FTP_PASS' ,
-		'description'	=> '',
+		'description'		=> '_MI_XUPDATE_FTP_PASSDSC' ,
 		'formtype'	=> 'password',
 		'valuetype'	=> 'string',
+		'default'	=> '',
+		'options'	=> array(),
+	) ,
+
+	array(
+		'name'		=> 'SSH_port' ,
+		'title'		=> '_MI_XUPDATE_SSH_PORT',
+		'description'	=> '_MI_XUPDATE_SSH_PORTDSC',
+		'formtype'	=> 'text',
+		'valuetype'	=> 'string',
+		'default'	=> '22',
+		'options'	=> array(),
+	) ,
+
+	array(
+		'name'		=> 'SSH_key' ,
+		'title'		=> '_MI_XUPDATE_SSH_KEY',
+		'description'	=> '_MI_XUPDATE_SSH_KEYDSC',
+		'formtype'	=> 'textarea',
+		'valuetype'	=> 'text',
 		'default'	=> '',
 		'options'	=> array(),
 	) ,
