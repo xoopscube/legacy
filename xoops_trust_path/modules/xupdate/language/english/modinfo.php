@@ -78,11 +78,15 @@ define('_MI_XUPDATE_FTP_METHODDSC' , 'You can select the FTP Library that is use
 define('_MI_XUPDATE_CUSTOM_FTP' , 'Custom FTP (standard)');
 define('_MI_XUPDATE_PHP_FTP' , 'PHP_FTP (for FTPS)');
 define('_MI_XUPDATE_CUSTOM_SFTP' , 'Custom SSH_FTP (for SFTP)');
+define('_MI_XUPDATE_CUSTOM_SSH2' , 'Custom SSH2 (for Key-Auth)');
 define('_MI_XUPDATE_FTP_USESSL' , 'use (FTPS) SSL');
 define('_MI_XUPDATE_FTP_USESSLDSC' , 'When you use (FTPS) SSL, selecting the "(for FTPS) PHP_FTP" to FTP library.');
 define('_MI_XUPDATE_FTP_UNAME' , 'FTP login ID');
 define('_MI_XUPDATE_FTP_UNAMEDSC' , 'Login ID for FTP to upload to your serve');
 define('_MI_XUPDATE_FTP_PASS' , 'FTP login password');
+define('_MI_XUPDATE_FTP_PASSDSC' , 'Login password for FTP or passphrase for private key on SSH2 Key-Auth');
+define('_MI_XUPDATE_SSH_PORT' , 'SSH connection port');
+define('_MI_XUPDATE_SSH_PORTDSC' , 'SSH port for SSH_FTP or SSH Key-Auth connection');
 define('_MI_XUPDATE_DEBUG' , 'View the debug output');
 define('_MI_XUPDATE_FTP_ADDON_URL' , 'Module Add-on URL');
 define('_MI_XUPDATE_FTP_THEME_URL' , 'Theme Add-on URL');
