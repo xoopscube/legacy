@@ -58,7 +58,7 @@ class Xupdate_FtpThemeFinderInstall extends Xupdate_FtpCommonZipArchive {
 		if( $this->Xupdate->params['is_writable']['result'] === true ) {
 
 			$downloadUrl = $this->Func->_getDownloadUrl( $this->target_key, $this->downloadUrlFormat );
-			$tempFilename = $this->target_key . '.tgz';
+			$tempFilename = $this->target_key . '.zip';
 			if ($this->Func->_downloadFile( $this->target_key, $downloadUrl, $tempFilename, $this->downloadedFilePath )){
 				$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
 				$this->exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
