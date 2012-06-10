@@ -152,7 +152,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		$current_path = '';
 		for ($i=count($path)-1; $i>=0 ;$i--){
 			$current_path = '/'.$path[$i].$current_path;
-			if ( file_exists($current_path) && $this->chdir($current_path)){
+			if ( $this->chdir($current_path) ){
 				$ftp_root = substr($xoops_root_path, 0, strrpos($xoops_root_path, $current_path));
 				return $ftp_root;
 			}
