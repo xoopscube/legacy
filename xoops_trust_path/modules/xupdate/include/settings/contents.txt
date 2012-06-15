@@ -103,6 +103,12 @@
 {
 "target_key":"xupdate",
 "approved":"true"
+},
+
+"xwords":
+{
+"target_key":"xwords",
+"approved":"true"
 }
 
 },

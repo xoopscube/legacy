@@ -320,7 +320,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	private function _chmod_file( &$directory)
 	{
 		if(file_exists($directory) && !is_dir($directory)){
-			$this->Ftp->chmod($directory, 0707);
+			$this->Ftp->chmod($directory, 0606);
 		}
 	}
 
