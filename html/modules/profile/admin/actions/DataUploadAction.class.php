@@ -28,8 +28,8 @@ class Profile_Admin_DataUploadAction extends Profile_AbstractListAction
 	
 	function getDefaultView()
 	{
-		if (isset($_SESSION['import_csv_upload_data'])){
-			unset($_SESSION['import_csv_upload_data']);
+		if (isset($_SESSION['profile_csv_upload_data'])){
+			unset($_SESSION['profile_csv_upload_data']);
 		}
 		return PROFILE_FRAME_VIEW_INDEX;
 	}
