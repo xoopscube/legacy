@@ -14,7 +14,7 @@
 "name":"Xoops X (Ten) - GitHub",
 "contents":"module",
 "setting_type":"ini",
-"addon_url":"http:\/\/www.naaon.com\/uploads\/xupdate\/modules_xoopsx.ini"
+"addon_url":"https:\/\/raw.github.com\/XoopsX\/xupdate_store\/master\/modules_xoopsx.ini"
 },
 
 "sourceforge.jp-2":
@@ -32,7 +32,7 @@
 "name":"naao - GitHub",
 "contents":"module",
 "setting_type":"ini",
-"addon_url":"http:\/\/www.naaon.com\/uploads\/xupdate\/modules_naao.ini"
+"addon_url":"https:\/\/raw.github.com\/naao\/xupdate_store\/master\/modules_naao.ini"
 },
 
 "nao-pon":
@@ -50,7 +50,7 @@
 "name":"xodomifara.lolipop.jp test",
 "contents":"module",
 "setting_type":"ini",
-"addon_url":"http:\/\/www.naaon.com\/uploads\/xupdate\/modules_domifara.ini"
+"addon_url":"https:\/\/raw.github.com\/XoopsX\/xupdate_store\/master\/modules_domifara.ini"
 },
 
 "xoops123":
@@ -59,6 +59,6 @@
 "name":"xoops123 - GitHub",
 "contents":"theme",
 "setting_type":"ini",
-"addon_url":"http:\/\/www.naaon.com\/uploads\/xupdate\/themes_xoops123.ini"
+"addon_url":"https:\/\/raw.github.com\/XoopsX\/xupdate_store\/master\/themes_xoops123.ini"
 }
 }
