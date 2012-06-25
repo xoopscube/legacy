@@ -79,8 +79,8 @@ class Xupdate_ModulesIniDadaSet
 
 		// temp end
 
-		$downloadedFilePath = '';
 		$cacheTTL = 600; //10min
+		$multiData = array();
 		foreach($this->stores as $sname => $store){
 			if ( $store['contents'] !== $caller ) {
 				continue;
@@ -100,51 +100,67 @@ class Xupdate_ModulesIniDadaSet
 					$contents = 'modules';
 			}
 
-			// make language directory
+			// make language directory 
+			// @todo safe モードではディレクトリが作成できない
 			$languagePath = $this->Func->makeDirectory( $downloadDirPath, 'language' );
 			$languageEachPath = $this->Func->makeDirectory( $languagePath, $language );
-
-			if ($this->Func->_downloadFile($target_key, $downloadUrl, $tempFilename, $downloadedFilePath, $cacheTTL) && file_exists(($downloadedFilePath))){
-				$_pathinfo = pathinfo( $downloadUrl);
-				$_dirname = $_pathinfo['dirname'];
-				$_filename = $_pathinfo['filename'];
-				$downloadLangUrl = $_dirname. '/'.$_filename.'/language/'.$language.'/'.$_filename.'.ini';
-				$tempLangFilename = 'language/'.$language.'/'.$contents.(int)$store['sid'].'.ini.php';
-					//adump($downloadLangUrl, $tempLangFilename);
-				if ($this->Func->_downloadFile($target_key, $downloadLangUrl, $tempLangFilename, $downloadedLangFilePath, $cacheTTL) && file_exists(($downloadedLangFilePath))){
-					//adump($downloadUrl,$downloadedFilePath);
-					$this->_setmSiteModuleObjects($store['sid'], $caller);
-					$items = parse_ini_file($downloadedFilePath, true);
-					$items_lang = parse_ini_file($downloadedLangFilePath, true);
-					//adump($items, $items_lang);
-					foreach($items as $key => $item){
-						//adump($store['sid'],$item['target_key'],$key);
-							if (isset($arr_master[$store['sid']][$key])){
-							$master = $arr_master[$store['sid']][$key];
-							if ( $key == $master['target_key']  && $master['approved'] == 'true' ) {
-								//adump($store['sid'],$key);
-								$item['sid'] = $store['sid'] ;
-								$item['description'] = isset($items_lang[$key]['description']) ? $items_lang[$key]['description'] : '' ;
-								switch($item['target_type']){
-									case 'TrustModule':
-										$this->_setDataTrustModule($item['sid'] , $item);
-										break;
-									case 'X2Module':
-									case 'Theme':
-									default:
-										$this->_setDataSingleModule($item['sid'] , $item);
+			
+			$multiData[] = array(
+							'target_key' => $target_key,
+							'downloadUrl' => $downloadUrl,
+							'tempFilename' => $tempFilename,
+							'downloadedFilePath' => '' );
+			$_pathinfo = pathinfo( $downloadUrl);
+			$_dirname = $_pathinfo['dirname'];
+			$_filename = $_pathinfo['filename'];
+			$downloadLangUrl = $_dirname. '/'.$_filename.'/language/'.$language.'/'.$_filename.'.ini';
+			$tempLangFilename = 'language/'.$language.'/'.$contents.(int)$store['sid'].'.ini.php';
+			$multiData[] = array(
+							'target_key' => $target_key,
+							'downloadUrl' => $downloadLangUrl,
+							'tempFilename' => $tempLangFilename,
+							'downloadedFilePath' => '',
+							'isLang' => true );
+								
+		}
+		if ($this->Func->_multiDownloadFile($multiData, $cacheTTL)) {
+			foreach($multiData as $i => $res) {
+				if (isset($res['isLang'])) {
+					continue;
+				}
+				if (file_exists($res['downloadedFilePath'])){
+					$downloadedFilePath = $res['downloadedFilePath'];
+					$lngKey = $i + 1;
+					if (file_exists($multiData[$lngKey]['downloadedFilePath'])){
+						$this->_setmSiteModuleObjects($store['sid'], $caller);
+						$items = parse_ini_file($downloadedFilePath, true);
+						$items_lang = parse_ini_file($multiData[$lngKey]['downloadedFilePath'], true);
+						//adump($items, $items_lang);
+						foreach($items as $key => $item){
+							//adump($store['sid'],$item['target_key'],$key);
+								if (isset($arr_master[$store['sid']][$key])){
+								$master = $arr_master[$store['sid']][$key];
+								if ( $key == $master['target_key']  && $master['approved'] == 'true' ) {
+									//adump($store['sid'],$key);
+									$item['sid'] = $store['sid'] ;
+									$item['description'] = isset($items_lang[$key]['description']) ? $items_lang[$key]['description'] : '' ;
+									switch($item['target_type']){
+										case 'TrustModule':
+											$this->_setDataTrustModule($item['sid'] , $item);
+											break;
+										case 'X2Module':
+										case 'Theme':
+										default:
+											$this->_setDataSingleModule($item['sid'] , $item);
+									}
 								}
 							}
 						}
 					}
 				}
-
 			}
-
 		}
-
 	}
-
 
 	private function _setmStoreObjects( $caller )
 	{
