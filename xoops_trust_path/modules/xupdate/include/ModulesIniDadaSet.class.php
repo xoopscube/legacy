@@ -388,9 +388,9 @@ class Xupdate_ModulesIniDadaSet
 				if ( $dirname == $item['dirname'] ){
 					$_isrootdirmodule = true;
 				}
-				if (isset($this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']])){
+				if (isset($this->mSiteModuleObjects[$sid][$item['target_key']][$dirname])){
 					$mobj->assignVar('id',$this->mSiteModuleObjects[$sid][$item['target_key']][$dirname]->getVar('id') );
-					$this->_ModuleStoreUpdate($mobj , $this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]);
+					$this->_ModuleStoreUpdate($mobj , $this->mSiteModuleObjects[$sid][$item['target_key']][$dirname]);
 				}else{
 					$mobj->setNew();
 					$this->modHand->insert($mobj ,true);
