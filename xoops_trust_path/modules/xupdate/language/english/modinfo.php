@@ -48,7 +48,7 @@ define('_MI_XUPDATE_INSTALL_MSG_UPDATE_FINISHED', 'Module update is finished.');
 define('_MI_XUPDATE_INSTALL_ERROR_UPDATE_FINISHED', 'Module could not updated.');
 define('_MI_XUPDATE_INSTALL_MSG_MODULE_UPDATED', 'Module \'{0}\' is updated.');
 define('_MI_XUPDATE_INSTALL_ERROR_MODULE_UPDATED', 'Module \'{0}\' could not updated.');
-define('_MI_XUPDATE_LANG_XUPDATE', 'XCL Pack201X DISTRIBUTION TEAM');
+define('_MI_XUPDATE_LANG_XUPDATE', 'XCL Pack201X DISTRIBUTION TEAM : naao, domifara, nao-pon');
 define('_MI_XUPDATE_DESC_XUPDATE', 'XUPDATE');
 define('_MI_XUPDATE_LANG_AUTHOR', 'AUTHOR');
 define('_MI_XUPDATE_LANG_CREDITS', 'CREDITS');
