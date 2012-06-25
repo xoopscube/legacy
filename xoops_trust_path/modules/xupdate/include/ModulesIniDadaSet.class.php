@@ -106,6 +106,7 @@ class Xupdate_ModulesIniDadaSet
 			$languageEachPath = $this->Func->makeDirectory( $languagePath, $language );
 			
 			$multiData[] = array(
+							'sid' => $store['sid'],
 							'target_key' => $target_key,
 							'downloadUrl' => $downloadUrl,
 							'tempFilename' => $tempFilename,
@@ -116,6 +117,7 @@ class Xupdate_ModulesIniDadaSet
 			$downloadLangUrl = $_dirname. '/'.$_filename.'/language/'.$language.'/'.$_filename.'.ini';
 			$tempLangFilename = 'language/'.$language.'/'.$contents.(int)$store['sid'].'.ini.php';
 			$multiData[] = array(
+							'sid' => $store['sid'],
 							'target_key' => $target_key,
 							'downloadUrl' => $downloadLangUrl,
 							'tempFilename' => $tempLangFilename,
@@ -132,17 +134,17 @@ class Xupdate_ModulesIniDadaSet
 					$downloadedFilePath = $res['downloadedFilePath'];
 					$lngKey = $i + 1;
 					if (file_exists($multiData[$lngKey]['downloadedFilePath'])){
-						$this->_setmSiteModuleObjects($store['sid'], $caller);
+						$this->_setmSiteModuleObjects($res['sid'], $caller);
 						$items = parse_ini_file($downloadedFilePath, true);
 						$items_lang = parse_ini_file($multiData[$lngKey]['downloadedFilePath'], true);
 						//adump($items, $items_lang);
 						foreach($items as $key => $item){
 							//adump($store['sid'],$item['target_key'],$key);
-								if (isset($arr_master[$store['sid']][$key])){
-								$master = $arr_master[$store['sid']][$key];
+								if (isset($arr_master[$res['sid']][$key])){
+								$master = $arr_master[$res['sid']][$key];
 								if ( $key == $master['target_key']  && $master['approved'] == 'true' ) {
 									//adump($store['sid'],$key);
-									$item['sid'] = $store['sid'] ;
+									$item['sid'] = $res['sid'] ;
 									$item['description'] = isset($items_lang[$key]['description']) ? $items_lang[$key]['description'] : '' ;
 									switch($item['target_type']){
 										case 'TrustModule':
