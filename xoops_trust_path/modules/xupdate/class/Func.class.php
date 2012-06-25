@@ -66,7 +66,7 @@ class Xupdate_Func {
 
 		$downloadedFilePath = $this->_getDownloadFilePath( $realDirPath, $tempFilename );
 		
-		// cache check (10 min)
+		// cache check
 		if ($cacheTTL && is_file($downloadedFilePath) && filemtime($downloadedFilePath) + $cacheTTL > $_SERVER['REQUEST_TIME']) {
 			return true;
 		}
