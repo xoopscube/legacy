@@ -50,7 +50,7 @@ define('_MI_XUPDATE_INSTALL_MSG_MODULE_UPDATED', 'もじゅーる『{0}』をあ
 define('_MI_XUPDATE_INSTALL_ERROR_MODULE_UPDATED', 'もじゅーる『{0}』があっぷでーとできませんでした。');
 define('_MI_XUPDATE_LANG_XUPDATE', 'アップデータ');
 define('_MI_XUPDATE_DESC_XUPDATE', 'モジュールの更新を手早く行えます');
-define('_MI_XUPDATE_LANG_AUTHOR', 'XCL Pack201X DISTRIBUTION TEAM');
+define('_MI_XUPDATE_LANG_AUTHOR', 'XCL Pack201X DISTRIBUTION TEAM : naao, domifara, nao-pon');
 define('_MI_XUPDATE_LANG_CREDITS', 'xoopscube.net');
 define('_MI_XUPDATE_TPL_STORE_LIST', 'STORE_LIST');
 define('_MI_XUPDATE_TPL_STORE_EDIT', 'STORE_EDIT');
