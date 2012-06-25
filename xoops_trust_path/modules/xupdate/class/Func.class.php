@@ -41,7 +41,7 @@ class Xupdate_Func {
 	 *
 	 * @return	bool
 	 **/
-	public function _downloadFile( $target_key, $downloadUrl, $tempFilename, &$downloadedFilePath )
+	public function _downloadFile( $target_key, $downloadUrl, $tempFilename, &$downloadedFilePath, $cacheTTL = 0 )
 	{
 
 		$downloadDirPath = $this->Xupdate->params['temp_path'];
@@ -65,7 +65,12 @@ class Xupdate_Func {
 		}
 
 		$downloadedFilePath = $this->_getDownloadFilePath( $realDirPath, $tempFilename );
-
+		
+		// cache check (10 min)
+		if ($cacheTTL && is_file($downloadedFilePath) && filemtime($downloadedFilePath) + $cacheTTL > $_SERVER['REQUEST_TIME']) {
+			return true;
+		}
+		
 		try {
 			try {
 				if(!function_exists('curl_init') ){

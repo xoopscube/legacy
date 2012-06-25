@@ -80,6 +80,7 @@ class Xupdate_ModulesIniDadaSet
 		// temp end
 
 		$downloadedFilePath = '';
+		$cacheTTL = 600; //10min
 		foreach($this->stores as $sname => $store){
 			if ( $store['contents'] !== $caller ) {
 				continue;
@@ -103,14 +104,14 @@ class Xupdate_ModulesIniDadaSet
 			$languagePath = $this->Func->makeDirectory( $downloadDirPath, 'language' );
 			$languageEachPath = $this->Func->makeDirectory( $languagePath, $language );
 
-			if ($this->Func->_downloadFile($target_key, $downloadUrl, $tempFilename, $downloadedFilePath) && file_exists(($downloadedFilePath))){
+			if ($this->Func->_downloadFile($target_key, $downloadUrl, $tempFilename, $downloadedFilePath, $cacheTTL) && file_exists(($downloadedFilePath))){
 				$_pathinfo = pathinfo( $downloadUrl);
 				$_dirname = $_pathinfo['dirname'];
 				$_filename = $_pathinfo['filename'];
 				$downloadLangUrl = $_dirname. '/'.$_filename.'/language/'.$language.'/'.$_filename.'.ini';
 				$tempLangFilename = 'language/'.$language.'/'.$contents.(int)$store['sid'].'.ini.php';
 					//adump($downloadLangUrl, $tempLangFilename);
-				if ($this->Func->_downloadFile($target_key, $downloadLangUrl, $tempLangFilename, $downloadedLangFilePath) && file_exists(($downloadedLangFilePath))){
+				if ($this->Func->_downloadFile($target_key, $downloadLangUrl, $tempLangFilename, $downloadedLangFilePath, $cacheTTL) && file_exists(($downloadedLangFilePath))){
 					//adump($downloadUrl,$downloadedFilePath);
 					$this->_setmSiteModuleObjects($store['sid'], $caller);
 					$items = parse_ini_file($downloadedFilePath, true);
