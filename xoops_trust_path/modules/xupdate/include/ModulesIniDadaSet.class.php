@@ -124,7 +124,6 @@ class Xupdate_ModulesIniDadaSet
 								
 		}
 		if ($this->Func->_multiDownloadFile($multiData, $cacheTTL)) {
-			adump($multiData);
 			foreach($multiData as $i => $res) {
 				if (isset($res['isLang'])) {
 					continue;
