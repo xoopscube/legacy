@@ -1,0 +1,36 @@
+<div class="adminnavi">
+  <a href="./index.php?action=ModuleStore"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=ThemeFinder"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTOREDEC}></a></span>
+</div>
+
+<h3 class="admintitle"><{$smarty.const._AD_XUPDATE_LANG_THEME_FINDER}></h3>
+<{include file="admin_menunavi.html"}>
+
+<div class="tips">
+<ul>
+	<li><{$smarty.const._MI_XUPDATE_TEMP_PATH}> <{$xupdate_writable.path}>
+	<{if $xupdate_writable.result==true}>
+		(<span style="color:green;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_WRITABLE_RESULT}> OK</span>)
+	<{else}>
+		(<span style="color:red;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_WRITABLE_RESULT}> NG</span>)
+	<{/if}>
+	</li>
+	<li><{$mod_config.FTP_UserName}>
+<{* TODO FTP CHECK *}>
+	<{if $mod_config.FTP_UserName }>
+		(<span style="color:green;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_FTP_PASS_RESULT}> OK</span>)
+	<{else}>
+		(<span style="color:red;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_FTP_PASS_RESULT}> NG</span>)
+	<{/if}>
+	</li>
+</ul>
+</div>
+
+<div id="themeFinder">
+	<form action="<{$themeFinderUrl}>" method="post" target="themeFinderIframe" id="themeFinderForm">
+		<input type="hidden" name="api_version" value="<{$themeFinderApiVersion}>" />
+		<input type="hidden" name="callback_url" value="<{$addonManagerInstallUrl}>" />
+	</form>
+	<iframe frameborder="0" name="themeFinderIframe" id="themeFinderIframe" style="border:0; width:100%; height: 800px; display:none;"></iframe>
+</div>
+<noscript>You must have JavaScript enabled to view this page as intended.</noscript>
