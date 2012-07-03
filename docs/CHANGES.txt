@@ -2,9 +2,22 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 
+----------------------------------------
+2012/07/XX: Package Revision 2.2.1
+----------------------------------------
+[Bug Fix - From Bug Tracker]
+- Fix Bug #3531835 - Bug in ImageFilterForm.class.php
+
+[Staff]
+- Bluemooninc
+- Kilica
+- Mikhail Miguel
+- Naao
+- Nao-pon
+
 
 ----------------------------------------
-2012/04/XX: Package Revision 2.2.1 Beta3
+2012/06/05: Package Revision 2.2.1 Beta3
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
 - Fix Bug #3470535 - Smarty cache directory
