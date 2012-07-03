@@ -20,9 +20,9 @@ define('IMAGE_SORT_KEY_IMAGE_CREATED', 5);
 define('IMAGE_SORT_KEY_IMAGE_DISPLAY', 6);
 define('IMAGE_SORT_KEY_IMAGE_WEIGHT', 7);
 define('IMAGE_SORT_KEY_IMGCAT_ID', 8);
+define('IMAGE_SORT_KEY_MAXVALUE', 9);
 
-define('IMAGE_SORT_KEY_DEFAULT', IMAGE_SORT_KEY_IMAGE_WEIGHT);
-define('IMAGE_SORT_KEY_MAXVALUE', 8);
+define('IMAGE_SORT_KEY_DEFAULT', '-'.IMAGE_SORT_KEY_IMAGE_CREATED);
 
 class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
 {
@@ -110,9 +110,11 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
 		}
 		
 		$this->_mCriteria->addSort($this->getSort(), $this->getOrder());
+		/*
 		if (abs($this->mSort) != IMAGE_SORT_KEY_IMAGE_WEIGHT) {
 			$this->_mCriteria->addSort($this->mSortKeys[IMAGE_SORT_KEY_IMAGE_WEIGHT], $this->getOrder());
 		}
+		*/
 	}
 }
 
