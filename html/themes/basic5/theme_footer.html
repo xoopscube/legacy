@@ -1,0 +1,14 @@
+<{if !$xoops_isuser}>
+		<a href="http://xoops123.com/">Theme designed by marine/mistgreen</a>&nbsp;|&nbsp;
+		<a href="<{$xoops_url}>/user.php"><{$smarty.const._BASIC_LOGIN_FORM}></a>
+<{else}>
+		<a href="<{$xoops_url}>/user.php"><{$smarty.const._BASIC_USER_ACCOUNT}></a>&nbsp;|&nbsp;
+		<a href="<{$xoops_url}>/edituser.php"><{$smarty.const._BASIC_EDIT_ACCOUNT}></a>&nbsp;|&nbsp;
+		<a href="<{$xoops_url}>/notifications.php"><{$smarty.const._BASIC_NORTIFICATION}></a>&nbsp;|&nbsp;
+		<a href="<{$xoops_url}>/viewpmsg.php" <{if $pm.new_messages}>class="new1"<{/if}>><{$smarty.const._BASIC_VIEWPMSG}>(<{$pm.new_messages}>)</a>&nbsp;|&nbsp;
+		<a href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._BASIC_LOGOUT}></a>&nbsp;|&nbsp;
+	<{if $xoops_isadmin}>
+		<a href="<{$xoops_url}>/admin.php"><{$smarty.const._BASIC_ADMIN_PAGE}></a>&nbsp;|&nbsp;
+	<{/if}>
+		<a href="http://xoops123.com/">Theme designed by marine/mistgreen</a>
+<{/if}>

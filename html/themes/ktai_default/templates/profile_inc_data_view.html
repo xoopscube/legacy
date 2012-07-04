@@ -1,0 +1,5 @@
+			<{foreach item=def from=$defArr}>
+			<li><{$def->getShow('label')}>
+			  	<{assign var="defkey" value=$def->getShow('field_name')}>
+			    <{$profile->showField($defkey)}></li>
+			<{/foreach}>

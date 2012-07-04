@@ -1,0 +1,62 @@
+	<{if $errors && $xoops_isadmin}>
+		<{foreach from=$errors item="error"}>
+			<div class="errorMsg"><{$error|escape|nl2br|regex_replace:"/\((\d+)\)/":"<a data-ajax='false' href='`$mod_url`/admin/index.php?page=pipe&amp;pipe_id=\\1'>(\\1)</a>"}></div>
+		<{/foreach}>
+	<{/if}>
+
+	<{if $pipes_entries}>
+		<{* SEPARATED VIEW *}>
+		<{foreach from=$pipes_entries item="pipe"}>
+
+			<div class="d3pipes_block_async_separated">
+				<{$pipe.name}>
+				<{if $pipe.image && $pipe.url}>
+					<a data-ajax="false" href="<{$pipe.url}>"><img src="<{$pipe.image}>" alt="<{$pipe.name}>" /></a>
+				<{/if}>
+				<ul class="d3pipes_block_async_separated">
+					<{foreach from=$pipe.entries item="entry"}>
+
+						<{if $entry.allow_html}>
+							<{assign var="entry_headline4disp" value=$entry.headline}>
+						<{else}>
+							<{assign var="entry_headline4disp" value=$entry.headline|escape}>
+						<{/if}>
+
+						<li>
+							<{$smarty.const._MEDIUMDATESTRING|date:$entry.pubtime+$timezone_offset}>
+							<{if $entry.clipping_id && $link2clipping}>
+								<a data-ajax="false" href="<{$mod_url}>/index.php?page=clipping&amp;clipping_id=<{$entry.clipping_id}>"><{$entry_headline4disp}></a>
+							<{else}>
+								<a data-ajax="false" href="<{$entry.link|escape}>"><{$entry_headline4disp}></a>
+							<{/if}>
+						</li>
+					<{/foreach}>
+				</ul>
+			</div>
+		<{/foreach}>
+	<{else}>
+		<{* AGGREGATED VIEW *}>
+		<ul class="d3pipes_block_async_aggregated">
+			<{foreach from=$entries item="entry"}>
+
+				<{if $entry.allow_html}>
+					<{assign var="entry_headline4disp" value=$entry.headline}>
+				<{else}>
+					<{assign var="entry_headline4disp" value=$entry.headline|escape}>
+				<{/if}>
+
+				<li>
+					<{$smarty.const._MEDIUMDATESTRING|date:$entry.pubtime+$timezone_offset}>
+					<{if $entry.clipping_id && $link2clipping}>
+						<a data-ajax="false" href="<{$mod_url}>/index.php?page=clipping&amp;clipping_id=<{$entry.clipping_id}>"><{$entry_headline4disp}></a>
+					<{else}>
+						<a data-ajax="false" href="<{$entry.link|escape}>"><{$entry_headline4disp}></a>
+					<{/if}>
+					<{if $entry.pipe.name}>
+						(<{$entry.pipe.name}>)
+					<{/if}>
+				</li>
+			<{/foreach}>
+		</ul>
+		<{* <{include file="db:`$mydirname`_inc_entries.html"}> *}>
+	<{/if}>

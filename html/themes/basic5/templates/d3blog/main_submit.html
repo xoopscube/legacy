@@ -1,0 +1,231 @@
+<{include file="db:`$mydirname`_inc_header.html"}>
+<{if $isDelete}>
+<!-- CONFIRMATION OF DELETION -->
+<h2 id="d3blogDeleteHeader"><{$entry.title}> - <{$smarty.const._MD_D3BLOG_LANG_CONFIRM_DELETE}></h2>
+<h3 id="d3blogConfirmMessage"><{$smarty.const._MD_D3BLOG_MESSAGE_ARE_YOU_SURE_TO_DELETE}></h3>
+<dl id="d3blogDeleteEntry">
+    <dt><{$smarty.const._MD_D3BLOG_LANG_CATEGORY_NAME}></dt><dd><{$categories[$form.cid_].name}></dd>
+    <dt><{$smarty.const._MD_D3BLOG_LANG_BLOG_TITLE}></dt><dd><{$entry.title}></dd>
+</dl>
+<form name="confirmdelete" id="confirmdelete" action="" method="post">
+    <fieldset>
+        <{$gticket_hidden}>
+        <input type="hidden" name="bid" value="<{$entry.bid}>" />
+        <input type="submit" name="confirm_delete" value="<{$smarty.const._DELETE}>" />
+    </fieldset>
+</form>
+<form name="canceldelete" id="canceldelete" action="" method="get">
+    <fieldset>
+        <input type="button" onclick="self.location.href='<{$mod_url}>/details.php?bid=<{$entry.bid}>'" value="<{$smarty.const._CANCEL}>" />
+    </fieldset>
+</form>
+<{else}>
+    <{if $isPreview and !$isError}>
+<!-- PREVIEW -->
+<h2 id="d3blogPreviewHeader"><{$entry.title}> - <{$smarty.const._MD_D3BLOG_LANG_POST_PREVIEW}></h2>
+<div class="d3blogPreview clearFix"><{include file="db:`$mydirname`_inc_entry.html"}></div>
+    <{/if}>
+<!-- form for accessbility -->
+<h2 id="d3blogPostForm"><{$smarty.const._MD_D3BLOG_LANG_POST_ENTRY}></h2>
+<{$form_error}>
+<form name='d3blogForm' id="d3blogForm" action="" method="post" onsubmit='return xoopsFormValidate_d3blogForm();'>
+<fieldset>
+<legend><{$smarty.const._MD_D3BLOG_MESSAGE_TICKET_LIFETIME|replace:"%d":$moduleConfig.ticket_lifetime}></legend>
+<!-- hidden items -->
+<input type='hidden' name='bid' id='bid' value='<{$entry.bid}>' />
+<{$gticket_hidden}>
+<!-- title -->
+<label class="label" for="title"><{$smarty.const._MD_D3BLOG_LANG_BLOG_TITLE}></label>
+<div class="control"><input type="text" name="title" id="title" maxlength="255" size="60" value="<{$entry.title4edit}>" /></div>
+<!-- category -->
+<label class="label" for="cid"><{$smarty.const._MD_D3BLOG_LANG_CATEGORY}></label>
+<div class="control">
+<select name="cid" id="cid">
+    <{foreach item=category from=$categories key=catid}>
+<option value="<{$catid}>"<{if $catid eq $entry.cid}> selected="selected"<{/if}>><{$category.prefix|escape}><{$category.name|escape}></option>
+    <{/foreach}>
+</select>
+</div>
+<!-- entry -->
+<{php}>
+$this->assign( 'common_fck_installed' , file_exists( XOOPS_ROOT_PATH.'/common/fckeditor/fckeditor.js' ) ) ;
+<{/php}>
+	<label for="contents" class="label" ><{$smarty.const._MD_D3BLOG_LANG_BLOG_CONTENTS}>
+	<{if $moduleConfig.wysiwyg_editor }>
+		<{if $moduleConfig.wysiwyg_editor eq 1 && ! $common_fck_installed && $currentUser.user_perm.allow_html }>
+			<{if $entry.dohtml == "1" && $entry.doxcode!="1" && $entry.dobr!="1" }>
+				<br />
+				<input type="button" class="formButton" value="CKEeditorON" name="myckeditorOn" id="myckeditorOn" onclick="if(this.value=='CKEeditorON'){this.value='CKEeditorOFF';contents_myckeditor_exec();document.getElementById('dohtml').checked=true;document.getElementById('doxcode').checked=false;document.getElementById('dobr').checked=false;document.getElementById('switch_bbcode').checked=false;document.getElementById('contents_bbcode_buttons_pre').style.display='none';document.getElementById('contents_bbcode_buttons_post').style.display='none';}else{this.value='CKEeditorON';contents_myckeditor_remove();}"/>
+			<{else}>
+				<br />
+				<input type="button" class="formButton" value="CKEeditorON" name="myckeditorOn" id="myckeditorOn" onclick="if(this.value=='CKEeditorON'){this.value='CKEeditorOFF';contents_myckeditor_exec();document.getElementById('dohtml').checked=true;document.getElementById('doxcode').checked=true;document.getElementById('dobr').checked=true;document.getElementById('switch_bbcode').checked=false;document.getElementById('contents_bbcode_buttons_pre').style.display='none';document.getElementById('contents_bbcode_buttons_post').style.display='none';}else{this.value='CKEeditorON';contents_myckeditor_remove();}"/>
+			<{/if}>
+		<{/if}>
+	<{/if}>
+	</label>
+<div class="control">
+<{if $moduleConfig.wysiwyg_editor && $currentUser.user_perm.allow_html}>
+  <{if $moduleConfig.wysiwyg_editor eq 1 }>
+<{* FCK editor *}>
+		<{if $common_fck_installed}>
+			<textarea id="contents" name="contents"><{$entry.contents4edit}></textarea><script>fckeditor_exec("100%", "350", "<{$xoops_url}>");</script><br />
+		<{else}>
+			<{if $entry.dohtml == "1" && $entry.doxcode!="1" && $entry.dobr!="1" }>
+				<{php}>
+					$_makescript = & xoops_getmodulehandler('makescript','myckeditor', true);
+					$params = array('id'=>'contents','editor'=>'html','myckeditor'=>true);
+					if (@is_object( $_makescript )){
+						$this->assign( 'common_myck_installed' , true ) ;
+						$_makescript->makeheader($params);
+					}
+				<{/php}>
+				<textarea id="contents" name="contents" cols=65 rows=20 ><{$entry.contents4edit}></textarea><br />
+			<{else}>
+				<{php}>
+					$_makescript = & xoops_getmodulehandler('makescript','myckeditor', true);
+					$params = array('id'=>'contents','editor'=>'bbcode','myckeditor'=>true);
+					if (@is_object( $_makescript )){
+						$this->assign( 'common_myck_installed' , true ) ;
+						$_makescript->makeheader($params);
+					}
+				<{/php}>
+				<div><input type="checkbox" id="switch_bbcode" onclick="if(this.checked){document.getElementById('contents_bbcode_buttons_pre').style.display='block';document.getElementById('contents_bbcode_buttons_post').style.display='block';document.getElementById('myckeditorOn').value='CKEeditorON';contents_myckeditor_remove();}else{document.getElementById('contents_bbcode_buttons_pre').style.display='none';document.getElementById('contents_bbcode_buttons_post').style.display='none';}" />
+				<label for="switch_bbcode"><{$smarty.const._MD_D3BLOG_LANG_DISPLAY_XCODE_PALLET}></label></div>
+				<{xoopsdhtmltarea name=contents cols=65 rows=20 value=$entry.contents4edit pre_style="display:none;" post_style="display:none;"}>
+			<{/if}>
+		<{/if}>
+  <{else}>
+  <{* QuickTag *}>
+<script type="text/javascript">edToolbar();</script>
+<textarea id="canvas" name="contents" rows="30" cols="75"><{$entry.contents4edit}></textarea>
+<script type="text/javascript">var edCanvas = document.getElementById('canvas');</script>
+  <{/if}>
+<{else}>
+<div><input type="checkbox" id="switch_bbcode" onclick="if(this.checked){document.getElementById('contents_bbcode_buttons_pre').style.display='block';document.getElementById('contents_bbcode_buttons_post').style.display='block'}else{document.getElementById('contents_bbcode_buttons_pre').style.display='none';document.getElementById('contents_bbcode_buttons_post').style.display='none'};" />
+<label for="switch_bbcode"><{$smarty.const._MD_D3BLOG_LANG_DISPLAY_XCODE_PALLET}></label></div>
+<{xoopsdhtmltarea name=contents cols=65 rows=10 value=$entry.contents4edit pre_style="display:none;" post_style="display:none;"}>
+<{/if}>
+<{*   seperator   *}>
+<div id="d3blogSeperator">
+<input type="button" id="entry_seperator" value="<{$smarty.const._MD_D3BLOG_LANG_INSERT_SEPERATOR}>" onclick='xoopsCodeSmilie("contents", "\n[seperator]\n");' />
+<input type="checkbox" id="switch_help" name="switch_help" onclick="if(this.checked){document.getElementById('show_help').style.display='block';}else{document.getElementById('show_help').style.display='none';};" /><label for="switch_help"><{$smarty.const._MD_D3BLOG_LANG_INSERT_HELP}></label>
+<label for="entry_seperator" id="show_help" style="display:none;"><{$smarty.const._MD_D3BLOG_LANG_INSERT_SEPERATOR_ON_CLICK}></label>
+</div>
+</div>
+<{*   groups    *}>
+<{if $moduleConfig.perm_by_entry}>
+<label class="label" for="groups"><{$smarty.const._MD_D3BLOG_LANG_SELECT_GROUPS}></label>
+<div class="control">
+<select name="groups[]" id="groups"  multiple="multiple">
+<{strip}><{foreach item=groupname from=$groupList key=groupid}>
+<option value="<{$groupid}>"<{if $form.groupids_.$groupid}> selected="selected"<{/if}>><{$groupname}></option>
+<{/foreach}><{/strip}>
+</select>
+</div>
+<{/if}>
+<{*   options   *}>
+<div class="label"><{$smarty.const._MD_D3BLOG_LANG_ENTRY_OPTIONS}></div>
+<div class="control">
+    <{if $currentUser.user_perm.allow_html}>
+<!-- dohtml -->
+<input type="checkbox" name="dohtml" id="dohtml" value="1"<{if $entry.dohtml}> checked="checked"<{/if}> /><label for="dohtml"><{$smarty.const._MD_D3BLOG_LANG_HTML_ENABLE}></label><br />
+    <{/if}>
+<!-- doxcode -->
+<input type="checkbox" name="doxcode" id="doxcode" value="1"<{if $entry.doxcode}> checked="checked"<{/if}> /><label for="doxcode"><{$smarty.const._MD_D3BLOG_LANG_XCODE_ENABLE}></label><br />
+<!-- doimage -->
+<input type="hidden" name="doimage" id="doimage" value="1"<{if $entry.doimage}> checked="checked"<{/if}> />
+<!-- dobr -->
+<input type="checkbox" name="dobr" id="dobr" value="1"<{if $entry.dobr}> checked="checked"<{/if}> /><label for="dobr"><{$smarty.const._MD_D3BLOG_LANG_AUTO_BR}></label><br />
+<!-- make publishable -->
+<input type="checkbox" name="publishable" id="publishable" value="1"<{if $form.publishable_}> checked="checked"<{/if}> /><label for="publishable"><{$smarty.const._MD_D3BLOG_LANG_SET_PUBLISHABLE}></label><br />
+<span id="d3blogFormPublished"><{$smarty.const._MD_D3BLOG_LANG_PUBLISH_DATE}></span>
+<!-- publish date -->
+<{html_select_date time=$form.published_ start_year="-1" end_year="+2" month_format="%m" day_format="%d" field_order="YMD" field_array="published"}>
+<{html_select_time time=$form.published_ minute_interval="10" display_seconds=false field_array="published"}><br />
+<!-- update ping -->
+    <{if $currentUser.user_perm.blog_autoapprove}>
+<input type="checkbox" name="update_ping" id="update_ping" value="1"<{if $form.update_ping_}> checked="checked"<{/if}> /><label for="update_ping"><{$smarty.const._MD_D3BLOG_LANG_UPDATE_PING}></label><br />
+        <{if $moduleConfig.url_by_entry}>
+<!-- update ping url -->
+<label for="update_ping_urls"><{$smarty.const._MD_D3BLOG_LANG_SELECT_PING_URLS|replace:"%d":$moduleConfig.max_urls}></label><br />
+<select name="updateping_urls[]" id="updateping_urls" multiple="multiple" onChange="var sObj=document.getElementById('updateping_urls'); for(var i=0, n=0; i<sObj.length; i++){if(sObj[i].selected){ n++; }} if(n > <{$moduleConfig.max_urls}>) {window.alert('<{$smarty.const._MD_D3BLOG_ERROR_URL_MAXOVER}>'); d3blogForm.updateping_urls.focus(); return false;}">
+<{strip}><{foreach item=url from=$form.updateping_urls_ key=ukey}>
+<option value="<{$ukey}>"<{if $url.selected}> selected="selected"<{/if}>><{$url.url|escape}></option>
+<{/foreach}><{/strip}>
+</select><br />
+        <{/if}>
+<!-- approval -->
+<input type="checkbox" name="approved" id="approved" value="1"<{if $entry.approved}> checked="checked"<{/if}> /><label for="approved"><{$smarty.const._MD_D3BLOG_LANG_APPROVE_ENTRY}></label><br />
+    <{else}>
+        <{if !$entry.approved}>
+<input type="checkbox" name="subscribe" id="subscribe" value="1"<{if !$form.subscribe_}> checked="checked"<{/if}> /><label for="subscribe"><{$smarty.const._MD_D3BLOG_LANG_NOTIFY_WHEN_APPROVED}></label><br />
+        <{else}>
+<{$smarty.const._MD_D3BLOG_LANG_APPROVED}>
+        <{/if}>
+    <{/if}>
+</div>
+</fieldset>
+<fieldset>
+<legend><{$smarty.const._MD_D3BLOG_LANG_TRACKBACK}></legend>
+<!-- trackback url -->
+<div class="label"><{$smarty.const._MD_D3BLOG_LANG_TRACKBACKS_OUTBOUND}></div>
+    <{if $entry.trackback.outbound}>
+<!-- trackbacks outbound -->
+<div class="control">
+        <{foreach item=sent key=tid from=$entry.trackback.outbound name=sentloop}>
+<div><{$smarty.const._DELETE}><input type="checkbox" name="delete_sent[<{$tid}>]" id="delete_sent<{$tid}>" value="1"<{if $form.delete_sent_[$tid] }> checked="checked"<{/if}> />
+<input type="hidden" name="tb_url[<{$tid}>]" value="<{$sent.url}>" />
+<label for="delete_sent<{$tid}>"><{if $sent.url}><{$sent.url}><{else}><{$sent.trackback_url}><{/if}></label></div>
+        <{/foreach}>
+</div>
+    <{/if}>
+<div class="control"><label for="trackback_url"><{$smarty.const._MD_D3BLOG_LANG_TRACKBACK_URL_DESC}></label>
+<div><input type="checkbox" name="autodiscovery" id="autodiscovery" value="1"<{if $form.autodiscovery_}> checked="checked"<{/if}> /><label for="autodiscovery"><{$smarty.const._MD_D3BLOG_LANG_AUTODISCOVER}></label></div>
+<textarea name="trackback_url" id="trackback_url" rows="2" cols="50" ><{$form.trackback_url_}></textarea>
+</div>
+    <{if $entry.trackback.inbound}>
+<!-- trackbacks inbound -->
+<div class="label"><{$smarty.const._MD_D3BLOG_LANG_TRACKBACKS_INBOUND}></div>
+<div class="control">
+        <{foreach item=received key=key from=$entry.trackback.inbound name=tbloop}>
+<label for="delete_rcvd<{$key}>"><{$smarty.const._DELETE}></label>
+<input type="checkbox" name="delete_rcvd[<{$key}>]" id="delete_rcvd<{$key}>" value="1"<{if $form.delete_rcvd_[$key] }> checked="checked"<{/if}> />
+            <{if $moduleConfig.trackback_approval}>
+                <{if $received.approved}>
+<{$smarty.const._MD_D3BLOG_LANG_APPROVED}>
+                <{else}>
+<label for="approve_rcvd<{$key}>"><{$smarty.const._MD_D3BLOG_LANG_APPROVAL}></label>
+<input type="checkbox" name="approve_rcvd[<{$key}>]" id="approve_rcvd<{$key}>" value="1"<{if $form.approve_rcvd_[$key] }> checked="checked"<{/if}> />
+                <{/if}>
+            <{/if}>
+<{$received.blog_name|cat:"&nbsp;&raquo;&nbsp;"|cat:$received.title}><{*<{$received.title|cat:" : "|cat:$received.excerpt|xoops_substr:"60":"..."}>*}><br />
+        <{/foreach}>
+</div>
+    <{/if}>
+</fieldset>
+<fieldset class="formSubmit">
+<div class="label"></div>
+<div class="control">
+    <{if $entry.bid > 0}>
+        <{if ($currentUser.uid eq $entry.uid and $currentUser.user_perm.blog_perm_edit) or $currentUser.user_perm.blog_editor }>
+<input type="submit" class="formButton" name="delete" id="delete" value="<{$smarty.const._DELETE}>" />
+        <{/if}>
+    <{/if}>
+<input type="submit" class="formButton" name="preview" id="preview" value="<{$smarty.const._MD_D3BLOG_LANG_POST_PREVIEW}>" />
+<input type="submit" class="formButton" name="submit" id="submit" value="<{$smarty.const._SEND}>" />
+</div>
+</fieldset>
+</form>
+<{/if}>
+<script type='text/javascript'>
+<!--//
+function xoopsFormValidate_d3blogForm() {
+    myform = window.document.d3blogForm;
+    if( myform.title.value == "" ) { window.alert("<{$smarty.const._MD_D3BLOG_ERROR_TITLE_REQUIRED}>"); myform.title.focus(); return false; }
+    if( myform.cid.value == "" ) { window.alert("<{$smarty.const._MD_D3BLOG_ERROR_CATEGORY_REQUIRED}>"); myform.cid.focus(); return false; }
+<{if !$moduleConfig.wysiwyg_editor}>
+    if( myform.contents.value == "" ) { window.alert("<{$smarty.const._MD_D3BLOG_ERROR_CONTENTS_REQUIRED}>"); myform.contents.focus(); return false; }
+<{/if}>
+    return true;
+}
+//--></script>

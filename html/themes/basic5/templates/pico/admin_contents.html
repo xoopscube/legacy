@@ -1,0 +1,170 @@
+<h3><{$mod_name}></h3>
+
+<!-- category selection -->
+<form name="selectcategory" action="<{$mod_url}>/admin/index.php" method="get" style="margin: 20px 0px">
+	<input type="hidden" name="page" value="contents" />
+	<label for="select_cat_id"><{$smarty.const._MD_A_PICO_LABEL_SELECTCATEGORY}></label>:
+	<select name="cat_id" id="select_cat_id"><{html_options options=$cat_options selected=$cat_id}></select>
+	<input type="submit" value="<{$smarty.const._SUBMIT}>" />
+</form>
+
+<!-- category title -->
+<p>
+	<{$smarty.const._MD_PICO_CATEGORY}>:<strong><{$cat_title}></strong>
+	<{if $cat_id >= 0}>
+		[<a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$cat_id}>"><{$smarty.const._EDIT}></a>]
+		[<a href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$cat_id}>"><{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}></a>]
+		[<a href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$cat_id}>"><{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}></a>]
+		[<a href="<{$mod_url}>/index.php?page=makecontent&amp;cat_id=<{$cat_id}>&amp;ret=ac<{$cat_id}>"><{$smarty.const._MD_PICO_LINK_MAKECONTENT}></a>]
+		[<a href="<{$mod_url}>/<{$cat_link}>"><{$smarty.const._MD_PICO_LINK_PUBLICCATEGORYINDEX}></a>]
+	<{/if}>
+</p>
+
+<!-- contents form -->
+<h2 class="head"><{$smarty.const._MD_A_PICO_H2_CONTENTS}></h2>
+<form name="contents" action="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$cat_id}>" method="post" style="margin:20px 0px;">
+	<{$gticket_hidden}>
+	<div align="<{$smarty.const._ALIGN_END}>"><{$smarty.const._MD_A_PICO_LEGEND_CONTENTSTHS}></div>
+	<table class="outer">
+		<tr>
+			<th>
+				<{$smarty.const._MD_A_PICO_TH_CONTENTSID}>
+			</th>
+			<th>
+				<{$smarty.const._MD_PICO_TH_SUBJECT}>
+			</th>
+			<th>
+				<{$smarty.const._MD_PICO_TH_VIRTUALPATH}>
+			</th>
+			<th>
+				<{$smarty.const._MD_A_PICO_TH_CONTENTSWEIGHT}>
+			</th>
+			<th>
+				<{$smarty.const._MD_A_PICO_TH_CONTENTSVISIBLE}>
+				<br />
+				<input type="checkbox" onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_visible_')>=0){elements[i].checked=this.checked;}}}">
+			</th>
+			<th>
+				<{$smarty.const._MD_A_PICO_TH_CONTENTSSHOWINNAVI}>
+				<br />
+				<input type="checkbox" onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_show_in_navi_')>=0){elements[i].checked=this.checked;}}}">
+			</th>
+			<th>
+				<{$smarty.const._MD_A_PICO_TH_CONTENTSSHOWINMENU}>
+				<br />
+				<input type="checkbox" onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_show_in_menu_')>=0){elements[i].checked=this.checked;}}}">
+			</th>
+			<th>
+				<{$smarty.const._MD_A_PICO_TH_CONTENTSALLOWCOMMENT}>
+				<br />
+				<input type="checkbox" onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_allow_comment_')>=0){elements[i].checked=this.checked;}}}">
+			</th>
+			<th>
+				&nbsp;
+			</th>
+			<th style="text-align:<{$smarty.const._ALIGN_END}>;">
+				<{$smarty.const._MD_A_PICO_TH_CONTENTSACTIONS}>
+				<input type="checkbox" onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_action_')>=0){elements[i].checked=this.checked;}}}">
+			</th>
+		</tr>
+		<{foreach from=$contents item="content"}>
+			<tr class="<{cycle values="even,odd"}>">
+				<td style="text-align:<{$smarty.const._ALIGN_END}>;">
+					<{$content.id}>
+					<{if $cat_id == $smarty.const.SPECIAL_CAT_ID_ALL}>
+						<br />
+						<span title="<{"-- "|str_repeat:$content.cat_depth_in_tree}><{$content.cat_title}>">(<{$content.cat_id}>)</span>
+					<{/if}>
+				</td>
+				<td align="<{$smarty.const._ALIGN_START}>">
+					<input type="text" size="24" name="subjects[<{$content.id}>]" id="col_subject_<{$content.id}>" value="<{$content.subject}>" />
+				</td>
+				<td align="center">
+					<input type="text" size="24" name="vpaths[<{$content.id}>]" id="col_vpath_<{$content.id}>" value="<{$content.vpath}>" />
+					<{if strstr($content.filters,"wraps")}>*<{/if}>
+					<{if $content.wrap_file}>
+						<br />
+						<{$content.wrap_file.mtime_formatted}>
+						(<{$content.wrap_file.size}> <{$smarty.const._MD_PICO_BYTE}>)
+					<{/if}>
+				</td>
+				<td align="center">
+					<input type="text" size="3" name="weights[<{$content.id}>]" id="col_weight_<{$content.id}>" value="<{$content.weight}>" style="text-align:<{$smarty.const._ALIGN_END}>;" />
+				</td>
+				<td align="center">
+					<input type="checkbox" name="visibles[<{$content.id}>]" id="col_visible_<{$content.id}>" value="1" <{if $content.visible}>checked="checked"<{/if}> />
+				</td>
+				<td align="center">
+					<input type="checkbox" name="show_in_navis[<{$content.id}>]" id="col_show_in_navi_<{$content.id}>" value="1" <{if $content.show_in_navi}>checked="checked"<{/if}> />
+				</td>
+				<td align="center">
+					<input type="checkbox" name="show_in_menus[<{$content.id}>]" id="col_show_in_menu_<{$content.id}>" value="1" <{if $content.show_in_menu}>checked="checked"<{/if}> />
+				</td>
+				<td align="center">
+					<input type="checkbox" name="allow_comments[<{$content.id}>]" id="col_allow_comment_<{$content.id}>" value="1" <{if $content.allow_comment}>checked="checked"<{/if}> />
+				</td>
+				<td align="<{$smarty.const._ALIGN_START}>">
+					<input type="text" size="20" name="modified_time[<{$content.id}>]" id="col_modified_time_<{$content.id}>" value="<{$content.modified_time_formatted}>" />
+				</td>
+				<td nowrap="nowrap" style="text-align:<{$smarty.const._ALIGN_END}>;">
+					<{if $content.is_deleted}>
+						<ul class="pico_content_history_list">
+							<{foreach from=$content.histories item="history"}>
+								<li>
+									<{$history.modified_time_formatted}>
+									-
+									<{$history.modifier_uname}>
+									(<{$history.body_size|number_format}><{$smarty.const._MD_PICO_BYTE}>)
+									<br />
+									&nbsp;
+									<a href="<{$mod_url}>/index.php?page=viewhistory&amp;content_history_id=<{$history.id}>"><{$smarty.const._MD_PICO_REFERIT}></a>
+									-
+									<a href="<{$mod_url}>/index.php?page=downloadhistory&amp;content_history_id=<{$history.id}>"><{$smarty.const._MD_PICO_DOWNLOADIT}></a>
+									<{if $history.prev_id}>
+										-
+										<a href="<{$mod_url}>/index.php?page=diffhistory&amp;older_history_id=<{$history.prev_id}>&amp;newer_history_id=<{$history.id}>"><{$smarty.const._MD_PICO_DIFFFROMPREV}></a>
+									<{/if}>
+								</li>
+							<{/foreach}>
+						</ul>
+					<{else}>
+						<{if ! $content.approval}>
+							<strong style="color:#f00;"><{$smarty.const._MD_PICO_WAITINGAPPROVAL}></strong>
+						<{/if}>
+						<{if ! $content.visible}>
+							<strong style="color:#f0f;"><{$smarty.const._MD_PICO_INVISIBLE}></strong>
+						<{/if}>
+						<{if $content.created_time >= time()}>
+							<strong style="color:#00f;"><{$smarty.const._MD_PICO_WAITINGRELEASE}></strong>
+						<{/if}>
+						<{if $content.expiring_time < time()}>
+							<strong style="color:#0ff;"><{$smarty.const._MD_PICO_EXPIRED}></strong>
+						<{/if}>
+						<a href="<{$mod_url}>/<{$content.link}>"><{$smarty.const._MD_A_PICO_LABEL_MAINDISP}></a> |
+						<a href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>&amp;ret=ac<{$cat_id}>"><{$smarty.const._EDIT}></a> |
+						<input type="checkbox" name="action_selects[<{$content.id}>]" id="col_action_<{$content.id}>" value="1" />
+						<br />
+						<{$content.modifier_uname}> <{$content.modified_time_formatted}>
+					<{/if}>
+				</td>
+			</tr>
+		<{/foreach}>
+		<tr>
+			<td colspan="10" align="center" class="head">
+				<input type="submit" name="contents_update" value="<{$smarty.const._SUBMIT}>" tabindex="0" />
+			</td>
+		</tr>
+		<tr>
+			<th colspan="10" style="text-align:<{$smarty.const._ALIGN_END}>;">
+				<{$smarty.const._MD_A_PICO_LABEL_CONTENTSRIGHTCHECKED}>
+				<input type="submit" name="contents_delete" value="<{$smarty.const._MD_A_PICO_BTN_DELETE}>" onclick="return confirm('<{$smarty.const._MD_A_PICO_CONFIRM_DELETE}>');" />
+				<input type="submit" name="contents_move" value="<{$smarty.const._MD_A_PICO_BTN_MOVE}>" />
+				<select name="dest_cat_id" id="select_dest_cat_id"><{html_options options=$cat_options4move selected=$cat_id}></select>
+				<br />
+				<input type="submit" name="contents_export" value="<{$smarty.const._MD_A_PICO_BTN_EXPORT}>" onclick="return confirm('<{$smarty.const._MD_A_PICO_CONFIRM_EXPORT}>');"  />
+				<select name="export_mid" id="select_export_mid"><{html_options options=$module_options}></select>
+			</th>
+		</tr>
+	</table>
+</form>
+

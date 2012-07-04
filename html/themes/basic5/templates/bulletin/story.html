@@ -1,0 +1,54 @@
+<{strip}>
+<div class="item">
+
+<div class="item_xgj_Date">
+<p><{$story.posttime|xugj_date:"Y年":"":""}></p>
+<p><{$story.posttime|xugj_date:"n月j日":"":""}></p>
+</div>
+
+<div class="itemInfo_2 clearfix">
+	<span class="itemPoster"><{$smarty.const._MD_POSTEDBY}>&nbsp;:&nbsp;
+	<{if $story.uid}>
+		<a href="<{$xoops_url}>/userinfo.php?uid=<{$story.uid}>"><{$story.uname}></a>
+		<{else}>
+		<{$story.uname}>
+	<{/if}>
+		</span> <span class="itemPostDate"><{$smarty.const._ON}> <{$story.posttime}></span> (<span class="itemStats"><{$story.hits}> <{$smarty.const._READS}></span>)
+</div>
+
+<div class="itemBody">
+    <{if $story.topic_url}>
+      <a href="<{$mydirurl}>/index.php?storytopic=<{$story.topicid}>"><img src="<{$story.topic_url}>" alt="<{$story.topic}>" hspace="10" vspace="10" align="<{$story.align}>" /></a>
+    <{/if}>
+    <p class="itemText"><{$story.text}></p>
+</div>
+
+<div style="clear:both;"></div>
+
+<div class="itemFoot">
+	<{if $story.adminlink}>
+		<span class="itemAdminLink">&nbsp;[ <a href="<{$mydirurl}>/index.php?page=submit&amp;storyid=<{$story.id}>"><{$smarty.const._EDIT}></a> | <a href="<{$mydirurl}>/index.php?page=submit&amp;op=delete&amp;storyid=<{$story.id}>"><{$smarty.const._DELETE}></a> ]&nbsp;</span>&nbsp;
+    <{/if}>
+
+	<span class="itemPermaLink">
+
+		<{if $story.readmore}>
+			<a href="<{$mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>"><{$smarty.const._MD_READMORE}></a> | <{$story.bytes}> | 
+		<{/if}>
+
+		<{if $mod_config.comment_dirname != '' && $mod_config.comment_forum_id > 0}>
+			<{d3comment class="BulletinD3commentStory" mydirname=$mydirname mode="count" var="comments_count"}>
+			<{if $comments_count}>
+				<a href="<{$mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>"><{$comments_count|string_format:$smarty.const._MD_NUMCOMMENTS}></a>
+			<{else}>
+				<{$smarty.const._MD_COMMENTS}>
+			<{/if}>
+		<{else}>
+			<a href="<{$mydirurl}>/index.php?page=article&amp;storyid=<{$story.id}>"><{$story.comentstotal}></a>
+		<{/if}>
+	</span>
+
+</div>
+
+</div>
+<{/strip}>

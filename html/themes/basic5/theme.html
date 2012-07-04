@@ -1,0 +1,187 @@
+<{strip}>
+<{include_php file="`$smarty.const.XOOPS_THEME_PATH`/`$xoops_theme`/xugj_assign_theme_language_inc.php"}>
+<{include_php file="`$smarty.const.XOOPS_THEME_PATH`/`$xoops_theme`/xugj_assign_basic.php"}>
+<{include_php file="`$smarty.const.XOOPS_THEME_PATH`/`$xoops_theme`/xugj_already_js.php"}>
+<!DOCTYPE html>
+<{/strip}>
+<html lang="<{$xoops_langcode}>">
+<head>
+<meta charset="<{$xoops_charset}>" />
+<title><{$xoops_sitename}> - <{if $xoops_pagetitle}><{$xoops_pagetitle}><{else}><{$xoops_slogan}><{/if}></title>
+<meta name="robots" content="<{$xoops_meta_robots}>" />
+<meta name="keywords" content="<{$xoops_meta_keywords}>" />
+<meta name="description" content="<{$xoops_meta_description}>" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author}> <{$xoops_meta_copyright}>" />
+<{* meta copyright is not HTML5
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+*}>
+<link rel="stylesheet" type="text/css" href="<{$xoops_imageurl}>reset.css" />
+<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_url}>/xoops.css" />
+<link rel="stylesheet" type="text/css" href="<{$xoops_imageurl}>style.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link href='http://fonts.googleapis.com/css?family=Droid+Serif:700,400,400italic,700italic' rel='stylesheet' type='text/css' />
+<!--[if IE]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script type="text/javascript"><{$xoops_js|regex_replace:"/(\/\/\-\->|<!\-\-)/":""}></script>
+<{if ! $xcl22_jquery_is_already and ! $xugj_jquery_is_already}>
+<script type="text/javascript" src="<{$xoops_imageurl}>js/jquery-1.7.1.min.js"></script>
+<{/if}>
+<{if $xoops_module_header}><{$xoops_module_header}><{/if}><{if $xoops_block_header}><{$xoops_block_header}><{/if}>
+<{include file="`$xoops_theme`/theme_redirect_js.html"}>
+<link rel="stylesheet" type="text/css" href="<{$xoops_imageurl}>modules.css" />
+<link rel="stylesheet" type="text/css" href="<{$xoops_imageurl}>media-queries.css" />
+<script type="text/javascript">
+   var GuideSentence = '<{$smarty.const._BASIC_SEARCH}>';
+   function ShowFormGuide(obj) {
+      if( obj.value == '' ) {
+         obj.value = GuideSentence;
+         obj.style.color = '#808080';
+      }
+   }
+   function HideFormGuide(obj) {
+      if( obj.value == GuideSentence ) {
+         obj.value='';
+         obj.style.color = '#000000';
+      }
+   }
+</script>
+</head>
+<body id="home" class="L<{$xoops_showlblock}>R<{$xoops_showrblock}> <{strip}>
+<{if $smarty.server.SCRIPT_FILENAME|basename == "index.php" and $smarty.server.SCRIPT_FILENAME|dirname|basename == $smarty.const.XOOPS_ROOT_PATH|basename}>
+	home
+<{else}>
+	<{if $xugj_trustdirname }>
+		<{$xugj_trustdirname}>
+	<{elseif !$xoops_dirname == ""}>
+		<{$xoops_dirname}>
+	<{else}>
+		ather
+	<{/if}>
+<{/if}>
+"><{/strip}>
+	<div id="wrapper">
+		<header id="header">
+			<h1><a href="<{$xoops_url}>/"><{$xoops_sitename}></a></h1>
+				<{if $xoops_dirname == ""}>
+				  <h2>Welcome to <{$xoops_sitename}>&nbsp;&nbsp;&nbsp;&nbsp;<{$xoops_slogan}></h2>
+				<{else}>
+					<{* module title *}><{include file="`$xoops_theme`/theme_moduletitle.html"}>
+				<{/if}>
+		<nav>
+		<div id="navigation">
+				<{if $menu0.dirname == $xoops_dirname}>
+					<a href="<{$xoops_url}>/" class="act"><{$smarty.const._BASIC_HOME_NAME}></a>
+				<{else}>
+					<a href="<{$xoops_url}>/" class="menu_c<{cycle values="1,2,3,4,5,6,7"}>"><{$smarty.const._BASIC_HOME_NAME}></a>
+				<{/if}>
+				<{foreach from=$xugj_menus item="menu0"}>
+							<{if $menu0.dirname == $xoops_dirname}>
+									<{assign var="xugj_menus1" value=$menu0.sub}>
+									<{assign var="menu0_class" value="s"}>
+							<{else}>
+									<{assign var="menu0_class" value=""}>
+							<{/if}>
+
+					<a href="<{$xoops_url}>/modules/<{$menu0.dirname}>/<{$menu0.url}>" <{if $menu0.dirname == $xoops_dirname}> class="act"<{else}> class="menu_c<{cycle values="1,2,3,4,5,6,7"}>"<{/if}>><{$menu0.name}></a>
+				<{/foreach}>
+				<div class="clearfix"></div>
+		</div>
+		</nav>
+
+		</header>
+
+		<section id="main-content">
+			<div id="menu_s"><{* -- Submenu *}>
+				<{if $xugj_menus1}> |&nbsp;
+					<{foreach from=$xugj_menus1 item="menu1"}>
+							<{if stristr( $smarty.server.REQUEST_URI , $menu1.url )}>
+								<{assign var="xugj_menus2" value=$menu1.sub}>
+								<{assign var="menu1_class" value=" selected"}>
+							<{else}>
+								<{assign var="menu1_class" value=""}>
+							<{/if}>
+							<a href="<{$xoops_url}>/modules/<{$menu1.dirname}>/<{$menu1.url}>" class="menu_level1<{$menu1_class}>"><{$menu1.name}></a>&nbsp;|&nbsp;
+					<{/foreach}>
+				<{/if}>
+			</div><{* -- End Submenu *}>
+
+			<div id="featured">
+
+				<{if $xoops_showcblock == 1}>
+					<{if $xoops_ccblocks}><{* Start Center Center Column BlockWeight = 0 *}>
+						<{foreach item=block from=$xoops_ccblocks name=ccloop}>
+						<{if $block.weight == 0 }>
+							<div>
+							<{if ! $block.title|strstr:"none"}><h3><{$block.title}></h3><{/if}>
+							<{$block.content}>
+							</div>
+							<hr/>
+						<{/if}>
+						<{/foreach}>
+					<{/if}><{* End Center Center Column *}>
+				<{/if}>
+
+			</div> <!-- END Featured -->
+
+			<div id="latest">
+				<section class="left-col">
+					<{* CenterColumn BlockWeight>0 *}><{include file="`$xoops_theme`/theme_centercolumn.html"}>
+				</section> <!-- END Left Column -->
+
+				<aside class="sidebar">
+					<{if $xoops_showlblock == 1}>
+						<{foreach item=block from=$xoops_lblocks name=lbloop}>
+						<div>
+							<{if ! $block.title|strstr:"none"}><h4><{$block.title}></h4><{/if}>
+							<{$block.content}>
+						</div>
+						<{/foreach}>
+					<{/if}>
+					<{if $xoops_showrblock == 1}>
+						<{foreach item=block from=$xoops_rblocks name=rbloop}>
+							<div>
+								<{if ! $block.title|strstr:"none"}><h4><{$block.title}></h4><{/if}>
+								<{$block.content}>
+							</div>
+						<{/foreach}>
+					<{/if}>
+				</aside>
+
+			</div> <!-- END Latest -->
+
+			<div class="clearfix"></div>
+
+			<div id="about">
+					<{if $xoops_ccblocks}><{* Start bottom Column BlockWeight >= 500 *}>
+						<{foreach item=block from=$xoops_ccblocks name=ccloop}>
+						<{if $block.weight >= 500 }>
+							<hr/>
+							<div>
+							<{if ! $block.title|strstr:"none"}><h3><{$block.title}></h3><{/if}>
+							<{$block.content}>
+							</div>
+						<{/if}>
+						<{/foreach}>
+					<{/if}>
+			</div>
+		</section>
+		<hr/>
+
+		<footer>
+			<{include file="`$xoops_theme`/theme_footer.html"}>
+		</footer>
+
+		<div id="headerSearch">
+		  <form id="headerSearch-searchform" name="searchform" action="<{$xoops_url}>/search.php" method="get" class="searchform">
+		  <input id="headerSearch-keywords" type="text" name="query" value="<{$smarty.const._BASIC_SEARCH}>" style="color: #808080;" onFocus="HideFormGuide(this);" onBlur="ShowFormGuide(this);" class="textbox" />
+		  <input type="hidden" name="action" value="results" />
+		  <input type="image" src="<{$xoops_imageurl}>images/search-icon.png" name="searchSubmit" alt="<{$smarty.const._BASIC_SEARCH}>"  title="<{$smarty.const._BASIC_SEARCH}>" id="headerSearch-searchBtn" class="button" />
+		  </form>
+		</div>
+	</div> <!-- END Wrapper -->
+	<div id="xugj_pm_new_message" class="top-right"></div>
+</body>
+</html>

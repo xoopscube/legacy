@@ -1,0 +1,60 @@
+<div class="outer d3f_block_list_topics">
+<{if $block.full_view == true}>
+<table>
+<thead>
+<tr>
+	<th class="th01"><{$block.lang_forum}></th>
+	<th class="th02"><{$block.lang_topic}></th>
+	<th class="th03"><{$block.lang_replies}></th>
+	<th class="th04"><{$block.lang_views}></th>
+	<th class="th05" colspan="2"><{$block.lang_lastpost}></th>
+</tr>
+</thead>
+<{foreach item=topic from=$block.topics}>
+<{strip}>
+<tr class="<{cycle values="even,odd"}>">
+	<td class="td01"><a href="<{$block.mod_url}>/index.php?forum_id=<{$topic.forum_id}>"><{$topic.forum_title}></a></td>
+	<td class="td02"><a href="<{$block.mod_url}>/index.php?topic_id=<{$topic.id}>#post_id<{$topic.last_post_id}>">
+	<{if $topic.u2t_marked}><img src="<{$block.mod_imageurl}>/block_marked.gif" alt="<{$block.lang_alt_marked}>" /><{/if}>
+	<{* displays the last post's subject or topic title *}>
+	<{if $block.disp_last_subject }>
+	<{$topic.last_subject}>
+	<{else}>
+	<{$topic.title}>
+	<{/if}></a>
+	<{if ! $topic.solved}><img src="<{$block.mod_imageurl}>/block_unsolved.gif" alt="<{$block.lang_alt_unsolved}>" /><{/if}></td>
+	<td class="td03"><{$topic.replies}></td>
+	<td class="td04"><{$topic.views}></td>
+	<td class="td05"><{$topic.last_uname}></td>
+	<td class="td06"><{$topic.last_post_time_formatted}></td>
+</tr>
+<{/strip}>
+<{/foreach}>
+</table>
+
+<div>
+<ul>
+<li><a href="<{$block.mod_url}>/index.php?page=search"><{$block.lang_linktosearch}></a></li>
+<{if is_numeric( $block.forums ) }>
+<li><a href="<{$block.mod_url}>/index.php?forum_id=<{$block.forums}>"><{$block.lang_linktolisttopics}></a></li>
+<{else}>
+<li><a href="<{$block.mod_url}>/index.php?cat_ids=<{$block.categories}>"><{$block.lang_linktolisttopics}></a></li>
+<{/if}>
+<{if is_numeric( $block.categories ) }>
+<li><a href="<{$block.mod_url}>/index.php?cat_id=<{$block.categories}>"><{$block.lang_linktolistforums}></a></li>
+<{/if}>
+<li><a href="<{$block.mod_url}>/index.php"><{$block.lang_linktolistcategories}></a></li>
+</ul>
+</div>
+
+<{else}>
+
+<ol>
+<{foreach item=topic from=$block.topics}>
+	<li><a href="<{$block.mod_url}>/index.php?topic_id=<{$topic.id}>"><{$topic.title}></a>(<{$topic.replies}>) <{$topic.last_uname}> <{$topic.last_post_time_formatted}></li>
+<{/foreach}>
+</ol>
+
+<{/if}>
+</div>
+

@@ -1,0 +1,28 @@
+<!-- Folders -->
+<{foreach from=$folders item="folder"}>
+	<div class="fck_browser_folders" style="float:left;padding:4 8px;">
+		<a href="#" onclick="OpenFolder('<{$current_folder_path}><{$folder.name}>/');return false;">
+			<img alt="" src="images/Folder.gif" width="16" height="16" border="0">
+			<{$folder.name}>
+		</a>
+	</div>
+<{/foreach}>
+
+<!-- Files -->
+<table class="fck_browser_files" id="tableFiles" cellspacing="1" cellpadding="0" width="100%" border="0" style="clear:both;width:480px;">
+<{foreach from=$files item="file"}>
+	<tr>
+		<td>
+			<{if $resource_type == 'Image'}>
+				<a href="#" onclick="OpenFile('<{$file.url}>');return false;"><img alt="<{$file.name}>" src="<{$file.url}>" height="48" border="0"></a>&nbsp;
+			<{else}>
+				<a href="#" onclick="OpenFile('<{$file.url}>');return false;"><img alt="" src="images/icons/<{$file.icon}>.gif" height="16" border="0">&nbsp;<{$file.name}></a>&nbsp;
+			<{/if}>
+		</td>
+		<td>&nbsp;<a href="<{$file.url}>">view</a>&nbsp;</td>
+		<td><{if $file.can_delete}>&nbsp;<a href="#" onclick="DeleteFile('<{$file.url}>','<{$ticket}>');">delete</a>&nbsp;<{/if}></td>
+		<td align="right">&nbsp;<{$file.size}>KB&nbsp;</td>
+		<td align="right">&nbsp;<{$file.mtime_formatted}>&nbsp;</td>
+	</tr>
+<{/foreach}>
+</table>

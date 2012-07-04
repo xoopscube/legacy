@@ -1,0 +1,29 @@
+a.ktai_smart_btn {
+	display: block;
+	padding: 16px 0;
+	text-align: center;
+	font-size: 24px;
+	border: 2px solid 		#145072;
+	background: 			#2567ab;
+	font-weight: bold;
+	color: 					#fff !important;
+	text-shadow: 0 -1px 1px #145072;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#5f9cc5), to(#396b9e)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #5f9cc5 , #396b9e); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient(top, #5f9cc5 , #396b9e); /* FF3.6 */
+	background-image:     -ms-linear-gradient(top, #5f9cc5 , #396b9e); /* IE10 */
+	background-image:      -o-linear-gradient(top, #5f9cc5 , #396b9e); /* Opera 11.10+ */
+	background-image:         linear-gradient(top, #5f9cc5 , #396b9e);
+}
+a.ktai_smart_btn:hover,
+a.ktai_smart_btn:focus {
+	border: 2px solid 		#00516e;
+	background: 			#4b88b6;
+	text-shadow: 0 -1px 1px #014D68;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#72b0d4), to(#4b88b6)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #72b0d4, #4b88b6); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient(top, #72b0d4, #4b88b6); /* FF3.6 */
+	background-image:     -ms-linear-gradient(top, #72b0d4, #4b88b6); /* IE10 */
+	background-image:      -o-linear-gradient(top, #72b0d4, #4b88b6); /* Opera 11.10+ */
+	background-image:         linear-gradient(top, #72b0d4, #4b88b6);
+}

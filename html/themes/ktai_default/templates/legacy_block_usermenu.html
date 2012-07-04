@@ -1,0 +1,18 @@
+<div style="font-size: small;">
+<ul>
+  <li><a class="menuTop" href="<{$xoops_url}>/user.php"><{$smarty.const._MB_LEGACY_VACNT}></a></li>
+  <li><a href="<{$xoops_url}>/edituser.php"><{$smarty.const._MB_LEGACY_EACNT}></a></li>
+  <li><a href="<{$xoops_url}>/notifications.php"><{$smarty.const._MB_LEGACY_NOTIF}></a></li>
+  <li><a href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._MB_LEGACY_LOUT}></a></li>
+  <{if $block.flagShowInbox}>
+    <{if $block.new_messages > 0}>
+      <li><a class="highlight" href="<{$block.inbox_url}>"><{$smarty.const._MB_LEGACY_INBOX}> (<span style="color:#ff0000; font-weight: bold;"><{$block.new_messages}></span>)</a></li>
+    <{else}>
+      <li><a href="<{$block.inbox_url}>"><{$smarty.const._MB_LEGACY_INBOX}></a></li>
+    <{/if}>
+  <{/if}>
+  <{*    <{if $block.show_adminlink}>
+        <a href="<{$xoops_url}>/admin.php"><{$smarty.const._MB_LEGACY_ADMENU}></a>
+      <{/if}>  *}>
+</ul>
+</div>

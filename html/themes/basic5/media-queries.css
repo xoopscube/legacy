@@ -1,0 +1,95 @@
+@media screen and (max-width: 478px) 	{
+	header h1 { font-size: 70px; padding: 1px; }
+	h2 { font-size: 13px; padding: 1px; }
+	body { font-size: 13px; }
+	#menu_s a { display:inline-block;padding:10px; }
+
+	#d3f_post_form_quick table.d3f_postform {width:90%;	margin:0 auto;}
+	#d3f_post_form_quick table.d3f_postform td.head {	width:70px;}
+	#d3f_post_form_quick table.d3f_postform textarea{	width:100%;}
+	#d3f_post_form_quick table.d3f_postform input.formButton , .d3f_submit input {width:100%;height:50px;}
+	#xpress_content .xpress-post .xpress-eyecatch {width:60px;height:60px;margin-left:-20px;}
+	.xpress-eyecatch-img {width:60px;height:60px;overflow:hidden;}
+	#xpress-comments-block { margin-left:-20px;}
+	#xpress_wrap #xpress_content .xpress-post .xpress-eyecatch .xpress-eyecatch-post-md {
+		width:60px;
+		height:30px;
+		font-size:20px;
+		color:#000;
+		margin-top:-80px;
+		margin-left:0px;
+		text-align:right;
+		z-index:100;
+	}
+
+	#xpress_wrap #xpress_content .xpress-post-g .xpress-post-title {
+		display:block;
+		width:74%;
+		height:50px;
+		margin-left:60px;
+		margin-bottom:6px;
+		padding-left:10px;
+		border-left:6px solid #ccc;
+		clear:both;
+	}
+	#xpress_wrap #xpress_content .xpress-post-title h2{
+		color: #4478B0;
+		font-size: 18px;
+		font-weight: bold;
+	}
+	#xpress_wrap #xpress_content .xpress-post .xpress-post-g {
+		float:right;
+		width:100%;
+		margin-left:-200px;
+		margin-top:-5px;
+	}
+
+	.xpress-more-link {
+		background : -webkit-gradient(linear, left top, left bottom,
+			from(#F0F0F0),
+			color-stop(0.45, #FDFDFD),
+			color-stop(0.5, #CCCCCC),
+			to(#F3F3F3));
+		background : -moz-linear-gradient(top,
+			#F0F0F0,
+			#FDFDFD 45%,
+			#CCCCCC 50%,
+			#F3F3F3);
+		padding: 5px 10px 5px;
+		color: #ddd;
+		text-decoration: none;
+		-moz-border-radius: 8px;
+		-webkit-border-radius: 8px;
+		-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.6);
+		-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.6); 
+
+	 	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+		border:solid 1px #4F4F4F;
+		cursor: pointer;
+		font-size:14px;
+	}
+	.xpress-more-link a {
+		display:block;
+		padding-top:10px;
+		text-decoration:none;
+		color: #4F4F4F;
+	}
+	#CenterLColumn { float: left; width: 100%;}
+	#CenterRColumn { float: left; width: 100%;}
+
+}
+
+@media screen and (max-width: 740px) 	{
+	.left-col { width: 100%; }
+	.sidebar { width: 100%; }
+}
+
+@media screen and (max-width: 480px) {
+
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	width: auto\9; /* ie8 */
+}

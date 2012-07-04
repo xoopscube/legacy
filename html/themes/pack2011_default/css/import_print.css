@@ -1,0 +1,12 @@
+@charset "utf-8";
+
+/**
+* MediaQuery MultiDevice Template ver 0.1É¿
+* @Author: funnythingz
+* @Url:    http://hiropo.co.uk
+* 
+* import_print.css
+*/
+
+/* Basic */
+@import 'print_basic.css';

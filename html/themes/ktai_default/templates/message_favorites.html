@@ -1,0 +1,19 @@
+<h4><{$smarty.const._MD_USERSEARCH_9}></h4>
+<{if $fuser!=false}>
+<form method="post" action="index.php?action=favorites">
+
+<ul>
+<{foreach item=user from=$fuser}>
+<hr>
+<li><a href="index.php?action=new&to_userid=<{$user.userobj->get('uid')}>"><{$user.userobj->get('uname')}></a></li>
+<li><{$smarty.const._MD_MESSAGE_TEMPLATE18}> <input type="text" name="weight[<{$user.fobj->get('id')}>]" value="<{$user.fobj->get('weight')}>" /><br />
+<li><{$smarty.const._MD_MESSAGE_TEMPLATE14}> <input type="checkbox" name="delid[]" value="<{$user.fobj->get('id')}>" /></li>
+<{/foreach}>
+</ul>
+<hr>
+<input type="submit" value="<{$smarty.const._SUBMIT}>" /></td></tr>
+<input type="hidden" name="cmd" value="edt" />
+</form>
+<{else}>
+<div><{$smarty.const._MD_USERSEARCH_8}></div>
+<{/if}>

@@ -1,0 +1,44 @@
+<{if $actionForm->hasError()}>
+<div class="errorMsg">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form action="<{$smarty.const.XOOPS_URL}>/search.php" method="get">
+  <{xoops_input type=hidden name=action value=results}>
+
+  <ul>
+    <li>
+      <{$smarty.const._SR_KEYWORDS}><br />
+      <{xoops_input type=text name=query size=30 maxlength=255 value=$actionForm->get('query')}>
+    </li>
+
+    <li>
+      <{$smarty.const._SR_TYPE}><br />
+      <select name="andor">
+        <option id="andor_AND" value="AND" <{if $actionForm->get('andor') == 'AND'}>selected="selected"<{/if}>><{$smarty.const._SR_ALL}></option>
+        <option id="andor_OR" value="OR" <{if $actionForm->get('andor') == 'OR'}>selected="selected"<{/if}>><{$smarty.const._SR_ANY}></option>
+        <option id="andor_exact" value="exact" <{if $actionForm->get('andor') == 'exact'}>selected="selected"<{/if}>><{$smarty.const._SR_EXACT}></option>
+      </select>
+    </li>
+
+    <li>
+      <{$smarty.const._SR_SEARCHIN}><br />
+      <{foreach item=module from=$moduleArr}>
+        <label><input type="checkbox" name="mids[]" value="<{$module.mid|xoops_escape:plain}>" <{if in_array($module.mid, $selectedMidArr)}>checked="checked"<{/if}> /><{$module.name|xoops_escape}></label><br />
+      <{/foreach}>
+    </li>
+
+    <li>
+      <{$smarty.const._SR_SEARCHRULE}><br />
+      <{$searchRuleMessage}>
+    </li>
+  </ul>
+
+  <input type="submit" value="<{$smarty.const._SR_SEARCH}>" />
+
+</form>

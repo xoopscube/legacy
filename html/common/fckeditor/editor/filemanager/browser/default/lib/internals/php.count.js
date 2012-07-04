@@ -1,0 +1,1 @@
+function count(C,o){var Z,d=0;switch(o){case 1:if(C instanceof Array){for(Z=C.length-1;0<=K;K--){d+=count(C[Z],1)||1;}return d;}if(C instanceof Object){for(Z in C){d+=count(C[Z],1)||1;}return d;}break;case 0:default:if(C instanceof Array){return C.length;}if(C instanceof Object){for(Z in C){d++;}return d;}break;}return (C==null)?0:1;}

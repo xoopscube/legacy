@@ -1,0 +1,111 @@
+<!-- start module contents -->
+<!-- breadcrumbs -->
+<div class="d3f_breadcrumbs">
+	<{strip}>
+	<a href="<{$mod_url}>/index.php?cat_ids=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LISTTOPICSINCATEGORY}></a>
+	<{if $mod_config.show_breadcrumbs}>
+	 | 
+	<a href="<{$mod_url}>/index.php"><{$smarty.const._MD_D3FORUM_TOP}></a>
+	<{foreach name=catgorybreadcrumbs from=$category.paths_raw key=parent_id item=parent_title_raw}>
+		<{if ! $smarty.foreach.catgorybreadcrumbs.last}>
+		&nbsp;&gt;&nbsp;
+			<a href="<{$mod_url}>/index.php?cat_id=<{$parent_id}>"><{$parent_title_raw|escape}></a>
+		<{/if}>
+	<{/foreach}>
+	<{/if}>
+	<{/strip}>
+</div>
+
+<h2 class="d3f_title"><{$category.title}></h2>
+<{if $category.desc}><p class="d3f_welcome"><{$category.desc}></p><{/if}>
+
+<!-- category controller -->
+<ul class="d3f_ctrl">
+<{if $category.isadminormod}>
+	<li><a href="<{$mod_url}>/index.php?page=makeforum&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_MAKEFORUM}></a><{$smarty.const._MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY}></li>
+	<{if $xoops_isadmin}>
+	<{strip}>
+		<li><a href="<{$mod_url}>/index.php?page=makecategory&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_MAKESUBCATEGORY}></a><{$smarty.const._MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY}></li>
+		<li><a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}><img src="<{$mod_imageurl}>/icon_pencil22.gif" alt="<{$smarty.const._EDIT}>" width="16" height="16" /></a></li>
+	<{/strip}>
+	<{/if}>
+	<{if $xoops_isadmin}>
+		<li><a href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYACCESS}></a></li>
+	<{/if}>
+<{/if}>
+	<li>((e:f699))a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$category.id}>&amp;odr=1"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}></a></li>
+</ul>
+
+<{if $subcategories}>
+<h3 class="d3f_head"><{$smarty.const._MD_D3FORUM_SUBCATEGORIES}></h3>
+<ul class="d3f_subcategories">
+<{foreach item=subcategory from=$subcategories}>
+	<li><a href="<{$mod_url}>/index.php?cat_id=<{$subcategory.id}>"<{if $subcategory.desc}> title="<{$subcategory.desc}>"<{/if}>><img src="<{$mod_imageurl}>/category_<{$subcategory.bit_new}>.gif" alt="<{$subcategory.title}>" width="16" height="16" /> <{$subcategory.title}></a> (<{$smarty.const._MD_D3FORUM_TOTALTOPICSCOUNT}>: <{$subcategory.topics_count_in_tree}>, <{$smarty.const._MD_D3FORUM_TOTALPOSTSCOUNT}>: <{$subcategory.posts_count_in_tree}>)
+	<{* <{if $xoops_isadmin}><a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$subcategory.id}>"><img src="<{$mod_imageurl}>/icon_pencil22.gif" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>" width="16" height="16" /></a><{/if}> *}>
+	</li>
+	<a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$subcategory.id}>&amp;odr=1"><img src="<{$mod_imageurl}>/icon_rss.gif" alt="RSS" title="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}>" width="16" height="16" /></a>
+<{/foreach}>
+</ul>
+<{/if}>
+
+<{if $forums}>
+<hr />
+
+<!-- start forums -->
+<{foreach item=forum from=$forums}>
+
+<{strip}>
+	<h3>
+	<img src="<{$mod_imageurl}>/forum_<{$forum.bit_new}>.gif" alt="<{$forum.title}>" height="24" width="24" />
+	<a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>"><{$forum.title}></a>
+	&nbsp;<{if $forum.isadminormod}> <a href="<{$mod_url}>/index.php?page=forummanager&amp;forum_id=<{$forum.id}>"><img src="<{$mod_imageurl}>/icon_pencil22.gif" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._MD_D3FORUM_LINK_FORUMMANAGER}>" width="16" height="16" /></a> </a><{/if}><br />
+	<{* <a href="<{$mod_url}>/index.php?page=rss&amp;forum_id=<{$forum.id}>"><img src="<{$mod_imageurl}>/icon_rss.gif" alt="RSS" title="<{$smarty.const._MD_D3FORUM_LINK_FORUMRSS}>" width="16" height="16" /></a> *}>
+	</h3>
+	<div style="margin-left:char ">
+	<{$forum.desc}>
+	<div>
+	<ul>
+		<{if $forum.external_link_format}>
+		<li><{$smarty.const._MD_D3FORUM_FORUMASCOMMENT}></li>
+	<{elseif $forum.can_post}>
+		<li>((i:f952))<a href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>"><{$smarty.const._MD_D3FORUM_POSTASNEWTOPIC}></a></li>
+	<{/if}>
+	<li>((e:f699))<a href="<{$mod_url}>/index.php?page=rss&amp;forum_id=<{$forum.id}>&amp;odr=1"><{$smarty.const._MD_D3FORUM_LINK_FORUMRSS}></a>
+	<{if $forum.isadminormod}><li><a href="<{$mod_url}>/index.php?page=forummanager&amp;forum_id=<{$forum.id}>"><{$smarty.const._MD_D3FORUM_LINK_FORUMMANAGER}></li><{/if}>
+	</ul>
+	<{include file="db:`$mydirname`_inc_moderators.html" target=$forum}><br />
+	<{$smarty.const._MD_D3FORUM_TOPICSCOUNT}>: <{$forum.topics_count}><br />
+	((i:f9be)): <{$forum.posts_count}><br />
+	<{if $forum.last_post_time}>((i:f982)): <{$forum.last_post_time_formatted}><br />
+	((i:f955)): <{$forum.last_post_uname}> <a href="<{$mod_url}>/index.php?post_id=<{$forum.last_post_id}>"><img src="<{$mod_imageurl}>/posticon<{$forum.last_post_icon}>.gif" alt="<{$forum.last_post_subject}>" /></a><{/if}>
+	</div>
+	</div>
+	<hr />
+<{/strip}>
+<{/foreach}>
+<!-- end forums -->
+
+<div class="d3f_iconexps">
+<ul class="d3f_iconexp">
+	<li><img src="<{$mod_imageurl}>/forum_1.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_ALT_NEWPOSTS}></li>
+</ul>
+<ul class="d3f_iconexp">
+	<li><img src="<{$mod_imageurl}>/forum_0.gif" alt="" width="18" height="18" /> = <{$smarty.const._MD_D3FORUM_ALT_NONEWPOSTS}></li>
+</ul>
+</div>
+<{/if}>
+
+<!-- category jumpbox -->
+<form name="category_jump_box" action="<{$mod_url}>/index.php" method="get" class="d3f_form">
+	<select name="cat_id">
+		<option value="">(<{$smarty.const._MD_D3FORUM_TOP}>)</option>
+		<{$cat_jumpbox_options}>
+	</select>
+	<input type="submit" value="<{$smarty.const._MD_D3FORUM_BTN_JUMPTOCATEGORY}>" />&nbsp;
+	<a href="<{$mod_url}>/index.php?page=search"><{$smarty.const._MD_D3FORUM_LINK_ADVSEARCH}></a>
+</form>
+
+<hr class="notification" />
+
+<{include file='db:system_notification_select.html'}>
+<!-- end module contents -->

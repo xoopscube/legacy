@@ -1,0 +1,110 @@
+<{* $Id: webphoto_inc_photo_view.html,v 1.5 2010/10/10 11:21:38 ohwada Exp $ *}>
+
+<{* === IMAGE === *}>
+<{if $photo.displaytype == $smarty.const._C_WEBPHOTO_DISPLAYTYPE_IMAGE }>
+
+<div class="webphoto_single_photo">
+
+<{* --- DOWNLOADL --- *}>
+  <{if $photo.detail_onclick == $smarty.const._C_WEBPHOTO_DETAIL_ONCLICK_DOWNLOAD }>
+    <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?fct=download&amp;item_id=<{$photo.photo_id}>&amp;file_kind=1">
+
+<{* --- LIGHTBOX --- *}>
+  <{elseif $photo.detail_onclick == $smarty.const._C_WEBPHOTO_DETAIL_ONCLICK_LIGHTBOX }>
+    <a href="<{$photo.img_large_src_s}>" rel="lightbox" title="<{$photo.title_s}>">
+
+<{* --- GENERAL (direct link) --- *}>
+  <{elseif $photo.detail_onclick == $smarty.const._C_WEBPHOTO_DETAIL_ONCLICK_DEFAULT }>
+    <a href="<{$photo.media_url_s}>" target="_blank">
+
+<{* --- POPUP (default of image) --- *}>
+  <{else}>
+    <{if $photo.window_x && $photo.window_y }>
+      <a href="<{$photo.img_large_src_s}>" class="pretty">
+    <{else}>
+      <a href="<{$photo.img_large_src_s}>" class="pretty">
+    <{/if}>
+  <{/if}>
+
+  <{if $photo.img_middle_width && $photo.img_middle_height }>
+    <img src="<{$photo.img_middle_src_s}>" border="0" align="center" vspace="3" hspace="7" alt="<{$photo.title_s}>" title="<{$photo.title_s}>" width="<{$photo.img_middle_width}>" height="<{$photo.img_middle_height}>" />
+
+  <{else}>
+    <img src="<{$photo.img_middle_src_s}>" border="0" align="center" vspace="3" hspace="7" alt="<{$photo.title_s}>" title="<{$photo.title_s}>" width="<{$cfg_middle_width}>" />
+  <{/if}>
+
+  </a>
+
+<{* === ENBED === *}>
+<{elseif $photo.displaytype == $smarty.const._C_WEBPHOTO_DISPLAYTYPE_EMBED }>
+  <{$photo.embed_embed}> 
+  <br /><br />
+  <{if $photo.embed_link != '' }>
+    <a href="<{$photo.embed_link}>" target="_blank">
+    <{$photo.title_s}></a>
+  <{else}>
+    <{$photo.title_s}>
+  <{/if}>
+
+  <{if $photo.cont_size_disp}>
+    ( <{$photo.cont_size_disp}> )
+  <{/if}>
+
+  <br />
+
+<{* === FALSH PLAYER === *}>
+<{elseif $photo.displaytype >= $smarty.const._C_WEBPHOTO_DISPLAYTYPE_SWFOBJECT }>
+  <{$photo.flash_player}>
+  <br />
+  <span class="webphoto_photo_title"><{$photo.title_s}></span>
+
+  <{if $photo.cont_size_disp}>
+    ( <{$photo.cont_size_disp}> )
+  <{/if}>
+  <br />
+
+<{* === GENERAL ==== *}>
+<{elseif $photo.media_url_s }>
+
+<{* --- DOWNLOADL --- *}>
+  <{if $photo.detail_onclick == $smarty.const._C_WEBPHOTO_DETAIL_ONCLICK_DOWNLOAD }>
+    <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?fct=download&amp;item_id=<{$photo.photo_id}>&amp;file_kind=1">
+
+<{* --- PDF --- *}>
+  <{elseif ( $photo.detail_onclick == $smarty.const._C_WEBPHOTO_FILE_KIND_PDF ) && $photo.pdf_url_s }>
+    <a href="<{$photo.pdf_url_s}>" target="_blank">
+
+<{* --- others (direct link) --- *}>
+  <{else}>
+    <a href="<{$photo.media_url_s}>" target="_blank">
+  <{/if}>
+
+  <{if $photo.img_middle_src_s && $photo.img_middle_width && $photo.img_middle_height }>
+    <img src="<{$photo.img_middle_src_s}>" border="0" align="center" vspace="3" hspace="7" alt="<{$photo.title_s}>" title="<{$photo.title_s}>" width="<{$photo.img_middle_width}>" height="<{$photo.img_middle_height}>" />
+  <{elseif $photo.img_middle_src_s }>
+    <img src="<{$photo.img_middle_src_s}>" border="0" align="center" vspace="3" hspace="7" alt="<{$photo.title_s}>" title="<{$photo.title_s}>" width="<{$cfg_middle_width}>" />
+  <{elseif $photo.thumb_width && $photo.thumb_height }>
+    <img src="<{$photo.imgsrc_thumb}>" border="0" align="center" vspace="3" hspace="7" alt="<{$photo.title_s}>" title="<{$photo.title_s}>" width="<{$photo.thumb_width}>" height="<{$photo.thumb_height}>" />
+  <{else}>
+    <img src="<{$photo.imgsrc_thumb}>" border="0" align="center" vspace="3" hspace="7" alt="<{$photo.title_s}>" title="<{$photo.title_s}>" width="<{$cfg_middle_width}>" />
+  <{/if}>
+
+  </a> <br />
+  <span class="webphoto_photo_title"><{$photo.title_s}></span> <br />
+
+  <{if $photo.is_video && $photo.cont_duration_disp }>
+    ( <{$photo.cont_duration_disp}> ) 
+  <{/if}>
+
+  <{if $photo.cont_size_disp}>
+    ( <{$photo.cont_size_disp}> )
+  <{/if}>
+
+  <br />
+
+<{* === NO FILE TYPE === *}>
+<{else}>
+  <span class="webphoto_photo_title"><{$photo.title_s}></span> <br />
+<{/if}>
+
+</div> 

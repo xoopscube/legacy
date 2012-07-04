@@ -1,0 +1,137 @@
+<!-- start module contents -->
+<!-- breadcrumbs -->
+<div id="main_listcategories" class="clearfix">
+
+<div class="d3f_breadcrumbs">
+	<a href="<{$mod_url}>/index.php?cat_ids=0"><{$smarty.const._MD_D3FORUM_LISTALLTOPICS}></a>
+</div>
+
+<div class="d3f_top_message"><{$mod_config.top_message}></div>
+<div class="d3f_c001">
+<a href="<{$mod_url}>/index.php?forum_id=1"><img src="<{$xoops_imageurl}>images/c001.png" alt="welcome" title="welcome" /></a>
+</div>
+
+<div>
+	<dl class="d3f_bbsinfo">
+	<dt><{$smarty.const._MD_D3FORUM_TOTALTOPICSCOUNT}>:</dt>
+		<dd><{$total_topics_count}></dd>
+	<dt><{$smarty.const._MD_D3FORUM_TOTALPOSTSCOUNT}>:</dt>
+		<dd><{$total_posts_count}></dd>
+	<dt><{$smarty.const._MD_D3FORUM_TIMENOW}>:</dt>
+		<dd><{$currenttime_formatted}></dd>
+	<dt><{$smarty.const._MD_D3FORUM_LASTVISIT}>:</dt>
+		<dd><{$lastvisit_formatted}></dd>
+	</dl>
+
+	<!-- top controller -->
+	<ul class="d3f_ctrl">
+		<{if $xoops_isadmin}>
+			<li><a href="<{$mod_url}>/index.php?page=makecategory"><{$smarty.const._MD_D3FORUM_LINK_MAKECATEGORY}></a></li>
+		<{/if}>
+			<li><a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=0&amp;odr=1"><{$smarty.const._MD_D3FORUM_LINK_ALLRSS}> <img src="<{$xoops_imageurl}>images/icon_rss.png" alt="<{$smarty.const._EDIT}>" width="16" height="16" /></a></li>
+	</ul>
+</div>
+
+<!-- marine modifi --><!-- start categories -->
+<div id="d3f_forum_list" class="clearfix">
+<ul>
+	<{foreach item="category" from=$top_categories}>
+		<li>
+		<a href="<{$mod_url}>/index.php?cat_id=<{$category.id}>">
+		<img src="<{$mod_imageurl}>/category_<{$category.bit_new}>.gif" alt="" width="16" height="16" />
+		<{$category.title}>
+		</a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;
+
+		<!-- forums -->
+		<ul>
+		<{foreach item=forum from=$category.forums}>
+				<li><a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>">
+					<img src="<{$mod_imageurl}>/forum_<{$forum.bit_new}>.gif" alt="<{$forum.title}>" width="16" height="16" />
+					<{$forum.title}>
+				</a></li>
+		<{/foreach}>
+		</ul>
+		</li>
+	<{/foreach}>
+</ul>
+
+<!-- Sub Categories -->
+<{foreach item="category" from=$top_categories}>
+<{if $category.subcategories}>
+	<a href="<{$mod_url}>/index.php?cat_id=<{$category.id}>"><img src="<{$mod_imageurl}>/category_<{$category.bit_new}>.gif" alt="" width="16" height="16" /><{$category.title}></a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;
+	<{foreach item=category from=$category.subcategories}>
+		<ul>
+		<li>&nbsp;&nbsp;&nbsp;&nbsp;<a href="<{$mod_url}>/index.php?cat_id=<{$category.id}>"><img src="<{$mod_imageurl}>/category_<{$category.bit_new}>.gif" alt="" width="16" height="16" /><{$category.title}></a>&nbsp;&nbsp;&gt;&nbsp;&nbsp;
+			<{foreach item=forum from=$category.forums}>
+				<a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>" title="<{$block.lang_lastupdated}>:<{$forum.last_post_time_formatted}>"><img src="<{$mod_imageurl}>/forum_<{$forum.bit_new}>.gif" alt="<{$forum.title}>" width="16" height="16" /><{$forum.title}></a>
+			<{/foreach}>
+		</li>
+		</ul>
+	<{/foreach}>
+<{/if}>
+<{/foreach}><!-- End marine modifi -->
+</div>
+
+<div><!-- marine modifi xugj_block topics-->
+<{xugj_block file="modules/d3forum/blocks/blocks.php" func="b_d3forum_list_topics_show" opt="d3forum,15,1,time,1,0,," item="block"}>
+<{if $block.full_view == true}>
+<table class="d3f_outer" cellspacing="1">
+<thead>
+<tr>
+	<th><{$block.lang_forum}></th>
+	<th><{$block.lang_topic}></th>
+	<th><{$block.lang_replies}></th>
+	<th><{$block.lang_views}></th>
+	<th colspan="2"><{$block.lang_lastpost}></th>
+</tr>
+</thead>
+<{foreach item=topic from=$block.topics}>
+<{strip}>
+<tr class="<{cycle values="even,odd"}>">
+	<td><a href="<{$block.mod_url}>/index.php?forum_id=<{$topic.forum_id}>"><{$topic.forum_title}></a></td>
+	<td><a href="<{$block.mod_url}>/index.php?topic_id=<{$topic.id}>#post_id<{$topic.last_post_id}>">
+	<{if $topic.u2t_marked}><img src="<{$block.mod_imageurl}>/block_marked.gif" alt="<{$block.lang_alt_marked}>" /><{/if}>
+	<{* displays the last post's subject or topic title *}>
+	<{if $block.disp_last_subject }>
+	<{$topic.last_subject}>
+	<{else}>
+	<{$topic.title}>
+	<{/if}></a>
+	<{if ! $topic.solved}><img src="<{$block.mod_imageurl}>/block_unsolved.gif" alt="<{$block.lang_alt_unsolved}>" /><{/if}></td>
+	<td align="center"><{$topic.replies}></td>
+	<td align="center"><{$topic.views}></td>
+	<td align="center" nowrap="nowrap"><{$topic.last_uname}></td>
+	<td align="right" nowrap="nowrap"><{$topic.last_post_time_formatted}></td>
+</tr>
+<{/strip}>
+<{/foreach}>
+</table>
+
+<a href="<{$block.mod_url}>/index.php?page=search"><{$block.lang_linktosearch}>&nbsp;&gt;&gt;</a>
+&nbsp;&nbsp;
+<{if is_numeric( $block.forums ) }>
+<a href="<{$block.mod_url}>/index.php?forum_id=<{$block.forums}>"><{$block.lang_linktolisttopics}>&nbsp;&gt;&gt;</a>
+<{else}>
+<a href="<{$block.mod_url}>/index.php?cat_ids=<{$block.categories}>"><{$block.lang_linktolisttopics}>&nbsp;&gt;&gt;</a>
+<{/if}>
+&nbsp;&nbsp;
+<{if is_numeric( $block.categories ) }>
+<a href="<{$block.mod_url}>/index.php?cat_id=<{$block.categories}>"><{$block.lang_linktolistforums}>&nbsp;&gt;&gt;</a>
+&nbsp;&nbsp;
+<{/if}>
+<a href="<{$block.mod_url}>/index.php"><{$block.lang_linktolistcategories}>&nbsp;&gt;&gt;</a>
+
+<{else}>
+
+<ol style="padding:3px;margin:0;">
+<{foreach item=topic from=$block.topics}>
+	<li><a href="<{$block.mod_url}>/index.php?topic_id=<{$topic.id}>"><{$topic.title}></a>(<{$topic.replies}>) <{$topic.last_uname}> <{$topic.last_post_time_formatted}></li>
+<{/foreach}>
+</ol>
+
+<{/if}>
+</div>
+
+</div>
+<{include file='db:system_notification_select.html'}>
+<!-- end module contents -->
