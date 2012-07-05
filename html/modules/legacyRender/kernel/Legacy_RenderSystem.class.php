@@ -39,7 +39,7 @@ class Legacy_XoopsTpl extends XoopsTpl
 		if (is_array($tpl_var)){
 			$root =& XCube_Root::getSingleton();
 			$context = $root->mContext;
-			$reverse = &$this->_mContextReserve;
+			$reserve = $this->_mContextReserve;
 			foreach ($tpl_var as $key => $val) {
 				if ($key != '') {
 					if (isset($reserve[$key])) {
