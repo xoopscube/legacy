@@ -3,7 +3,7 @@
 // $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
-// ## XOOPS Cube Legacy - Versï¿½o em Portuguï¿½s
+// ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //
 // ## Por............: Mikhail Miguel
 // ## Website........: http://xoops.net.br
@@ -16,53 +16,53 @@
 // ############################################################### //
 // *************************************************************** //
 /*
-//%%%%% FORMATAï¿½ï¿½O %%%%%
+//%%%%% FORMATAÇÃO %%%%%
 DIA
-d -> Dia do mï¿½s, 2 digitos com preenchimento de zero 01 atï¿½ 31
-D -> Uma representaï¿½ï¿½o textual de um dia, trï¿½s letras Mon atï¿½ Sun
-j -> Dia do mï¿½s sem preenchimento de zero 1 atï¿½ 31
-l -> ('L' minï¿½sculo) A representaï¿½ï¿½o textual completa do dia da semana Sunday atï¿½ Saturday
-N -> Representaï¿½ï¿½o numï¿½rica ISO-8601 do dia da semana (acrescentado no PHP 5.1.0) 1 (para Segunda) atï¿½ 7 (para Domingo)
-S -> Sufixo ordinal inglï¿½s para o dia do mï¿½s, 2 caracteres st, nd, rd ou th. Funciona bem com j
-w -> Representaï¿½ï¿½o numï¿½rica do dia da semana 0 (para domingo) atï¿½ 6 (para sï¿½bado)
-z -> O dia do ano (comeï¿½ando do 0) 0 through 365
+d -> Dia do mês, 2 digitos com preenchimento de zero 01 até 31
+D -> Uma representação textual de um dia, três letras Mon até Sun
+j -> Dia do mês sem preenchimento de zero 1 até 31
+l -> ('L' minúsculo) A representação textual completa do dia da semana Sunday até Saturday
+N -> Representação numérica ISO-8601 do dia da semana (acrescentado no PHP 5.1.0) 1 (para Segunda) até 7 (para Domingo)
+S -> Sufixo ordinal inglês para o dia do mês, 2 caracteres st, nd, rd ou th. Funciona bem com j
+w -> Representação numérica do dia da semana 0 (para domingo) até 6 (para sábado)
+z -> O dia do ano (começando do 0) 0 through 365
 
 SEMANA --- ---
-W -> Nï¿½mero do ano da semana ISO-8601, semanas comeï¿½am na Segunda (acrescentado no PHP 4.1.0) Exemplo: 42 (the 42nd week in the year)
-Mï¿½S --- ---
-F -> Um representaï¿½ï¿½o completa de um mï¿½s, como January ou March January atï¿½ December
-m -> Representaï¿½ï¿½o numï¿½rica de um mï¿½s, com leading zeros 01 a 12
-M -> Uma representaï¿½ï¿½o textual curta de um mï¿½s, trï¿½s letras Jan a Dec
-n -> Representaï¿½ï¿½o numï¿½rica de um mï¿½s, sem leading zeros 1 a 12
-t -> Nï¿½mero de dias de um dado mï¿½s 28 through 31
+W -> Número do ano da semana ISO-8601, semanas começam na Segunda (acrescentado no PHP 4.1.0) Exemplo: 42 (the 42nd week in the year)
+MÊS --- ---
+F -> Um representação completa de um mês, como January ou March January até December
+m -> Representação numérica de um mês, com leading zeros 01 a 12
+M -> Uma representação textual curta de um mês, três letras Jan a Dec
+n -> Representação numérica de um mês, sem leading zeros 1 a 12
+t -> Número de dias de um dado mês 28 through 31
 ANO --- ---
-L -> Se estï¿½ em um ano bissexto 1 se estï¿½ em ano bissexto, 0 caso contrï¿½rio.
-o -> Nï¿½mero do ano ISO-8601. Este tem o mesmo valor como Y, exceto que se o nï¿½mero da semana ISO (W) pertence ao anterior ou prï¿½ximo ano, o ano ï¿½ usado ao invï¿½s. (acrescentado no PHP 5.1.0) Exemplos: 1999 ou 2003
-Y -> Uma representaï¿½ï¿½o de ano completa, 4 dï¿½gitos Exemplos: 1999 ou 2003
-y -> Uma representaï¿½ï¿½o do ano com dois dï¿½gitos Exemplos: 99 ou 03
+L -> Se está em um ano bissexto 1 se está em ano bissexto, 0 caso contrário.
+o -> Número do ano ISO-8601. Este tem o mesmo valor como Y, exceto que se o número da semana ISO (W) pertence ao anterior ou próximo ano, o ano é usado ao invés. (acrescentado no PHP 5.1.0) Exemplos: 1999 ou 2003
+Y -> Uma representação de ano completa, 4 dígitos Exemplos: 1999 ou 2003
+y -> Uma representação do ano com dois dígitos Exemplos: 99 ou 03
 TEMPO --- ---
-a -> Antes/Depois de meio-dia em minï¿½sculo am or pm
-A -> Antes/Depois de meio-dia em maiï¿½sculo AM or PM
-B -> Swatch internet time 000 atï¿½ 999
-g -> Formato 12-horas de uma hora sem preenchimento de zero 1 atï¿½ 12
-G -> Formato 24-horas de uma hora sem preenchimento de zero 0 atï¿½ 23
-h -> Formato 12-horas de uma hora com zero preenchendo ï¿½ esquerda 01 atï¿½ 12
-H -> Formato 24-horas de uma hora com zero preenchendo ï¿½ esquerda 00 atï¿½ 23
-i -> Minutos com zero preenchendo ï¿½ esquerda 00 atï¿½ 59
-s -> Segundos, com zero preenchendo ï¿½ esquerda 00 atï¿½ 59
+a -> Antes/Depois de meio-dia em minúsculo am or pm
+A -> Antes/Depois de meio-dia em maiúsculo AM or PM
+B -> Swatch internet time 000 até 999
+g -> Formato 12-horas de uma hora sem preenchimento de zero 1 até 12
+G -> Formato 24-horas de uma hora sem preenchimento de zero 0 até 23
+h -> Formato 12-horas de uma hora com zero preenchendo à esquerda 01 até 12
+H -> Formato 24-horas de uma hora com zero preenchendo à esquerda 00 até 23
+i -> Minutos com zero preenchendo à esquerda 00 até 59
+s -> Segundos, com zero preenchendo à esquerda 00 até 59
 u -> Milisegundos (acrescentado no PHP 5.2.2) Exemplo: 54321
 
-FUSO-HORï¿½RIO --- ---
+FUSO-HORÁRIO --- ---
 e -> Identificador de Timezone (acrescentado no PHP 5.1.0) Exemplos: UTC, GMT, Atlantic/Azores
-I -> (capital i) Se a data estï¿½ ou nï¿½o no horï¿½rio de verï¿½o 1 se horï¿½rio de verï¿½o, 0 caso contrï¿½rio.
-O -> Diferenï¿½a para Greenwich time (GMT) em horas Exemplo: +0200
-P -> Diferenï¿½a para Greenwich time (GMT) com dois pontos entre horas e minutos (acrescentado no PHP 5.1.3) Exemplo: +02:00
-T -> Abreviaï¿½ï¿½o de Timezone Exemplos: EST, MDT ...
-Z -> Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. -43200 atï¿½ 50400
+I -> (capital i) Se a data está ou não no horário de verão 1 se horário de verão, 0 caso contrário.
+O -> Diferença para Greenwich time (GMT) em horas Exemplo: +0200
+P -> Diferença para Greenwich time (GMT) com dois pontos entre horas e minutos (acrescentado no PHP 5.1.3) Exemplo: +02:00
+T -> Abreviação de Timezone Exemplos: EST, MDT ...
+Z -> Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. -43200 até 50400
 FULL DATE/TIME --- ---
 c -> ISO 8601 date (acrescentado no PHP 5) 2004-02-12T15:19:21+00:00
-r -> ï¿½ RFC 2822 formatted date Exemplo: Thu, 21 Dec 2000 16:01:07 +0200
-U -> Segundos desde a ï¿½poca Unix (January 1 1970 00:00:00 GMT) Veja tambï¿½m time()
+r -> » RFC 2822 formatted date Exemplo: Thu, 21 Dec 2000 16:01:07 +0200
+U -> Segundos desde a Época Unix (January 1 1970 00:00:00 GMT) Veja também time()
 */
 //%%%%% TIME FORMAT SETTINGS %%%%%
 if (!defined("_DATESTRING")) define("_DATESTRING","d/m/Y G:i:s");

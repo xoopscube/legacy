@@ -22,7 +22,7 @@ function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $
 	$dbm->insert("banner", " (bid, cid, imptotal, impmade, clicks, imageurl, clickurl, date, htmlcode) VALUES (1, 1, 0, 1, 0, '".XOOPS_URL."/images/banners/banner.png', 'http://xoopscube.org/', 1008813250, '')");
 	// default theme
 	$time = time();
-	$dbm->insert('tplset', " VALUES (1, 'default', 'Conjunto de modelos padrï¿½o', '', ".$time.")");
+	$dbm->insert('tplset', " VALUES (1, 'default', 'Conjunto de modelos padrão', '', ".$time.")");
 	// data for table 'config'
 	$dbm->insert('config', " VALUES (1, 0, 1, 'sitename', '_MD_AM_SITENAME', 'Meu Portal XOOPS Cube', '_MD_AM_SITENAMEDSC', 'textbox', 'text', 0)");
 	$dbm->insert('config', " VALUES (2, 0, 1, 'slogan', '_MD_AM_SLOGAN', 'Use e abuse!', '_MD_AM_SLOGANDSC', 'textbox', 'text', 2)");

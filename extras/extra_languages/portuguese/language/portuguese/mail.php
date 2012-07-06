@@ -3,7 +3,7 @@
 // $Id$
 // License http://creativecommons.org/licenses/by/2.5/br/
 // ############################################################### //
-// ## XOOPS Cube Legacy - Versï¿½o em Portuguï¿½s
+// ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //
 // ## Por............: Mikhail Miguel
 // ## Website........: http://xoops.net.br
@@ -17,12 +17,12 @@
 // ## Plus...........: http://card.ly/mikhail
 // ############################################################### //
 // *************************************************************** //
-define("_MAIL_MSGBODY", "O corpo da mensagem ainda estï¿½ vazio.");
+define("_MAIL_MSGBODY", "O corpo da mensagem ainda está vazio.");
 define("_MAIL_FAILOPTPL", "Ocorreu um erro ao tentar abrir o arquivo do modelo da mensagem.");
-define("_MAIL_FNAMENG", "O nome do destinatï¿½rio ainda nï¿½o foi definido.");
-define("_MAIL_FEMAILNG", "O endereï¿½o do remetente ainda nï¿½o foi definido.");
-define("_MAIL_SENDMAILNG", "Nï¿½o foi possï¿½vel enviar o e-mail para %s.");
-define("_MAIL_MAILGOOD", "Carta-eletrï¿½nica enviada corretamente para %s.");
-define("_MAIL_SENDPMNG", "Nï¿½o foi possï¿½vel enviar a sua mensagem privada para %s.");
+define("_MAIL_FNAMENG", "O nome do destinatário ainda não foi definido.");
+define("_MAIL_FEMAILNG", "O endereço do remetente ainda não foi definido.");
+define("_MAIL_SENDMAILNG", "Não foi possível enviar o e-mail para %s.");
+define("_MAIL_MAILGOOD", "Carta-eletrônica enviada corretamente para %s.");
+define("_MAIL_SENDPMNG", "Não foi possível enviar a sua mensagem privada para %s.");
 define("_MAIL_PMGOOD", "A mensagem foi enviada para %s.");
 ?>

@@ -1,5 +1,6 @@
 <?php
 // $Id$
+
 function getLanguage() {
  $language_array = array(
  'en' => 'pt_utf8',
