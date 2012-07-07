@@ -142,6 +142,11 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 		$render->setAttribute('sid', $this->sid);
 
+		foreach($this->mModuleObjects as $key => $module) {
+			$this->mModuleObjects[$key]->initVar('detailed_version', XOBJ_DTYPE_STRING, '', false);
+			$options = Xupdate_Utils::unserialize_options($module);
+			$this->mModuleObjects[$key]->setVar('detailed_version', isset($options['detailed_version'])? $options['detailed_version'] : '');
+		}
 
 		$render->setAttribute('moduleObjects', $this->mModuleObjects);
 
@@ -154,7 +159,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		if (!empty( $this->sid)){
 			$criteria->add(new Criteria( 'sid', $this->sid ) );
 		}
-			$module_total = $modHand->getCount($criteria);
+		$module_total = $modHand->getCount($criteria);
 
 		$render->setAttribute('pageNavi', $this->mFilter->mNavi);
 

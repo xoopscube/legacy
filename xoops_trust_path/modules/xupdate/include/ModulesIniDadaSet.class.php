@@ -140,7 +140,7 @@ class Xupdate_ModulesIniDadaSet
 						//adump($items, $items_lang);
 						foreach($items as $key => $item){
 							//adump($store['sid'],$item['target_key'],$key);
-								if (isset($arr_master[$res['sid']][$key])){
+							if (isset($arr_master[$res['sid']][$key])){
 								$master = $arr_master[$res['sid']][$key];
 								if ( $key == $master['target_key']  && $master['approved'] == 'true' ) {
 									//adump($store['sid'],$key);
@@ -435,6 +435,10 @@ class Xupdate_ModulesIniDadaSet
 			if(isset($item['install_only'])){
 				$item_arr['install_only']= $item['install_only'] ;
 				unset ($item['install_only']);
+			}
+			if(isset($item['detailed_version'])){
+				$item_arr['detailed_version']= $item['detailed_version'] ;
+				unset ($item['detailed_version']);
 			}
 			$item['options']= serialize($item_arr) ;
 			//adump($item['options']);
