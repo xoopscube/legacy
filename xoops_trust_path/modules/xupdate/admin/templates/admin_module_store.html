@@ -91,7 +91,12 @@
         <{/if}>
       </div>
       <div class="legacy_list_control">
-      	<{$module->getShow('detailed_version')}>
+        <{if $module->hasNeedUpdateDetail()}>
+          (<{$module->modinfo.detailed_version}>)
+          <strong class="legacy_module_versionMsg"><{$module->detailed_version}></strong>
+        <{else}>
+          <{$module->detailed_version}>
+        <{/if}>
       </div>
       <div class="legacy_list_control">
           <{$module->getShow('license')}>

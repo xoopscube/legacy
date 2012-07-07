@@ -77,6 +77,12 @@ class Xupdate_Utils
         return getenv($key);
     }
     
+    /**
+     * [modules.ini] Options unserializer
+     * @param object $mobj
+     * @param string $dirname
+     * @return array 
+     */
     public static function unserialize_options($mobj, $dirname = NULL)
     {
     	if (is_null($dirname)) {
@@ -112,6 +118,12 @@ class Xupdate_Utils
     	return $options;
     }
     
+    /**
+     * 
+     * @param $format
+     * @param $key
+     * @param $args
+     */
     private static function _printf(&$format, $key, $args ) {
     	$format = sprintf( $format, $args[0], $args[1], $args[2]);
     }
