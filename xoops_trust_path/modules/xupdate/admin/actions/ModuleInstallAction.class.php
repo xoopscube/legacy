@@ -150,7 +150,7 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 				$this->dirname = $mobj->get('dirname');
 			}
 			$this->unzipdirlevel = $mobj->get('unzipdirlevel');
-			$this->addon_url = $mobj->get('addon_url');
+			$this->addon_url = $this->Func->_getDownloadUrl( $this->target_key, $mobj->get('addon_url') );
 
 			$this->options = Xupdate_Utils::unserialize_options($mobj, $this->dirname);
 
