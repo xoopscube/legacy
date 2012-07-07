@@ -57,6 +57,10 @@ define('_MI_XUPDATE_TPL_STORE_EDIT', 'STORE_EDIT');
 define('_MI_XUPDATE_TPL_STORE_DELETE', 'STORE_DELETE');
 define('_MI_XUPDATE_TPL_STORE_VIEW', 'STORE_VIEW');
 
+define('_MI_XUPDATE_DEPLOY', 'Get & deploy');
+define('_MI_XUPDATE_UPDATE', 'Update');
+define('_MI_XUPDATE_MANAGE', 'Manage');
+
 // A brief description of this module
 define('_MI_XUPDATE_DESC', 'You can download the add-on of your choice');
 define('_MI_XUPDATE_MSG_SAVED' , 'Your settings have been saved');

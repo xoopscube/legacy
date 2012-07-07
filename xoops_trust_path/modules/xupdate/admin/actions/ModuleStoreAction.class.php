@@ -300,7 +300,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	public function RapidModuleInstall_js()
 	{
 
-		$message_Install = _MI_XUPDATE_LANG_UPDATE;
+		$message_Install = _INSTALL;
 		$message_Error = _ERRORS;
 		$message_Waiting = _AD_XUPDATE_LANG_MESSAGE_WAITING;
 		$message_Success = _AD_XUPDATE_LANG_MESSAGE_SUCCESS;
