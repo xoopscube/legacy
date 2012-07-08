@@ -105,7 +105,8 @@ class Xupdate_ModulesIniDadaSet
 							'target_key' => $target_key,
 							'downloadUrl' => $downloadUrl,
 							'tempFilename' => $tempFilename,
-							'downloadedFilePath' => '' );
+							'downloadedFilePath' => '',
+							'noRedirect' => (!empty($store['no_redirect'])) );
 			
 			$_dirname = dirname($downloadUrl);
 			$_filename = basename($downloadUrl);
@@ -119,6 +120,7 @@ class Xupdate_ModulesIniDadaSet
 							'downloadUrl' => $downloadLangUrl,
 							'tempFilename' => $tempLangFilename,
 							'downloadedFilePath' => '',
+							'noRedirect' => (!empty($store['no_redirect'])),
 							'isLang' => true );
 								
 		}

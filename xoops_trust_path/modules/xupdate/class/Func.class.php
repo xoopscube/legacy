@@ -141,7 +141,7 @@ class Xupdate_Func {
 				} catch (Exception $e) {
 					$this->_set_error_log($e->getMessage());
 				}
-			} else {
+			} else if (empty($data['noRedirect'])) {
 				curl_setopt($ch, CURLOPT_URL, Xupdate_Utils::getRedirectUrl($data['downloadUrl']));
 			}
 			
