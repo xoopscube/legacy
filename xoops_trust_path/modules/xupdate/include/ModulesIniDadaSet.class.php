@@ -100,22 +100,19 @@ class Xupdate_ModulesIniDadaSet
 					$contents = 'modules';
 			}
 
-			// make language directory 
-			// @todo safe モードではディレクトリが作成できない
-			$languagePath = $this->Func->makeDirectory( $downloadDirPath, 'language' );
-			$languageEachPath = $this->Func->makeDirectory( $languagePath, $language );
-			
 			$multiData[] = array(
 							'sid' => $store['sid'],
 							'target_key' => $target_key,
 							'downloadUrl' => $downloadUrl,
 							'tempFilename' => $tempFilename,
 							'downloadedFilePath' => '' );
-			$_pathinfo = pathinfo( $downloadUrl);
-			$_dirname = $_pathinfo['dirname'];
-			$_filename = $_pathinfo['filename'];
-			$downloadLangUrl = $_dirname. '/'.$_filename.'/language/'.$language.'/'.$_filename.'.ini';
-			$tempLangFilename = 'language/'.$language.'/'.$contents.(int)$store['sid'].'.ini.php';
+			
+			$_dirname = dirname($downloadUrl);
+			$_filename = basename($downloadUrl);
+			list($_basename) = explode('.', $_filename, 2);
+			$downloadLangUrl = $_dirname.'/'.$_basename.'/language/'.$language.'/'.$_filename;
+			$tempLangFilename = 'lang_'.$language.'_'.$contents.(int)$store['sid'].'.ini.php';
+			
 			$multiData[] = array(
 							'sid' => $store['sid'],
 							'target_key' => $target_key,

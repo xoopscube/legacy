@@ -127,6 +127,20 @@ class Xupdate_Utils
     private static function _printf(&$format, $key, $args ) {
     	$format = sprintf( $format, $args[0], $args[1], $args[2]);
     }
+    
+	/**
+	 * Get redirect URL
+	 * @param string $url
+	 * @param int $limit
+	 * @return string
+	 */
+	public static function getRedirectUrl($url, $limit = 4) {
+		$headers = get_headers($url, 1);
+		if($limit &&  preg_match('#^HTTP/\d\.\d\s+(301|302|303|307)#',$headers[0]) && isset($headers['Location'])) {
+			self::getRedirectUrl(trim($headers['Location']), --$limit);
+		}
+		return $url;
+    }
 }
 
 ?>
