@@ -407,7 +407,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	 * @return void
 	 * @author ryuji
 	 */
-	protected function ftp_mkdir($dir)
+	public function ftp_mkdir($dir)
 	{
 		$ftpRoot = $this->seekFTPRoot();
 		$localDir = substr($dir, strlen($ftpRoot));

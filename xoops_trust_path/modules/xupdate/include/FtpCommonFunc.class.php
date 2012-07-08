@@ -87,6 +87,23 @@ class Xupdate_FtpCommonFunc {
 		$this->Ftp->appendMes('<span style="color:red;">'.$msg.'</span><br />');
 		$this->content.= '<span style="color:red;">'.$msg.'</span><br />';
 	}
+	
+	/**
+	 * Check exists & writable ExploredDirPath
+	 * @param  string  $target_key
+	 * @return boolean
+	 */
+	public function checkExploredDirPath($target_key) {
+		if ($this->Ftp->app_login('127.0.0.1')) {
+			
+			$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
+			$exploredDirPath = $downloadDirPath.'/'.$target_key;
+			$ret = ((file_exists($exploredDirPath) || $this->Ftp->ftp_mkdir($exploredDirPath)) && (is_writable($exploredDirPath) || $this->Ftp->chmod($exploredDirPath, 0707)));
+			
+			return $ret;
+		}
+		return false;
+	}
 
 } // end class
 

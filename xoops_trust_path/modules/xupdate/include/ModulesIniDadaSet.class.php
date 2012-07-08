@@ -93,12 +93,12 @@ class Xupdate_ModulesIniDadaSet
 			}
 
 			$multiData[] = array(
-							'sid' => $store['sid'],
-							'target_key' => $target_key,
-							'downloadUrl' => $downloadUrl,
-							'tempFilename' => $tempFilename,
+							'sid'                => $store['sid'],
+							'target_key'         => $target_key,
+							'downloadUrl'        => $downloadUrl,
+							'tempFilename'       => $tempFilename,
 							'downloadedFilePath' => '',
-							'noRedirect' => (!empty($store['no_redirect'])) );
+							'noRedirect'         => true );
 			
 			$_dirname = dirname($downloadUrl);
 			$_filename = basename($downloadUrl);
@@ -107,13 +107,13 @@ class Xupdate_ModulesIniDadaSet
 			$tempLangFilename = 'lang_'.$language.'_'.$contents.(int)$store['sid'].'.ini.php';
 			
 			$multiData[] = array(
-							'sid' => $store['sid'],
-							'target_key' => $target_key,
-							'downloadUrl' => $downloadLangUrl,
-							'tempFilename' => $tempLangFilename,
+							'sid'                => $store['sid'],
+							'target_key'         => $target_key,
+							'downloadUrl'        => $downloadLangUrl,
+							'tempFilename'       => $tempLangFilename,
 							'downloadedFilePath' => '',
-							'noRedirect' => (!empty($store['no_redirect'])),
-							'isLang' => true );
+							'noRedirect'         => true,
+							'isLang'             => true );
 								
 		}
 		if ($this->Func->_multiDownloadFile($multiData, $cacheTTL)) {

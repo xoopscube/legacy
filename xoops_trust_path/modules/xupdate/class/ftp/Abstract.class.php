@@ -21,6 +21,7 @@ class Xupdate_Ftp_Abstract {
 	protected $Verbose;
 	protected $OS_local;
 	protected $OS_remote;
+	public    $_connected;
 
 	/* Private variables */
 	protected $_lastaction;
@@ -40,7 +41,7 @@ class Xupdate_Ftp_Abstract {
 	protected $_ftp_buff_size;
 	protected $_login;
 	protected $_password;
-	protected $_connected;
+	//protected $_connected;
 	protected $_ready;
 	protected $_code;
 	protected $_message;

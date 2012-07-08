@@ -65,54 +65,68 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 		$result = true;
 		if( $this->Xupdate->params['is_writable']['result'] === true ) {
 
+			if(! $this->checkExploredDirPath($this->target_key)) {
+				$this->_set_error_log('make exploredDirPath false: '.$this->target_key);
+				return false;
+			}
+			
 			$downloadUrl = $this->Func->_getDownloadUrl( $this->target_key, $this->downloadUrlFormat );
 			$tempFilename = $this->target_key . '.zip';
-			if ($this->Func->_downloadFile( $this->target_key, $downloadUrl, $tempFilename, $this->downloadedFilePath )){
-				$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
-				$this->exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
-				if($this->_unzipFile()==true) {
-					//一つディレクトリ階層を下げる
-					$downdir_result = false;
-					if (!empty($this->unzipdirlevel)){
-						$downdir_result = $this->_exploredDirPath_DownDir();
-					}
-					// TODO port , timeout
-					if($this->Ftp->app_login("127.0.0.1")==true) {
-						// overwrite control
-						if(isset($this->options['no_overwrite'])){
-							$this->Ftp->set_no_overwrite($this->options['no_overwrite']);
+			
+			if ($this->checkExploredDirPath($this->target_key)) {
+				if ($this->Func->_downloadFile( $this->target_key, $downloadUrl, $tempFilename, $this->downloadedFilePath )){
+					$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
+					$this->exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
+					if($this->_unzipFile()==true) {
+						//一つディレクトリ階層を下げる
+						$downdir_result = false;
+						if (!empty($this->unzipdirlevel)){
+							$downdir_result = $this->_exploredDirPath_DownDir();
 						}
-						if (!$this->uploadFiles()){
-							$this->_set_error_log('Ftp uploadFiles false');
+						// TODO port , timeout
+						if ($this->Ftp->_connected || $this->Ftp->app_login("127.0.0.1")==true) {
+							// overwrite control
+							if(isset($this->options['no_overwrite'])){
+								$this->Ftp->set_no_overwrite($this->options['no_overwrite']);
+							}
+							if (!$this->uploadFiles()){
+								$this->_set_error_log('Ftp uploadFiles false');
+								$result = false;
+							}
+							// change directories to writable
+							if(isset($this->options['writable_dir'])){
+								array_map(array($this, '_chmod_dir'),$this->options['writable_dir']);
+							}
+							// change files to writable
+							if(isset($this->options['writable_file'])){
+								array_map(array($this, '_chmod_file'),$this->options['writable_file']);
+							}
+	
+							$this->Ftp->app_logout();
+	
+						}else{
+							$this->_set_error_log('Ftp->app_login false');
 							$result = false;
 						}
-						// change directories to writable
-						if(isset($this->options['writable_dir'])){
-							array_map(array($this, '_chmod_dir'),$this->options['writable_dir']);
+	
+						//一つディレクトリ階層を戻す
+						if ($downdir_result){
+							$this->_exploredDirPath_UpDir();
 						}
-						// change files to writable
-						if(isset($this->options['writable_file'])){
-							array_map(array($this, '_chmod_file'),$this->options['writable_file']);
-						}
-
-						$this->Ftp->app_logout();
-
+	
 					}else{
-						$this->_set_error_log('Ftp->app_login false');
+						$this->_set_error_log('unzipFile false ');
 						$result = false;
 					}
-
-					//一つディレクトリ階層を戻す
-					if ($downdir_result){
-						$this->_exploredDirPath_UpDir();
-					}
-
 				}else{
-					$this->_set_error_log('unzipFile false ');
+					$this->_set_error_log('downloadFile false');
 					$result = false;
 				}
-			}else{
-				$this->_set_error_log('downloadFile false');
+			} else {
+				if ($this->Ftp->_connected) {
+					$this->Ftp->app_logout();
+				}
+				$this->_set_error_log('make exploredDirPath false: '.$this->target_key);
 				$result = false;
 			}
 
