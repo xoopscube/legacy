@@ -59,23 +59,15 @@ class Xupdate_ModulesIniDadaSet
 		//未登録のデータは自動で登録
 
 		$json_fname = dirname(__FILE__) . '/settings/stores.txt';
+		$this->stores = json_decode(file_get_contents($json_fname), true);
 
-		$fp = fopen($json_fname, "r");
-		$_read_str = fread($fp, filesize($json_fname));
-		fclose($fp);
-		$stores = json_decode($_read_str, true);
-			//adump($stores);
-		$this->stores = $stores;
 		$this->_setmStoreObjects( $caller );
-			//adump($this->stores);
-			//adump($this->mSiteObjects);
+		//adump($this->stores);
+		//adump($this->mSiteObjects);
 
 		$json_fname = dirname(__FILE__) . '/settings/contents.txt';
-		$fp = fopen($json_fname, "r");
-		$fread_ = fread($fp, filesize($json_fname));
-		$arr_master = json_decode($fread_, true);
-		fclose($fp);
-			//adump($fread_, $arr_master);
+		$arr_master = json_decode(file_get_contents($json_fname), true);
+		//adump($arr_master);
 
 		// temp end
 

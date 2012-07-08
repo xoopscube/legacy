@@ -74,6 +74,13 @@ class Xupdate_Func {
 			
 			$target_key = $data['target_key'];
 			
+			//// make exploring directory
+			$exploredDirPath = $this->makeDirectory( $downloadDirPath, $target_key );
+			if (! chdir($exploredDirPath) ) {
+				$this->_set_error_log('chdir error in: '.$exploredDirPath);
+				continue;
+			}
+			
 			$this->Ftp->appendMes('downladed in: '.$downloadDirPath.'<br />');
 			$this->content.= 'downladed in: '.$downloadDirPath.'<br />';
 			
