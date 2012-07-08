@@ -59,6 +59,6 @@
 "name":"xoops123 - GitHub",
 "contents":"theme",
 "setting_type":"ini",
-"addon_url":"http:\/\/xoops.hypweb.net\/download\/themes_xoops123.ini"
+"addon_url":"https:\/\/raw.github.com\/XoopsX\/xupdate_store\/master\/themes_xoops123.ini"
 }
 }

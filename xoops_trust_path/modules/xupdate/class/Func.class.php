@@ -217,7 +217,7 @@ class Xupdate_Func {
 			return null;
 		}
 		if (! chdir($realDirPath) ) {
-			$this->_set_error_log(__LINE__.'chdir error in: '.$realDirPath);
+			$this->_set_error_log('chdir error in: '.$realDirPath);
 			return null;//chdir error
 		}
 		
