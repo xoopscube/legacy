@@ -84,7 +84,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 							$downdir_result = $this->_exploredDirPath_DownDir();
 						}
 						// TODO port , timeout
-						if ($this->Ftp->_connected || $this->Ftp->app_login("127.0.0.1")==true) {
+						if ($this->Ftp->isConnected() || $this->Ftp->app_login("127.0.0.1")==true) {
 							// overwrite control
 							if(isset($this->options['no_overwrite'])){
 								$this->Ftp->set_no_overwrite($this->options['no_overwrite']);
@@ -123,7 +123,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 					$result = false;
 				}
 			} else {
-				if ($this->Ftp->_connected) {
+				if ($this->Ftp->isConnected()) {
 					$this->Ftp->app_logout();
 				}
 				$this->_set_error_log('make exploredDirPath false: '.$this->target_key);

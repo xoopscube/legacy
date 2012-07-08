@@ -120,7 +120,15 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	public function set_no_overwrite($no_overwrite) {
 		$this->no_overwrite = $no_overwrite;
 	}
-
+	
+	public function localMkdir($dir) {
+		return $this->ftp_mkdir($dir);
+	}
+	
+	public function isConnected() {
+		return $this->_connected;
+	}
+	
 // <!-- --------------------------------------------------------------------------------------- -->
 // <!--	   protected functions																  -->
 // <!-- --------------------------------------------------------------------------------------- -->
@@ -407,7 +415,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	 * @return void
 	 * @author ryuji
 	 */
-	public function ftp_mkdir($dir)
+	protected function ftp_mkdir($dir)
 	{
 		$ftpRoot = $this->seekFTPRoot();
 		$localDir = substr($dir, strlen($ftpRoot));
