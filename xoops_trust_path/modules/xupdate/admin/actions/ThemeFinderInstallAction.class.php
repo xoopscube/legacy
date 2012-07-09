@@ -142,6 +142,7 @@ class Xupdate_Admin_ThemeFinderInstallAction extends Xupdate_AbstractAction
 
 		$render->setAttribute('mod_config', $this->mod_config);
 		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
+		$render->setAttribute('xupdate_nextlink', $xupdateFtp->nextlink);
 
 		$render->setAttribute('xupdate_content', $xupdateFtp->content);
 		$render->setAttribute('xupdate_message', $xupdateFtp->Ftp->getMes());
