@@ -137,7 +137,7 @@ class Xupdate_Utils
 	public static function getRedirectUrl($url, $limit = 4) {
 		$headers = get_headers($url, 1);
 		if($limit &&  preg_match('#^HTTP/\d\.\d\s+(301|302|303|307)#',$headers[0]) && isset($headers['Location'])) {
-			self::getRedirectUrl(trim($headers['Location']), --$limit);
+			return self::getRedirectUrl(trim($headers['Location']), --$limit);
 		}
 		return $url;
     }
