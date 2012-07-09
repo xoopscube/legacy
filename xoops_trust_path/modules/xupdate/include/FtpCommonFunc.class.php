@@ -60,6 +60,7 @@ class Xupdate_FtpCommonFunc {
 	public function _cleanup($dir)
 	{
 		if ($handle = opendir("$dir")) {
+			$safemode = (ini_get('safe_mode') == "1");
 			while (false !== ($item = readdir($handle))) {
 				if ($item != "." && $item != "..") {
 					if (is_dir("$dir/$item")) {
@@ -71,7 +72,12 @@ class Xupdate_FtpCommonFunc {
 				}
 			}
 			closedir($handle);
-			rmdir($dir);
+			if ($safemode) {
+				$this->Ftp->localRmdir($dir);
+			} else {
+				rmdir($dir);
+			}
+			
 		}
 	}
 

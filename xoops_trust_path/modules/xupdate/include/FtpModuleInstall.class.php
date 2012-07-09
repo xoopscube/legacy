@@ -101,9 +101,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 							if(isset($this->options['writable_file'])){
 								array_map(array($this, '_chmod_file'),$this->options['writable_file']);
 							}
-	
-							$this->Ftp->app_logout();
-	
+
 						}else{
 							$this->_set_error_log('Ftp->app_login false');
 							$result = false;
@@ -123,15 +121,16 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 					$result = false;
 				}
 			} else {
-				if ($this->Ftp->isConnected()) {
-					$this->Ftp->app_logout();
-				}
 				$this->_set_error_log('make exploredDirPath false: '.$this->target_key);
 				$result = false;
 			}
 
 			$this->content.= 'cleaning up... <br />';
 			$this->_cleanup($this->exploredDirPath);
+
+			if ($this->Ftp->isConnected()) {
+				$this->Ftp->app_logout();
+			}
 			//
 
 //TODO unlink ok?

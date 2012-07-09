@@ -125,6 +125,12 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		return $this->ftp_mkdir($dir);
 	}
 	
+	public function localRmdir($dir) {
+		$ftpRoot = $this->seekFTPRoot();
+		$localDir = substr($dir, strlen($ftpRoot));
+		return parent::rmdir($localDir);
+	}
+	
 	public function localChmod($dir, $mode) {
 		$ftpRoot = $this->seekFTPRoot();
 		$localDir = substr($dir, strlen($ftpRoot));
