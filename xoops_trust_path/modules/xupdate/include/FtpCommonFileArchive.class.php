@@ -40,6 +40,22 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 			return false;//chdir error
 		}
 
+		if (ini_get('safe_mode') == "1") {
+			// make dirctory at first for safe_mode
+			$dirs = array();
+			$source = File_Archive::read($downloadFilePath.'/', $exploredDirPath);
+			while ($source->next()) {
+				$file = $source->getFilename();
+				$dir = dirname($file);
+				if (!isset($dirs[$dir])) {
+					$dirs[$dir] = true;
+					$this->Ftp->localMkdir($dir);
+					$this->Ftp->localChmod($dir, 0707);
+				}
+			}
+			$source->close();
+		}
+
 		File_Archive::extract(
 			File_Archive::read($downloadFilePath.'/'),
 			File_Archive::appender($exploredDirPath)
