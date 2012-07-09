@@ -68,6 +68,7 @@ define('_MI_XUPDATE_MSG_SAVED' , '設定を保存しました。');
 // admin menus
 define('_MI_XUPDATE_ADMENU_ADDONSTORE' , 'アドオンストア');
 define('_MI_XUPDATE_ADMENU_ADDONSTOREDEC' , 'お好みのアドオンをダウンロードできます');
+define('_MI_XUPDATE_ADMENU_MODULELIST' , 'モジュール一覧');
 define('_MI_XUPDATE_ADMENU_MODULE' , 'モジュール');
 define('_MI_XUPDATE_ADMENU_MYBLOCKSADMIN' , 'アクセス権限設定');
 define('_MI_XUPDATE_ADMENU_MYPREFERENCES' , '一般設定');
