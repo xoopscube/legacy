@@ -97,17 +97,17 @@ class Xupdate_Utils
     		}
     	}
     	if(isset($options['writable_dir'])) {
-    		array_walk( $options['writable_dir'], 'self::_printf', array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+    		array_walk( $options['writable_dir'], 'Xupdate_Utils::_printf', array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
     	} else {
     		$options['writable_dir'] = array();
     	}
     	if(isset($options['writable_file'])) {
-    		array_walk( $options['writable_file'], 'self::_printf', array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+    		array_walk( $options['writable_file'], 'Xupdate_Utils::_printf', array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
     	} else {
     		$options['writable_file'] = array();
     	}
     	if(isset($options['install_only'])) {
-    		array_walk( $options['install_only'], 'self::_printf', array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+    		array_walk( $options['install_only'], 'Xupdate_Utils::_printf', array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
     	} else {
     		$options['install_only'] = array();
     	}
