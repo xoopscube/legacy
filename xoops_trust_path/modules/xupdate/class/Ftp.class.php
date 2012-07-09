@@ -281,6 +281,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		if (! $this->chdir('/') ){
 			return false;
 		}
+		$res = array('ok' => false, 'ng' => array());
 		foreach ($file_list['file'] as $l_file){
 			$r_file = $remote_path.substr($l_file, $remote_pos ); // +1 is remove first flash
 			$ftp_remote_file = substr($r_file, strlen($ftp_root));
@@ -289,10 +290,13 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			//$this->put($l_file, $ftp_remote_file, FTP_BINARY);
 			$dont_overwrite = $this->_dont_overwrite($ftp_remote_file, $this->no_overwrite);
 			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
-				return false;
+				$res['ng'][] = $ftp_remote_file;
+				adump($ftp_remote_file);
+			} else if ($res['ok'] === false) {
+				$res['ok'] = true;
 			}
 		}
-		return true;
+		return $res;
 	}
 
 	protected function _ftpPutSub_To_module($local_path, $remote_path, $remote_pos , $trust_dirname , $dirname )
@@ -323,16 +327,20 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		if (! $this->chdir('/') ){
 			return false;
 		}
+		$res = array('ok' => false, 'ng' => array());
 		foreach ($file_list['file'] as $l_file){
 			//rename dirname
 			$r_file = $remote_path.substr(str_replace('/modules/'.$trust_dirname.'/','/modules/'.$dirname.'/' ,$l_file), $remote_pos ); // +1 is remove first flash
 			$ftp_remote_file = substr($r_file, strlen($ftp_root));
 			$dont_overwrite = $this->_dont_overwrite($ftp_remote_file, $this->no_overwrite);
 			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
-				return false;
+				$res['ng'][] = $ftp_remote_file;
+				adump($ftp_remote_file);
+			} else if ($res['ok'] === false) {
+				$res['ok'] = true;
 			}
 		}
-		return true;
+		return $res;
 	}
 	protected function _ftpPutSub_OtherThan_module($local_path, $remote_path, $remote_pos , $trust_dirname , $dirname )
 	{
@@ -364,6 +372,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		if (! $this->chdir('/') ){
 			return false;
 		}
+		$res = array('ok' => false, 'ng' => array());
 		foreach ($file_list['file'] as $l_file){
 			if (strstr($l_file ,'/modules/'.$trust_dirname.'/')){
 				continue;
@@ -375,10 +384,13 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			//$this->put($l_file, $ftp_remote_file, FTP_BINARY);
 			$dont_overwrite = $this->_dont_overwrite($ftp_remote_file, $this->no_overwrite);
 			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
-				return false;
+				$res['ng'][] = $ftp_remote_file;
+				adump($ftp_remote_file);
+			} else if ($res['ok'] === false) {
+				$res['ok'] = true;
 			}
 		}
-		return true;
+		return $res;
 	}
 
 	private function _getFileList($dir, $list=array('dir'=> array(), 'file' => array()))
