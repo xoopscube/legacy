@@ -57,7 +57,9 @@ define('_MI_XUPDATE_TPL_STORE_EDIT', 'STORE_EDIT');
 define('_MI_XUPDATE_TPL_STORE_DELETE', 'STORE_DELETE');
 define('_MI_XUPDATE_TPL_STORE_VIEW', 'STORE_VIEW');
 
-define('_MI_XUPDATE_LANG_UPDATE', 'インストール');
+define('_MI_XUPDATE_DEPLOY', '取得して配置');
+define('_MI_XUPDATE_UPDATE', 'アップデート');
+define('_MI_XUPDATE_MANAGE', '管理');
 
 // A brief description of this module
 define('_MI_XUPDATE_DESC', 'お好みのアドオンをダウンロードできます');
@@ -66,6 +68,7 @@ define('_MI_XUPDATE_MSG_SAVED' , '設定を保存しました。');
 // admin menus
 define('_MI_XUPDATE_ADMENU_ADDONSTORE' , 'アドオンストア');
 define('_MI_XUPDATE_ADMENU_ADDONSTOREDEC' , 'お好みのアドオンをダウンロードできます');
+define('_MI_XUPDATE_ADMENU_MODULELIST' , 'モジュール一覧');
 define('_MI_XUPDATE_ADMENU_MODULE' , 'モジュール');
 define('_MI_XUPDATE_ADMENU_MYBLOCKSADMIN' , 'アクセス権限設定');
 define('_MI_XUPDATE_ADMENU_MYPREFERENCES' , '一般設定');
@@ -95,5 +98,3 @@ define('_MI_XUPDATE_DEBUG' , 'デバグ出力を表示する');
 define('_MI_XUPDATE_FTP_ADDON_URL' , 'アドオンURL');
 define('_MI_XUPDATE_FTP_THEME_URL' , 'テーマURL');
 define('_MI_XUPDATE_FTP_STORE_URL' , 'アドオンストアURL');
-
-?>

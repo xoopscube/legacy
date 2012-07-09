@@ -9,6 +9,7 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 
 	public $mModule ;
 	public $modinfo = array();
+	public $detailed_version = '' ;
 
 	public function __construct()
 	{
@@ -122,6 +123,19 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 			return false;
 		}else{
 			return ($this->getVar('version') != Legacy_Utils::convertVersionFromModinfoToInt($this->modinfo['version']));
+		}
+	}
+
+	/**
+	 * Check need update of detailed_version
+	 * @return boolean
+	 */
+	public function hasNeedUpdateDetail()
+	{
+		if (empty($this->modinfo)){
+			return false;
+		}else{
+			return (isset($this->modinfo['detailed_version']) && $this->modinfo['detailed_version'] != $this->detailed_version);
 		}
 	}
 

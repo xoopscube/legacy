@@ -142,6 +142,10 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 		$render->setAttribute('sid', $this->sid);
 
+		foreach($this->mModuleObjects as $key => $module) {
+			$options = Xupdate_Utils::unserialize_options($module);
+			$this->mModuleObjects[$key]->detailed_version = $options['detailed_version'];
+		}
 
 		$render->setAttribute('moduleObjects', $this->mModuleObjects);
 
@@ -154,7 +158,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		if (!empty( $this->sid)){
 			$criteria->add(new Criteria( 'sid', $this->sid ) );
 		}
-			$module_total = $modHand->getCount($criteria);
+		$module_total = $modHand->getCount($criteria);
 
 		$render->setAttribute('pageNavi', $this->mFilter->mNavi);
 
@@ -300,12 +304,14 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	public function RapidModuleInstall_js()
 	{
 
-		$message_Install = _MI_XUPDATE_LANG_UPDATE;
+		$message_Install = _INSTALL;
 		$message_Error = _ERRORS;
 		$message_Waiting = _AD_XUPDATE_LANG_MESSAGE_WAITING;
 		$message_Success = _AD_XUPDATE_LANG_MESSAGE_SUCCESS;
 		$message_Getting_files = _AD_XUPDATE_LANG_MESSAGE_GETTING_FILES;
 		$message_Processing = _AD_XUPDATE_LANG_MESSAGE_PROCESSING;
+		$message_btn_install = _MI_XUPDATE_ADMENU_MODULE._INSTALL;
+		$message_btn_update = _MI_XUPDATE_ADMENU_MODULE._MI_XUPDATE_UPDATE;
 
 		$ret =<<< HTML
 jQuery(function($){
@@ -452,7 +458,7 @@ jQuery(function($){
 	var getStoreSuccess = function(html)
 	{
 		var result = $(html).find('#xupdate_addModule a').text();
-		if (result == '{$message_Install}'){
+		if (result == '{$message_btn_install}' || result == '{$message_btn_update}'){
 			installationModule.td.html('<span style="color:green;">{$message_Getting_files}{$message_Success}</span>');
 		}else{
 			installationModule.td.html('<span style="color:red;">{$message_Getting_files}{$message_Error}</span>');

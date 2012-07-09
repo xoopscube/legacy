@@ -9,7 +9,7 @@
 <{include file="admin_menunavi.html"}>
 <{include file="admin_tips.html"}>
 
-<div class="confirm"><{$smarty.const._MI_XUPDATE_ADMENU_MODULE}><{$smarty.const._INSTALL}></div>
+<div class="confirm"><{$smarty.const._MI_XUPDATE_ADMENU_MODULE}> - <{$smarty.const._MI_XUPDATE_DEPLOY}></div>
 <{if $actionForm->hasError() && $actionForm->getErrorMessages()}>
 <div class="error">
   <ul>
@@ -131,7 +131,7 @@
   <tr>
     <td class="foot" colspan="2">
        <{if !$actionForm->getErrorMessages()}>
-      <input class="formButton" type="submit" value="<{$smarty.const._MI_XUPDATE_LANG_UPDATE}>" />
+      <input class="formButton" type="submit" value="<{$smarty.const._MI_XUPDATE_DEPLOY}>" />
       <{/if}>
       <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
     </td>

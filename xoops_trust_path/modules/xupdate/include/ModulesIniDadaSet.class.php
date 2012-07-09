@@ -59,23 +59,15 @@ class Xupdate_ModulesIniDadaSet
 		//未登録のデータは自動で登録
 
 		$json_fname = dirname(__FILE__) . '/settings/stores.txt';
+		$this->stores = json_decode(file_get_contents($json_fname), true);
 
-		$fp = fopen($json_fname, "r");
-		$_read_str = fread($fp, filesize($json_fname));
-		fclose($fp);
-		$stores = json_decode($_read_str, true);
-			//adump($stores);
-		$this->stores = $stores;
 		$this->_setmStoreObjects( $caller );
-			//adump($this->stores);
-			//adump($this->mSiteObjects);
+		//adump($this->stores);
+		//adump($this->mSiteObjects);
 
 		$json_fname = dirname(__FILE__) . '/settings/contents.txt';
-		$fp = fopen($json_fname, "r");
-		$fread_ = fread($fp, filesize($json_fname));
-		$arr_master = json_decode($fread_, true);
-		fclose($fp);
-			//adump($fread_, $arr_master);
+		$arr_master = json_decode(file_get_contents($json_fname), true);
+		//adump($arr_master);
 
 		// temp end
 
@@ -100,29 +92,28 @@ class Xupdate_ModulesIniDadaSet
 					$contents = 'modules';
 			}
 
-			// make language directory 
-			// @todo safe モードではディレクトリが作成できない
-			$languagePath = $this->Func->makeDirectory( $downloadDirPath, 'language' );
-			$languageEachPath = $this->Func->makeDirectory( $languagePath, $language );
+			$multiData[] = array(
+							'sid'                => $store['sid'],
+							'target_key'         => $target_key,
+							'downloadUrl'        => $downloadUrl,
+							'tempFilename'       => $tempFilename,
+							'downloadedFilePath' => '',
+							'noRedirect'         => true );
+			
+			$_dirname = dirname($downloadUrl);
+			$_filename = basename($downloadUrl);
+			list($_basename) = explode('.', $_filename, 2);
+			$downloadLangUrl = $_dirname.'/'.$_basename.'/language/'.$language.'/'.$_filename;
+			$tempLangFilename = 'lang_'.$language.'_'.$contents.(int)$store['sid'].'.ini.php';
 			
 			$multiData[] = array(
-							'sid' => $store['sid'],
-							'target_key' => $target_key,
-							'downloadUrl' => $downloadUrl,
-							'tempFilename' => $tempFilename,
-							'downloadedFilePath' => '' );
-			$_pathinfo = pathinfo( $downloadUrl);
-			$_dirname = $_pathinfo['dirname'];
-			$_filename = $_pathinfo['filename'];
-			$downloadLangUrl = $_dirname. '/'.$_filename.'/language/'.$language.'/'.$_filename.'.ini';
-			$tempLangFilename = 'language/'.$language.'/'.$contents.(int)$store['sid'].'.ini.php';
-			$multiData[] = array(
-							'sid' => $store['sid'],
-							'target_key' => $target_key,
-							'downloadUrl' => $downloadLangUrl,
-							'tempFilename' => $tempLangFilename,
+							'sid'                => $store['sid'],
+							'target_key'         => $target_key,
+							'downloadUrl'        => $downloadLangUrl,
+							'tempFilename'       => $tempLangFilename,
 							'downloadedFilePath' => '',
-							'isLang' => true );
+							'noRedirect'         => true,
+							'isLang'             => true );
 								
 		}
 		if ($this->Func->_multiDownloadFile($multiData, $cacheTTL)) {
@@ -140,7 +131,7 @@ class Xupdate_ModulesIniDadaSet
 						//adump($items, $items_lang);
 						foreach($items as $key => $item){
 							//adump($store['sid'],$item['target_key'],$key);
-								if (isset($arr_master[$res['sid']][$key])){
+							if (isset($arr_master[$res['sid']][$key])){
 								$master = $arr_master[$res['sid']][$key];
 								if ( $key == $master['target_key']  && $master['approved'] == 'true' ) {
 									//adump($store['sid'],$key);
@@ -435,6 +426,10 @@ class Xupdate_ModulesIniDadaSet
 			if(isset($item['install_only'])){
 				$item_arr['install_only']= $item['install_only'] ;
 				unset ($item['install_only']);
+			}
+			if(isset($item['detailed_version'])){
+				$item_arr['detailed_version']= $item['detailed_version'] ;
+				unset ($item['detailed_version']);
 			}
 			$item['options']= serialize($item_arr) ;
 			//adump($item['options']);

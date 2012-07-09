@@ -60,6 +60,7 @@ class Xupdate_FtpCommonFunc {
 	public function _cleanup($dir)
 	{
 		if ($handle = opendir("$dir")) {
+			$safemode = (ini_get('safe_mode') == "1");
 			while (false !== ($item = readdir($handle))) {
 				if ($item != "." && $item != "..") {
 					if (is_dir("$dir/$item")) {
@@ -71,7 +72,12 @@ class Xupdate_FtpCommonFunc {
 				}
 			}
 			closedir($handle);
-			rmdir($dir);
+			if ($safemode) {
+				$this->Ftp->localRmdir($dir);
+			} else {
+				rmdir($dir);
+			}
+			
 		}
 	}
 
@@ -86,6 +92,23 @@ class Xupdate_FtpCommonFunc {
 	{
 		$this->Ftp->appendMes('<span style="color:red;">'.$msg.'</span><br />');
 		$this->content.= '<span style="color:red;">'.$msg.'</span><br />';
+	}
+	
+	/**
+	 * Check exists & writable ExploredDirPath
+	 * @param  string  $target_key
+	 * @return boolean
+	 */
+	public function checkExploredDirPath($target_key) {
+		if ($this->Ftp->app_login('127.0.0.1')) {
+			
+			$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
+			$exploredDirPath = $downloadDirPath.'/'.$target_key;
+			$ret = ((file_exists($exploredDirPath) || $this->Ftp->localMkdir($exploredDirPath)) && (is_writable($exploredDirPath) || $this->Ftp->localChmod($exploredDirPath, 0707)));
+			
+			return $ret;
+		}
+		return false;
 	}
 
 } // end class

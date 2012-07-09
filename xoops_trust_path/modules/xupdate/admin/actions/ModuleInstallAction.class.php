@@ -150,9 +150,9 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 				$this->dirname = $mobj->get('dirname');
 			}
 			$this->unzipdirlevel = $mobj->get('unzipdirlevel');
-			$this->addon_url = $mobj->get('addon_url');
+			$this->addon_url = $this->Func->_getDownloadUrl( $this->target_key, $mobj->get('addon_url') );
 
-			$this->options = $this->_unserialize_options($mobj, $this->dirname);
+			$this->options = Xupdate_Utils::unserialize_options($mobj, $this->dirname);
 
 			$sobj =& $storeHand->get($this->sid);
 			if (is_object($sobj)){
@@ -210,7 +210,7 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 		$mobj =& $modHand->get($this->id);
 		if (is_object($mobj)){
 			$this->dirname = $mobj->get('dirname');
-			$this->options = $this->_unserialize_options($mobj, $this->dirname);
+			$this->options = Xupdate_Utils::unserialize_options($mobj, $this->dirname);
 			//adump($this->options);
 			$_arr = $this->Xupdate->get('writable_dir');
 			if(!empty($_arr) && count($_arr)>0){
@@ -271,37 +271,6 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 	public function executeViewCancel(&$render)
 	{
 		$this->mRoot->mController->executeForward('./index.php?action=ModuleStore');
-	}
-
-	private function _unserialize_options($mobj, $dirname)
-	{
-		//unserialize xin option fileld and replace dirname
-		$options = unserialize($mobj->get('options'));
-		if($options)
-		{
-			if(isset($options['writable_dir'])) {
-				array_walk( $options['writable_dir'], array($this, "_printf"), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
-			} else {
-				$options['writable_dir'] = array();
-			}
-			if(isset($options['writable_file'])) {
-				array_walk( $options['writable_file'], array($this, "_printf"), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
-			} else {
-				$options['writable_file'] = array();
-			}
-			if(isset($options['install_only'])) {
-				array_walk( $options['install_only'], array($this, "_printf"), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
-			} else {
-				$options['install_only'] = array();
-			}
-		}
-		return $options;
-	}
-
-	private function _printf(&$format, $key, $args )
-	{   // $args[0]=$this->dirname, $args[1]=XOOPS_ROOT_PATH, $args[2]=XOOPS_TRUST_PATH
-		//adump($format, $key, $args[0], $args[1], $args[2]);
-		$format = sprintf( $format, $args[0], $args[1], $args[2]);
 	}
 
 }

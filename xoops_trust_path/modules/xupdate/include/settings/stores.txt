@@ -3,7 +3,7 @@
 {
 "sid":"1",
 "name":"sourceforge.jp pack2012 recommend modules",
-"contents":"module",
+"contents":"disable",
 "setting_type":"ini",
 "addon_url":"http:\/\/sourceforge.jp\/projects\/xoopscube22x\/svn\/view\/files\/%s.zip?view=co&root=xoopscube22x"
 },
@@ -21,7 +21,7 @@
 {
 "sid":"3",
 "name":"sourceforge.jp pack2012 regular modules",
-"contents":"module",
+"contents":"disable",
 "setting_type":"ini",
 "addon_url":"http:\/\/sourceforge.jp\/projects\/xoopscube22x\/svn\/view\/files\/%s.zip?view=co&root=xoopscube22x"
 },
@@ -41,7 +41,7 @@
 "name":"nao-pon - GitHub",
 "contents":"module",
 "setting_type":"ini",
-"addon_url":"https:\/\/raw.github.com\/nao-pon\/xoops_xupdate_store\/master\/xupdate_modules.ini"
+"addon_url":"https:\/\/raw.github.com\/nao-pon\/xoops_xupdate_store\/master\/xupdate_modules.ini.005"
 },
 
 "domifara":
