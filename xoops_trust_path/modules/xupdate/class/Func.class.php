@@ -73,15 +73,9 @@ class Xupdate_Func {
 			$realDirPath = realpath($downloadDirPath);
 			
 			$target_key = $data['target_key'];
-			// make exploring directory
-			$exploredDirPath = $this->makeDirectory( $downloadDirPath, $target_key );
 			
 			$this->Ftp->appendMes('downladed in: '.$downloadDirPath.'<br />');
 			$this->content.= 'downladed in: '.$downloadDirPath.'<br />';
-			if (! chdir($exploredDirPath) ) {
-				$this->_set_error_log('chdir error in: '.$exploredDirPath);
-				continue;
-			}
 			
 			// TODO ファイルNotFound対策
 			//$url = $this->_getDownloadUrl( $target_key, $downloadUrlFormat );
@@ -147,6 +141,8 @@ class Xupdate_Func {
 				} catch (Exception $e) {
 					$this->_set_error_log($e->getMessage());
 				}
+			} else if (empty($data['noRedirect'])) {
+				curl_setopt($ch, CURLOPT_URL, Xupdate_Utils::getRedirectUrl($data['downloadUrl']));
 			}
 			
 			//SSL NO VERIFY setting
@@ -224,7 +220,10 @@ class Xupdate_Func {
 			$this->_set_error_log('chdir error in: '.$realDirPath);
 			return null;//chdir error
 		}
-		@mkdir($directoryName);
+		
+		if (! is_dir($directoryName)) {
+			@mkdir($directoryName);
+		}
 		$newDirPath = realpath($realDirPath.'/'.$directoryName);
 
 		if (strpos($newDirPath, $realDirPath) === false){

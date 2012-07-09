@@ -59,34 +59,47 @@ class Xupdate_FtpThemeFinderInstall extends Xupdate_FtpCommonZipArchive {
 
 			$downloadUrl = $this->Func->_getDownloadUrl( $this->target_key, $this->downloadUrlFormat );
 			$tempFilename = $this->target_key . '.zip';
-			if ($this->Func->_downloadFile( $this->target_key, $downloadUrl, $tempFilename, $this->downloadedFilePath )){
-				$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
-				$this->exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
-				if($this->_unzipFile()==true) {
-					// ToDo port , timeout
-					if($this->Ftp->app_login("127.0.0.1")==true) {
-						if (!$this->uploadFiles()){
-							$this->_set_error_log('Ftp uploadFiles false');
+			
+			if ($this->checkExploredDirPath($this->target_key)) {
+				if ($this->_checkExploredDirPath($this->target_key)) {
+					if ($this->Func->downloadFile( $this->target_key, $downloadUrl, $tempFilename, $this->downloadedFilePath )){
+						$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
+						$this->exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
+						if($this->_unzipFile()==true) {
+							// ToDo port , timeout
+							if ($this->Ftp->isConnected() || $this->Ftp->app_login("127.0.0.1")==true) {
+								if (!$this->uploadFiles()){
+									$this->_set_error_log('Ftp uploadFiles false');
+									$result = false;
+								}
+	
+							}else{
+								$this->_set_error_log('Ftp->app_login false');
+								$result = false;
+							}
+						}else{
+							$this->_set_error_log('unzipFile false ');
 							$result = false;
 						}
-
-						$this->Ftp->app_logout();
-
 					}else{
-						$this->_set_error_log('Ftp->app_login false');
+						$this->_set_error_log('downloadFile false');
 						$result = false;
 					}
-				}else{
-					$this->_set_error_log('unzipFile false ');
+				} else {
+					$this->_set_error_log('make exploredDirPath false: '.$this->target_key);
 					$result = false;
 				}
-			}else{
-				$this->_set_error_log('downloadFile false');
+			} else {
+				$this->_set_error_log('make exploredDirPath false: '.$this->target_key);
 				$result = false;
 			}
-
+				
 			$this->content.= 'cleaning up... <br />';
 			$this->_cleanup($this->exploredDirPath);
+
+			if ($this->Ftp->isConnected()) {
+				$this->Ftp->app_logout();
+			}
 			//
 			//$downloadPath= $this->_getDownloadFilePath() ;
 //TODO unlink ok?

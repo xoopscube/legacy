@@ -97,17 +97,17 @@ class Xupdate_Utils
     		}
     	}
     	if(isset($options['writable_dir'])) {
-    		array_walk( $options['writable_dir'], 'self::_printf', array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+    		array_walk( $options['writable_dir'], 'Xupdate_Utils::_printf', array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
     	} else {
     		$options['writable_dir'] = array();
     	}
     	if(isset($options['writable_file'])) {
-    		array_walk( $options['writable_file'], 'self::_printf', array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+    		array_walk( $options['writable_file'], 'Xupdate_Utils::_printf', array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
     	} else {
     		$options['writable_file'] = array();
     	}
     	if(isset($options['install_only'])) {
-    		array_walk( $options['install_only'], 'self::_printf', array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+    		array_walk( $options['install_only'], 'Xupdate_Utils::_printf', array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
     	} else {
     		$options['install_only'] = array();
     	}
@@ -126,6 +126,20 @@ class Xupdate_Utils
      */
     private static function _printf(&$format, $key, $args ) {
     	$format = sprintf( $format, $args[0], $args[1], $args[2]);
+    }
+    
+	/**
+	 * Get redirect URL
+	 * @param string $url
+	 * @param int $limit
+	 * @return string
+	 */
+	public static function getRedirectUrl($url, $limit = 4) {
+		$headers = get_headers($url, 1);
+		if($limit &&  preg_match('#^HTTP/\d\.\d\s+(301|302|303|307)#',$headers[0]) && isset($headers['Location'])) {
+			return self::getRedirectUrl(trim($headers['Location']), --$limit);
+		}
+		return $url;
     }
 }
 
