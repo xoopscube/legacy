@@ -61,32 +61,27 @@ class Xupdate_FtpThemeFinderInstall extends Xupdate_FtpCommonZipArchive {
 			$tempFilename = $this->target_key . '.zip';
 			
 			if ($this->checkExploredDirPath($this->target_key)) {
-				if ($this->_checkExploredDirPath($this->target_key)) {
-					if ($this->Func->downloadFile( $this->target_key, $downloadUrl, $tempFilename, $this->downloadedFilePath )){
-						$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
-						$this->exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
-						if($this->_unzipFile()==true) {
-							// ToDo port , timeout
-							if ($this->Ftp->isConnected() || $this->Ftp->app_login("127.0.0.1")==true) {
-								if (!$this->uploadFiles()){
-									$this->_set_error_log('Ftp uploadFiles false');
-									$result = false;
-								}
-	
-							}else{
-								$this->_set_error_log('Ftp->app_login false');
+				if ($this->Func->_downloadFile( $this->target_key, $downloadUrl, $tempFilename, $this->downloadedFilePath )){
+					$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
+					$this->exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
+					if($this->_unzipFile()==true) {
+						// ToDo port , timeout
+						if ($this->Ftp->isConnected() || $this->Ftp->app_login("127.0.0.1")==true) {
+							if (!$this->uploadFiles()){
+								$this->_set_error_log('Ftp uploadFiles false');
 								$result = false;
 							}
+
 						}else{
-							$this->_set_error_log('unzipFile false ');
+							$this->_set_error_log('Ftp->app_login false');
 							$result = false;
 						}
 					}else{
-						$this->_set_error_log('downloadFile false');
+						$this->_set_error_log('unzipFile false ');
 						$result = false;
 					}
-				} else {
-					$this->_set_error_log('make exploredDirPath false: '.$this->target_key);
+				}else{
+					$this->_set_error_log('downloadFile false');
 					$result = false;
 				}
 			} else {
@@ -112,7 +107,7 @@ class Xupdate_FtpThemeFinderInstall extends Xupdate_FtpCommonZipArchive {
 		}
 
 		if ($result){
-			$this->content.= $this->_get_nextlink();
+			$this->nextlink = $this->_get_nextlink();
 		}else{
 			$this->content.= _ERRORS;
 		}
@@ -167,7 +162,7 @@ class Xupdate_FtpThemeFinderInstall extends Xupdate_FtpCommonZipArchive {
 	 **/
 	private function _get_nextlink()
 	{
-		$ret ='<a href="'.XOOPS_MODULE_URL.'/legacy/admin/index.php?action=ThemeList">'._MI_XUPDATE_DEPLOY.'</a>';
+		$ret ='<a href="'.XOOPS_MODULE_URL.'/legacy/admin/index.php?action=ThemeList">'._MI_XUPDATE_ADMENU_THEME._MI_XUPDATE_MANAGE.'</a>';
 		return $ret;
 	}
 
