@@ -141,10 +141,46 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
 
 		$render->setAttribute('sid', $this->sid);
-
+		
+		$render->setAttribute('sort_query',   isset($_GET['sort'])?   ('sort='.rawurlencode((string)$_GET['sort']).'&amp;') : '');
+		$render->setAttribute('filter_query', isset($_GET['filter'])? ('filter='.rawurlencode((string)$_GET['filter']).'&amp;') : '');
+		
+		$filter = isset($_GET['filter'])? strtolower($_GET['filter']) : '';
+		
 		foreach($this->mModuleObjects as $key => $module) {
+
 			$options = Xupdate_Utils::unserialize_options($module);
 			$this->mModuleObjects[$key]->options = $options;
+
+			switch($filter) {
+				case 'installed':
+				case 'active':
+				case 'inactive':
+				case 'updated':
+				case 'future':
+					if (is_object($module->mModule) && $module->mModule->getVar('mid') > 0) {
+						if ($filter === 'installed') {
+							break;
+						}
+						if ($module->mModule->getVar('isactive')) {
+							if ($filter === 'active') {
+								break;
+							}
+						} else {
+							if ($filter === 'inactive') {
+								break;
+							}
+						}
+						if ($filter === 'updated' && ($module->hasNeedUpdate() || $module->hasNeedUpdateDetail())) {
+							break;
+						}
+					} else if ($filter === 'future') {
+						break;
+					}
+					unset($this->mModuleObjects[$key]);
+					continue 2;
+				default:
+			}
 		}
 
 		$render->setAttribute('moduleObjects', $this->mModuleObjects);

@@ -75,6 +75,13 @@ define('_MI_XUPDATE_ADMENU_MYPREFERENCES' , '一般設定');
 define('_MI_XUPDATE_ADMENU_THEME' , 'テーマ');
 define('_MI_XUPDATE_ADMENU_THEMEFINDER' , 'テーマファインダ');
 
+define('_MI_XUPDATE_ALL'       , 'すべて');
+define('_MI_XUPDATE_INSTALLED' , 'インストール済み');
+define('_MI_XUPDATE_UPDATED'   , 'アップデートあり');
+define('_MI_XUPDATE_FUTURE'    , '未インストール');
+define('_MI_XUPDATE_ACTIVE'    , 'アクティブ');
+define('_MI_XUPDATE_INACTIVE'  , '非アクティブ');
+
 // admin constant
 define('_MI_XUPDATE_TEMP_PATH' , '圧縮ファイルダウンロード・展開用フォルダ');
 define('_MI_XUPDATE_TEMP_PATHDSC' , '(xoops_trust_path)配下のディレクトリを指定。最初と最後の"/"（スラッシュ）は含めません。');

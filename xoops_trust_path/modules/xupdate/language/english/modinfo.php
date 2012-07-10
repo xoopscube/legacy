@@ -75,6 +75,13 @@ define('_MI_XUPDATE_ADMENU_MYPREFERENCES' , 'Preferences');
 define('_MI_XUPDATE_ADMENU_THEME' , 'Theme');
 define('_MI_XUPDATE_ADMENU_THEMEFINDER' , 'Theme');
 
+define('_MI_XUPDATE_ALL'       , 'All');
+define('_MI_XUPDATE_INSTALLED' , 'Installed');
+define('_MI_XUPDATE_UPDATED'   , 'Updateable');
+define('_MI_XUPDATE_FUTURE'    , 'Future');
+define('_MI_XUPDATE_ACTIVE'    , 'Active');
+define('_MI_XUPDATE_INACTIVE'  , 'Inactive');
+
 // admin constant
 define('_MI_XUPDATE_TEMP_PATH' , 'Folder path to unpack download compressed file');
 define('_MI_XUPDATE_TEMP_PATHDSC' , 'specify the directory under the (xoops_trust_path)."/" first and last thing is not included.');
