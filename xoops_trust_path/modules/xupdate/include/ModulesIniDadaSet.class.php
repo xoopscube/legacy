@@ -227,10 +227,12 @@ class Xupdate_ModulesIniDadaSet
 		$newdata['name'] = $obj->getVar('name');
 		$newdata['addon_url'] = $obj->getVar('addon_url');
 		$newdata['setting_type'] = $obj->getShow('setting_type');
+		$newdata['contents'] = $obj->getVar('contents');
 
 		$olddata['name'] = $oldobj->getVar('name');
 		$olddata['addon_url'] = $oldobj->getVar('addon_url');
 		$olddata['setting_type'] = $oldobj->getVar('setting_type');
+		$olddata['contents'] = $oldobj->getVar('contents');
 
 		if (count(array_diff_assoc($olddata, $newdata)) > 0 ) {
 			$obj->assignVar('reg_unixtime',time());
