@@ -113,9 +113,13 @@ class Xupdate_Utils
     	}
     	if(! isset($options['detailed_version'])) {
     		$options['detailed_version'] = '';
+    	} else {
+    		$options['detailed_version'] = self::toShow($options['detailed_version']);
     	}
     	if(! isset($options['screen_shot'])) {
     		$options['screen_shot'] = '';
+    	} else {
+    		$options['screen_shot'] = self::toShow($options['screen_shot']);
     	}
     	return $options;
     }
@@ -128,6 +132,15 @@ class Xupdate_Utils
      */
     private static function _printf(&$format, $key, $args ) {
     	$format = sprintf( $format, $args[0], $args[1], $args[2]);
+    }
+    
+    /**
+     * Text sanitizer for toShow
+     * @param  string $str
+     * @return string
+     */
+    public static function toShow($str) {
+    	return htmlspecialchars(htmlspecialchars_decode($str));
     }
     
 	/**
