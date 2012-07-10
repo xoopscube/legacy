@@ -92,9 +92,9 @@ $modversion['adminindex'] = 'admin/index.php?action=ModuleView';
 ##[cubson:adminmenu]
 $modversion['adminmenu'] = array(
 	array(
-			'title'		=> _MI_XUPDATE_ADMENU_MODULELIST,
+			'title'		=> _MI_XUPDATE_ADMENU_STORELIST,
 			'link'	=> 'admin/index.php?action=ModuleView',
-			'keywords'	=> _MI_XUPDATE_ADMENU_MODULELIST,
+			'keywords'	=> _MI_XUPDATE_ADMENU_STORELIST,
 			'show'	=> true,
 			'absolute' => false
 	),

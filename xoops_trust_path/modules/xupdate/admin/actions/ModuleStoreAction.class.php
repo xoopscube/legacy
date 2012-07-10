@@ -144,7 +144,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 		foreach($this->mModuleObjects as $key => $module) {
 			$options = Xupdate_Utils::unserialize_options($module);
-			$this->mModuleObjects[$key]->detailed_version = $options['detailed_version'];
+			$this->mModuleObjects[$key]->options = $options;
 		}
 
 		$render->setAttribute('moduleObjects', $this->mModuleObjects);
@@ -458,7 +458,7 @@ jQuery(function($){
 	var getStoreSuccess = function(html)
 	{
 		var result = $(html).find('#xupdate_addModule a').text();
-		if (result == '{$message_btn_install}' || result == '{$message_btn_update}'){
+		if (result == '{$message_btn_install}' || result == '{$message_btn_update}' || result == '{$message_Getting_files}{$message_Success}'){
 			installationModule.td.html('<span style="color:green;">{$message_Getting_files}{$message_Success}</span>');
 		}else{
 			installationModule.td.html('<span style="color:red;">{$message_Getting_files}{$message_Error}</span>');

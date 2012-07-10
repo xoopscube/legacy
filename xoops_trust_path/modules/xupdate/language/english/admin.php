@@ -18,7 +18,7 @@ define('_AD_XUPDATE_LANG_WRITABLE_DIR', "Directories to set writable");
 define('_AD_XUPDATE_LANG_WRITABLE_FILE', "Files to set writable");
 define('_AD_XUPDATE_LANG_INSTALL_ONLY', "Files or directories containing files to be colied only on install<br>(Check on to be overwrite on update)");
 
-define('_AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL', "Batch install");
+define('_AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL', "Batch OP");
 define('_AD_XUPDATE_LANG_MESSAGE_WAITING', "Waiting");
 define('_AD_XUPDATE_LANG_MESSAGE_SUCCESS', "Success");
 define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES', "getting files");

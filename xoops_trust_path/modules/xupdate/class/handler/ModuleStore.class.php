@@ -135,7 +135,7 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 		if (empty($this->modinfo)){
 			return false;
 		}else{
-			return (isset($this->modinfo['detailed_version']) && $this->modinfo['detailed_version'] != $this->detailed_version);
+			return (isset($this->modinfo['detailed_version']) && $this->modinfo['detailed_version'] != $this->options['detailed_version']);
 		}
 	}
 

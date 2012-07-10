@@ -9,6 +9,9 @@
 $root =& XCube_Root::getSingleton();
 $root->mContext->mModule->setAdminMode(true);
 
+$headerScript = $root->mContext->getAttribute( 'headerScript' );
+$headerScript->addStylesheet( '/modules/xupdate/style.css' );
+
 $root->mController->executeHeader();
 $root->mController->execute();
 

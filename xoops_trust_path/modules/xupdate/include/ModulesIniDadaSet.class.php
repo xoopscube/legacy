@@ -227,10 +227,12 @@ class Xupdate_ModulesIniDadaSet
 		$newdata['name'] = $obj->getVar('name');
 		$newdata['addon_url'] = $obj->getVar('addon_url');
 		$newdata['setting_type'] = $obj->getShow('setting_type');
+		$newdata['contents'] = $obj->getVar('contents');
 
 		$olddata['name'] = $oldobj->getVar('name');
 		$olddata['addon_url'] = $oldobj->getVar('addon_url');
 		$olddata['setting_type'] = $oldobj->getVar('setting_type');
+		$olddata['contents'] = $oldobj->getVar('contents');
 
 		if (count(array_diff_assoc($olddata, $newdata)) > 0 ) {
 			$obj->assignVar('reg_unixtime',time());
@@ -427,15 +429,21 @@ class Xupdate_ModulesIniDadaSet
 				$item_arr['install_only']= $item['install_only'] ;
 				unset ($item['install_only']);
 			}
-			if(isset($item['detailed_version'])){
-				$item_arr['detailed_version']= $item['detailed_version'] ;
-				unset ($item['detailed_version']);
-			}
-			$item['options']= serialize($item_arr) ;
-			//adump($item['options']);
-		} else{
-			$item['options']= '';
 		}
+		if(isset($item['detailed_version'])){
+			$item_arr['detailed_version'] = $item['detailed_version'] ;
+			unset ($item['detailed_version']);
+		} else {
+			$item_arr['detailed_version'] = '';
+		}
+		if(isset($item['screen_shot'])){
+			$item_arr['screen_shot'] = $item['screen_shot'] ;
+			unset ($item['screen_shot']);
+		} else {
+			$item_arr['screen_shot'] = '' ;
+		}
+		$item['options']= serialize($item_arr) ;
+
 		return $item;
 	}
 /*

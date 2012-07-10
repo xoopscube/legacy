@@ -140,6 +140,10 @@ class Xupdate_Admin_ThemeStoreAction extends Xupdate_AbstractListAction
 
 		$render->setAttribute('sid', $this->sid);
 
+		foreach($this->mModuleObjects as $key => $module) {
+			$options = Xupdate_Utils::unserialize_options($module);
+			$this->mModuleObjects[$key]->options = $options;
+		}
 
 		$render->setAttribute('moduleObjects', $this->mModuleObjects);
 

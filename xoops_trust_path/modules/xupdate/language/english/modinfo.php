@@ -68,6 +68,7 @@ define('_MI_XUPDATE_MSG_SAVED' , 'Your settings have been saved');
 // admin menus
 define('_MI_XUPDATE_ADMENU_ADDONSTORE' , 'Add-on Store');
 define('_MI_XUPDATE_ADMENU_ADDONSTOREDEC' , 'YouFinder can download the add-on of your choice');
+define('_MI_XUPDATE_ADMENU_STORELIST' , 'Store List');
 define('_MI_XUPDATE_ADMENU_MODULE' , 'Module');
 define('_MI_XUPDATE_ADMENU_MYBLOCKSADMIN' , 'access permissions');
 define('_MI_XUPDATE_ADMENU_MYPREFERENCES' , 'Preferences');

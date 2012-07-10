@@ -1,6 +1,5 @@
 #xupdate{
-    font-size: 15px;
-    line-height:    2em;
+    line-height:   1.3em;
 }
 
 #xupdate h1{
@@ -76,3 +75,31 @@ margin-top:10px;
 
 }
 
+/* admin_module_view.html */
+#xupdate div.storelist {
+	width: 99%;
+}
+
+#xupdate div.eachstore {
+	width: 33%;
+	float: left;
+	padding: 10px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#xupdate div.eachstore dt {
+	font-size: 130%;
+	font-weight: bold;
+}
+
+#xupdate div.eachstore dt a {
+	font-weight: bold;
+}
+
+#xupdate div.eachstore div.module_count {
+	text-align: right;
+	font-size: 80%;
+}

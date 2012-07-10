@@ -18,7 +18,7 @@ define('_AD_XUPDATE_LANG_WRITABLE_DIR', "書込み権限を与えるディレクトリ");
 define('_AD_XUPDATE_LANG_WRITABLE_FILE', "書込み権限を与えるファイル");
 define('_AD_XUPDATE_LANG_INSTALL_ONLY', "インストール時のみコピーするファイルまたはファイルが存在するディレクトリ<br>（アップデート時もチェック入れると上書き）");
 
-define('_AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL', "一括インストール");
+define('_AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL', "一括操作");
 define('_AD_XUPDATE_LANG_MESSAGE_WAITING', "待機中");
 define('_AD_XUPDATE_LANG_MESSAGE_SUCCESS', "完了");
 define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES', "配置");

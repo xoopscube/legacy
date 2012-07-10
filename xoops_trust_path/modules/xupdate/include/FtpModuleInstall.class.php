@@ -243,20 +243,22 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	private function _get_nextlink($dirname, $caller)
 	{
 		$ret ='';
-		if ($caller == 'module'){
+		if ($caller == 'module') {
 			$hModule = Xupdate_Utils::getXoopsHandler('module');
 			$module =& $hModule->getByDirname($dirname) ;
 			if (is_object($module)){
-				if ($module->getVar('isactive') ){
-					$ret ='<a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=ModuleUpdate&dirname='.$dirname.'">'._MI_XUPDATE_ADMENU_MODULE._MI_XUPDATE_UPDATE.'</a>';
-				}else{
+				if ($module->getVar('isactive') ) {
+					$ret ='<a href="'.XOOPS_MODULE_URL.'/legacy/admin/index.php?action=ModuleUpdate&dirname='.$dirname.'">'._MI_XUPDATE_ADMENU_MODULE._MI_XUPDATE_UPDATE.'</a>';
+				} else {
 					$ret =_AD_LEGACY_LANG_BLOCK_INACTIVETOTAL;
 				}
-			}else{
-				$ret ='<a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=ModuleInstall&dirname='.$dirname.'">'._MI_XUPDATE_ADMENU_MODULE._INSTALL.'</a>';
+			} else if (file_exists(XOOPS_ROOT_PATH . '/modules/' . $dirname)) {
+				$ret ='<a href="'.XOOPS_MODULE_URL.'/legacy/admin/index.php?action=ModuleInstall&dirname='.$dirname.'">'._MI_XUPDATE_ADMENU_MODULE._INSTALL.'</a>';
+			} else {
+				$ret ='<a href="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleStore">'._AD_XUPDATE_LANG_MESSAGE_GETTING_FILES._AD_XUPDATE_LANG_MESSAGE_SUCCESS.'</a>';
 			}
 
-		} elseif ($caller == 'theme'){
+		} elseif ($caller == 'theme') {
 			$ret ='<a href="'.XOOPS_MODULE_URL.'/legacy/admin/index.php?action=ThemeList">'._MI_XUPDATE_ADMENU_THEME._MI_XUPDATE_MANAGE.'</a>';
 		}
 		return $ret;
