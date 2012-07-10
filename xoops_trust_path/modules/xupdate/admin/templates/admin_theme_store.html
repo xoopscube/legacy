@@ -83,7 +83,17 @@
 	          <{$module->getRenderedVersion()}>
 	        <{/if}>
 	      </div>
-	        <div class="legacy_list_control">
+	      <{if $module->options.detailed_version}>
+	      <div class="legacy_list_control">
+	        <{if $module->hasNeedUpdateDetail()}>
+	          (<{$module->modinfo.detailed_version}>)
+	          <strong class="legacy_module_versionMsg"><{$module->options.detailed_version}></strong>
+	        <{else}>
+	          <{$module->options.detailed_version}>
+	        <{/if}>
+	      </div>
+	      <{/if}>
+	      <div class="legacy_list_control">
 	            <{$module->getShow('license')}>
 	      </div>
 	      </td>
@@ -94,9 +104,9 @@
 	      </td>
 	      <td class="legacy_list_select">
 	          <{if $module->getShow('detail_url')}>
-	            <a href="<{$module->getShow('detail_url')}>" target="_blank"><{$module->getShow('target_key')}></a>
+	            <a href="<{$module->getShow('detail_url')}>" target="_blank"><{if $module->options.screen_shot}><img src="<{$module->options.screen_shot}>" align="middle" height="60" /> <{/if}><{$module->getShow('target_key')}></a>
 	          <{else}>
-	            <{$module->getShow('target_key')}>
+	            <{if $module->options.screen_shot}><img src="<{$module->options.screen_shot}>" align="middle" height="60" /> <{/if}><{$module->getShow('target_key')}>
 	          <{/if}>
 	        <br/><{$module->get('description')}>
 	      </td>

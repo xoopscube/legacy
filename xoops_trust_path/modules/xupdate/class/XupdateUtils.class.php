@@ -114,7 +114,9 @@ class Xupdate_Utils
     	if(! isset($options['detailed_version'])) {
     		$options['detailed_version'] = '';
     	}
-    
+    	if(! isset($options['screen_shot'])) {
+    		$options['screen_shot'] = '';
+    	}
     	return $options;
     }
     

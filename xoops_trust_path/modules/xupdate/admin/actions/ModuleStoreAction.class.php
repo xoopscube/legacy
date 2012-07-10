@@ -144,7 +144,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 		foreach($this->mModuleObjects as $key => $module) {
 			$options = Xupdate_Utils::unserialize_options($module);
-			$this->mModuleObjects[$key]->detailed_version = $options['detailed_version'];
+			$this->mModuleObjects[$key]->options = $options;
 		}
 
 		$render->setAttribute('moduleObjects', $this->mModuleObjects);
