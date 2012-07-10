@@ -148,6 +148,10 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$filter = isset($_GET['filter'])? strtolower($_GET['filter']) : '';
 		
 		foreach($this->mModuleObjects as $key => $module) {
+
+			$options = Xupdate_Utils::unserialize_options($module);
+			$this->mModuleObjects[$key]->options = $options;
+
 			switch($filter) {
 				case 'installed':
 				case 'active':
@@ -177,9 +181,6 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 					continue 2;
 				default:
 			}
-
-			$options = Xupdate_Utils::unserialize_options($module);
-			$this->mModuleObjects[$key]->options = $options;
 		}
 
 		$render->setAttribute('moduleObjects', $this->mModuleObjects);
