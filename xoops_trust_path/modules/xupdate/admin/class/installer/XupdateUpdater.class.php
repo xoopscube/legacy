@@ -286,7 +286,24 @@ class Xupdate_Updater
     **/
     public function executeUpgrade()
     {
-        return ($this->hasUpgradeMethod() ?
+    	// remove modules.ini cache
+    	$root =& XCube_Root::getSingleton();
+    	$ch =& xoops_gethandler('config');
+    	$mconf = $ch->getConfigsByDirname($this->_mCurrentXoopsModule->get('dirname'));
+    	$cdir = XOOPS_TRUST_PATH . '/'.trim($mconf['temp_path'], '/');
+    	if (is_dir($cdir)) {
+    		if ($dh = opendir($cdir)) {
+    			while (($file = readdir($dh)) !== false) {
+    				if (substr($file, -8) === '.ini.php') {
+    					if (@ unlink($cdir.'/'.$file)) {
+    						$this->mLog->addReport('Deleted cache "'.$file.'" OK.');
+    					}
+    				}
+    			}
+    			closedir($dh);
+    		}
+    	}
+    	return ($this->hasUpgradeMethod() ?
             $this->_callUpgradeMethod() :
             $this->executeAutomaticUpgrade());
     }
