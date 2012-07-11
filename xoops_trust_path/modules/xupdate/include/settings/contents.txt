@@ -343,6 +343,24 @@
 {
 "target_key":"colors",
 "approved":"true"
+},
+
+"coffee_time":
+{
+"target_key":"coffee_time",
+"approved":"true"
+},
+
+"freedom":
+{
+"target_key":"freedom",
+"approved":"true"
+},
+
+"tw_940":
+{
+"target_key":"tw_940",
+"approved":"true"
 }
 
 }
