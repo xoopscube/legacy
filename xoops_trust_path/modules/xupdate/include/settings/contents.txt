@@ -351,12 +351,6 @@
 "approved":"true"
 },
 
-"freedom":
-{
-"target_key":"freedom",
-"approved":"true"
-},
-
 "tw_940":
 {
 "target_key":"tw_940",
