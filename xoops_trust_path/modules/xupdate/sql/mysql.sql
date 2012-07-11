@@ -24,6 +24,8 @@ CREATE TABLE `{prefix}_{dirname}_modulestore` (
 	`addon_url` varchar(255) NOT NULL default '',
 	`detail_url` varchar(255) NOT NULL default '',
 	`options` text,
+	`isactive` int(11) NOT NULL DEFAULT '-1',
+	`hasupdate` tinyint(1) NOT NULL DEFAULT '0',
 PRIMARY KEY  (`id`),
 KEY sid (sid),
 KEY dirname (dirname)

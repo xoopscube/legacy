@@ -314,7 +314,7 @@ class Xupdate_ModulesIniDadaSet
 		  $mobj->assignVars($item);
 		  $mobj->assignVar('sid', $sid);
 
-		  $mobj->setmModule();
+		  $mobj->setmModule(true);
 
 		  if (isset($this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']])){
 			  $mobj->assignVar('id',$this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]->getVar('id') );
@@ -354,7 +354,7 @@ class Xupdate_ModulesIniDadaSet
 			$mobj->assignVars($item);
 			$mobj->assignVar('sid',$sid);
 
-			$mobj->setmModule();
+			$mobj->setmModule(true);
 
 			if (isset($this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']])){
 				$mobj->assignVar('id',$this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]->getVar('id') );
@@ -376,7 +376,7 @@ class Xupdate_ModulesIniDadaSet
 				//same trust_path module
 				$mobj->assignVar('dirname',$dirname);
 
-				$mobj->setmModule();
+				$mobj->setmModule(true);
 
 				if ( $dirname == $item['dirname'] ){
 					$_isrootdirmodule = true;
@@ -397,7 +397,7 @@ class Xupdate_ModulesIniDadaSet
 				$mobj->assignVars($item);
 				$mobj->assignVar('sid',$sid);
 
-				$mobj->setmModule();
+				$mobj->setmModule(true);
 
 				if (isset($this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']])){
 					$mobj->assignVar('id',$this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]->getVar('id') );
@@ -461,6 +461,8 @@ class Xupdate_ModulesIniDadaSet
 		$newdata['unzipdirlevel'] = $obj->getVar('unzipdirlevel');
 		$newdata['addon_url'] = $obj->getVar('addon_url');
 		$newdata['options'] = $obj->getVar('options');
+		$newdata['status'] = $obj->getVar('isactive');
+		$newdata['hasnew'] = $obj->getVar('hasupdate');
 
 		$olddata['dirname'] = $oldobj->getVar('dirname');
 		$olddata['trust_dirname'] = $oldobj->getVar('trust_dirname');
@@ -472,6 +474,8 @@ class Xupdate_ModulesIniDadaSet
 		$olddata['unzipdirlevel'] = $oldobj->getVar('unzipdirlevel');
 		$olddata['addon_url'] = $oldobj->getVar('addon_url');
 		$olddata['options'] = $oldobj->getVar('options');
+		$olddata['status'] = $oldobj->getVar('isactive');
+		$olddata['hasnew'] = $oldobj->getVar('hasupdate');
 
 		if (count(array_diff_assoc($olddata, $newdata)) > 0 ) {
 			$obj->unsetNew();

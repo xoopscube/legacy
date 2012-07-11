@@ -335,7 +335,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			$dont_overwrite = $this->_dont_overwrite($ftp_remote_file, $this->no_overwrite);
 			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
 				$res['ng'][] = $ftp_remote_file;
-				adump($ftp_remote_file);
+				//adump($ftp_remote_file);
 			} else if ($res['ok'] === false) {
 				$res['ok'] = true;
 			}
@@ -385,7 +385,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			$dont_overwrite = $this->_dont_overwrite($ftp_remote_file, $this->no_overwrite);
 			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
 				$res['ng'][] = $ftp_remote_file;
-				adump($ftp_remote_file);
+				//adump($ftp_remote_file);
 			} else if ($res['ok'] === false) {
 				$res['ok'] = true;
 			}
