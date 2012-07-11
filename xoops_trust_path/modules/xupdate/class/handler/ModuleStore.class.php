@@ -31,6 +31,10 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 		$this->initVar('addon_url', XOBJ_DTYPE_STRING, '', false, 255);
 		$this->initVar('detail_url', XOBJ_DTYPE_STRING, '', false, 255);
 		$this->initVar('options', XOBJ_DTYPE_TEXT, '', false);
+		
+		// ver <= 0.06
+		$this->initVar('isactive', XOBJ_DTYPE_INT, '-1', false);
+		$this->initVar('hasupdate', XOBJ_DTYPE_INT, '0', false);
 
 		parent::__construct() ;
 
@@ -46,7 +50,7 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 	/**
 	 * @
 	 */
-	public function setmModule()
+	public function setmModule($readini = false)
 	{
 		$hModule = Xupdate_Utils::getXoopsHandler('module');
 		$this->mModule =& $hModule->getByDirname($this->getVar('dirname')) ;
@@ -55,7 +59,23 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 			$this->modinfo =& $this->mModule->getInfo();
 			$this->modinfo['version'] = sprintf('%01.2f', $this->mModule->getVar('version') / 100);
 			$trust_dirname = $this->mModule->getVar('trust_dirname');
-
+			
+			if ($readini) {
+				$options = Xupdate_Utils::unserialize_options($this);
+				if (($this->getVar('version') && $this->mModule->getVar('version') != $this->getVar('version'))
+						|| 
+					(isset($this->modinfo['detailed_version']) && $this->modinfo['detailed_version'] != $options['detailed_version'])) {
+					$this->setVar('hasupdate', 1);
+				} else {
+					$this->setVar('hasupdate', 0);
+				}
+				if ($this->mModule->getVar('isactive')) {
+					$this->setVar('isactive', 1);
+				} else {
+					$this->setVar('isactive', 0);
+				}
+			}
+			
 			if ( empty($trust_dirname) ){
 				if ( isset($this->modinfo['trust_dirname']) || !empty($this->modinfo['trust_dirname']) ){
 					$this->mModule->setVar('trust_dirname',$this->modinfo['trust_dirname']);

@@ -19,7 +19,9 @@ class Xupdate_Updater
 {
     public /*** Legacy_ModuleInstallLog ***/ $mLog = null;
 
-    private /*** string[] ***/ $_mMileStone = array();
+    private /*** string[] ***/ $_mMileStone = array(
+    		'006' => 'update006'
+    	);
 
     private /*** XoopsModule ***/ $_mCurrentXoopsModule = null;
 
@@ -30,7 +32,80 @@ class Xupdate_Updater
     private /*** int ***/ $_mTargetVersion = 0;
 
     private /*** bool ***/ $_mForceMode = false;
-
+	
+    private function update006()
+    {
+    	$this->mLog->addReport(_AD_LEGACY_MESSAGE_UPDATE_STARTED);
+    	
+    	// Update database table index.
+    	$this->_extend006Modulestore();
+    	if (!$this->_mForceMode && $this->mLog->hasError())
+    	{
+    		$this->_processReport();
+    		return false;
+    	}
+    	
+    	// Normal update process.
+    	$this->_updateModuleTemplates();
+    	if (!$this->_mForceMode && $this->mLog->hasError())
+    	{
+    		$this->_processReport();
+    		return false;
+    	}
+    	
+    	$this->_updateBlocks();
+    	if (!$this->_mForceMode && $this->mLog->hasError())
+    	{
+    		$this->_processReport();
+    		return false;
+    	}
+    	
+    	$this->_updatePreferences();
+    	if (!$this->_mForceMode && $this->mLog->hasError())
+    	{
+    		$this->_processReport();
+    		return false;
+    	}
+    	
+    	$this->saveXoopsModule($this->_mTargetXoopsModule);
+    	if (!$this->_mForceMode && $this->mLog->hasError())
+    	{
+    		$this->_processReport();
+    		return false;
+    	}
+    	
+    	$this->_processReport();
+    	
+    	return true;
+    }
+    
+    private function _extend006Modulestore()
+    {
+    	$root =& XCube_Root::getSingleton();
+    	$db =& $root->mController->getDB();
+    	$table = $db->prefix($this->_mCurrentXoopsModule->get('dirname') . '_modulestore');
+    	
+    	$sql = 'SELECT `isactive` FROM '.$table ;
+    	if(! $db->query($sql)) {
+    		$sql = 'ALTER TABLE `'.$table.'` ADD `isactive` int(11) NOT NULL DEFAULT \'-1\'';
+    		if ($db->query($sql)) {
+	    		$this->mLog->addReport('Success updated '.$table.' - isactive');
+	    	} else {
+	    		$this->mLog->addError('Error update '.$table.' - isactive');
+	    	}
+    	}
+    	
+    	$sql = 'SELECT `hasupdate` FROM '.$table ;
+    	if(! $db->query($sql)) {
+    		$sql = 'ALTER TABLE `'.$table.'` ADD `hasupdate` tinyint(1) NOT NULL DEFAULT \'0\'';
+    		if ($db->query($sql)) {
+    			$this->mLog->addReport('Success updated '.$table.' - hasupdate');
+    		} else {
+    			$this->mLog->addError('Error update '.$table.' - hasupdate');
+    		}
+    	}
+    }
+    
     /**
      * __construct
      * 
