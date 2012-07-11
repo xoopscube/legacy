@@ -7,7 +7,7 @@ XOOPS Cube is an Open Source Web Application Platform built with PHP and MySQL e
 
 XOOPS Cube Legacy is a Simple, Secure and Scalable content management system and the "official" distribution of XOOPS Cube Project team.
 
-The XOOPS Cube Project is friendly managed, developed and supported by a volunteer group with a multidisciplinary focus to provide a variety of different perspectives and ideas to consider in further development and design. XCL Team spirit  aims to strengthen everyone's social network, share the essential knowledge and understanding of the Ågspirit of open sourceÅh necessary to encourage creativity.
+The XOOPS Cube Project is friendly managed, developed and supported by a volunteer group with a multidisciplinary focus to provide a variety of different perspectives and ideas to consider in further development and design. XCL Team spirit  aims to strengthen everyone's social network, share the essential knowledge and understanding of the ‚Äúspirit of open source‚Äù necessary to encourage creativity.
 
 
 Features
