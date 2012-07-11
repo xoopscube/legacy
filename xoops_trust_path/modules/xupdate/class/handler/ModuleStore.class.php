@@ -10,6 +10,7 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 	public $mModule ;
 	public $modinfo = array();
 	public $detailed_version = '' ;
+	public $options = array();
 
 	public function __construct()
 	{
@@ -60,8 +61,9 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 			$this->modinfo['version'] = sprintf('%01.2f', $this->mModule->getVar('version') / 100);
 			$trust_dirname = $this->mModule->getVar('trust_dirname');
 			
+			$this->options = Xupdate_Utils::unserialize_options($this);
 			if ($readini) {
-				$options = Xupdate_Utils::unserialize_options($this);
+				$options = $this->options;
 				if (($this->getVar('version') && $this->mModule->getVar('version') != $this->getVar('version'))
 						|| 
 					(isset($this->modinfo['detailed_version']) && $this->modinfo['detailed_version'] != $options['detailed_version'])) {
