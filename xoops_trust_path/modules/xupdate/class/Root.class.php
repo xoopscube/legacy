@@ -42,7 +42,7 @@ class Xupdate_Root extends XoopsSimpleObject {
 		// set temp_path
 		$this->params['temp_dirname'] = trim( strrchr( trim($this->mod_config['temp_path'],'/'), '/'), '/') ;
 		//adump($this->params['temp_dirname']);
-		$this->params['temp_path'] = dirname(dirname(dirname(dirname(__FILE__)))).'/'.trim($this->mod_config['temp_path'],'/') ;
+		$this->params['temp_path'] = XOOPS_TRUST_PATH . '/'.trim($this->mod_config['temp_path'],'/') ;
 		//adump($this->params['temp_path']);
 
 		$tmpf = rtrim($this->params['temp_path'], '/');
