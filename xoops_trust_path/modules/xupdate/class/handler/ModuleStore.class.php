@@ -61,12 +61,11 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 			$this->modinfo['version'] = sprintf('%01.2f', $this->mModule->getVar('version') / 100);
 			$trust_dirname = $this->mModule->getVar('trust_dirname');
 			
-			$this->options = Xupdate_Utils::unserialize_options($this);
+			$this->options = $this->unserialize_options();
 			if ($readini) {
-				$options = $this->options;
 				if (($this->getVar('version') && $this->mModule->getVar('version') != $this->getVar('version'))
 						|| 
-					(isset($this->modinfo['detailed_version']) && $this->modinfo['detailed_version'] != $options['detailed_version'])) {
+					(isset($this->modinfo['detailed_version']) && $this->modinfo['detailed_version'] != $this->options['detailed_version'])) {
 					$this->setVar('hasupdate', 1);
 				} else {
 					$this->setVar('hasupdate', 0);
@@ -196,6 +195,61 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 		// TODO ファイルNotFound対策
 		$url = sprintf( $downloadUrlFormat, $target_key );
 		return $url;
+	}
+
+	/**
+	 * [modules.ini] Options unserializer
+	 * @param object $mobj
+	 * @param string $dirname
+	 * @return array
+	 */
+	public function unserialize_options()
+	{
+		$dirname = $this->getVar('dirname');
+		 
+		//unserialize xin option fileld and replace dirname
+		$options = array();
+		if ($option = $this->get('options')) {
+			if (! $options = @unserialize($this->get('options'))) {
+				$options = array();
+			}
+		}
+		if(isset($options['writable_dir'])) {
+			array_walk( $options['writable_dir'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+		} else {
+			$options['writable_dir'] = array();
+		}
+		if(isset($options['writable_file'])) {
+			array_walk( $options['writable_file'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+		} else {
+			$options['writable_file'] = array();
+		}
+		if(isset($options['install_only'])) {
+			array_walk( $options['install_only'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+		} else {
+			$options['install_only'] = array();
+		}
+		if(! isset($options['detailed_version'])) {
+			$options['detailed_version'] = '';
+		} else {
+			$options['detailed_version'] = Xupdate_Utils::toShow($options['detailed_version']);
+		}
+		if(! isset($options['screen_shot'])) {
+			$options['screen_shot'] = '';
+		} else {
+			$options['screen_shot'] = Xupdate_Utils::toShow($options['screen_shot']);
+		}
+		return $options;
+	}
+	
+	/**
+	 *
+	 * @param $format
+	 * @param $key
+	 * @param $args
+	 */
+	private function _printf(&$format, $key, $args ) {
+		$format = sprintf( $format, $args[0], $args[1], $args[2]);
 	}
 
 } // end class
