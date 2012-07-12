@@ -58,10 +58,13 @@ switch ( $mod_config['ftp_method'] ) {
 */
 
 class Xupdate_Ftp extends Xupdate_Ftp_ {
-
+	
+	private $loginCheckFile;
+	
 	/* Constructor */
 	public function __construct($XupdateObj, $port_mode=FALSE, $verb=FALSE, $le=FALSE) {
 		parent::__construct($XupdateObj);
+		$this->loginCheckFile = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/').'/logincheck.ini.php';
 	}
 	// <!-- --------------------------------------------------------------------------------------- -->
 // <!--	   public functions																  -->
@@ -79,7 +82,10 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 
 
 	public function app_login($server){
-		return parent::app_login($server);
+		if (! $ret = parent::app_login($server)) {
+			@ unlink($this->loginCheckFile);
+		}
+		return $ret;
 	}
 
 	public function uploadNakami($sourcePath, $targetPath)
@@ -135,6 +141,21 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		$ftpRoot = $this->seekFTPRoot();
 		$localDir = substr($dir, strlen($ftpRoot));
 		return $this->chmod($localDir, $mode);
+	}
+	
+	public function checkLogin() {
+		$ret = true;
+		$this->loginCheckFile = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/').'/logincheck.ini.php';
+		if (! @ unserialize(@ file_get_contents($this->loginCheckFile))) {
+			if ($this->app_login('127.0.0.1')) {
+				$this->app_logout();
+				$ret = true;
+			} else {
+				$ret = false;
+			}
+			file_put_contents($this->loginCheckFile, serialize($ret));
+		}
+		return $ret;
 	}
 	
 	public function isConnected() {

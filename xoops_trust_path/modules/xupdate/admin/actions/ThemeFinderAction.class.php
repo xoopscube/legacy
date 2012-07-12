@@ -93,11 +93,11 @@ HTML;
 		$render->setAttribute('mod_config', $this->mod_config);
 		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
 
-		$render->setAttribute('actionForm', $this->mActionForm);
+		//$render->setAttribute('actionForm', $this->mActionForm);
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 
-		$render->setAttribute("themeFinderUrl", $this->themeFinderUrl);
+		$render->setAttribute("themeFinderUrl", Xupdate_Utils::toShow($this->themeFinderUrl));
 		$render->setAttribute("themeFinderApiVersion", self::THEME_FINDER_API_VERSION);
-		$render->setAttribute("addonManagerInstallUrl", XOOPS_MODULE_URL.'/'.$this->mAsset->mDirname.'/admin/index.php?action=ThemeFinderInstall&target_type=Theme&target_key=');
+		$render->setAttribute("addonManagerInstallUrl", Xupdate_Utils::toShow(XOOPS_MODULE_URL.'/'.$this->mAsset->mDirname.'/admin/index.php?action=ThemeFinderInstall&target_type=Theme&target_key='));
 	}
 }
