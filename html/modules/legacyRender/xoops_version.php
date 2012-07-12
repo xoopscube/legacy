@@ -123,7 +123,7 @@ $modversion['config'][]=array (
 		"description"=>"_MI_LR_CSS_FILE_DESC",
 		"formtype"=>"textbox",
 		"valuetype"=>"text",
-		"default"=>"http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/smoothness/jquery-ui.css"
+		"default"=>"//ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/smoothness/jquery-ui.css"
 	);
 
 $modversion['config'][]=array (
