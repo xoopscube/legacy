@@ -148,7 +148,7 @@ class Xupdate_ModulesIniDadaSet
 						foreach($items as $key => $item){
 							if (isset($arr_master[$sid][$key])){
 								$master = $arr_master[$sid][$key];
-								if ( $key == $master['target_key']  && $master['approved'] == 'true' ) {
+								if ( $master['approved'] == 'true' ) {
 									$item['sid'] = $sid ;
 									$item['description'] = isset($items_lang[$key]['description']) ? $items_lang[$key]['description'] : '' ;
 									switch($item['target_type']){
