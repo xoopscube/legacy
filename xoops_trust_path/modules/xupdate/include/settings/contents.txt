@@ -41,7 +41,7 @@
 
 "myalbum":
 {
-"target_key":"myalbum",
+"target_key":"myalbum-p",
 "approved":"true"
 },
 
@@ -155,19 +155,19 @@
 
 "xugjmcdel":
 {
-"target_key":"xugjmcdel",
+"target_key":"xoops_mod_xugjmcdel",
 "approved":"true"
 },
 
 "myckeditor":
 {
-"target_key":"myckeditor",
+"target_key":"xoops_mod_myckeditor_ver362_v010b",
 "approved":"true"
 },
 
 "chalog":
 {
-"target_key":"chalog",
+"target_key":"xoops_mod_chalog005f_fix",
 "approved":"true"
 }
 

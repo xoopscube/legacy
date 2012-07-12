@@ -20,7 +20,7 @@ class Xupdate_ModulesIniDadaSet
 	public $modHand;
 
 	public $stores ;
-	public $items ;
+	private $approved = array() ;
 
 	protected $mSiteObjects = array();
 	protected $mSiteModuleObjects = array();
@@ -125,17 +125,31 @@ class Xupdate_ModulesIniDadaSet
 					$downloadedFilePath = $res['downloadedFilePath'];
 					$lngKey = $i + 1;
 					if (file_exists($multiData[$lngKey]['downloadedFilePath'])){
-						$this->_setmSiteModuleObjects($res['sid'], $caller);
 						$items = parse_ini_file($downloadedFilePath, true);
 						$items_lang = parse_ini_file($multiData[$lngKey]['downloadedFilePath'], true);
-						//adump($items, $items_lang);
+						$sid = (int)$res['sid'];
+						
+						// make $this->approved
+						$this->approved[$sid] = array();
+						$master = array();
+						foreach($arr_master[$sid] as $_master) {
+							if ($_master['approved']) {
+								$master[$_master['target_key']] = true;
+							}
+						}
+						foreach ($items as $check) {
+							if (isset($master[$check['target_key']])) {
+								$this->approved[$sid][$check['target_key']] = true;
+							}
+						}
+
+						$this->_setmSiteModuleObjects($sid, $caller);
+						
 						foreach($items as $key => $item){
-							//adump($store['sid'],$item['target_key'],$key);
-							if (isset($arr_master[$res['sid']][$key])){
-								$master = $arr_master[$res['sid']][$key];
+							if (isset($arr_master[$sid][$key])){
+								$master = $arr_master[$sid][$key];
 								if ( $key == $master['target_key']  && $master['approved'] == 'true' ) {
-									//adump($store['sid'],$key);
-									$item['sid'] = $res['sid'] ;
+									$item['sid'] = $sid ;
 									$item['description'] = isset($items_lang[$key]['description']) ? $items_lang[$key]['description'] : '' ;
 									switch($item['target_type']){
 										case 'TrustModule':
@@ -244,9 +258,10 @@ class Xupdate_ModulesIniDadaSet
 
 
 //----------------------------------------------------------------------
-	private function _setmSiteModuleObjects($sid = null, $caller)
+	private function _setmSiteModuleObjects($sid, $caller)
 	{
 		//この該当サイト登録済みデータを全部確認する
+		$sid = (int)$sid;
 		$criteria = new CriteriaCompo();
 		if ($caller === 'theme'){
 			$criteria->add(new Criteria( 'target_type', 'Theme' ) );
@@ -256,30 +271,17 @@ class Xupdate_ModulesIniDadaSet
 			$cri_compo->add(new Criteria( 'target_type', 'X2Module'), 'OR' ) ;
 			$criteria->add( $cri_compo );
 		}
-		if ( !empty($sid) ){
-			$criteria->add(new Criteria( 'sid', (int)$sid ) );
-		}
+		$criteria->add(new Criteria( 'sid', $sid ) );
+
 		$siteModuleStoreObjects =& $this->modHand->getObjects($criteria, null, null, true);
 
-		if (empty($siteModuleStoreObjects)){
-		//	return;
-		}
-
-		foreach($siteModuleStoreObjects as $sid => $mobj){
-			if (isset($this->items[$sid])){
-				$is_sitedata = false;
-				foreach($this->items[$sid] as $key => $item){
-					if ( $item['dirname'] == $mobj->getVar('dirname')
-						|| $item['dirname'] == $mobj->getVar('trust_dirname') ){
-						$is_sitedata = true;
-						break;
-					}
-				}
-				//このサイトデータに無い
-				if ($is_sitedata == false){
-					$this->modHand->delete($mobj,true);
-					continue;
-				}
+		$approved = $this->approved[$sid];
+		foreach($siteModuleStoreObjects as $mobj){
+			$is_sitedata = false;
+			// 承認されたデータがなければ削除
+			if (empty($approved[$mobj->getVar('target_key')])) {
+				$this->modHand->delete($mobj,true);
+				continue;
 			}
 
 			if (isset($this->mSiteModuleObjects[$mobj->getVar('sid')][$mobj->getVar('target_key')][$mobj->getVar('dirname')])){
