@@ -98,7 +98,7 @@
 	      </div>
 	      </td>
 	     <td class="legacy_list_date">
-	        <{if $module->mModule && $module->mModule->getVar('mid')}>
+	        <{if $module->getVar('last_update')}>
 	        <{$module->getVar('last_update')|xoops_formattimestamp:l}>
 	        <{/if}>
 	      </td>
@@ -115,13 +115,9 @@
 	      </td>
 	      <td class="legacy_list_control">
 	      <{if $xupdate_writable.result==true}>
-	        <{if $module->mModule && $module->mModule->getVar('mid') > 0}>
-	          <{if $module->mModule->getVar('isactive')}>
+	        <{if $module->getVar('isactive') > 0}>
 	          <a href="<{$module->get_StoreUrl()}>" title="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>"><img src="<{"icons/update.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" /></a>
 	          <a href="<{$module->get_UpdateUrl()}>"></a>
-	          <{else}>
-	          <img src="<{"icons/error.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>" title="<{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>" />
-	          <{/if}>
 	        <{else}>
 	          <a href="<{$module->get_StoreUrl()}>" title="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>"><img src="<{"icons/module_add.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>" /></a>
 	          <a href="<{$module->get_InstallUrl()}>"></a>

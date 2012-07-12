@@ -46,12 +46,12 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 	 */
 	function getRenderedVersion()
 	{
-		return sprintf('%01.2f', $this->getVar('version') / 100);
+		return ($this->getVar('version') > 0)? sprintf('%01.2f', $this->getVar('version') / 100) : '';
 	}
 	/**
 	 * @
 	 */
-	public function setmModule($readini = false)
+	public function setmModule($readini = true)
 	{
 		$hModule = Xupdate_Utils::getXoopsHandler('module');
 		$this->mModule =& $hModule->getByDirname($this->getVar('dirname')) ;
@@ -95,9 +95,40 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 				}
 			}
 
-		}else{
+		} else {
 			$this->mModule = new XoopsModule();//空のobject
 			$this->mModule->cleanVars();
+			
+			$this->options = $this->unserialize_options();
+			
+			$this->mModule->setVar('version', $this->getVar('version'));
+			if ($readini) {
+				// for Theme
+				if ($this->getVar('target_type') == 'Theme') {
+					$t_dir = XOOPS_ROOT_PATH . '/themes/' . $this->getVar('dirname');
+					if (is_dir($t_dir)) {
+						$this->setVar('isactive', 1);
+						$this->setVar('last_update', filemtime($t_dir));
+						if (! $this->getVar('version')) {
+							$m_file = $t_dir . '/' . 'manifesto.ini.php';
+							if (is_file($m_file)) {
+								if ($manifesto = @ parse_ini_file($m_file)) {
+									if (!empty($manifesto['Version'])) {
+										$this->setVar('version', $manifesto['Version'] * 100);
+									}
+								}
+							}
+						}
+					}
+				}
+				if (($this->getVar('version') && $this->mModule->getVar('version') != $this->getVar('version'))
+						||
+						(isset($this->modinfo['detailed_version']) && $this->modinfo['detailed_version'] != $this->options['detailed_version'])) {
+					$this->setVar('hasupdate', 1);
+				} else {
+					$this->setVar('hasupdate', 0);
+				}
+			}
 		}
 	}
 	/**
@@ -282,7 +313,7 @@ class Xupdate_ModuleStoreHandler extends XoopsObjectGenericHandler
 		//return $mObjects;
 
 		foreach($mObjects as $key => $mobj){
-			$mobj->setmModule();//判定用のインストール済みのモジュール情報の保持を追加
+			$mobj->setmModule(false);//判定用のインストール済みのモジュール情報の保持を追加
 			if ($id_as_key) {
 				$id = $mobj->getVar('id');
 				$ret[$id] = $mobj;// do not add &

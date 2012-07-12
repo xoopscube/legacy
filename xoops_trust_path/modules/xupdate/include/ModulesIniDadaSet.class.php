@@ -316,7 +316,7 @@ class Xupdate_ModulesIniDadaSet
 		  $mobj->assignVars($item);
 		  $mobj->assignVar('sid', $sid);
 
-		  $mobj->setmModule(true);
+		  $mobj->setmModule();
 
 		  if (isset($this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']])){
 			  $mobj->assignVar('id',$this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]->getVar('id') );
@@ -356,7 +356,7 @@ class Xupdate_ModulesIniDadaSet
 			$mobj->assignVars($item);
 			$mobj->assignVar('sid',$sid);
 
-			$mobj->setmModule(true);
+			$mobj->setmModule();
 
 			if (isset($this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']])){
 				$mobj->assignVar('id',$this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]->getVar('id') );
@@ -378,7 +378,7 @@ class Xupdate_ModulesIniDadaSet
 				//same trust_path module
 				$mobj->assignVar('dirname',$dirname);
 
-				$mobj->setmModule(true);
+				$mobj->setmModule();
 
 				if ( $dirname == $item['dirname'] ){
 					$_isrootdirmodule = true;
@@ -399,7 +399,7 @@ class Xupdate_ModulesIniDadaSet
 				$mobj->assignVars($item);
 				$mobj->assignVar('sid',$sid);
 
-				$mobj->setmModule(true);
+				$mobj->setmModule();
 
 				if (isset($this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']])){
 					$mobj->assignVar('id',$this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]->getVar('id') );
