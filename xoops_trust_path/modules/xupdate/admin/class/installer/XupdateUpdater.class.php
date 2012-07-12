@@ -35,66 +35,23 @@ class Xupdate_Updater
 	
     private function update006()
     {
-    	$this->mLog->addReport(_AD_LEGACY_MESSAGE_UPDATE_STARTED);
+    	$this->mLog->addReport('DB upgrade start (for Ver 0.06)');
     	
     	// Update database table index.
-    	$this->_extend006Modulestore();
-    	if (!$this->_mForceMode && $this->mLog->hasError())
-    	{
-    		$this->_processReport();
-    		return false;
-    	}
-    	
-    	// Normal update process.
-    	$this->_updateModuleTemplates();
-    	if (!$this->_mForceMode && $this->mLog->hasError())
-    	{
-    		$this->_processReport();
-    		return false;
-    	}
-    	
-    	$this->_updateBlocks();
-    	if (!$this->_mForceMode && $this->mLog->hasError())
-    	{
-    		$this->_processReport();
-    		return false;
-    	}
-    	
-    	$this->_updatePreferences();
-    	if (!$this->_mForceMode && $this->mLog->hasError())
-    	{
-    		$this->_processReport();
-    		return false;
-    	}
-    	
-    	$this->saveXoopsModule($this->_mTargetXoopsModule);
-    	if (!$this->_mForceMode && $this->mLog->hasError())
-    	{
-    		$this->_processReport();
-    		return false;
-    	}
-    	
-    	$this->_processReport();
-    	
-    	return true;
-    }
-    
-    private function _extend006Modulestore()
-    {
     	$root =& XCube_Root::getSingleton();
     	$db =& $root->mController->getDB();
     	$table = $db->prefix($this->_mCurrentXoopsModule->get('dirname') . '_modulestore');
-    	
+    	 
     	$sql = 'SELECT `isactive` FROM '.$table ;
     	if(! $db->query($sql)) {
     		$sql = 'ALTER TABLE `'.$table.'` ADD `isactive` int(11) NOT NULL DEFAULT \'-1\'';
     		if ($db->query($sql)) {
-	    		$this->mLog->addReport('Success updated '.$table.' - isactive');
-	    	} else {
-	    		$this->mLog->addError('Error update '.$table.' - isactive');
-	    	}
+    			$this->mLog->addReport('Success updated '.$table.' - isactive');
+    		} else {
+    			$this->mLog->addError('Error update '.$table.' - isactive');
+    		}
     	}
-    	
+    	 
     	$sql = 'SELECT `hasupdate` FROM '.$table ;
     	if(! $db->query($sql)) {
     		$sql = 'ALTER TABLE `'.$table.'` ADD `hasupdate` tinyint(1) NOT NULL DEFAULT \'0\'';
@@ -104,6 +61,14 @@ class Xupdate_Updater
     			$this->mLog->addError('Error update '.$table.' - hasupdate');
     		}
     	}
+    	
+    	if (!$this->_mForceMode && $this->mLog->hasError())
+    	{
+    		$this->_processReport();
+    		return false;
+    	}
+    	
+    	return true;
     }
     
     /**
@@ -219,7 +184,7 @@ class Xupdate_Updater
     
         foreach($this->_mMileStone as $tVer => $tMethod)
         {
-            if($tVer >= $this->getCurrentVersion() && is_callable(array($this,$tMethod)))
+            if($tVer > $this->getCurrentVersion() && is_callable(array($this,$tMethod)))
             {
                 return true;
             }
@@ -323,11 +288,13 @@ class Xupdate_Updater
         {
             if($tVer >= $this->getCurrentVersion() && is_callable(array($this,$tMethod)))
             {
-                return $this->$tMethod();
+                if (! $this->$tMethod()) {
+                	return false;
+                }
             }
         }
     
-        return false;
+        return $this->executeAutomaticUpgrade();
     }
 
     /**
