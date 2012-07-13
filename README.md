@@ -1,74 +1,73 @@
-# X-update �i���������E�����ՂŁ[�Ɓj
-�A�b�v�f�[�^���W���[���uX-update�v�́AXoops X (ten)�ɓ������\�肳��Ă��郆�[�e�B���e�B�n���W���[���ł��B
-�i���݊J���i�s���ł��̂ŁA�܂��{�Ԋ��ɂ͎g��Ȃ��ł��������B�j
+# X-update （えっくす・あっぷでーと）
+アップデータモジュール「X-update」は、Xoops X (ten)に同梱が予定されているユーティリティ系モジュールです。
+（現在開発進行中ですので、まだ本番環境には使わないでください。）
 
-�����XCL (Xoops Cube Legacy) 2.2 �ȍ~�ɃC���X�g�[�����邱�ƂŁA���̃��W���[����e�[�}�̃C���X�g�[���A�A�b�v�f�[�g��FTP�N���C�A���g���g�킸�ɐv���ɍs�����Ƃ��\�ɂȂ�܂��B
+これをXCL (Xoops Cube Legacy) 2.2 以降にインストールすることで、他のモジュールやテーマのインストール、アップデートをFTPクライアントを使わずに迅速に行うことが可能になります。
 
-X-update�����ɂ��A�T�C�g�Ǘ��҂͊Ǘ��T�C�g�Ƀ��O�C�����ĊǗ���ʂ̃A�b�v�f�[�^���W���[��������u���E�U��ōs�������ŁA���W���[����gitHub�Ȃǔz�z�T�C�g����̃_�E�����[�h����C���X�g�[����A�b�v�f�[�g�A�e�[�}�̃C���X�g�[���Ȃǂ��������܂��B
-�������Ad3�`���Ȃǂ̕����Ή����W���[�����A�C���X�g�[�����W���[�����i�����J���̃t�H���_���́j��ύX���ăC���X�g�[�����邱�Ƃ��ł��܂��B
+X-update導入により、サイト管理者は管理サイトにログインして管理画面のアップデータモジュール操作をブラウザ上で行うだけで、モジュールのgitHubなど配布サイトからのダウンロードからインストールやアップデート、テーマのインストールなどが完了します。
+もちろん、d3形式などの複製対応モジュールも、インストールモジュール名（＝公開側のフォルダ名称）を変更してインストールすることができます。
 
-���̃��W���[�����g�������b�g�́A���[�U�[�������ɗ��܂�܂���B�@���W���[����e�[�}��҂��A��ɍŐV�̌��J���|�W�g������xupdate���擾���Ă���邱�ƂƁA�����̌��J��������Ƃɂ��Q�d�Ǘ��̎�Ԃ�����J������܂��B
+このモジュールを使うメリットは、ユーザー側だけに留まりません。　モジュールやテーマ作者も、常に最新の公開リポジトリからxupdateが取得してくれることと、複数の公開先を持つことによる２重管理の手間からも開放されます。
 
-## �����ł���́H
-* FTP�N���C�A���g�\�t�g�Ƀm�[�^�b�`�ŁA�Ή����W���[����e�[�}���C���X�g�[���ł��܂��B
-* �Ή����W���[����e�[�}�̍ŐV�ł��Axupdate�̊Ǘ���ʑ��삾���Ŋe���J�T�[�o�[����_�E�����[�h�擾���A�𓀁E�W�J�E�A�b�v���[�h�܂łł��܂�����A���̌�Œʏ�̃��W���[���C���X�g�[��������s�������ł��B
-* ���W���[�������ł͂Ȃ��A�e�[�}���X�g�A�T�C�g����_�E�����[�h�擾�`�A�b�v���[�h�܂łł��܂��B
+## 何ができるの？
+* FTPクライアントソフトにノータッチで、対応モジュールやテーマをインストールできます。
+* 対応モジュールやテーマの最新版を、xupdateの管理画面操作だけで各公開サーバーからダウンロード取得し、解凍・展開・アップロードまでできますから、その後で通常のモジュールインストール操作を行うだけです。
+* モジュールだけではなく、テーマもストアサイトからダウンロード取得～アップロードまでできます。
 
-## ����v��
-X-update���g�����߂ɂ́A�ȉ��̊����K�{�܂��͐����ƂȂ�܂��B
+## 動作要件
+X-updateを使うためには、以下の環境が必須または推奨となります。
 
-* PHP 5.2.0�ȏ� (�K�{)
-* safe���[�h�Ŗ������� (�قڕK�{�FGitHub����̃_�E�����[�h)
-* cURL�G�N�X�e���V���� (�K�{)
-* zip �g���֐��F--enable-zip��php���R���p�C������Ă��� (����)
-* MySQL 5.0 �ȏ� (�K�{)
-* Xoops Cube legacy 2.2.0 �ȏ�
+* PHP 5.2.0以上 (必須)
+* cURLエクステンション (必須)
+* zip 拡張関数：--enable-zipでphpがコンパイルされている (推奨)
+* MySQL 5.0 以上 (必須)
+* Xoops Cube legacy 2.2.0 以上
 
-# �g����
-## �_�E�����[�h
-�{���W���[���𓯍������AXOOPS X(ten) CorePack������܂��̂ŁA�T�C�g���n�߂���\�z����ꍇ��XOOPS Cube Legacy2.2�̃C���X�g�[������ꊇ���ĉ\��CorePack����̓����������߂��܂��B
+# 使い方
+## ダウンロード
+本モジュールを同梱した、XOOPS X(ten) CorePackがありますので、サイトを始めから構築する場合はXOOPS Cube Legacy2.2のインストールから一括して可能なCorePackからの導入をお勧めします。
 * https://github.com/XoopsX/CorePack
 
-## �C���X�g�[��
-�ʏ�́Axoops_trust_path���̕����Ή����W���[���Ɠ��l�ł��B
-�A���A���̃f�B���N�g���ɏ�������(�t�@�C���쐬)���� (777 �Ƃ� 707 �Ȃ�) ���K�v�ł��B�Ǘ���ʂŕύX�����ꍇ�ɂ́A�ύX�����f�B���N�g���ɏ������݌�����^���ĉ������B
+## インストール
+通常の、xoops_trust_path式の複製対応モジュールと同様です。
+但し、次のディレクトリに書き込み(ファイル作成)権限 (777 とか 707 など) が必要です。管理画面で変更した場合には、変更したディレクトリに書き込み権限を与えて下さい。
 * xoops_trust_path/uploads/xupdate
 
-## ��ʐݒ�
-* ���k�t�@�C���_�E�����[�h�E�W�J�p�t�H���_
-�A�[�J�C�u���_�E�����[�h���ēW�J���邽�߂Ɏg�p����t�H���_�B(xoops_trust_path)�z���̃f�B���N�g�����w��A�ŏ��ƍŌ��"/"�i�X���b�V���j�͊܂߂܂���B�ʏ�́Auploads/xupdate�@�̂܂܂ł��g�p���������B
-���̃t�H���_�ɂ́A707,777 �Ȃǂ̏������݌�����^���Ă��������B
-* �g�p����FTP���C�u����
-�T�[�o�[�Ƀt�@�C���Q���A�b�v���[�h����ۂɎg�p����FTP���C�u�����̑I���B�J�X�^��FTP�i�W���j��I�����Ė�肪�����ł��Ȃ��ꍇ�A
-PHP_FTP�iFTP over SSL�p�j��A�J�X�^��SSH_FTP�����������������B
-** �J�X�^��FTP�i�W���j
-PHP��FTP�֐�����������Ă��Ȃ��ꍇ�́A�܂��͂��̃J�X�^��FTP��I�����܂��B
-** PHP_FTP�iFTPS�p�j
-PHP��FTP�֐�����������Ă���ꍇ�́A��������I���ł��܂��B�@�T�[�o�[��FTPS�ł̓]�����T�|�[�g����ꍇ�́A�����I�����āA������SSL(FTPS)��ݒ肵�܂��B
-** �J�X�^��SSH_FTP
-�T�[�o�[��SSH�̎g�p���T�|�[�g���Ă���ꍇ�A�W���̃J�X�^��FTP����������̕��������ɓ��삷��ꍇ������܂��BSSH�ڑ��̃|�[�g�ԍ����K�v�ł��B
-** �J�X�^��SSH2�i���F�ؗp�j
-�T�[�o�[��SSH�̌��F�؂��T�|�[�g���Ă���ꍇ�A�W���̃J�X�^��FTP����������̕��������ɓ��삷��ꍇ������܂��BSSH�ڑ��̃|�[�g�ԍ��ƁASSH���F�ؐڑ��ꍇ��private_key���K�v�ł��B
+## 一般設定
+* 圧縮ファイルダウンロード・展開用フォルダ
+アーカイブをダウンロードして展開するために使用するフォルダ。(xoops_trust_path)配下のディレクトリを指定、最初と最後の"/"（スラッシュ）は含めません。通常は、uploads/xupdate　のままでご使用ください。
+このフォルダには、707,777 などの書き込み権限を与えてください。
+* 使用するFTPライブラリ
+サーバーにファイル群をアップロードする際に使用するFTPライブラリの選択。カスタムFTP（標準）を選択して問題が解決できない場合、
+PHP_FTP（FTP over SSL用）や、カスタムSSH_FTPをお試しください。
+** カスタムFTP（標準）
+PHPにFTP関数が実装されていない場合は、まずはこのカスタムFTPを選択します。
+** PHP_FTP（FTPS用）
+PHPにFTP関数が実装されている場合は、こちらも選択できます。　サーバーがFTPSでの転送をサポートする場合は、これを選択して、次項でSSL(FTPS)を設定します。
+** カスタムSSH_FTP
+サーバーがSSHの使用をサポートしている場合、標準のカスタムFTPよりもこちらの方が高速に動作する場合があります。SSH接続のポート番号が必要です。
+** カスタムSSH2（鍵認証用）
+サーバーがSSHの鍵認証をサポートしている場合、標準のカスタムFTPよりもこちらの方が高速に動作する場合があります。SSH接続のポート番号と、SSH鍵認証接続場合にprivate_keyが必要です。
 
-* SSL(FTPS)���g�p����
-�O���ŁuPHP_FTP�iFTPS�p�j�v���w�肵���ꍇ�ɁASSL(FTPS)���g�p�\�ł��B
+* SSL(FTPS)を使用する
+前項で「PHP_FTP（FTPS用）」を指定した場合に、SSL(FTPS)が使用可能です。
 
-* FTP���O�C��ID�^FTP���O�C���p�X���[�h
-���g�p�̃T�[�o�[�́AFTP���O�C��ID�ƃp�X���[�h����͂��܂��B
+* FTPログインID／FTPログインパスワード
+ご使用のサーバーの、FTPログインIDとパスワードを入力します。
 
-* SSH�ڑ��̃|�[�g
-SSH_FTP�ڑ��A�܂��͌��F�ؐڑ��̏ꍇ��SSH�|�[�g�ԍ����w�肵�܂��Bdefault��22�B
+* SSH接続のポート
+SSH_FTP接続、または鍵認証接続の場合にSSHポート番号を指定します。defaultは22。
 
-* SSH���F�ؐڑ���private_key
-SSH���F�ؐڑ��ꍇ��private_key���K�v�ł��B�Z�L�����e�B��Aprivate_key���T�[�o�[�ɕۑ����Ă����̂͊댯�Ȃ̂ŁA��ƊJ�n�O�ɓ��͂��A��Ɗ�����ɏ������Ă������Ƃ����������߂��܂��B
+* SSH鍵認証接続のprivate_key
+SSH鍵認証接続場合にprivate_keyが必要です。セキュリティ上、private_keyをサーバーに保存しておくのは危険なので、作業開始前に入力し、作業完了後に消去しておくことを強くお勧めします。
 
-* �f�o�O�o�͂�\������
-��肪�������Ȃ��ꍇ�́A�������u�͂��v�Ƃ��邱�ƂŁA�ǉ��f�o�O��񂪕\������܂��B
+* デバグ出力を表示する
+問題が解決しない場合は、ここを「はい」とすることで、追加デバグ情報が表示されます。
 
-* �e�[�}URL
-CMS Theme Finder ��URL�ŁA�ʏ�͕ύX�s�v�ł��B
+* テーマURL
+CMS Theme Finder のURLで、通常は変更不要です。
 
-# �C���X�g�[������
-����̗���ɏ]���Ă���΂킩��Ǝv���܂����A�ȉ��̃T�C�g�Ȃǂ��Q�l�ɂ��Ă݂Ă��������B
+# インストール操作
+操作の流れに従っていればわかると思いますが、以下のサイトなどを参考にしてみてください。
 * http://www.naaon.com/modules/dblog1/index.php?page=detail&bid=485#db76aebf
 
