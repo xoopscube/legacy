@@ -26,7 +26,7 @@ X-updateを使うためには、以下の環境が必須または推奨となり
 # 使い方
 ## ダウンロード
 本モジュールを同梱した、XOOPS X(ten) CorePackがありますので、サイトを始めから構築する場合はXOOPS Cube Legacy2.2のインストールから一括して可能なCorePackからの導入をお勧めします。
-* https://github.com/XoopsX/CorePack
+* https://github.com/XoopsX/legacy (CorePack)
 
 ## インストール
 通常の、xoops_trust_path式の複製対応モジュールと同様です。
