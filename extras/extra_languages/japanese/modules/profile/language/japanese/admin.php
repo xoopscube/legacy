@@ -1,10 +1,7 @@
 <?php
 /**
- * @file
- * @package profile
- * @version $Id$
+ * 2012-5-2: Update by Yoshi.Sakai
  */
-
 define('_AD_PROFILE_LANG_DEFINITIONS_EDIT', "¥×¥í¥Õ¥£¡¼¥ëÄêµÁ¤ÎÊÔ½¸");
 define('_AD_PROFILE_LANG_DEFINITIONS_DELETE', "¥×¥í¥Õ¥£¡¼¥ëÄêµÁ¤Îºï½ü");
 define('_AD_PROFILE_LANG_DEFINITIONS_VIEW', "¥×¥í¥Õ¥£¡¼¥ëÄêµÁ¤ÎÉ½¼¨");
@@ -16,8 +13,19 @@ define('_AD_PROFILE_DESC_FIELD_CHECKBOX', '¡Ö¥Á¥§¥Ã¥¯¤¢¤ê¤Î¾ì¹ç¤ÎÉ½¼¨¡×¡Ö¥Á¥§¥Ã¥
 define('_AD_PROFILE_DESC_FIELD_STRING', '½é´üÃÍ¤òÆþ¤ì¤Æ¤¯¤À¤µ¤¤¡£');
 define('_AD_PROFILE_DESC_FIELD_INT', '½é´üÃÍ¤òÆþ¤ì¤Æ¤¯¤À¤µ¤¤¡£');
 define('_AD_PROFILE_DESC_FIELD_FLOAT', 'Set the default value.');
-define('_AD_PROFILE_DESC_FIELD_TEXT', '"html" ¤òÁª¤Ö¤È¡¢Wysiwyg¥¨¥Ç¥£¥¿¤Ë¤Ê¤ê¤Þ¤¹¡ÊWysiwyg¥¨¥Ç¥£¥¿¤ò¥¤¥ó¥¹¥È¡¼¥ë¤·¤Æ¤¢¤ë¾ì¹ç¡Ë.
-"bbcode" ¤òÁª¤Ö¤È¡¢BBCode ¥¨¥Ç¥£¥¿¤Ë¤Ê¤ê¤Þ¤¹¡£');
+define('_AD_PROFILE_DESC_FIELD_TEXT', '"html" ¤òÁª¤Ö¤È¡¢Wysiwyg¥¨¥Ç¥£¥¿¤Ë¤Ê¤ê¤Þ¤¹¡ÊWysiwyg¥¨¥Ç¥£¥¿¤ò¥¤¥ó¥¹¥È¡¼¥ë¤·¤Æ¤¢¤ë¾ì¹ç¡Ë."bbcode" ¤òÁª¤Ö¤È¡¢BBCode ¥¨¥Ç¥£¥¿¤Ë¤Ê¤ê¤Þ¤¹¡£');
 define('_AD_PROFILE_DESC_FIELD_CATEGORY', '¥«¥Æ¥´¥ê¥â¥¸¥å¡¼¥ë¤Î¥Ç¥£¥ì¥¯¥È¥êÌ¾');
 
+define('_AD_PROFILE_TIPS1_DATA_UPLOAD', 'CSV¥Õ¥¡¥¤¥ë¤Ç¥×¥í¥Õ¥£¡¼¥ë¤Î°ì³çÅÐÏ¿¤¬²ÄÇ½¤Ç¤¹¡£');
+define('_AD_PROFILE_TIPS2_DATA_UPLOAD', '<a href="?action=UserDataDownload" style="color:#941d55;font-weight:bold;">'._MI_PROFILE_DATA_DOWNLOAD.'</a> ¤«¤é¡¢¥À¥¦¥ó¥í¡¼¥É¤·¤¿ CSV ¥Õ¥¡¥¤¥ë¤ò»ÈÍÑ¤·¤Æ¤¯¤À¤µ¤¤¡£¥«¥é¥à¤ÎÁý¸º¤Ï¤·¤Ê¤¤¤Ç¤¯¤À¤µ¤¤¡£');
+define('_AD_PROFILE_TIPS3_DATA_UPLOAD', 'CSV¥Õ¥¡¥¤¥ëÆâ¤Ø¿·¤¿¤Ë¾ðÊó¤ÎÅÐÏ¿¤ä¹¹¿·¤ò¤·¤è¤¦¤È¤·¤¿¥æ¡¼¥¶¡¼¤Î¤ß¤òµ­½Ò¤·¤Æ¤¯¤À¤µ¤¤¡£');
+define('_AD_PROFILE_TIPS4_DATA_UPLOAD', 'º¸Ã¼¤Î¹Ô¤ÎUID¤¬¶õ¡Ê¤Þ¤¿¤Ï0¡Ë¤Î»þ¤Ï¡¢ÅÐÏ¿¤µ¤ì¤Þ¤»¤ó¡£');
+define('_AD_PROFILE_TIPS5_DATA_UPLOAD', '¥æ¡¼¥¶¡¼¾ðÊó¤Ïº¸Ã¼¤Î¹Ô¡ÊUID¡Ë¤ÎÃÍ¤¬¤¢¤ë¤È¤­¤Ë¹¹¿·¤µ¤ì¤Þ¤¹¡£');
+define('_AD_PROFILE_DATA_UPLOAD_DONE', 'CSV¥Ç¡¼¥¿¤Ë¤è¤ê¡¢¥æ¡¼¥¶¡¼¥Ç¡¼¥¿¤¬¹¹¿·¤µ¤ì¤Þ¤·¤¿¡£');
+define('_AD_PROFILE_DATA_UPLOAD_SELECT_CSVFILE', 'ÅÐÏ¿¤µ¤ì¤¿CSV¥Õ¥¡¥¤¥ë¤òÁªÂò¤·¤Æ²¼¤µ¤¤¡£');
+define('_AD_PROFILE_DATA_UPLOAD_CONF', 'ÅÐÏ¿ÆâÍÆ¤Î³ÎÇ§');
+define('_AD_PROFILE_DATA_UPLOAD_DO', 'ÅÐÏ¿');
+
+define('_AD_PROFILE_DATA_UPLOAD_BACK', 'CSV¥Õ¥¡¥¤¥ë¤òºÆÅÙÁªÂò');
+define('_AD_PROFILE_DATA_UPLOAD_CHECK_PROFILE_CSVFILE', 'ÅÐÏ¿¤ÎÆâÍÆ¤ò¤´³ÎÇ§¤¯¤À¤µ¤¤¡£');
 ?>
