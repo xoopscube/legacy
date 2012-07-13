@@ -36,16 +36,16 @@ class Xupdate_ThemeStore extends Xupdate_ModuleStore {
 	/**
 	 * @return string
 	 */
-	function getRenderedVersion()
-	{
-		return sprintf('%01.2f', $this->getVar('version') / 100);
-	}
+	//function getRenderedVersion()
+	//{
+	//	return sprintf('%01.2f', $this->getVar('version') / 100);
+	//}
 	/**
 	 * @
 	 */
-	public function setmModule()
+	public function setmModule($readini = true)
 	{
-		return parent::setmModule();
+		return parent::setmModule($readini);
 	}
 	/**
 	 * @return bool

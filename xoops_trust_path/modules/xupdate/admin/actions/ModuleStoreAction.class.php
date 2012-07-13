@@ -119,6 +119,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$cri_compo->add(new Criteria( 'target_type', 'TrustModule' ) );
 		$cri_compo->add(new Criteria( 'target_type', 'X2Module'), 'OR' ) ;
 		$criteria->add( $cri_compo );
+		unset($cri_compo);
 		if (!empty( $this->sid)){
 			$criteria->add(new Criteria( 'sid', $this->sid ) );
 		}
@@ -130,6 +131,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 				$cri_compo->add(new Criteria( 'isactive', 1 ) );
 				$cri_compo->add(new Criteria( 'isactive', 0), 'OR' );
 				$criteria->add( $cri_compo );
+				unset($cri_compo);
 				break;
 			case 'active':
 				$criteria->add(new Criteria( 'isactive', 1 ) );

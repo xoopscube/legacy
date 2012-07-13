@@ -76,64 +76,7 @@ class Xupdate_Utils
     {
         return getenv($key);
     }
-    
-    /**
-     * [modules.ini] Options unserializer
-     * @param object $mobj
-     * @param string $dirname
-     * @return array 
-     */
-    public static function unserialize_options($mobj, $dirname = NULL)
-    {
-    	if (is_null($dirname)) {
-    		$dirname = $mobj->getVar('dirname');
-    	}
-    	
-    	//unserialize xin option fileld and replace dirname
-    	$options = array();
-    	if ($option = $mobj->get('options')) {
-    		if (! $options = @unserialize($mobj->get('options'))) {
-    			$options = array();
-    		}
-    	}
-    	if(isset($options['writable_dir'])) {
-    		array_walk( $options['writable_dir'], 'Xupdate_Utils::_printf', array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
-    	} else {
-    		$options['writable_dir'] = array();
-    	}
-    	if(isset($options['writable_file'])) {
-    		array_walk( $options['writable_file'], 'Xupdate_Utils::_printf', array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
-    	} else {
-    		$options['writable_file'] = array();
-    	}
-    	if(isset($options['install_only'])) {
-    		array_walk( $options['install_only'], 'Xupdate_Utils::_printf', array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
-    	} else {
-    		$options['install_only'] = array();
-    	}
-    	if(! isset($options['detailed_version'])) {
-    		$options['detailed_version'] = '';
-    	} else {
-    		$options['detailed_version'] = self::toShow($options['detailed_version']);
-    	}
-    	if(! isset($options['screen_shot'])) {
-    		$options['screen_shot'] = '';
-    	} else {
-    		$options['screen_shot'] = self::toShow($options['screen_shot']);
-    	}
-    	return $options;
-    }
-    
-    /**
-     * 
-     * @param $format
-     * @param $key
-     * @param $args
-     */
-    private static function _printf(&$format, $key, $args ) {
-    	$format = sprintf( $format, $args[0], $args[1], $args[2]);
-    }
-    
+
     /**
      * Text sanitizer for toShow
      * @param  string $str

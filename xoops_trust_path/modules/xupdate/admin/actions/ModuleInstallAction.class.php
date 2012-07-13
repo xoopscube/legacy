@@ -152,7 +152,7 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 			$this->unzipdirlevel = $mobj->get('unzipdirlevel');
 			$this->addon_url = $this->Func->_getDownloadUrl( $this->target_key, $mobj->get('addon_url') );
 
-			$this->options = Xupdate_Utils::unserialize_options($mobj, $this->dirname);
+			$this->options = $mobj->options;
 
 			$sobj =& $storeHand->get($this->sid);
 			if (is_object($sobj)){
@@ -210,7 +210,7 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 		$mobj =& $modHand->get($this->id);
 		if (is_object($mobj)){
 			$this->dirname = $mobj->get('dirname');
-			$this->options = Xupdate_Utils::unserialize_options($mobj, $this->dirname);
+			$this->options = $mobj->options;
 			//adump($this->options);
 			$_arr = $this->Xupdate->get('writable_dir');
 			if(!empty($_arr) && count($_arr)>0){
@@ -241,7 +241,7 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 					}
 				}
 			}
-			//adump($_arr, $this->options['install_only'], $xupdateFtpModuleInstall->options['install_only']);
+			//adump($_arr, $this->options['install_only'], $xupdateFtpModuleInstall->options['no_overwrite']);
 		}
 
 		//execute

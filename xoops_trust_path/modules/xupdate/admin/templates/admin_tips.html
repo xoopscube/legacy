@@ -8,8 +8,7 @@
 	<{/if}>
 	</li>
 	<li><{$mod_config.FTP_UserName}>
-<{* TODO FTP CHECK *}>
-	<{if $mod_config.FTP_UserName }>
+	<{if $mod_config._FtpLoginCheck }>
 		(<span style="color:green;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_FTP_PASS_RESULT}> OK</span>)
 	<{else}>
 		(<span style="color:red;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_FTP_PASS_RESULT}> NG</span>)

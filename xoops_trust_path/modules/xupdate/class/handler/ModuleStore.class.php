@@ -10,6 +10,7 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 	public $mModule ;
 	public $modinfo = array();
 	public $detailed_version = '' ;
+	public $options = array();
 
 	public function __construct()
 	{
@@ -45,12 +46,12 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 	 */
 	function getRenderedVersion()
 	{
-		return sprintf('%01.2f', $this->getVar('version') / 100);
+		return ($this->getVar('version') > 0)? sprintf('%01.2f', $this->getVar('version') / 100) : '';
 	}
 	/**
 	 * @
 	 */
-	public function setmModule($readini = false)
+	public function setmModule($readini = true)
 	{
 		$hModule = Xupdate_Utils::getXoopsHandler('module');
 		$this->mModule =& $hModule->getByDirname($this->getVar('dirname')) ;
@@ -60,11 +61,11 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 			$this->modinfo['version'] = sprintf('%01.2f', $this->mModule->getVar('version') / 100);
 			$trust_dirname = $this->mModule->getVar('trust_dirname');
 			
+			$this->options = $this->unserialize_options();
 			if ($readini) {
-				$options = Xupdate_Utils::unserialize_options($this);
 				if (($this->getVar('version') && $this->mModule->getVar('version') != $this->getVar('version'))
 						|| 
-					(isset($this->modinfo['detailed_version']) && $this->modinfo['detailed_version'] != $options['detailed_version'])) {
+					(isset($this->modinfo['detailed_version']) && $this->modinfo['detailed_version'] != $this->options['detailed_version'])) {
 					$this->setVar('hasupdate', 1);
 				} else {
 					$this->setVar('hasupdate', 0);
@@ -94,9 +95,40 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 				}
 			}
 
-		}else{
+		} else {
 			$this->mModule = new XoopsModule();//空のobject
 			$this->mModule->cleanVars();
+			
+			$this->options = $this->unserialize_options();
+			
+			$this->mModule->setVar('version', $this->getVar('version'));
+			if ($readini) {
+				// for Theme
+				if ($this->getVar('target_type') == 'Theme') {
+					$t_dir = XOOPS_ROOT_PATH . '/themes/' . $this->getVar('dirname');
+					if (is_dir($t_dir)) {
+						$this->setVar('isactive', 1);
+						$this->setVar('last_update', filemtime($t_dir));
+						if (! $this->getVar('version')) {
+							$m_file = $t_dir . '/' . 'manifesto.ini.php';
+							if (is_file($m_file)) {
+								if ($manifesto = @ parse_ini_file($m_file)) {
+									if (!empty($manifesto['Version'])) {
+										$this->setVar('version', $manifesto['Version'] * 100);
+									}
+								}
+							}
+						}
+					}
+				}
+				if (($this->getVar('version') && $this->mModule->getVar('version') != $this->getVar('version'))
+						||
+						(isset($this->modinfo['detailed_version']) && $this->modinfo['detailed_version'] != $this->options['detailed_version'])) {
+					$this->setVar('hasupdate', 1);
+				} else {
+					$this->setVar('hasupdate', 0);
+				}
+			}
 		}
 	}
 	/**
@@ -196,6 +228,61 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 		return $url;
 	}
 
+	/**
+	 * [modules.ini] Options unserializer
+	 * @param object $mobj
+	 * @param string $dirname
+	 * @return array
+	 */
+	public function unserialize_options()
+	{
+		$dirname = $this->getVar('dirname');
+		 
+		//unserialize xin option fileld and replace dirname
+		$options = array();
+		if ($option = $this->get('options')) {
+			if (! $options = @unserialize($this->get('options'))) {
+				$options = array();
+			}
+		}
+		if(isset($options['writable_dir'])) {
+			array_walk( $options['writable_dir'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+		} else {
+			$options['writable_dir'] = array();
+		}
+		if(isset($options['writable_file'])) {
+			array_walk( $options['writable_file'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+		} else {
+			$options['writable_file'] = array();
+		}
+		if(isset($options['install_only'])) {
+			array_walk( $options['install_only'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+		} else {
+			$options['install_only'] = array();
+		}
+		if(! isset($options['detailed_version'])) {
+			$options['detailed_version'] = '';
+		} else {
+			$options['detailed_version'] = Xupdate_Utils::toShow($options['detailed_version']);
+		}
+		if(! isset($options['screen_shot'])) {
+			$options['screen_shot'] = '';
+		} else {
+			$options['screen_shot'] = Xupdate_Utils::toShow($options['screen_shot']);
+		}
+		return $options;
+	}
+	
+	/**
+	 *
+	 * @param $format
+	 * @param $key
+	 * @param $args
+	 */
+	private function _printf(&$format, $key, $args ) {
+		$format = sprintf( $format, $args[0], $args[1], $args[2]);
+	}
+
 } // end class
 
 /**
@@ -226,7 +313,7 @@ class Xupdate_ModuleStoreHandler extends XoopsObjectGenericHandler
 		//return $mObjects;
 
 		foreach($mObjects as $key => $mobj){
-			$mobj->setmModule();//判定用のインストール済みのモジュール情報の保持を追加
+			$mobj->setmModule(false);//判定用のインストール済みのモジュール情報の保持を追加
 			if ($id_as_key) {
 				$id = $mobj->getVar('id');
 				$ret[$id] = $mobj;// do not add &

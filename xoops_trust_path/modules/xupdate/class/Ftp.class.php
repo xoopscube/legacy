@@ -58,10 +58,13 @@ switch ( $mod_config['ftp_method'] ) {
 */
 
 class Xupdate_Ftp extends Xupdate_Ftp_ {
-
+	
+	private $loginCheckFile;
+	
 	/* Constructor */
 	public function __construct($XupdateObj, $port_mode=FALSE, $verb=FALSE, $le=FALSE) {
 		parent::__construct($XupdateObj);
+		$this->loginCheckFile = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/').'/logincheck.ini.php';
 	}
 	// <!-- --------------------------------------------------------------------------------------- -->
 // <!--	   public functions																  -->
@@ -79,7 +82,10 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 
 
 	public function app_login($server){
-		return parent::app_login($server);
+		if (! $ret = parent::app_login($server)) {
+			@ unlink($this->loginCheckFile);
+		}
+		return $ret;
 	}
 
 	public function uploadNakami($sourcePath, $targetPath)
@@ -135,6 +141,21 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		$ftpRoot = $this->seekFTPRoot();
 		$localDir = substr($dir, strlen($ftpRoot));
 		return $this->chmod($localDir, $mode);
+	}
+	
+	public function checkLogin() {
+		$ret = true;
+		$this->loginCheckFile = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/').'/logincheck.ini.php';
+		if (! @ unserialize(@ file_get_contents($this->loginCheckFile))) {
+			if ($this->app_login('127.0.0.1')) {
+				$this->app_logout();
+				$ret = true;
+			} else {
+				$ret = false;
+			}
+			file_put_contents($this->loginCheckFile, serialize($ret));
+		}
+		return $ret;
 	}
 	
 	public function isConnected() {
@@ -288,7 +309,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			//$l_file = str_replace( '/','\\',$l_file );
 			//$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
 			//$this->put($l_file, $ftp_remote_file, FTP_BINARY);
-			$dont_overwrite = $this->_dont_overwrite($ftp_remote_file, $this->no_overwrite);
+			$dont_overwrite = $this->_dont_overwrite($r_file, $this->no_overwrite);
 			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
 				$res['ng'][] = $ftp_remote_file;
 				//adump($ftp_remote_file);
@@ -332,7 +353,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			//rename dirname
 			$r_file = $remote_path.substr(str_replace('/modules/'.$trust_dirname.'/','/modules/'.$dirname.'/' ,$l_file), $remote_pos ); // +1 is remove first flash
 			$ftp_remote_file = substr($r_file, strlen($ftp_root));
-			$dont_overwrite = $this->_dont_overwrite($ftp_remote_file, $this->no_overwrite);
+			$dont_overwrite = $this->_dont_overwrite($r_file, $this->no_overwrite);
 			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
 				$res['ng'][] = $ftp_remote_file;
 				//adump($ftp_remote_file);
@@ -382,7 +403,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			//$l_file = str_replace( '/','\\',$l_file );
 			//$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
 			//$this->put($l_file, $ftp_remote_file, FTP_BINARY);
-			$dont_overwrite = $this->_dont_overwrite($ftp_remote_file, $this->no_overwrite);
+			$dont_overwrite = $this->_dont_overwrite($r_file, $this->no_overwrite);
 			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
 				$res['ng'][] = $ftp_remote_file;
 				//adump($ftp_remote_file);
@@ -420,13 +441,13 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 
 	private function _dont_overwrite($file, $chk_array)
 	{
-		if(count($chk_array)<=0){
+		if (empty($chk_array)) {
 			return false;
 		}
-		foreach ($chk_array as $item){
-			if( strlen( strstr($file, $item) ) >0 && file_exists($file)){
-				//adump($file, $chk_array);
-					return true;
+		foreach ($chk_array as $item) {
+			if( strpos($file, $item) === 0 && file_exists($file)){
+				//adump($file, $item);
+				return true;
 			}
 		}
 		return false;

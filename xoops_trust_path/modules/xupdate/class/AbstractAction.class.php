@@ -48,6 +48,8 @@ abstract class Xupdate_AbstractAction
 		$this->Ftp = $this->Xupdate->Ftp ;		// FTP instance
 		$this->Func = $this->Xupdate->func ;		// Functions instance
 		$this->mod_config = $this->mRoot->mContext->mModuleConfig ;	// mod_config
+		// FTP login check
+		$this->mod_config['_FtpLoginCheck'] = $this->Ftp->checkLogin();
 		//	adump($this->mod_config);
 
    }
