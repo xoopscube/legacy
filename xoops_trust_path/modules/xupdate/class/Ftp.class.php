@@ -309,7 +309,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			//$l_file = str_replace( '/','\\',$l_file );
 			//$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
 			//$this->put($l_file, $ftp_remote_file, FTP_BINARY);
-			$dont_overwrite = $this->_dont_overwrite($ftp_remote_file, $this->no_overwrite);
+			$dont_overwrite = $this->_dont_overwrite($r_file, $this->no_overwrite);
 			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
 				$res['ng'][] = $ftp_remote_file;
 				//adump($ftp_remote_file);
@@ -353,7 +353,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			//rename dirname
 			$r_file = $remote_path.substr(str_replace('/modules/'.$trust_dirname.'/','/modules/'.$dirname.'/' ,$l_file), $remote_pos ); // +1 is remove first flash
 			$ftp_remote_file = substr($r_file, strlen($ftp_root));
-			$dont_overwrite = $this->_dont_overwrite($ftp_remote_file, $this->no_overwrite);
+			$dont_overwrite = $this->_dont_overwrite($r_file, $this->no_overwrite);
 			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
 				$res['ng'][] = $ftp_remote_file;
 				//adump($ftp_remote_file);
@@ -403,7 +403,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			//$l_file = str_replace( '/','\\',$l_file );
 			//$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
 			//$this->put($l_file, $ftp_remote_file, FTP_BINARY);
-			$dont_overwrite = $this->_dont_overwrite($ftp_remote_file, $this->no_overwrite);
+			$dont_overwrite = $this->_dont_overwrite($r_file, $this->no_overwrite);
 			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
 				$res['ng'][] = $ftp_remote_file;
 				//adump($ftp_remote_file);
@@ -441,13 +441,13 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 
 	private function _dont_overwrite($file, $chk_array)
 	{
-		if(count($chk_array)<=0){
+		if (empty($chk_array)) {
 			return false;
 		}
-		foreach ($chk_array as $item){
-			if( strlen( strstr($file, $item) ) >0 && file_exists($file)){
-				//adump($file, $chk_array);
-					return true;
+		foreach ($chk_array as $item) {
+			if( strpos($file, $item) === 0 && file_exists($file)){
+				//adump($file, $item);
+				return true;
 			}
 		}
 		return false;

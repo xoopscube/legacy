@@ -241,7 +241,7 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 					}
 				}
 			}
-			//adump($_arr, $this->options['install_only'], $xupdateFtpModuleInstall->options['install_only']);
+			//adump($_arr, $this->options['install_only'], $xupdateFtpModuleInstall->options['no_overwrite']);
 		}
 
 		//execute
