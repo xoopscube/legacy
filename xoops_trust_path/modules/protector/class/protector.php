@@ -564,7 +564,7 @@ function intval_allrequestsendid()
 		if( substr( $key , -2 ) == 'id' && ! is_array( $_COOKIE[ $key ] ) ) {
 			$newval = preg_replace( '/[^0-9a-zA-Z_-]/' , '' , $val ) ;
 			$_COOKIE[ $key ] = $HTTP_COOKIE_VARS[ $key ] = $newval ;
-			if( $_REQUEST[ $key ] == $_COOKIE[ $key ] ){
+			if( isset( $_REQUEST[ $key ] ) && $_REQUEST[ $key ] == $_COOKIE[ $key ] ){
 				$_REQUEST[ $key ] = $newval ;
 			}
 		}
