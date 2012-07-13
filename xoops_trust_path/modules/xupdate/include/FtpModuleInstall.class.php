@@ -86,9 +86,13 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 						// TODO port , timeout
 						if ($this->Ftp->isConnected() || $this->Ftp->app_login("127.0.0.1")==true) {
 							// overwrite control
-							if(isset($this->options['no_overwrite'])){
-								$this->Ftp->set_no_overwrite($this->options['no_overwrite']);
+							if(! isset($this->options['no_overwrite'])){
+								$this->options['no_overwrite'] = array();
 							}
+							if(! isset($this->options['install_only'])){
+								$this->options['install_only'] = array();
+							}
+							$this->Ftp->set_no_overwrite(array($this->options['no_overwrite'], $this->options['install_only']));
 							if (!$this->uploadFiles()){
 								$this->_set_error_log('Ftp uploadFiles false');
 								$result = false;
@@ -218,14 +222,50 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 					return false;
 				}
 			}
+			
 		}else{
-
+			
+			// copy xoops_trust_path if exists
+			$uploadPath = XOOPS_TRUST_PATH . '/' ;
+			$unzipPath =  $this->exploredDirPath . '/xoops_trust_path';
+			if (file_exists($unzipPath)) {
+				$result = $this->Ftp->uploadNakami($unzipPath, $uploadPath);
+				if (! $this->_check_file_upload_result($result, 'xoops_trust_path')){
+					return false;
+				}
+			}
+			
 			// copy html
 			$uploadPath = XOOPS_ROOT_PATH . '/' ;
 			$unzipPath =  $this->exploredDirPath .'/html';
 			$result = $this->Ftp->uploadNakami($unzipPath, $uploadPath);
 			if (! $this->_check_file_upload_result($result, 'html')){
 				return false;
+			}
+			
+			// for legacy core extra languages
+			if ($this->dirname === 'legacy') {
+				// copy extras languages
+				$langs = array();
+				if ($handle = opendir(XOOPS_ROOT_PATH . '/language')) {
+					while (false !== ($name = readdir($handle))) {
+						if ($name[0] !== '.' && is_dir(XOOPS_ROOT_PATH . '/language/' . $name)) {
+							$langs[] = $name;
+						}
+					}
+					closedir($handle);
+				}
+				//adump($langs);
+				foreach ($langs as $lang) {
+					$uploadPath = XOOPS_ROOT_PATH . '/' ;
+					$unzipPath =  $this->exploredDirPath . '/extras/extra_languages/' . $lang;
+					if (file_exists($unzipPath)) {
+						$result = $this->Ftp->uploadNakami($unzipPath, $uploadPath);
+						if (! $this->_check_file_upload_result($result, 'html')){
+							return false;
+						}
+					}
+				}
 			}
 		}
 
