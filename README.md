@@ -1,5 +1,4 @@
 Legacy
-======
 
 XOOPS Cube Legacy base repository
 
