@@ -133,7 +133,7 @@ class Xupdate_Func {
 				try {
 					//redirect suport
 					$setopt4 = curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-					$setopt5 = curl_setopt($ch, CURLOPT_MAXREDIRS, 4);
+					$setopt5 = curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
 			
 					if(!$setopt4 || !$setopt5 ){
 						throw new Exception('curl_setopt CURLOPT_FOLLOWLOCATION fail skip',4);
@@ -147,7 +147,7 @@ class Xupdate_Func {
 			
 			//SSL NO VERIFY setting
 			$URI_PARTS = parse_url($data['downloadUrl']);
-			if (strtolower($URI_PARTS["scheme"]) == 'https' ){
+			//if (strtolower($URI_PARTS["scheme"]) == 'https' ){
 				try {
 					$setopt6 = curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 					$setopt7 = curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
@@ -160,7 +160,7 @@ class Xupdate_Func {
 					fclose($fp);
 					continue;
 				}
-			}
+			//}
 			
 			$chs[$key] = $ch;
 			$fps[$key] = $fp;
@@ -194,6 +194,7 @@ class Xupdate_Func {
 		}
 		
 		foreach($chs as $key => $ch) {
+			$this->_set_error_log(curl_error($ch));
 			curl_multi_remove_handle($mh, $ch);
 			fclose($fps[$key]);
 		}
