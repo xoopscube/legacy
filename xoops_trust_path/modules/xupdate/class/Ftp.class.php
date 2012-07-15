@@ -297,7 +297,12 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 				$this->ftp_mkdir($remote_directory);
 			}
 		}
-
+		
+		// file nothing
+		if (empty($file_list['file'])) {
+			return true;
+		}
+		
 		/// put files
 		if (! $this->chdir('/') ){
 			return false;

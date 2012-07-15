@@ -382,7 +382,10 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	 * @return boolean
 	 */
 	private function _check_file_upload_result($result, $where) {
-		if (!$result || !$result['ok']){
+		if (is_bool($result)) {
+			$result = array('ok' => $result, 'ng' => array());
+		}
+		if (!$result['ok']){
 			$this->Ftp->appendMes( 'fail upload '.$where.' uploadNakami<br />');
 			return false;
 		}
