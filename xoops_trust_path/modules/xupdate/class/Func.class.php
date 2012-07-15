@@ -169,7 +169,7 @@ class Xupdate_Func {
 		}
 		
 		if (! $chs) {
-			return false;
+			return true;
 		}
 		
 		// make multi handle
