@@ -1,1 +1,2 @@
-xoops_trust_path/uploads/xupdate/*
+.DS_Store
+.gitignore
