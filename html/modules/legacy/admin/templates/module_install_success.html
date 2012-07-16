@@ -32,4 +32,6 @@
 <{/if}>
 <div class="legacy_module_return"><img src="<{"icons/module.png"|theme}>" alt="" title="" /> <a href="index.php?action=ModuleList"><{$smarty.const._AD_LEGACY_LANG_MODLIST}></a></div>
 <div class="legacy_module_return"><img src="<{"icons/module_add.png"|theme}>" alt="" title="" /> <a href="index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></div>
-
+<{if $module->getAdminMenu()}>
+<div class="legacy_module_return"><a href="<{$xoops_url}>/modules/<{$module->get('dirname')}>/admin/"><{$smarty.const._AD_LEGACY_LANG_INSTALLEDMODADMIN}></a></div<
+<{/if}>
