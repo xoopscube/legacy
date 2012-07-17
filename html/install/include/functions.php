@@ -180,7 +180,14 @@ function b_reload($option=''){
     if (!defined('_INSTALL_L200')) {
         define('_INSTALL_L200', 'Reload');
     }
-    return  '<input type="image" src="img/reload.png" class="reload" title="Reload" value="'._INSTALL_L200.'" onclick="location.reload();" />';
+	if(!empty($_POST['op'])) {
+		$op = $_POST['op'];
+	} elseif(!empty($_GET['op'])) {
+		$op = $_GET['op'];
+	} else {
+		$op = 'langselect';
+	}
+	return  '<a href="javascript:void(0);" onclick=\'location.href="index.php?op='.htmlspecialchars($op).'"\' class="reload" style="display:inline-block;vertical-align:top;"><img src="img/reload.png" alt="'._INSTALL_L200.'"></a>';
 }
 
 function b_next($option=null){
