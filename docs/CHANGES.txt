@@ -7,13 +7,18 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
 - Fix Bug #3531835 - Bug in ImageFilterForm.class.php
+- Fix Bug #3539162 - installer reload makes jump back to first page
+- Fix Bug #3540381 - Typo "$reverse" in Legacy_RenderSystem
+- Fix Bug #3545043 - Bad request handling at EventFunctions
+
 
 [Staff]
 - Bluemooninc
+- hypweb
 - Kilica
+- lumbago
 - Mikhail Miguel
 - Naao
-- Nao-pon
 
 
 ----------------------------------------
