@@ -101,10 +101,12 @@ class Legacy_EventFunction
 		// 'Notify' is prefix to guard accessing from misc.php.
 		//
 		$actionName = isset($_REQUEST['op']) ? trim(xoops_getrequest('op')) : "List";
-		if (isset($_REQUEST['delete'])) {
+		$deleteValue = $root->mContext->mRequest->getRequest('delete');
+		$cancelValue = $root->mContext->mRequest->getRequest('delete_cancel');
+		if (isset($deleteValue)) {
 			$actionName = "Delete";
 		}
-		if (isset($_REQUEST['delete_cancel'])) {
+		if (isset($cancelValue)){
 			$actionName = "Cancel";
 		}
 

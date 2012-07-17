@@ -76,7 +76,7 @@ define("_US_NO","Não");
 define("_US_NOACTTPADM","O cadastro desse associado foi desabilitado ou ainda não foi habilitado. Entre em contato com a administração para maiores informações.");
 define("_US_NOEDITRIGHT","Lamento, você ainda não tem permissão para editar as informações deste associado.");
 define("_US_NOPERMISS","Lamento, você ainda não tem permissão para executar esta operação.");
-define("_US_NOPROBLEM","Escreva o endereço de <i>e-mail</i> com o qual você se cadastrou em nosso site.");
+define("_US_NOPROBLEM","Escreva o endereço de <i>e-mail</i> com o qual você se cadastrou em nosso portal.");
 define("_US_NOREGISTER","Lamento, mas o cadastro de novos associados está temporariamente desabilitado.");
 define("_US_NOTREGISTERED","Ainda não se cadastrou? Clique <a href='./register.php'>aqui</a>!");
 define("_US_OCCUPATION","Ocupação");
