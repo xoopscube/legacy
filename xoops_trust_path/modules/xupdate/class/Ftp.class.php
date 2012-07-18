@@ -315,6 +315,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			//$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
 			//$this->put($l_file, $ftp_remote_file, FTP_BINARY);
 			$dont_overwrite = $this->_dont_overwrite($r_file);
+			@ set_time_limit(120);
 			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
 				$res['ng'][] = $ftp_remote_file;
 				//adump($ftp_remote_file);
@@ -359,6 +360,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			$r_file = $remote_path.substr(str_replace('/modules/'.$trust_dirname.'/','/modules/'.$dirname.'/' ,$l_file), $remote_pos ); // +1 is remove first flash
 			$ftp_remote_file = substr($r_file, strlen($ftp_root));
 			$dont_overwrite = $this->_dont_overwrite($r_file);
+			@ set_time_limit(120);
 			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
 				$res['ng'][] = $ftp_remote_file;
 				//adump($ftp_remote_file);
@@ -409,6 +411,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			//$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
 			//$this->put($l_file, $ftp_remote_file, FTP_BINARY);
 			$dont_overwrite = $this->_dont_overwrite($r_file);
+			@ set_time_limit(120);
 			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
 				$res['ng'][] = $ftp_remote_file;
 				//adump($ftp_remote_file);
