@@ -64,7 +64,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	/* Constructor */
 	public function __construct($XupdateObj, $port_mode=FALSE, $verb=FALSE, $le=FALSE) {
 		parent::__construct($XupdateObj);
-		$this->loginCheckFile = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/').'/logincheck.ini.php';
+		$this->loginCheckFile = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/').'/'.rawurlencode(substr(XOOPS_URL, 7)).'_logincheck.ini.php';
 	}
 	// <!-- --------------------------------------------------------------------------------------- -->
 // <!--	   public functions																  -->
@@ -145,7 +145,6 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	
 	public function checkLogin() {
 		$ret = true;
-		$this->loginCheckFile = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/').'/logincheck.ini.php';
 		if (! @ unserialize(@ file_get_contents($this->loginCheckFile))) {
 			if ($this->app_login('127.0.0.1')) {
 				$this->app_logout();
