@@ -413,7 +413,8 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 		if (file_exists($this->lockfile) && filemtime($this->lockfile) + 600 > time()) {
 			return false;
 		}
-		touch($this->lockfile);
+		ignore_user_abort(true); // Ignore user aborts and allow the script
+		touch($this->lockfile);  // make lock file
 		return true;
 	}
 } // end class
