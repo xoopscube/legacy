@@ -45,11 +45,14 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	public $trust_dirname;
 	public $dirname;
 	public $unzipdirlevel;
+	
+	private $lockfile;
 
 	public function __construct() {
 
 		parent::__construct();
-
+		$mod_config = $this->mRoot->mContext->mModuleConfig;
+		$this->lockfile = XOOPS_TRUST_PATH.'/'.trim($mod_config['temp_path'], '/').'/xupdate.lock';
 	}
 
 	/**
@@ -64,9 +67,12 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 
 		$result = true;
 		if( $this->Xupdate->params['is_writable']['result'] === true ) {
-
 			if(! $this->checkExploredDirPath($this->target_key)) {
 				$this->_set_error_log('make exploredDirPath false: '.$this->target_key);
+				return false;
+			}
+			if (! $this->is_xupdate_excutable()) {
+				$this->content.= '<div class="error">' . _MI_XUPDATE_ANOTHER_PROCESS_RUNNING . '</div>';
 				return false;
 			}
 			
@@ -151,6 +157,9 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 		}else{
 			$this->content.= _ERRORS;
 		}
+		
+		@ unlink($this->lockfile);
+		
 		return $result;
 	}
 
@@ -395,6 +404,18 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 		return true;
 	}
 
+	/**
+	 * is_xupdate_excutable
+	 * 
+	 * @return boolean
+	 */
+	private function is_xupdate_excutable() {
+		if (file_exists($this->lockfile) && filemtime($this->lockfile) + 600 > time()) {
+			return false;
+		}
+		touch($this->lockfile);
+		return true;
+	}
 } // end class
 
 ?>

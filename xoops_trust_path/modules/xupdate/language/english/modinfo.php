@@ -99,9 +99,11 @@ define('_MI_XUPDATE_FTP_PASS' , 'FTP login password');
 define('_MI_XUPDATE_FTP_PASSDSC' , 'Login password for FTP or passphrase for private key on SSH2 Key-Auth');
 define('_MI_XUPDATE_SSH_PORT' , 'SSH connection port');
 define('_MI_XUPDATE_SSH_PORTDSC' , 'SSH port for SSH_FTP or SSH Key-Auth connection');
+define('_MI_XUPDATE_SSH_KEY' , 'Private key for SSH connection');
+define('_MI_XUPDATE_SSH_KEYDSC' , 'Paste the private key for SSH connection');
 define('_MI_XUPDATE_DEBUG' , 'View the debug output');
 define('_MI_XUPDATE_FTP_ADDON_URL' , 'Module Add-on URL');
 define('_MI_XUPDATE_FTP_THEME_URL' , 'Theme Add-on URL');
 define('_MI_XUPDATE_FTP_STORE_URL' , 'Add-on Store URL');
 
-?>
+define('_MI_XUPDATE_ANOTHER_PROCESS_RUNNING', 'Other processes are updating. Please perform again after waiting for a while.');

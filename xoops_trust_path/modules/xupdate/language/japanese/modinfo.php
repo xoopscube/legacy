@@ -105,3 +105,5 @@ define('_MI_XUPDATE_DEBUG' , 'デバグ出力を表示する');
 define('_MI_XUPDATE_FTP_ADDON_URL' , 'アドオンURL');
 define('_MI_XUPDATE_FTP_THEME_URL' , 'テーマURL');
 define('_MI_XUPDATE_FTP_STORE_URL' , 'アドオンストアURL');
+
+define('_MI_XUPDATE_ANOTHER_PROCESS_RUNNING', '他のプロセスがアップデート中です。しばらく待ってから再度実行してください。');
