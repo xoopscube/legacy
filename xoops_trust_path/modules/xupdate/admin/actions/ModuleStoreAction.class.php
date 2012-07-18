@@ -328,6 +328,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	{
 
 		$message_Install = _INSTALL;
+		$message_Update = _MI_XUPDATE_UPDATE;
 		$message_Error = _ERRORS;
 		$message_Waiting = _AD_XUPDATE_LANG_MESSAGE_WAITING;
 		$message_Success = _AD_XUPDATE_LANG_MESSAGE_SUCCESS;
@@ -378,14 +379,15 @@ jQuery(function($){
 			return;
 		}
 
-		$(this).replaceWith('<span id="rapidInstallStatus">(<span class="total">'+installedModuleTotal+'</span>/'+installationModuleTotal+')インストール中</span>');
+		$(this).replaceWith('<span id="rapidInstallStatus">(<span class="total">'+installedModuleTotal+'</span>/'+installationModuleTotal+'){$message_Install}{$message_Processing}</span>');
 
 		$('.rapidInstallCheckbox:checked').each(function()
 		{
 			var storehref = $(this).parent('td').parent('tr').find('a[href*="xupdate/admin/index.php?action=ModuleInstall"]').attr('href');
 			var installhref = $(this).parent('td').parent('tr').find('a[href*="legacy/admin/index.php?action=Module"]').attr('href');
+			var updatehref = $(this).parent('td').parent('tr').find('a[href*="legacy/admin/index.php?action=ModuleUpdate"]').attr('href');
 			var td = $(this).parent('td');
-			installationModules.push({'storehref':storehref , 'installhref':installhref , 'td':td , 'status':0});
+			installationModules.push({'storehref':storehref , 'installhref':installhref , 'td':td , 'status':0, 'isUpdate':(typeof updatehref !== 'undefined')});
 		});
 
 		$(installationModules).each(function()
@@ -435,7 +437,11 @@ jQuery(function($){
 			}else{
 				if (typeof installationModule.installhref != 'undefined'){
 
-					installationModule.td.html("{$message_Install}{$message_Processing}");
+					if (installationModule.isUpdate) {
+						installationModule.td.html("{$message_Update}{$message_Processing}");
+					} else {
+						installationModule.td.html("{$message_Install}{$message_Processing}");
+					}
 					try
 					{
 						$.ajax({
@@ -506,8 +512,19 @@ jQuery(function($){
 
 	var postFormSuccess = function(html)
 	{
-		var result = $(html).find('li.legacy_module_message:last').text();
-		installationModule.td.hide().html('<span style="color:green;">{$message_Success}</span>').fadeIn();
+		//var result = $(html).find('li.legacy_module_message:last').text();
+		if (installationModule.isUpdate) {
+			var error_result = $(html).find('li.legacy_module_error:last').text();
+			var action = '{$message_Update}';
+		} else {
+			var error_result = $(html).find('li.legacy_modinstall_error:last').text();
+			var action = '{$message_Install}';
+		}
+		if (! error_result) {
+			installationModule.td.hide().html('<span style="color:green;">{$message_Success}</span>').show();
+		} else {
+			installationModule.td.html('<span style="color:red;">'+action+' {$message_Error}</span>');
+		}
 		installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
 		updateModuleStatus();
 	}
