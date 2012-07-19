@@ -3,6 +3,12 @@
 {
 "store_name":"XoopsX",
 
+"XoopsX_CorePack":
+{
+"target_key":"XoopsX_CorePack",
+"approved":"true"
+},
+
 "bulletin":
 {
 "target_key":"bulletin",

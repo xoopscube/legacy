@@ -45,11 +45,14 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	public $trust_dirname;
 	public $dirname;
 	public $unzipdirlevel;
+	
+	private $lockfile;
 
 	public function __construct() {
 
 		parent::__construct();
-
+		$mod_config = $this->mRoot->mContext->mModuleConfig;
+		$this->lockfile = XOOPS_TRUST_PATH.'/'.trim($mod_config['temp_path'], '/').'/xupdate.lock';
 	}
 
 	/**
@@ -64,9 +67,12 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 
 		$result = true;
 		if( $this->Xupdate->params['is_writable']['result'] === true ) {
-
 			if(! $this->checkExploredDirPath($this->target_key)) {
-				$this->_set_error_log('make exploredDirPath false: '.$this->target_key);
+				$this->_set_error_log(_MI_XUPDATE_ERR_MAKE_EXPLOREDDIR . ': ' .$this->target_key);
+				return false;
+			}
+			if (! $this->is_xupdate_excutable()) {
+				$this->content.= '<div class="error">' . _MI_XUPDATE_ANOTHER_PROCESS_RUNNING . '</div>';
 				return false;
 			}
 			
@@ -74,6 +80,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			$tempFilename = $this->target_key . '.zip';
 			
 			if ($this->checkExploredDirPath($this->target_key)) {
+				$this->content.= _MI_XUPDATE_PROG_FILE_GETTING . '<br />';
 				if ($this->Func->_downloadFile( $this->target_key, $downloadUrl, $tempFilename, $this->downloadedFilePath )){
 					$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
 					$this->exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
@@ -86,11 +93,15 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 						// TODO port , timeout
 						if ($this->Ftp->isConnected() || $this->Ftp->app_login("127.0.0.1")==true) {
 							// overwrite control
-							if(isset($this->options['no_overwrite'])){
-								$this->Ftp->set_no_overwrite($this->options['no_overwrite']);
+							if(! isset($this->options['no_overwrite'])){
+								$this->options['no_overwrite'] = array();
 							}
+							if(! isset($this->options['install_only'])){
+								$this->options['install_only'] = array();
+							}
+							$this->Ftp->set_no_overwrite(array($this->options['no_overwrite'], $this->options['install_only']));
 							if (!$this->uploadFiles()){
-								$this->_set_error_log('Ftp uploadFiles false');
+								$this->_set_error_log(_MI_XUPDATE_ERR_FTP_UPLOADFILES);
 								$result = false;
 							}
 							// change directories to writable
@@ -103,7 +114,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 							}
 
 						}else{
-							$this->_set_error_log('Ftp->app_login false');
+							$this->_set_error_log(_MI_XUPDATE_ERR_FTP_LOGIN);
 							$result = false;
 						}
 	
@@ -113,19 +124,19 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 						}
 	
 					}else{
-						$this->_set_error_log('unzipFile false ');
+						$this->_set_error_log(_MI_XUPDATE_ERR_UNZIP_FILE);
 						$result = false;
 					}
 				}else{
-					$this->_set_error_log('downloadFile false');
+					$this->_set_error_log(_MI_XUPDATE_ERR_DOWNLOAD_FILE);
 					$result = false;
 				}
 			} else {
-				$this->_set_error_log('make exploredDirPath false: '.$this->target_key);
+				$this->_set_error_log(_MI_XUPDATE_ERR_MAKE_EXPLOREDDIR . ': ' . $this->target_key);
 				$result = false;
 			}
 
-			$this->content.= 'cleaning up... <br />';
+			$this->content.= _MI_XUPDATE_PROG_CLEANING_UP . '<br />';
 			$this->_cleanup($this->exploredDirPath);
 
 			if ($this->Ftp->isConnected()) {
@@ -136,7 +147,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 //TODO unlink ok?
 			@unlink( $this->downloadedFilePath );
 
-			$this->content.= 'completed <br /><br />';
+			$this->content.= _MI_XUPDATE_PROG_COMPLETED . '<br /><br />';
 		}else{
 			$result = false;
 		}
@@ -147,6 +158,9 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 		}else{
 			$this->content.= _ERRORS;
 		}
+		
+		@ unlink($this->lockfile);
+		
 		return $result;
 	}
 
@@ -171,7 +185,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 		//$this->Ftp->connect();
 
 		$this->Ftp->appendMes( 'start uploading..<br />');
-		$this->content.=  'uploading..<br />';
+		$this->content.= _MI_XUPDATE_PROG_UPLOADING . '<br />';
 
 		if ($this->target_type == 'TrustModule'){
 			if (!empty($this->trust_dirname) && !empty($this->dirname) && $this->trust_dirname != $this->dirname){
@@ -218,14 +232,50 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 					return false;
 				}
 			}
+			
 		}else{
-
+			
+			// copy xoops_trust_path if exists
+			$uploadPath = XOOPS_TRUST_PATH . '/' ;
+			$unzipPath =  $this->exploredDirPath . '/xoops_trust_path';
+			if (file_exists($unzipPath)) {
+				$result = $this->Ftp->uploadNakami($unzipPath, $uploadPath);
+				if (! $this->_check_file_upload_result($result, 'xoops_trust_path')){
+					return false;
+				}
+			}
+			
 			// copy html
 			$uploadPath = XOOPS_ROOT_PATH . '/' ;
 			$unzipPath =  $this->exploredDirPath .'/html';
 			$result = $this->Ftp->uploadNakami($unzipPath, $uploadPath);
 			if (! $this->_check_file_upload_result($result, 'html')){
 				return false;
+			}
+			
+			// for legacy core extra languages
+			if ($this->dirname === 'legacy') {
+				// copy extras languages
+				$langs = array();
+				if ($handle = opendir(XOOPS_ROOT_PATH . '/language')) {
+					while (false !== ($name = readdir($handle))) {
+						if ($name[0] !== '.' && is_dir(XOOPS_ROOT_PATH . '/language/' . $name)) {
+							$langs[] = $name;
+						}
+					}
+					closedir($handle);
+				}
+				//adump($langs);
+				foreach ($langs as $lang) {
+					$uploadPath = XOOPS_ROOT_PATH . '/' ;
+					$unzipPath =  $this->exploredDirPath . '/extras/extra_languages/' . $lang;
+					if (file_exists($unzipPath)) {
+						$result = $this->Ftp->uploadNakami($unzipPath, $uploadPath);
+						if (! $this->_check_file_upload_result($result, 'html')){
+							return false;
+						}
+					}
+				}
 			}
 		}
 
@@ -342,16 +392,32 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	 * @return boolean
 	 */
 	private function _check_file_upload_result($result, $where) {
-		if (!$result || !$result['ok']){
+		if (is_bool($result)) {
+			$result = array('ok' => $result, 'ng' => array());
+		}
+		if (!$result['ok']){
 			$this->Ftp->appendMes( 'fail upload '.$where.' uploadNakami<br />');
 			return false;
 		}
 		if ($result['ng']) {
-			$this->_set_error_log('not uploaded: ' . join('<br />not uploaded: ', $result['ng']));
+			$this->_set_error_log(_MI_XUPDATE_ERR_NOT_UPLOADED.': ' . join('<br />'._MI_XUPDATE_ERR_NOT_UPLOADED.': ', $result['ng']));
 		}
 		return true;
 	}
 
+	/**
+	 * is_xupdate_excutable
+	 * 
+	 * @return boolean
+	 */
+	private function is_xupdate_excutable() {
+		if (file_exists($this->lockfile) && filemtime($this->lockfile) + 600 > time()) {
+			return false;
+		}
+		ignore_user_abort(true); // Ignore user aborts and allow the script
+		touch($this->lockfile);  // make lock file
+		return true;
+	}
 } // end class
 
 ?>
