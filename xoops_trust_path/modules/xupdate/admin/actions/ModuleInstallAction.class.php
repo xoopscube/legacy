@@ -231,17 +231,23 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 			$_arr = $this->Xupdate->get('install_only');
 			if(!empty($this->options['install_only']) && count($this->options['install_only'])>0){
 				// checked means allow overwrite
+				$xupdateFtpModuleInstall->options['no_overwrite'] = array();
 				$xupdateFtpModuleInstall->options['install_only'] = array();
 				//if ( isset($mobj->mModule) && $mobj->mModule->get('isactive')==true ){
 				if ( isset($mobj->mModule) ){
 					foreach ($this->options['install_only'] as $item){
+						$_key = 'no_overwrite';
+						if (substr($item, -1) === '*') {
+							$item = rtrim($item, '*');
+							$_key = 'install_only';
+						}
 						if ( !is_array($_arr) || (is_array($_arr) && !in_array( $item, $_arr ))){
-							$xupdateFtpModuleInstall->options['no_overwrite'][] = $item;
+							$xupdateFtpModuleInstall->options[$_key][] = $item;
 						}
 					}
 				}
 			}
-			//adump($_arr, $this->options['install_only'], $xupdateFtpModuleInstall->options['no_overwrite']);
+			//adump($_arr, $this->options['install_only'], $xupdateFtpModuleInstall->options);
 		}
 
 		//execute

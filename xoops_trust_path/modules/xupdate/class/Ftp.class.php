@@ -64,7 +64,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	/* Constructor */
 	public function __construct($XupdateObj, $port_mode=FALSE, $verb=FALSE, $le=FALSE) {
 		parent::__construct($XupdateObj);
-		$this->loginCheckFile = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/').'/logincheck.ini.php';
+		$this->loginCheckFile = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/').'/'.rawurlencode(substr(XOOPS_URL, 7)).'_logincheck.ini.php';
 	}
 	// <!-- --------------------------------------------------------------------------------------- -->
 // <!--	   public functions																  -->
@@ -145,7 +145,6 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	
 	public function checkLogin() {
 		$ret = true;
-		$this->loginCheckFile = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/').'/logincheck.ini.php';
 		if (! @ unserialize(@ file_get_contents($this->loginCheckFile))) {
 			if ($this->app_login('127.0.0.1')) {
 				$this->app_logout();
@@ -293,11 +292,16 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		krsort($dir);
 		foreach ($dir as $directory){
 			$remote_directory = $remote_path.substr($directory, $remote_pos);
-			if (!is_dir($remote_directory)){
+			if (!is_dir($remote_directory) && !$this->_dont_overwrite($remote_directory, true)){
 				$this->ftp_mkdir($remote_directory);
 			}
 		}
-
+		
+		// file nothing
+		if (empty($file_list['file'])) {
+			return true;
+		}
+		
 		/// put files
 		if (! $this->chdir('/') ){
 			return false;
@@ -309,7 +313,8 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			//$l_file = str_replace( '/','\\',$l_file );
 			//$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
 			//$this->put($l_file, $ftp_remote_file, FTP_BINARY);
-			$dont_overwrite = $this->_dont_overwrite($r_file, $this->no_overwrite);
+			$dont_overwrite = $this->_dont_overwrite($r_file);
+			@ set_time_limit(120);
 			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
 				$res['ng'][] = $ftp_remote_file;
 				//adump($ftp_remote_file);
@@ -353,7 +358,8 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			//rename dirname
 			$r_file = $remote_path.substr(str_replace('/modules/'.$trust_dirname.'/','/modules/'.$dirname.'/' ,$l_file), $remote_pos ); // +1 is remove first flash
 			$ftp_remote_file = substr($r_file, strlen($ftp_root));
-			$dont_overwrite = $this->_dont_overwrite($r_file, $this->no_overwrite);
+			$dont_overwrite = $this->_dont_overwrite($r_file);
+			@ set_time_limit(120);
 			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
 				$res['ng'][] = $ftp_remote_file;
 				//adump($ftp_remote_file);
@@ -403,7 +409,8 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			//$l_file = str_replace( '/','\\',$l_file );
 			//$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
 			//$this->put($l_file, $ftp_remote_file, FTP_BINARY);
-			$dont_overwrite = $this->_dont_overwrite($r_file, $this->no_overwrite);
+			$dont_overwrite = $this->_dont_overwrite($r_file);
+			@ set_time_limit(120);
 			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
 				$res['ng'][] = $ftp_remote_file;
 				//adump($ftp_remote_file);
@@ -439,15 +446,21 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		return $list;
 	}
 
-	private function _dont_overwrite($file, $chk_array)
+	private function _dont_overwrite($file, $dir_chk = false)
 	{
-		if (empty($chk_array)) {
-			return false;
+		list($no_overwrite, $install_only) = $this->no_overwrite;
+		if ($install_only) {
+			foreach ($install_only as $item) {
+				if( strpos($file, $item) === 0){
+					return true;
+				}
+			}
 		}
-		foreach ($chk_array as $item) {
-			if( strpos($file, $item) === 0 && file_exists($file)){
-				//adump($file, $item);
-				return true;
+		if (!$dir_chk && $no_overwrite) {
+			foreach ($no_overwrite as $item) {
+				if( strpos($file, $item) === 0 && file_exists($file)){
+					return true;
+				}
 			}
 		}
 		return false;
