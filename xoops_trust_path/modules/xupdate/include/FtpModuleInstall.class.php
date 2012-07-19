@@ -68,7 +68,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 		$result = true;
 		if( $this->Xupdate->params['is_writable']['result'] === true ) {
 			if(! $this->checkExploredDirPath($this->target_key)) {
-				$this->_set_error_log('make exploredDirPath false: '.$this->target_key);
+				$this->_set_error_log(_MI_XUPDATE_ERR_MAKE_EXPLOREDDIR . ': ' .$this->target_key);
 				return false;
 			}
 			if (! $this->is_xupdate_excutable()) {
@@ -80,6 +80,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			$tempFilename = $this->target_key . '.zip';
 			
 			if ($this->checkExploredDirPath($this->target_key)) {
+				$this->content.= _MI_XUPDATE_PROG_FILE_GETTING . '<br />';
 				if ($this->Func->_downloadFile( $this->target_key, $downloadUrl, $tempFilename, $this->downloadedFilePath )){
 					$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
 					$this->exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
@@ -100,7 +101,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 							}
 							$this->Ftp->set_no_overwrite(array($this->options['no_overwrite'], $this->options['install_only']));
 							if (!$this->uploadFiles()){
-								$this->_set_error_log('Ftp uploadFiles false');
+								$this->_set_error_log(_MI_XUPDATE_ERR_FTP_UPLOADFILES);
 								$result = false;
 							}
 							// change directories to writable
@@ -113,7 +114,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 							}
 
 						}else{
-							$this->_set_error_log('Ftp->app_login false');
+							$this->_set_error_log(_MI_XUPDATE_ERR_FTP_LOGIN);
 							$result = false;
 						}
 	
@@ -123,19 +124,19 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 						}
 	
 					}else{
-						$this->_set_error_log('unzipFile false ');
+						$this->_set_error_log(_MI_XUPDATE_ERR_UNZIP_FILE);
 						$result = false;
 					}
 				}else{
-					$this->_set_error_log('downloadFile false');
+					$this->_set_error_log(_MI_XUPDATE_ERR_DOWNLOAD_FILE);
 					$result = false;
 				}
 			} else {
-				$this->_set_error_log('make exploredDirPath false: '.$this->target_key);
+				$this->_set_error_log(_MI_XUPDATE_ERR_MAKE_EXPLOREDDIR . ': ' . $this->target_key);
 				$result = false;
 			}
 
-			$this->content.= 'cleaning up... <br />';
+			$this->content.= _MI_XUPDATE_PROG_CLEANING_UP . '<br />';
 			$this->_cleanup($this->exploredDirPath);
 
 			if ($this->Ftp->isConnected()) {
@@ -146,7 +147,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 //TODO unlink ok?
 			@unlink( $this->downloadedFilePath );
 
-			$this->content.= 'completed <br /><br />';
+			$this->content.= _MI_XUPDATE_PROG_COMPLETED . '<br /><br />';
 		}else{
 			$result = false;
 		}
@@ -184,7 +185,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 		//$this->Ftp->connect();
 
 		$this->Ftp->appendMes( 'start uploading..<br />');
-		$this->content.=  'uploading..<br />';
+		$this->content.= _MI_XUPDATE_PROG_UPLOADING . '<br />';
 
 		if ($this->target_type == 'TrustModule'){
 			if (!empty($this->trust_dirname) && !empty($this->dirname) && $this->trust_dirname != $this->dirname){
@@ -399,7 +400,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			return false;
 		}
 		if ($result['ng']) {
-			$this->_set_error_log('not uploaded: ' . join('<br />not uploaded: ', $result['ng']));
+			$this->_set_error_log(_MI_XUPDATE_ERR_NOT_UPLOADED.': ' . join('<br />'._MI_XUPDATE_ERR_NOT_UPLOADED.': ', $result['ng']));
 		}
 		return true;
 	}
