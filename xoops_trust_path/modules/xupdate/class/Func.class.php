@@ -146,21 +146,57 @@ class Xupdate_Func {
 			}
 			
 			//SSL NO VERIFY setting
-			$URI_PARTS = parse_url($data['downloadUrl']);
-			//if (strtolower($URI_PARTS["scheme"]) == 'https' ){
-				try {
-					$setopt6 = curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-					$setopt7 = curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-					if(!$setopt6 || !$setopt7 ){
-						throw new Exception('curl_setopt SSL fail',5);
-					}
-				} catch (Exception $e) {
-					$this->_set_error_log($e->getMessage());
-			
-					fclose($fp);
-					continue;
+			try {
+				$setopt6 = curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+				$setopt7 = curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+				if(!$setopt6 || !$setopt7 ){
+					throw new Exception('curl_setopt SSL fail',5);
 				}
-			//}
+			} catch (Exception $e) {
+				$this->_set_error_log($e->getMessage());
+		
+				fclose($fp);
+				continue;
+			}
+			
+			// Proxy setting
+			if (!empty($_SERVER['HTTP_PROXY']) || !empty($_SERVER['http_proxy'])) {
+				$proxy = parse_url(!empty($_SERVER['http_proxy']) ? $_SERVER['http_proxy'] : $_SERVER['HTTP_PROXY']);
+				if (!empty($proxy) && isset($proxy['host'])) {
+					// url
+					$proxyURL = (isset($proxy['scheme']) ? $proxy['scheme'] : 'http') . '://';
+					$proxyURL .= $proxy['host'];
+					
+					if (isset($proxy['port'])) {
+						$proxyURL .= ":" . $proxy['port'];
+					} elseif ('http://' == substr($proxyURL, 0, 7)) {
+						$proxyURL .= ":80";
+					} elseif ('https://' == substr($proxyURL, 0, 8)) {
+						$proxyURL .= ":443";
+					}
+					try {
+						if(! curl_setopt($ch, CURLOPT_PROXY, $proxyURL)) {
+							throw new Exception('curl_setopt PROXY fail', 6);
+						}
+					} catch (Exception $e) {
+						$this->_set_error_log($e->getMessage());
+					}
+					// user:password
+					if (isset($proxy['user'])) {
+						$proxyAuth = $proxy['user'];
+						if (isset($proxy['pass'])) {
+							$proxyAuth .= ':' . $proxy['pass'];
+						}
+						try {
+							if(! curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyAuth)) {
+								throw new Exception('curl_setopt PROXYUSERPWD fail', 7);
+							}
+						} catch (Exception $e) {
+							$this->_set_error_log($e->getMessage());
+						}
+					}
+				}
+			}
 			
 			$chs[$key] = $ch;
 			$fps[$key] = $fp;
