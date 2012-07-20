@@ -57,6 +57,10 @@ class Xupdate_FtpThemeFinderInstall extends Xupdate_FtpCommonZipArchive {
 
 		$result = true;
 		if( $this->Xupdate->params['is_writable']['result'] === true ) {
+			if(! $this->checkExploredDirPath($this->target_key)) {
+				$this->_set_error_log(_MI_XUPDATE_ERR_MAKE_EXPLOREDDIR . ': ' .$this->target_key);
+				return false;
+			}
 			if (! $this->is_xupdate_excutable()) {
 				$this->content.= '<div class="error">' . _MI_XUPDATE_ANOTHER_PROCESS_RUNNING . '</div>';
 				return false;
@@ -65,36 +69,31 @@ class Xupdate_FtpThemeFinderInstall extends Xupdate_FtpCommonZipArchive {
 			$downloadUrl = $this->Func->_getDownloadUrl( $this->target_key, $this->downloadUrlFormat );
 			$this->download_file = $this->target_key . (preg_match('/\btar\b/i', $downloadUrl)? '.tar.gz' : '.zip');
 			
-			if ($this->checkExploredDirPath($this->target_key)) {
-				$this->content.= _MI_XUPDATE_PROG_FILE_GETTING . '<br />';
-				if ($this->Func->_downloadFile( $this->target_key, $downloadUrl, $this->download_file, $this->downloadedFilePath )){
-					$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
-					$this->exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
-					if($this->_unzipFile()==true) {
-						// ToDo port , timeout
-						if ($this->Ftp->isConnected() || $this->Ftp->app_login("127.0.0.1")==true) {
-							if (!$this->uploadFiles()){
-								$this->_set_error_log('Ftp uploadFiles false');
-								$result = false;
-							}
-
-						}else{
-							$this->_set_error_log('Ftp->app_login false');
+			$this->content.= _MI_XUPDATE_PROG_FILE_GETTING . '<br />';
+			if ($this->Func->_downloadFile( $this->target_key, $downloadUrl, $this->download_file, $this->downloadedFilePath )){
+				$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
+				$this->exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
+				if($this->_unzipFile()==true) {
+					// ToDo port , timeout
+					if ($this->Ftp->isConnected() || $this->Ftp->app_login("127.0.0.1")==true) {
+						if (!$this->uploadFiles()){
+							$this->_set_error_log('Ftp uploadFiles false');
 							$result = false;
 						}
+
 					}else{
-						$this->_set_error_log('unzipFile false ');
+						$this->_set_error_log('Ftp->app_login false');
 						$result = false;
 					}
 				}else{
-					$this->_set_error_log('downloadFile false');
+					$this->_set_error_log('unzipFile false ');
 					$result = false;
 				}
-			} else {
-				$this->_set_error_log('make exploredDirPath false: '.$this->target_key);
+			}else{
+				$this->_set_error_log('downloadFile false');
 				$result = false;
 			}
-				
+			
 			$this->content.= _MI_XUPDATE_PROG_CLEANING_UP . '<br />';
 			$this->_cleanup($this->exploredDirPath);
 
