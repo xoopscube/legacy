@@ -27,7 +27,8 @@ class Xupdate_FtpCommonFunc {
 	public $options = array();
 
 	protected $download_file;
-
+	protected $lockfile;
+	
 	public function __construct() {
 
 		$this->mRoot =& XCube_Root::getSingleton();
@@ -41,7 +42,9 @@ class Xupdate_FtpCommonFunc {
 
 		$this->downloadDirPath = $this->Xupdate->params['temp_path'];
 //		$this->downloadUrlFormat = $this->mod_config['Mod_download_Url_format'];
-
+		
+		$this->lockfile = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/').'/xupdate.lock';
+		
 	}
 
 	/**
@@ -111,6 +114,20 @@ class Xupdate_FtpCommonFunc {
 			return $ret;
 		}
 		return false;
+	}
+
+	/**
+	 * is_xupdate_excutable
+	 *
+	 * @return boolean
+	 */
+	protected function is_xupdate_excutable() {
+		if (file_exists($this->lockfile) && filemtime($this->lockfile) + 600 > time()) {
+			return false;
+		}
+		ignore_user_abort(true); // Ignore user aborts and allow the script
+		touch($this->lockfile);  // make lock file
+		return true;
 	}
 
 } // end class

@@ -47,13 +47,10 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	public $dirname;
 	public $unzipdirlevel;
 	
-	private $lockfile;
-
 	public function __construct() {
 
 		parent::__construct();
-		$mod_config = $this->mRoot->mContext->mModuleConfig;
-		$this->lockfile = XOOPS_TRUST_PATH.'/'.trim($mod_config['temp_path'], '/').'/xupdate.lock';
+
 	}
 
 	/**
@@ -406,19 +403,6 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 		return true;
 	}
 
-	/**
-	 * is_xupdate_excutable
-	 * 
-	 * @return boolean
-	 */
-	private function is_xupdate_excutable() {
-		if (file_exists($this->lockfile) && filemtime($this->lockfile) + 600 > time()) {
-			return false;
-		}
-		ignore_user_abort(true); // Ignore user aborts and allow the script
-		touch($this->lockfile);  // make lock file
-		return true;
-	}
 } // end class
 
 ?>
