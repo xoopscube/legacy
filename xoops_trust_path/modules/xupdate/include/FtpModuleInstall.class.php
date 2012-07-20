@@ -146,19 +146,18 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			@unlink( $this->downloadedFilePath );
 
 			$this->content.= _MI_XUPDATE_PROG_COMPLETED . '<br /><br />';
+			
+			@ unlink($this->lockfile);
 		}else{
 			$result = false;
 		}
 
 		if ($result){
 			$this->nextlink = $this->_get_nextlink($this->dirname, $caller);
-
 		}else{
 			$this->content.= _ERRORS;
 		}
-		
-		@ unlink($this->lockfile);
-		
+
 		return $result;
 	}
 

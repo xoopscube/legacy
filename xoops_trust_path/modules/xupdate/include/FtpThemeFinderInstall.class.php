@@ -57,11 +57,16 @@ class Xupdate_FtpThemeFinderInstall extends Xupdate_FtpCommonZipArchive {
 
 		$result = true;
 		if( $this->Xupdate->params['is_writable']['result'] === true ) {
-
+			if (! $this->is_xupdate_excutable()) {
+				$this->content.= '<div class="error">' . _MI_XUPDATE_ANOTHER_PROCESS_RUNNING . '</div>';
+				return false;
+			}
+			
 			$downloadUrl = $this->Func->_getDownloadUrl( $this->target_key, $this->downloadUrlFormat );
 			$this->download_file = $this->target_key . (preg_match('/\btar\b/i', $downloadUrl)? '.tar.gz' : '.zip');
 			
 			if ($this->checkExploredDirPath($this->target_key)) {
+				$this->content.= _MI_XUPDATE_PROG_FILE_GETTING . '<br />';
 				if ($this->Func->_downloadFile( $this->target_key, $downloadUrl, $this->download_file, $this->downloadedFilePath )){
 					$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
 					$this->exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
@@ -90,7 +95,7 @@ class Xupdate_FtpThemeFinderInstall extends Xupdate_FtpCommonZipArchive {
 				$result = false;
 			}
 				
-			$this->content.= 'cleaning up... <br />';
+			$this->content.= _MI_XUPDATE_PROG_CLEANING_UP . '<br />';
 			$this->_cleanup($this->exploredDirPath);
 
 			if ($this->Ftp->isConnected()) {
@@ -102,7 +107,9 @@ class Xupdate_FtpThemeFinderInstall extends Xupdate_FtpCommonZipArchive {
 			//@unlink( $downloadPath );
 			@unlink( $this->downloadedFilePath );
 
-			$this->content.= 'completed <br /><br />';
+			$this->content.= _MI_XUPDATE_PROG_COMPLETED . '<br /><br />';
+			
+			@ unlink($this->lockfile);
 		}else{
 			$result = false;
 		}
@@ -112,6 +119,7 @@ class Xupdate_FtpThemeFinderInstall extends Xupdate_FtpCommonZipArchive {
 		}else{
 			$this->content.= _ERRORS;
 		}
+
 		return $result;
 	}
 
@@ -137,7 +145,7 @@ class Xupdate_FtpThemeFinderInstall extends Xupdate_FtpCommonZipArchive {
 		//$this->Ftp->connect();
 
 		$this->Ftp->appendMes( 'start uploading..<br />');
-		$this->content.=  'uploading..<br />';
+		$this->content.= _MI_XUPDATE_PROG_UPLOADING . '<br />';
 
 		if ($this->target_type !== 'Theme'){
 			return false;
