@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 // Xupdate_ftp excutr function
 // if(!class_exists('ZipArchive') ){
