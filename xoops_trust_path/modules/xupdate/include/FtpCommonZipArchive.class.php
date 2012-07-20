@@ -22,7 +22,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 		// local file name
 		//$downloadFilePath = $this->_getDownloadFilePath();
 		$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
-		$downloadFilePath = $this->Xupdate->params['temp_path'].'/'.$this->target_key .'.zip';
+		$downloadFilePath = $this->Xupdate->params['temp_path'].'/'.$this->download_file;
 		$exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
 		if (empty($downloadFilePath) ) {
 			$this->_set_error_log('getDownloadFilePath not found error in: '.$this->_getDownloadFilePath());

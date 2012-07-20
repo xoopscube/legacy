@@ -26,6 +26,8 @@ class Xupdate_FtpCommonFunc {
 
 	public $options = array();
 
+	protected $download_file;
+
 	public function __construct() {
 
 		$this->mRoot =& XCube_Root::getSingleton();

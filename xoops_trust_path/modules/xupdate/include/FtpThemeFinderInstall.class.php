@@ -1,24 +1,25 @@
 <?php
 
 // Xupdate_ftp excutr function
-if(!class_exists('ZipArchive') ){
-	$mod_zip=false;
-	if (!extension_loaded('zip')) {
-		if (function_exists('dl')){
-			$prefix = (PHP_SHLIB_SUFFIX == 'dll') ? 'php_' : '';
-			if(@dl($prefix . 'zip.' . PHP_SHLIB_SUFFIX)){
-				$mod_zip=true;
-			}
-		}
-	}
-	if(!class_exists('ZipArchive') ){
-		require_once XUPDATE_TRUST_PATH .'/include/FtpCommonFileArchive.class.php';
-	}else{
-		require_once XUPDATE_TRUST_PATH .'/include/FtpCommonZipArchive.class.php';
-	}
-}else{
-	require_once XUPDATE_TRUST_PATH .'/include/FtpCommonZipArchive.class.php';
-}
+// if(!class_exists('ZipArchive') ){
+// 	$mod_zip=false;
+// 	if (!extension_loaded('zip')) {
+// 		if (function_exists('dl')){
+// 			$prefix = (PHP_SHLIB_SUFFIX == 'dll') ? 'php_' : '';
+// 			if(@dl($prefix . 'zip.' . PHP_SHLIB_SUFFIX)){
+// 				$mod_zip=true;
+// 			}
+// 		}
+// 	}
+// 	if(!class_exists('ZipArchive') ){
+// 		require_once XUPDATE_TRUST_PATH .'/include/FtpCommonFileArchive.class.php';
+// 	}else{
+// 		require_once XUPDATE_TRUST_PATH .'/include/FtpCommonZipArchive.class.php';
+// 	}
+// }else{
+// 	require_once XUPDATE_TRUST_PATH .'/include/FtpCommonZipArchive.class.php';
+// }
+require_once XUPDATE_TRUST_PATH .'/include/FtpCommonFileArchive.class.php';
 
 class Xupdate_FtpThemeFinderInstall extends Xupdate_FtpCommonZipArchive {
 
@@ -58,10 +59,10 @@ class Xupdate_FtpThemeFinderInstall extends Xupdate_FtpCommonZipArchive {
 		if( $this->Xupdate->params['is_writable']['result'] === true ) {
 
 			$downloadUrl = $this->Func->_getDownloadUrl( $this->target_key, $this->downloadUrlFormat );
-			$tempFilename = $this->target_key . '.zip';
+			$this->download_file = $this->target_key . (preg_match('/\btar\b/i', $downloadUrl)? '.tar.gz' : '.zip');
 			
 			if ($this->checkExploredDirPath($this->target_key)) {
-				if ($this->Func->_downloadFile( $this->target_key, $downloadUrl, $tempFilename, $this->downloadedFilePath )){
+				if ($this->Func->_downloadFile( $this->target_key, $downloadUrl, $this->download_file, $this->downloadedFilePath )){
 					$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
 					$this->exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
 					if($this->_unzipFile()==true) {
