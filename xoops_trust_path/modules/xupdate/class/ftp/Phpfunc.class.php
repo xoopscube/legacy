@@ -168,7 +168,8 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract {
 			$this->SendMSG("Fatal error: Call to undefined function ftp_chdir");
 			return false;
 		}
-		return ftp_chdir( $this->_conn_id, $pathname );
+		// hide error (@) for Xupdate_Ftp::seekFTPRoot()
+		return @ftp_chdir( $this->_conn_id, $pathname );
 	}
 
 	protected function rmdir($pathname) {
