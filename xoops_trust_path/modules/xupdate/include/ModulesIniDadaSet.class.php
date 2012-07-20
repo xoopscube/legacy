@@ -150,7 +150,8 @@ class Xupdate_ModulesIniDadaSet
 								$master = $arr_master[$sid][$key];
 								if ( $master['approved'] == 'true' ) {
 									$item['sid'] = $sid ;
-									$item['description'] = isset($items_lang[$key]['description']) ? $items_lang[$key]['description'] : '' ;
+									$item['description'] = (isset($items_lang[$key]) && isset($items_lang[$key]['description'])) ? $items_lang[$key]['description']
+									                     : (isset($item['description'])? $item['description'] : '') ;
 									switch($item['target_type']){
 										case 'TrustModule':
 											$this->_setDataTrustModule($item['sid'] , $item);
