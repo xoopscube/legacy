@@ -392,8 +392,10 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			$result = array('ok' => $result, 'ng' => array());
 		}
 		if (!$result['ok']){
-			$this->Ftp->appendMes( 'fail upload '.$where.' uploadNakami<br />');
+			$this->Ftp->appendMes( 'fail upload '.$where.'<br />');
 			return false;
+		} else if (is_numeric($result['ok'])) {
+			$this->Ftp->appendMes( 'uploaded '.$result['ok'].' files into '.$where.'<br />');
 		}
 		if ($result['ng']) {
 			$this->_set_error_log(_MI_XUPDATE_ERR_NOT_UPLOADED.': ' . join('<br />'._MI_XUPDATE_ERR_NOT_UPLOADED.': ', $result['ng']));
