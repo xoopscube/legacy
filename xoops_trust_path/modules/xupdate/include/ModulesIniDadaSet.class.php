@@ -12,7 +12,11 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 
 class Xupdate_ModulesIniDadaSet
 {
-
+	// language file mapping array [from => to]
+	private $lang_mapping = array(
+			'japanese' => 'ja_utf8'
+			);
+	
 	public $Xupdate  ;	// Xupdate instance
 	public $Func ;	// Functions instance
 
@@ -39,6 +43,9 @@ class Xupdate_ModulesIniDadaSet
 
 		$root =& XCube_Root::getSingleton();
 		$language = $root->mContext->getXoopsConfig('language');
+		if (isset($this->lang_mapping[$language])) {
+			$language = $this->lang_mapping[$language];
+		}
 		$downloadDirPath = $this->Xupdate->params['temp_path'];
 		$realDirPath = realpath($downloadDirPath);
 
