@@ -315,7 +315,8 @@ class Xupdate_ModulesIniDadaSet
 		$item['target_key']= isset($item['target_key']) ? $item['target_key']: $item['dirname'] ;
 		$item['trust_dirname']= '' ;
 		$item['description']= isset($item['description']) ? $item['description']: '' ;
-		$item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
+		//$item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
+		$item['unzipdirlevel'] = 0; // not use "unzipdirlevel"
 		$item['addon_url']= isset($item['addon_url']) ? $item['addon_url']: '' ;
 
 		$item = $this->_createItemOptions($item);
@@ -345,7 +346,8 @@ class Xupdate_ModulesIniDadaSet
 		  $item['target_key']= isset($item['target_key']) ? $item['target_key']: $item['dirname'] ;
 		  $item['trust_dirname']= isset($item['trust_dirname']) ? $item['trust_dirname']: $item['dirname'] ;
 		  $item['description']= isset($item['description']) ? $item['description']: '' ;
-		  $item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
+		  //$item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
+		  $item['unzipdirlevel'] = 0; // not use "unzipdirlevel"
 		  $item['addon_url']= isset($item['addon_url']) ? $item['addon_url']: '' ;
 
 		  $item = $this->_createItemOptions($item);

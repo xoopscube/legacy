@@ -45,7 +45,6 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 
 	public $trust_dirname;
 	public $dirname;
-	public $unzipdirlevel;
 	
 	public function __construct() {
 
@@ -80,12 +79,11 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			$this->content.= _MI_XUPDATE_PROG_FILE_GETTING . '<br />';
 			if ($this->Func->_downloadFile( $this->target_key, $downloadUrl, $this->download_file, $this->downloadedFilePath )){
 				$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
-				$this->exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
+				$exploredRoot = $this->exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
 				if($this->_unzipFile()==true) {
-					//一つディレクトリ階層を下げる
-					$downdir_result = false;
-					if (!empty($this->unzipdirlevel)){
-						$downdir_result = $this->_exploredDirPath_DownDir();
+					// ディレクトリを掘り下げて探索
+					if (! $this->_exploredDirPath_DownDir()) {
+						$this->_set_error_log(_MI_XUPDATE_ERR_FTP_NOTFOUND);
 					}
 					// TODO port , timeout
 					if ($this->Ftp->isConnected() || $this->Ftp->app_login("127.0.0.1")==true) {
@@ -116,9 +114,9 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 					}
 
 					//一つディレクトリ階層を戻す
-					if ($downdir_result){
-						$this->_exploredDirPath_UpDir();
-					}
+					//if ($downdir_result){
+					//	$this->_exploredDirPath_UpDir();
+					//}
 
 				}else{
 					$this->_set_error_log(_MI_XUPDATE_ERR_UNZIP_FILE);
@@ -130,7 +128,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			}
 
 			$this->content.= _MI_XUPDATE_PROG_CLEANING_UP . '<br />';
-			$this->_cleanup($this->exploredDirPath);
+			$this->_cleanup($exploredRoot);
 
 			if ($this->Ftp->isConnected()) {
 				$this->Ftp->app_logout();
@@ -163,7 +161,8 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	 **/
 	public function _getDownloadUrl()
 	{
-		$url = sprintf($this->downloadUrlFormat, $this->target_key);
+		//$url = sprintf($this->downloadUrlFormat, $this->target_key);
+		$url = str_replace($this->downloadUrlFormat, '%s', $this->target_key);
 		return $url;
 	}
 
@@ -313,26 +312,31 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	 *
 	 * @return	void
 	 **/
-	private function _exploredDirPath_DownDir()
+	private function _exploredDirPath_DownDir($level = 0)
 	{
-		$ret = false;
 		$dir = $this->exploredDirPath;
-		foreach (scandir($dir) as $item) {
-			if ($item == '.' || $item == '..'){
+		$this->Ftp->appendMes('check exploredDirPath: '.$this->exploredDirPath.'<br />');
+		$items = scandir($dir);
+		$checker = array();
+		foreach($items as $item) {
+			if ($item === '.' || $item === '..' || $item === '__MACOSX'){
 				continue;
 			}
-			if ($item =='html' || $item =='xoops_trust_path') {
-				$ret = false;
-				break;
-			}
 			if (is_dir($dir.'/'.$item)) {
-				$this->exploredDirPath = realpath($dir.'/'.$item);
-				$this->Ftp->appendMes('down dir exploredDirPath: '.$this->exploredDirPath.'<br />');
-				$ret = true;
-				break;
+				$checker[$item] = true;
 			}
 		}
-		return $ret;
+		if (isset($checker['html']) || isset($checker['xoops_trust_path'])) {
+			$this->Ftp->appendMes('found files exploredDirPath: '.$this->exploredDirPath.'<br />');
+			return true;
+		}
+		foreach (array_keys($checker) as $item) {
+			$this->exploredDirPath = realpath($dir.'/'.$item);
+			if ($this->_exploredDirPath_DownDir()) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
