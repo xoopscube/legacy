@@ -54,9 +54,10 @@ class Xupdate_Root extends XoopsSimpleObject {
 		}
 		$is_writable_result = false;
 		if (!empty($tmpf_realpath) && is_dir($tmpf_realpath)) {
-			if (@ touch($tmpf_realpath . 'test.ini.php')) {
+			$test_file = $tmpf_realpath . DIRECTORY_SEPARATOR . 'test.ini.php';
+			if (@ touch($test_file)) {
 				$is_writable_result = true;
-				unlink($tmpf_realpath . 'test.ini.php');
+				unlink($test_file);
 			} else {
 				$is_writable_result = false;
 			}
