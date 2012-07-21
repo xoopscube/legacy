@@ -145,39 +145,35 @@ class Xupdate_ModulesIniDadaSet
 						// make $this->approved
 						$this->approved[$sid] = array();
 						$master = array();
-						foreach($arr_master[$sid] as $_master) {
-							if ($_master['approved']) {
-								$master[$_master['target_key']] = true;
+						foreach($arr_master[$sid] as $arr) {
+							if (is_array($arr) && !empty($arr['approved'])) {
+								$master[strtolower($arr['target_key'])] = true;
 							}
 						}
-						foreach ($items as $check) {
-							if (isset($master[$check['target_key']])) {
+						foreach ($items as $key => $check) {
+							if (isset($master[strtolower($check['target_key'])])) {
 								$this->approved[$sid][$check['target_key']] = true;
+							} else {
+								unset($items[$key]);
 							}
 						}
-	
 						$this->_setmSiteModuleObjects($sid, $caller);
 						
 						foreach($items as $key => $item){
-							if (isset($arr_master[$sid][$key])){
-								$master = $arr_master[$sid][$key];
-								if ( $master['approved'] == 'true' ) {
-									$item['sid'] = $sid ;
-									$item['description'] = (isset($items_lang[$key]) && isset($items_lang[$key]['description'])) ? $items_lang[$key]['description']
-									                     : (isset($item['description'])? $item['description'] : '') ;
-									if ($item['description'] && $use_mb_convert && 'UTF-8' != _CHARSET) {
-										$item['description'] = mb_convert_encoding($item['description'] , _CHARSET , 'UTF-8');
-									}
-									switch($item['target_type']){
-										case 'TrustModule':
-											$this->_setDataTrustModule($item['sid'] , $item);
-											break;
-										case 'X2Module':
-										case 'Theme':
-										default:
-											$this->_setDataSingleModule($item['sid'] , $item);
-									}
-								}
+							$item['sid'] = $sid ;
+							$item['description'] = (isset($items_lang[$key]) && isset($items_lang[$key]['description'])) ? $items_lang[$key]['description']
+							                     : (isset($item['description'])? $item['description'] : '') ;
+							if ($item['description'] && $use_mb_convert && 'UTF-8' != _CHARSET) {
+								$item['description'] = mb_convert_encoding($item['description'] , _CHARSET , 'UTF-8');
+							}
+							switch($item['target_type']){
+								case 'TrustModule':
+									$this->_setDataTrustModule($item['sid'] , $item);
+									break;
+								case 'X2Module':
+								case 'Theme':
+								default:
+									$this->_setDataSingleModule($item['sid'] , $item);
 							}
 						}
 					}

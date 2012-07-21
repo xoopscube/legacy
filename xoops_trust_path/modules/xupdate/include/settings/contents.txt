@@ -6,115 +6,115 @@
 "XoopsX_CorePack":
 {
 "target_key":"XoopsX_CorePack",
-"approved":"true"
+"approved":true
 },
 
 "bulletin":
 {
 "target_key":"bulletin",
-"approved":"true"
+"approved":true
 },
 
 "cubeUtils":
 {
 "target_key":"cubeUtils",
-"approved":"true"
+"approved":true
 },
 
 "d3downloads":
 {
 "target_key":"d3downloads",
-"approved":"true"
+"approved":true
 },
 
 "d3forum":
 {
 "target_key":"d3forum",
-"approved":"true"
+"approved":true
 },
 
 "d3pipes":
 {
 "target_key":"d3pipes",
-"approved":"true"
+"approved":true
 },
 
 "gnavi":
 {
 "target_key":"gnavi",
-"approved":"true"
+"approved":true
 },
 
 "myalbum":
 {
 "target_key":"myalbum-p",
-"approved":"true"
+"approved":true
 },
 
 "multiMenu":
 {
 "target_key":"multiMenu",
-"approved":"true"
+"approved":true
 },
 
 "mobile_templates":
 {
 "target_key":"mobile_templates",
-"approved":"true"
+"approved":true
 },
 
 "none":
 {
 "target_key":"none",
-"approved":"true"
+"approved":true
 },
 
 "openID":
 {
 "target_key":"openID",
-"approved":"true"
+"approved":true
 },
 
 "piCal":
 {
 "target_key":"piCal",
-"approved":"true"
+"approved":true
 },
 
 "pico":
 {
 "target_key":"pico",
-"approved":"true"
+"approved":true
 },
 
 "search":
 {
 "target_key":"search",
-"approved":"true"
+"approved":true
 },
 
 "xpress":
 {
 "target_key":"xpress",
-"approved":"true"
+"approved":true
 },
 
 "xsns":
 {
 "target_key":"xsns",
-"approved":"true"
+"approved":true
 },
 
 "xupdate":
 {
 "target_key":"xupdate",
-"approved":"true"
+"approved":true
 },
 
 "xwords":
 {
 "target_key":"xwords",
-"approved":"true"
+"approved":true
 }
 
 },
@@ -126,7 +126,7 @@
 "d3diary":
 {
 "target_key":"d3diary",
-"approved":"true"
+"approved":true
 }
 
 },
@@ -138,19 +138,19 @@
 "HypCommon":
 {
 "target_key":"HypCommon",
-"approved":"true"
+"approved":true
 },
 
 "xpwiki":
 {
 "target_key":"xpwiki",
-"approved":"true"
+"approved":true
 },
 
 "xelfinder":
 {
 "target_key":"xelfinder",
-"approved":"true"
+"approved":true
 }
 
 },
@@ -162,19 +162,19 @@
 "xugjmcdel":
 {
 "target_key":"xoops_mod_xugjmcdel",
-"approved":"true"
+"approved":true
 },
 
 "myckeditor":
 {
 "target_key":"xoops_mod_myckeditor_ver362_v010b",
-"approved":"true"
+"approved":true
 },
 
 "chalog":
 {
 "target_key":"xoops_mod_chalog005f_fix",
-"approved":"true"
+"approved":true
 }
 
 },
@@ -186,181 +186,181 @@
 "fashion_a":
 {
 "target_key":"fashion_a",
-"approved":"true"
+"approved":true
 },
 
 "fashion":
 {
 "target_key":"fashion",
-"approved":"true"
+"approved":true
 },
 
 "photograph":
 {
 "target_key":"photograph",
-"approved":"true"
+"approved":true
 },
 
 "basic5":
 {
 "target_key":"basic5",
-"approved":"true"
+"approved":true
 },
 
 "basic5a":
 {
 "target_key":"basic5a",
-"approved":"true"
+"approved":true
 },
 
 "magazine":
 {
 "target_key":"magazine",
-"approved":"true"
+"approved":true
 },
 
 "4seasons":
 {
 "target_key":"4seasons",
-"approved":"true"
+"approved":true
 },
 
 "January":
 {
 "target_key":"January",
-"approved":"true"
+"approved":true
 },
 
 "February":
 {
 "target_key":"February",
-"approved":"true"
+"approved":true
 },
 
 "March":
 {
 "target_key":"March",
-"approved":"true"
+"approved":true
 },
 
 "April":
 {
 "target_key":"April",
-"approved":"true"
+"approved":true
 },
 
 "May":
 {
 "target_key":"May",
-"approved":"true"
+"approved":true
 },
 
 "June":
 {
 "target_key":"June",
-"approved":"true"
+"approved":true
 },
 
 "July":
 {
 "target_key":"July",
-"approved":"true"
+"approved":true
 },
 
 "August":
 {
 "target_key":"August",
-"approved":"true"
+"approved":true
 },
 
 "September":
 {
 "target_key":"September",
-"approved":"true"
+"approved":true
 },
 
 "October":
 {
 "target_key":"October",
-"approved":"true"
+"approved":true
 },
 
 "November":
 {
 "target_key":"November",
-"approved":"true"
+"approved":true
 },
 
 "December":
 {
 "target_key":"December",
-"approved":"true"
+"approved":true
 },
 
 "simple":
 {
 "target_key":"simple",
-"approved":"true"
+"approved":true
 },
 
 "vgrid2":
 {
 "target_key":"vgrid2",
-"approved":"true"
+"approved":true
 },
 
 "vgrid":
 {
 "target_key":"vgrid",
-"approved":"true"
+"approved":true
 },
 
 "momiji":
 {
 "target_key":"momiji",
-"approved":"true"
+"approved":true
 },
 
 "sakura":
 {
 "target_key":"sakura",
-"approved":"true"
+"approved":true
 },
 
 "colors4x":
 {
 "target_key":"colors4x",
-"approved":"true"
+"approved":true
 },
 
 "colors3x":
 {
 "target_key":"colors3x",
-"approved":"true"
+"approved":true
 },
 
 "colors2x":
 {
 "target_key":"colors2x",
-"approved":"true"
+"approved":true
 },
 
 "colors":
 {
 "target_key":"colors",
-"approved":"true"
+"approved":true
 },
 
 "coffee_time":
 {
 "target_key":"coffee_time",
-"approved":"true"
+"approved":true
 },
 
 "tw_940":
 {
 "target_key":"tw_940",
-"approved":"true"
+"approved":true
 }
 
 }
