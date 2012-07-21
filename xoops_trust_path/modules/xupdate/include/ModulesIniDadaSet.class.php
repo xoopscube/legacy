@@ -147,11 +147,11 @@ class Xupdate_ModulesIniDadaSet
 						$master = array();
 						foreach($arr_master[$sid] as $arr) {
 							if (is_array($arr) && !empty($arr['approved'])) {
-								$master[strtolower($arr['target_key'])] = true;
+								$master[$arr['target_key']] = true;
 							}
 						}
 						foreach ($items as $key => $check) {
-							if (isset($master[strtolower($check['target_key'])])) {
+							if (isset($master[$check['target_key']])) {
 								$this->approved[$sid][$check['target_key']] = true;
 							} else {
 								unset($items[$key]);
