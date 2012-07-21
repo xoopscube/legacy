@@ -54,20 +54,11 @@ class Xupdate_Root extends XoopsSimpleObject {
 		}
 		$is_writable_result = false;
 		if (!empty($tmpf_realpath) && is_dir($tmpf_realpath)) {
-			@chmod($tmpf_realpath, 0705);
-			if(strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'){
-				if ( is_writeable($tmpf_realpath)  ) {
-					$is_writable_result = true;
-				}
-			}else{
-				$fper_str = substr(sprintf('%o', fileperms($tmpf_realpath)), -3);
-				$fper_str1 = substr($fper_str, 0,1);
-				$fper_str_1 = substr($fper_str, -1);
-				if ( $fper_str1 == '7' ) {
-					if ( $fper_str_1 == '7' || $fper_str_1 == '5' ) {
-						$is_writable_result = true;
-					}
-				}
+			if (@ touch($tmpf_realpath . 'test.ini.php')) {
+				$is_writable_result = true;
+				unlink($tmpf_realpath . 'test.ini.php');
+			} else {
+				$is_writable_result = false;
 			}
 		}
 		$this->params['is_writable']['result'] = $is_writable_result ;
