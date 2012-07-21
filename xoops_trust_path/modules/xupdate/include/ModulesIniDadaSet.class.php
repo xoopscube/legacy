@@ -123,6 +123,8 @@ class Xupdate_ModulesIniDadaSet
 							'isLang'             => true );
 								
 		}
+		
+		$use_mb_convert = function_exists('mb_convert_encoding');
 		if ($this->Func->_multiDownloadFile($multiData, $cacheTTL)) {
 			foreach($multiData as $i => $res) {
 				if (isset($res['isLang'])) {
@@ -159,6 +161,9 @@ class Xupdate_ModulesIniDadaSet
 									$item['sid'] = $sid ;
 									$item['description'] = (isset($items_lang[$key]) && isset($items_lang[$key]['description'])) ? $items_lang[$key]['description']
 									                     : (isset($item['description'])? $item['description'] : '') ;
+									if ($item['description'] && $use_mb_convert && 'UTF-8' != _CHARSET) {
+										$item['description'] = mb_convert_encoding($item['description'] , _CHARSET , 'UTF-8');
+									}
 									switch($item['target_type']){
 										case 'TrustModule':
 											$this->_setDataTrustModule($item['sid'] , $item);
@@ -310,11 +315,6 @@ class Xupdate_ModulesIniDadaSet
 		$item['target_key']= isset($item['target_key']) ? $item['target_key']: $item['dirname'] ;
 		$item['trust_dirname']= '' ;
 		$item['description']= isset($item['description']) ? $item['description']: '' ;
-		if(function_exists('mb_convert_encoding')){
-			if ('UTF-8' != _CHARSET){
-				$item['description'] = mb_convert_encoding($item['description'] , _CHARSET , 'UTF-8');
-			}
-		}
 		$item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
 		$item['addon_url']= isset($item['addon_url']) ? $item['addon_url']: '' ;
 
@@ -345,11 +345,6 @@ class Xupdate_ModulesIniDadaSet
 		  $item['target_key']= isset($item['target_key']) ? $item['target_key']: $item['dirname'] ;
 		  $item['trust_dirname']= isset($item['trust_dirname']) ? $item['trust_dirname']: $item['dirname'] ;
 		  $item['description']= isset($item['description']) ? $item['description']: '' ;
-		  if(function_exists('mb_convert_encoding')){
-			  if ('UTF-8' != _CHARSET){
-				  $item['description'] = mb_convert_encoding($item['description'] , _CHARSET , 'UTF-8');
-			  }
-		  }
 		  $item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
 		  $item['addon_url']= isset($item['addon_url']) ? $item['addon_url']: '' ;
 
