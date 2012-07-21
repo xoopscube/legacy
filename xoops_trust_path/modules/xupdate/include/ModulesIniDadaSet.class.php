@@ -132,10 +132,14 @@ class Xupdate_ModulesIniDadaSet
 				}
 				if (file_exists($res['downloadedFilePath'])){
 					$downloadedFilePath = $res['downloadedFilePath'];
-					$lngKey = $i + 1;
-					if (file_exists($multiData[$lngKey]['downloadedFilePath'])){
-						$items = parse_ini_file($downloadedFilePath, true);
-						$items_lang = parse_ini_file($multiData[$lngKey]['downloadedFilePath'], true);
+					if ($items = @ parse_ini_file($downloadedFilePath, true)) {
+						$lngKey = $i + 1;
+						if (file_exists($multiData[$lngKey]['downloadedFilePath'])){
+							$items_lang = @ parse_ini_file($multiData[$lngKey]['downloadedFilePath'], true);
+						}
+						if (! $items_lang) {
+							$items_lang = array();
+						}
 						$sid = (int)$res['sid'];
 						
 						// make $this->approved
@@ -151,7 +155,7 @@ class Xupdate_ModulesIniDadaSet
 								$this->approved[$sid][$check['target_key']] = true;
 							}
 						}
-
+	
 						$this->_setmSiteModuleObjects($sid, $caller);
 						
 						foreach($items as $key => $item){
