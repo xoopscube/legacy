@@ -37,7 +37,7 @@ class Xupdate_ModulesIniDadaSet
 
 	}
 
-	public function execute( $caller )
+	public function execute( $callers )
 	{
 //データの自動作成と削除
 
@@ -67,61 +67,67 @@ class Xupdate_ModulesIniDadaSet
 
 		$json_fname = dirname(__FILE__) . '/settings/stores.txt';
 		$this->stores = json_decode(file_get_contents($json_fname), true);
-
-		$this->_setmStoreObjects( $caller );
 		//adump($this->stores);
-		//adump($this->mSiteObjects);
 
 		$json_fname = dirname(__FILE__) . '/settings/contents.txt';
 		$arr_master = json_decode(file_get_contents($json_fname), true);
 		//adump($arr_master);
 
 		// temp end
+		
+		if (! is_array($callers)) {
+			$callers = array($callers);
+		}
 
 		$cacheTTL = 600; //10min
 		$multiData = array();
-		foreach($this->stores as $sname => $store){
-			if ( $store['contents'] !== $caller ) {
-				continue;
+		foreach($callers as $caller) {
+			$this->_setmStoreObjects( $caller );
+	
+			foreach($this->stores as $sname => $store){
+				if ( $store['contents'] !== $caller ) {
+					continue;
+				}
+				$downloadUrl = $store['addon_url'];
+				//adump($store);
+				switch ($store['contents']){
+					case 'theme':
+						$target_key = 'themes.ini';
+						$tempFilename = 'themes'.(int)$store['sid'].'.ini.php';
+						$contents = 'themes';
+						break;
+					case 'module':
+					default:
+						$target_key = 'modules.ini';
+						$tempFilename = 'modules'.(int)$store['sid'].'.ini.php';
+						$contents = 'modules';
+				}
+	
+				$multiData[] = array(
+								'sid'                => $store['sid'],
+								'target_key'         => $target_key,
+								'downloadUrl'        => $downloadUrl,
+								'tempFilename'       => $tempFilename,
+								'downloadedFilePath' => '',
+								'noRedirect'         => true,
+								'caller'             => $caller );
+				
+				$_dirname = dirname($downloadUrl);
+				$_filename = basename($downloadUrl);
+				list($_basename) = explode('.', $_filename, 2);
+				$downloadLangUrl = $_dirname.'/'.$_basename.'/language/'.$language.'/'.$_filename;
+				$tempLangFilename = 'lang_'.$language.'_'.$contents.(int)$store['sid'].'.ini.php';
+				
+				$multiData[] = array(
+								'sid'                => $store['sid'],
+								'target_key'         => $target_key,
+								'downloadUrl'        => $downloadLangUrl,
+								'tempFilename'       => $tempLangFilename,
+								'downloadedFilePath' => '',
+								'noRedirect'         => true,
+								'isLang'             => true );
+				
 			}
-			$downloadUrl = $store['addon_url'];
-			//adump($store);
-			switch ($store['contents']){
-				case 'theme':
-					$target_key = 'themes.ini';
-					$tempFilename = 'themes'.(int)$store['sid'].'.ini.php';
-					$contents = 'themes';
-					break;
-				case 'module':
-				default:
-					$target_key = 'modules.ini';
-					$tempFilename = 'modules'.(int)$store['sid'].'.ini.php';
-					$contents = 'modules';
-			}
-
-			$multiData[] = array(
-							'sid'                => $store['sid'],
-							'target_key'         => $target_key,
-							'downloadUrl'        => $downloadUrl,
-							'tempFilename'       => $tempFilename,
-							'downloadedFilePath' => '',
-							'noRedirect'         => true );
-			
-			$_dirname = dirname($downloadUrl);
-			$_filename = basename($downloadUrl);
-			list($_basename) = explode('.', $_filename, 2);
-			$downloadLangUrl = $_dirname.'/'.$_basename.'/language/'.$language.'/'.$_filename;
-			$tempLangFilename = 'lang_'.$language.'_'.$contents.(int)$store['sid'].'.ini.php';
-			
-			$multiData[] = array(
-							'sid'                => $store['sid'],
-							'target_key'         => $target_key,
-							'downloadUrl'        => $downloadLangUrl,
-							'tempFilename'       => $tempLangFilename,
-							'downloadedFilePath' => '',
-							'noRedirect'         => true,
-							'isLang'             => true );
-								
 		}
 		
 		$use_mb_convert = function_exists('mb_convert_encoding');
@@ -157,7 +163,7 @@ class Xupdate_ModulesIniDadaSet
 								unset($items[$key]);
 							}
 						}
-						$this->_setmSiteModuleObjects($sid, $caller);
+						$this->_setmSiteModuleObjects($sid, $res['caller']);
 						
 						foreach($items as $key => $item){
 							$item['sid'] = $sid ;

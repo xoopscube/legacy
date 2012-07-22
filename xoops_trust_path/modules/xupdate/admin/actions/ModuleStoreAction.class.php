@@ -16,6 +16,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 //ListView data
 	var $sid ;
 	var $mModuleObjects = array();
+	var $storeObject = null;
 	var $mFilter = null;
 
 	var $mActionForm = null;
@@ -148,6 +149,12 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		}
 		
 		$this->mModuleObjects =& $modHand->getObjects($criteria);
+		
+		if (!empty($this->sid)) {
+			$storeHand =  & $this->_getStoreHandler();
+			$this->storeObject =& $storeHand->get($this->sid);
+		}
+		
 		return XUPDATE_FRAME_VIEW_INDEX;
 	}
 
@@ -167,29 +174,31 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 		$render->setAttribute('sid', $this->sid);
 
+		$render->setAttribute('sid_query',    $this->sid ?            ('sid='.$this->sid.'&amp;') : '');
 		$render->setAttribute('sort_query',   isset($_GET['sort'])?   ('sort='.rawurlencode((string)$_GET['sort']).'&amp;') : '');
 		$render->setAttribute('filter_query', isset($_GET['filter'])? ('filter='.rawurlencode((string)$_GET['filter']).'&amp;') : '');
 
 		$render->setAttribute('moduleObjects', $this->mModuleObjects);
+		$render->setAttribute('storeObject', $this->storeObject);
 
-		$modHand = & $this->_getHandler();
-		$criteria = new CriteriaCompo();
-		$cri_compo = new CriteriaCompo();
-		$cri_compo->add(new Criteria( 'target_type', 'TrustModule' ) );
-		$cri_compo->add(new Criteria( 'target_type', 'X2Module'), 'OR' ) ;
-		$criteria->add( $cri_compo );
-		if (!empty( $this->sid)){
-			$criteria->add(new Criteria( 'sid', $this->sid ) );
-		}
-		$module_total = $modHand->getCount($criteria);
+// 		$modHand = & $this->_getHandler();
+// 		$criteria = new CriteriaCompo();
+// 		$cri_compo = new CriteriaCompo();
+// 		$cri_compo->add(new Criteria( 'target_type', 'TrustModule' ) );
+// 		$cri_compo->add(new Criteria( 'target_type', 'X2Module'), 'OR' ) ;
+// 		$criteria->add( $cri_compo );
+// 		if (!empty( $this->sid)){
+// 			$criteria->add(new Criteria( 'sid', $this->sid ) );
+// 		}
+// 		$module_total = $modHand->getCount($criteria);
 
 		$render->setAttribute('pageNavi', $this->mFilter->mNavi);
 
-		$render->setAttribute('ModuleTotal', $module_total);
+//		$render->setAttribute('ModuleTotal', $module_total);
 
 		$render->setAttribute('actionForm', $this->mActionForm);
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
-
+		$render->setAttribute('currentMenu', _MI_XUPDATE_ADMENU_MODULE);
 
 	}
 

@@ -1,12 +1,13 @@
 <div id="xupdate">
-	<div class="adminnavi">
-	  <a href="./index.php?action=ThemeStore"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></a>
-	  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=ThemeStore"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTOREDEC}></a></span>
-	</div>
+	<{include file="admin_navi.html"}>
 	
 	<h3 class="admintitle"><{$smarty.const._AD_XUPDATE_LANG_MODULES}></h3>
 	<{include file="admin_menunavi.html"}>
 	<{include file="admin_tips.html"}>
+	
+	<{if $storeObject}>
+	<h4><{$storeObject->getShow('name')}></h4>
+	<{/if}>
 	
 	<ul class="toptab">
 	  <li class="addModule"><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ThemeList"><{$smarty.const._AD_LEGACY_LANG_THEME}></a></li>
@@ -21,6 +22,16 @@
 	  </ul>
 	</div>
 	<{/if}>
+	
+	<div class="filtermenu">
+	<ul class="submenunavi">
+		<li><a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>"><{$smarty.const._MI_XUPDATE_ALL}></a></li>
+		<li><a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>filter=installed"><{$smarty.const._MI_XUPDATE_INSTALLED}></a></li>
+		<li><a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>filter=updated"><{$smarty.const._MI_XUPDATE_UPDATED}></a></li>
+		<li><a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>filter=future"><{$smarty.const._MI_XUPDATE_FUTURE}></a></li>
+	</ul>
+	</div>
+	
 	<{if $pageNavi->getPerpage() < $pageNavi->getTotalItems() }>
 	<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
 	<{/if}>
@@ -31,37 +42,37 @@
 	    <table class="outer">
 	  <tr>
 	    <th>id
-	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.MODULE_SORT_KEY_ID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.MODULE_SORT_KEY_ID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_ID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_ID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
 	      </th>
 	    <th><{$smarty.const._MD_XUPDATE_LANG_SID}>
-	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.MODULE_SORT_KEY_SID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.MODULE_SORT_KEY_SID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_SID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_SID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
 	      </th>
 	    <th><div><{$smarty.const._AD_LEGACY_LANG_THEME}>
-	        <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-	        <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+	        <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+	        <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
 	      </div>
 	      <div><{$smarty.const._AD_LEGACY_LANG_VERSION}>
-	        <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-	        <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+	        <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+	        <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
 	      </div>
 	      <div><{$smarty.const._AD_XUPDATE_LANG_LICENSE}>
-	        <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.MODULE_SORT_KEY_LICENSE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-	        <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.MODULE_SORT_KEY_LICENSE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+	        <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_LICENSE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+	        <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_LICENSE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
 	      </div>
 	    </th>
 	   <th><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}>
-	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
 	      </th>
 	    <th><{$smarty.const._AD_LEGACY_LANG_PACKAGE}>
-	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.MODULE_SORT_KEY_TARGET_KEY}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.MODULE_SORT_KEY_TARGET_KEY}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_TARGET_KEY}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_TARGET_KEY}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
 	      </th>
 	    <th><{$smarty.const._AD_XUPDATE_LANG_TYPE}>
-	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.MODULE_SORT_KEY_TARGET_TYPE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.MODULE_SORT_KEY_TARGET_TYPE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_TARGET_TYPE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_TARGET_TYPE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
 	      </th>
 	    <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
 	      <th><{$smarty.const._AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL}><br><input id="rapidInstallCheckboxAll" type="checkbox" /></th>
