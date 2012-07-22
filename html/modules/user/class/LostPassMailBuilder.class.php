@@ -86,7 +86,11 @@ class User_LostPass1MailBuilder
 		$this->mMailer->assign("ADMINMAIL", $xoopsConfig['adminmail']);
 		$this->mMailer->assign("SITEURL", XOOPS_URL . "/");
 		$this->mMailer->assign("IP", $_SERVER['REMOTE_ADDR']);
-		$this->mMailer->assign("NEWPWD_LINK", XOOPS_URL . "/lostpass.php?email=" . $user->getShow('email') . "&code=" . substr($user->get("pass"), 0, 5));
+		$queryString = http_build_query(array(
+			'email' => $user->getShow('email'),
+			'code'  => substr($user->get("pass"), 0, 5),
+		));
+		$this->mMailer->assign("NEWPWD_LINK", XOOPS_URL . "/lostpass.php?" . $queryString);
 	}
 		
 	function &getResult()
