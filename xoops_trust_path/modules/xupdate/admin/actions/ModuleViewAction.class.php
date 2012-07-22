@@ -113,6 +113,8 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 
 			$criteria = new CriteriaCompo();
 			$criteria->add(new Criteria( 'sid', $sid ) );
+			$criteria->setSort('dirname');
+			$criteria->setOrder('ASC');
 			$siteModuleStoreObjects =& $modHand->getObjects($criteria);
 
 			$itemsobj = array();
