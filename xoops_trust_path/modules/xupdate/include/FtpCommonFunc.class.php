@@ -26,6 +26,9 @@ class Xupdate_FtpCommonFunc {
 
 	public $options = array();
 
+	protected $download_file;
+	protected $lockfile;
+	
 	public function __construct() {
 
 		$this->mRoot =& XCube_Root::getSingleton();
@@ -39,7 +42,9 @@ class Xupdate_FtpCommonFunc {
 
 		$this->downloadDirPath = $this->Xupdate->params['temp_path'];
 //		$this->downloadUrlFormat = $this->mod_config['Mod_download_Url_format'];
-
+		
+		$this->lockfile = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/').'/xupdate.lock';
+		
 	}
 
 	/**
@@ -109,6 +114,43 @@ class Xupdate_FtpCommonFunc {
 			return $ret;
 		}
 		return false;
+	}
+
+	/**
+	 * is_xupdate_excutable
+	 *
+	 * @return boolean
+	 */
+	protected function is_xupdate_excutable() {
+		if (file_exists($this->lockfile) && filemtime($this->lockfile) + 600 > time()) {
+			return false;
+		}
+		ignore_user_abort(true); // Ignore user aborts and allow the script
+		touch($this->lockfile);  // make lock file
+		return true;
+	}
+
+	/**
+	 * _check_file_upload_result
+	 *
+	 * @param array  $result
+	 * @param string $where
+	 * @return boolean
+	 */
+	protected  function _check_file_upload_result($result, $where) {
+		if (is_bool($result)) {
+			$result = array('ok' => $result, 'ng' => array());
+		}
+		if (!$result['ok']){
+			$this->Ftp->appendMes( 'fail upload '.$where.'<br />');
+			return false;
+		} else if (is_numeric($result['ok'])) {
+			$this->Ftp->appendMes( 'uploaded '.$result['ok'].' files into '.$where.'<br />');
+		}
+		if ($result['ng']) {
+			$this->_set_error_log(_MI_XUPDATE_ERR_NOT_UPLOADED.': ' . join('<br />'._MI_XUPDATE_ERR_NOT_UPLOADED.': ', $result['ng']));
+		}
+		return true;
 	}
 
 } // end class

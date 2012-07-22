@@ -55,13 +55,13 @@
         <{$addon_url|xoops_escape:show}>
     </td>
   </tr>
-    <tr class="<{cycle values='odd,even'}>">
+    <!--<tr class="<{cycle values='odd,even'}>">
         <td class="legacy_list_select">unzipdirlevel</td>
         <td class="legacy_list_select">
             <{xoops_input type=hidden name=unzipdirlevel value=$unzipdirlevel }>
             <{$unzipdirlevel|xoops_escape:show}>
         </td>
-    </tr>
+    </tr>-->
   <tr class="<{cycle values='odd,even'}>">
     <td class="legacy_list_select">target_key</td>
     <td class="legacy_list_select">
@@ -86,5 +86,15 @@
   </tr>
 </table>
 </form>
+
+<div id="xupdate_boxes">
+    <!-- #customize your modal window here -->
+    <div id="xupdate_dialog" class="window">
+    <{$smarty.const._MI_XUPDATE_PROG_PROCESSING}>
+    <div class="progress_bar"><img src="../images/progress-bar.gif" alt=""></div>
+    </div>
+    <!-- Do not remove div#mask, because you'll need it to fill the whole screen --> 
+    <div id="xupdate_mask"></div>
+</div>
 
 </div>

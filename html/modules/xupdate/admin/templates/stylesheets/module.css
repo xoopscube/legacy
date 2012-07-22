@@ -226,3 +226,36 @@ input[type="radio"] {
 	padding-right:58px;
 	background:url(../../theme/icons/legacy_help_update.png) no-repeat center right;
 }
+
+/* Z-index of #mask must lower than #boxes .window */
+#xupdate_mask {
+  position:absolute;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+  top: 0;
+  left: 0;
+}
+   
+#xupdate_boxes .window {
+  position:fixed;
+  width:440px;
+  height:180px;
+  display:none;
+  z-index:9999;
+  padding:30px 15px;
+  background-color: white;
+  text-align: center;
+  font-size: 11pt;
+  line-height: 1.3em;
+}
+
+#xupdate_boxes .window p {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#xupdate_boxes .window img {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}

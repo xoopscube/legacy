@@ -65,6 +65,16 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract {
 		return true;
 	}
 
+	protected function SetType($mode=FTP_AUTOASCII) {
+		if(!in_array($mode, $this->AuthorizedTransferMode)) {
+			$this->SendMSG("Wrong type");
+			return FALSE;
+		}
+		$this->_type=$mode;
+		$this->SendMSG("Transfer type: ".($this->_type==FTP_BINARY?"binary":($this->_type==FTP_ASCII?"ASCII":"auto ASCII") ) );
+		return TRUE;
+	}
+
 	protected function Passive($pasv=false) {
 		//fix Fatal error: Call to undefined function ftp_pasv()
 		if (!function_exists('ftp_pasv')){
@@ -168,7 +178,8 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract {
 			$this->SendMSG("Fatal error: Call to undefined function ftp_chdir");
 			return false;
 		}
-		return ftp_chdir( $this->_conn_id, $pathname );
+		// hide error (@) for Xupdate_Ftp::seekFTPRoot()
+		return @ftp_chdir( $this->_conn_id, $pathname );
 	}
 
 	protected function rmdir($pathname) {

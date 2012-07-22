@@ -112,6 +112,7 @@ define('_MI_XUPDATE_PROG_FILE_GETTING', 'Downloading the package.');
 define('_MI_XUPDATE_PROG_UPLOADING'   , 'Copying files.');
 define('_MI_XUPDATE_PROG_CLEANING_UP' , 'Removing the temporary files.');
 define('_MI_XUPDATE_PROG_COMPLETED'   , 'File placement was completed.');
+define('_MI_XUPDATE_PROG_PROCESSING'  , '<p>Downloading the package & copying.</p><p>The time for several minutes may be required according to the size of a package and your environment.</p><p>Please wait as it is until a screen changes.</p>');
 
 // error messages
 define('_MI_XUPDATE_ANOTHER_PROCESS_RUNNING', 'Other processes are updating. Please perform again after waiting for a while.');

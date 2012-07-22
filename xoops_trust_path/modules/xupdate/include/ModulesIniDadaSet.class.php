@@ -12,7 +12,11 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 
 class Xupdate_ModulesIniDadaSet
 {
-
+	// language file mapping array [from => to]
+	private $lang_mapping = array(
+			'japanese' => 'ja_utf8'
+			);
+	
 	public $Xupdate  ;	// Xupdate instance
 	public $Func ;	// Functions instance
 
@@ -39,6 +43,9 @@ class Xupdate_ModulesIniDadaSet
 
 		$root =& XCube_Root::getSingleton();
 		$language = $root->mContext->getXoopsConfig('language');
+		if (isset($this->lang_mapping[$language])) {
+			$language = $this->lang_mapping[$language];
+		}
 		$downloadDirPath = $this->Xupdate->params['temp_path'];
 		$realDirPath = realpath($downloadDirPath);
 
@@ -116,6 +123,8 @@ class Xupdate_ModulesIniDadaSet
 							'isLang'             => true );
 								
 		}
+		
+		$use_mb_convert = function_exists('mb_convert_encoding');
 		if ($this->Func->_multiDownloadFile($multiData, $cacheTTL)) {
 			foreach($multiData as $i => $res) {
 				if (isset($res['isLang'])) {
@@ -123,44 +132,48 @@ class Xupdate_ModulesIniDadaSet
 				}
 				if (file_exists($res['downloadedFilePath'])){
 					$downloadedFilePath = $res['downloadedFilePath'];
-					$lngKey = $i + 1;
-					if (file_exists($multiData[$lngKey]['downloadedFilePath'])){
-						$items = parse_ini_file($downloadedFilePath, true);
-						$items_lang = parse_ini_file($multiData[$lngKey]['downloadedFilePath'], true);
+					if ($items = @ parse_ini_file($downloadedFilePath, true)) {
+						$lngKey = $i + 1;
+						if (file_exists($multiData[$lngKey]['downloadedFilePath'])){
+							$items_lang = @ parse_ini_file($multiData[$lngKey]['downloadedFilePath'], true);
+						}
+						if (! $items_lang) {
+							$items_lang = array();
+						}
 						$sid = (int)$res['sid'];
 						
 						// make $this->approved
 						$this->approved[$sid] = array();
 						$master = array();
-						foreach($arr_master[$sid] as $_master) {
-							if ($_master['approved']) {
-								$master[$_master['target_key']] = true;
+						foreach($arr_master[$sid] as $arr) {
+							if (is_array($arr) && !empty($arr['approved'])) {
+								$master[$arr['target_key']] = true;
 							}
 						}
-						foreach ($items as $check) {
+						foreach ($items as $key => $check) {
 							if (isset($master[$check['target_key']])) {
 								$this->approved[$sid][$check['target_key']] = true;
+							} else {
+								unset($items[$key]);
 							}
 						}
-
 						$this->_setmSiteModuleObjects($sid, $caller);
 						
 						foreach($items as $key => $item){
-							if (isset($arr_master[$sid][$key])){
-								$master = $arr_master[$sid][$key];
-								if ( $master['approved'] == 'true' ) {
-									$item['sid'] = $sid ;
-									$item['description'] = isset($items_lang[$key]['description']) ? $items_lang[$key]['description'] : '' ;
-									switch($item['target_type']){
-										case 'TrustModule':
-											$this->_setDataTrustModule($item['sid'] , $item);
-											break;
-										case 'X2Module':
-										case 'Theme':
-										default:
-											$this->_setDataSingleModule($item['sid'] , $item);
-									}
-								}
+							$item['sid'] = $sid ;
+							$item['description'] = (isset($items_lang[$key]) && isset($items_lang[$key]['description'])) ? $items_lang[$key]['description']
+							                     : (isset($item['description'])? $item['description'] : '') ;
+							if ($item['description'] && $use_mb_convert && 'UTF-8' != _CHARSET) {
+								$item['description'] = mb_convert_encoding($item['description'] , _CHARSET , 'UTF-8');
+							}
+							switch($item['target_type']){
+								case 'TrustModule':
+									$this->_setDataTrustModule($item['sid'] , $item);
+									break;
+								case 'X2Module':
+								case 'Theme':
+								default:
+									$this->_setDataSingleModule($item['sid'] , $item);
 							}
 						}
 					}
@@ -302,12 +315,8 @@ class Xupdate_ModulesIniDadaSet
 		$item['target_key']= isset($item['target_key']) ? $item['target_key']: $item['dirname'] ;
 		$item['trust_dirname']= '' ;
 		$item['description']= isset($item['description']) ? $item['description']: '' ;
-		if(function_exists('mb_convert_encoding')){
-			if ('UTF-8' != _CHARSET){
-				$item['description'] = mb_convert_encoding($item['description'] , _CHARSET , 'UTF-8');
-			}
-		}
-		$item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
+		//$item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
+		$item['unzipdirlevel'] = 0; // not use "unzipdirlevel"
 		$item['addon_url']= isset($item['addon_url']) ? $item['addon_url']: '' ;
 
 		$item = $this->_createItemOptions($item);
@@ -337,12 +346,8 @@ class Xupdate_ModulesIniDadaSet
 		  $item['target_key']= isset($item['target_key']) ? $item['target_key']: $item['dirname'] ;
 		  $item['trust_dirname']= isset($item['trust_dirname']) ? $item['trust_dirname']: $item['dirname'] ;
 		  $item['description']= isset($item['description']) ? $item['description']: '' ;
-		  if(function_exists('mb_convert_encoding')){
-			  if ('UTF-8' != _CHARSET){
-				  $item['description'] = mb_convert_encoding($item['description'] , _CHARSET , 'UTF-8');
-			  }
-		  }
-		  $item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
+		  //$item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
+		  $item['unzipdirlevel'] = 0; // not use "unzipdirlevel"
 		  $item['addon_url']= isset($item['addon_url']) ? $item['addon_url']: '' ;
 
 		  $item = $this->_createItemOptions($item);

@@ -29,7 +29,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 	{
 		// local file name
 		$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
-		$downloadFilePath = $this->Xupdate->params['temp_path'].'/'.$this->target_key .'.zip';
+		$downloadFilePath = $this->Xupdate->params['temp_path'].'/'.$this->download_file;
 		$exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
 		if (empty($downloadFilePath) ) {
 			$this->_set_error_log('getDownloadFilePath not found error in: '.$this->_getDownloadFilePath());
@@ -43,24 +43,39 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 		if (ini_get('safe_mode') == "1") {
 			// make dirctory at first for safe_mode
 			$dirs = array();
-			$source = File_Archive::read($downloadFilePath.'/', $exploredDirPath);
-			while ($source->next()) {
-				$file = $source->getFilename();
-				$dir = dirname($file);
-				if (!isset($dirs[$dir])) {
-					$dirs[$dir] = true;
-					$this->Ftp->localMkdir($dir);
-					$this->Ftp->localChmod($dir, 0707);
+			if ($source = File_Archive::read($downloadFilePath.'/', $exploredDirPath)) {
+				if (is_object($source) && get_class($source) !== 'PEAR_Error') {
+					while ($source->next()) {
+						$file = $source->getFilename();
+						$dir = dirname($file);
+						if (!isset($dirs[$dir])) {
+							$dirs[$dir] = true;
+							$this->Ftp->localMkdir($dir);
+							$this->Ftp->localChmod($dir, 0707);
+						}
+					}
+					$source->close();
+				} else {
+					return false;
 				}
+			} else {
+				return false;
 			}
-			$source->close();
 		}
-
-		File_Archive::extract(
-			File_Archive::read($downloadFilePath.'/'),
-			File_Archive::appender($exploredDirPath)
-		);
-		return true;
+		
+		if ($source = File_Archive::read($downloadFilePath.'/')) {
+			if (is_object($source) && get_class($source) !== 'PEAR_Error') {
+				File_Archive::extract(
+					$source,
+					File_Archive::appender($exploredDirPath)
+				);
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 
 } // end class
