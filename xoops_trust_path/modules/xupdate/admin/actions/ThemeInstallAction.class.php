@@ -178,6 +178,9 @@ class Xupdate_Admin_ThemeInstallAction extends Xupdate_AbstractAction
 
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 		$render->setAttribute('actionForm', $this->mActionForm);
+		
+		$render->setAttribute('currentMenu', _MI_XUPDATE_ADMENU_THEME);
+		$render->setAttribute('currentItem', $this->target_key);
 	}
 
 	/**
@@ -201,6 +204,10 @@ class Xupdate_Admin_ThemeInstallAction extends Xupdate_AbstractAction
 
 		$xupdateFtpModuleInstall->unzipdirlevel = $this->mActionForm->get('unzipdirlevel');
 
+		$this->id = intval($this->Xupdate->get('id'));
+		$modHand =& $this->_getModuleStoreHandler();
+		$mobj =& $modHand->get($this->id);
+		
 		//execute
 		$result = $xupdateFtpModuleInstall->execute('theme');
 
@@ -216,6 +223,9 @@ class Xupdate_Admin_ThemeInstallAction extends Xupdate_AbstractAction
 
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 		$render->setAttribute('actionForm', $this->mActionForm);
+		
+		$render->setAttribute('currentMenu', _MI_XUPDATE_ADMENU_THEME);
+		$render->setAttribute('currentItem', $mobj->get('target_key'));
 	}
 
 	/**

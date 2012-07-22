@@ -24,5 +24,6 @@ define('_AD_XUPDATE_LANG_MESSAGE_SUCCESS', "Success");
 define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES', "getting files");
 define('_AD_XUPDATE_LANG_MESSAGE_PROCESSING', "...");
 
+define('_AD_XUPDATE_LANG_THM_TOTAL'  , 'Total of Themes');
 
 ?>

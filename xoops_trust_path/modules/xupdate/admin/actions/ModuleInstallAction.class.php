@@ -187,6 +187,8 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 		$render->setAttribute('actionForm', $this->mActionForm);
 
+		$render->setAttribute('currentMenu', _MI_XUPDATE_ADMENU_MODULE);
+		$render->setAttribute('currentItem', $this->target_key);
 	}
 
 	/**
@@ -269,6 +271,9 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 		$render->setAttribute('actionForm', $this->mActionForm);
+
+		$render->setAttribute('currentMenu', _MI_XUPDATE_ADMENU_MODULE);
+		$render->setAttribute('currentItem', $mobj->get('target_key'));
 	}
 
 	/**

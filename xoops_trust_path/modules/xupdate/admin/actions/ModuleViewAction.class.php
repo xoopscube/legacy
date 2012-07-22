@@ -40,7 +40,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 		$inidataset = new Xupdate_ModulesIniDadaSet;
 		$inidataset->storeHand =  & $this->_getStoreHandler();
 		$inidataset->modHand = & $this->_getModStoreHandler();
-		$inidataset->execute('module');
+		$inidataset->execute(array('module', 'theme'));
 		//-----------------------------------------------
 		return true;
 
@@ -88,21 +88,23 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 		$render->setAttribute('mod_config', $this->mod_config);
 		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
 
-		$render->setAttribute('xupdate_items', $this->get_storeItems());
+		$render->setAttribute('module_items', $this->get_storeItems('module'));
+		$render->setAttribute('theme_items', $this->get_storeItems('theme'));
 
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
+		$render->setAttribute('currentMenu', _MI_XUPDATE_ADMENU_STORELIST);
 
 	}
 
 
-	private function get_storeItems()
+	private function get_storeItems($contents)
 	{
 		$store_mod_arr=array();
 		$storeHand =  & $this->_getStoreHandler();
 		$modHand = & $this->_getModStoreHandler();
 
 		$criteria = new CriteriaCompo();
-		$criteria->add(new Criteria( 'contents', 'module' ) );
+		$criteria->add(new Criteria( 'contents', $contents ) );
 
 		$storeObjects =& $storeHand->getObjects($criteria,null,null,true);
 

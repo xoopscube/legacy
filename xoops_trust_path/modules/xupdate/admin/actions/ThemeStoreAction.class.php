@@ -16,6 +16,7 @@ class Xupdate_Admin_ThemeStoreAction extends Xupdate_AbstractListAction
 //ListView data
 	var $sid ;
 	var $mModuleObjects = array();
+	var $storeObject = null;
 	var $mFilter = null;
 
 	var $mActionForm = null;
@@ -120,7 +121,36 @@ class Xupdate_Admin_ThemeStoreAction extends Xupdate_AbstractListAction
 			$criteria->add(new Criteria( 'sid', $this->sid ) );
 		}
 
+		$filter = isset($_GET['filter'])? strtolower($_GET['filter']) : '';
+		switch($filter) {
+			case 'installed':
+				$cri_compo = new CriteriaCompo();
+				$cri_compo->add(new Criteria( 'isactive', 1 ) );
+				$cri_compo->add(new Criteria( 'isactive', 0), 'OR' );
+				$criteria->add( $cri_compo );
+				unset($cri_compo);
+				break;
+			case 'active':
+				$criteria->add(new Criteria( 'isactive', 1 ) );
+				break;
+			case 'inactive':
+				$criteria->add(new Criteria( 'isactive', 0 ) );
+				break;
+			case 'future':
+				$criteria->add(new Criteria( 'isactive', -1 ) );
+				break;
+			case 'updated':
+				$criteria->add(new Criteria( 'hasupdate', 1 ) );
+				break;
+		}
+
 		$this->mModuleObjects =& $modHand->getObjects($criteria);
+		
+		if (!empty($this->sid)) {
+			$storeHand =  & $this->_getStoreHandler();
+			$this->storeObject =& $storeHand->get($this->sid);
+		}
+		
 		return XUPDATE_FRAME_VIEW_INDEX;
 	}
 
@@ -140,23 +170,28 @@ class Xupdate_Admin_ThemeStoreAction extends Xupdate_AbstractListAction
 
 		$render->setAttribute('sid', $this->sid);
 
+		$render->setAttribute('sid_query',    $this->sid ?            ('sid='.$this->sid.'&amp;') : '');
+		$render->setAttribute('sort_query',   isset($_GET['sort'])?   ('sort='.rawurlencode((string)$_GET['sort']).'&amp;') : '');
+		$render->setAttribute('filter_query', isset($_GET['filter'])? ('filter='.rawurlencode((string)$_GET['filter']).'&amp;') : '');
+		
 		$render->setAttribute('moduleObjects', $this->mModuleObjects);
+		$render->setAttribute('storeObject', $this->storeObject);
 
-		$modHand = & $this->_getHandler();
-
-		$criteria = new CriteriaCompo();
-		$criteria->add(new Criteria( 'target_type', 'Theme' ) );
-		if (!empty($this->sid)){
-			$criteria->add(new Criteria( 'sid', $this->sid ) );
-		}
-		$module_total = $modHand->getCount($criteria);
+// 		$modHand = & $this->_getHandler();
+// 		$criteria = new CriteriaCompo();
+// 		$criteria->add(new Criteria( 'target_type', 'Theme' ) );
+// 		if (!empty($this->sid)){
+// 			$criteria->add(new Criteria( 'sid', $this->sid ) );
+// 		}
+// 		$module_total = $modHand->getCount($criteria);
 
 		$render->setAttribute('pageNavi', $this->mFilter->mNavi);
 
-		$render->setAttribute('ModuleTotal', $module_total);
+//		$render->setAttribute('ModuleTotal', $module_total);
 
 		$render->setAttribute('actionForm', $this->mActionForm);
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
+		$render->setAttribute('currentMenu', _MI_XUPDATE_ADMENU_THEME);
 
 	}
 
