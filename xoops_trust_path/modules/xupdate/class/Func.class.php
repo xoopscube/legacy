@@ -286,7 +286,7 @@ class Xupdate_Func {
 	{
 		// TODO ファイルNotFound対策
 		//$url = sprintf( $downloadUrlFormat, $target_key );
-		$url = str_replace('%s', $target_key, $downloadUrlFormat);
+		$url = str_replace(array('%s', '%u'), $target_key, $downloadUrlFormat);
 		return $url;
 	}
 
