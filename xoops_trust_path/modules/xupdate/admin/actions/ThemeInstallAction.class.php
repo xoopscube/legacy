@@ -124,6 +124,9 @@ class Xupdate_Admin_ThemeInstallAction extends Xupdate_AbstractAction
 	**/
 	public function executeViewIndex(&$render)
 	{
+		$jQuery = $this->mRoot->mContext->getAttribute('headerScript');
+		$jQuery->addScript($this->modalBoxJs(), false);
+
 		$this->id = intval($this->Xupdate->get('id'));
 		$this->sid = intval($this->Xupdate->get('sid'));
 
