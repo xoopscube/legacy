@@ -137,11 +137,11 @@ class Xupdate_FtpCommonFunc {
 	 * @param string $where
 	 * @return boolean
 	 */
-	protected  function _check_file_upload_result($result, $where) {
+	protected  function _check_file_upload_result($result, $where, $allow_empty = false) {
 		if (is_bool($result)) {
 			$result = array('ok' => $result, 'ng' => array());
 		}
-		if (!$result['ok']){
+		if ($result['ok'] === false || !$allow_empty && !$result['ok']) {
 			$this->Ftp->appendMes( 'fail upload '.$where.'<br />');
 			return false;
 		} else if (is_numeric($result['ok'])) {

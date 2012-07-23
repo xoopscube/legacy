@@ -200,8 +200,8 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 				// rename copy html module
 				$uploadPath = XOOPS_ROOT_PATH . '/' ;
 				$unzipPath =  $this->exploredDirPath .'/html';
-				$result = $this->Ftp->uploadNakami_OtherThan_module($unzipPath, $uploadPath ,$this->trust_dirname,$this->dirname);
-				if (! $this->_check_file_upload_result($result, 'html')){
+				$result = $this->Ftp->uploadNakami_OtherThan_module($unzipPath, $uploadPath ,$this->trust_dirname);
+				if (! $this->_check_file_upload_result($result, 'html', true)){
 					return false;
 				}
 

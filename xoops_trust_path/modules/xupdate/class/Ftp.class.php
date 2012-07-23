@@ -60,13 +60,19 @@ switch ( $mod_config['ftp_method'] ) {
 class Xupdate_Ftp extends Xupdate_Ftp_ {
 	
 	private $loginCheckFile;
+	private $phpPerm;
 	
 	/* Constructor */
 	public function __construct($XupdateObj, $port_mode=FALSE, $verb=FALSE, $le=FALSE) {
 		parent::__construct($XupdateObj);
+		
 		$this->loginCheckFile = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/').'/'.rawurlencode(substr(XOOPS_URL, 7)).'_logincheck.ini.php';
+		if (! empty($this->mod_config['php_perm'])) {
+			$this->phpPerm = intval($this->mod_config['php_perm'], 8);
+		}
 	}
-	// <!-- --------------------------------------------------------------------------------------- -->
+
+// <!-- --------------------------------------------------------------------------------------- -->
 // <!--	   public functions																  -->
 // <!-- --------------------------------------------------------------------------------------- -->
 
@@ -90,22 +96,22 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 
 	public function uploadNakami($sourcePath, $targetPath)
 	{
-		$this->mes .= " start uploadNakami ".htmlspecialchars($targetPath ,ENT_QUOTES ,_CHARSET)." ..<br>\n";
+		$this->mes .= " start FTP put (normal mode) ".htmlspecialchars($targetPath ,ENT_QUOTES ,_CHARSET)." ..<br>\n";
 		$result = $this->_ftpPutNakami($sourcePath, $targetPath);
 		return $result;
 	}
 	//for module rename uploading
 	public function uploadNakami_To_module($sourcePath, $targetPath , $trust_dirname , $dirname)
 	{
-		$this->mes .= " start uploadNakami_To_module ".htmlspecialchars($targetPath."->".$dirname ,ENT_QUOTES ,_CHARSET)." ..<br>\n";
-		$result = $this->_ftpPutNakami_To_module($sourcePath, $targetPath , $trust_dirname , $dirname );
+		$this->mes .= " start FTP put (replicate module mode) ".htmlspecialchars($targetPath."->".$dirname ,ENT_QUOTES ,_CHARSET)." ..<br>\n";
+		$result = $this->_ftpPutNakami($sourcePath, $targetPath , $trust_dirname , $dirname );
 		return $result;
 	}
 	//for other than module uploading
-	public function uploadNakami_OtherThan_module($sourcePath, $targetPath , $trust_dirname , $dirname)
+	public function uploadNakami_OtherThan_module($sourcePath, $targetPath , $trust_dirname)
 	{
-		$this->mes .= " start uploadNakami_OtherThan_module ".htmlspecialchars($targetPath ,ENT_QUOTES ,_CHARSET)." ..<br>\n";
-		$result = $this->_ftpPutNakami_OtherThan_module($sourcePath, $targetPath , $trust_dirname , $dirname );
+		$this->mes .= " start FTP put (replicate misc mode) ".htmlspecialchars($targetPath ,ENT_QUOTES ,_CHARSET)." ..<br>\n";
+		$result = $this->_ftpPutNakami($sourcePath, $targetPath , $trust_dirname );
 		return $result;
 	}
 
@@ -247,49 +253,39 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		}
 	}
 
-	protected function _ftpPutNakami($local_path, $remote_path)
+	private function _ftpPutNakami($local_path, $remote_path, $trust_dirname = null, $dirname = null )
 	{
 		$remote_pos = strlen($local_path) + 1;
-		$this->mes .= $remote_pos. "<br>\n";
-		////adump($local_path);
-		////adump($remote_path);
-		$result = $this->_ftpPutSub($local_path, $remote_path, $remote_pos);
-		return $result;
-	}
-	protected function _ftpPutNakami_To_module($local_path, $remote_path , $trust_dirname , $dirname )
-	{
-		$remote_pos = strlen($local_path) + 1;
-		$this->mes .= $remote_pos. "<br>\n";
-		////adump($local_path);
-		////adump($remote_path);
-		$result = $this->_ftpPutSub_To_module($local_path, $remote_path, $remote_pos , $trust_dirname , $dirname );
-		return $result;
-	}
-	protected function _ftpPutNakami_OtherThan_module($local_path, $remote_path , $trust_dirname , $dirname )
-	{
-		$remote_pos = strlen($local_path) + 1;
-		$this->mes .= $remote_pos. "<br>\n";
-		////adump($local_path);
-		////adump($remote_path);
-		$result = $this->_ftpPutSub_OtherThan_module($local_path, $remote_path, $remote_pos , $trust_dirname , $dirname );
+		//$this->mes .= $remote_pos. "<br>\n";
+		$result = $this->_ftpPutSub($local_path, $remote_path, $remote_pos, $trust_dirname, $dirname);
 		return $result;
 	}
 
-	protected function _ftpPutSub($local_path, $remote_path, $remote_pos)
+	private function _ftpPutSub($local_path, $remote_path, $remote_pos, $trust_dirname = null, $dirname = null)
 	{
 		$ftp_root = $this->seekFTPRoot();
-		if ($ftp_root===false){
+		if ($ftp_root === false){
 			return false;
 		}
+		$mode = ($trust_dirname && $dirname)? 'repModule' : ($trust_dirname? 'repMisc' : 'normal');
 		$file_list = $this->_getFileList($local_path);
+		$dir_cnt = 0;
 		if (isset($file_list['dir']) && is_array($file_list['dir'])) {
 			$dir = $file_list['dir'];
 			krsort($dir);
 			foreach ($dir as $directory){
+				if ($mode === 'repMisc') {
+					if (strstr($directory ,'/modules/'.$trust_dirname)){
+						continue;
+					}
+				} else if ($mode === 'repModule') {
+					$directory = str_replace('/modules/'.$trust_dirname, '/modules/'.$dirname, $directory);
+				}
 				$remote_directory = $remote_path.substr($directory, $remote_pos);
 				if (!is_dir($remote_directory) && !$this->_dont_overwrite($remote_directory, true)){
 					$this->ftp_mkdir($remote_directory);
 				}
+				$dir_cnt++;
 			}
 		}
 		
@@ -302,117 +298,26 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		if (! $this->chdir('/') ){
 			return false;
 		}
-		$res = array('ok' => 0, 'ng' => array());
+		$res = array('ok' => $dir_cnt, 'ng' => array());
 		foreach ($file_list['file'] as $l_file){
-			$r_file = $remote_path.substr($l_file, $remote_pos ); // +1 is remove first flash
-			$ftp_remote_file = substr($r_file, strlen($ftp_root));
-			//$l_file = str_replace( '/','\\',$l_file );
-			//$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
-			//$this->put($l_file, $ftp_remote_file, FTP_BINARY);
-			$dont_overwrite = $this->_dont_overwrite($r_file);
-			@ set_time_limit(120);
-			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
-				$res['ng'][] = $ftp_remote_file;
-				//adump($ftp_remote_file);
-			} else {
-				$res['ok']++;
-			}
-		}
-		return $res;
-	}
-
-	protected function _ftpPutSub_To_module($local_path, $remote_path, $remote_pos , $trust_dirname , $dirname )
-	{
-		$ftp_root = $this->seekFTPRoot();
-		if ($ftp_root===false){
-			return false;
-		}
-		$file_list = $this->_getFileList($local_path);
-		if (isset($file_list['dir']) && is_array($file_list['dir'])) {
-			$dir = $file_list['dir'];
-			krsort($dir);
-			foreach ($dir as $directory){
-				$directory = str_replace('/modules/'.$trust_dirname,'/modules/'.$dirname ,$directory);
-				$remote_directory = $remote_path.substr($directory, $remote_pos);
-				//adump( '/modules/'.$trust_dirname,'/modules/'.$dirname ,$directory, $remote_path, $remote_directory);
-				if (!is_dir($remote_directory)){
-					$mkdir_result = $this->ftp_mkdir($remote_directory);
-				}
-			}
-		}
-		
-		// file nothing
-		if (empty($file_list['file'])) {
-			return true;
-		}
-		
-		/// put files
-		if (! $this->chdir('/') ){
-			return false;
-		}
-		$res = array('ok' => 0, 'ng' => array());
-		foreach ($file_list['file'] as $l_file){
-			//rename dirname
-			$r_file = $remote_path.substr(str_replace('/modules/'.$trust_dirname.'/','/modules/'.$dirname.'/' ,$l_file), $remote_pos ); // +1 is remove first flash
-			$ftp_remote_file = substr($r_file, strlen($ftp_root));
-			$dont_overwrite = $this->_dont_overwrite($r_file);
-			@ set_time_limit(120);
-			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
-				$res['ng'][] = $ftp_remote_file;
-				//adump($ftp_remote_file);
-			} else {
-				$res['ok']++;
-			}
-		}
-		return $res;
-	}
-	protected function _ftpPutSub_OtherThan_module($local_path, $remote_path, $remote_pos , $trust_dirname , $dirname )
-	{
-		$ftp_root = $this->seekFTPRoot();
-		if ($ftp_root===false){
-			return false;
-		}
-		$file_list = $this->_getFileList($local_path);
-		if (isset($file_list['dir']) && is_array($file_list['dir'])) {
-			$dir = $file_list['dir'];
-			krsort($dir);
-			foreach ($dir as $directory){
-				if (strstr($directory ,'/modules/'.$trust_dirname)){
+			if ($mode === 'repMisc') {
+				if (strstr($l_file, '/modules/'.$trust_dirname.'/')){
 					continue;
 				}
-				$remote_directory = $remote_path.substr($directory, $remote_pos);
-				if (!is_dir($remote_directory)){
-					$this->ftp_mkdir($remote_directory);
-				}
+			} else if ($mode === 'repModule') {
+				//rename dirname
+				$r_file = $remote_path.substr(str_replace('/modules/'.$trust_dirname.'/', '/modules/'.$dirname.'/', $l_file), $remote_pos ); // +1 is remove first flash
+			} else {
+				$r_file = $remote_path.substr($l_file, $remote_pos ); // +1 is remove first flash
 			}
-		}
-		
-		// file nothing
-		if (empty($file_list['file'])) {
-			return true;
-		}
-		
-		/// put files
-		if (! $this->chdir('/') ){
-			return false;
-		}
-		$res = array('ok' => 0, 'ng' => array());
-		foreach ($file_list['file'] as $l_file){
-			if (strstr($l_file ,'/modules/'.$trust_dirname.'/')){
-				continue;
-			}
-			$r_file = $remote_path.substr($l_file, $remote_pos ); // +1 is remove first flash
 			$ftp_remote_file = substr($r_file, strlen($ftp_root));
-			//$l_file = str_replace( '/','\\',$l_file );
-			//$ftp_remote_file = str_replace( '/','\\',$ftp_remote_file );
-			//$this->put($l_file, $ftp_remote_file, FTP_BINARY);
 			$dont_overwrite = $this->_dont_overwrite($r_file);
 			@ set_time_limit(120);
 			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
 				$res['ng'][] = $ftp_remote_file;
-				//adump($ftp_remote_file);
 			} else {
 				$res['ok']++;
+				$this->setPhpPerm($ftp_remote_file);
 			}
 		}
 		return $res;
@@ -421,7 +326,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	private function _getFileList($dir, $list=array('dir'=> array(), 'file' => array()))
 	{
 		if (is_dir($dir) == false) {
-			return;
+			return array();
 		}
 
 		$dh = opendir($dir);
@@ -498,6 +403,12 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			}
 		}
 		return $this->mkdir($dir);
+	}
+	
+	private function setPhpPerm($file) {
+		if ($this->phpPerm && strtolower(substr($file, -4)) === '.php') {
+			$this->chmod($file, $this->phpPerm);
+		}
 	}
 
 }// end class
