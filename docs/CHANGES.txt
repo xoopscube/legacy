@@ -3,20 +3,25 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 
 ----------------------------------------
-2012/07/XX: Package Revision 2.2.1
+2012/07/28: Package Revision 2.2.1
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
+- Fix Bug #3365492 - when xoops2->XCL2 update teable layout not chage
 - Fix Bug #3531835 - Bug in ImageFilterForm.class.php
 - Fix Bug #3539162 - installer reload makes jump back to first page
 - Fix Bug #3540381 - Typo "$reverse" in Legacy_RenderSystem
 - Fix Bug #3545043 - Bad request handling at EventFunctions
 
+[Other Changes/Enhancements]
+- Update portuguese/pt_utf8 language files
+- Revert - Fix Bug #3470535 - Smarty cache directory
 
 [Staff]
 - Bluemooninc
 - hypweb
 - Kilica
 - lumbago
+- Marijuana
 - Mikhail Miguel
 - Naao
 
@@ -25,6 +30,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 2012/06/05: Package Revision 2.2.1 Beta3
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
+- Fix Bug #3461991 - Image manager cannot delete files
 - Fix Bug #3470535 - Smarty cache directory
 - Fix Bug #3470792 - download the template, the extra null at the end of defect
 - Fix Bug #3492904 - Error Message after Profile edit
@@ -41,6 +47,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #3502519 - Array PropertyForm null value
 
 [Staff]
+- bindi
 - Bluemooninc
 - Domifara
 - Kilica
