@@ -87,9 +87,11 @@ class Xupdate_Admin_ThemeFinderInstallAction extends Xupdate_AbstractAction
 
 		$render->setAttribute('mod_config', $this->mod_config);
 		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
-
+		
+		$target_key = intval($this->Xupdate->get('target_key'));
 		$render->setAttribute('addon_url', $this->mod_config['Theme_download_Url_format']);
-		$render->setAttribute('target_key', intval($this->Xupdate->get('target_key')) );
+		$render->setAttribute('addon_url', $this->Func->_getDownloadUrl($target_key, $this->mod_config['Theme_download_Url_format']));
+		$render->setAttribute('target_key', $target_key);
 		$render->setAttribute('target_type', 'Theme');
 
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
