@@ -239,6 +239,16 @@ $modversion['config'] = array(
 	) ,
 
 	array(
+		'name'		=> 'php_perm' ,
+		'title'		=> '_MI_XUPDATE_PHP_PERM',
+		'description'	=> '_MI_XUPDATE_PHP_PERMDSC',
+		'formtype'	=> 'text',
+		'valuetype'	=> 'string',
+		'default'	=> '',
+		'options'	=> array(),
+	) ,
+
+	array(
 		'name'		=> 'Show_debug',
 		'title'		=> '_MI_XUPDATE_DEBUG' ,
 		'description'	=> '',

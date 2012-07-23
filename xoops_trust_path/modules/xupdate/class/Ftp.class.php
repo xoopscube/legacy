@@ -60,13 +60,19 @@ switch ( $mod_config['ftp_method'] ) {
 class Xupdate_Ftp extends Xupdate_Ftp_ {
 	
 	private $loginCheckFile;
+	private $phpPerm;
 	
 	/* Constructor */
 	public function __construct($XupdateObj, $port_mode=FALSE, $verb=FALSE, $le=FALSE) {
 		parent::__construct($XupdateObj);
+		
 		$this->loginCheckFile = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/').'/'.rawurlencode(substr(XOOPS_URL, 7)).'_logincheck.ini.php';
+		if (! empty($this->mod_config['php_perm'])) {
+			$this->phpPerm = intval($this->mod_config['php_perm'], 8);
+		}
 	}
-	// <!-- --------------------------------------------------------------------------------------- -->
+
+// <!-- --------------------------------------------------------------------------------------- -->
 // <!--	   public functions																  -->
 // <!-- --------------------------------------------------------------------------------------- -->
 
@@ -316,6 +322,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 				//adump($ftp_remote_file);
 			} else {
 				$res['ok']++;
+				$this->setPhpPerm($ftp_remote_file);
 			}
 		}
 		return $res;
@@ -362,6 +369,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 				//adump($ftp_remote_file);
 			} else {
 				$res['ok']++;
+				$this->setPhpPerm($ftp_remote_file);
 			}
 		}
 		return $res;
@@ -413,6 +421,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 				//adump($ftp_remote_file);
 			} else {
 				$res['ok']++;
+				$this->setPhpPerm($ftp_remote_file);
 			}
 		}
 		return $res;
@@ -498,6 +507,12 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			}
 		}
 		return $this->mkdir($dir);
+	}
+	
+	private function setPhpPerm($file) {
+		if ($this->phpPerm && strtolower(substr($file, -4)) === '.php') {
+			$this->chmod($file, $this->phpPerm);
+		}
 	}
 
 }// end class
