@@ -47,6 +47,7 @@ class XUpgrade_UpgradeProcessor
 		}
 	
 		$this->mLog =& $log;
+		$this->_alterTables();
 		
 		$log->add(_MI_XUPGRADE_MESSAGE_START_PORTING);
 		$this->_portConfigs();
@@ -59,7 +60,77 @@ class XUpgrade_UpgradeProcessor
 			$this->_adjustModules();
 		}
 	}
-	
+
+	protected function _alterTables()
+	{
+		$db = $this->_getDB();
+
+		// column length to 255
+		$column = array(
+			array('bannerclient','email'),
+			array('config','conf_title'),
+			array('config','conf_desc'),
+			array('users','email'),
+		);
+
+		foreach($column as $value) {
+			$alterSql = 'ALTER TABLE `' . $db->prefix($value[0]) . '` MODIFY ' . $value[1] . ' VARCHAR(255) DEFAULT ""';
+			if (!$db->queryF($alterSql)) {
+				$this->mLog->addError($this->_error_message($db));
+				return false;
+			}
+		}
+
+		//groups_user_link KEY/UNIQUE KEY
+		$alterSql = 'ALTER TABLE `' . $db->prefix('groups_users_link') . '` DROP INDEX groupid_uid';
+		if (!$db->queryF($alterSql)) {
+			$this->mLog->addError($this->_error_message($db));
+			return false;
+		}
+
+		$alterSql = 'ALTER TABLE `' . $db->prefix('groups_users_link') . '` ADD UNIQUE uid_groupid(`uid`, `groupid`)';
+		if (!$db->queryF($alterSql)) {
+			$this->mLog->addError($this->_error_message($db));
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Create the instance of DataBase class, and set it to member property.
+	 * @access protected
+	 */
+	protected function _getDB()
+	{
+		require_once XOOPS_ROOT_PATH . '/class/logger.php';
+		$root = XCube_Root::getSingleton();
+		if(!defined('XOOPS_DB_CHKREF'))
+			define('XOOPS_DB_CHKREF', 1);
+
+		require_once XOOPS_ROOT_PATH.'/class/database/databasefactory.php';
+
+		if ($root->getSiteConfig('Legacy', 'AllowDBProxy') == true) {
+			if (xoops_getenv('REQUEST_METHOD') != 'POST' || !xoops_refcheck(XOOPS_DB_CHKREF)) {
+				if(!defined('XOOPS_DB_PROXY'))
+					define('XOOPS_DB_PROXY', 1);
+			}
+		}
+		elseif (xoops_getenv('REQUEST_METHOD') != 'POST') {
+			if(!defined('XOOPS_DB_PROXY'))
+				define('XOOPS_DB_PROXY', 1);
+		}
+
+		return XoopsDatabaseFactory::getDatabaseConnection();
+	}
+
+	protected function _error_message($db) {
+		if (is_object($db) && $db->errno()) {
+			$err_msg = '#' . $db->errno() . ' - ' . $db->error();
+			return $err_msg;
+		}
+	}
+
 	/**
 	 * Execute porting configs items. Config items of XOOPS_CONF_USER and
 	 * XOOPS_CONF_METAFOOTER are ported to the user module and the legacyRender
