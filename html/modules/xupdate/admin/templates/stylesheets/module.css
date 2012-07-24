@@ -227,6 +227,39 @@ input[type="radio"] {
 	background:url(../../theme/icons/legacy_help_update.png) no-repeat center right;
 }
 
+#xupdate{
+    line-height:   1.3em;
+}
+
+/* admin_module_view.html */
+#xupdate div.storelist {
+	width: 99%;
+}
+
+#xupdate div.eachstore {
+	width: 33%;
+	float: left;
+	padding: 10px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#xupdate div.eachstore dt {
+	font-size: 130%;
+	font-weight: bold;
+}
+
+#xupdate div.eachstore dt a {
+	font-weight: bold;
+}
+
+#xupdate div.eachstore div.module_count {
+	text-align: right;
+	font-size: 80%;
+}
+
 /* Z-index of #mask must lower than #boxes .window */
 #xupdate_mask {
   position:absolute;
