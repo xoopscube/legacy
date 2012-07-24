@@ -152,7 +152,7 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 			if (empty($this->dirname)){
 				$this->dirname = $mobj->get('dirname');
 			}
-			$this->unzipdirlevel = $mobj->get('unzipdirlevel');
+			//$this->unzipdirlevel = $mobj->get('unzipdirlevel');
 			$this->addon_url = $this->Func->_getDownloadUrl( $this->target_key, $mobj->get('addon_url') );
 
 			$this->options = $mobj->options;
@@ -180,7 +180,7 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 		$render->setAttribute('trust_dirname', $this->trust_dirname);
 		$render->setAttribute('dirname', $this->dirname);
 
-		$render->setAttribute('unzipdirlevel', $this->unzipdirlevel);
+		//$render->setAttribute('unzipdirlevel', $this->unzipdirlevel);
 
 		$render->setAttribute('options', $this->options );
 
@@ -208,8 +208,9 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 		$xupdateFtpModuleInstall->target_type = $this->mActionForm->get('target_type');
 		$xupdateFtpModuleInstall->trust_dirname = $this->mActionForm->get('trust_dirname');
 		$xupdateFtpModuleInstall->dirname = $this->mActionForm->get('dirname');
+		$xupdateFtpModuleInstall->html_only = $this->mActionForm->get('html_only');
 
-		$xupdateFtpModuleInstall->unzipdirlevel = $this->mActionForm->get('unzipdirlevel');
+		//$xupdateFtpModuleInstall->unzipdirlevel = $this->mActionForm->get('unzipdirlevel');
 
 		$this->id = intval($this->Xupdate->get('id'));
 		$modHand =& $this->_getModuleStoreHandler();

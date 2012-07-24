@@ -87,6 +87,8 @@ class Xupdate_Admin_ModuleInstallForm extends XCube_ActionForm
 		//$this->mFieldProperties['unzipdirlevel']->setDependsByArray(array('required'));
 		//$this->mFieldProperties['unzipdirlevel']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, 'unzipdirlevel');
 
+		$this->mFormProperties['html_only'] = new XCube_IntProperty('html_only');
+
 		$this->mFieldProperties['license'] = new XCube_FieldProperty($this);
 		$this->mFieldProperties['required'] = new XCube_FieldProperty($this);
 	}
