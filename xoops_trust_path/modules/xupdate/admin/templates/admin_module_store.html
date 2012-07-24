@@ -41,14 +41,18 @@
 	
 	<table class="outer">
 	  <tr>
+	    <!--
 	    <th>id
 	      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_ID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
 	      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_ID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
 	      </th>
+	    -->
+	    <{if !$sid}>
 	    <th><{$smarty.const._MD_XUPDATE_LANG_SID}>
 	      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_SID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
 	      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_SID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
 	      </th>
+	    <{/if}>
 	    <th><div><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}>
 	      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
 	      <a href="index.php?action=ModuleStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
@@ -83,8 +87,8 @@
 	  </tr>
 	  <{foreach item=module from=$moduleObjects}>
 	    <tr class="<{cycle values='odd,even'}>">
-	      <td class="legacy_list_id"><{$module->getShow('id')}></td>
-	      <td class="legacy_list_id"><{$module->getShow('sid')}></td>
+	      <!--<td class="legacy_list_id"><{$module->getShow('id')}></td>-->
+	      <{if !$sid}><td class="legacy_list_id"><a href="index.php?action=ModuleStore&amp;sid=<{$module->getShow('sid')}>"><{$module->getShow('sid')}></a></td><{/if}>
 	      <td>
 	      <div class="legacy_list_image">
 	           <{if $module->getShow('target_type') == 'TrustModule' && $module->getShow('replicatable') && (!$module->mModule->getVar('mid') || $module->get('dirname') == $module->get('trust_dirname')  ) }>
@@ -181,7 +185,7 @@
 	    </tr>
 	  <{/foreach}>
 	  <tr>
-	    <td class="foot" colspan="7">
+	    <td class="foot" colspan="<{if $sid}>5<{else}>6<{/if}>">
 	      <{xoops_token form=$actionForm}>
 	      <input class="formButton" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_MOD_NAME}><{$smarty.const._EDIT}>" />
 	      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
