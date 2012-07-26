@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: index.php,v 1.2 2008/09/25 14:31:59 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
- * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
 /*------------------------------------------------------------------------*
@@ -17,17 +17,17 @@ if(INSTALL_USER != '' || INSTALL_PASSWD != ''){
     if (!isset($_SERVER['PHP_AUTH_USER'])) {
         header('WWW-Authenticate: Basic realm="XOOPS Installer"');
         header('HTTP/1.0 401 Unauthorized');
-        echo '±z¨S¦³Åv­­¶i¦æ XOOPS Cube ¦w¸Ë¡C';
+        echo 'ï¿½zï¿½Sï¿½ï¿½ï¿½vï¿½ï¿½ï¿½iï¿½ï¿½ XOOPS Cube ï¿½wï¿½Ë¡C';
         exit;
     } else {
         if(INSTALL_USER != '' && $_SERVER['PHP_AUTH_USER'] != INSTALL_USER){
             header('HTTP/1.0 401 Unauthorized');
-            echo '±z¨S¦³Åv­­¶i¦æ XOOPS Cube ¦w¸Ë¡C';
+            echo 'ï¿½zï¿½Sï¿½ï¿½ï¿½vï¿½ï¿½ï¿½iï¿½ï¿½ XOOPS Cube ï¿½wï¿½Ë¡C';
             exit;
         }
         if(INSTALL_PASSWD != $_SERVER['PHP_AUTH_PW']){
             header('HTTP/1.0 401 Unauthorized');
-            echo '±z¨S¦³Åv­­¶i¦æ XOOPS Cube ¦w¸Ë¡C';
+            echo 'ï¿½zï¿½Sï¿½ï¿½ï¿½vï¿½ï¿½ï¿½iï¿½ï¿½ XOOPS Cube ï¿½wï¿½Ë¡C';
             exit;
         }
     }
