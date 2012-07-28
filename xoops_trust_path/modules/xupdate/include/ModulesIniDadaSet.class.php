@@ -214,23 +214,14 @@ class Xupdate_ModulesIniDadaSet
 				$this->mSiteObjects[$sid] = $storeObjects[$sid];
 			}else{
 				//TODO delete ok?
+				// delete items
 				$criteria = new CriteriaCompo();
-				if ($caller === 'theme'){
-					$criteria->add(new Criteria( 'target_type', 'Theme' ) );
-				} else {
-					$cri_compo = new CriteriaCompo();
-					$cri_compo->add(new Criteria( 'target_type', 'TrustModule' ) );
-					$cri_compo->add(new Criteria( 'target_type', 'X2Module'), 'OR' ) ;
-					$criteria->add( $cri_compo );
-				}
 				$criteria->add(new Criteria( 'sid', $sid ) );
-
-				$siteModuleStoreObjects =& $this->modHand->getObjects($criteria);
-
+				$siteModuleStoreObjects =& $this->modHand->getObjects($criteria, null, null, true);
 				foreach($siteModuleStoreObjects as $id => $mobj){
 					$this->modHand->delete($mobj ,true);
 				}
-
+				// delete store
 				if ( !empty($storeObjects[$sid]) ) {
 					$this->storeHand->delete($storeObjects[$sid] ,true);
 				}
