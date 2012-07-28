@@ -141,7 +141,7 @@ class XoopsErrorHandler
         $output = '';
         if ($this->_isFatal) {
             $output .= 'This page cannot be displayed due to an internal error.<br/><br/>';
-            $output .= 'If you are the administrator of this site, please visit the <a href="http://xoopscube.sourceforge.net/">XOOPS Cube Project Site</a> for assistance.<br/><br/>';
+            $output .= 'If you are the administrator of this site, please visit the <a href="https://github.com/xoopscube/legacy/">XOOPS Cube Project Site</a> for assistance.<br/><br/>';
         }
         if (!$this->_showErrors || empty($this->_errors)) {
             return $output;

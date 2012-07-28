@@ -17,7 +17,7 @@
 $content = "<div style='text-align: left;'>
 <u><b>O que é?</b></u>
 XOOPS Cube é um sistema de publicação gratuito para a criação de portais dinâmicos. É de código livre, e concebido usando programação <a  href='http://www.php.net/' rel='homepage nofollow' title='PHP'>PHP</a> orientada a objetos (OO).
-O XOOPS Cube é ideal para a criação <i>sites</i> de notícias, intranets, ou mesmo weblogs, de pequena a grande escala. O XOOPS Cube é distribuido sob os termos da <a href='http://pt.wikipedia.org/wiki/Licença_BSD' rel='external nofollow' target='_tab'>Nova Licença BSD</a>, o que provê a liberdade de ser utilizado e modificado desde que sejam cumpridos os termos de distribuição dessa <a href='http://xoopscube.sourceforge.net/license/bsd_licenses.txt' target='_tab'>licença</a>.
+O XOOPS Cube é ideal para a criação <i>sites</i> de notícias, intranets, ou mesmo weblogs, de pequena a grande escala. O XOOPS Cube é distribuido sob os termos da <a href='http://pt.wikipedia.org/wiki/Licença_BSD' rel='external nofollow' target='_tab'>Nova Licença BSD</a>, o que provê a liberdade de ser utilizado e modificado desde que sejam cumpridos os termos de distribuição dessa <a href='https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt' target='_tab'>licença</a>.
 
 <u><b>Requisitos:</b></u>
 <ul>

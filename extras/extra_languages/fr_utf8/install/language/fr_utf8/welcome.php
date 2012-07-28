@@ -9,7 +9,7 @@ ce qui fait de XOOPS Cube Legacy l'outil idéal pour le développement de petits
 dynamiques, portails intranet de sociétés, portails d'entreprise, blogs et beaucoup plus encore.
 </p>
 <p>
-XOOPS Cube Legacy est publié sous les termes de la <a href='http://xoopscube.sourceforge.net/license/GPL_V2.txt' target='_blank'>GNU General Public License (GPL - Licence Grand Public)</a> et libre d'utilisation et de modification.
+XOOPS Cube Legacy est publié sous les termes de la <a href='https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt' target='_blank'>GNU General Public License (GPL - Licence Grand Public)</a> et libre d'utilisation et de modification.
 Il est librement redistribuable tant que vous vous soumettez aux termes de distribution GPL.
 </p>
 <u><b>Conditions</b></u>

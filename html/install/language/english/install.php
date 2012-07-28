@@ -55,7 +55,7 @@ define("_INSTALL_L58","Virtual path to your main XOOPS Cube directory WITHOUT tr
 define("_INSTALL_L31","Could not create database. Contact the server administrator for details.");
 define("_INSTALL_L32","The 1st Step Installation Complete");
 define("_INSTALL_L33","Click <a href='../index.php'>HERE</a> to see the home page of your site.");
-define("_INSTALL_L35","If you had any errors, please contact the dev team at <a href='http://xoopscube.sourceforge.net/' rel='external'>XOOPS Cube Project</a>");
+define("_INSTALL_L35","If you had any errors, please contact the dev team at <a href='https://github.com/xoopscube/legacy/' rel='external'>XOOPS Cube Project</a>");
 define("_INSTALL_L36","Please choose your site admin's name and password.");
 define("_INSTALL_L37","Admin Name");
 define("_INSTALL_L38","Admin Email");

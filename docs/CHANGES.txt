@@ -13,6 +13,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #3545043 - Bad request handling at EventFunctions
 
 [Other Changes/Enhancements]
+- Move the code repository to github
 - Update portuguese/pt_utf8 language files
 - Revert - Fix Bug #3470535 - Smarty cache directory
 
@@ -24,7 +25,9 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Marijuana
 - Mikhail Miguel
 - Naao
-
+- Nao-pon
+- nobunobu
+- xoopserver
 
 ----------------------------------------
 2012/06/05: Package Revision 2.2.1 Beta3
