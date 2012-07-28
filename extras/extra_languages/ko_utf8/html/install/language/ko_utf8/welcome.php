@@ -9,11 +9,11 @@ $content =
 짧은 시간내에 간단히..그러나 정말로 멋진 커뮤니티사이트, 인트라넷용 포탈사이트, 기업 포탈사이트, 웹 블로그 등을 작성하시길 원하신다면 XOOPS Cube Legacy가 최적의 선택이 될 것입니다.
 </p>
 <p>
-XOOPS Cube의 라이센스는 <a href='http://xoopscube.sourceforge.net/license/bsd_licenses.txt' rel='external'>New BSD License</a> 입니다. 
+XOOPS Cube의 라이센스는 <a href='https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt' rel='external'>New BSD License</a> 입니다.
 따라서, 여러분은 New BSD License의 조건내에서라면 자유롭게 이용/수정/재배포하실 수 있습니다
 </p>
 <p>
-XOOPS Cube Legacy의 라이센스는 <a href='http://xoopscube.sourceforge.net/license/GPL_V2.txt' rel='external'>GNU General Public License (GPL)</a> 입니다. 
+XOOPS Cube Legacy의 라이센스는 <a href='https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt' rel='external'>GNU General Public License (GPL)</a> 입니다.
 따라서, 여러분은 GPL의 조건내에서라면 자유롭게 이용/수정/재배포하실 수 있습니다.
 </p>
 <u><b>요구사양</b></u>

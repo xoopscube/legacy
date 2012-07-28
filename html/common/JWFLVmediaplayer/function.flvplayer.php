@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: function.xoops_pagenavi.php,v 1.2 2007/06/24 07:26:21 nobunobu Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
+ * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */

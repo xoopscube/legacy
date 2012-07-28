@@ -14,7 +14,7 @@ making XOOPS Cube Legacy 是一個從建立小型到大型動態網站都是再�
 不論是公司團體組織甚至只是小型的個人網站等等都非常的適用。
 </p>
 <p>
-XOOPS Cube Legacy 依照於<a href='http://xoopscube.sourceforge.net/license/GPL_V2.txt' target='_blank'>GNU General Public License (GPL)</a>並遵循此一方向
+XOOPS Cube Legacy 依照於<a href='https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt' target='_blank'>GNU General Public License (GPL)</a>並遵循此一方向
 讓大家可以照自己所需修改，並用於各種用途，但必須保留程式碼的版權宣告完整性，並且不得直接販售本程式碼。
 </p>
 <u><b>環境需求</b></u>

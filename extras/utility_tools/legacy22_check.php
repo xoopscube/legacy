@@ -3,8 +3,8 @@
 /**
  *
  * XOOPS Cube Legacy 2.2 Upgrade Checker
- * @copyright Copyright 2005-2010 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
- * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright Copyright 2005-2010 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  * @usage Put this file on XOOPS_ROOT_PATH and access by your browser.
  */
 
