@@ -266,6 +266,15 @@ $modversion['config'] = array(
 		'default'	=> 'http://cmsthemefinder.com/modules/lica/index.php?controller=download&id=%u',
 		'options'	=> array(),
 	) ,
+	array(
+		'name'		=> 'stores_json_url',
+		'title'		=> '_MI_XUPDATE_FTP_STORE_URL' ,
+		'description'	=> '',
+		'formtype'	=> 'text',
+		'valuetype'	=> 'string',
+		'default'	=> 'http://xoopscube.net/uploads/xupdatemaster/stores_json.txt',
+		'options'	=> array(),
+	) ,
 
 ##[cubson:config]
 ##[/cubson:config]
