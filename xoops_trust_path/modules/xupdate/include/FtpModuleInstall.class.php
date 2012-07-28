@@ -45,6 +45,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 
 	public $trust_dirname;
 	public $dirname;
+	public $html_only;
 	
 	public function __construct() {
 
@@ -181,12 +182,14 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 		if ($this->target_type == 'TrustModule'){
 			if (!empty($this->trust_dirname) && !empty($this->dirname) && $this->trust_dirname != $this->dirname){
 
-				// copy xoops_trust_path
-				$uploadPath = XOOPS_TRUST_PATH . '/' ;
-				$unzipPath =  $this->exploredDirPath . '/xoops_trust_path';
-				$result = $this->Ftp->uploadNakami($unzipPath, $uploadPath);
-				if (! $this->_check_file_upload_result($result, 'xoops_trust_path')){
-					return false;
+				if (! $this->html_only) {
+					// copy xoops_trust_path
+					$uploadPath = XOOPS_TRUST_PATH . '/' ;
+					$unzipPath =  $this->exploredDirPath . '/xoops_trust_path';
+					$result = $this->Ftp->uploadNakami($unzipPath, $uploadPath);
+					if (! $this->_check_file_upload_result($result, 'xoops_trust_path')){
+						return false;
+					}
 				}
 
 				// rename copy html module
@@ -207,12 +210,14 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 
 			}else{
 
-				// copy xoops_trust_path
-				$uploadPath = XOOPS_TRUST_PATH . '/' ;
-				$unzipPath =  $this->exploredDirPath . '/xoops_trust_path';
-				$result = $this->Ftp->uploadNakami($unzipPath, $uploadPath);
-				if (! $this->_check_file_upload_result($result, 'xoops_trust_path')){
-					return false;
+				if (! $this->html_only) {
+					// copy xoops_trust_path
+					$uploadPath = XOOPS_TRUST_PATH . '/' ;
+					$unzipPath =  $this->exploredDirPath . '/xoops_trust_path';
+					$result = $this->Ftp->uploadNakami($unzipPath, $uploadPath);
+					if (! $this->_check_file_upload_result($result, 'xoops_trust_path')){
+						return false;
+					}
 				}
 
 				// copy html

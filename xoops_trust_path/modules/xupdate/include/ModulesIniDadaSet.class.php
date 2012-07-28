@@ -49,42 +49,47 @@ class Xupdate_ModulesIniDadaSet
 		$downloadDirPath = $this->Xupdate->params['temp_path'];
 		$realDirPath = realpath($downloadDirPath);
 
-		// temp start
-		// 取り急ぎ、ローカルファイルから作成したが、
-		// 最終的には、xoopscube.netにマスタファイルをjson形式で置き、
-		// それを読み出すこととなる。
-		//	include dirname(__FILE__) . '/stores.inc.php';
-		//	$this->stores = $stores;
-		//	$json_fname = $downloadDirPath . '/stores.txt';
-		//	$fp = fopen($json_fname, "w");
-		//	$_json = json_encode($stores);
-		//	fwrite($fp, $_json);
-		//	fclose($fp);
-
-		//このストアーごとのアイテム配列をセットしてください
-		//登録済のデータをマージします
-		//未登録のデータは自動で登録
-
-		$json_fname = dirname(__FILE__) . '/settings/stores.txt';
-		$this->stores = json_decode(file_get_contents($json_fname), true);
-		//adump($this->stores);
-
-		$json_fname = dirname(__FILE__) . '/settings/contents.txt';
-		$arr_master = json_decode(file_get_contents($json_fname), true);
-		//adump($arr_master);
-
-		// temp end
+		// Get store master from xoopscube.net
+		$json_url = $root->mContext->mModuleConfig['stores_json_url'];
+		$json_fname = 'stores_json.ini.php';
 		
+		$downloadedFilePath = '';
+		$stores = array();
+		$this->Func->_downloadFile( 'stores_master', $json_url, $json_fname, $downloadedFilePath, 600 );
+		if ($downloadedFilePath && ! $stores_json = @ file_get_contents($downloadedFilePath)) {
+			// for url fetch failure
+			$stores_json = @ file_get_contents(XOOPS_TRUST_PATH . '/modules/xupdate/include/settings/stores.txt');
+		}
+		if (!$stores = @ json_decode($stores_json, true)) {
+			$stores = array();
+		}
+		
+		// load my stores ini
+		$mystores = array();
+		if (is_file(XOOPS_TRUST_PATH.'/settings/xupdate_mystores.ini')) {
+			$mystores = @ parse_ini_file(XOOPS_TRUST_PATH.'/settings/xupdate_mystores.ini', true);
+		}
+		if ($mystores) {
+			$stores = array_merge($stores, $mystores);
+		}
+		//echo('<pre>');var_dump($stores);exit;
+		
+		// set stores
+		$this->stores = array();
+		foreach($stores as $store) {
+			$this->stores[(int)$store['sid']] = $store;
+		}
+		//echo('<pre>');var_dump($this->stores);exit;
+		
+		$cacheTTL = 600; //10min
+		$multiData = array();
 		if (! is_array($callers)) {
 			$callers = array($callers);
 		}
-
-		$cacheTTL = 600; //10min
-		$multiData = array();
 		foreach($callers as $caller) {
 			$this->_setmStoreObjects( $caller );
 	
-			foreach($this->stores as $sname => $store){
+			foreach($this->stores as $store){
 				if ( $store['contents'] !== $caller ) {
 					continue;
 				}
@@ -151,13 +156,17 @@ class Xupdate_ModulesIniDadaSet
 						// make $this->approved
 						$this->approved[$sid] = array();
 						$master = array();
-						foreach($arr_master[$sid] as $arr) {
-							if (is_array($arr) && !empty($arr['approved'])) {
-								$master[$arr['target_key']] = true;
+						// $sid >= 10000: My store
+						if ($sid < 10000) {
+							foreach($this->stores[$sid]['items'] as $arr) {
+								if (is_array($arr) && !empty($arr['approved'])) {
+									$master[$arr['target_key']] = true;
+								}
 							}
 						}
 						foreach ($items as $key => $check) {
-							if (isset($master[$check['target_key']])) {
+							// $sid >= 10000: My store (all approve)
+							if ($sid >= 10000 || isset($master[$check['target_key']])) {
 								$this->approved[$sid][$check['target_key']] = true;
 							} else {
 								unset($items[$key]);
@@ -190,18 +199,20 @@ class Xupdate_ModulesIniDadaSet
 
 	private function _setmStoreObjects( $caller )
 	{
+		ksort($this->stores);
+		
 		//この該当サイト登録済みデータを全部確認する
 		$storeObjects =& $this->storeHand->getObjects(null,null,null,true);
-
-		foreach($this->stores as $sname => $store){
-			$sid = (int)$store['sid'];
-			if (isset($storeObjects[$sid])){
-				$oldsobj = clone $storeObjects[$sid];
-				$storeObjects[$sid]->assignVars($store);
+		//echo('<pre>');var_dump($storeObjects);exit;
+		foreach($storeObjects as $sid => $store){
+			if (isset($this->stores[$sid])){
+				$oldsobj = clone $store;
+				$sObj = $this->stores[$sid];
+				unset($sObj['items']);
+				$storeObjects[$sid]->assignVars($sObj);
 				$this->_StoreUpdate ($storeObjects[$sid] , $oldsobj);
-				$this->mSiteObjects[$sid]=$storeObjects[$sid];
+				$this->mSiteObjects[$sid] = $storeObjects[$sid];
 			}else{
-
 				//TODO delete ok?
 				$criteria = new CriteriaCompo();
 				if ($caller === 'theme'){
@@ -212,9 +223,8 @@ class Xupdate_ModulesIniDadaSet
 					$cri_compo->add(new Criteria( 'target_type', 'X2Module'), 'OR' ) ;
 					$criteria->add( $cri_compo );
 				}
-				if ( !empty($sid) ){
-					$criteria->add(new Criteria( 'sid', $sid ) );
-				}
+				$criteria->add(new Criteria( 'sid', $sid ) );
+
 				$siteModuleStoreObjects =& $this->modHand->getObjects($criteria);
 
 				foreach($siteModuleStoreObjects as $id => $mobj){
@@ -226,12 +236,13 @@ class Xupdate_ModulesIniDadaSet
 				}
 			}
 		}
-
-		foreach($this->stores as $sname => $store){
-			$sid=(int)$store['sid'];
-			if (!isset($this->mSiteObjects[$sid]) && $this->stores[$sname]){
+		//echo('<pre>');var_dump($this->mSiteObjects);exit;
+		foreach($this->stores as $sid => $store){
+			if (!isset($this->mSiteObjects[$sid])){
 				$sobj = new $this->storeHand->mClass();
-				$sobj->assignVars($this->stores[$sname]);
+				$sObj = $this->stores[$sid];
+				unset($sObj['items']);
+				$sobj->assignVars($sObj);
 				$sobj->assignVar('reg_unixtime',time());
 
 				$setting_type = $store['setting_type'];
@@ -246,8 +257,7 @@ class Xupdate_ModulesIniDadaSet
 				$sobj->setNew();
 				//adump($this->stores[$sname],$sobj);
 				$this->storeHand->insert($sobj ,true);
-				//$this->mSiteObjects[$sid] = $sobj;
-				$this->mSiteObjects[$sname] = $sobj;
+				$this->mSiteObjects[$sid] = $sobj;
 			}
 		}
 
@@ -271,8 +281,18 @@ class Xupdate_ModulesIniDadaSet
 			$obj->assignVar('reg_unixtime',time());
 			$obj->unsetNew();
 			$this->storeHand->insert($obj ,true);
-		}
 
+			// delete this stores items
+			if ($newdata['addon_url'] !== $olddata['addon_url'] || $newdata['contents'] !== $olddata['contents']) {
+				$sid = (int)$obj->getVar('sid');
+				$criteria = new CriteriaCompo();
+				$criteria->add(new Criteria( 'sid', $sid ) );
+				$siteModuleStoreObjects =& $this->modHand->getObjects($criteria, null, null, true);
+				foreach($siteModuleStoreObjects as $mobj) {
+					$this->modHand->delete($mobj,true);
+				}
+			}
+		}
 	}
 
 
@@ -428,35 +448,44 @@ class Xupdate_ModulesIniDadaSet
 
 	private function _createItemOptions( $item )
 	{
+		static $mVars;
+		if (is_null($mVars)) {
+			$mobj = new $this->modHand->mClass();
+			$mVars = $mobj->mVars;
+			unset($mobj);
+		}
+		
 		if(isset($item['writable_file']) || isset($item['writable_dir']) || isset($item['install_only'])){
 			$item_arr=array();
 			if(isset($item['writable_file'])){
-				$item_arr['writable_file']= $item['writable_file'] ;
-				unset ($item['writable_file']);
+				$item_arr['writable_file'] = array_filter($item['writable_file'], 'strlen');
 			}
 			if(isset($item['writable_dir'])){
-				$item_arr['writable_dir']= $item['writable_dir'] ;
-				unset ($item['writable_dir']);
+				$item_arr['writable_dir'] = array_filter($item['writable_dir'], 'strlen');
 			}
 			if(isset($item['install_only'])){
-				$item_arr['install_only']= $item['install_only'] ;
-				unset ($item['install_only']);
+				$item_arr['install_only'] = array_filter($item['install_only'], 'strlen');
 			}
 		}
 		if(isset($item['detailed_version'])){
 			$item_arr['detailed_version'] = $item['detailed_version'] ;
-			unset ($item['detailed_version']);
 		} else {
 			$item_arr['detailed_version'] = '';
 		}
 		if(isset($item['screen_shot'])){
 			$item_arr['screen_shot'] = $item['screen_shot'] ;
-			unset ($item['screen_shot']);
 		} else {
 			$item_arr['screen_shot'] = '' ;
 		}
 		$item['options']= serialize($item_arr) ;
-
+		
+		// clean up
+		foreach(array_keys($item) as $key) {
+			if (! isset($mVars[$key])) {
+				unset($item[$key]);
+			}
+		}
+		
 		return $item;
 	}
 /*

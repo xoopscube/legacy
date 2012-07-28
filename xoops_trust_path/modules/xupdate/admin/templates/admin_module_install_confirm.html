@@ -89,7 +89,20 @@
         <{$dirname|xoops_escape:show}>
     </td>
   </tr>
-  <{if $options}>
+  <{if $target_type == 'TrustModule'}>
+  <tr class="<{cycle values='odd,even'}>">
+    <td class="legacy_list_select"><{$smarty.const._AD_XUPDATE_HTML_ONLY}></td>
+    <td class="legacy_list_select">
+      <table>
+        <tr>
+          <td class='even'><{$smarty.const._AD_XUPDATE_HTML_ONLY_DESC}></td>
+          <td class="even"><{xoops_input type=checkbox name=html_only value=1 }></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <{/if}>
+  <{if $options.writable_dir || $options.writable_file || $options.install_only}>
   <tr class="<{cycle values='odd,even'}>">
     <td class="legacy_list_select">options</td>
     <td class="legacy_list_select">

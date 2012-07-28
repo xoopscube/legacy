@@ -14,6 +14,8 @@ define('_AD_XUPDATE_LANG_THEME_FINDER', "テーマファインダー");
 define('_AD_XUPDATE_LANG_TYPE', "タイプ");
 define('_AD_XUPDATE_LANG_LICENSE', "ライセンス");
 define('_AD_XUPDATE_LANG_REQUIRED', "推奨度");
+define('_AD_XUPDATE_HTML_ONLY', 'html側のみ');
+define('_AD_XUPDATE_HTML_ONLY_DESC', 'trust 側を更新する必要がない場合にチェックを入れると html 側のみ配置処理をします。');
 define('_AD_XUPDATE_LANG_WRITABLE_DIR', "書込み権限を与えるディレクトリ");
 define('_AD_XUPDATE_LANG_WRITABLE_FILE', "書込み権限を与えるファイル");
 define('_AD_XUPDATE_LANG_INSTALL_ONLY', "インストール時のみコピーするファイルまたはファイルが存在するディレクトリ<br>（アップデート時もチェック入れると上書き）");
@@ -26,4 +28,3 @@ define('_AD_XUPDATE_LANG_MESSAGE_PROCESSING', "中");
 
 define('_AD_XUPDATE_LANG_THM_TOTAL'  , 'テーマの合計');
 
-?>

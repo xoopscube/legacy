@@ -23,7 +23,7 @@ $basename = basename($dirname);
 // Define a basic manifesto.
 //
 $modversion['name'] = _MI_XUPDATE_LANG_XUPDATE;
-$modversion['version'] = '0.09';//alpha3
+$modversion['version'] = '0.10'; //beta 1
 $modversion['description'] = _MI_XUPDATE_DESC_XUPDATE;
 $modversion['author'] = _MI_XUPDATE_LANG_AUTHOR;
 $modversion['credits'] = _MI_XUPDATE_LANG_CREDITS;
@@ -264,6 +264,15 @@ $modversion['config'] = array(
 		'formtype'	=> 'text',
 		'valuetype'	=> 'string',
 		'default'	=> 'http://cmsthemefinder.com/modules/lica/index.php?controller=download&id=%u',
+		'options'	=> array(),
+	) ,
+	array(
+		'name'		=> 'stores_json_url',
+		'title'		=> '_MI_XUPDATE_FTP_STORE_URL' ,
+		'description'	=> '',
+		'formtype'	=> 'text',
+		'valuetype'	=> 'string',
+		'default'	=> 'http://xoopscube.net/uploads/xupdatemaster/stores_json.txt',
 		'options'	=> array(),
 	) ,
 
