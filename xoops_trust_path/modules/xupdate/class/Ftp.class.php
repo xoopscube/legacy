@@ -126,6 +126,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 
 	/**
 	 *  set_no_overwrite
+	 *  
 	 * @param array $no_overwrite
 	 * @return void
 	 */
@@ -133,22 +134,72 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		$this->no_overwrite = $no_overwrite;
 	}
 	
+	/**
+	 * Make dirctory by server path
+	 * 
+	 * @param string $dir server path
+	 * @return Ambigous <void, boolean>
+	 */
 	public function localMkdir($dir) {
 		return $this->ftp_mkdir($dir);
 	}
 	
+	/**
+	 * Remove directory by server path
+	 * 
+	 * @param string $dir server path
+	 * @return boolean
+	 */
 	public function localRmdir($dir) {
-		$ftpRoot = $this->seekFTPRoot();
-		$localDir = substr($dir, strlen($ftpRoot));
+		return parent::rmdir($this->getLocalPath($dir));
+	}
+	
+	/**
+	 * chmod by server path
+	 * 
+	 * @param string $item server path
+	 * @param integer $mode
+	 * @return Ambigous <boolean, number, Mixed, unknown, string>
+	 */
+	public function localChmod($item, $mode) {
+		return $this->chmod($this->getLocalPath($item), $mode);
+	}
+	
+	/**
+	 * delete file by server path
+	 * 
+	 * @param string $file server path
+	 * @return boolean
+	 */
+	public function localDelete($file) {
+		return parent::delete($this->getLocalPath($file));
+	}
+	
+	/**
+	 * remove directory recursive by server path
+	 * 
+	 * @param string $dir server path
+	 * @return boolean
+	 */
+	public function localRmdirRecursive($dir) {
+		$localDir = $this->getLocalPath($dir);
+		if ($list = parent::nlist($localDir)) {
+			$ftproot = $this->seekFTPRoot();
+			foreach($list as $path) {
+				$serverPath = $ftproot.$path;
+				if (is_dir($serverPath)) {
+					$this->localRmdirRecursive($serverPath);
+				} else {
+					$this->localDelete($serverPath);
+				}
+			}
+		}
 		return parent::rmdir($localDir);
 	}
 	
-	public function localChmod($dir, $mode) {
-		$ftpRoot = $this->seekFTPRoot();
-		$localDir = substr($dir, strlen($ftpRoot));
-		return $this->chmod($localDir, $mode);
-	}
-	
+	/**
+	 * @return boolean
+	 */
 	public function checkLogin() {
 		$ret = true;
 		if (! @ unserialize(@ file_get_contents($this->loginCheckFile))) {
@@ -163,6 +214,9 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		return $ret;
 	}
 	
+	/**
+	 * @return boolean
+	 */
 	public function isConnected() {
 		return $this->_connected;
 	}
@@ -377,9 +431,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	 */
 	protected function ftp_mkdir($dir)
 	{
-		$ftpRoot = $this->seekFTPRoot();
-		$localDir = substr($dir, strlen($ftpRoot));
-		return $this->ftpMkdirByFtpPath($localDir);
+		return $this->ftpMkdirByFtpPath($this->getLocalPath($dir));
 	}
 
 	/**
@@ -405,10 +457,30 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		return $this->mkdir($dir);
 	}
 	
+	/**
+	 * Set permission of .php
+	 * 
+	 * @param string $file
+	 */
 	private function setPhpPerm($file) {
 		if ($this->phpPerm && strtolower(substr($file, -4)) === '.php') {
 			$this->chmod($file, $this->phpPerm);
 		}
+	}
+	
+	/**
+	 * Get local(on FTP) path
+	 * 
+	 * @param string $path
+	 * @return string
+	 */
+	private function getLocalPath($path) {
+		static $FTP_root_len = null;
+		if (is_null($FTP_root_len)) {
+			$FTP_root_len = strlen($this->seekFTPRoot());
+		}
+		$localPath = substr($path, $FTP_root_len);
+		return $localPath;
 	}
 
 }// end class

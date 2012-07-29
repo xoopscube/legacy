@@ -446,7 +446,11 @@ class Xupdate_ModulesIniDadaSet
 			unset($mobj);
 		}
 		
-		if(isset($item['writable_file']) || isset($item['writable_dir']) || isset($item['install_only'])){
+		if(isset($item['writable_file'])
+		|| isset($item['writable_dir'])
+		|| isset($item['install_only'])
+		|| isset($item['delete_file'])
+		|| isset($item['delete_dir'])){
 			$item_arr=array();
 			if(isset($item['writable_file'])){
 				$item_arr['writable_file'] = array_filter($item['writable_file'], 'strlen');
@@ -456,6 +460,12 @@ class Xupdate_ModulesIniDadaSet
 			}
 			if(isset($item['install_only'])){
 				$item_arr['install_only'] = array_filter($item['install_only'], 'strlen');
+			}
+			if(isset($item['delete_file'])){
+				$item_arr['delete_file'] = array_filter($item['delete_file'], 'strlen');
+			}
+			if(isset($item['delete_dir'])){
+				$item_arr['delete_dir'] = array_filter($item['delete_dir'], 'strlen');
 			}
 		}
 		if(isset($item['detailed_version'])){
