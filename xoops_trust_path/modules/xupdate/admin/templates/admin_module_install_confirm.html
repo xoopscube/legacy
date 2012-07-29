@@ -139,7 +139,7 @@
        <{foreach from=$options.delete_dir item=_item}>
         <tr>
         <td class='even'><{$_item}></td>
-        <td class='even'><input type='checkbox' name='delete_dir[]' id='delete_dir_' value='<{$_item}>' checked="checked" /></td>
+        <td class='even'><input type='checkbox' name='delete_dir[]' id='delete_dir_' value='<{$_item}>' /></td>
         </tr>
         <{/foreach}>
         <{/if}>
@@ -148,7 +148,7 @@
        <{foreach from=$options.delete_file item=_item}>
         <tr>
         <td class='even'><{$_item}></td>
-        <td class='even'><input type='checkbox' name='delete_file[]' id='delete_file_' value='<{$_item}>' checked="checked" /></td>
+        <td class='even'><input type='checkbox' name='delete_file[]' id='delete_file_' value='<{$_item}>' /></td>
         </tr>
         <{/foreach}>
         <{/if}>
