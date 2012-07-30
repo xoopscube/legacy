@@ -272,7 +272,7 @@ $modversion['config'] = array(
 		'description'	=> '',
 		'formtype'	=> 'text',
 		'valuetype'	=> 'string',
-		'default'	=> 'http://xoopscube.net/uploads/xupdatemaster/stores_json.txt',
+		'default'	=> 'http://xoopscube.net/uploads/xupdatemaster/stores_json_V1.txt',
 		'options'	=> array(),
 	) ,
 

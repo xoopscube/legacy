@@ -53,6 +53,10 @@ class Xupdate_ModulesIniDadaSet
 		$json_url = $root->mContext->mModuleConfig['stores_json_url'];
 		$json_fname = 'stores_json.ini.php';
 		
+		if ($json_url === 'http://xoopscube.net/uploads/xupdatemaster/stores_json.txt') {
+			$json_url = 'http://xoopscube.net/uploads/xupdatemaster/stores_json_V1.txt';
+		}
+		
 		$downloadedFilePath = '';
 		$stores = array();
 		$this->Func->_downloadFile( 'stores_master', $json_url, $json_fname, $downloadedFilePath, 600 );
@@ -62,6 +66,13 @@ class Xupdate_ModulesIniDadaSet
 		}
 		if (!$stores = @ json_decode($stores_json, true)) {
 			$stores = array();
+		} else {
+			if (isset($stores['stores'])) {
+				$stores_orgin = $stores;
+				// stores_json_V1
+				// array('stores' => storesArray, 'categories' => categoriesArray)
+				$stores = $stores['stores'];
+			}
 		}
 		
 		// load my stores ini
