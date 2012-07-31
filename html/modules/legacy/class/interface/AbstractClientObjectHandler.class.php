@@ -357,8 +357,7 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
 	 */
 	protected function _isTagClient(/*** mixed[] ***/ $conf)
 	{
-		$flag = isset($conf[$this->_mClientConfig['tag']]) ? $conf[$this->_mClientConfig['tag']] : 0 ;
-		return $flag && $flag==1 ? true : false;
+		return isset($conf[$this->_mClientConfig['tag']]) ?  true : false;
 	}
 
 	/**
@@ -370,8 +369,7 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
 	 */
 	protected function _isWorkflowClient(/*** mixed[] ***/ $conf)
 	{
-		$flag = isset($conf[$this->_mClientConfig['workflow']]) ? $conf[$this->_mClientConfig['workflow']] : 0 ;
-		return $flag==1 ? true : false;
+		return isset($conf[$this->_mClientConfig['workflow']]) ? true : false;
 	}
 
 	/**
@@ -383,8 +381,7 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
 	 */
 	protected function _isImageClient(/*** mixed[] ***/ $conf)
 	{
-		$flag = isset($conf[$this->_mClientConfig['image']]) ? $conf[$this->_mClientConfig['image']] : 0;
-		return $flag && $flag==1 ? true : false;
+		return isset($conf[$this->_mClientConfig['image']]) ? true : false;
 	}
 
     /**
@@ -396,8 +393,7 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
      */
     protected function _isMapClient(/*** mixed[] ***/ $conf)
     {
-		$flag = isset($conf[$this->_mClientConfig['map']]) ? $conf[$this->_mClientConfig['map']] : 0;
-		return $flag && $flag==1 ? true : false;
+		return isset($conf[$this->_mClientConfig['map']]) ? true : false;
     }
 
 	/**
