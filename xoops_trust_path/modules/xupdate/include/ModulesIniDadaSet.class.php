@@ -25,7 +25,9 @@ class Xupdate_ModulesIniDadaSet
 
 	public $stores ;
 	private $approved = array() ;
-
+	private $master = array();
+	private $allCallers = array('module', 'theme', 'package');
+	
 	protected $mSiteObjects = array();
 	protected $mSiteModuleObjects = array();
 
@@ -95,8 +97,13 @@ class Xupdate_ModulesIniDadaSet
 		$cacheTTL = 600; //10min
 		$multiData = array();
 		if (! is_array($callers)) {
-			$callers = array($callers);
+			if ($callers === 'package' || $callers === 'all') {
+				$callers = $this->allCallers;
+			} else {
+				$callers = array($callers);
+			}
 		}
+		
 		foreach($callers as $caller) {
 			$this->_setmStoreObjects( $caller );
 	
@@ -111,6 +118,11 @@ class Xupdate_ModulesIniDadaSet
 						$target_key = 'themes.ini';
 						$tempFilename = 'themes'.(int)$store['sid'].'.ini.php';
 						$contents = 'themes';
+						break;
+					case 'package':
+						$target_key = 'package.ini';
+						$tempFilename = 'package'.(int)$store['sid'].'.ini.php';
+						$contents = 'package';
 						break;
 					case 'module':
 					default:
@@ -145,6 +157,7 @@ class Xupdate_ModulesIniDadaSet
 				
 			}
 		}
+		//echo('<pre>');var_dump($multiData);exit;
 		
 		$use_mb_convert = function_exists('mb_convert_encoding');
 		if ($this->Func->_multiDownloadFile($multiData, $cacheTTL)) {
@@ -155,6 +168,7 @@ class Xupdate_ModulesIniDadaSet
 				if (file_exists($res['downloadedFilePath'])){
 					$downloadedFilePath = $res['downloadedFilePath'];
 					if ($items = @ parse_ini_file($downloadedFilePath, true)) {
+						$isPackage = ($res['caller'] === 'package');
 						$lngKey = $i + 1;
 						if (file_exists($multiData[$lngKey]['downloadedFilePath'])){
 							$items_lang = @ parse_ini_file($multiData[$lngKey]['downloadedFilePath'], true);
@@ -166,27 +180,43 @@ class Xupdate_ModulesIniDadaSet
 						
 						// make $this->approved
 						$this->approved[$sid] = array();
-						$master = array();
+						$this->master[$sid] = array();
 						// $sid >= 10000: My store
-						if ($sid < 10000) {
+						if (!$isPackage && $sid < 10000) {
 							foreach($this->stores[$sid]['items'] as $arr) {
 								if (is_array($arr) && !empty($arr['approved'])) {
-									$master[$arr['target_key']] = true;
+									$this->master[$sid][$arr['target_key']] = true;
 								}
 							}
 						}
 						foreach ($items as $key => $check) {
+							$_sid = $isPackage? intval(substr($check['dirname'], 1)) : $sid;
 							// $sid >= 10000: My store (all approve)
-							if ($sid >= 10000 || isset($master[$check['target_key']])) {
+							if ($sid >= 10000 || (isset($this->master[$_sid]) && isset($this->master[$_sid][$check['target_key']]))) {
 								$this->approved[$sid][$check['target_key']] = true;
 							} else {
 								unset($items[$key]);
 							}
 						}
-						$this->_setmSiteModuleObjects($sid, $res['caller']);
+						$this->_setmSiteModuleObjects($sid);
 						
+						$rObjs = array();
 						foreach($items as $key => $item){
+							if ($isPackage) {
+								$_sid = intval(substr($item['dirname'], 1));
+								if (!isset($rObjs[$_sid])) {
+									$criteria = new CriteriaCompo();
+									$criteria->add(new Criteria( 'sid', $_sid ) );
+									$_objs =& $this->modHand->getObjects($criteria, null, null, true);
+									foreach($_objs as $id => $mobj){
+										$rObjs[$_sid][$mobj->get('target_key')] = $mobj;
+									}
+									unset($criteria, $_objs);
+								}
+								$item = $this->_getItemArrFromObj($rObjs[$_sid][$item['target_key']]);
+							}
 							$item['sid'] = $sid ;
+							$item['contents'] = $res['caller'];
 							$item['description'] = (isset($items_lang[$key]) && isset($items_lang[$key]['description'])) ? $items_lang[$key]['description']
 							                     : (isset($item['description'])? $item['description'] : '') ;
 							if ($item['description'] && $use_mb_convert && 'UTF-8' != _CHARSET) {
@@ -206,6 +236,29 @@ class Xupdate_ModulesIniDadaSet
 				}
 			}
 		}
+	}
+	
+	private function _getItemArrFromObj($obj) {
+		$item = array();
+		$options = $obj->unserialize_options();
+		$item['dirname'] = $obj->get('dirname');
+		$item['target_key'] = $obj->get('target_key');
+		$item['target_type'] = $obj->get('target_type');
+		$item['version'] = $obj->get('version')/100;
+		$item['detailed_version'] = $options['detailed_version'];
+		$item['replicatable'] = $obj->get('replicatable');
+		$item['addon_url'] = $obj->get('addon_url');
+		$item['detail_url'] = $obj->get('detail_url');
+		$item['license'] = $obj->get('license');
+		$item['required'] = $obj->get('required');
+		$item['description'] = $obj->get('description');
+		$item['screen_shot'] = $options['screen_shot'];
+		$item['install_only'] = $options['install_only'];
+		$item['writable_dir'] = $options['writable_dir'];
+		$item['writable_file'] = $options['writable_file'];
+		$item['delete_dir'] = $options['delete_dir'];
+		$item['delete_file'] = $options['delete_file'];
+		return $item;
 	}
 
 	private function _setmStoreObjects( $caller )
@@ -299,19 +352,19 @@ class Xupdate_ModulesIniDadaSet
 
 
 //----------------------------------------------------------------------
-	private function _setmSiteModuleObjects($sid, $caller)
+	private function _setmSiteModuleObjects($sid)
 	{
 		//この該当サイト登録済みデータを全部確認する
 		$sid = (int)$sid;
 		$criteria = new CriteriaCompo();
-		if ($caller === 'theme'){
-			$criteria->add(new Criteria( 'target_type', 'Theme' ) );
-		} else {
-			$cri_compo = new CriteriaCompo();
-			$cri_compo->add(new Criteria( 'target_type', 'TrustModule' ) );
-			$cri_compo->add(new Criteria( 'target_type', 'X2Module'), 'OR' ) ;
-			$criteria->add( $cri_compo );
-		}
+		//if ($caller === 'theme'){
+		//	$criteria->add(new Criteria( 'target_type', 'Theme' ) );
+		//} else {
+		//	$cri_compo = new CriteriaCompo();
+		//	$cri_compo->add(new Criteria( 'target_type', 'TrustModule' ) );
+		//	$cri_compo->add(new Criteria( 'target_type', 'X2Module'), 'OR' ) ;
+		//	$criteria->add( $cri_compo );
+		//}
 		$criteria->add(new Criteria( 'sid', $sid ) );
 
 		$siteModuleStoreObjects =& $this->modHand->getObjects($criteria, null, null, true);
@@ -517,6 +570,7 @@ class Xupdate_ModulesIniDadaSet
 		$newdata['options'] = $obj->getVar('options');
 		$newdata['isactive'] = $obj->getVar('isactive');
 		$newdata['hasupdate'] = $obj->getVar('hasupdate');
+		$newdata['contents'] = $obj->getVar('contents');
 
 		$olddata['dirname'] = $oldobj->getVar('dirname');
 		$olddata['trust_dirname'] = $oldobj->getVar('trust_dirname');
@@ -530,6 +584,7 @@ class Xupdate_ModulesIniDadaSet
 		$olddata['options'] = $oldobj->getVar('options');
 		$olddata['isactive'] = $oldobj->getVar('isactive');
 		$olddata['hasupdate'] = $oldobj->getVar('hasupdate');
+		$olddata['contents'] = $oldobj->getVar('contents');
 
 		if (count(array_diff_assoc($olddata, $newdata)) > 0 ) {
 			$obj->unsetNew();

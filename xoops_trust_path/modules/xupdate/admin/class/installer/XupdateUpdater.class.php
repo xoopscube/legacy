@@ -20,7 +20,8 @@ class Xupdate_Updater
     public /*** Legacy_ModuleInstallLog ***/ $mLog = null;
 
     private /*** string[] ***/ $_mMileStone = array(
-    		'006' => 'update006'
+    		'006' => 'update006',
+    		'011' => 'update011'
     	);
 
     private /*** XoopsModule ***/ $_mCurrentXoopsModule = null;
@@ -68,6 +69,34 @@ class Xupdate_Updater
     		return false;
     	}
     	
+    	return true;
+    }
+    
+    private function update011()
+    {
+    	$this->mLog->addReport('DB upgrade start (for Ver 0.11)');
+    	 
+    	// Update database table index.
+    	$root =& XCube_Root::getSingleton();
+    	$db =& $root->mController->getDB();
+    	$table = $db->prefix($this->_mCurrentXoopsModule->get('dirname') . '_modulestore');
+    
+    	$sql = 'SELECT `contents` FROM '.$table ;
+    	if(! $db->query($sql)) {
+    		$sql = 'ALTER TABLE `'.$table.'` ADD `contents` varchar(255) NOT NULL default \'\'';
+    		if ($db->query($sql)) {
+    			$this->mLog->addReport('Success updated '.$table.' - contents');
+    		} else {
+    			$this->mLog->addError('Error update '.$table.' - contents');
+    		}
+    	}
+    	 
+    	if (!$this->_mForceMode && $this->mLog->hasError())
+    	{
+    		$this->_processReport();
+    		return false;
+    	}
+    	 
     	return true;
     }
     
