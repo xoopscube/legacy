@@ -208,8 +208,10 @@ class Xupdate_ModulesIniDadaSet
 									$criteria = new CriteriaCompo();
 									$criteria->add(new Criteria( 'sid', $_sid ) );
 									$_objs =& $this->modHand->getObjects($criteria, null, null, true);
-									foreach($_objs as $id => $mobj){
-										$rObjs[$_sid][$mobj->get('target_key')] = $mobj;
+									foreach($_objs as $id => $mobj) {
+										if ($mobj->get('target_type') != 'TrustModule' || $mobj->get('trust_dirname') === $mobj->get('dirname')) {
+											$rObjs[$_sid][$mobj->get('target_key')] = $mobj;
+										}
 									}
 									unset($criteria, $_objs);
 								}
@@ -219,7 +221,7 @@ class Xupdate_ModulesIniDadaSet
 							$item['contents'] = $res['caller'];
 							$item['description'] = (isset($items_lang[$key]) && isset($items_lang[$key]['description'])) ? $items_lang[$key]['description']
 							                     : (isset($item['description'])? $item['description'] : '') ;
-							if (!$isPackage && $item['description'] && $use_mb_convert && 'UTF-8' != _CHARSET) {
+							if ((!$isPackage || isset($items_lang[$key]['description'])) && $item['description'] && $use_mb_convert && 'UTF-8' != _CHARSET) {
 								$item['description'] = mb_convert_encoding($item['description'] , _CHARSET , 'UTF-8');
 							}
 							switch($item['target_type']){
@@ -241,7 +243,7 @@ class Xupdate_ModulesIniDadaSet
 	private function _getItemArrFromObj($obj) {
 		$item = array();
 		$options = $obj->unserialize_options();
-		$item['dirname'] = $obj->get('dirname');
+		$item['dirname'] = ($obj->get('target_type') === 'TrustModule')? $obj->get('trust_dirname') : $obj->get('dirname');
 		$item['target_key'] = $obj->get('target_key');
 		$item['target_type'] = $obj->get('target_type');
 		$item['version'] = $obj->get('version')/100;
