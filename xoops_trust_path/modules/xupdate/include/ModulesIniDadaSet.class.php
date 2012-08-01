@@ -219,7 +219,7 @@ class Xupdate_ModulesIniDadaSet
 							$item['contents'] = $res['caller'];
 							$item['description'] = (isset($items_lang[$key]) && isset($items_lang[$key]['description'])) ? $items_lang[$key]['description']
 							                     : (isset($item['description'])? $item['description'] : '') ;
-							if ($item['description'] && $use_mb_convert && 'UTF-8' != _CHARSET) {
+							if (!$isPackage && $item['description'] && $use_mb_convert && 'UTF-8' != _CHARSET) {
 								$item['description'] = mb_convert_encoding($item['description'] , _CHARSET , 'UTF-8');
 							}
 							switch($item['target_type']){
