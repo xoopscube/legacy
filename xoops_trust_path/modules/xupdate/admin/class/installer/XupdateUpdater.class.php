@@ -47,9 +47,9 @@ class Xupdate_Updater
     	if(! $db->query($sql)) {
     		$sql = 'ALTER TABLE `'.$table.'` ADD `isactive` int(11) NOT NULL DEFAULT \'-1\'';
     		if ($db->query($sql)) {
-    			$this->mLog->addReport('Success updated '.$table.' - isactive');
+    			$this->mLog->addReport('Success updated '.$table.' - ADD isactive');
     		} else {
-    			$this->mLog->addError('Error update '.$table.' - isactive');
+    			$this->mLog->addError('Error update '.$table.' - ADD isactive');
     		}
     	}
     	 
@@ -57,9 +57,9 @@ class Xupdate_Updater
     	if(! $db->query($sql)) {
     		$sql = 'ALTER TABLE `'.$table.'` ADD `hasupdate` tinyint(1) NOT NULL DEFAULT \'0\'';
     		if ($db->query($sql)) {
-    			$this->mLog->addReport('Success updated '.$table.' - hasupdate');
+    			$this->mLog->addReport('Success updated '.$table.' - ADD hasupdate');
     		} else {
-    			$this->mLog->addError('Error update '.$table.' - hasupdate');
+    			$this->mLog->addError('Error update '.$table.' - ADD hasupdate');
     		}
     	}
     	
@@ -85,9 +85,15 @@ class Xupdate_Updater
     	if(! $db->query($sql)) {
     		$sql = 'ALTER TABLE `'.$table.'` ADD `contents` varchar(255) NOT NULL default \'\'';
     		if ($db->query($sql)) {
-    			$this->mLog->addReport('Success updated '.$table.' - contents');
+    			$this->mLog->addReport('Success updated '.$table.' - ADD contents');
     		} else {
-    			$this->mLog->addError('Error update '.$table.' - contents');
+    			$this->mLog->addError('Error update '.$table.' - ADD contents');
+    		}
+    		$sql = 'ALTER TABLE `'.$table.'` ADD INDEX ( `contents` )';
+    		if ($db->query($sql)) {
+    			$this->mLog->addReport('Success updated '.$table.' - ADD Index contents');
+    		} else {
+    			$this->mLog->addError('Error update '.$table.' - ADD Index contents');
     		}
     	}
     	 

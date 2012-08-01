@@ -263,10 +263,6 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		}else{
 			$criteria = new CriteriaCompo();
 			$criteria->add(new Criteria( 'sid', $this->sid ) );
-			$cri_compo = new CriteriaCompo();
-			$cri_compo->add(new Criteria( 'target_type', 'TrustModule' ) );
-			$cri_compo->add(new Criteria( 'target_type', 'X2Module'), 'OR' ) ;
-			$criteria->add( $cri_compo );
 			$t_objectArr =& $modHand->getObjects($criteria,null,null,true);
 		}
 
