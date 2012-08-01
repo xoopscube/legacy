@@ -98,13 +98,13 @@ $modversion['adminmenu'] = array(
 			'show'	=> true,
 			'absolute' => false
 	),
-	array(
-		'title'		=> _MI_XUPDATE_ADMENU_PACKAGE,
-		'link'	=> 'admin/index.php?action=PackageStore',
-		'keywords'	=> _MI_XUPDATE_ADMENU_PACKAGE,
-		'show'	=> true,
-		'absolute' => false
-	),
+//	array(
+//		'title'		=> _MI_XUPDATE_ADMENU_PACKAGE,
+//		'link'	=> 'admin/index.php?action=PackageStore',
+//		'keywords'	=> _MI_XUPDATE_ADMENU_PACKAGE,
+//		'show'	=> true,
+//		'absolute' => false
+//	),
 	array(
 		'title'		=> _MI_XUPDATE_ADMENU_MODULE,
 		'link'	=> 'admin/index.php?action=ModuleStore',
