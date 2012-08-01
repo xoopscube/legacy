@@ -352,7 +352,7 @@ jQuery(function($){
 
 	var main = function()
 	{
-		if ( location.href.search($this->action) == -1 && location.href.search(/legacy\/admin\/index.php$/) == -1 )
+		if ( location.href.search('$this->action') == -1 && location.href.search(/legacy\/admin\/index.php$/) == -1 )
 		{
 			return;
 		}
