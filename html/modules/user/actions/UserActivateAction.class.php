@@ -67,11 +67,13 @@ class User_UserActivateAction extends User_AbstractEditAction
 			$director->contruct();
 			$mailer=&$builder->getResult();
 			if ($mailer->send()) {
+				XCube_DelegateUtils::call('Legacy.Event.UserActivate.Success', $this->mObject, $this->mConfig);
 				$controller->executeRedirect(XOOPS_URL . '/', 5, sprintf(_MD_USER_MESSAGE_ACTVMAILOK, $this->mObject->get('uname')));
 			} else {
 				$controller->executeRedirect(XOOPS_URL . '/', 5, sprintf(_MD_USER_MESSAGE_ACTVMAILNG, $this->mObject->get('uname')));
 			}
 		} else {
+			XCube_DelegateUtils::call('Legacy.Event.UserActivate.Success', $this->mObject, $this->mConfig);
 			$controller->executeRedirect(XOOPS_URL . '/user.php', 5, _MD_USER_MESSAGE_ACTLOGIN);
 		}
 	}
