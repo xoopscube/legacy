@@ -534,9 +534,6 @@ class XCube_DelegateUtils
 	{
 	}
 
-    /**
-     * @deprecated raiseEvent()
-     */
     static function call()
     {
         $args = func_get_args();
@@ -560,6 +557,7 @@ class XCube_DelegateUtils
     }
 
     /**
+     * @deprecated Use call()
      * @public
      * @brief [Static] Utility method for calling event-delegates.
      * 
