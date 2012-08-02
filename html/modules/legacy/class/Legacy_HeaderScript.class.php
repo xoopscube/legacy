@@ -234,7 +234,7 @@ class Legacy_HeaderScript
 	{
 		$apiKey = XCube_Root::getSingleton()->getSiteConfig('jQuery', 'GoogleApiKey');
 		$apiKey = (isset($apiKey)) ? '?key='.$apiKey : null;
-		return '<script type="text/javascript" src="http://www.google.com/jsapi'.$apiKey.'"></script>
+		return '<script type="text/javascript" src="//www.google.com/jsapi'.$apiKey.'"></script>
 <script type="text/javascript"><!--
 google.load("language", "1"); 
 google.load("jquery", "'. $this->_mCore .'");
