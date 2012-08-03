@@ -381,7 +381,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 		return $this->_list(($arg?" ".$arg:"").($pathname?" ".$pathname:""), "LIST", "rawlist");
 	}
 
-	protected function nlist($pathname="") {
+	protected function nlist($pathname="", $arg="") {
 		return $this->_list(($arg?" ".$arg:"").($pathname?" ".$pathname:""), "NLST", "nlist");
 	}
 

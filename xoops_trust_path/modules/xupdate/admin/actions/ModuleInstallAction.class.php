@@ -156,6 +156,17 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 			$this->addon_url = $this->Func->_getDownloadUrl( $this->target_key, $mobj->get('addon_url') );
 
 			$this->options = $mobj->options;
+			
+			foreach($this->options['delete_dir'] as $_key => $_chk) {
+				if (! is_dir($_chk)) {
+					unset($this->options['delete_dir'][$_key]);
+				}
+			}
+			foreach($this->options['delete_file'] as $_key => $_chk) {
+				if (! is_file($_chk)) {
+					unset($this->options['delete_file'][$_key]);
+				}
+			}
 
 			$sobj =& $storeHand->get($this->sid);
 			if (is_object($sobj)){
@@ -251,6 +262,22 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 						if ( !is_array($_arr) || (is_array($_arr) && !in_array( $item, $_arr ))){
 							$xupdateFtpModuleInstall->options[$_key][] = $item;
 						}
+					}
+				}
+			}
+			$_arr = $this->Xupdate->get('delete_dir');
+			if(!empty($_arr) && count($_arr)>0){
+				foreach ($_arr as $item){
+					if (in_array( $item,$this->options['delete_dir'] ))	{
+						$xupdateFtpModuleInstall->options['delete_dir'][] = $item;
+					}
+				}
+			}
+			$_arr = $this->Xupdate->get('delete_file');
+			if(!empty($_arr) && count($_arr)>0){
+				foreach ($_arr as $item){
+					if (in_array( $item,$this->options['delete_file'] ))	{
+						$xupdateFtpModuleInstall->options['delete_file'][] = $item;
 					}
 				}
 			}

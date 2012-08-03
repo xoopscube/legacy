@@ -87,7 +87,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 						$this->_set_error_log(_MI_XUPDATE_ERR_FTP_NOTFOUND);
 					}
 					// TODO port , timeout
-					if ($this->Ftp->isConnected() || $this->Ftp->app_login("127.0.0.1")==true) {
+					if ($this->Ftp->isConnected() || $this->Ftp->app_login()==true) {
 						// overwrite control
 						if(! isset($this->options['no_overwrite'])){
 							$this->options['no_overwrite'] = array();
@@ -108,16 +108,18 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 						if(isset($this->options['writable_file'])){
 							array_map(array($this, '_chmod_file'),$this->options['writable_file']);
 						}
-
+						// delete dirs recursive
+						if(isset($this->options['delete_dir'])){
+							array_map(array($this, '_rmdir_recursive'),$this->options['delete_dir']);
+						}
+						// delete files
+						if(isset($this->options['delete_file'])){
+							array_map(array($this, '_delete'),$this->options['delete_file']);
+						}
 					}else{
 						$this->_set_error_log(_MI_XUPDATE_ERR_FTP_LOGIN);
 						$result = false;
 					}
-
-					//一つディレクトリ階層を戻す
-					//if ($downdir_result){
-					//	$this->_exploredDirPath_UpDir();
-					//}
 
 				}else{
 					$this->_set_error_log(_MI_XUPDATE_ERR_UNZIP_FILE);
@@ -385,6 +387,18 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 		}
 	}
 	
+	private function _delete($path) {
+		if (is_file($path)) {
+			$this->Ftp->localDelete($path);
+		}
+	}
+	
+	private function _rmdir_recursive($path) {
+		if (is_dir($path)) {
+			$this->Ftp->localRmdirRecursive($path);
+		}
+	}
+
 } // end class
 
 ?>

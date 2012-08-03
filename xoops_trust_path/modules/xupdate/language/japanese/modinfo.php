@@ -94,6 +94,8 @@ define('_MI_XUPDATE_CUSTOM_SFTP'  , 'カスタムSSH_FTP（SFTP用）');
 define('_MI_XUPDATE_CUSTOM_SSH2'  , 'カスタムSSH2（鍵認証用）');
 define('_MI_XUPDATE_FTP_USESSL'   , 'SSL（FTPS）を使用する。');
 define('_MI_XUPDATE_FTP_USESSLDSC', 'SSL（FTPS）を使用するには、FTPライブラリに「PHP_FTP（FTPS用）」を選択。');
+define('_MI_XUPDATE_FTP_SERVER'   , 'FTPサーバー');
+define('_MI_XUPDATE_FTP_SERVERDSC', '通常は 127.0.0.1 ですが、接続できない場合に実IPを指定してください。');
 define('_MI_XUPDATE_FTP_UNAME'    , 'FTPログインID');
 define('_MI_XUPDATE_FTP_UNAMEDSC' , 'あなたのサーバーにFTPでアップロードするためのログインID');
 define('_MI_XUPDATE_FTP_PASS'     , 'ログインパスワード');

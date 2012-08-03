@@ -199,6 +199,16 @@ $modversion['config'] = array(
 	) ,
 
 	array(
+			'name'		=> 'FTP_server' ,
+			'title'		=> '_MI_XUPDATE_FTP_SERVER',
+			'description'	=> '_MI_XUPDATE_FTP_SERVERDSC',
+			'formtype'	=> 'text',
+			'valuetype'	=> 'string',
+			'default'	=> '127.0.0.1',
+			'options'	=> array(),
+	) ,
+
+	array(
 		'name'		=> 'FTP_UserName' ,
 		'title'		=> '_MI_XUPDATE_FTP_UNAME',
 		'description'	=> '_MI_XUPDATE_FTP_UNAMEDSC',
@@ -272,7 +282,7 @@ $modversion['config'] = array(
 		'description'	=> '',
 		'formtype'	=> 'text',
 		'valuetype'	=> 'string',
-		'default'	=> 'http://xoopscube.net/uploads/xupdatemaster/stores_json.txt',
+		'default'	=> 'http://xoopscube.net/uploads/xupdatemaster/stores_json_V1.txt',
 		'options'	=> array(),
 	) ,
 

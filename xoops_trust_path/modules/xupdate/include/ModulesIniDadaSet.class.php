@@ -53,6 +53,10 @@ class Xupdate_ModulesIniDadaSet
 		$json_url = $root->mContext->mModuleConfig['stores_json_url'];
 		$json_fname = 'stores_json.ini.php';
 		
+		if ($json_url === 'http://xoopscube.net/uploads/xupdatemaster/stores_json.txt') {
+			$json_url = 'http://xoopscube.net/uploads/xupdatemaster/stores_json_V1.txt';
+		}
+		
 		$downloadedFilePath = '';
 		$stores = array();
 		$this->Func->_downloadFile( 'stores_master', $json_url, $json_fname, $downloadedFilePath, 600 );
@@ -62,6 +66,13 @@ class Xupdate_ModulesIniDadaSet
 		}
 		if (!$stores = @ json_decode($stores_json, true)) {
 			$stores = array();
+		} else {
+			if (isset($stores['stores'])) {
+				$stores_orgin = $stores;
+				// stores_json_V1
+				// array('stores' => storesArray, 'categories' => categoriesArray)
+				$stores = $stores['stores'];
+			}
 		}
 		
 		// load my stores ini
@@ -446,7 +457,11 @@ class Xupdate_ModulesIniDadaSet
 			unset($mobj);
 		}
 		
-		if(isset($item['writable_file']) || isset($item['writable_dir']) || isset($item['install_only'])){
+		if(isset($item['writable_file'])
+		|| isset($item['writable_dir'])
+		|| isset($item['install_only'])
+		|| isset($item['delete_file'])
+		|| isset($item['delete_dir'])){
 			$item_arr=array();
 			if(isset($item['writable_file'])){
 				$item_arr['writable_file'] = array_filter($item['writable_file'], 'strlen');
@@ -456,6 +471,12 @@ class Xupdate_ModulesIniDadaSet
 			}
 			if(isset($item['install_only'])){
 				$item_arr['install_only'] = array_filter($item['install_only'], 'strlen');
+			}
+			if(isset($item['delete_file'])){
+				$item_arr['delete_file'] = array_filter($item['delete_file'], 'strlen');
+			}
+			if(isset($item['delete_dir'])){
+				$item_arr['delete_dir'] = array_filter($item['delete_dir'], 'strlen');
 			}
 		}
 		if(isset($item['detailed_version'])){

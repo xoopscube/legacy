@@ -260,6 +260,16 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 		} else {
 			$options['install_only'] = array();
 		}
+		if(isset($options['delete_dir'])) {
+			array_walk( $options['delete_dir'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+		} else {
+			$options['delete_dir'] = array();
+		}
+		if(isset($options['delete_file'])) {
+			array_walk( $options['delete_file'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+		} else {
+			$options['delete_file'] = array();
+		}
 		if(! isset($options['detailed_version'])) {
 			$options['detailed_version'] = '';
 		} else {
