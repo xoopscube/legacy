@@ -94,6 +94,8 @@ define('_MI_XUPDATE_CUSTOM_SFTP'  , 'Custom SSH_FTP (for SFTP)');
 define('_MI_XUPDATE_CUSTOM_SSH2'  , 'Custom SSH2 (for Key-Auth)');
 define('_MI_XUPDATE_FTP_USESSL'   , 'use (FTPS) SSL');
 define('_MI_XUPDATE_FTP_USESSLDSC', 'When you use (FTPS) SSL, selecting the "(for FTPS) PHP_FTP" to FTP library.');
+define('_MI_XUPDATE_FTP_SERVER'   , 'FTP Server');
+define('_MI_XUPDATE_FTP_SERVERDSC', 'Usually, although it is 127.0.0.1, when you cannot connect, please specify real IP.');
 define('_MI_XUPDATE_FTP_UNAME'    , 'FTP login ID');
 define('_MI_XUPDATE_FTP_UNAMEDSC' , 'Login ID for FTP to upload to your serve');
 define('_MI_XUPDATE_FTP_PASS'     , 'FTP login password');

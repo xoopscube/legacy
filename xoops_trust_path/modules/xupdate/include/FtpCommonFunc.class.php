@@ -105,7 +105,7 @@ class Xupdate_FtpCommonFunc {
 	 * @return boolean
 	 */
 	public function checkExploredDirPath($target_key) {
-		if ($this->Ftp->app_login('127.0.0.1')) {
+		if ($this->Ftp->app_login()) {
 			
 			$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
 			$exploredDirPath = $downloadDirPath.'/'.$target_key;

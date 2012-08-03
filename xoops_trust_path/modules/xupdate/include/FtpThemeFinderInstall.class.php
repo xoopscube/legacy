@@ -75,7 +75,7 @@ class Xupdate_FtpThemeFinderInstall extends Xupdate_FtpCommonZipArchive {
 				$this->exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
 				if($this->_unzipFile()==true) {
 					// ToDo port , timeout
-					if ($this->Ftp->isConnected() || $this->Ftp->app_login("127.0.0.1")==true) {
+					if ($this->Ftp->isConnected() || $this->Ftp->app_login()==true) {
 						if (!$this->uploadFiles()){
 							$this->_set_error_log('Ftp uploadFiles false');
 							$result = false;

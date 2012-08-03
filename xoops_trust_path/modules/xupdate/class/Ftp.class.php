@@ -87,7 +87,10 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	}
 
 
-	public function app_login($server){
+	public function app_login($server = null){
+		if (is_null($server)) {
+			$server = (empty($this->mod_config['FTP_server']))? '127.0.0.1' : $this->mod_config['FTP_server'];
+		}
 		if (! $ret = parent::app_login($server)) {
 			@ unlink($this->loginCheckFile);
 		}
@@ -203,7 +206,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	public function checkLogin() {
 		$ret = true;
 		if (! @ unserialize(@ file_get_contents($this->loginCheckFile))) {
-			if ($this->app_login('127.0.0.1')) {
+			if ($this->app_login()) {
 				$this->app_logout();
 				$ret = true;
 			} else {

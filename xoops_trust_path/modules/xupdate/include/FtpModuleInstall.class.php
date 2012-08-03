@@ -87,7 +87,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 						$this->_set_error_log(_MI_XUPDATE_ERR_FTP_NOTFOUND);
 					}
 					// TODO port , timeout
-					if ($this->Ftp->isConnected() || $this->Ftp->app_login("127.0.0.1")==true) {
+					if ($this->Ftp->isConnected() || $this->Ftp->app_login()==true) {
 						// overwrite control
 						if(! isset($this->options['no_overwrite'])){
 							$this->options['no_overwrite'] = array();
