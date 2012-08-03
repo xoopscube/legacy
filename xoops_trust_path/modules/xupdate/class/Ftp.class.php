@@ -257,6 +257,10 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 				return $ftp_root;
 			}
 		}
+		if ($this->chdir('/')) {
+			// May be XOOPS_ROOT_PATH is FTP root
+			return $xoops_root_path;
+		}
 
 		//throw new Exception(t("seekFTP fail"), 1);
 		$this->mes .= " seekFTP fail<br>\n";//TODO WHY fail?
