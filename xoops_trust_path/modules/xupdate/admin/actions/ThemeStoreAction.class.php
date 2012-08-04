@@ -116,7 +116,7 @@ class Xupdate_Admin_ThemeStoreAction extends Xupdate_AbstractListAction
 		$this->mFilter->fetch();
 
 		$criteria = $this->mFilter->getCriteria();
-		$criteria->add(new Criteria( 'target_type', 'Theme' ) );
+		$criteria->add(new Criteria( 'contents', 'theme' ) );
 		if (!empty($this->sid)){
 			$criteria->add(new Criteria( 'sid', $this->sid ) );
 		}
@@ -177,17 +177,7 @@ class Xupdate_Admin_ThemeStoreAction extends Xupdate_AbstractListAction
 		$render->setAttribute('moduleObjects', $this->mModuleObjects);
 		$render->setAttribute('storeObject', $this->storeObject);
 
-// 		$modHand = & $this->_getHandler();
-// 		$criteria = new CriteriaCompo();
-// 		$criteria->add(new Criteria( 'target_type', 'Theme' ) );
-// 		if (!empty($this->sid)){
-// 			$criteria->add(new Criteria( 'sid', $this->sid ) );
-// 		}
-// 		$module_total = $modHand->getCount($criteria);
-
 		$render->setAttribute('pageNavi', $this->mFilter->mNavi);
-
-//		$render->setAttribute('ModuleTotal', $module_total);
 
 		$render->setAttribute('actionForm', $this->mActionForm);
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
@@ -218,7 +208,7 @@ class Xupdate_Admin_ThemeStoreAction extends Xupdate_AbstractListAction
 		$modHand = & $this->_getHandler();
 
 		$criteria = new CriteriaCompo();
-		$criteria->add(new Criteria( 'target_type', 'Theme' ) );
+		$criteria->add(new Criteria( 'contents', 'theme' ) );
 		if (!empty($this->sid)){
 			$criteria->add(new Criteria( 'sid', $this->sid ) );
 		}
@@ -257,7 +247,7 @@ class Xupdate_Admin_ThemeStoreAction extends Xupdate_AbstractListAction
 		$modHand = & $this->_getHandler();
 
 		$criteria = new CriteriaCompo();
-		$criteria->add(new Criteria( 'target_type', 'Theme' ) );
+		$criteria->add(new Criteria( 'contents', 'theme' ) );
 		if (!empty($this->sid)){
 			$criteria->add(new Criteria( 'sid', $this->sid ) );
 		}

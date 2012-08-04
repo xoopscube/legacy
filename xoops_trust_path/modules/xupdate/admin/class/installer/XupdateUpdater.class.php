@@ -20,7 +20,8 @@ class Xupdate_Updater
     public /*** Legacy_ModuleInstallLog ***/ $mLog = null;
 
     private /*** string[] ***/ $_mMileStone = array(
-    		'006' => 'update006'
+    		'006' => 'update006',
+    		'011' => 'update011'
     	);
 
     private /*** XoopsModule ***/ $_mCurrentXoopsModule = null;
@@ -46,9 +47,9 @@ class Xupdate_Updater
     	if(! $db->query($sql)) {
     		$sql = 'ALTER TABLE `'.$table.'` ADD `isactive` int(11) NOT NULL DEFAULT \'-1\'';
     		if ($db->query($sql)) {
-    			$this->mLog->addReport('Success updated '.$table.' - isactive');
+    			$this->mLog->addReport('Success updated '.$table.' - ADD isactive');
     		} else {
-    			$this->mLog->addError('Error update '.$table.' - isactive');
+    			$this->mLog->addError('Error update '.$table.' - ADD isactive');
     		}
     	}
     	 
@@ -56,9 +57,9 @@ class Xupdate_Updater
     	if(! $db->query($sql)) {
     		$sql = 'ALTER TABLE `'.$table.'` ADD `hasupdate` tinyint(1) NOT NULL DEFAULT \'0\'';
     		if ($db->query($sql)) {
-    			$this->mLog->addReport('Success updated '.$table.' - hasupdate');
+    			$this->mLog->addReport('Success updated '.$table.' - ADD hasupdate');
     		} else {
-    			$this->mLog->addError('Error update '.$table.' - hasupdate');
+    			$this->mLog->addError('Error update '.$table.' - ADD hasupdate');
     		}
     	}
     	
@@ -68,6 +69,40 @@ class Xupdate_Updater
     		return false;
     	}
     	
+    	return true;
+    }
+    
+    private function update011()
+    {
+    	$this->mLog->addReport('DB upgrade start (for Ver 0.11)');
+    	 
+    	// Update database table index.
+    	$root =& XCube_Root::getSingleton();
+    	$db =& $root->mController->getDB();
+    	$table = $db->prefix($this->_mCurrentXoopsModule->get('dirname') . '_modulestore');
+    
+    	$sql = 'SELECT `contents` FROM '.$table ;
+    	if(! $db->query($sql)) {
+    		$sql = 'ALTER TABLE `'.$table.'` ADD `contents` varchar(255) NOT NULL default \'\'';
+    		if ($db->query($sql)) {
+    			$this->mLog->addReport('Success updated '.$table.' - ADD contents');
+    		} else {
+    			$this->mLog->addError('Error update '.$table.' - ADD contents');
+    		}
+    		$sql = 'ALTER TABLE `'.$table.'` ADD INDEX ( `contents` )';
+    		if ($db->query($sql)) {
+    			$this->mLog->addReport('Success updated '.$table.' - ADD Index contents');
+    		} else {
+    			$this->mLog->addError('Error update '.$table.' - ADD Index contents');
+    		}
+    	}
+    	 
+    	if (!$this->_mForceMode && $this->mLog->hasError())
+    	{
+    		$this->_processReport();
+    		return false;
+    	}
+    	 
     	return true;
     }
     

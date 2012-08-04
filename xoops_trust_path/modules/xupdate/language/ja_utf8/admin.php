@@ -29,4 +29,4 @@ define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES', "配置");
 define('_AD_XUPDATE_LANG_MESSAGE_PROCESSING', "中");
 
 define('_AD_XUPDATE_LANG_THM_TOTAL'  , 'テーマの合計');
-
+define('_AD_XUPDATE_LANG_ITEM_TOTAL'  , 'アイテムの合計');

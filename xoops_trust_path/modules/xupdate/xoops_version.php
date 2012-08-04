@@ -23,7 +23,7 @@ $basename = basename($dirname);
 // Define a basic manifesto.
 //
 $modversion['name'] = _MI_XUPDATE_LANG_XUPDATE;
-$modversion['version'] = '0.10'; //beta 1
+$modversion['version'] = '0.11'; //beta 2
 $modversion['description'] = _MI_XUPDATE_DESC_XUPDATE;
 $modversion['author'] = _MI_XUPDATE_LANG_AUTHOR;
 $modversion['credits'] = _MI_XUPDATE_LANG_CREDITS;
@@ -98,6 +98,13 @@ $modversion['adminmenu'] = array(
 			'show'	=> true,
 			'absolute' => false
 	),
+//	array(
+//		'title'		=> _MI_XUPDATE_ADMENU_PACKAGE,
+//		'link'	=> 'admin/index.php?action=PackageStore',
+//		'keywords'	=> _MI_XUPDATE_ADMENU_PACKAGE,
+//		'show'	=> true,
+//		'absolute' => false
+//	),
 	array(
 		'title'		=> _MI_XUPDATE_ADMENU_MODULE,
 		'link'	=> 'admin/index.php?action=ModuleStore',

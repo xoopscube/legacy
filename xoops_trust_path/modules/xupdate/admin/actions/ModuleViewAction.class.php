@@ -40,7 +40,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 		$inidataset = new Xupdate_ModulesIniDadaSet;
 		$inidataset->storeHand =  & $this->_getStoreHandler();
 		$inidataset->modHand = & $this->_getModStoreHandler();
-		$inidataset->execute(array('module', 'theme'));
+		$inidataset->execute('all');
 		//-----------------------------------------------
 		return true;
 
@@ -90,6 +90,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 
 		$render->setAttribute('module_items', $this->get_storeItems('module'));
 		$render->setAttribute('theme_items', $this->get_storeItems('theme'));
+		$render->setAttribute('package_items', $this->get_storeItems('package'));
 
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 		$render->setAttribute('currentMenu', _MI_XUPDATE_ADMENU_STORELIST);

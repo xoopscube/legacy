@@ -12,25 +12,7 @@ class Xupdate_ThemeStore extends Xupdate_ModuleStore {
 
 	public function __construct()
 	{
-		$this->initVar('id', XOBJ_DTYPE_INT, '0', false);//Primary key
-		$this->initVar('sid', XOBJ_DTYPE_INT, '0', false);//store join
-
-		$this->initVar('dirname', XOBJ_DTYPE_STRING, '', false);
-		$this->initVar('trust_dirname', XOBJ_DTYPE_STRING, '', false);
-		$this->initVar('version', XOBJ_DTYPE_INT, 100, false);
-		$this->initVar('last_update', XOBJ_DTYPE_INT, null, false);
-		$this->initVar('target_key', XOBJ_DTYPE_STRING, '', false);
-		$this->initVar('target_type', XOBJ_DTYPE_STRING, '', false);
-
-		$this->initVar('replicatable', XOBJ_DTYPE_INT, '0', false);
-		$this->initVar('description', XOBJ_DTYPE_STRING, '', false);
-		$this->initVar('unzipdirlevel', XOBJ_DTYPE_INT, '0', false);
-		$this->initVar('addon_url', XOBJ_DTYPE_STRING, '', false, 255);
-		$this->initVar('detail_url', XOBJ_DTYPE_STRING, '', false, 255);
-		$this->initVar('options', XOBJ_DTYPE_TEXT, '', false);
-
 		parent::__construct() ;
-
 	}
 
 	/**
