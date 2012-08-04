@@ -57,12 +57,22 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 	public function setmModule($readini = true)
 	{
 		$hModule = Xupdate_Utils::getXoopsHandler('module');
-		$this->mModule =& $hModule->getByDirname($this->getVar('dirname')) ;
+		$dirname = $this->getVar('dirname');
+		$this->mModule =& $hModule->getByDirname($dirname) ;
 		if (is_object($this->mModule)){
 			$this->setVar('last_update', $this->mModule->getVar('last_update'));
 			$this->modinfo =& $this->mModule->getInfo();
 			$this->modinfo['version'] = sprintf('%01.2f', $this->mModule->getVar('version') / 100);
 			$trust_dirname = $this->mModule->getVar('trust_dirname');
+			
+			// set detaild_version by constat (ex. '_MI_LEGACY_DETAILED_VERSION'
+			if (! isset($this->modinfo['detailed_version'])) {
+				if (defined('_MI_'.strtoupper($dirname).'_DETAILED_VERSION')) {
+					$this->modinfo['detailed_version'] = constant('_MI_'.strtoupper($dirname).'_DETAILED_VERSION');
+				} else if ($trust_dirname && defined('_MI_'.strtoupper($trust_dirname).'_DETAILED_VERSION')) {
+					$this->modinfo['detailed_version'] = constant('_MI_'.strtoupper($trust_dirname).'_DETAILED_VERSION');
+				}
+			}
 			
 			$this->options = $this->unserialize_options();
 			if ($readini) {
