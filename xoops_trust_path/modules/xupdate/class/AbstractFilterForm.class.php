@@ -102,12 +102,11 @@ abstract class Xupdate_AbstractFilterForm
 
         $this->mSort = intval($root->mContext->mRequest->getRequest($this->mNavi->mPrefix . 'sort'));
 
-        if(!isset($this->mSortKeys[abs($this->mSort)]))
-        {
+        if (!isset($this->mSortKeys[abs($this->mSort)])) {
             $this->mSort = $this->getDefaultSortKey();
+        } else {
+        	$this->mNavi->mSort[$this->mNavi->mPrefix . 'sort'] = $this->mSort;
         }
-
-        $this->mNavi->mSort[$this->mNavi->mPrefix . 'sort'] = $this->mSort;
     }
 
     /**

@@ -20,6 +20,10 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	var $mFilter = null;
 
 	var $mActionForm = null;
+	
+	protected $contents;
+	protected $action ;
+	protected $currentMenu;
 
 	public function __construct()
 	{
@@ -27,6 +31,10 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 		$this->sid = (int)$this->mRoot->mContext->mRequest->getRequest('sid');
 		$this->sid = empty($this->sid)? 0 : intval($this->sid);
+		
+		$this->contents = 'module';
+		$this->action = 'ModuleStore';
+		$this->currentMenu = _MI_XUPDATE_ADMENU_MODULE;
 
 	}
 	/**
@@ -66,7 +74,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 	function _getBaseUrl()
 	{
-		return './?action=ModuleStore';
+		return './?action='.$this->action;
 	}
 
 	function &_getPageNavi()
@@ -103,7 +111,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$inidataset = new Xupdate_ModulesIniDadaSet;
 		$inidataset->storeHand =  & $this->_getStoreHandler();
 		$inidataset->modHand = & $this->_getHandler();
-		$inidataset->execute( 'module' );
+		$inidataset->execute($this->contents);
 
 //-----------------------------------------------
 
@@ -116,13 +124,13 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$this->mFilter->fetch();
 
 		$criteria = $this->mFilter->getCriteria();
-		$cri_compo = new CriteriaCompo();
-		$cri_compo->add(new Criteria( 'target_type', 'TrustModule' ) );
-		$cri_compo->add(new Criteria( 'target_type', 'X2Module'), 'OR' ) ;
-		$criteria->add( $cri_compo );
-		unset($cri_compo);
+		$criteria->add(new Criteria( 'contents', $this->contents ) );
 		if (!empty( $this->sid)){
 			$criteria->add(new Criteria( 'sid', $this->sid ) );
+		} else {
+			if (empty($_GET['sort'])) {
+				array_unshift($criteria->sort, 'sid');
+			}
 		}
 		
 		$filter = isset($_GET['filter'])? strtolower($_GET['filter']) : '';
@@ -181,24 +189,12 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$render->setAttribute('moduleObjects', $this->mModuleObjects);
 		$render->setAttribute('storeObject', $this->storeObject);
 
-// 		$modHand = & $this->_getHandler();
-// 		$criteria = new CriteriaCompo();
-// 		$cri_compo = new CriteriaCompo();
-// 		$cri_compo->add(new Criteria( 'target_type', 'TrustModule' ) );
-// 		$cri_compo->add(new Criteria( 'target_type', 'X2Module'), 'OR' ) ;
-// 		$criteria->add( $cri_compo );
-// 		if (!empty( $this->sid)){
-// 			$criteria->add(new Criteria( 'sid', $this->sid ) );
-// 		}
-// 		$module_total = $modHand->getCount($criteria);
-
 		$render->setAttribute('pageNavi', $this->mFilter->mNavi);
-
-//		$render->setAttribute('ModuleTotal', $module_total);
 
 		$render->setAttribute('actionForm', $this->mActionForm);
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
-		$render->setAttribute('currentMenu', _MI_XUPDATE_ADMENU_MODULE);
+		$render->setAttribute('currentMenu', $this->currentMenu);
+		$render->setAttribute('action', $this->action);
 
 	}
 
@@ -225,10 +221,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$modHand = & $this->_getHandler();
 
 		$criteria = new CriteriaCompo();
-		$cri_compo = new CriteriaCompo();
-		$cri_compo->add(new Criteria( 'target_type', 'TrustModule' ) );
-		$cri_compo->add(new Criteria( 'target_type', 'X2Module'), 'OR' ) ;
-		$criteria->add( $cri_compo );
+		$criteria->add(new Criteria( 'contents', $this->contents ) );
 		if (!empty( $this->sid)){
 			$criteria->add(new Criteria( 'sid', $this->sid ) );
 		}
@@ -270,10 +263,6 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		}else{
 			$criteria = new CriteriaCompo();
 			$criteria->add(new Criteria( 'sid', $this->sid ) );
-			$cri_compo = new CriteriaCompo();
-			$cri_compo->add(new Criteria( 'target_type', 'TrustModule' ) );
-			$cri_compo->add(new Criteria( 'target_type', 'X2Module'), 'OR' ) ;
-			$criteria->add( $cri_compo );
 			$t_objectArr =& $modHand->getObjects($criteria,null,null,true);
 		}
 
@@ -303,26 +292,26 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 	function executeViewSuccess(&$renderer)
 	{
 		if (empty($this->sid)){
-			$this->mRoot->mController->executeForward('./index.php?action=ModuleStore');
+			$this->mRoot->mController->executeForward('./index.php?action='.$this->action);
 		}else{
-			$this->mRoot->mController->executeForward('./index.php?action=ModuleStore&sid='.$this->sid);
+			$this->mRoot->mController->executeForward('./index.php?action='.$this->action.'&sid='.$this->sid);
 		}
 	}
 
 	function executeViewError(&$renderer)
 	{
 		if (empty($this->sid)){
-			$this->mRoot->mController->executeRedirect('./index.php?action=ModuleStore', 1, _MD_XUPDATE_ERROR_DBUPDATE_FAILED);
+			$this->mRoot->mController->executeRedirect('./index.php?action='.$this->action, 1, _MD_XUPDATE_ERROR_DBUPDATE_FAILED);
 		}else{
-			$this->mRoot->mController->executeRedirect('./index.php?action=ModuleStore&sid='.$this->sid , 1, _MD_XUPDATE_ERROR_DBUPDATE_FAILED);
+			$this->mRoot->mController->executeRedirect('./index.php?action='.$this->action.'&sid='.$this->sid , 1, _MD_XUPDATE_ERROR_DBUPDATE_FAILED);
 		}
 	}
 	function executeViewCancel(&$renderer)
 	{
 		if (empty($this->sid)){
-			$this->mRoot->mController->executeForward('./index.php?action=ModuleStore');
+			$this->mRoot->mController->executeForward('./index.php?action='.$this->action);
 		}else{
-			$this->mRoot->mController->executeForward('./index.php?action=ModuleStore&sid='.$this->sid);
+			$this->mRoot->mController->executeForward('./index.php?action='.$this->action.'&sid='.$this->sid);
 		}
 	}
 
@@ -359,7 +348,7 @@ jQuery(function($){
 
 	var main = function()
 	{
-		if ( location.href.search('ModuleStore') == -1 && location.href.search(/legacy\/admin\/index.php$/) == -1 )
+		if ( location.href.search('$this->action') == -1 && location.href.search(/legacy\/admin\/index.php$/) == -1 )
 		{
 			return;
 		}

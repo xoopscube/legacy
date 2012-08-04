@@ -26,6 +26,7 @@ CREATE TABLE `{prefix}_{dirname}_modulestore` (
 	`options` text,
 	`isactive` int(11) NOT NULL DEFAULT '-1',
 	`hasupdate` tinyint(1) NOT NULL DEFAULT '0',
+	`contents` varchar(255) NOT NULL default '',
 PRIMARY KEY  (`id`),
 KEY sid (sid),
 KEY dirname (dirname)
