@@ -68,5 +68,4 @@ CMS Theme Finder のURLで、通常は変更不要です。
 
 # インストール操作
 操作の流れに従っていればわかると思いますが、以下のサイトなどを参考にしてみてください。
-* http://www.naaon.com/modules/dblog1/index.php?page=detail&bid=485#db76aebf
-
+* http://www.xugj.org/modules/xpwiki/?ModuleManuals%2FX-update
