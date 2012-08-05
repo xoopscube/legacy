@@ -72,59 +72,7 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
         $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleUpdate.Success', array(&$this, '_setNeedCacheRemake'));
         $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleUninstall.Success', array(&$this, '_setNeedCacheRemake'));
         
-        // override Legacy_ActionFrame::_createAction()
-        // if XCL supports delegate "Module(Install|Update|Uninstall).Success" can remove this part
-        // and can remove a file xupdate/admin/actions/Legacy_ModuleActions.class.php
-        $this->mRoot->mDelegateManager->delete('Legacy_ActionFrame.CreateAction', 'Legacy_ActionFrame::_createAction');
-        $this->mRoot->mDelegateManager->add('Legacy_ActionFrame.CreateAction', array(&$this, '_createAction'));
-        
     }
-
-	// override Legacy_ActionFrame::_createAction()
-	// if XCL supports delegate "Module(Install|Update|Uninstall).Success" can remove this function
-	public function _createAction(&$actionFrame)
-	{
-		if (is_object($actionFrame->mAction)) {
-			return;
-		}
-	
-		//
-		// Create action object by mActionName
-		//
-		$className = "Legacy_" . ucfirst($actionFrame->mActionName) . "Action";
-		$fileName = ucfirst($actionFrame->mActionName) . "Action";
-		if ($actionFrame->mAdminFlag) {
-			$fileName = XOOPS_MODULE_PATH . "/legacy/admin/actions/${fileName}.class.php";
-		}
-		else {
-			$fileName = XOOPS_MODULE_PATH . "/legacy/actions/${fileName}.class.php";
-		}
-		
-		if (!file_exists($fileName)) {
-			die();
-		}
-		
-		require_once $fileName;
-		
-		if (substr($className, 0, 13) === 'Legacy_Module') {
-			require_once XOOPS_TRUST_PATH . '/modules/xupdate/admin/actions/Legacy_ModuleActions.class.php';
-			switch($className) {
-				case 'Legacy_ModuleInstallAction':
-					$className = 'Xupdate_ModuleInstallAction';
-					break;
-				case 'Legacy_ModuleUpdateAction':
-					$className = 'Xupdate_ModuleUpdateAction';
-					break;
-				case 'Legacy_ModuleUninstallAction':
-					$className = 'Xupdate_ModuleUninstallAction';
-					break;
-			}
-		}
-		
-		if (XC_CLASS_EXISTS($className)) {
-			$actionFrame->mAction =new $className($actionFrame->mAdminFlag);
-		}
-	}
 
 	public function _setNeedCacheRemake() {
 		$handler = Legacy_Utils::getModuleHandler('store', 'xupdate');
