@@ -67,6 +67,14 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
         $this->mRoot->mDelegateManager->add('Legacy_Utils.CreateBlockProcedure','Xupdate_AssetPreloadBase::getBlock');
 //
         $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleUpdate.Xupdate.Success', array(&$this, 'tableupdateXupdate'));
+        
+        if (strtoupper($_SERVER['REQUEST_METHOD']) === 'POST' && isset($_GET['action'])
+        	 && strpos($_SERVER['REQUEST_URI'], '/legacy/admin/') !== false
+        	 && ! isset($_POST['_form_control_cancel'])
+        	 && ($_GET['action'] === 'ModuleUpdate' || $_GET['action'] === 'ModuleInstall')) {
+        	$handler = Legacy_Utils::getModuleHandler('store', 'xupdate');
+        	$handler->setNeedCacheRemake();
+        }
     }
 
     /**

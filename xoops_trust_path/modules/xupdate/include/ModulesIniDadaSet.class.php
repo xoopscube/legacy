@@ -41,8 +41,14 @@ class Xupdate_ModulesIniDadaSet
 
 	public function execute( $callers )
 	{
-//データの自動作成と削除
-
+		//データの自動作成と削除
+		
+		$cacheCheckFile = $this->storeHand->getCacheCheckFile();
+		if (@ filemtime($cacheCheckFile) + 600 > time()) {
+			return;
+		}
+		touch($cacheCheckFile);
+		
 		$root =& XCube_Root::getSingleton();
 		$language = $root->mContext->getXoopsConfig('language');
 		if (isset($this->lang_mapping[$language])) {
