@@ -1,0 +1,1 @@
+function jsmarty_function_include_js(o,k){}

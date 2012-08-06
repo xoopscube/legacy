@@ -1,0 +1,106 @@
+<!-- start module contents -->
+<{if $mod_config.show_breadcrumbs}>
+<div class="d3f_breadcrumbs"><a href="<{$mod_url}>/index.php"><{$smarty.const._MD_D3FORUM_TOP}></a>&nbsp;&gt;&nbsp;<{$smarty.const._MD_D3FORUM_CATEGORYMANAGER}></div>
+<{/if}>
+
+<h1 class="d3f_title"><{$smarty.const._MD_D3FORUM_CATEGORYMANAGER}></h1>
+
+<{if $xoops_isadmin}>
+	<p><a href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYACCESS}></a></p>
+<{/if}>
+
+<h2 class="d3f_head"><{$formtitle}></h2>
+<form name="categoryform" id="categoryform" action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>" method="post" onsubmit="return xoopsFormValidate_categoryform();">
+
+
+	<table class="outer d3f_form_table">
+		<tr style="display:none;">
+			<td><{$gticket_hidden}></td>
+		</tr>
+
+		<tr valign="top" align="left">
+			<th class="d3f_head"><label for="category_title"><{$smarty.const._MD_D3FORUM_TH_CATEGORYTITLE}></label></th>
+			<td class="even">
+				<input type="text" name="title" id="category_title" size="50" maxlength="255" value="<{$category.title}>" />
+			</td>
+		</tr>
+
+		<tr valign="top" align="left">
+			<th class="d3f_head"><label for="category_desc"><{$smarty.const._MD_D3FORUM_TH_CATEGORYDESC}></label></th>
+			<td class="even">
+				<textarea name="desc" id="category_desc" cols="50" rows="10"><{$category.desc}></textarea>
+			</td>
+		</tr>
+
+		<tr valign="top" align="left">
+			<th class="d3f_head"><label for="category_pid"><{$smarty.const._MD_D3FORUM_TH_CATEGORYPARENT}></label></th>
+			<td class="even">
+				<select name="pid" id="category_pid">
+					<option value="">(<{$smarty.const._MD_D3FORUM_TOP}>)</option>
+					<{$cat_jumpbox_options}>
+				</select>
+			</td>
+		</tr>
+
+		<tr valign="top" align="left">
+			<th class="d3f_head"><label for="category_weight"><{$smarty.const._MD_D3FORUM_TH_CATEGORYWEIGHT}></label></th>
+			<td class="even">
+				<input type="text" name="weight" id="category_weight" size="4" maxlength="4" value="<{$category.weight}>" />
+			</td>
+		</tr>
+
+		<tr valign="top" align="left">
+			<th class="d3f_head">
+				<{$smarty.const._MD_D3FORUM_TH_CATEGORYOPTIONS}>
+			</th>
+			<td class="even">
+				<input type="checkbox" id="category_option_controller_onoff" onclick="if(this.checked){xoopsGetElementById('category_option_controller').style.display='block';}else{xoopsGetElementById('category_option_controller').style.display='none';};"  <{if $category.options}>checked="checked"<{/if}> /><label for="category_option_controller_onoff"><{$smarty.const._MD_D3FORUM_ONOFF}></label>
+				<div id="category_option_controller" <{if ! $category.options}>style="display:none;"<{/if}>>
+					<textarea name="options" id="category_options" cols="50" rows="10"><{$category.options}></textarea>
+					<br />
+					<{$smarty.const._MD_D3FORUM_HOWTO_OVERRIDEOPTIONS}>:
+					<br />
+					<span class="categoryoptiondesc"><{$category.option_desc}></span>
+				</div>
+			</td>
+		</tr>
+
+		<tr valign="top" align="left">
+			<th class="d3f_head">
+				<{$smarty.const._MD_D3FORUM_CHILDREN_COUNT}>
+			</th>
+			<td class="even">
+				<{$children_count}>
+			</td>
+		</tr>
+
+		<tr valign="top" align="left">
+			<th class="d3f_head">
+				<{$smarty.const._MD_D3FORUM_BATCH_ACTIONS}>
+			</th>
+			<td class="even">
+				<input type="checkbox" name="batch_action_turnsolvedon" id="batch_action_turnsolvedon" value="1" onclick="if(this.checked){alert('<{$smarty.const._MD_D3FORUM_BA_MSG_CONFIRM}>');}" /><label for="batch_action_turnsolvedon"><{$smarty.const._MD_D3FORUM_BA_TURNSOLVEDON}></label>
+			</td>
+		</tr>
+
+	</table>
+
+<p class="d3f_submit"><input type="submit" name="categoryman_post" value="<{$smarty.const._SUBMIT}>" />
+<{if $page == 'categorymanager' && $children_count == 0}>
+<input type="submit" name="categoryman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMDELETERECURSIVE}>')" />
+<{/if}></p>
+
+</form>
+
+<!-- Start Form Vaidation JavaScript //-->
+<script type="text/javascript">
+<!--//
+function xoopsFormValidate_categoryform() {
+	myform = window.document.categoryform;
+	if ( myform.title.value == "" ) { window.alert("<{$smarty.const._MD_D3FORUM_TH_CATEGORYTITLE|string_format:$smarty.const._FORM_ENTER}>"); myform.title.focus(); return false; }
+	return true;
+}
+//--></script>
+<!-- End Form Vaidation JavaScript //-->
+
+<!-- end module contents -->

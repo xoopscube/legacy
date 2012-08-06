@@ -1,0 +1,9 @@
+<ol class="d3f_block_list_posts">
+<{foreach item=post from=$block.posts}>
+	<li>
+		<a href="<{$block.mod_url}>/index.php?post_id=<{$post.id}>"><{$post.subject}></a><br/><{$post.uname}> <{$post.post_time_formatted}>
+  </li>
+<{/foreach}>
+</ol>
+
+<{* $post.forum_id, $post.forum_title *}>

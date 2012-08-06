@@ -1,0 +1,85 @@
+<!-- comment input form -->
+<div id="d3f_post_form_quick">
+	<h2 class="head"><{$h2_title|default:$smarty.const._MD_D3FORUM_POSTASCOMMENTTOP}></h2>
+	
+	<form name="postform" id="postform" action="<{$mod_url}>/index.php?page=post" method="post" onsubmit="return xoopsFormValidate_postform();">
+		<p style="display:none;">
+		<input type="hidden" name="mode" id="mode" value="<{$quick_form_mode|default:"sametopic"}>" />
+		<input type="hidden" name="pid" id="pid" value="<{$post.id}>" />
+		<input type="hidden" name="topic_id" id="topic_id" value="<{$topic.id}>" />
+		<input type="hidden" name="forum_id" id="forum_id" value="<{$forum.id}>" />
+		<input type="hidden" name="external_link_id" id="external_link_id" value="<{$external_link_id|escape}>" />
+		<input type="hidden" name="smiley" id="smiley" value="1" />
+		<input type="hidden" name="xcode" id="xcode" value="1" />
+		<input type="hidden" name="br" id="br" value="1" />
+		<input type="hidden" name="number_entity" id="number_entity" value="1" />
+		</p>
+	
+		<table cellspacing="1" class="outer d3f_postform">
+			<tr valign="top" align="left">
+				<td class="head"><{$smarty.const._MD_D3FORUM_SUBJECT}></td>
+				<td class="even">
+					<input type="text" name="subject" id="subject" maxlength="255" value="<{$subject_raw|string_format:$smarty.const._MD_D3FORUM_FMT_COMMENTSUBJECT|escape}>" />
+				</td>
+			</tr>
+	
+			<{if $uname}>
+			<!-- begin post by USER newly -->
+			<tr valign="top" align="left">
+				<td class="head"><{$smarty.const._MD_D3FORUM_TH_UNAME}></td>
+				<td class="even">
+					<{$uname|string_format:$smarty.const._MD_D3FORUM_FMT_UNAME}>
+				</td>
+			</tr>
+			<!-- end post by USER newly -->
+			<{else}>
+			<!-- begin GUEST's new post -->
+			<tr valign="top" align="left">
+				<td class="head"><{$smarty.const._MD_D3FORUM_TH_GUESTNAME}></td>
+				<td class="even">
+					<input type="text" name="guest_name" id="guest_name" value="<{$guest_name}>" size="25" maxlength="30" />
+					&nbsp;
+					<label for="guest_pass"><{$smarty.const._MD_D3FORUM_TH_GUESTPASSWORD}></label>:
+					<input type="password" name="guest_pass" id="guest_pass" value="<{$guest_pass}>" size="20" maxlength="20" />
+				</td>
+			</tr>
+			<!-- end GUEST's new post -->
+			<{/if}>
+	
+			<tr valign="top" align="left">
+				<td class="head"><{$smarty.const._MD_D3FORUM_TH_BODY}></td>
+				<td class="even">
+					<textarea name="message" rows="8"><{$message}></textarea>
+				</td>
+			</tr>
+			<tr valign="top" align="left">
+				<td class="head"></td>
+				<td class="even">
+					<{$antispam.html_in_form}>
+					<input type="submit" class="formButton" name="contents_submit"  id="contents_submit" value="<{$smarty.const._MD_D3FORUM_DOPOST}>" />
+					<{if $external_link_id}>
+					<a href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>&amp;external_link_id=<{$external_link_id|escape:"url"}>&amp;subject=<{$subject_raw|escape:"url"}>"><{$smarty.const._MD_D3FORUM_LINK_RICHERCOMMENTFORM}></a>
+					<{/if}>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+	<!-- Start Form Vaidation JavaScript //-->
+	<script type="text/javascript">
+	<!--//
+	<{$antispam.js_global}>
+
+	function xoopsFormValidate_postform() {
+		myform = window.document.postform;
+		if ( myform.subject.value.replace(/^\s+|\s+$/g,"") == "" ) { window.alert("<{$smarty.const._MD_D3FORUM_SUBJECT|string_format:$smarty.const._FORM_ENTER}>"); myform.subject.focus(); return false; }
+		if ( myform.message.value.replace(/^\s+|\s+$/g,"") == "" ) { window.alert("<{$smarty.const._MD_D3FORUM_ERR_NOMESSAGE}>"); myform.message.focus(); return false; }
+		<{$antispam.js_in_validate_function}>
+		return true;
+	}
+	function d3forum_quote_message() {
+		xoopsGetElementById("message").value = xoopsGetElementById("message").value + xoopsGetElementById("reference_quote").value ;
+	}
+	//-->
+	</script>
+	<!-- End Form Vaidation JavaScript //-->

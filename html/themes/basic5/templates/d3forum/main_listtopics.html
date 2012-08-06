@@ -1,0 +1,171 @@
+<!-- start module contents -->
+<div id="main_listtopics" class="clearfix">
+<!-- breadcrumbs -->
+<{if $mod_config.show_breadcrumbs}>
+<div class="d3f_breadcrumbs">
+	<a href="<{$mod_url}>/index.php"><{$smarty.const._MD_D3FORUM_TOP}></a>
+	<{foreach from=$category.paths_raw key=parent_id item=parent_title_raw}>
+	&nbsp;&gt;&nbsp;
+		<a href="<{$mod_url}>/index.php?cat_id=<{$parent_id}>"><{$parent_title_raw|escape}></a>
+	<{/foreach}>
+</div>
+<{/if}>
+
+<!-- marine modifi -->
+
+<img src="<{$xoops_imageurl}>images/fk2.png"><{$forum.desc}>(<{include file="db:`$mydirname`_inc_moderators.html" target=$forum}>)
+<{if $forum.external_link_format}>
+<{elseif $forum.can_post}>
+<a href="<{$mod_url}>/index.php?page=newtopic&forum_id=<{$forum.id}>" target="_self"><img src="<{$xoops_imageurl}>images/b001.png" class="d3f_main_listtopics_button"></a>
+<{/if}>
+
+<!-- forum controller -->
+<ul class="d3f_ctrl">
+	<!-- new topic -->
+	<{if $forum.external_link_format}>
+		<li><{$smarty.const._MD_D3FORUM_FORUMASCOMMENT_DESC}></li>
+	<{elseif $forum.can_post}>
+		<li><a href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>"><{$smarty.const._MD_D3FORUM_POSTASNEWTOPICTOTHISFORUM}></a></li>
+	<{else}>
+		<li><{$smarty.const._MD_D3FORUM_CANTCREATENEWTOPICTHISFORUM}></li>
+	<{/if}>
+
+	<!-- guest can post or not -->
+	<{if ! $xoops_isuser}>
+		<{if $forum.can_post}>
+			<li><{$smarty.const._MD_D3FORUM_GUESTSCANPOST_DESC}></li>
+		<{else}>
+			<li><{$smarty.const._MD_D3FORUM_GUESTSCANNOTPOST_DESC}></li>
+		<{/if}>
+	<{/if}>
+
+	<{if $forum.isadminormod}>
+	<!-- edit forum -->
+		<li><a href="<{$mod_url}>/index.php?page=forummanager&amp;forum_id=<{$forum.id}>"><{$smarty.const._MD_D3FORUM_LINK_FORUMMANAGER}></a></li>
+	<{/if}>
+	<{if $xoops_isadmin}>
+		<li><a href="<{$mod_url}>/admin/index.php?page=forum_access&amp;forum_id=<{$forum.id}>"><{$smarty.const._MD_D3FORUM_LINK_FORUMACCESS}></a></li>
+	<{/if}>
+
+	<!-- rss -->
+	<li><a href="<{$mod_url}>/index.php?page=rss&amp;forum_id=<{$forum.id}>&amp;odr=1"><{$smarty.const._MD_D3FORUM_LINK_FORUMRSS}></a></li>
+</ul>
+
+<h2 class="d3f_head"><{$forum.title}></h2>
+
+<{include file="db:`$mydirname`_inc_d3comment_summary.html" topic=$d3comment_info}>
+
+<div class="d3f_bbsviewctrl">
+	<form action="<{$mod_url}>/index.php" method="get">
+	<{$forum_selection_sort}>
+		<input type="hidden" name="forum_id" value="<{$forum.id}>" />
+		<input type="hidden" name="external_link_id" value="<{$query.external_link_id}>" />
+		<input type="text" size="12" name="txt" value="<{$query.txt}>" />
+		<{if $mod_config.use_solved}>
+		<select name="solved">
+			<{html_options options=$solved_options selected=$query.solved}>
+		</select>
+		<{/if}>
+		<select name="odr">
+			<{html_options options=$odr_options selected=$query.odr}>
+		</select>
+		<input type="submit" value="<{$smarty.const._MD_D3FORUM_BTN_REFRESHTOPICS}>" title="<{$smarty.const._MD_D3FORUM_BTN_REFRESHTOPICS}>" />
+	</form>
+</div>
+
+<{if $pagenav}><div class="d3f_pagenav"><{$pagenav}></div><{/if}>
+
+<!-- start forum main table -->
+<table class="outer d3f_table">
+<thead>
+<tr class="head">
+	<th colspan="2" abbr="<{$smarty.const._MD_D3FORUM_TOPIC}>"><{$topic_hits|string_format:$smarty.const._MD_D3FORUM_FMT_TOPICHITS}></th>
+	<th abbr="<{$smarty.const._MD_D3FORUM_REPLIES}>"><{$smarty.const._MD_D3FORUM_REPLIES}></th>
+	<th abbr="<{$smarty.const._MD_D3FORUM_VIEWS}>"><{$smarty.const._MD_D3FORUM_VIEWS}></th>
+	<{if $mod_config.use_vote}>
+	<th abbr="<{$smarty.const._MD_D3FORUM_VOTECOUNT}>"><{$smarty.const._MD_D3FORUM_VOTECOUNT}></th>
+	<th abbr="<{$smarty.const._MD_D3FORUM_VOTEPOINTAVG}>"><{$smarty.const._MD_D3FORUM_VOTEPOINTAVG}></th>
+	<{/if}>
+	<th abbr="<{$smarty.const._MD_D3FORUM_FIRSTPOST}>"><{$smarty.const._MD_D3FORUM_FIRSTPOST}></th>
+	<th abbr="<{$smarty.const._MD_D3FORUM_LASTPOST}>"><{$smarty.const._MD_D3FORUM_LASTPOST}></th>
+</tr>
+</thead>
+
+<{foreach item=topic from=$topics}>
+<{if $topic.sticky}>
+	<{assign var="topic_icon_src" value="`$mod_imageurl`/topic_sticky`$topic.bit_new`.gif"}>
+	<{assign var="topic_icon_alt" value=$smarty.const._MD_D3FORUM_TOPICSTICKY}>
+<{elseif $topic.invisible}>
+	<{assign var="topic_icon_src" value="`$mod_imageurl`/topic_invisible.gif"}>
+	<{assign var="topic_icon_alt" value=$smarty.const._MD_D3FORUM_ALT_INVISIBLE}>
+<{else}>
+	<{assign var="topic_icon_src" value="`$mod_imageurl`/topic_`$topic.bit_new``$topic.bit_hot`.gif"}>
+	<{assign var="topic_icon_alt" value=""}>
+<{/if}>
+<!-- start forum topic -->
+<tr class="<{cycle values="even,odd"}>">
+	<td class="d3f_mainicon"><img src="<{$topic_icon_src}>" alt="<{$topic_icon_alt}>" /></td>
+	<td class="d3f_topictitle"><{if $topic.locked}>
+		<img src="<{$mod_imageurl}>/topic_status_locked1.gif" alt="<{$smarty.const._MD_D3FORUM_TOPICLOCKED}>" />
+	<{/if}>
+	<{if $mod_config.use_solved && ! $topic.solved}>
+		<{if $forum.isadminormod}>
+			<a href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=forum_id&amp;ret_val=<{$forum.id}>" title="<{$smarty.const._MD_D3FORUM_SOLVED_TURNON}>"><img src="<{$mod_imageurl}>/topic_status_solved0.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>" /></a>
+		<{else}>
+			<img src="<{$mod_imageurl}>/topic_status_solved0.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>" />
+		<{/if}>
+	<{/if}>
+	<{if $mod_config.allow_mark && $uid && $topic.u2t_marked}>
+		<a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=forum_id&amp;ret_val=<{$forum.id}>" title="<{$smarty.const._MD_D3FORUM_MARK_TURNOFF}>"><img src="<{$mod_imageurl}>/topic_status_marked1.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}>" /></a>
+	<{/if}>
+	<a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>"><{$topic.title}></a><{$topic.topic_page_jump}></td>
+	<td><{$topic.replies}></td>
+	<td><{$topic.views}></td>
+	<{if $mod_config.use_vote}>
+	<td><{$topic.votes_count}></td>
+	<td><{$topic.votes_avg|string_format:"%.2f"}></td>
+	<{/if}>
+	<td class="d3f_posters"><{$topic.first_post_time_formatted}><br />
+	<{$topic.first_post_uname}> <a href="<{$mod_url}>/index.php?post_id=<{$topic.first_post_id}>"><img src="<{$xoops_imageurl}>images/posticon<{$topic.first_post_icon}>.gif" alt="<{$topic.first_post_subject}>" /></a></td>
+	<td class="d3f_posters"><{if $topic.replies>0}><{$topic.last_post_time_formatted}><br />
+	<{$topic.last_post_uname}> <a href="<{$mod_url}>/index.php?post_id=<{$topic.last_post_id}>"><img src="<{$xoops_imageurl}>images/posticon<{$topic.last_post_icon}>.gif" alt="<{$topic.last_post_subject}>" /></a><{/if}></td>
+</tr>
+<{/foreach}>
+<!-- end forum topic -->
+</table>
+</form>
+<!-- end forum main table -->
+
+<{if $pagenav}><div class="d3f_pagenav"><{$pagenav}></div><{/if}>
+
+<div class="d3f_iconexps">
+<ul class="d3f_iconexp">
+	<li><img src="<{$mod_imageurl}>/topic_11.gif" alt="" width="18"  height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICNEWPOSTS}></li>
+	<li><img src="<{$mod_imageurl}>/topic_01.gif" alt="" width="18"  height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICNONEWPOSTS}></li>
+	<li><img src="<{$mod_imageurl}>/topic_invisible.gif" alt="" width="18"  height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICINVISIBLE}></li>
+	<li><img src="<{$mod_imageurl}>/topic_sticky0.gif" alt="" width="18"  height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICSTICKY}></li>
+</ul>
+<ul class="d3f_iconexp">
+	<li><img src="<{$mod_imageurl}>/topic_status_locked1.gif" alt="" width="18"  height="18" /> = <{$smarty.const._MD_D3FORUM_TOPICLOCKED}></li>
+<{if $mod_config.use_solved && ! $topic.solved}><!-- marine modifi -->
+	<li><img src="<{$mod_imageurl}>/topic_status_solved0.gif" alt="" width="18"  height="18" /> = <{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}></li>
+<{/if}><!-- marine modifi -->
+<{if $mod_config.allow_mark && $uid && $topic.u2t_marked}><!-- marine modifi -->
+	<li><img src="<{$mod_imageurl}>/topic_status_marked1.gif" alt="" width="18"  height="18" /> = <{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}></li>
+<{/if}><!-- marine modifi -->
+</ul>
+</div>
+
+<!-- forum jumpbox -->
+<form name="forum_jump_box" action="<{$mod_url}>/index.php" method="get" style="clear:both;" class="d3f_form">
+	<p>
+		<select name="forum_id"><{$forum_jumpbox_options}></select>
+		<input type="submit" value="<{$smarty.const._MD_D3FORUM_BTN_JUMPTOFORUM}>" />
+		&nbsp;
+		<a href="<{$mod_url}>/index.php?page=search"><{$smarty.const._MD_D3FORUM_LINK_ADVSEARCH}></a>
+	</p>
+</form>
+</div>
+<{include file='db:system_notification_select.html'}>
+<!-- end module contents -->
+

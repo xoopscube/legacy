@@ -1,0 +1,81 @@
+<div id="xupdate">
+
+	<{include file="admin_navi.html"}>
+	
+	<h3 class="admintitle"><{$smarty.const._MI_XUPDATE_ADMENU_STORELIST}></h3>
+	<{include file="admin_menunavi.html"}>
+	<{include file="admin_tips.html"}>
+
+	<{if !empty($package_items) }>
+	<h4><{$smarty.const._MI_XUPDATE_ADMENU_PACKAGE}></h4>
+	<div class="storelist">
+		<{foreach item=data from=$package_items}>
+			<div class="eachstore">
+				<dl>
+					<dt>
+						<a href="index.php?action=PackageStore&amp;sid=<{$data.storeobj->get('sid')}>"><{$data.storeobj->getShow('name')}></a>
+					</dt>
+					<dd>
+						<div class="module_count">(<{$smarty.const._AD_XUPDATE_LANG_ITEM_TOTAL}>: <{$data.items_count}>)</div>
+						<ul>
+						<{foreach item=itemsobj from=$data.itemsobj}>
+							<li><a href="index.php?action=ModuleInstall&amp;id=<{$itemsobj->getShow('id')}>"><{$itemsobj->getShow('dirname')}></a></li>
+						<{/foreach}>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+		<{/foreach}>
+		<div style="clear:both;;">&nbsp;</div>
+	</div>
+	<{/if}>
+
+	<{if !empty($module_items) }>
+	<h4><{$smarty.const._MI_XUPDATE_ADMENU_MODULE}></h4>
+	<div class="storelist">
+		<{foreach item=data from=$module_items}>
+			<div class="eachstore">
+				<dl>
+					<dt>
+						<a href="index.php?action=ModuleStore&amp;sid=<{$data.storeobj->get('sid')}>"><{$data.storeobj->getShow('name')}></a>
+					</dt>
+					<dd>
+						<div class="module_count">(<{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>: <{$data.items_count}>)</div>
+						<ul>
+						<{foreach item=itemsobj from=$data.itemsobj}>
+							<li><a href="index.php?action=ModuleInstall&amp;id=<{$itemsobj->getShow('id')}>"><{$itemsobj->getShow('dirname')}></a></li>
+						<{/foreach}>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+		<{/foreach}>
+		<div style="clear:both;;">&nbsp;</div>
+	</div>
+	<{/if}>
+
+	<{if !empty($theme_items) }>
+	<h4><{$smarty.const._MI_XUPDATE_ADMENU_THEME}></h4>
+	<div class="storelist">
+		<{foreach item=data from=$theme_items}>
+			<div class="eachstore">
+				<dl>
+					<dt>
+						<a href="index.php?action=ThemeStore&amp;sid=<{$data.storeobj->get('sid')}>"><{$data.storeobj->getShow('name')}></a>
+					</dt>
+					<dd>
+						<div class="module_count">(<{$smarty.const._AD_XUPDATE_LANG_THM_TOTAL}>: <{$data.items_count}>)</div>
+						<ul>
+						<{foreach item=itemsobj from=$data.itemsobj}>
+							<li><a href="index.php?action=ThemeInstall&amp;id=<{$itemsobj->getShow('id')}>"><{$itemsobj->getShow('dirname')}></a></li>
+						<{/foreach}>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+		<{/foreach}>
+		<div style="clear:both;;">&nbsp;</div>
+	</div>
+	<{/if}>
+
+</div>

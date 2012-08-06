@@ -1,0 +1,35 @@
+<div id="xupdate">
+<h3><{$smarty.const._MD_XUPDATE_LANG_STORE_DELETE}></h3>
+
+<div class="confirm"><{$smarty.const._MD_XUPDATE_MESSAGE_CONFIRM_DELETE}></div>
+
+<form action="./index.php?action=StoreDelete" method="post">
+  <dl>
+	 <dt><{$smarty.const._MD_XUPDATE_LANG_SID}></dt>
+	<dd><{$object->getShow('sid')}></dd>
+<{*
+	 <dt><{$smarty.const._MD_XUPDATE_LANG_UID}></dt>
+	<dd><{$object->getShow('uid')}></dd>
+	 <dt><{$smarty.const._MD_XUPDATE_LANG_VALID}></dt>
+	<dd><{$object->getShow('valid')}></dd>
+*}>
+	 <dt><{$smarty.const._MD_XUPDATE_LANG_NAME}></dt>
+	<dd><{$object->getShow('name')}></dd>
+	 <dt><{$smarty.const._MD_XUPDATE_LANG_ADDON_URL}></dt>
+	<dd><{$object->getShow('addon_url')}></dd>
+<{*
+	 <dt><{$smarty.const._MD_XUPDATE_LANG_THEME_URL}></dt>
+	<dd><{$object->getShow('theme_url')}></dd>
+*}>
+	 <dt><{$smarty.const._MD_XUPDATE_LANG_REG_UNIXTIME}></dt>
+	<dd><{$object->getShow('reg_unixtime')}></dd>
+
+    <dd>
+      <{xoops_token form=$actionForm}>
+      <{xoops_input type=hidden name=sid value=$actionForm->get('sid')}>
+      <input type="submit" class="formButton" value="<{$smarty.const._DELETE}>"/>
+      <input type="submit" class="formButton" value="<{$smarty.const._CANCEL}>" name="_form_control_cancel"/>
+    </dd>
+  </dl>
+</form>
+</div>

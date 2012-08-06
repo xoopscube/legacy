@@ -1,0 +1,26 @@
+<div id="xupdate">
+	<{* <p>"Finish Download"|t}></p> *}>
+	
+	<{include file="admin_navi.html"}>
+	
+	<h3 class="admintitle"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></h3>
+	<{include file="admin_menunavi.html"}>
+	<{include file="admin_tips.html"}>
+	
+	<div id="xupdate_content">
+	<{$xupdate_content}>
+	</div>
+	
+	<{if $xupdate_nextlink}>
+	<ul class="toptab">
+	<li id="xupdate_addModule" class="theme" style="float:left;">
+	  <{$xupdate_nextlink}>
+	</li>
+	</ul>
+	<div style="clear:both;"></div>
+	<{/if}>
+	
+	<div id="xupdate_message">
+	<{$xupdate_message}>
+	</div>
+</div>

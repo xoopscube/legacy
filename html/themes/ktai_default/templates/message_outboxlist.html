@@ -1,0 +1,37 @@
+<h4><{$smarty.const._MD_MESSAGE_TEMPLATE7}></h4>
+[<a href="index.php?action=index"><{$smarty.const._MD_MESSAGE_TEMPLATE15}></a>]&nbsp;&nbsp;
+[<a href="index.php?action=new"><{$smarty.const._MD_MESSAGE_TEMPLATE8}></a>]
+<hr />
+
+<div align="right">
+<form method="post" action="index.php?action=send">
+<{$smarty.const._MD_MESSAGE_TEMPLATE9}>
+<select name="touid">
+<option value="0">---</option>
+<{foreach item=fuser from=$select}>
+<option value="<{$fuser.uid}>"<{if $fuser.select==true}> selected="selected"<{/if}>><{$fuser.uname|xoops_escape}></option>
+<{/foreach}>
+</select>
+&nbsp;
+<{$smarty.const._MD_MESSAGE_TEMPLATE3}>
+<input type="text" name="subject" size="25" value="<{$subject|xoops_escape}>" />
+&nbsp;
+<input type="submit" name="subbtn" value="<{$smarty.const._MD_MESSAGE_SEARCH}>" />
+</form>
+</div>
+<hr />
+
+<form method="post" action="index.php?action=deleteall">
+<ul>
+<{foreach item=val from=$ListData}>
+<li><{$smarty.const._MD_MESSAGE_TEMPLATE3}><br><a href="index.php?action=view&amp;inout=out&amp;outbox=<{$val.outbox_id}>"><{$val.title}></a><br>
+<{$smarty.const._MD_MESSAGE_TEMPLATE9}> <{$val.fromname}><br>
+<{$smarty.const._MD_MESSAGE_TEMPLATE10}><br><{$val.utime|xoops_formattimestamp:l}><br>
+<{$smarty.const._DELETE}> <input type="checkbox" name="delmsg[]" value="<{$val.outbox_id}>" /></li>
+<hr>
+<{/foreach}>
+<input type="submit" name="subbtn" value="<{$smarty.const._DELETE}>" />
+
+<input type="hidden" name="inout" value="out" />
+</form>
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>

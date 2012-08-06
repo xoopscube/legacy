@@ -1,0 +1,1 @@
+if(typeof (Config)=="undefined"){var Config={};}Config.File=function(){};Config.File.prototype={};

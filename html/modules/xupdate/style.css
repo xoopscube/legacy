@@ -1,0 +1,78 @@
+#xupdate{
+    font-size: 15px;
+    line-height:    2em;
+}
+
+#xupdate h1{
+    border: none;
+    margin-bottom:  15px;
+    font-size:  1.5em
+}
+
+#xupdate h2{
+    border: none;
+    margin-bottom:  15px;
+    font-size:  1.3em
+}
+
+#xupdate h3{
+    border: none;
+    margin: 0px 0px 0px 0px;
+    font-size:  1.1em
+}
+
+#xupdate .desc{
+    border: 1px solid #DDDDDD;
+    margin: 10px 20px 10px 20px;
+    padding:    10px;
+}
+
+#xupdate .clear{
+    clear:  both;
+}
+
+#xupdateMenu ul li{
+    width:  50px;
+    float:  left;
+    margin-left:    25px;
+    margin-bottom:  25px;
+    list-style-type: none;
+}
+
+
+/* 2 column table */
+
+#xupdate .viewDetail dt{
+clear:both;
+width:140px;
+float:left;
+margin-top:10px;
+}
+
+#xupdate .viewDetail dd{
+float:left;
+margin-top:10px;
+}
+
+/* Form */
+
+#xupdate form{
+    
+}
+
+#xupdate form dt{
+clear:both;
+width:140px;
+float:left;
+margin-top:10px;
+}
+
+#xupdate form dd{
+float:left;
+margin-top:10px;
+}
+
+#xupdate form dd.description{
+
+}
+

@@ -1,0 +1,71 @@
+<{strip}>
+
+<{include file="db:`$mydirname`_head.html"}>
+
+<div>
+<{include file="db:`$mydirname`_story.html" story=$story}>
+</div>
+
+<{if $pagenav}>
+  <div style="text-align: left;">Page <{$pagenav}></div>
+<{/if}>
+
+<div style="text-align: left;">
+<{if $pagenav}>Page <{$pagenav}><{/if}>
+</div>
+
+<{* RELATED ARTICLES 
+<{include file="db:`$mydirname`_relations.html"}>
+*}>
+
+<{* RECENT NEWS IN THIS CATEGORY
+<{include file="db:`$mydirname`_category.html"}>
+ *}>
+
+<{if $disp_print_icon or $disp_tell_icon}>
+  <div style="text-align: right;">
+  
+  <{if $disp_print_icon}>
+    <a href="<{$mydirurl}>/index.php?page=print&amp;storyid=<{$story.id}>">
+    <img src="<{$mydirurl}>/images/print.gif" border="0" alt="<{$smarty.const._MD_PRINTERFRIENDLY}>" /></a>&nbsp;
+  <{/if}>
+  
+  <{if $disp_tell_icon}>
+    <a target="_top" href="<{$mail_link}>">
+    <img src="<{$mydirurl}>/images/friend.gif" border="0" alt="<{$smarty.const._MD_SENDSTORY}>" /></a>
+  <{/if}>
+  
+  </div>
+<{/if}>
+<br />
+
+<{if $mod_config.comment_dirname != '' && $mod_config.comment_forum_id > 0}>
+
+<{d3comment class="BulletinD3commentStory" mydirname=$mydirname}>
+
+<{else}>
+
+<!-- begin comments area -->
+<div style="text-align: center;">
+<{$commentsnav}>
+<{$lang_notice}>
+</div>
+
+<div>
+<!-- start comments loop -->
+<{if $comment_mode == "flat"}>
+	<{include file="db:system_comments_flat.html"}>
+<{elseif $comment_mode == "thread"}>
+	<{include file="db:system_comments_thread.html"}>
+<{elseif $comment_mode == "nest"}>
+	<{include file="db:system_comments_nest.html"}>
+<{/if}>
+<!-- end comments loop -->
+</div>
+<!-- end comments area -->
+
+<{/if}>
+
+<{include file='db:system_notification_select.html'}>
+
+<{/strip}>

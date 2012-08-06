@@ -1,0 +1,8 @@
+<div class="altsys_mymenu altsys_mymenusub" style="text-align:<{$smarty.const._GLOBAL_LEFT}>;width:98%;">
+	<{foreach from=$adminmenu item="menuitem"}>
+		<div style="float:<{$smarty.const._GLOBAL_LEFT}>;height:1.5em;">
+			<nobr><a href="<{$menuitem.link|escape}>" style="background-color:<{if $menuitem.selected}><{$highlight_color}><{else}>#dddddd<{/if}>; font: normal normal bold 9pt/12pt;"><{$menuitem.title|escape}></a> | </nobr>
+		</div>
+	<{/foreach}>
+</div>
+<hr class="altsys_mymenusub_separator" style="clear:<{$smarty.const._GLOBAL_LEFT}>;display:block;" />

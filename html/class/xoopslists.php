@@ -36,8 +36,10 @@ if ( !defined("XOOPS_LISTS_INCLUDED") ) {
     {
         function &getTimeZoneList()
         {
-			$root =& XCube_Root::getSingleton();
-			$root->mLanguageManager->loadPageTypeMessageCatalog('timezone');
+            $root =& XCube_Root::getSingleton();
+            if ($root->mLanguageManager !== null && !defined(_TZ_GMT0)) {
+                $root->mLanguageManager->loadPageTypeMessageCatalog('timezone');
+            }
             $time_zone_list = array (
                 "-12" => _TZ_GMTM12,
                 "-11" => _TZ_GMTM11,

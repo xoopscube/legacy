@@ -1,0 +1,11 @@
+<h4><{$smarty.const._MD_MESSAGE_TEMPLATE6}><{$smarty.const._MD_MESSAGE_TEMPLATE11}></h4>
+<h4><a href="index.php?action=send"><{$smarty.const._MD_MESSAGE_TEMPLATE7}></a> &raquo; <{$smarty.const._MD_MESSAGE_TEMPLATE6}><{$smarty.const._MD_MESSAGE_TEMPLATE11}></h4>
+
+<ul>
+<li><{$smarty.const._MD_MESSAGE_TEMPLATE9}> <{$msgdata.toname}> (<{$msgdata.utime|xoops_formattimestamp:l}>)</li>
+<li><{$smarty.const._MD_MESSAGE_TEMPLATE3}><br><{$msgdata.title}></li>
+<li><{$smarty.const._MD_MESSAGE_TEMPLATE4}><br><{$msgdata.message}></li>
+<form method="post" action="index.php?action=delete&amp;inout=out">
+<input type="hidden" name="outbox" value="<{$msgdata.outbox_id}>" />
+<input type="submit" value="<{$smarty.const._MD_MESSAGE_TEMPLATE14}>" />
+</form>

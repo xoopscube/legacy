@@ -1,0 +1,1 @@
+function jsmarty_modifier_nl2br(k){return k.replace(/\r?\n/g,"<br />");}

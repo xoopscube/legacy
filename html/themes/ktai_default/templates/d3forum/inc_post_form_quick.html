@@ -1,0 +1,82 @@
+﻿	<!-- comment input form -->
+	<hr>
+	<h3 class="head"><{$h2_title|default:$smarty.const._MD_D3FORUM_POSTASCOMMENTTOP}></h3>
+
+	<form name="postform" id="postform" action="<{$mod_url}>/index.php?page=post" method="post" onsubmit="return xoopsFormValidate_postform();">
+		<input type="hidden" name="mode" id="mode" value="<{$quick_form_mode|default:"sametopic"}>" />
+		<input type="hidden" name="pid" id="pid" value="<{$post.id}>" />
+		<input type="hidden" name="topic_id" id="topic_id" value="<{$topic.id}>" />
+		<input type="hidden" name="forum_id" id="forum_id" value="<{$forum.id}>" />
+		<input type="hidden" name="external_link_id" id="external_link_id" value="<{$external_link_id|escape}>" />
+		<input type="hidden" name="smiley" id="smiley" value="1" />
+		<input type="hidden" name="xcode" id="xcode" value="1" />
+		<input type="hidden" name="br" id="br" value="1" />
+		<input type="hidden" name="number_entity" id="number_entity" value="1" />
+		<div data-role="fieldcontain">
+			<div>
+			<label for="d3f_subject"><{$smarty.const._MD_D3FORUM_SUBJECT}>:</label>
+			<input type="text" name="subject" id="d3f_subject" size="60" maxlength="255" value="<{$subject_raw|ltrim:'Re: '|string_format:$smarty.const._MD_D3FORUM_FMT_COMMENTSUBJECT|escape}>" />
+			</div>
+
+			<{if $uname}>
+			<!-- begin post by USER newly -->
+			<div>
+			<label for="d3f_uname"><{$smarty.const._MD_D3FORUM_TH_UNAME}></label>
+			<input disabled="disabled" type="text" name="uname" id="d3f_uname" value="<{$uname|string_format:$smarty.const._MD_D3FORUM_FMT_UNAME}>" size="25" />
+			</div>
+			<!-- end post by USER newly -->
+			<{else}>
+			<!-- begin GUEST's new post -->
+			<div>
+			<label for="guest_name"><{$smarty.const._MD_D3FORUM_TH_GUESTNAME}>:</label>
+			<input type="text" name="guest_name" id="guest_name" value="<{$guest_name}>" size="25" maxlength="30" />
+			</div>
+			<div>
+	<{*
+		<div>
+			<label for="guest_email"><{$smarty.const._MD_D3FORUM_TH_GUESTEMAIL}>:</label>
+			<input type="text" name="guest_email" id="guest_email" value="<{$guest_email}>" size="40" maxlength="60" />
+		</div>
+	*}>
+			<div>
+			<label for="guest_url"><{$smarty.const._MD_D3FORUM_TH_GUESTURL}>:</label>
+			<input type="text" name="guest_url" id="guest_url" value="<{$guest_url}>" size="50" maxlength="100" />
+			</div>
+	<{*
+			<label for="guest_pass"><{$smarty.const._MD_D3FORUM_TH_GUESTPASSWORD}>:</label>
+			<input type="password" name="guest_pass" id="guest_pass" value="<{$guest_pass}>" size="20" maxlength="20" />
+			</div>
+	*}>
+			<!-- end GUEST's new post -->
+			<{/if}>
+			<div>
+			<label for="d3f_message"><{$smarty.const._MD_D3FORUM_TH_BODY}>:</label>
+			<textarea name="message" id="d3f_message" cols="20" rows="8" rel="wikihelper"><{$message}></textarea>
+			<{* hyp_emoji_pad id="d3f_message" msg="絵文字パッド" *}>
+			</div>
+			<input type="submit" class="formButton" name="contents_submit"  id="contents_submit" value="<{$smarty.const._MD_D3FORUM_DOPOST}>" />
+		</div>
+		<{$antispam.html_in_form}>
+		<!-- Start Form Vaidation JavaScript //-->
+		<script type="text/javascript">
+		<!--//
+		<{$antispam.js_global}>
+
+		function xoopsFormValidate_postform() {
+			myform = window.document.postform;
+			if ( myform.subject.value.replace(/^\s+|\s+$/g,"") == "" ) { window.alert("<{$smarty.const._MD_D3FORUM_SUBJECT|string_format:$smarty.const._FORM_ENTER}>"); myform.subject.focus(); return false; }
+			if ( myform.message.value.replace(/^\s+|\s+$/g,"") == "" ) { window.alert("<{$smarty.const._MD_D3FORUM_ERR_NOMESSAGE}>"); myform.message.focus(); return false; }
+			<{$antispam.js_in_validate_function}>
+			return true;
+		}
+		function d3forum_quote_message() {
+			xoopsGetElementById("message").value = xoopsGetElementById("message").value + xoopsGetElementById("reference_quote").value ;
+		}
+		//-->
+		</script>
+		<!-- End Form Vaidation JavaScript //-->
+	</form>
+	<{if $external_link_id}>
+		<a href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>&amp;external_link_id=<{$external_link_id|escape:"url"}>&amp;subject=<{$subject_raw|escape:"url"}>"><{$smarty.const._MD_D3FORUM_LINK_RICHERCOMMENTFORM}></a>
+	<{/if}>
+

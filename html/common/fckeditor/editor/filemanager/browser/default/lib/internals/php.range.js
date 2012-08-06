@@ -1,0 +1,1 @@
+function range(C,x,o){var Z=(typeof (C)=="number");var d,R=-1,z=[],o=o||1;var j=(C<x)?C:x,S=(C<x)?x:C;if(typeof (j)=="string"){j=j.charCodeAt(0);}if(typeof (S)=="string"){S=S.charCodeAt(0);}if(Z){for(d=j;d<=S;d+=o){z[++R]=d;}}else{for(d=j;d<=S;d+=o){z[++R]=String.fromCharCode(d);}}return z;}
