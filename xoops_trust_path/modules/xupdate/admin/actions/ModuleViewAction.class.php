@@ -40,7 +40,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 		$inidataset = new Xupdate_ModulesIniDadaSet;
 		$inidataset->storeHand =  & $this->_getStoreHandler();
 		$inidataset->modHand = & $this->_getModStoreHandler();
-		$inidataset->execute('all');
+		$inidataset->execute('all', ($this->mRoot->mContext->mRequest->getRequest('checkonly')));
 		//-----------------------------------------------
 		return true;
 

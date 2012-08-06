@@ -27,6 +27,7 @@ class Xupdate_ModulesIniDadaSet
 	private $approved = array() ;
 	private $master = array();
 	private $allCallers = array('module', 'theme', 'package');
+	private $cacheTTL = 300; // 5min
 	
 	protected $mSiteObjects = array();
 	protected $mSiteModuleObjects = array();
@@ -39,12 +40,15 @@ class Xupdate_ModulesIniDadaSet
 
 	}
 
-	public function execute( $callers )
+	public function execute( $callers, $checkonly = false )
 	{
 		//データの自動作成と削除
 		
 		$cacheCheckFile = $this->storeHand->getCacheCheckFile();
-		if (@ filemtime($cacheCheckFile) + 600 > time()) {
+		$cacheCheckStr = @file_get_contents($cacheCheckFile);
+		if ( (!$checkonly && $cacheCheckStr === 'bg_ok')
+			|| @ filemtime($cacheCheckFile) + $this->cacheTTL > time() && $cacheCheckStr === ($checkonly? 'bg_ok' : 'ok')
+		) {
 			return;
 		}
 		touch($cacheCheckFile);
@@ -67,7 +71,7 @@ class Xupdate_ModulesIniDadaSet
 		
 		$downloadedFilePath = '';
 		$stores = array();
-		$this->Func->_downloadFile( 'stores_master', $json_url, $json_fname, $downloadedFilePath, 600 );
+		$this->Func->_downloadFile( 'stores_master', $json_url, $json_fname, $downloadedFilePath, $this->cacheTTL );
 		if ($downloadedFilePath && ! $stores_json = @ file_get_contents($downloadedFilePath)) {
 			// for url fetch failure
 			$stores_json = @ file_get_contents(XOOPS_TRUST_PATH . '/modules/xupdate/include/settings/stores.txt');
@@ -100,7 +104,6 @@ class Xupdate_ModulesIniDadaSet
 		}
 		//echo('<pre>');var_dump($this->stores);exit;
 		
-		$cacheTTL = 600; //10min
 		$multiData = array();
 		if (! is_array($callers)) {
 			if ($callers === 'package' || $callers === 'all') {
@@ -166,7 +169,7 @@ class Xupdate_ModulesIniDadaSet
 		//echo('<pre>');var_dump($multiData);exit;
 		
 		$use_mb_convert = function_exists('mb_convert_encoding');
-		if ($this->Func->_multiDownloadFile($multiData, $cacheTTL)) {
+		if ($this->Func->_multiDownloadFile($multiData, $this->cacheTTL)) {
 			foreach($multiData as $i => $res) {
 				if (isset($res['isLang'])) {
 					continue;
@@ -243,10 +246,11 @@ class Xupdate_ModulesIniDadaSet
 					}
 				}
 			}
-			file_put_contents($cacheCheckFile, $this->modHand->getCountHasUpdate());
+			file_put_contents($cacheCheckFile, $checkonly? 'bg_ok' : 'ok');
 		} else {
 			// Has error
 			touch($cacheCheckFile, 0);
+			file_put_contents($cacheCheckFile, 'ng');
 		}
 	}
 	
