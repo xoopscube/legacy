@@ -22,6 +22,8 @@ require_once XUPDATE_TRUST_PATH . '/class/XupdateUtils.class.php';
 **/
 class Xupdate_AssetPreloadBase extends XCube_ActionFilter
 {
+	protected $blockInstance = null;
+    
     /**
      * prepare
      *
@@ -69,6 +71,10 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
         $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleInstall.Success', array(&$this, '_setNeedCacheRemake'));
         $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleUpdate.Success', array(&$this, '_setNeedCacheRemake'));
         $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleUninstall.Success', array(&$this, '_setNeedCacheRemake'));
+
+        $this->mRoot->mDelegateManager->add('Legacyblock.Waiting.Show',array(&$this, 'callbackWaitingShow'));
+
+        $this->mRoot->mDelegateManager->add('Legacy_AdminControllerStrategy.SetupBlock', array(&$this, 'onXupdateSetupBlock'));
     }
 
 	public function _setNeedCacheRemake() {
@@ -127,6 +133,106 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
         }
     }
 
+    function callbackWaitingShow(& $modules)
+    {
+    	if ($this->mRoot->mContext->mUser->isInRole('Site.Administrator')) {
+    		$handler = Legacy_Utils::getModuleHandler('ModuleStore', 'xupdate');
+	    	if ($count = $handler->getCountHasUpdate()) {
+	    		$this->mRoot->mLanguageManager->loadBlockMessageCatalog('xupdate');
+	    		$checkimg = '<img src="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleView&amp;checkonly=1" width="1" height="1" alt="" />';
+	    		$blockVal = array();
+	    		$blockVal['adminlink'] = XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleStore&amp;filter=updated';
+	    		$blockVal['pendingnum'] = $count;
+	    		$blockVal['lang_linkname'] = _MB_XUPDATE_MODULEUPDATE . $checkimg;
+	    		$modules[] = $blockVal;
+	    	}
+    	}
+    }
+
+    public function onXupdateSetupBlock($controller)
+    {
+    	if ( $this->_isAdminPage() )
+    	{
+    		$this->blockInstance = new Xupdate_Block();
+    		$this->mController->_mBlockChain[] =& $this->blockInstance;
+    	}
+    }
+    
+    protected function _isAdminPage()
+    {
+    	return ( strpos($_SERVER['SCRIPT_NAME'], '/admin/') !== false || strpos($_SERVER['SCRIPT_NAME'], '/admin.php') !== false );
+    }
+
 }//END CLASS
 
+class Xupdate_Block extends Legacy_AbstractBlockProcedure
+{
+	function getName()
+	{
+		return "Xupdate_Block";
+	}
+
+	function getTitle()
+	{
+		return "Xupdate_Block";
+	}
+
+	function getEntryIndex()
+	{
+		return 0;
+	}
+
+	function isEnableCache()
+	{
+		return false;
+	}
+
+	function execute()
+	{
+		$result = '';
+
+		$handler = Legacy_Utils::getModuleHandler('ModuleStore', 'xupdate');
+		if ($count = $handler->getCountHasUpdate()) {
+			$root =& XCube_Root::getSingleton();
+			$root->mLanguageManager->loadBlockMessageCatalog('xupdate');
+			$notifyJS = <<<EOD
+$('.notification.sticky').notify();
+$('.button').click(function () {
+	$('.notification').removeClass('hide').addClass('hide').removeClass('visible');
+	$('.notification.' + $(this).attr('id') + '').notify({ type: $(this).attr('id') });
+});
+EOD;
+			$headerScript= $root->mContext->getAttribute('headerScript');
+			$headerScript->addStylesheet('/common/js/notify/style/default.css');
+			$headerScript->addLibrary('/common/js/notify/notification.js');
+			$headerScript->addScript($notifyJS);
+			$result = '<div class="notification sticky hide">
+			<a class="close" href="javascript:"><img src="'.XOOPS_URL.'/common/js/notify/images/icon-close.png" /></a>
+			<div style="text-align:center;font-size:14pt;margin-left:auto;margin-right:auto;margin-top:12px;">
+			<a href="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleStore&amp;filter=updated" style="float:none;color:white;">'.sprintf(_MB_XUPDATE_HAVE_UPDATEMODULE, $count).'</a>
+			</div>
+			</div>';
+		}
+
+		$result .= '<img src="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleView&amp;checkonly=1" width="1" height="1" alt="" />';
+		$render =& $this->getRenderTarget();
+		$render->setResult($result);
+	}
+
+	function hasResult()
+	{
+		return true;
+	}
+
+	function &getResult()
+	{
+		$dmy = "dummy";
+		return $dmy;
+	}
+
+	function getRenderSystemName()
+	{
+		return 'Legacy_AdminRenderSystem';
+	}
+}
 ?>

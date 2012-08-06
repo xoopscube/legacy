@@ -243,6 +243,10 @@ class Xupdate_ModulesIniDadaSet
 					}
 				}
 			}
+			file_put_contents($cacheCheckFile, $this->modHand->getCountHasUpdate());
+		} else {
+			// Has error
+			touch($cacheCheckFile, 0);
 		}
 	}
 	
