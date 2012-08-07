@@ -28,9 +28,23 @@ class Xupdate_ModulesIniDadaSet
 	private $master = array();
 	private $allCallers = array('module', 'theme', 'package');
 	private $cacheTTL = 300; // 5min
+	private $itemArrayKeys = array(
+		'id',
+		'dirname',
+		'trust_dirname',
+		'target_key',
+		'target_type',
+		'last_update',
+		'version',
+		'description',
+		'addon_url',
+		'options',
+		'isactive',
+		'hasupdate',
+		'contents' );
 	
 	protected $mSiteObjects = array();
-	protected $mSiteModuleObjects = array();
+	protected $mSiteItemArray = array();
 
 	public function __construct() {
 
@@ -386,11 +400,11 @@ class Xupdate_ModulesIniDadaSet
 				continue;
 			}
 
-			if (isset($this->mSiteModuleObjects[$mobj->getVar('sid')][$mobj->getVar('target_key')][$mobj->getVar('dirname')])){
+			if (isset($this->mSiteItemArray[$mobj->getVar('sid')][$mobj->getVar('target_key')][$mobj->getVar('dirname')])){
 				//データ重複分は削除
 				$this->modHand->delete($mobj,true);
 			}else{
-				$this->mSiteModuleObjects[$mobj->getVar('sid')][$mobj->getVar('target_key')][$mobj->getVar('dirname')]=$mobj;
+				$this->mSiteItemArray[$mobj->getVar('sid')][$mobj->getVar('target_key')][$mobj->getVar('dirname')] = $this->getItemArray($mobj);
 			}
 		}
 
@@ -416,13 +430,13 @@ class Xupdate_ModulesIniDadaSet
 
 		$mobj->setmModule();
 
-		if (isset($this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']])){
-			$mobj->assignVar('id',$this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]->getVar('id') );
-			$this->_ModuleStoreUpdate($mobj , $this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]);
+		if (isset($this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']])){
+			$mobj->assignVar('id',$this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']]['id'] );
+			$this->_ModuleStoreUpdate($mobj , $this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']]);
 		}else{
 			$mobj->setNew();
 			$this->modHand->insert($mobj ,true);
-			$this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']] = $mobj;
+			$this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']] = $this->getItemArray($mobj);
 		}
 		unset($mobj);
 
@@ -452,13 +466,13 @@ class Xupdate_ModulesIniDadaSet
 
 			$mobj->setmModule();
 
-			if (isset($this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']])){
-				$mobj->assignVar('id',$this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]->getVar('id') );
-				$this->_ModuleStoreUpdate($mobj , $this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]);
+			if (isset($this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']])){
+				$mobj->assignVar('id',$this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']]['id'] );
+				$this->_ModuleStoreUpdate($mobj , $this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']]);
 			}else{
 				$mobj->setNew();
 				$this->modHand->insert($mobj ,true);
-				$this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']] = $mobj;
+				$this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']] = $this->getItemArray($mobj);
 			}
 			unset($mobj);
 
@@ -477,13 +491,13 @@ class Xupdate_ModulesIniDadaSet
 				if ( $dirname == $item['dirname'] ){
 					$_isrootdirmodule = true;
 				}
-				if (isset($this->mSiteModuleObjects[$sid][$item['target_key']][$dirname])){
-					$mobj->assignVar('id',$this->mSiteModuleObjects[$sid][$item['target_key']][$dirname]->getVar('id') );
-					$this->_ModuleStoreUpdate($mobj , $this->mSiteModuleObjects[$sid][$item['target_key']][$dirname]);
+				if (isset($this->mSiteItemArray[$sid][$item['target_key']][$dirname])){
+					$mobj->assignVar('id',$this->mSiteItemArray[$sid][$item['target_key']][$dirname]['id'] );
+					$this->_ModuleStoreUpdate($mobj , $this->mSiteItemArray[$sid][$item['target_key']][$dirname]);
 				}else{
 					$mobj->setNew();
 					$this->modHand->insert($mobj ,true);
-					$this->mSiteModuleObjects[$sid][$item['target_key']][$dirname] = $mobj;
+					$this->mSiteItemArray[$sid][$item['target_key']][$dirname] = $this->getItemArray($mobj);
 				}
 				unset($mobj);
 			}
@@ -495,13 +509,13 @@ class Xupdate_ModulesIniDadaSet
 
 				$mobj->setmModule();
 
-				if (isset($this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']])){
-					$mobj->assignVar('id',$this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]->getVar('id') );
-					$this->_ModuleStoreUpdate($mobj , $this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']]);
+				if (isset($this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']])){
+					$mobj->assignVar('id',$this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']]['id'] );
+					$this->_ModuleStoreUpdate($mobj , $this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']]);
 				}else{
 					$mobj->setNew();
 					$this->modHand->insert($mobj ,true);
-					$this->mSiteModuleObjects[$sid][$item['target_key']][$item['dirname']] = $mobj;
+					$this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']] = $this->getItemArray($mobj);
 				}
 				unset($mobj);
 			}
@@ -564,41 +578,21 @@ class Xupdate_ModulesIniDadaSet
 /*
  * このサイトのデータをデータベースに再セットする
  */
-	private function _ModuleStoreUpdate ($obj , $oldobj)
+	private function _ModuleStoreUpdate ($obj , $olddata)
 	{
-		$newdata['dirname'] = $obj->getVar('dirname');
-		$newdata['trust_dirname'] = $obj->getVar('trust_dirname');
-		$newdata['target_key'] = $obj->getVar('target_key');
-		$newdata['target_type'] = $obj->getVar('target_type');
-		$newdata['last_update'] = $obj->getVar('last_update');
-		$newdata['version'] = $obj->getVar('version');
-		$newdata['description'] = $obj->getVar('description');
-		$newdata['unzipdirlevel'] = $obj->getVar('unzipdirlevel');
-		$newdata['addon_url'] = $obj->getVar('addon_url');
-		$newdata['options'] = $obj->getVar('options');
-		$newdata['isactive'] = $obj->getVar('isactive');
-		$newdata['hasupdate'] = $obj->getVar('hasupdate');
-		$newdata['contents'] = $obj->getVar('contents');
-
-		$olddata['dirname'] = $oldobj->getVar('dirname');
-		$olddata['trust_dirname'] = $oldobj->getVar('trust_dirname');
-		$olddata['target_key'] = $oldobj->getVar('target_key');
-		$olddata['target_type'] = $oldobj->getVar('target_type');
-		$olddata['last_update'] = $oldobj->getVar('last_update');
-		$olddata['version'] = $oldobj->getVar('version');
-		$olddata['description'] = $oldobj->getVar('description');
-		$olddata['unzipdirlevel'] = $oldobj->getVar('unzipdirlevel');
-		$olddata['addon_url'] = $oldobj->getVar('addon_url');
-		$olddata['options'] = $oldobj->getVar('options');
-		$olddata['isactive'] = $oldobj->getVar('isactive');
-		$olddata['hasupdate'] = $oldobj->getVar('hasupdate');
-		$olddata['contents'] = $oldobj->getVar('contents');
-
+		$newdata = $this->getItemArray($obj);
 		if (count(array_diff_assoc($olddata, $newdata)) > 0 ) {
 			$obj->unsetNew();
 			$this->modHand->insert($obj ,true);
 		}
-
+	}
+	
+	private function getItemArray($obj) {
+		$data = array();
+		foreach($this->itemArrayKeys as $key) {
+			$data[$key] = $obj->getVar($key);
+		}
+		return $data;
 	}
 
 } // end class

@@ -128,6 +128,7 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 								if ($manifesto = @ parse_ini_file($m_file)) {
 									if (!empty($manifesto['Version'])) {
 										$this->setVar('version', $manifesto['Version'] * 100);
+										$this->mModule->setVar('version', $this->getVar('version'));
 									}
 								}
 							}
