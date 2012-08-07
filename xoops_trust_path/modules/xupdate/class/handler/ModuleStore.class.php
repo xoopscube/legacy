@@ -347,7 +347,21 @@ class Xupdate_ModuleStoreHandler extends XoopsObjectGenericHandler
 		return $ret;
 	}
 
-
+	/**
+	 * Get count has update items
+	 * 
+	 * @param string $contents
+	 * @return number
+	 */
+	public function getCountHasUpdate($contents = 'module') {
+		$criteria = new CriteriaCompo();
+		$criteria->add(new Criteria( 'contents',  $contents ) );
+		$criteria->add(new Criteria( 'isactive', 1 ) );
+		$criteria->add(new Criteria( 'hasupdate', 1 ) );
+		$criteria->setGroupby('dirname');
+		$mObjects = parent::getObjects($criteria);
+		return count($mObjects);
+	}
 } // end class
 
 ?>

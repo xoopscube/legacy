@@ -22,6 +22,8 @@ require_once XUPDATE_TRUST_PATH . '/class/XupdateUtils.class.php';
 **/
 class Xupdate_AssetPreloadBase extends XCube_ActionFilter
 {
+	protected $blockInstance = null;
+    
     /**
      * prepare
      *
@@ -65,9 +67,20 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
         $this->mRoot->mDelegateManager->add('Module.xupdate.Global.Event.GetAssetManager','Xupdate_AssetPreloadBase::getManager');
         $this->mRoot->mDelegateManager->add('Legacy_Utils.CreateModule','Xupdate_AssetPreloadBase::getModule');
         $this->mRoot->mDelegateManager->add('Legacy_Utils.CreateBlockProcedure','Xupdate_AssetPreloadBase::getBlock');
-//
-        $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleUpdate.Xupdate.Success', array(&$this, 'tableupdateXupdate'));
+        
+        $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleInstall.Success', array(&$this, '_setNeedCacheRemake'));
+        $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleUpdate.Success', array(&$this, '_setNeedCacheRemake'));
+        $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleUninstall.Success', array(&$this, '_setNeedCacheRemake'));
+
+        $this->mRoot->mDelegateManager->add('Legacyblock.Waiting.Show',array(&$this, 'callbackWaitingShow'));
+
+        $this->mRoot->mDelegateManager->add('Legacy_AdminControllerStrategy.SetupBlock', array(&$this, 'onXupdateSetupBlock'));
     }
+
+	public function _setNeedCacheRemake() {
+		$handler = Legacy_Utils::getModuleHandler('store', 'xupdate');
+		$handler->setNeedCacheRemake();
+	}
 
     /**
      * getManager
@@ -120,57 +133,106 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
         }
     }
 
-	/**
-	 *  @public
-	 */
-	public function tableupdateXupdate(&$module, &$log)
-	{
-		if($module->getInfo('trust_dirname') == 'xupdate'){
+    function callbackWaitingShow(& $modules)
+    {
+    	if ($this->mRoot->mContext->mUser->isInRole('Site.Administrator')) {
+    		$handler = Legacy_Utils::getModuleHandler('ModuleStore', 'xupdate');
+	    	if ($count = $handler->getCountHasUpdate()) {
+	    		$this->mRoot->mLanguageManager->loadBlockMessageCatalog('xupdate');
+	    		$checkimg = '<img src="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleView&amp;checkonly=1" width="1" height="1" alt="" />';
+	    		$blockVal = array();
+	    		$blockVal['adminlink'] = XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleStore&amp;filter=updated';
+	    		$blockVal['pendingnum'] = $count;
+	    		$blockVal['lang_linkname'] = _MB_XUPDATE_MODULEUPDATE . $checkimg;
+	    		$modules[] = $blockVal;
+	    	}
+    	}
+    }
 
-/*
-			$dirname = $module->getInfo('dirname');
-			$db = $this->mRoot->mController->mDB;
-			$sql = sprintf("SHOW TABLES LIKE '%s'", $db->prefix($dirname."_modulestore") );
-			list($result) = $db->fetchRow($db->query($sql));
-			if( empty($result) ){
-				$sql ="CREATE TABLE ".$db->prefix($dirname."_modulestore")." (
-						`id` int(11) unsigned NOT NULL  auto_increment,
-						`sid` int(11) unsigned NOT NULL default 0,
-						`dirname` varchar(25) NOT NULL default '',
-						`version` smallint(5) unsigned default '100',
-						`last_update` int(10) unsigned default '0',
-						`type` varchar(255) NOT NULL default '',
-						`trust_dirname` varchar(25) default '',
-						`target_key` varchar(255) NOT NULL default '',
-					PRIMARY KEY  (`id`),
-					KEY sid (sid),
-					KEY dirname (dirname)
-					 ) ENGINE=MyISAM;
-				";
-				if( $db->query($sql) ){
-					$log->add('Table '.htmlspecialchars($db->prefix($dirname."_modulestore")).' created.', ENT_QUOTES , _CHARSET);
-				}else{
-					$log->add('Invalid SQL '.htmlspecialchars($sql), ENT_QUOTES , _CHARSET);
-				}
-			}else{
-				//alpha verion
-				$check_sql = sprintf("SELECT `rootdirname` FROM `%s`", $db->prefix($dirname."_modulestore") );
-				if( $db->query( $check_sql ) !== false ) {
-					$sql = "ALTER TABLE ".$db->prefix($dirname."_modulestore")." CHANGE `rootdirname` `target_key` VARCHAR( 255 ) NOT NULL DEFAULT ''"  ;
-					if( $db->query($sql) ){
-						$log->add('Table '.htmlspecialchars($db->prefix($dirname."_modulestore")).' rootdirname ->target_key changed.', ENT_QUOTES , _CHARSET);
-					}else{
-						$log->add('Invalid SQL '.htmlspecialchars($sql), ENT_QUOTES , _CHARSET);
-					}
-				}
-
-			}
-*/
-
-		}
-
-	}
+    public function onXupdateSetupBlock($controller)
+    {
+    	if ( $this->_isAdminPage() )
+    	{
+    		$this->blockInstance = new Xupdate_Block();
+    		$this->mController->_mBlockChain[] =& $this->blockInstance;
+    	}
+    }
+    
+    protected function _isAdminPage()
+    {
+    	return ( strpos($_SERVER['SCRIPT_NAME'], '/admin/') !== false || strpos($_SERVER['SCRIPT_NAME'], '/admin.php') !== false );
+    }
 
 }//END CLASS
 
+class Xupdate_Block extends Legacy_AbstractBlockProcedure
+{
+	function getName()
+	{
+		return "Xupdate_Block";
+	}
+
+	function getTitle()
+	{
+		return "Xupdate_Block";
+	}
+
+	function getEntryIndex()
+	{
+		return 0;
+	}
+
+	function isEnableCache()
+	{
+		return false;
+	}
+
+	function execute()
+	{
+		$result = '';
+
+		$handler = Legacy_Utils::getModuleHandler('ModuleStore', 'xupdate');
+		if ($count = $handler->getCountHasUpdate()) {
+			$root =& XCube_Root::getSingleton();
+			$root->mLanguageManager->loadBlockMessageCatalog('xupdate');
+			$notifyJS = <<<EOD
+$('.notification.sticky').notify();
+$('.button').click(function () {
+	$('.notification').removeClass('hide').addClass('hide').removeClass('visible');
+	$('.notification.' + $(this).attr('id') + '').notify({ type: $(this).attr('id') });
+});
+EOD;
+			$headerScript= $root->mContext->getAttribute('headerScript');
+			$headerScript->addStylesheet('/common/js/notify/style/default.css');
+			$headerScript->addLibrary('/common/js/notify/notification.js');
+			$headerScript->addScript($notifyJS);
+			$result = '<div class="notification sticky hide">
+			<a class="close" href="javascript:"><img src="'.XOOPS_URL.'/common/js/notify/images/icon-close.png" /></a>
+			<div style="text-align:center;font-size:14pt;margin-left:auto;margin-right:auto;margin-top:12px;">
+			<a href="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleStore&amp;filter=updated" style="float:none;color:white;">'.sprintf(_MB_XUPDATE_HAVE_UPDATEMODULE, $count).'</a>
+			</div>
+			</div>';
+		}
+
+		$result .= '<img src="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleView&amp;checkonly=1" width="1" height="1" alt="" />';
+		$render =& $this->getRenderTarget();
+		$render->setResult($result);
+	}
+
+	function hasResult()
+	{
+		return true;
+	}
+
+	function &getResult()
+	{
+		$dmy = "dummy";
+		return $dmy;
+	}
+
+	function getRenderSystemName()
+	{
+		return 'Legacy_AdminRenderSystem';
+	}
+}
 ?>

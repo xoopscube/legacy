@@ -40,7 +40,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 		$inidataset = new Xupdate_ModulesIniDadaSet;
 		$inidataset->storeHand =  & $this->_getStoreHandler();
 		$inidataset->modHand = & $this->_getModStoreHandler();
-		$inidataset->execute('all');
+		$inidataset->execute('all', ($this->mRoot->mContext->mRequest->getRequest('checkonly')));
 		//-----------------------------------------------
 		return true;
 
@@ -83,6 +83,18 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 	**/
 	public function executeViewSuccess(&$render)
 	{
+		if ($this->mRoot->mContext->mRequest->getRequest('checkonly')) {
+			while( ob_get_level() && @ ob_end_clean() ){
+			}
+			header('Content-type: image/gif');
+			header('Last-Modified: '.gmdate( 'D, d M Y H:i:s' ).' GMT');
+			header('pragma: no-cache');
+			header('Cache-Control: no-cache, must-revalidate');
+			header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+			readfile(XOOPS_ROOT_PATH . '/images/blank.gif');
+			exit();
+		}
+		
 		$render->setTemplateName('admin_module_view.html');
 
 		$render->setAttribute('mod_config', $this->mod_config);
