@@ -103,7 +103,7 @@ class Xupdate_Admin_ThemeStoreAction extends Xupdate_AbstractListAction
 		$inidataset = new Xupdate_ModulesIniDadaSet;
 		$inidataset->storeHand =  & $this->_getStoreHandler();
 		$inidataset->modHand = & $this->_getHandler();
-		$inidataset->execute( 'theme' );
+		$inidataset->execute('all');
 
 //-----------------------------------------------
 
