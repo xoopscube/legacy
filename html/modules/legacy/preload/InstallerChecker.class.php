@@ -2,8 +2,8 @@
 /**
  *
  * @package Legacy
- * @version $Id: InstallerChecker.class.php,v 1.4 2008/09/25 15:12:43 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
+ * @version $Id: InstallerChecker.class.php,v 1.5 2012/07/28 18:26:43 yoshis Exp $
+ * @copyright Copyright 2005-2012 XOOPS Cube Project  <https://github.com/xoopscube/> 
  * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
