@@ -1,0 +1,8 @@
+<{* http://www.xugj.org/modules/QandA/index.php?topic_id=242 *}>
+<{php}>
+  if( ! headers_sent() ) {
+    $_SESSION["redirect_message"] = $this->get_template_vars("message");
+    header("Location: ".html_entity_decode($this->get_template_vars("url"),ENT_QUOTES));
+    exit;
+  }
+<{/php}>

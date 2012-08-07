@@ -1,0 +1,46 @@
+
+div.jGrowl div.redirect {
+	min-height: 			40px;
+}
+	div.jGrowl div.redirect ,
+	div.jGrowl div.redirect div.jGrowl-closer {
+		width: 60%;
+	}
+@media screen and (max-width: 780px) 	{
+	div.jGrowl div.redirect ,
+	div.jGrowl div.redirect div.jGrowl-closer {
+		width: 80%;
+	}
+}
+@media screen and (max-width: 480px) 	{
+	div.jGrowl div.redirect ,
+	div.jGrowl div.redirect div.jGrowl-closer {
+		width: 99%;
+	}
+}
+div.jGrowl div.redirect ,
+div.jGrowl div.redirect div.jGrowl-closer {
+	background-color: 		#000;
+	color:					#fff;
+	opacity: 				.70;
+	-ms-filter: 			"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+	filter: 				progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+	zoom: 					1;
+	padding: 				10px;
+	margin-top: 			5px;
+	margin-bottom: 			5px;
+	font-family: 			Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 				1.2em;
+	text-align: 			left;
+	display: 				none;
+	-moz-border-radius: 	5px;
+	-webkit-border-radius:	5px;
+	-moz-box-shadow: 10px 10px 10px rgba(0,0,0,0.4);
+	-webkit-box-shadow: 10px 10px 10px rgba(0,0,0,0.4);
+	-o-box-shadow: 10px 10px 10px rgba(0,0,0,0.4);
+	-ms-box-shadow: 10px 10px 10px rgba(0,0,0,0.4);
+}
+div.jGrowl div.redirect div.jGrowl-closer {
+	cursor: pointer;
+	text-align: center;
+}

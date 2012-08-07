@@ -35,7 +35,7 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
 	}
 	
 	
-	/// CSVファイルを出力する
+	// CSV data download
 	function execute()
 	{
 		$filename = sprintf('%s_Profile_data_List.csv', $GLOBALS['xoopsConfig']['sitename']);
@@ -53,15 +53,15 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
 			return PROFILE_FRAME_VIEW_INDEX;
 		}
 		foreach (array_keys($defArr) as $key){
-			$field_line .= $var['label'].",";
+			$field_line .= $key.",";
 		}
 		$field_line .= "\n";
-		
 		foreach ($dataArr as $profile){
 			$profile_data = '';
 			foreach ($profile->gets() as $key=>$value){
-				if($defArr[$key]->get('type')=='date'){
-					$value = $value ? formatTimestamp($value, 'Y/n/j H:i') : '';				}
+				//if($defArr[$key]->get('type')=='date'){
+				//	$value = $value ? formatTimestamp($value, 'Y/n/j H:i') : '';
+				//}
 				if (preg_match('/[,"\r\n]/', $value)) {
 					$value = preg_replace('/"/', "\"\"", $value);
 					$value = "\"$value\"";

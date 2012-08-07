@@ -1,0 +1,92 @@
+<!-- start module contents -->
+<{if $mod_config.show_breadcrumbs}>
+<div class="d3f_breadcrumbs">
+	<a href="<{$mod_url}>/index.php?cat_id=<{$category.id}>"><{$category.title}></a> &gt; <{$smarty.const._MD_D3FORUM_FORUMMANAGER}>
+</div>
+<{/if}>
+
+<h1 class="d3f_title"><{$smarty.const._MD_D3FORUM_FORUMMANAGER}></h1>
+
+<{* <{if $xoops_isadmin}>
+	<p><a href="<{$mod_url}>/admin/index.php?page=forum_access&amp;cat_id=<{$forum.id}>"><{$smarty.const._MD_D3FORUM_LINK_FORUMACCESS}></a></p>
+<{/if}> *}>
+
+<h2 class="d3f_head"><{$formtitle}></h2>
+
+<form name="forumform" id="forumform" action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>&amp;forum_id=<{$forum.id}>" method="post">
+
+			<p><{$gticket_hidden}></p>
+			<p><label for="forum_title"><{$smarty.const._MD_D3FORUM_TH_FORUMTITLE}></label><br />
+				<input type="text" name="title" id="forum_title" size="30" maxlength="255" value="<{$forum.title}>" />
+			</p>
+			
+			<p><label for="forum_desc"><{$smarty.const._MD_D3FORUM_TH_FORUMDESC}></label><br />
+				<textarea name="desc" id="forum_desc" cols="30" rows="10"><{$forum.desc}></textarea>
+			</p>
+			
+		<{if $xoops_isadmin}>
+
+			<p><label for="cat_id"><{$smarty.const._MD_D3FORUM_CATEGORY}></label><br />
+				<{if $cat_jumpbox_options}>
+				<select name="cat_id" id="cat_id">
+					<{$cat_jumpbox_options}>
+				</select>
+				<{else}>
+				<{$category.title}>
+				<input type="hidden" name="cat_id" value="<{$category.id}>" />
+				<{/if}>
+			</p>
+
+			<p><label for="forum_weight"><{$smarty.const._MD_D3FORUM_TH_FORUMWEIGHT}></label><br />
+				<input type="text" name="weight" id="forum_weight" size="4" maxlength="4" value="<{$forum.weight}>" />
+			</p>
+
+			<p><label for="forum_external_link_format"><{$smarty.const._MD_D3FORUM_TH_EXTERNALLINKFORMAT}></label><br />
+				<input type="text" name="external_link_format" id="forum_external_link_format" size="80" maxlength="255" value="<{$forum.external_link_format}>" />
+				<br />
+				<{$smarty.const._MD_D3FORUM_HELP_EXTERNALLINKFORMAT}>
+			</p>
+
+			<p><{$smarty.const._MD_D3FORUM_TH_FORUMOPTIONS}><br />
+				<input type="checkbox" id="forum_option_controller_onoff" onclick="if(this.checked){xoopsGetElementById('forum_option_controller').style.display='block';}else{xoopsGetElementById('forum_option_controller').style.display='none';};"  <{if $forum.options}>checked="checked"<{/if}> /><label for="forum_option_controller_onoff"><{$smarty.const._MD_D3FORUM_ONOFF}></label>
+					<textarea name="options" id="forum_options" cols="50" rows="10"><{$forum.options}></textarea>
+					<br />
+					<{$smarty.const._MD_D3FORUM_HOWTO_OVERRIDEOPTIONS}>:
+					<br />
+					<{$forum.option_desc}>
+			</p>
+		<{/if}>
+
+	<p class="d3f_submit"><input type="submit" name="forumman_post" value="<{$smarty.const._SUBMIT}>" />
+	<{if $page == 'forummanager' }>
+	<input type="submit" name="forumman_delete" value="<{$smarty.const._DELETE}>" />
+	<{/if}></p>
+
+</form>
+
+<{if $forum.id > 0 && $xoops_isadmin}>
+
+<br />
+
+<form name="forummanager_export" id="forummanager_export" action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>&amp;forum_id=<{$forum.id}>" class="outer head" method="post">
+
+	<select name="export_mid" id="export_mid" onchange="d3forum_showhide_category_select(this);"><{html_options options=$export_to_module_options}></select>
+
+	<select name="export_cat_id[0]" id="export_cat_id_0">
+		<option value="0">----</option>
+	</select>
+	<{foreach from=$export_to_cat_options key="ex_cat_id" item="ex_options"}>
+		<select name="export_cat_id[<{$ex_cat_id}>]" id="export_cat_id_<{$ex_cat_id}>">
+			<option value="0">----</option>
+			<{$ex_options}>
+		</select>
+	<{/foreach}>
+
+	<br />
+	<input type="submit" name="forumman_export_move" value="<{$smarty.const._MD_D3FORUM_BTN_MOVEFORUMTOOTHERFORUM}>" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMOK}>')" />
+	<input type="submit" name="forumman_export_copy" value="<{$smarty.const._MD_D3FORUM_BTN_COPYFORUMTOOTHERFORUM}>" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMOK}>')" />
+	<{$gticket_hidden}>
+
+</form>
+
+<{/if}>

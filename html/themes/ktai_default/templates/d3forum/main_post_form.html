@@ -1,0 +1,170 @@
+﻿<!-- start module contents -->
+<{if $mod_config.show_breadcrumbs}>
+<div class="d3f_breadcrumbs">
+	<a href="<{$mod_url}>/index.php"><{$smarty.const._MD_D3FORUM_TOP}></a>
+	&nbsp;&gt;&nbsp;
+	<a href="<{$mod_url}>/index.php?cat_id=<{$category.id}>"><{$category.title}></a>
+	&nbsp;&gt;&nbsp;<a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>"><{$forum.title}></a>
+	&nbsp;&gt;&nbsp;<{if $topic.id}><a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>"><{$topic.title}></a><{/if}>
+</div>
+<{/if}>
+
+<h2 class="d3f_title"><{$formtitle}>: <{$forum.title}></h2>
+
+<{if $mode == "edit"}>
+<p style="background-color:#900;color:#fff;"><strong><{$smarty.const._MD_D3FORUM_NOTICE_YOUAREEDITING}></strong></p>
+<{/if}>
+
+<{if $ispreview}>
+<dl id="post_preview" class="outer">
+	<dt class="head"><{$preview_subject}></dt>
+	<dd class="odd"><{$preview_message}></dd>
+</dl>
+<{/if}>
+
+<{include file="db:`$mydirname`_inc_d3comment_summary.html"}>
+
+<form name="postform" id="postform" action="<{$mod_url}>/index.php?page=post" method="post" onsubmit="return xoopsFormValidate_postform();">
+
+	<input type="hidden" name="mode" id="mode" value="<{$mode}>" />
+	<input type="hidden" name="pid" id="pid" value="<{$pid}>" />
+	<input type="hidden" name="post_id" id="post_id" value="<{$post_id}>" />
+	<input type="hidden" name="topic_id" id="topic_id" value="<{$topic_id}>" />
+	<input type="hidden" name="forum_id" id="forum_id" value="<{$forum.id}>" />
+	<input type="hidden" name="external_link_id" id="external_link_id" value="<{$external_link_id|escape}>" />
+	<input type="hidden" name="reference_quote" id="reference_quote" value="<{$reference_quote}>" />
+	
+	<div data-role="fieldcontain">
+		<div>
+		<label for="subject"><{$smarty.const._MD_D3FORUM_SUBJECT}>:</label>
+		<input type="text" name="subject" id="subject" size="60" maxlength="255" value="<{$subject}>" />
+		</div>
+
+		<div>
+		<{if $post.poster_uid}>
+			<label for="d3f_uname"><{$smarty.const._MD_D3FORUM_TH_UNAME}>:</label>
+			<input disabled="disabled" type="text" name="name" id="d3f_uname" value="<{$post.poster_uname|string_format:$smarty.const._MD_D3FORUM_FMT_UNAME}>" size="25" />
+		</div>
+		<{elseif $uid && ! $post.id}>
+			<label for="d3f_uname"><{$smarty.const._MD_D3FORUM_TH_UNAME}>:</label>
+			<input disabled="disabled" type="text" name="uname" id="d3f_uname" value="<{$uname|string_format:$smarty.const._MD_D3FORUM_FMT_UNAME}>" size="25" />
+		</div>
+		<{else}>
+			<label for="guest_name"><{$smarty.const._MD_D3FORUM_TH_GUESTNAME}>:</label>
+			<input type="text" name="guest_name" id="guest_name" value="<{$guest_name}>" size="25" maxlength="30" />
+		</div>
+	<{*
+		<div>
+			<label for="guest_email"><{$smarty.const._MD_D3FORUM_TH_GUESTEMAIL}>:</label>
+			<input type="text" name="guest_email" id="guest_email" value="<{$guest_email}>" size="40" maxlength="60" />
+		</div>
+	*}>
+		<div>
+			<label for="guest_url"><{$smarty.const._MD_D3FORUM_TH_GUESTURL}>:</label>
+			<input type="text" name="guest_url" id="guest_url" value="<{$guest_url}>" size="50" maxlength="100" />
+		</div>
+	<{*
+		<div>
+			<label for="guest_pass"><{$smarty.const._MD_D3FORUM_TH_GUESTPASSWORD}>:</label>
+			<input type="password" name="guest_pass" id="guest_pass" value="<{$guest_pass}>" size="20" maxlength="20" />
+		</div>
+	*}>
+		<{/if}>
+		
+		<div>
+			<label for="message_icon"><{$smarty.const._MD_D3FORUM_MESSAGEICON}>:</label>
+			<select name="icon" id="message_icon">
+					<{html_options options=$icon_options selected=$icon_selected}>
+			</select>
+		</div>
+	</div>
+	<div data-role="fieldcontain">
+		<label for="message"><{$smarty.const._MD_D3FORUM_TH_BODY}>:</label>
+		<textarea id="d3f_message" name="message" cols="25" rows="7" rel="wikihelper"><{$message}></textarea>
+		<{* hyp_emoji_pad id="d3f_message" msg="絵文字パッド" *}>
+	</div>
+
+	<div data-role="collapsible" data-collapsed="true">
+	<h4><{$smarty.const._MD_D3FORUM_OPTIONS}></h4>
+		<div id="d3f_post_advanced_options" data-role="fieldcontain">
+			<fieldset data-role="controlgroup">
+				<div>
+				<input type="checkbox" name="smiley" id="smiley" value="1" <{$smiley_checked}> /><label for="smiley"><{$smarty.const._MD_D3FORUM_ENABLESMILEY}></label>
+				</div>
+				<div>
+				<input type="checkbox" name="xcode" id="xcode" value="1" <{$xcode_checked}> /><label for="xcode"><{$smarty.const._MD_D3FORUM_ENABLEXCODE}></label>
+				</div>
+				<div>
+				<input type="checkbox" name="br" id="br" value="1" <{$br_checked}> /><label for="br"><{$smarty.const._MD_D3FORUM_ENABLEBR}></label>
+				</div>
+				<div>
+				<input type="checkbox" name="number_entity" id="number_entity" value="1" <{$number_entity_checked}> /><label for="number_entity"><{$smarty.const._MD_D3FORUM_ENABLENUMBERENTITY}></label>
+				</div>
+				<div>
+				<input type="checkbox" name="special_entity" id="special_entity" value="1" <{$special_entity_checked}> /><label for="special_entity"><{$smarty.const._MD_D3FORUM_ENABLESPECIALENTITY}></label>
+				</div>
+				<{if $allow_hideuid}>
+					<div>
+					<input type="checkbox" name="hide_uid" id="hide_uid" value="1" <{$hide_uid_checked}> /><label for="hide_uid"><{$smarty.const._MD_D3FORUM_LABEL_HIDEUID}></label>
+					</div>
+				<{/if}>
+				<{if $allow_sig}>
+					<div>
+					<input type="checkbox" name="attachsig" id="attachsig" value="1" <{$attachsig_checked}> /><label for="attachsig"><{$smarty.const._MD_D3FORUM_LABEL_ATTACHSIG}></label>
+					</div>
+				<{/if}>
+				<{if $allow_notify}>
+					<div>
+					<input type="checkbox" name="notify" id="notify" value="1" <{$notify_checked}> /><label for="notify"><{$smarty.const._MD_D3FORUM_LABEL_NEWPOSTNOTIFY}></label>
+					</div>
+				<{/if}>
+				<{if $forum.isadminormod}>
+					<div>
+					<input type="checkbox" name="invisible" id="invisible" value="1" <{$invisible_checked}> /><label for="invisible"><{$smarty.const._MD_D3FORUM_LABEL_POSTINVISIBLE}></label>
+					</div>
+				<{/if}>
+			</fieldset>
+		</div>
+	</div>
+
+	<{$antispam.html_in_form}>
+	<!-- Start Form Vaidation JavaScript //-->
+	<script type="text/javascript">
+	<!--//
+	<{$antispam.js_global}>
+
+	function xoopsFormValidate_postform() {
+		myform = window.document.postform;
+		if ( myform.subject.value.replace(/^\s+|\s+$/g,"") == "" ) { window.alert("<{$smarty.const._MD_D3FORUM_SUBJECT|string_format:$smarty.const._FORM_ENTER}>"); myform.subject.focus(); return false; }
+		if ( myform.message.value.replace(/^\s+|\s+$/g,"") == "" ) { window.alert("<{$smarty.const._MD_D3FORUM_ERR_NOMESSAGE}>"); myform.message.focus(); return false; }
+		<{$antispam.js_in_validate_function}>
+		return true;
+	}
+	function d3forum_quote_message() {
+		xoopsGetElementById("message").value = xoopsGetElementById("message").value + xoopsGetElementById("reference_quote").value ;
+	}
+	//-->
+	</script>
+	<!-- End Form Vaidation JavaScript //-->
+
+	<p class="d3f_submit"><input type="submit" class="formButton" name="contents_preview"  id="contents_preview" value="<{$smarty.const._PREVIEW}>" />
+	<input type="submit" class="formButton" name="contents_submit"  id="contents_submit" value="<{$smarty.const._SUBMIT}>" /></p>
+
+</form>
+
+
+<{if $mode == "reply"}>
+<p><a href="#" onclick="if(document.getElementById('post_reference').style.display=='none'){document.getElementById('post_reference').style.display='block';}else{document.getElementById('post_reference').style.display='none';};return false;"><{$smarty.const._MD_D3FORUM_REFERENCEPOST}></a></p>
+<dl id="post_reference" class="outer">
+	<dt class="head"><{$reference_subject}></dt>
+	<dd class="even"><{$smarty.const._MD_D3FORUM_BY}>: <{$reference_name}> <{$smarty.const._MD_D3FORUM_ON}>: <{$reference_time_formatted}></dd>
+	<dd class="odd"><{$reference_message}></dd>
+</dl>
+<{if $ispreview}>
+	<script>
+		document.getElementById('post_reference').style.display='none';
+	</script>
+<{/if}>
+<{/if}>
+
+<!-- end module contents -->

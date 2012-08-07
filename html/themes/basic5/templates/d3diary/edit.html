@@ -1,0 +1,753 @@
+<!-- start module contents -->
+	<{if $mod_config.use_name==1 && $yd_name}><{$yd_name}>
+	<{else}><{$yd_uname}>
+	<{/if}><{$smarty.const._MD_DIARY_PERSON}><br/>
+<br/>
+
+<{if $preview}>
+<div id="d3dWrap">
+<div class="clear"></div>
+
+<{if $yd_layout=="left"}>
+  <div id="d3dMainRight">
+  <div id="d3dMainBodyRight">
+<{elseif $yd_layout=="right"}>
+  <div id="d3dMainLeft">
+  <div id="d3dMainBodyLeft">
+<{else}>
+  <div id="d3dMainNoside">
+  <div id="d3dMainBodyNoside">
+<{/if}>
+
+ <H2><{$smarty.const._MD_PREVIEW}></H2>
+<div class="boxdate_base">
+<span class="boxdate">
+<div class="itemHead"><span class="itemTitle"><{$yd_data.year}><{* $smarty.const._MD_DATE_YEAR *}></span></div>
+<div class="itemInfo"><span class="itemText"><{$yd_data.b_month}><{ *$smarty.const._MD_DATE_MONTH *}></span>
+<span class="<{$yd_data.dclass}>"><{$yd_data.day}><{* $smarty.const._MD_DATE_DAY *}></span></div>
+<div class="itemHead"><span class="<{$yd_data.wclass}>">(<{$yd_data.week}>)</span></div>
+<{* div class="itemFoot"><span class="itemText" *}><{$yd_data.time}><{* /span></div *}>
+</span>
+</div><!-- /boxdate_base -->
+
+<div class="diaryHead">
+<div class="item">
+
+<div class="itemHead">
+<span class="itemTitle">
+<{$yd_data.title}>
+</span>
+<img src="<{$xoops_url}>/modules/<{$mydirname}>/images/open<{$yd_openarea}>.gif" border=0 style="float:right;" />
+</div><!-- /itemHead -->
+
+<div class="itemInfo">
+<span class="itemPermaLink">
+<{if $yd_before.bid >0}>
+<a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?page=detail&amp;bid=<{$yd_before.bid}>&req_uid=<{$yd_uid}>">
+<img src="<{$xoops_url}>/modules/<{$mydirname}>/images/arrow2.png" border=0 style="vertical-align:middle;" /><{$smarty.const._MD_DIARY_LAST}>
+</a>
+<{/if}>
+
+<{if $yd_after.bid >0}>
+<a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?page=detail&amp;bid=<{$yd_after.bid}>&req_uid=<{$yd_uid}>">
+<{$smarty.const._MD_DIARY_NEXT}><img src="<{$xoops_url}>/modules/<{$mydirname}>/images/arrow1.png" border=0 style="vertical-align:middle;" />
+</a>
+<{/if}>
+</span>
+</div><!-- /itemInfo -->
+
+<div class="itemBody">
+<{$smarty.const._MD_CATEGORY}>&nbsp;
+<a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?req_uid=<{$yd_uid}>&amp;mode=category&amp;cid=<{$yd_data.cid}>">
+<{$yd_data.cname}></a>
+
+<{if $mod_config.use_tag>0}>
+<br />
+<{$smarty.const._MD_TAG}>&nbsp;
+<{foreach from=$bTagArr item=tags}>
+	<a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?req_uid=<{$yd_uid}>&amp;tag_name=<{$tags.tag_urlenc}>" style="font-size:<{$tags.size}>%"><{$tags.tag}></a>
+<{/foreach}>
+<{/if}>
+</div><!-- /itemBody -->
+
+</div> <!--end item -->
+</div> <!--end itemList -->
+<div class="clear"></div>
+
+<div class="itemDiary">
+<div class="item">
+
+<div class="itemInfo" style="text-align:left;">
+<{$smarty.const._MD_DIARY_TEXT}>
+</div><!-- /itemInfo -->
+
+<div class="itemBody">
+
+<{$yd_data.diary}>
+<br />
+<{if $yd_photo.0.pid|count_characters>0}>
+<div class="PhotoBox">
+ <{foreach from=$yd_photo key="num" item="photo" name="list"}>
+ <{if $photo.body_in != true}>
+   <{if $yd_photo|@count==1}>
+    <div class="d3dPhotoCenter">
+   <{elseif ($yd_photo|@count==2)&&$num==1}>
+    <div class="d3dPhotoRight">
+   <{else}>
+    <div class="d3dPhotoLeft">
+   <{/if}>
+  <a href="<{$xoops_url}>/modules/<{$mydirname}>/upimg/<{$photo.pname}>" target="_blank">
+  <img src="<{$xoops_url}>/modules/<{$mydirname}>/upimg/<{$photo.thumbnail}>" style="border:1px solid gray;" title="<{$smarty.const._MD_PHOTO}><{$num+1}>"/></a>
+  <{* <p><{$smarty.const._MD_PHOTO}><{$num+1}></p> *}>
+  <{if $mod_config.photo_useinfo==1 && $photo.info}><p><{$photo.info}></p><{/if}>
+  </div>
+  <{* <{if $num==2 || $num==5 }><div class="clear"></div><{/if}> *}>
+  <{* <{if $num==1 || $num==3 || $num==5 || $num==7 }><div class="clear"></div><{/if}> *}>
+<{/if}>
+<{/foreach}>
+</div><!-- /PhotoBox -->
+<br/>
+<div class="clear"></div>
+<{/if}>
+</div><!-- /itemBody -->
+
+<div class="itemFoot">
+<span class="itemPermaLink">
+<{if $yd_editperm==1}>
+<a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?page=edit&amp;bid=<{$yd_data.bid}><{if $yd_owner!=1}>&amp;req_uid=<{$yd_uid}><{/if}>">
+<{$smarty.const._MD_T_EDIT}></a>
+<{/if}>
+</span>
+</div><!-- /itemFoot -->
+
+</div> <!--end item -->
+</div> <!--end itemDiary -->
+</div><!-- /d3MainBodyxxx -->
+</div><!-- /d3Mainxxxx -->
+</div><!-- /d3dWrap -->
+<div class="clear"></div>
+<{/if}> <!--end preview -->
+
+<table class="outer" cellspacing="1">
+<tr>
+<th align="left">
+<table style="border:0;margin:0;padding:0;"><tr>
+<td><{$smarty.const._MD_DIARY_EDIT}></td><td style="text-align:right;"><img src="images/open<{$yd_openarea}>.gif" border=0 /></td>
+</tr></table>
+</th>
+</tr><tr>
+
+<td>
+<{if $yd_data.error|count_characters > 0}>
+<strong><{$smarty.const._MD_INPUT_ERR}><br/>
+<{$yd_data.error}></strong><br/>
+<br/>
+<{/if}>
+
+<form name="fm1" enctype="multipart/form-data" method='POST' action='index.php?page=edit' onsubmit="return d3diary_inputchk(this)">
+<input type="hidden" name="bid" value="<{$yd_data.bid}>" />
+<table>
+<tr>
+<td class="head" valign="top" nowrap style="border:1px solid gray;"><{$smarty.const._MD_DIARY_TITLE}></td>
+<td class="even" style="border:1px solid gray;"><input type="text" name="title" size="40" value="<{$yd_data.title}>" /><br />
+<{if $yd_data.bid>0}>&nbsp;<{$smarty.const._MD_DIARY_DATE}>&nbsp;<{$yd_data.year}><{$smarty.const._MD_DATE_YEAR}><{$yd_data.month}><{$smarty.const._MD_DATE_MONTH}><{$yd_data.day}><{$smarty.const._MD_DATE_DAY}> <{$yd_data.time}><{/if}></td>
+</tr>
+
+<tr>
+<td class="head" valign="top" nowrap style="border:1px solid gray;"><{$smarty.const._MD_CATEGORY}></td>
+<td class="even" style="border:1px solid gray;">
+<select name="cid" id="cid" onchange="chgcname()">
+<option value="0"><{$smarty.const._MD_NOCNAME}></option>
+<{section name=num loop=$catopt}>
+    <{if $catopt[num].cid <= 10000}>
+	<option <{if $yd_data.cid==$catopt[num].cid}>selected<{/if}> value="<{$catopt[num].cid}>"><{$catopt[num].cname}><{if $catopt[num].dohtml=="1"}> HTML<{/if}></option>
+    <{/if}>
+<{/section}>
+<{section name=num loop=$catopt}>
+    <{if $catopt[num].cid > 10000}>
+	<option <{if $yd_data.cid==$catopt[num].cid}>selected<{/if}> value="<{$catopt[num].cid}>"><{$catopt[num].cname}><{if $catopt[num].dohtml=="1"}> HTML<{/if}></option>
+    <{/if}>
+<{/section}>
+<option <{if $yd_data.cid=="-1"}>selected<{/if}> value="-1"><{$smarty.const._MD_CATEGORY_ADD}></option>
+</select>
+<input type="text" name="cname" id="cname" size="50" value="<{$yd_data.cname}>" style="visibility:<{if $yd_data.cname}>visible<{else}>hidden<{/if}>;" />
+</td>
+</tr>
+
+<{if $yd_use_open_entry}><tr>
+<td class="head" valign="top" nowrap style="border:1px solid gray;"><{$smarty.const._MD_CONF_OPENAREA}></td>
+<td class="even" style="border:1px solid gray;">
+
+<select name="openarea" id="openarea" onchange="chgopenarea()">
+<option <{if $yd_data.openarea==0}>selected<{/if}> value="0"><{$smarty.const._MD_CONF2_FOLLOW}></option>
+<{if $yd_openarea==0}><option <{if $yd_data.openarea==1}>selected<{/if}> value="1"><{$smarty.const._MD_CONF2_1OLOSE}></option><{/if}>
+<{if $yd_use_friend>=1 && $yd_openarea<=1}><option <{if $yd_data.openarea==3}>selected<{/if}> value="3"><{$smarty.const._MD_CONF2_3FRIEND2}></option><{/if}>
+<{if $yd_use_friend>=1 && ($yd_openarea<=1 || $yd_openarea==3)}><option <{if $yd_data.openarea==2}>selected<{/if}> value="2"><{$smarty.const._MD_CONF2_2FRIEND}></option><{/if}>
+<{if $allow_gpermission}><option <{if $yd_data.openarea==10}>selected<{/if}> value="10"><{$smarty.const._MD_CONF2_10GROUP}></option><{/if}>
+<{if $allow_ppermission}><option <{if $yd_data.openarea==20}>selected<{/if}> value="20"><{$smarty.const._MD_CONF2_20PERSON}></option><{/if}>
+<{if $yd_openarea<=3}><option <{if $yd_data.openarea==100}>selected<{/if}> value="100"><{$smarty.const._MD_CONF2_100HIDE}></option><{/if}>
+</select>
+
+&nbsp;<{if $yd_data.openarea==100}><input type="checkbox" name="update_time" value="1" /><{$smarty.const._MD_DIARY_UPDATE_TIME}><{/if}>
+
+<{if $yd_data.openarea <> 0}><img src="images/open<{$yd_data.openarea}>.gif" border=0 style="float:right;" /><{/if}>
+
+<div id="groups" style="display:<{if $yd_data.openarea==10 || $yd_data.openarea==20}>block<{else}>none<{/if}>">
+<{if $allow_gpermission || $allow_ppermission}>
+<{$smarty.const._MD_PERMED_VGROUP}><br />
+<select name="vgids[]" size="4" multiple>
+<{strip}><{foreach from=$yd_data.group_list key=groupid item=group}>
+<option value="<{$groupid}>"<{if $group.gsel==1}> selected="selected"<{/if}>><{$group.gname}></option>
+<{/foreach}><{/strip}></select>
+<{/if}>
+</div>
+
+<div id="personnel" class="personnel" style="display:<{if $yd_data.openarea==20}>block<{else}>none<{/if}>">
+<{if $allow_ppermission}>
+<{strip}>
+    <{$smarty.const._MD_DIARY_REG_PERSON}><br />
+    <div id="d3d_tag_list1" class="d3d_tag_list"><{if $yd_data.pperm_names}>
+    <{foreach from=$yd_data.pperm_names item="pname"}><span class="exist"><{$pname}></span><{/foreach}><{/if}></div>
+    <input type="hidden" name="vpids" id="d3d_tag_hidden1" value="<{$yd_data.pperm_list}>">
+    <{$smarty.const._MD_SEARCH_VPERSON}>&nbsp;<input size="25" id="d3d_tag_input1" name="d3d_tag_input1" autocomplete="off" class="form_text" type="text" ><br>
+    <div id='d3d_suggest_list1' class="auto_complete"></div>
+    <{$smarty.const._MD_SEARCH_VPERSONDESC}>
+<{/strip}>
+<{/if}>
+</div>
+
+</td></tr>
+<{/if}>
+
+<tr>
+<td class="head" valign="top" nowrap style="border:1px solid gray;"><{$smarty.const._MD_DIARY_TEXT}>
+<{php}>
+$this->assign( 'common_fck_installed' , file_exists( XOOPS_ROOT_PATH.'/common/fckeditor/fckeditor.js' ) ) ;
+<{/php}>
+<{if $mod_config.body_htmleditor=="common_fckeditor" and $common_fck_installed}>
+  <input type="button" class="formButton" value="FCKeditor" name="contentman_preview"  onclick='fckeditor_exec();' />
+  <input type="hidden" name="fck_loaded" id='fck_loaded' value="0" />
+<{else}>
+	<{if $allow_html }>
+		<{php}>
+			$_makescript = & xoops_getmodulehandler('makescript','myckeditor' , true );
+			$params = array('id'=>'diary','editor'=>'html','myckeditor'=>'on');
+			if (@is_object( $_makescript )){
+				$this->assign( 'common_myck_installed' , true ) ;
+				$_makescript->makeheader($params);
+			}
+		<{/php}>
+		<{if $common_myck_installed}>
+			<br />
+			<input type="button" class="formButton" value="CKEeditorON" name="myckeditorOn" id="myckeditorOn" onclick="if(this.value=='CKEeditorON'){this.value='CKEeditorOFF';diary_myckeditor_exec();document.getElementById('switch_bbcode').checked=false;bbcode_area();}else{this.value='CKEeditorON';diary_myckeditor_remove();}"/>
+		<{/if}>
+	<{/if}>
+<{/if}>
+</td>
+<td class="even" style="border:1px solid gray;">
+<a name='moresmiley'></a>
+<{if $mod_config.body_editor=="xoopsdhtml"}>
+<div>
+<{if $allow_html && ! $common_fck_installed}>
+<input type="checkbox" id="switch_bbcode" onclick="bbcode_area();if(document.getElementById('switch_bbcode').checked){this.value='CKEeditorON';diary_myckeditor_remove();}" />
+<{else}>
+<input type="checkbox" id="switch_bbcode" onclick="bbcode_area()" />
+<{/if}>
+<label for="switch_bbcode"><{$smarty.const._MD_SW_BBCODE}></label></div>
+      <{xoopsdhtmltarea name='diary' id='diary' cols=40 rows=15 value=$yd_data.diary4edit pre_style="display:none;" post_style="display:none;"}>
+<{else}>
+      <textarea name="diary" id='diary' onselect="xoopsSavePosition('diary');" onclick="xoopsSavePosition('diary');" onkeyup="xoopsSavePosition('diary');" rows="15" cols="40"><{$yd_data.diary4edit}></textarea>
+      <br /><{$smilylist}>
+<{/if}>
+<br />
+<input id="entry_pagebreak" value="<{$smarty.const._MD_PAGEBREAK}>" onclick='xoopsCodeSmilie("diary", "\n[pagebreak]\n");' type="button"><br />
+<{$smarty.const._MD_YT_URL}>
+<input type="text" name="yt" id="yt" value="" />
+<input type="button" name="yt_sub" value="<{$smarty.const._MD_YT_ADD}>" onclick="return yt_input();" /><br />
+<{$smarty.const._MD_ND_URL}>
+<input type="text" name="nd" id="nd" value="" />
+<input type="button" name="nd_sub" value="<{$smarty.const._MD_YT_ADD}>" onclick="return nd_input();" /><br />
+
+<{if $yd_photo }>
+<hr />
+<span id="pinserter" style="cursor:pointer;font-weight:normal;font-size:100%;border:gray 1px solid;" onclick="pinserter_area()"><{$smarty.const._MD_P_INSOPEN}></span><br />
+<div id="imginserter" style="display:none;">
+	img<input type='radio' name='p_method' value="img" checked="checked" />&nbsp;|&nbsp;
+	siteimg<input type='radio' name='p_method' value="siteimg" />
+	<{if $allow_html}>&nbsp;|&nbsp;html<input type='radio' name='p_method' value="html" /><{/if}>
+	<br />
+	<input type='checkbox' name='withinfo' id='p_withinfo' value='yes' checked="checked" /><{$smarty.const._MD_P_WITHINFO}>
+	<br />
+	<span id="img_1" style="cursor:pointer;" onclick="return photo2body('l');"><img src="<{$xoops_url}>/modules/<{$mydirname}>/images/alignleft.gif" alt="<{$smarty.const._MD_P_INSLEFT}>" title="<{$smarty.const._MD_P_INSLEFT}>" /></span>
+	<span id="img_2" style="cursor:pointer;" onclick="return photo2body('c');"><img src="<{$xoops_url}>/modules/<{$mydirname}>/images/aligncenter.gif" alt="<{$smarty.const._MD_P_INSCENTER}>" title="<{$smarty.const._MD_P_INSCENTER}>" /></span>
+	<span id="img_3" style="cursor:pointer;" onclick="return photo2body('r');"><img src="<{$xoops_url}>/modules/<{$mydirname}>/images/alignright.gif" alt="<{$smarty.const._MD_P_INSRIGHT}>" title="<{$smarty.const._MD_P_INSRIGHT}>" /></span>
+	<br />
+	<span id="img_4" style="cursor:pointer;" onclick="return photo2body('lb');"><img src="<{$xoops_url}>/modules/<{$mydirname}>/images/alignbigleft.gif" alt="<{$smarty.const._MD_P_INSLEFT}>" title="<{$smarty.const._MD_P_INSLEFT}>" /></span>
+	<span id="img_5" style="cursor:pointer;" onclick="return photo2body('cb');"><img src="<{$xoops_url}>/modules/<{$mydirname}>/images/alignbigcenter.gif" alt="<{$smarty.const._MD_P_INSCENTER}>" title="<{$smarty.const._MD_P_INSCENTER}>" /></span>
+	<span id="img_6" style="cursor:pointer;" onclick="return photo2body('rb');"><img src="<{$xoops_url}>/modules/<{$mydirname}>/images/alignbigright.gif" alt="<{$smarty.const._MD_P_INSRIGHT}>" title="<{$smarty.const._MD_P_INSRIGHT}>" /></span>
+	<br />
+	<input type="button" name="clear" value="<{$smarty.const._MD_P_CLEARFLOAT}>" onclick="return d3diary_clear();" /><br />
+</div>
+<{/if}>
+</td>
+</tr>
+
+<tr><td class="head" valign="top" nowrap style="border:1px solid gray;">
+<{$smarty.const._MD_DIARY_OPTION}></td>
+<td class="even" style="border:1px solid gray;">
+<{if $allow_html}>
+<input type="checkbox" name="dohtml" id="dohtml" value="1" <{if $yd_data.dohtml==1}>checked<{/if}> />
+<{$smarty.const._MD_DO_HTML}><br />
+<{else}>
+        <input type="hidden" name="dohtml" id="dohtml" value="0" />
+<{/if}>
+<{if $allow_regdate}>
+<input type="checkbox" name="reg_time" id="reg_time" value="1" <{if $yd_data.reg_time==1}>checked<{/if}>/>
+<{$smarty.const._MD_DIARY_REG_TIME}>
+<{html_select_date time=$yd_data.create_time_unformat start_year="-1" end_year="+2" month_format="%m" day_format="%d" field_order="YMD" field_array="published"}>
+<{html_select_time time=$yd_data.create_time_unformat minute_interval="10" display_seconds=false field_array="published"}><br />
+<{else}>
+        <input type="hidden" name="reg_time" id="reg_time" value="0" />
+<{/if}>
+<{if $mod_config.use_updateping}>
+<input type="checkbox" name="update_ping" id="update_ping" value="1" />
+<{$smarty.const._MD_DIARY_UPDATE_PING}><br />
+<{else}>
+<input type="hidden" name="update_ping" id="update_ping" value="0" />
+<{/if}>
+</td></tr>
+
+<{if $mod_config.use_tag>0}>
+<tr><td class="head" valign="top" nowrap style="border:1px solid gray;"><{$smarty.const._MD_TAG}></td>
+      <td class="even" style="border:1px solid gray;">
+      <{$smarty.const._MD_TAG_DESC}><br />
+        <input type=text name=tags id=tags value="<{foreach from=$bTagArr item=b_tag}>[<{$b_tag.tag}>]<{/foreach}>" size=40 maxlength=255><br />
+	<div id="popularTags">
+		<{$smarty.const._MD_LANG_MY_TAGS}>
+		<{foreach from=$myTagArr item=mytag}>
+			<span onclick="addTag(this);"><{$mytag}></span>
+		<{/foreach}>
+		<{if $allowUseredit!="0"}>
+			<hr />
+			<{$smarty.const._MD_LANG_POPULAR_TAGS}>
+	<span id="rgn_button" style="cursor:pointer;font-weight:normal;font-size:100%;border:gray 1px solid;"
+	onclick="chgtagotherdisp()">+ OPEN</span><br />
+<table>
+<tr><td valign="top" id="rgn_content" style="display:none;">
+			<{foreach from=$popTagArr item=poptag}>
+				<span onclick="addTag(this);"><{$poptag}></span>
+			<{/foreach}>
+</td></tr>
+</table>
+		<{/if}>
+	</div>
+      </td>
+</tr>
+<{/if}>
+
+<{* <tr valign="top" align="left">
+<td class="head">
+<{attachfile_attach_upload dirname=attachfile label=1}>
+</td>
+<td class="even" style="border:1px solid gray;">
+<{attachfile_attach_upload dirname=attachfile target_id=$yd_data.bid}>
+</td></tr> *}>
+
+<{foreach from=$yd_photo key="num" item="photo" name="list"}>
+  <tr>
+    <td class="head" valign="top" nowrap style="border:1px solid gray;"><{$smarty.const._MD_PHOTO}><{$num+1}></td>
+    <td class="even" style="border:1px solid gray;">
+	<{if $photo.prev==1}><font color="#FF0000"><{$smarty.const._MD_PREVIEW}><{$smarty.const._MD_PHOTO}></font><br /><{/if}>
+	<img src='upimg/<{$photo.thumbnail}>'>
+	<input type='hidden' name='pid<{$num}>' id='pid<{$num}>' value='<{$photo.pid}>' />
+	<input type='hidden' name='pname<{$num}>' id='pname<{$num}>' value='<{$photo.pname}>' />
+	<input type='hidden' name='pprev<{$num}>' id='pprev<{$num}>' value='<{$photo.prev}>' />
+	<input type='hidden' name='pid[]' value='<{$photo.pid}>' />
+	<input type='hidden' name='pname[]' value='<{$photo.pname}>' />
+	<p><{$smarty.const._MD_PHOTO_SELECT}><input type='checkbox' name='psel[]' id='psel<{$num}>' value='<{$photo.pid}>::<{$photo.pname}>' /></p>
+	<{if !$photo.prev}><p><{$smarty.const._MD_P_INSSELECT}><input type='radio' name='pins' value='<{$photo.thumbnail}>::<{$photo.pname}>'/></p><{/if}>
+	<{if $mod_config.photo_useinfo==1}>
+		<textarea name='pvinfo[]' id='pvinfo<{$num}>' rows="2" cols="50"><{$photo.pinfo}></textarea>
+	<{/if}>
+    </td>
+  </tr>
+<{/foreach}>
+<{if $yd_photo }>
+  <tr>
+    <td class="head" valign="top" nowrap style="border:1px solid gray;"><{$smarty.const._MD_PHOTO_MANAGE}></td>
+    <td class="even" style="border:1px solid gray;">
+	<select name="action" id="action">
+	<option value="0"><{$smarty.const._MD_CATEGORY_NOSELECTED}></option>
+	<option value="2"><{$smarty.const._MD_LROTATE}></option>
+	<option value="3"><{$smarty.const._MD_RROTATE}></option>
+	<option value="5"><{$smarty.const._MD_T_DEL}></option>
+	</select>
+<input type=submit name="phandle" value="<{$smarty.const._SUBMIT}>" onClick="d3diary_pmanage_confirm();return false;"/>
+</td></tr>
+<{/if}>
+
+
+<!-- Images : Start -->
+<tr>
+<td class="head" style="border:1px solid gray;">
+	<label for="face"><{$smarty.const._MD_PHOTO_ADD}>(gif/jpeg)</label><br />MAX<{$yd_photo_maxpics}><{$smarty.const._MD_PHOTO_SHRINK}></td>
+<td class="even" style="border: 1px solid gray;">
+<div id="image_add">
+<a href="javascript:void(0);" onclick="d3diary_addUploadForm(0);">[<{$smarty.const._MD_PHOTO_ADD}>]</a>
+</div>
+
+<{if $mod_config.photo_useinfo==1}>
+<{section name=cnt start=1 loop=10}>
+<div id="image<{$smarty.section.cnt.index}>" style="display:none">
+	<input type='file' name='filename[]' value='' />
+	<textarea name='pinfo[]' rows="2" cols="40"></textarea>
+</div>
+<{/section}>
+<{else}>
+<{section name=cnt start=1 loop=10}>
+<div id="image<{$smarty.section.cnt.index}>" style="display:none">
+	<input type='file' name='filename[]' value='' />
+</div>
+<{/section}>
+<{/if}>
+
+</td>
+</tr>
+<tr><td colspan=2>
+<{$smarty.const._MD_PHOTO_MAXSIZE}><{$yd_photo_maxsize}>KB<br/>
+<{if $yd_useresize > 0}>
+<{$smarty.const._MD_PHOTO_SHRINK2}><br/>
+<{/if}>
+<input type=hidden name="req_uid" value="<{$yd_uid}>"/>
+<center>
+<{if $preview}><input type=hidden name="was_prev" value="1" /><{/if}>
+<input type=submit name="preview" value="<{$smarty.const._MD_PREVIEW}>"/>
+<input type=submit name="submit1" value="<{$smarty.const._MD_SUBMIT}>"/>
+</center>
+</td></tr>
+
+
+</table>
+<br/>
+</form>
+
+
+</td>
+</tr>
+</table>
+<br/>
+
+<{if $yd_data.bid>0}>
+<table class="outer" cellspacing="1">
+<tr>
+<td align="left">
+<{$smarty.const._MD_DIARY_DEL}>
+</td>
+</tr><tr>
+<td>
+<table><tr>
+<td class="head" style="border:1px solid gray;">
+<{$smarty.const._MD_DIARY_DATE}>
+</td><td class="even" style="border:1px solid gray;">
+<{$yd_data.year}><{$smarty.const._MD_DATE_YEAR}><{$yd_data.month}><{$smarty.const._MD_DATE_MONTH}><{$yd_data.day}><{$smarty.const._MD_DATE_DAY}> <{$yd_data.time}>
+</td>
+</tr><tr>
+<td class="head" style="border:1px solid gray;">
+<{$smarty.const._MD_DIARY_TITLE}>
+</td><td class="even" style="border:1px solid gray;">
+<{$yd_data.title}>
+</td>
+</tr><tr>
+<td colspan=2>
+<form name="fm2" method='POST' action='index.php?page=edit' onsubmit='return delconfirm();'>
+<input type="hidden" name="bid" value="<{$yd_data.bid}>" />
+<{$smarty.const._MD_DIARY_DELDEC}>
+<input type=submit name="delsub" value="<{$smarty.const._MD_DIARY_DEL}>"/>
+</form>
+</tr></table>
+</td></tr></table>
+
+<{/if}>
+<{if $debug_time}>
+ <{foreach from=$debug_time item="debug"}>
+	<{$debug.time}>:<{$debug.caller}><br />
+ <{/foreach}>
+<{/if}>
+
+<script type="text/javascript">
+
+var image_form_count = 0;
+var image_form_c = 0;
+var image_form_limit = <{$yd_photo_maxpics}>;
+var D3dSuggest1 = null;
+
+function chgcname() {
+	var cid=encodeURIComponent(document.getElementById("cid").value);
+	if(cid<0){
+		document.getElementById("cname").style.visibility="visible";
+	}else{
+		document.getElementById("cname").style.visibility="hidden";
+	}
+
+	var dohtml=new Array();
+	<{section name=num loop=$catopt}>
+	<{if $catopt[num].dohtml=="1"}>
+		dohtml[<{$catopt[num].cid}>]=1;
+	<{else}>
+		dohtml[<{$catopt[num].cid}>]=0;
+	<{/if}>
+	<{/section}>
+	if(dohtml[cid]==1){
+		document.getElementById("dohtml").checked=true;
+	}else{
+		document.getElementById("dohtml").checked=false;
+	}
+}
+
+function chgopenarea() {
+	var cid=encodeURIComponent(document.getElementById("openarea").value);
+	if(cid==10 || cid==20){
+		document.getElementById("groups").style.display='block';
+	}else{
+		document.getElementById("groups").style.display='none';
+	}
+	if(cid==20){
+                document.getElementById("personnel").style.display='block';
+                D3dSuggest1 = new D3diaryUnameSuggest('<{$xoops_url}>/modules/<{$mydirname}>/','d3d_tag_input1','d3d_suggest_list1','d3d_tag_hidden1','d3d_tag_list1','<{$charset}>');
+ 	}else{
+                document.getElementById("personnel").style.display='none';
+                document.getElementById("d3d_tag_hidden1").value='';
+                document.getElementById("d3d_tag_list1").innerHTML='';
+                document.getElementById("d3d_tag_input1").value='';
+                D3dSuggest1 = null;
+	}
+}
+
+function delconfirm()
+{
+  return confirm('<{$smarty.const._MD_DIARY_DELASC}>');
+}
+
+function yt_input(){
+	var inputURL = document.getElementById("yt").value;
+	if (!inputURL || inputURL == '') return false;
+
+	var urlRegex = new RegExp('^http\\://(?:[a-zA-Z]+\\.)?youtube\\.com/watch\\?(.+)$');
+
+	if (inputURL.match(urlRegex)) {
+		var queryString = RegExp.$1;
+		var pairs = queryString.split('&');
+		var vid = null;
+		for (var i = 0; i < pairs.length; i++) {
+			var str  = pairs[i];
+			var pair = str.split('=');
+			if (pair[0] == 'v') {
+				vid = pair[1];
+				vid = vid.replace(/http:\/\/.*$/, '');
+			}
+		}
+		if (!vid) {
+			return false;
+		}
+		var imp=document.getElementById("diary").value;
+
+		xoopsCodeSmilie("diary", " [[YT:"+vid+"]] ");
+	}
+	return false;
+}
+
+function nd_input(){
+	var inputURL = document.getElementById("nd").value;
+	if (!inputURL || inputURL == '') return false;
+
+	var urlRegex = new RegExp('^http\\://(?:[a-zA-Z]+\\.)?nicovideo\\.jp/[a-zA-Z_]*watch/(.+)$');
+
+	if (inputURL.match(urlRegex)) {
+		var queryString = RegExp.$1;
+		var pairs = queryString.split('&');
+		var vid = pairs[0];
+		if (!vid) {
+			return false;
+		}
+		var imp=document.getElementById("diary").value;
+
+		xoopsCodeSmilie("diary", " [[ND:"+vid+"]] ");
+	}
+	return false;
+}
+
+function d3diary_inputchk(fm){
+	var errmsg="";
+	if ( fm.title.value == "") {
+		alert("\n<{$smarty.const._MD_DIARY_AL_NOTITLE}>");
+		return false;
+	} else if ( fm.fck_loaded.value !=1 && fm.diary.value == "") {
+		alert("\n<{$smarty.const._MD_DIARY_AL_NOBODY}>");
+		return false;
+	} else {
+		return true;
+	}
+
+}
+
+function d3diary_addUploadForm(type)
+{
+	if(image_form_limit>0){
+		image_form_c = image_form_count+<{$yd_data.photo_num}>+1;
+		if(image_form_c <= image_form_limit){
+			image_form_count++;
+			document.getElementById('image'+image_form_c).style.display='block';
+		}
+		if(image_form_c >= image_form_limit){
+			document.getElementById('image_add').style.display='none';
+		}
+	}
+}
+
+function fckeditor_exec() {
+	var oFCKeditor = new FCKeditor( "diary" , "100%" , "500" , "Default" );
+	if(document.getElementById("fck_loaded").value<1){
+		oFCKeditor.BasePath = "<{$xoops_url}>/common/fckeditor/";
+		oFCKeditor.ReplaceTextarea();
+		document.getElementById("fck_loaded").value=1;
+	}
+}
+
+function d3diary_pmanage_confirm() {
+	var pprev_exist = 0;
+	var pprev_checked = 0;
+	var pcount = <{$yd_data.photo_num}>;
+	var p_action = document.getElementById('action').value;
+	var p_checked = 0;
+
+	for (var i = 0; i < pcount; i ++) {
+		if(document.getElementById('psel'+i).checked == true){
+			p_checked = 1;
+		}
+		if(document.getElementById('pprev'+i).value=='1'){
+			pprev_exist=1;
+			if(document.getElementById('psel'+i).checked == true){
+				pprev_checked = 1;
+			}
+		}
+	}
+
+	if(p_checked==1){
+		if(p_action==5){
+			if(window.confirm('<{$smarty.const._MD_PHOTO}> <{$smarty.const._MD_FILEDEL_CONFIRM}>')==true){
+				document.fm1.phandle();
+			}
+		} else if(p_checked==1 && (p_action==2 || p_action==3)) {
+			if(pprev_exist==0) {
+				if(window.confirm('<{$smarty.const._MD_PHOTO}> <{$smarty.const._MD_ROTATE_CONFIRM}>')==true){
+					document.fm1.phandle();
+				}
+			} else {
+				if(pprev_checked==0) {
+					alert("\n<{$smarty.const._MD_ROTATE_NOPREVIEW}>");
+				} else {
+					alert("\n<{$smarty.const._MD_ROTATE_NOPREVIEW2}>");
+				}
+			}
+		}
+	} else {
+					alert("\n<{$smarty.const._MD_FILE_NOCHECK}>");
+	}
+}
+
+function bbcode_area() {
+	if(document.getElementById('switch_bbcode').checked==true){
+		document.getElementById('diary_bbcode_buttons_pre').style.display='block';
+		document.getElementById('diary_bbcode_buttons_post').style.display='block'
+	} else {
+		document.getElementById('diary_bbcode_buttons_pre').style.display='none';
+		document.getElementById('diary_bbcode_buttons_post').style.display='none'};
+}
+<{if $yd_data.openarea==20}>
+document.observe("dom:loaded", function(){
+    D3dSuggest1 = new D3diaryUnameSuggest('<{$xoops_url}>/modules/<{$mydirname}>/','d3d_tag_input1','d3d_suggest_list1','d3d_tag_hidden1','d3d_tag_list1','<{$charset}>');
+});
+<{/if}>
+
+function pinserter_area(){
+
+	if(document.getElementById('imginserter').style.display=='none'){
+		document.getElementById('imginserter').style.display='block';
+	} else {
+		document.getElementById('imginserter').style.display='none';
+	}
+}
+
+function d3diary_clear(){
+	xoopsCodeSmilie("diary", "[clearfloat]");
+}
+
+function photo2body(side){
+	var radio_pins = document.getElementsByName('pins');
+	var radio_method = document.getElementsByName('p_method');
+	var p_withinfo = document.getElementById('p_withinfo');
+	var p_info ;
+
+	var input_str ;
+	p_info = "" ;
+	for(var i=0;i<radio_pins.length;i++) {
+		if (radio_pins[i].checked) {
+			input_str = radio_pins[i].value;
+			if (p_withinfo.checked){
+				p_info = document.getElementById('pvinfo'+i).value;
+			}
+		}
+	}
+	if (!input_str) { alert("\n<{$smarty.const._MD_FILE_NOCHECK}>"); return false; }
+
+	var method_str ;
+	for(var i=0;i<radio_method.length;i++) {
+		if (radio_method[i].checked) {
+			method_str = radio_method[i].value;
+		}
+	}
+
+	var p_align; var p_align_h; var use_thumb;
+	switch(side){
+	    case 'l':
+		p_align = " align=left"; p_align_h = " style=float:left"; use_thumb = 1; break;
+	    case 'c':
+		p_align = ""; p_align_h = ""; use_thumb = 1; break;
+	    case 'r':
+		p_align = " align=right"; p_align_h = " style=float:right"; use_thumb = 1; break;
+	    case 'lb':
+		p_align = " align=left"; p_align_h = ""; use_thumb = 0; break;
+	    case 'cb':
+		p_align = ""; p_align_h = ""; use_thumb = 0; break;
+	    case 'rb':
+		p_align = " align=right"; p_align_h = ""; use_thumb = 0; break;
+ 	   default:
+	}
+
+	var myArr = input_str.split("::");
+	var fname ;
+	var url_txt= "\n" ;
+	if (use_thumb==1) {fname=myArr[0];} else {fname=myArr[1];}
+
+	if (use_thumb==1){
+		if (method_str == 'img'){
+			url_txt += "[url=<{$xoops_url}>/modules/<{$mydirname}>/upimg/"+myArr[1]+"][img"+p_align+"]<{$xoops_url}>/modules/<{$mydirname}>/upimg/"+fname+"[/img][/url]\n";
+		} else if (method_str == 'siteimg'){
+			url_txt += "[siteurl=modules/<{$mydirname}>/upimg/"+myArr[1]+"][siteimg"+p_align+"]modules/<{$mydirname}>/upimg/"+fname+"[/siteimg][/siteurl]\n";
+		} else if (method_str == 'html'){
+			url_txt += "<a href=<{$xoops_url}>/modules/<{$mydirname}>/upimg/"+myArr[1]+"><img src=<{$xoops_url}>/modules/<{$mydirname}>/upimg/"+fname+p_align_h+";></a><br />";
+		}
+	} else {
+		if (method_str == 'img'){
+			url_txt += "[img"+p_align+"]<{$xoops_url}>/modules/<{$mydirname}>/upimg/"+fname+"[/img]\n";
+		} else if (method_str == 'siteimg'){
+			url_txt += "[siteimg"+p_align+"]modules/<{$mydirname}>/upimg/"+fname+"[/siteimg]\n";
+		} else if (method_str == 'html'){
+			url_txt += "<img src=<{$xoops_url}>/modules/<{$mydirname}>/upimg/"+fname+p_align_h+"; /><br />";
+		}
+	}
+	url_txt += p_info;
+	xoopsCodeSmilie("diary", url_txt);
+}
+
+</script>

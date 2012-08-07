@@ -1,0 +1,513 @@
+@charset "utf-8";
+
+/**
+* MediaQuery MultiDevice Template ver 0.1β
+* @Author: funnythingz
+* @Url:    http://hiropo.co.uk
+*
+* basic.css
+*/
+
+/**============================================================
+* ReBuild
+*/
+body {
+	font-family:
+		Verdana,
+		Helvetica,
+		"ＭＳ Ｐゴシック",
+		"Hiragino Kaku Gothic Pro",
+		"ヒラギノ角ゴ Pro W3",
+		"Meiryo",
+		"メイリオ",
+		Osaka,
+		sans-serif
+	;
+	color: #000;
+}
+
+p, th, td, li, dt, dd {
+	line-height: 1.5;
+	font-size: 85%;
+}
+p *, th *, td *, li *, dt *, dd * {
+	font-size: 100%;
+}
+
+a,a:link,
+a:hover,
+a:visited {
+
+}
+a,a:link {
+}
+a:hover {
+	text-decoration: none;
+}
+a:visited {
+}
+
+input {
+	padding: 2px 3px;
+}
+
+table {
+	border: 1px solid #ccc;
+}
+
+th {
+	padding: 3px;
+	border: 1px solid #ccc;
+	background: #e6e6e6;
+}
+td {
+	padding: 3px;
+	border: 1px solid #ccc;
+}
+
+/**============================================================
+* Build
+*/
+body {
+}
+#globalContainer {
+	margin: 0;
+}
+#globalContentsWrapper {
+	max-width: 950px;
+	_width: 950px;
+	margin: 0 auto;
+}
+
+/* header */
+#globalHeaderContainer {
+	width: 100%;
+	padding: 5px 0;
+	background: #eee;
+}
+#headerInner {
+	max-width: 950px;
+	_width: 950px;
+	margin: 0 auto;
+	text-align: right;
+}
+
+#headerInner img {
+	width: 1.2em;
+	height: 1.2em;
+	vertical-align: text-bottom;
+}
+
+#headerRss {
+	padding: 3px;
+	border-right: dotted 1px #aaa;
+}
+#headerName {
+	padding: 3px;
+	border-right: dotted 1px #aaa;
+}
+
+#headerSearch {
+	padding: 3px;
+	border-right: dotted 1px #aaa;
+}
+
+#headerSearch form {
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
+#headerSearch input {
+	background: #fff;
+	border: inset 1px #bbb;
+	font-size: 1em;
+	vertical-align: top;
+}
+
+#headerSearch button {
+	margin: 0;
+	padding: 0;
+	background: #eee;
+	border: none;
+	font-size: 100%;
+}
+
+#headerLogOut {
+	margin-left: 0.5em;
+}
+
+#siteTitle {
+	margin-top: 10px;
+	padding: 0;
+	line-height: 30px;
+}
+
+#siteTitle img {
+	vertical-align: text-bottom;
+}
+
+/* globalNavi */
+#globalNavi .navigation {
+	margin: 0 auto;
+	width: 100%;
+}
+#globalNavi .navigation li {
+	float: left;
+	width: 125px;
+	_display: inline;
+	border-bottom: solid 1px #000;
+}
+@media only screen and (min-width: 581px) and (max-width: 950px){
+	#globalNavi .navigation > li {
+		width: 16%;
+	}
+	#globalNavi .navigation > li li {
+		width: 100%;
+	}
+}
+
+#globalNavi .navigation li a {
+	display: block;
+	padding: 4px;
+	text-align: center;
+}
+#globalNavi .navigation li li {
+	border-bottom: 0 none;
+}
+#globalNavi .navigation li li a:hover {
+	background: #eee;
+	color: #333;
+	opacity: 0.75;
+}
+
+.logo {
+	float: left;
+}
+.browser {
+}
+
+/* block */
+.mainContainer {
+	width: 75%;
+	float: left;
+}
+.subContainer {
+	width: 23%;
+	float: right;
+}
+
+.subNavi li {
+	margin: 0 0 2px;
+}
+.subNavi li a {
+	display: block;
+	padding: 5px;
+	background: #eee;
+}
+.subNavi li a:hover {
+	background: #e6e6e6;
+}
+
+/* footer */
+#globalFooterContainer {
+	width: 100%;
+	padding: 5px 0;
+	background: #eee;
+}
+#footerInner {
+	max-width: 950px;
+	_width: 950px;
+	margin: 0 auto;
+}
+
+.footerLink li {
+	display: inline;
+	margin-left: 1em;
+	padding-left: 1em;
+	border-left: solid 1px #000;
+}
+.footerLink li:first-child,
+.footerLink li.first-child {
+	margin-left: 0;
+	padding-left: 0;
+	border-left: 0 none;
+}
+.copyright {
+	float: right;
+}
+.footerEtcLink li {
+	margin: 0 0 10px;
+}
+
+/* socialButtons */
+#socialButtons {
+	margin: 0 0 1em;
+}
+.socialbutton {
+	float: left;
+	margin-right: 5px;
+	_display: inline;
+}
+
+/**============================================================
+* Custom Module
+*/
+.section {
+	margin: 0 0 2em;
+}
+.level1, .level2, .level3, .level4, .level5, .level6 {
+	margin: 0;
+}
+p {
+	margin: 0 0 1em;
+}
+
+/* Head */
+.level1 {
+	font-size: 200%;
+}
+.level2 {
+	font-size: 154%;
+	border-bottom: solid 1px #666;
+	padding-bottom: 5px;
+}
+
+/* breadNavi */
+.breadNavi {
+	margin: 0 0 10px;
+}
+.breadNavi li {
+	display: inline;
+	font-size: 80%;
+}
+.breadNavi li .arrow {
+	margin-right: 0.5em;
+	margin-left: 0.5em;
+}
+
+/* icon */
+.iconL,
+.iconR {
+	display: inline !important;
+	vertical-align: middle;
+}
+.iconL {
+	margin: 0 0.5em 0 0 !important;
+}
+.iconR {
+	margin: 0 0 0 0.5em !important;
+}
+
+/* link */
+.link {
+	padding-left: 18px;
+	background: url(../images/dummy_icon.gif) no-repeat 0 0;
+}
+
+
+/* list */
+.defList,
+.indentList,
+.dotList,
+.numList,
+.attList,
+.noteList,
+.inlineList,
+.btnList {
+	margin: 0 0 1em;
+}
+.dotList li {
+	background: url(../images/icn_dot.gif) no-repeat 0 0.6em;
+	padding-left: 0.7em;
+	margin-top: 0.5em;
+}
+.numList {
+	margin-left: 1.5em;
+	padding-bottom: 1em;
+}
+.numList li {
+	list-style-type: decimal;
+	list-style: position: outside;
+	margin-top: 0.5em;
+}
+.indentList li,
+.attList li,
+.noteList li,
+.btnList li {
+	text-indent: -1em;
+	padding-left: 1em;
+	margin-top: 0.5em;
+}
+.attList li {
+	color: #f33;
+}
+.noteList li {
+	color: #666;
+}
+.inlineList li {
+	display: inline;
+	white-space: nowrap;
+	float: left;
+	margin: 0.5em 1em 0 0;
+}
+.btnList {
+}
+.btnList li {
+	margin: 0.5em 1em 0 0;
+}
+
+.subContainer .btnList li {
+	border: solid 1px #ddd;
+}
+.subContainer .btnList li:hover {
+
+	background: #eee;
+}
+.subContainer .btnList li a {
+	text-decoration: none;
+	padding: 5px 10px;
+	display: block;
+}
+
+/* dl */
+.defDlList {
+	margin: 0 0 1em;
+}
+.defDlList dt {
+	font-weight: bold;
+	display: block;
+	margin: 0 0 0.5em;
+}
+.defDlList dd {
+	padding-left: 1em;
+	line-height: 1.5;
+	margin: 0 0 0.5em;
+}
+
+/* line */
+.dotLine,
+.solidLine {
+	border: 0 none;
+	background: transparent none;
+	height: 0;
+	overflow: hidden;
+	margin-bottom: 1em;
+}
+.dotLine {
+	border-top: 1px dotted #666;
+}
+.solidLine {
+	border-top: 1px solid #ccc;
+}
+.borderBottom {
+	border-bottom: 1px solid #ccc;
+}
+
+.defTbl {
+	border-collapse: collapse;
+	width: 100%;
+	margin-bottom: 1em;
+}
+.defTbl th,
+.defTbl td {
+	border: solid 1px #ccc;
+	padding: 1em 10px 0;
+	vertical-align: top;
+	text-align: left;
+}
+.defTbl thead th,
+.defTbl thead td,
+.defTbl thead th p,
+.defTbl thead td p {
+	text-align: center;
+	vertical-align: middle;
+	background: #e6e6e6;
+}
+.defTbl tbody th{
+	background: #e6e6e6;
+}
+.defTbl tbody th.sub {
+	background: #f7f7f7;
+}
+
+/* fixedTbl */
+.fixedTbl {
+	border-collapse: collapse;
+	table-layout: fixed;
+	width: 100%;
+}
+.fixedTbl th,
+.fixedTbl td {
+}
+.fixedTbl td {
+	text-align: left;
+	vertical-align: middle;
+}
+
+/* dl table */
+.dlTbl {
+	border-collapse: collapse;
+	width: 100%;
+	margin-bottom: 1em;
+}
+.dlTbl th,
+.dlTbl td {
+	border: solid 1px #ccc;
+	padding: 1em 10px 0;
+	vertical-align: top;
+	text-align: left;
+}
+.dlTbl th {
+	background-color: #e6e6e6;
+}
+.dlTbl th.sub {
+	background-color: #f7f7f7;
+}
+
+/* form */
+.example {
+	display: block;
+}
+textarea {
+	border: solid 1px #999;
+	width: 98.5%;
+}
+.radioText,
+.checkboxText {
+	margin-left: 0.5em;
+}
+.iTelNum {
+	width: 80px;
+}
+.iPosNum1 {
+	width: 80px;
+}
+.iPosNum2 {
+	width: 120px;
+}
+
+
+
+/* background */
+.bgClear {
+	background: url(../images/bg_clear.png) repeat 0 0;
+}
+
+/* clearfix */
+.inlineList:after {
+	content: ".";
+	display: block;
+	clear: both;
+	height: 0;
+	visibility: hidden;
+	font-size: 0.1em;
+	line-height: 0;
+}
+.inlineList {
+	zoom: 1;
+}
+/* fix for XCL2.2
+#mainmenu li a.menuSub {
+	padding: 5px 10px 5px 20px;
+}

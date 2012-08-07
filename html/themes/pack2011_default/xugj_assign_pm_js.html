@@ -1,0 +1,22 @@
+<{** --------- jgrowl -----------**}>
+<{if isset($xugj_pm_new_count) and $xugj_pm_new_count }>
+	<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_imageurl}>js/jgrowl/jquery.jgrowl.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_imageurl}>js/jgrowl/jquery.jgrowl.iphone.css" />
+	<{if ! in_array('jquery.jgrowl.js', $xugj_already_js) and ! in_array('jquery.jgrowl_minimized.js', $xugj_already_js) and  ! in_array('jquery.jgrowl_google.js', $xugj_already_js)}>
+	<script type="text/javascript" src="<{$xoops_imageurl}>js/jgrowl/jquery.jgrowl_minimized.js"></script>
+	<{/if}>
+	<{literal}>
+		<script type="text/javascript">
+		jQuery(document).ready(function($){
+	<{/literal}>
+		$('#xugj_pm_new_message').jGrowl("<{$xugj_pm_new_message}>",
+	<{literal}>
+			{
+				header: 'message',
+				theme: 'iphone',
+				life: 6000
+			});
+		});
+		</script>
+	<{/literal}>
+<{/if}>

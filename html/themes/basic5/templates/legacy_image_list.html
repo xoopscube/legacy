@@ -1,0 +1,185 @@
+<script type="text/javascript" src="<{$smarty.const.XOOPS_URL}>/common/js/jquery.js"></script>
+<script type="text/javascript" src="<{$smarty.const.XOOPS_URL}>/common/prettyphoto/js/jquery.prettyPhoto.js" charset="utf-8"></script>
+<link rel="stylesheet" href="<{$smarty.const.XOOPS_URL}>/common/prettyphoto/css/prettyPhoto.css"" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
+<script type="text/javascript">
+<!--//
+jQuery(document).ready(function($){
+  $('a.prettyPhoto').prettyPhoto({theme: 'dark_rounded'});
+});
+//-->
+</script>
+<{php}>
+$this->assign( 'type' , preg_replace( '?[^a-zA-Z]?' , '' , @$_GET['Type'] )) ;
+$this->assign( 'funcNum' , intval(preg_replace( '?[^0-9]?' , '' , @$_GET['CKEditorFuncNum'] )) ) ;
+$this->assign( 'langCode' , preg_replace( '?[^0-9a-zA-Z_-]?' , '' , @$_GET['langCode'] ));
+<{/php}>
+<{if $target == 'CKEditor'}>
+<{* --------------------- for CKEditor ---------------------------- *}>
+<script type="text/javascript">
+<!--//
+function OpenFile( fileUrl )
+{
+window.top.opener.CKEDITOR.tools.callFunction( <{$funcNum}>, fileUrl ,'');
+window.top.close() ;
+window.top.opener.focus() ;
+}
+//-->
+</script>
+
+<form method="get" action="<{$smarty.const.XOOPS_URL}>/imagemanager.php?op=list" style="margin:10px;">
+  <select name="imgcat_id" onchange="location='<{$smarty.const.XOOPS_URL}>/imagemanager.php?Type=<{$type}>&amp;target=CKEditor&amp;CKEditor=<{$target}>&amp;CKEditorFuncNum=<{$funcNum}>&amp;langCode=<{$langCode}>&amp;imgcat_id='+this.options[this.selectedIndex].value">
+    <option id="imgcat_id_0" value="0">---</option>
+    <{xoops_optionsArray id=imgcat_id from=$categoryArr value=imgcat_id label=imgcat_name default=$imgcatId}>
+  </select>
+<{* --- HACK by domifara  add CKEditorFuncNum langCode ------*}>
+  <input type="hidden" name="target" value=<{$target}> />
+  <input type="hidden" name="Type" value=<{$type}> />
+  <input type="hidden" name="CKEditorFuncNum" value=<{$funcNum}> />
+  <input type="hidden" name="langCode" value=<{$langCode}> />
+  <input type="submit" value="<{$smarty.const._SUBMIT}>" />
+</form>
+
+<{if $hasUploadPerm}>
+  <div style="text-align:right; margin:5px;">[ <a href="<{$smarty.const.XOOPS_URL}>/imagemanager.php?op=upload&amp;imgcat_id=<{$category->getShow('imgcat_id')}>&amp;target=<{$target|xoops_escape}>"><{$smarty.const._MD_LEGACY_LANG_IMAGE_UPLOAD}></a> ]</div>
+<{/if}>
+
+<table class="outer" cellspacing="1">
+  <tr>
+    <th><{$smarty.const._MD_LEGACY_LANG_IMAGE_NICENAME}>
+    <th><{$smarty.const._MD_LEGACY_LANG_IMAGE}>
+    <th><{$smarty.const._MD_LEGACY_LANG_IMAGE_MIMETYPE}>
+    <th><{$smarty.const._MD_LEGACY_LANG_IMAGE_POSITION}>
+  </tr>
+  <{foreach item=obj from=$objects}>
+    <tr class="<{cycle values='odd,even'}>" style="text-align:center;">
+      <td><{$obj->getShow('image_nicename')}></td>
+      <td>
+        <{if $obj->mImageCategory != null}>
+          <{if $obj->mImageCategory->get('imgcat_storetype') == 'file'}>
+          <a href="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>" title="<{$obj->getShow('image_nicename')}>" class="prettyPhoto">
+            <img style="width:80px;" src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>"  alt="<{$obj->getShow('image_nicename')}>"  />
+          </a>
+          <{else}>
+          <a href="<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>" title="<{$obj->getShow('image_nicename')}>" class="prettyPhoto">
+            <img style="width:80px;" src="<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>" alt="<{$obj->getShow('image_nicename')}>" />
+          </a>
+          <{/if}>
+        <{/if}>
+      </td>
+      <td><{$obj->getShow('image_mimetype')}></td>
+      <td>
+        <{if $obj->mImageCategory->get('imgcat_storetype') == 'file'}>
+          <a title="[img] original" href="#" onclick="javascript:OpenFile('<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>');"><img src="<{$smarty.const.XOOPS_URL}>/images/aligncenter.gif" alt="Center" /></a>
+        <{else}>
+          <a title="[img] original" href="#" onclick="javascript:OpenFile('<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>');"><img src="<{$smarty.const.XOOPS_URL}>/images/aligncenter.gif" alt="Center" /></a>
+        <{/if}>
+      </td>
+    </tr>
+  <{/foreach}>
+</table>
+
+<div class="pagenavi" style="text-align:center; margin:5px;"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+
+<div id="footer" style="text-align:center; margin:5px;">
+  <input value="<{$smarty.const._CLOSE}>" type="button" onclick="javascript:window.close();" />
+</div>
+<{else}>
+<{* --------------------- Original change ---------------------------- *}>
+<script type="text/javascript">
+<!--//
+function appendCode(addCode) {
+  var targetDom = window.opener.xoopsGetElementById('<{$target}>');
+    if (window.opener.document.selection) { //for IE
+      if (targetDom.createTextRange && targetDom.caretPos){
+        var caretPos = targetDom.caretPos;
+        caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? addCode + ' ' : addCode;
+      } else if (targetDom.getSelection && targetDom.caretPos){
+        var caretPos = targetDom.caretPos;
+        caretPos.text = caretPos.text.charat(caretPos.text.length - 1) == ' ' ? addCode + ' ' : addCode;
+      } else {
+        targetDom.value = targetDom.value + addCode;
+      }
+    } else if (targetDom.setSelectionRange) { // for Fx, Chrome, Opera
+        var startPos = targetDom.selectionStart;
+        var endPos = targetDom.selectionEnd;
+        var lastPos = startPos + addCode.length;
+        targetDom.value = targetDom.value.substring(0, startPos) + addCode
+                       + targetDom.value.substring(endPos, targetDom.value.length);
+        targetDom.setSelectionRange(lastPos, lastPos); // Move caret to inserted text end
+    } else { // for Other Browser
+        targetDom.value = targetDom.value + addCode;
+    }
+
+  window.close();
+  return;
+}
+
+//-->
+</script>
+
+<form method="get" action="<{$smarty.const.XOOPS_URL}>/imagemanager.php?op=list" style="margin:10px;">
+  <select name="imgcat_id" onchange="location='<{$smarty.const.XOOPS_URL}>/imagemanager.php?target=<{$target}>&amp;imgcat_id='+this.options[this.selectedIndex].value">
+    <option id="imgcat_id_0" value="0">---</option>
+    <{xoops_optionsArray id=imgcat_id from=$categoryArr value=imgcat_id label=imgcat_name default=$imgcatId}>
+  </select>
+  <input type="hidden" name="target" value=<{$target}> />
+  <input type="submit" value="<{$smarty.const._SUBMIT}>" />
+</form>
+
+<{if $hasUploadPerm}>
+  <div style="text-align:right; margin:5px;">[ <a href="<{$smarty.const.XOOPS_URL}>/imagemanager.php?op=upload&amp;imgcat_id=<{$category->getShow('imgcat_id')}>&amp;target=<{$target|xoops_escape}>"><{$smarty.const._MD_LEGACY_LANG_IMAGE_UPLOAD}></a> ]</div>
+<{/if}>
+
+<table class="outer" cellspacing="1">
+  <tr>
+    <th><{$smarty.const._MD_LEGACY_LANG_IMAGE_NICENAME}>
+    <th><{$smarty.const._MD_LEGACY_LANG_IMAGE}>
+    <th><{$smarty.const._MD_LEGACY_LANG_IMAGE_MIMETYPE}>
+    <th><{$smarty.const._MD_LEGACY_LANG_IMAGE_POSITION}>
+  </tr>
+  <{foreach item=obj from=$objects}>
+    <tr class="<{cycle values='odd,even'}>" style="text-align:center;">
+      <td><{$obj->getShow('image_nicename')}></td>
+      <td>
+        <{if $obj->mImageCategory != null}>
+          <{if $obj->mImageCategory->get('imgcat_storetype') == 'file'}>
+          <a href="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>" title="<{$obj->getShow('image_nicename')}>" class="prettyPhoto">
+            <img style="width:80px;" src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>"  alt="<{$obj->getShow('image_nicename')}>"  />
+          </a>
+          <{else}>
+          <a href="<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>" title="<{$obj->getShow('image_nicename')}>" class="prettyPhoto">
+            <img style="width:80px;" src="<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>" alt="<{$obj->getShow('image_nicename')}>" />
+          </a>
+          <{/if}>
+        <{/if}>
+      </td>
+      <td><{$obj->getShow('image_mimetype')}></td>
+      <td>
+        <{if $obj->mImageCategory->get('imgcat_storetype') == 'file'}>
+          <a href="#" title="[img] left" onclick="javascript:appendCode('[img align=left]<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/alignleft.gif" alt="Left" /></a>
+          <a href="#" title="[img] center" onclick="javascript:appendCode('[img]<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/aligncenter.gif" alt="Center" /></a>
+          <a href="#" title="[img] right" onclick="javascript:appendCode('[img align=right]<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/alignright.gif" alt="Left" /></a>
+          <br />
+          <a href="#" title="[siteimg] left" onclick="javascript:appendCode('[siteimg align=left]uploads/<{$obj->getShow('image_name')}>[/siteimg]');"><img src="<{$smarty.const.XOOPS_URL}>/images/alignleft.gif" alt="Left" /></a>
+          <a href="#" title="[siteimg] center" onclick="javascript:appendCode('[siteimg]uploads/<{$obj->getShow('image_name')}>[/siteimg]');"><img src="<{$smarty.const.XOOPS_URL}>/images/aligncenter.gif" alt="Center" /></a>
+          <a href="#" title="[siteimg[ right" onclick="javascript:appendCode('[siteimg align=right]uploads/<{$obj->getShow('image_name')}>[/siteimg]');"><img src="<{$smarty.const.XOOPS_URL}>/images/alignright.gif" alt="Left" /></a>
+        <{else}>
+          <a href="#" title="[img] left" onclick="javascript:appendCode('[img align=left]<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/alignleft.gif" alt="Left" /></a>
+          <a href="#" title="[img] center" onclick="javascript:appendCode('[img]<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/aligncenter.gif" alt="Center" /></a>
+          <a href="#" title="[img] right" onclick="javascript:appendCode('[img align=right]<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/alignright.gif" alt="Left" /></a>
+          <br />
+          <a href="#" title="[siteimg] left" onclick="javascript:appendCode('[siteimg align=left]image.php?id=<{$obj->getShow('image_id')}>[/siteimg]');"><img src="<{$smarty.const.XOOPS_URL}>/images/alignleft.gif" alt="Left" /></a>
+          <a href="#" title="[siteimg] center" onclick="javascript:appendCode('[siteimg]image.php?id=<{$obj->getShow('image_id')}>[/siteimg]');"><img src="<{$smarty.const.XOOPS_URL}>/images/aligncenter.gif" alt="Center" /></a>
+          <a href="#" title="[siteimg[ right" onclick="javascript:appendCode('[siteimg align=right]image.php?id=<{$obj->getShow('image_id')}>[/siteimg]');"><img src="<{$smarty.const.XOOPS_URL}>/images/alignright.gif" alt="Left" /></a>
+        <{/if}>
+      </td>
+    </tr>
+  <{/foreach}>
+</table>
+
+<div class="pagenavi" style="text-align:center; margin:5px;"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+
+<div id="footer" style="text-align:center; margin:5px;">
+  <input value="<{$smarty.const._CLOSE}>" type="button" onclick="javascript:window.close();" />
+</div>
+<{/if}>

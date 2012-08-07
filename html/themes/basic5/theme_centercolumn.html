@@ -1,0 +1,52 @@
+<{if $xoops_showcblock == 1}>
+	<{if $xoops_ccblocks}><{* Start Center Center Column BlockWeight 1-99 *}>
+	   	<{foreach item=block from=$xoops_ccblocks name=ccloop}>
+		<{if $block.weight > 0 and $block.weight < 100 }>
+			<div>
+				<{if ! $block.title|strstr:"none"}><h3><{$block.title}></h3><{/if}>
+				<{$block.content}>
+			</div>
+		<{/if}>
+		<{/foreach}>
+	<{/if}><{* End Center Center Column *}>
+
+	<{if $xoops_clblocks}><{* Start Center Left Column *}>
+		<div id="CenterLColumn">
+		<{foreach item=block from=$xoops_clblocks name=clloop}>
+			<div>
+ 				<{if ! $block.title|strstr:"none"}><h3><{$block.title}></h3><{/if}>
+ 				<{$block.content}>
+			</div>
+		<{/foreach}>
+		</div>
+	<{/if}><{* End Center Left Column *}>
+
+	<{if $xoops_crblocks}><{* Start Center Right Column *}>
+		<div id="CenterRColumn">
+		<{foreach item=block from=$xoops_crblocks name=crloop}>
+			<div>
+ 				<{if ! $block.title|strstr:"none"}><h3><{$block.title}></h3><{/if}>
+ 				<{$block.content}>
+			</div>
+		<{/foreach}>
+		</div>
+	<{/if}><{* End Center Right Column *}>
+	<div class="clearfix"></div>
+
+<{/if}>
+
+<{* xoops contents *}>
+<{if $xoops_contents}><div id="ModuleContents"><{$xoops_contents}></div><{/if}>
+
+<{if $xoops_showcblock == 1}>
+	<{if $xoops_ccblocks}><{* Start Center Center Column BlockWeight 100-499 *}>
+		<{foreach item=block from=$xoops_ccblocks name=ccloop}>
+			<{if $block.weight >= 100  and $block.weight < 500}>
+			<div>
+				<{if ! $block.title|strstr:"none"}><h3><{$block.title}></h3><{/if}>
+				<{$block.content}>
+			</div>
+	 		<{/if}>
+		<{/foreach}>
+	<{/if}><{* End Center Center Column *}>
+<{/if}>

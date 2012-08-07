@@ -1,0 +1,95 @@
+<!-- <div class="d3f_bbsviewctrl">
+	<form action="<{$mod_url}>/index.php" method="get">
+	<{$forum_selection_sort}>
+		<input type="hidden" name="forum_id" value="<{$forum.id}>" />
+		<input type="text" size="12" name="txt" value="<{$query.txt}>" />
+		<{if $mod_config.use_solved}>
+		<select name="solved">
+			<{html_options options=$solved_options selected=$query.solved}>
+		</select>
+		<{/if}>
+		<select name="odr">
+			<{html_options options=$odr_options selected=$query.odr}>
+		</select>
+		<input type="submit" value="<{$smarty.const._MD_D3FORUM_BTN_REFRESHTOPICS}>" title="<{$smarty.const._MD_D3FORUM_BTN_REFRESHTOPICS}>" />
+	</form>
+</div> -->
+
+
+<{if $plugin_params.order != 'asc'}>
+<!-- begin simple comment form -->
+<{if $forum.can_post && ! $plugin_params.no_form}>
+	<{include file="db:`$mydirname`_inc_post_form_quick.html" h2_title=$smarty.const._MD_D3FORUM_POSTASCOMMENTTOP quick_form_mode="sametopic"}>
+<{/if}>
+<!-- end simple comment form -->
+<!-- link to comment input form -->
+<{if $forum.can_post && $plugin_params.no_form}>
+<div><a href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>&amp;external_link_id=<{$external_link_id|escape:"url"}>&amp;subject=<{$subject|escape:"url"}>"><{if $plugin_params.link_to_form}><{$plugin_params.link_to_form}><{else}><{$smarty.const._MD_D3FORUM_POSTASCOMMENTTOP}><{/if}></a></div>
+<{/if}>
+
+<{/if}>
+
+<h2 class="head"><{if $plugin_params.h2_comments}><{$plugin_params.h2_comments}><{else}><{$smarty.const._MD_D3FORUM_COMMENTSLIST}><{/if}></h2>
+
+<{if $pagenav}><div class="d3f_pagenav"><{$pagenav}></div><{/if}>
+
+<!-- start forum topic -->
+<ul><{foreach item=topic from=$topics}><li>
+<{if $topic.sticky}>
+	<{assign var="topic_icon_src" value="`$mod_imageurl`/topic_sticky`$topic.bit_new`.gif"}>
+	<{assign var="topic_icon_alt" value=$smarty.const._MD_D3FORUM_TOPICSTICKY}>
+<{elseif $topic.invisible}>
+	<{assign var="topic_icon_src" value="`$mod_imageurl`/topic_invisible.gif"}>
+	<{assign var="topic_icon_alt" value=$smarty.const._MD_D3FORUM_ALT_INVISIBLE}>
+<{else}>
+	<{assign var="topic_icon_src" value="`$mod_imageurl`/topic_`$topic.bit_new``$topic.bit_hot`.gif"}>
+	<{assign var="topic_icon_alt" value=""}>
+<{/if}>
+
+  <a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>"><{$topic.title}></a><{$topic.topic_page_jump}><br />
+  <img src="<{$topic_icon_src}>" alt="<{$topic_icon_alt}>" width="18" />
+  <{if $topic.locked}>
+    <img src="<{$mod_imageurl}>/topic_status_locked1.gif" alt="<{$smarty.const._MD_D3FORUM_TOPICLOCKED}>" />
+  <{/if}>
+  <{if $mod_config.use_solved && $forum.isadminormod && ! $topic.solved}>
+    <a href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=forum_id&amp;ret_val=<{$forum.id}>" title="<{$smarty.const._MD_D3FORUM_SOLVED_TURNON}>"><img src="<{$mod_imageurl}>/topic_status_solved0.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>" /></a>
+  <{/if}>
+  <{if $mod_config.allow_mark && $uid && $topic.u2t_marked}>
+    <a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=forum_id&amp;ret_val=<{$forum.id}>" title="<{$smarty.const._MD_D3FORUM_MARK_TURNOFF}>"><img src="<{$mod_imageurl}>/topic_status_marked1.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}>" /></a>
+  <{/if}>
+  <div style="<{$smarty.const.MBX_FS_XSMALL}>">
+    <{$smarty.const._MD_D3FORUM_REPLIES}> <{$topic.replies}>&nbsp;
+    <{$smarty.const._MD_D3FORUM_VIEWS}> <{$topic.views}><br />
+    <{$smarty.const._MD_D3FORUM_VOTECOUNT}> <{$topic.votes_count}>&nbsp;
+    <{$smarty.const._MD_D3FORUM_VOTEPOINTAVG}> <{$topic.votes_avg|string_format:"%.2f"}><br />
+    <{$smarty.const._MD_D3FORUM_FIRSTPOST}> 
+    <a href="<{$mod_url}>/index.php?post_id=<{$topic.first_post_id}>"><img src="<{$mod_imageurl}>/posticon<{$topic.first_post_icon}>.gif" alt="<{$topic.first_post_subject}>" /></a>
+    <{$topic.first_post_uname}><br />
+    <{$topic.first_post_time_formatted}><br />
+    <{if $topic.replies>0}>
+      <{$smarty.const._MD_D3FORUM_LASTPOST}>:
+      <a href="<{$mod_url}>/index.php?post_id=<{$topic.last_post_id}>"><img src="<{$mod_imageurl}>/posticon<{$topic.last_post_icon}>.gif" alt="<{$topic.last_post_subject}>" /></a>
+      <{$topic.last_post_uname}><br />
+      <{$topic.last_post_time_formatted}>
+    <{/if}>
+  </div>
+</li>
+<{/foreach}></ul>
+<!-- end forum topic -->
+
+<{if $pagenav}><div class="d3f_pagenav"><{$pagenav}></div><{/if}>
+
+
+<{if $plugin_params.order == 'asc'}>
+<!-- link to comment input form -->
+<{if $forum.can_post && $plugin_params.no_form}>
+<div><a href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>&amp;external_link_id=<{$external_link_id|escape:"url"}>&amp;subject=<{$subject|escape:"url"}>"><{if $plugin_params.link_to_form}><{$plugin_params.link_to_form}><{else}><{$smarty.const._MD_D3FORUM_POSTASCOMMENTTOP}><{/if}></a></div>
+<{/if}>
+
+<!-- begin simple comment form -->
+<{if $forum.can_post && ! $plugin_params.no_form}>
+	<{include file="db:`$mydirname`_inc_post_form_quick.html" h2_title=$smarty.const._MD_D3FORUM_POSTASCOMMENTTOP quick_form_mode="sametopic"}>
+<{/if}>
+<!-- end simple comment form -->
+<{/if}>
+

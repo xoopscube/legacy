@@ -1,0 +1,37 @@
+x myblocksadmin 処理の一通り
+x xoops 2.2 の対応
+x パーミッション確認 (特にget_ put_ compilehookあたり)
+x カスタムブロックのメニュー化
+x autoupdate_from_module.inc.php の実装
+x 言語定数のチェック
+x systemモジュールの文字列を持ってくる
+x optionsの処理チェック
+x argonさんにちゃんとしたアイコンを作ってもらう:-)
+x 管理画面メニューフック
+
+importing avaman
+hasMainがないモジュールのモジュールアクセス権限
+2.0.14以降の表示サイド（本当にやる？）
+
+altsys自体の言語定数オーバーライドシステム
+Legacyで選択言語以外のglobal.phpを編集する
+Legacyで選択言語以外のadmin.phpでNoticeが大量に出る
+
+gzip圧縮転送と管理画面テーマとのバッティングを調べる
+
+
+
+
+
+= Premissions =
+mypreferences -> module_admin of the module
+myblocksadmin -> module_admin of altsys  (old XOOPS_SYSTEM_BLOCK)
+mytplsadmin,mytplsform -> module_admin of altsys  (old XOOPS_SYSTEM_TPLSET)
+compilehookadmin,get_*,put_* -> module_admin of altsys
+mylangadmin -> module_admin of altsys
+
+
+= Pending =
+myblocksadmin edit "Visible In" for 2.2
+custom block preview for 2.2
+

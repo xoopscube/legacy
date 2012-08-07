@@ -1,0 +1,1 @@
+function jsmarty_modifier_indent(k,Z,o){if(Z==void (0)){Z=4;}if(o==void (0)){o=" ";}return Array(Z+1).join(o)+k;}

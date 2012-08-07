@@ -1,0 +1,50 @@
+<h4><{$smarty.const._MD_MESSAGE_TEMPLATE15}></h4>
+[<a href="index.php?action=send"><{$smarty.const._MD_MESSAGE_TEMPLATE7}></a>]&nbsp;&nbsp;
+[<a href="index.php?action=new"><{$smarty.const._MD_MESSAGE_TEMPLATE8}></a>]
+<hr />
+<form method="post" action="index.php?action=index">
+<{$smarty.const._MD_MESSAGE_TEMPLATE22}>
+<select name="status">
+<option value="">---</option>
+<option value="0"<{if $status===0}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE16}></option>
+<option value="1"<{if $status==1}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE17}></option>
+<option value="2"<{if $status==2}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE19}></option>
+</select>
+<br />
+
+<{$smarty.const._MD_MESSAGE_TEMPLATE12}>
+<select name="fromuid">
+<option value="0">---</option>
+<{foreach item=fuser from=$select}>
+<option value="<{$fuser.uid}>"<{if $fuser.select==true}> selected="selected"<{/if}>><{$fuser.uname|xoops_escape}></option>
+<{/foreach}>
+</select>
+<br />
+
+<{$smarty.const._MD_MESSAGE_TEMPLATE3}>
+<input type="text" name="subject" size="25" value="<{$subject|xoops_escape}>" />
+<input type="submit" name="subbtn" value="<{$smarty.const._MD_MESSAGE_SEARCH}>" />
+</form>
+<hr>
+<form method="post" action="index.php?action=deleteall">
+
+<{foreach item=val from=$ListData}>
+<li><{$smarty.const._MD_MESSAGE_TEMPLATE3}> <a href="index.php?action=view&amp;inout=in&amp;inbox=<{$val.inbox_id}>"><{$val.title}></a><br>
+	<{$smarty.const._MD_MESSAGE_TEMPLATE16}>
+<{if $val.is_read==0}>
+	<{$smarty.const._MD_MESSAGE_TEMPLATE16}>
+<{elseif $val.is_read==1}>
+	<{$smarty.const._MD_MESSAGE_TEMPLATE17}>
+<{elseif $val.is_read==2}>
+	<{$smarty.const._MD_MESSAGE_TEMPLATE19}>
+<{/if}><br>
+<{$smarty.const._MD_MESSAGE_TEMPLATE12}> <{$val.fromname}><br>
+<{$smarty.const._MD_MESSAGE_TEMPLATE10}><br><{$val.utime|xoops_formattimestamp:l}><br>
+<{$smarty.const._DELETE}> <{if $val.is_read==1}><input type="checkbox" name="delmsg[]" value="<{$val.inbox_id}>" /><{/if}></li>
+<hr>
+<{/foreach}>
+<input type="submit" name="subbtn" value="<{$smarty.const._DELETE}>" /><br>
+
+<input type="hidden" name="inout" value="in" />
+</form>
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>

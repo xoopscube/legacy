@@ -97,7 +97,7 @@ $("#legacy_xoopsform_type").change(function(){
     /**
      * @public
      */
-    function executeViewSuccess(&$render)
+    function executeViewSuccess(&$controller,&$render)
     {
         $this->mRoot->mController->executeForward("./index.php?action=DefinitionsList");
     }

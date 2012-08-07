@@ -1,0 +1,1 @@
+function jsmarty_modifier_capitalize(o,R){var Z,d,k=true,C=o.split("");for(Z=0,d=C.length;Z<d;Z++){switch(C[Z]){case " ":case "-":case "!":k=true;break;default:if(k){C[Z]=C[Z].toUpperCase();}k=false;break;}}return C.join("");}

@@ -1,0 +1,1 @@
+function jsmarty_modifier_replace(k,Z,o){return k.replace(RegExp(Z,"g"),o);}

@@ -1,0 +1,206 @@
+/*
+Project Name: Create a Responsive Web Design Template
+Author: Harry Atkins
+Published on: http://www.onextrapixel.com/
+*/
+
+::-moz-selection 	{ background-color: #91D8f7; color: #fff; }
+::selection 		{ background-color: #91D8f7; color: #fff; }
+
+a					{ outline: 0; color: #000080; }
+a:hover 			{ color: #0000ff; }
+p a:hover 			{ color: #27B3CF; }
+a:active 			{ outline: none; position: relative; top: 2px; }
+
+.clearfix 			{ clear: both; }
+
+/*------------------------------------*\
+  MAIN
+\*------------------------------------*/
+body 				{
+	background: #F9F9F9; color: #222; font-family: 'Droid Serif', serif; font-size: 16px;
+	-webkit-transition-property: font-size;
+	-moz-transition-property: font-size;
+	transition-property: font-size;
+	-webkit-transition-duration: 0.5s, 0.5s;
+	-moz-transition-duration: 0.5s, 0.5s;
+	transition-duration: 0.5s, 0.5s;
+	-webkit-transition-timing-function: linear, ease-in;
+	-moz-transition-timing-function: linear, ease-in;
+	transition-timing-function: linear, ease-in;
+}
+
+#wrapper 			{ position:relative; margin: 5px auto; max-width: 980px; width: 90%; background: #fff; padding: 0 5px 10px; }
+
+header 				{ padding-top:15px; margin-top:5px;
+/* background:url(images/header.png) no-repeat; */
+}
+
+h1 {font-size:1.6em; }
+header h1 					{ font-size: 90px; font-family: 'Droid Serif', serif; line-height: 75px; padding: 10px;
+	-webkit-transition-property: font-size;
+	-moz-transition-property: font-size;
+	transition-property: font-size;
+	-webkit-transition-duration: 0.5s, 0.5s;
+	-moz-transition-duration: 0.5s, 0.5s;
+	transition-duration: 0.5s, 0.5s;
+	-webkit-transition-timing function: linear, ease-in;
+	-moz-transition-timing function: linear, ease-in;
+	transition-timing function: linear, ease-in;
+}
+h1 a 			{ text-decoration: none;  color:#222;}
+h1 a:hover 			{ text-decoration: none; color: #27B3CF; }
+
+header h2 					{ font-family: 'Helvetica'; font-size: 18px; padding: 10px;
+	-webkit-transition-property: font-size;
+	-moz-transition-property: font-size;
+	transition-property: font-size;
+	-webkit-transition-duration: 0.5s, 0.5s;
+	-moz-transition-duration: 0.5s, 0.5s;
+	transition-duration: 0.5s, 0.5s;
+	-webkit-transition-timing function: linear, ease-in;
+	-moz-transition-timing function: linear, ease-in;
+	transition-timing function: linear, ease-in;
+}
+h2 {font-size:1.4em; }
+h2 a 			{ text-decoration: none;}
+h3 					{ font-family: 'Droid Serif', serif; font-size: 30px; }
+h4 					{ font-family: 'Droid Serif', serif; padding: 3px; margin: 5px 0 0 0; }
+h4 a 				{ text-decoration: underline; }
+h4 a:hover 			{  }
+
+#navigation { background: #222; padding: 0; margin: 10px 0;}
+#navigation a	{ color: #F9F9F9; display: block; float: left; padding: 10px; text-decoration: none;}
+#navigation a:visited 		{ color: #f9f9f9; }
+#navigation a:hover			{ text-decoration: none; background: #27B3CF; }
+#navigation a:active		{ position: relative; top: 0; }
+
+.left-col 			{ width: 70%; float: left; }
+.sidebar 			{ width: 20%; float: right; margin-bottom: 10px;
+	-webkit-transition-property: width;
+	-moz-transition-property: width;
+	transition-property: width;
+	-webkit-transition-duration: 0.5s, 0.5s;
+	-moz-transition-duration: 0.5s, 0.5s;
+	transition-duration: 0.5s, 0.5s;
+	-webkit-transition-timing function: linear, ease-in;
+	-moz-transition-timing function: linear, ease-in;
+	transition-timing function: linear, ease-in;
+}
+
+/*.left-col div , .sidebar div {*/
+.left-col>div ,.sidebar div {
+	padding-bottom:20px;
+}
+.left-col div h3 , .sidebar div h4 {
+	padding-bottom:10px;
+}
+.sidebar div li {
+	margin-bottom:6px;
+}
+
+#featured	{ padding: 0 20px;}
+#latest	{ padding: 20px; }
+#about	{ padding: 20px; }
+
+#featured div	{
+	line-height: 1.5;
+	padding-bottom:20px;
+}
+
+#menu_s {
+	text-align:center;
+	padding-bottom16px;
+/* 	display:none; */
+}
+
+body.L0R0 .sidebar {
+	display:none;
+}
+body.L0R0 .left-col {
+	width:100%;
+}
+
+/* Center LR Column */
+#CenterLColumn { float: left;  width: 49%;}
+#CenterRColumn { float: right; width: 49%;}
+#CenterLColumn div ,
+#CenterRColumn div {
+	line-height: 1.5;
+	padding-bottom:20px;
+	clear: both;
+}
+
+p 					{ padding: 0 5px 0 5px; }
+
+ul 					{ list-style: none; }
+ul li 				{ margin: 0 5px; }
+
+footer 				{ padding: 5px; text-align:center;}
+
+pre					{ overflow: auto; font-size: 12px; }
+
+/* basic5 headerSearch */
+#headerSearch {
+	position:absolute;
+	height:30px;
+	width:202px;
+	top:2px;
+	right:10px;
+}
+#headerSearch-searchform {
+	width: 200px;
+	background: transparent;
+	display: block;
+	height: 30px;
+}
+#headerSearch-keywords	{
+	position: absolute;
+	top: 0px;
+	left: 12px;
+	width: 156px;
+	height: 20px;
+	padding-left:6px;
+	background-image:-moz-linear-gradient(top, #D7D7D7, #E7E7E7);
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#D7D7D7), to(#E7E7E7), color-stop(1,#E7E7E7));
+	border:1px solid #AFAFAF;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	box-shadow: inset 1px 1px 1px rgba(0,0,0,0.25);
+	-moz-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.25);
+	-webkit-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.25);
+}
+#headerSearch-searchBtn	{
+	position: absolute;
+	top: 3px;
+	left: 182px;
+}
+
+
+/* XOOPS Code & Quote */
+.xoopsCode {
+  font-family: "Courier New",Courier,monospace;
+	font-size:12px;
+  padding: 6px;
+	margin:10px;
+	margin-bottom:0;
+	word-break: break-all;
+	border: 1px solid #fff;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background:#dcdcdc;
+}
+.xoopsQuote {
+  padding: 3px;
+}
+
+.xoopsCode pre{
+  white-space: -moz-pre-wrap; /* Mozilla */
+  white-space: -pre-wrap;     /* Opera 4-6 */
+  white-space: -o-pre-wrap;   /* Opera 7 */
+  white-space: pre-wrap;      /* CSS3 */
+  word-wrap: break-word;      /* IE 5.5+ */
+}
+
