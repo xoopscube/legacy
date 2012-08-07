@@ -25,7 +25,7 @@ class Xupdate_ModuleActionOverride extends XCube_ActionFilter
 			return;
 		}
 	
-		$overrideActionNames = array('ModuleInstall', 'ModuleUpdate', 'ModuleUninstall');
+		$overrideActionNames = array('ModuleList', 'ModuleInstall', 'ModuleUpdate', 'ModuleUninstall');
 		$actionName = ucfirst($actionFrame->mActionName);
 
 		if ( in_array($actionName, $overrideActionNames) === false ) {

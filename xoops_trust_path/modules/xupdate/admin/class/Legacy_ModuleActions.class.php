@@ -10,7 +10,7 @@
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
-if (isset($_GET['action']) && $_GET['action'] === 'ModuleInstall') {
+if ($actionName === 'ModuleInstall') {
 class Xupdate_ModuleInstallAction extends Legacy_ModuleInstallAction
 {
 	function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
@@ -26,7 +26,7 @@ class Xupdate_ModuleInstallAction extends Legacy_ModuleInstallAction
 }
 }
 
-if (isset($_GET['action']) && $_GET['action'] === 'ModuleUpdate') {
+if ($actionName === 'ModuleUpdate') {
 class Xupdate_ModuleUpdateAction extends Legacy_ModuleUpdateAction
 {
 	function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
@@ -42,7 +42,7 @@ class Xupdate_ModuleUpdateAction extends Legacy_ModuleUpdateAction
 }
 }
 
-if (isset($_GET['action']) && $_GET['action'] === 'ModuleUninstall') {
+if ($actionName === 'ModuleUninstall') {
 class Xupdate_ModuleUninstallAction extends Legacy_ModuleUninstallAction
 {
 	function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
@@ -54,6 +54,22 @@ class Xupdate_ModuleUninstallAction extends Legacy_ModuleUninstallAction
 		}
 
 		parent::executeViewSuccess($controller, $xoopsUser, $renderer);
+	}
+}
+}
+
+if ($actionName === 'ModuleList') {
+class Xupdate_ModuleListAction extends Legacy_ModuleListAction
+{
+	function execute(&$controller, &$xoopsUser)
+	{
+		$ret = parent::execute($controller, $xoopsUser);
+		if ($ret === LEGACY_FRAME_VIEW_SUCCESS) {
+			XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleListSave.Success', new XCube_Ref($this->mActionForm));
+		} else if ($ret === LEGACY_FRAME_VIEW_ERROR) {
+			XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleListSave.Fail', new XCube_Ref($this->mActionForm));
+		}
+		return $ret;
 	}
 }
 }
