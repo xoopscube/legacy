@@ -111,7 +111,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$inidataset = new Xupdate_ModulesIniDadaSet;
 		$inidataset->storeHand =  & $this->_getStoreHandler();
 		$inidataset->modHand = & $this->_getHandler();
-		$inidataset->execute($this->contents);
+		$inidataset->execute('all');
 
 //-----------------------------------------------
 

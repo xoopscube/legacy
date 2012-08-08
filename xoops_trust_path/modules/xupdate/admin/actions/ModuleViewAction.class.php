@@ -134,10 +134,12 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 
 			$itemsobj = array();
 			foreach($siteModuleStoreObjects as $key => $mobj){
-				$itemsobj[]=$mobj;
+				$itemsobj[$key]['id'] = $mobj->getShow('id');
+				$itemsobj[$key]['dirname'] = $mobj->getShow('dirname');
+				$itemsobj[$key]['hasupdate'] = $mobj->getShow('hasupdate');
 			}
-			$store_mod_arr[$sid]['itemsobj']=$itemsobj;
-			$store_mod_arr[$sid]['items_count']=count($itemsobj);
+			$store_mod_arr[$sid]['itemsobj'] = $itemsobj;
+			$store_mod_arr[$sid]['items_count'] = count($itemsobj);
 		}
 		return $store_mod_arr;
 	}
