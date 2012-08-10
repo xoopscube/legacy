@@ -191,28 +191,32 @@ class Xupdate_Block extends Legacy_AbstractBlockProcedure
 	function execute()
 	{
 		$result = '';
-
-		$handler = Legacy_Utils::getModuleHandler('ModuleStore', 'xupdate');
-		if ($count = $handler->getCountHasUpdate()) {
-			$root =& XCube_Root::getSingleton();
-			$root->mLanguageManager->loadBlockMessageCatalog('xupdate');
-			$notifyJS = <<<EOD
+		
+		$no_notify_reg = '/action=(?:ModuleInstall|ModuleUpdate|ModuleStore&filter=updated)/';
+		if (!preg_match($no_notify_reg, $_SERVER['QUERY_STRING'])) {
+			$handler = Legacy_Utils::getModuleHandler('ModuleStore', 'xupdate');
+			if ($count = $handler->getCountHasUpdate()) {
+				$root =& XCube_Root::getSingleton();
+				$root->mLanguageManager->loadBlockMessageCatalog('xupdate');
+				$notifyJS = <<<EOD
 $('.notification.sticky').notify();
 $('.button').click(function () {
 	$('.notification').removeClass('hide').addClass('hide').removeClass('visible');
 	$('.notification.' + $(this).attr('id') + '').notify({ type: $(this).attr('id') });
 });
 EOD;
-			$headerScript= $root->mContext->getAttribute('headerScript');
-			$headerScript->addStylesheet('/common/js/notify/style/default.css');
-			$headerScript->addLibrary('/common/js/notify/notification.js');
-			$headerScript->addScript($notifyJS);
-			$result = '<div class="notification sticky hide">
-			<a class="close" href="javascript:"><img src="'.XOOPS_URL.'/common/js/notify/images/icon-close.png" /></a>
-			<div style="text-align:center;font-size:14pt;margin-left:auto;margin-right:auto;margin-top:12px;">
-			<a href="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleStore&amp;filter=updated" style="float:none;color:white;">'.sprintf(_MB_XUPDATE_HAVE_UPDATEMODULE, $count).'</a>
-			</div>
-			</div>';
+				$headerScript= $root->mContext->getAttribute('headerScript');
+				$headerScript->addStylesheet('/common/js/notify/style/default.css');
+				$headerScript->addStylesheet('/modules/xupdate/admin/templates/stylesheets/module.css');
+				$headerScript->addLibrary('/common/js/notify/notification.js');
+				$headerScript->addScript($notifyJS);
+				$result = '<div class="notification sticky hide">
+				<a class="close" href="javascript:"><img src="'.XOOPS_URL.'/common/js/notify/images/icon-close.png" /></a>
+				<div>
+				<a href="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleStore&amp;filter=updated">'.sprintf(_MB_XUPDATE_HAVE_UPDATEMODULE, $count).'</a>
+				</div>
+				</div>';
+			}
 		}
 
 		$result .= '<img src="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleView&amp;checkonly=1" width="1" height="1" alt="" />';
