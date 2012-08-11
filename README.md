@@ -22,7 +22,7 @@ About
 
 **XOOPS Cube** is an Open Source Web Application Platform built with PHP and MySQL empowering webmasters to make a custom content management system and create dynamic and content rich websites with ease.
 
-**XOOPS Cube Legacy** is a Simple, Secure and Scalable content management system and the "official" distribution of XOOPS Cube Project team.
+**XOOPS Cube Legacy** is a Simple, Secure and Scalable content management system and the package distribution of XOOPS Cube Project Team.
 
 **The XOOPS Cube Project** is friendly managed, developed and supported by a volunteer group with a multidisciplinary focus to provide a variety of different perspectives and ideas to consider in further development and design. XCL Team spirit  aims to strengthen everyone's social network, share the essential knowledge and understanding of the “spirit of open source” necessary to encourage creativity.
 
@@ -31,12 +31,12 @@ About
 License
 ====
 
-###XOOPS Cube License
+###XOOPS Cube  
 
-XOOPS Cube was started from scratch, and the XOOPS Cube Core source code released under the BSD licence.
+XOOPS Cube was started from scratch and the XOOPS Cube Core source code is released under the BSD licence.
 
  
-###XOOPS Cube Legacy License
+###XOOPS Cube Legacy  
 
 XOOPS Cube Legacy source code which is one of base modules to ensure compatibility with old versions of Xoops 2 is released under a GPL licence.
 
@@ -45,13 +45,48 @@ XOOPS Cube Legacy source code which is one of base modules to ensure compatibili
 Requirements
 ====
 
-Whether you want to create your own personal website or social network with blog, forums, news, photo album, portfolio, etc. You need a reliable Web Host running Apache, MySQL and PHP.
+Whether you plan to create your own personal or corporate community web site with news, forums, blog, photo album, portfolio, etc. You need a reliable Web Host running Apache, MySQL and PHP.
 
 XOOPS Cube will run smoothly on a LAMP environment. In most cases your site will be hosted on the popular open source web platform consisting of Linux, Apache, MySQL, and PHP. Though XOOPS Cube can run on any other Operating System (OS) as well.
 
-* Apache 2.++
-* MySQL 5.++
-* PHP 5.++
+
+<table>
+<tr>
+<th align="center">
+Server
+</th>
+<th align="center">
+Database</th>
+<th align="center">
+Language</th>
+</tr>
+<tr>
+<td align="center">Apache version 2.xx</td>
+<td align="center">MySQL version 5.xx</td>
+<td align="center">PHP version 5.xx</td>
+</tr>
+<tr>
+<td align="center"><a href="http://apache.org/"><img src="http://xoopscube.org/uploads/fckeditor/logo-apache.png" alt="Apache" title="Apache" /></a></td>
+<td align="center"><br />
+<br />
+<a href="http://mysql.com/"><img src="http://xoopscube.org/uploads/fckeditor/logo-mysql.png" alt="Mysql" title="Mysql" /></a></td>
+<td align="center"><a href="http://php.net/"><img src="http://xoopscube.org/uploads/fckeditor/logo-php.png" alt="php" title="php" /></a></td>
+</tr>
+<tr>
+<td align="center">http://apache.org/</td>
+<td align="center">http://www.mysql.com/</td>
+<td align="center">http://php.net/</td>
+</tr>
+</table>
+
+###Software
+
+Useful Wikipedia articles with tables comparing general and technical information of Proprietary software, Free and open-source software.  
+
+<img src="http://xoopscube.org/uploads/fckeditor/server_database.png"> <a href="http://en.wikipedia.org/wiki/List_of_AMP_packages"> Local Test Server</a> : List of Apache–MySQL–PHP packages  
+<img src="http://xoopscube.org/uploads/fckeditor/script_edit.png"> <a href="http://en.wikipedia.org/wiki/Source_code_editor"> Source Code Editor</a> : Some well-known source code editors  
+<img src="http://xoopscube.org/uploads/fckeditor/picture_edit.png"> <a href="http://en.wikipedia.org/wiki/Comparison_of_raster_graphics_editors"> Graphics Editor</a> : Comparison of raster graphics editors  
+<img src="http://xoopscube.org/uploads/fckeditor/computer_go.png"> <a href="http://en.wikipedia.org/wiki/FTP_clients"> FTP Clients</a> : Comparison of FTP client software  
 
 ***
 
