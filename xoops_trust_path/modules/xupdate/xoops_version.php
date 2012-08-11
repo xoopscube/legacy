@@ -79,6 +79,7 @@ $modversion['templates'] = array(
 		array('file' => '{dirname}_store_edit.html','description' => _MI_XUPDATE_TPL_STORE_EDIT),
 		array('file' => '{dirname}_store_list.html','description' => _MI_XUPDATE_TPL_STORE_LIST),
 		array('file' => '{dirname}_store_view.html','description' => _MI_XUPDATE_TPL_STORE_VIEW),
+		array('file' => '{dirname}_modulestore_inc.html','description' => _MI_XUPDATE_TPL_MODULESTORE_INC),
 ##[/cubson:templates]
 );
 
@@ -292,7 +293,15 @@ $modversion['config'] = array(
 		'default'	=> 'http://xoopscube.net/uploads/xupdatemaster/stores_json_V1.txt',
 		'options'	=> array(),
 	) ,
-
+	array(
+		'name'          => 'tag_dirname' ,
+		'title'         => '_MI_XUPDATE_TAG_DIRNAME' ,
+		'description'   => '_MI_XUPDATE_TAG_DIRNAMEDSC' ,
+		'formtype'      => 'server_module',
+		'valuetype'     => 'text',
+		'default'       => '',
+		'options'       => array('none','tag')
+	) ,
 ##[cubson:config]
 ##[/cubson:config]
 );

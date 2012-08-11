@@ -15,7 +15,22 @@ if(!defined('XOOPS_ROOT_PATH'))
 **/
 class Xupdate_Utils
 {
-    /**
+	/**
+	 * getModuleConfig
+	 *
+	 * @param   string  $name
+	 * @param   bool  $optional
+	 *
+	 * @return  XoopsObjectHandler
+	 **/
+	public static function getModuleConfig(/*** string ***/ $dirname, /*** mixed ***/ $key)
+	{
+		$handler = self::getXoopsHandler('config');
+		$conf = $handler->getConfigsByDirname($dirname);
+		return (isset($conf[$key])) ? $conf[$key] : null;
+	}
+	
+	/**
      * &getXoopsHandler
      * 
      * @param   string  $name
@@ -63,6 +78,39 @@ class Xupdate_Utils
         {
             return $asset->getObject('handler',$name);
         }
+    }
+
+    /**
+     * getListCriteria
+     *
+     * @param   string  $dirname
+     * @param   int     $categoryId
+     * @param   int     $order
+     * @param   Lenum_Status    $status
+     *
+     * @return  XoopsObjectHandler
+     **/
+    public static function getListCriteria(/*** string ***/ $dirname, /*** int ***/ $categoryId=null, /*** int ***/ $order=null, /*** int ***/ $status=Lenum_Status::PUBLISHED)
+    {
+//    	$accessController = self::getAccessControllerModule($dirname);
+    
+    	$cri = new CriteriaCompo();
+    
+//     	//category
+//     	if(isset($categoryId)){
+//     		$cri->add(new Criteria('category_id', $categoryId));
+//     	}
+//     	else{
+//     		//get permitted categories to show
+//     		if($accessController instanceof XoopsModule && ($accessController->get('role')=='cat' || $accessController->get('role')=='group')){
+//     			$idList = self::getPermittedIdList($dirname);
+//     			if(count($idList)>0){
+//     				$cri->add(new Criteria('category_id', $idList, 'IN'));
+//     			}
+//     		}
+//     	}
+    
+    	return $cri;
     }
 
     /**

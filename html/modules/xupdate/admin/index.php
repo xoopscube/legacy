@@ -5,7 +5,9 @@
  * @package xupdate
  * @version $Id$
 **/
-
+if (preg_match('/action=(?:ModuleView|ModuleStore|ThemeStore)/', $_SERVER['QUERY_STRING'])) {
+	$_SERVER['REQUEST_METHOD'] = 'POST';
+}
 require_once '../../../mainfile.php';
 
 require_once XOOPS_TRUST_PATH . '/modules/xupdate/admin/index.php';

@@ -41,7 +41,10 @@ class Xupdate_ModulesIniDadaSet
 		'options',
 		'isactive',
 		'hasupdate',
-		'contents' );
+		'contents');
+	
+	
+	private $mTagModule;
 	
 	protected $mSiteObjects = array();
 	protected $mSiteItemArray = array();
@@ -51,7 +54,9 @@ class Xupdate_ModulesIniDadaSet
 		$this->Xupdate = new Xupdate_Root ;// Xupdate instance
 		//$this->Ftp =& $this->Xupdate->Ftp ;		// FTP instance
 		$this->Func =& $this->Xupdate->func ;		// Functions instance
-
+		
+		$root =& XCube_Root::getSingleton();
+		$this->mTagModule = $root->mContext->mModuleConfig['tag_dirname'];
 	}
 
 	public function execute( $callers, $checkonly = false )
@@ -404,6 +409,7 @@ class Xupdate_ModulesIniDadaSet
 				//データ重複分は削除
 				$this->modHand->delete($mobj,true);
 			}else{
+				$mobj->loadTag();
 				$this->mSiteItemArray[$mobj->getVar('sid')][$mobj->getVar('target_key')][$mobj->getVar('dirname')] = $this->getItemArray($mobj);
 			}
 		}
@@ -564,6 +570,19 @@ class Xupdate_ModulesIniDadaSet
 		} else {
 			$item_arr['screen_shot'] = '' ;
 		}
+		
+		// check tag is UTF-8 with json_encode
+		if ($this->mTagModule && isset($item['tag']) && @ json_encode($item['tag'])) {
+			$tag = trim($item['tag']);
+			if (strtoupper(_CHARSET) !== 'UTF-8') {
+				$this->encode_numericentity($tag, _CHARSET, 'UTF-8');
+				$tag = mb_convert_encoding($tag, _CHARSET, 'UTF-8');
+			}
+			$tag = preg_replace('/\s+/', ' ', $tag);
+		} else {
+			$tag = '' ;
+		}
+		
 		$item['options']= serialize($item_arr) ;
 		
 		// clean up
@@ -572,6 +591,8 @@ class Xupdate_ModulesIniDadaSet
 				unset($item[$key]);
 			}
 		}
+		
+		$item['tag'] = $tag;
 		
 		return $item;
 	}
@@ -584,6 +605,7 @@ class Xupdate_ModulesIniDadaSet
 		if (count(array_diff_assoc($olddata, $newdata)) > 0 ) {
 			$obj->unsetNew();
 			$this->modHand->insert($obj ,true);
+			//adump($obj);
 		}
 	}
 	
@@ -592,9 +614,52 @@ class Xupdate_ModulesIniDadaSet
 		foreach($this->itemArrayKeys as $key) {
 			$data[$key] = $obj->getVar($key);
 		}
+		$data['tag'] = join(' ', $obj->mTag);
 		return $data;
 	}
 
+	function encode_numericentity(& $arg, $toencode, $fromencode, $keys = array()) {
+		$fromencode = strtoupper($fromencode);
+		$toencode = strtoupper($toencode);
+		if ($fromencode === $toencode || $toencode === 'UTF-8') return;
+		if ($toencode === 'EUC-JP') $toencode = 'eucJP-win';
+		if (is_array($arg)) {
+			foreach (array_keys($arg) as $key) {
+				if (!$keys || in_array($key, $keys)) {
+					$this->encode_numericentity($arg[$key], $toencode, $fromencode, $keys);
+				}
+			}
+		} else {
+			if ($arg === mb_convert_encoding(mb_convert_encoding($arg, $toencode, $fromencode), $fromencode, $toencode)) {
+				return;
+			}
+			if (extension_loaded('mbstring')) {
+				$_sub = mb_substitute_character();
+				mb_substitute_character('long');
+				$arg = preg_replace('/U\+([0-9A-F]{2,5})/', "\x08$1", $arg);
+				if ($fromencode !== 'UTF-8') $arg = mb_convert_encoding($arg, 'UTF-8', $fromencode);
+				$arg = mb_convert_encoding($arg, $toencode, 'UTF-8');
+				$arg = preg_replace('/U\+([0-9A-F]{2,5})/e', '"&#".base_convert("$1",16,10).";"', $arg);
+				$arg = preg_replace('/\x08([0-9A-F]{2,5})/', 'U+$1', $arg);
+				mb_substitute_character($_sub);
+				$arg = mb_convert_encoding($arg, $fromencode, $toencode);
+			} else {
+				$str = '';
+				$max = mb_strlen($arg, $fromencode);
+				$convmap = array(0x0080, 0x10FFFF, 0, 0xFFFFFF);
+				for ($i = 0; $i < $max; $i++) {
+					$org = mb_substr($arg, $i, 1, $fromencode);
+					if ($org === mb_convert_encoding(mb_convert_encoding($org, $toencode, $fromencode), $fromencode, $toencode)) {
+						$str .= $org;
+					} else {
+						$str .= mb_encode_numericentity($org, $convmap, $fromencode);
+					}
+				}
+				$arg = $str;
+			}
+		}
+		return;
+	}
 } // end class
 
 ?>

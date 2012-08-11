@@ -5,8 +5,11 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 /**
 * XoopsSimpleObject
 */
-class Xupdate_ModuleStore extends XoopsSimpleObject {
+class Xupdate_ModuleStore extends Legacy_AbstractObject {
 
+	const PRIMARY = 'id';
+	const DATANAME = 'modulestore';
+	
 	public $mModule ;
 	public $modinfo = array();
 	public $detailed_version = '' ;
@@ -43,7 +46,27 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 		parent::__construct() ;
 
 	}
-
+	
+	public function assignVars($item) {
+		$tag = isset($item['tag']) ? $item['tag'] : '';
+		unset($item['tag']);
+		$res = parent::assignVars($item);
+		$this->mDirname = 'xupdate';
+		$this->loadTag();
+		$this->mTag = explode(' ', $tag);
+		if ($tag) {
+			//adump($this);
+		}
+		return $res;
+	}
+	
+	public function get($key) {
+		if ($key === 'posttime') {
+			return time();
+		}
+		return parent::get($key);
+	}
+	
 	/**
 	 * @return string
 	 */
@@ -312,18 +335,21 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 /**
 * XoopsObjectGenericHandler extends
 */
-class Xupdate_ModuleStoreHandler extends XoopsObjectGenericHandler
+class Xupdate_ModuleStoreHandler extends Legacy_AbstractClientObjectHandler
 {
 	public $mTable = '{dirname}_modulestore';
 
 	public $mPrimary = 'id';
 	//XoopsSimpleObject
 	public $mClass = 'Xupdate_ModuleStore';
+	
+	public $mDirname;
 
 
 	public function __construct(/*** XoopsDatabase ***/ &$db,/*** string ***/ $dirname)
 	{
 		$this->mTable = strtr($this->mTable,array('{dirname}' => $dirname));
+		$this->mDirname = $dirname;
 		parent::__construct($db);
 
 	}
@@ -338,6 +364,7 @@ class Xupdate_ModuleStoreHandler extends XoopsObjectGenericHandler
 
 		foreach($mObjects as $key => $mobj){
 			$mobj->setmModule(false);//判定用のインストール済みのモジュール情報の保持を追加
+			$mobj->mDirname = $this->mDirname;
 			if ($id_as_key) {
 				$id = $mobj->getVar('id');
 				$ret[$id] = $mobj;// do not add &
@@ -362,6 +389,11 @@ class Xupdate_ModuleStoreHandler extends XoopsObjectGenericHandler
 		$criteria->setGroupby('dirname');
 		$mObjects = parent::getObjects($criteria);
 		return count($mObjects);
+	}
+	
+	protected function _isActivityClient(/*** mixed[] ***/ $conf)
+	{
+		return false;
 	}
 } // end class
 
