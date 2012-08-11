@@ -35,7 +35,7 @@ class Xupdate_TagClientDelegate implements Legacy_iTagClientDelegate
         foreach($dirnames as $dir){
             //setup client module info
             if(Xupdate_Utils::getModuleConfig($dir, 'tag_dirname')==$tDirname){
-                $list[] = array('dirname'=>$dir, 'dataname'=>'modulestore');
+                $list[] = array('dirname'=>$dir, 'dataname'=>'ModuleStore');
 
             }
         }
