@@ -266,6 +266,15 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 	}
 
 	/**
+	 * Get this item's store name
+	 * 
+	 * @return string Tthis item's store name
+	 */
+	public function get_StoreName() {
+		return $this->_getStoreNameBySid($this->get('sid'));
+	}
+
+	/**
 	 * [modules.ini] Options unserializer
 	 * @param object $mobj
 	 * @param string $dirname
@@ -328,6 +337,25 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 	 */
 	private function _printf(&$format, $key, $args ) {
 		$format = sprintf( $format, $args[0], $args[1], $args[2]);
+	}
+	
+	/**
+	 * Get Store name by sid
+	 * 
+	 * @param intger $sid
+	 * @return string Store name
+	 */
+	private function _getStoreNameBySid($sid) {
+		static $names = array();
+		static $sHandler = null;
+		if (is_null($sHandler)) {
+			$sHandler = Legacy_Utils::getModuleHandler('Store', 'xupdate');
+		}
+		if (! isset($names[$sid])) {
+			$obj = $sHandler->get($sid);
+			$names[$sid] = $obj->get('name');
+		}
+		return $names[$sid];
 	}
 
 } // end class
