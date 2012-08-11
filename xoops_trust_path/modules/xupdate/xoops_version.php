@@ -75,10 +75,6 @@ $modversion['templates'] = array(
 */
 ##[cubson:templates]
 		//array('file' => '{dirname}_admin_storeview.html','admin' => 'adminmenu'),
-		array('file' => '{dirname}_store_delete.html','description' => _MI_XUPDATE_TPL_STORE_DELETE),
-		array('file' => '{dirname}_store_edit.html','description' => _MI_XUPDATE_TPL_STORE_EDIT),
-		array('file' => '{dirname}_store_list.html','description' => _MI_XUPDATE_TPL_STORE_LIST),
-		array('file' => '{dirname}_store_view.html','description' => _MI_XUPDATE_TPL_STORE_VIEW),
 ##[/cubson:templates]
 );
 
