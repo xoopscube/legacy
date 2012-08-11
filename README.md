@@ -1,50 +1,140 @@
 Legacy
 ======
 
-XOOPS Cube Legacy base repository
+* [About](#about)
+* [License](#license)
+* [Requirements](#requirements)
+* [Features](#features)
+* [Download](#download)
+* [Installation](#installation)
+* [Overview](#overview)
+* [Screenshots](#screenshots)
+* [Modules](#modules)
+* [Extensibility](#extensibility)
+* [Themes](#themes)
+* [Documentation](#documentation)
+* [Site-and-Support](#site-and-support)
+* [Contribute](#contribute)
 
-XOOPS Cube is an Open Source Web Application Platform built with PHP and MySQL empowering webmasters to make a custom content management system and create dynamic and content rich websites with ease.
+***
 
-XOOPS Cube Legacy is a Simple, Secure and Scalable content management system and the "official" distribution of XOOPS Cube Project team.
+About
+====
 
-The XOOPS Cube Project is friendly managed, developed and supported by a volunteer group with a multidisciplinary focus to provide a variety of different perspectives and ideas to consider in further development and design. XCL Team spirit  aims to strengthen everyone's social network, share the essential knowledge and understanding of the “spirit of open source” necessary to encourage creativity.
+**XOOPS Cube** is an Open Source Web Application Platform built with PHP and MySQL empowering webmasters to make a custom content management system and create dynamic and content rich websites with ease.
 
+**XOOPS Cube Legacy** is a Simple, Secure and Scalable content management system and the "official" distribution of XOOPS Cube Project team.
+
+**The XOOPS Cube Project** is friendly managed, developed and supported by a volunteer group with a multidisciplinary focus to provide a variety of different perspectives and ideas to consider in further development and design. XCL Team spirit  aims to strengthen everyone's social network, share the essential knowledge and understanding of the “spirit of open source” necessary to encourage creativity.
+
+***
+
+License
+====
+
+### XOOPS Cube License
+
+XOOPS Cube was started from scratch, and the XOOPS Cube Core source code released under the BSD licence.
+
+ 
+### XOOPS Cube Legacy License
+
+XOOPS Cube Legacy source code which is one of base modules to ensure compatibility with old versions of Xoops 2 is released under a GPL licence.
+
+***
+
+Requirements
+====
+
+Whether you want to create your own personal website or social network with blog, forums, news, photo album, portfolio, etc. You need a reliable Web Host running Apache, MySQL and PHP.
+
+XOOPS Cube will run smoothly on a LAMP environment. In most cases your site will be hosted on the popular open source web platform consisting of Linux, Apache, MySQL, and PHP. Though XOOPS Cube can run on any other Operating System (OS) as well.
+
+* Apache 2.++
+* MySQL 5.++
+* PHP 5.++
+
+***
 
 Features
 ====
 
-Below is a list of some of XOOPS Cube best features.
+* Below is a list of some of XOOPS Cube best features.
+* Easy install procedure based on a wizard
+* Modular architecture
+* Module API for unlimited expandability
+* Simple core to build up a custom cms
+* Debug function for easy development
+* Group-based permission system
+* Intuitive Interface for management
+* Smarty Template engine
+* Caching mechanism
+* Themes and Templates management
+* Embedded WYSIWYG HTML Editor
+* Free choice of PHP, JS, CSS frameworks
+* Abundant third-party modules and extensions (preloads to customize functionality)
 
-Easy install procedure based on a wizard
+***
 
-Modular architecture
+Download
+====
 
-Module API for unlimited expandability
+The source code of XOOPS Cube is available on Github
 
-Simple core to build up a custom cms
+Installation
+====
 
-Debug function for easy development
+XOOPS Cube Legacy Installation Guide
+http://xoopscube.sourceforge.net/documentation/
 
-Group-based permission system
+***
 
-Intuitive Interface for management
+Overview
+====
 
-Smarty Template engine
+XOOPS Cube Legacy Administration - Graphical User Interface (GUI)
+Screenshots and description.
 
-Caching mechanism
+Screenshots
+====
 
-Themes and Templates management
+### Legacy System Preferences
+### User Groups Management
+### Modules Management
+### Blocks Management
+### Themes Management
 
-Embedded WYSIWYG HTML Editor
+***
 
-Free choice of PHP, JS, CSS frameworks
+Modules
+===
 
-Abundant third-party modules and extensions (preloads to customize functionality)
+Extensibility
+===
+You can add functions to your website by installing modules. Modules can be easily add by installation wizard.
+XOOPS Cube 2.1 has high compatibility with the earlier XOOPS 2.0.x. We recommend the last modules generation, known as Cube modules and D3 modules which can be easily duplicated and renamed but also provide a GUI to manage the language catalog and templates. You can choose from over 100 of free modules at your needs.
+XOOPS Cube functionality can also be easily extended with Preloads - one file based extension.
 
+***
+Themes
+===
+
+***
+
+Documentation
+===
+
+XOOPS Cube Legacy API documentation generated by Apigen 2.7.0
+http://xoopscube.org/documentation/api
 
 Site and Support
-=====
+===
 
 http://xoopscube.org
 
 http://xoopscube.jp
+
+Contribute
+===
+
+Feel free to join, fork, test, report bugs, translations 
