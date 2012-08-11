@@ -142,10 +142,24 @@ Screenshots
 Screenshots and description.
 
 ### Legacy System Preferences
+
+<img src="https://lh4.googleusercontent.com/-Rnhk9YUrttg/SB6gFWZAAQI/AAAAAAAAAe4/OT62wYd3w4I/s756/xcl_admin_settings.png">
+
 ### User Groups Management
+
+<img src="http://gigamaster.myht.org/uploads/imgcad6d972581f658bc849f.png">
+
 ### Modules Management
+
+<img src="http://gigamaster.myht.org/uploads/img84a2a7de03c93e7932649.png">
+
 ### Blocks Management
+
+<img src="http://gigamaster.myht.org/uploads/imgb2e53f9cd9e93013b68c3.png">
+
 ### Themes Management
+
+<img src="http://gigamaster.myht.org/uploads/img02a99ae6c063f277b2d71.png">
 
 
 ***
