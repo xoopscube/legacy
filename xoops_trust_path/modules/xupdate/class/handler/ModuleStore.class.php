@@ -52,11 +52,10 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 		unset($item['tag']);
 		$res = parent::assignVars($item);
 		$this->mDirname = 'xupdate';
-		$this->loadTag();
 		if ($item['contents'] === 'module' || $item['contents'] === 'theme') {
 			$this->mTag = explode(' ', $tag);
 		} else {
-			$this->mTag = '';
+			$this->mTag = array();
 		}
 		return $res;
 	}
