@@ -56,7 +56,11 @@ class Xupdate_ModulesIniDadaSet
 		$this->Func =& $this->Xupdate->func ;		// Functions instance
 		
 		$root =& XCube_Root::getSingleton();
+		$mAsset =& $root->mContext->mModule->mAssetManager;
 		$this->mTagModule = $root->mContext->mModuleConfig['tag_dirname'];
+		$this->storeHand =& $mAsset->getObject('handler', 'Store', false);
+		$this->modHand = array('module' => $mAsset->getObject('handler', 'ModuleStore', false), 'theme' => $mAsset->getObject('handler', 'ThemeStore', false));
+		$this->modHand['package'] = $this->modHand['module'];
 	}
 
 	public function execute( $callers, $checkonly = false )
@@ -196,7 +200,8 @@ class Xupdate_ModulesIniDadaSet
 				if (file_exists($res['downloadedFilePath'])){
 					$downloadedFilePath = $res['downloadedFilePath'];
 					if ($items = @ parse_ini_file($downloadedFilePath, true)) {
-						$isPackage = ($res['caller'] === 'package');
+						$caller = $res['caller'];
+						$isPackage = ($caller === 'package');
 						$lngKey = $i + 1;
 						if (file_exists($multiData[$lngKey]['downloadedFilePath'])){
 							$items_lang = @ parse_ini_file($multiData[$lngKey]['downloadedFilePath'], true);
@@ -226,7 +231,7 @@ class Xupdate_ModulesIniDadaSet
 								unset($items[$key]);
 							}
 						}
-						$this->_setmSiteModuleObjects($sid);
+						$this->_setmSiteModuleObjects($sid, $caller);
 						
 						$rObjs = array();
 						foreach($items as $key => $item){
@@ -235,7 +240,7 @@ class Xupdate_ModulesIniDadaSet
 								if (!isset($rObjs[$_sid])) {
 									$criteria = new CriteriaCompo();
 									$criteria->add(new Criteria( 'sid', $_sid ) );
-									$_objs =& $this->modHand->getObjects($criteria, null, null, true);
+									$_objs =& $this->modHand[$caller]->getObjects($criteria, null, null, true);
 									foreach($_objs as $id => $mobj) {
 										if ($mobj->get('target_type') != 'TrustModule' || $mobj->get('trust_dirname') === $mobj->get('dirname')) {
 											$rObjs[$_sid][$mobj->get('target_key')] = $mobj;
@@ -254,12 +259,12 @@ class Xupdate_ModulesIniDadaSet
 							}
 							switch($item['target_type']){
 								case 'TrustModule':
-									$this->_setDataTrustModule($item['sid'] , $item);
+									$this->_setDataTrustModule($item['sid'] , $item, $caller);
 									break;
 								case 'X2Module':
 								case 'Theme':
 								default:
-									$this->_setDataSingleModule($item['sid'] , $item);
+									$this->_setDataSingleModule($item['sid'] , $item, $caller);
 							}
 						}
 					}
@@ -316,9 +321,9 @@ class Xupdate_ModulesIniDadaSet
 				// delete items
 				$criteria = new CriteriaCompo();
 				$criteria->add(new Criteria( 'sid', $sid ) );
-				$siteModuleStoreObjects =& $this->modHand->getObjects($criteria, null, null, true);
+				$siteModuleStoreObjects =& $this->modHand[$caller]->getObjects($criteria, null, null, true);
 				foreach($siteModuleStoreObjects as $id => $mobj){
-					$this->modHand->delete($mobj ,true);
+					$this->modHand[$caller]->delete($mobj ,true);
 				}
 				// delete store
 				if ( !empty($storeObjects[$sid]) ) {
@@ -377,9 +382,9 @@ class Xupdate_ModulesIniDadaSet
 				$sid = (int)$obj->getVar('sid');
 				$criteria = new CriteriaCompo();
 				$criteria->add(new Criteria( 'sid', $sid ) );
-				$siteModuleStoreObjects =& $this->modHand->getObjects($criteria, null, null, true);
+				$siteModuleStoreObjects =& $this->modHand[$olddata['contents']]->getObjects($criteria, null, null, true);
 				foreach($siteModuleStoreObjects as $mobj) {
-					$this->modHand->delete($mobj,true);
+					$this->modHand[$olddata['contents']]->delete($mobj,true);
 				}
 			}
 		}
@@ -387,27 +392,27 @@ class Xupdate_ModulesIniDadaSet
 
 
 //----------------------------------------------------------------------
-	private function _setmSiteModuleObjects($sid)
+	private function _setmSiteModuleObjects($sid, $caller)
 	{
 		//この該当サイト登録済みデータを全部確認する
 		$sid = (int)$sid;
 		$criteria = new CriteriaCompo();
 		$criteria->add(new Criteria( 'sid', $sid ) );
 
-		$siteModuleStoreObjects =& $this->modHand->getObjects($criteria, null, null, true);
+		$siteModuleStoreObjects =& $this->modHand[$caller]->getObjects($criteria, null, null, true);
 
 		$approved = $this->approved[$sid];
 		foreach($siteModuleStoreObjects as $mobj){
 			$is_sitedata = false;
 			// 承認されたデータがなければ削除
 			if (empty($approved[$mobj->getVar('target_key')])) {
-				$this->modHand->delete($mobj,true);
+				$this->modHand[$caller]->delete($mobj,true);
 				continue;
 			}
 
 			if (isset($this->mSiteItemArray[$mobj->getVar('sid')][$mobj->getVar('target_key')][$mobj->getVar('dirname')])){
 				//データ重複分は削除
-				$this->modHand->delete($mobj,true);
+				$this->modHand[$caller]->delete($mobj,true);
 			}else{
 				$mobj->loadTag();
 				$this->mSiteItemArray[$mobj->getVar('sid')][$mobj->getVar('target_key')][$mobj->getVar('dirname')] = $this->getItemArray($mobj);
@@ -416,7 +421,7 @@ class Xupdate_ModulesIniDadaSet
 
 	}
 
-	private function _setDataSingleModule($sid , $item)
+	private function _setDataSingleModule($sid , $item, $caller)
 	{
 		//trustモジュールでない(複製可能なものはどうしよう)
 		$item['version']= isset($item['version']) ? round(floatval($item['version'])*100): 0 ;
@@ -428,9 +433,9 @@ class Xupdate_ModulesIniDadaSet
 		$item['unzipdirlevel'] = 0; // not use "unzipdirlevel"
 		$item['addon_url']= isset($item['addon_url']) ? $item['addon_url']: '' ;
 
-		$item = $this->_createItemOptions($item);
+		$item = $this->_createItemOptions($item, $caller);
 
-		$mobj = new $this->modHand->mClass();
+		$mobj = new $this->modHand[$caller]->mClass();
 		$mobj->assignVars($item);
 		$mobj->assignVar('sid', $sid);
 
@@ -438,16 +443,16 @@ class Xupdate_ModulesIniDadaSet
 
 		if (isset($this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']])){
 			$mobj->assignVar('id',$this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']]['id'] );
-			$this->_ModuleStoreUpdate($mobj , $this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']]);
+			$this->_ModuleStoreUpdate($mobj , $this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']], $caller);
 		}else{
 			$mobj->setNew();
-			$this->modHand->insert($mobj ,true);
+			$this->modHand[$caller]->insert($mobj ,true);
 			$this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']] = $this->getItemArray($mobj);
 		}
 		unset($mobj);
 
 	  }
-	  private function _setDataTrustModule($sid ,$item)
+	  private function _setDataTrustModule($sid ,$item, $caller)
 	  {
 		  //$sid = (int)$sid;
 		  $item['version']= isset($item['version']) ? round(floatval($item['version'])*100): 0 ;
@@ -459,14 +464,14 @@ class Xupdate_ModulesIniDadaSet
 		  $item['unzipdirlevel'] = 0; // not use "unzipdirlevel"
 		  $item['addon_url']= isset($item['addon_url']) ? $item['addon_url']: '' ;
 
-		  $item = $this->_createItemOptions($item);
+		  $item = $this->_createItemOptions($item, $caller);
 
 		//インストール済みの同じtrustモージュールのリストを取得
 		$list = Legacy_Utils::getDirnameListByTrustDirname($item['trust_dirname']);
 
 		if (empty($list)){
 			//インストール済みの同じtrustモージュール無し、注意 is_activeはリストされない
-			$mobj = new $this->modHand->mClass();
+			$mobj = new $this->modHand[$caller]->mClass();
 			$mobj->assignVars($item);
 			$mobj->assignVar('sid',$sid);
 
@@ -474,10 +479,10 @@ class Xupdate_ModulesIniDadaSet
 
 			if (isset($this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']])){
 				$mobj->assignVar('id',$this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']]['id'] );
-				$this->_ModuleStoreUpdate($mobj , $this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']]);
+				$this->_ModuleStoreUpdate($mobj , $this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']], $caller);
 			}else{
 				$mobj->setNew();
-				$this->modHand->insert($mobj ,true);
+				$this->modHand[$caller]->insert($mobj ,true);
 				$this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']] = $this->getItemArray($mobj);
 			}
 			unset($mobj);
@@ -486,7 +491,7 @@ class Xupdate_ModulesIniDadaSet
 
 			$_isrootdirmodule = false;
 			foreach($list as $dirname){
-				$mobj = new $this->modHand->mClass();
+				$mobj = new $this->modHand[$caller]->mClass();
 				$mobj->assignVars($item);
 				$mobj->assignVar('sid',$sid);
 				//same trust_path module
@@ -499,17 +504,17 @@ class Xupdate_ModulesIniDadaSet
 				}
 				if (isset($this->mSiteItemArray[$sid][$item['target_key']][$dirname])){
 					$mobj->assignVar('id',$this->mSiteItemArray[$sid][$item['target_key']][$dirname]['id'] );
-					$this->_ModuleStoreUpdate($mobj , $this->mSiteItemArray[$sid][$item['target_key']][$dirname]);
+					$this->_ModuleStoreUpdate($mobj , $this->mSiteItemArray[$sid][$item['target_key']][$dirname], $caller);
 				}else{
 					$mobj->setNew();
-					$this->modHand->insert($mobj ,true);
+					$this->modHand[$caller]->insert($mobj ,true);
 					$this->mSiteItemArray[$sid][$item['target_key']][$dirname] = $this->getItemArray($mobj);
 				}
 				unset($mobj);
 			}
 			//そのままインストールしていない場合、そのまま追加可能なので
 			if ( $_isrootdirmodule == false ){
-				$mobj = new $this->modHand->mClass();
+				$mobj = new $this->modHand[$caller]->mClass();
 				$mobj->assignVars($item);
 				$mobj->assignVar('sid',$sid);
 
@@ -517,10 +522,10 @@ class Xupdate_ModulesIniDadaSet
 
 				if (isset($this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']])){
 					$mobj->assignVar('id',$this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']]['id'] );
-					$this->_ModuleStoreUpdate($mobj , $this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']]);
+					$this->_ModuleStoreUpdate($mobj , $this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']], $caller);
 				}else{
 					$mobj->setNew();
-					$this->modHand->insert($mobj ,true);
+					$this->modHand[$caller]->insert($mobj ,true);
 					$this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']] = $this->getItemArray($mobj);
 				}
 				unset($mobj);
@@ -529,11 +534,11 @@ class Xupdate_ModulesIniDadaSet
 
 	}
 
-	private function _createItemOptions( $item )
+	private function _createItemOptions( $item, $caller )
 	{
 		static $mVars;
 		if (is_null($mVars)) {
-			$mobj = new $this->modHand->mClass();
+			$mobj = new $this->modHand[$caller]->mClass();
 			$mVars = $mobj->mVars;
 			unset($mobj);
 		}
@@ -599,13 +604,12 @@ class Xupdate_ModulesIniDadaSet
 /*
  * このサイトのデータをデータベースに再セットする
  */
-	private function _ModuleStoreUpdate ($obj , $olddata)
+	private function _ModuleStoreUpdate ($obj, $olddata, $caller)
 	{
 		$newdata = $this->getItemArray($obj);
 		if (count(array_diff_assoc($olddata, $newdata)) > 0 ) {
 			$obj->unsetNew();
-			$this->modHand->insert($obj ,true);
-			//adump($obj);
+			$this->modHand[$caller]->insert($obj ,true);
 		}
 	}
 	
@@ -614,7 +618,11 @@ class Xupdate_ModulesIniDadaSet
 		foreach($this->itemArrayKeys as $key) {
 			$data[$key] = $obj->getVar($key);
 		}
-		$data['tag'] = join(' ', $obj->mTag);
+		if ($obj->mTag) {
+			$data['tag'] = join(' ', $obj->mTag);
+		} else {
+			$data['tag'] = '';
+		}
 		return $data;
 	}
 

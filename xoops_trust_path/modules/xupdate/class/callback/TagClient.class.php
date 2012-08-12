@@ -36,6 +36,7 @@ class Xupdate_TagClientDelegate implements Legacy_iTagClientDelegate
             //setup client module info
             if(Xupdate_Utils::getModuleConfig($dir, 'tag_dirname')==$tDirname){
                 $list[] = array('dirname'=>$dir, 'dataname'=>'ModuleStore');
+                $list[] = array('dirname'=>$dir, 'dataname'=>'ThemeStore');
 
             }
         }
@@ -63,19 +64,24 @@ class Xupdate_TagClientDelegate implements Legacy_iTagClientDelegate
         if(! $handler){
             return;
         }
-    
+        $contents = ($dataname === 'ModuleStore')? 'module' : 'theme';
+        
         //setup client module info
-        $cri = Xupdate_Utils::getListCriteria($dirname);
+        $cri = new CriteriaCompo();
+        $cri->add(new Criteria('contents', $contents));
         $cri->add(new Criteria($handler->mPrimary, $idList, 'IN'));
         $objs = $handler->getObjects($cri, $limit, $start);
+        if ($contents === 'theme') {
+        	//var_dump($cri);exit;
+        }
         if(count($objs)>0){
 	        $list['dirname'][] = $dirname;
 	        $list['dataname'][] = $dataname;
 	        $list['data'][] = $objs;
 	        $handler = xoops_gethandler('module');
 	        $module = $handler->getByDirname($dirname);
-	        $list['title'][] = $module->name();
-	        $list['template_name'][] = 'db:'.$dirname .'_'. $dataname .'_inc.html';
+	        $list['title'][] = $module->name() . ' - ' . ucfirst($contents);
+	        $list['template_name'][] = 'db:'.$dirname .'_modulestore_inc.html';
 	    }
     }
 }

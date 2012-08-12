@@ -53,9 +53,10 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 		$res = parent::assignVars($item);
 		$this->mDirname = 'xupdate';
 		$this->loadTag();
-		$this->mTag = explode(' ', $tag);
-		if ($tag) {
-			//adump($this);
+		if ($item['contents'] === 'module' || $item['contents'] === 'theme') {
+			$this->mTag = explode(' ', $tag);
+		} else {
+			$this->mTag = '';
 		}
 		return $res;
 	}
@@ -379,9 +380,7 @@ class Xupdate_ModuleStoreHandler extends Legacy_AbstractClientObjectHandler
 		$this->mTable = strtr($this->mTable,array('{dirname}' => $dirname));
 		$this->mDirname = $dirname;
 		parent::__construct($db);
-
 	}
-
 
 	public function &getObjects($criteria = null, $limit = null, $start = null,  $id_as_key = false)
 	{
