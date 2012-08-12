@@ -129,7 +129,7 @@ class Xupdate_Func {
 			}
 			
 			//safe_mode  CURLOPT_FOLLOWLOCATION cannot be activated when in safe_mode
-			if (ini_get('safe_mode') != "1"){
+			if (ini_get('safe_mode') != '1' && ini_get('open_basedir') == '') {
 				try {
 					//redirect suport
 					$setopt4 = curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
