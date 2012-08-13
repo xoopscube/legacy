@@ -365,6 +365,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 				if (strstr($l_file, '/modules/'.$trust_dirname.'/')){
 					continue;
 				}
+				$r_file = $remote_path.substr($l_file, $remote_pos ); // +1 is remove first flash
 			} else if ($mode === 'repModule') {
 				//rename dirname
 				$r_file = $remote_path.substr(str_replace('/modules/'.$trust_dirname.'/', '/modules/'.$dirname.'/', $l_file), $remote_pos ); // +1 is remove first flash

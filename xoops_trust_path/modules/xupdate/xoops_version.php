@@ -23,7 +23,7 @@ $basename = basename($dirname);
 // Define a basic manifesto.
 //
 $modversion['name'] = _MI_XUPDATE_LANG_XUPDATE;
-$modversion['version'] = '0.13'; //beta 2
+$modversion['version'] = '0.14'; //beta 2
 $modversion['description'] = _MI_XUPDATE_DESC_XUPDATE;
 $modversion['author'] = _MI_XUPDATE_LANG_AUTHOR;
 $modversion['credits'] = _MI_XUPDATE_LANG_CREDITS;
@@ -75,10 +75,6 @@ $modversion['templates'] = array(
 */
 ##[cubson:templates]
 		//array('file' => '{dirname}_admin_storeview.html','admin' => 'adminmenu'),
-		array('file' => '{dirname}_store_delete.html','description' => _MI_XUPDATE_TPL_STORE_DELETE),
-		array('file' => '{dirname}_store_edit.html','description' => _MI_XUPDATE_TPL_STORE_EDIT),
-		array('file' => '{dirname}_store_list.html','description' => _MI_XUPDATE_TPL_STORE_LIST),
-		array('file' => '{dirname}_store_view.html','description' => _MI_XUPDATE_TPL_STORE_VIEW),
 ##[/cubson:templates]
 );
 

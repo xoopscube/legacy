@@ -27,6 +27,7 @@ define('_AD_XUPDATE_LANG_MESSAGE_WAITING', "Waiting");
 define('_AD_XUPDATE_LANG_MESSAGE_SUCCESS', "Success");
 define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES', "getting files");
 define('_AD_XUPDATE_LANG_MESSAGE_PROCESSING', "...");
+define('_AD_XUPDATE_LANG_BUTTON_UPDATE', 'Update');
 
 define('_AD_XUPDATE_LANG_THM_TOTAL'  , 'Total of Themes');
 define('_AD_XUPDATE_LANG_ITEM_TOTAL'  , 'Total of Items');
