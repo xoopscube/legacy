@@ -251,6 +251,10 @@ class Xupdate_ModulesIniDadaSet
 								$item = $this->_getItemArrFromObj($rObjs[$_sid][$item['target_key']]);
 							} else {
 								foreach(array('description', 'tag') as $_key) {
+									if (! @ json_encode($item[$_key])) {
+										// if not UTF-8
+										$item[$_key] = '';
+									}
 									if (! empty($item[$_key]) && (empty($items_lang[$key]) || empty($items_lang[$key][$_key]))) {
 										if (strtoupper(_CHARSET) !== 'UTF-8') {
 											$this->encode_numericentity($item[$_key], _CHARSET, 'UTF-8');
@@ -587,12 +591,8 @@ class Xupdate_ModulesIniDadaSet
 		}
 		
 		// check tag is UTF-8 with json_encode
-		if ($this->mTagModule && isset($item['tag']) && @ json_encode($item['tag'])) {
+		if ($this->mTagModule && isset($item['tag'])) {
 			$tag = trim($item['tag']);
-			if (strtoupper(_CHARSET) !== 'UTF-8') {
-				$this->encode_numericentity($tag, _CHARSET, 'UTF-8');
-				$tag = mb_convert_encoding($tag, _CHARSET, 'UTF-8');
-			}
 			$tag = preg_replace('/\s+/', ' ', $tag);
 		} else {
 			$tag = '' ;
