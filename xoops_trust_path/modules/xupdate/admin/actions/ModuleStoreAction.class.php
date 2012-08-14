@@ -193,7 +193,13 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 		$render->setAttribute('currentMenu', $this->currentMenu);
 		$render->setAttribute('action', $this->action);
-
+		
+		$tagCloud = array();
+		if (! empty($this->mod_config['tag_dirname'])) {
+			XCube_DelegateUtils::call('Legacy_Tag.'.$this->mod_config['tag_dirname'].'.GetTagCloudSrc', new XCube_Ref($tagCloud), $this->mod_config['tag_dirname'], 'xupdate', 'modulestore');
+			$this->Func->setTagCloudSize($tagCloud);
+		}
+		$render->setAttribute('cloud', $tagCloud);
 	}
 
 	function execute()
