@@ -77,7 +77,7 @@ class Xupdate_ModulesIniDadaSet
 		touch($cacheCheckFile);
 		
 		$root =& XCube_Root::getSingleton();
-		$language = $root->mContext->getXoopsConfig('language');
+		$org_lang = $language = $root->mContext->getXoopsConfig('language');
 		if (isset($this->lang_mapping[$language])) {
 			$language = $this->lang_mapping[$language];
 		}
@@ -249,14 +249,24 @@ class Xupdate_ModulesIniDadaSet
 									unset($criteria, $_objs);
 								}
 								$item = $this->_getItemArrFromObj($rObjs[$_sid][$item['target_key']]);
+							} else {
+								foreach(array('description', 'tag') as $_key) {
+									if (! empty($item[$_key]) && (empty($items_lang[$key]) || empty($items_lang[$key][$_key]))) {
+										if (strtoupper(_CHARSET) !== 'UTF-8') {
+											$this->encode_numericentity($item[$_key], _CHARSET, 'UTF-8');
+											$item[$_key] = mb_convert_encoding($item[$_key], _CHARSET, 'UTF-8');
+										}
+									}
+								}
+							}
+							if (! empty($items_lang[$key]) && isset($this->lang_mapping[$org_lang])) {
+								mb_convert_variables(_CHARSET, 'UTF-8', $items_lang[$key]);
+							}
+							if (! empty($items_lang[$key])) {
+								$item = array_merge($item, $items_lang[$key]);
 							}
 							$item['sid'] = $sid ;
 							$item['contents'] = $res['caller'];
-							$item['description'] = (isset($items_lang[$key]) && isset($items_lang[$key]['description'])) ? $items_lang[$key]['description']
-							                     : (isset($item['description'])? $item['description'] : '') ;
-							if ((!$isPackage || isset($items_lang[$key]['description'])) && $item['description'] && $use_mb_convert && 'UTF-8' != _CHARSET) {
-								$item['description'] = mb_convert_encoding($item['description'] , _CHARSET , 'UTF-8');
-							}
 							switch($item['target_type']){
 								case 'TrustModule':
 									$this->_setDataTrustModule($item['sid'] , $item, $caller);
