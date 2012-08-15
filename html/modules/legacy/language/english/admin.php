@@ -116,6 +116,7 @@ define('_AD_LEGACY_LANG_BLOCK_ACTIVETOTAL', "Active");
 define('_AD_LEGACY_LANG_BLOCK_INACTIVETOTAL', "Inactive");
 define('_AD_LEGACY_LANG_BLOCK_UPDATECONF', "Confirm block update");
 define('_AD_LEGACY_LANG_C_TYPE', "Type");
+define('_AD_LEGACY_LANG_CENTER_BLOCK_GLOBAL', "Global block");
 define('_AD_LEGACY_LANG_CENTER_BLOCK_CENTER', "Center block - center");
 define('_AD_LEGACY_LANG_CENTER_BLOCK_LEFT', "Center block - left");
 define('_AD_LEGACY_LANG_CENTER_BLOCK_RIGHT', "Center block - right");

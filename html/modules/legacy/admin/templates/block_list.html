@@ -30,9 +30,9 @@
 <div>
 <form action="./index.php" method="get">
   <input type="hidden" name="action" value="BlockList" />
-  <{$smarty.const._SEARCH}> : 
+  <{$smarty.const._SEARCH}> :
   <input type="text" name="search" value="<{$filterForm->mKeyword}>" />
-  <{$smarty.const._AD_LEGACY_LANG_MOD_NAME}> : 
+  <{$smarty.const._AD_LEGACY_LANG_MOD_NAME}> :
   <select name="dirname">
     <option value="0"><{$smarty.const._ALL}></option>
     <{foreach from=$modules item=module}>
@@ -48,7 +48,7 @@
   </select>
   <{$smarty.const._AD_LEGACY_LANG_SIDE}> :
 	<select name="option_field">
-	<{if $filterForm->mOptionField == "all"}> 
+	<{if $filterForm->mOptionField == "all"}>
 	<option value="all" selected="selected"><{$smarty.const._ALL}></option>
 	<{foreach from=$columnSideArr item=columnSide}>
 	<option value="<{$columnSide->getShow('id')}>">	<{$columnSide->getShow('name')}></option>
@@ -61,7 +61,7 @@
 	<{/foreach}>
 	<{/if}>
 	</select>
-  <{$smarty.const._VIEW}> : 
+  <{$smarty.const._VIEW}> :
   <select name="perpage">
     <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
     <{foreach item=page from=$pageArr}>
@@ -117,7 +117,7 @@
         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_LAST_MODIFIED}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_LAST_MODIFIED}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
       <th><{$smarty.const._AD_LEGACY_LANG_UNINSTALL}><br />
-      <input name="allbox" id="allbox" onclick="with(document.blockform){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].disabled==false&&elements[i].name.indexOf('uninstall')>=0){elements[i].checked=this.checked;}}}" type="checkbox" value="Check All" /></th>    
+      <input name="allbox" id="allbox" onclick="with(document.blockform){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].disabled==false&&elements[i].name.indexOf('uninstall')>=0){elements[i].checked=this.checked;}}}" type="checkbox" value="Check All" /></th>
       <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
     </tr>
     <{foreach item=obj from=$objects}>
@@ -139,6 +139,12 @@
         <td class="legacy_list_title"><{xoops_input type=text name=title key=$obj->get('bid') value=$obj->get('title') size=14 maxlength=255}></td>
         <td class="legacy_blockside">
         <{strip}>
+          <{if $obj->get('side') == 25}>
+            <div class="legacy_blocksideInput active"><{xoops_input type=radio name=side key=$obj->get('bid') value=25 default=$obj->get('side')}></div>
+          <{else}>
+            <div class="legacy_blocksideInput inactive"><{xoops_input type=radio name=side key=$obj->get('bid') value=25 default=$obj->get('side')}></div>
+          <{/if}>
+          <div class="legacy_blockside_separator">:</div>
           <{if $obj->get('side') == 0}>
             <div class="legacy_blocksideInput active"><{xoops_input type=radio name=side key=$obj->get('bid') value=0 default=$obj->get('side')}></div>
           <{else}>

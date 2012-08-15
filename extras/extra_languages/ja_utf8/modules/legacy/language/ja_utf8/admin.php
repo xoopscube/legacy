@@ -62,6 +62,7 @@ define('_AD_LEGACY_LANG_BLOCK_UNINSTALL', "ブロックのアンインストー�
 define('_AD_LEGACY_LANG_BLOCK_VAL', "値");
 define('_AD_LEGACY_LANG_BLOCKS_INFO', "ブロック情報");
 define('_AD_LEGACY_LANG_C_TYPE', "タイプ");
+define('_AD_LEGACY_LANG_CENTER_BLOCK_GLOBAL', "グローバル・ブロック");
 define('_AD_LEGACY_LANG_CENTER_BLOCK_CENTER', "中央ブロック - 中央");
 define('_AD_LEGACY_LANG_CENTER_BLOCK_LEFT', "中央ブロック - 左");
 define('_AD_LEGACY_LANG_CENTER_BLOCK_RIGHT', "中央ブロック - 右");
