@@ -205,7 +205,7 @@ define('_AD_LEGACY_LANG_INSTALL', "Install");
 define('_AD_LEGACY_LANG_ISACTIVE', "Active");
 define('_AD_LEGACY_LANG_LAST_MODIFIED', "Last modified");
 define('_AD_LEGACY_LANG_LASTUPDATE', "Last update");
-define('_AD_LEGACY_LANG_LCR', "L-CNTR-R");
+define('_AD_LEGACY_LANG_LCR', "Global:L-CNTR-R");
 define('_AD_LEGACY_LANG_LICENCE', "Licence");
 define('_AD_LEGACY_LANG_LIST', "List");
 define('_AD_LEGACY_LANG_MAINMENU_HAS_MAIN', "Main Menu");

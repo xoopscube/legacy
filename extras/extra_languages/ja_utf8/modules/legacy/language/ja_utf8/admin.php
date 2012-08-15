@@ -137,7 +137,7 @@ define('_AD_LEGACY_LANG_INSTALL', "インストール");
 define('_AD_LEGACY_LANG_ISACTIVE', "アクティブ");
 define('_AD_LEGACY_LANG_LAST_MODIFIED', "最終更新日時");
 define('_AD_LEGACY_LANG_LASTUPDATE', "最終更新日");
-define('_AD_LEGACY_LANG_LCR', "左-中央-右");
+define('_AD_LEGACY_LANG_LCR', "グローバル:左-中央-右");
 define('_AD_LEGACY_LANG_LIST', "一覧");
 define('_AD_LEGACY_LANG_LICENCE', "ライセンス");
 define('_AD_LEGACY_LANG_MAINMENU_HAS_MAIN', "メインメニュー");
