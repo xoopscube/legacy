@@ -65,6 +65,9 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 
 		$result = true;
 		if( $this->Xupdate->params['is_writable']['result'] === true ) {
+			// clean up download dirctory
+			$this->_cleanUp_downloadDir();
+			
 			if(! $this->checkExploredDirPath($this->target_key)) {
 				$this->_set_error_log(_MI_XUPDATE_ERR_MAKE_EXPLOREDDIR . ': ' .$this->target_key);
 				return false;
@@ -73,6 +76,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 				$this->content.= '<div class="error">' . _MI_XUPDATE_ANOTHER_PROCESS_RUNNING . '</div>';
 				return false;
 			}
+			
 			
 			$downloadUrl = $this->Func->_getDownloadUrl( $this->target_key, $this->downloadUrlFormat );
 			$this->download_file = $this->target_key . (preg_match('/\btar\b/i', $downloadUrl)? '.tar.gz' : '.zip');
@@ -398,7 +402,18 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			$this->Ftp->localRmdirRecursive($path);
 		}
 	}
-
+	
+	public function _cleanUp_downloadDir() {
+		$path = realpath($this->Xupdate->params['temp_path']);
+		if ($handle = opendir($path)) {
+			while (false !== ($entry = readdir($handle))) {
+				if ($entry !== '.' && $entry !== '..' && is_dir($path . DIRECTORY_SEPARATOR . $entry)) {
+					$this->_cleanup($path . DIRECTORY_SEPARATOR . $entry);
+				}
+			}
+			closedir($handle);
+		}
+	}
 } // end class
 
 ?>
