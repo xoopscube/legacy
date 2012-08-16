@@ -244,7 +244,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
 	
 		$this->_resize();
 		
-		if ($this->mActionForm->mOldAvatarFilename != null && $this->mActionForm->mOldAvatarFilename != "blank.gif") {
+		if ($this->mActionForm->mOldAvatarFilename != null && $this->mActionForm->mOldAvatarFilename != "blank.gif" and $this->mActionForm->mFormFile != null) {
 			$avatarHandler =& xoops_getmodulehandler('avatar', 'user');
 			$criteria =new Criteria('avatar_file', $this->mActionForm->mOldAvatarFilename);
 			$avatarArr =& $avatarHandler->getObjects($criteria);
@@ -269,7 +269,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
 				
 				$linkHandler->insert($link);
 			}
-			
+
 			return true;
 		}
 		else {

@@ -579,8 +579,13 @@ function &xoops_gethandler($name, $optional = false )
         XCube_DelegateUtils::call('Legacy.Event.GetHandler', new XCube_Ref($handler), $name, $optional);
         if ($handler) return $handlers[$name] =& $handler;
 
-        require_once XOOPS_ROOT_PATH.'/kernel/'.$name.'.php';
+	// internal Class handler exist
         if (XC_CLASS_EXISTS($class = 'Xoops'.ucfirst($name).'Handler')) {
+	    $handlers[$name] = $handler = new $class($GLOBALS['xoopsDB']);
+	    return $handler;
+        }
+	include_once XOOPS_ROOT_PATH.'/kernel/'.$name.'.php';
+	if (XC_CLASS_EXISTS($class)) {
 	    $handlers[$name] = $handler = new $class($GLOBALS['xoopsDB']);
 	    return $handler;
 		}
