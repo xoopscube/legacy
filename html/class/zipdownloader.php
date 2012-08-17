@@ -79,8 +79,8 @@ class XoopsZipDownloader extends XoopsDownloader
     {
 		$file = $this->archiver->file();
 		$this->_header($name.$this->ext);
-		header(\'Content-Type: application/zip\') ;
-		header(\'Content-Length: \'.floatval(@strlen($file))) ;
+		header('Content-Type: application/zip') ;
+		header('Content-Length: '.floatval(@strlen($file))) ;
 		echo $file;
     }
 }
