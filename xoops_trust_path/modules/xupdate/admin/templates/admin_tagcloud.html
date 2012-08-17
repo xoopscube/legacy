@@ -1,5 +1,5 @@
 <{if $cloud}>
-<div class="tag_cloud" style="line-height:1.2">
+<div class="tag_cloud">
 <fieldset style="padding:1em;"><legend>Tag Cloud</legend>
 	<{foreach item=item from=$cloud key=tag}>
 	  <{assign var=tag_escaped value=$tag|escape:url}>
