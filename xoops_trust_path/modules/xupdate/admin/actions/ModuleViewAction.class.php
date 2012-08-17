@@ -137,6 +137,8 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 				$itemsobj[$key]['id'] = $mobj->getShow('id');
 				$itemsobj[$key]['dirname'] = $mobj->getShow('dirname');
 				$itemsobj[$key]['hasupdate'] = $mobj->getShow('hasupdate');
+				$itemsobj[$key]['isactive'] = $mobj->getShow('isactive');
+				$itemsobj[$key]['title'] = ($itemsobj[$key]['isactive'] == 1)? htmlspecialchars(_MI_XUPDATE_INSTALLED) : ($mobj->getVar('description')? htmlspecialchars(strip_tags($mobj->getVar('description'))) : _MI_XUPDATE_FUTURE);
 			}
 			$store_mod_arr[$sid]['itemsobj'] = $itemsobj;
 			$store_mod_arr[$sid]['items_count'] = count($itemsobj);

@@ -16,61 +16,45 @@
   </ul>
 </div>
 <{/if}>
+
+<h3><{if $screen_shot}><img src="<{$screen_shot}>" alt="" /> <{/if}><{$dirname|xoops_escape:show}></h3>
+
 <form action="index.php?action=ThemeInstall" method="post">
   <{xoops_token form=$actionForm}>
   <{xoops_input type=hidden name=confirm value=1}>
-
+  <{xoops_input type=hidden name=id value=$id }>
+  <{xoops_input type=hidden name=sid value=$sid }>
+  <{xoops_input type=hidden name=dirname value=$dirname }>
+  <{xoops_input type=hidden name=addon_url value=$addon_url }>
+  <{xoops_input type=hidden name=unzipdirlevel value=$unzipdirlevel }>
+  <{xoops_input type=hidden name=target_key value=$target_key }>
+  <{xoops_input type=hidden name=target_type value=$target_type }>
 <table class="outer">
   <tr>
-    <th>name</th>
-    <th>value</th>
+    <th colspan="2"><{$target_key|xoops_escape:show}></th>
   </tr>
-    <tr class="<{cycle values='odd,even'}>">
-        <td class="legacy_list_select">id</td>
-        <td class="legacy_list_select">
-            <{xoops_input type=hidden name=id value=$id }>
-            <{$id|xoops_escape:show}>
-        </td>
-    </tr>
-    <tr class="<{cycle values='odd,even'}>">
-        <td class="legacy_list_select"><{$smarty.const._MD_XUPDATE_LANG_SID}></td>
-        <td class="legacy_list_select">
-            <{xoops_input type=hidden name=sid value=$sid }>
-            <{$sid|xoops_escape:show}>
-        </td>
-    </tr>
-    <tr class="<{cycle values='odd,even'}>">
-        <td class="legacy_list_select">dirname</td>
-        <td class="legacy_list_select">
-            <{xoops_input type=hidden name=dirname value=$dirname }>
-            <{$dirname|xoops_escape:show}>
-        </td>
-    </tr>  <tr class="<{cycle values='odd,even'}>">
+  <tr class="<{cycle values='odd,even'}>">
+      <td class="legacy_list_select"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></td>
+      <td class="legacy_list_select">
+          <a href="index.php?action=ThemeStore&amp;sid=<{$sid}>"><{$store_name|xoops_escape:show}></a>
+      </td>
+  </tr>
+  <tr class="<{cycle values='odd,even'}>">
     <td class="legacy_list_select"><{$smarty.const._MI_XUPDATE_FTP_ADDON_URL}></td>
     <td class="legacy_list_select">
-        <{xoops_input type=hidden name=addon_url value=$addon_url }>
         <{$addon_url|xoops_escape:show}>
     </td>
   </tr>
-    <!--<tr class="<{cycle values='odd,even'}>">
-        <td class="legacy_list_select">unzipdirlevel</td>
-        <td class="legacy_list_select">
-            <{xoops_input type=hidden name=unzipdirlevel value=$unzipdirlevel }>
-            <{$unzipdirlevel|xoops_escape:show}>
-        </td>
-    </tr>-->
   <tr class="<{cycle values='odd,even'}>">
-    <td class="legacy_list_select">target_key</td>
+    <td class="legacy_list_select">Version</td>
     <td class="legacy_list_select">
-        <{xoops_input type=hidden name=target_key value=$target_key }>
-        <{$target_key|xoops_escape:show}>
+        <{$version}><{if $detailed_version}> ( <{$detailed_version}> )<{/if}>
     </td>
   </tr>
   <tr class="<{cycle values='odd,even'}>">
-    <td class="legacy_list_select">target_type</td>
+    <td class="legacy_list_select">Description</td>
     <td class="legacy_list_select">
-        <{xoops_input type=hidden name=target_type value=$target_type }>
-        <{$target_type|xoops_escape:show}>
+        <{$description}>
     </td>
   </tr>
   <tr>
