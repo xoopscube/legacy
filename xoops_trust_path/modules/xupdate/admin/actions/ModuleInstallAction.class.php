@@ -299,8 +299,11 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 		}
 
 		//execute
-		$result = $xupdateFtpModuleInstall->execute('module');
-
+		if ($result = $xupdateFtpModuleInstall->execute('module')) {
+			$store_handler =& $this->_getStoreHandler();
+			$store_handler->setNeedCacheRemake(true);
+		}
+		
 		//--------------------------------//
 		$render->setTemplateName('admin_module_install.html');
 
