@@ -6,6 +6,7 @@
 **/
 
 define('_AD_XUPDATE_LANG_WRITABLE_RESULT', "Result of the check folder permissions");
+define('_AD_XUPDATE_LANG_EXTENSION_CHECK_RESULT', "PHP extention check results");
 define('_AD_XUPDATE_LANG_FTP_PASS_RESULT', "FTP configuration check results");
 
 define('_AD_XUPDATE_LANG_MODULES', "Module list");

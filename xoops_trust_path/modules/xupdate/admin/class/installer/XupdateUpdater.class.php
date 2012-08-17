@@ -197,7 +197,7 @@ class Xupdate_Updater
     
         foreach($this->_mMileStone as $tVer => $tMethod)
         {
-            if($tVer >= $this->getCurrentVersion())
+            if($tVer > $this->getCurrentVersion())
             {
                 return intval($tVer);
             }
@@ -321,7 +321,7 @@ class Xupdate_Updater
     
         foreach($this->_mMileStone as $tVer => $tMethod)
         {
-            if($tVer >= $this->getCurrentVersion() && is_callable(array($this,$tMethod)))
+            if($tVer > $this->getCurrentVersion() && is_callable(array($this,$tMethod)))
             {
                 if (! $this->$tMethod()) {
                 	return false;

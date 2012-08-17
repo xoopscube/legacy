@@ -147,12 +147,16 @@ class Xupdate_Admin_ThemeInstallAction extends Xupdate_AbstractAction
 			if (empty($this->dirname)){
 				$this->dirname = $mobj->get('dirname');
 			}
-			$this->unzipdirlevel = $mobj->get('unzipdirlevel');
 			$this->addon_url = $this->Func->_getDownloadUrl( $this->target_key, $mobj->get('addon_url') );
-
+			$this->version = $mobj->getRenderedVersion();
+			$this->detailed_version = $mobj->options['detailed_version'];
+			$this->description = $mobj->get('description');
+			$this->screen_shot = $mobj->options['screen_shot'];
+				
 			$sobj =& $storeHand->get($this->sid);
 			if (is_object($sobj)){
 				//$this->addon_url = $sobj->get('addon_url');
+				$this->store_name = $sobj->get('name');
 			}
 		}
 		//-------------------------------------------
@@ -165,6 +169,7 @@ class Xupdate_Admin_ThemeInstallAction extends Xupdate_AbstractAction
 		//TODO
 		$render->setAttribute('id', $this->id);
 		$render->setAttribute('sid', $this->sid);
+		$render->setAttribute('store_name', $this->store_name);
 
 		$render->setAttribute('addon_url', $this->addon_url);
 
@@ -172,8 +177,10 @@ class Xupdate_Admin_ThemeInstallAction extends Xupdate_AbstractAction
 		$render->setAttribute('target_type', $this->target_type);
 		$render->setAttribute('trust_dirname', $this->trust_dirname);
 		$render->setAttribute('dirname', $this->dirname);
-
-		$render->setAttribute('unzipdirlevel', $this->unzipdirlevel);
+		$render->setAttribute('version', $this->version);
+		$render->setAttribute('detailed_version', $this->detailed_version);
+		$render->setAttribute('description', $this->description);
+		$render->setAttribute('screen_shot', $this->screen_shot);
 
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 		$render->setAttribute('actionForm', $this->mActionForm);

@@ -260,6 +260,14 @@ input[type="radio"] {
 	font-size: 80%;
 }
 
+#xupdate .isactive_1 {
+	color: gray;
+}
+
+#xupdate .isactive_-1  {
+	color: blue;
+}
+
 /* Z-index of #mask must lower than #boxes .window */
 #xupdate_mask {
   position:absolute;

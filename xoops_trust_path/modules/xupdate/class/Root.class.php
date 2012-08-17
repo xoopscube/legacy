@@ -52,18 +52,7 @@ class Xupdate_Root extends XoopsSimpleObject {
 		}else{
 			$this->params['is_writable']['path'] = $tmpf_realpath ;//OK
 		}
-		$is_writable_result = false;
-		if (!empty($tmpf_realpath) && is_dir($tmpf_realpath)) {
-			$test_file = $tmpf_realpath . DIRECTORY_SEPARATOR . 'test.ini.php';
-			if (@ touch($test_file)) {
-				$is_writable_result = true;
-				unlink($test_file);
-			} else {
-				$is_writable_result = false;
-			}
-		}
-		$this->params['is_writable']['result'] = $is_writable_result ;
-
+		$this->params['is_writable']['result'] = Xupdate_Utils::checkDirWritable($tmpf_realpath);
 
 		// Ftp class
 		require_once dirname(__FILE__) . '/Ftp.class.php';
