@@ -62,6 +62,7 @@ define('_AD_LEGACY_LANG_BLOCK_UNINSTALL', "ブロックのアンインストー�
 define('_AD_LEGACY_LANG_BLOCK_VAL', "値");
 define('_AD_LEGACY_LANG_BLOCKS_INFO', "ブロック情報");
 define('_AD_LEGACY_LANG_C_TYPE', "タイプ");
+define('_AD_LEGACY_LANG_CENTER_BLOCK_GLOBAL', "グローバル・ブロック");
 define('_AD_LEGACY_LANG_CENTER_BLOCK_CENTER', "中央ブロック - 中央");
 define('_AD_LEGACY_LANG_CENTER_BLOCK_LEFT', "中央ブロック - 左");
 define('_AD_LEGACY_LANG_CENTER_BLOCK_RIGHT', "中央ブロック - 右");
@@ -136,7 +137,7 @@ define('_AD_LEGACY_LANG_INSTALL', "インストール");
 define('_AD_LEGACY_LANG_ISACTIVE', "アクティブ");
 define('_AD_LEGACY_LANG_LAST_MODIFIED', "最終更新日時");
 define('_AD_LEGACY_LANG_LASTUPDATE', "最終更新日");
-define('_AD_LEGACY_LANG_LCR', "左-中央-右");
+define('_AD_LEGACY_LANG_LCR', "グローバル:左-中央-右");
 define('_AD_LEGACY_LANG_LIST', "一覧");
 define('_AD_LEGACY_LANG_LICENCE', "ライセンス");
 define('_AD_LEGACY_LANG_MAINMENU_HAS_MAIN', "メインメニュー");
