@@ -5,7 +5,7 @@
 	<h3 class="admintitle"><{$smarty.const._MI_XUPDATE_ADMENU_STORELIST}></h3>
 	<{include file="admin_menunavi.html"}>
 	<{include file="admin_tips.html"}>
-
+	
 	<{if !empty($package_items) }>
 	<h4><{$smarty.const._MI_XUPDATE_ADMENU_PACKAGE}></h4>
 	<div class="storelist">
@@ -19,7 +19,7 @@
 						<div class="module_count">(<{$smarty.const._AD_XUPDATE_LANG_ITEM_TOTAL}>: <{$data.items_count}>)</div>
 						<ul>
 						<{foreach item=itemsobj from=$data.itemsobj}>
-							<li><a href="index.php?action=ModuleInstall&amp;id=<{$itemsobj.id}>"><{$itemsobj.dirname}><{if $itemsobj.hasupdate}> <img src="<{$smarty.const.XOOPS_MODULE_URL}>/xupdate/images/new.png" alt="New!" style="vertical-align:middle;" width="16" height="16"><{/if}></a></li>
+							<li><a href="index.php?action=ModuleInstall&amp;id=<{$itemsobj.id}>" class="isactive_<{$itemsobj.isactive}>" title="<{$itemsobj.title}>"><{$itemsobj.dirname}><{if $itemsobj.hasupdate}> <img src="<{$smarty.const.XOOPS_MODULE_URL}>/xupdate/images/new.png" alt="New!" style="vertical-align:middle;" width="16" height="16"><{/if}></a></li>
 						<{/foreach}>
 						</ul>
 					</dd>
@@ -43,7 +43,7 @@
 						<div class="module_count">(<{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>: <{$data.items_count}>)</div>
 						<ul>
 						<{foreach item=itemsobj from=$data.itemsobj}>
-							<li><a href="index.php?action=ModuleInstall&amp;id=<{$itemsobj.id}>"><{$itemsobj.dirname}><{if $itemsobj.hasupdate}> <img src="<{$smarty.const.XOOPS_MODULE_URL}>/xupdate/images/new.png" alt="New!" style="vertical-align:middle;" width="16" height="16"><{/if}></a></li>
+							<li><a href="index.php?action=ModuleInstall&amp;id=<{$itemsobj.id}>" class="isactive_<{$itemsobj.isactive}>" title="<{$itemsobj.title}>"><{$itemsobj.dirname}><{if $itemsobj.hasupdate}> <img src="<{$smarty.const.XOOPS_MODULE_URL}>/xupdate/images/new.png" alt="New!" style="vertical-align:middle;" width="16" height="16"><{/if}></a></li>
 						<{/foreach}>
 						</ul>
 					</dd>
@@ -67,7 +67,7 @@
 						<div class="module_count">(<{$smarty.const._AD_XUPDATE_LANG_THM_TOTAL}>: <{$data.items_count}>)</div>
 						<ul>
 						<{foreach item=itemsobj from=$data.itemsobj}>
-							<li><a href="index.php?action=ThemeInstall&amp;id=<{$itemsobj.id}>"><{$itemsobj.dirname}><{if $itemsobj.hasupdate}> <img src="<{$smarty.const.XOOPS_MODULE_URL}>/xupdate/images/new.png" alt="New!" style="vertical-align:middle;" width="16" height="16"><{/if}></a></li>
+							<li><a href="index.php?action=ThemeInstall&amp;id=<{$itemsobj.id}>" class="isactive_<{$itemsobj.isactive}>" title="<{$itemsobj.title}>"><{$itemsobj.dirname}><{if $itemsobj.hasupdate}> <img src="<{$smarty.const.XOOPS_MODULE_URL}>/xupdate/images/new.png" alt="New!" style="vertical-align:middle;" width="16" height="16"><{/if}></a></li>
 						<{/foreach}>
 						</ul>
 					</dd>

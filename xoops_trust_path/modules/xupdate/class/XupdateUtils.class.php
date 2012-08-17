@@ -114,6 +114,27 @@ class Xupdate_Utils
 		}
 		return $url;
     }
+    
+    /**
+     * Check, Is directory writable
+     * 
+     * @param string $dir
+     * @return boolean
+     */
+    public static function checkDirWritable($dir) {
+    	$ret = false;
+    	$dir = rtrim($dir, '/\\');
+    	if (!empty($dir) && is_dir($dir)) {
+    		$test = $dir . DIRECTORY_SEPARATOR . 'writable.check';
+    		if (@ touch($test)) {
+    			$ret = true;
+    			unlink($test);
+    		} else {
+    			$ret = false;
+    		}
+    	}
+    	return $ret;
+    }
 }
 
 ?>

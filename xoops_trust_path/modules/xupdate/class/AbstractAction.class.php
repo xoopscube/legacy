@@ -50,6 +50,8 @@ abstract class Xupdate_AbstractAction
 		$this->mod_config = $this->mRoot->mContext->mModuleConfig ;	// mod_config
 		// FTP login check
 		$this->mod_config['_FtpLoginCheck'] = $this->Ftp->checkLogin();
+		// curl extention check
+		$this->mod_config['_CurlCheck'] = (extension_loaded('curl'));
 		//	adump($this->mod_config);
 
    }
