@@ -212,7 +212,8 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$this->mActionForm->fetch();
 		$this->mActionForm->validate();
 
-		if ($this->mActionForm->hasError()) {
+		$doConfirm = $this->mRoot->mContext->mRequest->getRequest('do_confirm');
+		if ($doConfirm || $this->mActionForm->hasError()) {
 			return $this->_processConfirm();
 		} else {
 			return $this->_processSave();
@@ -295,6 +296,8 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 
 	function executeViewSuccess(&$renderer)
 	{
+		$store_handler =& $this->_getStoreHandler();
+		$store_handler->setNeedCacheRemake(true);
 		if (empty($this->sid)){
 			$this->mRoot->mController->executeForward('./index.php?action='.$this->action);
 		}else{

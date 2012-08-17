@@ -65,8 +65,12 @@ class Xupdate_StoreHandler extends XoopsObjectGenericHandler
 		$this->cacheCheckFile = XOOPS_TRUST_PATH . '/' . trim($module_config['temp_path'], '/') . '/' . rawurlencode(substr(XOOPS_URL, 7)).'_cacheCheck.ini.php';
 	}
 
-	public function setNeedCacheRemake() {
-		touch($this->cacheCheckFile, 0);
+	public function setNeedCacheRemake($remove = false) {
+		if ($remove) {
+			unlink($this->cacheCheckFile);
+		} else {
+			touch($this->cacheCheckFile, 0);
+		}
 	}
 	
 	public function getCacheCheckFile() {
