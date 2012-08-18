@@ -341,6 +341,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$message_Processing = _AD_XUPDATE_LANG_MESSAGE_PROCESSING;
 		$message_btn_install = _MI_XUPDATE_ADMENU_MODULE._INSTALL;
 		$message_btn_update = _MI_XUPDATE_ADMENU_MODULE._MI_XUPDATE_UPDATE;
+		$refrash_url = XOOPS_MODULE_URL . '/xupdate/admin/index.php?action=ModuleView&checkonly=1';
 
 		$ret =<<< HTML
 jQuery(function($){
@@ -545,7 +546,12 @@ jQuery(function($){
 
 		if ( installedModuleTotal == installationModuleTotal )
 		{
-			$('#rapidInstallStatus').text("{$message_Success}")
+			$.ajax({
+				type: 'GET',
+				cache: false,
+				url: "{$refrash_url}"
+			});
+			$('#rapidInstallStatus').text("{$message_Success}");
 			return installedModuleTotal;
 		}
 
