@@ -31,8 +31,10 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract {
 		$this->LocalEcho = FALSE;
 		//$this->Passive(TRUE);
 
+		$port = (int)$this->mod_config['SSH_port'];
+
 		//phpseclib
-		$this->sftp = new Net_SFTP($server);
+		$this->sftp = new Net_SFTP($server, $port);
 
 		if (!$this->sftp->login($ftp_id, $ftp_pass)) {
 			$this->mes.= "SSH Login Failed<br />\n";
