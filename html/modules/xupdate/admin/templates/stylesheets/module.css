@@ -311,7 +311,8 @@ input[type="radio"] {
 	margin-bottom: 10px;
 }
 
-.sticky {
+.sticky,
+.ondemand {
 	left: 300px;
 	width: 400px;
 	height: 40px;
@@ -326,13 +327,24 @@ input[type="radio"] {
 	border-radius: 10px;
 	border-top-left-radius: 0px;
 	border-top-right-radius: 0px;
+	background: #91BD09; /* Old browsers */
+	background: -moz-linear-gradient(top, #91BD09 0%, #91BD09 100%); /* FF3.6+ */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#91BD09', endColorstr='#91BD09')";
+	-pie-background: linear-gradient(#91BD09, #91BD09 100%);
+	behavior: url(PIE.htc);
+	-moz-box-shadow: 1px 1px 7px #676767;
+	-webkit-box-shadow: 1px 1px 7px #676767;
+	box-shadow: 1px 1px 7px #676767;
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, #91BD09),color-stop(1, #91BD09));/* IE6,IE7 */
 }
 
-.sticky a {
+.sticky a,
+.ondemand a {
 	margin-top: 12px;
 }
 
-.sticky div {
+.sticky div,
+.ondemand div {
 	text-align: center;
 	font-size: 14px;
 	margin-left: auto;
@@ -340,7 +352,34 @@ input[type="radio"] {
 	margin-top: 12px;
 }
 
-.sticky div a {
+.sticky div a,
+.ondemand div a {
 	float: none;
 	color: white;
+}
+
+.ondemand-button
+{
+	width:20px !important;
+	height:20px;
+	float:right !important;
+	z-index:999;
+	position:absolute;
+	/*margin-right:100px!important;*/
+	top: 0;
+	right: 0;
+	-webkit-border-radius: 10px;
+	-webkit-border-top-left-radius: 0px;
+	-webkit-border-top-right-radius: 0px;
+	-moz-border-radius: 10px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-topright: 0px;
+	border-radius: 10px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+}
+
+.ondemand-button img
+{
+	margin: 0;
 }

@@ -203,24 +203,37 @@ class Xupdate_Block extends Legacy_AbstractBlockProcedure
 			if ($count = $handler->getCountHasUpdate()) {
 				$root =& XCube_Root::getSingleton();
 				$root->mLanguageManager->loadBlockMessageCatalog('xupdate');
+				$type = (! empty($_COOKIE['xupdate_ondemand']))? 'ondemand' : 'sticky';
+				$arg = parse_url(XOOPS_URL);
+				$cookie_path = $arg['path'] . '/';
 				$notifyJS = <<<EOD
-$('.notification.sticky').notify();
-$('.button').click(function () {
-	$('.notification').removeClass('hide').addClass('hide').removeClass('visible');
-	$('.notification.' + $(this).attr('id') + '').notify({ type: $(this).attr('id') });
+$('.notification.{$type}').notify({ type: '{$type}' });
+$('.close').click(function(){
+	$.cookie('xupdate_ondemand', '1', { path: '{$cookie_path}' });
+});
+$('.ondemand-button').click(function(){
+	$.removeCookie('xupdate_ondemand', { path: '{$cookie_path}' });
 });
 EOD;
+				$ondemandBtn = '';
+				if ($type === 'ondemand') {
+					$notifyJS .= "\n".'$(\'.ondemand-button\').show();';
+					$ondemandBtn = '<div class="hide ondemand-button">
+        			<a href="javascript:"><img src="'.XOOPS_URL.'/common/js/notify/images/icon-arrowdown.png" /></a>
+					</div>';
+				}
 				$headerScript= $root->mContext->getAttribute('headerScript');
 				$headerScript->addStylesheet('/common/js/notify/style/default.css');
 				$headerScript->addStylesheet('/modules/xupdate/admin/templates/stylesheets/module.css');
 				$headerScript->addLibrary('/common/js/notify/notification.js');
+				$headerScript->addLibrary('/common/js/jquery.cookie.js');
 				$headerScript->addScript($notifyJS);
-				$result = '<div class="notification sticky hide">
+				$result = '<div class="notification '.$type.' hide">
 				<a class="close" href="javascript:"><img src="'.XOOPS_URL.'/common/js/notify/images/icon-close.png" /></a>
 				<div>
 				<a href="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleStore&amp;filter=updated">'.sprintf(_MB_XUPDATE_HAVE_UPDATEMODULE, $count).'</a>
 				</div>
-				</div>';
+				</div>' . $ondemandBtn;
 			}
 		}
 
