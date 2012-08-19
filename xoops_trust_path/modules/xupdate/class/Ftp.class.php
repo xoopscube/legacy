@@ -204,17 +204,18 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	 * @return boolean
 	 */
 	public function checkLogin() {
-		$ret = true;
-		if (! @ unserialize(@ file_get_contents($this->loginCheckFile))) {
+		$checkKey = md5(serialize($this->mod_config));
+		if (! ($ret = @ unserialize(@ file_get_contents($this->loginCheckFile))) || !is_array($ret) || !isset($ret[$checkKey])) {
+			$ret = array();
 			if ($this->app_login()) {
 				$this->app_logout();
-				$ret = true;
+				$ret[$checkKey] = true;
 			} else {
-				$ret = false;
+				$ret[$checkKey] = false;
 			}
 			file_put_contents($this->loginCheckFile, serialize($ret));
 		}
-		return $ret;
+		return $ret[$checkKey];
 	}
 	
 	/**
