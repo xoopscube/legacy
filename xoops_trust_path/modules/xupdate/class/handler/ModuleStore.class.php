@@ -113,8 +113,16 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 			$this->mModule->cleanVars();
 			
 			$this->options = $this->unserialize_options();
-			
-			$this->mModule->setVar('version', $this->getVar('version'));
+			if (isset($this->options['modinfo'])) {
+				$this->modinfo = $this->options['modinfo'];
+				if (! isset($this->modinfo['version'])) {
+					$this->modinfo['version'] = 0;
+				}
+				$this->mModule->setVar('version', $this->modinfo['version'] * 100);
+			} else {
+				$this->mModule->setVar('version', $this->getVar('version'));
+				$this->modinfo = array('version' => $this->mModule->getRenderedVersion());
+			}
 			if ($readini) {
 				// for Theme
 				if ($this->getVar('target_type') == 'Theme') {
@@ -122,19 +130,23 @@ class Xupdate_ModuleStore extends XoopsSimpleObject {
 					if (is_dir($t_dir)) {
 						$this->setVar('isactive', 1);
 						$this->setVar('last_update', filemtime($t_dir));
-						if (! $this->getVar('version')) {
-							$m_file = $t_dir . '/' . 'manifesto.ini.php';
-							if (is_file($m_file)) {
-								if ($manifesto = @ parse_ini_file($m_file)) {
-									if (!empty($manifesto['Version'])) {
-										$this->setVar('version', $manifesto['Version'] * 100);
-										$this->mModule->setVar('version', $this->getVar('version'));
+						$m_file = $t_dir . '/' . 'manifesto.ini.php';
+						if (is_file($m_file)) {
+							if ($manifesto = @ parse_ini_file($m_file)) {
+								if (!empty($manifesto['Version'])) {
+									$mVersion = $manifesto['Version'] * 100;
+									if (! $this->getVar('version')) {
+										$this->setVar('version', $mVersion);
 									}
+									$this->mModule->setVar('version', $mVersion);
+									$this->modinfo = array('version' => $this->mModule->getRenderedVersion());
 								}
 							}
 						}
 					}
 				}
+				$this->options['modinfo'] = $this->modinfo;
+				$this->setVar('options', serialize($this->options));
 				if (($this->getVar('version') && $this->mModule->getVar('version') != $this->getVar('version'))
 						||
 						(isset($this->modinfo['detailed_version']) && $this->modinfo['detailed_version'] != $this->options['detailed_version'])) {
