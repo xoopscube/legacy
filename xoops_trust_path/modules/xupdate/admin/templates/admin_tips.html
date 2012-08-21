@@ -21,5 +21,14 @@
 		(<span style="color:red;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_FTP_PASS_RESULT}> NG</span>)
 	<{/if}>
 	</li>
+	<li><{$smarty.const._AD_XUPDATE_LANG_EXECUTION_TIME}>
+	<{if $mod_config._ExecutionTime >= 300 }>
+		(<span style="color:green;font-weight:bold;"><{$mod_config._ExecutionTime}>s OK</span>)
+	<{elseif $mod_config._ExecutionTime == 0 }>
+		(<span style="color:green;font-weight:bold;"> OK</span>)
+	<{else}>
+		(<span style="color:orange;"><span style="color:red;font-weight:bold;"><{$mod_config._ExecutionTime}>s</span> <{$smarty.const._AD_XUPDATE_LANG_EXECUTION_TIME_NOTICE}></span>)
+	<{/if}>
+	</li>
 </ul>
 </div>

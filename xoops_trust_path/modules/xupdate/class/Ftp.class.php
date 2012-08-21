@@ -61,6 +61,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	
 	private $loginCheckFile;
 	private $phpPerm;
+	private $uploaded_files = array();
 	
 	/* Constructor */
 	public function __construct($XupdateObj, $port_mode=FALSE, $verb=FALSE, $le=FALSE) {
@@ -70,6 +71,19 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		if (! empty($this->mod_config['php_perm'])) {
 			$this->phpPerm = intval($this->mod_config['php_perm'], 8);
 		}
+		
+		// for upload retry mode
+		$retry_cache_file = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/').'/retry_cache.ser';
+		if (isset($_POST['upload_retry']) && is_file($retry_cache_file)) {
+			if ($retry_cache = @unserialize(file_get_contents($retry_cache_file))) {
+				$this->uploaded_files = $retry_cache['uploaded_files'];
+				$GLOBALS['xupdate_retry_cache'] = $retry_cache;
+			}
+		}
+		if (! isset($GLOBALS['xupdate_retry_cache'])) {
+			$GLOBALS['xupdate_retry_cache'] = array();
+		}
+		$GLOBALS['xupdate_retry_cache']['uploaded_files'] = array();
 	}
 
 // <!-- --------------------------------------------------------------------------------------- -->
@@ -330,27 +344,42 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			return false;
 		}
 		$mode = ($trust_dirname && $dirname)? 'repModule' : ($trust_dirname? 'repMisc' : 'normal');
-		$file_list = $this->_getFileList($local_path);
-		$dir_cnt = 0;
-		if (isset($file_list['dir']) && is_array($file_list['dir'])) {
-			$dir = $file_list['dir'];
-			krsort($dir);
-			foreach ($dir as $directory){
-				if ($mode === 'repMisc') {
-					if (strstr($directory ,'/modules/'.$trust_dirname)){
-						continue;
-					}
-				} else if ($mode === 'repModule') {
-					$directory = str_replace('/modules/'.$trust_dirname, '/modules/'.$dirname, $directory);
-				}
-				$remote_directory = $remote_path.substr($directory, $remote_pos);
-				if (!is_dir($remote_directory) && !$this->_dont_overwrite($remote_directory, true)){
-					$this->ftp_mkdir($remote_directory);
-				}
-				$dir_cnt++;
-			}
+		if (! isset($GLOBALS['xupdate_retry_cache']['file_list'])) {
+			$GLOBALS['xupdate_retry_cache']['file_list'] = array();
+			$GLOBALS['xupdate_retry_cache']['dir_cnt'] = array();
 		}
-		
+		if (! isset($GLOBALS['xupdate_retry_cache']['file_list'][$local_path])) {
+			$file_list = $this->_getFileList($local_path);
+			$GLOBALS['xupdate_retry_cache']['file_list'][$local_path] = $file_list;
+			$GLOBALS['xupdate_retry_cache']['dir_cnt'][$local_path] = array();
+		} else {
+			$file_list = $GLOBALS['xupdate_retry_cache']['file_list'][$local_path];
+		}
+		if (! isset($GLOBALS['xupdate_retry_cache']['dir_cnt'][$local_path][$mode])) {
+			$dir_cnt = 0;
+			if (isset($file_list['dir']) && is_array($file_list['dir'])) {
+				$dir = $file_list['dir'];
+				krsort($dir);
+				foreach ($dir as $directory){
+					if ($mode === 'repMisc') {
+						if (strstr($directory ,'/modules/'.$trust_dirname)){
+							continue;
+						}
+					} else if ($mode === 'repModule') {
+						$directory = str_replace('/modules/'.$trust_dirname, '/modules/'.$dirname, $directory);
+					}
+					$remote_directory = $remote_path.substr($directory, $remote_pos);
+					if (!is_dir($remote_directory) && !$this->_dont_overwrite($remote_directory, true)){
+						$this->ftp_mkdir($remote_directory);
+					}
+					$dir_cnt++;
+				}
+			}
+			$GLOBALS['xupdate_retry_cache']['dir_cnt'][$local_path][$mode] = $dir_cnt;
+		} else {
+			$dir_cnt = $GLOBALS['xupdate_retry_cache']['dir_cnt'][$local_path][$mode];
+		}
+
 		// file nothing
 		if (empty($file_list['file'])) {
 			return true;
@@ -361,9 +390,22 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			return false;
 		}
 		$res = array('ok' => $dir_cnt, 'ng' => array());
+		$uploaded_files =& $GLOBALS['xupdate_retry_cache']['uploaded_files'];
 		foreach ($file_list['file'] as $l_file){
+			// check done file on upload retry mode
+			if (isset($this->uploaded_files[$l_file])) {
+				$uploaded_files[$l_file] = $this->uploaded_files[$l_file];
+				if ($this->uploaded_files[$l_file] === true) {
+					$res['ok']++;
+				} else if ($this->uploaded_files[$l_file]) {
+					$res['ng'][] = $this->uploaded_files[$l_file];
+				}
+				continue;
+			}
+			
 			if ($mode === 'repMisc') {
 				if (strstr($l_file, '/modules/'.$trust_dirname.'/')){
+					$uploaded_files[$l_file] = false; // for update retry mode
 					continue;
 				}
 				$r_file = $remote_path.substr($l_file, $remote_pos ); // +1 is remove first flash
@@ -375,12 +417,13 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			}
 			$ftp_remote_file = substr($r_file, strlen($ftp_root));
 			$dont_overwrite = $this->_dont_overwrite($r_file);
-			@ set_time_limit(120);
-			if ( $dont_overwrite === false &&  !$this->put($l_file, $ftp_remote_file) ){
+			if ( $dont_overwrite === false && !$this->put($l_file, $ftp_remote_file) ){
 				$res['ng'][] = $ftp_remote_file;
+				$uploaded_files[$l_file] = $ftp_remote_file;
 			} else {
 				$res['ok']++;
 				$this->setPhpPerm($ftp_remote_file);
+				$uploaded_files[$l_file] = true; // for update retry mode
 			}
 		}
 		return $res;

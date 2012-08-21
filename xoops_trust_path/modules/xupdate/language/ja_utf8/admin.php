@@ -8,6 +8,8 @@
 define('_AD_XUPDATE_LANG_WRITABLE_RESULT', "フォルダ権限チェック結果");
 define('_AD_XUPDATE_LANG_EXTENSION_CHECK_RESULT', "PHPエクステンションチェック結果");
 define('_AD_XUPDATE_LANG_FTP_PASS_RESULT', "FTP設定チェック結果");
+define('_AD_XUPDATE_LANG_EXECUTION_TIME', "PHP 実行時間制限");
+define('_AD_XUPDATE_LANG_EXECUTION_TIME_NOTICE', "PHP 実行時間制限が短いので大きなアイテムは自動更新できないことがあります。");
 
 define('_AD_XUPDATE_LANG_MODULES', "モジュール一覧");
 define('_AD_XUPDATE_LANG_THEME_FINDER', "テーマファインダー");
@@ -29,6 +31,19 @@ define('_AD_XUPDATE_LANG_MESSAGE_SUCCESS', "完了");
 define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES', "配置");
 define('_AD_XUPDATE_LANG_MESSAGE_PROCESSING', "中");
 define('_AD_XUPDATE_LANG_BUTTON_UPDATE', '更新');
+
+define('_AD_XUPDATE_LANG_TIMEOUT_ERROR', 'PHP 実行時タイムアウト');
+define('_AD_XUPDATE_LANG_STAGE_1', 'アーカイブのダウンロードを開始しました。');
+define('_AD_XUPDATE_LANG_STAGE_2', 'ダウンロード完了。');
+define('_AD_XUPDATE_LANG_STAGE_3', '対象ディレクトリの探索中。');
+define('_AD_XUPDATE_LANG_STAGE_4', 'FTP接続完了。');
+define('_AD_XUPDATE_LANG_STAGE_5', 'ファイルの配置を開始しました。');
+define('_AD_XUPDATE_LANG_STAGE_6', 'ファイルの配置完了。');
+define('_AD_XUPDATE_LANG_STAGE_7', 'パーミッション設定完了。');
+define('_AD_XUPDATE_LANG_STAGE_TIMEOUT', 'PHP の実行時間制限によりタイムアウトしました。');
+define('_AD_XUPDATE_LANG_STAGE_UPLOAD_RETRY', 'ファイル配置の続きを実行をするにはここをクリック');
+define('_AD_XUPDATE_LANG_STAGE_TASK_RETRY', '続きの処理を実行をするにはここをクリック');
+define('_AD_XUPDATE_LANG_STAGE_UPLOAD_NOT_COMPLETE', 'ファイルの配置が不完全なため [ <a href="%s">こちらのリンク</a> ] からアーカイブを取得して、手作業で FTP アップロードを行いファイルを適切に配置してください。');
 
 define('_AD_XUPDATE_LANG_THM_TOTAL'  , 'テーマの合計');
 define('_AD_XUPDATE_LANG_ITEM_TOTAL'  , 'アイテムの合計');
