@@ -65,8 +65,14 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 
 		$result = true;
 		if( $this->Xupdate->params['is_writable']['result'] === true ) {
+			$is_upload_retry = isset($_POST['upload_retry']);
+			
+			$GLOBALS['xupdate_stage'] = 1;
+			
 			// clean up download dirctory
-			$this->_cleanUp_downloadDir();
+			if (! $is_upload_retry) {
+				$this->_cleanUp_downloadDir();
+			}
 			
 			if(! $this->checkExploredDirPath($this->target_key)) {
 				$this->_set_error_log(_MI_XUPDATE_ERR_MAKE_EXPLOREDDIR . ': ' .$this->target_key);
@@ -81,17 +87,25 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			$downloadUrl = $this->Func->_getDownloadUrl( $this->target_key, $this->downloadUrlFormat );
 			$this->download_file = $this->target_key . (preg_match('/\btar\b/i', $downloadUrl)? '.tar.gz' : '.zip');
 			
+			register_shutdown_function('xupdate_on_shutdown', $this->Xupdate->params['temp_path'], $downloadUrl);
+			
 			$this->content.= _MI_XUPDATE_PROG_FILE_GETTING . '<br />';
-			if ($this->Func->_downloadFile( $this->target_key, $downloadUrl, $this->download_file, $this->downloadedFilePath )){
+			if ($is_upload_retry || $this->Func->_downloadFile( $this->target_key, $downloadUrl, $this->download_file, $this->downloadedFilePath )){
+				$GLOBALS['xupdate_stage'] = 2;
 				$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
 				$exploredRoot = $this->exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
+				if ($is_upload_retry) {
+					$this->downloadedFilePath = $this->Func->_getDownloadFilePath( $downloadDirPath, $this->download_file );
+				}
 				if($this->_unzipFile()==true) {
+					$GLOBALS['xupdate_stage'] = 3;
 					// ディレクトリを掘り下げて探索
 					if (! $this->_exploredDirPath_DownDir()) {
 						$this->_set_error_log(_MI_XUPDATE_ERR_FTP_NOTFOUND);
 					}
 					// TODO port , timeout
 					if ($this->Ftp->isConnected() || $this->Ftp->app_login()==true) {
+						$GLOBALS['xupdate_stage'] = 4;
 						// overwrite control
 						if(! isset($this->options['no_overwrite'])){
 							$this->options['no_overwrite'] = array();
@@ -100,26 +114,16 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 							$this->options['install_only'] = array();
 						}
 						$this->Ftp->set_no_overwrite(array($this->options['no_overwrite'], $this->options['install_only']));
+						$GLOBALS['xupdate_stage'] = 5;
 						if (!$this->uploadFiles()){
 							$this->_set_error_log(_MI_XUPDATE_ERR_FTP_UPLOADFILES);
 							$result = false;
 						}
-						// change directories to writable
-						if(isset($this->options['writable_dir'])){
-							array_map(array($this, '_chmod_dir'),$this->options['writable_dir']);
-						}
-						// change files to writable
-						if(isset($this->options['writable_file'])){
-							array_map(array($this, '_chmod_file'),$this->options['writable_file']);
-						}
-						// delete dirs recursive
-						if(isset($this->options['delete_dir'])){
-							array_map(array($this, '_rmdir_recursive'),$this->options['delete_dir']);
-						}
-						// delete files
-						if(isset($this->options['delete_file'])){
-							array_map(array($this, '_delete'),$this->options['delete_file']);
-						}
+						$GLOBALS['xupdate_stage'] = 6;
+						
+						$this->_set_item_perm();
+						
+						$GLOBALS['xupdate_stage'] = 7;
 					}else{
 						$this->_set_error_log(_MI_XUPDATE_ERR_FTP_LOGIN);
 						$result = false;
@@ -414,6 +418,113 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			closedir($handle);
 		}
 	}
+	
+	private function _set_item_perm() {
+		// change directories to writable
+		if(isset($this->options['writable_dir'])){
+			array_map(array($this, '_chmod_dir'),$this->options['writable_dir']);
+		}
+		// change files to writable
+		if(isset($this->options['writable_file'])){
+			array_map(array($this, '_chmod_file'),$this->options['writable_file']);
+		}
+		// delete dirs recursive
+		if(isset($this->options['delete_dir'])){
+			array_map(array($this, '_rmdir_recursive'),$this->options['delete_dir']);
+		}
+		// delete files
+		if(isset($this->options['delete_file'])){
+			array_map(array($this, '_delete'),$this->options['delete_file']);
+		}
+	}
 } // end class
+
+/**
+ * Called on shutdown of PHP
+ *
+ * @param string $cache_dir
+ * @param string $download_url
+ */
+function xupdate_on_shutdown($cache_dir, $download_url) {
+	$lock_file = realpath($cache_dir) . '/xupdate.lock';
+	$retry_cache_file = realpath($cache_dir) . '/retry_cache.ser';
+	@ unlink($retry_cache_file);
+	if (connection_status() > 1 || is_file($lock_file)) {
+		@ unlink($lock_file);
+		file_put_contents($retry_cache_file, serialize($GLOBALS['xupdate_retry_cache']));
+		$buf = '';
+		while (ob_get_level()) {
+			$buf .= ob_get_contents();
+			if (! @ ob_end_clean()) {
+				break;
+			}
+		}
+		$msg = array();
+		$is_upload_retry = isset($_POST['upload_retry']);
+		$uploaded_count = count($GLOBALS['xupdate_retry_cache']['uploaded_files']);
+		$uploaded_count_before = isset($_POST['uploaded_count'])? $_POST['uploaded_count'] : 0;
+		$total_files = 0;
+		if (isset($GLOBALS['xupdate_retry_cache']['file_list'])) {
+			foreach($GLOBALS['xupdate_retry_cache']['file_list'] as $list) {
+				$total_files += count($list['file']);
+			}
+		}
+		$msg[] = '<html><head><title>'._AD_XUPDATE_LANG_TIMEOUT_ERROR.'</title></head><body>';
+		$msg[] = '<h1>'._AD_XUPDATE_LANG_TIMEOUT_ERROR.'</h1>';
+		$start = $is_upload_retry? 3 : 1;
+		for ($i = $start; $i <= $GLOBALS['xupdate_stage']; $i++) {
+			$done_files = '';
+			if ($i === 5) {
+				$done_files = ' ('._AD_XUPDATE_LANG_MESSAGE_SUCCESS.': '.$uploaded_count.'/'.$total_files.')';
+			}
+			$msg[] = constant('_AD_XUPDATE_LANG_STAGE_'.$i) . $done_files;
+		}
+		$msg[] = _AD_XUPDATE_LANG_STAGE_TIMEOUT;
+		if ($GLOBALS['xupdate_stage'] < 5) {
+			$msg[] = sprintf(_AD_XUPDATE_LANG_STAGE_UPLOAD_NOT_COMPLETE, $download_url);
+		} else if ($GLOBALS['xupdate_stage'] > 4) {
+			$post = $_POST;
+			unset($_POST['uploaded_count'], $_POST['upload_retry']);
+			if (isset($_SESSION['XCUBE_TOKEN'])) {
+				foreach($_SESSION['XCUBE_TOKEN'] as $key => $val) {
+					if ($key) {
+						$key = strtr($key, '.', '_');
+						unset($post[$key]);
+						$post[$key] = $val;
+					}
+				}
+				$post['upload_retry'] = 1;
+				$post['uploaded_count'] = $uploaded_count;
+			}
+			if ($is_upload_retry && $uploaded_count_before > $uploaded_count) {
+				$msg[] = sprintf(_AD_XUPDATE_LANG_STAGE_UPLOAD_NOT_COMPLETE, $download_url);
+			} else {
+				$form = '<form method="post" action="./?'.$_SERVER['QUERY_STRING'].'" onsubmit="document.getElementById(\'retry\').disabled=\'disabled\'">';
+				foreach($post as $key => $val) {
+					if (is_array($val)) {
+						foreach ($val as $_val) {
+							$form .= '<input type="hidden" name="'.htmlspecialchars($key).'[]" value="'.htmlspecialchars($_val).'" />';
+						}
+					} else {
+						$form .= '<input type="hidden" name="'.htmlspecialchars($key).'" value="'.htmlspecialchars($val).'" />';
+					}
+				}
+				$form .= '<input id="retry" type="submit" value="'.(($GLOBALS['xupdate_stage'] === 5)? _AD_XUPDATE_LANG_STAGE_UPLOAD_RETRY : _AD_XUPDATE_LANG_STAGE_TASK_RETRY).'" />';
+				$form .= '</form>';
+				$msg[] = $form;
+			}
+		}
+		if ($buf) {
+			$msg[] = str_repeat('-', 20);
+			$msg[] = 'PHP error message:';
+			$msg[] = $buf;
+		}
+		$msg[] = '</body></html>';
+		if (! headers_sent()) {
+			header('Content-type: text/html; charset='._CHARSET);
+		}
+		echo join('<br />'."\n", $msg);
+	}
+}
 
 ?>

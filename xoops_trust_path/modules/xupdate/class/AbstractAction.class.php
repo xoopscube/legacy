@@ -52,6 +52,9 @@ abstract class Xupdate_AbstractAction
 		$this->mod_config['_FtpLoginCheck'] = $this->Ftp->checkLogin();
 		// curl extention check
 		$this->mod_config['_CurlCheck'] = (extension_loaded('curl'));
+		// php max_execution_time
+		@ set_time_limit(300);
+		$this->mod_config['_ExecutionTime'] = (int)ini_get('max_execution_time');
 		//	adump($this->mod_config);
 
    }
