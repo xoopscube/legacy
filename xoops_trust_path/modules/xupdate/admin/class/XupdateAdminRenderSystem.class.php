@@ -271,12 +271,12 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
     /**
      * functionStylesheet
      * 
-     * @param   {string 'file',string 'media'}  $param
+     * @param   {string 'file',string 'media'}  $params
      * @param   Smarty  &$smarty
      * 
      * @return  void
     **/
-    public static function functionStylesheet(/*** {string 'file',string 'media'} ***/ $param,/*** Smarty ***/ &$smarty)
+    public static function functionStylesheet(/*** {string 'file',string 'media'} ***/ $params,/*** Smarty ***/ &$smarty)
     {
         if(!isset($params['file']) || strpos($params['file'],'..') !== false)
         {
