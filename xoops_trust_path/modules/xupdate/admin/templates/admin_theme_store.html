@@ -95,7 +95,7 @@
 	      </div>
 	      <div class="legacy_list_order">
 	        <{if $module->hasNeedUpdate()}>
-	          (<{ $module->mModule && $module->mModule->getRenderedVersion()}>)
+	          (<{$module->mModule->getRenderedVersion()}>)
 	          <strong class="legacy_module_versionMsg"><{$module->getRenderedVersion()}></strong>
 	        <{else}>
 	          <{$module->getRenderedVersion()}>
