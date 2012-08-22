@@ -12,6 +12,7 @@ if (!defined('_XUPDATE_FTP_CUSTOM')){
 	define ('_XUPDATE_FTP_PHP_MODULE',	'1' ) ;
 	define ('_XUPDATE_FTP_CUSTOM_SFTP',	'2' ) ;
 	define ('_XUPDATE_FTP_CUSTOM_SSH2',	'3' ) ;
+	define ('_XUPDATE_FTP_DIRECT',	'4' ) ;
 }
 
 // module config
@@ -49,6 +50,10 @@ switch ( $mod_config['ftp_method'] ) {
 		}
 		set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__) . '/ftp/phpseclib');
 		require_once dirname(__FILE__) . '/ftp/Ssh2.class.php';
+		break;
+	case _XUPDATE_FTP_DIRECT :
+		require_once dirname(__FILE__) . '/ftp/Direct.class.php';
+		define('_XUPDATE_FTP_ROOT', '');
 		break;
 	default:
 } // end switch
@@ -256,6 +261,10 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	 */
 	protected function seekFTPRoot()
 	{
+		if (defined('_XUPDATE_FTP_ROOT')) {
+			return _XUPDATE_FTP_ROOT;
+		}
+		
 		$xoops_root_path = $this->XupdateObj->xoops_root_path;
 		static $ftp_root ;
 

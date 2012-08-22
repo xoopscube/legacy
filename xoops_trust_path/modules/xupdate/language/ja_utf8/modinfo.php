@@ -93,6 +93,7 @@ define('_MI_XUPDATE_CUSTOM_FTP'   , 'カスタムFTP（標準）');
 define('_MI_XUPDATE_PHP_FTP'      , 'PHP_FTP（FTPS用）');
 define('_MI_XUPDATE_CUSTOM_SFTP'  , 'カスタムSSH_FTP（SFTP用）');
 define('_MI_XUPDATE_CUSTOM_SSH2'  , 'カスタムSSH2（鍵認証用）');
+define('_MI_XUPDATE_DIRECT'       , 'ダイレクト（ファイルオーナーがPHP）');
 define('_MI_XUPDATE_FTP_USESSL'   , 'SSL（FTPS）を使用する。');
 define('_MI_XUPDATE_FTP_USESSLDSC', 'SSL（FTPS）を使用するには、FTPライブラリに「PHP_FTP（FTPS用）」を選択。');
 define('_MI_XUPDATE_FTP_SERVER'   , 'FTPサーバー');

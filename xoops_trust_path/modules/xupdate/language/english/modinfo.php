@@ -93,6 +93,7 @@ define('_MI_XUPDATE_CUSTOM_FTP'   , 'Custom FTP (standard)');
 define('_MI_XUPDATE_PHP_FTP'      , 'PHP_FTP (for FTPS)');
 define('_MI_XUPDATE_CUSTOM_SFTP'  , 'Custom SSH_FTP (for SFTP)');
 define('_MI_XUPDATE_CUSTOM_SSH2'  , 'Custom SSH2 (for Key-Auth)');
+define('_MI_XUPDATE_DIRECT'       , 'Direct (Files owner is PHP)');
 define('_MI_XUPDATE_FTP_USESSL'   , 'use (FTPS) SSL');
 define('_MI_XUPDATE_FTP_USESSLDSC', 'When you use (FTPS) SSL, selecting the "(for FTPS) PHP_FTP" to FTP library.');
 define('_MI_XUPDATE_FTP_SERVER'   , 'FTP Server');
