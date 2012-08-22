@@ -268,6 +268,16 @@ input[type="radio"] {
 	color: blue;
 }
 
+#xupdate .tag_cloud {
+	font-size: 95%;
+	line-height: 1.2
+}
+
+#xupdate .tag_cloud span {
+	white-space: nowrap;
+    word-wrap: normal;
+}
+
 /* Z-index of #mask must lower than #boxes .window */
 #xupdate_mask {
   position:absolute;

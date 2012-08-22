@@ -22,6 +22,7 @@ require_once XUPDATE_TRUST_PATH . '/class/XupdateUtils.class.php';
 **/
 class Xupdate_AssetPreloadBase extends XCube_ActionFilter
 {
+	public $mDirname = null;
 	protected $blockInstance = null;
     
     /**
@@ -36,7 +37,7 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
         static $setupCompleted = false;
         if(!$setupCompleted)
         {
-            $setupCompleted = self::_setup();
+            $setupCompleted = self::_setup($dirname);
         }
     }
 
@@ -47,10 +48,11 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
      *
      * @return  bool
     **/
-    public static function _setup()
+    public static function _setup($dirname)
     {
         $root =& XCube_Root::getSingleton();
         $instance = new self($root->mController);
+        $instance->mDirname = $dirname;
         $root->mController->addActionFilter($instance);
         return true;
     }
@@ -72,6 +74,9 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
         $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleInstall.Success', array(&$this, '_setNeedCacheRemake'));
         $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleUpdate.Success', array(&$this, '_setNeedCacheRemake'));
         $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleUninstall.Success', array(&$this, '_setNeedCacheRemake'));
+
+        $this->mRoot->mDelegateManager->add('Legacy_TagClient.GetClientList','Xupdate_TagClientDelegate::getClientList', XUPDATE_TRUST_PATH.'/class/callback/TagClient.class.php');
+        $this->mRoot->mDelegateManager->add('Legacy_TagClient.'.$this->mDirname.'.GetClientData','Xupdate_TagClientDelegate::getClientData', XUPDATE_TRUST_PATH.'/class/callback/TagClient.class.php');
 
         $this->mRoot->mDelegateManager->add('Legacyblock.Waiting.Show',array(&$this, 'callbackWaitingShow'));
 

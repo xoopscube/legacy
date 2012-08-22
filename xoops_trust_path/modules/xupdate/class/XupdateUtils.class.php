@@ -15,7 +15,22 @@ if(!defined('XOOPS_ROOT_PATH'))
 **/
 class Xupdate_Utils
 {
-    /**
+	/**
+	 * getModuleConfig
+	 *
+	 * @param   string  $name
+	 * @param   bool  $optional
+	 *
+	 * @return  XoopsObjectHandler
+	 **/
+	public static function getModuleConfig(/*** string ***/ $dirname, /*** mixed ***/ $key)
+	{
+		$handler = self::getXoopsHandler('config');
+		$conf = $handler->getConfigsByDirname($dirname);
+		return (isset($conf[$key])) ? $conf[$key] : null;
+	}
+	
+	/**
      * &getXoopsHandler
      * 
      * @param   string  $name

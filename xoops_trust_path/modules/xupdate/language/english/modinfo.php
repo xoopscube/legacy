@@ -56,6 +56,7 @@ define('_MI_XUPDATE_TPL_STORE_LIST', 'STORE_LIST');
 define('_MI_XUPDATE_TPL_STORE_EDIT', 'STORE_EDIT');
 define('_MI_XUPDATE_TPL_STORE_DELETE', 'STORE_DELETE');
 define('_MI_XUPDATE_TPL_STORE_VIEW', 'STORE_VIEW');
+define('_MI_XUPDATE_TPL_MODULESTORE_INC', 'MODULESTORE_INC');
 
 define('_MI_XUPDATE_DEPLOY', 'Get & deploy');
 define('_MI_XUPDATE_UPDATE', 'Update');
@@ -112,6 +113,8 @@ define('_MI_XUPDATE_DEBUG'        , 'View the debug output');
 define('_MI_XUPDATE_FTP_ADDON_URL', 'Module Add-on URL');
 define('_MI_XUPDATE_FTP_THEME_URL', 'Theme Add-on URL');
 define('_MI_XUPDATE_FTP_STORE_URL', 'Add-on Store URL');
+define('_MI_XUPDATE_TAG_DIRNAME'  , 'Tag Module');
+define('_MI_XUPDATE_TAG_DIRNAMEDSC', 'Set tag module\'s dirname if you want to use.');
 
 // progress messages
 define('_MI_XUPDATE_PROG_FILE_GETTING', 'Downloading the package.');

@@ -304,7 +304,32 @@ class Xupdate_Func {
 		$downloadPath = $downloadDirPath .'/'. $tempFilename;
 		return $downloadPath;
 	}
-
+	
+	/**
+	 * Set tag cloud size
+	 * 
+	 * @param array $cloud
+	 * @param int $smallest
+	 * @param int $duration
+	 * @param int $step
+	 */
+	public function setTagCloudSize(& $cloud, $smallest = 100, $duration = 24, $step = 10) {
+		$min = sqrt(min($cloud));
+		$max = sqrt(max($cloud));
+		$factor = 0;
+		// specal case all tags having the same count
+		if (($max - $min) == 0) {
+			$min -= $duration;
+			$factor = 1;
+		} else {
+			$factor = $duration / ($max - $min);
+		}
+		foreach($cloud as $key => $count) {
+			$level = (int)((sqrt($count) - $min) * $factor);
+			$cloud[$key] = $level * $step + $smallest;
+		}
+	}
+	
 	/**
 	 * _set_error_log
 	 *
