@@ -138,13 +138,22 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
     {
     	if ($this->mRoot->mContext->mUser->isInRole('Site.Administrator')) {
     		$handler = Legacy_Utils::getModuleHandler('ModuleStore', 'xupdate');
-	    	if ($count = $handler->getCountHasUpdate()) {
+	    	if ($count = $handler->getCountHasUpdate('module')) {
 	    		$this->mRoot->mLanguageManager->loadBlockMessageCatalog('xupdate');
 	    		$checkimg = '<img src="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleView&amp;checkonly=1" width="1" height="1" alt="" />';
 	    		$blockVal = array();
 	    		$blockVal['adminlink'] = XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleStore&amp;filter=updated';
 	    		$blockVal['pendingnum'] = $count;
 	    		$blockVal['lang_linkname'] = _MB_XUPDATE_MODULEUPDATE . $checkimg;
+	    		$modules[] = $blockVal;
+	    	}
+	    	if ($count = $handler->getCountHasUpdate('theme')) {
+	    		$this->mRoot->mLanguageManager->loadBlockMessageCatalog('xupdate');
+	    		$checkimg = '<img src="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleView&amp;checkonly=1" width="1" height="1" alt="" />';
+	    		$blockVal = array();
+	    		$blockVal['adminlink'] = XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ThemeStore&amp;filter=updated';
+	    		$blockVal['pendingnum'] = $count;
+	    		$blockVal['lang_linkname'] = _MB_XUPDATE_THEMEUPDATE . $checkimg;
 	    		$modules[] = $blockVal;
 	    	}
     	}
@@ -192,12 +201,17 @@ class Xupdate_Block extends Legacy_AbstractBlockProcedure
 	{
 		$result = '';
 		
-		$no_notify_reg = '/action=(?:ModuleInstall|ModuleUpdate|ModuleStore&filter=updated)/';
+		$no_notify_reg = '/action=(?:(?:Module|Theme)Install|(?:Module|Theme)Update|(?:Module|Theme)Store&filter=updated)/';
 		if (!preg_match($no_notify_reg, $_SERVER['QUERY_STRING'])) {
 			$handler = Legacy_Utils::getModuleHandler('ModuleStore', 'xupdate');
-			if ($count = $handler->getCountHasUpdate()) {
+			$module_count = $handler->getCountHasUpdate('module');
+			$theme_count = $handler->getCountHasUpdate('theme');
+			if ($module_count || $theme_count) {
 				$root =& XCube_Root::getSingleton();
 				$root->mLanguageManager->loadBlockMessageCatalog('xupdate');
+				$module = ($module_count)? '<a href="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleStore&amp;filter=updated">'.sprintf(_MB_XUPDATE_HAVE_UPDATEMODULE, $module_count).'</a>' : '';
+				$theme = ($theme_count)? '<a href="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ThemeStore&amp;filter=updated">'.sprintf(_MB_XUPDATE_HAVE_UPDATETHEME, $theme_count).'</a>' : '';
+				$msg = sprintf(_MB_XUPDATE_HAVE_UPDATE, $module.$theme);
 				$type = (! empty($_COOKIE['xupdate_ondemand']))? 'ondemand' : 'sticky';
 				$arg = parse_url(XOOPS_URL);
 				$cookie_path = $arg['path'] . '/';
@@ -225,9 +239,7 @@ EOD;
 				$headerScript->addScript($notifyJS);
 				$result = '<div class="notification '.$type.' hide">
 				<a class="close" href="javascript:"><img src="'.XOOPS_URL.'/common/js/notify/images/icon-close.png" /></a>
-				<div>
-				<a href="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleStore&amp;filter=updated">'.sprintf(_MB_XUPDATE_HAVE_UPDATEMODULE, $count).'</a>
-				</div>
+				<div>'.$msg.'</div>
 				</div>' . $ondemandBtn;
 			}
 		}

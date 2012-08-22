@@ -303,9 +303,10 @@ input[type="radio"] {
 
 .sticky,
 .ondemand {
-	left: 300px;
-	width: 400px;
+	left: 280px;
+	width: 430px;
 	height: 40px;
+	color: white;
 	border-left:2px solid #fff !important;
 	border-right:2px solid #fff !important;
 	-webkit-border-radius: 10px;
@@ -318,14 +319,14 @@ input[type="radio"] {
 	border-top-left-radius: 0px;
 	border-top-right-radius: 0px;
 	background: #91BD09; /* Old browsers */
-	background: -moz-linear-gradient(top, #91BD09 0%, #91BD09 100%); /* FF3.6+ */
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#91BD09', endColorstr='#91BD09')";
-	-pie-background: linear-gradient(#91BD09, #91BD09 100%);
+	background: -moz-linear-gradient(top, #82aa08 0%, #9cc321 100%); /* FF3.6+ */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='##82aa08', endColorstr='#9cc321)";
+	-pie-background: linear-gradient(#82aa08, #9cc321 100%);
 	behavior: url(PIE.htc);
 	-moz-box-shadow: 1px 1px 7px #676767;
 	-webkit-box-shadow: 1px 1px 7px #676767;
 	box-shadow: 1px 1px 7px #676767;
-	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, #91BD09),color-stop(1, #91BD09));/* IE6,IE7 */
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, #82aa08),color-stop(1, #9cc321));/* IE6,IE7 */
 }
 
 .sticky a,
@@ -345,7 +346,10 @@ input[type="radio"] {
 .sticky div a,
 .ondemand div a {
 	float: none;
-	color: white;
+	color: yellow;
+	margin: 0 4px;
+	text-shadow: 1px 1px 1px black;
+	-ms-filter: dropshadow( color=#FFF, offx=1, offy=1, positive=1 );
 }
 
 .ondemand-button
