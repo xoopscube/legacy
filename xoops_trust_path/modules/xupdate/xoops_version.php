@@ -23,7 +23,7 @@ $basename = basename($dirname);
 // Define a basic manifesto.
 //
 $modversion['name'] = _MI_XUPDATE_LANG_XUPDATE;
-$modversion['version'] = '0.15'; //beta 2
+$modversion['version'] = '0.16'; //beta 3
 $modversion['description'] = _MI_XUPDATE_DESC_XUPDATE;
 $modversion['author'] = _MI_XUPDATE_LANG_AUTHOR;
 $modversion['credits'] = _MI_XUPDATE_LANG_CREDITS;
@@ -75,6 +75,7 @@ $modversion['templates'] = array(
 */
 ##[cubson:templates]
 		//array('file' => '{dirname}_admin_storeview.html','admin' => 'adminmenu'),
+		array('file' => '{dirname}_modulestore_inc.html','description' => _MI_XUPDATE_TPL_MODULESTORE_INC),
 ##[/cubson:templates]
 );
 
@@ -187,7 +188,8 @@ $modversion['config'] = array(
 		'options'	=> array( '_MI_XUPDATE_CUSTOM_FTP' => 0,
 						'_MI_XUPDATE_PHP_FTP' => 1,
 						'_MI_XUPDATE_CUSTOM_SFTP' => 2,
-						'_MI_XUPDATE_CUSTOM_SSH2' => 3
+						'_MI_XUPDATE_CUSTOM_SSH2' => 3,
+						'_MI_XUPDATE_DIRECT' => 4
 						)
 	) ,
 
@@ -287,6 +289,15 @@ $modversion['config'] = array(
 		'valuetype'	=> 'string',
 		'default'	=> 'http://xoopscube.net/uploads/xupdatemaster/stores_json_V1.txt',
 		'options'	=> array(),
+	) ,
+	array(
+		'name'          => 'tag_dirname' ,
+		'title'         => '_MI_XUPDATE_TAG_DIRNAME' ,
+		'description'   => '_MI_XUPDATE_TAG_DIRNAMEDSC' ,
+		'formtype'      => 'server_module',
+		'valuetype'     => 'text',
+		'default'       => '',
+		'options'       => array('none','tag')
 	) ,
 
 ##[cubson:config]

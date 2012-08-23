@@ -268,6 +268,16 @@ input[type="radio"] {
 	color: blue;
 }
 
+#xupdate .tag_cloud {
+	font-size: 95%;
+	line-height: 1.2
+}
+
+#xupdate .tag_cloud span {
+	white-space: nowrap;
+    word-wrap: normal;
+}
+
 /* Z-index of #mask must lower than #boxes .window */
 #xupdate_mask {
   position:absolute;
@@ -301,10 +311,12 @@ input[type="radio"] {
 	margin-bottom: 10px;
 }
 
-.sticky {
-	left: 300px;
-	width: 400px;
+.sticky,
+.ondemand {
+	left: 280px;
+	width: 430px;
 	height: 40px;
+	color: white;
 	border-left:2px solid #fff !important;
 	border-right:2px solid #fff !important;
 	-webkit-border-radius: 10px;
@@ -316,13 +328,24 @@ input[type="radio"] {
 	border-radius: 10px;
 	border-top-left-radius: 0px;
 	border-top-right-radius: 0px;
+	background: #91BD09; /* Old browsers */
+	background: -moz-linear-gradient(top, #82aa08 0%, #9cc321 100%); /* FF3.6+ */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='##82aa08', endColorstr='#9cc321)";
+	-pie-background: linear-gradient(#82aa08, #9cc321 100%);
+	behavior: url(PIE.htc);
+	-moz-box-shadow: 1px 1px 7px #676767;
+	-webkit-box-shadow: 1px 1px 7px #676767;
+	box-shadow: 1px 1px 7px #676767;
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, #82aa08),color-stop(1, #9cc321));/* IE6,IE7 */
 }
 
-.sticky a {
+.sticky a,
+.ondemand a {
 	margin-top: 12px;
 }
 
-.sticky div {
+.sticky div,
+.ondemand div {
 	text-align: center;
 	font-size: 14px;
 	margin-left: auto;
@@ -330,7 +353,37 @@ input[type="radio"] {
 	margin-top: 12px;
 }
 
-.sticky div a {
+.sticky div a,
+.ondemand div a {
 	float: none;
-	color: white;
+	color: yellow;
+	margin: 0 4px;
+	text-shadow: 1px 1px 1px black;
+	-ms-filter: dropshadow( color=#FFF, offx=1, offy=1, positive=1 );
+}
+
+.ondemand-button
+{
+	width:20px !important;
+	height:20px;
+	float:right !important;
+	z-index:999;
+	position:absolute;
+	/*margin-right:100px!important;*/
+	top: 0;
+	right: 0;
+	-webkit-border-radius: 10px;
+	-webkit-border-top-left-radius: 0px;
+	-webkit-border-top-right-radius: 0px;
+	-moz-border-radius: 10px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-topright: 0px;
+	border-radius: 10px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+}
+
+.ondemand-button img
+{
+	margin: 0;
 }

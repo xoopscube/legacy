@@ -1,3 +1,6 @@
 <?php
 define('_MB_XUPDATE_MODULEUPDATE'     , 'Updater module');
-define('_MB_XUPDATE_HAVE_UPDATEMODULE', 'There are %d module(s) which can be updated.');
+define('_MB_XUPDATE_THEMEUPDATE'      , 'Updater theme');
+define('_MB_XUPDATE_HAVE_UPDATE'      , 'There are %s can be updated.');
+define('_MB_XUPDATE_HAVE_UPDATEMODULE', '%d module(s)');
+define('_MB_XUPDATE_HAVE_UPDATETHEME' , ' %d theme(s)');

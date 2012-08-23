@@ -1,0 +1,5 @@
+<div class="xupdatemaster">
+<a href="<{$xoops_url}>/modules/<{$data->getDirname()}>/admin/index.php?action=<{if $data->get('contents') == 'module'}>Module<{else}>Theme<{/if}>Install&amp;id=<{$data->getShow('id')}>">
+<{$data->getShow('dirname')}></a>
+( <a href="<{$xoops_url}>/modules/<{$data->getDirname()}>/admin/index.php?action=<{if $data->get('contents') == 'module'}>Module<{else}>Theme<{/if}>Store&amp;sid=<{$data->getShow('sid')}>"><{$data->get_StoreName()|escape:'html'}></a> )
+</div>

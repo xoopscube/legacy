@@ -38,8 +38,6 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 	{
 		//データの自動作成と削除
 		$inidataset = new Xupdate_ModulesIniDadaSet;
-		$inidataset->storeHand =  & $this->_getStoreHandler();
-		$inidataset->modHand = & $this->_getModStoreHandler();
 		$inidataset->execute('all', ($this->mRoot->mContext->mRequest->getRequest('checkonly')));
 		//-----------------------------------------------
 		return true;

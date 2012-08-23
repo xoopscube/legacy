@@ -297,7 +297,10 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractAction
 			}
 			//adump($_arr, $this->options['install_only'], $xupdateFtpModuleInstall->options);
 		}
-
+		
+		// for re-post on time out error
+		$this->mActionForm->getToken();
+		
 		//execute
 		if ($result = $xupdateFtpModuleInstall->execute('module')) {
 			$store_handler =& $this->_getStoreHandler();

@@ -56,6 +56,7 @@ define('_MI_XUPDATE_TPL_STORE_LIST', 'STORE_LIST');
 define('_MI_XUPDATE_TPL_STORE_EDIT', 'STORE_EDIT');
 define('_MI_XUPDATE_TPL_STORE_DELETE', 'STORE_DELETE');
 define('_MI_XUPDATE_TPL_STORE_VIEW', 'STORE_VIEW');
+define('_MI_XUPDATE_TPL_MODULESTORE_INC', 'MODULESTORE_INC');
 
 define('_MI_XUPDATE_DEPLOY', '取得して配置');
 define('_MI_XUPDATE_UPDATE', 'アップデート');
@@ -93,6 +94,7 @@ define('_MI_XUPDATE_CUSTOM_FTP'   , 'カスタムFTP（標準）');
 define('_MI_XUPDATE_PHP_FTP'      , 'PHP_FTP（FTPS用）');
 define('_MI_XUPDATE_CUSTOM_SFTP'  , 'カスタムSSH_FTP（SFTP用）');
 define('_MI_XUPDATE_CUSTOM_SSH2'  , 'カスタムSSH2（鍵認証用）');
+define('_MI_XUPDATE_DIRECT'       , 'ダイレクト（ファイルオーナーがPHP）');
 define('_MI_XUPDATE_FTP_USESSL'   , 'SSL（FTPS）を使用する。');
 define('_MI_XUPDATE_FTP_USESSLDSC', 'SSL（FTPS）を使用するには、FTPライブラリに「PHP_FTP（FTPS用）」を選択。');
 define('_MI_XUPDATE_FTP_SERVER'   , 'FTPサーバー');
@@ -111,6 +113,8 @@ define('_MI_XUPDATE_DEBUG'        , 'デバグ出力を表示する');
 define('_MI_XUPDATE_FTP_ADDON_URL', 'アドオンURL');
 define('_MI_XUPDATE_FTP_THEME_URL', 'テーマURL');
 define('_MI_XUPDATE_FTP_STORE_URL', 'アドオンストアURL');
+define('_MI_XUPDATE_TAG_DIRNAME'  , 'タグモジュール');
+define('_MI_XUPDATE_TAG_DIRNAMEDSC', 'タグモジュールを利用する場合はそのディレクトリ名を指定します。');
 
 // progress messages
 define('_MI_XUPDATE_PROG_FILE_GETTING', 'パッケージを取得しています。');

@@ -109,8 +109,6 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 //データの自動作成と削除
 
 		$inidataset = new Xupdate_ModulesIniDadaSet;
-		$inidataset->storeHand =  & $this->_getStoreHandler();
-		$inidataset->modHand = & $this->_getHandler();
 		$inidataset->execute('all');
 
 //-----------------------------------------------
@@ -195,7 +193,13 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 		$render->setAttribute('currentMenu', $this->currentMenu);
 		$render->setAttribute('action', $this->action);
-
+		
+		$tagCloud = array();
+		if (! empty($this->mod_config['tag_dirname'])) {
+			XCube_DelegateUtils::call('Legacy_Tag.'.$this->mod_config['tag_dirname'].'.GetTagCloudSrc', new XCube_Ref($tagCloud), $this->mod_config['tag_dirname'], 'xupdate', 'modulestore');
+			$this->Func->setTagCloudSize($tagCloud);
+		}
+		$render->setAttribute('cloud', $tagCloud);
 	}
 
 	function execute()
@@ -208,7 +212,8 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$this->mActionForm->fetch();
 		$this->mActionForm->validate();
 
-		if ($this->mActionForm->hasError()) {
+		$doConfirm = $this->mRoot->mContext->mRequest->getRequest('do_confirm');
+		if ($doConfirm || $this->mActionForm->hasError()) {
 			return $this->_processConfirm();
 		} else {
 			return $this->_processSave();
@@ -336,6 +341,7 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractListAction
 		$message_Processing = _AD_XUPDATE_LANG_MESSAGE_PROCESSING;
 		$message_btn_install = _MI_XUPDATE_ADMENU_MODULE._INSTALL;
 		$message_btn_update = _MI_XUPDATE_ADMENU_MODULE._MI_XUPDATE_UPDATE;
+		$refrash_url = XOOPS_MODULE_URL . '/xupdate/admin/index.php?action=ModuleView&checkonly=1';
 
 		$ret =<<< HTML
 jQuery(function($){
@@ -540,7 +546,12 @@ jQuery(function($){
 
 		if ( installedModuleTotal == installationModuleTotal )
 		{
-			$('#rapidInstallStatus').text("{$message_Success}")
+			$.ajax({
+				type: 'GET',
+				cache: false,
+				url: "{$refrash_url}"
+			});
+			$('#rapidInstallStatus').text("{$message_Success}");
 			return installedModuleTotal;
 		}
 

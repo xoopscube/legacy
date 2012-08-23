@@ -56,6 +56,7 @@ define('_MI_XUPDATE_TPL_STORE_LIST', 'STORE_LIST');
 define('_MI_XUPDATE_TPL_STORE_EDIT', 'STORE_EDIT');
 define('_MI_XUPDATE_TPL_STORE_DELETE', 'STORE_DELETE');
 define('_MI_XUPDATE_TPL_STORE_VIEW', 'STORE_VIEW');
+define('_MI_XUPDATE_TPL_MODULESTORE_INC', 'MODULESTORE_INC');
 
 define('_MI_XUPDATE_DEPLOY', 'Get & deploy');
 define('_MI_XUPDATE_UPDATE', 'Update');
@@ -93,6 +94,7 @@ define('_MI_XUPDATE_CUSTOM_FTP'   , 'Custom FTP (standard)');
 define('_MI_XUPDATE_PHP_FTP'      , 'PHP_FTP (for FTPS)');
 define('_MI_XUPDATE_CUSTOM_SFTP'  , 'Custom SSH_FTP (for SFTP)');
 define('_MI_XUPDATE_CUSTOM_SSH2'  , 'Custom SSH2 (for Key-Auth)');
+define('_MI_XUPDATE_DIRECT'       , 'Direct (Files owner is PHP)');
 define('_MI_XUPDATE_FTP_USESSL'   , 'use (FTPS) SSL');
 define('_MI_XUPDATE_FTP_USESSLDSC', 'When you use (FTPS) SSL, selecting the "(for FTPS) PHP_FTP" to FTP library.');
 define('_MI_XUPDATE_FTP_SERVER'   , 'FTP Server');
@@ -111,6 +113,8 @@ define('_MI_XUPDATE_DEBUG'        , 'View the debug output');
 define('_MI_XUPDATE_FTP_ADDON_URL', 'Module Add-on URL');
 define('_MI_XUPDATE_FTP_THEME_URL', 'Theme Add-on URL');
 define('_MI_XUPDATE_FTP_STORE_URL', 'Add-on Store URL');
+define('_MI_XUPDATE_TAG_DIRNAME'  , 'Tag Module');
+define('_MI_XUPDATE_TAG_DIRNAMEDSC', 'Set tag module\'s dirname if you want to use.');
 
 // progress messages
 define('_MI_XUPDATE_PROG_FILE_GETTING', 'Downloading the package.');
