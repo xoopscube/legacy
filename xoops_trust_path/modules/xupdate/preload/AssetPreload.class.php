@@ -219,7 +219,7 @@ class Xupdate_Block extends Legacy_AbstractBlockProcedure
 				$msg = sprintf(_MB_XUPDATE_HAVE_UPDATE, $module.$theme);
 				$type = (! empty($_COOKIE['xupdate_ondemand']))? 'ondemand' : 'sticky';
 				$arg = parse_url(XOOPS_URL);
-				$cookie_path = $arg['path'] . '/';
+				$cookie_path = (isset($arg['path']))? $arg['path'] . '/' : '/';
 				$notifyJS = <<<EOD
 $('.notification.{$type}').notify({ type: '{$type}' });
 $('.close').click(function(){
