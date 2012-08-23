@@ -150,16 +150,33 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 	 */
 	function _loadLanguage($dirname, $fileBodyName)
 	{
-		if (!$this->_loadFile(XOOPS_MODULE_PATH . '/' . $dirname . '/language/' . $this->mLanguageName . '/' . $fileBodyName . '.php')) {
-			$this->_loadFile(XOOPS_MODULE_PATH . '/' . $dirname . '/language/' . $this->getFallbackLanguage() . '/' . $fileBodyName . '.php');
+		static $trust_dirnames = array();
+		if (!isset($trust_dirnames[$dirname])) {
+			$trust_dirnames[$dirname] = Legacy_Utils::getTrustDirnameByDirname($dirname);
 		}
+		(
+			$this->_loadFile(XOOPS_MODULE_PATH . '/' . $dirname . '/language/' . $this->mLanguageName . '/' . $fileBodyName . '.php')
+			||
+			$this->_loadFile(XOOPS_MODULE_PATH . '/' . $dirname . '/language/' . $this->getFallbackLanguage() . '/' . $fileBodyName . '.php')
+			||
+			(
+				$trust_dirnames[$dirname] &&
+				(
+					$this->_loadFile(XOOPS_TRUST_PATH . '/modules/' . $trust_dirnames[$dirname] . '/language/' . $this->mLanguageName . '/' . $fileBodyName . '.php', $dirname)
+					||
+					$this->_loadFile(XOOPS_TRUST_PATH . '/modules/' . $trust_dirnames[$dirname] . '/language/' . $this->getFallbackLanguage() . '/' . $fileBodyName . '.php', $dirname)
+				)
+			)
+		);
 	}
 
 
 	/**
 	 * @access protected
+	 * @param $filename A filename.
+	 * @param $dirname A dirname of module. (for D3 module)
 	 */
-	function _loadFile($filename)
+	function _loadFile($filename, $mydirname = null)
 	{
 		if (file_exists($filename)) {
 			require_once $filename;
