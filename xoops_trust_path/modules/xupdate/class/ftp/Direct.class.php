@@ -64,7 +64,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract {
 	}
 
 	public function delete($pathname) {
-		return delete($pathname);
+		return unlink($pathname);
 	}
 
 	public function chmod($pathname, $mode) {
