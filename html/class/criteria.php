@@ -513,9 +513,18 @@ class Criteria extends CriteriaElement
      **/
     function render() {
         $value = $this->value;
-        if (!in_array(strtoupper($this->operator), array('IN', 'NOT IN'))) {
-            $value = "'$value'";
+        if (in_array(strtoupper($this->operator), array('IN', 'NOT IN'))) {
+			$value = is_array($value) ? implode(',',$value) : $value;
+			if(isset($value)){
+				$value = '('.$value.')';
+			}
+			else{
+				$value = '("")';
+			}
         }
+        else{
+	        $value = "'$value'";
+	    }
         $clause = (!empty($this->prefix) ? $this->prefix.'.' : '') . $this->column;
         if ( !empty($this->function) ) {
             $clause = sprintf($this->function, $clause);
