@@ -206,50 +206,17 @@ class Xupdate_Block extends Legacy_AbstractBlockProcedure
 	{
 		$result = '';
 		
+		// load data refrash image by JS
+		$root =& XCube_Root::getSingleton();
+		$headerScript= $root->mContext->getAttribute('headerScript');
+		$headerScript->addScript('var xupdateCheckImg=new Image();xupdateCheckImg.src="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleView&checkonly=1";');
+		
 		$no_notify_reg = '/action=(?:(?:Module|Theme)Install|(?:Module|Theme)Update|(?:Module|Theme)Store&filter=updated)/';
 		if (!preg_match($no_notify_reg, $_SERVER['QUERY_STRING'])) {
 			$handler = Legacy_Utils::getModuleHandler('ModuleStore', 'xupdate');
-			$module_count = $handler->getCountHasUpdate('module');
-			$theme_count = $handler->getCountHasUpdate('theme');
-			if ($module_count || $theme_count) {
-				$root =& XCube_Root::getSingleton();
-				$root->mLanguageManager->loadBlockMessageCatalog('xupdate');
-				$module = ($module_count)? '<a href="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleStore&amp;filter=updated">'.sprintf(_MB_XUPDATE_HAVE_UPDATEMODULE, $module_count).'</a>' : '';
-				$theme = ($theme_count)? '<a href="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ThemeStore&amp;filter=updated">'.sprintf(_MB_XUPDATE_HAVE_UPDATETHEME, $theme_count).'</a>' : '';
-				$msg = sprintf(_MB_XUPDATE_HAVE_UPDATE, $module.$theme);
-				$type = (! empty($_COOKIE['xupdate_ondemand']))? 'ondemand' : 'sticky';
-				$arg = parse_url(XOOPS_URL);
-				$cookie_path = (isset($arg['path']))? $arg['path'] . '/' : '/';
-				$notifyJS = <<<EOD
-$('.notification.{$type}').notify({ type: '{$type}' });
-$('.close').click(function(){
-	$.cookie('xupdate_ondemand', '1', { path: '{$cookie_path}' });
-});
-$('.ondemand-button').click(function(){
-	$.removeCookie('xupdate_ondemand', { path: '{$cookie_path}' });
-});
-EOD;
-				$ondemandBtn = '';
-				if ($type === 'ondemand') {
-					$notifyJS .= "\n".'$(\'.ondemand-button\').show();';
-					$ondemandBtn = '<div class="hide ondemand-button">
-        			<a href="javascript:"><img src="'.XOOPS_URL.'/common/js/notify/images/icon-arrowdown.png" /></a>
-					</div>';
-				}
-				$headerScript= $root->mContext->getAttribute('headerScript');
-				$headerScript->addStylesheet('/common/js/notify/style/default.css');
-				$headerScript->addStylesheet('/modules/xupdate/admin/templates/stylesheets/module.css');
-				$headerScript->addLibrary('/common/js/notify/notification.js');
-				$headerScript->addLibrary('/common/js/jquery.cookie.js');
-				$headerScript->addScript($notifyJS);
-				$result = '<div class="notification '.$type.' hide">
-				<a class="close" href="javascript:"><img src="'.XOOPS_URL.'/common/js/notify/images/icon-close.png" /></a>
-				<div>'.$msg.'</div>
-				</div>' . $ondemandBtn;
-			}
+			$result = $handler->getNotifyHTML();
 		}
-
-		$result .= '<img src="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleView&amp;checkonly=1" width="1" height="1" alt="" />';
+		
 		$render =& $this->getRenderTarget();
 		$render->setResult($result);
 	}

@@ -321,6 +321,18 @@ $modversion['blocks'] = array(
 		'visible_any'		=> true
 	),
 */
+	1 => array(
+			'func_num'          => 1,
+			'file'              => 'NotifyBlock.class.php',
+			'class'             => 'NotifyBlock',
+			'name'              => 'X-update Notify',
+			'description'       => '',
+			'options'           => '',
+			'template'          => '',
+			'show_all_module'   => true,
+			'can_clone'         => true,
+			'visible_any'       => false
+	),
 ##[cubson:block]
 ##[/cubson:block]
 );
