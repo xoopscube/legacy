@@ -37,6 +37,9 @@
       <td class="legacy_list_select"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></td>
       <td class="legacy_list_select">
           <a href="index.php?action=ThemeStore&amp;sid=<{$sid}>"><{$store_name|xoops_escape:show}></a>
+          <{if $detail_url}>
+          ( <a href="<{$detail_url|xoops_escape:show}>" target="_blank"><{$target_key|xoops_escape:show}></a> )
+          <{/if}>
       </td>
   </tr>
   <tr class="<{cycle values='odd,even'}>">
