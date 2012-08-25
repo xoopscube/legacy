@@ -31,6 +31,7 @@ class Xupdate_Admin_ThemeInstallAction extends Xupdate_AbstractAction
 	protected $sid;//store key
 
 	protected $addon_url;
+	protected $detail_url;
 
 	protected $target_key;
 	protected $target_type;
@@ -148,6 +149,7 @@ class Xupdate_Admin_ThemeInstallAction extends Xupdate_AbstractAction
 				$this->dirname = $mobj->get('dirname');
 			}
 			$this->addon_url = $this->Func->_getDownloadUrl( $this->target_key, $mobj->get('addon_url') );
+			$this->detail_url = $mobj->get('detail_url');
 			$this->version = $mobj->getRenderedVersion();
 			$this->detailed_version = $mobj->options['detailed_version'];
 			$this->description = $mobj->get('description');
@@ -172,6 +174,7 @@ class Xupdate_Admin_ThemeInstallAction extends Xupdate_AbstractAction
 		$render->setAttribute('store_name', $this->store_name);
 
 		$render->setAttribute('addon_url', $this->addon_url);
+		$render->setAttribute('detail_url', $this->detail_url);
 
 		$render->setAttribute('target_key', $this->target_key);
 		$render->setAttribute('target_type', $this->target_type);
