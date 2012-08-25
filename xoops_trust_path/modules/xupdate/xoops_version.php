@@ -182,14 +182,14 @@ $modversion['config'] = array(
 		'name'		=> 'ftp_method' ,
 		'title'		=> '_MI_XUPDATE_FTP_METHOD',
 		'description'	=> '_MI_XUPDATE_FTP_METHODDSC',
-		'formtype'	=> 'select',
+		'formtype'	=> ((defined('_MI_LEGACY_DETAILED_VERSION') && version_compare(_MI_LEGACY_DETAILED_VERSION, 'CorePack 20120825', '>='))? 'radio_br' : 'select'),
 		'valuetype'	=> 'int',
-		'default'	=> '0',
-		'options'	=> array( '_MI_XUPDATE_CUSTOM_FTP' => 0,
+		'default'	=> '4',
+		'options'	=> array( '_MI_XUPDATE_DIRECT' => 4,
+						'_MI_XUPDATE_CUSTOM_FTP' => 0,
 						'_MI_XUPDATE_PHP_FTP' => 1,
 						'_MI_XUPDATE_CUSTOM_SFTP' => 2,
-						'_MI_XUPDATE_CUSTOM_SSH2' => 3,
-						'_MI_XUPDATE_DIRECT' => 4
+						'_MI_XUPDATE_CUSTOM_SSH2' => 3
 						)
 	) ,
 
