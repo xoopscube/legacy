@@ -89,7 +89,7 @@ define('_MI_XUPDATE_INACTIVE'  , 'Inactive');
 define('_MI_XUPDATE_TEMP_PATH'    , 'Folder path to unpack download compressed file');
 define('_MI_XUPDATE_TEMP_PATHDSC' , 'specify the directory under the (xoops_trust_path)."/" first and last thing is not included.');
 define('_MI_XUPDATE_FTP_METHOD'   , 'FTP library to use');
-define('_MI_XUPDATE_FTP_METHODDSC', 'You can select the FTP Library that is used to upload the files to your server.<br />If the problem can not be resolved by selecting the (standard) Custom FTP,<br />Please try and PHP_FTP (for FTP over SSL), custom SSH_FTP.');
+define('_MI_XUPDATE_FTP_METHODDSC', 'You can select the FTP Library that is used to upload the files to your server.<br />If there are no problems in the direct, you do not need to enter your login information.<br />If the problem can not be resolved by selecting the (standard) Custom FTP,<br />Please try and PHP_FTP (for FTP over SSL), custom SSH_FTP.');
 define('_MI_XUPDATE_CUSTOM_FTP'   , 'Custom FTP (standard)');
 define('_MI_XUPDATE_PHP_FTP'      , 'PHP_FTP (for FTPS)');
 define('_MI_XUPDATE_CUSTOM_SFTP'  , 'Custom SSH_FTP (for SFTP)');

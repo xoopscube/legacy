@@ -89,7 +89,7 @@ define('_MI_XUPDATE_INACTIVE'  , '非アクティブ');
 define('_MI_XUPDATE_TEMP_PATH'    , '圧縮ファイルダウンロード・展開用フォルダ');
 define('_MI_XUPDATE_TEMP_PATHDSC' , '(xoops_trust_path)配下のディレクトリを指定。最初と最後の"/"（スラッシュ）は含めません。');
 define('_MI_XUPDATE_FTP_METHOD'   , '使用するFTPライブラリ');
-define('_MI_XUPDATE_FTP_METHODDSC', 'あなたのサーバーにファイル群をアップロードする際に使用するFTPライブラリの選択。<br />カスタムFTP（標準）を選択して問題が解決できない場合、<br />PHP_FTP（FTP over SSL用）や、カスタムSSH_FTPをお試しください。');
+define('_MI_XUPDATE_FTP_METHODDSC', 'あなたのサーバーにファイル群をアップロードする際に使用するFTPライブラリの選択。<br />ダイレクトで問題なければ、ログイン情報の入力は必要ありません。<br />カスタムFTP（標準）を選択して問題が解決できない場合、<br />PHP_FTP（FTP over SSL用）や、カスタムSSH_FTPをお試しください。');
 define('_MI_XUPDATE_CUSTOM_FTP'   , 'カスタムFTP（標準）');
 define('_MI_XUPDATE_PHP_FTP'      , 'PHP_FTP（FTPS用）');
 define('_MI_XUPDATE_CUSTOM_SFTP'  , 'カスタムSSH_FTP（SFTP用）');
