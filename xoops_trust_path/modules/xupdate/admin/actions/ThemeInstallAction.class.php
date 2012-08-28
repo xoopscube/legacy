@@ -153,8 +153,27 @@ class Xupdate_Admin_ThemeInstallAction extends Xupdate_AbstractAction
 			$this->version = $mobj->getRenderedVersion();
 			$this->detailed_version = $mobj->options['detailed_version'];
 			$this->description = $mobj->get('description');
+			$this->action = ucfirst($mobj->get('contents')).'Store';
 			$this->screen_shot = $mobj->options['screen_shot'];
-				
+			
+			$this->options = $mobj->options;
+			
+			foreach($this->options['writable_dir'] as $_key => $_chk) {
+				if (Xupdate_Utils::checkDirWritable($_chk)) {
+					unset($this->options['writable_dir'][$_key]);
+				}
+			}
+			foreach($this->options['delete_dir'] as $_key => $_chk) {
+				if (! is_dir($_chk)) {
+					unset($this->options['delete_dir'][$_key]);
+				}
+			}
+			foreach($this->options['delete_file'] as $_key => $_chk) {
+				if (! is_file($_chk)) {
+					unset($this->options['delete_file'][$_key]);
+				}
+			}
+			
 			$sobj =& $storeHand->get($this->sid);
 			if (is_object($sobj)){
 				//$this->addon_url = $sobj->get('addon_url');
@@ -184,7 +203,10 @@ class Xupdate_Admin_ThemeInstallAction extends Xupdate_AbstractAction
 		$render->setAttribute('detailed_version', $this->detailed_version);
 		$render->setAttribute('description', $this->description);
 		$render->setAttribute('screen_shot', $this->screen_shot);
-
+		$render->setAttribute('action', $this->action);
+		
+		$render->setAttribute('options', $this->options );
+		
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 		$render->setAttribute('actionForm', $this->mActionForm);
 		
@@ -216,6 +238,63 @@ class Xupdate_Admin_ThemeInstallAction extends Xupdate_AbstractAction
 		$this->id = intval($this->Xupdate->get('id'));
 		$modHand =& $this->_getModuleStoreHandler();
 		$mobj =& $modHand->get($this->id);
+		if (is_object($mobj)){
+			$this->dirname = $mobj->get('dirname');
+			$this->options = $mobj->options;
+			//adump($this->options);
+			$_arr = $this->Xupdate->get('writable_dir');
+			if(!empty($_arr) && count($_arr)>0){
+				foreach ($_arr as $item){
+					if (in_array( $item,$this->options['writable_dir'] ))	{
+						$xupdateFtpModuleInstall->options['writable_dir'][] = $item;
+					}
+				}
+			}
+			$_arr = $this->Xupdate->get('writable_file');
+			if(!empty($_arr) && count($_arr)>0){
+				foreach ($_arr as $item){
+					if (in_array( $item,$this->options['writable_file'] )){
+						$xupdateFtpModuleInstall->options['writable_file'][] = $item;
+					}
+				}
+			}
+			$_arr = $this->Xupdate->get('install_only');
+			if(!empty($this->options['install_only']) && count($this->options['install_only'])>0){
+				// checked means allow overwrite
+				$xupdateFtpModuleInstall->options['no_overwrite'] = array();
+				$xupdateFtpModuleInstall->options['install_only'] = array();
+				//if ( isset($mobj->mModule) && $mobj->mModule->get('isactive')==true ){
+				if ( isset($mobj->mModule) ){
+					foreach ($this->options['install_only'] as $item){
+						$_key = 'no_overwrite';
+						if (substr($item, -1) === '*') {
+							$item = rtrim($item, '*');
+							$_key = 'install_only';
+						}
+						if ( !is_array($_arr) || (is_array($_arr) && !in_array( $item, $_arr ))){
+							$xupdateFtpModuleInstall->options[$_key][] = $item;
+						}
+					}
+				}
+			}
+			$_arr = $this->Xupdate->get('delete_dir');
+			if(!empty($_arr) && count($_arr)>0){
+				foreach ($_arr as $item){
+					if (in_array( $item,$this->options['delete_dir'] ))	{
+						$xupdateFtpModuleInstall->options['delete_dir'][] = $item;
+					}
+				}
+			}
+			$_arr = $this->Xupdate->get('delete_file');
+			if(!empty($_arr) && count($_arr)>0){
+				foreach ($_arr as $item){
+					if (in_array( $item,$this->options['delete_file'] ))	{
+						$xupdateFtpModuleInstall->options['delete_file'][] = $item;
+					}
+				}
+			}
+			//adump($_arr, $this->options['install_only'], $xupdateFtpModuleInstall->options);
+		}
 		
 		//execute
 		$result = $xupdateFtpModuleInstall->execute('theme');
