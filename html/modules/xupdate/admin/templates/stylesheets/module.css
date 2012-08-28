@@ -311,8 +311,10 @@ input[type="radio"] {
 	margin-bottom: 10px;
 }
 
+/*** notify ***/
 .sticky,
 .ondemand {
+	z-index:2000;
 	left: 280px;
 	width: 430px;
 	height: 40px;
@@ -367,7 +369,7 @@ input[type="radio"] {
 	width:20px !important;
 	height:20px;
 	float:right !important;
-	z-index:999;
+	z-index:1999;
 	position:absolute;
 	/*margin-right:100px!important;*/
 	top: 0;
