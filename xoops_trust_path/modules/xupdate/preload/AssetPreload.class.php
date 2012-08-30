@@ -85,7 +85,13 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
 	
     public function postFilter()
     {
-    	if (is_dir(XOOPS_ROOT_PATH . '/install')) {
+    	if (! defined('LEGACY_INSTALLERCHECKER_ACTIVE')) {
+    		define('LEGACY_INSTALLERCHECKER_ACTIVE', false);
+    	}
+    	if (! defined('XUPDATE_INSTALLERCHECKER_ACTIVE')) {
+    		define('XUPDATE_INSTALLERCHECKER_ACTIVE', true);
+    	}
+    	if (! LEGACY_INSTALLERCHECKER_ACTIVE && XUPDATE_INSTALLERCHECKER_ACTIVE && is_dir(XOOPS_ROOT_PATH . '/install')) {
     		$root =& XCube_Root::getSingleton();
     		if ($root->mContext->mUser->isInRole('Site.Owner')) {
     			if (strpos($_SERVER['REQUEST_URI'], '/xupdate/admin/index.php?action=InstallChecker') === false
