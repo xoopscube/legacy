@@ -93,6 +93,14 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 			exit();
 		}
 		
+		// Check install dirctory
+		if (is_dir(XOOPS_ROOT_PATH . '/install')) {
+			while( ob_get_level() && @ ob_end_clean() ){
+			}
+			header('Location:' . XOOPS_MODULE_URL . '/xupdate/admin/index.php?action=InstallChecker');
+			exit();
+		}
+		
 		$render->setTemplateName('admin_module_view.html');
 
 		$render->setAttribute('mod_config', $this->mod_config);

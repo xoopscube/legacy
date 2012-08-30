@@ -278,6 +278,22 @@ jQuery(document).ready(function($) {
 });
 EOD;
     }
+    
+    /**
+     * Remove html/install & chmod mainfile.php 0404
+     * 
+     * @return boolean
+     */
+    protected function _removeInstallDir() {
+    	if ($this->Ftp->app_login()) {
+    		$this->Ftp->localRmdirRecursive(XOOPS_ROOT_PATH . '/install');
+    		$this->Ftp->localChmod(XOOPS_ROOT_PATH . '/mainfile.php', 0404);
+    		$this->Ftp->app_logout();
+    		return true;
+    	}
+    	return false;
+    }
+    
 }
 
 ?>
