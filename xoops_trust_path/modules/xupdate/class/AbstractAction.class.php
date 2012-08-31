@@ -298,6 +298,9 @@ EOD;
     		}
     		$this->Ftp->localRmdirRecursive(XOOPS_ROOT_PATH . '/install');
     		$this->Ftp->localChmod(XOOPS_ROOT_PATH . '/mainfile.php', $set_perm);
+    		if (! $this->Xupdate->params['is_writable']['result']) {
+    			$this->Ftp->localChmod($this->Xupdate->params['is_writable']['path'], 0707);
+    		}
     		$this->Ftp->app_logout();
     		return true;
     	}
