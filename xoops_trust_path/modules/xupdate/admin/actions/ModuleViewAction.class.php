@@ -94,7 +94,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 		}
 		
 		// Check install dirctory
-		if (is_dir(XOOPS_ROOT_PATH . '/install')) {
+		if (XUPDATE_INSTALLERCHECKER_ACTIVE && is_dir(XOOPS_ROOT_PATH . '/install')) {
 			while( ob_get_level() && @ ob_end_clean() ){
 			}
 			header('Location:' . XOOPS_MODULE_URL . '/xupdate/admin/index.php?action=InstallChecker');
