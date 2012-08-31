@@ -285,6 +285,7 @@ EOD;
      * @return boolean
      */
     protected function _removeInstallDir() {
+    	$ret = false;
     	if ($this->Ftp->app_login()) {
     		if ($main_perm = @ fileperms(XOOPS_ROOT_PATH . '/mainfile.php')) {
     			$main_perm = substr(sprintf('%o', $main_perm), -3);
@@ -298,13 +299,34 @@ EOD;
     		}
     		$this->Ftp->localRmdirRecursive(XOOPS_ROOT_PATH . '/install');
     		$this->Ftp->localChmod(XOOPS_ROOT_PATH . '/mainfile.php', $set_perm);
+    		
+    		// set writable "mod_config['temp_path']"
     		if (! $this->Xupdate->params['is_writable']['result']) {
     			$this->Ftp->localChmod($this->Xupdate->params['is_writable']['path'], 0707);
     		}
+    		
+    		clearstatcache();
+    		
+    		// edit /preload/CorePackPreload.class.php
+    		$src = file_get_contents(XOOPS_ROOT_PATH . '/preload/CorePackPreload.class.php');
+    		if (! is_dir(XOOPS_ROOT_PATH . '/install') && ! preg_match('/define\s*\(\'XUPDATE_INSTALLERCHECKER_ACTIVE\'/', $src)) {
+    			$ret = true;
+    			$add = '
+
+// Already checked with X-update install checker
+define(\'XUPDATE_INSTALLERCHECKER_ACTIVE\', false);';
+    			$src = str_replace('<?php', '<?php'.$add, $src);
+    			$sourcePath = $this->Xupdate->params['is_writable']['path'] . '/preload';
+    			$this->Ftp->localMkdir($sourcePath);
+    			$this->Ftp->localChmod($sourcePath, 0707);
+    			file_put_contents($sourcePath . '/CorePackPreload.class.php', $src);
+    			$this->Ftp->uploadNakami($sourcePath, XOOPS_ROOT_PATH . '/preload/');
+    			$this->Ftp->localRmdirRecursive($sourcePath);
+    		}
+    		
     		$this->Ftp->app_logout();
-    		return true;
     	}
-    	return false;
+    	return $ret;
     }
     
 }
