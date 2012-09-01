@@ -150,7 +150,11 @@ class Xupdate_Admin_ThemeInstallAction extends Xupdate_AbstractAction
 			}
 			$this->addon_url = $this->Func->_getDownloadUrl( $this->target_key, $mobj->get('addon_url') );
 			$this->detail_url = $mobj->get('detail_url');
-			$this->version = $mobj->getRenderedVersion();
+			if ($mobj->hasNeedUpdate()) {
+				$this->version = $mobj->mModule->getRenderedVersion()  . ' &rarr; <strong class="legacy_module_versionMsg">' . $mobj->getRenderedVersion() . '</strong>';
+			} else {
+				$this->version = $mobj->getRenderedVersion();
+			}
 			$this->detailed_version = $mobj->options['detailed_version'];
 			$this->description = $mobj->get('description');
 			$this->action = ucfirst($mobj->get('contents')).'Store';
