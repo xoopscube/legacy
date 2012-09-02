@@ -208,11 +208,14 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		if ($list = parent::nlist($localDir)) {
 			$ftproot = $this->seekFTPRoot();
 			foreach($list as $path) {
-				$serverPath = $ftproot.$path;
-				if (is_dir($serverPath)) {
-					$this->localRmdirRecursive($serverPath);
-				} else {
-					$this->localDelete($serverPath);
+				$name = basename($path);
+				if ($name !== '.' && $name !=='..') {
+					$serverPath = $ftproot.$path;
+					if (is_dir($serverPath)) {
+						$this->localRmdirRecursive($serverPath);
+					} else {
+						$this->localDelete($serverPath);
+					}
 				}
 			}
 		}
