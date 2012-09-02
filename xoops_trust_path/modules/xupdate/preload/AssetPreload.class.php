@@ -82,7 +82,47 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
 
         $this->mRoot->mDelegateManager->add('Legacy_AdminControllerStrategy.SetupBlock', array(&$this, 'onXupdateSetupBlock'));
     }
-
+	
+    public function postFilter()
+    {
+    	if (! defined('LEGACY_INSTALLERCHECKER_ACTIVE')) {
+    		define('LEGACY_INSTALLERCHECKER_ACTIVE', false);
+    	}
+    	if (! defined('XUPDATE_INSTALLERCHECKER_ACTIVE')) {
+    		define('XUPDATE_INSTALLERCHECKER_ACTIVE', true);
+    	}
+    	if (! LEGACY_INSTALLERCHECKER_ACTIVE && XUPDATE_INSTALLERCHECKER_ACTIVE && is_dir(XOOPS_ROOT_PATH . '/install')) {
+    		$root =& XCube_Root::getSingleton();
+    		if ($root->mContext->mUser->isInRole('Site.Owner')) {
+    			if (strpos($_SERVER['REQUEST_URI'], '/xupdate/admin/index.php?action=InstallChecker') === false
+    			 && strpos($_SERVER['REQUEST_URI'], '/xupdate/admin/index.php?action=ModuleView') === false
+    			 && strpos($_SERVER['REQUEST_URI'], '/legacy/admin/index.php?action=Preference') === false) {
+    				while( ob_get_level() && @ ob_end_clean() ){}
+    				header('Location:' . XOOPS_MODULE_URL . '/xupdate/admin/index.php?action=InstallChecker');
+	    			exit();
+    			}
+    		} else {
+    			$root->mLanguageManager->loadModuleMessageCatalog('legacy');
+    			$xoopsConfig = $root->mContext->mXoopsConfig;
+    			
+    			require_once XOOPS_ROOT_PATH . '/class/template.php';
+    			$xoopsTpl =new XoopsTpl();
+    			$xoopsTpl->assign(array('xoops_sitename' => htmlspecialchars($xoopsConfig['sitename']),
+    					'xoops_themecss' => xoops_getcss(),
+    					'xoops_imageurl' => XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/',
+    					'lang_message_confirm' => XCube_Utils::formatMessage(_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_CONFIRM, XOOPS_ROOT_PATH . "/install"),
+    					'lang_message_warning' => XCube_Utils::formatMessage(_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_WARNING, XOOPS_ROOT_PATH . "/install")
+    			));
+    			
+    			$xoopsTpl->compile_check = true;
+    				
+    			// @todo filebase template with absolute file path
+    			$xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/legacy/templates/legacy_install_completed.html');
+    			exit();
+    		}
+    	}
+    }
+    
 	public function _setNeedCacheRemake() {
 		$handler = Legacy_Utils::getModuleHandler('store', 'xupdate');
 		$handler->setNeedCacheRemake();

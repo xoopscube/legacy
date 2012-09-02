@@ -28,6 +28,6 @@ define('_MD_XUPDATE_LANG_NAME', 'NAME');
 define('_MD_XUPDATE_LANG_ADDON_URL', 'ADDON_URL');
 define('_MD_XUPDATE_LANG_THEME_URL', 'THEME_URL');
 define('_MD_XUPDATE_LANG_REG_UNIXTIME', 'REG_UNIXTIME');
-
+define('_MD_XUPDATE_MESSAGE_INSTALL_COMPLETE_WARNING', 'Remove "'.XOOPS_ROOT_PATH.'/install" directory to block anonymous attackers trying to use the installer.<br />Please set up FTP connection information on the next screen, or delete manually.');
 
 ?>
