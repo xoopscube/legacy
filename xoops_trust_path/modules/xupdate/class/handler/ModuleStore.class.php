@@ -99,7 +99,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 			
 			$this->options = $this->unserialize_options();
 			if ($readini) {
-				if (($this->getVar('version') && $this->mModule->getVar('version') != $this->getVar('version'))
+				if (($this->getVar('version') && $this->mModule->getVar('version') < $this->getVar('version'))
 						|| 
 					(isset($this->modinfo['detailed_version']) && $this->modinfo['detailed_version'] != $this->options['detailed_version'])) {
 					$this->setVar('hasupdate', 1);

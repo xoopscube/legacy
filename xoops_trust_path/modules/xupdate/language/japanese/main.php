@@ -28,7 +28,6 @@ define('_MD_XUPDATE_LANG_NAME', 'NAME');
 define('_MD_XUPDATE_LANG_ADDON_URL', 'ADDON_URL');
 define('_MD_XUPDATE_LANG_THEME_URL', 'THEME_URL');
 define('_MD_XUPDATE_LANG_REG_UNIXTIME', 'REG_UNIXTIME');
-
-
+define('_MD_XUPDATE_MESSAGE_INSTALL_COMPLETE_WARNING', 'あなたのサーバーに '.XOOPS_ROOT_PATH.'/install ディレクトリが残っています。<br />悪意のある攻撃者がこのインストールウィザードにアクセスできないようにする為に、このディレクトリを削除する必要があります。<br />次の画面で FTP 接続情報を設定するか、手作業で削除してください。');
 
 ?>
