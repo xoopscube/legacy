@@ -125,6 +125,11 @@ XOOPS Cube Legacy Installation Guide
 
 http://xoopscube.sourceforge.net/documentation/
 
+Latest Installation Commands
+```bash
+TRUST="../xoops_trust_path";curl -kL github.com/nao-pon/xoopsx_installer/raw/master/installer.sh|sed "s#<T>#$TRUST#"|sh
+```
+
 ***
 
 Overview
