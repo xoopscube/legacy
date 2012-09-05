@@ -48,7 +48,7 @@ define('_MI_XUPDATE_INSTALL_MSG_UPDATE_FINISHED', '¤â¤¸¤å¡¼¤ë¤Î¤¢¤Ã¤×¤Ç¡¼¤È¤¬½ªÎ
 define('_MI_XUPDATE_INSTALL_ERROR_UPDATE_FINISHED', '¤â¤¸¤å¡¼¤ë¤Î¤¢¤Ã¤×¤Ç¡¼¤È¤Ë¼ºÇÔ¤·¤Þ¤·¤¿¡£');
 define('_MI_XUPDATE_INSTALL_MSG_MODULE_UPDATED', '¤â¤¸¤å¡¼¤ë¡Ø{0}¡Ù¤ò¤¢¤Ã¤×¤Ç¡¼¤È¤·¤Þ¤·¤¿¡£');
 define('_MI_XUPDATE_INSTALL_ERROR_MODULE_UPDATED', '¤â¤¸¤å¡¼¤ë¡Ø{0}¡Ù¤¬¤¢¤Ã¤×¤Ç¡¼¤È¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿¡£');
-define('_MI_XUPDATE_LANG_XUPDATE', '¥¢¥Ã¥×¥Ç¡¼¥¿');
+define('_MI_XUPDATE_LANG_XUPDATE', 'Æ³Æþ¡¦¥¢¥Ã¥×¥Ç¡¼¥È´ÉÍý');
 define('_MI_XUPDATE_DESC_XUPDATE', '¥â¥¸¥å¡¼¥ë¤Î¹¹¿·¤ò¼êÁá¤¯¹Ô¤¨¤Þ¤¹');
 define('_MI_XUPDATE_LANG_AUTHOR', 'XCL Pack201X DISTRIBUTION TEAM : naao, domifara, nao-pon');
 define('_MI_XUPDATE_LANG_CREDITS', 'xoopscube.net');
