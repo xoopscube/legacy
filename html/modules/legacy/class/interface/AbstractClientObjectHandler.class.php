@@ -91,7 +91,9 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
 		}
 	
 		if($this->_isWorkflowClient($conf)===true){
-			$this->_saveWorkflow($obj);
+			if(method_exists($obj, 'onWorkflow') && $obj->onWorkflow()===true){
+				$this->_saveWorkflow($obj);
+			}
 		}
 	
 		if($this->_isImageClient($conf)===true){
