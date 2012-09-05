@@ -48,7 +48,7 @@ define('_MI_XUPDATE_INSTALL_MSG_UPDATE_FINISHED', 'Module update is finished.');
 define('_MI_XUPDATE_INSTALL_ERROR_UPDATE_FINISHED', 'Module could not updated.');
 define('_MI_XUPDATE_INSTALL_MSG_MODULE_UPDATED', 'Module \'{0}\' is updated.');
 define('_MI_XUPDATE_INSTALL_ERROR_MODULE_UPDATED', 'Module \'{0}\' could not updated.');
-define('_MI_XUPDATE_LANG_XUPDATE', 'updater');
+define('_MI_XUPDATE_LANG_XUPDATE', 'Install, Update Manager');
 define('_MI_XUPDATE_DESC_XUPDATE', 'provides fast update your modules');
 define('_MI_XUPDATE_LANG_AUTHOR', 'XCL Pack201X DISTRIBUTION TEAM : naao, domifara, nao-pon');
 define('_MI_XUPDATE_LANG_CREDITS', 'CREDITS');

@@ -48,7 +48,7 @@ define('_MI_XUPDATE_INSTALL_MSG_UPDATE_FINISHED', 'もじゅーるのあっぷ�
 define('_MI_XUPDATE_INSTALL_ERROR_UPDATE_FINISHED', 'もじゅーるのあっぷでーとに失敗しました。');
 define('_MI_XUPDATE_INSTALL_MSG_MODULE_UPDATED', 'もじゅーる『{0}』をあっぷでーとしました。');
 define('_MI_XUPDATE_INSTALL_ERROR_MODULE_UPDATED', 'もじゅーる『{0}』があっぷでーとできませんでした。');
-define('_MI_XUPDATE_LANG_XUPDATE', 'アップデータ');
+define('_MI_XUPDATE_LANG_XUPDATE', '導入・アップデート管理');
 define('_MI_XUPDATE_DESC_XUPDATE', 'モジュールの更新を手早く行えます');
 define('_MI_XUPDATE_LANG_AUTHOR', 'XCL Pack201X DISTRIBUTION TEAM : naao, domifara, nao-pon');
 define('_MI_XUPDATE_LANG_CREDITS', 'xoopscube.net');
