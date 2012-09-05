@@ -290,7 +290,7 @@ input[type="radio"] {
    
 #xupdate_boxes .window {
   position:fixed;
-  width:440px;
+  width:460px;
   height:180px;
   display:none;
   z-index:9999;
@@ -299,6 +299,9 @@ input[type="radio"] {
   text-align: center;
   font-size: 11pt;
   line-height: 1.3em;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
 }
 
 #xupdate_boxes .window p {
