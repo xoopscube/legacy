@@ -45,6 +45,7 @@ class Xupdate_Installer
     public function setCurrentXoopsModule(/*** XoopsModule ***/ &$xoopsModule)
     {
         $this->_mXoopsModule =& $xoopsModule;
+        $this->_mXoopsModule->setVar('weight', 0);
     }
 
     /**
