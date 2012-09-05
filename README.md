@@ -14,6 +14,10 @@ ResourceDiscoveryOrder=Theme,ThemeD3,ThemeDefault,ThemeDefaultD3,DbTplSet
 ```
 * and etc.
 
+## Web site
+
+[XOOPS X (ten) Distribution Pack](http://www.xoopscube.net/)
+
 ## Quick install
 
 Please change `T="../xoops_trust_path"` by your liking.
