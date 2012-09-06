@@ -52,6 +52,7 @@
     <td class="legacy_list_select">Version</td>
     <td class="legacy_list_select">
         <{$version}><{if $detailed_version}> ( <{$detailed_version}> )<{/if}>
+        <{if $options.changes_url}><a href="<{$options.changes_url|escape:'html'}>" target="_blank"><{$smarty.const._AD_XUPDATE_RECENTCHANGES}></a><{/if}>
     </td>
   </tr>
   <tr class="<{cycle values='odd,even'}>">

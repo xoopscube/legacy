@@ -593,6 +593,11 @@ class Xupdate_ModulesIniDadaSet
 		} else {
 			$item_arr['screen_shot'] = '' ;
 		}
+		if(isset($item['changes_url'])){
+			$item_arr['changes_url'] = $item['changes_url'] ;
+		} else {
+			$item_arr['changes_url'] = '' ;
+		}
 		
 		// check tag is UTF-8 with json_encode
 		if ($this->mTagModule && isset($item['tag'])) {

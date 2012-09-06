@@ -99,9 +99,11 @@
 	        <input type="hidden" size="24" name="dirname[<{$module->get('id')}>]" value="<{$module->get('dirname')}>" />
 	          <{$module->getShow('dirname')}>
 	        <{/if}>
-	          </div>
+	      </div>
+	      <{assign var="hasupdate" value=0}>
 	      <div class="legacy_list_order">
 	        <{if $module->hasNeedUpdate()}>
+	          <{assign var="hasupdate" value=1}>
 	          <{$module->mModule->getRenderedVersion()}> &rarr; <strong class="legacy_module_versionMsg"><{$module->getRenderedVersion()}></strong>
 	        <{else}>
 	          <{$module->getRenderedVersion()}>
@@ -110,10 +112,16 @@
 	      <{if $module->options.detailed_version}>
 	      <div class="legacy_list_control">
 	        <{if $module->hasNeedUpdateDetail()}>
+	          <{assign var="hasupdate" value=1}>
 	          <{$module->modinfo.detailed_version}> &rarr; <strong class="legacy_module_versionMsg"><{$module->options.detailed_version}></strong>
 	        <{else}>
 	          <{$module->options.detailed_version}>
 	        <{/if}>
+	      </div>
+	      <{/if}>
+	      <{if $hasupdate && $module->options.changes_url}>
+	      <div class="legacy_list_control">
+	          <a href="<{$module->options.changes_url|escape:'html'}>" target="_blank"><{$smarty.const._AD_XUPDATE_RECENTCHANGES}></a>
 	      </div>
 	      <{/if}>
 	      <div class="legacy_list_control">
