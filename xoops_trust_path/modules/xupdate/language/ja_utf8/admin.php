@@ -24,6 +24,7 @@ define('_AD_XUPDATE_LANG_WRITABLE_FILE', "書込み権限を与えるファイ�
 define('_AD_XUPDATE_LANG_INSTALL_ONLY', "インストール時のみコピーするファイルまたはファイルが存在するディレクトリ<br>（アップデート時もチェック入れると上書き）");
 define('_AD_XUPDATE_LANG_DELETE_DIR', '不要になったディレクトリの削除');
 define('_AD_XUPDATE_LANG_DELETE_FILE', '不要になったファイルの削除');
+define('_AD_XUPDATE_RECENTCHANGES', '更新履歴');
 
 define('_AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL', "一括操作");
 define('_AD_XUPDATE_LANG_MESSAGE_WAITING', "待機中");

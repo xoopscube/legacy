@@ -24,6 +24,7 @@ define('_AD_XUPDATE_LANG_WRITABLE_FILE', "Files to set writable");
 define('_AD_XUPDATE_LANG_INSTALL_ONLY', "Files or directories containing files to be colied only on install<br>(Check on to be overwrite on update)");
 define('_AD_XUPDATE_LANG_DELETE_DIR', 'Delete the directory that are no longer needed');
 define('_AD_XUPDATE_LANG_DELETE_FILE', 'Delete files that are no longer needed');
+define('_AD_XUPDATE_RECENTCHANGES', 'Changes');
 
 define('_AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL', "Batch OP");
 define('_AD_XUPDATE_LANG_MESSAGE_WAITING', "Waiting");
