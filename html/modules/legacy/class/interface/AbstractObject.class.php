@@ -219,4 +219,8 @@ abstract class Legacy_AbstractObject extends XoopsSimpleObject
             $this->_mIsTagLoaded = true;
         }
     }
+
+	public function onWorkflow()
+	{
+	}
 }
