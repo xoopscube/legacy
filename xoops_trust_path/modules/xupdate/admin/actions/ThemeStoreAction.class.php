@@ -180,7 +180,7 @@ class Xupdate_Admin_ThemeStoreAction extends Xupdate_AbstractListAction
 		$render->setAttribute('actionForm', $this->mActionForm);
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 		$render->setAttribute('currentMenu', _MI_XUPDATE_ADMENU_THEME);
-		$render->setAttribute('action', $this->action);
+		$render->setAttribute('action', 'ThemeStore');
 
 		$tagCloud = array();
 		if (! empty($this->mod_config['tag_dirname'])) {
