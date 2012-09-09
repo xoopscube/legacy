@@ -195,8 +195,10 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 		
 		$tagCloud = array();
 		if (! empty($this->mod_config['tag_dirname'])) {
-			XCube_DelegateUtils::call('Legacy_Tag.'.$this->mod_config['tag_dirname'].'.GetTagCloudSrc', new XCube_Ref($tagCloud), $this->mod_config['tag_dirname'], 'xupdate', 'modulestore');
-			$this->Func->setTagCloudSize($tagCloud);
+			XCube_DelegateUtils::call('Legacy_Tag.'.$this->mod_config['tag_dirname'].'.GetTagCloudSrc', new XCube_Ref($tagCloud), $this->mod_config['tag_dirname'], 'xupdate', $this->contents . 'store');
+			if ($tagCloud) {
+				$this->Func->setTagCloudSize($tagCloud);
+			}
 		}
 		$render->setAttribute('cloud', $tagCloud);
 	}
