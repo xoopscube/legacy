@@ -60,13 +60,13 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 	**/
 	protected function _setupActionForm()
 	{
-		$this->mActionForm =& $this->mAsset->getObject('form', $this->action, true);
+		$this->mActionForm =& $this->mAsset->getObject('form', 'ModuleStore', true);
 		$this->mActionForm->prepare();
 	}
 
 	function &_getFilterForm()
 	{
-		$filter =& $this->mAsset->getObject('filter', $this->action , true );
+		$filter =& $this->mAsset->getObject('filter', 'ModuleStore', true );
 		$filter->prepare($this->_getPageNavi(), $this->_getHandler());
 		return $filter;
 	}
