@@ -13,10 +13,10 @@ class Xupdate_Admin_ThemeStoreAction extends Xupdate_AbstractStoreAction
 {
 	public function __construct()
 	{
-		parent::__construct();
 		$this->contents = 'theme';
 		$this->action = 'ThemeStore';
 		$this->currentMenu = _MI_XUPDATE_ADMENU_THEME;
+		parent::__construct();
 	}
 } // end class
 ?>

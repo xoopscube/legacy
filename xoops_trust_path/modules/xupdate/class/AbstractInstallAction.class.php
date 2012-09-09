@@ -139,7 +139,9 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
 
 		$modHand =& $this->_getModuleStoreHandler();
 		$storeHand =  & $this->_getStoreHandler();
-
+		
+		$action = $this->action;
+		
 		$mobj =& $modHand->get($this->id);
 		if (is_object($mobj)){
 			$this->id = $mobj->get('id');
@@ -170,6 +172,8 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
 			$this->screen_shot = $mobj->options['screen_shot'];
 			
 			$this->options = $mobj->options;
+			
+			$action = ucfirst($mobj->get('contents')).'Store';
 			
 			foreach($this->options['writable_dir'] as $_key => $_chk) {
 				if (Xupdate_Utils::checkDirWritable($_chk)) {
@@ -216,7 +220,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
 		$render->setAttribute('detailed_version', $this->detailed_version);
 		$render->setAttribute('description', $this->description);
 		$render->setAttribute('screen_shot', $this->screen_shot);
-		$render->setAttribute('action', $this->action);
+		$render->setAttribute('action', $action);
 
 		$render->setAttribute('options', $this->options );
 

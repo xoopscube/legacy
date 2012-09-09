@@ -13,10 +13,10 @@ class Xupdate_Admin_ModuleStoreAction extends Xupdate_AbstractStoreAction
 {
 	public function __construct()
 	{
-		parent::__construct();
 		$this->contents = 'module';
 		$this->action = 'ModuleStore';
 		$this->currentMenu = _MI_XUPDATE_ADMENU_MODULE;
+		parent::__construct();
 	}
 } // end class
 ?>

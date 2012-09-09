@@ -24,6 +24,8 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 	protected $contents;
 	protected $action ;
 	protected $currentMenu;
+	protected $template;
+	protected $handlerName;
 
 	public function __construct()
 	{
@@ -32,9 +34,12 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 		$this->sid = (int)$this->mRoot->mContext->mRequest->getRequest('sid');
 		$this->sid = empty($this->sid)? 0 : intval($this->sid);
 		
-		$this->contents = '';
-		$this->action = '';
-		$this->currentMenu = '';
+		if (! $this->template) {
+			$this->template = $this->contents;
+		}
+		if (! $this->handlerName) {
+			$this->handlerName = $this->action;
+		}
 	}
 	/**
 	 * prepare
@@ -98,7 +103,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 	 */
 	protected function &_getHandler()
 	{
-		$handler =& $this->mAsset->getObject('handler', $this->action, false);
+		$handler =& $this->mAsset->getObject('handler', $this->handlerName, false);
 		return $handler;
 	}
 
@@ -172,7 +177,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 	**/
 	public function executeViewIndex(&$render)
 	{
-		$render->setTemplateName('admin_'.$this->contents.'_store.html');
+		$render->setTemplateName('admin_'.$this->template.'_store.html');
 
 		$render->setAttribute('mod_config', $this->mod_config);
 		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
@@ -242,7 +247,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 	function executeViewInput(&$render)
 	{
 
-		$render->setTemplateName('admin_'.$this->contents.'_store_confirm.html');
+		$render->setTemplateName('admin_'.$this->template.'_store_confirm.html');
 
 		$render->setAttribute('mod_config', $this->mod_config);
 		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
