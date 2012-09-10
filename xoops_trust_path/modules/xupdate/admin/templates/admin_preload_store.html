@@ -73,10 +73,6 @@
 	      </th>
 	    <th><{$smarty.const._AD_XUPDATE_DESCRIPTION}>
 	      </th>
-	    <th><{$smarty.const._AD_XUPDATE_LANG_TYPE}>
-	      <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_TARGET_TYPE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-	      <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_TARGET_TYPE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
-	      </th>
 	    <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
 	    <th><{$smarty.const._AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL}><br><input id="rapidInstallCheckboxAll" type="checkbox" /></th>
 	  </tr>
@@ -145,9 +141,6 @@
 	        <{/if}>
 	        <br/><{$module->get('description')}>
 	      </td>
-	      <td class="legacy_list_select">
-	        <{$module->getShow('target_type')}>
-	      </td>
 	      <td class="legacy_list_control">
 	      <{if $xupdate_writable.result==true}>
 	        <{if $module->getVar('isactive') > 0}>
@@ -173,7 +166,7 @@
 	    </tr>
 	  <{/foreach}>
 	  <tr>
-	    <td class="foot" colspan="<{if $sid}>5<{else}>6<{/if}>">
+	    <td class="foot" colspan="<{if $sid}>4<{else}>5<{/if}>">
 	      <{xoops_token form=$actionForm}>
 	      <input class="formButton" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_MOD_NAME}><{$smarty.const._EDIT}>" />
 	      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
