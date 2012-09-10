@@ -252,7 +252,7 @@ class Xupdate_ModulesIniDadaSet
 								if (!isset($rObjs[$_sid])) {
 									$criteria = new CriteriaCompo();
 									$criteria->add(new Criteria( 'sid', $_sid ) );
-									$_objs =& $this->modHand[$caller]->getObjects($criteria, null, null, true);
+									$_objs = $this->modHand[$caller]->getObjects($criteria, null, null, true);
 									foreach($_objs as $id => $mobj) {
 										if ($mobj->get('target_type') != 'TrustModule' || $mobj->get('trust_dirname') === $mobj->get('dirname')) {
 											$rObjs[$_sid][$mobj->get('target_key')] = $mobj;
@@ -285,6 +285,7 @@ class Xupdate_ModulesIniDadaSet
 											$item['modinfo'] = $_obj->modinfo;
 										}
 									}
+									unset($criteria, $_objs);
 								}
 							}
 							if (! empty($items_lang[$key]) && isset($this->lang_mapping[$org_lang])) {

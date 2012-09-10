@@ -80,8 +80,9 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 	public function setmModule($readini = true)
 	{
 		$hModule = Xupdate_Utils::getXoopsHandler('module');
-		$dirname = $this->getVar('dirname');
-		if ($this->getVar('contents') == 'module') {
+		$dirname = $this->get('dirname');
+		$contents = $this->get('contents');
+		if ($contents === 'module' || $contents === 'package') {
 			$this->mModule =& $hModule->getByDirname($dirname);
 		} else {
 			$this->mModule = null;
