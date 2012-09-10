@@ -21,7 +21,8 @@ class Xupdate_Updater
 
     private /*** string[] ***/ $_mMileStone = array(
     		'006' => 'update006',
-    		'011' => 'update011'
+    		'011' => 'update011',
+    		'022' => 'update022'
     	);
 
     private /*** XoopsModule ***/ $_mCurrentXoopsModule = null;
@@ -103,6 +104,37 @@ class Xupdate_Updater
     		return false;
     	}
     	 
+    	return true;
+    }
+
+    private function update022()
+    {
+    	$this->mLog->addReport('DB upgrade start (for Ver 0.22)');
+    
+    	// Update database table index.
+    	$root =& XCube_Root::getSingleton();
+    	$db =& $root->mController->getDB();
+    	$table = $db->prefix($this->_mCurrentXoopsModule->get('dirname') . '_modulestore');
+    
+   		$sql = 'ALTER TABLE `'.$table.'` CHANGE `dirname` `dirname` varchar(255) NOT NULL default \'\'';
+    	if ($db->query($sql)) {
+    		$this->mLog->addReport('Success updated '.$table.' - `dirname` VARCHAR( 255 )');
+    	} else {
+    		$this->mLog->addError('Error update '.$table.' - `dirname` VARCHAR( 255 )');
+    	}
+    	$sql = 'ALTER TABLE `'.$table.'` CHANGE `trust_dirname` `trust_dirname` varchar(255) default \'\'';
+    	if ($db->query($sql)) {
+    		$this->mLog->addReport('Success updated '.$table.' - `trust_dirname` VARCHAR( 255 )');
+    	} else {
+    		$this->mLog->addError('Error update '.$table.' - `trust_dirname` VARCHAR( 255 )');
+    	}
+    
+    	if (!$this->_mForceMode && $this->mLog->hasError())
+    	{
+    		$this->_processReport();
+    		return false;
+    	}
+    
     	return true;
     }
     
