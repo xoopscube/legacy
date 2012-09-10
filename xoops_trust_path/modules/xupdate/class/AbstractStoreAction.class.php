@@ -349,7 +349,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 		$message_btn_update = _MI_XUPDATE_ADMENU_MODULE._MI_XUPDATE_UPDATE;
 		$message_btn_manage = _MI_XUPDATE_ADMENU_THEME._MI_XUPDATE_MANAGE;
 		$refrash_url = XOOPS_MODULE_URL . '/xupdate/admin/index.php?action=ModuleView&checkonly=1';
-		$action_Base = ucfirst($this->contents);
+		$action_Base = ucfirst($this->template);
 
 		$ret =<<< HTML
 jQuery(function($){

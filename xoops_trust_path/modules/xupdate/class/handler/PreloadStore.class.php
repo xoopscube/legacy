@@ -5,29 +5,29 @@ require_once XUPDATE_TRUST_PATH .'/class/handler/ModuleStore.class.php';
 /**
 * XoopsSimpleObject
 */
-class Xupdate_ThemeStore extends Xupdate_ModuleStore {
+class Xupdate_PreloadStore extends Xupdate_ModuleStore {
 
 	const PRIMARY = 'id';
-	const DATANAME = 'themestore';
+	const DATANAME = 'preloadstore';
 	
 	public function get_StoreUrl()
 	{
 		//TODO for test dirname ?
 		$root =& XCube_Root::getSingleton();
 		$modDirname = $root->mContext->mModule->mAssetManager->mDirname;
-		$ret = XOOPS_MODULE_URL .'/'.$modDirname.'/admin/index.php?action=ThemeInstall'
-			.'&id='.$this->getVar('id') .'&dirname='.$this->getVar('dirname');
+		$ret = XOOPS_MODULE_URL .'/'.$modDirname.'/admin/index.php?action=PreloadInstall'
+			.'&id='.$this->getVar('id');
 		return $ret;
 	}
 	public function get_InstallUrl()
 	{
-		$ret = XOOPS_MODULE_URL .'/legacy/admin/index.php?action=ThemeInstall&dirname='
+		$ret = XOOPS_MODULE_URL .'/legacy/admin/index.php?action=PreloadInstall&dirname='
 			.$this->getVar('dirname') ;
 		return $ret;
 	}
 	public function get_UpdateUrl()
 	{
-		$ret = XOOPS_MODULE_URL .'/legacy/admin/index.php?action=ThemeUpdate&dirname='
+		$ret = XOOPS_MODULE_URL .'/legacy/admin/index.php?action=PreloadUpdate&dirname='
 			.$this->getVar('dirname') ;
 		return $ret;
 	}
@@ -37,9 +37,9 @@ class Xupdate_ThemeStore extends Xupdate_ModuleStore {
 /**
 * XoopsObjectGenericHandler extends
 */
-class Xupdate_ThemeStoreHandler extends Xupdate_ModuleStoreHandler
+class Xupdate_PreloadStoreHandler extends Xupdate_ModuleStoreHandler
 {
-	public $mClass = 'Xupdate_ThemeStore';
+	public $mClass = 'Xupdate_PreloadStore';
 
 	/**
 	 * getDataname
@@ -50,7 +50,7 @@ class Xupdate_ThemeStoreHandler extends Xupdate_ModuleStoreHandler
 	 */
 	public function getDataname()
 	{
-		return 'themestore';
+		return 'preloadstore';
 	}
 } // end class
 

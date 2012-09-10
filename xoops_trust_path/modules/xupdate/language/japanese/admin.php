@@ -32,6 +32,8 @@ define('_AD_XUPDATE_LANG_MESSAGE_SUCCESS', "完了");
 define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES', "配置");
 define('_AD_XUPDATE_LANG_MESSAGE_PROCESSING', "中");
 define('_AD_XUPDATE_LANG_BUTTON_UPDATE', '更新');
+define('_AD_XUPDATE_LANG_PRELOAD_NAME', 'プリロード名');
+define('_AD_XUPDATE_DESCRIPTION', '説明');
 
 define('_AD_XUPDATE_LANG_TIMEOUT_ERROR', 'PHP 実行時タイムアウト');
 define('_AD_XUPDATE_LANG_STAGE_1', 'アーカイブのダウンロードを開始しました。');

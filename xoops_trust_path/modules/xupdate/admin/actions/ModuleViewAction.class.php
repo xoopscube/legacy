@@ -109,6 +109,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 		$render->setAttribute('module_items', $this->get_storeItems('module'));
 		$render->setAttribute('theme_items', $this->get_storeItems('theme'));
 		$render->setAttribute('package_items', $this->get_storeItems('package'));
+		$render->setAttribute('preload_items', $this->get_storeItems('preload'));
 
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 		$render->setAttribute('currentMenu', _MI_XUPDATE_ADMENU_STORELIST);

@@ -75,7 +75,8 @@ define('_MI_XUPDATE_ADMENU_MODULE'       , 'Module');
 define('_MI_XUPDATE_ADMENU_MYBLOCKSADMIN', 'access permissions');
 define('_MI_XUPDATE_ADMENU_MYPREFERENCES', 'Preferences');
 define('_MI_XUPDATE_ADMENU_THEME'        , 'Theme');
-define('_MI_XUPDATE_ADMENU_THEMEFINDER'  , 'Theme');
+define('_MI_XUPDATE_ADMENU_THEMEFINDER'  , 'ThemeFinder');
+define('_MI_XUPDATE_ADMENU_PRELOAD'      , 'Preload');
 
 // form filtter button
 define('_MI_XUPDATE_ALL'       , 'All');
@@ -130,4 +131,5 @@ define('_MI_XUPDATE_ERR_FTP_UPLOADFILES'    , 'Failed to file placement.');
 define('_MI_XUPDATE_ERR_FTP_LOGIN'          , 'Failed to login via SSH or FTP.');
 define('_MI_XUPDATE_ERR_UNZIP_FILE'         , 'Failed to extract the files.');
 define('_MI_XUPDATE_ERR_DOWNLOAD_FILE'      , 'Failed to download the file.');
-define('_MI_XUPDATE_ERR_NOT_UPLOADED'       , 'Cancellation of the override');
+define('_MI_XUPDATE_ERR_NOT_UPLOADED'       , 'Cancellation of the override.');
+define('_MI_XUPDATE_ERR_FTP_NOTFOUND'       , 'The target item is not found.');

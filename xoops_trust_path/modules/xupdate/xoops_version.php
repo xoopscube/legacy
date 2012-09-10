@@ -123,6 +123,13 @@ $modversion['adminmenu'] = array(
 		'keywords'	=> _MI_XUPDATE_ADMENU_THEMEFINDER,
 		'show'	=> true,
 		'absolute' => false
+	),
+	array(
+		'title'		=> _MI_XUPDATE_ADMENU_PRELOAD,
+		'link'	=> 'admin/index.php?action=PreloadStore',
+		'keywords'	=> _MI_XUPDATE_ADMENU_PRELOAD,
+		'show'	=> true,
+		'absolute' => false
 	)
 	);
 //

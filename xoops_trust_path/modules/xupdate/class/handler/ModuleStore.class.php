@@ -81,7 +81,11 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 	{
 		$hModule = Xupdate_Utils::getXoopsHandler('module');
 		$dirname = $this->getVar('dirname');
-		$this->mModule =& $hModule->getByDirname($dirname) ;
+		if ($this->getVar('contents') == 'module') {
+			$this->mModule =& $hModule->getByDirname($dirname);
+		} else {
+			$this->mModule = null;
+		}
 		if (is_object($this->mModule)){
 			$this->setVar('last_update', $this->mModule->getVar('last_update'));
 			$this->modinfo =& $this->mModule->getInfo();
@@ -141,18 +145,28 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 				if (! isset($this->modinfo['version'])) {
 					$this->modinfo['version'] = 0;
 				}
+				if (! isset($this->modinfo['detailed_version'])) {
+					$this->modinfo['detailed_version'] = '';
+				}
+				if (! isset($this->modinfo['lastupdate'])) {
+					$this->modinfo['lastupdate'] = 0;
+				}
 				$this->mModule->setVar('version', $this->modinfo['version'] * 100);
 			} else {
 				$this->mModule->setVar('version', $this->getVar('version'));
-				$this->modinfo = array('version' => $this->mModule->getRenderedVersion());
+				$this->modinfo = array(
+					'version' => $this->mModule->getRenderedVersion(),
+					'detailed_version' => $this->getVar('detailed_version'),
+					'lastupdate' => 0);
 			}
 			if ($readini) {
 				// for Theme
-				if ($this->getVar('target_type') == 'Theme') {
+				if ($this->getVar('contents') == 'theme') {
 					$t_dir = XOOPS_ROOT_PATH . '/themes/' . $this->getVar('dirname');
 					if (is_dir($t_dir)) {
 						$this->setVar('isactive', 1);
-						$this->setVar('last_update', filemtime($t_dir));
+						$lastupdate = filemtime($t_dir.'/theme.html');
+						$this->setVar('last_update', $lastupdate);
 						$m_file = $t_dir . '/' . 'manifesto.ini.php';
 						if (is_file($m_file)) {
 							if ($manifesto = @ parse_ini_file($m_file)) {
@@ -162,9 +176,36 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 										$this->setVar('version', $mVersion);
 									}
 									$this->mModule->setVar('version', $mVersion);
-									$this->modinfo = array('version' => $this->mModule->getRenderedVersion());
+									$this->modinfo = array(
+										'version' => $this->mModule->getRenderedVersion(),
+										'detailed_version' => $this->getVar('detailed_version'),
+										'lastupdate' => $lastupdate);
 								}
 							}
+						} else {
+							if ($lastupdate > $this->modinfo['lastupdate']) {
+								$this->mModule->setVar('version', $this->getVar('version'));
+								$this->modinfo = array(
+									'version' => $this->mModule->getRenderedVersion(),
+									'detailed_version' => $this->getVar('detailed_version'),
+									'lastupdate' => $lastupdate);
+							}
+						}
+					}
+				}
+				// for Preload
+				if ($this->getVar('contents') == 'preload') {
+					$t_file = XOOPS_ROOT_PATH . '/preload/' . $this->getVar('target_key') . '.class.php';
+					if (is_file($t_file)) {
+						$lastupdate = filemtime($t_file);
+						$this->setVar('isactive', 1);
+						$this->setVar('last_update', $lastupdate);
+						if ($lastupdate > $this->modinfo['lastupdate']) {
+							$this->mModule->setVar('version', $this->getVar('version'));
+							$this->modinfo = array(
+								'version' => $this->mModule->getRenderedVersion(),
+								'detailed_version' => $this->getVar('detailed_version'),
+								'lastupdate' => $lastupdate);
 						}
 					}
 				}
@@ -438,12 +479,14 @@ class Xupdate_ModuleStoreHandler extends Legacy_AbstractClientObjectHandler
 		$result = '';
 		$module_count = $this->getCountHasUpdate('module');
 		$theme_count = $this->getCountHasUpdate('theme');
-		if ($module_count || $theme_count) {
+		$preload_count = $this->getCountHasUpdate('preload');
+		if ($module_count || $theme_count || $preload_count) {
 			$root =& XCube_Root::getSingleton();
 			$root->mLanguageManager->loadBlockMessageCatalog('xupdate');
 			$module = ($module_count)? '<a href="'.XOOPS_MODULE_URL.'/'.$this->mDirname.'/admin/index.php?action=ModuleStore&amp;filter=updated">'.sprintf(_MB_XUPDATE_HAVE_UPDATEMODULE, $module_count).'</a>' : '';
 			$theme = ($theme_count)? '<a href="'.XOOPS_MODULE_URL.'/'.$this->mDirname.'/admin/index.php?action=ThemeStore&amp;filter=updated">'.sprintf(_MB_XUPDATE_HAVE_UPDATETHEME, $theme_count).'</a>' : '';
-			$msg = sprintf(_MB_XUPDATE_HAVE_UPDATE, $module.$theme);
+			$preload = ($preload_count)? '<a href="'.XOOPS_MODULE_URL.'/'.$this->mDirname.'/admin/index.php?action=PreloadStore&amp;filter=updated">'.sprintf(_MB_XUPDATE_HAVE_UPDATEPRELOAD, $preload_count).'</a>' : '';
+			$msg = sprintf(_MB_XUPDATE_HAVE_UPDATE, $module.$theme.$preload);
 			$type = (! empty($_COOKIE['xupdate_ondemand']))? 'ondemand' : 'sticky';
 			$arg = parse_url(XOOPS_URL);
 			$cookie_path = (isset($arg['path']))? $arg['path'] . '/' : '/';

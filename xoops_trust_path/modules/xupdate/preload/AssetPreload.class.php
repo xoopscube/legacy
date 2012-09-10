@@ -201,6 +201,15 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
 	    		$blockVal['lang_linkname'] = _MB_XUPDATE_THEMEUPDATE . $checkimg;
 	    		$modules[] = $blockVal;
 	    	}
+	    	if ($count = $handler->getCountHasUpdate('preload')) {
+	    		$this->mRoot->mLanguageManager->loadBlockMessageCatalog('xupdate');
+	    		$checkimg = '<img src="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleView&amp;checkonly=1" width="1" height="1" alt="" />';
+	    		$blockVal = array();
+	    		$blockVal['adminlink'] = XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=PreloadStore&amp;filter=updated';
+	    		$blockVal['pendingnum'] = $count;
+	    		$blockVal['lang_linkname'] = _MB_XUPDATE_PRELOADUPDATE . $checkimg;
+	    		$modules[] = $blockVal;
+	    	}
     	}
     }
 

@@ -25,6 +25,9 @@ define('_AD_XUPDATE_LANG_INSTALL_ONLY', "インストール時のみコピーす
 define('_AD_XUPDATE_LANG_DELETE_DIR', '不要になったディレクトリの削除');
 define('_AD_XUPDATE_LANG_DELETE_FILE', '不要になったファイルの削除');
 define('_AD_XUPDATE_RECENTCHANGES', '更新履歴');
+define('_AD_XUPDATE_LANG_PRELOAD_NAME', 'プリロード名');
+define('_AD_XUPDATE_DESCRIPTION', '説明');
+
 
 define('_AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL', "一括操作");
 define('_AD_XUPDATE_LANG_MESSAGE_WAITING', "待機中");
