@@ -178,7 +178,12 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 	public function executeViewIndex(&$render)
 	{
 		$render->setTemplateName('admin_'.$this->template.'_store.html');
-
+		
+		// check X-elfinder
+		if (! is_dir(XOOPS_ROOT_PATH.'/modules/'.$this->mod_config['xelfinder_dirname'])) {
+			$this->mod_config['xelfinder_dirname'] = '';
+		}
+		
 		$render->setAttribute('mod_config', $this->mod_config);
 		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
 

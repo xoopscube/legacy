@@ -271,6 +271,26 @@ $modversion['config'] = array(
 	) ,
 
 	array(
+		'name'          => 'tag_dirname' ,
+		'title'         => '_MI_XUPDATE_TAG_DIRNAME' ,
+		'description'   => '_MI_XUPDATE_TAG_DIRNAMEDSC' ,
+		'formtype'      => 'server_module',
+		'valuetype'     => 'text',
+		'default'       => '',
+		'options'       => array('none','tag')
+	) ,
+
+	array(
+		'name'          => 'xelfinder_dirname' ,
+		'title'         => '_MI_XUPDATE_XEL_DIRNAME' ,
+		'description'   => '_MI_XUPDATE_XEL_DIRNAMEDSC' ,
+		'formtype'      => 'text',
+		'valuetype'     => 'string',
+		'default'       => 'xelfinder',
+		'options'       => array()
+	) ,
+
+	array(
 		'name'		=> 'Show_debug',
 		'title'		=> '_MI_XUPDATE_DEBUG' ,
 		'description'	=> '',
@@ -279,6 +299,7 @@ $modversion['config'] = array(
 		'default'	=> 0 ,
 		'options'	=> array(),
 	) ,
+
 	array(
 		'name'		=> 'Theme_download_Url_format',
 		'title'		=> '_MI_XUPDATE_FTP_THEME_URL' ,
@@ -288,6 +309,7 @@ $modversion['config'] = array(
 		'default'	=> 'http://cmsthemefinder.com/modules/lica/index.php?controller=download&id=%u',
 		'options'	=> array(),
 	) ,
+
 	array(
 		'name'		=> 'stores_json_url',
 		'title'		=> '_MI_XUPDATE_FTP_STORE_URL' ,
@@ -296,16 +318,7 @@ $modversion['config'] = array(
 		'valuetype'	=> 'string',
 		'default'	=> 'http://xoopscube.net/uploads/xupdatemaster/stores_json_V1.txt',
 		'options'	=> array(),
-	) ,
-	array(
-		'name'          => 'tag_dirname' ,
-		'title'         => '_MI_XUPDATE_TAG_DIRNAME' ,
-		'description'   => '_MI_XUPDATE_TAG_DIRNAMEDSC' ,
-		'formtype'      => 'server_module',
-		'valuetype'     => 'text',
-		'default'       => '',
-		'options'       => array('none','tag')
-	) ,
+	)
 
 ##[cubson:config]
 ##[/cubson:config]

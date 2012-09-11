@@ -9,6 +9,12 @@
 	<h4><{$storeObject->getShow('name')}></h4>
 	<{/if}>
 	
+	<{if $mod_config.xelfinder_dirname}>
+	<ul class="toptab">
+	  <li class="addModule"><a onclick="openWithSelfMain('<{$smarty.const.XOOPS_MODULE_URL}>/<{$mod_config.xelfinder_dirname}>/manager.php','filemanager',700,500);return false;" href="#"><{$smarty.const._MI_XUPDATE_ADMENU_PRELOAD}><{$smarty.const._MI_XUPDATE_MANAGE}></a></li>
+	</ul>
+	<{/if}>
+	
 	<{if $actionForm->hasError()}>
 	<div class="error">
 	  <ul>

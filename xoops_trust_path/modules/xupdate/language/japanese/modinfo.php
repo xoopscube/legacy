@@ -116,6 +116,8 @@ define('_MI_XUPDATE_FTP_THEME_URL', 'テーマURL');
 define('_MI_XUPDATE_FTP_STORE_URL', 'アドオンストアURL');
 define('_MI_XUPDATE_TAG_DIRNAME'  , 'タグモジュール');
 define('_MI_XUPDATE_TAG_DIRNAMEDSC', 'タグモジュールを利用する場合はそのディレクトリ名を指定します。');
+define('_MI_XUPDATE_XEL_DIRNAME'  , 'X-elFinder ディレクトリ名');
+define('_MI_XUPDATE_XEL_DIRNAMEDSC','X-elFinder の一般設定のボリュームドライバに<br />"<b>xelfinder:xelfinder:preload:プリロード:gid=1</b>" (X-update がダイレクトモードで動作する場合)<br />または<br />"<b>xelfinder:ftp:preload:プリロード:gid=1</b>" (X-elFinder の FTP 設定を使用する場合)<br />を追加するとプリロードの管理を行なうことができます。');
 
 // progress messages
 define('_MI_XUPDATE_PROG_FILE_GETTING', 'パッケージを取得しています。');
