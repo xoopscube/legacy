@@ -84,8 +84,10 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 		$contents = $this->get('contents');
 		if ($contents === 'module' || $contents === 'package') {
 			$this->mModule =& $hModule->getByDirname($dirname);
+			$_isModule = true;
 		} else {
 			$this->mModule = null;
+			$_isModule = false;
 		}
 		if (is_object($this->mModule)){
 			$this->setVar('last_update', $this->mModule->getVar('last_update'));
@@ -157,10 +159,10 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 				$this->mModule->setVar('version', $this->getVar('version'));
 				$this->modinfo = array(
 					'version' => $this->mModule->getRenderedVersion(),
-					'detailed_version' => $this->getVar('detailed_version'),
+					'detailed_version' => $this->options['detailed_version'],
 					'lastupdate' => 0);
 			}
-			if ($readini) {
+			if ($readini && ! $_isModule) {
 				// for Theme
 				if ($this->getVar('contents') == 'theme') {
 					$t_dir = XOOPS_ROOT_PATH . '/themes/' . $this->getVar('dirname');
@@ -179,7 +181,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 									$this->mModule->setVar('version', $mVersion);
 									$this->modinfo = array(
 										'version' => $this->mModule->getRenderedVersion(),
-										'detailed_version' => $this->getVar('detailed_version'),
+										'detailed_version' => $this->options['detailed_version'],
 										'lastupdate' => $lastupdate);
 								}
 							}
@@ -188,7 +190,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 								$this->mModule->setVar('version', $this->getVar('version'));
 								$this->modinfo = array(
 									'version' => $this->mModule->getRenderedVersion(),
-									'detailed_version' => $this->getVar('detailed_version'),
+									'detailed_version' => $this->options['detailed_version'],
 									'lastupdate' => $lastupdate);
 							}
 						}
@@ -205,16 +207,16 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 							$this->mModule->setVar('version', $this->getVar('version'));
 							$this->modinfo = array(
 								'version' => $this->mModule->getRenderedVersion(),
-								'detailed_version' => $this->getVar('detailed_version'),
+								'detailed_version' => $this->options['detailed_version'],
 								'lastupdate' => $lastupdate);
 						}
 					}
 				}
 				$this->options['modinfo'] = $this->modinfo;
 				$this->setVar('options', serialize($this->options));
-				if (($this->getVar('version') && $this->mModule->getVar('version') != $this->getVar('version'))
+				if (($this->getVar('version') && $this->mModule->getVar('version') < $this->getVar('version'))
 						||
-						(isset($this->modinfo['detailed_version']) && $this->modinfo['detailed_version'] != $this->options['detailed_version'])) {
+					(isset($this->modinfo['detailed_version']) && $this->modinfo['detailed_version'] != $this->options['detailed_version'])) {
 					$this->setVar('hasupdate', 1);
 				} else {
 					$this->setVar('hasupdate', 0);
