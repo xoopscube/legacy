@@ -109,11 +109,16 @@ class Xupdate_Utils
 	 */
 	public static function getRedirectUrl($url, $limit = 4) {
 		$headers = get_headers($url, 1);
-		if($limit &&  preg_match('#^HTTP/\d\.\d\s+(301|302|303|307)#',$headers[0]) && isset($headers['Location'])) {
-			return self::getRedirectUrl(trim($headers['Location']), --$limit);
+		$location = isset($headers['Location'])? $headers['Location'] : (isset($headers['location'])? $headers['location'] : '');
+		if ($location) {
+			if (is_array($location)) {
+				$url = array_pop($location);
+			} else {
+				$url = $location;
+			}
 		}
 		return $url;
-    }
+	}
     
     /**
      * Check, Is directory writable
