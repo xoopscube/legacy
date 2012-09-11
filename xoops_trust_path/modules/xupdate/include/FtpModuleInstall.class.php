@@ -85,7 +85,12 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			
 			
 			$downloadUrl = $this->Func->_getDownloadUrl( $this->target_key, $this->downloadUrlFormat );
-			$this->download_file = $this->target_key . (preg_match('/\btar\b/i', $downloadUrl)? '.tar.gz' : '.zip');
+			
+			if ($caller === 'preload' && preg_match('/\.php$/i', $downloadUrl)) {
+				$this->download_file = $this->target_key . '.class.php';
+			} else {
+				$this->download_file = $this->target_key . (preg_match('/\btar\b/i', $downloadUrl)? '.tar.gz' : '.zip');
+			}
 			
 			register_shutdown_function('xupdate_on_shutdown', $this->Xupdate->params['temp_path'], $downloadUrl);
 			
@@ -97,35 +102,43 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 				if ($is_upload_retry) {
 					$this->downloadedFilePath = $this->Func->_getDownloadFilePath( $downloadDirPath, $this->download_file );
 				}
-				if($this->_unzipFile()==true) {
+				if($this->_unzipFile($caller)) {
 					$GLOBALS['xupdate_stage'] = 3;
-					// ディレクトリを掘り下げて探索
-					if (! $this->_exploredDirPath_DownDir()) {
-						$this->_set_error_log(_MI_XUPDATE_ERR_FTP_NOTFOUND);
+					if ($caller === 'preload') {
+						$set_member = 'exploredPreloadPath';
+						$serach_file = $this->target_key . '.class.php';
+					} else {
+						$set_member = $serach_file = '';
 					}
-					// TODO port , timeout
-					if ($this->Ftp->isConnected() || $this->Ftp->app_login()==true) {
-						$GLOBALS['xupdate_stage'] = 4;
-						// overwrite control
-						if(! isset($this->options['no_overwrite'])){
-							$this->options['no_overwrite'] = array();
-						}
-						if(! isset($this->options['install_only'])){
-							$this->options['install_only'] = array();
-						}
-						$this->Ftp->set_no_overwrite(array($this->options['no_overwrite'], $this->options['install_only']));
-						$GLOBALS['xupdate_stage'] = 5;
-						if (!$this->uploadFiles()){
-							$this->_set_error_log(_MI_XUPDATE_ERR_FTP_UPLOADFILES);
+					// ディレクトリを掘り下げて探索
+					if ($this->exploredPreloadPath || $this->_exploredDirPath_DownDir($set_member, $serach_file)) {
+						// TODO port , timeout
+						if ($this->Ftp->isConnected() || $this->Ftp->app_login()==true) {
+							$GLOBALS['xupdate_stage'] = 4;
+							// overwrite control
+							if(! isset($this->options['no_overwrite'])){
+								$this->options['no_overwrite'] = array();
+							}
+							if(! isset($this->options['install_only'])){
+								$this->options['install_only'] = array();
+							}
+							$this->Ftp->set_no_overwrite(array($this->options['no_overwrite'], $this->options['install_only']));
+							$GLOBALS['xupdate_stage'] = 5;
+							if (!$this->uploadFiles()){
+								$this->_set_error_log(_MI_XUPDATE_ERR_FTP_UPLOADFILES);
+								$result = false;
+							}
+							$GLOBALS['xupdate_stage'] = 6;
+							
+							$this->_set_item_perm();
+							
+							$GLOBALS['xupdate_stage'] = 7;
+						} else {
+							$this->_set_error_log(_MI_XUPDATE_ERR_FTP_LOGIN);
 							$result = false;
 						}
-						$GLOBALS['xupdate_stage'] = 6;
-						
-						$this->_set_item_perm();
-						
-						$GLOBALS['xupdate_stage'] = 7;
-					}else{
-						$this->_set_error_log(_MI_XUPDATE_ERR_FTP_LOGIN);
+					} else {
+						$this->_set_error_log(_MI_XUPDATE_ERR_FTP_NOTFOUND);
 						$result = false;
 					}
 
@@ -239,7 +252,17 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 				}
 			}
 			
-		}else{
+		} else if ($this->exploredPreloadPath) {
+			
+			// copy html/preload
+			$uploadPath = XOOPS_ROOT_PATH . '/preload/' ;
+			$unzipPath =  $this->exploredPreloadPath;
+			$result = $this->Ftp->uploadNakami($unzipPath, $uploadPath);
+			if (! $this->_check_file_upload_result($result, 'html/preload')){
+				return false;
+			}
+			
+		} else {
 			
 			// copy xoops_trust_path if exists
 			$uploadPath = XOOPS_TRUST_PATH . '/' ;
@@ -299,7 +322,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	private function _get_nextlink($dirname, $caller)
 	{
 		$ret ='';
-		if ($caller == 'module') {
+		if ($caller === 'module') {
 			$hModule = Xupdate_Utils::getXoopsHandler('module');
 			$module =& $hModule->getByDirname($dirname) ;
 			if (is_object($module)){
@@ -314,8 +337,10 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 				$ret ='<a href="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleStore">'._AD_XUPDATE_LANG_MESSAGE_GETTING_FILES._AD_XUPDATE_LANG_MESSAGE_SUCCESS.'</a>';
 			}
 
-		} elseif ($caller == 'theme') {
+		} elseif ($caller === 'theme') {
 			$ret ='<a href="'.XOOPS_MODULE_URL.'/legacy/admin/index.php?action=ThemeList">'._MI_XUPDATE_ADMENU_THEME._MI_XUPDATE_MANAGE.'</a>';
+		} elseif ($caller === 'preload') {
+			$ret ='<a href="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=PreloadStore">'._AD_XUPDATE_LANG_MESSAGE_GETTING_FILES._AD_XUPDATE_LANG_MESSAGE_SUCCESS.'</a>';
 		}
 		return $ret;
 	}
@@ -327,7 +352,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	 *
 	 * @return	void
 	 **/
-	private function _exploredDirPath_DownDir($level = 0)
+	private function _exploredDirPath_DownDir($member = '', $checkfile = '')
 	{
 		$dir = $this->exploredDirPath;
 		$this->Ftp->appendMes('check exploredDirPath: '.$this->exploredDirPath.'<br />');
@@ -340,6 +365,13 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			if (is_dir($dir.'/'.$item)) {
 				$checker[$item] = true;
 			}
+			if ($member && $checkfile) {
+				if (is_file($dir.'/'.$checkfile)) {
+					$this->Ftp->appendMes('found '.$checkfile.' in exploredDirPath: '.$this->exploredDirPath.'<br />');
+					$this->$member = $this->exploredDirPath;
+					return true;
+				}
+			}
 		}
 		if (isset($checker['html']) || isset($checker['xoops_trust_path'])) {
 			$this->Ftp->appendMes('found files exploredDirPath: '.$this->exploredDirPath.'<br />');
@@ -347,7 +379,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 		}
 		foreach (array_keys($checker) as $item) {
 			$this->exploredDirPath = realpath($dir.'/'.$item);
-			if ($this->_exploredDirPath_DownDir()) {
+			if ($this->_exploredDirPath_DownDir($member, $checkfile)) {
 				return true;
 			}
 		}

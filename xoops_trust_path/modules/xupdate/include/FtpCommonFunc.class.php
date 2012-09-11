@@ -28,6 +28,7 @@ class Xupdate_FtpCommonFunc {
 
 	protected $download_file;
 	protected $lockfile;
+	protected $exploredPreloadPath;
 	
 	public function __construct() {
 

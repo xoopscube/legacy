@@ -37,6 +37,7 @@ class Xupdate_TagClientDelegate implements Legacy_iTagClientDelegate
             if(Xupdate_Utils::getModuleConfig($dir, 'tag_dirname')==$tDirname){
                 $list[] = array('dirname'=>$dir, 'dataname'=>'ModuleStore');
                 $list[] = array('dirname'=>$dir, 'dataname'=>'ThemeStore');
+                $list[] = array('dirname'=>$dir, 'dataname'=>'PreloadStore');
 
             }
         }
@@ -64,16 +65,13 @@ class Xupdate_TagClientDelegate implements Legacy_iTagClientDelegate
         if(! $handler){
             return;
         }
-        $contents = ($dataname === 'ModuleStore')? 'module' : 'theme';
+        $contents = strtolower(str_replace('Store', '', $dataname));
         
         //setup client module info
         $cri = new CriteriaCompo();
         $cri->add(new Criteria('contents', $contents));
         $cri->add(new Criteria($handler->mPrimary, $idList, 'IN'));
         $objs = $handler->getObjects($cri, $limit, $start);
-        if ($contents === 'theme') {
-        	//var_dump($cri);exit;
-        }
         if(count($objs)>0){
 	        $list['dirname'][] = $dirname;
 	        $list['dataname'][] = $dataname;

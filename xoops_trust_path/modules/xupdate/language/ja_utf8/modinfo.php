@@ -76,6 +76,7 @@ define('_MI_XUPDATE_ADMENU_MYBLOCKSADMIN', 'アクセス権限設定');
 define('_MI_XUPDATE_ADMENU_MYPREFERENCES', '一般設定');
 define('_MI_XUPDATE_ADMENU_THEME'        , 'テーマ');
 define('_MI_XUPDATE_ADMENU_THEMEFINDER'  , 'テーマファインダ');
+define('_MI_XUPDATE_ADMENU_PRELOAD'      , 'プリロード');
 
 // form filtter button
 define('_MI_XUPDATE_ALL'       , 'すべて');
@@ -114,7 +115,9 @@ define('_MI_XUPDATE_FTP_ADDON_URL', 'アドオンURL');
 define('_MI_XUPDATE_FTP_THEME_URL', 'テーマURL');
 define('_MI_XUPDATE_FTP_STORE_URL', 'アドオンストアURL');
 define('_MI_XUPDATE_TAG_DIRNAME'  , 'タグモジュール');
-define('_MI_XUPDATE_TAG_DIRNAMEDSC', 'タグモジュールを利用する場合はそのディレクトリ名を指定します。');
+define('_MI_XUPDATE_TAG_DIRNAMEDSC','タグモジュールを利用する場合はそのディレクトリ名を指定します。');
+define('_MI_XUPDATE_XEL_DIRNAME'  , 'X-elFinder ディレクトリ名');
+define('_MI_XUPDATE_XEL_DIRNAMEDSC','X-elFinder の一般設定のボリュームドライバに<br />"<b>xelfinder:xelfinder:preload:プリロード:gid=1</b>" (X-update がダイレクトモードで動作する場合)<br />または<br />"<b>xelfinder:ftp:preload:プリロード:gid=1</b>" (X-elFinder の FTP 設定を使用する場合)<br />を追加するとプリロードの管理を行なうことができます。');
 
 // progress messages
 define('_MI_XUPDATE_PROG_FILE_GETTING', 'パッケージを取得しています。');
@@ -131,3 +134,4 @@ define('_MI_XUPDATE_ERR_FTP_LOGIN'          , 'FTP または SSH でのログイ
 define('_MI_XUPDATE_ERR_UNZIP_FILE'         , 'ファイルの解凍(展開)に失敗しました。');
 define('_MI_XUPDATE_ERR_DOWNLOAD_FILE'      , 'ファイルのダウンロードに失敗しました。');
 define('_MI_XUPDATE_ERR_NOT_UPLOADED'       , '上書きのキャンセル');
+define('_MI_XUPDATE_ERR_FTP_NOTFOUND'       , '対象のアイテムが見つかりません。');

@@ -25,7 +25,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 	 *
 	 * @return	bool
 	 **/
-	public function _unzipFile()
+	public function _unzipFile($caller)
 	{
 		// local file name
 		$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
@@ -39,7 +39,14 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 			$this->_set_error_log('chdir error in: '.$exploredDirPath);
 			return false;//chdir error
 		}
-
+		
+		if (substr($this->download_file, -10) === '.class.php') {
+			if (@ copy($this->Xupdate->params['temp_path'].'/'.$this->download_file, $exploredDirPath.'/'.$this->download_file)) {
+				$this->exploredPreloadPath = $exploredDirPath;
+				return true;
+			}
+		}
+		
 		if (ini_get('safe_mode') == "1") {
 			// make dirctory at first for safe_mode
 			$dirs = array();

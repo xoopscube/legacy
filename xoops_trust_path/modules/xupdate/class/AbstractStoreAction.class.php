@@ -178,7 +178,12 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 	public function executeViewIndex(&$render)
 	{
 		$render->setTemplateName('admin_'.$this->template.'_store.html');
-
+		
+		// check X-elfinder
+		if (! is_dir(XOOPS_ROOT_PATH.'/modules/'.$this->mod_config['xelfinder_dirname'])) {
+			$this->mod_config['xelfinder_dirname'] = '';
+		}
+		
 		$render->setAttribute('mod_config', $this->mod_config);
 		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
 
@@ -349,7 +354,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 		$message_btn_update = _MI_XUPDATE_ADMENU_MODULE._MI_XUPDATE_UPDATE;
 		$message_btn_manage = _MI_XUPDATE_ADMENU_THEME._MI_XUPDATE_MANAGE;
 		$refrash_url = XOOPS_MODULE_URL . '/xupdate/admin/index.php?action=ModuleView&checkonly=1';
-		$action_Base = ucfirst($this->contents);
+		$action_Base = ucfirst($this->template);
 
 		$ret =<<< HTML
 jQuery(function($){
