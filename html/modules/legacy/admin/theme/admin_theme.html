@@ -143,8 +143,23 @@ function ccOpenCid()
 // ]]> -->
 </script>
 <{$xoops_module_header}>
+<script type="text/javascript">
+<!-- <![CDATA[
+if (typeof jQuery != 'undefined') {
+	jQuery(function($){
+		ccToggle(cid);
+		onloadEffect('leftcolumn', 'minimizelc', 'lcimage');
+	});
+} else {
+	document.body.onload = function(){
+		ccToggle(cid);
+		onloadEffect('leftcolumn', 'minimizelc', 'lcimage');
+	}
+}
+// ]]> -->
+</script>
 </head>
-<body onload="ccToggle(cid);onloadEffect('leftcolumn', 'minimizelc', 'lcimage');">
+<body>
 
 
 <div id="container">

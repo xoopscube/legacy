@@ -38,9 +38,8 @@ class LegacyColumnsideHandler extends XoopsObjectHandler
 				1 => _AD_LEGACY_LANG_SIDE_BLOCK_RIGHT,
 				3 => _AD_LEGACY_LANG_CENTER_BLOCK_LEFT,
 				4 => _AD_LEGACY_LANG_CENTER_BLOCK_RIGHT,
-				5 => _AD_LEGACY_LANG_CENTER_BLOCK_CENTER,
-                25 => _AD_LEGACY_LANG_CENTER_BLOCK_GLOBAL
-        );
+				5 => _AD_LEGACY_LANG_CENTER_BLOCK_CENTER
+			);
 			
 		foreach ($t_arr as $id => $name) {
 			$this->_mResults[$id] =& $this->create();
