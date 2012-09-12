@@ -260,7 +260,7 @@ class Xupdate_ModulesIniDadaSet
 									}
 									unset($criteria, $_objs);
 								}
-								$item = $this->_getItemArrFromObj($rObjs[$_sid][$item['target_key']]);
+								$item = $this->_getItemArrFromObj($rObjs[$_sid][$item['target_key']], true);
 							} else {
 								foreach(array('description', 'tag') as $_key) {
 									if (! @ json_encode($item[$_key])) {
@@ -318,9 +318,9 @@ class Xupdate_ModulesIniDadaSet
 		}
 	}
 	
-	private function _getItemArrFromObj($obj) {
+	private function _getItemArrFromObj($obj, $readini = false) {
 		$item = array();
-		$options = $obj->unserialize_options();
+		$options = $obj->unserialize_options($readini);
 		$item['dirname'] = ($obj->get('target_type') === 'TrustModule')? $obj->get('trust_dirname') : $obj->get('dirname');
 		$item['target_key'] = $obj->get('target_key');
 		$item['target_type'] = $obj->get('target_type');

@@ -104,7 +104,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 				}
 			}
 			
-			$this->options = $this->unserialize_options();
+			$this->options = $this->unserialize_options($readini);
 			if ($readini) {
 				if (($this->getVar('version') && $this->mModule->getVar('version') < $this->getVar('version'))
 						|| 
@@ -142,7 +142,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 			$this->mModule = new XoopsModule();//空のobject
 			$this->mModule->cleanVars();
 			
-			$this->options = $this->unserialize_options();
+			$this->options = $this->unserialize_options($readini);
 			if (isset($this->options['modinfo'])) {
 				$this->modinfo = $this->options['modinfo'];
 				if (! isset($this->modinfo['version'])) {
@@ -336,7 +336,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 	 * @param string $dirname
 	 * @return array
 	 */
-	public function unserialize_options()
+	public function unserialize_options($readini = false)
 	{
 		$dirname = $this->getVar('dirname');
 		 
@@ -348,27 +348,27 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 			}
 		}
 		if(isset($options['writable_dir'])) {
-			array_walk( $options['writable_dir'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+			if (! $readini) array_walk( $options['writable_dir'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
 		} else {
 			$options['writable_dir'] = array();
 		}
 		if(isset($options['writable_file'])) {
-			array_walk( $options['writable_file'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+			if (! $readini) array_walk( $options['writable_file'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
 		} else {
 			$options['writable_file'] = array();
 		}
 		if(isset($options['install_only'])) {
-			array_walk( $options['install_only'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+			if (! $readini) array_walk( $options['install_only'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
 		} else {
 			$options['install_only'] = array();
 		}
 		if(isset($options['delete_dir'])) {
-			array_walk( $options['delete_dir'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+			if (! $readini) array_walk( $options['delete_dir'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
 		} else {
 			$options['delete_dir'] = array();
 		}
 		if(isset($options['delete_file'])) {
-			array_walk( $options['delete_file'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+			if (! $readini) array_walk( $options['delete_file'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
 		} else {
 			$options['delete_file'] = array();
 		}
