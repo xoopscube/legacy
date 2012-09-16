@@ -26,7 +26,7 @@ class Xupdate_ModulesIniDadaSet
 	public $stores ;
 	private $approved = array() ;
 	private $master = array();
-	private $allCallers = array('module', 'theme', 'package');
+	private $allCallers = array('module', 'theme', 'package', 'preload');
 	private $cacheTTL = 300; // 5min
 	private $itemArrayKeys = array(
 		'id',
@@ -63,7 +63,10 @@ class Xupdate_ModulesIniDadaSet
 		$mAsset =& $root->mContext->mModule->mAssetManager;
 		$this->mTagModule = $root->mContext->mModuleConfig['tag_dirname'];
 		$this->storeHand =& $mAsset->getObject('handler', 'Store', false);
-		$this->modHand = array('module' => $mAsset->getObject('handler', 'ModuleStore', false), 'theme' => $mAsset->getObject('handler', 'ThemeStore', false));
+		$this->modHand = array(
+			'module' => $mAsset->getObject('handler', 'ModuleStore', false),
+			'theme' => $mAsset->getObject('handler', 'ThemeStore', false),
+			'preload' => $mAsset->getObject('handler', 'PreloadStore', false));
 		$this->modHand['package'] = $this->modHand['module'];
 	}
 
@@ -160,6 +163,11 @@ class Xupdate_ModulesIniDadaSet
 						$tempFilename = 'package'.(int)$store['sid'].'.ini.php';
 						$contents = 'package';
 						break;
+					case 'preload':
+						$target_key = 'preload.ini';
+						$tempFilename = 'preload'.(int)$store['sid'].'.ini.php';
+						$contents = 'preload';
+						break;
 					case 'module':
 					default:
 						$target_key = 'modules.ini';
@@ -244,7 +252,7 @@ class Xupdate_ModulesIniDadaSet
 								if (!isset($rObjs[$_sid])) {
 									$criteria = new CriteriaCompo();
 									$criteria->add(new Criteria( 'sid', $_sid ) );
-									$_objs =& $this->modHand[$caller]->getObjects($criteria, null, null, true);
+									$_objs = $this->modHand[$caller]->getObjects($criteria, null, null, true);
 									foreach($_objs as $id => $mobj) {
 										if ($mobj->get('target_type') != 'TrustModule' || $mobj->get('trust_dirname') === $mobj->get('dirname')) {
 											$rObjs[$_sid][$mobj->get('target_key')] = $mobj;
@@ -252,7 +260,7 @@ class Xupdate_ModulesIniDadaSet
 									}
 									unset($criteria, $_objs);
 								}
-								$item = $this->_getItemArrFromObj($rObjs[$_sid][$item['target_key']]);
+								$item = $this->_getItemArrFromObj($rObjs[$_sid][$item['target_key']], true);
 							} else {
 								foreach(array('description', 'tag') as $_key) {
 									if (! @ json_encode($item[$_key])) {
@@ -265,6 +273,19 @@ class Xupdate_ModulesIniDadaSet
 											$item[$_key] = mb_convert_encoding($item[$_key], _CHARSET, 'UTF-8');
 										}
 									}
+								}
+								if ($caller !== 'module') {
+									// get modinfo for non module
+									$criteria = new CriteriaCompo();
+									$criteria->add(new Criteria( 'sid', $_sid ) );
+									$criteria->add(new Criteria( 'target_key',  $item['target_key']) );
+									if ($_objs = $this->modHand[$caller]->getObjects($criteria, 1, null, false)) {
+										$_obj = array_shift($_objs);
+										if ($_obj->modinfo) {
+											$item['modinfo'] = $_obj->modinfo;
+										}
+									}
+									unset($criteria, $_objs);
 								}
 							}
 							if (! empty($items_lang[$key]) && isset($this->lang_mapping[$org_lang])) {
@@ -281,6 +302,7 @@ class Xupdate_ModulesIniDadaSet
 									break;
 								case 'X2Module':
 								case 'Theme':
+								case 'Preload':
 								default:
 									$this->_setDataSingleModule($item['sid'] , $item, $caller);
 							}
@@ -296,9 +318,9 @@ class Xupdate_ModulesIniDadaSet
 		}
 	}
 	
-	private function _getItemArrFromObj($obj) {
+	private function _getItemArrFromObj($obj, $readini = false) {
 		$item = array();
-		$options = $obj->unserialize_options();
+		$options = $obj->unserialize_options($readini);
 		$item['dirname'] = ($obj->get('target_type') === 'TrustModule')? $obj->get('trust_dirname') : $obj->get('dirname');
 		$item['target_key'] = $obj->get('target_key');
 		$item['target_type'] = $obj->get('target_type');
@@ -316,6 +338,9 @@ class Xupdate_ModulesIniDadaSet
 		$item['writable_file'] = $options['writable_file'];
 		$item['delete_dir'] = $options['delete_dir'];
 		$item['delete_file'] = $options['delete_file'];
+		if (isset($options['modinfo'])) {
+			$item['modinfo'] = $options['modinfo'];
+		}
 		return $item;
 	}
 
@@ -597,6 +622,9 @@ class Xupdate_ModulesIniDadaSet
 			$item_arr['changes_url'] = $item['changes_url'] ;
 		} else {
 			$item_arr['changes_url'] = '' ;
+		}
+		if(isset($item['modinfo'])){
+			$item_arr['modinfo'] = $item['modinfo'] ;
 		}
 		
 		// check tag is UTF-8 with json_encode

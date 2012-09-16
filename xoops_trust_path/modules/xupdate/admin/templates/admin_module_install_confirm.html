@@ -1,3 +1,4 @@
+<div id="xupdate">
 <div id="contentBody">
 
 <{include file="admin_navi.html"}>
@@ -63,14 +64,14 @@
   </tr>
   <{/if}>
   <tr class="<{cycle values='odd,even'}>">
-    <td class="legacy_list_select">Version</td>
+    <td class="legacy_list_select"><{$smarty.const._AD_LEGACY_LANG_VERSION}></td>
     <td class="legacy_list_select">
         <{$version}><{if $detailed_version}> ( <{$detailed_version}> )<{/if}>
         <{if $options.changes_url}><a href="<{$options.changes_url|escape:'html'}>" target="_blank"><{$smarty.const._AD_XUPDATE_RECENTCHANGES}></a><{/if}>
     </td>
   </tr>
   <tr class="<{cycle values='odd,even'}>">
-    <td class="legacy_list_select">Description</td>
+    <td class="legacy_list_select"><{$smarty.const._AD_XUPDATE_DESCRIPTION}></td>
     <td class="legacy_list_select">
         <{$description}>
     </td>
@@ -173,4 +174,5 @@
     <div id="xupdate_mask"></div>
 </div>
 
-</div>
+</div><!-- id="contentBody" -->
+</div><!-- id="xupdate" -->

@@ -231,6 +231,14 @@ input[type="radio"] {
     line-height:   1.3em;
 }
 
+#xupdate input.formButton {
+	cursor: pointer;
+}
+
+#xupdate input.formButton:hover {
+	color: #F29B09;
+}
+
 /* admin_module_view.html */
 #xupdate div.storelist {
 	width: 99%;

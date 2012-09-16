@@ -1,0 +1,178 @@
+<div id="xupdate">
+<div id="contentBody">
+
+<{include file="admin_navi.html"}>
+
+<h3 class="admintitle"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></h3>
+<{include file="admin_menunavi.html"}>
+<{include file="admin_tips.html"}>
+
+<div class="confirm"><{$smarty.const._MI_XUPDATE_ADMENU_MODULE}> - <{$smarty.const._MI_XUPDATE_DEPLOY}></div>
+<{if $actionForm->hasError() && $actionForm->getErrorMessages()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<h3><{$dirname|xoops_escape:show}></h3>
+
+<form action="index.php?action=PreloadInstall" method="post">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=confirm value=1}>
+  <{xoops_input type=hidden name=id value=$id }>
+  <{xoops_input type=hidden name=sid value=$sid }>
+  <{xoops_input type=hidden name=addon_url value=$addon_url }>
+  <{xoops_input type=hidden name=target_key value=$target_key }>
+  <{xoops_input type=hidden name=dirname value=$dirname }>
+  <{xoops_input type=hidden name=target_type value=$target_type }>
+  <{xoops_input type=hidden name=trust_dirname value=$trust_dirname }>
+<table class="outer">
+  <tr>
+    <th colspan="2"><{$target_key|xoops_escape:show}></th>
+  </tr>
+  <tr class="<{cycle values='odd,even'}>">
+    <td class="legacy_list_select"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></td>
+    <td class="legacy_list_select">
+        <a href="index.php?action=<{$action}>&amp;sid=<{$sid}>"><{$store_name|xoops_escape:show}></a>
+        <{if $detail_url}>
+        ( <a href="<{$detail_url|xoops_escape:show}>" target="_blank"><{$target_key|xoops_escape:show}></a> )
+        <{/if}>
+    </td>
+  </tr>
+  <tr class="<{cycle values='odd,even'}>">
+    <td class="legacy_list_select"><{$smarty.const._MI_XUPDATE_FTP_ADDON_URL}></td>
+    <td class="legacy_list_select">
+        <{$addon_url|xoops_escape:show}>
+    </td>
+  </tr>
+  <tr class="<{cycle values='odd,even'}>">
+    <td class="legacy_list_select"><{$smarty.const._AD_XUPDATE_LANG_TYPE}></td>
+    <td class="legacy_list_select">
+        <{$target_type|xoops_escape:show}>
+    </td>
+  </tr>
+  <{if $trust_dirname}>
+  <tr class="<{cycle values='odd,even'}>">
+    <td class="legacy_list_select">TRUST or <{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></td>
+    <td class="legacy_list_select">
+        <{$trust_dirname|xoops_escape:show}>
+    </td>
+  </tr>
+  <{/if}>
+  <tr class="<{cycle values='odd,even'}>">
+    <td class="legacy_list_select"><{$smarty.const._AD_LEGACY_LANG_VERSION}></td>
+    <td class="legacy_list_select">
+        <{$version}><{if $detailed_version}> ( <{$detailed_version}> )<{/if}>
+        <{if $options.changes_url}><a href="<{$options.changes_url|escape:'html'}>" target="_blank"><{$smarty.const._AD_XUPDATE_RECENTCHANGES}></a><{/if}>
+    </td>
+  </tr>
+  <tr class="<{cycle values='odd,even'}>">
+    <td class="legacy_list_select"><{$smarty.const._AD_XUPDATE_DESCRIPTION}></td>
+    <td class="legacy_list_select">
+        <{$description}>
+    </td>
+  </tr>
+  <{if $target_type == 'TrustModule'}>
+  <tr class="<{cycle values='odd,even'}>">
+    <td class="legacy_list_select"><{$smarty.const._AD_XUPDATE_HTML_ONLY}></td>
+    <td class="legacy_list_select">
+      <table>
+        <tr>
+          <td class='even'><label for="<{$smarty.const.XOOPS_INPUT_DEFID_PREFIX}>html_only_1"><{$smarty.const._AD_XUPDATE_HTML_ONLY_DESC}></label></td>
+          <td class="even"><{xoops_input type=checkbox name=html_only value=1 }></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <{/if}>
+  <{if $options.writable_dir || $options.writable_file || $options.install_only || $options.delete_dir || $options.delete_file}>
+  <tr class="<{cycle values='odd,even'}>">
+    <td class="legacy_list_select">options</td>
+    <td class="legacy_list_select">
+    <table>
+       <{if $options.writable_dir}>
+        <tr><th class="ehad" colspan="2"><{$smarty.const._AD_XUPDATE_LANG_WRITABLE_DIR}></th></tr>
+       <{counter start=0 skip=1 assign=count}>
+       <{foreach from=$options.writable_dir item=_item}>
+        <{counter assign=count}>
+        <tr>
+        <td class='even'><label for='writable_dir_<{$count}>'><{$_item}></label></td>
+        <td class='even'><input type='checkbox' name='writable_dir[]' id='writable_dir_<{$count}>' value='<{$_item}>' <{if $_item}>checked="checked"<{/if}> /></td>
+        </tr>
+        <{/foreach}>
+        <{/if}>
+        <{if $options.writable_file}>
+        <tr><th class="ehad" colspan="2"><{$smarty.const._AD_XUPDATE_LANG_WRITABLE_FILE}></th></tr>
+        <{counter start=0 skip=1 assign=count}>
+        <{foreach from=$options.writable_file item=_item}>
+        <{counter assign=count}>
+        <tr>
+            <td class='even'><label for='writable_file_<{$count}>'><{$_item}></label></td>
+            <td class='even'><input type='checkbox' name='writable_file[]' id='writable_file_<{$count}>' value='<{$_item}>' <{if $_item}>checked="checked"<{/if}> /></td>
+        </tr>
+        <{/foreach}>
+        <{/if}>
+        <{if $options.install_only}>
+        <tr><th class="ehad" colspan="2"><{$smarty.const._AD_XUPDATE_LANG_INSTALL_ONLY}></th></tr>
+        <{counter start=0 skip=1 assign=count}>
+        <{foreach from=$options.install_only item=_item}>
+        <{counter assign=count}>
+        <tr>
+            <td class='even'><label for='install_only_<{$count}>'><{$_item}></label></td>
+            <td class='even'><input type='checkbox' name='install_only[]' id='install_only_<{$count}>' value='<{$_item}>' /></td>
+        </tr>
+        <{/foreach}>
+        <{/if}>
+       <{if $options.delete_dir}>
+        <tr><th class="ehad" colspan="2"><{$smarty.const._AD_XUPDATE_LANG_DELETE_DIR}></th></tr>
+       <{counter start=0 skip=1 assign=count}>
+       <{foreach from=$options.delete_dir item=_item}>
+       <{counter assign=count}>
+        <tr>
+        <td class='even'><label for='delete_dir_{$count}>'><{$_item}></label></td>
+        <td class='even'><input type='checkbox' name='delete_dir[]' id='delete_dir_<{$count}>' value='<{$_item}>' /></td>
+        </tr>
+        <{/foreach}>
+        <{/if}>
+       <{if $options.delete_file}>
+        <tr><th class="ehad" colspan="2"><{$smarty.const._AD_XUPDATE_LANG_DELETE_FILE}></th></tr>
+       <{counter start=0 skip=1 assign=count}>
+       <{foreach from=$options.delete_file item=_item}>
+       <{counter assign=count}>
+        <tr>
+        <td class='even'><label for='delete_file_<{$count}>'><{$_item}></label></td>
+        <td class='even'><input type='checkbox' name='delete_file[]' id='delete_file_<{$count}>' value='<{$_item}>' /></td>
+        </tr>
+        <{/foreach}>
+        <{/if}>
+  </table>
+    </td>
+  </tr>
+  <{/if}>
+  <tr>
+    <td class="foot" colspan="2">
+       <{if !$actionForm->getErrorMessages()}>
+      <input class="formButton" type="submit" value="<{$smarty.const._MI_XUPDATE_DEPLOY}>" />
+      <{/if}>
+      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+    </td>
+  </tr>
+</table>
+</form>
+
+<div id="xupdate_boxes">
+    <!-- #customize your modal window here -->
+    <div id="xupdate_dialog" class="window">
+    <{$smarty.const._MI_XUPDATE_PROG_PROCESSING}>
+    <div class="progress_bar"><img src="../images/progress-bar.gif" alt=""></div>
+    </div>
+    <!-- Do not remove div#mask, because you'll need it to fill the whole screen --> 
+    <div id="xupdate_mask"></div>
+</div>
+
+</div><!-- id="contentBody" -->
+</div><!-- id="xupdate" -->

@@ -201,6 +201,15 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
 	    		$blockVal['lang_linkname'] = _MB_XUPDATE_THEMEUPDATE . $checkimg;
 	    		$modules[] = $blockVal;
 	    	}
+	    	if ($count = $handler->getCountHasUpdate('preload')) {
+	    		$this->mRoot->mLanguageManager->loadBlockMessageCatalog('xupdate');
+	    		$checkimg = '<img src="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleView&amp;checkonly=1" width="1" height="1" alt="" />';
+	    		$blockVal = array();
+	    		$blockVal['adminlink'] = XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=PreloadStore&amp;filter=updated';
+	    		$blockVal['pendingnum'] = $count;
+	    		$blockVal['lang_linkname'] = _MB_XUPDATE_PRELOADUPDATE . $checkimg;
+	    		$modules[] = $blockVal;
+	    	}
     	}
     }
 
@@ -251,7 +260,7 @@ class Xupdate_Block extends Legacy_AbstractBlockProcedure
 		$headerScript= $root->mContext->getAttribute('headerScript');
 		$headerScript->addScript('var xupdateCheckImg=new Image();xupdateCheckImg.src="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleView&checkonly=1";');
 		
-		$no_notify_reg = '/action=(?:(?:Module|Theme)Install|(?:Module|Theme)Update|(?:Module|Theme)Store&filter=updated)/';
+		$no_notify_reg = '/action=(?:(?:Module|Theme|Preload)Install|(?:Module|Theme|Preload)Update|(?:Module|Theme|Preload)Store&filter=updated)/';
 		if (!preg_match($no_notify_reg, $_SERVER['QUERY_STRING'])) {
 			$handler = Legacy_Utils::getModuleHandler('ModuleStore', 'xupdate');
 			$result = $handler->getNotifyHTML();

@@ -27,7 +27,7 @@
  * @author     Vincent Lascaux <vincentlascaux@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL
- * @version    CVS: $Id: Index.php,v 1.1 2005/05/30 19:44:53 vincentlascaux Exp $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/File_Archive
  */
 

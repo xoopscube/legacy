@@ -25,7 +25,7 @@
  * @author     Vincent Lascaux <vincentlascaux@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL
- * @version    CVS: $Id: Memory.php,v 1.14 2005/06/02 12:24:43 vincentlascaux Exp $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/File_Archive
  */
 

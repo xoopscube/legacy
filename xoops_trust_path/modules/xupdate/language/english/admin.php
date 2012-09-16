@@ -32,6 +32,8 @@ define('_AD_XUPDATE_LANG_MESSAGE_SUCCESS', "Success");
 define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES', "getting files");
 define('_AD_XUPDATE_LANG_MESSAGE_PROCESSING', "...");
 define('_AD_XUPDATE_LANG_BUTTON_UPDATE', 'Update');
+define('_AD_XUPDATE_LANG_PRELOAD_NAME', 'Preload Name');
+define('_AD_XUPDATE_DESCRIPTION', 'Description');
 
 define('_AD_XUPDATE_LANG_TIMEOUT_ERROR', 'PHP timeout');
 define('_AD_XUPDATE_LANG_STAGE_1', 'Download of the archive was started.');

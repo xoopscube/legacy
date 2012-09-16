@@ -1,3 +1,4 @@
+<div id="xupdate">
 <div id="contentBody">
 
 <div class="adminnavi">
@@ -43,7 +44,7 @@
     </td>
   </tr>
   <tr class="<{cycle values='odd,even'}>">
-    <td class="legacy_list_select">target_type</td>
+    <td class="legacy_list_select"><{$smarty.const._AD_XUPDATE_LANG_TYPE}></td>
     <td class="legacy_list_select">
         <{xoops_input type=hidden name=target_type value=$target_type }>
         <{$target_type|xoops_escape:show}>
@@ -70,4 +71,6 @@
     <div id="xupdate_mask"></div>
 </div>
 
-</div>
+</div><!-- id="contentBody" -->
+</div><!-- id="xupdate" -->
+

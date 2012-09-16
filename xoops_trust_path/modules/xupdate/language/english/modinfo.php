@@ -75,7 +75,8 @@ define('_MI_XUPDATE_ADMENU_MODULE'       , 'Module');
 define('_MI_XUPDATE_ADMENU_MYBLOCKSADMIN', 'access permissions');
 define('_MI_XUPDATE_ADMENU_MYPREFERENCES', 'Preferences');
 define('_MI_XUPDATE_ADMENU_THEME'        , 'Theme');
-define('_MI_XUPDATE_ADMENU_THEMEFINDER'  , 'Theme');
+define('_MI_XUPDATE_ADMENU_THEMEFINDER'  , 'ThemeFinder');
+define('_MI_XUPDATE_ADMENU_PRELOAD'      , 'Preload');
 
 // form filtter button
 define('_MI_XUPDATE_ALL'       , 'All');
@@ -115,6 +116,8 @@ define('_MI_XUPDATE_FTP_THEME_URL', 'Theme Add-on URL');
 define('_MI_XUPDATE_FTP_STORE_URL', 'Add-on Store URL');
 define('_MI_XUPDATE_TAG_DIRNAME'  , 'Tag Module');
 define('_MI_XUPDATE_TAG_DIRNAMEDSC', 'Set tag module\'s dirname if you want to use.');
+define('_MI_XUPDATE_XEL_DIRNAME'  , 'X-elFinder Module');
+define('_MI_XUPDATE_XEL_DIRNAMEDSC','You can manege preload with X-elFinder. If add setting in X-elFinder config "Volume Driver"<br />"<b>xelfinder:xelfinder:preload:Preload:gid=1</b>" (X-update work on Direct mode)<br />Or<br />"<b>xelfinder:ftp:preload:Preload:gid=1</b>" (Use X-elFinder FTP settings)');
 
 // progress messages
 define('_MI_XUPDATE_PROG_FILE_GETTING', 'Downloading the package.');
@@ -130,4 +133,5 @@ define('_MI_XUPDATE_ERR_FTP_UPLOADFILES'    , 'Failed to file placement.');
 define('_MI_XUPDATE_ERR_FTP_LOGIN'          , 'Failed to login via SSH or FTP.');
 define('_MI_XUPDATE_ERR_UNZIP_FILE'         , 'Failed to extract the files.');
 define('_MI_XUPDATE_ERR_DOWNLOAD_FILE'      , 'Failed to download the file.');
-define('_MI_XUPDATE_ERR_NOT_UPLOADED'       , 'Cancellation of the override');
+define('_MI_XUPDATE_ERR_NOT_UPLOADED'       , 'Cancellation of the override.');
+define('_MI_XUPDATE_ERR_FTP_NOTFOUND'       , 'The target item is not found.');
