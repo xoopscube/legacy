@@ -27,7 +27,7 @@
  * @author     Vincent Lascaux <vincentlascaux@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL
- * @version    CVS: $Id: Archive.php,v 1.90 2008/05/28 19:58:07 cbrunet Exp $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/File_Archive
  */
 
@@ -39,7 +39,7 @@ require_once "PEAR.php";
 
 function File_Archive_cleanCache($file, $group)
 {
-    $file = split('_', $file);
+    $file = explode('_', $file);
     if (count($file) != 3) {
         return false; //not a File_Archive file, keep it
     }
@@ -325,7 +325,7 @@ class File_Archive
             $result = File_Archive::_readSource($source, $baseFile,
                                                 $reachable, $baseDir, null, 0, -1);
             return File_Archive::filter(
-                    File_Archive::predEreg('^'.$regexp.'$'),
+                    File_Archive::predPreg('/^'.$regexp.'$/'),
                     $result
                    );
         }
@@ -360,8 +360,6 @@ class File_Archive
                     $realSymbolic = '';
                 }
                 require_once "File/Archive/Reader/ChangeName/AddDirectory.php";
-//for PHP5.3+
-//                $tmp =& new File_Archive_Reader_ChangeName_AddDirectory(
                 $tmp = new File_Archive_Reader_ChangeName_AddDirectory(
                     $realSymbolic,
                     $result
@@ -938,12 +936,27 @@ class File_Archive
         require_once "File/Archive/Predicate/MIME.php";
         return new File_Archive_Predicate_MIME($list);
     }
+
+    /**
+     * Evaluates to true iif the name of the file follow a given regular
+     * expression
+     *
+     * @param string $preg regular expression that the filename must follow
+     * @see File_Archive_Predicate_Preg, preg_match()
+     */
+    function predPreg($preg)
+    {
+        require_once "File/Archive/Predicate/Preg.php";
+        return new File_Archive_Predicate_Preg($preg);
+    }
+
     /**
      * Evaluates to true iif the name of the file follow a given regular
      * expression
      *
      * @param string $ereg regular expression that the filename must follow
      * @see File_Archive_Predicate_Ereg, ereg()
+     * @deprecated Make use of predPreg instead for PHP 5.3+ compatability
      */
     function predEreg($ereg)
     {
@@ -956,6 +969,7 @@ class File_Archive
      *
      * @param string $ereg regular expression that the filename must follow
      * @see File_Archive_Predicate_Eregi, eregi
+     * @deprecated Make use of predPreg instead for PHP 5.3+ compatability
      */
     function predEregi($ereg)
     {

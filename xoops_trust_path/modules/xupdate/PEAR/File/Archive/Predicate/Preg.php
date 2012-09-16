@@ -2,9 +2,7 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
- * Evaluates to true if the index is in a given array of indexes
- * The array has the indexes in key (so you may want to call
- * array_flip if your array has indexes as value)
+ * Keep only the files which name follow a given regular expression
  *
  * PHP versions 4 and 5
  *
@@ -27,35 +25,34 @@
  * @author     Vincent Lascaux <vincentlascaux@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL
- * @version    CVS: $Id$
+ * @version    CVS: $Id: Ereg.php 260736 2008-06-04 13:16:07Z cbrunet $
  * @link       http://pear.php.net/package/File_Archive
  */
 
 require_once "File/Archive/Predicate.php";
 
 /**
- * Evaluates to true if the index is in a given array of indexes
- * The array has the indexes in key (so you may want to call
- * array_flip if your array has indexes as value)
+ * Keep only the files which name follow a given regular expression
+ *
+ * @see        File_Archive_Predicate, File_Archive_Reader_Filter ereg
  */
-class File_Archive_Predicate_Index extends File_Archive_Predicate
+class File_Archive_Predicate_Preg extends File_Archive_Predicate
 {
-    var $indexes;
-    var $pos = 0;
+    var $preg;
 
     /**
-     * @param $extensions array or comma separated string of allowed extensions
+     * @param string $ereg is the regular expression
      */
-    function File_Archive_Predicate_Index($indexes)
+    function File_Archive_Predicate_Preg($preg)
     {
-        $this->indexes = $indexes;
+        $this->preg = $preg;
     }
     /**
      * @see File_Archive_Predicate::isTrue()
      */
     function isTrue(&$source)
     {
-        return isset($this->indexes[$this->pos++]);
+        return (bool)preg_match($this->preg, $source->getFilename());
     }
 }
 

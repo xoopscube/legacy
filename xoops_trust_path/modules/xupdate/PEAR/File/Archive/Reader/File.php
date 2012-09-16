@@ -25,7 +25,7 @@
  * @author     Vincent Lascaux <vincentlascaux@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL
- * @version    CVS: $Id: File.php,v 1.30 2005/07/11 11:53:53 vincentlascaux Exp $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/File_Archive
  */
 
@@ -191,9 +191,14 @@ class File_Archive_Reader_File extends File_Archive_Reader
         if ($length == -1) {
             $contents = '';
             $blockSize = File_Archive::getOption('blockSize');
+            // Ensure that magic_quote_runtime isn't set,
+            // if we don't want to have corrupted archives.
+            $saveMagicQuotes = get_magic_quotes_runtime();
+            set_magic_quotes_runtime(0);
             while (!feof($this->handle)) {
                 $contents .= fread($this->handle, $blockSize);
             }
+            set_magic_quotes_runtime($saveMagicQuotes);
             return $contents;
         } else {
             if ($length == 0) {
