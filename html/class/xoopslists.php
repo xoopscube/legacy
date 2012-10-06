@@ -34,7 +34,7 @@ if ( !defined("XOOPS_LISTS_INCLUDED") ) {
     define("XOOPS_LISTS_INCLUDED",1);
     class XoopsLists
     {
-        function &getTimeZoneList()
+        public static function getTimeZoneList()
         {
             $root =& XCube_Root::getSingleton();
             if ($root->mLanguageManager !== null && !defined(_TZ_GMT0)) {

@@ -51,7 +51,7 @@ class setting_manager {
 
     function setting_manager($post=false){
 
-        $this->sanitizer =& TextSanitizer::getInstance();
+        $this->sanitizer = TextSanitizer::getInstance();
         if($post){
             $this->readPost();
         }else{

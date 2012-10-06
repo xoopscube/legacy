@@ -34,7 +34,7 @@ if(INSTALL_USER != '' || INSTALL_PASSWD != ''){
 }
 
 include_once './class/textsanitizer.php';
-$myts =& TextSanitizer::getInstance();
+$myts = TextSanitizer::getInstance();
 
 if ( isset($_POST) ) {
     foreach ($_POST as $k=>$v) {
