@@ -27,6 +27,8 @@
     $mm->setRewrite('XOOPS_DB_USER', $myts->stripSlashesGPC($_POST['dbuname']));
     $mm->setRewrite('XOOPS_DB_PASS', $myts->stripSlashesGPC($_POST['dbpass']));
     $mm->setRewrite('XOOPS_DB_NAME', $myts->stripSlashesGPC($_POST['dbname']));
+    $mm->setRewrite('XOOPS_DB_PORT', $myts->stripSlashesGPC($_POST['dbport']));
+    $mm->setRewrite('XOOPS_DB_CHARSET', $myts->stripSlashesGPC($_POST['dbchar']));
     $mm->setRewrite('XOOPS_DB_PCONNECT', intval($_POST['db_pconnect']));
     $mm->setRewrite('XOOPS_GROUP_ADMIN', 1);
     $mm->setRewrite('XOOPS_GROUP_USERS', 2);

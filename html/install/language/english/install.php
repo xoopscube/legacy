@@ -191,4 +191,10 @@ define('_INSTALL_LANG_XOOPS_SALT', "SALT");
 define('_INSTALL_LANG_XOOPS_SALT_DESC', "This plays a supplementary role to generate secret code and token. You don't need to change the default value.");
 
 define('_INSTALL_HEADER_MESSAGE','Please follow the onscreen instructions to install.');
+
+// -- database
+define("_INSTALL_L1000","Database Port");
+define("_INSTALL_L1001","Database Character Set");
+define("_INSTALL_L1100","Port number of database on the host.");
+define("_INSTALL_L1101","Character set of database on the host.");
 ?>

@@ -20,6 +20,7 @@ $modversion['mcl_update'] = 'message';
 
 $modversion['cube_style'] = true;
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
+$modversion['sqlfile']['pdo_pgsql'] = 'sql/pdo_pgsql.sql';
 $modversion['tables'][] = '{prefix}_{dirname}_inbox';
 $modversion['tables'][] = '{prefix}_{dirname}_outbox';
 $modversion['tables'][] = '{prefix}_{dirname}_users';

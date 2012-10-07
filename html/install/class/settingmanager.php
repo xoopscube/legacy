@@ -39,6 +39,8 @@ class setting_manager {
     var $dbuname;
     var $dbpass;
     var $dbname;
+    var $dbport;
+    var $dbchar;
     var $prefix;
     var $db_pconnect;
     var $root_path;
@@ -110,6 +112,18 @@ class setting_manager {
             $this->dbpass = $this->sanitizer->stripSlashesGPC($_POST['dbpass']);
         if(isset($_POST['dbname']))
             $this->dbname = $this->sanitizer->stripSlashesGPC($_POST['dbname']);
+        if(isset($_POST['dbport']) && $_POST["dbport"] != "") {
+            $this->dbport = $this->sanitizer->stripSlashesGPC($_POST['dbport']);
+        } else if($this->database == "pdo_pgsql") {
+            $this->dbport = 5432;
+        } else if($this->database == "mysql" || $this->database == "pdo_mysql") {
+            $this->dbport = 3306;
+        }
+        if(isset($_POST['dbchar']) && $_POST["dbchar"] != "") {
+            $this->dbchar = $this->sanitizer->stripSlashesGPC($_POST['dbchar']);
+        } else {
+            $this->dbchar = "UTF-8";
+        }
         if(isset($_POST['prefix']))
             $this->prefix = $this->sanitizer->stripSlashesGPC($_POST['prefix']);
         if(isset($_POST['db_pconnect']))
@@ -208,6 +222,8 @@ class setting_manager {
         $ret .= $this->editform_sub(_INSTALL_L28, _INSTALL_L65, 'dbuname', $this->sanitizer->htmlSpecialChars($this->dbuname));
         $ret .= $this->editform_sub(_INSTALL_L52, _INSTALL_L68, 'dbpass', $this->sanitizer->htmlSpecialChars($this->dbpass));
         $ret .= $this->editform_sub(_INSTALL_L29, _INSTALL_L64, 'dbname', $this->sanitizer->htmlSpecialChars($this->dbname));
+        $ret .= $this->editform_sub(_INSTALL_L1000, _INSTALL_L1100, 'dbport', $this->sanitizer->htmlSpecialChars($this->dbport));
+        $ret .= $this->editform_sub(_INSTALL_L1001, _INSTALL_L1101, 'dbchar', $this->dbchar ? $this->sanitizer->htmlSpecialChars($this->dbchar):"UTF-8");
         $ret .= $this->editform_sub(_INSTALL_L30, _INSTALL_L63, 'prefix', $this->sanitizer->htmlSpecialChars($this->prefix));
         $ret .= $this->editform_sub(_INSTALL_LANG_XOOPS_SALT, _INSTALL_LANG_XOOPS_SALT_DESC, 'salt', $this->sanitizer->htmlSpecialChars($this->salt));
 
@@ -268,6 +284,18 @@ class setting_manager {
                         <td class="bg3"><b>'._INSTALL_L29.'</b></td>
                         <td class="bg1">'.$this->sanitizer->htmlSpecialChars($this->dbname).'</td>
                     </tr>
+
+                    // Database Port
+                    <tr>
+                        <td class="bg3"><b>'._INSTALL_L1000.'</b></td>
+                        <td class="bg1">'.$this->sanitizer->htmlSpecialChars($this->dbport).'</td>
+                    </tr>
+                    // Database Character Set
+                    <tr>
+                        <td class="bg3"><b>'._INSTALL_L1001.'</b></td>
+                        <td class="bg1">'.$this->sanitizer->htmlSpecialChars($this->dbchar).'</td>
+                    </tr>
+
                     <tr>
                         <td class="bg3"><b>'._INSTALL_L30.'</b></td>
                         <td class="bg1">'.$this->sanitizer->htmlSpecialChars($this->prefix).'</td>
@@ -298,6 +326,8 @@ class setting_manager {
             <input type="hidden" name="dbuname" value="'.$this->sanitizer->htmlSpecialChars($this->dbuname).'" />
             <input type="hidden" name="dbpass" value="'.$this->sanitizer->htmlSpecialChars($this->dbpass).'" />
             <input type="hidden" name="dbname" value="'.$this->sanitizer->htmlSpecialChars($this->dbname).'" />
+            <input type="hidden" name="dbport" value="'.$this->sanitizer->htmlSpecialChars($this->dbport).'" />
+            <input type="hidden" name="dbchar" value="'.$this->sanitizer->htmlSpecialChars($this->dbchar).'" />
             <input type="hidden" name="prefix" value="'.$this->sanitizer->htmlSpecialChars($this->prefix).'" />
             <input type="hidden" name="salt" value="'.$this->sanitizer->htmlSpecialChars($this->salt).'" />
             <input type="hidden" name="db_pconnect" value="'.intval($this->db_pconnect).'" />
@@ -311,7 +341,7 @@ class setting_manager {
 
     function getDBList()
     {
-		return array('mysql');
+		return array('mysql', 'pdo_pgsql', 'pdo_mysql');
         //$dirname = '../class/database/';
         //$dirlist = array();
         //if (is_dir($dirname) && $handle = opendir($dirname)) {

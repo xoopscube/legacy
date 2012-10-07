@@ -22,14 +22,15 @@ class XoopsDatabaseFactory
 		if (!isset($instance)) {
 			$file = XOOPS_ROOT_PATH.'/class/database/'.XOOPS_DB_TYPE.'database.php';
 			require_once $file;
+			require_once XOOPS_ROOT_PATH.'/include/strutil.php';
 			/* begin DB Layer Trapping patch */
 			if (defined("XOOPS_DB_ALTERNATIVE") && class_exists(XOOPS_DB_ALTERNATIVE)) {
 				$class = XOOPS_DB_ALTERNATIVE;
 			}
 			else if (!defined('XOOPS_DB_PROXY')) {
-				$class = 'Xoops'.ucfirst(XOOPS_DB_TYPE).'DatabaseSafe';
+				$class = 'Xoops'.StrUtil::toPascal(XOOPS_DB_TYPE).'DatabaseSafe';
 			} else {
-				$class = 'Xoops'.ucfirst(XOOPS_DB_TYPE).'DatabaseProxy';
+				$class = 'Xoops'.StrUtil::toPascal(XOOPS_DB_TYPE).'DatabaseProxy';
 			}
 			$instance = new $class();
 			$instance->setLogger(XoopsLogger::instance());
@@ -55,12 +56,13 @@ class XoopsDatabaseFactory
 		if (!isset($database)) {
 			$file = XOOPS_ROOT_PATH.'/class/database/'.XOOPS_DB_TYPE.'database.php';
 			require_once $file;
+			require_once XOOPS_ROOT_PATH.'/include/strutil.php';
 			if (!defined('XOOPS_DB_PROXY')) {
-				$class = 'Xoops'.ucfirst(XOOPS_DB_TYPE).'DatabaseSafe';
+				$class = 'Xoops'.StrUtil::toPascal(XOOPS_DB_TYPE).'DatabaseSafe';
 			} else {
-				$class = 'Xoops'.ucfirst(XOOPS_DB_TYPE).'DatabaseProxy';
+				$class = 'Xoops'.StrUtil::toPascal(XOOPS_DB_TYPE).'DatabaseProxy';
 			}
-			$database =new $class();
+			$database = new $class();
 		}
 		return $database;
 	}
