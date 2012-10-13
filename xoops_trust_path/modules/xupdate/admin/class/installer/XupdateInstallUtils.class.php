@@ -406,7 +406,7 @@ class Xupdate_InstallUtils
         if($autoLink)
         {
             $sql = sprintf(
-                'insert into `%s` set (`block_id`,`module_id`) values (%d,0);',
+                'insert into %s (block_id,module_id) values (%d,0);',
                 $blockHandler->db->prefix('block_module_link'),
                 $blockObj->getVar('bid')
             );
