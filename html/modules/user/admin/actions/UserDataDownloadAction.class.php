@@ -35,10 +35,10 @@ class User_UserDataDownloadAction extends User_Action
 	}
 	
 	
-	/// CSVƒtƒ@ƒCƒ‹‚ğo—Í‚·‚é
+	/// CSVï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½oï¿½Í‚ï¿½ï¿½ï¿½
 	function execute(&$controller, &$xoopsUser)
 	{
-		$filename = sprintf('%s User data List.csv', $GLOBALS['xoopsConfig']['sitename']);
+		$filename = sprintf('%s_User_data_List.csv', $GLOBALS['xoopsConfig']['sitename']);
 		$text = '';
 		$field_line = '';
 		
