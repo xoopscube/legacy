@@ -293,7 +293,7 @@ if(XOOPS_DB_TYPE == "pdo_pgsql"){
 
 if(XOOPS_DB_TYPE == "pdo_pgsql"){
 		foreach($arr as $_name => $_value) {
-            if($_name == $this->mPrimary) {
+            if($_name == $this->mPrimary && $this->autoIncrement !== false) {
                 $_value = "nextval('".$this->mTable."_".$this->mPrimary."_seq')";
             }
 			$fields[] = "\"${_name}\"";
