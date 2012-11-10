@@ -150,7 +150,7 @@ class SqlUtility
 		$pattern = "/^(INSERT INTO|CREATE TABLE|ALTER TABLE|UPDATE|ALTER SEQUENCE)(\s)+([`]?)([^`\s]+)\\3(\s)+/siU";
 		$pattern2 = "/^(DROP TABLE)(\s)+([`]?)([^`\s]+)\\3(\s)?$/siU";
 
-		$pattern3 = "/^(CREATE INDEX|CREATE UNIQUE INDEX)(\s)+([^\"\s]+)(\s)?ON(\s)+([^`\s]+)(\s)*\(([^\(\)]+)\)/siU";
+		$pattern3 = "/^(CREATE INDEX|CREATE UNIQUE INDEX)(\s)+\"?([^\"\s]+)\"?(\s)?ON(\s)+\"?([^`\"\s]+)\"?(\s)*\(([^\(\)]+)\)/siU";
 
 		if (preg_match($pattern, $query, $matches) || preg_match($pattern2, $query, $matches)) {
 			$replace = "\\1 ".$prefix."_\\4\\5";
