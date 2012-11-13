@@ -90,12 +90,6 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
 			}
 		}
 	
-		if($this->_isWorkflowClient($conf)===true){
-			if(method_exists($obj, 'onWorkflow') && $obj->onWorkflow()===true){
-				$this->_saveWorkflow($obj);
-			}
-		}
-	
 		if($this->_isImageClient($conf)===true){
 			if($this->_saveImages($obj)===false){
 				$ret = false;
@@ -192,25 +186,6 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
 			$this->_getTagList($obj)
 		);
 		return $ret;
-	}
-
-	/**
-	 * save workflow
-	 *
-	 * @param XoopsSimpleObject	$obj
-	 *
-	 * @return	void
-	 */
-	protected function _saveWorkflow(/*** XoopsSimpleObject ***/ $obj)
-	{
-		XCube_DelegateUtils::call(
-			'Legacy_Workflow.AddItem', 
-			$obj->getShow($this->mPrimary), 
-			$obj->getDirname(), 
-			$this->getDataname(), 
-			$obj->get($obj->getPrimary()), 
-			Legacy_Utils::renderUri($obj->getDirname(), $this->getDataname(), $obj->get($this->mPrimary))
-		);
 	}
 
 	/**
