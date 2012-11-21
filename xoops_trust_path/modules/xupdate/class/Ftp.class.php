@@ -398,9 +398,6 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		}
 		
 		/// put files
-		if (! $this->chdir('/') ){
-			return false;
-		}
 		$res = array('ok' => $dir_cnt, 'ng' => array());
 		$uploaded_files =& $GLOBALS['xupdate_retry_cache']['uploaded_files'];
 		foreach ($file_list['file'] as $l_file){
