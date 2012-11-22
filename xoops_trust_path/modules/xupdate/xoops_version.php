@@ -319,6 +319,16 @@ $modversion['config'] = array(
 		'valuetype'	=> 'string',
 		'default'	=> 'http://xoopscube.net/uploads/xupdatemaster/stores_json_V1.txt',
 		'options'	=> array(),
+	) ,
+
+	array(
+			'name'		=> 'show_disabled_store',
+			'title'		=> '_MI_XUPDATE_SHOW_DISABLED_STORE' ,
+			'description'	=> '_MI_XUPDATE_SHOW_DISABLED_STOREDSC',
+			'formtype'	=> 'yesno',
+			'valuetype'	=> 'int',
+			'default'	=> 0 ,
+			'options'	=> array(),
 	)
 
 ##[cubson:config]
