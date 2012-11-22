@@ -55,6 +55,7 @@ $modversion['legacy_installer'] = array(
 $modversion['disable_legacy_2nd_installer'] = false;
 
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
+$modversion['sqlfile']['pdo_pgsql'] = 'sql/pdo_pgsql.sql';
 $modversion['tables'] = array(
 //	  '{prefix}_{dirname}_xxxx',
 ##[cubson:tables]

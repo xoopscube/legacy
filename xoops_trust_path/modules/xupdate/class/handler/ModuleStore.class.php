@@ -17,7 +17,11 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 
 	public function __construct()
 	{
-		$this->initVar('id', XOBJ_DTYPE_INT, '0', false);//Primary key
+        if(XOOPS_DB_TYPE == "pdo_pgsql"){
+    		$this->initVar('id', XOBJ_DTYPE_INT, "nextval('".XOOPS_DB_PREFIX."_".$this->mDirname."_modulestore_id_seq')", false);//Primary key
+        }else {
+    		$this->initVar('id', XOBJ_DTYPE_INT, '0', false);//Primary key
+        }
 		$this->initVar('sid', XOBJ_DTYPE_INT, '0', false);//store join
 
 		$this->initVar('dirname', XOBJ_DTYPE_STRING, '', false);
