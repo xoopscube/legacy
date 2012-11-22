@@ -23,7 +23,7 @@ $basename = basename($dirname);
 // Define a basic manifesto.
 //
 $modversion['name'] = _MI_XUPDATE_LANG_XUPDATE;
-$modversion['version'] = '0.23';
+$modversion['version'] = '0.24';
 $modversion['description'] = _MI_XUPDATE_DESC_XUPDATE;
 $modversion['author'] = _MI_XUPDATE_LANG_AUTHOR;
 $modversion['credits'] = _MI_XUPDATE_LANG_CREDITS;
@@ -55,6 +55,7 @@ $modversion['legacy_installer'] = array(
 $modversion['disable_legacy_2nd_installer'] = false;
 
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
+$modversion['sqlfile']['pdo_pgsql'] = 'sql/pdo_pgsql.sql';
 $modversion['tables'] = array(
 //	  '{prefix}_{dirname}_xxxx',
 ##[cubson:tables]
@@ -318,6 +319,16 @@ $modversion['config'] = array(
 		'valuetype'	=> 'string',
 		'default'	=> 'http://xoopscube.net/uploads/xupdatemaster/stores_json_V1.txt',
 		'options'	=> array(),
+	) ,
+
+	array(
+			'name'		=> 'show_disabled_store',
+			'title'		=> '_MI_XUPDATE_SHOW_DISABLED_STORE' ,
+			'description'	=> '_MI_XUPDATE_SHOW_DISABLED_STOREDSC',
+			'formtype'	=> 'yesno',
+			'valuetype'	=> 'int',
+			'default'	=> 0 ,
+			'options'	=> array(),
 	)
 
 ##[cubson:config]

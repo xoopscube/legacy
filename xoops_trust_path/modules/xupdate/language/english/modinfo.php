@@ -118,6 +118,8 @@ define('_MI_XUPDATE_TAG_DIRNAME'  , 'Tag Module');
 define('_MI_XUPDATE_TAG_DIRNAMEDSC', 'Set tag module\'s dirname if you want to use.');
 define('_MI_XUPDATE_XEL_DIRNAME'  , 'X-elFinder Module');
 define('_MI_XUPDATE_XEL_DIRNAMEDSC','You can manege preload with X-elFinder. If add setting in X-elFinder config "Volume Driver"<br />"<b>xelfinder:xelfinder:preload:Preload:gid=1</b>" (X-update work on Direct mode)<br />Or<br />"<b>xelfinder:ftp:preload:Preload:gid=1</b>" (Use X-elFinder FTP settings)');
+define('_MI_XUPDATE_SHOW_DISABLED_STORE'   , 'Show disabled stores');
+define('_MI_XUPDATE_SHOW_DISABLED_STOREDSC', 'Show the store that was disabled at the Add-on store. (This is for developers)');
 
 // progress messages
 define('_MI_XUPDATE_PROG_FILE_GETTING', 'Downloading the package.');

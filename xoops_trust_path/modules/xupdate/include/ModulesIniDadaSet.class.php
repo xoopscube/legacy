@@ -130,6 +130,10 @@ class Xupdate_ModulesIniDadaSet
 		// set stores
 		$this->stores = array();
 		foreach($stores as $store) {
+			// enable disabled stores as "module" for developers only
+			if ($root->mContext->mModuleConfig['show_disabled_store'] && $store['contents'] === 'disabled') {
+				$store['contents'] = 'module';
+			}
 			$this->stores[(int)$store['sid']] = $store;
 		}
 		//echo('<pre>');var_dump($this->stores);exit;
@@ -352,7 +356,7 @@ class Xupdate_ModulesIniDadaSet
 		$storeObjects =& $this->storeHand->getObjects(null,null,null,true);
 		//echo('<pre>');var_dump($storeObjects);exit;
 		foreach($storeObjects as $sid => $store){
-			if (isset($this->stores[$sid])){
+			if (isset($this->stores[$sid]) && $this->stores[$sid]['contents'] !== 'disabled'){
 				$oldsobj = clone $store;
 				$sObj = $this->stores[$sid];
 				unset($sObj['items']);
