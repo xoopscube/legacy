@@ -205,10 +205,18 @@ class XoopsNotificationHandler extends XoopsObjectHandler
 				break;
 			case XOBJ_DTYPE_STRING:
 			case XOBJ_DTYPE_TEXT:
-				$value = mysql_real_escape_string($value, $this->db->conn);
+                if(XOOPS_DB_TYPE == "pdo_pgsql"){
+				    $value = pg_escape_string($value, $this->db->conn);
+                } else {
+				    $value = mysql_real_escape_string($value, $this->db->conn);
+                }
 				break;
 			default:
-				$value = mysql_real_escape_string($value, $this->db->conn);
+                if(XOOPS_DB_TYPE == "pdo_pgsql"){
+				    $value = pg_escape_string($value, $this->db->conn);
+                } else {
+				    $value = mysql_real_escape_string($value, $this->db->conn);
+                }
 		}
 		return $value;
 	}
