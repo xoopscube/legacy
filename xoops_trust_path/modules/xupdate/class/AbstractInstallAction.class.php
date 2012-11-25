@@ -176,7 +176,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
 			$action = ucfirst($mobj->get('contents')).'Store';
 			
 			foreach($this->options['writable_dir'] as $_key => $_chk) {
-				if (Xupdate_Utils::checkDirWritable($_chk)) {
+				if (!$this->mod_config['Show_debug'] && Xupdate_Utils::checkDirWritable($_chk)) {
 					unset($this->options['writable_dir'][$_key]);
 				}
 			}
