@@ -284,6 +284,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 
 		$successFlag = true;
 		$newdata_dirname_arr = $this->mActionForm->get('dirname');
+		$hModule = Xupdate_Utils::getXoopsHandler('module');
 		foreach($newdata_dirname_arr  as $id => $new_dirname) {
 			if (empty($new_dirname) || empty($id)){
 				continue;
@@ -292,6 +293,12 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 			$olddata['dirname'] = $obj->getVar('dirname');
 			$newdata['dirname'] = $new_dirname;
 			if (count(array_diff_assoc($olddata, $newdata)) > 0 ) {
+				$mModule = $hModule->getByDirname($dirname);
+				if (is_object($mModule)) {
+					$obj->set('isactive', $mModule->getVar('isactive')? 1 : 0);
+				} else {
+					$obj->set('isactive', -1);
+				}
 				$obj->set('dirname', $new_dirname);
 				if ($modHand->insert($obj)) {
 					$successFlag &= true;
