@@ -176,7 +176,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
 			$action = ucfirst($mobj->get('contents')).'Store';
 			
 			foreach($this->options['writable_dir'] as $_key => $_chk) {
-				if (Xupdate_Utils::checkDirWritable($_chk)) {
+				if (!$this->mod_config['Show_debug'] && Xupdate_Utils::checkDirWritable($_chk)) {
 					unset($this->options['writable_dir'][$_key]);
 				}
 			}
@@ -257,6 +257,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
 			$this->dirname = $mobj->get('dirname');
 			$this->options = $mobj->options;
 			//adump($this->options);
+			$is_install = ($mobj->get('isactive') < 0)? true : false;
 			$_arr = $this->Xupdate->get('writable_dir');
 			if(!empty($_arr) && count($_arr)>0){
 				foreach ($_arr as $item){
@@ -283,10 +284,10 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
 					foreach ($this->options['install_only'] as $item){
 						$_key = 'no_overwrite';
 						if (substr($item, -1) === '*') {
-							$item = rtrim($item, '*');
-							$_key = 'install_only';
+							$_key = $is_install? 'no_overwrite' : 'install_only';
 						}
 						if ( !is_array($_arr) || (is_array($_arr) && !in_array( $item, $_arr ))){
+							$item = rtrim($item, '*');
 							$xupdateFtpModuleInstall->options[$_key][] = $item;
 						}
 					}

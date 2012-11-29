@@ -208,33 +208,48 @@ class Xupdate_Func {
 			return true;
 		}
 		
-		// make multi handle
-		$mh = curl_multi_init();
-		
-		foreach($chs as $ch) {
-			curl_multi_add_handle($mh,$ch);
-		}
-		
-		$active = null;
-		// multi exec
-		do {
-			$mrc = curl_multi_exec($mh, $active);
-		} while ($mrc == CURLM_CALL_MULTI_PERFORM);
-		
-		while ($active && $mrc == CURLM_OK) {
-			if (curl_multi_select($mh) != -1) {
-				do {
-					$mrc = curl_multi_exec($mh, $active);
-				} while ($mrc == CURLM_CALL_MULTI_PERFORM);
+		if (count($chs) > 1) {
+			// multi exec
+			// make multi handle
+			$mh = curl_multi_init();
+			foreach($chs as $ch) {
+				curl_multi_add_handle($mh,$ch);
 			}
-		}
-		
-		foreach($chs as $key => $ch) {
+			
+			$active = null;
+			// multi exec
+			do {
+				$mrc = curl_multi_exec($mh, $active);
+			} while ($mrc == CURLM_CALL_MULTI_PERFORM);
+			
+			while ($active && $mrc == CURLM_OK) {
+				if (curl_multi_select($mh) != -1) {
+					do {
+						$mrc = curl_multi_exec($mh, $active);
+					} while ($mrc == CURLM_CALL_MULTI_PERFORM);
+				} else {
+					// why -1 ? for infinite loop
+					$this->_set_error_log('curl_multi_select() Error.');
+					break;
+				}
+			}
+			
+			foreach($chs as $key => $ch) {
+				$this->_set_error_log(curl_error($ch));
+				curl_multi_remove_handle($mh, $ch);
+				fclose($fps[$key]);
+			}
+			curl_multi_close($mh);
+		} else {
+			// single exec
+			reset($chs);
+			$ch = current($chs);
+			$key = key($chs);
+			curl_exec($ch);
 			$this->_set_error_log(curl_error($ch));
-			curl_multi_remove_handle($mh, $ch);
 			fclose($fps[$key]);
+			curl_close($ch);
 		}
-		curl_multi_close($mh);
 		
 		return true;
 	}
