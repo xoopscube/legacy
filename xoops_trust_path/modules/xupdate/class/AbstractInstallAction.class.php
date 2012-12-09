@@ -274,22 +274,20 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
 					}
 				}
 			}
-			$_arr = $this->Xupdate->get('install_only');
-			if(!empty($this->options['install_only']) && count($this->options['install_only'])>0){
-				// checked means allow overwrite
-				$xupdateFtpModuleInstall->options['no_overwrite'] = array();
-				$xupdateFtpModuleInstall->options['install_only'] = array();
-				//if ( isset($mobj->mModule) && $mobj->mModule->get('isactive')==true ){
-				if ( isset($mobj->mModule) ){
-					foreach ($this->options['install_only'] as $item){
-						$_key = 'no_overwrite';
-						if (substr($item, -1) === '*') {
-							$_key = $is_install? 'no_overwrite' : 'install_only';
-						}
-						if ( !is_array($_arr) || (is_array($_arr) && !in_array( $item, $_arr ))){
-							$item = rtrim($item, '*');
-							$xupdateFtpModuleInstall->options[$_key][] = $item;
-						}
+			$_arr = $this->Xupdate->get('no_overwrite');
+			if(!empty($this->options['no_overwrite']) && count($this->options['no_overwrite'])>0){
+				foreach ($this->options['no_overwrite'] as $item){
+					if ( !is_array($_arr) || (is_array($_arr) && !in_array( $item, $_arr ))){
+						$xupdateFtpModuleInstall->options['no_overwrite'][] = $item;
+					}
+				}
+			}
+			$_arr = $this->Xupdate->get('no_update');
+			if(!empty($this->options['no_update']) && count($this->options['no_update'])>0){
+				$_key = $is_install? 'no_overwrite' : 'no_update';
+				foreach ($this->options['no_update'] as $item){
+					if ( !is_array($_arr) || (is_array($_arr) && !in_array( $item, $_arr ))){
+						$xupdateFtpModuleInstall->options[$_key][] = $item;
 					}
 				}
 			}
