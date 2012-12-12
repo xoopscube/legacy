@@ -111,7 +111,7 @@ class XCube_RenderTarget
 	 */
 	function getType()
 	{
-		return $this->getAttribute('legacy_buffertype', $type);
+		return $this->getAttribute('legacy_buffertype');
 		//return $this->mType;
 	}
 	
