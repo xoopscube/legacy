@@ -5,6 +5,7 @@
  * @version $Id$
  */
 
+define('_MD_PROFILE_ERROR_REGISTER_REQUIRED', "ゲストでのアクセスは許可されていません");
 define('_MD_PROFILE_ERROR_REQUIRED', "{0}は必ず入力して下さい");
 define('_MD_PROFILE_ERROR_MINLENGTH', "{0}は半角{1}文字以上にして下さい");
 define('_MD_PROFILE_ERROR_MAXLENGTH', "{0}は半角{1}文字以内で入力して下さい");
