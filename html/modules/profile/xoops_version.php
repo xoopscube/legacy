@@ -15,7 +15,7 @@ $mydirpath = basename( dirname( __FILE__ ) ) ;
 $modversion['name'] = _MI_PROFILE_LANG_PROFILE;
 $modversion['version'] = 2.02;
 $modversion['description'] = _MI_PROFILE_DESC_PROFILE;
-$modversion['author'] = "kilica and Y.Sakai";
+$modversion['author'] = "kilica and Y.SAKAI";
 $modversion['credits'] = "";
 $modversion['help'] = "help.html";
 $modversion['license'] = "GPL";
@@ -45,6 +45,7 @@ $modversion['templates'][3]['file'] = 'profile_data_view.html';
 $modversion['templates'][4]['file'] = 'profile_data_list.html';
 $modversion['templates'][5]['file'] = 'profile_inc_data_edit.html';
 $modversion['templates'][6]['file'] = 'profile_inc_data_view.html';
+$modversion['templates'][7]['file'] = 'profile_inc_data_resister.html';
 ##[/cubson:templates]
 
 //

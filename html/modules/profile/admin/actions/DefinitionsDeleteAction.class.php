@@ -52,7 +52,7 @@ class Profile_Admin_DefinitionsDeleteAction extends Profile_AbstractDeleteAction
 	/**
 	 * @public
 	 */
-	function executeViewSuccess(&$render)
+	function executeViewSuccess(&$controller,&$render)
 	{
 		$this->mRoot->mController->executeForward("./index.php?action=DefinitionsList");
 	}
