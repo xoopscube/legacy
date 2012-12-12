@@ -17,7 +17,7 @@ define("_MD_PROFILE_ERROR_MIN","Input {0} with {1} or more numeric value.");
 define("_MD_PROFILE_ERROR_MINLENGTH","Input {0} with {1} or more characters.");
 define("_MD_PROFILE_ERROR_OBJECTEXIST","Incorrect input on {0}.");
 define("_MD_PROFILE_ERROR_REQUIRED","{0} is required.");
-
+define("_MD_PROFILE_ERROR_REGISTER_REQUIRED", "Access denied by anonymous users");
 define("_MD_PROFILE_LANG_ACCESS","Access groups");
 define("_MD_PROFILE_LANG_ADD_A_NEW_DATA","Add a New Data");
 define("_MD_PROFILE_LANG_ADD_A_NEW_DEFINITIONS","Add a New Field");
