@@ -112,7 +112,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 			if ($readini) {
 				if (($this->getVar('version') && $this->mModule->getVar('version') < $this->getVar('version'))
 						|| 
-					(isset($this->modinfo['detailed_version']) && $this->modinfo['detailed_version'] != $this->options['detailed_version'])) {
+					(isset($this->modinfo['detailed_version']) && $this->_check_hasupdate($this->modinfo['detailed_version'], $this->options['detailed_version']))) {
 					$this->setVar('hasupdate', 1);
 				} else {
 					$this->setVar('hasupdate', 0);
@@ -224,7 +224,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 				$this->setVar('options', serialize($this->options));
 				if (($this->getVar('version') && $this->mModule->getVar('version') < $this->getVar('version'))
 						||
-					(isset($this->modinfo['detailed_version']) && $this->modinfo['detailed_version'] != $this->options['detailed_version'])) {
+					(isset($this->modinfo['detailed_version']) && $this->_check_hasupdate($this->modinfo['detailed_version'], $this->options['detailed_version']))) {
 					$this->setVar('hasupdate', 1);
 				} else {
 					$this->setVar('hasupdate', 0);
@@ -420,6 +420,21 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 			$names[$sid] = $obj->get('name');
 		}
 		return $names[$sid];
+	}
+	
+	/**
+	 * Check hasupdate (compare $version1[local], $version2[fetched])
+	 * 
+	 * @param $version1
+	 * @param $version2
+	 * @return boolean
+	 */
+	private function _check_hasupdate($version1, $version2) {
+		if (preg_match('/\d+/', $version1) && preg_match('/\d+/', $version2)) {
+			return version_compare($version1, $version2, '<');
+		} else {
+			return ($version1 != $version2);
+		}
 	}
 
 } // end class
