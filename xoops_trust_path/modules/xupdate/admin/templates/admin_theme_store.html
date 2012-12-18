@@ -70,7 +70,7 @@
 	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
 	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
 	      </th>
-	    <th><{$smarty.const._AD_LEGACY_LANG_PACKAGE}>
+	    <th colspan="2"><{$smarty.const._AD_LEGACY_LANG_PACKAGE}>
 	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_TARGET_KEY}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
 	      <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_TARGET_KEY}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
 	      </th>
@@ -125,11 +125,14 @@
 	        <{$module->getVar('last_update')|xoops_formattimestamp:l}>
 	        <{/if}>
 	      </td>
+	      <td class="legacy_list_screenshot">
+          <{if $module->options.screen_shot}><img src="<{$module->options.screen_shot}>" align="middle" height="60" /><{/if}>
+        </td>
 	      <td class="legacy_list_select">
 	          <{if $module->getShow('detail_url')}>
-	            <a href="<{$module->getShow('detail_url')}>" target="_blank"><{if $module->options.screen_shot}><img src="<{$module->options.screen_shot}>" align="middle" height="60" /> <{/if}><{$module->getShow('target_key')}></a>
+	            <a href="<{$module->getShow('detail_url')}>" target="_blank"><{$module->getShow('target_key')}></a>
 	          <{else}>
-	            <{if $module->options.screen_shot}><img src="<{$module->options.screen_shot}>" align="middle" height="60" /> <{/if}><{$module->getShow('target_key')}>
+	            <{$module->getShow('target_key')}>
 	          <{/if}>
 	        <br/><{$module->get('description')}>
 	      </td>
@@ -163,7 +166,7 @@
 	    </tr>
 	  <{/foreach}>
 	    <tr>
-	        <td class="foot" colspan="<{if $sid}>3<{else}>4<{/if}>">
+	        <td class="foot" colspan="<{if $sid}>4<{else}>5<{/if}>">
 	            <{xoops_token form=$actionForm}>
 	       </td>
 	        <td class="foot" colspan="2">
@@ -181,3 +184,19 @@
 	<{include file="admin_tagcloud.html"}>
 	
 </div>
+
+<script type="text/javascript">
+  $(function() {
+    var popup = $('<img>').css('position', 'absolute'), next;
+
+    $('.legacy_list_screenshot img').hover(
+      function() {
+        popup.attr('src', $(this).attr('src')).css($(this).parent('td').next().offset());
+        $('body').append(popup);
+      },
+      function() {
+        popup.remove();
+      }
+    );
+  })
+</script>
