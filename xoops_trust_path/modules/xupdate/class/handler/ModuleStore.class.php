@@ -365,10 +365,15 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 		} else {
 			$options['writable_file'] = array();
 		}
-		if(isset($options['install_only'])) {
-			if (! $readini) array_walk( $options['install_only'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+		if(isset($options['no_overwrite'])) {
+			if (! $readini) array_walk( $options['no_overwrite'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
 		} else {
-			$options['install_only'] = array();
+			$options['no_overwrite'] = array();
+		}
+		if(isset($options['no_update'])) {
+			if (! $readini) array_walk( $options['no_update'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+		} else {
+			$options['no_update'] = array();
 		}
 		if(isset($options['delete_dir'])) {
 			if (! $readini) array_walk( $options['delete_dir'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );

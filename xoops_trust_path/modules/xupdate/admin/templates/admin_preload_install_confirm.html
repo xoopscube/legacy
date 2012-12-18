@@ -89,7 +89,7 @@
     </td>
   </tr>
   <{/if}>
-  <{if $options.writable_dir || $options.writable_file || $options.install_only || $options.delete_dir || $options.delete_file}>
+  <{if $options.writable_dir || $options.writable_file || $options.no_overwrite || $options.no_update || $options.delete_dir || $options.delete_file}>
   <tr class="<{cycle values='odd,even'}>">
     <td class="legacy_list_select">options</td>
     <td class="legacy_list_select">
@@ -116,14 +116,25 @@
         </tr>
         <{/foreach}>
         <{/if}>
-        <{if $options.install_only}>
-        <tr><th class="ehad" colspan="2"><{$smarty.const._AD_XUPDATE_LANG_INSTALL_ONLY}></th></tr>
+        <{if $options.no_overwrite}>
+        <tr><th class="ehad" colspan="2"><{$smarty.const._AD_XUPDATE_LANG_NO_OVERWRITE}></th></tr>
         <{counter start=0 skip=1 assign=count}>
-        <{foreach from=$options.install_only item=_item}>
+        <{foreach from=$options.no_overwrite item=_item}>
         <{counter assign=count}>
         <tr>
-            <td class='even'><label for='install_only_<{$count}>'><{$_item}></label></td>
-            <td class='even'><input type='checkbox' name='install_only[]' id='install_only_<{$count}>' value='<{$_item}>' /></td>
+            <td class='even'><label for='no_overwrite_<{$count}>'><{$_item}></label></td>
+            <td class='even'><input type='checkbox' name='no_overwrite[]' id='no_overwrite_<{$count}>' value='<{$_item}>' /></td>
+        </tr>
+        <{/foreach}>
+        <{/if}>
+        <{if $options.no_update}>
+        <tr><th class="ehad" colspan="2"><{$smarty.const._AD_XUPDATE_LANG_NO_UPDATE}></th></tr>
+        <{counter start=0 skip=1 assign=count}>
+        <{foreach from=$options.no_update item=_item}>
+        <{counter assign=count}>
+        <tr>
+            <td class='even'><label for='no_update_<{$count}>'><{$_item}></label></td>
+            <td class='even'><input type='checkbox' name='no_update[]' id='no_update_<{$count}>' value='<{$_item}>' /></td>
         </tr>
         <{/foreach}>
         <{/if}>

@@ -119,10 +119,10 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 							if(! isset($this->options['no_overwrite'])){
 								$this->options['no_overwrite'] = array();
 							}
-							if(! isset($this->options['install_only'])){
-								$this->options['install_only'] = array();
+							if(! isset($this->options['no_update'])){
+								$this->options['no_update'] = array();
 							}
-							$this->Ftp->set_no_overwrite(array($this->options['no_overwrite'], $this->options['install_only']));
+							$this->Ftp->set_no_overwrite(array($this->options['no_overwrite'], $this->options['no_update']));
 							$GLOBALS['xupdate_stage'] = 5;
 							if (!$this->uploadFiles()){
 								$this->_set_error_log(_MI_XUPDATE_ERR_FTP_UPLOADFILES);
