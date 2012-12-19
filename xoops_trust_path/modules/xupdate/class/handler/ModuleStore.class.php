@@ -112,7 +112,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 			if ($readini) {
 				if (($this->getVar('version') && $this->mModule->getVar('version') < $this->getVar('version'))
 						|| 
-					(isset($this->modinfo['detailed_version']) && $this->modinfo['detailed_version'] != $this->options['detailed_version'])) {
+					(isset($this->modinfo['detailed_version']) && $this->_check_hasupdate($this->modinfo['detailed_version'], $this->options['detailed_version']))) {
 					$this->setVar('hasupdate', 1);
 				} else {
 					$this->setVar('hasupdate', 0);
@@ -224,7 +224,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 				$this->setVar('options', serialize($this->options));
 				if (($this->getVar('version') && $this->mModule->getVar('version') < $this->getVar('version'))
 						||
-					(isset($this->modinfo['detailed_version']) && $this->modinfo['detailed_version'] != $this->options['detailed_version'])) {
+					(isset($this->modinfo['detailed_version']) && $this->_check_hasupdate($this->modinfo['detailed_version'], $this->options['detailed_version']))) {
 					$this->setVar('hasupdate', 1);
 				} else {
 					$this->setVar('hasupdate', 0);
@@ -365,10 +365,15 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 		} else {
 			$options['writable_file'] = array();
 		}
-		if(isset($options['install_only'])) {
-			if (! $readini) array_walk( $options['install_only'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+		if(isset($options['no_overwrite'])) {
+			if (! $readini) array_walk( $options['no_overwrite'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
 		} else {
-			$options['install_only'] = array();
+			$options['no_overwrite'] = array();
+		}
+		if(isset($options['no_update'])) {
+			if (! $readini) array_walk( $options['no_update'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
+		} else {
+			$options['no_update'] = array();
 		}
 		if(isset($options['delete_dir'])) {
 			if (! $readini) array_walk( $options['delete_dir'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) );
@@ -420,6 +425,21 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 			$names[$sid] = $obj->get('name');
 		}
 		return $names[$sid];
+	}
+	
+	/**
+	 * Check hasupdate (compare $version1[local], $version2[fetched])
+	 * 
+	 * @param $version1
+	 * @param $version2
+	 * @return boolean
+	 */
+	private function _check_hasupdate($version1, $version2) {
+		if (preg_match('/\d+/', $version1) && preg_match('/\d+/', $version2)) {
+			return version_compare($version1, $version2, '<');
+		} else {
+			return ($version1 != $version2);
+		}
 	}
 
 } // end class

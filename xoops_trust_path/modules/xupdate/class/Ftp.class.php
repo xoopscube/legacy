@@ -465,9 +465,9 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 
 	private function _dont_overwrite($file, $dir_chk = false)
 	{
-		list($no_overwrite, $install_only) = $this->no_overwrite;
-		if ($install_only) {
-			foreach ($install_only as $item) {
+		list($no_overwrite, $no_update) = $this->no_overwrite;
+		if ($no_update) {
+			foreach ($no_update as $item) {
 				if( strpos($file, $item) === 0){
 					return true;
 				}
