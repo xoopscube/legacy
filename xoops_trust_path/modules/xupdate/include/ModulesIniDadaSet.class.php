@@ -337,7 +337,8 @@ class Xupdate_ModulesIniDadaSet
 		$item['required'] = $obj->get('required');
 		$item['description'] = $obj->get('description');
 		$item['screen_shot'] = $options['screen_shot'];
-		$item['install_only'] = $options['install_only'];
+		$item['no_overwrite'] = $options['no_overwrite'];
+		$item['no_update'] = $options['no_update'];
 		$item['writable_dir'] = $options['writable_dir'];
 		$item['writable_file'] = $options['writable_file'];
 		$item['delete_dir'] = $options['delete_dir'];
