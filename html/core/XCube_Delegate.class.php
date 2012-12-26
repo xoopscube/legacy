@@ -75,6 +75,8 @@ define("XCUBE_DELEGATE_PRIORITY_FIRST", XCUBE_DELEGATE_PRIORITY_1);
 define("XCUBE_DELEGATE_PRIORITY_NORMAL", XCUBE_DELEGATE_PRIORITY_5);
 define("XCUBE_DELEGATE_PRIORITY_FINAL", XCUBE_DELEGATE_PRIORITY_10);
 
+define("XCUBE_DELEGATE_CHAIN_BREAK", -1);
+
 /**
  * @public
  * @brief [Final] Used for the simple mechanism for common delegation in XCube.
@@ -321,7 +323,9 @@ class XCube_Delegate
                 list($callback, $file) = $callback_array;
 
                	if ($file) require_once $file;
-               	if (is_callable($callback)) call_user_func_array($callback, $args);
+               	if (is_callable($callback)) {
+               		if (call_user_func_array($callback, $args) === XCUBE_DELEGATE_CHAIN_BREAK) break 2;
+               	}
             }
 		}
 	}
