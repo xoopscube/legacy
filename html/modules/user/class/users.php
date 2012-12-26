@@ -208,7 +208,7 @@ class UserUsersHandler extends XoopsObjectGenericHandler
 					$link->set('groupid', $gid);
 					$link->set('uid', $user->get('uid'));
 				
-					$flag &= $handler->insert($link, $force);
+					$flag =& $handler->insert($link, $force);
 				
 					unset($link);
 				}
