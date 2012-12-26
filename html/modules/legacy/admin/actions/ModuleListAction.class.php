@@ -52,7 +52,13 @@ class Legacy_ModuleListAction extends Legacy_Action
 			return $this->_processConfirm($controller, $xoopsUser);
 		}
 		else {
-			return $this->_processSave($controller, $xoopsUser);
+			$result = $this->_processSave($controller, $xoopsUser);
+			if ($result === LEGACY_FRAME_VIEW_SUCCESS) {
+				XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleListSave.Success', new XCube_Ref($this->mActionForm));
+			} else {
+				XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleListSave.Fail', new XCube_Ref($this->mActionForm));
+			}
+			return $result;
 		}
 	}
 	
