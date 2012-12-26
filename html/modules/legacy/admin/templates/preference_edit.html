@@ -78,6 +78,14 @@
             </select>
 
 
+          <{elseif $conf_formtype == 'radio' || $conf_formtype == 'radio_br'}>
+            <{counter start=0 skip=1 assign=count}>
+            <{foreach item=option from=$config->getOptionItems()}>
+              <{counter assign=count}>
+              <input type='radio' name='<{$conf_name}>' id='legacy_xoopsform_<{$conf_name}>_<{$count}>' value='<{$option->getOptionKey()|xoops_escape}>' <{if $actionForm->get($rconf_name) == $option->getOptionKey()}>checked='checked'<{/if}> /><label for='legacy_xoopsform_<{$conf_name}>_<{$count}>'><{$option->getOptionLabel()|xoops_escape}></label><{if $conf_formtype == 'radio_br'}><br /><{/if}>
+            <{/foreach}>
+
+
           <{elseif $conf_formtype == 'select_multi'}>
             <select name='<{$conf_name}>[]' id='legacy_xoopsform_<{$conf_name}>' size='5' multiple="multiple">
               <{foreach item=option from=$config->getOptionItems()}>
@@ -88,6 +96,18 @@
                 <option value="<{$option->getOptionKey()|xoops_escape}>" <{if $flag}>selected="selected"<{/if}>><{$option->getOptionLabel()|xoops_escape}></option>
               <{/foreach}>
             </select>
+
+
+          <{elseif $conf_formtype == 'checkbox' || $conf_formtype == 'checkbox_br'}>
+            <{counter start=0 skip=1 assign=count}>
+            <{foreach item=option from=$config->getOptionItems()}>
+              <{counter assign=count}>
+              <{assign var=flag value=0}>
+              <{foreach item=checked from=$actionForm->get($rconf_name)}>
+                <{if $option->getOptionKey() == $checked}><{assign var=flag value=1}><{/if}>
+              <{/foreach}>
+              <input type='checkbox' name='<{$conf_name}>[]' id='legacy_xoopsform_<{$conf_name}>_<{$count}>' value='<{$option->getOptionKey()|xoops_escape}>' <{if $flag}>checked='checked'<{/if}> /><label for='legacy_xoopsform_<{$conf_name}>_<{$count}>'><{$option->getOptionLabel()|xoops_escape}></label><{if $conf_formtype == 'checkbox_br'}><br /><{/if}>
+            <{/foreach}>
 
 
           <{elseif $conf_formtype == 'yesno'}>
@@ -151,6 +171,18 @@
                 <option value="<{$group->getVar('groupid')}>" <{if $flag}>selected="selected"<{/if}>><{$group->getVar('name')}></option>
               <{/foreach}>
             </select>
+
+
+          <{elseif $conf_formtype == 'group_checkbox'}>
+            <{counter start=0 skip=1 assign=count}>
+            <{foreach item=group from=$groupArr}>
+              <{counter assign=count}>
+              <{assign var=flag value=0}>
+              <{foreach item=checked from=$actionForm->get($rconf_name)}>
+                <{if $group->get('groupid') == $checked}><{assign var=flag value=1}><{/if}>
+              <{/foreach}>
+              <input type="checkbox" name="<{$conf_name}>[]" id="legacy_xoopsform_<{$conf_name}>_<{$count}>" value="<{$group->getVar('groupid')}>" <{if $flag}>checked="checked"<{/if}> /><label for="legacy_xoopsform_<{$conf_name}>_<{$count}>"><{$group->getVar('name')}></label><br />
+            <{/foreach}>
 
 
           <{elseif $conf_formtype == 'user'}>
