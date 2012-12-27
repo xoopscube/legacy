@@ -76,7 +76,11 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 	{
 		$ret = array();
 
+if(XOOPS_DB_TYPE == "pdo_pgsql"){
+		$sql = 'SELECT * FROM "' . $this->mTable . '"';
+} else {
 		$sql = 'SELECT * FROM `' . $this->mTable . '`';
+}
 		
 		if($criteria !== null && is_a($criteria, 'CriteriaElement')) {
 			$where = $this->_makeCriteria4sql($criteria);
@@ -87,7 +91,11 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 			
 			$sorts = array();
 			foreach ($criteria->getSorts() as $sort) {
+if(XOOPS_DB_TYPE == "pdo_pgsql"){
+				$sorts[] = '"' . $sort['sort'] . '" ' . $sort['order']; 
+} else {
 				$sorts[] = '`' . $sort['sort'] . '` ' . $sort['order']; 
+}
 			}
 			if ($criteria->getSort() != '') {
 				$sql .= ' ORDER BY ' . implode(',', $sorts);
@@ -150,7 +158,11 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 	{
 		$ret = array();
 	
+if(XOOPS_DB_TYPE == "pdo_pgsql"){
+		$sql = "SELECT \"".$this->mPrimary."\" FROM \"" . $this->mTable . '\"';
+} else {
 		$sql = "SELECT `".$this->mPrimary."` FROM `" . $this->mTable . '`';
+}
 	
 		if($criteria !== null && is_a($criteria, 'CriteriaElement')) {
 			$where = $this->_makeCriteria4sql($criteria);
@@ -161,7 +173,11 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 			
 			$sorts = array();
 			foreach ($criteria->getSorts() as $sort) {
+if(XOOPS_DB_TYPE == "pdo_pgsql"){
+				$sorts[] = '"' . $sort['sort'] . '" ' . $sort['order']; 
+} else {
 				$sorts[] = '`' . $sort['sort'] . '` ' . $sort['order']; 
+}
 			}
 			if ($criteria->getSort() != '') {
 				$sql .= " ORDER BY " . implode(',', $sorts);
@@ -200,7 +216,11 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 
 	function getCount($criteria = null)
 	{
+if(XOOPS_DB_TYPE == "pdo_pgsql"){
+		$sql='SELECT COUNT(*) c FROM "' . $this->mTable . '"'; 
+} else {
 		$sql="SELECT COUNT(*) c FROM `" . $this->mTable . '`'; 
+}
 
 		if($criteria !== null && is_a($criteria, 'CriteriaElement')) {
 			$where = $this->_makeCriteria4sql($criteria);
@@ -271,12 +291,22 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 
 		$arr = $this->_makeVars4sql($obj);
 
+if(XOOPS_DB_TYPE == "pdo_pgsql"){
+		foreach($arr as $_name => $_value) {
+            if($_name == $this->mPrimary && $this->autoIncrement !== false) {
+                $_value = "nextval('".$this->mTable."_".$this->mPrimary."_seq')";
+            }
+			$fields[] = "\"${_name}\"";
+			$values[] = $_value;
+		}
+		$sql = @sprintf("INSERT INTO \"" . $this->mTable . "\" ( %s ) VALUES ( %s )", implode(",", $fields), implode(",", $values));
+} else {
 		foreach($arr as $_name => $_value) {
 			$fields[] = "`${_name}`";
 			$values[] = $_value;
 		}
-
 		$sql = @sprintf("INSERT INTO `" . $this->mTable . "` ( %s ) VALUES ( %s )", implode(",", $fields), implode(",", $values));
+}
 
 		return $sql;
 	}
@@ -290,6 +320,18 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 
 		$arr = $this->_makeVars4sql($obj);
 
+if(XOOPS_DB_TYPE == "pdo_pgsql"){
+		foreach ($arr as $_name => $_value) {
+			if ($_name == $this->mPrimary) {
+				$where = "\"${_name}\"=${_value}";
+			}
+			else {
+				$set_lists[] = "\"${_name}\"=${_value}";
+			}
+		}
+
+		$sql = @sprintf("UPDATE \"" . $this->mTable . "\" SET %s WHERE %s", implode(",",$set_lists), $where);
+} else {
 		foreach ($arr as $_name => $_value) {
 			if ($_name == $this->mPrimary) {
 				$where = "`${_name}`=${_value}";
@@ -300,6 +342,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 		}
 
 		$sql = @sprintf("UPDATE `" . $this->mTable . "` SET %s WHERE %s", implode(",",$set_lists), $where);
+}
 
 		return $sql;
 	}
@@ -416,7 +459,11 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 		// criteria even if this approach is few slow.
 		//
 		$criteria =new Criteria($this->mPrimary, $obj->get($this->mPrimary));
+if(XOOPS_DB_TYPE == "pdo_pgsql"){
+		$sql = "DELETE FROM \"" . $this->mTable . "\" WHERE " . $this->_makeCriteriaElement4sql($criteria, $obj); 
+} else {
 		$sql = "DELETE FROM `" . $this->mTable . "` WHERE " . $this->_makeCriteriaElement4sql($criteria, $obj); 
+}
 	
 		$result = $force ? $this->db->queryF($sql) : $this->db->query($sql);
 		if($result==true) $this->_callDelegate('delete', $obj);

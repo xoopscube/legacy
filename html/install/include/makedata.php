@@ -33,9 +33,15 @@ include_once './class/dbmanager.php';
 // of missing fields in install file, when add new fields to database)
 
 function make_groups(&$dbm){
-	$gruops['XOOPS_GROUP_ADMIN'] = $dbm->insert('groups', " VALUES (0, '".addslashes(_INSTALL_WEBMASTER)."', '".addslashes(_INSTALL_WEBMASTERD)."', 'Admin')");
-	$gruops['XOOPS_GROUP_USERS'] = $dbm->insert('groups', " VALUES (0, '".addslashes(_INSTALL_REGUSERS)."', '".addslashes(_INSTALL_REGUSERSD)."', 'User')");
-	$gruops['XOOPS_GROUP_ANONYMOUS'] = $dbm->insert('groups', " VALUES (0, '".addslashes(_INSTALL_ANONUSERS)."', '".addslashes(_INSTALL_ANONUSERSD)."', 'Anonymous')");
+    if(XOOPS_DB_TYPE == "pdo_pgsql") {
+	    $gruops['XOOPS_GROUP_ADMIN'] = $dbm->insert('groups', " VALUES (nextval('".$dbm->prefix("groups_groupid_seq")."'), '".addslashes(_INSTALL_WEBMASTER)."', '".addslashes(_INSTALL_WEBMASTERD)."', 'Admin')");
+    	$gruops['XOOPS_GROUP_USERS'] = $dbm->insert('groups', " VALUES (nextval('".$dbm->prefix("groups_groupid_seq")."'), '".addslashes(_INSTALL_REGUSERS)."', '".addslashes(_INSTALL_REGUSERSD)."', 'User')");
+    	$gruops['XOOPS_GROUP_ANONYMOUS'] = $dbm->insert('groups', " VALUES (nextval('".$dbm->prefix("groups_groupid_seq")."'), '".addslashes(_INSTALL_ANONUSERS)."', '".addslashes(_INSTALL_ANONUSERSD)."', 'Anonymous')");
+    } else {
+	    $gruops['XOOPS_GROUP_ADMIN'] = $dbm->insert('groups', " VALUES (0, '".addslashes(_INSTALL_WEBMASTER)."', '".addslashes(_INSTALL_WEBMASTERD)."', 'Admin')");
+    	$gruops['XOOPS_GROUP_USERS'] = $dbm->insert('groups', " VALUES (0, '".addslashes(_INSTALL_REGUSERS)."', '".addslashes(_INSTALL_REGUSERSD)."', 'User')");
+    	$gruops['XOOPS_GROUP_ANONYMOUS'] = $dbm->insert('groups', " VALUES (0, '".addslashes(_INSTALL_ANONUSERS)."', '".addslashes(_INSTALL_ANONUSERSD)."', 'Anonymous')");
+    }
 
 	if(!$gruops['XOOPS_GROUP_ADMIN'] || !$gruops['XOOPS_GROUP_USERS'] || !$gruops['XOOPS_GROUP_ANONYMOUS']){
 		return false;
@@ -119,8 +125,15 @@ function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $
 
 	// data for table 'groups_users_link'
 
-	$dbm->insert('groups_users_link', " VALUES (0, ".$gruops['XOOPS_GROUP_ADMIN'].", 1)");
-	$dbm->insert('groups_users_link', " VALUES (0, ".$gruops['XOOPS_GROUP_USERS'].", 1)");
+	$dbm->insert('groups_users_link', " (groupid, uid) VALUES (".$gruops['XOOPS_GROUP_ADMIN'].", 1)");
+	$dbm->insert('groups_users_link', " (groupid, uid) VALUES (".$gruops['XOOPS_GROUP_USERS'].", 1)");
+
+    if(XOOPS_DB_TYPE == "pdo_pgsql"){
+        $dbm->query("ALTER SEQUENCE ".$dbm->prefix("config")."_conf_id_seq restart with 74");
+        $dbm->query("ALTER SEQUENCE ".$dbm->prefix("users")."_uid_seq restart with 2");
+        $dbm->query("ALTER SEQUENCE ".$dbm->prefix("banner")."_bid_seq restart with 2");
+        $dbm->query("ALTER SEQUENCE ".$dbm->prefix("tplset")."_tplset_id_seq restart with 2");
+    }
 
 /*
 	// install modules

@@ -28,6 +28,7 @@ $modversion['disable_legacy_2nd_installer'] = false;
 
 // TODO After you made your SQL, remove the following comment-out.
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
+$modversion['sqlfile']['pdo_pgsql'] = "sql/pgsql.sql";
 ##[cubson:tables]
 $modversion['tables'][0] = "{prefix}_profile_definitions";
 $modversion['tables'][1] = "{prefix}_profile_data";

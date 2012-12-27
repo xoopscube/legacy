@@ -79,6 +79,11 @@ if ( !defined("XOOPS_MAINFILE_INCLUDED") ) {
     define("XOOPS_GROUP_USERS", "2");
     define("XOOPS_GROUP_ANONYMOUS", "3");
 
+    // port number of your database (default, mysql = 3306, pgsql = 5432)
+    define("XOOPS_DB_PORT", '');
+    // character set of your database (default UTF-8)
+    define("XOOPS_DB_CHARSET", "");
+
     // You can select two special module process excuting mode with defining following constants
     //
     //  define('_LEGACY_PREVENT_LOAD_CORE_', 1);

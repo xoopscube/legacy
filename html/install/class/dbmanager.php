@@ -82,7 +82,11 @@ class db_manager {
             return false;
         }
         $sql_query = trim(fread(fopen($sql_file_path, 'r'), filesize($sql_file_path)));
-        SqlUtility::splitMySqlFile($pieces, $sql_query);
+        if(XOOPS_DB_TYPE == "pdo_pgsql"){
+            SqlUtility::splitPgSqlFile($pieces, $sql_query);
+        } else {
+            SqlUtility::splitMySqlFile($pieces, $sql_query);
+        }
         $this->connectDB();
         foreach ($pieces as $piece) {
             $piece = trim($piece);
@@ -134,6 +138,29 @@ class db_manager {
                     }else{
                         if(! isset($this->s_tables['drop'][$table])){
                             $this->f_tables['drop'][$table] = 1;
+                        }
+                    }
+                }elseif($prefixed_query[1] == 'CREATE INDEX'){
+                        $table = $this->db->prefix($prefixed_query[6]);
+                    if ($this->db->query($prefixed_query[0]) != false) {
+                        if(! isset($this->s_tables['index'][$table])){
+                            $this->s_tables['index'][$table] = 1;
+                        }
+                    }else{
+                        if(! isset($this->s_tables['index'][$table])){
+                            $this->f_tables['index'][$table] = 1;
+                        }
+                    }
+                }
+                elseif($prefixed_query[1] == 'ALTER SEQUENCE') {
+                        $table = $this->db->prefix($prefixed_query[4]);
+                    if ($this->db->query($prefixed_query[0]) != false) {
+                        if(! isset($this->s_tables['sequence'][$table])){
+                            $this->s_tables['sequence'][$table] = 1;
+                        }
+                    }else{
+                        if(! isset($this->s_tables['sequence'][$table])){
+                            $this->f_tables['sequence'][$table] = 1;
                         }
                     }
                 }
