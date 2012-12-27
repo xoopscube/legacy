@@ -116,6 +116,7 @@ class User_UserEditAction extends User_AbstractEditAction
 	function _doExecute()
 	{
 		$ret = parent::_doExecute();
+		$this->mActionForm->set('uid', $this->mObject->get('uid'));
 		if($ret===true){
 			XCube_DelegateUtils::call('Legacy_Profile.SaveProfile', new XCube_Ref($ret), $this->mActionForm);
 		}
