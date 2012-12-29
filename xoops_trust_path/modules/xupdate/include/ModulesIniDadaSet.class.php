@@ -73,17 +73,19 @@ class Xupdate_ModulesIniDadaSet
 	public function execute( $callers, $checkonly = false )
 	{
 		//データの自動作成と削除
+		$root =& XCube_Root::getSingleton();
+		$mModuleConfig = $root->mContext->mModuleConfig;
 		
 		$cacheCheckFile = $this->storeHand->getCacheCheckFile();
 		$cacheCheckStr = @file_get_contents($cacheCheckFile);
-		if ( (!$checkonly && $cacheCheckStr === 'bg_ok')
-			|| @ filemtime($cacheCheckFile) + $this->cacheTTL > time() && $cacheCheckStr === ($checkonly? 'bg_ok' : 'ok')
+		$cacheCheckMd5 = ':'.md5($mModuleConfig['stores_json_url'].':'.$mModuleConfig['show_disabled_store']);
+		if ( (!$checkonly && $cacheCheckStr === 'bg_ok'.$cacheCheckMd5)
+			|| @ filemtime($cacheCheckFile) + $this->cacheTTL > time() && $cacheCheckStr === ($checkonly? 'bg_ok' : 'ok').$cacheCheckMd5
 		) {
 			return;
 		}
 		touch($cacheCheckFile);
 		
-		$root =& XCube_Root::getSingleton();
 		$org_lang = $language = $root->mContext->getXoopsConfig('language');
 		if (isset($this->lang_mapping[$language])) {
 			$language = $this->lang_mapping[$language];
@@ -92,7 +94,7 @@ class Xupdate_ModulesIniDadaSet
 		$realDirPath = realpath($downloadDirPath);
 
 		// Get store master from xoopscube.net
-		$json_url = $root->mContext->mModuleConfig['stores_json_url'];
+		$json_url = $mModuleConfig['stores_json_url'];
 		$json_fname = 'stores_json.ini.php';
 		
 		if ($json_url === 'http://xoopscube.net/uploads/xupdatemaster/stores_json.txt') {
@@ -131,7 +133,7 @@ class Xupdate_ModulesIniDadaSet
 		$this->stores = array();
 		foreach($stores as $store) {
 			// enable disabled stores as "module" for developers only
-			if ($root->mContext->mModuleConfig['show_disabled_store'] && $store['contents'] === 'disabled') {
+			if ($mModuleConfig['show_disabled_store'] && $store['contents'] === 'disabled') {
 				$store['contents'] = 'module';
 			}
 			$this->stores[(int)$store['sid']] = $store;
@@ -314,7 +316,7 @@ class Xupdate_ModulesIniDadaSet
 					}
 				}
 			}
-			file_put_contents($cacheCheckFile, $checkonly? 'bg_ok' : 'ok');
+			file_put_contents($cacheCheckFile, ($checkonly? 'bg_ok' : 'ok') . $cacheCheckMd5);
 		} else {
 			// Has error
 			touch($cacheCheckFile, 0);
