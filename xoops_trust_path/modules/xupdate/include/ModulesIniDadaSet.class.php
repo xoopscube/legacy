@@ -73,17 +73,19 @@ class Xupdate_ModulesIniDadaSet
 	public function execute( $callers, $checkonly = false )
 	{
 		//データの自動作成と削除
+		$root =& XCube_Root::getSingleton();
+		$mModuleConfig = $root->mContext->mModuleConfig;
 		
 		$cacheCheckFile = $this->storeHand->getCacheCheckFile();
 		$cacheCheckStr = @file_get_contents($cacheCheckFile);
-		if ( (!$checkonly && $cacheCheckStr === 'bg_ok')
-			|| @ filemtime($cacheCheckFile) + $this->cacheTTL > time() && $cacheCheckStr === ($checkonly? 'bg_ok' : 'ok')
+		$cacheCheckMd5 = ':'.md5($mModuleConfig['stores_json_url'].':'.$mModuleConfig['show_disabled_store']);
+		if ( (!$checkonly && $cacheCheckStr === 'bg_ok'.$cacheCheckMd5)
+			|| @ filemtime($cacheCheckFile) + $this->cacheTTL > time() && $cacheCheckStr === ($checkonly? 'bg_ok' : 'ok').$cacheCheckMd5
 		) {
 			return;
 		}
 		touch($cacheCheckFile);
 		
-		$root =& XCube_Root::getSingleton();
 		$org_lang = $language = $root->mContext->getXoopsConfig('language');
 		if (isset($this->lang_mapping[$language])) {
 			$language = $this->lang_mapping[$language];
@@ -92,7 +94,7 @@ class Xupdate_ModulesIniDadaSet
 		$realDirPath = realpath($downloadDirPath);
 
 		// Get store master from xoopscube.net
-		$json_url = $root->mContext->mModuleConfig['stores_json_url'];
+		$json_url = $mModuleConfig['stores_json_url'];
 		$json_fname = 'stores_json.ini.php';
 		
 		if ($json_url === 'http://xoopscube.net/uploads/xupdatemaster/stores_json.txt') {
@@ -131,7 +133,7 @@ class Xupdate_ModulesIniDadaSet
 		$this->stores = array();
 		foreach($stores as $store) {
 			// enable disabled stores as "module" for developers only
-			if ($root->mContext->mModuleConfig['show_disabled_store'] && $store['contents'] === 'disabled') {
+			if ($mModuleConfig['show_disabled_store'] && $store['contents'] === 'disabled') {
 				$store['contents'] = 'module';
 			}
 			$this->stores[(int)$store['sid']] = $store;
@@ -314,7 +316,7 @@ class Xupdate_ModulesIniDadaSet
 					}
 				}
 			}
-			file_put_contents($cacheCheckFile, $checkonly? 'bg_ok' : 'ok');
+			file_put_contents($cacheCheckFile, ($checkonly? 'bg_ok' : 'ok') . $cacheCheckMd5);
 		} else {
 			// Has error
 			touch($cacheCheckFile, 0);
@@ -337,7 +339,8 @@ class Xupdate_ModulesIniDadaSet
 		$item['required'] = $obj->get('required');
 		$item['description'] = $obj->get('description');
 		$item['screen_shot'] = $options['screen_shot'];
-		$item['install_only'] = $options['install_only'];
+		$item['no_overwrite'] = $options['no_overwrite'];
+		$item['no_update'] = $options['no_update'];
 		$item['writable_dir'] = $options['writable_dir'];
 		$item['writable_file'] = $options['writable_file'];
 		$item['delete_dir'] = $options['delete_dir'];
@@ -590,9 +593,31 @@ class Xupdate_ModulesIniDadaSet
 			unset($mobj);
 		}
 		
+		// for back compat
+		if (isset($item['install_only'])) {
+			if (!isset($item['no_overwrite']) || !is_array($item['no_overwrite'])) {
+				$item['no_overwrite'] = array();
+			}
+			if (!isset($item['no_update']) || !is_array($item['no_update'])) {
+				$item['no_update'] = array();
+			}
+			foreach($item['install_only'] as $_item) {
+				$_key = 'no_overwrite';
+				if (substr($_item, -1) === '*') {
+					$_key = 'no_update';
+					$_item = rtrim($_item, '*');
+				}
+				if (! in_array($_item, $item[$_key])) {
+					$item[$_key][] = $_item;
+				}
+			}
+			unset($item['install_only']);
+		}
+		
 		if(isset($item['writable_file'])
 		|| isset($item['writable_dir'])
-		|| isset($item['install_only'])
+		|| isset($item['no_overwrite'])
+		|| isset($item['no_update'])
 		|| isset($item['delete_file'])
 		|| isset($item['delete_dir'])){
 			$item_arr=array();
@@ -602,8 +627,11 @@ class Xupdate_ModulesIniDadaSet
 			if(isset($item['writable_dir'])){
 				$item_arr['writable_dir'] = array_filter($item['writable_dir'], 'strlen');
 			}
-			if(isset($item['install_only'])){
-				$item_arr['install_only'] = array_filter($item['install_only'], 'strlen');
+			if(isset($item['no_overwrite'])){
+				$item_arr['no_overwrite'] = array_filter($item['no_overwrite'], 'strlen');
+			}
+			if(isset($item['no_update'])){
+				$item_arr['no_update'] = array_filter($item['no_update'], 'strlen');
 			}
 			if(isset($item['delete_file'])){
 				$item_arr['delete_file'] = array_filter($item['delete_file'], 'strlen');
