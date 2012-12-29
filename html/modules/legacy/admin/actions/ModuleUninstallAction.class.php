@@ -167,12 +167,12 @@ class Legacy_ModuleUninstallAction extends Legacy_Action
 		if (!$this->mInstaller->mLog->hasError()) {
 			$this->mUninstallSuccess->call(new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
 			XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleUninstall.' . ucfirst($this->mXoopsModule->get('dirname') . '.Success'), new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
-			XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleUninstall.Success'), new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
+			XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleUninstall.Success', new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
 		}
 		else {
 			$this->mUninstallFail->call(new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
 			XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleUninstall.' . ucfirst($this->mXoopsModule->get('dirname') . '.Fail'), new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
-			XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleUninstall.Fail'), new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
+			XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleUninstall.Fail', new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
 		}
 
 		$renderer->setTemplateName("module_uninstall_success.html");
