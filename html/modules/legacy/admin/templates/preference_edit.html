@@ -98,7 +98,7 @@
             </select>
 
 
-          <{elseif $conf_formtype == 'checkbox'>
+          <{elseif $conf_formtype == 'checkbox'}>
             <{counter start=0 skip=1 assign=count}>
             <{foreach item=option from=$config->getOptionItems()}>
               <{counter assign=count}>
