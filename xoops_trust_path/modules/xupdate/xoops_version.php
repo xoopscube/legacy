@@ -23,7 +23,7 @@ $basename = basename($dirname);
 // Define a basic manifesto.
 //
 $modversion['name'] = _MI_XUPDATE_LANG_XUPDATE;
-$modversion['version'] = '0.29';
+$modversion['version'] = '0.30';
 $modversion['description'] = _MI_XUPDATE_DESC_XUPDATE;
 $modversion['author'] = _MI_XUPDATE_LANG_AUTHOR;
 $modversion['credits'] = _MI_XUPDATE_LANG_CREDITS;
@@ -190,7 +190,7 @@ $modversion['config'] = array(
 		'name'		=> 'ftp_method' ,
 		'title'		=> '_MI_XUPDATE_FTP_METHOD',
 		'description'	=> '_MI_XUPDATE_FTP_METHODDSC',
-		'formtype'	=> ((defined('_MI_LEGACY_DETAILED_VERSION') && version_compare(_MI_LEGACY_DETAILED_VERSION, 'CorePack 20120825', '>='))? 'radio_br' : 'select'),
+		'formtype'	=> defined('_MI_LEGACY_DETAILED_VERSION')? (version_compare(_MI_LEGACY_DETAILED_VERSION, 'CorePack 20121230', '>=')? 'radio' : (version_compare(_MI_LEGACY_DETAILED_VERSION, 'CorePack 20120825', '>=')? 'radio_br' : 'select')) : 'select',
 		'valuetype'	=> 'int',
 		'default'	=> '4',
 		'options'	=> array( '_MI_XUPDATE_DIRECT' => 4,
