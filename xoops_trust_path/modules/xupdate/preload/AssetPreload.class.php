@@ -187,7 +187,7 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
 	    		$this->mRoot->mLanguageManager->loadBlockMessageCatalog('xupdate');
 	    		$checkimg = '<img src="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleView&amp;checkonly=1" width="1" height="1" alt="" />';
 	    		$blockVal = array();
-	    		$blockVal['adminlink'] = XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleStore&amp;filter=updated';
+	    		$blockVal['adminlink'] = XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleStore&amp;filter=updated&amp;sort=-6';
 	    		$blockVal['pendingnum'] = $count;
 	    		$blockVal['lang_linkname'] = _MB_XUPDATE_MODULEUPDATE . $checkimg;
 	    		$modules[] = $blockVal;
