@@ -305,12 +305,18 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 						}
 					}
 				}
+				
 				// for protector 'manip_value' update
 				if (XC_CLASS_EXISTS('Protector')) {
 					$db =& Database::getInstance();
 					$protector =& Protector::getInstance();
 					$protector->setConn($db->conn);
 					$protector->updateConfIntoDb('manip_value' , '');
+				} else {
+					// check and enable protector in mainfile.php
+					if (file_exists(XOOPS_TRUST_PATH . '/modules/protector/include/precheck.inc.php')) {
+						$this->Func->write_mainfile_protector(true);
+					}
 				}
 			}
 		}

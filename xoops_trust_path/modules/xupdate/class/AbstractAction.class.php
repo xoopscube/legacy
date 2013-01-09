@@ -287,6 +287,10 @@ EOD;
     protected function _removeInstallDir() {
     	$ret = false;
     	if ($this->Ftp->app_login()) {
+    		// enable protector in mainfile.php
+    		$this->Func->write_mainfile_protector();
+    		
+    		// write protect mainfile.php
     		if ($main_perm = @ fileperms(XOOPS_ROOT_PATH . '/mainfile.php')) {
     			$main_perm = substr(sprintf('%o', $main_perm), -3);
     			$set_perm = '';
