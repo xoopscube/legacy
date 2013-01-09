@@ -309,6 +309,12 @@ EOD;
     			$this->Ftp->localChmod($this->Xupdate->params['is_writable']['path'], 0707);
     		}
     		
+    		// set writable protector config dir
+    		$protector_config = XOOPS_TRUST_PATH . '/modules/protector/configs';
+    		if (! Xupdate_Utils::checkDirWritable($protector_config)) {
+    			$this->Ftp->localChmod($protector_config, 0707);
+    		}
+    		
     		clearstatcache();
     		
     		// edit /preload/CorePackPreload.class.php
