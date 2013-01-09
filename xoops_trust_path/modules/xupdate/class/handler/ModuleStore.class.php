@@ -514,7 +514,7 @@ class Xupdate_ModuleStoreHandler extends Legacy_AbstractClientObjectHandler
 		if ($module_count || $theme_count || $preload_count) {
 			$root =& XCube_Root::getSingleton();
 			$root->mLanguageManager->loadBlockMessageCatalog('xupdate');
-			$module = ($module_count)? '<a href="'.XOOPS_MODULE_URL.'/'.$this->mDirname.'/admin/index.php?action=ModuleStore&amp;filter=updated">'.sprintf(_MB_XUPDATE_HAVE_UPDATEMODULE, $module_count).'</a>' : '';
+			$module = ($module_count)? '<a href="'.XOOPS_MODULE_URL.'/'.$this->mDirname.'/admin/index.php?action=ModuleStore&amp;filter=updated&amp;sort=-6">'.sprintf(_MB_XUPDATE_HAVE_UPDATEMODULE, $module_count).'</a>' : '';
 			$theme = ($theme_count)? '<a href="'.XOOPS_MODULE_URL.'/'.$this->mDirname.'/admin/index.php?action=ThemeStore&amp;filter=updated">'.sprintf(_MB_XUPDATE_HAVE_UPDATETHEME, $theme_count).'</a>' : '';
 			$preload = ($preload_count)? '<a href="'.XOOPS_MODULE_URL.'/'.$this->mDirname.'/admin/index.php?action=PreloadStore&amp;filter=updated">'.sprintf(_MB_XUPDATE_HAVE_UPDATEPRELOAD, $preload_count).'</a>' : '';
 			$msg = sprintf(_MB_XUPDATE_HAVE_UPDATE, $module.$theme.$preload);
