@@ -358,6 +358,12 @@ class Xupdate_Func {
 		$this->content.= '<span style="color:red;">'.$msg.'</span><br />';
 	}
 	
+	/**
+	 * enable protector of mainfile.php
+	 * 
+	 * @param boolean $do_chmod
+	 * @return boolean
+	 */
 	public function write_mainfile_protector($do_chmod = false) {
 		$mailfile = XOOPS_ROOT_PATH . '/mainfile.php';
 		$src = file_get_contents($mailfile);
