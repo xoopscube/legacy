@@ -211,6 +211,7 @@ class Xupdate_Func {
 			return true;
 		}
 		
+		$error_touch_time = $_SERVER['REQUEST_TIME'] - $cacheTTL + 10;
 		if (count($chs) > 1) {
 			// multi exec
 			// make multi handle
@@ -244,7 +245,8 @@ class Xupdate_Func {
 				fclose($fps[$key]);
 				if ($error_no > 0 && $error_no != 78 /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
 					// retry 10sec later if has error
-					touch($multiData[$key]['downloadedFilePath'], $_SERVER['REQUEST_TIME'] - $cacheTTL + 10);
+					touch($multiData[$key]['downloadedFilePath'], $error_touch_time);
+					$multiData[$key]['cacheMtime'] = $error_touch_time;
 				}
 			}
 			curl_multi_close($mh);
@@ -259,7 +261,8 @@ class Xupdate_Func {
 			fclose($fps[$key]);
 			if ($error_no > 0 && $error_no != 78 /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
 				// retry 10sec later if has error
-				touch($multiData[$key]['downloadedFilePath'], $_SERVER['REQUEST_TIME'] - $cacheTTL + 10);
+				touch($multiData[$key]['downloadedFilePath'], $error_touch_time);
+				$multiData[$key]['cacheMtime'] = $error_touch_time;
 			}
 			curl_close($ch);
 		}
