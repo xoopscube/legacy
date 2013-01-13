@@ -80,7 +80,7 @@ class Xupdate_ModulesIniDadaSet
 		$cacheCheckStr = @file_get_contents($cacheCheckFile);
 		$cacheCheckMd5 = ':'.md5($mModuleConfig['stores_json_url'].':'.$mModuleConfig['show_disabled_store']);
 		if ( (!$checkonly && $cacheCheckStr === 'bg_ok'.$cacheCheckMd5)
-			|| @ filemtime($cacheCheckFile) + $this->cacheTTL > time() && $cacheCheckStr === ($checkonly? 'bg_ok' : 'ok').$cacheCheckMd5
+			|| @ filemtime($cacheCheckFile) + $this->cacheTTL > $_SERVER['REQUEST_TIME'] && $cacheCheckStr === ($checkonly? 'bg_ok' : 'ok').$cacheCheckMd5
 		) {
 			return;
 		}
@@ -188,7 +188,8 @@ class Xupdate_ModulesIniDadaSet
 								'tempFilename'       => $tempFilename,
 								'downloadedFilePath' => '',
 								'noRedirect'         => true,
-								'caller'             => $caller );
+								'caller'             => $caller,
+								'cacheMtime'         => $_SERVER['REQUEST_TIME'] );
 				
 				$_dirname = dirname($downloadUrl);
 				$_filename = basename($downloadUrl);
@@ -203,15 +204,18 @@ class Xupdate_ModulesIniDadaSet
 								'tempFilename'       => $tempLangFilename,
 								'downloadedFilePath' => '',
 								'noRedirect'         => true,
-								'isLang'             => true );
+								'isLang'             => true,
+								'cacheMtime'         => $_SERVER['REQUEST_TIME'] );
 				
 			}
 		}
 		//echo('<pre>');var_dump($multiData);exit;
 		
+		$cacheCheckFileMtime = $_SERVER['REQUEST_TIME'];
 		$use_mb_convert = function_exists('mb_convert_encoding');
 		if ($this->Func->_multiDownloadFile($multiData, $this->cacheTTL)) {
 			foreach($multiData as $i => $res) {
+				$cacheCheckFileMtime = min($cacheCheckFileMtime, $res['cacheMtime']);
 				if (isset($res['isLang'])) {
 					continue;
 				}
@@ -317,6 +321,7 @@ class Xupdate_ModulesIniDadaSet
 				}
 			}
 			file_put_contents($cacheCheckFile, ($checkonly? 'bg_ok' : 'ok') . $cacheCheckMd5);
+			touch($cacheCheckFile, $cacheCheckFileMtime);
 		} else {
 			// Has error
 			touch($cacheCheckFile, 0);

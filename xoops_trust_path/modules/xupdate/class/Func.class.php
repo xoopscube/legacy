@@ -197,6 +197,9 @@ class Xupdate_Func {
 					}
 				}
 			}
+			// set timeout
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 300);
 			
 			$chs[$key] = $ch;
 			$fps[$key] = $fp;
@@ -208,6 +211,7 @@ class Xupdate_Func {
 			return true;
 		}
 		
+		$error_touch_time = $_SERVER['REQUEST_TIME'] - $cacheTTL + 10;
 		if (count($chs) > 1) {
 			// multi exec
 			// make multi handle
@@ -236,8 +240,14 @@ class Xupdate_Func {
 			
 			foreach($chs as $key => $ch) {
 				$this->_set_error_log(curl_error($ch));
+				$error_no = curl_errno($ch);
 				curl_multi_remove_handle($mh, $ch);
 				fclose($fps[$key]);
+				if ($error_no > 0 && $error_no != 78 /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
+					// retry 10sec later if has error
+					touch($multiData[$key]['downloadedFilePath'], $error_touch_time);
+					$multiData[$key]['cacheMtime'] = $error_touch_time;
+				}
 			}
 			curl_multi_close($mh);
 		} else {
@@ -247,7 +257,13 @@ class Xupdate_Func {
 			$key = key($chs);
 			curl_exec($ch);
 			$this->_set_error_log(curl_error($ch));
+			$error_no = curl_errno($ch);
 			fclose($fps[$key]);
+			if ($error_no > 0 && $error_no != 78 /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
+				// retry 10sec later if has error
+				touch($multiData[$key]['downloadedFilePath'], $error_touch_time);
+				$multiData[$key]['cacheMtime'] = $error_touch_time;
+			}
 			curl_close($ch);
 		}
 		
