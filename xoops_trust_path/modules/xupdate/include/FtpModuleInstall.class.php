@@ -64,6 +64,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	{
 
 		$result = true;
+		$siteCloseConf = null;
 		if( $this->Xupdate->params['is_writable']['result'] === true ) {
 			$is_upload_retry = isset($_POST['upload_retry']);
 			
@@ -123,6 +124,24 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 								$this->options['no_update'] = array();
 							}
 							$this->Ftp->set_no_overwrite(array($this->options['no_overwrite'], $this->options['no_update']));
+
+							// do close site
+							if (! $this->mRoot->mContext->getXoopsConfig('closesite')) {
+								$cHandler =& xoops_gethandler('config');
+								$_criteria = new CriteriaCompo();
+								$_criteria->add(new Criteria('conf_modid', 0));
+								$_criteria->add(new Criteria('conf_catid', 1));
+								$_criteria->add(new Criteria('conf_name', 'closesite'));
+								$_confObjects =& $cHandler->getConfigs($_criteria);
+								if ($_confObjects && is_object($_confObjects[0])) {
+									$siteCloseConf = $_confObjects[0];
+									$siteCloseConf->set('conf_value', 1);
+									if (! $cHandler->insertConfig($siteCloseConf)) {
+										$siteCloseConf = null;
+									}
+								}
+							}
+
 							$GLOBALS['xupdate_stage'] = 5;
 							if (!$this->uploadFiles()){
 								$this->_set_error_log(_MI_XUPDATE_ERR_FTP_UPLOADFILES);
@@ -173,6 +192,12 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			$this->nextlink = $this->_get_nextlink($this->dirname, $caller);
 		}else{
 			$this->content.= _ERRORS;
+		}
+
+		// do open site
+		if (is_object($siteCloseConf)) {
+			$siteCloseConf->set('conf_value', 0);
+			$cHandler->insertConfig($siteCloseConf);
 		}
 
 		return $result;
