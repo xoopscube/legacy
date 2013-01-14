@@ -126,7 +126,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 							$this->Ftp->set_no_overwrite(array($this->options['no_overwrite'], $this->options['no_update']));
 
 							// do close site
-							if (! $this->mRoot->mContext->getXoopsConfig('closesite')) {
+							if (isset($_POST['do_closesite']) || ! $this->mRoot->mContext->getXoopsConfig('closesite')) {
 								$cHandler =& xoops_gethandler('config');
 								$_criteria = new CriteriaCompo();
 								$_criteria->add(new Criteria('conf_modid', 0));
@@ -135,9 +135,15 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 								$_confObjects =& $cHandler->getConfigs($_criteria);
 								if ($_confObjects && is_object($_confObjects[0])) {
 									$siteCloseConf = $_confObjects[0];
-									$siteCloseConf->set('conf_value', 1);
-									if (! $cHandler->insertConfig($siteCloseConf)) {
-										$siteCloseConf = null;
+									if (isset($_POST['do_closesite'])) {
+										$GLOBALS['xupdate_do_closesite'] = true;
+									} else {
+										$siteCloseConf->set('conf_value', 1);
+										if (! $cHandler->insertConfig($siteCloseConf)) {
+											$siteCloseConf = null;
+										} else {
+											$GLOBALS['xupdate_do_closesite'] = true;
+										}
 									}
 								}
 							}
@@ -566,6 +572,9 @@ function xupdate_on_shutdown($cache_dir, $download_url) {
 			if ($is_upload_retry && $uploaded_count_before > $uploaded_count) {
 				$msg[] = sprintf(_AD_XUPDATE_LANG_STAGE_UPLOAD_NOT_COMPLETE, $download_url);
 			} else {
+				if ($GLOBALS['xupdate_do_closesite']) {
+					$post['do_closesite'] = 1;
+				}
 				$form = '<form method="post" action="./?'.$_SERVER['QUERY_STRING'].'" onsubmit="document.getElementById(\'retry\').disabled=\'disabled\'">';
 				foreach($post as $key => $val) {
 					if (is_array($val)) {
