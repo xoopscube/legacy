@@ -78,13 +78,22 @@ class Xupdate_ModulesIniDadaSet
 		
 		$cacheCheckFile = $this->storeHand->getCacheCheckFile();
 		$cacheCheckStr = @file_get_contents($cacheCheckFile);
+		if (!$checkonly) {
+			$_i = 0;
+			while($_i++ < 120 && $cacheCheckStr === 'running') {
+				usleep(500000); // 500ms * 120 = 60sec
+				clearstatcache();
+				$cacheCheckStr = @file_get_contents($cacheCheckFile);
+			}
+		}
 		$cacheCheckMd5 = ':'.md5($mModuleConfig['stores_json_url'].':'.$mModuleConfig['show_disabled_store']);
-		if ( (!$checkonly && $cacheCheckStr === 'bg_ok'.$cacheCheckMd5)
+		if ( ($checkonly && $cacheCheckStr === 'running')
+			|| (!$checkonly && $cacheCheckStr === 'bg_ok'.$cacheCheckMd5)
 			|| @ filemtime($cacheCheckFile) + $this->cacheTTL > $_SERVER['REQUEST_TIME'] && $cacheCheckStr === ($checkonly? 'bg_ok' : 'ok').$cacheCheckMd5
 		) {
 			return;
 		}
-		touch($cacheCheckFile);
+		file_put_contents($cacheCheckFile, (!$checkonly || !$cacheCheckStr)? 'running' : $cacheCheckStr);
 		
 		$org_lang = $language = $root->mContext->getXoopsConfig('language');
 		if (isset($this->lang_mapping[$language])) {
@@ -325,7 +334,7 @@ class Xupdate_ModulesIniDadaSet
 		} else {
 			// Has error
 			touch($cacheCheckFile, 0);
-			file_put_contents($cacheCheckFile, 'ng');
+			file_put_contents($cacheCheckFile, '');
 		}
 	}
 	
