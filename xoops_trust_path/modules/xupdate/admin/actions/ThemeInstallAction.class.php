@@ -25,6 +25,7 @@ class Xupdate_Admin_ThemeInstallAction extends Xupdate_AbstractInstallAction
 		$this->contents = 'theme';
 		$this->action = 'ThemeStore';
 		$this->currentMenu = _MI_XUPDATE_ADMENU_THEME;
+		$this->my_dir_path = XOOPS_ROOT_PATH . '/themes';
 	}
 }
 ?>

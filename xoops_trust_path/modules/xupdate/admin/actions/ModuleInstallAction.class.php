@@ -25,6 +25,7 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractInstallAction
 		$this->contents = 'module';
 		$this->action = 'ModuleStore';
 		$this->currentMenu = _MI_XUPDATE_ADMENU_MODULE;
+		$this->my_dir_path = XOOPS_MODULE_PATH;
 	}
 }
 ?>
