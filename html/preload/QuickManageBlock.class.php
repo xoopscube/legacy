@@ -90,16 +90,17 @@ class QuickManageBlock extends XCube_ActionFilter
 
 			$blockTypes = $this->_getBlockTypes($blocks);
 
+			$isMobile = ( defined('HYP_K_TAI_RENDER') && HYP_K_TAI_RENDER > 0 );
 			foreach ( $blocks as &$block )
 			{
 				$urlBlockEdit = $this->_getBlockEditUrl($block['id'], $blockTypes);
 				$urluninstall = sprintf($baseUrluninstall, $block['id']);
 
 				$block_control = '<span style="float:right;" class="block_controller">';
-				$block_control .= '<a href="'.$urlBlockEdit.'" ><img src="'.XOOPS_URL.'/modules/legacy/admin/theme/icons/edit.png" /></a>';
+				$block_control .= '<a href="'.$urlBlockEdit.'"><img src="'.XOOPS_URL.'/modules/legacy/admin/theme/icons/edit.png" /></a>';
 				$block_control .= '<a href="'.$urluninstall.'"><img src="'.XOOPS_URL.'/modules/legacy/admin/theme/icons/uninstall.png" /></a>';
 				$block_control .= '</span>';
-				if( strstr( $block['title'], 'none' ) ==true ) {
+				if( $isMobile || strstr( $block['title'], 'none' ) == true ) {
 					$block['content'] = $block_control . $block['content'];
 				} else {
 					$block['title'] .= $block_control;

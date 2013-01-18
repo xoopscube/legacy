@@ -741,7 +741,8 @@ class PHPMailer {
     } else {
       $params = sprintf("-oi -f %s", $this->Sender);
     }
-    if ($this->Sender != '' and !ini_get('safe_mode')) {
+    $isSafeMode = !!ini_get('safe_mode');
+    if ($this->Sender != '' and !$isSafeMode) {
       $old_from = ini_get('sendmail_from');
       ini_set('sendmail_from', $this->Sender);
       if ($this->SingleTo === true && count($toArr) > 1) {
@@ -760,13 +761,21 @@ class PHPMailer {
     } else {
       if ($this->SingleTo === true && count($toArr) > 1) {
         foreach ($toArr as $key => $val) {
-          $rt = @mail($val, $this->EncodeHeader($this->SecureHeader($this->Subject)), $body, $header);
+          if ($isSafeMode) {
+            $rt = @mail($val, $this->EncodeHeader($this->SecureHeader($this->Subject)), $body, $header);
+          } else {
+            $rt = @mail($val, $this->EncodeHeader($this->SecureHeader($this->Subject)), $body, $header, $params);
+          }
           // implement call back function if it exists
           $isSent = ($rt == 1) ? 1 : 0;
           $this->doCallback($isSent, $val, $this->cc, $this->bcc, $this->Subject, $body);
         }
       } else {
-        $rt = @mail($to, $this->EncodeHeader($this->SecureHeader($this->Subject)), $body, $header);
+        if ($isSafeMode) {
+          $rt = @mail($to, $this->EncodeHeader($this->SecureHeader($this->Subject)), $body, $header);
+        } else {
+          $rt = @mail($to, $this->EncodeHeader($this->SecureHeader($this->Subject)), $body, $header, $params);
+        }
         // implement call back function if it exists
         $isSent = ($rt == 1) ? 1 : 0;
         $this->doCallback($isSent, $to, $this->cc, $this->bcc, $this->Subject, $body);
