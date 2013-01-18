@@ -1,9 +1,9 @@
 <div class="adminnavi">
   <a href="./index.php?action=DefinitionList"><{$smarty.const._MI_PROFILE_NAME}></a>
-  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=DataDownload"><{$smarty.const._MI_PROFILE_ADMENU_DATA_DOWNLOAD}></a></span>
+  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=DataDownload"><{$smarty.const._MI_PROFILE_DATA_DOWNLOAD}></a></span>
 </div>
 
-<h3 class="admintitle"><{$smarty.const._MI_PROFILE_ADMENU_DATA_DOWNLOAD}></h3>
+<h3 class="admintitle"><{$smarty.const._MI_PROFILE_DATA_DOWNLOAD}></h3>
 
 <div class="tips">
 	<ul>
@@ -12,8 +12,11 @@
 </div>
 
 <div style="text-align:center; line-height:2em;">
-	<{$smarty.const._AD_PROFILE_DATA_NUM|sprintf:$profileCount}><br>
+	<{$smarty.const._AD_PROFILE_DATA_NUM|sprintf:$userCount}><br>
+
 	<form action="./index.php?action=DataDownload" method="post">
+		<{if $start}><input type="hidden" name="start" value="<{$start}>"><{/if}>
 		<input type="submit" value="<{$smarty.const._AD_PROFILE_DATA_DOWNLOAD_DO}>" class="formButton"><br>
 	</form>
 </div>
+<{$nav}>

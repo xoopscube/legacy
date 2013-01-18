@@ -31,6 +31,11 @@ $adminmenu[2]['link'] = 'admin/index.php?action=DataDownload';
 $adminmenu[2]['keywords'] = _MI_PROFILE_KEYWORD_DOWNLOAD;
 $adminmenu[2]['show'] = true;
 
+$adminmenu[3]['title'] = _MI_PROFILE_LANG_CSVUPLOAD;
+$adminmenu[3]['link'] = "admin/index.php?action=DataUpload";
+$adminmenu[3]['keywords'] = _MI_PROFILE_KEYWORD_DOWNLOAD;
+$adminmenu[3]['show'] = true;
+
 ##[/cubson:adminmenu]
 
 ?>
