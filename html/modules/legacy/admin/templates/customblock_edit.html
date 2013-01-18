@@ -74,7 +74,14 @@
     <tr>
       <td class="head"><{$smarty.const._AD_LEGACY_LANG_CONTENT}></td>
       <td class="<{cycle values="odd,even"}>">
-        <{xoops_dhtmltarea type=text name=content value=$actionForm->get('content') rows=20 cols=60}>
+        <{if !$actionForm->get('content') || $actionForm->get('c_type') == 'H'}>
+            <{assign var=editor value=html}>
+        <{elseif $actionForm->get('c_type') == 'P'}>
+            <{assign var=editor value=none}>
+        <{else}>
+            <{assign var=editor value=bbcode}>
+        <{/if}>
+        <{xoops_dhtmltarea type=text name=content value=$actionForm->get('content') rows=20 cols=60 class=$editor editor=$editor}>
         <{* fck_htmlarea name=content width=100% hight=400px
 skin=silver value=$actionForm->get('content') *}>
       </td>

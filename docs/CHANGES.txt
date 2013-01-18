@@ -1,6 +1,52 @@
 ﻿
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
+----------------------------------------
+2012/10/**: Package Revision 2.2.2 Beta1
+----------------------------------------
+Move repository to github xoopscube/legacy from this version.
+https://github.com/xoopscube/legacy
+
+[Issues]
+#43 lib: Smarty up to 2.6.27
+#38 Workflow Bugs bug
+#33 Clean up Admin theme image files.
+#31 About admin panel form.
+#30 NOT IN criteria render bug
+#29 module admin anchor error after module install.
+#26 fix xoops_gethandler() for internal class in cube_legacy 2.2.1
+#25 legacy: load trust side language file
+#23 legacy: admin theme onload func switch to onready
+#22 Change xc_pack2011.png
+#21 Remove and rename install folder automatially.
+#20 Core pack
+#19 pull please
+#18 xoops_gethandler('SingleToken') fail to get handler bug
+#17 zipdownloader.php error bug
+#15 Fix doc comment of XCube_DelegateUtils::call()
+#14 Add delegate point after user activation done
+#9 extra-lang-japanese-install fix MOJIBAKE
+#8 AbstractClientObjectHandler fixation is wrong. bug
+#7 Fix spelling
+#6 [users] User avatar is gone when just submit form without any uploads
+#5 [users] Support emails having plus symbol at lost password
+#4 Add a link to module admin panel on "module installation success"
+#3 Installer enhancement
+#2 I made Install folder remover
+#1 Browser reports security warnings because of referencing HTTP resources in HTTPS context
+
+[Staff]
+- argon358
+- bluemooninc
+- Kilica
+- Marijuana
+- Naao
+- nao-pon
+- nobunobu
+- nbuy
+- suin
+- xoopserver
+
 
 ----------------------------------------
 2012/07/28: Package Revision 2.2.1
