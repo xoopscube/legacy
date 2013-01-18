@@ -31,7 +31,7 @@ class Profile_Admin_DefinitionsViewAction extends Profile_AbstractViewAction
 	/**
 	 * @public
 	 */
-	function executeViewSuccess(&$controller,&$render)
+	function executeViewSuccess(&$render)
 	{
 		$render->setTemplateName("definitions_view.html");
 		#cubson::lazy_load('definitions', $this->mObject);
