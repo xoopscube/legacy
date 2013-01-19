@@ -79,7 +79,7 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
 		if ($this->mCurrentModule->get('dirname') == 'legacy') {
 			if (xoops_getrequest('action') == "help") {
 				$moduleHandler =& xoops_gethandler('module');
-				$t_module =& $moduleHandler->getByDirname(xoops_gethandler('dirname'));
+				$t_module =& $moduleHandler->getByDirname(xoops_gethandler('legacy'));
 				if (is_object($t_module)) {
 					$this->mCurrentModule =& $t_module;
 				}

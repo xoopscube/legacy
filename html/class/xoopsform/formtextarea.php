@@ -138,6 +138,7 @@ class XoopsFormTextArea extends XoopsFormElement {
 		$renderTarget->setAttribute('legacy_module', 'legacy');
 		$renderTarget->setTemplateName("legacy_xoopsform_textarea.html");
 		$renderTarget->setAttribute("element", $this);
+		$renderTarget->setAttribute("class", $this->getClass());
 
 		$renderSystem->render($renderTarget);
 	
