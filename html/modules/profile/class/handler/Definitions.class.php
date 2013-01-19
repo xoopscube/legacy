@@ -155,6 +155,18 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 		return $defArr;
 	}
 
+	public function getLabel()
+	{
+		$criteria = new CriteriaCompo();
+		$criteria->setSort('weight', 'ASC');
+		$definitions = $this->getObjects($criteria);
+		$defArr = array();
+		foreach($definitions as $def){
+			$defArr[] = $def->get('label');
+		}
+		return $defArr;
+	}
+
 	/**
 	 * @public
 	 */

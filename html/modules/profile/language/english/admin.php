@@ -26,6 +26,7 @@ define('_AD_PROFILE_DATA_UPLOAD_SELECT_CSVFILE', 'Please select the file of regi
 define('_AD_PROFILE_DATA_UPLOAD_CONF', 'Confirm the content of registration');
 define('_AD_PROFILE_DATA_UPLOAD_DO', 'Register');
 
-define('_AD_USER_DATA_UPLOAD_BACK', 'Select The CSV file again');
-define('_AD_USER_DATA_UPLOAD_CHECK_USER_CSVFILE', 'Please confirm the content of registration.');
+define('_AD_PROFILE_DATA_UPLOAD_BACK', 'Select The CSV file again');
+define('_AD_PROFILE_DATA_UPLOAD_CHECK_CSVFILE', 'Please confirm the content of registration.');
+
 ?>
