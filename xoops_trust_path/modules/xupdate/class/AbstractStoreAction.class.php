@@ -85,6 +85,9 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 	{
 		$navi =& parent::_getPageNavi();
 		$navi->setPerpage(30);//TODO
+		if ($filter = (string)$this->mRoot->mContext->mRequest->getRequest('filter')) {
+			$navi->addExtra('filter', $filter);
+		}
 
 		return $navi;
 	}
