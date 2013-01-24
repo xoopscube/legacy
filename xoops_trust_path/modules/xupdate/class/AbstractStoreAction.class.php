@@ -591,8 +591,7 @@ jQuery(function($){
 
 	var checkAll = function()
 	{
-		var isChecked = $(this).attr('checked');
-		if ( isChecked == 'checked' )
+		if ( $(this).is(':checked') )
 		{
 			$('.rapidInstallCheckbox').prop("checked", true);
 		}else{
