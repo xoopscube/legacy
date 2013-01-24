@@ -594,9 +594,9 @@ jQuery(function($){
 		var isChecked = $(this).attr('checked');
 		if ( isChecked == 'checked' )
 		{
-			$('.rapidInstallCheckbox').attr('checked', 'checked');
+			$('.rapidInstallCheckbox').prop("checked", true);
 		}else{
-			$('.rapidInstallCheckbox').attr('checked', false);
+			$('.rapidInstallCheckbox').prop("checked", false);
 		}
 	}
 
