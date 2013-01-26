@@ -89,7 +89,12 @@ class Legacy_PHPDebugger extends Legacy_AbstractDebugger
 {
 	function prepare()
 	{
-		error_reporting(E_ALL);
+		if (E_ALL > 30719) {
+			// PHP >= 5.4
+			error_reporting(E_ALL ^ E_STRICT);
+		} else {
+			error_reporting(E_ALL);
+		}
 		$GLOBALS['xoopsErrorHandler'] =& XoopsErrorHandler::getInstance();
 		$GLOBALS['xoopsErrorHandler']->activate(true);
 	}
