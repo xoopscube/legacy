@@ -89,8 +89,7 @@ class Legacy_PHPDebugger extends Legacy_AbstractDebugger
 {
 	function prepare()
 	{
-		if (E_ALL > 30719) {
-			// PHP >= 5.4
+		if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
 			error_reporting(E_ALL ^ E_STRICT);
 		} else {
 			error_reporting(E_ALL);
