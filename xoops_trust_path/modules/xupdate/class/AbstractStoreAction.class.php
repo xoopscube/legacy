@@ -85,6 +85,9 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 	{
 		$navi =& parent::_getPageNavi();
 		$navi->setPerpage(30);//TODO
+		if ($filter = (string)$this->mRoot->mContext->mRequest->getRequest('filter')) {
+			$navi->addExtra('filter', $filter);
+		}
 
 		return $navi;
 	}
@@ -588,12 +591,11 @@ jQuery(function($){
 
 	var checkAll = function()
 	{
-		var isChecked = $(this).attr('checked');
-		if ( isChecked == 'checked' )
+		if ( $(this).is(':checked') )
 		{
-			$('.rapidInstallCheckbox').attr('checked', 'checked');
+			$('.rapidInstallCheckbox').prop("checked", true);
 		}else{
-			$('.rapidInstallCheckbox').attr('checked', false);
+			$('.rapidInstallCheckbox').prop("checked", false);
 		}
 	}
 

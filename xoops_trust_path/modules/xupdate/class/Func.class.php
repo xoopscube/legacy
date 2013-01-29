@@ -227,15 +227,16 @@ class Xupdate_Func {
 			} while ($mrc == CURLM_CALL_MULTI_PERFORM);
 			
 			while ($active && $mrc == CURLM_OK) {
-				if (curl_multi_select($mh) != -1) {
-					do {
-						$mrc = curl_multi_exec($mh, $active);
-					} while ($mrc == CURLM_CALL_MULTI_PERFORM);
-				} else {
-					// why -1 ? for infinite loop
-					$this->_set_error_log('curl_multi_select() Error.');
-					break;
+				// @todo found curl_multi_select() problem. What is the correct?
+				// ref. https://bugs.php.net/bug.php?id=63842
+				// ref. https://bugs.php.net/bug.php?id=63411
+				// ref. https://bugs.php.net/bug.php?id=61141
+				if (curl_multi_select($mh) != 1) {
+					usleep(100000); // wait 0.1 second
 				}
+				do {
+					$mrc = curl_multi_exec($mh, $active);
+				} while ($mrc == CURLM_CALL_MULTI_PERFORM);
 			}
 			
 			foreach($chs as $key => $ch) {

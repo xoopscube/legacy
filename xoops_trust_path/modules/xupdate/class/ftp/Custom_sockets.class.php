@@ -210,7 +210,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_CustomBase {
 		return TRUE;
 	}
 
-	protected function _quit() {
+	protected function _quit($force=false) {
 		if($this->_connected) {
 			@socket_close($this->_ftp_control_sock);
 			$this->_connected=false;

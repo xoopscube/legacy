@@ -20,7 +20,12 @@ class Xupdate_Root extends XoopsSimpleObject {
 		{
 			exit;
 		}
-
+		
+		// load compatibility code
+		if (version_compare(PHP_VERSION, '5.2.0', '<')) {
+			require_once XUPDATE_TRUST_PATH . '/include/compat.php';
+		}
+		
 		$this->xoops_root_path = XOOPS_ROOT_PATH;
 
 		$this->mRoot = $root = XCube_Root::getSingleton();
@@ -55,11 +60,11 @@ class Xupdate_Root extends XoopsSimpleObject {
 		$this->params['is_writable']['result'] = Xupdate_Utils::checkDirWritable($tmpf_realpath);
 
 		// Ftp class
-		require_once dirname(__FILE__) . '/Ftp.class.php';
+		require_once XUPDATE_TRUST_PATH . '/class/Ftp.class.php';
 		$this->Ftp = new Xupdate_Ftp($this) ;
 
 		// Func class
-		require_once dirname(__FILE__).'/Func.class.php' ;
+		require_once XUPDATE_TRUST_PATH . '/class/Func.class.php' ;
 		$this->func = new Xupdate_Func($this) ;
 	}
 

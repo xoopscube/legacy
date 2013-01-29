@@ -31,6 +31,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
 	protected $target_type;
 	protected $trust_dirname;
 	protected $dirname;
+	protected $my_dir_path;
 
 	protected $unzipdirlevel;
 
@@ -229,6 +230,9 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
 
 		$render->setAttribute('currentMenu', $this->currentMenu);
 		$render->setAttribute('currentItem', $this->target_key);
+		
+		$render->setAttribute('my_dir_path', $this->my_dir_path . '/' . $this->dirname);
+		$render->setAttribute('my_trust_path', $this->trust_dirname? XOOPS_TRUST_PATH . '/modules/' . $this->trust_dirname : '');
 	}
 
 	/**
