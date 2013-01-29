@@ -291,7 +291,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 				}
 			}
 		}
-		if ($this->chdir('/') && strpos(XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) === 0) {
+		if ($this->chdir('/') && strpos(XOOPS_TRUST_PATH, XOOPS_ROOT_PATH) === 0) {
 			// May be XOOPS_ROOT_PATH is FTP root
 			$ftp_root = $xoops_root_path;
 			return $ftp_root;
