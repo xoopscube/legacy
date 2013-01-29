@@ -2,15 +2,6 @@
 
 // Xupdate_ftp excutr function
 require_once XUPDATE_TRUST_PATH .'/include/FtpCommonFunc.class.php';
-// To Do
-if (!defined('PATH_SEPARATOR')) {
-	if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN') {
-		define('PATH_SEPARATOR', ':');
-	} else {
-		define('PATH_SEPARATOR', ';');
-	}
-}
-set_include_path(get_include_path() . PATH_SEPARATOR . dirname(dirname(__FILE__)) . '/PEAR');
 require_once 'File/Archive.php';
 
 class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {

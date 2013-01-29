@@ -10,6 +10,12 @@ if(!defined('XOOPS_ROOT_PATH'))
     exit;
 }
 
+// Set include_path
+if (!defined('PATH_SEPARATOR')) {
+	define('PATH_SEPARATOR', (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN')? ':' : ';');
+}
+set_include_path(get_include_path() . PATH_SEPARATOR . dirname(dirname(__FILE__)) . '/PEAR');
+
 /**
  * Xupdate_AbstractAction
 **/
