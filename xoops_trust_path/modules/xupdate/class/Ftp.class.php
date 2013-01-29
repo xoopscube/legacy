@@ -269,7 +269,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		}
 		
 		$xoops_root_path = $this->XupdateObj->xoops_root_path;
-		static $ftp_root ;
+		static $ftp_root = null;
 
 		if (!is_null($ftp_root)){
 			return $ftp_root ;
@@ -277,24 +277,28 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 
 		$xoops_root_path = str_replace( "\\","/",$xoops_root_path );
 		$path = explode('/', $xoops_root_path);
-		//$path = preg_split( '///', $xoops_root_path, PREG_SPLIT_NO_EMPTY );
 
 		$current_path = '';
 		for ($i=count($path)-1; $i>=0 ;$i--){
 			$current_path = '/'.$path[$i].$current_path;
 			if ( $this->chdir($current_path) ){
-				$ftp_root = substr($xoops_root_path, 0, strrpos($xoops_root_path, $current_path));
-				return $ftp_root;
+				$_ftp_root = substr($xoops_root_path, 0, strrpos($xoops_root_path, $current_path));
+				$_start = strlen($_ftp_root);
+				if ($this->chdir(substr(XOOPS_TRUST_PATH, $_start))/* check trust path */) {
+					$this->chdir($current_path);
+					$ftp_root = $_ftp_root;
+					return $ftp_root;
+				}
 			}
 		}
-		if ($this->chdir('/')) {
+		if ($this->chdir('/') && strpos(XOOPS_ROOT_PATH, XOOPS_TRUST_PATH) === 0) {
 			// May be XOOPS_ROOT_PATH is FTP root
 			$ftp_root = $xoops_root_path;
 			return $ftp_root;
 		}
 
 		//throw new Exception(t("seekFTP fail"), 1);
-		$this->mes .= " seekFTP fail<br>\n";//TODO WHY fail?
+		$this->mes .= " seekFTPRoot fail. Can not access to XOOPS_ROOT_PATH or XOOPS_TRUST_PATH. Do checking your FTP setting.<br>\n";//TODO WHY fail?
 		return false;
 	}
 
