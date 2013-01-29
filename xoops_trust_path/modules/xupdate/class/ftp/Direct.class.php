@@ -23,7 +23,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract {
 	 *
 	 * @return	void
 	 **/
-	public function quit() {
+	public function quit($force=false) {
 		return true;
 	}
 

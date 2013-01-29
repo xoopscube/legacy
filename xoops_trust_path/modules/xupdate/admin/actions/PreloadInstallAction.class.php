@@ -25,6 +25,7 @@ class Xupdate_Admin_PreloadInstallAction extends Xupdate_AbstractInstallAction
 		$this->contents = 'preload';
 		$this->action = 'PreloadStore';
 		$this->currentMenu = _MI_XUPDATE_ADMENU_PRELOAD;
+		$this->my_dir_path = XOOPS_ROOT_PATH . '/preload';
 	}
 }
 ?>
