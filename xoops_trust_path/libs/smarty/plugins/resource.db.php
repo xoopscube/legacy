@@ -72,46 +72,102 @@ function smarty_resource_db_trusted($tpl_name, &$smarty)
 function smarty_resource_db_tplinfo($tpl_name, $smarty)
 {
 	static $cache = array();
+	static $tplset = null;
+	static $theme = null;
+	static $theme_default = null;
+	static $entries = null;
+	
 	global $xoopsConfig;
-
+	
 	// 1st, check the cache
 	if (isset($cache[$tpl_name])) {
 		return $cache[$tpl_name];
 	}
 
-	$tplset = isset($xoopsConfig['template_set']) ? $xoopsConfig['template_set']: 'default' ;
-	$theme = isset($xoopsConfig['theme_set']) ? $xoopsConfig['theme_set'] : 'default';
-
-	// 2nd, check templates under themes/(theme)/templates/ (file template)
-	$filepath = XOOPS_THEME_PATH . '/' . $theme . '/templates/' . $tpl_name ;
-	if (file_exists($filepath)) {
-		return $cache[$tpl_name] = $filepath ;
+	if (is_null($tplset)) {
+		$tplset = isset($xoopsConfig['template_set']) ? $xoopsConfig['template_set']: 'default' ;
+		$theme = isset($xoopsConfig['theme_set']) ? $xoopsConfig['theme_set'] : 'default';
+		
+		if (($_pos = strpos($theme, '_')) && substr($theme, $_pos) !== '_default') {
+			$theme_default = substr($theme, 0, $_pos) . '_default';
+		} else {
+			$theme_default = '';
+		}
+		$root = XCube_Root::getSingleton();
+		if (! $resourceDiscoveryOrder = $root->getSiteConfig('Smarty', 'ResourceDiscoveryOrder')) {
+			$resourceDiscoveryOrder = 'Theme,ThemeD3,ThemeDefault,ThemeDefaultD3,DbTplSet';
+		}
+		$entries = array_map('strtoupper', array_map('trim', explode(',', $resourceDiscoveryOrder)));
 	}
-
-	// 3rd, check templates under themes/(theme)/templates/(trust based template)
+	
 	@list($dirname , $base_tpl_name) = explode('_' , $tpl_name , 2) ;
 	$mytrustdirname = Legacy_ResourcedbUtils::getTrustPath($dirname);
-	if($mytrustdirname && $base_tpl_name) {
-		$filepath = XOOPS_THEME_PATH . '/' . $theme . '/templates/' . $mytrustdirname . '/' . $base_tpl_name ;
-		if (file_exists($filepath)) {
-			return $cache[$tpl_name] = $filepath ;
+	
+	foreach($entries as $entry) {
+		switch($entry) {
+			case 'THEME':
+				// check templates under themes/(theme)/templates/ (file template)
+				$filepath = XOOPS_THEME_PATH . '/' . $theme . '/templates/' . $tpl_name ;
+				if (is_file($filepath)) {
+					return $cache[$tpl_name] = $filepath ;
+				}
+				break;
+				
+			case 'THEMED3':
+				// check templates under themes/(theme)/templates/(trust based template)
+				if($mytrustdirname && $base_tpl_name) {
+					$filepath = XOOPS_THEME_PATH . '/' . $theme . '/templates/' . $mytrustdirname . '/' . $base_tpl_name ;
+					if (is_file($filepath)) {
+						return $cache[$tpl_name] = $filepath ;
+					}
+				}
+				break;
+				
+			case 'THEMEDEFAULT':
+				// check templates under themes/(theme prefix)_default/templates/ (file template)
+				if ($theme_default) {
+					$filepath = XOOPS_THEME_PATH . '/' . $theme_default . '/templates/' . $tpl_name ;
+					if (is_file($filepath)) {
+						return $cache[$tpl_name] = $filepath ;
+					}
+				}
+				break;
+				
+			case 'THEMEDEFAULTD3':
+				// check templates under themes/(theme prefix)_default/templates/(trust based template)
+				if($theme_default && $mytrustdirname && $base_tpl_name) {
+					$filepath = XOOPS_THEME_PATH . '/' . $theme_default . '/templates/' . $mytrustdirname . '/' . $base_tpl_name ;
+					if (is_file($filepath)) {
+						return $cache[$tpl_name] = $filepath ;
+					}
+				}
+				break;
+				
+			case 'DBTPLSET':
+				// find a DB template of the selected tplset
+				// check template update
+				$tplfileHandler =& xoops_gethandler('tplfile');
+				$tplObj = $tplfileHandler->find($tplset, null, null, null, $tpl_name, true);
+				if(!empty($tplObj)) {
+					return $cache[$tpl_name] = $tplObj[0];
+				}
+				break;
+				
+			DEFAULT:
 		}
 	}
-
-	// 4th, find a DB template of the selected tplset
-	// check template update
-	$tplfileHandler =& xoops_gethandler('tplfile');
-	$tplObj = $tplfileHandler->find($tplset, null, null, null, $tpl_name, true);
-	if(empty($tplObj)) {
-		// 5th, find a DB template in default tplset
-		$tplObj = $tplfileHandler->find('default', null, null, null, $tpl_name, true);
-		if(empty($tplObj)){
-			return false;
-		}
-		//update template if admin user and new template file exists
-		if(XCube_Root::getSingleton()->mContext->mUser->isInRole('Site.Administrator') && $smarty->xoops_canUpdateFromFile()){
-			Legacy_ResourcedbUtils::updateTemplate($tplObj[0]);
-		}
+	
+	// Finally, find a DB template in default tplset
+	if (! isset($tplfileHandler)) {
+		$tplfileHandler =& xoops_gethandler('tplfile');
+	}
+	$tplObj = $tplfileHandler->find('default', null, null, null, $tpl_name, true);
+	if(empty($tplObj)){
+		return false;
+	}
+	//update template if admin user and new template file exists
+	if(XCube_Root::getSingleton()->mContext->mUser->isInRole('Site.Administrator') && $smarty->xoops_canUpdateFromFile()){
+		Legacy_ResourcedbUtils::updateTemplate($tplObj[0]);
 	}
 	return $cache[$tpl_name] = $tplObj[0];
 }
@@ -126,7 +182,7 @@ class Legacy_ResourcedbUtils
 	
 		//Case 1:under public root_path with dirname in template name like 'cat'
 		$publicPath = XOOPS_MODULE_PATH.'/'.$modulePath.'/'.$tplObj->getVar('tpl_file');
-		if(file_exists($publicPath)){
+		if(is_file($publicPath)){
 			return $publicPath;
 		}
 	
@@ -138,12 +194,12 @@ class Legacy_ResourcedbUtils
 	
 		//Case 2:under public root_path with trust_dirname in template name like 'lecat'
 		$publicPath = XOOPS_MODULE_PATH.'/'.$modulePath.'/'.$filename;
-		if(file_exists($publicPath)){
+		if(is_file($publicPath)){
 			return $publicPath;
 		}
 		//Case 3:under trust_path
 		$trustPath = XOOPS_TRUST_PATH.'/modules/'.$trustDirname.'/templates'.$block.'/'.$filename;
-		if(file_exists($trustPath)){
+		if(is_file($trustPath)){
 			return $trustPath;
 		}
 		return false;
@@ -151,7 +207,7 @@ class Legacy_ResourcedbUtils
 
 	public static function getTrustPath(/*** string ***/ $dirname)
 	{
-		if(file_exists(XOOPS_ROOT_PATH.'/modules/'.$dirname.'/mytrustdirname.php')){
+		if(is_file(XOOPS_ROOT_PATH.'/modules/'.$dirname.'/mytrustdirname.php')){
 			@include XOOPS_ROOT_PATH.'/modules/'.$dirname.'/mytrustdirname.php' ;
 			return $mytrustdirname;
 		}
