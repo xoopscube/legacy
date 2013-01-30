@@ -293,6 +293,10 @@ EOD;
     protected function _removeInstallDir() {
     	$ret = false;
     	if ($this->Ftp->app_login()) {
+    		// enable protector in mainfile.php
+    		$this->Func->write_mainfile_protector();
+    		
+    		// write protect mainfile.php
     		if ($main_perm = @ fileperms(XOOPS_ROOT_PATH . '/mainfile.php')) {
     			$main_perm = substr(sprintf('%o', $main_perm), -3);
     			$set_perm = '';
@@ -309,6 +313,12 @@ EOD;
     		// set writable "mod_config['temp_path']"
     		if (! $this->Xupdate->params['is_writable']['result']) {
     			$this->Ftp->localChmod($this->Xupdate->params['is_writable']['path'], 0707);
+    		}
+    		
+    		// set writable protector config dir
+    		$protector_config = XOOPS_TRUST_PATH . '/modules/protector/configs';
+    		if (! Xupdate_Utils::checkDirWritable($protector_config)) {
+    			$this->Ftp->localChmod($protector_config, 0707);
     		}
     		
     		clearstatcache();

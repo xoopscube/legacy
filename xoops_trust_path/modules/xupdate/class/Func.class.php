@@ -374,7 +374,33 @@ class Xupdate_Func {
 		$this->Ftp->appendMes('<span style="color:red;">'.$msg.'</span><br />');
 		$this->content.= '<span style="color:red;">'.$msg.'</span><br />';
 	}
-
+	
+	/**
+	 * enable protector of mainfile.php
+	 * 
+	 * @param boolean $do_chmod
+	 * @return boolean
+	 */
+	public function write_mainfile_protector($do_chmod = false) {
+		$mailfile = XOOPS_ROOT_PATH . '/mainfile.php';
+		$src = file_get_contents($mailfile);
+		if (! preg_match('#(?:include|require)\s*\(?\s*XOOPS_TRUST_PATH\s*.\s*[\'|"]/modules/protector/include/precheck.inc.php\'#i', $src)) {
+			$src = str_replace('if (!defined(\'_LEGACY_PREVENT_LOAD_CORE_\') && XOOPS_ROOT_PATH != \'\') {', 'if (!defined(\'_LEGACY_PREVENT_LOAD_CORE_\') && XOOPS_ROOT_PATH != \'\') {
+        include XOOPS_TRUST_PATH.\'/modules/protector/include/precheck.inc.php\' ;', $src);
+			$src = preg_replace('#include XOOPS_ROOT_PATH.\'/include/common.php\';\s+}#', 'include XOOPS_ROOT_PATH.\'/include/common.php\';
+        }
+        include XOOPS_TRUST_PATH.\'/modules/protector/include/postcheck.inc.php\' ;', $src);
+			if ($do_chmod) {
+				$mod = @ fileperms($mailfile);
+				$this->Ftp->localChmod($mailfile, 0606);
+			}
+			file_put_contents($mailfile, $src, LOCK_EX);
+			if ($do_chmod) {
+				$this->Ftp->localChmod($mailfile, $mod? $mod : 0404);
+			}
+		}
+		return true;
+	}
 } // end class
 } // end if
 
