@@ -12,6 +12,10 @@
  |   keeping compatibility with XOOPS 2.0.x <http://www.xoops.org>        |
  *------------------------------------------------------------------------*/
 
+if (version_compare(PHP_VERSION, '5.4.0', '>=') && error_reporting() === E_ALL) {
+	error_reporting(E_ALL ^ E_STRICT);
+}
+
 include_once './passwd.php';
 if(INSTALL_USER != '' || INSTALL_PASSWD != ''){
     if (!isset($_SERVER['PHP_AUTH_USER'])) {
