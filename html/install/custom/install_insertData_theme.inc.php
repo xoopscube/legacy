@@ -26,7 +26,8 @@ $hd_query = array(
 	sprintf('update %s set conf_value=\'%s\' where conf_name="theme_set_allowed" limit 1',
 			$dbm->db->prefix('config'), serialize($available_themes)),
 	sprintf('update %s set theme="%s" where uid =1 limit 1',
-			$dbm->db->prefix('users'), $default_theme),
+//			$dbm->db->prefix('users'), $default_theme),
+			$dbm->db->prefix('users'), ''), // fix A curse of the Theme (http://usadeki.jp/modules/pico/index.php?content_id=24)
 	);
 
 foreach ($hd_query as $hd_sql){
