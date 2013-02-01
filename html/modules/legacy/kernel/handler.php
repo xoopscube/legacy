@@ -50,14 +50,20 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 	function &get($id)
 	{
 		$ret = null;
-		
-		$criteria =new Criteria($this->mPrimary, $id);
+		$i = 0;
+		if (is_array($id)){
+			$mPrimary = explode(",",$this->mPrimary);
+			$criteria = new CriteriaCompo();
+			foreach($mPrimary as $key){
+				$criteria->add(new Criteria($key,$id[$i]));
+			}
+		}else{
+			$criteria =new Criteria($this->mPrimary, $id);
+		}
 		$objArr =& $this->getObjects($criteria);
-		
 		if (count($objArr) == 1) {
 			$ret =& $objArr[0];
 		}
-
 		return $ret;
 	}
 
