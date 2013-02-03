@@ -177,6 +177,17 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	}
 	
 	/**
+	 * Rename by server path
+	 *
+	 * @param string $from server path
+	 * @param string $to server path
+	 * @return boolean
+	 */
+	public function localRename($from, $to) {
+		return $this->rename($this->getLocalPath($from), $this->getLocalPath($to));
+	}
+	
+	/**
 	 * chmod by server path
 	 * 
 	 * @param string $item server path

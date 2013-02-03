@@ -473,7 +473,15 @@ class Xupdate_ModulesIniDadaSet
 				$this->modHand[$caller]->delete($mobj,true);
 				continue;
 			}
-
+			
+			// モジュールディレクトリが存在しなければ削除
+			if (($mobj->getVar('contents') == 'module' || $mobj->getVar('contents') == 'package')
+					&& $mobj->getVar('trust_dirname')
+					&& $mobj->getVar('trust_dirname') != $mobj->getVar('dirname')
+					&& ! file_exists(XOOPS_MODULE_PATH . '/' . $mobj->getVar('dirname'))) {
+				$this->modHand[$caller]->delete($mobj,true);
+			}
+			
 			if (isset($this->mSiteItemArray[$mobj->getVar('sid')][$mobj->getVar('target_key')][$mobj->getVar('dirname')])){
 				//データ重複分は削除
 				$this->modHand[$caller]->delete($mobj,true);
@@ -531,10 +539,10 @@ class Xupdate_ModulesIniDadaSet
 		  $item = $this->_createItemOptions($item, $caller);
 
 		//インストール済みの同じtrustモージュールのリストを取得
-		$list = Legacy_Utils::getDirnameListByTrustDirname($item['trust_dirname']);
+		$list = $this->getDirnameListByTrustDirname($item['trust_dirname']);
 
 		if (empty($list)){
-			//インストール済みの同じtrustモージュール無し、注意 is_activeはリストされない
+			//インストール済みの同じtrustモージュール無し
 			$mobj = new $this->modHand[$caller]->mClass();
 			$mobj->assignVars($item);
 			$mobj->assignVar('sid',$sid);
@@ -761,6 +769,27 @@ class Xupdate_ModulesIniDadaSet
 		}
 		return;
 	}
+	
+	/**
+	 * getDirnameListByTrustDirname
+	 *
+	 * @param	string	$trustDirname
+	 *
+	 * @return	string[]
+	 **/
+	private function getDirnameListByTrustDirname(/*** string ***/ $trustDirname)
+	{
+		$list = array();
+		$cri = new CriteriaCompo();
+		$cri->add(new Criteria('trust_dirname', $trustDirname));
+		$cri->addSort('dirname','ASC');
+		foreach(xoops_gethandler('module')->getObjects($cri) as $module)
+		{
+			$list[] = $module->get('dirname');
+		}
+		return $list;
+	}
+	
 } // end class
 
 ?>
