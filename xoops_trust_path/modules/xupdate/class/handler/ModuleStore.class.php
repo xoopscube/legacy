@@ -110,16 +110,17 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 			
 			$this->options = $this->unserialize_options($readini);
 			if ($readini) {
-				if (($this->getVar('version') && $this->mModule->getVar('version') < $this->getVar('version'))
-						|| 
-					(isset($this->modinfo['detailed_version']) && $this->_check_hasupdate($this->modinfo['detailed_version'], $this->options['detailed_version']))) {
-					$this->setVar('hasupdate', 1);
-				} else {
-					$this->setVar('hasupdate', 0);
-				}
 				if ($this->mModule->getVar('isactive')) {
+					if (($this->getVar('version') && $this->mModule->getVar('version') < $this->getVar('version'))
+							|| 
+						(isset($this->modinfo['detailed_version']) && $this->_check_hasupdate($this->modinfo['detailed_version'], $this->options['detailed_version']))) {
+						$this->setVar('hasupdate', 1);
+					} else {
+						$this->setVar('hasupdate', 0);
+					}
 					$this->setVar('isactive', 1);
 				} else {
+					$this->setVar('hasupdate', 0);
 					$this->setVar('isactive', 0);
 				}
 			}
@@ -136,6 +137,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 						$this->mModule->setVar('trust_dirname',$mytrustdirname);
 					}
 				}
+				$hModule->insert($this->mModule);
 			}else{
 				if ( !isset($this->modinfo['trust_dirname']) || empty($this->modinfo['trust_dirname']) ){
 					$this->modinfo['trust_dirname'] = $trust_dirname;
@@ -166,30 +168,50 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 					'detailed_version' => $this->options['detailed_version'],
 					'lastupdate' => 0);
 			}
-			if ($readini && ! $_isModule) {
-				// for Theme
-				if ($this->getVar('contents') == 'theme') {
-					$t_dir = XOOPS_ROOT_PATH . '/themes/' . $this->getVar('dirname');
-					if (is_dir($t_dir)) {
-						$this->setVar('isactive', 1);
-						$lastupdate = filemtime($t_dir.'/theme.html');
-						$this->setVar('last_update', $lastupdate);
-						$m_file = $t_dir . '/' . 'manifesto.ini.php';
-						if (is_file($m_file)) {
-							if ($manifesto = @ parse_ini_file($m_file)) {
-								if (!empty($manifesto['Version'])) {
-									$mVersion = $manifesto['Version'] * 100;
-									if (! $this->getVar('version')) {
-										$this->setVar('version', $mVersion);
+			if ($readini) {
+				if ($_isModule) {
+					$this->setVar('isactive', -1);
+				} else {
+					// for Theme
+					if ($this->getVar('contents') == 'theme') {
+						$t_dir = XOOPS_ROOT_PATH . '/themes/' . $this->getVar('dirname');
+						if (is_dir($t_dir)) {
+							$this->setVar('isactive', 1);
+							$lastupdate = filemtime($t_dir.'/theme.html');
+							$this->setVar('last_update', $lastupdate);
+							$m_file = $t_dir . '/' . 'manifesto.ini.php';
+							if (is_file($m_file)) {
+								if ($manifesto = @ parse_ini_file($m_file)) {
+									if (!empty($manifesto['Version'])) {
+										$mVersion = $manifesto['Version'] * 100;
+										if (! $this->getVar('version')) {
+											$this->setVar('version', $mVersion);
+										}
+										$this->mModule->setVar('version', $mVersion);
+										$this->modinfo = array(
+											'version' => $this->mModule->getRenderedVersion(),
+											'detailed_version' => $this->options['detailed_version'],
+											'lastupdate' => $lastupdate);
 									}
-									$this->mModule->setVar('version', $mVersion);
+								}
+							} else {
+								if ($lastupdate > $this->modinfo['lastupdate']) {
+									$this->mModule->setVar('version', $this->getVar('version'));
 									$this->modinfo = array(
 										'version' => $this->mModule->getRenderedVersion(),
 										'detailed_version' => $this->options['detailed_version'],
 										'lastupdate' => $lastupdate);
 								}
 							}
-						} else {
+						}
+					}
+					// for Preload
+					if ($this->getVar('contents') == 'preload') {
+						$t_file = XOOPS_ROOT_PATH . '/preload/' . $this->getVar('target_key') . '.class.php';
+						if (is_file($t_file)) {
+							$lastupdate = filemtime($t_file);
+							$this->setVar('isactive', 1);
+							$this->setVar('last_update', $lastupdate);
 							if ($lastupdate > $this->modinfo['lastupdate']) {
 								$this->mModule->setVar('version', $this->getVar('version'));
 								$this->modinfo = array(
@@ -199,35 +221,19 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 							}
 						}
 					}
-				}
-				// for Preload
-				if ($this->getVar('contents') == 'preload') {
-					$t_file = XOOPS_ROOT_PATH . '/preload/' . $this->getVar('target_key') . '.class.php';
-					if (is_file($t_file)) {
-						$lastupdate = filemtime($t_file);
-						$this->setVar('isactive', 1);
-						$this->setVar('last_update', $lastupdate);
-						if ($lastupdate > $this->modinfo['lastupdate']) {
-							$this->mModule->setVar('version', $this->getVar('version'));
-							$this->modinfo = array(
-								'version' => $this->mModule->getRenderedVersion(),
-								'detailed_version' => $this->options['detailed_version'],
-								'lastupdate' => $lastupdate);
-						}
+					if ($this->getVar('isactive') == 1) {
+						$this->options['modinfo'] = $this->modinfo;
+					} else {
+						unset($this->options['modinfo']);
 					}
-				}
-				if ($this->getVar('isactive') == 1) {
-					$this->options['modinfo'] = $this->modinfo;
-				} else {
-					unset($this->options['modinfo']);
-				}
-				$this->setVar('options', serialize($this->options));
-				if (($this->getVar('version') && $this->mModule->getVar('version') < $this->getVar('version'))
-						||
-					(isset($this->modinfo['detailed_version']) && $this->_check_hasupdate($this->modinfo['detailed_version'], $this->options['detailed_version']))) {
-					$this->setVar('hasupdate', 1);
-				} else {
-					$this->setVar('hasupdate', 0);
+					$this->setVar('options', serialize($this->options));
+					if (($this->getVar('version') && $this->mModule->getVar('version') < $this->getVar('version'))
+							||
+						(isset($this->modinfo['detailed_version']) && $this->_check_hasupdate($this->modinfo['detailed_version'], $this->options['detailed_version']))) {
+						$this->setVar('hasupdate', 1);
+					} else {
+						$this->setVar('hasupdate', 0);
+					}
 				}
 			}
 		}
