@@ -64,6 +64,13 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
      * @access  private
      */
     var $_hiddenText;
+    
+    /**
+     * Editor type
+     * @var string
+     * @access  private
+     */
+    private $_editor;
 
     /**
      * Constructor
@@ -89,6 +96,33 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
     function render()
     {
 		$root =& XCube_Root::getSingleton();
+
+		if ($this->_editor) {
+			$params['name'] = trim($this->getName(false));
+			$params['class'] = trim($this->getClass());
+			$params['cols'] = $this->getCols();
+			$params['rows'] = $this->getRows();
+			$params['value'] = $this->getValue();
+			$params['id'] = $this->getId();
+			$params['editor'] = $this->getEditor();
+
+			$html = '';
+			switch ($params['editor']) {
+				case 'html':
+					XCube_DelegateUtils::call('Site.TextareaEditor.HTML.Show', new XCube_Ref($html), $params);
+					break;
+				case 'none':
+					XCube_DelegateUtils::call('Site.TextareaEditor.None.Show', new XCube_Ref($html), $params);
+					break;
+				case 'bbcode':
+				default:
+					XCube_DelegateUtils::call('Site.TextareaEditor.BBCode.Show', new XCube_Ref($html), $params);
+					break;
+			}
+
+			return $html;
+		}
+
 		$renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
 		
 		$renderTarget =& $renderSystem->createRenderTarget('main');
@@ -129,5 +163,24 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
 		
 		return $renderTarget->getResult();
     }
+
+	/**
+	 * set editor mode for XCL 2.2
+	 *
+	 * @param  string  editor type
+	 */
+	function setEditor($editor) {
+		$this->_editor = strtolower($editor);
+	}
+
+	/**
+	 * get the "editor" value
+	 *
+	 * @return 	string  editor type
+	 */
+	function getEditor() {
+		return $this->_editor;
+	}
+
 }
 ?>
