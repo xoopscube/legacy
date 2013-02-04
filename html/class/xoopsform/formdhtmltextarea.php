@@ -97,14 +97,15 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
     {
 		$root =& XCube_Root::getSingleton();
 
-		if ($this->_editor) {
+		$editor = $this->getEditor();
+		if ($editor) {
 			$params['name'] = trim($this->getName(false));
 			$params['class'] = trim($this->getClass());
 			$params['cols'] = $this->getCols();
 			$params['rows'] = $this->getRows();
 			$params['value'] = $this->getValue();
 			$params['id'] = $this->getId();
-			$params['editor'] = $this->getEditor();
+			$params['editor'] = $editor;
 
 			$html = '';
 			switch ($params['editor']) {
