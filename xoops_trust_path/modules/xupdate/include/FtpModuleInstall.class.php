@@ -282,6 +282,16 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 					return false;
 				}
 			}
+
+			if ($this->trust_dirname === 'protector') {
+				// for protector 'manip_value' update
+				if (! XC_CLASS_EXISTS('Protector')) {
+					// check and enable protector in mainfile.php
+					if (file_exists(XOOPS_TRUST_PATH . '/modules/protector/include/precheck.inc.php')) {
+						$this->Func->write_mainfile_protector(true);
+					}
+				}
+			}
 			
 		} else if ($this->exploredPreloadPath) {
 			
