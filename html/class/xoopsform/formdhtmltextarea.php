@@ -71,7 +71,15 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
      * @access  private
      */
     private $_editor;
-
+    
+    /**
+     * Editor check for recursive prevention
+     * @static
+     * @var array
+     * @access  private
+     */
+    private static $_editorCheck = array();
+    
     /**
      * Constructor
      *
@@ -98,7 +106,8 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
 		$root =& XCube_Root::getSingleton();
 
 		$editor = $this->getEditor();
-		if ($editor) {
+		if ($editor && !isset(self::$_editorCheck[$id])) {
+			self::$_editorCheck[$id] = true;
 			$params['name'] = trim($this->getName(false));
 			$params['class'] = trim($this->getClass());
 			$params['cols'] = $this->getCols();
