@@ -1,0 +1,1 @@
+function is_array(k){return (k instanceof Array);}

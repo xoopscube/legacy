@@ -30,6 +30,7 @@
 <div>
 <form action="./index.php" method="get">
   <input type="hidden" name="action" value="BlockList" />
+  <div>
   <{$smarty.const._SEARCH}> : 
   <input type="text" name="search" value="<{$filterForm->mKeyword}>" />
   <{$smarty.const._AD_LEGACY_LANG_MOD_NAME}> : 
@@ -46,6 +47,19 @@
     <{/foreach}>
      <option value="-1"  <{if $filterForm->mModule == "cblock"}>selected="selected"<{/if}>><{$smarty.const._AD_LEGACY_LANG_CUSTOMBLOCK_EDIT}></option>
   </select>
+  </div>
+  <div>
+  <{$smarty.const._AD_LEGACY_LANG_TARGET_MODULES}> : 
+  <select name="selmid">
+    <option value="0"><{$smarty.const._ALL}></option>
+    <option value="-1" <{if $selectedMid == -1}>selected="selected"<{/if}>>Top Page</option>
+    <{foreach from=$modules item=module}>
+        <option value="<{$module->getVar('mid')}>" <{if $module->getVar('mid') == $selectedMid}>selected="selected"<{/if}>>
+        <{$module->getVar('name')}></option>
+    <{/foreach}>
+  </select>
+  </div>
+  <div>
   <{$smarty.const._AD_LEGACY_LANG_SIDE}> :
 	<select name="option_field">
 	<{if $filterForm->mOptionField == "all"}> 
@@ -77,6 +91,7 @@
     <{/foreach}>
   </select>
   <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+  </div>
 </form>
 </div>
 

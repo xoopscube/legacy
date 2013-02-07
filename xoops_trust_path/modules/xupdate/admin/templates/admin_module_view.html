@@ -1,0 +1,111 @@
+<div id="xupdate">
+
+	<{include file="admin_navi.html"}>
+	
+	<h3 class="admintitle"><{$smarty.const._MI_XUPDATE_ADMENU_STORELIST}></h3>
+	<{include file="admin_menunavi.html"}>
+	<{include file="admin_tips.html"}>
+	
+	<script>jQuery(function($){$( "#tabs" ).tabs();});</script>
+	
+	<div id="tabs">
+		<ul>
+			<{if !empty($package_items) }><li><a href="#xupdate-tabs-package"><{$smarty.const._MI_XUPDATE_ADMENU_PACKAGE}></a></li><{/if}>
+			<{if !empty($module_items) }><li><a href="#xupdate-tabs-module"><{$smarty.const._MI_XUPDATE_ADMENU_MODULE}></a></li><{/if}>
+			<{if !empty($theme_items) }><li><a href="#xupdate-tabs-theme"><{$smarty.const._MI_XUPDATE_ADMENU_THEME}></a></li><{/if}>
+			<{if !empty($preload_items) }><li><a href="#xupdate-tabs-preload"><{$smarty.const._MI_XUPDATE_ADMENU_PRELOAD}></a></li><{/if}>
+		</ul>
+		<{if !empty($package_items) }>
+		<div id="xupdate-tabs-package" class="storelist">
+			<{foreach item=data from=$package_items}>
+				<div class="eachstore">
+					<dl>
+						<dt>
+							<a href="index.php?action=PackageStore&amp;sid=<{$data.storeobj->get('sid')}>"><{$data.storeobj->getShow('name')}></a>
+						</dt>
+						<dd>
+							<div class="module_count">(<{$smarty.const._AD_XUPDATE_LANG_ITEM_TOTAL}>: <{$data.items_count}>)</div>
+							<ul>
+							<{foreach item=itemsobj from=$data.itemsobj}>
+								<li><a href="index.php?action=ModuleInstall&amp;id=<{$itemsobj.id}>" class="isactive_<{$itemsobj.isactive}>" title="<{$itemsobj.title}>"><{$itemsobj.dirname}><{if $itemsobj.hasupdate}> <img src="<{$smarty.const.XOOPS_MODULE_URL}>/xupdate/images/new.png" alt="New!" style="vertical-align:middle;" width="16" height="16"><{/if}></a></li>
+							<{/foreach}>
+							</ul>
+						</dd>
+					</dl>
+				</div>
+			<{/foreach}>
+			<div style="clear:both;;">&nbsp;</div>
+		</div>
+		<{/if}>
+	
+		<{if !empty($module_items) }>
+		<div id="xupdate-tabs-module" class="storelist">
+			<{foreach item=data from=$module_items}>
+				<div class="eachstore">
+					<dl>
+						<dt>
+							<a href="index.php?action=ModuleStore&amp;sid=<{$data.storeobj->get('sid')}>"><{$data.storeobj->getShow('name')}></a>
+						</dt>
+						<dd>
+							<div class="module_count">(<{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>: <{$data.items_count}>)</div>
+							<ul>
+							<{foreach item=itemsobj from=$data.itemsobj}>
+								<li><a href="index.php?action=ModuleInstall&amp;id=<{$itemsobj.id}>" class="isactive_<{$itemsobj.isactive}>" title="<{$itemsobj.title}>"><{$itemsobj.dirname}><{if $itemsobj.hasupdate}> <img src="<{$smarty.const.XOOPS_MODULE_URL}>/xupdate/images/new.png" alt="New!" style="vertical-align:middle;" width="16" height="16"><{/if}></a></li>
+							<{/foreach}>
+							</ul>
+						</dd>
+					</dl>
+				</div>
+			<{/foreach}>
+			<div style="clear:both;;">&nbsp;</div>
+		</div>
+		<{/if}>
+	
+		<{if !empty($theme_items) }>
+		<div id="xupdate-tabs-theme" class="storelist">
+			<{foreach item=data from=$theme_items}>
+				<div class="eachstore">
+					<dl>
+						<dt>
+							<a href="index.php?action=ThemeStore&amp;sid=<{$data.storeobj->get('sid')}>"><{$data.storeobj->getShow('name')}></a>
+						</dt>
+						<dd>
+							<div class="module_count">(<{$smarty.const._AD_XUPDATE_LANG_THM_TOTAL}>: <{$data.items_count}>)</div>
+							<ul>
+							<{foreach item=itemsobj from=$data.itemsobj}>
+								<li><a href="index.php?action=ThemeInstall&amp;id=<{$itemsobj.id}>" class="isactive_<{$itemsobj.isactive}>" title="<{$itemsobj.title}>"><{$itemsobj.dirname}><{if $itemsobj.hasupdate}> <img src="<{$smarty.const.XOOPS_MODULE_URL}>/xupdate/images/new.png" alt="New!" style="vertical-align:middle;" width="16" height="16"><{/if}></a></li>
+							<{/foreach}>
+							</ul>
+						</dd>
+					</dl>
+				</div>
+			<{/foreach}>
+			<div style="clear:both;;">&nbsp;</div>
+		</div>
+		<{/if}>
+	
+		<{if !empty($preload_items) }>
+		<div id="xupdate-tabs-preload" class="storelist">
+			<{foreach item=data from=$preload_items}>
+				<div class="eachstore">
+					<dl>
+						<dt>
+							<a href="index.php?action=PreloadStore&amp;sid=<{$data.storeobj->get('sid')}>"><{$data.storeobj->getShow('name')}></a>
+						</dt>
+						<dd>
+							<div class="module_count">(<{$smarty.const._AD_XUPDATE_LANG_ITEM_TOTAL}>: <{$data.items_count}>)</div>
+							<ul>
+							<{foreach item=itemsobj from=$data.itemsobj}>
+								<li><a href="index.php?action=PreloadInstall&amp;id=<{$itemsobj.id}>" class="isactive_<{$itemsobj.isactive}>" title="<{$itemsobj.title}>"><{$itemsobj.dirname}><{if $itemsobj.hasupdate}> <img src="<{$smarty.const.XOOPS_MODULE_URL}>/xupdate/images/new.png" alt="New!" style="vertical-align:middle;" width="16" height="16"><{/if}></a></li>
+							<{/foreach}>
+							</ul>
+						</dd>
+					</dl>
+				</div>
+			<{/foreach}>
+			<div style="clear:both;;">&nbsp;</div>
+		</div>
+		<{/if}>
+	
+	</div>
+</div>

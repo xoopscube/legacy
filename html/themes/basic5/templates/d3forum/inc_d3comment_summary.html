@@ -1,0 +1,20 @@
+<{if $topic.comment_link}>
+	<p class="head"><a href="<{$topic.comment_link}>"><{$smarty.const._MD_D3FORUM_LINK_COMMENTSOURCE}></a></p>
+<{elseif is_array($topic.comment_description)}>
+	<table class="outer inc_d3comment_summary">
+		<tr>
+			<td class="head td01"><{$smarty.const._MD_D3FORUM_COM_TARGETMODULE}></td>
+			<td class="even"><a href="<{$xoops_url}>/modules/<{$topic.comment_description.dirname}>/"><{$topic.comment_description.module_name}></a></td>
+		</tr>
+		<tr>
+			<td class="head"><{$smarty.const._MD_D3FORUM_COM_SUBJECT}></td>
+			<td class="odd"><a href="<{$topic.comment_description.uri}>"><{$topic.comment_description.subject}></a></td>
+		</tr>
+		<tr>
+			<td class="head"><{$smarty.const._MD_D3FORUM_COM_SUMMARY}></td>
+			<td class="even"><{$topic.comment_description.summary}></td>
+		</tr>
+	</table>
+<{elseif $topic.comment_description}>
+	<{$topic.comment_description}>
+<{/if}>

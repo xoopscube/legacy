@@ -1,0 +1,102 @@
+/*----- <{$mydirname}> common -----*/
+
+.<{$mydirname}>tagCloudColumn{
+	/* float:	right; */
+	border:	1px solid #999999;
+	/* width:	220px; */
+	width:	95%;
+	padding:	5px 10px 10px 10px;
+	margin: 3px;
+	/* background-color: #ffffff; */
+	line-height: 2em;
+}
+
+.<{$mydirname}>clear{
+	clear:	both;
+}
+
+/* item of Side Menu */
+
+.<{$mydirname}>itemSide {
+}
+.<{$mydirname}>itemSide .item {
+	border-top: 1px solid lightgrey;
+	border-bottom: 1px solid lightgrey;
+	border-left: 1px solid lightgrey;
+	border-right: 1px solid lightgrey;
+	margin: 0 0 8px 0;
+	padding: 0;
+}
+.<{$mydirname}>itemSide .item div.itemBody {
+	margin: 2px 0 2px 0 !important;
+	padding:0 !important;
+	text-align:left;
+}
+.<{$mydirname}>itemSide .item div.itemHead {
+	margin: 1px 1px 2px 1px;
+}
+.<{$mydirname}>itemSide .item div.itemHead span.itemTitle {
+	text-align:left;
+}
+.<{$mydirname}>itemSide .item div.itemInfo {
+	margin: 1px 1px 2px 1px;
+}
+.<{$mydirname}>itemSide .item div.itemInfo span.itemTitle {
+}
+.<{$mydirname}>itemSide .item div.itemFoot {
+	margin: 1px 1px 2px 1px;
+}
+.<{$mydirname}>d3dCalender table {
+	width:100%;
+	border: 0;
+}
+.<{$mydirname}>d3dCalender td {
+	margin:0;
+	padding:0;
+	text-align:center;
+}
+.<{$mydirname}>d3dCalender .d3d_week {
+	font-size: 75%;
+}
+
+.<{$mydirname}>yd_rightarea a {
+	white-space: normal;
+}
+
+ul.<{$mydirname}>yd_rightarea {
+	margin:0 !important;
+	padding:0 !important;
+	text-align:left;
+}
+
+ul.<{$mydirname}>yd_rightarea li {
+	margin:0 !important;
+	padding:2px 0 2px 15px !important;
+	list-style-type: none !important;
+	list-style-position:outside !important;
+	background: url(images/enum1.png) top left no-repeat !important;
+	white-space: normal !important;
+}
+
+.<{$mydirname}>PhotoBox {
+	width:98%;
+	margin:5px 0 5px 3px;
+}
+.<{$mydirname}>d3dPhotoLeft {
+	vertical-align:top;
+	text-align:center;
+	margin:1px;
+	float:left;
+}
+.<{$mydirname}>d3dPhotoRight {
+	vertical-align:top;
+	text-align:center;
+	margin:1px;
+	float:right;
+}
+.<{$mydirname}>d3dPhotoCenter {
+	vertical-align:top;
+	text-align:center;
+	margin:1px;
+	float:none;
+}

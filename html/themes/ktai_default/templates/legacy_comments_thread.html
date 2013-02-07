@@ -1,0 +1,30 @@
+<{section name=i loop=$comments}>
+<br />
+    <{$lang_poster}> <{$lang_thread}>
+  
+  <{include file="db:legacy_comment.html" comment=$comments[i]}>
+
+<{if $show_threadnav == true}>
+<div style="text-align:left; margin:3px; padding: 5px;">
+<a href="<{$comment_url}>"><{$lang_top}></a> | <a href="<{$comment_url}>&amp;com_id=<{$comments[i].pid}>&amp;com_rootid=<{$comments[i].rootid}>#newscomment<{$comments[i].pid}>"><{$lang_parent}></a>
+</div>
+<{/if}>
+
+<{if $comments[i].show_replies == true}>
+<!-- start comment tree -->
+<br />
+
+
+<ul>
+  <{foreach item=reply from=$comments[i].replies}>
+  <li>
+    <{$lang_subject}> <{$reply.prefix}> <a href="<{$comment_url}>&amp;com_id=<{$reply.id}>&amp;com_rootid=<{$reply.root_id}>"><{$reply.title}></a><br />
+    <{$lang_poster}> <{$reply.poster.uname}><br />
+    <{$lang_posted}> <{$reply.date_posted}>
+  </li>
+  <{/foreach}>
+</ul>
+<!-- end comment tree -->
+<{/if}>
+
+<{/section}>

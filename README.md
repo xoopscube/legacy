@@ -1,3 +1,49 @@
+# XOOPS X (ten) Distribution
+
+* Based on [xoopscube/legacy:master](https://github.com/xoopscube/legacy)
+* Add altsys
+* Add XOOPS Protector
+* Add [X-update](https://github.com/XoopsX/xupdate)
+* Automatic deletion of directory `install` and chmod -w `mainfile.php`
+* Enhanced Smarty plugin dirctory setting
+ * xoops_trust_path/settings/site_default.dist.ini
+
+```ini
+[Smarty]
+ResourceDiscoveryOrder=Theme,ThemeD3,ThemeDefault,ThemeDefaultD3,DbTplSet
+```
+* and etc.
+
+## Web site
+
+[XOOPS X (ten) Distribution Pack](http://www.xoopscube.net/)
+
+## Quick install
+
+Please change `T="../xoops_trust_path"` by your liking.
+
+### On the shell (sh, bash)
+
+```bash
+cd [DOCUMENT ROOT]
+T="../xoops_trust_path";curl -kL github.com/XoopsX/installer/raw/master/install.sh|sed "s#<T>#$T#"|sh
+```
+
+### On the shell (csh)
+
+```csh
+cd [DOCUMENT ROOT]
+set T="../xoops_trust_path";curl -kL github.com/XoopsX/installer/raw/master/install.sh|sed "s#<T>#$T#"|sh
+```
+
+### On the web
+
+* Upload "[install.cgi](https://github.com/XoopsX/installer/raw/master/install.cgi)" into [DOCUMENT ROOT] & chmod +x install.cgi
+* Access to `install.cgi?../xoops_trust_path` with web browser (change `../xoops_trust_path` by your liking)
+
+***
+
+
 ##Legacy
 
 * [About](#about)
@@ -83,7 +129,7 @@ Language</th>
 
 Useful Wikipedia articles with tables comparing general and technical information of Proprietary software, Free and open-source software.  
 
-<img src="http://xoopscube.org/uploads/fckeditor/server_database.png"> <a href="http://en.wikipedia.org/wiki/List_of_AMP_packages"> Local Test Server</a> : List of Apache–MySQL–PHP packages  
+<img src="http://xoopscube.org/uploads/fckeditor/server_database.png"> <a href="http://en.wikipedia.org/wiki/List_of_AMP_packages"> Local Test Server</a> : List of Apache窶溺ySQL窶撤HP packages  
 <img src="http://xoopscube.org/uploads/fckeditor/script_edit.png"> <a href="http://en.wikipedia.org/wiki/Source_code_editor"> Source Code Editor</a> : Some well-known source code editors  
 <img src="http://xoopscube.org/uploads/fckeditor/picture_edit.png"> <a href="http://en.wikipedia.org/wiki/Comparison_of_raster_graphics_editors"> Graphics Editor</a> : Comparison of raster graphics editors  
 <img src="http://xoopscube.org/uploads/fckeditor/computer_go.png"> <a href="http://en.wikipedia.org/wiki/FTP_clients"> FTP Clients</a> : Comparison of FTP client software  

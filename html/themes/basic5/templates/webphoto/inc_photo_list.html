@@ -1,0 +1,31 @@
+<{* $Id: inc_photo_list.html,v 1.1 2010/01/25 10:05:02 ohwada Exp $ *}>
+
+<div class="webphoto_index_photo_body">
+
+<{* -- list type -- *}>
+<{if $cfg_viewtype == 'list'}>
+	<div id="webphoto_box_photo_a">
+	  <{foreach name=webphoto_list item=photo from=$photo_list}>
+	    <{assign var="webphoto_list_num" value=$smarty.foreach.webphoto_list.iteration }>
+	    <{include file="db:`$mydirname`_inc_photo_in_list.html"}>
+	  <{/foreach}>
+	</div>
+<{else}>
+<{/if}>
+<{* -- list type end -- *}>
+
+
+<{* -- table type -- *}>
+<{if $cfg_viewtype == 'table'}>
+  <div id="webphoto_box_photo_b">
+  <{foreach name=webphoto_list item=photo from=$photo_list}>
+    <{include file="db:`$mydirname`_inc_photo_in_table.html"}>
+  <{/foreach}>
+</div>
+
+<{else}>
+<{/if}>
+
+<{* -- table type end -- *}>
+
+</div>

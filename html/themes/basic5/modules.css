@@ -1,0 +1,384 @@
+/************** d3forum genelic *************/
+
+table.d3f_outer {
+	width:100%;
+}
+
+table.d3f_outer thead {
+	background:#dcdcdc;
+}
+table.d3f_outer thead th {
+	padding:5px;
+}
+table.d3f_outer td {
+	padding:5px;
+}
+table.d3f_outer tr.odd {
+	background:#F7F7F7;
+}
+
+.d3f_head {
+	background:#A7A7A7;
+	background-image: 
+		-webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, rgba(0, 0, 0, 0.05)), color-stop(.25, transparent), to(transparent)),
+		-webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, rgba(0, 0, 0, 0.05)), color-stop(.25, transparent), to(transparent)),
+		-webkit-gradient(linear, 0 0, 100% 100%, color-stop(.75, transparent), color-stop(.75, rgba(0, 0, 0, 0.05))),
+		-webkit-gradient(linear, 0 100%, 100% 0, color-stop(.75, transparent), color-stop(.75, rgba(0, 0, 0, 0.05)));
+	background-image: 
+		-moz-linear-gradient(45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent),
+		-moz-linear-gradient(-45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent),
+		-moz-linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%),
+		-moz-linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%);
+}
+
+#d3f_post_form_quick table.d3f_postform {
+	width:90%;
+	margin-left: 2em;
+}
+#d3f_post_form_quick table.d3f_postform td.head,
+#d3f_post_form_quick table.d3f_postform td.even  {
+	background:transparent;
+}
+
+#d3f_post_form_quick table.d3f_postform td.head {
+	width:70px;
+}
+#d3f_post_form_quick table.d3f_postform td.even  {
+}
+#d3f_post_form_quick table.d3f_postform textarea , table.d3f_form_table textarea , table.d3f_form_table ,
+#d3f_post_form_quick table.d3f_postform input , table.d3f_form_table input#subject {
+	width:100%;
+}
+#d3f_post_form_quick table.d3f_postform input.formButton {
+	width:100px;
+}
+
+table.inc_d3comment_summary {
+	margin-bottom:1em;
+	padding:5px;
+	border:1px solid #ccc;
+}
+table.inc_d3comment_summary td.head , table.inc_d3comment_summary td.td01{
+	padding:2px;
+	background:#dcdcdc;
+}
+
+/* d3pipes */
+
+ul.d3pipes_block_sync_aggregated li {
+	margin-bottom:10px;
+}
+ul.d3pipes_block_sync_aggregated li dl dt {
+	padding:2px 0 2px 9px;
+	margin-bottom:3px;
+	border-left:5px solid #dcdcdc;
+}
+ul.d3pipes_block_sync_aggregated li dl dd {
+	font-size:0.8em;
+	padding:0 0 0 12px;
+	color:#8F8F8F;
+}
+
+/* webphoto */
+/* comment out -------------
+.webphoto_page_title , .webphoto_catpath , .webphoto_page_menu, .webphoto_search_form , .webphoto_tagedit_form , .webphoto_breadcrumbs{
+	display:none;
+}
+ ------------- comment out */
+
+#ModuleContents .webphoto_photo_type , #ModuleContents .webphoto_index_photo_header , #ModuleContents .webphoto_index_photo_body , #ModuleContents .webphoto_index_photo_footer{
+	border:none;
+	border-top:1px solid #dcdcdc;
+	background:transparent;
+}
+.webphoto_photo_div {
+	float:left;
+	width:200px;
+	height:220px;
+	padding-top:25px;
+}
+.webphoto_photo_div .webphoto_table_sub a {
+	text-decoration:none;
+　text-align: center
+    margin: 0;
+    padding: 10px;
+    background-color: rgba(255, 255, 240, 0.8); /* 透明度80%で指定 */
+    position: absolute; /* 親要素を基点に配置 */
+    top: -20px;
+    left: -10px;
+    font-size: 100%;
+    -moz-box-shadow: 0 2px 4px #666; /* ボックスシャドー */
+    -webkit-box-shadow: 0 2px 4px #666;
+    box-shadow: 0 2px 4px #666;
+    -webkit-transform: rotate(-3deg); /* 回転 */
+    -moz-transform: rotate(-3deg);
+    transform: rotate(-3deg);
+    z-index: 2;
+}
+
+.webphoto_single_photo {
+	width:80%;
+	padding:40px;
+	margin-top:0px;
+	border:1px solid #ccc;
+	background-color: #fff;
+	-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+}
+
+#ModuleContents table td.webphoto_list_td_image .webphoto_list_image img ,#ModuleContents .webphoto_table_image img {
+    position: relative;
+    padding: 10px 10px 35px 10px;
+    background: #eee;
+    border: 1px solid #fff;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+    -moz-box-shadow: 0px 2px 10px #333; /* Firefox用 */
+    -webkit-box-shadow: 0px 2px 10px #333; /* Safari,Chrome用 */
+    box-shadow: 0px 2px 10px #333; /* CSS3 */
+}
+body.webphoto #ModuleContents table span.webphoto_table_title {
+	margin-top:-30px;
+}
+
+.webphoto_index_photo_body:after {
+  content : "";
+  display : block;
+  height : 0;
+  clear : both;
+}
+
+#webphoto_box_catlist_a a:link , #webphoto_box_catlist_a a:visited,
+#webphoto_box_catlist_b a:link , #webphoto_box_catlist_b a:visited{
+	text-decoration:none;
+}
+
+body.webphoto #ModuleContents ul {
+	margin-left:30px;
+}
+
+#ModuleContents .rotate_1 , #ModuleContents .rotate_3 , #ModuleContents .rotate_4 , #ModuleContents .rotate_6 {
+    -webkit-transform: rotate(1deg); /* 回転 */
+    -moz-transform: rotate(1deg);
+    -ms-transform: rotate(10deg);
+    transform: rotate(1deg);
+}
+#ModuleContents .rotate_2 {
+    -webkit-transform: rotate(5deg); /* 回転 */
+    -moz-transform: rotate(5deg);
+    -ms-transform: rotate(52deg);
+    transform: rotate(5deg);
+}
+#ModuleContents .rotate_5 {
+    -webkit-transform: rotate(-5deg); /* 回転 */
+    -moz-transform: rotate(-5deg);
+    -ms-transform: rotate(-52deg);
+    transform: rotate(-5deg);
+}
+#ModuleContents .rotate_7  {
+    -webkit-transform: rotate(-1deg); /* 回転 */
+    -moz-transform: rotate(-1deg);
+    -ms-transform: rotate(-10deg);
+    transform: rotate(-1deg);
+}
+
+
+/* ------------ for wordpress (xpress) -------------------- */
+
+body.wordpress #ModuleContents {
+	width:100%;
+	margin:0;
+	padding:0;
+}
+body.wordpress #ModuleContents .xpress-body {
+	width:100%;
+	margin:0;
+	padding:0;
+}
+body.wordpress #ModuleContents .xpress-body #xpress_page{
+	width:100%;
+	margin:0;
+	padding:0;
+}
+
+#xpress_wrap {
+	clear: both;
+	float: left;
+	width: 100%;
+	margin:0 auto;
+	margin-top:0px;
+	padding-left:12px;
+}
+
+.xpress-post {
+	width: 100%;
+	margin: 0;
+	padding:0;
+	clear: both;
+}
+.xpress-navi-bar {
+	margin-top:-30px;
+}
+
+.xpress_block {
+	width:100%;
+	line-height:1.5;
+}
+.xpress_block .xpress_recent_post_list_block ul li {
+	margin-bottom:15px;
+}
+
+.xpress-post .xpress-post-ymdl {
+	position: 5px 10px;
+  font-family: Georgia normal, "Times New Roman", Times, serif;
+	width:120px;
+	height:140px;
+	font-size:28px;
+	font-weight:bold;
+	text-align:center;
+}
+div.xpress-post div.xpress-post-ymdl .xpress-post-year {
+	width:85px;
+	height:35px;
+	margin:0;
+	padding:0;
+	color:#696969;
+	text-shadow:-1px -1px 1px rgba(0, 0, 0, 0.4),	1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+div.xpress-post div.xpress-post-ymdl div.xpress-post-md {
+	width:85px;
+	height:30px;
+	margin:0;
+	padding:0;
+	color:#696969;
+	text-shadow:-1px -1px 1px rgba(0, 0, 0, 0.4),	1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+div.xpress-post div.large_thumbnail {
+	display: table-cell;
+	float:left;
+	width:98%;
+	height:126px;
+	padding-top:5px;
+	padding-bottom:5px;
+	margin:0 auto;
+	margin-top:-150px;
+  text-align:center;
+  background :#eee url(images/Coda_s.png) no-repeat;
+  border: 1px solid #fff;
+  border-radius: 5px;
+	-moz-border-radius: 5px;
+ 	-webkit-border-radius: 5px;
+	-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+}
+
+.xpress-post .xpress-eyecatch {
+	padding:5px;
+	float:left;
+	width:126px;
+	height:126px;
+	border:1px solid #878787;
+}
+#xpress_wrap #xpress_content .xpress-post .xpress-eyecatch .xpress-eyecatch-img img {
+	width:100%;
+}
+#xpress_wrap #xpress_content .xpress-post .xpress-eyecatch .xpress-eyecatch-post-md {
+  font-family: Georgia normal, "Times New Roman", Times, serif;
+	width:110px;
+	height:30px;
+	font-size:30px;
+	color:#000;
+	margin-top:-130px;
+	margin-left:0px;
+	text-align:right;
+	z-index:100;
+	text-shadow:
+		-1px -1px 0px #fff,
+		1px -1px 0px #fff,
+		1px 1px 0px #fff,
+		-1px 1px 0px #fff;
+}
+#xpress_wrap #xpress_content .xpress-post .xpress-post-header{
+	text-align: left;
+	font-size: 0.8em;
+}
+
+/* comment out  -------------
+#xpress_wrap #xpress_content .xpress-post-title {
+	display:none;
+}
+#xpress-header-bar {
+	display:none;
+}
+.says {
+	display:none;
+}
+ ------------- comment out */
+
+
+#xpress_wrap #xpress_content .xpress-post-g .xpress-post-title {
+	display:block;
+	width:74%;
+	height:80px;
+	margin-top:5px;
+	margin-left:150px;
+	margin-bottom:26px;
+	padding-left:16px;
+	border-left:10px solid #ccc;
+	clear:both;
+}
+#xpress_wrap #xpress_content .xpress-post-title h2{
+	color: #4478B0;
+	font-size: 20px;
+	font-weight: bold;
+}
+#xpress_wrap #xpress_content .xpress-post-title h2 a{
+	line-height:1.5;
+	padding-bottom:2px;
+	text-decoration:none;
+	border-bottom:1px dashed #4478B0;
+}
+
+#xpress_wrap #xpress_content .xpress-post .xpress-post-g {
+	float:right;
+	width:100%;
+	margin-left:-200px;
+}
+#xpress_wrap #xpress_content .xpress-post .xpress-post-g .xpress-post-title {
+	display:block;
+}
+.xpress-more-link {
+	margin-top:10px;
+}
+.xpress-post .xpress-post-entry {
+	clear: both;
+	padding-left: 20px;
+	margin-right:10px;
+	font-size:1.2em;
+}
+#xpress_commentlist div.comment-author {
+	position:relative;
+	top:10px;
+	left:0px;
+	float:left;
+	width:220px;
+	height:600px;
+	border:1px solid #696969;
+}
+#xpress_commentlist div.comment-author img {
+	float:left;
+	margin:10px;
+}
+div.comment div.comment-meta {
+}
+#xpress_commentlist div.comment p{
+	padding-left:260px;
+}
+#xpress-comments-block {
+	width:100%;
+	margin-top:30px;
+}
+

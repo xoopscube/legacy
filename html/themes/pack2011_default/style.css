@@ -1,0 +1,199 @@
+/*
+Project Name: Create a Responsive Web Design Template
+Author: Harry Atkins
+Published on: http://www.onextrapixel.com/
+*/
+
+::-moz-selection 	{ background-color: #91D8f7; color: #fff; }
+::selection 		{ background-color: #91D8f7; color: #fff; }
+
+a					{ outline: 0; color: #222; text-decoration: none; }
+a:hover 			{ text-decoration: underline; }
+p a:hover 			{ color: #27B3CF; }
+a:active 			{ outline: none; position: relative; top: 2px; }
+
+.clearfix 			{ clear: both; }
+
+/*------------------------------------*\
+  MAIN
+\*------------------------------------*/
+
+body 				{
+	background: #F9F9F9; color: #222; font-family: 'Droid Serif', serif; font-size: 16px;
+	-webkit-transition-property: font-size;
+	-moz-transition-property: font-size;
+	transition-property: font-size;
+	-webkit-transition-duration: 0.5s, 0.5s;
+	-moz-transition-duration: 0.5s, 0.5s;
+	transition-duration: 0.5s, 0.5s;
+	-webkit-transition-timing-function: linear, ease-in;
+	-moz-transition-timing-function: linear, ease-in;
+	transition-timing-function: linear, ease-in;
+}
+
+#wrapper 			{ margin: 10px auto; max-width: 980px; width: 90%; background: #fff; padding: 10px 0; }
+.header{
+	padding: 3px;
+	text-align: right;
+}
+
+h1 {
+	font-size: 90px; font-family: 'Droid Serif', serif; line-height: 50px; padding: 10px;
+	-webkit-transition-property: font-size;
+	-moz-transition-property: font-size;
+	transition-property: font-size;
+	-webkit-transition-duration: 0.5s, 0.5s;
+	-moz-transition-duration: 0.5s, 0.5s;
+	transition-duration: 0.5s, 0.5s;
+	-webkit-transition-timing-function: linear, ease-in;
+	-moz-transition-timing-function: linear, ease-in;
+	transition-timing-function: linear, ease-in;
+}
+h1 img {
+	position : relative;
+	top: -11px;
+}
+h1 a:hover 			{ text-decoration: none; color: #27B3CF; }
+
+h2 					{ font-family: 'Helvetica'; font-size: 18px; padding: 10px;
+	-webkit-transition-property: font-size;
+	-moz-transition-property: font-size;
+	transition-property: font-size;
+	-webkit-transition-duration: 0.5s, 0.5s;
+	-moz-transition-duration: 0.5s, 0.5s;
+	transition-duration: 0.5s, 0.5s;
+	-webkit-transition-timing-function: linear, ease-in;
+	-moz-transition-timing-function: linear, ease-in;
+	transition-timing-function: linear, ease-in;
+}
+h3 					{ font-family: 'Droid Serif', serif; font-size: 30px; }
+h4 					{ font-family: 'Droid Serif', serif; padding: 3px; margin: 5px 0 0 0; }
+h4 a 				{ text-decoration: underline; }
+h4 a:hover 			{  }
+
+nav 				{ background: #222; padding: 0; margin: 10px 0;}
+nav a 				{ color: #F9F9F9; display: block; float: left; padding: 10px; }
+nav a:visited 		{ color: #f9f9f9; }
+nav a:hover			{ text-decoration: none; background: #27B3CF; }
+nav a:active		{ position: relative; top: 0; }
+
+.left-col 			{ width: 70%; float: left; }
+.sidebar 			{ width: 20%; float: right; margin-bottom: 10px;
+	-webkit-transition-property: width;
+	-moz-transition-property: width;
+	transition-property: width;
+	-webkit-transition-duration: 0.5s, 0.5s;
+	-moz-transition-duration: 0.5s, 0.5s;
+	transition-duration: 0.5s, 0.5s;
+	-webkit-transition-timing-function: linear, ease-in;
+	-moz-transition-timing-function: linear, ease-in;
+	transition-timing-function: linear, ease-in;
+}
+
+#featured 			{ padding: 20px; }
+#latest				{ padding: 20px; }
+#about 				{ padding: 20px; }
+
+p 					{ padding: 0 5px 0 5px; }
+
+ul 					{ list-style: none; }
+ul li 				{ margin: 0 5px; }
+
+footer 				{ padding: 5px; }
+
+pre					{ overflow: scroll; font-size: 10px; }
+
+/*------------------------------------*\
+	XOOPS Cube Legacy
+	http://xoopscube.org
+\*------------------------------------*/
+
+/*------------------------------------------------------- ITEMS */
+
+.breadcrumbs
+	{
+	margin:12px 6px;
+	}
+
+.item
+	{
+	padding: 10px 0px;
+	}
+
+.itemHead
+	{
+	padding: 4px;
+	border-bottom:#E2E2FC 1px solid;
+	}
+
+.itemTitle
+	{
+	color: #344587;
+	font-size: 1.7em;
+	}
+
+#container .itemTitle a, #container .itemTitle a:visited
+	{
+	color: #344587;
+	text-decoration: none;
+	}
+
+#container  .itemTitle a:hover
+	{
+	color:#F89D07;
+	}
+
+/* TitleBar of Latest News */
+.itemHead
+	{
+	padding:3px 5px;
+	}
+
+.itemBody
+	{
+	padding:4px 0px;
+	}
+
+.itemInfo
+	{
+	background: url(images/bg_hbar.gif) repeat-x;
+	padding: 1.5em 1em;
+	text-align: right;
+	}
+
+.itemText
+	{
+	margin:0px;
+	padding: 8px 4px;
+	line-height: 1.5em;
+	}
+
+.itemFoot
+	{
+	text-align: right;
+	margin: 0;
+	padding: 4px;
+	}
+
+.itemInfo, .itemPoster, .itemPostDate, .itemStats, .itemAdminLink, .itemPermaLink
+	{
+	font-size: 0.9em;
+	}
+
+/* Posted in Latest News */
+.itemPoster
+	{
+	font-size:90%;
+	}
+
+/* Date of Latest News */
+.itemPostDate
+	{
+	font-size:90%;
+	}
+
+/* Stats of Latest News */
+.itemStats
+	{
+	font-size:90%;
+	}

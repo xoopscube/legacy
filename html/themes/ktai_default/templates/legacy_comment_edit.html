@@ -1,0 +1,47 @@
+<{if $actionForm->hasError()}>
+<div class="error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form action="comment_post.php" method="post">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=com_id value=$actionForm->get('com_id')}>
+  <{xoops_input type=hidden name=com_pid value=$actionForm->get('com_pid')}>
+  <{xoops_input type=hidden name=com_rootid value=$actionForm->get('com_rootid')}>
+  <{xoops_input type=hidden name=com_modid value=$actionForm->get('com_modid')}>
+  <{xoops_input type=hidden name=com_itemid value=$actionForm->get('com_itemid')}>
+  <{xoops_input type=hidden name=com_exparams value=$actionForm->get('com_exparams')}>
+<ul>
+    <p><{$smarty.const._MD_LEGACY_LANG_POST}><br />
+    <li><{$smarty.const._MD_LEGACY_LANG_COMMENT_RULE}>: 
+        <{if $xoopsModuleConfig.com_rule == XOOPS_COMMENT_APPROVEALL}>
+          <{$smarty.const._CM_COMAPPROVEALL}>
+        <{elseif $xoopsModuleConfig.com_rule == XOOPS_COMMENT_APPROVEUSER}>
+          <{$smarty.const._CM_COMAPPROVEUSER}>
+        <{else}>
+          <{$smarty.const._CM_COMAPPROVEADMIN}>
+        <{/if}>
+      </li>
+
+      <li><{$smarty.const._MD_LEGACY_LANG_COM_TITLE}><br />
+        <{xoops_input type=text name=com_title value=$actionForm->get('com_title') size=25 maxlength=255}>
+      </li>
+      <li><{$smarty.const._MD_LEGACY_LANG_COM_TEXT}><br />
+        <{xoops_textarea type=text rows=8 cols=30 name=com_text value=$actionForm->get('com_text')}>
+      </li>
+        <li><{$smarty.const._MD_LEGACY_LANG_OPTION}><br />
+          <{if $xoops_isadmin}>
+            <label><{xoops_input type=checkbox name=dohtml value=1 default=$actionForm->get('dohtml')}> <{$smarty.const._MD_LEGACY_LANG_DOHTML}></label><br />
+          <{/if}>
+        <label><{xoops_input type=checkbox name=dosmiley value=1 default=$actionForm->get('dosmiley')}> <{$smarty.const._MD_LEGACY_LANG_DOSMILEY}></label><br />
+        <label><{xoops_input type=checkbox name=doxcode value=1 default=$actionForm->get('doxcode')}> <{$smarty.const._MD_LEGACY_LANG_DOXCODE}></label><br />
+        <label><{xoops_input type=checkbox name=dobr value=1 default=$actionForm->get('dobr')}> <{$smarty.const._MD_LEGACY_LANG_DOBR}></label>
+      </li>
+        <input class="formButton" type="submit" name="com_dopost" value="<{$smarty.const._SUBMIT}>" />
+        <input type="button" value="<{$smarty.const._BACK}>" onclick="javascript:history.back()" class="formButton" />
+</form>

@@ -1,0 +1,135 @@
+body {
+	line-height: 1.6;
+	-webkit-text-size-adjust: none;
+}
+
+a {
+	display: inline-block;
+	padding-top: .5em;
+	padding-bottom: .5em;
+	-webkit-tap-highlight-color:rgba(255,0,0,0.40);
+}
+a + a {
+	padding-left: .5em;
+}
+.ui-title a {
+	display: inline-block;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+div,table,tr,td,form,input {
+	max-width: 100% !important;
+}
+
+textarea {
+	min-width: 60% !important;
+	max-width: 100% !important;
+	max-height: none !important;
+}
+
+ul,ol,li {
+	margin-left:0 !important;
+}
+
+img.ga_img {
+	float: left;
+}
+
+/* touch icon image (base class name is "image_button_base") */
+.image_button_base {
+	width: 90% !important;
+}
+.image_button_base img {
+	zoom: 2; !important;
+	padding: 3px !important;
+}
+.image_button_base img.img_zoom4 {
+	zoom: 4; !important;
+}
+.image_button_base span.button {
+	font-size: 14pt !important;
+	display: inline-block !important;
+}
+
+/* image fit width */
+img {
+	max-width: 100% !important;
+	/*height: auto !important;*/
+}
+
+/* video fit width */
+.video {
+	display: block;
+	position: relative;
+	padding-bottom: 56.25%;
+	padding-top: 30px;
+	height: 0;
+	overflow: hidden;
+}
+.video embed,
+.video object,
+.video iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+video {
+	max-width: 100%;
+	height: auto;
+}
+
+/* button */
+span.button {
+	color: black;
+	font-size: 10pt;
+	font-weight: normal;
+	line-height: 2.0;
+	margin-top: 2px;
+	margin-right: 1px;
+	padding: 5px 10px;
+	border: 1px solid gray;
+	cursor: pointer;
+	white-space: nowrap;
+	background: #F5F5F5 url(images/buttonbg.gif) repeat-x scroll center bottom;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+span.button:hover {
+	padding: 4px 9px;
+	border: 2px solid orange;
+	border-top-color: gold;
+	border-left-color: gold;
+}
+span.button a {
+	color: black !important;
+	font-weight: normal !important;
+	background-color: transparent !important;
+}
+
+/* misc. */
+.outer {
+	border: 1px solid silver;
+}
+.head {
+	background-color: #E0E0FF;
+	padding: 5px;
+	font-weight: bold;
+	white-space: nowrap;
+}
+.even {
+	background-color: #E0E0FF;
+	padding: 5px;
+}
+.odd {
+	background-color: #E9E9E9;
+	padding: 5px;
+}
+.foot {
+	background-color: #E0E0FF;
+	padding: 5px;
+	font-weight: bold;
+}

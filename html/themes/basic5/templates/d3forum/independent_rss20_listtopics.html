@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+	<channel>
+		<title><{$rss.title}></title>
+		<link><{$mod_url}>/index.php?<{$rss.query}></link>
+		<description><![CDATA[ <{$rss.desc|replace:"]]>":""}> ]]></description>
+		<lastBuildDate><{"r"|date:$topics[0].last_post_time}></lastBuildDate>
+		<docs>http://backend.userland.com/rss/</docs>
+		<generator>d3forum</generator>
+		<category><{$rss.category_title}></category>
+		<webMaster></webMaster>
+		<language><{$smarty.const._LANGCODE}></language>
+
+		<{foreach from=$topics item="topic"}><item>
+			<title><{$topic.title}></title>
+			<link><{$mod_url}>/index.php?topic_id=<{$topic.id}></link>
+			<description><{$topic.last_post_text_raw|strip_tags|escape}></description>
+			<guid><{$mod_url}>/index.php?topic_id=<{$topic.id}></guid>
+			<pubDate><{"r"|date:$topic.last_post_time}></pubDate>
+			<category></category>
+		</item>
+		<{/foreach}>
+
+	</channel>
+</rss>

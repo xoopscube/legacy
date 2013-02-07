@@ -1,0 +1,12 @@
+<div class="d3f_order_ctrl">
+	<!-- post orders -->
+	<{if $postorder != 0}>
+		<a href="<{$mod_url}>/index.php?page=update_postorder&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>&amp;postorder=0"><{$smarty.const._MD_D3FORUM_LINK_POSTORDERTREEASC}></a>
+	<{/if}>
+	<{if $postorder != 2}>
+		<a href="<{$mod_url}>/index.php?page=update_postorder&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>&amp;postorder=2"><{$smarty.const._MD_D3FORUM_LINK_POSTORDERTIMEASC}></a>
+	<{/if}>
+	<{if $postorder != 3}>
+		<a href="<{$mod_url}>/index.php?page=update_postorder&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>&amp;postorder=3"><{$smarty.const._MD_D3FORUM_LINK_POSTORDERTIMEDESC}></a>
+	<{/if}>
+</div>

@@ -1,0 +1,61 @@
+<!-- start module contents -->
+<div id="main_listposts" class="clearfix">
+<div class="d3f_breadcrumbs">
+	<{if $mod_config.show_breadcrumbs}>
+	<a href="<{$mod_url}>/index.php"><{$smarty.const._MD_D3FORUM_TOP}></a>
+	&nbsp;&gt;&nbsp;
+	<{foreach from=$category.paths_raw key=parent_id item=parent_title_raw}>
+		<a href="<{$mod_url}>/index.php?cat_id=<{$parent_id}>"><{$parent_title_raw|escape}></a>
+		&nbsp;&gt;&nbsp;
+	<{/foreach}>
+	<a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>"><{$forum.title}></a>
+	<{/if}>
+	<{if $prev_topic.id || $next_topic.id}>
+		(<{if $prev_topic.id}>
+			<a href="<{$mod_url}>/index.php?topic_id=<{$prev_topic.id}>" title="<{$prev_topic.title}>"><{$smarty.const._MD_D3FORUM_LINK_PREVTOPIC}></a>
+		<{/if}>
+		<{if $prev_topic.id && $next_topic.id}>
+		 | 
+		<{/if}>
+		<{if $next_topic.id}>
+			<a href="<{$mod_url}>/index.php?topic_id=<{$next_topic.id}>" title="<{$next_topic.title}>"><{$smarty.const._MD_D3FORUM_LINK_NEXTTOPIC}></a>
+		<{/if}>)
+	<{/if}>
+</div>
+
+<h1 class="d3f_title" style="clear:both"><img src="<{$xoops_imageurl}>images/s001.png"><{$topic.title}></h1>
+
+<{include file="db:`$mydirname`_inc_topicbar.html"}>
+
+<{include file="db:`$mydirname`_inc_d3comment_summary.html"}>
+
+<{include file="db:`$mydirname`_inc_postorder_links.html"}>
+
+<!-- top of posts -->
+<div class="d3f_wrap">
+<{foreach item=post from=$posts}>
+	<{include file="db:`$mydirname`_inc_eachpost.html" post=$post caller="listposts" inner_link_format="#post_id%s"}>
+<{/foreach}>
+</div>
+<!-- bottom of posts -->
+
+
+<!-- quick reply form -->
+<{if $first_post.can_reply}>
+	<{include file="db:`$mydirname`_inc_post_form_quick.html" uname=$xoops_uname h2_title=$smarty.const._MD_D3FORUM_POSTASSAMETOPIC quick_form_mode="sametopic" subject_raw=$first_post.subject_raw}>
+<{/if}>
+
+<!-- forum jump -->
+<div class="forum_jump">
+<form name="forum_jump_box" action="<{$mod_url}>/index.php" method="get" style="clear:both;" class="d3f_form">
+	<p>
+		<select name="forum_id"><{$forum_jumpbox_options}></select>
+		<input type="submit" value="<{$smarty.const._MD_D3FORUM_BTN_JUMPTOFORUM}>" />
+		&nbsp;
+		<a href="<{$mod_url}>/index.php?page=search"><{$smarty.const._MD_D3FORUM_LINK_ADVSEARCH}></a>
+	</p>
+</form>
+</div>
+</div>
+<{include file='db:system_notification_select.html'}>
+<!-- end module contents -->

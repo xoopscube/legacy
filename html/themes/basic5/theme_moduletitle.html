@@ -1,0 +1,38 @@
+<{if $xoops_dirname == "webphoto"}>
+	<h2>
+	<{foreach from=$xoops_breadcrumbs item="item"}>
+		<{if $item.url}>
+			<a href="<{$item.url}>"><{$item.name}></a> &nbsp;&gt;
+		<{/if}>
+	<{/foreach}>
+ 		<{$title_bread_crumb}>
+	</h2>
+<{elseif $xoops_dirname == "piCal"}>
+	<{foreach from=$xoops_breadcrumbs item="item"}>
+		<h2><{$item.name}></h2>
+	<{/foreach}>
+<{elseif $xoops_dirname == "ccenter"}>
+	<{foreach from=$xoops_breadcrumbs item="item" name="loop"}>
+		<{if $smarty.foreach.loop.first}>
+			<h2><{$item.name}></h2>
+	  	<{/if}>
+	<{/foreach}>
+<{else}>
+	<h2>
+	<{foreach from=$xoops_breadcrumbs item="item" name="loop"}>
+		<{if $smarty.foreach.loop.first}>
+			<{if $item.url}>
+				<a href="<{$item.url}>"><{$item.name}></a>
+		  	<{else}>
+		        <{$item.name}>
+		  	<{/if}>
+	  	<{else}>
+			<{if $item.url}>
+				&nbsp;&gt;&nbsp;<a href="<{$item.url}>"><{$item.name}></a>
+		  	<{else}>
+		        &nbsp;&gt;&nbsp;<{$item.name}>
+		  	<{/if}>
+	  	<{/if}>
+	<{/foreach}>
+	</h2>
+<{/if}>

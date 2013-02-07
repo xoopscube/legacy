@@ -1,0 +1,19 @@
+<div class="d3pipes_block_sync">
+
+	<{if $block.errors}>
+		<{foreach from=$block.errors item="error"}>
+			<div class="errorMsg"><{$error|escape|nl2br}></div>
+		<{/foreach}>
+	<{/if}>
+
+	<{if $block.pipes_entries}>
+		<{* SEPARATED VIEW *}>
+		<{foreach from=$block.pipes_entries item="pipe"}>
+			<p><{$pipe.name}></p>
+			<{include file="db:`$block.mydirname`_inc_entries.html" entries=$pipe.entries mod_config=$block.mod_config mod_url=$block.mod_url mod_imageurl=$block.mod_imageurl}>
+		<{/foreach}>
+	<{else}>
+		<{include file="db:`$block.mydirname`_inc_entries.html" entries=$block.entries mod_config=$block.mod_config mod_url=$block.mod_url mod_imageurl=$block.mod_imageurl}>
+	<{/if}>
+
+</div>

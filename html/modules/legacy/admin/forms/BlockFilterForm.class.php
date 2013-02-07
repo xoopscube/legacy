@@ -131,6 +131,23 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
 			$this->mNavi->addExtra('option_field', $this->mOptionField);
 		}
 
+		// added criteria of block module link by naao
+		$selectedMid = (int) $root->mContext->mRequest->getRequest('selmid');
+		if (isset($selectedMid) && $selectedMid !== 0) {
+			$handler =& xoops_getmodulehandler('block_module_link');
+			$criteria = new CriteriaCompo(new Criteria('module_id', $selectedMid));
+			$criteria->add(new Criteria('module_id',0),'OR');
+			$selmod_Obj = $handler -> getObjects($criteria);
+			$selmodArr = '' ;
+			if (isset($selmod_Obj)){
+				foreach ($selmod_Obj as $selmod){
+				$selmodArr[] = $selmod->getShow('block_id');
+				}
+			}
+			$this->_mCriteria->add(new Criteria('bid', $selmodArr, 'IN'));
+			unset($handler, $criteria, $selmod_Obj, $selmodArr); 
+		}
+		unset($selectedMid); 
 
 		//
 		$this->_mCriteria->add(new Criteria('visible', $this->_getVisible()));
