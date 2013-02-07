@@ -70,7 +70,11 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 
 		$render->setAttribute('modules', $controller->mActiveModules);
 		$render->setAttribute('filterForm', $this->mFilter);
-		$render->setAttribute('pageArr', $this->mpageArr);		
+		$render->setAttribute('pageArr', $this->mpageArr);
+
+		$root =& XCube_Root::getSingleton();
+		$render->setAttribute('selectedMid', $root->mContext->mRequest->getRequest('selmid'));
+
 		//
 		// Load cache-time pattern objects and set.
 		//
