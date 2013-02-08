@@ -81,6 +81,12 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 		// naao added
 		$root =& XCube_Root::getSingleton();
 		$render->setAttribute('selectedMid', $root->mContext->mRequest->getRequest('selmid'));
+		$module_handler =& xoops_gethandler('module');
+		$criteria = new CriteriaCompo(new Criteria('hasmain', 1));
+		$criteria->add(new Criteria('isactive', 1));
+		$criteria->add(new Criteria('weight', 0, '>'));
+		$view_modules = $module_handler->getObjects($criteria);
+		$render->setAttribute('view_modules', $view_modules);
 
 		//
 		// Load cache-time pattern objects and set.
