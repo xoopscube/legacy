@@ -133,7 +133,7 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
 
 		// added criteria of block module link by naao
 		$selectedMid = (int) $root->mContext->mRequest->getRequest('selmid');
-		if (isset($selectedMid) && $selectedMid !== 0) {
+		if ($selectedMid !== 0) {
 			$handler =& xoops_getmodulehandler('block_module_link');
 			$criteria = new CriteriaCompo(new Criteria('module_id', $selectedMid));
 			$criteria->add(new Criteria('module_id',0),'OR');
@@ -145,9 +145,7 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
 				}
 			}
 			$this->_mCriteria->add(new Criteria('bid', $selmodArr, 'IN'));
-			unset($handler, $criteria, $selmod_Obj, $selmodArr); 
 		}
-		unset($selectedMid); 
 
 		//
 		$this->_mCriteria->add(new Criteria('visible', $this->_getVisible()));
