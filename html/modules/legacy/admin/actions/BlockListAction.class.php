@@ -48,6 +48,12 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 		if (isset($perpage) && intval($perpage) == 0) { 	
 		$navi->setPerpage(0);
 		}
+
+		// naao added selectedMid filter
+		$selectedMid = (int)$root->mContext->mRequest->getRequest('selmid') ;
+		if ( $selectedMid != 0){
+		$navi->addExtra('selmid', $selectedMid);
+		}
 		return $navi;
 	}
 
@@ -70,7 +76,12 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 
 		$render->setAttribute('modules', $controller->mActiveModules);
 		$render->setAttribute('filterForm', $this->mFilter);
-		$render->setAttribute('pageArr', $this->mpageArr);		
+		$render->setAttribute('pageArr', $this->mpageArr);
+
+		// naao added
+		$root =& XCube_Root::getSingleton();
+		$render->setAttribute('selectedMid', $root->mContext->mRequest->getRequest('selmid'));
+
 		//
 		// Load cache-time pattern objects and set.
 		//
