@@ -167,6 +167,17 @@ tr .even td {
 	white-space:nowrap;
 }
 
+.searchform {
+	text-align: center;
+	margin-top: 1em;
+}
+
+.searchform div {
+	margin-left: .5em;
+	margin-bottom: .5em;
+	display: inline-block;
+}
+
 /* ====================================================== header ===== */
 
 #header {
