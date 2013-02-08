@@ -60,6 +60,16 @@
   </select>
   </div>
   <div>
+  <{$smarty.const._AD_LEGACY_LANG_TARGET_GROUPS}> : 
+  <select name="selgid">
+    <option value="0"><{$smarty.const._ALL}></option>
+    <{foreach from=$groupArr item=groups}>
+        <option value="<{$groups->getVar('groupid')}>" <{if $groups->getVar('groupid') == $selectedGid }>selected="selected"<{/if}>>
+        <{$groups->getVar('name')}></option>
+    <{/foreach}>
+  </select>
+  </div>
+  <div>
   <{$smarty.const._AD_LEGACY_LANG_SIDE}> :
 	<select name="option_field">
 	<{if $filterForm->mOptionField == "all"}> 

@@ -54,6 +54,10 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 		if ( $selectedMid != 0){
 		$navi->addExtra('selmid', $selectedMid);
 		}
+		$selectedGid = (int)$root->mContext->mRequest->getRequest('selgid') ;
+		if ( $selectedGid != 0){
+		$navi->addExtra('selgid', $selectedGid);
+		}
 		return $navi;
 	}
 
@@ -78,15 +82,21 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 		$render->setAttribute('filterForm', $this->mFilter);
 		$render->setAttribute('pageArr', $this->mpageArr);
 
-		// naao added
+		// added query for view module pages
 		$root =& XCube_Root::getSingleton();
 		$render->setAttribute('selectedMid', $root->mContext->mRequest->getRequest('selmid'));
-		$module_handler =& xoops_gethandler('module');
+		$handler =& xoops_gethandler('module');
 		$criteria = new CriteriaCompo(new Criteria('hasmain', 1));
 		$criteria->add(new Criteria('isactive', 1));
 		$criteria->add(new Criteria('weight', 0, '>'));
-		$view_modules = $module_handler->getObjects($criteria);
+		$view_modules = $handler->getObjects($criteria);
 		$render->setAttribute('view_modules', $view_modules);
+
+		// added query for groups
+		$handler =& xoops_gethandler('group');
+		$groupArr =& $handler->getObjects();
+		$render->setAttribute('groupArr', $groupArr);
+		$render->setAttribute('selectedGid', $root->mContext->mRequest->getRequest('selgid'));	
 
 		//
 		// Load cache-time pattern objects and set.
