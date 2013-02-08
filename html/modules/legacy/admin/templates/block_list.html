@@ -53,7 +53,7 @@
   <select name="selmid">
     <option value="0"><{$smarty.const._AD_LEGACY_LANG_ALL_MODULES}></option>
     <option value="-1" <{if $selectedMid == -1}>selected="selected"<{/if}>><{$smarty.const._AD_LEGACY_LANG_TOPPAGE}></option>
-    <{foreach from=$modules item=module}>
+    <{foreach from=$view_modules item=module}>
         <option value="<{$module->getVar('mid')}>" <{if $module->getVar('mid') == $selectedMid}>selected="selected"<{/if}>>
         <{$module->getVar('name')}></option>
     <{/foreach}>
