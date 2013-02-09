@@ -163,14 +163,17 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
 			}
 		}
 
+		$selModGrpArr = null;
 		if (isset($selmodArr) && isset($selgrpArr)) {
 			$selModGrpArr = array_intersect($selmodArr, $selgrpArr);
 		} elseif (isset($selmodArr)) {
 			$selModGrpArr = $selmodArr;
 		} elseif (isset($selgrpArr)) {
 			$selModGrpArr = $selgrpArr;
-		}		
-		$this->_mCriteria->add(new Criteria('bid', $selModGrpArr, 'IN'));
+		}
+		if (is_array($selModGrpArr)) {
+			$this->_mCriteria->add(new Criteria('bid', $selModGrpArr, 'IN'));
+		}
 
 		//
 		$this->_mCriteria->add(new Criteria('visible', $this->_getVisible()));
