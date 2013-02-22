@@ -22,7 +22,8 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 
 //	protected $stores ;
 //	protected $items ;
-
+	private $fetchLog;
+	
 	public function __construct()
 	{
 		parent::__construct();
@@ -39,6 +40,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 		//データの自動作成と削除
 		$inidataset = new Xupdate_ModulesIniDadaSet;
 		$inidataset->execute('all', ($this->mRoot->mContext->mRequest->getRequest('checkonly')));
+		$this->fetchLog = $inidataset->Func->Ftp->getMes();
 		//-----------------------------------------------
 		return true;
 
@@ -113,6 +115,8 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 		$render->setAttribute('currentMenu', _MI_XUPDATE_ADMENU_STORELIST);
+		
+		$render->setAttribute('fetchLog', $this->fetchLog);
 
 	}
 

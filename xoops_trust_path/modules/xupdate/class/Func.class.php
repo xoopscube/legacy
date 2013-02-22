@@ -68,19 +68,21 @@ class Xupdate_Func {
 	function _multiDownloadFile( &$multiData, $cacheTTL )
 	{
 		$chs = array();
+
+		$downloadDirPath = $this->Xupdate->params['temp_path'];
+		$realDirPath = realpath($downloadDirPath);
+
+		$this->Ftp->appendMes('downladed in: '.$downloadDirPath.'<br />');
+		$this->content.= 'downladed in: '.$downloadDirPath.'<br />';
+
 		foreach($multiData as $key => $data) {
-			$downloadDirPath = $this->Xupdate->params['temp_path'];
-			$realDirPath = realpath($downloadDirPath);
 			
 			$target_key = $data['target_key'];
-			
-			$this->Ftp->appendMes('downladed in: '.$downloadDirPath.'<br />');
-			$this->content.= 'downladed in: '.$downloadDirPath.'<br />';
 			
 			// TODO ファイルNotFound対策
 			//$url = $this->_getDownloadUrl( $target_key, $downloadUrlFormat );
 			if (empty($data['downloadUrl'])){
-				$this->_set_error_log('_getDownloadUrl false');
+				$this->_set_error_log('_multiDownloadFile false. empty downloadUrl');
 				continue;
 			}
 			
@@ -105,7 +107,7 @@ class Xupdate_Func {
 				if($ch === false ){
 					throw new Exception('curl_init fail',2);
 				}
-				$this->Ftp->appendMes('curl_init OK<br />');
+				$this->Ftp->appendMes('curl_init OK ('.$data['downloadUrl'].')<br />');
 			} catch (Exception $e) {
 				$this->_set_error_log($e->getMessage());
 				return false;
@@ -119,7 +121,7 @@ class Xupdate_Func {
 				$setopt3 = curl_setopt($ch, CURLOPT_FAILONERROR, true);
 			
 				if(!$setopt1 || !$setopt2 || !$setopt3 ){
-					throw new Exception('curl_setopt fail',3);
+					throw new Exception('curl_setopt CURLOPT_FILE, CURLOPT_HEADER or CURLOPT_FAILONERROR fail',3);
 				}
 			} catch (Exception $e) {
 				$this->_set_error_log($e->getMessage());
@@ -176,7 +178,7 @@ class Xupdate_Func {
 					}
 					try {
 						if(! curl_setopt($ch, CURLOPT_PROXY, $proxyURL)) {
-							throw new Exception('curl_setopt PROXY fail', 6);
+							throw new Exception('curl_setopt PROXY fail skip', 6);
 						}
 					} catch (Exception $e) {
 						$this->_set_error_log($e->getMessage());
@@ -189,7 +191,7 @@ class Xupdate_Func {
 						}
 						try {
 							if(! curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyAuth)) {
-								throw new Exception('curl_setopt PROXYUSERPWD fail', 7);
+								throw new Exception('curl_setopt PROXYUSERPWD fail skip', 7);
 							}
 						} catch (Exception $e) {
 							$this->_set_error_log($e->getMessage());
@@ -240,7 +242,10 @@ class Xupdate_Func {
 			}
 			
 			foreach($chs as $key => $ch) {
-				$this->_set_error_log(curl_error($ch));
+				if ($_err = curl_error($ch)) {
+					$_info = print_r(curl_getinfo($ch), true);
+					$this->_set_error_log($_err . '<div><pre>'.$_info.'</pre></div>');
+				}
 				$error_no = curl_errno($ch);
 				curl_multi_remove_handle($mh, $ch);
 				fclose($fps[$key]);
@@ -371,8 +376,10 @@ class Xupdate_Func {
 	 **/
 	public function _set_error_log($msg)
 	{
-		$this->Ftp->appendMes('<span style="color:red;">'.$msg.'</span><br />');
-		$this->content.= '<span style="color:red;">'.$msg.'</span><br />';
+		if ($msg) {
+			$this->Ftp->appendMes('<span style="color:red;">'.$msg.'</span><br />');
+			$this->content.= '<span style="color:red;">'.$msg.'</span><br />';
+		}
 	}
 	
 	/**
