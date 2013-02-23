@@ -50,68 +50,83 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
 			$csv_encoding = mb_detect_encoding($_csv_contents);
 		}
 
-		foreach(file($csv_file) as $n=>$_data_line){
-			if ($csv_encoding){
-				mb_convert_variables(_CHARSET, $csv_encoding, $_data_line);
+		if (($handle = fopen($csv_file, 'r')) !== FALSE) {
+			$current_locale = false;
+			if ($csv_encoding === 'UTF-8') {
+				$current_locale = setlocale(LC_ALL, '0');
+				setlocale(LC_ALL, 'ja_JP.UTF-8');
+				$bom = fread($handle, 3); // remove BOM
+				if (ord($bom[0]) !== 0xef || ord($bom[1]) !== 0xbb || ord($bom[2]) !== 0xbf) {
+					rewind($handle, 0); // BOM not found then do rewind
+				}
 			}
-			$_data = $this->explodeCSV($_data_line);
-			if (!$n || !implode('', $_data)){
-				continue;
-			}
-			$user_data = array(
-				'error'  => false,
-				'update' => 0,
-				'is_new' => true,
-				'value'  => array(),
-				);
-			if (count($_data) != count($user_key)){
-				$user_data['error'] = true;
-			}
-			if ($_data[0]){
-				$user =& $user_h->get($_data[0]);
-				if ($user){
+			$n = 0;
+			while (($_data = fgetcsv($handle)) !== FALSE) {
+				if ($csv_encoding){
+					mb_convert_variables(_CHARSET, $csv_encoding, $_data);
+				}
+				if (!$n++ || !implode('', $_data)){
+					continue;
+				}
+				$user_data = array(
+					'error'  => false,
+					'update' => 0,
+					'is_new' => true,
+					'value'  => array(),
+					);
+				if (count($_data) != count($user_key)){
+					$user_data['error'] = true;
+				}
+				if ($_data[0]){
+					$user =& $user_h->get($_data[0]);
+					if ($user){
+						for ($i=0; $i<count($user_key); $i++){
+							$csv_value = $_data[$i];
+							$user_value = $user->get($user_key[$i]);
+							$update = $user_value != $csv_value;
+							 switch ($user_key[$i]){
+							  case 'user_regdate':
+							  case 'last_login':
+								$update = ($user_value || $csv_value) && strcmp(formatTimestamp($user_value, 'Y/n/j H:i'),  $csv_value)!==0;
+								 if ($update){
+								 }
+								break;
+							  case 'pass':
+								if (strlen($csv_value)!=32){
+									$update = $user_value != md5($csv_value);
+									$csv_value = md5($csv_value);
+								}
+							  default:
+							}
+							$user_data['update'] = $user_data['update'] | $update;
+							$user_data['value'][] = array(
+								'var'    => $csv_value,
+								'update' => $update,
+								);
+						}
+						$user_data['is_new'] = false;
+					}
+				}
+				if ($user_data['is_new'] == true){
 					for ($i=0; $i<count($user_key); $i++){
-						$csv_value = $_data[$i];
-						$user_value = $user->get($user_key[$i]);
-						$update = $user_value != $csv_value;
-						 switch ($user_key[$i]){
+						$var = isset($_data[$i]) && $_data[$i]!=='' ? $_data[$i] : $user_tmp->get($user_key[$i]);
+						switch ($user_key[$i]){
 						  case 'user_regdate':
 						  case 'last_login':
-							$update = ($user_value || $csv_value) && strcmp(formatTimestamp($user_value, 'Y/n/j H:i'),  $csv_value)!==0;
-							 if ($update){
-							 }
+							$var = formatTimestamp($var, 'Y/n/j H:i');
 							break;
-						  case 'pass':
-							if (strlen($csv_value)!=32){
-								$update = $user_value != md5($csv_value);
-								$csv_value = md5($csv_value);
-							}
-						  default:
-						}
-						$user_data['update'] = $user_data['update'] | $update;
+						}					
 						$user_data['value'][] = array(
-							'var'    => $csv_value,
-							'update' => $update,
-							);
+							'var'    => $var,
+							'update' => 0);
 					}
-					$user_data['is_new'] = false;
 				}
+				$csv_data[] = $user_data;
 			}
-			if ($user_data['is_new'] == true){
-				for ($i=0; $i<count($user_key); $i++){
-					$var = isset($_data[$i]) && $_data[$i]!=='' ? $_data[$i] : $user_tmp->get($user_key[$i]);
-					switch ($user_key[$i]){
-					  case 'user_regdate':
-					  case 'last_login':
-						$var = formatTimestamp($var, 'Y/n/j H:i');
-						break;
-					}					
-					$user_data['value'][] = array(
-						'var'    => $var,
-						'update' => 0);
-				}
+			if ($current_locale) {
+				setlocale(LC_ALL, $current_locale);
 			}
-			$csv_data[] = $user_data;
+			fclose($handle);
 		}
 		
 		$render->setAttribute('csv_data', $csv_data);
