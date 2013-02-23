@@ -120,6 +120,8 @@ define('_MI_XUPDATE_XEL_DIRNAME'  , 'X-elFinder Module');
 define('_MI_XUPDATE_XEL_DIRNAMEDSC','You can manege preload with X-elFinder. If add setting in X-elFinder config "Volume Driver"<br />"<b>xelfinder:xelfinder:preload:Preload:gid=1</b>" (X-update work on Direct mode)<br />Or<br />"<b>xelfinder:ftp:preload:Preload:gid=1</b>" (Use X-elFinder FTP settings)');
 define('_MI_XUPDATE_SHOW_DISABLED_STORE'   , 'Show disabled stores');
 define('_MI_XUPDATE_SHOW_DISABLED_STOREDSC', 'Show the store that was disabled at the Add-on store. (This is for developers)');
+define('_MI_XUPDATE_PARALLEL_FETCH_MAX',     'HTTP connection Max');
+define('_MI_XUPDATE_PARALLEL_FETCH_MAXDSC',  'The number of HTTP simultaneous connection in the case of fetching the data of a store list.<br />When data acquisition cannot be carried out according to environment, it is necessary to reduce and adjust this value. (Default: 50)');
 
 // progress messages
 define('_MI_XUPDATE_PROG_FILE_GETTING', 'Downloading the package.');
