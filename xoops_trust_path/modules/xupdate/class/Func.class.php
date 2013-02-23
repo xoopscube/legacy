@@ -77,7 +77,7 @@ class Xupdate_Func {
 		$this->appendMes('downloaded in: '.$downloadDirPath);
 		$this->content.= 'downloaded in: '.$downloadDirPath.'<br />';
 		
-		$max = (isset($this->mod_config['parallel_fetch_max']))? intval($this->mod_config['parallel_fetch_max']) : 50;
+		$max = (!empty($this->mod_config['parallel_fetch_max']))? intval($this->mod_config['parallel_fetch_max']) : 50;
 		$start = 0;
 		$count = count($multiData);
 		while($fetchs = array_slice($multiData, $start, $max, true)) {
