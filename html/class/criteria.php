@@ -514,7 +514,7 @@ class Criteria extends CriteriaElement
     function render() {
         $value = $this->value;
         if (in_array(strtoupper($this->operator), array('IN', 'NOT IN'))) {
-			$value = is_array($value) ? implode(',',$value) : $value;
+			$value = is_array($value) ? implode(',',$value) : trim($value, " ()\t"); // [Compat] allow value '("a", "b", "c")'
 			if(isset($value)){
 				$value = '('.$value.')';
 			}
