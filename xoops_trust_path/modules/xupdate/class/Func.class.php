@@ -67,212 +67,245 @@ class Xupdate_Func {
 	 */
 	function _multiDownloadFile( &$multiData, $cacheTTL )
 	{
-		$chs = array();
+		$timeout = 300;
+		$this->put_debug_log(str_repeat('-', 10) . date("H:i:s"));
+		$this->put_debug_log('Start _multiDownloadFile().');
 
 		$downloadDirPath = $this->Xupdate->params['temp_path'];
 		$realDirPath = realpath($downloadDirPath);
 
-		$this->Ftp->appendMes('downladed in: '.$downloadDirPath.'<br />');
-		$this->content.= 'downladed in: '.$downloadDirPath.'<br />';
-
-		foreach($multiData as $key => $data) {
+		$this->appendMes('downloaded in: '.$downloadDirPath);
+		$this->content.= 'downloaded in: '.$downloadDirPath.'<br />';
+		
+		$max = (!empty($this->mod_config['parallel_fetch_max']))? intval($this->mod_config['parallel_fetch_max']) : 50;
+		$start = 0;
+		$count = count($multiData);
+		while($fetchs = array_slice($multiData, $start, $max, true)) {
+			$this->appendMes('multi download start: '.($start + 1).' to '.(min($start + $max, $count)));
+			$fps = $chs = array();
+			$start += $max;
+			foreach($fetchs as $key => $data) {
 			
-			$target_key = $data['target_key'];
-			
-			// TODO ファイルNotFound対策
-			//$url = $this->_getDownloadUrl( $target_key, $downloadUrlFormat );
-			if (empty($data['downloadUrl'])){
-				$this->_set_error_log('_multiDownloadFile false. empty downloadUrl');
-				continue;
-			}
-			
-			$downloadedFilePath = $multiData[$key]['downloadedFilePath'] = $this->_getDownloadFilePath( $realDirPath, $data['tempFilename'] );
-			
-			// cache check
-			if ($cacheTTL && is_file($downloadedFilePath) && filemtime($downloadedFilePath) + $cacheTTL > $_SERVER['REQUEST_TIME']) {
-				continue;
-			}
-			
-			try {
+				$target_key = $data['target_key'];
+				
+				// TODO ファイルNotFound対策
+				//$url = $this->_getDownloadUrl( $target_key, $downloadUrlFormat );
+				if (empty($data['downloadUrl'])){
+					$this->_set_error_log('_multiDownloadFile false. empty downloadUrl');
+					continue;
+				}
+				
+				$downloadedFilePath = $multiData[$key]['downloadedFilePath'] = $this->_getDownloadFilePath( $realDirPath, $data['tempFilename'] );
+				
+				// cache check
+				if ($cacheTTL && is_file($downloadedFilePath) && filemtime($downloadedFilePath) + $cacheTTL > $_SERVER['REQUEST_TIME']) {
+					continue;
+				}
+				
 				try {
-					if(!function_exists('curl_init') ){
-						throw new Exception('curl_init function no found fail',1);
+					try {
+						if(!function_exists('curl_init') ){
+							throw new Exception('curl_init function no found fail',1);
+						}
+					} catch (Exception $e) {
+						$this->_set_error_log($e->getMessage());
+						return false;
 					}
+				
+					$ch = curl_init($data['downloadUrl']);
+					if($ch === false ){
+						throw new Exception('curl_init fail',2);
+					}
+					$this->appendMes('curl_init OK ('.$data['downloadUrl'].')');
 				} catch (Exception $e) {
 					$this->_set_error_log($e->getMessage());
 					return false;
 				}
-			
-				$ch = curl_init($data['downloadUrl']);
-				if($ch === false ){
-					throw new Exception('curl_init fail',2);
-				}
-				$this->Ftp->appendMes('curl_init OK ('.$data['downloadUrl'].')<br />');
-			} catch (Exception $e) {
-				$this->_set_error_log($e->getMessage());
-				return false;
-			}
-			
-			$fp = fopen($downloadedFilePath, 'wb');
-			
-			try {
-				$setopt1 = curl_setopt($ch, CURLOPT_FILE, $fp);
-				$setopt2 = curl_setopt($ch, CURLOPT_HEADER, 0);
-				$setopt3 = curl_setopt($ch, CURLOPT_FAILONERROR, true);
-			
-				if(!$setopt1 || !$setopt2 || !$setopt3 ){
-					throw new Exception('curl_setopt CURLOPT_FILE, CURLOPT_HEADER or CURLOPT_FAILONERROR fail',3);
-				}
-			} catch (Exception $e) {
-				$this->_set_error_log($e->getMessage());
 				
-				fclose($fp);
-				return false;
-			}
-			
-			//safe_mode  CURLOPT_FOLLOWLOCATION cannot be activated when in safe_mode
-			if (ini_get('safe_mode') != '1' && ini_get('open_basedir') == '') {
+				$fp = fopen($downloadedFilePath, 'wb');
+				
 				try {
-					//redirect suport
-					$setopt4 = curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-					$setopt5 = curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
-			
-					if(!$setopt4 || !$setopt5 ){
-						throw new Exception('curl_setopt CURLOPT_FOLLOWLOCATION fail skip',4);
+					$setopt1 = curl_setopt($ch, CURLOPT_FILE, $fp);
+					$setopt2 = curl_setopt($ch, CURLOPT_HEADER, 0);
+					$setopt3 = curl_setopt($ch, CURLOPT_FAILONERROR, true);
+				
+					if(!$setopt1 || !$setopt2 || !$setopt3 ){
+						throw new Exception('curl_setopt CURLOPT_FILE, CURLOPT_HEADER or CURLOPT_FAILONERROR fail',3);
 					}
 				} catch (Exception $e) {
 					$this->_set_error_log($e->getMessage());
-				}
-			} else if (empty($data['noRedirect'])) {
-				curl_setopt($ch, CURLOPT_URL, Xupdate_Utils::getRedirectUrl($data['downloadUrl']));
-			}
-			
-			//SSL NO VERIFY setting
-			try {
-				$setopt6 = curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-				$setopt7 = curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-				if(!$setopt6 || !$setopt7 ){
-					throw new Exception('curl_setopt SSL fail',5);
-				}
-			} catch (Exception $e) {
-				$this->_set_error_log($e->getMessage());
-		
-				fclose($fp);
-				continue;
-			}
-			
-			// Proxy setting
-			if (!empty($_SERVER['HTTP_PROXY']) || !empty($_SERVER['http_proxy'])) {
-				$proxy = parse_url(!empty($_SERVER['http_proxy']) ? $_SERVER['http_proxy'] : $_SERVER['HTTP_PROXY']);
-				if (!empty($proxy) && isset($proxy['host'])) {
-					// url
-					$proxyURL = (isset($proxy['scheme']) ? $proxy['scheme'] : 'http') . '://';
-					$proxyURL .= $proxy['host'];
 					
-					if (isset($proxy['port'])) {
-						$proxyURL .= ":" . $proxy['port'];
-					} elseif ('http://' == substr($proxyURL, 0, 7)) {
-						$proxyURL .= ":80";
-					} elseif ('https://' == substr($proxyURL, 0, 8)) {
-						$proxyURL .= ":443";
-					}
+					fclose($fp);
+					return false;
+				}
+				
+				//safe_mode  CURLOPT_FOLLOWLOCATION cannot be activated when in safe_mode
+				if (ini_get('safe_mode') != '1' && ini_get('open_basedir') == '') {
 					try {
-						if(! curl_setopt($ch, CURLOPT_PROXY, $proxyURL)) {
-							throw new Exception('curl_setopt PROXY fail skip', 6);
+						//redirect suport
+						$setopt4 = curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+						$setopt5 = curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
+				
+						if(!$setopt4 || !$setopt5 ){
+							throw new Exception('curl_setopt CURLOPT_FOLLOWLOCATION fail skip',4);
 						}
 					} catch (Exception $e) {
 						$this->_set_error_log($e->getMessage());
 					}
-					// user:password
-					if (isset($proxy['user'])) {
-						$proxyAuth = $proxy['user'];
-						if (isset($proxy['pass'])) {
-							$proxyAuth .= ':' . $proxy['pass'];
+				} else if (empty($data['noRedirect'])) {
+					curl_setopt($ch, CURLOPT_URL, Xupdate_Utils::getRedirectUrl($data['downloadUrl']));
+				}
+				
+				//SSL NO VERIFY setting
+				try {
+					$setopt6 = curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+					$setopt7 = curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+					if(!$setopt6 || !$setopt7 ){
+						throw new Exception('curl_setopt SSL fail',5);
+					}
+				} catch (Exception $e) {
+					$this->_set_error_log($e->getMessage());
+			
+					fclose($fp);
+					continue;
+				}
+				
+				// Proxy setting
+				if (!empty($_SERVER['HTTP_PROXY']) || !empty($_SERVER['http_proxy'])) {
+					$proxy = parse_url(!empty($_SERVER['http_proxy']) ? $_SERVER['http_proxy'] : $_SERVER['HTTP_PROXY']);
+					if (!empty($proxy) && isset($proxy['host'])) {
+						// url
+						$proxyURL = (isset($proxy['scheme']) ? $proxy['scheme'] : 'http') . '://';
+						$proxyURL .= $proxy['host'];
+						
+						if (isset($proxy['port'])) {
+							$proxyURL .= ":" . $proxy['port'];
+						} elseif ('http://' == substr($proxyURL, 0, 7)) {
+							$proxyURL .= ":80";
+						} elseif ('https://' == substr($proxyURL, 0, 8)) {
+							$proxyURL .= ":443";
 						}
 						try {
-							if(! curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyAuth)) {
-								throw new Exception('curl_setopt PROXYUSERPWD fail skip', 7);
+							if(! curl_setopt($ch, CURLOPT_PROXY, $proxyURL)) {
+								throw new Exception('curl_setopt PROXY fail skip', 6);
 							}
 						} catch (Exception $e) {
 							$this->_set_error_log($e->getMessage());
 						}
+						// user:password
+						if (isset($proxy['user'])) {
+							$proxyAuth = $proxy['user'];
+							if (isset($proxy['pass'])) {
+								$proxyAuth .= ':' . $proxy['pass'];
+							}
+							try {
+								if(! curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyAuth)) {
+									throw new Exception('curl_setopt PROXYUSERPWD fail skip', 7);
+								}
+							} catch (Exception $e) {
+								$this->_set_error_log($e->getMessage());
+							}
+						}
 					}
 				}
+				// set timeout
+				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+				curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
+				
+				$chs[$key] = $ch;
+				$fps[$key] = $fp;
+				$ch = null;
+				$fp = null;
 			}
-			// set timeout
-			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 300);
-			
-			$chs[$key] = $ch;
-			$fps[$key] = $fp;
-			$ch = null;
-			$fp = null;
-		}
 		
-		if (! $chs) {
-			return true;
-		}
-		
-		$error_touch_time = $_SERVER['REQUEST_TIME'] - $cacheTTL + 10;
-		if (count($chs) > 1) {
-			// multi exec
-			// make multi handle
-			$mh = curl_multi_init();
-			foreach($chs as $ch) {
-				curl_multi_add_handle($mh,$ch);
+			if (! $chs) {
+				$this->put_debug_log('No fetch data. Uses cache.');
+				return true;
 			}
 			
-			$active = null;
-			// multi exec
-			do {
-				$mrc = curl_multi_exec($mh, $active);
-			} while ($mrc == CURLM_CALL_MULTI_PERFORM);
-			
-			while ($active && $mrc == CURLM_OK) {
-				// @todo found curl_multi_select() problem. What is the correct?
-				// ref. https://bugs.php.net/bug.php?id=63842
-				// ref. https://bugs.php.net/bug.php?id=63411
-				// ref. https://bugs.php.net/bug.php?id=61141
-				if (curl_multi_select($mh) != 1) {
-					usleep(100000); // wait 0.1 second
+			$error_touch_time = $_SERVER['REQUEST_TIME'] - $cacheTTL + 10;
+			if (count($chs) > 1) {
+				$this->put_debug_log('Start curl_multi.');
+				// multi exec
+				// make multi handle
+				$mh = curl_multi_init();
+				foreach($chs as $ch) {
+					curl_multi_add_handle($mh,$ch);
 				}
+				$this->put_debug_log('Done curl_multi_add_handle().');
+				
+				$active = null;
+				// multi exec
 				do {
 					$mrc = curl_multi_exec($mh, $active);
 				} while ($mrc == CURLM_CALL_MULTI_PERFORM);
-			}
-			
-			foreach($chs as $key => $ch) {
+				
+				$this->put_debug_log('1st curl_multi_exec() $mrc dump' . "\n" . print_r($mrc, true));
+				$this->put_debug_log('1st curl_multi_exec() $active dump' . "\n" . print_r($active, true));
+				
+				$timeover = time() + $timeout;
+				if ($active && $mrc == CURLM_OK) {
+					do switch (curl_multi_select($mh, $timeout)) {
+						case 0:
+							$this->put_debug_log('curl_multi_select(): 0');
+							if ($timeover < time()) {
+								$active = false;
+								$this->_set_error_log('curl_multi_select() timeout');
+								break;
+							} else {
+								usleep(100000); // wait 0.1 second
+								continue;
+							}
+						case -1: // 正常な場合でも -1 が返ることがある環境への対応(例： XAMPP 1.8.1 [PHP: 5.4.7])
+							$this->put_debug_log('curl_multi_select(): -1');
+							usleep(100000); // wait 0.1 second
+						default:
+							$this->put_debug_log('curl_multi_select(): ok');
+							do {
+								$this->put_debug_log('Do curl_multi_exec()');
+								$stat = curl_multi_exec($mh, $active);
+								$this->put_debug_log(str_repeat('-', 5) . date("H:i:s"));
+								$this->put_debug_log('2nd+ curl_multi_exec() $mrc dump' . "\n" . print_r($mrc, true));
+								$this->put_debug_log('2nd+ curl_multi_exec() $active dump' . "\n" . print_r($active, true));
+							} while ($stat === CURLM_CALL_MULTI_PERFORM);
+					} while ($active);
+				}
+	
+				foreach($chs as $key => $ch) {
+					if ($_err = curl_error($ch)) {
+						$_info = print_r(curl_getinfo($ch), true);
+						$this->_set_error_log($_err . "\n" . '<div><pre>'.$_info.'</pre></div>');
+					}
+					$error_no = curl_errno($ch);
+					curl_multi_remove_handle($mh, $ch);
+					fclose($fps[$key]);
+					if ($error_no > 0 && $error_no != 78 /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
+						// retry 10sec later if has error
+						touch($multiData[$key]['downloadedFilePath'], $error_touch_time);
+						$multiData[$key]['cacheMtime'] = $error_touch_time;
+					}
+				}
+				curl_multi_close($mh);
+			} else {
+				// single exec
+				reset($chs);
+				$ch = current($chs);
+				$key = key($chs);
+				curl_exec($ch);
 				if ($_err = curl_error($ch)) {
 					$_info = print_r(curl_getinfo($ch), true);
-					$this->_set_error_log($_err . '<div><pre>'.$_info.'</pre></div>');
+					$this->_set_error_log($_err . "\n" . '<div><pre>'.$_info.'</pre></div>');
 				}
 				$error_no = curl_errno($ch);
-				curl_multi_remove_handle($mh, $ch);
 				fclose($fps[$key]);
 				if ($error_no > 0 && $error_no != 78 /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
 					// retry 10sec later if has error
 					touch($multiData[$key]['downloadedFilePath'], $error_touch_time);
 					$multiData[$key]['cacheMtime'] = $error_touch_time;
 				}
+				curl_close($ch);
 			}
-			curl_multi_close($mh);
-		} else {
-			// single exec
-			reset($chs);
-			$ch = current($chs);
-			$key = key($chs);
-			curl_exec($ch);
-			$this->_set_error_log(curl_error($ch));
-			$error_no = curl_errno($ch);
-			fclose($fps[$key]);
-			if ($error_no > 0 && $error_no != 78 /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
-				// retry 10sec later if has error
-				touch($multiData[$key]['downloadedFilePath'], $error_touch_time);
-				$multiData[$key]['cacheMtime'] = $error_touch_time;
-			}
-			curl_close($ch);
 		}
-		
 		return true;
 	}
 
@@ -379,6 +412,39 @@ class Xupdate_Func {
 		if ($msg) {
 			$this->Ftp->appendMes('<span style="color:red;">'.$msg.'</span><br />');
 			$this->content.= '<span style="color:red;">'.$msg.'</span><br />';
+			$this->put_debug_log('[Error] ' . strip_tags($msg));
+		}
+	}
+	
+	/**
+	 * appendMes
+	 * 
+	 * @param string $msg
+	 * @return void
+	 */
+	private function appendMes($msg) {
+		if ($msg) {
+			$this->Ftp->appendMes($msg.'<br />');
+			$this->put_debug_log(strip_tags($msg));
+		}
+	}
+	
+	/**
+	 * _make_debug_log
+	 * 
+	 * @param string $msg
+	 * @return void
+	 */
+	private function put_debug_log($msg) {
+		static $debuglog;
+		if ($msg && $this->mod_config['Show_debug']) {
+			if (! $debuglog) {
+				$debuglog = realpath($this->Xupdate->params['temp_path']) . '/'.rawurlencode(substr(XOOPS_URL, 7)).'_Func_debug.log';
+				if (!is_file($debuglog) || filemtime($debuglog) + 600 < time()) {
+					file_put_contents($debuglog, '');
+				}
+			}
+			file_put_contents($debuglog, $msg . "\n", FILE_APPEND | LOCK_EX);
 		}
 	}
 	
