@@ -77,7 +77,10 @@ class User_UserDataDownloadAction extends User_Action
 		
 		/// japanese 
 		if (strncasecmp($GLOBALS['xoopsConfig']['language'], 'ja', 2)===0){
-			mb_convert_variables('SJIS', _CHARSET, $text);
+			if (_CHARSET !== 'UTF-8') {
+				mb_convert_variables('UTF-8', _CHARSET, $text);
+			}
+			$text = pack('C*',0xEF,0xBB,0xBF) . $text;
 		}
 		
 		if( preg_match('/firefox/i' , xoops_getenv('HTTP_USER_AGENT')) ){
