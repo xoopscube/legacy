@@ -163,6 +163,7 @@ The source code of XOOPS Cube Legacy is available on [Github](https://github.com
 
 XOOPS Cube Legacy packages are available at [downloads](https://github.com/xoopscube/legacy/downloads) area.
 
+If you are a beginner about XOOPS Cube, we recommend to use [distributions](https://github.com/xoopscube/legacy/wiki/Distributions) contain fine modules and themes.
 
 Installation
 ====
