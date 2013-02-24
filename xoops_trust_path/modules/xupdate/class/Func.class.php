@@ -99,6 +99,7 @@ class Xupdate_Func {
 				
 				// cache check
 				if ($cacheTTL && is_file($downloadedFilePath) && filemtime($downloadedFilePath) + $cacheTTL > $_SERVER['REQUEST_TIME']) {
+					$this->put_debug_log('"' . $data['tempFilename'] . '" cache found');
 					continue;
 				}
 				
@@ -219,8 +220,8 @@ class Xupdate_Func {
 			}
 		
 			if (! $chs) {
-				$this->put_debug_log('No fetch data. Uses cache.');
-				return true;
+				$this->put_debug_log('No fetch on this time. Uses cache all.');
+				continue;
 			}
 			
 			$error_touch_time = $_SERVER['REQUEST_TIME'] - $cacheTTL + 10;
@@ -272,14 +273,13 @@ class Xupdate_Func {
 				}
 	
 				foreach($chs as $key => $ch) {
-					if ($_err = curl_error($ch)) {
-						$_info = print_r(curl_getinfo($ch), true);
-						$this->_set_error_log($_err . "\n" . '<div><pre>'.$_info.'</pre></div>');
-					}
-					$error_no = curl_errno($ch);
-					curl_multi_remove_handle($mh, $ch);
 					fclose($fps[$key]);
-					if ($error_no > 0 && $error_no != 78 /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
+					if ($_err = curl_error($ch)) {
+						$_info = curl_getinfo($ch);
+						$this->_set_error_log($_err . "\n" . '<div><pre>'.print_r($_info, true).'</pre></div>');
+					}
+					curl_multi_remove_handle($mh, $ch);
+					if ($_err && $_info['http_code'] != 404 /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
 						// retry 10sec later if has error
 						touch($multiData[$key]['downloadedFilePath'], $error_touch_time);
 						$multiData[$key]['cacheMtime'] = $error_touch_time;
@@ -292,13 +292,12 @@ class Xupdate_Func {
 				$ch = current($chs);
 				$key = key($chs);
 				curl_exec($ch);
-				if ($_err = curl_error($ch)) {
-					$_info = print_r(curl_getinfo($ch), true);
-					$this->_set_error_log($_err . "\n" . '<div><pre>'.$_info.'</pre></div>');
-				}
-				$error_no = curl_errno($ch);
 				fclose($fps[$key]);
-				if ($error_no > 0 && $error_no != 78 /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
+				if ($_err = curl_error($ch)) {
+					$_info = curl_getinfo($ch);
+					$this->_set_error_log($_err . "\n" . '<div><pre>'.print_r($_info, true).'</pre></div>');
+				}
+				if ($_err && $_info['http_code'] != 404 /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
 					// retry 10sec later if has error
 					touch($multiData[$key]['downloadedFilePath'], $error_touch_time);
 					$multiData[$key]['cacheMtime'] = $error_touch_time;
