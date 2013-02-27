@@ -99,6 +99,7 @@ class Xupdate_Func {
 				
 				// cache check
 				if ($cacheTTL && is_file($downloadedFilePath) && filemtime($downloadedFilePath) + $cacheTTL > $_SERVER['REQUEST_TIME']) {
+					$this->put_debug_log('"' . $data['tempFilename'] . '" cache found');
 					continue;
 				}
 				
@@ -219,8 +220,8 @@ class Xupdate_Func {
 			}
 		
 			if (! $chs) {
-				$this->put_debug_log('No fetch data. Uses cache.');
-				return true;
+				$this->put_debug_log('No fetch on this time. Uses cache all.');
+				continue;
 			}
 			
 			$error_touch_time = $_SERVER['REQUEST_TIME'] - $cacheTTL + 10;
@@ -238,48 +239,46 @@ class Xupdate_Func {
 				// multi exec
 				do {
 					$mrc = curl_multi_exec($mh, $active);
-				} while ($mrc == CURLM_CALL_MULTI_PERFORM);
+				} while ($mrc === CURLM_CALL_MULTI_PERFORM);
 				
-				$this->put_debug_log('1st curl_multi_exec() $mrc dump' . "\n" . print_r($mrc, true));
-				$this->put_debug_log('1st curl_multi_exec() $active dump' . "\n" . print_r($active, true));
+				$this->put_debug_log('1st curl_multi_exec() $mrc: ' . $mrc);
+				$this->put_debug_log('1st curl_multi_exec() $active: ' . $active);
 				
 				$timeover = time() + $timeout;
 				if ($active && $mrc == CURLM_OK) {
-					do switch (curl_multi_select($mh, $timeout)) {
-						case 0:
-							$this->put_debug_log('curl_multi_select(): 0');
+					do switch ($_res = curl_multi_select($mh)) {
+						case 0: // 正常な場合でも 0 が返ることがある(例： XAMPP 1.7.7 Win [PHP: 5.3.8])
+						case -1: // 正常な場合でも -1 が返ることがある(例： XAMPP 1.8.1 win [PHP: 5.4.7])
 							if ($timeover < time()) {
 								$active = false;
 								$this->_set_error_log('curl_multi_select() timeout');
 								break;
 							} else {
-								usleep(100000); // wait 0.1 second
-								continue;
+								$this->_set_error_log('curl_multi_select() wait a little');
+								// ref. https://bugs.php.net/bug.php?id=61141
+								usleep(100); // wait a little
 							}
-						case -1: // 正常な場合でも -1 が返ることがある環境への対応(例： XAMPP 1.8.1 [PHP: 5.4.7])
-							$this->put_debug_log('curl_multi_select(): -1');
-							usleep(100000); // wait 0.1 second
 						default:
-							$this->put_debug_log('curl_multi_select(): ok');
+							$this->put_debug_log('curl_multi_select(): '.$_res);
 							do {
 								$this->put_debug_log('Do curl_multi_exec()');
-								$stat = curl_multi_exec($mh, $active);
+								$mrc = curl_multi_exec($mh, $active);
 								$this->put_debug_log(str_repeat('-', 5) . date("H:i:s"));
-								$this->put_debug_log('2nd+ curl_multi_exec() $mrc dump' . "\n" . print_r($mrc, true));
-								$this->put_debug_log('2nd+ curl_multi_exec() $active dump' . "\n" . print_r($active, true));
-							} while ($stat === CURLM_CALL_MULTI_PERFORM);
+								$this->put_debug_log('2nd+ curl_multi_exec() $mrc: ' . $mrc);
+								$this->put_debug_log('2nd+ curl_multi_exec() $active: ' . $active);
+							} while ($mrc === CURLM_CALL_MULTI_PERFORM);
 					} while ($active);
+					$this->put_debug_log('curl_multi_exec() Finished');
 				}
-	
+				
 				foreach($chs as $key => $ch) {
-					if ($_err = curl_error($ch)) {
-						$_info = print_r(curl_getinfo($ch), true);
-						$this->_set_error_log($_err . "\n" . '<div><pre>'.$_info.'</pre></div>');
-					}
-					$error_no = curl_errno($ch);
-					curl_multi_remove_handle($mh, $ch);
 					fclose($fps[$key]);
-					if ($error_no > 0 && $error_no != 78 /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
+					if ($_err = curl_error($ch)) {
+						$_info = curl_getinfo($ch);
+						$this->_set_error_log($_err . "\n" . '<div><pre>'.print_r($_info, true).'</pre></div>');
+					}
+					curl_multi_remove_handle($mh, $ch);
+					if ($_err && $_info['http_code'] != 404 /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
 						// retry 10sec later if has error
 						touch($multiData[$key]['downloadedFilePath'], $error_touch_time);
 						$multiData[$key]['cacheMtime'] = $error_touch_time;
@@ -292,13 +291,12 @@ class Xupdate_Func {
 				$ch = current($chs);
 				$key = key($chs);
 				curl_exec($ch);
-				if ($_err = curl_error($ch)) {
-					$_info = print_r(curl_getinfo($ch), true);
-					$this->_set_error_log($_err . "\n" . '<div><pre>'.$_info.'</pre></div>');
-				}
-				$error_no = curl_errno($ch);
 				fclose($fps[$key]);
-				if ($error_no > 0 && $error_no != 78 /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
+				if ($_err = curl_error($ch)) {
+					$_info = curl_getinfo($ch);
+					$this->_set_error_log($_err . "\n" . '<div><pre>'.print_r($_info, true).'</pre></div>');
+				}
+				if ($_err && $_info['http_code'] != 404 /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
 					// retry 10sec later if has error
 					touch($multiData[$key]['downloadedFilePath'], $error_touch_time);
 					$multiData[$key]['cacheMtime'] = $error_touch_time;
