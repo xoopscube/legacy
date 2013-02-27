@@ -235,40 +235,55 @@ class Xupdate_Func {
 				}
 				$this->put_debug_log('Done curl_multi_add_handle().');
 				
-				$active = null;
-				// multi exec
-				do {
-					$mrc = curl_multi_exec($mh, $active);
-				} while ($mrc === CURLM_CALL_MULTI_PERFORM);
-				
-				$this->put_debug_log('1st curl_multi_exec() $mrc: ' . $mrc);
-				$this->put_debug_log('1st curl_multi_exec() $active: ' . $active);
-				
 				$timeover = time() + $timeout;
-				if ($active && $mrc == CURLM_OK) {
-					do switch ($_res = curl_multi_select($mh)) {
-						case 0: // 正常な場合でも 0 が返ることがある(例： XAMPP 1.7.7 Win [PHP: 5.3.8])
-						case -1: // 正常な場合でも -1 が返ることがある(例： XAMPP 1.8.1 win [PHP: 5.4.7])
-							if ($timeover < time()) {
-								$active = false;
-								$this->_set_error_log('curl_multi_select() timeout');
-								break;
-							} else {
-								$this->_set_error_log('curl_multi_select() wait a little');
-								// ref. https://bugs.php.net/bug.php?id=61141
-								usleep(100); // wait a little
-							}
-						default:
-							$this->put_debug_log('curl_multi_select(): '.$_res);
-							do {
-								$this->put_debug_log('Do curl_multi_exec()');
-								$mrc = curl_multi_exec($mh, $active);
-								$this->put_debug_log(str_repeat('-', 5) . date("H:i:s"));
-								$this->put_debug_log('2nd+ curl_multi_exec() $mrc: ' . $mrc);
-								$this->put_debug_log('2nd+ curl_multi_exec() $active: ' . $active);
-							} while ($mrc === CURLM_CALL_MULTI_PERFORM);
-					} while ($active);
-					$this->put_debug_log('curl_multi_exec() Finished');
+				$active = null;
+				
+				// multi exec
+				if (empty($this->mod_config['curl_multi_select_not_use'])) {
+					do {
+						$mrc = curl_multi_exec($mh, $active);
+					} while ($mrc === CURLM_CALL_MULTI_PERFORM);
+					
+					$this->put_debug_log('1st curl_multi_exec() $mrc: ' . $mrc);
+					$this->put_debug_log('1st curl_multi_exec() $active: ' . $active);
+					
+					if ($active && $mrc == CURLM_OK) {
+						do switch ($_res = curl_multi_select($mh)) {
+							case 0: // 正常な場合でも 0 が返ることがある(例： XAMPP 1.7.7 Win [PHP: 5.3.8])
+							case -1: // 正常な場合でも -1 が返ることがある(例： XAMPP 1.8.1 win [PHP: 5.4.7])
+								if ($timeover < time()) {
+									$active = false;
+									$this->_set_error_log('curl_multi_select() timeout');
+									break;
+								} else {
+									$this->_set_error_log('curl_multi_select() wait a little');
+									// ref. https://bugs.php.net/bug.php?id=61141
+									usleep(100); // wait a little
+								}
+							default:
+								$this->put_debug_log('curl_multi_select(): '.$_res);
+								do {
+									$this->put_debug_log('Do curl_multi_exec()');
+									$mrc = curl_multi_exec($mh, $active);
+									$this->put_debug_log(str_repeat('-', 5) . date("H:i:s"));
+									$this->put_debug_log('2nd+ curl_multi_exec() $mrc: ' . $mrc);
+									$this->put_debug_log('2nd+ curl_multi_exec() $active: ' . $active);
+								} while ($mrc === CURLM_CALL_MULTI_PERFORM);
+						} while ($active);
+						$this->put_debug_log('curl_multi_exec() Finished');
+					}
+				} else {
+					$this->put_debug_log('Not uses curl_multi_select()');
+					do {
+						$mrc = curl_multi_exec($mh, $active);
+						$this->put_debug_log('curl_multi_exec() $mrc: ' . $mrc);
+						$this->put_debug_log('curl_multi_exec() $active: ' . $active);
+						if ($timeover < time()) {
+							$this->_set_error_log('curl_multi_select() timeout');
+							break;
+						}
+						usleep(500000); // wait 500ms
+					} while ($mrc === CURLM_CALL_MULTI_PERFORM || $active);
 				}
 				
 				foreach($chs as $key => $ch) {

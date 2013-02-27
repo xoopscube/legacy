@@ -122,6 +122,8 @@ define('_MI_XUPDATE_SHOW_DISABLED_STORE'   , '非表示にされたストアも表示する');
 define('_MI_XUPDATE_SHOW_DISABLED_STOREDSC', 'アドオンストア側で非表示にされたストアーを表示します。(開発者用です)');
 define('_MI_XUPDATE_PARALLEL_FETCH_MAX',     'ストアデータ取得時の同時接続数');
 define('_MI_XUPDATE_PARALLEL_FETCH_MAXDSC',  'ストア一覧のデータを取得する場合の HTTP 同時接続数を設定します。<br />環境によりデータ取得に失敗する場合はこの値を減らして調整します。（デフォルト： 50）');
+define('_MI_XUPDATE_CURL_MULTI_SELECT',      'curl_multi_select を使用しない');
+define('_MI_XUPDATE_CURL_MULTI_SELECTDSC',   '環境により同時接続数を 2 以上にするとデータ取得に失敗する場合があります。その場合に限り「はい」を選択してください。');
 
 // progress messages
 define('_MI_XUPDATE_PROG_FILE_GETTING', 'パッケージを取得しています。');
