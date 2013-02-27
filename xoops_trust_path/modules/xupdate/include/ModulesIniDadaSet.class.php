@@ -86,7 +86,10 @@ class Xupdate_ModulesIniDadaSet
 				$cacheCheckStr = @file_get_contents($cacheCheckFile);
 			}
 		}
-		$cacheCheckMd5 = ':'.md5($mModuleConfig['stores_json_url'].':'.$mModuleConfig['show_disabled_store']);
+		$cacheCheckMd5 = ':'.md5($mModuleConfig['stores_json_url'].':'
+								.$mModuleConfig['show_disabled_store'].':'
+								.$mModuleConfig['parallel_fetch_max'].':'
+								.$mModuleConfig['curl_multi_select_not_use']);
 		if ( ($checkonly && $cacheCheckStr === 'running')
 			|| (!$checkonly && $cacheCheckStr === 'bg_ok'.$cacheCheckMd5)
 			|| @ filemtime($cacheCheckFile) + $this->cacheTTL > $_SERVER['REQUEST_TIME'] && $cacheCheckStr === ($checkonly? 'bg_ok' : 'ok').$cacheCheckMd5

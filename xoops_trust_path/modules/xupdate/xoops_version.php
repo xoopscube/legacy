@@ -340,8 +340,19 @@ $modversion['config'] = array(
 		'valuetype'	=> 'int',
 		'default'	=> 50 ,
 		'options'	=> array(),
-	)
+	) ,
 
+	//parallel_fetch_max
+	array(
+		'name'		=> 'curl_multi_select_not_use',
+		'title'		=> '_MI_XUPDATE_CURL_MULTI_SELECT' ,
+		'description'	=> '_MI_XUPDATE_CURL_MULTI_SELECTDSC',
+		'formtype'	=> 'yesno',
+		'valuetype'	=> 'int',
+		'default'	=> 0 ,
+		'options'	=> array(),
+	) 
+	
 ##[cubson:config]
 ##[/cubson:config]
 );
