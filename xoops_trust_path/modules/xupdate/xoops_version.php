@@ -23,7 +23,7 @@ $basename = basename($dirname);
 // Define a basic manifesto.
 //
 $modversion['name'] = _MI_XUPDATE_LANG_XUPDATE;
-$modversion['version'] = '0.41';
+$modversion['version'] = '0.42';
 $modversion['description'] = _MI_XUPDATE_DESC_XUPDATE;
 $modversion['author'] = _MI_XUPDATE_LANG_AUTHOR;
 $modversion['credits'] = _MI_XUPDATE_LANG_CREDITS;
@@ -340,8 +340,19 @@ $modversion['config'] = array(
 		'valuetype'	=> 'int',
 		'default'	=> 50 ,
 		'options'	=> array(),
-	)
+	) ,
 
+	//parallel_fetch_max
+	array(
+		'name'		=> 'curl_multi_select_not_use',
+		'title'		=> '_MI_XUPDATE_CURL_MULTI_SELECT' ,
+		'description'	=> '_MI_XUPDATE_CURL_MULTI_SELECTDSC',
+		'formtype'	=> 'yesno',
+		'valuetype'	=> 'int',
+		'default'	=> 0 ,
+		'options'	=> array(),
+	) 
+	
 ##[cubson:config]
 ##[/cubson:config]
 );

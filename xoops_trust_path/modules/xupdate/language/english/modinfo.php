@@ -122,6 +122,8 @@ define('_MI_XUPDATE_SHOW_DISABLED_STORE'   , 'Show disabled stores');
 define('_MI_XUPDATE_SHOW_DISABLED_STOREDSC', 'Show the store that was disabled at the Add-on store. (This is for developers)');
 define('_MI_XUPDATE_PARALLEL_FETCH_MAX',     'HTTP connection Max');
 define('_MI_XUPDATE_PARALLEL_FETCH_MAXDSC',  'The number of HTTP simultaneous connection in the case of fetching the data of a store list.<br />When data acquisition cannot be carried out according to environment, it is necessary to reduce and adjust this value. (Default: 50)');
+define('_MI_XUPDATE_CURL_MULTI_SELECT',      'curl_multi_select not use');
+define('_MI_XUPDATE_CURL_MULTI_SELECTDSC',   'Choose "yes" only when the number of simultaneous connection is two or more and data acquisition goes wrong.');
 
 // progress messages
 define('_MI_XUPDATE_PROG_FILE_GETTING', 'Downloading the package.');
