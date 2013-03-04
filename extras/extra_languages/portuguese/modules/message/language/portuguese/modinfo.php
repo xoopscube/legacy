@@ -37,4 +37,11 @@ define("_MI_MESSAGE_SUB_SEND","Caixa de saída");
 define("_MI_MESSAGE_SUB_SETTINGS","Configurações");
 define("_MI_MESSAGE_USERINFO","Substituir o modelo HTML <q>user_userinfo.html</q>?");
 define("_MI_MESSAGE_USERINFO_DESC","Deseja alterar a interface das páginas dos associados (<q>template user_userinfo.html</q>) com o modelo deste módulo?");
+
+define('_MI_MESSAGE_DEFAULT_USEPM', 'Predefinição: mensagem privada de uso');
+define('_MI_MESSAGE_DEFAULT_USEPM_DESC', 'Configurar "Mensagem privada de uso" para a pessoa que não está configurada.');
+define('_MI_MESSAGE_DEFAULT_TOMAIL', 'Predefinição: encaminhar para o e-mail');
+define('_MI_MESSAGE_DEFAULT_TOMAIL_DESC', 'Configurar "Frente a e-mail" para a pessoa que não está configurada.');
+define('_MI_MESSAGE_DEFAULT_VIEWMSM', 'Configuração padrão: O corpo da mensagem é exibido no mail');
+define('_MI_MESSAGE_DEFAULT_VIEWMSM_DESC', 'Configurar "a mensagem é exibida no mail" para a pessoa que não está configurada.');
 ?>

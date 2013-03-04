@@ -8,10 +8,12 @@ class MessageSettingsObject extends XoopsSimpleObject
 {
   public function __construct()
   {
+    $mModuleConfig = XCube_Root::getSingleton()->mContext->mModuleConfig;
+
     $this->initVar('uid', XOBJ_DTYPE_INT, 0);
-    $this->initVar('usepm', XOBJ_DTYPE_INT, 1, true);
-    $this->initVar('tomail', XOBJ_DTYPE_INT, 0, true);
-    $this->initVar('viewmsm', XOBJ_DTYPE_INT, 0, true);
+    $this->initVar('usepm', XOBJ_DTYPE_INT, $mModuleConfig['usepm'], true);
+    $this->initVar('tomail', XOBJ_DTYPE_INT, $mModuleConfig['tomail'], true);
+    $this->initVar('viewmsm', XOBJ_DTYPE_INT, $mModuleConfig['viewmsm'], true);
     $this->initVar('pagenum', XOBJ_DTYPE_INT, 0, true);
     $this->initVar('blacklist', XOBJ_DTYPE_STRING, "");
   }
