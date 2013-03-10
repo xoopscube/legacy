@@ -5,6 +5,7 @@
  * @version $Id: LegacySearchService.class.php,v 1.4 2008/09/25 15:12:43 kilica Exp $
  * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+
  *
  */
 
@@ -40,8 +41,10 @@ class Legacy_SearchItem extends XCube_Object
             S_PUBLIC_VAR("string image"),
             S_PUBLIC_VAR("string link"),
             S_PUBLIC_VAR("string title"),
+	        S_PUBLIC_VAR("string body"),        // yoshis
             S_PUBLIC_VAR("int uid"),
-            S_PUBLIC_VAR("int time")
+            S_PUBLIC_VAR("int time"),
+	        S_PUBLIC_VAR("string time_desc")    // yoshis
         );
         
         return $ret;
@@ -214,7 +217,6 @@ class Legacy_SearchService extends XCube_Service
 
         $module =& Legacy_Utils::createModule($xoopsModule, false);
         $results = $module->doLegacyGlobalSearch($queries, $andor, $max_hit, $start, $uid);
-                
         if (is_array($results) && count($results) > 0) {
             foreach (array_keys($results) as $key) {
                 $timeval =& $results[$key]['time'];
