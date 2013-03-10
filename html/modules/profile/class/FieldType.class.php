@@ -278,7 +278,7 @@ class Profile_FieldTypeDate implements Profile_iFieldType
 
     public function getTableQuery()
     {
-        return 'INT(11) UNSIGNED NOT NULL';
+        return 'BIGINT(20) SIGNED';
     }
 
     public function setInitVar(/*** Profile_DataObject ***/ $obj, /*** string ***/ $key, /*** string ***/ $default)
