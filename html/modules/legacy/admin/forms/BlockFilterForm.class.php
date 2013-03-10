@@ -131,6 +131,49 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
 			$this->mNavi->addExtra('option_field', $this->mOptionField);
 		}
 
+		// added criteria of block module link
+		$selectedMid = (int) $root->mContext->mRequest->getRequest('selmid');
+		if ($selectedMid !== 0) {
+			$handler =& xoops_getmodulehandler('block_module_link');
+			$criteria = new CriteriaCompo(new Criteria('module_id', $selectedMid));
+			$criteria->add(new Criteria('module_id',0),'OR');
+			$selmodArrObj = $handler -> getObjects($criteria);
+			$selmodArr = array() ;
+			if (isset($selmodArrObj)){
+				foreach ($selmodArrObj as $selmodObj){
+				$selmodArr[] = $selmodObj->getShow('block_id');
+				}
+			}
+		}
+
+		// added criteria of group permissions
+		$selectedGid = (int) $root->mContext->mRequest->getRequest('selgid');
+		if ($selectedGid !== 0) {
+			$handler =& xoops_gethandler('groupperm');
+			$criteria =new CriteriaCompo();
+			$criteria->add(new Criteria('gperm_modid', 1));
+			$criteria->add(new Criteria('gperm_groupid', $selectedGid));
+			$criteria->add(new Criteria('gperm_name', 'block_read'));
+			$selgrpArrObj =&  $handler ->getObjects($criteria);
+			$selgrpArr = array() ;
+			if (isset($selgrpArrObj )){
+				foreach ($selgrpArrObj as $selgrpObj){
+				$selgrpArr[] = $selgrpObj->getShow('gperm_itemid');
+				}
+			}
+		}
+
+		$selModGrpArr = null;
+		if (isset($selmodArr) && isset($selgrpArr)) {
+			$selModGrpArr = array_intersect($selmodArr, $selgrpArr);
+		} elseif (isset($selmodArr)) {
+			$selModGrpArr = $selmodArr;
+		} elseif (isset($selgrpArr)) {
+			$selModGrpArr = $selgrpArr;
+		}
+		if (is_array($selModGrpArr)) {
+			$this->_mCriteria->add(new Criteria('bid', $selModGrpArr, 'IN'));
+		}
 
 		//
 		$this->_mCriteria->add(new Criteria('visible', $this->_getVisible()));
