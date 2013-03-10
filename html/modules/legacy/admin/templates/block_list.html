@@ -27,11 +27,14 @@
   <li class="addBlockCustom"><a href="index.php?action=CustomBlockEdit"><{$smarty.const._AD_LEGACY_LANG_ADD_CUSTOM_BLOCK}></a></li>
 </ul>
 
-<div>
+<div class="searchform">
 <form action="./index.php" method="get">
   <input type="hidden" name="action" value="BlockList" />
+  <div>
   <{$smarty.const._SEARCH}> : 
   <input type="text" name="search" value="<{$filterForm->mKeyword}>" />
+  </div>
+  <div>
   <{$smarty.const._AD_LEGACY_LANG_MOD_NAME}> : 
   <select name="dirname">
     <option value="0"><{$smarty.const._ALL}></option>
@@ -46,6 +49,29 @@
     <{/foreach}>
      <option value="-1"  <{if $filterForm->mModule == "cblock"}>selected="selected"<{/if}>><{$smarty.const._AD_LEGACY_LANG_CUSTOMBLOCK_EDIT}></option>
   </select>
+  </div>
+  <div>
+  <{$smarty.const._AD_LEGACY_LANG_TARGET_MODULES}> : 
+  <select name="selmid">
+    <option value="0"><{$smarty.const._AD_LEGACY_LANG_ALL_MODULES}></option>
+    <option value="-1" <{if $selectedMid == -1}>selected="selected"<{/if}>><{$smarty.const._AD_LEGACY_LANG_TOPPAGE}></option>
+    <{foreach from=$view_modules item=module}>
+        <option value="<{$module->getVar('mid')}>" <{if $module->getVar('mid') == $selectedMid}>selected="selected"<{/if}>>
+        <{$module->getVar('name')}></option>
+    <{/foreach}>
+  </select>
+  </div>
+  <div>
+  <{$smarty.const._AD_LEGACY_LANG_TARGET_GROUPS}> : 
+  <select name="selgid">
+    <option value="0"><{$smarty.const._ALL}></option>
+    <{foreach from=$groupArr item=groups}>
+        <option value="<{$groups->getVar('groupid')}>" <{if $groups->getVar('groupid') == $selectedGid }>selected="selected"<{/if}>>
+        <{$groups->getVar('name')}></option>
+    <{/foreach}>
+  </select>
+  </div>
+  <div>
   <{$smarty.const._AD_LEGACY_LANG_SIDE}> :
 	<select name="option_field">
 	<{if $filterForm->mOptionField == "all"}> 
@@ -61,6 +87,8 @@
 	<{/foreach}>
 	<{/if}>
 	</select>
+  </div>
+  <div>
   <{$smarty.const._VIEW}> : 
   <select name="perpage">
     <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
@@ -76,7 +104,10 @@
       <{/if}>
     <{/foreach}>
   </select>
-  <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+  </div>
+  <div>
+  <input class="formButton" type="submit" value="<{$smarty.const._SEARCH}>" />
+  </div>
 </form>
 </div>
 
