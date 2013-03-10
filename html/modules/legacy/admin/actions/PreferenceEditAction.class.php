@@ -118,7 +118,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
 		//
 		// Make the array of group object
 		//
-		if (in_array('group', $formtypeArr)||in_array('group_multi', $formtypeArr)) {
+		if (in_array('group', $formtypeArr)||in_array('group_multi', $formtypeArr)||in_array('group_checkbox', $formtypeArr)) {
 			$handler =& xoops_gethandler('group');
 			$groupArr =& $handler->getObjects();
 			$render->setAttribute('groupArr', $groupArr);
