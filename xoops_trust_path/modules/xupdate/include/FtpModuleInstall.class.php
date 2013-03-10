@@ -282,7 +282,13 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 					return false;
 				}
 			}
-
+			
+			// check extra languages
+			if (! $this->html_only) {
+				$this->_copy_extra_langs($this->dirname, $this->trust_dirname, 'trust');
+			}
+			$this->_copy_extra_langs($this->dirname, $this->trust_dirname, 'html');
+			
 			if ($this->trust_dirname === 'protector') {
 				// for protector 'manip_value' update
 				if (! XC_CLASS_EXISTS('Protector')) {
@@ -323,30 +329,11 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 				return false;
 			}
 			
-			// for legacy core extra languages
+			// check extra languages
+			$this->_copy_extra_langs($this->dirname);
+			
+			// for legacy only
 			if ($this->dirname === 'legacy') {
-				// copy extras languages
-				$langs = array();
-				if ($handle = opendir(XOOPS_ROOT_PATH . '/language')) {
-					while (false !== ($name = readdir($handle))) {
-						if ($name[0] !== '.' && is_dir(XOOPS_ROOT_PATH . '/language/' . $name)) {
-							$langs[] = $name;
-						}
-					}
-					closedir($handle);
-				}
-				//adump($langs);
-				foreach ($langs as $lang) {
-					$uploadPath = XOOPS_ROOT_PATH . '/' ;
-					$unzipPath =  $this->exploredDirPath . '/extras/extra_languages/' . $lang;
-					if (file_exists($unzipPath)) {
-						$result = $this->Ftp->uploadNakami($unzipPath, $uploadPath);
-						if (! $this->_check_file_upload_result($result, 'html')){
-							return false;
-						}
-					}
-				}
-				
 				// for protector 'manip_value' update
 				if (XC_CLASS_EXISTS('Protector')) {
 					$db =& Database::getInstance();
@@ -366,6 +353,68 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 		return true;
 	}
 
+	/**
+	 * _copy_extra_langs: copy extras languages
+	 * 
+	 * @param string $dirname
+	 * @param string $trust_dirname
+	 * @param string $side
+	 */
+	private function _copy_extra_langs($dirname, $trust_dirname = '', $side = 'html')
+	{
+		static $langs = null;
+		
+		if (is_null($langs)) {
+			$langs = array();
+			if ($handle = opendir(XOOPS_ROOT_PATH . '/language')) {
+				while (false !== ($name = readdir($handle))) {
+					if ($name[0] !== '.' && is_dir(XOOPS_ROOT_PATH . '/language/' . $name)) {
+						$langs[] = $name;
+					}
+				}
+				closedir($handle);
+			}
+		}
+		
+		$uploadDir = $checkDir = array();
+		$isLegacy = ($dirname === 'legacy');
+		if ($isLegacy) {
+			$checkDir[] = $this->exploredDirPath . '/extras/extra_languages/<LANG>/html';
+			$uploadDir[] = XOOPS_ROOT_PATH . '/';
+			
+			$checkDir[] = $this->exploredDirPath . '/extras/extra_languages/<LANG>';
+			$uploadDir[] = XOOPS_ROOT_PATH . '/';
+		} else {
+			if ($side === 'trust') {
+				$side = 'xoops_trust_path';
+				$base = XOOPS_TRUST_PATH ;
+				$arc_dirname = $trust_dirname;
+			} else {
+				$side = 'html';
+				$base = XOOPS_ROOT_PATH ;
+				$arc_dirname = $trust_dirname? $trust_dirname : $dirname;
+			}
+			$checkDir[] = $this->exploredDirPath . '/extras/'.$side.'/modules/'.$arc_dirname.'/language/<LANG>';
+			$uploadDir[] = $base . '/modules/'.$dirname.'/language/<LANG>/';
+		}
+		foreach ($langs as $lang) {
+			$unzipPath = '';
+			foreach($checkDir as $i => $dir) {
+				$dir = str_replace('<LANG>', $lang, $dir);
+				if (is_dir($dir) && (! $isLegacy || is_dir($dir . '/language'))) {
+					$unzipPath = $dir;
+					$uploadPath = str_replace('<LANG>', $lang, $uploadDir[$i]);
+					break;
+				}
+			}
+			if ($unzipPath) {
+				$result = $this->Ftp->uploadNakami($unzipPath, $uploadPath);
+				$this->_check_file_upload_result($result, $side);
+			}
+		}
+	}
+	
+	
 	/**
 	 * _get_nextlink
 	 *
@@ -428,6 +477,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			}
 		}
 		if (isset($checker['html']) || isset($checker['xoops_trust_path'])) {
+			$this->Ftp->exploredDirPath = $this->exploredDirPath;
 			$this->Ftp->appendMes('found files exploredDirPath: '.$this->exploredDirPath.'<br />');
 			return true;
 		}
