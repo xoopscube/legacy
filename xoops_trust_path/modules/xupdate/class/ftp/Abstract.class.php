@@ -21,6 +21,7 @@ class Xupdate_Ftp_Abstract {
 	protected $Verbose;
 	protected $OS_local;
 	protected $OS_remote;
+	public $exploredDirPath;
 
 	/* Private variables */
 	protected $_lastaction;

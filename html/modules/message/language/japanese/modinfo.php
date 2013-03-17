@@ -17,6 +17,12 @@ define('_MI_MESSAGE_USERINFO', 'user_userinfo.htmlの差替え');
 define('_MI_MESSAGE_USERINFO_DESC', 'user_userinfo.htmlをこのモジュールのものに変更するか');
 define('_MI_MESSAGE_DELTYPE', '未読メッセージの削除');
 define('_MI_MESSAGE_DELTYPE_DESC', '保存期間の過ぎた未読メッセージを自動削除するかどうか');
+define('_MI_MESSAGE_DEFAULT_USEPM', 'デフォルト設定：プライベートメッセージを使う');
+define('_MI_MESSAGE_DEFAULT_USEPM_DESC', '未設定ユーザーの「プライベートメッセージを使う」動作を規定します。');
+define('_MI_MESSAGE_DEFAULT_TOMAIL', 'デフォルト設定：メールに転送する');
+define('_MI_MESSAGE_DEFAULT_TOMAIL_DESC', '未設定ユーザーの「メールに転送する」動作を規定します。');
+define('_MI_MESSAGE_DEFAULT_VIEWMSM', 'デフォルト設定：メールに本文を表示する');
+define('_MI_MESSAGE_DEFAULT_VIEWMSM_DESC', '未設定ユーザーの「メールに本文を表示する」動作を規定します。');
 
 define('_MI_MESSAGE_BLOCK_NAME', '新着ブロック');
 define('_MI_MESSAGE_INSTALL_ERROR', 'このモジュールはPHP5.0以上でないと動作しません。');
