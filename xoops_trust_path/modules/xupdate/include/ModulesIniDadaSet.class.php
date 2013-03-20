@@ -282,7 +282,11 @@ class Xupdate_ModulesIniDadaSet
 									}
 									unset($criteria, $_objs);
 								}
-								$item = $this->_getItemArrFromObj($rObjs[$_sid][$item['target_key']], true);
+								if (isset($rObjs[$_sid][$item['target_key']])) {
+									$item = $this->_getItemArrFromObj($rObjs[$_sid][$item['target_key']], true);
+								} else {
+									continue; // @todo why? not set "$rObjs[$_sid][$item['target_key']]"
+								}
 							} else {
 								foreach(array('description', 'tag') as $_key) {
 									if (! @ json_encode($item[$_key])) {
