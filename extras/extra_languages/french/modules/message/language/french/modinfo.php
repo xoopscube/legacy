@@ -17,6 +17,12 @@ define('_MI_MESSAGE_USERINFO', 'Remplacer user_userinfo.html?');
 define('_MI_MESSAGE_USERINFO_DESC', 'Changer le template du profil utilisateur (user_userinfo.html) par celui de ce module?');
 define('_MI_MESSAGE_DELTYPE', 'Purger les messages non-lus?');
 define('_MI_MESSAGE_DELTYPE_DESC', 'Les messages non-lus sont automatiquement supprimés durant le processus de purge.');
+define('_MI_MESSAGE_DEFAULT_USEPM', 'Par défaut: message privé dutilisation');
+define('_MI_MESSAGE_DEFAULT_USEPM_DESC', 'Mettre en place "Message privé demploi" pour la personne qui nest pas définie.');
+define('_MI_MESSAGE_DEFAULT_TOMAIL', 'Par défaut : vers lavant à lemail');
+define('_MI_MESSAGE_DEFAULT_TOMAIL_DESC', 'Mettre en place "Forward to email" pour la personne qui nest pas définie.');
+define('_MI_MESSAGE_DEFAULT_VIEWMSM', 'Par défaut : le corps du message saffiche dans le courrier');
+define('_MI_MESSAGE_DEFAULT_VIEWMSM_DESC', 'Mettre en place "le message est affiché dans le courrier" pour la personne qui nest pas définie.');
 
 define('_MI_MESSAGE_BLOCK_NAME', 'Nouveaux Messages');
 define('_MI_INQUIRY_INSTALL_ERROR', 'Ce module ne fonctionne qu\'avec PHP5.');
