@@ -7,6 +7,29 @@
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
 
+class Lecat_Delegate
+{
+	public static function getBreadcrumbs(/*** Array ***/ &$breadcrumbs, /*** string ***/ $dirname, /*** Lecat_CategoryObject ***/ $category=null)
+    {
+        //module name set
+        $modHandler = xoops_gethandler('module');
+        $module = $modHandler->getByDirname($dirname);
+        $breadcrumbs[] = array('name'=>$module->getVar('name'), 'url'=>Legacy_Utils::renderUri($dirname));
+
+        //catetgory name set
+        if($category instanceof Lecat_CatObject){
+            $category->loadCatPath();
+            //parent page set
+            $idArr = array_reverse($category->mCatPath['cat_id']);
+            $titleArr = array_reverse($category->mCatPath['title']);
+            foreach(array_keys($idArr) as $key){
+                $breadcrumbs[] = array('name'=>$titleArr[$key], 'url'=>Legacy_Utils::renderUri($dirname, null, $idArr[$key]));
+            }
+            $breadcrumbs[] = array('name'=>$category->getShow('title'), 'url'=>Legacy_Utils::renderUri($dirname, null, $category->getShow('cat_id')));
+        }
+    }
+}
+
 class Lecat_CoolUriDelegate
 {
 	/**

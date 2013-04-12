@@ -44,6 +44,7 @@ class Lecat_CatViewAction extends Lecat_AbstractViewAction
 	{
 		parent::prepare();
 		$this->mObject->loadPcat();
+        $this->mObject->loadCatPath();
 	
 		//for Permissions
 		$this->mPermit->set('cat_id', $this->mObject->get('cat_id'));
@@ -69,6 +70,18 @@ class Lecat_CatViewAction extends Lecat_AbstractViewAction
 		parent::_setupObject();
 		$this->mPermit =Legacy_Utils::getModuleHandler('permit', $this->mAsset->mDirname)->create();
 	}
+
+    /**
+     * getPageTitle
+     *
+     * @param   void
+     *
+     * @return  string
+     **/
+    public function getPagetitle()
+    {
+        return $this->mObject->getShow('title');
+    }
 
     /**
      * executeViewSuccess
@@ -106,6 +119,9 @@ class Lecat_CatViewAction extends Lecat_AbstractViewAction
 			$list = $this->mObject->getClientData($client, $list);
 		}
 		$render->setAttribute('clients', $list);
+
+        $breadcrumbs = $this->_getBreadcrumb($this->mObject);
+        $render->setAttribute('xoops_breadcrumbs', $breadcrumbs);
     }
 }
 

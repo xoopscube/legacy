@@ -36,6 +36,11 @@ Then, they can use this module's delegate functions of Lecat_DelegateFunctions c
 
 Update History
 --------------
+ver 2.03
+- Add category image working with legacy_image module.
+- Add category list block.
+- Fix Bug: module uninstaller using old method Lecat_Utils::getModuleHandler().
+
 ver 2.01
 - Check client data existence before delete the category.
 
