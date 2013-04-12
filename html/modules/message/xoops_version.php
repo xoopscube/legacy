@@ -9,7 +9,7 @@ $mydirpath = basename( dirname( dirname( __FILE__ ) ) ) ;
 
 $modversion['name'] = _MI_MESSAGE_NAME;
 $modversion['dirname'] = basename(dirname(__FILE__));
-$modversion['version'] = 1.18;
+$modversion['version'] = 1.19;
 $modversion['description'] = _MI_MESSAGE_DESC;
 $modversion['author'] = 'Marijuana';
 $modversion['credits'] = "XOOPS Cube Project";
@@ -85,6 +85,27 @@ $modversion['config'][4]['formtype']	= 'yesno';
 $modversion['config'][4]['valuetype']	= 'int';
 $modversion['config'][4]['default'] 	= '1';
 
+$modversion['config'][5]['name']		= 'usepm';
+$modversion['config'][5]['title']		= '_MI_MESSAGE_DEFAULT_USEPM';
+$modversion['config'][5]['description'] = '_MI_MESSAGE_DEFAULT_USEPM_DESC';
+$modversion['config'][5]['formtype']	= 'yesno';
+$modversion['config'][5]['valuetype']	= 'int';
+$modversion['config'][5]['default'] 	= '1';
+
+$modversion['config'][6]['name']		= 'tomail';
+$modversion['config'][6]['title']		= '_MI_MESSAGE_DEFAULT_TOMAIL';
+$modversion['config'][6]['description'] = '_MI_MESSAGE_DEFAULT_TOMAIL_DESC';
+$modversion['config'][6]['formtype']	= 'yesno';
+$modversion['config'][6]['valuetype']	= 'int';
+$modversion['config'][6]['default'] 	= '0';
+
+$modversion['config'][7]['name']		= 'viewmsm';
+$modversion['config'][7]['title']		= '_MI_MESSAGE_DEFAULT_VIEWMSM';
+$modversion['config'][7]['description'] = '_MI_MESSAGE_DEFAULT_VIEWMSM_DESC';
+$modversion['config'][7]['formtype']	= 'yesno';
+$modversion['config'][7]['valuetype']	= 'int';
+$modversion['config'][7]['default'] 	= '0';
+
 $modversion['blocks'][0]['file']		= 'message_block.class.php';
 $modversion['blocks'][0]['name']		= _MI_MESSAGE_BLOCK_NAME;
 $modversion['blocks'][0]['description'] = '';
@@ -93,4 +114,5 @@ $modversion['blocks'][0]['class']		= 'Block';
 $modversion['blocks'][0]['template']	= 'message_block_template.html';
 $modversion['blocks'][0]['visible'] 	= '1';
 $modversion['blocks'][0]['func_num']	= 1;
+
 ?>
