@@ -155,7 +155,14 @@ class Lecat_CatEditAction extends Lecat_AbstractEditAction
 		$render->setAttribute('object', $this->mObject);
 		$render->setAttribute('catArr', $catArr);
 		$render->setAttribute('dirname', $this->mAsset->mDirname);
-	}
+
+        //setup images
+        $this->mObject->setupImages($isPost=false);
+        $render->setAttribute('imageObjs', $this->mObject->mImage);
+        $render->setAttribute('imageNameList', Xcck_Utils::getImageNameList($this->mAsset->mDirname));
+    }
+
+
 }
 
 ?>

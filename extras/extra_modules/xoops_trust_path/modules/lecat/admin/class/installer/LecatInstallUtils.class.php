@@ -678,7 +678,7 @@ class Lecat_InstallUtils
 	**/
 	public static function updateBlockByInfo(/*** Legacy_BlockInformation ***/ &$info,/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
 	{
-		$blockHandler =& Lecat_Utils::getModuleHandler('newblocks','legacy');
+		$blockHandler =& Legacy_Utils::getModuleHandler('newblocks','legacy');
 		$cri =new CriteriaCompo();
 		$cri->add(new Criteria('dirname',$module->get('dirname')));
 		$cri->add(new Criteria('func_num',$info->mFuncNum));

@@ -52,15 +52,27 @@ define('_MI_LECAT_LANG_LECAT', 'Lecat');
 define('_MI_LECAT_DESC_LECAT', 'カテゴリモジュール');
 define('_MI_LECAT_LANG_AUTHOR', 'HIKAWA Kilica <http://xoopsdev.com/>');
 define('_MI_LECAT_LANG_CREDITS', 'HIKAWA Kilica');
+
+/*** templates ***/
 define('_MI_LECAT_TPL_CAT_LIST', 'カテゴリ一覧');
 define('_MI_LECAT_TPL_CAT_EDIT', 'カテゴリ編集');
 define('_MI_LECAT_TPL_CAT_DELETE', 'カテゴリ削除');
 define('_MI_LECAT_TPL_CAT_VIEW', 'カテゴリ表示');
 define('_MI_LECAT_TPL_DEFAULT_SET', '初期アクセス権設定');
 define('_MI_LECAT_TPL_ACTOR_EDIT', '権限の編集');
+
+/*** Configs ***/
 define('_MI_LECAT_LANG_CSS_FILE', 'CSS ファイルのURL');
 define('_MI_LECAT_DESC_CSS_FILE', 'カテゴリモジュール用のCSSファイルの場所を設定します（'.XOOPS_URL.'以降を入力）');
 define('_MI_LECAT_LANG_MAXDEPTH', '階層制限');
 define('_MI_LECAT_DESC_MAXDEPTH', 'カテゴリ階層の制限。0にすると無制限');
+define('_MI_LECAT_LANG_IMAGES', 'カテゴリ画像');
+define('_MI_LECAT_DESC_IMAGES', 'カテゴリ用の画像を使う場合、改行区切りでラベルを指定します。<br />
+例）<br />
+カテゴリバナー画像<br />
+カテゴリアイコン<br />');
 
+/*** blocks ***/
+define('_MI_LECAT_BLOCK_NAME_LIST', 'カテゴリ一覧');
+define('_MI_LECAT_BLOCK_DESC_LIST', 'カテゴリツリーを表示します');
 ?>

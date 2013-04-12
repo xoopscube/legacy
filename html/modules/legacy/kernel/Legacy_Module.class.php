@@ -553,7 +553,11 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
             foreach ($results as $result) {
                 $item = array();
                 if (isset($result['image']) && strlen($result['image']) > 0) {
-                    $item['image'] = XOOPS_URL . '/modules/' . $this->mXoopsModule->get('dirname') . '/' . $result['image'];
+                    if (file_exists(XOOPS_ROOT_PATH . '/uploads/' . $result['image'])){
+                        $item['image'] = XOOPS_URL . '/uploads/' . $result['image'];
+                    } else {
+                        $item['image'] = XOOPS_URL . '/modules/' . $this->mXoopsModule->get('dirname') . '/' . $result['image'];
+                    }
                 }
                 else {
                     $item['image'] = XOOPS_URL . '/images/icons/posticon2.gif';

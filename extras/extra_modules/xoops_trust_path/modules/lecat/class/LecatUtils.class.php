@@ -41,6 +41,30 @@ class Lecat_Utils
 		return getenv($key);
 	}
 
+    /**
+     * getModuleConfig
+     *
+     * @param   string  $dirname
+     * @param   string  $key
+     *
+     * @return  mixed
+     **/
+    public static function getModuleConfig(/*** string ***/ $dirname, /*** string ***/ $key)
+    {
+        static $config = array();
+        if(! isset($config[$dirname])){
+            $chandler = xoops_gethandler('config');
+            $config[$dirname] = $chandler->getConfigsByDirname($dirname);
+        }
+        return isset($config[$dirname][$key]) ? $config[$dirname][$key] : null;
+    }
+
+    public static function getImageNameList(/*** string ***/ $dirname)
+    {
+        $list = array();
+        return trim(self::getModuleConfig($dirname, 'images')) ? preg_split('/\x0d\x0a|\x0d|\x0a/', self::getModuleConfig($dirname, 'images'), null) : array();
+    }
+
 	/**
 	 * getActorList
 	 * 

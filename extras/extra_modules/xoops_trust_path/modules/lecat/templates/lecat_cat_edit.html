@@ -9,7 +9,7 @@
   </ul>
 <{/if}>
 <h1><{$smarty.const._MD_LECAT_LANG_CAT_EDIT}></h1>
-<form action="<{xoops_cooluri dirname=$dirname dataname=cat action=edit}>" method="post">
+<form action="<{xoops_cooluri dirname=$dirname dataname=cat action=edit}>" method="post"  enctype="multipart/form-data">
   <table class="outer" summary="">
     <caption>
       <{if $actionForm->get('cat_id')}>
@@ -53,7 +53,20 @@
           <{xoops_input type=text name=weight value=$actionForm->get('weight')}>
         </td>
       </tr>
-    </tbody>
+      <{foreach item=imageKey from=$imageNameList key=n}>
+      <tr>
+          <th><{$imageNameList[$n]}></th>
+          <td>
+              <{if $imageObjs[$n] && $imageObjs[$n]->isNew()===false}>
+              <{xoops_input type="checkbox" name="legacy_image_delete[$n]" value="1"}>
+              <{$imageObjs[$n]->makeImageTag(0)}><br />
+              <{/if}>
+              <{xoops_input type="file" name="legacy_image[$n]" size="30"}>
+              <{xoops_input type="hidden" name="legacy_image_id[$n]" value=$imageObjs[$n]->getShow('image_id')}>
+          </td>
+      </tr>
+      <{/foreach}>
+   </tbody>
     <tfoot>
       <tr>
         <td class="foot" colspan="2">
