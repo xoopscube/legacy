@@ -696,6 +696,18 @@ class Xupdate_ModulesIniDadaSet
 			$tag = '' ;
 		}
 		
+		if ($item['dirname'] === 'legacy') {
+			// check altsys
+			if (! file_exists(XOOPS_TRUST_PATH.'/libs/altsys/class/D3LanguageManager.class.php') && isset($item_arr['no_update'])) {
+				$no_update = $item_arr['no_update'];
+				foreach($no_update as $_key => $_val) {
+					if (substr($_val, -6) === 'altsys') {
+						unset($item_arr['no_update'][$_key]);
+					}
+				}
+			}
+		}
+		
 		$item['options']= serialize($item_arr) ;
 		
 		// clean up
