@@ -22,9 +22,7 @@ class Xupdate_Root extends XoopsSimpleObject {
 		}
 		
 		// load compatibility code
-		if (version_compare(PHP_VERSION, '5.2.0', '<')) {
-			require_once XUPDATE_TRUST_PATH . '/include/compat.php';
-		}
+		require_once XUPDATE_TRUST_PATH . '/include/compat.php';
 		
 		$this->xoops_root_path = XOOPS_ROOT_PATH;
 
