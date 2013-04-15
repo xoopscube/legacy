@@ -103,7 +103,8 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 				if ($is_upload_retry) {
 					$this->downloadedFilePath = $this->Func->_getDownloadFilePath( $downloadDirPath, $this->download_file );
 				}
-				if($this->_unzipFile($caller)) {
+				if($this->_unzipFile()) {
+					@ unlink( $this->downloadedFilePath );
 					$GLOBALS['xupdate_stage'] = 3;
 					if ($caller === 'preload') {
 						$set_member = 'exploredPreloadPath';
@@ -184,8 +185,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			}
 			//
 
-//TODO unlink ok?
-			@unlink( $this->downloadedFilePath );
+			@ unlink( $this->downloadedFilePath );
 
 			$this->content.= _MI_XUPDATE_PROG_COMPLETED . '<br /><br />';
 			
