@@ -402,6 +402,7 @@ input[type="radio"] {
 }
 
 #xupdate div.eachstore dt a {
+	display: inline-block;
 	font-weight: bold;
 	border: 1px solid #c2bebe;
 	padding: 7px 20px;

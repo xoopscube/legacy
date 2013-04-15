@@ -39,13 +39,13 @@ define('_AD_XUPDATE_LANG_BUTTON_UPDATE', '更新');
 
 define('_AD_XUPDATE_LANG_TIMEOUT_ERROR', 'PHP 実行時タイムアウト');
 define('_AD_XUPDATE_LANG_STAGE_1', 'アーカイブのダウンロードを開始しました。');
-define('_AD_XUPDATE_LANG_STAGE_2', 'ダウンロード完了。');
+define('_AD_XUPDATE_LANG_STAGE_2', 'アーカイブから抽出を開始しました。');
 define('_AD_XUPDATE_LANG_STAGE_3', '対象ディレクトリの探索中。');
 define('_AD_XUPDATE_LANG_STAGE_4', 'FTP接続完了。');
 define('_AD_XUPDATE_LANG_STAGE_5', 'ファイルの配置を開始しました。');
 define('_AD_XUPDATE_LANG_STAGE_6', 'ファイルの配置完了。');
 define('_AD_XUPDATE_LANG_STAGE_7', 'パーミッション設定完了。');
-define('_AD_XUPDATE_LANG_STAGE_TIMEOUT', 'PHP の実行時間制限によりタイムアウトしました。');
+define('_AD_XUPDATE_LANG_STAGE_TIMEOUT', 'PHP の実行時間制限によるタイムアウト、又はメモリ不足などの原因により処理を中断しました。');
 define('_AD_XUPDATE_LANG_STAGE_UPLOAD_RETRY', 'ファイル配置の続きを実行をするにはここをクリック');
 define('_AD_XUPDATE_LANG_STAGE_TASK_RETRY', '続きの処理を実行をするにはここをクリック');
 define('_AD_XUPDATE_LANG_STAGE_UPLOAD_NOT_COMPLETE', 'ファイルの配置が不完全なため [ <a href="%s">こちらのリンク</a> ] からアーカイブを取得して、手作業で FTP アップロードを行いファイルを適切に配置してください。');
