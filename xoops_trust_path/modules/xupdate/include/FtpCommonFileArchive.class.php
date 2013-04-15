@@ -6,6 +6,7 @@ require_once XUPDATE_TRUST_PATH .'/include/FtpCommonFunc.class.php';
 class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 
 	private $is_safemode;
+	protected $retry_phase;
 	
 	public function __construct() {
 		parent::__construct();
@@ -40,44 +41,48 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 			return false;//chdir error
 		}
 		
-		$extractor = '_unzipFile_FileArchive';
-		
-		// check shell cmd
-		if (substr($this->download_file, -4) === '.zip') {
+		if ($this->retry_phase === 2) {
+			$extractor = '_unzipFile_FileArchiveCareful';
+		} else {
+			$extractor = ($this->is_safemode)? '_unzipFile_FileArchiveCareful' : '_unzipFile_FileArchive';
+			
 			// check shell cmd
-			$this->procExec('unzip --help', $o, $c);
-			if ($c === 0) {
-				$extractor = '_unzipFile_Unzip';
-			} else {
-				// check ZipArchive
-				if (! $this->is_safemode) {
-					$mod_zip = false;
-					if(! class_exists('ZipArchive')){
-						if (! extension_loaded('zip')) {
-							if (function_exists('dl')){
-								$prefix = (PHP_SHLIB_SUFFIX == 'dll') ? 'php_' : '';
-								@ dl($prefix . 'zip.' . PHP_SHLIB_SUFFIX);
+			if (substr($this->download_file, -4) === '.zip') {
+				// check shell cmd
+				$this->procExec('unzip --help', $o, $c);
+				if ($c === 0) {
+					$extractor = '_unzipFile_Unzip';
+				} else {
+					// check ZipArchive
+					if (! $this->is_safemode) {
+						$mod_zip = false;
+						if(! class_exists('ZipArchive')){
+							if (! extension_loaded('zip')) {
+								if (function_exists('dl')){
+									$prefix = (PHP_SHLIB_SUFFIX == 'dll') ? 'php_' : '';
+									@ dl($prefix . 'zip.' . PHP_SHLIB_SUFFIX);
+								}
 							}
-						}
-						if (class_exists('ZipArchive')) {
+							if (class_exists('ZipArchive')) {
+								$mod_zip = true;
+							}
+						} else {
 							$mod_zip = true;
 						}
-					} else {
-						$mod_zip = true;
-					}
-					if ($mod_zip) {
-						$extractor = '_unzipFile_ZipArchive';
+						if ($mod_zip) {
+							$extractor = '_unzipFile_ZipArchive';
+						}
 					}
 				}
-			}
-		} else if (substr($this->download_file, -7) === '.tar.gz') {
-			// check shell cmd
-			$this->procExec('tar --version', $o, $c);
-			if ($c === 0) {
-				unset($o);
-				$this->procExec('gzip --version', $o, $c);
+			} else if (substr($this->download_file, -7) === '.tar.gz') {
+				// check shell cmd
+				$this->procExec('tar --version', $o, $c);
 				if ($c === 0) {
-					$extractor = '_unzipFile_Tar';
+					unset($o);
+					$this->procExec('gzip --version', $o, $c);
+					if ($c === 0) {
+						$extractor = '_unzipFile_Tar';
+					}
 				}
 			}
 		}
@@ -95,6 +100,11 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 		return $ret;
 	}
 	
+	/**
+	 * _unzipFile use unzip cmd
+	 *
+	 * @return	bool
+	 **/
 	private function _unzipFile_Unzip($downloadFilePath, $exploredDirPath) {
 		
 		$this->procExec('unzip ' . $downloadFilePath, $o, $c);
@@ -106,6 +116,11 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 		}
 	}
 	
+	/**
+	 * _unzipFile use tar cmd
+	 *
+	 * @return	bool
+	 **/
 	private function _unzipFile_Tar($downloadFilePath, $exploredDirPath) {
 	
 		$this->procExec('tar -xzf ' . $downloadFilePath, $o, $c);
@@ -114,53 +129,6 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 			return false;
 		} else {
 			return true;
-		}
-	}
-	
-	/**
-	 * _unzipFile use File_Archive
-	 *
-	 * @return	bool
-	 **/
-	private function _unzipFile_FileArchive($downloadFilePath, $exploredDirPath)
-	{
-		require_once 'File/Archive.php';
-		
-		if ($this->is_safemode) {
-			// make dirctory at first for safe_mode
-			$dirs = array();
-			if ($source = File_Archive::read($downloadFilePath.'/', $exploredDirPath)) {
-				if (is_object($source) && get_class($source) !== 'PEAR_Error') {
-					while ($source->next()) {
-						$file = $source->getFilename();
-						$dir = dirname($file);
-						if (!isset($dirs[$dir])) {
-							$dirs[$dir] = true;
-							$this->Ftp->localMkdir($dir);
-							$this->Ftp->localChmod($dir, 0707);
-						}
-					}
-					$source->close();
-				} else {
-					return false;
-				}
-			} else {
-				return false;
-			}
-		}
-		
-		if ($source = File_Archive::read($downloadFilePath.'/')) {
-			if (is_object($source) && get_class($source) !== 'PEAR_Error') {
-				File_Archive::extract(
-					$source,
-					File_Archive::appender($exploredDirPath)
-				);
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
 		}
 	}
 
@@ -217,6 +185,98 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 		$zip->close();
 	
 		return true;
+	}
+	
+	/**
+	 * _unzipFile use File_Archive
+	 *
+	 * @return	bool
+	 **/
+	private function _unzipFile_FileArchive($downloadFilePath, $exploredDirPath)
+	{
+		require_once 'File/Archive.php';
+		
+		if ($source = File_Archive::read($downloadFilePath.'/')) {
+			if (is_object($source) && get_class($source) !== 'PEAR_Error') {
+				File_Archive::extract(
+					$source,
+					File_Archive::appender($exploredDirPath)
+				);
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * _unzipFile use ZipArchive for recovery
+	 *
+	 * @return	bool
+	 **/
+	private function _unzipFile_FileArchiveCareful($downloadFilePath, $exploredDirPath)
+	{
+		require_once 'File/Archive.php';
+		
+		$source = File_Archive::read($downloadFilePath . '/');
+		$className = 'File_Archive_Reader';
+		$ret = true;
+		if ($source instanceof $className) {
+			$writer = File_Archive::appender($exploredDirPath);
+			if (PEAR::isError($writer)) {
+				$source->close();
+				//$this->message = $writer->getMessage()
+				return false;
+			}
+				
+			$dirs = array();
+			while ($source->next() === true) {
+				$inner = $source->getFilename();
+				$file = $exploredDirPath . '/' . $inner;
+				$stat = $source->getStat();
+	
+				// skip extract if file already exists.
+				if ( is_dir($file)
+						|| (is_file($file) && filesize($file) == $stat['size'])) {
+					continue;
+				}
+	
+				// make dirctory at first for safe_mode
+				if ($this->is_safemode) {
+					$dir = (substr($file, -1) == '/') ? substr($file, 0, -1) : dirname($file);
+					while (!isset($dirs[$dir]) && $dir != $exploredDirPath) {
+						$dirs[$dir] = true;
+						$this->Ftp->localMkdir($dir);
+						$this->Ftp->localChmod($dir, 0707);
+						$dir = dirname($dir);
+					}
+				}
+	
+				$error = $writer->newFile($inner, $stat);
+				if (PEAR::isError($error)) {
+					//$this->message = $error->getMessage();
+					$ret = false;
+					break;
+				}
+	
+				$error = $source->sendData($writer);
+				if (PEAR::isError($error)) {
+					//$this->message = $error->getMessage();
+					$ret = false;
+					break;
+				}
+			}//end loop
+		} else {
+			if (PEAR::isError($source)) {
+				//$this->message = $source->getMessage();
+			}
+			return false;
+		}
+		$writer->close();
+		$source->close();
+		return $ret;
 	}
 	
 	/**
