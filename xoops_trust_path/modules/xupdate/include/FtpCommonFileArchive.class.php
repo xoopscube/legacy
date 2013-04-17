@@ -5,12 +5,8 @@ require_once XUPDATE_TRUST_PATH .'/include/FtpCommonFunc.class.php';
 
 class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 
-	private $is_safemode;
-	protected $retry_phase;
-	
 	public function __construct() {
 		parent::__construct();
-		$this->is_safemode = (ini_get('safe_mode') == "1");
 	}
 
 	public function _unzipFile() {
@@ -44,7 +40,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 		if ($this->retry_phase === 2) {
 			$extractor = '_unzipFile_FileArchiveCareful';
 		} else {
-			$extractor = ($this->is_safemode)? '_unzipFile_FileArchiveCareful' : '_unzipFile_FileArchive';
+			$extractor = ($this->Ftp->isSafeMode)? '_unzipFile_FileArchiveCareful' : '_unzipFile_FileArchive';
 			
 			// check shell cmd
 			if (substr($this->download_file, -4) === '.zip') {
@@ -54,7 +50,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 					$extractor = '_unzipFile_Unzip';
 				} else {
 					// check ZipArchive
-					if (! $this->is_safemode) {
+					if (! $this->Ftp->isSafeMode) {
 						$mod_zip = false;
 						if(! class_exists('ZipArchive')){
 							if (! extension_loaded('zip')) {
@@ -233,6 +229,8 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 				
 			$dirs = array();
 			while ($source->next() === true) {
+				Xupdate_Utils::check_http_timeout();
+				
 				$inner = $source->getFilename();
 				$file = $exploredDirPath . '/' . $inner;
 				$stat = $source->getStat();
@@ -244,13 +242,15 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 				}
 	
 				// make dirctory at first for safe_mode
-				if ($this->is_safemode) {
+				if ($this->Ftp->isSafeMode) {
 					$dir = (substr($file, -1) == '/') ? substr($file, 0, -1) : dirname($file);
-					while (!isset($dirs[$dir]) && $dir != $exploredDirPath) {
-						$dirs[$dir] = true;
+					if (!isset($dirs[$dir]) && $dir != $exploredDirPath) {
 						$this->Ftp->localMkdir($dir);
-						$this->Ftp->localChmod($dir, 0707);
-						$dir = dirname($dir);
+						while (!isset($dirs[$dir]) && $dir != $exploredDirPath) {
+							$dirs[$dir] = true;
+							$this->Ftp->localChmod($dir, 0707);
+							$dir = dirname($dir);
+						}
 					}
 				}
 	

@@ -48,6 +48,12 @@ class Xupdate_Root extends XoopsSimpleObject {
 		$this->params['temp_path'] = XOOPS_TRUST_PATH . '/'.trim($this->mod_config['temp_path'],'/') ;
 		//adump($this->params['temp_path']);
 
+		// define system cache file
+		if (! defined('_MD_XUPDATE_SYS_LOCK_FILE')) {
+			define('_MD_XUPDATE_SYS_LOCK_FILE', $this->params['temp_path'] . '/xupdate.lock');
+			define('_MD_XUPDATE_SYS_RETRYSER_FILE', $this->params['temp_path'] . '/retry_cache.ser');
+		}
+		
 		$tmpf = rtrim($this->params['temp_path'], '/');
 		$tmpf_realpath = realpath($tmpf);
 		if (empty($tmpf_realpath)){

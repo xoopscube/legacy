@@ -31,22 +31,28 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 		if( $this->Xupdate->params['is_writable']['result'] === true ) {
 			$this->retry_phase = isset($_POST['upload_retry'])? intval($_POST['upload_retry']) : 0;
 			
-			$GLOBALS['xupdate_stage'] = 1;
+			$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
+			// check excutable & retry_phase
+			if (! $this->is_xupdate_excutable()) {
+				if ($this->retry_phase === 0 || ! file_exists($downloadDirPath.'/'.$this->target_key)) {
+					$this->content.= '<div class="error">' . _MI_XUPDATE_ANOTHER_PROCESS_RUNNING . '</div>';
+					return false;
+				}
+			}
 			
 			// clean up download dirctory
 			if (! $this->retry_phase) {
 				$this->_cleanUp_downloadDir();
+			} else {
+				$this->Ftp->appendMes('Retry phase: '.$this->retry_phase.'<br />');
 			}
+			
+			$this->_set_stage(1);
 			
 			if(! $this->checkExploredDirPath($this->target_key)) {
 				$this->_set_error_log(_MI_XUPDATE_ERR_MAKE_EXPLOREDDIR . ': ' .$this->target_key);
 				return false;
 			}
-			if (! $this->is_xupdate_excutable()) {
-				$this->content.= '<div class="error">' . _MI_XUPDATE_ANOTHER_PROCESS_RUNNING . '</div>';
-				return false;
-			}
-			
 			
 			$downloadUrl = $this->Func->_getDownloadUrl( $this->target_key, $this->downloadUrlFormat );
 			
@@ -57,18 +63,23 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			}
 			
 			register_shutdown_function('xupdate_on_shutdown', $this->Xupdate->params['temp_path'], $downloadUrl);
+			// set stat time
+			Xupdate_Utils::check_http_timeout();
 			
 			$this->content.= _MI_XUPDATE_PROG_FILE_GETTING . '<br />';
 			if ($this->retry_phase || $this->Func->_downloadFile( $this->target_key, $downloadUrl, $this->download_file, $this->downloadedFilePath )){
-				$GLOBALS['xupdate_stage'] = 2;
-				$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
-				$exploredRoot = $this->exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
+				$this->_set_stage(2);
+				$this->exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
+				
 				if ($this->retry_phase) {
 					$this->downloadedFilePath = $this->Func->_getDownloadFilePath( $downloadDirPath, $this->download_file );
 				}
 				if($this->retry_phase > 2 || $this->_unzipFile()) {
+					$this->_set_stage(3);
+					
+					// delete downloaded archive
 					@ unlink( $this->downloadedFilePath );
-					$GLOBALS['xupdate_stage'] = 3;
+					
 					if ($caller === 'preload') {
 						$set_member = 'exploredPreloadPath';
 						$serach_file = $this->target_key . '.class.php';
@@ -79,7 +90,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 					if ($this->exploredPreloadPath || $this->_exploredDirPath_DownDir($set_member, $serach_file)) {
 						// TODO port , timeout
 						if ($this->Ftp->isConnected() || $this->Ftp->app_login()==true) {
-							$GLOBALS['xupdate_stage'] = 4;
+							$this->_set_stage(4);
 							// overwrite control
 							if(! isset($this->options['no_overwrite'])){
 								$this->options['no_overwrite'] = array();
@@ -112,16 +123,20 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 								}
 							}
 
-							$GLOBALS['xupdate_stage'] = 5;
-							if (!$this->uploadFiles()){
-								$this->_set_error_log(_MI_XUPDATE_ERR_FTP_UPLOADFILES);
-								$result = false;
+							$this->_set_stage(5);
+							if ($this->retry_phase < 6) {
+								if ($this->uploadFiles()){
+									@ unlink(_MD_XUPDATE_SYS_RETRYSER_FILE);
+								} else {
+									$this->_set_error_log(_MI_XUPDATE_ERR_FTP_UPLOADFILES);
+									$result = false;
+								}
 							}
-							$GLOBALS['xupdate_stage'] = 6;
+							$this->_set_stage(6);
 							
-							$this->_set_item_perm();
+							$this->retry_phase > 6 || $this->_set_item_perm();
 							
-							$GLOBALS['xupdate_stage'] = 7;
+							$this->_set_stage(7);
 						} else {
 							$this->_set_error_log(_MI_XUPDATE_ERR_FTP_LOGIN);
 							$result = false;
@@ -141,7 +156,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			}
 
 			$this->content.= _MI_XUPDATE_PROG_CLEANING_UP . '<br />';
-			$this->_cleanup($exploredRoot);
+			$this->_cleanup($this->exploredDirPath);
 
 			if ($this->Ftp->isConnected()) {
 				$this->Ftp->app_logout();
@@ -152,7 +167,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 
 			$this->content.= _MI_XUPDATE_PROG_COMPLETED . '<br /><br />';
 			
-			@ unlink($this->lockfile);
+			@ unlink(_MD_XUPDATE_SYS_LOCK_FILE);
 		}else{
 			$result = false;
 		}
@@ -510,6 +525,9 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	}
 	
 	public function _cleanUp_downloadDir() {
+		if ($this->Ftp->isSafeMode) {
+			$this->Ftp->isConnected() || $this->Ftp->app_login();
+		}
 		$path = realpath($this->Xupdate->params['temp_path']);
 		if ($handle = opendir($path)) {
 			while (false !== ($entry = readdir($handle))) {
@@ -539,6 +557,13 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			array_map(array($this, '_delete'),$this->options['delete_file']);
 		}
 	}
+	
+	
+	private function _set_stage($stage) {
+		$GLOBALS['xupdate_stage'] = $stage;
+		$this->save_lockfile($stage);
+		Xupdate_Utils::check_http_timeout();
+	}
 } // end class
 
 /**
@@ -548,12 +573,10 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
  * @param string $download_url
  */
 function xupdate_on_shutdown($cache_dir, $download_url) {
-	$lock_file = realpath($cache_dir) . '/xupdate.lock';
-	$retry_cache_file = realpath($cache_dir) . '/retry_cache.ser';
-	@ unlink($retry_cache_file);
-	if (connection_status() > 1 || is_file($lock_file)) {
-		@ unlink($lock_file);
-		file_put_contents($retry_cache_file, serialize($GLOBALS['xupdate_retry_cache']));
+	@ unlink(_MD_XUPDATE_SYS_RETRYSER_FILE);
+	if (connection_status() > 1 || is_file(_MD_XUPDATE_SYS_LOCK_FILE)) {
+		@ unlink(_MD_XUPDATE_SYS_LOCK_FILE);
+		file_put_contents(_MD_XUPDATE_SYS_RETRYSER_FILE, serialize($GLOBALS['xupdate_retry_cache']));
 		$buf = '';
 		while (ob_get_level()) {
 			$buf .= ob_get_contents();

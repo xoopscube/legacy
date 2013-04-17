@@ -108,7 +108,7 @@ class Xupdate_FtpThemeFinderInstall extends Xupdate_FtpCommonZipArchive {
 
 			$this->content.= _MI_XUPDATE_PROG_COMPLETED . '<br /><br />';
 			
-			@ unlink($this->lockfile);
+			@ unlink(_MD_XUPDATE_SYS_LOCK_FILE);
 		}else{
 			$result = false;
 		}

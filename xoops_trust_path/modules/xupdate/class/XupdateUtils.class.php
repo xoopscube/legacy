@@ -179,6 +179,19 @@ class Xupdate_Utils
     	}
     	return $ret;
     }
+
+	/**
+	 * check_http_timeout
+	 * 
+	 * @return void
+	 */
+	public static function check_http_timeout() {
+		static $start;
+		if (! $start) {
+			$start = time();
+		}
+		if (time() - $start > 270) exit();
+	}
 }
 
 ?>

@@ -27,8 +27,8 @@ class Xupdate_FtpCommonFunc {
 	public $options = array();
 
 	protected $download_file;
-	protected $lockfile;
 	protected $exploredPreloadPath;
+	protected $retry_phase;
 	
 	public function __construct() {
 
@@ -42,9 +42,6 @@ class Xupdate_FtpCommonFunc {
 		$this->mod_config = $this->mRoot->mContext->mModuleConfig ;	// mod_config
 
 		$this->downloadDirPath = $this->Xupdate->params['temp_path'];
-//		$this->downloadUrlFormat = $this->mod_config['Mod_download_Url_format'];
-		
-		$this->lockfile = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/').'/xupdate.lock';
 		
 	}
 
@@ -66,7 +63,6 @@ class Xupdate_FtpCommonFunc {
 	public function _cleanup($dir)
 	{
 		if ($handle = opendir("$dir")) {
-			$safemode = (ini_get('safe_mode') == "1");
 			while (false !== ($item = readdir($handle))) {
 				if ($item != "." && $item != "..") {
 					if (is_dir("$dir/$item")) {
@@ -74,11 +70,12 @@ class Xupdate_FtpCommonFunc {
 						$this->Ftp->appendMes('removing directory: '.$dir.'/'.$item.'<br />');
 					} else {
 						unlink("$dir/$item");
+						Xupdate_Utils::check_http_timeout();
 					}
 				}
 			}
 			closedir($handle);
-			if ($safemode) {
+			if ($this->Ftp->isSafeMode) {
 				$this->Ftp->localRmdir($dir);
 			} else {
 				rmdir($dir);
@@ -123,14 +120,24 @@ class Xupdate_FtpCommonFunc {
 	 * @return boolean
 	 */
 	protected function is_xupdate_excutable() {
-		if (file_exists($this->lockfile) && filemtime($this->lockfile) + 600 > time()) {
+		if (file_exists(_MD_XUPDATE_SYS_LOCK_FILE) && filemtime(_MD_XUPDATE_SYS_LOCK_FILE) + 600 > time()) {
+			$this->retry_phase = intval(file_get_contents(_MD_XUPDATE_SYS_LOCK_FILE));
 			return false;
 		}
 		ignore_user_abort(true); // Ignore user aborts and allow the script
-		touch($this->lockfile);  // make lock file
+		touch(_MD_XUPDATE_SYS_LOCK_FILE);  // make lock file
 		return true;
 	}
 
+	/**
+	 * save_lockfile
+	 * 
+	 * @param int $stage
+	 */
+	protected function save_lockfile($stage) {
+		file_put_contents(_MD_XUPDATE_SYS_LOCK_FILE, $stage);
+	}
+	
 	/**
 	 * _check_file_upload_result
 	 *
