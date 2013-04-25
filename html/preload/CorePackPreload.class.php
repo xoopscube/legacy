@@ -1,7 +1,4 @@
 <?php
-// set memory_limit
-CorePackPreload::setMemoryLimit();
-
 // Use X-update install checker
 define('LEGACY_INSTALLERCHECKER_ACTIVE', false);
 
@@ -65,3 +62,6 @@ class CorePackPreload extends XCube_ActionFilter
 		}
 	}
 }
+
+// set memory_limit
+CorePackPreload::setMemoryLimit();
