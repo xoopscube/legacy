@@ -17,6 +17,12 @@ define('_MI_MESSAGE_USERINFO', 'Replace user_userinfo.html?');
 define('_MI_MESSAGE_USERINFO_DESC', 'Change User profile template user_userinfo.html to the one of this module?');
 define('_MI_MESSAGE_DELTYPE', 'Purge unread messages?');
 define('_MI_MESSAGE_DELTYPE_DESC', 'The unread message are automatically deleted during purge process.');
+define('_MI_MESSAGE_DEFAULT_USEPM', 'Default setting: Use private message');
+define('_MI_MESSAGE_DEFAULT_USEPM_DESC', 'Set up "Use private message" for the person who is not set up.');
+define('_MI_MESSAGE_DEFAULT_TOMAIL', 'Default setting: Forward to email');
+define('_MI_MESSAGE_DEFAULT_TOMAIL_DESC', 'Set up "Forward to email" for the person who is not set up.');
+define('_MI_MESSAGE_DEFAULT_VIEWMSM', 'Default setting: The message body is displayed in mail');
+define('_MI_MESSAGE_DEFAULT_VIEWMSM_DESC', 'Set up "The message is displayed in mail" for the person who is not set up.');
 
 define('_MI_MESSAGE_BLOCK_NAME', 'New Messages');
 define('_MI_INQUIRY_INSTALL_ERROR', 'This module only works with PHP5.');
