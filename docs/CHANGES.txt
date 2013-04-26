@@ -2,6 +2,48 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
+2012/04/28: Package Revision 2.2.2 RC1
+----------------------------------------
+[Issues]
+#65 Set uploads folder when image file exist there
+#72 Add message module's personal settings to preferences for default.
+#74 Cagtegory should have image file
+#44 refactoring for user module
+#28 module admin anchor error after module install.
+#68 support editor delegate with xoopsform dhtmltarea
+#70 Added block module link filter to BlockList page.
+#63 [profile] date DATATYPE allow more wide range
+#59 add Pref formtype radio, checkbox & group_checkbox
+#71 fix compatibility of criteria "IN", "NOT IN"
+#62 Fix Bug #3492904 - Error Message after Profile edit
+#61 [user] fix csv data import function
+#48 fix send mail with safe mode (phpmailer patch)
+#37 configurable "Template resource"
+#69 Added block module link filter to BlockList page.
+#66 correction of error_reporting for PHP >= 5.4
+#50 XoopsX/legacy enhanced profile module
+#58 re-fix xoopscube/legacy#24
+#55 refs #54 #55 fix Tar Dawnload Bug.
+#54 Tar Download Bug
+#52 User Profile Bug.
+#53 refs #52 Fix User Profile Bug.
+#24 legacy: add some delegate points into module action
+#32 legacy: add form type "radio" & "radio_br"
+#49 XoopsX/legacy issue/32
+#42 legacy: use html editor on customblock edit
+#41 legacy: fix, textarea class attr is not given
+#27 fix _cachedModule problem
+
+[Staff]
+- bluemooninc
+- Kilica
+- Naao
+- nao-pon
+- suin
+- xoopserver
+
+
+----------------------------------------
 2012/10/**: Package Revision 2.2.2 Beta1
 ----------------------------------------
 Move repository to github xoopscube/legacy from this version.
