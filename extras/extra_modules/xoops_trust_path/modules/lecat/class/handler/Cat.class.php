@@ -372,12 +372,18 @@ class Lecat_CatObject extends Legacy_AbstractCategoryObject
 	
 		return array();
 	}
+
+    public function getImageNumber()
+    {
+        $list = Lecat_Utils::getImageNameList($this->getDirname());
+        return count($list);
+    }
 }
 
 /**
  * Lecat_CatHandler
 **/
-class Lecat_CatHandler extends XoopsObjectGenericHandler
+class Lecat_CatHandler extends Legacy_AbstractClientObjectHandler
 {
 	/**
 	 * @brief	string
@@ -393,6 +399,8 @@ class Lecat_CatHandler extends XoopsObjectGenericHandler
 	 * @brief	string
 	**/
 	public $mClass = 'Lecat_CatObject';
+
+    protected $_mClientConfig = array('image'=>'images');
 
 	/**
 	 * __construct
@@ -484,6 +492,18 @@ class Lecat_CatHandler extends XoopsObjectGenericHandler
 		}
 		return $tree;
 	}
+
+    /**
+     * check if use Legacy_Image
+     *
+     * @param mixed[]   $conf
+     *
+     * @return  bool
+     */
+    protected function _isImageClient(/*** mixed[] ***/ $conf)
+    {
+        return $conf[$this->_mClientConfig['image']] ? true : false;
+    }
 }
 
 ?>

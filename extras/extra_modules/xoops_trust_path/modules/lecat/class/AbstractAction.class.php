@@ -105,6 +105,13 @@ abstract class Lecat_AbstractAction
 		$headerScript->addStylesheet($this->_getStylesheet());
     }
 
+    protected function _getBreadcrumb(/*** XoopsSimpleObject ***/ $object=null)
+    {
+        $breadcrumbs = array();
+        XCube_DelegateUtils::call('Module.'.$this->mAsset->mDirname.'.Global.Event.GetBreadcrumbs', new XCube_Ref($breadcrumbs), $this->mAsset->mDirname, $object);
+        return $breadcrumbs;
+    }
+
     /**
      * prepare
      * 

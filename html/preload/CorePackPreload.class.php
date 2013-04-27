@@ -1,5 +1,4 @@
 <?php
-
 // Use X-update install checker
 define('LEGACY_INSTALLERCHECKER_ACTIVE', false);
 
@@ -33,4 +32,36 @@ class CorePackPreload extends XCube_ActionFilter
 			$xoopsTpl->_compile_id = $compile_id ;
 		}
 	}
+	
+	public static function ini_string_to_bytes($val) {
+		$val = trim(strval($val));
+		if ($val === '-1') $val = 0;
+		if ($val) {
+			// for ex. 1mb, 1KB
+			$val = rtrim($val, 'bB');
+			$last = strtolower(substr($val, -1));
+			switch($last) {
+				case 't':
+					$val *= 1024;
+				case 'g':
+					$val *= 1024;
+				case 'm':
+					$val *= 1024;
+				case 'k':
+					$val *= 1024;
+			}
+			$val = floor($val);
+		}
+		return $val;
+	}
+	
+	public static function setMemoryLimit() {
+		$memory_limit = self::ini_string_to_bytes(ini_get('memory_limit'));
+		if ($memory_limit < 33554432) {
+			@ ini_set('memory_limit' ,'32M');
+		}
+	}
 }
+
+// set memory_limit
+CorePackPreload::setMemoryLimit();

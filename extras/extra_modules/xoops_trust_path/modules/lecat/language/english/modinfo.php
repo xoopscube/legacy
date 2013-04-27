@@ -52,15 +52,27 @@ define('_MI_LECAT_LANG_LECAT', 'Lecat');
 define('_MI_LECAT_DESC_LECAT', 'System Category module');
 define('_MI_LECAT_LANG_AUTHOR', 'HIKAWA Kilica <http://xoopsdev.com/>');
 define('_MI_LECAT_LANG_CREDITS', 'HIKAWA Kilica');
+
+/*** templates ***/
 define('_MI_LECAT_TPL_CAT_LIST', 'Category List');
 define('_MI_LECAT_TPL_CAT_EDIT', 'Category Edit');
 define('_MI_LECAT_TPL_CAT_DELETE', 'Category Delete');
 define('_MI_LECAT_TPL_CAT_VIEW', 'Category View');
 define('_MI_LECAT_TPL_DEFAULT_SET', 'Default Permission');
 define('_MI_LECAT_TPL_ACTOR_EDIT', 'Actor');
+
+/*** Configs ***/
 define('_MI_LECAT_LANG_CSS_FILE', 'CSS file url');
 define('_MI_LECAT_DESC_CSS_FILE', 'set CSS file url after {XOOPS_URL}');
 define('_MI_LECAT_LANG_MAXDEPTH', 'Max depth');
 define('_MI_LECAT_DESC_MAXDEPTH', 'Max depth in category tree.');
+define('_MI_LECAT_LANG_IMAGES', 'Images for category');
+define('_MI_LECAT_DESC_IMAGES', 'Assign Image labels for categories one by one line.<br />
+example:<br />
+Category Image Banner<br />
+Category Icon<br />');
 
+/*** blocks ***/
+define('_MI_LECAT_BLOCK_NAME_LIST', 'Category List');
+define('_MI_LECAT_BLOCK_DESC_LIST', 'Show category tree');
 ?>

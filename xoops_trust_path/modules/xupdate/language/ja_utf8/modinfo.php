@@ -130,7 +130,7 @@ define('_MI_XUPDATE_PROG_FILE_GETTING', 'パッケージを取得しています
 define('_MI_XUPDATE_PROG_UPLOADING'   , 'ファイルを配置しています。');
 define('_MI_XUPDATE_PROG_CLEANING_UP' , '一時ファイルを削除しています。');
 define('_MI_XUPDATE_PROG_COMPLETED'   , 'ファイルの配置を完了しました。');
-define('_MI_XUPDATE_PROG_PROCESSING'  , '<p>パッケージを取得してサーバー上に配置しています。</p><p>パッケージのサイズや環境により、数分の時間を要することもあります。</p><p>画面が切り替わるまで、そのままお待ちください。</p>');
+define('_MI_XUPDATE_PROG_PROCESSING'  , '<p>パッケージを取得してサーバー上に配置しています。</p><p>パッケージのサイズや環境により、数分の時間を要することもあります。</p><p>画面が切り替わるまで、そのままお待ちください。</p><p>サーバーとの接続がリセットされた場合は、再試行してデータ再送信を繰り返してください。</p>');
 
 // error messages
 define('_MI_XUPDATE_ANOTHER_PROCESS_RUNNING', '他のプロセスがアップデート中です。しばらく待ってから再度実行してください。');

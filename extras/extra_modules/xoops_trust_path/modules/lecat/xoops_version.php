@@ -140,17 +140,26 @@ $modversion['config'] = array(
 		'default'		=> '0',
 		'options'		=> array()
 	) ,
-/*
-	array(
-		'name'			=> 'xxxx',
-		'title' 		=> '_MI_LECAT_TITLE_XXXX',
-		'description'	=> '_MI_LECAT_DESC_XXXX',
-		'formtype'		=> 'xxxx',
-		'valuetype' 	=> 'xxx',
-		'options'		=> array(xxx => xxx,xxx => xxx),
-		'default'		=> 0
-	),
-*/
+    array(
+        'name'          => 'images',
+        'title'         => '_MI_LECAT_LANG_IMAGES',
+        'description'   => '_MI_LECAT_DESC_IMAGES',
+        'formtype'      => 'textarea',
+        'valuetype'     => 'text',
+        'default'       => '',
+    ),
+
+    /*
+        array(
+            'name'			=> 'xxxx',
+            'title' 		=> '_MI_LECAT_TITLE_XXXX',
+            'description'	=> '_MI_LECAT_DESC_XXXX',
+            'formtype'		=> 'xxxx',
+            'valuetype' 	=> 'xxx',
+            'options'		=> array(xxx => xxx,xxx => xxx),
+            'default'		=> 0
+        ),
+    */
 ##[cubson:config]
 ##[/cubson:config]
 );
@@ -159,21 +168,17 @@ $modversion['config'] = array(
 // Block setting
 //
 $modversion['blocks'] = array(
-/*
-	x => array(
-		'func_num'			=> x,
-		'file'				=> 'xxxBlock.class.php',
-		'class' 			=> 'xxx',
-		'name'				=> _MI_LECAT_BLOCK_NAME_xxx,
-		'description'		=> _MI_LECAT_BLOCK_DESC_xxx,
-		'options'			=> '',
-		'template'			=> '{dirname}_block_xxx.html',
+	1 => array(
+		'func_num'			=> 1,
+		'file'				=> 'ListBlock.class.php',
+		'class' 			=> 'ListBlock',
+		'name'				=> _MI_LECAT_BLOCK_NAME_LIST,
+		'description'		=> _MI_LECAT_BLOCK_DESC_LIST,
+		'options'			=> '0',
+		'template'			=> '{dirname}_block_list.html',
 		'show_all_module'	=> true,
 		'visible_any'		=> true
 	),
-*/
-##[cubson:block]
-##[/cubson:block]
 );
 
 ?>

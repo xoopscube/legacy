@@ -37,14 +37,14 @@ define('_AD_XUPDATE_LANG_PRELOAD_NAME', 'Preload Name');
 define('_AD_XUPDATE_DESCRIPTION', 'Description');
 
 define('_AD_XUPDATE_LANG_TIMEOUT_ERROR', 'PHP timeout');
-define('_AD_XUPDATE_LANG_STAGE_1', 'Download of the archive was started.');
-define('_AD_XUPDATE_LANG_STAGE_2', 'The completion of download.');
+define('_AD_XUPDATE_LANG_STAGE_1', 'Downloading of the archive was started.');
+define('_AD_XUPDATE_LANG_STAGE_2', 'Extracting items from the archive was started.');
 define('_AD_XUPDATE_LANG_STAGE_3', 'Under search of an object directory.');
 define('_AD_XUPDATE_LANG_STAGE_4', 'FTP connection completion.');
 define('_AD_XUPDATE_LANG_STAGE_5', 'Started file deployment.');
 define('_AD_XUPDATE_LANG_STAGE_6', 'Deployment of the file is complete.');
 define('_AD_XUPDATE_LANG_STAGE_7', 'Permission setting is completed.');
-define('_AD_XUPDATE_LANG_STAGE_TIMEOUT', 'Timeout by running time limit of PHP.');
+define('_AD_XUPDATE_LANG_STAGE_TIMEOUT', 'Processing was interrupted according to causes, such as timeout or insufficient memory.');
 define('_AD_XUPDATE_LANG_STAGE_UPLOAD_RETRY', 'To run the rest of the deployment files, click here');
 define('_AD_XUPDATE_LANG_STAGE_TASK_RETRY', 'To do the more, click here');
 define('_AD_XUPDATE_LANG_STAGE_UPLOAD_NOT_COMPLETE', 'Deployment of the file to retrieve the archive from the [ <a href="%s">link here</a> ] because it is incomplete, please do the proper placement of the FTP upload files manually.');

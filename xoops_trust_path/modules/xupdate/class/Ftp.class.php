@@ -67,10 +67,13 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	private $loginCheckFile;
 	private $phpPerm;
 	private $uploaded_files = array();
+	public $isSafeMode;
 	
 	/* Constructor */
 	public function __construct($XupdateObj, $port_mode=FALSE, $verb=FALSE, $le=FALSE) {
 		parent::__construct($XupdateObj);
+		
+		$this->isSafeMode = (ini_get('safe_mode') == "1");
 		
 		$this->loginCheckFile = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/').'/'.rawurlencode(substr(XOOPS_URL, 7)).'_logincheck.ini.php';
 		if (! empty($this->mod_config['php_perm'])) {
@@ -78,9 +81,8 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		}
 		
 		// for upload retry mode
-		$retry_cache_file = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/').'/retry_cache.ser';
-		if (isset($_POST['upload_retry']) && is_file($retry_cache_file)) {
-			if ($retry_cache = @unserialize(file_get_contents($retry_cache_file))) {
+		if (isset($_POST['upload_retry']) && is_file(_MD_XUPDATE_SYS_RETRYSER_FILE)) {
+			if ($retry_cache = @unserialize(file_get_contents(_MD_XUPDATE_SYS_RETRYSER_FILE))) {
 				$this->uploaded_files = $retry_cache['uploaded_files'];
 				$GLOBALS['xupdate_retry_cache'] = $retry_cache;
 			}
@@ -416,7 +418,9 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		/// put files
 		$res = array('ok' => $dir_cnt, 'ng' => array());
 		$uploaded_files =& $GLOBALS['xupdate_retry_cache']['uploaded_files'];
+		$_cnt = 0;
 		foreach ($file_list['file'] as $l_file){
+			Xupdate_Utils::check_http_timeout();
 			// check done file on upload retry mode
 			if (isset($this->uploaded_files[$l_file])) {
 				$uploaded_files[$l_file] = $this->uploaded_files[$l_file];
@@ -449,6 +453,9 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 				$res['ok']++;
 				$this->setPhpPerm($ftp_remote_file);
 				$uploaded_files[$l_file] = true; // for update retry mode
+			}
+			if (++$_cnt % 100 === 0) {
+				file_put_contents(_MD_XUPDATE_SYS_RETRYSER_FILE, serialize($GLOBALS['xupdate_retry_cache']));
 			}
 		}
 		return $res;

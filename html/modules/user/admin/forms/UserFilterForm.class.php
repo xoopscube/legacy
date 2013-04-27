@@ -107,39 +107,39 @@ class User_UserFilterForm extends User_AbstractFilterForm
 		$option_field = $root->mContext->mRequest->getRequest('option_field');
 		$search = $root->mContext->mRequest->getRequest('search');
 
-		if (isset($_REQUEST['uid'])) {
-			$this->mNavi->addExtra('uid', xoops_getrequest('uid'));
-			$this->_mCriteria->add(new Criteria('uid', xoops_getrequest('uid')));
+		if (isset($uid)) {
+			$this->mNavi->addExtra('uid', $uid);
+			$this->_mCriteria->add(new Criteria('uid', $uid));
 		}
 
-		if (isset($_REQUEST['email'])) {
-			$this->mNavi->addExtra('email', xoops_getrequest('email'));
-			$this->_mCriteria->add(new Criteria('email', xoops_getrequest('email')));
+		if (isset($email)) {
+			$this->mNavi->addExtra('email', $email);
+			$this->_mCriteria->add(new Criteria('email', $email));
 		}
 	
-		if (isset($_REQUEST['attachsig'])) {
-			$this->mNavi->addExtra('attachsig', xoops_getrequest('attachsig'));
-			$this->_mCriteria->add(new Criteria('attachsig', xoops_getrequest('attachsig')));
+		if (isset($attachsig)) {
+			$this->mNavi->addExtra('attachsig', $attachsig);
+			$this->_mCriteria->add(new Criteria('attachsig', $attachsig));
 		}
 	
-		if (isset($_REQUEST['rank'])) {
-			$this->mNavi->addExtra('rank', xoops_getrequest('rank'));
-			$this->_mCriteria->add(new Criteria('rank', xoops_getrequest('rank')));
+		if (isset($rank)) {
+			$this->mNavi->addExtra('rank', $rank);
+			$this->_mCriteria->add(new Criteria('rank', $rank));
 		}
 	
-		if (isset($_REQUEST['level'])) {
-			$this->mNavi->addExtra('level', xoops_getrequest('level'));
-			$this->_mCriteria->add(new Criteria('level', xoops_getrequest('level')));
+		if (isset($level)) {
+			$this->mNavi->addExtra('level', $level);
+			$this->_mCriteria->add(new Criteria('level', $level));
 		}
 	
-		if (isset($_REQUEST['timezone_offset'])) {
-			$this->mNavi->addExtra('timezone_offset', xoops_getrequest('timezone_offset'));
-			$this->_mCriteria->add(new Criteria('timezone_offset', xoops_getrequest('timezone_offset')));
+		if (isset($timezone_offset)) {
+			$this->mNavi->addExtra('timezone_offset', $timezone_offset);
+			$this->_mCriteria->add(new Criteria('timezone_offset', $timezone_offset));
 		}
 	
-		if (isset($_REQUEST['user_mailok'])) {
-			$this->mNavi->addExtra('user_mailok', xoops_getrequest('user_mailok'));
-			$this->_mCriteria->add(new Criteria('user_mailok', xoops_getrequest('user_mailok')));
+		if (isset($user_mailok)) {
+			$this->mNavi->addExtra('user_mailok', $user_mailok);
+			$this->_mCriteria->add(new Criteria('user_mailok', $user_mailok));
 		}
 
 		//wanikoo

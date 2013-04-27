@@ -39,7 +39,10 @@ set T="../xoops_trust_path";curl -kL github.com/XoopsX/installer/raw/master/inst
 ### On the web
 
 * Upload "[install.cgi](https://github.com/XoopsX/installer/raw/master/install.cgi)" into [DOCUMENT ROOT] & chmod +x install.cgi
-* Access to `install.cgi?../xoops_trust_path` with web browser (change `../xoops_trust_path` by your liking)
+* Access to `install.cgi`
+* Set your XOOPS_TRUST_PATH into next form.
+![139cO](https://f.cloud.github.com/assets/1412630/391121/5330a358-a759-11e2-8166-d34b351dd4b7.png)
+* Click [OK & Upload & Please Wait]
 
 ***
 

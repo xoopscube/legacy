@@ -282,7 +282,11 @@ class Xupdate_ModulesIniDadaSet
 									}
 									unset($criteria, $_objs);
 								}
-								$item = $this->_getItemArrFromObj($rObjs[$_sid][$item['target_key']], true);
+								if (isset($rObjs[$_sid][$item['target_key']])) {
+									$item = $this->_getItemArrFromObj($rObjs[$_sid][$item['target_key']], true);
+								} else {
+									continue; // @todo why? not set "$rObjs[$_sid][$item['target_key']]"
+								}
 							} else {
 								foreach(array('description', 'tag') as $_key) {
 									if (! @ json_encode($item[$_key])) {
@@ -690,6 +694,18 @@ class Xupdate_ModulesIniDadaSet
 			$tag = preg_replace('/\s+/', ' ', $tag);
 		} else {
 			$tag = '' ;
+		}
+		
+		if ($item['dirname'] === 'legacy') {
+			// check altsys
+			if (! file_exists(XOOPS_TRUST_PATH.'/libs/altsys/class/D3LanguageManager.class.php') && isset($item_arr['no_update'])) {
+				$no_update = $item_arr['no_update'];
+				foreach($no_update as $_key => $_val) {
+					if (substr($_val, -6) === 'altsys') {
+						unset($item_arr['no_update'][$_key]);
+					}
+				}
+			}
 		}
 		
 		$item['options']= serialize($item_arr) ;
