@@ -30,7 +30,7 @@ class Legacy_AbstractThemeRenderTarget extends XCube_RenderTarget
 		header('Pragma: no-cache');
 	}
 
-	function setResult($result)
+	function setResult(&$result)
 	{
 		parent::setResult($result);
 		if(!$this->mSendHeaderFlag) {
