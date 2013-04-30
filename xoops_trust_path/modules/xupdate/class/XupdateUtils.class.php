@@ -167,9 +167,9 @@ class Xupdate_Utils
 	public static function setupCurlSsl($ch) {
 		return (
 			curl_setopt($ch, CURLOPT_CAINFO, XOOPS_TRUST_PATH . '/modules/xupdate/include/cacert.pem')
-				||
+				&&
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true)
-				||
+				&&
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2));
 	}
 	
