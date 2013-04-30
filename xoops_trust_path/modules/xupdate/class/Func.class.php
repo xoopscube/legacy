@@ -159,9 +159,7 @@ class Xupdate_Func {
 				
 				//SSL NO VERIFY setting
 				try {
-					$setopt6 = curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-					$setopt7 = curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-					if(!$setopt6 || !$setopt7 ){
+					if(! Xupdate_Utils::setupCurlSsl($ch) ){
 						throw new Exception('curl_setopt SSL fail',5);
 					}
 				} catch (Exception $e) {

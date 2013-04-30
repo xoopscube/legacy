@@ -141,8 +141,7 @@ class Xupdate_Utils
 		}
 		curl_setopt($ch, CURLOPT_HEADER, true);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+		self::setupCurlSsl($ch);
 		
 		$data = curl_exec($ch);
 		$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -157,6 +156,21 @@ class Xupdate_Utils
 		}
 		curl_close($ch);
 		return $url;
+	}
+	
+	/**
+	 * Setup cURL SSL options
+	 * 
+	 * @param int $ch
+	 * @return boolean
+	 */
+	public static function setupCurlSsl($ch) {
+		return (
+			curl_setopt($ch, CURLOPT_CAINFO, XOOPS_TRUST_PATH . '/modules/xupdate/include/cacert.pem')
+				||
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true)
+				||
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2));
 	}
 	
     /**
