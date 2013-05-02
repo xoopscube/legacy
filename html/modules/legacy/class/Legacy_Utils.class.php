@@ -22,7 +22,7 @@ class Legacy_Utils
 	 * disabled and recommended modules, basically. But, if there is no problem,
 	 * returns true.
 	 */
-	function checkSystemModules()
+	public static function checkSystemModules()
 	{
 		$root=&XCube_Root::getSingleton();
 		$systemModules = array_map('trim', explode(',', $root->getSiteConfig('Cube', 'SystemModules')));
@@ -54,7 +54,7 @@ class Legacy_Utils
 	 * @param XoopsModule $module
 	 * @return Legacy_Module
 	 */
-	function &createModule($module, $loadConfig=true)
+	public static function &createModule($module, $loadConfig=true)
 	{
 		$instance = null;
 
@@ -96,7 +96,7 @@ class Legacy_Utils
 	 * @static
 	 * @return Legacy_BlockProcedure
 	 */
-	function &createBlockProcedure(&$block)
+	public static function &createBlockProcedure(&$block)
 	{
 		//
 		// IMPORTANT CONVENTION
@@ -142,7 +142,7 @@ class Legacy_Utils
 	/***
 	 * Calls user controll event.
 	 */
-	function raiseUserControlEvent()
+	public static function raiseUserControlEvent()
 	{
 		$root =& XCube_Root::getSingleton();
 		foreach (array_keys($_REQUEST) as $key) {
@@ -160,7 +160,7 @@ class Legacy_Utils
 	 * @param string $version
 	 * @return int
 	 */
-	function convertVersionFromModinfoToInt($version)
+	public static function convertVersionFromModinfoToInt($version)
 	{
 		return round(100 * floatval($version));
 	}
@@ -170,7 +170,7 @@ class Legacy_Utils
 	 * @param int $version
 	 * @return float
 	 */
-	function convertVersionIntToFloat($version)
+	public static function convertVersionIntToFloat($version)
 	{
 		return round(floatval(intval($version) / 100), 2);
 	}

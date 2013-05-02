@@ -38,7 +38,7 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
 	 *
 	 * @return	bool
 	 */
-	public function insert(/*** XoopsSimpleObject ***/ $obj, /*** bool ***/ $force=false)
+	public function insert(/*** XoopsSimpleObject ***/ &$obj, /*** bool ***/ $force=false)
 	{
 		$ret = parent::insert($obj, $force);
 		if ($ret == true)
@@ -57,7 +57,7 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
 	 *
 	 * @return	bool
 	 */
-	public function delete(/*** XoopsSimpleObject ***/ $obj, /*** bool ***/ $force=false)
+	public function delete(/*** XoopsSimpleObject ***/ &$obj, /*** bool ***/ $force=false)
 	{
 		$ret = parent::delete($obj, $force);
 		$this->_deleteClientData($obj);

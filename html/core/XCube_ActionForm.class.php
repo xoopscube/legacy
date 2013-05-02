@@ -645,7 +645,7 @@ class XCube_DependClassFactory
 	 * @attention
 	 *     Only 'XCube_ActionForm' class should use this class.
 	 */
-	function &factoryClass($dependName)
+	public static function &factoryClass($dependName)
 	{
 		static $_cache;
 		
