@@ -153,12 +153,12 @@ class Xupdate_Func {
 						$this->_set_error_log($e->getMessage());
 					}
 				} else if (empty($data['noRedirect'])) {
-					curl_setopt($ch, CURLOPT_URL, Xupdate_Utils::getRedirectUrl($data['downloadUrl']));
+					curl_setopt($ch, CURLOPT_URL, Xupdate_Utils::getRedirectUrl($data['downloadUrl'], $this->mod_config['curl_ssl_no_verify']));
 				}
 				
 				//SSL NO VERIFY setting
 				try {
-					if(! Xupdate_Utils::setupCurlSsl($ch) ){
+					if(! Xupdate_Utils::setupCurlSsl($ch, $this->mod_config['curl_ssl_no_verify']) ){
 						throw new Exception('curl_setopt SSL fail',5);
 					}
 				} catch (Exception $e) {
