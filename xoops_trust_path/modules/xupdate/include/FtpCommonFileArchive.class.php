@@ -30,13 +30,6 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 			}
 		}
 		
-		// current work directory
-		$cwd = getcwd();
-		if (! chdir($exploredDirPath) ) {
-			$this->_set_error_log('chdir error in: '.$exploredDirPath);
-			return false;//chdir error
-		}
-		
 		if ($this->retry_phase === 2) {
 			$extractor = '_unzipFile_FileArchiveCareful';
 		} else {
@@ -92,7 +85,6 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 			$this->_set_error_log('extract error.');
 			$ret = false;
 		}
-		if ($cwd) @ chdir($cwd);
 		return $ret;
 	}
 	
@@ -103,7 +95,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 	 **/
 	private function _unzipFile_Unzip($downloadFilePath, $exploredDirPath) {
 		
-		$this->procExec('unzip ' . $downloadFilePath, $o, $c);
+		$this->procExec('unzip ' . $downloadFilePath . ' -d \''.$exploredDirPath.'\'', $o, $c);
 		if  ($c !== 0) {
 			$this->_set_error_log('unzip error: '.$o);
 			return false;
@@ -119,7 +111,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 	 **/
 	private function _unzipFile_Tar($downloadFilePath, $exploredDirPath) {
 	
-		$this->procExec('tar -xzf ' . $downloadFilePath, $o, $c);
+		$this->procExec('tar -xzf ' . $downloadFilePath . ' -C \''.$exploredDirPath.'\'', $o, $c);
 		if  ($c !== 0) {
 			$this->_set_error_log('tar error: '.$o);
 			return false;
@@ -167,7 +159,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 		}
 	
 		try {
-			$result = $zip->extractTo('./');
+			$result = $zip->extractTo($exploredDirPath);
 			if($result !==true ){
 				throw new Exception('extractTo fail ',3);
 			}

@@ -333,10 +333,6 @@ class Xupdate_Func {
 			$this->_set_error_log('directory path not found error in: '.$realDirPath);
 			return null;
 		}
-		if (! chdir($realDirPath) ) {
-			$this->_set_error_log('chdir error in: '.$realDirPath);
-			return null;//chdir error
-		}
 		
 		if (! is_dir($directoryName)) {
 			@mkdir($directoryName);
@@ -349,7 +345,7 @@ class Xupdate_Func {
 		}
 		if (!is_dir($newDirPath)){
 			$this->_set_error_log('not is_dir error in: '.$newDirPath);
-			return null;//chdir error
+			return null;
 		}
 		return $newDirPath;
 	}
