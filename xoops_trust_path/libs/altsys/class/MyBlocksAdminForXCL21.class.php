@@ -44,8 +44,9 @@ function renderCell4BlockOptions( $block_data )
 	return $legacy_block->getOptionForm() ;
 }
 
-
-
+function checkFck() {
+	return ( ! altsysUtils::isInstalledXclHtmleditor() && file_exists( XOOPS_ROOT_PATH.'/common/fckeditor/fckeditor.js' ) );
+}
 
 }
 
