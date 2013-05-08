@@ -12,7 +12,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract {
 	 * @return	bool
 	 **/
 	public function app_login($server){
-		$test = XOOPS_ROOT_PATH . '/xupdate_test';
+		$test = XOOPS_TRUST_PATH . '/xupdate_test';
 		return (@ mkdir($test) && @ chmod($test, 0777) && @ rmdir($test));
 	}
 
