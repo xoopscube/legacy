@@ -19,7 +19,6 @@ class Xupdate_Func {
 		$this->Xupdate = $XupdateObj ;
 		$this->Ftp =& $this->Xupdate->Ftp ;		// FTP instance
 		$this->mod_config = $this->Xupdate->mod_config ;
-		//$this->_makeTmpDir();
 	}
 
 	public function & getInstance($mydirname)
