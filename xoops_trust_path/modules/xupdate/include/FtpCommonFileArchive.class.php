@@ -95,7 +95,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 	 **/
 	private function _unzipFile_Unzip($downloadFilePath, $exploredDirPath) {
 		
-		$this->procExec('unzip ' . $downloadFilePath . ' -d \''.$exploredDirPath.'\'', $o, $c);
+		$this->procExec('unzip ' . $downloadFilePath . ' -d ' . $exploredDirPath, $o, $c);
 		if  ($c !== 0) {
 			$this->_set_error_log('unzip error: '.$o);
 			return false;
