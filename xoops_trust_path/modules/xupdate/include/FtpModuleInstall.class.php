@@ -168,7 +168,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 
 			@ unlink( $this->downloadedFilePath );
 
-			if (! $result) $this->content.= _MI_XUPDATE_PROG_COMPLETED . '<br /><br />';
+			if ($result) $this->content.= _MI_XUPDATE_PROG_COMPLETED . '<br /><br />';
 			
 			@ unlink(_MD_XUPDATE_SYS_LOCK_FILE);
 		}else{
