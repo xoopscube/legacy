@@ -107,7 +107,7 @@ class Xupdate_Utils
 	 * @param int $limit
 	 * @return string
 	 */
-	public static function getRedirectUrl($url, $redirect = 10) {
+	public static function getRedirectUrl($url, $redirect = 10, $curl_ssl_no_verify = false) {
 		if ($headers = @ get_headers($url, 1)) {
 			$location = isset($headers['Location'])? $headers['Location'] : (isset($headers['location'])? $headers['location'] : '');
 			if ($location) {
@@ -118,7 +118,7 @@ class Xupdate_Utils
 				}
 			}
 		} else {
-			$url = self::curlGetRedirectUrl($url);
+			$url = self::curlGetRedirectUrl($url, $curl_ssl_no_verify);
 		}
 		return $url;
 	}
@@ -132,7 +132,7 @@ class Xupdate_Utils
 	 * @param $redirects
 	 * @return string
 	 */
-	public static function curlGetRedirectUrl($url, $ch = null, $max_redirect = 10, $redirects = 0) {
+	public static function curlGetRedirectUrl($url, $ch = null, $max_redirect = 10, $redirects = 0, $curl_ssl_no_verify = false) {
 		if ($max_redirect < $redirects) {
 			return $url;
 		}
@@ -141,8 +141,7 @@ class Xupdate_Utils
 		}
 		curl_setopt($ch, CURLOPT_HEADER, true);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+		self::setupCurlSsl($ch);
 		
 		$data = curl_exec($ch);
 		$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -152,11 +151,33 @@ class Xupdate_Utils
 				$url = trim($matches[1]);
 				curl_setopt($ch, CURLOPT_URL, $url);
 				$redirects++;
-				return self::curlGetRedirectUrl($url, $ch, $max_redirect, $redirects);
+				return self::curlGetRedirectUrl($url, $ch, $max_redirect, $redirects, $curl_ssl_no_verify);
 			}
 		}
 		curl_close($ch);
 		return $url;
+	}
+	
+	/**
+	 * Setup cURL SSL options
+	 * 
+	 * @param int $ch
+	 * @return boolean
+	 */
+	public static function setupCurlSsl($ch, $curl_ssl_no_verify = false) {
+		if ($curl_ssl_no_verify) {
+			return (
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false)
+				&&
+				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false));
+		} else {
+			return (
+				curl_setopt($ch, CURLOPT_CAINFO, XOOPS_TRUST_PATH . '/modules/xupdate/include/cacert.pem')
+					&&
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true)
+					&&
+				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2));
+		}
 	}
 	
     /**

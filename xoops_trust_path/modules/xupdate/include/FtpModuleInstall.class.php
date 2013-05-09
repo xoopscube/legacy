@@ -49,7 +49,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			
 			$this->_set_stage(1);
 			
-			if(! $this->checkExploredDirPath($this->target_key)) {
+			if(! $exploredDirPath = $this->checkExploredDirPath($this->target_key)) {
 				$this->_set_error_log(_MI_XUPDATE_ERR_MAKE_EXPLOREDDIR . ': ' .$this->target_key);
 				return false;
 			}
@@ -69,7 +69,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			$this->content.= _MI_XUPDATE_PROG_FILE_GETTING . '<br />';
 			if ($this->retry_phase || $this->Func->_downloadFile( $this->target_key, $downloadUrl, $this->download_file, $this->downloadedFilePath )){
 				$this->_set_stage(2);
-				$this->exploredDirPath = realpath($downloadDirPath.'/'.$this->target_key);
+				$this->exploredDirPath = $exploredDirPath;
 				
 				if ($this->retry_phase) {
 					$this->downloadedFilePath = $this->Func->_getDownloadFilePath( $downloadDirPath, $this->download_file );
@@ -156,7 +156,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			}
 
 			$this->content.= _MI_XUPDATE_PROG_CLEANING_UP . '<br />';
-			$this->_cleanup($this->exploredDirPath);
+			$this->_cleanup($exploredDirPath);
 
 			if ($this->Ftp->isConnected()) {
 				$this->Ftp->app_logout();
@@ -165,7 +165,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 
 			@ unlink( $this->downloadedFilePath );
 
-			$this->content.= _MI_XUPDATE_PROG_COMPLETED . '<br /><br />';
+			if ($result) $this->content.= _MI_XUPDATE_PROG_COMPLETED . '<br /><br />';
 			
 			@ unlink(_MD_XUPDATE_SYS_LOCK_FILE);
 		}else{

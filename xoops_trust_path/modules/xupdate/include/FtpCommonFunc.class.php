@@ -39,6 +39,7 @@ class Xupdate_FtpCommonFunc {
 		$this->Xupdate = new Xupdate_Root ;// Xupdate instance
 		$this->Ftp =& $this->Xupdate->Ftp ;		// FTP instance
 		$this->Func =& $this->Xupdate->func ;		// Functions instance
+		$this->content =& $this->Func->content;
 		$this->mod_config = $this->mRoot->mContext->mModuleConfig ;	// mod_config
 
 		$this->downloadDirPath = $this->Xupdate->params['temp_path'];
@@ -62,12 +63,12 @@ class Xupdate_FtpCommonFunc {
 	 **/
 	public function _cleanup($dir)
 	{
-		if ($handle = opendir("$dir")) {
+		if ($handle = opendir($dir)) {
+			$this->Ftp->appendMes('removing directory: '.$dir.'<br />');
 			while (false !== ($item = readdir($handle))) {
 				if ($item != "." && $item != "..") {
 					if (is_dir("$dir/$item")) {
 						$this->_cleanup("$dir/$item");
-						$this->Ftp->appendMes('removing directory: '.$dir.'/'.$item.'<br />');
 					} else {
 						unlink("$dir/$item");
 						Xupdate_Utils::check_http_timeout();
@@ -75,12 +76,7 @@ class Xupdate_FtpCommonFunc {
 				}
 			}
 			closedir($handle);
-			if ($this->Ftp->isSafeMode) {
-				$this->Ftp->localRmdir($dir);
-			} else {
-				rmdir($dir);
-			}
-			
+			$this->Ftp->localRmdir($dir);
 		}
 	}
 
@@ -93,23 +89,25 @@ class Xupdate_FtpCommonFunc {
 	 **/
 	public function _set_error_log($msg)
 	{
-		$this->Ftp->appendMes('<span style="color:red;">'.$msg.'</span><br />');
-		$this->content.= '<span style="color:red;">'.$msg.'</span><br />';
+		if ($msg) {
+			$this->Ftp->appendMes('<span style="color:red;">'.$msg.'</span><br />');
+			$this->content.= '<span style="color:red;">'.$msg.'</span><br />';
+		}
 	}
 	
 	/**
 	 * Check exists & writable ExploredDirPath
 	 * @param  string  $target_key
-	 * @return boolean
+	 * @return string | boolean
 	 */
 	public function checkExploredDirPath($target_key) {
 		if ($this->Ftp->app_login()) {
 			
 			$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
 			$exploredDirPath = $downloadDirPath.'/'.$target_key;
-			$ret = ((file_exists($exploredDirPath) || $this->Ftp->localMkdir($exploredDirPath)) && (is_writable($exploredDirPath) || $this->Ftp->localChmod($exploredDirPath, 0707)));
-			
-			return $ret;
+			if ((file_exists($exploredDirPath) || $this->Ftp->localMkdir($exploredDirPath)) && (is_writable($exploredDirPath) || $this->Ftp->localChmod($exploredDirPath, 0707))) {
+				return $exploredDirPath;
+			}
 		}
 		return false;
 	}
