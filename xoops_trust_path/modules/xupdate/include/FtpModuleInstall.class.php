@@ -152,6 +152,9 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 				}
 			}else{
 				$this->_set_error_log(_MI_XUPDATE_ERR_DOWNLOAD_FILE);
+				if ($this->Func->recent_error) {
+					$this->_set_error_log($this->Func->recent_error);
+				}
 				$result = false;
 			}
 
@@ -165,7 +168,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 
 			@ unlink( $this->downloadedFilePath );
 
-			$this->content.= _MI_XUPDATE_PROG_COMPLETED . '<br /><br />';
+			if (! $result) $this->content.= _MI_XUPDATE_PROG_COMPLETED . '<br /><br />';
 			
 			@ unlink(_MD_XUPDATE_SYS_LOCK_FILE);
 		}else{

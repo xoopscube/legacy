@@ -13,6 +13,7 @@ class Xupdate_Func {
 	public $Xupdate = null ;	// xupdate module object
 	public $Ftp  ;	// FTP instance
 	public $mod_config ;
+	public $recent_error = '' ;
 
 	public function __construct($XupdateObj)
 	{
@@ -79,6 +80,8 @@ class Xupdate_Func {
 		$max = (!empty($this->mod_config['parallel_fetch_max']))? intval($this->mod_config['parallel_fetch_max']) : 50;
 		$start = 0;
 		$count = count($multiData);
+		$ret = true;
+		$this->recent_error = '';
 		while($fetchs = array_slice($multiData, $start, $max, true)) {
 			$this->appendMes('multi download start: '.($start + 1).' to '.(min($start + $max, $count)));
 			$fps = $chs = array();
@@ -307,6 +310,8 @@ class Xupdate_Func {
 				if ($_err = curl_error($ch)) {
 					$_info = curl_getinfo($ch);
 					$this->_set_error_log($_err . "\n" . '<div><pre>'.print_r($_info, true).'</pre></div>');
+					$this->recent_error = $_err;
+					$ret = false;
 				}
 				if ($_err && $_info['http_code'] != 404 /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
 					// retry 10sec later if has error
@@ -316,7 +321,7 @@ class Xupdate_Func {
 				curl_close($ch);
 			}
 		}
-		return true;
+		return $ret;
 	}
 
 	/**
