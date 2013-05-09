@@ -2,6 +2,8 @@
 
 require_once dirname(__FILE__).'/class/AltsysBreadcrumbs.class.php' ;
 require_once dirname(__FILE__).'/include/altsys_functions.php' ;
+require_once dirname(__FILE__).'/class/altsysUtils.class.php' ;
+
 
 if( empty( $xoopsModule ) ) {
 	$moduleperm_handler =& xoops_gethandler( 'module' ) ;
