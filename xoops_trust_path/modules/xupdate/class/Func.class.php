@@ -13,7 +13,7 @@ class Xupdate_Func {
 	public $Xupdate = null ;	// xupdate module object
 	public $Ftp  ;	// FTP instance
 	public $mod_config ;
-	public $recent_error = '' ;
+	public $content ; // Instance of content of Xupdate_FtpModuleInstall class object
 
 	public function __construct($XupdateObj)
 	{
@@ -65,7 +65,7 @@ class Xupdate_Func {
 	 * 
 	 * @return boolean
 	 */
-	function _multiDownloadFile( &$multiData, $cacheTTL )
+	public function _multiDownloadFile( &$multiData, $cacheTTL )
 	{
 		$timeout = 300;
 		$this->put_debug_log(str_repeat('-', 10) . date("H:i:s"));
@@ -310,7 +310,7 @@ class Xupdate_Func {
 				if ($_err = curl_error($ch)) {
 					$_info = curl_getinfo($ch);
 					$this->_set_error_log($_err . "\n" . '<div><pre>'.print_r($_info, true).'</pre></div>');
-					$this->recent_error = $_err;
+					$this->appendContent($_err, true);
 					$ret = false;
 				}
 				if ($_err && $_info['http_code'] != 404 /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
@@ -422,7 +422,6 @@ class Xupdate_Func {
 	{
 		if ($msg) {
 			$this->Ftp->appendMes('<span style="color:red;">'.$msg.'</span><br />');
-			$this->content.= '<span style="color:red;">'.$msg.'</span><br />';
 			$this->put_debug_log('[Error] ' . strip_tags($msg));
 		}
 	}
@@ -437,6 +436,20 @@ class Xupdate_Func {
 		if ($msg) {
 			$this->Ftp->appendMes($msg.'<br />');
 			$this->put_debug_log(strip_tags($msg));
+		}
+	}
+	
+	/**
+	 * append content of Xupdate_FtpModuleInstall class instance
+	 * 
+	 * @param string $msg
+	 * @param bool   $isError
+	 * @return void
+	 */
+	private function appendContent($msg, $isError = false) {
+		if ($msg) {
+			$style = $isError? 'color:red;' : '';
+			$this->content.= '<span style="'.$style.'">'.$msg.'</span><br />';
 		}
 	}
 	

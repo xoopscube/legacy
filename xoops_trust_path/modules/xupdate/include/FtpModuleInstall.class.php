@@ -152,9 +152,6 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 				}
 			}else{
 				$this->_set_error_log(_MI_XUPDATE_ERR_DOWNLOAD_FILE);
-				if ($this->Func->recent_error) {
-					$this->_set_error_log($this->Func->recent_error);
-				}
 				$result = false;
 			}
 

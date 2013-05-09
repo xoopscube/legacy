@@ -39,6 +39,7 @@ class Xupdate_FtpCommonFunc {
 		$this->Xupdate = new Xupdate_Root ;// Xupdate instance
 		$this->Ftp =& $this->Xupdate->Ftp ;		// FTP instance
 		$this->Func =& $this->Xupdate->func ;		// Functions instance
+		$this->content =& $this->Func->content;
 		$this->mod_config = $this->mRoot->mContext->mModuleConfig ;	// mod_config
 
 		$this->downloadDirPath = $this->Xupdate->params['temp_path'];
@@ -88,8 +89,10 @@ class Xupdate_FtpCommonFunc {
 	 **/
 	public function _set_error_log($msg)
 	{
-		$this->Ftp->appendMes('<span style="color:red;">'.$msg.'</span><br />');
-		$this->content.= '<span style="color:red;">'.$msg.'</span><br />';
+		if ($msg) {
+			$this->Ftp->appendMes('<span style="color:red;">'.$msg.'</span><br />');
+			$this->content.= '<span style="color:red;">'.$msg.'</span><br />';
+		}
 	}
 	
 	/**
