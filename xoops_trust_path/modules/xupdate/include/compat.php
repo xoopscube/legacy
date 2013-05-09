@@ -3,7 +3,6 @@
 
 // json support
 if (! extension_loaded('json')) {
-	exit('hoge');//pear install Services_JSON-1.0.1
 	require_once 'Services/JSON.php';
 	if (!function_exists('json_decode')){
 		function json_decode($content, $assoc=false) {

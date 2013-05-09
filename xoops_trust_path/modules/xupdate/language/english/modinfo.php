@@ -124,6 +124,8 @@ define('_MI_XUPDATE_PARALLEL_FETCH_MAX',     'HTTP connection Max');
 define('_MI_XUPDATE_PARALLEL_FETCH_MAXDSC',  'The number of HTTP simultaneous connection in the case of fetching the data of a store list.<br />When data acquisition cannot be carried out according to environment, it is necessary to reduce and adjust this value. (Default: 50)');
 define('_MI_XUPDATE_CURL_MULTI_SELECT',      'curl_multi_select not use');
 define('_MI_XUPDATE_CURL_MULTI_SELECTDSC',   'Choose "yes" only when the number of simultaneous connection is two or more and data acquisition goes wrong.');
+define('_MI_XUPDATE_CURL_SSL_NO_VERIFY',     'cURL: Disable SSL verify');
+define('_MI_XUPDATE_CURL_SSL_NO_VERIFYDSC',  'Please choose "yes", when the server authentication at the time of SSL connection becomes an error by cURL.');
 
 // progress messages
 define('_MI_XUPDATE_PROG_FILE_GETTING', 'Downloading the package.');

@@ -315,32 +315,6 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		return false;
 	}
 
-	protected function _makeTmpDir()
-	{
-		// 最初の1回だけ作成
-
-		chdir( $this->XupdateObj->params['temp_path'] );
-		if(mkdir( $this->XupdateObj->params['temp_dirname'] ) === false){
-			exit();
-			throw new Exception(t("make temporary directory fail"), 1);
-		}
-	}
-/*
-	protected function _doUnzip($file)
-	{
-		chdir($this->params['temp_path']);
-
-		$zip = new ZipArchive;
-		if ($zip->open($file) === TRUE) {
-			$zip->extractTo('./');
-			$zip->close();
-		} else {
-			throw new Exception("unzip fail", 1);
-		}
-
-		return true;
-	}
-*/
 	// remove directories recursively
 	protected function removeDirectory($dir) {
 		if ($handle = opendir("$dir")) {

@@ -13,13 +13,13 @@ class Xupdate_Func {
 	public $Xupdate = null ;	// xupdate module object
 	public $Ftp  ;	// FTP instance
 	public $mod_config ;
+	public $content ; // Instance of content of Xupdate_FtpModuleInstall class object
 
 	public function __construct($XupdateObj)
 	{
 		$this->Xupdate = $XupdateObj ;
 		$this->Ftp =& $this->Xupdate->Ftp ;		// FTP instance
 		$this->mod_config = $this->Xupdate->mod_config ;
-		//$this->_makeTmpDir();
 	}
 
 	public function & getInstance($mydirname)
@@ -65,7 +65,7 @@ class Xupdate_Func {
 	 * 
 	 * @return boolean
 	 */
-	function _multiDownloadFile( &$multiData, $cacheTTL )
+	public function _multiDownloadFile( &$multiData, $cacheTTL )
 	{
 		$timeout = 300;
 		$this->put_debug_log(str_repeat('-', 10) . date("H:i:s"));
@@ -80,6 +80,8 @@ class Xupdate_Func {
 		$max = (!empty($this->mod_config['parallel_fetch_max']))? intval($this->mod_config['parallel_fetch_max']) : 50;
 		$start = 0;
 		$count = count($multiData);
+		$ret = true;
+		$this->recent_error = '';
 		while($fetchs = array_slice($multiData, $start, $max, true)) {
 			$this->appendMes('multi download start: '.($start + 1).' to '.(min($start + $max, $count)));
 			$fps = $chs = array();
@@ -154,14 +156,12 @@ class Xupdate_Func {
 						$this->_set_error_log($e->getMessage());
 					}
 				} else if (empty($data['noRedirect'])) {
-					curl_setopt($ch, CURLOPT_URL, Xupdate_Utils::getRedirectUrl($data['downloadUrl']));
+					curl_setopt($ch, CURLOPT_URL, Xupdate_Utils::getRedirectUrl($data['downloadUrl'], $this->mod_config['curl_ssl_no_verify']));
 				}
 				
 				//SSL NO VERIFY setting
 				try {
-					$setopt6 = curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-					$setopt7 = curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-					if(!$setopt6 || !$setopt7 ){
+					if(! Xupdate_Utils::setupCurlSsl($ch, $this->mod_config['curl_ssl_no_verify']) ){
 						throw new Exception('curl_setopt SSL fail',5);
 					}
 				} catch (Exception $e) {
@@ -310,6 +310,8 @@ class Xupdate_Func {
 				if ($_err = curl_error($ch)) {
 					$_info = curl_getinfo($ch);
 					$this->_set_error_log($_err . "\n" . '<div><pre>'.print_r($_info, true).'</pre></div>');
+					$this->appendContent($_err, true);
+					$ret = false;
 				}
 				if ($_err && $_info['http_code'] != 404 /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
 					// retry 10sec later if has error
@@ -319,7 +321,7 @@ class Xupdate_Func {
 				curl_close($ch);
 			}
 		}
-		return true;
+		return $ret;
 	}
 
 	/**
@@ -336,10 +338,6 @@ class Xupdate_Func {
 			$this->_set_error_log('directory path not found error in: '.$realDirPath);
 			return null;
 		}
-		if (! chdir($realDirPath) ) {
-			$this->_set_error_log('chdir error in: '.$realDirPath);
-			return null;//chdir error
-		}
 		
 		if (! is_dir($directoryName)) {
 			@mkdir($directoryName);
@@ -352,7 +350,7 @@ class Xupdate_Func {
 		}
 		if (!is_dir($newDirPath)){
 			$this->_set_error_log('not is_dir error in: '.$newDirPath);
-			return null;//chdir error
+			return null;
 		}
 		return $newDirPath;
 	}
@@ -424,7 +422,6 @@ class Xupdate_Func {
 	{
 		if ($msg) {
 			$this->Ftp->appendMes('<span style="color:red;">'.$msg.'</span><br />');
-			$this->content.= '<span style="color:red;">'.$msg.'</span><br />';
 			$this->put_debug_log('[Error] ' . strip_tags($msg));
 		}
 	}
@@ -439,6 +436,20 @@ class Xupdate_Func {
 		if ($msg) {
 			$this->Ftp->appendMes($msg.'<br />');
 			$this->put_debug_log(strip_tags($msg));
+		}
+	}
+	
+	/**
+	 * append content of Xupdate_FtpModuleInstall class instance
+	 * 
+	 * @param string $msg
+	 * @param bool   $isError
+	 * @return void
+	 */
+	private function appendContent($msg, $isError = false) {
+		if ($msg) {
+			$style = $isError? 'color:red;' : '';
+			$this->content.= '<span style="'.$style.'">'.$msg.'</span><br />';
 		}
 	}
 	
