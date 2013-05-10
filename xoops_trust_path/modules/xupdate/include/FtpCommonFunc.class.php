@@ -76,7 +76,7 @@ class Xupdate_FtpCommonFunc {
 				}
 			}
 			closedir($handle);
-			@rmdir($dir) || $this->Ftp->localRmdir($dir);
+			@rmdir($dir) || (($this->Ftp->isConnected() || $this->Ftp->app_login()) && $this->Ftp->localRmdir($dir));
 		}
 	}
 
