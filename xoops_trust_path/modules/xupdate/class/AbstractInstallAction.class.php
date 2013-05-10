@@ -318,10 +318,14 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
 		$this->mActionForm->getToken();
 		
 		// need module update
-		if ($this->contents === 'module' && $mobj->hasNeedUpdate() && $mobj->mModule->getRenderedVersion() != $mobj->getRenderedVersion()) {
-			$_needModuleUpdate = true;
-		} else {
-			$_needModuleUpdate = false;
+		if ($this->contents === 'module') {
+			if ($is_install) {
+				$_needModuleUpdate = _MI_XUPDATE_MSG_DO_MODULE_INSTALL;
+			} else if ($mobj->hasNeedUpdate() && $mobj->mModule->getRenderedVersion() != $mobj->getRenderedVersion()) {
+				$_needModuleUpdate = _MI_XUPDATE_MSG_DO_MODULE_UPDATE;
+			} else {
+				$_needModuleUpdate = '';
+			}
 		}
 		
 		//execute
