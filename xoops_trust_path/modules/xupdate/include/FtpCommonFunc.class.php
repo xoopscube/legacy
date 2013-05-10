@@ -76,7 +76,7 @@ class Xupdate_FtpCommonFunc {
 				}
 			}
 			closedir($handle);
-			$this->Ftp->localRmdir($dir);
+			@unlink($dir) || $this->Ftp->localRmdir($dir);
 		}
 	}
 
