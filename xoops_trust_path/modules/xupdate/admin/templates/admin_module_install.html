@@ -18,6 +18,20 @@
 	</li>
 	</ul>
 	<div style="clear:both;"></div>
+	
+	<{if $xupdate_moduleUpdate}>
+		<script type="text/javascript">
+		jQuery(function($){
+			var next_link_url = $('#xupdate_addModule>a').attr('href');
+			if (next_link_url) {
+				if (confirm("<{$smarty.const._MI_XUPDATE_MSG_DO_MODULE_UPDATE}>")) {
+					document.location.href = next_link_url;
+				}
+			}
+		})(jquery);
+		</script>
+	<{/if}>
+	
 	<{/if}>
 	
 	<div id="xupdate_message">
