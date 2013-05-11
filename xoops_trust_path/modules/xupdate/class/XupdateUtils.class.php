@@ -200,7 +200,17 @@ class Xupdate_Utils
     	}
     	return $ret;
     }
-
+    
+	/**
+	 * Check, Can make directory
+	 * 
+	 * @param unknown $targetDir
+	 * @return boolean
+	 */
+	public static function checkMakeDirectory($targetDir) {
+		return (@mkdir($targetDir.PATH_SEPARATOR.'mkdir_test') && @rmdir($targetDir.PATH_SEPARATOR.'mkdir_test'));
+	}
+    
 	/**
 	 * check_http_timeout
 	 * 

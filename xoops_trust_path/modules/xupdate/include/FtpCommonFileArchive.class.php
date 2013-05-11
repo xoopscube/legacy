@@ -35,42 +35,44 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 		} else {
 			$extractor = ($this->Ftp->isSafeMode)? '_unzipFile_FileArchiveCareful' : '_unzipFile_FileArchive';
 			
-			// check shell cmd
-			if (substr($this->download_file, -4) === '.zip') {
+			if (! $this->Ftp->isSafeMode) {
 				// check shell cmd
-				$this->procExec('unzip --help', $o, $c);
-				if ($c === 0) {
-					$extractor = '_unzipFile_Unzip';
-				} else {
-					// check ZipArchive
-					if (! $this->Ftp->isSafeMode) {
-						$mod_zip = false;
-						if(! class_exists('ZipArchive')){
-							if (! extension_loaded('zip')) {
-								if (function_exists('dl')){
-									$prefix = (PHP_SHLIB_SUFFIX == 'dll') ? 'php_' : '';
-									@ dl($prefix . 'zip.' . PHP_SHLIB_SUFFIX);
+				if (substr($this->download_file, -4) === '.zip') {
+					// check shell cmd
+					$this->procExec('unzip --help', $o, $c);
+					if ($c === 0) {
+						$extractor = '_unzipFile_Unzip';
+					} else {
+						// check ZipArchive
+						if (! $this->Ftp->isSafeMode) {
+							$mod_zip = false;
+							if(! class_exists('ZipArchive')){
+								if (! extension_loaded('zip')) {
+									if (function_exists('dl')){
+										$prefix = (PHP_SHLIB_SUFFIX == 'dll') ? 'php_' : '';
+										@ dl($prefix . 'zip.' . PHP_SHLIB_SUFFIX);
+									}
 								}
-							}
-							if (class_exists('ZipArchive')) {
+								if (class_exists('ZipArchive')) {
+									$mod_zip = true;
+								}
+							} else {
 								$mod_zip = true;
 							}
-						} else {
-							$mod_zip = true;
-						}
-						if ($mod_zip) {
-							$extractor = '_unzipFile_ZipArchive';
+							if ($mod_zip) {
+								$extractor = '_unzipFile_ZipArchive';
+							}
 						}
 					}
-				}
-			} else if (substr($this->download_file, -7) === '.tar.gz') {
-				// check shell cmd
-				$this->procExec('tar --version', $o, $c);
-				if ($c === 0) {
-					unset($o);
-					$this->procExec('gzip --version', $o, $c);
+				} else if (substr($this->download_file, -7) === '.tar.gz') {
+					// check shell cmd
+					$this->procExec('tar --version', $o, $c);
 					if ($c === 0) {
-						$extractor = '_unzipFile_Tar';
+						unset($o);
+						$this->procExec('gzip --version', $o, $c);
+						if ($c === 0) {
+							$extractor = '_unzipFile_Tar';
+						}
 					}
 				}
 			}
