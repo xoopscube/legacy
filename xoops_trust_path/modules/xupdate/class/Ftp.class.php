@@ -73,9 +73,11 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	public function __construct($XupdateObj, $port_mode=FALSE, $verb=FALSE, $le=FALSE) {
 		parent::__construct($XupdateObj);
 		
-		$this->isSafeMode = (ini_get('safe_mode') == "1");
+		$tempDir = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/');
 		
-		$this->loginCheckFile = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/').'/'.rawurlencode(substr(XOOPS_URL, 7)).'_logincheck.ini.php';
+		$this->isSafeMode = (ini_get('safe_mode') == "1" || ! Xupdate_Utils::checkMakeDirectory($tempDir));
+		
+		$this->loginCheckFile = $tempDir.'/'.rawurlencode(substr(XOOPS_URL, 7)).'_logincheck.ini.php';
 		if (! empty($this->mod_config['php_perm'])) {
 			$this->phpPerm = intval($this->mod_config['php_perm'], 8);
 		}
