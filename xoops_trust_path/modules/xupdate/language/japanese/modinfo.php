@@ -65,6 +65,8 @@ define('_MI_XUPDATE_MANAGE', '管理');
 // A brief description of this module
 define('_MI_XUPDATE_DESC'     , 'お好みのアドオンをダウンロードできます');
 define('_MI_XUPDATE_MSG_SAVED', '設定を保存しました。');
+define('_MI_XUPDATE_MSG_DO_MODULE_INSTALL', '引き続き、モジュールインストールを行います。');
+define('_MI_XUPDATE_MSG_DO_MODULE_UPDATE', '引き続き、モジュールアップデートを行います。');
 
 // admin menus
 define('_MI_XUPDATE_ADMENU_ADDONSTORE'   , 'アドオンストア');
