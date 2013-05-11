@@ -95,9 +95,10 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 	 **/
 	private function _unzipFile_Unzip($downloadFilePath, $exploredDirPath) {
 		$this->_cleanup($exploredDirPath);
-		$this->procExec('unzip ' . $downloadFilePath . ' -d ' . $exploredDirPath, $o, $c);
+		$this->procExec('unzip ' . $downloadFilePath . ' -d ' . $exploredDirPath, $o, $c, $e);
 		if  ($c !== 0) {
-			$this->_set_error_log('unzip error: '.$o);
+			$this->_set_error_log('unzip: '.$o);
+			$this->_set_error_log('unzip error: '.$e);
 			return false;
 		} else {
 			return true;
@@ -111,9 +112,10 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 	 **/
 	private function _unzipFile_Tar($downloadFilePath, $exploredDirPath) {
 		$this->_cleanup($exploredDirPath);
-		$this->procExec('tar -xzf ' . $downloadFilePath . ' -C ' . $exploredDirPath, $o, $c);
+		$this->procExec('tar -xzf ' . $downloadFilePath . ' -C ' . $exploredDirPath, $o, $c, $e);
 		if  ($c !== 0) {
-			$this->_set_error_log('tar error: '.$o);
+			$this->_set_error_log('tar: '.$o);
+			$this->_set_error_log('tar error: '.$e);
 			return false;
 		} else {
 			return true;

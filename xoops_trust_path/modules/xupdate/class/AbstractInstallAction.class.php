@@ -317,6 +317,17 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
 		// for re-post on time out error
 		$this->mActionForm->getToken();
 		
+		// need module update
+		if ($this->contents === 'module') {
+			if ($is_install) {
+				$_needModuleUpdate = _MI_XUPDATE_MSG_DO_MODULE_INSTALL;
+			} else if ($mobj->hasNeedUpdate() && $mobj->mModule->getRenderedVersion() != $mobj->getRenderedVersion()) {
+				$_needModuleUpdate = _MI_XUPDATE_MSG_DO_MODULE_UPDATE;
+			} else {
+				$_needModuleUpdate = '';
+			}
+		}
+		
 		//execute
 		if ($result = $xupdateFtpModuleInstall->execute($this->contents)) {
 			$store_handler =& $this->_getStoreHandler();
@@ -329,6 +340,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
 		$render->setAttribute('mod_config', $this->mod_config);
 		$render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
 		$render->setAttribute('xupdate_nextlink', $xupdateFtpModuleInstall->nextlink);
+		$render->setAttribute('xupdate_moduleUpdate', $_needModuleUpdate);
 
 		$render->setAttribute('xupdate_content', $xupdateFtpModuleInstall->content);
 		$render->setAttribute('xupdate_message', $xupdateFtpModuleInstall->Ftp->getMes());

@@ -65,6 +65,8 @@ define('_MI_XUPDATE_MANAGE', 'Manage');
 // A brief description of this module
 define('_MI_XUPDATE_DESC', 'You can download the add-on of your choice');
 define('_MI_XUPDATE_MSG_SAVED' , 'Your settings have been saved');
+define('_MI_XUPDATE_MSG_DO_MODULE_INSTALL', 'Then, module install is performed.');
+define('_MI_XUPDATE_MSG_DO_MODULE_UPDATE', 'Then, module update is performed.');
 
 // admin menus
 define('_MI_XUPDATE_ADMENU_ADDONSTORE'   , 'Add-on Store');

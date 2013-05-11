@@ -18,6 +18,20 @@
 	</li>
 	</ul>
 	<div style="clear:both;"></div>
+	
+	<{if $xupdate_moduleUpdate}>
+		<script type="text/javascript">
+		jQuery(function($){
+			var next_link_url = $('#xupdate_addModule>a').attr('href');
+			if (next_link_url) {
+				if (confirm("<{$xupdate_moduleUpdate}>")) {
+					document.location.href = next_link_url;
+				}
+			}
+		})(jquery);
+		</script>
+	<{/if}>
+	
 	<{/if}>
 	
 	<div id="xupdate_message">
