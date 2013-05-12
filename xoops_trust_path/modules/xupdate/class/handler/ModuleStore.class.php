@@ -105,6 +105,8 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 					$this->modinfo['detailed_version'] = constant('_MI_'.strtoupper($dirname).'_DETAILED_VERSION');
 				} else if ($trust_dirname && defined('_MI_'.strtoupper($trust_dirname).'_DETAILED_VERSION')) {
 					$this->modinfo['detailed_version'] = constant('_MI_'.strtoupper($trust_dirname).'_DETAILED_VERSION');
+				} else {
+					$this->modinfo['detailed_version'] = '';
 				}
 			}
 			
