@@ -99,16 +99,19 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 			$this->modinfo['version'] = sprintf('%01.2f', $this->mModule->getVar('version') / 100);
 			$trust_dirname = $this->mModule->getVar('trust_dirname');
 			
+			$this->options = $this->unserialize_options($readini);
+			
 			// set detaild_version by constat (ex. '_MI_LEGACY_DETAILED_VERSION'
 			if (! isset($this->modinfo['detailed_version'])) {
 				if (defined('_MI_'.strtoupper($dirname).'_DETAILED_VERSION')) {
 					$this->modinfo['detailed_version'] = constant('_MI_'.strtoupper($dirname).'_DETAILED_VERSION');
 				} else if ($trust_dirname && defined('_MI_'.strtoupper($trust_dirname).'_DETAILED_VERSION')) {
 					$this->modinfo['detailed_version'] = constant('_MI_'.strtoupper($trust_dirname).'_DETAILED_VERSION');
+				} else if ($this->options['detailed_version']) {
+					$this->modinfo['detailed_version'] = '';
 				}
 			}
 			
-			$this->options = $this->unserialize_options($readini);
 			if ($readini) {
 				if ($this->mModule->getVar('isactive')) {
 					if (($this->getVar('version') && $this->mModule->getVar('version') < $this->getVar('version'))
