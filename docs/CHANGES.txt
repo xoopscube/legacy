@@ -2,6 +2,18 @@
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 ----------------------------------------
+2012/05/13: Package Revision 2.2.2 RC2
+----------------------------------------
+[Issues]
+#76 Static keywords backward compatibility.
+
+[Staff]
+- Kilica
+- Naao
+- nao-pon
+
+
+----------------------------------------
 2012/04/28: Package Revision 2.2.2 RC1
 ----------------------------------------
 [Issues]

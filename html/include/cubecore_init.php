@@ -25,7 +25,7 @@ define('XOOPS_CUBE_LEGACY', true);
  * developers.
  * ex) if(defined('LEGACY_BASE_VERSION') && version_compare(LEGACY_BASE_VERSION, '2.2.0.0', '>='))
  */
-define('LEGACY_BASE_VERSION', '2.2.2.1');
+define('LEGACY_BASE_VERSION', '2.2.2.2');
 
 require_once XOOPS_ROOT_PATH . "/core/XCube_Root.class.php";
 require_once XOOPS_ROOT_PATH . "/core/XCube_Controller.class.php";

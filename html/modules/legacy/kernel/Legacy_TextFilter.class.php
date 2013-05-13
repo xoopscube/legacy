@@ -270,7 +270,7 @@ class Legacy_TextFilter extends XCube_TextFilter
 		return $text;
 	}
 
-	public static function makeClickableConvertTable(&$patterns, &$replacements) {
+	public function makeClickableConvertTable(&$patterns, &$replacements) {
 		// URI accept class ref. RFC 1738 (but not strict here)
 		$hpath = "[-_.!~*\'()a-z0-9;\/?:\@&=+\$,%#]+";
 		$patterns[] = "/(^|[^]_a-z0-9-=\"'\/])([a-z]+?):\/\/($hpath)/i";
@@ -330,11 +330,11 @@ class Legacy_TextFilter extends XCube_TextFilter
 		return $text;
 	}
 	
-	public static function makeXCodeCheckImgPatterns(&$patterns) {
+	public function makeXCodeCheckImgPatterns(&$patterns) {
 		$patterns[] = "/\[img( align=\w+)]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
 	}
 
-	public static function makeXCodeConvertTable(&$patterns, &$replacements) {
+	public function makeXCodeConvertTable(&$patterns, &$replacements) {
 		$patterns[] = "/\[siteurl\=(['\"]?)([^\"'<>]*)\\1\](.*)\[\/siteurl\]/sU";
 		$replacements[0][] = $replacements[1][] = '<a href="'.XOOPS_URL.'/\\2" rel="external">\\3</a>';
 		$patterns[] = "/\[url\=(['\"]?)(http[s]?:\/\/[^\"'<>]*)\\1\](.*)\[\/url\]/sU";
@@ -449,7 +449,7 @@ class Legacy_TextFilter extends XCube_TextFilter
 		return $text;
 	}
 	
-	public static function makePreXCodeConvertTable(&$patterns, &$replacements) {
+	public function makePreXCodeConvertTable(&$patterns, &$replacements) {
 		$patterns[] = "/\[code\](.*)\[\/code\]/esU";
 		$replacements[] = "'[code]'.base64_encode('$1').'[/code]'";
 	}
@@ -487,7 +487,7 @@ class Legacy_TextFilter extends XCube_TextFilter
 		return $text;
 	}
 
-	public static function makePostXCodeConvertTable(&$patterns, &$replacements) {
+	public function makePostXCodeConvertTable(&$patterns, &$replacements) {
 		$patterns[] = "/\[code\](.*)\[\/code\]/esU";
 		$replacements[0][] = "'<div class=\"xoopsCode\"><pre><code>'.Legacy_TextFilter::codeSanitizer('$1', 0).'</code></pre></div>'";
 		$replacements[1][] = "'<div class=\"xoopsCode\"><pre><code>'.Legacy_TextFilter::codeSanitizer('$1', 1).'</code></pre></div>'"; 
