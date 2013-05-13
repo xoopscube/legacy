@@ -123,7 +123,7 @@ class XoopsDatabase
 class Database
 {
 
-	function &getInstance()
+	public static function &getInstance()
 	{
 		$instance =& XoopsDatabaseFactory::getDatabaseConnection();
 		return $instance;

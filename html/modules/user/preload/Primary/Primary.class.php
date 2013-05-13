@@ -40,7 +40,7 @@ class User_PrimaryFilter extends XCube_ActionFilter
  */
 class User_Utils
 {
-	function setupUser(&$principal, &$controller, &$context)
+	public static function setupUser(&$principal, &$controller, &$context)
 	{
 		if (is_object($context->mXoopsUser)) {
 			return;
@@ -74,7 +74,7 @@ class User_Utils
 		$principal = new Legacy_GenericPrincipal($identity, array("Site.GuestUser"));
 	}
 	
-	function convertUrlToUser(&$url)
+	public static function convertUrlToUser(&$url)
 	{
 		global $xoopsRequestUri;
 		if (!strstr($url, '?')) {

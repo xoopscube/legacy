@@ -21,7 +21,7 @@ class Legacy_NuSoapLoader extends XCube_ActionFilter
 	/**
 	 * @static
 	 */
-	function createClient(&$client, $service)
+	public static function createClient(&$client, $service)
 	{
 		if (is_object($client)) {
 			return;
@@ -43,7 +43,7 @@ class Legacy_NuSoapLoader extends XCube_ActionFilter
 	/**
 	 * @static
 	 */
-	function createServer(&$server, $service)
+	public static function createServer(&$server, $service)
 	{
 		if (is_object($server) || !is_object($service)) {
 			return;

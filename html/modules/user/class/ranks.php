@@ -27,10 +27,10 @@ class UserRanksHandler extends XoopsObjectGenericHandler
 	var $mPrimary = "rank_id";
 	var $mClass = "UserRanksObject";
 
-	function delete(&$obj)
+	function delete(&$obj, $force=false)
 	{
 		@unlink(XOOPS_UPLOAD_PATH . "/" . $obj->get('rank_image'));
-		return parent::delete($obj);
+		return parent::delete($obj, $force);
 	}
 }
 

@@ -16,7 +16,7 @@ include "mainfile.php";
 
 class DefaultSystemCheckFunction
 {
-	function DefaultCheck()
+	public static function DefaultCheck()
 	{
 		if (ini_get('register_globals') == 1) {
 		    xoops_error(sprintf(_WARNPHPENV,'register_globals','on',_WARNSECURITY),'','warning');

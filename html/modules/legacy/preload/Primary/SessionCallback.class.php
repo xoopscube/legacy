@@ -18,7 +18,7 @@ class Legacy_SessionCallback extends XCube_ActionFilter
 		$this->mRoot->mDelegateManager->add('XCube_Session.GetSessionCookiePath', 'Legacy_SessionCallback::getSessionCookiePath');
 	}
 
-	function setupSessionHandler()
+	public static function setupSessionHandler()
 	{
 		$sessionHandler =& xoops_gethandler('session');
 		session_set_save_handler(
@@ -30,7 +30,7 @@ class Legacy_SessionCallback extends XCube_ActionFilter
 			array(&$sessionHandler, 'gc'));
 	}
 	
-	function getSessionCookiePath(&$cookiePath) {
+	public static function getSessionCookiePath(&$cookiePath) {
 		$parse_array = parse_url(XOOPS_URL);
 		$cookiePath = @$parse_array['path'].'/';
 	}
