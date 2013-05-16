@@ -105,7 +105,7 @@ class Xupdate_FtpCommonFunc {
 			
 			$downloadDirPath = realpath($this->Xupdate->params['temp_path']);
 			$exploredDirPath = $downloadDirPath.'/'.$target_key;
-			if ((file_exists($exploredDirPath) || $this->Ftp->localMkdir($exploredDirPath)) && (is_writable($exploredDirPath) || $this->Ftp->localChmod($exploredDirPath, 0707))) {
+			if ((file_exists($exploredDirPath) || $this->Ftp->localMkdir($exploredDirPath)) && (is_writable($exploredDirPath) || $this->Ftp->localChmod($exploredDirPath, _MD_XUPDATE_WRITABLE_DIR_PERM))) {
 				return $exploredDirPath;
 			}
 		}
