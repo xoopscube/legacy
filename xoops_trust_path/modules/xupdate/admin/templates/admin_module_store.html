@@ -181,7 +181,7 @@
 	      <td class="legacy_list_select">
 	      <{if $xupdate_writable.result==true}>
 	        <{if $module->mModule && $module->mModule->getVar('mid') > 0 }>
-	          <{if $module->mModule->getVar('isactive') && $module->isDirnameError() == false}>
+	          <{if $module->mModule->getVar('dirname') !== 'legacy' && $module->mModule->getVar('isactive') && $module->isDirnameError() == false}>
 	         <input type="checkbox" class="rapidInstallCheckbox" />
 	          <{/if}>
 	        <{else}>
