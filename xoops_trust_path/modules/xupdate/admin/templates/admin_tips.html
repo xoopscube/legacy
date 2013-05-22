@@ -1,0 +1,34 @@
+<div class="tips">
+<ul>
+	<li><{$smarty.const._MI_XUPDATE_TEMP_PATH}> <{$xupdate_writable.path}>
+	<{if $xupdate_writable.result==true}>
+		(<span style="color:green;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_WRITABLE_RESULT}> OK</span>)
+	<{else}>
+		(<span style="color:red;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_WRITABLE_RESULT}> NG</span>)
+	<{/if}>
+	</li>
+	<li>cURL Extension
+	<{if $mod_config._CurlCheck }>
+		(<span style="color:green;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_EXTENSION_CHECK_RESULT}> OK</span>)
+	<{else}>
+		(<span style="color:red;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_EXTENSION_CHECK_RESULT}> NG</span>)
+	<{/if}>
+	</li>
+	<li><{$mod_config.FTP_UserName}>
+	<{if $mod_config._FtpLoginCheck }>
+		(<span style="color:green;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_FTP_PASS_RESULT}> OK</span>)
+	<{else}>
+		(<span style="color:red;font-weight:bold;"><{$smarty.const._AD_XUPDATE_LANG_FTP_PASS_RESULT}> NG</span>)
+	<{/if}>
+	</li>
+	<li><{$smarty.const._AD_XUPDATE_LANG_EXECUTION_TIME}>
+	<{if $mod_config._ExecutionTime >= 300 }>
+		(<span style="color:green;font-weight:bold;"><{$mod_config._ExecutionTime}>s OK</span>)
+	<{elseif $mod_config._ExecutionTime == 0 }>
+		(<span style="color:green;font-weight:bold;"> OK</span>)
+	<{else}>
+		(<span style="color:orange;"><span style="color:red;font-weight:bold;"><{$mod_config._ExecutionTime}>s</span> <{$smarty.const._AD_XUPDATE_LANG_EXECUTION_TIME_NOTICE}></span>)
+	<{/if}>
+	</li>
+</ul>
+</div>
