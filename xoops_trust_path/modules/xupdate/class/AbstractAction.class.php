@@ -312,13 +312,13 @@ EOD;
     		
     		// set writable "mod_config['temp_path']"
     		if (! $this->Xupdate->params['is_writable']['result']) {
-    			$this->Ftp->localChmod($this->Xupdate->params['is_writable']['path'], 0707);
+    			$this->Ftp->localChmod($this->Xupdate->params['is_writable']['path'], _MD_XUPDATE_WRITABLE_DIR_PERM);
     		}
     		
     		// set writable protector config dir
     		$protector_config = XOOPS_TRUST_PATH . '/modules/protector/configs';
     		if (! Xupdate_Utils::checkDirWritable($protector_config)) {
-    			$this->Ftp->localChmod($protector_config, 0707);
+    			$this->Ftp->localChmod($protector_config, _MD_XUPDATE_WRITABLE_DIR_PERM);
     		}
     		
     		clearstatcache();
@@ -334,7 +334,7 @@ define(\'XUPDATE_INSTALLERCHECKER_ACTIVE\', false);';
     			$src = str_replace('<?php', '<?php'.$add, $src);
     			$sourcePath = $this->Xupdate->params['is_writable']['path'] . '/preload';
     			$this->Ftp->localMkdir($sourcePath);
-    			$this->Ftp->localChmod($sourcePath, 0707);
+    			$this->Ftp->localChmod($sourcePath, _MD_XUPDATE_WRITABLE_DIR_PERM);
     			file_put_contents($sourcePath . '/CorePackPreload.class.php', $src);
     			$this->Ftp->uploadNakami($sourcePath, XOOPS_ROOT_PATH . '/preload/');
     			$this->Ftp->localRmdirRecursive($sourcePath);

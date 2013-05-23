@@ -244,7 +244,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 						$this->Ftp->localMkdir($dir);
 						while (!isset($dirs[$dir]) && $dir != $exploredDirPath) {
 							$dirs[$dir] = true;
-							$this->Ftp->localChmod($dir, 0707);
+							$this->Ftp->localChmod($dir, _MD_XUPDATE_WRITABLE_DIR_PERM);
 							$dir = dirname($dir);
 						}
 					}

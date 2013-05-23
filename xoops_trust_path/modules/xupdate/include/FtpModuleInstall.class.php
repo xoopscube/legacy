@@ -494,7 +494,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			$this->Ftp->localMkdir($directory);
 		}
 		if(file_exists($directory) && is_dir($directory)){
-			$this->Ftp->localChmod($directory, 0707);
+			$this->Ftp->localChmod($directory, _MD_XUPDATE_WRITABLE_DIR_PERM);
 		}
 	}
 

@@ -227,6 +227,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
 
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
 		$render->setAttribute('actionForm', $this->mActionForm);
+		$render->setAttribute('prefUrl', $this->mModule->getPreferenceEditUrl());
 
 		$render->setAttribute('currentMenu', $this->currentMenu);
 		$render->setAttribute('currentItem', $this->target_key);

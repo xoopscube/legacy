@@ -26,6 +26,10 @@ define('_AD_XUPDATE_LANG_NO_UPDATE', "The excluded files or folders (prefix sear
 define('_AD_XUPDATE_LANG_DELETE_DIR', 'Delete the directory that are no longer needed');
 define('_AD_XUPDATE_LANG_DELETE_FILE', 'Delete files that are no longer needed');
 define('_AD_XUPDATE_RECENTCHANGES', 'Changes');
+define('_AD_XUPDATE_LANG_PRELOAD_NAME', 'Preload Name');
+define('_AD_XUPDATE_DESCRIPTION', 'Description');
+define('_AD_XUPDATE_LANG_PERM', 'Permission');
+define('_AD_XUPDATE_LANG_CHANGE', 'Change');
 
 define('_AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL', "Batch OP");
 define('_AD_XUPDATE_LANG_MESSAGE_WAITING', "Waiting");
@@ -33,8 +37,6 @@ define('_AD_XUPDATE_LANG_MESSAGE_SUCCESS', "Success");
 define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES', "getting files");
 define('_AD_XUPDATE_LANG_MESSAGE_PROCESSING', "...");
 define('_AD_XUPDATE_LANG_BUTTON_UPDATE', 'Update');
-define('_AD_XUPDATE_LANG_PRELOAD_NAME', 'Preload Name');
-define('_AD_XUPDATE_DESCRIPTION', 'Description');
 
 define('_AD_XUPDATE_LANG_TIMEOUT_ERROR', 'PHP timeout');
 define('_AD_XUPDATE_LANG_STAGE_1', 'Downloading of the archive was started.');
@@ -51,4 +53,3 @@ define('_AD_XUPDATE_LANG_STAGE_UPLOAD_NOT_COMPLETE', 'Deployment of the file to 
 
 define('_AD_XUPDATE_LANG_THM_TOTAL'  , 'Total of Themes');
 define('_AD_XUPDATE_LANG_ITEM_TOTAL'  , 'Total of Items');
-

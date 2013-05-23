@@ -110,6 +110,8 @@ define('_MI_XUPDATE_SSH_PORT'     , 'SSH接続のポート');
 define('_MI_XUPDATE_SSH_PORTDSC'  , 'SSH_FTP接続、または鍵認証接続のSSHポート番号');
 define('_MI_XUPDATE_SSH_KEY'      , 'SSH鍵認証接続のprivate_key');
 define('_MI_XUPDATE_SSH_KEYDSC'   , 'SSH鍵認証接続場合にprivate_keyを貼付けます');
+define('_MI_XUPDATE_WRITABLE_DIR_PERM'     , '書き込み可ディレクトリ パーミッション');
+define('_MI_XUPDATE_WRITABLE_DIR_PERMDSC'  , '書き込み可能とするディレクトリへセットするパーミッション');
 define('_MI_XUPDATE_PHP_PERM'     , '.php パーミッション');
 define('_MI_XUPDATE_PHP_PERMDSC'  , '拡張子が php のファイルにセットするパーミッション(PHP が CGI モードの場合など、必要であれば指定します。)');
 define('_MI_XUPDATE_DEBUG'        , 'デバグ出力を表示する');
