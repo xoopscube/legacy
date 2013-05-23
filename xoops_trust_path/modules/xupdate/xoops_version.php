@@ -23,7 +23,7 @@ $basename = basename($dirname);
 // Define a basic manifesto.
 //
 $modversion['name'] = _MI_XUPDATE_LANG_XUPDATE;
-$modversion['version'] = '0.53';
+$modversion['version'] = '0.54';
 $modversion['description'] = _MI_XUPDATE_DESC_XUPDATE;
 $modversion['author'] = _MI_XUPDATE_LANG_AUTHOR;
 $modversion['credits'] = _MI_XUPDATE_LANG_CREDITS;
@@ -258,6 +258,16 @@ $modversion['config'] = array(
 		'formtype'	=> 'textarea',
 		'valuetype'	=> 'text',
 		'default'	=> '',
+		'options'	=> array(),
+	) ,
+
+	array(
+		'name'		=> 'writable_dir_perm' ,
+		'title'		=> '_MI_XUPDATE_WRITABLE_DIR_PERM',
+		'description'	=> '_MI_XUPDATE_WRITABLE_DIR_PERMDSC',
+		'formtype'	=> 'text',
+		'valuetype'	=> 'string',
+		'default'	=> '777',
 		'options'	=> array(),
 	) ,
 

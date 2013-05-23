@@ -54,6 +54,11 @@ class Xupdate_Root extends XoopsSimpleObject {
 			define('_MD_XUPDATE_SYS_RETRYSER_FILE', $this->params['temp_path'] . '/retry_cache.ser');
 		}
 		
+		// define writable dir permission
+		if (! defined('_MD_XUPDATE_WRITABLE_DIR_PERM')) {
+			define('_MD_XUPDATE_WRITABLE_DIR_PERM', intval($this->mod_config['writable_dir_perm'], 8));
+		}
+		
 		$tmpf = rtrim($this->params['temp_path'], '/');
 		$tmpf_realpath = realpath($tmpf);
 		if (empty($tmpf_realpath)){

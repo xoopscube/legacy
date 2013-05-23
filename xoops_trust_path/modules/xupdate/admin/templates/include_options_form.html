@@ -4,7 +4,7 @@
     <td class="legacy_list_select">
     <table>
        <{if $options.writable_dir}>
-        <tr><th class="ehad" colspan="2"><{$smarty.const._AD_XUPDATE_LANG_WRITABLE_DIR}></th></tr>
+        <tr><th class="ehad" colspan="2"><{$smarty.const._AD_XUPDATE_LANG_WRITABLE_DIR}><br /><{$smarty.const._AD_XUPDATE_LANG_PERM}>: <{$smarty.const._MD_XUPDATE_WRITABLE_DIR_PERM|decoct}> ( <a href="<{$prefUrl}>"><{$smarty.const._AD_XUPDATE_LANG_CHANGE}></a> )</th></tr>
        <{counter start=0 skip=1 assign=count}>
        <{foreach from=$options.writable_dir item=_item}>
         <{counter assign=count}>

@@ -110,6 +110,8 @@ define('_MI_XUPDATE_SSH_PORT'     , 'SSH connection port');
 define('_MI_XUPDATE_SSH_PORTDSC'  , 'SSH port for SSH_FTP or SSH Key-Auth connection');
 define('_MI_XUPDATE_SSH_KEY'      , 'Private key for SSH connection');
 define('_MI_XUPDATE_SSH_KEYDSC'   , 'Paste the private key for SSH connection');
+define('_MI_XUPDATE_WRITABLE_DIR_PERM'     , 'Permission of wraitable dir');
+define('_MI_XUPDATE_WRITABLE_DIR_PERMDSC'  , 'Permission to set the writable dirctory');
 define('_MI_XUPDATE_PHP_PERM'     , 'Permission of .php');
 define('_MI_XUPDATE_PHP_PERMDSC'  , 'Permission to set the file extension of php.(Such as running PHP in CGI mode. Specify, if necessary.)');
 define('_MI_XUPDATE_DEBUG'        , 'View the debug output');

@@ -26,6 +26,10 @@ define('_AD_XUPDATE_LANG_NO_UPDATE', "アップデート時には配置・上書きをしないファ
 define('_AD_XUPDATE_LANG_DELETE_DIR', '不要になったディレクトリの削除');
 define('_AD_XUPDATE_LANG_DELETE_FILE', '不要になったファイルの削除');
 define('_AD_XUPDATE_RECENTCHANGES', '更新履歴');
+define('_AD_XUPDATE_LANG_PRELOAD_NAME', 'プリロード名');
+define('_AD_XUPDATE_DESCRIPTION', '説明');
+define('_AD_XUPDATE_LANG_PERM', 'パーミッション');
+define('_AD_XUPDATE_LANG_CHANGE', '変更');
 
 define('_AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL', "一括操作");
 define('_AD_XUPDATE_LANG_MESSAGE_WAITING', "待機中");
@@ -33,8 +37,6 @@ define('_AD_XUPDATE_LANG_MESSAGE_SUCCESS', "完了");
 define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES', "配置");
 define('_AD_XUPDATE_LANG_MESSAGE_PROCESSING', "中");
 define('_AD_XUPDATE_LANG_BUTTON_UPDATE', '更新');
-define('_AD_XUPDATE_LANG_PRELOAD_NAME', 'プリロード名');
-define('_AD_XUPDATE_DESCRIPTION', '説明');
 
 define('_AD_XUPDATE_LANG_TIMEOUT_ERROR', 'PHP 実行時タイムアウト');
 define('_AD_XUPDATE_LANG_STAGE_1', 'アーカイブのダウンロードを開始しました。');
