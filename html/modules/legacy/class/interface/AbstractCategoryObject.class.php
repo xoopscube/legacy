@@ -9,11 +9,11 @@ if(!defined('XOOPS_ROOT_PATH'))
 {
 	exit();
 }
-
+require_once dirname(__FILE__) . '/AbstractObject.class.php';
 /**
  * Abstract Category Class
 **/
-abstract class Legacy_AbstractCategoryObject extends XoopsSimpleObject
+abstract class Legacy_AbstractCategoryObject extends Legacy_AbstractObject
 {
 	const PRIMARY = 'cat_id';
 	const DATANAME = 'cat';
