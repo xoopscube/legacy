@@ -10,10 +10,37 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	public $dirname;
 	public $html_only;
 	
+	private $systemModules = array();
+	private $systemDirs = array();
+	
 	public function __construct() {
 
 		parent::__construct();
-
+		
+		// @todo
+		$this->systemModules = array('legacy');
+		
+		// @todo
+		$this->systemDirs = array(
+			'html',
+			'html/class',
+			'html/class/database/*',
+			'html/class/mail/*',
+			'html/class/xml/*',
+			'html/class/xoopsform/*',
+			'html/core/*',
+			'html/include/*',
+			'html/install/*',
+			'html/kernel/*',
+			'html/modules/legacy/*',
+			'html/modules/legacyRender/*',
+			'html/modules/message/*',
+			'html/modules/profile/*',
+			'html/modules/stdCache/*',
+			'html/modules/user/*',
+			'xoops_trust_path/settings/*'
+		);
+		
 	}
 
 	/**
@@ -99,7 +126,13 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 								$this->options['no_update'] = array();
 							}
 							$this->Ftp->set_no_overwrite(array($this->options['no_overwrite'], $this->options['no_update']));
-
+							
+							// is system module?
+							$_isSystemModule = (in_array($this->dirname, $this->systemModules) || (!empty($this->trust_dirname) && in_array($this->trust_dirname, $this->systemModules)));
+							if (! $_isSystemModule) {
+								$this->_removeSystemFile();
+							}
+							
 							// do close site
 							if (isset($_POST['do_closesite']) || ! $this->mRoot->mContext->getXoopsConfig('closesite')) {
 								$cHandler =& xoops_gethandler('config');
@@ -512,18 +545,35 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 		}
 	}
 	
+	/**
+	 * Delete local file
+	 * 
+	 * @param string $path local path
+	 * @return void
+	 */
 	private function _delete($path) {
 		if (is_file($path)) {
 			$this->Ftp->localDelete($path);
 		}
 	}
 	
+	/**
+	 * Remove local dirctory recursive
+	 * 
+	 * @param string $path local path
+	 * @return void
+	 */
 	private function _rmdir_recursive($path) {
 		if (is_dir($path)) {
 			$this->Ftp->localRmdirRecursive($path);
 		}
 	}
 	
+	/**
+	 * Cleanup download dirctory
+	 * 
+	 * @return void
+	 */
 	public function _cleanUp_downloadDir() {
 		if ($this->Ftp->isSafeMode) {
 			$this->Ftp->isConnected() || $this->Ftp->app_login();
@@ -539,6 +589,11 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 		}
 	}
 	
+	/**
+	 * Set item permission
+	 * 
+	 * @return void
+	 */
 	private function _set_item_perm() {
 		// change directories to writable
 		if(isset($this->options['writable_dir'])){
@@ -559,6 +614,41 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	}
 	
 	
+	/**
+	 * Remove locked system file or dirctory from extracted archive
+	 * 
+	 * @return void
+	 */
+	private function _removeSystemFile() {
+		$exploredDirCnt = strlen($this->exploredDirPath);
+		foreach($this->systemDirs as $dir) {
+			$dir = rtrim($dir , '/');
+			$path = $this->exploredDirPath . '/' . $dir;
+			if (substr($path, -1) === '*') {
+				$path = rtrim($path, '*/');
+				if (is_dir($path)) {
+					$this->_set_error_log('Remove system dir: [archive]'.substr($path, $exploredDirCnt));
+					$this->_cleanup($path);
+				}
+			} else {
+				if (is_dir($path) && $handle = opendir($path)) {
+					while (false !== ($entry = readdir($handle))) {
+						if ($entry !== '.' && $entry !== '..' && ! is_dir($path . DIRECTORY_SEPARATOR . $entry)) {
+							$this->_set_error_log('Remove system file: [archive]'.substr($path, $exploredDirCnt) . DIRECTORY_SEPARATOR . $entry);
+							unlink($path . DIRECTORY_SEPARATOR . $entry);
+						}
+					}
+					closedir($handle);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Set stage
+	 * 
+	 * @param int $stage
+	 */
 	private function _set_stage($stage) {
 		$GLOBALS['xupdate_stage'] = $stage;
 		$this->save_lockfile($stage);
