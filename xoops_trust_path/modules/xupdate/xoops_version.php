@@ -262,6 +262,16 @@ $modversion['config'] = array(
 	) ,
 
 	array(
+		'name'		=> 'writable_file_perm' ,
+		'title'		=> '_MI_XUPDATE_WRITABLE_FILE_PERM',
+		'description'	=> '_MI_XUPDATE_WRITABLE_FILE_PERMDSC',
+		'formtype'	=> 'text',
+		'valuetype'	=> 'string',
+		'default'	=> '666',
+		'options'	=> array(),
+	) ,
+
+	array(
 		'name'		=> 'writable_dir_perm' ,
 		'title'		=> '_MI_XUPDATE_WRITABLE_DIR_PERM',
 		'description'	=> '_MI_XUPDATE_WRITABLE_DIR_PERMDSC',
