@@ -546,12 +546,11 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			}
 		} else {
 			// make empty file
-			$tmp = XOOPS_TRUST_PATH . '/uploads/xupdate/' . '.tmp_' . basename($file);
+			$tmp = $this->exploredDirPath . '/_empty.tmp';
 			if (@ touch($tmp)) {
 				if ($this->Ftp->localPut($tmp, $file)) {
 					$this->Ftp->localChmod($file, _MD_XUPDATE_WRITABLE_FILE_PERM);
 				}
-				unlink($tmp);
 			}
 		}
 	}
