@@ -538,10 +538,20 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	 *
 	 * @return	void
 	 **/
-	private function _chmod_file( &$directory)
+	private function _chmod_file( &$file)
 	{
-		if(file_exists($directory) && !is_dir($directory)){
-			$this->Ftp->localChmod($directory, 0606);
+		if(file_exists($file)){
+			if (!is_dir($file)) {
+				$this->Ftp->localChmod($file, _MD_XUPDATE_WRITABLE_FILE_PERM);
+			}
+		} else {
+			// make empty file
+			$tmp = $this->exploredDirPath . '/_empty.tmp';
+			if (@ touch($tmp)) {
+				if ($this->Ftp->localPut($tmp, $file)) {
+					$this->Ftp->localChmod($file, _MD_XUPDATE_WRITABLE_FILE_PERM);
+				}
+			}
 		}
 	}
 	

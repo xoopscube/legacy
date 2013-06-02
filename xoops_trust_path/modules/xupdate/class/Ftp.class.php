@@ -181,6 +181,17 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	}
 	
 	/**
+	 * put by server path
+	 * 
+	 * @param string $src
+	 * @param string $file server path
+	 * @return boolean
+	 */
+	public function localPut($src, $file) {
+		return $this->put($src, $this->getLocalPath($file));
+	}
+	
+	/**
 	 * Rename by server path
 	 *
 	 * @param string $from server path
