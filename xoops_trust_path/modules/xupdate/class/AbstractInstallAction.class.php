@@ -223,6 +223,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
 		$render->setAttribute('screen_shot', $this->screen_shot);
 		$render->setAttribute('action', $action);
 
+		$render->setAttribute('htmlOnly', !$this->isNeedUpdateCheckByVersionFile($mobj) );
 		$render->setAttribute('options', $this->options );
 
 		$render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
@@ -364,7 +365,25 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
 	{
 		$this->mRoot->mController->executeForward('./index.php?action='.$this->action);
 	}
-
+	
+	/**
+	 * Is need update checking, compare version with xoops_version.php
+	 * 
+	 * @param object $mobj
+	 * @return boolean
+	 */
+	private function isNeedUpdateCheckByVersionFile($mobj) {
+		$xoops_version = XOOPS_MODULE_PATH . '/' . $this->dirname . '/xoops_version.php';
+		return (
+				$this->contents !== 'module'
+				 ||
+				!(@include($xoops_version))
+				 ||
+				sprintf('%01.2f', floatval($modversion['version'])) != $mobj->getRenderedVersion()
+				 || 
+				($mobj->options['detailed_version'] && ($mobj->options['detailed_version'] != @$modversion['detailed_version']))
+				);
+	}
 }
 
 ?>
