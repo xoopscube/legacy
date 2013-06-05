@@ -78,12 +78,12 @@ if( ! empty( $_POST['clone_tplset_do'] ) && ! empty( $_POST['clone_tplset_from']
 	$tplset_from = $myts->stripSlashesGPC( $_POST['clone_tplset_from'] ) ;
 	$tplset_to = $myts->stripSlashesGPC( $_POST['clone_tplset_to'] ) ;
 	// check tplset_name "from" and "to"
-	if( ! preg_match( '/^[0-9A-Za-z_-]{1,16}$/' , $_POST['clone_tplset_from'] ) ) die( _MYTPLSADMIN_ERR_INVALIDSETNAME ) ;
-	if( ! preg_match( '/^[0-9A-Za-z_-]{1,16}$/' , $_POST['clone_tplset_to'] ) ) die( _MYTPLSADMIN_ERR_INVALIDSETNAME ) ;
+	if( ! preg_match( '/^[0-9A-Za-z_-]{1,16}$/' , $_POST['clone_tplset_from'] ) ) tplsadmin_die( _MYTPLSADMIN_ERR_INVALIDSETNAME , $target_dirname ) ;
+	if( ! preg_match( '/^[0-9A-Za-z_-]{1,16}$/' , $_POST['clone_tplset_to'] ) ) tplsadmin_die( _MYTPLSADMIN_ERR_INVALIDSETNAME , $target_dirname ) ;
 	list( $is_exist ) = $db->fetchRow( $db->query( "SELECT COUNT(*) FROM ".$db->prefix("tplfile")." WHERE tpl_tplset='".addslashes($tplset_to)."'" ) ) ;
-	if( $is_exist ) die( _MYTPLSADMIN_ERR_DUPLICATEDSETNAME ) ;
+	if( $is_exist ) tplsadmin_die( _MYTPLSADMIN_ERR_DUPLICATEDSETNAME , $target_dirname ) ;
 	list( $is_exist ) = $db->fetchRow( $db->query( "SELECT COUNT(*) FROM ".$db->prefix("tplset")." WHERE tplset_name='".addslashes($tplset_to)."'" ) ) ;
-	if( $is_exist ) die( _MYTPLSADMIN_ERR_DUPLICATEDSETNAME ) ;
+	if( $is_exist ) tplsadmin_die( _MYTPLSADMIN_ERR_DUPLICATEDSETNAME , $target_dirname ) ;
 	// insert tplset table
 	$db->query( "INSERT INTO ".$db->prefix("tplset")." SET tplset_name='".addslashes($tplset_to)."', tplset_desc='Created by tplsadmin', tplset_created=UNIX_TIMESTAMP()" ) ;
 	tplsadmin_copy_templates_db2db( $tplset_from , $tplset_to , "tpl_module='$target_dirname4sql'" ) ;
@@ -99,8 +99,8 @@ if( is_array( @$_POST['copy_do'] ) ) foreach( $_POST['copy_do'] as $tplset_from_
 	}
 
 	$tplset_from = $myts->stripSlashesGPC( $tplset_from_tmp ) ;
-	if( empty( $_POST['copy_to'][$tplset_from] ) || $_POST['copy_to'][$tplset_from] == $tplset_from ) die( _MYTPLSADMIN_ERR_INVALIDTPLSET ) ;
-	if( empty( $_POST["{$tplset_from}_check"] ) ) die( _MYTPLSADMIN_ERR_NOTPLFILE ) ;
+	if( empty( $_POST['copy_to'][$tplset_from] ) || $_POST['copy_to'][$tplset_from] == $tplset_from ) tplsadmin_die( _MYTPLSADMIN_ERR_INVALIDTPLSET , $target_dirname ) ;
+	if( empty( $_POST["{$tplset_from}_check"] ) ) tplsadmin_die( _MYTPLSADMIN_ERR_NOTPLFILE , $target_dirname ) ;
 	$tplset_to = $myts->stripSlashesGPC( $_POST['copy_to'][$tplset_from] ) ;
 	foreach( $_POST["{$tplset_from}_check"] as $tplfile_tmp => $val ) {
 		if( empty( $val ) ) continue ;
@@ -118,8 +118,8 @@ if( ! empty( $_POST['copyf2db_do'] ) ) {
 		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
 	}
 
-	if( empty( $_POST['copyf2db_to'] ) ) die( _MYTPLSADMIN_ERR_INVALIDTPLSET ) ;
-	if( empty( $_POST['basecheck'] ) ) die( _MYTPLSADMIN_ERR_NOTPLFILE ) ;
+	if( empty( $_POST['copyf2db_to'] ) ) tplsadmin_die( _MYTPLSADMIN_ERR_INVALIDTPLSET , $target_dirname ) ;
+	if( empty( $_POST['basecheck'] ) ) tplsadmin_die( _MYTPLSADMIN_ERR_NOTPLFILE , $target_dirname ) ;
 	$tplset_to = $myts->stripSlashesGPC( $_POST['copyf2db_to'] ) ;
 	foreach( $_POST['basecheck'] as $tplfile_tmp => $val ) {
 		if( empty( $val ) ) continue ;
@@ -138,8 +138,8 @@ if( is_array( @$_POST['del_do'] ) ) foreach( $_POST['del_do'] as $tplset_from_tm
 	}
 
 	$tplset_from = $myts->stripSlashesGPC( $tplset_from_tmp ) ;
-	if( $tplset_from == 'default' && $target_dirname != '_custom' ) die( _MYTPLSADMIN_ERR_CANTREMOVEDEFAULT ) ;
-	if( empty( $_POST["{$tplset_from}_check"] ) ) die( _MYTPLSADMIN_ERR_NOTPLFILE ) ;
+	if( $tplset_from == 'default' && $target_dirname != '_custom' ) tplsadmin_die( _MYTPLSADMIN_ERR_CANTREMOVEDEFAULT , $target_dirname ) ;
+	if( empty( $_POST["{$tplset_from}_check"] ) ) tplsadmin_die( _MYTPLSADMIN_ERR_NOTPLFILE , $target_dirname ) ;
 
 	require_once XOOPS_ROOT_PATH.'/class/template.php' ;
 	$tpl = new XoopsTpl();
@@ -168,6 +168,35 @@ if( is_array( @$_POST['del_do'] ) ) foreach( $_POST['del_do'] as $tplset_from_tm
 // GET stage  //
 //************//
 
+// javascript
+$_MYTPLSADMIN_ERR_INVALIDTPLSET = htmlspecialchars( _MYTPLSADMIN_ERR_INVALIDTPLSET );
+$_MYTPLSADMIN_ERR_NOTPLFILE = htmlspecialchars( _MYTPLSADMIN_ERR_NOTPLFILE );
+$javascript = <<<EOD
+<script type="text/javascript">
+	function altsys_mytpladmin_check_copy_submit(msg, id, selcheck) {
+		if (typeof jQuery != 'undefined') {
+			var checked = jQuery('form[name="MainForm"] input[name^="'+id+'check"]:checked').val();
+			if (typeof checked == 'undefined') {
+				alert("$_MYTPLSADMIN_ERR_NOTPLFILE");
+				return false;
+			}
+			if (selcheck) {
+				if (id == 'base') {
+					var select = 'copyf2db_to';
+				} else {
+					var select = 'copy_to['+id.substr(0,id.length-1)+']'
+				}
+				if (jQuery('form[name="MainForm"] select[name="'+select+'"]').val() == '') {
+					alert("$_MYTPLSADMIN_ERR_INVALIDTPLSET");
+					return false;
+				}
+			}
+		}
+		return confirm(msg);
+	}
+</script>
+EOD;
+
 // get tplsets
 $tplset_handler =& xoops_gethandler( 'tplset' ) ;
 $tplsets = array_keys( $tplset_handler->getList() ) ;
@@ -191,6 +220,9 @@ $sql = "SELECT tpl_file,tpl_desc,tpl_type,COUNT(tpl_id) FROM ".$db->prefix("tplf
 $frs = $db->query($sql);
 
 xoops_cp_header() ;
+
+// javascript
+echo $javascript;
 
 // mymenu
 altsys_include_mymenu() ;
@@ -299,18 +331,18 @@ echo "
 				$tplset_options
 			</select>
 			<br />
-			<input name='copyf2db_do' type='submit' value='"._MYTPLSADMIN_BTN_COPY."' onclick='return confirm(\""._MYTPLSADMIN_CNF_COPY_SELECTED_TEMPLATES."\");' />
+			<input name='copyf2db_do' type='submit' value='"._MYTPLSADMIN_BTN_COPY."' onclick='return altsys_mytpladmin_check_copy_submit(\""._MYTPLSADMIN_CNF_COPY_SELECTED_TEMPLATES."\", \"base\", true);' />
 		</td>\n" ;
 
 	foreach( $tplsets as $tplset ) {
 		$tplset4disp = htmlspecialchars( $tplset , ENT_QUOTES ) ;
 		echo "\t\t<td class='head'>
-			" . ( $tplset == 'default' && $target_dirname != '_custom' ? "" : "<input name='del_do[{$tplset4disp}]' type='submit' value='"._DELETE."' onclick='return confirm(\""._MYTPLSADMIN_CNF_DELETE_SELECTED_TEMPLATES."\");' /><br /><br />" ) . "
+			" . ( $tplset == 'default' && $target_dirname != '_custom' ? "" : "<input name='del_do[{$tplset4disp}]' type='submit' value='"._DELETE."' onclick='return altsys_mytpladmin_check_copy_submit(\""._MYTPLSADMIN_CNF_DELETE_SELECTED_TEMPLATES."\", \"{$tplset4disp}_\", false);' /><br /><br />" ) . "
 			"._MYTPLSADMIN_CAPTION_COPYTO.":
 			<select name='copy_to[{$tplset4disp}]'>
-				$tplset_options
+				".str_replace('<option value=\''.$tplset4disp.'\'>'.$tplset4disp.'</option>', '', $tplset_options)."
 			</select>
-			<input name='copy_do[{$tplset4disp}]' type='submit' value='"._MYTPLSADMIN_BTN_COPY."' onclick='return confirm(\""._MYTPLSADMIN_CNF_COPY_SELECTED_TEMPLATES."\");' />
+			<input name='copy_do[{$tplset4disp}]' type='submit' value='"._MYTPLSADMIN_BTN_COPY."' onclick='return altsys_mytpladmin_check_copy_submit(\""._MYTPLSADMIN_CNF_COPY_SELECTED_TEMPLATES."\", \"{$tplset4disp}_\", true);' />
 		</td>\n" ;
 	}
 
