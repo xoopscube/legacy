@@ -344,7 +344,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			$this->_copy_extra_langs($this->dirname);
 			
 			// for legacy only
-			if ($this->dirname === 'legacy') {
+			if ($this->dirname === 'legacy' || $this->Ftp->isRootDirChange()) {
 				// for protector 'manip_value' update
 				if (XC_CLASS_EXISTS('Protector')) {
 					$db =& Database::getInstance();

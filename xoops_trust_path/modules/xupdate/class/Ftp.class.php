@@ -67,6 +67,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	private $loginCheckFile;
 	private $phpPerm;
 	private $uploaded_files = array();
+	private $rootChangeFlg = false;
 	public $isSafeMode;
 	
 	/* Constructor */
@@ -273,6 +274,15 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		return $this->_connected;
 	}
 	
+	/**
+	 * isRootDirChange
+	 * 
+	 * @return boolean
+	 */
+	public function isRootDirChange() {
+		return $this->rootChangeFlg;
+	}
+	
 // <!-- --------------------------------------------------------------------------------------- -->
 // <!--	   protected functions																  -->
 // <!-- --------------------------------------------------------------------------------------- -->
@@ -377,6 +387,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			if (isset($file_list['dir']) && is_array($file_list['dir'])) {
 				$dir = $file_list['dir'];
 				krsort($dir);
+				$rootReg = '#^'.preg_quote(XOOPS_ROOT_PATH, '#').'/[^/]+$#';
 				foreach ($dir as $directory){
 					if ($mode === 'repMisc') {
 						if (strstr($directory ,'/modules/'.$trust_dirname)){
@@ -387,7 +398,13 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 					}
 					$remote_directory = $remote_path.substr($directory, $remote_pos);
 					if (!is_dir($remote_directory) && !$this->_dont_overwrite($remote_directory, true)){
-						$this->ftp_mkdir($remote_directory);
+						if ($this->ftp_mkdir($remote_directory)) {
+							//checking XOOPS_ROOT_PATH root dir
+							if (! $this->rootChangeFlg && preg_match($rootReg, $remote_directory)) {
+								$this->rootChangeFlg = true;
+								$this->appendMes('mkdir into XOOPS_ROOT_PATH ('.$remote_directory.')<br />');
+							}
+						}
 					}
 					$dir_cnt++;
 				}
