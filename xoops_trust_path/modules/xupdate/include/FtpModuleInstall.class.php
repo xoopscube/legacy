@@ -38,7 +38,9 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			'html/modules/profile/*',
 			'html/modules/stdCache/*',
 			'html/modules/user/*',
-			'xoops_trust_path/settings/*'
+			'xoops_trust_path/settings/definition.inc.php',
+			'xoops_trust_path/settings/site_default.dist.ini',
+			'xoops_trust_path/settings/site_default.ini'
 		);
 		
 	}
