@@ -20,32 +20,33 @@ ResourceDiscoveryOrder=Theme,ThemeD3,ThemeDefault,ThemeDefaultD3,DbTplSet
 
 ## Quick install
 
-Please change `T="../xoops_trust_path"` by your liking.
-
-### On the shell (sh, bash)
-
-```bash
-cd [DOCUMENT ROOT]
-T="../xoops_trust_path";curl -kL github.com/XoopsX/installer/raw/master/install.sh|sed "s#<T>#$T#"|sh
-```
-
-### On the shell (csh)
-
-```csh
-cd [DOCUMENT ROOT]
-set T="../xoops_trust_path";curl -kL github.com/XoopsX/installer/raw/master/install.sh|sed "s#<T>#$T#"|sh
-```
-
 ### On the web
 
-* Upload "[install.cgi](https://github.com/XoopsX/installer/raw/master/install.cgi)" into [DOCUMENT ROOT] & chmod +x install.cgi
+* Upload "[install.cgi](http://xoopsx.github.io/installer/install.cgi)" into [DOCUMENT ROOT] 
+* And chmod +x install.cgi
 * Access to `install.cgi`
 * Set your XOOPS_TRUST_PATH into next form.
 ![139cO](https://f.cloud.github.com/assets/1412630/391121/5330a358-a759-11e2-8166-d34b351dd4b7.png)
 * Click [OK & Upload & Please Wait]
 
-***
+### On the shell (sh, bash, csh)
 
+Please change `T="../xoops_trust_path"` by your liking.
+
+#### (sh, bash)
+```bash
+cd [DOCUMENT ROOT]
+T="../xoops_trust_path";curl xoopsx.github.io/installer/install.sh|sed "s#<T>#$T#"|sh
+```
+
+#### (csh)
+
+```csh
+cd [DOCUMENT ROOT]
+set T="../xoops_trust_path";curl xoopsx.github.io/installer/install.sh|sed "s#<T>#$T#"|sh
+```
+
+***
 
 ##Legacy
 
