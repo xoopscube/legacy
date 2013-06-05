@@ -38,7 +38,9 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			'html/modules/profile/*',
 			'html/modules/stdCache/*',
 			'html/modules/user/*',
-			'xoops_trust_path/settings/*'
+			'xoops_trust_path/settings/definition.inc.php',
+			'xoops_trust_path/settings/site_default.dist.ini',
+			'xoops_trust_path/settings/site_default.ini'
 		);
 		
 	}
@@ -344,7 +346,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			$this->_copy_extra_langs($this->dirname);
 			
 			// for legacy only
-			if ($this->dirname === 'legacy') {
+			if ($this->dirname === 'legacy' || $this->Ftp->isRootDirChange()) {
 				// for protector 'manip_value' update
 				if (XC_CLASS_EXISTS('Protector')) {
 					$db =& Database::getInstance();
