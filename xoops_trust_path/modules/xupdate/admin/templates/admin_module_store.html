@@ -163,12 +163,13 @@
 	      <td class="legacy_list_select">
 	        <{$module->getShow('target_type')}>
 	      </td>
-	      <td class="legacy_list_control">
+	      <td class="legacy_list_control"<{if $module->mModule->getVar('dirname') === 'legacy'}> colspan="2"<{/if}>>
 	      <{if $xupdate_writable.result==true}>
 	        <{if $module->mModule && $module->mModule->getVar('mid') > 0}>
 	          <{if $module->mModule->getVar('isactive')}>
 	          <a href="<{$module->get_StoreUrl()}>" title="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>"><img src="<{"icons/update.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" /></a>
 	          <a href="<{$module->get_UpdateUrl()}>"></a>
+	          <{if $module->mModule->getVar('dirname') === 'legacy'}><br /><span class="legacy_list_select" style="white-space:nowrap;"><a href="<{$module->get_StoreUrl()}>"><{$smarty.const._AD_LEGACY_LANG_UPDATE}></a></span><{/if}>
 	          <{else}>
 	          <img src="<{"icons/error.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>" title="<{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>" />
 	          <{/if}>
@@ -178,10 +179,11 @@
 	        <{/if}>
 	     <{/if}>
 	      </td>
-	      <td class="legacy_list_select">
+	     <{if $module->mModule->getVar('dirname') !== 'legacy'}>
+	      <td class="legacy_list_select center">
 	      <{if $xupdate_writable.result==true}>
 	        <{if $module->mModule && $module->mModule->getVar('mid') > 0 }>
-	          <{if $module->mModule->getVar('dirname') !== 'legacy' && $module->mModule->getVar('isactive') && $module->isDirnameError() == false}>
+	          <{if $module->mModule->getVar('isactive') && $module->isDirnameError() == false}>
 	         <input type="checkbox" class="rapidInstallCheckbox" />
 	          <{/if}>
 	        <{else}>
@@ -189,6 +191,7 @@
 	        <{/if}>
 	     <{/if}>
 	      </td>
+	    <{/if}>
 	    </tr>
 	  <{/foreach}>
 	  <tr>

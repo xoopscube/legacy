@@ -467,3 +467,7 @@ input[type="radio"] {
 	-moz-box-shadow: inset 1px 1px 1px rgba(000, 000, 000, 0.3);
 	-webkit-box-shadow: inset 1px 1px 1px rgba(000, 000, 000, 0.3);
 }
+
+td.center {
+	text-align: center;
+}
