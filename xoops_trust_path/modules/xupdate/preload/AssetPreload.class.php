@@ -263,16 +263,14 @@ class Xupdate_Block extends Legacy_AbstractBlockProcedure
 		$no_notify_reg = '/action=(?:(?:Module|Theme|Preload)Install|(?:Module|Theme|Preload)Update|(?:Module|Theme|Preload)Store&filter=updated)/';
 		if (!preg_match($no_notify_reg, $_SERVER['QUERY_STRING'])) {
 			$handler = Legacy_Utils::getModuleHandler('ModuleStore', 'xupdate');
-			$result = $handler->getNotifyHTML();
+			$handler->getNotifyHTML();
 		}
-		
-		$render =& $this->getRenderTarget();
-		$render->setResult($result);
+
 	}
 
-	function hasResult()
+	function isDisplay()
 	{
-		return true;
+		return false;
 	}
 
 	function &getResult()
