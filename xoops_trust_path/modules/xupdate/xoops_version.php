@@ -292,6 +292,16 @@ $modversion['config'] = array(
 	) ,
 
 	array(
+		'name'		=> 'only_conf_lang',
+		'title'		=> '_MI_XUPDATE_ONLY_CONF_LANG' ,
+		'description'	=> '_MI_XUPDATE_ONLY_CONF_LANGDSC',
+		'formtype'	=> 'yesno',
+		'valuetype'	=> 'int',
+		'default'	=> 0 ,
+		'options'	=> array(),
+	) ,
+	
+	array(
 		'name'          => 'tag_dirname' ,
 		'title'         => '_MI_XUPDATE_TAG_DIRNAME' ,
 		'description'   => '_MI_XUPDATE_TAG_DIRNAMEDSC' ,
