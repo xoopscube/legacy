@@ -96,16 +96,13 @@ class Xupdate_NotifyBlock extends Legacy_BlockProcedure
         $headerScript= $root->mContext->getAttribute('headerScript');
         $headerScript->addScript('var xupdateCheckImg=new Image();xupdateCheckImg.src="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleView&checkonly=1";');
         
-       	$result = $this->_mHandler->getNotifyHTML();
-        
-        $render =& $this->getRenderTarget();
-        $render->setResult($result);
+        $this->_mHandler->getNotifyHTML();
         
     }
     
-    function getTitle()
+    function isDisplay()
     {
-    	return '';
+        return false;
     }
 }
 
