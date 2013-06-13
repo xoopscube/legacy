@@ -116,6 +116,8 @@ define('_MI_XUPDATE_WRITABLE_FILE_PERM'    , 'Permission of wraitable file');
 define('_MI_XUPDATE_WRITABLE_FILE_PERMDSC' , 'Permission to set the writable file');
 define('_MI_XUPDATE_PHP_PERM'     , 'Permission of .php');
 define('_MI_XUPDATE_PHP_PERMDSC'  , 'Permission to set the file extension of php.(Such as running PHP in CGI mode. Specify, if necessary.)');
+define('_MI_XUPDATE_ONLY_CONF_LANG'     , 'Used language only');
+define('_MI_XUPDATE_ONLY_CONF_LANGDSC'  , 'Directory "language" uploads only English and the specified language.<br />It can avoid uploading an unnecessary file by choosing "Yes", when you do not need Multi language.');
 define('_MI_XUPDATE_DEBUG'        , 'View the debug output');
 define('_MI_XUPDATE_FTP_ADDON_URL', 'Module Add-on URL');
 define('_MI_XUPDATE_FTP_THEME_URL', 'Theme Add-on URL');

@@ -512,8 +512,9 @@ class Xupdate_ModuleStoreHandler extends Legacy_AbstractClientObjectHandler
 	
 	/**
 	 * Get Notify HTML (Pull down bar)
+	 * Add as JavaScript into headerScript
 	 * 
-	 * @return string
+	 * @return void
 	 */
 	public function getNotifyHTML() {
 		$result = '';
@@ -546,19 +547,21 @@ EOD;
 				<a href="javascript:"><img src="'.XOOPS_URL.'/common/js/notify/images/icon-arrowdown.png" /></a>
 				</div>';
 			}
+			
+			$result = '<div class="notification '.$type.' hide">
+			<a class="close" href="javascript:"><img src="'.XOOPS_URL.'/common/js/notify/images/icon-close.png" /></a>
+			<div>'.$msg.'</div>
+			</div>' . $ondemandBtn;
+			$result = str_replace("'", '&#039;', $result);
+			$result = str_replace(array("\r", "\n", "\t"), '', $result);
+			
 			$headerScript= $root->mContext->getAttribute('headerScript');
 			$headerScript->addStylesheet('/common/js/notify/style/default.css');
 			$headerScript->addStylesheet('/modules/'.$this->mDirname.'/admin/templates/stylesheets/module.css');
 			$headerScript->addLibrary('/common/js/notify/notification.js');
 			$headerScript->addLibrary('/common/js/jquery.cookie.js');
-			$headerScript->addScript($notifyJS);
-			$result = '<div class="notification '.$type.' hide">
-			<a class="close" href="javascript:"><img src="'.XOOPS_URL.'/common/js/notify/images/icon-close.png" /></a>
-			<div>'.$msg.'</div>
-			</div>' . $ondemandBtn;
+			$headerScript->addScript("\njQuery('$result').appendTo('body');\n".$notifyJS);
 		}
-		
-		return $result;
 	}
 	
 	protected function _isActivityClient(/*** mixed[] ***/ $conf)

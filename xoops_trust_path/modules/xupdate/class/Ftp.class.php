@@ -492,7 +492,37 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 
 	private function _dont_overwrite($file, $dir_chk = false)
 	{
-		list($no_overwrite, $no_update) = $this->no_overwrite;
+		static $only_conf_lang = null;
+		static $reg_lang = null;
+		static $lang = null;
+		static $no_overwrite = null;
+		static $no_update = null;
+		
+		if (is_null($only_conf_lang)) {
+			$only_conf_lang = $this->mod_config['only_conf_lang'];
+			list($no_overwrite, $no_update) = $this->no_overwrite;
+		}
+		
+		// language check
+		if ($only_conf_lang) {
+			if (is_null($reg_lang)) {
+				$html = preg_quote(XOOPS_ROOT_PATH, '#');
+				$trust = preg_quote(XOOPS_TRUST_PATH, '#');
+				$reg_lang = '#^(?:'.$html.'|'.$trust.')/(?:modules/[^/]+/)?language/([^/]+)(?:/|$)#';
+				$root = XCube_Root::getSingleton();
+				$lang = $root->mContext->getXoopsConfig('language');
+				$lang = ($lang === 'english')? array($lang) : array($lang, 'english');
+			}
+			if (preg_match($reg_lang, $file, $match)) {
+				if (! in_array($match[1], $lang)){
+					return true;
+				}
+			}
+		}
+		
+		if (is_null($no_overwrite)) {
+			list($no_overwrite, $no_update) = $this->no_overwrite;
+		}
 		if ($no_update) {
 			foreach ($no_update as $item) {
 				if( strpos($file, $item) === 0){
