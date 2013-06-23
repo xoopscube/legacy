@@ -84,8 +84,8 @@ class AltsysLangMgr_LanguageManager extends Legacy_LanguageManager
 		/* if (!$this->_loadFile(XOOPS_ROOT_PATH . "/modules/legacy/language/" . $this->mLanguageName . "/global.php")) {
 			$this->_loadFile(XOOPS_ROOT_PATH . "/modules/legacy/language/english/global.php");
 		} */
-		$this->_loadLanguage('legacy', 'global') ;
-		$this->_loadLanguage('legacy', 'setting') ;
+		$this->_loadLanguage( 'legacy' , 'global' ) ;
+		$this->_loadLanguage( 'legacy' , 'setting' ) ;
 
 		//
 		// Now, if XOOPS_USE_MULTIBYTES isn't defined, set zero to it.

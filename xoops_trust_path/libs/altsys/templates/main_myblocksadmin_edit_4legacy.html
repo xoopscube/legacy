@@ -70,15 +70,15 @@
 			<td class="even">
 				<{if $xoops_cube_legacy}>
 					<{if $block.ctype == 'P'}>
-						<textarea name="contents[<{$block.bid}>]" id="textarea_content" cols="80" rows="20"><{$block.content_raw|escape}></textarea>
+						<textarea name="contents[<{$block.bid}>]" id="textarea_content" class="none" cols="80" rows="20"><{$block.content_raw|escape}></textarea>
 						<{if ! $common_fck_installed}><br /><{$smarty.const._MD_A_MYBLOCKSADMIN_NOTICE4COMMONFCK}><{/if}>
 					<{elseif  $block.ctype == 'H' && $common_fck_installed}>
-						<textarea name="contents[<{$block.bid}>]" id="textarea_content"><{$block.content_raw|escape}></textarea>
+						<textarea name="contents[<{$block.bid}>]" id="textarea_content" class="html"><{$block.content_raw|escape}></textarea>
 						<script>fckeditor_exec();</script>
 					<{elseif $block.ctype == 'H' || empty($block.ctype) }>
-						<{xoops_dhtmltarea cols=74 rows=15 name="contents[`$block.bid`]" id="textarea_content" value="`$block.content_raw`" editor=html}>
+						<{xoops_dhtmltarea cols=74 rows=15 name="contents[`$block.bid`]" id="textarea_content" value="`$block.content_raw`" class=html editor=html}>
 					<{else}>
-						<{xoops_dhtmltarea cols=74 rows=15 name="contents[`$block.bid`]" id="textarea_content" value="`$block.content_raw`" myckeditor=true editor=bbcode}>
+						<{xoops_dhtmltarea cols=74 rows=15 name="contents[`$block.bid`]" id="textarea_content" value="`$block.content_raw`" myckeditor=true class=bbcode editor=bbcode}>
 					<{/if}>
 				<{else}>
 					<{if $block.ctype == 'P' || ! $common_fck_installed}>

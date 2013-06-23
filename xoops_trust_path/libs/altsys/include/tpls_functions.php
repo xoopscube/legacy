@@ -148,4 +148,13 @@ function tplsadmin_get_basefilepath( $dirname , $type , $tpl_file )
 	return $path ;
 }
 
+
+function tplsadmin_die( $msg , $target_dirname = '' , $wait = 2 ) {
+	if (strtolower($_SERVER['REQUEST_METHOD']) === 'post') {
+		redirect_header( '?mode=admin&lib=altsys&page=mytplsadmin&dirname='.$target_dirname , $wait , $msg ) ;
+		exit ;
+	} else {
+		die( $msg ) ;
+	}
+}
 ?>

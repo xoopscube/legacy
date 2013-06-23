@@ -901,7 +901,7 @@ function form_edit( $bid , $mode = 'edit' )
 		'op' => $next_op ,
 		'form_title' => $form_title ,
 		'submit_button' => $button_value ,
-		'common_fck_installed' => file_exists( XOOPS_ROOT_PATH.'/common/fckeditor/fckeditor.js' ) ,
+		'common_fck_installed' => $this->checkFck() ,
 		'gticket_hidden' => $GLOBALS['xoopsGTicket']->getTicketHtml( __LINE__ , 1800 , 'myblocksadmin') ,
 	) ) ;
 
@@ -913,6 +913,9 @@ function form_edit( $bid , $mode = 'edit' )
 	return ;
 }
 
+function checkFck() {
+	return file_exists( XOOPS_ROOT_PATH.'/common/fckeditor/fckeditor.js' );
+}
 
 function previewContent( $block_data )
 {

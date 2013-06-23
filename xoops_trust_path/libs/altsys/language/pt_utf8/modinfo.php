@@ -1,5 +1,5 @@
 <?php
-// $Id$
+// $Id: modinfo.php 1040 2011-11-06 05:24:00Z mikhail $
 // License http://creativecommons.org/licenses/by/2.5/br/
 define("_MI_ALTSYS_ADMIN_IN_THEME","Tema configurado para administrador");
 define("_MI_ALTSYS_ADMIN_IN_THEMEDSC","Configure o nome do tema mostrado na área administrativa. Insira uma linha apenas depois da inclusão do common.php no mainfile.php<br />include XOOPS_TRUST_PATH.\"/libs/altsys/include/admin_in_theme.inc.php\";<br /> para habilitar isso. Esta característica trabalha somente com XOOPS 2.0.x");
