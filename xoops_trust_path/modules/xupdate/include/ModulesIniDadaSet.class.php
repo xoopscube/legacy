@@ -46,7 +46,8 @@ class Xupdate_ModulesIniDadaSet
 		'options',
 		'isactive',
 		'hasupdate',
-		'contents');
+		'contents',
+		'category_id');
 	
 	
 	private $mTagModule;
