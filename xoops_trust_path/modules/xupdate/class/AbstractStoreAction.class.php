@@ -214,6 +214,8 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 			}
 		}
 		$render->setAttribute('cloud', $tagCloud);
+
+        $render->setAttribute('categoryList', Xupdate_Utils::getCategoryList($this->mAsset->mDirname));
 	}
 
 	function execute()

@@ -30,6 +30,7 @@ define('_AD_XUPDATE_LANG_PRELOAD_NAME', 'Preload Name');
 define('_AD_XUPDATE_DESCRIPTION', 'Description');
 define('_AD_XUPDATE_LANG_PERM', 'Permission');
 define('_AD_XUPDATE_LANG_CHANGE', 'Change');
+define('_AD_XUPDATE_LANG_CATEGORY_ID', 'category');
 
 define('_AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL', "Batch OP");
 define('_AD_XUPDATE_LANG_MESSAGE_WAITING', "Waiting");

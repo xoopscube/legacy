@@ -1,8 +1,8 @@
 <?php
-define('_MB_XUPDATE_MODULEUPDATE'     , '¥¢¥Ã¥×¥Ç¡¼¥¿ ¥â¥¸¥å¡¼¥ë');
-define('_MB_XUPDATE_THEMEUPDATE'      , '¥¢¥Ã¥×¥Ç¡¼¥¿ ¥Æ¡¼¥Þ');
-define('_MB_XUPDATE_PRELOADUPDATE'    , '¥¢¥Ã¥×¥Ç¡¼¥¿ ¥×¥ê¥í¡¼¥É');
-define('_MB_XUPDATE_HAVE_UPDATE'      , '¥¢¥Ã¥×¥Ç¡¼¥È²ÄÇ½¤Ê%s¤¢¤ê¤Þ¤¹¡£');
-define('_MB_XUPDATE_HAVE_UPDATEMODULE', '¥â¥¸¥å¡¼¥ë¤¬%d¸Ä');
-define('_MB_XUPDATE_HAVE_UPDATETHEME' , '¥Æ¡¼¥Þ¤¬%d¸Ä');
-define('_MB_XUPDATE_HAVE_UPDATEPRELOAD','¥×¥ê¥í¡¼¥É¤¬%d¸Ä');
+define('_MB_XUPDATE_MODULEUPDATE'     , 'ï¿½ï¿½ï¿½Ã¥×¥Ç¡ï¿½ï¿½ï¿½ ï¿½â¥¸ï¿½å¡¼ï¿½ï¿½');
+define('_MB_XUPDATE_THEMEUPDATE'      , 'ï¿½ï¿½ï¿½Ã¥×¥Ç¡ï¿½ï¿½ï¿½ ï¿½Æ¡ï¿½ï¿½ï¿½');
+define('_MB_XUPDATE_PRELOADUPDATE'    , 'ï¿½ï¿½ï¿½Ã¥×¥Ç¡ï¿½ï¿½ï¿½ ï¿½×¥ï¿½?ï¿½ï¿½');
+define('_MB_XUPDATE_HAVE_UPDATE'      , 'ï¿½ï¿½ï¿½Ã¥×¥Ç¡ï¿½ï¿½È²ï¿½Ç½ï¿½ï¿½%sï¿½ï¿½ï¿½ï¿½Þ¤ï¿½ï¿½ï¿½');
+define('_MB_XUPDATE_HAVE_UPDATEMODULE', 'ï¿½â¥¸ï¿½å¡¼ï¿½ë¤¬%dï¿½ï¿½');
+define('_MB_XUPDATE_HAVE_UPDATETHEME' , 'ï¿½Æ¡ï¿½ï¿½Þ¤ï¿½%dï¿½ï¿½');
+define('_MB_XUPDATE_HAVE_UPDATEPRELOAD','ï¿½×¥ï¿½?ï¿½É¤ï¿½%dï¿½ï¿½');

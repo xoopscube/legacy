@@ -22,7 +22,8 @@ class Xupdate_Updater
     private /*** string[] ***/ $_mMileStone = array(
     		'006' => 'update006',
     		'011' => 'update011',
-    		'022' => 'update022'
+    		'022' => 'update022',
+    		'060' => 'update060',
     	);
 
     private /*** XoopsModule ***/ $_mCurrentXoopsModule = null;
@@ -137,8 +138,37 @@ class Xupdate_Updater
     
     	return true;
     }
-    
-    /**
+
+	/**
+	 * Add category_id field
+	 * @return bool
+	 */
+	private function update060()
+	{
+		$this->mLog->addReport('DB upgrade start (for Ver 0.60)');
+
+		// Update database table index.
+		$root =& XCube_Root::getSingleton();
+		$db =& $root->mController->getDB();
+		$table = $db->prefix($this->_mCurrentXoopsModule->get('dirname') . '_modulestore');
+
+		$sql = 'ALTER TABLE '.$table.' ADD category_id int(11) NOT NULL default \'0\'';
+		if ($db->query($sql)) {
+			$this->mLog->addReport('Success updated '.$table.' - `category_id` INT(11)');
+		} else {
+			$this->mLog->addError('Error update '.$table.' - `category_id` INT(11)');
+		}
+
+		if (!$this->_mForceMode && $this->mLog->hasError())
+		{
+			$this->_processReport();
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
      * __construct
      * 
      * @param   void

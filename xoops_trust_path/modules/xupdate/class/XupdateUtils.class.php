@@ -223,6 +223,15 @@ class Xupdate_Utils
 		}
 		if (time() - $start > 270) exit();
 	}
+
+    public static function getCategoryList($dirname)
+    {
+        $isAssoc = true;
+        $path = self::getModuleConfig($dirname, 'temp_path');
+        $jsonData = file_get_contents(XOOPS_TRUST_PATH.'/'.$path.'/stores_json.ini.php');
+        $storeData = json_decode($jsonData, $isAssoc);
+        return $storeData['categories'];
+    }
 }
 
 ?>
