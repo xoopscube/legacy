@@ -70,7 +70,7 @@
 				<a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_CATEGORY_ID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
 			</th>
 	   <th>
-       <div>
+       <div style="width:120px;">
          <{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}>
 	       <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
 	       <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
@@ -173,6 +173,9 @@
           </span>
           <span style="margin-left:10px;">
             <{$module->getShow('target_type')}>
+          </span>
+          <span style="margin-left:10px;">
+            <{$smarty.const._AD_XUPDATE_LANG_STORE}>:<{$module->get_StoreName()|xoops_escape}>
           </span>
           </div>
           <div><{$module->get('description')}></div>
