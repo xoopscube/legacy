@@ -230,7 +230,25 @@ class Xupdate_Utils
         $path = self::getModuleConfig($dirname, 'temp_path');
         $jsonData = file_get_contents(XOOPS_TRUST_PATH.'/'.$path.'/stores_json.ini.php');
         $storeData = json_decode($jsonData, $isAssoc);
-        return $storeData['categories'];
+        return self::convertEncoding($storeData['categories']);
+    }
+    
+    /**
+     * Convert encoding to _CHARSET from UTF-8
+     * 
+     * @param  mixed $arg
+     * @return mixed
+     */
+    public static function convertEncoding($arg)
+    {
+        static $isUTF8 = null;
+        if (is_null($isUTF8)) {
+            $isUTF8 = (! function_exists('mb_convert_variables') || strtoupper(_CHARSET) === 'UTF-8');
+        }
+        if (! $isUTF8) {
+            mb_convert_variables(_CHARSET, 'UTF-8', $arg);
+        }
+        return $arg;
     }
 }
 
