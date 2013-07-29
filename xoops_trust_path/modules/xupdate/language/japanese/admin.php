@@ -5,52 +5,53 @@
  * @version $Id$
 **/
 
-define('_AD_XUPDATE_LANG_WRITABLE_RESULT', "ï¿½Õ¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¥ï¿½ï¿½ï¿½ï¿½Ã¥ï¿½ï¿½ï¿½ï¿½");
-define('_AD_XUPDATE_LANG_EXTENSION_CHECK_RESULT', "PHPï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¥ó¥·¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¥ï¿½ï¿½ï¿½ï¿½");
-define('_AD_XUPDATE_LANG_FTP_PASS_RESULT', "FTPï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¥ï¿½ï¿½ï¿½ï¿½");
-define('_AD_XUPDATE_LANG_EXECUTION_TIME', "PHP ï¿½Â¹Ô»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
-define('_AD_XUPDATE_LANG_EXECUTION_TIME_NOTICE', "PHP ï¿½Â¹Ô»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¤ï¿½Ã»ï¿½ï¿½ï¿½Î¤ï¿½ï¿½ç¤­ï¿½Ê¥ï¿½ï¿½ï¿½ï¿½Æ¥ï¿½Ï¼ï¿½Æ°ï¿½ï¿½ï¿½ï¿½ï¿½Ç¤ï¿½ï¿½Ê¤ï¿½ï¿½ï¿½ï¿½È¤ï¿½ï¿½ï¿½ï¿½ï¿½Þ¤ï¿½ï¿½ï¿½");
+define('_AD_XUPDATE_LANG_WRITABLE_RESULT', "¥Õ¥©¥ë¥À¸¢¸Â¥Á¥§¥Ã¥¯·ë²Ì");
+define('_AD_XUPDATE_LANG_EXTENSION_CHECK_RESULT', "PHP¥¨¥¯¥¹¥Æ¥ó¥·¥ç¥ó¥Á¥§¥Ã¥¯·ë²Ì");
+define('_AD_XUPDATE_LANG_FTP_PASS_RESULT', "FTPÀßÄê¥Á¥§¥Ã¥¯·ë²Ì");
+define('_AD_XUPDATE_LANG_EXECUTION_TIME', "PHP ¼Â¹Ô»þ´ÖÀ©¸Â");
+define('_AD_XUPDATE_LANG_EXECUTION_TIME_NOTICE', "PHP ¼Â¹Ô»þ´ÖÀ©¸Â¤¬Ã»¤¤¤Î¤ÇÂç¤­¤Ê¥¢¥¤¥Æ¥à¤Ï¼«Æ°¹¹¿·¤Ç¤­¤Ê¤¤¤³¤È¤¬¤¢¤ê¤Þ¤¹¡£");
 
-define('_AD_XUPDATE_LANG_MODULES', "ï¿½â¥¸ï¿½å¡¼ï¿½ï¿½ï¿½ï¿½ï¿½");
-define('_AD_XUPDATE_LANG_THEME_FINDER', "ï¿½Æ¡ï¿½ï¿½Þ¥Õ¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+define('_AD_XUPDATE_LANG_MODULES', "¥â¥¸¥å¡¼¥ë°ìÍ÷");
+define('_AD_XUPDATE_LANG_THEME_FINDER', "¥Æ¡¼¥Þ¥Õ¥¡¥¤¥ó¥À¡¼");
 
-define('_AD_XUPDATE_LANG_TYPE', "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
-define('_AD_XUPDATE_LANG_LICENSE', "ï¿½é¥¤ï¿½ï¿½ï¿½ï¿½");
-define('_AD_XUPDATE_LANG_REQUIRED', "ï¿½ä¾©ï¿½ï¿½");
-define('_AD_XUPDATE_HTML_ONLY', 'htmlÂ¦ï¿½Î¤ï¿½');
-define('_AD_XUPDATE_HTML_ONLY_DESC', 'trust Â¦ï¿½ò¹¹¿ï¿½ï¿½ï¿½ï¿½ï¿½É¬ï¿½×¤ï¿½ï¿½Ê¤ï¿½ï¿½ï¿½ï¿½Ë¥ï¿½ï¿½ï¿½ï¿½Ã¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ html Â¦ï¿½Î¤ï¿½ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ò¤·¤Þ¤ï¿½ï¿½ï¿½');
-define('_AD_XUPDATE_LANG_WRITABLE_DIR', "ï¿½ï¿½ï¿½ï¿½ß¸ï¿½ï¿½Â¤ï¿½Í¿ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½ì¥¯ï¿½È¥ï¿½");
-define('_AD_XUPDATE_LANG_WRITABLE_FILE', "ï¿½ï¿½ï¿½ï¿½ß¸ï¿½ï¿½Â¤ï¿½Í¿ï¿½ï¿½ï¿½ï¿½Õ¥ï¿½ï¿½ï¿½ï¿½ï¿½");
-define('_AD_XUPDATE_LANG_NO_OVERWRITE', "ï¿½ï¿½ñ¤­¤ò¤·¤Ê¤ï¿½ï¿½Õ¥ï¿½ï¿½ï¿½ï¿½ï¿½Þ¤ï¿½ï¿½Ï¥Ç¥ï¿½ï¿½ì¥¯ï¿½È¥ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½<br />ï¿½ï¿½ï¿½ï¿½ï¿½Ã¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë¥¢ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ñ¤­¤ï¿½ï¿½Þ¤ï¿½ï¿½ï¿½<br />ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë¥¢ï¿½ï¿½ï¿½Æ¥à¤¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¸ï¿½ß¤ï¿½ï¿½Ê¤ï¿½ï¿½ï¿½ï¿½Ï¥ï¿½ï¿½ï¿½ï¿½Ã¥ï¿½ï¿½ï¿½ï¿½Ö¤Ë´Ø¤ï¿½é¤ºï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½Þ¤ï¿½ï¿½ï¿½");
-define('_AD_XUPDATE_LANG_NO_UPDATE', "ï¿½ï¿½ï¿½Ã¥×¥Ç¡ï¿½ï¿½È»ï¿½ï¿½Ë¤ï¿½ï¿½ï¿½ï¿½Ö¡ï¿½ï¿½ï¿½ñ¤­¤ò¤·¤Ê¤ï¿½ï¿½Õ¥ï¿½ï¿½ï¿½ï¿½ï¿½Þ¤ï¿½ï¿½Ï¥Ç¥ï¿½ï¿½ì¥¯ï¿½È¥ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½<br />ï¿½ï¿½ï¿½ï¿½ï¿½Ã¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë¥¢ï¿½ï¿½ï¿½Æ¥ï¿½Ï¶ï¿½ï¿½ï¿½Åªï¿½ï¿½ï¿½ï¿½ï¿½Ö¤Þ¤ï¿½ï¿½Ï¾ï¿½ñ¤­¤ï¿½ï¿½ï¿½Þ¤ï¿½ï¿½ï¿½");
-define('_AD_XUPDATE_LANG_DELETE_DIR', 'ï¿½ï¿½ï¿½×¤Ë¤Ê¤Ã¤ï¿½ï¿½Ç¥ï¿½ï¿½ì¥¯ï¿½È¥ï¿½Îºï¿½ï¿½');
-define('_AD_XUPDATE_LANG_DELETE_FILE', 'ï¿½ï¿½ï¿½×¤Ë¤Ê¤Ã¤ï¿½ï¿½Õ¥ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½');
-define('_AD_XUPDATE_RECENTCHANGES', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
-define('_AD_XUPDATE_LANG_PRELOAD_NAME', 'ï¿½×¥ï¿½?ï¿½ï¿½Ì¾');
-define('_AD_XUPDATE_DESCRIPTION', 'ï¿½ï¿½ï¿½ï¿½');
-define('_AD_XUPDATE_LANG_PERM', 'ï¿½Ñ¡ï¿½ï¿½ß¥Ã¥ï¿½ï¿½ï¿½ï¿½');
-define('_AD_XUPDATE_LANG_CHANGE', 'ï¿½Ñ¹ï¿½');
+define('_AD_XUPDATE_LANG_TYPE', "¥¿¥¤¥×");
+define('_AD_XUPDATE_LANG_LICENSE', "¥é¥¤¥»¥ó¥¹");
+define('_AD_XUPDATE_LANG_REQUIRED', "¿ä¾©ÅÙ");
+define('_AD_XUPDATE_HTML_ONLY', 'htmlÂ¦¤Î¤ß');
+define('_AD_XUPDATE_HTML_ONLY_DESC', 'trust Â¦¤ò¹¹¿·¤¹¤ëÉ¬Í×¤¬¤Ê¤¤¾ì¹ç¤Ë¥Á¥§¥Ã¥¯¤òÆþ¤ì¤ë¤È html Â¦¤Î¤ßÇÛÃÖ½èÍý¤ò¤·¤Þ¤¹¡£');
+define('_AD_XUPDATE_LANG_WRITABLE_DIR', "½ñ¹þ¤ß¸¢¸Â¤òÍ¿¤¨¤ë¥Ç¥£¥ì¥¯¥È¥ê");
+define('_AD_XUPDATE_LANG_WRITABLE_FILE', "½ñ¹þ¤ß¸¢¸Â¤òÍ¿¤¨¤ë¥Õ¥¡¥¤¥ë");
+define('_AD_XUPDATE_LANG_NO_OVERWRITE', "¾å½ñ¤­¤ò¤·¤Ê¤¤¥Õ¥¡¥¤¥ë¤Þ¤¿¤Ï¥Ç¥£¥ì¥¯¥È¥ê(Á°Êý°ìÃ×)¡£<br />¥Á¥§¥Ã¥¯¤òÆþ¤ì¤ë¤È³ºÅö¤¹¤ë¥¢¥¤¥Æ¥à¤ò¶¯À©¾å½ñ¤­¤·¤Þ¤¹¡£<br />³ºÅö¤¹¤ë¥¢¥¤¥Æ¥à¤¬ÇÛÃÖÀè¤ËÂ¸ºß¤·¤Ê¤¤¾ì¹ç¤Ï¥Á¥§¥Ã¥¯¾õÂÖ¤Ë´Ø¤ï¤é¤ºÇÛÃÖ¤µ¤ì¤Þ¤¹¡£");
+define('_AD_XUPDATE_LANG_NO_UPDATE', "¥¢¥Ã¥×¥Ç¡¼¥È»þ¤Ë¤ÏÇÛÃÖ¡¦¾å½ñ¤­¤ò¤·¤Ê¤¤¥Õ¥¡¥¤¥ë¤Þ¤¿¤Ï¥Ç¥£¥ì¥¯¥È¥ê(Á°Êý°ìÃ×)¡£<br />¥Á¥§¥Ã¥¯¤òÆþ¤ì¤ë¤È³ºÅö¤¹¤ë¥¢¥¤¥Æ¥à¤Ï¶¯À©Åª¤ËÇÛÃÖ¤Þ¤¿¤Ï¾å½ñ¤­¤µ¤ì¤Þ¤¹¡£");
+define('_AD_XUPDATE_LANG_DELETE_DIR', 'ÉÔÍ×¤Ë¤Ê¤Ã¤¿¥Ç¥£¥ì¥¯¥È¥ê¤Îºï½ü');
+define('_AD_XUPDATE_LANG_DELETE_FILE', 'ÉÔÍ×¤Ë¤Ê¤Ã¤¿¥Õ¥¡¥¤¥ë¤Îºï½ü');
+define('_AD_XUPDATE_RECENTCHANGES', '¹¹¿·ÍúÎò');
+define('_AD_XUPDATE_LANG_PRELOAD_NAME', '¥×¥ê¥í¡¼¥ÉÌ¾');
+define('_AD_XUPDATE_DESCRIPTION', 'ÀâÌÀ');
+define('_AD_XUPDATE_LANG_PERM', '¥Ñ¡¼¥ß¥Ã¥·¥ç¥ó');
+define('_AD_XUPDATE_LANG_CHANGE', 'ÊÑ¹¹');
+define('_AD_XUPDATE_LANG_CATEGORY_ID', '¥«¥Æ¥´¥ê');
+define('_AD_XUPDATE_LANG_STORE', '¥¹¥È¥¢');
 
-define('_AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL', "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
-define('_AD_XUPDATE_LANG_MESSAGE_WAITING', "ï¿½Ôµï¿½ï¿½ï¿½");
-define('_AD_XUPDATE_LANG_MESSAGE_SUCCESS', "ï¿½ï¿½Î»");
-define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES', "ï¿½ï¿½ï¿½ï¿½");
-define('_AD_XUPDATE_LANG_MESSAGE_PROCESSING', "ï¿½ï¿½");
-define('_AD_XUPDATE_LANG_BUTTON_UPDATE', 'ï¿½ï¿½ï¿½ï¿½');
-define('_AD_XUPDATE_LANG_CATEGORY_ID', 'ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½ï¿½');
+define('_AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL', "°ì³çÁàºî");
+define('_AD_XUPDATE_LANG_MESSAGE_WAITING', "ÂÔµ¡Ãæ");
+define('_AD_XUPDATE_LANG_MESSAGE_SUCCESS', "´°Î»");
+define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES', "ÇÛÃÖ");
+define('_AD_XUPDATE_LANG_MESSAGE_PROCESSING', "Ãæ");
+define('_AD_XUPDATE_LANG_BUTTON_UPDATE', '¹¹¿·');
 
-define('_AD_XUPDATE_LANG_TIMEOUT_ERROR', 'PHP ï¿½Â¹Ô»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½à¥¢ï¿½ï¿½ï¿½ï¿½');
-define('_AD_XUPDATE_LANG_STAGE_1', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤Î¥ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½É¤ò³«»Ï¤ï¿½ï¿½Þ¤ï¿½ï¿½ï¿½ï¿½ï¿½');
-define('_AD_XUPDATE_LANG_STAGE_2', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½Ð¤ò³«»Ï¤ï¿½ï¿½Þ¤ï¿½ï¿½ï¿½ï¿½ï¿½');
-define('_AD_XUPDATE_LANG_STAGE_3', 'ï¿½Ð¾Ý¥Ç¥ï¿½ï¿½ì¥¯ï¿½È¥ï¿½ï¿½Ãµï¿½ï¿½ï¿½æ¡£');
-define('_AD_XUPDATE_LANG_STAGE_4', 'FTPï¿½ï¿½Â³ï¿½ï¿½Î»ï¿½ï¿½');
-define('_AD_XUPDATE_LANG_STAGE_5', 'ï¿½Õ¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ò³«»Ï¤ï¿½ï¿½Þ¤ï¿½ï¿½ï¿½ï¿½ï¿½');
-define('_AD_XUPDATE_LANG_STAGE_6', 'ï¿½Õ¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½Î»ï¿½ï¿½');
-define('_AD_XUPDATE_LANG_STAGE_7', 'ï¿½Ñ¡ï¿½ï¿½ß¥Ã¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê´°Î»ï¿½ï¿½');
-define('_AD_XUPDATE_LANG_STAGE_TIMEOUT', 'PHP ï¿½Î¼Â¹Ô»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¤Ë¤ï¿½ë¥¿ï¿½ï¿½ï¿½à¥¢ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ï¥ï¿½ï¿½ï¿½ï¿½ï¿½Â­ï¿½Ê¤É¤Î¸ï¿½ï¿½ï¿½Ë¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¤ï¿½ï¿½Þ¤ï¿½ï¿½ï¿½ï¿½ï¿½');
-define('_AD_XUPDATE_LANG_STAGE_UPLOAD_RETRY', 'ï¿½Õ¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½Â³ï¿½ï¿½ï¿½ï¿½Â¹Ô¤ò¤¹¤ï¿½Ë¤Ï¤ï¿½ï¿½ï¿½ï¿½ò¥¯¥ï¿½Ã¥ï¿½');
-define('_AD_XUPDATE_LANG_STAGE_TASK_RETRY', 'Â³ï¿½ï¿½ï¿½Î½ï¿½ï¿½ï¿½ï¿½Â¹Ô¤ò¤¹¤ï¿½Ë¤Ï¤ï¿½ï¿½ï¿½ï¿½ò¥¯¥ï¿½Ã¥ï¿½');
-define('_AD_XUPDATE_LANG_STAGE_UPLOAD_NOT_COMPLETE', 'ï¿½Õ¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½Ê¤ï¿½ï¿½ï¿½ [ <a href="%s">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¥ï¿½ï¿½</a> ] ï¿½ï¿½ï¿½é¥¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¡ï¿½ï¿½ï¿½ï¿½È¤ï¿½ FTP ï¿½ï¿½ï¿½Ã¥×¥?ï¿½É¤ï¿½Ô¤ï¿½ï¿½Õ¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¬ï¿½Ú¤ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½Æ¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
+define('_AD_XUPDATE_LANG_TIMEOUT_ERROR', 'PHP ¼Â¹Ô»þ¥¿¥¤¥à¥¢¥¦¥È');
+define('_AD_XUPDATE_LANG_STAGE_1', '¥¢¡¼¥«¥¤¥Ö¤Î¥À¥¦¥ó¥í¡¼¥É¤ò³«»Ï¤·¤Þ¤·¤¿¡£');
+define('_AD_XUPDATE_LANG_STAGE_2', '¥¢¡¼¥«¥¤¥Ö¤«¤éÃê½Ð¤ò³«»Ï¤·¤Þ¤·¤¿¡£');
+define('_AD_XUPDATE_LANG_STAGE_3', 'ÂÐ¾Ý¥Ç¥£¥ì¥¯¥È¥ê¤ÎÃµº÷Ãæ¡£');
+define('_AD_XUPDATE_LANG_STAGE_4', 'FTPÀÜÂ³´°Î»¡£');
+define('_AD_XUPDATE_LANG_STAGE_5', '¥Õ¥¡¥¤¥ë¤ÎÇÛÃÖ¤ò³«»Ï¤·¤Þ¤·¤¿¡£');
+define('_AD_XUPDATE_LANG_STAGE_6', '¥Õ¥¡¥¤¥ë¤ÎÇÛÃÖ´°Î»¡£');
+define('_AD_XUPDATE_LANG_STAGE_7', '¥Ñ¡¼¥ß¥Ã¥·¥ç¥óÀßÄê´°Î»¡£');
+define('_AD_XUPDATE_LANG_STAGE_TIMEOUT', 'PHP ¤Î¼Â¹Ô»þ´ÖÀ©¸Â¤Ë¤è¤ë¥¿¥¤¥à¥¢¥¦¥È¡¢Ëô¤Ï¥á¥â¥êÉÔÂ­¤Ê¤É¤Î¸¶°ø¤Ë¤è¤ê½èÍý¤òÃæÃÇ¤·¤Þ¤·¤¿¡£');
+define('_AD_XUPDATE_LANG_STAGE_UPLOAD_RETRY', '¥Õ¥¡¥¤¥ëÇÛÃÖ¤ÎÂ³¤­¤ò¼Â¹Ô¤ò¤¹¤ë¤Ë¤Ï¤³¤³¤ò¥¯¥ê¥Ã¥¯');
+define('_AD_XUPDATE_LANG_STAGE_TASK_RETRY', 'Â³¤­¤Î½èÍý¤ò¼Â¹Ô¤ò¤¹¤ë¤Ë¤Ï¤³¤³¤ò¥¯¥ê¥Ã¥¯');
+define('_AD_XUPDATE_LANG_STAGE_UPLOAD_NOT_COMPLETE', '¥Õ¥¡¥¤¥ë¤ÎÇÛÃÖ¤¬ÉÔ´°Á´¤Ê¤¿¤á [ <a href="%s">¤³¤Á¤é¤Î¥ê¥ó¥¯</a> ] ¤«¤é¥¢¡¼¥«¥¤¥Ö¤ò¼èÆÀ¤·¤Æ¡¢¼êºî¶È¤Ç FTP ¥¢¥Ã¥×¥í¡¼¥É¤ò¹Ô¤¤¥Õ¥¡¥¤¥ë¤òÅ¬ÀÚ¤ËÇÛÃÖ¤·¤Æ¤¯¤À¤µ¤¤¡£');
 
-define('_AD_XUPDATE_LANG_THM_TOTAL'  , 'ï¿½Æ¡ï¿½ï¿½Þ¤Î¹ï¿½ï¿½');
-define('_AD_XUPDATE_LANG_ITEM_TOTAL'  , 'ï¿½ï¿½ï¿½ï¿½ï¿½Æ¥ï¿½Î¹ï¿½ï¿½');
+define('_AD_XUPDATE_LANG_THM_TOTAL'  , '¥Æ¡¼¥Þ¤Î¹ç·×');
+define('_AD_XUPDATE_LANG_ITEM_TOTAL'  , '¥¢¥¤¥Æ¥à¤Î¹ç·×');
