@@ -241,11 +241,11 @@ class Xupdate_Utils
      */
     public static function convertEncoding($arg)
     {
-        static $isUTF8 = null;
-        if (is_null($isUTF8)) {
-            $isUTF8 = (! function_exists('mb_convert_variables') || strtoupper(_CHARSET) === 'UTF-8');
+        static $doConvert = null;
+        if (is_null($doConvert)) {
+            $doConvert = (function_exists('mb_convert_variables') && strtoupper(_CHARSET) !== 'UTF-8');
         }
-        if (! $isUTF8) {
+        if ($doConvert) {
             mb_convert_variables(_CHARSET, 'UTF-8', $arg);
         }
         return $arg;
