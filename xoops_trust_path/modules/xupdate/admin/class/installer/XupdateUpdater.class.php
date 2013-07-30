@@ -152,6 +152,11 @@ class Xupdate_Updater
 		$db =& $root->mController->getDB();
 		$table = $db->prefix($this->_mCurrentXoopsModule->get('dirname') . '_modulestore');
 
+		// Insurance
+		if ($db->query('SELECT category_id FROM '.$table)) {
+			$db->query('ALTER TABLE '.$table.' DROP category_id');
+		}
+		
 		$sql = 'ALTER TABLE '.$table.' ADD category_id int(11) NOT NULL default \'0\'';
 		if ($db->query($sql)) {
 			$this->mLog->addReport('Success updated '.$table.' - `category_id` INT(11)');
