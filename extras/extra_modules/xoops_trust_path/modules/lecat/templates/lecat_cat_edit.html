@@ -60,9 +60,9 @@
               <{if $imageObjs[$n] && $imageObjs[$n]->isNew()===false}>
               <{xoops_input type="checkbox" name="legacy_image_delete[$n]" value="1"}>
               <{$imageObjs[$n]->makeImageTag(0)}><br />
+              <{xoops_input type="hidden" name="legacy_image_id[$n]" value=$imageObjs[$n]->getShow('image_id')}>
               <{/if}>
               <{xoops_input type="file" name="legacy_image[$n]" size="30"}>
-              <{xoops_input type="hidden" name="legacy_image_id[$n]" value=$imageObjs[$n]->getShow('image_id')}>
           </td>
       </tr>
       <{/foreach}>
