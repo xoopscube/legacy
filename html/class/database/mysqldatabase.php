@@ -81,7 +81,7 @@ class XoopsMySQLDatabase extends XoopsDatabase
 	function connect($selectdb = true)
 	{
 		if (XOOPS_DB_PCONNECT == 1) {
-			$this->conn = @mysql_pconnect(XOOPS_DB_HOST, XOOPS_DB_USER, XOOPS_DB_PASS, false, MYSQL_CLIENT_FOUND_ROWS);
+			$this->conn = @mysql_pconnect(XOOPS_DB_HOST, XOOPS_DB_USER, XOOPS_DB_PASS, MYSQL_CLIENT_FOUND_ROWS);
 		} else {
 			$this->conn = @mysql_connect(XOOPS_DB_HOST, XOOPS_DB_USER, XOOPS_DB_PASS, false, MYSQL_CLIENT_FOUND_ROWS);
 		}
