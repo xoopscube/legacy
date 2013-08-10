@@ -27,6 +27,7 @@ CREATE TABLE "{prefix}_{dirname}_modulestore" (
 	"isactive" int NOT NULL DEFAULT '-1',
 	"hasupdate" smallint NOT NULL DEFAULT '0',
 	"contents" varchar(255) NOT NULL default '',
+	"category_id" int NOT NULL default '0',
 PRIMARY KEY  ("id")
  );
 CREATE INDEX {prefix}_{dirname}_modulestore_sid_idx ON {prefix}_{dirname}_modulestore (sid);

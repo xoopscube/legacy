@@ -17,9 +17,10 @@ define("MODULE_SORT_KEY_REQUIRED",    6);
 define("MODULE_SORT_KEY_LASTUPDATE",  7);
 define("MODULE_SORT_KEY_TARGET_KEY" , 8);
 define("MODULE_SORT_KEY_TARGET_TYPE", 9);
+define("MODULE_SORT_KEY_CATEGORY_ID", 10);
 
 define("MODULE_SORT_KEY_DEFAULT",    MODULE_SORT_KEY_DIRNAME);
-define("MODULE_SORT_KEY_MAXVALUE",   9);
+define("MODULE_SORT_KEY_MAXVALUE",   10);
 
 /***
  * @internal
@@ -39,7 +40,8 @@ class Xupdate_Admin_ModuleStoreFilterForm extends Xupdate_AbstractFilterForm
 		MODULE_SORT_KEY_REQUIRED    => "required",
 		MODULE_SORT_KEY_LASTUPDATE  => "last_update",
 		MODULE_SORT_KEY_TARGET_KEY  => "target_key",
-		MODULE_SORT_KEY_TARGET_TYPE => "target_type"
+		MODULE_SORT_KEY_TARGET_TYPE => "target_type",
+		MODULE_SORT_KEY_CATEGORY_ID => "category_id"
 	);
 
 	function  Xupdate_Admin_ModuleStoreFilterForm()
@@ -60,6 +62,11 @@ class Xupdate_Admin_ModuleStoreFilterForm extends Xupdate_AbstractFilterForm
 	{
 		$this->fetchSort();
 
+		$req = XCube_Root::getSingleton()->mContext->mRequest;
+		if (($value = $req->getRequest('category_id')) !== null) {
+			$this->mNavi->addExtra('category_id', $value);
+			$this->_mCriteria->add(new Criteria('category_id', $value));
+		}
 		$this->_mCriteria->addSort($this->getSort(), $this->getOrder());
 	}
 

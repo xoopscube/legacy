@@ -46,7 +46,9 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 		
 		// ver >= 0.11
 		$this->initVar('contents', XOBJ_DTYPE_STRING, '', false, 255);
-		
+
+		// ver >= 0.60
+		$this->initVar('category_id', XOBJ_DTYPE_INT, '0', false);
 		parent::__construct() ;
 
 	}
