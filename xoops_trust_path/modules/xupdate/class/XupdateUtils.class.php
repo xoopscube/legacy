@@ -223,6 +223,33 @@ class Xupdate_Utils
 		}
 		if (time() - $start > 270) exit();
 	}
+
+    public static function getCategoryList($dirname)
+    {
+        $isAssoc = true;
+        $path = self::getModuleConfig($dirname, 'temp_path');
+        $jsonData = file_get_contents(XOOPS_TRUST_PATH.'/'.$path.'/stores_json.ini.php');
+        $storeData = json_decode($jsonData, $isAssoc);
+        return self::convertEncoding($storeData['categories']);
+    }
+    
+    /**
+     * Convert encoding to _CHARSET from UTF-8
+     * 
+     * @param  mixed $arg
+     * @return mixed
+     */
+    public static function convertEncoding($arg)
+    {
+        static $doConvert = null;
+        if (is_null($doConvert)) {
+            $doConvert = (function_exists('mb_convert_variables') && strtoupper(_CHARSET) !== 'UTF-8');
+        }
+        if ($doConvert) {
+            mb_convert_variables(_CHARSET, 'UTF-8', $arg);
+        }
+        return $arg;
+    }
 }
 
 ?>

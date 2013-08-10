@@ -23,9 +23,10 @@ class Xupdate_ModulesIniDadaSet
 	public $storeHand;
 	public $modHand;
 
-	public $stores ;
-	private $approved = array() ;
+	public $stores = array();
+	private $approved = array();
 	private $master = array();
+    private $_mCategory = array();
 	private $allCallers = array('module', 'theme', 'package', 'preload');
 	private $cacheTTL = 300; // 5min
 	private $itemArrayKeys = array(
@@ -45,7 +46,8 @@ class Xupdate_ModulesIniDadaSet
 		'options',
 		'isactive',
 		'hasupdate',
-		'contents');
+		'contents',
+		'category_id');
 	
 	
 	private $mTagModule;
@@ -73,9 +75,40 @@ class Xupdate_ModulesIniDadaSet
 	public function execute( $callers, $checkonly = false )
 	{
 		//データの自動作成と削除
-		$root =& XCube_Root::getSingleton();
-		$mModuleConfig = $root->mContext->mModuleConfig;
-		
+		$mModuleConfig = XCube_Root::getSingleton()->mContext->mModuleConfig;
+		$cacheCheckMd5 = ':'.md5($mModuleConfig['stores_json_url'].':'
+			.$mModuleConfig['show_disabled_store'].':'
+			.$mModuleConfig['parallel_fetch_max'].':'
+			.$mModuleConfig['curl_multi_select_not_use']);
+
+		$cacheCheckFile = $this->_processCache($cacheCheckMd5, $checkonly);
+		if($cacheCheckFile===false){
+			return;
+		}
+		$language = XCube_Root::getSingleton()->mContext->getXoopsConfig('language');
+		if (isset($this->lang_mapping[$language])) {
+			$language = $this->lang_mapping[$language];
+		}
+
+		$this->_setupStores();
+
+		//echo('<pre>');var_dump($this->stores);exit;
+
+		$multiData = $this->_getMultiData($callers, $language);
+
+		if ($this->Func->_multiDownloadFile($multiData, $this->cacheTTL)) {
+			$cacheCheckFileMtime = $this->_processMultiData($multiData);
+			file_put_contents($cacheCheckFile, ($checkonly? 'bg_ok' : 'ok') . $cacheCheckMd5);
+			touch($cacheCheckFile, $cacheCheckFileMtime);
+		} else {
+			// Has error
+			touch($cacheCheckFile, 0);
+			file_put_contents($cacheCheckFile, '');
+		}
+	}
+
+	private function _processCache($cacheCheckMd5, $checkonly)
+	{
 		$cacheCheckFile = $this->storeHand->getCacheCheckFile();
 		$cacheCheckStr = @file_get_contents($cacheCheckFile);
 		if (!$checkonly) {
@@ -86,36 +119,36 @@ class Xupdate_ModulesIniDadaSet
 				$cacheCheckStr = @file_get_contents($cacheCheckFile);
 			}
 		}
-		$cacheCheckMd5 = ':'.md5($mModuleConfig['stores_json_url'].':'
-								.$mModuleConfig['show_disabled_store'].':'
-								.$mModuleConfig['parallel_fetch_max'].':'
-								.$mModuleConfig['curl_multi_select_not_use']);
+
 		if ( ($checkonly && $cacheCheckStr === 'running')
 			|| (!$checkonly && $cacheCheckStr === 'bg_ok'.$cacheCheckMd5)
 			|| @ filemtime($cacheCheckFile) + $this->cacheTTL > $_SERVER['REQUEST_TIME'] && $cacheCheckStr === ($checkonly? 'bg_ok' : 'ok').$cacheCheckMd5
 		) {
-			return;
+			return false;
 		}
 		file_put_contents($cacheCheckFile, (!$checkonly || !$cacheCheckStr)? 'running' : $cacheCheckStr);
-		
-		$org_lang = $language = $root->mContext->getXoopsConfig('language');
-		if (isset($this->lang_mapping[$language])) {
-			$language = $this->lang_mapping[$language];
-		}
-		$downloadDirPath = $this->Xupdate->params['temp_path'];
-		$realDirPath = realpath($downloadDirPath);
+		return $cacheCheckFile;
+	}
+
+	private function _getDownloadedFilePath()
+	{
+		$downloadedFilePath = '';
 
 		// Get store master from xoopscube.net
-		$json_url = $mModuleConfig['stores_json_url'];
+		$json_url = XCube_Root::getSingleton()->mContext->mModuleConfig['stores_json_url'];
 		$json_fname = 'stores_json.ini.php';
-		
+
 		if ($json_url === 'http://xoopscube.net/uploads/xupdatemaster/stores_json.txt') {
 			$json_url = 'http://xoopscube.net/uploads/xupdatemaster/stores_json_V1.txt';
 		}
-		
-		$downloadedFilePath = '';
-		$stores = array();
+
 		$this->Func->_downloadFile( 'stores_master', $json_url, $json_fname, $downloadedFilePath, $this->cacheTTL );
+		return $downloadedFilePath;
+	}
+
+	private function _setupStores()
+	{
+        $downloadedFilePath = $this->_getDownloadedFilePath();
 		if ($downloadedFilePath && ! $stores_json = @ file_get_contents($downloadedFilePath)) {
 			// for url fetch failure
 			$stores_json = @ file_get_contents(XOOPS_TRUST_PATH . '/modules/xupdate/include/settings/stores.txt');
@@ -124,13 +157,12 @@ class Xupdate_ModulesIniDadaSet
 			$stores = array();
 		} else {
 			if (isset($stores['stores'])) {
-				$stores_orgin = $stores;
 				// stores_json_V1
 				// array('stores' => storesArray, 'categories' => categoriesArray)
 				$stores = $stores['stores'];
 			}
 		}
-		
+
 		// load my stores ini
 		$mystores = array();
 		if (is_file(XOOPS_TRUST_PATH.'/settings/xupdate_mystores.ini')) {
@@ -140,18 +172,18 @@ class Xupdate_ModulesIniDadaSet
 			$stores = array_merge($stores, $mystores);
 		}
 		//echo('<pre>');var_dump($stores);exit;
-		
 		// set stores
-		$this->stores = array();
 		foreach($stores as $store) {
 			// enable disabled stores as "module" for developers only
-			if ($mModuleConfig['show_disabled_store'] && $store['contents'] === 'disabled') {
+			if (XCube_Root::getSingleton()->mContext->mModuleConfig['show_disabled_store'] && $store['contents'] === 'disabled') {
 				$store['contents'] = 'module';
 			}
 			$this->stores[(int)$store['sid']] = $store;
 		}
-		//echo('<pre>');var_dump($this->stores);exit;
-		
+	}
+
+	private function _getMultiData($callers, $language)
+	{
 		$multiData = array();
 		if (! is_array($callers)) {
 			if ($callers === 'package' || $callers === 'all') {
@@ -160,10 +192,10 @@ class Xupdate_ModulesIniDadaSet
 				$callers = array($callers);
 			}
 		}
-		
+
 		foreach($callers as $caller) {
-			$this->_setmStoreObjects( $caller );
-	
+			$this->_setStoreObjects( $caller );
+
 			foreach($this->stores as $store){
 				if ( $store['contents'] !== $caller ) {
 					continue;
@@ -192,159 +224,180 @@ class Xupdate_ModulesIniDadaSet
 						$tempFilename = 'modules'.(int)$store['sid'].'.ini.php';
 						$contents = 'modules';
 				}
-	
+
 				$multiData[] = array(
-								'sid'                => $store['sid'],
-								'target_key'         => $target_key,
-								'downloadUrl'        => $downloadUrl,
-								'tempFilename'       => $tempFilename,
-								'downloadedFilePath' => '',
-								'noRedirect'         => true,
-								'caller'             => $caller,
-								'cacheMtime'         => $_SERVER['REQUEST_TIME'] );
-				
+					'sid'                => $store['sid'],
+					'target_key'         => $target_key,
+					'downloadUrl'        => $downloadUrl,
+					'tempFilename'       => $tempFilename,
+					'downloadedFilePath' => '',
+					'noRedirect'         => true,
+					'caller'             => $caller,
+					'cacheMtime'         => $_SERVER['REQUEST_TIME'] );
+
 				$_dirname = dirname($downloadUrl);
 				$_filename = basename($downloadUrl);
 				list($_basename) = explode('.', $_filename, 2);
 				$downloadLangUrl = $_dirname.'/'.$_basename.'/language/'.$language.'/'.$_filename;
 				$tempLangFilename = 'lang_'.$language.'_'.$contents.(int)$store['sid'].'.ini.php';
-				
+
 				$multiData[] = array(
-								'sid'                => $store['sid'],
-								'target_key'         => $target_key,
-								'downloadUrl'        => $downloadLangUrl,
-								'tempFilename'       => $tempLangFilename,
-								'downloadedFilePath' => '',
-								'noRedirect'         => true,
-								'isLang'             => true,
-								'cacheMtime'         => $_SERVER['REQUEST_TIME'] );
-				
+					'sid'                => $store['sid'],
+					'target_key'         => $target_key,
+					'downloadUrl'        => $downloadLangUrl,
+					'tempFilename'       => $tempLangFilename,
+					'downloadedFilePath' => '',
+					'noRedirect'         => true,
+					'isLang'             => true,
+					'cacheMtime'         => $_SERVER['REQUEST_TIME'] );
+
 			}
 		}
+		return $multiData;
 		//echo('<pre>');var_dump($multiData);exit;
-		
+	}
+
+	/***
+	 * @param $multiData
+	 * @param $org_lang
+	 * @return int
+	 */
+	protected function _processMultiData($multiData)
+	{
 		$cacheCheckFileMtime = $_SERVER['REQUEST_TIME'];
-		$use_mb_convert = function_exists('mb_convert_encoding');
-		if ($this->Func->_multiDownloadFile($multiData, $this->cacheTTL)) {
-			foreach($multiData as $i => $res) {
-				$cacheCheckFileMtime = min($cacheCheckFileMtime, $res['cacheMtime']);
-				if (isset($res['isLang'])) {
-					continue;
-				}
-				if (file_exists($res['downloadedFilePath'])){
-					$downloadedFilePath = $res['downloadedFilePath'];
-					if ($items = @ parse_ini_file($downloadedFilePath, true)) {
-						$caller = $res['caller'];
-						$isPackage = ($caller === 'package');
-						$lngKey = $i + 1;
-						if (file_exists($multiData[$lngKey]['downloadedFilePath'])){
-							$items_lang = @ parse_ini_file($multiData[$lngKey]['downloadedFilePath'], true);
-						}
-						if (! $items_lang) {
-							$items_lang = array();
-						}
-						$sid = (int)$res['sid'];
-						
-						// make $this->approved
-						$this->approved[$sid] = array();
-						$this->master[$sid] = array();
-						// $sid >= 10000: My store
-						if (!$isPackage && $sid < 10000) {
-							foreach($this->stores[$sid]['items'] as $arr) {
-								if (is_array($arr) && !empty($arr['approved'])) {
-									$this->master[$sid][$arr['target_key']] = true;
+		$org_lang = $language = XCube_Root::getSingleton()->mContext->getXoopsConfig('language');
+
+		foreach($multiData as $i => $res) {
+			$cacheCheckFileMtime = min($cacheCheckFileMtime, $res['cacheMtime']);
+			if (isset($res['isLang'])) {
+				continue;
+			}
+			if (file_exists($res['downloadedFilePath'])){
+				$downloadedFilePath = $res['downloadedFilePath'];
+				if ($items = @ parse_ini_file($downloadedFilePath, true)) {
+					$caller = $res['caller'];
+					$isPackage = ($caller === 'package');
+					$lngKey = $i + 1;
+					if (file_exists($multiData[$lngKey]['downloadedFilePath'])){
+						$items_lang = @ parse_ini_file($multiData[$lngKey]['downloadedFilePath'], true);
+					}
+					if (! $items_lang) {
+						$items_lang = array();
+					}
+					$sid = (int)$res['sid'];
+
+					$this->_setMasterArray($sid, $isPackage);
+					$this->_setApprovedArray($items, $sid, $isPackage);
+					$this->_setSiteModuleObjects($sid, $caller);
+
+					$rObjs = array();
+					foreach($items as $key => $item){
+						if ($isPackage) {
+							$_sid = intval(substr($item['dirname'], 1));
+							if (!isset($rObjs[$_sid])) {
+								$_objs = $this->modHand[$caller]->getObjects(new Criteria( 'sid', $_sid ), null, null, true);
+								foreach($_objs as $id => $mobj) {
+									if ($mobj->get('target_type') != 'TrustModule' || $mobj->get('trust_dirname') === $mobj->get('dirname')) {
+										$rObjs[$_sid][$mobj->get('target_key')] = $mobj;
+									}
 								}
+								unset($criteria, $_objs);
 							}
-						}
-						foreach ($items as $key => $check) {
-							$_sid = $isPackage? intval(substr($check['dirname'], 1)) : $sid;
-							// $sid >= 10000: My store (all approve)
-							if ($sid >= 10000 || (isset($this->master[$_sid]) && isset($this->master[$_sid][$check['target_key']]))) {
-								$this->approved[$sid][$check['target_key']] = true;
+							if (isset($rObjs[$_sid][$item['target_key']])) {
+								$item = $this->_getItemArrFromObj($rObjs[$_sid][$item['target_key']], true);
 							} else {
-								unset($items[$key]);
+								continue; // @todo why? not set "$rObjs[$_sid][$item['target_key']]"
+							}
+						} else {
+							$this->_encodeItem($item, $items_lang, $key);
+							if ($caller !== 'module') {
+								// get modinfo for non module
+								$criteria = new CriteriaCompo();
+								$criteria->add(new Criteria( 'sid', $_sid ) );
+								$criteria->add(new Criteria( 'target_key',  $item['target_key']) );
+								if ($_objs = $this->modHand[$caller]->getObjects($criteria, 1, null, false)) {
+									$_obj = array_shift($_objs);
+									if ($_obj->modinfo) {
+										$item['modinfo'] = $_obj->modinfo;
+									}
+								}
+								unset($criteria, $_objs);
 							}
 						}
-						$this->_setmSiteModuleObjects($sid, $caller);
-						
-						$rObjs = array();
-						foreach($items as $key => $item){
-							if ($isPackage) {
-								$_sid = intval(substr($item['dirname'], 1));
-								if (!isset($rObjs[$_sid])) {
-									$criteria = new CriteriaCompo();
-									$criteria->add(new Criteria( 'sid', $_sid ) );
-									$_objs = $this->modHand[$caller]->getObjects($criteria, null, null, true);
-									foreach($_objs as $id => $mobj) {
-										if ($mobj->get('target_type') != 'TrustModule' || $mobj->get('trust_dirname') === $mobj->get('dirname')) {
-											$rObjs[$_sid][$mobj->get('target_key')] = $mobj;
-										}
-									}
-									unset($criteria, $_objs);
-								}
-								if (isset($rObjs[$_sid][$item['target_key']])) {
-									$item = $this->_getItemArrFromObj($rObjs[$_sid][$item['target_key']], true);
-								} else {
-									continue; // @todo why? not set "$rObjs[$_sid][$item['target_key']]"
-								}
-							} else {
-								foreach(array('description', 'tag') as $_key) {
-									if (! @ json_encode($item[$_key])) {
-										// if not UTF-8
-										$item[$_key] = '';
-									}
-									if (! empty($item[$_key]) && (empty($items_lang[$key]) || empty($items_lang[$key][$_key]))) {
-										if (strtoupper(_CHARSET) !== 'UTF-8') {
-											$this->encode_numericentity($item[$_key], _CHARSET, 'UTF-8');
-											$item[$_key] = mb_convert_encoding($item[$_key], _CHARSET, 'UTF-8');
-										}
-									}
-								}
-								if ($caller !== 'module') {
-									// get modinfo for non module
-									$criteria = new CriteriaCompo();
-									$criteria->add(new Criteria( 'sid', $_sid ) );
-									$criteria->add(new Criteria( 'target_key',  $item['target_key']) );
-									if ($_objs = $this->modHand[$caller]->getObjects($criteria, 1, null, false)) {
-										$_obj = array_shift($_objs);
-										if ($_obj->modinfo) {
-											$item['modinfo'] = $_obj->modinfo;
-										}
-									}
-									unset($criteria, $_objs);
-								}
-							}
-							if (! empty($items_lang[$key]) && isset($this->lang_mapping[$org_lang])) {
-								mb_convert_variables(_CHARSET, 'UTF-8', $items_lang[$key]);
-							}
-							if (! empty($items_lang[$key])) {
-								$item = array_merge($item, $items_lang[$key]);
-							}
-							$item['sid'] = $sid ;
-							$item['contents'] = $res['caller'];
-							switch($item['target_type']){
-								case 'TrustModule':
-									$this->_setDataTrustModule($item['sid'] , $item, $caller);
-									break;
-								case 'X2Module':
-								case 'Theme':
-								case 'Preload':
-								default:
-									$this->_setDataSingleModule($item['sid'] , $item, $caller);
-							}
+						if (! empty($items_lang[$key]) && isset($this->lang_mapping[$org_lang])) {
+							mb_convert_variables(_CHARSET, 'UTF-8', $items_lang[$key]);
+						}
+						if (! empty($items_lang[$key])) {
+							$item = array_merge($item, $items_lang[$key]);
+						}
+						$item['sid'] = $sid ;
+						$item['contents'] = $res['caller'];
+						switch($item['target_type']){
+							case 'TrustModule':
+								$this->_setDataTrustModule($item, $caller);
+								break;
+							case 'X2Module':
+							case 'Theme':
+							case 'Preload':
+							default:
+								$this->_setDataSingleModule($item, $caller);
 						}
 					}
 				}
 			}
-			file_put_contents($cacheCheckFile, ($checkonly? 'bg_ok' : 'ok') . $cacheCheckMd5);
-			touch($cacheCheckFile, $cacheCheckFileMtime);
-		} else {
-			// Has error
-			touch($cacheCheckFile, 0);
-			file_put_contents($cacheCheckFile, '');
+		}
+		return $cacheCheckFileMtime;
+	}
+
+	private function _setMasterArray($sid, $isPackage)
+	{
+		// make $this->approved
+		$this->master[$sid] = array();
+        $this->_mCategory[$sid] = array();
+		// $sid >= 10000: My store
+		if (!$isPackage && $sid < 10000) {
+			foreach($this->stores[$sid]['items'] as $arr) {
+				if (is_array($arr) && !empty($arr['approved'])) {
+					$this->master[$sid][$arr['target_key']] = true;
+                    $this->_mCategory[$sid][$arr['target_key']] = $arr['category_id'];
+				}
+			}
 		}
 	}
-	
+
+	private function _setApprovedArray(&$items, $sid, $isPackage)
+	{
+		// make $this->approved
+		$this->approved[$sid] = array();
+		// $sid >= 10000: My store
+		foreach ($items as $key => $check) {
+			$_sid = $isPackage? intval(substr($check['dirname'], 1)) : $sid;
+			// $sid >= 10000: My store (all approve)
+			if ($sid >= 10000 || (isset($this->master[$_sid]) && isset($this->master[$_sid][$check['target_key']]))) {
+				$this->approved[$sid][$check['target_key']] = true;
+			} else {
+				unset($items[$key]);
+			}
+		}
+
+	}
+
+	private function _encodeItem(&$item, $items_lang, $key)
+	{
+		foreach(array('description', 'tag') as $_key) {
+			if (! @ json_encode($item[$_key])) {
+				// if not UTF-8
+				$item[$_key] = '';
+			}
+			if (! empty($item[$_key]) && (empty($items_lang[$key]) || empty($items_lang[$key][$_key]))) {
+				if (strtoupper(_CHARSET) !== 'UTF-8') {
+					$this->encode_numericentity($item[$_key], _CHARSET, 'UTF-8');
+					$item[$_key] = mb_convert_encoding($item[$_key], _CHARSET, 'UTF-8');
+				}
+			}
+		}
+	}
+
 	private function _getItemArrFromObj($obj, $readini = false) {
 		$item = array();
 		$options = $obj->unserialize_options($readini);
@@ -372,7 +425,7 @@ class Xupdate_ModulesIniDadaSet
 		return $item;
 	}
 
-	private function _setmStoreObjects( $caller )
+	private function _setStoreObjects( $caller )
 	{
 		ksort($this->stores);
 		
@@ -405,7 +458,7 @@ class Xupdate_ModulesIniDadaSet
 		//echo('<pre>');var_dump($this->mSiteObjects);exit;
 		foreach($this->stores as $sid => $store){
 			if (!isset($this->mSiteObjects[$sid])){
-				$sobj = new $this->storeHand->mClass();
+				$sobj = $this->storeHand->create();
 				$sObj = $this->stores[$sid];
 				unset($sObj['items']);
 				$sobj->assignVars($sObj);
@@ -463,7 +516,7 @@ class Xupdate_ModulesIniDadaSet
 
 
 //----------------------------------------------------------------------
-	private function _setmSiteModuleObjects($sid, $caller)
+	private function _setSiteModuleObjects($sid, $caller)
 	{
 		//この該当サイト登録済みデータを全部確認する
 		$sid = (int)$sid;
@@ -500,8 +553,9 @@ class Xupdate_ModulesIniDadaSet
 
 	}
 
-	private function _setDataSingleModule($sid , $item, $caller)
+	private function _setDataSingleModule($item, $caller)
 	{
+		$sid = $item['sid'];
 		//trustモジュールでない(複製可能なものはどうしよう)
 		$item['version']= isset($item['version']) ? round(floatval($item['version'])*100): 0 ;
 		$item['replicatable']= isset($item['replicatable']) ? intval($item['replicatable']): 0 ;
@@ -511,10 +565,11 @@ class Xupdate_ModulesIniDadaSet
 		//$item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
 		$item['unzipdirlevel'] = 0; // not use "unzipdirlevel"
 		$item['addon_url']= isset($item['addon_url']) ? $item['addon_url']: '' ;
+		$item['category_id'] = $this->_mCategory[$sid][$item['target_key']];
 
 		$item = $this->_createItemOptions($item, $caller);
 
-		$mobj = new $this->modHand[$caller]->mClass();
+		$mobj = $this->modHand[$caller]->create();
 		$mobj->assignVars($item);
 		$mobj->assignVar('sid', $sid);
 
@@ -529,28 +584,29 @@ class Xupdate_ModulesIniDadaSet
 			$this->mSiteItemArray[$sid][$item['target_key']][$item['dirname']] = $this->getItemArray($mobj);
 		}
 		unset($mobj);
+	}
 
-	  }
-	  private function _setDataTrustModule($sid ,$item, $caller)
-	  {
-		  //$sid = (int)$sid;
-		  $item['version']= isset($item['version']) ? round(floatval($item['version'])*100): 0 ;
-		  $item['replicatable']= isset($item['replicatable']) ? intval($item['replicatable']): 0 ;
-		  $item['target_key']= isset($item['target_key']) ? $item['target_key']: $item['dirname'] ;
-		  $item['trust_dirname']= isset($item['trust_dirname']) ? $item['trust_dirname']: $item['dirname'] ;
-		  $item['description']= isset($item['description']) ? $item['description']: '' ;
-		  //$item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
-		  $item['unzipdirlevel'] = 0; // not use "unzipdirlevel"
-		  $item['addon_url']= isset($item['addon_url']) ? $item['addon_url']: '' ;
+	private function _setDataTrustModule($item, $caller)
+	{
+		$sid = $item['sid'];
+		$item['version']= isset($item['version']) ? round(floatval($item['version'])*100): 0 ;
+		$item['replicatable']= isset($item['replicatable']) ? intval($item['replicatable']): 0 ;
+		$item['target_key']= isset($item['target_key']) ? $item['target_key']: $item['dirname'] ;
+		$item['trust_dirname']= isset($item['trust_dirname']) ? $item['trust_dirname']: $item['dirname'] ;
+		$item['description']= isset($item['description']) ? $item['description']: '' ;
+		//$item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
+		$item['unzipdirlevel'] = 0; // not use "unzipdirlevel"
+		$item['addon_url']= isset($item['addon_url']) ? $item['addon_url']: '' ;
+		$item['category_id'] = $this->_mCategory[$sid][$item['target_key']];
 
-		  $item = $this->_createItemOptions($item, $caller);
+		$item = $this->_createItemOptions($item, $caller);
 
 		//インストール済みの同じtrustモージュールのリストを取得
 		$list = $this->getDirnameListByTrustDirname($item['trust_dirname']);
 
 		if (empty($list)){
 			//インストール済みの同じtrustモージュール無し
-			$mobj = new $this->modHand[$caller]->mClass();
+			$mobj = $this->modHand[$caller]->create();
 			$mobj->assignVars($item);
 			$mobj->assignVar('sid',$sid);
 
@@ -570,7 +626,7 @@ class Xupdate_ModulesIniDadaSet
 
 			$_isrootdirmodule = false;
 			foreach($list as $dirname){
-				$mobj = new $this->modHand[$caller]->mClass();
+				$mobj = $this->modHand[$caller]->create();
 				$mobj->assignVars($item);
 				$mobj->assignVar('sid',$sid);
 				//same trust_path module
@@ -593,7 +649,7 @@ class Xupdate_ModulesIniDadaSet
 			}
 			//そのままインストールしていない場合、そのまま追加可能なので
 			if ( $_isrootdirmodule == false ){
-				$mobj = new $this->modHand[$caller]->mClass();
+				$mobj = $this->modHand[$caller]->create();
 				$mobj->assignVars($item);
 				$mobj->assignVar('sid',$sid);
 
@@ -617,7 +673,7 @@ class Xupdate_ModulesIniDadaSet
 	{
 		static $mVars;
 		if (is_null($mVars)) {
-			$mobj = new $this->modHand[$caller]->mClass();
+			$mobj = $this->modHand[$caller]->create();
 			$mVars = $mobj->mVars;
 			unset($mobj);
 		}
