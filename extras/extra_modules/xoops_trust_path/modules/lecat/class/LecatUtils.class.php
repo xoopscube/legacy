@@ -62,7 +62,13 @@ class Lecat_Utils
     public static function getImageNameList(/*** string ***/ $dirname)
     {
         $list = array();
-        return trim(self::getModuleConfig($dirname, 'images')) ? preg_split('/\x0d\x0a|\x0d|\x0a/', self::getModuleConfig($dirname, 'images'), null) : array();
+        $images = trim(self::getModuleConfig($dirname, 'images')) ? preg_split('/\x0d\x0a|\x0d|\x0a/', self::getModuleConfig($dirname, 'images'), null) : array();
+        $i = 1;
+        foreach($images as $image){
+            $list[$i] = $image;
+            $i++;
+        }
+        return $list;
     }
 
 	/**
