@@ -118,7 +118,8 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 		
 		$render->setAttribute('fetchLog', $this->fetchLog);
 
-	}
+        $render->setAttribute('categoryList', Xupdate_Utils::getCategoryList($this->mAsset->mDirname));
+    }
 
 
 	private function get_storeItems($contents)
@@ -149,6 +150,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 				$itemsobj[$key]['dirname'] = $mobj->getShow('dirname');
 				$itemsobj[$key]['hasupdate'] = $mobj->getShow('hasupdate');
 				$itemsobj[$key]['isactive'] = $mobj->getShow('isactive');
+                $itemsobj[$key]['category_id'] = $mobj->getShow('category_id');
 				$itemsobj[$key]['title'] = ($itemsobj[$key]['isactive'] == 1)? htmlspecialchars(_MI_XUPDATE_INSTALLED) : ($mobj->get('description')? htmlspecialchars(strip_tags($mobj->get('description')), ENT_QUOTES) : _MI_XUPDATE_FUTURE);
 			}
 			$store_mod_arr[$sid]['itemsobj'] = $itemsobj;
