@@ -305,6 +305,7 @@ class Xupdate_ModulesIniDadaSet
 							}
 							if (isset($rObjs[$_sid][$item['target_key']])) {
 								$item = $this->_getItemArrFromObj($rObjs[$_sid][$item['target_key']], true);
+								$this->_mCategory[$sid][$item['target_key']] = $this->_mCategory[$_sid][$item['target_key']];
 							} else {
 								continue; // @todo why? not set "$rObjs[$_sid][$item['target_key']]"
 							}
@@ -313,7 +314,7 @@ class Xupdate_ModulesIniDadaSet
 							if ($caller !== 'module') {
 								// get modinfo for non module
 								$criteria = new CriteriaCompo();
-								$criteria->add(new Criteria( 'sid', $_sid ) );
+								$criteria->add(new Criteria( 'sid', $sid ) );
 								$criteria->add(new Criteria( 'target_key',  $item['target_key']) );
 								if ($_objs = $this->modHand[$caller]->getObjects($criteria, 1, null, false)) {
 									$_obj = array_shift($_objs);
@@ -565,7 +566,7 @@ class Xupdate_ModulesIniDadaSet
 		//$item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
 		$item['unzipdirlevel'] = 0; // not use "unzipdirlevel"
 		$item['addon_url']= isset($item['addon_url']) ? $item['addon_url']: '' ;
-		$item['category_id'] = $this->_mCategory[$sid][$item['target_key']];
+		$item['category_id'] = isset($this->_mCategory[$sid][$item['target_key']])? $this->_mCategory[$sid][$item['target_key']] : 0;
 
 		$item = $this->_createItemOptions($item, $caller);
 
@@ -597,7 +598,7 @@ class Xupdate_ModulesIniDadaSet
 		//$item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
 		$item['unzipdirlevel'] = 0; // not use "unzipdirlevel"
 		$item['addon_url']= isset($item['addon_url']) ? $item['addon_url']: '' ;
-		$item['category_id'] = $this->_mCategory[$sid][$item['target_key']];
+		$item['category_id'] = isset($this->_mCategory[$sid][$item['target_key']])? $this->_mCategory[$sid][$item['target_key']] : 0;
 
 		$item = $this->_createItemOptions($item, $caller);
 

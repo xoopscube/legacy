@@ -733,10 +733,10 @@ function xupdate_on_shutdown($cache_dir, $download_url) {
 				foreach($post as $key => $val) {
 					if (is_array($val)) {
 						foreach ($val as $_val) {
-							$form .= '<input type="hidden" name="'.htmlspecialchars($key).'[]" value="'.htmlspecialchars($_val).'" />';
+							$form .= '<input type="hidden" name="'.htmlspecialchars($key).'[]" value="'.htmlspecialchars($_val, ENT_COMPAT, _CHARSET).'" />';
 						}
 					} else {
-						$form .= '<input type="hidden" name="'.htmlspecialchars($key).'" value="'.htmlspecialchars($val).'" />';
+						$form .= '<input type="hidden" name="'.htmlspecialchars($key).'" value="'.htmlspecialchars($val, ENT_COMPAT, _CHARSET).'" />';
 					}
 				}
 				$form .= '<input id="retry" type="submit" value="'.(($GLOBALS['xupdate_stage'] === 5)? _AD_XUPDATE_LANG_STAGE_UPLOAD_RETRY : _AD_XUPDATE_LANG_STAGE_TASK_RETRY).'" />';

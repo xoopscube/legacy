@@ -98,7 +98,7 @@ class Xupdate_Utils
      * @return string
      */
     public static function toShow($str) {
-    	return htmlspecialchars(htmlspecialchars_decode($str));
+    	return htmlspecialchars(htmlspecialchars_decode($str), ENT_COMPAT, _CHARSET);
     }
     
 	/**
