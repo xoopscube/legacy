@@ -227,7 +227,16 @@ class XoopsConfigHandler
 			$result = $db->query('SELECT conf_name,conf_value,conf_valuetype FROM '.$db->prefix('config').' '.$criteria->renderWhere().' ORDER BY conf_order ASC');
 			if ($result) {
 				while (list($name, $value, $type) = $db->fetchRow($result)) {
-					$ret[$name] = $type == 'array'?unserialize($value):$value;
+					switch($type) {
+						case 'array':
+							$ret[$name] = unserialize($value);
+							break;
+						case 'encrypt':
+							$ret[$name] = XCube_Utils::decrypt($value);
+							break;
+						default:
+							$ret[$name] = $value;
+					}
 				}
 				$_cachedConfigs[$module][$category] =& $ret;
 			}
