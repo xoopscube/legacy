@@ -151,7 +151,21 @@ class Xupdate_FtpCommonFunc {
 			$this->Ftp->appendMes( 'fail upload '.$where.'<br />');
 			return false;
 		} else if (is_numeric($result['ok'])) {
-			$this->Ftp->appendMes( 'uploaded '.$result['ok'].' files into '.$where.'<br />');
+			$desc = '';
+			$un_upload = 0;
+			if (! empty($result['un_overwrite'])) {
+				$desc .= ' un-overwrite: ' . $result['un_overwrite'];
+				$un_upload += $result['un_overwrite'];
+			}
+			if (! empty($result['same_file'])) {
+				$desc .= $desc? ',' : '';
+				$desc .= ' same: ' . $result['same_file'];
+				$un_upload += $result['same_file'];
+			}
+			if ($un_upload) {
+				$desc .= ', upload: ' . ($result['ok'] - $un_upload);
+			}
+			$this->Ftp->appendMes( 'succeeded '.$result['ok'].' files into '.$where.'.'.$desc.'<br />');
 		}
 		if ($result['ng']) {
 			$this->_set_error_log(_MI_XUPDATE_ERR_NOT_UPLOADED.': ' . join('<br />'._MI_XUPDATE_ERR_NOT_UPLOADED.': ', $result['ng']));
