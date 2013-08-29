@@ -420,7 +420,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		}
 		
 		/// put files
-		$res = array('ok' => $dir_cnt, 'ng' => array());
+		$res = array('ok' => 0, 'ng' => array(), 'un_overwrite' => 0, 'same_file' => 0);
 		$uploaded_files =& $GLOBALS['xupdate_retry_cache']['uploaded_files'];
 		$_cnt = 0;
 		foreach ($file_list['file'] as $l_file){
@@ -450,11 +450,18 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			}
 			$ftp_remote_file = substr($r_file, strlen($ftp_root));
 			$dont_overwrite = $this->_dont_overwrite($r_file);
-			if ( $dont_overwrite === false && !$this->put($l_file, $ftp_remote_file) ){
+			$same = false;
+			if ( $dont_overwrite === false && ! $same = $this->_same_file($l_file, $r_file) and !$this->put($l_file, $ftp_remote_file) ){
 				$res['ng'][] = $ftp_remote_file;
 				$uploaded_files[$l_file] = $ftp_remote_file;
 			} else {
 				$res['ok']++;
+				if ($dont_overwrite) {
+					$res['un_overwrite']++;
+				}
+				if ($same) {
+					$res['same_file']++;
+				}
 				$this->setPhpPerm($ftp_remote_file);
 				$uploaded_files[$l_file] = true; // for update retry mode
 			}
@@ -538,6 +545,17 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * compare file by md5 hash
+	 * 
+	 * @param string $source
+	 * @param string $target
+	 * @return boolean
+	 */
+	private function _same_file($source, $target) {
+		return (file_exists($target) && md5_file($source) === md5_file($target));
 	}
 
 	/**
