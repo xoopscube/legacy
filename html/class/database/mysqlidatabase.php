@@ -338,6 +338,17 @@ class XoopsMysqliDatabase extends XoopsDatabase
 	{
 		return mysqli_num_fields($result);
 	}
+	
+	/**
+	 * Sets the default client character set
+	 *
+	 * @param string $charset The charset to be set as default
+	 * @return bool
+	 */
+	function setCharset($charset)
+	{
+		return mysqli_set_charset($this->conn, $charset);
+	}
 
 	/**
 	 * Emulates prepare(), but this is TEST API.
