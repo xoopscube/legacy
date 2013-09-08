@@ -139,7 +139,7 @@ function updateConfFromDb()
 
 	if( empty( $this->_conn ) ) return false ;
 
-	$result = @mysqli_query( $this->_conn , "SELECT `conf_name`,`conf_value` FROM `".XOOPS_DB_PREFIX."_config` WHERE `conf_title` like '".$constpref."%'" , $this->_conn ) ;
+	$result = @mysqli_query( $this->_conn , "SELECT `conf_name`,`conf_value` FROM `".XOOPS_DB_PREFIX."_config` WHERE `conf_title` like '".$constpref."%'" ) ;
 	if( ! $result || mysqli_num_rows( $result ) < 5 ) {
 		return false ;
 	}
@@ -222,7 +222,7 @@ function output_log( $type = 'UNKNOWN' , $uid = 0 , $unique_check = false , $lev
 	$agent = @$_SERVER['HTTP_USER_AGENT'] ;
 
 	if( $unique_check ) {
-		$result = mysqli_query( $this->_conn, 'SELECT ip,type FROM '.XOOPS_DB_PREFIX.'_'.$this->mydirname.'_log ORDER BY timestamp DESC LIMIT 1' , $this->_conn ) ;
+		$result = mysqli_query( $this->_conn, 'SELECT ip,type FROM '.XOOPS_DB_PREFIX.'_'.$this->mydirname.'_log ORDER BY timestamp DESC LIMIT 1' ) ;
 		list( $last_ip , $last_type ) = mysqli_fetch_row( $result ) ;
 		if( $last_ip == $ip && $last_type == $type ) {
 			$this->_logged = true ;
@@ -230,7 +230,7 @@ function output_log( $type = 'UNKNOWN' , $uid = 0 , $unique_check = false , $lev
 		}
 	}
 
-	mysqli_query( $this->_conn , "INSERT INTO ".XOOPS_DB_PREFIX."_".$this->mydirname."_log SET ip='".addslashes($ip)."',agent='".addslashes($agent)."',type='".addslashes($type)."',description='".addslashes($this->message)."',uid='".intval($uid)."',timestamp=NOW()" , $this->_conn ) ;
+	mysqli_query( $this->_conn , "INSERT INTO ".XOOPS_DB_PREFIX."_".$this->mydirname."_log SET ip='".addslashes($ip)."',agent='".addslashes($agent)."',type='".addslashes($type)."',description='".addslashes($this->message)."',uid='".intval($uid)."',timestamp=NOW()" ) ;
 	$this->_logged = true ;
 	return true ;
 }
