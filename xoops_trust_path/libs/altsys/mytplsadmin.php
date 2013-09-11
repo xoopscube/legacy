@@ -168,6 +168,13 @@ if( is_array( @$_POST['del_do'] ) ) foreach( $_POST['del_do'] as $tplset_from_tm
 // GET stage  //
 //************//
 
+// css
+$css_tag = '';
+$css_array = array('default.css', 'overwrite.css');
+foreach($css_array as $css) {
+	$css_tag .= '<link rel="stylesheet" type="text/css" href="'.XOOPS_MODULE_URL.'/altsys/admin/css/'.$css.'" />'."\n";
+}
+
 // javascript
 $_MYTPLSADMIN_ERR_INVALIDTPLSET = htmlspecialchars( _MYTPLSADMIN_ERR_INVALIDTPLSET );
 $_MYTPLSADMIN_ERR_NOTPLFILE = htmlspecialchars( _MYTPLSADMIN_ERR_NOTPLFILE );
@@ -210,8 +217,12 @@ $tplsets_th4disp = '' ;
 $tplset_options = "<option value=''>----</option>\n" ;
 foreach( $tplsets as $tplset ) {
 	$tplset4disp = htmlspecialchars( $tplset , ENT_QUOTES ) ;
-	$th_style = $tplset == $xoopsConfig['template_set'] ? "style='color:yellow;'" : "" ;
-	$tplsets_th4disp .= "<th $th_style><input type='checkbox' title='"._MYTPLSADMIN_TITLE_CHECKALL."' onclick=\"with(document.MainForm){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].name.indexOf('{$tplset4disp}_check')>=0){elements[i].checked=this.checked;}}}\" />DB-{$tplset4disp}</th>" ;
+	$active = $th_attr = '';
+	if ($tplset == $xoopsConfig['template_set']) {
+		$th_attr = "class='active dbtplset_active'";
+		$active = '<sup>*</sup>';
+	}
+	$tplsets_th4disp .= "<th $th_attr><input type='checkbox' title='"._MYTPLSADMIN_TITLE_CHECKALL."' onclick=\"with(document.MainForm){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].name.indexOf('{$tplset4disp}_check')>=0){elements[i].checked=this.checked;}}}\" />{$active}DB-{$tplset4disp}</th>" ;
 	$tplset_options .= "<option value='$tplset4disp'>$tplset4disp</option>\n" ;
 }
 
@@ -220,6 +231,9 @@ $sql = "SELECT tpl_file,tpl_desc,tpl_type,COUNT(tpl_id) FROM ".$db->prefix("tplf
 $frs = $db->query($sql);
 
 xoops_cp_header() ;
+
+// css
+echo $css_tag;
 
 // javascript
 echo $javascript;
@@ -245,7 +259,7 @@ if( $target_dirname == '_custom' ) {
 echo "
 	<form name='MainForm' action='?mode=admin&amp;lib=altsys&amp;page=mytplsadmin&amp;dirname=".htmlspecialchars($target_dirname,ENT_QUOTES)."' method='post'>
 	".$xoopsGTicket->getTicketHtml( __LINE__ )."
-	<table class='outer'>
+	<table class='outer altsys_mytplsadmin'>
 		<tr>
 			<th>"._MYTPLSADMIN_TH_NAME."</th>
 			<th>"._MYTPLSADMIN_TH_TYPE."</th>
@@ -254,7 +268,7 @@ echo "
 		</tr>\n" ;
 
 // STYLE for distinguishing fingerprints
-$fingerprint_styles = array( '' , 'background-color:#00FF00' , 'background-color:#00CC88' , 'background-color:#00FFFF' , 'background-color:#0088FF' , 'background-color:#FF8800' , 'background-color:#0000FF' , 'background-color:#FFFFFF' ) ;
+$fingerprint_classes = array( '' , ' fingerprint1' , ' fingerprint2' , ' fingerprint3' , ' fingerprint4' , ' fingerprint5' , ' fingerprint6' , ' fingerprint7' ) ;
 
 // template ROWS
 while( list( $tpl_file , $tpl_desc , $type , $count ) = $db->fetchRow( $frs ) ) {
@@ -277,12 +291,12 @@ while( list( $tpl_file , $tpl_desc , $type , $count ) = $db->fetchRow( $frs ) ) 
 
 	if( file_exists( $basefilepath ) ) {
 		$fingerprint = tplsadmin_get_fingerprint( file( $basefilepath ) ) ;
-		$fingerprints[ $fingerprint ] = 1 ;
+		$fingerprints[ $fingerprint ] = '' ;
 		echo "<td class='$evenodd'>".formatTimestamp(filemtime($basefilepath),'m').'<br />'.substr($fingerprint,0,16)."<br /><input type='checkbox' name='basecheck[$tpl_file]' value='1' /></td>\n" ;
-		$fingerprint_style_count = 0 ;
+		$fingerprint_class_count = 0 ;
 	} else {
 		echo "<td class='$evenodd'><br /></td>" ;
-		$fingerprint_style_count = -1 ;
+		$fingerprint_class_count = -1 ;
 	}
 
 	// db template columns
@@ -298,13 +312,13 @@ while( list( $tpl_file , $tpl_desc , $type , $count ) = $db->fetchRow( $frs ) ) 
 		} else {
 			$fingerprint = tplsadmin_get_fingerprint( explode( "\n" , $tpl['tpl_source'] ) ) ;
 			if( isset( $fingerprints[ $fingerprint ] ) ) {
-				$style = $fingerprints[ $fingerprint ] ;
+				$class = $fingerprints[ $fingerprint ] ;
 			} else {
-				$fingerprint_style_count ++ ;
-				$style = $fingerprint_styles[$fingerprint_style_count] ;
-				$fingerprints[ $fingerprint ] = $style ;
+				$fingerprint_class_count ++ ;
+				$class = $fingerprint_classes[$fingerprint_class_count] ;
+				$fingerprints[ $fingerprint ] = $class ;
 			}
-			echo "<td class='$evenodd' style='$style'>".formatTimestamp($tpl['tpl_lastmodified'],'m').'<br />'.substr($fingerprint,0,16)."<br /><input type='checkbox' name='{$tplset4disp}_check[{$tpl_file}]' value='1' /> &nbsp; <a href='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=".htmlspecialchars($tpl['tpl_file'],ENT_QUOTES)."&amp;tpl_tplset=".htmlspecialchars($tpl['tpl_tplset'],ENT_QUOTES)."'>"._EDIT."</a> ($numrows)</td>\n" ;
+			echo "<td class='{$evenodd}{$class}'>".formatTimestamp($tpl['tpl_lastmodified'],'m').'<br />'.substr($fingerprint,0,16)."<br /><input type='checkbox' name='{$tplset4disp}_check[{$tpl_file}]' value='1' /> &nbsp; <a href='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=".htmlspecialchars($tpl['tpl_file'],ENT_QUOTES)."&amp;tpl_tplset=".htmlspecialchars($tpl['tpl_tplset'],ENT_QUOTES)."'>"._EDIT."</a> ($numrows)</td>\n" ;
 		}
 	}
 

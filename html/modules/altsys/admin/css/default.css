@@ -1,0 +1,29 @@
+table.altsys_mytplsadmin .dbtplset_active {
+	background-color: #99FF99;
+	background-image: none;
+	color: #5E06F6;
+}
+table.altsys_mytplsadmin .dbtplset_active sup {
+	/*display: none;*/
+}
+table.altsys_mytplsadmin .fingerprint1 {
+	background-color: #00FF00;
+}
+table.altsys_mytplsadmin .fingerprint2 {
+	background-color: #00CC88;
+}
+table.altsys_mytplsadmin .fingerprint3 {
+	background-color: #00FFFF;
+}
+table.altsys_mytplsadmin .fingerprint4 {
+	background-color: #0088FF;
+}
+table.altsys_mytplsadmin .fingerprint5 {
+	background-color: #FF8800;
+}
+table.altsys_mytplsadmin .fingerprint6 {
+	background-color: #0000FF;
+}
+table.altsys_mytplsadmin .fingerprint7 {
+	background-color: #FFFFFF;
+}
