@@ -153,14 +153,18 @@ class Legacy_ModuleInstallUtils
 	 */
 	function installSQLAutomatically(&$module, &$log)
 	{
+		$dbTypeAliases = array(
+			'mysqli' => 'mysql'
+		);
 		$sqlfileInfo =& $module->getInfo('sqlfile');
 		$dirname = $module->getVar('dirname');
+		$dbType = (isset($sqlfileInfo[XOOPS_DB_TYPE]) || !isset($dbTypeAliases[XOOPS_DB_TYPE]))? XOOPS_DB_TYPE : $dbTypeAliases[XOOPS_DB_TYPE];
 
-		if (!isset($sqlfileInfo[XOOPS_DB_TYPE])) {
+		if (!isset($sqlfileInfo[$dbType])) {
 			return;
 		}
 		
-		$sqlfile = $sqlfileInfo[XOOPS_DB_TYPE];
+		$sqlfile = $sqlfileInfo[$dbType];
 		$sqlfilepath = XOOPS_MODULE_PATH . "/${dirname}/${sqlfile}";
 		
 		if (isset($module->modinfo['cube_style']) && $module->modinfo['cube_style'] == true) {
