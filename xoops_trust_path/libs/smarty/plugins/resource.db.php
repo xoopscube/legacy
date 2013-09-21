@@ -20,7 +20,7 @@ function smarty_resource_db_systemTpl($tpl_name)
         $root=&XCube_Root::getSingleton();
         $systemTemplates = explode(',',$root->getSiteConfig('Legacy_RenderSystem','SystemTemplate',''));
         $prefix = $root->getSiteConfig('Legacy_RenderSystem','SystemTemplatePrefix','legacy');
-        $patterns = preg_replace('/^\s*([^\s]*)\s*$/e', '"/".preg_quote("\1","/")."/"', $systemTemplates);
+        $patterns = preg_replace_callback('/^\s*([^\s]*)\s*$/', function($m){return '/'.preg_quote($m[1],'/').'/';}, $systemTemplates);
         $replacements = preg_replace('/^\s*system_([^\s]*)\s*/', $prefix.'_\1', $systemTemplates);
     }
     if ($patterns) {
