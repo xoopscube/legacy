@@ -60,6 +60,7 @@ class Xupdate_Ftp_Abstract {
 
 	protected $mes = "";
 
+	protected $item_options;
 	protected $no_overwrite;
 
 	/* Constructor */

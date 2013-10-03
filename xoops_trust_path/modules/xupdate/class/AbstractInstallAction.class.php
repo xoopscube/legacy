@@ -313,6 +313,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
 					}
 				}
 			}
+			$xupdateFtpModuleInstall->options = array_merge($this->options, $xupdateFtpModuleInstall->options);
 			//adump($_arr, $this->options['install_only'], $xupdateFtpModuleInstall->options);
 		}
 		
