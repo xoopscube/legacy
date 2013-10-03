@@ -127,7 +127,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 							if(! isset($this->options['no_update'])){
 								$this->options['no_update'] = array();
 							}
-							$this->Ftp->set_no_overwrite(array($this->options['no_overwrite'], $this->options['no_update']));
+							$this->Ftp->set_item_options($this->options);
 							
 							// is system module?
 							$_isSystemModule = (in_array($this->dirname, $this->systemModules) || (!empty($this->trust_dirname) && in_array($this->trust_dirname, $this->systemModules)));
