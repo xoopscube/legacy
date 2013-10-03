@@ -152,12 +152,23 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	}
 
 	/**
+	 * Set item_options
+	 * 
+	 * @param array $options
+	 * @return void
+	 */
+	public function set_item_options($options) {
+		$this->item_options = $options;
+		$this->set_no_overwrite(array($options['no_overwrite'], $options['no_update']));
+	}
+
+	/**
 	 *  set_no_overwrite
 	 *  
 	 * @param array $no_overwrite
 	 * @return void
 	 */
-	public function set_no_overwrite($no_overwrite) {
+	private function set_no_overwrite($no_overwrite) {
 		$this->no_overwrite = $no_overwrite;
 	}
 	
@@ -519,6 +530,9 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 				$root = XCube_Root::getSingleton();
 				$lang = $root->mContext->getXoopsConfig('language');
 				$lang = ($lang === 'english')? array($lang) : array($lang, 'english');
+				if (isset($this->item_options['force_languages']) && is_array($this->item_options['force_languages'])) {
+					$lang = array_merge($lang, $this->item_options['force_languages']);
+				}
 			}
 			if (preg_match($reg_lang, $file, $match)) {
 				if (! in_array($match[1], $lang)){
@@ -555,7 +569,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	 * @return boolean
 	 */
 	private function _same_file($source, $target) {
-		return (file_exists($target) && md5_file($source) === md5_file($target));
+		return (is_readable($target) && md5_file($source) === md5_file($target));
 	}
 
 	/**
