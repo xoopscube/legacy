@@ -569,7 +569,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	 * @return boolean
 	 */
 	private function _same_file($source, $target) {
-		return (file_exists($target) && md5_file($source) === md5_file($target));
+		return (is_readable($target) && md5_file($source) === md5_file($target));
 	}
 
 	/**
