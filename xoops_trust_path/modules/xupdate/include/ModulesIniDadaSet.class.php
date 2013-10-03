@@ -399,6 +399,120 @@ class Xupdate_ModulesIniDadaSet
 		}
 	}
 
+	private function _createItemOptions( $item, $caller )
+	{
+		static $mVars;
+		if (is_null($mVars)) {
+			$mobj = $this->modHand[$caller]->create();
+			$mVars = $mobj->mVars;
+			unset($mobj);
+		}
+	
+		// for back compat
+		if (isset($item['install_only'])) {
+			if (!isset($item['no_overwrite']) || !is_array($item['no_overwrite'])) {
+				$item['no_overwrite'] = array();
+			}
+			if (!isset($item['no_update']) || !is_array($item['no_update'])) {
+				$item['no_update'] = array();
+			}
+			foreach($item['install_only'] as $_item) {
+				$_key = 'no_overwrite';
+				if (substr($_item, -1) === '*') {
+					$_key = 'no_update';
+					$_item = rtrim($_item, '*');
+				}
+				if (! in_array($_item, $item[$_key])) {
+					$item[$_key][] = $_item;
+				}
+			}
+			unset($item['install_only']);
+		}
+	
+		// options の構築
+		// ini設定 に option キーを追加する場合は _getItemArrFromObj（） にも処理を追加する
+		$item_arr=array();
+		if(isset($item['writable_file'])
+		|| isset($item['writable_dir'])
+		|| isset($item['no_overwrite'])
+		|| isset($item['no_update'])
+		|| isset($item['delete_file'])
+		|| isset($item['delete_dir'])){
+			if(isset($item['writable_file'])){
+				$item_arr['writable_file'] = array_filter($item['writable_file'], 'strlen');
+			}
+			if(isset($item['writable_dir'])){
+				$item_arr['writable_dir'] = array_filter($item['writable_dir'], 'strlen');
+			}
+			if(isset($item['no_overwrite'])){
+				$item_arr['no_overwrite'] = array_filter($item['no_overwrite'], 'strlen');
+			}
+			if(isset($item['no_update'])){
+				$item_arr['no_update'] = array_filter($item['no_update'], 'strlen');
+			}
+			if(isset($item['delete_file'])){
+				$item_arr['delete_file'] = array_filter($item['delete_file'], 'strlen');
+			}
+			if(isset($item['delete_dir'])){
+				$item_arr['delete_dir'] = array_filter($item['delete_dir'], 'strlen');
+			}
+		}
+		if(isset($item['detailed_version'])){
+			$item_arr['detailed_version'] = $item['detailed_version'] ;
+		} else {
+			$item_arr['detailed_version'] = '';
+		}
+		if(isset($item['screen_shot'])){
+			$item_arr['screen_shot'] = $item['screen_shot'] ;
+		} else {
+			$item_arr['screen_shot'] = '' ;
+		}
+		if(isset($item['changes_url'])){
+			$item_arr['changes_url'] = $item['changes_url'] ;
+		} else {
+			$item_arr['changes_url'] = '' ;
+		}
+		if(isset($item['modinfo'])){
+			$item_arr['modinfo'] = $item['modinfo'] ;
+		}
+		if(isset($item['force_languages'])){
+			$item_arr['force_languages'] = array_map('trim', explode(',', trim($item['force_languages'])));
+		}
+	
+		// check tag is UTF-8 with json_encode
+		if ($this->mTagModule && isset($item['tag'])) {
+			$tag = trim($item['tag']);
+			$tag = preg_replace('/\s+/', ' ', $tag);
+		} else {
+			$tag = '' ;
+		}
+	
+		if ($item['dirname'] === 'legacy') {
+			// check altsys
+			if (! file_exists(XOOPS_TRUST_PATH.'/libs/altsys/class/D3LanguageManager.class.php') && isset($item_arr['no_update'])) {
+				$no_update = $item_arr['no_update'];
+				foreach($no_update as $_key => $_val) {
+					if (substr($_val, -6) === 'altsys') {
+						unset($item_arr['no_update'][$_key]);
+					}
+				}
+			}
+		}
+	
+		$item['options']= serialize($item_arr) ;
+	
+		// clean up
+		foreach(array_keys($item) as $key) {
+			if (! isset($mVars[$key])) {
+				unset($item[$key]);
+			}
+		}
+	
+		$item['tag'] = $tag;
+	
+		return $item;
+	}
+
 	private function _getItemArrFromObj($obj, $readini = false) {
 		$item = array();
 		$options = $obj->unserialize_options($readini);
@@ -420,6 +534,7 @@ class Xupdate_ModulesIniDadaSet
 		$item['writable_file'] = $options['writable_file'];
 		$item['delete_dir'] = $options['delete_dir'];
 		$item['delete_file'] = $options['delete_file'];
+		$item['force_languages'] = $options['force_languages'];
 		if (isset($options['modinfo'])) {
 			$item['modinfo'] = $options['modinfo'];
 		}
@@ -670,114 +785,6 @@ class Xupdate_ModulesIniDadaSet
 
 	}
 
-	private function _createItemOptions( $item, $caller )
-	{
-		static $mVars;
-		if (is_null($mVars)) {
-			$mobj = $this->modHand[$caller]->create();
-			$mVars = $mobj->mVars;
-			unset($mobj);
-		}
-		
-		// for back compat
-		if (isset($item['install_only'])) {
-			if (!isset($item['no_overwrite']) || !is_array($item['no_overwrite'])) {
-				$item['no_overwrite'] = array();
-			}
-			if (!isset($item['no_update']) || !is_array($item['no_update'])) {
-				$item['no_update'] = array();
-			}
-			foreach($item['install_only'] as $_item) {
-				$_key = 'no_overwrite';
-				if (substr($_item, -1) === '*') {
-					$_key = 'no_update';
-					$_item = rtrim($_item, '*');
-				}
-				if (! in_array($_item, $item[$_key])) {
-					$item[$_key][] = $_item;
-				}
-			}
-			unset($item['install_only']);
-		}
-		
-		if(isset($item['writable_file'])
-		|| isset($item['writable_dir'])
-		|| isset($item['no_overwrite'])
-		|| isset($item['no_update'])
-		|| isset($item['delete_file'])
-		|| isset($item['delete_dir'])){
-			$item_arr=array();
-			if(isset($item['writable_file'])){
-				$item_arr['writable_file'] = array_filter($item['writable_file'], 'strlen');
-			}
-			if(isset($item['writable_dir'])){
-				$item_arr['writable_dir'] = array_filter($item['writable_dir'], 'strlen');
-			}
-			if(isset($item['no_overwrite'])){
-				$item_arr['no_overwrite'] = array_filter($item['no_overwrite'], 'strlen');
-			}
-			if(isset($item['no_update'])){
-				$item_arr['no_update'] = array_filter($item['no_update'], 'strlen');
-			}
-			if(isset($item['delete_file'])){
-				$item_arr['delete_file'] = array_filter($item['delete_file'], 'strlen');
-			}
-			if(isset($item['delete_dir'])){
-				$item_arr['delete_dir'] = array_filter($item['delete_dir'], 'strlen');
-			}
-		}
-		if(isset($item['detailed_version'])){
-			$item_arr['detailed_version'] = $item['detailed_version'] ;
-		} else {
-			$item_arr['detailed_version'] = '';
-		}
-		if(isset($item['screen_shot'])){
-			$item_arr['screen_shot'] = $item['screen_shot'] ;
-		} else {
-			$item_arr['screen_shot'] = '' ;
-		}
-		if(isset($item['changes_url'])){
-			$item_arr['changes_url'] = $item['changes_url'] ;
-		} else {
-			$item_arr['changes_url'] = '' ;
-		}
-		if(isset($item['modinfo'])){
-			$item_arr['modinfo'] = $item['modinfo'] ;
-		}
-		
-		// check tag is UTF-8 with json_encode
-		if ($this->mTagModule && isset($item['tag'])) {
-			$tag = trim($item['tag']);
-			$tag = preg_replace('/\s+/', ' ', $tag);
-		} else {
-			$tag = '' ;
-		}
-		
-		if ($item['dirname'] === 'legacy') {
-			// check altsys
-			if (! file_exists(XOOPS_TRUST_PATH.'/libs/altsys/class/D3LanguageManager.class.php') && isset($item_arr['no_update'])) {
-				$no_update = $item_arr['no_update'];
-				foreach($no_update as $_key => $_val) {
-					if (substr($_val, -6) === 'altsys') {
-						unset($item_arr['no_update'][$_key]);
-					}
-				}
-			}
-		}
-		
-		$item['options']= serialize($item_arr) ;
-		
-		// clean up
-		foreach(array_keys($item) as $key) {
-			if (! isset($mVars[$key])) {
-				unset($item[$key]);
-			}
-		}
-		
-		$item['tag'] = $tag;
-		
-		return $item;
-	}
 /*
  * このサイトのデータをデータベースに再セットする
  */
