@@ -274,6 +274,7 @@ $fingerprint_classes = array( '' , ' fingerprint1' , ' fingerprint2' , ' fingerp
 while( list( $tpl_file , $tpl_desc , $type , $count ) = $db->fetchRow( $frs ) ) {
 
 	$evenodd = @$evenodd == 'even' ? 'odd' : 'even' ;
+	$fingerprints = array();
 
 	// information about the template
 	echo "
@@ -314,8 +315,8 @@ while( list( $tpl_file , $tpl_desc , $type , $count ) = $db->fetchRow( $frs ) ) 
 			if( isset( $fingerprints[ $fingerprint ] ) ) {
 				$class = $fingerprints[ $fingerprint ] ;
 			} else {
-				$fingerprint_class_count ++ ;
-				$class = $fingerprint_classes[$fingerprint_class_count] ;
+				//$fingerprint_class_count ++ ;
+				$class = $fingerprint_classes[++$fingerprint_class_count] ;
 				$fingerprints[ $fingerprint ] = $class ;
 			}
 			echo "<td class='{$evenodd}{$class}'>".formatTimestamp($tpl['tpl_lastmodified'],'m').'<br />'.substr($fingerprint,0,16)."<br /><input type='checkbox' name='{$tplset4disp}_check[{$tpl_file}]' value='1' /> &nbsp; <a href='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=".htmlspecialchars($tpl['tpl_file'],ENT_QUOTES)."&amp;tpl_tplset=".htmlspecialchars($tpl['tpl_tplset'],ENT_QUOTES)."'>"._EDIT."</a> ($numrows)</td>\n" ;
