@@ -38,9 +38,9 @@ class XoopsMailerLocal extends XoopsMailer {
         $this->reset();
         $this->charSet = 'iso-2022-jp';
         $this->encoding = '7bit';
-				$this->multimailer->CharSet = $this->charSet;
-				$this->multimailer->SetLanguage('ja', XOOPS_ROOT_PATH . "/language/ja_utf8/phpmailer.lang-ja.php");
-				$this->multimailer->Encoding = "7bit";
+        $this->multimailer->CharSet = $this->charSet;
+        $this->multimailer->SetLanguage('ja', XOOPS_ROOT_PATH . '/class/mail/phpmailer/language/');
+        $this->multimailer->Encoding = '7bit';
     }
 
     function encodeFromName($text){
@@ -137,7 +137,8 @@ class XoopsMultiMailerLocal extends XoopsMultiMailer {
                 if ($this->needs_encode || $force) {
                     $enc = mb_internal_encoding();
                     mb_internal_encoding('ISO-2022-JP');
-                    $encoded = mb_encode_mimeheader($str, 'ISO-2022-JP', 'B', "\r\n", 9); // offset strlen("Subject: ") as 9
+                    $eol = $this->Mailer=='mail'?"\r\n":"\n";	// XXX: this for bugs in PHP mail() subject with linefeed handling
+                    $encoded = mb_encode_mimeheader($str, 'ISO-2022-JP', 'B', $eol, 9); // offset strlen("Subject: ") as 9
                     mb_internal_encoding($enc);
                 } else {
                     $encoded = $str;
