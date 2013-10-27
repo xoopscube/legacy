@@ -17,7 +17,7 @@
 // ## Plus...........: http://card.ly/mikhail
 // ############################################################### //
 // *************************************************************** //
-define("_MI_INQUIRY_INSTALL_ERROR","Este módulo só funciona com o PHP5.");
+define("_MI_MESSAGE_INSTALL_ERROR","Este módulo só funciona com o PHP5.");
 define("_MI_MESSAGE_BLOCK_NAME","Novas mensagens");
 define("_MI_MESSAGE_DELTYPE","Remover todas as mensagens não lidas?");
 define("_MI_MESSAGE_DELTYPE_DESC","As mensagens ainda não lidas não são removidas automaticamente durante este processo de limpeza.");
