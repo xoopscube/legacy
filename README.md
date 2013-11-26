@@ -226,6 +226,22 @@ XOOPS Cube functionality can also be easily extended with Preloads - one file cl
 Modules
 ====
 
+###Xoops X (Ten)  
+Modules maintained by the community members
+
+https://github.com/XoopsX
+
+###Xoopscube.jp  
+Modules up-to-date 
+
+[News, Announcements and Release Notes](http://xoopscube.jp/module/)
+
+###Xoopscube.org  
+
+[Module Compatibility Informations](http://xoopscube.org/modules/pukiwiki/?XOOPSCubeLegacy%2FModuleCompatibility)
+
+
+
 ***
 
 Themes
