@@ -529,7 +529,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			$this->Ftp->localMkdir($directory);
 		}
 		if(file_exists($directory) && is_dir($directory)){
-			$this->Ftp->localChmod($directory, _MD_XUPDATE_WRITABLE_DIR_PERM);
+			$this->Ftp->localChmod($directory, (strpos($directory, XOOPS_TRUST_PATH) === 0)? _MD_XUPDATE_WRITABLE_DIR_PERM_T : _MD_XUPDATE_WRITABLE_DIR_PERM);
 		}
 	}
 
@@ -544,14 +544,14 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	{
 		if(file_exists($file)){
 			if (!is_dir($file)) {
-				$this->Ftp->localChmod($file, _MD_XUPDATE_WRITABLE_FILE_PERM);
+				$this->Ftp->localChmod($file, (strpos($file, XOOPS_TRUST_PATH) === 0)? _MD_XUPDATE_WRITABLE_FILE_PERM_T : _MD_XUPDATE_WRITABLE_FILE_PERM);
 			}
 		} else {
 			// make empty file
 			$tmp = $this->exploredDirPath . '/_empty.tmp';
 			if (@ touch($tmp)) {
 				if ($this->Ftp->localPut($tmp, $file)) {
-					$this->Ftp->localChmod($file, _MD_XUPDATE_WRITABLE_FILE_PERM);
+					$this->Ftp->localChmod($file, (strpos($file, XOOPS_TRUST_PATH) === 0)? _MD_XUPDATE_WRITABLE_FILE_PERM_T : _MD_XUPDATE_WRITABLE_FILE_PERM);
 				}
 			}
 		}
