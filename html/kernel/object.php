@@ -388,7 +388,8 @@ class XoopsObject extends AbstractXoopsObject
 				return $ret;
 			}
 		case XOBJ_DTYPE_ARRAY:
-			return unserialize($ret);
+			$ret = unserialize($ret);
+			return $ret;
 		case XOBJ_DTYPE_SOURCE:
 			switch (strtolower($format)) {
 			case 'e':
