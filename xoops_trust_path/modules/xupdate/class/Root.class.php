@@ -58,9 +58,15 @@ class Xupdate_Root extends XoopsSimpleObject {
 		if (! defined('_MD_XUPDATE_WRITABLE_DIR_PERM')) {
 			define('_MD_XUPDATE_WRITABLE_DIR_PERM', intval($this->mod_config['writable_dir_perm'], 8));
 		}
+		if (! defined('_MD_XUPDATE_WRITABLE_DIR_PERM_T')) {
+			define('_MD_XUPDATE_WRITABLE_DIR_PERM_T', intval($this->mod_config['writable_dir_perm_t'], 8));
+		}
 		// define writable file permission
 		if (! defined('_MD_XUPDATE_WRITABLE_FILE_PERM')) {
 			define('_MD_XUPDATE_WRITABLE_FILE_PERM', intval($this->mod_config['writable_file_perm'], 8));
+		}
+		if (! defined('_MD_XUPDATE_WRITABLE_FILE_PERM_T')) {
+			define('_MD_XUPDATE_WRITABLE_FILE_PERM_T', intval($this->mod_config['writable_file_perm_t'], 8));
 		}
 		
 		$tmpf = rtrim($this->params['temp_path'], '/');
