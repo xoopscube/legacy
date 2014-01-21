@@ -406,6 +406,9 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 		} else {
 			$options['screen_shot'] = Xupdate_Utils::toShow($options['screen_shot']);
 		}
+		if (! isset($options['force_languages'])) {
+			$options['force_languages'] = array();
+		}
 		return $options;
 	}
 	
