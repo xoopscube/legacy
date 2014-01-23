@@ -25,6 +25,6 @@ define('_MI_MESSAGE_DEFAULT_VIEWMSM', 'Par défaut : le corps du message saffich
 define('_MI_MESSAGE_DEFAULT_VIEWMSM_DESC', 'Mettre en place "le message est affiché dans le courrier" pour la personne qui nest pas définie.');
 
 define('_MI_MESSAGE_BLOCK_NAME', 'Nouveaux Messages');
-define('_MI_INQUIRY_INSTALL_ERROR', 'Ce module fonctionne uniquement avec la version PHP5.');
+define('_MI_MESSAGE_INSTALL_ERROR', 'Ce module fonctionne uniquement avec la version PHP5.');
 define('_MI_MESSAGE_INSTALL_ERROR2', 'Veuillez installer le module PM par défaut de la distribution XCL (extras).');
 ?>

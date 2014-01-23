@@ -1,6 +1,19 @@
 ﻿
 XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
+
+----------------------------------------
+2013/08/**: Package Revision 2.2.3RC1
+----------------------------------------
+[Issues]
+Fix bug: count lecat image
+[library] update SWFUpload to 2.2.0.1(secure-swfupload)
+[module:user] typo fix no_avatar.png to no_avatar.gif
+
+[Staff]
+- Kilica
+- nao-pon
+
 ----------------------------------------
 2013/08/06: Package Revision 2.2.2
 ----------------------------------------
