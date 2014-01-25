@@ -99,7 +99,75 @@ class XCube_Utils
 		
 		return $message;
 	}
-
+	
+	/**
+	 * @public
+	 * @brief [Static] To encrypt strings.
+	 * @param $plain_text string
+	 * @param $key        string
+	 * @param $algorithm  string
+	 * @param $$mode      string
+	 * @return string - Encrypted string.
+	 */
+	public static function encrypt($plain_text, $key = null, $algorithm = 'des', $mode = 'ecb') {
+		if (! extension_loaded('mcrypt')) return $plain_text;
+		
+		if (is_null($key) || ! is_string($key)) {
+			if (! defined('XOOPS_SALT')) return $plain_text;
+			$key = XOOPS_SALT;
+		}
+		$key = md5($key);
+		
+		$td  = mcrypt_module_open($algorithm, '', $mode, '');
+		$key = substr($key, 0, mcrypt_enc_get_key_size($td));
+		$iv  = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_RAND);
+		
+		if (mcrypt_generic_init($td, $key, $iv) < 0) {
+			return $plain_text;
+		}
+		
+		$crypt_text = base64_encode(mcrypt_generic($td, $plain_text));
+		
+		mcrypt_generic_deinit($td);
+		mcrypt_module_close($td);
+		
+		return $crypt_text;
+	}
+	
+	/**
+	 * @public
+	 * @brief [Static] To decrypt strings.
+	 * @param $crypt_text string
+	 * @param $key        string
+	 * @param $algorithm  string
+	 * @param $$mode      string
+	 * @return string - Decrypted string.
+	 */
+	public static function decrypt($crypt_text, $key = null, $algorithm = 'des', $mode = 'ecb') {
+		if ($crypt_text === '' || ! extension_loaded('mcrypt')) return $crypt_text;
+		
+		if (is_null($key) || ! is_string($key)) {
+			if (! defined('XOOPS_SALT')) return $plain_text;
+			$key = XOOPS_SALT;
+		}
+		$key = md5($key);
+		
+		$td  = mcrypt_module_open($algorithm, '', $mode, '');
+		$key = substr($key, 0, mcrypt_enc_get_key_size($td));
+		$iv  = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_RAND);
+		
+		if (mcrypt_generic_init($td, $key, $iv) < 0) {
+			return $crypt_text;
+		}
+		
+		$plain_text = mdecrypt_generic($td, base64_decode($crypt_text));
+		
+		mcrypt_generic_deinit($td);
+		mcrypt_module_close($td);
+		
+		return $plain_text;
+	}
+	
 	/**
 	 * @deprecated XCube 1.0 will remove this method.
 	 * @see XCube_Utils::formatString()
