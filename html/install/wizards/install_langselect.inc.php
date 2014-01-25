@@ -11,7 +11,9 @@
         define('_INSTALL_L128', 'Choose language to be used for the installation process');
     }
     $langarr = getDirList('./language/');
+    $php54 = (version_compare(PHP_VERSION, '5.4.0') >= 0);
     foreach ($langarr as $lang) {
+        if ($php54 && $lang !== 'english' && substr($lang, -5) !== '_utf8') continue;
         $wizard->addArray('languages', $lang);
         if (strtolower($lang) == $language) {
             $wizard->addArray('selected','selected="selected"');
