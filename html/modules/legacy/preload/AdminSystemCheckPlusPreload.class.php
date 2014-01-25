@@ -59,14 +59,15 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
 		$welcome = '<b>Welcome to XOOPS Cube Legacy!!</b><br />Have a nice and happy time!!';
 		$attributes = array();
 		$attributes['dummy_content'] = $welcome;
-		$template = XOOPS_LEGACY_PATH."/templates/legacy_dummy.html";
+		$template = self::getTemplate('legacy_dummy.html');
 		Legacy_AdminSystemCheckPlusPreload::display_message($attributes, $template, $return = false);
 		}//type1 if
 		
 		elseif ( $type == 2 ) {
 		
 		//you must prepare your own legacy_admin_welcome.html
-		if ( file_exists(XOOPS_LEGACY_PATH . "/admin/templates/legacy_admin_welcome.html") ) {
+		$template = self::getTemplate('legacy_admin_welcome.html');
+		if ( file_exists($template) ) {
 		//it's just a example! please customize it!
 		$welcome_title = 'Welcome Message!';
 		$welcome_msg = array();
@@ -75,7 +76,6 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
 		$attributes = array();
 		$attributes['title'] = $welcome_title;
 		$attributes['messages'] = $welcome_msg;
-		$template = XOOPS_LEGACY_PATH."/admin/templates/legacy_admin_welcome.html";
 		Legacy_AdminSystemCheckPlusPreload::display_message($attributes, $template, $return = false);
 		}//file_exists if
 		}//type2 if
@@ -176,7 +176,7 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
     		XCube_DelegateUtils::call('Legacyblock.Waiting.Show', new XCube_Ref($modules));
 		$attributes = array();
 		$attributes['block']['modules'] = $modules;
-		$template = XOOPS_ROOT_PATH."/modules/legacy/templates/blocks/legacy_block_waiting.html";
+		$template = self::getTemplate('legacy_block_waiting.html', 'blocks/');
 		$result = Legacy_AdminSystemCheckPlusPreload::display_message($attributes, $template, $return = true);
 		xoops_result($result, _MI_LEGACY_BLOCK_WAITING_NAME);
 		}//waiting if
@@ -202,7 +202,7 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
 		$output = str_replace('</div>', '', $output);	
 		$attributes = array();
 		$attributes['dummy_content'] = $output;
-		$template = XOOPS_ROOT_PATH."/modules/legacy/templates/legacy_dummy.html";
+		$template = self::getTemplate('legacy_dummy.html');
 		Legacy_AdminSystemCheckPlusPreload::display_message($attributes, $template, $return = false);
 		}//phpinfo if
 		/////////////////////////////////
@@ -229,6 +229,23 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
 	}
 
 	
+	private static function getTemplate($file, $prefix = null)
+	{
+		$infoArr = Legacy_get_override_file($file, $prefix);
+		if ($prefix) $file = $prefix . $file;
+		
+		if ($infoArr['theme'] != null && $infoArr['dirname'] != null) {
+			return XOOPS_THEME_PATH . '/' . $infoArr['theme'] . '/modules/' . $infoArr['dirname'] . '/' . $file;
+		}
+		elseif ($infoArr['theme'] != null) {
+			return XOOPS_THEME_PATH . '/' . $infoArr['theme'] . '/' . $file;
+		}
+		elseif ($infoArr['dirname'] != null) {
+			return XOOPS_MODULE_PATH . '/' . $infoArr['dirname'] . '/admin/templates/' . $file;
+		}
+		
+		return LEGACY_ADMIN_RENDER_FALLBACK_PATH . '/' . $file;
+	}
 }
 
 ?>
