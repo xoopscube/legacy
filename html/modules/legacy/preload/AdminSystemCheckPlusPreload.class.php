@@ -244,7 +244,7 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
 			return XOOPS_MODULE_PATH . '/' . $infoArr['dirname'] . '/admin/templates/' . $file;
 		}
 		
-		return LEGACY_ADMIN_RENDER_FALLBACK_PATH . '/' . $string;
+		return LEGACY_ADMIN_RENDER_FALLBACK_PATH . '/' . $file;
 	}
 }
 
