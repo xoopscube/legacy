@@ -94,6 +94,15 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
 						}
 					}
 					break;
+				case 'encrypt':
+					if ($config->get('conf_formtype') == 'textarea') {
+						$this->mFormProperties[$config->get('conf_name')] =new XCube_TextProperty($config->get('conf_name'));
+					}
+					else {
+						$this->mFormProperties[$config->get('conf_name')] =new XCube_StringProperty($config->get('conf_name'));
+					}
+					$this->set($config->get('conf_name'), XCube_Utils::decrypt($config->get('conf_value')));
+					break;
 			}
 		}
 	}
@@ -116,6 +125,9 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
 				else {
 					$configArr[$key]->set('conf_value', serialize(explode("|", $value)));
 				}
+			}
+			else if ($configArr[$key]->get('conf_valuetype') == 'encrypt') {
+				$configArr[$key]->set('conf_value', XCube_Utils::encrypt($value));
 			}
 			else {
 				$configArr[$key]->set('conf_value', $value);
