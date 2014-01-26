@@ -154,7 +154,8 @@ $modversion['sub'] = array(
 //
 // Config setting
 //
-
+if (!defined('XOOPSX_COREPACK_VERSION') && defined('_MI_LEGACY_DETAILED_VERSION') && substr(_MI_LEGACY_DETAILED_VERSION, 0, 9) === 'CorePack ') define('XOOPSX_COREPACK_VERSION', substr(_MI_LEGACY_DETAILED_VERSION, 9));
+$_encrypt = defined('XOOPSX_COREPACK_VERSION')? (version_compare(XOOPSX_COREPACK_VERSION, '20140125', '>=')? 'encrypt' : 'string') : (version_compare(LEGACY_BASE_VERSION, '2.2.2.3', '>')? 'encrypt' : 'string');
 $modversion['config'] = array(
 /*	array(
 		'name'			=> 'xxxx',
@@ -190,7 +191,7 @@ $modversion['config'] = array(
 		'name'		=> 'ftp_method' ,
 		'title'		=> '_MI_XUPDATE_FTP_METHOD',
 		'description'	=> '_MI_XUPDATE_FTP_METHODDSC',
-		'formtype'	=> defined('_MI_LEGACY_DETAILED_VERSION')? (version_compare(_MI_LEGACY_DETAILED_VERSION, 'CorePack 20121230', '>=')? 'radio' : (version_compare(_MI_LEGACY_DETAILED_VERSION, 'CorePack 20120825', '>=')? 'radio_br' : 'select')) : 'select',
+		'formtype'	=> defined('XOOPSX_COREPACK_VERSION')? (version_compare(XOOPSX_COREPACK_VERSION, '20121230', '>=')? 'radio' : (version_compare(XOOPSX_COREPACK_VERSION, '20120825', '>=')? 'radio_br' : 'select')) : (version_compare(LEGACY_BASE_VERSION, '2.2.2.1', '>=')? 'radio' : 'select'),
 		'valuetype'	=> 'int',
 		'default'	=> '4',
 		'options'	=> array( '_MI_XUPDATE_DIRECT' => 4,
@@ -212,13 +213,13 @@ $modversion['config'] = array(
 	) ,
 
 	array(
-			'name'		=> 'FTP_server' ,
-			'title'		=> '_MI_XUPDATE_FTP_SERVER',
-			'description'	=> '_MI_XUPDATE_FTP_SERVERDSC',
-			'formtype'	=> 'text',
-			'valuetype'	=> 'string',
-			'default'	=> '127.0.0.1',
-			'options'	=> array(),
+		'name'		=> 'FTP_server' ,
+		'title'		=> '_MI_XUPDATE_FTP_SERVER',
+		'description'	=> '_MI_XUPDATE_FTP_SERVERDSC',
+		'formtype'	=> 'text',
+		'valuetype'	=> $_encrypt,
+		'default'	=> '127.0.0.1',
+		'options'	=> array(),
 	) ,
 
 	array(
@@ -226,7 +227,7 @@ $modversion['config'] = array(
 		'title'		=> '_MI_XUPDATE_FTP_UNAME',
 		'description'	=> '_MI_XUPDATE_FTP_UNAMEDSC',
 		'formtype'	=> 'text',
-		'valuetype'	=> 'string',
+		'valuetype'	=> $_encrypt,
 		'default'	=> '',
 		'options'	=> array(),
 	) ,
@@ -236,7 +237,7 @@ $modversion['config'] = array(
 		'title'		=> '_MI_XUPDATE_FTP_PASS' ,
 		'description'		=> '_MI_XUPDATE_FTP_PASSDSC' ,
 		'formtype'	=> 'password',
-		'valuetype'	=> 'string',
+		'valuetype'	=> $_encrypt,
 		'default'	=> '',
 		'options'	=> array(),
 	) ,
@@ -256,7 +257,7 @@ $modversion['config'] = array(
 		'title'		=> '_MI_XUPDATE_SSH_KEY',
 		'description'	=> '_MI_XUPDATE_SSH_KEYDSC',
 		'formtype'	=> 'textarea',
-		'valuetype'	=> 'text',
+		'valuetype'	=> $_encrypt,
 		'default'	=> '',
 		'options'	=> array(),
 	) ,
