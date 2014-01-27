@@ -52,7 +52,7 @@
       <tr>
         <td class="head">
           <div class="legacy_list_title"><{$config->getTitle()}>
-          <{if $config->get('conf_valuetype') == 'encrypt'}><img src="<{"icons/textfield_key.png"|theme}>" alt="Encrypted"><{/if}>
+          <{if $mcrypt_enabled && $config->get('conf_valuetype') == 'encrypt'}><img src="<{"icons/textfield_key.png"|theme}>" alt="Encrypted"><{/if}>
           <{if $config->get('conf_desc') != null}>
             <p class="legacy_list_description"><{$config->getDesc()}></p>
           <{/if}>
