@@ -100,6 +100,8 @@ class Legacy_PreferenceEditAction extends Legacy_Action
 		$render->setAttribute('category', $this->mCategory);
 		$render->setAttribute('module', $this->mModule);
 		
+		$render->setAttribute('mcrypt_enabled', extension_loaded('mcrypt'));
+		
 		$formtypeArr = array();
 		foreach ($this->mObjects as $object) {
 			$formtypeArr[] = $object->get('conf_formtype');
