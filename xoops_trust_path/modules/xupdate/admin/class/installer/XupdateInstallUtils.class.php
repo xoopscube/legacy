@@ -1131,6 +1131,7 @@ class Xupdate_InstallUtils
             return false;
         }
     
+        $updateVar = null;
         $config =& $configs[0];
         $config->set('conf_title',$info->mTitle);
         $config->set('conf_desc',$info->mDescription);
@@ -1142,7 +1143,10 @@ class Xupdate_InstallUtils
         }
         else
         {
-            $config->set('conf_formtype',$info->mFormType);
+        	if ($config->get('conf_valuetype') != $info->mValueType) {
+        		$updateVar = $config->getConfValueForOutput();
+        	}
+        	$config->set('conf_formtype',$info->mFormType);
             $config->set('conf_valuetype',$info->mValueType);
         }
         $config->set('conf_order',$info->mOrder);
@@ -1171,7 +1175,11 @@ class Xupdate_InstallUtils
     
         if($configHandler->insertConfig($config))
         {
-            $log->addReport(
+            if ($updateVar) {
+            	$config->setConfValueForInput($updateVar);
+            	$configHandler->insertConfig($config);
+            }
+        	$log->addReport(
                 XCube_Utils::formatString(
                     _MI_XUPDATE_INSTALL_MSG_CONFIG_UPDATED,
                     $config->get('conf_name')
