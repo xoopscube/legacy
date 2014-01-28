@@ -157,7 +157,8 @@ class XoopsConfigItem extends XoopsObject
         case 'textarea':
             return $this->getVar('conf_value');
         case 'encrypt':
-            return XCube_Utils::decrypt($this->getVar('conf_value', 'N'));
+            $ret = XCube_Utils::decrypt($this->getVar('conf_value', 'N'));
+            return $ret;
         default:
             return $this->getVar('conf_value', 'N');
         }
