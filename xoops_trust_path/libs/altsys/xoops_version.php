@@ -7,7 +7,7 @@ altsys_include_language_file( 'modinfo' ) ;
 
 $modversion['name'] = _MI_ALTSYS_MODULENAME ;
 $modversion['version'] = '0.81' ;
-$modversion['detailed_version'] = '0.81.2' ;
+$modversion['detailed_version'] = '0.81.3' ;
 $modversion['description'] = _MI_ALTSYS_MODULEDESC ;
 $modversion['credits'] = "PEAK Corp.";
 $modversion['author'] = "GIJ=CHECKMATE<br />PEAK Corp.(http://www.peak.ne.jp/), XOOPS X Distribution(https://github.com/XoopsX)" ;
