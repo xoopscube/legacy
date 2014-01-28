@@ -147,7 +147,7 @@ class XCube_Utils
 		if ($crypt_text === '' || ! extension_loaded('mcrypt')) return $crypt_text;
 		
 		if (is_null($key) || ! is_string($key)) {
-			if (! defined('XOOPS_SALT')) return $plain_text;
+			if (! defined('XOOPS_SALT')) return $crypt_text;
 			$key = XOOPS_SALT;
 		}
 		$key = md5($key);
@@ -160,7 +160,7 @@ class XCube_Utils
 			return $crypt_text;
 		}
 		
-		$plain_text = mdecrypt_generic($td, base64_decode($crypt_text));
+		$plain_text = rtrim(mdecrypt_generic($td, base64_decode($crypt_text)), "\0");
 		
 		mcrypt_generic_deinit($td);
 		mcrypt_module_close($td);
