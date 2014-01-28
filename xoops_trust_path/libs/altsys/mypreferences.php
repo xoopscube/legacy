@@ -72,7 +72,8 @@ if ($op == 'showmod') {
 		//	$form->addElement(new XoopsFormHidden('redirect', XOOPS_URL.'/modules/'.$module->getVar('dirname').'/'.$module->getInfo('adminindex')));
 	// }
 	for ($i = 0; $i < $count; $i++) {
-		$title4tray = (!defined($config[$i]->getVar('conf_desc')) || constant($config[$i]->getVar('conf_desc')) == '') ? constant($config[$i]->getVar('conf_title')) : constant($config[$i]->getVar('conf_title')).'<br /><br /><span style="font-weight:normal;">'.constant($config[$i]->getVar('conf_desc')).'</span>'; // GIJ
+		$title_icon = ($config[$i]->getVar('conf_valuetype') === 'encrypt')? '<img src="'.XOOPS_MODULE_URL.'/legacy/admin/theme/icons/textfield_key.png" alt="Encrypted">' : ''; // support XCL 2.2.3 'encrypt' of 'conf_valuetype'
+		$title4tray = (!defined($config[$i]->getVar('conf_desc')) || constant($config[$i]->getVar('conf_desc')) == '') ? (constant($config[$i]->getVar('conf_title')).$title_icon) : (constant($config[$i]->getVar('conf_title')).$title_icon.'<br /><br /><span style="font-weight:normal;">'.constant($config[$i]->getVar('conf_desc')).'</span>'); // GIJ
 		$title = '' ; // GIJ
 		switch ($config[$i]->getVar('conf_formtype')) {
 		case 'textarea':
