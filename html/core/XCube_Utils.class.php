@@ -110,7 +110,7 @@ class XCube_Utils
 	 * @return string - Encrypted string.
 	 */
 	public static function encrypt($plain_text, $key = null, $algorithm = 'des', $mode = 'ecb') {
-		if (! extension_loaded('mcrypt')) return $plain_text;
+		if ($plain_text === '' || ! extension_loaded('mcrypt')) return $plain_text;
 		
 		if (is_null($key) || ! is_string($key)) {
 			if (! defined('XOOPS_SALT')) return $plain_text;
