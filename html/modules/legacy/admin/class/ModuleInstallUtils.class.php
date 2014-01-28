@@ -1057,7 +1057,6 @@ class Legacy_ModuleInstallUtils
 			return;
 		}
 		
-		$updateValue = null;
 		$config =& $configArr[0];
 		
 		$config->set('conf_title', $info->mTitle);
@@ -1070,11 +1069,10 @@ class Legacy_ModuleInstallUtils
 		if ($config->get('conf_formtype') != $info->mFormType && $oldValueType != $info->mValueType) {
 			$config->set('conf_formtype', $info->mFormType);
 			$config->set('conf_valuetype', $info->mValueType);
-			$updateValue = $info->mDefault;
+			$config->setConfValueForInput($info->mDefault);
 		}
 		else {
-			$config->set('conf_formtype', $info->mFormType);
-			$config->set('conf_valuetype', $info->mValueType);
+			$updateValue = null;
 			if ($oldValueType != $info->mValueType) {
 				if ($oldValueType === 'array' || $info->mValueType === 'array') {
 					$updateValue = $info->mDefault;
@@ -1082,6 +1080,9 @@ class Legacy_ModuleInstallUtils
 					$updateValue = $config->getConfValueForOutput();
 				}
 			}
+			$config->set('conf_formtype', $info->mFormType);
+			$config->set('conf_valuetype', $info->mValueType);
+			if (!is_null($updateValue)) $config->setConfValueForInput($updateValue);
 		}
 		
 		$config->set('conf_order', $info->mOrder);
@@ -1105,10 +1106,6 @@ class Legacy_ModuleInstallUtils
 		}
 
 		if ($handler->insertConfig($config)) {
-			if (!is_null($updateValue)) {
-				$config->setConfValueForInput($updateValue);
-				$handler->insertConfig($config);
-			}
 			$log->addReport(XCube_Utils::formatMessage("Preference '{0}' is updateded.", $config->get('conf_name')));
 		}
 		else {
