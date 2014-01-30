@@ -59,10 +59,6 @@ if( ! empty( $target_module ) && is_object( $target_module ) ) {
 	//$query4redirect = '' ;
 }
 
-// check access right (needs system_admin of tplset)
-//$sysperm_handler =& xoops_gethandler('groupperm');
-//if (!$sysperm_handler->checkRight('system_admin', XOOPS_SYSTEM_TPLSET, $xoopsUser->getGroups())) redirect_header( XOOPS_URL.'/user.php' , 1 , _NOPERM ) ;
-
 
 //**************//
 // POST stages  //
@@ -168,13 +164,6 @@ if( is_array( @$_POST['del_do'] ) ) foreach( $_POST['del_do'] as $tplset_from_tm
 // GET stage  //
 //************//
 
-// css
-$css_tag = '';
-$css_array = array('default.css', 'overwrite.css');
-foreach($css_array as $css) {
-	$css_tag .= '<link rel="stylesheet" type="text/css" href="'.XOOPS_MODULE_URL.'/altsys/admin/css/'.$css.'" />'."\n";
-}
-
 // javascript
 $_MYTPLSADMIN_ERR_INVALIDTPLSET = htmlspecialchars( _MYTPLSADMIN_ERR_INVALIDTPLSET );
 $_MYTPLSADMIN_ERR_NOTPLFILE = htmlspecialchars( _MYTPLSADMIN_ERR_NOTPLFILE );
@@ -233,7 +222,7 @@ $frs = $db->query($sql);
 xoops_cp_header() ;
 
 // css
-echo $css_tag;
+//echo $css_tag;
 
 // javascript
 echo $javascript;
@@ -319,7 +308,7 @@ while( list( $tpl_file , $tpl_desc , $type , $count ) = $db->fetchRow( $frs ) ) 
 				$class = $fingerprint_classes[++$fingerprint_class_count] ;
 				$fingerprints[ $fingerprint ] = $class ;
 			}
-			echo "<td class='{$evenodd}{$class}'>".formatTimestamp($tpl['tpl_lastmodified'],'m').'<br />'.substr($fingerprint,0,16)."<br /><input type='checkbox' name='{$tplset4disp}_check[{$tpl_file}]' value='1' /> &nbsp; <a href='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=".htmlspecialchars($tpl['tpl_file'],ENT_QUOTES)."&amp;tpl_tplset=".htmlspecialchars($tpl['tpl_tplset'],ENT_QUOTES)."'>"._EDIT."</a> ($numrows)</td>\n" ;
+			echo "<td class='{$evenodd}{$class}'>".formatTimestamp($tpl['tpl_lastmodified'],'m').'<br />'.substr($fingerprint,0,16)."<br /><input type='checkbox' name='{$tplset4disp}_check[{$tpl_file}]' value='1' /> &nbsp; <a href='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=".htmlspecialchars($tpl['tpl_file'],ENT_QUOTES)."&amp;tpl_tplset=".htmlspecialchars($tpl['tpl_tplset'],ENT_QUOTES)."&amp;dirname=".htmlspecialchars($target_dirname,ENT_QUOTES)."'>"._EDIT."</a> ($numrows)</td>\n" ;
 		}
 	}
 
