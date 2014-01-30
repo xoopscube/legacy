@@ -221,8 +221,12 @@ $frs = $db->query($sql);
 
 xoops_cp_header() ;
 
-// css
-//echo $css_tag;
+// css display
+require_once XOOPS_TRUST_PATH.'/libs/altsys/class/D3Tpl.class.php' ;
+$tpl = new D3Tpl() ;
+echo '<style scoped="scoped">';
+$tpl->display( 'db:altsys_inc_mytplsadmin.css' ) ;
+echo '</style>';
 
 // javascript
 echo $javascript;
