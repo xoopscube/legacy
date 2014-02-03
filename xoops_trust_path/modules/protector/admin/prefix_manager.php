@@ -1,6 +1,7 @@
 <?php
 
 require_once dirname(dirname(__FILE__)).'/class/gtickets.php' ;
+require_once dirname(dirname(__FILE__)).'/class/dbIntegrate.php' ;
 $db =& Database::getInstance() ;
 
 // COPY TABLES
@@ -65,6 +66,8 @@ if( ! empty( $_POST['copy'] ) && ! empty( $_POST['old_prefix'] ) ) {
 		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
 	}
 
+	$dbIntegrate = new protectorDbIntegrate($db->conn);
+
 	$prefix = $_POST['prefix'] ;//check line 61
 //HACK by suin & nao-pon 2012/01/06
 	while ( ob_get_level() > 0 ) {
@@ -78,31 +81,38 @@ if( ! empty( $_POST['copy'] ) && ! empty( $_POST['old_prefix'] ) ) {
 	if( ! $db->getRowsNum( $srs ) ) die( "You are not allowed to delete tables" ) ;
 
 	$export_string = '' ;
-
+	$tempfile = tmpfile();
 	while( $row_table = $db->fetchArray( $srs ) ) {
 		$table = $row_table['Name'] ;
 		if( substr( $table , 0 , strlen( $prefix ) + 1 ) !== $prefix . '_' ) continue ;
 		$drs = $db->queryF( "SHOW CREATE TABLE `$table`" ) ;
-		$export_string .= "\nDROP TABLE IF EXISTS `$table`;\n".mysql_result($drs,0,1).";\n\n" ;
-		$result = mysql_query( "SELECT * FROM `$table`" ) ;
-		$fields_cnt = mysql_num_fields( $result ) ;
+		list(, $create) = $db->fetchRow($drs);
+		$line = "\nDROP TABLE IF EXISTS `$table`;\n".$create.";\n\n";
+		if ($tempfile) {
+			fwrite($tempfile, $line);
+		} else {
+			$export_string .= $line ;
+		}
+		$db->freeRecordSet( $drs ) ;
+		$result = $db->query( "SELECT * FROM `$table`" ) ;
+		$fields_cnt = $db->getFieldsNum( $result ) ;
 		$field_flags = array();
 		for ($j = 0; $j < $fields_cnt; $j++) {
-			$field_flags[$j] = mysql_field_flags( $result , $j ) ;
+			$field_flags[$j] = $dbIntegrate->fieldFlags( $result , $j ) ;
 		}
 		$search = array("\x00", "\x0a", "\x0d", "\x1a");
 		$replace = array('\0', '\n', '\r', '\Z');
 		$current_row = 0;
-		while( $row = mysql_fetch_row($result) ) {
+		while( $row = $db->fetchRow($result) ) {
 			$current_row ++ ;
 			for( $j = 0 ; $j < $fields_cnt ; $j ++ ) {
-				$fields_meta = mysql_fetch_field( $result , $j ) ;
+				$fields_meta = $dbIntegrate->fetchField( $result , $j ) ;
 				// NULL
 				if (!isset($row[$j]) || is_null($row[$j])) {
 					$values[] = 'NULL';
 				// a number
 				// timestamp is numeric on some MySQL 4.1
-				} elseif ($fields_meta->numeric && $fields_meta->type != 'timestamp') {
+				} elseif (is_numeric($row[$j]) && $fields_meta->type != 'timestamp') {
 					$values[] = $row[$j];
 				// a binary field
 				// Note: with mysqli, under MySQL 4.1.3, we get the flag
@@ -124,16 +134,28 @@ if( ! empty( $_POST['copy'] ) && ! empty( $_POST['old_prefix'] ) ) {
 					$values[] = '\'' . str_replace($search, $replace, addslashes($row[$j])) . '\'';
 				} // end if
 			} // end for
-
-			$export_string .= "INSERT INTO `$table` VALUES (" . implode(', ', $values) . ");\n" ;
+			$line = "INSERT INTO `$table` VALUES (" . implode(', ', $values) . ");\n";
+			if ($tempfile) {
+				fwrite($tempfile, $line);
+			} else {
+				$export_string .= $line ;
+			}
 			unset($values);
 
 		} // end while
-		mysql_free_result( $result ) ;
+		$db->freeRecordSet( $result ) ;
 
 	}
 
 	$sqlfile_name =  $prefix.'_'.date('YmdHis').'.sql';
+
+	if ($tempfile) {
+		rewind($tempfile);
+		while (!feof($tempfile)) {
+  			$export_string .= fread($tempfile, 8192);
+		}
+		fclose($tempfile);
+	}
 
 //by domifara for add action zip ,ta.gzdownload
 	if( ! empty( $_POST['download_zip'] ) ) {
