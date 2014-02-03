@@ -25,9 +25,9 @@ class protector_postcommon_post_htmlpurify4everyone extends ProtectorFilterAbstr
 			// use HTMLPurifier inside Protector
 			require_once dirname(dirname(__FILE__)).'/library/HTMLPurifier.auto.php' ;
 			$config = HTMLPurifier_Config::createDefault();
-			$config->set('Cache', 'SerializerPath', XOOPS_TRUST_PATH.'/modules/protector/configs');
-			$config->set('Core', 'Encoding', _CHARSET);
-			//$config->set('HTML', 'Doctype', 'HTML 4.01 Transitional');
+			$config->set('Cache.SerializerPath', XOOPS_TRUST_PATH.'/modules/protector/configs');
+			$config->set('Core.Encoding', _CHARSET);
+			//$config->set('HTML.Doctype', 'HTML 4.01 Transitional');
 			$this->purifier = new HTMLPurifier($config);
 			$this->method = 'purify' ;
 		}
