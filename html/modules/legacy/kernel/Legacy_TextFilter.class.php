@@ -191,23 +191,41 @@ class Legacy_TextFilter extends XCube_TextFilter
 	 * @param	string	$html
 	 * @param	string	$encoding
 	 * @param	string	$doctype
+	 * @param	object	$config
 	 * 
 	 * @return	string
 	 **/
-	public function purifyHtml(/*** string ***/ $html, /*** string ***/ $encoding=null, /*** string ***/ $doctype=null)
+	public function purifyHtml(/*** string ***/ $html, /*** string ***/ $encoding=null, /*** string ***/ $doctype=null, /*** object ***/ $config=null)
 	{
 		require_once XOOPS_LIBRARY_PATH.'/htmlpurifier/library/HTMLPurifier.auto.php';
 		$encoding = $encoding ? $encoding : _CHARSET; 
 		$doctypeArr = array("HTML 4.01 Strict","HTML 4.01 Transitional","XHTML 1.0 Strict","XHTML 1.0 Transitional","XHTML 1.1");
 	
-		$config = HTMLPurifier_Config::createDefault();
-		$config->set('Core.Encoding', $encoding);
-		if(in_array($doctype, $doctypeArr)){
-			$config->set('HTML.Doctype', $doctype);
+		if (is_null($config) || !is_object($config) || !($config instanceof HTMLPurifier_Config)) {
+			$config = HTMLPurifier_Config::createDefault();
+			if(in_array($doctype, $doctypeArr)){
+				$config->set('HTML.Doctype', $doctype);
+			}
+		}
+	
+		if ($_conv = ($encoding !== 'UTF-8' && function_exists('mb_convert_encoding'))) {
+			$_substitute = mb_substitute_character();
+			mb_substitute_character('none');
+			$html = mb_convert_encoding($html, 'UTF-8', $encoding);
+			$config->set('Core.Encoding', 'UTF-8');
+		} else {
+			$config->set('Core.Encoding', $encoding);
 		}
 	
 		$purifier = new HTMLPurifier($config);
-		return $purifier->purify($html);
+		$html = $purifier->purify($html);
+	
+		if ($_conv) {
+			$html = mb_convert_encoding($html, $encoding, 'UTF-8');
+			mb_substitute_character($_substitute);
+		}
+	
+		return $html;
 	}
 
 
