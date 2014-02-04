@@ -50,9 +50,12 @@ class protector_postcommon_post_htmlpurify4guest extends ProtectorFilterAbstract
 			return array_map( array( $this , 'purify_recursive' ) , $data ) ;
 		} else {
 			if (strlen( $data ) > 32) {
+				$_substitute = mb_substitute_character();
+				mb_substitute_character('none');
 				$encording && ($data = mb_convert_encoding($data, 'UTF-8', $encording));
 				$data = call_user_func( array( $this->purifier , $this->method ) , $data );
 				$encording && ($data = mb_convert_encoding($data, $encording, 'UTF-8'));
+				mb_substitute_character($_substitute);
 			}
 			return $data ;
 		}
