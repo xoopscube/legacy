@@ -62,10 +62,10 @@ class Message_myInstaller extends Legacy_ModuleInstaller
     $result = $db->query($sql);
     while ($val = $db->fetchArray($result)) {
       $sql = sprintf($INBOX, $val['to_userid'], $val['from_userid'], mysql_real_escape_string($val['subject']), mysql_real_escape_string($val['msg_text']), $val['msg_time'], $val['read_msg']);
-      $result = $db->queryF($sql);
+      $db->queryF($sql);
       
       $sql = sprintf($OUTBOX, $val['from_userid'], $val['to_userid'], mysql_real_escape_string($val['subject']), mysql_real_escape_string($val['msg_text']), $val['msg_time']);
-      $result = $db->queryF($sql);
+      $db->queryF($sql);
       $num++;
     }
     $this->mLog->addReport('Update to '.$num.' records.');
