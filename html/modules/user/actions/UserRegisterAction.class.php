@@ -44,6 +44,8 @@ class User_UserRegisterAction extends User_Action
 		$this->mActionForm->fetch();
 		$this->mActionForm->validate();
 		
+		XCube_DelegateUtils::call('Legacy.Event.RegistUser.Validate', new XCube_Ref($this->mActionForm));
+		
 		if ($this->mActionForm->hasError()) {
 			return USER_FRAME_VIEW_INPUT;
 		} else {
