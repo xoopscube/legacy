@@ -1,0 +1,34 @@
+div.altsys_mymenu {
+	text-align:<{$smarty.const._GLOBAL_LEFT}>;
+	width:98%;
+}
+div.altsys_mymenu div {
+	float: <{$smarty.const._GLOBAL_LEFT}>;
+	font-weight: bold;
+	font-size: 9pt;
+	line-height: 12pt;
+	height: 1.5em;
+}
+div.altsys_mymenu div a,
+div.altsys_mymenu div a:visited {
+    font-weight: bold;
+}
+div.altsys_mymenu a.unselected {
+	background-color: #dddddd;
+}
+div.altsys_mymenu a.selected {
+	background-color: #ffcccc;
+}
+div.altsys_mymenusub_myblocksadmin a.selected {
+	background-color: #ffdd99;
+}
+div.altsys_mymenusub_mylangadmin a.selected {
+	background-color: #ccccff;
+}
+div.altsys_mymenusub_mytplsadmin a.selected {
+	background-color: #99ff99;
+}
+hr.altsys_mymenu_separator {
+	clear: <{$smarty.const._GLOBAL_LEFT}>;
+	display: block;
+}
