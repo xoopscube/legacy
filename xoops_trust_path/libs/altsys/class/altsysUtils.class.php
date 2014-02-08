@@ -41,4 +41,24 @@ class altsysUtils {
 		}
 		return false;
 	}
+	
+	public static function htmlspecialchars ($str, $flags = ENT_COMPAT, $encoding = null, $double_encode = true)
+	{
+		static $php523 = null;
+		if (is_null($php523)) {
+			$php523 = version_compare(PHP_VERSION, '5.2.3', '>=');
+		}
+		if (is_null($encoding)) {
+			$encoding = (defined('_CHARSET'))? _CHARSET : '';
+		}
+		if ($php523) {
+			return htmlspecialchars($str, $flags, $encoding, $double_encode);
+		} else {
+			$ret = htmlspecialchars($str, $flags, $encoding);
+			if (! $double_encode) {
+				$ret = str_replace('&amp;amp;', '&amp;', $ret);
+			}
+			return $ret;
+		}
+	}
 }
