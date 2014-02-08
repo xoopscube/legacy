@@ -1,5 +1,13 @@
 <?php
 
+if (! defined('XOOPS_MODULE_PATH')) {
+	define('XOOPS_MODULE_PATH', XOOPS_ROOT_PATH . '/modules');
+}
+if (! defined('XOOPS_MODULE_URL')) {
+	define('XOOPS_MODULE_URL', XOOPS_URL . '/modules');
+}
+
+ 
 require_once dirname(__FILE__).'/class/AltsysBreadcrumbs.class.php' ;
 require_once dirname(__FILE__).'/include/altsys_functions.php' ;
 

@@ -50,7 +50,7 @@ require_once XOOPS_TRUST_PATH.'/libs/altsys/class/D3Tpl.class.php' ;
 $tpl = new D3Tpl() ;
 $tpl->assign( array(
 	'adminmenu' => $adminmenu ,
-	'highlight_color' => '#ffdd99' ,
+	'mypage' => 'myblocksadmin' ,
 ) ) ;
 $tpl->display( 'db:altsys_inc_mymenusub.html' ) ;
 
