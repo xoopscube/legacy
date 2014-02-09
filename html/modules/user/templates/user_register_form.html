@@ -69,6 +69,18 @@
     </td>
   </tr>
   <{/if}>
+
+  <{if $validators}>
+  <{foreach from=$validators item=validator}>
+  <tr>
+    <td class="head"><{$validator.caption}></td>
+    <td class="<{cycle values="odd,even"}>">
+      <{$validator.element}>
+    </td>
+  </tr>
+  <{/foreach}>
+  <{/if}>
+ 
   <tr>
     <td colspan="2" class="foot" style="text-align:center;">
       <input type="submit" value="<{$smarty.const._MD_USER_LANG_SUBMIT}>" />
