@@ -139,13 +139,24 @@ function updateConfFromDb()
 
 	if( empty( $this->_conn ) ) return false ;
 
-	$result = @mysqli_query( $this->_conn , "SELECT `conf_name`,`conf_value` FROM `".XOOPS_DB_PREFIX."_config` WHERE `conf_title` like '".$constpref."%'" ) ;
-	if( ! $result || mysqli_num_rows( $result ) < 5 ) {
-		return false ;
-	}
+	$query = "SELECT `conf_name`,`conf_value` FROM `".XOOPS_DB_PREFIX."_config` WHERE `conf_title` like '".$constpref."%'";
 	$db_conf = array() ;
-	while( list( $key , $val ) = mysqli_fetch_row( $result ) ) {
-		$db_conf[ $key ] = $val ;
+	if( is_object($this->_conn) && get_class($this->_conn) === 'mysqli' ) {
+		$result = @mysqli_query( $this->_conn , $query ) ;
+		if( ! $result || mysqli_num_rows( $result ) < 5 ) {
+			return false ;
+		}
+		while( list( $key , $val ) = mysqli_fetch_row( $result ) ) {
+			$db_conf[ $key ] = $val ;
+		}
+	} else {
+		$result = @mysql_query( $query , $this->_conn ) ;
+		if( ! $result || mysql_num_rows( $result ) < 5 ) {
+			return false ;
+		}
+		while( list( $key , $val ) = mysql_fetch_row( $result ) ) {
+			$db_conf[ $key ] = $val ;
+		}
 	}
 	$db_conf_serialized = serialize( $db_conf ) ;
 
@@ -212,7 +223,7 @@ function output_log( $type = 'UNKNOWN' , $uid = 0 , $unique_check = false , $lev
 
 	if( ! ( $this->_conf['log_level'] & $level ) ) return true ;
 
-	if( empty( $this->_conn ) ) {
+	if( !is_object($this->_conn) || get_class($this->_conn) !== 'mysqli' ) {
 		$this->_conn = @mysqli_connect( XOOPS_DB_HOST , XOOPS_DB_USER , XOOPS_DB_PASS ) ;
 		if( ! $this->_conn ) die( 'db connection failed.' ) ;
 		if( ! mysqli_select_db(  $this->_conn , XOOPS_DB_NAME ) ) die( 'db selection failed.' ) ;
