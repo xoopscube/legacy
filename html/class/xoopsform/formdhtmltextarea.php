@@ -106,6 +106,7 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
 		$root =& XCube_Root::getSingleton();
 
 		$editor = $this->getEditor();
+		$id = $this->getId();
 		if ($editor && !isset(self::$_editorCheck[$id])) {
 			self::$_editorCheck[$id] = true;
 			$params['name'] = trim($this->getName(false));
@@ -113,7 +114,7 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
 			$params['cols'] = $this->getCols();
 			$params['rows'] = $this->getRows();
 			$params['value'] = $this->getValue();
-			$params['id'] = $this->getId();
+			$params['id'] = $id;
 			$params['editor'] = $editor;
 
 			$html = '';
