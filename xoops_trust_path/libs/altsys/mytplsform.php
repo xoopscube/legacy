@@ -23,7 +23,7 @@ if( ! is_object( @$xoopsUser ) || ! $moduleperm_handler->checkRight( 'module_adm
 //$xoops_system_path = XOOPS_ROOT_PATH . '/modules/system' ;
 
 // initials
-$db =& Database::getInstance();
+$db =& XoopsDatabaseFactory::getDatabaseConnection();
 $myts =& MyTextSanitizer::getInstance() ;
 
 // language file

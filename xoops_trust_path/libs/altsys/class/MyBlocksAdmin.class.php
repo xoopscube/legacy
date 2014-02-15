@@ -21,7 +21,7 @@ function MyBlocksAadmin()
 
 function construct()
 {
-	$this->db =& Database::getInstance() ;
+	$this->db =& XoopsDatabaseFactory::getDatabaseConnection() ;
 	$this->lang = @$GLOBALS['xoopsConfig']['language'] ;
 
 	$this->cachetime_options = array(
