@@ -20,7 +20,7 @@ if( ! is_object( @$xoopsUser ) || ! $moduleperm_handler->checkRight( 'module_adm
 
 
 // initials
-$db =& Database::getInstance();
+$db =& XoopsDatabaseFactory::getDatabaseConnection();
 $myts =& MyTextSanitizer::getInstance() ;
 
 // language file

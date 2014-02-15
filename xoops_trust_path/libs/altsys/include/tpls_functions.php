@@ -5,7 +5,7 @@ include_once dirname(__FILE__).'/altsys_functions.php' ;
 
 function tplsadmin_import_data( $tplset , $tpl_file , $tpl_source , $lastmodified = 0 )
 {
-	$db =& Database::getInstance() ;
+	$db =& XoopsDatabaseFactory::getDatabaseConnection() ;
 
 	// check the file is valid template
 	list( $count ) = $db->fetchRow( $db->query( "SELECT COUNT(*) FROM ".$db->prefix("tplfile")." WHERE tpl_tplset='default' AND tpl_file='".addslashes($tpl_file)."'" ) ) ;

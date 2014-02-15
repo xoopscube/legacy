@@ -24,7 +24,7 @@ function b_altsys_admin_menu_show( $options )
 		$mid_selected = 0 ;
 	}
 
-	$db =& Database::getInstance();
+	$db =& XoopsDatabaseFactory::getDatabaseConnection();
 	$myts =& MyTextSanitizer::getInstance();
 
 	$module_handler =& xoops_gethandler('module');
