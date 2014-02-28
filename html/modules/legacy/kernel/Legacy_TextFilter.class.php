@@ -203,9 +203,9 @@ class Legacy_TextFilter extends XCube_TextFilter
 	
 		if (is_null($config) || !is_object($config) || !($config instanceof HTMLPurifier_Config)) {
 			$config = HTMLPurifier_Config::createDefault();
-			if(in_array($doctype, $doctypeArr)){
-				$config->set('HTML.Doctype', $doctype);
-			}
+		}
+		if(in_array($doctype, $doctypeArr)){
+			$config->set('HTML.Doctype', $doctype);
 		}
 	
 		if ($_conv = ($encoding !== 'UTF-8' && function_exists('mb_convert_encoding'))) {
