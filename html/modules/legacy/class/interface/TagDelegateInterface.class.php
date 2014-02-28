@@ -26,7 +26,7 @@ interface Legacy_iTagDelegate
 	 * @param int		$posttime
 	 * @param string[]	$tagArr		tags for this data
 	 */	
-	public static function setTags($result, $tDirname, $dirname, $dataname, $dataId, $posttime, $tagArr);
+	public static function setTags(&$result, $tDirname, $dirname, $dataname, $dataId, $posttime, $tagArr);
 
 	/**
 	 * getTags	Legacy_Tag.{dirname}.GetTags
