@@ -10,10 +10,10 @@
 	
 	<div id="tabs">
 		<ul>
-			<{if !empty($package_items) }><li><a href="#xupdate-tabs-package"><{$smarty.const._MI_XUPDATE_ADMENU_PACKAGE}></a></li><{/if}>
-			<{if !empty($module_items) }><li><a href="#xupdate-tabs-module"><{$smarty.const._MI_XUPDATE_ADMENU_MODULE}></a></li><{/if}>
-			<{if !empty($theme_items) }><li><a href="#xupdate-tabs-theme"><{$smarty.const._MI_XUPDATE_ADMENU_THEME}></a></li><{/if}>
-			<{if !empty($preload_items) }><li><a href="#xupdate-tabs-preload"><{$smarty.const._MI_XUPDATE_ADMENU_PRELOAD}></a></li><{/if}>
+			<{if !empty($package_items) }><li><a href="#xupdate-tabs-package"><{$smarty.const._MI_XUPDATE_ADMENU_PACKAGE}> <{$smarty.const._AD_XUPDATE_LANG_STORE}></a></li><{/if}>
+			<{if !empty($module_items) }><li><a href="#xupdate-tabs-module"><{$smarty.const._MI_XUPDATE_ADMENU_MODULE}> <{$smarty.const._AD_XUPDATE_LANG_STORE}></a></li><{/if}>
+			<{if !empty($theme_items) }><li><a href="#xupdate-tabs-theme"><{$smarty.const._MI_XUPDATE_ADMENU_THEME}> <{$smarty.const._AD_XUPDATE_LANG_STORE}></a></li><{/if}>
+			<{if !empty($preload_items) }><li><a href="#xupdate-tabs-preload"><{$smarty.const._MI_XUPDATE_ADMENU_PRELOAD}> <{$smarty.const._AD_XUPDATE_LANG_STORE}></a></li><{/if}>
 		</ul>
 		<{if !empty($package_items) }>
 		<div id="xupdate-tabs-package" class="storelist">
