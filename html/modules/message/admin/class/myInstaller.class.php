@@ -54,17 +54,17 @@ class Message_myInstaller extends Legacy_ModuleInstaller
     */
     
     //--- Start ---
-    $INBOX = "INSERT INTO `".$db->prefix('message_inbox')."` (`inbox_id`, `uid`, `from_uid`, `title`, `message`, `utime`, `is_read`) VALUES (0, %d, %d, '%s', '%s', %d, %d)";
-    $OUTBOX = "INSERT INTO `".$db->prefix('message_outbox')."` (`outbox_id`, `uid`, `to_uid`, `title`, `message`, `utime`) VALUES (0, %d, %d, '%s', '%s', %d)";
+    $INBOX = "INSERT INTO `".$db->prefix('message_inbox')."` (`inbox_id`, `uid`, `from_uid`, `title`, `message`, `utime`, `is_read`) VALUES (0, %d, %d, %s, %s, %d, %d)";
+    $OUTBOX = "INSERT INTO `".$db->prefix('message_outbox')."` (`outbox_id`, `uid`, `to_uid`, `title`, `message`, `utime`) VALUES (0, %d, %d, %s, %s, %d)";
 
     $num = 0;
     $sql = "SELECT * FROM `".$db->prefix('priv_msgs')."` ORDER BY `msg_id`";
     $result = $db->query($sql);
     while ($val = $db->fetchArray($result)) {
-      $sql = sprintf($INBOX, $val['to_userid'], $val['from_userid'], mysql_real_escape_string($val['subject']), mysql_real_escape_string($val['msg_text']), $val['msg_time'], $val['read_msg']);
+      $sql = sprintf($INBOX, $val['to_userid'], $val['from_userid'], $db->quoteString($val['subject']), $db->quoteString($val['msg_text']), $val['msg_time'], $val['read_msg']);
       $db->queryF($sql);
       
-      $sql = sprintf($OUTBOX, $val['from_userid'], $val['to_userid'], mysql_real_escape_string($val['subject']), mysql_real_escape_string($val['msg_text']), $val['msg_time']);
+      $sql = sprintf($OUTBOX, $val['from_userid'], $val['to_userid'], $db->quoteString($val['subject']), $db->quoteString($val['msg_text']), $val['msg_time']);
       $db->queryF($sql);
       $num++;
     }
