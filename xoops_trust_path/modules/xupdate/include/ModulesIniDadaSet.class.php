@@ -476,7 +476,11 @@ class Xupdate_ModulesIniDadaSet
 			$item_arr['modinfo'] = $item['modinfo'] ;
 		}
 		if(isset($item['force_languages'])){
-			$item_arr['force_languages'] = array_map('trim', explode(',', trim($item['force_languages'])));
+			if (is_array($item['force_languages'])) {
+				$item_arr['force_languages'] = $item['force_languages'];
+			} else {
+				$item_arr['force_languages'] = array_map('trim', explode(',', trim($item['force_languages'])));
+			}
 		} else {
 			$item_arr['force_languages'] = array();
 		}
