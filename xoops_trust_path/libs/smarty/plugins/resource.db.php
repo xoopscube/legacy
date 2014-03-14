@@ -72,6 +72,7 @@ function smarty_resource_db_trusted($tpl_name, &$smarty)
 function smarty_resource_db_tplinfo($tpl_name, $smarty)
 {
 	static $cache = array();
+	static $dir_cache = array();
 	static $tplset = null;
 	static $theme = null;
 	static $theme_default = null;
@@ -89,25 +90,39 @@ function smarty_resource_db_tplinfo($tpl_name, $smarty)
 		$theme = isset($xoopsConfig['theme_set']) ? $xoopsConfig['theme_set'] : 'default';
 		
 		if (($_pos = strpos($theme, '_')) && substr($theme, $_pos) !== '_default') {
-			$theme_default = substr($theme, 0, $_pos) . '_default';
+			$theme_default = XOOPS_THEME_PATH . '/' . substr($theme, 0, $_pos) . '_default/templates/';
+			is_dir($theme_default) || $theme_default = '';
 		} else {
 			$theme_default = '';
 		}
+		
+		$theme = XOOPS_THEME_PATH . '/' . $theme . '/templates/';
+		
 		$root = XCube_Root::getSingleton();
 		if (! $resourceDiscoveryOrder = $root->getSiteConfig('Smarty', 'ResourceDiscoveryOrder')) {
 			$resourceDiscoveryOrder = 'Theme,ThemeD3,ThemeDefault,ThemeDefaultD3,DbTplSet';
 		}
 		$entries = array_map('strtoupper', array_map('trim', explode(',', $resourceDiscoveryOrder)));
+		
+		$dir_cache['d3'] = $dir_cache['def_d3'] = array();
 	}
 	
 	@list($dirname , $base_tpl_name) = explode('_' , $tpl_name , 2) ;
 	$mytrustdirname = Legacy_ResourcedbUtils::getTrustPath($dirname);
 	
+	// cache D3 dir exists
+	if ($mytrustdirname && !isset($dir_cache['d3'][$mytrustdirname])) {
+		$dir_cache['d3'][$mytrustdirname] = is_dir($theme . $mytrustdirname);
+	}
+	if ($theme_default && $mytrustdirname && !isset($dir_cache['def_d3'][$mytrustdirname])) {
+		$dir_cache['def_d3'][$mytrustdirname] = is_dir($theme_default . $mytrustdirname);
+	}
+	
 	foreach($entries as $entry) {
 		switch($entry) {
 			case 'THEME':
 				// check templates under themes/(theme)/templates/ (file template)
-				$filepath = XOOPS_THEME_PATH . '/' . $theme . '/templates/' . $tpl_name ;
+				$filepath = $theme . $tpl_name ;
 				if (is_file($filepath)) {
 					return $cache[$tpl_name] = $filepath ;
 				}
@@ -115,8 +130,8 @@ function smarty_resource_db_tplinfo($tpl_name, $smarty)
 				
 			case 'THEMED3':
 				// check templates under themes/(theme)/templates/(trust based template)
-				if($mytrustdirname && $base_tpl_name) {
-					$filepath = XOOPS_THEME_PATH . '/' . $theme . '/templates/' . $mytrustdirname . '/' . $base_tpl_name ;
+				if($mytrustdirname && $dir_cache['d3'][$mytrustdirname] && $base_tpl_name) {
+					$filepath = $theme . $mytrustdirname . '/' . $base_tpl_name ;
 					if (is_file($filepath)) {
 						return $cache[$tpl_name] = $filepath ;
 					}
@@ -126,7 +141,7 @@ function smarty_resource_db_tplinfo($tpl_name, $smarty)
 			case 'THEMEDEFAULT':
 				// check templates under themes/(theme prefix)_default/templates/ (file template)
 				if ($theme_default) {
-					$filepath = XOOPS_THEME_PATH . '/' . $theme_default . '/templates/' . $tpl_name ;
+					$filepath = $theme_default . $tpl_name ;
 					if (is_file($filepath)) {
 						return $cache[$tpl_name] = $filepath ;
 					}
@@ -135,8 +150,8 @@ function smarty_resource_db_tplinfo($tpl_name, $smarty)
 				
 			case 'THEMEDEFAULTD3':
 				// check templates under themes/(theme prefix)_default/templates/(trust based template)
-				if($theme_default && $mytrustdirname && $base_tpl_name) {
-					$filepath = XOOPS_THEME_PATH . '/' . $theme_default . '/templates/' . $mytrustdirname . '/' . $base_tpl_name ;
+				if($theme_default && $mytrustdirname && $dir_cache['def_d3'][$mytrustdirname] && $base_tpl_name) {
+					$filepath = $theme_default . $mytrustdirname . '/' . $base_tpl_name ;
 					if (is_file($filepath)) {
 						return $cache[$tpl_name] = $filepath ;
 					}
@@ -207,16 +222,20 @@ class Legacy_ResourcedbUtils
 
 	public static function getTrustPath(/*** string ***/ $dirname)
 	{
-		if(is_file(XOOPS_ROOT_PATH.'/modules/'.$dirname.'/mytrustdirname.php')){
-			@include XOOPS_ROOT_PATH.'/modules/'.$dirname.'/mytrustdirname.php' ;
-			return $mytrustdirname;
+		static $cache = array();
+		if (! isset($cache[$dirname])) {
+			if(is_file(XOOPS_ROOT_PATH.'/modules/'.$dirname.'/mytrustdirname.php')){
+				@include XOOPS_ROOT_PATH.'/modules/'.$dirname.'/mytrustdirname.php' ;
+				$cache[$dirname] = $mytrustdirname;
+			}
+			else{
+				$root = XCube_Root::getSingleton();
+				$handler = xoops_gethandler('module');
+				$module = $handler->getByDirname($dirname);
+				$cache[$dirname] = ($module && ($trustDirname = $module->get('trust_dirname'))) ? $trustDirname : null;
+			}
 		}
-		else{
-			$root = XCube_Root::getSingleton();
-			$handler = xoops_gethandler('module');
-			$module = $handler->getByDirname($dirname);
-			return ($module && ($trustDirname = $module->get('trust_dirname'))) ? $trustDirname : null;
-		}
+		return $cache[$dirname];
 	}
 
 	public static function updateTemplate($tplObj)

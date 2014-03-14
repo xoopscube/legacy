@@ -95,6 +95,13 @@ class User_UserRegisterAction extends User_Action
 		if($this->mEnableAgreeFlag) {
 			$renderSystem->setAttribute("disclaimer", $this->mConfig['reg_disclaimer']);
 		}
+		
+		$validators = array();
+		//
+		// set `$validators[] = array('caption' => 'Any Caption HTML', 'element' => 'Form element HTML');` in the preload function.
+		//
+		XCube_DelegateUtils::call('Legacy.Event.RegistUser.SetValidators', new XCube_Ref($validators));
+		$renderSystem->setAttribute('validators', $validators);
 	}
 }
 
