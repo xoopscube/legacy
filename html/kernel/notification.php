@@ -207,7 +207,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
 			case XOBJ_DTYPE_TEXT:
 			default:
 				$value = $this->db->quoteString($value);
-				$value = trim($value, $value[0]);
+				$value = substr($value, 1, strlen($value)-2);
 		}
 		return $value;
 	}
