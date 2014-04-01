@@ -17,6 +17,7 @@ class LegacyRender_HtaccessViewAction extends LegacyRender_Action
 	{
 		XCube_Root::getSingleton()->mLanguageManager->loadGlobalMessageCatalog();
 	
+		$render->setAttribute('rewrite_base', parse_url(XOOPS_URL . '/', PHP_URL_PATH));
 		$render->setAttribute('xoops_module_path', XOOPS_MODULE_PATH);
 		$render->setAttribute('data_name', _REQUESTED_DATA_NAME);
 		$render->setAttribute('action_name', _REQUESTED_ACTION_NAME);
