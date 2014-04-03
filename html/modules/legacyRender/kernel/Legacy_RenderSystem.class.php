@@ -150,7 +150,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 		} else {
 			$this->mXoopsTpl =new Legacy_XoopsTpl();
 		}
-		$mTpl = $this->mXoopsTpl;
+		$mTpl =& $this->mXoopsTpl;
 		$mTpl->register_function('legacy_notifications_select', 'LegacyRender_smartyfunction_notifications_select');
 		$this->mSetupXoopsTpl->call(new XCube_Ref($mTpl));
 
