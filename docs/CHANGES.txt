@@ -3,12 +3,32 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 
 ----------------------------------------
-2013/08/**: Package Revision 2.2.3RC1
+2014/04/03: Package Revision 2.2.3RC1
 ----------------------------------------
 [Issues]
-Fix bug: count lecat image
-[library] update SWFUpload to 2.2.0.1(secure-swfupload)
-[module:user] typo fix no_avatar.png to no_avatar.gif
+#79 lecat image count is wrong
+#81 [core] add config data type "encrypt"
+#82 [core,legacy] with out preg `e` modifier
+#83 [core] support MySQLi
+#84 LegacyRender speedup fix cause the problem
+#85 problem of `message` language catalog
+#86 lib Smarty is old (newly is 2.6.28)
+#87 [kernel:object] Only variable references should be returned
+#88 problem of admin template override
+#89 fix template override on admin panel
+#90 [installer] lang select only utf8 & en on PHP>=5.4
+#91 [installer] autologin by XHR on install_insertData
+#92 [legacy:TextFilter] support HTMLPurifier >= 4.4.0
+#93 [user] delegate `Legacy.Event.RegistUser.Validate`
+#94 [user] add delegate ...RegistUser.SetValidators
+#95 [lib] HTML Purifier up to 4.6.0
+#96 XoopsFormDhtmlTextArea: problem of `id` check
+#98 Fix Bug: missing "&" for Legacy_iTagDelegate::setTags() argument "$result"
+#99 [core] tune up resource.db
+#100 Cool URI expand
+
+[library]
+update SWFUpload to 2.2.0.1(secure-swfupload)
 
 [Staff]
 - Kilica
