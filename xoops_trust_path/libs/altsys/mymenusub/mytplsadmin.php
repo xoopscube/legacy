@@ -4,7 +4,7 @@ if( ! defined( 'XOOPS_ROOT_PATH' ) ) exit ;
 
 $current_dirname = preg_replace( '/[^0-9a-zA-Z_-]/' , '' , @$_GET['dirname'] ) ;
 
-$db =& Database::getInstance() ;
+$db =& XoopsDatabaseFactory::getDatabaseConnection() ;
 
 // get custom templates
 list( $count ) = $db->fetchRow( $db->query( "SELECT COUNT(t.tpl_module) AS tpl_count FROM ".$db->prefix("tplfile")." t WHERE t.tpl_type='custom'" ) ) ;
@@ -49,7 +49,7 @@ require_once XOOPS_TRUST_PATH.'/libs/altsys/class/D3Tpl.class.php' ;
 $tpl = new D3Tpl() ;
 $tpl->assign( array(
 	'adminmenu' => $adminmenu ,
-	'highlight_color' => '#99ff99' ,
+	'mypage' => 'mytplsadmin' ,
 ) ) ;
 $tpl->display( 'db:altsys_inc_mymenusub.html' ) ;
 

@@ -23,7 +23,7 @@ if( ! is_object( @$xoopsUser ) || ! $moduleperm_handler->checkRight( 'module_adm
 //$xoops_system_path = XOOPS_ROOT_PATH . '/modules/system' ;
 
 // initials
-$db =& Database::getInstance();
+$db =& XoopsDatabaseFactory::getDatabaseConnection();
 $myts =& MyTextSanitizer::getInstance() ;
 
 // language file
@@ -63,6 +63,7 @@ if( empty( $_GET['tpl_file'] ) || $_GET['tpl_file'] == '_custom' ) {
 	$breadcrumbsObj->appendPath( XOOPS_URL.'/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=mytplsadmin' , '_MI_ALTSYS_MENU_MYTPLSADMIN' ) ;
 	$breadcrumbsObj->appendPath( XOOPS_URL.'/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=mytplsadmin&amp;dirname=_custom' , _MYTPLSADMIN_CUSTOMTEMPLATE ) ;
 	$breadcrumbsObj->appendPath( '' , '_MYTPLSADMIN_CREATENEWCUSTOMTEMPLATE' ) ;
+	$target_mname = _MYTPLSADMIN_CUSTOMTEMPLATE;
 } else {
 	// tpl_file from $_GET
 	$edit_mode = 'modify' ;
@@ -128,7 +129,7 @@ if( ! empty( $_POST['do_modifycont'] ) || ! empty( $_POST['do_modify'] ) ) {
 
 	// continue or end ?
 	if( ! empty( $_POST['do_modifycont'] ) ) {
-		redirect_header( 'index.php?mode=admin&lib=altsys&page=mytplsform&tpl_file='.$tpl_file.'&tpl_tplset='.$tpl_tplset.'&#altsys_tplsform_top' , 1 , _MD_A_MYTPLSFORM_UPDATED ) ;
+		redirect_header( 'index.php?mode=admin&lib=altsys&page=mytplsform&tpl_file='.$tpl_file.'&tpl_tplset='.$tpl_tplset.'&dirname='.$tpl['tpl_module'].'#altsys_tplsform_top' , 1 , _MD_A_MYTPLSFORM_UPDATED ) ;
 	} else {
 		redirect_header( 'index.php?mode=admin&lib=altsys&page=mytplsadmin&dirname='.$tpl['tpl_module'] , 1 , _MD_A_MYTPLSFORM_UPDATED ) ;
 	}
@@ -226,7 +227,7 @@ echo "
 
 echo "
 <a name='altsys_tplsform_top' id='altsys_tplsform_top'></a>
-<form name='MainForm' id='altsys_tplsform' action='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=".htmlspecialchars($tpl_file,ENT_QUOTES)."&amp;tpl_tplset=".htmlspecialchars($tpl['tpl_tplset'],ENT_QUOTES)."' method='post'>
+<form name='MainForm' id='altsys_tplsform' action='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=".htmlspecialchars($tpl_file,ENT_QUOTES)."&amp;tpl_tplset=".htmlspecialchars($tpl['tpl_tplset'],ENT_QUOTES)."&amp;dirname=".$target_mname."' method='post'>
 	".$xoopsGTicket->getTicketHtml( __LINE__ , 1800 , 'altsys_tplsform' )."
 	<textarea name='tpl_source' id='altsys_tpl_source' wrap='off' style='width:600px;height:400px;'>".htmlspecialchars($tpl['tpl_source'],ENT_QUOTES)."</textarea>
 	<br />

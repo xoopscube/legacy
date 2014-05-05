@@ -153,14 +153,18 @@ class Legacy_ModuleInstallUtils
 	 */
 	function installSQLAutomatically(&$module, &$log)
 	{
+		$dbTypeAliases = array(
+			'mysqli' => 'mysql'
+		);
 		$sqlfileInfo =& $module->getInfo('sqlfile');
 		$dirname = $module->getVar('dirname');
+		$dbType = (isset($sqlfileInfo[XOOPS_DB_TYPE]) || !isset($dbTypeAliases[XOOPS_DB_TYPE]))? XOOPS_DB_TYPE : $dbTypeAliases[XOOPS_DB_TYPE];
 
-		if (!isset($sqlfileInfo[XOOPS_DB_TYPE])) {
+		if (!isset($sqlfileInfo[$dbType])) {
 			return;
 		}
 		
-		$sqlfile = $sqlfileInfo[XOOPS_DB_TYPE];
+		$sqlfile = $sqlfileInfo[$dbType];
 		$sqlfilepath = XOOPS_MODULE_PATH . "/${dirname}/${sqlfile}";
 		
 		if (isset($module->modinfo['cube_style']) && $module->modinfo['cube_style'] == true) {
@@ -1065,14 +1069,24 @@ class Legacy_ModuleInstallUtils
 		//
 		// Decide whether it changes values.
 		//
-		if ($config->get('conf_formtype') != $info->mFormType && $config->get('conf_valuetype') != $info->mValueType) {
+		$oldValueType = $config->get('conf_valuetype');
+		if ($config->get('conf_formtype') != $info->mFormType && $oldValueType != $info->mValueType) {
 			$config->set('conf_formtype', $info->mFormType);
 			$config->set('conf_valuetype', $info->mValueType);
 			$config->setConfValueForInput($info->mDefault);
 		}
 		else {
+			$updateValue = null;
+			if ($oldValueType != $info->mValueType) {
+				if ($oldValueType === 'array' || $info->mValueType === 'array') {
+					$updateValue = $info->mDefault;
+				} else {
+					$updateValue = $config->getConfValueForOutput();
+				}
+			}
 			$config->set('conf_formtype', $info->mFormType);
 			$config->set('conf_valuetype', $info->mValueType);
+			if (!is_null($updateValue)) $config->setConfValueForInput($updateValue);
 		}
 		
 		$config->set('conf_order', $info->mOrder);

@@ -19,14 +19,15 @@
 <?php echo _INSTALL_L74?><br />
 <input type="password" class="adminpass2" name="adminpass2" />
 <br /><br />
-<?php if(version_compare(phpversion(), '5.3.0', '>=')) : ?>
+<?php if(version_compare(phpversion(), '5.1.0', '>=')) : ?>
 <?php echo _INSTALL_L77 ?><br />
 <select name="timezone">
+  <?php $timezones = $this->v('timezones'); ?>
   <?php foreach ($this->v('timediffs') as $timediff => $text) : ?>
     <?php if ($timediff == $this->v('current_timediff')) : ?>
-      <option value="<?php echo $timediff ?>" selected="selected"><?php echo $text ?></option>
+      <option value="<?php echo $timezones[$timediff] ?>" selected="selected"><?php echo $text ?></option>
     <?php else : ?>
-      <option value="<?php echo $timediff ?>"><?php echo $text ?></option>
+      <option value="<?php echo $timezones[$timediff] ?>"><?php echo $text ?></option>
     <?php endif ?>
   <?php endforeach ?>
 </select>

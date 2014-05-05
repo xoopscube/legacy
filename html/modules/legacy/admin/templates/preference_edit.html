@@ -32,7 +32,7 @@
 </div>
 <{/if}>
 
-<form action="./index.php?action=PreferenceEdit" method="post">
+<form action="./index.php?action=PreferenceEdit" method="post" autocomplete="off">
   <{xoops_token form=$actionForm}>
   <{xoops_input type=hidden name=$actionForm->mKeyName value=$actionForm->mKeyValue}>
   <table class="outer">
@@ -52,6 +52,7 @@
       <tr>
         <td class="head">
           <div class="legacy_list_title"><{$config->getTitle()}>
+          <{if $mcrypt_enabled && $config->get('conf_valuetype') == 'encrypt'}><img src="<{"icons/textfield_key.png"|theme}>" alt="Encrypted"><{/if}>
           <{if $config->get('conf_desc') != null}>
             <p class="legacy_list_description"><{$config->getDesc()}></p>
           <{/if}>

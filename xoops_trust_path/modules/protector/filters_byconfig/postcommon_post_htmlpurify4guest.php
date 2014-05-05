@@ -31,9 +31,9 @@ class protector_postcommon_post_htmlpurify4guest extends ProtectorFilterAbstract
 			// use HTMLPurifier inside Protector
 			require_once dirname(dirname(__FILE__)).'/library/HTMLPurifier.auto.php' ;
 			$config = HTMLPurifier_Config::createDefault();
-			$config->set('Cache', 'SerializerPath', XOOPS_TRUST_PATH.'/modules/protector/configs');
-			$config->set('Core', 'Encoding', _CHARSET);
-			//$config->set('HTML', 'Doctype', 'HTML 4.01 Transitional');
+			$config->set('Cache.SerializerPath', XOOPS_TRUST_PATH.'/modules/protector/configs');
+			$config->set('Core.Encoding', 'UTF-8');
+			//$config->set('HTML.Doctype', 'HTML 4.01 Transitional');
 			$this->purifier = new HTMLPurifier($config);
 			$this->method = 'purify' ;
 		}
@@ -44,10 +44,20 @@ class protector_postcommon_post_htmlpurify4guest extends ProtectorFilterAbstract
 
 	function purify_recursive( $data )
 	{
+		static $encoding = null;
+		is_null($encoding) && ($encoding = (_CHARSET === 'UTF-8'? '' : _CHARSET ));
 		if( is_array( $data ) ) {
 			return array_map( array( $this , 'purify_recursive' ) , $data ) ;
 		} else {
-			return strlen( $data ) > 32 ? call_user_func( array( $this->purifier , $this->method ) , $data ) : $data ;
+			if (strlen( $data ) > 32) {
+				$_substitute = mb_substitute_character();
+				mb_substitute_character('none');
+				$encoding && ($data = mb_convert_encoding($data, 'UTF-8', $encoding));
+				$data = call_user_func( array( $this->purifier , $this->method ) , $data );
+				$encoding && ($data = mb_convert_encoding($data, $encoding, 'UTF-8'));
+				mb_substitute_character($_substitute);
+			}
+			return $data ;
 		}
 	}
 

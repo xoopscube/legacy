@@ -3,7 +3,7 @@
 if( ! defined( 'XOOPS_ROOT_PATH' ) ) exit ;
 
 $core_type = altsys_get_core_type() ;
-$db =& Database::getInstance() ;
+$db =& XoopsDatabaseFactory::getDatabaseConnection() ;
 
 $current_dirname = preg_replace( '/[^0-9a-zA-Z_-]/' , '' , @$_GET['dirname'] ) ;
 if( $current_dirname == '__CustomBlocks__' ) return ;
@@ -50,7 +50,7 @@ require_once XOOPS_TRUST_PATH.'/libs/altsys/class/D3Tpl.class.php' ;
 $tpl = new D3Tpl() ;
 $tpl->assign( array(
 	'adminmenu' => $adminmenu ,
-	'highlight_color' => '#ffdd99' ,
+	'mypage' => 'myblocksadmin' ,
 ) ) ;
 $tpl->display( 'db:altsys_inc_mymenusub.html' ) ;
 

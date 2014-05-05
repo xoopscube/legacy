@@ -128,19 +128,25 @@ function tplsadmin_get_basefilepath( $dirname , $type , $tpl_file )
 	// module instance
 	$path = $basefilepath = XOOPS_ROOT_PATH.'/modules/'.$dirname.'/templates/'.($type=='block'?'blocks/':'').$tpl_file ;
 
+	if (is_callable('Legacy_Utils::getTrustDirnameByDirname')) {
+		$mytrustdirname = Legacy_Utils::getTrustDirnameByDirname($dirname);
+	}
+
 	if( defined( 'ALTSYS_TPLSADMIN_BASEPATH' ) ) {
 		// Special hook
 		$path = ALTSYS_TPLSADMIN_BASEPATH.'/'.substr( $tpl_file , strlen( $dirname ) + 1 ) ;
-	} else if( ! file_exists( $basefilepath ) && file_exists( XOOPS_ROOT_PATH.'/modules/'.$dirname.'/mytrustdirname.php' ) ) {
+	} else if( $mytrustdirname || @include( XOOPS_ROOT_PATH.'/modules/'.$dirname.'/mytrustdirname.php' ) ) {
 		// D3 module base
-		include XOOPS_ROOT_PATH.'/modules/'.$dirname.'/mytrustdirname.php' ;
 		if( ! empty( $mytrustdirname ) ) {
 			$mid_path = $mytrustdirname == 'altsys' ? '/libs/' : '/modules/' ;
 
 			$path = XOOPS_TRUST_PATH.$mid_path.$mytrustdirname.'/templates/'.($type=='block'?'blocks/':'').substr( $tpl_file , strlen( $dirname ) + 1 ) ;
 			//new for xcck etc.other trust_module
-			if (! file_exists( $path )){
+			if ( ! file_exists( $path ) ){
 				$path = XOOPS_TRUST_PATH.$mid_path.$mytrustdirname.'/templates/'.($type=='block'?'blocks/':'').$tpl_file ;
+				if ( ! file_exists( $path ) ) {
+					 $path = $basefilepath;
+				}
 			}
 		}
 	}

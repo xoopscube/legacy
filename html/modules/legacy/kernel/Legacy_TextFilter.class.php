@@ -56,12 +56,18 @@ class Legacy_TextFilter extends XCube_TextFilter
 	var $mXCodePatterns = array();
 	var $mXCodeReplacements = array();
 	var $mXCodeCheckImgPatterns = array();
+	var $mXCodeCallbacks = array();
+	var $mXCodeHasCallback = array();
 
 	var $mPreXCodePatterns = array();
 	var $mPreXCodeReplacements = array();
+	var $mPreXCodeCallbacks = array();
+	var $mPreXCodeHasCallback = false;
 
 	var $mPostXCodePatterns = array();
 	var $mPostXCodeReplacements = array();
+	var $mPostXCodeCallbacks = array();
+	var $mPostXCodeHasCallback = array();
 	
 	var $mSmileys = array();
 	var $mSmileysConvTable = array();
@@ -122,9 +128,9 @@ class Legacy_TextFilter extends XCube_TextFilter
 			//ToDo: &nbsp; patern is defined for XOOPS2.0 compatiblity. But what is it?
 			//		This comatiblity option is used from method from MyTextSanitizer.
 			//
-			return preg_replace(array("/&amp;(#[0-9]+|#x[0-9a-f]+|[a-z]+[0-9]*);/i", "/&nbsp;/i"), array('&\\1;', '&amp;nbsp;'), htmlspecialchars($text, ENT_QUOTES));
+			return preg_replace(array("/&amp;(#[0-9]+|#x[0-9a-f]+|[a-z]+[0-9]*);/i", "/&nbsp;/i"), array('&\\1;', '&amp;nbsp;'), htmlspecialchars($text, ENT_QUOTES, _CHARSET));
 		} else {
-			return preg_replace("/&amp;(#[0-9]+|#x[0-9a-f]+|[a-z]+[0-9]*);/i", '&\\1;', htmlspecialchars($text, ENT_QUOTES));
+			return preg_replace("/&amp;(#[0-9]+|#x[0-9a-f]+|[a-z]+[0-9]*);/i", '&\\1;', htmlspecialchars($text, ENT_QUOTES, _CHARSET));
 		}
 	}
 
@@ -136,7 +142,7 @@ class Legacy_TextFilter extends XCube_TextFilter
 	 *
 	 **/
 	function toEdit($text) {
-		return preg_replace("/&amp;(#0?[0-9]{4,6};)/i", '&$1', htmlspecialchars($text, ENT_QUOTES));
+		return preg_replace("/&amp;(#0?[0-9]{4,6};)/i", '&$1', htmlspecialchars($text, ENT_QUOTES, _CHARSET));
 	}
 
 	/**
@@ -185,23 +191,41 @@ class Legacy_TextFilter extends XCube_TextFilter
 	 * @param	string	$html
 	 * @param	string	$encoding
 	 * @param	string	$doctype
+	 * @param	object	$config
 	 * 
 	 * @return	string
 	 **/
-	public function purifyHtml(/*** string ***/ $html, /*** string ***/ $encoding=null, /*** string ***/ $doctype=null)
+	public function purifyHtml(/*** string ***/ $html, /*** string ***/ $encoding=null, /*** string ***/ $doctype=null, /*** object ***/ $config=null)
 	{
 		require_once XOOPS_LIBRARY_PATH.'/htmlpurifier/library/HTMLPurifier.auto.php';
 		$encoding = $encoding ? $encoding : _CHARSET; 
 		$doctypeArr = array("HTML 4.01 Strict","HTML 4.01 Transitional","XHTML 1.0 Strict","XHTML 1.0 Transitional","XHTML 1.1");
 	
-		$config = HTMLPurifier_Config::createDefault();
-		$config->set('Core.Encoding', $encoding);
+		if (is_null($config) || !is_object($config) || !($config instanceof HTMLPurifier_Config)) {
+			$config = HTMLPurifier_Config::createDefault();
+		}
 		if(in_array($doctype, $doctypeArr)){
 			$config->set('HTML.Doctype', $doctype);
 		}
 	
+		if ($_conv = ($encoding !== 'UTF-8' && function_exists('mb_convert_encoding'))) {
+			$_substitute = mb_substitute_character();
+			mb_substitute_character('none');
+			$html = mb_convert_encoding($html, 'UTF-8', $encoding);
+			$config->set('Core.Encoding', 'UTF-8');
+		} else {
+			$config->set('Core.Encoding', $encoding);
+		}
+	
 		$purifier = new HTMLPurifier($config);
-		return $purifier->purify($html);
+		$html = $purifier->purify($html);
+	
+		if ($_conv) {
+			$html = mb_convert_encoding($html, $encoding, 'UTF-8');
+			mb_substitute_character($_substitute);
+		}
+	
+		return $html;
 	}
 
 
@@ -218,7 +242,7 @@ class Legacy_TextFilter extends XCube_TextFilter
 				while ($smile = $db->fetchArray($getsmiles)) {
 					$this->mSmileys[] = $smile;
 					$this->mSmileysConvTable[0][] = $smile['code'];
-					$this->mSmileysConvTable[1][] = '<img src="'.XOOPS_UPLOAD_URL.'/'.htmlspecialchars($smile['smile_url']).'" alt="" />';
+					$this->mSmileysConvTable[1][] = '<img src="'.XOOPS_UPLOAD_URL.'/'.htmlspecialchars($smile['smile_url'], ENT_COMPAT, _CHARSET).'" alt="" />';
 				}
 			}
 		}
@@ -252,7 +276,7 @@ class Legacy_TextFilter extends XCube_TextFilter
 			//	Delegate may replace makeClickable conversion table
 			//	Args : 
 			//		'patterns'	   [I/O] : &Array of pattern RegExp
-			//		'replacements' [I/O] : &Array of replacing string
+			//		'replacements' [I/O] : &Array of replacing string or callable
 			//
 			$this->mMakeClickableConvertTable->call(new XCube_Ref($this->mClickablePatterns), new XCube_Ref($this->mClickableReplacements));
 
@@ -260,7 +284,7 @@ class Legacy_TextFilter extends XCube_TextFilter
 			//	Delegate may replace makeClickable conversion table
 			//	Args : 
 			//		'patterns'	   [I/O] : &Array of pattern RegExp
-			//		'replacements' [I/O] : &Array of replacing string
+			//		'replacements' [I/O] : &Array of replacing string or callable
 			//
 			//	Todo: For Compatiblitiy to XC2.1 Beta3
 			//
@@ -297,7 +321,7 @@ class Legacy_TextFilter extends XCube_TextFilter
 			//	Delegate may replace makeClickable conversion table
 			//	Args : 
 			//		'patterns'	   [I/O] : &Array of pattern RegExp
-			//		'replacements' [I/O] : &Array[0..1] of Array of replacing string
+			//		'replacements' [I/O] : &Array[0..1] of Array of replacing string or callable
 			//							   replacements[0] for $allowimage = 0;
 			//							   replacements[1] for $allowimage = 1;
 			//
@@ -307,13 +331,25 @@ class Legacy_TextFilter extends XCube_TextFilter
 			//	Delegate may replace conversion table
 			//	Args : 
 			//		'patterns'	   [I/O] : &Array of pattern RegExp
-			//		'replacements' [I/O] : &Array of replacing string
+			//		'replacements' [I/O] : &Array of replacing string or callable
 			//		'allowimage'   [I]	 : xoopsCodeDecode $allowimage parameter
 			//
 			//Todo: For Compatiblitiy to XC2.1 Beta3
 			$this->mXCodePre->call(new XCube_Ref($this->mXCodePatterns), new XCube_Ref($this->mXCodeReplacements[0]), 0);
 			$dummy = array();
 			$this->mXCodePre->call(new XCube_Ref($dummy), new XCube_Ref($this->mXCodeReplacements[1]), 1);
+			for($idx = 0; $idx < 2; ++$idx) {
+				$this->mXCodeHasCallback[$idx] = false;
+				foreach($this->mXCodeReplacements[$idx] as $i => $replacements) {
+					if (is_callable($replacements)) {
+						!$this->mXCodeHasCallback[$idx] && $this->mXCodeHasCallback[$idx] = true;
+						$this->mXCodeCallbacks[$idx][$i] = $replacements;
+						$this->mXCodeReplacements[$idx][$i] = null;
+					} else {
+						$this->mXCodeCallbacks[$idx][$i] = null;
+					}
+				}
+			}
 		}
 		if (empty($this->mXCodeCheckImgPatterns)) {
 			// RaiseEvent 'Legacy_TextFilter.MakeXCodeCheckImgPatterns'
@@ -326,7 +362,17 @@ class Legacy_TextFilter extends XCube_TextFilter
 		}
 		$text = preg_replace_callback($this->mXCodeCheckImgPatterns, array($this, '_filterImgUrl'), $text);
 		$replacementsIdx = ($allowimage == 0) ? 0 : 1;
-		$text = preg_replace($this->mXCodePatterns, $this->mXCodeReplacements[$replacementsIdx], $text);
+		if ($this->mXCodeHasCallback[$replacementsIdx] === true) {
+			foreach($this->mXCodePatterns as $i => $patterns) {
+				if (is_null($this->mXCodeCallbacks[$replacementsIdx][$i])) {
+					$text =  preg_replace($patterns, $this->mXCodeReplacements[$replacementsIdx][$i], $text);
+				} else {
+					$text =  preg_replace_callback($patterns, $this->mXCodeCallbacks[$replacementsIdx][$i], $text);
+				}
+			}
+		} else {
+			$text =  preg_replace($this->mXCodePatterns, $this->mXCodeReplacements[$replacementsIdx], $text);
+		}
 		return $text;
 	}
 	
@@ -440,18 +486,37 @@ class Legacy_TextFilter extends XCube_TextFilter
 				//	Delegate may replace conversion table
 				//	Args : 
 				//		'patterns'	   [I/O] : &Array of pattern RegExp
-				//		'replacements' [I/O] : &Array of replacing string
+				//		'replacements' [I/O] : &Array of replacing string or callable
 				//
 				$this->mMakePreXCodeConvertTable->call(new XCube_Ref($this->mPreXCodePatterns), new XCube_Ref($this->mPreXCodeReplacements));
+				foreach($this->mPreXCodeReplacements as $i => $replacements) {
+					if (is_callable($replacements)) {
+						!$this->mPreXCodeHasCallback && $this->mPreXCodeHasCallback = true;
+						$this->mPreXCodeCallbacks[$i] = $replacements;
+						$this->mPreXCodeReplacements[$i] = null;
+					} else {
+						$this->mPreXCodeCallbacks[$i] = null;
+					}
+				}
 			}
-			$text =  preg_replace($this->mPreXCodePatterns, $this->mPreXCodeReplacements, $text);
+			if ($this->mPreXCodeHasCallback === true) {
+				foreach($this->mPreXCodePatterns as $i => $patterns) {
+					if (is_null($this->mPreXCodeCallbacks[$i])) {
+						$text =  preg_replace($patterns, $this->mPreXCodeReplacements[$i], $text);
+					} else {
+						$text =  preg_replace_callback($patterns, $this->mPreXCodeCallbacks[$i], $text);
+					}
+				}
+			} else {
+				$text =  preg_replace($this->mPreXCodePatterns, $this->mPreXCodeReplacements, $text);
+			}
 		}
 		return $text;
 	}
 	
 	public function makePreXCodeConvertTable(&$patterns, &$replacements) {
-		$patterns[] = "/\[code\](.*)\[\/code\]/esU";
-		$replacements[] = "'[code]'.base64_encode('$1').'[/code]'";
+		$patterns[] = "/\[code\](.*)\[\/code\]/sU";
+		$replacements[] = create_function('$m', 'return \'[code]\'.base64_encode($m[1]).\'[/code]\';');
 	}
 
 	/**
@@ -471,7 +536,7 @@ class Legacy_TextFilter extends XCube_TextFilter
 				//	Delegate may replace conversion table
 				//	Args : 
 				//		'patterns'	   [I/O] : &Array of pattern RegExp
-				//		'replacements' [I/O] : &Array[0..1] of Array of replacing string
+				//		'replacements' [I/O] : &Array[0..1] of Array of replacing string or callable
 				//							   replacements[0] for $allowimage = 0;
 				//							   replacements[1] for $allowimage = 1;
 				//	Caution :
@@ -480,21 +545,63 @@ class Legacy_TextFilter extends XCube_TextFilter
 				//	   - Conversion rule should treat input string as raw text with single quote escape.(not sanitized).
 				//
 				$this->mMakePostXCodeConvertTable->call(new XCube_Ref($this->mPostXCodePatterns), new XCube_Ref($this->mPostXCodeReplacements));
+				for($idx = 0; $idx < 2; ++$idx) {
+					$this->mPostXCodeHasCallback[$idx] = false;
+					foreach($this->mPostXCodeReplacements[$idx] as $i => $replacements) {
+						if (is_callable($replacements)) {
+							!$this->mPostXCodeHasCallback[$idx] && $this->mPostXCodeHasCallback[$idx] = true;
+							$this->mPostXCodeCallbacks[$idx][$i] = $replacements;
+							$this->mPostXCodeReplacements[$idx][$i] = null;
+						} else {
+							$this->mPostXCodeCallbacks[$idx][$i] = null;
+						}
+					}
+				}
 			}
 			$replacementsIdx = ($image == 0) ? 0 : 1;
-			$text =  preg_replace($this->mPostXCodePatterns, $this->mPostXCodeReplacements[$replacementsIdx], $text);
+			if ($this->mPostXCodeHasCallback[$replacementsIdx] === true) {
+				foreach($this->mPostXCodePatterns as $i => $patterns) {
+					if (is_null($this->mPostXCodeCallbacks[$replacementsIdx][$i])) {
+						$text =  preg_replace($patterns, $this->mPostXCodeReplacements[$replacementsIdx][$i], $text);
+					} else {
+						$text =  preg_replace_callback($patterns, $this->mPostXCodeCallbacks[$replacementsIdx][$i], $text);
+					}
+				}
+			} else {
+				$text =  preg_replace($this->mPostXCodePatterns, $this->mPostXCodeReplacements[$replacementsIdx], $text);
+			}
 		}
 		return $text;
 	}
 
 	public function makePostXCodeConvertTable(&$patterns, &$replacements) {
-		$patterns[] = "/\[code\](.*)\[\/code\]/esU";
-		$replacements[0][] = "'<div class=\"xoopsCode\"><pre><code>'.Legacy_TextFilter::codeSanitizer('$1', 0).'</code></pre></div>'";
-		$replacements[1][] = "'<div class=\"xoopsCode\"><pre><code>'.Legacy_TextFilter::codeSanitizer('$1', 1).'</code></pre></div>'"; 
+		$patterns[] = "/\[code\](.*)\[\/code\]/sU";
+		if (version_compare(PHP_VERSION, '5.2.3', '>=')) {
+			$replacements[0][] = 'Legacy_TextFilter::codeSanitizerCallback0';
+			$replacements[1][] = 'Legacy_TextFilter::codeSanitizerCallback1';
+		} else {
+			$root =& XCube_Root::getSingleton();
+			$me =& $root->getTextFilter();
+			$replacements[0][] = array(&$me, 'Legacy_TextFilter::codeSanitizerCallback0');
+			$replacements[1][] = array(&$me, 'Legacy_TextFilter::codeSanitizerCallback1');
+		}
 	}
 
+	private function codeSanitizerCallback($m, $image) {
+		$text = $this->convertXCode(htmlspecialchars(base64_decode($m[1]), ENT_QUOTES, _CHARSET), $image);
+		return '<div class="xoopsCode"><pre><code>'.$text.'</code></pre></div>';
+	}
+
+	private function codeSanitizerCallback0($m) {
+		return $this->codeSanitizerCallback($m, 0);
+	}
+
+	private function codeSanitizerCallback1($m) {
+		return $this->codeSanitizerCallback($m, 1);
+	}
+	
 	function codeSanitizer($text, $image = 1){
-		return $this->convertXCode(htmlspecialchars(str_replace('\"', '"', base64_decode($text)),ENT_QUOTES), $image);
+		return $this->convertXCode(htmlspecialchars(str_replace('\"', '"', base64_decode($text)),ENT_QUOTES,_CHARSET), $image);
 	}
 }
 ?>

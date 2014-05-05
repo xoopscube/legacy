@@ -53,6 +53,8 @@
 
     $wizard->assign('dbm_reports',$dbm->report());
     $wizard->assign('cm_reports',$cm->report());
+    $wizard->assign('adminname',$adminname);
+    $wizard->assign('adminpass',$adminpass);
 
     include_once './class/mainfilemanager.php';
     $mm = new mainfile_manager('../mainfile.php');

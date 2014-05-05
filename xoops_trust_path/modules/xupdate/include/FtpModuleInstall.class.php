@@ -160,7 +160,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 
 							$this->_set_stage(5);
 							if ($this->retry_phase < 6) {
-								if ($this->uploadFiles()){
+								if ($this->uploadFiles($caller)){
 									@ unlink(_MD_XUPDATE_SYS_RETRYSER_FILE);
 								} else {
 									$this->_set_error_log(_MI_XUPDATE_ERR_FTP_UPLOADFILES);
@@ -239,14 +239,14 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	 *
 	 * @return	bool
 	 **/
-	private function uploadFiles()
+	private function uploadFiles($caller)
 	{
 		//$this->Ftp->connect();
 
 		$this->Ftp->appendMes( 'start uploading..<br />');
 		$this->content.= _MI_XUPDATE_PROG_UPLOADING . '<br />';
 
-		if ($this->target_type == 'TrustModule'){
+		if ($caller === 'module' && $this->target_type == 'TrustModule'){
 			if (!empty($this->trust_dirname) && !empty($this->dirname) && $this->trust_dirname != $this->dirname){
 
 				if (! $this->html_only) {
@@ -343,10 +343,10 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			}
 			
 			// check extra languages
-			$this->_copy_extra_langs($this->dirname);
+			($caller === 'module') && $this->_copy_extra_langs($this->dirname);
 			
 			// for legacy only
-			if ($this->dirname === 'legacy' || $this->Ftp->isRootDirChange()) {
+			if (($caller === 'module' && $this->dirname === 'legacy') || $this->Ftp->isRootDirChange()) {
 				// for protector 'manip_value' update
 				if (XC_CLASS_EXISTS('Protector')) {
 					$db =& Database::getInstance();

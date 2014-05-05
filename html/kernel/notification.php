@@ -205,10 +205,9 @@ class XoopsNotificationHandler extends XoopsObjectHandler
 				break;
 			case XOBJ_DTYPE_STRING:
 			case XOBJ_DTYPE_TEXT:
-				$value = mysql_real_escape_string($value, $this->db->conn);
-				break;
 			default:
-				$value = mysql_real_escape_string($value, $this->db->conn);
+				$value = $this->db->quoteString($value);
+				$value = substr($value, 1, strlen($value)-2);
 		}
 		return $value;
 	}

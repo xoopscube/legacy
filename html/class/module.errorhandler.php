@@ -52,6 +52,8 @@ if ( !defined("XOOPS_C_ERRORHANDLER_INCLUDED") ) {
         function show($e_code, $pages=1)
         {
             global $xoopsConfig, $xoopsUser, $xoopsRequestUri, $xoopsModule, $xoopsLogger;
+            $root = XCube_Root::getSingleton();
+            $db = $root->mController->mDB;
             $errmsg = array(
             "0001" =>"Could not connect to the forums database.",
             "0002" => "The forum you selected does not exist. Please go back and try again.",
@@ -65,7 +67,7 @@ if ( !defined("XOOPS_C_ERRORHANDLER_INCLUDED") ) {
             "0010" => "Could not move selected topic to selected forum. Please go back and try again.",
             "0011" => "Could not lock the selected topic. Please go back and try again.",
             "0012" => "Could not unlock the selected topic. Please go back and try again.",
-            "0013" => "Could not query the database. <br />Error: " . htmlspecialchars(mysql_error(), ENT_QUOTES),
+            "0013" => "Could not query the database. <br />Error: " . htmlspecialchars($db->error(), ENT_QUOTES, _CHARSET),
             "0014" => "No such user or post in the database.",
             "0015" => "Search Engine was unable to query the forums database.",
             "0016" => "That user does not exist. Please go back and search again.",
