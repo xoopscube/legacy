@@ -5,7 +5,7 @@
  */
 
 $modversion['name']=_MI_LEGACYRENDER_NAME;
-$modversion['version']=2.02;
+$modversion['version']=2.03;
 $modversion['description']=_MI_LEGACYRENDER_NAME_DESC;
 $modversion['author']="";
 $modversion['credits']="The XOOPS Cube Project";

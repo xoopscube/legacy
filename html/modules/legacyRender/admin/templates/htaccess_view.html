@@ -5,14 +5,15 @@
 <div>
 <textarea name="htaccess" cols="80" rows="20">
 RewriteEngine On
-RewriteBase /
+RewriteBase <{$rewrite_base}>
+RewriteRule ^modules/(\w+)/(\w+\.php)(/.*)$ <{$xoops_module_path}>/$1/$2 [L,QSA,E=PATH_INFO:$3]
 RewriteRule ^modules/(.*)$ <{$xoops_module_path}>/$1 [L,QSA]
 RewriteRule ^(\w+)$ <{$xoops_module_path}>/$1/index.php [L,QSA]
 RewriteRule ^(\w+)/(\d+)$ <{$xoops_module_path}>/$1/index.php?<{$data_id}>=$2 [L,QSA]
 RewriteRule ^(\w+)/(\w+)$ <{$xoops_module_path}>/$1/index.php?<{$data_name}>=$2 [L,QSA]
 RewriteRule ^(\w+)/(\w+)/(\d+)$ <{$xoops_module_path}>/$1/index.php?<{$data_name}>=$2&<{$data_id}>=$3 [L,QSA]
 RewriteRule ^(\w+)/(\w+)/(\w+)$ <{$xoops_module_path}>/$1/index.php?<{$data_name}>=$2&<{$action_name}>=$3 [L,QSA]
-RewriteRule ^(\w+)/(\w+)/(\d+)/(\w+)$ <{$xoops_module_path}>/$1/index.php?<{$data_name}>=$2&<{$action_name}>=$4&<{$data_id}>=$3 [L,QSA]
+RewriteRule ^(\w+)/(\w+)/(\d+)/(.+)$ <{$xoops_module_path}>/$1/index.php?<{$data_name}>=$2&<{$action_name}>=$4&<{$data_id}>=$3 [L,QSA]
 RewriteRule ^(\w+)\?(\w+=\w+)$ <{$xoops_module_path}>/$1/index.php?$2 [L,QSA]
 </textarea>
 </div>
