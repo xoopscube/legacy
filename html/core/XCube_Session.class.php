@@ -81,8 +81,14 @@ class XCube_Session
             // Refresh lifetime of Session Cookie
             $session_params = session_get_cookie_params();
             !$session_params['domain'] and $session_params['domain'] = null;
-            setcookie($this->mSessionName, session_id(), time() + $this->mSessionLifetime, $this->_cookiePath(), 
-                      $session_params['domain'], $session_params['secure'], $session_params['httponly']);
+            $session_cookie_params = array(
+                $this->mSessionName, session_id(), time() + $this->mSessionLifetime, $this->_cookiePath(), 
+                $session_params['domain'], $session_params['secure']
+                );
+            if (isset($session_params['httponly'])){
+                $session_cookie_params[] = $session_params['httponly'];
+            }
+            call_user_func_array('setcookie', $session_cookie_params);
         }
     }
 
