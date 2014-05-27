@@ -29,6 +29,7 @@ class Message_Block extends Legacy_BlockProcedure
   
   public function execute()
   {
+    if (!$this->isDisplay()) return;
     $root = XCube_Root::getSingleton();
     $root->mLanguageManager->loadModinfoMessageCatalog(basename(dirname(dirname(__FILE__))));
     $root->mLanguageManager->loadModuleMessageCatalog(basename(dirname(dirname(__FILE__))));
