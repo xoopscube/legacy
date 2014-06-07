@@ -137,7 +137,7 @@ class XoopsMultiMailerLocal extends XoopsMultiMailer {
                 if ($this->needs_encode || $force) {
                     $enc = mb_internal_encoding();
                     mb_internal_encoding('ISO-2022-JP');
-                    $eol = $this->Mailer=='mail'?"\r\n":"\n";	// XXX: this for bugs in PHP mail() subject with linefeed handling
+                    $eol = $this->Mailer=='mail'?(defined('XCUBE_MAILERLOCAL_MAIL_LE')?XCUBE_MAILERLOCAL_MAIL_LE:"\r\n"):"\n";	// XXX: this for bugs in PHP mail() subject with linefeed handling
                     $encoded = mb_encode_mimeheader($str, 'ISO-2022-JP', 'B', $eol, 9); // offset strlen("Subject: ") as 9
                     mb_internal_encoding($enc);
                 } else {
