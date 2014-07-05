@@ -66,6 +66,7 @@ class User_UserActivateAction extends User_AbstractEditAction
 			$director =new User_UserRegistMailDirector($builder, $this->mObject, $controller->mRoot->mContext->getXoopsConfig(), $this->mConfig);
 			$director->contruct();
 			$mailer=&$builder->getResult();
+			XCube_DelegateUtils::call('Legacy.Event.RegistUser.SendMail', new XCube_Ref($mailer), 'Activated');
 			if ($mailer->send()) {
 				$controller->executeRedirect(XOOPS_URL . '/', 5, sprintf(_MD_USER_MESSAGE_ACTVMAILOK, $this->mObject->get('uname')));
 			} else {
