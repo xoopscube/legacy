@@ -130,6 +130,27 @@ class XoopsMailer
 	// protected
 	var $encoding = '8bit';
 
+	private $properties = array(
+		'fromEmail'    => "",
+		'fromName'     => "",
+		'fromUser'     => null, // RMV-NOTIFY
+		'priority'     => '',
+		'toUsers'      => array(),
+		'toEmails'     => array(),
+		'headers'      => array(),
+		'subject'      => "",
+		'body'         => "",
+		'errors'       => array(),
+		'success'      => array(),
+		'isMail'       => false,
+		'isPM'         => false,
+		'assignedTags' => array(),
+		'template'     => "",
+		'templatedir'  => "",
+		// Change below to \r\n if you have problem sending mail
+		'LE'           => "\n"
+	);
+
 	function XoopsMailer()
 	{
 
@@ -141,24 +162,9 @@ class XoopsMailer
 	// reset all properties to default
 	function reset()
 	{
-		$this->fromEmail = "";
-		$this->fromName = "";
-		$this->fromUser = null; // RMV-NOTIFY
-		$this->priority = '';
-		$this->toUsers = array();
-		$this->toEmails = array();
-		$this->headers = array();
-		$this->subject = "";
-		$this->body = "";
-		$this->errors = array();
-		$this->success = array();
-		$this->isMail = false;
-		$this->isPM = false;
-		$this->assignedTags = array();
-		$this->template = "";
-		$this->templatedir = "";
-		// Change below to \r\n if you have problem sending mail
-		$this->LE ="\n";
+		foreach($this->properties as $key => $val) {
+			$this->$key = $val;
+		}
 	}
 
 	// public
@@ -226,6 +232,14 @@ class XoopsMailer
 	function usePM()
 	{
 		$this->isPM = true;
+	}
+
+	public function getVar($key) {
+		if (isset($this->properties[$key])) {
+			return $this->$key;
+		} else {
+			return null;
+		}
 	}
 
 	// public
