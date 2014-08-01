@@ -1033,9 +1033,9 @@ class Legacy_Controller extends XCube_Controller
 					$url = isset($parsed['scheme']) ? $parsed['scheme'].'://' : 'http://';
 					
 					if (isset($parsed['host'])) {
-						$url .= isset($parsed['port']) ? $parsed['host'] . ':' . $parsed['port'] . trim(xoops_getrequest('xoops_redirect')): $parsed['host'] . trim(xoops_getrequest('xoops_redirect'));
+						$url .= isset($parsed['port']) ? $parsed['host'] . ':' . $parsed['port'] . '/'.ltrim(trim(xoops_getrequest('xoops_redirect')), '/') : $parsed['host'] . '/'. ltrim(trim(xoops_getrequest('xoops_redirect')), '/');
 					} else {
-						$url .= xoops_getenv('HTTP_HOST') . trim(xoops_getrequest('xoops_redirect'));
+						$url .= xoops_getenv('HTTP_HOST') . '/'. ltrim(trim(xoops_getrequest('xoops_redirect')), '/');
 					}
 				}
 				
