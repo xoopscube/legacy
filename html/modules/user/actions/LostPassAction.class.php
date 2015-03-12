@@ -74,6 +74,7 @@ class User_LostPassAction extends User_Action
 		$director =new User_LostPassMailDirector($builder, $lostUser, $controller->mRoot->mContext->getXoopsConfig(), $extraVars);
 		$director->contruct();
 		$xoopsMailer =& $builder->getResult();
+		XCube_DelegateUtils::call('Legacy.Event.RegistUser.SendMail', new XCube_Ref($xoopsMailer), 'LostPass2');
 		if (!$xoopsMailer->send()) {
 			// $xoopsMailer->getErrors();
 			return USER_FRAME_VIEW_ERROR;
@@ -107,6 +108,7 @@ class User_LostPassAction extends User_Action
 		$director =new User_LostPassMailDirector($builder, $lostUser, $controller->mRoot->mContext->getXoopsConfig());
 		$director->contruct();
 		$xoopsMailer =& $builder->getResult();
+		XCube_DelegateUtils::call('Legacy.Event.RegistUser.SendMail', new XCube_Ref($xoopsMailer), 'LostPass1');
 
 		if (!$xoopsMailer->send()) {
 			// $xoopsMailer->getErrors();
