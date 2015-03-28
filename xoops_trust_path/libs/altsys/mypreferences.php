@@ -86,23 +86,38 @@ if ($op == 'showmod') {
 			}
 			break;
 		case 'select':
-			$ele = new XoopsFormSelect($title, $config[$i]->getVar('conf_name'), $config[$i]->getConfValueForOutput());
+		case 'radio':
+			if ($config[$i]->getVar('conf_formtype') === 'select') {
+				$ele = new XoopsFormSelect($title, $config[$i]->getVar('conf_name'), $config[$i]->getConfValueForOutput());
+				$addBr = '';
+			} else {
+				$ele = new XoopsFormRadio($title, $config[$i]->getVar('conf_name'), $config[$i]->getConfValueForOutput());
+				$addBr = '<br />';
+			}
 			$options =& $config_handler->getConfigOptions(new Criteria('conf_id', $config[$i]->getVar('conf_id')));
 			$opcount = count($options);
 			for ($j = 0; $j < $opcount; $j++) {
 				$optval = defined($options[$j]->getVar('confop_value')) ? constant($options[$j]->getVar('confop_value')) : $options[$j]->getVar('confop_value');
 				$optkey = defined($options[$j]->getVar('confop_name')) ? constant($options[$j]->getVar('confop_name')) : $options[$j]->getVar('confop_name');
-				$ele->addOption($optval, $optkey);
+				$ele->addOption($optval, $optkey.$addBr);
 			}
 			break;
 		case 'select_multi':
-			$ele = new XoopsFormSelect($title, $config[$i]->getVar('conf_name'), $config[$i]->getConfValueForOutput(), 5, true);
+		case 'checkbox':
+			if ($config[$i]->getVar('conf_formtype') === 'select_multi') {
+				$ele = new XoopsFormSelect($title, $config[$i]->getVar('conf_name'), $config[$i]->getConfValueForOutput(), 5, true);
+				$addBr = '';
+			} else {
+				$ele = new XoopsFormCheckBox($title, $config[$i]->getVar('conf_name'), $config[$i]->getConfValueForOutput());
+				$addBr = '<br />';
+			}
 			$options =& $config_handler->getConfigOptions(new Criteria('conf_id', $config[$i]->getVar('conf_id')));
 			$opcount = count($options);
 			for ($j = 0; $j < $opcount; $j++) {
 				$optval = defined($options[$j]->getVar('confop_value')) ? constant($options[$j]->getVar('confop_value')) : $options[$j]->getVar('confop_value');
 				$optkey = defined($options[$j]->getVar('confop_name')) ? constant($options[$j]->getVar('confop_name')) : $options[$j]->getVar('confop_name');
-				$ele->addOption($optval, $optkey);
+				
+				$ele->addOption($optval, $optkey.$addBr);
 			}
 			break;
 		case 'yesno':
@@ -115,6 +130,10 @@ if ($op == 'showmod') {
 		case 'group_multi':
 			include_once XOOPS_ROOT_PATH.'/class/xoopslists.php';
 			$ele = new XoopsFormSelectGroup($title, $config[$i]->getVar('conf_name'), false, $config[$i]->getConfValueForOutput(), 5, true);
+			break;
+		case 'group_checkbox':
+			include_once dirname(__FILE__).'/include/formcheckboxgroup.php';
+			$ele = new AltsysFormCheckboxGroup($title, $config[$i]->getVar('conf_name'), false, $config[$i]->getConfValueForOutput());
 			break;
 		// RMV-NOTIFY: added 'user' and 'user_multi'
 		case 'user':
