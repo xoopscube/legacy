@@ -131,6 +131,8 @@ class XoopsNotification extends XoopsObject
 		//global $xoopsConfig;
 		//$xoopsMailer->setFromEmail($xoopsConfig['adminmail']);
 		//$xoopsMailer->setFromName($xoopsConfig['sitename']);
+		if (defined('XOOPS_NOTIFY_FROM_EMAIL')) $xoopsMailer->setFromEmail(XOOPS_NOTIFY_FROM_EMAIL);
+		if (defined('XOOPS_NOTIFY_FROM_NAME')) $xoopsMailer->setFromName(XOOPS_NOTIFY_FROM_NAME);
 		$xoopsMailer->setSubject($subject);
 		$success = $xoopsMailer->send();
 
