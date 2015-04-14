@@ -146,10 +146,10 @@ class XoopsBlock extends XoopsObject
                 ob_end_clean();
                 $ret = str_replace('{X_SITEURL}', XOOPS_URL.'/', $content);
             } elseif ( $c_type == 'S' ) {
-                $myts =& MyTextSanitizer::getInstance();
+                $myts =& MyTextSanitizer::sGetInstance();
                 $ret = str_replace('{X_SITEURL}', XOOPS_URL.'/', $myts->displayTarea($this->get('content'), 1, 1));
             } else {
-                $myts =& MyTextSanitizer::getInstance();
+                $myts =& MyTextSanitizer::sGetInstance();
                 $ret = str_replace('{X_SITEURL}', XOOPS_URL.'/', $myts->displayTarea($this->get('content'), 1, 0));
             }
             break;

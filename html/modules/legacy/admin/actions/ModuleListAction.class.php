@@ -137,10 +137,9 @@ class Legacy_ModuleListAction extends Legacy_Action
 		$render->setAttribute('actionForm', $this->mActionForm);
 		
 		//
-		// Load adminmenu before we assign these to template.
+		// Load info before we assign these to template.
 		//
 		foreach(array_keys($this->mModuleObjects) as $key) {
-			$this->mModuleObjects[$key]->loadAdminMenu();
 			$this->mModuleObjects[$key]->loadInfo($this->mModuleObjects[$key]->get('dirname'));
 		}
 		

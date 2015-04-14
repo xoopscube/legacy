@@ -13,7 +13,7 @@
  *------------------------------------------------------------------------*/
 
 if (version_compare(PHP_VERSION, '5.4.0', '>=') && error_reporting() === E_ALL) {
-	error_reporting(E_ALL ^ E_STRICT);
+	error_reporting(E_ALL ^ E_STRICT ^ E_DEPRECATED);
 }
 
 include_once './passwd.php';
