@@ -33,7 +33,7 @@ function list_blocks( $target_mid , $target_dirname )
 {
 	global $xoopsGTicket ;
 
-	$myts =& MyTextSanitizer::getInstance() ;
+	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance() ;
 
 	// main query
 	$db = XoopsDatabaseFactory::getDatabaseConnection();

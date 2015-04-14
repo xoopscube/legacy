@@ -25,7 +25,7 @@ function b_altsys_admin_menu_show( $options )
 	}
 
 	$db =& XoopsDatabaseFactory::getDatabaseConnection();
-	$myts =& MyTextSanitizer::getInstance();
+	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
 
 	$module_handler =& xoops_gethandler('module');
 	$current_module =& $module_handler->getByDirname($mydirname);

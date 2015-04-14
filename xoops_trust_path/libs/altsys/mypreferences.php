@@ -17,7 +17,7 @@ if( ! is_object( $xoopsUser ) || ! is_object( $xoopsModule ) || ! $xoopsUser->is
 
 // initials
 $db =& XoopsDatabaseFactory::getDatabaseConnection();
-$myts =& MyTextSanitizer::getInstance() ;
+(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance() ;
 
 // language file
 altsys_include_language_file( 'mypreferences' ) ;
@@ -77,7 +77,7 @@ if ($op == 'showmod') {
 		$title = '' ; // GIJ
 		switch ($config[$i]->getVar('conf_formtype')) {
 		case 'textarea':
-			$myts =& MyTextSanitizer::getInstance();
+			(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
 			if ($config[$i]->getVar('conf_valuetype') == 'array') {
 				// this is exceptional.. only when value type is arrayneed a smarter way for this
 				$ele = ($config[$i]->getVar('conf_value') != '') ? new XoopsFormTextArea($title, $config[$i]->getVar('conf_name'), $myts->htmlspecialchars(implode('|', $config[$i]->getConfValueForOutput())), 5, 50) : new XoopsFormTextArea($title, $config[$i]->getVar('conf_name'), '', 5, 50);
@@ -145,12 +145,12 @@ if ($op == 'showmod') {
 			$ele = new XoopsFormSelectUser($title, $config[$i]->getVar('conf_name'), false, $config[$i]->getConfValueForOutput(), 5, true);
 			break;
 		case 'password':
-			$myts =& MyTextSanitizer::getInstance();
+			(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
 			$ele = new XoopsFormPassword($title, $config[$i]->getVar('conf_name'), 50, 255, $myts->htmlspecialchars($config[$i]->getConfValueForOutput()));
 			break;
 		case 'textbox':
 		default:
-			$myts =& MyTextSanitizer::getInstance();
+			(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
 			$ele = new XoopsFormText($title, $config[$i]->getVar('conf_name'), 50, 255, $myts->htmlspecialchars($config[$i]->getConfValueForOutput()));
 			break;
 		}
