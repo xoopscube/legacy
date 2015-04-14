@@ -40,7 +40,7 @@ class Xupdate_Root extends XoopsSimpleObject {
 		//adump($this->mod_config);
 
 		// mytextsanitizer   ToDo --> Cube Style ??
-		$this->myts =& MyTextSanitizer::getInstance();
+		(method_exists('MyTextSanitizer', 'sGetInstance') and $this->myts =& MyTextSanitizer::sGetInstance()) || $this->myts =& MyTextSanitizer::getInstance();
 
 		// set temp_path
 		$this->params['temp_dirname'] = trim( strrchr( trim($this->mod_config['temp_path'],'/'), '/'), '/') ;
