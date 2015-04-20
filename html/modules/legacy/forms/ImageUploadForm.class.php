@@ -110,14 +110,14 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
 			// Imagefile width & height check.
 			//
 			if ($formFile->getWidth() > $category->get('imgcat_maxwidth') || $formFile->getHeight() > $category->get('imgcat_maxheight')) {
-				$this->addErrorMessage(XCube_Utils::formatMessage(_AD_LEGACY_ERROR_IMG_SIZE, $category->get('imgcat_maxwidth'), $category->get('imgcat_maxheight')));
+				$this->addErrorMessage(XCube_Utils::formatString(_AD_LEGACY_ERROR_IMG_SIZE, $category->get('imgcat_maxwidth'), $category->get('imgcat_maxheight')));
 			}
 			
 			//
 			// Check file size
 			//
 			if ($formFile->getFilesize() > $category->get('imgcat_maxsize')) {
-				$this->addErrorMessage(XCube_Utils::formatMessage(_AD_LEGACY_ERROR_IMG_FILESIZE, $category->get('imgcat_maxsize')));
+				$this->addErrorMessage(XCube_Utils::formatString(_AD_LEGACY_ERROR_IMG_FILESIZE, $category->get('imgcat_maxsize')));
 			}
 		}
 	}

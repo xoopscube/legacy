@@ -71,15 +71,15 @@ class LegacyRender_BannerAdminEditForm extends XCube_ActionForm
 		//
 		if ($this->get('htmlbanner')) {
 			if (strlen($this->get('htmlcode')) == 0) {
-				$this->addErrorMessage(XCube_Utils::formatMessage(_AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_HTMLCODE));
+				$this->addErrorMessage(XCube_Utils::formatString(_AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_HTMLCODE));
 			}
 		}
 		else {
 			if (strlen($this->get('imageurl')) == 0) {
-				$this->addErrorMessage(XCube_Utils::formatMessage(_AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_IMAGEURL));
+				$this->addErrorMessage(XCube_Utils::formatString(_AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_IMAGEURL));
 			}
 			if (strlen($this->get('clickurl')) == 0) {
-				$this->addErrorMessage(XCube_Utils::formatMessage(_AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_CLICKURL));
+				$this->addErrorMessage(XCube_Utils::formatString(_AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_CLICKURL));
 			}
 		}
 	}

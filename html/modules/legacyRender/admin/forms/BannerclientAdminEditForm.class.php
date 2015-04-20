@@ -81,7 +81,7 @@ class LegacyRender_BannerclientAdminEditForm extends XCube_ActionForm
 	function validatePasswd()
 	{
 		if (strlen($this->get('login')) > 0 && strlen($this->get('passwd')) == 0) {
-			$this->addErrorMessage(XCube_Utils::formatMessage(_AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_PASSWD));
+			$this->addErrorMessage(XCube_Utils::formatString(_AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_PASSWD));
 		}
 	}
 
