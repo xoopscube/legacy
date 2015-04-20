@@ -37,7 +37,7 @@ class Legacy_MiscSslloginAction extends Legacy_Action
 		}
 	
 		$render->setTemplateName("legacy_misc_ssllogin.html");
-		$render->setAttribute("message", XCube_Utils::formatMessage(_MD_LEGACY_MESSAGE_LOGIN_SUCCESS, $xoopsUser->get('uname')));
+		$render->setAttribute("message", XCube_Utils::formatString(_MD_LEGACY_MESSAGE_LOGIN_SUCCESS, $xoopsUser->get('uname')));
 	}
 }
 
