@@ -130,21 +130,36 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 				}
 			}
 			
-			if ( empty($trust_dirname) ){
-				if ( isset($this->modinfo['trust_dirname']) || !empty($this->modinfo['trust_dirname']) ){
-					$this->mModule->setVar('trust_dirname',$this->modinfo['trust_dirname']);
-				}elseif ( !isset($this->modinfo['trust_dirname']) || empty($this->modinfo['trust_dirname']) ){
+			if (!isset($this->modinfo['trust_dirname'])) {
+				$this->modinfo['trust_dirname'] = '';
+			}
+			if (empty($trust_dirname) && $this->getVar('target_type') === 'TrustModule'){
+				if ($this->modinfo['trust_dirname']){
+					$trust_dirname = $this->modinfo['trust_dirname'];
+				} else {
 					//for d3modules
 					if ( file_exists(XOOPS_MODULE_PATH.'/'.$this->getVar('dirname').'/mytrustdirname.php') ) {
-						$mytrustdirname='';
+						$mytrustdirname = '';
 						include XOOPS_MODULE_PATH.'/'.$this->getVar('dirname').'/mytrustdirname.php';
+						$trust_dirname = $mytrustdirname;
 						$this->modinfo['trust_dirname'] = $mytrustdirname;
-						$this->mModule->setVar('trust_dirname',$mytrustdirname);
 					}
 				}
-				$hModule->insert($this->mModule);
-			}else{
-				if ( !isset($this->modinfo['trust_dirname']) || empty($this->modinfo['trust_dirname']) ){
+				if ($trust_dirname) {
+					// update XCL core module info
+					$this->mModule->setVar('trust_dirname', $trust_dirname);
+					$hModule->insert($this->mModule);
+				}
+			} else {
+				if ($trust_dirname && $this->getVar('target_type') !== 'TrustModule') {
+					// 以前の X-update では。TrustMode ではないモジュールなのに
+					// なぜか mytrustdirname.php が存在するモジュールに対し、
+					// 誤って XCL Core の modules テーブルの trust_name を登録してしまっていたので、その対応。
+					$this->modinfo['trust_dirname'] = $trust_dirname = '';
+					$this->mModule->setVar('trust_dirname', $trust_dirname);
+					$hModule->insert($this->mModule);
+				}
+				if ($trust_dirname && !$this->modinfo['trust_dirname']){
 					$this->modinfo['trust_dirname'] = $trust_dirname;
 				}
 			}

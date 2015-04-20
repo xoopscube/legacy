@@ -297,18 +297,10 @@ EOD;
     		$this->Func->write_mainfile_protector();
     		
     		// write protect mainfile.php
-    		if ($main_perm = @ fileperms(XOOPS_ROOT_PATH . '/mainfile.php')) {
-    			$main_perm = substr(sprintf('%o', $main_perm), -3);
-    			$set_perm = '';
-    			for($i=0; $i < 3; $i++) {
-    				$set_perm .= strval(intval($main_perm[$i], 8) & 5);
-    			}
-    			$set_perm = intval($set_perm, 8);
-    		} else {
-    			$set_perm = 0404;
-    		}
+    		$this->Func->mainfile_to_readonly();
+    		
+			// remove install directory
     		$this->Ftp->localRmdirRecursive(XOOPS_ROOT_PATH . '/install');
-    		$this->Ftp->localChmod(XOOPS_ROOT_PATH . '/mainfile.php', $set_perm);
     		
     		// set writable "mod_config['temp_path']"
     		if (! $this->Xupdate->params['is_writable']['result']) {
