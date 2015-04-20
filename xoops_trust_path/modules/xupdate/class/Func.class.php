@@ -497,6 +497,25 @@ class Xupdate_Func {
 		}
 		return true;
 	}
+	
+	public function mainfile_to_readonly() {
+		$mailfile = XOOPS_ROOT_PATH . '/mainfile.php';
+		if ($this->mod_config['ftp_method'] === _XUPDATE_FTP_DIRECT) {
+			$set_perm = 0400;
+		} else {
+			if ($main_perm = @ fileperms($mailfile)) {
+				$main_perm = substr(sprintf('%o', $main_perm), -3);
+				$set_perm = '';
+				for($i=0; $i < 3; $i++) {
+					$set_perm .= strval(intval($main_perm[$i], 8) & 5);
+				}
+				$set_perm = intval($set_perm, 8);
+			} else {
+				$set_perm = 0404;
+			}
+		}
+		$this->Ftp->localChmod($mailfile, $set_perm);
+	}
 } // end class
 } // end if
 
