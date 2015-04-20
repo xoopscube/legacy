@@ -62,7 +62,7 @@ class Legacy_SmilesAdminEditForm extends XCube_ActionForm
 	function validateSmile_url()
 	{
 		if ($this->_mIsNew && $this->get('smile_url') == null) {
-			$this->addErrorMessage(XCube_Utils::formatMessage(_MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_SMILE_URL));
+			$this->addErrorMessage(XCube_Utils::formatString(_MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_SMILE_URL));
 		}
 	}
 
