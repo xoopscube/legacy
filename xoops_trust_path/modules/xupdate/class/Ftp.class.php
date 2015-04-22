@@ -613,7 +613,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 	 * @param string $file
 	 */
 	private function setPhpPerm($file) {
-		if ($this->phpPerm && strtolower(substr($file, -4)) === '.php') {
+		if ($this->phpPerm && strtolower(substr($file, -4)) === '.php' && is_file($file)) {
 			$this->chmod($file, $this->phpPerm);
 		}
 	}
