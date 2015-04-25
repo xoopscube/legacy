@@ -24,6 +24,7 @@ $basename = basename($dirname);
 //
 $modversion['name'] = _MI_XUPDATE_LANG_XUPDATE;
 $modversion['version'] = '0.70';
+$modversion['detailed_version'] = '0.70.1';
 $modversion['description'] = _MI_XUPDATE_DESC_XUPDATE;
 $modversion['author'] = _MI_XUPDATE_LANG_AUTHOR;
 $modversion['credits'] = _MI_XUPDATE_LANG_CREDITS;
