@@ -12,7 +12,7 @@ $constpref = '_MI_' . strtoupper( $mydirname ) ;
 $modversion['name'] = constant($constpref.'_NAME') ;
 $modversion['description'] = constant($constpref.'_DESC') ;
 $modversion['version'] = file_get_contents( dirname(__FILE__).'/include/version.txt' ) ;
-$modversion['detailed_version'] =$modversion['version'] . '.3' ;
+$modversion['detailed_version'] =$modversion['version'] . '.4' ;
 $modversion['credits'] = "PEAK Corp." ;
 $modversion['author'] = "GIJ=CHECKMATE<br />PEAK Corp.(http://www.peak.ne.jp/)" ;
 $modversion['help'] = "" ;
