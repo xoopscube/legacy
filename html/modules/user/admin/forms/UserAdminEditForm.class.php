@@ -213,7 +213,7 @@ class User_UserAdminEditForm extends XCube_ActionForm
 		$t_url = $this->get('url');
 		if (strlen($t_url) > 0) {
 			if (!preg_match('/^https?(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)$/', $t_url)) {
-				$this->addErrorMessage(XCube_Utils::formatMessage(_MD_USER_ERROR_INJURY, _MD_USER_LANG_URL));
+				$this->addErrorMessage(XCube_Utils::formatString(_MD_USER_ERROR_INJURY, _MD_USER_LANG_URL));
 			}
 		}
 	}
@@ -244,7 +244,7 @@ class User_UserAdminEditForm extends XCube_ActionForm
 			}
 		}
 		elseif($this->_mIsNew) {
-				$this->addErrorMessage(XCube_Utils::formatMessage(_MD_USER_ERROR_REQUIRED, _MD_USER_LANG_PASS));
+				$this->addErrorMessage(XCube_Utils::formatString(_MD_USER_ERROR_REQUIRED, _MD_USER_LANG_PASS));
 		}
 	}
 	
@@ -257,10 +257,10 @@ class User_UserAdminEditForm extends XCube_ActionForm
 			$rank =& $handler->get($t_rank);
 			
 			if (!is_object($rank)) {
-				$this->addErrorMessage(XCube_Utils::formatMessage(_MD_USER_ERROR_INJURY, _AD_USER_LANG_RANK));
+				$this->addErrorMessage(XCube_Utils::formatString(_MD_USER_ERROR_INJURY, _AD_USER_LANG_RANK));
 			}
 			elseif ($rank->get('rank_special') != 1) {
-				$this->addErrorMessage(XCube_Utils::formatMessage(_MD_USER_ERROR_INJURY, _AD_USER_LANG_RANK));
+				$this->addErrorMessage(XCube_Utils::formatString(_MD_USER_ERROR_INJURY, _AD_USER_LANG_RANK));
 			}
 		}
 	}

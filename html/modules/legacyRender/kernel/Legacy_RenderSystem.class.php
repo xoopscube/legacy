@@ -485,7 +485,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 	function showXoopsHeader($closeHead=true)
 	{
 		global $xoopsConfig;
-		$myts =& MyTextSanitizer::getInstance();
+		$myts =& MyTextSanitizer::sGetInstance();
 		if ($xoopsConfig['gzip_compression'] == 1) {
 			ob_start('ob_gzhandler');
 		} else {

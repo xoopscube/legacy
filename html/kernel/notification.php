@@ -87,11 +87,32 @@ class XoopsNotification extends XoopsObject
 	 * @param  string  $template      Template name
      * @param  string  $subject       Subject line for notification message
      * @param  array   $tags Array of substitutions for template variables
+	 * @param  bool    $onshutdown    For lazy execution on shutdown
 	 *
 	 * @return  bool	true if success, false if error
 	 **/
-	function notifyUser($template_dir, $template, $subject, $tags)
+	function notifyUser($template_dir, $template, $subject, $tags, $onshutdown = false)
 	{
+		if (! $onshutdown) {
+			// regist as shutdown function
+			ignore_user_abort(true);
+			register_shutdown_function(array($this, 'notifyUser'), $template_dir, $template, $subject, $tags, true);
+			return true;
+		}
+
+		// execution at onshutdown
+		
+		// push current output all the way to the browser
+		header('Connection: close', true);
+		while (ob_get_level()){
+			$len = ob_get_length();
+			if ($len !== false) {
+				header('Content-Length: '.$len, true);
+			}
+			@ob_end_flush();
+		}
+		flush();
+
 		// Check the user's notification preference.
 
 		$member_handler = xoops_gethandler('member');
@@ -131,6 +152,8 @@ class XoopsNotification extends XoopsObject
 		//global $xoopsConfig;
 		//$xoopsMailer->setFromEmail($xoopsConfig['adminmail']);
 		//$xoopsMailer->setFromName($xoopsConfig['sitename']);
+		if (defined('XOOPS_NOTIFY_FROM_EMAIL')) $xoopsMailer->setFromEmail(XOOPS_NOTIFY_FROM_EMAIL);
+		if (defined('XOOPS_NOTIFY_FROM_NAME')) $xoopsMailer->setFromName(XOOPS_NOTIFY_FROM_NAME);
 		$xoopsMailer->setSubject($subject);
 		$success = $xoopsMailer->send();
 

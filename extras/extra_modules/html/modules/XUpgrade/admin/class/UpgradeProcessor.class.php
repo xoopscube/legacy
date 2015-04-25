@@ -178,20 +178,20 @@ class XUpgrade_UpgradeProcessor
 		$category =& $handler->get(XOOPS_CONF_USER);
 		if (is_object($category)) {
 			if ($handler->delete($category)) {
-				$this->mLog->add(XCube_Utils::formatMessage(_MI_XUPGRADE_MESSAGE_DELETED_CATEGORY, _MI_XUPGRADE_LANG_USER_CATEGORY));
+				$this->mLog->add(XCube_Utils::formatString(_MI_XUPGRADE_MESSAGE_DELETED_CATEGORY, _MI_XUPGRADE_LANG_USER_CATEGORY));
 			}
 			else {
-				$this->mLog->addError(XCube_Utils::formatMessage(_MI_XUPGRADE_ERROR_DELETED_CATEGORY, _MI_XUPGRADE_LANG_USER_CATEGORY));
+				$this->mLog->addError(XCube_Utils::formatString(_MI_XUPGRADE_ERROR_DELETED_CATEGORY, _MI_XUPGRADE_LANG_USER_CATEGORY));
 			}
 		}
 		
 		$category =& $handler->get(XOOPS_CONF_METAFOOTER);
 		if (is_object($category)) {
 			if ($handler->delete($category)) {
-				$this->mLog->add(XCube_Utils::formatMessage(_MI_XUPGRADE_MESSAGE_DELETED_CATEGORY, _MI_XUPGRADE_LANG_METEFOOTER_CATEGORY));
+				$this->mLog->add(XCube_Utils::formatString(_MI_XUPGRADE_MESSAGE_DELETED_CATEGORY, _MI_XUPGRADE_LANG_METEFOOTER_CATEGORY));
 			}
 			else {
-				$this->mLog->addError(XCube_Utils::formatMessage(_MI_XUPGRADE_ERROR_DELETED_CATEGORY, _MI_XUPGRADE_LANG_METEFOOTER_CATEGORY));
+				$this->mLog->addError(XCube_Utils::formatString(_MI_XUPGRADE_ERROR_DELETED_CATEGORY, _MI_XUPGRADE_LANG_METEFOOTER_CATEGORY));
 			}
 		}
 	}
@@ -245,10 +245,10 @@ class XUpgrade_UpgradeProcessor
 					$desc_tplfileArr[$key]->Source->set('tpl_source', $src_tplfile->Source->get('tpl_source'));
 					
 					if ($handler->insert($desc_tplfileArr[$key])) {
-						$this->mLog->add(XCube_Utils::formatMessage(_MI_XUPGRADE_MESSAGE_PORTED_TEMPLATE, $src_tplfile->get('tpl_file'), $src_tplfile->get('tpl_tplset')));
+						$this->mLog->add(XCube_Utils::formatString(_MI_XUPGRADE_MESSAGE_PORTED_TEMPLATE, $src_tplfile->get('tpl_file'), $src_tplfile->get('tpl_tplset')));
 					}
 					else {
-						$this->mLog->add(XCube_Utils::formatMessage(_MI_XUPGRADE_ERROR_PORTED_TEMPLATE, $src_tplfile->get('tpl_file'), $src_tplfile->get('tpl_tplset')));
+						$this->mLog->add(XCube_Utils::formatString(_MI_XUPGRADE_ERROR_PORTED_TEMPLATE, $src_tplfile->get('tpl_file'), $src_tplfile->get('tpl_tplset')));
 					}
 				}
 			}
@@ -316,7 +316,7 @@ class XUpgrade_UpgradeProcessor
 	function _copy(&$oldConfig, &$cubeConfig, $dirname)
 	{
 		if (!is_object($oldConfig) || !is_object($cubeConfig)) {
-			$this->mLog->addError(XCube_Utils::formatMessage(_MI_XUPGRADE_ERROR_CONFIGS_WRONG));
+			$this->mLog->addError(XCube_Utils::formatString(_MI_XUPGRADE_ERROR_CONFIGS_WRONG));
 			return;
 		}
 		
@@ -326,17 +326,17 @@ class XUpgrade_UpgradeProcessor
 		}
 		$cubeConfig->setConfValueForInput($value);
 		if ($this->mConfigHandler->insertConfig($cubeConfig)) {
-			$this->mLog->add(XCube_Utils::formatMessage(_MI_XUPGRADE_MESSAGE_PORTED_CONFIG, $cubeConfig->get('conf_name'), 'user'));
+			$this->mLog->add(XCube_Utils::formatString(_MI_XUPGRADE_MESSAGE_PORTED_CONFIG, $cubeConfig->get('conf_name'), 'user'));
 		}
 		else {
-			$this->mLog->addError(XCube_Utils::formatMessage(_MI_XUPGRADE_ERROR_PORTED_CONFIG, $cubeConfig->get('conf_name'), 'user'));
+			$this->mLog->addError(XCube_Utils::formatString(_MI_XUPGRADE_ERROR_PORTED_CONFIG, $cubeConfig->get('conf_name'), 'user'));
 		}
 		
 		if ($this->mConfigHandler->deleteConfig($oldConfig)) {
-			$this->mLog->add(XCube_Utils::formatMessage(_MI_XUPGRADE_MESSAGE_DELETED_CONFIG, $oldConfig->get('conf_name')));
+			$this->mLog->add(XCube_Utils::formatString(_MI_XUPGRADE_MESSAGE_DELETED_CONFIG, $oldConfig->get('conf_name')));
 		}
 		else {
-			$this->mLog->addError(XCube_Utils::formatMessage(_MI_XUPGRADE_ERROR_DELETED_CONFIG, $oldConfig->get('conf_name')));
+			$this->mLog->addError(XCube_Utils::formatString(_MI_XUPGRADE_ERROR_DELETED_CONFIG, $oldConfig->get('conf_name')));
 		}
 	}
 	
@@ -358,7 +358,7 @@ class XUpgrade_UpgradeProcessor
 				$this->_copy($oldConfigs[$key], $cubeConfigs[$key], $dirname);
 			}
 			else {
-				$this->mLog->addError(XCube_Utils::formatMessage(_MI_XUPGRADE_ERROR_FIND_CONFIG, $key, 'user'));
+				$this->mLog->addError(XCube_Utils::formatString(_MI_XUPGRADE_ERROR_FIND_CONFIG, $key, 'user'));
 			}
 		}
 	}
@@ -374,7 +374,7 @@ class XUpgrade_UpgradeProcessor
 		foreach ($modules as $module) {
 			$module->set('isactive', 1);
 			$handler->insert($module);
-			$log->add(XCube_Utils::formatMessage(_MI_XUPGRADE_MESSAGE_ADJUST_MODULE_ISACTIVE, $module->get('dirname')));
+			$log->add(XCube_Utils::formatString(_MI_XUPGRADE_MESSAGE_ADJUST_MODULE_ISACTIVE, $module->get('dirname')));
 		}
 	}
 }

@@ -100,7 +100,7 @@ class User_AbstractUserEditForm extends XCube_ActionForm
 		$t_url = $this->get('url');
 		if (strlen($t_url) > 0) {
 			if (!preg_match('/^https?(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)$/', $t_url)) {
-				$this->addErrorMessage(XCube_Utils::formatMessage(_MD_USER_ERROR_INJURY, _MD_USER_LANG_URL));
+				$this->addErrorMessage(XCube_Utils::formatString(_MD_USER_ERROR_INJURY, _MD_USER_LANG_URL));
 			}
 		}
 	}
@@ -109,7 +109,7 @@ class User_AbstractUserEditForm extends XCube_ActionForm
 	{
 		// precondition check
 		if (strlen($this->get('pass')) > 0 && !preg_match('/^[\x21-\x7e]+$/', $this->get('pass'))) {
-			$this->addErrorMessage(XCube_Utils::formatMessage(_MD_USER_ERROR_INJURY, _MD_USER_LANG_PASSWORD));
+			$this->addErrorMessage(XCube_Utils::formatString(_MD_USER_ERROR_INJURY, _MD_USER_LANG_PASSWORD));
 			$this->set('pass',null); // reset
 			$this->set('vpass',null);
 		}

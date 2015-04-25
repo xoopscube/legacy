@@ -174,9 +174,14 @@ class XoopsModule extends XoopsObject
 	function loadAdminMenu()
 	{
 		$menu = $this->getInfo('adminmenu');
-		if ($menu && file_exists($path = XOOPS_ROOT_PATH.'/modules/'.$this->getVar('dirname').'/'.$menu)) {
-			include $path;
-			$this->adminmenu =& $adminmenu;
+		if (is_array($menu)) {
+			// Array() Cube style
+			$this->adminmenu = $menu;
+		} else {
+			if ($menu && file_exists($path = XOOPS_ROOT_PATH.'/modules/'.$this->getVar('dirname').'/'.$menu)) {
+				include $path;
+				$this->adminmenu = (isset($adminmenu) && is_array($adminmenu))? $adminmenu : array();
+			}
 		}
 	}
 

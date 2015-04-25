@@ -43,7 +43,7 @@ class ProtectorFilterHandler {
 		$this->filters_byconfig = dirname(dirname(__FILE__)).'/filters_byconfig' ;
 	}
 
-	function &getInstance()
+	public static function &getInstance()
 	{
 		static $instance ;
 		if( ! isset( $instance ) ) {

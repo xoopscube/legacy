@@ -590,7 +590,7 @@ function do_order()
 function fetchRequest4Block( $bid )
 {
 	$bid = intval( $bid ) ;
-	$myts =& MyTextSanitizer::getInstance() ;
+	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance() ;
 
 	if( @$_POST['extra_sides'][$bid] > 0 ) {
 		$_POST['sides'][$bid] = intval( $_POST['extra_sides'][$bid] ) ;

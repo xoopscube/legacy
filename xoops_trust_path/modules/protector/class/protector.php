@@ -808,7 +808,7 @@ function check_dos_attack( $uid = 0 , $can_ban = false )
 	$ip = @$_SERVER['REMOTE_ADDR'] ;
 	$uri = @$_SERVER['REQUEST_URI'] ;
 	$ip4sql = addslashes( $ip ) ;
-	$uri4sql = addslashes( $uri ) ;
+	$uri4sql = addslashes( substr( $uri  , 0 , 255 ) );
 	if( empty( $ip ) || $ip == '' ) return true ;
 
 	// gargage collection
@@ -931,7 +931,7 @@ function check_brute_force()
 	$ip = @$_SERVER['REMOTE_ADDR'] ;
 	$uri = @$_SERVER['REQUEST_URI'] ;
 	$ip4sql = addslashes( $ip ) ;
-	$uri4sql = addslashes( $uri ) ;
+	$uri4sql = addslashes( substr( $uri  , 0 , 255 ) );
 	if( empty( $ip ) || $ip == '' ) return true ;
 
 	$victim_uname = empty( $_COOKIE['autologin_uname'] ) ? $_POST['uname'] : $_COOKIE['autologin_uname'] ;

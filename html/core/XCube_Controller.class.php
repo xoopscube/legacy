@@ -427,16 +427,16 @@ class XCube_Controller
 	{
 		$path = $path . "/";
 		
-		if (is_dir($path)) {
-				foreach (glob($path.'/*.class.php') as $file) {
-						require_once $file;
-						$className = basename($file, '.class.php');
-						if (XC_CLASS_EXISTS($className) && !isset($this->_mLoadedFilterNames[$className])) {
-							$this->_mLoadedFilterNames[$className] = true;
-							$instance = new $className($this);
-							$this->addActionFilter($instance);
-							unset($instance);
-						}
+		if (is_dir($path) && ($files = glob($path.'/*.class.php'))) {
+			foreach ($files as $file) {
+				require_once $file;
+				$className = basename($file, '.class.php');
+				if (XC_CLASS_EXISTS($className) && !isset($this->_mLoadedFilterNames[$className])) {
+					$this->_mLoadedFilterNames[$className] = true;
+					$instance = new $className($this);
+					$this->addActionFilter($instance);
+					unset($instance);
+				}
 			}
 		}
 	}

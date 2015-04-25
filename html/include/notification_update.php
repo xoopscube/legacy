@@ -76,7 +76,7 @@ $notification_handler =& xoops_gethandler('notification');
 
 foreach ($update_list as $update_item) {
 
-	list($category, $item_id, $event) = split (',', $update_item['params']);
+	list($category, $item_id, $event) = explode(',', $update_item['params']);
 	$status = !empty($update_item['status']) ? 1 : 0;
 
 	if (!$status) {
@@ -99,7 +99,7 @@ include_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
 
 $redirect_args = array();
 foreach ($update_list as $update_item) {
-	list($category,$item_id,$event) = split(',',$update_item['params']);
+	list($category,$item_id,$event) = explode(',',$update_item['params']);
 	$category_info =& notificationCategoryInfo($category);
 	if (!empty($category_info['item_name'])) {
 		$redirect_args[$category_info['item_name']] = $item_id;

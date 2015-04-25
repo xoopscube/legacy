@@ -77,7 +77,7 @@ class Message_myUpdater extends Legacy_ModulePhasedUpgrader
     $scanner->setDB_PREFIX(XOOPS_DB_PREFIX);
     $scanner->setDirname($this->_mTargetXoopsModule->get('dirname'));
     if (!$scanner->loadFile($sqlfilepath)) {
-      $this->mLog->addError(XCube_Utils::formatMessage(_AD_LEGACY_ERROR_SQL_FILE_NOT_FOUND, $sqlfile));
+      $this->mLog->addError(XCube_Utils::formatString(_AD_LEGACY_ERROR_SQL_FILE_NOT_FOUND, $sqlfile));
       return false;
     }
   

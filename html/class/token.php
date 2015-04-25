@@ -289,7 +289,7 @@ class XoopsSingleTokenHandler extends XoopsTokenHandler
      * @deprecated
      * @return bool
     */
-    function &quickCreate($name,$timeout = XOOPS_TOKEN_TIMEOUT)
+    public static function &quickCreate($name,$timeout = XOOPS_TOKEN_TIMEOUT)
     {
         $handler =new XoopsSingleTokenHandler();
         $ret =& $handler->create($name,$timeout);
@@ -303,7 +303,7 @@ class XoopsSingleTokenHandler extends XoopsTokenHandler
      * @deprecated
      * @return bool
     */
-    function quickValidate($name,$clearIfValid=true)
+    public static function quickValidate($name,$clearIfValid=true)
     {
         $handler = new XoopsSingleTokenHandler();
         return $handler->autoValidate($name,$clearIfValid);
@@ -366,7 +366,7 @@ class XoopsMultiTokenHandler extends XoopsTokenHandler
      * @deprecated
      * @return bool
     */
-    function &quickCreate($name,$timeout = XOOPS_TOKEN_TIMEOUT)
+    public static function &quickCreate($name,$timeout = XOOPS_TOKEN_TIMEOUT)
     {
         $handler =new XoopsMultiTokenHandler();
         $ret =& $handler->create($name,$timeout);
@@ -380,7 +380,7 @@ class XoopsMultiTokenHandler extends XoopsTokenHandler
      * @deprecated
      * @return bool
     */
-    function quickValidate($name,$clearIfValid=true)
+    public static function quickValidate($name,$clearIfValid=true)
     {
         $handler = new XoopsMultiTokenHandler();
         return $handler->autoValidate($name,$clearIfValid);

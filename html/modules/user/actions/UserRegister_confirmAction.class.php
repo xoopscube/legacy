@@ -114,6 +114,7 @@ class User_UserRegister_confirmAction extends User_Action
 		$director =new User_UserRegistMailDirector($builder, $this->mNewUser, $controller->mRoot->mContext->getXoopsConfig(), $this->mConfig);
 		$director->contruct();
 		$mailer =& $builder->getResult();
+		XCube_DelegateUtils::call('Legacy.Event.RegistUser.SendMail', new XCube_Ref($mailer), ($activationType == 0)? 'Register' : 'AdminActivate');
 		
 		if (!$mailer->send()) {
 		}	// TODO CHECKS and use '_MD_USER_ERROR_YOURREGMAILNG'
@@ -126,6 +127,7 @@ class User_UserRegister_confirmAction extends User_Action
 			$director =new User_UserRegistMailDirector($builder, $this->mNewUser, $controller->mRoot->mContext->getXoopsConfig(), $this->mConfig);
 			$director->contruct();
 			$mailer =& $builder->getResult();
+			XCube_DelegateUtils::call('Legacy.Event.RegistUser.SendMail', new XCube_Ref($mailer), 'Notify');
 			$mailer->send();
 		}
 	}

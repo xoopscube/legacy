@@ -126,11 +126,11 @@ class User_AvatarUploadAction extends User_Action
 				$save_file_name = uniqid( 'savt' ) . '.' . $ext ;
 				$filehandle = fopen( XOOPS_UPLOAD_PATH.'/'.$save_file_name , "w" ) ;
 				if( ! $filehandle ) {
-				$this->_addErrorMessage(XCube_Utils::formatMessage(_AD_USER_ERROR_COULD_NOT_SAVE_AVATAR_FILE, $file_name));
+				$this->_addErrorMessage(XCube_Utils::formatString(_AD_USER_ERROR_COULD_NOT_SAVE_AVATAR_FILE, $file_name));
 				continue ;
 				}
 				if ( !@fwrite($filehandle, $avatarimages[$i]['content']) ) {
-				$this->_addErrorMessage(XCube_Utils::formatMessage(_AD_USER_ERROR_COULD_NOT_SAVE_AVATAR_FILE, $file_name));
+				$this->_addErrorMessage(XCube_Utils::formatString(_AD_USER_ERROR_COULD_NOT_SAVE_AVATAR_FILE, $file_name));
 				@fclose( $filehandle ) ;
 				continue;				
 				};
@@ -145,7 +145,7 @@ class User_AvatarUploadAction extends User_Action
 				$avatar->set('avatar_mimetype', $this->mAllowedExts[$ext]);
 
 				if (!$avatarhandler->insert($avatar)) {
-					$this->_addErrorMessage(XCube_Utils::formatMessage(_AD_USER_ERROR_COULD_NOT_SAVE_AVATAR_FILE, $file_name));
+					$this->_addErrorMessage(XCube_Utils::formatString(_AD_USER_ERROR_COULD_NOT_SAVE_AVATAR_FILE, $file_name));
 				}
 				unset($avatar);
 		}

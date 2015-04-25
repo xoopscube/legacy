@@ -1033,13 +1033,13 @@ class Legacy_Controller extends XCube_Controller
 					$url = isset($parsed['scheme']) ? $parsed['scheme'].'://' : 'http://';
 					
 					if (isset($parsed['host'])) {
-						$url .= isset($parsed['port']) ? $parsed['host'] . ':' . $parsed['port'] . trim(xoops_getrequest('xoops_redirect')): $parsed['host'] . trim(xoops_getrequest('xoops_redirect'));
+						$url .= isset($parsed['port']) ? $parsed['host'] . ':' . $parsed['port'] . '/'.ltrim(trim(xoops_getrequest('xoops_redirect')), '/') : $parsed['host'] . '/'. ltrim(trim(xoops_getrequest('xoops_redirect')), '/');
 					} else {
-						$url .= xoops_getenv('HTTP_HOST') . trim(xoops_getrequest('xoops_redirect'));
+						$url .= xoops_getenv('HTTP_HOST') . '/'. ltrim(trim(xoops_getrequest('xoops_redirect')), '/');
 					}
 				}
 				
-				$this->executeRedirect($url, 1, XCube_Utils::formatMessage(_MD_LEGACY_MESSAGE_LOGIN_SUCCESS, $this->mRoot->mContext->mXoopsUser->get('uname')));
+				$this->executeRedirect($url, 1, XCube_Utils::formatString(_MD_LEGACY_MESSAGE_LOGIN_SUCCESS, $this->mRoot->mContext->mXoopsUser->get('uname')));
 			}
 			else {
 				XCube_DelegateUtils::call('Site.CheckLogin.Fail', new XCube_Ref($this->mRoot->mContext->mXoopsUser));
