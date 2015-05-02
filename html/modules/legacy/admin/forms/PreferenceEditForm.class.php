@@ -38,11 +38,15 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
 		return 0;
 	}
 
-	function prepare(&$configArr)
+	function prepare()
 	{
 		//
 		// Set form properties
 		//
+		$configArr = array();
+		if (func_num_args()) {
+			$configArr = func_get_arg(0);
+		}
 		foreach ($configArr as $config) {
 			switch ($config->get('conf_valuetype')) {
 				case 'text':
