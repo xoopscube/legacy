@@ -174,7 +174,11 @@ class Legacy_ModuleUninstaller
 			}
 			
 			if (function_exists($funcName)) {
-				if (!call_user_func($funcName, $this->_mXoopsModule, new XCube_Ref($this->mLog))) {
+				// Because X2 can use reference parameter, Legacy doesn't use the following code;'
+				// if (!call_user_func($funcName, $this->_mXoopsModule, new XCube_Ref($this->mLog))) {
+
+				$result = $funcName($this->_mXoopsModule, new XCube_Ref($this->mLog));
+				if (!$result) {
 					$this->mLog->addError(XCube_Utils::formatString(_AD_LEGACY_ERROR_FAILED_TO_EXECUTE_CALLBACK, $funcName));
 				}
 			}
