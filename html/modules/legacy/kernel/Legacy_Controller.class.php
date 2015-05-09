@@ -1039,7 +1039,7 @@ class Legacy_Controller extends XCube_Controller
 					}
 				}
 				
-				$this->executeRedirect($url, 1, XCube_Utils::formatMessage(_MD_LEGACY_MESSAGE_LOGIN_SUCCESS, $this->mRoot->mContext->mXoopsUser->get('uname')));
+				$this->executeRedirect($url, 1, XCube_Utils::formatString(_MD_LEGACY_MESSAGE_LOGIN_SUCCESS, $this->mRoot->mContext->mXoopsUser->get('uname')));
 			}
 			else {
 				XCube_DelegateUtils::call('Site.CheckLogin.Fail', new XCube_Ref($this->mRoot->mContext->mXoopsUser));

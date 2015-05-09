@@ -86,6 +86,9 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
 
 		$systeminfo_message = array();
 
+		if (defined('XOOPS_DISTRIBUTION_VERSION')) {
+			$systeminfo_message[] = "Distribution : ".XOOPS_DISTRIBUTION_VERSION;
+		}
 		$systeminfo_message[] = _AD_LEGACY_XCLEGACYVERSION." : ".XOOPS_VERSION;
 		$systeminfo_message[] = _MD_AM_DTHEME." : ".$root->mContext->mXoopsConfig['theme_set'];
 		$systeminfo_message[] = _MD_AM_DTPLSET." : ".$root->mContext->mXoopsConfig['template_set'];

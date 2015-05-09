@@ -133,11 +133,11 @@ class Legacy_ImageUploadAction extends Legacy_Action
 				$save_file_name = uniqid( 'img' ) . '.' . $ext ;
 				$filehandle = fopen( XOOPS_UPLOAD_PATH.'/'.$save_file_name , "w" ) ;
 				if( ! $filehandle ) {
-				$this->_addErrorMessage(XCube_Utils::formatMessage(_AD_LEGACY_ERROR_COULD_NOT_SAVE_IMAGE_FILE, $file_name));
+				$this->_addErrorMessage(XCube_Utils::formatString(_AD_LEGACY_ERROR_COULD_NOT_SAVE_IMAGE_FILE, $file_name));
 				continue ;
 				}
 				if ( !@fwrite($filehandle, $targetimages[$i]['content']) ) {
-				$this->_addErrorMessage(XCube_Utils::formatMessage(_AD_LEGACY_ERROR_COULD_NOT_SAVE_IMAGE_FILE, $file_name));
+				$this->_addErrorMessage(XCube_Utils::formatString(_AD_LEGACY_ERROR_COULD_NOT_SAVE_IMAGE_FILE, $file_name));
 				@fclose( $filehandle ) ;
 				continue;				
 				};
@@ -151,7 +151,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
 				$image->set('imgcat_id', $t_imgcat_id);
 
 				if (!$imagehandler->insert($image)) {
-					$this->_addErrorMessage(XCube_Utils::formatMessage(_AD_LEGACY_ERROR_COULD_NOT_SAVE_IMAGE_FILE, $file_name));
+					$this->_addErrorMessage(XCube_Utils::formatString(_AD_LEGACY_ERROR_COULD_NOT_SAVE_IMAGE_FILE, $file_name));
 				}
 				unset($image);
 		} //end of for
@@ -178,7 +178,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
 				$image->mImageBody->set('image_body', $targetimages[$i]['content']);
 
 				if (!$imagehandler->insert($image)) {
-					$this->_addErrorMessage(XCube_Utils::formatMessage(_AD_LEGACY_ERROR_COULD_NOT_SAVE_IMAGE_FILE, $file_name));
+					$this->_addErrorMessage(XCube_Utils::formatString(_AD_LEGACY_ERROR_COULD_NOT_SAVE_IMAGE_FILE, $file_name));
 				}
 				unset($image);
 		} //end of for

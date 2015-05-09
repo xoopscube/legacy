@@ -274,7 +274,11 @@ class Legacy_ModulePhasedUpgrader
 			require_once XOOPS_MODULE_PATH . "/" . $this->_mTargetXoopsModule->get('dirname') . "/" . $installScript;
 			$funcName = 'xoops_module_update_' . $this->_mTargetXoopsModule->get('dirname');
 			if (function_exists($funcName)) {
-				if (!call_user_func($funcName, $this->_mTargetXoopsModule, $this->getCurrentVersion(), new XCube_Ref($this->mLog))) {
+				// Because X2 can use reference parameter, Legacy doesn't use the following code;'
+				//if (!call_user_func($funcName, $this->_mTargetXoopsModule, $this->getCurrentVersion(), new XCube_Ref($this->mLog))) {
+
+				$result = $funcName($this->_mTargetXoopsModule, $this->getCurrentVersion(), new XCube_Ref($this->mLog));
+				if (!$result) {
 					$this->mLog->addError("Failed to execute " . $funcName);
 				}
 			}
@@ -284,10 +288,10 @@ class Legacy_ModulePhasedUpgrader
 	function _processReport()
 	{
 		if (!$this->mLog->hasError()) {
-			$this->mLog->add(XCube_Utils::formatMessage(_AD_LEGACY_MESSAGE_UPDATING_MODULE_SUCCESSFUL, $this->_mCurrentXoopsModule->get('name')));
+			$this->mLog->add(XCube_Utils::formatString(_AD_LEGACY_MESSAGE_UPDATING_MODULE_SUCCESSFUL, $this->_mCurrentXoopsModule->get('name')));
 		}
 		else {
-			$this->mLog->addError(XCube_Utils::formatMessage(_AD_LEGACY_ERROR_UPDATING_MODULE_FAILURE, $this->_mCurrentXoopsModule->get('name')));
+			$this->mLog->addError(XCube_Utils::formatString(_AD_LEGACY_ERROR_UPDATING_MODULE_FAILURE, $this->_mCurrentXoopsModule->get('name')));
 		}
 	}
 	

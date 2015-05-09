@@ -116,10 +116,10 @@ class Legacy_ModuleUninstaller
 				$sql = "DROP TABLE " . $t_tableName;
 				
 				if ($db->query($sql)) {
-					$this->mLog->addReport(XCube_Utils::formatMessage(_AD_LEGACY_MESSAGE_DROP_TABLE, $t_tableName));
+					$this->mLog->addReport(XCube_Utils::formatString(_AD_LEGACY_MESSAGE_DROP_TABLE, $t_tableName));
 				}
 				else {
-					$this->mLog->addError(XCube_Utils::formatMessage(_AD_LEGACY_ERROR_DROP_TABLE, $t_tableName));
+					$this->mLog->addError(XCube_Utils::formatString(_AD_LEGACY_ERROR_DROP_TABLE, $t_tableName));
 				}
 			}
 		}
@@ -150,7 +150,7 @@ class Legacy_ModuleUninstaller
 		$tplHandler =& xoops_gethandler('tplfile');
 		$criteria =new Criteria('tpl_module', $this->_mXoopsModule->get('dirname'));
 		if(!$tplHandler->deleteAll($criteria)) {
-			$this->mLog->addError(XCube_Utils::formatMessage(_AD_LEGACY_ERROR_COULD_NOT_DELETE_BLOCK_TEMPLATES, $tplHandler->db->error()));
+			$this->mLog->addError(XCube_Utils::formatString(_AD_LEGACY_ERROR_COULD_NOT_DELETE_BLOCK_TEMPLATES, $tplHandler->db->error()));
 		}
 	}
 
@@ -169,13 +169,17 @@ class Legacy_ModuleUninstaller
 			$funcName = 'xoops_module_uninstall_' . $this->_mXoopsModule->get('dirname');
 			
 			if (!preg_match("/^[a-zA-Z_][a-zA-Z0-9_]*$/", $funcName)) {
-				$this->mLog->addError(XCUbe_Utils::formatMessage(_AD_LEGACY_ERROR_FAILED_TO_EXECUTE_CALLBACK, $funcName));
+				$this->mLog->addError(XCube_Utils::formatString(_AD_LEGACY_ERROR_FAILED_TO_EXECUTE_CALLBACK, $funcName));
 				return;
 			}
 			
 			if (function_exists($funcName)) {
-				if (!call_user_func($funcName, $this->_mXoopsModule, new XCube_Ref($this->mLog))) {
-					$this->mLog->addError(XCube_Utils::formatMessage(_AD_LEGACY_ERROR_FAILED_TO_EXECUTE_CALLBACK, $funcName));
+				// Because X2 can use reference parameter, Legacy doesn't use the following code;'
+				// if (!call_user_func($funcName, $this->_mXoopsModule, new XCube_Ref($this->mLog))) {
+
+				$result = $funcName($this->_mXoopsModule, new XCube_Ref($this->mLog));
+				if (!$result) {
+					$this->mLog->addError(XCube_Utils::formatString(_AD_LEGACY_ERROR_FAILED_TO_EXECUTE_CALLBACK, $funcName));
 				}
 			}
 		}
@@ -184,10 +188,10 @@ class Legacy_ModuleUninstaller
 	function _processReport()
 	{
 		if (!$this->mLog->hasError()) {
-			$this->mLog->add(XCube_Utils::formatMessage(_AD_LEGACY_MESSAGE_UNINSTALLATION_MODULE_SUCCESSFUL, $this->_mXoopsModule->get('name')));
+			$this->mLog->add(XCube_Utils::formatString(_AD_LEGACY_MESSAGE_UNINSTALLATION_MODULE_SUCCESSFUL, $this->_mXoopsModule->get('name')));
 		}
 		else {
-			$this->mLog->addError(XCube_Utils::formatMessage(_AD_LEGACY_ERROR_UNINSTALLATION_MODULE_FAILURE, $this->_mXoopsModule->get('name')));
+			$this->mLog->addError(XCube_Utils::formatString(_AD_LEGACY_ERROR_UNINSTALLATION_MODULE_FAILURE, $this->_mXoopsModule->get('name')));
 		}
 	}
 

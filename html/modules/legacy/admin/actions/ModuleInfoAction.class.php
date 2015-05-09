@@ -41,6 +41,9 @@ class Legacy_ModuleInfoAction extends Legacy_Action
 		if (is_object($this->mModuleObject)) {
 			$this->mModuleObject->loadAdminMenu();
 			$this->mModuleObject->loadInfo($dirname);
+			if (!is_string($this->mModuleObject->modinfo['adminmenu'])) {
+				$this->mModuleObject->modinfo['adminmenu'] = '';
+			}
 			$this->mInstalledFlag = true;
 		}
 		else {
