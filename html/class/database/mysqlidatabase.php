@@ -75,15 +75,17 @@ class XoopsMysqliDatabase extends XoopsDatabase
 	 */
 	function connect($selectdb = true)
 	{
-		if (XOOPS_DB_PCONNECT == 1 && version_compare(PHP_VERSION, '5.3.0', '>=')) {
-			$this->conn = @mysqli_connect('p:'.XOOPS_DB_HOST, XOOPS_DB_USER, XOOPS_DB_PASS);
-		} else {
-			$this->conn = @mysqli_connect(XOOPS_DB_HOST, XOOPS_DB_USER, XOOPS_DB_PASS);
-		}
-	
+		$this->conn = mysqli_init();
+		
 		if (!$this->conn) {
 			$this->logger->addQuery('', $this->error(), $this->errno());
 			return false;
+		}
+		
+		if (XOOPS_DB_PCONNECT == 1 && version_compare(PHP_VERSION, '5.3.0', '>=')) {
+			mysqli_real_connect($this->conn, 'p:'.XOOPS_DB_HOST, XOOPS_DB_USER, XOOPS_DB_PASS, NULL, NULL, NULL, MYSQLI_CLIENT_FOUND_ROWS);
+		} else {
+			mysqli_real_connect($this->conn, XOOPS_DB_HOST, XOOPS_DB_USER, XOOPS_DB_PASS, NULL, NULL, NULL, MYSQLI_CLIENT_FOUND_ROWS);
 		}
 		
 		if($selectdb != false){
