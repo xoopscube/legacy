@@ -37,7 +37,7 @@ if ( !defined("XOOPS_LISTS_INCLUDED") ) {
         public static function getTimeZoneList()
         {
             $root =& XCube_Root::getSingleton();
-            if ($root->mLanguageManager !== null && !defined(_TZ_GMT0)) {
+            if ($root->mLanguageManager !== null && !defined('_TZ_GMT0')) {
                 $root->mLanguageManager->loadPageTypeMessageCatalog('timezone');
             }
             $time_zone_list = array (

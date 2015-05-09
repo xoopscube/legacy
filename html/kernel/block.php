@@ -182,7 +182,8 @@ class XoopsBlock extends XoopsObject
                 require_once $path;
                 if ( function_exists($show_func) ) {
                     // execute the function
-                    $block = $show_func(explode('|', $this->getVar('options', 'N')));
+                    $params = explode('|', $this->getVar('options', 'N'));
+                    $block = $show_func($params);
                     if ( !$block ) return $ret;
                 } else return $ret;
             } else return $ret;
