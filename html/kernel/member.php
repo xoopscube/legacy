@@ -133,7 +133,7 @@ class XoopsMemberHandler{
 	{
 		$returnUser = null;
 
-		$myts =& MyTextSanitizer::getInstance();	///< @todo not depends
+		$myts =& MyTextSanitizer::sGetInstance();	///< @todo not depends
 		$users =& $this->getUsers(new Criteria('email', $myts->addSlashes($email)));
 
 		if(!is_array($users)) {
