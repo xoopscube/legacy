@@ -40,10 +40,6 @@ class TextSanitizer
     * <br> should not be allowed since nl2br will be used
     * when storing data
     */
-    function TextSanitizer()
-    {
-
-    }
 
     public static function getInstance()
     {
