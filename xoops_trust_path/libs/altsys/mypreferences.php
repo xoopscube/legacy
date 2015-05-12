@@ -17,7 +17,7 @@ if( ! is_object( $xoopsUser ) || ! is_object( $xoopsModule ) || ! $xoopsUser->is
 
 // initials
 $db =& XoopsDatabaseFactory::getDatabaseConnection();
-$myts =& MyTextSanitizer::getInstance() ;
+(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance() ;
 
 // language file
 altsys_include_language_file( 'mypreferences' ) ;
@@ -77,7 +77,7 @@ if ($op == 'showmod') {
 		$title = '' ; // GIJ
 		switch ($config[$i]->getVar('conf_formtype')) {
 		case 'textarea':
-			$myts =& MyTextSanitizer::getInstance();
+			(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
 			if ($config[$i]->getVar('conf_valuetype') == 'array') {
 				// this is exceptional.. only when value type is arrayneed a smarter way for this
 				$ele = ($config[$i]->getVar('conf_value') != '') ? new XoopsFormTextArea($title, $config[$i]->getVar('conf_name'), $myts->htmlspecialchars(implode('|', $config[$i]->getConfValueForOutput())), 5, 50) : new XoopsFormTextArea($title, $config[$i]->getVar('conf_name'), '', 5, 50);
@@ -86,23 +86,38 @@ if ($op == 'showmod') {
 			}
 			break;
 		case 'select':
-			$ele = new XoopsFormSelect($title, $config[$i]->getVar('conf_name'), $config[$i]->getConfValueForOutput());
+		case 'radio':
+			if ($config[$i]->getVar('conf_formtype') === 'select') {
+				$ele = new XoopsFormSelect($title, $config[$i]->getVar('conf_name'), $config[$i]->getConfValueForOutput());
+				$addBr = '';
+			} else {
+				$ele = new XoopsFormRadio($title, $config[$i]->getVar('conf_name'), $config[$i]->getConfValueForOutput());
+				$addBr = '<br />';
+			}
 			$options =& $config_handler->getConfigOptions(new Criteria('conf_id', $config[$i]->getVar('conf_id')));
 			$opcount = count($options);
 			for ($j = 0; $j < $opcount; $j++) {
 				$optval = defined($options[$j]->getVar('confop_value')) ? constant($options[$j]->getVar('confop_value')) : $options[$j]->getVar('confop_value');
 				$optkey = defined($options[$j]->getVar('confop_name')) ? constant($options[$j]->getVar('confop_name')) : $options[$j]->getVar('confop_name');
-				$ele->addOption($optval, $optkey);
+				$ele->addOption($optval, $optkey.$addBr);
 			}
 			break;
 		case 'select_multi':
-			$ele = new XoopsFormSelect($title, $config[$i]->getVar('conf_name'), $config[$i]->getConfValueForOutput(), 5, true);
+		case 'checkbox':
+			if ($config[$i]->getVar('conf_formtype') === 'select_multi') {
+				$ele = new XoopsFormSelect($title, $config[$i]->getVar('conf_name'), $config[$i]->getConfValueForOutput(), 5, true);
+				$addBr = '';
+			} else {
+				$ele = new XoopsFormCheckBox($title, $config[$i]->getVar('conf_name'), $config[$i]->getConfValueForOutput());
+				$addBr = '<br />';
+			}
 			$options =& $config_handler->getConfigOptions(new Criteria('conf_id', $config[$i]->getVar('conf_id')));
 			$opcount = count($options);
 			for ($j = 0; $j < $opcount; $j++) {
 				$optval = defined($options[$j]->getVar('confop_value')) ? constant($options[$j]->getVar('confop_value')) : $options[$j]->getVar('confop_value');
 				$optkey = defined($options[$j]->getVar('confop_name')) ? constant($options[$j]->getVar('confop_name')) : $options[$j]->getVar('confop_name');
-				$ele->addOption($optval, $optkey);
+				
+				$ele->addOption($optval, $optkey.$addBr);
 			}
 			break;
 		case 'yesno':
@@ -116,6 +131,10 @@ if ($op == 'showmod') {
 			include_once XOOPS_ROOT_PATH.'/class/xoopslists.php';
 			$ele = new XoopsFormSelectGroup($title, $config[$i]->getVar('conf_name'), false, $config[$i]->getConfValueForOutput(), 5, true);
 			break;
+		case 'group_checkbox':
+			include_once dirname(__FILE__).'/include/formcheckboxgroup.php';
+			$ele = new AltsysFormCheckboxGroup($title, $config[$i]->getVar('conf_name'), false, $config[$i]->getConfValueForOutput());
+			break;
 		// RMV-NOTIFY: added 'user' and 'user_multi'
 		case 'user':
 			include_once XOOPS_ROOT_PATH.'/class/xoopslists.php';
@@ -126,12 +145,12 @@ if ($op == 'showmod') {
 			$ele = new XoopsFormSelectUser($title, $config[$i]->getVar('conf_name'), false, $config[$i]->getConfValueForOutput(), 5, true);
 			break;
 		case 'password':
-			$myts =& MyTextSanitizer::getInstance();
+			(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
 			$ele = new XoopsFormPassword($title, $config[$i]->getVar('conf_name'), 50, 255, $myts->htmlspecialchars($config[$i]->getConfValueForOutput()));
 			break;
 		case 'textbox':
 		default:
-			$myts =& MyTextSanitizer::getInstance();
+			(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
 			$ele = new XoopsFormText($title, $config[$i]->getVar('conf_name'), 50, 255, $myts->htmlspecialchars($config[$i]->getConfValueForOutput()));
 			break;
 		}

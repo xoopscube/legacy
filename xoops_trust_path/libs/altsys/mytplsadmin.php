@@ -21,7 +21,7 @@ if( ! is_object( @$xoopsUser ) || ! $moduleperm_handler->checkRight( 'module_adm
 
 // initials
 $db =& XoopsDatabaseFactory::getDatabaseConnection();
-$myts =& MyTextSanitizer::getInstance() ;
+(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance() ;
 
 // language file
 altsys_include_language_file( 'mytplsadmin' ) ;

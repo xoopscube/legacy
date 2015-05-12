@@ -361,6 +361,9 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 				}
 			}
 		}
+		
+		// maifile write protect
+		$this->Func->mainfile_to_readonly();
 
 		$this->Ftp->appendMes( 'end uploaded success<br />');
 		return true;

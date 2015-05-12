@@ -42,7 +42,7 @@ class Xupdate_AssetManager
      *
      * @return  Xupdate_AssetManager
     **/
-    public function &getInstance(/*** string ***/ $dirname)
+    public static function &getInstance(/*** string ***/ $dirname)
     {
         /**
          *  @var    Xupdate_AssetManager[]

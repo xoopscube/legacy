@@ -130,21 +130,36 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 				}
 			}
 			
-			if ( empty($trust_dirname) ){
-				if ( isset($this->modinfo['trust_dirname']) || !empty($this->modinfo['trust_dirname']) ){
-					$this->mModule->setVar('trust_dirname',$this->modinfo['trust_dirname']);
-				}elseif ( !isset($this->modinfo['trust_dirname']) || empty($this->modinfo['trust_dirname']) ){
+			if (!isset($this->modinfo['trust_dirname'])) {
+				$this->modinfo['trust_dirname'] = '';
+			}
+			if (empty($trust_dirname) && $this->getVar('target_type') === 'TrustModule'){
+				if ($this->modinfo['trust_dirname']){
+					$trust_dirname = $this->modinfo['trust_dirname'];
+				} else {
 					//for d3modules
 					if ( file_exists(XOOPS_MODULE_PATH.'/'.$this->getVar('dirname').'/mytrustdirname.php') ) {
-						$mytrustdirname='';
+						$mytrustdirname = '';
 						include XOOPS_MODULE_PATH.'/'.$this->getVar('dirname').'/mytrustdirname.php';
+						$trust_dirname = $mytrustdirname;
 						$this->modinfo['trust_dirname'] = $mytrustdirname;
-						$this->mModule->setVar('trust_dirname',$mytrustdirname);
 					}
 				}
-				$hModule->insert($this->mModule);
-			}else{
-				if ( !isset($this->modinfo['trust_dirname']) || empty($this->modinfo['trust_dirname']) ){
+				if ($trust_dirname) {
+					// update XCL core module info
+					$this->mModule->setVar('trust_dirname', $trust_dirname);
+					$hModule->insert($this->mModule);
+				}
+			} else {
+				if ($trust_dirname && $this->getVar('target_type') !== 'TrustModule') {
+					// 以前の X-update では。TrustMode ではないモジュールなのに
+					// なぜか mytrustdirname.php が存在するモジュールに対し、
+					// 誤って XCL Core の modules テーブルの trust_name を登録してしまっていたので、その対応。
+					$this->modinfo['trust_dirname'] = $trust_dirname = '';
+					$this->mModule->setVar('trust_dirname', $trust_dirname);
+					$hModule->insert($this->mModule);
+				}
+				if ($trust_dirname && !$this->modinfo['trust_dirname']){
 					$this->modinfo['trust_dirname'] = $trust_dirname;
 				}
 			}
@@ -174,15 +189,14 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 					'lastupdate' => 0);
 			}
 			if ($readini) {
-				if ($_isModule) {
-					$this->setVar('isactive', -1);
-				} else {
+				$this->setVar('isactive', -1);
+				if (! $_isModule) {
 					// for Theme
 					if ($this->getVar('contents') == 'theme') {
 						$t_dir = XOOPS_ROOT_PATH . '/themes/' . $this->getVar('dirname');
 						if (is_dir($t_dir)) {
 							$this->setVar('isactive', 1);
-							$lastupdate = filemtime($t_dir.'/theme.html');
+							$lastupdate = filemtime($t_dir);
 							$this->setVar('last_update', $lastupdate);
 							$m_file = $t_dir . '/' . 'manifesto.ini.php';
 							if (is_file($m_file)) {

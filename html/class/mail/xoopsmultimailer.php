@@ -157,9 +157,9 @@ class XoopsMultiMailer extends PHPMailer {
     $xoopsMailerConfig =& $config_handler->getConfigsByCat(XOOPS_CONF_MAILER);
     $this->From = $xoopsMailerConfig['from'];
     if ($this->From == '') {
-        $this->From = $xoopsConfig['adminmail'];
+        $this->From = defined('XOOPS_NOTIFY_FROM_EMAIL')? XOOPS_NOTIFY_FROM_EMAIL : $xoopsConfig['adminmail'];
     }
-    $this->Sender = $xoopsConfig['adminmail'];
+    $this->Sender = defined('XOOPS_NOTIFY_SENDER_EMAIL')? XOOPS_NOTIFY_SENDER_EMAIL : $xoopsConfig['adminmail'];
     if ($xoopsMailerConfig["mailmethod"] == "smtpauth") {
         $this->Mailer = "smtp";
       $this->SMTPAuth = TRUE;
