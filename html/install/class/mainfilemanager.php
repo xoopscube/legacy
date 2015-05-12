@@ -40,10 +40,6 @@ class mainfile_manager {
     var $report =  array();
     var $error = false;
 
-    function mainfile_manager(){
-        //
-    }
-
     function setRewrite($def, $val){
         $this->rewrite[$def] = $val;
     }
@@ -76,11 +72,17 @@ class mainfile_manager {
                 $this->report[] = _OKIMG.sprintf(_INSTALL_L121, "<b>$key</b>", $val);
             }
             elseif(preg_match("/(define\()([\"'])(".$key.")\\2,\s*([\"'])(.*?)\\4\s*\)/",$content)){
-                $content = preg_replace("/(define\()([\"'])(".$key.")\\2,\s*([\"'])(.*?)\\4\s*\)/"
-                , "define('".$key."', '".$this->sanitize($val)."')"
-                , $content);
-                $this->report[] = _OKIMG.sprintf(_INSTALL_L121, '<b>'.$key.'</b>', $val);
-
+                if ($key === 'XOOPS_DB_TYPE' && $val === 'mysql') {
+                    $content = preg_replace("/(define\()([\"'])(".$key.")\\2,\s*([\"'])(.*?)\\4\s*\)/"
+                    , "extension_loaded('mysql')? define('XOOPS_DB_TYPE', 'mysql') : define('XOOPS_DB_TYPE', 'mysqli')"
+                    , $content);
+                    $this->report[] = _OKIMG.sprintf(_INSTALL_L121, '<b>'.$key.'</b>', $val);
+                } else {
+                    $content = preg_replace("/(define\()([\"'])(".$key.")\\2,\s*([\"'])(.*?)\\4\s*\)/"
+                    , "define('".$key."', '".$this->sanitize($val)."')"
+                    , $content);
+                    $this->report[] = _OKIMG.sprintf(_INSTALL_L121, '<b>'.$key.'</b>', $val);
+                }
             }else{
                 $this->error = true;
                 $this->report[] = _NGIMG.sprintf(_INSTALL_L122, '<b>'.$val.'</b>');

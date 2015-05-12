@@ -44,9 +44,9 @@
     }
 
     //$tables = array();
-    $result = $dbm->queryFromFile('./sql/'.XOOPS_DB_TYPE.'.data.sql');
+    $result = $dbm->queryFromFile('./sql/'.((XOOPS_DB_TYPE === 'mysqli')? 'mysql' : XOOPS_DB_TYPE).'.data.sql');
 
-    $result = $dbm->queryFromFile('./language/'.$language.'/'.XOOPS_DB_TYPE.'.lang.data.sql');
+    $result = $dbm->queryFromFile('./language/'.$language.'/'.((XOOPS_DB_TYPE === 'mysqli')? 'mysql' : XOOPS_DB_TYPE).'.lang.data.sql');
 
     $group = make_groups($dbm);
     $result = make_data($dbm, $cm, $adminname, $adminpass, $adminmail, $language, $group, $timezone);

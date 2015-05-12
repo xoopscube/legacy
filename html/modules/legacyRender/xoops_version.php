@@ -123,7 +123,7 @@ $modversion['config'][]=array (
 		"description"=>"_MI_LR_CSS_FILE_DESC",
 		"formtype"=>"textbox",
 		"valuetype"=>"text",
-		"default"=>"//ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/smoothness/jquery-ui.css"
+		"default"=>"//ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/smoothness/jquery-ui.css"
 	);
 
 $modversion['config'][]=array (
@@ -141,7 +141,7 @@ $modversion['config'][]=array (
 		"description"=>"_MI_LR_JQUERY_CORE_DESC",
 		"formtype"=>"textbox",
 		"valuetype"=>"text",
-		"default"=>"1"
+		"default"=>"//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"
 	);
 
 $modversion['config'][]=array (
@@ -150,7 +150,7 @@ $modversion['config'][]=array (
 		"description"=>"_MI_LR_JQUERY_UI_DESC",
 		"formtype"=>"textbox",
 		"valuetype"=>"text",
-		"default"=>"1"
+		"default"=>"//ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
 	);
 
 // Menu

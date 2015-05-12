@@ -137,7 +137,7 @@
         $dbm->query('DROP TABLE '.$dbm->prefix('groups_modules_link'));
 
     // insert some more data
-    $result = $dbm->queryFromFile('./sql/'.XOOPS_DB_TYPE.'.data.sql');
+    $result = $dbm->queryFromFile('./sql/'.((XOOPS_DB_TYPE === 'mysqli')? 'mysql' : XOOPS_DB_TYPE).'.data.sql');
 
     $content = $dbm->report();
     //$content .= $cm->report();
