@@ -12,7 +12,7 @@
     $dbm = new db_manager;
 
     $tables = array();
-    $result = $dbm->queryFromFile('./sql/'.XOOPS_DB_TYPE.'.structure.sql');
+    $result = $dbm->queryFromFile('./sql/'.((XOOPS_DB_TYPE === 'mysqli')? 'mysql' : XOOPS_DB_TYPE).'.structure.sql');
     $wizard->assign('reports',$dbm->report());
     if(! $result ){
         $wizard->assign('message',_INSTALL_L114);
