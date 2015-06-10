@@ -36,7 +36,10 @@ define('_AD_XUPDATE_LANG_STORE', 'Store');
 define('_AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL', "Batch OP");
 define('_AD_XUPDATE_LANG_MESSAGE_WAITING', "Waiting");
 define('_AD_XUPDATE_LANG_MESSAGE_SUCCESS', "Success");
-define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES', "getting files");
+define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES_PRE', "Pre-getting");
+define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES', "Getting files");
+define('_AD_XUPDATE_UPDATE_PRE', "Pre-updating");
+define('_AD_XUPDATE_INSTALL_PRE', "Pre-instaling");
 define('_AD_XUPDATE_LANG_MESSAGE_PROCESSING', "...");
 define('_AD_XUPDATE_LANG_BUTTON_UPDATE', 'Update');
 

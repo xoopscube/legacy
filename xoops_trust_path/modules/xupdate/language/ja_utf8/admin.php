@@ -36,7 +36,10 @@ define('_AD_XUPDATE_LANG_STORE', 'ストア');
 define('_AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL', "一括操作");
 define('_AD_XUPDATE_LANG_MESSAGE_WAITING', "待機中");
 define('_AD_XUPDATE_LANG_MESSAGE_SUCCESS', "完了");
+define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES_PRE', "配置準備");
 define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES', "配置");
+define('_AD_XUPDATE_UPDATE_PRE', "アップデート準備");
+define('_AD_XUPDATE_INSTALL_PRE', "インストール準備");
 define('_AD_XUPDATE_LANG_MESSAGE_PROCESSING', "中");
 define('_AD_XUPDATE_LANG_BUTTON_UPDATE', '更新');
 
