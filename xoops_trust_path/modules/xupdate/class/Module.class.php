@@ -292,7 +292,7 @@ class Xupdate_Module extends Legacy_ModuleAdapter
                 $render = $this->getRenderTarget();
                 $this->mAction->$methodName($render);
 		        $render->setAttribute('xoops_pagetitle', $this->mAction->getPagetitle());
-		        //$this->mAction->setHeaderScript();
+		        $this->mAction->setHeaderScript();
             }
         }
     }

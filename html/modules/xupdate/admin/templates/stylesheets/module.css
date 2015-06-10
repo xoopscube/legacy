@@ -82,6 +82,10 @@ input[type="radio"] {
 }
 
 /* for list table */
+#xupdate td {
+	vertical-align: middle;
+	padding: 3px;
+}
 .legacy_list_id {
 	text-align:center;
 }

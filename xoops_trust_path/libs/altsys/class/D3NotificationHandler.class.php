@@ -91,13 +91,6 @@ function triggerEvent( $mydirname , $mytrustdirname , $category , $item_id , $ev
 	$mode_criteria->add (new Criteria('not_mode', XOOPS_NOTIFICATION_MODE_SENDONCETHENDELETE), 'OR');
 	$mode_criteria->add (new Criteria('not_mode', XOOPS_NOTIFICATION_MODE_SENDONCETHENWAIT), 'OR');
 	$criteria->add($mode_criteria);
-	if (!empty($user_list)) {
-		$user_criteria = new CriteriaCompo();
-		foreach ($user_list as $user) {
-			$user_criteria->add (new Criteria('not_uid', $user), 'OR');
-		}
-		$criteria->add($user_criteria);
-	}
 	$notifications =& $notification_handler->getObjects($criteria);
 	if (empty($notifications)) {
 		return;
@@ -114,8 +107,14 @@ function triggerEvent( $mydirname , $mytrustdirname , $category , $item_id , $ev
 	$template = $event_info['mail_template'] . '.tpl';
 	$subject = $event_info['mail_subject'];
 
+	if ($user_list) {
+		$user_list = array_flip(array_unique($user_list));
+	}
 	foreach ($notifications as $notification) {
-		if (empty($omit_user_id) || $notification->getVar('not_uid') != $omit_user_id) {
+		$send_uid = $notification->getVar('not_uid');
+		if ((empty($omit_user_id) || $send_uid != $omit_user_id)
+		&&
+		(!$user_list || isset($user_list[$send_uid]))) {
 			// user-specific tags
 			//$tags['X_UNSUBSCRIBE_URL'] = 'TODO';
 			// TODO: don't show unsubscribe link if it is 'one-time' ??
@@ -132,5 +131,3 @@ function triggerEvent( $mydirname , $mytrustdirname , $category , $item_id , $ev
 
 
 }
-
-?>

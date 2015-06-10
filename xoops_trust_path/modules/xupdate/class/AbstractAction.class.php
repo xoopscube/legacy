@@ -112,7 +112,8 @@ abstract class Xupdate_AbstractAction
     **/
     protected function _getStylesheet()
     {
-        return $this->mRoot->mContext->mModuleConfig['css_file'];
+        //return $this->mRoot->mContext->mModuleConfig['css_file'];
+        return '/modules/xupdate/admin/templates/stylesheets/module.css';
     }
 
     /**

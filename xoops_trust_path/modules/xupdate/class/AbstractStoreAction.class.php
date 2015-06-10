@@ -367,11 +367,14 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 	public function RapidInstall_js()
 	{
 
+		$message_InstallPre = _AD_XUPDATE_INSTALL_PRE;
 		$message_Install = _INSTALL;
+		$message_UpdatePre = _AD_XUPDATE_UPDATE_PRE;
 		$message_Update = _MI_XUPDATE_UPDATE;
 		$message_Error = _ERRORS;
 		$message_Waiting = _AD_XUPDATE_LANG_MESSAGE_WAITING;
 		$message_Success = _AD_XUPDATE_LANG_MESSAGE_SUCCESS;
+		$message_Getting_filesPre = _AD_XUPDATE_LANG_MESSAGE_GETTING_FILES_PRE;
 		$message_Getting_files = _AD_XUPDATE_LANG_MESSAGE_GETTING_FILES;
 		$message_Processing = _AD_XUPDATE_LANG_MESSAGE_PROCESSING;
 		$message_btn_install = _MI_XUPDATE_ADMENU_MODULE._INSTALL;
@@ -390,6 +393,7 @@ jQuery(function($){
 	var installationModules = [];
 	var installationModule  = null;
 	var isInstallation = false;
+	var postRetry = 0;
 
 	var main = function()
 	{
@@ -408,8 +412,15 @@ jQuery(function($){
 
 	var addDelegates = function()
 	{
-		$('body').delegate('#rapidModuleInstallButton', 'click', clickRapidModuleInstallButton)
-						.delegate('#rapidInstallCheckboxAll', 'click', checkAll);
+		$('body').on('click', '#rapidModuleInstallButton', clickRapidModuleInstallButton)
+		.on('click', '#rapidInstallCheckboxAll', checkAll);
+		$('body').on('click', '#rapidInstallCheckboxAll,input.rapidInstallCheckbox', function(){
+			var target = $('td.legacy_list_select:first');
+			if (! target.data('widthset')) {
+				target.data('widthset', true);
+				setTimeout(function(){target.css({width: '10em'});}, 100);
+			}
+		});
 	}
 
 	var clickRapidModuleInstallButton = function()
@@ -455,12 +466,12 @@ jQuery(function($){
 
 			if (typeof installationModule.storehref != 'undefined'){
 
-				installationModule.td.html("{$message_Getting_files}{$message_Processing}");
+				installationModule.td.html("{$message_Getting_filesPre}{$message_Processing}");
 				try
 				{
+					postRetry = 0;
 					$.ajax({
 						type: 'GET',
-						async:false,
 						url: installationModule.storehref,
 						success: getStoreConfirmFormSuccess,
 						error: ajaxFailed
@@ -473,51 +484,18 @@ jQuery(function($){
 					updateModuleStatus();
 				}
 			}
-			var result =installationModule.td.text();
-			if (result != '{$message_Getting_files}{$message_Success}'){
-				installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
-				updateModuleStatus();
-			}else{
-				if (typeof installationModule.installhref != 'undefined'){
-
-					if (installationModule.isUpdate) {
-						installationModule.td.html("{$message_Update}{$message_Processing}");
-					} else {
-						installationModule.td.html("{$message_Install}{$message_Processing}");
-					}
-					try
-					{
-						$.ajax({
-							type: 'GET',
-							url: installationModule.installhref,
-							success: getConfirmFormSuccess,
-							error: ajaxFailed
-						});
-					}
-					catch ( e )
-					{
-						installationModule.td.html('<span style="color:red;">{$message_Error}</span>');
-						installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
-						updateModuleStatus();
-					}
-				}else{
-						installationModule.td.html('<span style="color:red;">{$message_Error}</span>');
-						installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
-						updateModuleStatus();
-				}
-			}
-
 		});
 	}
 	var getStoreConfirmFormSuccess = function(html)
 	{
 		var form = $(html).find('#contentBody form');
 		var formdata = form.serialize();
+		
+		installationModule.td.html("{$message_Getting_files}{$message_Processing}");
 
 		if (typeof installationModule.installhref != 'undefined'){
 			$.ajax({
 				type: 'POST',
-				async:false,
 				url: installationModule.storehref,
 				data: formdata,
 				success: getStoreSuccess,
@@ -526,14 +504,50 @@ jQuery(function($){
 		}
 	}
 
-
 	var getStoreSuccess = function(html)
 	{
 		var result = $(html).find('#xupdate_addModule a').text();
-		if (result == '{$message_btn_install}' || result == '{$message_btn_update}' || result == '{$message_btn_manage}' || result == '{$message_Getting_files}{$message_Success}'){
+		if (result == '{$message_btn_install}' || result == '{$message_btn_update}'){
 			installationModule.td.html('<span style="color:green;">{$message_Getting_files}{$message_Success}</span>');
-		}else{
-			installationModule.td.html('<span style="color:red;">{$message_Getting_files}{$message_Error}</span>');
+			if (typeof installationModule.installhref != 'undefined'){
+				if (installationModule.isUpdate) {
+					installationModule.td.html("{$message_UpdatePre}{$message_Processing}");
+				} else {
+					installationModule.td.html("{$message_InstallPre}{$message_Processing}");
+				}
+				try
+				{
+					postRetry = 0;
+					$.ajax({
+						type: 'GET',
+						url: installationModule.installhref,
+						success: getConfirmFormSuccess,
+						error: ajaxFailed
+					});
+				}
+				catch ( e )
+				{
+					installationModule.td.html('<span style="color:red;">{$message_Error}</span>');
+					installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
+					updateModuleStatus();
+				}
+			} else {
+				installationModule.td.html('<span style="color:red;">{$message_Error}</span>');
+				installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
+				updateModuleStatus();
+			}
+		} else if (result == '{$message_btn_manage}' || result == '{$message_Getting_files}{$message_Success}') {
+			installationModule.td.html('<span style="color:green;">{$message_Success}</span>');
+			installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
+			updateModuleStatus();
+		} else {
+			var form = (postRetry < 3)? $(html).find('#contentBody form') : false;
+			if (form && form.length == 1) {
+				postRetry++;
+				getStoreConfirmFormSuccess(html);
+			} else {
+				installationModule.td.html('<span style="color:red;">{$message_Getting_files}{$message_Error}</span>');
+			}
 		}
 	}
 
@@ -541,6 +555,12 @@ jQuery(function($){
 	{
 		var form = $(html).find('#contentBody form');
 		var formdata = form.serialize();
+
+		if (installationModule.isUpdate) {
+			installationModule.td.html("{$message_Update}{$message_Processing}");
+		} else {
+			installationModule.td.html("{$message_Install}{$message_Processing}");
+		}
 
 		if (typeof installationModule.installhref != 'undefined'){
 			$.ajax({
@@ -566,7 +586,13 @@ jQuery(function($){
 		if (! error_result) {
 			installationModule.td.hide().html('<span style="color:green;">{$message_Success}</span>').show();
 		} else {
-			installationModule.td.html('<span style="color:red;">'+action+' {$message_Error}</span>');
+			var form = (postRetry < 3)? $(html).find('#contentBody form') : false;
+			if (form && form.length == 1) {
+				postRetry++;
+				getConfirmFormSuccess(html);
+			} else {
+				installationModule.td.html('<span style="color:red;">'+action+' {$message_Error}</span>');
+			}
 		}
 		installedModuleTotal = installInstallStatus(installedModuleTotal, installationModuleTotal);
 		updateModuleStatus();
