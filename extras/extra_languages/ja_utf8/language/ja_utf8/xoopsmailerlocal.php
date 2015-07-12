@@ -121,17 +121,18 @@ class XoopsMultiMailerLocal extends XoopsMultiMailer {
         }
     }
 
-    function AddrFormat($addr) {
+    function addrFormat($addr) {
         if(empty($addr[1])) {
-            $formatted = $addr[0];
+            $formatted = $this->secureHeader($addr[0]);
         } else {
-            $formatted = $this->EncodeHeader($addr[1], 'text') . " <" . 
-                         $addr[0] . ">";
+            $formatted = $this->EncodeHeader($this->secureHeader($addr[1]), 'text') . ' <' . $this->secureHeader(
+                $addr[0]
+            ) . '>';
         }
         return $formatted;
     }
 
-    function EncodeHeader ($str, $position = 'text', $force=false) {
+    function encodeHeader ($str, $position = 'text', $force=false) {
         if (version_compare(PHP_VERSION, '4.4.1')>0) {
             if (function_exists('mb_convert_encoding')) { //Use mb_string extension if exists.
                 if ($this->needs_encode || $force) {
