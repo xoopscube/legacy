@@ -54,9 +54,18 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 				@mb_regex_encoding(_CHARSET);
 			}
 			
-			ini_set( 'mbstring.http_input', 'pass');
-			ini_set( 'mbstring.http_output', 'pass');
 			ini_set( 'mbstring.substitute_character', 'none');
+			ini_set( 'default_charset', _CHARSET);
+			ini_set( 'mbstring.substitute_character', 'none');
+			if (version_compare(PHP_VERSION, '5.6', '<')) {
+				ini_set( 'mbstring.http_input', 'pass');
+				ini_set( 'mbstring.http_output', 'pass');
+			} else {
+				@ini_set( 'mbstring.internal_encoding', '');
+				@ini_set( 'mbstring.http_input', '');
+				@ini_set( 'mbstring.http_output', '');
+			}
+
 		}
 		#endif
 		
