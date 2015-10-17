@@ -18,6 +18,43 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
 		'106' => 'update106',
 		'200' => 'update200'
 	);
+
+	function _processScript()
+	{
+		parent::_processScript();
+		$cVersion =  $this->getCurrentVersion();
+		if ($cVersion < 204) {
+			$this->auto_update_session_blob();
+		}
+	}
+	
+	function auto_update_session_blob()
+	{
+		$root = XCube_Root::getSingleton();
+		$db = $root->mController->getDB();
+		$table = $db->prefix('session');
+	
+		$sql = 'SHOW COLUMNS FROM `'. $table .'` WHERE Field = \'sess_data\'';
+		if ($res = $db->query($sql)) {
+
+			$row = $db->fetchArray($res);
+
+			if (strtolower($row['Type']) !== 'blob') {
+			
+				$sql = 'ALTER TABLE `'. $table .'` CHANGE `sess_data` `sess_data` BLOB NOT NULL';
+
+				if ($db->query($sql))
+				{
+					$this->mLog->addReport('Table `'.$table.'` field `sess_data` changed type to BLOB.');
+				}
+				else
+				{
+					$this->mLog->addError('Type change error of table `'.$table.'` field `sess_data` to BLOB.');
+				}
+
+			}
+		}
+	}
 	
 	function update200()
 	{
