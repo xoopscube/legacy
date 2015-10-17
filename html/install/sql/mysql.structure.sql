@@ -463,7 +463,7 @@ CREATE TABLE session (
   sess_id varchar(32) NOT NULL default '',
   sess_updated int(10) unsigned NOT NULL default '0',
   sess_ip varchar(15) NOT NULL default '',
-  sess_data text NOT NULL,
+  sess_data blob NOT NULL,
   PRIMARY KEY  (sess_id),
   KEY updated (sess_updated)
 ) ENGINE=MyISAM;
