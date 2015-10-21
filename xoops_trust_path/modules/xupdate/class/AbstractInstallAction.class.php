@@ -296,6 +296,9 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
 						$xupdateFtpModuleInstall->options[$_key][] = $item;
 					}
 				}
+				if ($is_install) {
+					$this->options['no_update'] = array();
+				}
 			}
 			$_arr = $this->Xupdate->get('delete_dir');
 			if(!empty($_arr) && count($_arr)>0){
