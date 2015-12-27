@@ -930,6 +930,9 @@ class Legacy_Controller extends XCube_Controller
 		
 		if (is_object($resultRenderTarget)) {
 			$screenTarget->setAttribute('xoops_contents', $resultRenderTarget->getResult());
+		} else {
+			$screenTarget->setAttribute('xoops_contents', ob_get_contents());
+			ob_end_clean();
 		}
 
 		$screenTarget->setTemplateName($theme->get('dirname'));
