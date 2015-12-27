@@ -444,6 +444,7 @@ class Legacy_Controller extends XCube_Controller
 
 			unset($blockProcedure);
 		}
+		XCube_DelegateUtils::call('Legacy.SetupModuleContextSuccess', $this->mRoot->mContext->mModule->mXoopsModule);
 	}
 
 	function _parseUrl()
