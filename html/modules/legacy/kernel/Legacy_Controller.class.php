@@ -444,7 +444,7 @@ class Legacy_Controller extends XCube_Controller
 
 			unset($blockProcedure);
 		}
-		is_object($this->mRoot->mContext->mModule) && XCube_DelegateUtils::call('Legacy.SetupModuleContextSuccess', $this->mRoot->mContext->mModule->mXoopsModule);
+		XCube_DelegateUtils::call('Legacy.SetupModuleContextSuccess', is_object($this->mRoot->mContext->mModule)? $this->mRoot->mContext->mModule->mXoopsModule : null);
 	}
 
 	function _parseUrl()
