@@ -112,7 +112,7 @@ define('_AD_LEGACY_LANG_BLOCK_TOTAL', "Total de Blocs");
 define('_AD_LEGACY_LANG_BLOCK_INSTALLEDTOTAL', "Installé");
 define('_AD_LEGACY_LANG_BLOCK_UNINSTALLEDTOTAL', "Desinstallé");
 define('_AD_LEGACY_LANG_BLOCK_ACTIVETOTAL', "Actif");
-define('_AD_LEGACY_LANG_BLOCK_INACTIVETOTAL', "Inactif");	
+define('_AD_LEGACY_LANG_BLOCK_INACTIVETOTAL', "Inactif");
 define('_AD_LEGACY_LANG_BLOCK_UPDATECONF', "Confirmer la mise à jour du bloc");
 define('_AD_LEGACY_LANG_C_TYPE', "Type");
 define('_AD_LEGACY_LANG_CENTER_BLOCK_CENTER', "Bloc Centre-Centre");
@@ -263,7 +263,7 @@ define('_AD_LEGACY_LANG_SMILES_UPLOAD_FILE', "Archive Emoticones (archive tar.gz
 define('_AD_LEGACY_LANG_SMILES_UPLOAD_RESULT', "Résultat du téléchargement d'émoticones par lot");
 define('_AD_LEGACY_LANG_SMILES_TOTAL', "Total d'émoticones");
 define('_AD_LEGACY_LANG_SMILES_DISPLAYTOTAL', "Afficher émoticones");
-define('_AD_LEGACY_LANG_SMILES_NOTDISPLAYTOTAL', "Emoticones masqués");	
+define('_AD_LEGACY_LANG_SMILES_NOTDISPLAYTOTAL', "Emoticones masqués");
 define('_AD_LEGACY_LANG_SMILES_UPDATECONF', "Confirmer mise à jour d'émoticones");
 define('_AD_LEGACY_LANG_SHOW_FUNC', "Callback show function");
 define('_AD_LEGACY_LANG_SIDE', "Position");
@@ -461,5 +461,3 @@ define('_MD_AM_USEMYSESS', "Utiliser une session personnalisée");
 define('_MD_AM_USEMYSESSDSC', "Choisissez OUI pour personnaliser la session des valeurs liées.");
 define('_MD_AM_USESSL', "Utiliser le SSL pour se connecter ?");
 define('_MD_AM_YES', "Oui");
-
-?>

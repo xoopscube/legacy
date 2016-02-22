@@ -35,4 +35,4 @@ O XOOPS Cube � ideal para a cria��o <i>sites</i> de not�cias, intranets,
 <u><b>Instala��o:</b></u>
 Siga as indica��es deste guia e clique em <q>Prosseguir</q> para continuar.</div>";
 //
-?>
+;

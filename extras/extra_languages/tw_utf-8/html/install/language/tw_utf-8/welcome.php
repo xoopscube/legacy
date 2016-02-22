@@ -30,5 +30,4 @@ XOOPS Cube Legacy 的釋出依照<a href='https://github.com/xoopscube/legacy/bl
 <p>
 請依照安裝精靈指示安裝，安裝完成請移除install目錄以及將mainfile.php變更為唯讀。
 </p>
-"
-?>
+";

@@ -19,5 +19,3 @@ define('_AD_PROFILE_DESC_FIELD_FLOAT', 'Set the default value.');
 define('_AD_PROFILE_DESC_FIELD_TEXT', '"html" を選ぶと、Wysiwygエディタになります（Wysiwygエディタをインストールしてある場合）.
 "bbcode" を選ぶと、BBCode エディタになります。');
 define('_AD_PROFILE_DESC_FIELD_CATEGORY', 'カテゴリモジュールのディレクトリ名');
-
-?>

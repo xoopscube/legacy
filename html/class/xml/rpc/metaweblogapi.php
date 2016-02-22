@@ -29,13 +29,15 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 require_once XOOPS_ROOT_PATH.'/class/xml/rpc/xmlrpcapi.php';
 
-class MetaWeblogApi extends XoopsXmlRpcApi
+class metaweblogapi extends XoopsXmlRpcApi
 {
-    function MetaWeblogApi(&$params, &$response, &$module)
+    public function MetaWeblogApi(&$params, &$response, &$module)
     {
         $this->XoopsXmlRpcApi($params, $response, $module);
         $this->_setXoopsTagMap('storyid', 'postid');
@@ -44,10 +46,9 @@ class MetaWeblogApi extends XoopsXmlRpcApi
         //$this->_setXoopsTagMap('hometext', 'description');
     }
 
-    function newPost()
+    public function newPost()
     {
         if (!$this->_checkUser($this->params[1], $this->params[2])) {
-            
             $this->response->add(new XoopsXmlRpcFault(104));
         } else {
             if (!$fields =& $this->_getPostFields(null, $this->params[0])) {
@@ -59,7 +60,7 @@ class MetaWeblogApi extends XoopsXmlRpcApi
                     $maptag = $this->_getXoopsTagMap($tag);
                     if (!isset($this->params[3][$maptag])) {
                         $data = $this->_getTagCdata($this->params[3]['description'], $maptag, true);
-                        if (trim($data) == ''){
+                        if (trim($data) == '') {
                             if ($detail['required']) {
                                 $missing[] = $maptag;
                             }
@@ -73,7 +74,8 @@ class MetaWeblogApi extends XoopsXmlRpcApi
                 if (count($missing) > 0) {
                     $msg = '';
                     foreach ($missing as $m) {
-                        $msg .= '<'.$m.'> ';echo $m;
+                        $msg .= '<'.$m.'> ';
+                        echo $m;
                     }
                     $this->response->add(new XoopsXmlRpcFault(109, $msg));
                 } else {
@@ -100,7 +102,7 @@ class MetaWeblogApi extends XoopsXmlRpcApi
         }
     }
 
-    function editPost()
+    public function editPost()
     {
         if (!$this->_checkUser($this->params[1], $this->params[2])) {
             $this->response->add(new XoopsXmlRpcFault(104));
@@ -113,7 +115,7 @@ class MetaWeblogApi extends XoopsXmlRpcApi
                     $maptag = $this->_getXoopsTagMap($tag);
                     if (!isset($this->params[3][$maptag])) {
                         $data = $this->_getTagCdata($this->params[3]['description'], $maptag, true);
-                        if (trim($data) == ''){
+                        if (trim($data) == '') {
                             if ($detail['required']) {
                                 $missing[] = $tag;
                             }
@@ -154,7 +156,7 @@ class MetaWeblogApi extends XoopsXmlRpcApi
         }
     }
 
-    function getPost()
+    public function getPost()
     {
         if (!$this->_checkUser($this->params[1], $this->params[2])) {
             $this->response->add(new XoopsXmlRpcFault(104));
@@ -167,7 +169,7 @@ class MetaWeblogApi extends XoopsXmlRpcApi
                 $content = '';
                 foreach ($ret as $key => $value) {
                     $maptag = $this->_getXoopsTagMap($key);
-                    switch($maptag) {
+                    switch ($maptag) {
                     case 'userid':
                         $struct->add('userid', new XoopsXmlRpcString($value));
                         break;
@@ -195,7 +197,7 @@ class MetaWeblogApi extends XoopsXmlRpcApi
         }
     }
 
-    function getRecentPosts()
+    public function getRecentPosts()
     {
         if (!$this->_checkUser($this->params[1], $this->params[2])) {
             $this->response->add(new XoopsXmlRpcFault(104));
@@ -212,9 +214,9 @@ class MetaWeblogApi extends XoopsXmlRpcApi
                     for ($i = 0; $i < $count; $i++) {
                         $struct = new XoopsXmlRpcStruct();
                         $content = '';
-                        foreach($ret[$i] as $key => $value) {
+                        foreach ($ret[$i] as $key => $value) {
                             $maptag = $this->_getXoopsTagMap($key);
-                            switch($maptag) {
+                            switch ($maptag) {
                             case 'userid':
                                 $struct->add('userid', new XoopsXmlRpcString($value));
                                 break;
@@ -246,7 +248,7 @@ class MetaWeblogApi extends XoopsXmlRpcApi
         }
     }
 
-    function getCategories()
+    public function getCategories()
     {
         if (!$this->_checkUser($this->params[1], $this->params[2])) {
             $this->response->add(new XoopsXmlRpcFault(104));
@@ -274,4 +276,3 @@ class MetaWeblogApi extends XoopsXmlRpcApi
         }
     }
 }
-?>

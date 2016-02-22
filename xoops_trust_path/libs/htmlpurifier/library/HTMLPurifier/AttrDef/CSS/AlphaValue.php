@@ -32,3 +32,4 @@ class HTMLPurifier_AttrDef_CSS_AlphaValue extends HTMLPurifier_AttrDef_CSS_Numbe
 }
 
 // vim: et sw=4 sts=4
+

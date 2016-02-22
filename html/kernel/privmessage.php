@@ -29,7 +29,7 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 if (!defined('XOOPS_ROOT_PATH')) {
-	exit();
+    exit();
 }
 /**
  * {description}
@@ -44,10 +44,10 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class XoopsPrivmessage extends XoopsObject
 {
 
-/**
+    /**
  * constructor
  **/
-    function XoopsPrivmessage()
+    public function XoopsPrivmessage()
     {
         $this->XoopsObject();
         $this->initVar('msg_id', XOBJ_DTYPE_INT, null, false);
@@ -60,17 +60,17 @@ class XoopsPrivmessage extends XoopsObject
         $this->initVar('read_msg', XOBJ_DTYPE_INT, 0, false);
     }
     
-    function &getFromUser()
+    public function &getFromUser()
     {
-		$userHandler=xoops_gethandler('user');
-		$user=&$userHandler->get($this->getVar('from_userid'));
-		return $user;
-	}
-	
-	function isRead()
-	{
-		return $this->getVar('read_msg')==1 ? true : false;
-	}
+        $userHandler=xoops_gethandler('user');
+        $user=&$userHandler->get($this->getVar('from_userid'));
+        return $user;
+    }
+    
+    public function isRead()
+    {
+        return $this->getVar('read_msg')==1 ? true : false;
+    }
 }
 
 /**
@@ -89,12 +89,12 @@ class XoopsPrivmessage extends XoopsObject
 class XoopsPrivmessageHandler extends XoopsObjectHandler
 {
 
-/**
+    /**
  * Create a new {@link XoopsPrivmessage} object
  * @param 	bool 	$isNew 	Flag as "new"?
  * @return 	object
  **/
-    function &create($isNew = true)
+    public function &create($isNew = true)
     {
         $pm =new XoopsPrivmessage();
         if ($isNew) {
@@ -108,7 +108,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
  * @param 	int 	$id ID of the message
  * @return 	object
  **/
-    function &get($id)
+    public function &get($id)
     {
         $ret = false;
         $id = (int)$id;
@@ -117,9 +117,9 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $pm =new XoopsPrivmessage();
+                    $pm =new XoopsPrivmessage();
                     $pm->assignVars($this->db->fetchArray($result));
-                        $ret =& $pm;
+                    $ret =& $pm;
                 }
             }
         }
@@ -131,7 +131,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
  * @param 	object 	$pm		{@link XoopsPrivmessage} object
  * @return 	bool
  **/
-    function insert(&$pm,$force=false)
+    public function insert(&$pm, $force=false)
     {
         if (strtolower(get_class($pm)) != 'xoopsprivmessage') {
             return false;
@@ -160,8 +160,8 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
         if (empty($msg_id)) {
             $msg_id = $this->db->getInsertId();
         }
-		$pm->assignVar('msg_id', $msg_id);
-		
+        $pm->assignVar('msg_id', $msg_id);
+        
         return true;
     }
 
@@ -170,7 +170,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
  * @param 	object 	$pm 	{@link XoopsPrivmessage} object
  * @return 	bool
  **/
-    function delete(&$pm)
+    public function delete(&$pm)
     {
         if (strtolower(get_class($pm)) != 'xoopsprivmessage') {
             return false;
@@ -187,7 +187,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
  * @param 	bool 	$id_as_key 	use ID as key into the array?
  * @return 	array	Array of {@link XoopsPrivmessage} objects
  **/
-    function &getObjects($criteria = null, $id_as_key = false)
+    public function &getObjects($criteria = null, $id_as_key = false)
     {
         $ret = array();
         $limit = $start = 0;
@@ -206,50 +206,50 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
         while ($myrow = $this->db->fetchArray($result)) {
             $pm =new XoopsPrivmessage();
             $pm->assignVars($myrow);
-			if (!$id_as_key) {
-            	$ret[] =& $pm;
-			} else {
-				$ret[$myrow['msg_id']] =& $pm;
-			}
+            if (!$id_as_key) {
+                $ret[] =& $pm;
+            } else {
+                $ret[$myrow['msg_id']] =& $pm;
+            }
             unset($pm);
         }
         return $ret;
     }
     
-	/**
-	 * Return the collect of private message objects which appointed user received.
-	 * @param $uid int user id
-	 * @return array of XoopsPrivmessage.
-	 */
-    function &getObjectsByFromUid($uid,$start=0,$limit=20,$order = 'DESC')
+    /**
+     * Return the collect of private message objects which appointed user received.
+     * @param $uid int user id
+     * @return array of XoopsPrivmessage.
+     */
+    public function &getObjectsByFromUid($uid, $start=0, $limit=20, $order = 'DESC')
     {
-		$criteria=new Criteria('to_userid',$uid);
-		$criteria->addSort('msg_time', $order);
-		$criteria->setStart($start);
-		$criteria->setLimit($limit);
-		$ret =& $this->getObjects($criteria);
-		
-		return $ret;
-	}
-	
-	function getCountByFromUid($uid)
-	{
-		return $this->getCount(new Criteria('to_userid',$uid));
-	}
-	
-	function getCountUnreadByFromUid($uid)
-	{
-		$criteria = new CriteriaCompo(new Criteria('read_msg', 0));
-		$criteria->add(new Criteria('to_userid', $uid));
-		return $this->getCount($criteria);
-	}
+        $criteria=new Criteria('to_userid', $uid);
+        $criteria->addSort('msg_time', $order);
+        $criteria->setStart($start);
+        $criteria->setLimit($limit);
+        $ret =& $this->getObjects($criteria);
+        
+        return $ret;
+    }
+    
+    public function getCountByFromUid($uid)
+    {
+        return $this->getCount(new Criteria('to_userid', $uid));
+    }
+    
+    public function getCountUnreadByFromUid($uid)
+    {
+        $criteria = new CriteriaCompo(new Criteria('read_msg', 0));
+        $criteria->add(new Criteria('to_userid', $uid));
+        return $this->getCount($criteria);
+    }
 
 /**
  * Count message
  * @param 	object 	$criteria = null 	{@link CriteriaElement} object
  * @return 	int
  **/
-    function getCount($criteria = null)
+    public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('priv_msgs');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -267,16 +267,15 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
  * @param 	object 	$pm 	{@link XoopsPrivmessage} object
  * @return 	bool
  **/
-    function setRead(&$pm)
+    public function setRead(&$pm)
     {
         if (strtolower(get_class($pm)) != 'xoopsprivmessage') {
             return false;
         }
-		$sql = sprintf("UPDATE %s SET read_msg = 1 WHERE msg_id = %u", $this->db->prefix('priv_msgs'), $pm->getVar('msg_id'));
+        $sql = sprintf("UPDATE %s SET read_msg = 1 WHERE msg_id = %u", $this->db->prefix('priv_msgs'), $pm->getVar('msg_id'));
         if (!$this->db->queryF($sql)) {
             return false;
         }
         return true;
     }
 }
-?>

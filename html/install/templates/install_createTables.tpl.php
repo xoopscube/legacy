@@ -2,9 +2,11 @@
 <table>
 <tr>
 <td align="left">
-<?php foreach($this->v('reports') as $report) { ?>
+<?php foreach ($this->v('reports') as $report) {
+    ?>
     <?php echo $report ?><br />
-<?php } ?>
+<?php 
+} ?>
 </td>
 </tr>
 </table>

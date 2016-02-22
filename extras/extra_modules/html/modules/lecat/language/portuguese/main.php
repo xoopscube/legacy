@@ -6,4 +6,3 @@
 **/
 
 require_once XOOPS_TRUST_PATH . '/modules/lecat/language/portuguese/main.php';
-?>

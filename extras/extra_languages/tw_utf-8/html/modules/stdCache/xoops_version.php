@@ -29,5 +29,3 @@ $modversion['blocks'][1]['description'] = "清除區塊暫存";
 $modversion['blocks'][1]['class'] = "CacheclearBlock";
 $modversion['blocks'][1]['template'] = 'stdcache_block_cacheclear.html';
 $modversion['blocks'][1]['options'] = '60';
-
-?>

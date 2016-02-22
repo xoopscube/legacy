@@ -31,17 +31,15 @@ $modversion['templates'][5]['file'] = 'pm_delete_one.html';
 $modversion['templates'][5]['description'] = 'Display confirm deleting a message.';
 
 //Preference
-$modversion['config'][] = array (
-		"name" => "send_type",
-		"title" => "_MI_PM_CONF_SEND_TYPE",
-		"description" => "_MI_PM_CONF_SEND_TYPE_DESC",
-		"formtype" => "select",
-		"options" => array(_MI_PM_CONF_SEND_TYPE_COMBO=>0, _MI_PM_CONF_SEND_TYPE_TEXT=>1),
-		"valuetype" => "int",
-		"default" => 0
-	);
+$modversion['config'][] = array(
+        "name" => "send_type",
+        "title" => "_MI_PM_CONF_SEND_TYPE",
+        "description" => "_MI_PM_CONF_SEND_TYPE_DESC",
+        "formtype" => "select",
+        "options" => array(_MI_PM_CONF_SEND_TYPE_COMBO=>0, _MI_PM_CONF_SEND_TYPE_TEXT=>1),
+        "valuetype" => "int",
+        "default" => 0
+    );
 
 // Menu
 $modversion['hasMain'] = 0;
-
-?>

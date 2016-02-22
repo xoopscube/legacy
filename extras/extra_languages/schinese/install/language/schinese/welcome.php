@@ -30,5 +30,4 @@ XOOPS Cube 的释出依照<a href='http://www.gnu.org/copyleft/gpl.html' target='_bla
 <p>
 请依照安装向导指示安装，安装完成请移除install目录以及将mainfile.php变更为只读。
 </p>
-"
-?>
+";

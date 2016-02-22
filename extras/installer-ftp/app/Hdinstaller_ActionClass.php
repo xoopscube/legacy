@@ -25,9 +25,9 @@ class Hdinstaller_ActionClass extends Ethna_ActionClass
      *  @return string  Forward name.
      *                  (null if no errors. false if we have something wrong.)
      */
-    function authenticate()
+    public function authenticate()
     {
-		$this->backend->ctl->getI18N()->use_gettext = false;
+        $this->backend->ctl->getI18N()->use_gettext = false;
         return parent::authenticate();
     }
 
@@ -38,7 +38,7 @@ class Hdinstaller_ActionClass extends Ethna_ActionClass
      *  @return string  Forward name.
      *                  (null if no errors. false if we have something wrong.)
      */
-    function prepare()
+    public function prepare()
     {
         return parent::prepare();
     }
@@ -50,11 +50,10 @@ class Hdinstaller_ActionClass extends Ethna_ActionClass
      *  @return string  Forward name.
      *                  (we does not forward if returns null.)
      */
-    function perform()
+    public function perform()
     {
         return parent::perform();
     }
 }
 // }}}
-
-?>
+;

@@ -144,7 +144,6 @@ class HTMLPurifier_Lexer
         }
 
         return $inst;
-
     }
 
     // -- CONVENIENCE MEMBERS ---------------------------------------------
@@ -355,3 +354,4 @@ class HTMLPurifier_Lexer
 }
 
 // vim: et sw=4 sts=4
+

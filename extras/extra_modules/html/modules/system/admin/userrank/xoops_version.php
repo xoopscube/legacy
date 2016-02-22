@@ -42,4 +42,3 @@ $modversion['image'] = "userrank.gif";
 $modversion['hasAdmin'] = 1;
 $modversion['adminpath'] = "admin.php?fct=userrank";
 $modversion['category'] = XOOPS_SYSTEM_URANK;
-?>

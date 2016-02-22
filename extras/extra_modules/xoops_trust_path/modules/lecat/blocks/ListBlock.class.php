@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
@@ -20,21 +19,21 @@ class Lecat_ListBlock extends Legacy_BlockProcedure
      * 
      * @private
     **/
-    var $_mHandler = null;
+    public $_mHandler = null;
     
     /**
      * @var Lecat_CatObject
      * 
      * @private
     **/
-    var $_mObject = null;
+    public $_mObject = null;
     
     /**
      * @var string[]
      * 
      * @private
     **/
-    var $_mOptions = array();
+    public $_mOptions = array();
     
     /**
      * prepare
@@ -61,9 +60,9 @@ class Lecat_ListBlock extends Legacy_BlockProcedure
     **/
     protected function _parseOptions()
     {
-        $opts = explode('|',$this->_mBlock->get('options'));
+        $opts = explode('|', $this->_mBlock->get('options'));
         $this->_mOptions = array(
-            'parent_id'	=> (intval($opts[0])>0 ? intval($opts[0]) : 0),
+            'parent_id'    => (intval($opts[0])>0 ? intval($opts[0]) : 0),
         );
         return true;
     }
@@ -93,13 +92,12 @@ class Lecat_ListBlock extends Legacy_BlockProcedure
     **/
     public function getOptionForm()
     {
-        if(!$this->prepare())
-        {
+        if (!$this->prepare()) {
             return null;
         }
-		$form = '<label for="'. $this->_mBlock->get('dirname') .'block_parent_id">'._AD_LECAT_LANG_PARENT_ID.'</label>&nbsp;:
+        $form = '<label for="'. $this->_mBlock->get('dirname') .'block_parent_id">'._AD_LECAT_LANG_PARENT_ID.'</label>&nbsp;:
 		<input type="text" size="5" name="options[0]" id="'. $this->_mBlock->get('dirname') .'block_parent_id" value="'.$this->getBlockOption('parent_id').'" />';
-		return $form;
+        return $form;
     }
 
     /**
@@ -126,7 +124,7 @@ class Lecat_ListBlock extends Legacy_BlockProcedure
             $this->_mBlock->get('dirname')
         );
     
-        $this->_mHandler =& $asset->getObject('handler','cat');
+        $this->_mHandler =& $asset->getObject('handler', 'cat');
         $this->_mObject = $this->_mHandler->getTree($parentId);
 
         return true;
@@ -141,7 +139,7 @@ class Lecat_ListBlock extends Legacy_BlockProcedure
      * 
      * @public
     **/
-    function execute()
+    public function execute()
     {
         $root = XCube_Root::getSingleton();
     
@@ -154,5 +152,3 @@ class Lecat_ListBlock extends Legacy_BlockProcedure
         $renderSystem->renderBlock($render);
     }
 }
-
-?>

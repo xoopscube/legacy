@@ -23,5 +23,3 @@ $PHPMAILER_LANG["file_access"]          = 'ファイルにアクセスできま�
 $PHPMAILER_LANG["file_open"]            = 'ファイルエラー: ファイルを開けません: ';
 $PHPMAILER_LANG["encoding"]             = '不明なエンコーディング: ';
 $PHPMAILER_LANG["signing"]              = 'Signing Error: ';
-
-?>

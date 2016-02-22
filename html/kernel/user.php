@@ -29,7 +29,7 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 if (!defined('XOOPS_ROOT_PATH')) {
-	exit();
+    exit();
 }
 /**
  * Class for users 
@@ -43,72 +43,71 @@ class XoopsUser extends XoopsObject
     /**
      * Array of groups that user belongs to 
      * @var array
-	 * @access private
+     * @access private
      */
-    var $_groups = array();
+    public $_groups = array();
     /**
      * @var bool is the user admin? 
-	 * @access private
+     * @access private
      */
-    var $_isAdmin = null;
+    public $_isAdmin = null;
     /**
      * @var string user's rank
-	 * @access private
+     * @access private
      */
-    var $_rank = null;
+    public $_rank = null;
     /**
      * @var bool is the user online?
      * @access private
      */
-    var $_isOnline = null;
+    public $_isOnline = null;
 
     /**
      * constructor 
      * @param array $id Array of key-value-pairs to be assigned to the user. (for backward compatibility only)
      * @param int $id ID of the user to be loaded from the database.
      */
-    function XoopsUser($id = null)
+    public function XoopsUser($id = null)
     {
-		static $initVars;
-		if (isset($initVars)) {
-		    $this->vars = $initVars;
-		}
-		else{
-	        $this->initVar('uid', XOBJ_DTYPE_INT, null, false);
-	        $this->initVar('name', XOBJ_DTYPE_TXTBOX, null, false, 60);
-	        $this->initVar('uname', XOBJ_DTYPE_TXTBOX, null, true, 25);
-	        $this->initVar('email', XOBJ_DTYPE_TXTBOX, null, true, 256);
-	        $this->initVar('url', XOBJ_DTYPE_TXTBOX, null, false, 100);
-	        $this->initVar('user_avatar', XOBJ_DTYPE_TXTBOX, null, false, 30);
-	        $this->initVar('user_regdate', XOBJ_DTYPE_INT, null, false);
-	        $this->initVar('user_icq', XOBJ_DTYPE_TXTBOX, null, false, 15);
-	        $this->initVar('user_from', XOBJ_DTYPE_TXTBOX, null, false, 100);
-	        $this->initVar('user_sig', XOBJ_DTYPE_TXTAREA, null, false, null);
-	        $this->initVar('user_viewemail', XOBJ_DTYPE_INT, 0, false);
-	        $this->initVar('actkey', XOBJ_DTYPE_OTHER, null, false);
-	        $this->initVar('user_aim', XOBJ_DTYPE_TXTBOX, null, false, 18);
-	        $this->initVar('user_yim', XOBJ_DTYPE_TXTBOX, null, false, 25);
-	        $this->initVar('user_msnm', XOBJ_DTYPE_TXTBOX, null, false, 100);
-	        $this->initVar('pass', XOBJ_DTYPE_TXTBOX, null, false, 32);
-	        $this->initVar('posts', XOBJ_DTYPE_INT, null, false);
-	        $this->initVar('attachsig', XOBJ_DTYPE_INT, 0, false);
-	        $this->initVar('rank', XOBJ_DTYPE_INT, 0, false);
-	        $this->initVar('level', XOBJ_DTYPE_INT, 0, false);
-	        $this->initVar('theme', XOBJ_DTYPE_OTHER, null, false);
-	        $this->initVar('timezone_offset', XOBJ_DTYPE_OTHER, null, false);
-	        $this->initVar('last_login', XOBJ_DTYPE_INT, 0, false);
-	        $this->initVar('umode', XOBJ_DTYPE_OTHER, null, false);
-	        $this->initVar('uorder', XOBJ_DTYPE_INT, 1, false);
-	        // RMV-NOTIFY
-	        $this->initVar('notify_method', XOBJ_DTYPE_OTHER, 1, false);
-	        $this->initVar('notify_mode', XOBJ_DTYPE_OTHER, 0, false); 
-	        $this->initVar('user_occ', XOBJ_DTYPE_TXTBOX, null, false, 100);
-	        $this->initVar('bio', XOBJ_DTYPE_TXTAREA, null, false, null);
-	        $this->initVar('user_intrest', XOBJ_DTYPE_TXTBOX, null, false, 150);
-	        $this->initVar('user_mailok', XOBJ_DTYPE_INT, 1, false);
-			$initVars = $this->vars;
-		}
-	
+        static $initVars;
+        if (isset($initVars)) {
+            $this->vars = $initVars;
+        } else {
+            $this->initVar('uid', XOBJ_DTYPE_INT, null, false);
+            $this->initVar('name', XOBJ_DTYPE_TXTBOX, null, false, 60);
+            $this->initVar('uname', XOBJ_DTYPE_TXTBOX, null, true, 25);
+            $this->initVar('email', XOBJ_DTYPE_TXTBOX, null, true, 256);
+            $this->initVar('url', XOBJ_DTYPE_TXTBOX, null, false, 100);
+            $this->initVar('user_avatar', XOBJ_DTYPE_TXTBOX, null, false, 30);
+            $this->initVar('user_regdate', XOBJ_DTYPE_INT, null, false);
+            $this->initVar('user_icq', XOBJ_DTYPE_TXTBOX, null, false, 15);
+            $this->initVar('user_from', XOBJ_DTYPE_TXTBOX, null, false, 100);
+            $this->initVar('user_sig', XOBJ_DTYPE_TXTAREA, null, false, null);
+            $this->initVar('user_viewemail', XOBJ_DTYPE_INT, 0, false);
+            $this->initVar('actkey', XOBJ_DTYPE_OTHER, null, false);
+            $this->initVar('user_aim', XOBJ_DTYPE_TXTBOX, null, false, 18);
+            $this->initVar('user_yim', XOBJ_DTYPE_TXTBOX, null, false, 25);
+            $this->initVar('user_msnm', XOBJ_DTYPE_TXTBOX, null, false, 100);
+            $this->initVar('pass', XOBJ_DTYPE_TXTBOX, null, false, 32);
+            $this->initVar('posts', XOBJ_DTYPE_INT, null, false);
+            $this->initVar('attachsig', XOBJ_DTYPE_INT, 0, false);
+            $this->initVar('rank', XOBJ_DTYPE_INT, 0, false);
+            $this->initVar('level', XOBJ_DTYPE_INT, 0, false);
+            $this->initVar('theme', XOBJ_DTYPE_OTHER, null, false);
+            $this->initVar('timezone_offset', XOBJ_DTYPE_OTHER, null, false);
+            $this->initVar('last_login', XOBJ_DTYPE_INT, 0, false);
+            $this->initVar('umode', XOBJ_DTYPE_OTHER, null, false);
+            $this->initVar('uorder', XOBJ_DTYPE_INT, 1, false);
+            // RMV-NOTIFY
+            $this->initVar('notify_method', XOBJ_DTYPE_OTHER, 1, false);
+            $this->initVar('notify_mode', XOBJ_DTYPE_OTHER, 0, false);
+            $this->initVar('user_occ', XOBJ_DTYPE_TXTBOX, null, false, 100);
+            $this->initVar('bio', XOBJ_DTYPE_TXTAREA, null, false, null);
+            $this->initVar('user_intrest', XOBJ_DTYPE_TXTBOX, null, false, 150);
+            $this->initVar('user_mailok', XOBJ_DTYPE_INT, 1, false);
+            $initVars = $this->vars;
+        }
+    
         // for backward compatibility
         if (isset($id)) {
             if (is_array($id)) {
@@ -123,76 +122,79 @@ class XoopsUser extends XoopsObject
         }
     }
 
-	/**
-	 * check if the user is a guest user
+    /**
+     * check if the user is a guest user
      *
      * @return bool returns false
      *
      */
-	function isGuest()
-	{
-		return false;
-	}
+    public function isGuest()
+    {
+        return false;
+    }
 
 
     /**
      * Updated by Catzwolf 11 Jan 2004
-	 * find the username for a given ID
-	 * 
-	 * @param int $userid ID of the user to find
-	 * @param int $usereal switch for usename or realname
-	 * @return string name of the user. name for "anonymous" if not found.
+     * find the username for a given ID
+     * 
+     * @param int $userid ID of the user to find
+     * @param int $usereal switch for usename or realname
+     * @return string name of the user. name for "anonymous" if not found.
      */
-    static function getUnameFromId( $userid, $usereal = 0 )
+    public static function getUnameFromId($userid, $usereal = 0)
     {
-		$userid = (int)$userid;
-		$usereal = (int)$usereal;
-		if ($userid > 0) {
-			static $nameCache;
-			$field = $usereal?'name':'uname';
-			if (isset($nameCache[$field][$userid])) return $nameCache[$field][$userid];
+        $userid = (int)$userid;
+        $usereal = (int)$usereal;
+        if ($userid > 0) {
+            static $nameCache;
+            $field = $usereal?'name':'uname';
+            if (isset($nameCache[$field][$userid])) {
+                return $nameCache[$field][$userid];
+            }
             $member_handler = xoops_gethandler('member');
             $user =& $member_handler->getUser($userid);
             if (is_object($user)) {
-				return ($nameCache[$field][$userid] = $user->getVar($field));
-			}
+                return ($nameCache[$field][$userid] = $user->getVar($field));
+            }
         }
         return $GLOBALS['xoopsConfig']['anonymous'];
     }
     /**
      * increase the number of posts for the user 
      *
-	 * @deprecated
+     * @deprecated
      */
-    function incrementPost(){
+    public function incrementPost()
+    {
         $member_handler = xoops_gethandler('member');
         return $member_handler->updateUserByField($this, 'posts', $this->getVar('posts') + 1);
     }
-	/**
-	 * set the groups for the user
-	 * 
-	 * @param array $groupsArr Array of groups that user belongs to
-	 */
-	function setGroups($groupsArr)
-	{
-		if (is_array($groupsArr)) {
-			$this->_groups =& $groupsArr;
-		}
-	}
+    /**
+     * set the groups for the user
+     * 
+     * @param array $groupsArr Array of groups that user belongs to
+     */
+    public function setGroups($groupsArr)
+    {
+        if (is_array($groupsArr)) {
+            $this->_groups =& $groupsArr;
+        }
+    }
     /**
      * get the groups that the user belongs to
-	 * 
-	 * @param $bReget When this is true, this object gets group informations from DB again.
-	 *                This is a special method for the BASE(CMS core) functions, you should
-	 *                not use this proactivity.
-	 * @return array array of groups 
+     * 
+     * @param $bReget When this is true, this object gets group informations from DB again.
+     *                This is a special method for the BASE(CMS core) functions, you should
+     *                not use this proactivity.
+     * @return array array of groups 
      */
-    function getGroups($bReget = false)
+    public function getGroups($bReget = false)
     {
-    	if ($bReget) {
-    		unset($this->_groups);
-    	}
-    	
+        if ($bReget) {
+            unset($this->_groups);
+        }
+        
         if (empty($this->_groups)) {
             $member_handler = xoops_gethandler('member');
             $this->_groups = $member_handler->getGroupsByUser($this->getVar('uid'));
@@ -200,22 +202,22 @@ class XoopsUser extends XoopsObject
         return $this->_groups;
     }
     
-    function getNumGroups()
-	{
-		if (empty($this->_groups)) {
-			$this->getGroups();
-		}
-		return count($this->_groups);
-	}
+    public function getNumGroups()
+    {
+        if (empty($this->_groups)) {
+            $this->getGroups();
+        }
+        return count($this->_groups);
+    }
     
     
-	/**
-	 * alias for {@link getGroups()}
-	 * @see getGroups()
-	 * @return array array of groups
-	 * @deprecated
-	 */
-    function groups()
+    /**
+     * alias for {@link getGroups()}
+     * @see getGroups()
+     * @return array array of groups
+     * @deprecated
+     */
+    public function groups()
     {
         return $this->getGroups();
     }
@@ -227,24 +229,25 @@ class XoopsUser extends XoopsObject
      * - If you set the module_id to -1, it will return true if the user has admin rights for at least one module
      *
      * @param int $module_id check if user is admin of this module
-	 * @return bool is the user admin of that module?
+     * @return bool is the user admin of that module?
      */
-    function isAdmin( $module_id = null ) {
-		if ( $module_id === null ) {
-			global $xoopsModule;
-			$module_id = isset($xoopsModule) ? $xoopsModule->getVar( 'mid', 'n' ) : 1;
-		} elseif ( (int)$module_id < 1 ) {
-			$module_id = 0;
-		}
-		static $moduleperm_handler;
-		isset($moduleperm_handler) || $moduleperm_handler = xoops_gethandler('groupperm');
+    public function isAdmin($module_id = null)
+    {
+        if ($module_id === null) {
+            global $xoopsModule;
+            $module_id = isset($xoopsModule) ? $xoopsModule->getVar('mid', 'n') : 1;
+        } elseif ((int)$module_id < 1) {
+            $module_id = 0;
+        }
+        static $moduleperm_handler;
+        isset($moduleperm_handler) || $moduleperm_handler = xoops_gethandler('groupperm');
         return $moduleperm_handler->checkRight('module_admin', $module_id, $this->getGroups());
     }
     /**
      * get the user's rank
-	 * @return array array of rank ID and title
+     * @return array array of rank ID and title
      */
-    function rank()
+    public function rank()
     {
         if (!isset($this->_rank)) {
             $this->_rank = xoops_getrank($this->getVar('rank'), $this->getVar('posts'));
@@ -255,7 +258,7 @@ class XoopsUser extends XoopsObject
      * is the user activated?
      * @return bool
      */
-    function isActive()
+    public function isActive()
     {
         if ($this->getVar('level') == 0) {
             return false;
@@ -266,7 +269,7 @@ class XoopsUser extends XoopsObject
      * is the user currently logged in? 
      * @return bool
      */
-    function isOnline()
+    public function isOnline()
     {
         if (!isset($this->_isOnline)) {
             $onlinehandler = xoops_gethandler('online');
@@ -274,209 +277,210 @@ class XoopsUser extends XoopsObject
         }
         return $this->_isOnline;
     }
-	/**#@+
-	 * specialized wrapper for {@link XoopsObject::getVar()}
+    /**#@+
+     * specialized wrapper for {@link XoopsObject::getVar()}
      * 
      * kept for compatibility reasons.
      * 
- 	 * @see XoopsObject::getVar()
-	 * @deprecated
-	 */
+     * @see XoopsObject::getVar()
+     * @deprecated
+     */
     /**
      * get the users UID 
      * @return int
      */
-    function uid()
+    public function uid()
     {
         return $this->getVar('uid');
     }
     
     /**
      * get the users name
-	 * @param string $format format for the output, see {@link XoopsObject::getVar()}
-	 * @return string 
+     * @param string $format format for the output, see {@link XoopsObject::getVar()}
+     * @return string 
      */
-    function name($format="S")
+    public function name($format="S")
     {
         return $this->getVar("name", $format);
     }
     
     /**
      * get the user's uname
-	 * @param string $format format for the output, see {@link XoopsObject::getVar()}
+     * @param string $format format for the output, see {@link XoopsObject::getVar()}
      * @return string
      */
-    function uname($format="S")
+    public function uname($format="S")
     {
         return $this->getVar("uname", $format);
     }
     
     /**
      * get the user's email 
-	 * 
-	 * @param string $format format for the output, see {@link XoopsObject::getVar()}
-	 * @return string
+     * 
+     * @param string $format format for the output, see {@link XoopsObject::getVar()}
+     * @return string
      */
-    function email($format="S")
+    public function email($format="S")
     {
         return $this->getVar("email", $format);
     }
     
-    function url($format="S")
+    public function url($format="S")
     {
         return $this->getVar("url", $format);
     }
     
-    function user_avatar($format="S")
+    public function user_avatar($format="S")
     {
         return $this->getVar("user_avatar");
     }
     
-    function user_regdate()
+    public function user_regdate()
     {
         return $this->getVar("user_regdate");
     }
     
-    function user_icq($format="S")
+    public function user_icq($format="S")
     {
         return $this->getVar("user_icq", $format);
     }
     
-    function user_from($format="S")
+    public function user_from($format="S")
     {
         return $this->getVar("user_from", $format);
     }
-    function user_sig($format="S")
+    public function user_sig($format="S")
     {
         return $this->getVar("user_sig", $format);
     }
     
-    function user_viewemail()
+    public function user_viewemail()
     {
         return $this->getVar("user_viewemail");
     }
     
-    function actkey()
+    public function actkey()
     {
         return $this->getVar("actkey");
     }
     
-    function user_aim($format="S")
+    public function user_aim($format="S")
     {
         return $this->getVar("user_aim", $format);
     }
     
-    function user_yim($format="S")
+    public function user_yim($format="S")
     {
         return $this->getVar("user_yim", $format);
     }
     
-    function user_msnm($format="S")
+    public function user_msnm($format="S")
     {
         return $this->getVar("user_msnm", $format);
     }
     
-    function pass()
+    public function pass()
     {
         return $this->getVar("pass");
     }
     
-    function posts()
+    public function posts()
     {
         return $this->getVar("posts");
     }
     
-    function attachsig()
+    public function attachsig()
     {
         return $this->getVar("attachsig");
     }
     
-    function level()
+    public function level()
     {
         return $this->getVar("level");
     }
     
-    function theme()
+    public function theme()
     {
         return $this->getVar("theme");
     }
     
-    function timezone()
+    public function timezone()
     {
         return $this->getVar("timezone_offset");
     }
     
-    function umode()
+    public function umode()
     {
         return $this->getVar("umode");
     }
     
-    function uorder()
+    public function uorder()
     {
         return $this->getVar("uorder");
     }
    
     // RMV-NOTIFY
-    function notify_method()
+    public function notify_method()
     {
         return $this->getVar("notify_method");
     }
 
-    function notify_mode()
+    public function notify_mode()
     {
         return $this->getVar("notify_mode");
     }
  
-    function user_occ($format="S")
+    public function user_occ($format="S")
     {
         return $this->getVar("user_occ", $format);
     }
     
-    function bio($format="S")
+    public function bio($format="S")
     {
         return $this->getVar("bio", $format);
     }
     
-    function user_intrest($format="S")
+    public function user_intrest($format="S")
     {
         return $this->getVar("user_intrest", $format);
     }
     
-    function last_login()
+    public function last_login()
     {
         return $this->getVar("last_login");
     }
 
-	/**
-	 * This class has avatar in uploads directory. 
-	 * @return bool
-	 */
-	function hasAvatar()
-	{
-		$avatar=$this->getVar('user_avatar');
-		if(!$avatar || $avatar=="blank.gif")
-			return false;
+    /**
+     * This class has avatar in uploads directory. 
+     * @return bool
+     */
+    public function hasAvatar()
+    {
+        $avatar=$this->getVar('user_avatar');
+        if (!$avatar || $avatar=="blank.gif") {
+            return false;
+        }
 
-		$file=XOOPS_UPLOAD_PATH."/".$avatar;
-		return file_exists($file);
-	}
-	
-	/**
-	 *
-	 * Return Abs URL for displaying avatar.
-	 *
-	 * @return string
-	 */
-	function getAvatarUrl()
-	{
-		if($this->hasAvatar())
-			return XOOPS_UPLOAD_URL."/".$this->getVar('user_avatar');
+        $file=XOOPS_UPLOAD_PATH."/".$avatar;
+        return file_exists($file);
+    }
+    
+    /**
+     *
+     * Return Abs URL for displaying avatar.
+     *
+     * @return string
+     */
+    public function getAvatarUrl()
+    {
+        if ($this->hasAvatar()) {
+            return XOOPS_UPLOAD_URL."/".$this->getVar('user_avatar');
+        }
 
-		return null;
-	}
+        return null;
+    }
 
-	/**#@-*/
-	
+    /**#@-*/
 }
 
 /**
@@ -487,21 +491,21 @@ class XoopsUser extends XoopsObject
  */
 class XoopsGuestUser extends XoopsUser
 {
-	/**
-	 * check if the user is a guest user
+    /**
+     * check if the user is a guest user
      *
      * @return bool returns true
      *
      */
-	function isGuest()
-	{
-		return true;
-	}
-	
-	function getGroups($bReget = false)
-	{
-		return XOOPS_GROUP_ANONYMOUS;
-	}
+    public function isGuest()
+    {
+        return true;
+    }
+    
+    public function getGroups($bReget = false)
+    {
+        return XOOPS_GROUP_ANONYMOUS;
+    }
 }
 
 
@@ -523,7 +527,7 @@ class XoopsUserHandler extends XoopsObjectHandler
      * @param bool $isNew flag the new objects as "new"?
      * @return object XoopsUser
      */
-    function &create($isNew = true)
+    public function &create($isNew = true)
     {
         $user =new XoopsUser();
         if ($isNew) {
@@ -538,7 +542,7 @@ class XoopsUserHandler extends XoopsObjectHandler
      * @param int $id UID of the user
      * @return mixed reference to the {@link XoopsUser} object, FALSE if failed
      */
-    function &get($id)
+    public function &get($id)
     {
         $ret = false;
         if ((int)$id > 0) {
@@ -546,9 +550,9 @@ class XoopsUserHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $user =new XoopsUser();
+                    $user =new XoopsUser();
                     $user->assignVars($this->db->fetchArray($result));
-                        $ret =& $user;
+                    $ret =& $user;
                 }
             }
         }
@@ -562,7 +566,7 @@ class XoopsUserHandler extends XoopsObjectHandler
      * @param bool $force
      * @return bool FALSE if failed, TRUE if already present and unchanged or successful
      */
-    function insert(&$user, $force = false)
+    public function insert(&$user, $force = false)
     {
         if (strtolower(get_class($user)) != 'xoopsuser') {
             return false;
@@ -611,7 +615,7 @@ class XoopsUserHandler extends XoopsObjectHandler
      * @param bool $force
      * @return bool FALSE if failed.
      */
-    function delete(&$user, $force = false)
+    public function delete(&$user, $force = false)
     {
         if (strtolower(get_class($user)) != 'xoopsuser') {
             return false;
@@ -635,7 +639,7 @@ class XoopsUserHandler extends XoopsObjectHandler
      * @param bool $id_as_key use the UID as key for the array?
      * @return array array of {@link XoopsUser} objects
      */
-    function &getObjects($criteria = null, $id_as_key = false)
+    public function &getObjects($criteria = null, $id_as_key = false)
     {
         $ret = array();
         $limit = $start = 0;
@@ -665,28 +669,29 @@ class XoopsUserHandler extends XoopsObjectHandler
         return $ret;
     }
     
-	/**
-	 This method is called from pmlite.php. Wmm..
-	 Type:expand (no using criteria).
-	 @author minahito
-	 */
-    function &getObjectsByLevel($level=0)
+    /**
+     This method is called from pmlite.php. Wmm..
+     Type:expand (no using criteria).
+     @author minahito
+     */
+    public function &getObjectsByLevel($level=0)
     {
-		$ret=array();
-		$level=(int)$level;
-		$result = $this->db->query("SELECT * FROM ".$this->db->prefix("users")." WHERE level > $level ORDER BY uname");
-		if(!$result)
-			return $ret;
+        $ret=array();
+        $level=(int)$level;
+        $result = $this->db->query("SELECT * FROM ".$this->db->prefix("users")." WHERE level > $level ORDER BY uname");
+        if (!$result) {
+            return $ret;
+        }
 
-		while($myrow=$this->db->fetchArray($result)) {
-			$user=new XoopsUser();
-			$user->assignVars($myrow);
-			$ret[]=&$user;
-			unset($user);
-		}
-		
-		return $ret;
-	}
+        while ($myrow=$this->db->fetchArray($result)) {
+            $user=new XoopsUser();
+            $user->assignVars($myrow);
+            $ret[]=&$user;
+            unset($user);
+        }
+        
+        return $ret;
+    }
 
     /**
      * count users matching a condition
@@ -694,7 +699,7 @@ class XoopsUserHandler extends XoopsObjectHandler
      * @param object $criteria {@link CriteriaElement} to match
      * @return int count of users
      */
-    function getCount($criteria = null)
+    public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('users');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -714,7 +719,7 @@ class XoopsUserHandler extends XoopsObjectHandler
      * @param object $criteria {@link CriteriaElement} 
      * @return bool FALSE if deletion failed
      */
-    function deleteAll($criteria = null)
+    public function deleteAll($criteria = null)
     {
         $sql = 'DELETE FROM '.$this->db->prefix('users');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -726,7 +731,7 @@ class XoopsUserHandler extends XoopsObjectHandler
         return true;
     }
 
-	/**
+    /**
      * Change a value for users with a certain criteria
      * 
      * @param   string  $fieldname  Name of the field
@@ -735,7 +740,7 @@ class XoopsUserHandler extends XoopsObjectHandler
      * 
      * @return  bool
      **/
-    function updateAll($fieldname, $fieldvalue, $criteria = null)
+    public function updateAll($fieldname, $fieldvalue, $criteria = null)
     {
         $set_clause = is_numeric($fieldvalue) ? $fieldname.' = '.$fieldvalue : $fieldname.' = '.$this->db->quoteString($fieldvalue);
         $sql = 'UPDATE '.$this->db->prefix('users').' SET '.$set_clause;
@@ -748,4 +753,3 @@ class XoopsUserHandler extends XoopsObjectHandler
         return true;
     }
 }
-?>

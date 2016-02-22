@@ -17,44 +17,43 @@
 require_once dirname(__FILE__).".php";
 class Hdinstaller_Form_JsonCleanup1sttables extends Hdinstaller_Form_Json
 {
-	function __construct(&$c)
-	{
-		parent::__construct($c);
-		
-		$this->setDef(null, array(
-			'dbhost' => array(
-				'name' => _('DB Host'),
-				'type' => VAR_TYPE_STRING,
-				'form_type' => FORM_TYPE_TEXT,
-				'required' => true,
-				),
-			'dbname' => array(
-				'name' => _('DB name'),
-				'type' => VAR_TYPE_STRING,
-				'form_type' => FORM_TYPE_TEXT,
-				'required' => true,
-				),
-			'dbuname' => array(
-				'name' => _('DB Username'),
-				'type' => VAR_TYPE_STRING,
-				'form_type' => FORM_TYPE_PASSWORD,
-				'required' => true,
-				),
-			'dbpass' => array(
-				'name' => _('DB Password'),
-				'type' => VAR_TYPE_STRING,
-				'form_type' => FORM_TYPE_TEXT,
-				'required' => true,
-				),
-			'prefix' => array(
-				'name' => _('Database table prefix'),
-				'type' => VAR_TYPE_STRING,
-				'form_type' => FORM_TYPE_RADIO,
-				'required' => true,
-				),
-			));
-		
-	}
+    public function __construct(&$c)
+    {
+        parent::__construct($c);
+        
+        $this->setDef(null, array(
+            'dbhost' => array(
+                'name' => _('DB Host'),
+                'type' => VAR_TYPE_STRING,
+                'form_type' => FORM_TYPE_TEXT,
+                'required' => true,
+                ),
+            'dbname' => array(
+                'name' => _('DB name'),
+                'type' => VAR_TYPE_STRING,
+                'form_type' => FORM_TYPE_TEXT,
+                'required' => true,
+                ),
+            'dbuname' => array(
+                'name' => _('DB Username'),
+                'type' => VAR_TYPE_STRING,
+                'form_type' => FORM_TYPE_PASSWORD,
+                'required' => true,
+                ),
+            'dbpass' => array(
+                'name' => _('DB Password'),
+                'type' => VAR_TYPE_STRING,
+                'form_type' => FORM_TYPE_TEXT,
+                'required' => true,
+                ),
+            'prefix' => array(
+                'name' => _('Database table prefix'),
+                'type' => VAR_TYPE_STRING,
+                'form_type' => FORM_TYPE_RADIO,
+                'required' => true,
+                ),
+            ));
+    }
 }
 
 /**
@@ -72,11 +71,11 @@ class Hdinstaller_Action_JsonCleanup1sttables extends Hdinstaller_Action_Json
      *  @access    public
      *  @return    string  Forward name (null if no errors.)
      */
-    function prepare()
+    public function prepare()
     {
-		if ($this->af->validate() > 0){
-			return 'json_error_repeatxoops1ststep';
-		}
+        if ($this->af->validate() > 0) {
+            return 'json_error_repeatxoops1ststep';
+        }
     }
 
     /**
@@ -85,27 +84,27 @@ class Hdinstaller_Action_JsonCleanup1sttables extends Hdinstaller_Action_Json
      *  @access    public
      *  @return    string  Forward Name.
      */
-    function perform()
+    public function perform()
     {
-		/// clean up all table
-		$dbhost  = $this->af->get('dbhost');
-		$dbname  = $this->af->get('dbname');
-		$dbuname = $this->af->get('dbuname');
-		$dbpass  = $this->af->get('dbpass');
-		$prefix  = $this->af->get('prefix');
+        /// clean up all table
+        $dbhost  = $this->af->get('dbhost');
+        $dbname  = $this->af->get('dbname');
+        $dbuname = $this->af->get('dbuname');
+        $dbpass  = $this->af->get('dbpass');
+        $prefix  = $this->af->get('prefix');
 
-		/// remove all tables prefixed by $prefix
-		if (mysql_connect($dbhost, $dbuname, $dbpass)){
-			if (mysql_select_db($dbname)){
-				if ($ret = mysql_query("SHOW TABLES LIKE '${prefix}%'")){
-					while ($re = mysql_fetch_assoc($ret)){
-						$sql = sprintf('DROP TABLE %s', current($re));
-						mysql_query($sql);
-					}
-				}
-			}
-		}
-		
+        /// remove all tables prefixed by $prefix
+        if (mysql_connect($dbhost, $dbuname, $dbpass)) {
+            if (mysql_select_db($dbname)) {
+                if ($ret = mysql_query("SHOW TABLES LIKE '${prefix}%'")) {
+                    while ($re = mysql_fetch_assoc($ret)) {
+                        $sql = sprintf('DROP TABLE %s', current($re));
+                        mysql_query($sql);
+                    }
+                }
+            }
+        }
+        
         return 'json_cleanup1sttables';
     }
 }

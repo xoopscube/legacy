@@ -28,4 +28,3 @@ define('_MI_MESSAGE_BLOCK_NAME', '新着ブロック');
 define('_MI_MESSAGE_INSTALL_ERROR', 'このモジュールはPHP5.0以上でないと動作しません。');
 define('_MI_MESSAGE_INSTALL_ERROR2', 'XCL付属のPMモジュールはアンインストールしてください。');
 define('_MI_MESSAGE_DESC', 'このモジュールは、プライベートメッセージ機能を提供します。');
-?>

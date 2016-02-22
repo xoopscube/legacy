@@ -15,5 +15,4 @@
  *
  *  Example:
  *  define('E_LOGIN_INVALID', 256);
- */
-?>
+ */;

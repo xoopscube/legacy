@@ -86,5 +86,3 @@ define('_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_WARNING', "서버에 {0} 디렉토리가 남�
 define('_MD_LEGACY_MESSAGE_LOGGEDOUT', "로그아웃되었습니다.");
 define('_MD_LEGACY_MESSAGE_LOGIN_SUCCESS', "{0}님 어서오세요! 로그인처리중입니다.");
 define('_MD_LEGACY_MESSAGE_THANKYOUFORVISIT', "저희 사이트를 방문해 주셔서 감사합니다.");
-
-?>

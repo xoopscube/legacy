@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -93,53 +92,42 @@ class Lecat_Installer
     private function _installModule()
     {
         $moduleHandler =& Lecat_Utils::getXoopsHandler('module');
-        if(!$moduleHandler->insert($this->_mXoopsModule))
-        {
+        if (!$moduleHandler->insert($this->_mXoopsModule)) {
             $this->mLog->addError(_MI_LECAT_INSTALL_ERROR_MODULE_INSTALLED);
             return false;
         }
     
         $gpermHandler =& Lecat_Utils::getXoopsHandler('groupperm');
     
-        if($this->_mXoopsModule->getInfo('hasAdmin'))
-        {
+        if ($this->_mXoopsModule->getInfo('hasAdmin')) {
             $adminPerm =& $this->_createPermission(XOOPS_GROUP_ADMIN);
-            $adminPerm->setVar('gperm_name','module_admin');
-            if(!$gpermHandler->insert($adminPerm))
-            {
+            $adminPerm->setVar('gperm_name', 'module_admin');
+            if (!$gpermHandler->insert($adminPerm)) {
                 $this->mLog->addError(_MI_LECAT_INSTALL_ERROR_PERM_ADMIN_SET);
             }
         }
     
-        if($this->_mXoopsModule->getInfo('hasMain'))
-        {
-            if($this->_mXoopsModule->getInfo('read_any'))
-            {
-                    $memberHandler =& Lecat_Utils::getXoopsHandler('member');
-                    $groupObjects =& $memberHandler->getGroups();
-                    foreach($groupObjects as $group)
-                    {
-                        $readPerm =& $this->_createPermission($group->getVar('groupid'));
-                        $readPerm->setVar('gperm_name','module_read');
-                        if(!$gpermHandler->insert($readPerm))
-                        {
-                            $this->mLog->addError(_MI_LECAT_INSTALL_ERROR_PERM_READ_SET);
-                        }
+        if ($this->_mXoopsModule->getInfo('hasMain')) {
+            if ($this->_mXoopsModule->getInfo('read_any')) {
+                $memberHandler =& Lecat_Utils::getXoopsHandler('member');
+                $groupObjects =& $memberHandler->getGroups();
+                foreach ($groupObjects as $group) {
+                    $readPerm =& $this->_createPermission($group->getVar('groupid'));
+                    $readPerm->setVar('gperm_name', 'module_read');
+                    if (!$gpermHandler->insert($readPerm)) {
+                        $this->mLog->addError(_MI_LECAT_INSTALL_ERROR_PERM_READ_SET);
                     }
-            }
-            else
-            {
-                    $root =& XCube_Root::getSingleton();
-                    $groups = $root->mContext->mXoopsUser->getGroups();
-                    foreach($groups as $group)
-                    {
-                        $readPerm =& $this->_createPermission($group);
-                        $readPerm->setVar('gperm_name','module_read');
-                        if(!$gpermHandler->insert($readPerm))
-                        {
-                            $this->mLog->addError(_MI_LECAT_INSTALL_ERROR_PERM_READ_SET);
-                        }
+                }
+            } else {
+                $root =& XCube_Root::getSingleton();
+                $groups = $root->mContext->mXoopsUser->getGroups();
+                foreach ($groups as $group) {
+                    $readPerm =& $this->_createPermission($group);
+                    $readPerm->setVar('gperm_name', 'module_read');
+                    if (!$gpermHandler->insert($readPerm)) {
+                        $this->mLog->addError(_MI_LECAT_INSTALL_ERROR_PERM_READ_SET);
                     }
+                }
             }
         }
     
@@ -157,9 +145,9 @@ class Lecat_Installer
     {
         $gpermHandler =& Lecat_Utils::getXoopsHandler('groupperm');
         $perm =& $gpermHandler->create();
-        $perm->setVar('gperm_groupid',$group);
-        $perm->setVar('gperm_itemid',$this->_mXoopsModule->getVar('mid'));
-        $perm->setVar('gperm_modid',1);
+        $perm->setVar('gperm_groupid', $group);
+        $perm->setVar('gperm_itemid', $this->_mXoopsModule->getVar('mid'));
+        $perm->setVar('gperm_modid', 1);
     
         return $perm;
     }
@@ -218,26 +206,21 @@ class Lecat_Installer
     **/
     private function _processReport()
     {
-        if(!$this->mLog->hasError())
-        {
+        if (!$this->mLog->hasError()) {
             $this->mLog->add(
                 XCube_Utils::formatString(
                     _MI_LECAT_INSTALL_MSG_MODULE_INSTALLED,
                     $this->_mXoopsModule->getInfo('name')
                 )
             );
-        }
-        else if(is_object($this->_mXoopsModule))
-        {
+        } elseif (is_object($this->_mXoopsModule)) {
             $this->mLog->addError(
                 XCube_Utils::formatString(
                     _MI_LECAT_INSTALL_ERROR_MODULE_INSTALLED,
                     $this->_mXoopsModule->getInfo('name')
                 )
             );
-        }
-        else
-        {
+        } else {
             $this->mLog->addError(
                 XCube_Utils::formatString(
                     _MI_LECAT_INSTALL_ERROR_MODULE_INSTALLED,
@@ -257,36 +240,31 @@ class Lecat_Installer
     public function executeInstall()
     {
         $this->_installTables();
-        if(!$this->_mForceMode && $this->mLog->hasError())
-        {
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
     
         $this->_installModule();
-        if(!$this->_mForceMode && $this->mLog->hasError())
-        {
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
     
         $this->_installTemplates();
-        if(!$this->_mForceMode && $this->mLog->hasError())
-        {
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
     
         $this->_installBlocks();
-        if(!$this->_mForceMode && $this->mLog->hasError())
-        {
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
     
         $this->_installPreferences();
-        if(!$this->_mForceMode && $this->mLog->hasError())
-        {
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
@@ -295,5 +273,3 @@ class Lecat_Installer
         return true;
     }
 }
-
-?>

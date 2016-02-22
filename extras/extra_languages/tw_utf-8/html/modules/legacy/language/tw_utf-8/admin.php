@@ -360,5 +360,3 @@ define('_MD_AM_USEMYSESS', "使用定製的Session？");
 define('_MD_AM_USEMYSESSDSC', "自行設置Session的值");
 define('_MD_AM_USESSL', "使用 SSL 登入？");
 define('_MD_AM_YES', "是");
-
-?>

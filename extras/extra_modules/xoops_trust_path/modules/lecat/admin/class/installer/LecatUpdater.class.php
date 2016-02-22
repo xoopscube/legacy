@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -89,17 +88,17 @@ class Lecat_Updater
         $cloneModule =& $moduleHandler->create();
     
         $cloneModule->unsetNew();
-        $cloneModule->set('mid',$module->get('mid'));
-        $cloneModule->set('name',$module->get('name'));
-        $cloneModule->set('version',$module->get('version'));
-        $cloneModule->set('last_update',$module->get('last_update'));
-        $cloneModule->set('weight',$module->get('weight'));
-        $cloneModule->set('isactive',$module->get('isactive'));
-        $cloneModule->set('dirname',$module->get('dirname'));
+        $cloneModule->set('mid', $module->get('mid'));
+        $cloneModule->set('name', $module->get('name'));
+        $cloneModule->set('version', $module->get('version'));
+        $cloneModule->set('last_update', $module->get('last_update'));
+        $cloneModule->set('weight', $module->get('weight'));
+        $cloneModule->set('isactive', $module->get('isactive'));
+        $cloneModule->set('dirname', $module->get('dirname'));
         //$cloneModule->set('trust_dirname',$module->get('trust_dirname'));
-        $cloneModule->set('hasmain',$module->get('hasmain'));
-        $cloneModule->set('hasadmin',$module->get('hasadmin'));
-        $cloneModule->set('hasconfig',$module->get('hasconfig'));
+        $cloneModule->set('hasmain', $module->get('hasmain'));
+        $cloneModule->set('hasadmin', $module->get('hasadmin'));
+        $cloneModule->set('hasconfig', $module->get('hasconfig'));
     
         $this->_mCurrentXoopsModule =& $cloneModule;
         $this->_mCurrentVersion = $cloneModule->get('version');
@@ -141,10 +140,8 @@ class Lecat_Updater
     {
         ksort($this->_mMileStone);
     
-        foreach($this->_mMileStone as $tVer => $tMethod)
-        {
-            if($tVer >= $this->getCurrentVersion())
-            {
+        foreach ($this->_mMileStone as $tVer => $tMethod) {
+            if ($tVer >= $this->getCurrentVersion()) {
                 return intval($tVer);
             }
         }
@@ -163,10 +160,8 @@ class Lecat_Updater
     {
         ksort($this->_mMileStone);
     
-        foreach($this->_mMileStone as $tVer => $tMethod)
-        {
-            if($tVer >= $this->getCurrentVersion() && is_callable(array($this,$tMethod)))
-            {
+        foreach ($this->_mMileStone as $tVer => $tMethod) {
+            if ($tVer >= $this->getCurrentVersion() && is_callable(array($this, $tMethod))) {
                 return true;
             }
         }
@@ -195,8 +190,8 @@ class Lecat_Updater
     **/
     private function _updateModuleTemplates()
     {
-        Lecat_InstallUtils::uninstallAllOfModuleTemplates($this->_mTargetXoopsModule,$this->mLog);
-        Lecat_InstallUtils::installAllOfModuleTemplates($this->_mTargetXoopsModule,$this->mLog);
+        Lecat_InstallUtils::uninstallAllOfModuleTemplates($this->_mTargetXoopsModule, $this->mLog);
+        Lecat_InstallUtils::installAllOfModuleTemplates($this->_mTargetXoopsModule, $this->mLog);
     }
 
     /**
@@ -208,7 +203,7 @@ class Lecat_Updater
     **/
     private function _updateBlocks()
     {
-        Lecat_InstallUtils::smartUpdateAllOfBlocks($this->_mTargetXoopsModule,$this->mLog);
+        Lecat_InstallUtils::smartUpdateAllOfBlocks($this->_mTargetXoopsModule, $this->mLog);
     }
 
     /**
@@ -220,7 +215,7 @@ class Lecat_Updater
     **/
     private function _updatePreferences()
     {
-        Lecat_InstallUtils::smartUpdateAllOfConfigs($this->_mTargetXoopsModule,$this->mLog);
+        Lecat_InstallUtils::smartUpdateAllOfConfigs($this->_mTargetXoopsModule, $this->mLog);
     }
 
     /**
@@ -248,10 +243,8 @@ class Lecat_Updater
     {
         ksort($this->_mMileStone);
     
-        foreach($this->_mMileStone as $tVer => $tMethod)
-        {
-            if($tVer >= $this->getCurrentVersion() && is_callable(array($this,$tMethod)))
-            {
+        foreach ($this->_mMileStone as $tVer => $tMethod) {
+            if ($tVer >= $this->getCurrentVersion() && is_callable(array($this, $tMethod))) {
                 return $this->$tMethod();
             }
         }
@@ -271,29 +264,25 @@ class Lecat_Updater
         $this->mLog->addReport(_MI_LECAT_INSTALL_MSG_UPDATE_STARTED);
     
         $this->_updateModuleTemplates();
-        if(!$this->_mForceMode && $this->mLog->hasError())
-        {
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
     
         $this->_updateBlocks();
-        if(!$this->_mForceMode && $this->mLog->hasError())
-        {
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
     
         $this->_updatePreferences();
-        if(!$this->_mForceMode && $this->mLog->hasError())
-        {
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
     
         $this->saveXoopsModule($this->_mTargetXoopsModule);
-        if(!$this->_mForceMode && $this->mLog->hasError())
-        {
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
@@ -314,12 +303,9 @@ class Lecat_Updater
     {
         $moduleHandler =& Lecat_Utils::getXoopsHandler('module');
     
-        if($moduleHandler->insert($module))
-        {
+        if ($moduleHandler->insert($module)) {
             $this->mLog->addReport(_MI_LECAT_INSTALL_MSG_UPDATE_FINISHED);
-        }
-        else
-        {
+        } else {
             $this->mLog->addError(_MI_LECAT_INSTALL_ERROR_UPDATE_FINISHED);
         }
     }
@@ -333,17 +319,14 @@ class Lecat_Updater
     **/
     private function _processReport()
     {
-        if(!$this->mLog->hasError())
-        {
+        if (!$this->mLog->hasError()) {
             $this->mLog->add(
                 XCube_Utils::formatString(
                     _MI_LECAT_INSTALL_MSG_MODULE_UPDATED,
                     $this->_mCurrentXoopsModule->get('name')
                 )
             );
-        }
-        else
-        {
+        } else {
             $this->mLog->add(
                 XCube_Utils::formatString(
                     _MI_LECAT_INSTALL_ERROR_MODULE_UPDATED,
@@ -353,5 +336,3 @@ class Lecat_Updater
         }
     }
 }
-
-?>

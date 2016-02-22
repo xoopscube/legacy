@@ -140,3 +140,4 @@ class HTMLPurifier_DoctypeRegistry
 }
 
 // vim: et sw=4 sts=4
+

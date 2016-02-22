@@ -8,28 +8,28 @@
  *
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 class LegacyBlock_module_linkObject extends XoopsSimpleObject
 {
-	function LegacyBlock_module_linkObject()
-	{
-		static $initVars;
-		if (isset($initVars)) {
-			$this->mVars = $initVars;
-			return;
-		}
-		$this->initVar('block_id', XOBJ_DTYPE_INT, '0', true);
-		$this->initVar('module_id', XOBJ_DTYPE_INT, '0', true);
-		$initVars=$this->mVars;
-	}
+    public function LegacyBlock_module_linkObject()
+    {
+        static $initVars;
+        if (isset($initVars)) {
+            $this->mVars = $initVars;
+            return;
+        }
+        $this->initVar('block_id', XOBJ_DTYPE_INT, '0', true);
+        $this->initVar('module_id', XOBJ_DTYPE_INT, '0', true);
+        $initVars=$this->mVars;
+    }
 }
 
 class LegacyBlock_module_linkHandler extends XoopsObjectGenericHandler
 {
-	var $mTable = "block_module_link";
-	var $mPrimary = "block_id";
-	var $mClass = "LegacyBlock_module_linkObject";
+    public $mTable = "block_module_link";
+    public $mPrimary = "block_id";
+    public $mClass = "LegacyBlock_module_linkObject";
 }
-
-?>

@@ -17,5 +17,4 @@ W3C=NG
 
 License="GPL"
 
-*/
-?>
+*/;

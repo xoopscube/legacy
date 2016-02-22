@@ -454,5 +454,3 @@ define('_AD_LEGACY_ERROR_COULD_NOT_ADD_TRUST_DIRNAME', 'trust_dirname フィー�
 define('_AD_LEGACY_MESSAGE_ADD_TRUST_DIRNAME_SUCCESSFUL', '{0} テーブルへの trust_dirname が追加されました。');
 define('_MD_AM_COOLURI', 'Cool URI を利用する');
 define('_MD_AM_COOLURIDSC', 'お使いのサーバが apache の mod_reweite に対応していれば、このオプションを使うことが出来ます。mod_rewrite による .htaccess の設定については、<a href="'.XOOPS_URL.'/modules/legacyRender/admin/index.php?action=HtaccessView">.htaccess 設定</a> を参照ください');
-
-?>

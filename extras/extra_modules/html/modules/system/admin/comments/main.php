@@ -30,7 +30,7 @@
 // ------------------------------------------------------------------------- //
 
 
-if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->getVar('mid')) ) {
+if (!is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->getVar('mid'))) {
     exit("Access Denied");
 } else {
     $op = 'list';
@@ -158,6 +158,4 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
     default:
         break;
     }
-
 }
-?>

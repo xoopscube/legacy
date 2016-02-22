@@ -31,4 +31,3 @@ define("_CAL_DRAGMOVE", "ドラッグして移動");
 define("_CAL_TODAY", "今日");
 define("_CAL_DISPM1ST", "月曜日から表示");
 define("_CAL_DISPS1ST", "日曜日から表示");
-?>

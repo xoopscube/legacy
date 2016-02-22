@@ -113,5 +113,3 @@ define('_MD_USER_MESSAGE_SURETODEL', "您確定要刪除您的帳號?");
 define('_MD_USER_MESSAGE_USER_DELETE_SUCCESS', "您的帳號已刪除。");
 define('_MD_USER_MESSAGE_YOURREGISTERED', "您已經完成註冊，系統已發出一封帳號啟用信請依照信件內容指示啟用您的帳號。");
 define('_MD_USER_MESSAGE_YOURREGISTERED2', "您已經完成註冊， 請等待系統管理員啟用您的帳號，當您帳號啟用時會收到通知信，但會需要一點時間，請耐心等候。");
-
-?>

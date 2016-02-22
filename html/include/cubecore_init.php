@@ -8,9 +8,12 @@
  *
  */
 
-if (!defined("XOOPS_MAINFILE_INCLUDED")) exit();
-if (!defined('XOOPS_TRUST_PATH')){
-	echo "XOOPS_TRUST_PATH is required after XOOPS Cube Legacy 2.2 in mainfile.php";exit();
+if (!defined("XOOPS_MAINFILE_INCLUDED")) {
+    exit();
+}
+if (!defined('XOOPS_TRUST_PATH')) {
+    echo "XOOPS_TRUST_PATH is required after XOOPS Cube Legacy 2.2 in mainfile.php";
+    exit();
 }
 
 
@@ -46,5 +49,3 @@ define('XCUBE_SITE_CUSTOM_FILE_SALT', XOOPS_TRUST_PATH . '/settings/site_custom_
 $root=&XCube_Root::getSingleton();
 $root->loadSiteConfig(XCUBE_SITE_SETTING_FILE, XCUBE_SITE_CUSTOM_FILE, XCUBE_SITE_CUSTOM_FILE_SALT);
 $root->setupController();
-
-?>

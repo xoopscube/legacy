@@ -43,25 +43,25 @@ class Ethna_AppManager
      */
 
     /** @var    object  Ethna_Backend       backendオブジェクト */
-    var $backend;
+    public $backend;
 
     /** @var    object  Ethna_Config        設定オブジェクト */
-    var $config;
+    public $config;
 
     /**  @var    object  Ethna_DB      DBオブジェクト */
-    var $db;
+    public $db;
 
     /** @var    object  Ethna_I18N          i18nオブジェクト */
-    var $i18n;
+    public $i18n;
 
     /** @var    object  Ethna_ActionForm    アクションフォームオブジェクト */
-    var $action_form;
+    public $action_form;
 
     /** @var    object  Ethna_ActionForm    アクションフォームオブジェクト(省略形) */
-    var $af;
+    public $af;
 
     /** @var    object  Ethna_Session       セッションオブジェクト */
-    var $session;
+    public $session;
 
     /**#@-*/
 
@@ -71,7 +71,7 @@ class Ethna_AppManager
      *  @access public
      *  @param  object  Ethna_Backend   &$backend   backendオブジェクト
      */
-    function Ethna_AppManager(&$backend)
+    public function Ethna_AppManager(&$backend)
     {
         // 基本オブジェクトの設定
         $this->backend =& $backend;
@@ -97,7 +97,7 @@ class Ethna_AppManager
      *  @param  string  $attr_name  属性の名前(変数名)
      *  @return array   属性値一覧
      */
-    function getAttrList($attr_name)
+    public function getAttrList($attr_name)
     {
         $varname = $attr_name . "_list";
         return $this->$varname;
@@ -111,7 +111,7 @@ class Ethna_AppManager
      *  @param  mixed   $id         属性ID
      *  @return string  属性の表示名
      */
-    function getAttrName($attr_name, $id)
+    public function getAttrName($attr_name, $id)
     {
         $varname = $attr_name . "_list";
         if (is_array($this->$varname) == false) {
@@ -132,7 +132,7 @@ class Ethna_AppManager
      *  @param  mixed   $id         属性ID
      *  @return string  属性の詳細表示名
      */
-    function getAttrLongName($attr_name, $id)
+    public function getAttrLongName($attr_name, $id)
     {
         $varname = $attr_name . "_list";
         if (is_array($this->$varname) == false) {
@@ -158,7 +158,7 @@ class Ethna_AppManager
      *  @return mixed   array(0 => 検索条件にマッチした件数, 1 => $offset, $countにより指定された件数のオブジェクトID一覧) Ethna_Error:エラー
      *  @todo   パフォーマンス対策(1オブジェクトの占有メモリが多い場合)
      */
-    function getObjectList($class, $filter = null,
+    public function getObjectList($class, $filter = null,
                            $order = null, $offset = null, $count = null)
     {
         global $_ETHNA_APP_MANAGER_OL_CACHE;
@@ -211,7 +211,7 @@ class Ethna_AppManager
      *                        1 => $offset, $countにより指定された件数のプロパティ一覧)
      *                  Ethna_Error:エラー
      */
-    function getObjectPropList($class, $keys = null, $filter = null,
+    public function getObjectPropList($class, $keys = null, $filter = null,
                                $order = null, $offset = null, $count = null)
     {
         global $_ETHNA_APP_MANAGER_OPL_CACHE;
@@ -250,7 +250,7 @@ class Ethna_AppManager
      *  @param  array   $filter     検索条件
      *  @return mixed   array:プロパティ一覧 null:エントリなし Ethna_Error:エラー
      */
-    function getObjectProp($class, $keys = null, $filter = null)
+    public function getObjectProp($class, $keys = null, $filter = null)
     {
         global $_ETHNA_APP_MANAGER_OP_CACHE;
 
@@ -278,4 +278,4 @@ class Ethna_AppManager
     }
 }
 // }}}
-?>
+;

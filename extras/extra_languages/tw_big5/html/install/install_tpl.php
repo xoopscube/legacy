@@ -33,7 +33,10 @@
 <tr>
 <td class="leftcolumn"><img src="img/left_bg.gif" alt="Cubekun" /></td>
 <td>
-<?php if(!empty($title)) { ?><h3><?php echo $title; ?></h3><?php } ?>
+<?php if (!empty($title)) {
+    ?><h3><?php echo $title;
+    ?></h3><?php 
+} ?>
 
 
 <div class="maincontents"><?php echo $content; ?></div>

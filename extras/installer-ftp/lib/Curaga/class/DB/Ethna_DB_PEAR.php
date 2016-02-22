@@ -26,29 +26,29 @@ class Ethna_DB_PEAR extends Ethna_DB
      */
 
     /** @var    object  DB              PEAR DBオブジェクト */
-    var $db;
+    public $db;
 
     /** @var    array   トランザクション管理スタック */
-    var $transaction = array();
+    public $transaction = array();
 
 
     /** @var    object  Ethna_Logger    ログオブジェクト */
-    var $logger;
+    public $logger;
 
     /** @var    object  Ethna_AppSQL    SQLオブジェクト */
-    var $sql;
+    public $sql;
 
     /** @var    string  DBタイプ(mysql, pgsql...) */
-    var $type;
+    public $type;
 
     /** @var    string  DSN */
-    var $dsn;
+    public $dsn;
 
     /** @var    array   DSN (DB::parseDSN()の返り値) */
-    var $dsninfo;
+    public $dsninfo;
 
     /** @var    bool    持続接続フラグ */
-    var $persistent;
+    public $persistent;
 
     /**#@-*/
     // }}}
@@ -63,7 +63,7 @@ class Ethna_DB_PEAR extends Ethna_DB
      *  @param  string  $dsn                                DSN
      *  @param  bool    $persistent                         持続接続設定
      */
-    function Ethna_DB_PEAR(&$controller, $dsn, $persistent)
+    public function Ethna_DB_PEAR(&$controller, $dsn, $persistent)
     {
         parent::Ethna_DB($controller, $dsn, $persistent);
 
@@ -84,7 +84,7 @@ class Ethna_DB_PEAR extends Ethna_DB
      *  @access public
      *  @return mixed   0:正常終了 Ethna_Error:エラー
      */
-    function connect()
+    public function connect()
     {
         $this->db =& DB::connect($this->dsninfo, $this->persistent);
         if (DB::isError($this->db)) {
@@ -106,7 +106,7 @@ class Ethna_DB_PEAR extends Ethna_DB
      *
      *  @access public
      */
-    function disconnect()
+    public function disconnect()
     {
         if ($this->isValid() == false) {
             return;
@@ -122,7 +122,7 @@ class Ethna_DB_PEAR extends Ethna_DB
      *  @access public
      *  @return bool    true:正常 false:エラー
      */
-    function isValid()
+    public function isValid()
     {
         if (is_null($this->db)
             || is_resource($this->db->connection) == false) {
@@ -140,7 +140,7 @@ class Ethna_DB_PEAR extends Ethna_DB
      *  @access public
      *  @return mixed   0:正常終了 Ethna_Error:エラー
      */
-    function begin()
+    public function begin()
     {
         if (count($this->transaction) > 0) {
             $this->transaction[] = true;
@@ -164,7 +164,7 @@ class Ethna_DB_PEAR extends Ethna_DB
      *  @access public
      *  @return mixed   0:正常終了 Ethna_Error:エラー
      */
-    function rollback()
+    public function rollback()
     {
         if (count($this->transaction) == 0) {
             return 0;
@@ -188,11 +188,11 @@ class Ethna_DB_PEAR extends Ethna_DB
      *  @access public
      *  @return mixed   0:正常終了 Ethna_Error:エラー
      */
-    function commit()
+    public function commit()
     {
         if (count($this->transaction) == 0) {
             return 0;
-        } else if (count($this->transaction) > 1) {
+        } elseif (count($this->transaction) > 1) {
             array_pop($this->transaction);
             return 0;
         }
@@ -215,7 +215,7 @@ class Ethna_DB_PEAR extends Ethna_DB
      *  @param  string  $table  テーブル名
      *  @return mixed   array: PEAR::DBに準じたメタデータ Ethna_Error::エラー
      */
-    function &getMetaData($table)
+    public function &getMetaData($table)
     {
         $def =& $this->db->tableInfo($table);
         if (is_array($def) === false) {
@@ -287,7 +287,7 @@ class Ethna_DB_PEAR extends Ethna_DB
      *  @access public
      *  @return string  DBタイプ
      */
-    function getType()
+    public function getType()
     {
         return $this->type;
     }
@@ -301,7 +301,7 @@ class Ethna_DB_PEAR extends Ethna_DB
      *  @param  string  $query  SQL文
      *  @return mixed   DB_Result:結果オブジェクト Ethna_Error:エラー
      */
-    function &query($query)
+    public function &query($query)
     {
         return $this->_query($query);
     }
@@ -315,11 +315,11 @@ class Ethna_DB_PEAR extends Ethna_DB
      *  @access public
      *  @return mixed   int
      */
-    function getNextId($table_name, $field_name)
+    public function getNextId($table_name, $field_name)
     {
         if ($this->isValid() == false) {
             return null;
-        } else if ($this->type == 'pgsql') {
+        } elseif ($this->type == 'pgsql') {
             $seq_name = sprintf('%s_%s', $table_name, $field_name);
             $ret = $this->db->nextId($seq_name);
             return $ret;
@@ -337,13 +337,13 @@ class Ethna_DB_PEAR extends Ethna_DB
      *  @access public
      *  @return mixed   int:直近のINSERTにより生成されたID null:未サポート
      */
-    function getInsertId()
+    public function getInsertId()
     {
         if ($this->isValid() == false) {
             return null;
-        } else if ($this->type == 'mysql') {
+        } elseif ($this->type == 'mysql') {
             return mysql_insert_id($this->db->connection);
-        } else if ($this->type == 'sqlite') {
+        } elseif ($this->type == 'sqlite') {
             return sqlite_last_insert_rowid($this->db->connection);
         }
 
@@ -358,7 +358,7 @@ class Ethna_DB_PEAR extends Ethna_DB
      *  @access public
      *  @return int     更新行数
      */
-    function &fetchRow(&$res, $fetchmode = DB_FETCHMODE_DEFAULT, $rownum = null)
+    public function &fetchRow(&$res, $fetchmode = DB_FETCHMODE_DEFAULT, $rownum = null)
     {
         $row =& $res->fetchRow($fetchmode, $rownum);
         if (is_array($row) === false) {
@@ -390,7 +390,7 @@ class Ethna_DB_PEAR extends Ethna_DB
      *  @access public
      *  @return int     更新行数
      */
-    function affectedRows()
+    public function affectedRows()
     {
         return $this->db->affectedRows();
     }
@@ -404,7 +404,7 @@ class Ethna_DB_PEAR extends Ethna_DB
      *  @access protected
      *  @param  mixed   $identifier array or string
      */
-    function quoteIdentifier($identifier)
+    public function quoteIdentifier($identifier)
     {
         if (is_array($identifier)) {
             foreach (array_keys($identifier) as $key) {
@@ -437,7 +437,7 @@ class Ethna_DB_PEAR extends Ethna_DB
      *  @param  string  $sqlid      SQL-ID(+引数)
      *  @return mixed   DB_Result:結果オブジェクト Ethna_Error:エラー
      */
-    function &sqlquery($sqlid)
+    public function &sqlquery($sqlid)
     {
         $args = func_get_args();
         array_shift($args);
@@ -455,7 +455,7 @@ class Ethna_DB_PEAR extends Ethna_DB
      *  @param  string  $sqlid      SQL-ID
      *  @return string  SQL文
      */
-    function sql($sqlid)
+    public function sql($sqlid)
     {
         $args = func_get_args();
         array_shift($args);
@@ -473,7 +473,7 @@ class Ethna_DB_PEAR extends Ethna_DB
      *  @param  mixed   ロック対象テーブル名
      *  @return mixed   DB_Result:結果オブジェクト Ethna_Error:エラー
      */
-    function lock($tables)
+    public function lock($tables)
     {
         $this->message = null;
 
@@ -496,7 +496,7 @@ class Ethna_DB_PEAR extends Ethna_DB
      *  @access public
      *  @return mixed   DB_Result:結果オブジェクト Ethna_Error:エラー
      */
-    function unlock()
+    public function unlock()
     {
         $this->message = null;
         return $this->query("UNLOCK TABLES");
@@ -511,7 +511,7 @@ class Ethna_DB_PEAR extends Ethna_DB
      *  @param  string  $query  SQL文
      *  @return mixed   DB_Result:結果オブジェクト Ethna_Error:エラー
      */
-    function &_query($query)
+    public function &_query($query)
     {
         $this->logger->log(LOG_DEBUG, "$query");
         $r =& $this->db->query($query);
@@ -537,4 +537,4 @@ class Ethna_DB_PEAR extends Ethna_DB
     // }}}
 }
 // }}}
-?>
+;

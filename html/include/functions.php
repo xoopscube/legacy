@@ -155,7 +155,7 @@ function xoops_refcheck($docheck=1)
     if ($ref == '') {
         return false;
     }
-    if (strpos($ref, XOOPS_URL) !== 0 ) {
+    if (strpos($ref, XOOPS_URL) !== 0) {
         return false;
     }
     return true;
@@ -245,15 +245,16 @@ function userTimeToServerTime($timestamp, $userTZ=null)
     return $timestamp;
 }
 
-function xoops_makepass() {
+function xoops_makepass()
+{
     $makepass = '';
     $syllables = array('er','in','tia','wol','fe','pre','vet','jo','nes','al','len','son','cha','ir','ler','bo','ok','tio','nar','sim','ple','bla','ten','toe','cho','co','lat','spe','ak','er','po','co','lor','pen','cil','li','ght','wh','at','the','he','ck','is','mam','bo','no','fi','ve','any','way','pol','iti','cs','ra','dio','sou','rce','sea','rch','pa','per','com','bo','sp','eak','st','fi','rst','gr','oup','boy','ea','gle','tr','ail','bi','ble','brb','pri','dee','kay','en','be','se');
     srand((double)microtime()*1000000);
     for ($count = 1; $count <= 4; $count++) {
         if (rand()%10 == 1) {
-            $makepass .= sprintf('%0.0f',(rand()%50)+1);
+            $makepass .= sprintf('%0.0f', (rand()%50)+1);
         } else {
-            $makepass .= sprintf('%s',$syllables[rand()%62]);
+            $makepass .= sprintf('%s', $syllables[rand()%62]);
         }
     }
     return $makepass;
@@ -311,9 +312,9 @@ function CloseWaitBox()
     ';
 }
 
-function checkEmail($email,$antispam = false)
+function checkEmail($email, $antispam = false)
 {
-    if (!$email || !preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i',$email)){
+    if (!$email || !preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i', $email)) {
         return false;
     }
     if ($antispam) {
@@ -329,7 +330,7 @@ function formatURL($url)
 {
     $url = trim($url);
     if ($url != '') {
-        if ((!preg_match('/^http[s]*:\/\//i', $url)) && (!preg_match('/^ftp*:\/\//i', $url)) && (!preg_match('/^ed2k*:\/\//i', $url)) ) {
+        if ((!preg_match('/^http[s]*:\/\//i', $url)) && (!preg_match('/^ftp*:\/\//i', $url)) && (!preg_match('/^ed2k*:\/\//i', $url))) {
             $url = 'http://'.$url;
         }
     }
@@ -352,32 +353,32 @@ function xoops_getbanner()
     global $xoopsConfig;
     $db =& Database::getInstance();
     $bresult = $db->query("SELECT COUNT(*) FROM ".$db->prefix("banner"));
-    list ($numrows) = $db->fetchRow($bresult);
-    if ( $numrows > 1 ) {
+    list($numrows) = $db->fetchRow($bresult);
+    if ($numrows > 1) {
         $numrows = $numrows-1;
         mt_srand((double)microtime()*1000000);
         $bannum = mt_rand(0, $numrows);
     } else {
         $bannum = 0;
     }
-    if ( $numrows > 0 ) {
+    if ($numrows > 0) {
         $bresult = $db->query("SELECT * FROM ".$db->prefix("banner"), 1, $bannum);
-        list ($bid, $cid, $imptotal, $impmade, $clicks, $imageurl, $clickurl, $date, $htmlbanner, $htmlcode) = $db->fetchRow($bresult);
+        list($bid, $cid, $imptotal, $impmade, $clicks, $imageurl, $clickurl, $date, $htmlbanner, $htmlcode) = $db->fetchRow($bresult);
         if ($xoopsConfig['my_ip'] == xoops_getenv('REMOTE_ADDR')) {
             // EMPTY
         } else {
             $db->queryF(sprintf("UPDATE %s SET impmade = impmade+1 WHERE bid = %u", $db->prefix("banner"), $bid));
         }
         /* Check if this impression is the last one and print the banner */
-        if ( $imptotal != 0 && $imptotal == $impmade ) {
+        if ($imptotal != 0 && $imptotal == $impmade) {
             $newid = $db->genId($db->prefix("bannerfinish")."_bid_seq");
             $sql = sprintf("INSERT INTO %s (bid, cid, impressions, clicks, datestart, dateend) VALUES (%u, %u, %u, %u, %u, %u)", $db->prefix("bannerfinish"), $newid, $cid, $impmade, $clicks, $date, time());
             $db->queryF($sql);
             $db->queryF(sprintf("DELETE FROM %s WHERE bid = %u", $db->prefix("banner"), $bid));
         }
-        if ($htmlbanner){
+        if ($htmlbanner) {
             $bannerobject = $htmlcode;
-        }else{
+        } else {
             $bannerobject = '<div><a href="'.XOOPS_URL.'/banners.php?op=click&amp;bid='.$bid.'" rel="external">';
             if (stristr($imageurl, '.swf')) {
                 $bannerobject = $bannerobject
@@ -422,21 +423,19 @@ function redirect_header($url, $time = 3, $message = '', $addredirect = true)
             }
         }
         if (defined('SID') && (! isset($_COOKIE[session_name()]) || ($xoopsConfig['use_mysession'] && $xoopsConfig['session_name'] != '' && !isset($_COOKIE[$xoopsConfig['session_name']])))) {
-            if ( strpos($url, XOOPS_URL) === 0 ) {
+            if (strpos($url, XOOPS_URL) === 0) {
                 if (!strstr($url, '?')) {
                     $connector = '?';
-                }
-                else {
+                } else {
                     $connector = '&amp;';
                 }
                 if (strstr($url, '#')) {
-                    $urlArray = explode( '#', $url );
+                    $urlArray = explode('#', $url);
                     $url = $urlArray[0] . $connector . SID;
-                    if ( ! empty($urlArray[1]) ) {
+                    if (! empty($urlArray[1])) {
                         $url .= '#' . $urlArray[1];
                     }
-                }
-                else {
+                } else {
                     $url .= $connector . SID;
                 }
             }
@@ -491,11 +490,11 @@ function xoops_getenv($key)
         }
     //}
 
-    switch($key) {
+    switch ($key) {
         case 'PHP_SELF':
         case 'PATH_INFO':
         case 'PATH_TRANSLATED':
-            $ret = htmlspecialchars($ret,ENT_QUOTES);
+            $ret = htmlspecialchars($ret, ENT_QUOTES);
             break;
     }
 
@@ -551,9 +550,9 @@ function &getMailer()
     global $xoopsConfig;
     $ret = null;
     require_once XOOPS_ROOT_PATH.'/class/xoopsmailer.php';
-    if ( file_exists(XOOPS_ROOT_PATH.'/language/'.$xoopsConfig['language'].'/xoopsmailerlocal.php') ) {
+    if (file_exists(XOOPS_ROOT_PATH.'/language/'.$xoopsConfig['language'].'/xoopsmailerlocal.php')) {
         require_once XOOPS_ROOT_PATH.'/language/'.$xoopsConfig['language'].'/xoopsmailerlocal.php';
-        if ( XC_CLASS_EXISTS('XoopsMailerLocal') ) {
+        if (XC_CLASS_EXISTS('XoopsMailerLocal')) {
             $ret = new XoopsMailerLocal();
             return $ret;
         }
@@ -566,29 +565,33 @@ function &getMailer()
  * This function is Fly-Weight to get an instance of XoopsObject in Legacy
  * Kernel.
  */
-function &xoops_gethandler($name, $optional = false )
+function &xoops_gethandler($name, $optional = false)
 {
     static $handlers=array();
     $name = strtolower(trim($name));
-    if (isset($handlers[$name])) return $handlers[$name];
+    if (isset($handlers[$name])) {
+        return $handlers[$name];
+    }
 
         //
         // The following delegate is test at Alpha4-c.
         //
         $handler = null;
-        XCube_DelegateUtils::call('Legacy.Event.GetHandler', new XCube_Ref($handler), $name, $optional);
-        if ($handler) return $handlers[$name] =& $handler;
+    XCube_DelegateUtils::call('Legacy.Event.GetHandler', new XCube_Ref($handler), $name, $optional);
+    if ($handler) {
+        return $handlers[$name] =& $handler;
+    }
 
-	// internal Class handler exist
+    // internal Class handler exist
         if (XC_CLASS_EXISTS($class = 'Xoops'.ucfirst($name).'Handler')) {
-	    $handlers[$name] = $handler = new $class($GLOBALS['xoopsDB']);
-	    return $handler;
+            $handlers[$name] = $handler = new $class($GLOBALS['xoopsDB']);
+            return $handler;
         }
-	include_once XOOPS_ROOT_PATH.'/kernel/'.$name.'.php';
-	if (XC_CLASS_EXISTS($class)) {
-	    $handlers[$name] = $handler = new $class($GLOBALS['xoopsDB']);
-	    return $handler;
-		}
+    include_once XOOPS_ROOT_PATH.'/kernel/'.$name.'.php';
+    if (XC_CLASS_EXISTS($class)) {
+        $handlers[$name] = $handler = new $class($GLOBALS['xoopsDB']);
+        return $handler;
+    }
 
     if (!$optional) {
         trigger_error('Class <b>'.$class.'</b> does not exist<br />Handler Name: '.$name, E_USER_ERROR);
@@ -615,28 +618,28 @@ function &xoops_getmodulehandler($name = null, $module_dir = null, $optional = f
     }
     $name = $name ? trim($name) : $module_dir;
     $mhdr = &$handlers[$module_dir];
-    if (isset($mhdr[$name])) return $mhdr[$name];
+    if (isset($mhdr[$name])) {
+        return $mhdr[$name];
+    }
         //
         // Cube Style
         //
-        
+
         if (file_exists($hnd_file = XOOPS_ROOT_PATH . '/modules/'.$module_dir.'/class/handler/' . ($ucname = ucfirst($name)) . '.class.php')) {
             include_once $hnd_file;
-        }
-        elseif ( file_exists( $hnd_file = XOOPS_ROOT_PATH . '/modules/'.$module_dir.'/class/'.$name.'.php' ) ) {
+        } elseif (file_exists($hnd_file = XOOPS_ROOT_PATH . '/modules/'.$module_dir.'/class/'.$name.'.php')) {
             include_once $hnd_file;
         }
         
-        $className = ($ucdir = ucfirst(strtolower($module_dir))) . '_' . $ucname . 'Handler';
+    $className = ($ucdir = ucfirst(strtolower($module_dir))) . '_' . $ucname . 'Handler';
+    if (XC_CLASS_EXISTS($className)) {
+        $mhdr[$name] = new $className($GLOBALS['xoopsDB']);
+    } else {
+        $className = $ucdir . $ucname . 'Handler';
         if (XC_CLASS_EXISTS($className)) {
             $mhdr[$name] = new $className($GLOBALS['xoopsDB']);
         }
-        else {
-            $className = $ucdir . $ucname . 'Handler';
-            if (XC_CLASS_EXISTS($className)) {
-                $mhdr[$name] = new $className($GLOBALS['xoopsDB']);
-            }
-        }
+    }
 
     if (!isset($mhdr[$name]) && !$optional) {
         trigger_error('Handler does not exist<br />Module: '.$module_dir.'<br />Name: '.$name, E_USER_ERROR);
@@ -674,19 +677,19 @@ function xoops_getrank($rank_id =0, $posts = 0)
 */
 function xoops_substr($str, $start, $length, $trimmarker = '...')
 {
-    if ( !XOOPS_USE_MULTIBYTES ) {
-        return ( strlen($str) - $start <= $length ) ? substr( $str, $start, $length ) : substr( $str, $start, $length - strlen($trimmarker) ) . $trimmarker;
+    if (!XOOPS_USE_MULTIBYTES) {
+        return (strlen($str) - $start <= $length) ? substr($str, $start, $length) : substr($str, $start, $length - strlen($trimmarker)) . $trimmarker;
     }
     if (function_exists('mb_internal_encoding') && @mb_internal_encoding(_CHARSET)) {
-        $str2 = mb_strcut( $str , $start , $length - strlen( $trimmarker ) );
-        return $str2 . ( mb_strlen($str)!=mb_strlen($str2) ? $trimmarker : '' );
+        $str2 = mb_strcut($str, $start, $length - strlen($trimmarker));
+        return $str2 . (mb_strlen($str)!=mb_strlen($str2) ? $trimmarker : '');
     }
     // phppp patch
     $DEP_CHAR=127;
     $pos_st=0;
     $action = false;
-    for ( $pos_i = 0; $pos_i < strlen($str); $pos_i++ ) {
-        if ( ord( substr( $str, $pos_i, 1) ) > 127 ) {
+    for ($pos_i = 0; $pos_i < strlen($str); $pos_i++) {
+        if (ord(substr($str, $pos_i, 1)) > 127) {
             $pos_i++;
         }
         if ($pos_i<=$start) {
@@ -697,7 +700,7 @@ function xoops_substr($str, $start, $length, $trimmarker = '...')
             break;
         }
     }
-    return ($action) ? substr( $str, $pos_st, $pos_i - $pos_st - strlen($trimmarker) ) . $trimmarker : $str;
+    return ($action) ? substr($str, $pos_st, $pos_i - $pos_st - strlen($trimmarker)) . $trimmarker : $str;
 }
 
 // RMV-NOTIFY
@@ -706,22 +709,22 @@ function xoops_substr($str, $start, $length, $trimmarker = '...')
 // We want to be able to delete by module, by user, or by item.
 // How do we specify this??
 
-function xoops_notification_deletebymodule ($module_id)
+function xoops_notification_deletebymodule($module_id)
 {
     $notification_handler =& xoops_gethandler('notification');
-    return $notification_handler->unsubscribeByModule ($module_id);
+    return $notification_handler->unsubscribeByModule($module_id);
 }
 
-function xoops_notification_deletebyuser ($user_id)
+function xoops_notification_deletebyuser($user_id)
 {
     $notification_handler =& xoops_gethandler('notification');
-    return $notification_handler->unsubscribeByUser ($user_id);
+    return $notification_handler->unsubscribeByUser($user_id);
 }
 
-function xoops_notification_deletebyitem ($module_id, $category, $item_id)
+function xoops_notification_deletebyitem($module_id, $category, $item_id)
 {
     $notification_handler =& xoops_gethandler('notification');
-    return $notification_handler->unsubscribeByItem ($module_id, $category, $item_id);
+    return $notification_handler->unsubscribeByItem($module_id, $category, $item_id);
 }
 
 // ################### Comment helper functions ####################
@@ -828,14 +831,14 @@ if (!function_exists('htmlspecialchars_decode')) {
 
 if (!function_exists('session_regenerate_id')) { // @ToDo this compatible function should be moved to other file.
     // session_regenerate_id compatible function for PHP Version< PHP4.3.2
-    function session_regenerate_id() {
+    function session_regenerate_id()
+    {
         srand(microtime() * 100000);
         $random = md5(XOOPS_SALT . uniqid(rand(), true));
         if (session_id($random)) {
-           return true;
+            return true;
         } else {
-           return false;
+            return false;
         }
     }
 }
-?>

@@ -75,4 +75,3 @@ define('_MI_LECAT_DESC_IMAGES', '¥«¥Æ¥´¥êÍÑ¤Î²èÁü¤ò»È¤¦¾ì¹ç¡¢²þ¹Ô¶èÀÚ¤ê¤Ç¥é¥Ù¥ë¤
 /*** blocks ***/
 define('_MI_LECAT_BLOCK_NAME_LIST', '¥«¥Æ¥´¥ê°ìÍ÷');
 define('_MI_LECAT_BLOCK_DESC_LIST', '¥«¥Æ¥´¥ê¥Ä¥ê¡¼¤òÉ½¼¨¤·¤Þ¤¹');
-?>

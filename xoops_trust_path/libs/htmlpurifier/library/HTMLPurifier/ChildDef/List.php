@@ -84,3 +84,4 @@ class HTMLPurifier_ChildDef_List extends HTMLPurifier_ChildDef
 }
 
 // vim: et sw=4 sts=4
+

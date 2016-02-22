@@ -98,5 +98,3 @@ define('_AD_LEGACYRENDER_MESSAGE_UPLOAD_TEMPLATE_SUCCESS', "Šablona byla úspìšnì
 define('_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_1', "Pøizpùsobte si web zmìnou šablon. Pøed zmìnami doporuèujeme udìlat si kompletní zálohu šablon a teprve poté provádìt zmìny. Více informací najdete v nápovìdì.");
 define('_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_2', "Šablony mùžete lehce mìnit editací jejich kódu. Více informací najdete v nápovìdì.");
 define('_AD_LEGACYRENDER_TIPS_TPLSET_UPLOAD', "Jestliže nevložíte název nové sady šablon, bude jméno pøevzato z nahrávaného souboru. nahrávejte pouze soubory TAR.GZ.");
-
-?>

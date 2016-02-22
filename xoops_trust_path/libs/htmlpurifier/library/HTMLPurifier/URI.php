@@ -312,3 +312,4 @@ class HTMLPurifier_URI
 }
 
 // vim: et sw=4 sts=4
+

@@ -24,3 +24,4 @@ $PHPMAILER_LANG['smtp_connect_failed']  = 'Повезивање са SMTP сер
 $PHPMAILER_LANG['smtp_error']           = 'Грешка SMTP сервера: ';
 $PHPMAILER_LANG['variable_set']         = 'Није могуће задати променљиву, нити је вратити уназад: ';
 //$PHPMAILER_LANG['extension_missing']    = 'Extension missing: ';
+

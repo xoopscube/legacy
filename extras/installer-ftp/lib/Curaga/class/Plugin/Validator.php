@@ -29,19 +29,19 @@ class Ethna_Plugin_Validator
      */
 
     /** @var    object  Ethna_Backend   backendオブジェクト */
-    var $backend;
+    public $backend;
 
     /** @var    object  Ethna_Logger    ログオブジェクト */
-    var $logger;
+    public $logger;
 
     /** @var    object  Ethna_ActionForm    フォームオブジェクト */
-    var $action_form;
+    public $action_form;
 
     /** @var    object  Ethna_ActionForm    フォームオブジェクト */
-    var $af;
+    public $af;
 
     /** @var    bool    配列を受け取るバリデータかどうかのフラグ */
-    var $accept_array = false;
+    public $accept_array = false;
 
     /**#@-*/
 
@@ -51,7 +51,7 @@ class Ethna_Plugin_Validator
      *  @access public
      *  @param  object  Ethna_Controller    $controller コントローラオブジェクト
      */
-    function Ethna_Plugin_Validator(&$controller)
+    public function Ethna_Plugin_Validator(&$controller)
     {
         $this->backend =& $controller->getBackend();
         $this->logger =& $controller->getLogger();
@@ -67,7 +67,7 @@ class Ethna_Plugin_Validator
      *  @param  mixed   $var        フォームの値
      *  @param  array   $params     プラグインのパラメータ
      */
-    function &validate($name, $var, $params)
+    public function &validate($name, $var, $params)
     {
         die('override!');
     }
@@ -78,7 +78,7 @@ class Ethna_Plugin_Validator
      *  @access public
      *  @param  string  $name       フォームの名前
      */
-    function getFormDef($name)
+    public function getFormDef($name)
     {
         return $this->af->getDef($name);
     }
@@ -89,7 +89,7 @@ class Ethna_Plugin_Validator
      *  @access public
      *  @param  string  $name       フォームの名前
      */
-    function getFormType($name)
+    public function getFormType($name)
     {
         $def = $this->af->getDef($name);
         if (isset($def['type'])) {
@@ -110,7 +110,7 @@ class Ethna_Plugin_Validator
      *  @param  mixed   $var       フォームの値 (配列フォームの場合は各要素)
      *  @param  int     $type      フォームのtype
      */
-    function isEmpty($var, $type)
+    public function isEmpty($var, $type)
     {
         if ($type == VAR_TYPE_FILE) {
             if (isset($var['error']) == false || $var['error'] != UPLOAD_ERR_OK) {
@@ -135,7 +135,7 @@ class Ethna_Plugin_Validator
      *
      *  @access protected
      */
-    function &ok()
+    public function &ok()
     {
         $true = true;
         return $true;
@@ -149,7 +149,7 @@ class Ethna_Plugin_Validator
      *  @param  int     $code       エラーコード
      *  @param  mixed   $info       エラーメッセージにsprintfで渡すパラメータ
      */
-    function &error($msg, $code, $info = null)
+    public function &error($msg, $code, $info = null)
     {
         if ($info != null) {
             if (is_array($info)) {
@@ -163,4 +163,4 @@ class Ethna_Plugin_Validator
     }
 }
 // }}}
-?>
+;

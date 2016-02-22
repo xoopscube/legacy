@@ -13,4 +13,3 @@
     $sm->readConstant();
     $wizard->setContent($sm->editform());
     $wizard->render();
-?>

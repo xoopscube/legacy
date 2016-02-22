@@ -30,5 +30,3 @@ define('_MI_LR_ROBOT_METAOMAT', '成熟');
 define('_MI_LR_ROBOT_METAOREST', '有限的');
 define('_MI_LR_ROBOT_NOINDEXFOLLOW', '沒有索引，跟隨');
 define('_MI_LR_ROBOT_NOINDEXNOFOLLOW', '沒有索引，沒有跟隨');
-
-?>

@@ -29,7 +29,9 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 /**
  * 
@@ -49,55 +51,58 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
  * @package		kernel
  * @subpackage	form
  */
-class XoopsFormFile extends XoopsFormElement {
+class XoopsFormFile extends XoopsFormElement
+{
 
-	/**
+    /**
      * Maximum size for an uploaded file
-	 * @var	int	
-	 * @access	private
-	 */
-	var $_maxFileSize;
+     * @var	int	
+     * @access	private
+     */
+    public $_maxFileSize;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param	string	$caption		Caption
-	 * @param	string	$name			"name" attribute
-	 * @param	int		$maxfilesize	Maximum size for an uploaded file
-	 */
-	function XoopsFormFile($caption, $name, $maxfilesize){
-		$this->setCaption($caption);
-		$this->setName($name);
-		$this->_maxFileSize = intval($maxfilesize);
-	}
+    /**
+     * Constructor
+     * 
+     * @param	string	$caption		Caption
+     * @param	string	$name			"name" attribute
+     * @param	int		$maxfilesize	Maximum size for an uploaded file
+     */
+    public function XoopsFormFile($caption, $name, $maxfilesize)
+    {
+        $this->setCaption($caption);
+        $this->setName($name);
+        $this->_maxFileSize = intval($maxfilesize);
+    }
 
-	/**
-	 * Get the maximum filesize
-	 * 
-	 * @return	int
-	 */
-	function getMaxFileSize(){
-		return $this->_maxFileSize;
-	}
+    /**
+     * Get the maximum filesize
+     * 
+     * @return	int
+     */
+    public function getMaxFileSize()
+    {
+        return $this->_maxFileSize;
+    }
 
-	/**
-	 * prepare HTML for output
-	 * 
-	 * @return	string	HTML
-	 */
-	function render(){
-		$root =& XCube_Root::getSingleton();
-		$renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
-		
-		$renderTarget =& $renderSystem->createRenderTarget('main');
-	
-		$renderTarget->setAttribute('legacy_module', 'legacy');
-		$renderTarget->setTemplateName("legacy_xoopsform_file.html");
-		$renderTarget->setAttribute("element", $this);
+    /**
+     * prepare HTML for output
+     * 
+     * @return	string	HTML
+     */
+    public function render()
+    {
+        $root =& XCube_Root::getSingleton();
+        $renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
+        
+        $renderTarget =& $renderSystem->createRenderTarget('main');
+    
+        $renderTarget->setAttribute('legacy_module', 'legacy');
+        $renderTarget->setTemplateName("legacy_xoopsform_file.html");
+        $renderTarget->setAttribute("element", $this);
 
-		$renderSystem->render($renderTarget);
-	
-		return $renderTarget->getResult();
-	}
+        $renderSystem->render($renderTarget);
+    
+        return $renderTarget->getResult();
+    }
 }
-?>

@@ -29,5 +29,3 @@ define('_MI_LR_ROBOT_METAOMAT', "成人");
 define('_MI_LR_ROBOT_METAOREST', "受限的");
 define('_MI_LR_ROBOT_NOINDEXFOLLOW', "無索引,導引");
 define('_MI_LR_ROBOT_NOINDEXNOFOLLOW', "無索引,無導引");
-
-?>

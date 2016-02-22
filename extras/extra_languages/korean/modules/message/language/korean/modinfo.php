@@ -28,5 +28,3 @@ define('_MI_MESSAGE_DEFAULT_VIEWMSM_DESC', '설정 되지 않은 사람에 대 한 "메시지�
 define('_MI_MESSAGE_BLOCK_NAME', '신착 메세지 블록');
 define('_MI_MESSAGE_INSTALL_ERROR', '이 모듈은 PHP5 전용입니다.');
 define('_MI_MESSAGE_INSTALL_ERROR2', 'XCL 패키지에 포함되어 있는 PM 모듈을 제거해 주세요!');
-
-?>

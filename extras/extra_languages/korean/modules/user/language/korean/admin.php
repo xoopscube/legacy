@@ -30,7 +30,7 @@
 
 // DATA
 define('_AD_USER_DATA_DOWNLOAD_DO', 'CSV방식 다운로드');
-define('_AD_USER_DATA_NUM', '%d 명의 사용자가 등록되어졌습니다.'); 
+define('_AD_USER_DATA_NUM', '%d 명의 사용자가 등록되어졌습니다.');
 define('_AD_USER_DATA_UPLOAD_BACK', 'CSV 파일을 다시 선택해 주세요!');
 define('_AD_USER_DATA_UPLOAD_CHECK_USER_CSVFILE', '등록 내용을 다시 한번 확인해 보시기 바랍니다.');
 define('_AD_USER_DATA_UPLOAD_CONF', '등록 내용 확인');
@@ -199,5 +199,3 @@ define('_AD_USER_TIPS2_DATA_UPLOAD', 'Use CSV file downloaded from <a href="?act
 define('_AD_USER_TIPS3_DATA_UPLOAD', 'Please describe only the user who wants to update and wants to register information newly in CSV file.');
 define('_AD_USER_TIPS4_DATA_UPLOAD', 'When the row of leftmost UID is emptied(or 0), it registers as a new user.');
 define('_AD_USER_TIPS5_DATA_UPLOAD', 'The user information is updated when there is a value of the row of leftmost(UID).<br>If you set password,set it within 30bytes.');
-
-?>

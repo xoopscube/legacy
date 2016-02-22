@@ -8,7 +8,9 @@
  *
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 /***
  * @internal
@@ -17,28 +19,26 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
  */
 class Legacy_MiscSslloginAction extends Legacy_Action
 {
-	function execute(&$controller, &$xoopsUser)
-	{
-		return LEGACY_FRAME_VIEW_INDEX;
-	}
-	
-	function executeViewIndex(&$controller, &$xoopsUser, &$render)
-	{
-		//
-		// Because this action's template uses USER message catalog, load it.
-		//
-		$root =& $controller->mRoot;
-	
-		$config_handler =& xoops_gethandler('config');
-		$moduleConfigUser =& $config_handler->getConfigsByDirname('user');
-	
-		if($moduleConfigUser['use_ssl'] == 1 && ! empty($_POST[$moduleConfigUser['sslpost_name']])){
-			session_id($_POST[$moduleConfigUser['sslpost_name']]);
-		}
-	
-		$render->setTemplateName("legacy_misc_ssllogin.html");
-		$render->setAttribute("message", XCube_Utils::formatString(_MD_LEGACY_MESSAGE_LOGIN_SUCCESS, $xoopsUser->get('uname')));
-	}
+    public function execute(&$controller, &$xoopsUser)
+    {
+        return LEGACY_FRAME_VIEW_INDEX;
+    }
+    
+    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
+    {
+        //
+        // Because this action's template uses USER message catalog, load it.
+        //
+        $root =& $controller->mRoot;
+    
+        $config_handler =& xoops_gethandler('config');
+        $moduleConfigUser =& $config_handler->getConfigsByDirname('user');
+    
+        if ($moduleConfigUser['use_ssl'] == 1 && ! empty($_POST[$moduleConfigUser['sslpost_name']])) {
+            session_id($_POST[$moduleConfigUser['sslpost_name']]);
+        }
+    
+        $render->setTemplateName("legacy_misc_ssllogin.html");
+        $render->setAttribute("message", XCube_Utils::formatString(_MD_LEGACY_MESSAGE_LOGIN_SUCCESS, $xoopsUser->get('uname')));
+    }
 }
-
-?>

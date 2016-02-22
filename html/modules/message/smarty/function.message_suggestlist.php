@@ -2,29 +2,31 @@
 /**
  * @author Marijuana
  */
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 function smarty_function_message_suggestlist($params, &$smarty)
 {
-  $name = isset($params['name']) ? trim($params['name']) : 'uname';
-  $size = isset($params['size']) ? intval($params['size']) : 30;
-  $username = isset($params['uname']) ? trim($params['uname']) : '';
+    $name = isset($params['name']) ? trim($params['name']) : 'uname';
+    $size = isset($params['size']) ? intval($params['size']) : 30;
+    $username = isset($params['uname']) ? trim($params['uname']) : '';
   
-  $root = XCube_Root::getSingleton();
-  $db = $root->mController->getDB();
+    $root = XCube_Root::getSingleton();
+    $db = $root->mController->getDB();
   
-  $sql = "SELECT `uname` FROM `".$db->prefix('users')."` ";
-  $sql.= "WHERE `uid` <> ".$root->mContext->mXoopsUser->get('uid'). " ";
-  $sql.= "ORDER BY `uname`";
-  $result = $db->query($sql);
-  $name = array();
-  while (list($uname) = $db->fetchRow($result)) {
-    $uname = htmlspecialchars($uname, ENT_QUOTES);
-    $name[] = "'".$uname."'";
-  }
+    $sql = "SELECT `uname` FROM `".$db->prefix('users')."` ";
+    $sql.= "WHERE `uid` <> ".$root->mContext->mXoopsUser->get('uid'). " ";
+    $sql.= "ORDER BY `uname`";
+    $result = $db->query($sql);
+    $name = array();
+    while (list($uname) = $db->fetchRow($result)) {
+        $uname = htmlspecialchars($uname, ENT_QUOTES);
+        $name[] = "'".$uname."'";
+    }
   
-  echo '<script type="text/javascript" language="javascript">'.chr(10);
-  echo '  var list = ['. implode(",\n", $name).'];'.chr(10);
-  echo "
+    echo '<script type="text/javascript" language="javascript">'.chr(10);
+    echo '  var list = ['. implode(",\n", $name).'];'.chr(10);
+    echo "
   var js = document.createElement('script');
   js.type = 'text/javascript';
   js.charset = 'utf-8';
@@ -45,8 +47,7 @@ function smarty_function_message_suggestlist($params, &$smarty)
   };
   window.addEventListener ? window.addEventListener('load', start, false) : window.attachEvent('onload', start);
 </script>\n";
-echo '<input id="txt_uname" type="text" name="uname" value="'.htmlspecialchars($username, ENT_QUOTES).'" autocomplete="off" size="'.$size.'" style="display: block"/>
+    echo '<input id="txt_uname" type="text" name="uname" value="'.htmlspecialchars($username, ENT_QUOTES).'" autocomplete="off" size="'.$size.'" style="display: block"/>
 <div id="suggest"></div>
 ';
 }
-?>

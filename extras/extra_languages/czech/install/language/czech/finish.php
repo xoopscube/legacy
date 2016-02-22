@@ -13,4 +13,3 @@ $content =
 <u><b>Podpora</b></u>
 <p>Navštivte <a href='http://xoopscube.org/' target='_blank'>XOOPS Cube.org</a> pro více informací o podpoøe.</p>
 ";
-?>

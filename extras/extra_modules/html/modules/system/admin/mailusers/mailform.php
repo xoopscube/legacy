@@ -36,7 +36,7 @@ $form->addElement(new XoopsFormToken(XoopsSingleTokenHandler::quickCreate('mailu
 if (!empty($_POST['memberslist_id'])) {
     $user_count = count($_POST['memberslist_id']);
     $display_names = "";
-    for ( $i = 0; $i < $user_count; $i++ ) {
+    for ($i = 0; $i < $user_count; $i++) {
         $uid_hidden = new XoopsFormHidden("mail_to_user[]", $_POST['memberslist_id'][$i]);
         $form->addElement($uid_hidden);
         $display_names .= "<a href='".XOOPS_URL."/userinfo.php?uid=".$_POST['memberslist_id'][$i]."' rel='external'>".$_POST['memberslist_uname'][$_POST['memberslist_id'][$i]]."</a>, ";
@@ -46,7 +46,7 @@ if (!empty($_POST['memberslist_id'])) {
     $form->addElement($users_label);
     $display_criteria = 0;
 }
-if ( !empty($display_criteria) ) {
+if (!empty($display_criteria)) {
     $selected_groups = array();
     $group_select = new XoopsFormSelectGroup(_AM_GROUPIS."<br />", "mail_to_group", false, $selected_groups, 5, true);
     $lastlog_min = new XoopsFormText(_AM_LASTLOGMIN."<br />"._AM_TIMEFORMAT."<br />", "mail_lastlog_min", 20, 10);
@@ -99,4 +99,4 @@ $form->addElement($submit_button);
 $form->setRequired($subject_text);
 $form->setRequired($body_text);
 //$form->setRequired($to_checkbox);
-?>
+;

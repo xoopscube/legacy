@@ -105,7 +105,9 @@ class HTMLPurifier_ChildDef_Table extends HTMLPurifier_ChildDef
                 break;
             case 'caption':
                 // there can only be one caption!
-                if ($caption !== false)  break;
+                if ($caption !== false) {
+                    break;
+                }
                 $caption = $node;
                 $ws_accum =& $after_caption_ws;
                 break;
@@ -189,7 +191,7 @@ class HTMLPurifier_ChildDef_Table extends HTMLPurifier_ChildDef
             // we have to shuffle tr into tbody
             $current_tr_tbody = null;
 
-            foreach($content as $node) {
+            foreach ($content as $node) {
                 switch ($node->name) {
                 case 'tbody':
                     $current_tr_tbody = null;
@@ -217,8 +219,8 @@ class HTMLPurifier_ChildDef_Table extends HTMLPurifier_ChildDef
         }
 
         return $ret;
-
     }
 }
 
 // vim: et sw=4 sts=4
+

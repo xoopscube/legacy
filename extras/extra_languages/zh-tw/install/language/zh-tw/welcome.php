@@ -37,5 +37,4 @@ XOOPS Cube Legacy 依照於<a href='https://github.com/xoopscube/legacy/blob/mas
 <p>
 請依照安裝精靈指示安裝.
 </p>
-"
-?>
+";

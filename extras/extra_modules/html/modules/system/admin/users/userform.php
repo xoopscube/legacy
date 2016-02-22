@@ -101,7 +101,7 @@ $notify_mode_select->addOptionArray(array(XOOPS_NOTIFICATION_MODE_SENDALWAYS=>_N
 $bio_tarea = new XoopsFormTextArea(_US_EXTRAINFO, "bio", $bio_value);
 $rank_select = new XoopsFormSelect(_AM_RANK, "rank", $rank_value);
 $ranklist = XoopsLists::getUserRankList();
-if ( count($ranklist) > 0 ) {
+if (count($ranklist) > 0) {
     $rank_select->addOption(0, _AM_NSRA);
     $rank_select->addOption(0, "--------------");
     $rank_select->addOptionArray($ranklist);
@@ -119,8 +119,7 @@ $gperm_handler =& xoops_gethandler('groupperm');
 if ($gperm_handler->checkRight("system_admin", XOOPS_SYSTEM_GROUP, $xoopsUser->getGroups(), 1)) {
     //add group selection
     $group_select = new XoopsFormSelectGroup(_US_GROUPS, 'groups', false, $groups, 5, true);
-}
-else {
+} else {
     //add empty variable
     $group_select = new XoopsFormHidden('groups[]', XOOPS_GROUP_USERS);
 }
@@ -166,11 +165,10 @@ $form->addElement($group_select);
 $form->addElement($fct_hidden);
 $form->addElement($op_hidden);
 $form->addElement($submit_button);
-if ( !empty($uid_value) ) {
+if (!empty($uid_value)) {
     $uid_hidden = new XoopsFormHidden("uid", $uid_value);
     $form->addElement($uid_hidden);
 }
 //$form->setRequired($uname_text);
 //$form->setRequired($email_text);
 $form->display();
-?>

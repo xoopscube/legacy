@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -79,12 +78,9 @@ class Lecat_Uninstaller
     {
         $moduleHandler =& Lecat_Utils::getXoopsHandler('module');
     
-        if($moduleHandler->delete($this->_mXoopsModule))
-        {
+        if ($moduleHandler->delete($this->_mXoopsModule)) {
             $this->mLog->addReport(_MI_LECAT_INSTALL_MSG_MODULE_INFORMATION_DELETED);
-        }
-        else
-        {
+        } else {
             $this->mLog->addError(_MI_LECAT_INSTALL_ERROR_MODULE_INFORMATION_DELETED);
         }
     }
@@ -103,28 +99,23 @@ class Lecat_Uninstaller
         $dirname = $this->_mXoopsModule->get('dirname');
     
         $tables =& $this->_mXoopsModule->getInfo('tables');
-        if(is_array($tables))
-        {
-            foreach($tables as $table)
-            {
+        if (is_array($tables)) {
+            foreach ($tables as $table) {
                 $tableName = str_replace(
-                    array('{prefix}','{dirname}'),
-                    array(XOOPS_DB_PREFIX,$dirname),
+                    array('{prefix}', '{dirname}'),
+                    array(XOOPS_DB_PREFIX, $dirname),
                     $table
                 );
-                $sql = sprintf('drop table `%s`;',$tableName);
+                $sql = sprintf('drop table `%s`;', $tableName);
                 
-                if($db->query($sql))
-                {
+                if ($db->query($sql)) {
                     $this->mLog->addReport(
                         XCube_Utils::formatString(
                             _MI_LECAT_INSTALL_MSG_TABLE_DOROPPED,
                             $tableName
                         )
                     );
-                }
-                else
-                {
+                } else {
                     $this->mLog->addError(
                         XCube_Utils::formatString(
                             _MI_LECAT_INSTALL_ERROR_TABLE_DOROPPED,
@@ -145,7 +136,7 @@ class Lecat_Uninstaller
     **/
     private function _uninstallTemplates()
     {
-        Lecat_InstallUtils::uninstallAllOfModuleTemplates($this->_mXoopsModule,$this->mLog,false);
+        Lecat_InstallUtils::uninstallAllOfModuleTemplates($this->_mXoopsModule, $this->mLog, false);
     }
 
     /**
@@ -157,12 +148,11 @@ class Lecat_Uninstaller
     **/
     private function _uninstallBlocks()
     {
-        Lecat_InstallUtils::uninstallAllOfBlocks($this->_mXoopsModule,$this->mLog);
+        Lecat_InstallUtils::uninstallAllOfBlocks($this->_mXoopsModule, $this->mLog);
     
         $tplHandler =& Lecat_Utils::getXoopsHandler('tplfile');
-        $cri =new Criteria('tpl_module',$this->_mXoopsModule->get('dirname'));
-        if(!$tplHandler->deleteAll($cri))
-        {
+        $cri =new Criteria('tpl_module', $this->_mXoopsModule->get('dirname'));
+        if (!$tplHandler->deleteAll($cri)) {
             $this->mLog->addError(
                 XCube_Utils::formatString(
                     _MI_LECAT_INSTALL_ERROR_BLOCK_TPL_DELETED,
@@ -181,7 +171,7 @@ class Lecat_Uninstaller
     **/
     private function _uninstallPreferences()
     {
-        Lecat_InstallUtils::uninstallAllOfConfigs($this->_mXoopsModule,$this->mLog);
+        Lecat_InstallUtils::uninstallAllOfConfigs($this->_mXoopsModule, $this->mLog);
     }
 
     /**
@@ -193,26 +183,21 @@ class Lecat_Uninstaller
     **/
     private function _processReport()
     {
-        if(!$this->mLog->hasError())
-        {
+        if (!$this->mLog->hasError()) {
             $this->mLog->add(
                 XCube_Utils::formatString(
                     _MI_LECAT_INSTALL_MSG_MODULE_UNINSTALLED,
                     $this->_mXoopsModule->get('name')
                 )
             );
-        }
-        else if(is_object($this->_mXoopsModule))
-        {
+        } elseif (is_object($this->_mXoopsModule)) {
             $this->mLog->addError(
                 XCube_Utils::formatString(
                     _MI_LECAT_INSTALL_ERROR_MODULE_UNINSTALLED,
                     $this->_mXoopsModule->get('name')
                 )
             );
-        }
-        else
-        {
+        } else {
             $this->mLog->addError(
                 XCube_Utils::formatString(
                     _MI_LECAT_INSTALL_ERROR_MODULE_UNINSTALLED,
@@ -232,38 +217,32 @@ class Lecat_Uninstaller
     public function executeUninstall()
     {
         $this->_uninstallTables();
-        if(!$this->_mForceMode && $this->mLog->hasError())
-        {
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
     
-        if($this->_mXoopsModule->get('mid') != null)
-        {
+        if ($this->_mXoopsModule->get('mid') != null) {
             $this->_uninstallModule();
-            if(!$this->_mForceMode && $this->mLog->hasError())
-            {
+            if (!$this->_mForceMode && $this->mLog->hasError()) {
                 $this->_processReport();
                 return false;
             }
     
             $this->_uninstallTemplates();
-            if(!$this->_mForceMode && $this->mLog->hasError())
-            {
+            if (!$this->_mForceMode && $this->mLog->hasError()) {
                 $this->_processReport();
                 return false;
             }
     
             $this->_uninstallBlocks();
-            if(!$this->_mForceMode && $this->mLog->hasError())
-            {
+            if (!$this->_mForceMode && $this->mLog->hasError()) {
                 $this->_processReport();
                 return false;
             }
     
             $this->_uninstallPreferences();
-            if(!$this->_mForceMode && $this->mLog->hasError())
-            {
+            if (!$this->_mForceMode && $this->mLog->hasError()) {
                 $this->_processReport();
                 return false;
             }
@@ -273,5 +252,3 @@ class Lecat_Uninstaller
         return true;
     }
 }
-
-?>

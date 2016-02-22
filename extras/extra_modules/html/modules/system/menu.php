@@ -57,4 +57,3 @@ $adminmenu[12]['title'] = _MI_SYSTEM_ADMENU15;
 $adminmenu[12]['link'] = "admin.php?fct=tplsets";
 $adminmenu[13]['title'] = _MI_SYSTEM_ADMENU16;
 $adminmenu[13]['link'] = "admin.php?fct=comments";
-?>

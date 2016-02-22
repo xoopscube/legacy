@@ -23,7 +23,7 @@ class Hdinstaller_Plugin_Filter_ExecutionTime extends Ethna_Plugin_Filter
     /**
      *  @var    int     Start time.
      */
-    var $stime;
+    public $stime;
 
     /**#@-*/
 
@@ -33,7 +33,7 @@ class Hdinstaller_Plugin_Filter_ExecutionTime extends Ethna_Plugin_Filter
      *
      *  @access public
      */
-    function preFilter()
+    public function preFilter()
     {
         $stime = explode(' ', microtime());
         $stime = $stime[1] + $stime[0];
@@ -49,7 +49,7 @@ class Hdinstaller_Plugin_Filter_ExecutionTime extends Ethna_Plugin_Filter
      *                string: if you return string, it will be interpreted
      *                        as Action name which will be executed immediately.
      */
-    function preActionFilter($action_name)
+    public function preActionFilter($action_name)
     {
         return null;
     }
@@ -64,7 +64,7 @@ class Hdinstaller_Plugin_Filter_ExecutionTime extends Ethna_Plugin_Filter
      *                string: if you return string, it will be interpreted
      *                        as Forward name.
      */
-    function postActionFilter($action_name, $forward_name)
+    public function postActionFilter($action_name, $forward_name)
     {
         return null;
     }
@@ -74,7 +74,7 @@ class Hdinstaller_Plugin_Filter_ExecutionTime extends Ethna_Plugin_Filter
      *
      *  @access public
      */
-    function postFilter()
+    public function postFilter()
     {
         $etime = explode(' ', microtime());
         $etime = $etime[1] + $etime[0];
@@ -83,4 +83,3 @@ class Hdinstaller_Plugin_Filter_ExecutionTime extends Ethna_Plugin_Filter
         print "\n<!-- page was processed in $time seconds -->\n";
     }
 }
-?>

@@ -42,4 +42,3 @@ $modversion['image'] = "smiles.gif";
 $modversion['hasAdmin'] = 1;
 $modversion['adminpath'] = "admin.php?fct=smilies";
 $modversion['category'] = XOOPS_SYSTEM_SMILE;
-?>

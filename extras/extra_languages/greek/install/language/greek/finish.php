@@ -16,4 +16,3 @@ $content =
 <p>Επισκεφτείτε <a href='http://xoopscube.org/' target='_blank'>XOOPS Cube.org</a><br />
 Και για υποστήριξη στα Ελληνικά <a href='http://xoopscube.gr/' target='_blank'>xoopsCube.gr</a></p>
 ";
-?>

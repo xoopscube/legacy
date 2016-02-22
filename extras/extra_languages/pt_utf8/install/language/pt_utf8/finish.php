@@ -32,4 +32,3 @@ $content = "<h3><u>SEGUNDA PARTE DA INSTALAÇÃO</u></h3>
 <li><a href='http://groups.google.com.br/group/xoopscube/subscribe' target='_tab'>XOOPS Cube Brasil no Google Groups</a></li>
 <li><a href='http://br.groups.yahoo.com/group/xoopscube/join' target='_tab'>XOOPS Cube Brasil no Yahoo! Grupos</a></li>
 </ul>";
-?>

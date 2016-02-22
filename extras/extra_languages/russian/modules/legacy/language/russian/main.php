@@ -58,5 +58,3 @@ define('_MD_LEGACY_MESSAGE_LOGIN_SUCCESS', "Авторизация прошла успешно.");
 define('_MD_LEGACY_MESSAGE_THANKYOUFORVISIT', "Добро пожаловать на наш сайт!");
 
 define('_MB_LEGACY_MAINMENU_EXPAND_SUB', "Show all submenus");
-
-?>

@@ -10,73 +10,70 @@
 
 class XCube_RenderCache
 {
-	var $mCacheId = null;
-	var $mResourceName = null;
-	
-	function XCube_RenderCache()
-	{
-	}
+    public $mCacheId = null;
+    public $mResourceName = null;
+    
+    public function XCube_RenderCache()
+    {
+    }
 
-	/**
-	 * @return bool
-	 */
-	function isCache($cachetime = null)
-	{
-	}
-	
-	/**
-	 * @return bool
-	 */
-	function enableCache()
-	{
-		return true;
-	}
-	
-	function setResourceName($name)
-	{
-		$this->mResourceName = $name;
-	}
-	
-	/**
-	 * @return string
-	 */
-	function getCacheId()
-	{
-	}
-	
-	/**
-	 * @return string
-	 */
-	function _getFileName()
-	{
-	}
+    /**
+     * @return bool
+     */
+    public function isCache($cachetime = null)
+    {
+    }
+    
+    /**
+     * @return bool
+     */
+    public function enableCache()
+    {
+        return true;
+    }
+    
+    public function setResourceName($name)
+    {
+        $this->mResourceName = $name;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getCacheId()
+    {
+    }
+    
+    /**
+     * @return string
+     */
+    public function _getFileName()
+    {
+    }
 
-	function save($renderTarget)
-	{
-		if ($this->enableCache()) {
-			$filename = $this->_getFileName();
-			$fp = fopen($filename, "wb");
-			fwrite($fp, $renderTarget->getResult());
-			fclose($fp);
-		}
-	}
+    public function save($renderTarget)
+    {
+        if ($this->enableCache()) {
+            $filename = $this->_getFileName();
+            $fp = fopen($filename, "wb");
+            fwrite($fp, $renderTarget->getResult());
+            fclose($fp);
+        }
+    }
 
-	function load()
-	{
-		if ($this->isCache()) {
-			return file_get_contents($this->_getFileName());
-		}
-	}
-	
-	function clear()
-	{
-	}
-	
-	function reset()
-	{
-		$this->mResourceName = null;
-	}
+    public function load()
+    {
+        if ($this->isCache()) {
+            return file_get_contents($this->_getFileName());
+        }
+    }
+    
+    public function clear()
+    {
+    }
+    
+    public function reset()
+    {
+        $this->mResourceName = null;
+    }
 }
-
-
-?>

@@ -36,4 +36,4 @@ O XOOPS Cube é ideal para a criação <i>sites</i> de notícias, intranets, ou 
 <u><b>Instalação:</b></u>
 Siga as indicações deste guia e clique em <q>Prosseguir</q> para continuar.</div>";
 //
-?>
+;

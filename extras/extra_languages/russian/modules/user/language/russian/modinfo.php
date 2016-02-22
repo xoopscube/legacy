@@ -104,5 +104,3 @@ define('_MI_USER_MENU_CREATE_RANK', "user rank create new");
 define('_MI_USER_MENU_CREATE_USER', "Создать пользователя");
 define('_MI_USER_NAME', "Пользователи");
 define('_MI_USER_NAME_DESC', "Этот модуль позволяет управлять аккаунтами пользователей.");
-
-?>

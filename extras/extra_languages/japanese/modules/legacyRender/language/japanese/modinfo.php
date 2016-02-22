@@ -40,5 +40,3 @@ define('_MI_LR_JQUERY_CORE', "jQuery コアライブラリ");
 define('_MI_LR_JQUERY_CORE_DESC', "Google Libraries APIを使う場合（推奨）、jQuery のバージョンを入れてください。ローカルの jQuery ファイルを使う場合は、そのURLを入れてください。");
 define('_MI_LR_JQUERY_UI', "jQuery UI ライブラリ");
 define('_MI_LR_JQUERY_UI_DESC', "Google Libraries APIを使う場合、jQuery UI のバージョンを入れてください。ローカルの jQuery UI ファイルを使う場合は、そのURLを入れてください。どちらを使うかはコアライブラリと同じでなければなりません。");
-
-?>

@@ -36,7 +36,7 @@
                             $avatar->setVar('avatar_mimetype', '');
                             $avatar->setVar('avatar_display', 1);
                             $avatar->setVar('avatar_type', 'C');
-                            if(!$avt_handler->insert($avatar)) {
+                            if (!$avt_handler->insert($avatar)) {
                                 $error = true;
                             } else {
                                 $avt_handler->addUser($avatar->getVar('avatar_id'), $user['uid']);
@@ -62,4 +62,3 @@
 
     $b_next = array('finish', _INSTALL_L14);
     include './install_tpl.php';
-?>

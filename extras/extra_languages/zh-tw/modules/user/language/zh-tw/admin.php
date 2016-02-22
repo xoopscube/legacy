@@ -124,5 +124,3 @@ define('_AD_USER_TIPS_MAILJOB_SEND', '如果要寄送郵件給太多使用者，
 define('_AD_USER_TIPS_RECOUNT_POSTS', '您可以點選下面的重新計算按鈕來重新計算使用者發表文章數量。');
 define('_AD_USER_TIPS_USER_EDIT', '如果您希望修改密碼，請在密碼與確認密碼欄位輸入資料。');
 define('_AD_USER_TIPS_USER_NEW', '您可以輸入帳號、信箱、密碼與確認密碼。');
-
-?>

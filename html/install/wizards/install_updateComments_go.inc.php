@@ -52,4 +52,3 @@
     $xoopsDB->query('ALTER TABLE '.$xoopsDB->prefix('xoopscomments').' CHANGE com_id com_id mediumint(8) unsigned NOT NULL auto_increment PRIMARY KEY');
     $b_next = array('updateSmilies', _INSTALL_L14);
     include './install_tpl.php';
-?>

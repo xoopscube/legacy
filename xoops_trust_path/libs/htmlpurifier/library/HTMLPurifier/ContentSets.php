@@ -168,3 +168,4 @@ class HTMLPurifier_ContentSets
 }
 
 // vim: et sw=4 sts=4
+

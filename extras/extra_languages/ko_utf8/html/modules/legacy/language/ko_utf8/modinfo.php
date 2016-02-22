@@ -66,5 +66,3 @@ define('_MI_LEGACY_MENU_THEME_MANAGE', "테마 관리");
 define('_MI_LEGACY_MENU_XOOPS_CONFIG', "XOOPS Config");
 define('_MI_LEGACY_NAME', "호환 모듈");
 define('_MI_LEGACY_NAME_DESC', "XOOPS Cube에 XOOPS 2.0.x 시리즈와의 호환성을 제공합니다.");
-
-?>

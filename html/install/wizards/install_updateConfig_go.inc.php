@@ -10,9 +10,9 @@
     include_once "../mainfile.php";
 
     $language = check_language($language);
-    if ( file_exists("./language/".$language."/install2.php") ) {
+    if (file_exists("./language/".$language."/install2.php")) {
         include_once "./language/".$language."/install2.php";
-    } elseif ( file_exists("./language/english/install2.php") ) {
+    } elseif (file_exists("./language/english/install2.php")) {
         include_once "./language/english/install2.php";
         $language = 'english';
     } else {
@@ -143,4 +143,3 @@
     //$content .= $cm->report();
     $b_next = array('updateModules', _INSTALL_L14);
     include './install_tpl.php';
-?>

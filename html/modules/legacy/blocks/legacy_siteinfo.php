@@ -19,7 +19,8 @@
 //  This file has been modified for Legacy from XOOPS2 System module block   //
 // ------------------------------------------------------------------------- //
 
-function b_legacy_siteinfo_show($options) {
+function b_legacy_siteinfo_show($options)
+{
     global $xoopsConfig, $xoopsUser;
     $xoopsDB =& Database::getInstance();
     $myts =& MyTextSanitizer::getInstance();
@@ -30,7 +31,7 @@ function b_legacy_siteinfo_show($options) {
         if ($xoopsDB->getRowsNum($result) > 0) {
             $prev_caption = "";
             $i = 0;
-            while  ($userinfo = $xoopsDB->fetchArray($result)) {
+            while ($userinfo = $xoopsDB->fetchArray($result)) {
                 if ($prev_caption != $userinfo['groupname']) {
                     $prev_caption = $userinfo['groupname'];
                     $block['groups'][$i]['name'] = $myts->htmlSpecialChars($userinfo['groupname']);
@@ -61,24 +62,24 @@ function b_legacy_siteinfo_show($options) {
     return $block;
 }
 
-function b_legacy_siteinfo_edit($options) {
+function b_legacy_siteinfo_edit($options)
+{
     $form = _MB_LEGACY_PWWIDTH."&nbsp;";
     $form .= "<input type='text' name='options[]' value='".$options[0]."' />";
     $form .= "<br />"._MB_LEGACY_PWHEIGHT."&nbsp;";
     $form .= "<input type='text' name='options[]' value='".$options[1]."' />";
-    $form .= "<br />".sprintf(_MB_LEGACY_LOGO,XOOPS_URL."/images/")."&nbsp;";
+    $form .= "<br />".sprintf(_MB_LEGACY_LOGO, XOOPS_URL."/images/")."&nbsp;";
     $form .= "<input type='text' name='options[]' value='".$options[2]."' />";
     $chk = "";
     $form .= "<br />"._MB_LEGACY_SADMIN."&nbsp;";
-    if ( $options[3] == 1 ) {
+    if ($options[3] == 1) {
         $chk = " checked='checked'";
     }
     $form .= "<input type='radio' name='options[3]' value='1'".$chk." />&nbsp;"._YES."";
     $chk = "";
-    if ( $options[3] == 0 ) {
+    if ($options[3] == 0) {
         $chk = " checked=\"checked\"";
     }
     $form .= "&nbsp;<input type='radio' name='options[3]' value='0'".$chk." />"._NO."";
     return $form;
 }
-?>

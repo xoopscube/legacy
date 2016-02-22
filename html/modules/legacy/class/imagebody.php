@@ -8,28 +8,28 @@
  *
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 class LegacyImagebodyObject extends XoopsSimpleObject
 {
-	function LegacyImagebodyObject()
-	{
-		static $initVars;
-		if (isset($initVars)) {
-			$this->mVars = $initVars;
-			return;
-		}
-		$this->initVar('image_id', XOBJ_DTYPE_INT, '', false);
-		$this->initVar('image_body', XOBJ_DTYPE_TEXT, '', true);
-		$initVars=$this->mVars;
-	}
+    public function LegacyImagebodyObject()
+    {
+        static $initVars;
+        if (isset($initVars)) {
+            $this->mVars = $initVars;
+            return;
+        }
+        $this->initVar('image_id', XOBJ_DTYPE_INT, '', false);
+        $this->initVar('image_body', XOBJ_DTYPE_TEXT, '', true);
+        $initVars=$this->mVars;
+    }
 }
 
 class LegacyImagebodyHandler extends XoopsObjectGenericHandler
 {
-	var $mTable = "imagebody";
-	var $mPrimary = "image_id";
-	var $mClass = "LegacyImagebodyObject";
+    public $mTable = "imagebody";
+    public $mPrimary = "image_id";
+    public $mClass = "LegacyImagebodyObject";
 }
-
-?>

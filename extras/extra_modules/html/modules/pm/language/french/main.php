@@ -38,4 +38,3 @@ define('_MD_PM_MESSAGE_PLZREG', "Veuillez vous enregistrer pour envoyer des mess
 define('_MD_PM_MESSAGE_POSTED', "Votre message a été envoyé.");
 define('_MD_PM_MESSAGE_SORRY', "Désolé! Vous n'êtes pas un utilisateur enregistré.");
 define('_MD_PM_MESSAGE_YOUDONTHAVE', "Vous n'avez pas de messages privés.");
-?>

@@ -27,10 +27,10 @@ class Ethna_DB_Creole extends Ethna_DB
      */
 
     /** @var    object  DB              DBオブジェクト */
-    var $db;
+    public $db;
 
     /** @var    string   dsn */
-    var $dsn;
+    public $dsn;
 
     /**#@-*/
 
@@ -43,7 +43,7 @@ class Ethna_DB_Creole extends Ethna_DB
      *  @param  string  $dsn                                DSN
      *  @param  bool    $persistent                         持続接続設定
      */
-    function Ethna_DB_Creole(&$controller, $dsn, $persistent)
+    public function Ethna_DB_Creole(&$controller, $dsn, $persistent)
     {
         parent::Ethna_DB($controller, $dsn, $persistent);
     }
@@ -54,7 +54,7 @@ class Ethna_DB_Creole extends Ethna_DB
      *  @access public
      *  @return mixed   0:正常終了 Ethna_Error:エラー
      */
-    function connect()
+    public function connect()
     {
         $this->db = Creole::getConnection($this->dsn);
         return 0;
@@ -65,7 +65,7 @@ class Ethna_DB_Creole extends Ethna_DB
      *
      *  @access public
      */
-    function disconnect()
+    public function disconnect()
     {
         $this->db->close();
         return 0;
@@ -77,9 +77,9 @@ class Ethna_DB_Creole extends Ethna_DB
      *  @access public
      *  @return bool    true:正常(接続済み) false:エラー/未接続
      */
-    function isValid()
+    public function isValid()
     {
-        if ( is_object($this->db) ) {
+        if (is_object($this->db)) {
             return true;
         } else {
             return false;
@@ -92,7 +92,7 @@ class Ethna_DB_Creole extends Ethna_DB
      *  @access public
      *  @return mixed   0:正常終了 Ethna_Error:エラー
      */
-    function begin()
+    public function begin()
     {
         return 0;
     }
@@ -103,7 +103,7 @@ class Ethna_DB_Creole extends Ethna_DB
      *  @access public
      *  @return mixed   0:正常終了 Ethna_Error:エラー
      */
-    function rollback()
+    public function rollback()
     {
         $this->db->rollback();
         return 0;
@@ -115,7 +115,7 @@ class Ethna_DB_Creole extends Ethna_DB
      *  @access public
      *  @return mixed   0:正常終了 Ethna_Error:エラー
      */
-    function commit()
+    public function commit()
     {
         $this->db->commit();
         return 0;
@@ -128,9 +128,8 @@ class Ethna_DB_Creole extends Ethna_DB
      * @return  Object
      * @access  public
      */
-    function prepareStatement($sql)
+    public function prepareStatement($sql)
     {
         return $this->db->prepareStatement($sql);
     }
 }
-?>

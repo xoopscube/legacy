@@ -57,5 +57,3 @@ define('_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_WARNING', "Supprimez le repértoire {
 define('_MD_LEGACY_MESSAGE_LOGGEDOUT', "Vous êtes déconnecté");
 define('_MD_LEGACY_MESSAGE_LOGIN_SUCCESS', "Connexion établie!");
 define('_MD_LEGACY_MESSAGE_THANKYOUFORVISIT', "Merci de votre visite!");
-
-?>

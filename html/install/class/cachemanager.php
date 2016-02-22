@@ -31,33 +31,32 @@
 * @version $Id: cachemanager.php,v 1.1 2007/05/15 02:35:13 minahito Exp $
 * @access public
 **/
-class cache_manager {
+class cache_manager
+{
 
-    var $s_files = array();
-    var $f_files = array();
+    public $s_files = array();
+    public $f_files = array();
 
-    function write($file, $source){
+    public function write($file, $source)
+    {
         if (false != $fp = fopen(XOOPS_CACHE_PATH.'/'.$file, 'w')) {
             fwrite($fp, $source);
             fclose($fp);
             $this->s_files[] = $file;
-        }else{
+        } else {
             $this->f_files[] = $file;
         }
     }
 
-    function report(){
+    public function report()
+    {
         $reports = array();
-        foreach($this->s_files as $val){
+        foreach ($this->s_files as $val) {
             $reports[]= _OKIMG.sprintf(_INSTALL_L123, "<b>$val</b>");
         }
-        foreach($this->f_files as $val){
+        foreach ($this->f_files as $val) {
             $reports[] = _NGIMG.sprintf(_INSTALL_L124, "<b>$val</b>");
         }
         return $reports;
     }
-
 }
-
-
-?>

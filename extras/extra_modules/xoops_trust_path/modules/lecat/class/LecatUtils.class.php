@@ -5,9 +5,8 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
-	exit;
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit;
 }
 
 /**
@@ -15,31 +14,31 @@ if(!defined('XOOPS_ROOT_PATH'))
 **/
 class Lecat_Utils
 {
-	/**
-	 * &getXoopsHandler
-	 * 
-	 * @param	string	$name
-	 * @param	bool  $optional
-	 * 
-	 * @return	XoopsObjectHandler
-	**/
-	public static function &getXoopsHandler(/*** string ***/ $name,/*** bool ***/ $optional = false)
-	{
-		// TODO will be emulated xoops_gethandler
-		return xoops_gethandler($name,$optional);
-	}
+    /**
+     * &getXoopsHandler
+     * 
+     * @param	string	$name
+     * @param	bool  $optional
+     * 
+     * @return	XoopsObjectHandler
+    **/
+    public static function &getXoopsHandler(/*** string ***/ $name, /*** bool ***/ $optional = false)
+    {
+        // TODO will be emulated xoops_gethandler
+        return xoops_gethandler($name, $optional);
+    }
 
-	/**
-	 * getEnv
-	 * 
-	 * @param	string	$key
-	 * 
-	 * @return	string
-	**/
-	public static function getEnv(/*** string ***/ $key)
-	{
-		return getenv($key);
-	}
+    /**
+     * getEnv
+     * 
+     * @param	string	$key
+     * 
+     * @return	string
+    **/
+    public static function getEnv(/*** string ***/ $key)
+    {
+        return getenv($key);
+    }
 
     /**
      * getModuleConfig
@@ -52,7 +51,7 @@ class Lecat_Utils
     public static function getModuleConfig(/*** string ***/ $dirname, /*** string ***/ $key)
     {
         static $config = array();
-        if(! isset($config[$dirname])){
+        if (! isset($config[$dirname])) {
             $chandler = xoops_gethandler('config');
             $config[$dirname] = $chandler->getConfigsByDirname($dirname);
         }
@@ -64,27 +63,27 @@ class Lecat_Utils
         $list = array();
         $images = trim(self::getModuleConfig($dirname, 'images')) ? preg_split('/\x0d\x0a|\x0d|\x0a/', self::getModuleConfig($dirname, 'images'), null) : array();
         $i = 1;
-        foreach($images as $image){
+        foreach ($images as $image) {
             $list[$i] = $image;
             $i++;
         }
         return $list;
     }
 
-	/**
-	 * getActorList
-	 * 
-	 * @param	string	$dirname
-	 * 
-	 * @return	string[]
-	**/
-	public static function getActorList(/*** string ***/ $dirname)
-	{
-		$handler = xoops_gethandler('config');
-		$conf = $handler->getConfigsByDirname($dirname);
-	
-		return isset($conf['actors']) ? unserialize($conf['actors']) : array('key'=>array('viewer','poster','manager'),'title'=>array('Viewer', 'Poster', 'Manager'),'default'=>array(1,1,0));
-	}
+    /**
+     * getActorList
+     * 
+     * @param	string	$dirname
+     * 
+     * @return	string[]
+    **/
+    public static function getActorList(/*** string ***/ $dirname)
+    {
+        $handler = xoops_gethandler('config');
+        $conf = $handler->getConfigsByDirname($dirname);
+    
+        return isset($conf['actors']) ? unserialize($conf['actors']) : array('key'=>array('viewer','poster','manager'),'title'=>array('Viewer', 'Poster', 'Manager'),'default'=>array(1,1,0));
+    }
 
     /**
      * getClientList
@@ -93,16 +92,14 @@ class Lecat_Utils
      * 
      * @return  array
     **/
-	public static function getClientList(/*** string ***/ $dirname)
-	{
-		$clients = array();
-		$list = array();
-		XCube_DelegateUtils::call('Legacy_CategoryClient.GetClientList', new XCube_Ref($clients), $dirname);
-		foreach($clients as $module){
-			$list[] = array('dirname'=>trim($module['dirname']), 'dataname'=>trim($module['dataname']), 'fieldname'=>trim($module['fieldname']));
-		}
-		return $list;
-	}
+    public static function getClientList(/*** string ***/ $dirname)
+    {
+        $clients = array();
+        $list = array();
+        XCube_DelegateUtils::call('Legacy_CategoryClient.GetClientList', new XCube_Ref($clients), $dirname);
+        foreach ($clients as $module) {
+            $list[] = array('dirname'=>trim($module['dirname']), 'dataname'=>trim($module['dataname']), 'fieldname'=>trim($module['fieldname']));
+        }
+        return $list;
+    }
 }
-
-?>

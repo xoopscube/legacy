@@ -10,7 +10,7 @@
  * @author Arpad Ray <arpad@php.net>
  */
 if (!function_exists('http_build_query')) {
-    function http_build_query($formdata, $numeric_prefix = null, $key = null) 
+    function http_build_query($formdata, $numeric_prefix = null, $key = null)
     {
         $res = array();
         foreach ((array)$formdata as $k => $v) {
@@ -23,7 +23,7 @@ if (!function_exists('http_build_query')) {
             }
             $res[] = (is_scalar($v))
                 ? $tmp_key . '=' . urlencode($v)
-                : http_build_query($v, null , $tmp_key);
+                : http_build_query($v, null, $tmp_key);
         }
         $separator = ini_get('arg_separator.output');
         if (strlen($separator) == 0) {
@@ -49,13 +49,13 @@ if (!function_exists('http_build_query')) {
 class HTML_AJAX_Serializer_Urlencoded
 {
     // {{{ serialize
-    function serialize($input) 
+    public function serialize($input)
     {
         return http_build_query(array('_HTML_AJAX' => $input));
     }
     // }}}
     // {{{ unserialize
-    function unserialize($input) 
+    public function unserialize($input)
     {
         parse_str($input, $ret);
         return (isset($ret['_HTML_AJAX']) ? $ret['_HTML_AJAX'] : $ret);
@@ -63,5 +63,4 @@ class HTML_AJAX_Serializer_Urlencoded
     // }}}
 }
 // }}}
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-?>
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */;
