@@ -1,6 +1,7 @@
 <?php
 
-class Text_Wiki_Render_Latex_Superscript extends Text_Wiki_Render {
+class Text_Wiki_Render_Latex_Superscript extends Text_Wiki_Render
+{
     
     /**
     * 
@@ -15,7 +16,7 @@ class Text_Wiki_Render_Latex_Superscript extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         return 'Superscript: NI';
         
@@ -28,4 +29,3 @@ class Text_Wiki_Render_Latex_Superscript extends Text_Wiki_Render {
         }
     }
 }
-?>

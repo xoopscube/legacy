@@ -6,16 +6,16 @@ require_once dirname(dirname(__FILE__)).'/class/gtickets.php' ;
 $db =& Database::getInstance() ;
 
 // GET vars
-$pos = empty( $_GET[ 'pos' ] ) ? 0 : intval( $_GET[ 'pos' ] ) ;
-$num = empty( $_GET[ 'num' ] ) ? 20 : intval( $_GET[ 'num' ] ) ;
+$pos = empty($_GET[ 'pos' ]) ? 0 : intval($_GET[ 'pos' ]) ;
+$num = empty($_GET[ 'num' ]) ? 20 : intval($_GET[ 'num' ]) ;
 
 // Table Name
-$log_table = $db->prefix( $mydirname."_log" ) ;
+$log_table = $db->prefix($mydirname."_log") ;
 
 // Protector object
 require_once dirname(dirname(__FILE__)).'/class/protector.php' ;
 $db =& Database::getInstance() ;
-$protector =& Protector::getInstance( $db->conn ) ;
+$protector =& Protector::getInstance($db->conn) ;
 $conf = $protector->getConf() ;
 
 
@@ -23,75 +23,72 @@ $conf = $protector->getConf() ;
 // transaction stage
 //
 
-if( ! empty( $_POST['action'] ) ) {
+if (! empty($_POST['action'])) {
 
-	// Ticket check
-	if ( ! $xoopsGTicket->check( true , 'protector_admin' ) ) {
-		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
-	}
+    // Ticket check
+    if (! $xoopsGTicket->check(true, 'protector_admin')) {
+        redirect_header(XOOPS_URL.'/', 3, $xoopsGTicket->getErrors());
+    }
 
-	if( $_POST['action'] == 'update_ips' ) {
-		$error_msg = '' ;
+    if ($_POST['action'] == 'update_ips') {
+        $error_msg = '' ;
 
-		$lines = empty( $_POST['bad_ips'] ) ? array() : explode( "\n" , trim( $_POST['bad_ips'] ) ) ;
-		$bad_ips = array() ;
-		foreach( $lines as $line ) {
-			@list( $bad_ip , $jailed_time ) = explode( ':' , $line , 2 ) ;
-			$bad_ips[ trim( $bad_ip ) ] = empty( $jailed_time ) ? 0x7fffffff : intval( $jailed_time ) ;
-		}
-		if( ! $protector->write_file_badips( $bad_ips ) ) {
-			$error_msg .= _AM_MSG_BADIPSCANTOPEN ;
-		}
+        $lines = empty($_POST['bad_ips']) ? array() : explode("\n", trim($_POST['bad_ips'])) ;
+        $bad_ips = array() ;
+        foreach ($lines as $line) {
+            @list($bad_ip, $jailed_time) = explode(':', $line, 2) ;
+            $bad_ips[ trim($bad_ip) ] = empty($jailed_time) ? 0x7fffffff : intval($jailed_time) ;
+        }
+        if (! $protector->write_file_badips($bad_ips)) {
+            $error_msg .= _AM_MSG_BADIPSCANTOPEN ;
+        }
 
-		$group1_ips = empty( $_POST['group1_ips'] ) ? array() : explode( "\n" , trim( $_POST['group1_ips'] ) ) ;
-		foreach( array_keys( $group1_ips ) as $i ) {
-			$group1_ips[$i] = trim( $group1_ips[$i] ) ;
-		}
-		$fp = @fopen( $protector->get_filepath4group1ips() , 'w' ) ;
-		if( $fp ) {
-			@flock( $fp , LOCK_EX ) ;
-			fwrite( $fp , serialize( array_unique( $group1_ips ) ) . "\n" ) ;
-			@flock( $fp , LOCK_UN ) ;
-			fclose( $fp ) ;
-		} else {
-			$error_msg .= _AM_MSG_GROUP1IPSCANTOPEN ;
-		}
+        $group1_ips = empty($_POST['group1_ips']) ? array() : explode("\n", trim($_POST['group1_ips'])) ;
+        foreach (array_keys($group1_ips) as $i) {
+            $group1_ips[$i] = trim($group1_ips[$i]) ;
+        }
+        $fp = @fopen($protector->get_filepath4group1ips(), 'w') ;
+        if ($fp) {
+            @flock($fp, LOCK_EX) ;
+            fwrite($fp, serialize(array_unique($group1_ips)) . "\n") ;
+            @flock($fp, LOCK_UN) ;
+            fclose($fp) ;
+        } else {
+            $error_msg .= _AM_MSG_GROUP1IPSCANTOPEN ;
+        }
 
-		$redirect_msg = $error_msg ? $error_msg : _AM_MSG_IPFILESUPDATED ;
-		redirect_header( "index.php" , 2 , $redirect_msg ) ;
-		exit ;
-
-	} else if( $_POST['action'] == 'delete' && isset( $_POST['ids'] ) && is_array( $_POST['ids'] ) ) {
-		// remove selected records
-		foreach( $_POST['ids'] as $lid ) {
-			$lid = intval( $lid ) ;
-			$db->query( "DELETE FROM $log_table WHERE lid='$lid'" ) ;
-		}
-		redirect_header( "index.php" , 2 , _AM_MSG_REMOVED ) ;
-		exit ;
-
-	} else if( $_POST['action'] == 'deleteall' ) {
-		// remove all records
-		$db->query( "DELETE FROM $log_table" ) ;
-		redirect_header( "index.php" , 2 , _AM_MSG_REMOVED ) ;
-		exit ;
-
-	} else if( $_POST['action'] == 'compactlog' ) {
-		// compactize records (removing duplicated records (ip,type)
-		$result = $db->query( "SELECT `lid`,`ip`,`type` FROM $log_table ORDER BY lid DESC" ) ;
-		$buf = array() ;
-		$ids = array() ;
-		while( list( $lid , $ip , $type ) = $db->fetchRow( $result ) ) {
-			if( isset( $buf[ $ip . $type ] ) ) {
-				$ids[] = $lid ;
-			} else {
-				$buf[ $ip . $type ] = true ;
-			}
-		}
-		$db->query( "DELETE FROM $log_table WHERE lid IN (".implode(',',$ids).")" ) ;
-		redirect_header( "index.php" , 2 , _AM_MSG_REMOVED ) ;
-		exit ;
-	}
+        $redirect_msg = $error_msg ? $error_msg : _AM_MSG_IPFILESUPDATED ;
+        redirect_header("index.php", 2, $redirect_msg) ;
+        exit ;
+    } elseif ($_POST['action'] == 'delete' && isset($_POST['ids']) && is_array($_POST['ids'])) {
+        // remove selected records
+        foreach ($_POST['ids'] as $lid) {
+            $lid = intval($lid) ;
+            $db->query("DELETE FROM $log_table WHERE lid='$lid'") ;
+        }
+        redirect_header("index.php", 2, _AM_MSG_REMOVED) ;
+        exit ;
+    } elseif ($_POST['action'] == 'deleteall') {
+        // remove all records
+        $db->query("DELETE FROM $log_table") ;
+        redirect_header("index.php", 2, _AM_MSG_REMOVED) ;
+        exit ;
+    } elseif ($_POST['action'] == 'compactlog') {
+        // compactize records (removing duplicated records (ip,type)
+        $result = $db->query("SELECT `lid`,`ip`,`type` FROM $log_table ORDER BY lid DESC") ;
+        $buf = array() ;
+        $ids = array() ;
+        while (list($lid, $ip, $type) = $db->fetchRow($result)) {
+            if (isset($buf[ $ip . $type ])) {
+                $ids[] = $lid ;
+            } else {
+                $buf[ $ip . $type ] = true ;
+            }
+        }
+        $db->query("DELETE FROM $log_table WHERE lid IN (".implode(',', $ids).")") ;
+        redirect_header("index.php", 2, _AM_MSG_REMOVED) ;
+        exit ;
+    }
 }
 
 
@@ -100,23 +97,23 @@ if( ! empty( $_POST['action'] ) ) {
 //
 
 // query for listing
-$rs = $db->query( "SELECT count(lid) FROM $log_table" ) ;
-list( $numrows ) = $db->fetchRow( $rs ) ;
-$prs = $db->query( "SELECT l.lid, l.uid, l.ip, l.agent, l.type, l.description, UNIX_TIMESTAMP(l.timestamp), u.uname FROM $log_table l LEFT JOIN ".$db->prefix("users")." u ON l.uid=u.uid ORDER BY timestamp DESC LIMIT $pos,$num" ) ;
+$rs = $db->query("SELECT count(lid) FROM $log_table") ;
+list($numrows) = $db->fetchRow($rs) ;
+$prs = $db->query("SELECT l.lid, l.uid, l.ip, l.agent, l.type, l.description, UNIX_TIMESTAMP(l.timestamp), u.uname FROM $log_table l LEFT JOIN ".$db->prefix("users")." u ON l.uid=u.uid ORDER BY timestamp DESC LIMIT $pos,$num") ;
 
 // Page Navigation
-$nav = new XoopsPageNav( $numrows , $num , $pos , 'pos' , "num=$num" ) ;
-$nav_html = $nav->renderNav( 10 ) ;
+$nav = new XoopsPageNav($numrows, $num, $pos, 'pos', "num=$num") ;
+$nav_html = $nav->renderNav(10) ;
 
 // Number selection
 $num_options = '' ;
 $num_array = array( 20 , 100 , 500 , 2000 ) ;
-foreach( $num_array as $n ) {
-	if( $n == $num ) {
-		$num_options .= "<option value='$n' selected='selected'>$n</option>\n" ;
-	} else {
-		$num_options .= "<option value='$n'>$n</option>\n" ;
-	}
+foreach ($num_array as $n) {
+    if ($n == $num) {
+        $num_options .= "<option value='$n' selected='selected'>$n</option>\n" ;
+    } else {
+        $num_options .= "<option value='$n'>$n</option>\n" ;
+    }
 }
 
 // beggining of Output
@@ -127,29 +124,29 @@ include dirname(__FILE__).'/mymenu.php' ;
 echo "<h3 style='text-align:left;'>".$xoopsModule->name()."</h3>\n" ;
 
 // configs writable check
-if( ! is_writable( dirname(dirname(__FILE__)).'/configs' ) ) {
-	printf( "<p style='color:red;font-weight:bold;'>"._AM_FMT_CONFIGSNOTWRITABLE."</p>\n" , dirname(dirname(__FILE__)).'/configs' ) ;
+if (! is_writable(dirname(dirname(__FILE__)).'/configs')) {
+    printf("<p style='color:red;font-weight:bold;'>"._AM_FMT_CONFIGSNOTWRITABLE."</p>\n", dirname(dirname(__FILE__)).'/configs') ;
 }
 
 // bad_ips
-$bad_ips = $protector->get_bad_ips( true ) ;
-uksort( $bad_ips , 'protector_ip_cmp' ) ;
+$bad_ips = $protector->get_bad_ips(true) ;
+uksort($bad_ips, 'protector_ip_cmp') ;
 $bad_ips4disp = '' ;
-foreach( $bad_ips as $bad_ip => $jailed_time ) {
-	$line = $jailed_time ? $bad_ip . ':' . $jailed_time : $bad_ip ;
-	$line = str_replace( ':2147483647' , '' , $line ) ; // remove :0x7fffffff
-	$bad_ips4disp .= htmlspecialchars( $line , ENT_QUOTES ) . "\n" ;
+foreach ($bad_ips as $bad_ip => $jailed_time) {
+    $line = $jailed_time ? $bad_ip . ':' . $jailed_time : $bad_ip ;
+    $line = str_replace(':2147483647', '', $line) ; // remove :0x7fffffff
+    $bad_ips4disp .= htmlspecialchars($line, ENT_QUOTES) . "\n" ;
 }
 
 // group1_ips
 $group1_ips = $protector->get_group1_ips() ;
-usort( $group1_ips , 'protector_ip_cmp' ) ;
-$group1_ips4disp = htmlspecialchars(implode("\n",$group1_ips),ENT_QUOTES) ;
+usort($group1_ips, 'protector_ip_cmp') ;
+$group1_ips4disp = htmlspecialchars(implode("\n", $group1_ips), ENT_QUOTES) ;
 
 // edit configs about IP ban and IPs for group=1
 echo "
 <form name='ConfigForm' action='' method='POST'>
-".$xoopsGTicket->getTicketHtml(__LINE__,1800,'protector_admin')."
+".$xoopsGTicket->getTicketHtml(__LINE__, 1800, 'protector_admin')."
 <input type='hidden' name='action' value='update_ips' />
 <table width='95%' class='outer' cellpadding='4' cellspacing='1'>
   <tr valign='top' align='left'>
@@ -201,7 +198,7 @@ echo "
   </table>
 </form>
 <form name='MainForm' action='' method='POST' style='margin-top:0px;'>
-".$xoopsGTicket->getTicketHtml(__LINE__,1800,'protector_admin')."
+".$xoopsGTicket->getTicketHtml(__LINE__, 1800, 'protector_admin')."
 <input type='hidden' name='action' value='' />
 <table width='95%' class='outer' cellpadding='4' cellspacing='1'>
   <tr valign='middle'>
@@ -216,26 +213,26 @@ echo "
 
 // body of log listing
 $oddeven = 'odd' ;
-while( list( $lid , $uid , $ip , $agent , $type , $description , $timestamp , $uname ) = $db->fetchRow( $prs ) ) {
-	$oddeven = ( $oddeven == 'odd' ? 'even' : 'odd' ) ;
+while (list($lid, $uid, $ip, $agent, $type, $description, $timestamp, $uname) = $db->fetchRow($prs)) {
+    $oddeven = ($oddeven == 'odd' ? 'even' : 'odd') ;
 
-	$ip = htmlspecialchars( $ip , ENT_QUOTES ) ;
-	$type = htmlspecialchars( $type , ENT_QUOTES ) ;
-	$description = htmlspecialchars( $description , ENT_QUOTES ) ;
-	$uname = htmlspecialchars( ( $uid ? $uname : _GUESTS ) , ENT_QUOTES ) ;
+    $ip = htmlspecialchars($ip, ENT_QUOTES) ;
+    $type = htmlspecialchars($type, ENT_QUOTES) ;
+    $description = htmlspecialchars($description, ENT_QUOTES) ;
+    $uname = htmlspecialchars(($uid ? $uname : _GUESTS), ENT_QUOTES) ;
 
-	// make agents shorter
-	if( preg_match( '/MSIE\s+([0-9.]+)/' , $agent , $regs ) ) {
-		$agent_short = 'IE ' . $regs[1] ;
-	} else if( stristr( $agent , 'Gecko' ) !== false ) {
-		$agent_short = strrchr( $agent , ' ' ) ;
-	} else {
-		$agent_short = substr( $agent , 0 , strpos( $agent , ' ' ) ) ;
-	}
-	$agent4disp = htmlspecialchars( $agent , ENT_QUOTES ) ;
-	$agent_desc = $agent == $agent_short ? $agent4disp : htmlspecialchars( $agent_short , ENT_QUOTES ) . "<img src='../images/dotdotdot.gif' alt='$agent4disp' title='$agent4disp' />" ;
+    // make agents shorter
+    if (preg_match('/MSIE\s+([0-9.]+)/', $agent, $regs)) {
+        $agent_short = 'IE ' . $regs[1] ;
+    } elseif (stristr($agent, 'Gecko') !== false) {
+        $agent_short = strrchr($agent, ' ') ;
+    } else {
+        $agent_short = substr($agent, 0, strpos($agent, ' ')) ;
+    }
+    $agent4disp = htmlspecialchars($agent, ENT_QUOTES) ;
+    $agent_desc = $agent == $agent_short ? $agent4disp : htmlspecialchars($agent_short, ENT_QUOTES) . "<img src='../images/dotdotdot.gif' alt='$agent4disp' title='$agent4disp' />" ;
 
-	echo "
+    echo "
   <tr>
     <td class='$oddeven'><input type='checkbox' name='ids[]' value='$lid' /></td>
     <td class='$oddeven'>".formatTimestamp($timestamp)."</td>
@@ -268,14 +265,12 @@ echo "
 xoops_cp_footer();
 
 
-function protector_ip_cmp( $a , $b )
+function protector_ip_cmp($a, $b)
 {
-	$as = explode( '.' , $a ) ;
-	$aval = @$as[0] * 167777216 + @$as[1] * 65536 + @$as[2] * 256 + @$as[3] ;
-	$bs = explode( '.' , $b ) ;
-	$bval = @$bs[0] * 167777216 + @$bs[1] * 65536 + @$bs[2] * 256 + @$bs[3] ;
+    $as = explode('.', $a) ;
+    $aval = @$as[0] * 167777216 + @$as[1] * 65536 + @$as[2] * 256 + @$as[3] ;
+    $bs = explode('.', $b) ;
+    $bval = @$bs[0] * 167777216 + @$bs[1] * 65536 + @$bs[2] * 256 + @$bs[3] ;
 
-	return $aval > $bval ? 1 : -1 ;
+    return $aval > $bval ? 1 : -1 ;
 }
-
-?>

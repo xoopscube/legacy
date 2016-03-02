@@ -1,15 +1,15 @@
 <?php
 
-class Text_Wiki_Render_Latex_Heading extends Text_Wiki_Render {
+class Text_Wiki_Render_Latex_Heading extends Text_Wiki_Render
+{
 
-    function token($options)
+    public function token($options)
     {
         // get nice variable names (type, level)
         extract($options);
 
         if ($type == 'start') {
-            switch ($level)
-                {
+            switch ($level) {
                 case '1':
                     return '\part{';
                 case '2':
@@ -30,4 +30,3 @@ class Text_Wiki_Render_Latex_Heading extends Text_Wiki_Render {
         }
     }
 }
-?>

@@ -55,7 +55,4 @@ class HTTP_OAuth_Signature_PLAINTEXT extends HTTP_OAuth_Signature_Common
     ) {
         return $this->getKey($consumerSecret, $tokenSecret);
     }
-
 }
-
-?>

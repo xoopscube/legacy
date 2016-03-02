@@ -36,4 +36,3 @@ define("_MAIL_SENDMAILNG", "%s님에게 메일을 보내는 데 실패하였습니다.");
 define("_MAIL_MAILGOOD", "%s님에게 메일을 성공적으로 발송하였습니다.");
 define("_MAIL_SENDPMNG", "%s님에게 PM쪽지를 보내는 데 실패하였습니다.");
 define("_MAIL_PMGOOD", "%s님에게 PM쪽지를 성공적으로 발송하였습니다.");
-?>

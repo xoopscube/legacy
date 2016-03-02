@@ -40,7 +40,7 @@ class File_Archive_Reader_Ar extends File_Archive_Reader_Archive
      *
      * @access private
      */
-    var $_nbBytesLeft = 0;
+    public $_nbBytesLeft = 0;
 
     /**
      * @var    int      The size of the header in number of bytes
@@ -48,7 +48,7 @@ class File_Archive_Reader_Ar extends File_Archive_Reader_Archive
      *                  contains a long filename
      * @access private
      */
-    var $_header = 0;
+    public $_header = 0;
 
     /**
      * @var    boolean   Flag set if their is a 1 byte footer after the data
@@ -56,32 +56,32 @@ class File_Archive_Reader_Ar extends File_Archive_Reader_Archive
      *
      * @access private
      */
-    var $_footer = false;
+    public $_footer = false;
 
     /**
      * @var    boolean Flag that has tell us if we have read the header of the
      *                 current file
      * @access private
      */
-    var $_alreadyRead = false;
+    public $_alreadyRead = false;
 
     /**
      * @var    string  Name of the file being read
      * @access private
      */
-    var $_currentFilename = null;
+    public $_currentFilename = null;
 
     /**
      * @var    string  Stat properties of the file being read
      *                 It has: name, utime, uid, gid, mode, size and data
      * @access private
      */
-    var $_currentStat = null;
+    public $_currentStat = null;
 
     /**
      * @see File_Archive_Reader::getFilename()
      */
-    function getFilename()
+    public function getFilename()
     {
         return $this->_currentFilename;
     }
@@ -89,7 +89,7 @@ class File_Archive_Reader_Ar extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::close()
      */
-    function close()
+    public function close()
     {
         $this->_currentFilename = null;
         $this->_currentStat = null;
@@ -103,7 +103,7 @@ class File_Archive_Reader_Ar extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::getStat()
      */
-    function getStat()
+    public function getStat()
     {
         return $this->_currentStat;
     }
@@ -111,7 +111,7 @@ class File_Archive_Reader_Ar extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::next()
      */
-    function next()
+    public function next()
     {
         $error = parent::next();
         if ($error !== true) {
@@ -160,7 +160,7 @@ class File_Archive_Reader_Ar extends File_Archive_Reader_Archive
         } else {
             // strip trailing spaces in name, so we can distinguish spaces in a filename with padding
             $this->_header = 60;
-            $name = preg_replace ("/\s+$/", "", $name);
+            $name = preg_replace("/\s+$/", "", $name);
         }
 
         $this->_nbBytesLeft = $size;
@@ -189,7 +189,7 @@ class File_Archive_Reader_Ar extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::getData()
      */
-    function getData($length = -1)
+    public function getData($length = -1)
     {
         if ($length == -1) {
             $length = $this->_nbBytesLeft;
@@ -214,7 +214,7 @@ class File_Archive_Reader_Ar extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::skip
      */
-    function skip($length = -1)
+    public function skip($length = -1)
     {
         if ($length == -1) {
             $length = $this->_nbBytesLeft;
@@ -239,7 +239,7 @@ class File_Archive_Reader_Ar extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::rewind
      */
-    function rewind($length = -1)
+    public function rewind($length = -1)
     {
         if ($length == -1) {
             $length = $this->_currentStat[7] - $this->_nbBytesLeft;
@@ -260,7 +260,7 @@ class File_Archive_Reader_Ar extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::tell()
      */
-    function tell()
+    public function tell()
     {
         return $this->_currentStat[7] - $this->_nbBytesLeft;
     }
@@ -268,7 +268,7 @@ class File_Archive_Reader_Ar extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::makeWriterRemoveFiles()
      */
-    function makeWriterRemoveFiles($pred)
+    public function makeWriterRemoveFiles($pred)
     {
         require_once "File/Archive/Writer/Ar.php";
 
@@ -286,7 +286,7 @@ class File_Archive_Reader_Ar extends File_Archive_Reader_Archive
                 if ($seek === null) {
                     $seek = $size;
                     $blocks[] = $size;
-                } else if ($gap > 0) {
+                } elseif ($gap > 0) {
                     $blocks[] = $gap; //Don't remove the files between the gap
                     $blocks[] = $size;
                     $seek += $size;
@@ -322,7 +322,7 @@ class File_Archive_Reader_Ar extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::makeWriterRemoveBlocks()
      */
-    function makeWriterRemoveBlocks($blocks, $seek = 0)
+    public function makeWriterRemoveBlocks($blocks, $seek = 0)
     {
         if ($this->_currentStat === null) {
             return PEAR::raiseError('No file selected');
@@ -363,11 +363,12 @@ class File_Archive_Reader_Ar extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::makeAppendWriter
      */
-    function makeAppendWriter()
+    public function makeAppendWriter()
     {
         require_once "File/Archive/Writer/Ar.php";
 
-        while (($error = $this->next()) === true) { }
+        while (($error = $this->next()) === true) {
+        }
         if (PEAR::isError($error)) {
             $this->close();
             return $error;
@@ -384,4 +385,3 @@ class File_Archive_Reader_Ar extends File_Archive_Reader_Archive
         return new File_Archive_Writer_Ar(null, $innerWriter);
     }
 }
-?>

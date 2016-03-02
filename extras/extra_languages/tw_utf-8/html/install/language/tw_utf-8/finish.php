@@ -11,4 +11,3 @@ $content ="<h3><u>準備進入 XOOPS Cube 繁體中文版安裝設定程序 第�
 
 <u><b>支援</b></u>
 <p>如果有使用上的問題請訪問XOOPS Cube支援站</b></u><p>請按<a href='http://www.xoopscube.org/' target='_blank'>XOOPS Cube</a>或<a href='http://www.xoopscube.tw/' target='_blank'>XOOPS Cube 繁體中文支援站</a></p>";
-?>

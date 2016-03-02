@@ -24,7 +24,7 @@ define("_TZ_GMTP4", "(GMT+4:00) Abu Dhabi, Muscat, Baku, Tbilissi");
 define("_TZ_GMTP45", "(GMT+4:30) Kaboul");
 define("_TZ_GMTP5", "(GMT+5:00) Iekaterinbourg, Islamabad, Karachi, Tachkent");
 define("_TZ_GMTP55", "(GMT+5:30) Bombay, Calcutta, Madras, New Delhi");
-define("_TZ_GMTP575", "(GMT+5:45) Kathmandu, Pokhara, patan"); 
+define("_TZ_GMTP575", "(GMT+5:45) Kathmandu, Pokhara, patan");
 define("_TZ_GMTP6", "(GMT+6:00) Almaty, Dhaka, Colombo");
 define("_TZ_GMTP65", "(GMT+6:30) Yangon, Cocos Islands");
 define("_TZ_GMTP7", "(GMT+7:00) Bangkok, Hanoi, Djakarta");
@@ -35,4 +35,3 @@ define("_TZ_GMTP10", "(GMT+10:00) Brisbane, Canberra, Melbourne, Sydney, Guam, V
 define("_TZ_GMTP11", "(GMT+11:00) Magadan, Les Iles Salomon, Nouvelle Calédonie");
 define("_TZ_GMTP12", "(GMT+12:00) Auckland, Wellington, Fiji, Kamchatka, Marshall Island");
 define("_TZ_GMTP13", "(GMT+13:00) Tongatapu");
-?>

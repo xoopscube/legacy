@@ -25,7 +25,7 @@
 
 function smarty_modifier_xoops_escape($string, $esc_type = 'show')
 {
-	static $textFilter;
+    static $textFilter;
     if (!isset($textFilter)) {
         $root =& XCube_Root::getSingleton();
         $textFilter = $root->getTextFilter();
@@ -45,4 +45,3 @@ function smarty_modifier_xoops_escape($string, $esc_type = 'show')
             return $string;
     }
 }
-?>

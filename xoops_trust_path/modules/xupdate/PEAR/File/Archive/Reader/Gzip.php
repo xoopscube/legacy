@@ -37,15 +37,15 @@ require_once "File/Archive/Writer/Files.php";
  */
 class File_Archive_Reader_Gzip extends File_Archive_Reader_Archive
 {
-    var $nbRead = 0;
-    var $filePos = 0;
-    var $gzfile = null;
-    var $tmpName = null;
+    public $nbRead = 0;
+    public $filePos = 0;
+    public $gzfile = null;
+    public $tmpName = null;
 
     /**
      * @see File_Archive_Reader::close()
      */
-    function close($innerClose = true)
+    public function close($innerClose = true)
     {
         if ($this->gzfile !== null) {
             gzclose($this->gzfile);
@@ -65,7 +65,7 @@ class File_Archive_Reader_Gzip extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::next()
      */
-    function next()
+    public function next()
     {
         if (!parent::next()) {
             return false;
@@ -78,8 +78,7 @@ class File_Archive_Reader_Gzip extends File_Archive_Reader_Archive
         }
 
         $dataFilename = $this->source->getDataFilename();
-        if ($dataFilename !== null)
-        {
+        if ($dataFilename !== null) {
             $this->tmpName = null;
             $this->gzfile = gzopen($dataFilename, 'r');
         } else {
@@ -103,7 +102,7 @@ class File_Archive_Reader_Gzip extends File_Archive_Reader_Archive
      *
      * @see File_Archive_Reader::getFilename()
      */
-    function getFilename()
+    public function getFilename()
     {
         $name = $this->source->getFilename();
         $slashPos = strrpos($name, '/');
@@ -121,16 +120,15 @@ class File_Archive_Reader_Gzip extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::getData()
      */
-    function getData($length = -1)
+    public function getData($length = -1)
     {
         if ($length == -1) {
             $data = '';
-            do
-            {
+            do {
                 $newData = gzread($this->gzfile, 8192);
                 $data .= $newData;
             } while ($newData != '');
-        } else if ($length == 0) {
+        } elseif ($length == 0) {
             return '';
         } else {
             $data = gzread($this->gzfile, $length);
@@ -143,11 +141,10 @@ class File_Archive_Reader_Gzip extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::skip()
      */
-    function skip($length = -1)
+    public function skip($length = -1)
     {
-        if($length == -1) {
-            do
-            {
+        if ($length == -1) {
+            do {
                 $tmp = gzread($this->gzfile, 8192);
                 $this->filePos += strlen($tmp);
             } while ($tmp != '');
@@ -164,7 +161,7 @@ class File_Archive_Reader_Gzip extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::rewind()
      */
-    function rewind($length = -1)
+    public function rewind($length = -1)
     {
         if ($length == -1) {
             if (@gzseek($this->gzfile, 0) === -1) {
@@ -188,7 +185,7 @@ class File_Archive_Reader_Gzip extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::tell()
      */
-    function tell()
+    public function tell()
     {
         return $this->filePos;
     }
@@ -196,7 +193,7 @@ class File_Archive_Reader_Gzip extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::makeAppendWriter()
      */
-    function makeAppendWriter()
+    public function makeAppendWriter()
     {
         return PEAR::raiseError('Unable to append files to a gzip archive');
     }
@@ -204,7 +201,7 @@ class File_Archive_Reader_Gzip extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::makeWriterRemoveFiles()
      */
-    function makeWriterRemoveFiles($pred)
+    public function makeWriterRemoveFiles($pred)
     {
         return PEAR::raiseError('Unable to remove files from a gzip archive');
     }
@@ -212,7 +209,7 @@ class File_Archive_Reader_Gzip extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::makeWriterRemoveBlocks()
      */
-    function makeWriterRemoveBlocks($blocks, $seek = 0)
+    public function makeWriterRemoveBlocks($blocks, $seek = 0)
     {
         require_once "File/Archive/Writer/Gzip.php";
 
@@ -246,7 +243,7 @@ class File_Archive_Reader_Gzip extends File_Archive_Reader_Archive
         }
         if ($keep) {
             //Read the end of the file
-            while(($data = $this->getData(8192)) !== null) {
+            while (($data = $this->getData(8192)) !== null) {
                 fwrite($tmp, $data);
             }
         }
@@ -270,7 +267,4 @@ class File_Archive_Reader_Gzip extends File_Archive_Reader_Archive
 
         return $writer;
     }
-
 }
-
-?>

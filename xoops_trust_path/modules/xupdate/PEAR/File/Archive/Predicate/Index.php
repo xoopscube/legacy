@@ -40,23 +40,21 @@ require_once "File/Archive/Predicate.php";
  */
 class File_Archive_Predicate_Index extends File_Archive_Predicate
 {
-    var $indexes;
-    var $pos = 0;
+    public $indexes;
+    public $pos = 0;
 
     /**
      * @param $extensions array or comma separated string of allowed extensions
      */
-    function File_Archive_Predicate_Index($indexes)
+    public function File_Archive_Predicate_Index($indexes)
     {
         $this->indexes = $indexes;
     }
     /**
      * @see File_Archive_Predicate::isTrue()
      */
-    function isTrue(&$source)
+    public function isTrue(&$source)
     {
         return isset($this->indexes[$this->pos++]);
     }
 }
-
-?>

@@ -42,4 +42,3 @@ $modversion['image'] = "comments.gif";
 $modversion['hasAdmin'] = 1;
 $modversion['adminpath'] = "admin.php?fct=comments";
 $modversion['category'] = XOOPS_SYSTEM_COMMENT;
-?>

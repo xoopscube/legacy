@@ -372,7 +372,7 @@ class SMTP
         }
 
         if (array_key_exists('EHLO', $this->server_caps)) {
-        // SMTP extensions are available. Let's try to find a proper authentication method
+            // SMTP extensions are available. Let's try to find a proper authentication method
 
             if (!array_key_exists('AUTH', $this->server_caps)) {
                 $this->setError('Authentication is not allowed at this stage');

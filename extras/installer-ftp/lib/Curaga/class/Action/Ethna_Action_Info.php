@@ -23,7 +23,7 @@ class Ethna_Form_Info extends Ethna_ActionForm
      *  @access private
      *  @var    array   フォーム値定義
      */
-    var $form = array(
+    public $form = array(
     );
 }
 // }}}
@@ -44,7 +44,7 @@ class Ethna_Action_Info extends Ethna_ActionClass
      *  @access public
      *  @return string      Forward先(正常終了ならnull)
      */
-    function prepare()
+    public function prepare()
     {
         return null;
     }
@@ -55,10 +55,10 @@ class Ethna_Action_Info extends Ethna_ActionClass
      *  @access public
      *  @return string  遷移名
      */
-    function perform()
+    public function perform()
     {
         return '__ethna_info__';
     }
 }
 // }}}
-?>
+;

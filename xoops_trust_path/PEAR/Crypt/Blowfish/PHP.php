@@ -47,7 +47,7 @@ class Crypt_Blowfish_PHP extends Crypt_Blowfish
      * @var array
      * @access protected
      */
-    var $_P = array();
+    public $_P = array();
 
     /**
      * Array of four S-Blocks each containing 256 32-bit entries
@@ -55,7 +55,7 @@ class Crypt_Blowfish_PHP extends Crypt_Blowfish
      * @var array
      * @access protected
      */
-    var $_S = array();
+    public $_S = array();
 
     /**
      * Whether the IV is required
@@ -63,7 +63,7 @@ class Crypt_Blowfish_PHP extends Crypt_Blowfish
      * @var boolean
      * @access protected
      */
-    var $_iv_required = false;
+    public $_iv_required = false;
     
     /**
      * Hash value of last used key
@@ -71,7 +71,7 @@ class Crypt_Blowfish_PHP extends Crypt_Blowfish
      * @var     string
      * @access  protected
      */
-    var $_keyHash = null;
+    public $_keyHash = null;
 
     /**
      * Crypt_Blowfish_PHP Constructor
@@ -83,7 +83,7 @@ class Crypt_Blowfish_PHP extends Crypt_Blowfish
      * @param string $iv initialization vector
      * @access protected
      */
-    function __construct($key = null, $iv = null)
+    public function __construct($key = null, $iv = null)
     {
         $this->_iv = $iv . ((strlen($iv) < $this->_iv_size)
                             ? str_repeat(chr(0), $this->_iv_size - strlen($iv))
@@ -98,7 +98,7 @@ class Crypt_Blowfish_PHP extends Crypt_Blowfish
      *
      * @access private
      */
-    function _init()
+    public function _init()
     {
         require_once 'Crypt/Blowfish/DefaultKey.php';
         $defaults = new Crypt_Blowfish_DefaultKey();
@@ -114,7 +114,7 @@ class Crypt_Blowfish_PHP extends Crypt_Blowfish
      * @return float
      * @access protected
      */
-    function _binxor($l, $r)
+    public function _binxor($l, $r)
     {
         $x = (($l < 0) ? (float)($l + 4294967296) : (float)$l)
              ^ (($r < 0) ? (float)($r + 4294967296) : (float)$r);
@@ -129,7 +129,7 @@ class Crypt_Blowfish_PHP extends Crypt_Blowfish
      * @param int &$Xr
      * @access protected
      */
-    function _encipher(&$Xl, &$Xr)
+    public function _encipher(&$Xl, &$Xr)
     {
         if ($Xl < 0) {
             $Xl += 4294967296;
@@ -145,8 +145,8 @@ class Crypt_Blowfish_PHP extends Crypt_Blowfish
             }
 
             $Xl = fmod((fmod($this->_S[0][($temp >> 24) & 255]
-                             + $this->_S[1][($temp >> 16) & 255], 4294967296) 
-                        ^ $this->_S[2][($temp >> 8) & 255]) 
+                             + $this->_S[1][($temp >> 16) & 255], 4294967296)
+                        ^ $this->_S[2][($temp >> 8) & 255])
                        + $this->_S[3][$temp & 255], 4294967296) ^ $Xr;
             $Xr = $temp;
         }
@@ -161,7 +161,7 @@ class Crypt_Blowfish_PHP extends Crypt_Blowfish
      * @param int &$Xr
      * @access protected
      */
-    function _decipher(&$Xl, &$Xr)
+    public function _decipher(&$Xl, &$Xr)
     {
         if ($Xl < 0) {
             $Xl += 4294967296;
@@ -177,8 +177,8 @@ class Crypt_Blowfish_PHP extends Crypt_Blowfish
             }
 
             $Xl = fmod((fmod($this->_S[0][($temp >> 24) & 255]
-                             + $this->_S[1][($temp >> 16) & 255], 4294967296) 
-                        ^ $this->_S[2][($temp >> 8) & 255]) 
+                             + $this->_S[1][($temp >> 16) & 255], 4294967296)
+                        ^ $this->_S[2][($temp >> 8) & 255])
                        + $this->_S[3][$temp & 255], 4294967296) ^ $Xr;
             $Xr = $temp;
         }
@@ -200,7 +200,7 @@ class Crypt_Blowfish_PHP extends Crypt_Blowfish
      * @access public
      * @todo Fix the caching of the key
      */
-    function setKey($key, $iv = null)
+    public function setKey($key, $iv = null)
     {
         if (!is_string($key)) {
             return PEAR::raiseError('Key must be a string', 2);
@@ -233,8 +233,8 @@ class Crypt_Blowfish_PHP extends Crypt_Blowfish
         for ($i = 0; $i < 18; $i++) {
             $data = 0;
             for ($j = 4; $j > 0; $j--) {
-                    $data = $data << 8 | ord($key{$k});
-                    $k = ($k+1) % $len;
+                $data = $data << 8 | ord($key{$k});
+                $k = ($k+1) % $len;
             }
             $this->_P[$i] ^= $data;
         }
@@ -269,5 +269,3 @@ class Crypt_Blowfish_PHP extends Crypt_Blowfish
         return true;
     }
 }
-
-?>

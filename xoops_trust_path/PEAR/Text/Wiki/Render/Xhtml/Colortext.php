@@ -1,8 +1,9 @@
 <?php
 
-class Text_Wiki_Render_Xhtml_Colortext extends Text_Wiki_Render {
+class Text_Wiki_Render_Xhtml_Colortext extends Text_Wiki_Render
+{
     
-    var $colors = array(
+    public $colors = array(
         'aqua',
         'black',
         'blue',
@@ -35,7 +36,7 @@ class Text_Wiki_Render_Xhtml_Colortext extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         $type = $options['type'];
         $color = $options['color'];
@@ -53,4 +54,3 @@ class Text_Wiki_Render_Xhtml_Colortext extends Text_Wiki_Render {
         }
     }
 }
-?>

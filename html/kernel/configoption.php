@@ -30,7 +30,7 @@
 // ------------------------------------------------------------------------- //
 
 if (!defined('XOOPS_ROOT_PATH')) {
-	exit();
+    exit();
 }
 
 /**
@@ -55,7 +55,7 @@ class XoopsConfigOption extends XoopsObject
     /**
      * Constructor
      */
-    function XoopsConfigOption()
+    public function XoopsConfigOption()
     {
         static $initVars;
         if (isset($initVars)) {
@@ -73,34 +73,34 @@ class XoopsConfigOption extends XoopsObject
     /**
      * Get a constract of confop_value
      */
-    function getOptionKey()
+    public function getOptionKey()
     {
-		return defined($this->get('confop_value')) ? constant($this->get('confop_value')) : $this->get('confop_value');
-	}
-	
+        return defined($this->get('confop_value')) ? constant($this->get('confop_value')) : $this->get('confop_value');
+    }
+    
     /**
      * Get a constract of confop_name
      */
-	function getOptionLabel()
-	{
-		return defined($this->get('confop_name')) ? constant($this->get('confop_name')) : $this->get('confop_name');
-	}
-	/**
-	 * Compare with contents of $config object. If it's equal, return true.
-	 * This member function doesn't use 'conf_id' & 'conf_order' to compare.
-	 * 
-	 * @param XoopsConfigItem $config
-	 * @return bool
-	 */
-	function isEqual(&$option)
-	{
-		$flag = true;
-		
-		$flag &= ($this->get('confop_name') == $option->get('confop_name'));
-		$flag &= ($this->get('confop_value') == $option->get('confop_value'));
-		
-		return $flag;
-	}
+    public function getOptionLabel()
+    {
+        return defined($this->get('confop_name')) ? constant($this->get('confop_name')) : $this->get('confop_name');
+    }
+    /**
+     * Compare with contents of $config object. If it's equal, return true.
+     * This member function doesn't use 'conf_id' & 'conf_order' to compare.
+     * 
+     * @param XoopsConfigItem $config
+     * @return bool
+     */
+    public function isEqual(&$option)
+    {
+        $flag = true;
+        
+        $flag &= ($this->get('confop_name') == $option->get('confop_name'));
+        $flag &= ($this->get('confop_value') == $option->get('confop_value'));
+        
+        return $flag;
+    }
 }
 
 /**
@@ -124,7 +124,7 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
      * 
      * @return	object  {@link XoopsConfigOption} 
      */
-    function &create($isNew = true)
+    public function &create($isNew = true)
     {
         $confoption =new XoopsConfigOption();
         if ($isNew) {
@@ -140,7 +140,7 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
      * 
      * @return	object  reference to the {@link XoopsConfigOption}, FALSE on fail
      */
-    function &get($id)
+    public function &get($id)
     {
         $ret = false;
         $id = (int)$id;
@@ -149,9 +149,9 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $confoption =new XoopsConfigOption();
+                    $confoption =new XoopsConfigOption();
                     $confoption->assignVars($this->db->fetchArray($result));
-                        $ret =& $confoption;
+                    $ret =& $confoption;
                 }
             }
         }
@@ -164,7 +164,7 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
      * @param	object  &$confoption    reference to a {@link XoopsConfigOption} 
      * @return	bool    TRUE if successfull.
      */
-    function insert(&$confoption)
+    public function insert(&$confoption)
     {
         if (strtolower(get_class($confoption)) != 'xoopsconfigoption') {
             return false;
@@ -200,7 +200,7 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
      * @param	object  &$confoption    reference to a {@link XoopsConfigOption} 
      * @return	bool    TRUE if successful
      */
-    function delete(&$confoption)
+    public function delete(&$confoption)
     {
         if (strtolower(get_class($confoption)) != 'xoopsconfigoption') {
             return false;
@@ -220,7 +220,7 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
      * 
      * @return	array   Array of {@link XoopsConfigOption}s 
      */
-    function &getObjects($criteria = null, $id_as_key = false)
+    public function &getObjects($criteria = null, $id_as_key = false)
     {
         $ret = array();
         $limit = $start = 0;
@@ -247,4 +247,3 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
         return $ret;
     }
 }
-?>

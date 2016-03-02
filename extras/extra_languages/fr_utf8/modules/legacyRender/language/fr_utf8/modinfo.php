@@ -29,5 +29,3 @@ define('_MI_LR_ROBOT_METAOMAT', "Adulte");
 define('_MI_LR_ROBOT_METAOREST', "Limité");
 define('_MI_LR_ROBOT_NOINDEXFOLLOW', "No Index, Follow");
 define('_MI_LR_ROBOT_NOINDEXNOFOLLOW', "No Index, No Follow");
-
-?>

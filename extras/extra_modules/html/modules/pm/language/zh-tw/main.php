@@ -38,5 +38,3 @@ define('_MD_PM_MESSAGE_PLZREG', '寄送私人訊息前請先註冊！');
 define('_MD_PM_MESSAGE_POSTED', '您的訊息已經送出。');
 define('_MD_PM_MESSAGE_SORRY', '抱歉，您還沒註冊。');
 define('_MD_PM_MESSAGE_YOUDONTHAVE', '您沒有任何私人訊息。');
-
-?>

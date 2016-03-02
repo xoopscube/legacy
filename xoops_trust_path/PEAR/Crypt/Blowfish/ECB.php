@@ -57,7 +57,7 @@ class Crypt_Blowfish_ECB extends Crypt_Blowfish_PHP
      * @param string $iv initialization vector
      * @access public
      */
-    function Crypt_Blowfish_ECB($key = null, $iv = null)
+    public function Crypt_Blowfish_ECB($key = null, $iv = null)
     {
         $this->__construct($key, $iv);
     }
@@ -69,7 +69,7 @@ class Crypt_Blowfish_ECB extends Crypt_Blowfish_PHP
      * @param string $iv initialization vector
      * @access public
      */
-    function __construct($key = null, $iv = null)
+    public function __construct($key = null, $iv = null)
     {
         $this->_iv_required = false;
         parent::__construct($key, $iv);
@@ -85,7 +85,7 @@ class Crypt_Blowfish_ECB extends Crypt_Blowfish_PHP
      * @return string|PEAR_Error Returns cipher text on success, PEAR_Error on failure
      * @access public
      */
-    function encrypt($plainText)
+    public function encrypt($plainText)
     {
         if (!is_string($plainText)) {
             return PEAR::raiseError('Input must be a string', 0);
@@ -116,7 +116,7 @@ class Crypt_Blowfish_ECB extends Crypt_Blowfish_PHP
      * @return string|PEAR_Error Returns plain text on success, PEAR_Error on failure
      * @access public
      */
-    function decrypt($cipherText)
+    public function decrypt($cipherText)
     {
         if (!is_string($cipherText)) {
             return PEAR::raiseError('Cipher text must be a string', 1);
@@ -138,5 +138,3 @@ class Crypt_Blowfish_ECB extends Crypt_Blowfish_PHP
         return $plainText;
     }
 }
-
-?>

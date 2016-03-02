@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 // ------------------------------------------------------------------------- //
 
-if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid()) ) {
+if (!is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid())) {
     exit("Access Denied");
 }
 include_once XOOPS_ROOT_PATH."/modules/system/admin/banners/banners.php";
@@ -38,7 +38,7 @@ if (isset($_GET['op'])) {
     $op = $_POST['op'];
 }
 
-switch ( $op ) {
+switch ($op) {
 case "BannersAdmin":
     BannersAdmin();
     break;
@@ -62,7 +62,7 @@ case "BannersAdd":
     $newid = $db->genId($db->prefix("banner")."_bid_seq");
     $sql = sprintf("INSERT INTO %s (bid, cid, imptotal, impmade, clicks, imageurl, clickurl, date, htmlbanner, htmlcode) VALUES (%d, %d, %d, 1, 0, %s, %s, %d, %d, %s)", $db->prefix("banner"), intval($newid), $cid, $imptotal, $db->quoteString($myts->stripSlashesGPC($imageurl)), $db->quoteString($myts->stripSlashesGPC($clickurl)), time(), $htmlbanner, $db->quoteString($myts->stripSlashesGPC($htmlcode)));
     $db->query($sql);
-    redirect_header("admin.php?fct=banners&amp;op=BannersAdmin#top",1,_AM_DBUPDATED);
+    redirect_header("admin.php?fct=banners&amp;op=BannersAdmin#top", 1, _AM_DBUPDATED);
     exit();
     break;
 
@@ -81,7 +81,7 @@ case "BannerAddClient":
     $newid = $db->genId($xoopsDB->prefix("bannerclient")."_cid_seq");
     $sql = sprintf("INSERT INTO %s (cid, name, contact, email, login, passwd, extrainfo) VALUES (%d, %s, %s, %s, %s, %s, %s)", $db->prefix("bannerclient"), intval($newid), $db->quoteString($myts->stripSlashesGPC($name)), $db->quoteString($myts->stripSlashesGPC($contact)), $db->quoteString($myts->stripSlashesGPC($email)), $db->quoteString($myts->stripSlashesGPC($login)), $db->quoteString($myts->stripSlashesGPC($passwd)), $db->quoteString($myts->stripSlashesGPC($extrainfo)));
     $db->query($sql);
-    redirect_header("admin.php?fct=banners&amp;op=BannersAdmin#top",1,_AM_DBUPDATED);
+    redirect_header("admin.php?fct=banners&amp;op=BannersAdmin#top", 1, _AM_DBUPDATED);
     exit();
     break;
 
@@ -93,13 +93,13 @@ case "BannerFinishDelete":
 
 case "BannerFinishDelete2":
     $bid = isset($_POST['bid']) ? intval($_POST['bid']) : 0;
-    if ($bid <= 0 || !xoops_confirm_validate() ) {
+    if ($bid <= 0 || !xoops_confirm_validate()) {
         redirect_header("admin.php?fct=banners&amp;op=BannersAdmin#top");
     }
     $db =& Database::getInstance();
     $sql = sprintf("DELETE FROM %s WHERE bid = %u", $db->prefix("bannerfinish"), $bid);
     $db->query($sql);
-    redirect_header("admin.php?fct=banners&amp;op=BannersAdmin#top",1,_AM_DBUPDATED);
+    redirect_header("admin.php?fct=banners&amp;op=BannersAdmin#top", 1, _AM_DBUPDATED);
     exit();
     break;
 
@@ -118,7 +118,7 @@ case "BannerDelete2":
     $db =& Database::getInstance();
     $sql = sprintf("DELETE FROM %s WHERE bid = %u", $db->prefix("banner"), $bid);
     $db->query($sql);
-    redirect_header("admin.php?fct=banners&amp;op=BannersAdmin#top",1,_AM_DBUPDATED);
+    redirect_header("admin.php?fct=banners&amp;op=BannersAdmin#top", 1, _AM_DBUPDATED);
     break;
 
 case "BannerEdit":
@@ -144,7 +144,7 @@ case "BannerChange":
     $myts =& MyTextSanitizer::getInstance();
     $sql = sprintf("UPDATE %s SET cid = %d, imptotal = %d, imageurl = %s, clickurl = %s, htmlbanner = %d, htmlcode = %s WHERE bid = %d", $db->prefix("banner"), $cid, $imptotal + $impadded, $db->quoteString($myts->stripSlashesGPC($imageurl)), $db->quoteString($myts->stripSlashesGPC($clickurl)), $htmlbanner, $db->quoteString($myts->stripSlashesGPC($htmlcode)), $bid);
     $db->query($sql);
-    redirect_header("admin.php?fct=banners&amp;op=BannersAdmin#top",1,_AM_DBUPDATED);
+    redirect_header("admin.php?fct=banners&amp;op=BannersAdmin#top", 1, _AM_DBUPDATED);
     break;
 
 case "BannerClientDelete":
@@ -164,7 +164,7 @@ case "BannerClientDelete2":
     $db->query($sql);
     $sql = sprintf("DELETE FROM %s WHERE cid = %u", $db->prefix("bannerclient"), $cid);
     $db->query($sql);
-    redirect_header("admin.php?fct=banners&amp;op=BannersAdmin#top",1,_AM_DBUPDATED);
+    redirect_header("admin.php?fct=banners&amp;op=BannersAdmin#top", 1, _AM_DBUPDATED);
     break;
 
 case "BannerClientEdit":
@@ -189,11 +189,10 @@ case "BannerClientChange":
     $myts =& MyTextSanitizer::getInstance();
     $sql = sprintf("UPDATE %s SET name = %s, contact = %s, email = %s, login = %s, passwd = %s, extrainfo = %s WHERE cid = %d", $db->prefix("bannerclient"), $db->quoteString($myts->stripSlashesGPC($name)), $db->quoteString($myts->stripSlashesGPC($contact)), $db->quoteString($myts->stripSlashesGPC($email)), $db->quoteString($myts->stripSlashesGPC($login)), $db->quoteString($myts->stripSlashesGPC($passwd)), $db->quoteString($myts->stripSlashesGPC($extrainfo)), $cid);
     $db->query($sql);
-    redirect_header("admin.php?fct=banners&amp;op=BannersAdmin#top",1,_AM_DBUPDATED);
+    redirect_header("admin.php?fct=banners&amp;op=BannersAdmin#top", 1, _AM_DBUPDATED);
     break;
 
 default:
     BannersAdmin();
     break;
 }
-?>

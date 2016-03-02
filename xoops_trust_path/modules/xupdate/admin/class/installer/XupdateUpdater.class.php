@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -17,163 +16,159 @@ require_once XUPDATE_TRUST_PATH . '/admin/class/installer/XupdateInstallUtils.cl
 **/
 class Xupdate_Updater
 {
-    public /*** Legacy_ModuleInstallLog ***/ $mLog = null;
+    /*** Legacy_ModuleInstallLog ***/ public $mLog = null;
 
-    private /*** string[] ***/ $_mMileStone = array(
-    		'006' => 'update006',
-    		'011' => 'update011',
-    		'022' => 'update022',
-    		'060' => 'update060',
-    	);
+    /*** string[] ***/ private $_mMileStone = array(
+            '006' => 'update006',
+            '011' => 'update011',
+            '022' => 'update022',
+            '060' => 'update060',
+        );
 
-    private /*** XoopsModule ***/ $_mCurrentXoopsModule = null;
+    /*** XoopsModule ***/ private $_mCurrentXoopsModule = null;
 
-    private /*** XoopsModule ***/ $_mTargetXoopsModule = null;
+    /*** XoopsModule ***/ private $_mTargetXoopsModule = null;
 
-    private /*** int ***/ $_mCurrentVersion = 0;
+    /*** int ***/ private $_mCurrentVersion = 0;
 
-    private /*** int ***/ $_mTargetVersion = 0;
+    /*** int ***/ private $_mTargetVersion = 0;
 
-    private /*** bool ***/ $_mForceMode = false;
-	
+    /*** bool ***/ private $_mForceMode = false;
+    
     private function update006()
     {
-    	$this->mLog->addReport('DB upgrade start (for Ver 0.06)');
-    	
-    	// Update database table index.
-    	$root =& XCube_Root::getSingleton();
-    	$db =& $root->mController->getDB();
-    	$table = $db->prefix($this->_mCurrentXoopsModule->get('dirname') . '_modulestore');
-    	 
-    	$sql = 'SELECT isactive FROM '.$table ;
-    	if(! $db->query($sql)) {
-    		$sql = 'ALTER TABLE '.$table.' ADD isactive int(11) NOT NULL DEFAULT \'-1\'';
-    		if ($db->query($sql)) {
-    			$this->mLog->addReport('Success updated '.$table.' - ADD isactive');
-    		} else {
-    			$this->mLog->addError('Error update '.$table.' - ADD isactive');
-    		}
-    	}
-    	 
-    	$sql = 'SELECT hasupdate FROM '.$table ;
-    	if(! $db->query($sql)) {
-    		$sql = 'ALTER TABLE '.$table.' ADD hasupdate tinyint(1) NOT NULL DEFAULT \'0\'';
-    		if ($db->query($sql)) {
-    			$this->mLog->addReport('Success updated '.$table.' - ADD hasupdate');
-    		} else {
-    			$this->mLog->addError('Error update '.$table.' - ADD hasupdate');
-    		}
-    	}
-    	
-    	if (!$this->_mForceMode && $this->mLog->hasError())
-    	{
-    		$this->_processReport();
-    		return false;
-    	}
-    	
-    	return true;
+        $this->mLog->addReport('DB upgrade start (for Ver 0.06)');
+        
+        // Update database table index.
+        $root =& XCube_Root::getSingleton();
+        $db =& $root->mController->getDB();
+        $table = $db->prefix($this->_mCurrentXoopsModule->get('dirname') . '_modulestore');
+         
+        $sql = 'SELECT isactive FROM '.$table ;
+        if (! $db->query($sql)) {
+            $sql = 'ALTER TABLE '.$table.' ADD isactive int(11) NOT NULL DEFAULT \'-1\'';
+            if ($db->query($sql)) {
+                $this->mLog->addReport('Success updated '.$table.' - ADD isactive');
+            } else {
+                $this->mLog->addError('Error update '.$table.' - ADD isactive');
+            }
+        }
+         
+        $sql = 'SELECT hasupdate FROM '.$table ;
+        if (! $db->query($sql)) {
+            $sql = 'ALTER TABLE '.$table.' ADD hasupdate tinyint(1) NOT NULL DEFAULT \'0\'';
+            if ($db->query($sql)) {
+                $this->mLog->addReport('Success updated '.$table.' - ADD hasupdate');
+            } else {
+                $this->mLog->addError('Error update '.$table.' - ADD hasupdate');
+            }
+        }
+        
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
+            $this->_processReport();
+            return false;
+        }
+        
+        return true;
     }
     
     private function update011()
     {
-    	$this->mLog->addReport('DB upgrade start (for Ver 0.11)');
-    	 
-    	// Update database table index.
-    	$root =& XCube_Root::getSingleton();
-    	$db =& $root->mController->getDB();
-    	$table = $db->prefix($this->_mCurrentXoopsModule->get('dirname') . '_modulestore');
+        $this->mLog->addReport('DB upgrade start (for Ver 0.11)');
+         
+        // Update database table index.
+        $root =& XCube_Root::getSingleton();
+        $db =& $root->mController->getDB();
+        $table = $db->prefix($this->_mCurrentXoopsModule->get('dirname') . '_modulestore');
     
-    	$sql = 'SELECT contents FROM '.$table ;
-    	if(! $db->query($sql)) {
-    		$sql = 'ALTER TABLE '.$table.' ADD contents varchar(255) NOT NULL default \'\'';
-    		if ($db->query($sql)) {
-    			$this->mLog->addReport('Success updated '.$table.' - ADD contents');
-    		} else {
-    			$this->mLog->addError('Error update '.$table.' - ADD contents');
-    		}
-    		$sql = 'ALTER TABLE '.$table.' ADD INDEX ( contents )';
-    		if ($db->query($sql)) {
-    			$this->mLog->addReport('Success updated '.$table.' - ADD Index contents');
-    		} else {
-    			$this->mLog->addError('Error update '.$table.' - ADD Index contents');
-    		}
-    	}
-    	 
-    	if (!$this->_mForceMode && $this->mLog->hasError())
-    	{
-    		$this->_processReport();
-    		return false;
-    	}
-    	 
-    	return true;
+        $sql = 'SELECT contents FROM '.$table ;
+        if (! $db->query($sql)) {
+            $sql = 'ALTER TABLE '.$table.' ADD contents varchar(255) NOT NULL default \'\'';
+            if ($db->query($sql)) {
+                $this->mLog->addReport('Success updated '.$table.' - ADD contents');
+            } else {
+                $this->mLog->addError('Error update '.$table.' - ADD contents');
+            }
+            $sql = 'ALTER TABLE '.$table.' ADD INDEX ( contents )';
+            if ($db->query($sql)) {
+                $this->mLog->addReport('Success updated '.$table.' - ADD Index contents');
+            } else {
+                $this->mLog->addError('Error update '.$table.' - ADD Index contents');
+            }
+        }
+         
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
+            $this->_processReport();
+            return false;
+        }
+         
+        return true;
     }
 
     private function update022()
     {
-    	$this->mLog->addReport('DB upgrade start (for Ver 0.22)');
+        $this->mLog->addReport('DB upgrade start (for Ver 0.22)');
     
-    	// Update database table index.
-    	$root =& XCube_Root::getSingleton();
-    	$db =& $root->mController->getDB();
-    	$table = $db->prefix($this->_mCurrentXoopsModule->get('dirname') . '_modulestore');
+        // Update database table index.
+        $root =& XCube_Root::getSingleton();
+        $db =& $root->mController->getDB();
+        $table = $db->prefix($this->_mCurrentXoopsModule->get('dirname') . '_modulestore');
     
-   		$sql = 'ALTER TABLE '.$table.' CHANGE dirname dirname varchar(255) NOT NULL default \'\'';
-    	if ($db->query($sql)) {
-    		$this->mLog->addReport('Success updated '.$table.' - `dirname` VARCHAR( 255 )');
-    	} else {
-    		$this->mLog->addError('Error update '.$table.' - `dirname` VARCHAR( 255 )');
-    	}
-    	$sql = 'ALTER TABLE '.$table.' CHANGE trust_dirname trust_dirname varchar(255) default \'\'';
-    	if ($db->query($sql)) {
-    		$this->mLog->addReport('Success updated '.$table.' - `trust_dirname` VARCHAR( 255 )');
-    	} else {
-    		$this->mLog->addError('Error update '.$table.' - `trust_dirname` VARCHAR( 255 )');
-    	}
+        $sql = 'ALTER TABLE '.$table.' CHANGE dirname dirname varchar(255) NOT NULL default \'\'';
+        if ($db->query($sql)) {
+            $this->mLog->addReport('Success updated '.$table.' - `dirname` VARCHAR( 255 )');
+        } else {
+            $this->mLog->addError('Error update '.$table.' - `dirname` VARCHAR( 255 )');
+        }
+        $sql = 'ALTER TABLE '.$table.' CHANGE trust_dirname trust_dirname varchar(255) default \'\'';
+        if ($db->query($sql)) {
+            $this->mLog->addReport('Success updated '.$table.' - `trust_dirname` VARCHAR( 255 )');
+        } else {
+            $this->mLog->addError('Error update '.$table.' - `trust_dirname` VARCHAR( 255 )');
+        }
     
-    	if (!$this->_mForceMode && $this->mLog->hasError())
-    	{
-    		$this->_processReport();
-    		return false;
-    	}
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
+            $this->_processReport();
+            return false;
+        }
     
-    	return true;
+        return true;
     }
 
-	/**
-	 * Add category_id field
-	 * @return bool
-	 */
-	private function update060()
-	{
-		$this->mLog->addReport('DB upgrade start (for Ver 0.60)');
+    /**
+     * Add category_id field
+     * @return bool
+     */
+    private function update060()
+    {
+        $this->mLog->addReport('DB upgrade start (for Ver 0.60)');
 
-		// Update database table index.
-		$root =& XCube_Root::getSingleton();
-		$db =& $root->mController->getDB();
-		$table = $db->prefix($this->_mCurrentXoopsModule->get('dirname') . '_modulestore');
+        // Update database table index.
+        $root =& XCube_Root::getSingleton();
+        $db =& $root->mController->getDB();
+        $table = $db->prefix($this->_mCurrentXoopsModule->get('dirname') . '_modulestore');
 
-		// Insurance
-		if ($db->query('SELECT category_id FROM '.$table)) {
-			$db->query('ALTER TABLE '.$table.' DROP category_id');
-		}
-		
-		$sql = 'ALTER TABLE '.$table.' ADD category_id int(11) NOT NULL default \'0\'';
-		if ($db->query($sql)) {
-			$this->mLog->addReport('Success updated '.$table.' - `category_id` INT(11)');
-		} else {
-			$this->mLog->addError('Error update '.$table.' - `category_id` INT(11)');
-		}
+        // Insurance
+        if ($db->query('SELECT category_id FROM '.$table)) {
+            $db->query('ALTER TABLE '.$table.' DROP category_id');
+        }
+        
+        $sql = 'ALTER TABLE '.$table.' ADD category_id int(11) NOT NULL default \'0\'';
+        if ($db->query($sql)) {
+            $this->mLog->addReport('Success updated '.$table.' - `category_id` INT(11)');
+        } else {
+            $this->mLog->addError('Error update '.$table.' - `category_id` INT(11)');
+        }
 
-		if (!$this->_mForceMode && $this->mLog->hasError())
-		{
-			$this->_processReport();
-			return false;
-		}
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
+            $this->_processReport();
+            return false;
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	/**
+    /**
      * __construct
      * 
      * @param   void
@@ -210,17 +205,17 @@ class Xupdate_Updater
         $cloneModule =& $moduleHandler->create();
     
         $cloneModule->unsetNew();
-        $cloneModule->set('mid',$module->get('mid'));
-        $cloneModule->set('name',$module->get('name'));
-        $cloneModule->set('version',$module->get('version'));
-        $cloneModule->set('last_update',$module->get('last_update'));
-        $cloneModule->set('weight',$module->get('weight'));
-        $cloneModule->set('isactive',$module->get('isactive'));
-        $cloneModule->set('dirname',$module->get('dirname'));
+        $cloneModule->set('mid', $module->get('mid'));
+        $cloneModule->set('name', $module->get('name'));
+        $cloneModule->set('version', $module->get('version'));
+        $cloneModule->set('last_update', $module->get('last_update'));
+        $cloneModule->set('weight', $module->get('weight'));
+        $cloneModule->set('isactive', $module->get('isactive'));
+        $cloneModule->set('dirname', $module->get('dirname'));
         //$cloneModule->set('trust_dirname',$module->get('trust_dirname'));
-        $cloneModule->set('hasmain',$module->get('hasmain'));
-        $cloneModule->set('hasadmin',$module->get('hasadmin'));
-        $cloneModule->set('hasconfig',$module->get('hasconfig'));
+        $cloneModule->set('hasmain', $module->get('hasmain'));
+        $cloneModule->set('hasadmin', $module->get('hasadmin'));
+        $cloneModule->set('hasconfig', $module->get('hasconfig'));
     
         $this->_mCurrentXoopsModule =& $cloneModule;
         $this->_mCurrentVersion = $cloneModule->get('version');
@@ -262,10 +257,8 @@ class Xupdate_Updater
     {
         ksort($this->_mMileStone);
     
-        foreach($this->_mMileStone as $tVer => $tMethod)
-        {
-            if($tVer > $this->getCurrentVersion())
-            {
+        foreach ($this->_mMileStone as $tVer => $tMethod) {
+            if ($tVer > $this->getCurrentVersion()) {
                 return intval($tVer);
             }
         }
@@ -284,10 +277,8 @@ class Xupdate_Updater
     {
         ksort($this->_mMileStone);
     
-        foreach($this->_mMileStone as $tVer => $tMethod)
-        {
-            if($tVer > $this->getCurrentVersion() && is_callable(array($this,$tMethod)))
-            {
+        foreach ($this->_mMileStone as $tVer => $tMethod) {
+            if ($tVer > $this->getCurrentVersion() && is_callable(array($this, $tMethod))) {
                 return true;
             }
         }
@@ -316,8 +307,8 @@ class Xupdate_Updater
     **/
     private function _updateModuleTemplates()
     {
-        Xupdate_InstallUtils::uninstallAllOfModuleTemplates($this->_mTargetXoopsModule,$this->mLog);
-        Xupdate_InstallUtils::installAllOfModuleTemplates($this->_mTargetXoopsModule,$this->mLog);
+        Xupdate_InstallUtils::uninstallAllOfModuleTemplates($this->_mTargetXoopsModule, $this->mLog);
+        Xupdate_InstallUtils::installAllOfModuleTemplates($this->_mTargetXoopsModule, $this->mLog);
     }
 
     /**
@@ -329,7 +320,7 @@ class Xupdate_Updater
     **/
     private function _updateBlocks()
     {
-        Xupdate_InstallUtils::smartUpdateAllOfBlocks($this->_mTargetXoopsModule,$this->mLog);
+        Xupdate_InstallUtils::smartUpdateAllOfBlocks($this->_mTargetXoopsModule, $this->mLog);
     }
 
     /**
@@ -341,7 +332,7 @@ class Xupdate_Updater
     **/
     private function _updatePreferences()
     {
-        Xupdate_InstallUtils::smartUpdateAllOfConfigs($this->_mTargetXoopsModule,$this->mLog);
+        Xupdate_InstallUtils::smartUpdateAllOfConfigs($this->_mTargetXoopsModule, $this->mLog);
     }
 
     /**
@@ -353,24 +344,24 @@ class Xupdate_Updater
     **/
     public function executeUpgrade()
     {
-    	// remove modules.ini cache
-    	$root =& XCube_Root::getSingleton();
-    	$ch =& xoops_gethandler('config');
-    	$mconf = $ch->getConfigsByDirname($this->_mCurrentXoopsModule->get('dirname'));
-    	$cdir = XOOPS_TRUST_PATH . '/'.trim($mconf['temp_path'], '/');
-    	if (is_dir($cdir)) {
-    		if ($dh = opendir($cdir)) {
-    			while (($file = readdir($dh)) !== false) {
-    				if (substr($file, -8) === '.ini.php') {
-    					if (@ unlink($cdir.'/'.$file)) {
-    						$this->mLog->addReport('Deleted cache "'.$file.'" OK.');
-    					}
-    				}
-    			}
-    			closedir($dh);
-    		}
-    	}
-    	return ($this->hasUpgradeMethod() ?
+        // remove modules.ini cache
+        $root =& XCube_Root::getSingleton();
+        $ch =& xoops_gethandler('config');
+        $mconf = $ch->getConfigsByDirname($this->_mCurrentXoopsModule->get('dirname'));
+        $cdir = XOOPS_TRUST_PATH . '/'.trim($mconf['temp_path'], '/');
+        if (is_dir($cdir)) {
+            if ($dh = opendir($cdir)) {
+                while (($file = readdir($dh)) !== false) {
+                    if (substr($file, -8) === '.ini.php') {
+                        if (@ unlink($cdir.'/'.$file)) {
+                            $this->mLog->addReport('Deleted cache "'.$file.'" OK.');
+                        }
+                    }
+                }
+                closedir($dh);
+            }
+        }
+        return ($this->hasUpgradeMethod() ?
             $this->_callUpgradeMethod() :
             $this->executeAutomaticUpgrade());
     }
@@ -386,12 +377,10 @@ class Xupdate_Updater
     {
         ksort($this->_mMileStone);
     
-        foreach($this->_mMileStone as $tVer => $tMethod)
-        {
-            if($tVer > $this->getCurrentVersion() && is_callable(array($this,$tMethod)))
-            {
+        foreach ($this->_mMileStone as $tVer => $tMethod) {
+            if ($tVer > $this->getCurrentVersion() && is_callable(array($this, $tMethod))) {
                 if (! $this->$tMethod()) {
-                	return false;
+                    return false;
                 }
             }
         }
@@ -411,29 +400,25 @@ class Xupdate_Updater
         $this->mLog->addReport(_MI_XUPDATE_INSTALL_MSG_UPDATE_STARTED);
     
         $this->_updateModuleTemplates();
-        if(!$this->_mForceMode && $this->mLog->hasError())
-        {
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
     
         $this->_updateBlocks();
-        if(!$this->_mForceMode && $this->mLog->hasError())
-        {
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
     
         $this->_updatePreferences();
-        if(!$this->_mForceMode && $this->mLog->hasError())
-        {
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
     
         $this->saveXoopsModule($this->_mTargetXoopsModule);
-        if(!$this->_mForceMode && $this->mLog->hasError())
-        {
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
@@ -454,12 +439,9 @@ class Xupdate_Updater
     {
         $moduleHandler =& Xupdate_Utils::getXoopsHandler('module');
     
-        if($moduleHandler->insert($module))
-        {
+        if ($moduleHandler->insert($module)) {
             $this->mLog->addReport(_MI_XUPDATE_INSTALL_MSG_UPDATE_FINISHED);
-        }
-        else
-        {
+        } else {
             $this->mLog->addError(_MI_XUPDATE_INSTALL_ERROR_UPDATE_FINISHED);
         }
     }
@@ -473,17 +455,14 @@ class Xupdate_Updater
     **/
     private function _processReport()
     {
-        if(!$this->mLog->hasError())
-        {
+        if (!$this->mLog->hasError()) {
             $this->mLog->add(
                 XCube_Utils::formatString(
                     _MI_XUPDATE_INSTALL_MSG_MODULE_UPDATED,
                     $this->_mCurrentXoopsModule->get('name')
                 )
             );
-        }
-        else
-        {
+        } else {
             $this->mLog->add(
                 XCube_Utils::formatString(
                     _MI_XUPDATE_INSTALL_ERROR_MODULE_UPDATED,
@@ -493,5 +472,3 @@ class Xupdate_Updater
         }
     }
 }
-
-?>

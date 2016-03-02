@@ -244,7 +244,6 @@ class HTMLPurifier_Encoder
                             // Codepoints outside the Unicode range are illegal
                             ($mUcs4 > 0x10FFFF)
                         ) {
-
                         } elseif (0xFEFF != $mUcs4 && // omit BOM
                             // check for valid Char unicode codepoints
                             (
@@ -309,7 +308,7 @@ class HTMLPurifier_Encoder
     public static function unichr($code)
     {
         if ($code > 1114111 or $code < 0 or
-          ($code >= 55296 and $code <= 57343) ) {
+          ($code >= 55296 and $code <= 57343)) {
             // bits are set outside the "valid" range as defined
             // by UNICODE 4.1.0
             return '';
@@ -609,3 +608,4 @@ class HTMLPurifier_Encoder
 }
 
 // vim: et sw=4 sts=4
+

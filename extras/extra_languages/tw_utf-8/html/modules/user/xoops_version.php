@@ -86,215 +86,215 @@ $modversion['templates'][12]['file'] = 'user_delete_success.html';
 $modversion['templates'][12]['description'] = '';
 
 //Preference
-$modversion['config'][]=array (
-		"name"=>"allow_register",
-		"title"=>"_MI_USER_CONF_ALLOW_REGISTER",
-		"description"=>"_MI_USER_CONF_ALW_RG_DESC",
-		"formtype"=>"yesno",
-		"valuetype"=>"int",
-		"default"=>1
-	);
+$modversion['config'][]=array(
+        "name"=>"allow_register",
+        "title"=>"_MI_USER_CONF_ALLOW_REGISTER",
+        "description"=>"_MI_USER_CONF_ALW_RG_DESC",
+        "formtype"=>"yesno",
+        "valuetype"=>"int",
+        "default"=>1
+    );
 
-$modversion['config'][]=array (
-		"name"=>"minpass",
-		"title"=>"_MI_USER_CONF_MINPASS",
-		"formtype"=>"textbox",
-		"valuetype"=>"int",
-		"default"=>5
-	);
+$modversion['config'][]=array(
+        "name"=>"minpass",
+        "title"=>"_MI_USER_CONF_MINPASS",
+        "formtype"=>"textbox",
+        "valuetype"=>"int",
+        "default"=>5
+    );
 
-$modversion['config'][]=array (
-		"name"=>"minuname",
-		"title"=>"_MI_USER_CONF_MINUNAME",
-		"formtype"=>"textbox",
-		"valuetype"=>"int",
-		"default"=>3
-	);
+$modversion['config'][]=array(
+        "name"=>"minuname",
+        "title"=>"_MI_USER_CONF_MINUNAME",
+        "formtype"=>"textbox",
+        "valuetype"=>"int",
+        "default"=>3
+    );
 
-$modversion['config'][]=array (
-		"name"=>"maxuname",
-		"title"=>"_MI_USER_CONF_MAXUNAME",
-		"formtype"=>"textbox",
-		"valuetype"=>"int",
-		"default"=>10
-	);
+$modversion['config'][]=array(
+        "name"=>"maxuname",
+        "title"=>"_MI_USER_CONF_MAXUNAME",
+        "formtype"=>"textbox",
+        "valuetype"=>"int",
+        "default"=>10
+    );
 
-$modversion['config'][]=array (
-		"name"=>"allow_chgmail",
-		"title"=>"_MI_USER_CONF_CHGMAIL",
-		"formtype"=>"yesno",
-		"valuetype"=>"int",
-		"default"=>0
-	);
+$modversion['config'][]=array(
+        "name"=>"allow_chgmail",
+        "title"=>"_MI_USER_CONF_CHGMAIL",
+        "formtype"=>"yesno",
+        "valuetype"=>"int",
+        "default"=>0
+    );
 
-$modversion['config'][]=array (
-		"name"=>"new_user_notify",
-		"title"=>"_MI_USER_CONF_NEW_USER_NOTIFY",
-		"formtype"=>"yesno",
-		"valuetype"=>"int",
-		"default"=>1
-	);
+$modversion['config'][]=array(
+        "name"=>"new_user_notify",
+        "title"=>"_MI_USER_CONF_NEW_USER_NOTIFY",
+        "formtype"=>"yesno",
+        "valuetype"=>"int",
+        "default"=>1
+    );
 
-$modversion['config'][]=array (
-		"name"=>"new_user_notify_group",
-		"title"=>"_MI_USER_CONF_NEW_NTF_GROUP",
-		"formtype"=>"group",
-		"valuetype"=>"int",
-		"default"=>XOOPS_GROUP_ADMIN
-	);
+$modversion['config'][]=array(
+        "name"=>"new_user_notify_group",
+        "title"=>"_MI_USER_CONF_NEW_NTF_GROUP",
+        "formtype"=>"group",
+        "valuetype"=>"int",
+        "default"=>XOOPS_GROUP_ADMIN
+    );
 
-$modversion['config'][]=array (
-		"name"=>"activation_type",
-		"title"=>"_MI_USER_CONF_ACTV_TYPE",
-		"formtype"=>"select",
-		"options"=>array("_MI_USER_CONF_ACTV_USER"=>0,"_MI_USER_CONF_ACTV_AUTO"=>1,"_MI_USER_CONF_ACTV_ADMIN"=>2),
-		"valuetype"=>"int",
-		"default"=>0
-	);
+$modversion['config'][]=array(
+        "name"=>"activation_type",
+        "title"=>"_MI_USER_CONF_ACTV_TYPE",
+        "formtype"=>"select",
+        "options"=>array("_MI_USER_CONF_ACTV_USER"=>0, "_MI_USER_CONF_ACTV_AUTO"=>1, "_MI_USER_CONF_ACTV_ADMIN"=>2),
+        "valuetype"=>"int",
+        "default"=>0
+    );
 
-$modversion['config'][]=array (
-		"name"=>"activation_group",
-		"title"=>"_MI_USER_CONF_ACTV_GROUP",
-		"description"=>"_MI_USER_CONF_ACTV_GROUP_DESC",
-		"formtype"=>"group",
-		"valuetype"=>"int",
-		"default"=>XOOPS_GROUP_ADMIN
-	);
+$modversion['config'][]=array(
+        "name"=>"activation_group",
+        "title"=>"_MI_USER_CONF_ACTV_GROUP",
+        "description"=>"_MI_USER_CONF_ACTV_GROUP_DESC",
+        "formtype"=>"group",
+        "valuetype"=>"int",
+        "default"=>XOOPS_GROUP_ADMIN
+    );
 
-$modversion['config'][]=array (
-		"name"=>"uname_test_level",
-		"title"=>"_MI_USER_CONF_UNAME_TEST_LEVEL",
-		"formtype"=>"select",
-		"options"=>array("_MI_USER_CONF_UNAME_TEST_LEVEL_STRONG"=>0,"_MI_USER_CONF_UNAME_TEST_LEVEL_NORMAL"=>1,"_MI_USER_CONF_UNAME_TEST_LEVEL_WEAK"=>2),
-		"valuetype"=>"int",
-		"default"=>1
-	);
+$modversion['config'][]=array(
+        "name"=>"uname_test_level",
+        "title"=>"_MI_USER_CONF_UNAME_TEST_LEVEL",
+        "formtype"=>"select",
+        "options"=>array("_MI_USER_CONF_UNAME_TEST_LEVEL_STRONG"=>0, "_MI_USER_CONF_UNAME_TEST_LEVEL_NORMAL"=>1, "_MI_USER_CONF_UNAME_TEST_LEVEL_WEAK"=>2),
+        "valuetype"=>"int",
+        "default"=>1
+    );
 
-$modversion['config'][]=array (
-		"name"=>"avatar_allow_upload",
-		"title"=>"_MI_USER_CONF_AVTR_ALLOW_UP",
-		"formtype"=>"yesno",
-		"valuetype"=>"int",
-		"default"=>0
-	);
+$modversion['config'][]=array(
+        "name"=>"avatar_allow_upload",
+        "title"=>"_MI_USER_CONF_AVTR_ALLOW_UP",
+        "formtype"=>"yesno",
+        "valuetype"=>"int",
+        "default"=>0
+    );
 
-$modversion['config'][]=array (
-		"name"=>"avatar_minposts",
-		"title"=>"_MI_USER_CONF_AVATAR_MINPOSTS",
-		"description"=>"_MI_USER_CONF_AVT_MIN_DESC",
-		"formtype"=>"textbox",
-		"valuetype"=>"int",
-		"default"=>0
-	);
+$modversion['config'][]=array(
+        "name"=>"avatar_minposts",
+        "title"=>"_MI_USER_CONF_AVATAR_MINPOSTS",
+        "description"=>"_MI_USER_CONF_AVT_MIN_DESC",
+        "formtype"=>"textbox",
+        "valuetype"=>"int",
+        "default"=>0
+    );
 
-$modversion['config'][]=array (
-		"name"=>"avatar_width",
-		"title"=>"_MI_USER_CONF_AVATAR_WIDTH",
-		"formtype"=>"textbox",
-		"valuetype"=>"int",
-		"default"=>80
-	);
+$modversion['config'][]=array(
+        "name"=>"avatar_width",
+        "title"=>"_MI_USER_CONF_AVATAR_WIDTH",
+        "formtype"=>"textbox",
+        "valuetype"=>"int",
+        "default"=>80
+    );
 
-$modversion['config'][]=array (
-		"name"=>"avatar_height",
-		"title"=>"_MI_USER_CONF_AVATAR_HEIGHT",
-		"formtype"=>"textbox",
-		"valuetype"=>"int",
-		"default"=>80
-	);
+$modversion['config'][]=array(
+        "name"=>"avatar_height",
+        "title"=>"_MI_USER_CONF_AVATAR_HEIGHT",
+        "formtype"=>"textbox",
+        "valuetype"=>"int",
+        "default"=>80
+    );
 
-$modversion['config'][]=array (
-		"name"=>"avatar_maxsize",
-		"title"=>"_MI_USER_CONF_AVATAR_MAXSIZE",
-		"formtype"=>"textbox",
-		"valuetype"=>"int",
-		"default"=>35000
-	);
+$modversion['config'][]=array(
+        "name"=>"avatar_maxsize",
+        "title"=>"_MI_USER_CONF_AVATAR_MAXSIZE",
+        "formtype"=>"textbox",
+        "valuetype"=>"int",
+        "default"=>35000
+    );
 
-$modversion['config'][]=array (
-		"name"=>"self_delete",
-		"title"=>"_MI_USER_CONF_SELF_DELETE",
-		"formtype"=>"yesno",
-		"valuetype"=>"int",
-		"default"=>0
-	);
+$modversion['config'][]=array(
+        "name"=>"self_delete",
+        "title"=>"_MI_USER_CONF_SELF_DELETE",
+        "formtype"=>"yesno",
+        "valuetype"=>"int",
+        "default"=>0
+    );
 
-$modversion['config'][]=array (
-		"name"=>"self_delete_confirm",
-		"title"=>"_MI_USER_CONF_SELF_DELETE_CONF",
-		"formtype"=>"textarea",
-		"valuetype"=>"string",
-		"default"=>_MI_USER_CONF_SELF_DELETE_CONFIRM_DEFAULT
-	);
+$modversion['config'][]=array(
+        "name"=>"self_delete_confirm",
+        "title"=>"_MI_USER_CONF_SELF_DELETE_CONF",
+        "formtype"=>"textarea",
+        "valuetype"=>"string",
+        "default"=>_MI_USER_CONF_SELF_DELETE_CONFIRM_DEFAULT
+    );
 
-$modversion['config'][]=array (
-		"name"=>"bad_unames",
-		"title"=>"_MI_USER_CONF_BAD_UNAMES",
-		"description"=>"_MI_USER_CONF_BAD_UNAMES_DESC",
-		"formtype"=>"textarea",
-		"valuetype"=>"array",
-		"default"=>array('webmaster', '^xoops', '^admin')
-	);
+$modversion['config'][]=array(
+        "name"=>"bad_unames",
+        "title"=>"_MI_USER_CONF_BAD_UNAMES",
+        "description"=>"_MI_USER_CONF_BAD_UNAMES_DESC",
+        "formtype"=>"textarea",
+        "valuetype"=>"array",
+        "default"=>array('webmaster', '^xoops', '^admin')
+    );
 
-$modversion['config'][]=array (
-		"name"=>"bad_emails",
-		"title"=>"_MI_USER_CONF_BAD_EMAILS",
-		"description"=>"_MI_USER_CONF_BAD_EMAILS_DESC",
-		"formtype"=>"textarea",
-		"valuetype"=>"array",
-		"default"=>array('xoopscube.jp$', 'xoopscube.org$')
-	);
+$modversion['config'][]=array(
+        "name"=>"bad_emails",
+        "title"=>"_MI_USER_CONF_BAD_EMAILS",
+        "description"=>"_MI_USER_CONF_BAD_EMAILS_DESC",
+        "formtype"=>"textarea",
+        "valuetype"=>"array",
+        "default"=>array('xoopscube.jp$', 'xoopscube.org$')
+    );
 
-$modversion['config'][]=array (
-		"name"=>"reg_dispdsclmr",
-		"title"=>"_MI_USER_CONF_DISPDSCLMR",
-		"description"=>"_MI_USER_CONF_DISPDSCLMR_DESC",
-		"formtype"=>"yesno",
-		"valuetype"=>"int",
-		"default"=>0
-	);
+$modversion['config'][]=array(
+        "name"=>"reg_dispdsclmr",
+        "title"=>"_MI_USER_CONF_DISPDSCLMR",
+        "description"=>"_MI_USER_CONF_DISPDSCLMR_DESC",
+        "formtype"=>"yesno",
+        "valuetype"=>"int",
+        "default"=>0
+    );
 
-$modversion['config'][]=array (
-		"name"=>"reg_disclaimer",
-		"title"=>"_MI_USER_CONF_DISCLAIMER",
-		"description"=>"_MI_USER_CONF_DISCLAIMER_DESC",
-		"formtype"=>"textarea",
-		"valuetype"=>"string",
-		"default"=>_MI_USER_CONF_DISCLAIMER_DESC_DEFAULT
-	);
+$modversion['config'][]=array(
+        "name"=>"reg_disclaimer",
+        "title"=>"_MI_USER_CONF_DISCLAIMER",
+        "description"=>"_MI_USER_CONF_DISCLAIMER_DESC",
+        "formtype"=>"textarea",
+        "valuetype"=>"string",
+        "default"=>_MI_USER_CONF_DISCLAIMER_DESC_DEFAULT
+    );
 
-$modversion['config'][]=array (
-		"name"=>"usercookie",
-		"title"=>"_MI_USER_CONF_USERCOOKIE",
-		"description"=>"_MI_USER_CONF_USERCOOKIE_DESC",
-		"formtype"=>"textbox",
-		"valuetype"=>"string",
-		"default"=>"xoops_user"
-	);
+$modversion['config'][]=array(
+        "name"=>"usercookie",
+        "title"=>"_MI_USER_CONF_USERCOOKIE",
+        "description"=>"_MI_USER_CONF_USERCOOKIE_DESC",
+        "formtype"=>"textbox",
+        "valuetype"=>"string",
+        "default"=>"xoops_user"
+    );
 
-$modversion['config'][]=array (
-		"name"=>"use_ssl",
-		"title"=>"_MI_USER_CONF_USE_SSL",
-		"formtype"=>"yesno",
-		"valuetype"=>"int",
-		"default"=>0
-	);
-	
-$modversion['config'][]=array (
-		"name"=>"sslpost_name",
-		"title"=>"_MI_USER_CONF_SSLPOST_NAME",
-		"formtype"=>"textbox",
-		"valuetype"=>"string",
-		"default"=>"xoops_ssl"
-	);
+$modversion['config'][]=array(
+        "name"=>"use_ssl",
+        "title"=>"_MI_USER_CONF_USE_SSL",
+        "formtype"=>"yesno",
+        "valuetype"=>"int",
+        "default"=>0
+    );
+    
+$modversion['config'][]=array(
+        "name"=>"sslpost_name",
+        "title"=>"_MI_USER_CONF_SSLPOST_NAME",
+        "formtype"=>"textbox",
+        "valuetype"=>"string",
+        "default"=>"xoops_ssl"
+    );
 
-$modversion['config'][]=array (
-		"name"=>"sslloginlink",
-		"title"=>"_MI_USER_CONF_SSLLOGINLINK",
-		"formtype"=>"textbox",
-		"valuetype"=>"string",
-		"default"=>"https://"
-	);
+$modversion['config'][]=array(
+        "name"=>"sslloginlink",
+        "title"=>"_MI_USER_CONF_SSLLOGINLINK",
+        "formtype"=>"textbox",
+        "valuetype"=>"string",
+        "default"=>"https://"
+    );
 
 // Menu
 $modversion['hasMain'] = 0;
@@ -333,4 +333,3 @@ $modversion['blocks'][4]['template'] = 'user_block_topusers.html';
 $modversion['blocks'][4]['edit_func'] = "b_user_topusers_edit";
 $modversion['blocks'][4]['options'] = "10|1";
 $modversion['blocks'][4]['show_all_module'] = true;
-?>

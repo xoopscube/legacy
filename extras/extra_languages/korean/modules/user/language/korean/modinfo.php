@@ -165,5 +165,3 @@ define('_MI_USER_MENU_CREATE_RANK', "사용자등급 신규작성");
 define('_MI_USER_MENU_CREATE_USER', "사용자 신규작성");
 define('_MI_USER_NAME', "사용자 모듈");
 define('_MI_USER_NAME_DESC', "사용자계정에 관련된 작업을 처리하기 위한 모듈입니다.");
-
-?>

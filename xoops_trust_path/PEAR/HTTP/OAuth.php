@@ -42,7 +42,7 @@ abstract class HTTP_OAuth
      *
      * @var array $logs Instances of PEAR Log handlers
      */
-    static protected $logs = array();
+    protected static $logs = array();
 
     /**
      * Attaches an instance of PEAR Log
@@ -54,7 +54,7 @@ abstract class HTTP_OAuth
      *
      * @return void
      */
-    static public function attachLog(Log $log)
+    public static function attachLog(Log $log)
     {
         self::$logs[] = $log;
     }
@@ -66,7 +66,7 @@ abstract class HTTP_OAuth
      *
      * @return void
      */
-    static public function detachLog(Log $detach)
+    public static function detachLog(Log $detach)
     {
         foreach (self::$logs as $key => $log) {
             if ($log == $detach) {
@@ -136,7 +136,7 @@ abstract class HTTP_OAuth
      *
      * @return string HTTP query
      */
-    static public function buildHttpQuery(array $params)
+    public static function buildHttpQuery(array $params)
     {
         if (empty($params)) {
             return '';
@@ -163,7 +163,7 @@ abstract class HTTP_OAuth
      *
      * @return mixed url encoded string or array of strings
      */
-    static public function urlencode($item)
+    public static function urlencode($item)
     {
         static $search  = array('+', '%7E');
         static $replace = array('%20', '~');
@@ -186,7 +186,7 @@ abstract class HTTP_OAuth
      *
      * @return string URL decoded string
      */
-    static public function urldecode($item)
+    public static function urldecode($item)
     {
         if (is_array($item)) {
             return array_map(array('HTTP_OAuth', 'urldecode'), $item);
@@ -194,7 +194,4 @@ abstract class HTTP_OAuth
 
         return rawurldecode($item);
     }
-
 }
-
-?>

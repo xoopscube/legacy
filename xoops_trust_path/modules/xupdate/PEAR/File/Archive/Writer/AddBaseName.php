@@ -36,10 +36,10 @@ require_once "File/Archive/Writer.php";
  */
 class File_Archive_Writer_AddBaseName
 {
-    var $writer;
-    var $baseName;
+    public $writer;
+    public $baseName;
 
-    function File_Archive_Writer_AddBaseName($baseName, &$writer)
+    public function File_Archive_Writer_AddBaseName($baseName, &$writer)
     {
         if (substr($baseName, -1) == '/') {
             $this->baseName = $baseName;
@@ -53,7 +53,7 @@ class File_Archive_Writer_AddBaseName
     /**
      * @see File_Archive_Writer::newFile()
      */
-    function newFile($filename, $stat = array(), $mime = "application/octet-stream")
+    public function newFile($filename, $stat = array(), $mime = "application/octet-stream")
     {
         $this->writer->newFile($this->baseName.$filename, $stat, $mime);
     }
@@ -61,7 +61,7 @@ class File_Archive_Writer_AddBaseName
     /**
      * @see File_Archive_Writer::newFromTempFile()
      */
-    function newFromTempFile($tmpfile, $filename, $stat = array(), $mime = "application/octet-stream")
+    public function newFromTempFile($tmpfile, $filename, $stat = array(), $mime = "application/octet-stream")
     {
         $this->writer->newFromTempFile($tmpfile, $this->baseName.$filename, $stat, $mime);
     }
@@ -69,7 +69,7 @@ class File_Archive_Writer_AddBaseName
     /**
      * @see File_Archive_Writer::newFileNeedsMIME()
      */
-    function newFileNeedsMIME()
+    public function newFileNeedsMIME()
     {
         return $this->writer->newFileNeedsMIME();
     }
@@ -77,7 +77,7 @@ class File_Archive_Writer_AddBaseName
     /**
      * @see File_Archive_Writer::writeData()
      */
-    function writeData($data)
+    public function writeData($data)
     {
         $this->writer->writeData($data);
     }
@@ -85,7 +85,7 @@ class File_Archive_Writer_AddBaseName
     /**
      * @see File_Archive_Writer::writeFile()
      */
-    function writeFile($filename)
+    public function writeFile($filename)
     {
         $this->writer->writeFile($filename);
     }
@@ -93,10 +93,8 @@ class File_Archive_Writer_AddBaseName
     /**
      * @see File_Archive_Writer::close()
      */
-    function close()
+    public function close()
     {
         $this->writer->close();
     }
 }
-
-?>

@@ -1,6 +1,7 @@
 <?php
 
-class Text_Wiki_Render_Latex_Html extends Text_Wiki_Render {
+class Text_Wiki_Render_Latex_Html extends Text_Wiki_Render
+{
     
     
     /**
@@ -16,10 +17,9 @@ class Text_Wiki_Render_Latex_Html extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         print_r($this);
         return '';
     }
 }
-?>

@@ -8,7 +8,9 @@
  *
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 /**
  * The structure which have a policy and an information of a module, which
@@ -26,7 +28,7 @@ class Legacy_AbstractCacheInformation
      * @access public
      * @var Array of uid
      */
-    var $mIdentityArr = array();
+    public $mIdentityArr = array();
     
     /**
      * Array of groupid. This is an information for cache store program to
@@ -35,7 +37,7 @@ class Legacy_AbstractCacheInformation
      * @access public
      * @var Array of groupid
      */
-    var $mGroupArr = array();
+    public $mGroupArr = array();
 
     /**
      * Boolean flag indicating whether this object asks caching to the
@@ -43,8 +45,8 @@ class Legacy_AbstractCacheInformation
      * 
      * @access private
      * @var bool
-     */ 
-    var $_mEnableCache = false;
+     */
+    public $_mEnableCache = false;
     
     /**
      * For a special cache mechanism, free to use hashmap.
@@ -52,9 +54,9 @@ class Legacy_AbstractCacheInformation
      * @access public
      * @var array
      */
-    var $mAttributes = array();
+    public $mAttributes = array();
     
-    function Legacy_AbstractCacheInformation()
+    public function Legacy_AbstractCacheInformation()
     {
     }
     
@@ -63,7 +65,7 @@ class Legacy_AbstractCacheInformation
      * object.
      * @return bool
      */
-    function hasSetEnable()
+    public function hasSetEnable()
     {
         return $this->_mEnableCache !== false;
     }
@@ -72,7 +74,7 @@ class Legacy_AbstractCacheInformation
      * Sets a flag indicating whether this object decides executing cache.
      * @param bool $flag
      */
-    function setEnableCache($flag)
+    public function setEnableCache($flag)
     {
         $this->_mEnableCache = $flag;
     }
@@ -81,7 +83,7 @@ class Legacy_AbstractCacheInformation
      * Gets a flag indicating whether this object decides executing cache.
      * @return bool
      */
-    function isEnableCache()
+    public function isEnableCache()
     {
         return $this->_mEnableCache;
     }
@@ -89,14 +91,14 @@ class Legacy_AbstractCacheInformation
     /**
      * Resets member properties to reuse this object.
      */
-    function reset()
+    public function reset()
     {
         $this->mIdentityArr = array();
         $this->mGroupArr = array();
         $this->_mEnableCache = null;
     }
     
-    function getCacheFilePath()
+    public function getCacheFilePath()
     {
     }
 }
@@ -109,7 +111,7 @@ class Legacy_ModuleCacheInformation extends Legacy_AbstractCacheInformation
      * @access protected
      * @var XoopsModule
      */
-    var $mModule = null;
+    public $mModule = null;
     
     /**
      * The current URL used as a base for a cache file name. This should be
@@ -118,30 +120,30 @@ class Legacy_ModuleCacheInformation extends Legacy_AbstractCacheInformation
      * @access public
      * @var string
      */
-    var $mURL = null;
+    public $mURL = null;
 
      /**
       * @var XCube_Delegate
       */
-     var $mGetCacheFilePath = null;
+     public $mGetCacheFilePath = null;
      
-     function Legacy_ModuleCacheInformation()
-     {
-         parent::Legacy_AbstractCacheInformation();
-         $this->mGetCacheFilePath = new XCube_Delegate();
-         $this->mGetCacheFilePath->register('Legacy_ModuleCacheInformation.GetCacheFilePath');
-     }
+    public function Legacy_ModuleCacheInformation()
+    {
+        parent::Legacy_AbstractCacheInformation();
+        $this->mGetCacheFilePath = new XCube_Delegate();
+        $this->mGetCacheFilePath->register('Legacy_ModuleCacheInformation.GetCacheFilePath');
+    }
      
     /**
      * Sets a module object.
      * @param XoopsModule $module
      */
-    function setModule(&$module)
+    public function setModule(&$module)
     {
         $this->mModule =& $module;
     }
     
-    function reset()
+    public function reset()
     {
         parent::reset();
         $this->mModule = null;
@@ -153,7 +155,7 @@ class Legacy_ModuleCacheInformation extends Legacy_AbstractCacheInformation
      * @param Legacy_ModuleCacheInformation $cacheInfo
      * @return string
      */
-    function getCacheFilePath()
+    public function getCacheFilePath()
     {
         $filepath = null;
         $this->mGetCacheFilePath->call(new XCube_Ref($filepath), $this);
@@ -175,42 +177,42 @@ class Legacy_BlockCacheInformation extends Legacy_AbstractCacheInformation
      * @access protected
      * @var XoopsBlock
      */
-     var $mBlock = null;
+     public $mBlock = null;
      
      /**
       * @var XCube_Delegate
       */
-     var $mGetCacheFilePath = null;
+     public $mGetCacheFilePath = null;
      
-     function Legacy_BlockCacheInformation()
-     {
-         parent::Legacy_AbstractCacheInformation();
-         $this->mGetCacheFilePath = new XCube_Delegate();
-         $this->mGetCacheFilePath->register('Legacy_BlockCachInformation.getCacheFilePath');
-     }
+    public function Legacy_BlockCacheInformation()
+    {
+        parent::Legacy_AbstractCacheInformation();
+        $this->mGetCacheFilePath = new XCube_Delegate();
+        $this->mGetCacheFilePath->register('Legacy_BlockCachInformation.getCacheFilePath');
+    }
      
      /**
       * Sets a block object.
       * 
       * @param Legacy_AbstractBlockProcedure $blockProcedure
       */
-     function setBlock(&$blockProcedure)
+     public function setBlock(&$blockProcedure)
      {
          $this->mBlock =& $blockProcedure->_mBlock;
      }
      
-     function reset()
-     {
-         parent::reset();
-         $this->mBlock = null;
-     }
+    public function reset()
+    {
+        parent::reset();
+        $this->mBlock = null;
+    }
 
     /**
      * Gets a file path of a cache file for module contents.
      * @param Legacy_BlockCacheInformation $cacheInfo
      * @return string
      */
-    function getCacheFilePath()
+    public function getCacheFilePath()
     {
         $filepath = null;
         $this->mGetCacheFilePath->call(new XCube_Ref($filepath), $this);
@@ -222,9 +224,8 @@ class Legacy_BlockCacheInformation extends Legacy_AbstractCacheInformation
         return $filepath;
     }
 
-    static function getCacheFileBase($bid, $context) {
-		return XOOPS_CACHE_PATH . '/' . urlencode(XOOPS_URL) . '_bid'. $bid . '_' . $context . '.cache.html';
-	}
+    public static function getCacheFileBase($bid, $context)
+    {
+        return XOOPS_CACHE_PATH . '/' . urlencode(XOOPS_URL) . '_bid'. $bid . '_' . $context . '.cache.html';
+    }
 }
-
-?>

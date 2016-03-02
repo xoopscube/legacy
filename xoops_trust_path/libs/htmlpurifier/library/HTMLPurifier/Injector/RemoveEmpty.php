@@ -99,3 +99,4 @@ class HTMLPurifier_Injector_RemoveEmpty extends HTMLPurifier_Injector
 }
 
 // vim: et sw=4 sts=4
+

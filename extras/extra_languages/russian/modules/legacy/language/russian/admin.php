@@ -360,5 +360,3 @@ define('_MD_AM_USEMYSESS', "Use custom session");
 define('_MD_AM_USEMYSESSDSC', "Выберите да, для получения возможнсоти задать переменные сессии.");
 define('_MD_AM_USESSL', "Использовать SSL авторизацию?");
 define('_MD_AM_YES', "Да");
-
-?>

@@ -38,17 +38,18 @@
 * 
 */
 
-class Text_Wiki_Parse_Embed extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Embed extends Text_Wiki_Parse
+{
     
-    var $conf = array(
+    public $conf = array(
         'base' => '/path/to/scripts/'
     );
     
-    var $file = null;
+    public $file = null;
 
-    var $output = null;
+    public $output = null;
 
-    var $vars = null;
+    public $vars = null;
 
 
     /**
@@ -62,7 +63,7 @@ class Text_Wiki_Parse_Embed extends Text_Wiki_Parse {
     * 
     */
     
-    var $regex = '/(\[\[embed )(.+?)( .+?)?(\]\])/i';
+    public $regex = '/(\[\[embed )(.+?)( .+?)?(\]\])/i';
     
     
     /**
@@ -80,8 +81,8 @@ class Text_Wiki_Parse_Embed extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches)
-    {    
+    public function process(&$matches)
+    {
         // save the file location
         $this->file = $this->getConf('base', './') . $matches[2];
         
@@ -103,4 +104,3 @@ class Text_Wiki_Parse_Embed extends Text_Wiki_Parse {
         );
     }
 }
-?>

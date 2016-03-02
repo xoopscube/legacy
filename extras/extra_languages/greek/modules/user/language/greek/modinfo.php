@@ -73,5 +73,3 @@ define('_MI_USER_MENU_CREATE_RANK', "user rank create new");
 define('_MI_USER_MENU_CREATE_USER', "Create user");
 define('_MI_USER_NAME', "User module");
 define('_MI_USER_NAME_DESC', "This module manages user account.");
-
-?>

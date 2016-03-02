@@ -35,7 +35,8 @@
 * 
 */
 
-class Text_Wiki_Parse_Code extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Code extends Text_Wiki_Parse
+{
     
     
     /**
@@ -49,7 +50,7 @@ class Text_Wiki_Parse_Code extends Text_Wiki_Parse {
     * 
     */
     
-    var $regex = '/^(\<code( .+)?\>)\n(.+)\n(\<\/code\>)(\s|$)/Umsi';
+    public $regex = '/^(\<code( .+)?\>)\n(.+)\n(\<\/code\>)(\s|$)/Umsi';
     
     
     /**
@@ -67,7 +68,7 @@ class Text_Wiki_Parse_Code extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches)
+    public function process(&$matches)
     {
         // are there additional attribute arguments?
         $args = trim($matches[2]);
@@ -78,15 +79,15 @@ class Text_Wiki_Parse_Code extends Text_Wiki_Parse {
                 'attr' => array('type' => '')
             );
         } else {
-        	// get the attributes...
-        	$attr = $this->getAttrs($args);
-        	
-        	// ... and make sure we have a 'type'
-        	if (! isset($attr['type'])) {
-        		$attr['type'] = '';
-        	}
-        	
-        	// retain the options
+            // get the attributes...
+            $attr = $this->getAttrs($args);
+            
+            // ... and make sure we have a 'type'
+            if (! isset($attr['type'])) {
+                $attr['type'] = '';
+            }
+            
+            // retain the options
             $options = array(
                 'text' => $matches[3],
                 'attr' => $attr
@@ -96,4 +97,3 @@ class Text_Wiki_Parse_Code extends Text_Wiki_Parse {
         return $this->wiki->addToken($this->rule, $options) . $matches[5];
     }
 }
-?>

@@ -92,7 +92,7 @@ class Crypt_Blowfish
      * @var object
      * @access private
      */
-    var $_crypt = null;
+    public $_crypt = null;
 
     /**
      * Initialization vector
@@ -100,7 +100,7 @@ class Crypt_Blowfish
      * @var string
      * @access protected
      */
-    var $_iv = null;
+    public $_iv = null;
 
     /**
      * Holds block size
@@ -108,7 +108,7 @@ class Crypt_Blowfish
      * @var integer
      * @access protected
      */
-    var $_block_size = 8;
+    public $_block_size = 8;
 
     /**
      * Holds IV size
@@ -116,7 +116,7 @@ class Crypt_Blowfish
      * @var integer
      * @access protected
      */
-    var $_iv_size = 8;
+    public $_iv_size = 8;
 
     /**
      * Holds max key size
@@ -124,7 +124,7 @@ class Crypt_Blowfish
      * @var integer
      * @access protected
      */
-    var $_key_size = 56;
+    public $_key_size = 56;
 
     /**
      * Crypt_Blowfish Constructor
@@ -136,7 +136,7 @@ class Crypt_Blowfish
      * @deprecated Since 1.1.0
      * @see Crypt_Blowfish::factory()
      */
-    function Crypt_Blowfish($key)
+    public function Crypt_Blowfish($key)
     {
         $this->_crypt =& Crypt_Blowfish::factory('ecb', $key);
         if (!PEAR::isError($this->_crypt)) {
@@ -162,7 +162,7 @@ class Crypt_Blowfish
      * @static
      * @since 1.1.0
      */
-    function &factory($mode = 'ecb', $key = null, $iv = null, $engine = CRYPT_BLOWFISH_AUTO)
+    public function &factory($mode = 'ecb', $key = null, $iv = null, $engine = CRYPT_BLOWFISH_AUTO)
     {
         switch ($engine) {
             case CRYPT_BLOWFISH_AUTO:
@@ -211,7 +211,7 @@ class Crypt_Blowfish
      * @access public
      * @since 1.1.0
      */
-    function getBlockSize()
+    public function getBlockSize()
     {
         return $this->_block_size;
     }
@@ -223,7 +223,7 @@ class Crypt_Blowfish
      * @access public
      * @since 1.1.0
      */
-    function getIVSize()
+    public function getIVSize()
     {
         return $this->_iv_size;
     }
@@ -235,7 +235,7 @@ class Crypt_Blowfish
      * @access public
      * @since 1.1.0
      */
-    function getMaxKeySize()
+    public function getMaxKeySize()
     {
         return $this->_key_size;
     }
@@ -247,7 +247,7 @@ class Crypt_Blowfish
      * @access public
      * @deprecated
      */
-    function isReady()
+    public function isReady()
     {
         return true;
     }
@@ -260,7 +260,7 @@ class Crypt_Blowfish
      * @access public
      * @deprecated
      */
-    function init()
+    public function init()
     {
         return $this->_crypt->init();
     }
@@ -275,7 +275,7 @@ class Crypt_Blowfish
      * @return string|PEAR_Error Returns cipher text on success, PEAR_Error on failure
      * @access public
      */
-    function encrypt($plainText)
+    public function encrypt($plainText)
     {
         return $this->_crypt->encrypt($plainText);
     }
@@ -291,7 +291,7 @@ class Crypt_Blowfish
      * @return string|PEAR_Error Returns plain text on success, PEAR_Error on failure
      * @access public
      */
-    function decrypt($cipherText)
+    public function decrypt($cipherText)
     {
         return $this->_crypt->decrypt($cipherText);
     }
@@ -308,10 +308,8 @@ class Crypt_Blowfish
      * @return boolean|PEAR_Error  Returns TRUE on success, PEAR_Error on failure
      * @access public
      */
-    function setKey($key)
+    public function setKey($key)
     {
         return $this->_crypt->setKey($key);
     }
 }
-
-?>

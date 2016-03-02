@@ -1,8 +1,9 @@
 <?php
 
-class Text_Wiki_Render_Xhtml_Table extends Text_Wiki_Render {
+class Text_Wiki_Render_Xhtml_Table extends Text_Wiki_Render
+{
     
-    var $conf = array(
+    public $conf = array(
         'css_table' => null,
         'css_tr' => null,
         'css_th' => null,
@@ -23,7 +24,7 @@ class Text_Wiki_Render_Xhtml_Table extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         // make nice variable names (type, attr, span)
         extract($options);
@@ -95,4 +96,3 @@ class Text_Wiki_Render_Xhtml_Table extends Text_Wiki_Render {
         }
     }
 }
-?>

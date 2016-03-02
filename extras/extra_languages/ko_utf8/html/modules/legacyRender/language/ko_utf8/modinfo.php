@@ -68,5 +68,3 @@ define('_MI_LR_JQUERY_CORE', "jQuery 코어 라이브러리");
 define('_MI_LR_JQUERY_CORE_DESC', "Google Libraries API를 사용하는 경우 jQuery의 버전을 입력해 주세요! 로컬의 jQuery 파일을 사용하는 경우엔 그 URL을 입력하시면 됩니다.");
 define('_MI_LR_JQUERY_UI', "jQuery UI 라이브러리");
 define('_MI_LR_JQUERY_UI_DESC', "Google Libraries API를 사용하는 경우 jQuery UI의 버전을 입력해 주세요! 로컬의 jQuery UI 파일을 사용하는 경우엔 그 URL을 입력하시면 됩니다. 어느쪽이든 반드시 jQuery 코어 라이브러리와 동일한 방식이어야 합니다.");
-
-?>

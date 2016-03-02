@@ -44,12 +44,12 @@ class Hdinstaller_Controller extends Ethna_Controller
     /**
      *  @var    string  Application ID(appid)
      */
-    var $appid = 'HDINSTALLER';
+    public $appid = 'HDINSTALLER';
 
     /**
      *  @var    array   forward definition.
      */
-    var $forward = array(
+    public $forward = array(
         /*
          *  TODO: write forward definition here.
          *
@@ -64,7 +64,7 @@ class Hdinstaller_Controller extends Ethna_Controller
     /**
      *  @var    array   action definition.
      */
-    var $action = array(
+    public $action = array(
         /*
          *  TODO: write action definition here.
          *
@@ -77,7 +77,7 @@ class Hdinstaller_Controller extends Ethna_Controller
     /**
      *  @var    array   SOAP action definition.
      */
-    var $soap_action = array(
+    public $soap_action = array(
         /*
          *  TODO: write action definition for SOAP application here.
          *  Example:
@@ -89,7 +89,7 @@ class Hdinstaller_Controller extends Ethna_Controller
     /**
      *  @var    array       application directory.
      */
-    var $directory = array(
+    public $directory = array(
         'action'        => 'app/action',
         'action_cli'    => 'app/action_cli',
         'action_xmlrpc' => 'app/action_xmlrpc',
@@ -112,14 +112,14 @@ class Hdinstaller_Controller extends Ethna_Controller
     /**
      *  @var    array       database access definition.
      */
-    var $db = array(
+    public $db = array(
         ''              => DB_TYPE_RW,
     );
 
     /**
      *  @var    array       extention(.php, etc) configuration.
      */
-    var $ext = array(
+    public $ext = array(
         'php'           => 'php',
         'tpl'           => 'php',
     );
@@ -127,7 +127,7 @@ class Hdinstaller_Controller extends Ethna_Controller
     /**
      *  @var    array   class definition.
      */
-    var $class = array(
+    public $class = array(
         /*
          *  TODO: When you override Configuration class, Logger class,
          *        SQL class, don't forget to change definition as follows!
@@ -152,7 +152,7 @@ class Hdinstaller_Controller extends Ethna_Controller
     /**
      *  @var    array       list of application id where Ethna searches plugin.
      */
-    var $plugin_search_appids = array(
+    public $plugin_search_appids = array(
         /*
          *  write list of application id where Ethna searches plugin.
          *
@@ -172,7 +172,7 @@ class Hdinstaller_Controller extends Ethna_Controller
     /**
      *  @var    array       filter definition.
      */
-    var $filter = array(
+    public $filter = array(
         /*
          *  TODO: when you use filter, write filter plugin name here.
          *  (If you specify class name, Ethna reads filter class in 
@@ -187,7 +187,7 @@ class Hdinstaller_Controller extends Ethna_Controller
     /**
      *  @var    array   smarty modifier definition.
      */
-    var $smarty_modifier_plugin = array(
+    public $smarty_modifier_plugin = array(
         /*
          *  TODO: write user defined smarty modifier here.
          *
@@ -200,7 +200,7 @@ class Hdinstaller_Controller extends Ethna_Controller
     /**
      *  @var    array   smarty function definition.
      */
-    var $smarty_function_plugin = array(
+    public $smarty_function_plugin = array(
         /*
          *  TODO: write user defined smarty function here.
          *
@@ -213,7 +213,7 @@ class Hdinstaller_Controller extends Ethna_Controller
     /**
      *  @var    array   smarty block definition.
      */
-    var $smarty_block_plugin = array(
+    public $smarty_block_plugin = array(
         /*
          *  TODO: write user defined smarty block here.
          *
@@ -226,7 +226,7 @@ class Hdinstaller_Controller extends Ethna_Controller
     /**
      *  @var    array   smarty prefilter definition.
      */
-    var $smarty_prefilter_plugin = array(
+    public $smarty_prefilter_plugin = array(
         /*
          *  TODO: write user defined smarty prefilter here.
          *
@@ -239,7 +239,7 @@ class Hdinstaller_Controller extends Ethna_Controller
     /**
      *  @var    array   smarty postfilter definition.
      */
-    var $smarty_postfilter_plugin = array(
+    public $smarty_postfilter_plugin = array(
         /*
          *  TODO: write user defined smarty postfilter here.
          *
@@ -252,7 +252,7 @@ class Hdinstaller_Controller extends Ethna_Controller
     /**
      *  @var    array   smarty outputfilter definition.
      */
-    var $smarty_outputfilter_plugin = array(
+    public $smarty_outputfilter_plugin = array(
         /*
          *  TODO: write user defined smarty outputfilter here.
          *
@@ -274,45 +274,45 @@ class Hdinstaller_Controller extends Ethna_Controller
      *                  client encoding name(= template encoding)
      *                  (locale name is "ll_cc" format. ll = language code. cc = country code.)
      */
-    function _getDefaultLanguage()
+    public function _getDefaultLanguage()
     {
-		$config = $this->getConfig();
-		$allow_language = $config->get('allow_language');
-		
-		$lang = null;
-		if (strcasecmp($_SERVER['REQUEST_METHOD'], 'get')===0){
-			$lang = isset($_GET['lang']) ? $_GET['lang'] : null;
-		}
-		if (strcasecmp($_SERVER['REQUEST_METHOD'], 'post')===0){
-			$lang = isset($_POST['lang']) ? $_POST['lang'] : null;
-		}
+        $config = $this->getConfig();
+        $allow_language = $config->get('allow_language');
+        
+        $lang = null;
+        if (strcasecmp($_SERVER['REQUEST_METHOD'], 'get')===0) {
+            $lang = isset($_GET['lang']) ? $_GET['lang'] : null;
+        }
+        if (strcasecmp($_SERVER['REQUEST_METHOD'], 'post')===0) {
+            $lang = isset($_POST['lang']) ? $_POST['lang'] : null;
+        }
 
-		if ($lang){
-			foreach ($allow_language as $s=>$l){
-				if ($l['lang'] === $lang){
-					return array($lang, 'UTF-8', 'UTF-8');
-				}
-			}
-		}
-		
-		$lang = 'en_US';
-		$accept = explode(';', $_SERVER['HTTP_ACCEPT_LANGUAGE']);  
-		$a_langs = explode(',', $accept[0]); 
-		foreach ($a_langs as $al){
-			foreach ($allow_language as $s=>$l){
-				if (strncasecmp($l['lang'], $al, 2)===0){
-					$lang = $l['lang'];
-					return array($lang, 'UTF-8', 'UTF-8');
-				}
-			}
-		}
-		
+        if ($lang) {
+            foreach ($allow_language as $s=>$l) {
+                if ($l['lang'] === $lang) {
+                    return array($lang, 'UTF-8', 'UTF-8');
+                }
+            }
+        }
+        
+        $lang = 'en_US';
+        $accept = explode(';', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+        $a_langs = explode(',', $accept[0]);
+        foreach ($a_langs as $al) {
+            foreach ($allow_language as $s=>$l) {
+                if (strncasecmp($l['lang'], $al, 2)===0) {
+                    $lang = $l['lang'];
+                    return array($lang, 'UTF-8', 'UTF-8');
+                }
+            }
+        }
+        
         return array($lang, 'UTF-8', 'UTF-8');
     }
-	
-	
-	/// Localeは要らない
-    function getTemplatedir()
+    
+    
+    /// Localeは要らない
+    public function getTemplatedir()
     {
         $template = $this->getDirectory('template');
 
@@ -320,74 +320,72 @@ class Hdinstaller_Controller extends Ethna_Controller
         // _getDerfaultLanguageメソッドでロケールが指定されていた場合は、
         // テンプレートディレクトリにも自動的にそれを付加する。
         if (!empty($this->locale)) {
-//            $template .= '/' . $this->locale;
+            //            $template .= '/' . $this->locale;
         }
 
         return $template;
     }
-	
-	/// Repository URLをCacheファイルの形に
-	/**
-	 * @brief 
-	 * @param 
-	 * @retval
-	 */
-	function repositoryURL2CacheFile($url)
-	{
-		$url = parse_url($url);
-		$ret = sprintf('%s_%s_%s',
-					   $url['scheme'],
-					   $url['host'],
-					   str_replace(array('/', '_'), array('%', '.'), $url['path'])
-					   );
-		if (isset($url['query']) && $url['query']){
-			$ret .= '_'.md5($url['query']);
-		}
-		
-		return BASE.'/tmp/'.$ret;
-	}
-	
-	
-	/// 
-	/**
-	 * @brief 
-	 * @param 
-	 * @retval
-	 */
-	function package2dataFile($package, $version)
-	{
-		$filename = urlencode($package). urlencode($version);
-		return sprintf('%s/%s', BASE.'/tmp', $filename);
-	}
-	
-	/// Tmpディレクトリをまっさらに
-	/**
-	 * @brief 
-	 * @param 
-	 * @retval
-	 */
-	function cleanUpTmp($dir='')
-	{
-		if (!$dir) $dir = $this->getDirectory('tmp');
-		
-		$dh = opendir($dir);
-		if ($dh) {
-			while (($file = readdir($dh)) !== false) {
-				if ($file == '.' || $file == '..') {
-					continue;
-				}
-				else if (is_dir($dir . '/' . $file)) {
-					$this->cleanUpTmp($dir . '/' . $file);
-					rmdir($dir . '/' . $file);
-				}
-				else {
-					$f = $dir . "/" . $file;
-					unlink($f);
-				}
-			}
-			closedir($dh);
-		}
-	}
+    
+    /// Repository URLをCacheファイルの形に
+    /**
+     * @brief 
+     * @param 
+     * @retval
+     */
+    public function repositoryURL2CacheFile($url)
+    {
+        $url = parse_url($url);
+        $ret = sprintf('%s_%s_%s',
+                       $url['scheme'],
+                       $url['host'],
+                       str_replace(array('/', '_'), array('%', '.'), $url['path'])
+                       );
+        if (isset($url['query']) && $url['query']) {
+            $ret .= '_'.md5($url['query']);
+        }
+        
+        return BASE.'/tmp/'.$ret;
+    }
+    
+    
+    /// 
+    /**
+     * @brief 
+     * @param 
+     * @retval
+     */
+    public function package2dataFile($package, $version)
+    {
+        $filename = urlencode($package). urlencode($version);
+        return sprintf('%s/%s', BASE.'/tmp', $filename);
+    }
+    
+    /// Tmpディレクトリをまっさらに
+    /**
+     * @brief 
+     * @param 
+     * @retval
+     */
+    public function cleanUpTmp($dir='')
+    {
+        if (!$dir) {
+            $dir = $this->getDirectory('tmp');
+        }
+        
+        $dh = opendir($dir);
+        if ($dh) {
+            while (($file = readdir($dh)) !== false) {
+                if ($file == '.' || $file == '..') {
+                    continue;
+                } elseif (is_dir($dir . '/' . $file)) {
+                    $this->cleanUpTmp($dir . '/' . $file);
+                    rmdir($dir . '/' . $file);
+                } else {
+                    $f = $dir . "/" . $file;
+                    unlink($f);
+                }
+            }
+            closedir($dh);
+        }
+    }
 }
-
-?>

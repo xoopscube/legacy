@@ -7,4 +7,3 @@ define("_MAIL_SENDMAILNG", "%sさん宛にメールを送信できませんでした");
 define("_MAIL_MAILGOOD", "%sさん宛にメールを送信しました");
 define("_MAIL_SENDPMNG", "%sさん宛にプライベートメッセージを送信できませんでした");
 define("_MAIL_PMGOOD", "%sさん宛にプライベートメッセージを送信しました");
-?>

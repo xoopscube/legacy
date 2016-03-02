@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -17,11 +16,11 @@ require_once XUPDATE_TRUST_PATH . '/admin/class/installer/XupdateInstallUtils.cl
 **/
 class Xupdate_Installer
 {
-    public /*** Legacy_ModuleInstallLog ***/ $mLog = null;
+    /*** Legacy_ModuleInstallLog ***/ public $mLog = null;
 
-    private /*** bool ***/ $_mForceMode = false;
+    /*** bool ***/ private $_mForceMode = false;
 
-    private /*** XoopsModule ***/ $_mXoopsModule = null;
+    /*** XoopsModule ***/ private $_mXoopsModule = null;
 
     /**
      * __construct
@@ -85,48 +84,37 @@ class Xupdate_Installer
     private function _installModule()
     {
         $moduleHandler =& Xupdate_Utils::getXoopsHandler('module');
-        if(!$moduleHandler->insert($this->_mXoopsModule))
-        {
+        if (!$moduleHandler->insert($this->_mXoopsModule)) {
             $this->mLog->addError(_MI_XUPDATE_INSTALL_ERROR_MODULE_INSTALLED);
             return false;
         }
     
         $gpermHandler =& Xupdate_Utils::getXoopsHandler('groupperm');
     
-        if($this->_mXoopsModule->getInfo('hasAdmin'))
-        {
+        if ($this->_mXoopsModule->getInfo('hasAdmin')) {
             $adminPerm =& $this->_createPermission(XOOPS_GROUP_ADMIN);
-            $adminPerm->setVar('gperm_name','module_admin');
-            if(!$gpermHandler->insert($adminPerm))
-            {
+            $adminPerm->setVar('gperm_name', 'module_admin');
+            if (!$gpermHandler->insert($adminPerm)) {
                 $this->mLog->addError(_MI_XUPDATE_INSTALL_ERROR_PERM_ADMIN_SET);
             }
         }
     
-        if($this->_mXoopsModule->getInfo('hasMain'))
-        {
-            if($this->_mXoopsModule->getInfo('read_any'))
-            {
+        if ($this->_mXoopsModule->getInfo('hasMain')) {
+            if ($this->_mXoopsModule->getInfo('read_any')) {
                 $memberHandler =& Xupdate_Utils::getXoopsHandler('member');
                 $groupObjects =& $memberHandler->getGroups();
-                foreach($groupObjects as $group)
-                {
+                foreach ($groupObjects as $group) {
                     $readPerm =& $this->_createPermission($group->getVar('groupid'));
-                    $readPerm->setVar('gperm_name','module_read');
-                    if(!$gpermHandler->insert($readPerm))
-                    {
+                    $readPerm->setVar('gperm_name', 'module_read');
+                    if (!$gpermHandler->insert($readPerm)) {
                         $this->mLog->addError(_MI_XUPDATE_INSTALL_ERROR_PERM_READ_SET);
                     }
                 }
-            }
-            else
-            {
-                foreach(array(XOOPS_GROUP_ADMIN,XOOPS_GROUP_USERS) as $group)
-                {
+            } else {
+                foreach (array(XOOPS_GROUP_ADMIN, XOOPS_GROUP_USERS) as $group) {
                     $readPerm =& $this->_createPermission($group);
-                    $readPerm->setVar('gperm_name','module_read');
-                    if(!$gpermHandler->insert($readPerm))
-                    {
+                    $readPerm->setVar('gperm_name', 'module_read');
+                    if (!$gpermHandler->insert($readPerm)) {
                         $this->mLog->addError(_MI_XUPDATE_INSTALL_ERROR_PERM_READ_SET);
                     }
                 }
@@ -147,9 +135,9 @@ class Xupdate_Installer
     {
         $gpermHandler =& Xupdate_Utils::getXoopsHandler('groupperm');
         $perm =& $gpermHandler->create();
-        $perm->setVar('gperm_groupid',$group);
-        $perm->setVar('gperm_itemid',$this->_mXoopsModule->getVar('mid'));
-        $perm->setVar('gperm_modid',1);
+        $perm->setVar('gperm_groupid', $group);
+        $perm->setVar('gperm_itemid', $this->_mXoopsModule->getVar('mid'));
+        $perm->setVar('gperm_modid', 1);
     
         return $perm;
     }
@@ -208,26 +196,21 @@ class Xupdate_Installer
     **/
     private function _processReport()
     {
-        if(!$this->mLog->hasError())
-        {
+        if (!$this->mLog->hasError()) {
             $this->mLog->add(
                 XCube_Utils::formatString(
                     _MI_XUPDATE_INSTALL_MSG_MODULE_INSTALLED,
                     $this->_mXoopsModule->getInfo('name')
                 )
             );
-        }
-        else if(is_object($this->_mXoopsModule))
-        {
+        } elseif (is_object($this->_mXoopsModule)) {
             $this->mLog->addError(
                 XCube_Utils::formatString(
                     _MI_XUPDATE_INSTALL_ERROR_MODULE_INSTALLED,
                     $this->_mXoopsModule->getInfo('name')
                 )
             );
-        }
-        else
-        {
+        } else {
             $this->mLog->addError(
                 XCube_Utils::formatString(
                     _MI_XUPDATE_INSTALL_ERROR_MODULE_INSTALLED,
@@ -247,36 +230,31 @@ class Xupdate_Installer
     public function executeInstall()
     {
         $this->_installTables();
-        if(!$this->_mForceMode && $this->mLog->hasError())
-        {
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
     
         $this->_installModule();
-        if(!$this->_mForceMode && $this->mLog->hasError())
-        {
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
     
         $this->_installTemplates();
-        if(!$this->_mForceMode && $this->mLog->hasError())
-        {
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
     
         $this->_installBlocks();
-        if(!$this->_mForceMode && $this->mLog->hasError())
-        {
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
     
         $this->_installPreferences();
-        if(!$this->_mForceMode && $this->mLog->hasError())
-        {
+        if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
@@ -285,5 +263,3 @@ class Xupdate_Installer
         return true;
     }
 }
-
-?>

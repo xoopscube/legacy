@@ -163,7 +163,6 @@ class HTMLPurifier_UnitConverter
             $state = $dest_state;
 
             // One more loop around to convert the unit in the new system.
-
         }
 
         // Post-condition: $unit == $to_unit
@@ -305,3 +304,4 @@ class HTMLPurifier_UnitConverter
 }
 
 // vim: et sw=4 sts=4
+

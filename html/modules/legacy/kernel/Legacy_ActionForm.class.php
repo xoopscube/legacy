@@ -8,7 +8,9 @@
  *
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 require_once XCUBE_CORE_PATH . '/XCube_ActionForm.class.php';
 
@@ -24,15 +26,12 @@ require_once XCUBE_CORE_PATH . '/XCube_ActionForm.class.php';
  */
 class Legacy_ActionForm extends XCube_ActionForm
 {
-	/**
-	 * @public
-	 * @brief Constructor.
-	 */
-	function Legacy_ActionForm()
-	{
-		parent::XCube_ActionForm();
-	}
+    /**
+     * @public
+     * @brief Constructor.
+     */
+    public function Legacy_ActionForm()
+    {
+        parent::XCube_ActionForm();
+    }
 }
-
-
-?>

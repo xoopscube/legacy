@@ -24,4 +24,3 @@ define("_MAIL_SENDMAILNG", "Não foi possível enviar o <i>e-mail</i> para %s.")
 define("_MAIL_MAILGOOD", "Carta-eletrônica enviada corretamente para %s.");
 define("_MAIL_SENDPMNG", "Não foi possível enviar a sua mensagem privada para %s.");
 define("_MAIL_PMGOOD", "A mensagem foi enviada para %s.");
-?>

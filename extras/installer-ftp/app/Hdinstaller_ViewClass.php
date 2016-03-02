@@ -18,16 +18,16 @@
  */
 class Hdinstaller_ViewClass extends Ethna_ViewClass
 {
-	/**
-	 * 
-	 */
-	 var $title = '';
-	 
-	 
-	/**
-	 * 
-	 */
-	 var $subtitle = '';
+    /**
+     * 
+     */
+     public $title = '';
+     
+     
+    /**
+     * 
+     */
+     public $subtitle = '';
  
     /**
      *  set common default value.
@@ -35,21 +35,19 @@ class Hdinstaller_ViewClass extends Ethna_ViewClass
      *  @access protected
      *  @param  object  Hdinstaller_Renderer  Renderer object.
      */
-    function _setDefault(&$renderer)
+    public function _setDefault(&$renderer)
     {
-		$this->backend->ctl->getI18N()->use_gettext = true;
-		
-		$this->title = _('Hodajuku Distribution Install/Upgrade System');
-		if ($this->subtitle){
-			$this->af->setApp('subtitle', $this->subtitle);
-		}
-		
-		$this->af->setApp('title', $this->title);
-		
-		$this->af->setApp('lang', current($this->backend->ctl->getLanguage()));
+        $this->backend->ctl->getI18N()->use_gettext = true;
+        
+        $this->title = _('Hodajuku Distribution Install/Upgrade System');
+        if ($this->subtitle) {
+            $this->af->setApp('subtitle', $this->subtitle);
+        }
+        
+        $this->af->setApp('title', $this->title);
+        
+        $this->af->setApp('lang', current($this->backend->ctl->getLanguage()));
     }
-
 }
 // }}}
-
-?>
+;

@@ -37,14 +37,14 @@ require_once "File/Archive/Reader/Relay.php";
  */
 class File_Archive_Reader_Concat extends File_Archive_Reader
 {
-    var $source;
-    var $filename;
-    var $stat;
-    var $mime;
-    var $opened = false;
-    var $filePos = 0;
+    public $source;
+    public $filename;
+    public $stat;
+    public $mime;
+    public $opened = false;
+    public $filePos = 0;
 
-    function File_Archive_Reader_Concat(&$source, $filename,
+    public function File_Archive_Reader_Concat(&$source, $filename,
                                         $stat=array(), $mime=null)
     {
         $this->source =& $source;
@@ -75,7 +75,7 @@ class File_Archive_Reader_Concat extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::next()
      */
-    function next()
+    public function next()
     {
         if (!$this->opened) {
             return $this->opened = $this->source->next();
@@ -86,22 +86,28 @@ class File_Archive_Reader_Concat extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::getFilename()
      */
-    function getFilename() { return $this->filename; }
+    public function getFilename()
+    {
+        return $this->filename;
+    }
     /**
      * @see File_Archive_Reader::getStat()
      */
-    function getStat() { return $this->stat; }
+    public function getStat()
+    {
+        return $this->stat;
+    }
     /**
      * @see File_Archive_Reader::getMime()
      */
-    function getMime()
+    public function getMime()
     {
         return $this->mime==null ? parent::getMime() : $this->mime;
     }
     /**
      * @see File_Archive_Reader::getData()
      */
-    function getData($length = -1)
+    public function getData($length = -1)
     {
         if ($length == 0) {
             return '';
@@ -134,7 +140,7 @@ class File_Archive_Reader_Concat extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::skip()
      */
-    function skip($length = -1)
+    public function skip($length = -1)
     {
         $skipped = 0;
         while ($skipped < $length) {
@@ -159,7 +165,7 @@ class File_Archive_Reader_Concat extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::rewind()
      */
-    function rewind($length = -1)
+    public function rewind($length = -1)
     {
         //TODO: implement rewind
         return parent::rewind($length);
@@ -168,7 +174,7 @@ class File_Archive_Reader_Concat extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::tell()
      */
-    function tell()
+    public function tell()
     {
         return $this->filePos;
     }
@@ -176,7 +182,7 @@ class File_Archive_Reader_Concat extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::close()
      */
-    function close()
+    public function close()
     {
         $this->opened = false;
         $this->filePos = 0;
@@ -186,10 +192,8 @@ class File_Archive_Reader_Concat extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::makeWriter
      */
-    function makeWriter($fileModif = true, $seek = 0)
+    public function makeWriter($fileModif = true, $seek = 0)
     {
         return $this->source->makeWriter($fileModif, $seek);
     }
 }
-
-?>

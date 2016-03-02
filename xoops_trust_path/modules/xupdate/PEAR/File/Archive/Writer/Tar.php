@@ -36,11 +36,11 @@ require_once "File/Archive/Writer/Archive.php";
  */
 class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
 {
-    var $buffer;
-    var $useBuffer;
+    public $buffer;
+    public $useBuffer;
 
-    var $filename = null;
-    var $stats = null;
+    public $filename = null;
+    public $stats = null;
 
 
     /**
@@ -51,7 +51,7 @@ class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
      * @return string A 512 byte header for the file
      * @access private
      */
-    function tarHeader($filename, $stat)
+    public function tarHeader($filename, $stat)
     {
         $mode = isset($stat[2]) ? $stat[2] : 0x8000;
         $uid  = isset($stat[4]) ? $stat[4] : 0;
@@ -62,9 +62,9 @@ class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
 
         if ($mode & 0x4000) {
             $type = 5;        // Directory
-        } else if ($mode & 0x8000) {
+        } elseif ($mode & 0x8000) {
             $type = 0;        // Regular
-        } else if ($mode & 0xA000) {
+        } elseif ($mode & 0xA000) {
             $type = 1;        // Link
             $link = @readlink($current);
         } else {
@@ -76,10 +76,10 @@ class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
             return PEAR::raiseError(
                 "$filename is too long to be put in a tar archive"
             );
-        } else if (strlen($filename) > 100) {
+        } elseif (strlen($filename) > 100) {
             // need a path component of max 155 bytes
             $pos = strrpos(substr($filename, 0, 155), '/');
-            if(strlen($filename) - $pos > 100) {
+            if (strlen($filename) - $pos > 100) {
                 // filename-component may not exceed 100 bytes
                 return PEAR::raiseError(
                         "$filename is too long to be put in a tar archive");
@@ -91,10 +91,10 @@ class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
         $blockbeg = pack("a100a8a8a8a12a12",
             $filename,
             decoct($mode),
-            sprintf("%6s ",decoct($uid)),
-            sprintf("%6s ",decoct($gid)),
-            sprintf("%11s ",decoct($size)),
-            sprintf("%11s ",decoct($time))
+            sprintf("%6s ", decoct($uid)),
+            sprintf("%6s ", decoct($gid)),
+            sprintf("%11s ", decoct($size)),
+            sprintf("%11s ", decoct($time))
             );
 
         $blockend = pack("a1a100a6a2a32a32a8a8a155a12",
@@ -117,7 +117,7 @@ class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
             $checksum += ord($blockend{$i});
         }
 
-        $checksum = pack("a8",sprintf("%6s ",decoct($checksum)));
+        $checksum = pack("a8", sprintf("%6s ", decoct($checksum)));
 
         return $blockbeg . $checksum . $blockend;
     }
@@ -129,7 +129,7 @@ class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
      *         last 512 byte long block
      * @access private
      */
-    function tarFooter($size)
+    public function tarFooter($size)
     {
         if ($size % 512 > 0) {
             return pack("a".(512 - $size%512), "");
@@ -138,7 +138,7 @@ class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
         }
     }
 
-    function flush()
+    public function flush()
     {
         if ($this->filename !== null) {
             if ($this->useBuffer) {
@@ -160,7 +160,7 @@ class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
         $this->buffer = "";
     }
 
-    function _newFile($filename, $stats = array(),
+    public function _newFile($filename, $stats = array(),
                      $mime = "application/octet-stream")
     {
         $err = $this->flush();
@@ -184,7 +184,7 @@ class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
     /**
      * @see File_Archive_Writer::close()
      */
-    function close()
+    public function close()
     {
         $err = $this->flush();
         if (PEAR::isError($err)) {
@@ -196,19 +196,18 @@ class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
     /**
      * @see File_Archive_Writer::writeData()
      */
-    function writeData($data)
+    public function writeData($data)
     {
         if ($this->useBuffer) {
             $this->buffer .= $data;
         } else {
             $this->innerWriter->writeData($data);
         }
-
     }
     /**
      * @see File_Archive_Writer::writeFile()
      */
-    function writeFile($filename)
+    public function writeFile($filename)
     {
         if ($this->useBuffer) {
             if (!file_exists($filename)) {
@@ -222,7 +221,10 @@ class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
     /**
      * @see File_Archive_Writer::getMime()
      */
-    function getMime() { return "application/x-tar"; }
+    public function getMime()
+    {
+        return "application/x-tar";
+    }
 }
 
 
@@ -235,10 +237,8 @@ class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
 require_once "File/Archive/Predicate.php";
 class File_Archive_Predicate_TARCompatible extends File_Archive_Predicate
 {
-    function isTrue($source)
+    public function isTrue($source)
     {
         return strlen($source->getFilename()) <= 255;
     }
 }
-
-?>

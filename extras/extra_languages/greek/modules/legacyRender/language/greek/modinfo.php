@@ -29,5 +29,3 @@ define('_MI_LR_ROBOT_METAOMAT', "Mature");
 define('_MI_LR_ROBOT_METAOREST', "Restricted");
 define('_MI_LR_ROBOT_NOINDEXFOLLOW', "No Index, Follow");
 define('_MI_LR_ROBOT_NOINDEXNOFOLLOW', "No Index, No Follow");
-
-?>

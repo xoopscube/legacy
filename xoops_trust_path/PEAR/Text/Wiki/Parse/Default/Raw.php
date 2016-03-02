@@ -32,7 +32,8 @@
 * 
 */
 
-class Text_Wiki_Parse_Raw extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Raw extends Text_Wiki_Parse
+{
     
     
     /**
@@ -46,7 +47,7 @@ class Text_Wiki_Parse_Raw extends Text_Wiki_Parse {
     * 
     */
     
-    var $regex = "/``(.*)``/U";
+    public $regex = "/``(.*)``/U";
     
     
     /**
@@ -64,10 +65,9 @@ class Text_Wiki_Parse_Raw extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches)
+    public function process(&$matches)
     {
         $options = array('text' => $matches[1]);
         return $this->wiki->addToken($this->rule, $options);
     }
 }
-?>

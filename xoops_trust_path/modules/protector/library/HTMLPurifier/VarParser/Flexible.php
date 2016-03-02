@@ -128,3 +128,4 @@ class HTMLPurifier_VarParser_Flexible extends HTMLPurifier_VarParser
 }
 
 // vim: et sw=4 sts=4
+

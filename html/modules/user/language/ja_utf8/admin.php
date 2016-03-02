@@ -163,6 +163,3 @@ define('_AD_USER_TIPS2_DATA_UPLOAD', '<a href="?action=UserDataDownload" style="
 define('_AD_USER_TIPS3_DATA_UPLOAD', 'CSVファイル内へ新たに情報の登録や更新をしようとしたユーザーのみを記述してください。');
 define('_AD_USER_TIPS4_DATA_UPLOAD', '左端の行のUIDが空（または0）の時は、新しいユーザーとして登録。');
 define('_AD_USER_TIPS5_DATA_UPLOAD', 'ユーザー情報は左端の行（UID）の値があるときに更新されます。<br />パスワードを設定するなら３０バイト以内にして下さい。');
-
-
-?>

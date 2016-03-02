@@ -40,12 +40,12 @@ class File_Archive_Reader_Filter extends File_Archive_Reader_Relay
      * @var File_Archive_Reader_Predicat
      * @access private
      */
-    var $predicate;
+    public $predicate;
 
     /**
      * $source is the reader to filter
      */
-    function File_Archive_Reader_Filter($predicate, &$source)
+    public function File_Archive_Reader_Filter($predicate, &$source)
     {
         parent::File_Archive_Reader_Relay($source);
         $this->predicate = $predicate;
@@ -54,7 +54,7 @@ class File_Archive_Reader_Filter extends File_Archive_Reader_Relay
     /**
      * @see File_Archive_Reader::next()
      */
-    function next()
+    public function next()
     {
         do {
             $error = $this->source->next();
@@ -68,7 +68,7 @@ class File_Archive_Reader_Filter extends File_Archive_Reader_Relay
     /**
      * @see File_Archive_Reader::select()
      */
-    function select($filename, $close = true)
+    public function select($filename, $close = true)
     {
         if ($close) {
             $error = $this->close();
@@ -86,5 +86,3 @@ class File_Archive_Reader_Filter extends File_Archive_Reader_Relay
         return true;
     }
 }
-
-?>

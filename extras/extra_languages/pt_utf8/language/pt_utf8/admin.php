@@ -21,4 +21,3 @@ define("_AD_AVATAR", "Avatar");
 define("_AD_REGISTERED", "Associado desde..."); //Registered Date
 define("_AD_PRESSGEN", "Esta é a sua primeira vez no painel de controle.<br />Pressione o botão abaixo para continuar.");
 define("_AD_LOGINADMIN", "Entrando na área administrativa...");
-?>

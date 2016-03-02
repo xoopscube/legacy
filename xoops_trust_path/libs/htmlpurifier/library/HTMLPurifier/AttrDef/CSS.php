@@ -98,9 +98,8 @@ class HTMLPurifier_AttrDef_CSS extends HTMLPurifier_AttrDef
         }
 
         return $new_declarations ? $new_declarations : false;
-
     }
-
 }
 
 // vim: et sw=4 sts=4
+

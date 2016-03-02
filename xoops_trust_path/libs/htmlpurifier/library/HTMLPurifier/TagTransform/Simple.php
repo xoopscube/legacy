@@ -42,3 +42,4 @@ class HTMLPurifier_TagTransform_Simple extends HTMLPurifier_TagTransform
 }
 
 // vim: et sw=4 sts=4
+

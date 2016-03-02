@@ -23,7 +23,7 @@
         $mm->setRewrite('XOOPS_GROUP_ANONYMOUS', $g_anonymous);
 
         $ret = $mm->doRewrite();
-        if(!$ret){
+        if (!$ret) {
             $content = _INSTALL_L60;
             include './install_tpl.php';
             exit();
@@ -49,4 +49,3 @@
         $b_next = array('updateConfig', _INSTALL_L14);
     }
     include './install_tpl.php';
-?>

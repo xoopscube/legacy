@@ -19,7 +19,7 @@
 <?php echo _INSTALL_L74?><br />
 <input type="password" class="adminpass2" name="adminpass2" />
 <br /><br />
-<?php if(version_compare(phpversion(), '5.3.0', '>=')) : ?>
+<?php if (version_compare(phpversion(), '5.3.0', '>=')) : ?>
 <?php echo _INSTALL_L77 ?><br />
 <select name="timezone">
   <?php foreach ($this->v('timediffs') as $timediff => $text) : ?>

@@ -60,7 +60,4 @@ class HTTP_OAuth_Signature_HMAC_SHA1 extends HTTP_OAuth_Signature_Common
             )
         );
     }
-
 }
-
-?>

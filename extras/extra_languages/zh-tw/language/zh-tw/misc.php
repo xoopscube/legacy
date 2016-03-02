@@ -21,4 +21,3 @@ define('_MSC_SMILIES', '表情圖示');
 define('_MSC_CLICKASMILIE', '點按一個表情符號插入您的訊息內容當中。');
 define('_MSC_CODE', '代碼');
 define('_MSC_EMOTION', '表情符號');
-?>

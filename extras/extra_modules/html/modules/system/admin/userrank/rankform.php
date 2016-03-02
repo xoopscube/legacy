@@ -52,4 +52,3 @@ $rank_form->addElement(new XoopsFormHidden('rank_id', $rank['rank_id']));
 $rank_form->addElement(new XoopsFormHidden('op', $rank['op']));
 $rank_form->addElement(new XoopsFormHidden('fct', 'userrank'));
 $rank_form->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
-?>

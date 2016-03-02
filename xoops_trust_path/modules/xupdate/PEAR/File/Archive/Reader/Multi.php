@@ -40,14 +40,14 @@ class File_Archive_Reader_Multi extends File_Archive_Reader_Relay
      * @var Array All the sources regrouped in this reader
      * @access private
      */
-    var $sources = array();
+    public $sources = array();
     /**
      * @var Int Index of the source being read currently
      * @access private
      */
-    var $currentIndex = 0;
+    public $currentIndex = 0;
 
-    function File_Archive_Reader_Multi()
+    public function File_Archive_Reader_Multi()
     {
         parent::File_Archive_Reader_Relay($tmp = null);
     }
@@ -56,7 +56,7 @@ class File_Archive_Reader_Multi extends File_Archive_Reader_Relay
      * Add a new reader to the list of readers
      * @param File_Archive_Reader $source The source to add
      */
-    function addSource(&$source)
+    public function addSource(&$source)
     {
         $this->sources[] =& $source;
     }
@@ -64,7 +64,7 @@ class File_Archive_Reader_Multi extends File_Archive_Reader_Relay
     /**
      * @see File_Archive_Reader::next()
      */
-    function next()
+    public function next()
     {
         while (array_key_exists($this->currentIndex, $this->sources)) {
             $this->source =& $this->sources[$this->currentIndex];
@@ -84,12 +84,10 @@ class File_Archive_Reader_Multi extends File_Archive_Reader_Relay
     /**
      * @see File_Archive_Reader::close()
      */
-    function close()
+    public function close()
     {
         $error = parent::close();
         $this->currentIndex = 0;
         return $error;
     }
 }
-
-?>

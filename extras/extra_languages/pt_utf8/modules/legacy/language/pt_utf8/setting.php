@@ -78,20 +78,41 @@ U -> Segundos desde a Época Unix (January 1 1970 00:00:00 GMT) Veja também: ti
 */
 
 //%%%%% TIME FORMAT SETTINGS %%%%%
-if (!defined("_DATESTRING")) define("_DATESTRING","d/m/Y G:i:s");
-if (!defined("_MEDIUMDATESTRING")) define("_MEDIUMDATESTRING","Y/n/j G:i");
-if (!defined("_SHORTDATESTRING")) define("_SHORTDATESTRING","Y/n/j");
-if (!defined("_JSDATEPICKSTRING")) define("_JSDATEPICKSTRING","yy-mm-dd");
-if (!defined("_PHPDATEPICKSTRING")) define("_PHPDATEPICKSTRING","Y-m-d");
+if (!defined("_DATESTRING")) {
+    define("_DATESTRING", "d/m/Y G:i:s");
+}
+if (!defined("_MEDIUMDATESTRING")) {
+    define("_MEDIUMDATESTRING", "Y/n/j G:i");
+}
+if (!defined("_SHORTDATESTRING")) {
+    define("_SHORTDATESTRING", "Y/n/j");
+}
+if (!defined("_JSDATEPICKSTRING")) {
+    define("_JSDATEPICKSTRING", "yy-mm-dd");
+}
+if (!defined("_PHPDATEPICKSTRING")) {
+    define("_PHPDATEPICKSTRING", "Y-m-d");
+}
 
 //%%%%% LANGUAGE SPECIFIC SETTINGS %%%%%
-if (!defined("_CHARSET")) define("_CHARSET", "UTF-8");
-if (!defined("_LANGCODE")) define("_LANGCODE", "pt");
+if (!defined("_CHARSET")) {
+    define("_CHARSET", "UTF-8");
+}
+if (!defined("_LANGCODE")) {
+    define("_LANGCODE", "pt");
+}
 // change 0 to 1 if this language is a multi-bytes language
-if (!defined("XOOPS_USE_MULTIBYTES")) define("XOOPS_USE_MULTIBYTES", "0");
+if (!defined("XOOPS_USE_MULTIBYTES")) {
+    define("XOOPS_USE_MULTIBYTES", "0");
+}
 
 //%%%%% REQUESTED DATA SETTINGS %%%%%
-if (!defined("_REQUESTED_DATA_NAME")) define("_REQUESTED_DATA_NAME", "requested_data_name");
-if (!defined("_REQUESTED_ACTION_NAME")) define("_REQUESTED_ACTION_NAME", "requested_action_name");
-if (!defined("_REQUESTED_DATA_ID")) define("_REQUESTED_DATA_ID", "requested_data_id");
-?>
+if (!defined("_REQUESTED_DATA_NAME")) {
+    define("_REQUESTED_DATA_NAME", "requested_data_name");
+}
+if (!defined("_REQUESTED_ACTION_NAME")) {
+    define("_REQUESTED_ACTION_NAME", "requested_action_name");
+}
+if (!defined("_REQUESTED_DATA_ID")) {
+    define("_REQUESTED_DATA_ID", "requested_data_id");
+}

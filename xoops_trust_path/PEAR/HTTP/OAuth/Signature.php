@@ -46,7 +46,7 @@ abstract class HTTP_OAuth_Signature
      *
      * @return HTTP_OAuth_Signature_Common Signature instance
      */
-    static public function factory($method)
+    public static function factory($method)
     {
         $method = str_replace('-', '_', $method);
         $class  = 'HTTP_OAuth_Signature_' . $method;
@@ -68,5 +68,3 @@ abstract class HTTP_OAuth_Signature
         return $instance;
     }
 }
-
-?>

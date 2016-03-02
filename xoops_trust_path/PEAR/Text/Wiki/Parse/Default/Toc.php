@@ -33,7 +33,8 @@
 */
 
 
-class Text_Wiki_Parse_Toc extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Toc extends Text_Wiki_Parse
+{
     
     
     /**
@@ -49,7 +50,7 @@ class Text_Wiki_Parse_Toc extends Text_Wiki_Parse {
     * 
     */
     
-    var $regex = "/\n\[\[toc( .*)?\]\]\n/m";
+    public $regex = "/\n\[\[toc( .*)?\]\]\n/m";
     
     
     /**
@@ -72,7 +73,7 @@ class Text_Wiki_Parse_Toc extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches)
+    public function process(&$matches)
     {
         $count = 0;
         
@@ -92,7 +93,6 @@ class Text_Wiki_Parse_Toc extends Text_Wiki_Parse {
         );
         
         foreach ($this->wiki->getTokens('Heading') as $key => $val) {
-            
             if ($val[1]['type'] != 'start') {
                 continue;
             }
@@ -127,4 +127,3 @@ class Text_Wiki_Parse_Toc extends Text_Wiki_Parse {
         return $output;
     }
 }
-?>

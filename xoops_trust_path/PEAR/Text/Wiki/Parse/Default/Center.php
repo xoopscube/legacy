@@ -31,7 +31,8 @@
 * 
 */
 
-class Text_Wiki_Parse_Center extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Center extends Text_Wiki_Parse
+{
     
     
     /**
@@ -45,7 +46,7 @@ class Text_Wiki_Parse_Center extends Text_Wiki_Parse {
     * 
     */
     
-    var $regex = '/\n\= (.*?)\n/';
+    public $regex = '/\n\= (.*?)\n/';
     
     /**
     * 
@@ -60,7 +61,7 @@ class Text_Wiki_Parse_Center extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches)
+    public function process(&$matches)
     {
         $start = $this->wiki->addToken(
             $this->rule,
@@ -75,4 +76,3 @@ class Text_Wiki_Parse_Center extends Text_Wiki_Parse {
         return "\n" . $start . $matches[1] . $end . "\n";
     }
 }
-?>

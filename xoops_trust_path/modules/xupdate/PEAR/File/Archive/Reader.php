@@ -45,7 +45,7 @@ class File_Archive_Reader
      *
      * @return bool false iif no more files are available
      */
-    function next()
+    public function next()
     {
         return false;
     }
@@ -58,7 +58,7 @@ class File_Archive_Reader
      * @param bool $close If true, close the reader and search from the first file
      * @return bool whether the file was found in the archive or not
      */
-    function select($filename, $close = true)
+    public function select($filename, $close = true)
     {
         $std = $this->getStandardURL($filename);
         if (substr($std, -1)=='/') {
@@ -96,7 +96,7 @@ class File_Archive_Reader
      * @param string $path a valid URL that may contain . or .. and \
      * @static
      */
-    function getStandardURL($path)
+    public function getStandardURL($path)
     {
         if ($path == '.') {
             return '';
@@ -125,7 +125,7 @@ class File_Archive_Reader
      *
      * @return string Name of the current file
      */
-    function getFilename()
+    public function getFilename()
     {
         return PEAR::raiseError("Reader abstract function call (getFilename)");
     }
@@ -138,10 +138,10 @@ class File_Archive_Reader
      *
      * @return array filenames from the current pos to the end of the source
      */
-    function getFileList()
+    public function getFileList()
     {
         $result = array();
-        while ( ($error = $this->next()) === true) {
+        while (($error = $this->next()) === true) {
             $result[] = $this->getFilename();
         }
         $this->close();
@@ -159,13 +159,16 @@ class File_Archive_Reader
      * The returned array may be empty, even if readers should try
      * their best to return as many data as possible
      */
-    function getStat() { return array(); }
+    public function getStat()
+    {
+        return array();
+    }
 
     /**
      * Returns the MIME associated with the current file
      * The default function does that by looking at the extension of the file
      */
-    function getMime()
+    public function getMime()
     {
         require_once "File/Archive/Reader/MimeList.php";
         return File_Archive_Reader_GetMime($this->getFilename());
@@ -179,7 +182,10 @@ class File_Archive_Reader
      *
      * The data filename may not be the same as the filename.
      */
-    function getDataFilename() { return null; }
+    public function getDataFilename()
+    {
+        return null;
+    }
 
     /**
      * Reads some data from the current file
@@ -187,7 +193,7 @@ class File_Archive_Reader
      * If $length is not specified, reads up to the end of the file
      * If $length is specified reads up to $length
      */
-    function getData($length = -1)
+    public function getData($length = -1)
     {
         return PEAR::raiseError("Reader abstract function call (getData)");
     }
@@ -198,7 +204,7 @@ class File_Archive_Reader
      *  return strlen(getData($length))
      * But could be far more efficient
      */
-    function skip($length = -1)
+    public function skip($length = -1)
     {
         $data = $this->getData($length);
         if (PEAR::isError($data)) {
@@ -218,7 +224,7 @@ class File_Archive_Reader
      * @return the number of bytes really rewinded (which may be less than
      *        $length if the current pos is less than $length
      */
-    function rewind($length = -1)
+    public function rewind($length = -1)
     {
         return PEAR::raiseError('Rewind function is not implemented on this reader');
     }
@@ -226,7 +232,7 @@ class File_Archive_Reader
     /**
      * Returns the current offset in the current file
      */
-    function tell()
+    public function tell()
     {
         $offset = $this->rewind();
         $this->skip($offset);
@@ -237,7 +243,7 @@ class File_Archive_Reader
      * Put back the reader in the state it was before the first call
      * to next()
      */
-    function close()
+    public function close()
     {
     }
 
@@ -246,7 +252,7 @@ class File_Archive_Reader
      * The data will be sent by chunks of at most $bufferSize bytes
      * If $bufferSize <= 0 (default), the blockSize option is used
      */
-    function sendData(&$writer, $bufferSize = 0)
+    public function sendData(&$writer, $bufferSize = 0)
     {
         if (PEAR::isError($writer)) {
             return $writer;
@@ -283,7 +289,7 @@ class File_Archive_Reader
      * @param int $bufferSize Size of the chunks that will be sent to the writer
      *        If $bufferSize <= 0 (default value), the blockSize option is used
      */
-    function extract(&$writer, $autoClose = true, $bufferSize = 0)
+    public function extract(&$writer, $autoClose = true, $bufferSize = 0)
     {
         if (PEAR::isError($writer)) {
             $this->close();
@@ -329,7 +335,7 @@ class File_Archive_Reader
      * @param int $bufferSize Size of the chunks that will be sent to the writer
      *        If $bufferSize <= 0 (default value), the blockSize option is used
      */
-    function extractFile($filename, &$writer,
+    public function extractFile($filename, &$writer,
                          $autoClose = true, $bufferSize = 0)
     {
         if (PEAR::isError($writer)) {
@@ -341,7 +347,7 @@ class File_Archive_Reader
             if (!PEAR::isError($result)) {
                 $result = true;
             }
-        } else if ($error === false) {
+        } elseif ($error === false) {
             $result = PEAR::raiseError("File $filename not found");
         } else {
             $result = $error;
@@ -363,7 +369,7 @@ class File_Archive_Reader
      * @return a writer that will allow to append files to an existing archive
      * @see makeWriter
      */
-    function makeAppendWriter()
+    public function makeAppendWriter()
     {
         require_once "File/Archive/Predicate/False.php";
         return $this->makeWriterRemoveFiles(new File_Archive_Predicate_False());
@@ -379,7 +385,7 @@ class File_Archive_Reader
      * @param File_Archive_Predicate $pred the predicate verified by removed files
      * @return File_Archive_Writer that allows to append files to the archive
      */
-    function makeWriterRemoveFiles($pred)
+    public function makeWriterRemoveFiles($pred)
     {
         return PEAR::raiseError("Reader abstract function call (makeWriterRemoveFiles)");
     }
@@ -388,7 +394,7 @@ class File_Archive_Reader
      * Returns a writer that removes the current file
      * This is a syntaxic sugar for makeWriterRemoveFiles(new File_Archive_Predicate_Current());
      */
-    function makeWriterRemove()
+    public function makeWriterRemove()
     {
         require_once "File/Archive/Predicate/Current.php";
         return $this->makeWriterRemoveFiles(new File_Archive_Predicate_Current());
@@ -397,7 +403,7 @@ class File_Archive_Reader
     /**
      * Removes the current file from the reader
      */
-    function remove()
+    public function remove()
     {
         $writer = $this->makeWriterRemove();
         if (PEAR::isError($writer)) {
@@ -418,10 +424,8 @@ class File_Archive_Reader
      *        It is possible to specify blocks of size 0
      * @param int $seek relative pos of the block
      */
-    function makeWriterRemoveBlocks($blocks, $seek = 0)
+    public function makeWriterRemoveBlocks($blocks, $seek = 0)
     {
         return PEAR::raiseError("Reader abstract function call (makeWriterRemoveBlocks)");
     }
 }
-
-?>

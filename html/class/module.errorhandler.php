@@ -27,8 +27,8 @@
 // Author of File: Goghs (http://www.eqiao.com/)                             //
 ################################################################################
 
-if ( !defined("XOOPS_C_ERRORHANDLER_INCLUDED") ) {
-    define("XOOPS_C_ERRORHANDLER_INCLUDED",1);
+if (!defined("XOOPS_C_ERRORHANDLER_INCLUDED")) {
+    define("XOOPS_C_ERRORHANDLER_INCLUDED", 1);
 
     /**
      * Error Handler class
@@ -49,7 +49,7 @@ if ( !defined("XOOPS_C_ERRORHANDLER_INCLUDED") ) {
          *
          * @global  $xoopsConfig
          **/
-        function show($e_code, $pages=1)
+        public function show($e_code, $pages=1)
         {
             global $xoopsConfig, $xoopsUser, $xoopsRequestUri, $xoopsModule, $xoopsLogger;
             $root = XCube_Root::getSingleton();
@@ -122,4 +122,3 @@ if ( !defined("XOOPS_C_ERRORHANDLER_INCLUDED") ) {
         }
     }
 }
-?>

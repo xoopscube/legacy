@@ -24,34 +24,34 @@ class Ethna_ActionClass
      */
 
     /** @var    object  Ethna_Backend       backendオブジェクト */
-    var $backend;
+    public $backend;
 
     /** @var    object  Ethna_Config        設定オブジェクト    */
-    var $config;
+    public $config;
 
     /** @var    object  Ethna_I18N          i18nオブジェクト */
-    var $i18n;
+    public $i18n;
 
     /** @var    object  Ethna_ActionError   アクションエラーオブジェクト */
-    var $action_error;
+    public $action_error;
 
     /** @var    object  Ethna_ActionError   アクションエラーオブジェクト(省略形) */
-    var $ae;
+    public $ae;
 
     /** @var    object  Ethna_ActionForm    アクションフォームオブジェクト */
-    var $action_form;
+    public $action_form;
 
     /** @var    object  Ethna_ActionForm    アクションフォームオブジェクト(省略形) */
-    var $af;
+    public $af;
 
     /** @var    object  Ethna_Session       セッションオブジェクト */
-    var $session;
+    public $session;
 
     /** @var    object  Ethna_Plugin        プラグインオブジェクト */
-    var $plugin;
+    public $plugin;
 
     /** @var    object  Ethna_Logger    ログオブジェクト */
-    var $logger;
+    public $logger;
 
     /**#@-*/
 
@@ -61,7 +61,7 @@ class Ethna_ActionClass
      *  @access public
      *  @param  object  Ethna_Backend   $backend    backendオブジェクト
      */
-    function Ethna_ActionClass(&$backend)
+    public function Ethna_ActionClass(&$backend)
     {
         $c =& $backend->getController();
         $this->backend =& $backend;
@@ -85,7 +85,7 @@ class Ethna_ActionClass
      *  @access public
      *  @return string  遷移名(nullなら正常終了, falseなら処理終了)
      */
-    function authenticate()
+    public function authenticate()
     {
         return null;
     }
@@ -96,7 +96,7 @@ class Ethna_ActionClass
      *  @access public
      *  @return string  遷移名(nullなら正常終了, falseなら処理終了)
      */
-    function prepare()
+    public function prepare()
     {
         return null;
     }
@@ -107,10 +107,10 @@ class Ethna_ActionClass
      *  @access public
      *  @return string  遷移名(nullなら遷移は行わない)
      */
-    function perform()
+    public function perform()
     {
         return null;
     }
 }
 // }}}
-?>
+;

@@ -38,7 +38,7 @@ require_once "File/Archive/Predicate.php";
  */
 class File_Archive_Predicate_MaxDepth extends File_Archive_Predicate
 {
-    var $maxDepth;
+    public $maxDepth;
 
     /**
      * @param int $maxDepth Maximal number of folders before the actual file in
@@ -46,18 +46,16 @@ class File_Archive_Predicate_MaxDepth extends File_Archive_Predicate
      *        '1/2/3/4/foo.txt' will be accepted with $maxDepth == 4 and
      *        rejected with $maxDepth == 5
      */
-    function File_Archive_Predicate_MaxDepth($maxDepth)
+    public function File_Archive_Predicate_MaxDepth($maxDepth)
     {
         $this->maxDepth = $maxDepth;
     }
     /**
      * @see File_Archive_Predicate::isTrue()
      */
-    function isTrue(&$source)
+    public function isTrue(&$source)
     {
         $url = parse_url($source->getFilename());
         return substr_count($url['path'], '/') <= $this->maxDepth ;
     }
 }
-
-?>

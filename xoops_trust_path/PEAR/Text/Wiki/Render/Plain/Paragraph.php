@@ -1,6 +1,7 @@
 <?php
 
-class Text_Wiki_Render_Plain_Paragraph extends Text_Wiki_Render {
+class Text_Wiki_Render_Plain_Paragraph extends Text_Wiki_Render
+{
     
     /**
     * 
@@ -15,10 +16,10 @@ class Text_Wiki_Render_Plain_Paragraph extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         extract($options); //type
-        
+
         if ($type == 'start') {
             return '';
         }
@@ -28,4 +29,3 @@ class Text_Wiki_Render_Plain_Paragraph extends Text_Wiki_Render {
         }
     }
 }
-?>

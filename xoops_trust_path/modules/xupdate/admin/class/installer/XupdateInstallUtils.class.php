@@ -5,13 +5,11 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
-if(class_exists('Xupdate_InstallUtils'))
-{
+if (class_exists('Xupdate_InstallUtils')) {
     return;
 }
 
@@ -28,19 +26,17 @@ class Xupdate_InstallUtils
      * 
      * @return  bool
     **/
-    public static function installSQLAutomatically(/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
+    public static function installSQLAutomatically(/*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
         $sqlFileInfo =& $module->getInfo('sqlfile');
-        if(!isset($sqlFileInfo[XOOPS_DB_TYPE]))
-        {
+        if (!isset($sqlFileInfo[XOOPS_DB_TYPE])) {
             return true;
         }
         $sqlFile = $sqlFileInfo[XOOPS_DB_TYPE];
     
         $dirname = $module->getVar('dirname');
-        $sqlFilePath = sprintf('%s/%s/%s',XOOPS_MODULE_PATH,$dirname,$sqlFile);
-        if(!file_exists($sqlFilePath))
-        {
+        $sqlFilePath = sprintf('%s/%s/%s', XOOPS_MODULE_PATH, $dirname, $sqlFile);
+        if (!file_exists($sqlFilePath)) {
             $sqlFilePath = sprintf(
                 '%s/modules/%s/%s',
                 XOOPS_TRUST_PATH,
@@ -53,8 +49,7 @@ class Xupdate_InstallUtils
         $scanner = new Legacy_SQLScanner();
         $scanner->setDB_PREFIX(XOOPS_DB_PREFIX);
         $scanner->setDirname($dirname);
-        if(!$scanner->loadFile($sqlFilePath))
-        {
+        if (!$scanner->loadFile($sqlFilePath)) {
             $log->addError(
                 XCube_Utils::formatString(
                     _MI_XUPDATE_INSTALL_ERROR_SQL_FILE_NOT_FOUND,
@@ -68,10 +63,8 @@ class Xupdate_InstallUtils
         $root =& XCube_Root::getSingleton();
         $db =& $root->mController->getDB();
     
-        foreach($scanner->getSQL() as $sql)
-        {
-            if(!$db->query($sql))
-            {
+        foreach ($scanner->getSQL() as $sql) {
+            if (!$db->query($sql)) {
                 $log->addError($db->error());
                 return false;
             }
@@ -89,7 +82,7 @@ class Xupdate_InstallUtils
      * 
      * @return  bool
     **/
-    public static function DBquery(/*** string ***/ $query,/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
+    public static function DBquery(/*** string ***/ $query, /*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
         require_once XOOPS_MODULE_PATH . '/legacy/admin/class/Legacy_SQLScanner.class.php';    // TODO will be use other class?
         $scanner = new Legacy_SQLScanner();
@@ -102,19 +95,15 @@ class Xupdate_InstallUtils
         $root =& XCube_Root::getSingleton();
     
         $successFlag = true;
-        foreach($sqls as $sql)
-        {
-            if($root->mController->mDB->query($sql))
-            {
+        foreach ($sqls as $sql) {
+            if ($root->mController->mDB->query($sql)) {
                 $log->addReport(
                     XCube_Utils::formatString(
                         _MI_XUPDATE_INSTALL_MSG_SQL_SUCCESS,
                         $sql
                     )
                 );
-            }
-            else
-            {
+            } else {
                 $log->addReport(
                     XCube_Utils::formatString(
                         _MI_XUPDATE_INSTALL_MSG_SQL_ERROR,
@@ -136,11 +125,11 @@ class Xupdate_InstallUtils
      * 
      * @return  {string 'public',string 'trust'}
     **/
-    public static function replaceDirname(/*** string ***/ $from,/*** string ***/ $dirname,/*** string ***/ $trustDirname = null)
+    public static function replaceDirname(/*** string ***/ $from, /*** string ***/ $dirname, /*** string ***/ $trustDirname = null)
     {
         return array(
-            'public' => str_replace('{dirname}',$dirname,$from),
-            'trust' => ($trustDirname != null) ? str_replace('{dirname}',$trustDirname,$from) : null
+            'public' => str_replace('{dirname}', $dirname, $from),
+            'trust' => ($trustDirname != null) ? str_replace('{dirname}', $trustDirname, $from) : null
         );
     }
 
@@ -154,7 +143,7 @@ class Xupdate_InstallUtils
      * 
      * @return  string
     **/
-    public static function readTemplateFile(/*** string ***/ $dirname,/*** string ***/ $trustDirname,/*** string ***/ $filename,/*** bool ***/ $isBlock = false)
+    public static function readTemplateFile(/*** string ***/ $dirname, /*** string ***/ $trustDirname, /*** string ***/ $filename, /*** bool ***/ $isBlock = false)
     {
         $filePath = sprintf(
             '%s/%s/templates/%s%s',
@@ -164,8 +153,7 @@ class Xupdate_InstallUtils
             $filename
         );
     
-        if(!file_exists($filePath))
-        {
+        if (!file_exists($filePath)) {
             $filePath = sprintf(
                 '%s/modules/%s/templates/%s%s',
                 XOOPS_TRUST_PATH,
@@ -173,21 +161,18 @@ class Xupdate_InstallUtils
                 ($isBlock ? 'blocks/' : ''),
                 $filename
             );
-            if(!file_exists($filePath))
-            {
+            if (!file_exists($filePath)) {
                 return false;
             }
         }
     
-        if(!($lines = file($filePath)))
-        {
+        if (!($lines = file($filePath))) {
             return false;
         }
     
         $tplData = '';
-        foreach($lines as $line)
-        {
-            $tplData .= str_replace("\n","\r\n",str_replace("\r\n","\n",$line));
+        foreach ($lines as $line) {
+            $tplData .= str_replace("\n", "\r\n", str_replace("\r\n", "\n", $line));
         }
     
         return $tplData;
@@ -201,14 +186,12 @@ class Xupdate_InstallUtils
      * 
      * @return  void
     **/
-    public static function installAllOfModuleTemplates(/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
+    public static function installAllOfModuleTemplates(/*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
         $templates =& $module->getInfo('templates');
-        if(is_array($templates) && count($templates) > 0)
-        {
-            foreach($templates as $template)
-            {
-                Xupdate_InstallUtils::installModuleTemplate($module,$template,$log);
+        if (is_array($templates) && count($templates) > 0) {
+            foreach ($templates as $template) {
+                Xupdate_InstallUtils::installModuleTemplate($module, $template, $log);
             }
         }
     }
@@ -222,41 +205,37 @@ class Xupdate_InstallUtils
      * 
      * @return  bool
     **/
-    public static function installModuleTemplate(/*** XoopsModule ***/ &$module,/*** string[] ***/ $template,/*** Legacy_ModuleInstallLog ***/ &$log)
+    public static function installModuleTemplate(/*** XoopsModule ***/ &$module, /*** string[] ***/ $template, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
         $dirname = $module->getVar('dirname');
         $trustDirname =& $module->getInfo('trust_dirname');
         $tplHandler =& Xupdate_Utils::getXoopsHandler('tplfile');
-        $filename   =  Xupdate_InstallUtils::replaceDirname(trim($template['file']),$dirname,$trustDirname);
-        $tplData    =  Xupdate_InstallUtils::readTemplateFile($dirname,$trustDirname,$filename['trust']);
+        $filename   =  Xupdate_InstallUtils::replaceDirname(trim($template['file']), $dirname, $trustDirname);
+        $tplData    =  Xupdate_InstallUtils::readTemplateFile($dirname, $trustDirname, $filename['trust']);
     
-        if($tplData == false)
-        {
+        if ($tplData == false) {
             return false;
         }
     
         $tplFile =& $tplHandler->create();
-        $tplFile->setVar('tpl_refid'       ,$module->getVar('mid'));
-        $tplFile->setVar('tpl_lastimported',0);
-        $tplFile->setVar('tpl_lastmodified',time());
-        $tplFile->setVar('tpl_type'        ,(substr($filename['trust'],-4) == '.css') ? 'css' : 'module');
-        $tplFile->setVar('tpl_source'      ,$tplData,true);
-        $tplFile->setVar('tpl_module'      ,$module->getVar('dirname'));
-        $tplFile->setVar('tpl_tplset'      ,'default');
-        $tplFile->setVar('tpl_file'        ,$filename['public'],true);
-        $tplFile->setVar('tpl_desc'        ,isset($template['desctiption']) ? $template['description'] : '',true);
+        $tplFile->setVar('tpl_refid', $module->getVar('mid'));
+        $tplFile->setVar('tpl_lastimported', 0);
+        $tplFile->setVar('tpl_lastmodified', time());
+        $tplFile->setVar('tpl_type', (substr($filename['trust'], -4) == '.css') ? 'css' : 'module');
+        $tplFile->setVar('tpl_source', $tplData, true);
+        $tplFile->setVar('tpl_module', $module->getVar('dirname'));
+        $tplFile->setVar('tpl_tplset', 'default');
+        $tplFile->setVar('tpl_file', $filename['public'], true);
+        $tplFile->setVar('tpl_desc', isset($template['desctiption']) ? $template['description'] : '', true);
     
-        if($tplHandler->insert($tplFile))
-        {
+        if ($tplHandler->insert($tplFile)) {
             $log->addReport(
                 XCube_Utils::formatString(
                     _MI_XUPDATE_INSTALL_MSG_TPL_INSTALLED,
                     $filename['public']
                 )
             );
-        }
-        else
-        {
+        } else {
             $log->addError(
                 XCube_Utils::formatString(
                     _MI_XUPDATE_INSTALL_ERROR_TPL_INSTALLED,
@@ -278,20 +257,17 @@ class Xupdate_InstallUtils
      * 
      * @return  void
     **/
-    public static function uninstallAllOfModuleTemplates(/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log,/*** bool ***/ $defaultOnly = true)
+    public static function uninstallAllOfModuleTemplates(/*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log, /*** bool ***/ $defaultOnly = true)
     {
         $tplHandler   =& Xupdate_Utils::getXoopsHandler('tplfile');
     
-        $delTemplates =& $tplHandler->find($defaultOnly ? 'default' : null,'module',$module->get('mid'));
+        $delTemplates =& $tplHandler->find($defaultOnly ? 'default' : null, 'module', $module->get('mid'));
     
-        if(is_array($delTemplates) && count($delTemplates) > 0)
-        {
+        if (is_array($delTemplates) && count($delTemplates) > 0) {
             $xoopsTpl = new XoopsTpl();
-            $xoopsTpl->clear_cache(null,'mod_' . $module->get('dirname'));
-            foreach($delTemplates as $tpl)
-            {
-                if(!$tplHandler->delete($tpl))
-                {
+            $xoopsTpl->clear_cache(null, 'mod_' . $module->get('dirname'));
+            foreach ($delTemplates as $tpl) {
+                if (!$tplHandler->delete($tpl)) {
                     $log->addError(
                         XCube_Utils::formatString(
                             _MI_XUPDATE_INSTALL_ERROR_TPL_UNINSTALLED,
@@ -311,15 +287,13 @@ class Xupdate_InstallUtils
      * 
      * @return  bool
     **/
-    public static function installAllOfBlocks(/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
+    public static function installAllOfBlocks(/*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
         $blocks =& $module->getInfo('blocks');
-        if(is_array($blocks) && count($blocks) > 0)
-        {
-            foreach($blocks as $block)
-            {
-                $newBlock =& Xupdate_InstallUtils::createBlockByInfo($module,$block);
-                Xupdate_InstallUtils::installBlock($module,$newBlock,$block,$log);
+        if (is_array($blocks) && count($blocks) > 0) {
+            foreach ($blocks as $block) {
+                $newBlock =& Xupdate_InstallUtils::createBlockByInfo($module, $block);
+                Xupdate_InstallUtils::installBlock($module, $newBlock, $block, $log);
             }
         }
         return true;
@@ -333,32 +307,32 @@ class Xupdate_InstallUtils
      * 
      * @return  XoopsBlock
     **/
-    public static function &createBlockByInfo(/*** XoopsModule ***/ &$module,/*** string[] ***/ $block)
+    public static function &createBlockByInfo(/*** XoopsModule ***/ &$module, /*** string[] ***/ $block)
     {
         $visible = isset($block['visible']) ?
             $block['visible'] :
             (isset($block['visible_any']) ? $block['visible_any'] : 0);
         $filename = isset($block['template']) ?
-            Xupdate_InstallUtils::replaceDirname($block['template'],$module->get('dirname')) :
+            Xupdate_InstallUtils::replaceDirname($block['template'], $module->get('dirname')) :
             null;
     
         $blockHandler =& Xupdate_Utils::getXoopsHandler('block');
         $blockObj =& $blockHandler->create();
     
-        $blockObj->set('mid',$module->getVar('mid'));
-        $blockObj->set('options',isset($block['options']) ? $block['options'] : null);
-        $blockObj->set('name',$block['name']);
-        $blockObj->set('title',$block['name']);
-        $blockObj->set('block_type','M');
-        $blockObj->set('c_type','1');
-        $blockObj->set('isactive',1);
-        $blockObj->set('dirname',$module->getVar('dirname'));
-        $blockObj->set('func_file',$block['file']);
-        $blockObj->set('show_func','cl::' . $block['class']);
-        $blockObj->set('template',$filename['public']);
-        $blockObj->set('last_modified',time());
-        $blockObj->set('visible',$visible);
-        $blockObj->set('func_num',intval($block['func_num']));
+        $blockObj->set('mid', $module->getVar('mid'));
+        $blockObj->set('options', isset($block['options']) ? $block['options'] : null);
+        $blockObj->set('name', $block['name']);
+        $blockObj->set('title', $block['name']);
+        $blockObj->set('block_type', 'M');
+        $blockObj->set('c_type', '1');
+        $blockObj->set('isactive', 1);
+        $blockObj->set('dirname', $module->getVar('dirname'));
+        $blockObj->set('func_file', $block['file']);
+        $blockObj->set('show_func', 'cl::' . $block['class']);
+        $blockObj->set('template', $filename['public']);
+        $blockObj->set('last_modified', time());
+        $blockObj->set('visible', $visible);
+        $blockObj->set('func_num', intval($block['func_num']));
         return $blockObj;
     }
 
@@ -372,14 +346,13 @@ class Xupdate_InstallUtils
      * 
      * @return  bool
     **/
-    public static function installBlock(/*** XoopsModule ***/ &$module,/*** XoopsBlock ***/ &$blockObj,/*** string[] ***/ &$block,/*** Legacy_ModuleInstallLog ***/ &$log)
+    public static function installBlock(/*** XoopsModule ***/ &$module, /*** XoopsBlock ***/ &$blockObj, /*** string[] ***/ &$block, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
         $isNew = $blockObj->isNew();
         $blockHandler =& Xupdate_Utils::getXoopsHandler('block');
         $autoLink = isset($block['show_all_module']) ? $block['show_all_module'] : false;
     
-        if(!$blockHandler->insert($blockObj,$autoLink))
-        {
+        if (!$blockHandler->insert($blockObj, $autoLink)) {
             $log->addError(
                 XCube_Utils::formatString(
                     _MI_XUPDATE_INSTALL_ERROR_BLOCK_INSTALLED,
@@ -396,22 +369,19 @@ class Xupdate_InstallUtils
             )
         );
     
-        Xupdate_InstallUtils::installBlockTemplate($blockObj,$module,$log);
+        Xupdate_InstallUtils::installBlockTemplate($blockObj, $module, $log);
     
-        if(!$isNew)
-        {
+        if (!$isNew) {
             return true;
         }
     
-        if($autoLink)
-        {
+        if ($autoLink) {
             $sql = sprintf(
                 'insert into %s (block_id,module_id) values (%d,0);',
                 $blockHandler->db->prefix('block_module_link'),
                 $blockObj->getVar('bid')
             );
-            if(!$blockHandler->db->query($sql))
-            {
+            if (!$blockHandler->db->query($sql)) {
                 $log->addWarning(
                     XCube_Utils::formatString(
                         _MI_XUPDATE_INSTALL_ERROR_BLOCK_COULD_NOT_LINK,
@@ -423,19 +393,16 @@ class Xupdate_InstallUtils
     
         $gpermHandler =& Xupdate_Utils::getXoopsHandler('groupperm');
         $perm =& $gpermHandler->create();
-        $perm->setVar('gperm_itemid',$blockObj->getVar('bid'));
-        $perm->setVar('gperm_name','block_read');
-        $perm->setVar('gperm_modid',1);
-        if(isset($block['visible_any']) && $block['visible_any'])
-        {
+        $perm->setVar('gperm_itemid', $blockObj->getVar('bid'));
+        $perm->setVar('gperm_name', 'block_read');
+        $perm->setVar('gperm_modid', 1);
+        if (isset($block['visible_any']) && $block['visible_any']) {
             $memberHandler =& Xupdate_Utils::getXoopsHandler('member');
             $groups =& $memberHandler->getGroups();
-            foreach($groups as $group)
-            {
-                $perm->setVar('gperm_groupid',$group->getVar('groupid'));
+            foreach ($groups as $group) {
+                $perm->setVar('gperm_groupid', $group->getVar('groupid'));
                 $perm->setNew();
-                if(!$gpermHandler->insert($perm))
-                {
+                if (!$gpermHandler->insert($perm)) {
                     $log->addWarning(
                         XCube_Utils::formatString(
                             _MI_XUPDATE_INSTALL_ERROR_PERM_COULD_NOT_SET,
@@ -444,15 +411,11 @@ class Xupdate_InstallUtils
                     );
                 }
             }
-        }
-        else
-        {
-            foreach(array(XOOPS_GROUP_ADMIN,XOOPS_GROUP_USERS) as $group)
-            {
-                $perm->setVar('gperm_groupid',$group);
+        } else {
+            foreach (array(XOOPS_GROUP_ADMIN, XOOPS_GROUP_USERS) as $group) {
+                $perm->setVar('gperm_groupid', $group);
                 $perm->setNew();
-                if(!$gpermHandler->insert($perm))
-                {
+                if (!$gpermHandler->insert($perm)) {
                     $log->addWarning(
                         XCube_Utils::formatString(
                             _MI_XUPDATE_INSTALL_ERROR_BLOCK_PERM_SET,
@@ -475,10 +438,9 @@ class Xupdate_InstallUtils
      * 
      * @return  bool
     **/
-    public static function installBlockTemplate(/*** XoopsBlock ***/ &$block,/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
+    public static function installBlockTemplate(/*** XoopsBlock ***/ &$block, /*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
-        if($block->get('template') == null)
-        {
+        if ($block->get('template') == null) {
             return true;
         }
     
@@ -491,27 +453,24 @@ class Xupdate_InstallUtils
         $tplHandler =& Xupdate_Utils::getXoopsHandler('tplfile');
     
         $cri = new CriteriaCompo();
-        $cri->add(new Criteria('tpl_type','block'));
-        $cri->add(new Criteria('tpl_tplset','default'));
-        $cri->add(new Criteria('tpl_module',$module->get('dirname')));
-        $cri->add(new Criteria('tpl_file',$filename['public']));
+        $cri->add(new Criteria('tpl_type', 'block'));
+        $cri->add(new Criteria('tpl_tplset', 'default'));
+        $cri->add(new Criteria('tpl_module', $module->get('dirname')));
+        $cri->add(new Criteria('tpl_file', $filename['public']));
     
         $tpls =& $tplHandler->getObjects($cri);
     
-        if(count($tpls) > 0)
-        {
+        if (count($tpls) > 0) {
             $tplFile =& $tpls[0];
-        }
-        else
-        {
+        } else {
             $tplFile =& $tplHandler->create();
-            $tplFile->set('tpl_refid',$block->get('bid'));
-            $tplFile->set('tpl_tplset','default');
-            $tplFile->set('tpl_file',$filename['public']);
-            $tplFile->set('tpl_module',$module->get('dirname'));
-            $tplFile->set('tpl_type','block');
+            $tplFile->set('tpl_refid', $block->get('bid'));
+            $tplFile->set('tpl_tplset', 'default');
+            $tplFile->set('tpl_file', $filename['public']);
+            $tplFile->set('tpl_module', $module->get('dirname'));
+            $tplFile->set('tpl_type', 'block');
             //$tplFile->set('tpl_desc',$block->get('description'));
-            $tplFile->set('tpl_lastimported',0);
+            $tplFile->set('tpl_lastimported', 0);
         }
     
         $tplSource = Xupdate_InstallUtils::readTemplateFile(
@@ -521,10 +480,9 @@ class Xupdate_InstallUtils
             true
         );
     
-        $tplFile->set('tpl_source',$tplSource);
-        $tplFile->set('tpl_lastmodified',time());
-        if($tplHandler->insert($tplFile))
-        {
+        $tplFile->set('tpl_source', $tplSource);
+        $tplFile->set('tpl_lastmodified', time());
+        if ($tplHandler->insert($tplFile)) {
             $log->addReport(
                 XCube_Utils::formatString(
                     _MI_XUPDATE_INSTALL_MSG_BLOCK_TPL_INSTALLED,
@@ -551,28 +509,24 @@ class Xupdate_InstallUtils
      * 
      * @return  bool
     **/
-    public static function uninstallAllOfBlocks(/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
+    public static function uninstallAllOfBlocks(/*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
         $successFlag = true;
     
         $blockHandler =& Xupdate_Utils::getXoopsHandler('block');
         $gpermHandler =& Xupdate_Utils::getXoopsHandler('groupperm');
-        $cri = new Criteria('mid',$module->get('mid'));
+        $cri = new Criteria('mid', $module->get('mid'));
         $blocks =& $blockHandler->getObjectsDirectly($cri);
     
-        foreach($blocks as $block)
-        {
-            if($blockHandler->delete($block))
-            {
+        foreach ($blocks as $block) {
+            if ($blockHandler->delete($block)) {
                 $log->addReport(
                     XCube_Utils::formatString(
                         _MI_XUPDATE_INSTALL_MSG_BLOCK_UNINSTALLED,
                         $block->get('name')
                     )
                 );
-            }
-            else
-            {
+            } else {
                 $log->addWarning(
                     XCube_Utils::formatString(
                         _MI_XUPDATE_INSTALL_ERROR_BLOCK_UNINSTALLED,
@@ -583,11 +537,10 @@ class Xupdate_InstallUtils
             }
             
             $cri = new CriteriaCompo();
-            $cri->add(new Criteria('gperm_name','block_read'));
-            $cri->add(new Criteria('gperm_itemid',$block->get('bid')));
-            $cri->add(new Criteria('gperm_modid',1));
-            if(!$gpermHandler->deleteAll($cri))
-            {
+            $cri->add(new Criteria('gperm_name', 'block_read'));
+            $cri->add(new Criteria('gperm_itemid', $block->get('bid')));
+            $cri->add(new Criteria('gperm_modid', 1));
+            if (!$gpermHandler->deleteAll($cri)) {
                 $log->addWarning(
                     XCube_Utils::formatString(
                         _MI_XUPDATE_INSTALL_ERROR_BLOCK_PERM_DELETE,
@@ -609,7 +562,7 @@ class Xupdate_InstallUtils
      * 
      * @return  void
     **/
-    public static function smartUpdateAllOfBlocks(/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
+    public static function smartUpdateAllOfBlocks(/*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
         $dirname = $module->get('dirname');
     
@@ -619,21 +572,19 @@ class Xupdate_InstallUtils
         $blocks =& $dbReader->loadBlockInformations();
         $blocks->update($fileReader->loadBlockInformations());
     
-        foreach($blocks->mBlocks as $block)
-        {
-            switch($block->mStatus)
-            {
+        foreach ($blocks->mBlocks as $block) {
+            switch ($block->mStatus) {
                 case LEGACY_INSTALLINFO_STATUS_LOADED:
-                    Xupdate_InstallUtils::updateBlockTemplateByInfo($block,$module,$log);
+                    Xupdate_InstallUtils::updateBlockTemplateByInfo($block, $module, $log);
                     break;
                 case LEGACY_INSTALLINFO_STATUS_UPDATED:
-                    Xupdate_InstallUtils::updateBlockByInfo($block,$module,$log);
+                    Xupdate_InstallUtils::updateBlockByInfo($block, $module, $log);
                     break;
                 case LEGACY_INSTALLINFO_STATUS_NEW:
-                    Xupdate_InstallUtils::installBlockByInfo($block,$module,$log);
+                    Xupdate_InstallUtils::installBlockByInfo($block, $module, $log);
                     break;
                 case LEGACY_INSTALLINFO_STATUS_DELETED:
-                    Xupdate_InstallUtils::uninstallBlockByFuncNum($block->mFuncNum,$module,$log);
+                    Xupdate_InstallUtils::uninstallBlockByFuncNum($block->mFuncNum, $module, $log);
                     break;
                 default:
                     break;
@@ -650,18 +601,17 @@ class Xupdate_InstallUtils
      * 
      * @return  void
     **/
-    public static function updateBlockTemplateByInfo(/*** Legacy_BlockInformation ***/ &$info,/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
+    public static function updateBlockTemplateByInfo(/*** Legacy_BlockInformation ***/ &$info, /*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
-        $blockHandler =& Xupdate_Utils::getModuleHandler('newblocks','legacy');
+        $blockHandler =& Xupdate_Utils::getModuleHandler('newblocks', 'legacy');
         $cri = new CriteriaCompo();
-        $cri->add(new Criteria('dirname',$module->get('dirname')));
-        $cri->add(new Criteria('func_num',$info->mFuncNum));
+        $cri->add(new Criteria('dirname', $module->get('dirname')));
+        $cri->add(new Criteria('func_num', $info->mFuncNum));
         $blocks =& $blockHandler->getObjects($cri);
     
-        foreach($blocks as $block)
-        {
-            Xupdate_InstallUtils::uninstallBlockTemplate($block,$module,$log,true);
-            Xupdate_InstallUtils::installBlockTemplate($block,$module,$log);
+        foreach ($blocks as $block) {
+            Xupdate_InstallUtils::uninstallBlockTemplate($block, $module, $log, true);
+            Xupdate_InstallUtils::installBlockTemplate($block, $module, $log);
         }
     }
 
@@ -674,38 +624,34 @@ class Xupdate_InstallUtils
      * 
      * @return  void
     **/
-    public static function updateBlockByInfo(/*** Legacy_BlockInformation ***/ &$info,/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
+    public static function updateBlockByInfo(/*** Legacy_BlockInformation ***/ &$info, /*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
-        $blockHandler =& Xupdate_Utils::getModuleHandler('newblocks','legacy');
+        $blockHandler =& Xupdate_Utils::getModuleHandler('newblocks', 'legacy');
         $cri = new CriteriaCompo();
-        $cri->add(new Criteria('dirname',$module->get('dirname')));
-        $cri->add(new Criteria('func_num',$info->mFuncNum));
+        $cri->add(new Criteria('dirname', $module->get('dirname')));
+        $cri->add(new Criteria('func_num', $info->mFuncNum));
         $blocks =& $blockHandler->getObjects($cri);
     
-        foreach($blocks as $block)
-        {
+        foreach ($blocks as $block) {
             $filename = Xupdate_InstallUtils::replaceDirname(
                 $info->mTemplate,
                 $module->get('dirname'),
                 $module->getInfo('trust_dirname')
             );
-            $block->set('options',$info->mOptions);
-            $block->set('name',$info->mName);
-            $block->set('func_file',$info->mFuncFile);
-            $block->set('show_func',$info->mShowFunc);
+            $block->set('options', $info->mOptions);
+            $block->set('name', $info->mName);
+            $block->set('func_file', $info->mFuncFile);
+            $block->set('show_func', $info->mShowFunc);
             //$block->set('edit_func',$info->mEditFunc);
-            $block->set('template',$filename['public']);
-            if($blockHandler->insert($block))
-            {
+            $block->set('template', $filename['public']);
+            if ($blockHandler->insert($block)) {
                 $log->addReport(
                     XCube_Utils::formatString(
                         _MI_XUPDATE_INSTALL_MSG_BLOCK_UPDATED,
                         $block->get('name')
                     )
                 );
-            }
-            else
-            {
+            } else {
                 $log->addError(
                     XCube_Utils::formatString(
                         _MI_XUPDATE_INSTALL_ERROR_BLOCK_UPDATED,
@@ -713,8 +659,8 @@ class Xupdate_InstallUtils
                     )
                 );
             }
-            Xupdate_InstallUtils::uninstallBlockTemplate($block,$module,$log,true);
-            Xupdate_InstallUtils::installBlockTemplate($block,$module,$log);
+            Xupdate_InstallUtils::uninstallBlockTemplate($block, $module, $log, true);
+            Xupdate_InstallUtils::installBlockTemplate($block, $module, $log);
         }
     }
 
@@ -727,7 +673,7 @@ class Xupdate_InstallUtils
      * 
      * @return  bool
     **/
-    public static function installBlockByInfo(/*** Legacy_BlockInformation ***/ &$info,/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
+    public static function installBlockByInfo(/*** Legacy_BlockInformation ***/ &$info, /*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
         $filename = Xupdate_InstallUtils::replaceDirname(
             $info->mTemplate,
@@ -738,21 +684,20 @@ class Xupdate_InstallUtils
         $blockHandler =& Xupdate_Utils::getXoopsHandler('block');
     
         $block =& $blockHandler->create();
-        $block->set('mid',$module->get('mid'));
-        $block->set('func_num',$info->mFuncNum);
-        $block->set('options',$info->mOptions);
-        $block->set('name',$info->mName);
-        $block->set('title',$info->mName);
-        $block->set('dirname',$module->get('dirname'));
-        $block->set('func_file',$info->mFuncFile);
-        $block->set('show_func',$info->mShowFunc);
+        $block->set('mid', $module->get('mid'));
+        $block->set('func_num', $info->mFuncNum);
+        $block->set('options', $info->mOptions);
+        $block->set('name', $info->mName);
+        $block->set('title', $info->mName);
+        $block->set('dirname', $module->get('dirname'));
+        $block->set('func_file', $info->mFuncFile);
+        $block->set('show_func', $info->mShowFunc);
         //$block->set('edit_func',$info->mEditFunc);
-        $block->set('template',$filename['public']);
-        $block->set('block_type','M');
-        $block->set('c_type',1);
+        $block->set('template', $filename['public']);
+        $block->set('block_type', 'M');
+        $block->set('c_type', 1);
     
-        if(!$blockHandler->insert($block))
-        {
+        if (!$blockHandler->insert($block)) {
             $log->addError(
                 XCube_Utils::formatString(
                     _MI_XUPDATE_INSTALL_ERROR_BLOCK_INSTALLED,
@@ -769,7 +714,7 @@ class Xupdate_InstallUtils
             )
         );
     
-        Xupdate_InstallUtils::installBlockTemplate($block,$module,$log);
+        Xupdate_InstallUtils::installBlockTemplate($block, $module, $log);
         return true;
     }
 
@@ -782,28 +727,24 @@ class Xupdate_InstallUtils
      * 
      * @return  bool
     **/
-    public static function uninstallBlockByFuncNum(/*** int ***/ $func_num,/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
+    public static function uninstallBlockByFuncNum(/*** int ***/ $func_num, /*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
-        $blockHandler =& Xupdate_Utils::getModuleHandler('newblocks','legacy');
+        $blockHandler =& Xupdate_Utils::getModuleHandler('newblocks', 'legacy');
         $cri = new CriteriaCompo();
-        $cri->add(new Criteria('dirname',$module->get('dirname')));
-        $cri->add(new Criteria('func_num',$func_num));
+        $cri->add(new Criteria('dirname', $module->get('dirname')));
+        $cri->add(new Criteria('func_num', $func_num));
         $blocks =& $blockHandler->getObjects($cri);
     
         $successFlag = true;
-        foreach($blocks as $block)
-        {
-            if($blockHandler->delete($block))
-            {
+        foreach ($blocks as $block) {
+            if ($blockHandler->delete($block)) {
                 $log->addReport(
                     XCube_Utils::formatString(
                         _MI_XUPDATE_INSTALL_MSG_BLOCK_UNINSTALLED,
                         $block->get('name')
                     )
                 );
-            }
-            else
-            {
+            } else {
                 $log->addError(
                     XCube_Utils::formatString(
                         _MI_XUPDATE_INSTALL_ERROR_BLOCK_UNINSTALLED,
@@ -826,17 +767,14 @@ class Xupdate_InstallUtils
      * 
      * @return  bool
     **/
-    public static function uninstallBlockTemplate(/*** XoopsBlock ***/ &$block,/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log,/*** bool ***/ $defaultOnly = false)
+    public static function uninstallBlockTemplate(/*** XoopsBlock ***/ &$block, /*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log, /*** bool ***/ $defaultOnly = false)
     {
         $tplHandler =& Xupdate_Utils::getXoopsHandler('tplfile');
-        $delTemplates =& $tplHandler->find($defaultOnly ? 'default' : null,'block',$module->get('mid'),$module->get('dirname'),$block->get('template'));
+        $delTemplates =& $tplHandler->find($defaultOnly ? 'default' : null, 'block', $module->get('mid'), $module->get('dirname'), $block->get('template'));
     
-        if(is_array($delTemplates) && count($delTemplates) > 0)
-        {
-            foreach($delTemplates as $tpl)
-            {
-                if(!$tplHandler->delete($tpl))
-                {
+        if (is_array($delTemplates) && count($delTemplates) > 0) {
+            foreach ($delTemplates as $tpl) {
+                if (!$tplHandler->delete($tpl)) {
                     $log->addError(
                         XCube_Utils::formatString(
                             _MI_XUPDATE_INSTALL_ERROR_TPL_UNINSTALLED,
@@ -864,49 +802,43 @@ class Xupdate_InstallUtils
      * 
      * @return  bool
     **/
-    public static function installAllOfConfigs(/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
+    public static function installAllOfConfigs(/*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
         $successFlag = true;
         $configHandler =& Xupdate_Utils::getXoopsHandler('config');
         $fileReader = new Legacy_ModinfoX2FileReader($module->get('dirname'));    // TODO will be use other class?
         $preferences = $fileReader->loadPreferenceInformations();
     
-        foreach($preferences->mPreferences as $info)
-        {
+        foreach ($preferences->mPreferences as $info) {
             $config =& $configHandler->createConfig();
-            $config->set('conf_modid',$module->get('mid'));
-            $config->set('conf_catid',0);
-            $config->set('conf_name',$info->mName);
-            $config->set('conf_title',$info->mTitle);
-            $config->set('conf_desc',$info->mDescription);
-            $config->set('conf_formtype',$info->mFormType);
-            $config->set('conf_valuetype',$info->mValueType);
+            $config->set('conf_modid', $module->get('mid'));
+            $config->set('conf_catid', 0);
+            $config->set('conf_name', $info->mName);
+            $config->set('conf_title', $info->mTitle);
+            $config->set('conf_desc', $info->mDescription);
+            $config->set('conf_formtype', $info->mFormType);
+            $config->set('conf_valuetype', $info->mValueType);
             $config->setConfValueForInput($info->mDefault);
-            $config->set('conf_order',$info->mOrder);
+            $config->set('conf_order', $info->mOrder);
     
-            if(count($info->mOption->mOptions) > 0)
-            {
-                foreach($info->mOption->mOptions as $opt)
-                {
+            if (count($info->mOption->mOptions) > 0) {
+                foreach ($info->mOption->mOptions as $opt) {
                     $option = $configHandler->createConfigOption();
-                    $option->set('confop_name',$opt->mName);
-                    $option->set('confop_value',$opt->mValue);
+                    $option->set('confop_name', $opt->mName);
+                    $option->set('confop_value', $opt->mValue);
                     $config->setConfOptions($option);
                     unset($option);
                 }
             }
     
-            if($configHandler->insertConfig($config))
-            {
+            if ($configHandler->insertConfig($config)) {
                 $log->addReport(
                     XCube_Utils::formatString(
                         _MI_XUPDATE_INSTALL_MSG_CONFIG_ADDED,
                         $config->get('conf_name')
                     )
                 );
-            }
-            else
-            {
+            } else {
                 $log->addError(
                     XCube_Utils::formatString(
                         _MI_XUPDATE_INSTALL_ERROR_CONFIG_ADDED,
@@ -929,43 +861,38 @@ class Xupdate_InstallUtils
      * 
      * @return  void
     **/
-    public static function installConfigByInfo(/*** Legacy_PreferenceInformation ***/ &$info,/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
+    public static function installConfigByInfo(/*** Legacy_PreferenceInformation ***/ &$info, /*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
         $configHandler =& Xupdate_Utils::getXoopsHandler('config');
         $config =& $configHandler->createConfig();
-        $config->set('conf_modid',$module->get('mid'));
-        $config->set('conf_catid',0);
-        $config->set('conf_name',$info->mName);
-        $config->set('conf_title',$info->mTitle);
-        $config->set('conf_desc',$info->mDescription);
-        $config->set('conf_formtype',$info->mFormType);
-        $config->set('conf_valuetype',$info->mValueType);
+        $config->set('conf_modid', $module->get('mid'));
+        $config->set('conf_catid', 0);
+        $config->set('conf_name', $info->mName);
+        $config->set('conf_title', $info->mTitle);
+        $config->set('conf_desc', $info->mDescription);
+        $config->set('conf_formtype', $info->mFormType);
+        $config->set('conf_valuetype', $info->mValueType);
         $config->setConfValueForInput($info->mDefault);
-        $config->set('conf_order',$info->mOrder);
+        $config->set('conf_order', $info->mOrder);
     
-        if(count($info->mOption->mOptions) > 0)
-        {
-            foreach($info->mOption->mOptions as $opt)
-            {
+        if (count($info->mOption->mOptions) > 0) {
+            foreach ($info->mOption->mOptions as $opt) {
                 $option = $configHandler->createConfigOption();
-                $option->set('confop_name',$opt->mName);
-                $option->set('confop_value',$opt->mValue);
+                $option->set('confop_name', $opt->mName);
+                $option->set('confop_value', $opt->mValue);
                 $config->setConfOptions($option);
                 unset($option);
             }
         }
     
-        if($configHandler->insertConfig($config))
-        {
+        if ($configHandler->insertConfig($config)) {
             $log->addReport(
                 XCube_Utils::formatString(
                     _MI_XUPDATE_INSTALL_MSG_CONFIG_ADDED,
                     $config->get('conf_name')
                 )
             );
-        }
-        else
-        {
+        } else {
             $log->addError(
                 XCube_Utils::formatString(
                     _MI_XUPDATE_INSTALL_ERROR_CONFIG_ADDED,
@@ -973,7 +900,6 @@ class Xupdate_InstallUtils
                 )
             );
         }
-        
     }
 
     /**
@@ -984,35 +910,29 @@ class Xupdate_InstallUtils
      * 
      * @return  bool
     **/
-    public static function uninstallAllOfConfigs(/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
+    public static function uninstallAllOfConfigs(/*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
-        if($module->get('hasconfig') == 0)
-        {
+        if ($module->get('hasconfig') == 0) {
             return true;
         }
     
         $configHandler =& Xupdate_Utils::getXoopsHandler('config');
-        $configs =& $configHandler->getConfigs(new Criteria('conf_modid',$module->get('mid')));
+        $configs =& $configHandler->getConfigs(new Criteria('conf_modid', $module->get('mid')));
     
-        if(count($configs) == 0)
-        {
+        if (count($configs) == 0) {
             return true;
         }
     
         $sucessFlag = true;
-        foreach($configs as $config)
-        {
-            if($configHandler->deleteConfig($config))
-            {
+        foreach ($configs as $config) {
+            if ($configHandler->deleteConfig($config)) {
                 $log->addReport(
                     XCube_Utils::formatString(
                         _MI_XUPDATE_INSTALL_MSG_CONFIG_DELETED,
                         $config->getVar('conf_name')
                     )
                 );
-            }
-            else
-            {
+            } else {
                 $log->addWarning(
                     XCube_Utils::formatString(
                         _MI_XUPDATE_INSTALL_ERROR_CONFIG_DELETED,
@@ -1034,29 +954,25 @@ class Xupdate_InstallUtils
      * 
      * @return  void
     **/
-    public static function uninstallConfigByOrder(/*** int ***/ $order,/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
+    public static function uninstallConfigByOrder(/*** int ***/ $order, /*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
         $configHandler =& Xupdate_Utils::getXoopsHandler('config');
     
         $cri = new CriteriaCompo();
-        $cri->add(new Criteria('conf_modid',$module->get('mid')));
-        $cri->add(new Criteria('conf_catid',0));
-        $cri->add(new Criteria('conf_order',$order));
+        $cri->add(new Criteria('conf_modid', $module->get('mid')));
+        $cri->add(new Criteria('conf_catid', 0));
+        $cri->add(new Criteria('conf_order', $order));
         $configs = $configHandler->getConfigs($cri);
     
-        foreach($configs as $config)
-        {
-            if($configHandler->deleteConfig($config))
-            {
+        foreach ($configs as $config) {
+            if ($configHandler->deleteConfig($config)) {
                 $log->addReport(
                     XCube_Utils::formatString(
                         _MI_XUPDATE_INSTALL_MSG_CONFIG_DELETED,
                         $config->get('conf_name')
                     )
                 );
-            }
-            else
-            {
+            } else {
                 $log->addError(
                     XCube_Utils::formatString(
                         _MI_XUPDATE_INSTALL_ERROR_CONFIG_DELETED,
@@ -1075,7 +991,7 @@ class Xupdate_InstallUtils
      * 
      * @return  void
     **/
-    public static function smartUpdateAllOfConfigs(/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
+    public static function smartUpdateAllOfConfigs(/*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
         $dirname = $module->get('dirname');
     
@@ -1085,21 +1001,19 @@ class Xupdate_InstallUtils
         $configs  =& $dbReader->loadPreferenceInformations();
         $configs->update($fileReader->loadPreferenceInformations());
     
-        foreach($configs->mPreferences as $config)
-        {
-            switch($config->mStatus)
-            {
+        foreach ($configs->mPreferences as $config) {
+            switch ($config->mStatus) {
                 case LEGACY_INSTALLINFO_STATUS_UPDATED:
-                    Xupdate_InstallUtils::updateConfigByInfo($config,$module,$log);
+                    Xupdate_InstallUtils::updateConfigByInfo($config, $module, $log);
                     break;
                 case LEGACY_INSTALLINFO_STATUS_ORDER_UPDATED:
-                    Xupdate_InstallUtils::updateConfigOrderByInfo($config,$module,$log);
+                    Xupdate_InstallUtils::updateConfigOrderByInfo($config, $module, $log);
                     break;
                 case LEGACY_INSTALLINFO_STATUS_NEW:
-                    Xupdate_InstallUtils::installConfigByInfo($config,$module,$log);
+                    Xupdate_InstallUtils::installConfigByInfo($config, $module, $log);
                     break;
                 case LEGACY_INSTALLINFO_STATUS_DELETED:
-                    Xupdate_InstallUtils::uninstallConfigByOrder($config->mOrder,$module,$log);
+                    Xupdate_InstallUtils::uninstallConfigByOrder($config->mOrder, $module, $log);
                     break;
                 default:
                     break;
@@ -1116,70 +1030,61 @@ class Xupdate_InstallUtils
      * 
      * @return  bool
     **/
-    public static function updateConfigByInfo(/*** Legacy_PreferenceInformation ***/ &$info,/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
+    public static function updateConfigByInfo(/*** Legacy_PreferenceInformation ***/ &$info, /*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
         $configHandler =& Xupdate_Utils::getXoopsHandler('config');
         $cri = new CriteriaCompo();
-        $cri->add(new Criteria('conf_modid',$module->get('mid')));
-        $cri->add(new Criteria('conf_catid',0));
-        $cri->add(new Criteria('conf_name',$info->mName));
+        $cri->add(new Criteria('conf_modid', $module->get('mid')));
+        $cri->add(new Criteria('conf_catid', 0));
+        $cri->add(new Criteria('conf_name', $info->mName));
         $configs =& $configHandler->getConfigs($cri);
     
-        if(!(count($configs) > 0 && is_object($configs[0])))
-        {
+        if (!(count($configs) > 0 && is_object($configs[0]))) {
             $log->addError(_MIXUPDATE_INSTALL_ERROR_CONFIG_NOT_FOUND);
             return false;
         }
     
         $updateVar = null;
         $config =& $configs[0];
-        $config->set('conf_title',$info->mTitle);
-        $config->set('conf_desc',$info->mDescription);
-        if($config->get('conf_formtype') != $info->mFormType && $config->get('conf_valuetype') != $info->mValueType)
-        {
-            $config->set('conf_formtype',$info->mFormType);
-            $config->set('conf_valuetype',$info->mValueType);
+        $config->set('conf_title', $info->mTitle);
+        $config->set('conf_desc', $info->mDescription);
+        if ($config->get('conf_formtype') != $info->mFormType && $config->get('conf_valuetype') != $info->mValueType) {
+            $config->set('conf_formtype', $info->mFormType);
+            $config->set('conf_valuetype', $info->mValueType);
             $config->setConfValueForInput($info->mDefault);
+        } else {
+            if ($config->get('conf_valuetype') != $info->mValueType) {
+                $updateVar = $config->getConfValueForOutput();
+            }
+            $config->set('conf_formtype', $info->mFormType);
+            $config->set('conf_valuetype', $info->mValueType);
         }
-        else
-        {
-        	if ($config->get('conf_valuetype') != $info->mValueType) {
-        		$updateVar = $config->getConfValueForOutput();
-        	}
-        	$config->set('conf_formtype',$info->mFormType);
-            $config->set('conf_valuetype',$info->mValueType);
-        }
-        $config->set('conf_order',$info->mOrder);
+        $config->set('conf_order', $info->mOrder);
     
-        $options =& $configHandler->getConfigOptions(new Criteria('conf_id',$config->get('conf_id')));
-        if(is_array($options))
-        {
-            foreach($options as $opt)
-            {
+        $options =& $configHandler->getConfigOptions(new Criteria('conf_id', $config->get('conf_id')));
+        if (is_array($options)) {
+            foreach ($options as $opt) {
                 $configHandler->_oHandler->delete($opt);  // TODO will be use other method
             }
         }
     
-        if(count($info->mOption->mOptions) > 0)
-        {
-            foreach($info->mOption->mOptions as $opt)
-            {
+        if (count($info->mOption->mOptions) > 0) {
+            foreach ($info->mOption->mOptions as $opt) {
                 $option =& $configHandler->createConfigOption();
-                $option->set('confop_name',$opt->mName);
-                $option->set('confop_value',$opt->mValue);
-                $option->set('conf_id',$option->get('conf_id'));    // TODO check conf_id is right
+                $option->set('confop_name', $opt->mName);
+                $option->set('confop_value', $opt->mValue);
+                $option->set('conf_id', $option->get('conf_id'));    // TODO check conf_id is right
                 $config->setConfOptions($option);
                 unset($option);
             }
         }
     
-        if($configHandler->insertConfig($config))
-        {
+        if ($configHandler->insertConfig($config)) {
             if ($updateVar) {
-            	$config->setConfValueForInput($updateVar);
-            	$configHandler->insertConfig($config);
+                $config->setConfValueForInput($updateVar);
+                $configHandler->insertConfig($config);
             }
-        	$log->addReport(
+            $log->addReport(
                 XCube_Utils::formatString(
                     _MI_XUPDATE_INSTALL_MSG_CONFIG_UPDATED,
                     $config->get('conf_name')
@@ -1206,25 +1111,23 @@ class Xupdate_InstallUtils
      * 
      * @return  bool
     **/
-    public static function updateConfigOrderByInfo(/*** Legacy_PreferenceInformation ***/ &$info,/*** XoopsModule ***/ &$module,/*** Legacy_ModuleInstallLog ***/ &$log)
+    public static function updateConfigOrderByInfo(/*** Legacy_PreferenceInformation ***/ &$info, /*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
         $configHandler =& Xupdate_Utils::getXoopsHandler('config');
         $cri = new CriteriaCompo();
-        $cri->add(new Criteria('conf_modid',$module->get('mid')));
-        $cri->add(new Criteria('conf_catid',0));
-        $cri->add(new Criteria('conf_name',$info->mName));
+        $cri->add(new Criteria('conf_modid', $module->get('mid')));
+        $cri->add(new Criteria('conf_catid', 0));
+        $cri->add(new Criteria('conf_name', $info->mName));
         $configs =& $configHandler->getConfigs($cri);
     
-        if(!(count($configs) > 0 && is_object($configs[0])))
-        {
+        if (!(count($configs) > 0 && is_object($configs[0]))) {
             $log->addError(_MI_XUPDATE_INSTALL_ERROR_CONFIG_NOT_FOUND);
             return false;
         }
     
         $config =& $configs[0];
-        $config->set('conf_order',$info->mOrder);
-        if(!$configHandler->insertConfig($config))
-        {
+        $config->set('conf_order', $info->mOrder);
+        if (!$configHandler->insertConfig($config)) {
             $log->addError(
                 XCube_Utils::formatString(
                     _MI_XUPDATE_INSTALL_ERROR_CONFIG_UPDATED,
@@ -1236,5 +1139,3 @@ class Xupdate_InstallUtils
         return true;
     }
 }
-
-?>

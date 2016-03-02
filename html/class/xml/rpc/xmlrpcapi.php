@@ -34,32 +34,32 @@ class XoopsXmlRpcApi
 {
 
     // reference to method parameters
-    var $params;
+    public $params;
 
     // reference to xmlrpc document class object
-    var $response;
+    public $response;
 
     // reference to module class object
-    var $module;
+    public $module;
 
     // map between xoops tags and blogger specific tags
-    var $xoopsTagMap = array();
+    public $xoopsTagMap = array();
 
     // user class object
-    var $user;
+    public $user;
 
-    var $isadmin = false;
+    public $isadmin = false;
 
 
 
-    function XoopsXmlRpcApi(&$params, &$response, &$module)
+    public function XoopsXmlRpcApi(&$params, &$response, &$module)
     {
         $this->params =& $params;
         $this->response =& $response;
         $this->module =& $module;
     }
 
-    function _setUser(&$user, $isadmin = false)
+    public function _setUser(&$user, $isadmin = false)
     {
         if (is_object($user)) {
             $this->user =& $user;
@@ -67,7 +67,7 @@ class XoopsXmlRpcApi
         }
     }
 
-    function _checkUser($username, $password)
+    public function _checkUser($username, $password)
     {
         if (isset($this->user)) {
             return true;
@@ -86,7 +86,7 @@ class XoopsXmlRpcApi
         return true;
     }
 
-    function _checkAdmin()
+    public function _checkAdmin()
     {
         if ($this->isadmin) {
             return true;
@@ -101,7 +101,7 @@ class XoopsXmlRpcApi
         return true;
     }
 
-    function &_getPostFields($post_id = null, $blog_id = null)
+    public function &_getPostFields($post_id = null, $blog_id = null)
     {
         $ret = array();
         $ret['title'] = array('required' => true, 'form_type' => 'textbox', 'value_type' => 'text');
@@ -124,14 +124,14 @@ class XoopsXmlRpcApi
         return $ret;
     }
 
-    function _setXoopsTagMap($xoopstag, $blogtag)
+    public function _setXoopsTagMap($xoopstag, $blogtag)
     {
         if (trim($blogtag) != '') {
             $this->xoopsTagMap[$xoopstag] = $blogtag;
         }
     }
 
-    function _getXoopsTagMap($xoopstag)
+    public function _getXoopsTagMap($xoopstag)
     {
         if (isset($this->xoopsTagMap[$xoopstag])) {
             return $this->xoopsTagMap[$xoopstag];
@@ -139,7 +139,7 @@ class XoopsXmlRpcApi
         return $xoopstag;
     }
 
-    function _getTagCdata(&$text, $tag, $remove = true)
+    public function _getTagCdata(&$text, $tag, $remove = true)
     {
         $ret = '';
         $match = array();
@@ -154,15 +154,14 @@ class XoopsXmlRpcApi
 
     // kind of dirty method to load XOOPS API and create a new object thereof
     // returns itself if the calling object is XOOPS API
-    function &_getXoopsApi(&$params)
+    public function &_getXoopsApi(&$params)
     {
         if (strtolower(get_class($this)) != 'xoopsapi') {
             require_once(XOOPS_ROOT_PATH.'/class/xml/rpc/xoopsapi.php');
-            $instance =new XoopsApi($params, $this->response, $this->module); 
+            $instance =new XoopsApi($params, $this->response, $this->module);
             return $instance;
         } else {
             return $this;
         }
     }
 }
-?>

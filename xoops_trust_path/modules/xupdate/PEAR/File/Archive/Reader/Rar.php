@@ -38,18 +38,18 @@ require_once "File/Archive/Reader/File.php";
  */
 class File_Archive_Reader_Rar extends File_Archive_Reader_Archive
 {
-    var $rarFile = null;
-    var $rarEntry = null;
-    var $rarList = array();
+    public $rarFile = null;
+    public $rarEntry = null;
+    public $rarList = array();
 
-    var $rarTmpName = null;
-    var $entryTmpName = null;
-    var $fileReader = null;
+    public $rarTmpName = null;
+    public $entryTmpName = null;
+    public $fileReader = null;
 
     /**
      * @see File_Archive_Reader::next()
      */
-    function next()
+    public function next()
     {
         $error = parent::next();
         if (PEAR::isError($error)) {
@@ -58,8 +58,7 @@ class File_Archive_Reader_Rar extends File_Archive_Reader_Archive
 
         if ($this->rarFile === null) {
             $dataFilename = $this->source->getDataFilename();
-            if ($dataFilename !== null)
-            {
+            if ($dataFilename !== null) {
                 $this->rarTmpName = null;
                 $this->rarFile = rar_open($dataFilename);
             } else {
@@ -103,7 +102,7 @@ class File_Archive_Reader_Rar extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::close()
      */
-    function close()
+    public function close()
     {
         rar_close($this->rarEntry);
         if ($this->fileReader !== null) {
@@ -125,7 +124,7 @@ class File_Archive_Reader_Rar extends File_Archive_Reader_Archive
     /**
      * Ensure data has been extracted to $this->entryTmpName
      */
-    function ensureDataExtracted()
+    public function ensureDataExtracted()
     {
         if ($this->fileReader !== null) {
             return;
@@ -142,7 +141,7 @@ class File_Archive_Reader_Rar extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::skip()
      */
-    function skip($length = -1)
+    public function skip($length = -1)
     {
         $this->ensureDataExtracted();
         return $this->fileReader->skip($length);
@@ -151,7 +150,7 @@ class File_Archive_Reader_Rar extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::rewind()
      */
-    function rewind($length = -1)
+    public function rewind($length = -1)
     {
         $this->ensureDataExtracted();
         return $this->fileReader->rewind($length);
@@ -160,7 +159,7 @@ class File_Archive_Reader_Rar extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::tell()
      */
-    function tell()
+    public function tell()
     {
         if ($this->fileReader === null) {
             return 0;
@@ -172,21 +171,30 @@ class File_Archive_Reader_Rar extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::getFilename()
      */
-    function getFilename() { return $this->rarEntry->getName(); }
+    public function getFilename()
+    {
+        return $this->rarEntry->getName();
+    }
     /**
      * @see File_Archive_Reader::getFileList()
      */
-    function getFileList() { return $this->rarList; }
+    public function getFileList()
+    {
+        return $this->rarList;
+    }
 
     /**
      * @see File_Archive_Reader::getStat()
      */
-    function getStat() { return $this->currentStat; }
+    public function getStat()
+    {
+        return $this->currentStat;
+    }
 
     /**
      * @see File_Archive_Reader::getDataFilename()
      */
-    function getDataFilename()
+    public function getDataFilename()
     {
         $this->ensureDataExtracted();
         return $this->entryTmpName;
@@ -195,11 +203,9 @@ class File_Archive_Reader_Rar extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::getData()
      */
-    function getData($length = -1)
+    public function getData($length = -1)
     {
         $this->ensureDataExtracted();
         return $this->fileReader->getData($length);
     }
 }
-
-?>

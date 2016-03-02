@@ -56,7 +56,4 @@ class HTTP_OAuth_Signature_RSA_SHA1
     ) {
         throw new HTTP_OAuth_Exception_NotImplemented;
     }
-
 }
-
-?>

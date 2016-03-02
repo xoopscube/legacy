@@ -10,12 +10,12 @@
  *        the preload defining LEGACY_JAPANESE_ANTI_CHARSETMYSQL. 
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 if (!defined("LEGACY_JAPANESE_ANTI_CHARSETMYSQL")) {
     $GLOBALS['xoopsDB']->queryF("/*!40101 SET NAMES ujis */");
     $GLOBALS['xoopsDB']->queryF("/*!40101 SET SESSION collation_connection=ujis_japanese_ci */");
     @mysqli_set_charset($GLOBALS['xoopsDB']->conn, 'ujis');
 }
-
-?>

@@ -134,3 +134,4 @@ class HTMLPurifier_StringHashParser
 }
 
 // vim: et sw=4 sts=4
+

@@ -36,5 +36,4 @@ XOOPS Cube Legacy의 라이센스는 <a href='https://github.com/xoopscube/legac
 <p>
 이 설치마법사를 따라가 주시기 바랍니다.
 </p>
-"
-?>
+";

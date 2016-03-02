@@ -1,6 +1,7 @@
 <?php
 
-class Text_Wiki_Render_Plain_Table extends Text_Wiki_Render {
+class Text_Wiki_Render_Plain_Table extends Text_Wiki_Render
+{
     
     /**
     * 
@@ -15,7 +16,7 @@ class Text_Wiki_Render_Plain_Table extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         // make nice variable names (type, attr, span)
         extract($options);
@@ -54,4 +55,3 @@ class Text_Wiki_Render_Plain_Table extends Text_Wiki_Render {
         }
     }
 }
-?>

@@ -100,4 +100,3 @@ define('_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_2', "¥µ¥¤¥È¤ËÅ¬ÍÑ¤¹¤ë¥Æ¥ó¥×¥ì¡¼¥È¥
 define('_AD_LEGACYRENDER_TIPS_TPLSET_UPLOAD', "¤â¤·¤³¤Î¾ì¤ÇÌ¾Á°¤ò»ØÄê¤·¤Ê¤«¤Ã¤¿¾ì¹ç¤Ï¡¢¥¢¥Ã¥×¥í¡¼¥É¤µ¤ì¤¿¥Õ¥¡¥¤¥ë¤«¤é¥Æ¥ó¥×¥ì¡¼¥È¥»¥Ã¥ÈÌ¾¤¬¼èÆÀ¤µ¤ì¤Þ¤¹¡£<br/>¤³¤Î¥·¥¹¥Æ¥à¤¬ÂÐ±þ¤·¤Æ¤¤¤ëTAR.GZ·Á¼°¤Î¥Õ¥¡¥¤¥ë¤ò¥¢¥Ã¥×¥í¡¼¥É¤·¤Æ¤¯¤À¤µ¤¤¡£");
 define('_AD_LEGACYRENDER_LANG_HTACCESS', ".htaccess ¥Õ¥¡¥¤¥ë");
 define('_AD_LEGACYRENDER_DESC_HTACCESS', '¤ª»È¤¤¤Î¥µ¡¼¥Ð¤¬ mod_rewrite ¤ËÂÐ±þ¤·¤Æ¤¤¤ì¤Ð¡¢¤³¤Î¥Ú¡¼¥¸¤ÎÀßÄê¤ò .htaccess ¥Õ¥¡¥¤¥ë¤ËÄÉ²Ã¤¹¤ë¤³¤È¤Ç URI ¤òÊÑ´¹¤¹¤ë¤³¤È¤¬½ÐÍè¤Þ¤¹¡£¤³¤Î¥ª¥×¥·¥ç¥ó¤ò»È¤¦¾ì¹ç¡¢<a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1">Á´ÈÌÀßÄê</a> ²èÌÌ¤Ç Cool Uri ¤Î¥ª¥×¥·¥ç¥ó¤ò¡Ö¤Ï¤¤¡×¤ËÀßÄê¤·¤Æ¤¯¤À¤µ¤¤¡£');
-?>

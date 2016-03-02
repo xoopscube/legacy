@@ -61,137 +61,131 @@ define("LEGACY_EXPRESSION_OR", "or");
   */
 class Legacy_Criteria
 {
-	var $mTypeInfoArr = array();
-	
-	/**
-	 * Childlen of this criteria.
-	 */
-	var $mChildlen = array();
-	
-	function Legacy_Criteria($typeInfoArr)
-	{
-		$this->mTypeInfoArr = $typeInfoArr;
-	}
-	
-	/**
-	 * This is alias for addAnd().
-	 */
-	function add($column, $value = null, $comparison = LEGACY_EXPRESSION_EQ)
-	{
-		$this->addAnd($column, $value, $comparison);
-	}
-	
-	/**
-	 * Add $criteria to childlen with AND condition.
-	 */	
-	function addAnd($column, $value = null, $comparison = LEGACY_EXPRESSION_EQ)
-	{
-		$t_arr = array();
-		$t_arr['condition'] = LEGACY_EXPRESSION_AND;
-		if (is_object($column) && is_a($column, 'Legacy_Criteria')) {
-			$t_arr['value'] = $column;
-			$this->mChildlen[] = $t_arr;
-		}
-		elseif (!is_object($column)) {
-			if ($this->_checkColumn() && $this->_castingConversion($column, $value)) {
-				$t_arr['value'] = $value;
-				$t_arr['comparison'] = $comparison;
-				$this->mChildlen[] = $t_arr;
-			}
-		}
-	}
+    public $mTypeInfoArr = array();
+    
+    /**
+     * Childlen of this criteria.
+     */
+    public $mChildlen = array();
+    
+    public function Legacy_Criteria($typeInfoArr)
+    {
+        $this->mTypeInfoArr = $typeInfoArr;
+    }
+    
+    /**
+     * This is alias for addAnd().
+     */
+    public function add($column, $value = null, $comparison = LEGACY_EXPRESSION_EQ)
+    {
+        $this->addAnd($column, $value, $comparison);
+    }
+    
+    /**
+     * Add $criteria to childlen with AND condition.
+     */
+    public function addAnd($column, $value = null, $comparison = LEGACY_EXPRESSION_EQ)
+    {
+        $t_arr = array();
+        $t_arr['condition'] = LEGACY_EXPRESSION_AND;
+        if (is_object($column) && is_a($column, 'Legacy_Criteria')) {
+            $t_arr['value'] = $column;
+            $this->mChildlen[] = $t_arr;
+        } elseif (!is_object($column)) {
+            if ($this->_checkColumn() && $this->_castingConversion($column, $value)) {
+                $t_arr['value'] = $value;
+                $t_arr['comparison'] = $comparison;
+                $this->mChildlen[] = $t_arr;
+            }
+        }
+    }
 
-	/**
-	 * Add $criteria to childlen with OR condition.
-	 */	
-	function addOr($column, $value = null, $comparison = LEGACY_EXPRESSION_EQ)
-	{
-		$t_arr = array();
-		$t_arr['condition'] = LEGACY_EXPRESSION_OR;
-		if (is_object($column) && is_a($column, 'Legacy_Criteria')) {
-			$t_arr['value'] = $column;
-			$this->mChildlen[] = $t_arr;
-		}
-		elseif (!is_object($column)) {
-			if ($this->_checkColumn() && $this->_castingConversion($column, $value)) {
-				$t_arr['value'] = $value;
-				$t_arr['comparison'] = $comparison;
-				$this->mChildlen[] = $t_arr;
-			}
-		}
-	}
-	
-	/**
-	 * Create the instance of this class which has the same type information,
-	 * and return it.
-	 * 
-	 * @return object Legacy_Criterion
-	 */
-	function &createCriterion()
-	{
-		$criteria =new Legacy_Criteria($this->mTypeInfoArr);
-		return $criteria;
-	}
-	
-	/**
-	 * Check whether specified column exists in the list.
-	 * 
-	 * @access protected
-	 * @return bool
-	 */
-	function _checkColumn($column)
-	{
-		return isset($this->mTypeInfoArr[$column]);
-	}
-	
-	/**
-	 * Do casting conversion. If type information is wrong, return false.
-	 * 
-	 * @access protected
-	 * @param $column string A name of column
-	 * @param $value reference of value.
-	 * @return bool
-	 */
-	function _castingConversion($column, &$value)
-	{
-		if (is_array($value)) {
-			foreach ($value as $_key => $_val) {
-				if ($this->_castingConversion($column, $_val)) {
-					$value[$_key] = $_val;
-				}
-				else {
-					return false;
-				}
-			}
-		}
-		if (!is_object($value)) {
-			switch ($this->mTypeInfoArr[$column]) {
-				case XOBJ_DTYPE_BOOL:
-					$value = $value ? 1 : 0;
-					break;
-					
-				case XOBJ_DTYPE_INT:
-					$value = intval($value);
-					break;
-					
-				case XOOPS_DTYPE_FLOAT:
-					$value = floatval($value);
-					break;
+    /**
+     * Add $criteria to childlen with OR condition.
+     */
+    public function addOr($column, $value = null, $comparison = LEGACY_EXPRESSION_EQ)
+    {
+        $t_arr = array();
+        $t_arr['condition'] = LEGACY_EXPRESSION_OR;
+        if (is_object($column) && is_a($column, 'Legacy_Criteria')) {
+            $t_arr['value'] = $column;
+            $this->mChildlen[] = $t_arr;
+        } elseif (!is_object($column)) {
+            if ($this->_checkColumn() && $this->_castingConversion($column, $value)) {
+                $t_arr['value'] = $value;
+                $t_arr['comparison'] = $comparison;
+                $this->mChildlen[] = $t_arr;
+            }
+        }
+    }
+    
+    /**
+     * Create the instance of this class which has the same type information,
+     * and return it.
+     * 
+     * @return object Legacy_Criterion
+     */
+    public function &createCriterion()
+    {
+        $criteria =new Legacy_Criteria($this->mTypeInfoArr);
+        return $criteria;
+    }
+    
+    /**
+     * Check whether specified column exists in the list.
+     * 
+     * @access protected
+     * @return bool
+     */
+    public function _checkColumn($column)
+    {
+        return isset($this->mTypeInfoArr[$column]);
+    }
+    
+    /**
+     * Do casting conversion. If type information is wrong, return false.
+     * 
+     * @access protected
+     * @param $column string A name of column
+     * @param $value reference of value.
+     * @return bool
+     */
+    public function _castingConversion($column, &$value)
+    {
+        if (is_array($value)) {
+            foreach ($value as $_key => $_val) {
+                if ($this->_castingConversion($column, $_val)) {
+                    $value[$_key] = $_val;
+                } else {
+                    return false;
+                }
+            }
+        }
+        if (!is_object($value)) {
+            switch ($this->mTypeInfoArr[$column]) {
+                case XOBJ_DTYPE_BOOL:
+                    $value = $value ? 1 : 0;
+                    break;
+                    
+                case XOBJ_DTYPE_INT:
+                    $value = intval($value);
+                    break;
+                    
+                case XOOPS_DTYPE_FLOAT:
+                    $value = floatval($value);
+                    break;
 
-				case XOOPS_DTYPE_STRING:
-				case XOOPS_DTYPE_TEXT:
-					break;
-					
-				default:
-					return false;
-			}
-		}
-		else {
-			return false;
-		}
-		
-		return true;
-	}
+                case XOOPS_DTYPE_STRING:
+                case XOOPS_DTYPE_TEXT:
+                    break;
+                    
+                default:
+                    return false;
+            }
+        } else {
+            return false;
+        }
+        
+        return true;
+    }
 }
-
-?>

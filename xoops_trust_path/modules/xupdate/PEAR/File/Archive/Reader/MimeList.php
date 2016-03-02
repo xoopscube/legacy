@@ -41,7 +41,7 @@ function File_Archive_Reader_GetMime($filename)
         $extension = strtolower(substr($filename, $pos+1));
     }
 
-    switch($extension) {
+    switch ($extension) {
     case '3dmf':
         return 'x-world/x-3dmf';
     case 'a':
@@ -936,4 +936,3 @@ function File_Archive_Reader_GetMime($filename)
         return 'application/octet-stream';
     }
 }
-?>

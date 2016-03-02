@@ -40,12 +40,12 @@ class File_Archive_Reader_Select extends File_Archive_Reader_Relay
      * @var File_Archive_Reader_Predicat
      * @access private
      */
-    var $filename;
+    public $filename;
 
     /**
      * $source is the reader to filter
      */
-    function File_Archive_Reader_Select($filename, &$source)
+    public function File_Archive_Reader_Select($filename, &$source)
     {
         parent::File_Archive_Reader_Relay($source);
         $this->filename = $filename;
@@ -54,10 +54,8 @@ class File_Archive_Reader_Select extends File_Archive_Reader_Relay
     /**
      * @see File_Archive_Reader::next()
      */
-    function next()
+    public function next()
     {
         return $this->source->select($this->filename, false);
     }
 }
-
-?>

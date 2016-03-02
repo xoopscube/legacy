@@ -41,13 +41,13 @@ class File_Archive_Reader_Archive extends File_Archive_Reader
      *         to uncompress
      * @access protected
      */
-    var $source = null;
+    public $source = null;
 
     /**
      * @var    bool Indicate whether the $source is currently opened
      * @access private
      */
-    var $sourceOpened = false;
+    public $sourceOpened = false;
 
     /**
      * The source was let in this state at the end
@@ -55,7 +55,7 @@ class File_Archive_Reader_Archive extends File_Archive_Reader
      * @var    bool Indicate whether the $source was given opened
      * @access private
      */
-    var $sourceInitiallyOpened;
+    public $sourceInitiallyOpened;
 
 //ABSTRACT
     /**
@@ -63,7 +63,7 @@ class File_Archive_Reader_Archive extends File_Archive_Reader
      *
      * Open the source if necessary
      */
-    function next()
+    public function next()
     {
         if (!$this->sourceOpened && ($error = $this->source->next()) !== true) {
             return $error;
@@ -74,7 +74,7 @@ class File_Archive_Reader_Archive extends File_Archive_Reader
     }
 
 //PUBLIC
-    function File_Archive_Reader_Archive(&$source, $sourceOpened = false)
+    public function File_Archive_Reader_Archive(&$source, $sourceOpened = false)
     {
         $this->source =& $source;
         $this->sourceOpened = $this->sourceInitiallyOpened = $sourceOpened;
@@ -84,7 +84,7 @@ class File_Archive_Reader_Archive extends File_Archive_Reader
      *
      * @see File_Archive_Reader::close()
      */
-    function close()
+    public function close()
     {
         if (!$this->sourceInitiallyOpened && $this->sourceOpened) {
             $this->sourceOpened = false;
@@ -94,5 +94,3 @@ class File_Archive_Reader_Archive extends File_Archive_Reader
         }
     }
 }
-
-?>

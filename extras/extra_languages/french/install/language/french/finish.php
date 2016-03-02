@@ -20,4 +20,3 @@ la page d'accueil de votre site XOOPS Cube Legacy prêt à l'emploi!</p>
 <u><b>Support</b></u>
 <br />Visitez le site de support officiel <a href='http://www.xoopscube.org/' rel='external'>XOOPS Cube</a> pour plus d'informations, modules, extensions (preloads) et themes.</p>
 ";
-?>

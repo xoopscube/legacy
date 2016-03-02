@@ -41,4 +41,3 @@ $modversion['image'] = "groups.gif";
 $modversion['hasAdmin'] = 1;
 $modversion['adminpath'] = "admin.php?fct=groups";
 $modversion['category'] = XOOPS_SYSTEM_GROUP;
-?>

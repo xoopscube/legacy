@@ -8,14 +8,15 @@
  *
  */
 
-define ( 'XOOPS_TOKEN_TIMEOUT', 0 );
-define ( 'XOOPS_TOKEN_PREFIX', "XOOPS_TOKEN_" );
+define('XOOPS_TOKEN_TIMEOUT', 0);
+define('XOOPS_TOKEN_PREFIX', "XOOPS_TOKEN_");
 
-if(!defined('XOOPS_SALT'))
-    define('XOOPS_SALT',substr(md5(XOOPS_DB_PREFIX.XOOPS_DB_USER.XOOPS_ROOT_PATH),5,8));
+if (!defined('XOOPS_SALT')) {
+    define('XOOPS_SALT', substr(md5(XOOPS_DB_PREFIX.XOOPS_DB_USER.XOOPS_ROOT_PATH), 5, 8));
+}
 
-define ( 'XOOPS_TOKEN_SESSION_STRING', "X2_TOKEN");
-define ( 'XOOPS_TOKEN_MULTI_SESSION_STRING', "X2_MULTI_TOKEN");
+define('XOOPS_TOKEN_SESSION_STRING', "X2_TOKEN");
+define('XOOPS_TOKEN_MULTI_SESSION_STRING', "X2_MULTI_TOKEN");
 
 define('XOOPS_TOKEN_DEFAULT', 'XOOPS_TOKEN_DEFAULT');
 
@@ -35,46 +36,45 @@ class XoopsToken
      * token's name. this is used for identification.
      * @access protected
      */
-    var $_name_;
+    public $_name_;
 
     /**
      * token's string for inquiry. this should be a random code for security.
      * @access private
      */
-    var $_token_;
+    public $_token_;
 
     /**
      * the unixtime when this token is effective.
      *
      * @access protected
      */
-    var $_lifetime_;
+    public $_lifetime_;
 
     /**
      * unlimited flag. if this is true, this token is not limited in lifetime.
      */
-    var $_unlimited_;
+    public $_unlimited_;
 
     /**
      * serial number. this used for identification of tokens of same name tokens.
      *
      * @access private
      */
-    var $_number_=0;
+    public $_number_=0;
 
     /**
      * @param   $name   this token's name string.
      * @param   $timeout    effective time(if $timeout equal 0, this token will become unlimited)
      */
-    function XoopsToken($name, $timeout = XOOPS_TOKEN_TIMEOUT)
+    public function XoopsToken($name, $timeout = XOOPS_TOKEN_TIMEOUT)
     {
         $this->_name_ = $name;
 
-        if($timeout) {
+        if ($timeout) {
             $this->_lifetime_ = time() + $timeout;
             $this->_unlimited_ = false;
-        }
-        else {
+        } else {
             $this->_lifetime_ = 0;
             $this->_unlimited_ = true;
         }
@@ -89,10 +89,10 @@ class XoopsToken
      * @access protected
      * @return string
      */
-    function _generateToken()
+    public function _generateToken()
     {
         srand(microtime()*100000);
-        return md5(XOOPS_SALT.$this->_name_.uniqid(rand(),true));
+        return md5(XOOPS_SALT.$this->_name_.uniqid(rand(), true));
     }
 
     /**
@@ -101,7 +101,7 @@ class XoopsToken
      * @access public
      * @return string
      */
-    function getTokenName()
+    public function getTokenName()
     {
         return XOOPS_TOKEN_PREFIX.$this->_name_."_".$this->_number_;
     }
@@ -112,7 +112,7 @@ class XoopsToken
      * @access public
      * @return  string
      */
-    function getTokenValue()
+    public function getTokenValue()
     {
         return $this->_token_;
     }
@@ -123,7 +123,7 @@ class XoopsToken
      * @access public
      * @param   $serial_number  serial number
      */
-    function setSerialNumber($serial_number)
+    public function setSerialNumber($serial_number)
     {
         $this->_number_ = $serial_number;
     }
@@ -134,7 +134,7 @@ class XoopsToken
      * @access public
      * @return  int
      */
-    function getSerialNumber()
+    public function getSerialNumber()
     {
         return $this->_number_;
     }
@@ -146,9 +146,9 @@ class XoopsToken
      * @access public
      * @return  string
      */
-    function getHtml()
+    public function getHtml()
     {
-        return @sprintf('<input type="hidden" name="%s" value="%s" />',$this->getTokenName(),$this->getTokenValue());
+        return @sprintf('<input type="hidden" name="%s" value="%s" />', $this->getTokenName(), $this->getTokenValue());
     }
 
     /**
@@ -157,7 +157,7 @@ class XoopsToken
      *
      * @return  string
      */
-    function getUrl()
+    public function getUrl()
     {
         return $this->getTokenName()."=".$this->getTokenValue();
     }
@@ -167,9 +167,9 @@ class XoopsToken
      *
      * @return  bool
     */
-    function validate($token=null)
+    public function validate($token=null)
     {
-        return ($this->_token_==$token && ( $this->_unlimited_ || time()<=$this->_lifetime_));
+        return ($this->_token_==$token && ($this->_unlimited_ || time()<=$this->_lifetime_));
     }
 }
 
@@ -185,7 +185,7 @@ class XoopsTokenHandler
     /**
      * @access private
      */
-    var $_prefix ="";
+    public $_prefix ="";
 
 
     /**
@@ -195,9 +195,9 @@ class XoopsTokenHandler
      * @param   $name   this token's name string.
      * @param   $timeout    effective time(if $timeout equal 0, this token will become unlimited)
      */
-    function &create($name,$timeout = XOOPS_TOKEN_TIMEOUT)
+    public function &create($name, $timeout = XOOPS_TOKEN_TIMEOUT)
     {
-        $token =new XoopsToken($name,$timeout);
+        $token =new XoopsToken($name, $timeout);
         $this->register($token);
         return $token;
     }
@@ -209,10 +209,10 @@ class XoopsTokenHandler
      * @param   $name   token's name string.
      * @return XoopsToken
      */
-    function &fetch($name)
+    public function &fetch($name)
     {
         $ret = null;
-        if(isset($_SESSION[XOOPS_TOKEN_SESSION_STRING][$this->_prefix.$name])) {
+        if (isset($_SESSION[XOOPS_TOKEN_SESSION_STRING][$this->_prefix.$name])) {
             $ret =& $_SESSION[XOOPS_TOKEN_SESSION_STRING][$this->_prefix.$name];
         }
         return $ret;
@@ -221,7 +221,7 @@ class XoopsTokenHandler
     /**
      * Register token to session.
      */
-    function register(&$token)
+    public function register(&$token)
     {
         $_SESSION[XOOPS_TOKEN_SESSION_STRING][$this->_prefix.$token->_name_] = $token;
     }
@@ -229,7 +229,7 @@ class XoopsTokenHandler
     /**
      * Unregister token to session.
      */
-    function unregister(&$token)
+    public function unregister(&$token)
     {
         unset($_SESSION[XOOPS_TOKEN_SESSION_STRING][$this->_prefix.$token->_name_]);
     }
@@ -242,7 +242,7 @@ class XoopsTokenHandler
      * @param   $name   token's name string.
      * @return  bool
      */
-    function isRegistered($name)
+    public function isRegistered($name)
     {
         return isset($_SESSION[XOOPS_TOKEN_SESSION_STRING][$this->_prefix.$name]);
     }
@@ -256,15 +256,16 @@ class XoopsTokenHandler
      * @param   $clearIfValid   If token passed validation, $token will be unregistered.
      * @return  bool
      */
-    function validate(&$token,$clearIfValid)
+    public function validate(&$token, $clearIfValid)
     {
         $req_token = isset($_REQUEST[ $token->getTokenName() ]) ?
                 trim($_REQUEST[ $token->getTokenName() ]) : null;
 
-        if($req_token) {
-            if($token->validate($req_token)) {
-                if($clearIfValid)
+        if ($req_token) {
+            if ($token->validate($req_token)) {
+                if ($clearIfValid) {
                     $this->unregister($token);
+                }
                 return true;
             }
         }
@@ -274,10 +275,10 @@ class XoopsTokenHandler
 
 class XoopsSingleTokenHandler extends XoopsTokenHandler
 {
-    function autoValidate($name,$clearIfValid=true)
+    public function autoValidate($name, $clearIfValid=true)
     {
-        if($token =& $this->fetch($name)) {
-            return $this->validate($token,$clearIfValid);
+        if ($token =& $this->fetch($name)) {
+            return $this->validate($token, $clearIfValid);
         }
         return false;
     }
@@ -289,10 +290,10 @@ class XoopsSingleTokenHandler extends XoopsTokenHandler
      * @deprecated
      * @return bool
     */
-    public static function &quickCreate($name,$timeout = XOOPS_TOKEN_TIMEOUT)
+    public static function &quickCreate($name, $timeout = XOOPS_TOKEN_TIMEOUT)
     {
         $handler =new XoopsSingleTokenHandler();
-        $ret =& $handler->create($name,$timeout);
+        $ret =& $handler->create($name, $timeout);
         return $ret;
     }
 
@@ -303,10 +304,10 @@ class XoopsSingleTokenHandler extends XoopsTokenHandler
      * @deprecated
      * @return bool
     */
-    public static function quickValidate($name,$clearIfValid=true)
+    public static function quickValidate($name, $clearIfValid=true)
     {
         $handler = new XoopsSingleTokenHandler();
-        return $handler->autoValidate($name,$clearIfValid);
+        return $handler->autoValidate($name, $clearIfValid);
     }
 }
 
@@ -316,44 +317,44 @@ class XoopsSingleTokenHandler extends XoopsTokenHandler
  */
 class XoopsMultiTokenHandler extends XoopsTokenHandler
 {
-    function &create($name,$timeout=XOOPS_TOKEN_TIMEOUT)
+    public function &create($name, $timeout=XOOPS_TOKEN_TIMEOUT)
     {
-        $token =new XoopsToken($name,$timeout);
+        $token =new XoopsToken($name, $timeout);
         $token->setSerialNumber($this->getUniqueSerial($name));
         $this->register($token);
         return $token;
     }
 
-    function &fetch($name,$serial_number)
+    public function &fetch($name, $serial_number)
     {
         $ret = null;
-        if(isset($_SESSION[XOOPS_TOKEN_MULTI_SESSION_STRING][$this->_prefix.$name][$serial_number])) {
+        if (isset($_SESSION[XOOPS_TOKEN_MULTI_SESSION_STRING][$this->_prefix.$name][$serial_number])) {
             $ret =& $_SESSION[XOOPS_TOKEN_MULTI_SESSION_STRING][$this->_prefix.$name][$serial_number];
         }
         return $ret;
     }
 
-    function register(&$token)
+    public function register(&$token)
     {
         $_SESSION[XOOPS_TOKEN_MULTI_SESSION_STRING][$this->_prefix.$token->_name_][$token->getSerialNumber()] = $token;
     }
 
-    function unregister(&$token)
+    public function unregister(&$token)
     {
         unset($_SESSION[XOOPS_TOKEN_MULTI_SESSION_STRING][$this->_prefix.$token->_name_][$token->getSerialNumber()]);
     }
 
-    function isRegistered($name,$serial_number)
+    public function isRegistered($name, $serial_number)
     {
         return isset($_SESSION[XOOPS_TOKEN_MULTI_SESSION_STRING][$this->_prefix.$name][$serial_number]);
     }
 
-    function autoValidate($name,$clearIfValid=true)
+    public function autoValidate($name, $clearIfValid=true)
     {
         $serial_number = $this->getRequestNumber($name);
-        if($serial_number!==null) {
-            if($token =& $this->fetch($name,$serial_number)) {
-                return $this->validate($token,$clearIfValid);
+        if ($serial_number!==null) {
+            if ($token =& $this->fetch($name, $serial_number)) {
+                return $this->validate($token, $clearIfValid);
             }
         }
         return false;
@@ -366,10 +367,10 @@ class XoopsMultiTokenHandler extends XoopsTokenHandler
      * @deprecated
      * @return bool
     */
-    public static function &quickCreate($name,$timeout = XOOPS_TOKEN_TIMEOUT)
+    public static function &quickCreate($name, $timeout = XOOPS_TOKEN_TIMEOUT)
     {
         $handler =new XoopsMultiTokenHandler();
-        $ret =& $handler->create($name,$timeout);
+        $ret =& $handler->create($name, $timeout);
         return $ret;
     }
 
@@ -380,32 +381,33 @@ class XoopsMultiTokenHandler extends XoopsTokenHandler
      * @deprecated
      * @return bool
     */
-    public static function quickValidate($name,$clearIfValid=true)
+    public static function quickValidate($name, $clearIfValid=true)
     {
         $handler = new XoopsMultiTokenHandler();
-        return $handler->autoValidate($name,$clearIfValid);
+        return $handler->autoValidate($name, $clearIfValid);
     }
 
     /**
      * @param   $name   string
      * @return  int
      */
-    function getRequestNumber($name)
+    public function getRequestNumber($name)
     {
         $str = XOOPS_TOKEN_PREFIX.$name."_";
-        foreach($_REQUEST as $key=>$val) {
-            if(preg_match("/".$str."(\d+)/",$key,$match))
+        foreach ($_REQUEST as $key=>$val) {
+            if (preg_match("/".$str."(\d+)/", $key, $match)) {
                 return intval($match[1]);
+            }
         }
 
         return null;
     }
 
-    function getUniqueSerial($name)
+    public function getUniqueSerial($name)
     {
-        if(isset($_SESSION[XOOPS_TOKEN_MULTI_SESSION_STRING][$name])) {
-            if(is_array($_SESSION[XOOPS_TOKEN_MULTI_SESSION_STRING][$name])) {
-                for($i=0;isset($_SESSION[XOOPS_TOKEN_MULTI_SESSION_STRING][$name][$i]);$i++);
+        if (isset($_SESSION[XOOPS_TOKEN_MULTI_SESSION_STRING][$name])) {
+            if (is_array($_SESSION[XOOPS_TOKEN_MULTI_SESSION_STRING][$name])) {
+                for ($i=0;isset($_SESSION[XOOPS_TOKEN_MULTI_SESSION_STRING][$name][$i]);$i++);
                 return $i;
             }
         }
@@ -413,4 +415,3 @@ class XoopsMultiTokenHandler extends XoopsTokenHandler
         return 0;
     }
 }
-?>

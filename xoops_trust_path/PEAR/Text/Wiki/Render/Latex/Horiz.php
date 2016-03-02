@@ -1,6 +1,7 @@
 <?php
 
-class Text_Wiki_Render_Latex_Horiz extends Text_Wiki_Render {
+class Text_Wiki_Render_Latex_Horiz extends Text_Wiki_Render
+{
     
     /**
     * 
@@ -15,9 +16,8 @@ class Text_Wiki_Render_Latex_Horiz extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         return "\n\\noindent\\rule{\\textwidth}{1pt}\n";
     }
 }
-?>

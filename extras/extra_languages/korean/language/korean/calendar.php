@@ -60,4 +60,3 @@ define("_CAL_DRAGMOVE", "드래그해서 이동");
 define("_CAL_TODAY", "오늘");
 define("_CAL_DISPM1ST", "월요일 부터 표시");
 define("_CAL_DISPS1ST", "일요일 부터 표시");
-?>

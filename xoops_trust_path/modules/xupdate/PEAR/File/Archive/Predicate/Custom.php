@@ -44,10 +44,10 @@ require_once "File/Archive/Predicate.php";
  */
 class File_Archive_Predicate_Custom extends File_Archive_Predicate
 {
-    var $expression;
-    var $useName;
-    var $useStat;
-    var $useMIME;
+    public $expression;
+    public $useName;
+    public $useStat;
+    public $useMIME;
 
     /**
      * @param string $expression PHP code that evaluates too a boolean
@@ -55,7 +55,7 @@ class File_Archive_Predicate_Custom extends File_Archive_Predicate
      *        added to the begining of the expression. A ; will also be added at
      *        the end so that you don't need to write it
      */
-    function File_Archive_Predicate_Custom($expression)
+    public function File_Archive_Predicate_Custom($expression)
     {
         $this->expression = $expression.";";
         if (strpos($this->expression, "return") === false) {
@@ -68,7 +68,7 @@ class File_Archive_Predicate_Custom extends File_Archive_Predicate
     /**
      * @see File_Archive_Predicate::isTrue()
      */
-    function isTrue(&$source)
+    public function isTrue(&$source)
     {
         if ($this->useName) {
             $name = $source->getFilename();
@@ -84,5 +84,3 @@ class File_Archive_Predicate_Custom extends File_Archive_Predicate
         return (bool)eval($this->expression);
     }
 }
-
-?>

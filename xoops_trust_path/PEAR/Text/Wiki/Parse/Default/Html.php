@@ -32,7 +32,8 @@
 * 
 */
 
-class Text_Wiki_Parse_Html extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Html extends Text_Wiki_Parse
+{
     
     
     /**
@@ -48,7 +49,7 @@ class Text_Wiki_Parse_Html extends Text_Wiki_Parse {
     * 
     */
     
-    var $regex = '/^\<html\>\n(.+)\n\<\/html\>(\s|$)/Umsi';
+    public $regex = '/^\<html\>\n(.+)\n\<\/html\>(\s|$)/Umsi';
     
     
     /**
@@ -66,10 +67,9 @@ class Text_Wiki_Parse_Html extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches)
-    {    
+    public function process(&$matches)
+    {
         $options = array('text' => $matches[1]);
         return $this->wiki->addToken($this->rule, $options) . $matches[2];
     }
 }
-?>

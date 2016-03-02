@@ -82,7 +82,8 @@ define('CRYPT_HASH_MODE_HASH',     3);
  * @access  public
  * @package Crypt_Hash
  */
-class Crypt_Hash {
+class Crypt_Hash
+{
     /**
      * Byte-length of compression blocks / key (Internal HMAC)
      *
@@ -90,7 +91,7 @@ class Crypt_Hash {
      * @var Integer
      * @access private
      */
-    var $b;
+    public $b;
 
     /**
      * Byte-length of hash output (Internal HMAC)
@@ -99,7 +100,7 @@ class Crypt_Hash {
      * @var Integer
      * @access private
      */
-    var $l = false;
+    public $l = false;
 
     /**
      * Hash Algorithm
@@ -108,7 +109,7 @@ class Crypt_Hash {
      * @var String
      * @access private
      */
-    var $hash;
+    public $hash;
 
     /**
      * Key
@@ -117,7 +118,7 @@ class Crypt_Hash {
      * @var String
      * @access private
      */
-    var $key = '';
+    public $key = '';
 
     /**
      * Outer XOR (Internal HMAC)
@@ -126,7 +127,7 @@ class Crypt_Hash {
      * @var String
      * @access private
      */
-    var $opad;
+    public $opad;
 
     /**
      * Inner XOR (Internal HMAC)
@@ -135,7 +136,7 @@ class Crypt_Hash {
      * @var String
      * @access private
      */
-    var $ipad;
+    public $ipad;
 
     /**
      * Default Constructor.
@@ -144,9 +145,9 @@ class Crypt_Hash {
      * @return Crypt_Hash
      * @access public
      */
-    function Crypt_Hash($hash = 'sha1')
+    public function Crypt_Hash($hash = 'sha1')
     {
-        if ( !defined('CRYPT_HASH_MODE') ) {
+        if (!defined('CRYPT_HASH_MODE')) {
             switch (true) {
                 case extension_loaded('hash'):
                     define('CRYPT_HASH_MODE', CRYPT_HASH_MODE_HASH);
@@ -170,7 +171,7 @@ class Crypt_Hash {
      * @access public
      * @param String $key
      */
-    function setKey($key)
+    public function setKey($key)
     {
         $this->key = $key;
     }
@@ -181,7 +182,7 @@ class Crypt_Hash {
      * @access public
      * @param String $hash
      */
-    function setHash($hash)
+    public function setHash($hash)
     {
         switch ($hash) {
             case 'md5-96':
@@ -218,7 +219,7 @@ class Crypt_Hash {
                 $mode = CRYPT_HASH_MODE;
         }
 
-        switch ( $mode ) {
+        switch ($mode) {
             case CRYPT_HASH_MODE_MHASH:
                 switch ($hash) {
                     case 'md5':
@@ -291,12 +292,12 @@ class Crypt_Hash {
      * @param String $text
      * @return String
      */
-    function hash($text)
+    public function hash($text)
     {
         $mode = is_array($this->hash) ? CRYPT_HASH_MODE_INTERNAL : CRYPT_HASH_MODE;
 
         if (!empty($this->key)) {
-            switch ( $mode ) {
+            switch ($mode) {
                 case CRYPT_HASH_MODE_MHASH:
                     $output = mhash($this->hash, $text, $this->key);
                     break;
@@ -319,7 +320,7 @@ class Crypt_Hash {
                     $output = call_user_func($this->hash, $output); // step 7
             }
         } else {
-            switch ( $mode ) {
+            switch ($mode) {
                 case CRYPT_HASH_MODE_MHASH:
                     $output = mhash($this->hash, $text);
                     break;
@@ -340,7 +341,7 @@ class Crypt_Hash {
      * @access public
      * @return Integer
      */
-    function getLength()
+    public function getLength()
     {
         return $this->l;
     }
@@ -351,7 +352,7 @@ class Crypt_Hash {
      * @access private
      * @param String $text
      */
-    function _md5($m)
+    public function _md5($m)
     {
         return pack('H*', md5($m));
     }
@@ -362,7 +363,7 @@ class Crypt_Hash {
      * @access private
      * @param String $text
      */
-    function _sha1($m)
+    public function _sha1($m)
     {
         return pack('H*', sha1($m));
     }
@@ -375,7 +376,7 @@ class Crypt_Hash {
      * @access private
      * @param String $text
      */
-    function _md2($m)
+    public function _md2($m)
     {
         static $s = array(
              41,  46,  67, 201, 162, 216, 124,   1,  61,  54,  84, 161, 236, 240, 6,
@@ -451,7 +452,7 @@ class Crypt_Hash {
      * @access private
      * @param String $text
      */
-    function _sha256($m)
+    public function _sha256($m)
     {
         if (extension_loaded('suhosin')) {
             return pack('H*', sha256($m));
@@ -495,12 +496,11 @@ class Crypt_Hash {
             for ($i = 16; $i < 64; $i++) {
                 $s0 = $this->_rightRotate($w[$i - 15],  7) ^
                       $this->_rightRotate($w[$i - 15], 18) ^
-                      $this->_rightShift( $w[$i - 15],  3);
+                      $this->_rightShift($w[$i - 15],  3);
                 $s1 = $this->_rightRotate($w[$i - 2], 17) ^
                       $this->_rightRotate($w[$i - 2], 19) ^
-                      $this->_rightShift( $w[$i - 2], 10);
+                      $this->_rightShift($w[$i - 2], 10);
                 $w[$i] = $this->_add($w[$i - 16], $s0, $w[$i - 7], $s1);
-
             }
 
             // Initialize hash value for this chunk
@@ -556,7 +556,7 @@ class Crypt_Hash {
      * @access private
      * @param String $text
      */
-    function _sha512($m)
+    public function _sha512($m)
     {
         if (!class_exists('Math_BigInteger')) {
             require_once('Math/BigInteger.php');
@@ -567,11 +567,11 @@ class Crypt_Hash {
         if (!isset($k)) {
             // Initialize variables
             $init384 = array( // initial values for SHA384
-                'cbbb9d5dc1059ed8', '629a292a367cd507', '9159015a3070dd17', '152fecd8f70e5939', 
+                'cbbb9d5dc1059ed8', '629a292a367cd507', '9159015a3070dd17', '152fecd8f70e5939',
                 '67332667ffc00b31', '8eb44a8768581511', 'db0c2e0d64f98fa7', '47b5481dbefa4fa4'
             );
             $init512 = array( // initial values for SHA512
-                '6a09e667f3bcc908', 'bb67ae8584caa73b', '3c6ef372fe94f82b', 'a54ff53a5f1d36f1', 
+                '6a09e667f3bcc908', 'bb67ae8584caa73b', '3c6ef372fe94f82b', 'a54ff53a5f1d36f1',
                 '510e527fade682d1', '9b05688c2b3e6c1f', '1f83d9abfb41bd6b', '5be0cd19137e2179'
             );
 
@@ -742,7 +742,7 @@ class Crypt_Hash {
      * @see _sha256()
      * @return Integer
      */
-    function _rightRotate($int, $amt)
+    public function _rightRotate($int, $amt)
     {
         $invamt = 32 - $amt;
         $mask = (1 << $invamt) - 1;
@@ -758,7 +758,7 @@ class Crypt_Hash {
      * @see _sha256()
      * @return Integer
      */
-    function _rightShift($int, $amt)
+    public function _rightShift($int, $amt)
     {
         $mask = (1 << (32 - $amt)) - 1;
         return ($int >> $amt) & $mask;
@@ -772,7 +772,7 @@ class Crypt_Hash {
      * @see _sha256()
      * @return Integer
      */
-    function _not($int)
+    public function _not($int)
     {
         return ~$int & 0xFFFFFFFF;
     }
@@ -789,7 +789,7 @@ class Crypt_Hash {
      * @see _sha256()
      * @access private
      */
-    function _add()
+    public function _add()
     {
         static $mod;
         if (!isset($mod)) {
@@ -815,7 +815,7 @@ class Crypt_Hash {
      * @return String
      * @access private
      */
-    function _string_shift(&$string, $index = 1)
+    public function _string_shift(&$string, $index = 1)
     {
         $substr = substr($string, 0, $index);
         $string = substr($string, $index);

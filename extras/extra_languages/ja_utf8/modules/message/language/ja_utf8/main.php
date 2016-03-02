@@ -81,4 +81,3 @@ define('_MD_MESSAGE_MAILBODY', '{0} よりログインして確認してくだ�
 define('_MD_MESSAGE_ADDBLACKLIST', 'このユーザをブラックリストに追加する');
 
 define('_MD_MESSAGE_SEARCH', '検索');
-?>

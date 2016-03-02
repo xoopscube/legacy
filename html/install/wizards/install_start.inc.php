@@ -7,17 +7,15 @@
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
-	include './language/'.$language.'/welcome.php'; //This will set message to $content;
-	$error = false;
- 	if(substr(PHP_VERSION, 0, 1) < 5) {
- 		$error = true;
- 	}
-	if(! $error) {
-		$wizard->assign('welcome', $content);
-	}else{
-		$wizard->assign('message',_INSTALL_L168);
-		$wizard->setReload(true);
-	}
-	$wizard->render('install_start.tpl.php');
-
-?>
+    include './language/'.$language.'/welcome.php'; //This will set message to $content;
+    $error = false;
+    if (substr(PHP_VERSION, 0, 1) < 5) {
+        $error = true;
+    }
+    if (! $error) {
+        $wizard->assign('welcome', $content);
+    } else {
+        $wizard->assign('message', _INSTALL_L168);
+        $wizard->setReload(true);
+    }
+    $wizard->render('install_start.tpl.php');

@@ -17,19 +17,16 @@
 
 function smarty_function_user_uname2name($params, &$smarty)
 {
-	$handler = xoops_gethandler('user');
-	$user =& $handler->getObjects(new Criteria('uname',$params['uname']));
+    $handler = xoops_gethandler('user');
+    $user =& $handler->getObjects(new Criteria('uname', $params['uname']));
 
-	if(! count($user)>0){
-		return "guest";
-	}
+    if (! count($user)>0) {
+        return "guest";
+    }
 
-	if($user[0]->getShow('name')){
-		return $user[0]->getShow('name');
-	}
-	else{
-		return $params['uname'];
-	}
+    if ($user[0]->getShow('name')) {
+        return $user[0]->getShow('name');
+    } else {
+        return $params['uname'];
+    }
 }
-
-?>

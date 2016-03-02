@@ -48,12 +48,12 @@ class File_Archive_Predicate_Duplicate extends File_Archive_Predicate
      * @var array Key is the filename, value is an array of date (index 0) and
      *      position in the archive (index) 1 of the newest entry with this filename
      */
-    var $newest = array();
+    public $newest = array();
 
     /**
      * @var int The current position of the file in the source
      */
-    var $pos = 0;
+    public $pos = 0;
 
     /**
      * @param File_Archive_Reader $source The source will be inspected to find
@@ -61,7 +61,7 @@ class File_Archive_Predicate_Duplicate extends File_Archive_Predicate
      *        The predicate should then be used on the same source to remove the
      *        old duplicate files
      */
-    function File_Archive_Predicate_Duplicate(&$source)
+    public function File_Archive_Predicate_Duplicate(&$source)
     {
         //Ensure we are at the begining of the file
         $source->close();
@@ -87,14 +87,15 @@ class File_Archive_Predicate_Duplicate extends File_Archive_Predicate
      *             = 0 if $a and $b can be considered same age
      *             > 0 if $a can be considered newer than $b
      */
-    function compare($a, $b) {
+    public function compare($a, $b)
+    {
         return ($a === null ? -1 : $a) - ($b === null ? -1 : $b);
     }
 
     /**
      * @see File_Archive_Predicate::isTrue()
      */
-    function isTrue(&$source)
+    public function isTrue(&$source)
     {
         $filename = $source->getFilename();
         $stat = $source->getStat();
@@ -106,11 +107,8 @@ class File_Archive_Predicate_Duplicate extends File_Archive_Predicate
 
             $delete = $comp < 0 ||
                   ($comp == 0 && $this->pos != $value[1]);
-
         }
         $this->pos++;
         return $delete;
     }
 }
-
-?>

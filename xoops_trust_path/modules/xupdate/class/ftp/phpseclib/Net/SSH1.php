@@ -256,14 +256,15 @@ define('NET_SSH1_READ_REGEX', 2);
  * @access  public
  * @package Net_SSH1
  */
-class Net_SSH1 {
+class Net_SSH1
+{
     /**
      * The SSH identifier
      *
      * @var String
      * @access private
      */
-    var $identifier = 'SSH-1.5-phpseclib';
+    public $identifier = 'SSH-1.5-phpseclib';
 
     /**
      * The Socket Object
@@ -271,7 +272,7 @@ class Net_SSH1 {
      * @var Object
      * @access private
      */
-    var $fsock;
+    public $fsock;
 
     /**
      * The cryptography object
@@ -279,7 +280,7 @@ class Net_SSH1 {
      * @var Object
      * @access private
      */
-    var $crypto = false;
+    public $crypto = false;
 
     /**
      * Execution Bitmap
@@ -290,7 +291,7 @@ class Net_SSH1 {
      * @var Integer
      * @access private
      */
-    var $bitmap = 0;
+    public $bitmap = 0;
 
     /**
      * The Server Key Public Exponent
@@ -301,7 +302,7 @@ class Net_SSH1 {
      * @var String
      * @access private
      */
-    var $server_key_public_exponent;
+    public $server_key_public_exponent;
 
     /**
      * The Server Key Public Modulus
@@ -312,7 +313,7 @@ class Net_SSH1 {
      * @var String
      * @access private
      */
-    var $server_key_public_modulus;
+    public $server_key_public_modulus;
 
     /**
      * The Host Key Public Exponent
@@ -323,7 +324,7 @@ class Net_SSH1 {
      * @var String
      * @access private
      */
-    var $host_key_public_exponent;
+    public $host_key_public_exponent;
 
     /**
      * The Host Key Public Modulus
@@ -334,7 +335,7 @@ class Net_SSH1 {
      * @var String
      * @access private
      */
-    var $host_key_public_modulus;
+    public $host_key_public_modulus;
 
     /**
      * Supported Ciphers
@@ -345,7 +346,7 @@ class Net_SSH1 {
      * @var Array
      * @access private
      */
-    var $supported_ciphers = array(
+    public $supported_ciphers = array(
         NET_SSH1_CIPHER_NONE       => 'No encryption',
         NET_SSH1_CIPHER_IDEA       => 'IDEA in CFB mode',
         NET_SSH1_CIPHER_DES        => 'DES in CBC mode',
@@ -364,7 +365,7 @@ class Net_SSH1 {
      * @var Array
      * @access private
      */
-    var $supported_authentications = array(
+    public $supported_authentications = array(
         NET_SSH1_AUTH_RHOSTS     => '.rhosts or /etc/hosts.equiv',
         NET_SSH1_AUTH_RSA        => 'pure RSA authentication',
         NET_SSH1_AUTH_PASSWORD   => 'password authentication',
@@ -378,7 +379,7 @@ class Net_SSH1 {
      * @var String
      * @access private
      */
-    var $server_identification = '';
+    public $server_identification = '';
 
     /**
      * Protocol Flags
@@ -387,7 +388,7 @@ class Net_SSH1 {
      * @var Array
      * @access private
      */
-    var $protocol_flags = array();
+    public $protocol_flags = array();
 
     /**
      * Protocol Flag Log
@@ -396,7 +397,7 @@ class Net_SSH1 {
      * @var Array
      * @access private
      */
-    var $protocol_flag_log = array();
+    public $protocol_flag_log = array();
 
     /**
      * Message Log
@@ -405,7 +406,7 @@ class Net_SSH1 {
      * @var Array
      * @access private
      */
-    var $message_log = array();
+    public $message_log = array();
 
     /**
      * Interactive Buffer
@@ -414,7 +415,7 @@ class Net_SSH1 {
      * @var Array
      * @access private
      */
-    var $interactive_buffer = '';
+    public $interactive_buffer = '';
 
     /**
      * Default Constructor.
@@ -428,7 +429,7 @@ class Net_SSH1 {
      * @return Net_SSH1
      * @access public
      */
-    function Net_SSH1($host, $port = 22, $timeout = 10, $cipher = NET_SSH1_CIPHER_3DES)
+    public function Net_SSH1($host, $port = 22, $timeout = 10, $cipher = NET_SSH1_CIPHER_3DES)
     {
         $this->protocol_flags = array(
             1  => 'NET_SSH1_MSG_DISCONNECT',
@@ -615,7 +616,7 @@ class Net_SSH1 {
      * @return Boolean
      * @access public
      */
-    function login($username, $password = '')
+    public function login($username, $password = '')
     {
         if (!($this->bitmap & NET_SSH1_MASK_CONSTRUCTOR)) {
             return false;
@@ -633,7 +634,7 @@ class Net_SSH1 {
         if ($response[NET_SSH1_RESPONSE_TYPE] == NET_SSH1_SMSG_SUCCESS) {
             $this->bitmap |= NET_SSH1_MASK_LOGIN;
             return true;
-        } else if ($response[NET_SSH1_RESPONSE_TYPE] != NET_SSH1_SMSG_FAILURE) {
+        } elseif ($response[NET_SSH1_RESPONSE_TYPE] != NET_SSH1_SMSG_FAILURE) {
             user_error('Expected SSH_SMSG_SUCCESS or SSH_SMSG_FAILURE', E_USER_NOTICE);
             return false;
         }
@@ -656,7 +657,7 @@ class Net_SSH1 {
         if ($response[NET_SSH1_RESPONSE_TYPE] == NET_SSH1_SMSG_SUCCESS) {
             $this->bitmap |= NET_SSH1_MASK_LOGIN;
             return true;
-        } else if ($response[NET_SSH1_RESPONSE_TYPE] == NET_SSH1_SMSG_FAILURE) {
+        } elseif ($response[NET_SSH1_RESPONSE_TYPE] == NET_SSH1_SMSG_FAILURE) {
             return false;
         } else {
             user_error('Expected SSH_SMSG_SUCCESS or SSH_SMSG_FAILURE', E_USER_NOTICE);
@@ -684,7 +685,7 @@ class Net_SSH1 {
      * @return mixed
      * @access public
      */
-    function exec($cmd, $block = true)
+    public function exec($cmd, $block = true)
     {
         if (!($this->bitmap & NET_SSH1_MASK_LOGIN)) {
             user_error('Operation disallowed prior to login()', E_USER_NOTICE);
@@ -731,7 +732,7 @@ class Net_SSH1 {
      * @return Boolean
      * @access private
      */
-    function _initShell()
+    public function _initShell()
     {
         // connect using the sample parameters in protocol-1.5.txt.
         // according to wikipedia.org's entry on text terminals, "the fundamental type of application running on a text
@@ -772,7 +773,7 @@ class Net_SSH1 {
      * @return Boolean
      * @access public
      */
-    function write($cmd)
+    public function write($cmd)
     {
         return $this->interactiveWrite($cmd);
     }
@@ -789,7 +790,7 @@ class Net_SSH1 {
      * @return Boolean
      * @access public
      */
-    function read($expect, $mode = NET_SSH1_READ_SIMPLE)
+    public function read($expect, $mode = NET_SSH1_READ_SIMPLE)
     {
         if (!($this->bitmap & NET_SSH1_MASK_LOGIN)) {
             user_error('Operation disallowed prior to login()', E_USER_NOTICE);
@@ -824,7 +825,7 @@ class Net_SSH1 {
      * @return Boolean
      * @access public
      */
-    function interactiveWrite($cmd)
+    public function interactiveWrite($cmd)
     {
         if (!($this->bitmap & NET_SSH1_MASK_LOGIN)) {
             user_error('Operation disallowed prior to login()', E_USER_NOTICE);
@@ -859,7 +860,7 @@ class Net_SSH1 {
      * @return String
      * @access public
      */
-    function interactiveRead()
+    public function interactiveRead()
     {
         if (!($this->bitmap & NET_SSH1_MASK_LOGIN)) {
             user_error('Operation disallowed prior to login()', E_USER_NOTICE);
@@ -886,7 +887,7 @@ class Net_SSH1 {
      *
      * @access public
      */
-    function disconnect()
+    public function disconnect()
     {
         $this->_disconnect();
     }
@@ -899,7 +900,7 @@ class Net_SSH1 {
      *
      * @access public
      */
-    function __destruct()
+    public function __destruct()
     {
         $this->_disconnect();
     }
@@ -910,7 +911,7 @@ class Net_SSH1 {
      * @param String $msg
      * @access private
      */
-    function _disconnect($msg = 'Client Quit')
+    public function _disconnect($msg = 'Client Quit')
     {
         if ($this->bitmap) {
             $data = pack('C', NET_SSH1_CMSG_EOF);
@@ -943,7 +944,7 @@ class Net_SSH1 {
      * @return Array
      * @access private
      */
-    function _get_binary_packet()
+    public function _get_binary_packet()
     {
         if (feof($this->fsock)) {
             //user_error('connection closed prematurely', E_USER_NOTICE);
@@ -1001,7 +1002,8 @@ class Net_SSH1 {
      * @return Boolean
      * @access private
      */
-    function _send_binary_packet($data) {
+    public function _send_binary_packet($data)
+    {
         if (feof($this->fsock)) {
             //user_error('connection closed prematurely', E_USER_NOTICE);
             return false;
@@ -1053,7 +1055,7 @@ class Net_SSH1 {
      * @return Integer
      * @access private
      */
-    function _crc($data)
+    public function _crc($data)
     {
         static $crc_lookup_table = array(
             0x00000000, 0x77073096, 0xEE0E612C, 0x990951BA,
@@ -1150,7 +1152,7 @@ class Net_SSH1 {
      * @return String
      * @access private
      */
-    function _string_shift(&$string, $index = 1)
+    public function _string_shift(&$string, $index = 1)
     {
         $substr = substr($string, 0, $index);
         $string = substr($string, $index);
@@ -1170,7 +1172,7 @@ class Net_SSH1 {
      * @return Math_BigInteger
      * @access private
      */
-    function _rsa_crypt($m, $key)
+    public function _rsa_crypt($m, $key)
     {
         /*
         if (!class_exists('Crypt_RSA')) {
@@ -1220,7 +1222,7 @@ class Net_SSH1 {
      * @param Array $array
      * @access private
      */
-    function _define_array()
+    public function _define_array()
     {
         $args = func_get_args();
         foreach ($args as $arg) {
@@ -1242,7 +1244,7 @@ class Net_SSH1 {
      * @access public
      * @return String or Array
      */
-    function getLog()
+    public function getLog()
     {
         if (!defined('NET_SSH1_LOGGING')) {
             return false;
@@ -1268,7 +1270,7 @@ class Net_SSH1 {
      * @access private
      * @return String
      */
-    function _format_log($message_log, $message_number_log)
+    public function _format_log($message_log, $message_number_log)
     {
         static $boundary = ':', $long_width = 65, $short_width = 16;
 
@@ -1312,7 +1314,7 @@ class Net_SSH1 {
      * @return String
      * @access public
      */
-    function getServerKeyPublicExponent($raw_output = false)
+    public function getServerKeyPublicExponent($raw_output = false)
     {
         return $raw_output ? $this->server_key_public_exponent->toBytes() : $this->server_key_public_exponent->toString();
     }
@@ -1327,7 +1329,7 @@ class Net_SSH1 {
      * @return String
      * @access public
      */
-    function getServerKeyPublicModulus($raw_output = false)
+    public function getServerKeyPublicModulus($raw_output = false)
     {
         return $raw_output ? $this->server_key_public_modulus->toBytes() : $this->server_key_public_modulus->toString();
     }
@@ -1342,7 +1344,7 @@ class Net_SSH1 {
      * @return String
      * @access public
      */
-    function getHostKeyPublicExponent($raw_output = false)
+    public function getHostKeyPublicExponent($raw_output = false)
     {
         return $raw_output ? $this->host_key_public_exponent->toBytes() : $this->host_key_public_exponent->toString();
     }
@@ -1357,7 +1359,7 @@ class Net_SSH1 {
      * @return String
      * @access public
      */
-    function getHostKeyPublicModulus($raw_output = false)
+    public function getHostKeyPublicModulus($raw_output = false)
     {
         return $raw_output ? $this->host_key_public_modulus->toBytes() : $this->host_key_public_modulus->toString();
     }
@@ -1373,7 +1375,7 @@ class Net_SSH1 {
      * @return Array
      * @access public
      */
-    function getSupportedCiphers($raw_output = false)
+    public function getSupportedCiphers($raw_output = false)
     {
         return $raw_output ? array_keys($this->supported_ciphers) : array_values($this->supported_ciphers);
     }
@@ -1389,7 +1391,7 @@ class Net_SSH1 {
      * @return Array
      * @access public
      */
-    function getSupportedAuthentications($raw_output = false)
+    public function getSupportedAuthentications($raw_output = false)
     {
         return $raw_output ? array_keys($this->supported_authentications) : array_values($this->supported_authentications);
     }
@@ -1400,9 +1402,8 @@ class Net_SSH1 {
      * @return String
      * @access public
      */
-    function getServerIdentification()
+    public function getServerIdentification()
     {
         return rtrim($this->server_identification);
     }
 }
-?>

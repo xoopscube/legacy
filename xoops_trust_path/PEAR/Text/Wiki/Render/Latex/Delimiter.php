@@ -1,6 +1,7 @@
 <?php
 
-class Text_Wiki_Render_Latex_Delimiter extends Text_Wiki_Render {
+class Text_Wiki_Render_Latex_Delimiter extends Text_Wiki_Render
+{
     
     /**
     * 
@@ -15,11 +16,10 @@ class Text_Wiki_Render_Latex_Delimiter extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         // TODO: Is this where I can do some LaTeX escaping for items
         // such as $ { } _ ?
         return "Delimiter: ".$options['text'];
     }
 }
-?>

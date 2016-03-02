@@ -55,4 +55,3 @@ define('_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_WARNING', "Odstraòte {0} adresáø pro
 define('_MD_LEGACY_MESSAGE_LOGGEDOUT', "Odhlášení probìhlo úspìšnì.");
 define('_MD_LEGACY_MESSAGE_LOGIN_SUCCESS', "Pøihlášení probìhlo úspìšnì");
 define('_MD_LEGACY_MESSAGE_THANKYOUFORVISIT', "Dìkujeme Vám za návštìvu našeho webu!");
-?>

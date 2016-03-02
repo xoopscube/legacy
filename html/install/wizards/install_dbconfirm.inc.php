@@ -14,9 +14,8 @@
     if (!empty($content)) {
         $wizard->setTitle(_INSTALL_L93);
         $wizard->setContent($content . $sm->editform());
-        $wizard->setNext(array('dbconfirm',_INSTALL_L91));
+        $wizard->setNext(array('dbconfirm', _INSTALL_L91));
     } else {
         $wizard->setContent($sm->confirmForm());
     }
     $wizard->render();
-?>

@@ -12,13 +12,13 @@
     $adminmail = $myts->stripSlashesGPC(trim($_POST['adminmail']));
     $timezone = $myts->stripSlashesGPC($_POST['timezone']);
 
-    if (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i",$adminmail)) {
+    if (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i", $adminmail)) {
         $wizard->setContent('<p>'._INSTALL_L73.'</p>');
         $wizard->setBack(array('', _INSTALL_L112));
         $wizard->error();
         exit();
     }
-    if ( !isset($adminname) || !isset($adminpass) || !isset($adminmail) || $adminmail == "" || $adminname =="" || $adminpass =="" || $adminpass != $adminpass2) {
+    if (!isset($adminname) || !isset($adminpass) || !isset($adminmail) || $adminmail == "" || $adminname =="" || $adminpass =="" || $adminpass != $adminpass2) {
         $wizard->setContent('<p>'._INSTALL_L41.'</p>');
         $wizard->setBack(array('', _INSTALL_L112));
         $wizard->error();
@@ -33,9 +33,9 @@
     $cm = new cache_manager;
 
     $language = check_language($language);
-    if ( file_exists('./language/'.$language.'/install2.php') ) {
+    if (file_exists('./language/'.$language.'/install2.php')) {
         include_once './language/'.$language.'/install2.php';
-    } elseif ( file_exists('./language/english/install2.php') ) {
+    } elseif (file_exists('./language/english/install2.php')) {
         include_once './language/english/install2.php';
         $language = 'english';
     } else {
@@ -51,19 +51,18 @@
     $group = make_groups($dbm);
     $result = make_data($dbm, $cm, $adminname, $adminpass, $adminmail, $language, $group, $timezone);
 
-    $wizard->assign('dbm_reports',$dbm->report());
-    $wizard->assign('cm_reports',$cm->report());
-    $wizard->assign('adminname',$adminname);
-    $wizard->assign('adminpass',$adminpass);
+    $wizard->assign('dbm_reports', $dbm->report());
+    $wizard->assign('cm_reports', $cm->report());
+    $wizard->assign('adminname', $adminname);
+    $wizard->assign('adminpass', $adminpass);
 
     include_once './class/mainfilemanager.php';
     $mm = new mainfile_manager('../mainfile.php');
-    foreach($group as $key => $val){
+    foreach ($group as $key => $val) {
         $mm->setRewrite($key, intval($val));
     }
     $result = $mm->doRewrite();
-    $wizard->assign('mm_reports',$mm->report());
+    $wizard->assign('mm_reports', $mm->report());
 
     setcookie('xoops_session', '', time() - 3600);
     $wizard->render('install_insertData.tpl.php');
-?>

@@ -98,5 +98,3 @@ define('_AD_LEGACYRENDER_MESSAGE_UPLOAD_TEMPLATE_SUCCESS', "樣版上傳完成")
 define('_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_1', "要客製化您網站自己的樣版，首先要複製一個和預設樣板相同的的樣版(給與和預設不同的名稱)， 再修改這個複製的樣版。");
 define('_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_2', "您可以很容易為您的網站變更您的樣版，只要按下 '選擇按鈕' 選擇適當的，要瞭解更多請觀看協助說明。");
 define('_AD_LEGACYRENDER_TIPS_TPLSET_UPLOAD', "如果您未輸入樣版組名稱，系統將會以上傳的檔案檔名為名稱，上傳僅限 TAR.GZ 檔。");
-
-?>

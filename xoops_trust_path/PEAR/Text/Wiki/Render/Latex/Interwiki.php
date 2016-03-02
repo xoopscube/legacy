@@ -1,8 +1,9 @@
 <?php
 
-class Text_Wiki_Render_Latex_Interwiki extends Text_Wiki_Render {
+class Text_Wiki_Render_Latex_Interwiki extends Text_Wiki_Render
+{
     
-    var $conf = array(
+    public $conf = array(
         'sites' => array(
             'MeatBall' => 'http://www.usemod.com/cgi-bin/mb.pl?%s',
             'Advogato' => 'http://advogato.org/%s',
@@ -25,7 +26,7 @@ class Text_Wiki_Render_Latex_Interwiki extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         $site = $options['site'];
         $page = $options['page'];
@@ -57,4 +58,3 @@ class Text_Wiki_Render_Latex_Interwiki extends Text_Wiki_Render {
         return "$text\\footnote\{$href}";
     }
 }
-?>

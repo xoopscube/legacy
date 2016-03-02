@@ -24,3 +24,4 @@ $PHPMAILER_LANG['smtp_connect_failed']  = 'SMTP Connect() falhou.';
 $PHPMAILER_LANG['smtp_error']           = 'Erro de servidor SMTP: ';
 $PHPMAILER_LANG['variable_set']         = 'Não foi possível definir ou redefinir a variável: ';
 //$PHPMAILER_LANG['extension_missing']    = 'Extension missing: ';
+

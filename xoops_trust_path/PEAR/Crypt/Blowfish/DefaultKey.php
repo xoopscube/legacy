@@ -32,11 +32,11 @@
  */
 class Crypt_Blowfish_DefaultKey
 {
-    var $P = array();
+    public $P = array();
     
-    var $S = array();
+    public $S = array();
     
-    function Crypt_Blowfish_DefaultKey()
+    public function Crypt_Blowfish_DefaultKey()
     {
         $this->P = array(
             0x243F6A88, 0x85A308D3, 0x13198A2E, 0x03707344,
@@ -313,7 +313,4 @@ class Crypt_Blowfish_DefaultKey
             )
         );
     }
-    
 }
-
-?>

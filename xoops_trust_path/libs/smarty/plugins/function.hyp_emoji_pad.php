@@ -16,27 +16,29 @@
  */
 function smarty_function_hyp_emoji_pad($params, &$smarty)
 {
-	if (! function_exists('XC_CLASS_EXISTS') || ! XC_CLASS_EXISTS('HypCommonFunc')) return 'Class "HypCommonFunc" not exists.';
-	
-	if (empty($params['id'])) return 'Parameter "id" is not set.';
-	
-	$id = $params['id'];
-	
-	$checkmsg = (empty($params['msg']))? '' : $params['msg'];
-	$clearDisplayId = (empty($params['showDomId']))? '' : $params['showDomId'];
-	$emojiurl = (empty($params['emojiUrl']))? '' : $params['emojiUrl'];
-	$writeJS = (empty($params['outputWithJS']))? TRUE : (bool)$params['outputWithJS'];
-	$emj_list = (empty($params['emojiList']))? NULL : $params['emojiList'];
-	
-	if (strtolower($emj_list) === 'all') {
-		$emj_list = 'all';
-	} else if (!empty($emj_list)) {
-		$emj_list = explode(',', $emj_list);
-		$emj_list = array_map('trim', $emj_list);
-		$emj_list = array_map('intval', $emj_list);
-	}
-	
-	return HypCommonFunc::make_emoji_pad($id, $checkmsg, $clearDisplayId, $emojiurl, $writeJS, $emj_list);
+    if (! function_exists('XC_CLASS_EXISTS') || ! XC_CLASS_EXISTS('HypCommonFunc')) {
+        return 'Class "HypCommonFunc" not exists.';
+    }
+    
+    if (empty($params['id'])) {
+        return 'Parameter "id" is not set.';
+    }
+    
+    $id = $params['id'];
+    
+    $checkmsg = (empty($params['msg']))? '' : $params['msg'];
+    $clearDisplayId = (empty($params['showDomId']))? '' : $params['showDomId'];
+    $emojiurl = (empty($params['emojiUrl']))? '' : $params['emojiUrl'];
+    $writeJS = (empty($params['outputWithJS']))? true : (bool)$params['outputWithJS'];
+    $emj_list = (empty($params['emojiList']))? null : $params['emojiList'];
+    
+    if (strtolower($emj_list) === 'all') {
+        $emj_list = 'all';
+    } elseif (!empty($emj_list)) {
+        $emj_list = explode(',', $emj_list);
+        $emj_list = array_map('trim', $emj_list);
+        $emj_list = array_map('intval', $emj_list);
+    }
+    
+    return HypCommonFunc::make_emoji_pad($id, $checkmsg, $clearDisplayId, $emojiurl, $writeJS, $emj_list);
 }
-
-?>

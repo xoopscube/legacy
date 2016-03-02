@@ -24,32 +24,32 @@ class Ethna_Renderer
      */
 
     /** @var    object  Ethna_Controller    controllerオブジェクト */
-    var $controller;
+    public $controller;
 
     /** @var    object  Ethna_Controller    controllerオブジェクト($controllerの省略形) */
-    var $ctl;
+    public $ctl;
 
     /** @var    string  template directory  */
-    var $template_dir;
+    public $template_dir;
 
     /** @var    string  template engine */
-    var $engine;
+    public $engine;
 
     /** @var    string  template file */
-    var $template;
+    public $template;
 
     /** @var    string  テンプレート変数 */
-    var $prop;
+    public $prop;
     
     /** @var    string  レンダラプラグイン(Ethna_Pluginとは関係なし) */
-    var $plugin_registry;
+    public $plugin_registry;
     
     /**
      *  Ethna_Rendererクラスのコンストラクタ
      *
      *  @access public
      */
-    function Ethna_Renderer(&$controller)
+    public function Ethna_Renderer(&$controller)
     {
         $this->controller =& $controller;
         $this->ctl =& $this->controller;
@@ -68,7 +68,7 @@ class Ethna_Renderer
      *
      *  @access public
      */
-    function perform($template = null, $capture = false)
+    public function perform($template = null, $capture = false)
     {
         if ($template == null && $this->template == null) {
             return Ethna::raiseWarning('template is not defined');
@@ -102,7 +102,7 @@ class Ethna_Renderer
      * 
      *  @access public
      */
-    function &getEngine()
+    public function &getEngine()
     {
         return $this->engine;
     }
@@ -114,7 +114,7 @@ class Ethna_Renderer
      * 
      *  @access public
      */
-    function getTemplateDir()
+    public function getTemplateDir()
     {
         return $this->template_dir;
     }
@@ -128,7 +128,7 @@ class Ethna_Renderer
      * 
      *  @access public
      */
-    function &getProp($name)
+    public function &getProp($name)
     {
         if (isset($this->prop[$name])) {
             return $this->prop[$name];
@@ -144,7 +144,7 @@ class Ethna_Renderer
      * 
      *  @access public
      */
-    function &removeProp($name)
+    public function &removeProp($name)
     {
         if (isset($this->prop[$name])) {
             unset($this->prop[$name]);
@@ -158,7 +158,7 @@ class Ethna_Renderer
      * 
      *  @access public
      */
-    function setPropArray($array)
+    public function setPropArray($array)
     {
         $this->prop = array_merge($this->prop, $array);
     }
@@ -170,7 +170,7 @@ class Ethna_Renderer
      * 
      *  @access public
      */
-    function setPropArrayByRef(&$array)
+    public function setPropArrayByRef(&$array)
     {
         $keys  = array_keys($array);
         $count = sizeof($keys);
@@ -188,7 +188,7 @@ class Ethna_Renderer
      * 
      * @access public
      */
-    function setProp($name, $value)
+    public function setProp($name, $value)
     {
         $this->prop[$name] = $value;
     }
@@ -201,7 +201,7 @@ class Ethna_Renderer
      * 
      *  @access public
      */
-    function setPropByRef($name, &$value)
+    public function setPropByRef($name, &$value)
     {
         $this->prop[$name] =& $value;
     }
@@ -213,7 +213,7 @@ class Ethna_Renderer
      * 
      *  @access public
      */
-    function setTemplate($template)
+    public function setTemplate($template)
     {
         $this->template = $template;
     }
@@ -225,7 +225,7 @@ class Ethna_Renderer
      * 
      *  @access public
      */
-    function setTemplateDir($dir)
+    public function setTemplateDir($dir)
     {
         $this->template_dir = $dir;
 
@@ -241,7 +241,7 @@ class Ethna_Renderer
      * 
      *  @access public
      */
-    function templateExists($template)
+    public function templateExists($template)
     {
         if (substr($this->template_dir, -1) != '/') {
             $this->template_dir .= '/';
@@ -259,7 +259,7 @@ class Ethna_Renderer
      * 
      *  @access public
      */
-    function setPlugin($name, $type, $plugin)
+    public function setPlugin($name, $type, $plugin)
     {
         $this->plugin_registry[$type][$name] = $plugin;
     }
@@ -270,7 +270,7 @@ class Ethna_Renderer
      *
      *  @access public
      */
-    function assign($name, $value)
+    public function assign($name, $value)
     {
         $this->setProp($name, $value);
     }
@@ -280,7 +280,7 @@ class Ethna_Renderer
      *
      *  @access public
      */
-    function assign_by_ref($name, &$value)
+    public function assign_by_ref($name, &$value)
     {
         $this->setPropByRef($name, $value);
     }
@@ -290,11 +290,11 @@ class Ethna_Renderer
      *
      *  @access public
      */
-    function display($template = null)
+    public function display($template = null)
     {
         return $this->perform($template);
     }
     // }}}
 }
 // }}}
-?>
+;

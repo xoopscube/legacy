@@ -5,14 +5,13 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
 // Set include_path
 if (!defined('PATH_SEPARATOR')) {
-	define('PATH_SEPARATOR', (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN')? ':' : ';');
+    define('PATH_SEPARATOR', (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN')? ':' : ';');
 }
 set_include_path(get_include_path() . PATH_SEPARATOR . dirname(dirname(__FILE__)) . '/PEAR');
 
@@ -21,17 +20,17 @@ set_include_path(get_include_path() . PATH_SEPARATOR . dirname(dirname(__FILE__)
 **/
 abstract class Xupdate_AbstractAction
 {
-	public /*** XCube_Root ***/ $mRoot = null;
+    /*** XCube_Root ***/ public $mRoot = null;
 
-	public /*** Xupdate_Module ***/ $mModule = null;
+    /*** Xupdate_Module ***/ public $mModule = null;
 
-	public /*** Xupdate_AssetManager ***/ $mAsset = null;
+    /*** Xupdate_AssetManager ***/ public $mAsset = null;
 
 
-	public $Xupdate  ;	// Xupdate instance
-	public $Ftp  ;	// FTP instance
-	public $Func ;	// Functions instance
-	public $mod_config ;
+    public $Xupdate  ;    // Xupdate instance
+    public $Ftp  ;    // FTP instance
+    public $Func ;    // Functions instance
+    public $mod_config ;
 
 
     /**
@@ -43,27 +42,26 @@ abstract class Xupdate_AbstractAction
     **/
     public function __construct()
     {
-		$this->mRoot =& XCube_Root::getSingleton();
-		$this->mModule =& $this->mRoot->mContext->mModule;
-		$this->mAsset =& $this->mModule->mAssetManager;
+        $this->mRoot =& XCube_Root::getSingleton();
+        $this->mModule =& $this->mRoot->mContext->mModule;
+        $this->mAsset =& $this->mModule->mAssetManager;
 
-		// Xupdate_ftp class object
-		require_once XUPDATE_TRUST_PATH .'/class/Root.class.php';
+        // Xupdate_ftp class object
+        require_once XUPDATE_TRUST_PATH .'/class/Root.class.php';
 
-		$this->Xupdate = new Xupdate_Root ;// Xupdate instance
-		$this->Ftp = $this->Xupdate->Ftp ;		// FTP instance
-		$this->Func = $this->Xupdate->func ;		// Functions instance
-		$this->mod_config = $this->mRoot->mContext->mModuleConfig ;	// mod_config
-		// FTP login check
-		$this->mod_config['_FtpLoginCheck'] = $this->Ftp->checkLogin();
-		// curl extention check
-		$this->mod_config['_CurlCheck'] = (extension_loaded('curl'));
-		// php max_execution_time
-		@ set_time_limit(300);
-		$this->mod_config['_ExecutionTime'] = (int)ini_get('max_execution_time');
-		//	adump($this->mod_config);
-
-   }
+        $this->Xupdate = new Xupdate_Root ;// Xupdate instance
+        $this->Ftp = $this->Xupdate->Ftp ;        // FTP instance
+        $this->Func = $this->Xupdate->func ;        // Functions instance
+        $this->mod_config = $this->mRoot->mContext->mModuleConfig ;    // mod_config
+        // FTP login check
+        $this->mod_config['_FtpLoginCheck'] = $this->Ftp->checkLogin();
+        // curl extention check
+        $this->mod_config['_CurlCheck'] = (extension_loaded('curl'));
+        // php max_execution_time
+        @ set_time_limit(300);
+        $this->mod_config['_ExecutionTime'] = (int)ini_get('max_execution_time');
+        //	adump($this->mod_config);
+    }
 
     /**
      * getPageTitle
@@ -74,7 +72,7 @@ abstract class Xupdate_AbstractAction
     **/
     public function getPagetitle()
     {
-    	//XCL 2.2 only
+        //XCL 2.2 only
         //return Legacy_Utils::formatPagetitle($this->mRoot->mContext->mModule->mXoopsModule->get('name'), $this->_getPagetitle(), $this->_getActionName());
         return $this->mRoot->mContext->mModule->mXoopsModule->get('name') .':'. $this->_getPagetitle();
     }
@@ -125,8 +123,8 @@ abstract class Xupdate_AbstractAction
     **/
     public function setHeaderScript()
     {
-		$headerScript = $this->mRoot->mContext->getAttribute('headerScript');
-		$headerScript->addStylesheet($this->_getStylesheet());
+        $headerScript = $this->mRoot->mContext->getAttribute('headerScript');
+        $headerScript->addStylesheet($this->_getStylesheet());
     }
 
     /**
@@ -243,8 +241,9 @@ abstract class Xupdate_AbstractAction
     {
     }
     
-    protected function modalBoxJs() {
-    	return <<<EOD
+    protected function modalBoxJs()
+    {
+        return <<<EOD
 jQuery(document).ready(function($) {
     //select all the a tag with name equal to modal
     var isCancel = false;
@@ -291,53 +290,51 @@ EOD;
      * 
      * @return boolean
      */
-    protected function _removeInstallDir() {
-    	$ret = false;
-    	if ($this->Ftp->app_login()) {
-    		// enable protector in mainfile.php
-    		$this->Func->write_mainfile_protector();
-    		
-    		// write protect mainfile.php
-    		$this->Func->mainfile_to_readonly();
-    		
-			// remove install directory
-    		$this->Ftp->localRmdirRecursive(XOOPS_ROOT_PATH . '/install');
-    		
-    		// set writable "mod_config['temp_path']"
-    		if (! $this->Xupdate->params['is_writable']['result']) {
-    			$this->Ftp->localChmod($this->Xupdate->params['is_writable']['path'], _MD_XUPDATE_WRITABLE_DIR_PERM_T);
-    		}
-    		
-    		// set writable protector config dir
-    		$protector_config = XOOPS_TRUST_PATH . '/modules/protector/configs';
-    		if (! Xupdate_Utils::checkDirWritable($protector_config)) {
-    			$this->Ftp->localChmod($protector_config, _MD_XUPDATE_WRITABLE_DIR_PERM_T);
-    		}
-    		
-    		clearstatcache();
-    		
-    		// edit /preload/CorePackPreload.class.php
-    		$src = file_get_contents(XOOPS_ROOT_PATH . '/preload/CorePackPreload.class.php');
-    		if (! is_dir(XOOPS_ROOT_PATH . '/install') && ! preg_match('/define\s*\(\'XUPDATE_INSTALLERCHECKER_ACTIVE\'/', $src)) {
-    			$ret = true;
-    			$add = '
+    protected function _removeInstallDir()
+    {
+        $ret = false;
+        if ($this->Ftp->app_login()) {
+            // enable protector in mainfile.php
+            $this->Func->write_mainfile_protector();
+            
+            // write protect mainfile.php
+            $this->Func->mainfile_to_readonly();
+            
+            // remove install directory
+            $this->Ftp->localRmdirRecursive(XOOPS_ROOT_PATH . '/install');
+            
+            // set writable "mod_config['temp_path']"
+            if (! $this->Xupdate->params['is_writable']['result']) {
+                $this->Ftp->localChmod($this->Xupdate->params['is_writable']['path'], _MD_XUPDATE_WRITABLE_DIR_PERM_T);
+            }
+            
+            // set writable protector config dir
+            $protector_config = XOOPS_TRUST_PATH . '/modules/protector/configs';
+            if (! Xupdate_Utils::checkDirWritable($protector_config)) {
+                $this->Ftp->localChmod($protector_config, _MD_XUPDATE_WRITABLE_DIR_PERM_T);
+            }
+            
+            clearstatcache();
+            
+            // edit /preload/CorePackPreload.class.php
+            $src = file_get_contents(XOOPS_ROOT_PATH . '/preload/CorePackPreload.class.php');
+            if (! is_dir(XOOPS_ROOT_PATH . '/install') && ! preg_match('/define\s*\(\'XUPDATE_INSTALLERCHECKER_ACTIVE\'/', $src)) {
+                $ret = true;
+                $add = '
 
 // Already checked with X-update install checker
 define(\'XUPDATE_INSTALLERCHECKER_ACTIVE\', false);';
-    			$src = str_replace('<?php', '<?php'.$add, $src);
-    			$sourcePath = $this->Xupdate->params['is_writable']['path'] . '/preload';
-    			$this->Ftp->localMkdir($sourcePath);
-    			$this->Ftp->localChmod($sourcePath, _MD_XUPDATE_WRITABLE_DIR_PERM_T);
-    			file_put_contents($sourcePath . '/CorePackPreload.class.php', $src);
-    			$this->Ftp->uploadNakami($sourcePath, XOOPS_ROOT_PATH . '/preload/');
-    			$this->Ftp->localRmdirRecursive($sourcePath);
-    		}
-    		
-    		$this->Ftp->app_logout();
-    	}
-    	return $ret;
+                $src = str_replace('<?php', '<?php'.$add, $src);
+                $sourcePath = $this->Xupdate->params['is_writable']['path'] . '/preload';
+                $this->Ftp->localMkdir($sourcePath);
+                $this->Ftp->localChmod($sourcePath, _MD_XUPDATE_WRITABLE_DIR_PERM_T);
+                file_put_contents($sourcePath . '/CorePackPreload.class.php', $src);
+                $this->Ftp->uploadNakami($sourcePath, XOOPS_ROOT_PATH . '/preload/');
+                $this->Ftp->localRmdirRecursive($sourcePath);
+            }
+            
+            $this->Ftp->app_logout();
+        }
+        return $ret;
     }
-    
 }
-
-?>

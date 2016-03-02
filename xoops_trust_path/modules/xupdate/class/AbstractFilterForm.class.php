@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -15,15 +14,15 @@ if(!defined('XOOPS_ROOT_PATH'))
 **/
 abstract class Xupdate_AbstractFilterForm
 {
-    public /*** Enum ***/ $mSort = 0;
+    /*** Enum ***/ public $mSort = 0;
 
-    public /*** string[] ***/ $mSortKeys = array();
+    /*** string[] ***/ public $mSortKeys = array();
 
-    public /*** XCube_PageNavigator ***/ $mNavi = null;
+    /*** XCube_PageNavigator ***/ public $mNavi = null;
 
-    protected /*** XoopsObjectGenericHandler ***/ $_mHandler = null;
+    /*** XoopsObjectGenericHandler ***/ protected $_mHandler = null;
 
-    protected /*** Criteria ***/ $_mCriteria = null;
+    /*** Criteria ***/ protected $_mCriteria = null;
 
     /**
      * _getId
@@ -67,7 +66,7 @@ abstract class Xupdate_AbstractFilterForm
      *
      * @return  void
     **/
-    public function prepare(/*** XCube_PageNavigator ***/ &$navi,/*** XoopsObjectGenericHandler ***/ &$handler)
+    public function prepare(/*** XCube_PageNavigator ***/ &$navi, /*** XoopsObjectGenericHandler ***/ &$handler)
     {
         $this->mNavi =& $navi;
         $this->_mHandler =& $handler;
@@ -98,14 +97,14 @@ abstract class Xupdate_AbstractFilterForm
     {
         $root =& XCube_Root::getSingleton();
 //fix pagenavi
-		$this->mNavi->setStart(intval($root->mContext->mRequest->getRequest($this->mNavi->mPrefix . 'start')));
+        $this->mNavi->setStart(intval($root->mContext->mRequest->getRequest($this->mNavi->mPrefix . 'start')));
 
         $this->mSort = intval($root->mContext->mRequest->getRequest($this->mNavi->mPrefix . 'sort'));
 
         if (!isset($this->mSortKeys[abs($this->mSort)])) {
             $this->mSort = $this->getDefaultSortKey();
         } else {
-        	$this->mNavi->mSort[$this->mNavi->mPrefix . 'sort'] = $this->mSort;
+            $this->mNavi->mSort[$this->mNavi->mPrefix . 'sort'] = $this->mSort;
         }
     }
 
@@ -155,7 +154,7 @@ abstract class Xupdate_AbstractFilterForm
      *
      * @return  Criteria
     **/
-    public function &getCriteria(/*** int ***/ $start = null,/*** int ***/ $limit = null)
+    public function &getCriteria(/*** int ***/ $start = null, /*** int ***/ $limit = null)
     {
         $t_start = ($start === null) ? $this->mNavi->getStart() : intval($start);
         $t_limit = ($limit === null) ? $this->mNavi->getPerpage() : intval($limit);
@@ -167,5 +166,3 @@ abstract class Xupdate_AbstractFilterForm
         return $criteria;
     }
 }
-
-?>

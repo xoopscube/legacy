@@ -42,43 +42,43 @@ class File_Archive_Writer_Mail extends File_Archive_Writer
      * @var Mail_mime object
      * @access private
      */
-    var $mime;
+    public $mime;
 
     /**
      * @var Mail object used to send email (built thanks to the factory)
      * @access private
      */
-    var $mail;
+    public $mail;
 
     /**
      * @var Array or String An array or a string with comma separated recipients
      * @access private
      */
-    var $to;
+    public $to;
 
     /**
      * @var Array The headers that will be passed to the Mail_mime object
      * @access private
      */
-    var $headers;
+    public $headers;
 
     /**
      * @var String Data read from the current file so far
      * @access private
      */
-    var $currentData = null;
+    public $currentData = null;
 
     /**
      * @var String Name of the file being attached
      * @access private
      */
-    var $currentFilename = null;
+    public $currentFilename = null;
 
     /**
      * @var String MIME of the file being attached
      * @access private
      */
-    var $currentMime = null;
+    public $currentMime = null;
 
     /**
      * @param Mail $mail Object used to send mail (see Mail::factory)
@@ -88,7 +88,7 @@ class File_Archive_Writer_Mail extends File_Archive_Writer
      *        object
      * @param string $message Text body of the mail
      */
-    function File_Archive_Writer_Mail($to, $headers, $message, &$mail)
+    public function File_Archive_Writer_Mail($to, $headers, $message, &$mail)
     {
         $this->mime = new Mail_mime();
         $this->mime->setTXTBody($message);
@@ -96,10 +96,11 @@ class File_Archive_Writer_Mail extends File_Archive_Writer
             $this->mime->setHTMLBody($htmlMessage);
         }
 
-        if ($mail === null)
+        if ($mail === null) {
             $this->mail = Mail::factory("mail");
-        else
+        } else {
             $this->mail =& $mail;
+        }
 
         $this->to = $to;
         $this->headers = $headers;
@@ -108,14 +109,14 @@ class File_Archive_Writer_Mail extends File_Archive_Writer
     /**
      * @see Mail_Mime::setHTMLBody()
      */
-    function setHTMLBody($data, $isfile = false)
+    public function setHTMLBody($data, $isfile = false)
     {
         return $this->mime->setHTMLBody($data, $isfile);
     }
     /**
      * @see Mail_Mime::addHTMLImage()
      */
-    function addHTMLImage($file, $c_type = 'application/octet-stream',
+    public function addHTMLImage($file, $c_type = 'application/octet-stream',
                           $name = '', $isfile = true)
     {
         return $this->mime->addHTMLImage($file, $c_type, $name, $isfile);
@@ -128,14 +129,14 @@ class File_Archive_Writer_Mail extends File_Archive_Writer
      * At that time, addCurrentData is called to attach $currentData to the mail
      * and to clear $currentData for a new file
      */
-    function writeData($data)
+    public function writeData($data)
     {
         $this->currentData .= $data;
     }
     /**
      * Called when a file is finished and must be added as attachment to the mail
      */
-    function addCurrentData()
+    public function addCurrentData()
     {
         if ($this->currentFilename === null) {
             return;
@@ -152,7 +153,7 @@ class File_Archive_Writer_Mail extends File_Archive_Writer
     /**
      * @see File_Archive_Writer::newFile()
      */
-    function newFile($filename, $stat, $mime = "application/octet-stream")
+    public function newFile($filename, $stat, $mime = "application/octet-stream")
     {
         $error = $this->addCurrentData();
         if (PEAR::isError($error)) {
@@ -169,7 +170,7 @@ class File_Archive_Writer_Mail extends File_Archive_Writer
     /**
      * @see File_Archive_Writer::newFileNeedsMIME()
      */
-    function newFileNeedsMIME()
+    public function newFileNeedsMIME()
     {
         return true;
     }
@@ -177,7 +178,7 @@ class File_Archive_Writer_Mail extends File_Archive_Writer
     /**
      * @see File_Archive_Writer::close()
      */
-    function close()
+    public function close()
     {
         $error = parent::close();
         if (PEAR::isError($error)) {
@@ -200,5 +201,3 @@ class File_Archive_Writer_Mail extends File_Archive_Writer
         }
     }
 }
-
-?>

@@ -34,7 +34,8 @@
 * 
 */
 
-class Text_Wiki_Parse_Bold extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Bold extends Text_Wiki_Parse
+{
     
     
     /**
@@ -50,7 +51,7 @@ class Text_Wiki_Parse_Bold extends Text_Wiki_Parse {
     * 
     */
     
-    var $regex =  "/'''(()|[^'].*)'''/U";
+    public $regex =  "/'''(()|[^'].*)'''/U";
     
     
     /**
@@ -69,11 +70,10 @@ class Text_Wiki_Parse_Bold extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches)
+    public function process(&$matches)
     {
         $start = $this->wiki->addToken($this->rule, array('type' => 'start'));
         $end = $this->wiki->addToken($this->rule, array('type' => 'end'));
         return $start . $matches[1] . $end;
     }
 }
-?>

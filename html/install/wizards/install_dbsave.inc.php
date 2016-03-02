@@ -11,7 +11,7 @@
     $mm = new mainfile_manager('../mainfile.php');
 
     $ret = $mm->copyDistFile();
-    if(! $ret){
+    if (! $ret) {
         $wizard->setContent(_INSTALL_L60);
         $wizard->error();
         exit();
@@ -34,18 +34,17 @@
 
     // Check if XOOPS_CHECK_PATH should be initially set or not
     $xoopsPathTrans = isset($_SERVER['PATH_TRANSLATED']) ? $_SERVER['PATH_TRANSLATED'] :  $_SERVER['SCRIPT_FILENAME'];
-    if ( DIRECTORY_SEPARATOR != '/' ) {
+    if (DIRECTORY_SEPARATOR != '/') {
         // IIS6 doubles the \ chars
-        $xoopsPathTrans = str_replace( strpos( $xoopsPathTrans, '\\\\', 2 ) ? '\\\\' : DIRECTORY_SEPARATOR, '/', $xoopsPathTrans);
+        $xoopsPathTrans = str_replace(strpos($xoopsPathTrans, '\\\\', 2) ? '\\\\' : DIRECTORY_SEPARATOR, '/', $xoopsPathTrans);
     }
-	
+    
     $ret = $mm->doRewrite();
-    if(! $ret){
+    if (! $ret) {
         $wizard->setContent(_INSTALL_L60);
         $wizard->error();
         exit();
     }
     $wizard->assign('reports', $mm->report());
-    $wizard->assign('message',_INSTALL_L62);
+    $wizard->assign('message', _INSTALL_L62);
     $wizard->render('install_dbsave.tpl.php');
-?>

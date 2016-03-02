@@ -20,7 +20,7 @@
 class Ethna_Plugin_Validator_Required extends Ethna_Plugin_Validator
 {
     /** @var    bool    配列を受け取るかフラグ */
-    var $accept_array = true;
+    public $accept_array = true;
 
     /**
      *  フォームに値が入力されているかを検証する
@@ -33,7 +33,7 @@ class Ethna_Plugin_Validator_Required extends Ethna_Plugin_Validator
      *  @param  mixed   $var        フォームの値
      *  @param  array   $params     プラグインのパラメータ
      */
-    function &validate($name, $var, $params)
+    public function &validate($name, $var, $params)
     {
         $true = true;
         if (isset($params['required']) && $params['required'] == false) {
@@ -58,7 +58,7 @@ class Ethna_Plugin_Validator_Required extends Ethna_Plugin_Validator
             if ($this->isEmpty($var, $this->getFormType($name))) {
                 if (isset($params['error'])) {
                     $msg = $params['error'];
-                } else if ($choice) {
+                } elseif ($choice) {
                     $msg = _et('{form} was not selected.');
                 } else {
                     $msg = _et('no input to {form}.');
@@ -86,7 +86,7 @@ class Ethna_Plugin_Validator_Required extends Ethna_Plugin_Validator
             if (count($invalid_keys) > 0) {
                 if (isset($params['error'])) {
                     $msg = $params['error'];
-                } else if ($choice) {
+                } elseif ($choice) {
                     $msg = _et('Required item of {form} was not selected.');
                 } else {
                     $msg = _et('Required item of {form} was not submitted.');
@@ -101,7 +101,7 @@ class Ethna_Plugin_Validator_Required extends Ethna_Plugin_Validator
             if (count($valid_keys) < intval($params['num'])) {
                 if (isset($params['error'])) {
                     $msg = $params['error'];
-                } else if ($choice) {
+                } elseif ($choice) {
                     $msg = _et('Required numbers of {form} was not selected.');
                 } else {
                     $msg = _et('Required numbers of {form} was not submitted.');
@@ -116,7 +116,7 @@ class Ethna_Plugin_Validator_Required extends Ethna_Plugin_Validator
             if (count($valid_keys) == 0 || count($valid_keys) != count($var)) {
                 if (isset($params['error'])) {
                     $msg = $params['error'];
-                } else if ($choice) {
+                } elseif ($choice) {
                     $msg = _et('Please select {form}.');
                 } else {
                     $msg = _et('Please input {form}.');
@@ -127,7 +127,6 @@ class Ethna_Plugin_Validator_Required extends Ethna_Plugin_Validator
 
         return $true;
     }
-
 }
 // }}}
-?>
+;

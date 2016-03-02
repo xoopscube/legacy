@@ -24,3 +24,4 @@ $PHPMAILER_LANG['smtp_connect_failed']  = 'Помилка зєднання із 
 $PHPMAILER_LANG['smtp_error']           = 'Помилка SMTP-сервера: ';
 $PHPMAILER_LANG['variable_set']         = 'Неможливо встановити або перевстановити змінну: ';
 //$PHPMAILER_LANG['extension_missing']    = 'Extension missing: ';
+

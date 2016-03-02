@@ -28,8 +28,11 @@
 <table id="mainbody" cellspacing="0">
 <tr>
 <td>
-<p align="center"><?php if(!empty($title)) { ?></p>
-<h3><?php echo $title; ?></h3><?php } ?>
+<p align="center"><?php if (!empty($title)) {
+    ?></p>
+<h3><?php echo $title;
+    ?></h3><?php 
+} ?>
 
 
 <div class="maincontents"><?php echo $content; ?></div></td>

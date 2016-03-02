@@ -14,5 +14,3 @@ $root->mContext->mModule->setAdminMode(true);
 $root->mController->execute();
 
 require_once XOOPS_ROOT_PATH . '/footer.php';
-
-?>

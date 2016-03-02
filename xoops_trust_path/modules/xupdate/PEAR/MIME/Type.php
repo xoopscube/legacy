@@ -34,21 +34,21 @@ class MIME_Type
      *
      * @var string
      */
-    var $media = '';
+    public $media = '';
 
     /**
      * The MIME media sub-type
      *
      * @var string
      */
-    var $subType = '';
+    public $subType = '';
 
     /**
      * Optional MIME parameters
      *
      * @var array
      */
-    var $parameters = array();
+    public $parameters = array();
 
     /**
      * List of valid media types.
@@ -57,7 +57,7 @@ class MIME_Type
      *
      * @var array
      */
-    var $validMediaTypes = array(
+    public $validMediaTypes = array(
         'text',
         'image',
         'audio',
@@ -72,28 +72,28 @@ class MIME_Type
      *
      * @var boolean
      */
-    var $useFinfo = true;
+    public $useFinfo = true;
 
     /**
      * If mime_content_type shall be used when available
      *
      * @var boolean
      */
-    var $useMimeContentType = true;
+    public $useMimeContentType = true;
 
     /**
      * If the file command shall be used when available
      *
      * @var boolean
      */
-    var $useFileCmd = true;
+    public $useFileCmd = true;
 
     /**
      * If the in-built file extension detection shall be used
      *
      * @var boolean
      */
-    var $useExtension = true;
+    public $useExtension = true;
 
     /**
      * Path to the "magic" file database.
@@ -101,7 +101,7 @@ class MIME_Type
      *
      * @var string
      */
-    var $magicFile = null;
+    public $magicFile = null;
 
 
     /**
@@ -115,7 +115,7 @@ class MIME_Type
      *
      * @return void
      */
-    function MIME_Type($type = false)
+    public function MIME_Type($type = false)
     {
         if ($type) {
             $this->parse($type);
@@ -130,7 +130,7 @@ class MIME_Type
      *
      * @return boolean True if the type has been parsed, false if not
      */
-    function parse($type)
+    public function parse($type)
     {
         if ($type instanceof PEAR_Error) {
             return false;
@@ -159,7 +159,7 @@ class MIME_Type
      * @return boolean true if $type has parameters, false otherwise
      * @static
      */
-    function hasParameters($type)
+    public function hasParameters($type)
     {
         if (strstr($type, ';')) {
             return true;
@@ -176,7 +176,7 @@ class MIME_Type
      * @return array $type's parameters
      * @static
      */
-    function getParameters($type)
+    public function getParameters($type)
     {
         $params = array();
         $tmp    = explode(';', $type);
@@ -195,7 +195,7 @@ class MIME_Type
      * @return string MIME type with parameters removed
      * @static
      */
-    function stripParameters($type)
+    public function stripParameters($type)
     {
         if (strstr($type, ';')) {
             return substr($type, 0, strpos($type, ';'));
@@ -214,7 +214,7 @@ class MIME_Type
      * @return string   String without comments
      * @static
      */
-    function stripComments($string, &$comment)
+    public function stripComments($string, &$comment)
     {
         if (strpos($string, '(') === false) {
             return $string;
@@ -229,28 +229,28 @@ class MIME_Type
             if ($escaped) {
                 if ($incomment == 0) {
                     $newstring .= $string[$n];
-                } else if ($comment !== null) {
+                } elseif ($comment !== null) {
                     $comment .= $string[$n];
                 }
                 $escaped = false;
-            } else if ($string[$n] == '\\') {
+            } elseif ($string[$n] == '\\') {
                 $escaped = true;
-            } else if (!$inquote && $incomment > 0 && $string[$n] == ')') {
+            } elseif (!$inquote && $incomment > 0 && $string[$n] == ')') {
                 $incomment--;
                 if ($incomment == 0 && $comment !== null) {
                     $comment .= ' ';
                 }
-            } else if (!$inquote && $string[$n] == '(') {
+            } elseif (!$inquote && $string[$n] == '(') {
                 $incomment++;
-            } else if ($string[$n] == '"') {
+            } elseif ($string[$n] == '"') {
                 if ($inquote) {
                     $inquote = false;
                 } else {
                     $inquote = true;
                 }
-            } else if ($incomment == 0) {
+            } elseif ($incomment == 0) {
                 $newstring .= $string[$n];
-            } else if ($comment !== null) {
+            } elseif ($comment !== null) {
                 $comment .= $string[$n];
             }
         }
@@ -272,7 +272,7 @@ class MIME_Type
      * @return string $type's media
      * @static
      */
-    function getMedia($type)
+    public function getMedia($type)
     {
         $tmp = explode('/', $type);
         return strtolower(trim(MIME_Type::stripComments($tmp[0], $null)));
@@ -287,7 +287,7 @@ class MIME_Type
      * @return string $type's subtype, null if invalid mime type
      * @static
      */
-    function getSubType($type)
+    public function getSubType($type)
     {
         $tmp = explode('/', $type);
         if (!isset($tmp[1])) {
@@ -305,7 +305,7 @@ class MIME_Type
      *
      * @return string MIME type string
      */
-    function get()
+    public function get()
     {
         $type = strtolower($this->media . '/' . $this->subType);
         if (count($this->parameters)) {
@@ -328,7 +328,7 @@ class MIME_Type
      * @return boolean true if $type is experimental, false otherwise
      * @static
      */
-    function isExperimental($type)
+    public function isExperimental($type)
     {
         if (substr(MIME_Type::getMedia($type), 0, 2) == 'x-'
             || substr(MIME_Type::getSubType($type), 0, 2) == 'x-'
@@ -349,7 +349,7 @@ class MIME_Type
      * @return boolean true if $type is a vendor type, false otherwise
      * @static
      */
-    function isVendor($type)
+    public function isVendor($type)
     {
         if (substr(MIME_Type::getSubType($type), 0, 4) == 'vnd.') {
             return true;
@@ -366,7 +366,7 @@ class MIME_Type
      * @return boolean true if $type is a wildcard, false otherwise
      * @static
      */
-    function isWildcard($type)
+    public function isWildcard($type)
     {
         if ($type == '*/*' || MIME_Type::getSubtype($type) == '*') {
             return true;
@@ -387,7 +387,7 @@ class MIME_Type
      * @return boolean true if there was a match, false otherwise
      * @static
      */
-    function wildcardMatch($card, $type)
+    public function wildcardMatch($card, $type)
     {
         if (!MIME_Type::isWildcard($card)) {
             return false;
@@ -414,7 +414,7 @@ class MIME_Type
      *
      * @return void
      */
-    function addParameter($name, $value, $comment = false)
+    public function addParameter($name, $value, $comment = false)
     {
         $tmp = new MIME_Type_Parameter();
 
@@ -432,7 +432,7 @@ class MIME_Type
      *
      * @return void
      */
-    function removeParameter($name)
+    public function removeParameter($name)
     {
         unset($this->parameters[$name]);
     }
@@ -451,7 +451,7 @@ class MIME_Type
      * @since 1.0.0beta1
      * @static
      */
-    function autoDetect($file, $params = false)
+    public function autoDetect($file, $params = false)
     {
         $isStatic = !(isset($this) && get_class($this) == __CLASS__);
         if ($isStatic) {
@@ -482,7 +482,7 @@ class MIME_Type
      *  System_Command. When that fails, too, then we use our in-built
      *  extension-to-mimetype-mapping list.
      */
-    function _autoDetect($file, $params = false)
+    public function _autoDetect($file, $params = false)
     {
         // Sanity checks
         if (!file_exists($file)) {
@@ -540,7 +540,7 @@ class MIME_Type
      * @return string $file's MIME-type on success, PEAR_Error otherwise
      * @static
      */
-    function _handleDetection($type, $params)
+    public function _handleDetection($type, $params)
     {
         // _fileAutoDetect() may have returned an error.
         if (PEAR::isError($type)) {
@@ -573,7 +573,7 @@ class MIME_Type
      * @since 1.0.0beta1
      * @static
      */
-    function _fileAutoDetect($file)
+    public function _fileAutoDetect($file)
     {
         $cmd   = new System_Command();
         $magic = '';
@@ -594,5 +594,4 @@ class MIME_Type
 
         return $res;
     }
-
 }

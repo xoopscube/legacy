@@ -40,23 +40,23 @@ require_once "File/Archive/Reader.php";
  */
 class File_Archive_Reader_Cache extends File_Archive_Reader
 {
-    var $tmpFile;
-    var $files = array();
-    var $pos = 0;
-    var $fromSource = true;
-    var $endOfSource = false;
-    var $source;
+    public $tmpFile;
+    public $files = array();
+    public $pos = 0;
+    public $fromSource = true;
+    public $endOfSource = false;
+    public $source;
 
     /**
      * $source is the reader to filter
      */
-    function File_Archive_Reader_Cache(&$source)
+    public function File_Archive_Reader_Cache(&$source)
     {
         $this->source =& $source;
         $this->tmpFile = tmpfile();
     }
 
-    function _writeEndOfFile()
+    public function _writeEndOfFile()
     {
         $bufferSize = File_Archive::getOption('blockSize');
         while (($data = $this->source->getData($bufferSize))!=null) {
@@ -66,7 +66,7 @@ class File_Archive_Reader_Cache extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::next()
      */
-    function next()
+    public function next()
     {
         //Write the end of the current file to the temp file
         if ($this->fromSource && !empty($this->files)) {
@@ -107,23 +107,35 @@ class File_Archive_Reader_Cache extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::getFilename()
      */
-    function getFilename() { return $this->files[$this->pos]['name']; }
+    public function getFilename()
+    {
+        return $this->files[$this->pos]['name'];
+    }
     /**
      * @see File_Archive_Reader::getStat()
      */
-    function getStat() { return $this->files[$this->pos]['stat']; }
+    public function getStat()
+    {
+        return $this->files[$this->pos]['stat'];
+    }
     /**
      * @see File_Archive_Reader::getMime()
      */
-    function getMime() { return $this->files[$this->pos]['mime']; }
+    public function getMime()
+    {
+        return $this->files[$this->pos]['mime'];
+    }
     /**
      * @see File_Archive_Reader::getDataFilename()
      */
-    function getDataFilename() { return null; }
+    public function getDataFilename()
+    {
+        return null;
+    }
     /**
      * @see File_Archive_Reader::getData()
      */
-    function getData($length = -1)
+    public function getData($length = -1)
     {
         if ($this->fromSource) {
             $data = $this->source->getData($length);
@@ -160,7 +172,7 @@ class File_Archive_Reader_Cache extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::skip()
      */
-    function skip($length = -1)
+    public function skip($length = -1)
     {
         if ($this->fromSource) {
             return strlen($this->getData($length));
@@ -186,7 +198,7 @@ class File_Archive_Reader_Cache extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::rewind()
      */
-    function rewind($length = -1)
+    public function rewind($length = -1)
     {
         if ($this->fromSource) {
             $this->_writeEndOfFile();
@@ -200,20 +212,20 @@ class File_Archive_Reader_Cache extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::tell()
      */
-    function tell()
+    public function tell()
     {
         return ftell($this->tmpFile) - $this->files[$this->pos]['pos'];
     }
     /**
      * @see File_Archive_Reader::close()
      */
-    function close()
+    public function close()
     {
         $this->fromSource = false;
         $this->pos = 0;
         fseek($this->tmpFile, 0, SEEK_SET);
     }
-    function _closeAndReset()
+    public function _closeAndReset()
     {
         $this->close();
 
@@ -226,7 +238,7 @@ class File_Archive_Reader_Cache extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::makeAppendWriter()
      */
-    function makeAppendWriter()
+    public function makeAppendWriter()
     {
         $writer = $this->source->makeAppendWriter();
         if (!PEAR::isError($writer)) {
@@ -238,7 +250,7 @@ class File_Archive_Reader_Cache extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::makeWriterRemoveFiles()
      */
-    function makeWriterRemoveFiles($pred)
+    public function makeWriterRemoveFiles($pred)
     {
         $writer = $this->source->makeWriterRemoveFiles($pred);
         if (!PEAR::isError($writer)) {
@@ -249,7 +261,7 @@ class File_Archive_Reader_Cache extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::makeWriterRemoveBlocks()
      */
-    function makeWriterRemoveBlocks($blocks, $seek = 0)
+    public function makeWriterRemoveBlocks($blocks, $seek = 0)
     {
         $writer = $this->source->makeWriterRemoveBlocks($blocks, $seek);
         if (!PEAR::isError($writer)) {
@@ -258,5 +270,3 @@ class File_Archive_Reader_Cache extends File_Archive_Reader
         return $writer;
     }
 }
-
-?>

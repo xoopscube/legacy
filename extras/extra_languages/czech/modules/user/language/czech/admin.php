@@ -123,4 +123,3 @@ define('_AD_USER_TIPS_MAILJOB_SEND', "If there are too many users to send mail, 
 define('_AD_USER_TIPS_RECOUNT_POSTS', "Mùžete nechat pøepoèítat poèet pøíspìvkù uživatele kliknutím na tlaèítko 'Pøepoèítat'.");
 define('_AD_USER_TIPS_USER_EDIT', "Jestliže chcete zmìnit heslo, vložte znovu 'Heslo' & 'Kontrola hesla'.");
 define('_AD_USER_TIPS_USER_NEW', "Musíte vložit 'Uživatelské jméno', 'Emailová adresa' a 'Heslo' & 'Kontrola hesla'.");
-?>

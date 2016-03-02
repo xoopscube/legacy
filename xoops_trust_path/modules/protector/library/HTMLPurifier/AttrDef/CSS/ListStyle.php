@@ -110,3 +110,4 @@ class HTMLPurifier_AttrDef_CSS_ListStyle extends HTMLPurifier_AttrDef
 }
 
 // vim: et sw=4 sts=4
+

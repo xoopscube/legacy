@@ -30,5 +30,4 @@ Je voln� k distribuci pokud budou dodr�eny podm�nky GPL.
 <p>
 Pozorn� �t�te v�e b�hem pr�vodce instalc�. Mnohokr�t v�m napov� co je t�eba napravit nebo kde je probl�m.
 </p>
-"
-?>
+";

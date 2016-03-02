@@ -29,7 +29,7 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid()) ) {
+if (!is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid())) {
     exit("Access Denied");
 } else {
     $myts =& MyTextsanitizer::getInstance();
@@ -134,10 +134,10 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
         break;
     case 'listtpl':
          if ($tplset == '') {
-            redirect_header('admin.php?fct=tplsets',1);
-        }
+             redirect_header('admin.php?fct=tplsets', 1);
+         }
         if ($moddir == '') {
-            redirect_header('admin.php?fct=tplsets',1);
+            redirect_header('admin.php?fct=tplsets', 1);
         }
         xoops_cp_header();
         $module_handler =& xoops_gethandler('module');
@@ -177,7 +177,7 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
                     if ($last_imported < $mtime) {
                         if ($mtime > $last_modified) {
                             $bg = '#ff9999';
-                        } elseif($mtime > $last_imported) {
+                        } elseif ($mtime > $last_imported) {
                             $bg = '#99ff99';
                         }
                         echo '<td style="background-color:'.$bg.';">'.$last_imported_f.' [<a href="admin.php?fct=tplsets&amp;tplset='.$tplset4url.'&amp;moddir='.$moddir.'&amp;op=importtpl&amp;id='.$templates[$i]->getVar('tpl_id').'">'._MD_IMPORT.'</a>]';
@@ -238,7 +238,7 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
                     if ($last_imported < $mtime) {
                         if ($mtime > $last_modified) {
                             $bg = '#ff9999';
-                        } elseif($mtime > $last_imported) {
+                        } elseif ($mtime > $last_imported) {
                             $bg = '#99ff99';
                         }
                         echo '<td style="background-color:'.$bg.';">'.$last_imported_f.' [<a href="admin.php?fct=tplsets&amp;tplset='.$tplset4url.'&amp;op=importtpl&amp;moddir='.$moddir.'&amp;id='.$btemplates[$j]->getVar('tpl_id').'">'._MD_IMPORT.'</a>]';
@@ -286,8 +286,8 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
         $tplfile =& $tpltpl_handler->get($id, true);
         if (is_object($tplfile)) {
             $tplset = $tplfile->getVar('tpl_tplset');
-	        $tplset4disp = htmlspecialchars($tplset, ENT_QUOTES);
-	        $tplset4url = urlencode($tplset);
+            $tplset4disp = htmlspecialchars($tplset, ENT_QUOTES);
+            $tplset4url = urlencode($tplset);
             $tform = array('tpl_tplset' => $tplset, 'tpl_id' => $id, 'tpl_file' => $tplfile->getVar('tpl_file'), 'tpl_desc' => $tplfile->getVar('tpl_desc'), 'tpl_lastmodified' => $tplfile->getVar('tpl_lastmodified'), 'tpl_source' => $tplfile->getVar('tpl_source', 'E'), 'tpl_module' => $tplfile->getVar('tpl_module'));
             include_once XOOPS_ROOT_PATH.'/modules/system/admin/tplsets/tplform.php';
             xoops_cp_header();
@@ -396,8 +396,8 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
         xoops_cp_footer();
         break;
     case 'delete_go':
-        if(!xoops_confirm_validate()) {
-            redirect_header('admin.php?fct=tplsets',3,'Ticket Error');
+        if (!xoops_confirm_validate()) {
+            redirect_header('admin.php?fct=tplsets', 3, 'Ticket Error');
         }
         $tplset = isset($_POST['tplset']) ? $myts->stripslashesGPC(trim($_POST['tplset'])) : '';
         $msgs = array();
@@ -488,15 +488,15 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
         $tplset = isset($_POST['tplset']) ? $myts->stripslashesGPC(trim($_POST['tplset'])) : '';
         $newtheme = isset($_POST['newtheme']) ? trim($_POST['newtheme']) : '';
         if ($tplset === '' || $newtheme === '') {
-            redirect_header('admin.php?fct=tplsets',3,'Invalid Template Set Name');
+            redirect_header('admin.php?fct=tplsets', 3, 'Invalid Template Set Name');
         }
-        if (preg_match('/['.preg_quote('\/:*?"<>|','/').']/', $newtheme)) {
-            redirect_header('admin.php?fct=tplsets',3,'Invalid Template Set Name');
+        if (preg_match('/['.preg_quote('\/:*?"<>|', '/').']/', $newtheme)) {
+            redirect_header('admin.php?fct=tplsets', 3, 'Invalid Template Set Name');
         }
         $tpltpl_handler =& xoops_gethandler('tplfile');
         xoops_cp_header();
-        if(!XoopsSingleTokenHandler::quickValidate('tplsets_clone')) {
-            redirect_header('admin.php?fct=tplsets',3,'Ticket Error');
+        if (!XoopsSingleTokenHandler::quickValidate('tplsets_clone')) {
+            redirect_header('admin.php?fct=tplsets', 3, 'Ticket Error');
         } elseif ($tplset === $newtheme) {
             xoops_error('Template set name must be a different name.');
         } elseif ($tpltpl_handler->getCount(new Criteria('tpl_tplset', addslashes($newtheme))) > 0) {
@@ -911,7 +911,7 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
         if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
             if (!$uploader->upload()) {
                 $err = $uploader->getErrors();
-            } else {        
+            } else {
                 $tpltpl_handler =& xoops_gethandler('tplfile');
                 $tplfile =& $tpltpl_handler->find('default', $_POST['type'], null, $_POST['moddir'], $_POST['file']);
                 if (is_array($tplfile)) {
@@ -1016,8 +1016,8 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
         break;
     case 'generatetpl_go':
         $tplset = isset($_POST['tplset']) ? $myts->stripslashesGPC(trim($_POST['tplset'])) : '';
-        if(!xoops_confirm_validate()) {
-            redirect_header('admin.php?fct=tplsets',3,'Ticket Error');
+        if (!xoops_confirm_validate()) {
+            redirect_header('admin.php?fct=tplsets', 3, 'Ticket Error');
         }
 
         $tpltpl_handler =& xoops_gethandler('tplfile');
@@ -1054,8 +1054,8 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
         break;
     case 'generatemod_go':
         $tplset = isset($_POST['tplset']) ? $myts->stripslashesGPC(trim($_POST['tplset'])) : '';
-        if(!xoops_confirm_validate()) {
-            redirect_header('admin.php?fct=tplsets',3,'Ticket Error');
+        if (!xoops_confirm_validate()) {
+            redirect_header('admin.php?fct=tplsets', 3, 'Ticket Error');
         }
 
         $tpltpl_handler =& xoops_gethandler('tplfile');
@@ -1096,7 +1096,8 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
                 $newtpl->setVar('tpl_lastmodified', time());
                 $newtpl->setVar('tpl_lastimported', 0);
                 if (!$tpltpl_handler->insert($newtpl)) {
-                    echo '&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#ff0000;">ERROR: Could not insert block template <b>'.$tplfiles[$i]->getVar('tpl_file').'</b> to the database.</span><br />';echo $newtpl->getHtmlErrors();
+                    echo '&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#ff0000;">ERROR: Could not insert block template <b>'.$tplfiles[$i]->getVar('tpl_file').'</b> to the database.</span><br />';
+                    echo $newtpl->getHtmlErrors();
                 } else {
                     if ($tplset == $xoopsConfig['template_set']) {
                         include_once XOOPS_ROOT_PATH.'/class/template.php';
@@ -1112,8 +1113,8 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
         xoops_cp_footer();
         break;
     case 'uploadtar_go':
-        if(!XoopsSingleTokenHandler::quickValidate('tplsets_uploadtar')) {
-            redirect_header('admin.php?fct=tplsets',3,'Ticket Error');
+        if (!XoopsSingleTokenHandler::quickValidate('tplsets_uploadtar')) {
+            redirect_header('admin.php?fct=tplsets', 3, 'Ticket Error');
         }
 
         include_once XOOPS_ROOT_PATH.'/class/uploader.php';
@@ -1147,7 +1148,7 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
                 }
                 if ($tplset_name === '') {
                     echo '<span style="color:#ff0000;">ERROR: Template file not found</span><br />';
-                } elseif  (preg_match('/['.preg_quote('\/:*?"<>|','/').']/', $tplset_name)) {
+                } elseif (preg_match('/['.preg_quote('\/:*?"<>|', '/').']/', $tplset_name)) {
                     echo '<span style="color:#ff0000;">ERROR: Invalid Template Set Name</span><br />';
                 } else {
                     $tplset_handler =& xoops_gethandler('tplset');
@@ -1234,7 +1235,7 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
     case 'previewtpl':
         $id = isset($_POST['id']) ? intval($_POST['id']) : 0;
         if ($id <= 0 || !XoopsMultiTokenHandler::quickValidate('tplform')) {
-            redirect_header('admin.php?fct=tplsets',3);
+            redirect_header('admin.php?fct=tplsets', 3);
         }
         require_once XOOPS_ROOT_PATH.'/class/template.php';
         $html = !empty($_POST['html']) ? $myts->stripSlashesGPC($_POST['html']) : '';
@@ -1288,13 +1289,12 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
             preview_window.document.close();
             //-->
             </script>';
-
         }
         break;
     case 'update':
          if (!XoopsMultiTokenHandler::quickValidate('tplsets_update')) {
-            redirect_header('admin.php?fct=tplsets',3,'Ticket Error');
-        }
+             redirect_header('admin.php?fct=tplsets', 3, 'Ticket Error');
+         }
         $tplset = isset($_POST['tplset']) ? $myts->stripslashesGPC(trim($_POST['tplset'])) : '';
         $moddir = $_POST['moddir'];
         include_once XOOPS_ROOT_PATH.'/class/uploader.php';
@@ -1338,7 +1338,6 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
                             if (xoops_template_touch($tpl->getVar('tpl_id'), true)) {
                                 $msg[] = 'Template file <b>'.$upload_file.'</b> compiled.';
                             }
-
                         }
                     }
                 }
@@ -1369,7 +1368,7 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
         break;
     case 'importtpl_go':
         if (!xoops_confirm_validate()) {
-            redirect_header('admin.php?fct=tplsets',3,'Ticket Error');
+            redirect_header('admin.php?fct=tplsets', 3, 'Ticket Error');
         }
         $tplset = isset($_POST['tplset']) ? $myts->stripslashesGPC(trim($_POST['tplset'])) : '';
         $moddir = $_POST['moddir'];
@@ -1423,4 +1422,3 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
         break;
     }
 }
-?>

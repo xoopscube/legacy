@@ -106,7 +106,4 @@ class HTTP_OAuth_Consumer_Response extends HTTP_OAuth_Message
 
         throw new BadMethodCallException($method);
     }
-
 }
-
-?>

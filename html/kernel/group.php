@@ -30,7 +30,7 @@
 // ------------------------------------------------------------------------- //
 
 if (!defined('XOOPS_ROOT_PATH')) {
-	exit();
+    exit();
 }
 
 /**
@@ -45,13 +45,13 @@ class XoopsGroup extends XoopsObject
     /**
      * constructor 
      */
-    function XoopsGroup()
+    public function XoopsGroup()
     {
         static $initVars;
         if (isset($initVars)) {
             $this->vars = $initVars;
-	    return;
-	}
+            return;
+        }
         $this->XoopsObject();
         $this->initVar('groupid', XOBJ_DTYPE_INT, null, false);
         $this->initVar('name', XOBJ_DTYPE_TXTBOX, null, true, 100);
@@ -82,7 +82,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
      * @return object XoopsGroup reference to the new object
      * 
      */
-    function &create($isNew = true)
+    public function &create($isNew = true)
     {
         $group =new XoopsGroup();
         if ($isNew) {
@@ -100,7 +100,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
      * @param int $id ID of the group to get
      * @return object XoopsGroup reference to the group object, FALSE if failed
      */
-    function &get($id)
+    public function &get($id)
     {
         $ret = false;
         if ((int)$id > 0) {
@@ -111,7 +111,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
                 if ($numrows == 1) {
                     $group = new XoopsGroup();
                     $group->assignVars($db->fetchArray($result));
-                        $ret =& $group;
+                    $ret =& $group;
                 }
             }
         }
@@ -124,7 +124,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
      * @param object reference to the group object
      * @return mixed ID of the group if inserted, FALSE if failed, TRUE if already present and unchanged.
      */
-    function insert(&$group)
+    public function insert(&$group)
     {
         if (strtolower(get_class($group)) != 'xoopsgroup') {
             return false;
@@ -145,8 +145,12 @@ class XoopsGroupHandler extends XoopsObjectHandler
         } else {
             $sql = sprintf("UPDATE %s SET name = %s, description = %s, group_type = %s WHERE groupid = %u", $db->prefix('groups'), $db->quoteString($name), $db->quoteString($description), $db->quoteString($group_type), $groupid);
         }
-        if (!$result = $db->query($sql)) return false;
-        if (empty($groupid)) $groupid = $db->getInsertId();
+        if (!$result = $db->query($sql)) {
+            return false;
+        }
+        if (empty($groupid)) {
+            $groupid = $db->getInsertId();
+        }
         $group->assignVar('groupid', $groupid);
         return true;
     }
@@ -157,9 +161,11 @@ class XoopsGroupHandler extends XoopsObjectHandler
      * @param object $group reference to the group to be removed
      * @return bool FALSE if failed
      */
-    function delete(&$group)
+    public function delete(&$group)
     {
-        if (strtolower(get_class($group)) != 'xoopsgroup') return false;
+        if (strtolower(get_class($group)) != 'xoopsgroup') {
+            return false;
+        }
         $sql = sprintf('DELETE FROM %s WHERE groupid = %u', $this->db->prefix('groups'), $group->getVar('groupid'));
         if (!$result = $this->db->query($sql)) {
             return false;
@@ -174,7 +180,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
      * @param bool $id_as_key should the groups' IDs be used as keys for the associative array?
      * @return mixed Array of groups
      */
-    function &getObjects($criteria = null, $id_as_key = false)
+    public function &getObjects($criteria = null, $id_as_key = false)
     {
         $ret = array();
         $limit = $start = 0;
@@ -192,11 +198,11 @@ class XoopsGroupHandler extends XoopsObjectHandler
         while ($myrow = $db->fetchArray($result)) {
             $group =new XoopsGroup();
             $group->assignVars($myrow);
-			if (!$id_as_key) {
-            	$ret[] =& $group;
-			} else {
-				$ret[$myrow['groupid']] =& $group;
-			}
+            if (!$id_as_key) {
+                $ret[] =& $group;
+            } else {
+                $ret[$myrow['groupid']] =& $group;
+            }
             unset($group);
         }
         return $ret;
@@ -215,7 +221,7 @@ class XoopsMembership extends XoopsObject
     /**
      * constructor 
      */
-    function XoopsMembership()
+    public function XoopsMembership()
     {
         $this->XoopsObject();
         $this->initVar('linkid', XOBJ_DTYPE_INT, null, false);
@@ -243,7 +249,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      * @param bool $isNew should the new object be set to "new"?
      * @return object XoopsMembership
      */
-    function &create($isNew = true)
+    public function &create($isNew = true)
     {
         $mship =new XoopsMembership();
         if ($isNew) {
@@ -258,7 +264,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      * @param int $id ID of the membership to get
      * @return mixed reference to the object if successful, else FALSE
      */
-    function &get($id)
+    public function &get($id)
     {
         $ret = false;
         if ((int)$id > 0) {
@@ -267,9 +273,9 @@ class XoopsMembershipHandler extends XoopsObjectHandler
             if ($result = $db->query($sql)) {
                 $numrows = $db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $mship =new XoopsMembership();
+                    $mship =new XoopsMembership();
                     $mship->assignVars($db->fetchArray($result));
-                        $ret =& $mship;
+                    $ret =& $mship;
                 }
             }
         }
@@ -282,7 +288,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      * @param object $mship reference to the membership object
      * @return bool TRUE if already in DB or successful, FALSE if failed
      */
-    function insert(&$mship)
+    public function insert(&$mship)
     {
         if (strtolower(get_class($mship)) != 'xoopsmembership') {
             return false;
@@ -303,8 +309,12 @@ class XoopsMembershipHandler extends XoopsObjectHandler
         } else {
             $sql = sprintf("UPDATE %s SET groupid = %u, uid = %u WHERE linkid = %u", $db->prefix('groups_users_link'), $groupid, $uid, $linkid);
         }
-        if (!$result = $db->query($sql)) return false;
-        if (empty($linkid)) $linkid = $this->db->getInsertId();
+        if (!$result = $db->query($sql)) {
+            return false;
+        }
+        if (empty($linkid)) {
+            $linkid = $this->db->getInsertId();
+        }
         $mship->assignVar('linkid', $linkid);
         return true;
     }
@@ -315,13 +325,15 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      * @param object $mship reference to the membership object
      * @return bool FALSE if failed
      */
-    function delete(&$mship)
+    public function delete(&$mship)
     {
         if (strtolower(get_class($mship)) != 'xoopsmembership') {
             return false;
         }
         $sql = sprintf('DELETE FROM %s WHERE linkid = %u', $this->db->prefix('groups_users_link'), $groupm->getVar('linkid'));
-        if (!$result = $this->db->query($sql)) return false;
+        if (!$result = $this->db->query($sql)) {
+            return false;
+        }
         return true;
     }
 
@@ -332,7 +344,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      * @param bool $id_as_key should the ID be used as the array's key?
      * @return array array of references
      */
-    function &getObjects($criteria = null, $id_as_key = false)
+    public function &getObjects($criteria = null, $id_as_key = false)
     {
         $ret = array();
         $limit = $start = 0;
@@ -350,11 +362,11 @@ class XoopsMembershipHandler extends XoopsObjectHandler
         while ($myrow = $db->fetchArray($result)) {
             $mship = new XoopsMembership();
             $mship->assignVars($myrow);
-			if (!$id_as_key) {
-            	$ret[] =& $mship;
-			} else {
-				$ret[$myrow['linkid']] =& $mship;
-			}
+            if (!$id_as_key) {
+                $ret[] =& $mship;
+            } else {
+                $ret[$myrow['linkid']] =& $mship;
+            }
             unset($mship);
         }
         return $ret;
@@ -366,7 +378,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      * @param object $criteria {@link CriteriaElement} conditions to meet
      * @return int
      */
-    function getCount($criteria = null)
+    public function getCount($criteria = null)
     {
         $db = &$this->db;
         $sql = 'SELECT COUNT(*) FROM '.$db->prefix('groups_users_link');
@@ -387,13 +399,15 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      * @param object $criteria {@link CriteriaElement} with conditions to meet
      * @return bool
      */
-    function deleteAll($criteria = null)
+    public function deleteAll($criteria = null)
     {
         $sql = 'DELETE FROM '.$this->db->prefix('groups_users_link');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             $sql .= ' '.$criteria->renderWhere();
         }
-        if (!$result = $this->db->query($sql)) return false;
+        if (!$result = $this->db->query($sql)) {
+            return false;
+        }
         return true;
     }
 
@@ -405,13 +419,15 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      * objects? FALSE returns associative array.
      * @return array array of groups the user belongs to
      */
-    function &getGroupsByUser($uid)
+    public function &getGroupsByUser($uid)
     {
         $ret = array();
         $db = &$this->db;
         $sql = 'SELECT groupid FROM '.$db->prefix('groups_users_link').' WHERE uid='.(int)$uid;
         $result = $db->query($sql);
-        if (!$result) return $ret;
+        if (!$result) {
+            return $ret;
+        }
         while (list($groupid) = $db->fetchRow($result)) {
             $ret[] = $groupid;
         }
@@ -428,14 +444,16 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      * @param int $start offset of first entry to return
      * @return array array of users belonging to the group
      */
-    function &getUsersByGroup($groupid, $limit=0, $start=0)
+    public function &getUsersByGroup($groupid, $limit=0, $start=0)
     {
         $ret = array();
         $db = &$this->db;
         $sql = 'SELECT uid FROM ' . $db->prefix('groups_users_link') . ' WHERE groupid='.(int)$groupid;
 
         $result = $db->query($sql, $limit, $start);
-        if (!$result) return $ret;
+        if (!$result) {
+            return $ret;
+        }
         while (list($uid) = $db->fetchRow($result)) {
             $ret[] = $uid;
         }
@@ -445,7 +463,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
     /**
      * @see getUsersByGroup
      */
-    function &getUsersByNoGroup($groupid, $limit=0, $start=0)
+    public function &getUsersByNoGroup($groupid, $limit=0, $start=0)
     {
         $ret = array();
 
@@ -461,11 +479,12 @@ class XoopsMembershipHandler extends XoopsObjectHandler
                 "AND u.uid = u2.uid AND g2.uid IS NULL GROUP BY u.uid";
 
         $result = $db->query($sql, $limit, $start);
-        if (!$result) return $ret;
+        if (!$result) {
+            return $ret;
+        }
         while (list($uid) = $db->fetchRow($result)) {
             $ret[] = $uid;
         }
         return $ret;
     }
 }
-?>

@@ -220,7 +220,6 @@ class HTTP_OAuth_Consumer_Request extends HTTP_OAuth_Message
         if ($this->getMethod() == 'POST'
             && $contentType == 'application/x-www-form-urlencoded'
         ) {
-
             $body = $this->getHTTPRequest2()->getBody();
             $body = str_replace('+', '%20', $body);
             $this->getHTTPRequest2()->setBody($body);
@@ -353,7 +352,4 @@ class HTTP_OAuth_Consumer_Request extends HTTP_OAuth_Message
 
         throw new BadMethodCallException($method);
     }
-
 }
-
-?>

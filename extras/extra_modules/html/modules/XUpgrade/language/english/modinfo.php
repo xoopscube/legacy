@@ -24,5 +24,3 @@ define('_MI_XUPGRADE_MESSAGE_DELETED_CONFIG', "Deleted the '{0}' config in the g
 define('_MI_XUPGRADE_MESSAGE_PORTED_CONFIG', "Ported the '{0}' config to the config of {1} module.");
 define('_MI_XUPGRADE_MESSAGE_PORTED_TEMPLATE', "Ported '{0}' template of the '{1}' tplset to Legacy.");
 define('_MI_XUPGRADE_MESSAGE_START_PORTING', "Start porting configs & templates...");
-
-?>

@@ -3,18 +3,16 @@
 
 
 // Appended by Xoops Language Checker -GIJOE- in 2009-11-17 18:12:57
-define('_MD_PROTECTOR_DENYBYMULTIBYTE','Protector rejects your post, because your posted string does not contain any multibyte characters');
-define('_MD_PROTECTOR_MANIPUNOTIFYSBJ','Notify from Protector');
-define('_MD_PROTECTOR_FMT_MANIPUNOTIFYBODY','%s\n\nThe root of your site has been modified.\n If you dont know this modification, check it carefully against ftp worms etc.');
+define('_MD_PROTECTOR_DENYBYMULTIBYTE', 'Protector rejects your post, because your posted string does not contain any multibyte characters');
+define('_MD_PROTECTOR_MANIPUNOTIFYSBJ', 'Notify from Protector');
+define('_MD_PROTECTOR_FMT_MANIPUNOTIFYBODY', '%s\n\nThe root of your site has been modified.\n If you dont know this modification, check it carefully against ftp worms etc.');
 
 // Appended by Xoops Language Checker -GIJOE- in 2009-08-29 04:13:44
-define('_MD_PROTECTOR_FMT_REGISTER_MORATORIUM','Post it again %s minutes later. (for Anti-SPAMMING, sorry)');
+define('_MD_PROTECTOR_FMT_REGISTER_MORATORIUM', 'Post it again %s minutes later. (for Anti-SPAMMING, sorry)');
 
-define('_MD_PROTECTOR_YOUAREBADIP','«·«Ì»Ì  «·Œ«’ »ﬂ  „ „‰⁄… »Ê«”ÿ… »—‰«„Ã «·Õ„«Ì… ›Ì «·„Êﬁ⁄<br />') ;
-define('_MD_PROTECTOR_FMT_JAILINFO','”Ì „ «“«·… «·„‰⁄ ⁄‰ﬂ ›Ì  %s') ;
-define('_MD_PROTECTOR_FMT_JAILTIME','Y-m-j H:i:s') ;
-define('_MD_PROTECTOR_BANDWIDTHLIMITED','«·„Êﬁ⁄  Õ  ÷€ÿ ‘œÌœ . —Ã«¡ Õ«Ê· «·—ÃÊ⁄ ··„Êﬁ⁄ „—Â «Œ—Ï') ;
-define('_MD_PROTECTOR_TURNJAVASCRIPTON','ﬁ„ » ›⁄Ì· «·Ã«›« ›Ì „ ’›Õﬂ') ;
-define('_MD_PROTECTOR_DENYBYRBL','ﬁ«„ »—‰«„Ã «·Õ„«Ì… ·œÌ‰« »—›÷ „ﬁ«· ﬂ ·«‰ «·«Ì»Ì «·Œ«’ »ﬂ „”Ã· ·œÌ‰« ⁄·Ï «”«” ”»«„') ;
-
-?>
+define('_MD_PROTECTOR_YOUAREBADIP', '«·«Ì»Ì  «·Œ«’ »ﬂ  „ „‰⁄… »Ê«”ÿ… »—‰«„Ã «·Õ„«Ì… ›Ì «·„Êﬁ⁄<br />') ;
+define('_MD_PROTECTOR_FMT_JAILINFO', '”Ì „ «“«·… «·„‰⁄ ⁄‰ﬂ ›Ì  %s') ;
+define('_MD_PROTECTOR_FMT_JAILTIME', 'Y-m-j H:i:s') ;
+define('_MD_PROTECTOR_BANDWIDTHLIMITED', '«·„Êﬁ⁄  Õ  ÷€ÿ ‘œÌœ . —Ã«¡ Õ«Ê· «·—ÃÊ⁄ ··„Êﬁ⁄ „—Â «Œ—Ï') ;
+define('_MD_PROTECTOR_TURNJAVASCRIPTON', 'ﬁ„ » ›⁄Ì· «·Ã«›« ›Ì „ ’›Õﬂ') ;
+define('_MD_PROTECTOR_DENYBYRBL', 'ﬁ«„ »—‰«„Ã «·Õ„«Ì… ·œÌ‰« »—›÷ „ﬁ«· ﬂ ·«‰ «·«Ì»Ì «·Œ«’ »ﬂ „”Ã· ·œÌ‰« ⁄·Ï «”«” ”»«„') ;

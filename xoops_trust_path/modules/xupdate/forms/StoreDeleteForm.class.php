@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -76,5 +75,3 @@ class Xupdate_StoreDeleteForm extends XCube_ActionForm
         $obj->set('sid', $this->get('sid'));
     }
 }
-
-?>

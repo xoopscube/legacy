@@ -23,26 +23,23 @@
  */
 function smarty_modifier_xoops_user($uid, $key, $flag=2)
 {
-	require_once XOOPS_MODULE_PATH.'/profile/class/handler/Definitions.class.php';
-	$handler = xoops_gethandler('member');
-	$user= $handler->getUser(intval($uid));
-	if(in_array($key, Profile_DefinitionsHandler::getReservedNameList())){
-		if($key=='user_name'){
-			return Legacy_Utils::getUserName($uid);
-		}
-		if(is_object($user) && $user->isActive()) {
-			return ($flag==2) ? $user->getShow($key) : $user->get($key);
-		}
-	}
-	else{
-		$profileHandler = Legacy_Utils::getModuleHandler('data', 'profile');
-		$profile = $profileHandler->get($uid);
-		if(is_object($profile) && is_object($user) && $user->isActive()) {
-			return $profile->showField($key, $flag);
-		}
-	}
+    require_once XOOPS_MODULE_PATH.'/profile/class/handler/Definitions.class.php';
+    $handler = xoops_gethandler('member');
+    $user= $handler->getUser(intval($uid));
+    if (in_array($key, Profile_DefinitionsHandler::getReservedNameList())) {
+        if ($key=='user_name') {
+            return Legacy_Utils::getUserName($uid);
+        }
+        if (is_object($user) && $user->isActive()) {
+            return ($flag==2) ? $user->getShow($key) : $user->get($key);
+        }
+    } else {
+        $profileHandler = Legacy_Utils::getModuleHandler('data', 'profile');
+        $profile = $profileHandler->get($uid);
+        if (is_object($profile) && is_object($user) && $user->isActive()) {
+            return $profile->showField($key, $flag);
+        }
+    }
 
-	return null;
+    return null;
 }
-
-?>

@@ -56,5 +56,5 @@ define('_AD_XUPDATE_LANG_STAGE_UPLOAD_RETRY', 'ファイル配置の続きを実
 define('_AD_XUPDATE_LANG_STAGE_TASK_RETRY', '続きの処理を実行をするにはここをクリック');
 define('_AD_XUPDATE_LANG_STAGE_UPLOAD_NOT_COMPLETE', 'ファイルの配置が不完全なため [ <a href="%s">こちらのリンク</a> ] からアーカイブを取得して、手作業で FTP アップロードを行いファイルを適切に配置してください。');
 
-define('_AD_XUPDATE_LANG_THM_TOTAL'  , 'テーマの合計');
-define('_AD_XUPDATE_LANG_ITEM_TOTAL'  , 'アイテムの合計');
+define('_AD_XUPDATE_LANG_THM_TOTAL', 'テーマの合計');
+define('_AD_XUPDATE_LANG_ITEM_TOTAL', 'アイテムの合計');

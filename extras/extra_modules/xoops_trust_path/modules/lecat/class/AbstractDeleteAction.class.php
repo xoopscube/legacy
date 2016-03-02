@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -62,49 +61,46 @@ abstract class Lecat_AbstractDeleteAction extends Lecat_AbstractEditAction
     **/
     protected function _doExecute()
     {
-        if($this->mObjectHandler->delete($this->mObject))
-        {
+        if ($this->mObjectHandler->delete($this->mObject)) {
             return LECAT_FRAME_VIEW_SUCCESS;
         }
     
         return LECAT_FRAME_VIEW_ERROR;
     }
 
-	/**
-	 * executeViewSuccess
-	 * 
-	 * @param	XCube_RenderTarget	&$render
-	 * 
-	 * @return	void
-	**/
-	public function executeViewSuccess(/*** XCube_RenderTarget ***/ &$render)
-	{
-		$this->mRoot->mController->executeForward($this->_getNextUri($this->_mDataname, 'list'));
-	}
+    /**
+     * executeViewSuccess
+     * 
+     * @param	XCube_RenderTarget	&$render
+     * 
+     * @return	void
+    **/
+    public function executeViewSuccess(/*** XCube_RenderTarget ***/ &$render)
+    {
+        $this->mRoot->mController->executeForward($this->_getNextUri($this->_mDataname, 'list'));
+    }
 
-	/**
-	 * executeViewError
-	 * 
-	 * @param	XCube_RenderTarget	&$render
-	 * 
-	 * @return	void
-	**/
-	public function executeViewError(/*** XCube_RenderTarget ***/ &$render)
-	{
-		$this->mRoot->mController->executeRedirect($this->_getNextUri($this->_mDataname, 'list'), 1, _MD_LECAT_ERROR_DBUPDATE_FAILED);
-	}
+    /**
+     * executeViewError
+     * 
+     * @param	XCube_RenderTarget	&$render
+     * 
+     * @return	void
+    **/
+    public function executeViewError(/*** XCube_RenderTarget ***/ &$render)
+    {
+        $this->mRoot->mController->executeRedirect($this->_getNextUri($this->_mDataname, 'list'), 1, _MD_LECAT_ERROR_DBUPDATE_FAILED);
+    }
 
-	/**
-	 * executeViewCancel
-	 * 
-	 * @param	XCube_RenderTarget	&$render
-	 * 
-	 * @return	void
-	**/
-	public function executeViewCancel(/*** XCube_RenderTarget ***/ &$render)
-	{
-		$this->mRoot->mController->executeForward($this->_getNextUri($this->_mDataname));
-	}
+    /**
+     * executeViewCancel
+     * 
+     * @param	XCube_RenderTarget	&$render
+     * 
+     * @return	void
+    **/
+    public function executeViewCancel(/*** XCube_RenderTarget ***/ &$render)
+    {
+        $this->mRoot->mController->executeForward($this->_getNextUri($this->_mDataname));
+    }
 }
-
-?>

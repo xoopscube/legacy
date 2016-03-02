@@ -29,7 +29,9 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 /**
  * @package     kernel
@@ -60,19 +62,18 @@ include_once XOOPS_ROOT_PATH."/class/xoopsform/formselect.php";
  */
 class XoopsFormSelectCountry extends XoopsFormSelect
 {
-	/**
-	 * Constructor
-	 * 
-	 * @param	string	$caption	Caption
-	 * @param	string	$name       "name" attribute
-	 * @param	mixed	$value	    Pre-selected value (or array of them).
+    /**
+     * Constructor
+     * 
+     * @param	string	$caption	Caption
+     * @param	string	$name       "name" attribute
+     * @param	mixed	$value	    Pre-selected value (or array of them).
      *                              Legal are all 2-letter country codes (in capitals).
-	 * @param	int		$size	    Number or rows. "1" makes a drop-down-list
-	 */
-	function XoopsFormSelectCountry($caption, $name, $value=null, $size=1)
-	{
-		$this->XoopsFormSelect($caption, $name, $value, $size);
-		$this->addOptionArray(XoopsLists::getCountryList());
-	}
+     * @param	int		$size	    Number or rows. "1" makes a drop-down-list
+     */
+    public function XoopsFormSelectCountry($caption, $name, $value=null, $size=1)
+    {
+        $this->XoopsFormSelect($caption, $name, $value, $size);
+        $this->addOptionArray(XoopsLists::getCountryList());
+    }
 }
-?>

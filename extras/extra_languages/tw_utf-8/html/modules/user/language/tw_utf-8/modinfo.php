@@ -100,5 +100,3 @@ define('_MI_USER_MENU_CREATE_RANK', "建立等級");
 define('_MI_USER_MENU_CREATE_USER', "建立使用者");
 define('_MI_USER_NAME', "使用者模組");
 define('_MI_USER_NAME_DESC', "這個模組是用於使用者管理。");
-
-?>

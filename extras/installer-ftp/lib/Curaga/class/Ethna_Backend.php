@@ -24,49 +24,49 @@ class Ethna_Backend
      */
 
     /** @var    object  Ethna_Controller    controllerオブジェクト */
-    var $controller;
+    public $controller;
 
     /** @var    object  Ethna_Controller    controllerオブジェクト($controllerの省略形) */
-    var $ctl;
+    public $ctl;
 
     /** @var    object  Ethna_ClassFactory  クラスファクトリオブジェクト */
-    var $class_factory;
+    public $class_factory;
 
     /** @var    object  Ethna_Config        設定オブジェクト */
-    var $config;
+    public $config;
 
     /** @var    object  Ethna_I18N          i18nオブジェクト */
-    var $i18n;
+    public $i18n;
 
     /** @var    object  Ethna_ActionError   アクションエラーオブジェクト */
-    var $action_error;
+    public $action_error;
 
     /** @var    object  Ethna_ActionError   アクションエラーオブジェクト($action_errorの省略形) */
-    var $ae;
+    public $ae;
 
     /** @var    object  Ethna_ActionForm    アクションフォームオブジェクト */
-    var $action_form;
+    public $action_form;
 
     /** @var    object  Ethna_ActionForm    アクションフォームオブジェクト($action_formの省略形) */
-    var $af;
+    public $af;
 
     /** @var    object  Ethna_ActionClass   アクションクラスオブジェクト */
-    var $action_class;
+    public $action_class;
 
     /** @var    object  Ethna_ActionClass   アクションクラスオブジェクト($action_classの省略形) */
-    var $ac;
+    public $ac;
 
     /** @var    object  Ethna_Session       セッションオブジェクト */
-    var $session;
+    public $session;
 
     /** @var    object  Ethna_Plugin        プラグインオブジェクト */
-    var $plugin;
+    public $plugin;
 
     /** @var    array   Ethna_DBオブジェクトを格納した配列 */
-    var $db_list;
+    public $db_list;
 
     /** @var    object  Ethna_Logger        ログオブジェクト */
-    var $logger;
+    public $logger;
 
     /**#@-*/
 
@@ -77,7 +77,7 @@ class Ethna_Backend
      *  @access public
      *  @param  object  Ethna_Controller    &$controller    コントローラオブジェクト
      */
-    function Ethna_Backend(&$controller)
+    public function Ethna_Backend(&$controller)
     {
         // オブジェクトの設定
         $this->controller =& $controller;
@@ -107,7 +107,7 @@ class Ethna_Backend
      *  @access public
      *  @return object  Ethna_Controller    controllerオブジェクト
      */
-    function &getController()
+    public function &getController()
     {
         return $this->controller;
     }
@@ -118,7 +118,7 @@ class Ethna_Backend
      *  @access public
      *  @return object  Ethna_Config        設定オブジェクト
      */
-    function &getConfig()
+    public function &getConfig()
     {
         return $this->config;
     }
@@ -129,7 +129,7 @@ class Ethna_Backend
      *  @access public
      *  @return string  アプリケーションID
      */
-    function getAppId()
+    public function getAppId()
     {
         return $this->controller->getAppId();
     }
@@ -140,7 +140,7 @@ class Ethna_Backend
      *  @access public
      *  @return object  Ethna_I18N  i18nオブジェクト
      */
-    function &getI18N()
+    public function &getI18N()
     {
         return $this->i18n;
     }
@@ -151,7 +151,7 @@ class Ethna_Backend
      *  @access public
      *  @return object  Ethna_ActionError   アクションエラーオブジェクト
      */
-    function &getActionError()
+    public function &getActionError()
     {
         return $this->action_error;
     }
@@ -162,7 +162,7 @@ class Ethna_Backend
      *  @access public
      *  @return object  Ethna_ActionForm    アクションフォームオブジェクト
      */
-    function &getActionForm()
+    public function &getActionForm()
     {
         return $this->action_form;
     }
@@ -172,7 +172,7 @@ class Ethna_Backend
      *
      *  @access public
      */
-    function setActionForm(&$action_form)
+    public function setActionForm(&$action_form)
     {
         $this->action_form =& $action_form;
         $this->af =& $action_form;
@@ -184,7 +184,7 @@ class Ethna_Backend
      *  @access public
      *  @return mixed   Ethna_ActionClass:アクションクラス null:アクションクラス未定
      */
-    function &getActionClass()
+    public function &getActionClass()
     {
         return $this->action_class;
     }
@@ -194,7 +194,7 @@ class Ethna_Backend
      *
      *  @access public
      */
-    function setActionClass(&$action_class)
+    public function setActionClass(&$action_class)
     {
         $this->action_class =& $action_class;
         $this->ac =& $action_class;
@@ -206,7 +206,7 @@ class Ethna_Backend
      *  @access public
      *  @return object  Ethna_Logger    ログオブジェクト
      */
-    function &getLogger()
+    public function &getLogger()
     {
         return $this->logger;
     }
@@ -217,7 +217,7 @@ class Ethna_Backend
      *  @access public
      *  @return object  Ethna_Session   セッションオブジェクト
      */
-    function &getSession()
+    public function &getSession()
     {
         return $this->session;
     }
@@ -228,7 +228,7 @@ class Ethna_Backend
      *  @access public
      *  @return object  Ethna_Plugin    プラグインオブジェクト
      */
-    function &getPlugin()
+    public function &getPlugin()
     {
         return $this->plugin;
     }
@@ -239,7 +239,7 @@ class Ethna_Backend
      *  @access public
      *  @return object  Ethna_AppManager    マネージャオブジェクト
      */
-    function &getManager($type, $weak = false)
+    public function &getManager($type, $weak = false)
     {
         $_ret_object =& $this->class_factory->getManager($type, $weak);
         return $_ret_object;
@@ -251,7 +251,7 @@ class Ethna_Backend
      *  @access public
      *  @return mixed   $keyに対応するオブジェクト(or null)
      */
-    function &getObject($key)
+    public function &getObject($key)
     {
         $arg_list = func_get_args();
         array_shift($arg_list);
@@ -265,7 +265,7 @@ class Ethna_Backend
      *  @access public
      *  @return string  ベースディレクトリのパス名
      */
-    function getBasedir()
+    public function getBasedir()
     {
         return $this->controller->getBasedir();
     }
@@ -276,7 +276,7 @@ class Ethna_Backend
      *  @access public
      *  @return string  テンプレートディレクトリのパス名
      */
-    function getTemplatedir()
+    public function getTemplatedir()
     {
         return $this->controller->getTemplatedir();
     }
@@ -287,7 +287,7 @@ class Ethna_Backend
      *  @access public
      *  @return string  設定ディレクトリのパス名
      */
-    function getEtcdir()
+    public function getEtcdir()
     {
         return $this->controller->getDirectory('etc');
     }
@@ -298,7 +298,7 @@ class Ethna_Backend
      *  @access public
      *  @return string  テンポラリディレクトリのパス名
      */
-    function getTmpdir()
+    public function getTmpdir()
     {
         return $this->controller->getDirectory('tmp');
     }
@@ -309,7 +309,7 @@ class Ethna_Backend
      *  @access public
      *  @return string  テンプレートファイルの拡張子
      */
-    function getTemplateext()
+    public function getTemplateext()
     {
         return $this->controller->getExt('tpl');
     }
@@ -321,7 +321,7 @@ class Ethna_Backend
      *  @param  int     $level      ログレベル(LOG_DEBUG, LOG_NOTICE...)
      *  @param  string  $message    ログメッセージ(printf形式)
      */
-    function log($level, $message)
+    public function log($level, $message)
     {
         $args = func_get_args();
         if (count($args) > 2) {
@@ -338,7 +338,7 @@ class Ethna_Backend
      *  @param  string  $action_name    実行するアクションの名称
      *  @return mixed   (string):Forward名(nullならforwardしない) Ethna_Error:エラー
      */
-    function perform($action_name)
+    public function perform($action_name)
     {
         $forward_name = null;
 
@@ -350,14 +350,14 @@ class Ethna_Backend
         $forward_name = $this->ac->authenticate();
         if ($forward_name === false) {
             return null;
-        } else if ($forward_name !== null) {
+        } elseif ($forward_name !== null) {
             return $forward_name;
         }
 
         $forward_name = $this->ac->prepare();
         if ($forward_name === false) {
             return null;
-        } else if ($forward_name !== null) {
+        } elseif ($forward_name !== null) {
             return $forward_name;
         }
 
@@ -374,7 +374,7 @@ class Ethna_Backend
      *  @return mixed   Ethna_DB:DBオブジェクト null:DSN設定なし Ethna_Error:エラー
      *  @todo   この中でnewしないでclass factoryを利用する
      */
-    function &getDB($db_key = "")
+    public function &getDB($db_key = "")
     {
         $null = null;
         $db_varname =& $this->_getDBVarname($db_key);
@@ -425,7 +425,7 @@ class Ethna_Backend
      *  @access public
      *  @return mixed   array:Ethna_DBオブジェクトの一覧 Ethan_Error:(いずれか一つ以上の接続で)エラー
      */
-    function getDBList()
+    public function getDBList()
     {
         $r = array();
         $db_define_list = $this->controller->getDBType();
@@ -452,7 +452,7 @@ class Ethna_Backend
      *
      *  @access public
      */
-    function shutdownDB()
+    public function shutdownDB()
     {
         foreach (array_keys($this->db_list) as $key) {
             if ($this->db_list[$key] != null && $this->db_list[$key]->isValid()) {
@@ -473,7 +473,7 @@ class Ethna_Backend
      *  @param  string  $db_key DBキー
      *  @return mixed   string:メンバ変数名 Ethna_Error:不正なDB種別
      */
-    function &_getDBVarname($db_key = "")
+    public function &_getDBVarname($db_key = "")
     {
         $r = $this->controller->getDBType($db_key);
         if (is_null($r)) {
@@ -490,4 +490,4 @@ class Ethna_Backend
     }
 }
 // }}}
-?>
+;

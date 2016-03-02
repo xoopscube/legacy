@@ -65,5 +65,3 @@ define('_MD_LECAT_TIPS_CATEGORY_SET', '<p>Lecat は共通カテゴリ管理モジュールです
 define('_MD_LECAT_TIPS_LEVEL', 'カテゴリ階層の制限です。「0」を設定すると無制限となります。');
 define('_MD_LECAT_TIPS_MODULE_CONFINEMENT', 'このカテゴリを利用するモジュールを "," 区切りで指定します。すべてのモジュールでこのカテゴリを利用する場合は入力しないでください。');
 define('_MD_LECAT_TIPS_PERMISSIONS', '初期状態では親カテゴリのアクセス権を引き継ぎます。親カテゴリと違うアクセス権を設定したい場合にのみチェックの状態を変更してください。');
-
-?>

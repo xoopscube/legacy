@@ -8,7 +8,7 @@
 /**
  * Newline to use
  */
-define ("HTML_AJAX_NEWLINE", "\n");
+define("HTML_AJAX_NEWLINE", "\n");
 
 // {{{ class HTML_AJAX_Debug
 /**
@@ -21,42 +21,43 @@ define ("HTML_AJAX_NEWLINE", "\n");
  * @license    http://www.opensource.org/licenses/lgpl-license.php  LGPL
  * @version    Release: 0.5.6
  */
-class HTML_AJAX_Debug {
+class HTML_AJAX_Debug
+{
     // {{{ properties
     /**
      * This is the error message.
      *
      * @access private
      */
-    var $errorMsg;
+    public $errorMsg;
 
     /**
      * The line where the error occured.
      *
      * @access private
      */
-    var $errorLine;
+    public $errorLine;
 
     /**
      * The error code.
      *
      * @access private
      */
-    var $errorCode;
+    public $errorCode;
     
     /**
      * The file where the error occured.
      *
      * @access private
      */
-    var $errorFile;
+    public $errorFile;
 
     /**
      * Time the error occured
      *
      * @access private
      */
-    var $_timeOccured;
+    public $_timeOccured;
 
     /**
      * The whole error itself
@@ -67,7 +68,7 @@ class HTML_AJAX_Debug {
      * @see errorFile
      * @see errorCode
      */
-    var $error;
+    public $error;
 
     /**
      * The file to save the error to.
@@ -75,7 +76,7 @@ class HTML_AJAX_Debug {
      * @access private
      * @default ajaxErrLog.xml
      */
-    var $file = 'ajaxErrLog.xml';
+    public $file = 'ajaxErrLog.xml';
     // }}}
     // {{{ constructor
     /**
@@ -86,7 +87,7 @@ class HTML_AJAX_Debug {
      * @param string $errCode    The error Code.
      * @param string $errFile    The file where error occured.
      */
-    function HTML_AJAX_Debug($errMsg, $errLine, $errCode, $errFile)
+    public function HTML_AJAX_Debug($errMsg, $errLine, $errCode, $errFile)
     {
         $this->errorMsg    = $errMsg;
         $this->errorLine   = $errLine;
@@ -103,14 +104,14 @@ class HTML_AJAX_Debug {
      * @access protected
      * @return $this->error   the main error.
      */
-    function xmlError()
+    public function xmlError()
     {
         $error  = " <when>{$this->_timeOccured}</when>" . HTML_AJAX_NEWLINE;
         $error .= " <msg>{$this->errorMsg}</msg>"       . HTML_AJAX_NEWLINE;
         $error .= " <code>{$this->errorCode}</code>"    . HTML_AJAX_NEWLINE;
         $error .= " <line>{$this->errorLine}</line>"    . HTML_AJAX_NEWLINE;
         $error .= " <file>{$this->errorFile}</file>"    . HTML_AJAX_NEWLINE . HTML_AJAX_NEWLINE;
-        return $this->error = $error; 
+        return $this->error = $error;
     }
     // }}}
     // {{{ sessionError
@@ -120,7 +121,7 @@ class HTML_AJAX_Debug {
      *
      * @access public
      */
-    function sessionError() 
+    public function sessionError()
     {
         $_SESSION['html_ajax_debug']['time'][] = $this->error;
     }
@@ -132,7 +133,7 @@ class HTML_AJAX_Debug {
      *
      * @access private.
      */
-    function _saveError()
+    public function _saveError()
     {
         if ($handle = fopen($this->file, 'a')) {
             fwrite($handle, $this->error);
@@ -141,4 +142,4 @@ class HTML_AJAX_Debug {
     // }}}
 }
 // }}}
-?>
+;

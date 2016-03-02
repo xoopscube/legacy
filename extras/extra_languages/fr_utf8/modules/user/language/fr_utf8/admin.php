@@ -2,7 +2,7 @@
 
 // DATA
 define('_AD_USER_DATA_DOWNLOAD_DO', 'Download by CSV');
-define('_AD_USER_DATA_NUM', '%d users are registered.'); 
+define('_AD_USER_DATA_NUM', '%d users are registered.');
 define('_AD_USER_DATA_UPLOAD_BACK', 'Select The CSV file again');
 define('_AD_USER_DATA_UPLOAD_CHECK_USER_CSVFILE', 'Please confirm the content of registration.');
 define('_AD_USER_DATA_UPLOAD_CONF', 'Confirm the content of registration');
@@ -168,5 +168,3 @@ define('_AD_USER_TIPS2_DATA_UPLOAD', 'Use CSV file downloaded from <a href="?act
 define('_AD_USER_TIPS3_DATA_UPLOAD', 'Please describe only the user who wants to update and wants to register information newly in CSV file.');
 define('_AD_USER_TIPS4_DATA_UPLOAD', 'When the row of leftmost UID is emptied(or 0), it registers as a new user.');
 define('_AD_USER_TIPS5_DATA_UPLOAD', 'The user information is updated when there is a value of the row of leftmost(UID).<br>If you set password,set it within 30bytes.');
-
-?>

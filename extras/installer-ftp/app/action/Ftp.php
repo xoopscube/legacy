@@ -17,33 +17,31 @@
 
 class Hdinstaller_Form_Ftp extends Hdinstaller_ActionForm
 {
-	/// 
-	/**
-	 * @brief 
-	 * @param 
-	 * @retval
-	 */
-	function __construct(&$c)
-	{
-
-		$this->setDef(null, array(
-			'ftp_username' => array(
-				'name' => _('FTP user name'),
-				'type' => VAR_TYPE_STRING,
-				'form_type' => FORM_TYPE_TEXT,
-				'required' => true,
-				),
-			'ftp_password' => array(
-				'name' => _('FTP password'),
-				'type' => VAR_TYPE_STRING,
-				'form_type' => FORM_TYPE_PASSWORD,
-				'required' => true,
-				),
-			));
-		
-		parent::__construct($c);
-		
-	}
+    /// 
+    /**
+     * @brief 
+     * @param 
+     * @retval
+     */
+    public function __construct(&$c)
+    {
+        $this->setDef(null, array(
+            'ftp_username' => array(
+                'name' => _('FTP user name'),
+                'type' => VAR_TYPE_STRING,
+                'form_type' => FORM_TYPE_TEXT,
+                'required' => true,
+                ),
+            'ftp_password' => array(
+                'name' => _('FTP password'),
+                'type' => VAR_TYPE_STRING,
+                'form_type' => FORM_TYPE_PASSWORD,
+                'required' => true,
+                ),
+            ));
+        
+        parent::__construct($c);
+    }
 
     /**
      *  Form input value convert filter : sample
@@ -76,7 +74,7 @@ class Hdinstaller_Action_Ftp extends Hdinstaller_ActionClass
      *  @access    public
      *  @return    string  Forward name (null if no errors.)
      */
-    function prepare()
+    public function prepare()
     {
         /**
         if ($this->af->validate() > 0) {
@@ -93,10 +91,8 @@ class Hdinstaller_Action_Ftp extends Hdinstaller_ActionClass
      *  @access    public
      *  @return    string  Forward Name.
      */
-    function perform()
+    public function perform()
     {
         return 'ftp';
     }
 }
-
-?>

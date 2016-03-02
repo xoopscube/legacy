@@ -31,7 +31,8 @@
 * 
 */
 
-class Text_Wiki_Parse_Break extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Break extends Text_Wiki_Parse
+{
     
     
     /**
@@ -47,7 +48,7 @@ class Text_Wiki_Parse_Break extends Text_Wiki_Parse {
     * 
     */
     
-    var $regex = '/ _\n/';
+    public $regex = '/ _\n/';
     
     
     /**
@@ -63,10 +64,8 @@ class Text_Wiki_Parse_Break extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches)
-    {    
+    public function process(&$matches)
+    {
         return $this->wiki->addToken($this->rule);
     }
 }
-
-?>

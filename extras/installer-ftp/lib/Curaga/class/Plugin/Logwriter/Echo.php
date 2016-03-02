@@ -32,7 +32,7 @@ class Ethna_Plugin_Logwriter_Echo extends Ethna_Plugin_Logwriter
      *  @param  int     $level      ログレベル(LOG_DEBUG, LOG_NOTICE...)
      *  @param  string  $message    ログメッセージ(+引数)
      */
-    function log($level, $message)
+    public function log($level, $message)
     {
         $c =& Ethna_Controller::getInstance();
 
@@ -65,4 +65,4 @@ class Ethna_Plugin_Logwriter_Echo extends Ethna_Plugin_Logwriter
     }
 }
 // }}}
-?>
+;

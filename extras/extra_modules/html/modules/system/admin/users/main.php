@@ -29,7 +29,7 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid()) ) {
+if (!is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid())) {
     exit("Access Denied");
 }
 $op = 'mod_users';
@@ -49,8 +49,9 @@ case "modifyUser":
     break;
 
 case "updateUser":
-    if(!XoopsMultiTokenHandler::quickValidate('users_updateUser'))
+    if (!XoopsMultiTokenHandler::quickValidate('users_updateUser')) {
         system_users_error("Ticket Error");
+    }
 
     $myts =& MyTextSanitizer::getInstance();
     $uid = !empty($_POST['uid']) ? intval($_POST['uid']) : 0;
@@ -93,7 +94,7 @@ case "updateUser":
             $edituser->setVar("user_intrest", $_POST['user_intrest']);
             $edituser->setVar('user_mailok', $_POST['user_mailok']);
             if ($_POST['pass2'] != "") {
-                if ( $_POST['pass'] != $_POST['pass2'] ) {
+                if ($_POST['pass'] != $_POST['pass2']) {
                     xoops_cp_header();
                     echo "<b>"._AM_STNPDNM."</b>";
                     xoops_cp_footer();
@@ -125,14 +126,14 @@ case "updateUser":
             }
         }
     }
-    redirect_header("admin.php?fct=users",1,_AM_DBUPDATED);
+    redirect_header("admin.php?fct=users", 1, _AM_DBUPDATED);
     break;
 
 case "delUser":
     xoops_cp_header();
     $member_handler =& xoops_gethandler('member');
     $userdata =& $member_handler->getUser($uid);
-    xoops_token_confirm(array('fct' => 'users', 'op' => 'delUserConf', 'del_uid' => $userdata->getVar('uid')), 'admin.php', sprintf(_AM_AYSYWTDU,$userdata->getVar('uname')));
+    xoops_token_confirm(array('fct' => 'users', 'op' => 'delUserConf', 'del_uid' => $userdata->getVar('uid')), 'admin.php', sprintf(_AM_AYSYWTDU, $userdata->getVar('uname')));
     xoops_cp_footer();
     break;
 case "delete_many":
@@ -141,16 +142,16 @@ case "delete_many":
 
     $token=&XoopsSingleTokenHandler::quickCreate('users_deletemany');
 
-    if ( $count > 0 ) {
+    if ($count > 0) {
         $list = $hidden = '';
-        for ( $i = 0; $i < $count; $i++ ) {
+        for ($i = 0; $i < $count; $i++) {
             $id = intval($_POST['memberslist_id'][$i]);
             if ($id > 0) {
                 $list .= ", <a href='".XOOPS_URL."/userinfo.php?uid=$id' rel='external'>".htmlspecialchars($_POST['memberslist_uname'][$id])."</a>";
                 $hidden .= "<input type='hidden' name='memberslist_id[]' value='$id' />\n";
             }
         }
-        echo "<div><h4>".sprintf(_AM_AYSYWTDU," ".$list." ")."</h4>";
+        echo "<div><h4>".sprintf(_AM_AYSYWTDU, " ".$list." ")."</h4>";
         echo _AM_BYTHIS."<br /><br />
         <form action='admin.php' method='post'>
         <input type='hidden' name='fct' value='users' />
@@ -166,11 +167,11 @@ case "delete_many":
     xoops_cp_footer();
     break;
 case "delete_many_ok":
-    if(XoopsSingleTokenHandler::quickValidate('users_deletemany')) {
+    if (XoopsSingleTokenHandler::quickValidate('users_deletemany')) {
         $count = count($_POST['memberslist_id']);
         $output = "";
         $member_handler =& xoops_gethandler('member');
-        for ( $i = 0; $i < $count; $i++ ) {
+        for ($i = 0; $i < $count; $i++) {
             $deluser =& $member_handler->getUser($_POST['memberslist_id'][$i]);
             if (is_object($deluser)) {
                 $groups = $deluser->getGroups();
@@ -190,16 +191,16 @@ case "delete_many_ok":
         xoops_cp_header();
         echo $output;
         xoops_cp_footer();
-    }
-    else {
+    } else {
         xoops_cp_header();
         xoops_error('Ticket Error');
         xoops_cp_footer();
     }
     break;
 case "delUserConf":
-    if(!xoops_confirm_validate())
+    if (!xoops_confirm_validate()) {
         system_users_error("Ticket Error");
+    }
 
     $del_uid = !empty($_POST['del_uid']) ? intval($_POST['del_uid']) : 0;
     if ($del_uid > 0) {
@@ -218,13 +219,14 @@ case "delUserConf":
             $online_handler =& xoops_gethandler('online');
             $online_handler->destroy($del_uid);
             xoops_notification_deletebyuser($del_uid);
-            redirect_header("admin.php?fct=users",1,_AM_DBUPDATED);
+            redirect_header("admin.php?fct=users", 1, _AM_DBUPDATED);
         }
     }
     break;
 case "addUser":
-    if(!XoopsMultiTokenHandler::quickValidate('users_addUser'))
+    if (!XoopsMultiTokenHandler::quickValidate('users_addUser')) {
         system_users_error("Ticket Error");
+    }
 
     $myts =& MyTextSanitizer::getInstance();
     $username = !empty($_POST['username']) ? $myts->stripSlashesGPC(trim($_POST['username'])) : '';
@@ -239,17 +241,17 @@ case "addUser":
             $adduser_errormsg = 'User name '.$username.' already exists';
         } else {
             $newuser =& $member_handler->createUser();
-            if ( isset($_POST['user_viewemail']) ) {
-                $newuser->setVar("user_viewemail",$_POST['user_viewemail']);
+            if (isset($_POST['user_viewemail'])) {
+                $newuser->setVar("user_viewemail", $_POST['user_viewemail']);
             }
-            if ( isset($_POST['attachsig']) ) {
-                $newuser->setVar("attachsig",$_POST['attachsig']);
+            if (isset($_POST['attachsig'])) {
+                $newuser->setVar("attachsig", $_POST['attachsig']);
             }
             $newuser->setVar("name", $_POST['name']);
             $newuser->setVar("uname", $_POST['username']);
             $newuser->setVar("email", $_POST['email']);
             $newuser->setVar("url", formatURL($_POST['url']));
-            $newuser->setVar("user_avatar",'blank.gif');
+            $newuser->setVar("user_avatar", 'blank.gif');
             $newuser->setVar("user_icq", $_POST['user_icq']);
             $newuser->setVar("user_from", $_POST['user_from']);
             $newuser->setVar("user_sig", $_POST['user_sig']);
@@ -257,7 +259,7 @@ case "addUser":
             $newuser->setVar("user_yim", $_POST['user_yim']);
             $newuser->setVar("user_msnm", $_POST['user_msnm']);
             if ($_POST['pass2'] != "") {
-                if ( $_POST['pass'] != $_POST['pass2'] ) {
+                if ($_POST['pass'] != $_POST['pass2']) {
                     xoops_cp_header();
                     echo "
                     <b>"._AM_STNPDNM."</b>";
@@ -285,7 +287,7 @@ case "addUser":
                         $member_handler->addUserToGroup(intval($groupid), $newuser->getVar('uid'));
                     }
                 }
-                redirect_header("admin.php?fct=users",1,_AM_DBUPDATED);
+                redirect_header("admin.php?fct=users", 1, _AM_DBUPDATED);
                 exit();
             }
         }
@@ -295,20 +297,22 @@ case "addUser":
     xoops_cp_footer();
     break;
 case "synchronize":
-    if(!XoopsMultiTokenHandler::quickValidate('users_synchronize'))
+    if (!XoopsMultiTokenHandler::quickValidate('users_synchronize')) {
         system_users_error("Ticket Error");
+    }
 
     synchronize($_POST['id'], $_POST['type']);
     break;
 case "reactivate":
-    if(!xoops_confirm_validate())
+    if (!xoops_confirm_validate()) {
         system_users_error("Ticket Error");
+    }
 
     $uid = !empty($_POST['uid']) ? intval($_POST['uid']) : 0;
     if ($uid > 0) {
         $result=$xoopsDB->query("UPDATE ".$xoopsDB->prefix("users")." SET level=1 WHERE uid=".$uid);
     }
-    redirect_header("admin.php?fct=users&amp;op=modifyUser&amp;uid=".$uid,1,_AM_DBUPDATED);
+    redirect_header("admin.php?fct=users&amp;op=modifyUser&amp;uid=".$uid, 1, _AM_DBUPDATED);
     break;
 case "mod_users":
 default:
@@ -316,4 +320,3 @@ default:
     displayUsers();
     break;
 }
-?>

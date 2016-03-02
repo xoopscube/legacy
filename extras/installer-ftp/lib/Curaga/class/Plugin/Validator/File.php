@@ -43,7 +43,7 @@ if (defined('UPLOAD_ERR_CANT_WRITE') == false) { // PHP 5.1.0
 class Ethna_Plugin_Validator_File extends Ethna_Plugin_Validator
 {
     /** @var    bool    配列を受け取るかフラグ */
-    var $accept_array = false;
+    public $accept_array = false;
 
     /**
      *  アップロードされたファイルのチェックを行う
@@ -54,7 +54,7 @@ class Ethna_Plugin_Validator_File extends Ethna_Plugin_Validator
      *  @param  mixed   $var        フォームの値
      *  @param  array   $params     プラグインのパラメータ
      */
-    function &validate($name, $var, $params)
+    public function &validate($name, $var, $params)
     {
         $true = true;
         if ($this->getFormType($name) != VAR_TYPE_FILE) {
@@ -70,7 +70,7 @@ class Ethna_Plugin_Validator_File extends Ethna_Plugin_Validator
         // エラーコードの検査
         $msg = '';
         switch ($var['error']) {
-        case UPLOAD_ERR_INI_SIZE: 
+        case UPLOAD_ERR_INI_SIZE:
             $msg = _et("Uploaded file size exceeds php.ini's upload_max_filesize directive.");
             break;
         case UPLOAD_ERR_FORM_SIZE:
@@ -140,7 +140,7 @@ class Ethna_Plugin_Validator_File extends Ethna_Plugin_Validator
                 $wanted_mime = explode('/', $type, 2);
                 $test = (count($wanted_mime) == 1)
                         ? (strcasecmp($wanted_mime[0], $posted_mime[0]) == 0)
-                : (strcasecmp($type, $var['type']) == 0);  
+                : (strcasecmp($type, $var['type']) == 0);
                 if ($test == true) {
                     break;
                 }
@@ -174,7 +174,7 @@ class Ethna_Plugin_Validator_File extends Ethna_Plugin_Validator
     }
 
 
-    function _getSizeAsBytes($size)
+    public function _getSizeAsBytes($size)
     {
         $unit = 1;
         if (preg_match('/^([0-9]+)([mk])?(b(ytes?)?)?$/i', trim($size), $matches)) {
@@ -184,7 +184,7 @@ class Ethna_Plugin_Validator_File extends Ethna_Plugin_Validator
             if (isset($matches[2])) {
                 if (strtolower($matches[2]) === 'm') {
                     $unit = 1048576;
-                } else if (strtolower($matches[2]) === 'k') {
+                } elseif (strtolower($matches[2]) === 'k') {
                     $unit = 1024;
                 }
             }
@@ -193,4 +193,4 @@ class Ethna_Plugin_Validator_File extends Ethna_Plugin_Validator
     }
 }
 // }}}
-?>
+;

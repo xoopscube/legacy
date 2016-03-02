@@ -38,3 +38,4 @@ class HTMLPurifier_HTMLModule_Hypertext extends HTMLPurifier_HTMLModule
 }
 
 // vim: et sw=4 sts=4
+

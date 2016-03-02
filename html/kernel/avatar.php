@@ -30,14 +30,14 @@
 // ------------------------------------------------------------------------- //
 
 if (!defined('XOOPS_ROOT_PATH')) {
-	exit();
+    exit();
 }
 
 class XoopsAvatar extends XoopsObject
 {
-    var $_userCount;
+    public $_userCount;
 
-    function XoopsAvatar()
+    public function XoopsAvatar()
     {
         $this->XoopsObject();
         $this->initVar('avatar_id', XOBJ_DTYPE_INT, null, false);
@@ -50,12 +50,12 @@ class XoopsAvatar extends XoopsObject
         $this->initVar('avatar_type', XOBJ_DTYPE_OTHER, 0, false);
     }
 
-    function setUserCount($value)
+    public function setUserCount($value)
     {
         $this->_userCount = (int)$value;
     }
 
-    function getUserCount()
+    public function getUserCount()
     {
         return $this->_userCount;
     }
@@ -74,7 +74,7 @@ class XoopsAvatar extends XoopsObject
 class XoopsAvatarHandler extends XoopsObjectHandler
 {
 
-    function &create($isNew = true)
+    public function &create($isNew = true)
     {
         $avatar =new XoopsAvatar();
         if ($isNew) {
@@ -83,7 +83,7 @@ class XoopsAvatarHandler extends XoopsObjectHandler
         return $avatar;
     }
 
-    function &get($id)
+    public function &get($id)
     {
         $ret = false;
         $id = (int)$id;
@@ -92,16 +92,16 @@ class XoopsAvatarHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $avatar =new XoopsAvatar();
+                    $avatar =new XoopsAvatar();
                     $avatar->assignVars($this->db->fetchArray($result));
-                        $ret =& $avatar;
+                    $ret =& $avatar;
                 }
             }
         }
         return $ret;
     }
 
-    function insert(&$avatar)
+    public function insert(&$avatar)
     {
         if (strtolower(get_class($avatar)) != 'xoopsavatar') {
             return false;
@@ -131,7 +131,7 @@ class XoopsAvatarHandler extends XoopsObjectHandler
         return true;
     }
 
-    function delete(&$avatar)
+    public function delete(&$avatar)
     {
         if (strtolower(get_class($avatar)) != 'xoopsavatar') {
             return false;
@@ -142,11 +142,11 @@ class XoopsAvatarHandler extends XoopsObjectHandler
             return false;
         }
         $sql = sprintf("DELETE FROM %s WHERE avatar_id = %u", $this->db->prefix('avatar_user_link'), $id);
-		$result = $this->db->query($sql);
+        $result = $this->db->query($sql);
         return true;
     }
 
-    function &getObjects($criteria = null, $id_as_key = false)
+    public function &getObjects($criteria = null, $id_as_key = false)
     {
         $ret = array();
         $limit = $start = 0;
@@ -175,7 +175,7 @@ class XoopsAvatarHandler extends XoopsObjectHandler
         return $ret;
     }
 
-    function getCount($criteria = null)
+    public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('avatar');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -188,7 +188,8 @@ class XoopsAvatarHandler extends XoopsObjectHandler
         return $count;
     }
 
-    function addUser($avatar_id, $user_id){
+    public function addUser($avatar_id, $user_id)
+    {
         $avatar_id = (int)$avatar_id;
         $user_id = (int)$user_id;
         if ($avatar_id < 1 || $user_id < 1) {
@@ -203,7 +204,8 @@ class XoopsAvatarHandler extends XoopsObjectHandler
         return true;
     }
 
-    function &getUser(&$avatar){
+    public function &getUser(&$avatar)
+    {
         $ret = array();
         if (strtolower(get_class($avatar)) != 'xoopsavatar') {
             return $ret;
@@ -218,7 +220,7 @@ class XoopsAvatarHandler extends XoopsObjectHandler
         return $ret;
     }
 
-    function &getList($avatar_type = null, $avatar_display = null)
+    public function &getList($avatar_type = null, $avatar_display = null)
     {
         $criteria = new CriteriaCompo();
         if (isset($avatar_type)) {
@@ -236,4 +238,3 @@ class XoopsAvatarHandler extends XoopsObjectHandler
         return $ret;
     }
 }
-?>

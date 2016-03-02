@@ -1,8 +1,9 @@
 <?php
 
-class Text_Wiki_Render_Latex_Phplookup extends Text_Wiki_Render {
+class Text_Wiki_Render_Latex_Phplookup extends Text_Wiki_Render
+{
     
-    var $conf = array('target' => '_blank');
+    public $conf = array('target' => '_blank');
     
     /**
     * 
@@ -17,7 +18,7 @@ class Text_Wiki_Render_Latex_Phplookup extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         return 'Phplookup: NI';
         
@@ -31,4 +32,3 @@ class Text_Wiki_Render_Latex_Phplookup extends Text_Wiki_Render {
         return "<a$target href=\"http://php.net/$text\">$text</a>";
     }
 }
-?>

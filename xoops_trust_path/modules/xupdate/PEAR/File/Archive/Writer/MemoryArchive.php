@@ -44,33 +44,32 @@ class File_Archive_Writer_MemoryArchive extends File_Archive_Writer_Archive
      *         waiting for the file to be complete
      * @access private
      */
-    var $buffer = '';
+    public $buffer = '';
     /**
      * @var    string Name of the file which data are coming
      * @access private
      */
-    var $currentFilename = null;
+    public $currentFilename = null;
     /**
      * @var    array Stats of the file which data are coming
      * @access private
      */
-    var $currentStat = null;
+    public $currentStat = null;
     /**
      * @var    string URL of the file being treated if it is a physical file
      * @access private
      */
-    var $currentDataFile = null;
+    public $currentDataFile = null;
     /**
      * @var    int Number of times newFile function has been called
      * @access protected
      */
-    var $nbFiles = 0;
+    public $nbFiles = 0;
 
     /**
      * @see File_Archive_Writer::File_Archive_Writer()
      */
-    function File_Archive_Writer_MemoryArchive
-                ($filename, &$t, $stat = array(), $autoClose = true)
+    public function File_Archive_Writer_MemoryArchive($filename, &$t, $stat = array(), $autoClose = true)
     {
         parent::File_Archive_Writer_Archive($filename, $t, $stat, $autoClose);
     }
@@ -78,7 +77,7 @@ class File_Archive_Writer_MemoryArchive extends File_Archive_Writer_Archive
     /**
      * @see File_Archive_Writer::newFile()
      */
-    function _newFile($filename, $stat = array(),
+    public function _newFile($filename, $stat = array(),
                      $mime = "application/octet-stream")
     {
         if ($this->nbFiles == 0) {
@@ -103,7 +102,7 @@ class File_Archive_Writer_MemoryArchive extends File_Archive_Writer_Archive
     /**
      * @see File_Archive_Writer::close()
      */
-    function close()
+    public function close()
     {
         $error = $this->flush();
         if (PEAR::isError($error)) {
@@ -123,7 +122,7 @@ class File_Archive_Writer_MemoryArchive extends File_Archive_Writer_Archive
      *
      * @access private
      */
-    function flush()
+    public function flush()
     {
         if ($this->currentFilename !== null) {
             if ($this->currentDataFile !== null) {
@@ -146,7 +145,7 @@ class File_Archive_Writer_MemoryArchive extends File_Archive_Writer_Archive
     /**
      * @see File_Archive_Writer::writeData()
      */
-    function writeData($data)
+    public function writeData($data)
     {
         if ($this->currentDataFile !== null) {
             $this->buffer .= file_get_contents($this->currentDataFile);
@@ -157,7 +156,7 @@ class File_Archive_Writer_MemoryArchive extends File_Archive_Writer_Archive
     /**
      * @see File_Archive_Writer::writeFile()
      */
-    function writeFile($filename)
+    public function writeFile($filename)
     {
         if ($this->currentDataFile === null && empty($this->buffer)) {
             $this->currentDataFile = $filename;
@@ -178,7 +177,9 @@ class File_Archive_Writer_MemoryArchive extends File_Archive_Writer_Archive
      *
      * @access protected
      */
-    function appendFileData($filename, $stat, &$data) { }
+    public function appendFileData($filename, $stat, &$data)
+    {
+    }
 
 //SHOULD REWRITE FUNCTIONS
     /**
@@ -187,21 +188,25 @@ class File_Archive_Writer_MemoryArchive extends File_Archive_Writer_Archive
      *
      * @access protected
      */
-    function sendHeader() { }
+    public function sendHeader()
+    {
+    }
     /**
      * The subclass may rewrite the sendFooter function if it needs to execute
      * code before closing the archive
      *
      * @access protected
      */
-    function sendFooter() { }
+    public function sendFooter()
+    {
+    }
     /**
      * The subclass may rewrite this class if it knows an efficient way to treat
      * a physical file.
      *
      * @access protected
      */
-    function appendFile($filename, $dataFilename)
+    public function appendFile($filename, $dataFilename)
     {
         return $this->appendFileData(
                             $filename,
@@ -209,5 +214,3 @@ class File_Archive_Writer_MemoryArchive extends File_Archive_Writer_Archive
                             file_get_contents($dataFilename));
     }
 }
-
-?>

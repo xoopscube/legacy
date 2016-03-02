@@ -29,4 +29,3 @@ define('_MI_MESSAGE_INSTALL_ERROR', '¤³¤Î¥â¥¸¥å¡¼¥ë¤ÏPHP5.0°Ê¾å¤Ç¤Ê¤¤¤ÈÆ°ºî¤·¤Þ¤
 define('_MI_MESSAGE_INSTALL_ERROR2', 'XCLÉÕÂ°¤ÎPM¥â¥¸¥å¡¼¥ë¤Ï¥¢¥ó¥¤¥ó¥¹¥È¡¼¥ë¤·¤Æ¤¯¤À¤µ¤¤¡£');
 define('_MI_MESSAGE_DESC', '¤³¤Î¥â¥¸¥å¡¼¥ë¤Ï¡¢¥×¥é¥¤¥Ù¡¼¥È¥á¥Ã¥»¡¼¥¸µ¡Ç½¤òÄó¶¡¤·¤Þ¤¹¡£');
 define('_MI_INQUIRY_INSTALL_ERROR', '¤³¤Î¥â¥¸¥å¡¼¥ë¤ÏPHP5ÀìÍÑ¤Ç¤¹');
-?>

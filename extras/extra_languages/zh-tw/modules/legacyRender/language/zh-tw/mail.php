@@ -29,5 +29,4 @@ define("_MAIL_SENDPMNG", "無法寄送私人郵件給 %s.");
 
 define("_MAIL_PMGOOD", "私人郵件已寄送給 %s.");
 //define("_MAIL_PMGOOD", "Private message sent to %s.");
-
-?>
+;

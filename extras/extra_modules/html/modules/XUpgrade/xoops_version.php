@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('XUPGRADE_ENABLE_TEMPLATEPORTING')) {
-	define('XUPGRADE_ENABLE_TEMPLATEPORTING', false);
+    define('XUPGRADE_ENABLE_TEMPLATEPORTING', false);
 }
 
 //
@@ -35,5 +35,4 @@ $modversion['adminmenu'] = "admin/menu.php";
 $modversion['hasMain'] = 0;
 // $modversion['sub'][]['name'] = "";
 // $modversion['sub'][]['url'] = "";
-
-?>
+;

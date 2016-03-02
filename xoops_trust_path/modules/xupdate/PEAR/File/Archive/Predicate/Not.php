@@ -38,18 +38,16 @@ require_once "File/Archive/Predicate.php";
  */
 class File_Archive_Predicate_Not extends File_Archive_Predicate
 {
-    var $pred;
-    function File_Archive_Predicate_Not($pred)
+    public $pred;
+    public function File_Archive_Predicate_Not($pred)
     {
         $this->pred = $pred;
     }
     /**
      * @see File_Archive_Predicate::isTrue()
      */
-    function isTrue(&$source)
+    public function isTrue(&$source)
     {
         return !$this->pred->isTrue($source);
     }
 }
-
-?>

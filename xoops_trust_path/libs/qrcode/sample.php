@@ -13,8 +13,7 @@ $z=new Qrcode_image;
 #$z->set_quietzone(5);                # set quietzone width 5 modules
 
 
-$z->qrcode_image_out($data,"png");
+$z->qrcode_image_out($data, "png");
 
 #$z->image_out($z->cal_qrcode($data),"png");   #old style
-
-?>
+;

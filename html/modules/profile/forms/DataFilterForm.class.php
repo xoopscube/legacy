@@ -5,7 +5,9 @@
  * @version $Id$
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 require_once XOOPS_MODULE_PATH . "/profile/class/AbstractFilterForm.class.php";
 
@@ -18,12 +20,12 @@ class Profile_DataFilterForm extends Profile_AbstractFilterForm
         PROFILE_DATA_SORT_KEY_UID => 'uid'
     );
 
-    public /*** Profile_DefinitionsObject[] ***/ $mFields = array();
+    /*** Profile_DefinitionsObject[] ***/ public $mFields = array();
 
     /**
      * @public
      */
-    function getDefaultSortKey()
+    public function getDefaultSortKey()
     {
         return PROFILE_DATA_SORT_KEY_DEFAULT;
     }
@@ -37,7 +39,7 @@ class Profile_DataFilterForm extends Profile_AbstractFilterForm
     **/
     protected function _addSortKeys()
     {
-        foreach($this->mFields as $field){
+        foreach ($this->mFields as $field) {
             $this->mSortKeys[$field->getShow('field_id')] = $field->get('field_name');
         }
     }
@@ -50,18 +52,18 @@ class Profile_DataFilterForm extends Profile_AbstractFilterForm
      * 
      * @return  void
     **/
-    public function prepare(/*** XCube_PageNavigator ***/ &$navi,/*** XoopsObjectGenericHandler ***/ &$handler)
+    public function prepare(/*** XCube_PageNavigator ***/ &$navi, /*** XoopsObjectGenericHandler ***/ &$handler)
     {
         $this->mFields = xoops_getmodulehandler('definitions', 'profile')->getFields4DataShow(Legacy_Utils::getUid());
     
         $this->_addSortKeys();
-        parent::prepare($navi,$handler);
+        parent::prepare($navi, $handler);
     }
 
     /**
      * @public
      */
-    function fetch()
+    public function fetch()
     {
         parent::fetch();
     
@@ -72,13 +74,13 @@ class Profile_DataFilterForm extends Profile_AbstractFilterForm
             $this->_mCriteria->add(new Criteria('uid', $value));
         }
     
-        foreach($this->mFields as $field){
-        	$value = $root->mContext->mRequest->getRequest($field->get('field_name'));
+        foreach ($this->mFields as $field) {
+            $value = $root->mContext->mRequest->getRequest($field->get('field_name'));
             if (isset($value) && $value!=="") {
                 $this->mNavi->addExtra($field->get('field_name'), $value);
-                if($field->get('type')==Profile_FormType::STRING || $field->get('type')==Profile_FormType::TEXT){
-	                $value = '%'.$value.'%';
-	            }
+                if ($field->get('type')==Profile_FormType::STRING || $field->get('type')==Profile_FormType::TEXT) {
+                    $value = '%'.$value.'%';
+                }
                 $this->_mCriteria->add(new Criteria($field->get('field_name'), $value, 'LIKE'));
             }
         }
@@ -86,5 +88,3 @@ class Profile_DataFilterForm extends Profile_AbstractFilterForm
         $this->_mCriteria->addSort($this->getSort(), $this->getOrder());
     }
 }
-
-?>

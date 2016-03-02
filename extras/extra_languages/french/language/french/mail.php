@@ -7,4 +7,3 @@ define("_MAIL_SENDMAILNG", "Impossible d'envoyer le mail à %s.");
 define("_MAIL_MAILGOOD", "Mail envoyé à %s.");
 define("_MAIL_SENDPMNG", "Impossible d'envoyer le message privé à %s.");
 define("_MAIL_PMGOOD", "Message privé envoyé à %s.");
-?>

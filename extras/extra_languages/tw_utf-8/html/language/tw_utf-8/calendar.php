@@ -31,4 +31,3 @@ define("_CAL_DRAGMOVE", "移除");
 define("_CAL_TODAY", "今日");
 define("_CAL_DISPM1ST", "星期一為每週首日");
 define("_CAL_DISPS1ST", "星期日為每週首日");
-?>

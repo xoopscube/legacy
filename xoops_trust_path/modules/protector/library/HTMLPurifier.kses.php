@@ -28,3 +28,4 @@ function kses($string, $allowed_html, $allowed_protocols = null)
 }
 
 // vim: et sw=4 sts=4
+

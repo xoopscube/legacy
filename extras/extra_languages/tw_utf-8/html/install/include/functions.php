@@ -24,52 +24,53 @@
 //  along with this program; if not, write to the Free Software              //
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
-function getLanguage() {
-	$language_array = array(
-			'en' => 'english',
-			'ja' => 'japanese',
-			'fr' => 'french',
-			'de' => 'german',
-			'nl' => 'dutch',
-			'es' => 'spanish',
-			'tw' => 'tw_big5',
-			'cn' => 'schinese',
-			'ro' => 'romanian'
-	);
+function getLanguage()
+{
+    $language_array = array(
+            'en' => 'english',
+            'ja' => 'japanese',
+            'fr' => 'french',
+            'de' => 'german',
+            'nl' => 'dutch',
+            'es' => 'spanish',
+            'tw' => 'tw_big5',
+            'cn' => 'schinese',
+            'ro' => 'romanian'
+    );
 
-	$language = 'tw_big5';
-	if ( !empty($_POST['lang']) ) {
-	    $language = $_POST['lang'];
-	} else {
-	    if (isset($_COOKIE['install_lang'])) {
-	        $language = $_COOKIE['install_lang'];
-	    } else {
-	        $_SERVER['HTTP_ACCEPT_LANGUAGE'] = 'ja,en-us;q=0.7,zh-TW;q=0.6';
-	        if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-	            $accept_langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
-	            foreach ($accept_langs as $al) {
-	                $al = strtolower($al);
-	                $al_len = strlen($al);
-	                if ($al_len > 2) {
-	                    if (preg_match('/([a-z]{2});q=[0-9.]+$/', $al, $al_match)) {
-	                        $al = $al_match[1];
-	                    } else {
-	                        continue;
-	                    }
-	                }
-	                if (isset($language_array[$al])) {
-	                    $language = $language_array[$al];
-	                    break;
-	                }
-	            }
-	        }
-	    }
-	}
-	if ( !file_exists('./language/'.$language.'/install.php') ) {
-		$language = 'tw_big5';
-	}
-	setcookie('install_lang', $language);
-	return $language;
+    $language = 'tw_big5';
+    if (!empty($_POST['lang'])) {
+        $language = $_POST['lang'];
+    } else {
+        if (isset($_COOKIE['install_lang'])) {
+            $language = $_COOKIE['install_lang'];
+        } else {
+            $_SERVER['HTTP_ACCEPT_LANGUAGE'] = 'ja,en-us;q=0.7,zh-TW;q=0.6';
+            if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+                $accept_langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+                foreach ($accept_langs as $al) {
+                    $al = strtolower($al);
+                    $al_len = strlen($al);
+                    if ($al_len > 2) {
+                        if (preg_match('/([a-z]{2});q=[0-9.]+$/', $al, $al_match)) {
+                            $al = $al_match[1];
+                        } else {
+                            continue;
+                        }
+                    }
+                    if (isset($language_array[$al])) {
+                        $language = $language_array[$al];
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    if (!file_exists('./language/'.$language.'/install.php')) {
+        $language = 'tw_big5';
+    }
+    setcookie('install_lang', $language);
+    return $language;
 }
 
 /*
@@ -80,8 +81,8 @@ function getDirList($dirname)
     $dirlist = array();
     if (is_dir($dirname) && $handle = opendir($dirname)) {
         while (false !== ($file = readdir($handle))) {
-            if ( !preg_match('/^[.]{1,2}$/',$file) ) {
-                if (strtolower($file) != 'cvs' && is_dir($dirname.$file) ) {
+            if (!preg_match('/^[.]{1,2}$/', $file)) {
+                if (strtolower($file) != 'cvs' && is_dir($dirname.$file)) {
                     $dirlist[$file]=$file;
                 }
             }
@@ -101,8 +102,8 @@ function getImageFileList($dirname)
     $filelist = array();
     if (is_dir($dirname) && $handle = opendir($dirname)) {
         while (false !== ($file = readdir($handle))) {
-            if (!preg_match('/^[.]{1,2}$/', $file) && preg_match('/[.gif|.jpg|.png]$/i', $file) ) {
-                    $filelist[$file]=$file;
+            if (!preg_match('/^[.]{1,2}$/', $file) && preg_match('/[.gif|.jpg|.png]$/i', $file)) {
+                $filelist[$file]=$file;
             }
         }
         closedir($handle);
@@ -120,13 +121,13 @@ function &xoops_module_gettemplate($dirname, $template, $block=false)
         $path = XOOPS_ROOT_PATH.'/modules/'.$dirname.'/templates/'.$template;
     }
     if (!file_exists($path)) {
-    	$ret = false;
+        $ret = false;
         return $ret;
     } else {
         $lines = file($path);
     }
     if (!$lines) {
-    	$ret = false;
+        $ret = false;
         return $ret;
     }
     $ret = '';
@@ -137,8 +138,9 @@ function &xoops_module_gettemplate($dirname, $template, $block=false)
     return $ret;
 }
 
-function check_language($language){
-    if ( file_exists('./language/'.$language.'/install.php') ) {
+function check_language($language)
+{
+    if (file_exists('./language/'.$language.'/install.php')) {
         return $language;
     } else {
         return 'english';
@@ -147,38 +149,44 @@ function check_language($language){
 
 function b_back($option = null)
 {
-    if(!isset($option) || !is_array($option)) return '';
+    if (!isset($option) || !is_array($option)) {
+        return '';
+    }
     $content = '';
-    if(isset($option[0]) && $option[0] != ''){
+    if (isset($option[0]) && $option[0] != '') {
         $content .= '<input type="button" value="'._INSTALL_L42.'"'.
                     ' onclick="location=\'index.php?op='.htmlspecialchars($option[0]).'\'" />';
-    }else{
+    } else {
         $content .= '<input type="button" value="'._INSTALL_L42.'"'.
                     ' onclick="javascript:history.back();" />';
     }
-    if(isset($option[1]) && $option[1] != ''){
+    if (isset($option[1]) && $option[1] != '') {
         $content .= '<span style="font-size:90%;"> &lt;&lt; '.htmlspecialchars($option[1]).'</span>';
     }
     return $content;
 }
 
-function b_reload($option=''){
-    if(empty($option)) return '';
+function b_reload($option='')
+{
+    if (empty($option)) {
+        return '';
+    }
     if (!defined('_INSTALL_L200')) {
         define('_INSTALL_L200', '重新載入');
     }
     return  '<input type="button" value="'._INSTALL_L200.'" onclick="location.reload();" />';
 }
 
-function b_next($option=null){
-    if(!isset($option) || !is_array($option)) return '';
+function b_next($option=null)
+{
+    if (!isset($option) || !is_array($option)) {
+        return '';
+    }
     $content = '';
-    if(isset($option[1]) && $option[1] != ''){
+    if (isset($option[1]) && $option[1] != '') {
         $content .= '<span style="font-size:90%;">'.htmlspecialchars($option[1]).' &gt;&gt; </span>';
     }
     $content .= '<input type="hidden" name="op" value="'.htmlspecialchars($option[0]).'" />';
     $content .= '<input type="submit" name="submit" value="'._INSTALL_L47.'" />';
     return $content;
 }
-
-?>

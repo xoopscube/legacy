@@ -13,4 +13,3 @@
     $this->db->queryF("/*!40101 SET SESSION collation_connection=ujis_japanese_ci */");
     $this->db->queryF("/*!40101 SET SESSION collation_database=ujis_japanese_ci */");
     $this->db->queryF("/*!40101 SET SESSION collation_server=ujis_japanese_ci */");
-?>

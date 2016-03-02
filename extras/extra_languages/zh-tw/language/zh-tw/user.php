@@ -135,4 +135,3 @@ define('_US_PRESSLOGIN', '請按以下按鈕登入');
 
 define('_US_ADMINNO', '不能刪除這個站長群組的使用者');
 define('_US_GROUPS', '使用者所屬群組');
-?>

@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -63,5 +62,3 @@ class Lecat_ActorEditForm extends XCube_ActionForm
     {
     }
 }
-
-?>

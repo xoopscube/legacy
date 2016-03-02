@@ -75,4 +75,3 @@ interface HTTP_OAuth_Store_Consumer_Interface
      */
     public function removeAccessToken(HTTP_OAuth_Store_Data $data);
 }
-?>

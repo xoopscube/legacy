@@ -36,5 +36,4 @@ Il est librement redistribuable tant que vous vous soumettez aux termes de distr
 <p>
 Suivez les instructions de cet assistant d'installation.
 </p>
-"
-?>
+";

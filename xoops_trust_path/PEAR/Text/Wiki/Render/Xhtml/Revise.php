@@ -1,8 +1,9 @@
 <?php
 
-class Text_Wiki_Render_Xhtml_Revise extends Text_Wiki_Render {
+class Text_Wiki_Render_Xhtml_Revise extends Text_Wiki_Render
+{
     
-    var $conf = array(
+    public $conf = array(
         'css_ins' => null,
         'css_del' => null
     );
@@ -21,7 +22,7 @@ class Text_Wiki_Render_Xhtml_Revise extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         if ($options['type'] == 'del_start') {
             $css = $this->formatConf(' class="%s"', 'css_del');
@@ -42,4 +43,3 @@ class Text_Wiki_Render_Xhtml_Revise extends Text_Wiki_Render {
         }
     }
 }
-?>

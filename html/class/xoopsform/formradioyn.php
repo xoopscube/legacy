@@ -29,7 +29,9 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 /**
  * @package     kernel
@@ -57,20 +59,19 @@ include_once XOOPS_ROOT_PATH."/class/xoopsform/formradio.php";
  */
 class XoopsFormRadioYN extends XoopsFormRadio
 {
-	/**
-	 * Constructor
-	 * 
-	 * @param	string	$caption
-	 * @param	string	$name
-	 * @param	string	$value		Pre-selected value, can be "0" (No) or "1" (Yes)
-	 * @param	string	$yes		String for "Yes"
-	 * @param	string	$no			String for "No"
-	 */
-	function XoopsFormRadioYN($caption, $name, $value=null, $yes=_YES, $no=_NO)
-	{
-		$this->XoopsFormRadio($caption, $name, $value);
-		$this->addOption(1, $yes);
-		$this->addOption(0, $no);
-	}
+    /**
+     * Constructor
+     * 
+     * @param	string	$caption
+     * @param	string	$name
+     * @param	string	$value		Pre-selected value, can be "0" (No) or "1" (Yes)
+     * @param	string	$yes		String for "Yes"
+     * @param	string	$no			String for "No"
+     */
+    public function XoopsFormRadioYN($caption, $name, $value=null, $yes=_YES, $no=_NO)
+    {
+        $this->XoopsFormRadio($caption, $name, $value);
+        $this->addOption(1, $yes);
+        $this->addOption(0, $no);
+    }
 }
-?>

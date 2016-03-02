@@ -24,23 +24,19 @@
  */
 function smarty_function_xoops_token($params, &$smarty)
 {
-	if (isset($params['form']) && is_object($form = $params['form'])) {
-		if(is_a($form, 'XCube_ActionForm')) {
-			$tokenName = $form->getTokenName();
-			$tokenValue = $form->getToken();
-		}
-		else {
-			die('You does not set ActionForm instance to place holder.');
-		}
-	}
-	else {
-		$tokenName = $params['name'];
-		$tokenValue = $params['value'];
-	}
-	
-	if ($tokenName != null && $tokenValue != null) {
-		printf('<input type="hidden" name="%s" value="%s" />', htmlspecialchars($tokenName, ENT_QUOTES), htmlspecialchars($tokenValue, ENT_QUOTES));
-	}
+    if (isset($params['form']) && is_object($form = $params['form'])) {
+        if (is_a($form, 'XCube_ActionForm')) {
+            $tokenName = $form->getTokenName();
+            $tokenValue = $form->getToken();
+        } else {
+            die('You does not set ActionForm instance to place holder.');
+        }
+    } else {
+        $tokenName = $params['name'];
+        $tokenValue = $params['value'];
+    }
+    
+    if ($tokenName != null && $tokenValue != null) {
+        printf('<input type="hidden" name="%s" value="%s" />', htmlspecialchars($tokenName, ENT_QUOTES), htmlspecialchars($tokenValue, ENT_QUOTES));
+    }
 }
-
-?>

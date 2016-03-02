@@ -28,14 +28,14 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 
-define("_INSTALL_WEBMASTER","관리자");
-define("_INSTALL_WEBMASTERD","관리자그룹");
-define("_INSTALL_REGUSERS","등록회원");
-define("_INSTALL_REGUSERSD","등록회원그룹");
-define("_INSTALL_ANONUSERS","손님");
-define("_INSTALL_ANONUSERSD","손님그룹");
+define("_INSTALL_WEBMASTER", "관리자");
+define("_INSTALL_WEBMASTERD", "관리자그룹");
+define("_INSTALL_REGUSERS", "등록회원");
+define("_INSTALL_REGUSERSD", "등록회원그룹");
+define("_INSTALL_ANONUSERS", "손님");
+define("_INSTALL_ANONUSERSD", "손님그룹");
 
-define("_INSTALL_ANON","손님");
+define("_INSTALL_ANON", "손님");
 
 define("_INSTALL_DISCLMR", '
 제1장 총칙
@@ -100,4 +100,3 @@ define("_INSTALL_DISCLMR", '
 제11조 (면책 조항)
 당 사이트는 회원에게 제공하는 서비스의 이용과 관련된 어떠한 직접 혹은 간접적 손해에 대해도 일체 책임을 지지 않습니다.
 ');
-?>

@@ -1,8 +1,9 @@
 <?php
 
-class Text_Wiki_Render_Xhtml_Italic extends Text_Wiki_Render {
+class Text_Wiki_Render_Xhtml_Italic extends Text_Wiki_Render
+{
     
-    var $conf = array(
+    public $conf = array(
         'css' => null
     );
     
@@ -19,7 +20,7 @@ class Text_Wiki_Render_Xhtml_Italic extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         if ($options['type'] == 'start') {
             $css = $this->formatConf(' class="%s"', 'css');
@@ -31,4 +32,3 @@ class Text_Wiki_Render_Xhtml_Italic extends Text_Wiki_Render {
         }
     }
 }
-?>

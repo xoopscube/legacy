@@ -40,12 +40,12 @@ class File_Archive_Writer_Files extends File_Archive_Writer
      * @var Object Handle to the file where the data are currently written
      * @access private
      */
-    var $handle = null;
-    var $basePath;
-    var $stat = array();
-    var $filename;
+    public $handle = null;
+    public $basePath;
+    public $stat = array();
+    public $filename;
 
-    function File_Archive_Writer_Files($base = '')
+    public function File_Archive_Writer_Files($base = '')
     {
         if ($base === null || $base == '') {
             $this->basePath = '';
@@ -58,7 +58,7 @@ class File_Archive_Writer_Files extends File_Archive_Writer
         }
     }
 
-    function getFilename($filename)
+    public function getFilename($filename)
     {
         return $this->basePath.$filename;
     }
@@ -67,7 +67,7 @@ class File_Archive_Writer_Files extends File_Archive_Writer
      * Ensure that $pathname exists, or create it if it does not
      * @access private
      */
-    function mkdirr($pathname)
+    public function mkdirr($pathname)
     {
         // Check if directory already exists
         if (is_dir($pathname) || empty($pathname)) {
@@ -101,7 +101,7 @@ class File_Archive_Writer_Files extends File_Archive_Writer
      * @param int $pos the initial position in the file
      * @param $stat the stats of the file
      */
-    function openFile($filename, $pos = 0)
+    public function openFile($filename, $pos = 0)
     {
         $this->close();
 
@@ -124,7 +124,7 @@ class File_Archive_Writer_Files extends File_Archive_Writer
      * Open a file for appending after having removed a block of data from it
      * See File_Archive_Reader::makeWriterRemoveBlocks
      */
-    function openFileRemoveBlock($filename, $pos, $blocks)
+    public function openFileRemoveBlock($filename, $pos, $blocks)
     {
         $error = $this->openFile($filename, $pos);
         if (PEAR::isError($error)) {
@@ -156,7 +156,7 @@ class File_Archive_Writer_Files extends File_Archive_Writer
                 $keep = !$keep;
             }
             if ($keep) {
-                while(!feof($this->handle)) {
+                while (!feof($this->handle)) {
                     fwrite($this->handle, fread($read, 8196));
                 }
             }
@@ -171,7 +171,7 @@ class File_Archive_Writer_Files extends File_Archive_Writer
     /**
      * @see File_Archive_Writer::newFile()
      */
-    function newFile($filename, $stat = array(), $mime = "application/octet-stream")
+    public function newFile($filename, $stat = array(), $mime = "application/octet-stream")
     {
         $this->close();
         $this->stat = $stat;
@@ -199,11 +199,14 @@ class File_Archive_Writer_Files extends File_Archive_Writer
     /**
      * @see File_Archive_Writer::writeData()
      */
-    function writeData($data) { fwrite($this->handle, $data); }
+    public function writeData($data)
+    {
+        fwrite($this->handle, $data);
+    }
     /**
      * @see File_Archive_Writer::newFromTempFile()
      */
-    function newFromTempFile($tmpfile, $filename, $stat = array(), $mime = "application/octet-stream")
+    public function newFromTempFile($tmpfile, $filename, $stat = array(), $mime = "application/octet-stream")
     {
         $this->filename = $filename;
         $complete = $this->getFilename($filename);
@@ -225,7 +228,7 @@ class File_Archive_Writer_Files extends File_Archive_Writer
     /**
      * @see File_Archive_Writer::close()
      */
-    function close()
+    public function close()
     {
         if (is_resource($this->handle)) {
             fclose($this->handle);
@@ -237,7 +240,7 @@ class File_Archive_Writer_Files extends File_Archive_Writer
                 } else {
                     touch($this->filename, $this->stat[9]);
                 }
-            } else if (isset($this->stat[8])) {
+            } elseif (isset($this->stat[8])) {
                 touch($this->filename, time(), $this->stat[8]);
             }
 
@@ -255,5 +258,3 @@ class File_Archive_Writer_Files extends File_Archive_Writer
         }
     }
 }
-
-?>

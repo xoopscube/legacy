@@ -43,9 +43,9 @@ class File_Archive_Reader_Relay extends File_Archive_Reader
      *         $source
      * @access protected
      */
-    var $source;
+    public $source;
 
-    function File_Archive_Reader_Relay(&$source)
+    public function File_Archive_Reader_Relay(&$source)
     {
         $this->source =& $source;
     }
@@ -53,44 +53,71 @@ class File_Archive_Reader_Relay extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::next()
      */
-    function next() { return $this->source->next(); }
+    public function next()
+    {
+        return $this->source->next();
+    }
     /**
      * @see File_Archive_Reader::getFilename()
      */
-    function getFilename() { return $this->source->getFilename(); }
+    public function getFilename()
+    {
+        return $this->source->getFilename();
+    }
     /**
      * @see File_Archive_Reader::getStat()
      */
-    function getStat() { return $this->source->getStat(); }
+    public function getStat()
+    {
+        return $this->source->getStat();
+    }
     /**
      * @see File_Archive_Reader::getMime()
      */
-    function getMime() { return $this->source->getMime(); }
+    public function getMime()
+    {
+        return $this->source->getMime();
+    }
     /**
      * @see File_Archive_Reader::getDataFilename()
      */
-    function getDataFilename() { return $this->source->getDataFilename(); }
+    public function getDataFilename()
+    {
+        return $this->source->getDataFilename();
+    }
     /**
      * @see File_Archive_Reader::getData()
      */
-    function getData($length = -1) { return $this->source->getData($length); }
+    public function getData($length = -1)
+    {
+        return $this->source->getData($length);
+    }
     /**
      * @see File_Archive_Reader::skip()
      */
-    function skip($length = -1) { return $this->source->skip($length); }
+    public function skip($length = -1)
+    {
+        return $this->source->skip($length);
+    }
     /**
      * @see File_Archive_Reader::rewind()
      */
-    function rewind($length = -1) { return $this->source->rewind($length); }
+    public function rewind($length = -1)
+    {
+        return $this->source->rewind($length);
+    }
     /**
      * @see File_Archive_Reader::tell()
      */
-    function tell() { return $this->source->tell(); }
+    public function tell()
+    {
+        return $this->source->tell();
+    }
 
     /**
      * @see File_Archive_Reader::close()
      */
-    function close()
+    public function close()
     {
         if ($this->source !== null) {
             return $this->source->close();
@@ -99,7 +126,7 @@ class File_Archive_Reader_Relay extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::makeAppendWriter()
      */
-    function makeAppendWriter()
+    public function makeAppendWriter()
     {
         $writer = $this->source->makeAppendWriter();
         if (!PEAR::isError($writer)) {
@@ -110,7 +137,7 @@ class File_Archive_Reader_Relay extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::makeWriterRemoveFiles()
      */
-    function makeWriterRemoveFiles($pred)
+    public function makeWriterRemoveFiles($pred)
     {
         $writer = $this->source->makeWriterRemoveFiles($pred);
         if (!PEAR::isError($writer)) {
@@ -121,7 +148,7 @@ class File_Archive_Reader_Relay extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::makeWriterRemoveBlocks()
      */
-    function makeWriterRemoveBlocks($blocks, $seek = 0)
+    public function makeWriterRemoveBlocks($blocks, $seek = 0)
     {
         $writer = $this->source->makeWriterRemoveBlocks($blocks, $seek);
         if (!PEAR::isError($writer)) {
@@ -130,5 +157,3 @@ class File_Archive_Reader_Relay extends File_Archive_Reader
         return $writer;
     }
 }
-
-?>

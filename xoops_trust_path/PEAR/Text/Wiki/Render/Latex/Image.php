@@ -1,7 +1,8 @@
 <?php
-class Text_Wiki_Render_Latex_Image extends Text_Wiki_Render {
+class Text_Wiki_Render_Latex_Image extends Text_Wiki_Render
+{
 
-    var $conf = array(
+    public $conf = array(
         'base' => '/'
     );
     
@@ -19,7 +20,7 @@ class Text_Wiki_Render_Latex_Image extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         return 'Image: NI';
         
@@ -37,7 +38,6 @@ class Text_Wiki_Render_Latex_Image extends Text_Wiki_Render {
                 $href = $this->wiki->getRenderConf('xhtml', 'wikilink', 'view_url') .
                     $options['attr']['link'];
             }
-            
         } else {
             // image is not linked
             $href = null;
@@ -67,4 +67,3 @@ class Text_Wiki_Render_Latex_Image extends Text_Wiki_Render {
         }
     }
 }
-?>

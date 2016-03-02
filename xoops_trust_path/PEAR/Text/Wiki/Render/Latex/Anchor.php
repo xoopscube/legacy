@@ -12,12 +12,13 @@
 *
 */
 
-class Text_Wiki_Render_Latex_Anchor extends Text_Wiki_Render {
+class Text_Wiki_Render_Latex_Anchor extends Text_Wiki_Render
+{
     
-    function token($options)
+    public function token($options)
     {
         extract($options); // $type, $name
-        
+
         if ($type == 'start') {
             //return sprintf('<a id="%s">',$name);
             return '';
@@ -29,5 +30,3 @@ class Text_Wiki_Render_Latex_Anchor extends Text_Wiki_Render {
         }
     }
 }
-
-?>

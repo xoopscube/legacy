@@ -36,5 +36,4 @@ XOOPS Cube Legacy�� ���̼����� <a href='https://github.com/x
 <p>
 �� ��ġ����縦 ��� �ֽñ� �ٶ�ϴ�.
 </p>
-"
-?>
+";

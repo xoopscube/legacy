@@ -14,21 +14,22 @@
  */
 class XCube_TextFilter
 {
-    var $mDummy=null;  //Dummy member for preventing object be treated as empty.
+    public $mDummy=null;  //Dummy member for preventing object be treated as empty.
 
-    function getInstance(&$instance) {
-       if (empty($instance)) {
+    public function getInstance(&$instance)
+    {
+        if (empty($instance)) {
             $instance = new XCube_TextFilter();
         }
     }
     
-    function toShow($str) {
+    public function toShow($str)
+    {
         return htmlspecialchars($str, ENT_QUOTES);
     }
 
-    function toEdit($str) {
+    public function toEdit($str)
+    {
         return htmlspecialchars($str, ENT_QUOTES);
     }
-
 }
-?>
