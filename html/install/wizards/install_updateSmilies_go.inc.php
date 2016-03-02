@@ -60,4 +60,3 @@
     }
     $b_next = array('updateAvatars', _INSTALL_L14);
     include './install_tpl.php';
-?>

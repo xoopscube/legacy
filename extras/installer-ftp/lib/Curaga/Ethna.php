@@ -91,7 +91,7 @@ require_once ETHNA_BASE . '/class/Ethna_Renderer.php';
 #require_once ETHNA_BASE . '/class/CLI/Ethna_CLI_ActionClass.php';
 
 if (extension_loaded('soap')) {
-#    require_once ETHNA_BASE . '/class/SOAP/Ethna_SOAP_ActionForm.php';
+    #    require_once ETHNA_BASE . '/class/SOAP/Ethna_SOAP_ActionForm.php';
 #    require_once ETHNA_BASE . '/class/SOAP/Ethna_SOAP_Gateway.php';
 #    require_once ETHNA_BASE . '/class/SOAP/Ethna_SOAP_GatewayGenerator.php';
 #    require_once ETHNA_BASE . '/class/SOAP/Ethna_SOAP_Util.php';
@@ -336,7 +336,7 @@ class Ethna
      *                を含む場合のみ TRUEを返します。
      *  @static
      */
-    function isError($data, $msgcode = NULL)
+    public function isError($data, $msgcode = null)
     {
         if (!is_object($data)) {
             return false;
@@ -345,7 +345,7 @@ class Ethna
         $class_name = get_class($data);
         if (strcasecmp($class_name, 'Ethna_Error') === 0
          || is_subclass_of($data, 'Ethna_Error')) {
-            if ($msgcode == NULL) {
+            if ($msgcode == null) {
                 return true;
             } elseif ($data->getCode() == $msgcode) {
                 return true;
@@ -363,7 +363,7 @@ class Ethna
      *  @param  int     $code               エラーコード
      *  @static
      */
-    function &raiseError($message, $code = E_GENERAL)
+    public function &raiseError($message, $code = E_GENERAL)
     {
         $userinfo = null;
         if (func_num_args() > 2) {
@@ -384,7 +384,7 @@ class Ethna
      *  @param  int     $code               エラーコード
      *  @static
      */
-    function &raiseWarning($message, $code = E_GENERAL)
+    public function &raiseWarning($message, $code = E_GENERAL)
     {
         $userinfo = null;
         if (func_num_args() > 2) {
@@ -406,7 +406,7 @@ class Ethna
      *  @param  int     $code               エラーコード
      *  @static
      */
-    function &raiseNotice($message, $code = E_GENERAL)
+    public function &raiseNotice($message, $code = E_GENERAL)
     {
         $userinfo = null;
         if (func_num_args() > 2) {
@@ -427,7 +427,7 @@ class Ethna
      *  @param  mixed   string:コールバック関数名 array:コールバッククラス(名|オブジェクト)+メソッド名
      *  @static
      */
-    function setErrorCallback($callback)
+    public function setErrorCallback($callback)
     {
         $GLOBALS['_Ethna_error_callback_list'][] = $callback;
     }
@@ -438,7 +438,7 @@ class Ethna
      *  @access public
      *  @static
      */
-    function clearErrorCallback()
+    public function clearErrorCallback()
     {
         $GLOBALS['_Ethna_error_callback_list'] = array();
     }
@@ -450,19 +450,19 @@ class Ethna
      *  @param  object  Ethna_Error     Ethna_Errorオブジェクト
      *  @static
      */
-    function handleError(&$error)
+    public function handleError(&$error)
     {
         for ($i = 0; $i < count($GLOBALS['_Ethna_error_callback_list']); $i++) {
             $callback =& $GLOBALS['_Ethna_error_callback_list'][$i];
             if (is_array($callback) == false) {
                 call_user_func($callback, $error);
-            } else if (is_object($callback[0])) {
+            } elseif (is_object($callback[0])) {
                 $object =& $callback[0];
                 $method = $callback[1];
 
                 // perform some more checks?
                 $object->$method($error);
-            } else {  
+            } else {
                 //  call statically
                 call_user_func($callback, $error);
             }
@@ -470,5 +470,4 @@ class Ethna
     }
 }
 // }}}
-
-?>
+;

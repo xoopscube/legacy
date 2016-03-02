@@ -29,7 +29,9 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 /**
  * @package     kernel
@@ -47,53 +49,56 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
  * @author	    Kazumi Ono	<onokazu@xoops.org>
  * @copyright	copyright (c) 2000-2003 XOOPS.org
  */
-class XoopsFormLabel extends XoopsFormElement {
+class XoopsFormLabel extends XoopsFormElement
+{
 
-	/**
+    /**
      * Text
-	 * @var	string	
-	 * @access	private
-	 */
-	var $_value;
+     * @var	string	
+     * @access	private
+     */
+    public $_value;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param	string	$caption	Caption
-	 * @param	string	$value		Text
-	 */
-	function XoopsFormLabel($caption="", $value=""){
-		$this->setCaption($caption);
-		$this->_value = $value;
-	}
+    /**
+     * Constructor
+     * 
+     * @param	string	$caption	Caption
+     * @param	string	$value		Text
+     */
+    public function XoopsFormLabel($caption="", $value="")
+    {
+        $this->setCaption($caption);
+        $this->_value = $value;
+    }
 
-	/**
-	 * Get the text
-	 * 
-	 * @return	string
-	 */
-	function getValue(){
-		return $this->_value;
-	}
+    /**
+     * Get the text
+     * 
+     * @return	string
+     */
+    public function getValue()
+    {
+        return $this->_value;
+    }
 
-	/**
-	 * Prepare HTML for output
-	 * 
-	 * @return	string
-	 */
-	function render(){
-		$root =& XCube_Root::getSingleton();
-		$renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
-		
-		$renderTarget =& $renderSystem->createRenderTarget('main');
-	
-		$renderTarget->setAttribute('legacy_module', 'legacy');
-		$renderTarget->setTemplateName("legacy_xoopsform_label.html");
-		$renderTarget->setAttribute("element", $this);
+    /**
+     * Prepare HTML for output
+     * 
+     * @return	string
+     */
+    public function render()
+    {
+        $root =& XCube_Root::getSingleton();
+        $renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
+        
+        $renderTarget =& $renderSystem->createRenderTarget('main');
+    
+        $renderTarget->setAttribute('legacy_module', 'legacy');
+        $renderTarget->setTemplateName("legacy_xoopsform_label.html");
+        $renderTarget->setAttribute("element", $this);
 
-		$renderSystem->render($renderTarget);
-	
-		return $renderTarget->getResult();
-	}
+        $renderSystem->render($renderTarget);
+    
+        return $renderTarget->getResult();
+    }
 }
-?>

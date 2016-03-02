@@ -1,6 +1,7 @@
 <?php
 
-class Text_Wiki_Render_Plain_Code extends Text_Wiki_Render {
+class Text_Wiki_Render_Plain_Code extends Text_Wiki_Render
+{
     
     
     /**
@@ -16,9 +17,8 @@ class Text_Wiki_Render_Plain_Code extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         return "\n" . $options['text'] . "\n\n";
     }
 }
-?>

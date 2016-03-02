@@ -46,22 +46,22 @@ class File_Archive_Writer_Output extends File_Archive_Writer
      *         the MIME will be deduced from its extension
      * @access private
      */
-    var $sendHeaders;
+    public $sendHeaders;
 
     /**
      * @param $sendHeaders see the variable
      */
-    function File_Archive_Writer_Output($sendHeaders = true)
+    public function File_Archive_Writer_Output($sendHeaders = true)
     {
         $this->sendHeaders = $sendHeaders;
     }
     /**
      * @see File_Archive_Writer::newFile()
      */
-    function newFile($filename, $stat = array(), $mime = "application/octet-stream")
+    public function newFile($filename, $stat = array(), $mime = "application/octet-stream")
     {
         if ($this->sendHeaders) {
-            if(headers_sent()) {
+            if (headers_sent()) {
                 return PEAR::raiseError(
                     'The headers have already been sent. '.
                     'Use File_Archive::toOutput(false) to write '.
@@ -76,18 +76,22 @@ class File_Archive_Writer_Output extends File_Archive_Writer
     /**
      * @see File_Archive_Writer::newFileNeedsMIME
      */
-    function newFileNeedsMIME()
+    public function newFileNeedsMIME()
     {
         return $this->sendHeaders;
     }
     /**
      * @see File_Archive_Writer::writeData()
      */
-    function writeData($data) { echo $data; }
+    public function writeData($data)
+    {
+        echo $data;
+    }
     /**
      * @see File_Archive_Writer::writeFile()
      */
-    function writeFile($filename) { readfile($filename); }
+    public function writeFile($filename)
+    {
+        readfile($filename);
+    }
 }
-
-?>

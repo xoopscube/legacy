@@ -16,5 +16,4 @@ Description="Layout with 2 Columns. Responsive Web Design. Using MediaQueries Mu
 
 Licence="GPL"
 
-*/
-?>
+*/;

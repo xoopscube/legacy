@@ -23,4 +23,4 @@ define("_PM_AM_MESSAGESPRUNED", "%u 封信已被刪除");
 
 define("_PM_AM_ERRORWHILEPRUNING", "刪除的過程中發生錯誤");
 //define("_PM_AM_ERRORWHILEPRUNING", "An error occurred during prune");
-?>
+;

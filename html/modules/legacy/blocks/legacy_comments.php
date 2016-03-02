@@ -19,7 +19,8 @@
 //  This file has been modified for Legacy from XOOPS2 System module block   //
 // ------------------------------------------------------------------------- //
 
-function b_legacy_comments_show($options) {
+function b_legacy_comments_show($options)
+{
     $block = array();
     include_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
     $comment_handler =& xoops_gethandler('comment');
@@ -59,9 +60,9 @@ function b_legacy_comments_show($options) {
     return $block;
 }
 
-function b_legacy_comments_edit($options) {
+function b_legacy_comments_edit($options)
+{
     $inputtag = "<input type='text' name='options[]' value='".intval($options[0])."' />";
     $form = sprintf(_MB_LEGACY_DISPLAYC, $inputtag);
     return $form;
 }
-?>

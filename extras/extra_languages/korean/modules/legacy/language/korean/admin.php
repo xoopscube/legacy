@@ -428,8 +428,8 @@ define('_MD_AM_NONE', "없음");
 define('_MD_AM_NOTIFYTO', "신규 회원 등록 통지/통보 메일을 받을 그룹을 설정해 주세요!");
 define('_MD_AM_PERMADDNG', '그룹퍼미션추가에 실패하였습니다.(퍼미션명: %s 해당아이템: %s 해당그룹: %s');
 define('_MD_AM_PERMADDNGP', '이 아이템의 상위(부모)아이템 모두에게 퍼미션을 주어야만 합니다.');
-define('_MD_AM_PERMADDOK','그룹퍼미션을 추가하였습니다.(퍼미션명: %s 해당아이템: %s 해당그룹: %s');
-define('_MD_AM_PERMRESETNG','%s 모듈의 그룹퍼미션 설정초기화에 실패하였습니다.');
+define('_MD_AM_PERMADDOK', '그룹퍼미션을 추가하였습니다.(퍼미션명: %s 해당아이템: %s 해당그룹: %s');
+define('_MD_AM_PERMRESETNG', '%s 모듈의 그룹퍼미션 설정초기화에 실패하였습니다.');
 define('_MD_AM_PREFMAIN', "시스템 설정 메인");
 define('_MD_AM_REMEMBER', "이 파일을 웹상의 관리자메뉴에서 편집가능하게 하려면 반드시 액세스권한을 666(chmod 666)으로 설정하셔야 합니다.");
 define('_MD_AM_SEARCH', "검색 옵션");
@@ -467,5 +467,3 @@ define('_MD_AM_YES', "예");
 
 define('_MD_AM_COOLURI', 'Cool URI 사용?');
 define('_MD_AM_COOLURIDSC', '이용중인 서버가 mod_rewrite 를 지원한다면 이 옵션을 이용하실 수 있습니다. <a href="'.XOOPS_URL.'/modules/legacyRender/admin/index.php?action=HtaccessView">.htaccess 설정</a>과 연관해 살펴보시기 바랍니다.');
-
-?>

@@ -207,5 +207,3 @@ $modversion['blocks'][8]['show_func'] = "b_legacy_themes_show";
 $modversion['blocks'][8]['options'] = "0|80";
 $modversion['blocks'][8]['edit_func'] = "b_legacy_themes_edit";
 $modversion['blocks'][8]['template'] = 'legacy_block_themes.html';
-
-?>

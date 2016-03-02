@@ -60,9 +60,11 @@ abstract class HTMLPurifier_Token_Tag extends HTMLPurifier_Token
         $this->armor = $armor;
     }
 
-    public function toNode() {
+    public function toNode()
+    {
         return new HTMLPurifier_Node_Element($this->name, $this->attr, $this->line, $this->col, $this->armor);
     }
 }
 
 // vim: et sw=4 sts=4
+

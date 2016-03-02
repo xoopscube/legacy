@@ -27,34 +27,33 @@
  * @param bool (optional)
  * @return string|void
  */
-function smarty_modifier_xugj_date( $string , $format = 'Y-n-j' , $new1_string = 'New!' , $new2_string = 'New' , $is_uzone = true )
+function smarty_modifier_xugj_date($string, $format = 'Y-n-j', $new1_string = 'New!', $new2_string = 'New', $is_uzone = true)
 {
-	if( is_numeric( $string) ) {
-		// specified by UNIX TIMESTAMP
-		$time = intval( $string ) ;
-	} else {
-		// specified by format
-		$time = strtotime( $string ) ;
-	}
+    if (is_numeric($string)) {
+        // specified by UNIX TIMESTAMP
+        $time = intval($string) ;
+    } else {
+        // specified by format
+        $time = strtotime($string) ;
+    }
 
-	if( $time <= 0 ) {
-		$time = time() ;
-	}
+    if ($time <= 0) {
+        $time = time() ;
+    }
 
-	$utime = $is_uzone ? $time : xoops_getUserTimestamp( $time ) ;
-	$unow = xoops_getUserTimestamp( time() ) ;
+    $utime = $is_uzone ? $time : xoops_getUserTimestamp($time) ;
+    $unow = xoops_getUserTimestamp(time()) ;
 
-	$new_marks = '' ;
-	if( $new1_string ) {
-		if( $utime > $unow - 1 * 86400 ) {
-			$new_marks = '<span class="new1">' . $new1_string . '</span>' ;
-		} else if( $new2_string ) {
-			if( $utime > $unow - 7 * 86400 ) {
-				$new_marks = '<span class="new2">' . $new2_string . '</span>' ;
-			}
-		}
-	}
+    $new_marks = '' ;
+    if ($new1_string) {
+        if ($utime > $unow - 1 * 86400) {
+            $new_marks = '<span class="new1">' . $new1_string . '</span>' ;
+        } elseif ($new2_string) {
+            if ($utime > $unow - 7 * 86400) {
+                $new_marks = '<span class="new2">' . $new2_string . '</span>' ;
+            }
+        }
+    }
 
-	return date( $format , $utime ) . $new_marks ;
+    return date($format, $utime) . $new_marks ;
 }
-?>

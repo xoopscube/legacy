@@ -44,42 +44,42 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
      * @var array folders as described in the header of the cab file
      * @access private
      */
-    var $folders = array();
+    public $folders = array();
 
     /**
      * @var int Index of the folder being read
      */
-    var $folderIndex = 0;
+    public $folderIndex = 0;
 
     /**
      * @var int Index of the file being read in the current folder
      */
-    var $fileIndex = 0;
+    public $fileIndex = 0;
 
     /**
      * @var int Current offset inside the folder
      */
-    var $offset = 0;
+    public $offset = 0;
 
     /**
      * @var int Current offset inside the block
      */
-    var $blockOffset = 0;
+    public $blockOffset = 0;
 
     /**
      * @var array Header of the cabinet file
      */
-    var $header = null;
+    public $header = null;
 
     /**
      * @var string Data read from last data block
      */
-    var $data = '';
+    public $data = '';
 
     /**
      * @see File_Archive_Reader::next()
      */
-    function next()
+    public function next()
     {
         $error = parent::next();
         if (PEAR::isError($error)) {
@@ -92,7 +92,8 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
                 return $error;
             }
 
-            return !empty($this->folders);;
+            return !empty($this->folders);
+            ;
         } else {
             $error = $this->skip();
             if (PEAR::isError($error)) {
@@ -118,7 +119,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
     /**
      * Read the header at the begining of the CAB file
      */
-    function _readHeader()
+    public function _readHeader()
     {
         //This is the first time we read the file
         //Read the header
@@ -232,13 +233,12 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
     /**
      * Uncompresses $this->data
      */
-    function _uncompressData($data)
+    public function _uncompressData($data)
     {
-        switch($this->folders[$this->folderIndex]['compression'])
-        {
+        switch ($this->folders[$this->folderIndex]['compression']) {
         case 0: break;
         case 1:
-            $this->data = gzinflate(substr($this->data,2));
+            $this->data = gzinflate(substr($this->data, 2));
             break;
         case 2:
             return PEAR::raiseError('LZX compression format not supported');
@@ -251,7 +251,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
     /**
      * Read a block of data
      */
-    function _readDataBlock()
+    public function _readDataBlock()
     {
         /*
             u4  csum;           checksum of this CFDATA entry
@@ -283,7 +283,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::getData()
      */
-    function getData($length = -1)
+    public function getData($length = -1)
     {
         $file = $this->folders[$this->folderIndex]['files'][$this->fileIndex];
         $max = $file['offset'] + $file['size'] - $this->offset;
@@ -321,7 +321,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
      * Skip some data in the folder.
      * Data skipped may span several files
      */
-    function _folderSkip($length)
+    public function _folderSkip($length)
     {
         $skipped = strlen($this->data) - $this->blockOffset;
         $data = null;
@@ -368,7 +368,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::skip()
      */
-    function skip($length = -1)
+    public function skip($length = -1)
     {
         $file = $this->folders[$this->folderIndex]['files'][$this->fileIndex];
         $max = $file['offset'] + $file['size'] - $this->offset;
@@ -382,7 +382,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::rewind()
      */
-    function rewind($length = -1)
+    public function rewind($length = -1)
     {
         $file = $this->folders[$this->folderIndex]['files'][$this->fileIndex];
         $max = $this->offset - $file['offset'];
@@ -412,7 +412,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::tell()
      */
-    function tell()
+    public function tell()
     {
         return $this->offset -
                 $this->folders[$this->folderIndex]['files'][$this->fileIndex]['offset'];
@@ -421,7 +421,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::close()
      */
-    function close()
+    public function close()
     {
         $this->folders = array();
         $this->folderIndex = 0;
@@ -436,25 +436,25 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::getFilename()
      */
-    function getFilename()
+    public function getFilename()
     {
         return $this->folders[$this->folderIndex]['files'][$this->fileIndex]['name'];
     }
     /**
      * @see File_Archive_Reader::getStat()
      */
-    function getStat()
+    public function getStat()
     {
         $file = $this->folders[$this->folderIndex]['files'][$this->fileIndex];
         $stat = array(
             7 => $file['size'],
             9 => mktime(
-                ($file['time'] >> 11 ),         //hour
-                ($file['time'] >> 5  ) & 0x3F,  //minute
+                ($file['time'] >> 11),         //hour
+                ($file['time'] >> 5) & 0x3F,  //minute
                 ($file['time'] & 0x1F) * 2,     //second
-                ($file['date'] >> 5  ) & 0xF,   //month
-                ($file['date']       ) & 0x1F,  //day
-                ($file['date'] >> 9  ) + 1980   //year
+                ($file['date'] >> 5) & 0xF,   //month
+                ($file['date']) & 0x1F,  //day
+                ($file['date'] >> 9) + 1980   //year
                 )
             );
         $stat['size'] = $stat[7];
@@ -465,7 +465,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::select()
      */
-    function select($filename, $close = true)
+    public function select($filename, $close = true)
     {
         $std = $this->getStandardURL($filename);
 
@@ -486,7 +486,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
         //Iterate in order to find the right folder/file
         for (;$folderIndex < count($this->folders); $folderIndex++) {
             $folder = $this->folders[$folderIndex];
-            for(;$fileIndex < count($folder['files']); $fileIndex++) {
+            for (;$fileIndex < count($folder['files']); $fileIndex++) {
                 $file = $folder['files'][$fileIndex];
                 if (
                       empty($std) ||
@@ -510,7 +510,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
                                 return $error;
                             }
                         } else {
-                            while($this->fileIndex < $fileIndex) {
+                            while ($this->fileIndex < $fileIndex) {
                                 $error = $this->next();
                                 if (PEAR::isError($error)) {
                                     return $error;
@@ -555,5 +555,3 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
         return false;
     }
 }
-
-?>

@@ -128,19 +128,25 @@ class HTMLPurifier_Strategy_FixNesting extends HTMLPurifier_Strategy
                     break;
                 }
             };
-            if ($go) continue;
+            if ($go) {
+                continue;
+            }
             list($token, $d) = $node->toTokenPair();
             // base case
             if ($excludes_enabled && isset($excludes[$node->name])) {
                 $node->dead = true;
-                if ($e) $e->send(E_ERROR, 'Strategy_FixNesting: Node excluded');
+                if ($e) {
+                    $e->send(E_ERROR, 'Strategy_FixNesting: Node excluded');
+                }
             } else {
                 // XXX I suppose it would be slightly more efficient to
                 // avoid the allocation here and have children
                 // strategies handle it
                 $children = array();
                 foreach ($node->children as $child) {
-                    if (!$child->dead) $children[] = $child;
+                    if (!$child->dead) {
+                        $children[] = $child;
+                    }
                 }
                 $result = $def->child->validateChildren($children, $config, $context);
                 if ($result === true) {
@@ -148,14 +154,16 @@ class HTMLPurifier_Strategy_FixNesting extends HTMLPurifier_Strategy
                     $node->children = $children;
                 } elseif ($result === false) {
                     $node->dead = true;
-                    if ($e) $e->send(E_ERROR, 'Strategy_FixNesting: Node removed');
+                    if ($e) {
+                        $e->send(E_ERROR, 'Strategy_FixNesting: Node removed');
+                    }
                 } else {
                     $node->children = $result;
                     if ($e) {
                         // XXX This will miss mutations of internal nodes. Perhaps defer to the child validators
                         if (empty($result) && !empty($children)) {
                             $e->send(E_ERROR, 'Strategy_FixNesting: Node contents removed');
-                        } else if ($result != $children) {
+                        } elseif ($result != $children) {
                             $e->send(E_WARNING, 'Strategy_FixNesting: Node reorganized');
                         }
                     }
@@ -179,3 +187,4 @@ class HTMLPurifier_Strategy_FixNesting extends HTMLPurifier_Strategy
 }
 
 // vim: et sw=4 sts=4
+

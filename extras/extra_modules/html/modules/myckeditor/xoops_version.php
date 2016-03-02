@@ -5,7 +5,9 @@
  * @version $Id$
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 //
 // Define a basic manifesto.
@@ -49,5 +51,4 @@ $modversion['adminmenu'] = "admin/menu.php";
 $modversion['hasMain'] = 0;
 // $modversion['sub'][]['name'] = "";
 // $modversion['sub'][]['url'] = "";
-
-?>
+;

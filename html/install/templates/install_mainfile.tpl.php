@@ -1,9 +1,11 @@
 <div style="width:500px; margin:0 auto;">
 <table align="center">
 <tr><td align="left">
-<?php foreach($this->v('checks') as $check) { ?>
+<?php foreach ($this->v('checks') as $check) {
+    ?>
     <?php echo $check ?><br />
-<?php } ?>
+<?php 
+} ?>
 <br />
 </td></tr>
 </table>

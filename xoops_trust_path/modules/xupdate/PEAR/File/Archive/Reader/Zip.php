@@ -37,20 +37,20 @@ require_once "File/Archive/Reader/Archive.php";
  */
 class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
 {
-    var $currentFilename = null;
-    var $currentStat = null;
-    var $header = null;
-    var $offset = 0;
-    var $data = null;
-    var $files = array();
-    var $seekToEnd = 0;
+    public $currentFilename = null;
+    public $currentStat = null;
+    public $header = null;
+    public $offset = 0;
+    public $data = null;
+    public $files = array();
+    public $seekToEnd = 0;
 
-    var $centralDirectory = null;
+    public $centralDirectory = null;
 
     /**
      * @see File_Archive_Reader::close()
      */
-    function close()
+    public function close()
     {
         $this->currentFilename = null;
         $this->currentStat = null;
@@ -66,18 +66,24 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::getFilename()
      */
-    function getFilename() { return $this->currentFilename; }
+    public function getFilename()
+    {
+        return $this->currentFilename;
+    }
     /**
      * @see File_Archive_Reader::getStat()
      */
-    function getStat() { return $this->currentStat; }
+    public function getStat()
+    {
+        return $this->currentStat;
+    }
 
     /**
      * Go to next entry in ZIP archive
      *
      * @see File_Archive_Reader::next()
      */
-    function next()
+    public function next()
     {
         if ($this->seekToEnd > 0) {
             return false;
@@ -102,7 +108,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
             $header = $this->source->getData(4);
         }
         // Sometimes this header is used to tag the data descriptor section
-        if($header == "\x50\x4b\x07\x08") { 
+        if ($header == "\x50\x4b\x07\x08") {
             // Read out the data descriptor (always 12 bytes)
             $this->source->getData(12);
 
@@ -159,7 +165,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
                     ($this->header['Time'] & 0x07E0) >> 5,          //minute
                     ($this->header['Time'] & 0x001F) >> 1,          //second
                     ($this->header['Date'] & 0x01E0) >> 5,          //month
-                    ($this->header['Date'] & 0x001F)     ,          //day
+                    ($this->header['Date'] & 0x001F),          //day
                    (($this->header['Date'] & 0xFE00) >> 9) + 1980   //year
                 )
             );
@@ -190,7 +196,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::getData()
      */
-    function getData($length = -1)
+    public function getData($length = -1)
     {
         if ($this->offset >= $this->currentStat[7]) {
             return null;
@@ -213,7 +219,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::skip()
      */
-    function skip($length = -1)
+    public function skip($length = -1)
     {
         $before = $this->offset;
         if ($length == -1) {
@@ -226,7 +232,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::rewind()
      */
-    function rewind($length = -1)
+    public function rewind($length = -1)
     {
         $before = $this->offset;
         if ($length == -1) {
@@ -239,15 +245,16 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::tell()
      */
-    function tell()
+    public function tell()
     {
         return $this->offset;
     }
 
-    function uncompressData()
+    public function uncompressData()
     {
-        if ($this->data !== null)
+        if ($this->data !== null) {
             return;
+        }
 
         $this->data = $this->source->getData($this->header['CLen']);
         if (PEAR::isError($this->data)) {
@@ -269,7 +276,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::makeWriterRemoveFiles()
      */
-    function makeWriterRemoveFiles($pred)
+    public function makeWriterRemoveFiles($pred)
     {
         require_once "File/Archive/Writer/Zip.php";
 
@@ -289,7 +296,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
                 if ($seek === null) {
                     $seek = $size;
                     $blocks[] = $size;
-                } else if ($gap > 0) {
+                } elseif ($gap > 0) {
                     $blocks[] = $gap; //Don't remove the files between the gap
                     $blocks[] = $size;
                     $seek += $size;
@@ -338,7 +345,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::makeWriterRemoveBlocks()
      */
-    function makeWriterRemoveBlocks($blocks, $seek = 0)
+    public function makeWriterRemoveBlocks($blocks, $seek = 0)
     {
         if ($this->currentFilename === null) {
             return PEAR::raiseError('No file selected');
@@ -378,11 +385,12 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::makeAppendWriter
      */
-    function makeAppendWriter()
+    public function makeAppendWriter()
     {
         require_once "File/Archive/Writer/Zip.php";
 
-        while (($error = $this->next()) === true) { }
+        while (($error = $this->next()) === true) {
+        }
         if (PEAR::isError($error)) {
             $this->close();
             return $error;
@@ -407,7 +415,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
      *
      * The stream must initially be positioned before the end of central directory
      */
-    function seekToEndOfCentralDirectory()
+    public function seekToEndOfCentralDirectory()
     {
         $nbSkipped = $this->source->skip();
 
@@ -417,7 +425,6 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
         }
 
         while ($nbSkipped > 0) {
-
             $nbRewind = $this->source->rewind(min(100, $nbSkipped));
             while ($nbRewind >= -4) {
                 if ($nbRewind-- && $this->source->getData(1) == "\x50" &&
@@ -438,7 +445,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
      * This function will fill the central directory variable
      * and seek back to where it was called
      */
-    function readCentralDirectory()
+    public function readCentralDirectory()
     {
         $nbSkipped = $this->seekToEndOfCentralDirectory();
         if (PEAR::isError($nbSkipped)) {
@@ -479,4 +486,3 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
         $this->source->rewind($nbSkipped+4);
     }
 }
-?>

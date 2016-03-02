@@ -33,7 +33,8 @@
 * 
 */
 
-class Text_Wiki_Parse_Blockquote extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Blockquote extends Text_Wiki_Parse
+{
     
     
     /**
@@ -48,7 +49,7 @@ class Text_Wiki_Parse_Blockquote extends Text_Wiki_Parse {
     * 
     */
     
-    var $regex = '/\n((\>).*\n)(?!(\>))/Us';
+    public $regex = '/\n((\>).*\n)(?!(\>))/Us';
     
     
     /**
@@ -73,7 +74,7 @@ class Text_Wiki_Parse_Blockquote extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches)
+    public function process(&$matches)
     {
         // the replacement text we will return to parse()
         $return = '';
@@ -101,7 +102,7 @@ class Text_Wiki_Parse_Blockquote extends Text_Wiki_Parse {
             // $val[0] is the full matched list-item line
             // $val[1] is the number of initial '>' chars (indent level)
             // $val[2] is the quote text
-            
+
             // we number levels starting at 1, not zero
             $level = strlen($val[1]);
             
@@ -121,7 +122,7 @@ class Text_Wiki_Parse_Blockquote extends Text_Wiki_Parse {
                 
                 // ...and add a start token to the return.
                 $return .= $this->wiki->addToken(
-                    $this->rule, 
+                    $this->rule,
                     array(
                         'type' => 'start',
                         'level' => $level - 1
@@ -143,8 +144,8 @@ class Text_Wiki_Parse_Blockquote extends Text_Wiki_Parse {
                 $return .= "\n\n";
                 
                 $return .= $this->wiki->addToken(
-                    $this->rule, 
-                    array (
+                    $this->rule,
+                    array(
                         'type' => 'end',
                         'level' => count($stack)
                     )
@@ -164,8 +165,8 @@ class Text_Wiki_Parse_Blockquote extends Text_Wiki_Parse {
         while (count($stack) > 0) {
             array_pop($stack);
             $return .= $this->wiki->addToken(
-                $this->rule, 
-                array (
+                $this->rule,
+                array(
                     'type' => 'end',
                     'level' => count($stack)
                 )
@@ -176,4 +177,3 @@ class Text_Wiki_Parse_Blockquote extends Text_Wiki_Parse {
         return "\n$return\n\n";
     }
 }
-?>

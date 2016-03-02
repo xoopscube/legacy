@@ -29,7 +29,9 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 /**
  * @package     kernel
@@ -58,19 +60,18 @@ include_once XOOPS_ROOT_PATH."/class/xoopsform/formselect.php";
  */
 class XoopsFormSelectLang extends XoopsFormSelect
 {
-	/**
-	 * Constructor
-	 * 
-	 * @param	string	$caption
-	 * @param	string	$name
-	 * @param	mixed	$value	Pre-selected value (or array of them).
-	 * 							Legal is any name of a XOOPS_ROOT_PATH."/language/" subdirectory.
-	 * @param	int		$size	Number of rows. "1" makes a drop-down-list.
-	 */
-	function XoopsFormSelectLang($caption, $name, $value=null, $size=1)
-	{
-		$this->XoopsFormSelect($caption, $name, $value, $size);
-		$this->addOptionArray(XoopsLists::getLangList());
-	}
+    /**
+     * Constructor
+     * 
+     * @param	string	$caption
+     * @param	string	$name
+     * @param	mixed	$value	Pre-selected value (or array of them).
+     * 							Legal is any name of a XOOPS_ROOT_PATH."/language/" subdirectory.
+     * @param	int		$size	Number of rows. "1" makes a drop-down-list.
+     */
+    public function XoopsFormSelectLang($caption, $name, $value=null, $size=1)
+    {
+        $this->XoopsFormSelect($caption, $name, $value, $size);
+        $this->addOptionArray(XoopsLists::getLangList());
+    }
 }
-?>

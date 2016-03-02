@@ -44,11 +44,10 @@ require_once "File/Archive/Reader/ChangeName.php";
  */
 class File_Archive_Reader_ChangeName_Directory extends File_Archive_Reader_ChangeName
 {
-    var $oldBaseName;
-    var $newBaseName;
+    public $oldBaseName;
+    public $newBaseName;
 
-    function File_Archive_Reader_ChangeName_Directory
-                        ($oldBaseName, $newBaseName, &$source)
+    public function File_Archive_Reader_ChangeName_Directory($oldBaseName, $newBaseName, &$source)
     {
         parent::File_Archive_Reader_ChangeName($source);
         $this->oldBaseName = $this->getStandardURL($oldBaseName);
@@ -62,7 +61,7 @@ class File_Archive_Reader_ChangeName_Directory extends File_Archive_Reader_Chang
         }
     }
 
-    function modifyName($name)
+    public function modifyName($name)
     {
         if (empty($this->oldBaseName) ||
           !strncmp($name, $this->oldBaseName.'/', strlen($this->oldBaseName)+1) ||
@@ -78,7 +77,7 @@ class File_Archive_Reader_ChangeName_Directory extends File_Archive_Reader_Chang
             return $name;
         }
     }
-    function unmodifyName($name)
+    public function unmodifyName($name)
     {
         if (empty($this->newBaseName) ||
           !strncmp($name, $this->newBaseName.'/', strlen($this->newBaseName)+1) ||
@@ -95,5 +94,3 @@ class File_Archive_Reader_ChangeName_Directory extends File_Archive_Reader_Chang
         }
     }
 }
-
-?>

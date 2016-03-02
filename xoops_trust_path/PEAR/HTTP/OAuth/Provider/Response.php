@@ -54,7 +54,7 @@ class HTTP_OAuth_Provider_Response extends HTTP_OAuth_Message
      *
      * @var array $statusMap Map of status to code and text
      */
-    static protected $statusMap = array(
+    protected static $statusMap = array(
         self::STATUS_UNSUPPORTED_PARAMETER => array(
             400, 'Unsupported parameter'
         ),
@@ -281,7 +281,4 @@ class HTTP_OAuth_Provider_Response extends HTTP_OAuth_Message
 
         echo $this->getBody();
     }
-
 }
-
-?>

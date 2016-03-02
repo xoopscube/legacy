@@ -2,16 +2,17 @@
 
 // $Id: Toc.php,v 1.7 2004/09/25 19:05:14 pmjones Exp $
 
-class Text_Wiki_Render_Xhtml_Toc extends Text_Wiki_Render {
+class Text_Wiki_Render_Xhtml_Toc extends Text_Wiki_Render
+{
     
-    var $conf = array(
+    public $conf = array(
         'css_list' => null,
         'css_item' => null,
         'title' => '<strong>Table of Contents</strong>',
         'div_id' => 'toc'
     );
     
-    var $min = 2;
+    public $min = 2;
     
     /**
     * 
@@ -26,7 +27,7 @@ class Text_Wiki_Render_Xhtml_Toc extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         // type, id, level, count, attr
         extract($options);
@@ -77,4 +78,3 @@ class Text_Wiki_Render_Xhtml_Toc extends Text_Wiki_Render {
         }
     }
 }
-?>

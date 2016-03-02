@@ -28,7 +28,8 @@
 * 
 */
 
-class Text_Wiki_Parse_Image extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Image extends Text_Wiki_Parse
+{
     
     
     /**
@@ -42,7 +43,7 @@ class Text_Wiki_Parse_Image extends Text_Wiki_Parse {
     * 
     */
     
-    var $regex = '/(\[\[image )(.+?)(\]\])/i';
+    public $regex = '/(\[\[image )(.+?)(\]\])/i';
     
     
     /**
@@ -62,7 +63,7 @@ class Text_Wiki_Parse_Image extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches)
+    public function process(&$matches)
     {
         $pos = strpos($matches[2], ' ');
         
@@ -81,4 +82,3 @@ class Text_Wiki_Parse_Image extends Text_Wiki_Parse {
         return $this->wiki->addToken($this->rule, $options);
     }
 }
-?>

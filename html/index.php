@@ -14,4 +14,3 @@ $xoopsOption['show_cblock'] = 1;
 XCube_DelegateUtils::call("Legacypage.Top.Access");
 
 require_once "./footer.php";
-?>

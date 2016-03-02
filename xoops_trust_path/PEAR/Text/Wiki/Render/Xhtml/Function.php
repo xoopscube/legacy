@@ -2,10 +2,11 @@
 
 // $Id: Function.php,v 1.3 2004/10/08 17:46:47 pmjones Exp $
 
-class Text_Wiki_Render_Xhtml_Function extends Text_Wiki_Render {
+class Text_Wiki_Render_Xhtml_Function extends Text_Wiki_Render
+{
     
-    var $conf = array(
-    	// list separator for params and throws
+    public $conf = array(
+        // list separator for params and throws
         'list_sep' => ', ',
         
         // the "main" format string
@@ -34,10 +35,10 @@ class Text_Wiki_Render_Xhtml_Function extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         extract($options); // name, access, return, params, throws
-        
+
         // build the baseline output
         $output = $this->conf['format_main'];
         $output = str_replace('%access', htmlspecialchars($access), $output);
@@ -69,7 +70,7 @@ class Text_Wiki_Render_Xhtml_Function extends Text_Wiki_Render {
         // build the set of throws
         $list = array();
         foreach ($throws as $key => $val) {
-               $tmp = $this->conf['format_throws'];
+            $tmp = $this->conf['format_throws'];
             $tmp = str_replace('%type', htmlspecialchars($val['type']), $tmp);
             $tmp = str_replace('%descr', htmlspecialchars($val['descr']), $tmp);
             $list[] = $tmp;
@@ -84,4 +85,3 @@ class Text_Wiki_Render_Xhtml_Function extends Text_Wiki_Render {
         return "\n$output\n\n";
     }
 }
-?>

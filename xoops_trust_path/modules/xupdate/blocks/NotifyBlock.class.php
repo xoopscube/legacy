@@ -4,8 +4,7 @@
  * @package xupdate
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
@@ -67,15 +66,15 @@ class Xupdate_NotifyBlock extends Legacy_BlockProcedure
     **/
     protected function _setupObject($dirname)
     {
-    	$root =& XCube_Root::getSingleton();
-    	$roleManager = new Legacy_RoleManager();
-    	$roleManager->loadRolesByDirname($dirname);
-    	if ($root->mContext->mUser->isInRole('Module.'.$dirname.'.Admin')) {
-    		$this->_mHandler = Legacy_Utils::getModuleHandler('ModuleStore', $dirname);
-			return true;
-    	} else {
-    		return false;
-    	}
+        $root =& XCube_Root::getSingleton();
+        $roleManager = new Legacy_RoleManager();
+        $roleManager->loadRolesByDirname($dirname);
+        if ($root->mContext->mUser->isInRole('Module.'.$dirname.'.Admin')) {
+            $this->_mHandler = Legacy_Utils::getModuleHandler('ModuleStore', $dirname);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -97,13 +96,10 @@ class Xupdate_NotifyBlock extends Legacy_BlockProcedure
         $headerScript->addScript('var xupdateCheckImg=new Image();xupdateCheckImg.src="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleView&checkonly=1";');
         
         $this->_mHandler->getNotifyHTML();
-        
     }
     
-    function isDisplay()
+    public function isDisplay()
     {
         return false;
     }
 }
-
-?>

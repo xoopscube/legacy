@@ -1,6 +1,3 @@
 <?php
 
-define( '_MD_A_DBUPDATED' , 'Datenbank erfolgreich aktualisiert' ) ;
-
-
-?>
+define('_MD_A_DBUPDATED', 'Datenbank erfolgreich aktualisiert') ;

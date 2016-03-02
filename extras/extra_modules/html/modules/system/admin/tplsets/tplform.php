@@ -45,4 +45,3 @@ if ($tform['tpl_tplset'] != 'default') {
 } else {
     $form->addElement(new XoopsFormButton('', 'previewtpl', _MD_VIEW, 'submit'));
 }
-?>

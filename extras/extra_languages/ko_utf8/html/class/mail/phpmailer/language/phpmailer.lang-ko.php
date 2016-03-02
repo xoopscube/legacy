@@ -20,5 +20,3 @@ $PHPMAILER_LANG['file_open'] = '파일 에러: 파일을 열수가 없습니다:
 $PHPMAILER_LANG['encoding'] = '알수없는 인코딩방식입니다: ';
 $PHPMAILER_LANG['signing'] = 'Signing Error: ';
 $PHPMAILER_LANG['smtp_error'] = 'SMTP server error: ';
-
-?>

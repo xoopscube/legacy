@@ -370,7 +370,6 @@ class HTMLPurifier_CSSDefinition extends HTMLPurifier_Definition
             )
         );
         $this->info['page-break-inside'] = new HTMLPurifier_AttrDef_Enum(array('auto', 'avoid'));
-
     }
 
     /**
@@ -472,3 +471,4 @@ class HTMLPurifier_CSSDefinition extends HTMLPurifier_Definition
 }
 
 // vim: et sw=4 sts=4
+

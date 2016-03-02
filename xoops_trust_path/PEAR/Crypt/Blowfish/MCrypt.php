@@ -58,7 +58,7 @@ class Crypt_Blowfish_MCrypt extends Crypt_Blowfish
      * @var resource
      * @access private
      */
-    var $_td = null;
+    public $_td = null;
 
     /**
      * Crypt_Blowfish Constructor
@@ -69,7 +69,7 @@ class Crypt_Blowfish_MCrypt extends Crypt_Blowfish
      * @param string $iv initialization vector
      * @access public
      */
-    function Crypt_Blowfish_MCrypt($key = null, $mode = 'ecb', $iv = null)
+    public function Crypt_Blowfish_MCrypt($key = null, $mode = 'ecb', $iv = null)
     {
         $this->_iv = $iv . ((strlen($iv) < 8)
                             ? str_repeat(chr(0), 8 - strlen($iv)) : '');
@@ -104,7 +104,7 @@ class Crypt_Blowfish_MCrypt extends Crypt_Blowfish
      *                           or PEAR_Error on failure
      * @access public
      */
-    function encrypt($plainText)
+    public function encrypt($plainText)
     {
         if (!is_string($plainText)) {
             return PEAR::raiseError('Input must be a string', 0);
@@ -125,7 +125,7 @@ class Crypt_Blowfish_MCrypt extends Crypt_Blowfish
      *                           or PEAR_Error on failure
      * @access public
      */
-    function decrypt($cipherText)
+    public function decrypt($cipherText)
     {
         if (!is_string($cipherText)) {
             return PEAR::raiseError('Cipher text must be a string', 1);
@@ -147,7 +147,7 @@ class Crypt_Blowfish_MCrypt extends Crypt_Blowfish
      * @return boolean|PEAR_Error  Returns TRUE on success, PEAR_Error on failure
      * @access public
      */
-    function setKey($key, $iv = null)
+    public function setKey($key, $iv = null)
     {
         static $keyHash = null;
 
@@ -175,5 +175,3 @@ class Crypt_Blowfish_MCrypt extends Crypt_Blowfish
         return true;
     }
 }
-
-?>

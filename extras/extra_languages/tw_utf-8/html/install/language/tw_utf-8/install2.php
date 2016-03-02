@@ -1,13 +1,13 @@
 <?php
 // $Id: install2.php,v 1.1 2008/03/09 02:26:07 minahito Exp $
-define("_INSTALL_WEBMASTER","站務管理者");
-define("_INSTALL_WEBMASTERD","網站管理者");
-define("_INSTALL_REGUSERS","註冊會員");
-define("_INSTALL_REGUSERSD","已註冊會員群組");
-define("_INSTALL_ANONUSERS","訪客");
-define("_INSTALL_ANONUSERSD","訪客群組");
+define("_INSTALL_WEBMASTER", "站務管理者");
+define("_INSTALL_WEBMASTERD", "網站管理者");
+define("_INSTALL_REGUSERS", "註冊會員");
+define("_INSTALL_REGUSERSD", "已註冊會員群組");
+define("_INSTALL_ANONUSERS", "訪客");
+define("_INSTALL_ANONUSERSD", "訪客群組");
 
-define("_INSTALL_ANON","訪客");
+define("_INSTALL_ANON", "訪客");
 
 define("_INSTALL_DISCLMR", "本論壇之基礎規定係以中華民國所有法律即規定為依據，請務必對自己的言論與行為負責：
 
@@ -40,4 +40,3 @@ define("_INSTALL_DISCLMR", "本論壇之基礎規定係以中華民國所有法�
 
 此系統將會把有相關資料以 cookies、id即session 方式儲存在你的電腦中，並作HTTP_REFERER的位址認證，但所有內容均不會包含你的密碼，
 ，此外你的Email只是用來作為確認註冊身份及寄送密碼，將不會作為商業用途。");
-?>

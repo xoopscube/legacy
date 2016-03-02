@@ -48,11 +48,11 @@ class XoopsLogger
     /**#@+
      * @var array
      */
-    var $queries = array();
-    var $blocks = array();
-    var $extra = array();
-    var $logstart = array();
-    var $logend = array();
+    public $queries = array();
+    public $blocks = array();
+    public $extra = array();
+    public $logstart = array();
+    public $logend = array();
     /**#@-*/
 
     /**
@@ -62,7 +62,6 @@ class XoopsLogger
      */
     public function XoopsLogger()
     {
-
     }
 
     /**
@@ -85,7 +84,7 @@ class XoopsLogger
      * @param   string  $name   name of the timer
      *
      */
-    function startTime($name = 'XOOPS')
+    public function startTime($name = 'XOOPS')
     {
         $this->logstart[$name] = explode(' ', microtime());
     }
@@ -95,7 +94,7 @@ class XoopsLogger
      *
      * @param   string  $name   name of the timer
      */
-    function stopTime($name = 'XOOPS')
+    public function stopTime($name = 'XOOPS')
     {
         $this->logend[$name] = explode(' ', microtime());
     }
@@ -107,7 +106,7 @@ class XoopsLogger
      * @param   string  $error  error message (if any)
      * @param   int     $errno  error number (if any)
      */
-    function addQuery($sql, $error=null, $errno=null)
+    public function addQuery($sql, $error=null, $errno=null)
     {
         $this->queries[] = array('sql' => $sql, 'error' => $error, 'errno' => $errno);
     }
@@ -119,7 +118,7 @@ class XoopsLogger
      * @param   bool    $cached     was the block cached?
      * @param   int     $cachetime  cachetime of the block
      */
-    function addBlock($name, $cached = false, $cachetime = 0)
+    public function addBlock($name, $cached = false, $cachetime = 0)
     {
         $this->blocks[] = array('name' => $name, 'cached' => $cached, 'cachetime' => $cachetime);
     }
@@ -130,7 +129,7 @@ class XoopsLogger
      * @param   string  $name       name for the entry
      * @param   int     $msg  text message for the entry
      */
-    function addExtra($name, $msg)
+    public function addExtra($name, $msg)
     {
         $this->extra[] = array('name' => $name, 'msg' => $msg);
     }
@@ -140,7 +139,7 @@ class XoopsLogger
      *
      * @return  string  HTML table with queries
      */
-    function dumpQueries()
+    public function dumpQueries()
     {
         $ret = '<table class="outer" width="100%" cellspacing="1"><tr><th>Queries</th></tr>';
         $class = 'even';
@@ -161,7 +160,7 @@ class XoopsLogger
      *
      * @return  string  HTML table with blocks
      */
-    function dumpBlocks()
+    public function dumpBlocks()
     {
         $ret = '<table class="outer" width="100%" cellspacing="1"><tr><th colspan="2">Blocks</th></tr>';
         $class = 'even';
@@ -183,7 +182,7 @@ class XoopsLogger
      * @param   string  $name   name of the counter
      * @return  float   current execution time of the counter
      */
-    function dumpTime($name = 'XOOPS')
+    public function dumpTime($name = 'XOOPS')
     {
         if (!isset($this->logstart[$name])) {
             return 0;
@@ -201,7 +200,7 @@ class XoopsLogger
      *
      * @return  string  HTML table with extra information
      */
-    function dumpExtra()
+    public function dumpExtra()
     {
         $ret = '<table class="outer" width="100%" cellspacing="1"><tr><th colspan="2">Extra</th></tr>';
         $class = 'even';
@@ -218,7 +217,7 @@ class XoopsLogger
      *
      * @return  string  HTML output
      */
-    function dumpAll()
+    public function dumpAll()
     {
         $ret = $this->dumpQueries();
         $ret .= $this->dumpBlocks();
@@ -235,4 +234,3 @@ class XoopsLogger
         return $ret;
     }
 }
-?>

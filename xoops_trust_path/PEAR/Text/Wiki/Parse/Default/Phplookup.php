@@ -28,7 +28,8 @@
 * 
 */
 
-class Text_Wiki_Parse_Phplookup extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Phplookup extends Text_Wiki_Parse
+{
     
     
     /**
@@ -44,7 +45,7 @@ class Text_Wiki_Parse_Phplookup extends Text_Wiki_Parse {
     * 
     */
     
-    var $regex = "/\[\[php (.+?)\]\]/";
+    public $regex = "/\[\[php (.+?)\]\]/";
     
     
     /**
@@ -63,11 +64,10 @@ class Text_Wiki_Parse_Phplookup extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches)
+    public function process(&$matches)
     {
         return $this->wiki->addToken(
             $this->rule, array('text' => $matches[1])
         );
     }
 }
-?>

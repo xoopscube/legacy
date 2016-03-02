@@ -40,32 +40,32 @@ class File_Archive_Reader_Memory extends File_Archive_Reader
      * @var String Name of the file exported by this reader
      * @access private
      */
-    var $filename;
+    public $filename;
     /**
      * @var Array Stat of the file exported by this reader
      * @access private
      */
-    var $stat;
+    public $stat;
     /**
      * @var String MIME type of the file exported by this reader
      * @access private
      */
-    var $mime;
+    public $mime;
     /**
      * @var String Memory buffer that contains the data of the file
      * @access private
      */
-    var $memory;
+    public $memory;
     /**
      * @var Int Current position in the file
      * @access private
      */
-    var $offset = 0;
+    public $offset = 0;
     /**
      * @var Boolean Has the file already been read
      * @access private
      */
-    var $alreadyRead = false;
+    public $alreadyRead = false;
 
     /**
      * @param string $memory is the content of the file.
@@ -76,7 +76,7 @@ class File_Archive_Reader_Memory extends File_Archive_Reader
      *        recomputed from $memory
      * @param string $mime is the mime type of the file
      */
-    function File_Archive_Reader_Memory(&$memory, $filename,
+    public function File_Archive_Reader_Memory(&$memory, $filename,
                                         $stat=array(), $mime=null)
     {
         $this->memory = &$memory;
@@ -90,7 +90,7 @@ class File_Archive_Reader_Memory extends File_Archive_Reader
      * The subclass should overwrite this function to change the filename, stat
      * and memory
      */
-    function next()
+    public function next()
     {
         if ($this->alreadyRead) {
             return false;
@@ -103,15 +103,21 @@ class File_Archive_Reader_Memory extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::getFilename()
      */
-    function getFilename() { return $this->filename; }
+    public function getFilename()
+    {
+        return $this->filename;
+    }
     /**
      * @see File_Archive_Reader::getStat()
      */
-    function getStat() { return $this->stat; }
+    public function getStat()
+    {
+        return $this->stat;
+    }
     /**
      * @see File_Archive_Reader::getMime()
      */
-    function getMime()
+    public function getMime()
     {
         return $this->mime==null ? parent::getMime() : $this->mime;
     }
@@ -119,7 +125,7 @@ class File_Archive_Reader_Memory extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::getData()
      */
-    function getData($length = -1)
+    public function getData($length = -1)
     {
         if ($this->offset == strlen($this->memory)) {
             return null;
@@ -137,7 +143,7 @@ class File_Archive_Reader_Memory extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::skip()
      */
-    function skip($length = -1)
+    public function skip($length = -1)
     {
         if ($length == -1) {
             $length = strlen($this->memory) - $this->offset;
@@ -151,7 +157,7 @@ class File_Archive_Reader_Memory extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::rewind()
      */
-    function rewind($length = -1)
+    public function rewind($length = -1)
     {
         if ($length == -1) {
             $tmp = $this->offset;
@@ -167,7 +173,7 @@ class File_Archive_Reader_Memory extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::tell()
      */
-    function tell()
+    public function tell()
     {
         return $this->offset;
     }
@@ -175,7 +181,7 @@ class File_Archive_Reader_Memory extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::close()
      */
-    function close()
+    public function close()
     {
         $this->offset = 0;
         $this->alreadyRead = false;
@@ -184,7 +190,7 @@ class File_Archive_Reader_Memory extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::makeAppendWriter()
      */
-    function makeAppendWriter()
+    public function makeAppendWriter()
     {
         return PEAR::raiseError('Unable to append files to a memory archive');
     }
@@ -192,7 +198,7 @@ class File_Archive_Reader_Memory extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::makeWriterRemoveFiles()
      */
-    function makeWriterRemoveFiles($pred)
+    public function makeWriterRemoveFiles($pred)
     {
         return PEAR::raiseError('Unable to remove files from a memory archive');
     }
@@ -200,7 +206,7 @@ class File_Archive_Reader_Memory extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::makeWriterRemoveBlocks()
      */
-    function makeWriterRemoveBlocks($blocks, $seek = 0)
+    public function makeWriterRemoveBlocks($blocks, $seek = 0)
     {
         require_once "File/Archive/Writer/Memory.php";
         $data = substr($this->memory, 0, $this->offset + $seek);
@@ -223,5 +229,3 @@ class File_Archive_Reader_Memory extends File_Archive_Reader
         return new File_Archive_Writer_Memory($this->memory, strlen($this->memory));
     }
 }
-
-?>

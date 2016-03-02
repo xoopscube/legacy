@@ -12,13 +12,19 @@
  |   keeping compatibility with XOOPS 2.0.x <http://www.xoops.org>        |
  *------------------------------------------------------------------------*/
 
-if (!defined('XOOPS_ROOT_PATH'))  exit();
-if (defined('XOOPS_FOOTER_INCLUDED')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
+if (defined('XOOPS_FOOTER_INCLUDED')) {
+    exit();
+}
 
 $root=&XCube_Root::getSingleton();
-if (!is_object($root->mController)) exit();
+if (!is_object($root->mController)) {
+    exit();
+}
 
-define('XOOPS_FOOTER_INCLUDED',1);
+define('XOOPS_FOOTER_INCLUDED', 1);
 
 $xoopsLogger=&$root->mController->getLogger();
 $xoopsLogger->stopTime();
@@ -28,4 +34,3 @@ require_once XOOPS_ROOT_PATH.'/include/notification_select.php';
 
 // Display view
 $root->mController->executeView();
-?>

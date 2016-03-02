@@ -29,7 +29,9 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 /**
  * 
@@ -49,100 +51,106 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
  * @package     kernel
  * @subpackage  form
  */
-class XoopsFormTextArea extends XoopsFormElement {
-	/**
+class XoopsFormTextArea extends XoopsFormElement
+{
+    /**
      * number of columns
-	 * @var	int 
-	 * @access  private
-	 */
-	var $_cols;
-
-	/**
-	 * number of rows
      * @var	int 
-	 * @access  private
-	 */
-	var $_rows;
+     * @access  private
+     */
+    public $_cols;
 
-	/**
+    /**
+     * number of rows
+     * @var	int 
+     * @access  private
+     */
+    public $_rows;
+
+    /**
      * initial content
-	 * @var	string  
-	 * @access  private
-	 */
-	var $_value;
+     * @var	string  
+     * @access  private
+     */
+    public $_value;
 
-	/**
-	 * Constuctor
-	 * 
+    /**
+     * Constuctor
+     * 
      * @param	string  $caption    caption
      * @param	string  $name       name
      * @param	string  $value      initial content
      * @param	int     $rows       number of rows
      * @param	int     $cols       number of columns   
-	 */
-	function XoopsFormTextArea($caption, $name, $value="", $rows=5, $cols=50){
-		$this->setCaption($caption);
-		$this->setName($name);
-		$this->_rows = intval($rows);
-		$this->_cols = intval($cols);
-		$this->setValue($value);
-	}
+     */
+    public function XoopsFormTextArea($caption, $name, $value="", $rows=5, $cols=50)
+    {
+        $this->setCaption($caption);
+        $this->setName($name);
+        $this->_rows = intval($rows);
+        $this->_cols = intval($cols);
+        $this->setValue($value);
+    }
 
-	/**
-	 * get number of rows
-	 * 
+    /**
+     * get number of rows
+     * 
      * @return	int
-	 */
-	function getRows(){
-		return $this->_rows;
-	}
+     */
+    public function getRows()
+    {
+        return $this->_rows;
+    }
 
-	/**
-	 * Get number of columns
-	 * 
+    /**
+     * Get number of columns
+     * 
      * @return	int
-	 */
-	function getCols(){
-		return $this->_cols;
-	}
+     */
+    public function getCols()
+    {
+        return $this->_cols;
+    }
 
-	/**
-	 * Get initial content
-	 * 
+    /**
+     * Get initial content
+     * 
      * @return	string
-	 */
-	function getValue(){
-		return $this->_value;
-	}
+     */
+    public function getValue()
+    {
+        return $this->_value;
+    }
 
-	/**
-	 * Set initial content
-	 * 
+    /**
+     * Set initial content
+     * 
      * @param	$value	string
-	 */
-	function setValue($value){
-		$this->_value = $value;
-	}
+     */
+    public function setValue($value)
+    {
+        $this->_value = $value;
+    }
 
-	/**
-	 * prepare HTML for output
-	 * 
+    /**
+     * prepare HTML for output
+     * 
      * @return	sting HTML
-	 */
-	function render(){
-		$root =& XCube_Root::getSingleton();
-		$renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
-		
-		$renderTarget =& $renderSystem->createRenderTarget();
-	
-		$renderTarget->setAttribute('legacy_module', 'legacy');
-		$renderTarget->setTemplateName("legacy_xoopsform_textarea.html");
-		$renderTarget->setAttribute("element", $this);
-		$renderTarget->setAttribute("class", $this->getClass());
+     */
+    public function render()
+    {
+        $root =& XCube_Root::getSingleton();
+        $renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
+        
+        $renderTarget =& $renderSystem->createRenderTarget();
+    
+        $renderTarget->setAttribute('legacy_module', 'legacy');
+        $renderTarget->setTemplateName("legacy_xoopsform_textarea.html");
+        $renderTarget->setAttribute("element", $this);
+        $renderTarget->setAttribute("class", $this->getClass());
 
-		$renderSystem->render($renderTarget);
-	
-		return $renderTarget->getResult();
-	}
+        $renderSystem->render($renderTarget);
+    
+        return $renderTarget->getResult();
+    }
 }
-?>

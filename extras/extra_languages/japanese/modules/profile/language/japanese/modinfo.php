@@ -15,4 +15,3 @@ define('_MI_PROFILE_KEYWORD_DOWNLOAD', '¥×¥í¥Õ¥£¡¼¥ë¥Ç¡¼¥¿¤òCSV·Á¼°¤Ç¥À¥¦¥ó¥í¡¼¥
 define('_MI_PROFILE_LANG_CSVUPLOAD', '¥×¥í¥Õ¥£¡¼¥ë¤Î°ì³çÅÐÏ¿');
 define('_MI_PROFILE_KEYWORD_CSVUPLOAD', '¥×¥í¥Õ¥£¡¼¥ë¥Ç¡¼¥¿¤òCSV·Á¼°¤Ç¥¢¥Ã¥×¥í¡¼¥É¤¹¤ë');
 define('_MI_PROFILE_DATA_CSVUPLOAD', '¥×¥í¥Õ¥£¡¼¥ë¤Î°ì³çÅÐÏ¿');
-?>

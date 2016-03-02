@@ -95,5 +95,3 @@ abstract class HTTP_OAuth_Signature_Common extends HTTP_OAuth
         $consumerSecret, $tokenSecret = ''
     );
 }
-
-

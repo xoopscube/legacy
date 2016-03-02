@@ -1,8 +1,9 @@
 <?php
 
-class Text_Wiki_Render_Xhtml_Heading extends Text_Wiki_Render {
+class Text_Wiki_Render_Xhtml_Heading extends Text_Wiki_Render
+{
     
-    var $conf = array(
+    public $conf = array(
         'css_h1' => null,
         'css_h2' => null,
         'css_h3' => null,
@@ -11,7 +12,7 @@ class Text_Wiki_Render_Xhtml_Heading extends Text_Wiki_Render {
         'css_h6' => null
     );
     
-    function token($options)
+    public function token($options)
     {
         // get nice variable names (id, type, level)
         extract($options);
@@ -26,4 +27,3 @@ class Text_Wiki_Render_Xhtml_Heading extends Text_Wiki_Render {
         }
     }
 }
-?>

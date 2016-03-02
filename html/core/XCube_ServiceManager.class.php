@@ -8,13 +8,15 @@
  *
  */
 
-if (!defined('XCUBE_CORE_PATH')) define('XCUBE_CORE_PATH', dirname(__FILE__));
+if (!defined('XCUBE_CORE_PATH')) {
+    define('XCUBE_CORE_PATH', dirname(__FILE__));
+}
 
 require_once XCUBE_CORE_PATH . '/XCube_Delegate.class.php';
 
 class XCube_ServiceUtils
 {
-    function isXSD($typeName)
+    public function isXSD($typeName)
     {
         if ($typeName == 'string' || $typeName == 'int') {
             return true;
@@ -44,21 +46,21 @@ class XCube_ServiceManager
      * 
      * @var Array
      */
-    var $mServices = array();
+    public $mServices = array();
     
     /**
      * @var XCube_Delegate
      * @param &$client
      * @param $service
      */
-    var $mCreateClient = null;
+    public $mCreateClient = null;
     
     /**
      * @var XCube_Delegate
      */
-    var $mCreateServer = null;
+    public $mCreateServer = null;
     
-    function XCube_ServiceManager()
+    public function XCube_ServiceManager()
     {
         $this->mCreateClient = new XCube_Delegate();
         $this->mCreateClient->register("XCube_ServiceManager.CreateClient");
@@ -75,7 +77,7 @@ class XCube_ServiceManager
      * @param $service XCube_Service
      * @return bool
      */
-    function addService($name, &$service)
+    public function addService($name, &$service)
     {
         if (isset($this->mServices[$name])) {
             return false;
@@ -90,8 +92,8 @@ class XCube_ServiceManager
      * Add WSDL URL. $name must be unique in the list of service. If the
      * service which has the same name, is a member of the list, return false.
      * 
-     */ 
-    function addWSDL($name, $url)
+     */
+    public function addWSDL($name, $url)
     {
         if (isset($this->mServices[$name])) {
             return false;
@@ -108,12 +110,12 @@ class XCube_ServiceManager
      * @deprecated
      * @see XCube_ServiceManager::addService()
      */
-    function addXCubeService($name, &$service)
+    public function addXCubeService($name, &$service)
     {
         return $this->addService($name, $service);
     }
     
-    function &getService($name)
+    public function &getService($name)
     {
         $ret = null;
         
@@ -130,7 +132,7 @@ class XCube_ServiceManager
      * @deprecated
      * @see XCube_ServiceManager::getService()
      */
-    function &searchXCubeService($name)
+    public function &searchXCubeService($name)
     {
         return $this->getService($name);
     }
@@ -142,7 +144,7 @@ class XCube_ServiceManager
      * But, if the service is a virtual service of XCube, virtual client has to
      * be created.
      */
-    function &createClient(&$service)
+    public function &createClient(&$service)
     {
         $client = null;
         $this->mCreateClient->call(new XCube_Ref($client), new XCube_Ref($service));
@@ -150,7 +152,7 @@ class XCube_ServiceManager
         return $client;
     }
     
-    function &createServer(&$service)
+    public function &createServer(&$service)
     {
         $server = null;
         $this->mCreateServer->call(new XCube_Ref($server), new XCube_Ref($service));
@@ -158,5 +160,3 @@ class XCube_ServiceManager
         return $server;
     }
 }
-
-?>

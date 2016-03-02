@@ -5,14 +5,13 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
-define('XUPDATE_ADMIN_RENDER_TEMPLATE_DIRNAME','templates');
-define('XUPDATE_ADMIN_RENDER_FALLBACK_PATH',XOOPS_MODULE_PATH . '/legacy/admin/theme');    // TODO will be use other path
-define('XUPDATE_ADMIN_RENDER_FALLBACK_URL',XOOPS_MODULE_URL . '/legacy/admin/theme');    // TODO will be use other url
+define('XUPDATE_ADMIN_RENDER_TEMPLATE_DIRNAME', 'templates');
+define('XUPDATE_ADMIN_RENDER_FALLBACK_PATH', XOOPS_MODULE_PATH . '/legacy/admin/theme');    // TODO will be use other path
+define('XUPDATE_ADMIN_RENDER_FALLBACK_URL', XOOPS_MODULE_URL . '/legacy/admin/theme');    // TODO will be use other url
 
 /**
  * Xupdate_AdminRenderSystem
@@ -31,8 +30,8 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
         $this->mController =& $controller;
     
         $this->mSmarty = new Legacy_AdminSmarty();    // TODO will be use other class?
-        $this->mSmarty->register_modifier('theme',array($this,'modifierTheme'));
-        $this->mSmarty->register_function('stylesheet',array($this,'functionStylesheet'));
+        $this->mSmarty->register_modifier('theme', array($this, 'modifierTheme'));
+        $this->mSmarty->register_function('stylesheet', array($this, 'functionStylesheet'));
     
         $this->mSmarty->assign(
             array(
@@ -46,7 +45,7 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
         );
     
         // TODO event name is this?
-        XCube_DelegateUtils::call('Legacy_RenderSystem.SetupXoopsTpl',new XCube_Ref($this->mSmarty));
+        XCube_DelegateUtils::call('Legacy_RenderSystem.SetupXoopsTpl', new XCube_Ref($this->mSmarty));
     
         $this->mSmarty->force_compile = (
             $controller->mRoot->mSiteConfig['Legacy_AdminRenderSystem']['ThemeDevelopmentMode'] ||
@@ -89,15 +88,14 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
         );
     
         $blocks = array();
-        foreach($context->mAttributes['legacy_BlockContents'][0] as $block)
-        {
+        foreach ($context->mAttributes['legacy_BlockContents'][0] as $block) {
             $blocks[$block['name']] = $block;
         }
-        $this->mSmarty->assign('xoops_lblocks',$blocks);
+        $this->mSmarty->assign('xoops_lblocks', $blocks);
     
         $info = Xupdate_AdminRenderSystem::getOverrideFileInfo('admin_theme.html');
         $this->mSmarty->template_dir = ($info['file'] != null) ?
-            substr($file['path'],0,-15) :
+            substr($file['path'], 0, -15) :
             XUPDATE_ADMIN_RENDER_FALLBACK_PATH;
         $this->mSmarty->setModulePrefix('');
     
@@ -116,14 +114,13 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
         $info = Xupdate_AdminRenderSystem::getOverrideFileInfo($target->getTemplateName());
         $this->mSmarty->compile_id = $info['dirname'];
         $this->mSmarty->assign($target->getAttributes());
-        $this->mSmarty->template_dir = substr($info['path'],0,-strlen($info['file']));
+        $this->mSmarty->template_dir = substr($info['path'], 0, -strlen($info['file']));
     
         $res = $this->mSmarty->fetch('file:' . $info['file']);
         $target->setResult($res);
         $this->_mStdoutBuffer .= $target->getAttribute('stdout_buffer');
     
-        foreach($target->getAttributes() as $key => $val)
-        {
+        foreach ($target->getAttributes() as $key => $val) {
             $this->mSmarty->clear_assign($key);
         }
     }
@@ -137,7 +134,7 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
      * 
      * @return  {string 'theme',string 'file',string 'dirname'}
     **/
-    public static function getOverrideFileInfo(/*** string ***/ $file,/*** string ***/ $prefix = null,/*** bool ***/ $isSpDirName = false)
+    public static function getOverrideFileInfo(/*** string ***/ $file, /*** string ***/ $prefix = null, /*** bool ***/ $isSpDirName = false)
     {
         $ret = array(
             'url'     => null,
@@ -146,16 +143,14 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
             'dirname' => null,
             'file'    => null
         );
-        if(strpos($file,'..') !== false || strpos($prefix,'..' !== false))
-        {
+        if (strpos($file, '..') !== false || strpos($prefix, '..' !== false)) {
             return $ret;
         }
         $root =& XCube_Root::getSingleton();
     
         $module =& $root->mContext->mXoopsModule;
         $dirName = $root->mContext->mRequest->getRequest('dirname');
-        if($isSpDirName && preg_match('/^\w+$/',$dirName))
-        {
+        if ($isSpDirName && preg_match('/^\w+$/', $dirName)) {
             $handler =& Xupdate_Utils::getXoopsHandler('module');
             $module =& $handler->getByDirname($dirName);
         }
@@ -169,24 +164,23 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
     
         $file = $prefix . $file;
     
-        switch(true)
-        {
+        switch (true) {
             case $isModule && file_exists(
                 $path = sprintf(
                     '%s/modules/%s/%s',
-                    XOOPS_THEME_PATH,$theme,$dirName,$file
+                    XOOPS_THEME_PATH, $theme, $dirName, $file
                 )
             ):
                 $ret['url'] = sprintf(
                     '%s/%s/modules/%s/%s',
-                    XOOPS_THEME_URL,$theme,$dirName,$file
+                    XOOPS_THEME_URL, $theme, $dirName, $file
                 );
                 $ret['path'] = $path;
                 return $ret;
             case $isModule && file_exists(
                 $path = sprintf(
                     '%s/themes/%s/modules/%s/%s',
-                    XOOPS_TRUST_PATH,$theme,$trustDirName,$file
+                    XOOPS_TRUST_PATH, $theme, $trustDirName, $file
                 )
             ):
                 $ret['path'] = $path;
@@ -195,12 +189,12 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
             case file_exists(
                 $path = sprintf(
                     '%s/%s/%s',
-                    XOOPS_THEME_PATH,$theme,$file
+                    XOOPS_THEME_PATH, $theme, $file
                 )
             ):
                 $ret['url'] = sprintf(
                     '%s/%s/%s',
-                    XOOPS_THEME_URL,$theme,$file
+                    XOOPS_THEME_URL, $theme, $file
                 );
                 $ret['path'] = $path;
                 $ret['dirname'] = null;
@@ -208,7 +202,7 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
             case file_exists(
                 $path = sprintf(
                     '%s/themes/%s/%s',
-                    XOOPS_TRUST_PATH,$theme,$file
+                    XOOPS_TRUST_PATH, $theme, $file
                 )
             ):
                 $ret['path'] = $path;
@@ -217,12 +211,12 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
             case $isModule && file_exists(
                 $path = sprintf(
                     '%s/%s/admin/templates/%s',
-                    XOOPS_MODULE_PATH,$dirName,$file
+                    XOOPS_MODULE_PATH, $dirName, $file
                 )
             ):
                 $ret['url'] = sprintf(
                     '%s/%s/admin/templates/%s',
-                    XOOPS_MODULE_URL,$dirName,$file
+                    XOOPS_MODULE_URL, $dirName, $file
                 );
                 $ret['path'] = $path;
                 $ret['theme'] = null;
@@ -230,7 +224,7 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
             case $isModule && file_exists(
                 $path = sprintf(
                     '%s/modules/%s/admin/templates/%s',
-                    XOOPS_TRUST_PATH,$trustDirName,$file
+                    XOOPS_TRUST_PATH, $trustDirName, $file
                 )
             ):
                 $ret['path'] = $path;
@@ -261,8 +255,7 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
     public static function modifierTheme(/*** string ***/ $str)
     {
         $info = Xupdate_AdminRenderSystem::getOverrideFileInfo($str);
-        if($info['url'] != null)
-        {
+        if ($info['url'] != null) {
             return $info['url'];
         }
         return XUPDATE_ADMIN_RENDER_FALLBACK_URL . '/' . $str;
@@ -276,16 +269,14 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
      * 
      * @return  void
     **/
-    public static function functionStylesheet(/*** {string 'file',string 'media'} ***/ $params,/*** Smarty ***/ &$smarty)
+    public static function functionStylesheet(/*** {string 'file',string 'media'} ***/ $params, /*** Smarty ***/ &$smarty)
     {
-        if(!isset($params['file']) || strpos($params['file'],'..') !== false)
-        {
+        if (!isset($params['file']) || strpos($params['file'], '..') !== false) {
             return;
         }
     
-        $info = Xupdate_AdminRenderSystem::getOverrideFileInfo($params['file'],'stylesheets/');
-        if($info['file'] == null)
-        {
+        $info = Xupdate_AdminRenderSystem::getOverrideFileInfo($params['file'], 'stylesheets/');
+        if ($info['file'] == null) {
             return;
         }
     
@@ -300,5 +291,3 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
         );
     }
 }
-
-?>

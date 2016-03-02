@@ -75,7 +75,7 @@ class HTMLPurifier_Strategy_MakeWellFormed extends HTMLPurifier_Strategy
         $e = $context->get('ErrorCollector', true);
         $i = false; // injector index
         list($zipper, $token) = HTMLPurifier_Zipper::fromArray($tokens);
-        if ($token === NULL) {
+        if ($token === null) {
             return array();
         }
         $reprocess = false; // whether or not to reprocess the same token
@@ -162,7 +162,9 @@ class HTMLPurifier_Strategy_MakeWellFormed extends HTMLPurifier_Strategy
                 $rewind_offset = $this->injectors[$i]->getRewindOffset();
                 if (is_int($rewind_offset)) {
                     for ($j = 0; $j < $rewind_offset; $j++) {
-                        if (empty($zipper->front)) break;
+                        if (empty($zipper->front)) {
+                            break;
+                        }
                         $token = $zipper->prev($token);
                         // indicate that other injectors should not process this token,
                         // but we need to reprocess it
@@ -179,7 +181,7 @@ class HTMLPurifier_Strategy_MakeWellFormed extends HTMLPurifier_Strategy
             }
 
             // handle case of document end
-            if ($token === NULL) {
+            if ($token === null) {
                 // kill processing if stack is empty
                 if (empty($this->stack)) {
                     break;
@@ -359,7 +361,6 @@ class HTMLPurifier_Strategy_MakeWellFormed extends HTMLPurifier_Strategy
                         $reprocess = true;
                         continue;
                     }
-
                 }
                 $ok = true;
             }
@@ -570,7 +571,6 @@ class HTMLPurifier_Strategy_MakeWellFormed extends HTMLPurifier_Strategy
         }
 
         return $r;
-
     }
 
     /**
@@ -598,3 +598,4 @@ class HTMLPurifier_Strategy_MakeWellFormed extends HTMLPurifier_Strategy
 }
 
 // vim: et sw=4 sts=4
+

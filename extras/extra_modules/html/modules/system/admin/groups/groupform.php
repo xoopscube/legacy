@@ -41,13 +41,13 @@ $s_cat_checkbox = new XoopsFormCheckBox(_AM_SYSTEMRIGHTS, "system_catids[]", $s_
 include_once(XOOPS_ROOT_PATH.'/modules/system/constants.php');
 $handle = opendir(XOOPS_ROOT_PATH.'/modules/system/admin');
 while (false != $file = readdir($handle)) {
-	if (strtolower($file) != 'cvs' && !preg_match("/[.]/", $file) && is_dir(XOOPS_ROOT_PATH.'/modules/system/admin/'.$file)) {
-		include XOOPS_ROOT_PATH.'/modules/system/admin/'.$file.'/xoops_version.php';
-		if (!empty($modversion['category'])) {
-			$s_cat_checkbox->addOption($modversion['category'], $modversion['name']);
-		}
-		unset($modversion);
-	}
+    if (strtolower($file) != 'cvs' && !preg_match("/[.]/", $file) && is_dir(XOOPS_ROOT_PATH.'/modules/system/admin/'.$file)) {
+        include XOOPS_ROOT_PATH.'/modules/system/admin/'.$file.'/xoops_version.php';
+        if (!empty($modversion['category'])) {
+            $s_cat_checkbox->addOption($modversion['category'], $modversion['name']);
+        }
+        unset($modversion);
+    }
 }
 
 $a_mod_checkbox = new XoopsFormCheckBox(_AM_ACTIVERIGHTS, "admin_mids[]", $a_mod_value);
@@ -66,7 +66,7 @@ $r_lblock_checkbox = new XoopsFormCheckBox('<b>'._LEFT.'</b><br />', "read_bids[
 $new_blocks_array = array();
 $blocks_array = XoopsBlock::getAllBlocks("list", XOOPS_SIDEBLOCK_LEFT);
 foreach ($blocks_array as $key=>$value) {
-	$new_blocks_array[$key] = "<a href='".XOOPS_URL."/modules/system/admin.php?fct=blocksadmin&amp;op=edit&amp;bid=".$key."'>".$value." (ID: ".$key.")</a>";
+    $new_blocks_array[$key] = "<a href='".XOOPS_URL."/modules/system/admin.php?fct=blocksadmin&amp;op=edit&amp;bid=".$key."'>".$value." (ID: ".$key.")</a>";
 }
 $r_lblock_checkbox->addOptionArray($new_blocks_array);
 
@@ -74,7 +74,7 @@ $r_cblock_checkbox = new XoopsFormCheckBox("<b>"._CENTER."</b><br />", "read_bid
 $new_blocks_array = array();
 $blocks_array = XoopsBlock::getAllBlocks("list", XOOPS_CENTERBLOCK_ALL);
 foreach ($blocks_array as $key=>$value) {
-	$new_blocks_array[$key] = "<a href='".XOOPS_URL."/modules/system/admin.php?fct=blocksadmin&amp;op=edit&amp;bid=".$key."'>".$value." (ID: ".$key.")</a>";
+    $new_blocks_array[$key] = "<a href='".XOOPS_URL."/modules/system/admin.php?fct=blocksadmin&amp;op=edit&amp;bid=".$key."'>".$value." (ID: ".$key.")</a>";
 }
 $r_cblock_checkbox->addOptionArray($new_blocks_array);
 
@@ -82,7 +82,7 @@ $r_rblock_checkbox = new XoopsFormCheckBox("<b>"._RIGHT."</b><br />", "read_bids
 $new_blocks_array = array();
 $blocks_array = XoopsBlock::getAllBlocks("list", XOOPS_SIDEBLOCK_RIGHT);
 foreach ($blocks_array as $key=>$value) {
-	$new_blocks_array[$key] = "<a href='".XOOPS_URL."/modules/system/admin.php?fct=blocksadmin&amp;op=edit&amp;bid=".$key."'>".$value." (ID: ".$key.")</a>";
+    $new_blocks_array[$key] = "<a href='".XOOPS_URL."/modules/system/admin.php?fct=blocksadmin&amp;op=edit&amp;bid=".$key."'>".$value." (ID: ".$key.")</a>";
 }
 $r_rblock_checkbox->addOptionArray($new_blocks_array);
 
@@ -104,11 +104,10 @@ $form->addElement($r_mod_checkbox);
 $form->addElement($r_block_tray);
 $form->addElement($op_hidden);
 $form->addElement($fct_hidden);
-if ( !empty($g_id_value) ) {
-	$g_id_hidden = new XoopsFormHidden("g_id", $g_id_value);
-	$form->addElement($g_id_hidden);
+if (!empty($g_id_value)) {
+    $g_id_hidden = new XoopsFormHidden("g_id", $g_id_value);
+    $form->addElement($g_id_hidden);
 }
 $form->addElement($submit_button);
 $form->setRequired($name_text);
 $form->display();
-?>

@@ -27,4 +27,3 @@ define('_MI_MESSAGE_DEFAULT_VIEWMSM_DESC', 'Set up "The message is displayed in 
 define('_MI_MESSAGE_BLOCK_NAME', 'New Messages');
 define('_MI_INQUIRY_INSTALL_ERROR', 'This module only works with PHP5.');
 define('_MI_MESSAGE_INSTALL_ERROR2', 'Please uninstall the default PM module of XCL package.');
-?>

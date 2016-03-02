@@ -35,7 +35,11 @@ function showCalendar(id) {
   if (calendar != null) {
     calendar.hide();
   } else {
-    var cal = new Calendar(true, <?php if (isset($jstime)) { echo $jstime; } else { echo 'null';}?>, selected, closeHandler);
+    var cal = new Calendar(true, <?php if (isset($jstime)) {
+    echo $jstime;
+} else {
+    echo 'null';
+}?>, selected, closeHandler);
     calendar = cal;
     cal.setRange(2000, 2015);
     calendar.create();

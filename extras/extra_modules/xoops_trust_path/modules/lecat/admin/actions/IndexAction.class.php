@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -42,5 +41,3 @@ class Lecat_Admin_IndexAction extends Lecat_AbstractAction
         $render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
     }
 }
-
-?>

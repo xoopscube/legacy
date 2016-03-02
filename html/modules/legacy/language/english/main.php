@@ -57,5 +57,3 @@ define('_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_WARNING', "Remove {0} directory to b
 define('_MD_LEGACY_MESSAGE_LOGGEDOUT', "You are now logged out.");
 define('_MD_LEGACY_MESSAGE_LOGIN_SUCCESS', "Login successful");
 define('_MD_LEGACY_MESSAGE_THANKYOUFORVISIT', "Thank you for your visit to our site!");
-
-?>

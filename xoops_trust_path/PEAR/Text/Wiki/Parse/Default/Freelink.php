@@ -39,7 +39,8 @@
 * 
 */
 
-class Text_Wiki_Parse_Freelink extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Freelink extends Text_Wiki_Parse
+{
     
     
     /**
@@ -53,7 +54,7 @@ class Text_Wiki_Parse_Freelink extends Text_Wiki_Parse {
     * 
     */
     
-    function Text_Wiki_Parse_Freelink(&$obj)
+    public function Text_Wiki_Parse_Freelink(&$obj)
     {
         parent::Text_Wiki_Parse($obj);
         
@@ -97,7 +98,7 @@ class Text_Wiki_Parse_Freelink extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches)
+    public function process(&$matches)
     {
         // use nice variable names
         $page = $matches[1];
@@ -126,4 +127,3 @@ class Text_Wiki_Parse_Freelink extends Text_Wiki_Parse {
         return $this->wiki->addToken($this->rule, $options);
     }
 }
-?>

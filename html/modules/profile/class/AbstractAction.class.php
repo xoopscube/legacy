@@ -5,64 +5,77 @@
  * @version $Id$
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 class Profile_AbstractAction
 {
-	var $mRoot = null;
-	var $mModule = null;
-	var $mAsset = null;
+    public $mRoot = null;
+    public $mModule = null;
+    public $mAsset = null;
 
-	/**
-	 * @public
-	 */
-	function &_getHandler(){
-	}
-	function Profile_AbstractAction(){
-		$this->mRoot =& XCube_Root::getSingleton();
-		$this->mModule =& $this->mRoot->mContext->mModule;
-		$this->mAsset =& $this->mModule->mAssetManager;
-	}
-	function isMemberOnly(){
-		return false;
-	}
-	function isAdminOnly(){
-		return false;
-	}
-	function prepare(){
-		return true;
-	}
+    /**
+     * @public
+     */
+    public function &_getHandler()
+    {
+    }
+    public function Profile_AbstractAction()
+    {
+        $this->mRoot =& XCube_Root::getSingleton();
+        $this->mModule =& $this->mRoot->mContext->mModule;
+        $this->mAsset =& $this->mModule->mAssetManager;
+    }
+    public function isMemberOnly()
+    {
+        return false;
+    }
+    public function isAdminOnly()
+    {
+        return false;
+    }
+    public function prepare()
+    {
+        return true;
+    }
 
-	function hasPermission(){
-		return true;
-	}
+    public function hasPermission()
+    {
+        return true;
+    }
 
-	function getDefaultView(){
-		return Profile_FRAME_VIEW_NONE;
-	}
+    public function getDefaultView()
+    {
+        return Profile_FRAME_VIEW_NONE;
+    }
 
-	function execute(){
-		return Profile_FRAME_VIEW_NONE;
-	}
+    public function execute()
+    {
+        return Profile_FRAME_VIEW_NONE;
+    }
 
-	function executeViewSuccess(&$controller,&$render){
-	}
+    public function executeViewSuccess(&$controller, &$render)
+    {
+    }
 
-	function executeViewError(&$render){
-	}
+    public function executeViewError(&$render)
+    {
+    }
 
-	function executeViewIndex(&$render){
-	}
+    public function executeViewIndex(&$render)
+    {
+    }
 
-	function executeViewInput(&$render){
-	}
+    public function executeViewInput(&$render)
+    {
+    }
 
-	function executeViewPreview(&$render){
-	}
+    public function executeViewPreview(&$render)
+    {
+    }
 
-	function executeViewCancel(&$render){
-	}
-
+    public function executeViewCancel(&$render)
+    {
+    }
 }
-
-?>

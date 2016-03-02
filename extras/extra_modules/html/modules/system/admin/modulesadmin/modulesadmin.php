@@ -29,7 +29,7 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid()) ) {
+if (!is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid())) {
     exit("Access Denied");
 }
 
@@ -46,7 +46,7 @@ function system_modulesadmin_error($message)
 
 function xoops_module_list()
 {
-        xoops_cp_header();
+    xoops_cp_header();
     //OpenTable();
     echo "
     <h4 style='text-align:left'>"._MD_AM_MODADMIN."</h4>
@@ -58,7 +58,7 @@ function xoops_module_list()
     $installed_mods =& $module_handler->getObjects(new CriteriaCompo());
     $listed_mods = array();
     $count = 0;
-    foreach ( $installed_mods as $module ) {
+    foreach ($installed_mods as $module) {
         if ($count % 2 == 0) {
             $class = 'even';
         } else {
@@ -67,13 +67,13 @@ function xoops_module_list()
         $count++;
         echo "<tr class='$class' align='center' valign='middle'>\n";
         echo "<td valign='bottom'>";
-        if ( $module->getVar('hasadmin') == 1 && $module->getVar('isactive') == 1) {
+        if ($module->getVar('hasadmin') == 1 && $module->getVar('isactive') == 1) {
             echo '<a href="'.XOOPS_URL.'/modules/'.$module->getVar('dirname').'/'.$module->getInfo('adminindex').'"><img src="'.XOOPS_URL.'/modules/'.$module->getVar('dirname').'/'.$module->getInfo('image').'" alt="'.$module->getVar('name', 'E').'" border="0" /></a><br /><input type="text" name="newname['.$module->getVar('mid').']" value="'.$module->getVar('name', 'E').'" maxlength="150" size="20" />';
         } else {
             echo '<img src="'.XOOPS_URL.'/modules/'.$module->getVar('dirname').'/'.$module->getInfo('image').'" alt="'.$module->getVar('name', 'E').'" border="0" /><br /><input type="text" name="newname['.$module->getVar('mid').']" value="'.$module->getVar('name', 'E').'" maxlength="150" size="20" />';
         }
         echo '<input type="hidden" name="oldname['.$module->getVar('mid').']" value="' .$module->getVar('name').'" /></td>';
-        echo "<td align='center'>".round($module->getVar('version') / 100, 2)."</td><td align='center'>".formatTimestamp($module->getVar('last_update'),'m')."<br />";
+        echo "<td align='center'>".round($module->getVar('version') / 100, 2)."</td><td align='center'>".formatTimestamp($module->getVar('last_update'), 'm')."<br />";
         if ($module->getVar('dirname') != 'system' && $module->getVar('isactive') == 1) {
             echo '</td><td><input type="checkbox" name="newstatus['.$module->getVar('mid').']" value="1" checked="checked" /><input type="hidden" name="oldstatus['.$module->getVar('mid').']" value="1" />';
             $extra = '<a href="'.XOOPS_URL.'/modules/system/admin.php?fct=modulesadmin&amp;op=update&amp;module='.$module->getVar('dirname').'"><img src="'.XOOPS_URL.'/modules/system/images/update.gif" alt="'._MD_AM_UPDATE.'" /></a>';
@@ -113,8 +113,8 @@ function xoops_module_list()
     while ($file = readdir($handle)) {
         clearstatcache();
         $file = trim($file);
-        if ($file != '' && strtolower($file) != 'cvs' && !preg_match("/^\..*$/",$file) && is_dir($modules_dir.'/'.$file)) {
-            if ( !in_array($file, $listed_mods) ) {
+        if ($file != '' && strtolower($file) != 'cvs' && !preg_match("/^\..*$/", $file) && is_dir($modules_dir.'/'.$file)) {
+            if (!in_array($file, $listed_mods)) {
                 $module =& $module_handler->create();
                 $module->loadInfo($file);
                 if ($count % 2 == 0) {
@@ -145,7 +145,7 @@ function xoops_module_install($dirname)
     global $xoopsUser, $xoopsConfig;
     $dirname = trim($dirname);
     $db =& Database::getInstance();
- $reservedTables = array('avatar', 'avatar_users_link', 'block_module_link', 'xoopscomments', 'config', 'configcategory', 'configoption', 'image', 'imagebody', 'imagecategory', 'imgset', 'imgset_tplset_link', 'imgsetimg', 'groups','groups_users_link','group_permission', 'online', 'bannerclient', 'banner', 'bannerfinish', 'priv_msgs', 'ranks', 'session', 'smiles', 'users', 'newblocks', 'modules', 'tplfile', 'tplset', 'tplsource', 'xoopsnotifications', 'banner', 'bannerclient', 'bannerfinish');
+    $reservedTables = array('avatar', 'avatar_users_link', 'block_module_link', 'xoopscomments', 'config', 'configcategory', 'configoption', 'image', 'imagebody', 'imagecategory', 'imgset', 'imgset_tplset_link', 'imgsetimg', 'groups','groups_users_link','group_permission', 'online', 'bannerclient', 'banner', 'bannerfinish', 'priv_msgs', 'ranks', 'session', 'smiles', 'users', 'newblocks', 'modules', 'tplfile', 'tplset', 'tplsource', 'xoopsnotifications', 'banner', 'bannerclient', 'bannerfinish');
     $module_handler =& xoops_gethandler('module');
     if ($module_handler->getCount(new Criteria('dirname', $dirname)) == 0) {
         $module =& $module_handler->create();
@@ -166,7 +166,6 @@ function xoops_module_install($dirname)
         $msgs[] = '';
         $errs[] = '<h4 style="text-align:left;margin-bottom: 0px;border-bottom: dashed 1px #000000;">Installing '.$module->getInfo('name').'</h4>';
         if ($sqlfile != false && is_array($sqlfile)) {
-
             $sql_file_path = XOOPS_ROOT_PATH."/modules/".$dirname."/".$sqlfile[XOOPS_DB_TYPE];
             if (!file_exists($sql_file_path)) {
                 $errs[] = "SQL file not found at <b>$sql_file_path</b>";
@@ -195,7 +194,6 @@ function xoops_module_install($dirname)
                             $error = true;
                             break;
                         } else {
-
                             if (!in_array($prefixed_query[4], $created_tables)) {
                                 $msgs[] = '&nbsp;&nbsp;Table <b>'.$db->prefix($prefixed_query[4]).'</b> created.';
                                 $created_tables[] = $prefixed_query[4];
@@ -227,7 +225,7 @@ function xoops_module_install($dirname)
                     $db->query("DROP TABLE ".$db->prefix($ct));
                 }
                 $ret = "<p>".sprintf(_MD_AM_FAILINS, "<b>".$module->name()."</b>")."&nbsp;"._MD_AM_ERRORSC."<br />";
-                foreach ( $errs as $err ) {
+                foreach ($errs as $err) {
                     $ret .= " - ".$err."<br />";
                 }
                 $ret .= "</p>";
@@ -369,13 +367,13 @@ function xoops_module_install($dirname)
                     $options['_NOT_CONFIG_ENABLEBOTH'] = XOOPS_NOTIFICATION_ENABLEBOTH;
 
                     //$configs[] = array ('name' => 'notification_enabled', 'title' => '_NOT_CONFIG_ENABLED', 'description' => '_NOT_CONFIG_ENABLEDDSC', 'formtype' => 'yesno', 'valuetype' => 'int', 'default' => 1);
-                    $configs[] = array ('name' => 'notification_enabled', 'title' => '_NOT_CONFIG_ENABLE', 'description' => '_NOT_CONFIG_ENABLEDSC', 'formtype' => 'select', 'valuetype' => 'int', 'default' => XOOPS_NOTIFICATION_ENABLEBOTH, 'options' => $options);
+                    $configs[] = array('name' => 'notification_enabled', 'title' => '_NOT_CONFIG_ENABLE', 'description' => '_NOT_CONFIG_ENABLEDSC', 'formtype' => 'select', 'valuetype' => 'int', 'default' => XOOPS_NOTIFICATION_ENABLEBOTH, 'options' => $options);
                     // Event-specific notification options
                     // FIXME: doesn't work when update module... can't read back the array of options properly...  " changing to &quot;
                     $options = array();
-                    $categories =& notificationCategoryInfo('',$module->getVar('mid'));
+                    $categories =& notificationCategoryInfo('', $module->getVar('mid'));
                     foreach ($categories as $category) {
-                        $events =& notificationEvents ($category['name'], false, $module->getVar('mid'));
+                        $events =& notificationEvents($category['name'], false, $module->getVar('mid'));
                         foreach ($events as $event) {
                             if (!empty($event['invisible'])) {
                                 continue;
@@ -385,7 +383,7 @@ function xoops_module_install($dirname)
                             $options[$option_name] = $option_value;
                         }
                     }
-                    $configs[] = array ('name' => 'notification_events', 'title' => '_NOT_CONFIG_EVENTS', 'description' => '_NOT_CONFIG_EVENTSDSC', 'formtype' => 'select_multi', 'valuetype' => 'array', 'default' => array_values($options), 'options' => $options);
+                    $configs[] = array('name' => 'notification_events', 'title' => '_NOT_CONFIG_EVENTS', 'description' => '_NOT_CONFIG_EVENTSDSC', 'formtype' => 'select_multi', 'valuetype' => 'array', 'default' => array_values($options), 'options' => $options);
                 }
 
                 if ($configs != false) {
@@ -507,8 +505,7 @@ function xoops_module_install($dirname)
             $ret .= '<br />'.sprintf(_MD_AM_FAILINS, '<b>'.$dirname.'</b>').'&nbsp;'._MD_AM_ERRORSC.'</p>';
             return $ret;
         }
-    }
-    else {
+    } else {
         return "<p>".sprintf(_MD_AM_FAILINS, "<b>".$dirname."</b>")."&nbsp;"._MD_AM_ERRORSC."<br />&nbsp;&nbsp;".sprintf(_MD_AM_ALEXISTS, $dirname)."</p>";
     }
 }
@@ -583,15 +580,15 @@ function xoops_module_uninstall($dirname)
                     } else {
                         $msgs[] = '&nbsp;&nbsp;Block <b>'.$block_arr[$i]->getVar('name').'</b> deleted. Block ID: <b>'.$block_arr[$i]->getVar('bid').'</b>';
                     }
-                    if ($block_arr[$i]->getVar('template') != ''){
+                    if ($block_arr[$i]->getVar('template') != '') {
                         $templates =& $tplfile_handler->find(null, 'block', $block_arr[$i]->getVar('bid'));
                         $btcount = count($templates);
                         if ($btcount > 0) {
                             for ($j = 0; $j < $btcount; $j++) {
                                 if (!$tplfile_handler->delete($templates[$j])) {
-                                $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">ERROR: Could not delete block template '.$templates[$j]->getVar('tpl_file').' from the database. Template ID: <b>'.$templates[$j]->getVar('tpl_id').'</b></span>';
+                                    $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">ERROR: Could not delete block template '.$templates[$j]->getVar('tpl_file').' from the database. Template ID: <b>'.$templates[$j]->getVar('tpl_id').'</b></span>';
                                 } else {
-                                $msgs[] = '&nbsp;&nbsp;Block template <b>'.$templates[$j]->getVar('tpl_file').'</b> deleted from the database. Template ID: <b>'.$templates[$j]->getVar('tpl_id').'</b>';
+                                    $msgs[] = '&nbsp;&nbsp;Block template <b>'.$templates[$j]->getVar('tpl_file').'</b> deleted from the database. Template ID: <b>'.$templates[$j]->getVar('tpl_id').'</b>';
                                 }
                             }
                         }
@@ -751,5 +748,3 @@ function xoops_module_change($mid, $weight, $name)
     }
     return "<p>".sprintf(_MD_AM_OKORDER, "<b>".$myts->stripSlashesGPC($name)."</b>")."</p>";
 }
-
-?>

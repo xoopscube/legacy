@@ -465,4 +465,3 @@ define('_MD_AM_USESSL', "Use SSL for login?");
 define('_MD_AM_YES', "Yes");
 define('_MD_AM_COOLURI', 'Use Cool URI ?');
 define('_MD_AM_COOLURIDSC', 'If your server can handle apache mod_rewrite, you may use this option. See also <a href="'.XOOPS_URL.'/modules/legacyRender/admin/index.php?action=HtaccessView">.htaccess setting</a>');
-?>

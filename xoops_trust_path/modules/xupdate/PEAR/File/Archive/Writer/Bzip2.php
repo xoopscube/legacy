@@ -44,15 +44,15 @@ class File_Archive_Writer_Bzip2 extends File_Archive_Writer
      * @access public
      * @deprecated
      */
-    var $compressionLevel=9;
-    var $bzfile;
-    var $tmpName;
-    var $nbFiles = 0;
+    public $compressionLevel=9;
+    public $bzfile;
+    public $tmpName;
+    public $nbFiles = 0;
 
-    var $innerWriter;
-    var $autoClose;
-    var $filename;
-    var $stat;
+    public $innerWriter;
+    public $autoClose;
+    public $filename;
+    public $stat;
 
     /**
      * @param string $filename Name to give to the archive
@@ -63,7 +63,7 @@ class File_Archive_Writer_Bzip2 extends File_Archive_Writer
      * @param bool $autoClose Indicate if the inner writer must be closed when
      *        closing this
      */
-    function File_Archive_Writer_Bzip2($filename, &$innerWriter,
+    public function File_Archive_Writer_Bzip2($filename, &$innerWriter,
                                        $stat = array(), $autoClose = true)
     {
         $this->innerWriter =& $innerWriter;
@@ -85,7 +85,7 @@ class File_Archive_Writer_Bzip2 extends File_Archive_Writer
      *        compression)
      * @deprecated
      */
-    function setCompressionLevel($compressionLevel)
+    public function setCompressionLevel($compressionLevel)
     {
         $this->compressionLevel = $compressionLevel;
     }
@@ -95,7 +95,7 @@ class File_Archive_Writer_Bzip2 extends File_Archive_Writer
      *
      * Check that one single file is written in the BZip2 archive
      */
-    function newFile($filename, $stat = array(),
+    public function newFile($filename, $stat = array(),
                      $mime = "application/octet-stream")
     {
         if ($this->nbFiles > 1) {
@@ -116,7 +116,7 @@ class File_Archive_Writer_Bzip2 extends File_Archive_Writer
      *
      * @see File_Archive_Writer::close()
      */
-    function close()
+    public function close()
     {
         bzclose($this->bzfile);
 
@@ -138,10 +138,8 @@ class File_Archive_Writer_Bzip2 extends File_Archive_Writer
     /**
      * @see File_Archive_Writer::writeData()
      */
-    function writeData($data)
+    public function writeData($data)
     {
         bzwrite($this->bzfile, $data);
     }
 }
-
-?>

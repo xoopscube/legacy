@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -58,7 +57,7 @@ class Lecat_CatEditForm extends XCube_ActionForm
         $this->mFieldProperties['cat_id']->addMessage('required', _MD_LECAT_ERROR_REQUIRED, _MD_LECAT_LANG_CAT_ID);
     
         $this->mFieldProperties['title'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['title']->setDependsByArray(array('required','maxlength'));
+        $this->mFieldProperties['title']->setDependsByArray(array('required', 'maxlength'));
         $this->mFieldProperties['title']->addMessage('required', _MD_LECAT_ERROR_REQUIRED, _MD_LECAT_LANG_TITLE, '255');
         $this->mFieldProperties['title']->addMessage('maxlength', _MD_LECAT_ERROR_MAXLENGTH, _MD_LECAT_LANG_TITLE, '255');
         $this->mFieldProperties['title']->addVar('maxlength', '255');
@@ -108,5 +107,3 @@ class Lecat_CatEditForm extends XCube_ActionForm
         $obj->set('options', $this->get('options'));
     }
 }
-
-?>

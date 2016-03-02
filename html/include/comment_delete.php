@@ -43,7 +43,6 @@ if (!empty($_POST)) {
     $com_mode = isset($_GET['com_mode']) ? htmlspecialchars(trim($_GET['com_mode']), ENT_QUOTES) : 'flat';
     $com_order = isset($_GET['com_order']) ? (int)$_GET['com_order'] : XOOPS_COMMENT_OLD1ST;
     $com_id = isset($_GET['com_id']) ? (int)$_GET['com_id'] : 0;
-
 }
 
 if ('system' == $xoopsModule->getVar('dirname')) {
@@ -106,7 +105,7 @@ if (false != $accesserror) {
 }
 
 $t_root =& XCube_Root::getSingleton();
-$t_root->mLanguageManager->loadPageTypeMessageCatalog('comment');	///< Is this must?
+$t_root->mLanguageManager->loadPageTypeMessageCatalog('comment');    ///< Is this must?
 
 switch ($op) {
 case 'delete_one':
@@ -281,4 +280,3 @@ default:
     include XOOPS_ROOT_PATH.'/footer.php';
     break;
 }
-?>

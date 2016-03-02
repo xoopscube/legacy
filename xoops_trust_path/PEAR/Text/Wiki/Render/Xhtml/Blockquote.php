@@ -1,8 +1,9 @@
 <?php
 
-class Text_Wiki_Render_Xhtml_Blockquote extends Text_Wiki_Render {
+class Text_Wiki_Render_Xhtml_Blockquote extends Text_Wiki_Render
+{
     
-    var $conf = array(
+    public $conf = array(
         'css' => null
     );
     
@@ -19,7 +20,7 @@ class Text_Wiki_Render_Xhtml_Blockquote extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         $type = $options['type'];
         $level = $options['level'];
@@ -43,4 +44,3 @@ class Text_Wiki_Render_Xhtml_Blockquote extends Text_Wiki_Render {
         }
     }
 }
-?>

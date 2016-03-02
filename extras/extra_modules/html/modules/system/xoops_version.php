@@ -161,4 +161,3 @@ $modversion['blocks'][12]['template'] = 'system_block_themes.html';
 
 // Menu
 $modversion['hasMain'] = 0;
-?>

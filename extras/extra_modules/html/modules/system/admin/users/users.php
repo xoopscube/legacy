@@ -29,7 +29,7 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid()) ) {
+if (!is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid())) {
     exit("Access Denied");
 }
 /*********************************************************/
@@ -112,7 +112,7 @@ function displayUsers()
     $form_isedit = false;
     $groups = array(XOOPS_GROUP_USERS);
     include XOOPS_ROOT_PATH."/modules/system/admin/users/userform.php";
-        xoops_cp_footer();
+    xoops_cp_footer();
 }
 
 function modifyUser($user)
@@ -186,39 +186,39 @@ function modifyUser($user)
 function synchronize($id, $type)
 {
     global $xoopsDB;
-    switch($type) {
+    switch ($type) {
     case 'user':
         $id = intval($id);
         // Array of tables from which to count 'posts'
         $tables = array();
         // Count comments (approved only: com_status == XOOPS_COMMENT_ACTIVE)
         include_once XOOPS_ROOT_PATH . '/include/comment_constants.php';
-        $tables[] = array ('table_name' => 'xoopscomments', 'uid_column' => 'com_uid', 'criteria' => new Criteria('com_status', XOOPS_COMMENT_ACTIVE));
+        $tables[] = array('table_name' => 'xoopscomments', 'uid_column' => 'com_uid', 'criteria' => new Criteria('com_status', XOOPS_COMMENT_ACTIVE));
         // Count forum posts
-        $tables[] = array ('table_name' => 'bb_posts', 'uid_column' => 'uid');
+        $tables[] = array('table_name' => 'bb_posts', 'uid_column' => 'uid');
 
         $total_posts = 0;
         foreach ($tables as $table) {
             $criteria = new CriteriaCompo();
-            $criteria->add (new Criteria($table['uid_column'], $id));
+            $criteria->add(new Criteria($table['uid_column'], $id));
             if (!empty($table['criteria'])) {
-                $criteria->add ($table['criteria']);
+                $criteria->add($table['criteria']);
             }
             $sql = "SELECT COUNT(*) AS total FROM ".$xoopsDB->prefix($table['table_name']) . ' ' . $criteria->renderWhere();
-            if ( $result = $xoopsDB->query($sql) ) {
+            if ($result = $xoopsDB->query($sql)) {
                 if ($row = $xoopsDB->fetchArray($result)) {
                     $total_posts = $total_posts + $row['total'];
                 }
             }
         }
         $sql = "UPDATE ".$xoopsDB->prefix("users")." SET posts = $total_posts WHERE uid = $id";
-        if ( !$result = $xoopsDB->query($sql) ) {
-            exit(sprintf(_AM_CNUUSER %s ,$id));
+        if (!$result = $xoopsDB->query($sql)) {
+            exit(sprintf(_AM_CNUUSER %s, $id));
         }
         break;
     case 'all users':
         $sql = "SELECT uid FROM ".$xoopsDB->prefix("users")."";
-        if ( !$result = $xoopsDB->query($sql) ) {
+        if (!$result = $xoopsDB->query($sql)) {
             exit(_AM_CNGUSERID);
         }
         while ($row = $xoopsDB->fetchArray($result)) {
@@ -229,7 +229,6 @@ function synchronize($id, $type)
     default:
         break;
     }
-    redirect_header("admin.php?fct=users&amp;op=modifyUser&amp;uid=".$id,1,_AM_DBUPDATED);
+    redirect_header("admin.php?fct=users&amp;op=modifyUser&amp;uid=".$id, 1, _AM_DBUPDATED);
     exit();
 }
-?>

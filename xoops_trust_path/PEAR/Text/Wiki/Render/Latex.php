@@ -31,8 +31,10 @@
 * 
 */
 
-class Text_Wiki_Render_Latex extends Text_Wiki_Render {
-    function escape_latex ($txt) {
+class Text_Wiki_Render_Latex extends Text_Wiki_Render
+{
+    public function escape_latex($txt)
+    {
         $txt = str_replace("\\", "\\\\", $txt);
         $txt = str_replace('#', '\#', $txt);
         $txt = str_replace('$', '\$', $txt);
@@ -50,7 +52,8 @@ class Text_Wiki_Render_Latex extends Text_Wiki_Render {
         return $txt;
     }
 
-    function escape($tok, $ele) {
+    public function escape($tok, $ele)
+    {
         if (isset($tok[$ele])) {
             $tok[$ele] = $this->escape_latex($tok[$ele]);
         }
@@ -58,7 +61,7 @@ class Text_Wiki_Render_Latex extends Text_Wiki_Render {
         return $tok;
     }
     
-    function pre()
+    public function pre()
     {
         foreach ($this->wiki->tokens as $k => $tok) {
             if ($tok[0] == 'Code') {
@@ -81,10 +84,8 @@ class Text_Wiki_Render_Latex extends Text_Wiki_Render {
             "\\begin{document}\n";
     }
     
-    function post()
+    public function post()
     {
         return "\\end{document}\n";
     }
-    
 }
-?>

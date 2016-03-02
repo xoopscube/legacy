@@ -1,11 +1,11 @@
 <?php
 // $Id: class.zipfile.php,v 1.1 2007/05/15 02:34:21 minahito Exp $
 /*
-	package::i.tools
+    package::i.tools
 
-	php-downloader	v1.0	-	www.ipunkt.biz
+    php-downloader	v1.0	-	www.ipunkt.biz
 
-	(c)	2002 - www.ipunkt.biz (rok)
+    (c)	2002 - www.ipunkt.biz (rok)
 
  * Zip file creation class.
  * Makes zip files.
@@ -36,28 +36,28 @@ class zipfile
      *
      * @var  array    $datasec
      */
-    var $datasec      = array();
+    public $datasec      = array();
 
     /**
      * Central directory
      *
      * @var  array    $ctrl_dir
      */
-    var $ctrl_dir     = array();
+    public $ctrl_dir     = array();
 
     /**
      * End of central directory record
      *
      * @var  string   $eof_ctrl_dir
      */
-    var $eof_ctrl_dir = "\x50\x4b\x05\x06\x00\x00\x00\x00";
+    public $eof_ctrl_dir = "\x50\x4b\x05\x06\x00\x00\x00\x00";
 
     /**
      * Last offset position
      *
      * @var  integer  $old_offset
      */
-    var $old_offset   = 0;
+    public $old_offset   = 0;
 
 
     /**
@@ -70,17 +70,17 @@ class zipfile
      *
      * @access private
      */
-    function unix2DosTime($unixtime = 0)
-	{
+    public function unix2DosTime($unixtime = 0)
+    {
         $timearray = ($unixtime == 0) ? getdate() : getdate($unixtime);
 
         if ($timearray['year'] < 1980) {
-        	$timearray['year']    = 1980;
-        	$timearray['mon']     = 1;
-        	$timearray['mday']    = 1;
-        	$timearray['hours']   = 0;
-        	$timearray['minutes'] = 0;
-        	$timearray['seconds'] = 0;
+            $timearray['year']    = 1980;
+            $timearray['mon']     = 1;
+            $timearray['mday']    = 1;
+            $timearray['hours']   = 0;
+            $timearray['minutes'] = 0;
+            $timearray['seconds'] = 0;
         } // end if
 
         return (($timearray['year'] - 1980) << 25) | ($timearray['mon'] << 21) | ($timearray['mday'] << 16) |
@@ -97,7 +97,7 @@ class zipfile
      *
      * @access public
      */
-    function addFile($data, $name, $time = 0)
+    public function addFile($data, $name, $time = 0)
     {
         $name     = str_replace('\\', '/', $name);
 
@@ -150,14 +150,14 @@ class zipfile
         $cdrec .= pack('V', $crc);           // crc32
         $cdrec .= pack('V', $c_len);         // compressed filesize
         $cdrec .= pack('V', $unc_len);       // uncompressed filesize
-        $cdrec .= pack('v', strlen($name) ); // length of filename
-        $cdrec .= pack('v', 0 );             // extra field length
-        $cdrec .= pack('v', 0 );             // file comment length
-        $cdrec .= pack('v', 0 );             // disk number start
-        $cdrec .= pack('v', 0 );             // internal file attributes
-        $cdrec .= pack('V', 32 );            // external file attributes - 'archive' bit set
+        $cdrec .= pack('v', strlen($name)); // length of filename
+        $cdrec .= pack('v', 0);             // extra field length
+        $cdrec .= pack('v', 0);             // file comment length
+        $cdrec .= pack('v', 0);             // disk number start
+        $cdrec .= pack('v', 0);             // internal file attributes
+        $cdrec .= pack('V', 32);            // external file attributes - 'archive' bit set
 
-        $cdrec .= pack('V', $this -> old_offset ); // relative offset of local header
+        $cdrec .= pack('V', $this -> old_offset); // relative offset of local header
         $this -> old_offset = $new_offset;
 
         $cdrec .= $name;
@@ -175,7 +175,7 @@ class zipfile
      *
      * @access public
      */
-    function file()
+    public function file()
     {
         $data    = implode('', $this -> datasec);
         $ctrldir = implode('', $this -> ctrl_dir);
@@ -190,7 +190,5 @@ class zipfile
             pack('V', strlen($data)) .              // offset to start of central dir
             "\x00\x00";                             // .zip file comment length
     } // end of the 'file()' method
-
 } // end of the 'zipfile' class
-
-?>
+;

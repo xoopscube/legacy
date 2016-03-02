@@ -77,13 +77,13 @@ class HTTP_OAuth_Provider_Request extends HTTP_OAuth_Message
     {
         if (count($headers)) {
             $this->headers = $headers;
-        } else if (is_array($this->apacheRequestHeaders())) {
+        } elseif (is_array($this->apacheRequestHeaders())) {
             $this->debug('Using apache_request_headers() to get request headers');
             $this->headers = $this->apacheRequestHeaders();
-        } else if (is_array($this->peclHttpHeaders())) {
+        } elseif (is_array($this->peclHttpHeaders())) {
             $this->debug('Using pecl_http to get request headers');
             $this->headers = $this->peclHttpHeaders();
-        } else { 
+        } else {
             $this->debug('Using $_SERVER to get request headers');
             foreach ($_SERVER as $name => $value) {
                 if (substr($name, 0, 5) == 'HTTP_') {
@@ -222,7 +222,6 @@ class HTTP_OAuth_Provider_Request extends HTTP_OAuth_Message
 
         $this->err('Invalid signature');
         return false;
-
     }
 
     /**
@@ -360,7 +359,4 @@ class HTTP_OAuth_Provider_Request extends HTTP_OAuth_Message
 
         return $data;
     }
-
 }
-
-?>

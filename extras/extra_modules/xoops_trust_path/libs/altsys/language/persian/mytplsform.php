@@ -13,19 +13,17 @@
 */
 
 // Appended by Xoops Language Checker -GIJOE- in 2008-07-09 13:28:56
-define('_MD_A_MYTPLSFORM_TPLSADMIN','‌الگوها');
+define('_MD_A_MYTPLSFORM_TPLSADMIN', '‌الگوها');
 
 // Appended by Xoops Language Checker -GIJOE- in 2007-12-28 04:46:26
-define('_MD_A_MYTPLSFORM_CREATED','الگویی با موفقیت ایجاد شد');
-define('_MD_A_MYTPLSFORM_LABEL_TPLFILE','نام الگو');
-define('_MD_A_MYTPLSFORM_BTN_CREATE','ساختن');
+define('_MD_A_MYTPLSFORM_CREATED', 'الگویی با موفقیت ایجاد شد');
+define('_MD_A_MYTPLSFORM_LABEL_TPLFILE', 'نام الگو');
+define('_MD_A_MYTPLSFORM_BTN_CREATE', 'ساختن');
 
 // Appended by Xoops Language Checker -GIJOE- in 2007-05-07 18:10:30
-define('_MD_A_MYTPLSFORM_BTN_MODIFYCONT','برگرداندن');
-define('_MD_A_MYTPLSFORM_BTN_MODIFYEND','ذخیره و پایان');
-define('_MD_A_MYTPLSFORM_BTN_RESET','راه‌اندازی مجدد');
+define('_MD_A_MYTPLSFORM_BTN_MODIFYCONT', 'برگرداندن');
+define('_MD_A_MYTPLSFORM_BTN_MODIFYEND', 'ذخیره و پایان');
+define('_MD_A_MYTPLSFORM_BTN_RESET', 'راه‌اندازی مجدد');
 
-define( '_MD_A_MYTPLSFORM_EDIT' , 'ویرایش الگو' ) ;
-define( '_MD_A_MYTPLSFORM_UPDATED' , 'الگو با موفقیت به روز شد' ) ;
-
-?>
+define('_MD_A_MYTPLSFORM_EDIT', 'ویرایش الگو') ;
+define('_MD_A_MYTPLSFORM_UPDATED', 'الگو با موفقیت به روز شد') ;

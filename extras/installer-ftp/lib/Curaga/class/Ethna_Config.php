@@ -24,10 +24,10 @@ class Ethna_Config
      */
 
     /** @var    object  Ethna_Controller    controllerオブジェクト */
-    var $controller;
+    public $controller;
     
     /** @var    array   設定内容 */
-    var $config = null;
+    public $config = null;
 
     /**#@-*/
 
@@ -38,7 +38,7 @@ class Ethna_Config
      *  @access public
      *  @param  object  Ethna_Controller    &$controller    controllerオブジェクト
      */
-    function Ethna_Config(&$controller)
+    public function Ethna_Config(&$controller)
     {
         $this->controller =& $controller;
 
@@ -60,7 +60,7 @@ class Ethna_Config
      *  @param  string  $key    設定項目名
      *  @return string  設定値
      */
-    function get($key = null)
+    public function get($key = null)
     {
         if (is_null($key)) {
             return $this->config;
@@ -78,7 +78,7 @@ class Ethna_Config
      *  @param  string  $key    設定項目名
      *  @param  string  $value  設定値
      */
-    function set($key, $value)
+    public function set($key, $value)
     {
         $this->config[$key] = $value;
     }
@@ -89,7 +89,7 @@ class Ethna_Config
      *  @access public
      *  @return mixed   0:正常終了 Ethna_Error:エラー
      */
-    function update()
+    public function update()
     {
         return $this->_setConfig();
     }
@@ -100,7 +100,7 @@ class Ethna_Config
      *  @access private
      *  @return mixed   0:正常終了 Ethna_Error:エラー
      */
-    function _getConfig()
+    public function _getConfig()
     {
         $config = array();
         $file = $this->_getConfigFile();
@@ -143,7 +143,7 @@ class Ethna_Config
      *  @access private
      *  @return mixed   0:正常終了 Ethna_Error:エラー
      */
-    function _setConfig()
+    public function _setConfig()
     {
         $file = $this->_getConfigFile();
 
@@ -170,7 +170,7 @@ class Ethna_Config
      *
      *  @access private
      */
-    function _setConfigValue($fp, $key, $value, $level)
+    public function _setConfigValue($fp, $key, $value, $level)
     {
         fputs($fp, sprintf("%s'%s' => ", str_repeat("    ", $level+1), $key));
         if (is_array($value)) {
@@ -190,10 +190,10 @@ class Ethna_Config
      *  @access private
      *  @return string  設定ファイルへのフルパス名
      */
-    function _getConfigFile()
+    public function _getConfigFile()
     {
         return $this->controller->getDirectory('etc') . '/' . strtolower($this->controller->getAppId()) . '-ini.php';
     }
 }
 // }}}
-?>
+;

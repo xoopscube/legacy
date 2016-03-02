@@ -7,4 +7,3 @@ define("_MAIL_SENDMAILNG", "Nelze odeslat email pro <b>%s</b>.");
 define("_MAIL_MAILGOOD", "Email pro <b>%s</b>, byl odeslán.");
 define("_MAIL_SENDPMNG", "Nelze odeslat soukromou zprávu pro <b>%s</b>.");
 define("_MAIL_PMGOOD", "Soukromá zpráva pro <b>%s</b> byla odeslána.");
-?>

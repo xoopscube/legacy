@@ -5,4 +5,3 @@
     $this->db->queryF("/*!41000 SET SESSION collation_connection=utf8_general_ci */");
     $this->db->queryF("/*!41000 SET SESSION collation_database=utf8_general_ci */");
     $this->db->queryF("/*!41000 SET SESSION collation_server=utf8_general_ci */");
-?>

@@ -56,5 +56,3 @@ define('_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_WARNING', "移除 {0} 來防止其�
 define('_MD_LEGACY_MESSAGE_LOGGEDOUT', "您現在已登出本站");
 define('_MD_LEGACY_MESSAGE_LOGIN_SUCCESS', "完成登入程序");
 define('_MD_LEGACY_MESSAGE_THANKYOUFORVISIT', "感謝來訪!");
-
-?>

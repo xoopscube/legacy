@@ -57,5 +57,3 @@ define('_MD_LEGACY_MESSAGE_LOGGEDOUT', "ログアウトしました。");
 define('_MD_LEGACY_MESSAGE_LOGIN_SUCCESS', "{0}さん、ようこそ。ログイン処理中です");
 define('_MD_LEGACY_MESSAGE_THANKYOUFORVISIT', "当サイトをご利用いただきありがとうございました。");
 define('_MD_LEGACY_LANG_ALL_SMILEY_LIST', 'スマイリー一覧');
-
-?>

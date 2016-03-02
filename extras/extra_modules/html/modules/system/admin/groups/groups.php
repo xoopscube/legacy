@@ -29,7 +29,7 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid()) ) {
+if (!is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid())) {
     exit("Access Denied");
 }
 
@@ -54,11 +54,11 @@ function displayGroups()
     echo "<h4 style='text-align:left'>"._AM_EDITADG."</h4>";
     $member_handler =& xoops_gethandler('member');
     $groups =& $member_handler->getGroups();
-        echo "<table class='outer' width='40%' cellpadding='4' cellspacing='1'><tr><th colspan='2'>"._AM_EDITADG."</th></tr>";
+    echo "<table class='outer' width='40%' cellpadding='4' cellspacing='1'><tr><th colspan='2'>"._AM_EDITADG."</th></tr>";
     $count = count($groups);
     for ($i = 0; $i < $count; $i++) {
         $id = $groups[$i]->getVar('groupid');
-                echo '<tr><td class="head">'.$groups[$i]->getVar('name').'</td>';
+        echo '<tr><td class="head">'.$groups[$i]->getVar('name').'</td>';
         echo '<td class="even"><a href="admin.php?fct=groups&amp;op=modify&amp;g_id='.$id.'">'._AM_MODIFY.'</a>';
         if (XOOPS_GROUP_ADMIN == $id || XOOPS_GROUP_USERS == $id || XOOPS_GROUP_ANONYMOUS == $id) {
             echo '</td></tr>';
@@ -86,12 +86,12 @@ function displayGroups()
 function modifyGroup($g_id)
 {
     $userstart = $memstart = 0;
-    if ( !empty($_POST['userstart']) ) {
+    if (!empty($_POST['userstart'])) {
         $userstart = intval($_POST['userstart']);
     } elseif (!empty($_GET['userstart'])) {
         $userstart = intval($_GET['userstart']);
     }
-    if ( !empty($_POST['memstart']) ) {
+    if (!empty($_POST['memstart'])) {
         $memstart = intval($_POST['memstart']);
     } elseif (!empty($_GET['memstart'])) {
         $memstart = intval($_GET['memstart']);
@@ -200,7 +200,7 @@ function modifyGroup($g_id)
         <input type='hidden' name='groupid' value='".$thisgroup->getVar("groupid")."' />
         <input type='hidden' name='memstart' value='".$memstart."' />
         <select name='uids[]' size='10' multiple='multiple'>";
-        foreach ($mlist as $m_id => $m_name ) {
+        foreach ($mlist as $m_id => $m_name) {
             echo '<option value="'.$m_id.'">'.$m_name.'</option>'."\n";
         }
         echo "</select><br />
@@ -212,4 +212,3 @@ function modifyGroup($g_id)
     //CloseTable();
     xoops_cp_footer();
 }
-?>

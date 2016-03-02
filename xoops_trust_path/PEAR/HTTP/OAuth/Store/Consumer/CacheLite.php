@@ -228,4 +228,3 @@ implements HTTP_OAuth_Store_Consumer_Interface
         }
     }
 }
-?>

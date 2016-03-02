@@ -38,15 +38,15 @@ require_once "File/Archive/Predicate.php";
  */
 class File_Archive_Predicate_Extension extends File_Archive_Predicate
 {
-    var $extensions;
+    public $extensions;
 
     /**
      * @param $extensions array or comma separated string of allowed extensions
      */
-    function File_Archive_Predicate_Extension($extensions)
+    public function File_Archive_Predicate_Extension($extensions)
     {
         if (is_string($extensions)) {
-            $this->extensions = explode(",",$extensions);
+            $this->extensions = explode(",", $extensions);
         } else {
             $this->extensions = $extensions;
         }
@@ -54,12 +54,12 @@ class File_Archive_Predicate_Extension extends File_Archive_Predicate
     /**
      * @see File_Archive_Predicate::isTrue()
      */
-    function isTrue(&$source)
+    public function isTrue(&$source)
     {
         $filename = $source->getFilename();
         $pos = strrpos($filename, '.');
         $extension = "";
-        if ($pos !== FALSE) {
+        if ($pos !== false) {
             $extension = strtolower(substr($filename, $pos+1));
         }
         $result = in_array($extension, $this->extensions);
@@ -67,5 +67,3 @@ class File_Archive_Predicate_Extension extends File_Archive_Predicate
         return $result;
     }
 }
-
-?>

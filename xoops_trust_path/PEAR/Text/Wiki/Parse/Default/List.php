@@ -36,7 +36,8 @@
 * 
 */
 
-class Text_Wiki_Parse_List extends Text_Wiki_Parse {
+class Text_Wiki_Parse_List extends Text_Wiki_Parse
+{
     
     
     /**
@@ -52,7 +53,7 @@ class Text_Wiki_Parse_List extends Text_Wiki_Parse {
     * 
     */
     
-    var $regex = '/\n((\*|#) .*\n)(?! {0,}(\* |# |\n))/Us';
+    public $regex = '/\n((\*|#) .*\n)(?! {0,}(\* |# |\n))/Us';
     
     
     /**
@@ -83,7 +84,7 @@ class Text_Wiki_Parse_List extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches)
+    public function process(&$matches)
     {
         // the replacement text we will return
         $return = '';
@@ -119,7 +120,7 @@ class Text_Wiki_Parse_List extends Text_Wiki_Parse {
             // $val[1] is the number of initial spaces (indent level)
             // $val[2] is the list item type (* or #)
             // $val[3] is the list item text
-            
+
             // how many levels are we indented? (1 means the "root"
             // list level, no indenting.)
             $level = strlen($val[1]) + 1;
@@ -147,7 +148,7 @@ class Text_Wiki_Parse_List extends Text_Wiki_Parse {
                 
                 // ...and add a list-start token to the return.
                 $return .= $this->wiki->addToken(
-                    $this->rule, 
+                    $this->rule,
                     array(
                         'type' => $type . '_list_start',
                         'level' => $level - 1
@@ -169,8 +170,8 @@ class Text_Wiki_Parse_List extends Text_Wiki_Parse {
                 // continue adding end-list tokens until the stack count
                 // and the indent level are the same.
                 $return .= $this->wiki->addToken(
-                    $this->rule, 
-                    array (
+                    $this->rule,
+                    array(
                         'type' => array_pop($stack) . '_list_end',
                         'level' => $tmp
                     )
@@ -204,7 +205,7 @@ class Text_Wiki_Parse_List extends Text_Wiki_Parse {
             
             // create a list-item starting token.
             $start = $this->wiki->addToken(
-                $this->rule, 
+                $this->rule,
                 array(
                     'type' => $type . '_item_start',
                     'level' => $level,
@@ -215,7 +216,7 @@ class Text_Wiki_Parse_List extends Text_Wiki_Parse {
             
             // create a list-item ending token.
             $end = $this->wiki->addToken(
-                $this->rule, 
+                $this->rule,
                 array(
                     'type' => $type . '_item_end',
                     'level' => $level,
@@ -233,8 +234,8 @@ class Text_Wiki_Parse_List extends Text_Wiki_Parse {
         // is empty.
         while (count($stack) > 0) {
             $return .= $this->wiki->addToken(
-                $this->rule, 
-                array (
+                $this->rule,
+                array(
                     'type' => array_pop($stack) . '_list_end',
                     'level' => count($stack)
                 )
@@ -245,4 +246,3 @@ class Text_Wiki_Parse_List extends Text_Wiki_Parse {
         return "\n" . $return . "\n\n";
     }
 }
-?>

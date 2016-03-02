@@ -29,7 +29,7 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid()) ) {
+if (!is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid())) {
     exit("Access Denied");
 }
 
@@ -48,7 +48,7 @@ function RankForumAdmin()
     <th>"._AM_ACTION."</th></tr>";
     $result = $db->query("SELECT * FROM ".$db->prefix("ranks")." ORDER BY rank_id");
     $count = 0;
-    while ( $rank = $db->fetchArray($result) ) {
+    while ($rank = $db->fetchArray($result)) {
         if ($count % 2 == 0) {
             $class = 'even';
         } else {
@@ -104,5 +104,3 @@ function RankForumEdit($rank_id)
     $rank_form->display();
     xoops_cp_footer();
 }
-
-?>

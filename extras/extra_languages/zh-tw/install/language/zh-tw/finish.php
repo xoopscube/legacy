@@ -9,4 +9,3 @@ $content .=
 <p>請按 <a href='../index.php'>這裡</a> 到網站首頁.</p>
 <u><b>如果有使用上的問題可至XOOPS支援站</b></u><p>請按<a href='http://xoopscube.org/' target='_blank'>XOOPS Cube</a>或<a href='http://tw.xoops.org/' target='_blank'>tw.xoops.org-繁體中文支援站</a></p>
 ";
-?>

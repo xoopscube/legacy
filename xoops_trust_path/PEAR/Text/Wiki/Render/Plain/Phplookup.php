@@ -1,8 +1,9 @@
 <?php
 
-class Text_Wiki_Render_Plain_Phplookup extends Text_Wiki_Render {
+class Text_Wiki_Render_Plain_Phplookup extends Text_Wiki_Render
+{
     
-    var $conf = array('target' => '_blank');
+    public $conf = array('target' => '_blank');
     
     /**
     * 
@@ -17,9 +18,8 @@ class Text_Wiki_Render_Plain_Phplookup extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         return trim($options['text']);
     }
 }
-?>

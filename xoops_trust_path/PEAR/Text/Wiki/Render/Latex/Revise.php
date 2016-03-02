@@ -1,6 +1,7 @@
 <?php
 
-class Text_Wiki_Render_Latex_Revise extends Text_Wiki_Render {
+class Text_Wiki_Render_Latex_Revise extends Text_Wiki_Render
+{
     
     
     /**
@@ -16,7 +17,7 @@ class Text_Wiki_Render_Latex_Revise extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         if ($options['type'] == 'del_start') {
             return '\sout{';
@@ -35,4 +36,3 @@ class Text_Wiki_Render_Latex_Revise extends Text_Wiki_Render {
         }
     }
 }
-?>

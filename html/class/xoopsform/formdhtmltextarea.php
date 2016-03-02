@@ -29,7 +29,9 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 /**
  *
@@ -63,7 +65,7 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
      * @var string
      * @access  private
      */
-    var $_hiddenText;
+    public $_hiddenText;
     
     /**
      * Editor type
@@ -90,7 +92,7 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
      * @param   int     $cols       Number of columns
      * @param   string  $hiddentext Hidden Text
      */
-    function XoopsFormDhtmlTextArea($caption, $name, $value, $rows=5, $cols=50, $hiddentext="xoopsHiddenText")
+    public function XoopsFormDhtmlTextArea($caption, $name, $value, $rows=5, $cols=50, $hiddentext="xoopsHiddenText")
     {
         $this->XoopsFormTextArea($caption, $name, $value, $rows, $cols);
         $this->_xoopsHiddenText = $hiddentext;
@@ -101,54 +103,54 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
      *
      * @return  string  HTML
      */
-    function render()
+    public function render()
     {
-		$root =& XCube_Root::getSingleton();
+        $root =& XCube_Root::getSingleton();
 
-		$editor = $this->getEditor();
-		$id = $this->getId();
-		if ($editor && !isset(self::$_editorCheck[$id])) {
-			self::$_editorCheck[$id] = true;
-			$params['name'] = trim($this->getName(false));
-			$params['class'] = trim($this->getClass());
-			$params['cols'] = $this->getCols();
-			$params['rows'] = $this->getRows();
-			$params['value'] = $this->getValue();
-			$params['id'] = $id;
-			$params['editor'] = $editor;
+        $editor = $this->getEditor();
+        $id = $this->getId();
+        if ($editor && !isset(self::$_editorCheck[$id])) {
+            self::$_editorCheck[$id] = true;
+            $params['name'] = trim($this->getName(false));
+            $params['class'] = trim($this->getClass());
+            $params['cols'] = $this->getCols();
+            $params['rows'] = $this->getRows();
+            $params['value'] = $this->getValue();
+            $params['id'] = $id;
+            $params['editor'] = $editor;
 
-			$html = '';
-			switch ($params['editor']) {
-				case 'html':
-					XCube_DelegateUtils::call('Site.TextareaEditor.HTML.Show', new XCube_Ref($html), $params);
-					break;
-				case 'none':
-					XCube_DelegateUtils::call('Site.TextareaEditor.None.Show', new XCube_Ref($html), $params);
-					break;
-				case 'bbcode':
-				default:
-					XCube_DelegateUtils::call('Site.TextareaEditor.BBCode.Show', new XCube_Ref($html), $params);
-					break;
-			}
+            $html = '';
+            switch ($params['editor']) {
+                case 'html':
+                    XCube_DelegateUtils::call('Site.TextareaEditor.HTML.Show', new XCube_Ref($html), $params);
+                    break;
+                case 'none':
+                    XCube_DelegateUtils::call('Site.TextareaEditor.None.Show', new XCube_Ref($html), $params);
+                    break;
+                case 'bbcode':
+                default:
+                    XCube_DelegateUtils::call('Site.TextareaEditor.BBCode.Show', new XCube_Ref($html), $params);
+                    break;
+            }
 
-			return $html;
-		}
+            return $html;
+        }
 
-		$renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
-		
-		$renderTarget =& $renderSystem->createRenderTarget('main');
-	
-		$renderTarget->setAttribute('legacy_module', 'legacy');
-		$renderTarget->setTemplateName("legacy_xoopsform_dhtmltextarea.html");
-		$renderTarget->setAttribute("element", $this);
-		$renderTarget->setAttribute("class", $this->getClass());
+        $renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
+        
+        $renderTarget =& $renderSystem->createRenderTarget('main');
+    
+        $renderTarget->setAttribute('legacy_module', 'legacy');
+        $renderTarget->setTemplateName("legacy_xoopsform_dhtmltextarea.html");
+        $renderTarget->setAttribute("element", $this);
+        $renderTarget->setAttribute("class", $this->getClass());
 
-		$renderSystem->render($renderTarget);
-	
-		$ret = $renderTarget->getResult();
+        $renderSystem->render($renderTarget);
+    
+        $ret = $renderTarget->getResult();
         $ret .= $this->_renderSmileys();
-		
-		return $ret;
+        
+        return $ret;
     }
 
     /**
@@ -156,42 +158,42 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
      *
      * @return  string HTML
      */
-    function _renderSmileys()
+    public function _renderSmileys()
     {
-		$handler =& xoops_getmodulehandler('smiles', 'legacy');
-		$smilesArr =& $handler->getObjects(new Criteria('display', 1));
-		
-		$root =& XCube_Root::getSingleton();
-		$renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
-		$renderTarget =& $renderSystem->createRenderTarget('main');
-	
-		$renderTarget->setAttribute('legacy_module', 'legacy');
-		$renderTarget->setTemplateName("legacy_xoopsform_opt_smileys.html");
-		$renderTarget->setAttribute("element", $this);
-		$renderTarget->setAttribute("smilesArr", $smilesArr);
+        $handler =& xoops_getmodulehandler('smiles', 'legacy');
+        $smilesArr =& $handler->getObjects(new Criteria('display', 1));
+        
+        $root =& XCube_Root::getSingleton();
+        $renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
+        $renderTarget =& $renderSystem->createRenderTarget('main');
+    
+        $renderTarget->setAttribute('legacy_module', 'legacy');
+        $renderTarget->setTemplateName("legacy_xoopsform_opt_smileys.html");
+        $renderTarget->setAttribute("element", $this);
+        $renderTarget->setAttribute("smilesArr", $smilesArr);
 
-		$renderSystem->render($renderTarget);
-		
-		return $renderTarget->getResult();
+        $renderSystem->render($renderTarget);
+        
+        return $renderTarget->getResult();
     }
 
-	/**
-	 * set editor mode for XCL 2.2
-	 *
-	 * @param  string  editor type
-	 */
-	function setEditor($editor) {
-		$this->_editor = strtolower($editor);
-	}
+    /**
+     * set editor mode for XCL 2.2
+     *
+     * @param  string  editor type
+     */
+    public function setEditor($editor)
+    {
+        $this->_editor = strtolower($editor);
+    }
 
-	/**
-	 * get the "editor" value
-	 *
-	 * @return 	string  editor type
-	 */
-	function getEditor() {
-		return $this->_editor;
-	}
-
+    /**
+     * get the "editor" value
+     *
+     * @return 	string  editor type
+     */
+    public function getEditor()
+    {
+        return $this->_editor;
+    }
 }
-?>

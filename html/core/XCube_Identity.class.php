@@ -13,66 +13,66 @@
  */
 class XCube_Identity
 {
-	/**
-	 * A name of the identity.
-	 * @var string
-	 */
-	var $mName = "";
-	
-	/**
-	 * The authentication type
-	 * @var string
-	 */
-	var $_mAuthenticationType = "";
-	
-	function XCube_Identity()
-	{
-	}
-	
-	/**
-	 * Sets the authentication type.
-	 * @param string $type
-	 */
-	function setAuthenticationType($type)
-	{
-		$this->_mAuthenticationType = $type;
-	}
-	
-	/**
-	 * Gets the authentication type.
-	 * @return string
-	 */
-	function getAuthenticationType()
-	{
-		return $this->_mAuthenticationType;
-	}
-	
-	/**
-	 * Sets a name of this object.
-	 */
-	function setName($name)
-	{
-		$this->mName = $name;
-	}
-	
-	/**
-	 * Gets a name of this object.
-	 *
-	 * @return string
-	 */
-	function getName()
-	{
-		return $this->mName;
-	}
-	
-	/**
-	 * Gets a value that indicates whether the user has been authenticated.
-	 *
-	 * @return bool
-	 */
-	function isAuthenticated()
-	{
-	}
+    /**
+     * A name of the identity.
+     * @var string
+     */
+    public $mName = "";
+    
+    /**
+     * The authentication type
+     * @var string
+     */
+    public $_mAuthenticationType = "";
+    
+    public function XCube_Identity()
+    {
+    }
+    
+    /**
+     * Sets the authentication type.
+     * @param string $type
+     */
+    public function setAuthenticationType($type)
+    {
+        $this->_mAuthenticationType = $type;
+    }
+    
+    /**
+     * Gets the authentication type.
+     * @return string
+     */
+    public function getAuthenticationType()
+    {
+        return $this->_mAuthenticationType;
+    }
+    
+    /**
+     * Sets a name of this object.
+     */
+    public function setName($name)
+    {
+        $this->mName = $name;
+    }
+    
+    /**
+     * Gets a name of this object.
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->mName;
+    }
+    
+    /**
+     * Gets a value that indicates whether the user has been authenticated.
+     *
+     * @return bool
+     */
+    public function isAuthenticated()
+    {
+    }
 }
 
 /**
@@ -80,44 +80,39 @@ class XCube_Identity
  */
 class XCube_Principal
 {
-	/**
-	 * The identity object which is tied to this object.
-	 */
-	var $mIdentity = null;
-	
-	/**
-	 * Roles in this object.
-	 * @var string[]
-	 */
-	var $_mRoles = array();
-	
-	function XCube_Principal($identity, $roles = array())
-	{
-		$this->mIdentity =& $identity;
-		$this->_mRoles = $roles;
-	}
-	
-	/**
-	 * Gets a identity object which is tied to this object.
-	 * @return XCube_Identity
-	 */
-	function getIdentity()
-	{
-		return $this->mIdentity;
-	}
-	
-	/**
-	 * Gets a value that indicates whether this principal has a role specified by $rolename.
-	 *
-	 * @var string $rolename
-	 * @return bool
-	 */	
-	function isInRole($rolename)
-	{
-	}
+    /**
+     * The identity object which is tied to this object.
+     */
+    public $mIdentity = null;
+    
+    /**
+     * Roles in this object.
+     * @var string[]
+     */
+    public $_mRoles = array();
+    
+    public function XCube_Principal($identity, $roles = array())
+    {
+        $this->mIdentity =& $identity;
+        $this->_mRoles = $roles;
+    }
+    
+    /**
+     * Gets a identity object which is tied to this object.
+     * @return XCube_Identity
+     */
+    public function getIdentity()
+    {
+        return $this->mIdentity;
+    }
+    
+    /**
+     * Gets a value that indicates whether this principal has a role specified by $rolename.
+     *
+     * @var string $rolename
+     * @return bool
+     */
+    public function isInRole($rolename)
+    {
+    }
 }
-
-
-
-
-?>

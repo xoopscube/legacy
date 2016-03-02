@@ -47,16 +47,16 @@ require_once "File/Archive/Predicate/Index.php";
  */
 class File_Archive_Writer_UniqueAppender extends File_Archive_Writer
 {
-    var $reader;
-    var $writer;
-    var $fileList = array();
-    var $toDelete = array();
+    public $reader;
+    public $writer;
+    public $fileList = array();
+    public $toDelete = array();
 
     /**
      * Construct a unique writer that will write to the specified writer
      * and remove duplicate files from the reader on close
      */
-    function File_Archive_Writer_UniqueAppender(&$reader)
+    public function File_Archive_Writer_UniqueAppender(&$reader)
     {
         $reader->close();
         $pos = 0;
@@ -71,7 +71,7 @@ class File_Archive_Writer_UniqueAppender extends File_Archive_Writer
     /**
      * @see File_Archive_Writer::newFile()
      */
-    function newFile($filename, $stat = array(), $mime = "application/octet-stream")
+    public function newFile($filename, $stat = array(), $mime = "application/octet-stream")
     {
         if (isset($this->fileList[$filename])) {
             $this->toDelete[$this->fileList[$filename]] = true;
@@ -83,7 +83,7 @@ class File_Archive_Writer_UniqueAppender extends File_Archive_Writer
     /**
      * @see File_Archive_Writer::newFromTempFile()
      */
-    function newFromTempFile($tmpfile, $filename, $stat = array(), $mime = "application/octet-stream")
+    public function newFromTempFile($tmpfile, $filename, $stat = array(), $mime = "application/octet-stream")
     {
         if (isset($this->fileList[$filename])) {
             $this->toDelete[$this->fileList[$filename]] = true;
@@ -95,7 +95,7 @@ class File_Archive_Writer_UniqueAppender extends File_Archive_Writer
     /**
      * @see File_Archive_Writer::newFileNeedsMIME()
      */
-    function newFileNeedsMIME()
+    public function newFileNeedsMIME()
     {
         return $this->writer->newFileNeedsMIME();
     }
@@ -103,7 +103,7 @@ class File_Archive_Writer_UniqueAppender extends File_Archive_Writer
     /**
      * @see File_Archive_Writer::writeData()
      */
-    function writeData($data)
+    public function writeData($data)
     {
         return $this->writer->writeData($data);
     }
@@ -111,7 +111,7 @@ class File_Archive_Writer_UniqueAppender extends File_Archive_Writer
     /**
      * @see File_Archive_Writer::writeFile()
      */
-    function writeFile($filename)
+    public function writeFile($filename)
     {
         return $this->writer->writeFile($filename);
     }
@@ -120,7 +120,7 @@ class File_Archive_Writer_UniqueAppender extends File_Archive_Writer
      * Close the writer, eventually flush the data, write the footer...
      * This function must be called before the end of the script
      */
-    function close()
+    public function close()
     {
         $error = $this->writer->close();
         if (PEAR::isError($error)) {
@@ -139,5 +139,3 @@ class File_Archive_Writer_UniqueAppender extends File_Archive_Writer
         }
     }
 }
-
-?>

@@ -79,4 +79,3 @@ define('_MI_USER_MENU_CREATE_RANK', "user rank create new");
 define('_MI_USER_MENU_CREATE_USER', "Vytvoøit uživatele");
 define('_MI_USER_NAME', "Uživatelé");
 define('_MI_USER_NAME_DESC', "Tento modul spravuje uživatelské úèty.");
-?>

@@ -100,4 +100,3 @@ define('_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_2', "You can easily change the tem
 define('_AD_LEGACYRENDER_TIPS_TPLSET_UPLOAD', "If you don't input a name for your new template set, the name will be taken from the uploaded file. Please upload only a TAR.GZ file.");
 define('_AD_LEGACYRENDER_LANG_HTACCESS', ".htaccess");
 define('_AD_LEGACYRENDER_DESC_HTACCESS', 'If your server can handle apache mod_rewrite, you may use the below .htaccess setting for cool uri. If you use this option, you have to turn on COOL URI config at <a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1">legacy preference setting</a>.');
-?>

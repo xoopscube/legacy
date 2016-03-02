@@ -31,7 +31,8 @@
 * 
 */
 
-class Text_Wiki_Parse_Horiz extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Horiz extends Text_Wiki_Parse
+{
     
     
     /**
@@ -47,7 +48,7 @@ class Text_Wiki_Parse_Horiz extends Text_Wiki_Parse {
     * 
     */
     
-    var $regex = '/^([-]{4,})$/m';
+    public $regex = '/^([-]{4,})$/m';
     
     
     /**
@@ -62,9 +63,8 @@ class Text_Wiki_Parse_Horiz extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches)
-    {    
+    public function process(&$matches)
+    {
         return $this->wiki->addToken($this->rule);
     }
 }
-?>

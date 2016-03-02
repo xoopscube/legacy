@@ -144,5 +144,3 @@ $mimes = array(
 'xyz' => 'chemical/x-xyz' ,
 'zip' => 'application/zip' ,
 ) ;
-
-?>

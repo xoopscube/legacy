@@ -29,7 +29,7 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid()) ) {
+if (!is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid())) {
     exit("Access Denied");
 }
 function SmilesAdmin()
@@ -103,7 +103,7 @@ function SmilesEdit($id)
     echo '<a href="admin.php?fct=smilies">'._AM_SMILESCONTROL .'</a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;'._AM_EDITSMILE.'<br /><br />';
     if ($getsmiles = $db->query("SELECT * FROM ".$db->prefix("smiles")." WHERE id = $id")) {
         $numsmiles = $db->getRowsNum($getsmiles);
-        if ( $numsmiles == 0 ) {
+        if ($numsmiles == 0) {
             //EMPTY
         } else {
             if ($smiles = $db->fetchArray($getsmiles)) {
@@ -123,4 +123,3 @@ function SmilesEdit($id)
     }
     xoops_cp_footer();
 }
-?>

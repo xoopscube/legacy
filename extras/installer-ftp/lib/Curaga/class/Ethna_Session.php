@@ -24,19 +24,19 @@ class Ethna_Session
      */
 
     /** @var    object  Ethna_Logger    loggerオブジェクト */
-    var $logger;
+    public $logger;
 
     /** @var    string  セッション名 */
-    var $session_name;
+    public $session_name;
 
     /** @var    string  セッションデータ保存ディレクトリ */
-    var $session_save_dir;
+    public $session_save_dir;
 
     /** @var    bool    セッション開始フラグ */
-    var $session_start = false;
+    public $session_start = false;
 
     /** @var    bool    匿名セッションフラグ */
-    var $anonymous = false;
+    public $anonymous = false;
 
     /**#@-*/
 
@@ -47,7 +47,7 @@ class Ethna_Session
      *  @param  string  $appid      アプリケーションID(セッション名として使用)
      *  @param  string  $save_dir   セッションデータを保存するディレクトリ
      */
-    function Ethna_Session($appid, $save_dir, $logger)
+    public function Ethna_Session($appid, $save_dir, $logger)
     {
         $this->session_name = "${appid}SESSID";
         $this->session_save_dir = $save_dir;
@@ -81,7 +81,7 @@ class Ethna_Session
      *
      *  @access public
      */
-    function restore()
+    public function restore()
     {
         if (!empty($_COOKIE[$this->session_name]) ||
         (ini_get("session.use_trans_sid") == 1 &&
@@ -109,7 +109,7 @@ class Ethna_Session
      *  @access public
      *  @return bool    true:正当なセッション false:不当なセッション
      */
-    function isValid()
+    public function isValid()
     {
         if (!$this->session_start) {
             if (!empty($_COOKIE[$this->session_name]) || session_id() != null) {
@@ -139,7 +139,7 @@ class Ethna_Session
      *  @param  int     $lifetime   セッション有効期間(秒単位, 0ならセッションクッキー)
      *  @return bool    true:正常終了 false:エラー
      */
-    function start($lifetime = 0, $anonymous = false)
+    public function start($lifetime = 0, $anonymous = false)
     {
         if ($this->session_start) {
             // we need this?
@@ -171,7 +171,7 @@ class Ethna_Session
      *  @access public
      *  @return bool    true:正常終了 false:エラー
      */
-    function destroy()
+    public function destroy()
     {
         if (!$this->session_start) {
             return true;
@@ -190,7 +190,7 @@ class Ethna_Session
      *  @access public
      *  @return bool    true:正常終了 false:エラー
      */
-    function regenerateId($lifetime = 0, $anonymous = false)
+    public function regenerateId($lifetime = 0, $anonymous = false)
     {
         if (! $this->session_start) {
             return false;
@@ -217,7 +217,7 @@ class Ethna_Session
      *  @param  string  $name   キー
      *  @return mixed   取得した値(null:セッションが開始されていない)
      */
-    function get($name)
+    public function get($name)
     {
         if (!$this->session_start) {
             return null;
@@ -237,7 +237,7 @@ class Ethna_Session
      *  @param  string  $value  値
      *  @return bool    true:正常終了 false:エラー(セッションが開始されていない)
      */
-    function set($name, $value)
+    public function set($name, $value)
     {
         if (!$this->session_start) {
             // no way
@@ -256,7 +256,7 @@ class Ethna_Session
      *  @param  string  $name   キー
      *  @return bool    true:正常終了 false:エラー(セッションが開始されていない)
      */
-    function remove($name)
+    public function remove($name)
     {
         if (!$this->session_start) {
             return false;
@@ -274,7 +274,7 @@ class Ethna_Session
      *  @param  string  $anonymous  匿名セッションを「開始」とみなすかどうか(default: false)
      *  @return bool    true:開始済み false:開始されていない
      */
-    function isStart($anonymous = false)
+    public function isStart($anonymous = false)
     {
         if ($anonymous) {
             return $this->session_start;
@@ -293,7 +293,7 @@ class Ethna_Session
      *  @access public
      *  @return bool    true:匿名セッション false:非匿名セッション/セッション開始されていない
      */
-    function isAnonymous()
+    public function isAnonymous()
     {
         return $this->anonymous;
     }
@@ -307,7 +307,7 @@ class Ethna_Session
      *  @param  string  $dst_ip     現在のアクセス元IPアドレス
      *  @return bool    true:正常終了 false:不正なIPアドレス
      */
-    function _validateRemoteAddr($src_ip, $dst_ip)
+    public function _validateRemoteAddr($src_ip, $dst_ip)
     {
         $src = ip2long($src_ip);
         $dst = ip2long($dst_ip);
@@ -322,4 +322,4 @@ class Ethna_Session
     }
 }
 // }}}
-?>
+;

@@ -29,387 +29,376 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 include_once XOOPS_ROOT_PATH.'/class/xml/saxparser.php';
 include_once XOOPS_ROOT_PATH.'/class/xml/xmltaghandler.php';
 
 class XoopsThemeSetParser extends SaxParser
 {
-	var $tempArr = array();
-	var $themeSetData = array();
-	var $imagesData = array();
-	var $templatesData = array();
+    public $tempArr = array();
+    public $themeSetData = array();
+    public $imagesData = array();
+    public $templatesData = array();
 
-	function XoopsThemeSetParser(&$input)
-	{
-		$this->SaxParser($input);
-		$this->addTagHandler(new ThemeSetThemeNameHandler());
-		$this->addTagHandler(new ThemeSetDateCreatedHandler());
-		$this->addTagHandler(new ThemeSetAuthorHandler());
-		$this->addTagHandler(new ThemeSetDescriptionHandler());
-		$this->addTagHandler(new ThemeSetGeneratorHandler());
-		$this->addTagHandler(new ThemeSetNameHandler());
-		$this->addTagHandler(new ThemeSetEmailHandler());
-		$this->addTagHandler(new ThemeSetLinkHandler());
-		$this->addTagHandler(new ThemeSetTemplateHandler());
-		$this->addTagHandler(new ThemeSetImageHandler());
-		$this->addTagHandler(new ThemeSetModuleHandler());
-		$this->addTagHandler(new ThemeSetFileTypeHandler());
-		$this->addTagHandler(new ThemeSetTagHandler());
-	}
+    public function XoopsThemeSetParser(&$input)
+    {
+        $this->SaxParser($input);
+        $this->addTagHandler(new ThemeSetThemeNameHandler());
+        $this->addTagHandler(new ThemeSetDateCreatedHandler());
+        $this->addTagHandler(new ThemeSetAuthorHandler());
+        $this->addTagHandler(new ThemeSetDescriptionHandler());
+        $this->addTagHandler(new ThemeSetGeneratorHandler());
+        $this->addTagHandler(new ThemeSetNameHandler());
+        $this->addTagHandler(new ThemeSetEmailHandler());
+        $this->addTagHandler(new ThemeSetLinkHandler());
+        $this->addTagHandler(new ThemeSetTemplateHandler());
+        $this->addTagHandler(new ThemeSetImageHandler());
+        $this->addTagHandler(new ThemeSetModuleHandler());
+        $this->addTagHandler(new ThemeSetFileTypeHandler());
+        $this->addTagHandler(new ThemeSetTagHandler());
+    }
 
-	function setThemeSetData($name, &$value)
-	{
-		$this->themeSetData[$name] =& $value;
-	}
+    public function setThemeSetData($name, &$value)
+    {
+        $this->themeSetData[$name] =& $value;
+    }
 
-	function &getThemeSetData($name=null)
-	{
-		if (isset($name)) {
-			if (isset($this->themeSetData[$name])) {
-				return $this->themeSetData[$name];
-			}
-			$ret = false;
-			return $ret;
-		}
-		return $this->themeSetData;
-	}
+    public function &getThemeSetData($name=null)
+    {
+        if (isset($name)) {
+            if (isset($this->themeSetData[$name])) {
+                return $this->themeSetData[$name];
+            }
+            $ret = false;
+            return $ret;
+        }
+        return $this->themeSetData;
+    }
 
-	function setImagesData(&$imagearr)
-	{
-		$this->imagesData[] =& $imagearr;
-	}
+    public function setImagesData(&$imagearr)
+    {
+        $this->imagesData[] =& $imagearr;
+    }
 
-	function &getImagesData()
-	{
-		return $this->imagesData;
-	}
+    public function &getImagesData()
+    {
+        return $this->imagesData;
+    }
 
-	function setTemplatesData(&$tplarr)
-	{
-		$this->templatesData[] =& $tplarr;
-	}
+    public function setTemplatesData(&$tplarr)
+    {
+        $this->templatesData[] =& $tplarr;
+    }
 
-	function &getTemplatesData()
-	{
-		return $this->templatesData;
-	}
+    public function &getTemplatesData()
+    {
+        return $this->templatesData;
+    }
 
-	function setTempArr($name, &$value, $delim='')
-	{
-		if (!isset($this->tempArr[$name])) {
-			$this->tempArr[$name] =& $value;
-		} else {
-			$this->tempArr[$name] .= $delim.$value;
-		}
-	}
+    public function setTempArr($name, &$value, $delim='')
+    {
+        if (!isset($this->tempArr[$name])) {
+            $this->tempArr[$name] =& $value;
+        } else {
+            $this->tempArr[$name] .= $delim.$value;
+        }
+    }
 
-	function getTempArr()
-	{
-		return $this->tempArr;
-	}
+    public function getTempArr()
+    {
+        return $this->tempArr;
+    }
 
-	function resetTempArr()
-	{
-		unset($this->tempArr);
-		$this->tempArr = array();
-	}
+    public function resetTempArr()
+    {
+        unset($this->tempArr);
+        $this->tempArr = array();
+    }
 }
 
 
 class ThemeSetDateCreatedHandler extends XmlTagHandler
 {
 
-	function ThemeSetDateCreatedHandler()
-	{
+    public function ThemeSetDateCreatedHandler()
+    {
+    }
 
-	}
+    public function getName()
+    {
+        return 'dateCreated';
+    }
 
-	function getName()
-	{
-		return 'dateCreated';
-	}
-
-	function handleCharacterData(&$parser, &$data)
-	{
-		switch ($parser->getParentTag()) {
-		case 'themeset':
-			$parser->setThemeSetData('date', $data);
-			break;
-		default:
-			break;
-		}
-	}
+    public function handleCharacterData(&$parser, &$data)
+    {
+        switch ($parser->getParentTag()) {
+        case 'themeset':
+            $parser->setThemeSetData('date', $data);
+            break;
+        default:
+            break;
+        }
+    }
 }
 
 class ThemeSetAuthorHandler extends XmlTagHandler
 {
-	function ThemeSetAuthorHandler()
-	{
+    public function ThemeSetAuthorHandler()
+    {
+    }
 
-	}
+    public function getName()
+    {
+        return 'author';
+    }
 
-	function getName()
-	{
-		return 'author';
-	}
+    public function handleBeginElement(&$parser, &$attributes)
+    {
+        $parser->resetTempArr();
+    }
 
-	function handleBeginElement(&$parser, &$attributes)
-	{
-		$parser->resetTempArr();
-	}
-
-	function handleEndElement(&$parser)
-	{
-		$parser->setCreditsData($parser->getTempArr());
-	}
+    public function handleEndElement(&$parser)
+    {
+        $parser->setCreditsData($parser->getTempArr());
+    }
 }
 
 class ThemeSetDescriptionHandler extends XmlTagHandler
 {
-	function ThemeSetDescriptionHandler()
-	{
+    public function ThemeSetDescriptionHandler()
+    {
+    }
 
-	}
+    public function getName()
+    {
+        return 'description';
+    }
 
-	function getName()
-	{
-		return 'description';
-	}
-
-	function handleCharacterData(&$parser, &$data)
-	{
-		switch ($parser->getParentTag()) {
-		case 'template':
-			$parser->setTempArr('description', $data);
-			break;
-		case 'image':
-			$parser->setTempArr('description', $data);
-			break;
-		default:
-			break;
-		}
-	}
+    public function handleCharacterData(&$parser, &$data)
+    {
+        switch ($parser->getParentTag()) {
+        case 'template':
+            $parser->setTempArr('description', $data);
+            break;
+        case 'image':
+            $parser->setTempArr('description', $data);
+            break;
+        default:
+            break;
+        }
+    }
 }
 
 class ThemeSetGeneratorHandler extends XmlTagHandler
 {
-	function ThemeSetGeneratorHandler()
-	{
+    public function ThemeSetGeneratorHandler()
+    {
+    }
 
-	}
+    public function getName()
+    {
+        return 'generator';
+    }
 
-	function getName()
-	{
-		return 'generator';
-	}
-
-	function handleCharacterData(&$parser, &$data)
-	{
-		switch ($parser->getParentTag()) {
-		case 'themeset':
-			$parser->setThemeSetData('generator', $data);
-			break;
-		default:
-			break;
-		}
-	}
+    public function handleCharacterData(&$parser, &$data)
+    {
+        switch ($parser->getParentTag()) {
+        case 'themeset':
+            $parser->setThemeSetData('generator', $data);
+            break;
+        default:
+            break;
+        }
+    }
 }
 
 class ThemeSetNameHandler extends XmlTagHandler
 {
-	function ThemeSetNameHandler()
-	{
+    public function ThemeSetNameHandler()
+    {
+    }
 
-	}
+    public function getName()
+    {
+        return 'name';
+    }
 
-	function getName()
-	{
-		return 'name';
-	}
-
-	function handleCharacterData(&$parser, &$data)
-	{
-		switch ($parser->getParentTag()) {
-		case 'themeset':
-			$parser->setThemeSetData('name', $data);
-			break;
-		case 'author':
-			$parser->setTempArr('name', $data);
-			break;
-		default:
-			break;
-		}
-	}
+    public function handleCharacterData(&$parser, &$data)
+    {
+        switch ($parser->getParentTag()) {
+        case 'themeset':
+            $parser->setThemeSetData('name', $data);
+            break;
+        case 'author':
+            $parser->setTempArr('name', $data);
+            break;
+        default:
+            break;
+        }
+    }
 }
 
 class ThemeSetEmailHandler extends XmlTagHandler
 {
-	function ThemeSetEmailHandler()
-	{
+    public function ThemeSetEmailHandler()
+    {
+    }
 
-	}
+    public function getName()
+    {
+        return 'email';
+    }
 
-	function getName()
-	{
-		return 'email';
-	}
-
-	function handleCharacterData(&$parser, &$data)
-	{
-		switch ($parser->getParentTag()) {
-		case 'author':
-			$parser->setTempArr('email', $data);
-			break;
-		default:
-			break;
-		}
-	}
+    public function handleCharacterData(&$parser, &$data)
+    {
+        switch ($parser->getParentTag()) {
+        case 'author':
+            $parser->setTempArr('email', $data);
+            break;
+        default:
+            break;
+        }
+    }
 }
 
 class ThemeSetLinkHandler extends XmlTagHandler
 {
-	function ThemeSetLinkHandler()
-	{
+    public function ThemeSetLinkHandler()
+    {
+    }
 
-	}
+    public function getName()
+    {
+        return 'link';
+    }
 
-	function getName()
-	{
-		return 'link';
-	}
-
-	function handleCharacterData(&$parser, &$data)
-	{
-		switch ($parser->getParentTag()) {
-		case 'author':
-			$parser->setTempArr('link', $data);
-			break;
-		default:
-			break;
-		}
-	}
+    public function handleCharacterData(&$parser, &$data)
+    {
+        switch ($parser->getParentTag()) {
+        case 'author':
+            $parser->setTempArr('link', $data);
+            break;
+        default:
+            break;
+        }
+    }
 }
 
 class ThemeSetTemplateHandler extends XmlTagHandler
 {
-	function ThemeSetTemplateHandler()
-	{
+    public function ThemeSetTemplateHandler()
+    {
+    }
 
-	}
+    public function getName()
+    {
+        return 'template';
+    }
 
-	function getName()
-	{
-		return 'template';
-	}
+    public function handleBeginElement(&$parser, &$attributes)
+    {
+        $parser->resetTempArr();
+        $parser->setTempArr('name', $attributes['name']);
+    }
 
-	function handleBeginElement(&$parser, &$attributes)
-	{
-		$parser->resetTempArr();
-		$parser->setTempArr('name', $attributes['name']);
-	}
-
-	function handleEndElement(&$parser)
-	{
-		$parser->setTemplatesData($parser->getTempArr());
-	}
+    public function handleEndElement(&$parser)
+    {
+        $parser->setTemplatesData($parser->getTempArr());
+    }
 }
 
 class ThemeSetImageHandler extends XmlTagHandler
 {
-	function ThemeSetImageHandler()
-	{
+    public function ThemeSetImageHandler()
+    {
+    }
 
-	}
+    public function getName()
+    {
+        return 'image';
+    }
 
-	function getName()
-	{
-		return 'image';
-	}
+    public function handleBeginElement(&$parser, &$attributes)
+    {
+        $parser->resetTempArr();
+        $parser->setTempArr('name', $attributes[0]);
+    }
 
-	function handleBeginElement(&$parser, &$attributes)
-	{
-		$parser->resetTempArr();
-		$parser->setTempArr('name', $attributes[0]);
-	}
-
-	function handleEndElement(&$parser)
-	{
-		$parser->setImagesData($parser->getTempArr());
-	}
+    public function handleEndElement(&$parser)
+    {
+        $parser->setImagesData($parser->getTempArr());
+    }
 }
 
 class ThemeSetModuleHandler extends XmlTagHandler
 {
-	function ThemeSetModuleHandler()
-	{
+    public function ThemeSetModuleHandler()
+    {
+    }
 
-	}
+    public function getName()
+    {
+        return 'module';
+    }
 
-	function getName()
-	{
-		return 'module';
-	}
-
-	function handleCharacterData(&$parser, &$data)
-	{
-		switch ($parser->getParentTag()) {
-		case 'template':
-		case 'image':
-			$parser->setTempArr('module', $data);
-			break;
-		default:
-			break;
-		}
-	}
+    public function handleCharacterData(&$parser, &$data)
+    {
+        switch ($parser->getParentTag()) {
+        case 'template':
+        case 'image':
+            $parser->setTempArr('module', $data);
+            break;
+        default:
+            break;
+        }
+    }
 }
 
 class ThemeSetFileTypeHandler extends XmlTagHandler
 {
-	function ThemeSetFileTypeHandler()
-	{
+    public function ThemeSetFileTypeHandler()
+    {
+    }
 
-	}
+    public function getName()
+    {
+        return 'fileType';
+    }
 
-	function getName()
-	{
-		return 'fileType';
-	}
-
-	function handleCharacterData(&$parser, &$data)
-	{
-		switch ($parser->getParentTag()) {
-		case 'template':
-			$parser->setTempArr('type', $data);
-			break;
-		default:
-			break;
-		}
-	}
+    public function handleCharacterData(&$parser, &$data)
+    {
+        switch ($parser->getParentTag()) {
+        case 'template':
+            $parser->setTempArr('type', $data);
+            break;
+        default:
+            break;
+        }
+    }
 }
 
 class ThemeSetTagHandler extends XmlTagHandler
 {
-	function ThemeSetTagHandler()
-	{
+    public function ThemeSetTagHandler()
+    {
+    }
 
-	}
+    public function getName()
+    {
+        return 'tag';
+    }
 
-	function getName()
-	{
-		return 'tag';
-	}
-
-	function handleCharacterData(&$parser, &$data)
-	{
-		switch ($parser->getParentTag()) {
-		case 'image':
-			$parser->setTempArr('tag', $data);
-			break;
-		default:
-			break;
-		}
-	}
+    public function handleCharacterData(&$parser, &$data)
+    {
+        switch ($parser->getParentTag()) {
+        case 'image':
+            $parser->setTempArr('tag', $data);
+            break;
+        default:
+            break;
+        }
+    }
 }
-?>

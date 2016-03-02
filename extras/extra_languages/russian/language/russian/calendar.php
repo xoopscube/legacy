@@ -31,4 +31,3 @@ define("_CAL_DRAGMOVE", "Перетащить");
 define("_CAL_TODAY", "Сегодня");
 define("_CAL_DISPM1ST", "Понедельник первый");
 define("_CAL_DISPS1ST", "Воскресенье первое");
-?>

@@ -42,4 +42,3 @@ $modversion['image'] = "s_poweredby.gif";
 
 $modversion['hasAdmin'] = 0;
 $modversion['adminpath'] = "";
-?>

@@ -33,7 +33,8 @@
 * 
 */
 
-class Text_Wiki_Parse_Prefilter extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Prefilter extends Text_Wiki_Parse
+{
     
     
     /**
@@ -44,7 +45,7 @@ class Text_Wiki_Parse_Prefilter extends Text_Wiki_Parse {
     * 
     */
     
-    function parse()
+    public function parse()
     {
         // convert DOS line endings
         $this->wiki->source = str_replace("\r\n", "\n",
@@ -73,6 +74,4 @@ class Text_Wiki_Parse_Prefilter extends Text_Wiki_Parse {
         $this->wiki->source = preg_replace($find, $replace,
             $this->wiki->source);
     }
-
 }
-?>

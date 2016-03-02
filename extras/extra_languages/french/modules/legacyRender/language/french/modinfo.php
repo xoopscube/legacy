@@ -40,6 +40,3 @@ define('_MI_LR_JQUERY_CORE', "jQuery Core Library");
 define('_MI_LR_JQUERY_CORE_DESC', "Si vous utilisez Google Libraries API, veuillez définir la version de jQuery. Si vous utilisez un fichier local de jQuery file, indiquez l'url.");
 define('_MI_LR_JQUERY_UI', "jQuery UI Library");
 define('_MI_LR_JQUERY_UI_DESC', "Si vous utilisez  Google Libraries API, veuillez définir la version de jQuery UI. Si vous utilisez un fichier local de  jQuery UI, indiquez l'url. De même pour jQuery Core Library.");
-
-
-?>

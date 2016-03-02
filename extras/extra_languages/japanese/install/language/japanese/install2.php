@@ -1,12 +1,12 @@
 <?php
-define("_INSTALL_WEBMASTER","サイト管理者");
-define("_INSTALL_WEBMASTERD","サイト管理者グループ");
-define("_INSTALL_REGUSERS","登録ユーザ");
-define("_INSTALL_REGUSERSD","登録ユーザグループ");
-define("_INSTALL_ANONUSERS","ゲスト");
-define("_INSTALL_ANONUSERSD","ゲストユーザグループ");
+define("_INSTALL_WEBMASTER", "サイト管理者");
+define("_INSTALL_WEBMASTERD", "サイト管理者グループ");
+define("_INSTALL_REGUSERS", "登録ユーザ");
+define("_INSTALL_REGUSERSD", "登録ユーザグループ");
+define("_INSTALL_ANONUSERS", "ゲスト");
+define("_INSTALL_ANONUSERSD", "ゲストユーザグループ");
 
-define("_INSTALL_ANON","ゲスト");
+define("_INSTALL_ANON", "ゲスト");
 
 define("_INSTALL_DISCLMR", "本規約は、当サイトにより提供されるコンテンツの利用条件を定めるものです。以下の利用条件をよくお読みになり、これに同意される場合にのみご登録いただきますようお願いいたします。
 
@@ -26,5 +26,4 @@ define("_INSTALL_DISCLMR", "本規約は、当サイトにより提供されるコンテンツの利用条
 【免責】
 
 利用者が当サイト及び当サイトに関連するコンテンツ、リンク先サイトにおける一切のサービス等をご利用されたことに起因または関連して生じた一切の損害（間接的であると直接的であるとを問わない）について、当サイトは責任を負いません。 
-"); 
-?>
+");

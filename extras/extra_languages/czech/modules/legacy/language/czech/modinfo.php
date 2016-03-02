@@ -36,4 +36,3 @@ define('_MI_LEGACY_MENU_THEME_MANAGE', "Správa šablon");
 define('_MI_LEGACY_MENU_XOOPS_CONFIG', "XOOPS konfigurace");
 define('_MI_LEGACY_NAME', "Systém");
 define('_MI_LEGACY_NAME_DESC', "Tento modul poskytuje kompatibilitu mezi XOOPS Cube a XOOPS 2.0.x.");
-?>

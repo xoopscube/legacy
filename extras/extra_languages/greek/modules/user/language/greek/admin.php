@@ -124,5 +124,3 @@ define('_AD_USER_TIPS_MAILJOB_SEND', "If there are too many users to send mail, 
 define('_AD_USER_TIPS_RECOUNT_POSTS', "You may recalculate the number of posts for the user by clicking on the 'Recalculate' button below.");
 define('_AD_USER_TIPS_USER_EDIT', "If you hope to change password, input 'Password' & 'Verify password'.");
 define('_AD_USER_TIPS_USER_NEW', "You must input 'User name', 'Email address' and 'Password' & 'Verify password'.");
-
-?>

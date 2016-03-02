@@ -1,13 +1,13 @@
 <?php
 // $Id$
-define("_INSTALL_WEBMASTER","Webmasters");
-define("_INSTALL_WEBMASTERD","Вебмастеры сайта");
-define("_INSTALL_REGUSERS","Registered Users");
-define("_INSTALL_REGUSERSD","Зарегистрированные пользователи");
-define("_INSTALL_ANONUSERS","Anonymous Users");
-define("_INSTALL_ANONUSERSD","Группа анонимных пользователей");
+define("_INSTALL_WEBMASTER", "Webmasters");
+define("_INSTALL_WEBMASTERD", "Вебмастеры сайта");
+define("_INSTALL_REGUSERS", "Registered Users");
+define("_INSTALL_REGUSERSD", "Зарегистрированные пользователи");
+define("_INSTALL_ANONUSERS", "Anonymous Users");
+define("_INSTALL_ANONUSERSD", "Группа анонимных пользователей");
 
-define("_INSTALL_ANON","Гость");
+define("_INSTALL_ANON", "Гость");
 
 define("_INSTALL_DISCLMR", "Администраторы и модераторы сайта стараются удалять запрещенные материалы 
 как можно быстрее, однако невозможно просмотреть каждое сообщение
@@ -39,4 +39,3 @@ define("_INSTALL_DISCLMR", "Администраторы и модераторы сайта стараются удалять 
  
 
 Нажимая кнопку [Зарегистрироваться] вы соглашаетесь с приведенными выше условиями.");
-?>

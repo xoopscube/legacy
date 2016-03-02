@@ -1,8 +1,9 @@
 <?php
 
-class Text_Wiki_Render_Latex_Deflist extends Text_Wiki_Render {
+class Text_Wiki_Render_Latex_Deflist extends Text_Wiki_Render
+{
 
-    var $conf = array(
+    public $conf = array(
                       'css_dl' => null,
                       'css_dt' => null,
                       'css_dd' => null
@@ -21,11 +22,10 @@ class Text_Wiki_Render_Latex_Deflist extends Text_Wiki_Render {
      *
      */
 
-    function token($options)
+    public function token($options)
     {
         $type = $options['type'];
-        switch ($type)
-            {
+        switch ($type) {
             case 'list_start':
                 return "\\begin{description}\n";
 
@@ -50,4 +50,3 @@ class Text_Wiki_Render_Latex_Deflist extends Text_Wiki_Render {
             }
     }
 }
-?>

@@ -33,7 +33,8 @@
 * 
 */
 
-class Text_Wiki_Parse_Anchor extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Anchor extends Text_Wiki_Parse
+{
     
     
     /**
@@ -47,7 +48,7 @@ class Text_Wiki_Parse_Anchor extends Text_Wiki_Parse {
     * 
     */
     
-    var $regex = '/(\[\[# )([-_A-Za-z0-9.]+?)( .+)?(\]\])/i';
+    public $regex = '/(\[\[# )([-_A-Za-z0-9.]+?)( .+)?(\]\])/i';
     
     
     /**
@@ -65,8 +66,8 @@ class Text_Wiki_Parse_Anchor extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches) {
-    
+    public function process(&$matches)
+    {
         $name = $matches[2];
         $text = $matches[3];
         
@@ -84,4 +85,3 @@ class Text_Wiki_Parse_Anchor extends Text_Wiki_Parse {
         return $start . trim($text) . $end;
     }
 }
-?>

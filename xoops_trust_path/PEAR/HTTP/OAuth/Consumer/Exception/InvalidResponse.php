@@ -84,8 +84,4 @@ class HTTP_OAuth_Consumer_Exception_InvalidResponse extends HTTP_OAuth_Exception
 
         throw new BadMethodCallException($method);
     }
-
-
 }
-
-?>

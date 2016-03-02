@@ -15,4 +15,3 @@
 require_once "mainfile.php";
 
 XCube_DelegateUtils::call("Legacypage.Viewpmsg.Access");
-?>

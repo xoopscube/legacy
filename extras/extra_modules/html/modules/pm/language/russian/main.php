@@ -38,5 +38,3 @@ define('_MD_PM_MESSAGE_PLZREG', "Пожалуйста, зарегистрируйтесь, чтобы иметь возм
 define('_MD_PM_MESSAGE_POSTED', "Ваше сообщение отправлено.");
 define('_MD_PM_MESSAGE_SORRY', "Извините! Вы не являетесь зарегистрированным пользователем.");
 define('_MD_PM_MESSAGE_YOUDONTHAVE', "У Вас нет личных сообщений.");
-
-?>

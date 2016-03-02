@@ -41,4 +41,3 @@ $modversion['image'] = "blocksadmin.gif";
 $modversion['hasAdmin'] = 1;
 $modversion['adminpath'] = "admin.php?fct=blocksadmin";
 $modversion['category'] = XOOPS_SYSTEM_BLOCK;
-?>

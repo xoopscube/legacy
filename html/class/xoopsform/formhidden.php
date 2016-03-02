@@ -29,7 +29,9 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 /**
  * @package     kernel
@@ -47,64 +49,68 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
  * @author	    Kazumi Ono	<onokazu@xoops.org>
  * @copyright	copyright (c) 2000-2003 XOOPS.org
  */
-class XoopsFormHidden extends XoopsFormElement {
+class XoopsFormHidden extends XoopsFormElement
+{
 
-	/**
+    /**
      * Value
-	 * @var	string	
-	 * @access	private
-	 */
-	var $_value;
+     * @var	string	
+     * @access	private
+     */
+    public $_value;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param	string	$name	"name" attribute
-	 * @param	string	$value	"value" attribute
-	 */
-	function XoopsFormHidden($name, $value){
-		$this->setName($name);
-		$this->setHidden();
-		$this->setValue($value);
-		$this->setCaption("");
-	}
+    /**
+     * Constructor
+     * 
+     * @param	string	$name	"name" attribute
+     * @param	string	$value	"value" attribute
+     */
+    public function XoopsFormHidden($name, $value)
+    {
+        $this->setName($name);
+        $this->setHidden();
+        $this->setValue($value);
+        $this->setCaption("");
+    }
 
-	/**
-	 * Get the "value" attribute
-	 * 
-	 * @return	string
-	 */
-	function getValue(){
-		return $this->_value;
-	}
+    /**
+     * Get the "value" attribute
+     * 
+     * @return	string
+     */
+    public function getValue()
+    {
+        return $this->_value;
+    }
 
-	/**
-	 * Sets the "value" attribute
-	 * 
-	 * @patam  $value	string
-	 */
-	function setValue($value){
-		$this->_value = $value;
-	}
+    /**
+     * Sets the "value" attribute
+     * 
+     * @patam  $value	string
+     */
+    public function setValue($value)
+    {
+        $this->_value = $value;
+    }
 
-	/**
-	 * Prepare HTML for output
-	 * 
-	 * @return	string	HTML
-	 */
-	function render(){
-		$root =& XCube_Root::getSingleton();
-		$renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
-		
-		$renderTarget =& $renderSystem->createRenderTarget('main');
-	
-		$renderTarget->setAttribute('legacy_module', 'legacy');
-		$renderTarget->setTemplateName("legacy_xoopsform_hidden.html");
-		$renderTarget->setAttribute("element", $this);
+    /**
+     * Prepare HTML for output
+     * 
+     * @return	string	HTML
+     */
+    public function render()
+    {
+        $root =& XCube_Root::getSingleton();
+        $renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
+        
+        $renderTarget =& $renderSystem->createRenderTarget('main');
+    
+        $renderTarget->setAttribute('legacy_module', 'legacy');
+        $renderTarget->setTemplateName("legacy_xoopsform_hidden.html");
+        $renderTarget->setAttribute("element", $this);
 
-		$renderSystem->render($renderTarget);
-	
-		return $renderTarget->getResult();
-	}
+        $renderSystem->render($renderTarget);
+    
+        return $renderTarget->getResult();
+    }
 }
-?>

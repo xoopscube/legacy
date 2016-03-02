@@ -1,7 +1,8 @@
 <?php
-class Text_Wiki_Render_Xhtml_Image extends Text_Wiki_Render {
+class Text_Wiki_Render_Xhtml_Image extends Text_Wiki_Render
+{
 
-    var $conf = array(
+    public $conf = array(
         'base' => '/',
         'url_base' => null,
         'css'  => null,
@@ -22,7 +23,7 @@ class Text_Wiki_Render_Xhtml_Image extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         // note the image source
         $src = $options['src'];
@@ -85,14 +86,14 @@ class Text_Wiki_Render_Xhtml_Image extends Text_Wiki_Render {
             ! isset($options['attr']['height'])) {
             
             // does the source refer to a local file or a URL?
-            if (strpos($src,'://')) {
+            if (strpos($src, '://')) {
                 // is a URL link
                 $imageFile = $src;
             } elseif ($src[0] == '.') {
-            	// reg at dav-muz dot net -- 2005-03-07
-				// is a local file on relative path.
-				$imageFile = $src; # ...don't do anything because it's perfect!
-			} else {
+                // reg at dav-muz dot net -- 2005-03-07
+                // is a local file on relative path.
+                $imageFile = $src; # ...don't do anything because it's perfect!
+            } else {
                 // is a local file on absolute path.
                 $imageFile = $_SERVER['DOCUMENT_ROOT'] . $src;
             }
@@ -104,7 +105,6 @@ class Text_Wiki_Render_Xhtml_Image extends Text_Wiki_Render {
                 $options['attr']['width'] = $imageSize[0];
                 $options['attr']['height'] = $imageSize[1];
             }
-            
         }
         
         // start the HTML output
@@ -153,4 +153,3 @@ class Text_Wiki_Render_Xhtml_Image extends Text_Wiki_Render {
         return $output;
     }
 }
-?>

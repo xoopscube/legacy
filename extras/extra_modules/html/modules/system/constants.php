@@ -40,4 +40,3 @@ define('XOOPS_SYSTEM_SMILE', 12);
 define('XOOPS_SYSTEM_BANNER', 13);
 define('XOOPS_SYSTEM_COMMENT', 14);
 define('XOOPS_SYSTEM_TPLSET', 15);
-?>

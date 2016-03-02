@@ -36,17 +36,15 @@ require_once "File/Archive/Predicate.php";
  */
 class File_Archive_Predicate_Current extends File_Archive_Predicate
 {
-    var $value = true;
+    public $value = true;
 
     /**
      * @see File_Archive_Predicate::isTrue()
      */
-    function isTrue(&$source)
+    public function isTrue(&$source)
     {
         $tmp = $this->value;
         $this->value = false;
         return $tmp;
     }
 }
-
-?>

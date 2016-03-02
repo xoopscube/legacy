@@ -15,5 +15,3 @@ define('_MI_PROFILE_NAME', 'プロフィールモジュール');
 define('_MI_PROFILE_ADMENU_DATA_DOWNLOAD', 'プロフィールデータのダウンロード');
 define('_MI_PROFILE_LANG_DOWNLOAD', 'プロフィールをダウンロードする');
 define('_MI_PROFILE_KEYWORD_DOWNLOAD', 'プロフィールデータをCSV形式でダウンロードする');
-
-?>

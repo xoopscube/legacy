@@ -34,7 +34,7 @@
  * @todo    Fix register_globals!
  **/
 
-if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid()) ) {
+if (!is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid())) {
     exit("Access Denied");
 }
 
@@ -73,7 +73,7 @@ case "RankForumDelGo":
     $db =& Database::getInstance();
     $sql = sprintf("DELETE FROM %s WHERE rank_id = %u", $db->prefix("ranks"), $rank_id);
     $db->query($sql);
-    redirect_header("admin.php?fct=userrank&amp;op=ForumAdmin",1,_AM_DBUPDATED);
+    redirect_header("admin.php?fct=userrank&amp;op=ForumAdmin", 1, _AM_DBUPDATED);
     break;
 
 case "RankForumAdd":
@@ -105,7 +105,7 @@ case "RankForumAdd":
         xoops_error('Failed storing rank data into the database');
         xoops_cp_footer();
     } else {
-        redirect_header("admin.php?fct=userrank&amp;op=RankForumAdmin",1,_AM_DBUPDATED);
+        redirect_header("admin.php?fct=userrank&amp;op=RankForumAdmin", 1, _AM_DBUPDATED);
     }
     break;
 
@@ -148,7 +148,7 @@ case "RankForumSave":
                 unlink($old_rank_path);
             }
         }
-        redirect_header("admin.php?fct=userrank&amp;op=RankForumAdmin",1,_AM_DBUPDATED);
+        redirect_header("admin.php?fct=userrank&amp;op=RankForumAdmin", 1, _AM_DBUPDATED);
     }
     break;
 
@@ -157,4 +157,3 @@ default:
     RankForumAdmin();
     break;
 }
-?>

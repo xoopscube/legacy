@@ -29,7 +29,8 @@
 * 
 */
 
-class Text_Wiki_Parse_Tighten extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Tighten extends Text_Wiki_Parse
+{
     
     
     /**
@@ -40,10 +41,9 @@ class Text_Wiki_Parse_Tighten extends Text_Wiki_Parse {
     * 
     */
     
-    function parse()
+    public function parse()
     {
         $this->wiki->source = str_replace("\n", '',
             $this->wiki->source);
     }
 }
-?>

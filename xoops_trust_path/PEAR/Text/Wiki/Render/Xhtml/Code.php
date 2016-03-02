@@ -1,8 +1,9 @@
 <?php
 
-class Text_Wiki_Render_Xhtml_Code extends Text_Wiki_Render {
+class Text_Wiki_Render_Xhtml_Code extends Text_Wiki_Render
+{
     
-    var $conf = array(
+    public $conf = array(
         'css'      => null, // class for <pre>
         'css_code' => null, // class for generic <code>
         'css_php'  => null, // class for PHP <code>
@@ -22,7 +23,7 @@ class Text_Wiki_Render_Xhtml_Code extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         $text = $options['text'];
         $attr = $options['attr'];
@@ -38,7 +39,7 @@ class Text_Wiki_Render_Xhtml_Code extends Text_Wiki_Render {
             // PHP code example:
             // add the PHP tags
             $text = "<?php\n" . $options['text'] . "\n?>"; // <?php
-            
+
             // convert tabs to four spaces
             $text = str_replace("\t", "    ", $text);
             
@@ -50,10 +51,10 @@ class Text_Wiki_Render_Xhtml_Code extends Text_Wiki_Render {
             ob_end_clean();
             
             // remove start of php in top and end of php GIJ
-            $text = preg_replace( '/\&lt;\?php/' , '' , $text , 1 ) ;
-            $text = substr( $text , 0 , -50 ) . str_replace( '?&gt;' , '' , substr( $text , -50 ) ) ;
+            $text = preg_replace('/\&lt;\?php/', '', $text, 1) ;
+            $text = substr($text, 0, -50) . str_replace('?&gt;', '', substr($text, -50)) ;
             // end of GIJ
-            
+
             // replace <br /> tags with simple newlines.
             // replace non-breaking space with simple spaces.
             // translate HTML <font> and color to XHTML <span> and style.
@@ -80,7 +81,6 @@ class Text_Wiki_Render_Xhtml_Code extends Text_Wiki_Render {
             
             // done
             $text = "<pre$css>$text</pre>";
-        
         } elseif ($type == 'html' || $type == 'xhtml') {
         
             // HTML code example:
@@ -90,20 +90,18 @@ class Text_Wiki_Render_Xhtml_Code extends Text_Wiki_Render {
             $text = str_replace("\t", "    ", $text);
             $text = "<html>\n$text\n</html>";
             // $text = htmlentities($text); GIJ Patched
-            $text = htmlspecialchars($text,ENT_QUOTES);
+            $text = htmlspecialchars($text, ENT_QUOTES);
             $text = "<pre$css><code$css_html>$text</code></pre>";
-            
         } else {
             // generic code example:
             // convert tabs to four spaces,
             // convert entities.
             $text = str_replace("\t", "    ", $text);
             // $text = htmlentities($text); GIJ Patched
-            $text = htmlspecialchars($text,ENT_QUOTES);
+            $text = htmlspecialchars($text, ENT_QUOTES);
             $text = "<pre$css><code$css_code>$text</code></pre>";
         }
         
         return "\n$text\n\n";
     }
 }
-?>

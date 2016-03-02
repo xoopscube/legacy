@@ -75,4 +75,3 @@ define('_MI_LECAT_DESC_IMAGES', 'カテゴリ用の画像を使う場合、改�
 /*** blocks ***/
 define('_MI_LECAT_BLOCK_NAME_LIST', 'カテゴリ一覧');
 define('_MI_LECAT_BLOCK_DESC_LIST', 'カテゴリツリーを表示します');
-?>

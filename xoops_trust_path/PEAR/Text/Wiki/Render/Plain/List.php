@@ -1,7 +1,8 @@
 <?php
 
 
-class Text_Wiki_Render_Plain_List extends Text_Wiki_Render {
+class Text_Wiki_Render_Plain_List extends Text_Wiki_Render
+{
     
     /**
     * 
@@ -19,7 +20,7 @@ class Text_Wiki_Render_Plain_List extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         // make nice variables (type, level, count)
         extract($options);
@@ -65,4 +66,3 @@ class Text_Wiki_Render_Plain_List extends Text_Wiki_Render {
         }
     }
 }
-?>

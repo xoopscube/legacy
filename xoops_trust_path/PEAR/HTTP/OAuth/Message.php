@@ -49,7 +49,7 @@ implements ArrayAccess, Countable, IteratorAggregate
      *
      * @var string $oauthParams OAuth parameters
      */
-    static protected $oauthParams = array(
+    protected static $oauthParams = array(
         'consumer_key',
         'token',
         'token_secret',
@@ -251,7 +251,4 @@ implements ArrayAccess, Countable, IteratorAggregate
 
         return $param;
     }
-
 }
-
-?>

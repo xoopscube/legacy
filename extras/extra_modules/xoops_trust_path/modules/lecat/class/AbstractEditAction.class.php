@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -30,19 +29,19 @@ abstract class Lecat_AbstractEditAction extends Lecat_AbstractAction
     **/
     public $mActionForm = null;
 
-	/**
-	 * _getId
-	 * 
-	 * @param	void
-	 * 
-	 * @return	int
-	**/
-	protected function _getId()
-	{
-		$req = $this->mRoot->mContext->mRequest;
-		$dataId = $req->getRequest(_REQUESTED_DATA_ID);
-		return isset($dataId) ? intval($dataId) : intval($req->getRequest($this->_getHandler()->mPrimary));
-	}
+    /**
+     * _getId
+     * 
+     * @param	void
+     * 
+     * @return	int
+    **/
+    protected function _getId()
+    {
+        $req = $this->mRoot->mContext->mRequest;
+        $dataId = $req->getRequest(_REQUESTED_DATA_ID);
+        return isset($dataId) ? intval($dataId) : intval($req->getRequest($this->_getHandler()->mPrimary));
+    }
 
     /**
      * &_getHandler
@@ -93,8 +92,7 @@ abstract class Lecat_AbstractEditAction extends Lecat_AbstractAction
     
         $this->mObject =& $this->mObjectHandler->get($id);
     
-        if($this->mObject == null && $this->_isEnableCreate())
-        {
+        if ($this->mObject == null && $this->_isEnableCreate()) {
             $this->mObject =& $this->mObjectHandler->create();
         }
     }
@@ -135,8 +133,7 @@ abstract class Lecat_AbstractEditAction extends Lecat_AbstractAction
     **/
     public function getDefaultView()
     {
-        if($this->mObject == null)
-        {
+        if ($this->mObject == null) {
             return LECAT_FRAME_VIEW_ERROR;
         }
     
@@ -154,13 +151,11 @@ abstract class Lecat_AbstractEditAction extends Lecat_AbstractAction
     **/
     public function execute()
     {
-        if ($this->mObject == null)
-        {
+        if ($this->mObject == null) {
             return LECAT_FRAME_VIEW_ERROR;
         }
     
-        if ($this->mRoot->mContext->mRequest->getRequest('_form_control_cancel') != null)
-        {
+        if ($this->mRoot->mContext->mRequest->getRequest('_form_control_cancel') != null) {
             return LECAT_FRAME_VIEW_CANCEL;
         }
     
@@ -169,8 +164,7 @@ abstract class Lecat_AbstractEditAction extends Lecat_AbstractAction
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
     
-        if ($this->mActionForm->hasError())
-        {
+        if ($this->mActionForm->hasError()) {
             return LECAT_FRAME_VIEW_INPUT;
         }
     
@@ -188,49 +182,46 @@ abstract class Lecat_AbstractEditAction extends Lecat_AbstractAction
     **/
     protected function _doExecute()
     {
-        if($this->mObjectHandler->insert($this->mObject))
-        {
+        if ($this->mObjectHandler->insert($this->mObject)) {
             return LECAT_FRAME_VIEW_SUCCESS;
         }
     
         return LECAT_FRAME_VIEW_ERROR;
     }
 
-	/**
-	 * executeViewSuccess
-	 * 
-	 * @param	XCube_RenderTarget	&$render
-	 * 
-	 * @return	void
-	**/
-	public function executeViewSuccess(/*** XCube_RenderTarget ***/ &$render)
-	{
-		$this->mRoot->mController->executeForward($this->_getNextUri($this->_mDataname));
-	}
+    /**
+     * executeViewSuccess
+     * 
+     * @param	XCube_RenderTarget	&$render
+     * 
+     * @return	void
+    **/
+    public function executeViewSuccess(/*** XCube_RenderTarget ***/ &$render)
+    {
+        $this->mRoot->mController->executeForward($this->_getNextUri($this->_mDataname));
+    }
 
-	/**
-	 * executeViewError
-	 * 
-	 * @param	XCube_RenderTarget	&$render
-	 * 
-	 * @return	void
-	**/
-	public function executeViewError(/*** XCube_RenderTarget ***/ &$render)
-	{
-		$this->mRoot->mController->executeRedirect($this->_getNextUri($this->_mDataname, 'list'), 1, _MD_LECAT_ERROR_DBUPDATE_FAILED);
-	}
+    /**
+     * executeViewError
+     * 
+     * @param	XCube_RenderTarget	&$render
+     * 
+     * @return	void
+    **/
+    public function executeViewError(/*** XCube_RenderTarget ***/ &$render)
+    {
+        $this->mRoot->mController->executeRedirect($this->_getNextUri($this->_mDataname, 'list'), 1, _MD_LECAT_ERROR_DBUPDATE_FAILED);
+    }
 
-	/**
-	 * executeViewCancel
-	 * 
-	 * @param	XCube_RenderTarget	&$render
-	 * 
-	 * @return	void
-	**/
-	public function executeViewCancel(/*** XCube_RenderTarget ***/ &$render)
-	{
-		$this->mRoot->mController->executeForward($this->_getNextUri($this->_mDataname));
-	}
+    /**
+     * executeViewCancel
+     * 
+     * @param	XCube_RenderTarget	&$render
+     * 
+     * @return	void
+    **/
+    public function executeViewCancel(/*** XCube_RenderTarget ***/ &$render)
+    {
+        $this->mRoot->mController->executeForward($this->_getNextUri($this->_mDataname));
+    }
 }
-
-?>

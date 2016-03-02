@@ -8,19 +8,19 @@
  *
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 class Legacy_NotifyCancelAction extends Legacy_Action
 {
-	function getDefaultView(&$contoller, &$xoopsUser)
-	{
-		$contoller->executeForward(XOOPS_URL . '/');
-	}
+    public function getDefaultView(&$contoller, &$xoopsUser)
+    {
+        $contoller->executeForward(XOOPS_URL . '/');
+    }
 
-	function execute(&$contoller, &$xoopsUser)
-	{
-		$contoller->executeForward(XOOPS_URL . '/');
-	}
+    public function execute(&$contoller, &$xoopsUser)
+    {
+        $contoller->executeForward(XOOPS_URL . '/');
+    }
 }
-
-?>

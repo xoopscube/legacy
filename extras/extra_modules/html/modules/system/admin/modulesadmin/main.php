@@ -29,7 +29,7 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid()) ) {
+if (!is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid())) {
     exit("Access Denied");
 }
 include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php';
@@ -43,23 +43,23 @@ if (isset($_GET['op'])) {
     $op = $_POST['op'];
 }
 
-if ( $op == "list" ) {
+if ($op == "list") {
     xoops_module_list();
     exit();
 }
 
-if ( $op == "confirm" ) {
+if ($op == "confirm") {
     $token =& XoopsSingleTokenHandler::quickCreate('modulesadmin_submit');
     xoops_cp_header();
     //OpenTable();
     $error = array();
-    if ( !is_writable(XOOPS_CACHE_PATH.'/') ) {
+    if (!is_writable(XOOPS_CACHE_PATH.'/')) {
         // attempt to chmod 666
-        if ( !chmod(XOOPS_CACHE_PATH.'/', 0777) ) {
+        if (!chmod(XOOPS_CACHE_PATH.'/', 0777)) {
             $error[] = sprintf(_MUSTWABLE, "<b>".XOOPS_CACHE_PATH.'/</b>');
         }
     }
-    if ( count($error) > 0 ) {
+    if (count($error) > 0) {
         xoops_error($error);
         echo "<p><a href='admin.php?fct=modulesadmin'>"._MD_AM_BTOMADMIN."</a></p>";
         xoops_cp_footer();
@@ -123,8 +123,8 @@ if ( $op == "confirm" ) {
     xoops_cp_footer();
     exit();
 }
-if ( $op == "submit" ) {
-    if(!XoopsSingleTokenHandler::quickValidate('modulesadmin_submit')) {
+if ($op == "submit") {
+    if (!XoopsSingleTokenHandler::quickValidate('modulesadmin_submit')) {
         system_modulesadmin_error("Ticket Error");
     }
 
@@ -147,14 +147,14 @@ if ( $op == "submit" ) {
         }
         flush();
     }
-    if ( $write ) {
+    if ($write) {
         $contents = xoops_module_get_admin_menu();
         if (!xoops_module_write_admin_menu($contents)) {
             $ret[] = "<p>"._MD_AM_FAILWRITE."</p>";
         }
     }
     xoops_cp_header();
-    if ( count($ret) > 0 ) {
+    if (count($ret) > 0) {
         foreach ($ret as $msg) {
             if ($msg != '') {
                 echo $msg;
@@ -181,7 +181,7 @@ if ($op == 'install') {
 }
 
 if ($op == 'install_ok') {
-    if(!xoops_confirm_validate()) {
+    if (!xoops_confirm_validate()) {
         system_modulesadmin_error("Ticket Error");
     }
 
@@ -218,7 +218,7 @@ if ($op == 'uninstall') {
 }
 
 if ($op == 'uninstall_ok') {
-    if(!xoops_confirm_validate()) {
+    if (!xoops_confirm_validate()) {
         system_modulesadmin_error("Ticket Error");
     }
 
@@ -255,7 +255,7 @@ if ($op == 'update') {
 }
 
 if ($op == 'update_ok') {
-    if(!xoops_confirm_validate()) {
+    if (!xoops_confirm_validate()) {
         system_modulesadmin_error("Ticket Error");
     }
 
@@ -342,7 +342,7 @@ if ($op == 'update_ok') {
             $count = count($blocks);
             $showfuncs = array();
             $funcfiles = array();
-            for ( $i = 1; $i <= $count; $i++ ) {
+            for ($i = 1; $i <= $count; $i++) {
                 if (isset($blocks[$i]['show_func']) && $blocks[$i]['show_func'] != '' && isset($blocks[$i]['file']) && $blocks[$i]['file'] != '') {
                     $editfunc = isset($blocks[$i]['edit_func']) ? $blocks[$i]['edit_func'] : '';
                     $showfuncs[] = $blocks[$i]['show_func'];
@@ -380,8 +380,7 @@ if ($op == 'update_ok') {
                                     $tplfile_new->setVar('tpl_tplset', 'default');
                                     $tplfile_new->setVar('tpl_file', $blocks[$i]['template'], true);
                                     $tplfile_new->setVar('tpl_type', 'block');
-                                }
-                                else {
+                                } else {
                                     $tplfile_new = $tplfile[0];
                                 }
                                 $tplfile_new->setVar('tpl_source', $content, true);
@@ -399,7 +398,6 @@ if ($op == 'update_ok') {
                                             $msgs[] = '&nbsp;&nbsp;Template <b>'.$blocks[$i]['template'].'</b> recompiled.';
                                         }
                                     }
-
                                 }
                             }
                         }
@@ -410,7 +408,8 @@ if ($op == 'update_ok') {
                         $sql = "INSERT INTO ".$xoopsDB->prefix("newblocks")." (bid, mid, func_num, options, name, title, content, side, weight, visible, block_type, isactive, dirname, func_file, show_func, edit_func, template, last_modified) VALUES (".$newbid.", ".$module->getVar('mid').", ".$i.",'".addslashes($options)."','".$block_name."', '".$block_name."', '', 0, 0, 0, 'M', 1, '".addslashes($dirname)."', '".addslashes($blocks[$i]['file'])."', '".addslashes($blocks[$i]['show_func'])."', '".addslashes($editfunc)."', '".$template."', ".time().")";
                         $result = $xoopsDB->query($sql);
                         if (!$result) {
-                            $msgs[] = '&nbsp;&nbsp;ERROR: Could not create '.$blocks[$i]['name'];echo $sql;
+                            $msgs[] = '&nbsp;&nbsp;ERROR: Could not create '.$blocks[$i]['name'];
+                            echo $sql;
                         } else {
                             if (empty($newbid)) {
                                 $newbid = $xoopsDB->getInsertId();
@@ -466,7 +465,7 @@ if ($op == 'update_ok') {
             foreach ($block_arr as $block) {
                 if (!in_array($block->getVar('show_func'), $showfuncs) || !in_array($block->getVar('func_file'), $funcfiles)) {
                     $sql = sprintf("DELETE FROM %s WHERE bid = %u", $xoopsDB->prefix('newblocks'), $block->getVar('bid'));
-                    if(!$xoopsDB->query($sql)) {
+                    if (!$xoopsDB->query($sql)) {
                         $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">ERROR: Could not delete block <b>'.$block->getVar('name').'</b>. Block ID: <b>'.$block->getVar('bid').'</b></span>';
                     } else {
                         $msgs[] = '&nbsp;&nbsp;Block <b>'.$block->getVar('name').' deleted. Block ID: <b>'.$block->getVar('bid').'</b>';
@@ -540,14 +539,14 @@ if ($op == 'update_ok') {
             $options['_NOT_CONFIG_ENABLEBOTH'] = XOOPS_NOTIFICATION_ENABLEBOTH;
 
             //$configs[] = array ('name' => 'notification_enabled', 'title' => '_NOT_CONFIG_ENABLED', 'description' => '_NOT_CONFIG_ENABLEDDSC', 'formtype' => 'yesno', 'valuetype' => 'int', 'default' => 1);
-            $configs[] = array ('name' => 'notification_enabled', 'title' => '_NOT_CONFIG_ENABLE', 'description' => '_NOT_CONFIG_ENABLEDSC', 'formtype' => 'select', 'valuetype' => 'int', 'default' => XOOPS_NOTIFICATION_ENABLEBOTH, 'options'=>$options);
+            $configs[] = array('name' => 'notification_enabled', 'title' => '_NOT_CONFIG_ENABLE', 'description' => '_NOT_CONFIG_ENABLEDSC', 'formtype' => 'select', 'valuetype' => 'int', 'default' => XOOPS_NOTIFICATION_ENABLEBOTH, 'options'=>$options);
             // Event specific notification options
             // FIXME: for some reason the default doesn't come up properly
             //  initially is ok, but not when 'update' module..
             $options = array();
-            $categories =& notificationCategoryInfo('',$module->getVar('mid'));
+            $categories =& notificationCategoryInfo('', $module->getVar('mid'));
             foreach ($categories as $category) {
-                $events =& notificationEvents ($category['name'], false, $module->getVar('mid'));
+                $events =& notificationEvents($category['name'], false, $module->getVar('mid'));
                 foreach ($events as $event) {
                     if (!empty($event['invisible'])) {
                         continue;
@@ -558,7 +557,7 @@ if ($op == 'update_ok') {
                     //$configs[] = array ('name' => notificationGenerateConfig($category,$event,'name'), 'title' => notificationGenerateConfig($category,$event,'title_constant'), 'description' => notificationGenerateConfig($category,$event,'description_constant'), 'formtype' => 'yesno', 'valuetype' => 'int', 'default' => 1);
                 }
             }
-            $configs[] = array ('name' => 'notification_events', 'title' => '_NOT_CONFIG_EVENTS', 'description' => '_NOT_CONFIG_EVENTSDSC', 'formtype' => 'select_multi', 'valuetype' => 'array', 'default' => array_values($options), 'options' => $options);
+            $configs[] = array('name' => 'notification_events', 'title' => '_NOT_CONFIG_EVENTS', 'description' => '_NOT_CONFIG_EVENTSDSC', 'formtype' => 'select_multi', 'valuetype' => 'array', 'default' => array_values($options), 'options' => $options);
         }
 
         if ($configs != false) {
@@ -631,5 +630,3 @@ if ($op == 'update_ok') {
     echo "<br /><a href='admin.php?fct=modulesadmin'>"._MD_AM_BTOMADMIN."</a>";
     xoops_cp_footer();
 }
-
-?>

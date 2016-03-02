@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -16,32 +15,32 @@ define('XUPDATE_FRAME_PERFORM_SUCCESS', 1);
 define('XUPDATE_FRAME_PERFORM_FAIL', 2);
 define('XUPDATE_FRAME_INIT_SUCCESS', 3);
 
-define('XUPDATE_FRAME_VIEW_NONE','none');
-define('XUPDATE_FRAME_VIEW_SUCCESS','success');
-define('XUPDATE_FRAME_VIEW_ERROR','error');
-define('XUPDATE_FRAME_VIEW_INDEX','index');
-define('XUPDATE_FRAME_VIEW_INPUT','input');
-define('XUPDATE_FRAME_VIEW_PREVIEW','preview');
-define('XUPDATE_FRAME_VIEW_CANCEL','cancel');
+define('XUPDATE_FRAME_VIEW_NONE', 'none');
+define('XUPDATE_FRAME_VIEW_SUCCESS', 'success');
+define('XUPDATE_FRAME_VIEW_ERROR', 'error');
+define('XUPDATE_FRAME_VIEW_INDEX', 'index');
+define('XUPDATE_FRAME_VIEW_INPUT', 'input');
+define('XUPDATE_FRAME_VIEW_PREVIEW', 'preview');
+define('XUPDATE_FRAME_VIEW_CANCEL', 'cancel');
 
 /**
  * Xupdate_Module
 **/
 class Xupdate_Module extends Legacy_ModuleAdapter
 {
-    public /*** string ***/ $mActionName = null;
+    /*** string ***/ public $mActionName = null;
 
-    public /*** Xupdate_AbstractAction ***/ $mAction = null;
+    /*** Xupdate_AbstractAction ***/ public $mAction = null;
 
-    public /*** bool ***/ $mAdminFlag = false;
+    /*** bool ***/ public $mAdminFlag = false;
 
-    public /*** Xupdate_AssetManager ***/ $mAssetManager = null;
+    /*** Xupdate_AssetManager ***/ public $mAssetManager = null;
 
-    protected /*** string ***/ $_mPreferenceEditUrl = null;
+    /*** string ***/ protected $_mPreferenceEditUrl = null;
 
-    protected /*** string ***/ $_mHelpViewUrl = null;
+    /*** string ***/ protected $_mHelpViewUrl = null;
 
-    protected /*** Enum[] ***/ $_mAllowViewNames = array(
+    /*** Enum[] ***/ protected $_mAllowViewNames = array(
         XUPDATE_FRAME_VIEW_NONE,
         XUPDATE_FRAME_VIEW_SUCCESS,
         XUPDATE_FRAME_VIEW_ERROR,
@@ -62,7 +61,7 @@ class Xupdate_Module extends Legacy_ModuleAdapter
     {
         parent::startup();
 
-        XCube_DelegateUtils::call('Module.xupdate.Global.Event.GetAssetManager',new XCube_Ref($this->mAssetManager),$this->mXoopsModule->get('dirname'));
+        XCube_DelegateUtils::call('Module.xupdate.Global.Event.GetAssetManager', new XCube_Ref($this->mAssetManager), $this->mXoopsModule->get('dirname'));
 
         $root =& XCube_Root::getSingleton();
         $root->mController->mExecute->add(array(&$this, 'execute'));
@@ -95,7 +94,7 @@ class Xupdate_Module extends Legacy_ModuleAdapter
     {
         // TODO insert your default action name
 //		return 'index.php?action=StoreList';
-		return 'StoreList';
+        return 'StoreList';
     }
 
     /**
@@ -119,15 +118,13 @@ class Xupdate_Module extends Legacy_ModuleAdapter
     **/
     public function getRenderSystemName()
     {
-        if(!$this->mAdminFlag)
-        {
+        if (!$this->mAdminFlag) {
             return parent::getRenderSystemName();
         }
 
         // TODO will be use site config
-        if(!defined('XUPDATE_ADMIN_RENDER_REGISTED'))
-        {
-            define('XUPDATE_ADMIN_RENDER_REGISTED',true);
+        if (!defined('XUPDATE_ADMIN_RENDER_REGISTED')) {
+            define('XUPDATE_ADMIN_RENDER_REGISTED', true);
             $root =& XCube_Root::getSingleton();
             $root->overrideSiteConfig(
                 array(
@@ -155,8 +152,7 @@ class Xupdate_Module extends Legacy_ModuleAdapter
     **/
     public function getAdminMenu()
     {
-        if(is_array($this->mAdminMenu))
-        {
+        if (is_array($this->mAdminMenu)) {
             return $this->mAdminMenu;
         }
 
@@ -164,14 +160,12 @@ class Xupdate_Module extends Legacy_ModuleAdapter
 
         // load admin menu
         $adminMenu = $this->mXoopsModule->getInfo('adminmenu');
-        if(!is_array($adminMenu))
-        {
+        if (!is_array($adminMenu)) {
             $adminMenu = array();
         }
 
         // add preference menu
-        if($url = $this->getPreferenceEditUrl())
-        {
+        if ($url = $this->getPreferenceEditUrl()) {
             $adminMenu[] = array(
                 'title'    => _PREFERENCES,
                 'link'     => $url,
@@ -180,8 +174,7 @@ class Xupdate_Module extends Legacy_ModuleAdapter
         }
 
         // add help menu
-        if($url = $this->getHelpViewUrl())
-        {
+        if ($url = $this->getHelpViewUrl()) {
             $adminMenu[] = array(
                 'title'    => _HELP,
                 'link'     => $url,
@@ -190,10 +183,8 @@ class Xupdate_Module extends Legacy_ModuleAdapter
         }
 
         $this->mAdminMenu = array();
-        foreach($adminMenu as $menu)
-        {
-            if(!(isset($menu['absolute']) && $menu['absolute']))
-            {
+        foreach ($adminMenu as $menu) {
+            if (!(isset($menu['absolute']) && $menu['absolute'])) {
                 $menu['link'] = XOOPS_MODULE_URL . '/' . $this->mXoopsModule->get('dirname') . '/' . $menu['link'];
             }
             $this->mAdminMenu[] = $menu;
@@ -211,16 +202,11 @@ class Xupdate_Module extends Legacy_ModuleAdapter
     **/
     public function getPreferenceEditUrl()
     {
-
-        if($this->_mPreferenceEditUrl === null)
-        {
-            if(is_array($this->mXoopsModule->getInfo('config')) && count($this->mXoopsModule->getInfo('config')) > 0)
-            {
+        if ($this->_mPreferenceEditUrl === null) {
+            if (is_array($this->mXoopsModule->getInfo('config')) && count($this->mXoopsModule->getInfo('config')) > 0) {
                 $root =& XCube_Root::getSingleton();
                 $this->_mPreferenceEditUrl = $root->mController->getPreferenceEditUrl($this->mXoopsModule);
-            }
-            else
-            {
+            } else {
                 $this->_mPreferenceEditUrl = false;
             }
         }
@@ -237,15 +223,11 @@ class Xupdate_Module extends Legacy_ModuleAdapter
     **/
     public function getHelpViewUrl()
     {
-        if($this->_mHelpViewUrl === null)
-        {
-            if($this->mXoopsModule->hasHelp())
-            {
+        if ($this->_mHelpViewUrl === null) {
+            if ($this->mXoopsModule->hasHelp()) {
                 $root =& XCube_Root::getSingleton();
                 $this->_mHelpViewUrl = $root->mController->getHelpViewUrl($this->mXoopsModule);
-            }
-            else
-            {
+            } else {
                 $this->_mHelpViewUrl = false;
             }
         }
@@ -262,20 +244,17 @@ class Xupdate_Module extends Legacy_ModuleAdapter
     **/
     public function execute(/*** XCube_Controller ***/ &$controller)
     {
-        if($this->_createAction() === false)
-        {
+        if ($this->_createAction() === false) {
             $this->doActionNotFoundError();
             die();
         }
 
-        if($this->mAction->prepare() === false)
-        {
+        if ($this->mAction->prepare() === false) {
             $this->doPreparationError();
             die();
         }
 
-        if($this->mAction->hasPermission() === false)
-        {
+        if ($this->mAction->hasPermission() === false) {
             $this->doPermissionError();
             die();
         }
@@ -284,15 +263,13 @@ class Xupdate_Module extends Legacy_ModuleAdapter
             $this->mAction->execute() :
             $this->mAction->getDefaultView();
 
-        if(in_array($viewStatus,$this->_mAllowViewNames))
-        {
+        if (in_array($viewStatus, $this->_mAllowViewNames)) {
             $methodName = 'executeView' . ucfirst($viewStatus);
-            if(is_callable(array($this->mAction,$methodName)))
-            {
+            if (is_callable(array($this->mAction, $methodName))) {
                 $render = $this->getRenderTarget();
                 $this->mAction->$methodName($render);
-		        $render->setAttribute('xoops_pagetitle', $this->mAction->getPagetitle());
-		        $this->mAction->setHeaderScript();
+                $render->setAttribute('xoops_pagetitle', $this->mAction->getPagetitle());
+                $this->mAction->setHeaderScript();
             }
         }
     }
@@ -308,24 +285,20 @@ class Xupdate_Module extends Legacy_ModuleAdapter
     {
         $root =& XCube_Root::getSingleton();
 
-        if($this->mActionName == null)
-        {
+        if ($this->mActionName == null) {
             $this->mActionName = $root->mContext->mRequest->getRequest('action');
-            if($this->mActionName == null)
-            {
+            if ($this->mActionName == null) {
                 $this->mActionName = $this->_getDefaultActionName();
             }
         }
 
-        if(!ctype_alnum($this->mActionName))
-        {
+        if (!ctype_alnum($this->mActionName)) {
             return false;
         }
 
         $fileName = ($this->mAdminFlag ? '/admin' : '')
             . '/actions/' . ucfirst($this->mActionName) . 'Action.class.php';
-        switch(true)
-        {
+        switch (true) {
             case file_exists(
                 $path = XOOPS_MODULE_PATH . '/' . $this->mXoopsModule->get('dirname') . $fileName
             ):
@@ -342,12 +315,10 @@ class Xupdate_Module extends Legacy_ModuleAdapter
 
         $className = 'Xupdate_' . ($this->mAdminFlag ? 'Admin_' : '')
             . ucfirst($this->mActionName) . 'Action';
-        if(class_exists($className))
-        {
+        if (class_exists($className)) {
             $this->mAction = new $className();
         }
-        if(!$this->mAction instanceof Xupdate_AbstractAction)
-        {
+        if (!$this->mAction instanceof Xupdate_AbstractAction) {
             return false;
         }
 
@@ -370,7 +341,7 @@ class Xupdate_Module extends Legacy_ModuleAdapter
          *
          * @return  void
         **/
-        XCube_DelegateUtils::call('Module.xupdate.Global.Event.Exception.ActionNotFound',$this->mAssetManager->mDirname);
+        XCube_DelegateUtils::call('Module.xupdate.Global.Event.Exception.ActionNotFound', $this->mAssetManager->mDirname);
         /**
          * Module.{dirname}.Event.Exception.ActionNotFound
          *
@@ -399,7 +370,7 @@ class Xupdate_Module extends Legacy_ModuleAdapter
          *
          * @return  void
         **/
-        XCube_DelegateUtils::call('Module.xupdate.Global.Event.Exception.Preparation',$this->mAssetManager->mDirname);
+        XCube_DelegateUtils::call('Module.xupdate.Global.Event.Exception.Preparation', $this->mAssetManager->mDirname);
         /**
          * Module.{dirname}.Event.Exception.Preparation
          *
@@ -428,7 +399,7 @@ class Xupdate_Module extends Legacy_ModuleAdapter
          *
          * @return  void
         **/
-        XCube_DelegateUtils::call('Module.xupdate.Global.Event.Exception.Permission',$this->mAssetManager->mDirname);
+        XCube_DelegateUtils::call('Module.xupdate.Global.Event.Exception.Permission', $this->mAssetManager->mDirname);
         /**
          * Module.{dirname}.Event.Exception.Permission
          *
@@ -441,5 +412,3 @@ class Xupdate_Module extends Legacy_ModuleAdapter
         $root->mController->executeForward(XOOPS_URL);
     }
 }
-
-?>

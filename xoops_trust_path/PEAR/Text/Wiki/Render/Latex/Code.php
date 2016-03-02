@@ -1,6 +1,7 @@
 <?php
 
-class Text_Wiki_Render_Latex_Code extends Text_Wiki_Render {
+class Text_Wiki_Render_Latex_Code extends Text_Wiki_Render
+{
     
     
     /**
@@ -16,11 +17,10 @@ class Text_Wiki_Render_Latex_Code extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         $text = $options['text'];
 
         return "\\begin{verbatim}\n$text\n\\end{verbatim}\n\n";
     }
 }
-?>

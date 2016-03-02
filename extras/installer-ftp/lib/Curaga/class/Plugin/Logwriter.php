@@ -24,19 +24,19 @@ class Ethna_Plugin_Logwriter
      */
 
     /** @var    string  ログアイデンティティ文字列 */
-    var $ident;
+    public $ident;
 
     /** @var    int     ログファシリティ */
-    var $facility;
+    public $facility;
 
     /** @var    int     ログオプション */
-    var $option;
+    public $option;
 
     /** @var    bool    バックトレースが取得可能かどうか */
-    var $have_backtrace;
+    public $have_backtrace;
 
     /** @var    array   ログレベル名テーブル */
-    var $level_name_table = array(
+    public $level_name_table = array(
         LOG_EMERG   => 'EMERG',
         LOG_ALERT   => 'ALERT',
         LOG_CRIT    => 'CRIT',
@@ -58,7 +58,7 @@ class Ethna_Plugin_Logwriter
      *  @param  string  $log_file       ログ出力先ファイル名(LOG_FILEオプションが指定されている場合のみ)
      *  @param  int     $log_option     ログオプション(LOG_FILE,LOG_FUNCTION...)
      */
-    function Ethna_Plugin_Logwriter()
+    public function Ethna_Plugin_Logwriter()
     {
     }
 
@@ -68,7 +68,7 @@ class Ethna_Plugin_Logwriter
      *  @access public
      *  @param  int     $option     ログオプション(LOG_FILE,LOG_FUNCTION...)
      */
-    function setOption($option)
+    public function setOption($option)
     {
         $this->ident = $option['ident'];
         $this->facility = $option['facility'];
@@ -81,7 +81,7 @@ class Ethna_Plugin_Logwriter
      *
      *  @access public
      */
-    function begin()
+    public function begin()
     {
     }
 
@@ -92,7 +92,7 @@ class Ethna_Plugin_Logwriter
      *  @param  int     $level      ログレベル(LOG_DEBUG, LOG_NOTICE...)
      *  @param  string  $message    ログメッセージ(+引数)
      */
-    function log($level, $message)
+    public function log($level, $message)
     {
     }
 
@@ -101,7 +101,7 @@ class Ethna_Plugin_Logwriter
      *
      *  @access public
      */
-    function end()
+    public function end()
     {
     }
 
@@ -111,7 +111,7 @@ class Ethna_Plugin_Logwriter
      *  @access public
      *  @return string  ログアイデンティティ文字列
      */
-    function getIdent()
+    public function getIdent()
     {
         return $this->ident;
     }
@@ -123,7 +123,7 @@ class Ethna_Plugin_Logwriter
      *  @param  int     $level  ログレベル(LOG_DEBUG,LOG_NOTICE...)
      *  @return string  ログレベル表示文字列(LOG_DEBUG→"DEBUG")
      */
-    function _getLogLevelName($level)
+    public function _getLogLevelName($level)
     {
         if (isset($this->level_name_table[$level]) == false) {
             return null;
@@ -137,7 +137,7 @@ class Ethna_Plugin_Logwriter
      *  @access private
      *  @return array   ログ出力箇所の情報
      */
-    function _getBacktrace()
+    public function _getBacktrace()
     {
         $skip_method_list = array(
             array('ethna', 'raise'),
@@ -204,4 +204,4 @@ class Ethna_Plugin_Logwriter
     }
 }
 // }}}
-?>
+;

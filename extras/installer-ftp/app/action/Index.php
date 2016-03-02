@@ -21,7 +21,7 @@ class Hdinstaller_Form_Index extends Hdinstaller_ActionForm
      *  @access   private
      *  @var      array   form definition.
      */
-    var $form = array(
+    public $form = array(
        /*
         *  TODO: Write form definition which this action uses.
         *  @see http://ethna.jp/ethna-document-dev_guide-form.html
@@ -81,28 +81,28 @@ class Hdinstaller_Action_Index extends Hdinstaller_ActionClass
      *  @access    public
      *  @return    string  Forward name (null if no errors.)
      */
-    function prepare()
+    public function prepare()
     {
-		if (!function_exists('ftp_connect')){
-			$this->ae->add('ftp_functions', 1);
-		}	
-		$tmp_dir = BASE.'/tmp';
-		if (!is_writable($tmp_dir)){
-			$this->ae->add('tmp_dir', 1);
-		}
-		if (ini_get('safe_mode')){
-			$this->ae->add('safe_mode', 1);
-		}
+        if (!function_exists('ftp_connect')) {
+            $this->ae->add('ftp_functions', 1);
+        }
+        $tmp_dir = BASE.'/tmp';
+        if (!is_writable($tmp_dir)) {
+            $this->ae->add('tmp_dir', 1);
+        }
+        if (ini_get('safe_mode')) {
+            $this->ae->add('safe_mode', 1);
+        }
 /*		exec('which tar', $which, $status);
-		if ($status !== 0){
-			$this->ae->add('tar', 1);
-		}
-		exec('which wget || which curl', $which, $status);
-		if ($status !== 0){
-			$this->ae->add('wget', 1);
-		} */
-		
-		return $this->ae->count()>0 ? 'setupfailed' : null;
+        if ($status !== 0){
+            $this->ae->add('tar', 1);
+        }
+        exec('which wget || which curl', $which, $status);
+        if ($status !== 0){
+            $this->ae->add('wget', 1);
+        } */
+        
+        return $this->ae->count()>0 ? 'setupfailed' : null;
     }
 
     /**
@@ -111,10 +111,8 @@ class Hdinstaller_Action_Index extends Hdinstaller_ActionClass
      *  @access    public
      *  @return    string  Forward Name.
      */
-    function perform()
+    public function perform()
     {
         return 'index';
     }
 }
-
-?>

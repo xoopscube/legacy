@@ -38,5 +38,3 @@ define('_MD_PM_MESSAGE_PLZREG', "要使用私人訊息請先註冊!");
 define('_MD_PM_MESSAGE_POSTED', "您的訊息已發佈.");
 define('_MD_PM_MESSAGE_SORRY', "抱歉!! 您非註冊會員，不能使用此功能.");
 define('_MD_PM_MESSAGE_YOUDONTHAVE', "尚未有私人訊息.");
-
-?>

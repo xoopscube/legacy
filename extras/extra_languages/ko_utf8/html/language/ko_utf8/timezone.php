@@ -53,7 +53,7 @@ define("_TZ_GMTP4", "(GMT+4:00) 아부다비, 무스카트, 바쿠, 트빌리시
 define("_TZ_GMTP45", "(GMT+4:30) 카불");
 define("_TZ_GMTP5", "(GMT+5:00) 예카테린부르크, 이슬라마바드, 카라치, 타슈켄트");
 define("_TZ_GMTP55", "(GMT+5:30) 뭄바이, 콜카타, 첸나이, 뉴델리");
-define("_TZ_GMTP575", "(GMT+5:45) Kathmandu, Pokhara, patan"); 
+define("_TZ_GMTP575", "(GMT+5:45) Kathmandu, Pokhara, patan");
 define("_TZ_GMTP6", "(GMT+6:00) 알마티, 다카, 콜롬보");
 define("_TZ_GMTP65", "(GMT+6:30) Yangon, Cocos Islands");
 define("_TZ_GMTP7", "(GMT+7:00) 방콕, 하노이, 자카르타");
@@ -64,5 +64,3 @@ define("_TZ_GMTP10", "(GMT+10:00) 브리즈번, 캔버라, 멜버른, 시드니,
 define("_TZ_GMTP11", "(GMT+11:00) 마가단, 솔로몬 군도, 뉴칼레도니아");
 define("_TZ_GMTP12", "(GMT+12:00) 오클랜드, 웰링턴, 피지, 캄차카 반도, 마셜 제도");
 define("_TZ_GMTP13", "(GMT+13:00) Tongatapu");
-
-?>

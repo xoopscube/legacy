@@ -8,7 +8,9 @@
  *
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 /**
   * Regenerate New Session ID & Delete OLD Session
@@ -20,4 +22,3 @@ function xoops_session_regenerate()
     $root =& XCube_Root::getSingleton();
     $root->mSession->regenerate();
 }
-?>

@@ -67,5 +67,3 @@ define('_MD_PM_MESSAGE_PLZREG', "PM쪽지를 사용하시려면 먼저 회원등
 define('_MD_PM_MESSAGE_POSTED', "PM쪽지를 발송하였습니다.");
 define('_MD_PM_MESSAGE_SORRY', "PM쪽지를 사용하시려면 먼저 회원등록을 하셔야 합니다.");
 define('_MD_PM_MESSAGE_YOUDONTHAVE', "PM쪽지가 없습니다.");
-
-?>

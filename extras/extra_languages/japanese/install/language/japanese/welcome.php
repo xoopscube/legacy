@@ -31,5 +31,4 @@ XOOPS Cube Legacyは、<a href='https://github.com/xoopscube/legacy/blob/master/do
 <u><b>インストール</b></u>
 <p>
 このウィザードに従ってください。</p>
-"
-?>
+";

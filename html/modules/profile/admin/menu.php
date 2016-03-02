@@ -5,7 +5,9 @@
  * @version $Id$
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 //
 // The menu in control panel. You must never change [cubson] chunk to get the help of cubson.
@@ -32,5 +34,4 @@ $adminmenu[2]['keywords'] = _MI_PROFILE_KEYWORD_DOWNLOAD;
 $adminmenu[2]['show'] = true;
 
 ##[/cubson:adminmenu]
-
-?>
+;

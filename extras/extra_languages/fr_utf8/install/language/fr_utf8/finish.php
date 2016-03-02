@@ -12,4 +12,3 @@ Sélectionnez les modules complémentaires et cliquez sur le bouton <b>[ Install
 la page d'accueil de votre XOOPS Cube prêt à l'emploi!</p>
 <p>Visitez le site de support officiel <a href='http://www.xoopscube.org/' target='_blank'>XOOPS Cube</a> pour plus d'informations.</p>
 ";
-?>

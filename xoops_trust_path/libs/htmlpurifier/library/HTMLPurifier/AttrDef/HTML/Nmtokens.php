@@ -68,3 +68,4 @@ class HTMLPurifier_AttrDef_HTML_Nmtokens extends HTMLPurifier_AttrDef
 }
 
 // vim: et sw=4 sts=4
+

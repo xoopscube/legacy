@@ -1,10 +1,11 @@
 <?php
 
 
-class Text_Wiki_Render_Xhtml_Url extends Text_Wiki_Render {
+class Text_Wiki_Render_Xhtml_Url extends Text_Wiki_Render
+{
     
     
-    var $conf = array(
+    public $conf = array(
         'target' => '_blank',
         'images' => true,
         'img_ext' => array('jpg', 'jpeg', 'gif', 'png'),
@@ -27,7 +28,7 @@ class Text_Wiki_Render_Xhtml_Url extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         // create local variables from the options array (text,
         // href, type)
@@ -52,17 +53,16 @@ class Text_Wiki_Render_Xhtml_Url extends Text_Wiki_Render {
             // generate an image tag
             $css = $this->formatConf(' class="%s"', 'css_img');
             $output = "<img$css src=\"$href\" alt=\"$text\" />";
-            
         } else {
             
             // should we build a target clause?
             if ($href{0} == '#' ||
-            	strtolower(substr($href, 0, 7)) == 'mailto:') {
-            	// targets not allowed for on-page anchors
-            	// and mailto: links.
+                strtolower(substr($href, 0, 7)) == 'mailto:') {
+                // targets not allowed for on-page anchors
+                // and mailto: links.
                 $target = '';
             } else {
-				// allow targets on non-anchor non-mailto links
+                // allow targets on non-anchor non-mailto links
                 $target = $this->getConf('target');
             }
             
@@ -92,4 +92,3 @@ class Text_Wiki_Render_Xhtml_Url extends Text_Wiki_Render {
         return $output;
     }
 }
-?>

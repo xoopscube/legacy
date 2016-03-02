@@ -39,15 +39,15 @@ require_once "MIME/Type.php";
  */
 class File_Archive_Predicate_MIME extends File_Archive_Predicate
 {
-    var $mimes;
+    public $mimes;
 
     /**
      * @param $extensions array or comma separated string of allowed extensions
      */
-    function File_Archive_Predicate_MIME($mimes)
+    public function File_Archive_Predicate_MIME($mimes)
     {
         if (is_string($mimes)) {
-            $this->mimes = explode(",",$mimes);
+            $this->mimes = explode(",", $mimes);
         } else {
             $this->mimes = $mimes;
         }
@@ -55,7 +55,7 @@ class File_Archive_Predicate_MIME extends File_Archive_Predicate
     /**
      * @see File_Archive_Predicate::isTrue()
      */
-    function isTrue(&$source)
+    public function isTrue(&$source)
     {
         $sourceMIME = $source->getMIME();
         foreach ($this->mimes as $mime) {
@@ -71,5 +71,3 @@ class File_Archive_Predicate_MIME extends File_Archive_Predicate
         return false;
     }
 }
-
-?>

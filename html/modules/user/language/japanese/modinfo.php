@@ -75,4 +75,3 @@ define('_MI_USER_NAME', "ユーザーモジュール");
 define('_MI_USER_NAME_DESC', "ユーザーアカウントに関する処理を行う基盤モジュール");
 define('_MI_USER_ADMENU_USER_DATA_CSVUPLOAD', 'ユーザーの一括登録');
 define('_MI_USER_ADMENU_USER_DATA_DOWNLOAD', 'ユーザデータのダウンロード');
-?>

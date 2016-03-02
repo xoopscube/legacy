@@ -41,7 +41,8 @@ class File_Archive_Predicate_False extends File_Archive_Predicate
     /**
      * @see File_Archive_Predicate::isTrue()
      */
-    function isTrue(&$source) { return false; }
+    public function isTrue(&$source)
+    {
+        return false;
+    }
 }
-
-?>

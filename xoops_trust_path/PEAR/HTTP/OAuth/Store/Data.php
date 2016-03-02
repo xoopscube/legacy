@@ -66,4 +66,3 @@ class HTTP_OAuth_Store_Data
      */
     public $scope = null;
 }
-?>

@@ -1,6 +1,7 @@
 <?php
 
-class Text_Wiki_Render_Latex_Toc extends Text_Wiki_Render {
+class Text_Wiki_Render_Latex_Toc extends Text_Wiki_Render
+{
     
     
     
@@ -17,14 +18,12 @@ class Text_Wiki_Render_Latex_Toc extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
-        if($options['type'] == 'list_start') {
+        if ($options['type'] == 'list_start') {
             return "\\tableofcontents\n\n";
         }
         
         return '';
     }
-
 }
-?>

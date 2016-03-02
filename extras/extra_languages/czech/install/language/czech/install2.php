@@ -1,13 +1,13 @@
 <?php
 // $Id: install2.php,v 1.1 2008/07/05 08:25:13 minahito Exp $
-define("_INSTALL_WEBMASTER","Administrátoøi");
-define("_INSTALL_WEBMASTERD","Administrátoøi tohoto serveru");
-define("_INSTALL_REGUSERS","Registrovaní uživatelé");
-define("_INSTALL_REGUSERSD","Skupina registrovaných uživatelù");
-define("_INSTALL_ANONUSERS","Anonymní uživatelé");
-define("_INSTALL_ANONUSERSD","Skupina anonymních uživatelù");
+define("_INSTALL_WEBMASTER", "Administrátoøi");
+define("_INSTALL_WEBMASTERD", "Administrátoøi tohoto serveru");
+define("_INSTALL_REGUSERS", "Registrovaní uživatelé");
+define("_INSTALL_REGUSERSD", "Skupina registrovaných uživatelù");
+define("_INSTALL_ANONUSERS", "Anonymní uživatelé");
+define("_INSTALL_ANONUSERSD", "Skupina anonymních uživatelù");
 
-define("_INSTALL_ANON","Anonym");
+define("_INSTALL_ANON", "Anonym");
 
 define("_INSTALL_DISCLMR", "Zatímco se administrátoøi a moderátoøi tohoto serveru pokusí odstranit èi upravit veškerý obecnì nežádoucí materiál tak rychle, jak jen to bude možné, je v podstatì nemožné revidovat každou zprávu. Berete tímto tudíž na vìdomí, že všechny zprávy zobrazené na tomto serveru vyjadøují názory a postoje jejich autorù. Majitel, administrátoøi ani moderátoøi proto nebudou voláni k odpovìdnosti za Vaše názory a zprávy. Výše zmínìné osoby odpovídají jen a pouze za své názory a pøíspìvky.
 
@@ -16,4 +16,3 @@ Souhlasíte s tím, že nebudete zasílat žádné zprávy obsahující hrubý, obscéní, vu
 Tento systém používá cookies k ukládání informací na Vašem lokálním poèítaèi. Tyto cookies neobsahují žádné z informací, které jste zadali výše bìhem registrace. Jsou použity pouze k usnadnìní prohlížení stránek na tomto serveru. E-mailová adresa je použita pouze pro potvrzení Vaší registrace a hesla (a také pro zaslání nového hesla v pøípadì, že byste to své souèasné ztratili).
 
 Stisknutím tlaèítka Registrovat souhlasíte s tìmito pravidly.");
-?>

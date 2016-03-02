@@ -12,10 +12,10 @@
  |   keeping compatibility with XOOPS 2.0.x <http://www.xoops.org>        |
  *------------------------------------------------------------------------*/
 
-function b_legacy_waiting_show() {
+function b_legacy_waiting_show()
+{
     $modules = array();
     XCube_DelegateUtils::call('Legacyblock.Waiting.Show', new XCube_Ref($modules));
     $block['modules'] = $modules;
     return $block;
 }
-?>

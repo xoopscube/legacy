@@ -2,9 +2,10 @@
 
 // $Id: Phplookup.php,v 1.7 2004/09/25 19:05:14 pmjones Exp $
 
-class Text_Wiki_Render_Xhtml_Phplookup extends Text_Wiki_Render {
+class Text_Wiki_Render_Xhtml_Phplookup extends Text_Wiki_Render
+{
     
-    var $conf = array(
+    public $conf = array(
         'target' => '_blank',
         'css' => null
     );
@@ -23,7 +24,7 @@ class Text_Wiki_Render_Xhtml_Phplookup extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         $text = trim($options['text']);
         $css = $this->formatConf(' class="%s"', 'css');
@@ -56,4 +57,3 @@ class Text_Wiki_Render_Xhtml_Phplookup extends Text_Wiki_Render {
         return $output;
     }
 }
-?>

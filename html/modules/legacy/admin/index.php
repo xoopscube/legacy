@@ -24,5 +24,3 @@ $root->mController->mExecute->add(array(&$moduleRunner, 'execute'));
 $root->mController->execute();
 
 require_once XOOPS_ROOT_PATH . "/footer.php";
-
-?>

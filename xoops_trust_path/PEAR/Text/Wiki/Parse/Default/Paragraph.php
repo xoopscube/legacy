@@ -32,7 +32,8 @@
 * 
 */
 
-class Text_Wiki_Parse_Paragraph extends Text_Wiki_Parse {
+class Text_Wiki_Parse_Paragraph extends Text_Wiki_Parse
+{
     
     /**
     * 
@@ -45,9 +46,9 @@ class Text_Wiki_Parse_Paragraph extends Text_Wiki_Parse {
     * 
     */
     
-    var $regex = "/^.*?\n\n/m";
+    public $regex = "/^.*?\n\n/m";
     
-    var $conf = array(
+    public $conf = array(
         'skip' => array(
             'blockquote', // are we sure about this one?
             'code',
@@ -78,7 +79,7 @@ class Text_Wiki_Parse_Paragraph extends Text_Wiki_Parse {
     *
     */
     
-    function process(&$matches)
+    public function process(&$matches)
     {
         $delim = $this->wiki->delim;
         
@@ -88,9 +89,9 @@ class Text_Wiki_Parse_Paragraph extends Text_Wiki_Parse {
         }
         
         // does the match start with a delimiter?
-        if (substr($matches[0], 0, 1) != $delim) { 
+        if (substr($matches[0], 0, 1) != $delim) {
             // no.
-            
+
             $start = $this->wiki->addToken(
                 $this->rule, array('type' => 'start')
             );
@@ -105,7 +106,7 @@ class Text_Wiki_Parse_Paragraph extends Text_Wiki_Parse {
         // the line starts with a delimiter.  read in the delimited
         // token number, check the token, and see if we should
         // skip it.
-        
+
         // loop starting at the second character (we already know
         // the first is a delimiter) until we find another
         // delimiter; the text between them is a token key number.
@@ -130,7 +131,6 @@ class Text_Wiki_Parse_Paragraph extends Text_Wiki_Parse {
             // return the entire matched text.
             return $matches[0];
         } else {
-            
             $start = $this->wiki->addToken(
                 $this->rule, array('type' => 'start')
             );
@@ -143,4 +143,3 @@ class Text_Wiki_Parse_Paragraph extends Text_Wiki_Parse {
         }
     }
 }
-?>

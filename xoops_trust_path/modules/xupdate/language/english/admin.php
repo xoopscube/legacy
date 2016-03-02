@@ -56,5 +56,5 @@ define('_AD_XUPDATE_LANG_STAGE_UPLOAD_RETRY', 'To run the rest of the deployment
 define('_AD_XUPDATE_LANG_STAGE_TASK_RETRY', 'To do the more, click here');
 define('_AD_XUPDATE_LANG_STAGE_UPLOAD_NOT_COMPLETE', 'Deployment of the file to retrieve the archive from the [ <a href="%s">link here</a> ] because it is incomplete, please do the proper placement of the FTP upload files manually.');
 
-define('_AD_XUPDATE_LANG_THM_TOTAL'  , 'Total of Themes');
-define('_AD_XUPDATE_LANG_ITEM_TOTAL'  , 'Total of Items');
+define('_AD_XUPDATE_LANG_THM_TOTAL', 'Total of Themes');
+define('_AD_XUPDATE_LANG_ITEM_TOTAL', 'Total of Items');

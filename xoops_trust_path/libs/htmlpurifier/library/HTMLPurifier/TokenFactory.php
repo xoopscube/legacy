@@ -116,3 +116,4 @@ class HTMLPurifier_TokenFactory
 }
 
 // vim: et sw=4 sts=4
+

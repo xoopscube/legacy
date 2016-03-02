@@ -1,16 +1,15 @@
 <?php
 
-class Text_Wiki_Render_Plain extends Text_Wiki_Render {
+class Text_Wiki_Render_Plain extends Text_Wiki_Render
+{
     
-    function pre()
+    public function pre()
     {
         return;
     }
     
-    function post()
+    public function post()
     {
         return;
     }
-    
 }
-?>

@@ -42,4 +42,3 @@ $modversion['image'] = "mailusers.gif";
 $modversion['hasAdmin'] = 1;
 $modversion['adminpath'] = "admin.php?fct=mailusers";
 $modversion['category'] = XOOPS_SYSTEM_MAILU;
-?>

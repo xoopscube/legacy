@@ -38,4 +38,3 @@ define('XOOPS_COMMENT_ACTIVE', 2);
 define('XOOPS_COMMENT_HIDDEN', 3);
 define('XOOPS_COMMENT_OLD1ST', 0);
 define('XOOPS_COMMENT_NEW1ST', 1);
-?>

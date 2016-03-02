@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -15,11 +14,11 @@ if(!defined('XOOPS_ROOT_PATH'))
 **/
 abstract class Xupdate_AbstractEditAction extends Xupdate_AbstractAction
 {
-    public /*** XoopsSimpleObject ***/ $mObject = null;
+    /*** XoopsSimpleObject ***/ public $mObject = null;
 
-    public /*** XoopsObjectGenericHandler ***/ $mObjectHandler = null;
+    /*** XoopsObjectGenericHandler ***/ public $mObjectHandler = null;
 
-    public /*** XCube_ActionForm ***/ $mActionForm = null;
+    /*** XCube_ActionForm ***/ public $mActionForm = null;
 
     /**
      * _getId
@@ -81,8 +80,7 @@ abstract class Xupdate_AbstractEditAction extends Xupdate_AbstractAction
     
         $this->mObject =& $this->mObjectHandler->get($id);
     
-        if($this->mObject == null && $this->_isEnableCreate())
-        {
+        if ($this->mObject == null && $this->_isEnableCreate()) {
             $this->mObject =& $this->mObjectHandler->create();
         }
     }
@@ -123,8 +121,7 @@ abstract class Xupdate_AbstractEditAction extends Xupdate_AbstractAction
     **/
     public function getDefaultView()
     {
-        if($this->mObject == null)
-        {
+        if ($this->mObject == null) {
             return XUPDATE_FRAME_VIEW_ERROR;
         }
     
@@ -142,13 +139,11 @@ abstract class Xupdate_AbstractEditAction extends Xupdate_AbstractAction
     **/
     public function execute()
     {
-        if ($this->mObject == null)
-        {
+        if ($this->mObject == null) {
             return XUPDATE_FRAME_VIEW_ERROR;
         }
     
-        if ($this->mRoot->mContext->mRequest->getRequest('_form_control_cancel') != null)
-        {
+        if ($this->mRoot->mContext->mRequest->getRequest('_form_control_cancel') != null) {
             return XUPDATE_FRAME_VIEW_CANCEL;
         }
     
@@ -157,8 +152,7 @@ abstract class Xupdate_AbstractEditAction extends Xupdate_AbstractAction
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
     
-        if ($this->mActionForm->hasError())
-        {
+        if ($this->mActionForm->hasError()) {
             return XUPDATE_FRAME_VIEW_INPUT;
         }
     
@@ -176,13 +170,10 @@ abstract class Xupdate_AbstractEditAction extends Xupdate_AbstractAction
     **/
     protected function _doExecute()
     {
-        if($this->mObjectHandler->insert($this->mObject))
-        {
+        if ($this->mObjectHandler->insert($this->mObject)) {
             return XUPDATE_FRAME_VIEW_SUCCESS;
         }
     
         return XUPDATE_FRAME_VIEW_ERROR;
     }
 }
-
-?>

@@ -28,22 +28,22 @@ class Ethna_ClassFactory
      */
 
     /** @var    object  Ethna_Controller    controllerオブジェクト */
-    var $controller;
+    public $controller;
 
     /** @var    object  Ethna_Controller    controllerオブジェクト(省略形) */
-    var $ctl;
+    public $ctl;
     
     /** @var    array   クラス定義 */
-    var $class = array();
+    public $class = array();
 
     /** @var    array   生成済みオブジェクトキャッシュ */
-    var $object = array();
+    public $object = array();
 
     /** @var    array   生成済みアプリケーションマネージャオブジェクトキャッシュ */
-    var $manager = array();
+    public $manager = array();
 
     /** @var    array   メソッド一覧キャッシュ */
-    var $method_list = array();
+    public $method_list = array();
 
     /**#@-*/
 
@@ -55,7 +55,7 @@ class Ethna_ClassFactory
      *  @param  object  Ethna_Controller    &$controller    controllerオブジェクト
      *  @param  array                       $class          クラス定義
      */
-    function Ethna_ClassFactory(&$controller, $class)
+    public function Ethna_ClassFactory(&$controller, $class)
     {
         $this->controller =& $controller;
         $this->ctl =& $controller;
@@ -72,7 +72,7 @@ class Ethna_ClassFactory
      *  @param  bool    $weak   オブジェクトが未生成の場合の強制生成フラグ(default: false)
      *  @return object  Ethna_AppManager    マネージャオブジェクト
      */
-    function &getManager($type, $weak = false)
+    public function &getManager($type, $weak = false)
     {
         $obj = null;
 
@@ -147,7 +147,7 @@ class Ethna_ClassFactory
      *  @param  bool    $ext    オブジェクトが未生成の場合の強制生成フラグ(default: false)
      *  @return object  生成されたオブジェクト(エラーならnull)
      */
-    function &getObject($key, $ext = false)
+    public function &getObject($key, $ext = false)
     {
         $object = null;
 
@@ -205,7 +205,7 @@ class Ethna_ClassFactory
         $method = sprintf('_getObject_%s', ucfirst($key));
         if (method_exists($this, $method)) {
             $object =& $this->$method($class_name);
-        } else if (in_array("getinstance", $this->method_list[$class_name])) {
+        } elseif (in_array("getinstance", $this->method_list[$class_name])) {
             $object = call_user_func(array($class_name, 'getInstance'));
         } else {
             $object =& new $class_name();
@@ -227,7 +227,7 @@ class Ethna_ClassFactory
      *  @param  string  $key    クラスキー
      *  @return string  クラス名
      */
-    function getObjectName($key)
+    public function getObjectName($key)
     {
         if (isset($this->class[$key]) == false) {
             return null;
@@ -243,7 +243,7 @@ class Ethna_ClassFactory
      *  @param  string  $class_name     クラス名
      *  @return object  生成されたオブジェクト(エラーならnull)
      */
-    function &_getObject_Backend($class_name)
+    public function &_getObject_Backend($class_name)
     {
         $_ret_object =& new $class_name($this->ctl);
         return $_ret_object;
@@ -256,7 +256,7 @@ class Ethna_ClassFactory
      *  @param  string  $class_name     クラス名
      *  @return object  生成されたオブジェクト(エラーならnull)
      */
-    function &_getObject_Config($class_name)
+    public function &_getObject_Config($class_name)
     {
         $_ret_object =& new $class_name($this->ctl);
         return $_ret_object;
@@ -269,7 +269,7 @@ class Ethna_ClassFactory
      *  @param  string  $class_name     クラス名
      *  @return object  生成されたオブジェクト(エラーならnull)
      */
-    function &_getObject_I18n($class_name)
+    public function &_getObject_I18n($class_name)
     {
         $_ret_object =& new $class_name($this->ctl->getDirectory('locale'), $this->ctl->getAppId());
         return $_ret_object;
@@ -282,7 +282,7 @@ class Ethna_ClassFactory
      *  @param  string  $class_name     クラス名
      *  @return object  生成されたオブジェクト(エラーならnull)
      */
-    function &_getObject_Logger($class_name)
+    public function &_getObject_Logger($class_name)
     {
         $_ret_object =& new $class_name($this->ctl);
         return $_ret_object;
@@ -295,7 +295,7 @@ class Ethna_ClassFactory
      *  @param  string  $class_name     クラス名
      *  @return object  生成されたオブジェクト(エラーならnull)
      */
-    function &_getObject_Plugin($class_name)
+    public function &_getObject_Plugin($class_name)
     {
         $_ret_object =& new $class_name($this->ctl);
         return $_ret_object;
@@ -308,7 +308,7 @@ class Ethna_ClassFactory
      *  @param  string  $class_name     クラス名
      *  @return object  生成されたオブジェクト(エラーならnull)
      */
-    function &_getObject_Renderer($class_name)
+    public function &_getObject_Renderer($class_name)
     {
         $_ret_object =& new $class_name($this->ctl);
         return $_ret_object;
@@ -321,7 +321,7 @@ class Ethna_ClassFactory
      *  @param  string  $class_name     クラス名
      *  @return object  生成されたオブジェクト(エラーならnull)
      */
-    function &_getObject_Session($class_name)
+    public function &_getObject_Session($class_name)
     {
         $_ret_object =& new $class_name($this->ctl->getAppId(), $this->ctl->getDirectory('tmp'), $this->ctl->getLogger());
         return $_ret_object;
@@ -334,7 +334,7 @@ class Ethna_ClassFactory
      *  @param  string  $class_name     クラス名
      *  @return object  生成されたオブジェクト(エラーならnull)
      */
-    function &_getObject_Sql($class_name)
+    public function &_getObject_Sql($class_name)
     {
         $_ret_object =& new $class_name($this->ctl);
         return $_ret_object;
@@ -345,7 +345,7 @@ class Ethna_ClassFactory
      *
      *  @access protected
      */
-    function _include($class_name)
+    public function _include($class_name)
     {
         $file = sprintf("%s.%s", $class_name, $this->controller->getExt('php'));
         if (file_exists_ex($file)) {
@@ -405,7 +405,7 @@ class Ethna_ClassFactory
      *
      *  @access protected
      */
-    function _isCacheAvailable($class_name, $method_list, $weak)
+    public function _isCacheAvailable($class_name, $method_list, $weak)
     {
         // if we have getInstance(), use this anyway
         if (in_array('getinstance', $method_list)) {
@@ -417,4 +417,4 @@ class Ethna_ClassFactory
     }
 }
 // }}}
-?>
+;

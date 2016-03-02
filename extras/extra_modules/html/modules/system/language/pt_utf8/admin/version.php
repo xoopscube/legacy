@@ -1,3 +1,2 @@
 <?php
-define("_AM_DBUPDATED","Informações atualizadas corretamente.");
-?>
+define("_AM_DBUPDATED", "Informações atualizadas corretamente.");

@@ -96,7 +96,6 @@ class HTMLPurifier_AttrDef_URI extends HTMLPurifier_AttrDef
 
             // survived gauntlet
             $ok = true;
-
         } while (false);
 
         $context->destroy('EmbeddedURI');
@@ -109,3 +108,4 @@ class HTMLPurifier_AttrDef_URI extends HTMLPurifier_AttrDef
 }
 
 // vim: et sw=4 sts=4
+

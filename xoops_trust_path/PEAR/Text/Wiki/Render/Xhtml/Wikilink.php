@@ -1,8 +1,9 @@
 <?php
 
-class Text_Wiki_Render_Xhtml_Wikilink extends Text_Wiki_Render {
+class Text_Wiki_Render_Xhtml_Wikilink extends Text_Wiki_Render
+{
     
-    var $conf = array(
+    public $conf = array(
         'pages' => array(), // set to null or false to turn off page checks
         'view_url' => 'http://example.com/index.php?page=%s',
         'new_url'  => 'http://example.com/new.php?page=%s',
@@ -27,7 +28,7 @@ class Text_Wiki_Render_Xhtml_Wikilink extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         // make nice variable names (page, anchor, text)
         extract($options);
@@ -39,9 +40,9 @@ class Text_Wiki_Render_Xhtml_Wikilink extends Text_Wiki_Render {
         if (isset($this->conf['exists_callback'])) {
             $callback =& $this->conf['exists_callback'];
         } else {
-        	$callback = false;
+            $callback = false;
         }
-		
+        
         if ($callback) {
             // use the callback function
             $exists = call_user_func($callback, $page);
@@ -67,7 +68,7 @@ class Text_Wiki_Render_Xhtml_Wikilink extends Text_Wiki_Render {
         if ($exists) {
         
             // PAGE EXISTS.
-        
+
             // link to the page view, but we have to build
             // the HREF.  we support both the old form where
             // the page always comes at the end, and the new
@@ -85,11 +86,10 @@ class Text_Wiki_Render_Xhtml_Wikilink extends Text_Wiki_Render {
             // get the CSS class and generate output
             $css = $this->formatConf(' class="%s"', 'css');
             $output = "<a$css href=\"$href\">$text</a>";
-        
         } else {
             
             // PAGE DOES NOT EXIST.
-            
+
             // link to a create-page url, but only if new_url is set
             $href = $this->getConf('new_url', null);
             
@@ -98,7 +98,6 @@ class Text_Wiki_Render_Xhtml_Wikilink extends Text_Wiki_Render {
             
                 // no useful href, return the text as it is
                 $output = $text;
-                
             } else {
             
                 // yes, link to the new-page href, but we have to build
@@ -134,4 +133,3 @@ class Text_Wiki_Render_Xhtml_Wikilink extends Text_Wiki_Render {
         return $output;
     }
 }
-?>

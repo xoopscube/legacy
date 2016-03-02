@@ -13,4 +13,3 @@ define("_MAIL_SENDMAILNG", "無法寄送信給 %s.");
 define("_MAIL_MAILGOOD", "已寄送郵件給 %s.");
 define("_MAIL_SENDPMNG", "無法寄送私人郵件給 %s.");
 define("_MAIL_PMGOOD", "私人郵件已寄送給 %s.");
-?>

@@ -57,5 +57,3 @@ class HTTP_OAuth_Exception extends PEAR_Exception
         parent::__construct($message, $p2, $p3);
     }
 }
-
-?>

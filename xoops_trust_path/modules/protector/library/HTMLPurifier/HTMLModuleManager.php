@@ -143,7 +143,6 @@ class HTMLPurifier_HTMLModuleManager
             '-//W3C//DTD XHTML 1.1//EN',
             'http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd'
         );
-
     }
 
     /**
@@ -363,7 +362,6 @@ class HTMLPurifier_HTMLModuleManager
         }
 
         return $elements;
-
     }
 
     /**
@@ -457,3 +455,4 @@ class HTMLPurifier_HTMLModuleManager
 }
 
 // vim: et sw=4 sts=4
+

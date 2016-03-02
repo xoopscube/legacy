@@ -2,7 +2,8 @@
 
 // $Id: Function.php,v 1.3 2004/10/08 17:46:47 pmjones Exp $
 
-class Text_Wiki_Render_Plain_Function extends Text_Wiki_Render {
+class Text_Wiki_Render_Plain_Function extends Text_Wiki_Render
+{
     
     /**
     * 
@@ -17,10 +18,10 @@ class Text_Wiki_Render_Plain_Function extends Text_Wiki_Render {
     * 
     */
     
-    function token($options)
+    public function token($options)
     {
         extract($options); // access, return, name, params, throws
-        
+
         $output = "$access $return $name ( ";
         
         foreach ($params as $key => $val) {
@@ -36,4 +37,3 @@ class Text_Wiki_Render_Plain_Function extends Text_Wiki_Render {
         return $output;
     }
 }
-?>

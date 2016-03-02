@@ -41,40 +41,40 @@ class File_Archive_Reader_File extends File_Archive_Reader
      * @var object Handle to the file being read
      * @access private
      */
-    var $handle = null;
+    public $handle = null;
     /**
      * @var string Name of the physical file being read
      * @access private
      */
-    var $filename;
+    public $filename;
     /**
      * @var string Name of the file returned by the reader
      * @access private
      */
-    var $symbolic;
+    public $symbolic;
     /**
      * @var array Stats of the file
      *      Will only be set after a call to $this->getStat()
      * @access private
      */
-    var $stat = null;
+    public $stat = null;
     /**
      * @var string Mime type of the file
      *      Will only be set after a call to $this->getMime()
      */
-    var $mime = null;
+    public $mime = null;
     /**
      * @var boolean Has the file already been read
      * @access private
      */
-    var $alreadyRead = false;
+    public $alreadyRead = false;
 
     /**
      * $filename is the physical file to read
      * $symbolic is the name declared by the reader
      * If $symbolic is not specified, $filename is assumed
      */
-    function File_Archive_Reader_File($filename, $symbolic = null, $mime = null)
+    public function File_Archive_Reader_File($filename, $symbolic = null, $mime = null)
     {
         $this->filename = $filename;
         $this->mime = $mime;
@@ -89,7 +89,7 @@ class File_Archive_Reader_File extends File_Archive_Reader
      *
      * Close the file handle
      */
-    function close()
+    public function close()
     {
         $this->alreadyRead = false;
         if ($this->handle !== null) {
@@ -104,7 +104,7 @@ class File_Archive_Reader_File extends File_Archive_Reader
      * true. Then it will return false
      * Raise an error if the file does not exist
      */
-    function next()
+    public function next()
     {
         if ($this->alreadyRead) {
             return false;
@@ -116,17 +116,23 @@ class File_Archive_Reader_File extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::getFilename()
      */
-    function getFilename() { return $this->symbolic; }
+    public function getFilename()
+    {
+        return $this->symbolic;
+    }
     /**
      * @see File_Archive_Reader::getDataFilename()
      *
      * Return the name of the file
      */
-    function getDataFilename() { return $this->filename; }
+    public function getDataFilename()
+    {
+        return $this->filename;
+    }
     /**
      * @see File_Archive_Reader::getStat() stat()
      */
-    function getStat()
+    public function getStat()
     {
         if ($this->stat === null) {
             $this->stat = @stat($this->filename);
@@ -142,7 +148,7 @@ class File_Archive_Reader_File extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::getMime
      */
-    function getMime()
+    public function getMime()
     {
         if ($this->mime === null) {
             PEAR::pushErrorHandling(PEAR_ERROR_RETURN);
@@ -159,7 +165,7 @@ class File_Archive_Reader_File extends File_Archive_Reader
     /**
      * Opens the file if it was not already opened
      */
-    function _ensureFileOpened()
+    public function _ensureFileOpened()
     {
         if ($this->handle === null) {
             $this->handle = @fopen($this->filename, "r");
@@ -178,7 +184,7 @@ class File_Archive_Reader_File extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::getData()
      */
-    function getData($length = -1)
+    public function getData($length = -1)
     {
         $error = $this->_ensureFileOpened();
         if (PEAR::isError($error)) {
@@ -212,7 +218,7 @@ class File_Archive_Reader_File extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::skip()
      */
-    function skip($length = -1)
+    public function skip($length = -1)
     {
         $error = $this->_ensureFileOpened();
         if (PEAR::isError($error)) {
@@ -231,7 +237,7 @@ class File_Archive_Reader_File extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::rewind
      */
-    function rewind($length = -1)
+    public function rewind($length = -1)
     {
         if ($this->handle === null) {
             return 0;
@@ -249,7 +255,7 @@ class File_Archive_Reader_File extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::tell()
      */
-    function tell()
+    public function tell()
     {
         if ($this->handle === null) {
             return 0;
@@ -262,7 +268,7 @@ class File_Archive_Reader_File extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::makeWriterRemoveFiles()
      */
-    function makeWriterRemoveFiles($pred)
+    public function makeWriterRemoveFiles($pred)
     {
         return PEAR::raiseError(
             'File_Archive_Reader_File represents a single file, you cant remove it');
@@ -271,7 +277,7 @@ class File_Archive_Reader_File extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::makeWriterRemoveBlocks()
      */
-    function makeWriterRemoveBlocks($blocks, $seek = 0)
+    public function makeWriterRemoveBlocks($blocks, $seek = 0)
     {
         require_once "File/Archive/Writer/Files.php";
 
@@ -289,7 +295,7 @@ class File_Archive_Reader_File extends File_Archive_Reader
     /**
      * @see File_Archive_Reader::makeAppendWriter
      */
-    function makeAppendWriter()
+    public function makeAppendWriter()
     {
         return PEAR::raiseError(
             'File_Archive_Reader_File represents a single file.'.
@@ -297,5 +303,3 @@ class File_Archive_Reader_File extends File_Archive_Reader
         );
     }
 }
-
-?>

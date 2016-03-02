@@ -13,7 +13,7 @@ require_once 'HTML/AJAX/JSON.php';
  * @link       http://pear.php.net/package/PackageName
  */
 // {{{ class HTMLA_AJAX_Serialize_JSON
-class HTML_AJAX_Serializer_JSON 
+class HTML_AJAX_Serializer_JSON
 {
     // {{{ variables-properties
     /**
@@ -21,27 +21,27 @@ class HTML_AJAX_Serializer_JSON
      * @var HTML_AJAX_JSON
      * @access private
      */
-    var $_json;
+    public $_json;
 
     /**
      * use json php extension http://www.aurore.net/projects/php-json/
      * @access private
      */
-    var $_jsonext;
+    public $_jsonext;
 
     /**
      * use loose typing to decode js objects into php associative arrays
      * @access public
      */
-    var $loose_type;
+    public $loose_type;
     
     // }}}
     // {{{ constructor
-    function HTML_AJAX_Serializer_JSON($use_loose_type = true) 
+    public function HTML_AJAX_Serializer_JSON($use_loose_type = true)
     {
         $this->loose_type = (bool) $use_loose_type;
         $this->_jsonext = $this->_detect();
-        if(!$this->_jsonext) {
+        if (!$this->_jsonext) {
             $use_loose_type = ($this->loose_type) ? SERVICES_JSON_LOOSE_TYPE : 0;
             $this->_json = new HTML_AJAX_JSON($use_loose_type);
         }
@@ -55,9 +55,9 @@ class HTML_AJAX_Serializer_JSON
      * @param  string $input   The input to serialize.
      * @return string $input   The serialized input.
      */
-    function serialize($input) 
+    public function serialize($input)
     {
-        if($this->_jsonext) {
+        if ($this->_jsonext) {
             return json_encode($input);
         } else {
             return $this->_json->encode($input);
@@ -72,9 +72,9 @@ class HTML_AJAX_Serializer_JSON
      * @param  string $input   The input to unserialize
      * @return string $input   The unserialized input.
      */
-    function unserialize($input) 
+    public function unserialize($input)
     {
-        if($this->_jsonext) {
+        if ($this->_jsonext) {
             return json_decode($input, $this->loose_type);
         } else {
             return $this->_json->decode($input);
@@ -85,12 +85,11 @@ class HTML_AJAX_Serializer_JSON
     /**
      * detects the loaded extension
      */
-    function _detect()
+    public function _detect()
     {
         return extension_loaded('json');
     }
     // }}}
 }
 // }}}
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-?>
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */;

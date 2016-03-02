@@ -38,7 +38,7 @@ class XoopsErrorHandler
      * @var array
      * @access private
      */
-    var $_errors = array();
+    public $_errors = array();
 
     /**
      * Show error messages?
@@ -46,7 +46,7 @@ class XoopsErrorHandler
      * @var boolean
      * @access private
      */
-    var $_showErrors = false;
+    public $_showErrors = false;
 
     /**
      * Was there a fatal error (E_USER_ERROR)
@@ -54,7 +54,7 @@ class XoopsErrorHandler
      * @var boolean
      * @access private
      */
-    var $_isFatal = false;
+    public $_isFatal = false;
 
     /**
      * Constructor
@@ -63,7 +63,7 @@ class XoopsErrorHandler
      * registering an error handler, the setting or 'error_reporting' is
      * ignored and *everything* is trapped.
      */
-    function XoopsErrorHandler()
+    public function XoopsErrorHandler()
     {
         set_error_handler('XoopsErrorHandler_HandleError');
         register_shutdown_function('XoopsErrorHandler_Shutdown');
@@ -74,7 +74,7 @@ class XoopsErrorHandler
      *
      * @access public
      */
-    static public function &getInstance()
+    public static function &getInstance()
     {
         static $instance = null;
         if (empty($instance)) {
@@ -90,7 +90,7 @@ class XoopsErrorHandler
      * @param boolean $showErrors True if debug mode is on
      * @return void
      */
-    function activate($showErrors=false)
+    public function activate($showErrors=false)
     {
         $this->_showErrors = $showErrors;
     }
@@ -102,7 +102,7 @@ class XoopsErrorHandler
      * @access public
      * @return void
      */
-    function handleError($error)
+    public function handleError($error)
     {
         if ($error['errno'] == E_USER_ERROR) {
             $this->_isFatal = true;
@@ -133,11 +133,11 @@ class XoopsErrorHandler
      * @access public
      * @return void
      */
-    function renderErrors()
+    public function renderErrors()
     {
-		//
-		// TODO We should plan new style about the following lines.
-		//
+        //
+        // TODO We should plan new style about the following lines.
+        //
         $output = '';
         if ($this->_isFatal) {
             $output .= 'This page cannot be displayed due to an internal error.<br/><br/>';
@@ -148,10 +148,8 @@ class XoopsErrorHandler
         }
 
         $output = array();
-        foreach( $this->_errors as $error )
-        {
-            switch ( $error['errno'] )
-            {
+        foreach ($this->_errors as $error) {
+            switch ($error['errno']) {
                 case E_USER_NOTICE:
                     $out = "Notice [Xoops]: ";
                     break;
@@ -185,7 +183,7 @@ class XoopsErrorHandler
                 default:
                     $out = "Unknown Condition [" . $error['errno'] . "]: ";
             }
-            $out .= sprintf( "%s in file %s line %s", $error['errstr'], $error['errfile'], $error['errline'] );
+            $out .= sprintf("%s in file %s line %s", $error['errstr'], $error['errfile'], $error['errline']);
             $md5 = md5($out);
             if (isset($output[$md5])) {
                 $output[$md5] = preg_replace('/\(\d+\)$/', '(' . ++$count[$md5] . ')', $output[$md5]);
@@ -196,7 +194,6 @@ class XoopsErrorHandler
         }
         return join("<br />\n", $output);
     }
-
 }
 
 /**
@@ -241,5 +238,3 @@ function XoopsErrorHandler_Shutdown()
     $error_handler =& XoopsErrorHandler::getInstance();
     echo $error_handler->renderErrors();
 }
-
-?>

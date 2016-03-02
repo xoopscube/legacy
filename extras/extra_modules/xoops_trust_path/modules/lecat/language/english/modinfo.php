@@ -75,4 +75,3 @@ Category Icon<br />');
 /*** blocks ***/
 define('_MI_LECAT_BLOCK_NAME_LIST', 'Category List');
 define('_MI_LECAT_BLOCK_DESC_LIST', 'Show category tree');
-?>

@@ -8,7 +8,9 @@
  *
  */
 
-if (!defined('XOOPS_ROOT_PATH')) die();
+if (!defined('XOOPS_ROOT_PATH')) {
+    die();
+}
 
 /**
  * The class for blocks which has interfaces to exchange informations with the
@@ -20,9 +22,9 @@ class Legacy_AbstractBlockProcedure
     /**
      * @var XCube_RenderTarget
      */
-    var $mRender = null;
+    public $mRender = null;
     
-    function Legacy_AbstractBlockProcedure()
+    public function Legacy_AbstractBlockProcedure()
     {
     }
     
@@ -30,7 +32,7 @@ class Legacy_AbstractBlockProcedure
      * Preparation. If it's in exception case, returns false.
      * @return bool
      */
-    function prepare()
+    public function prepare()
     {
         return true;
     }
@@ -38,7 +40,7 @@ class Legacy_AbstractBlockProcedure
     /**
      * @var XCube_RenderTarget
      */
-    function &getRenderTarget()
+    public function &getRenderTarget()
     {
         if (!is_object($this->mRender)) {
             $this->_createRenderTarget();
@@ -51,7 +53,7 @@ class Legacy_AbstractBlockProcedure
      * Gets a name of the dependence render-system.
      * @return string
      */
-    function getRenderSystemName()
+    public function getRenderSystemName()
     {
         $root =& XCube_Root::getSingleton();
         return $root->mContext->mBaseRenderSystemName;
@@ -62,7 +64,7 @@ class Legacy_AbstractBlockProcedure
      * This is a helper function for sub-classes.
      * @access protected
      */
-    function &_createRenderTarget()
+    public function &_createRenderTarget()
     {
         $this->mRender = new XCube_RenderTarget();
         $this->mRender->setType(XCUBE_RENDER_TARGET_TYPE_BLOCK);
@@ -74,23 +76,23 @@ class Legacy_AbstractBlockProcedure
      * Gets a number as ID.
      * @return int
      */
-    function getId()
+    public function getId()
     {
     }
 
     /**
      * Gets a name of this block.
      * @return string
-     */ 
-    function getName()
+     */
+    public function getName()
     {
     }
     
     /**
      * Gets a value indicating whether the block can be cached.
      * @return bool
-     */ 
-    function isEnableCache()
+     */
+    public function isEnableCache()
     {
     }
     
@@ -98,7 +100,7 @@ class Legacy_AbstractBlockProcedure
      * Return cache time
      * @return int
      */
-    function getCacheTime()
+    public function getCacheTime()
     {
     }
 
@@ -106,7 +108,7 @@ class Legacy_AbstractBlockProcedure
      * Gets a title of this block.
      * @return string
      */
-    function getTitle()
+    public function getTitle()
     {
         return $this->_mBlock->get('title');
     }
@@ -115,7 +117,7 @@ class Legacy_AbstractBlockProcedure
      * Gets a column index of this block.
      * @return int
      */
-    function getEntryIndex()
+    public function getEntryIndex()
     {
     }
     
@@ -123,7 +125,7 @@ class Legacy_AbstractBlockProcedure
      * Gets a weight of this block.
      * @return int
      */
-    function getWeight()
+    public function getWeight()
     {
     }
 
@@ -131,19 +133,19 @@ class Legacy_AbstractBlockProcedure
      * Gets a value indicating whether this block nees to display its content.
      * @return bool
      */
-    function isDisplay()
+    public function isDisplay()
     {
         return true;
     }
     
-    function &createCacheInfo()
+    public function &createCacheInfo()
     {
         $cacheInfo = new Legacy_BlockCacheInformation();
         $cacheInfo->setBlock($this);
         return $cacheInfo;
     }
     
-    function execute()
+    public function execute()
     {
     }
 }
@@ -158,54 +160,54 @@ class Legacy_BlockProcedure extends Legacy_AbstractBlockProcedure
     /**
      * @var XoopsBlock
      */
-    var $_mBlock = null;
+    public $_mBlock = null;
     
     /**
      * @var XCube_RenderTarget
      */
-    var $mRender = null;
+    public $mRender = null;
     
-    function Legacy_BlockProcedure(&$block)
+    public function Legacy_BlockProcedure(&$block)
     {
         $this->_mBlock =& $block;
     }
     
-    function prepare()
+    public function prepare()
     {
         return true;
     }
     
-    function getId()
+    public function getId()
     {
         return $this->_mBlock->get('bid');
     }
     
-    function getName()
+    public function getName()
     {
         return $this->_mBlock->get('name');
     }
     
-    function isEnableCache()
+    public function isEnableCache()
     {
         return $this->_mBlock->get('bcachetime') > 0;
     }
     
-    function getCacheTime()
+    public function getCacheTime()
     {
         return $this->_mBlock->get('bcachetime');
     }
 
-    function getTitle()
+    public function getTitle()
     {
         return $this->_mBlock->get('title');
     }
     
-    function getEntryIndex()
+    public function getEntryIndex()
     {
         return $this->_mBlock->getVar('side');
     }
     
-    function getWeight()
+    public function getWeight()
     {
         return $this->_mBlock->get('weight');
     }
@@ -215,7 +217,7 @@ class Legacy_BlockProcedure extends Legacy_AbstractBlockProcedure
      * @breaf [Secret Agreement] Gets a value indicating whether the option form of this block needs the row to display the form.
      * @remark Only block management actions should use this method, and this method should not be overridden usually.
      */
-    function _hasVisibleOptionForm()
+    public function _hasVisibleOptionForm()
     {
         return true;
     }
@@ -224,7 +226,7 @@ class Legacy_BlockProcedure extends Legacy_AbstractBlockProcedure
      * Gets rendered HTML buffer for the option form of the control panel.
      * @return string
      */
-    function getOptionForm()
+    public function getOptionForm()
     {
         return null;
     }
@@ -236,9 +238,9 @@ class Legacy_BlockProcedure extends Legacy_AbstractBlockProcedure
  */
 class Legacy_BlockProcedureAdapter extends Legacy_BlockProcedure
 {
-    var $_mDisplayFlag = true;
+    public $_mDisplayFlag = true;
     
-    function execute()
+    public function execute()
     {
         $result =& $this->_mBlock->buildBlock();
         
@@ -254,8 +256,7 @@ class Legacy_BlockProcedureAdapter extends Legacy_BlockProcedure
         if ($this->_mBlock->get('template') == null) {
             $render->setTemplateName('system_dummy.html');
             $render->setAttribute('dummy_content', $result['content']);
-        }
-        else {
+        } else {
             $render->setTemplateName($this->_mBlock->get('template'));
             $render->setAttribute('block', $result);
         }
@@ -266,17 +267,17 @@ class Legacy_BlockProcedureAdapter extends Legacy_BlockProcedure
         $renderSystem->renderBlock($render);
     }
     
-    function isDisplay()
+    public function isDisplay()
     {
         return $this->_mDisplayFlag;
     }
 
-    function _hasVisibleOptionForm()
+    public function _hasVisibleOptionForm()
     {
         return ($this->_mBlock->get('func_file') && $this->_mBlock->get('edit_func'));
     }
     
-    function getOptionForm()
+    public function getOptionForm()
     {
         if ($this->_mBlock->get('func_file') && $this->_mBlock->get('edit_func')) {
             $func_file = XOOPS_MODULE_PATH . "/" . $this->_mBlock->get('dirname') . "/blocks/" . $this->_mBlock->get('func_file');
@@ -319,5 +320,3 @@ class Legacy_BlockProcedureAdapter extends Legacy_BlockProcedure
         return null;
     }
 }
-
-?>

@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -17,9 +16,9 @@ require_once XOOPS_ROOT_PATH . '/core/XCube_PageNavigator.class.php';
 **/
 abstract class Xupdate_AbstractListAction extends Xupdate_AbstractAction
 {
-    public /*** XoopsSimpleObject[] ***/ $mObjects = null;
+    /*** XoopsSimpleObject[] ***/ public $mObjects = null;
 
-    public /*** Xupdate_AbstractFilterForm ***/ $mFilter = null;
+    /*** Xupdate_AbstractFilterForm ***/ public $mFilter = null;
 
     /**
      * &_getHandler
@@ -109,5 +108,3 @@ abstract class Xupdate_AbstractListAction extends Xupdate_AbstractAction
         return $this->getDefaultView();
     }
 }
-
-?>

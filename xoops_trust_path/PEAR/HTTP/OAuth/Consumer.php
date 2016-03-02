@@ -369,8 +369,7 @@ class HTTP_OAuth_Consumer extends HTTP_OAuth
     public function accept($object)
     {
         $class = get_class($object);
-        switch ($class)
-        {
+        switch ($class) {
         case 'HTTP_OAuth_Consumer_Request':
             $this->consumerRequest = $object;
             break;
@@ -393,7 +392,7 @@ class HTTP_OAuth_Consumer extends HTTP_OAuth
     {
         if (!$this->consumerRequest instanceof HTTP_OAuth_Consumer_Request) {
             $this->consumerRequest = new HTTP_OAuth_Consumer_Request;
-        } 
+        }
         return $this->consumerRequest;
     }
 
@@ -418,5 +417,3 @@ class HTTP_OAuth_Consumer extends HTTP_OAuth
         return $this->lastResponse;
     }
 }
-
-?>
