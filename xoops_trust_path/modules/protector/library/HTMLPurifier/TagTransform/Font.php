@@ -112,3 +112,4 @@ class HTMLPurifier_TagTransform_Font extends HTMLPurifier_TagTransform
 }
 
 // vim: et sw=4 sts=4
+

@@ -26,3 +26,4 @@ class HTMLPurifier_AttrTransform_BgColor extends HTMLPurifier_AttrTransform
 }
 
 // vim: et sw=4 sts=4
+

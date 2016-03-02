@@ -20,3 +20,4 @@ class HTMLPurifier_URIFilter_DisableResources extends HTMLPurifier_URIFilter
 }
 
 // vim: et sw=4 sts=4
+

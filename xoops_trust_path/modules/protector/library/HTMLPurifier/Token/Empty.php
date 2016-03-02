@@ -5,7 +5,8 @@
  */
 class HTMLPurifier_Token_Empty extends HTMLPurifier_Token_Tag
 {
-    public function toNode() {
+    public function toNode()
+    {
         $n = parent::toNode();
         $n->empty = true;
         return $n;
@@ -13,3 +14,4 @@ class HTMLPurifier_Token_Empty extends HTMLPurifier_Token_Tag
 }
 
 // vim: et sw=4 sts=4
+

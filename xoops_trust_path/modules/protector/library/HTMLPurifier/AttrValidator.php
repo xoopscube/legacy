@@ -169,10 +169,8 @@ class HTMLPurifier_AttrValidator
         if (!$current_token) {
             $context->destroy('CurrentToken');
         }
-
     }
-
-
 }
 
 // vim: et sw=4 sts=4
+

@@ -20,18 +20,19 @@ define(ICMSPRELOADPROTECTOR_FINISHCOREBOOT, 10);
 */
 class IcmsPreloadProtector extends IcmsPreloadItem
 {
-	function eventStartCoreBoot() {
-		$filename = ICMS_TRUST_PATH.'/modules/protector/include/precheck.inc.php';
-		if (file_exists($filename)) {
-			include $filename;
-		}
-	}
-	
-	function eventFinishCoreBoot() {
-		$filename = ICMS_TRUST_PATH.'/modules/protector/include/postcheck.inc.php';
-		if (file_exists($filename)) { 
-			include $filename;
-		}
-	}
+    public function eventStartCoreBoot()
+    {
+        $filename = ICMS_TRUST_PATH.'/modules/protector/include/precheck.inc.php';
+        if (file_exists($filename)) {
+            include $filename;
+        }
+    }
+    
+    public function eventFinishCoreBoot()
+    {
+        $filename = ICMS_TRUST_PATH.'/modules/protector/include/postcheck.inc.php';
+        if (file_exists($filename)) {
+            include $filename;
+        }
+    }
 }
-?>

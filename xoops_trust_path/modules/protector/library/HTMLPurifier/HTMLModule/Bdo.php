@@ -42,3 +42,4 @@ class HTMLPurifier_HTMLModule_Bdo extends HTMLPurifier_HTMLModule
 }
 
 // vim: et sw=4 sts=4
+

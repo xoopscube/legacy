@@ -9,7 +9,8 @@
  */
 class HTMLPurifier_Arborize
 {
-    public static function arborize($tokens, $config, $context) {
+    public static function arborize($tokens, $config, $context)
+    {
         $definition = $config->getHTMLDefinition();
         $parent = new HTMLPurifier_Token_Start($definition->info_parent);
         $stack = array($parent->toNode());
@@ -36,7 +37,8 @@ class HTMLPurifier_Arborize
         return $stack[0];
     }
 
-    public static function flatten($node, $config, $context) {
+    public static function flatten($node, $config, $context)
+    {
         $level = 0;
         $nodes = array($level => new HTMLPurifier_Queue(array($node)));
         $closingTokens = array();
@@ -48,7 +50,7 @@ class HTMLPurifier_Arborize
                 if ($level > 0) {
                     $tokens[] = $start;
                 }
-                if ($end !== NULL) {
+                if ($end !== null) {
                     $closingTokens[$level][] = $end;
                 }
                 if ($node instanceof HTMLPurifier_Node_Element) {
