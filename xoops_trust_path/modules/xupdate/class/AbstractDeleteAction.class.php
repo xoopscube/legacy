@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -62,13 +61,10 @@ abstract class Xupdate_AbstractDeleteAction extends Xupdate_AbstractEditAction
     **/
     protected function _doExecute()
     {
-        if($this->mObjectHandler->delete($this->mObject))
-        {
+        if ($this->mObjectHandler->delete($this->mObject)) {
             return XUPDATE_FRAME_VIEW_SUCCESS;
         }
     
         return XUPDATE_FRAME_VIEW_ERROR;
     }
 }
-
-?>

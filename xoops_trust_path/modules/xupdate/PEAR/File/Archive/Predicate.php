@@ -48,10 +48,8 @@ class File_Archive_Predicate
      * @param File_Archive_Reader $source Reader which will be filtered
      * @return bool False if the current file must be filtered out
      */
-    function isTrue(&$source)
+    public function isTrue(&$source)
     {
         return PEAR::raiseError("Predicat abstract function call");
     }
 }
-
-?>

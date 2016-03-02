@@ -6,5 +6,3 @@
 **/
 
 require_once XOOPS_TRUST_PATH . '/modules/xupdate/language/'.basename(dirname(__FILE__)).'/blocks.php';
-
-?>

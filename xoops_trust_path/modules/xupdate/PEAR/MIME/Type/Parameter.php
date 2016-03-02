@@ -29,21 +29,21 @@ class MIME_Type_Parameter
      *
      * @var string
      */
-    var $name;
+    public $name;
 
     /**
      * Parameter value
      *
      * @var string
      */
-    var $value;
+    public $value;
 
     /**
      * Parameter comment
      *
      * @var string
      */
-    var $comment;
+    public $comment;
 
 
     /**
@@ -53,7 +53,7 @@ class MIME_Type_Parameter
      *
      * @return void
      */
-    function MIME_Type_Parameter($param = false)
+    public function MIME_Type_Parameter($param = false)
     {
         if ($param) {
             $this->parse($param);
@@ -68,7 +68,7 @@ class MIME_Type_Parameter
      *
      * @return void
      */
-    function parse($param)
+    public function parse($param)
     {
         $comment = '';
         $param   = MIME_Type::stripComments($param, $comment);
@@ -86,7 +86,7 @@ class MIME_Type_Parameter
      * @return string Attribute name
      * @static
      */
-    function getAttribute($param)
+    public function getAttribute($param)
     {
         $tmp = explode('=', $param);
         return trim($tmp[0]);
@@ -101,7 +101,7 @@ class MIME_Type_Parameter
      * @return string Value
      * @static
      */
-    function getValue($param)
+    public function getValue($param)
     {
         $tmp = explode('=', $param, 2);
         $value = $tmp[1];
@@ -123,7 +123,7 @@ class MIME_Type_Parameter
      * @see    hasComment()
      * @static
      */
-    function getComment($param)
+    public function getComment($param)
     {
         $cs = strpos($param, '(');
         if ($cs === false) {
@@ -142,7 +142,7 @@ class MIME_Type_Parameter
      * @return boolean true if $param has a comment, false otherwise
      * @static
      */
-    function hasComment($param)
+    public function hasComment($param)
     {
         if (strstr($param, '(')) {
             return true;
@@ -158,7 +158,7 @@ class MIME_Type_Parameter
      *
      * @return string String representation of parameter
      */
-    function get()
+    public function get()
     {
         $val = $this->name . '="' . str_replace('"', '\\"', $this->value) . '"';
         if ($this->comment) {
@@ -167,4 +167,3 @@ class MIME_Type_Parameter
         return $val;
     }
 }
-?>

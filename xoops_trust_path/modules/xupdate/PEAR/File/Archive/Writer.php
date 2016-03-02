@@ -43,7 +43,7 @@ class File_Archive_Writer
      * @param array $stat Its Statistics. None of the indexes are required
      * @param string $mime MIME type of the file
      */
-    function newFile($filename, $stat = array(), $mime = "application/octet-stream")
+    public function newFile($filename, $stat = array(), $mime = "application/octet-stream")
     {
     }
 
@@ -61,7 +61,7 @@ class File_Archive_Writer
      * @param array $stat Its Statistics. None of the indexes are required
      * @param string $mime MIME type of the file
      */
-    function newFromTempFile($tmpfile, $filename, $stat = array(), $mime = "application/octet-stream")
+    public function newFromTempFile($tmpfile, $filename, $stat = array(), $mime = "application/octet-stream")
     {
         $this->newFile($filename, $stat, $mime);
         $this->writeFile($tmpfile);
@@ -72,7 +72,7 @@ class File_Archive_Writer
      * Returns whether the writer newFile function needs the $mime parameter
      * Default is false
      */
-    function newFileNeedsMIME()
+    public function newFileNeedsMIME()
     {
         return false;
     }
@@ -82,7 +82,7 @@ class File_Archive_Writer
      *
      * @param String $data the data to append to the writer
      */
-    function writeData($data)
+    public function writeData($data)
     {
     }
 
@@ -94,7 +94,7 @@ class File_Archive_Writer
      * @param string $filename Name of the file which content must be appended
      *        to the writer
      */
-    function writeFile($filename)
+    public function writeFile($filename)
     {
         $handle = fopen($filename, "r");
         if (!is_resource($handle)) {
@@ -113,7 +113,7 @@ class File_Archive_Writer
      * Close the writer, eventually flush the data, write the footer...
      * This function must be called before the end of the script
      */
-    function close() { }
+    public function close()
+    {
+    }
 }
-
-?>

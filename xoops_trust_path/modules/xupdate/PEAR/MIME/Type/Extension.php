@@ -41,7 +41,7 @@ class MIME_Type_Extension
      *
      * @var array
      */
-    var $extensionToType = array (
+    public $extensionToType = array(
         'ez'        => 'application/andrew-inset',
         'atom'      => 'application/atom+xml',
         'jar'       => 'application/java-archive',
@@ -251,7 +251,7 @@ class MIME_Type_Extension
      *
      * @return string $file's MIME-type on success, PEAR_Error otherwise
      */
-    function getMIMEType($file)
+    public function getMIMEType($file)
     {
         $extension = substr(strrchr($file, '.'), 1);
         if ($extension === false) {
@@ -274,7 +274,7 @@ class MIME_Type_Extension
      *
      * @return string A file extension without leading period.
      */
-    function getExtension($type)
+    public function getExtension($type)
     {
         include_once 'MIME/Type.php';
         // Strip parameters and comments.
@@ -286,7 +286,4 @@ class MIME_Type_Extension
         }
         return $extension;
     }
-
 }
-
-?>

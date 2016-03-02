@@ -40,24 +40,22 @@ require_once "File/Archive/Predicate.php";
  */
 class File_Archive_Predicate_MinTime extends File_Archive_Predicate
 {
-    var $minTime = 0;
+    public $minTime = 0;
 
     /**
      * @param int $minTime Unix timestamp of the minimal modification date of
      *        the files
      */
-    function File_Archive_Predicate_MinTime($minTime)
+    public function File_Archive_Predicate_MinTime($minTime)
     {
         $this->minTime = $minTime;
-
     }
     /**
      * @see File_Archive_Predicate::isTrue()
      */
-    function isTrue(&$source)
+    public function isTrue(&$source)
     {
         $stat = $source->getStat();
         return !isset($stat[9]) || $stat[9]>=$this->minTime;
     }
 }
-?>

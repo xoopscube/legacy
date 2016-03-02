@@ -37,20 +37,22 @@ require_once "File/Archive/Writer/Files.php";
  */
 class File_Archive_Reader_Bzip2 extends File_Archive_Reader_Archive
 {
-    var $nbRead = 0;
-    var $bzfile = null;
-    var $tmpName = null;
-    var $filePos = 0;
+    public $nbRead = 0;
+    public $bzfile = null;
+    public $tmpName = null;
+    public $filePos = 0;
 
     /**
      * @see File_Archive_Reader::close()
      */
-    function close($innerClose = true)
+    public function close($innerClose = true)
     {
-        if ($this->bzfile !== null)
+        if ($this->bzfile !== null) {
             bzclose($this->bzfile);
-        if ($this->tmpName !== null)
+        }
+        if ($this->tmpName !== null) {
             unlink($this->tmpName);
+        }
 
         $this->bzfile = null;
         $this->tmpName = null;
@@ -62,7 +64,7 @@ class File_Archive_Reader_Bzip2 extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::next()
      */
-    function next()
+    public function next()
     {
         if (!parent::next()) {
             return false;
@@ -74,8 +76,7 @@ class File_Archive_Reader_Bzip2 extends File_Archive_Reader_Archive
         }
 
         $dataFilename = $this->source->getDataFilename();
-        if ($dataFilename !== null)
-        {
+        if ($dataFilename !== null) {
             $this->tmpName = null;
             $this->bzfile = @bzopen($dataFilename, 'r');
             if ($this->bzfile === false) {
@@ -101,7 +102,7 @@ class File_Archive_Reader_Bzip2 extends File_Archive_Reader_Archive
      *
      * @see File_Archive_Reader::getFilename()
      */
-    function getFilename()
+    public function getFilename()
     {
         $name = $this->source->getFilename();
         $pos = strrpos($name, ".");
@@ -114,7 +115,7 @@ class File_Archive_Reader_Bzip2 extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::getData()
      */
-    function getData($length = -1)
+    public function getData($length = -1)
     {
         if ($length == -1) {
             $data = '';
@@ -123,7 +124,7 @@ class File_Archive_Reader_Bzip2 extends File_Archive_Reader_Archive
                 $data .= $newData;
             } while ($newData != '');
             $this->filePos += strlen($data);
-        } else if ($length == 0) {
+        } elseif ($length == 0) {
             return '';
         } else {
             $data = '';
@@ -145,7 +146,7 @@ class File_Archive_Reader_Bzip2 extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::rewind
      */
-    function rewind($length = -1)
+    public function rewind($length = -1)
     {
         $before = $this->filePos;
 
@@ -166,7 +167,7 @@ class File_Archive_Reader_Bzip2 extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::tell()
      */
-    function tell()
+    public function tell()
     {
         return $this->filePos;
     }
@@ -174,7 +175,7 @@ class File_Archive_Reader_Bzip2 extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::makeAppendWriter()
      */
-    function makeAppendWriter()
+    public function makeAppendWriter()
     {
         return PEAR::raiseError('Unable to append files to a bzip2 archive');
     }
@@ -182,7 +183,7 @@ class File_Archive_Reader_Bzip2 extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::makeWriterRemoveFiles()
      */
-    function makeWriterRemoveFiles($pred)
+    public function makeWriterRemoveFiles($pred)
     {
         return PEAR::raiseError('Unable to remove files from a bzip2 archive');
     }
@@ -190,7 +191,7 @@ class File_Archive_Reader_Bzip2 extends File_Archive_Reader_Archive
     /**
      * @see File_Archive_Reader::makeWriterRemoveBlocks()
      */
-    function makeWriterRemoveBlocks($blocks, $seek = 0)
+    public function makeWriterRemoveBlocks($blocks, $seek = 0)
     {
         require_once "File/Archive/Writer/Bzip2.php";
 
@@ -225,7 +226,7 @@ class File_Archive_Reader_Bzip2 extends File_Archive_Reader_Archive
         }
         if ($keep) {
             //Read the end of the file
-            while(($data = $this->getData(8192)) !== null) {
+            while (($data = $this->getData(8192)) !== null) {
                 fwrite($tmp, $data);
             }
         }
@@ -250,5 +251,3 @@ class File_Archive_Reader_Bzip2 extends File_Archive_Reader_Archive
         return $writer;
     }
 }
-
-?>

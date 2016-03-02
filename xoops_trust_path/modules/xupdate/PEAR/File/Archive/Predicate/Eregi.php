@@ -40,22 +40,20 @@ require_once "File/Archive/Predicate.php";
  */
 class File_Archive_Predicate_Eregi extends File_Archive_Predicate
 {
-    var $ereg;
+    public $ereg;
 
     /**
      * @param string $ereg is the regular expression
      */
-    function File_Archive_Predicate_Eregi($ereg)
+    public function File_Archive_Predicate_Eregi($ereg)
     {
         $this->ereg = $ereg;
     }
     /**
      * @see File_Archive_Predicate::isTrue()
      */
-    function isTrue(&$source)
+    public function isTrue(&$source)
     {
         return (bool)eregi($this->ereg, $source->getFilename());
     }
 }
-
-?>

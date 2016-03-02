@@ -41,19 +41,19 @@ class File_Archive_Reader_Directory extends File_Archive_Reader_Relay
      * @var String URL of the directory that must be read
      * @access private
      */
-    var $directory;
+    public $directory;
     /**
      * @var Int The subdirectories will be read up to a depth of maxRecurs
      *          If maxRecurs == 0, the subdirectories will not be read
      *          If maxRecurs == -1, the depth is considered infinite
      * @access private
      */
-    var $maxRecurs;
+    public $maxRecurs;
     /**
      * @var Object Handle returned by the openedDirectory function
      * @access private
      */
-    var $directoryHandle = null;
+    public $directoryHandle = null;
 
     /**
      * $directory is the path of the directory that must be read
@@ -61,7 +61,7 @@ class File_Archive_Reader_Directory extends File_Archive_Reader_Relay
      * of $maxRecurs. In particular, if $maxRecurs == 0, the subdirectories
      * won't be read.
      */
-    function File_Archive_Reader_Directory($directory, $symbolic='',
+    public function File_Archive_Reader_Directory($directory, $symbolic='',
                                            $maxRecurs=-1)
     {
         parent::File_Archive_Reader_Relay($tmp = null);
@@ -73,7 +73,7 @@ class File_Archive_Reader_Directory extends File_Archive_Reader_Relay
     /**
      * @see File_Archive_Reader::close()
      */
-    function close()
+    public function close()
     {
         $error = parent::close();
 
@@ -90,7 +90,7 @@ class File_Archive_Reader_Directory extends File_Archive_Reader_Relay
      *
      * The files are returned in the same order as readdir
      */
-    function next()
+    public function next()
     {
         if ($this->directoryHandle === null) {
             $this->directoryHandle = opendir($this->directory);
@@ -101,13 +101,13 @@ class File_Archive_Reader_Directory extends File_Archive_Reader_Relay
             }
             $this->source = null;
 
-            if (!empty($this->symbolic))
+            if (!empty($this->symbolic)) {
                 return true;
+            }
         }
 
         while ($this->source === null ||
               ($error = $this->source->next()) !== true) {
-
             if ($this->source !== null) {
                 $this->source->close();
             }
@@ -127,7 +127,6 @@ class File_Archive_Reader_Directory extends File_Archive_Reader_Relay
                         $current, $file.'/', $this->maxRecurs-1
                     );
                 }
-
             } else {
                 $this->source = new File_Archive_Reader_File($current, $file);
             }
@@ -139,7 +138,7 @@ class File_Archive_Reader_Directory extends File_Archive_Reader_Relay
     /**
      * @see File_Archive_Reader::getFilename()
      */
-    function getFilename()
+    public function getFilename()
     {
         if ($this->source === null) {
             return $this->symbolic;
@@ -150,7 +149,7 @@ class File_Archive_Reader_Directory extends File_Archive_Reader_Relay
     /**
      * @see File_Archive_Reader::getStat()
      */
-    function getStat()
+    public function getStat()
     {
         if ($this->source === null) {
             return stat($this->directory);
@@ -161,7 +160,7 @@ class File_Archive_Reader_Directory extends File_Archive_Reader_Relay
     /**
      * @see File_Archive_Reader::getMime()
      */
-    function getMime()
+    public function getMime()
     {
         if ($this->source === null) {
             return '';
@@ -172,7 +171,7 @@ class File_Archive_Reader_Directory extends File_Archive_Reader_Relay
     /**
      * @see File_Archive_Reader::getDataFilename()
      */
-    function getDataFilename()
+    public function getDataFilename()
     {
         if ($this->source === null) {
             return null;
@@ -183,7 +182,7 @@ class File_Archive_Reader_Directory extends File_Archive_Reader_Relay
     /**
      * @see File_Archive_Reader::getData()
      */
-    function getData($length = -1)
+    public function getData($length = -1)
     {
         if ($this->source === null) {
             return null;
@@ -194,7 +193,7 @@ class File_Archive_Reader_Directory extends File_Archive_Reader_Relay
     /**
      * @see File_Archive_Reader::skip()
      */
-    function skip($length = -1)
+    public function skip($length = -1)
     {
         if ($this->source === null) {
             return 0;
@@ -205,7 +204,7 @@ class File_Archive_Reader_Directory extends File_Archive_Reader_Relay
     /**
      * @see File_Archive_Reader::rewind()
      */
-    function rewind($length = -1)
+    public function rewind($length = -1)
     {
         if ($this->source === null) {
             return 0;
@@ -216,7 +215,7 @@ class File_Archive_Reader_Directory extends File_Archive_Reader_Relay
     /**
      * @see File_Archive_Reader::tell()
      */
-    function tell()
+    public function tell()
     {
         if ($this->source === null) {
             return 0;
@@ -228,7 +227,7 @@ class File_Archive_Reader_Directory extends File_Archive_Reader_Relay
     /**
      * @see File_Archive_Reader::makeWriterRemoveFiles()
      */
-    function makeWriterRemoveFiles($pred)
+    public function makeWriterRemoveFiles($pred)
     {
         if ($source !== null && $pred->isTrue($this)) {
             $toUnlink = $this->getDataFilename();
@@ -255,7 +254,7 @@ class File_Archive_Reader_Directory extends File_Archive_Reader_Relay
         return $writer;
     }
 
-    function &getLastSource()
+    public function &getLastSource()
     {
         if ($this->source === null ||
             is_a($this->source, 'File_Archive_Reader_File')) {
@@ -268,7 +267,7 @@ class File_Archive_Reader_Directory extends File_Archive_Reader_Relay
     /**
      * @see File_Archive_Reader::makeWriterRemoveBlocks()
      */
-    function makeWriterRemoveBlocks($blocks, $seek = 0)
+    public function makeWriterRemoveBlocks($blocks, $seek = 0)
     {
         $lastSource = &$this->getLastSource();
         if ($lastSource === null) {
@@ -289,12 +288,12 @@ class File_Archive_Reader_Directory extends File_Archive_Reader_Relay
     /**
      * @see File_Archive_Reader::makeAppendWriter
      */
-    function makeAppendWriter()
+    public function makeAppendWriter()
     {
         require_once "File/Archive/Writer/Files.php";
 
         if ($this->source === null ||
-            is_a($this->source, 'File_Archive_Reader_File') ) {
+            is_a($this->source, 'File_Archive_Reader_File')) {
             $writer = new File_Archive_Writer_Files($this->directory);
         } else {
             $writer = $this->source->makeAppendWriter($seek);
@@ -305,5 +304,3 @@ class File_Archive_Reader_Directory extends File_Archive_Reader_Relay
         return $writer;
     }
 }
-
-?>

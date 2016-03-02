@@ -136,7 +136,8 @@ define('CRYPT_DES_MODE_MCRYPT', 2);
  * @access  public
  * @package Crypt_DES
  */
-class Crypt_DES {
+class Crypt_DES
+{
     /**
      * The Key Schedule
      *
@@ -144,7 +145,7 @@ class Crypt_DES {
      * @var Array
      * @access private
      */
-    var $keys = "\0\0\0\0\0\0\0\0";
+    public $keys = "\0\0\0\0\0\0\0\0";
 
     /**
      * The Encryption Mode
@@ -153,7 +154,7 @@ class Crypt_DES {
      * @var Integer
      * @access private
      */
-    var $mode;
+    public $mode;
 
     /**
      * Continuous Buffer status
@@ -162,7 +163,7 @@ class Crypt_DES {
      * @var Boolean
      * @access private
      */
-    var $continuousBuffer = false;
+    public $continuousBuffer = false;
 
     /**
      * Padding status
@@ -171,7 +172,7 @@ class Crypt_DES {
      * @var Boolean
      * @access private
      */
-    var $padding = true;
+    public $padding = true;
 
     /**
      * The Initialization Vector
@@ -180,7 +181,7 @@ class Crypt_DES {
      * @var String
      * @access private
      */
-    var $iv = "\0\0\0\0\0\0\0\0";
+    public $iv = "\0\0\0\0\0\0\0\0";
 
     /**
      * A "sliding" Initialization Vector
@@ -189,7 +190,7 @@ class Crypt_DES {
      * @var String
      * @access private
      */
-    var $encryptIV = "\0\0\0\0\0\0\0\0";
+    public $encryptIV = "\0\0\0\0\0\0\0\0";
 
     /**
      * A "sliding" Initialization Vector
@@ -198,7 +199,7 @@ class Crypt_DES {
      * @var String
      * @access private
      */
-    var $decryptIV = "\0\0\0\0\0\0\0\0";
+    public $decryptIV = "\0\0\0\0\0\0\0\0";
 
     /**
      * mcrypt resource for encryption
@@ -210,7 +211,7 @@ class Crypt_DES {
      * @var String
      * @access private
      */
-    var $enmcrypt;
+    public $enmcrypt;
 
     /**
      * mcrypt resource for decryption
@@ -222,7 +223,7 @@ class Crypt_DES {
      * @var String
      * @access private
      */
-    var $demcrypt;
+    public $demcrypt;
 
     /**
      * Does the enmcrypt resource need to be (re)initialized?
@@ -232,7 +233,7 @@ class Crypt_DES {
      * @var Boolean
      * @access private
      */
-    var $enchanged = true;
+    public $enchanged = true;
 
     /**
      * Does the demcrypt resource need to be (re)initialized?
@@ -242,7 +243,7 @@ class Crypt_DES {
      * @var Boolean
      * @access private
      */
-    var $dechanged = true;
+    public $dechanged = true;
 
     /**
      * Is the mode one that is paddable?
@@ -251,7 +252,7 @@ class Crypt_DES {
      * @var Boolean
      * @access private
      */
-    var $paddable = false;
+    public $paddable = false;
 
     /**
      * Encryption buffer for CTR, OFB and CFB modes
@@ -260,7 +261,7 @@ class Crypt_DES {
      * @var String
      * @access private
      */
-    var $enbuffer = '';
+    public $enbuffer = '';
 
     /**
      * Decryption buffer for CTR, OFB and CFB modes
@@ -269,7 +270,7 @@ class Crypt_DES {
      * @var String
      * @access private
      */
-    var $debuffer = '';
+    public $debuffer = '';
 
     /**
      * mcrypt resource for CFB mode
@@ -279,7 +280,7 @@ class Crypt_DES {
      * @var String
      * @access private
      */
-    var $ecb;
+    public $ecb;
 
     /**
      * Default Constructor.
@@ -291,9 +292,9 @@ class Crypt_DES {
      * @return Crypt_DES
      * @access public
      */
-    function Crypt_DES($mode = CRYPT_MODE_DES_CBC)
+    public function Crypt_DES($mode = CRYPT_MODE_DES_CBC)
     {
-        if ( !defined('CRYPT_DES_MODE') ) {
+        if (!defined('CRYPT_DES_MODE')) {
             switch (true) {
                 case extension_loaded('mcrypt'):
                     // i'd check to see if des was supported, by doing in_array('des', mcrypt_list_algorithms('')),
@@ -306,7 +307,7 @@ class Crypt_DES {
             }
         }
 
-        switch ( CRYPT_DES_MODE ) {
+        switch (CRYPT_DES_MODE) {
             case CRYPT_DES_MODE_MCRYPT:
                 switch ($mode) {
                     case CRYPT_DES_MODE_ECB:
@@ -363,9 +364,9 @@ class Crypt_DES {
      * @access public
      * @param String $key
      */
-    function setKey($key)
+    public function setKey($key)
     {
-        $this->keys = ( CRYPT_DES_MODE == CRYPT_DES_MODE_MCRYPT ) ? str_pad(substr($key, 0, 8), 8, chr(0)) : $this->_prepareKey($key);
+        $this->keys = (CRYPT_DES_MODE == CRYPT_DES_MODE_MCRYPT) ? str_pad(substr($key, 0, 8), 8, chr(0)) : $this->_prepareKey($key);
         $this->changed = true;
     }
 
@@ -378,7 +379,7 @@ class Crypt_DES {
      * @access public
      * @param String $iv
      */
-    function setIV($iv)
+    public function setIV($iv)
     {
         $this->encryptIV = $this->decryptIV = $this->iv = str_pad(substr($iv, 0, 8), 8, chr(0));
         $this->changed = true;
@@ -396,7 +397,7 @@ class Crypt_DES {
      * @param Integer $length
      * @param String $iv
      */
-    function _generate_xor($length, &$iv)
+    public function _generate_xor($length, &$iv)
     {
         $xor = '';
         $num_blocks = ($length + 7) >> 3;
@@ -439,13 +440,13 @@ class Crypt_DES {
      * @access public
      * @param String $plaintext
      */
-    function encrypt($plaintext)
+    public function encrypt($plaintext)
     {
         if ($this->paddable) {
             $plaintext = $this->_pad($plaintext);
         }
 
-        if ( CRYPT_DES_MODE == CRYPT_DES_MODE_MCRYPT ) {
+        if (CRYPT_DES_MODE == CRYPT_DES_MODE_MCRYPT) {
             if ($this->enchanged) {
                 if (!isset($this->enmcrypt)) {
                     $this->enmcrypt = mcrypt_module_open(MCRYPT_DES, '', $this->mode, '');
@@ -595,7 +596,7 @@ class Crypt_DES {
                 if ($this->continuousBuffer) {
                     $this->encryptIV = $xor;
                     if ($start = strlen($plaintext) & 7) {
-                         $buffer = substr($key, $start) . $buffer;
+                        $buffer = substr($key, $start) . $buffer;
                     }
                 }
         }
@@ -612,7 +613,7 @@ class Crypt_DES {
      * @access public
      * @param String $ciphertext
      */
-    function decrypt($ciphertext)
+    public function decrypt($ciphertext)
     {
         if ($this->paddable) {
             // we pad with chr(0) since that's what mcrypt_generic does.  to quote from http://php.net/function.mcrypt-generic :
@@ -620,7 +621,7 @@ class Crypt_DES {
             $ciphertext = str_pad($ciphertext, (strlen($ciphertext) + 7) & 0xFFFFFFF8, chr(0));
         }
 
-        if ( CRYPT_DES_MODE == CRYPT_DES_MODE_MCRYPT ) {
+        if (CRYPT_DES_MODE == CRYPT_DES_MODE_MCRYPT) {
             if ($this->dechanged) {
                 if (!isset($this->demcrypt)) {
                     $this->demcrypt = mcrypt_module_open(MCRYPT_DES, '', $this->mode, '');
@@ -745,7 +746,7 @@ class Crypt_DES {
                     if ($continuousBuffer && strlen($block) != 8) {
                         $buffer['ciphertext'].= $block;
                         $block = $xor;
-                    } else if (strlen($block) == 8) {
+                    } elseif (strlen($block) == 8) {
                         $xor = $this->_processBlock($block, CRYPT_DES_ENCRYPT);
                     }
                 }
@@ -772,7 +773,7 @@ class Crypt_DES {
                 if ($this->continuousBuffer) {
                     $this->decryptIV = $xor;
                     if ($start = strlen($ciphertext) % 8) {
-                         $buffer = substr($key, $start) . $buffer;
+                        $buffer = substr($key, $start) . $buffer;
                     }
                 }
         }
@@ -817,7 +818,7 @@ class Crypt_DES {
      * @see Crypt_DES::disableContinuousBuffer()
      * @access public
      */
-    function enableContinuousBuffer()
+    public function enableContinuousBuffer()
     {
         $this->continuousBuffer = true;
     }
@@ -830,7 +831,7 @@ class Crypt_DES {
      * @see Crypt_DES::enableContinuousBuffer()
      * @access public
      */
-    function disableContinuousBuffer()
+    public function disableContinuousBuffer()
     {
         $this->continuousBuffer = false;
         $this->encryptIV = $this->iv;
@@ -851,7 +852,7 @@ class Crypt_DES {
      * @see Crypt_DES::disablePadding()
      * @access public
      */
-    function enablePadding()
+    public function enablePadding()
     {
         $this->padding = true;
     }
@@ -862,7 +863,7 @@ class Crypt_DES {
      * @see Crypt_DES::enablePadding()
      * @access public
      */
-    function disablePadding()
+    public function disablePadding()
     {
         $this->padding = false;
     }
@@ -879,7 +880,7 @@ class Crypt_DES {
      * @see Crypt_DES::_unpad()
      * @access private
      */
-    function _pad($text)
+    public function _pad($text)
     {
         $length = strlen($text);
 
@@ -905,7 +906,7 @@ class Crypt_DES {
      * @see Crypt_DES::_pad()
      * @access private
      */
-    function _unpad($text)
+    public function _unpad($text)
     {
         if (!$this->padding) {
             return $text;
@@ -932,7 +933,7 @@ class Crypt_DES {
      * @param Integer $mode
      * @return String
      */
-    function _processBlock($block, $mode)
+    public function _processBlock($block, $mode)
     {
         // s-boxes.  in the official DES docs, they're described as being matrices that
         // one accesses by using the first and last bits to determine the row and the
@@ -1020,7 +1021,7 @@ class Crypt_DES {
             (($block[0] & 0x00100000) >>  3) | (($block[0] & 0x10000000) >> 12) |
             (($block[1] & 0x00000004) << 13) | (($block[1] & 0x00000400) <<  4) |
             (($block[1] & 0x00040000) >>  5) | (($block[1] & 0x04000000) >> 14) |
-            (($block[0] & 0x00000004) <<  9) | ( $block[0] & 0x00000400       ) |
+            (($block[0] & 0x00000004) <<  9) | ($block[0] & 0x00000400) |
             (($block[0] & 0x00040000) >>  9) | (($block[0] & 0x04000000) >> 18) |
             (($block[1] & 0x00010000) >> 11) | (($block[1] & 0x01000000) >> 20) |
             (($block[0] & 0x00010000) >> 15) | (($block[0] & 0x01000000) >> 24)
@@ -1029,7 +1030,7 @@ class Crypt_DES {
             (($block[1] & 0x00800002) <<  6) | (($block[0] & 0x00000080) << 20) |
             (($block[0] & 0x00008000) << 11) | (($block[0] & 0x00800002) <<  2) |
             (($block[1] & 0x00000020) << 18) | (($block[1] & 0x00002000) <<  9) |
-            ( $block[1] & 0x00200000       ) | (($block[1] & 0x20000000) >>  9) |
+            ($block[1] & 0x00200000) | (($block[1] & 0x20000000) >>  9) |
             (($block[0] & 0x00000020) << 14) | (($block[0] & 0x00002000) <<  5) |
             (($block[0] & 0x00200000) >>  4) | (($block[0] & 0x20000000) >> 13) |
             (($block[1] & 0x00000008) << 12) | (($block[1] & 0x00000800) <<  3) |
@@ -1052,7 +1053,7 @@ class Crypt_DES {
                   | (($sbox[4][(($block[1] & 0x0001F800) >> 11) ^ $keys[$mode][$i][4]]) << 12)
                   | (($sbox[5][(($block[1] & 0x00001F80) >>  7) ^ $keys[$mode][$i][5]]) <<  8)
                   | (($sbox[6][(($block[1] & 0x000001F8) >>  3) ^ $keys[$mode][$i][6]]) <<  4)
-                  | ( $sbox[7][((($block[1] & 0x1F) << 1) | (($block[1] >> 31) & 1)) ^ $keys[$mode][$i][7]]);
+                  | ($sbox[7][((($block[1] & 0x1F) << 1) | (($block[1] >> 31) & 1)) ^ $keys[$mode][$i][7]]);
 
             $msb = ($temp >> 31) & 1;
             $temp &= 0x7FFFFFFF;
@@ -1093,7 +1094,7 @@ class Crypt_DES {
             (($block[0] & 0x00000002) << 16) | (($block[1] & 0x00000002) << 15) |
             (($block[0] & 0x04000000) >> 11) | (($block[1] & 0x04000000) >> 12) |
             (($block[0] & 0x00040000) >>  5) | (($block[1] & 0x00040000) >>  6) |
-            (($block[0] & 0x00000400) <<  1) | ( $block[1] & 0x00000400       ) |
+            (($block[0] & 0x00000400) <<  1) | ($block[1] & 0x00000400) |
             (($block[0] & 0x08000000) >> 20) | (($block[1] & 0x08000000) >> 21) |
             (($block[0] & 0x00080000) >> 14) | (($block[1] & 0x00080000) >> 15) |
             (($block[0] & 0x00000800) >>  8) | (($block[1] & 0x00000800) >>  9)
@@ -1103,7 +1104,7 @@ class Crypt_DES {
             (($block[0] & 0x00001000) << 15) | (($block[1] & 0x00001000) << 14) |
             (($block[0] & 0x00000010) << 21) | (($block[1] & 0x00000010) << 20) |
             (($block[0] & 0x20000080) >>  6) | (($block[1] & 0x20000080) >>  7) |
-            ( $block[0] & 0x00200000       ) | (($block[1] & 0x00200000) >>  1) |
+            ($block[0] & 0x00200000) | (($block[1] & 0x00200000) >>  1) |
             (($block[0] & 0x00002000) <<  6) | (($block[1] & 0x00002000) <<  5) |
             (($block[0] & 0x00000020) << 12) | (($block[1] & 0x00000020) << 11) |
             (($block[0] & 0x40000000) >> 15) | (($block[1] & 0x40000000) >> 16) |
@@ -1124,7 +1125,7 @@ class Crypt_DES {
      * @param String $key
      * @return Array
      */
-    function _prepareKey($key)
+    public function _prepareKey($key)
     {
         static $shifts = array( // number of key bits shifted per round
             1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1
@@ -1157,7 +1158,7 @@ class Crypt_DES {
             (($key[0] & 0x00008000) <<  7) | (($key[0] & 0x00800000) >>  2) |
             (($key[1] & 0x00000040) << 13) | (($key[1] & 0x00004000) <<  4) |
             (($key[1] & 0x00400000) >>  5) | (($key[1] & 0x40000000) >> 14) |
-            (($key[0] & 0x00000040) <<  9) | ( $key[0] & 0x00004000       ) |
+            (($key[0] & 0x00000040) <<  9) | ($key[0] & 0x00004000) |
             (($key[0] & 0x00400000) >>  9) | (($key[0] & 0x40000000) >> 18) |
             (($key[1] & 0x00000020) <<  6) | (($key[1] & 0x00002000) >>  3) |
             (($key[1] & 0x00200000) >> 12) | (($key[1] & 0x20000000) >> 21) |
@@ -1166,7 +1167,7 @@ class Crypt_DES {
             (($key[1] & 0x00000010) >>  1) | (($key[1] & 0x00001000) >> 10) |
             (($key[1] & 0x00100000) >> 19) | (($key[1] & 0x10000000) >> 28) |
             ($msb[1] << 24) | ($msb[0] << 20)
-        ); 
+        );
 
         $keys = array();
         for ($i = 0; $i < 16; $i++) {
@@ -1187,7 +1188,7 @@ class Crypt_DES {
                 (($key[1] & 0x00002000) >> 10) | (($key[1] & 0x00040000) >> 18) |
                 (($key[1] & 0x00000080) >>  6)
             ,
-                ( $key[1] & 0x00000020       ) | (($key[1] & 0x00000200) >>  5) |
+                ($key[1] & 0x00000020) | (($key[1] & 0x00000200) >>  5) |
                 (($key[1] & 0x00010000) >> 13) | (($key[1] & 0x01000000) >> 22) |
                 (($key[1] & 0x00000004) >>  1) | (($key[1] & 0x00100000) >> 20)
             ,
@@ -1195,7 +1196,7 @@ class Crypt_DES {
                 (($key[1] & 0x00000002) <<  2) | (($key[1] & 0x00000100) >>  6) |
                 (($key[1] & 0x00008000) >> 14) | (($key[1] & 0x04000000) >> 26)
             ,
-                (($key[0] & 0x00008000) >> 10) | ( $key[0] & 0x00000010       ) |
+                (($key[0] & 0x00008000) >> 10) | ($key[0] & 0x00000010) |
                 (($key[0] & 0x02000000) >> 22) | (($key[0] & 0x00080000) >> 17) |
                 (($key[0] & 0x00000200) >>  8) | (($key[0] & 0x00000002) >>  1)
             ,
@@ -1233,7 +1234,7 @@ class Crypt_DES {
      * @return String
      * @access private
      */
-    function _string_shift(&$string, $index = 1)
+    public function _string_shift(&$string, $index = 1)
     {
         $substr = substr($string, 0, $index);
         $string = substr($string, $index);

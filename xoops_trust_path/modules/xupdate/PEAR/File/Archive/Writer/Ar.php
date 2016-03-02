@@ -39,31 +39,31 @@ class File_Archive_Writer_Ar extends File_Archive_Writer_Archive
      * @var    string   Current data of the file.
      * @access private
      */
-    var $_buffer = "";
+    public $_buffer = "";
 
     /**
      * @var    string   Filename of the current filename
      * @access private
      */
-    var $_currentFilename = null;
+    public $_currentFilename = null;
 
     /**
      * @var    boolean  Flag: use buffer or not.
      * @access private
      */
-    var $_useBuffer;
+    public $_useBuffer;
 
     /**
      * @var    array    Stats of the current filename
      * @access private
      */
-    var $_currentStat = array ();
+    public $_currentStat = array();
 
     /**
      * @var    boolean  Flag: beginning of the archive or not
      * @access private
      */
-    var $_atStart = true;
+    public $_atStart = true;
 
     /**
      * Returns the header of the current file.
@@ -76,7 +76,7 @@ class File_Archive_Writer_Ar extends File_Archive_Writer_Archive
      * @param   array   $stat      Stat array of the current file
      * @return  string  The built header struct
      */
-    function arHeader ($filename, $stat)
+    public function arHeader($filename, $stat)
     {
         $mode = isset($stat[2]) ? $stat[2] : 0x8000;
         $uid  = isset($stat[4]) ? $stat[4] : 0;
@@ -110,9 +110,9 @@ class File_Archive_Writer_Ar extends File_Archive_Writer_Archive
      * @param   int      $size     Size of the current file, here the size does matters!
      * @return  string   The footer struct
      */
-    function arFooter($filename, $size)
+    public function arFooter($filename, $size)
     {
-        $size = (strlen ($filename) > 16) ? $size + strlen($filename) : $size;
+        $size = (strlen($filename) > 16) ? $size + strlen($filename) : $size;
 
         return ($size % 2 == 1) ? "\n" : "";
     }
@@ -124,7 +124,7 @@ class File_Archive_Writer_Ar extends File_Archive_Writer_Archive
      * Build the buffer if its called at the end or initialize
      * it if we are just creating it from the start.
      */
-    function flush()
+    public function flush()
     {
         if ($this->_atStart) {
             $this->innerWriter->writeData("!<arch>\n");
@@ -147,7 +147,7 @@ class File_Archive_Writer_Ar extends File_Archive_Writer_Archive
      * @see File_Archive_Writer::newFile()
      *
      */
-    function newFile($filename, $stat = array (),
+    public function newFile($filename, $stat = array(),
                      $mime = "application/octet-stream")
     {
         // ar file format doesn't support folders
@@ -169,7 +169,7 @@ class File_Archive_Writer_Ar extends File_Archive_Writer_Archive
         $this->_currentFilename = basename($filename);
         $this->_currentStat = $stat;
 
-        if(!$this->_useBuffer) {
+        if (!$this->_useBuffer) {
             return $this->innerWriter->writeData($this->arHeader($filename, $stat));
         }
     }
@@ -177,7 +177,7 @@ class File_Archive_Writer_Ar extends File_Archive_Writer_Archive
     /**
      * @see File_Archive_Writer::close()
      */
-    function close()
+    public function close()
     {
         $this->flush();
         parent::close();
@@ -186,19 +186,18 @@ class File_Archive_Writer_Ar extends File_Archive_Writer_Archive
     /**
      * @see File_Archive_Writer::writeData()
      */
-    function writeData($data)
+    public function writeData($data)
     {
         if ($this->_useBuffer) {
             $this->_buffer .= $data;
         } else {
             $this->innerWriter->writeData($data);
         }
-
     }
     /**
      * @see File_Archive_Writer::writeFile()
      */
-    function writeFile($filename)
+    public function writeFile($filename)
     {
         if ($this->_useBuffer) {
             $this->_buffer .= file_get_contents($filename);

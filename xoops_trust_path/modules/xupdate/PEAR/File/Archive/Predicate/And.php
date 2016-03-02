@@ -47,7 +47,7 @@ class File_Archive_Predicate_And extends File_Archive_Predicate
      * @var Array List of File_Archive_Predicate objects given as an argument
      * @access private
      */
-    var $preds;
+    public $preds;
 
     /**
      * Build the predicate using the optional File_Archive_Predicates given as
@@ -56,7 +56,7 @@ class File_Archive_Predicate_And extends File_Archive_Predicate
      * Example:
      *   new File_Archive_Predicate_And($pred1, $pred2, $pred3)
      */
-    function File_Archive_Predicate_And()
+    public function File_Archive_Predicate_And()
     {
         $this->preds = func_get_args();
     }
@@ -66,14 +66,14 @@ class File_Archive_Predicate_And extends File_Archive_Predicate
      *
      * @param File_Archive_Predicate The predicate to add
      */
-    function addPredicate($pred)
+    public function addPredicate($pred)
     {
         $this->preds[] = $pred;
     }
     /**
      * @see File_Archive_Predicate::isTrue()
      */
-    function isTrue(&$source)
+    public function isTrue(&$source)
     {
         foreach ($this->preds as $p) {
             if (!$p->isTrue($source)) {
@@ -83,5 +83,3 @@ class File_Archive_Predicate_And extends File_Archive_Predicate
         return true;
     }
 }
-
-?>

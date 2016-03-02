@@ -15,5 +15,3 @@ $root->mController->execute();
 $xoopsLogger=&$root->mController->getLogger();
 $xoopsLogger->stopTime();
 $root->mController->executeView();
-
-?>

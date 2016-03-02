@@ -36,15 +36,15 @@ require_once "File/Archive/Writer.php";
  */
 class File_Archive_Writer_Gzip extends File_Archive_Writer
 {
-    var $compressionLevel=9;
-    var $gzfile;
-    var $tmpName;
-    var $nbFiles = 0;
+    public $compressionLevel=9;
+    public $gzfile;
+    public $tmpName;
+    public $nbFiles = 0;
 
-    var $innerWriter;
-    var $autoClose;
-    var $filename;
-    var $stat;
+    public $innerWriter;
+    public $autoClose;
+    public $filename;
+    public $stat;
 
     /**
      * @param string $filename Name to give to the archive
@@ -55,7 +55,7 @@ class File_Archive_Writer_Gzip extends File_Archive_Writer
      * @param bool $autoClose Indicate if the inner writer must be closed when
      *        closing this
      */
-    function File_Archive_Writer_Gzip($filename, &$innerWriter,
+    public function File_Archive_Writer_Gzip($filename, &$innerWriter,
                                       $stat = array(), $autoClose = true)
     {
         $this->innerWriter =& $innerWriter;
@@ -77,7 +77,7 @@ class File_Archive_Writer_Gzip extends File_Archive_Writer
      * @param int $compressionLevel From 0 (no compression) to 9 (best
      *        compression)
      */
-    function setCompressionLevel($compressionLevel)
+    public function setCompressionLevel($compressionLevel)
     {
         $this->compressionLevel = $compressionLevel;
     }
@@ -87,7 +87,7 @@ class File_Archive_Writer_Gzip extends File_Archive_Writer
      *
      * Check that one single file is written in the GZip archive
      */
-    function newFile($filename, $stat = array(),
+    public function newFile($filename, $stat = array(),
                      $mime = "application/octet-stream")
     {
         if ($this->nbFiles > 1) {
@@ -109,7 +109,7 @@ class File_Archive_Writer_Gzip extends File_Archive_Writer
      *
      * @see File_Archive_Writer::close()
      */
-    function close()
+    public function close()
     {
         gzclose($this->gzfile);
         if ($this->filename === null) {
@@ -130,10 +130,8 @@ class File_Archive_Writer_Gzip extends File_Archive_Writer
     /**
      * @see File_Archive_Writer::writeData()
      */
-    function writeData($data)
+    public function writeData($data)
     {
         gzwrite($this->gzfile, $data);
     }
 }
-
-?>

@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -15,9 +14,9 @@ if(!defined('XOOPS_ROOT_PATH'))
 **/
 abstract class Xupdate_AbstractViewAction extends Xupdate_AbstractAction
 {
-    public /*** XoopsSimpleObject ***/ $mObject = null;
+    /*** XoopsSimpleObject ***/ public $mObject = null;
 
-    public /*** XoopsObjectGenericHandler ***/ $mObjectHandler = null;
+    /*** XoopsObjectGenericHandler ***/ public $mObjectHandler = null;
 
     /**
      * _getId
@@ -91,8 +90,7 @@ abstract class Xupdate_AbstractViewAction extends Xupdate_AbstractAction
     **/
     public function getDefaultView()
     {
-        if($this->mObject == null)
-        {
+        if ($this->mObject == null) {
             return XUPDATE_FRAME_VIEW_ERROR;
         }
     
@@ -111,5 +109,3 @@ abstract class Xupdate_AbstractViewAction extends Xupdate_AbstractAction
         return $this->getDefaultView();
     }
 }
-
-?>

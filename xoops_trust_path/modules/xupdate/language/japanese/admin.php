@@ -56,5 +56,5 @@ define('_AD_XUPDATE_LANG_STAGE_UPLOAD_RETRY', '¥Õ¥¡¥¤¥ëÇÛÃÖ¤ÎÂ³¤­¤ò¼Â¹Ô¤ò¤¹¤ë¤Ë¤
 define('_AD_XUPDATE_LANG_STAGE_TASK_RETRY', 'Â³¤­¤Î½èÍý¤ò¼Â¹Ô¤ò¤¹¤ë¤Ë¤Ï¤³¤³¤ò¥¯¥ê¥Ã¥¯');
 define('_AD_XUPDATE_LANG_STAGE_UPLOAD_NOT_COMPLETE', '¥Õ¥¡¥¤¥ë¤ÎÇÛÃÖ¤¬ÉÔ´°Á´¤Ê¤¿¤á [ <a href="%s">¤³¤Á¤é¤Î¥ê¥ó¥¯</a> ] ¤«¤é¥¢¡¼¥«¥¤¥Ö¤ò¼èÆÀ¤·¤Æ¡¢¼êºî¶È¤Ç FTP ¥¢¥Ã¥×¥í¡¼¥É¤ò¹Ô¤¤¥Õ¥¡¥¤¥ë¤òÅ¬ÀÚ¤ËÇÛÃÖ¤·¤Æ¤¯¤À¤µ¤¤¡£');
 
-define('_AD_XUPDATE_LANG_THM_TOTAL'  , '¥Æ¡¼¥Þ¤Î¹ç·×');
-define('_AD_XUPDATE_LANG_ITEM_TOTAL'  , '¥¢¥¤¥Æ¥à¤Î¹ç·×');
+define('_AD_XUPDATE_LANG_THM_TOTAL', '¥Æ¡¼¥Þ¤Î¹ç·×');
+define('_AD_XUPDATE_LANG_ITEM_TOTAL', '¥¢¥¤¥Æ¥à¤Î¹ç·×');

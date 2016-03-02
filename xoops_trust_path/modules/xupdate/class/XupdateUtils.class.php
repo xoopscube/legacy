@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -15,22 +14,22 @@ if(!defined('XOOPS_ROOT_PATH'))
 **/
 class Xupdate_Utils
 {
-	/**
-	 * getModuleConfig
-	 *
-	 * @param   string  $name
-	 * @param   bool  $optional
-	 *
-	 * @return  XoopsObjectHandler
-	 **/
-	public static function getModuleConfig(/*** string ***/ $dirname, /*** mixed ***/ $key)
-	{
-		$handler = self::getXoopsHandler('config');
-		$conf = $handler->getConfigsByDirname($dirname);
-		return (isset($conf[$key])) ? $conf[$key] : null;
-	}
-	
-	/**
+    /**
+     * getModuleConfig
+     *
+     * @param   string  $name
+     * @param   bool  $optional
+     *
+     * @return  XoopsObjectHandler
+     **/
+    public static function getModuleConfig(/*** string ***/ $dirname, /*** mixed ***/ $key)
+    {
+        $handler = self::getXoopsHandler('config');
+        $conf = $handler->getConfigsByDirname($dirname);
+        return (isset($conf[$key])) ? $conf[$key] : null;
+    }
+    
+    /**
      * &getXoopsHandler
      * 
      * @param   string  $name
@@ -38,10 +37,10 @@ class Xupdate_Utils
      * 
      * @return  XoopsObjectHandler
     **/
-    public static function &getXoopsHandler(/*** string ***/ $name,/*** bool ***/ $optional = false)
+    public static function &getXoopsHandler(/*** string ***/ $name, /*** bool ***/ $optional = false)
     {
         // TODO will be emulated xoops_gethandler
-        return xoops_gethandler($name,$optional);
+        return xoops_gethandler($name, $optional);
     }
 
     /**
@@ -52,10 +51,10 @@ class Xupdate_Utils
      * 
      * @return  XoopsObjectHandleer
     **/
-    public static function &getModuleHandler(/*** string ***/ $name,/*** string ***/ $dirname)
+    public static function &getModuleHandler(/*** string ***/ $name, /*** string ***/ $dirname)
     {
         // TODO will be emulated xoops_getmodulehandler
-        return xoops_getmodulehandler($name,$dirname);
+        return xoops_getmodulehandler($name, $dirname);
     }
 
     /**
@@ -66,7 +65,7 @@ class Xupdate_Utils
      * 
      * @return  XoopsObjectHandleer
     **/
-    public static function &getXupdateHandler(/*** string ***/ $name,/*** string ***/ $dirname)
+    public static function &getXupdateHandler(/*** string ***/ $name, /*** string ***/ $dirname)
     {
         $asset = null;
         XCube_DelegateUtils::call(
@@ -74,9 +73,8 @@ class Xupdate_Utils
             new XCube_Ref($asset),
             $dirname
         );
-        if(is_object($asset) && is_a($asset, 'Xupdate_AssetManager'))
-        {
-            return $asset->getObject('handler',$name);
+        if (is_object($asset) && is_a($asset, 'Xupdate_AssetManager')) {
+            return $asset->getObject('handler', $name);
         }
     }
 
@@ -97,132 +95,141 @@ class Xupdate_Utils
      * @param  string $str
      * @return string
      */
-    public static function toShow($str) {
-    	return htmlspecialchars(htmlspecialchars_decode($str), ENT_COMPAT, _CHARSET);
+    public static function toShow($str)
+    {
+        return htmlspecialchars(htmlspecialchars_decode($str), ENT_COMPAT, _CHARSET);
     }
     
-	/**
-	 * Get redirect URL
-	 * @param string $url
-	 * @param int $limit
-	 * @return string
-	 */
-	public static function getRedirectUrl($url, $redirect = 10, $curl_ssl_no_verify = false) {
-		if ($headers = @ get_headers($url, 1)) {
-			$location = isset($headers['Location'])? $headers['Location'] : (isset($headers['location'])? $headers['location'] : '');
-			if ($location) {
-				if (is_array($location)) {
-					$url = array_pop($location);
-				} else {
-					$url = $location;
-				}
-			}
-		} else {
-			$url = self::curlGetRedirectUrl($url, $curl_ssl_no_verify);
-		}
-		return $url;
-	}
+    /**
+     * Get redirect URL
+     * @param string $url
+     * @param int $limit
+     * @return string
+     */
+    public static function getRedirectUrl($url, $redirect = 10, $curl_ssl_no_verify = false)
+    {
+        if ($headers = @ get_headers($url, 1)) {
+            $location = isset($headers['Location'])? $headers['Location'] : (isset($headers['location'])? $headers['location'] : '');
+            if ($location) {
+                if (is_array($location)) {
+                    $url = array_pop($location);
+                } else {
+                    $url = $location;
+                }
+            }
+        } else {
+            $url = self::curlGetRedirectUrl($url, $curl_ssl_no_verify);
+        }
+        return $url;
+    }
     
-	/**
-	 * Get redirect URL with cURL
-	 * 
-	 * @param $url
-	 * @param $ch
-	 * @param $max_redirect
-	 * @param $redirects
-	 * @return string
-	 */
-	public static function curlGetRedirectUrl($url, $ch = null, $max_redirect = 10, $redirects = 0, $curl_ssl_no_verify = false) {
-		if ($max_redirect < $redirects) {
-			return $url;
-		}
-		if (! $ch) {
-			$ch = curl_init($url);
-		}
-		curl_setopt($ch, CURLOPT_HEADER, true);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		self::setupCurlSsl($ch);
-		
-		$data = curl_exec($ch);
-		$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-		if ($http_code == 301 || $http_code == 302 || $http_code == 303 || $http_code == 307) {
-			list($header) = explode("\r\n\r\n", $data, 2);
-			if (preg_match('/(?:Location:|URI:)(.*?)\n/i', $header, $matches)) {
-				$url = trim($matches[1]);
-				curl_setopt($ch, CURLOPT_URL, $url);
-				$redirects++;
-				return self::curlGetRedirectUrl($url, $ch, $max_redirect, $redirects, $curl_ssl_no_verify);
-			}
-		}
-		curl_close($ch);
-		return $url;
-	}
-	
-	/**
-	 * Setup cURL SSL options
-	 * 
-	 * @param int $ch
-	 * @return boolean
-	 */
-	public static function setupCurlSsl($ch, $curl_ssl_no_verify = false) {
-		if ($curl_ssl_no_verify) {
-			return (
-				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false)
-				&&
-				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false));
-		} else {
-			return (
-				curl_setopt($ch, CURLOPT_CAINFO, XOOPS_TRUST_PATH . '/modules/xupdate/include/cacert.pem')
-					&&
-				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true)
-					&&
-				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2));
-		}
-	}
-	
+    /**
+     * Get redirect URL with cURL
+     * 
+     * @param $url
+     * @param $ch
+     * @param $max_redirect
+     * @param $redirects
+     * @return string
+     */
+    public static function curlGetRedirectUrl($url, $ch = null, $max_redirect = 10, $redirects = 0, $curl_ssl_no_verify = false)
+    {
+        if ($max_redirect < $redirects) {
+            return $url;
+        }
+        if (! $ch) {
+            $ch = curl_init($url);
+        }
+        curl_setopt($ch, CURLOPT_HEADER, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        self::setupCurlSsl($ch);
+        
+        $data = curl_exec($ch);
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        if ($http_code == 301 || $http_code == 302 || $http_code == 303 || $http_code == 307) {
+            list($header) = explode("\r\n\r\n", $data, 2);
+            if (preg_match('/(?:Location:|URI:)(.*?)\n/i', $header, $matches)) {
+                $url = trim($matches[1]);
+                curl_setopt($ch, CURLOPT_URL, $url);
+                $redirects++;
+                return self::curlGetRedirectUrl($url, $ch, $max_redirect, $redirects, $curl_ssl_no_verify);
+            }
+        }
+        curl_close($ch);
+        return $url;
+    }
+    
+    /**
+     * Setup cURL SSL options
+     * 
+     * @param int $ch
+     * @return boolean
+     */
+    public static function setupCurlSsl($ch, $curl_ssl_no_verify = false)
+    {
+        if ($curl_ssl_no_verify) {
+            return (
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false)
+                &&
+                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false));
+        } else {
+            return (
+                curl_setopt($ch, CURLOPT_CAINFO, XOOPS_TRUST_PATH . '/modules/xupdate/include/cacert.pem')
+                    &&
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true)
+                    &&
+                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2));
+        }
+    }
+    
     /**
      * Check, Is directory writable
      * 
      * @param string $dir
      * @return boolean
      */
-    public static function checkDirWritable($dir) {
-    	$ret = false;
-    	$dir = rtrim($dir, '/\\');
-    	if (!empty($dir) && is_dir($dir)) {
-    		$test = $dir . DIRECTORY_SEPARATOR . 'writable.check';
-    		if (@ touch($test)) {
-    			$ret = true;
-    			unlink($test);
-    		} else {
-    			$ret = false;
-    		}
-    	}
-    	return $ret;
+    public static function checkDirWritable($dir)
+    {
+        $ret = false;
+        $dir = rtrim($dir, '/\\');
+        if (!empty($dir) && is_dir($dir)) {
+            $test = $dir . DIRECTORY_SEPARATOR . 'writable.check';
+            if (@ touch($test)) {
+                $ret = true;
+                unlink($test);
+            } else {
+                $ret = false;
+            }
+        }
+        return $ret;
     }
     
-	/**
-	 * Check, Can make directory
-	 * 
-	 * @param unknown $targetDir
-	 * @return boolean
-	 */
-	public static function checkMakeDirectory($targetDir) {
-		return (@mkdir($targetDir.PATH_SEPARATOR.'mkdir_test') && @rmdir($targetDir.PATH_SEPARATOR.'mkdir_test'));
-	}
+    /**
+     * Check, Can make directory
+     * 
+     * @param unknown $targetDir
+     * @return boolean
+     */
+    public static function checkMakeDirectory($targetDir)
+    {
+        return (@mkdir($targetDir.PATH_SEPARATOR.'mkdir_test') && @rmdir($targetDir.PATH_SEPARATOR.'mkdir_test'));
+    }
     
-	/**
-	 * check_http_timeout
-	 * 
-	 * @return void
-	 */
-	public static function check_http_timeout() {
-		static $start;
-		if (! $start) {
-			$start = time();
-		}
-		if (time() - $start > 270) exit();
-	}
+    /**
+     * check_http_timeout
+     * 
+     * @return void
+     */
+    public static function check_http_timeout()
+    {
+        static $start;
+        if (! $start) {
+            $start = time();
+        }
+        if (time() - $start > 270) {
+            exit();
+        }
+    }
 
     public static function getCategoryList($dirname)
     {
@@ -251,5 +258,3 @@ class Xupdate_Utils
         return $arg;
     }
 }
-
-?>

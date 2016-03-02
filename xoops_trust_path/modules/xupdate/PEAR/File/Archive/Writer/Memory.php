@@ -40,14 +40,14 @@ class File_Archive_Writer_Memory extends File_Archive_Writer
      * @var string $data The buffer
      * @access private
      */
-    var $data = "";
+    public $data = "";
     /**
      * Information about the file being written into this writer
      * @access private
      */
-    var $filename;
-    var $stat;
-    var $mime;
+    public $filename;
+    public $stat;
+    public $mime;
 
     /**
      * @param reference $data If provided, the data will be output in this
@@ -59,18 +59,21 @@ class File_Archive_Writer_Memory extends File_Archive_Writer
      *        Any data located after $seek will be erased
      *        The default value is 0
      */
-    function File_Archive_Writer_Memory(&$data, $seek = 0)
+    public function File_Archive_Writer_Memory(&$data, $seek = 0)
     {
         $this->data =& $data;
         $this->data = substr($data, 0, $seek);
     }
 
-    function writeData($d) { $this->data .= $d; }
+    public function writeData($d)
+    {
+        $this->data .= $d;
+    }
 
     /**
      * @see File_Archive_Writer::newFile()
      */
-    function newFile($filename, $stat, $mime = "application/octet-stream")
+    public function newFile($filename, $stat, $mime = "application/octet-stream")
     {
         $this->filename = $filename;
         $this->stat = $stat;
@@ -79,7 +82,7 @@ class File_Archive_Writer_Memory extends File_Archive_Writer
     /**
      * @see File_Archive_Writer::newFileNeedsMIME
      */
-    function newFileNeedsMIME()
+    public function newFileNeedsMIME()
     {
         return true;
     }
@@ -91,17 +94,26 @@ class File_Archive_Writer_Memory extends File_Archive_Writer
      *
      * @return string buffer
      */
-    function &getData() { return $this->data; }
+    public function &getData()
+    {
+        return $this->data;
+    }
 
     /**
      * Clear the buffer
      */
-    function clear() { $this->data = ""; }
+    public function clear()
+    {
+        $this->data = "";
+    }
 
     /**
      * Returns true iif the buffer is empty
      */
-    function isEmpty() { return empty($this->data); }
+    public function isEmpty()
+    {
+        return empty($this->data);
+    }
 
     /**
      * Create a reader from this writer
@@ -113,7 +125,7 @@ class File_Archive_Writer_Memory extends File_Archive_Writer
      * Any unspecified parameter will be set to the value of the last file
      * written in this writer
      */
-    function makeReader($filename = null, $stat = null, $mime = null)
+    public function makeReader($filename = null, $stat = null, $mime = null)
     {
         require_once "File/Archive/Reader/Memory.php";
         return new File_Archive_Reader_Memory(
@@ -123,5 +135,3 @@ class File_Archive_Writer_Memory extends File_Archive_Writer
             $mime     === null ? $this->mime     : $mime);
     }
 }
-
-?>

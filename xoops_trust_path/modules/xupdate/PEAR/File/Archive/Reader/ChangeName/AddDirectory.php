@@ -44,8 +44,8 @@ require_once "File/Archive/Reader/ChangeName.php";
  */
 class File_Archive_Reader_ChangeName_AddDirectory extends File_Archive_Reader_ChangeName
 {
-    var $baseName;
-    function File_Archive_Reader_ChangeName_AddDirectory($baseName, &$source)
+    public $baseName;
+    public function File_Archive_Reader_ChangeName_AddDirectory($baseName, &$source)
     {
         parent::File_Archive_Reader_ChangeName($source);
         $this->baseName = $this->getStandardURL($baseName);
@@ -54,7 +54,7 @@ class File_Archive_Reader_ChangeName_AddDirectory extends File_Archive_Reader_Ch
     /**
      * Modify the name by adding baseName to it
      */
-    function modifyName($name)
+    public function modifyName($name)
     {
         return $this->baseName.
                (empty($this->baseName) || empty($name) ? '': '/').
@@ -65,7 +65,7 @@ class File_Archive_Reader_ChangeName_AddDirectory extends File_Archive_Reader_Ch
      * Remove baseName from the name
      * Return false if the name doesn't start with baseName
      */
-    function unmodifyName($name)
+    public function unmodifyName($name)
     {
         if (strncmp($name, $this->baseName.'/', strlen($this->baseName)+1) == 0) {
             $res = substr($name, strlen($this->baseName)+1);
@@ -74,14 +74,12 @@ class File_Archive_Reader_ChangeName_AddDirectory extends File_Archive_Reader_Ch
             } else {
                 return $res;
             }
-        } else if (empty($this->baseName)) {
+        } elseif (empty($this->baseName)) {
             return $name;
-        } else if ($name == $this->baseName) {
+        } elseif ($name == $this->baseName) {
             return '';
         } else {
             return false;
         }
     }
 }
-
-?>

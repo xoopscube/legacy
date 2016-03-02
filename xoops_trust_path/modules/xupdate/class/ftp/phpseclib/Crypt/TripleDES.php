@@ -81,7 +81,8 @@ define('CRYPT_DES_MODE_CBC3', CRYPT_DES_MODE_CBC);
  * @access  public
  * @package Crypt_TerraDES
  */
-class Crypt_TripleDES {
+class Crypt_TripleDES
+{
     /**
      * The Three Keys
      *
@@ -89,7 +90,7 @@ class Crypt_TripleDES {
      * @var String
      * @access private
      */
-    var $key = "\0\0\0\0\0\0\0\0";
+    public $key = "\0\0\0\0\0\0\0\0";
 
     /**
      * The Encryption Mode
@@ -98,7 +99,7 @@ class Crypt_TripleDES {
      * @var Integer
      * @access private
      */
-    var $mode = CRYPT_DES_MODE_CBC;
+    public $mode = CRYPT_DES_MODE_CBC;
 
     /**
      * Continuous Buffer status
@@ -107,7 +108,7 @@ class Crypt_TripleDES {
      * @var Boolean
      * @access private
      */
-    var $continuousBuffer = false;
+    public $continuousBuffer = false;
 
     /**
      * Padding status
@@ -116,7 +117,7 @@ class Crypt_TripleDES {
      * @var Boolean
      * @access private
      */
-    var $padding = true;
+    public $padding = true;
 
     /**
      * The Initialization Vector
@@ -125,7 +126,7 @@ class Crypt_TripleDES {
      * @var String
      * @access private
      */
-    var $iv = "\0\0\0\0\0\0\0\0";
+    public $iv = "\0\0\0\0\0\0\0\0";
 
     /**
      * A "sliding" Initialization Vector
@@ -134,7 +135,7 @@ class Crypt_TripleDES {
      * @var String
      * @access private
      */
-    var $encryptIV = "\0\0\0\0\0\0\0\0";
+    public $encryptIV = "\0\0\0\0\0\0\0\0";
 
     /**
      * A "sliding" Initialization Vector
@@ -143,7 +144,7 @@ class Crypt_TripleDES {
      * @var String
      * @access private
      */
-    var $decryptIV = "\0\0\0\0\0\0\0\0";
+    public $decryptIV = "\0\0\0\0\0\0\0\0";
 
     /**
      * The Crypt_DES objects
@@ -151,7 +152,7 @@ class Crypt_TripleDES {
      * @var Array
      * @access private
      */
-    var $des;
+    public $des;
 
     /**
      * mcrypt resource for encryption
@@ -163,7 +164,7 @@ class Crypt_TripleDES {
      * @var String
      * @access private
      */
-    var $enmcrypt;
+    public $enmcrypt;
 
     /**
      * mcrypt resource for decryption
@@ -175,7 +176,7 @@ class Crypt_TripleDES {
      * @var String
      * @access private
      */
-    var $demcrypt;
+    public $demcrypt;
 
     /**
      * Does the enmcrypt resource need to be (re)initialized?
@@ -185,7 +186,7 @@ class Crypt_TripleDES {
      * @var Boolean
      * @access private
      */
-    var $enchanged = true;
+    public $enchanged = true;
 
     /**
      * Does the demcrypt resource need to be (re)initialized?
@@ -195,7 +196,7 @@ class Crypt_TripleDES {
      * @var Boolean
      * @access private
      */
-    var $dechanged = true;
+    public $dechanged = true;
 
     /**
      * Is the mode one that is paddable?
@@ -204,7 +205,7 @@ class Crypt_TripleDES {
      * @var Boolean
      * @access private
      */
-    var $paddable = false;
+    public $paddable = false;
 
     /**
      * Encryption buffer for CTR, OFB and CFB modes
@@ -213,7 +214,7 @@ class Crypt_TripleDES {
      * @var String
      * @access private
      */
-    var $enbuffer = '';
+    public $enbuffer = '';
 
     /**
      * Decryption buffer for CTR, OFB and CFB modes
@@ -222,7 +223,7 @@ class Crypt_TripleDES {
      * @var String
      * @access private
      */
-    var $debuffer = '';
+    public $debuffer = '';
 
     /**
      * mcrypt resource for CFB mode
@@ -232,7 +233,7 @@ class Crypt_TripleDES {
      * @var String
      * @access private
      */
-    var $ecb;
+    public $ecb;
 
     /**
      * Default Constructor.
@@ -244,9 +245,9 @@ class Crypt_TripleDES {
      * @return Crypt_TripleDES
      * @access public
      */
-    function Crypt_TripleDES($mode = CRYPT_DES_MODE_CBC)
+    public function Crypt_TripleDES($mode = CRYPT_DES_MODE_CBC)
     {
-        if ( !defined('CRYPT_DES_MODE') ) {
+        if (!defined('CRYPT_DES_MODE')) {
             switch (true) {
                 case extension_loaded('mcrypt'):
                     // i'd check to see if des was supported, by doing in_array('des', mcrypt_list_algorithms('')),
@@ -259,7 +260,7 @@ class Crypt_TripleDES {
             }
         }
 
-        if ( $mode == CRYPT_DES_MODE_3CBC ) {
+        if ($mode == CRYPT_DES_MODE_3CBC) {
             $this->mode = CRYPT_DES_MODE_3CBC;
             $this->des = array(
                 new Crypt_DES(CRYPT_DES_MODE_CBC),
@@ -275,7 +276,7 @@ class Crypt_TripleDES {
             return;
         }
 
-        switch ( CRYPT_DES_MODE ) {
+        switch (CRYPT_DES_MODE) {
             case CRYPT_DES_MODE_MCRYPT:
                 switch ($mode) {
                     case CRYPT_DES_MODE_ECB:
@@ -341,7 +342,7 @@ class Crypt_TripleDES {
      * @access public
      * @param String $key
      */
-    function setKey($key)
+    public function setKey($key)
     {
         $length = strlen($key);
         if ($length > 8) {
@@ -372,7 +373,7 @@ class Crypt_TripleDES {
      * @access public
      * @param String $iv
      */
-    function setIV($iv)
+    public function setIV($iv)
     {
         $this->encryptIV = $this->decryptIV = $this->iv = str_pad(substr($iv, 0, 8), 8, chr(0));
         if ($this->mode == CRYPT_DES_MODE_3CBC) {
@@ -395,7 +396,7 @@ class Crypt_TripleDES {
      * @param Integer $length
      * @param String $iv
      */
-    function _generate_xor($length, &$iv)
+    public function _generate_xor($length, &$iv)
     {
         $xor = '';
         $num_blocks = ($length + 7) >> 3;
@@ -427,7 +428,7 @@ class Crypt_TripleDES {
      * @access public
      * @param String $plaintext
      */
-    function encrypt($plaintext)
+    public function encrypt($plaintext)
     {
         if ($this->paddable) {
             $plaintext = $this->_pad($plaintext);
@@ -440,7 +441,7 @@ class Crypt_TripleDES {
             return $ciphertext;
         }
 
-        if ( CRYPT_DES_MODE == CRYPT_DES_MODE_MCRYPT ) {
+        if (CRYPT_DES_MODE == CRYPT_DES_MODE_MCRYPT) {
             if ($this->enchanged) {
                 if (!isset($this->enmcrypt)) {
                     $this->enmcrypt = mcrypt_module_open(MCRYPT_3DES, '', $this->mode, '');
@@ -620,7 +621,7 @@ class Crypt_TripleDES {
                 if ($this->continuousBuffer) {
                     $this->encryptIV = $xor;
                     if ($start = strlen($plaintext) & 7) {
-                         $buffer = substr($key, $start) . $buffer;
+                        $buffer = substr($key, $start) . $buffer;
                     }
                 }
         }
@@ -634,7 +635,7 @@ class Crypt_TripleDES {
      * @access public
      * @param String $ciphertext
      */
-    function decrypt($ciphertext)
+    public function decrypt($ciphertext)
     {
         if ($this->mode == CRYPT_DES_MODE_3CBC && strlen($this->key) > 8) {
             $plaintext = $this->des[0]->decrypt($this->des[1]->encrypt($this->des[2]->decrypt($ciphertext)));
@@ -648,7 +649,7 @@ class Crypt_TripleDES {
             $ciphertext = str_pad($ciphertext, (strlen($ciphertext) + 7) & 0xFFFFFFF8, chr(0));
         }
 
-        if ( CRYPT_DES_MODE == CRYPT_DES_MODE_MCRYPT ) {
+        if (CRYPT_DES_MODE == CRYPT_DES_MODE_MCRYPT) {
             if ($this->dechanged) {
                 if (!isset($this->demcrypt)) {
                     $this->demcrypt = mcrypt_module_open(MCRYPT_3DES, '', $this->mode, '');
@@ -795,7 +796,7 @@ class Crypt_TripleDES {
                     if ($continuousBuffer && strlen($block) != 8) {
                         $buffer['ciphertext'].= $block;
                         $block = $xor;
-                    } else if (strlen($block) == 8) {
+                    } elseif (strlen($block) == 8) {
                         $xor = $des[0]->_processBlock($block, CRYPT_DES_ENCRYPT);
                         $xor = $des[1]->_processBlock($xor, CRYPT_DES_DECRYPT);
                         $xor = $des[2]->_processBlock($xor, CRYPT_DES_ENCRYPT);
@@ -828,7 +829,7 @@ class Crypt_TripleDES {
                 if ($this->continuousBuffer) {
                     $this->decryptIV = $xor;
                     if ($start = strlen($ciphertext) & 7) {
-                         $buffer = substr($key, $start) . $buffer;
+                        $buffer = substr($key, $start) . $buffer;
                     }
                 }
         }
@@ -873,7 +874,7 @@ class Crypt_TripleDES {
      * @see Crypt_TripleDES::disableContinuousBuffer()
      * @access public
      */
-    function enableContinuousBuffer()
+    public function enableContinuousBuffer()
     {
         $this->continuousBuffer = true;
         if ($this->mode == CRYPT_DES_MODE_3CBC) {
@@ -891,7 +892,7 @@ class Crypt_TripleDES {
      * @see Crypt_TripleDES::enableContinuousBuffer()
      * @access public
      */
-    function disableContinuousBuffer()
+    public function disableContinuousBuffer()
     {
         $this->continuousBuffer = false;
         $this->encryptIV = $this->iv;
@@ -918,7 +919,7 @@ class Crypt_TripleDES {
      * @see Crypt_TripleDES::disablePadding()
      * @access public
      */
-    function enablePadding()
+    public function enablePadding()
     {
         $this->padding = true;
     }
@@ -929,7 +930,7 @@ class Crypt_TripleDES {
      * @see Crypt_TripleDES::enablePadding()
      * @access public
      */
-    function disablePadding()
+    public function disablePadding()
     {
         $this->padding = false;
     }
@@ -946,7 +947,7 @@ class Crypt_TripleDES {
      * @see Crypt_TripleDES::_unpad()
      * @access private
      */
-    function _pad($text)
+    public function _pad($text)
     {
         $length = strlen($text);
 
@@ -972,7 +973,7 @@ class Crypt_TripleDES {
      * @see Crypt_TripleDES::_pad()
      * @access private
      */
-    function _unpad($text)
+    public function _unpad($text)
     {
         if (!$this->padding) {
             return $text;
@@ -997,7 +998,7 @@ class Crypt_TripleDES {
      * @return String
      * @access private
      */
-    function _string_shift(&$string, $index = 1)
+    public function _string_shift(&$string, $index = 1)
     {
         $substr = substr($string, 0, $index);
         $string = substr($string, $index);

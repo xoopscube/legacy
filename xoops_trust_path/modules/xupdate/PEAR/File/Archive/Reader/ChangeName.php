@@ -48,7 +48,7 @@ class File_Archive_Reader_ChangeName extends File_Archive_Reader_Relay
      *
      * @param File_Archive_Reader &$source The archive reader to relay
      */
-    function File_Archive_Reader_ChangeName(&$source)
+    public function File_Archive_Reader_ChangeName(&$source)
     {
         parent::File_Archive_Reader_Relay($source);
     }
@@ -61,7 +61,7 @@ class File_Archive_Reader_ChangeName extends File_Archive_Reader_Relay
      * @return string New name as shown by this reader or false is the
      *         file or directory has to be skipped
      */
-    function modifyName($name)
+    public function modifyName($name)
     {
     }
 
@@ -84,7 +84,7 @@ class File_Archive_Reader_ChangeName extends File_Archive_Reader_Relay
      *         input such that modifyName would return $name or a file in
      *         a directory called $name
      */
-    function unmodifyName($name)
+    public function unmodifyName($name)
     {
         return null;
     }
@@ -98,7 +98,7 @@ class File_Archive_Reader_ChangeName extends File_Archive_Reader_Relay
      * @return string Name of the current file
      * @see File_Archive_Reader::getFilename()
      */
-    function getFilename()
+    public function getFilename()
     {
         return $this->getStandardURL($this->modifyName(parent::getFilename()));
     }
@@ -114,7 +114,7 @@ class File_Archive_Reader_ChangeName extends File_Archive_Reader_Relay
      * @return array filenames from the current pos to the end of the source
      * @see File_Archive_Reader::getFileList()
      */
-    function getFileList()
+    public function getFileList()
     {
         $list   = parent::getFileList();
         $result = array();
@@ -138,12 +138,12 @@ class File_Archive_Reader_ChangeName extends File_Archive_Reader_Relay
      * @return array filenames from the current pos to the end of the source
      * @see File_Archive_Reader::select()
      */
-    function select($filename, $close = true)
+    public function select($filename, $close = true)
     {
         $name = $this->unmodifyName($filename);
         if ($name === false) {
             return false;
-        } else if ($name === null) {
+        } elseif ($name === null) {
             $std = $this->getStandardURL($filename);
             if (substr($std, -1)=='/') {
                 $std = substr($std, 0, -1);
@@ -175,5 +175,3 @@ class File_Archive_Reader_ChangeName extends File_Archive_Reader_Relay
         }
     }
 }
-
-?>

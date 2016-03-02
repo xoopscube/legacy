@@ -61,7 +61,7 @@ function File_Archive_cleanCache($file, $group)
  */
 class File_Archive
 {
-    function& _option($name)
+    public function & _option($name)
     {
         static $container = array(
             'zipCompressionLevel' => 9,
@@ -124,7 +124,7 @@ class File_Archive
      *      Example: '/^(http|ftp):\/\//' will cache all files downloaded via http or ftp
      *
      */
-    function setOption($name, $value)
+    public function setOption($name, $value)
     {
         $option =& File_Archive::_option($name);
         $option = $value;
@@ -137,7 +137,7 @@ class File_Archive
     /**
      * Retrieve the value of an option
      */
-    function getOption($name)
+    public function getOption($name)
     {
         return File_Archive::_option($name);
     }
@@ -254,7 +254,7 @@ class File_Archive
      *       function may not work with
      *       URLs containing folders which name ends with such an extension
      */
-    function readSource(&$source, $URL, $symbolic = null,
+    public function readSource(&$source, $URL, $symbolic = null,
                   $uncompression = 0, $directoryDepth = -1)
     {
         return File_Archive::_readSource($source, $URL, $reachable, $baseDir,
@@ -268,7 +268,7 @@ class File_Archive
      *
      * @access private
      */
-    function _readSource(&$toConvert, $URL, &$reachable, &$baseDir, $symbolic = null,
+    public function _readSource(&$toConvert, $URL, &$reachable, &$baseDir, $symbolic = null,
                   $uncompression = 0, $directoryDepth = -1)
     {
         $source =& File_Archive::_convertToReader($toConvert);
@@ -277,7 +277,7 @@ class File_Archive
         }
         if (is_array($URL)) {
             $converted = array();
-            foreach($URL as $key => $foo) {
+            foreach ($URL as $key => $foo) {
                 $converted[] =& File_Archive::_convertToReader($URL[$key]);
             }
             return File_Archive::readMulti($converted);
@@ -369,7 +369,7 @@ class File_Archive
             }
 
         //If the URL can be interpreted as a file, and we are reading from the file system
-        } else if (is_file($URL) && substr($URL, -1)!='/' && $source === null) {
+        } elseif (is_file($URL) && substr($URL, -1)!='/' && $source === null) {
             require_once "File/Archive/Reader/File.php";
             $result = new File_Archive_Reader_File($URL, $realSymbolic);
 
@@ -471,7 +471,7 @@ class File_Archive
 
         return $result;
     }
-    function read($URL, $symbolic = null,
+    public function read($URL, $symbolic = null,
                   $uncompression = 0, $directoryDepth = -1)
     {
         $source = null;
@@ -491,7 +491,7 @@ class File_Archive
      * @param string $name Index of the file in the $_FILES array
      * @return File_Archive_Reader File reader on the uploaded file
      */
-    function readUploadedFile($name)
+    public function readUploadedFile($name)
     {
         if (!isset($_FILES[$name])) {
             return PEAR::raiseError("File $name has not been uploaded");
@@ -546,7 +546,7 @@ class File_Archive
      *        It can be a File_Archive_Reader or a string, which will be converted using the
      *        read function
      */
-    function cache(&$toConvert)
+    public function cache(&$toConvert)
     {
         $source =& File_Archive::_convertToReader($toConvert);
         if (PEAR::isError($source)) {
@@ -564,7 +564,7 @@ class File_Archive
      *
      * @access private
      */
-    function &_convertToReader(&$source)
+    public function &_convertToReader(&$source)
     {
         if (is_string($source)) {
             $cacheCondition = File_Archive::getOption('cacheCondition');
@@ -576,12 +576,12 @@ class File_Archive
                 $obj = File_Archive::read($source);
                 return $obj;
             }
-        } else if (is_array($source)) {
+        } elseif (is_array($source)) {
             return File_Archive::readMulti($source);
         } else {
             return $source;
         }
-     }
+    }
 
     /**
      * Try to interpret the object as a writer
@@ -590,15 +590,15 @@ class File_Archive
      *
      * @access private
      */
-    function &_convertToWriter(&$dest)
+    public function &_convertToWriter(&$dest)
     {
         if (is_string($dest)) {
             $obj =& File_Archive::appender($dest);
             return $obj;
-        } else if (is_array($dest)) {
+        } elseif (is_array($dest)) {
             require_once 'File/Archive/Writer/Multi.php';
             $writer = new File_Archive_Writer_Multi();
-            foreach($dest as $key => $foo) {
+            foreach ($dest as $key => $foo) {
                 $writer->addWriter($dest[$key]);
             }
             return $writer;
@@ -617,7 +617,7 @@ class File_Archive
      *         Currently, supported extensions are tar, zip, jar, gz, tgz,
      *         tbz, bz2, bzip2, ar, deb
      */
-    function isKnownExtension($extension)
+    public function isKnownExtension($extension)
     {
         return $extension == 'tar'   ||
                $extension == 'zip'   ||
@@ -648,14 +648,14 @@ class File_Archive
      *         $source interpreting it as a $extension archive
      *         If $extension is not handled return false
      */
-    function readArchive($extension, &$toConvert, $sourceOpened = false)
+    public function readArchive($extension, &$toConvert, $sourceOpened = false)
     {
         $source =& File_Archive::_convertToReader($toConvert);
         if (PEAR::isError($source)) {
             return $source;
         }
 
-        switch($extension) {
+        switch ($extension) {
         case 'tgz':
             return File_Archive::readArchive('tar',
                     File_Archive::readArchive('gz', $source, $sourceOpened)
@@ -713,7 +713,7 @@ class File_Archive
      *        mime type thanks to the extension of $filename
      * @see File_Archive_Reader_Memory
      */
-    function readMemory($memory, $filename, $stat=array(), $mime=null)
+    public function readMemory($memory, $filename, $stat=array(), $mime=null)
     {
         require_once "File/Archive/Reader/Memory.php";
         return new File_Archive_Reader_Memory($memory, $filename, $stat, $mime);
@@ -729,7 +729,7 @@ class File_Archive
      *        built thanks to the read function
      * @see   File_Archive_Reader_Multi, File_Archive::read()
      */
-    function readMulti($sources = array())
+    public function readMulti($sources = array())
     {
         require_once "File/Archive/Reader/Multi.php";
         $result = new File_Archive_Reader_Multi();
@@ -756,7 +756,7 @@ class File_Archive
      *        mime type thanks to the extension of $filename
      * @see   File_Archive_Reader_Concat
      */
-    function readConcat(&$toConvert, $filename, $stat=array(), $mime=null)
+    public function readConcat(&$toConvert, $filename, $stat=array(), $mime=null)
     {
         $source =& File_Archive::_convertToReader($toConvert);
         if (PEAR::isError($source)) {
@@ -780,7 +780,7 @@ class File_Archive
      * @return File_Archive_Reader a new reader that contains the same files
      *        as $toConvert but with a different name
      */
-    function changeName($function, &$toConvert)
+    public function changeName($function, &$toConvert)
     {
         $source =& File_Archive::_convertToReader($toConvert);
         if (PEAR::isError($source)) {
@@ -799,7 +799,7 @@ class File_Archive
      * @param File_Archive_Reader $source Source that will be filtered
      * @see   File_Archive_Reader_Filter
      */
-    function filter($predicate, &$toConvert)
+    public function filter($predicate, &$toConvert)
     {
         $source =& File_Archive::_convertToReader($toConvert);
         if (PEAR::isError($source)) {
@@ -814,7 +814,7 @@ class File_Archive
      *
      * @see File_Archive_Predicate_True
      */
-    function predTrue()
+    public function predTrue()
     {
         require_once "File/Archive/Predicate/True.php";
         return new File_Archive_Predicate_True();
@@ -824,7 +824,7 @@ class File_Archive
      *
      * @see File_Archive_Predicate_False
      */
-    function predFalse()
+    public function predFalse()
     {
         require_once "File/Archive/Predicate/False.php";
         return new File_Archive_Predicate_False();
@@ -837,7 +837,7 @@ class File_Archive
      * @param File_Archive_Predicate (any number of them)
      * @see File_Archive_Predicate_And
      */
-    function predAnd()
+    public function predAnd()
     {
         require_once "File/Archive/Predicate/And.php";
         $pred = new File_Archive_Predicate_And();
@@ -855,7 +855,7 @@ class File_Archive
      * @param File_Archive_Predicate (any number of them)
      * @see File_Archive_Predicate_Or
      */
-    function predOr()
+    public function predOr()
     {
         require_once "File/Archive/Predicate/Or.php";
         $pred = new File_Archive_Predicate_Or();
@@ -871,7 +871,7 @@ class File_Archive
      * @param File_Archive_Predicate $pred Predicate to negate
      * @see File_Archive_Predicate_Not
      */
-    function predNot($pred)
+    public function predNot($pred)
     {
         require_once "File/Archive/Predicate/Not.php";
         return new File_Archive_Predicate_Not($pred);
@@ -882,7 +882,7 @@ class File_Archive
      * @param int $size the minimal size of the files (in Bytes)
      * @see File_Archive_Predicate_MinSize
      */
-    function predMinSize($size)
+    public function predMinSize($size)
     {
         require_once "File/Archive/Predicate/MinSize.php";
         return new File_Archive_Predicate_MinSize($size);
@@ -894,7 +894,7 @@ class File_Archive
      *        files
      * @see File_Archive_Predicate_MinTime
      */
-    function predMinTime($time)
+    public function predMinTime($time)
     {
         require_once "File/Archive/Predicate/MinTime.php";
         return new File_Archive_Predicate_MinTime($time);
@@ -906,7 +906,7 @@ class File_Archive
      * @param int $depth Maximal number of directories in path of the files
      * @see File_Archive_Predicate_MaxDepth
      */
-    function predMaxDepth($depth)
+    public function predMaxDepth($depth)
     {
         require_once "File/Archive/Predicate/MaxDepth.php";
         return new File_Archive_Predicate_MaxDepth($depth);
@@ -918,7 +918,7 @@ class File_Archive
      * extension of the files
      * @see File_Archive_Predicate_Extension
      */
-    function predExtension($list)
+    public function predExtension($list)
     {
         require_once "File/Archive/Predicate/Extension.php";
         return new File_Archive_Predicate_Extension($list);
@@ -931,7 +931,7 @@ class File_Archive
      *        select all the MIME in class image
      * @see   File_Archive_Predicate_MIME, MIME_Type::isWildcard()
      */
-    function predMIME($list)
+    public function predMIME($list)
     {
         require_once "File/Archive/Predicate/MIME.php";
         return new File_Archive_Predicate_MIME($list);
@@ -944,7 +944,7 @@ class File_Archive
      * @param string $preg regular expression that the filename must follow
      * @see File_Archive_Predicate_Preg, preg_match()
      */
-    function predPreg($preg)
+    public function predPreg($preg)
     {
         require_once "File/Archive/Predicate/Preg.php";
         return new File_Archive_Predicate_Preg($preg);
@@ -958,7 +958,7 @@ class File_Archive
      * @see File_Archive_Predicate_Ereg, ereg()
      * @deprecated Make use of predPreg instead for PHP 5.3+ compatability
      */
-    function predEreg($ereg)
+    public function predEreg($ereg)
     {
         require_once "File/Archive/Predicate/Ereg.php";
         return new File_Archive_Predicate_Ereg($ereg);
@@ -971,7 +971,7 @@ class File_Archive
      * @see File_Archive_Predicate_Eregi, eregi
      * @deprecated Make use of predPreg instead for PHP 5.3+ compatability
      */
-    function predEregi($ereg)
+    public function predEregi($ereg)
     {
         require_once "File/Archive/Predicate/Eregi.php";
         return new File_Archive_Predicate_Eregi($ereg);
@@ -985,7 +985,7 @@ class File_Archive
      *        are the keys of the array
      *        The predicate will return true if isset($indexes[$pos])
      */
-    function predIndex($indexes)
+    public function predIndex($indexes)
     {
         require_once "File/Archive/Predicate/Index.php";
         return new File_Archive_Predicate_Index($indexes);
@@ -1012,7 +1012,7 @@ class File_Archive
      *        for the MIME type of the file
      * @see   File_Archive_Predicate_Custom
      */
-    function predCustom($expression)
+    public function predCustom($expression)
     {
         require_once "File/Archive/Predicate/Custom.php";
         return new File_Archive_Predicate_Custom($expression);
@@ -1029,7 +1029,7 @@ class File_Archive
      * @param string $message Text body of the mail
      * @see File_Archive_Writer_Mail
      */
-    function toMail($to, $headers, $message, $mail = null)
+    public function toMail($to, $headers, $message, $mail = null)
     {
         require_once "File/Archive/Writer/Mail.php";
         return new File_Archive_Writer_Mail($to, $headers, $message, $mail);
@@ -1042,7 +1042,7 @@ class File_Archive
      *        be created
      * @see   File_Archive_Writer_Files
      */
-    function toFiles($baseDir = "")
+    public function toFiles($baseDir = "")
     {
         require_once "File/Archive/Writer/Files.php";
         return new File_Archive_Writer_Files($baseDir);
@@ -1061,12 +1061,12 @@ class File_Archive
      *        File_Archive_Writer_Memory::getData() function
      * @see   File_Archive_Writer_Memory
      */
-    function toMemory()
+    public function toMemory()
     {
         $v = '';
         return File_Archive::toVariable($v);
     }
-    function toVariable(&$v)
+    public function toVariable(&$v)
     {
         require_once "File/Archive/Writer/Memory.php";
         return new File_Archive_Writer_Memory($v);
@@ -1077,7 +1077,7 @@ class File_Archive
      * @param File_Archive_Writer $a, $b writers where data will be duplicated
      * @see File_Archive_Writer_Multi
      */
-    function toMulti(&$aC, &$bC)
+    public function toMulti(&$aC, &$bC)
     {
         $a =& File_Archive::_convertToWriter($aC);
         $b =& File_Archive::_convertToWriter($bC);
@@ -1103,7 +1103,7 @@ class File_Archive
      *        download of the file. Default value is true
      * @see   File_Archive_Writer_Output
      */
-    function toOutput($sendHeaders = true)
+    public function toOutput($sendHeaders = true)
     {
         require_once "File/Archive/Writer/Output.php";
         return new File_Archive_Writer_Output($sendHeaders);
@@ -1122,7 +1122,7 @@ class File_Archive
      * @param bool $autoClose If set to true, $innerWriter will be closed when
      *        the returned archive is close. Default value is true.
      */
-    function toArchive($filename, &$toConvert, $type = null,
+    public function toArchive($filename, &$toConvert, $type = null,
                        $stat = array(), $autoClose = true)
     {
         $innerWriter =& File_Archive::_convertToWriter($toConvert);
@@ -1147,7 +1147,7 @@ class File_Archive
         $currentFilename = $filename;
         while (($extension = array_pop($extensions)) !== null) {
             unset($next);
-            switch($extension) {
+            switch ($extension) {
             case "tar":
                 require_once "File/Archive/Writer/Tar.php";
                 $next = new File_Archive_Writer_Tar(
@@ -1227,7 +1227,7 @@ class File_Archive
      *        You shouldn't need to change that
      * @return null or a PEAR error if an error occured
      */
-    function extract(&$sourceToConvert, &$destToConvert, $autoClose = true, $bufferSize = 0)
+    public function extract(&$sourceToConvert, &$destToConvert, $autoClose = true, $bufferSize = 0)
     {
         $source =& File_Archive::_convertToReader($sourceToConvert);
         if (PEAR::isError($source)) {
@@ -1266,7 +1266,7 @@ class File_Archive
      *        Time (index 9) will be overwritten to current time
      * @return File_Archive_Writer a writer that you can use to append files to the reader
      */
-    function appenderFromSource(&$toConvert, $URL = null, $unique = null,
+    public function appenderFromSource(&$toConvert, $URL = null, $unique = null,
                                  $type = null, $stat = array())
     {
         $source =& File_Archive::_convertToReader($toConvert);
@@ -1358,7 +1358,7 @@ class File_Archive
      * @param File_Archive_Reader $source A reader where some files will be appended
      * @return File_Archive_Writer a writer that you can use to append files to the reader
      */
-    function appender($URL, $unique = null, $type = null, $stat = array())
+    public function appender($URL, $unique = null, $type = null, $stat = array())
     {
         $source = null;
         return File_Archive::appenderFromSource($source, $URL, $unique, $type, $stat);
@@ -1373,7 +1373,7 @@ class File_Archive
      *        (for which $pred->isTrue($source) is true) will be erased
      * @param File_Archive_Reader $source A reader that contains the files to remove
      */
-    function removeFromSource(&$pred, &$toConvert, $URL = null)
+    public function removeFromSource(&$pred, &$toConvert, $URL = null)
     {
         $source =& File_Archive::_convertToReader($toConvert);
         if (PEAR::isError($source)) {
@@ -1401,7 +1401,7 @@ class File_Archive
      *
      * @param $URL URL of the archive where some files must be removed
      */
-    function remove($pred, $URL)
+    public function remove($pred, $URL)
     {
         $source = null;
         return File_Archive::removeFromSource($pred, $source, $URL);
@@ -1413,7 +1413,7 @@ class File_Archive
      *
      * @param File_Archive_Reader a reader that may contain duplicates
      */
-    function removeDuplicatesFromSource(&$toConvert, $URL = null)
+    public function removeDuplicatesFromSource(&$toConvert, $URL = null)
     {
         $source =& File_Archive::_convertToReader($toConvert);
         if (PEAR::isError($source)) {
@@ -1440,11 +1440,9 @@ class File_Archive
     /**
      * Remove duplicates from the archive specified in the URL
      */
-    function removeDuplicates($URL)
+    public function removeDuplicates($URL)
     {
         $source = null;
         return File_Archive::removeDuplicatesFromSource($source, $URL);
     }
 }
-
-?>
