@@ -234,6 +234,11 @@ class XoopsModule extends XoopsObject
         } else {
             $this->modinfo['version'] = 0;
         }
+        
+        // set ['sqlfile']['mysqli']
+        if (isset($this->modinfo['sqlfile']) && isset($this->modinfo['sqlfile']['mysql']) && ! isset($this->modinfo['sqlfile']['mysqli'])) {
+            $this->modinfo['sqlfile']['mysqli'] = $this->modinfo['sqlfile']['mysql'];
+        }
     }
 
     /**
