@@ -11,7 +11,5 @@
 * @author		voltan   <djvoltan@gmail.com>
 * @version		$Id$
 */
-define( '_MD_A_MYPREFERENCES_FORMTITLE' , 'دسترسی ماژول‌ها' ) ;
-define( '_MD_A_MYPREFERENCES_UPDATED' , 'دسترسی‌ها با موفقیت به روز شدند' ) ;
-
-?>
+define('_MD_A_MYPREFERENCES_FORMTITLE', 'دسترسی ماژول‌ها') ;
+define('_MD_A_MYPREFERENCES_UPDATED', 'دسترسی‌ها با موفقیت به روز شدند') ;
