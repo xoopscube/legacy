@@ -10,11 +10,9 @@ if (! class_exists('XoopsGTicket')) {
         public $_latest_token = '' ;
         public $messages = array() ;
 
-//HACK by domifara
-//	public function XoopsGTicket()
-    public function __construct()
-    {
-        global $xoopsConfig ;
+        public function __construct()
+        {
+            global $xoopsConfig ;
 
         // language file
         if (defined('XOOPS_ROOT_PATH') && ! empty($xoopsConfig['language']) && ! strstr($xoopsConfig['language'], '/')) {
@@ -36,7 +34,7 @@ if (! class_exists('XoopsGTicket')) {
             'btn_repost' => 'repost' ,
         ) ;
         }
-    }
+        }
 
     // render form as plain html
     public function getTicketHtml($salt = '', $timeout = 1800, $area = '')
@@ -205,28 +203,32 @@ if (! class_exists('XoopsGTicket')) {
             exit ;
         }
 
-        error_reporting(0) ;
-        while (ob_get_level()) {
-            ob_end_clean() ;
-        }
-
         $table = '<table>' ;
         $form = '<form action="?'.htmlspecialchars(@$_SERVER['QUERY_STRING'], ENT_QUOTES).'" method="post" >' ;
         foreach ($_POST as $key => $val) {
             if ($key == 'XOOPS_G_TICKET') {
                 continue ;
             }
+            if (get_magic_quotes_gpc()) {
+                $key = stripslashes($key) ;
+            }
             if (is_array($val)) {
                 list($tmp_table, $tmp_form) = $this->extract_post_recursive(htmlspecialchars($key, ENT_QUOTES), $val) ;
                 $table .= $tmp_table ;
                 $form .= $tmp_form ;
             } else {
+                if (get_magic_quotes_gpc()) {
+                    $val = stripslashes($val) ;
+                }
                 $table .= '<tr><th>'.htmlspecialchars($key, ENT_QUOTES).'</th><td>'.htmlspecialchars($val, ENT_QUOTES).'</td></tr>'."\n" ;
                 $form .= '<input type="hidden" name="'.htmlspecialchars($key, ENT_QUOTES).'" value="'.htmlspecialchars($val, ENT_QUOTES).'" />'."\n" ;
             }
         }
         $table .= '</table>' ;
         $form .= $this->getTicketHtml(__LINE__, 300, $area).'<input type="submit" value="'.$this->messages['btn_repost'].'" /></form>' ;
+
+        error_reporting(0) ;
+        while (@ob_get_level() && @ob_end_clean());
 
         echo '<html><head><title>'.$this->messages['err_general'].'</title><style>table,td,th {border:solid black 1px; border-collapse:collapse;}</style></head><body>' . sprintf($this->messages['fmt_prompt4repost'], $this->getErrors()) . $table . $form . '</body></html>' ;
     }
@@ -236,11 +238,17 @@ if (! class_exists('XoopsGTicket')) {
             $table = '' ;
             $form = '' ;
             foreach ($tmp_array as $key => $val) {
+                if (get_magic_quotes_gpc()) {
+                    $key = stripslashes($key) ;
+                }
                 if (is_array($val)) {
                     list($tmp_table, $tmp_form) = $this->extract_post_recursive($key_name.'['.htmlspecialchars($key, ENT_QUOTES).']', $val) ;
                     $table .= $tmp_table ;
                     $form .= $tmp_form ;
                 } else {
+                    if (get_magic_quotes_gpc()) {
+                        $val = stripslashes($val) ;
+                    }
                     $table .= '<tr><th>'.$key_name.'['.htmlspecialchars($key, ENT_QUOTES).']</th><td>'.htmlspecialchars($val, ENT_QUOTES).'</td></tr>'."\n" ;
                     $form .= '<input type="hidden" name="'.$key_name.'['.htmlspecialchars($key, ENT_QUOTES).']" value="'.htmlspecialchars($val, ENT_QUOTES).'" />'."\n" ;
                 }
