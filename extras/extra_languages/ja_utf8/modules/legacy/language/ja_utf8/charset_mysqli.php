@@ -11,7 +11,10 @@ if (!defined('XOOPS_ROOT_PATH')) {
 }
 
 if (!defined("LEGACY_JAPANESE_ANTI_CHARSETMYSQL")) {
-    $GLOBALS['xoopsDB']->queryF("/*!40101 SET NAMES utf8 */");
-    //$GLOBALS['xoopsDB']->queryF("/*!40101 SET SESSION collation_connection=utf8 */");
-    @mysqli_set_charset($GLOBALS['xoopsDB']->conn, 'utf8');
+    if (class_exists('mysqli_set_charset')) {
+        mysqli_set_charset($GLOBALS['xoopsDB']->conn, 'utf8');
+    } else {
+        $GLOBALS['xoopsDB']->queryF("/*!40101 SET NAMES utf8 */");
+        $GLOBALS['xoopsDB']->queryF("/*!40101 SET SESSION collation_connection=utf8_general_ci */");
+    }
 }
