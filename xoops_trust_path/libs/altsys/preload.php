@@ -11,3 +11,5 @@ if ($root->mController->_mStrategy) {
         altsys_include_language_file('modinfo') ;
     }
 }
+// load altsys newly gticket class for other modules
+require_once XOOPS_TRUST_PATH.'/libs/altsys/include/gtickets.php';
