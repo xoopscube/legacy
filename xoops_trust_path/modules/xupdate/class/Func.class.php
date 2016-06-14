@@ -102,6 +102,7 @@ if (! class_exists('Xupdate_Func')) {
                     continue;
                 }
                 
+                $url = $data['downloadUrl'];
                 try {
                     try {
                         if (!function_exists('curl_init')) {
@@ -112,7 +113,7 @@ if (! class_exists('Xupdate_Func')) {
                         return false;
                     }
                 
-                    $ch = curl_init($data['downloadUrl']);
+                    $ch = curl_init($url);
                     if ($ch === false) {
                         throw new Exception('curl_init fail', 2);
                     }
@@ -169,43 +170,12 @@ if (! class_exists('Xupdate_Func')) {
                 }
                 
                 // Proxy setting
-                if (!empty($_SERVER['HTTP_PROXY']) || !empty($_SERVER['http_proxy'])) {
-                    $proxy = parse_url(!empty($_SERVER['http_proxy']) ? $_SERVER['http_proxy'] : $_SERVER['HTTP_PROXY']);
-                    if (!empty($proxy) && isset($proxy['host'])) {
-                        // url
-                        $proxyURL = (isset($proxy['scheme']) ? $proxy['scheme'] : 'http') . '://';
-                        $proxyURL .= $proxy['host'];
-                        
-                        if (isset($proxy['port'])) {
-                            $proxyURL .= ":" . $proxy['port'];
-                        } elseif ('http://' == substr($proxyURL, 0, 7)) {
-                            $proxyURL .= ":80";
-                        } elseif ('https://' == substr($proxyURL, 0, 8)) {
-                            $proxyURL .= ":443";
-                        }
-                        try {
-                            if (! curl_setopt($ch, CURLOPT_PROXY, $proxyURL)) {
-                                throw new Exception('curl_setopt PROXY fail skip', 6);
-                            }
-                        } catch (Exception $e) {
-                            $this->_set_error_log($e->getMessage());
-                        }
-                        // user:password
-                        if (isset($proxy['user'])) {
-                            $proxyAuth = $proxy['user'];
-                            if (isset($proxy['pass'])) {
-                                $proxyAuth .= ':' . $proxy['pass'];
-                            }
-                            try {
-                                if (! curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyAuth)) {
-                                    throw new Exception('curl_setopt PROXYUSERPWD fail skip', 7);
-                                }
-                            } catch (Exception $e) {
-                                $this->_set_error_log($e->getMessage());
-                            }
-                        }
+                if ($errs = Xupdate_Utils::setupCurlProxy($ch, $url)) {
+                    foreach($errs as $err) {
+                        $this->_set_error_log($err);
                     }
                 }
+                
                 // set timeout
                 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
                 curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);

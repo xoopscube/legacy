@@ -143,6 +143,7 @@ class Xupdate_Utils
         curl_setopt($ch, CURLOPT_HEADER, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         self::setupCurlSsl($ch);
+        self::setupCurlProxy($ch, $url);
         
         $data = curl_exec($ch);
         $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -180,6 +181,63 @@ class Xupdate_Utils
                     &&
                 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2));
         }
+    }
+    
+    /**
+     * Setup cURL PROXY options
+     * 
+     * @param int $ch
+     * @return array errors
+     */
+    public static function setupCurlProxy($ch, $url)
+    {
+        $errors = array();
+        $proxy = '';
+        
+        if (! empty($_SERVER['HTTP_PROXY']) || ! empty($_SERVER['http_proxy'])) {
+            $proxy = !empty($_SERVER['http_proxy'])? $_SERVER['http_proxy'] : $_SERVER['HTTP_PROXY'];
+        }
+        if (substr($url, 0, 5) === 'https' && (! empty($_SERVER['https_proxy']) || ! empty($_SERVER['HTTPS_PROXY']))) {
+            $proxy = !empty($_SERVER['https_proxy'])? $_SERVER['https_proxy'] : $_SERVER['HTTPS_PROXY'];
+        }
+        if ($proxy) {
+            $proxy = parse_url($proxy);
+            if (!empty($proxy) && isset($proxy['host'])) {
+                // url
+                $proxyURL = (isset($proxy['scheme']) ? $proxy['scheme'] : 'http') . '://';
+                $proxyURL .= $proxy['host'];
+                
+                if (isset($proxy['port'])) {
+                    $proxyURL .= ":" . $proxy['port'];
+                } elseif ('http://' == substr($proxyURL, 0, 7)) {
+                    $proxyURL .= ":80";
+                } elseif ('https://' == substr($proxyURL, 0, 8)) {
+                    $proxyURL .= ":443";
+                }
+                try {
+                    if (! curl_setopt($ch, CURLOPT_PROXY, $proxyURL)) {
+                        throw new Exception('curl_setopt PROXY fail skip');
+                    }
+                } catch (Exception $e) {
+                    $errors[] = $e->getMessage();
+                }
+                // user:password
+                if (isset($proxy['user'])) {
+                    $proxyAuth = $proxy['user'];
+                    if (isset($proxy['pass'])) {
+                        $proxyAuth .= ':' . $proxy['pass'];
+                    }
+                    try {
+                        if (! curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyAuth)) {
+                            throw new Exception('curl_setopt PROXYUSERPWD fail skip');
+                        }
+                    } catch (Exception $e) {
+                        $errors[] = $e->getMessage();
+                    }
+                }
+            }
+        }
+        return $errors;
     }
     
     /**
