@@ -28,11 +28,15 @@ class Xupdate_InstallUtils
     **/
     public static function installSQLAutomatically(/*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
+        $dbTypeAliases = array(
+            'mysqli' => 'mysql'
+        );
         $sqlFileInfo =& $module->getInfo('sqlfile');
-        if (!isset($sqlFileInfo[XOOPS_DB_TYPE])) {
+        $dbType = (isset($sqlfileInfo[XOOPS_DB_TYPE]) || !isset($dbTypeAliases[XOOPS_DB_TYPE])) ? XOOPS_DB_TYPE : $dbTypeAliases[XOOPS_DB_TYPE];
+        if (!isset($sqlFileInfo[$dbType])) {
             return true;
         }
-        $sqlFile = $sqlFileInfo[XOOPS_DB_TYPE];
+        $sqlFile = $sqlFileInfo[$dbType];
     
         $dirname = $module->getVar('dirname');
         $sqlFilePath = sprintf('%s/%s/%s', XOOPS_MODULE_PATH, $dirname, $sqlFile);
