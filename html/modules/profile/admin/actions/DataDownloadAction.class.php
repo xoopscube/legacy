@@ -17,12 +17,12 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
         $handler =& xoops_getmodulehandler('data');
         return $handler;
     }
-
+    
     public function _getBaseUrl()
     {
         return "./index.php?action=DataDownload";
     }
-
+    
     public function executeViewIndex(&$render)
     {
         $render->setTemplateName("data_download.html");
@@ -37,57 +37,67 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
     }
     
     
-    /// CSVƒtƒ@ƒCƒ‹‚ðo—Í‚·‚é
+    /// CSVãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‡ºåŠ›ã™ã‚‹
     public function execute()
     {
-        $filename = sprintf('%s_Profile_data_List.csv', $GLOBALS['xoopsConfig']['sitename']);
-        $text = '';
-        $field_line = 'uid,';
-        
         $handler =& $this->_getHandler();
-        $defHandler =& xoops_getmodulehandler('definitions');
-        $defArr =& $defHandler->getDefinitions(false);
-    
-        $criteria = new CriteriaElement();
-        $criteria->setSort('uid');
-        $dataArr = $handler->getObjects($criteria);
-        if (count($dataArr)==0) {
+        $count = $handler->getCount();
+        if ($count == 0) {
             return PROFILE_FRAME_VIEW_INDEX;
         }
-        foreach (array_keys($defArr) as $key) {
-            $field_line .= $var['label'].",";
-        }
-        $field_line .= "\n";
-        
-        foreach ($dataArr as $profile) {
-            $profile_data = '';
-            foreach ($profile->gets() as $key=>$value) {
-                if ($defArr[$key]->get('type')=='date') {
-                    $value = $value ? formatTimestamp($value, 'Y/n/j H:i') : '';
-                }
-                if (preg_match('/[,"\r\n]/', $value)) {
-                    $value = preg_replace('/"/', "\"\"", $value);
-                    $value = "\"$value\"";
-                }
-                $profile_data .= $value . ',';
-            }
-            $text .= trim($profile_data, ',')."\n";
-        }
-        $text = $field_line.$text;
-        
-        /// japanese 
-        if (strncasecmp($GLOBALS['xoopsConfig']['language'], 'ja', 2)===0) {
-            mb_convert_variables('SJIS', _CHARSET, $text);
-        }
+        $filename = sprintf('%s_Profile_data_List.csv', $GLOBALS['xoopsConfig']['sitename']);
         
         if (preg_match('/firefox/i', xoops_getenv('HTTP_USER_AGENT'))) {
             header("Content-Type: application/x-csv");
         } else {
             header("Content-Type: application/vnd.ms-excel");
         }
-        
-        
-        header("Content-Disposition: attachment ; filename=\"{$filename}\"") ;
-        exit($text);
+        header("Content-Disposition: attachment ; filename=\"{$filename}\"");
+
+        $offset = 0;
+        $limit = 20;
+        $fp = fopen("php://output", "w");
+
+        $defHandler =& xoops_getmodulehandler('definitions');
+        $defArr =& $defHandler->getDefinitions(false);
+        $label = array('uid');
+        $columns = array('uid');
+        foreach ($defArr as $column => $obj) {
+            $label[] = $this->_encoding($obj->get('label'));
+            $columns[] = $obj->get('field_name');
+        }
+        fputcsv($fp, $label, ',', '"');
+
+        $criteria = new CriteriaElement();
+        $criteria->setSort('uid');
+        $criteria->setLimit($limit);
+        for ($i = 1; $offset < $count; $i++) {
+            $criteria->setStart($offset);
+            $dataArr = $handler->getObjects($criteria);
+            foreach ($dataArr as $profile) {
+                $data = array();
+                foreach ($columns as $column) {
+                    if (isset($defArr[$column]) && $defArr[$column]->get('type') == 'date') {
+                        $value = $value ? formatTimestamp($profile->get($column), 'Y/n/j H:i') : '';
+                    } else {
+                        $value = $this->_encoding($profile->get($column));
+                    }
+                    $data[] = $value;
+                }
+                fputcsv($fp, $data, ',', '"');
+            }
+            $offset = $i * $limit;
+        }
+        fclose($fp);
+        exit();
+    }
+
+    protected function _encoding($text)
+    {
+        // japanese 
+        if (strncasecmp($GLOBALS['xoopsConfig']['language'], 'ja', 2)===0) {
+            mb_convert_variables('SJIS', _CHARSET, $text);
+        }
+        return $text;
     }
 }
