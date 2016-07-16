@@ -108,6 +108,9 @@ class XoopsLogger
      */
     public function addQuery($sql, $error=null, $errno=null)
     {
+        if (defined('XOOPS_LOGGER_ADDQUERY_DISABLED') && XOOPS_LOGGER_ADDQUERY_DISABLED) {
+            return;
+        }
         $this->queries[] = array('sql' => $sql, 'error' => $error, 'errno' => $errno);
     }
 
