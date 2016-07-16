@@ -15,7 +15,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 }
 
 if (!defined("LEGACY_JAPANESE_ANTI_CHARSETMYSQL")) {
-    if (class_exists('mysqli_set_charset')) {
+    if (function_exists('mysqli_set_charset')) {
         mysqli_set_charset($GLOBALS['xoopsDB']->conn, 'ujis');
     } else {
         $GLOBALS['xoopsDB']->queryF("/*!40101 SET NAMES ujis */");
