@@ -47,17 +47,47 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 		return $obj;
 	}
 
+	/**
+	 * Supported mysql multi-fields on the primary key
+	 * by Y.Sakai @ Bluemoon inc. 2013-02-02
+	 * support the primary key has many fields
+	 * @ XOOPS_ROOT_PATH/modules/legacy/kernel/handler.php
+	 *
+	 * it can be use below style on the XoopsObjectGenericHandler class
+	 * public $mPrimary = 'uid,item_id';
+	 * and after that, it work at get method as
+	 * $object = $handler->get( array($uid,$item_id) );
+	 * [ja]
+	 * XoopsObjectGenericHandler class でプライマリーキーに複数のフィールドを設定し、get関数でオブジェクトを取得出来る様にしました。
+	 * [/ja]
+	 *
+	 * @param int $id
+	 * @return null|void
+	 */
 	function &get($id)
 	{
 		$ret = null;
-		
-		$criteria =new Criteria($this->mPrimary, $id);
+		// XCL 2.2.3 original start
+		//     $criteria =new Criteria($this->mPrimary, $id);
+		// XCL 2.2.3 original end
+		// Bluemoon hack start
+		$i = 0;
+		if (is_array($id)){
+			$mPrimary = explode(",",$this->mPrimary);
+			$criteria = new CriteriaCompo();
+			foreach($mPrimary as $key){
+				$criteria->add(new Criteria($key,$id[$i]));
+				$i++;
+			}
+		}else{
+			$criteria =new Criteria($this->mPrimary, $id);
+		}
+		// Bluemoon hack end
 		$objArr =& $this->getObjects($criteria);
-		
+
 		if (count($objArr) == 1) {
 			$ret =& $objArr[0];
 		}
-
 		return $ret;
 	}
 
@@ -282,6 +312,10 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 	}
 
 	/**
+	 * Supported mysql multi-fields on the primary key
+	 * by Y.Sakai @ Bluemoon inc. 2013-02-02
+	 * support the primary key has many fields
+	 *
 	 * @access private
 	 */
 	function _update(&$obj) {
@@ -289,15 +323,19 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 		$where = "";
 
 		$arr = $this->_makeVars4sql($obj);
+		// Bluemoon hack start
+		$pKeys = explode(",",$this->mPrimary);
 
 		foreach ($arr as $_name => $_value) {
-			if ($_name == $this->mPrimary) {
-				$where = "`${_name}`=${_value}";
+			if (in_array($_name,$pKeys)) {
+				if ($where) $where.=" AND ";
+				$where .= "`${_name}`=${_value}";
 			}
 			else {
 				$set_lists[] = "`${_name}`=${_value}";
 			}
 		}
+		// Bluemoon hack end
 
 		$sql = @sprintf("UPDATE `" . $this->mTable . "` SET %s WHERE %s", implode(",",$set_lists), $where);
 

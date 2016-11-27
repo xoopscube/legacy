@@ -147,18 +147,37 @@
 
 <!-- start module search results loop -->
 <{foreach item=module from=$searchResults}>
-  <p>
   <h4><{$module.name}></h4>
-
+  <table class="table">
   <!-- start results item loop -->
   <{foreach item=result from=$module.results}>
-    <img src="<{$result.image}>" alt="<{$module.name}>" title="<{$module.name}>" /><b><a href="<{$result.link}>"><{$result.title}></a></b><br /><small>(<{$result.time|xoops_formattimestampGMT:l}>)</small><br />
+	<tr>
+		<td width="10%" <{if $result.body}>rowspan="2"<{/if}> >
+			<img src="<{$result.image}>" alt="<{$module.name}>" title="<{$module.name}>" /><br />
+		</td>
+		<td width="65%">
+			<b><a href="<{$result.link}>"><{$result.title}></a></b>
+		</td>
+		<td width="25%" style="text-align: right;">
+		<small><{$result.time_desc}>&nbsp;<{$result.time|backtime:"%Y-%m-%d"}></small><br />
+		</td>
+	</tr>
+	<{if $result.body}>
+	<tr>
+		<td colspan="2">
+			<p>
+				<{$result.body}>
+			</p>
+		</td>
+	</tr>
+	<{/if}>
   <{/foreach}>
   <!-- end results item loop -->
-
+  </table>
   <{if $module.has_more}>
-    <a href="<{$smarty.const.XOOPS_URL}>/search.php?action=showallbyuser&amp;mid=<{$module.mid|xoops_escape}>&amp;uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_SHOWALL}></a>
+    <a href="<{$smarty.const.XOOPS_URL}>/search.php?action=showallbyuser&amp;mid=<{$module.mid|xoops_escape}>&amp;uid=<{$thisUser->getShow('uid')}>">
+		<{$smarty.const._MD_USER_LANG_SHOWALL}>
+	</a>
   <{/if}>
-  </p>
 <{/foreach}>
 <!-- end module search results loop -->
