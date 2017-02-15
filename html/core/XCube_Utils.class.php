@@ -111,7 +111,7 @@ class XCube_Utils
      */
     public static function encrypt($plain_text, $key = null, $algorithm = 'des', $mode = 'ecb')
     {
-        if ($plain_text === '' || ! extension_loaded('mcrypt')) {
+        if ($plain_text === '') {
             return $plain_text;
         }
         
@@ -122,21 +122,28 @@ class XCube_Utils
             $key = XOOPS_SALT;
         }
         $key = md5($key);
-        
-        $td  = mcrypt_module_open($algorithm, '', $mode, '');
-        $key = substr($key, 0, mcrypt_enc_get_key_size($td));
-        $iv  = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_RAND);
-        
-        if (mcrypt_generic_init($td, $key, $iv) < 0) {
-            return $plain_text;
+
+        if (! function_exists('openssl_encrypt')) {
+            if (! extension_loaded('openssl')) {
+                return $plain_text;
+            }
+            $td  = mcrypt_module_open($algorithm, '', $mode, '');
+            $key = substr($key, 0, mcrypt_enc_get_key_size($td));
+            $iv  = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_RAND);
+            
+            if (mcrypt_generic_init($td, $key, $iv) < 0) {
+                return $plain_text;
+            }
+            
+            $crypt_text = base64_encode(mcrypt_generic($td, $plain_text));
+            
+            mcrypt_generic_deinit($td);
+            mcrypt_module_close($td);
+        } else {
+            $crypt_text = openssl_encrypt($plain_text, strtoupper($algorithm.'-'.$mode), $key);
         }
         
-        $crypt_text = base64_encode(mcrypt_generic($td, $plain_text));
-        
-        mcrypt_generic_deinit($td);
-        mcrypt_module_close($td);
-        
-        return $crypt_text;
+        return $crypt_text === false ? $plain_text : $crypt_text;
     }
     
     /**
@@ -150,7 +157,7 @@ class XCube_Utils
      */
     public static function decrypt($crypt_text, $key = null, $algorithm = 'des', $mode = 'ecb')
     {
-        if ($crypt_text === '' || ! extension_loaded('mcrypt')) {
+        if ($crypt_text === '') {
             return $crypt_text;
         }
         
@@ -161,21 +168,28 @@ class XCube_Utils
             $key = XOOPS_SALT;
         }
         $key = md5($key);
-        
-        $td  = mcrypt_module_open($algorithm, '', $mode, '');
-        $key = substr($key, 0, mcrypt_enc_get_key_size($td));
-        $iv  = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_RAND);
-        
-        if (mcrypt_generic_init($td, $key, $iv) < 0) {
-            return $crypt_text;
+
+        if (! function_exists('openssl_decrypt')) {
+            if (! extension_loaded('openssl')) {
+                return $crypt_text;
+            }
+            $td  = mcrypt_module_open($algorithm, '', $mode, '');
+            $key = substr($key, 0, mcrypt_enc_get_key_size($td));
+            $iv  = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_RAND);
+            
+            if (mcrypt_generic_init($td, $key, $iv) < 0) {
+                return $crypt_text;
+            }
+            
+            $plain_text = rtrim(mdecrypt_generic($td, base64_decode($crypt_text)), "\0");
+            
+            mcrypt_generic_deinit($td);
+            mcrypt_module_close($td);
+        } else {
+            $plain_text = openssl_decrypt($crypt_text, strtoupper($algorithm.'-'.$mode), $key, OPENSSL_ZERO_PADDING);
         }
         
-        $plain_text = rtrim(mdecrypt_generic($td, base64_decode($crypt_text)), "\0");
-        
-        mcrypt_generic_deinit($td);
-        mcrypt_module_close($td);
-        
-        return $plain_text;
+        return $plain_text === false ? $crypt_text : $plain_text;
     }
     
     /**

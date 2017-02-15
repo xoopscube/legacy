@@ -20,8 +20,8 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
     public function preBlockFilter()
     {
         if (is_array(Legacy_Utils::checkSystemModules())) {
-            $this->mController->mSetupUser->add("Legacy_SystemModuleInstall::callbackSetupUser", XCUBE_DELEGATE_PRIORITY_FINAL-1);
-            $this->mRoot->mDelegateManager->add("Site.CheckLogin.Success", array(&$this, "callbackCheckLoginSuccess"));
+            $this->mController->mSetupUser->add(array($this, "callbackSetupUser"), XCUBE_DELEGATE_PRIORITY_FINAL-1);
+            $this->mRoot->mDelegateManager->add("Site.CheckLogin.Success", array($this, "callbackCheckLoginSuccess"));
         }
     }
 
