@@ -55,7 +55,7 @@ class db_manager
         if ($ret != false) {
             $fname = dirname(dirname(__FILE__)).'/language/'.$GLOBALS['language'].'/charset_mysql.php';
             if (file_exists($fname)) {
-                require_once($fname);
+                require($fname);
             }
         }
         return $ret;

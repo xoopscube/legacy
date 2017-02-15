@@ -91,10 +91,14 @@ class Legacy_PHPDebugger extends Legacy_AbstractDebugger
 {
     public function prepare()
     {
-        if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
-            error_reporting(E_ALL ^ E_STRICT);
+        if (defined('XOOPS_ERROR_REPORTING_LEVEL')) {
+            error_reporting(XOOPS_ERROR_REPORTING_LEVEL);
         } else {
-            error_reporting(E_ALL);
+            if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
+                error_reporting(E_ALL ^ E_STRICT ^ E_NOTICE);
+            } else {
+                error_reporting(E_ALL ^ E_NOTICE);
+            }
         }
         $GLOBALS['xoopsErrorHandler'] =& XoopsErrorHandler::getInstance();
         $GLOBALS['xoopsErrorHandler']->activate(true);
