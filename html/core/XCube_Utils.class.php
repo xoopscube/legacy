@@ -102,14 +102,12 @@ class XCube_Utils
     
     /**
      * @public
-     * @brief [Static] To encrypt strings.
+     * @brief [Static] To encrypt strings by "DES-ECB".
      * @param $plain_text string
      * @param $key        string
-     * @param $algorithm  string
-     * @param $$mode      string
      * @return string - Encrypted string.
      */
-    public static function encrypt($plain_text, $key = null, $algorithm = 'des', $mode = 'ecb')
+    public static function encrypt($plain_text, $key = null)
     {
         if ($plain_text === '') {
             return $plain_text;
@@ -121,17 +119,15 @@ class XCube_Utils
             }
             $key = XOOPS_SALT;
         }
-        $key = md5($key);
+        $key = substr(md5($key), 0, 8);
 
         if (! function_exists('openssl_encrypt')) {
-            if (! extension_loaded('openssl')) {
+            if (! extension_loaded('mcrypt')) {
                 return $plain_text;
             }
-            $td  = mcrypt_module_open($algorithm, '', $mode, '');
-            $key = substr($key, 0, mcrypt_enc_get_key_size($td));
-            $iv  = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_RAND);
+            $td  = mcrypt_module_open('des', '', 'ecb', '');
             
-            if (mcrypt_generic_init($td, $key, $iv) < 0) {
+            if (mcrypt_generic_init($td, $key, 'iv_dummy') < 0) {
                 return $plain_text;
             }
             
@@ -140,7 +136,7 @@ class XCube_Utils
             mcrypt_generic_deinit($td);
             mcrypt_module_close($td);
         } else {
-            $crypt_text = openssl_encrypt($plain_text, strtoupper($algorithm.'-'.$mode), $key);
+            $crypt_text = openssl_encrypt($plain_text, 'DES-ECB', $key);
         }
         
         return $crypt_text === false ? $plain_text : $crypt_text;
@@ -148,14 +144,12 @@ class XCube_Utils
     
     /**
      * @public
-     * @brief [Static] To decrypt strings.
+     * @brief [Static] To decrypt strings by "DES-ECB".
      * @param $crypt_text string
      * @param $key        string
-     * @param $algorithm  string
-     * @param $$mode      string
      * @return string - Decrypted string.
      */
-    public static function decrypt($crypt_text, $key = null, $algorithm = 'des', $mode = 'ecb')
+    public static function decrypt($crypt_text, $key = null)
     {
         if ($crypt_text === '') {
             return $crypt_text;
@@ -167,27 +161,28 @@ class XCube_Utils
             }
             $key = XOOPS_SALT;
         }
-        $key = md5($key);
+        $key = substr(md5($key), 0, 8);
 
-        if (! function_exists('openssl_decrypt')) {
-            if (! extension_loaded('openssl')) {
+        // PHP < 5.4.0 can not use `OPENSSL_ZERO_PADDING`
+        if (! function_exists('openssl_decrypt') || version_compare(PHP_VERSION, '5.4.0', '<')) {
+            if (! extension_loaded('mcrypt')) {
                 return $crypt_text;
             }
-            $td  = mcrypt_module_open($algorithm, '', $mode, '');
-            $key = substr($key, 0, mcrypt_enc_get_key_size($td));
-            $iv  = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_RAND);
+            $td  = mcrypt_module_open('des', '', 'ecb', '');
             
-            if (mcrypt_generic_init($td, $key, $iv) < 0) {
+            if (mcrypt_generic_init($td, $key, 'iv_dummy') < 0) {
                 return $crypt_text;
             }
             
-            $plain_text = rtrim(mdecrypt_generic($td, base64_decode($crypt_text)), "\0");
+            $plain_text = mdecrypt_generic($td, base64_decode($crypt_text));
             
             mcrypt_generic_deinit($td);
             mcrypt_module_close($td);
         } else {
-            $plain_text = openssl_decrypt($crypt_text, strtoupper($algorithm.'-'.$mode), $key, OPENSSL_ZERO_PADDING);
+            $plain_text = openssl_decrypt($crypt_text, 'DES-ECB', $key, OPENSSL_ZERO_PADDING);
         }
+        // remove \0, PKCS#7 padding
+        $plain_text = rtrim(substr($plain_text, 0, strlen($plain_text) - ord(substr($plain_text, -1))), "\0");
         
         return $plain_text === false ? $crypt_text : $plain_text;
     }
