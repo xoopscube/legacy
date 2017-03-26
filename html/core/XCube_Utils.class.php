@@ -163,7 +163,8 @@ class XCube_Utils
         }
         $key = substr(md5($key), 0, 8);
 
-        if (! function_exists('openssl_decrypt')) {
+        // PHP < 5.4.0 can not use `OPENSSL_ZERO_PADDING`
+        if (! function_exists('openssl_decrypt') || version_compare(PHP_VERSION, '5.4.0', '<')) {
             if (! extension_loaded('mcrypt')) {
                 return $crypt_text;
             }
