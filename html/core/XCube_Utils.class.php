@@ -124,7 +124,7 @@ class XCube_Utils
         $key = md5($key);
 
         if (! function_exists('openssl_encrypt')) {
-            if (! extension_loaded('openssl')) {
+            if (! extension_loaded('mcrypt')) {
                 return $plain_text;
             }
             $td  = mcrypt_module_open($algorithm, '', $mode, '');
@@ -170,7 +170,7 @@ class XCube_Utils
         $key = md5($key);
 
         if (! function_exists('openssl_decrypt')) {
-            if (! extension_loaded('openssl')) {
+            if (! extension_loaded('mcrypt')) {
                 return $crypt_text;
             }
             $td  = mcrypt_module_open($algorithm, '', $mode, '');
@@ -186,7 +186,7 @@ class XCube_Utils
             mcrypt_generic_deinit($td);
             mcrypt_module_close($td);
         } else {
-            $plain_text = openssl_decrypt($crypt_text, strtoupper($algorithm.'-'.$mode), $key, OPENSSL_ZERO_PADDING);
+            $plain_text = openssl_decrypt($crypt_text, strtoupper($algorithm.'-'.$mode), $key);
         }
         
         return $plain_text === false ? $crypt_text : $plain_text;
