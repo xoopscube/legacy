@@ -181,8 +181,14 @@ class XCube_Utils
         } else {
             $plain_text = openssl_decrypt($crypt_text, 'DES-ECB', $key, OPENSSL_ZERO_PADDING);
         }
-        // remove \0, PKCS#7 padding
-        $plain_text = rtrim(substr($plain_text, 0, strlen($plain_text) - ord(substr($plain_text, -1))), "\0");
+        // remove \0 padding for mcrypt encrypted text
+        $plain_text = rtrim($plain_text, "\0");
+        // remove pkcs#7 padding for openssl encrypted text if padding string found
+        $pad_ch = substr($plain_text, -1);
+        $pad_len = ord($pad_ch);
+        if (substr_compare($plain_text, str_repeat($pad_ch, $pad_len), -$pad_len) == 0) {
+            $plain_text = substr($plain_text, 0, strlen($plain_text) - $pad_len);
+        }
         
         return $plain_text === false ? $crypt_text : $plain_text;
     }
