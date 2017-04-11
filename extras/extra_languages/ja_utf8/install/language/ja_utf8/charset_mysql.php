@@ -9,7 +9,11 @@
  */
 $set_charset = (XOOPS_DB_TYPE === 'mysqli')? 'mysqli_set_charset' : 'mysql_set_charset';
 if (function_exists($set_charset)) {
-    $set_charset($this->db->conn, 'utf8');
+    if (XOOPS_DB_TYPE === 'mysqli') {
+        $set_charset($this->db->conn, 'utf8');
+    } else {
+        $set_charset('utf8');
+    }
 } else {
     $this->db->queryF("/*!40101 SET NAMES utf8 */");
     $this->db->queryF("/*!40101 SET SESSION collation_connection=utf8_general_ci */");
