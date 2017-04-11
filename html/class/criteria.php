@@ -365,7 +365,7 @@ class CriteriaCompo extends CriteriaElement
      *
      * @return  object  reference to this collection
      **/
-    public function &add(&$criteriaElement, $condition='AND')
+    public function &add($criteriaElement, $condition='AND')
     {
         $this->criteriaElements[] =& $criteriaElement;
         $this->conditions[] = $condition;
