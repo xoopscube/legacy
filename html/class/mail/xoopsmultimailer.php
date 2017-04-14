@@ -220,7 +220,7 @@ class xoopsmultimailer extends PHPMailer
      * @access public
      * @return bool
      */
-    public function SetLanguage($lang_type, $lang_path = 'language/')
+    public function SetLanguage($lang_type = 'en', $lang_path = 'language/')
     {
         // Patch for XOOPS Cube Legacy 2008/09/21
         $ext = substr($lang_path, -1, 1);

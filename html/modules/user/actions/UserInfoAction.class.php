@@ -44,7 +44,7 @@ class User_UserInfoAction extends User_Action
         return Legacy_Utils::getUserName(Legacy_Utils::getUid());
     }
 
-    public function prepare(&$controller, &$xoopsUser, &$moduleConfig)
+    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         $this->mSelfDelete = $moduleConfig['self_delete'];
     }

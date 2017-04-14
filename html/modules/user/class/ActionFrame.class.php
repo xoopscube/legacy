@@ -190,7 +190,7 @@ class User_Action
         return true;
     }
 
-    public function prepare(&$controller, &$xoopsUser, &$moduleConfig)
+    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
     }
 

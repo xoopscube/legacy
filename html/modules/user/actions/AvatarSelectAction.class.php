@@ -22,7 +22,7 @@ class User_AvatarSelectAction extends User_AbstractEditAction
 {
     public $mOldAvatar = null;
     
-    public function prepare(&$controller, &$xoopsUser, &$moduleConfig)
+    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         parent::prepare($controller, $xoopsUser, $moduleConfig);
 

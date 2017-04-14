@@ -46,7 +46,7 @@ class User_AbstractViewAction extends User_Action
         return _VIEW;
     }
 
-    public function prepare(&$controller, &$xoopsUser, &$moduleConfig)
+    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         $this->_setupObject();
     }
