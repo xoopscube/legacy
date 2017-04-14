@@ -68,7 +68,7 @@ class User_AbstractEditAction extends User_Action
         return true;
     }
 
-    public function prepare(&$controller, &$xoopsUser, &$moduleConfig)
+    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         $this->mConfig = $moduleConfig;
 

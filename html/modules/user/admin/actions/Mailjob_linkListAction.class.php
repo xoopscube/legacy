@@ -13,7 +13,7 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
     public $mMailjob = null;
     public $mActionForm = null;
     
-    public function prepare(&$controller, &$xoopsUser, &$moduleConfig)
+    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         $this->mActionForm =new User_Mailjob_linkAdminDeletesForm();
         $this->mActionForm->prepare();

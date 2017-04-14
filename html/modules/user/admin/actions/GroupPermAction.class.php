@@ -20,7 +20,7 @@ class User_GroupPermAction extends User_GroupPropertyAction
 {
     public $mActionForm = null;
     
-    public function prepare(&$controller, &$xoopsUser, &$moduleConfig)
+    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         $this->mActionForm =new User_GroupPermEditForm();
         $this->mActionForm->prepare();

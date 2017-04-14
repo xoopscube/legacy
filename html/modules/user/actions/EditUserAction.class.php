@@ -23,7 +23,7 @@ class User_EditUserAction extends User_AbstractEditAction
      */
     public $mUserCookie = "";
     
-    public function prepare(&$controller, &$xoopsUser, &$moduleConfig)
+    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         parent::prepare($controller, $xoopsUser, $moduleConfig);
         $this->mUserCookie = $moduleConfig['usercookie'];
