@@ -1,4 +1,4 @@
-<div style="width:500px; margin:0 auto;">
+<div style="width:680px;margin:0 auto; text-align:center;">
 <table>
       <tr>
       	<td class="bg3"><b><?php echo _INSTALL_L27 ?></b></td>

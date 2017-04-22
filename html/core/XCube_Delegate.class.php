@@ -640,7 +640,7 @@ class XCube_DelegateUtils
      * @param 2nd and more : Delegate function parameters
      * @return bool
      */
-    public function raiseEvent()
+    public static function raiseEvent()
     {
         if (func_num_args()) {
             $args = func_get_args();
@@ -660,7 +660,7 @@ class XCube_DelegateUtils
      * @param 3rd and more - Optional function paramaters
      * @return string
      */
-    public function applyStringFilter()
+    public static function applyStringFilter()
     {
         $args = func_get_args();
         $num = func_num_args();
@@ -689,7 +689,7 @@ class XCube_DelegateUtils
      * @attention
      *     Only XCube_Delegate, XCube_DelegateManager and sub-classes of them should use this method. 
      */
-    public function _compareCallback($callback1, $callback2)
+    public static function _compareCallback($callback1, $callback2)
     {
         if (!is_array($callback1) && !is_array($callback2) && ($callback1 === $callback2)) {
             return true;

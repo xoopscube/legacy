@@ -1,0 +1,1 @@
+function in_array(R,Z,o){var k,C,d=(o)?function(x){return (R===x);}:function(x){return (R==x);};for(k=0,C=Z.length;k<C;k++){if(d(Z[k])){return true;}}return false;}

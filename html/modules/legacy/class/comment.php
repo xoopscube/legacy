@@ -75,7 +75,7 @@ class LegacyCommentObject extends XoopsSimpleObject
     public function getVar($key)
     {
         if ($key == 'com_text') {
-            $ts =& MyTextSanitizer::getInstance();
+            $ts =& MyTextSanitizer::sGetInstance();
             return $ts->displayTarea($this->get($key), $this->get('dohtml'), $this->get('dosmiley'), $this->get('doxcode'), $this->get('doimage'), $this->get('dobr'));
         } else {
             return parent::getVar($key);

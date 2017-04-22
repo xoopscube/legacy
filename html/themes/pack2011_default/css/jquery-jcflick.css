@@ -1,0 +1,110 @@
+@charset "utf-8";
+
+/**
+* MediaQuery MultiDevice Template ver 0.1��
+* @Author: funnythingz
+* @Url:    http://hiropo.co.uk
+*
+* jquery-jcflick.css
+*/
+
+/**============================================================
+* Styles
+*/
+.flickContainer {
+	overflow: hidden;
+	position: relative;
+	z-index: 10;
+}
+.flickWrapper {
+	position: relative;
+	z-index: 1;
+}
+.flickCol {
+	float: left;
+}
+
+.lamp_def {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	margin: 0 4px;
+	background: #eee;
+	overflow: hidden;
+}
+.lamp_cur {
+	background: #000 !important;
+}
+.flickLamp {
+}
+
+.flick_btn_next,
+.flick_btn_back {
+	display: block;
+	padding: 4px 8px;
+}
+.flick_btn_next {
+	float: right;
+}
+.flick_btn_back {
+	float: left;
+}
+.pointer { cursor: pointer !important; background: #eee; }
+.btnFalse {}
+
+
+.flickWrapper:after,
+.flickBtn:after {
+	content: ".";
+	display: block;
+	clear: both;
+	height: 0;
+	visibility: hidden;
+	font-size: 0.1em;
+	line-height: 0;
+}
+.flickWrapper,
+.flickBtn {
+	zoom: 1;
+}
+@media only screen and (max-width: 580px)
+{
+	body {
+		-webkit-text-size-adjust: none;
+	}
+
+}
+
+/*============================================================
+* Custom
+*/
+#flickMain .flickContainer {
+	_width: 950px;
+	max-height: 320px;
+	_height: 320px;
+}
+#flickMain .flick_btn_next {
+	padding-right: 15px;
+	background: url(../images/icon_right.png) no-repeat right center;
+}
+#flickMain .flick_btn_back {
+	padding-left: 15px;
+	background: url(../images/icon_left.png) no-repeat left center;
+}
+#flickMain .pointer { cursor: pointer !important; }
+#flickMain .btnFalse { background: transparent !important; }
+
+
+@media only screen and (max-width: 580px)
+{
+	#flickMain .flickContainer {
+		height: 100%;
+	}
+	.lamp_def {
+		display: inline-block;
+		width: 5px;
+		height: 5px;
+		margin: 0 2px;
+	}
+
+}

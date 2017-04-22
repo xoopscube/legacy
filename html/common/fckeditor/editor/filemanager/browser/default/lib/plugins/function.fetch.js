@@ -1,0 +1,1 @@
+function jsmarty_function_fetch(d,C){var Z,o,k=jsmarty_function_fetch.caches;if(!("file" in d)){C.trigger_error("fetch : parameter \"file\" cannot be empty","die");return ;}Z=C.getResourceName(d.file);o=k[Z]||function(){k[Z]=JSmarty.Classes.Item.fetch(Z,C);return k[Z];}();if(d.assign){C.assign(d.assign,o.get("src"));return ;}return o.get("src");}jsmarty_function_fetch.caches={};

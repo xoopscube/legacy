@@ -37,10 +37,10 @@ class User_UserDataDownloadAction extends User_Action
     }
     
     
-    /// CSVファイルを出力する
+    /// export CSV file
     public function execute(&$controller, &$xoopsUser)
     {
-        $filename = sprintf('%s User data List.csv', $GLOBALS['xoopsConfig']['sitename']);
+        $filename = sprintf('%s_User_data_List.csv', $GLOBALS['xoopsConfig']['sitename']);
         $text = '';
         $field_line = '';
         

@@ -1,0 +1,1 @@
+function jsmarty_modifier_escape(k,o,Z){switch(o){case "mail":return k.replace(["@",/\./],[" [AT] "," [DOT] "]);}}

@@ -1,0 +1,12 @@
+; Your custom store settings
+; Next setup shall be one set.
+; About the store set up here, contents are listed unconditionally.
+; Please register only a reliable store.
+
+[My1]                 ; Unique Key: It names freely by an alphanumeric characters.
+sid = 10000           ; Store ID: It restricts to 10000 or more.
+name = "My Store"     ; Store name
+contents = "module"   ; module or theme
+setting_type = "ini"  ; ini or json
+addon_url = "http://" ; modules ini or json URL
+

@@ -430,7 +430,7 @@ class XoopsForm
         if ($withtags) {
             $js .= "\n<!-- Start Form Vaidation JavaScript //-->\n<script type='text/javascript'>\n<!--//\n";
         }
-        $myts =& MyTextSanitizer::getInstance();
+        $myts =& MyTextSanitizer::sGetInstance();
         $formname = $this->getName();
         $required =& $this->getRequired();
         $reqcount = count($required);

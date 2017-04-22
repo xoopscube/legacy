@@ -1,0 +1,1 @@
+function jsmarty_compiler_assign(k,o){var Z=o._parse_attrs(k);return "";}

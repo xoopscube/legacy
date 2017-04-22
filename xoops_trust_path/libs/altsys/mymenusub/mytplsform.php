@@ -1,0 +1,2 @@
+<?php
+include 'mytplsadmin.php';

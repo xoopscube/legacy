@@ -651,7 +651,7 @@ function &xoops_getmodulehandler($name = null, $module_dir = null, $optional = f
 function xoops_getrank($rank_id =0, $posts = 0)
 {
     $db =& Database::getInstance();
-    $myts =& MyTextSanitizer::getInstance();
+    $myts =& MyTextSanitizer::sGetInstance();
     $rank_id = (int)$rank_id;
     if ($rank_id != 0) {
         $sql = 'SELECT rank_title AS title, rank_image AS image, rank_id AS id FROM '.$db->prefix('ranks').' WHERE rank_id = '.$rank_id;

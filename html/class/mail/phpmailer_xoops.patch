@@ -1,0 +1,12 @@
+diff --git a/html/class/mail/phpmailer/class.phpmailer.php b/html/class/mail/phpmailer/class.phpmailer.php
+index f2e0d1b..029fe42 100644
+--- a/html/class/mail/phpmailer/class.phpmailer.php
++++ b/html/class/mail/phpmailer/class.phpmailer.php
+@@ -1,4 +1,7 @@
+ <?php
++// for XOOPS compatible
++require_once dirname(__FILE__) . '/PHPMailerAutoload.php';
++
+ /**
+  * PHPMailer - PHP email creation and transport class.
+  * PHP Version 5

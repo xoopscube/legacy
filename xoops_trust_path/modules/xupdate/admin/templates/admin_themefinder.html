@@ -1,0 +1,16 @@
+<div id="xupdate">
+	<{include file="admin_navi.html"}>
+	
+	<h3 class="admintitle"><{$smarty.const._AD_XUPDATE_LANG_THEME_FINDER}></h3>
+	<{include file="admin_menunavi.html"}>
+	<{include file="admin_tips.html"}>
+	
+	<div id="themeFinder">
+		<form action="<{$themeFinderUrl}>" method="post" target="themeFinderIframe" id="themeFinderForm">
+			<input type="hidden" name="api_version" value="<{$themeFinderApiVersion}>" />
+			<input type="hidden" name="callback_url" value="<{$addonManagerInstallUrl}>" />
+		</form>
+		<iframe frameborder="0" name="themeFinderIframe" id="themeFinderIframe" style="border:0; width:100%; height: 800px; display:none;"></iframe>
+	</div>
+	<noscript>You must have JavaScript enabled to view this page as intended.</noscript>
+</div>

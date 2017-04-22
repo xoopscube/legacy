@@ -23,7 +23,7 @@ function b_legacy_siteinfo_show($options)
 {
     global $xoopsConfig, $xoopsUser;
     $xoopsDB =& Database::getInstance();
-    $myts =& MyTextSanitizer::getInstance();
+    $myts =& MyTextSanitizer::sGetInstance();
     $block = array();
     if (!empty($options[3])) {
         $block['showgroups'] = true;

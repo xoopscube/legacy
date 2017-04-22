@@ -1,7 +1,7 @@
 <?php
 
 define('_MI_USER_ADMENU_AVATAR_MANAGE', "アバター管理");
-define('_MI_USER_ADMENU_GROUP_LIST', "ユーザーグループ管理");
+define('_MI_USER_ADMENU_GROUP_LIST', "グループ管理");
 define('_MI_USER_ADMENU_LIST', "ユーザー管理");
 define('_MI_USER_ADMENU_MAIL', "一斉メール送信");
 define('_MI_USER_ADMENU_MAILJOB_MANAGE', "メールジョブ管理");
@@ -58,10 +58,10 @@ define('_MI_USER_CONF_USERCOOKIE', "ユーザ名の保存に使用するクッ�
 define('_MI_USER_CONF_USERCOOKIE_DESC', "このクッキーにはユーザ名のみが保存され、ユーザのPCのハードディスク中に1年間保管されます。このクッキーを使用するかしないかはユーザ自身が選択できます。");
 define('_MI_USER_KEYWORD_AVATAR_MANAGE', "アバター カスタムアバター システムアバター  一覧 リスト 編集 変更 削除");
 define('_MI_USER_KEYWORD_CREATE_AVATAR', "アバター カスタムアバター システムアバター 新規作成 アップロード");
-define('_MI_USER_KEYWORD_CREATE_GROUP', "新規作成 ユーザーグループ");
+define('_MI_USER_KEYWORD_CREATE_GROUP', "新規作成 グループ");
 define('_MI_USER_KEYWORD_CREATE_RANK', "ランク ユーザーランク");
 define('_MI_USER_KEYWORD_CREATE_USER', "新規登録");
-define('_MI_USER_KEYWORD_GROUP_LIST', "グループ 一覧 リスト 編集 変更  削除 ユーザー ユーザグループ 権限 パーミッション 追加 メンバー");
+define('_MI_USER_KEYWORD_GROUP_LIST', "グループ 一覧 リスト 編集 変更  削除 ユーザー グループ 権限 パーミッション 追加 メンバー");
 define('_MI_USER_KEYWORD_MAILJOB_LINK_LIST', "Mailjob link list");
 define('_MI_USER_KEYWORD_MAILJOB_MANAGE', "Mailjob manage");
 define('_MI_USER_KEYWORD_USER_LIST', "一覧 リスト 編集 変更 削除");

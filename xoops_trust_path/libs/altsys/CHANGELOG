@@ -1,0 +1,343 @@
+[xlang:en]
+
+
+
+v0.71 (2008-12-21)
+- modified rendering options form for XCL2.1 cl::{BlockClass} (thx tohokuaiki)
+- modified some behaviors for XOOPS2.3
+- fixed group permissions is lost in custom block previewing
+- added RTL support (use _GLOBAL_LEFT/RIGHT instead of left,right directly)
+- updated language files
+-- persian (thx voltan)
+-- portuguesebr (thx leco1) 0.71b
+- fixed _GLOBAL_LEFT is defined as 'right' if _ADM_USE_RTL is not defined 0.71a
+- _ADM_USE_RTLが定義されていない環境で_GLOBAL_LEFTがrightになるバグを修正 0.71a
+- added a delegate D3NotificationHandler.Trigger into D3NotificationHandler 0.71b
+
+v0.70 (2008-12-14) Note: update the module
+- rewritten myblocksadmin fully
+- modified groups can be selected in list_blocks and edit_block
+- added a support for ImpressCMS (page ID and block positions)
+- removed a support for XOOPS2.2
+- added WYSIWYG edition for custom blocks by common/fckeditor (fckxoops)
+- removed WYSIWYG edition for custom blocks by common/spaw
+- added language files
+-- portuguesebr (thx leco1)
+
+v0.61 (2008-09-05)
+- added D3NotificationHandler
+- fixed some modinfo.php loaded twice with langauge overridding 0.61a
+
+v0.60 (2008-08-07)
+- fixed warning by assert() in Text_Diff
+- fixed notices missing modinfo.php (thx shige-p)
+
+v0.59 (2008-05-22)
+- fixed css for admin with XCL2.1 and "admin in theme"
+- modified the compatibility of blocksadmin with XCL2.1
+- updated gtickets.php
+- updated language files
+-- persian (thx stranger) 0.59a
+
+v0.58 (2008-04-10)
+- fixed wrong breadcrumbs as my*admin
+- modified "admin in theme" read language files under the theme
+- added setup_xoops_trust_path.php
+
+v0.57 (2008-04-01)
+- modified public top altsys
+- fixed typo in langman (thx nobunobu)
+- fixed templates_c/index.html can be removed (thx nobunobu)
+- added module's language files under the theme for XCL2.1
+- added pagetype's language files under the theme for XCL2.1
+- fixed menu duplication with admin in theme and XCL2.1 (thx nobunobu)
+- added a class named AltsysBreadcrumbs
+- modified xoops_breadcrumbs for "admin in theme"
+- added language files
+-- spanish (thx debianus)
+
+v0.56 (2007-12-28)
+- added a feature of custom template file (not custom "template set")
+- modified cloned blocks have independent "func_num" each other
+- modified compatibility with some XCL special modules about admin_in_theme
+- added partially overriding language constants by XOOPS_ROOT_PATH/my_language
+- modified mylangadmin displays which constants are overridden partially 0.56a
+- modified compatibility with NBFrame 0.56a
+
+v0.55 (2007-07-12)
+- modified the compatibility against XOOPS 2.0.14/15/16
+- added a class D3Tpl extends XoopsTpl
+- modified adminmenu hack (thx nobu) 0.55a
+- updated language files 0.55a
+-- persian (thx voltan)
+- added language files 0.55a
+-- german (thx rene)
+
+v0.54 (2007-07-06)
+- fixed admin_in_theme conflicts PHP debug of conventinal XOOPS2
+- fixed admin_in_theme conflicts redirect hack
+
+v0.53 (2007-06-05)
+- modified some interfaces
+- renamed language
+-- ja_utf8 (formerly japanaeseutf)
+
+v0.52 (2007-05-11)
+- added config of "force block cloning"
+- mofieid cache files for overriding language constants
+- modified mylangadmin can treat modinfo.php even
+
+v0.51 (2007-05-10)
+- added mylangadmin for conventional modules
+- added a preload for overriding XC Legacy 2.1 Language Manager
+- modified interface of mylangadmin
+- templatized mymenu for altsys
+- templatized mymenusub for altsys
+
+v0.50 (2007-05-07)
+- added mylangadmin - the override system for language constants
+- templatized mymenu
+- added "update and continue to edit" button into mytplsadmin
+- added language files
+-- japaneseutf
+- modified the compatibility of mylangadmin 0.50a
+- updated language files 0.50a
+-- persian (thx voltan)
+
+v0.41 (2007-04-04)
+- modified tplsadmin can edit themes with dbtheme module
+- fixed compatibility between "admin in theme" and Legacy 2.1 (thx sakichi)
+- fixed redirect_message 0.41a
+
+v0.40 (2007-03-27) note: overwrite XOOPS_ROOT_PATH/modules/altsys also
+- modified the structure radically
+- added a bridge "admin in theme" to XC Legacy 2.1
+- added a block of adminmenu
+- modified README better
+
+v0.36 (2007-03-23)
+- modified compatibilities of "admin in theme" still
+- added a feature blocks can be displayed in "admin in theme" (also xoops.org)
+- changed blocks displaying rule in "admin in theme" (specify ALTSYS explicitly)
+- added xoops_breadcrumbs for "admin in theme"
+- fixed compatibity problem with php5 on "admin in theme" (thx sakichi) 0.36a
+
+v0.35 (2007-03-22)
+- modified compatibilities of "admin in theme"
+- added a feature any blocks can be displayed in "admin in theme" (only with JP)
+
+v0.34 (2007-03-21)
+- added a feature of "admin in theme"
+
+v0.33 (2007-03-20)
+- modified admin menu hacks a little bit
+- modified compilehookadmin for other than html templates
+- updated language files
+-- persian (thx voltan)
+
+v0.32 (2007-03-19)
+- modified admin menu hacks
+- fixed a bug on installing newly (thx fourpsk)
+
+v0.31 (2007-03-18)
+- added admin menu hacks :-)
+
+v0.30 (2007-03-14) note: remove XOOPS_ROOT_PATH/modules/altsys once
+- modified the structure of file tree
+
+v0.21 (2006-10-27)
+- fixed wrong link from templates (thx makimaki)
+- added language persian (thx voltan)
+
+v0.20 (2006-10-18)
+- modified compatibility with Cube 2.1 beta
+- fixed wrong links of admin menu (thx usagiya) 0.20a
+
+v0.12 (2006-07-18)
+- modified compatibility with Cube 2.1 alpha3 without system module
+
+v0.11 (2006-06-21)
+- fixed uri of spaw in myblocksadmin (thx nico)
+- modified icon (thx argon)
+
+v0.10 (2006-05-19)
+- 1st release as altsys
+- myblocksadmin
+- mytplsadmin
+- mypreferences
+- compilehookadmin
+- fixed escaping rule of & (myblocksadmin)
+- XOOPS 2.2 ready (myblocksadmin)
+
+
+[/xlang:en]
+[xlang:ja]
+
+v0.71 (2008-12-21)
+- XCL2.1のcl::{BlockClass}に対応した (thx tohokuaiki)
+- XOOPS2.3での動作を確認した
+- プレビュー時にグループ権限が失われていたのを修正
+- RTLサポート (leftやrightを直に記述せずに、_GLOBAL_LEFT/RIGHTを使う)
+- 言語定数更新
+-- persian (thx voltan)
+-- portuguesebr (thx leco1) 0.71b
+- _ADM_USE_RTLが定義されていない環境で_GLOBAL_LEFTがrightになるバグを修正 0.71a
+- イベント通知ハンドラが D3NotificationHandler.Trigger をcallするよう変更 0.71b
+
+v0.70 (2008-12-14) ※ 要モジュールアップデート
+- myblocksadminをまるまる書き直した
+- 表示対象グループを直接選択できるようにした
+- ImpressCMSに対応した（ページIDおよび追加ブロックポジション）
+- XOOPS2.2への対応をやめた
+- common/fckeditor (fckxoops)でカスタムブロックを編集できるようにした
+- カスタムブロック編集でspawへの対応をやめた
+- 言語定数追加
+-- portuguesebr (thx leco1)
+
+v0.61 (2008-09-05)
+- D3NotificationHandler を追加
+- 言語定数オーバーライドで modinfo.php が二度読まれてしまう現象を修正 0.61a
+
+v0.60 (2008-08-07)
+- Text_Diffが吐くassert()によるWarningをとりあえず消した
+- modinfo.phpを読み込まないケースでNoticeが出ていたのを修正 (thx shige-p)
+
+v0.59 (2008-05-22)
+- XCL2.1における管理画面テーマで、CSSが読み込まれない問題の改善
+- XCL2.1におけるブロック管理の相性問題改善
+- gtickets.php の更新
+- 言語ファイル更新
+-- persian (thx stranger) 0.59a
+
+v0.58 (2008-04-10)
+- パンくず関連のバグ修正
+- 管理画面テーマのテーマ下言語ファイル対応
+- XOOPS_TRUST_PATHを設定していない場合の対応追加
+
+v0.57 (2008-04-01)
+- Altsysを開始モジュールとしてしまった場合の対処を追加
+- 言語マネージャのtypo修正 (thx nobunobu)
+- テンプレートキャッシュ内ファイルの誤削除修正 (thx nobunobu)
+- XCL2.1用言語マネージャフックpreloadのテーマ下言語ファイル対応
+- XCL2.1用言語マネージャフックpreloadのmy_language/下ページタイプ言語ファイル対応
+- XCL2.1の管理画面テーマで、メニュー項目が重複するバグの修正 (thx nobunobu)
+- AltsysBreadcrumbs クラスの新設
+- Altsys内のxoops_breadcrumbsを比較的真面目に作った
+- 言語ファイル追加
+-- spanish (thx debianus)
+
+v0.56 (2007-12-28)
+- カスタムテンプレートの実装
+- 複製ブロックのfunc_numがなるべくダブらないようにした
+- 管理画面テーマで Module.class.php でオーバーライドするモジュールに対応した
+- XOOPS_ROOT_PATH/my_language による言語定数の差分オーバーライドを実装した
+- 差分オーバーライド状況を管理画面でも確認できるようにした 0.56a
+- NBFrameへの対応 0.56a
+
+v0.55 (2007-07-12)
+- 本家版コア2.0.14/15/16との互換性改善
+- XoopsTplを継承したD3Tplクラスの実装・利用
+- 管理画面メニュー書き換え機能の改善 (thx nobu) 0.55a
+- 言語ファイル更新 0.55a
+-- persian (thx voltan)
+- 言語ファイル追加 0.55a
+-- german (thx rene)
+
+v0.54 (2007-07-06)
+- 管理画面テーマを使うとエラー表示がなくなってしまったのを修正
+- 管理画面テーマとお手軽高速化Hackとの衝突を回避
+
+v0.53 (2007-06-05)
+- 細かな操作性向上
+- 言語ファイル名変更
+-- ja_utf8 (旧 japanaeseutf)
+
+v0.52 (2007-05-11)
+- ブロック強制複製可能オプションの新設
+- キャッシュファイルの生成ルール変更
+- 言語ファイルオーバーライドで modinfo.php も扱えるようにした
+
+v0.51 (2007-05-10)
+- 通常モジュールも言語ファイルオーバーライドシステムで扱えるように仕様変更
+- XoopsCube Legacy 2.1 用のランゲージマネージャオーバーライドpreloadの同梱
+- mylangadmin の操作性改善
+- altsys専用mymenuのテンプレート化
+- 同サブメニューのテンプレート化
+
+v0.50 (2007-05-07)
+- 言語ファイルオーバーライドシステムmylangadminの実装
+- mymenuのテンプレート化
+- テンプレート編集での確認ボタンの追加
+- 言語ファイル追加
+-- japaneseutf
+- mylangadminの互換性改善 0.50a
+- 言語ファイル修正 0.50a
+-- persian (thx voltan)
+
+v0.41 (2007-04-04)
+- tplsadmin をテーマ編集対応した (dbthemeモジュールとの併用時)
+- 管理画面テーマの対Legacy 2.1互換性を向上させた (thx sakichi)
+- お手軽高速化Hackでメッセージが表示されていなかったのを修正 0.41a
+
+v0.40 (2007-03-27) ※ 公開側も上書きしてください
+- 構造を大幅に変更した
+- 管理画面テーマをXC Legacy 2.1で動くようにした
+- 管理画面メニューをブロック化した
+- ドキュメントを少し整備した
+
+v0.36 (2007-03-23)
+- 管理画面テーマの互換性のさらなる改善
+- 管理画面テーマで、本家版2.0.xでもブロック表示を可能とした
+- 管理画面テーマブロック表示仕様変更 （対象に"ALTSYS"が明示的に指定された時だけ）
+- 管理画面テーマでのxoops_breadcrumbs対応
+- PHPだと管理画面テーマが機能しなかったのを修正 (thx sakichi) 0.36a
+
+v0.35 (2007-03-22)
+- 管理画面テーマの互換性改善
+- ブロック表示を可能にした (現状ではJP版のみ)
+
+v0.34 (2007-03-21)
+- 管理画面を公開側テーマで表示する機能の追加
+
+v0.33 (2007-03-20)
+- 管理メニューの書き換え機能をもう少し改良した
+- テンプレートの高度な管理で、HTML以外のテンプレートの処理を変更
+- 言語ファイル更新
+-- persian (thx voltan)
+
+v0.32 (2007-03-19)
+- 管理メニューの書き換え機能の完成度を高めた
+- 0.31でインストールできなくなっていたバグの修正 (thx fourpsk)
+
+v0.31 (2007-03-18)
+- 管理メニューの書き換え機能追加
+
+v0.30 (2007-03-14) ※ 公開側をいったん消してください
+- ファイル構成の見直し（以降はXOOPS_TRUST_PATHのみ上書きすれば良い形にした）
+
+v0.21 (2006-10-27)
+- テンプレートへの埋め込みでリンク先がおかしかったのを修正 (thx makimaki)
+- トルコ語追加 (thx voltan)
+
+v0.20 (2006-10-18)
+- Cube 2.1 beta で動くようにした
+- メニューがおかしかったのを修正 (thx usagiya) 0.20a
+
+v0.12 (2006-07-18)
+- Cube 2.1 alpha3 でsystemモジュールが存在しない場合への対応を追加
+
+v0.11 (2006-06-21)
+- myblocksadmin上のspawリンクがおかしかったのを修正 (thx nico)
+- アイコン更新 (thx argon)
+
+v0.10 (2006-05-19)
+- 最初のリリース
+- myblocksadmin
+- mytplsadmin
+- mypreferences
+- compilehookadmin
+- & の扱いを修正 (myblocksadmin)
+- XOOPS 2.2対応 (myblocksadmin)
+
+
+[/xlang:ja]

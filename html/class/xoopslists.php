@@ -34,10 +34,12 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
     define("XOOPS_LISTS_INCLUDED", 1);
     class xoopslists
     {
-        public function &getTimeZoneList()
+        public static function getTimeZoneList()
         {
             $root =& XCube_Root::getSingleton();
-            $root->mLanguageManager->loadPageTypeMessageCatalog('timezone');
+            if ($root->mLanguageManager !== null && !defined('_TZ_GMT0')) {
+                $root->mLanguageManager->loadPageTypeMessageCatalog('timezone');
+            }
             $time_zone_list = array(
                 "-12" => _TZ_GMTM12,
                 "-11" => _TZ_GMTM11,
@@ -79,7 +81,7 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
         /*
          * gets list of themes folder from themes directory
          */
-        public function &getThemesList()
+        public static function &getThemesList()
         {
             $ret =& XoopsLists::getDirListAsArray(XOOPS_THEME_PATH.'/');
             return $ret;
@@ -88,7 +90,7 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
         /*
          * gets a list of module folders from the modules directory
          */
-        public function &getModulesList()
+        public static function &getModulesList()
         {
             $ret =& XoopsLists::getDirListAsArray(XOOPS_ROOT_PATH."/modules/");
             return $ret;
@@ -97,7 +99,7 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
         /*
          * gets list of name of directories inside a directory
          */
-        public function &getDirListAsArray($dirname)
+        public static function &getDirListAsArray($dirname)
         {
             $dirlist = array();
             if (is_dir($dirname) && $handle = opendir($dirname)) {
@@ -118,7 +120,7 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
         /*
          *  gets list of all files in a directory
          */
-        public function &getFileListAsArray($dirname, $prefix="")
+        public static function &getFileListAsArray($dirname, $prefix="")
         {
             $filelist = array();
             if (substr($dirname, -1) == '/') {
@@ -141,7 +143,7 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
         /*
          *  gets list of image file names in a directory
          */
-        public function &getImgListAsArray($dirname, $prefix="")
+        public static function &getImgListAsArray($dirname, $prefix="")
         {
             $filelist = array();
             if ($handle = opendir($dirname)) {
@@ -161,7 +163,7 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
         /*
          *  gets list of html file names in a certain directory
         */
-        public function &getHtmlListAsArray($dirname, $prefix="")
+        public static function &getHtmlListAsArray($dirname, $prefix="")
         {
             $filelist = array();
             if ($handle = opendir($dirname)) {
@@ -184,7 +186,7 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
          *  gets list of avatar file names in a certain directory
          *  if directory is not specified, default directory will be searched
          */
-        public function &getAvatarsList($avatar_dir="")
+        public static function &getAvatarsList($avatar_dir="")
         {
             $avatars = array();
             if ($avatar_dir != "") {
@@ -198,7 +200,7 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
         /*
          *  gets list of all avatar image files inside default avatars directory
          */
-        public function &getAllAvatarsList()
+        public static function &getAllAvatarsList()
         {
             $avatars = array();
             $dirlist = array();
@@ -217,7 +219,7 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
         *  gets list of subject icon image file names in a certain directory
         *  if directory is not specified, default directory will be searched
         */
-        public function &getSubjectsList($sub_dir="")
+        public static function &getSubjectsList($sub_dir="")
         {
             $subjects = array();
             if ($sub_dir != "") {
@@ -231,14 +233,14 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
         /*
          * gets list of language folders inside default language directory
          */
-        public function &getLangList()
+        public static function &getLangList()
         {
             $lang_list = array();
             $lang_list =& XoopsLists::getDirListAsArray(XOOPS_ROOT_PATH."/language/");
             return $lang_list;
         }
 
-        public function &getCountryList()
+        public static function &getCountryList()
         {
             $country_list = array(
                 ""   => "-",
@@ -491,7 +493,7 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
             return $country_list;
         }
 
-        public function &getHtmlList()
+        public static function &getHtmlList()
         {
             $html_list = array(
                 "a" => "&lt;a&gt;",
@@ -551,10 +553,10 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
             return $html_list;
         }
 
-        public function &getUserRankList()
+        public static function &getUserRankList()
         {
             $db =& Database::getInstance();
-            $myts =& MyTextSanitizer::getInstance();
+            $myts =& MyTextSanitizer::sGetInstance();
             $sql = "SELECT rank_id, rank_title FROM ".$db->prefix("ranks")." WHERE rank_special = 1";
             $ret = array();
             $result = $db->query($sql);

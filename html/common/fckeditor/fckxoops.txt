@@ -1,0 +1,190 @@
+[mlimg]
+[xlang:en]
+== FCKeditor for XOOPS ==
+
+[b]USAGE[/b]
+- extract file tree under XOOPS_ROOT_PATH  (XOOPS_ROOT_PATH/common/)
+- make directory named fckeditor under uploads (XOOPS_ROOT_PATH/uploads/fckeditor/)
+- set permission of the directory 0777 (if your PHP runs as CGI, set 0755 instead)
+- to modify configuration, rename  editor/filemanager/connectors/php/config_and_auth.inc.dist.php to config_and_auth.inc.php. then edit the file.
+
+
+[b]DIFF[/b]
+
+- file tree
+all of connectors or uploaders other than php are removed.
+and php connector and uploader have been modified radically. (for preventing fatal vulnerability)
+
+- two repositories for images and files
+Image files (jpeg,gif,png) will be stored inside DocumentRoot.
+Files other than images will be stored outside of DocumentRoot (XOOPS_TRUST_PATH).
+
+- the file name stored in the server is independent from local file name
+Image files will be renamed newly.
+File names of other than images will be encoded like pukiwiki.
+
+- consider safe_mode
+if you want to create folder under safe_mode, you have to make the directory manually via FTP etc.
+
+- permission of uploading
+only admin of XOOPS can upload with default config_and_auth.inc.php
+
+- uploading by normal users
+If you want to allow normal users can upload image files, modify $fck_uploadable_groups in config_and_auth.inc.php
+A normal user can browse only files uploaded by him/herself.
+A normal user cannot create a new folder.
+
+- permission of listing files
+Admins can get a list of all uploaded files.
+Normal users can get a list of files uploaded by him/herself.
+
+- permission of accessing each files
+All visitors within guests can access any uploaded files if he/she knows its url.
+
+- permission of removing files
+Admins can delete all of uploaded files.
+Normal users can delete files uploaded by him/herself within 3600sec. (default)
+
+- resize original/making thumnail
+If you want special action about uploaded files, modify config_and_auth.inc.php as you like.
+A function fck_resize_by_imagemagick() will be a good sample.
+(Resizing original image files inside 480x480 box by ImageMagick Package)
+
+
+[/xlang:en]
+[xlang:ja]
+== XOOPS用 FCKeditor ==
+
+●利用法
+
+アーカイブを解凍し、XOOPS_ROOT_PATH直下においてください。
+XOOPS_ROOT_PATH/common/
+という形になります。
+
+すでに、なんらかのcommonファイルを入れていれば、commonフォルダがある
+はずですし、なければ新しくcommonフォルダを作る形になります。
+
+ファイルアップロードを利用するためには、XOOPS_ROOT_PATH/uploads の下に、fckeditor というフォルダをFTP等で作ってください。このフォルダのパーミッションは場合に応じて異なりますが、phpがApacheモジュールとして動いているなら777、CGI版なら755です。
+
+アプリケーションからの利用法ですが、FCKeditorの本来の使い方でOKです。
+HTML+JavaScriptとして用意するだけです。
+
+XOOPSモジュールでは、とりあえずpicoが対応しています。
+
+fckxoopsの設定は、一応、editor/filemanager/connectors/php/config_and_auth.inc.dist.php にまとまっています。これをカスタマイズする際には、config_and_auth.inc.php にリネームしてから編集すると、今後のバージョンアップで上書きされることはなくなるでしょう。
+
+
+●オリジナルとの相違
+
+・アーカイブ構成
+php以外のコネクタ・アップローダはすべて削除してます。
+また、オリジナルのphpのコネクタ・アップローダには大きな脆弱性があり、他にもいろいろ問題があったため、ほぼまるまる書き直してます。
+
+・ファイル保管場所
+イメージファイルはDocumentRoot内に置きますが、それ以外のファイルは、TRUST_PATH内に置きます。
+
+・ファイル名の非保存
+アップロードする際に、ローカルのファイル名は維持しません。
+ROOT内に置かれるイメージファイルについては、新しくファイル名が作成されます。
+一応、判りやすくするために、日付をファイル名に含めています。
+ROOT外に置かれるその他のファイルについては、元のファイル名をpukiwikiエンコードしたファイル名で保存します。（実際には、uidによるprefixもつく）
+
+・safe_mode対応
+safe_mode制限でハマることを避けるため、safe_modeの場合は、ディレクトリを作ることが出来ないようにしています。
+safe_modeサーバの場合は、FTP等でuploads/fckeditor/の下に、適宜フォルダを作成してください。
+
+・アップロード権限
+オリジナルではいずれも無制限にできる仕様だったのですが、この版では、XOOPSにログインしていて、かつ、特定の権限がなければ利用できません。そのあたりの権限振り分けは、config_and_auth.inc.php の書き方一つです。
+デフォルトでは、いわゆる「管理者」にしか、アップロードを許可していません。この「管理者」とは、システムモジュールの管理者（X2用）か、legacyモジュールの管理者(Cube 2.1用)のいずれかを意味します。
+
+・ノーマルユーザのアップロード権限
+config_and_auth.inc.php で $fck_uploadable_groups の設定を変更すれば、管理者ではない通常のユーザもアップロードができるようになります。この場合、自分がアップロードしたファイル以外は、サーバーブラウザで見ることが出来ません。フォルダによる振り分けではなく、ファイルprefixによる振り分けです。なお、ノーマルユーザはフォルダの作成権限もありません。
+
+・ファイルリスト権限
+管理者は全部のファイルがリスト表示されます。
+一般ユーザは、自分がアップロードしたファイルしかリスト表示されません。
+
+・ファイル閲覧権限
+リンクなどでファイルURLが明らかになっているものについては、ゲストも含
+めた全てのユーザが閲覧・ダウンロードできます。
+
+・ファイル削除権限
+管理者は常に全てのファイルを削除可能です。
+（一応、気休め程度にトークンは埋め込んであります）
+一般ユーザは、自分がアップロードしたファイルしか削除できません。
+また、アップロードしてから一定時間(デフォルトでは3600秒)経つと、自分がアップロードしたファイルも削除できなくなります。
+
+・アップロードされた画像のリサイズ/サムネイル作成
+これも、config_and_auth.inc.php の書き方一つで、どのようにでもできます。fck_resize_by_imagemagick() を参考にしてください。（ImageMagickを使って、480x480というボックス内に納める処理を行う）
+
+
+●TODO
+・ブラウズ権限/アップロード権限の細かな実装
+・画像の自動サムネール作成（リンクと画像の両方に自動入力されるように…）
+・Attachmanモジュールとの連携
+
+
+●FCKeditor のcommon化作業記録
+
+(TODO)
+- 2.6.3ベースにする
+- エントリポイントの２ファイル以外は全部TRUST内に追いやる予定
+- configをaltsysあたりの設定に持って行く予定
+
+(2009-11-11) 2.5.1-003
+- Flashがtrustモードとなっていなかったのを修正 (thx salamander)
+
+(2009-03-19) 2.5.1-002
+- SSL経由だとIEでダウンロードができないことに対応
+
+(2008-10-11) 2.5.1-001
+- ファイル転送処理のパス記述ミスを修正 (thx jidaikobo)
+- 余分なファイルを削除
+
+(2007-12-26) 2.5.1-000
+- ベースを2.5.1へとアップデート
+- connectors/ のパスが変更されたのに対応した (fckconfig.js要修正)
+- アップデート方法: common/fckeditor/内の全ファイルを削除してからアップロードする
+- fckconfig.js をカスタマイズしているならマージする
+-- FCKConfig.*BrowserURL および FCKConfig.*UploadURL のパスが違う点に注意
+
+(2007-12-20) 2.3.2-005
+- ファイル削除機能の実装 (thx aramaki)
+-- 一般ユーザは自分自身のファイルを一定時間内だけ削除可能 (default 3600sec)
+- XOOPS_TRUST_PATH/uploads/ 下へのアップロード・転送ダウンロードの実装
+-- アップロード時、拡張子がjpeg,gif,pngのみ、XOOPS_UPLOAD_PATH下へと振り分ける
+-- リスト時、Fileリソースについては、TRUST下を見るようにした
+- ファイル名保存・日本語対応 (Fileリソースのみ)
+-- ファイル名のエンコードルールはpukiwikiをパクった
+-- エンコード前にファイル名はUTF-8にしておく。Content-Disposition時にIEのみSJISへ
+- なるべく適切なエラーが出力されるように改善した
+- configファイルの構成変更（旧バージョンの利用者はマージする必要あり）
+- サーバブラウザのリソースリストをJSmartyを使う形にした
+
+(2007-12-06) 2.3.2-004
+- uid毎にディレクトリに振り分ける設定の追加。configを書き換えて、フォルダを10個または100個自分で作り、chmod 777する。(safe_mode対応のため)
+
+(2007-11-18) 2.3.2-003
+- アップロードしたファイルのパーミッションを644に変更するコードの追加
+
+(2007-09-14) 2.3.2-002
+- editor/filemanager/browser/default/frmresourceslist.html をいじって画像なら画像そのものを表示するようにHackした
+- リサイズなどの処理を追加できるようにした
+- ノーマル権限の設定を可能とした
+- フォルダ作成は管理者だけができるようにした
+- ノーマル権限では自分がアップしたファイルだけがブラウズできるようにした
+
+(2006-12-14) 2.3.2-001
+- FCKeditor 最新版のダウンロード/解凍
+- FCKeditor/直下から、editor/ *.js *.xml *.txt 以外をすべて削除
+- editor/filemanager/browser/default/connectors/ のphp以外のディレクトリをすべて削除 (test.htmlも)
+- editor/filemanager/upload/ のphp以外のディレクトリをすべて削除 (text.htmlも)
+- fckconfig.js の編集
+var _FileBrowserLanguage	= 'php' ; // オリジナルはasp
+var _QuickUploadLanguage	= 'php' ; // オリジナルはasp
+- editor/filemanager/browser/default/connectors/php/ 直下のPHPファイルをまるまる作り直し
+- editor/filemanager/upload/php/ 直下のPHPファイルをまるまる作り直し
+- uploadとbrowseが両方とも同じconfigを利用できるように
+
+
+[/xlang:ja]

@@ -61,7 +61,7 @@ if ('system' == $xoopsModule->getVar('dirname')) {
     $com_modid = $xoopsModule->getVar('mid');
     $redirect_page = $comment_config['pageName'].'?';
     if (isset($comment_config['extraParams']) && is_array($comment_config['extraParams'])) {
-        $myts =& MyTextSanitizer::getInstance();
+        $myts =& MyTextSanitizer::sGetInstance();
         foreach ($comment_config['extraParams'] as $extra_param) {
             $extra_params .= isset($_POST[$extra_param]) ? $extra_param.'='.$myts->stripSlashesGPC($_POST[$extra_param]).'&amp;' : $extra_param.'=&amp;';
         }
@@ -111,7 +111,7 @@ case "delete":
     include XOOPS_ROOT_PATH.'/include/comment_delete.php';
     break;
 case "preview":
-    $myts =& MyTextSanitizer::getInstance();
+    $myts =& MyTextSanitizer::sGetInstance();
     $doimage = 1;
     $com_title = $myts->htmlSpecialChars($myts->stripSlashesGPC($_POST['com_title']));
     if ($dohtml != 0) {

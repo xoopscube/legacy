@@ -62,8 +62,8 @@ class User_LostPass1MailBuilder
 
     public function setFromEmail($user, $xoopsConfig)
     {
-        $this->mMailer->setFromEmail($xoopsConfig['adminmail']);
-        $this->mMailer->setFromName($xoopsConfig['sitename']);
+        $this->mMailer->setFromEmail(defined('XOOPS_NOTIFY_FROM_EMAIL')? XOOPS_NOTIFY_FROM_EMAIL : $xoopsConfig['adminmail']);
+        $this->mMailer->setFromName(defined('XOOPS_NOTIFY_FROM_NAME')? XOOPS_NOTIFY_FROM_NAME : $xoopsConfig['sitename']);
     }
     
     public function setSubject($user, $xoopsConfig)
@@ -85,7 +85,7 @@ class User_LostPass1MailBuilder
     public function setBody($user, $xoopsConfig, $extraVars)
     {
         $this->mMailer->assign("SITENAME", $xoopsConfig['sitename']);
-        $this->mMailer->assign("ADMINMAIL", $xoopsConfig['adminmail']);
+        $this->mMailer->assign("ADMINMAIL", (!defined('XOOPS_NOTIFY_FROM_EMAIL') || XOOPS_NOTIFY_FROM_EMAIL === $xoopsConfig['adminmail'])? $xoopsConfig['adminmail'] : '');
         $this->mMailer->assign("SITEURL", XOOPS_URL . "/");
         $this->mMailer->assign("IP", $_SERVER['REMOTE_ADDR']);
         $queryString = http_build_query(array(
@@ -125,7 +125,7 @@ class User_LostPass2MailBuilder extends User_LostPass1MailBuilder
     public function setBody($user, $xoopsConfig, $extraVars)
     {
         $this->mMailer->assign("SITENAME", $xoopsConfig['sitename']);
-        $this->mMailer->assign("ADMINMAIL", $xoopsConfig['adminmail']);
+        $this->mMailer->assign("ADMINMAIL", (!defined('XOOPS_NOTIFY_FROM_EMAIL') || XOOPS_NOTIFY_FROM_EMAIL === $xoopsConfig['adminmail'])? $xoopsConfig['adminmail'] : '');
         $this->mMailer->assign("SITEURL", XOOPS_URL . "/");
         $this->mMailer->assign("IP", $_SERVER['REMOTE_ADDR']);
         $this->mMailer->assign("NEWPWD", $extraVars['newpass']);
