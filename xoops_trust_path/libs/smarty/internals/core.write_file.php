@@ -49,4 +49,6 @@ function smarty_core_write_file($params, &$smarty)
     return true;
 }
 
-/* vim: set expandtab: */;
+/* vim: set expandtab: */
+
+?>
