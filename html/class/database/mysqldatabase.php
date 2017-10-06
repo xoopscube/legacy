@@ -99,6 +99,12 @@ class XoopsMySQLDatabase extends XoopsDatabase
                 return false;
             }
         }
+        
+        // set sql_mode to '' for backward compatibility
+        if (version_compare(mysql_get_server_info($this->conn), '5.6', '>=')) {
+            mysql_query('SET SESSION sql_mode = \'\'', $this->conn);
+        }
+        
         return true;
     }
 
