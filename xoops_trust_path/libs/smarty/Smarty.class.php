@@ -27,7 +27,7 @@
  * @author Monte Ohrt <monte at ohrt dot com>
  * @author Andrei Zmievski <andrei@php.net>
  * @package Smarty
- * @version 2.6.30
+ * @version 2.6.31-dev
  */
 
 /* $Id$ */
@@ -63,10 +63,6 @@ define('SMARTY_PHP_ALLOW',      3);
  */
 class Smarty
 {
-    /**#@+
-     * Smarty Configuration Section
-     */
-
     /**
      * For backward compatibility of XOOPS Cube
      */
@@ -74,6 +70,10 @@ class Smarty
     {
         self::__construct();
     }
+
+    /**#@+
+     * Smarty Configuration Section
+     */
 
     /**
      * The name of the directory where templates are located.
@@ -473,7 +473,7 @@ class Smarty
      *
      * @var string
      */
-    var $_version              = '2.6.30';
+    var $_version              = '2.6.31';
 
     /**
      * current template inclusion depth
