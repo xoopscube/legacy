@@ -347,6 +347,8 @@ class Legacy_ModulePreferenceEditState extends Legacy_AbstractPreferenceEditStat
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
         $module = Legacy_Utils::createModule($this->_mMaster->mModule);
+        XCube_DelegateUtils::call('Legacy.Admin.Event.ModulePreference.' . ucfirst($this->_mMaster->mModule->get('dirname')) . '.Success', new XCube_Ref($module), new XCube_Ref($this->_mMaster->mModule));
+        XCube_DelegateUtils::call('Legacy.Admin.Event.ModulePreference.Success', new XCube_Ref($module), new XCube_Ref($this->_mMaster->mModule));
         $controller->executeForward($module->getAdminIndex());
     }
 
