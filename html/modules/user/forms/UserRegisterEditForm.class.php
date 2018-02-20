@@ -83,7 +83,7 @@ class User_RegisterEditForm extends User_AbstractUserEditForm
         $obj->set('url', $this->get('url'));
         $obj->set('user_avatar', 'blank.gif', true);
         $obj->set('timezone_offset', $this->get('timezone_offset'));
-        $obj->set('pass', md5($this->get('pass')));
+        $obj->set('pass', User_Utils::encryptPassword($this->get('pass')));
         $obj->set('user_mailok', $this->get('user_mailok'));
         $obj->set('agree', $this->get('agree'));
 

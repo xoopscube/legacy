@@ -548,7 +548,7 @@ CREATE TABLE users (
   user_aim varchar(18) NOT NULL default '',
   user_yim varchar(25) NOT NULL default '',
   user_msnm varchar(100) NOT NULL default '',
-  pass varchar(32) NOT NULL default '',
+  pass varchar(255) NOT NULL default '',
   posts mediumint(8) unsigned NOT NULL default '0',
   attachsig tinyint(1) unsigned NOT NULL default '0',
   rank smallint(5) unsigned NOT NULL default '0',

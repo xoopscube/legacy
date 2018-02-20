@@ -212,7 +212,7 @@ class User_EditUserForm extends User_AbstractUserEditForm
         $obj->set('user_msnm', $this->get('user_msnm'));
 
         if (strlen($this->get('pass'))) {
-            $obj->set('pass', md5($this->get('pass')));
+            $obj->set('pass', User_Utils::encryptPassword($this->get('pass')));
         }
 
         $obj->set('attachsig', $this->get('attachsig'));

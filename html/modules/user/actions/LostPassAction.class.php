@@ -81,7 +81,7 @@ class User_LostPassAction extends User_Action
             // $xoopsMailer->getErrors();
             return USER_FRAME_VIEW_ERROR;
         }
-        $lostUser->set('pass', md5($newpass), true);
+        $lostUser->set('pass', User_Utils::encryptPassword($newpass), true);
         $userHandler->insert($lostUser, true);
 
         return USER_FRAME_VIEW_SUCCESS;

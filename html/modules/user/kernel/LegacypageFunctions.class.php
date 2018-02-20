@@ -232,7 +232,7 @@ class User_LegacypageFunctions
         
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('uname', xoops_getrequest('uname')));
-        $criteria->add(new Criteria('pass', md5(xoops_getrequest('pass'))));
+        $criteria->add(new Criteria('pass', User_Utils::encryptPassword(xoops_getrequest('pass'))));
         
         $userArr =& $userHandler->getObjects($criteria);
         
