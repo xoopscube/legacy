@@ -263,10 +263,13 @@ class User_LegacypageFunctions
             }
         }
         
-        $user->set('pass', User_Utils::encryptPassword($pass), true);
-        if (!$handler->insert($user, true)) {
-            // set $passwordNeedsRehash
-            self::$passwordNeedsRehash = User_Utils::passwordNeedsRehash($hash);
+        // auto re-hash
+        if (User_Utils::passwordNeedsRehash($hash)) {
+            $user->set('pass', User_Utils::encryptPassword($pass), true);
+            if (!$handler->insert($user, true)) {
+                // set $passwordNeedsRehash
+                self::$passwordNeedsRehash = ture;
+            }
         }
 
         $xoopsUser = $user;
