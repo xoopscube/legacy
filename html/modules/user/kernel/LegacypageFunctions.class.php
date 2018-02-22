@@ -238,8 +238,9 @@ class User_LegacypageFunctions
             return;
         }
 
+        $pass = xoops_getrequest('pass');
         $hash = $userArr[0]->get('pass');
-        if (! User_Utils::passwordVerify(xoops_getrequest('pass'), $hash)) {
+        if (! User_Utils::passwordVerify($pass, $hash)) {
             return;
         }
         
@@ -262,10 +263,13 @@ class User_LegacypageFunctions
             }
         }
         
-        $xoopsUser = $user;
+        $user->set('pass', User_Utils::encryptPassword($pass), true);
+        if (!$handler->insert($user, true)) {
+            // set $passwordNeedsRehash
+            self::$passwordNeedsRehash = User_Utils::passwordNeedsRehash($hash);
+        }
 
-        // set $passwordNeedsRehash
-        self::$passwordNeedsRehash = User_Utils::passwordNeedsRehash($hash);
+        $xoopsUser = $user;
 
         //
         // Regist to session
