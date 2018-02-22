@@ -79,13 +79,22 @@ class User_Utils
     public static function convertUrlToUser(&$url)
     {
         global $xoopsRequestUri;
-        if (!strstr($url, '?')) {
-            $url .= "?xoops_redirect=" . urlencode($xoopsRequestUri);
-        } else {
-            $url .= "&amp;xoops_redirect=" . urlencode($xoopsRequestUri);
+        if (!preg_match('/xoops_redirect=/', $url)) {
+            if (!strstr($url, '?')) {
+                $url .= "?xoops_redirect=" . urlencode($xoopsRequestUri);
+            } else {
+                $url .= "&amp;xoops_redirect=" . urlencode($xoopsRequestUri);
+            }
         }
     }
 
+    /**
+     * To encrypt hash of password
+     *
+     * @param      string  $password  The password
+     *
+     * @return     string  encrypt hashed password
+     */
     public static function encryptPassword($password)
     {
         $pwd = $password;
@@ -93,9 +102,32 @@ class User_Utils
         return $pwd;
     }
 
-    public static function getEncryptPasswordLength()
+    /**
+     * Password veryfy with hash
+     *
+     * @param      string   $password  The password
+     * @param      string   $hash      The hash
+     *
+     * @return     boolean  password match to hash
+     */
+    public static function passwordVerify($password, $hash)
     {
-        $length = XCube_DelegateUtils::call('User.GetEncryptPasswordLength');
-        return $length;
+        $result = false;
+        XCube_DelegateUtils::call('User.PasswordVerify', new XCube_Ref($result), $password, $hash);
+        return $result;
+    }
+
+    /**
+     * Is password hash needs rehash
+     *
+     * @param      string   $value  The hash value
+     *
+     * @return     boolean  needs rehash
+     */
+    public static function passwordNeedsRehash($value)
+    {
+        $needs = false;
+        XCube_DelegateUtils::call('User.PasswordNeedsRehash', new XCube_Ref($needs), $value);
+        return $needs;
     }
 }

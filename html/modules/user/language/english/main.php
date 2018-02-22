@@ -114,3 +114,4 @@ define('_MD_USER_MESSAGE_SURETODEL', "Are you sure you want to delete your accou
 define('_MD_USER_MESSAGE_USER_DELETE_SUCCESS', "Your account has been deleted.");
 define('_MD_USER_MESSAGE_YOURREGISTERED', "You are now registered. An email containing an user activation key has been sent to the email account you provided. Please follow the instructions in the mail to activate your account. ");
 define('_MD_USER_MESSAGE_YOURREGISTERED2', "You are now registered.  Please wait for your account to be activated by the administrators.  You will receive an email once you are activated.  This could take a while so please be patient.");
+define('_MD_USER_MESSAGE_REPASSWORD', 'Please re-register your password for more security improvement.');

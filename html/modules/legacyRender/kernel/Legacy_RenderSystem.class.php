@@ -163,11 +163,16 @@ class Legacy_RenderSystem extends XCube_RenderSystem
             $mTpl->xoops_setDebugging(true);
         }
         
-        $mTpl->assign(array('xoops_requesturi' => htmlspecialchars($GLOBALS['xoopsRequestUri'], ENT_QUOTES),    //@todo ?????????????
-                            // set JavaScript/Weird, but need extra <script> tags for 2.0.x themes
-                            'xoops_js' => '//--></script><script type="text/javascript" src="'.XOOPS_URL.'/include/xoops.js"></script><script type="text/javascript"><!--'
-                        ));
-    
+        $mTpl->assign(array(
+            'xoops_requesturi' => htmlspecialchars($GLOBALS['xoopsRequestUri'], ENT_QUOTES),    //@todo ?????????????
+            // set JavaScript/Weird, but need extra <script> tags for 2.0.x themes
+            'xoops_js' => '//--></script><script type="text/javascript" src="'.XOOPS_URL.'/include/xoops.js"></script><script type="text/javascript"><!--'
+        ));
+
+        if (($xoopsRedirect = xoops_getrequest('xoops_redirect')) && $xoopsRedirect[0] === '/') {
+            $mTpl->assign('xoops_redirect', htmlspecialchars($xoopsRedirect, ENT_QUOTES));
+        }
+
         $mTpl->assign('xoops_sitename', $textFilter->toShow($context->getAttribute('legacy_sitename')));
         $mTpl->assign('xoops_pagetitle', $textFilter->toShow($context->getAttribute('legacy_pagetitle')));
         $mTpl->assign('xoops_slogan', $textFilter->toShow($context->getAttribute('legacy_slogan')));

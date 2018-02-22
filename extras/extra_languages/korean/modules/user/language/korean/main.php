@@ -114,3 +114,4 @@ define('_MD_USER_MESSAGE_SURETODEL', "님의 등록회원 계정을 정말로 삭제하실 건가�
 define('_MD_USER_MESSAGE_USER_DELETE_SUCCESS', "님의 계정이 성공적으로 삭제처리되었습니다.");
 define('_MD_USER_MESSAGE_YOURREGISTERED', "등록이 완료되었습니다. 님의 메일주소로 승인키(활성화키)를 발송하였으니 메일의 지시에 따라 승인을 완료(계정활성화)하시기 바랍니다.");
 define('_MD_USER_MESSAGE_YOURREGISTERED2', "등록이 완료되었습니다. 사이트 관리자가 님의 계정을 승인(활성화)하면 정식으로 등록처리됩니다. 승인(활성화)완료시엔 메일로 통보해 드립니다.");
+define('_MD_USER_MESSAGE_REPASSWORD', '더 많은 보안 향상을 위해 암호를 다시 등록하십시오.');

@@ -115,6 +115,7 @@ define("_MD_USER_MESSAGE_SURETODEL", "Tem certeza de que deseja cancelar a sua c
 define("_MD_USER_MESSAGE_USER_DELETE_SUCCESS", "O seu perfil foi definitivamente removido deste portal.");
 define("_MD_USER_MESSAGE_YOURREGISTERED", "Agora você está cadastrado. Uma mensagem com a sua chave de ativação foi enviada ao <i>e-mail</i> que você nos forneceu. Por favor, siga as instruções contidas no <i>e-mail</i> para habilitar a sua conta.");
 define("_MD_USER_MESSAGE_YOURREGISTERED2", "Agora você está cadastrado. Por favor, espere pela aprovação dos administradores.");
+define('_MD_USER_MESSAGE_REPASSWORD', 'Re-registre sua senha para obter mais aprimoramentos de segurança.');
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //

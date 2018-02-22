@@ -114,3 +114,4 @@ define('_MD_USER_MESSAGE_SURETODEL', "Etes-vous sûr de vouloir supprimer votre c
 define('_MD_USER_MESSAGE_USER_DELETE_SUCCESS', "Votre compte a été supprimé.");
 define('_MD_USER_MESSAGE_YOURREGISTERED', "Vous êtes maintenant enregistré. Vous allez recevoir par email une clé d'activation de votre compte. Veuillez suivre les instructions de ce mail pour activer votre compte. ");
 define('_MD_USER_MESSAGE_YOURREGISTERED2', "Vous êtes maintenant enregistré. Vous recevrez un email lorsque votre compte aura été activé par un des administrateurs. Veuillez suivre les instructions de l'email pour activer votre compte.");
+define('_MD_USER_MESSAGE_REPASSWORD', 'Veuillez réinscrire votre mot de passe pour plus d\'amélioration de la sécurité.');

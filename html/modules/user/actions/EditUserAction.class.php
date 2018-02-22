@@ -178,7 +178,8 @@ class User_EditUserAction extends User_AbstractEditAction
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward(XOOPS_URL . '/userinfo.php?uid=' . $this->mObject->getShow('uid'));
+        $redirect = xoops_getrequest('xoops_redirect');
+        $controller->executeForward(($redirect && $redirect[0] === '/')? $redirect : (XOOPS_URL . '/userinfo.php?uid=' . $this->mObject->getShow('uid')));
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
