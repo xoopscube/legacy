@@ -577,6 +577,10 @@ class XoopsUserHandler extends XoopsObjectHandler
         if (!$user->cleanVars()) {
             return false;
         }
+        // check pass colmun length of users table
+        if (is_callable('User_Utils::checkUsersPassColumnLength')) {
+            User_Utils::checkUsersPassColumnLength();
+        }
         foreach ($user->cleanVars as $k => $v) {
             ${$k} = $v;
         }

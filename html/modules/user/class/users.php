@@ -185,8 +185,6 @@ class UserUsersHandler extends XoopsObjectGenericHandler
     
     public function insert(&$user, $force = false)
     {
-        // check pass colmun length of users table
-        User_Utils::checkUsersPassColumnLength();
         if (parent::insert($user, $force)) {
             $flag = true;
             
