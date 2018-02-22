@@ -399,8 +399,23 @@ class XoopsMemberHandler
     public function &loginUser($uname, $pwd)
     {
         $criteria = new CriteriaCompo(new Criteria('uname', $uname));
-        $criteria->add(new Criteria('pass', md5($pwd)));
-        $user =& $this->_uHandler->getObjects($criteria, false);
+        if (is_callable('User_Utils::passwordVerify')) {
+            $user = $this->_uHandler->getObjects($criteria, false);
+            if ($user && count($user) === 1) {
+                if (!User_Utils::passwordVerify($pwd, $user[0]->get('pass'))) {
+                    $user = array();
+                }
+            } else {
+                $user = array();
+            }
+        } else {
+            if (is_callable('User_Utils::encryptPassword')) {
+                $criteria->add(new Criteria('pass', User_Utils::encryptPassword($pwd)));
+            } else {
+                $criteria->add(new Criteria('pass', md5($pwd)));
+            }
+            $user = $this->_uHandler->getObjects($criteria, false);
+        }
         if (!$user || count($user) != 1) {
             $ret = false;
             return $ret;

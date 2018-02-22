@@ -51,7 +51,7 @@ define("_MD_USER_LANG_NICKNAME", "Codinome");
 define("_MD_USER_LANG_NICKNAMETAKEN", "Lamento, mas este codinome já está em uso.");
 define("_MD_USER_LANG_NO", "Não");
 define("_MD_USER_LANG_NOACTTPADM", "O cadastro do associado selecionado foi desabilitado ou ainda não foi habilitado.<br />Entre em contato com o administrador para mais informações.");
-define("_MD_USER_LANG_NOPROBLEM", "Escreva o e-mail com o qual você se cadastrou em nosso portal.");
+define("_MD_USER_LANG_NOPROBLEM", "Escreva o <i>e-mail</i> com o qual você se cadastrou em nosso portal.");
 define("_MD_USER_LANG_NOREGISTER", "Lamento, mas o cadastro de novos associados está bloqueado.");
 define("_MD_USER_LANG_NOTIFY", "Notificações");
 define("_MD_USER_LANG_NOTIFY_METHOD", "Método de notificação: ao monitorar uma seção do portal, como você deseja receber as notificações de atualização?");
@@ -108,13 +108,14 @@ define("_MD_USER_MESSAGE_ACTKEYNOT", "A chave de ativação não está correta.");
 define("_MD_USER_MESSAGE_ACTLOGIN", "A sua conta foi habilitada e agora você já pode entrar com a senha escolhida.");
 define("_MD_USER_MESSAGE_ACTVMAILNG", "Ocorreu um erro ao tentar enviar a mensagem com a confirmação do cadastro de %s");
 define("_MD_USER_MESSAGE_ACTVMAILOK", "Uma mensagem com a chave de ativação foi enviada para %s .");
-define("_MD_USER_MESSAGE_IAGREE", "Concordo com o descrito acima");
+define("_MD_USER_MESSAGE_IAGREE", "Concordo com o acima descrito");
 define("_MD_USER_MESSAGE_OLDDELETED", "O seu avatar anterior será removido.");
 define("_MD_USER_MESSAGE_SEND_PASSWORD", "Senha enviada");
 define("_MD_USER_MESSAGE_SURETODEL", "Tem certeza de que deseja cancelar a sua conta?");
 define("_MD_USER_MESSAGE_USER_DELETE_SUCCESS", "O seu perfil foi definitivamente removido deste portal.");
-define("_MD_USER_MESSAGE_YOURREGISTERED", "Agora você está cadastrado. Uma mensagem com a sua chave de ativação foi enviada ao e-mail que você nos forneceu. Por favor, siga as instruções contidas no e-mail para habilitar a sua conta.");
+define("_MD_USER_MESSAGE_YOURREGISTERED", "Agora você está cadastrado. Uma mensagem com a sua chave de ativação foi enviada ao <i>e-mail</i> que você nos forneceu. Por favor, siga as instruções contidas no <i>e-mail</i> para habilitar a sua conta.");
 define("_MD_USER_MESSAGE_YOURREGISTERED2", "Agora você está cadastrado. Por favor, espere pela aprovação dos administradores.");
+define('_MD_USER_MESSAGE_REPASSWORD', 'Re-registre sua senha para obter mais aprimoramentos de segurança.');
 // ############################################################### //
 // ## XOOPS Cube Legacy - Versão em Português
 // ############################################################### //

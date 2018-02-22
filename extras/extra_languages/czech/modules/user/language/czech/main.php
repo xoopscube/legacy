@@ -113,3 +113,4 @@ define('_MD_USER_MESSAGE_SURETODEL', "Opravdu si pøejete smazat Váš úèet?");
 define('_MD_USER_MESSAGE_USER_DELETE_SUCCESS', "Váš úèet byl odstranìn.");
 define('_MD_USER_MESSAGE_YOURREGISTERED', "You are now registered. An email containing an user activation key has been sent to the email account you provided. Please follow the instructions in the mail to activate your account. ");
 define('_MD_USER_MESSAGE_YOURREGISTERED2', "You are now registered.  Please wait for your account to be activated by the adminstrators.  You will receive an email once you are activated.  This could take a while so please be patient.");
+define('_MD_USER_MESSAGE_REPASSWORD', 'Znovu zaregistrujte své heslo pro zvý¹ení bezpeènosti.');

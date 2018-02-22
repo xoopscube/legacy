@@ -114,3 +114,4 @@ define('_MD_USER_MESSAGE_USER_DELETE_SUCCESS', "アカウントを削除しま�
 define('_MD_USER_MESSAGE_YOURREGISTERED', "登録申請が完了しました。記載されたメールを登録メールアドレス宛に承認キーを送信しました。メールの指示に従い、承認を完了してください。");
 define('_MD_USER_MESSAGE_YOURREGISTERED2', "登録申請が完了しました。サイト管理者がアカウントを承認するまでお待ちください。承認完了時にはメールにてお知らせします。");
 define('_MD_USER_LANG_NOTIFY', '通知');
+define('_MD_USER_MESSAGE_REPASSWORD', 'セキュリティをさらに強化するために、パスワードを再登録してください。');

@@ -12,13 +12,13 @@ class User_AdminPreload extends XCube_ActionFilter
 {
     public function preBlockFilter()
     {
-        $this->mRoot->mDelegateManager->add('Legacy.Event.ThemeSettingChanged', 'User_AdminPreload::doThemeSettingChanged');
+        $this->mRoot->mDelegateManager->add('Legacy.Event.ThemeSettingChanged', array($this, 'doThemeSettingChanged'));
     }
     
     public function doThemeSettingChanged($mainTheme, $selectableThemes)
     {
-        $root =& XCube_Root::getSingleton();
-        $db =& $root->mController->mDB;
+        $root = XCube_Root::getSingleton();
+        $db = $root->mController->mDB;
         $table = $db->prefix('users');
         
         $mainTheme = $db->quoteString($mainTheme);

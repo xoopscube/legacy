@@ -113,3 +113,4 @@ define('_MD_USER_MESSAGE_SURETODEL', "您确定要删除您的帐号?");
 define('_MD_USER_MESSAGE_USER_DELETE_SUCCESS', "您的帐号已删除。");
 define('_MD_USER_MESSAGE_YOURREGISTERED', "您已经完成注册，系统已发出一封帐号启用信请依照信件内容指示启用您的帐号。");
 define('_MD_USER_MESSAGE_YOURREGISTERED2', "您已经完成注册， 请等待系统管理员启用您的帐号，当您帐号启用时会收到通知信，但会需要一点时间，请耐心等候。");
+define('_MD_USER_MESSAGE_REPASSWORD', '请重新注册您的密码以提高安全性。');
