@@ -130,4 +130,21 @@ class User_Utils
         XCube_DelegateUtils::call('User.PasswordNeedsRehash', new XCube_Ref($needs), $value);
         return $needs;
     }
+
+    /**
+     * check pass colmun length of users table
+     */
+    public static function checkUsersPassColumnLength()
+    {
+        $root = XCube_Root::getSingleton();
+        $db = $root->mController->mDB;
+        $sql = 'SELECT COLUMN_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA="'.XOOPS_DB_NAME.'" AND TABLE_NAME="'.$db->prefix('users').'" AND COLUMN_NAME="pass"';
+        if ($res = $db->query($sql)) {
+            $type = $db->fetchRow($res);
+            if (preg_replace('/[^0-9]/', '', $type[0]) < 255) {
+                $sql = 'ALTER TABLE '.$db->prefix('users').' CHANGE `pass` `pass` VARCHAR(255) NOT NULL DEFAULT ""';
+                $db->queryF($sql);
+            }
+        }
+    }
 }

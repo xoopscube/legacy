@@ -15,7 +15,7 @@ class UserUsersObject extends XoopsSimpleObject
     public $_mRankLoadedFlag = false;
     public $mRank;
     
-    public function UserUsersObject()
+    public function __construct()
     {
         static $initVars;
         if (isset($initVars)) {
@@ -185,6 +185,8 @@ class UserUsersHandler extends XoopsObjectGenericHandler
     
     public function insert(&$user, $force = false)
     {
+        // check pass colmun length of users table
+        User_Utils::checkUsersPassColumnLength();
         if (parent::insert($user, $force)) {
             $flag = true;
             
