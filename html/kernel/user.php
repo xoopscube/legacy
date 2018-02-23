@@ -578,7 +578,7 @@ class XoopsUserHandler extends XoopsObjectHandler
             return false;
         }
         // check pass colmun length of users table
-        if (is_callable('User_Utils::checkUsersPassColumnLength')) {
+        if (!defined('XCUBE_CORE_USER_PASS_LEN_FIXED') && is_callable('User_Utils::checkUsersPassColumnLength')) {
             User_Utils::checkUsersPassColumnLength();
         }
         foreach ($user->cleanVars as $k => $v) {
