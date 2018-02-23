@@ -88,7 +88,7 @@ class XoopsUser extends XoopsObject
             $this->initVar('user_aim', XOBJ_DTYPE_TXTBOX, null, false, 18);
             $this->initVar('user_yim', XOBJ_DTYPE_TXTBOX, null, false, 25);
             $this->initVar('user_msnm', XOBJ_DTYPE_TXTBOX, null, false, 100);
-            $this->initVar('pass', XOBJ_DTYPE_TXTBOX, null, false, 32);
+            $this->initVar('pass', XOBJ_DTYPE_TXTBOX, null, false, 255);
             $this->initVar('posts', XOBJ_DTYPE_INT, null, false);
             $this->initVar('attachsig', XOBJ_DTYPE_INT, 0, false);
             $this->initVar('rank', XOBJ_DTYPE_INT, 0, false);
@@ -576,6 +576,10 @@ class XoopsUserHandler extends XoopsObjectHandler
         }
         if (!$user->cleanVars()) {
             return false;
+        }
+        // check pass colmun length of users table
+        if (!defined('XCUBE_CORE_USER_PASS_LEN_FIXED') && is_callable('User_Utils::checkUsersPassColumnLength')) {
+            User_Utils::checkUsersPassColumnLength();
         }
         foreach ($user->cleanVars as $k => $v) {
             ${$k} = $v;

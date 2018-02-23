@@ -10,7 +10,7 @@
 
 <!--<label><{xoops_input type=checkbox name=rememberme value=On class=formButton}><{$smarty.const._MB_USER_REMEMBERME}></label><br />-->
 
-<input type="hidden" name="xoops_redirect" value="<{$xoops_requesturi}>" />
+<input type="hidden" name="xoops_redirect" value="<{if $xoops_redirect}><{$xoops_redirect}><{else}><{$xoops_requesturi}><{/if}>" />
 <{xoops_input type=hidden name=op value=login id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_op"}>
 
 <br /><br />

@@ -15,7 +15,7 @@ class UserUsersObject extends XoopsSimpleObject
     public $_mRankLoadedFlag = false;
     public $mRank;
     
-    public function UserUsersObject()
+    public function __construct()
     {
         static $initVars;
         if (isset($initVars)) {
@@ -37,7 +37,7 @@ class UserUsersObject extends XoopsSimpleObject
         $this->initVar('user_aim', XOBJ_DTYPE_STRING, '', false, 18);
         $this->initVar('user_yim', XOBJ_DTYPE_STRING, '', false, 25);
         $this->initVar('user_msnm', XOBJ_DTYPE_STRING, '', false, 100);
-        $this->initVar('pass', XOBJ_DTYPE_STRING, '', false, 32);
+        $this->initVar('pass', XOBJ_DTYPE_STRING, '', false, 255);
         $this->initVar('posts', XOBJ_DTYPE_INT, '0', false);
         $this->initVar('attachsig', XOBJ_DTYPE_BOOL, '0', false);
         $this->initVar('rank', XOBJ_DTYPE_INT, '0', false);
@@ -185,6 +185,11 @@ class UserUsersHandler extends XoopsObjectGenericHandler
     
     public function insert(&$user, $force = false)
     {
+        // check pass colmun length of users table
+        if (!defined('XCUBE_CORE_USER_PASS_LEN_FIXED') && is_callable('User_Utils::checkUsersPassColumnLength')) {
+            User_Utils::checkUsersPassColumnLength();
+        }
+
         if (parent::insert($user, $force)) {
             $flag = true;
             

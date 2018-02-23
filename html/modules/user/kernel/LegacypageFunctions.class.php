@@ -14,6 +14,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
  */
 class User_LegacypageFunctions
 {
+    static $passwordNeedsRehash;
     /***
      * @internal
      * The process for userinfo.php. This process doesn't execute anything
@@ -225,18 +226,21 @@ class User_LegacypageFunctions
             return;
         }
 
-        $root =& XCube_Root::getSingleton();
+        $root = XCube_Root::getSingleton();
         $root->mLanguageManager->loadModuleMessageCatalog('user');
 
-        $userHandler =& xoops_getmodulehandler('users', 'user');
+        $userHandler = xoops_getmodulehandler('users', 'user');
         
-        $criteria =new CriteriaCompo();
+        $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('uname', xoops_getrequest('uname')));
-        $criteria->add(new Criteria('pass', md5(xoops_getrequest('pass'))));
-        
-        $userArr =& $userHandler->getObjects($criteria);
-        
+        $userArr = $userHandler->getObjects($criteria);
         if (count($userArr) != 1) {
+            return;
+        }
+
+        $pass = xoops_getrequest('pass');
+        $hash = $userArr[0]->get('pass');
+        if (! User_Utils::passwordVerify($pass, $hash)) {
             return;
         }
         
@@ -259,8 +263,17 @@ class User_LegacypageFunctions
             }
         }
         
+        // auto re-hash
+        if (User_Utils::passwordNeedsRehash($hash)) {
+            $user->set('pass', User_Utils::encryptPassword($pass), true);
+            if (!$handler->insert($user, true)) {
+                // set $passwordNeedsRehash
+                self::$passwordNeedsRehash = ture;
+            }
+        }
+
         $xoopsUser = $user;
-    
+
         //
         // Regist to session
         //
@@ -273,10 +286,19 @@ class User_LegacypageFunctions
     public static function checkLoginSuccess(&$xoopsUser)
     {
         if (is_object($xoopsUser)) {
-            $handler =& xoops_gethandler('user');
+            $handler = xoops_gethandler('user');
             $xoopsUser->set('last_login', time());
             
             $handler->insert($xoopsUser);
+
+            if (self::$passwordNeedsRehash) {
+                $url = XOOPS_URL . '/edituser.php';
+                if (($redirect = xoops_getrequest('xoops_redirect')) && $redirect[0] === '/') {
+                    $url .= '?xoops_redirect=' . rawurlencode($redirect);
+                }
+                $root = XCube_Root::getSingleton();
+                $root->mController->executeRedirect($url, 5, _MD_USER_MESSAGE_REPASSWORD);
+            }
         }
     }
 

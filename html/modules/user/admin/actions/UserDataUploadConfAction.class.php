@@ -12,7 +12,7 @@ require_once dirname(__FILE__)."/UserDataUploadAction.class.php";
 
 class User_UserDataUploadConfAction extends User_UserDataUploadAction
 {
-    /// ƒAƒbƒv‚³‚ê‚½CSVƒtƒ@ƒCƒ‹‚ğo—Í‚·‚é
+    /// ã‚¢ãƒƒãƒ—ã•ã‚ŒãŸCSVãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‡ºåŠ›ã™ã‚‹
     public function execute(&$controller, &$xoopsUser)
     {
     
@@ -25,7 +25,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
     }
     
     
-    /// Šm”F‰æ–Ê‚ğ•\¦
+    /// ç¢ºèªç”»é¢ã‚’è¡¨ç¤º
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
         /// success
@@ -94,9 +94,9 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
                                  }
                                 break;
                               case 'pass':
-                                if (strlen($csv_value)!=32) {
-                                    $update = $user_value != md5($csv_value);
-                                    $csv_value = md5($csv_value);
+                                if (strlen($csv_value) < 32) {
+                                    $csv_value = User_Utils::encryptPassword($csv_value);
+                                    $update = $user_value !== $csv_value;
                                 }
                               default:
                             }
@@ -139,12 +139,12 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
     
     // {{{ explodeCSV(Ethna_Util.php)
     /**
-     *  CSVŒ`®‚Ì•¶š—ñ‚ğ”z—ñ‚É•ªŠ„‚·‚é
+     *  CSVå½¢å¼ã®æ–‡å­—åˆ—ã‚’é…åˆ—ã«åˆ†å‰²ã™ã‚‹
      *
      *  @access public
-     *  @param  string  $csv        CSVŒ`®‚Ì•¶š—ñ(1s•ª)
-     *  @param  string  $delimiter  ƒtƒB[ƒ‹ƒh‚Ì‹æØ‚è•¶š
-     *  @return mixed   (array):•ªŠ„Œ‹‰Ê Ethna_Error:ƒGƒ‰[(sŒp‘±)
+     *  @param  string  $csv        CSVå½¢å¼ã®æ–‡å­—åˆ—(1è¡Œåˆ†)
+     *  @param  string  $delimiter  ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®åŒºåˆ‡ã‚Šæ–‡å­—
+     *  @return mixed   (array):åˆ†å‰²çµæœ Ethna_Error:ã‚¨ãƒ©ãƒ¼(è¡Œç¶™ç¶š)
      */
     public function explodeCSV($csv, $delimiter = ",")
     {
@@ -208,7 +208,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
                             $field .= $line_end;
 
                             // request one more line
-//                          return Ethna::raiseNotice('CSV•ªŠ„ƒGƒ‰[(sŒp‘±)', E_UTIL_CSV_CONTINUE);
+//                          return Ethna::raiseNotice('CSVåˆ†å‰²ã‚¨ãƒ©ãƒ¼(è¡Œç¶™ç¶š)', E_UTIL_CSV_CONTINUE);
                         }
                     }
                 }

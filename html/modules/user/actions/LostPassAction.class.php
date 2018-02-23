@@ -72,6 +72,12 @@ class User_LostPassAction extends User_Action
 
         $newpass = xoops_makepass();
         $extraVars['newpass'] = $newpass;
+
+        $lostUser->set('pass', User_Utils::encryptPassword($newpass), true);
+        if (!$userHandler->insert($lostUser, true)) {
+            return USER_FRAME_VIEW_ERROR;
+        }
+
         $builder =new User_LostPass2MailBuilder();
         $director =new User_LostPassMailDirector($builder, $lostUser, $controller->mRoot->mContext->getXoopsConfig(), $extraVars);
         $director->contruct();
@@ -81,8 +87,6 @@ class User_LostPassAction extends User_Action
             // $xoopsMailer->getErrors();
             return USER_FRAME_VIEW_ERROR;
         }
-        $lostUser->set('pass', md5($newpass), true);
-        $userHandler->insert($lostUser, true);
 
         return USER_FRAME_VIEW_SUCCESS;
     }
