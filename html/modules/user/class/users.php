@@ -186,7 +186,7 @@ class UserUsersHandler extends XoopsObjectGenericHandler
     public function insert(&$user, $force = false)
     {
         // check pass colmun length of users table
-        if (is_callable('User_Utils::checkUsersPassColumnLength')) {
+        if (!defined('XCUBE_CORE_USER_PASS_LEN_FIXED') && is_callable('User_Utils::checkUsersPassColumnLength')) {
             User_Utils::checkUsersPassColumnLength();
         }
 
