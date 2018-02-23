@@ -133,18 +133,30 @@ class User_Utils
 
     /**
      * check pass colmun length of users table
+     *
+     * @return     boolean Users pass column length is fixed (VARCHAR(255))
      */
     public static function checkUsersPassColumnLength()
     {
-        $root = XCube_Root::getSingleton();
-        $db = $root->mController->mDB;
-        $sql = 'SELECT COLUMN_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA="'.XOOPS_DB_NAME.'" AND TABLE_NAME="'.$db->prefix('users').'" AND COLUMN_NAME="pass"';
-        if ($res = $db->query($sql)) {
-            $type = $db->fetchRow($res);
-            if (preg_replace('/[^0-9]/', '', $type[0]) < 255) {
-                $sql = 'ALTER TABLE '.$db->prefix('users').' CHANGE `pass` `pass` VARCHAR(255) NOT NULL DEFAULT ""';
-                $db->queryF($sql);
+        $res = true;
+        if (!defined('XCUBE_CORE_USER_PASS_LEN_FIXED')) {
+            $res = false;
+            $root = XCube_Root::getSingleton();
+            $db = $root->mController->mDB;
+            $sql = 'SELECT COLUMN_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA="'.XOOPS_DB_NAME.'" AND TABLE_NAME="'.$db->prefix('users').'" AND COLUMN_NAME="pass"';
+            if ($res = $db->query($sql)) {
+                $type = $db->fetchRow($res);
+                if (preg_replace('/[^0-9]/', '', $type[0]) < 255) {
+                    $sql = 'ALTER TABLE '.$db->prefix('users').' CHANGE `pass` `pass` VARCHAR(255) NOT NULL DEFAULT ""';
+                    $res = $db->queryF($sql);
+                } else {
+                    $res = true;
+                }
+                if ($res) {
+                    define('XCUBE_CORE_USER_PASS_LEN_FIXED', true);
+                }
             }
         }
+        return $res;
     }
 }
