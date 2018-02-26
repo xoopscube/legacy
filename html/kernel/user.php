@@ -637,6 +637,40 @@ class XoopsUserHandler extends XoopsObjectHandler
     }
 
     /**
+     * Get unames from the database
+     * 
+     * @param object $criteria {@link CriteriaElement} conditions to be met
+     * @param bool $id_as_key use the UID as key for the array?
+     * @return array array of uname
+     */
+    public function getUnames($criteria = null, $id_as_key = false)
+    {
+        $ret = array();
+        $limit = $start = 0;
+        $sql = 'SELECT * FROM '.$this->db->prefix('users');
+        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+            $sql .= ' '.$criteria->renderWhere();
+            if ($criteria->getSort() != '') {
+                $sql .= ' ORDER BY '.$criteria->getSort().' '.$criteria->getOrder();
+            }
+            $limit = $criteria->getLimit();
+            $start = $criteria->getStart();
+        }
+        $result = $this->db->query($sql, $limit, $start);
+        if (!$result) {
+            return $ret;
+        }
+        while ($myrow = $this->db->fetchArray($result)) {
+            if (!$id_as_key) {
+                $ret[] = $myrow['uname'];
+            } else {
+                $ret[$myrow['uid']] = $myrow['uname'];
+            }
+        }
+        return $ret;
+    }
+
+    /**
      * retrieve users from the database
      * 
      * @param object $criteria {@link CriteriaElement} conditions to be met

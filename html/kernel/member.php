@@ -259,12 +259,7 @@ class XoopsMemberHandler
      */
     public function getUserList($criteria = null)
     {
-        $users =& $this->_uHandler->getObjects($criteria, true);
-        $ret = array();
-        foreach (array_keys($users) as $i) {
-            $ret[$i] = $users[$i]->getVar('uname');
-        }
-        return $ret;
+        return $this->_uHandler->getUnames($criteria, true);
     }
 
     /**
