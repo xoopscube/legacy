@@ -33,9 +33,8 @@ class XoopsDatabaseFactory
             $instance->setLogger(XoopsLogger::instance());
             $instance->setPrefix(XOOPS_DB_PREFIX);
             if (!$instance->connect()) {
-                echo "現在サーバが混み合っているか、メンテナンス中です。<br>\n";
-                echo "ご迷惑をおかけいたしますが、しばらく時間を空けて再度アクセスしてください。<br>\n\n";
-                echo "<!-- Unable to connect to database. -->\n\n<script>console.log('Unable to connect to database');</script>";
+                echo "Service temporarily unavailable. (Unable to connect to the database)";
+                header('HTTP/1.1 503 Service Temporarily Unavailable');
                 trigger_error("Unable to connect to database", E_USER_ERROR);
             }
         }
