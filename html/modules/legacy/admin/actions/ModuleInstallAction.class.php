@@ -3,12 +3,14 @@
  *
  * @package Legacy
  * @version $Id: ModuleInstallAction.class.php,v 1.4 2008/09/25 15:11:33 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
- * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
 
- if (!defined('XOOPS_ROOT_PATH')) exit();
+ if (!defined('XOOPS_ROOT_PATH')) {
+     exit();
+ }
 
 require_once XOOPS_LEGACY_PATH."/admin/actions/AbstractModuleInstallAction.class.php";
 require_once XOOPS_LEGACY_PATH . "/admin/class/ModuleInstallUtils.class.php";
@@ -64,50 +66,50 @@ require_once XOOPS_LEGACY_PATH."/admin/forms/ModuleInstallForm.class.php";
  */
 class Legacy_ModuleInstallAction extends Legacy_Action
 {
-	/**
-	 * @var XCube_Delegate
-	 */
-	var $mInstallSuccess = null;
-	
-	/**
-	 * @var XCube_Delegate
-	 */
-	var $mInstallFail = null;
-	
-	/**
-	 * @private
-	 * @var XoopsModule
-	 */
-	var $mXoopsModule = null;
-	
-	/**
-	 * @private
-	 * @var Legacy_ModuleUinstaller
-	 */
-	var $mInstaller = null;
-	
-	function Legacy_ModuleInstallAction($flag)
-	{
-		parent::Legacy_Action($flag);
-		
-		$this->mInstallSuccess =new XCube_Delegate();
-		$this->mInstallSuccess->register('Legacy_ModuleInstallAction.InstallSuccess');
-		
-		$this->mInstallFail =new XCube_Delegate();
-		$this->mInstallFail->register('Legacy_ModuleInstallAction.InstallFail');
-	}
-	
-	function prepare(&$controller, &$xoopsUser)
-	{
-		$dirname = $controller->mRoot->mContext->mRequest->getRequest('dirname');
-		
-		$handler =& xoops_gethandler('module');
-		$this->mXoopsModule =& $handler->getByDirname($dirname);
-		
-		if (is_object($this->mXoopsModule)) {
-			return false;
-		}
-		
+    /**
+     * @var XCube_Delegate
+     */
+    public $mInstallSuccess = null;
+    
+    /**
+     * @var XCube_Delegate
+     */
+    public $mInstallFail = null;
+    
+    /**
+     * @private
+     * @var XoopsModule
+     */
+    public $mXoopsModule = null;
+    
+    /**
+     * @private
+     * @var Legacy_ModuleUinstaller
+     */
+    public $mInstaller = null;
+    
+    public function Legacy_ModuleInstallAction($flag)
+    {
+        parent::Legacy_Action($flag);
+        
+        $this->mInstallSuccess =new XCube_Delegate();
+        $this->mInstallSuccess->register('Legacy_ModuleInstallAction.InstallSuccess');
+        
+        $this->mInstallFail =new XCube_Delegate();
+        $this->mInstallFail->register('Legacy_ModuleInstallAction.InstallFail');
+    }
+    
+    public function prepare(&$controller, &$xoopsUser)
+    {
+        $dirname = $controller->mRoot->mContext->mRequest->getRequest('dirname');
+        
+        $handler =& xoops_gethandler('module');
+        $this->mXoopsModule =& $handler->getByDirname($dirname);
+        
+        if (is_object($this->mXoopsModule)) {
+            return false;
+        }
+        
         $this->mXoopsModule =& $handler->create();
         
         $this->mXoopsModule->set('weight', 1);
@@ -120,101 +122,100 @@ class Legacy_ModuleInstallAction extends Legacy_Action
         if ($this->mXoopsModule->get('dirname') == 'system') {
             $this->mXoopsModule->set('mid', 1);
         }
-		
-		$this->_setupActionForm();
-		
-		$this->mInstaller =& $this->_getInstaller();
-		
-		//
-		// Set the current object.
-		//
-		$this->mInstaller->setCurrentXoopsModule($this->mXoopsModule);
-		
-		return true;
-	}
+        
+        $this->_setupActionForm();
+        
+        $this->mInstaller =& $this->_getInstaller();
+        
+        //
+        // Set the current object.
+        //
+        $this->mInstaller->setCurrentXoopsModule($this->mXoopsModule);
+        
+        return true;
+    }
 
-	function &_getInstaller()
-	{
-		$dirname = $this->mXoopsModule->get('dirname');
-		$installer =& Legacy_ModuleInstallUtils::createInstaller($dirname);
-		return $installer;
-	}
-		
-	function _setupActionForm()
-	{
-		$this->mActionForm =new Legacy_ModuleInstallForm();
-		$this->mActionForm->prepare();
-	}
+    public function &_getInstaller()
+    {
+        $dirname = $this->mXoopsModule->get('dirname');
+        $installer =& Legacy_ModuleInstallUtils::createInstaller($dirname);
+        return $installer;
+    }
+        
+    public function _setupActionForm()
+    {
+        $this->mActionForm =new Legacy_ModuleInstallForm();
+        $this->mActionForm->prepare();
+    }
 
-	function getDefaultView(&$controller, &$xoopsUser)
-	{
-		$this->mActionForm->load($this->mXoopsModule);
-		
-		return LEGACY_FRAME_VIEW_INPUT;
-	}
+    public function getDefaultView(&$controller, &$xoopsUser)
+    {
+        $this->mActionForm->load($this->mXoopsModule);
+        
+        return LEGACY_FRAME_VIEW_INPUT;
+    }
 
-	function execute(&$controller, &$xoopsUser)
-	{
-		if (isset($_REQUEST['_form_control_cancel'])) {
-			return LEGACY_FRAME_VIEW_CANCEL;
-		}
-		
-		$this->mActionForm->fetch();
-		$this->mActionForm->validate();
-		
-		if ($this->mActionForm->hasError()) {
-			return $this->getDefaultView($controller, $xoopsUser);
-		}
-		
-		$this->mInstaller->setForceMode($this->mActionForm->get('force'));
-		if (!$this->mInstaller->executeInstall()) {
-			$this->mInstaller->mLog->addReport('Force Uninstallation is started.');
-			$dirname = $this->mXoopsModule->get('dirname');
-			$uninstaller =& Legacy_ModuleInstallUtils::createUninstaller($dirname);
-			
-			$uninstaller->setForceMode(true);
-			$uninstaller->setCurrentXoopsModule($this->mXoopsModule);
-			
-			$uninstaller->executeUninstall();
-		}
+    public function execute(&$controller, &$xoopsUser)
+    {
+        if (isset($_REQUEST['_form_control_cancel'])) {
+            return LEGACY_FRAME_VIEW_CANCEL;
+        }
+        
+        $this->mActionForm->fetch();
+        $this->mActionForm->validate();
+        
+        if ($this->mActionForm->hasError()) {
+            return $this->getDefaultView($controller, $xoopsUser);
+        }
+        
+        $this->mInstaller->setForceMode($this->mActionForm->get('force'));
+        if (!$this->mInstaller->executeInstall()) {
+            $this->mInstaller->mLog->addReport('Force Uninstallation is started.');
+            $dirname = $this->mXoopsModule->get('dirname');
+            $uninstaller =& Legacy_ModuleInstallUtils::createUninstaller($dirname);
+            
+            $uninstaller->setForceMode(true);
+            $uninstaller->setCurrentXoopsModule($this->mXoopsModule);
+            
+            $uninstaller->executeUninstall();
+        }
 
-		return LEGACY_FRAME_VIEW_SUCCESS;
-	}
-	
-	/**
-	 * @todo no $renderer. It should be $render.
-	 */
-	function executeViewSuccess(&$controller,&$xoopsUser,&$renderer)
-	{
-		if (!$this->mInstaller->mLog->hasError()) {
-			$this->mInstallSuccess->call(new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
-			XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleInstall.' . ucfirst($this->mXoopsModule->get('dirname') . '.Success'), new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
-		}
-		else {
-			$this->mInstallFail->call(new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
-			XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleInstall.' . ucfirst($this->mXoopsModule->get('dirname') . '.Fail'), new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
-		}
+        return LEGACY_FRAME_VIEW_SUCCESS;
+    }
+    
+    /**
+     * @todo no $renderer. It should be $render.
+     */
+    public function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
+    {
+        if (!$this->mInstaller->mLog->hasError()) {
+            $this->mInstallSuccess->call(new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
+            XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleInstall.' . ucfirst($this->mXoopsModule->get('dirname') . '.Success'), new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
+            XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleInstall.Success', new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
+        } else {
+            $this->mInstallFail->call(new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
+            XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleInstall.' . ucfirst($this->mXoopsModule->get('dirname') . '.Fail'), new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
+            XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleInstall.Fail', new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
+        }
 
-		$renderer->setTemplateName("module_install_success.html");
-		$renderer->setAttribute('module', $this->mXoopsModule);
-		$renderer->setAttribute('log', $this->mInstaller->mLog->mMessages);
-	}
+        $renderer->setTemplateName("module_install_success.html");
+        $renderer->setAttribute('module', $this->mXoopsModule);
+        $renderer->setAttribute('log', $this->mInstaller->mLog->mMessages);
+    }
 
-	/**
-	 * @todo no $renderer. It should be $render.
-	 */
-	function executeViewInput(&$controller,&$xoopsUser,&$renderer)
-	{
-		$renderer->setTemplateName("module_install.html");
-		$renderer->setAttribute('module', $this->mXoopsModule);
-		$renderer->setAttribute('actionForm', $this->mActionForm);
-		$renderer->setAttribute('currentVersion', round($this->mXoopsModule->get('version') / 100, 2));
-	}
+    /**
+     * @todo no $renderer. It should be $render.
+     */
+    public function executeViewInput(&$controller, &$xoopsUser, &$renderer)
+    {
+        $renderer->setTemplateName("module_install.html");
+        $renderer->setAttribute('module', $this->mXoopsModule);
+        $renderer->setAttribute('actionForm', $this->mActionForm);
+        $renderer->setAttribute('currentVersion', round($this->mXoopsModule->get('version') / 100, 2));
+    }
 
-	function executeViewCancel(&$controller, &$xoopsUser, &$render)
-	{
-		$controller->executeForward("./index.php?action=InstallList");
-	}
+    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
+    {
+        $controller->executeForward("./index.php?action=InstallList");
+    }
 }
-
-?>

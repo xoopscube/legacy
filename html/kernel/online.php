@@ -52,14 +52,14 @@ class XoopsOnlineHandler
      * @var	object
      * @access	private
      */
-    var $db;
+    public $db;
 
     /**
      * Constructor
      * 
      * @param	object  &$db    {@link XoopsHandlerFactory} 
      */
-    function XoopsOnlineHandler(&$db)
+    public function XoopsOnlineHandler(&$db)
     {
         $this->db =& $db;
     }
@@ -75,28 +75,28 @@ class XoopsOnlineHandler
      * 
      * @return	bool    TRUE on success
      */
-    function write($uid, $uname, $time, $module, $ip)
-	{
-		$uid = (int)$uid;
-		$ip = $this->db->quoteString($ip);
-		if ($uid > 0) {
-			$sql = "SELECT COUNT(*) FROM ".$this->db->prefix('online')." WHERE online_uid=".$uid;
-		} else {
-			$sql = "SELECT COUNT(*) FROM ".$this->db->prefix('online')." WHERE online_uid=".$uid." AND online_ip=".$ip;
-		}
-		list($count) = $this->db->fetchRow($this->db->queryF($sql));
-        if ( $count > 0 ) {
+    public function write($uid, $uname, $time, $module, $ip)
+    {
+        $uid = (int)$uid;
+        $ip = $this->db->quoteString($ip);
+        if ($uid > 0) {
+            $sql = "SELECT COUNT(*) FROM ".$this->db->prefix('online')." WHERE online_uid=".$uid;
+        } else {
+            $sql = "SELECT COUNT(*) FROM ".$this->db->prefix('online')." WHERE online_uid=".$uid." AND online_ip=".$ip;
+        }
+        list($count) = $this->db->fetchRow($this->db->queryF($sql));
+        if ($count > 0) {
             $sql = "UPDATE ".$this->db->prefix('online')." SET online_updated=".$time.", online_module = ".$module." WHERE online_uid = ".$uid;
             if ($uid == 0) {
                 $sql .= " AND online_ip=".$ip;
             }
         } else {
-			$sql = sprintf("INSERT INTO %s (online_uid, online_uname, online_updated, online_ip, online_module) VALUES (%u, %s, %u, %s, %u)", $this->db->prefix('online'), $uid, $this->db->quoteString($uname), $time, $ip, $module);
+            $sql = sprintf("INSERT INTO %s (online_uid, online_uname, online_updated, online_ip, online_module) VALUES (%u, %s, %u, %s, %u)", $this->db->prefix('online'), $uid, $this->db->quoteString($uname), $time, $ip, $module);
         }
-		if (!$this->db->queryF($sql)) {
+        if (!$this->db->queryF($sql)) {
             return false;
         }
-		return true;
+        return true;
     }
 
     /**
@@ -106,9 +106,9 @@ class XoopsOnlineHandler
      * 
      * @return	bool    TRUE on success
      */
-    function destroy($uid)
+    public function destroy($uid)
     {
-		$sql = sprintf("DELETE FROM %s WHERE online_uid = %u", $this->db->prefix('online'), $uid);
+        $sql = sprintf("DELETE FROM %s WHERE online_uid = %u", $this->db->prefix('online'), $uid);
         if (!$result = $this->db->queryF($sql)) {
             return false;
         }
@@ -122,9 +122,9 @@ class XoopsOnlineHandler
      * 
      * @param	int $expire Expiration time in seconds
      */
-    function gc($expire)
+    public function gc($expire)
     {
-		$sql = sprintf("DELETE FROM %s WHERE online_updated < %u", $this->db->prefix('online'), time() - (int)$expire);
+        $sql = sprintf("DELETE FROM %s WHERE online_updated < %u", $this->db->prefix('online'), time() - (int)$expire);
         $this->db->queryF($sql);
     }
 
@@ -134,7 +134,7 @@ class XoopsOnlineHandler
      * @param	object  $criteria   {@link CriteriaElement} 
      * @return	array   Array of associative arrays of online information
      */
-    function &getAll($criteria = null)
+    public function &getAll($criteria = null)
     {
         $ret = array();
         $limit = $start = 0;
@@ -146,7 +146,7 @@ class XoopsOnlineHandler
         }
         $result =& $this->db->query($sql, $limit, $start);
         if (!$result) {
-			$ret = false;
+            $ret = false;
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
@@ -161,18 +161,17 @@ class XoopsOnlineHandler
      * 
      * @param	object  $criteria   {@link CriteriaElement} 
      */
-    function getCount($criteria = null)
+    public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('online');
         if (is_object($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result =& $this->db->query($sql)) {
-			$ret = false;
+            $ret = false;
             return $ret;
         }
         list($ret) = $this->db->fetchRow($result);
         return $ret;
     }
 }
-?>

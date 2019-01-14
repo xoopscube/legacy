@@ -3,38 +3,38 @@
  *
  * @package XCube
  * @version $Id: XCube_Session.class.php,v 1.4 2008/10/12 04:30:27 minahito Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
- * @license http://xoopscube.sourceforge.net/license/bsd_licenses.txt Modified BSD license
+ * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt Modified BSD license
  *
  */
 
 class XCube_Session
 {
-	/**
-	 * @public
-	 * @brief [READ ONLY] string
-	 */
-    var $mSessionName = '';
+    /**
+     * @public
+     * @brief [READ ONLY] string
+     */
+    public $mSessionName = '';
 
-	/**
-	 * @public
-	 * @brief [READ ONLY] int
-	 */
-    var $mSessionLifetime = 0;
+    /**
+     * @public
+     * @brief [READ ONLY] int
+     */
+    public $mSessionLifetime = 0;
 
-	/**
-	 * @public
-	 * @brief [READ ONLY] XCube_Delegate
-	 */
-    var $mSetupSessionHandler = null;
+    /**
+     * @public
+     * @brief [READ ONLY] XCube_Delegate
+     */
+    public $mSetupSessionHandler = null;
 
-	/**
-	 * @public
-	 * @brief [READ ONLY] XCube_Delegate
-	 */
-    var $mGetSessionCookiePath = null;
+    /**
+     * @public
+     * @brief [READ ONLY] XCube_Delegate
+     */
+    public $mGetSessionCookiePath = null;
 
-    function XCube_Session($sessionName='', $sessionExpire=0)
+    public function XCube_Session($sessionName='', $sessionExpire=0)
     {
         $this->setParam($sessionName, $sessionExpire);
 
@@ -45,10 +45,10 @@ class XCube_Session
         $this->mGetSessionCookiePath->register('XCube_Session.GetSessionCookiePath');
     }
     
-	/**
-	 * @public
-	 */
-    function setParam($sessionName='', $sessionExpire=0)
+    /**
+     * @public
+     */
+    public function setParam($sessionName='', $sessionExpire=0)
     {
         $allIniArray = ini_get_all();
 
@@ -65,10 +65,10 @@ class XCube_Session
         }
     }
 
-	/**
-	 * @public
-	 */
-    function start()
+    /**
+     * @public
+     */
+    public function start()
     {
         $this->mSetupSessionHandler->call();
 
@@ -79,14 +79,23 @@ class XCube_Session
 
         if (!empty($this->mSessionLifetime) && isset($_COOKIE[$this->mSessionName])) {
             // Refresh lifetime of Session Cookie
-            setcookie($this->mSessionName, session_id(), time() + $this->mSessionLifetime, $this->_cookiePath());
+            $session_params = session_get_cookie_params();
+            !$session_params['domain'] and $session_params['domain'] = null;
+            $session_cookie_params = array(
+                $this->mSessionName, session_id(), time() + $this->mSessionLifetime, $this->_cookiePath(),
+                $session_params['domain'], $session_params['secure']
+                );
+            if (isset($session_params['httponly'])) {
+                $session_cookie_params[] = $session_params['httponly'];
+            }
+            call_user_func_array('setcookie', $session_cookie_params);
         }
     }
 
-	/**
-	 * @public
-	 */
-    function destroy($forceCookieClear = false)
+    /**
+     * @public
+     */
+    public function destroy($forceCookieClear = false)
     {
         // If current session name is not same as config value.
         // Session cookie should be clear
@@ -101,10 +110,10 @@ class XCube_Session
         session_destroy();
     }
 
-	/**
-	 * @public
-	 */
-    function regenerate()
+    /**
+     * @public
+     */
+    public function regenerate()
     {
         $oldSessionID = session_id();
         session_regenerate_id();
@@ -120,10 +129,10 @@ class XCube_Session
         }
     }
 
-	/**
-	 * @public
-	 */
-    function rename()
+    /**
+     * @public
+     */
+    public function rename()
     {
         if (session_name() != $this->mSessionName) {
             $oldSessionID = session_id();
@@ -138,10 +147,10 @@ class XCube_Session
         }
     }
 
-	/**
-	 * @private
-	 */
-    function _cookiePath()
+    /**
+     * @private
+     */
+    public function _cookiePath()
     {
         static $sessionCookiePath = null;
         if (empty($sessionCookiePath)) {
@@ -153,4 +162,3 @@ class XCube_Session
         return $sessionCookiePath;
     }
 }
-?>

@@ -4,7 +4,7 @@
  * @package XOOPS2
  * @version $Id: legacy_comments.php,v 1.3 2008/09/25 15:12:13 kilica Exp $
  * @copyright Copyright (c) 2000 XOOPS.org  <http://www.xoops.org/>
- * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
 //  ------------------------------------------------------------------------ //
@@ -19,7 +19,8 @@
 //  This file has been modified for Legacy from XOOPS2 System module block   //
 // ------------------------------------------------------------------------- //
 
-function b_legacy_comments_show($options) {
+function b_legacy_comments_show($options)
+{
     $block = array();
     include_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
     $comment_handler =& xoops_gethandler('comment');
@@ -59,9 +60,9 @@ function b_legacy_comments_show($options) {
     return $block;
 }
 
-function b_legacy_comments_edit($options) {
+function b_legacy_comments_edit($options)
+{
     $inputtag = "<input type='text' name='options[]' value='".intval($options[0])."' />";
     $form = sprintf(_MB_LEGACY_DISPLAYC, $inputtag);
     return $form;
 }
-?>

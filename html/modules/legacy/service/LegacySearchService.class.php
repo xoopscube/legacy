@@ -3,16 +3,18 @@
  *
  * @package Legacy
  * @version $Id: LegacySearchService.class.php,v 1.4 2008/09/25 15:12:43 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
- * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 class Legacy_SearchModule extends XCube_Object
 {
-    function getPropertyDefinition()
+    public function getPropertyDefinition()
     {
         $ret = array(
             S_PUBLIC_VAR("int mid"),
@@ -25,7 +27,7 @@ class Legacy_SearchModule extends XCube_Object
 
 class Legacy_SearchModuleArray extends XCube_ObjectArray
 {
-    function getClassName()
+    public function getClassName()
     {
         return "Legacy_SearchModule";
     }
@@ -34,7 +36,7 @@ class Legacy_SearchModuleArray extends XCube_ObjectArray
 
 class Legacy_SearchItem extends XCube_Object
 {
-    function getPropertyDefinition()
+    public function getPropertyDefinition()
     {
         $ret = array(
             S_PUBLIC_VAR("string image"),
@@ -50,7 +52,7 @@ class Legacy_SearchItem extends XCube_Object
 
 class Legacy_SearchItemArray extends XCube_ObjectArray
 {
-    function getClassName()
+    public function getClassName()
     {
         return "Legacy_SearchItem";
     }
@@ -58,7 +60,7 @@ class Legacy_SearchItemArray extends XCube_ObjectArray
 
 class Legacy_SearchModuleResult extends XCube_Object
 {
-    function getPropertyDefinition()
+    public function getPropertyDefinition()
     {
         $ret = array(
             S_PUBLIC_VAR("int mid"),
@@ -74,7 +76,7 @@ class Legacy_SearchModuleResult extends XCube_Object
 
 class Legacy_SearchModuleResultArray extends XCube_ObjectArray
 {
-    function getClassName()
+    public function getClassName()
     {
         return "Legacy_SearchModuleResult";
     }
@@ -82,7 +84,7 @@ class Legacy_SearchModuleResultArray extends XCube_ObjectArray
 
 class Legacy_ArrayOfInt extends XCube_ObjectArray
 {
-    function getClassName()
+    public function getClassName()
     {
         return "int";
     }
@@ -90,7 +92,7 @@ class Legacy_ArrayOfInt extends XCube_ObjectArray
 
 class Legacy_ArrayOfString extends XCube_ObjectArray
 {
-    function getClassName()
+    public function getClassName()
     {
         return "string";
     }
@@ -101,11 +103,11 @@ class Legacy_ArrayOfString extends XCube_ObjectArray
  */
 class Legacy_SearchService extends XCube_Service
 {
-    var $mServiceName = "Legacy_SearchService";
-    var $mNameSpace = "Legacy";
-    var $mClassName = "Legacy_SearchService";
+    public $mServiceName = "Legacy_SearchService";
+    public $mNameSpace = "Legacy";
+    public $mClassName = "Legacy_SearchService";
     
-    function prepare()
+    public function prepare()
     {
         $this->addType('Legacy_SearchModule');
         $this->addType('Legacy_SearchModuleArray');
@@ -121,13 +123,15 @@ class Legacy_SearchService extends XCube_Service
         $this->addFunction(S_PUBLIC_FUNC('Legacy_SearchModuleArray getActiveModules()'));
     }
     
-    function getActiveModules()
+    public function getActiveModules()
     {
         //
         // At first, get active module IDs.
         //
         static $ret;
-        if (isset($ret)) return $ret;
+        if (isset($ret)) {
+            return $ret;
+        }
 
         $handler =& xoops_gethandler('module');
         
@@ -135,14 +139,14 @@ class Legacy_SearchService extends XCube_Service
         $criteria->add(new Criteria('isactive', 1));
         $criteria->add(new Criteria('hassearch', 1));
 
-		// shortcut for speedup
-		$db = $handler->db;
+        // shortcut for speedup
+        $db = $handler->db;
 
-		$sort = $criteria->getSort();
-		$sql = 'SELECT mid,name FROM '.$db->prefix('modules').' '.$criteria->renderWhere().
-			($sort?' ORDER BY '.$sort.' '.$criteria->getOrder():' ORDER BY weight '.$criteria->getOrder().', mid ASC');
+        $sort = $criteria->getSort();
+        $sql = 'SELECT mid,name FROM '.$db->prefix('modules').' '.$criteria->renderWhere().
+            ($sort?' ORDER BY '.$sort.' '.$criteria->getOrder():' ORDER BY weight '.$criteria->getOrder().', mid ASC');
 
-		$result = $db->query($sql);
+        $result = $db->query($sql);
 
         $handler =& xoops_gethandler('groupperm');
         $groupArr = Legacy_SearchUtils::getUserGroups();
@@ -150,14 +154,14 @@ class Legacy_SearchService extends XCube_Service
         $ret = array();
         while (list($mid, $name) = $db->fetchRow($result)) {
             if ($handler->checkRight('module_read', $mid, $groupArr)) {
-				$ret[] = array('mid' => $mid, 'name' => $name);
-			}
+                $ret[] = array('mid' => $mid, 'name' => $name);
+            }
         }
         
         return $ret;
     }
     
-    function searchItems()
+    public function searchItems()
     {
         //
         // TODO Need validation
@@ -168,7 +172,7 @@ class Legacy_SearchService extends XCube_Service
         return $this->_searchItems((int)$request->getRequest('mid'), $request->getRequest('queries'), $request->getRequest('andor'), (int)$request->getRequest('maxhit'), (int)$request->getRequest('start'), 0);
     }
     
-    function searchItemsOfUser()
+    public function searchItemsOfUser()
     {
         //
         // TODO Need validation
@@ -186,15 +190,17 @@ class Legacy_SearchService extends XCube_Service
     {
         $ret = array();
 
-		static $moduleArr;
-		if (!isset($moduleArr)) {
-			$moduleArr = array();
-			foreach ($this->getActiveModules() as $mod) {
-				$moduleArr[$mod['mid']] = $mod['name'];
-			}
-		}
+        static $moduleArr;
+        if (!isset($moduleArr)) {
+            $moduleArr = array();
+            foreach ($this->getActiveModules() as $mod) {
+                $moduleArr[$mod['mid']] = $mod['name'];
+            }
+        }
 
-        if (!isset($moduleArr[$mid])) return $ret;
+        if (!isset($moduleArr[$mid])) {
+            return $ret;
+        }
 
         static $timezone;
         if (!isset($timezone)) {
@@ -222,7 +228,9 @@ class Legacy_SearchService extends XCube_Service
                 // TODO If this service will come to web service, we should
                 // change format from unixtime to string by timeoffset.
                 //
-                if ($timeval) $timeval -= $timezone;
+                if ($timeval) {
+                    $timeval -= $timezone;
+                }
             }
         }
         
@@ -232,7 +240,7 @@ class Legacy_SearchService extends XCube_Service
 
 class Legacy_SearchUtils
 {
-    function getUserGroups()
+    public static function getUserGroups()
     {
         $root =& XCube_Root::getSingleton();
         $user =& $root->mController->mRoot->mContext->mXoopsUser;
@@ -240,13 +248,10 @@ class Legacy_SearchUtils
         
         if (!is_object($user)) {
             $groups = XOOPS_GROUP_ANONYMOUS;
-        }
-        else {
+        } else {
             $groups = $user->getGroups();
         }
         
         return $groups;
     }
 }
-
-?>

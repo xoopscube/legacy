@@ -85,5 +85,3 @@ define('_NOT_NOTIFYMODE', '預設通知模式');
 define('_NOT_MODE_SENDALWAYS', '所有選擇的部份更新時就通知我');
 define('_NOT_MODE_SENDONCE', '只通知我一次就好');
 define('_NOT_MODE_SENDONCEPERLOGIN', '只通知我一次，然後關閉這項功能直到我再次登入');
-
-?>

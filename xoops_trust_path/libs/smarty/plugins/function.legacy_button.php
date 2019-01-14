@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: function.legacy_button.php,v 1.3 2008/09/25 15:12:36 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
- * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  * [ToDo]
  * 1) We may have to move this file to other module with following namespace or
@@ -34,35 +34,33 @@
 
 function smarty_function_legacy_button($params, &$smarty)
 {
-	if (isset($params['id'])) {
-		//
-		// Fetch major elements from $params.
-		//
-		$id = trim($params['id']);
-		$name = "Legacy.Event.User.${id}";
-		$text = isset($params['Text']) ? htmlspecialchars(trim($params['Text']), ENT_QUOTES) : null;
-		$class = isset($params['class']) ? htmlspecialchars(trim($params['class']), ENT_QUOTES) : null;
+    if (isset($params['id'])) {
+        //
+        // Fetch major elements from $params.
+        //
+        $id = trim($params['id']);
+        $name = "Legacy.Event.User.${id}";
+        $text = isset($params['Text']) ? htmlspecialchars(trim($params['Text']), ENT_QUOTES) : null;
+        $class = isset($params['class']) ? htmlspecialchars(trim($params['class']), ENT_QUOTES) : null;
 
-		//
-		// Build string.
-		//
-		$string = "<input type='submit' id='${id}' name='${name}'";
-		
-		if ($text != null) {
-			$string .= " value='${text}'";
-		}
-		
-		if ($class != null) {
-			$string .= " class='${class}'";
-		}
-		
-		$string .= " />";
+        //
+        // Build string.
+        //
+        $string = "<input type='submit' id='${id}' name='${name}'";
+        
+        if ($text != null) {
+            $string .= " value='${text}'";
+        }
+        
+        if ($class != null) {
+            $string .= " class='${class}'";
+        }
+        
+        $string .= " />";
 
-		//
-		// Output.
-		//
-		print $string;
-	}
+        //
+        // Output.
+        //
+        print $string;
+    }
 }
-
-?>

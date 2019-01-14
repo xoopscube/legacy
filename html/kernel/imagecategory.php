@@ -30,36 +30,36 @@
 // ------------------------------------------------------------------------- //
 
 if (!defined('XOOPS_ROOT_PATH')) {
-	exit();
+    exit();
 }
 
 class XoopsImagecategory extends XoopsObject
 {
-	var $_imageCount;
+    public $_imageCount;
 
-	function XoopsImagecategory()
-	{
-		$this->XoopsObject();
-		$this->initVar('imgcat_id', XOBJ_DTYPE_INT, null, false);
-		$this->initVar('imgcat_name', XOBJ_DTYPE_TXTBOX, null, true, 100);
-		$this->initVar('imgcat_display', XOBJ_DTYPE_INT, 1, false);
-		$this->initVar('imgcat_weight', XOBJ_DTYPE_INT, 0, false);
-		$this->initVar('imgcat_maxsize', XOBJ_DTYPE_INT, 0, false);
-		$this->initVar('imgcat_maxwidth', XOBJ_DTYPE_INT, 0, false);
-		$this->initVar('imgcat_maxheight', XOBJ_DTYPE_INT, 0, false);
-		$this->initVar('imgcat_type', XOBJ_DTYPE_OTHER, null, false);
-		$this->initVar('imgcat_storetype', XOBJ_DTYPE_OTHER, null, false);
-	}
+    public function XoopsImagecategory()
+    {
+        $this->XoopsObject();
+        $this->initVar('imgcat_id', XOBJ_DTYPE_INT, null, false);
+        $this->initVar('imgcat_name', XOBJ_DTYPE_TXTBOX, null, true, 100);
+        $this->initVar('imgcat_display', XOBJ_DTYPE_INT, 1, false);
+        $this->initVar('imgcat_weight', XOBJ_DTYPE_INT, 0, false);
+        $this->initVar('imgcat_maxsize', XOBJ_DTYPE_INT, 0, false);
+        $this->initVar('imgcat_maxwidth', XOBJ_DTYPE_INT, 0, false);
+        $this->initVar('imgcat_maxheight', XOBJ_DTYPE_INT, 0, false);
+        $this->initVar('imgcat_type', XOBJ_DTYPE_OTHER, null, false);
+        $this->initVar('imgcat_storetype', XOBJ_DTYPE_OTHER, null, false);
+    }
 
-	function setImageCount($value)
-	{
-		$this->_imageCount = (int)$value;
-	}
+    public function setImageCount($value)
+    {
+        $this->_imageCount = (int)$value;
+    }
 
-	function getImageCount()
-	{
-		return $this->_imageCount;
-	}
+    public function getImageCount()
+    {
+        return $this->_imageCount;
+    }
 }
 
 /**
@@ -74,7 +74,7 @@ class XoopsImagecategory extends XoopsObject
 class XoopsImagecategoryHandler extends XoopsObjectHandler
 {
 
-    function &create($isNew = true)
+    public function &create($isNew = true)
     {
         $imgcat =new XoopsImagecategory();
         if ($isNew) {
@@ -83,7 +83,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
         return $imgcat;
     }
 
-    function &get($id)
+    public function &get($id)
     {
         $ret = false;
         if ((int)$id > 0) {
@@ -91,16 +91,16 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $imgcat =new XoopsImagecategory();
+                    $imgcat =new XoopsImagecategory();
                     $imgcat->assignVars($this->db->fetchArray($result));
-                        $ret =& $imgcat;
+                    $ret =& $imgcat;
                 }
             }
         }
         return $ret;
     }
 
-    function insert(&$imgcat)
+    public function insert(&$imgcat)
     {
         if (strtolower(get_class($imgcat)) != 'xoopsimagecategory') {
             return false;
@@ -130,7 +130,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
         return true;
     }
 
-    function delete(&$imgcat)
+    public function delete(&$imgcat)
     {
         if (strtolower(get_class($imgcat)) != 'xoopsimagecategory') {
             return false;
@@ -142,7 +142,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
         return true;
     }
 
-    function &getObjects($criteria = null, $id_as_key = false)
+    public function &getObjects($criteria = null, $id_as_key = false)
     {
         $ret = array();
         $limit = $start = 0;
@@ -153,7 +153,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();
         }
-		$sql .= ' ORDER BY imgcat_weight, imgcat_id ASC';
+        $sql .= ' ORDER BY imgcat_weight, imgcat_id ASC';
         $result = $this->db->query($sql, $limit, $start);
         if (!$result) {
             return $ret;
@@ -172,7 +172,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
     }
 
 
-    function getCount($criteria = null)
+    public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('imagecategory').' i LEFT JOIN '.$this->db->prefix('group_permission')." l ON l.gperm_itemid=i.imgcat_id WHERE (l.gperm_name = 'imgcat_read' OR l.gperm_name = 'imgcat_write')";
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -186,7 +186,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
         return $count;
     }
 
-    function &getList($groups = array(), $perm = 'imgcat_read', $display = null, $storetype = null)
+    public function &getList($groups = array(), $perm = 'imgcat_read', $display = null, $storetype = null)
     {
         $criteria = new CriteriaCompo();
         if (is_array($groups) && !empty($groups)) {
@@ -209,9 +209,8 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
         $categories =& $this->getObjects($criteria, true);
         $ret = array();
         foreach (array_keys($categories) as $i) {
-                $ret[$i] = $categories[$i]->getVar('imgcat_name');
+            $ret[$i] = $categories[$i]->getVar('imgcat_name');
         }
         return $ret;
     }
 }
-?>

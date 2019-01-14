@@ -30,7 +30,7 @@
 // ------------------------------------------------------------------------- //
 
 if (!defined('XOOPS_ROOT_PATH')) {
-	exit();
+    exit();
 }
 
 /**
@@ -42,22 +42,22 @@ if (!defined('XOOPS_ROOT_PATH')) {
  */
 class XoopsImage extends XoopsObject
 {
-	/**
-	 * Constructor
-	 **/
-	function XoopsImage()
-	{
-		$this->XoopsObject();
-		$this->initVar('image_id', XOBJ_DTYPE_INT, null, false);
-		$this->initVar('image_name', XOBJ_DTYPE_OTHER, null, false, 30);
-		$this->initVar('image_nicename', XOBJ_DTYPE_TXTBOX, null, true, 100);
-		$this->initVar('image_mimetype', XOBJ_DTYPE_OTHER, null, false);
-		$this->initVar('image_created', XOBJ_DTYPE_INT, null, false);
-		$this->initVar('image_display', XOBJ_DTYPE_INT, 1, false);
-		$this->initVar('image_weight', XOBJ_DTYPE_INT, 0, false);
-		$this->initVar('image_body', XOBJ_DTYPE_SOURCE, null, true);
-		$this->initVar('imgcat_id', XOBJ_DTYPE_INT, 0, false);
-	}
+    /**
+     * Constructor
+     **/
+    public function XoopsImage()
+    {
+        $this->XoopsObject();
+        $this->initVar('image_id', XOBJ_DTYPE_INT, null, false);
+        $this->initVar('image_name', XOBJ_DTYPE_OTHER, null, false, 30);
+        $this->initVar('image_nicename', XOBJ_DTYPE_TXTBOX, null, true, 100);
+        $this->initVar('image_mimetype', XOBJ_DTYPE_OTHER, null, false);
+        $this->initVar('image_created', XOBJ_DTYPE_INT, null, false);
+        $this->initVar('image_display', XOBJ_DTYPE_INT, 1, false);
+        $this->initVar('image_weight', XOBJ_DTYPE_INT, 0, false);
+        $this->initVar('image_body', XOBJ_DTYPE_SOURCE, null, true);
+        $this->initVar('imgcat_id', XOBJ_DTYPE_INT, 0, false);
+    }
 }
 
 /**
@@ -80,7 +80,7 @@ class XoopsImageHandler extends XoopsObjectHandler
      * @param   boolean $isNew  Flag the object as "new"
      * @return  object
      **/
-    function &create($isNew = true)
+    public function &create($isNew = true)
     {
         $image =new XoopsImage();
         if ($isNew) {
@@ -96,7 +96,7 @@ class XoopsImageHandler extends XoopsObjectHandler
      * @param   boolean $getbinary  
      * @return  object  {@link XoopsImage}, FALSE on fail
      **/
-    function &get($id, $getbinary=true)
+    public function &get($id, $getbinary=true)
     {
         $ret = false;
         $id = (int)$id;
@@ -105,9 +105,9 @@ class XoopsImageHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $image =new XoopsImage();
+                    $image =new XoopsImage();
                     $image->assignVars($this->db->fetchArray($result));
-                        $ret =& $image;
+                    $ret =& $image;
                 }
             }
         }
@@ -120,7 +120,7 @@ class XoopsImageHandler extends XoopsObjectHandler
      * @param   object  &$image {@link XoopsImage} 
      * @return  bool
      **/
-    function insert(&$image)
+    public function insert(&$image)
     {
         if (strtolower(get_class($image)) != 'xoopsimage') {
             return false;
@@ -174,7 +174,7 @@ class XoopsImageHandler extends XoopsObjectHandler
      * @param   object  &$image {@link XoopsImage} 
      * @return  bool
      **/
-    function delete(&$image)
+    public function delete(&$image)
     {
         if (strtolower(get_class($image)) != 'xoopsimage') {
             return false;
@@ -197,7 +197,7 @@ class XoopsImageHandler extends XoopsObjectHandler
      * @param   boolean $getbinary  
      * @return  array   Array of {@link XoopsImage} objects
      **/
-    function &getObjects($criteria = null, $id_as_key = false, $getbinary = false)
+    public function &getObjects($criteria = null, $id_as_key = false, $getbinary = false)
     {
         $ret = array();
         $limit = $start = 0;
@@ -236,7 +236,7 @@ class XoopsImageHandler extends XoopsObjectHandler
      * @param   object  $criteria   {@link CriteriaElement} 
      * @return  int
      **/
-    function getCount($criteria = null)
+    public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('image');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -256,7 +256,7 @@ class XoopsImageHandler extends XoopsObjectHandler
      * @param   bool    $image_display
      * @return  array   Array of {@link XoopsImage} objects
      **/
-    function &getList($imgcat_id, $image_display = null)
+    public function &getList($imgcat_id, $image_display = null)
     {
         $criteria = new CriteriaCompo(new Criteria('imgcat_id', (int)$imgcat_id));
         if (isset($image_display)) {
@@ -270,4 +270,3 @@ class XoopsImageHandler extends XoopsObjectHandler
         return $ret;
     }
 }
-?>

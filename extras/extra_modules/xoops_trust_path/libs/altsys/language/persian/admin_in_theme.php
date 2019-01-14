@@ -12,8 +12,5 @@
 * @version		$Id$
 */
 
-define( '_MD_A_AINTHEME_FMT_PUBLICTOP' , 'برترین %s برای کاربران' ) ;
-define( '_MD_A_AINTHEME_FMT_ADMINTOP' , 'برترین %s برای مدیران' ) ;
-
-
-?>
+define('_MD_A_AINTHEME_FMT_PUBLICTOP', 'برترین %s برای کاربران') ;
+define('_MD_A_AINTHEME_FMT_ADMINTOP', 'برترین %s برای مدیران') ;

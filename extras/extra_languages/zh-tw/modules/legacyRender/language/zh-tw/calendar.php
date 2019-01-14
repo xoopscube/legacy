@@ -96,4 +96,4 @@ define("_CAL_DISPM1ST", "星期一先顯示");
 
 define("_CAL_DISPS1ST", "星期日先顯示");
 //define("_CAL_DISPS1ST", "Display Sunday first");
-?>
+;

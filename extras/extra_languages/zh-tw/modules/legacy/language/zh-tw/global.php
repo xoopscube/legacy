@@ -173,5 +173,3 @@ define('_WEEK', '1 周');
 define('_MONTH', '1 個月');
 
 define('_HELP', '說明');
-
-?>

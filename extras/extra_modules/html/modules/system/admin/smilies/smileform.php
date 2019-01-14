@@ -46,4 +46,3 @@ $smile_form->addElement(new XoopsFormHidden('id', $smiles['id']));
 $smile_form->addElement(new XoopsFormHidden('op', $smiles['op']));
 $smile_form->addElement(new XoopsFormHidden('fct', 'smilies'));
 $smile_form->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
-?>

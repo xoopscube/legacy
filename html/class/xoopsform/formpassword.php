@@ -29,7 +29,9 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 /**
  * 
@@ -49,101 +51,107 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
  * @package     kernel
  * @subpackage  form
  */
-class XoopsFormPassword extends XoopsFormElement {
+class XoopsFormPassword extends XoopsFormElement
+{
 
-	/**
+    /**
      * Size of the field.
-	 * @var	int	
-	 * @access	private
-	 */
-	var $_size;
+     * @var	int	
+     * @access	private
+     */
+    public $_size;
 
-	/**
+    /**
      * Maximum length of the text
-	 * @var	int	
-	 * @access	private
-	 */
-	var $_maxlength;
+     * @var	int	
+     * @access	private
+     */
+    public $_maxlength;
 
-	/**
+    /**
      * Initial content of the field.
-	 * @var	string	
-	 * @access	private
-	 */
-	var $_value;
+     * @var	string	
+     * @access	private
+     */
+    public $_value;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param	string	$caption	Caption
-	 * @param	string	$name		"name" attribute
-	 * @param	int		$size		Size of the field
-	 * @param	int		$maxlength	Maximum length of the text
-	 * @param	int		$value		Initial value of the field. 
-	 * 								<b>Warning:</b> this is readable in cleartext in the page's source!
-	 */
-	function XoopsFormPassword($caption, $name, $size, $maxlength, $value=""){
-		$this->setCaption($caption);
-		$this->setName($name);
-		$this->_size = intval($size);
-		$this->_maxlength = intval($maxlength);
-		$this->setValue($value);
-	}
+    /**
+     * Constructor
+     * 
+     * @param	string	$caption	Caption
+     * @param	string	$name		"name" attribute
+     * @param	int		$size		Size of the field
+     * @param	int		$maxlength	Maximum length of the text
+     * @param	int		$value		Initial value of the field. 
+     * 								<b>Warning:</b> this is readable in cleartext in the page's source!
+     */
+    public function XoopsFormPassword($caption, $name, $size, $maxlength, $value="")
+    {
+        $this->setCaption($caption);
+        $this->setName($name);
+        $this->_size = intval($size);
+        $this->_maxlength = intval($maxlength);
+        $this->setValue($value);
+    }
 
-	/**
-	 * Get the field size
-	 * 
-	 * @return	int
-	 */
-	function getSize(){
-		return $this->_size;
-	}
+    /**
+     * Get the field size
+     * 
+     * @return	int
+     */
+    public function getSize()
+    {
+        return $this->_size;
+    }
 
-	/**
-	 * Get the max length
-	 * 
-	 * @return	int
-	 */
-	function getMaxlength(){
-		return $this->_maxlength;
-	}
+    /**
+     * Get the max length
+     * 
+     * @return	int
+     */
+    public function getMaxlength()
+    {
+        return $this->_maxlength;
+    }
 
-	/**
-	 * Get the initial value
-	 * 
-	 * @return	string
-	 */
-	function getValue(){
-		return $this->_value;
-	}
+    /**
+     * Get the initial value
+     * 
+     * @return	string
+     */
+    public function getValue()
+    {
+        return $this->_value;
+    }
 
-	/**
-	 * Set the initial value
-	 * 
-	 * @patam	$value	string
-	 */
-	function setValue($value){
-		$this->_value = $value;
-	}
+    /**
+     * Set the initial value
+     * 
+     * @patam	$value	string
+     */
+    public function setValue($value)
+    {
+        $this->_value = $value;
+    }
 
-	/**
-	 * Prepare HTML for output
-	 * 
-	 * @return	string	HTML
-	 */
-	function render(){
-		$root =& XCube_Root::getSingleton();
-		$renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
-		
-		$renderTarget =& $renderSystem->createRenderTarget('main');
-	
-		$renderTarget->setAttribute('legacy_module', 'legacy');
-		$renderTarget->setTemplateName("legacy_xoopsform_password.html");
-		$renderTarget->setAttribute("element", $this);
+    /**
+     * Prepare HTML for output
+     * 
+     * @return	string	HTML
+     */
+    public function render()
+    {
+        $root =& XCube_Root::getSingleton();
+        $renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
+        
+        $renderTarget =& $renderSystem->createRenderTarget('main');
+    
+        $renderTarget->setAttribute('legacy_module', 'legacy');
+        $renderTarget->setTemplateName("legacy_xoopsform_password.html");
+        $renderTarget->setAttribute("element", $this);
 
-		$renderSystem->render($renderTarget);
-	
-		return $renderTarget->getResult();
-	}
+        $renderSystem->render($renderTarget);
+    
+        return $renderTarget->getResult();
+    }
 }
-?>

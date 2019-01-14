@@ -17,11 +17,11 @@
 require_once dirname(__FILE__).".php";
 class Hdinstaller_Form_JsonXoopsparam extends Hdinstaller_Form_Json
 {
-	function __construct(&$c)
-	{
-		parent::__construct($c);
-		$this->setRequired(array('target_package'));
-	}
+    public function __construct(&$c)
+    {
+        parent::__construct($c);
+        $this->setRequired(array('target_package'));
+    }
 }
 
 /**
@@ -39,11 +39,11 @@ class Hdinstaller_Action_JsonXoopsparam extends Hdinstaller_Action_Json
      *  @access    public
      *  @return    string  Forward name (null if no errors.)
      */
-    function prepare()
+    public function prepare()
     {
-		if ($this->af->validate() == 0){
-			return null;
-		}
+        if ($this->af->validate() == 0) {
+            return null;
+        }
         return 'json_error';
     }
 
@@ -53,9 +53,9 @@ class Hdinstaller_Action_JsonXoopsparam extends Hdinstaller_Action_Json
      *  @access    public
      *  @return    string  Forward Name.
      */
-    function perform()
+    public function perform()
     {
-		$this->af->setApp('result', 1);
+        $this->af->setApp('result', 1);
         return 'json_xoopsparam';
     }
 }

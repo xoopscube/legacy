@@ -28,4 +28,3 @@ define('_AD_PROFILE_DATA_UPLOAD_DO', '登録');
 
 define('_AD_PROFILE_DATA_UPLOAD_BACK', 'CSVファイルを再度選択');
 define('_AD_PROFILE_DATA_UPLOAD_CHECK_PROFILE_CSVFILE', '登録の内容をご確認ください。');
-?>

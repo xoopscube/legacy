@@ -2,7 +2,7 @@
 <p>
 <form action="./index.php" method="get" style="text-align:center">
 <select name="lang">
-<?php foreach($this->g('allow_language') as $lang): ?>
+<?php foreach ($this->g('allow_language') as $lang): ?>
 <option value="<?php echo $lang['lang']?>" <?php echo $this->g('cur_lang')==$lang['lang'] ?" selected":"" ?>><?php echo $lang['name']?></option>
 <?php endforeach; ?>
 </select>&nbsp;

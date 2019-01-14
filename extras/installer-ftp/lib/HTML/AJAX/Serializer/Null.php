@@ -11,18 +11,17 @@
  * @version    Release: 0.5.6
  * @link       http://pear.php.net/package/PackageName
  */
-class HTML_AJAX_Serializer_Null 
+class HTML_AJAX_Serializer_Null
 {
     
-    function serialize($input) 
+    public function serialize($input)
     {
         return $input;
     }
 
-    function unserialize($input) 
+    public function unserialize($input)
     {
         return $input;
     }
 }
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-?>
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */;

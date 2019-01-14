@@ -22,9 +22,9 @@ class Hdinstaller_View_JsonErrorReload extends Hdinstaller_View_Json
      *
      *  @access public
      */
-    function preforward()
+    public function preforward()
     {
-		$this->backend->ctl->cleanUpTmp();
-		parent::preforward();
+        $this->backend->ctl->cleanUpTmp();
+        parent::preforward();
     }
 }

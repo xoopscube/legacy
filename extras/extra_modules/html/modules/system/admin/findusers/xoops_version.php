@@ -42,4 +42,3 @@ $modversion['image'] = "users.gif";
 $modversion['hasAdmin'] = 1;
 $modversion['adminpath'] = "admin.php?fct=findusers";
 $modversion['category'] = XOOPS_SYSTEM_FINDU;
-?>

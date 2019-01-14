@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -101,8 +100,15 @@ abstract class Lecat_AbstractAction
     **/
     public function setHeaderScript()
     {
-		$headerScript = $this->mRoot->mContext->getAttribute('headerScript');
-		$headerScript->addStylesheet($this->_getStylesheet());
+        $headerScript = $this->mRoot->mContext->getAttribute('headerScript');
+        $headerScript->addStylesheet($this->_getStylesheet());
+    }
+
+    protected function _getBreadcrumb(/*** XoopsSimpleObject ***/ $object=null)
+    {
+        $breadcrumbs = array();
+        XCube_DelegateUtils::call('Module.'.$this->mAsset->mDirname.'.Global.Event.GetBreadcrumbs', new XCube_Ref($breadcrumbs), $this->mAsset->mDirname, $object);
+        return $breadcrumbs;
     }
 
     /**
@@ -219,24 +225,20 @@ abstract class Lecat_AbstractAction
     {
     }
 
-	/**
-	 * _getNextUri
-	 * 
-	 * @param	void
-	 * 
-	 * @return	string
-	**/
-	protected function _getNextUri($tableName, $actionName=null)
-	{
-		$handler = $this->_getHandler();
-		if($this->mObject->get($handler->mPrimary)>0){
-			return Legacy_Utils::renderUri($this->mAsset->mDirname, $tableName, $this->mObject->get($handler->mPrimary), $actionName);
-		}
-		else{
-			return Legacy_Utils::renderUri($this->mAsset->mDirname, $tableName, 0, $actionName);
-		}
-	}
-
+    /**
+     * _getNextUri
+     * 
+     * @param	void
+     * 
+     * @return	string
+    **/
+    protected function _getNextUri($tableName, $actionName=null)
+    {
+        $handler = $this->_getHandler();
+        if ($this->mObject->get($handler->mPrimary)>0) {
+            return Legacy_Utils::renderUri($this->mAsset->mDirname, $tableName, $this->mObject->get($handler->mPrimary), $actionName);
+        } else {
+            return Legacy_Utils::renderUri($this->mAsset->mDirname, $tableName, 0, $actionName);
+        }
+    }
 }
-
-?>

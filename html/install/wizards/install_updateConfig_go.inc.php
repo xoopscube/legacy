@@ -3,16 +3,16 @@
  *
  * @package Legacy
  * @version $Id: install_updateConfig_go.inc.php,v 1.3 2008/09/25 15:12:23 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
- * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
     include_once "../mainfile.php";
 
     $language = check_language($language);
-    if ( file_exists("./language/".$language."/install2.php") ) {
+    if (file_exists("./language/".$language."/install2.php")) {
         include_once "./language/".$language."/install2.php";
-    } elseif ( file_exists("./language/english/install2.php") ) {
+    } elseif (file_exists("./language/english/install2.php")) {
         include_once "./language/english/install2.php";
         $language = 'english';
     } else {
@@ -137,10 +137,9 @@
         $dbm->query('DROP TABLE '.$dbm->prefix('groups_modules_link'));
 
     // insert some more data
-    $result = $dbm->queryFromFile('./sql/'.XOOPS_DB_TYPE.'.data.sql');
+    $result = $dbm->queryFromFile('./sql/'.((XOOPS_DB_TYPE === 'mysqli')? 'mysql' : XOOPS_DB_TYPE).'.data.sql');
 
     $content = $dbm->report();
     //$content .= $cm->report();
     $b_next = array('updateModules', _INSTALL_L14);
     include './install_tpl.php';
-?>

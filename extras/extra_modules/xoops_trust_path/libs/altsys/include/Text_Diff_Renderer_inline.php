@@ -9,60 +9,61 @@
  * @author  Ciprian Popovici
  * @package Text_Diff
  */
-class Text_Diff_Renderer_inline extends Text_Diff_Renderer {
+class Text_Diff_Renderer_inline extends Text_Diff_Renderer
+{
 
     /**
      * Number of leading context "lines" to preserve.
      */
-    var $_leading_context_lines = 10000;
+    public $_leading_context_lines = 10000;
 
     /**
      * Number of trailing context "lines" to preserve.
      */
-    var $_trailing_context_lines = 10000;
+    public $_trailing_context_lines = 10000;
 
     /**
      * Prefix for inserted text.
      */
-    var $_ins_prefix = '<ins>';
+    public $_ins_prefix = '<ins>';
 
     /**
      * Suffix for inserted text.
      */
-    var $_ins_suffix = '</ins>';
+    public $_ins_suffix = '</ins>';
 
     /**
      * Prefix for deleted text.
      */
-    var $_del_prefix = '<del>';
+    public $_del_prefix = '<del>';
 
     /**
      * Suffix for deleted text.
      */
-    var $_del_suffix = '</del>';
+    public $_del_suffix = '</del>';
 
     /**
      * Header for each change block.
      */
-    var $_block_header = '';
+    public $_block_header = '';
 
     /**
      * What are we currently splitting on? Used to recurse to show word-level
      * changes.
      */
-    var $_split_level = 'lines';
+    public $_split_level = 'lines';
 
-    function _blockHeader($xbeg, $xlen, $ybeg, $ylen)
+    public function _blockHeader($xbeg, $xlen, $ybeg, $ylen)
     {
         return $this->_block_header;
     }
 
-    function _startBlock($header)
+    public function _startBlock($header)
     {
         return $header;
     }
 
-    function _lines($lines, $prefix = ' ', $encode = true)
+    public function _lines($lines, $prefix = ' ', $encode = true)
     {
         if ($encode) {
             array_walk($lines, array(&$this, '_encode'));
@@ -75,7 +76,7 @@ class Text_Diff_Renderer_inline extends Text_Diff_Renderer {
         }
     }
 
-    function _added($lines)
+    public function _added($lines)
     {
         array_walk($lines, array(&$this, '_encode'));
         $lines[0] = $this->_ins_prefix . $lines[0];
@@ -83,7 +84,7 @@ class Text_Diff_Renderer_inline extends Text_Diff_Renderer {
         return $this->_lines($lines, ' ', false);
     }
 
-    function _deleted($lines, $words = false)
+    public function _deleted($lines, $words = false)
     {
         array_walk($lines, array(&$this, '_encode'));
         $lines[0] = $this->_del_prefix . $lines[0];
@@ -91,7 +92,7 @@ class Text_Diff_Renderer_inline extends Text_Diff_Renderer {
         return $this->_lines($lines, ' ', false);
     }
 
-    function _changed($orig, $final)
+    public function _changed($orig, $final)
     {
         /* If we've already split on words, don't try to do so again - just
          * display. */
@@ -127,7 +128,7 @@ class Text_Diff_Renderer_inline extends Text_Diff_Renderer {
         return str_replace($nl, "\n", $renderer->render($diff)) . "\n";
     }
 
-    function _splitOnWords($string, $newlineEscape = "\n")
+    public function _splitOnWords($string, $newlineEscape = "\n")
     {
         $words = array();
         $length = strlen($string);
@@ -144,9 +145,8 @@ class Text_Diff_Renderer_inline extends Text_Diff_Renderer {
         return $words;
     }
 
-    function _encode(&$string)
+    public function _encode(&$string)
     {
         $string = htmlspecialchars($string);
     }
-
 }

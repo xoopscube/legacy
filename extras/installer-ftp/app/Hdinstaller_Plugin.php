@@ -8,7 +8,7 @@ class Hdinstaller_Plugin extends Ethna_Plugin
      *  @param  string  $type   プラグインの種類
      *  @param  string  $name   プラグインの名前
      */
-    function _loadPluginDirList()
+    public function _loadPluginDirList()
     {
         $this->_dirlist[] = $this->controller->getDirectory('plugin');
 

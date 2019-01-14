@@ -31,7 +31,7 @@ if (!defined('XOOPS_ROOT_PATH') || !is_object($xoopsModule)) {
 $com_modid = $xoopsModule->getVar('mid');
 include_once XOOPS_ROOT_PATH."/class/xoopslists.php";
 include_once XOOPS_ROOT_PATH."/class/xoopsformloader.php";
-$cform = new XoopsThemeForm(_CM_POSTCOMMENT, "commentform", 'comment_post.php');if (isset($xoopsModuleConfig['com_rule'])) {
+$cform = new XoopsThemeForm(_CM_POSTCOMMENT, "commentform", 'comment_post.php'); if (isset($xoopsModuleConfig['com_rule'])) {
     include_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
     switch ($xoopsModuleConfig['com_rule']) {
     case XOOPS_COMMENT_APPROVEALL:
@@ -56,9 +56,9 @@ foreach ($subject_icons as $iconfile) {
 }
 $cform->addElement($icons_radio);
 $cform->addElement(new XoopsFormDhtmlTextArea(_CM_MESSAGE, 'com_text', $com_text, 10, 50), true);
-$option_tray = new XoopsFormElementTray(_OPTIONS,'<br />');
+$option_tray = new XoopsFormElementTray(_OPTIONS, '<br />');
 
-$button_tray = new XoopsFormElementTray('' ,'&nbsp;');
+$button_tray = new XoopsFormElementTray('', '&nbsp;');
 
 
 if (is_object($xoopsUser)) {
@@ -124,4 +124,3 @@ $button_tray->addElement(new XoopsFormButton('', 'com_dopost', _CM_POSTCOMMENT, 
 $cform->addElement($button_tray);
 //$cform->addElement(new XoopsFormHiddenToken());
 $cform->display();
-?>

@@ -69,90 +69,88 @@ class CriteriaElement
      * Sort order
      * @var string
      */
-    var $order = array();
+    public $order = array();
 
     /**
      * @var string
      */
-    var $sort = array();
+    public $sort = array();
 
     /**
      * Number of records to retrieve
      * @var int
      */
-    var $limit = 0;
+    public $limit = 0;
 
     /**
      * Offset of first record
      * @var int
      */
-    var $start = 0;
+    public $start = 0;
 
     /**
      * @var string
      */
-    var $groupby = '';
+    public $groupby = '';
 
     /**
      * Constructor
      **/
-    function CriteriaElement()
+    public function CriteriaElement()
     {
-
     }
 
     /**
      * Render the criteria element
      * @deprecated
      */
-    function render()
+    public function render()
     {
-
     }
     
     /**
      * Return true if this object has child elements.
      */
-    function hasChildElements()
+    public function hasChildElements()
     {
-		return false;
-	}
+        return false;
+    }
     
-    function getCountChildElements()
+    public function getCountChildElements()
     {
-		return 0;
-	}
+        return 0;
+    }
     
     /**
      * Return child element.
      */
-	function getChildElement($idx)
-	{
-		return null;
-	}
-	
+    public function getChildElement($idx)
+    {
+        return null;
+    }
+    
     /**
      * Return condition string.
      */
-	function getCondition($idx)
-	{
-		return null;
-	}
+    public function getCondition($idx)
+    {
+        return null;
+    }
 
-	function getName()
-	{
-		return null;
-	}
-	
-	function getValue()
-	{
-		return null;
-	}
-	
-	function getOperator()
-	{
-		return null;
-	}
+    public function getName()
+    {
+        return null;
+    }
+    
+    public function getValue()
+    {
+        return null;
+    }
+    
+    public function getOperator()
+    {
+        return null;
+    }
 
     /**#@+
      * Accessor
@@ -161,84 +159,79 @@ class CriteriaElement
      * @param   string  $sort
      * @param   string  $order
      */
-    function setSort($sort, $order = null)
+    public function setSort($sort, $order = null)
     {
         $this->sort[0] = $sort;
-		
-		if (!isset($this->order[0])) {
-			$this->order[0] = 'ASC';
-		}
-		
-		if ($order != null) {
-			if (strtoupper($order) == 'ASC') {
-				$this->order[0] = 'ASC';
-			}
-			elseif (strtoupper($order) == 'DESC') {
-				$this->order[0] = 'DESC';
-			}
-		}
+        
+        if (!isset($this->order[0])) {
+            $this->order[0] = 'ASC';
+        }
+        
+        if ($order != null) {
+            if (strtoupper($order) == 'ASC') {
+                $this->order[0] = 'ASC';
+            } elseif (strtoupper($order) == 'DESC') {
+                $this->order[0] = 'DESC';
+            }
+        }
     }
-	
-	/**
-	 * Add sort and order condition to this object.
-	 */
-	function addSort($sort, $order = 'ASC')
-	{
+    
+    /**
+     * Add sort and order condition to this object.
+     */
+    public function addSort($sort, $order = 'ASC')
+    {
         $this->sort[] = $sort;
-		if (strtoupper($order) == 'ASC') {
-			$this->order[] = 'ASC';
-		}
-		elseif (strtoupper($order) == 'DESC') {
-			$this->order[] = 'DESC';
-		}
-	}
+        if (strtoupper($order) == 'ASC') {
+            $this->order[] = 'ASC';
+        } elseif (strtoupper($order) == 'DESC') {
+            $this->order[] = 'DESC';
+        }
+    }
 
     /**
      * @return  string
      */
-    function getSort()
+    public function getSort()
     {
-		if (isset($this->sort[0])) {
-			return $this->sort[0];
-		}
-		else {
-			return '';
-		}
+        if (isset($this->sort[0])) {
+            return $this->sort[0];
+        } else {
+            return '';
+        }
     }
 
-	/**
-	 * Return sort and order condition as hashmap array.
-	 * 
-	 * @return hashmap 'sort' ... sort string/key'order' order string.
-	 */
-	function getSorts()
-	{
-		$ret = array();
-		$max = count($this->sort);
-		
-		for ($i = 0; $i < $max; $i++) {
-			$ret[$i]['sort'] = $this->sort[$i];
-			if (isset($this->order[$i])) {
-				$ret[$i]['order'] = $this->order[$i];
-			}
-			else {
-				$ret[$i]['order'] = 'ASC';
-			}
-		}
-		
-		return $ret;
-	}
+    /**
+     * Return sort and order condition as hashmap array.
+     * 
+     * @return hashmap 'sort' ... sort string/key'order' order string.
+     */
+    public function getSorts()
+    {
+        $ret = array();
+        $max = count($this->sort);
+        
+        for ($i = 0; $i < $max; $i++) {
+            $ret[$i]['sort'] = $this->sort[$i];
+            if (isset($this->order[$i])) {
+                $ret[$i]['order'] = $this->order[$i];
+            } else {
+                $ret[$i]['order'] = 'ASC';
+            }
+        }
+        
+        return $ret;
+    }
 
     /**
      * @param   string  $order
      * @deprecated
      */
-    function setOrder($order)
+    public function setOrder($order)
     {
         if (strtoupper($order) == 'ASC') {
             $this->order[0] = 'ASC';
-        }
-        elseif (strtoupper($order) == 'DESC') {
+        } elseif (strtoupper($order) == 'DESC') {
             $this->order[0] = 'DESC';
         }
     }
@@ -246,20 +239,19 @@ class CriteriaElement
     /**
      * @return  string
      */
-    function getOrder()
+    public function getOrder()
     {
-		if (isset($this->order[0])) {
-			return $this->order[0];
-		}
-		else {
-			return 'ASC';
-		}
+        if (isset($this->order[0])) {
+            return $this->order[0];
+        } else {
+            return 'ASC';
+        }
     }
 
     /**
      * @param   int $limit
      */
-    function setLimit($limit=0)
+    public function setLimit($limit=0)
     {
         $this->limit = intval($limit);
     }
@@ -267,7 +259,7 @@ class CriteriaElement
     /**
      * @return  int
      */
-    function getLimit()
+    public function getLimit()
     {
         return $this->limit;
     }
@@ -275,7 +267,7 @@ class CriteriaElement
     /**
      * @param   int $start
      */
-    function setStart($start=0)
+    public function setStart($start=0)
     {
         $this->start = intval($start);
     }
@@ -283,7 +275,7 @@ class CriteriaElement
     /**
      * @return  int
      */
-    function getStart()
+    public function getStart()
     {
         return $this->start;
     }
@@ -292,7 +284,8 @@ class CriteriaElement
      * @param   string  $group
      * @deprecated
      */
-    function setGroupby($group){
+    public function setGroupby($group)
+    {
         $this->groupby = $group;
     }
 
@@ -300,7 +293,8 @@ class CriteriaElement
      * @return  string
      * @deprecated
      */
-    function getGroupby(){
+    public function getGroupby()
+    {
         return ' GROUP BY '.$this->groupby;
     }
     /**#@-*/
@@ -322,13 +316,13 @@ class CriteriaCompo extends CriteriaElement
      * The elements of the collection
      * @var array   Array of {@link CriteriaElement} objects
      */
-    var $criteriaElements = array();
+    public $criteriaElements = array();
 
     /**
      * Conditions
      * @var array
      */
-    var $conditions = array();
+    public $conditions = array();
 
     /**
      * Constructor
@@ -336,32 +330,32 @@ class CriteriaCompo extends CriteriaElement
      * @param   object  $ele
      * @param   string  $condition
      **/
-    function CriteriaCompo($ele=null, $condition='AND')
+    public function CriteriaCompo($ele=null, $condition='AND')
     {
         if (isset($ele) && is_object($ele)) {
             $this->add($ele, $condition);
         }
     }
     
-	function hasChildElements()
-	{
-		return count($this->criteriaElements) > 0;
-	}
-	
-    function getCountChildElements()
+    public function hasChildElements()
     {
-		return count($this->criteriaElements);
-	}
-	
-	function getChildElement($idx)
-	{
-		return $this->criteriaElements[$idx];
-	}
-	
-	function getCondition($idx)
-	{
-		return $this->conditions[$idx];
-	}
+        return count($this->criteriaElements) > 0;
+    }
+    
+    public function getCountChildElements()
+    {
+        return count($this->criteriaElements);
+    }
+    
+    public function getChildElement($idx)
+    {
+        return $this->criteriaElements[$idx];
+    }
+    
+    public function getCondition($idx)
+    {
+        return $this->conditions[$idx];
+    }
 
     /**
      * Add an element
@@ -371,7 +365,7 @@ class CriteriaCompo extends CriteriaElement
      *
      * @return  object  reference to this collection
      **/
-    function &add(&$criteriaElement, $condition='AND')
+    public function &add($criteriaElement, $condition='AND')
     {
         $this->criteriaElements[] =& $criteriaElement;
         $this->conditions[] = $condition;
@@ -384,13 +378,13 @@ class CriteriaCompo extends CriteriaElement
      * @return  string
      * @deprecated XoopsObjectGenericHandler::_makeCriteriaElement4sql()
      */
-    function render()
+    public function render()
     {
         $ret = '';
         $count = count($this->criteriaElements);
         if ($count > 0) {
-			$elems =& $this->criteriaElements;
-			$conds =& $this->conditions;
+            $elems =& $this->criteriaElements;
+            $conds =& $this->conditions;
             $ret = '('. $elems[0]->render();
             for ($i = 1; $i < $count; $i++) {
                 $ret .= ' '.$conds[$i].' '.$elems[$i]->render();
@@ -406,7 +400,7 @@ class CriteriaCompo extends CriteriaElement
      * @return  string
      * @deprecated
      */
-    function renderWhere()
+    public function renderWhere()
     {
         $ret = $this->render();
         $ret = ($ret != '') ? 'WHERE ' . $ret : $ret;
@@ -420,16 +414,17 @@ class CriteriaCompo extends CriteriaElement
      * @author Nathan Dial ndial@trillion21.com
      * @deprecated
      */
-    function renderLdap(){
+    public function renderLdap()
+    {
         $retval = '';
         $count = count($this->criteriaElements);
         if ($count > 0) {
             $retval = $this->criteriaElements[0]->renderLdap();
             for ($i = 1; $i < $count; $i++) {
                 $cond = $this->conditions[$i];
-                if(strtoupper($cond) == 'AND'){
+                if (strtoupper($cond) == 'AND') {
                     $op = '&';
-                } elseif (strtoupper($cond)=='OR'){
+                } elseif (strtoupper($cond)=='OR') {
                     $op = '|';
                 }
                 $retval = "($op$retval" . $this->criteriaElements[$i]->renderLdap().")";
@@ -455,13 +450,13 @@ class Criteria extends CriteriaElement
     /**
      * @var string
      */
-    var $prefix;
-    var $function;
-    var $column;
-    var $operator;
-    var $value;
-	
-	var $dtype = 0;
+    public $prefix;
+    public $function;
+    public $column;
+    public $operator;
+    public $value;
+    
+    public $dtype = 0;
 
     /**
      * Constructor
@@ -470,40 +465,38 @@ class Criteria extends CriteriaElement
      * @param   string  $value
      * @param   string  $operator
      **/
-    function Criteria($column, $value='', $operator='=', $prefix = '', $function = '') {
+    public function Criteria($column, $value='', $operator='=', $prefix = '', $function = '')
+    {
         $this->prefix = $prefix;
         $this->function = $function;
         $this->column = $column;
         $this->operator = $operator;
 
-		//
-		// Recive DTYPE. This is a prolongation of criterion life operation.
-		//
-		if (is_array($value) && count($value)==2 && $operator!='IN' && $operator!='NOT IN')
-		{
-			$this->dtype = intval($value[0]);
-			$this->value = $value[1];
-		}
-		else
-		{
-			$this->value = $value;
-		}
+        //
+        // Recive DTYPE. This is a prolongation of criterion life operation.
+        //
+        if (is_array($value) && count($value)==2 && $operator!='IN' && $operator!='NOT IN') {
+            $this->dtype = intval($value[0]);
+            $this->value = $value[1];
+        } else {
+            $this->value = $value;
+        }
     }
     
-    function getName()
+    public function getName()
     {
-		return $this->column;
-	}
-	
-	function getValue()
-	{
-		return $this->value;
-	}
-	
-	function getOperator()
-	{
-		return $this->operator;
-	}
+        return $this->column;
+    }
+    
+    public function getValue()
+    {
+        return $this->value;
+    }
+    
+    public function getOperator()
+    {
+        return $this->operator;
+    }
 
     /**
      * Make a sql condition string
@@ -511,19 +504,27 @@ class Criteria extends CriteriaElement
      * @return  string
      * @deprecated XoopsObjectGenericHandler::_makeCriteriaElement4sql()
      **/
-    function render() {
+    public function render()
+    {
         $value = $this->value;
-        if (!in_array(strtoupper($this->operator), array('IN', 'NOT IN'))) {
+        if (in_array(strtoupper($this->operator), array('IN', 'NOT IN'))) {
+            $value = is_array($value) ? implode(',', $value) : trim($value, " ()\t"); // [Compat] allow value '("a", "b", "c")'
+            if (isset($value)) {
+                $value = '('.$value.')';
+            } else {
+                $value = '("")';
+            }
+        } else {
             $value = "'$value'";
         }
         $clause = (!empty($this->prefix) ? $this->prefix.'.' : '') . $this->column;
-        if ( !empty($this->function) ) {
+        if (!empty($this->function)) {
             $clause = sprintf($this->function, $clause);
         }
         $clause .= ' '.$this->operator.' '.$value;
         return $clause;
     }
-	
+    
    /**
      * Generate an LDAP filter from criteria
      *
@@ -531,7 +532,8 @@ class Criteria extends CriteriaElement
      * @author Nathan Dial ndial@trillion21.com
      * @deprecated
      */
-    function renderLdap(){
+    public function renderLdap()
+    {
         $clause = "(" . $this->column . $this->operator . $this->value . ")";
         return $clause;
     }
@@ -542,10 +544,9 @@ class Criteria extends CriteriaElement
      * @return  string
      * @deprecated
      */
-    function renderWhere() {
+    public function renderWhere()
+    {
         $cond = $this->render();
         return empty($cond) ? '' : "WHERE $cond";
     }
 }
-
-?>

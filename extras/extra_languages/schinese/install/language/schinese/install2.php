@@ -1,13 +1,13 @@
 <?php
 // $Id$
-define("_INSTALL_WEBMASTER","站务管理者");
-define("_INSTALL_WEBMASTERD","网站管理者");
-define("_INSTALL_REGUSERS","注册会员");
-define("_INSTALL_REGUSERSD","已注册会员群组");
-define("_INSTALL_ANONUSERS","访客");
-define("_INSTALL_ANONUSERSD","访客群组");
+define("_INSTALL_WEBMASTER", "站务管理者");
+define("_INSTALL_WEBMASTERD", "网站管理者");
+define("_INSTALL_REGUSERS", "注册会员");
+define("_INSTALL_REGUSERSD", "已注册会员群组");
+define("_INSTALL_ANONUSERS", "访客");
+define("_INSTALL_ANONUSERSD", "访客群组");
 
-define("_INSTALL_ANON","访客");
+define("_INSTALL_ANON", "访客");
 
 define("_INSTALL_DISCLMR", "本论坛之基础规定系以中华人民共和国所有法律及规定为依据，请务必对自己的言论与行为负责：
 
@@ -40,4 +40,3 @@ define("_INSTALL_DISCLMR", "本论坛之基础规定系以中华人民共和国所有法律及规定为依
 
 此系统将会把有相关资料以 cookies、id即session 方式储存在你的电脑中，并作HTTP_REFERER的位址认证，但所有内容均不会包含你的密码，
 ，此外你的Email只是用来作为确认注册身份及寄送密码，将不会作为商业用途。");
-?>

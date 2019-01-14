@@ -185,4 +185,3 @@ define('_INSTALL_LANG_XOOPS_SALT', 'SALT');
 define('_INSTALL_LANG_XOOPS_SALT_DESC', '這是一個補充項目來產生安全碼與權杖，您不需要修改預設值。');
 
 define('_INSTALL_HEADER_MESSAGE', '請跟著畫面的說明進行安裝。');
-?>

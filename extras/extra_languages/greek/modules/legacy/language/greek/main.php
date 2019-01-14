@@ -56,5 +56,3 @@ define('_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_WARNING', "Διαγράψτε το �
 define('_MD_LEGACY_MESSAGE_LOGGEDOUT', "Αποσυνδεθήκατε από το δικτυακό μας τόπο.");
 define('_MD_LEGACY_MESSAGE_LOGIN_SUCCESS', "Συνδεθήκατε επιτυχώς ");
 define('_MD_LEGACY_MESSAGE_THANKYOUFORVISIT', "Σας ευχαριστούμε που επισκεφτήκατε το δικτυακό μας τόπο!");
-
-?>

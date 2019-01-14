@@ -29,7 +29,9 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 /**
  * @package     kernel
@@ -48,100 +50,106 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
  * @author	    Kazumi Ono	<onokazu@xoops.org>
  * @copyright	copyright (c) 2000-2003 XOOPS.org
  */
-class XoopsFormText extends XoopsFormElement {
+class XoopsFormText extends XoopsFormElement
+{
 
-	/**
+    /**
      * Size
-	 * @var	int 
+     * @var	int 
      * @access	private
-	 */
-	var $_size;
+     */
+    public $_size;
 
-	/**
+    /**
      * Maximum length of the text
-	 * @var	int 
-	 * @access	private
-	 */
-	var $_maxlength;
+     * @var	int 
+     * @access	private
+     */
+    public $_maxlength;
 
-	/**
+    /**
      * Initial text
-	 * @var	string  
-	 * @access	private
-	 */
-	var $_value;
+     * @var	string  
+     * @access	private
+     */
+    public $_value;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param	string	$caption	Caption
-	 * @param	string	$name       "name" attribute
-	 * @param	int		$size	    Size
-	 * @param	int		$maxlength	Maximum length of text
+    /**
+     * Constructor
+     * 
+     * @param	string	$caption	Caption
+     * @param	string	$name       "name" attribute
+     * @param	int		$size	    Size
+     * @param	int		$maxlength	Maximum length of text
      * @param	string  $value      Initial text
-	 */
-	function XoopsFormText($caption, $name, $size, $maxlength, $value=""){
-		$this->setCaption($caption);
-		$this->setName($name);
-		$this->_size = intval($size);
-		$this->_maxlength = intval($maxlength);
-		$this->setValue($value);
-	}
+     */
+    public function XoopsFormText($caption, $name, $size, $maxlength, $value="")
+    {
+        $this->setCaption($caption);
+        $this->setName($name);
+        $this->_size = intval($size);
+        $this->_maxlength = intval($maxlength);
+        $this->setValue($value);
+    }
 
-	/**
-	 * Get size
-	 * 
+    /**
+     * Get size
+     * 
      * @return	int
-	 */
-	function getSize(){
-		return $this->_size;
-	}
+     */
+    public function getSize()
+    {
+        return $this->_size;
+    }
 
-	/**
-	 * Get maximum text length
-	 * 
+    /**
+     * Get maximum text length
+     * 
      * @return	int
-	 */
-	function getMaxlength(){
-		return $this->_maxlength;
-	}
+     */
+    public function getMaxlength()
+    {
+        return $this->_maxlength;
+    }
 
-	/**
-	 * Get initial text value
-	 * 
+    /**
+     * Get initial text value
+     * 
      * @return  string
-	 */
-	function getValue(){
-		return $this->_value;
-	}
+     */
+    public function getValue()
+    {
+        return $this->_value;
+    }
 
-	/**
-	 * Set initial text value
-	 * 
+    /**
+     * Set initial text value
+     * 
      * @param	$value  string
-	 */
-	function setValue($value){
-		$this->_value = $value;
-	}
+     */
+    public function setValue($value)
+    {
+        $this->_value = $value;
+    }
 
-	/**
-	 * Prepare HTML for output
-	 * 
+    /**
+     * Prepare HTML for output
+     * 
      * @return	string  HTML
-	 */
-	function render(){
-		$root =& XCube_Root::getSingleton();
-		$renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
-		
-		$renderTarget =& $renderSystem->createRenderTarget('main');
-	
-		$renderTarget->setAttribute('legacy_module', 'legacy');
-		$renderTarget->setTemplateName("legacy_xoopsform_text.html");
-		$renderTarget->setAttribute("element", $this);
+     */
+    public function render()
+    {
+        $root =& XCube_Root::getSingleton();
+        $renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
+        
+        $renderTarget =& $renderSystem->createRenderTarget('main');
+    
+        $renderTarget->setAttribute('legacy_module', 'legacy');
+        $renderTarget->setTemplateName("legacy_xoopsform_text.html");
+        $renderTarget->setAttribute("element", $this);
 
-		$renderSystem->render($renderTarget);
-	
-		return $renderTarget->getResult();
-	}
+        $renderSystem->render($renderTarget);
+    
+        return $renderTarget->getResult();
+    }
 }
-?>

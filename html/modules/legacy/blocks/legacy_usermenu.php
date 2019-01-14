@@ -4,7 +4,7 @@
  * @package XOOPS2
  * @version $Id: legacy_usermenu.php,v 1.3 2008/09/25 15:12:13 kilica Exp $
  * @copyright Copyright (c) 2000 XOOPS.org  <http://www.xoops.org/>
- * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
 //  ------------------------------------------------------------------------ //
@@ -36,30 +36,29 @@ function b_legacy_usermenu_show()
 
     if (is_object($xoopsUser)) {
         $block = array();
-		
+        
         $block['uid'] = $xoopsUser->get('uid');
-		$block['flagShowInbox'] = false;
+        $block['flagShowInbox'] = false;
 
-		//
-		// Check does this system have PrivateMessage feature.
-		//
-		$url = null;
-		$service =& $root->mServiceManager->getService('privateMessage');
-		if ($service != null) {
-			$client =& $root->mServiceManager->createClient($service);
-			$url = $client->call('getPmInboxUrl', array('uid' => $xoopsUser->get('uid')));
-			
-			if ($url != null) {
-				$block['inbox_url'] = $url;
-				$block['new_messages'] = $client->call('getCountUnreadPM', array('uid' => $xoopsUser->get('uid')));
-				$block['flagShowInbox']=true;
-			}
-		}
-		
-		$block['show_adminlink'] = $root->mContext->mUser->isInRole('Site.Administrator');
+        //
+        // Check does this system have PrivateMessage feature.
+        //
+        $url = null;
+        $service =& $root->mServiceManager->getService('privateMessage');
+        if ($service != null) {
+            $client =& $root->mServiceManager->createClient($service);
+            $url = $client->call('getPmInboxUrl', array('uid' => $xoopsUser->get('uid')));
+            
+            if ($url != null) {
+                $block['inbox_url'] = $url;
+                $block['new_messages'] = $client->call('getCountUnreadPM', array('uid' => $xoopsUser->get('uid')));
+                $block['flagShowInbox']=true;
+            }
+        }
+        
+        $block['show_adminlink'] = $root->mContext->mUser->isInRole('Site.Administrator');
 
         return $block;
     }
     return false;
 }
-?>

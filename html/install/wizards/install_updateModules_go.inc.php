@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: install_updateModules_go.inc.php,v 1.3 2008/09/25 15:12:35 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
- * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
     unset($xoopsOption['nocommon']);
@@ -64,7 +64,7 @@
                 if ($blocks != false) {
                     $count = count($blocks);
                     include_once(XOOPS_ROOT_PATH.'/class/xoopsblock.php');
-                    for ( $i = 1; $i <= $count; $i++ ) {
+                    for ($i = 1; $i <= $count; $i++) {
                         if (isset($blocks[$i]['show_func']) && $blocks[$i]['show_func'] != '' && isset($blocks[$i]['file']) && $blocks[$i]['file'] != '') {
                             $editfunc = isset($blocks[$i]['edit_func']) ? $blocks[$i]['edit_func'] : '';
                             $showfuncs[] = $blocks[$i]['show_func'];
@@ -156,7 +156,7 @@
                 foreach ($block_arr as $block) {
                     if (!in_array($block->getVar('show_func'), $showfuncs) || !in_array($block->getVar('func_file'), $funcfiles)) {
                         $sql = sprintf("DELETE FROM %s WHERE bid = %u", $xoopsDB->prefix('newblocks'), $block->getVar('bid'));
-                        if(!$xoopsDB->query($sql)) {
+                        if (!$xoopsDB->query($sql)) {
                             $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">ERROR: Could not delete block <b>'.$block->getVar('name').'</b>. Block ID: <b>'.$block->getVar('bid').'</b></span>';
                         } else {
                             $msgs[] = '&nbsp;&nbsp;Block <b>'.$block->getVar('name').' deleted. Block ID: <b>'.$block->getVar('bid').'</b>';
@@ -185,7 +185,7 @@
                         $configs = array();
                     }
                     include_once(XOOPS_ROOT_PATH.'/include/notification_constants.php');
-                    $configs[] = array ('name' => 'notification_enabled', 'title' => '_NOT_CONFIG_ENABLED', 'description' => '_NOT_CONFIG_ENABLEDDSC', 'formtype' => 'select', 'valuetype' => 'int', 'default' => XOOPS_NOTIFICATION_ENABLEBOTH, 'options' => $options);
+                    $configs[] = array('name' => 'notification_enabled', 'title' => '_NOT_CONFIG_ENABLED', 'description' => '_NOT_CONFIG_ENABLEDDSC', 'formtype' => 'select', 'valuetype' => 'int', 'default' => XOOPS_NOTIFICATION_ENABLEBOTH, 'options' => $options);
                 }
 
                 if ($configs != false) {
@@ -253,4 +253,3 @@
     ob_end_clean();
     $b_next = array('updateComments', _INSTALL_L14);
     include './install_tpl.php';
-?>

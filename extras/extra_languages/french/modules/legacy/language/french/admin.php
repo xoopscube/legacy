@@ -113,7 +113,7 @@ define('_AD_LEGACY_LANG_BLOCK_TOTAL', "Total de Blocs");
 define('_AD_LEGACY_LANG_BLOCK_INSTALLEDTOTAL', "Installé");
 define('_AD_LEGACY_LANG_BLOCK_UNINSTALLEDTOTAL', "Désinstallé");
 define('_AD_LEGACY_LANG_BLOCK_ACTIVETOTAL', "Actif");
-define('_AD_LEGACY_LANG_BLOCK_INACTIVETOTAL', "Inactif");	
+define('_AD_LEGACY_LANG_BLOCK_INACTIVETOTAL', "Inactif");
 define('_AD_LEGACY_LANG_BLOCK_UPDATECONF', "Confirmer la mise à jour du bloc");
 define('_AD_LEGACY_LANG_C_TYPE', "Type");
 define('_AD_LEGACY_LANG_CENTER_BLOCK_CENTER', "Bloc Centre-Centre");
@@ -264,7 +264,7 @@ define('_AD_LEGACY_LANG_SMILES_UPLOAD_FILE', "Archive avec émoticones (archive t
 define('_AD_LEGACY_LANG_SMILES_UPLOAD_RESULT', "Resultat du téléchargement d'émoticones par lot");
 define('_AD_LEGACY_LANG_SMILES_TOTAL', "Total d'émoticones");
 define('_AD_LEGACY_LANG_SMILES_DISPLAYTOTAL', "Emoticones affichés");
-define('_AD_LEGACY_LANG_SMILES_NOTDISPLAYTOTAL', "Emoticones masqués");	
+define('_AD_LEGACY_LANG_SMILES_NOTDISPLAYTOTAL', "Emoticones masqués");
 define('_AD_LEGACY_LANG_SMILES_UPDATECONF', "Confirmer mise à jour d'émoticones");
 define('_AD_LEGACY_LANG_SHOW_FUNC', "Voir la fonction de rappel");
 define('_AD_LEGACY_LANG_SIDE', "Position");
@@ -465,5 +465,3 @@ define('_MD_AM_USESSL', "Utiliser le SSL pour se connecter ?");
 define('_MD_AM_YES', "Oui");
 define('_MD_AM_COOLURI', 'Utiliser Cool URI ?');
 define('_MD_AM_COOLURIDSC', 'Si votre serveur permet de gérer apache mod_rewrite, vous pouvez utiliser cette option. Voir aussi <a href="'.XOOPS_URL.'/modules/legacyRender/admin/index.php?action=HtaccessView">paramètres .htaccess</a>');
-
-?>

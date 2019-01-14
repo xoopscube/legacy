@@ -24,52 +24,52 @@ class Ethna_ViewClass
      */
 
     /** @var    object  Ethna_Controller    Controllerオブジェクト */
-    var $ctl;
+    public $ctl;
 
     /** @var    object  Ethna_Backend       backendオブジェクト */
-    var $backend;
+    public $backend;
 
     /** @var    object  Ethna_Config        設定オブジェクト    */
-    var $config;
+    public $config;
 
     /** @var    object  Ethna_I18N          i18nオブジェクト */
-    var $i18n;
+    public $i18n;
 
     /** @var    object  Ethna_Logger    ログオブジェクト */
-    var $logger;
+    public $logger;
 
     /** @var    object  Ethna_Plugin    プラグインオブジェクト */
-    var $plugin;
+    public $plugin;
 
     /** @var    object  Ethna_ActionError   アクションエラーオブジェクト */
-    var $action_error;
+    public $action_error;
 
     /** @var    object  Ethna_ActionError   アクションエラーオブジェクト(省略形) */
-    var $ae;
+    public $ae;
 
     /** @var    object  Ethna_ActionForm    アクションフォームオブジェクト */
-    var $action_form;
+    public $action_form;
 
     /** @var    object  Ethna_ActionForm    アクションフォームオブジェクト(省略形) */
-    var $af;
+    public $af;
 
     /** @var    array   アクションフォームオブジェクト(helper) */
-    var $helper_action_form = array();
+    public $helper_action_form = array();
 
     /** @var    array   helperでhtmlのattributeにはしないパラメータの一覧 */
-    var $helper_parameter_keys = array('default', 'option', 'separator');
+    public $helper_parameter_keys = array('default', 'option', 'separator');
 
     /** @var    object  Ethna_Session       セッションオブジェクト */
-    var $session;
+    public $session;
 
     /** @var    string  遷移名 */
-    var $forward_name;
+    public $forward_name;
 
     /** @var    string  遷移先テンプレートファイル名 */
-    var $forward_path;
+    public $forward_path;
 
     /** @var    boolean  配列フォームを呼んだカウンタをリセットするか否か */
-    var $reset_counter = false;
+    public $reset_counter = false;
 
     /**#@-*/
 
@@ -78,7 +78,7 @@ class Ethna_ViewClass
      */
 
     /** @var  string レイアウト(HTMLの外枠を記述するファイル)のテンプレートファイルを指定   */
-    var $_layout_file = 'layout';
+    public $_layout_file = 'layout';
 
     /**#@-*/
 
@@ -87,15 +87,15 @@ class Ethna_ViewClass
      */
 
     /** @var boolean  レイアウトテンプレートの使用フラグ       */
-    var $use_layout = true;
+    public $use_layout = true;
 
     /** @var  boolean  デフォルトのヘッダ出力を使用するか否か  */
     /**                ヘッダ出力を改造する場合はfalseにする   */
-    var $has_default_header = true;
+    public $has_default_header = true;
 
     /** @var  array    デフォルトのヘッダ出力を使用するか否か  */
     /**                ヘッダ出力を改造する場合はfalseにする   */
-    var $default_header = array(
+    public $default_header = array(
         'Pragma' => 'no-cache',
         'Cache-Control' => 'no-cache, no-store, must-revalidate',
     );
@@ -109,7 +109,7 @@ class Ethna_ViewClass
      *  @param  string  $forward_name   ビューに関連付けられている遷移名
      *  @param  string  $forward_path   ビューに関連付けられているテンプレートファイル名
      */
-    function Ethna_ViewClass(&$backend, $forward_name, $forward_path)
+    public function Ethna_ViewClass(&$backend, $forward_name, $forward_path)
     {
         $c =& $backend->getController();
         $this->ctl =& $c;
@@ -148,7 +148,7 @@ class Ethna_ViewClass
      *                          array('forward_name', $param) の形でアクション
      *                          から値を返すことで、$params に値が渡されます。
      */
-    function preforward($params = NULL)
+    public function preforward($params = null)
     {
     }
     // }}}
@@ -162,7 +162,7 @@ class Ethna_ViewClass
      *
      *  @access public
      */
-    function forward()
+    public function forward()
     {
         $renderer =& $this->_getRenderer();
         $this->_setDefault($renderer);
@@ -183,8 +183,7 @@ class Ethna_ViewClass
                 if (Ethna::isError($content)) {
                     if ($content->getCode() == E_GENERAL) {
                         $error = 404;
-                    }
-                    else {
+                    } else {
                         $error = 500;
                     }
 
@@ -213,13 +212,13 @@ class Ethna_ViewClass
      *                  文字列で指定する場合は、ヘッダ出力をそのまま指定
      *  @access public
      */
-    function header($status)
+    public function header($status)
     {
         if (is_array($status)) {
             foreach ($status as $key => $status) {
-                header ($key . ": " . $status);
+                header($key . ": " . $status);
             }
-        } else if (is_int($status)) {
+        } elseif (is_int($status)) {
             $codes = array(
                 100 => "Continue",
                 101 => "Switching Protocols",
@@ -284,7 +283,7 @@ class Ethna_ViewClass
      *                  文字列で指定する場合は、ヘッダ出力をそのまま指定
      *  @access public
      */
-    function redirect($url)
+    public function redirect($url)
     {
         $this->has_default_header = false;
         $this->use_layout = false;
@@ -302,7 +301,7 @@ class Ethna_ViewClass
      *  @param string $filename  レイアウトファイル名
      *  @access public
      */
-    function setLayout($filename)
+    public function setLayout($filename)
     {
         // check layout file existance
         if ($this->templateExists($filename)) {
@@ -321,7 +320,7 @@ class Ethna_ViewClass
      *  @return string  レイアウトテンプレートのファイル名
      *  @access public
      */
-    function getLayout()
+    public function getLayout()
     {
         return sprintf('%s.%s', $this->_layout_file, $this->ctl->getExt('tpl'));
     }
@@ -336,13 +335,12 @@ class Ethna_ViewClass
      * @return  boolean 指定したテンプレートファイルが存在すればtrue
      *                  存在しなければfalse
      */
-    function templateExists($filename)
+    public function templateExists($filename)
     {
         $renderer = $this->_getRenderer();
         if ($renderer->templateExists($filename)) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -355,7 +353,7 @@ class Ethna_ViewClass
      *  @param  int  HTTPステータスコード
      *  @access public
      */
-    function error($code)
+    public function error($code)
     {
         $this->has_default_header = false;
         $this->header($code);
@@ -374,7 +372,7 @@ class Ethna_ViewClass
      *  @param  boolean $dynamic_helper 動的フォームヘルパを呼ぶか否か
      *  @access public
      */
-    function addActionFormHelper($action, $dynamic_helper = false)
+    public function addActionFormHelper($action, $dynamic_helper = false)
     {
         //
         //  既に追加されている場合は処理をしない
@@ -414,7 +412,7 @@ class Ethna_ViewClass
      *
      *  @access public
      */
-    function clearActionFormHelper($action)
+    public function clearActionFormHelper($action)
     {
         unset($this->helper_action_form[$action]);
     }
@@ -431,7 +429,7 @@ class Ethna_ViewClass
      *  @param  string  name    定義されていることを期待するフォーム名
      *  @return object  Ethna_ActionFormまたは継承オブジェクト
      */
-    function &_getHelperActionForm($action = null, $name = null)
+    public function &_getHelperActionForm($action = null, $name = null)
     {
         // $action が指定されている場合
         if ($action !== null) {
@@ -477,7 +475,7 @@ class Ethna_ViewClass
      *
      *  @access public
      */
-    function resetFormCounter()
+    public function resetFormCounter()
     {
         $this->reset_counter = true;
     }
@@ -489,7 +487,7 @@ class Ethna_ViewClass
      *
      *  @access public
      */
-    function getFormName($name, $action, $params)
+    public function getFormName($name, $action, $params)
     {
         $af =& $this->_getHelperActionForm($action, $name);
         if ($af === null) {
@@ -512,7 +510,7 @@ class Ethna_ViewClass
      *
      *  @access public
      */
-    function getFormSubmit($params)
+    public function getFormSubmit($params)
     {
         if (isset($params['type']) === false) {
             $params['type'] = 'submit';
@@ -528,7 +526,7 @@ class Ethna_ViewClass
      *  @access public
      *  @todo   JavaScript対応
      */
-    function getFormInput($name, $action, $params)
+    public function getFormInput($name, $action, $params)
     {
         $af =& $this->_getHelperActionForm($action, $name);
         if ($af === null) {
@@ -617,7 +615,7 @@ class Ethna_ViewClass
      *
      *  @access protected
      */
-    function getFormBlock($content, $params)
+    public function getFormBlock($content, $params)
     {
         // method
         if (isset($params['method']) === false) {
@@ -634,20 +632,20 @@ class Ethna_ViewClass
      *
      *  @access protected
      */
-    function _getSelectorOptions(&$af, $def, $params)
+    public function _getSelectorOptions(&$af, $def, $params)
     {
         // $params, $def の順で調べる
         $source = null;
         if (isset($params['option'])) {
             $source = $params['option'];
-        } else if (isset($def['option'])) {
+        } elseif (isset($def['option'])) {
             $source = $def['option'];
         }
 
         // 未定義 or 定義済みの場合はそのまま
         if ($source === null) {
             return null;
-        } else if (is_array($source)) {
+        } elseif (is_array($source)) {
             return $source;
         }
         
@@ -690,7 +688,7 @@ class Ethna_ViewClass
      *
      *  @access protected
      */
-    function _getFormInput_Button($name, $def, $params)
+    public function _getFormInput_Button($name, $def, $params)
     {
         $params['type'] = 'button';
         
@@ -718,7 +716,7 @@ class Ethna_ViewClass
      *
      *  @access protected
      */
-    function _getFormInput_Checkbox($name, $def, $params)
+    public function _getFormInput_Checkbox($name, $def, $params)
     {
         $params['type'] = 'checkbox';
         if (isset($def['type'])) {
@@ -737,7 +735,7 @@ class Ethna_ViewClass
         // default値の設定
         if (isset($params['default'])) {
             $current_value = $params['default'];
-        } else if (isset($def['default'])) {
+        } elseif (isset($def['default'])) {
             $current_value = $def['default'];
         } else {
             $current_value = array();
@@ -782,7 +780,7 @@ class Ethna_ViewClass
      *
      *  @access protected
      */
-    function _getFormInput_File($name, $def, $params)
+    public function _getFormInput_File($name, $def, $params)
     {
         $params['type'] = 'file';
         if (isset($def['type'])) {
@@ -802,7 +800,7 @@ class Ethna_ViewClass
      *
      *  @access protected
      */
-    function _getFormInput_Hidden($name, $def, $params)
+    public function _getFormInput_Hidden($name, $def, $params)
     {
         $params['type'] = 'hidden';
         if (isset($def['type'])) {
@@ -815,9 +813,9 @@ class Ethna_ViewClass
         $value = '';
         if (isset($params['value'])) {
             $value = $params['value'];
-        } else if (isset($params['default'])) {
+        } elseif (isset($params['default'])) {
             $value = $params['default'];
-        } else if (isset($def['default'])) {
+        } elseif (isset($def['default'])) {
             $value = $def['default'];
         }
         if (is_array($value)) {
@@ -840,7 +838,7 @@ class Ethna_ViewClass
      *
      *  @access protected
      */
-    function _getFormInput_Password($name, $def, $params)
+    public function _getFormInput_Password($name, $def, $params)
     {
         $params['type'] = 'password';
         if (isset($def['type'])) {
@@ -853,9 +851,9 @@ class Ethna_ViewClass
         $value = '';
         if (isset($params['value'])) {
             $value = $params['value'];
-        } else if (isset($params['default'])) {
+        } elseif (isset($params['default'])) {
             $value = $params['default'];
-        } else if (isset($def['default'])) {
+        } elseif (isset($def['default'])) {
             $value = $def['default'];
         }
         if (is_array($value)) {
@@ -881,7 +879,7 @@ class Ethna_ViewClass
      *
      *  @access protected
      */
-    function _getFormInput_Radio($name, $def, $params)
+    public function _getFormInput_Radio($name, $def, $params)
     {
         $params['type'] = 'radio';
         if (isset($def['type'])) {
@@ -900,7 +898,7 @@ class Ethna_ViewClass
         // default値の設定
         if (isset($params['default'])) {
             $current_value = $params['default'];
-        } else if (isset($def['default'])) {
+        } elseif (isset($def['default'])) {
             $current_value = $def['default'];
         } else {
             $current_value = null;
@@ -920,7 +918,7 @@ class Ethna_ViewClass
             $params['id'] = $name . '_' . $i++;
 
             // checked
-            if (strcmp($current_value,$key) === 0) {
+            if (strcmp($current_value, $key) === 0) {
                 $params['checked'] = 'checked';
             } else {
                 unset($params['checked']);
@@ -944,7 +942,7 @@ class Ethna_ViewClass
      *
      *  @access protected
      */
-    function _getFormInput_Select($name, $def, $params)
+    public function _getFormInput_Select($name, $def, $params)
     {
         if (isset($def['type'])) {
             $params['name'] = is_array($def['type']) ? $name . '[]' : $name;
@@ -962,7 +960,7 @@ class Ethna_ViewClass
         // default値の設定
         if (isset($params['default'])) {
             $current_value = $params['default'];
-        } else if (isset($def['default'])) {
+        } elseif (isset($def['default'])) {
             $current_value = $def['default'];
         } else {
             $current_value = array();
@@ -1016,7 +1014,7 @@ class Ethna_ViewClass
      *
      *  @access protected
      */
-    function _getFormInput_Submit($name, $def, $params)
+    public function _getFormInput_Submit($name, $def, $params)
     {
         $params['type'] = 'submit';
         if (isset($def['type'])) {
@@ -1043,7 +1041,7 @@ class Ethna_ViewClass
      *
      *  @access protected
      */
-    function _getFormInput_Textarea($name, $def, $params)
+    public function _getFormInput_Textarea($name, $def, $params)
     {
         if (isset($def['type'])) {
             $params['name'] = is_array($def['type']) ? $name . '[]' : $name;
@@ -1055,9 +1053,9 @@ class Ethna_ViewClass
         $element = '';
         if (isset($params['value'])) {
             $element = $params['value'];
-        } else if (isset($params['default'])) {
+        } elseif (isset($params['default'])) {
             $element = $params['default'];
-        } else if (isset($def['default'])) {
+        } elseif (isset($def['default'])) {
             $element = $def['default'];
         }
         if (is_array($element)) {
@@ -1078,7 +1076,7 @@ class Ethna_ViewClass
      *
      *  @access protected
      */
-    function _getFormInput_Text($name, $def, $params)
+    public function _getFormInput_Text($name, $def, $params)
     {
         // type
         $params['type'] = 'text';
@@ -1094,9 +1092,9 @@ class Ethna_ViewClass
         $value = '';
         if (isset($params['value'])) {
             $value = $params['value'];
-        } else if (isset($params['default'])) {
+        } elseif (isset($params['default'])) {
             $value = $params['default'];
-        } else if (isset($def['default'])) {
+        } elseif (isset($def['default'])) {
             $value = $def['default'];
         }
         if (is_array($value)) {
@@ -1122,7 +1120,7 @@ class Ethna_ViewClass
      *
      *  @access protected
      */
-    function _getFormInput_Html($tag, $attr, $element = null, $escape_element = true)
+    public function _getFormInput_Html($tag, $attr, $element = null, $escape_element = true)
     {
         // 不要なパラメータは消す
         foreach ($this->helper_parameter_keys as $key) {
@@ -1141,7 +1139,7 @@ class Ethna_ViewClass
 
         if ($element === null) {
             $r .= ' />';
-        } else if ($escape_element) {
+        } elseif ($escape_element) {
             $r .= sprintf('>%s</%s>', htmlspecialchars($element, ENT_QUOTES), $tag);
         } else {
             $r .= sprintf('>%s</%s>', $element, $tag);
@@ -1158,7 +1156,7 @@ class Ethna_ViewClass
      *  @access protected
      *  @return object  Ethna_Renderer  レンダラオブジェクト
      */
-    function &_getRenderer()
+    public function &_getRenderer()
     {
         $c =& $this->backend->getController();
         $renderer =& $c->getRenderer();
@@ -1194,10 +1192,10 @@ class Ethna_ViewClass
      *  @access protected
      *  @param  object  Ethna_Renderer  レンダラオブジェクト
      */
-    function _setDefault(&$renderer)
+    public function _setDefault(&$renderer)
     {
     }
     // }}}
 }
 // }}}
-?>
+;

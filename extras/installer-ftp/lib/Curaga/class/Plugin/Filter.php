@@ -30,16 +30,16 @@ class Ethna_Plugin_Filter
      */
 
     /** @var    object  Ethna_Controller    controllerオブジェクト */
-    var $controller;
+    public $controller;
 
     /** @var    object  Ethna_Controller    controllerオブジェクト($controllerの省略形) */
-    var $ctl;
+    public $ctl;
 
     /** @var    object  Ethna_Config        設定オブジェクト */
-    var $config;
+    public $config;
 
     /** @var    object  Ethna_Logger        ログオブジェクト */
-    var $logger;
+    public $logger;
 
     /**#@-*/
 
@@ -50,7 +50,7 @@ class Ethna_Plugin_Filter
      *  @access public
      *  @param  object  Ethna_Controller    &$controller    コントローラオブジェクト
      */
-    function Ethna_Plugin_Filter(&$controller)
+    public function Ethna_Plugin_Filter(&$controller)
     {
         // オブジェクトの設定
         $this->controller =& $controller;
@@ -66,7 +66,7 @@ class Ethna_Plugin_Filter
      *  @access public
      *  @return Ethna_Error:実行中止 any:正常終了
      */
-    function preFilter()
+    public function preFilter()
     {
     }
 
@@ -77,7 +77,7 @@ class Ethna_Plugin_Filter
      *  @param  string  $action_name    実行されるアクション名
      *  @return string  null:正常終了 (string):実行するアクション名を変更
      */
-    function preActionFilter($action_name)
+    public function preActionFilter($action_name)
     {
         return null;
     }
@@ -90,7 +90,7 @@ class Ethna_Plugin_Filter
      *  @param  string  $forward_name   実行されたアクションからの戻り値
      *  @return string  null:正常終了 (string):遷移名を変更
      */
-    function postActionFilter($action_name, $forward_name)
+    public function postActionFilter($action_name, $forward_name)
     {
         return null;
     }
@@ -101,9 +101,9 @@ class Ethna_Plugin_Filter
      *  @access public
      *  @return Ethna_Error:実行中止 any:正常終了
      */
-    function postFilter()
+    public function postFilter()
     {
     }
 }
 // }}}
-?>
+;

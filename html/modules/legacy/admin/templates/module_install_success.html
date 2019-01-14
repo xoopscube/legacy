@@ -21,6 +21,13 @@
 <{/foreach}>
 </ul>
 
+<{if $module->getAdminMenu()}>
+<ul class="toptab" style="text-align:left;">
+  <li class="editFile">
+    <a href="<{$xoops_url}>/modules/<{$module->get('dirname')}>/admin/"><{$module->get('name')}> - <{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
+  </li>
+</ul>
+<{/if}>
 
 <div class="legacy_module_return"><img src="<{"icons/info.png"|theme}>" alt="" title="" /> <a href="index.php?action=ModuleInfo&amp;dirname=<{$module->getShow('dirname')}>"><{$smarty.const._AD_LEGACY_LANG_INFORMATION}></a></div>
 <div class="legacy_module_return"><img src="<{"icons/module_edit.png"|theme}>" alt="" title="" /> <a href="index.php?action=ModuleEdit&amp;mid=<{$module->getShow('mid')}>"><{$smarty.const._AD_LEGACY_LANG_MOD_EDIT}></a></div>
@@ -32,4 +39,3 @@
 <{/if}>
 <div class="legacy_module_return"><img src="<{"icons/module.png"|theme}>" alt="" title="" /> <a href="index.php?action=ModuleList"><{$smarty.const._AD_LEGACY_LANG_MODLIST}></a></div>
 <div class="legacy_module_return"><img src="<{"icons/module_add.png"|theme}>" alt="" title="" /> <a href="index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></div>
-

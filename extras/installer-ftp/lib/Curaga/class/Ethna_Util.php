@@ -117,14 +117,14 @@ class Ethna_Util
      *  @access public
      *  @return bool    true:2回目以降のPOST false:1回目のPOST
      */
-    function isDuplicatePost()
+    public function isDuplicatePost()
     {
         $c =& Ethna_Controller::getInstance();
 
         // use raw post data
         if (isset($_POST['uniqid'])) {
             $uniqid = $_POST['uniqid'];
-        } else if (isset($_GET['uniqid'])) {
+        } elseif (isset($_GET['uniqid'])) {
             $uniqid = $_GET['uniqid'];
         } else {
             return false;
@@ -159,7 +159,7 @@ class Ethna_Util
      *  @acccess public
      *  @return mixed   0:正常終了 Ethna_Error:エラー
      */
-    function clearDuplicatePost()
+    public function clearDuplicatePost()
     {
         $c =& Ethna_Controller::getInstance();
 
@@ -191,7 +191,7 @@ class Ethna_Util
      *  @access public
      *  @return bool    true:正常なPOST false:不正なPOST
      */
-    function isCsrfSafe()
+    public function isCsrfSafe()
     {
         $c =& Ethna_Controller::getInstance();
         $name = $c->config->get('csrf');
@@ -213,7 +213,7 @@ class Ethna_Util
      *  @access public
      *  @return bool    true:成功
      */
-    function setCsrfID()
+    public function setCsrfID()
     {
         $c =& Ethna_Controller::getInstance();
         $name = $c->config->get('csrf');
@@ -236,7 +236,7 @@ class Ethna_Util
      *  @param  string  $mailaddress    チェックするメールアドレス
      *  @return bool    true: 正しいメールアドレス false: 不正な形式
      */
-    function checkMailAddress($mailaddress)
+    public function checkMailAddress($mailaddress)
     {
         if (preg_match('/^([a-z0-9_]|\-|\.|\+)+@(([a-z0-9_]|\-)+\.)+[a-z]{2,6}$/i',
                        $mailaddress)) {
@@ -255,7 +255,7 @@ class Ethna_Util
      *  @param  string  $delimiter  フィールドの区切り文字
      *  @return mixed   (array):分割結果 Ethna_Error:エラー(行継続)
      */
-    function explodeCSV($csv, $delimiter = ",")
+    public function explodeCSV($csv, $delimiter = ",")
     {
         $space_list = '';
         foreach (array(" ", "\t", "\r", "\n") as $c) {
@@ -351,7 +351,7 @@ class Ethna_Util
      *  @param  bool    $escape_nl  改行文字(\r/\n)のエスケープフラグ
      *  @return string  CSVエスケープされた文字列
      */
-    function escapeCSV($csv, $escape_nl = false)
+    public function escapeCSV($csv, $escape_nl = false)
     {
         if (preg_match('/[,"\r\n]/', $csv)) {
             if ($escape_nl) {
@@ -374,7 +374,7 @@ class Ethna_Util
      *  @param  array   $target     HTMLエスケープ対象となる配列
      *  @return array   エスケープされた配列
      */
-    function escapeHtml($target)
+    public function escapeHtml($target)
     {
         $r = array();
         Ethna_Util::_escapeHtml($target, $r);
@@ -388,13 +388,13 @@ class Ethna_Util
      *  @param  mixed   $vars   HTMLエスケープ対象となる配列
      *  @param  mixed   $retval HTMLエスケープ対象となる子要素
      */
-    function _escapeHtml(&$vars, &$retval)
+    public function _escapeHtml(&$vars, &$retval)
     {
         foreach (array_keys($vars) as $name) {
             if (is_array($vars[$name])) {
                 $retval[$name] = array();
                 Ethna_Util::_escapeHtml($vars[$name], $retval[$name]);
-            } else if (!is_object($vars[$name])) {
+            } elseif (!is_object($vars[$name])) {
                 $retval[$name] = htmlspecialchars($vars[$name], ENT_QUOTES);
             }
         }
@@ -409,13 +409,12 @@ class Ethna_Util
      *  @param  string  $string     MIMEエンコードする文字列
      *  @return エンコード済みの文字列
      */
-    function encode_MIME($string)
+    public function encode_MIME($string)
     {
         $pos = 0;
         $split = 36;
         $_string = "";
-        while ($pos < mb_strlen($string))
-        {
+        while ($pos < mb_strlen($string)) {
             $tmp = mb_strimwidth($string, $pos, $split, "");
             $pos += mb_strlen($tmp);
             $_string .= (($_string)? ' ' : '') . mb_encode_mimeheader($tmp, 'ISO-2022-JP');
@@ -434,7 +433,7 @@ class Ethna_Util
      *  @param  int     $count      表示件数
      *  @return array   リンク情報を格納した配列
      */
-    function getDirectLinkList($total, $offset, $count)
+    public function getDirectLinkList($total, $offset, $count)
     {
         $direct_link_list = array();
 
@@ -496,7 +495,7 @@ class Ethna_Util
      *  @param  int     $t      unix time
      *  @return string  元号(不明な場合はnull)
      */
-    function getEra($t)
+    public function getEra($t)
     {
         $tm = localtime($t, true);
         $year = $tm['tm_year'] + 1900;
@@ -504,7 +503,7 @@ class Ethna_Util
         if ($year >= 1989) {
             $heisei_str = _et('Heisei');
             return array($heisei_str, $year - 1988);
-        } else if ($year >= 1926) {
+        } elseif ($year >= 1926) {
             $showa_str = _et('Showa');
             return array($showa_str, $year - 1925);
         }
@@ -521,7 +520,7 @@ class Ethna_Util
      *  @param  int     $type   getimagesize()関数の返すイメージタイプ
      *  @return string  $typeに対応する拡張子
      */
-    function getImageExtName($type)
+    public function getImageExtName($type)
     {
         $ext_list = array(
             1   => 'gif',
@@ -556,7 +555,7 @@ class Ethna_Util
      *  @param  int     $length ハッシュ値の長さ(〜64)
      *  @return string  ハッシュ値
      */
-    function getRandom($length = 64)
+    public function getRandom($length = 64)
     {
         static $srand = false;
 
@@ -570,7 +569,7 @@ class Ethna_Util
         // open_basedir が空なら許可されていると看做す
         $devfile = '/proc/net/dev';
         $open_basedir_conf = ini_get('open_basedir');
-        $devfile_enabled = (empty($open_basedir_conf) 
+        $devfile_enabled = (empty($open_basedir_conf)
                         || (preg_match('#:/proc#', $open_basedir_conf) > 0
                         ||  preg_match('#^/proc#', $open_basedir_conf) > 0));
 
@@ -622,7 +621,7 @@ class Ethna_Util
      *  @param  int     $order  $mをX軸と見做すかY軸と見做すか(0:X軸 1:Y軸)
      *  @return array   m x nに再構成された配列
      */
-    function get2dArray($array, $m, $order)
+    public function get2dArray($array, $m, $order)
     {
         $r = array();
         
@@ -662,7 +661,7 @@ class Ethna_Util
      *  @param  string  $path
      *  @return bool    true:絶対パス false:相対パス
      */
-    function isAbsolute($path)
+    public function isAbsolute($path)
     {
         if (preg_match("/\.\./", $path)) {
             return false;
@@ -671,7 +670,7 @@ class Ethna_Util
         if (DIRECTORY_SEPARATOR == '/'
             && (substr($path, 0, 1) == '/' || substr($path, 0, 1) == '~')) {
             return true;
-        } else if (DIRECTORY_SEPARATOR == '\\' && preg_match('/^[a-z]:\\\/i', $path)) {
+        } elseif (DIRECTORY_SEPARATOR == '\\' && preg_match('/^[a-z]:\\\/i', $path)) {
             return true;
         }
 
@@ -687,7 +686,7 @@ class Ethna_Util
      *  @param  string  $path
      *  @static
      */
-    function isRootDir($path)
+    public function isRootDir($path)
     {
         if ($path === DIRECTORY_SEPARATOR) {
             // avoid stat().
@@ -710,7 +709,7 @@ class Ethna_Util
      *  @return bool    true:成功 false:失敗
      *  @static
      */
-    function mkdir($dir, $mode)
+    public function mkdir($dir, $mode)
     {
         if (file_exists($dir)) {
             return is_dir($dir);
@@ -735,7 +734,7 @@ class Ethna_Util
     /**
      *  ファイルのパーミッションを変更する
      */
-    function chmod($file, $mode)
+    public function chmod($file, $mode)
     {
         $st = stat($file);
         if (($st[2] & 0777) == $mode) {
@@ -755,7 +754,7 @@ class Ethna_Util
      *  @return bool    true:成功 false:失敗
      *  @static
      */
-    function purgeDir($dir)
+    public function purgeDir($dir)
     {
         if (file_exists($dir) === false) {
             return false;
@@ -792,7 +791,7 @@ class Ethna_Util
      *  @param  string  $prefix     ファイルのプレフィクス
      *  @param  int     $timeout    削除対象閾値(秒−60*60*1なら1時間)
      */
-    function purgeTmp($prefix, $timeout)
+    public function purgeTmp($prefix, $timeout)
     {
         $c =& Ethna_Controller::getInstance();
 
@@ -801,9 +800,9 @@ class Ethna_Util
             while (($file = readdir($dh)) !== false) {
                 if ($file == '.' || $file == '..') {
                     continue;
-                } else if (is_dir($c->getDirectory('tmp') . '/' . $file)) {
+                } elseif (is_dir($c->getDirectory('tmp') . '/' . $file)) {
                     continue;
-                } else if (strncmp($file, $prefix, strlen($prefix)) == 0) {
+                } elseif (strncmp($file, $prefix, strlen($prefix)) == 0) {
                     $f = $c->getDirectory('tmp') . "/" . $file;
                     $st = stat($f);
                     if ($st[9] + $timeout < time()) {
@@ -826,7 +825,7 @@ class Ethna_Util
      *  @param  int     $timeout    ロック待ちタイムアウト(秒−0なら無限)
      *  @return int     ロックハンドル(falseならエラー)
      */
-    function lockFile($file, $mode, $timeout = 0)
+    public function lockFile($file, $mode, $timeout = 0)
     {
         if (file_exists($file) === false) {
             touch($file);
@@ -861,7 +860,7 @@ class Ethna_Util
      *  @access public
      *  @param  int     $lh     ロックハンドル
      */
-    function unlockFile($lh)
+    public function unlockFile($lh)
     {
         fclose($lh);
     }
@@ -875,7 +874,7 @@ class Ethna_Util
      *  @param  array   $bt     debug_backtrace()関数で取得したバックトレース
      *  @return string  文字列にフォーマットされたバックトレース
      */
-    function formatBacktrace($bt) 
+    public function formatBacktrace($bt)
     {
         $r = "";
         $i = 0;
@@ -909,7 +908,7 @@ class Ethna_Util
      *  @param  int     $wrap   改行フラグ
      *  @return string  文字列にフォーマットされたバックトレース
      */
-    function _formatBacktrace($arg, $level = 0, $wrap = true)
+    public function _formatBacktrace($arg, $level = 0, $wrap = true)
     {
         $pad = str_repeat("  ", $level);
         if (is_array($arg)) {
@@ -924,7 +923,7 @@ class Ethna_Util
                 }
             }
             $r .= sprintf("     %s)\n", $pad);
-        } else if (is_object($arg)) {
+        } elseif (is_object($arg)) {
             $r = sprintf("     %s[object]%s%s", $pad, get_class($arg), $wrap ? "\n" : "");
         } else {
             $r = sprintf("     %s[%s]%s%s", $pad, gettype($arg), $arg, $wrap ? "\n" : "");
@@ -935,4 +934,4 @@ class Ethna_Util
     // }}}
 }
 // }}}
-?>
+;

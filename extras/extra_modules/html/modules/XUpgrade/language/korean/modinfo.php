@@ -24,5 +24,3 @@ define('_MI_XUPGRADE_MESSAGE_DELETED_CONFIG', "전체설정에서 '{0}' 설정값을 삭제�
 define('_MI_XUPGRADE_MESSAGE_PORTED_CONFIG', "전체설정의 '{0}' 설정값을 {1} 모듈로 이전처리하였습니다.");
 define('_MI_XUPGRADE_MESSAGE_PORTED_TEMPLATE', " '{1}' 템플릿세트의 '{0}' 템플릿을 Legacy로 이전처리하였습니다.");
 define('_MI_XUPGRADE_MESSAGE_START_PORTING', "설정 및 템플릿 이전작업을 시작합니다......");
-
-?>

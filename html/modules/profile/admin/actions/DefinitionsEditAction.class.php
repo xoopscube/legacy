@@ -5,19 +5,21 @@
  * @version $Id$
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 require_once XOOPS_MODULE_PATH . "/profile/class/AbstractEditAction.class.php";
 
 class Profile_Admin_DefinitionsEditAction extends Profile_AbstractEditAction
 {
-    var $mTypeArr = array();
-    var $mValidationArr = array();
+    public $mTypeArr = array();
+    public $mValidationArr = array();
 
     /**
      * @protected
      */
-    function _getId()
+    public function _getId()
     {
         return intval(xoops_getrequest('field_id'));
     }
@@ -25,7 +27,7 @@ class Profile_Admin_DefinitionsEditAction extends Profile_AbstractEditAction
     /**
      * @protected
      */
-    function &_getHandler()
+    public function &_getHandler()
     {
         $handler =& $this->mAsset->load('handler', "definitions");
         return $handler;
@@ -34,7 +36,7 @@ class Profile_Admin_DefinitionsEditAction extends Profile_AbstractEditAction
     /**
      * @protected
      */
-    function _setupActionForm()
+    public function _setupActionForm()
     {
         // $this->mActionForm =new Profile_Admin_DefinitionsEditForm();
         $this->mActionForm =& $this->mAsset->create('form', "admin.edit_definitions");
@@ -69,7 +71,7 @@ $("#legacy_xoopsform_type").change(function(){
     /**
      * @public
      */
-    function prepare()
+    public function prepare()
     {
         parent::prepare();
         $handler =& $this->_getHandler();
@@ -80,7 +82,7 @@ $("#legacy_xoopsform_type").change(function(){
     /**
      * @public
      */
-    function executeViewInput(&$render)
+    public function executeViewInput(&$render)
     {
         $gHandler =& xoops_gethandler('group');
     
@@ -97,7 +99,7 @@ $("#legacy_xoopsform_type").change(function(){
     /**
      * @public
      */
-    function executeViewSuccess(&$render)
+    public function executeViewSuccess(&$render)
     {
         $this->mRoot->mController->executeForward("./index.php?action=DefinitionsList");
     }
@@ -105,7 +107,7 @@ $("#legacy_xoopsform_type").change(function(){
     /**
      * @public
      */
-    function executeViewError(&$render)
+    public function executeViewError(&$render)
     {
         $this->mRoot->mController->executeRedirect("./index.php?action=DefinitionsList", 1, _MD_PROFILE_ERROR_DBUPDATE_FAILED);
     }
@@ -113,10 +115,8 @@ $("#legacy_xoopsform_type").change(function(){
     /**
      * @public
      */
-    function executeViewCancel(&$render)
+    public function executeViewCancel(&$render)
     {
         $this->mRoot->mController->executeForward("./index.php?action=DefinitionsList");
     }
 }
-
-?>

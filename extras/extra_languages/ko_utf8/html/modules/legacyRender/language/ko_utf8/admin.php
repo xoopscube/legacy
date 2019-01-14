@@ -129,5 +129,3 @@ define('_AD_LEGACYRENDER_TIPS_TPLSET_UPLOAD', "만약 템플릿세트명을 입�
 
 define('_AD_LEGACYRENDER_LANG_HTACCESS', ".htaccess 파일");
 define('_AD_LEGACYRENDER_DESC_HTACCESS', '이용중인 서버가 mod_rewrite 를 지원한다면 여기의 설정을 .htaccess 파일에 추가해 URI를 변환하실 수 있습니다. 이 옵션을 사용하시려면 <a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1">호환모듈 일반설정</a>에서 Cool Uri옵션을 예로 설정하셔야 합니다.');
-
-?>

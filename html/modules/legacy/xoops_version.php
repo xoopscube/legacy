@@ -3,13 +3,13 @@
  *
  * @package Legacy
  * @version $Id: xoops_version.php,v 1.13 2008/09/25 14:31:43 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
- * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
 
 $modversion['name'] = _MI_LEGACY_NAME;
-$modversion['version'] = 2.02;
+$modversion['version'] = 2.03;
 $modversion['description'] = _MI_LEGACY_NAME_DESC;
 $modversion['author'] = "";
 $modversion['credits'] = "XOOPS Cube Project";
@@ -207,5 +207,3 @@ $modversion['blocks'][8]['show_func'] = "b_legacy_themes_show";
 $modversion['blocks'][8]['options'] = "0|80";
 $modversion['blocks'][8]['edit_func'] = "b_legacy_themes_edit";
 $modversion['blocks'][8]['template'] = 'legacy_block_themes.html';
-
-?>

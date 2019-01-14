@@ -1,6 +1,10 @@
-<?php if(isset($message)){ ?>
+<?php if (isset($message)) {
+    ?>
 <p align="center"><?php $this->e('message')?></p>
-<?php }else{ ?>
+<?php 
+} else {
+    ?>
 <div class="confirmInfo"><?php $this->e('welcome') ?></div>
 </div>
-<?php } ?>
+<?php 
+} ?>

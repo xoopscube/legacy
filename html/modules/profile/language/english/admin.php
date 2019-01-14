@@ -2,9 +2,9 @@
 /**
  * 2012-5-2: Update by Yoshi.Sakai
  */
-define("_AD_PROFILE_LANG_DEFINITIONS_DELETE","Remove field");
-define("_AD_PROFILE_LANG_DEFINITIONS_EDIT","Edit field");
-define("_AD_PROFILE_LANG_DEFINITIONS_VIEW","Display field");
+define("_AD_PROFILE_LANG_DEFINITIONS_DELETE", "Remove field");
+define("_AD_PROFILE_LANG_DEFINITIONS_EDIT", "Edit field");
+define("_AD_PROFILE_LANG_DEFINITIONS_VIEW", "Display field");
 define("_AD_PROFILE_TIPS_DATA_DOWNLOAD", "You are only able to get CSV User data order by user_id.");
 define("_AD_PROFILE_DATA_NUM", "%d users are registered.");
 define("_AD_PROFILE_DATA_DOWNLOAD_DO", "Download by CSV");
@@ -28,4 +28,3 @@ define('_AD_PROFILE_DATA_UPLOAD_DO', 'Register');
 
 define('_AD_USER_DATA_UPLOAD_BACK', 'Select The CSV file again');
 define('_AD_USER_DATA_UPLOAD_CHECK_USER_CSVFILE', 'Please confirm the content of registration.');
-?>

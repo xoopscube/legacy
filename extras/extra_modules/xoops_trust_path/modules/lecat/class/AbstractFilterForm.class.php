@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -82,7 +81,7 @@ abstract class Lecat_AbstractFilterForm
      * 
      * @return  void
     **/
-    public function prepare(/*** XCube_PageNavigator ***/ &$navi,/*** XoopsObjectGenericHandler ***/ &$handler)
+    public function prepare(/*** XCube_PageNavigator ***/ &$navi, /*** XoopsObjectGenericHandler ***/ &$handler)
     {
         $this->mNavi =& $navi;
         $this->_mHandler =& $handler;
@@ -114,8 +113,7 @@ abstract class Lecat_AbstractFilterForm
         $root =& XCube_Root::getSingleton();
         $this->mSort = intval($root->mContext->mRequest->getRequest($this->mNavi->mPrefix . 'sort'));
     
-        if(!isset($this->mSortKeys[abs($this->mSort)]))
-        {
+        if (!isset($this->mSortKeys[abs($this->mSort)])) {
             $this->mSort = $this->getDefaultSortKey();
         }
     
@@ -168,7 +166,7 @@ abstract class Lecat_AbstractFilterForm
      * 
      * @return  Criteria
     **/
-    public function &getCriteria(/*** int ***/ $start = null,/*** int ***/ $limit = null)
+    public function &getCriteria(/*** int ***/ $start = null, /*** int ***/ $limit = null)
     {
         $t_start = ($start === null) ? $this->mNavi->getStart() : intval($start);
         $t_limit = ($limit === null) ? $this->mNavi->getPerpage() : intval($limit);
@@ -180,5 +178,3 @@ abstract class Lecat_AbstractFilterForm
         return $criteria;
     }
 }
-
-?>

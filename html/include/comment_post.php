@@ -34,7 +34,7 @@ if (!defined('XOOPS_ROOT_PATH') || !is_object($xoopsModule)) {
 }
 
 $t_root =& XCube_Root::getSingleton();
-$t_root->mLanguageManager->loadPageTypeMessageCatalog("comment");	///< @todo Is this must?
+$t_root->mLanguageManager->loadPageTypeMessageCatalog("comment");    ///< @todo Is this must?
 
 include_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
 
@@ -73,7 +73,6 @@ if ('system' == $xoopsModule->getVar('dirname')) {
 }
 $op = '';
 if (!empty($_POST)) {
-
     if (isset($_POST['com_dopost'])) {
         $op = 'post';
     } elseif (isset($_POST['com_dopreview'])) {
@@ -106,7 +105,7 @@ if (!empty($_POST)) {
     exit();
 }
 
-switch ( $op ) {
+switch ($op) {
 
 case "delete":
     include XOOPS_ROOT_PATH.'/include/comment_delete.php';
@@ -379,7 +378,7 @@ case "post":
             }
             $comment_tags['X_COMMENT_URL'] = XOOPS_URL . '/modules/' . $not_module->getVar('dirname') . '/' .$comment_url . '=' . $com_itemid.'&amp;com_id='.$newcid.'&amp;com_rootid='.$com_rootid.'&amp;com_mode='.$com_mode.'&amp;com_order='.$com_order.'#comment'.$newcid;
             $notification_handler =& xoops_gethandler('notification');
-            $notification_handler->triggerEvent ($not_category, $not_itemid, $not_event, $comment_tags, false, $not_modid);
+            $notification_handler->triggerEvent($not_category, $not_itemid, $not_event, $comment_tags, false, $not_modid);
         }
 
         if (!isset($comment_post_results)) {
@@ -395,7 +394,7 @@ case "post":
     } else {
         if (!isset($purge_comment_post_results)) {
             include XOOPS_ROOT_PATH.'/header.php';
-            xoops_error( $comment->getErrors() );
+            xoops_error($comment->getErrors());
             include XOOPS_ROOT_PATH.'/footer.php';
         } else {
             $comment_post_results = $comment->getErrors();
@@ -403,7 +402,6 @@ case "post":
     }
     break;
 default:
-    redirect_header(XOOPS_URL.'/',3);
+    redirect_header(XOOPS_URL.'/', 3);
     break;
 }
-?>

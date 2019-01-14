@@ -3,32 +3,31 @@
 $content =
 "<u><b>Co to je Xoops Cube Legacy?</b></u>
 <p>
-<b>XOOPS Cube Legacy</b> je dynamický OO (Objektovì Orientovaný) portálový skript vzniklý na základech open source a napsaný v PHP.
-XOOPS Cube podporuje øadu databází, díky èemuž je ideální nástroj pro vývoj malých i velkých dynamických komunitních web-serverù, vnitro-podnikových portálù, firemních portálù, weblogù a mnohých dalších.
+<b>XOOPS Cube Legacy</b> je dynamickï¿½ OO (Objektovï¿½ Orientovanï¿½) portï¿½lovï¿½ skript vzniklï¿½ na zï¿½kladech open source a napsanï¿½ v PHP.
+XOOPS Cube podporuje ï¿½adu databï¿½zï¿½, dï¿½ky ï¿½emuï¿½ je ideï¿½lnï¿½ nï¿½stroj pro vï¿½voj malï¿½ch i velkï¿½ch dynamickï¿½ch komunitnï¿½ch web-serverï¿½, vnitro-podnikovï¿½ch portï¿½lï¿½, firemnï¿½ch portï¿½lï¿½, weblogï¿½ a mnohï¿½ch dalï¿½ï¿½ch.
 </p>
 <p>
-XOOPS Cube Legacy je vydáván pod licenèními podmínkami <a href='http://xoopscube.sourceforge.net/license/GPL_V2.txt' target='_blank'>GNU General Public License (GPL)</a> a je volnì k použití èi upravování.
-Je volnì k distribuci pokud budou dodrženy podmínky GPL.
+XOOPS Cube Legacy je vydï¿½vï¿½n pod licenï¿½nï¿½mi podmï¿½nkami <a href='https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt' target='_blank'>GNU General Public License (GPL)</a> a je volnï¿½ k pouï¿½itï¿½ ï¿½i upravovï¿½nï¿½.
+Je volnï¿½ k distribuci pokud budou dodrï¿½eny podmï¿½nky GPL.
 </p>
-<u><b>Požadavky</b></u>
+<u><b>Poï¿½adavky</b></u>
 <p>
 <ul>
 <li>WWW Server (<a href='http://www.apache.org/' target='_blank'>Apache</a>, IIS, Roxen, atd.)</li>
-<li><a href='http://www.php.net/' target='_blank'>PHP</a> 4.3.2 a vyšší</li>
-<li><a href='http://www.mysql.com/' target='_blank'>MySQL</a> Databáze 3.23.XX</li>
+<li><a href='http://www.php.net/' target='_blank'>PHP</a> 4.3.2 a vyï¿½ï¿½ï¿½</li>
+<li><a href='http://www.mysql.com/' target='_blank'>MySQL</a> Databï¿½ze 3.23.XX</li>
 </ul>
 </p>
-<u><b>Ještì pøed instalací</b></u>
+<u><b>Jeï¿½tï¿½ pï¿½ed instalacï¿½</b></u>
 <ul>
-<li>Nastavte WWW server, PHP a databázový server tak, aby správnì fungovaly.</li>
-<li>Pøipravte si databázi pro XOOPS Cube.</li>
-<li>Vytvoøte si v MySQL uživatele a pøidìlte mu práva pro pøístup do databáze pro XOOPS Cube.</li>
-<li>Adresáøe uploads/, cache/ a templates_c/ a soubor mainfile.php nastavte pro zápis. (CHMOD 777 resp. 666)</li>
-<li>Zapnìte si ve svém prohlížeèi Cookies a JavaScript.</li>
+<li>Nastavte WWW server, PHP a databï¿½zovï¿½ server tak, aby sprï¿½vnï¿½ fungovaly.</li>
+<li>Pï¿½ipravte si databï¿½zi pro XOOPS Cube.</li>
+<li>Vytvoï¿½te si v MySQL uï¿½ivatele a pï¿½idï¿½lte mu prï¿½va pro pï¿½ï¿½stup do databï¿½ze pro XOOPS Cube.</li>
+<li>Adresï¿½ï¿½e uploads/, cache/ a templates_c/ a soubor mainfile.php nastavte pro zï¿½pis. (CHMOD 777 resp. 666)</li>
+<li>Zapnï¿½te si ve svï¿½m prohlï¿½eï¿½i Cookies a JavaScript.</li>
 </ul>
 <u><b>Instalace</b></u>
 <p>
-Pozornì ètìte vše bìhem prùvodce instalcí. Mnohokrát vám napoví co je tøeba napravit nebo kde je problém.
+Pozornï¿½ ï¿½tï¿½te vï¿½e bï¿½hem prï¿½vodce instalcï¿½. Mnohokrï¿½t vï¿½m napovï¿½ co je tï¿½eba napravit nebo kde je problï¿½m.
 </p>
-"
-?>
+";

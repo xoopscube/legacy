@@ -35,38 +35,43 @@ include_once XOOPS_ROOT_PATH.'/class/database/sqlutility.php';
 * @version $Id: dbmanager.php,v 1.3 2008/03/22 02:34:12 gusagi Exp $
 * @access public
 **/
-class db_manager {
+class db_manager
+{
 
-    var $s_tables = array();
-    var $f_tables = array();
-	var $db;
+    public $s_tables = array();
+    public $f_tables = array();
+    public $db;
 
-    function db_manager(){
+    public function __construct()
+    {
         $this->db = XoopsDatabaseFactory::getDatabase();
         $this->db->setPrefix(XOOPS_DB_PREFIX);
         $this->db->setLogger(XoopsLogger::instance());
     }
 
-    function connectDB($selectdb = true) {
+    public function connectDB($selectdb = true)
+    {
         $ret = $this->db->connect($selectdb);
         if ($ret != false) {
             $fname = dirname(dirname(__FILE__)).'/language/'.$GLOBALS['language'].'/charset_mysql.php';
             if (file_exists($fname)) {
-                require_once($fname);
+                require($fname);
             }
         }
         return $ret;
     }
 
-    function isConnectable(){
+    public function isConnectable()
+    {
         return ($this->connectDB(false) != false) ? true : false;
     }
     
-    function dbExists(){
+    public function dbExists()
+    {
         return ($this->connectDB() != false) ? true : false;
     }
     
-    function createDB()
+    public function createDB()
     {
         $this->connectDB(false);
     
@@ -75,7 +80,8 @@ class db_manager {
         return ($result != false) ? true : false;
     }
 
-    function queryFromFile($sql_file_path){
+    public function queryFromFile($sql_file_path)
+    {
         $tables = array();
 
         if (!file_exists($sql_file_path)) {
@@ -89,50 +95,49 @@ class db_manager {
             // [0] contains the prefixed query
             // [4] contains unprefixed table name
             $prefixed_query = SqlUtility::prefixQuery($piece, $this->db->prefix());
-            if ($prefixed_query != false ) {
+            if ($prefixed_query != false) {
                 $table = $this->db->prefix($prefixed_query[4]);
-                if($prefixed_query[1] == 'CREATE TABLE'){
+                if ($prefixed_query[1] == 'CREATE TABLE') {
                     if ($this->db->query($prefixed_query[0]) != false) {
-                        if(! isset($this->s_tables['create'][$table])){
+                        if (! isset($this->s_tables['create'][$table])) {
                             $this->s_tables['create'][$table] = 1;
                         }
-                    }else{
-                        if(! isset($this->f_tables['create'][$table])){
+                    } else {
+                        if (! isset($this->f_tables['create'][$table])) {
                             $this->f_tables['create'][$table] = 1;
                         }
                     }
-                }
-                elseif($prefixed_query[1] == 'INSERT INTO'){
+                } elseif ($prefixed_query[1] == 'INSERT INTO') {
                     if ($this->db->query($prefixed_query[0]) != false) {
-                        if(! isset($this->s_tables['insert'][$table])){
+                        if (! isset($this->s_tables['insert'][$table])) {
                             $this->s_tables['insert'][$table] = 1;
-                        }else{
+                        } else {
                             $this->s_tables['insert'][$table]++;
                         }
-                    }else{
-                        if(! isset($this->f_tables['insert'][$table])){
+                    } else {
+                        if (! isset($this->f_tables['insert'][$table])) {
                             $this->f_tables['insert'][$table] = 1;
-                        }else{
-                             $this->f_tables['insert'][$table]++;
+                        } else {
+                            $this->f_tables['insert'][$table]++;
                         }
                     }
-                }elseif($prefixed_query[1] == 'ALTER TABLE'){
+                } elseif ($prefixed_query[1] == 'ALTER TABLE') {
                     if ($this->db->query($prefixed_query[0]) != false) {
-                        if(! isset($this->s_tables['alter'][$table])){
+                        if (! isset($this->s_tables['alter'][$table])) {
                             $this->s_tables['alter'][$table] = 1;
                         }
-                    }else{
-                        if(! isset($this->s_tables['alter'][$table])){
+                    } else {
+                        if (! isset($this->s_tables['alter'][$table])) {
                             $this->f_tables['alter'][$table] = 1;
                         }
                     }
-                }elseif($prefixed_query[1] == 'DROP TABLE'){
+                } elseif ($prefixed_query[1] == 'DROP TABLE') {
                     if ($this->db->query('DROP TABLE '.$table) != false) {
-                        if(! isset($this->s_tables['drop'][$table])){
+                        if (! isset($this->s_tables['drop'][$table])) {
                             $this->s_tables['drop'][$table] = 1;
                         }
-                    }else{
-                        if(! isset($this->s_tables['drop'][$table])){
+                    } else {
+                        if (! isset($this->s_tables['drop'][$table])) {
                             $this->f_tables['drop'][$table] = 1;
                         }
                     }
@@ -142,113 +147,119 @@ class db_manager {
         return true;
     }
 
-    function report(){
+    public function report()
+    {
         $reports = array();
         if (isset($this->s_tables['create'])) {
-            foreach($this->s_tables['create'] as $key => $val){
+            foreach ($this->s_tables['create'] as $key => $val) {
                 $reports[] = _OKIMG.sprintf(_INSTALL_L45, "<b>$key</b>");
             }
         }
         if (isset($this->s_tables['insert'])) {
-            foreach($this->s_tables['insert'] as $key => $val){
+            foreach ($this->s_tables['insert'] as $key => $val) {
                 $reports[] = _OKIMG.sprintf(_INSTALL_L119, $val, "<b>$key</b>");
             }
         }
-		if (isset($this->s_tables['alter'])) {
-            foreach($this->s_tables['alter'] as $key => $val){
+        if (isset($this->s_tables['alter'])) {
+            foreach ($this->s_tables['alter'] as $key => $val) {
                 $reports[] = _OKIMG.sprintf(_INSTALL_L133, "<b>$key</b>");
             }
         }
-		if (isset($this->s_tables['drop'])) {
-            foreach($this->s_tables['drop'] as $key => $val){
+        if (isset($this->s_tables['drop'])) {
+            foreach ($this->s_tables['drop'] as $key => $val) {
                 $reports[] = _OKIMG.sprintf(_INSTALL_L163, "<b>$key</b>");
             }
         }
 //        $content .= "<br />\n";	//< What's!?
         if (isset($this->f_tables['create'])) {
-            foreach($this->f_tables['create'] as $key => $val){
+            foreach ($this->f_tables['create'] as $key => $val) {
                 $reports[] = _NGIMG.sprintf(_INSTALL_L118, "<b>$key</b>");
             }
         }
         if (isset($this->f_tables['insert'])) {
-            foreach($this->f_tables['insert'] as $key => $val){
+            foreach ($this->f_tables['insert'] as $key => $val) {
                 $reports[] = _NGIMG.sprintf(_INSTALL_L120, $val, "<b>$key</b>");
             }
         }
-		if (isset($this->f_tables['alter'])) {
-            foreach($this->f_tables['alter'] as $key => $val){
+        if (isset($this->f_tables['alter'])) {
+            foreach ($this->f_tables['alter'] as $key => $val) {
                 $reports[] = _NGIMG.sprintf(_INSTALL_L134, "<b>$key</b>");
             }
         }
-		if (isset($this->f_tables['drop'])) {
-            foreach($this->f_tables['drop'] as $key => $val){
+        if (isset($this->f_tables['drop'])) {
+            foreach ($this->f_tables['drop'] as $key => $val) {
                 $reports[] = _NGIMG.sprintf(_INSTALL_L164, "<b>$key</b>");
             }
         }
         return $reports;
     }
 
-    function query($sql){
+    public function query($sql)
+    {
         $this->connectDB();
         return $this->db->query($sql);
     }
 
-    function prefix($table){
+    public function prefix($table)
+    {
         $this->connectDB();
         return $this->db->prefix($table);
     }
 
-    function fetchArray($ret){
+    public function fetchArray($ret)
+    {
         $this->connectDB();
         return $this->db->fetchArray($ret);
     }
 
-    function insert($table, $query){
+    public function insert($table, $query)
+    {
         $this->connectDB();
         $table = $this->db->prefix($table);
         $query = 'INSERT INTO '.$table.' '.$query;
-        if(!$this->db->queryF($query)){
-            if(!isset($this->f_tables['insert'][$table])){
+        if (!$this->db->queryF($query)) {
+            if (!isset($this->f_tables['insert'][$table])) {
                 $this->f_tables['insert'][$table] = 1;
-            }else{
+            } else {
                 $this->f_tables['insert'][$table]++;
             }
             return false;
-        }else{
-            if(!isset($this->s_tables['insert'][$table])){
+        } else {
+            if (!isset($this->s_tables['insert'][$table])) {
                 $this->s_tables['insert'][$table] = 1;
-            }else{
+            } else {
                 $this->s_tables['insert'][$table]++;
             }
             return $this->db->getInsertId();
         }
     }
 
-    function isError(){
+    public function isError()
+    {
         return (isset($this->f_tables)) ? true : false;
     }
 
-    function deleteTables($tables){
+    public function deleteTables($tables)
+    {
         $deleted = array();
         $this->connectDB();
         foreach ($tables as $key => $val) {
-            if(! $this->db->query("DROP TABLE ".$this->db->prefix($key))){
+            if (! $this->db->query("DROP TABLE ".$this->db->prefix($key))) {
                 $deleted[] = $ct;
             }
         }
         return $deleted;
     }
 
-	function tableExists($table){
-		$table = trim($table);
-		$ret = false;
-		if ($table != '') {
+    public function tableExists($table)
+    {
+        $table = trim($table);
+        $ret = false;
+        if ($table != '') {
             $this->connectDB();
-			$sql = 'SELECT * FROM '.$this->db->prefix($table);
-			$ret = (false != $this->db->query($sql)) ? true : false;
-		}
-		return $ret;
-	}
+            $sql = 'SELECT * FROM '.$this->db->prefix($table);
+            $ret = (false != $this->db->query($sql)) ? true : false;
+        }
+        return $ret;
+    }
 }
-
-?>

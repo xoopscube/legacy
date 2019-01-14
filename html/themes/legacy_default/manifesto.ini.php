@@ -4,7 +4,7 @@
 [Manifesto]
 Name="XOOPS Cube Legacy 2.2"
 Depends=Legacy_RenderSystem,legacy
-Url="http://xoopscube.sourceforge.net/"
+Url="https://github.com/xoopscube/legacy/"
 Version="2.2"
 
 [Theme]
@@ -17,5 +17,4 @@ W3C=NG
 
 Licence="BSD"
 
-*/
-?>
+*/;

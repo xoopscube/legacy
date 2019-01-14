@@ -31,4 +31,3 @@ define("_CAL_DRAGMOVE", "Drag to move");
 define("_CAL_TODAY", "Today");
 define("_CAL_DISPM1ST", "Display Monday first");
 define("_CAL_DISPS1ST", "Display Sunday first");
-?>

@@ -42,4 +42,3 @@ $modversion['image'] = "avatars.gif";
 $modversion['hasAdmin'] = 1;
 $modversion['adminpath'] = "admin.php?fct=avatars";
 $modversion['category'] = XOOPS_SYSTEM_AVATAR;
-?>

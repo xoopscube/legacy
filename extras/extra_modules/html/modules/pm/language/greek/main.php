@@ -40,5 +40,3 @@ define('_MD_PM_MESSAGE_PLZREG', "Σας παρακαλούμε να γραφτε
 define('_MD_PM_MESSAGE_POSTED', "Το μήνυμα σας εστάλη.");
 define('_MD_PM_MESSAGE_SORRY', "Συγνώμη αλλά δεν είστε μέλος του δικτυακού τόπου μας.");
 define('_MD_PM_MESSAGE_YOUDONTHAVE', "Δεν έχετε κανένα μήνυμα.");
-
-?>

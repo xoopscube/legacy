@@ -22,22 +22,22 @@ class Hdinstaller_View_JsonCopyfile extends Hdinstaller_View_Json
      *
      *  @access public
      */
-    function preforward()
+    public function preforward()
     {
-		parent::preforward();
-		
-		
-		$cookie_path = str_replace(rtrim($_SERVER['DOCUMENT_ROOT'],'/'),
-								   '',
-								   $this->af->get('xoops_root_path'));
-		!$cookie_path and $cookie_path = '/'; 
-		
-		$xoops_url = sprintf('http://%s%s',
-							 $_SERVER['SERVER_NAME'], $cookie_path );
-							 
-		$this->af->setApp('xoops_cookie_path', $cookie_path);
-		$this->af->setApp('xoops_url', $xoops_url);
-		$this->af->setApp('prefix', Ethna_Util::getRandom(6));
-		$this->af->setApp('salt', Ethna_Util::getRandom(8));
+        parent::preforward();
+        
+        
+        $cookie_path = str_replace(rtrim($_SERVER['DOCUMENT_ROOT'], '/'),
+                                   '',
+                                   $this->af->get('xoops_root_path'));
+        !$cookie_path and $cookie_path = '/';
+        
+        $xoops_url = sprintf('http://%s%s',
+                             $_SERVER['SERVER_NAME'], $cookie_path);
+                             
+        $this->af->setApp('xoops_cookie_path', $cookie_path);
+        $this->af->setApp('xoops_url', $xoops_url);
+        $this->af->setApp('prefix', Ethna_Util::getRandom(6));
+        $this->af->setApp('salt', Ethna_Util::getRandom(8));
     }
 }

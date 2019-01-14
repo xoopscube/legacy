@@ -72,4 +72,3 @@ define("_NOT_RUSUREDEL", "Tem certeza de que deseja remover essas notificações
 define("_NOT_UPDATENOW", "Atualizar");
 define("_NOT_UPDATEOK", "Opções de notificação atualizadas");
 define("_NOT_UPDATEOPTIONS", "Opções das notificações sobre atualizações");
-?>

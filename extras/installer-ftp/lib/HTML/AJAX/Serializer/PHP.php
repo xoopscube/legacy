@@ -11,9 +11,9 @@
  * @version    Release: 0.5.6
  * @link       http://pear.php.net/package/HTML_AJAX
  */
-class HTML_AJAX_Serializer_PHP 
-{    
-    function serialize($input) 
+class HTML_AJAX_Serializer_PHP
+{
+    public function serialize($input)
     {
         return serialize($input);
     }
@@ -34,7 +34,7 @@ class HTML_AJAX_Serializer_PHP
      *  failure. If this method fails it will also trigger
      *  a warning.
      */
-    function unserialize($input, $allowedClasses) 
+    public function unserialize($input, $allowedClasses)
     {
         if (version_compare(PHP_VERSION, '4.3.10', '<')
              || (substr(PHP_VERSION, 0, 1) == '5' && version_compare(PHP_VERSION, '5.0.3', '<'))) {
@@ -65,13 +65,14 @@ class HTML_AJAX_Serializer_PHP
      *  an array of class names found, or false if the input
      *  is invalidly formed
      */
-    function _getSerializedClassNames($string) {
+    public function _getSerializedClassNames($string)
+    {
         // Strip any string representations (which might contain object syntax)
         while (($pos = strpos($string, 's:')) !== false) {
             $pos2 = strpos($string, ':', $pos + 2);
             if ($pos2 === false) {
                 // invalidly serialized string
-                return false;    
+                return false;
             }
             $end = $pos + 2 + substr($string, $pos + 2, $pos2) + 1;
             $string = substr($string, 0, $pos) . substr($string, $end);
@@ -84,5 +85,4 @@ class HTML_AJAX_Serializer_PHP
         return array_unique($matches[1]);
     }
 }
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-?>
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */;

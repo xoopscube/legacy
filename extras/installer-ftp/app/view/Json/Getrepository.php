@@ -22,9 +22,8 @@ class Hdinstaller_View_JsonGetrepository extends Hdinstaller_View_Json
      *
      *  @access public
      */
-    function preforward()
+    public function preforward()
     {
-		parent::preforward();
-		
+        parent::preforward();
     }
 }

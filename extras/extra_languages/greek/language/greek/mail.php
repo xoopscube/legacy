@@ -11,5 +11,3 @@ define("_MAIL_SENDMAILNG", "Δεν είναι εφικτό να σταλεί mai
 define("_MAIL_MAILGOOD", "Έγινε αποστολή του mail στον %s.");
 define("_MAIL_SENDPMNG", "Δεν μπορεί να αποστέλλει μήνυμα στον %s.");
 define("_MAIL_PMGOOD", " Έγινε αποστολή του μηνύματος στον %s.");
-
-?>

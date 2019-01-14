@@ -80,6 +80,3 @@ define('_MD_MESSAGE_DELETEMSG1', 'parameter가 올바르지 않습니다.');
 define('_MD_MESSAGE_DELETEMSG2', '선택되지 않았습니다.');
 
 define('_MD_MESSAGE_SEARCH', '검색');
-
-
-?>

@@ -29,11 +29,11 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid()) ) {
+if (!is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid())) {
     exit("Access Denied");
 }
 // check if the user is authorised
-if ( $xoopsUser->isAdmin($xoopsModule->mid()) ) {
+if ($xoopsUser->isAdmin($xoopsModule->mid())) {
     include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php';
 
     function list_blocks()
@@ -80,7 +80,7 @@ if ( $xoopsUser->isAdmin($xoopsModule->mid()) ) {
         echo $group_sel;
         echo _AM_VISIBLE." <select size=\"1\" name=\"selvis\" onchange=\"location='".XOOPS_URL."/modules/system/admin.php?fct=blocksadmin&amp;selmod=$selmod&amp;selgrp=$selgrp&amp;selvis='+this.options[this.selectedIndex].value\">";
         $selvis0 = $selvis1 = $selvis2 = "";
-        switch($selvis){
+        switch ($selvis) {
         case 0:
             $selvis0 = 'selected="selected"';
             break;
@@ -101,7 +101,9 @@ if ( $xoopsUser->isAdmin($xoopsModule->mid()) ) {
         <table width='100%' class='outer' cellpadding='4' cellspacing='1'>
         <tr valign='middle'><th width='20%'>"._AM_BLKDESC."</th><th>"._AM_TITLE."</th><th>"._AM_MODULE."</th><th align='center' nowrap='nowrap'>"._AM_SIDE."<br />"._LEFT."-"._CENTER."-"._RIGHT."</th><th align='center'>"._AM_WEIGHT."</th><th align='center'>"._AM_VISIBLE."</th><th align='right'>"._AM_ACTION."</th></tr>
         ";
-        if ($selvis == 2) $selvis = null;
+        if ($selvis == 2) {
+            $selvis = null;
+        }
         if ($selgrp == 0) {
             // get blocks that are not assigned to any groups
             $block_arr =& XoopsBlock::getNonGroupedBlocks($selmod, $toponlyblock, $selvis, 'b.side,b.weight,b.bid');
@@ -115,23 +117,23 @@ if ( $xoopsUser->isAdmin($xoopsModule->mid()) ) {
         $module_list2[0] = '&nbsp;';
         foreach (array_keys($block_arr) as $i) {
             $sel0 = $sel1 = $ssel0 = $ssel1 = $ssel2 = $ssel3 = $ssel4 = "";
-            if ( $block_arr[$i]->getVar("visible") == 1 ) {
+            if ($block_arr[$i]->getVar("visible") == 1) {
                 $sel1 = " checked='checked'";
             } else {
                 $sel0 = " checked='checked'";
             }
-            if ( $block_arr[$i]->getVar("side") == XOOPS_SIDEBLOCK_LEFT){
+            if ($block_arr[$i]->getVar("side") == XOOPS_SIDEBLOCK_LEFT) {
                 $ssel0 = " checked='checked'";
-            } elseif ( $block_arr[$i]->getVar("side") == XOOPS_SIDEBLOCK_RIGHT ){
+            } elseif ($block_arr[$i]->getVar("side") == XOOPS_SIDEBLOCK_RIGHT) {
                 $ssel1 = " checked='checked'";
-            } elseif ( $block_arr[$i]->getVar("side") == XOOPS_CENTERBLOCK_LEFT ){
+            } elseif ($block_arr[$i]->getVar("side") == XOOPS_CENTERBLOCK_LEFT) {
                 $ssel2 = " checked='checked'";
-            } elseif ( $block_arr[$i]->getVar("side") == XOOPS_CENTERBLOCK_RIGHT ){
+            } elseif ($block_arr[$i]->getVar("side") == XOOPS_CENTERBLOCK_RIGHT) {
                 $ssel4 = " checked='checked'";
-            } elseif ( $block_arr[$i]->getVar("side") == XOOPS_CENTERBLOCK_CENTER ){
+            } elseif ($block_arr[$i]->getVar("side") == XOOPS_CENTERBLOCK_CENTER) {
                 $ssel3 = " checked='checked'";
             }
-            if ( $block_arr[$i]->getVar("title") == "" ) {
+            if ($block_arr[$i]->getVar("title") == "") {
                 $title = "&nbsp;";
             } else {
                 $title = $block_arr[$i]->getVar("title");
@@ -183,9 +185,9 @@ if ( $xoopsUser->isAdmin($xoopsModule->mid()) ) {
     function delete_block($bid)
     {
         $myblock = new XoopsBlock($bid);
-        if ( $myblock->getVar('block_type') == 'S' ) {
+        if ($myblock->getVar('block_type') == 'S') {
             $message = _AM_SYSTEMCANT;
-            redirect_header('admin.php?fct=blocksadmin',4,$message);
+            redirect_header('admin.php?fct=blocksadmin', 4, $message);
             exit();
         } elseif ($myblock->getVar('block_type') == 'M') {
             // Fix for duplicated blocks created in 2.0.9 module update
@@ -194,17 +196,18 @@ if ( $xoopsUser->isAdmin($xoopsModule->mid()) ) {
             // be the one that was duplicated in 2.0.9
             if (1 >= $count = XoopsBlock::countSimilarBlocks($myblock->getVar('mid'), $myblock->getVar('func_num'), $myblock->getVar('show_func'))) {
                 $message = _AM_MODULECANT;
-                redirect_header('admin.php?fct=blocksadmin',4,$message);
+                redirect_header('admin.php?fct=blocksadmin', 4, $message);
                 exit();
             }
         }
-        xoops_token_confirm(array('fct' => 'blocksadmin', 'op' => 'delete_ok', 'bid' => $myblock->getVar('bid')), 'admin.php', sprintf(_AM_RUSUREDEL,$myblock->getVar('title')));
+        xoops_token_confirm(array('fct' => 'blocksadmin', 'op' => 'delete_ok', 'bid' => $myblock->getVar('bid')), 'admin.php', sprintf(_AM_RUSUREDEL, $myblock->getVar('title')));
     }
 
     function delete_block_ok($bid)
     {
-        if(!xoops_confirm_validate())
+        if (!xoops_confirm_validate()) {
             die("Ticket Error");
+        }
 
         $myblock = new XoopsBlock($bid);
         $myblock->delete();
@@ -215,7 +218,7 @@ if ( $xoopsUser->isAdmin($xoopsModule->mid()) ) {
                 $tplfile_handler->delete($btemplate[0]);
             }
         }
-        redirect_header('admin.php?fct=blocksadmin&amp;t='.time(),1,_AM_DBUPDATED);
+        redirect_header('admin.php?fct=blocksadmin&amp;t='.time(), 1, _AM_DBUPDATED);
         exit();
     }
 
@@ -266,7 +269,7 @@ if ( $xoopsUser->isAdmin($xoopsModule->mid()) ) {
         $clone->setVar('content', $bcontent);
         //$clone->setVar('title', $btitle);
         $clone->setVar('bcachetime', $bcachetime);
-        if ( isset($options) && (count($options) > 0) ) {
+        if (isset($options) && (count($options) > 0)) {
             $options = implode('|', $options);
             $clone->setVar('options', $options);
         }
@@ -304,9 +307,8 @@ if ( $xoopsUser->isAdmin($xoopsModule->mid()) ) {
             $sql = "INSERT INTO ".$db->prefix('group_permission')." (gperm_groupid, gperm_itemid, gperm_modid, gperm_name) VALUES (".$groups[$i].", ".$newid.", 1, 'block_read')";
             $db->query($sql);
         }
-        redirect_header('admin.php?fct=blocksadmin&amp;t='.time(),1,_AM_DBUPDATED);
+        redirect_header('admin.php?fct=blocksadmin&amp;t='.time(), 1, _AM_DBUPDATED);
     }
 } else {
     echo "Access Denied";
 }
-?>

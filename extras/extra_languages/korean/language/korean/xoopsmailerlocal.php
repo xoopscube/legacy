@@ -30,13 +30,13 @@
 
 error_reporting(0);
 
-class XoopsMailerLocal extends XoopsMailer {
+class xoopsmailerlocal extends XoopsMailer
+{
 
-	function XoopsMailerLocal(){
-		$this->XoopsMailer();
-		$this->charSet = 'euc-kr';
-		$this->encoding = 'base64';
-	}
-
+    public function XoopsMailerLocal()
+    {
+        $this->XoopsMailer();
+        $this->charSet = 'euc-kr';
+        $this->encoding = 'base64';
+    }
 }
-?>

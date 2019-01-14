@@ -29,14 +29,14 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid()) ) {
+if (!is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid())) {
     exit("Access Denied");
 }
 include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php';
 
 $op = "list";
 
-if ( isset($_GET['op']) ) {
+if (isset($_GET['op'])) {
     if ($_GET['op'] == "edit" || $_GET['op'] == "delete" || $_GET['op'] == "delete_ok" || $_GET['op'] == "clone") {
         $op = $_GET['op'];
         $bid = isset($_GET['bid']) ? intval($_GET['bid']) : 0;
@@ -105,7 +105,7 @@ if (isset($_POST['previewblock'])) {
     exit();
 }
 
-if ( $op == "list" ) {
+if ($op == "list") {
     require_once XOOPS_ROOT_PATH."/modules/system/admin/blocksadmin/blocksadmin.php";
     xoops_cp_header();
     list_blocks();
@@ -113,19 +113,20 @@ if ( $op == "list" ) {
     exit();
 }
 
-if ( $op == "order" ) {
+if ($op == "order") {
     if (is_array($_POST['bid'])) {
         require_once XOOPS_ROOT_PATH."/modules/system/admin/blocksadmin/blocksadmin.php";
         foreach (array_keys($_POST['bid']) as $i) {
-            if ($_POST['oldweight'][$i] != $_POST['weight'][$i] || $_POST['oldvisible'][$i] != $_POST['visible'][$i] || $_POST['oldside'][$i] != $_POST['side'][$i])
-            order_block($_POST['bid'][$i], $_POST['weight'][$i], $_POST['visible'][$i], $_POST['side'][$i]);
+            if ($_POST['oldweight'][$i] != $_POST['weight'][$i] || $_POST['oldvisible'][$i] != $_POST['visible'][$i] || $_POST['oldside'][$i] != $_POST['side'][$i]) {
+                order_block($_POST['bid'][$i], $_POST['weight'][$i], $_POST['visible'][$i], $_POST['side'][$i]);
+            }
         }
     }
-    redirect_header("admin.php?fct=blocksadmin",1,_AM_DBUPDATED);
+    redirect_header("admin.php?fct=blocksadmin", 1, _AM_DBUPDATED);
     exit();
 }
 
-if ( $op == "save" ) {
+if ($op == "save") {
     if (empty($_POST['bmodule']) || !XoopsMultiTokenHandler::quickValidate('block')) {
         xoops_cp_header();
         xoops_error(sprintf(_AM_NOTSELNG, _AM_VISIBLEIN));
@@ -167,7 +168,7 @@ if ( $op == "save" ) {
     $db =& Database::getInstance();
     foreach ($_POST['bmodule'] as $bmid) {
         $sql = 'INSERT INTO '.$db->prefix('block_module_link').' (block_id, module_id) VALUES ('.$newid.', '.intval($bmid).')';
-            $db->query($sql);
+        $db->query($sql);
     }
     $groups =& $xoopsUser->getGroups();
     $count = count($groups);
@@ -175,11 +176,11 @@ if ( $op == "save" ) {
         $sql = "INSERT INTO ".$db->prefix('group_permission')." (gperm_groupid, gperm_itemid, gperm_name, gperm_modid) VALUES (".$groups[$i].", ".$newid.", 'block_read', 1)";
         $db->query($sql);
     }
-    redirect_header('admin.php?fct=blocksadmin&amp;t='.time(),1,_AM_DBUPDATED);
+    redirect_header('admin.php?fct=blocksadmin&amp;t='.time(), 1, _AM_DBUPDATED);
     exit();
 }
 
-if ( $op == "update" ) {
+if ($op == "update") {
     $bid = !empty($_POST['bid']) ? intval($_POST['bid']) : 0;
     if ($bid <= 0) {
         exit();
@@ -204,7 +205,7 @@ if ( $op == "update" ) {
     $options_count = count($options);
     if ($options_count > 0) {
         //Convert array values to comma-separated
-        for ( $i = 0; $i < $options_count; $i++ ) {
+        for ($i = 0; $i < $options_count; $i++) {
             if (is_array($options[$i])) {
                 $options[$i] = implode(',', $options[$i]);
             }
@@ -260,12 +261,12 @@ if ( $op == "update" ) {
     } else {
         $msg = 'Failed update of block. ID:'.$bid;
     }
-    redirect_header('admin.php?fct=blocksadmin&amp;t='.time(),1,$msg);
+    redirect_header('admin.php?fct=blocksadmin&amp;t='.time(), 1, $msg);
     exit();
 }
 
 
-if ( $op == "delete_ok" ) {
+if ($op == "delete_ok") {
     $bid = !empty($_POST['bid']) ? intval($_POST['bid']) : 0;
     if ($bid > 0) {
         require_once XOOPS_ROOT_PATH."/modules/system/admin/blocksadmin/blocksadmin.php";
@@ -274,7 +275,7 @@ if ( $op == "delete_ok" ) {
     exit();
 }
 
-if ( $op == "delete" ) {
+if ($op == "delete") {
     xoops_cp_header();
     if ($bid > 0) {
         require_once XOOPS_ROOT_PATH."/modules/system/admin/blocksadmin/blocksadmin.php";
@@ -284,7 +285,7 @@ if ( $op == "delete" ) {
     exit();
 }
 
-if ( $op == "edit" ) {
+if ($op == "edit") {
     xoops_cp_header();
     if ($bid > 0) {
         require_once XOOPS_ROOT_PATH."/modules/system/admin/blocksadmin/blocksadmin.php";
@@ -301,5 +302,4 @@ if ($op == 'clone') {
 if ($op == 'clone_ok') {
     clone_block_ok($bid, $bside, $bweight, $bvisible, $bcachetime, $bmodule, $options);
 }
-*/
-?>
+*/;

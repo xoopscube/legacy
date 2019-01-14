@@ -30,7 +30,7 @@
 // ------------------------------------------------------------------------- //
 
 if (!defined('XOOPS_ROOT_PATH')) {
-	exit();
+    exit();
 }
 
 /**
@@ -56,7 +56,7 @@ class XoopsComment extends XoopsObject
     /**
      * Constructor
      **/
-    function XoopsComment()
+    public function XoopsComment()
     {
         $this->XoopsObject();
         $this->initVar('com_id', XOBJ_DTYPE_INT, 0, false);
@@ -81,45 +81,43 @@ class XoopsComment extends XoopsObject
         $this->initVar('dobr', XOBJ_DTYPE_INT, 1, false);
     }
 
-	/**
-	 * Is this comment on the root level?
-	 * 
-	 * @return  bool
-	 **/
-	function isRoot()
+    /**
+     * Is this comment on the root level?
+     * 
+     * @return  bool
+     **/
+    public function isRoot()
     {
         return ($this->getVar('com_id') == $this->getVar('com_rootid'));
     }
     
-	/**
-	 * Create a responce comment object, and return it.
-	 * @return XoopsComment
-	 */
-    function &createChild()
+    /**
+     * Create a responce comment object, and return it.
+     * @return XoopsComment
+     */
+    public function &createChild()
     {
-		$ret=new XoopsComment();
-		$ret->setNew();
-		$ret->setVar('com_pid',$this->getVar('com_id'));
-		$ret->setVar('com_rootid',$this->getVar('com_rootid'));
-		$ret->setVar('com_modid',$this->getVar('com_modid'));
-		$ret->setVar('com_itemid',$this->getVar('com_itemid'));
-		$ret->setVar('com_exparams',$this->getVar('com_exparams'));
+        $ret=new XoopsComment();
+        $ret->setNew();
+        $ret->setVar('com_pid', $this->getVar('com_id'));
+        $ret->setVar('com_rootid', $this->getVar('com_rootid'));
+        $ret->setVar('com_modid', $this->getVar('com_modid'));
+        $ret->setVar('com_itemid', $this->getVar('com_itemid'));
+        $ret->setVar('com_exparams', $this->getVar('com_exparams'));
 
-		$title = $this->get('com_title');
-		if (preg_match("/^Re:(.+)$/", $title, $matches)) {
-			$ret->set('com_title', "Re[2]: " . $matches[1]);
-		}
-		elseif (preg_match("/^Re\[(\d+)\]:(.+)$/", $title, $matches)) {
-			$ret->set('com_title', "Re[" . ($matches[1] + 1) . "]: " . $matches[2]);
-		}
-		elseif (!preg_match("/^re:/i", $title)) {
-			$ret->set('com_title', "Re: ".xoops_substr($title, 0, 56) );
-		} else {
-			$ret->set('com_title', $title );
-		}
+        $title = $this->get('com_title');
+        if (preg_match("/^Re:(.+)$/", $title, $matches)) {
+            $ret->set('com_title', "Re[2]: " . $matches[1]);
+        } elseif (preg_match("/^Re\[(\d+)\]:(.+)$/", $title, $matches)) {
+            $ret->set('com_title', "Re[" . ($matches[1] + 1) . "]: " . $matches[2]);
+        } elseif (!preg_match("/^re:/i", $title)) {
+            $ret->set('com_title', "Re: ".xoops_substr($title, 0, 56));
+        } else {
+            $ret->set('com_title', $title);
+        }
 
-		return $ret;
-	}
+        return $ret;
+    }
 }
 
 /**
@@ -145,7 +143,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
      * 
      * @return	object
      */
-    function &create($isNew = true)
+    public function &create($isNew = true)
     {
         $comment =new XoopsComment();
         if ($isNew) {
@@ -161,7 +159,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
      * 
      * @return  object  {@link XoopsComment}, FALSE on fail
      **/
-    function &get($id)
+    public function &get($id)
     {
         $ret = false;
         $id = (int)$id;
@@ -172,7 +170,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
                 if ($numrows == 1) {
                     $comment = new XoopsComment();
                     $comment->assignVars($this->db->fetchArray($result));
-                        $ret =& $comment;
+                    $ret =& $comment;
                 }
             }
         }
@@ -186,7 +184,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
      * 
      * @return  bool
      **/
-    function insert(&$comment)
+    public function insert(&$comment)
     {
         if (strtolower(get_class($comment)) != 'xoopscomment') {
             return false;
@@ -223,7 +221,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
      * 
      * @return  bool
      **/
-    function delete(&$comment)
+    public function delete(&$comment)
     {
         if (strtolower(get_class($comment)) != 'xoopscomment') {
             return false;
@@ -243,7 +241,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
      * 
      * @return  array   Array of {@link XoopsComment} objects
      **/
-    function &getObjects($criteria = null, $id_as_key = false)
+    public function &getObjects($criteria = null, $id_as_key = false)
     {
         $ret = array();
         $limit = $start = 0;
@@ -279,7 +277,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
      * 
      * @return  int     Count
      **/
-    function getCount($criteria = null)
+    public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('xoopscomments');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -299,7 +297,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
      * 
      * @return  bool
      **/
-    function deleteAll($criteria = null)
+    public function deleteAll($criteria = null)
     {
         $sql = 'DELETE FROM '.$this->db->prefix('xoopscomments');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -318,7 +316,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
      * 
      * @return  array   Array of raw database records
      **/
-    function &getList($criteria = null)
+    public function &getList($criteria = null)
     {
         $comments =& $this->getObjects($criteria, true);
         $ret = array();
@@ -340,7 +338,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
      * 
      * @return  array   Array of {@link XoopsComment} objects
      **/
-    function &getByItemId($module_id, $item_id, $order = null, $status = null, $limit = null, $start = 0)
+    public function &getByItemId($module_id, $item_id, $order = null, $status = null, $limit = null, $start = 0)
     {
         $criteria = new CriteriaCompo(new Criteria('com_modid', (int)$module_id));
         $criteria->add(new Criteria('com_itemid', (int)$item_id));
@@ -352,7 +350,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
         }
         if (isset($limit)) {
             $criteria->setLimit($limit);
-			$criteria->setStart($start);
+            $criteria->setStart($start);
         }
         return $this->getObjects($criteria);
     }
@@ -366,7 +364,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
      * 
      * @return  array   Array of {@link XoopsComment} objects
      **/
-    function &getCountByItemId($module_id, $item_id, $status = null)
+    public function &getCountByItemId($module_id, $item_id, $status = null)
     {
         $criteria = new CriteriaCompo(new Criteria('com_modid', (int)$module_id));
         $criteria->add(new Criteria('com_itemid', (int)$item_id));
@@ -387,7 +385,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
      * 
      * @return  array   Array of {@link XoopsComment} objects
      **/
-    function &getTopComments($module_id, $item_id, $order, $status = null)
+    public function &getTopComments($module_id, $item_id, $order, $status = null)
     {
         $criteria = new CriteriaCompo(new Criteria('com_modid', (int)$module_id));
         $criteria->add(new Criteria('com_itemid', (int)$item_id));
@@ -409,7 +407,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
      * 
      * @return  array   Array of {@link XoopsComment} objects
      **/
-    function &getThread($comment_rootid, $comment_id, $status = null)
+    public function &getThread($comment_rootid, $comment_id, $status = null)
     {
         $criteria = new CriteriaCompo(new Criteria('com_rootid', (int)$comment_rootid));
         $criteria->add(new Criteria('com_id', (int)$comment_id, '>='));
@@ -428,7 +426,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
      * 
      * @return  bool
      **/
-    function updateByField(&$comment, $field_name, $field_value)
+    public function updateByField(&$comment, $field_name, $field_value)
     {
         $comment->unsetNew();
         $comment->setVar($field_name, $field_value);
@@ -441,7 +439,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
      * @param   int $module_id  ID of the module
      * @return  bool
      **/
-    function deleteByModule($module_id)
+    public function deleteByModule($module_id)
     {
         return $this->deleteAll(new Criteria('com_modid', (int)$module_id));
     }
@@ -470,32 +468,31 @@ class XoopsCommentHandler extends XoopsObjectHandler
     }
 */
 
-	function getChildObjects(&$comment)
-	{
-		$ret=array();
+    public function getChildObjects(&$comment)
+    {
+        $ret=array();
 
-		$table=$this->db->prefix("xoopscomments");
-		$sql="SELECT * FROM ${table} WHERE com_pid=" . $comment->getVar("com_id") .
-		      " AND com_id<>".$comment->getVar("com_id");
-		$result=$this->db->query($sql);
-		while($row=$this->db->fetchArray($result)) {
-			$comment=new XoopsComment();
-			$comment->assignVars($row);
-			$ret[]=&$comment;
-			unset($comment);
-		}
-		
-		return $ret;
-	}
-	
-	function deleteWithChild(&$comment)
-	{
-		foreach($this->getChildObjects($comment) as $child) {
-			$this->deleteWithChild($child);
-		}
-		$this->delete($comment);
-		
-		return true;	// TODO
-	}
+        $table=$this->db->prefix("xoopscomments");
+        $sql="SELECT * FROM ${table} WHERE com_pid=" . $comment->getVar("com_id") .
+              " AND com_id<>".$comment->getVar("com_id");
+        $result=$this->db->query($sql);
+        while ($row=$this->db->fetchArray($result)) {
+            $comment=new XoopsComment();
+            $comment->assignVars($row);
+            $ret[]=&$comment;
+            unset($comment);
+        }
+        
+        return $ret;
+    }
+    
+    public function deleteWithChild(&$comment)
+    {
+        foreach ($this->getChildObjects($comment) as $child) {
+            $this->deleteWithChild($child);
+        }
+        $this->delete($comment);
+        
+        return true;    // TODO
+    }
 }
-?>

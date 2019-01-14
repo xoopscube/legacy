@@ -14,4 +14,3 @@ XOOPS Cubeの必須モジュールの導入を完了するためには、第２ステップを実行する必要が
 <p><a href='http://xoopscube.sourceforge.net/' rel='external'>XOOPS Cube Project</a>サイト（英語）か、<a href='http://xoopscube.jp/' rel='external'>XOOPS Cube日本語サイト</a>に訪問ください。
 </p>
 ";
-?>
