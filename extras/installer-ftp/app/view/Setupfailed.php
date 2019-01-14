@@ -21,9 +21,9 @@ class Hdinstaller_View_Setupfailed extends Hdinstaller_ViewClass
      *
      *  @access public
      */
-    function preforward()
+    public function preforward()
     {
-		$this->af->setApp('tmp777', 
-						  'chmod 777 '.	BASE.'/tmp');
+        $this->af->setApp('tmp777',
+                          'chmod 777 '.    BASE.'/tmp');
     }
 }

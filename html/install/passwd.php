@@ -3,4 +3,3 @@
 //  put user name and passward in the define statement below.
 define('INSTALL_USER', '');
 define('INSTALL_PASSWD', '');
-?>

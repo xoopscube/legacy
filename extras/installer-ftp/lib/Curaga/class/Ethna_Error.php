@@ -107,25 +107,25 @@ class Ethna_Error
      */
 
     /** @var    object  Ethna_I18N  i18nオブジェクト */
-    var $i18n;
+    public $i18n;
 
     /** @var    object  Ethna_Logger    loggerオブジェクト */
-    var $logger;
+    public $logger;
 
     /** @var    string  エラーメッセージ */
-    var $message;
+    public $message;
 
     /** @var    integer エラーコード */
-    var $code;
+    public $code;
 
     /** @var    integer エラーモード */
-    var $mode;
+    public $mode;
     
     /** @var    array   エラーモード依存のオプション */
-    var $options;
+    public $options;
 
     /** @var    string  ユーザー定義もしくはデバッグ関連の追加情報を記した文字列。 */
-    var $userinfo;
+    public $userinfo;
 
     /**#@-*/
 
@@ -142,7 +142,7 @@ class Ethna_Error
      *  @param  array   $userinfo           エラー追加情報($options より後の全ての引数)
      *  @see http://pear.php.net/manual/ja/core.pear.pear-error.pear-error.php
      */
-    function Ethna_Error($message = null, $code = null, $mode = null, $options = null)
+    public function Ethna_Error($message = null, $code = null, $mode = null, $options = null)
     {
         $controller =& Ethna_Controller::getInstance();
         if ($controller !== null) {
@@ -155,7 +155,7 @@ class Ethna_Error
             if (count($userinfo) == 1) {
                 if (is_array($userinfo[0])) {
                     $this->userinfo = $userinfo[0];
-                } else if (is_null($userinfo[0])) {
+                } elseif (is_null($userinfo[0])) {
                     $this->userinfo = array();
                 }
             } else {
@@ -178,8 +178,8 @@ class Ethna_Error
         //  その他メンバ変数設定
         $this->code = $code;
         $this->mode = $mode;
-        $this->options = $options; 
-        $this->level = ($this->options === NULL) ? E_USER_NOTICE : $options;
+        $this->options = $options;
+        $this->level = ($this->options === null) ? E_USER_NOTICE : $options;
 
         //  Ethnaフレームワークのエラーハンドラ(callback)
         Ethna::handleError($this);
@@ -190,7 +190,7 @@ class Ethna_Error
      *
      * @return integer - エラー番号
      */
-    function getCode()
+    public function getCode()
     {
         return $this->code;
     }
@@ -201,7 +201,7 @@ class Ethna_Error
      *  @access public
      *  @return int     エラーレベル
      */
-    function getLevel()
+    public function getLevel()
     {
         return $this->level;
     }
@@ -216,7 +216,7 @@ class Ethna_Error
      *  @access public
      *  @return string  エラーメッセージ
      */
-    function getMessage()
+    public function getMessage()
     {
         $tmp_message = $this->i18n ? $this->i18n->get($this->message) : $this->message;
         $tmp_userinfo = to_array($this->userinfo);
@@ -236,7 +236,7 @@ class Ethna_Error
      *  @param  int     $n      エラー追加情報のインデックス(省略可)
      *  @return mixed   message引数
      */
-    function getUserInfo($n = null)
+    public function getUserInfo($n = null)
     {
         if (is_null($n)) {
             return $this->userinfo;
@@ -255,11 +255,10 @@ class Ethna_Error
      *  @access public
      *  @param  string  $info   追加するエラー情報
      */
-    function addUserInfo($info)
+    public function addUserInfo($info)
     {
         $this->userinfo[] = $info;
     }
 }
 // }}}
-
-?>
+;

@@ -5,13 +5,15 @@
  * @version $Id$
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 class jQuery_ExternalLink extends XCube_ActionFilter
 {
     public function preBlockFilter()
     {
-        $this->mRoot->mDelegateManager->add('Site.JQuery.AddFunction',array(&$this, 'addScript'));
+        $this->mRoot->mDelegateManager->add('Site.JQuery.AddFunction', array(&$this, 'addScript'));
     }
 
     public function addScript(&$jQuery)
@@ -23,4 +25,3 @@ return false;
 });');
     }
 }
-?>

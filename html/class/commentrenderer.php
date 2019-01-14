@@ -37,17 +37,18 @@
  * @author      Kazumi Ono  <onokazu@xoops.org>
  * @copyright   (c) 2000-2003 The Xoops Project - www.xoops.org
  */
-class XoopsCommentRenderer {
+class XoopsCommentRenderer
+{
 
     /**#@+
      * @access  private
      */
-    var $_tpl;
-    var $_comments = null;
-    var $_useIcons = true;
-    var $_doIconCheck = false;
-    var $_memberHandler;
-    var $_statusText;
+    public $_tpl;
+    public $_comments = null;
+    public $_useIcons = true;
+    public $_doIconCheck = false;
+    public $_memberHandler;
+    public $_statusText;
     /**#@-*/
 
     /**
@@ -57,7 +58,7 @@ class XoopsCommentRenderer {
      * @param   boolean $use_icons
      * @param   boolean $do_iconcheck
      **/
-    function XoopsCommentRenderer(&$tpl, $use_icons = true, $do_iconcheck = false)
+    public function XoopsCommentRenderer(&$tpl, $use_icons = true, $do_iconcheck = false)
     {
         $this->_tpl =& $tpl;
         $this->_useIcons = $use_icons;
@@ -74,7 +75,7 @@ class XoopsCommentRenderer {
      * @param   boolean $do_iconcheck
      * @return
      **/
-    function &instance(&$tpl, $use_icons = true, $do_iconcheck = false)
+    public function &instance(&$tpl, $use_icons = true, $do_iconcheck = false)
     {
         static $instance;
         if (!isset($instance)) {
@@ -88,7 +89,7 @@ class XoopsCommentRenderer {
      *
      * @param   object  &$comments_arr  array of {@link XoopsComment} objects
      **/
-    function setComments(&$comments_arr)
+    public function setComments(&$comments_arr)
     {
         if (isset($this->_comments)) {
             unset($this->_comments);
@@ -101,7 +102,7 @@ class XoopsCommentRenderer {
      *
      * @param boolean $admin_view
      **/
-    function renderFlatView($admin_view = false)
+    public function renderFlatView($admin_view = false)
     {
         $count = count($this->_comments);
         for ($i = 0; $i < $count; $i++) {
@@ -134,7 +135,7 @@ class XoopsCommentRenderer {
      * @param boolean $admin_view
      * @param boolean $show_nav
      **/
-    function renderThreadView($comment_id = 0, $admin_view = false, $show_nav = true)
+    public function renderThreadView($comment_id = 0, $admin_view = false, $show_nav = true)
     {
         include_once XOOPS_ROOT_PATH.'/class/tree.php';
         // construct comment tree
@@ -189,7 +190,7 @@ class XoopsCommentRenderer {
      *
      * @access  private
      **/
-    function _renderThreadReplies(&$thread, $key, &$replies, $prefix, $admin_view, $depth = 0, $current_prefix = '')
+    public function _renderThreadReplies(&$thread, $key, &$replies, $prefix, $admin_view, $depth = 0, $current_prefix = '')
     {
         if ($depth > 0) {
             if (false != $this->_useIcons) {
@@ -226,7 +227,7 @@ class XoopsCommentRenderer {
      * @param integer $comment_id   Always "0" when called by client.
      * @param boolean $admin_view
      **/
-    function renderNestView($comment_id = 0, $admin_view = false)
+    public function renderNestView($comment_id = 0, $admin_view = false)
     {
         include_once XOOPS_ROOT_PATH.'/class/tree.php';
         $xot = new XoopsObjectTree($this->_comments, 'com_id', 'com_pid', 'com_rootid');
@@ -269,7 +270,7 @@ class XoopsCommentRenderer {
      *
      * @access  private
      **/
-    function _renderNestReplies(&$thread, $key, &$replies, $prefix, $admin_view, $depth = 0)
+    public function _renderNestReplies(&$thread, $key, &$replies, $prefix, $admin_view, $depth = 0)
     {
         if ($depth > 0) {
             if (false != $this->_useIcons) {
@@ -308,7 +309,7 @@ class XoopsCommentRenderer {
      *
      * @access  private
      **/
-    function _getPosterName($poster_id)
+    public function _getPosterName($poster_id)
     {
         $poster['id'] = intval($poster_id);
         if ($poster['id'] > 0) {
@@ -331,7 +332,7 @@ class XoopsCommentRenderer {
      *
      * @access  private
      **/
-    function _getPosterArray($poster_id)
+    public function _getPosterArray($poster_id)
     {
         $poster['id'] = intval($poster_id);
         if ($poster['id'] > 0) {
@@ -368,7 +369,7 @@ class XoopsCommentRenderer {
      *
      * @access  private
      **/
-    function _getTitleIcon($icon_image)
+    public function _getTitleIcon($icon_image)
     {
         $icon_image = trim($icon_image);
         if ($icon_image != '') {
@@ -386,4 +387,3 @@ class XoopsCommentRenderer {
         return '<img src="'.XOOPS_URL.'/images/icons/no_posticon.gif" alt="" />';
     }
 }
-?>

@@ -98,5 +98,3 @@ define('_AD_LEGACYRENDER_MESSAGE_UPLOAD_TEMPLATE_SUCCESS', "Template successfull
 define('_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_1', "Customize your site by modifying the templates. First make a copy (clone) of the default template set, and then modify the templates in this new set. To learn more, read the help.");
 define('_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_2', "You can easily change the template set for your site by clicking the appropriate 'Select' button. To learn more, read the help.");
 define('_AD_LEGACYRENDER_TIPS_TPLSET_UPLOAD', "If you don't input a name for your new template set, the name will be taken from the uploaded file. Please upload only a TAR.GZ file.");
-
-?>

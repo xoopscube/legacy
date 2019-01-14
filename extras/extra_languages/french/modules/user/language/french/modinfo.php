@@ -75,5 +75,3 @@ define('_MI_USER_MENU_CREATE_RANK', "Nouveau Rang");
 define('_MI_USER_MENU_CREATE_USER', "Nouveau Utilisateur");
 define('_MI_USER_NAME', "Utilisateur");
 define('_MI_USER_NAME_DESC', "Ce module gére les compes utilisateurs.");
-
-?>

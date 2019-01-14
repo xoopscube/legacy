@@ -52,25 +52,25 @@ SWFUpload.instances = {};
 SWFUpload.movieCount = 0;
 SWFUpload.version = "2.2.0 2009-03-25";
 SWFUpload.QUEUE_ERROR = {
-	QUEUE_LIMIT_EXCEEDED    : -100,
-	FILE_EXCEEDS_SIZE_LIMIT : -110,
-	ZERO_BYTE_FILE          : -120,
-	INVALID_FILETYPE        : -130
+	QUEUE_LIMIT_EXCEEDED	  		: -100,
+	FILE_EXCEEDS_SIZE_LIMIT  		: -110,
+	ZERO_BYTE_FILE			  		: -120,
+	INVALID_FILETYPE		  		: -130
 };
 SWFUpload.UPLOAD_ERROR = {
-	HTTP_ERROR                  : -200,
-	MISSING_UPLOAD_URL          : -210,
-	IO_ERROR                    : -220,
-	SECURITY_ERROR              : -230,
-	UPLOAD_LIMIT_EXCEEDED       : -240,
-	UPLOAD_FAILED               : -250,
-	SPECIFIED_FILE_ID_NOT_FOUND : -260,
-	FILE_VALIDATION_FAILED      : -270,
-	FILE_CANCELLED              : -280,
-	UPLOAD_STOPPED              : -290
+	HTTP_ERROR				  		: -200,
+	MISSING_UPLOAD_URL	      		: -210,
+	IO_ERROR				  		: -220,
+	SECURITY_ERROR			  		: -230,
+	UPLOAD_LIMIT_EXCEEDED	  		: -240,
+	UPLOAD_FAILED			  		: -250,
+	SPECIFIED_FILE_ID_NOT_FOUND		: -260,
+	FILE_VALIDATION_FAILED	  		: -270,
+	FILE_CANCELLED			  		: -280,
+	UPLOAD_STOPPED					: -290
 };
 SWFUpload.FILE_STATUS = {
-	QUEUED       : -1,
+	QUEUED		 : -1,
 	IN_PROGRESS	 : -2,
 	ERROR		 : -3,
 	COMPLETE	 : -4,
@@ -83,7 +83,7 @@ SWFUpload.BUTTON_ACTION = {
 };
 SWFUpload.CURSOR = {
 	ARROW : -1,
-	HAND  : -2
+	HAND : -2
 };
 SWFUpload.WINDOW_MODE = {
 	WINDOW : "window",

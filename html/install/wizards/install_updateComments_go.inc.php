@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: install_updateComments_go.inc.php,v 1.3 2008/09/25 15:12:31 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
- * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
     unset($xoopsOption['nocommon']);
@@ -52,4 +52,3 @@
     $xoopsDB->query('ALTER TABLE '.$xoopsDB->prefix('xoopscomments').' CHANGE com_id com_id mediumint(8) unsigned NOT NULL auto_increment PRIMARY KEY');
     $b_next = array('updateSmilies', _INSTALL_L14);
     include './install_tpl.php';
-?>

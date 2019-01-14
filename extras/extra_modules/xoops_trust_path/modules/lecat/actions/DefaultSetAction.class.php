@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -17,7 +16,7 @@ require_once LECAT_TRUST_PATH . '/actions/CatViewAction.class.php';
 **/
 class Lecat_DefaultSetAction extends Lecat_CatViewAction
 {
-	public $mPermit = null;
+    public $mPermit = null;
 
     /**
      * _getId
@@ -38,16 +37,16 @@ class Lecat_DefaultSetAction extends Lecat_CatViewAction
      * 
      * @return  Lecat_PermitObject[]
     **/
-	protected function _getPermit($groupid=0)
-	{
-		$handler = Legacy_Utils::getModuleHandler('permit', $this->mAsset->mDirname);
-		$criteria=new CriteriaCompo();
-		$criteria->add(new Criteria('cat_id', 0));
-		if(intval($groupid)>0){
-			$criteria->add(new Criteria('groupid', $groupid));
-		}
-		return $handler->getObjects($criteria);
-	}
+    protected function _getPermit($groupid=0)
+    {
+        $handler = Legacy_Utils::getModuleHandler('permit', $this->mAsset->mDirname);
+        $criteria=new CriteriaCompo();
+        $criteria->add(new Criteria('cat_id', 0));
+        if (intval($groupid)>0) {
+            $criteria->add(new Criteria('groupid', $groupid));
+        }
+        return $handler->getObjects($criteria);
+    }
 
     /**
      * preprare
@@ -56,13 +55,13 @@ class Lecat_DefaultSetAction extends Lecat_CatViewAction
      * 
      * @return  bool
     **/
-	public function prepare()
-	{
-		$this->mPermit =Legacy_Utils::getModuleHandler('permit', $this->mAsset->mDirname)->create();
-		//for Permissions
-		$this->mPermit->set('cat_id', 0);
-		$this->_setupActionForm();
-	}
+    public function prepare()
+    {
+        $this->mPermit =Legacy_Utils::getModuleHandler('permit', $this->mAsset->mDirname)->create();
+        //for Permissions
+        $this->mPermit->set('cat_id', 0);
+        $this->_setupActionForm();
+    }
 
     /**
      * getDefaultView
@@ -86,19 +85,17 @@ class Lecat_DefaultSetAction extends Lecat_CatViewAction
     public function executeViewSuccess(/*** XCube_RenderTarget ***/ &$render)
     {
         $render->setTemplateName($this->mAsset->mDirname . '_default_set.html');
-	
-		//format Permissions for html form
-		$permissions = new Lecat_Permission($this->mAsset->mDirname, $this->_getHandler()->create());
-		$permissions->setPermissions($this->_getPermit());
-	
-		//set renders
-		$render->setAttribute('dirname', $this->mAsset->mDirname);
-		$render->setAttribute('permitObj', $permissions);
-	
-		//for permit addition
-		$this->mActionForm->load($this->mPermit);
-		$render->setAttribute('actionFormPermit', $this->mActionForm);
+    
+        //format Permissions for html form
+        $permissions = new Lecat_Permission($this->mAsset->mDirname, $this->_getHandler()->create());
+        $permissions->setPermissions($this->_getPermit());
+    
+        //set renders
+        $render->setAttribute('dirname', $this->mAsset->mDirname);
+        $render->setAttribute('permitObj', $permissions);
+    
+        //for permit addition
+        $this->mActionForm->load($this->mPermit);
+        $render->setAttribute('actionFormPermit', $this->mActionForm);
     }
 }
-
-?>

@@ -71,10 +71,10 @@ if ($op == 'dologin') {
         $moduleConfigUser =& $config_handler->getConfigsByDirname('user');
 
         if (!empty($moduleConfigUser['use_ssl'])) {
-			echo $header;
+            echo $header;
             xoops_confirm(array($moduleConfigUser['sslpost_name'] => session_id()), XOOPS_URL.'/misc.php?action=showpopups&amp;type=ssllogin', _US_PRESSLOGIN, _LOGIN);
         } else {
-			echo $header;
+            echo $header;
             echo sprintf(_US_LOGGINGU, $user->getVar('uname'));
             echo '<div style="text-align:center;"><input value="'._CLOSE.'" type="button" onclick="document.window.opener.location.reload();document.window.close();" /></div>';
         }
@@ -84,7 +84,7 @@ if ($op == 'dologin') {
 }
 
 if ($op == 'login') {
-	echo $header;
+    echo $header;
     echo '
     <div style="text-align: center; padding: 5; margin: 0">
     <form action="login.php" method="post">
@@ -111,4 +111,3 @@ echo '
   </body>
 </html>
 ';
-?>

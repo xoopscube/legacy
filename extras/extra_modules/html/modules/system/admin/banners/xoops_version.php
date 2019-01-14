@@ -41,4 +41,3 @@ $modversion['image'] = "banners.gif";
 $modversion['hasAdmin'] = 1;
 $modversion['adminpath'] = "admin.php?fct=banners";
 $modversion['category'] = XOOPS_SYSTEM_BANNER;
-?>

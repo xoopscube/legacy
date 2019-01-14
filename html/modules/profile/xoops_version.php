@@ -5,22 +5,24 @@
  * @version $Id$
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
-$mydirpath = basename( dirname( __FILE__ ) ) ;
+$mydirpath = basename(dirname(__FILE__)) ;
 
 //
 // Define a basic manifesto.
 //
 $modversion['name'] = _MI_PROFILE_LANG_PROFILE;
-$modversion['version'] = 2.01;
+$modversion['version'] = 2.03;
 $modversion['description'] = _MI_PROFILE_DESC_PROFILE;
 $modversion['author'] = "kilica and Y.Sakai";
 $modversion['credits'] = "";
 $modversion['help'] = "help.html";
 $modversion['license'] = "GPL";
 $modversion['official'] = 0;
-$modversion['image']	   = 'images/module_icon.png';
+$modversion['image']       = 'images/module_icon.png';
 $modversion['dirname'] = "profile";
 
 $modversion['cube_style'] = true;
@@ -60,5 +62,4 @@ $modversion['adminmenu'] = "admin/menu.php";
 $modversion['hasMain'] = 0;
 // $modversion['sub'][]['name'] = "";
 // $modversion['sub'][]['url'] = "";
-
-?>
+;

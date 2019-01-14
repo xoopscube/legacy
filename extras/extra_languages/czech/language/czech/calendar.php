@@ -31,4 +31,3 @@ define("_CAL_DRAGMOVE", "Pøesunete tažením");
 define("_CAL_TODAY", "Dnes");
 define("_CAL_DISPM1ST", "První je pondìlí");
 define("_CAL_DISPS1ST", "První je nedìle");
-?>

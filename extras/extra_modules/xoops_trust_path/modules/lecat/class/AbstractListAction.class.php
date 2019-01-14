@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -115,5 +114,3 @@ abstract class Lecat_AbstractListAction extends Lecat_AbstractAction
         return $this->getDefaultView();
     }
 }
-
-?>

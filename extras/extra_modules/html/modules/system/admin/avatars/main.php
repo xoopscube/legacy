@@ -29,7 +29,7 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid()) ) {
+if (!is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid())) {
     exit("Access Denied");
 } else {
     $op = 'list';
@@ -114,7 +114,7 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
     }
 
     if ($op == 'save') {
-        if(!XoopsMultiTokenHandler::quickValidate('avatars_save')) {
+        if (!XoopsMultiTokenHandler::quickValidate('avatars_save')) {
             xoops_cp_header();
             xoops_error('Ticket Error');
             xoops_cp_footer();
@@ -152,11 +152,11 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
                 exit();
             }
         }
-        redirect_header('admin.php?fct=avatars',2,_MD_AM_DBUPDATED);
+        redirect_header('admin.php?fct=avatars', 2, _MD_AM_DBUPDATED);
     }
 
     if ($op == 'addfile') {
-        if(!XoopsMultiTokenHandler::quickValidate('avatars_addfile')) {
+        if (!XoopsMultiTokenHandler::quickValidate('avatars_addfile')) {
             xoops_cp_header();
             xoops_error('Ticket Error');
             xoops_cp_footer();
@@ -197,7 +197,7 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
             xoops_cp_footer();
             exit();
         }
-        redirect_header('admin.php?fct=avatars',2,_MD_AM_DBUPDATED);
+        redirect_header('admin.php?fct=avatars', 2, _MD_AM_DBUPDATED);
     }
 
     if ($op == 'delfile') {
@@ -209,7 +209,7 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
     }
 
     if ($op == 'delfileok') {
-        if(!xoops_confirm_validate()) {
+        if (!xoops_confirm_validate()) {
             xoops_cp_header();
             xoops_error("Ticket Error");
             xoops_cp_footer();
@@ -218,12 +218,12 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
 
         $avatar_id = intval($_POST['avatar_id']);
         if ($avatar_id <= 0) {
-            redirect_header('admin.php?fct=avatars',1);
+            redirect_header('admin.php?fct=avatars', 1);
         }
         $avt_handler = xoops_gethandler('avatar');
         $avatar =& $avt_handler->get($avatar_id);
         if (!is_object($avatar)) {
-            redirect_header('admin.php?fct=avatars',1);
+            redirect_header('admin.php?fct=avatars', 1);
         }
         if (!$avt_handler->delete($avatar)) {
             xoops_cp_header();
@@ -238,7 +238,6 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
         } else {
             $xoopsDB->query("UPDATE ".$xoopsDB->prefix('users')." SET user_avatar='blank.gif' WHERE user_avatar='".$file."'");
         }
-        redirect_header('admin.php?fct=avatars',2,_MD_AM_DBUPDATED);
+        redirect_header('admin.php?fct=avatars', 2, _MD_AM_DBUPDATED);
     }
 }
-?>

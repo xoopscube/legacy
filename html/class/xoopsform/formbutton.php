@@ -29,7 +29,9 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 /**
  *
@@ -49,83 +51,88 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
  * @package     kernel
  * @subpackage  form
  */
-class XoopsFormButton extends XoopsFormElement {
+class XoopsFormButton extends XoopsFormElement
+{
 
-	/**
+    /**
      * Value
-	 * @var	string
-	 * @access	private
-	 */
-	var $_value;
+     * @var	string
+     * @access	private
+     */
+    public $_value;
 
-	/**
+    /**
      * Type of the button. This could be either "button", "submit", or "reset"
-	 * @var	string
-	 * @access	private
-	 */
-	var $_type;
+     * @var	string
+     * @access	private
+     */
+    public $_type;
 
-	/**
-	 * Constructor
+    /**
+     * Constructor
      *
-	 * @param	string  $caption    Caption
+     * @param	string  $caption    Caption
      * @param	string  $name
      * @param	string  $value
      * @param	string  $type       Type of the button.
      * This could be either "button", "submit", or "reset"
-	 */
-	function XoopsFormButton($caption, $name, $value="", $type="button"){
-		$this->setCaption($caption);
-		$this->setName($name);
-		$this->_type = $type;
-		$this->setValue($value);
-	}
+     */
+    public function XoopsFormButton($caption, $name, $value="", $type="button")
+    {
+        $this->setCaption($caption);
+        $this->setName($name);
+        $this->_type = $type;
+        $this->setValue($value);
+    }
 
-	/**
-	 * Get the initial value
-	 *
+    /**
+     * Get the initial value
+     *
      * @return	string
-	 */
-	function getValue(){
-		return $this->_value;
-	}
+     */
+    public function getValue()
+    {
+        return $this->_value;
+    }
 
-	/**
-	 * Set the initial value
-	 *
+    /**
+     * Set the initial value
+     *
      * @return	string
-	 */
-	function setValue($value){
-		$this->_value = $value;
-	}
+     */
+    public function setValue($value)
+    {
+        $this->_value = $value;
+    }
 
-	/**
-	 * Get the type
-	 *
+    /**
+     * Get the type
+     *
      * @return	string
-	 */
-	function getType(){
-		return $this->_type;
-	}
+     */
+    public function getType()
+    {
+        return $this->_type;
+    }
 
-	/**
-	 * prepare HTML for output
-	 *
+    /**
+     * prepare HTML for output
+     *
      * @return	string
-	 */
-	function render(){
-		$root =& XCube_Root::getSingleton();
-		$renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
-		
-		$renderTarget =& $renderSystem->createRenderTarget('main');
-	
-		$renderTarget->setAttribute('legacy_module', 'legacy');
-		$renderTarget->setTemplateName("legacy_xoopsform_button.html");
-		$renderTarget->setAttribute("element", $this);
+     */
+    public function render()
+    {
+        $root =& XCube_Root::getSingleton();
+        $renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
+        
+        $renderTarget =& $renderSystem->createRenderTarget('main');
+    
+        $renderTarget->setAttribute('legacy_module', 'legacy');
+        $renderTarget->setTemplateName("legacy_xoopsform_button.html");
+        $renderTarget->setAttribute("element", $this);
 
-		$renderSystem->render($renderTarget);
-	
-		return $renderTarget->getResult();
-	}
+        $renderSystem->render($renderTarget);
+    
+        return $renderTarget->getResult();
+    }
 }
-?>

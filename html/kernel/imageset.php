@@ -30,19 +30,19 @@
 // ------------------------------------------------------------------------- //
 
 if (!defined('XOOPS_ROOT_PATH')) {
-	exit();
+    exit();
 }
 
 class XoopsImageset extends XoopsObject
 {
 
-	function XoopsImageset()
-	{
-		$this->XoopsObject();
-		$this->initVar('imgset_id', XOBJ_DTYPE_INT, null, false);
-		$this->initVar('imgset_name', XOBJ_DTYPE_TXTBOX, null, true, 50);
-		$this->initVar('imgset_refid', XOBJ_DTYPE_INT, 0, false);
-	}
+    public function XoopsImageset()
+    {
+        $this->XoopsObject();
+        $this->initVar('imgset_id', XOBJ_DTYPE_INT, null, false);
+        $this->initVar('imgset_name', XOBJ_DTYPE_TXTBOX, null, true, 50);
+        $this->initVar('imgset_refid', XOBJ_DTYPE_INT, 0, false);
+    }
 }
 
 /**
@@ -57,7 +57,7 @@ class XoopsImageset extends XoopsObject
 class XoopsImagesetHandler extends XoopsObjectHandler
 {
 
-    function &create($isNew = true)
+    public function &create($isNew = true)
     {
         $imgset =new XoopsImageset();
         if ($isNew) {
@@ -66,7 +66,7 @@ class XoopsImagesetHandler extends XoopsObjectHandler
         return $imgset;
     }
 
-    function &get($id)
+    public function &get($id)
     {
         $ret = false;
         if ((int)$id > 0) {
@@ -74,16 +74,16 @@ class XoopsImagesetHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $imgset =new XoopsImageset();
+                    $imgset =new XoopsImageset();
                     $imgset->assignVars($this->db->fetchArray($result));
-                        $ret =& $imgset;
+                    $ret =& $imgset;
                 }
             }
         }
         return $ret;
     }
 
-    function insert(&$imgset)
+    public function insert(&$imgset)
     {
         if (strtolower(get_class($imgset)) != 'xoopsimageset') {
             return false;
@@ -109,11 +109,11 @@ class XoopsImagesetHandler extends XoopsObjectHandler
         if (empty($imgset_id)) {
             $imgset_id = $this->db->getInsertId();
         }
-		$imgset->assignVar('imgset_id', $imgset_id);
+        $imgset->assignVar('imgset_id', $imgset_id);
         return true;
     }
 
-    function delete(&$imgset)
+    public function delete(&$imgset)
     {
         if (strtolower(get_class($imgset)) != 'xoopsimageset') {
             return false;
@@ -127,7 +127,7 @@ class XoopsImagesetHandler extends XoopsObjectHandler
         return true;
     }
 
-    function &getObjects($criteria = null, $id_as_key = false)
+    public function &getObjects($criteria = null, $id_as_key = false)
     {
         $ret = array();
         $limit = $start = 0;
@@ -154,7 +154,7 @@ class XoopsImagesetHandler extends XoopsObjectHandler
         return $ret;
     }
 
-    function linkThemeset($imgset_id, $tplset_name)
+    public function linkThemeset($imgset_id, $tplset_name)
     {
         $imgset_id = (int)$imgset_id;
         $tplset_name = trim($tplset_name);
@@ -172,7 +172,7 @@ class XoopsImagesetHandler extends XoopsObjectHandler
         return true;
     }
 
-    function unlinkThemeset($imgset_id, $tplset_name)
+    public function unlinkThemeset($imgset_id, $tplset_name)
     {
         $imgset_id = (int)$imgset_id;
         $tplset_name = trim($tplset_name);
@@ -187,7 +187,7 @@ class XoopsImagesetHandler extends XoopsObjectHandler
         return true;
     }
 
-    function &getList($refid = null, $tplset = null)
+    public function &getList($refid = null, $tplset = null)
     {
         $criteria = new CriteriaCompo();
         if (isset($refid)) {
@@ -204,4 +204,3 @@ class XoopsImagesetHandler extends XoopsObjectHandler
         return $ret;
     }
 }
-?>

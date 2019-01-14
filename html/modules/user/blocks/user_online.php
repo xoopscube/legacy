@@ -1,5 +1,6 @@
 <?php
-function b_user_online_show() {
+function b_user_online_show()
+{
     global $xoopsUser, $xoopsModule;
     $online_handler =& xoops_gethandler('online');
     mt_srand((double)microtime()*1000000);
@@ -17,12 +18,12 @@ function b_user_online_show() {
     if (is_object($xoopsModule)) {
         $online_handler->write($uid, $uname, time(), $xoopsModule->get('mid'), $_SERVER['REMOTE_ADDR']);
     } else {
-		//
-		// TODO We have to find the best method.
-		//
-		if (strpos(xoops_getenv('REQUEST_URI'),'misc.php') === false) {
-			$online_handler->write($uid, $uname, time(), 0, $_SERVER['REMOTE_ADDR']);
-		}
+        //
+        // TODO We have to find the best method.
+        //
+        if (strpos(xoops_getenv('REQUEST_URI'), 'misc.php') === false) {
+            $online_handler->write($uid, $uname, time(), 0, $_SERVER['REMOTE_ADDR']);
+        }
     }
     $onlines =& $online_handler->getAll();
     if (false != $onlines) {
@@ -30,7 +31,7 @@ function b_user_online_show() {
         $block = array();
         $guests = 0;
         $members = '';
-		$member_list = array();
+        $member_list = array();
         for ($i = 0; $i < $total; $i++) {
             if ($onlines[$i]['online_uid'] > 0) {
                 $member['uid'] = $onlines[$i]['online_uid'];
@@ -50,6 +51,5 @@ function b_user_online_show() {
         $block['online_guests'] = $guests;
         return $block;
     }
-	return false;
+    return false;
 }
-?>

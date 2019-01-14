@@ -35,44 +35,44 @@ function smarty_modifier_xoops_debug_print_var($var, $depth = 0, $length = 40)
                 $results .= '<br>' . str_repeat('&nbsp;', $depth * 2)
                     . '<b>' . strtr($curr_key, $_replace) . '</b> =&gt; '
                     . smarty_modifier_xoops_debug_print_var($curr_val, ++$depth, $length);
-                    $depth--;
+                $depth--;
             }
             break;
         
         case 'object' :
             $object_vars = get_object_vars($var);
-			if ($depth){
-				$results .= '<br>';
-		        $results = '<b>' . get_class($var) . ' Object (' . count($object_vars) . ')</b>';
-			}else{
-				$results .= '<br>' . str_repeat('&nbsp;', $depth * 2);
-          		$results = '<b> -&gt;' . get_class($var) . ' Object (' . count($object_vars) . ')</b>';
-			}
+            if ($depth) {
+                $results .= '<br>';
+                $results = '<b>' . get_class($var) . ' Object (' . count($object_vars) . ')</b>';
+            } else {
+                $results .= '<br>' . str_repeat('&nbsp;', $depth * 2);
+                $results = '<b> -&gt;' . get_class($var) . ' Object (' . count($object_vars) . ')</b>';
+            }
 //            $results .= '<pre>';
 //            $results .= htmlspecialchars(print_r($object_vars ,true));
 //            $results .= '<pre>';
 //            break;
             //block infinite loop
-	        foreach ($object_vars as $curr_key => $curr_val) {
-				if ( gettype($curr_val) == 'object' ) {
-					if ($depth){
-						$results .= '<br>';
-					}else{
-						$results .= '<br>' . str_repeat('&nbsp;', $depth * 2);
-					}
-					$results .= '<b> -&gt;' . strtr($curr_key, $_replace) . '</b> = '. get_class($curr_val) . ' Object (' . count(get_object_vars($var)) . ')';
-				}else{
-					if ($depth){
-						$results .= '<br>';
-					}else{
-						$results .= '<br>' . str_repeat('&nbsp;', $depth * 4);
-					}
-					$results .= '<b> -&gt;' . strtr($curr_key, $_replace) . '</b> = ';
-	            	$results .= smarty_modifier_xoops_debug_print_var($curr_val, ++$depth, $length);
-	         	}
-	         	
-	            $depth--;
-        	}
+            foreach ($object_vars as $curr_key => $curr_val) {
+                if (gettype($curr_val) == 'object') {
+                    if ($depth) {
+                        $results .= '<br>';
+                    } else {
+                        $results .= '<br>' . str_repeat('&nbsp;', $depth * 2);
+                    }
+                    $results .= '<b> -&gt;' . strtr($curr_key, $_replace) . '</b> = '. get_class($curr_val) . ' Object (' . count(get_object_vars($var)) . ')';
+                } else {
+                    if ($depth) {
+                        $results .= '<br>';
+                    } else {
+                        $results .= '<br>' . str_repeat('&nbsp;', $depth * 4);
+                    }
+                    $results .= '<b> -&gt;' . strtr($curr_key, $_replace) . '</b> = ';
+                    $results .= smarty_modifier_xoops_debug_print_var($curr_val, ++$depth, $length);
+                }
+                 
+                $depth--;
+            }
           break;
 
 /*
@@ -107,7 +107,7 @@ function smarty_modifier_xoops_debug_print_var($var, $depth = 0, $length = 40)
             break;
         case 'string' :
             $results = strtr($var, $_replace);
-            if (strlen($var) > $length ) {
+            if (strlen($var) > $length) {
                 $results = substr($var, 0, $length - 3) . '...';
             }
             $results = htmlspecialchars('"' . $results . '"');
@@ -115,7 +115,7 @@ function smarty_modifier_xoops_debug_print_var($var, $depth = 0, $length = 40)
         case 'unknown type' :
         default :
             $results = strtr((string) $var, $_replace);
-            if (strlen($results) > $length ) {
+            if (strlen($results) > $length) {
                 $results = substr($results, 0, $length - 3) . '...';
             }
             $results = htmlspecialchars($results);
@@ -124,6 +124,4 @@ function smarty_modifier_xoops_debug_print_var($var, $depth = 0, $length = 40)
     return $results;
 }
 
-/* vim: set expandtab: */
-
-?>
+/* vim: set expandtab: */;

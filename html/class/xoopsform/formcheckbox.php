@@ -29,7 +29,9 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 /**
  * @package     kernel
@@ -47,122 +49,128 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
  * @author	Kazumi Ono	<onokazu@xoops.org>
  * @copyright	copyright (c) 2000-2003 XOOPS.org
  */
-class XoopsFormCheckBox extends XoopsFormElement {
+class XoopsFormCheckBox extends XoopsFormElement
+{
 
-	/**
+    /**
      * Availlable options
-	 * @var array   
-	 * @access	private
-	 */
-	var $_options = array();
+     * @var array   
+     * @access	private
+     */
+    public $_options = array();
 
-	/**
+    /**
      * pre-selected values in array
-	 * @var	array   
-	 * @access	private
-	 */
-	var $_value = array();
+     * @var	array   
+     * @access	private
+     */
+    public $_value = array();
 
-	/**
-	 * Constructor
-	 * 
+    /**
+     * Constructor
+     * 
      * @param	string  $caption
      * @param	string  $name
      * @param	mixed   $value  Either one value as a string or an array of them.   
-	 */
-	function XoopsFormCheckBox($caption, $name, $value = null){
-		$this->setCaption($caption);
-		$this->setName($name);
-		if (isset($value)) {
-			$this->setValue($value);
-		}
-	}
+     */
+    public function XoopsFormCheckBox($caption, $name, $value = null)
+    {
+        $this->setCaption($caption);
+        $this->setName($name);
+        if (isset($value)) {
+            $this->setValue($value);
+        }
+    }
 
-	/**
-	 * Get the "value"
-	 * 
+    /**
+     * Get the "value"
+     * 
      * @return	array
-	 */
-	function getValue(){
-		return $this->_value;
-	}
+     */
+    public function getValue()
+    {
+        return $this->_value;
+    }
 
-	/**
-	 * Set the "value"
-	 * 
+    /**
+     * Set the "value"
+     * 
      * @param	array
-	 */
-	function setValue($value){
-		$this->_value = array();
-		if (is_array($value)) {
-			foreach ($value as $v) {
-				$this->_value[] = $v;
-			}
-		} else {
-			$this->_value[] = $value;
-		}
-	}
+     */
+    public function setValue($value)
+    {
+        $this->_value = array();
+        if (is_array($value)) {
+            foreach ($value as $v) {
+                $this->_value[] = $v;
+            }
+        } else {
+            $this->_value[] = $value;
+        }
+    }
 
-	/**
-	 * Add an option
-	 * 
+    /**
+     * Add an option
+     * 
      * @param	string  $value  
      * @param	string  $name   
-	 */
-	function addOption($value, $name=""){
-		if ($name != "") {
-			$this->_options[$value] = $name;
-		} else {
-			$this->_options[$value] = $value;
-		}
-	}
+     */
+    public function addOption($value, $name="")
+    {
+        if ($name != "") {
+            $this->_options[$value] = $name;
+        } else {
+            $this->_options[$value] = $value;
+        }
+    }
 
-	/**
-	 * Add multiple Options at once
-	 * 
+    /**
+     * Add multiple Options at once
+     * 
      * @param	array   $options    Associative array of value->name pairs
-	 */
-	function addOptionArray($options){
-		if ( is_array($options) ) {
-			foreach ( $options as $k=>$v ) {
-				$this->addOption($k, $v);
-			}
-		}
-	}
+     */
+    public function addOptionArray($options)
+    {
+        if (is_array($options)) {
+            foreach ($options as $k=>$v) {
+                $this->addOption($k, $v);
+            }
+        }
+    }
 
-	/**
-	 * Get an array with all the options
-	 * 
+    /**
+     * Get an array with all the options
+     * 
      * @return	array   Associative array of value->name pairs
-	 */
-	function getOptions(){
-		return $this->_options;
-	}
+     */
+    public function getOptions()
+    {
+        return $this->_options;
+    }
 
-	/**
-	 * prepare HTML for output
-	 * 
+    /**
+     * prepare HTML for output
+     * 
      * @return	string
-	 */
-	function render()
-	{
-		$root =& XCube_Root::getSingleton();
-		$renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
-		
-		$renderTarget =& $renderSystem->createRenderTarget('main');
-	
-		if ( count($this->getOptions()) > 1 && substr($this->getName(), -2, 2) != "[]" ) {
-			$newname = $this->getName()."[]";
-			$this->setName($newname);
-		}
-		
-		$renderTarget->setAttribute('legacy_module', 'legacy');
-		$renderTarget->setTemplateName("legacy_xoopsform_checkbox.html");
-		$renderTarget->setAttribute("element", $this);
+     */
+    public function render()
+    {
+        $root =& XCube_Root::getSingleton();
+        $renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
+        
+        $renderTarget =& $renderSystem->createRenderTarget('main');
+    
+        if (count($this->getOptions()) > 1 && substr($this->getName(), -2, 2) != "[]") {
+            $newname = $this->getName()."[]";
+            $this->setName($newname);
+        }
+        
+        $renderTarget->setAttribute('legacy_module', 'legacy');
+        $renderTarget->setTemplateName("legacy_xoopsform_checkbox.html");
+        $renderTarget->setAttribute("element", $this);
 
-		$renderSystem->render($renderTarget);
-		
-		return $renderTarget->getResult();
-	}
+        $renderSystem->render($renderTarget);
+        
+        return $renderTarget->getResult();
+    }
 }
-?>

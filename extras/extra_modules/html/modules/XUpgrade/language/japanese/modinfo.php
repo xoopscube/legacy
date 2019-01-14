@@ -24,7 +24,3 @@ define('_MI_XUPGRADE_MESSAGE_DELETED_CONFIG', "全体設定から '{0}' コンフィグを削
 define('_MI_XUPGRADE_MESSAGE_PORTED_CONFIG', "全体設定の '{0}' コンフィグ値を '{1}' モジュールへ移行しました。");
 define('_MI_XUPGRADE_MESSAGE_PORTED_TEMPLATE', "'{1}' テンプレートセットの '{0}' ファイルを Legacy へ移行しました。");
 define('_MI_XUPGRADE_MESSAGE_START_PORTING', "設定とテンプレートの移行作業を開始します...");
-
-
-
-?>

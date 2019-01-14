@@ -31,25 +31,24 @@
 * @version $Id: mainfilemanager.php,v 1.1 2007/05/15 02:35:13 minahito Exp $
 * @access public
 **/
-class mainfile_manager {
+class mainfile_manager
+{
 
-    var $path = '../mainfile.php';
-    var $distfile = '../mainfile.dist.php';
-    var $rewrite = array();
+    public $path = '../mainfile.php';
+    public $distfile = '../mainfile.dist.php';
+    public $rewrite = array();
 
-    var $report =  array();
-    var $error = false;
+    public $report =  array();
+    public $error = false;
 
-    function mainfile_manager(){
-        //
-    }
-
-    function setRewrite($def, $val){
+    public function setRewrite($def, $val)
+    {
         $this->rewrite[$def] = $val;
     }
 
-    function copyDistFile(){
-        if ( ! copy($this->distfile, $this->path) ) {
+    public function copyDistFile()
+    {
+        if (! copy($this->distfile, $this->path)) {
             $this->report[] = _NGIMG.sprintf(_INSTALL_L126, '<b>'.$this->path.'</b>');
             $this->error = true;
             return false;
@@ -58,41 +57,41 @@ class mainfile_manager {
         return true;
     }
 
-    function doRewrite(){
-        if ( ! $file = fopen($this->path,"r") ) {
+    public function doRewrite()
+    {
+        if (! $file = fopen($this->path, "r")) {
             $this->error = true;
             return false;
         }
         clearstatcache();
-        $content = fread($file, filesize($this->path) );
+        $content = fread($file, filesize($this->path));
         fclose($file);
 
-        foreach($this->rewrite as $key => $val){
-            if(is_int($val) &&
-             preg_match("/(define\()([\"'])(".$key.")\\2,\s*([0-9]+)\s*\)/",$content)){
-                $content = preg_replace("/(define\()([\"'])(".$key.")\\2,\s*([0-9]+)\s*\)/"
-                , "define('".$key."', ".$val.")"
-                , $content);
+        foreach ($this->rewrite as $key => $val) {
+            if (is_int($val) &&
+             preg_match("/(define\()([\"'])(".$key.")\\2,\s*([0-9]+)\s*\)/", $content)) {
+                $content = preg_replace("/(define\()([\"'])(".$key.")\\2,\s*([0-9]+)\s*\)/", "define('".$key."', ".$val.")", $content);
                 $this->report[] = _OKIMG.sprintf(_INSTALL_L121, "<b>$key</b>", $val);
-            }
-            elseif(preg_match("/(define\()([\"'])(".$key.")\\2,\s*([\"'])(.*?)\\4\s*\)/",$content)){
-                $content = preg_replace("/(define\()([\"'])(".$key.")\\2,\s*([\"'])(.*?)\\4\s*\)/"
-                , "define('".$key."', '".$this->sanitize($val)."')"
-                , $content);
-                $this->report[] = _OKIMG.sprintf(_INSTALL_L121, '<b>'.$key.'</b>', $val);
-
-            }else{
+            } elseif (preg_match("/(define\()([\"'])(".$key.")\\2,\s*([\"'])(.*?)\\4\s*\)/", $content)) {
+                if ($key === 'XOOPS_DB_TYPE' && $val === 'mysql') {
+                    $content = preg_replace("/(define\()([\"'])(".$key.")\\2,\s*([\"'])(.*?)\\4\s*\)/", "extension_loaded('mysql')? define('XOOPS_DB_TYPE', 'mysql') : define('XOOPS_DB_TYPE', 'mysqli')", $content);
+                    $this->report[] = _OKIMG.sprintf(_INSTALL_L121, '<b>'.$key.'</b>', $val);
+                } else {
+                    $content = preg_replace("/(define\()([\"'])(".$key.")\\2,\s*([\"'])(.*?)\\4\s*\)/", "define('".$key."', '".$this->sanitize($val)."')", $content);
+                    $this->report[] = _OKIMG.sprintf(_INSTALL_L121, '<b>'.$key.'</b>', $val);
+                }
+            } else {
                 $this->error = true;
                 $this->report[] = _NGIMG.sprintf(_INSTALL_L122, '<b>'.$val.'</b>');
             }
         }
 
-        if ( !$file = fopen($this->path,"w") ) {
+        if (!$file = fopen($this->path, "w")) {
             $this->error = true;
             return false;
         }
 
-        if ( fwrite($file,$content) == -1 ) {
+        if (fwrite($file, $content) == -1) {
             fclose($file);
             $this->error = true;
             return false;
@@ -103,19 +102,19 @@ class mainfile_manager {
         return true;
     }
 
-    function report(){
+    public function report()
+    {
         return $this->report;
     }
 
-    function error(){
+    public function error()
+    {
         return $this->error;
     }
 
-	function sanitize($val)
-	{
-		$val = addslashes($val);
-		return str_replace('$', '\$', $val);
-	}
+    public function sanitize($val)
+    {
+        $val = addslashes($val);
+        return str_replace('$', '\$', $val);
+    }
 }
-
-?>

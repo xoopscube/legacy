@@ -16,4 +16,3 @@ define('_MB_USER_MORE', '更多...');
 define('_MB_USER_DISPLAY', '顯示 %s 個會員');
 define('_MB_USER_DISPLAYA', '顯示會員圖示');
 define('_MB_USER_NODISPGR', '不要顯示指定評價的使用者：');
-?>

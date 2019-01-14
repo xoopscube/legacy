@@ -7,4 +7,3 @@ define("_MAIL_SENDMAILNG", "Не могу отправить почту для %s.");
 define("_MAIL_MAILGOOD", "Письмо для %s отправлено.");
 define("_MAIL_SENDPMNG", "Не могу отправить приватное сообщение для %s.");
 define("_MAIL_PMGOOD", "Приватное сообщение для %s отправлено.");
-?>

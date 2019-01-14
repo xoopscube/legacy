@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -25,19 +24,19 @@ abstract class Lecat_AbstractViewAction extends Lecat_AbstractAction
     **/
     public $mObjectHandler = null;
 
-	/**
-	 * _getId
-	 * 
-	 * @param	void
-	 * 
-	 * @return	int
-	**/
-	protected function _getId()
-	{
-		$req = $this->mRoot->mContext->mRequest;
-		$dataId = $req->getRequest(_REQUESTED_DATA_ID);
-		return isset($dataId) ? intval($dataId) : intval($req->getRequest($this->_getHandler()->mPrimary));
-	}
+    /**
+     * _getId
+     * 
+     * @param	void
+     * 
+     * @return	int
+    **/
+    protected function _getId()
+    {
+        $req = $this->mRoot->mContext->mRequest;
+        $dataId = $req->getRequest(_REQUESTED_DATA_ID);
+        return isset($dataId) ? intval($dataId) : intval($req->getRequest($this->_getHandler()->mPrimary));
+    }
 
     /**
      * &_getHandler
@@ -100,8 +99,7 @@ abstract class Lecat_AbstractViewAction extends Lecat_AbstractAction
     **/
     public function getDefaultView()
     {
-        if($this->mObject == null)
-        {
+        if ($this->mObject == null) {
             return LECAT_FRAME_VIEW_ERROR;
         }
     
@@ -120,17 +118,15 @@ abstract class Lecat_AbstractViewAction extends Lecat_AbstractAction
         return $this->getDefaultView();
     }
 
-	/**
-	 * executeViewError
-	 * 
-	 * @param	XCube_RenderTarget	&$render
-	 * 
-	 * @return	void
-	**/
-	public function executeViewError(/*** XCube_RenderTarget ***/ &$render)
-	{
-		$this->mRoot->mController->executeRedirect($this->_getNextUri($this->_mDataname, 'list'), 1, _MD_LECAT_ERROR_CONTENT_IS_NOT_FOUND);
-	}
+    /**
+     * executeViewError
+     * 
+     * @param	XCube_RenderTarget	&$render
+     * 
+     * @return	void
+    **/
+    public function executeViewError(/*** XCube_RenderTarget ***/ &$render)
+    {
+        $this->mRoot->mController->executeRedirect($this->_getNextUri($this->_mDataname, 'list'), 1, _MD_LECAT_ERROR_CONTENT_IS_NOT_FOUND);
+    }
 }
-
-?>

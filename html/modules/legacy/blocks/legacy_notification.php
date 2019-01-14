@@ -4,7 +4,7 @@
  * @package XOOPS2
  * @version $Id: legacy_notification.php,v 1.3 2008/09/25 15:12:15 kilica Exp $
  * @copyright Copyright (c) 2000 XOOPS.org  <http://www.xoops.org/>
- * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
 //  ------------------------------------------------------------------------ //
@@ -23,10 +23,10 @@ function b_legacy_notification_show()
 {
     global $xoopsConfig, $xoopsUser, $xoopsModule;
     include_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
-	
-	$root =& XCube_Root::getSingleton();
-	$root->mLanguageManager->loadPageTypeMessageCatalog('notification');
-	
+    
+    $root =& XCube_Root::getSingleton();
+    $root->mLanguageManager->loadPageTypeMessageCatalog('notification');
+    
     // Notification must be enabled, and user must be logged in
     if (empty($xoopsUser) || !notificationEnabled('block')) {
         return false; // do not display block
@@ -45,13 +45,13 @@ function b_legacy_notification_show()
         $section['description'] = $category['description'];
         $section['itemid'] = $category['item_id'];
         $section['events'] = array();
-        $subscribed_events =& $notification_handler->getSubscribedEvents ($category['name'], $category['item_id'], $xoopsModule->getVar('mid'), $xoopsUser->getVar('uid'));
+        $subscribed_events =& $notification_handler->getSubscribedEvents($category['name'], $category['item_id'], $xoopsModule->getVar('mid'), $xoopsUser->getVar('uid'));
         foreach (notificationEvents($category['name'], true) as $event) {
             if (!empty($event['admin_only']) && !$xoopsUser->isAdmin($xoopsModule->getVar('mid'))) {
                 continue;
             }
             $subscribed = in_array($event['name'], $subscribed_events) ? 1 : 0;
-            $section['events'][$event['name']] = array ('name'=>$event['name'], 'title'=>$event['title'], 'caption'=>$event['caption'], 'description'=>$event['description'], 'subscribed'=>$subscribed);
+            $section['events'][$event['name']] = array('name'=>$event['name'], 'title'=>$event['title'], 'caption'=>$event['caption'], 'description'=>$event['description'], 'subscribed'=>$subscribed);
         }
         $block['categories'][$category['name']] = $section;
     }
@@ -64,4 +64,3 @@ function b_legacy_notification_show()
     $block['submit_button'] = _NOT_UPDATENOW;
     return $block;
 }
-?>

@@ -1,112 +1,112 @@
 <?php
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 class LegacyRenderBannerclientObject extends XoopsSimpleObject
 {
-	var $mBanners = array();
-	var $_mBannersLoadedFlag = false;
-	
-	/**
-	 * @todo A name of this property is a strange. banner finish?
-	 */
-	var $mFinishBanners = array();
-	var $_mFinishBannersLoadedFlag = false;
-	
-	var $mBannerCount = null;
-	var $_mBannerCountLoadedFlag = false;
+    public $mBanners = array();
+    public $_mBannersLoadedFlag = false;
+    
+    /**
+     * @todo A name of this property is a strange. banner finish?
+     */
+    public $mFinishBanners = array();
+    public $_mFinishBannersLoadedFlag = false;
+    
+    public $mBannerCount = null;
+    public $_mBannerCountLoadedFlag = false;
 
-	var $mFinishBannerCount = null;
-	var $_mFinishBannerCountLoadedFlag = false;
+    public $mFinishBannerCount = null;
+    public $_mFinishBannerCountLoadedFlag = false;
 
-	function LegacyRenderBannerclientObject()
-	{
-		static $initVars;
-		if (isset($initVars)) {
-			$this->mVars = $initVars;
-			return;
-		}
-		$this->initVar('cid', XOBJ_DTYPE_INT, '', false);
-		$this->initVar('name', XOBJ_DTYPE_STRING, '', true, 60);
-		$this->initVar('contact', XOBJ_DTYPE_STRING, '', true, 60);
-		$this->initVar('email', XOBJ_DTYPE_STRING, '', true, 60);
-		$this->initVar('login', XOBJ_DTYPE_STRING, '', true, 10);
-		$this->initVar('passwd', XOBJ_DTYPE_STRING, '', true, 10);
-		$this->initVar('extrainfo', XOBJ_DTYPE_TEXT, '', true);
-		$initVars=$this->mVars;
-	}
+    public function LegacyRenderBannerclientObject()
+    {
+        static $initVars;
+        if (isset($initVars)) {
+            $this->mVars = $initVars;
+            return;
+        }
+        $this->initVar('cid', XOBJ_DTYPE_INT, '', false);
+        $this->initVar('name', XOBJ_DTYPE_STRING, '', true, 60);
+        $this->initVar('contact', XOBJ_DTYPE_STRING, '', true, 60);
+        $this->initVar('email', XOBJ_DTYPE_STRING, '', true, 60);
+        $this->initVar('login', XOBJ_DTYPE_STRING, '', true, 10);
+        $this->initVar('passwd', XOBJ_DTYPE_STRING, '', true, 10);
+        $this->initVar('extrainfo', XOBJ_DTYPE_TEXT, '', true);
+        $initVars=$this->mVars;
+    }
 
-	function loadBanner()
-	{
-		if ($this->_mBannersLoadedFlag == false) {
-			$handler =& xoops_getmodulehandler('banner', 'legacyRender');
-			$this->mBanners =& $handler->getObjects(new Criteria('cid', $this->get('cid')));
-			$this->_mBannersLoadedFlag = true;
-		}
-	}
+    public function loadBanner()
+    {
+        if ($this->_mBannersLoadedFlag == false) {
+            $handler =& xoops_getmodulehandler('banner', 'legacyRender');
+            $this->mBanners =& $handler->getObjects(new Criteria('cid', $this->get('cid')));
+            $this->_mBannersLoadedFlag = true;
+        }
+    }
 
-	function loadBannerCount()
-	{
-		if ($this->_mBannerCountLoadedFlag == false) {
-			$handler =& xoops_getmodulehandler('banner', 'legacyRender');
-			$this->mBannerCount = $handler->getCount(new Criteria('cid', $this->get('cid')));
-			$this->_mBannerCountLoadedFlag = true;
-		}
-	}
+    public function loadBannerCount()
+    {
+        if ($this->_mBannerCountLoadedFlag == false) {
+            $handler =& xoops_getmodulehandler('banner', 'legacyRender');
+            $this->mBannerCount = $handler->getCount(new Criteria('cid', $this->get('cid')));
+            $this->_mBannerCountLoadedFlag = true;
+        }
+    }
 
-	function &createBanner()
-	{
-		$handler =& xoops_getmodulehandler('banner', 'legacyRender');
-		$obj =& $handler->create();
-		$obj->set('cid', $this->get('cid'));
-		return $obj;
-	}
+    public function &createBanner()
+    {
+        $handler =& xoops_getmodulehandler('banner', 'legacyRender');
+        $obj =& $handler->create();
+        $obj->set('cid', $this->get('cid'));
+        return $obj;
+    }
 
-	function loadBannerfinish()
-	{
-		if ($this->_mFinishBannersLoadedFlag == false) {
-			$handler =& xoops_getmodulehandler('bannerfinish', 'legacyRender');
-			$this->mFinishBanners =& $handler->getObjects(new Criteria('cid', $this->get('cid')));
-			$this->_mFinishBannersLoadedFlag = true;
-		}
-	}
+    public function loadBannerfinish()
+    {
+        if ($this->_mFinishBannersLoadedFlag == false) {
+            $handler =& xoops_getmodulehandler('bannerfinish', 'legacyRender');
+            $this->mFinishBanners =& $handler->getObjects(new Criteria('cid', $this->get('cid')));
+            $this->_mFinishBannersLoadedFlag = true;
+        }
+    }
 
-	function loadFinishBannerCount()
-	{
-		if ($this->_mFinishBannerCountLoadedFlag == false) {
-			$handler =& xoops_getmodulehandler('bannerfinish', 'legacyRender');
-			$this->mFinishBannerCount = $handler->getCount(new Criteria('cid', $this->get('cid')));
-			$this->_mFinishBannerCountLoadedFlag = true;
-		}
-	}
+    public function loadFinishBannerCount()
+    {
+        if ($this->_mFinishBannerCountLoadedFlag == false) {
+            $handler =& xoops_getmodulehandler('bannerfinish', 'legacyRender');
+            $this->mFinishBannerCount = $handler->getCount(new Criteria('cid', $this->get('cid')));
+            $this->_mFinishBannerCountLoadedFlag = true;
+        }
+    }
 
-	function &createBannerfinish()
-	{
-		$handler =& xoops_getmodulehandler('bannerfinish', 'legacyRender');
-		$obj =& $handler->create();
-		$obj->set('cid', $this->get('cid'));
-		return $obj;
-	}
+    public function &createBannerfinish()
+    {
+        $handler =& xoops_getmodulehandler('bannerfinish', 'legacyRender');
+        $obj =& $handler->create();
+        $obj->set('cid', $this->get('cid'));
+        return $obj;
+    }
 }
 
 class LegacyRenderBannerclientHandler extends XoopsObjectGenericHandler
 {
-	var $mTable = "bannerclient";
-	var $mPrimary = "cid";
-	var $mClass = "LegacyRenderBannerclientObject";
+    public $mTable = "bannerclient";
+    public $mPrimary = "cid";
+    public $mClass = "LegacyRenderBannerclientObject";
 
-	function delete(&$obj)
-	{
-		$handler =& xoops_getmodulehandler('banner', 'legacyRender');
-		$handler->deleteAll(new Criteria('cid', $obj->get('cid')));
-		unset($handler);
-	
-		$handler =& xoops_getmodulehandler('bannerfinish', 'legacyRender');
-		$handler->deleteAll(new Criteria('cid', $obj->get('cid')));
-		unset($handler);
-	
-		return parent::delete($obj);
-	}
+    public function delete(&$obj)
+    {
+        $handler =& xoops_getmodulehandler('banner', 'legacyRender');
+        $handler->deleteAll(new Criteria('cid', $obj->get('cid')));
+        unset($handler);
+    
+        $handler =& xoops_getmodulehandler('bannerfinish', 'legacyRender');
+        $handler->deleteAll(new Criteria('cid', $obj->get('cid')));
+        unset($handler);
+    
+        return parent::delete($obj);
+    }
 }
-
-?>

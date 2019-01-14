@@ -7,4 +7,3 @@ define("_MAIL_SENDMAILNG", "无法给%s发送邮件.");
 define("_MAIL_MAILGOOD", "邮件已发送给%s.");
 define("_MAIL_SENDPMNG", "无法给%s发送个人信息.");
 define("_MAIL_PMGOOD", "个人信息已发送给%s.");
-?>

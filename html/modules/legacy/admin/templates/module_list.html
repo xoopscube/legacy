@@ -63,7 +63,9 @@
     <tr class="<{cycle values='odd,even'}>">
     <{/if}>
       <td class="legacy_list_id"><{$module->getVar('mid')}></td>
-      <td class="legacy_list_image"><img src="<{$xoops_url}>/modules/<{$module->getVar('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->getVar('name')}>" /><br />
+      <td class="legacy_list_image">
+        <{if $module->getVar('hasadmin')}><a href="<{$xoops_url}>/modules/<{$module->getVar('dirname')}>/<{if $module->modinfo.adminindex}><{$module->modinfo.adminindex}><{else}>admin/<{/if}>"><{/if}><img src="<{$xoops_url}>/modules/<{$module->getVar('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->getVar('name')}>" /><{if $module->getVar('hasadmin')}></a><{/if}>
+        <br />
         <input type="text" size="24" name="name[<{$module->getVar('mid')}>]" value="<{$module->getVar('name')}>" /></td>
       <td class="legacy_list_order">
         <{if $module->hasNeedUpdate()}>

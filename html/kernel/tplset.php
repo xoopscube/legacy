@@ -29,26 +29,26 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 if (!defined('XOOPS_ROOT_PATH')) {
-	exit();
+    exit();
 }
 class XoopsTplset extends XoopsObject
 {
 
-	function XoopsTplset()
-	{
-		static $initVars;
-		if (isset($initVars)) {
-			$this->vars = $initVars;
-			return;
-		}
-		$this->XoopsObject();
-		$this->initVar('tplset_id', XOBJ_DTYPE_INT, null, false);
-		$this->initVar('tplset_name', XOBJ_DTYPE_OTHER, null, false);
-		$this->initVar('tplset_desc', XOBJ_DTYPE_TXTBOX, null, false, 255);
-		$this->initVar('tplset_credits', XOBJ_DTYPE_TXTAREA, null, false);
-		$this->initVar('tplset_created', XOBJ_DTYPE_INT, 0, false);
-		$initVars = $this->vars;
-	}
+    public function XoopsTplset()
+    {
+        static $initVars;
+        if (isset($initVars)) {
+            $this->vars = $initVars;
+            return;
+        }
+        $this->XoopsObject();
+        $this->initVar('tplset_id', XOBJ_DTYPE_INT, null, false);
+        $this->initVar('tplset_name', XOBJ_DTYPE_OTHER, null, false);
+        $this->initVar('tplset_desc', XOBJ_DTYPE_TXTBOX, null, false, 255);
+        $this->initVar('tplset_credits', XOBJ_DTYPE_TXTAREA, null, false);
+        $this->initVar('tplset_created', XOBJ_DTYPE_INT, 0, false);
+        $initVars = $this->vars;
+    }
 }
 
 /**
@@ -63,7 +63,7 @@ class XoopsTplset extends XoopsObject
 class XoopsTplsetHandler extends XoopsObjectHandler
 {
 
-    function &create($isNew = true)
+    public function &create($isNew = true)
     {
         $tplset =new XoopsTplset();
         if ($isNew) {
@@ -72,7 +72,7 @@ class XoopsTplsetHandler extends XoopsObjectHandler
         return $tplset;
     }
 
-    function &get($id)
+    public function &get($id)
     {
         $ret = false;
         $id = (int)$id;
@@ -83,14 +83,14 @@ class XoopsTplsetHandler extends XoopsObjectHandler
                 if ($numrows == 1) {
                     $tplset = new XoopsTplset();
                     $tplset->assignVars($this->db->fetchArray($result));
-                        $ret =& $tplset;
+                    $ret =& $tplset;
                 }
             }
         }
         return $ret;
     }
 
-    function &getByName($tplset_name)
+    public function &getByName($tplset_name)
     {
         $ret = false;
         $tplset_name = trim($tplset_name);
@@ -99,16 +99,16 @@ class XoopsTplsetHandler extends XoopsObjectHandler
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
                 if ($numrows == 1) {
-                        $tplset =new XoopsTplset();
+                    $tplset =new XoopsTplset();
                     $tplset->assignVars($this->db->fetchArray($result));
-                        $ret =& $tplset;
+                    $ret =& $tplset;
                 }
             }
         }
         return $ret;
     }
 
-    function insert(&$tplset)
+    public function insert(&$tplset)
     {
         if (strtolower(get_class($tplset)) != 'xoopstplset') {
             return false;
@@ -134,11 +134,11 @@ class XoopsTplsetHandler extends XoopsObjectHandler
         if (empty($tplset_id)) {
             $tplset_id = $this->db->getInsertId();
         }
-		$tplset->assignVar('tplset_id', $tplset_id);
+        $tplset->assignVar('tplset_id', $tplset_id);
         return true;
     }
 
-    function delete(&$tplset)
+    public function delete(&$tplset)
     {
         if (strtolower(get_class($tplset)) != 'xoopstplset') {
             return false;
@@ -152,7 +152,7 @@ class XoopsTplsetHandler extends XoopsObjectHandler
         return true;
     }
 
-    function &getObjects($criteria = null, $id_as_key = false)
+    public function &getObjects($criteria = null, $id_as_key = false)
     {
         $ret = array();
         $limit = $start = 0;
@@ -180,7 +180,7 @@ class XoopsTplsetHandler extends XoopsObjectHandler
     }
 
 
-    function getCount($criteria = null)
+    public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('tplset');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -193,15 +193,14 @@ class XoopsTplsetHandler extends XoopsObjectHandler
         return $count;
     }
 
-    function &getList($criteria = null)
-	{
+    public function &getList($criteria = null)
+    {
         $ret = array();
-		$tplsets =& $this->getObjects($criteria, true);
-		foreach ($tplsets as $tpl) {
-			$name = $tpl->getVar('tplset_name');
+        $tplsets =& $this->getObjects($criteria, true);
+        foreach ($tplsets as $tpl) {
+            $name = $tpl->getVar('tplset_name');
             $ret[$name] = $name;
         }
-		return $ret;
-	}
+        return $ret;
+    }
 }
-?>

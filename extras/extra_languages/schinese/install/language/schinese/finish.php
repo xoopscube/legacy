@@ -11,4 +11,3 @@ $content ="<h3><u>准备进入 XOOPS Cube 简体中文版安装设定程序 第二阶段</u></h3>
 
 <u><b>支援</b></u>
 <p>如果有使用上的问题请访问XOOPS Cube支援站</b></u><p>请按<a href='http://www.xoopscube.org/' target='_blank'>XOOPS Cube</a>或<a href='http://www.xoopscube.tw/' target='_blank'>XOOPS Cube 繁体中文支援站</a></p>";
-?>

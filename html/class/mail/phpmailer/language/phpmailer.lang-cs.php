@@ -1,23 +1,25 @@
 <?php
 /**
- * PHPMailer language file.  
- * Czech Version
+ * Czech PHPMailer language file: refer to English translation for definitive list
+ * @package PHPMailer
  */
 
-$PHPMAILER_LANG = array();
-
-$PHPMAILER_LANG["provide_address"] = 'MusÌte zadat nejmÈnÏ jednu ' .
-                                     'adresu p¯Ìjemce elektronickÈ poöty.';
-$PHPMAILER_LANG["mailer_not_supported"] = ' mailer nenÌ podporov·n.';
-$PHPMAILER_LANG["execute"] = 'Nepoda¯ilo se provÈst: ';
-$PHPMAILER_LANG["instantiate"] = 'Nepoda¯ilo se inicializovat poötovnÌ funkce.';
-$PHPMAILER_LANG["authenticate"] = 'Chyba SMTP: Nepoda¯ilo se provÈst autentifikaci.';
-$PHPMAILER_LANG["from_failed"] = 'N·sledujÌcÌ adresa odesÌlatele je chybn·: ';
-$PHPMAILER_LANG["recipients_failed"] = 'Chyba SMTP : N·sledujÌcÌ ' .
-                                       'p¯Ìjemci jsou chybnÌ: ';
-$PHPMAILER_LANG["data_not_accepted"] = 'Chyba SMTP: Data nebyla p¯ijata.';
-$PHPMAILER_LANG["connect_host"] = 'Chyba SMTP: Nepoda¯ilo se p¯ipojit k SMTP serveru.';
-$PHPMAILER_LANG["file_access"] = 'NenÌ p¯Ìstup k souboru: ';
-$PHPMAILER_LANG["file_open"] = 'Chyba souboru: Nepoda¯ilo se otev¯Ìt soubor: ';
-$PHPMAILER_LANG["encoding"] = 'Nezn·mÈ kÛdov·nÌ: ';
-?>
+$PHPMAILER_LANG['authenticate']         = 'Chyba SMTP: Autentizace selhala.';
+$PHPMAILER_LANG['connect_host']         = 'Chyba SMTP: Nelze nav√°zat spojen√≠ se SMTP serverem.';
+$PHPMAILER_LANG['data_not_accepted']    = 'Chyba SMTP: Data nebyla p≈ôijata.';
+$PHPMAILER_LANG['empty_message']        = 'Pr√°zdn√© tƒõlo zpr√°vy';
+$PHPMAILER_LANG['encoding']             = 'Nezn√°m√© k√≥dov√°n√≠: ';
+$PHPMAILER_LANG['execute']              = 'Nelze prov√©st: ';
+$PHPMAILER_LANG['file_access']          = 'Nelze z√≠skat p≈ô√≠stup k souboru: ';
+$PHPMAILER_LANG['file_open']            = 'Chyba souboru: Nelze otev≈ô√≠t soubor pro ƒçten√≠: ';
+$PHPMAILER_LANG['from_failed']          = 'N√°sleduj√≠c√≠ adresa odes√≠latele je nespr√°vn√°: ';
+$PHPMAILER_LANG['instantiate']          = 'Nelze vytvo≈ôit instanci emailov√© funkce.';
+$PHPMAILER_LANG['invalid_address']      = 'Neplatn√° adresa: ';
+$PHPMAILER_LANG['mailer_not_supported'] = ' mailer nen√≠ podporov√°n.';
+$PHPMAILER_LANG['provide_address']      = 'Mus√≠te zadat alespo≈à jednu emailovou adresu p≈ô√≠jemce.';
+$PHPMAILER_LANG['recipients_failed']    = 'Chyba SMTP: N√°sleduj√≠c√≠ adresy p≈ô√≠jemc≈Ø nejsou spr√°vnƒõ: ';
+$PHPMAILER_LANG['signing']              = 'Chyba p≈ôihla≈°ov√°n√≠: ';
+$PHPMAILER_LANG['smtp_connect_failed']  = 'SMTP Connect() selhal.';
+$PHPMAILER_LANG['smtp_error']           = 'Chyba SMTP serveru: ';
+$PHPMAILER_LANG['variable_set']         = 'Nelze nastavit nebo zmƒõnit promƒõnnou: ';
+//$PHPMAILER_LANG['extension_missing']    = 'Extension missing: ';

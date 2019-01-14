@@ -5,9 +5,8 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
-	exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
 }
 
 /**
@@ -16,17 +15,16 @@ if(!defined('XOOPS_ROOT_PATH'))
 **/
 interface Legacy_iCommentClientDelegate
 {
-	/**
-	 * getClientList	Legacy_CommentClient.{dirname}.GetClientList
-	 *
-	 * @param mixed[]	&$list
-	 *  string	$list[]['dirname']	client module's dirname
-	 *  string	$list[]['dataname']	client module's dataname(tablename)
-	 *  string	$list[]['access_controller']
-	 * @param string	$cDirname	comment module's dirname
-	 *
-	 * @return	void
-	 */ 
-	public static function getClientList(/*** mixed[] ***/ &$list, /*** string ***/ $cDirname);
+    /**
+     * getClientList	Legacy_CommentClient.{dirname}.GetClientList
+     *
+     * @param mixed[]	&$list
+     *  string	$list[]['dirname']	client module's dirname
+     *  string	$list[]['dataname']	client module's dataname(tablename)
+     *  string	$list[]['access_controller']
+     * @param string	$cDirname	comment module's dirname
+     *
+     * @return	void
+     */
+    public static function getClientList(/*** mixed[] ***/ &$list, /*** string ***/ $cDirname);
 }
-?>

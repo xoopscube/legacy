@@ -42,4 +42,3 @@ XOOPS Cube 의 필수모듈들을 설치하기 위해서 제2단계 작업을 실행하실 필요가 있습니
 <p><a href='http://xoopscube.sourceforge.net/' rel='external'>XOOPS Cube Project</a> 또는 
 <a href='http://www.xoops.ne.kr/xoopscube/' rel='external'>XOOPS Cube 한국어지원사이트</a>를 방문해 주세요!</p>
 ";
-?>

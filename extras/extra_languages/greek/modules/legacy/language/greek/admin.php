@@ -360,5 +360,3 @@ define('_MD_AM_USEMYSESS', "Use custom session");
 define('_MD_AM_USEMYSESSDSC', "Select yes to customise session related values.");
 define('_MD_AM_USESSL', "Use SSL for login?");
 define('_MD_AM_YES', "Yes");
-
-?>

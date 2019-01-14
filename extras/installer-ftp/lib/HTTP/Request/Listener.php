@@ -54,20 +54,20 @@
  * @author      Alexey Borzov <avb@php.net>
  * @version     Release: 1.4.3
  */
-class HTTP_Request_Listener 
+class HTTP_Request_Listener
 {
-   /**
+    /**
     * A listener's identifier
     * @var string
     */
-    var $_id;
+    public $_id;
 
    /**
     * Constructor, sets the object's identifier
     *
     * @access public
     */
-    function HTTP_Request_Listener()
+    public function HTTP_Request_Listener()
     {
         $this->_id = md5(uniqid('http_request_', 1));
     }
@@ -79,7 +79,7 @@ class HTTP_Request_Listener
     * @access public
     * @return string
     */
-    function getId()
+    public function getId()
     {
         return $this->_id;
     }
@@ -94,7 +94,7 @@ class HTTP_Request_Listener
     * @param    mixed   Additional data
     * @abstract
     */
-    function update(&$subject, $event, $data = null)
+    public function update(&$subject, $event, $data = null)
     {
         echo "Notified of event: '$event'\n";
         if (null !== $data) {
@@ -103,4 +103,3 @@ class HTTP_Request_Listener
         }
     }
 }
-?>

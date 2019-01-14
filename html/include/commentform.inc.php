@@ -32,7 +32,7 @@ include_once XOOPS_ROOT_PATH."/class/xoopslists.php";
 include XOOPS_ROOT_PATH."/class/xoopsformloader.php";
 $cform = new XoopsThemeForm(_CM_POSTCOMMENT, "commentform", "postcomment.php");
 if (!preg_match("/^re:/i", $subject)) {
-    $subject = "Re: ".xoops_substr($subject,0,56);
+    $subject = "Re: ".xoops_substr($subject, 0, 56);
 }
 $cform->addElement(new XoopsFormText(_CM_TITLE, 'subject', 50, 255, $subject), true);
 $icons_radio = new XoopsFormRadio(_MESSAGEICON, 'icon', $icon);
@@ -42,7 +42,7 @@ foreach ($subject_icons as $iconfile) {
 }
 $cform->addElement($icons_radio);
 $cform->addElement(new XoopsFormDhtmlTextArea(_CM_MESSAGE, 'message', $message, 10, 50), true);
-$option_tray = new XoopsFormElementTray(_OPTIONS,'<br />');
+$option_tray = new XoopsFormElementTray(_OPTIONS, '<br />');
 if ($xoopsUser) {
     if ($xoopsConfig['anonpost'] == 1) {
         $noname_checkbox = new XoopsFormCheckBox('', 'noname', $noname);
@@ -64,9 +64,8 @@ $cform->addElement(new XoopsFormHidden('pid', (int)$pid));
 $cform->addElement(new XoopsFormHidden('comment_id', (int)$comment_id));
 $cform->addElement(new XoopsFormHidden('item_id', (int)$item_id));
 $cform->addElement(new XoopsFormHidden('order', (int)$order));
-$button_tray = new XoopsFormElementTray('' ,'&nbsp;');
+$button_tray = new XoopsFormElementTray('', '&nbsp;');
 $button_tray->addElement(new XoopsFormButton('', 'preview', _PREVIEW, 'submit'));
 $button_tray->addElement(new XoopsFormButton('', 'post', _CM_POSTCOMMENT, 'submit'));
 $cform->addElement($button_tray);
 $cform->display();
-?>

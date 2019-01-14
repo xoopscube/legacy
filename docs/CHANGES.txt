@@ -3,28 +3,181 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 
 ----------------------------------------
-2012/07/XX: Package Revision 2.2.1
+2014/04/03: Package Revision 2.2.3RC1
+----------------------------------------
+[Issues]
+#79 lecat image count is wrong
+#81 [core] add config data type "encrypt"
+#82 [core,legacy] with out preg `e` modifier
+#83 [core] support MySQLi
+#84 LegacyRender speedup fix cause the problem
+#85 problem of `message` language catalog
+#86 lib Smarty is old (newly is 2.6.28)
+#87 [kernel:object] Only variable references should be returned
+#88 problem of admin template override
+#89 fix template override on admin panel
+#90 [installer] lang select only utf8 & en on PHP>=5.4
+#91 [installer] autologin by XHR on install_insertData
+#92 [legacy:TextFilter] support HTMLPurifier >= 4.4.0
+#93 [user] delegate `Legacy.Event.RegistUser.Validate`
+#94 [user] add delegate ...RegistUser.SetValidators
+#95 [lib] HTML Purifier up to 4.6.0
+#96 XoopsFormDhtmlTextArea: problem of `id` check
+#98 Fix Bug: missing "&" for Legacy_iTagDelegate::setTags() argument "$result"
+#99 [core] tune up resource.db
+#100 Cool URI expand
+
+[library]
+update SWFUpload to 2.2.0.1(secure-swfupload)
+
+[Staff]
+- Kilica
+- nao-pon
+
+----------------------------------------
+2013/08/06: Package Revision 2.2.2
+----------------------------------------
+[Issues]
+#57 permit break in delegate call chain
+#77 Fix Bug for Lecat CatEditAction
+#78 lecat template bug
+
+[Staff]
+- Kilica
+- nao-pon
+
+----------------------------------------
+2013/05/13: Package Revision 2.2.2 RC2
+----------------------------------------
+[Issues]
+#76 Static keywords backward compatibility.
+
+[Staff]
+- Kilica
+- Naao
+- nao-pon
+
+----------------------------------------
+2013/04/28: Package Revision 2.2.2 RC1
+----------------------------------------
+[Issues]
+#65 Set uploads folder when image file exist there
+#72 Add message module's personal settings to preferences for default.
+#74 Cagtegory should have image file
+#44 refactoring for user module
+#28 module admin anchor error after module install.
+#68 support editor delegate with xoopsform dhtmltarea
+#70 Added block module link filter to BlockList page.
+#63 [profile] date DATATYPE allow more wide range
+#59 add Pref formtype radio, checkbox & group_checkbox
+#71 fix compatibility of criteria "IN", "NOT IN"
+#62 Fix Bug #3492904 - Error Message after Profile edit
+#61 [user] fix csv data import function
+#48 fix send mail with safe mode (phpmailer patch)
+#37 configurable "Template resource"
+#69 Added block module link filter to BlockList page.
+#66 correction of error_reporting for PHP >= 5.4
+#50 XoopsX/legacy enhanced profile module
+#58 re-fix xoopscube/legacy#24
+#55 refs #54 #55 fix Tar Dawnload Bug.
+#54 Tar Download Bug
+#52 User Profile Bug.
+#53 refs #52 Fix User Profile Bug.
+#24 legacy: add some delegate points into module action
+#32 legacy: add form type "radio" & "radio_br"
+#49 XoopsX/legacy issue/32
+#42 legacy: use html editor on customblock edit
+#41 legacy: fix, textarea class attr is not given
+#27 fix _cachedModule problem
+
+[Staff]
+- bluemooninc
+- Kilica
+- Naao
+- nao-pon
+- suin
+- xoopserver
+
+
+----------------------------------------
+2012/10/**: Package Revision 2.2.2 Beta1
+----------------------------------------
+Move repository to github xoopscube/legacy from this version.
+https://github.com/xoopscube/legacy
+
+[Issues]
+#43 lib: Smarty up to 2.6.27
+#38 Workflow Bugs bug
+#33 Clean up Admin theme image files.
+#31 About admin panel form.
+#30 NOT IN criteria render bug
+#29 module admin anchor error after module install.
+#26 fix xoops_gethandler() for internal class in cube_legacy 2.2.1
+#25 legacy: load trust side language file
+#23 legacy: admin theme onload func switch to onready
+#22 Change xc_pack2011.png
+#21 Remove and rename install folder automatially.
+#20 Core pack
+#19 pull please
+#18 xoops_gethandler('SingleToken') fail to get handler bug
+#17 zipdownloader.php error bug
+#15 Fix doc comment of XCube_DelegateUtils::call()
+#14 Add delegate point after user activation done
+#9 extra-lang-japanese-install fix MOJIBAKE
+#8 AbstractClientObjectHandler fixation is wrong. bug
+#7 Fix spelling
+#6 [users] User avatar is gone when just submit form without any uploads
+#5 [users] Support emails having plus symbol at lost password
+#4 Add a link to module admin panel on "module installation success"
+#3 Installer enhancement
+#2 I made Install folder remover
+#1 Browser reports security warnings because of referencing HTTP resources in HTTPS context
+
+[Staff]
+- argon358
+- bluemooninc
+- Kilica
+- Marijuana
+- Naao
+- nao-pon
+- nobunobu
+- nbuy
+- suin
+- xoopserver
+
+
+----------------------------------------
+2012/07/28: Package Revision 2.2.1
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
+- Fix Bug #3365492 - when xoops2->XCL2 update teable layout not chage
 - Fix Bug #3531835 - Bug in ImageFilterForm.class.php
 - Fix Bug #3539162 - installer reload makes jump back to first page
 - Fix Bug #3540381 - Typo "$reverse" in Legacy_RenderSystem
 - Fix Bug #3545043 - Bad request handling at EventFunctions
 
+[Other Changes/Enhancements]
+- Move the code repository to github
+- Update portuguese/pt_utf8 language files
+- Revert - Fix Bug #3470535 - Smarty cache directory
 
 [Staff]
 - Bluemooninc
 - hypweb
 - Kilica
 - lumbago
+- Marijuana
 - Mikhail Miguel
 - Naao
-
+- Nao-pon
+- nobunobu
+- xoopserver
 
 ----------------------------------------
 2012/06/05: Package Revision 2.2.1 Beta3
 ----------------------------------------
 [Bug Fix - From Bug Tracker]
+- Fix Bug #3461991 - Image manager cannot delete files
 - Fix Bug #3470535 - Smarty cache directory
 - Fix Bug #3470792 - download the template, the extra null at the end of defect
 - Fix Bug #3492904 - Error Message after Profile edit
@@ -41,6 +194,7 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 - Fix Bug #3502519 - Array PropertyForm null value
 
 [Staff]
+- bindi
 - Bluemooninc
 - Domifara
 - Kilica

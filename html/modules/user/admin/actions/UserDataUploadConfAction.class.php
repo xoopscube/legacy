@@ -4,132 +4,149 @@
  * @version $Id: UserDataUploadAction.class.php,v 1.1 2007/05/15 02:34:42 minahito Exp $
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 require_once dirname(__FILE__)."/UserDataUploadAction.class.php";
 
 class User_UserDataUploadConfAction extends User_UserDataUploadAction
 {
-	/// ƒAƒbƒv‚³‚ê‚½CSVƒtƒ@ƒCƒ‹‚ðo—Í‚·‚é
-	function execute(&$controller, &$xoopsUser)
-	{
-	
-		/// csv file check
-		if (isset($_FILES['user_csv_file']) &&
-			$_FILES['user_csv_file']['error'] == 0){
-			return USER_FRAME_VIEW_SUCCESS;
-		}
-		return $this->getDefaultView($controller, $xoopsUser);
-	}
-	
-	
-	/// Šm”F‰æ–Ê‚ð•\Ž¦
-	function executeViewSuccess(&$controller, &$xoopsUser, &$render)
-	{
-		/// success
-		$render->setTemplateName("user_data_upload_conf.html");
+    /// ã‚¢ãƒƒãƒ—ã•ã‚ŒãŸCSVãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‡ºåŠ›ã™ã‚‹
+    public function execute(&$controller, &$xoopsUser)
+    {
+    
+        /// csv file check
+        if (isset($_FILES['user_csv_file']) &&
+            $_FILES['user_csv_file']['error'] == 0) {
+            return USER_FRAME_VIEW_SUCCESS;
+        }
+        return $this->getDefaultView($controller, $xoopsUser);
+    }
+    
+    
+    /// ç¢ºèªç”»é¢ã‚’è¡¨ç¤º
+    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
+    {
+        /// success
+        $render->setTemplateName("user_data_upload_conf.html");
 
-		// fields
-		$fields = array();
-		$user_handler =& $this->_getHandler();
-		$user_tmp = $user_handler->create();
-		$user_key = array_keys($user_tmp->gets());
-		foreach ($user_key as $key){
-			$_f = '_MD_USER_LANG_'.strtoupper($key);
-			$fields[] = defined($_f) ? constant($_f) : $key ;
-		}
-		$render->setAttribute('user_fields', $fields);
+        // fields
+        $fields = array();
+        $user_handler =& $this->_getHandler();
+        $user_tmp = $user_handler->create();
+        $user_key = array_keys($user_tmp->gets());
+        foreach ($user_key as $key) {
+            $_f = '_MD_USER_LANG_'.strtoupper($key);
+            $fields[] = defined($_f) ? constant($_f) : $key ;
+        }
+        $render->setAttribute('user_fields', $fields);
 
-		/// csv data
-		$csv_data = array();
-		$csv_file = $_FILES['user_csv_file']['tmp_name'];
-		$csv_encoding = '';
-		$user_h =& $this->_getHandler();
-		if (function_exists('mb_detect_encoding')){
-			$_csv_contents = implode('', file($csv_file));
-			$csv_encoding = mb_detect_encoding($_csv_contents);
-		}
+        /// csv data
+        $csv_data = array();
+        $csv_file = $_FILES['user_csv_file']['tmp_name'];
+        $csv_encoding = '';
+        $user_h =& $this->_getHandler();
+        if (function_exists('mb_detect_encoding')) {
+            $_csv_contents = implode('', file($csv_file));
+            $csv_encoding = mb_detect_encoding($_csv_contents);
+        }
 
-		foreach(file($csv_file) as $n=>$_data_line){
-			if ($csv_encoding){
-				mb_convert_variables(_CHARSET, $csv_encoding, $_data_line);
-			}
-			$_data = $this->explodeCSV($_data_line);
-			if (!$n || !implode('', $_data)){
-				continue;
-			}
-			$user_data = array(
-				'error'  => false,
-				'update' => 0,
-				'is_new' => true,
-				'value'  => array(),
-				);
-			if (count($_data) != count($user_key)){
-				$user_data['error'] = true;
-			}
-			if ($_data[0]){
-				$user =& $user_h->get($_data[0]);
-				if ($user){
-					for ($i=0; $i<count($user_key); $i++){
-						$csv_value = $_data[$i];
-						$user_value = $user->get($user_key[$i]);
-						$update = $user_value != $csv_value;
-						 switch ($user_key[$i]){
-						  case 'user_regdate':
-						  case 'last_login':
-							$update = ($user_value || $csv_value) && strcmp(formatTimestamp($user_value, 'Y/n/j H:i'),  $csv_value)!==0;
-							 if ($update){
-							 }
-							break;
-						  case 'pass':
-							if (strlen($csv_value)!=32){
-								$update = $user_value != md5($csv_value);
-								$csv_value = md5($csv_value);
-							}
-						  default:
-						}
-						$user_data['update'] = $user_data['update'] | $update;
-						$user_data['value'][] = array(
-							'var'    => $csv_value,
-							'update' => $update,
-							);
-					}
-					$user_data['is_new'] = false;
-				}
-			}
-			if ($user_data['is_new'] == true){
-				for ($i=0; $i<count($user_key); $i++){
-					$var = isset($_data[$i]) && $_data[$i]!=='' ? $_data[$i] : $user_tmp->get($user_key[$i]);
-					switch ($user_key[$i]){
-					  case 'user_regdate':
-					  case 'last_login':
-						$var = formatTimestamp($var, 'Y/n/j H:i');
-						break;
-					}					
-					$user_data['value'][] = array(
-						'var'    => $var,
-						'update' => 0);
-				}
-			}
-			$csv_data[] = $user_data;
-		}
-		
-		$render->setAttribute('csv_data', $csv_data);
-		$_SESSION['user_csv_upload_data'] = $csv_data;
-	}
-	
-	
-	
+        if (($handle = fopen($csv_file, 'r')) !== false) {
+            $current_locale = false;
+            if ($csv_encoding === 'UTF-8') {
+                $current_locale = setlocale(LC_ALL, '0');
+                setlocale(LC_ALL, 'ja_JP.UTF-8');
+                $bom = fread($handle, 3); // remove BOM
+                if (ord($bom[0]) !== 0xef || ord($bom[1]) !== 0xbb || ord($bom[2]) !== 0xbf) {
+                    rewind($handle, 0); // BOM not found then do rewind
+                }
+            }
+            $n = 0;
+            while (($_data = fgetcsv($handle)) !== false) {
+                if ($csv_encoding) {
+                    mb_convert_variables(_CHARSET, $csv_encoding, $_data);
+                }
+                if (!$n++ || !implode('', $_data)) {
+                    continue;
+                }
+                $user_data = array(
+                    'error'  => false,
+                    'update' => 0,
+                    'is_new' => true,
+                    'value'  => array(),
+                    );
+                if (count($_data) != count($user_key)) {
+                    $user_data['error'] = true;
+                }
+                if ($_data[0]) {
+                    $user =& $user_h->get($_data[0]);
+                    if ($user) {
+                        for ($i=0; $i<count($user_key); $i++) {
+                            $csv_value = $_data[$i];
+                            $user_value = $user->get($user_key[$i]);
+                            $update = $user_value != $csv_value;
+                            switch ($user_key[$i]) {
+                              case 'user_regdate':
+                              case 'last_login':
+                                $update = ($user_value || $csv_value) && strcmp(formatTimestamp($user_value, 'Y/n/j H:i'),  $csv_value)!==0;
+                                 if ($update) {
+                                 }
+                                break;
+                              case 'pass':
+                                if (strlen($csv_value) < 32) {
+                                    $csv_value = User_Utils::encryptPassword($csv_value);
+                                    $update = $user_value !== $csv_value;
+                                }
+                              default:
+                            }
+                            $user_data['update'] = $user_data['update'] | $update;
+                            $user_data['value'][] = array(
+                                'var'    => $csv_value,
+                                'update' => $update,
+                                );
+                        }
+                        $user_data['is_new'] = false;
+                    }
+                }
+                if ($user_data['is_new'] == true) {
+                    for ($i=0; $i<count($user_key); $i++) {
+                        $var = isset($_data[$i]) && $_data[$i]!=='' ? $_data[$i] : $user_tmp->get($user_key[$i]);
+                        switch ($user_key[$i]) {
+                          case 'user_regdate':
+                          case 'last_login':
+                            $var = formatTimestamp($var, 'Y/n/j H:i');
+                            break;
+                        }
+                        $user_data['value'][] = array(
+                            'var'    => $var,
+                            'update' => 0);
+                    }
+                }
+                $csv_data[] = $user_data;
+            }
+            if ($current_locale) {
+                setlocale(LC_ALL, $current_locale);
+            }
+            fclose($handle);
+        }
+        
+        $render->setAttribute('csv_data', $csv_data);
+        $_SESSION['user_csv_upload_data'] = $csv_data;
+    }
+    
+    
+    
     // {{{ explodeCSV(Ethna_Util.php)
     /**
-     *  CSVŒ`Ž®‚Ì•¶Žš—ñ‚ð”z—ñ‚É•ªŠ„‚·‚é
+     *  CSVå½¢å¼ã®æ–‡å­—åˆ—ã‚’é…åˆ—ã«åˆ†å‰²ã™ã‚‹
      *
      *  @access public
-     *  @param  string  $csv        CSVŒ`Ž®‚Ì•¶Žš—ñ(1s•ª)
-     *  @param  string  $delimiter  ƒtƒB[ƒ‹ƒh‚Ì‹æØ‚è•¶Žš
-     *  @return mixed   (array):•ªŠ„Œ‹‰Ê Ethna_Error:ƒGƒ‰[(sŒp‘±)
+     *  @param  string  $csv        CSVå½¢å¼ã®æ–‡å­—åˆ—(1è¡Œåˆ†)
+     *  @param  string  $delimiter  ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®åŒºåˆ‡ã‚Šæ–‡å­—
+     *  @return mixed   (array):åˆ†å‰²çµæžœ Ethna_Error:ã‚¨ãƒ©ãƒ¼(è¡Œç¶™ç¶š)
      */
-    function explodeCSV($csv, $delimiter = ",")
+    public function explodeCSV($csv, $delimiter = ",")
     {
         $space_list = '';
         foreach (array(" ", "\t", "\r", "\n") as $c) {
@@ -191,7 +208,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
                             $field .= $line_end;
 
                             // request one more line
-//                          return Ethna::raiseNotice('CSV•ªŠ„ƒGƒ‰[(sŒp‘±)', E_UTIL_CSV_CONTINUE);
+//                          return Ethna::raiseNotice('CSVåˆ†å‰²ã‚¨ãƒ©ãƒ¼(è¡Œç¶™ç¶š)', E_UTIL_CSV_CONTINUE);
                         }
                     }
                 }
@@ -216,5 +233,3 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
     }
     // }}}
 }
-
-?>

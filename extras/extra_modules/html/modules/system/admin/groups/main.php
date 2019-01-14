@@ -29,14 +29,14 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid()) ) {
+if (!is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid())) {
     exit("Access Denied");
 } else {
     include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php';
     include_once XOOPS_ROOT_PATH."/modules/system/admin/groups/groups.php";
     $op = "display";
 
-    if ( isset($_GET['op']) ) {
+    if (isset($_GET['op'])) {
         if ($_GET['op'] == "modify" || $_GET['op'] == "del") {
             $op = $_GET['op'];
             $g_id = $_GET['g_id'];
@@ -46,7 +46,7 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
     }
 
     // from finduser section
-    if ( !empty($_POST['memberslist_id']) && is_array($_POST['memberslist_id']) ) {
+    if (!empty($_POST['memberslist_id']) && is_array($_POST['memberslist_id'])) {
         $op = "addUser";
         $_POST['uids'] = $_POST['memberslist_id'];
     }
@@ -57,8 +57,9 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
         modifyGroup($g_id);
         break;
     case "update":
-		if(!XoopsMultiTokenHandler::quickValidate('groups_update'))
-			system_groups_error("Ticket Error");
+        if (!XoopsMultiTokenHandler::quickValidate('groups_update')) {
+            system_groups_error("Ticket Error");
+        }
 
         $g_id = !empty($_POST['g_id']) ? intval($_POST['g_id']) : 0;
         if ($g_id <= 0) {
@@ -131,12 +132,13 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
                 $blockperm->setVar('gperm_modid', 1);
                 $gperm_handler->insert($blockperm);
             }
-            redirect_header("admin.php?fct=groups&amp;op=adminMain",1,_AM_DBUPDATED);
+            redirect_header("admin.php?fct=groups&amp;op=adminMain", 1, _AM_DBUPDATED);
         }
         break;
     case "add":
-		if(!XoopsMultiTokenHandler::quickValidate('groups_add'))
-			system_groups_error("Ticket Error");
+        if (!XoopsMultiTokenHandler::quickValidate('groups_add')) {
+            system_groups_error("Ticket Error");
+        }
 
         $name = !empty($_POST['name']) ? trim($_POST['name']) : '';
         if ($name == '') {
@@ -199,19 +201,20 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
                 $blockperm->setVar('gperm_modid', 1);
                 $gperm_handler->insert($blockperm);
             }
-            redirect_header("admin.php?fct=groups&amp;op=adminMain",1,_AM_DBUPDATED);
+            redirect_header("admin.php?fct=groups&amp;op=adminMain", 1, _AM_DBUPDATED);
         }
         break;
     case "del":
         xoops_cp_header();
         $member_handler =& xoops_gethandler('member');
         $group =& $member_handler->getGroup($g_id);
-        xoops_token_confirm(array('fct' => 'groups', 'op' => 'delConf', 'g_id' => $g_id), 'admin.php', sprintf(_AM_AREUSUREDEL,$group->getVar('name')));
+        xoops_token_confirm(array('fct' => 'groups', 'op' => 'delConf', 'g_id' => $g_id), 'admin.php', sprintf(_AM_AREUSUREDEL, $group->getVar('name')));
         xoops_cp_footer();
         break;
     case "delConf":
-		if(!xoops_confirm_validate())
-			system_groups_error("Ticket Error");
+        if (!xoops_confirm_validate()) {
+            system_groups_error("Ticket Error");
+        }
 
         $g_id = !empty($_POST['g_id']) ? intval($_POST['g_id']) : 0;
         if ($g_id > 0 && !in_array($g_id, array(XOOPS_GROUP_ADMIN, XOOPS_GROUP_USERS, XOOPS_GROUP_ANONYMOUS))) {
@@ -221,38 +224,40 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
             $gperm_handler =& xoops_gethandler('groupperm');
             $gperm_handler->deleteByGroup($g_id);
         }
-        redirect_header("admin.php?fct=groups&amp;op=adminMain",1,_AM_DBUPDATED);
+        redirect_header("admin.php?fct=groups&amp;op=adminMain", 1, _AM_DBUPDATED);
         break;
     case "addUser":
-		if(!XoopsMultiTokenHandler::quickValidate('groups_User'))
-			system_groups_error("Ticket Error");
+        if (!XoopsMultiTokenHandler::quickValidate('groups_User')) {
+            system_groups_error("Ticket Error");
+        }
 
         $member_handler =& xoops_gethandler('member');
         $groupid = intval($_POST['groupid']);
         if ($groupid > 0) {
             $size = count($_POST['uids']);
-            for ( $i = 0; $i < $size; $i++ ) {
+            for ($i = 0; $i < $size; $i++) {
                 $member_handler->addUserToGroup($_POST['groupid'], $_POST['uids'][$i]);
             }
         }
         redirect_header("admin.php?fct=groups&amp;op=modify&amp;g_id=".$groupid, 0, _AM_DBUPDATED);
         break;
     case "delUser":
-		if(!XoopsMultiTokenHandler::quickValidate('groups_User'))
-			system_groups_error("Ticket Error");
+        if (!XoopsMultiTokenHandler::quickValidate('groups_User')) {
+            system_groups_error("Ticket Error");
+        }
 
         $groupid = !empty($_POST['groupid']) ? intval($_POST['groupid']) : 0;
         if ($groupid > 0) {
             $member_handler =& xoops_gethandler('member');
             $memstart = isset($_POST['memstart']) ? intval($_POST['memstart']) : 0;
             if ($groupid == XOOPS_GROUP_ADMIN) {
-                if ($member_handler->getUserCountByGroup($groupid) > count($_POST['uids'])){
+                if ($member_handler->getUserCountByGroup($groupid) > count($_POST['uids'])) {
                     $member_handler->removeUsersFromGroup($groupid, $_POST['uids']);
                 }
             } else {
                 $member_handler->removeUsersFromGroup($groupid, $_POST['uids']);
             }
-            redirect_header('admin.php?fct=groups&amp;op=modify&amp;g_id='.$groupid.'&amp;memstart='.$memstart,0,_AM_DBUPDATED);
+            redirect_header('admin.php?fct=groups&amp;op=modify&amp;g_id='.$groupid.'&amp;memstart='.$memstart, 0, _AM_DBUPDATED);
         }
         break;
     case "display":
@@ -261,4 +266,3 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
         break;
     }
 }
-?>

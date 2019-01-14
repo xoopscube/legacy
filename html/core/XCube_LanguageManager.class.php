@@ -3,8 +3,8 @@
  *
  * @package XCube
  * @version $Id: XCube_LanguageManager.class.php,v 1.4 2008/10/12 04:30:27 minahito Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/>
- * @license http://xoopscube.sourceforge.net/license/bsd_licenses.txt Modified BSD license
+ * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt Modified BSD license
  *
  */
 
@@ -26,178 +26,176 @@
  */
 class XCube_LanguageManager
 {
-	/**
-	 * @access protected
-	 * @var string
-	 */
-	var $mLanguageName;
-	
-	/**
-	 * @access protected
-	 * @var string
-	 */
-    var $mLocaleName;
-	
-	function XCube_LanguageManager()
-	{
-		$this->mLanguageName = $this->getFallbackLanguage();
+    /**
+     * @access protected
+     * @var string
+     */
+    public $mLanguageName;
+    
+    /**
+     * @access protected
+     * @var string
+     */
+    public $mLocaleName;
+    
+    public function XCube_LanguageManager()
+    {
+        $this->mLanguageName = $this->getFallbackLanguage();
         $this->mLocaleName = $this->getFallbackLocale();
-	}
+    }
 
-	/**
-	 * Normally, this member function is called soon, after constructor.
-	 * To follow the base, initialize.
-	 */	
-	function prepare()
-	{
-	}
-	
-	/**
-	 * Set locale name.
-	 * 
-	 * @param string $local locale name
-	 */
-	function setLocale($locale)
-	{
-		$this->mLanguageName = $locale;
-	}
-	
-	/**
-	 * Get locale name.
-	 * 
-	 * @return string  locale name
-	 */
-	function getLocale()
-	{
-		return $this->mLanguageName;
-	}
+    /**
+     * Normally, this member function is called soon, after constructor.
+     * To follow the base, initialize.
+     */
+    public function prepare()
+    {
+    }
+    
+    /**
+     * Set locale name.
+     * 
+     * @param string $local locale name
+     */
+    public function setLocale($locale)
+    {
+        $this->mLanguageName = $locale;
+    }
+    
+    /**
+     * Get locale name.
+     * 
+     * @return string  locale name
+     */
+    public function getLocale()
+    {
+        return $this->mLanguageName;
+    }
 
-	/**
-	 * Set language name.
-	 * 
-	 * @param string $language language name
-	 */
-	function setLanguage($language)
-	{
-		$this->mLanguageName = $language;
-	}
-	
-	/**
-	 * Get language name.
-	 * 
-	 * @return string  language name
-	 */
-	function getLanguage()
-	{
-		return $this->mLanguageName;
-	}
+    /**
+     * Set language name.
+     * 
+     * @param string $language language name
+     */
+    public function setLanguage($language)
+    {
+        $this->mLanguageName = $language;
+    }
+    
+    /**
+     * Get language name.
+     * 
+     * @return string  language name
+     */
+    public function getLanguage()
+    {
+        return $this->mLanguageName;
+    }
 
-	/**
-	 * Load the global message catalog which is defined in the base module.
-	 */
-	function loadGlobalMessageCatalog()
-	{
-	}
-	
-	/**
-	 * Load the module message catalog which is defined in the specified
-	 * module.
-	 * 
-	 * @param string $moduleName A name of module.
-	 */
-	function loadModuleMessageCatalog($moduleName)
-	{
-	}
-	
-	/**
-	 * Load the theme message catalog which is defined in the specified module.
-	 * 
-	 * @param string $themeName A name of theme.
-	 */
-	function loadThemeMessageCatalog($themeName)
-	{
-	}
-	
-	/**
-	 * check the exstence of the specified file in the specified section.
-	 * 
-	 * @access public
-	 * @param string $section  A name of section.
-	 * @param string $filename A name of file
-	 * @return bool
-	 */	
-	function existFile($section, $filename)
-	{
-	}
-	
-	/**
-	 * Return the file path by the specified section and the specified file.
-	 * 
-	 * @access public
-	 * @param string $section  A name of section.
-	 * @param string $filename A name of file
-	 * @return string
-	 */	
-	function getFilepath($section, $filename)
-	{
-	}
+    /**
+     * Load the global message catalog which is defined in the base module.
+     */
+    public function loadGlobalMessageCatalog()
+    {
+    }
+    
+    /**
+     * Load the module message catalog which is defined in the specified
+     * module.
+     * 
+     * @param string $moduleName A name of module.
+     */
+    public function loadModuleMessageCatalog($moduleName)
+    {
+    }
+    
+    /**
+     * Load the theme message catalog which is defined in the specified module.
+     * 
+     * @param string $themeName A name of theme.
+     */
+    public function loadThemeMessageCatalog($themeName)
+    {
+    }
+    
+    /**
+     * check the exstence of the specified file in the specified section.
+     * 
+     * @access public
+     * @param string $section  A name of section.
+     * @param string $filename A name of file
+     * @return bool
+     */
+    public function existFile($section, $filename)
+    {
+    }
+    
+    /**
+     * Return the file path by the specified section and the specified file.
+     * 
+     * @access public
+     * @param string $section  A name of section.
+     * @param string $filename A name of file
+     * @return string
+     */
+    public function getFilepath($section, $filename)
+    {
+    }
 
-	/**
-	 * Get file contents and return it.
-	 * 
-	 * @access public
-	 * @param string $section  A name of section.
-	 * @param string $filename A name of file
-	 * @return string
-	 */	
-	function loadTextFile($section, $filename)
-	{
-	}
+    /**
+     * Get file contents and return it.
+     * 
+     * @access public
+     * @param string $section  A name of section.
+     * @param string $filename A name of file
+     * @return string
+     */
+    public function loadTextFile($section, $filename)
+    {
+    }
 
-	/**
-	 * Return translated message.
-	 * 
-	 * @param  string $word
-	 * @return string
-	 * 
-	 * @note This member function is test.
-	 */	
-	function translate($word)
-	{
-		return $word;
-	}
+    /**
+     * Return translated message.
+     * 
+     * @param  string $word
+     * @return string
+     * 
+     * @note This member function is test.
+     */
+    public function translate($word)
+    {
+        return $word;
+    }
 
-	/**
-	 * Return default language name.
-	 * 
-	 * @access protected
-	 * @return string
-	 */
-	function getFallbackLanguage()
-	{
-		return "eng";
-	}
+    /**
+     * Return default language name.
+     * 
+     * @access protected
+     * @return string
+     */
+    public function getFallbackLanguage()
+    {
+        return "eng";
+    }
 
-	/**
-	 * Return default locale name.
-	 * 
-	 * @access protected
-	 * @return string
-	 */
-	function getFallbackLocale()
-	{
-		return "EG";
-	}
-	
-	function encodeUTF8($str)
-	{
-		return $str;
-	}
+    /**
+     * Return default locale name.
+     * 
+     * @access protected
+     * @return string
+     */
+    public function getFallbackLocale()
+    {
+        return "EG";
+    }
+    
+    public function encodeUTF8($str)
+    {
+        return $str;
+    }
 
-	function decodeUTF8($str)
-	{
-		return $str;
-	}
+    public function decodeUTF8($str)
+    {
+        return $str;
+    }
 }
-
-?>

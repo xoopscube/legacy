@@ -49,6 +49,3 @@ define('_MD_PROFILE_LANG_FIELD_TIP5', 'チェックボックス - 0または1、trueまたはfa
 define('_MD_PROFILE_LANG_FIELD_TIP6', 'セレクトボックス - 複数のオプションの例を参照できます。');
 define('_MD_PROFILE_LANG_DATA_DELETE', 'プロフィールデータを削除');
 define('_MD_PROFILE_LANG_DEFINITIONS_DELETE', 'フォームフィールド削除する');
-
-
-?>

@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -45,10 +44,9 @@ class Profile_FieldTypeString implements Profile_iFieldType
 
     public function showField(/*** Profile_DataObject ***/ $obj, /*** string ***/ $key, /*** Profile_ActionType ***/ $option=0)
     {
-        if($option==Profile_ActionType::NONE||$option==Profile_ActionType::VIEW){
+        if ($option==Profile_ActionType::NONE||$option==Profile_ActionType::VIEW) {
             $value = $obj->getShow($key);
-        }
-        elseif($option==Profile_ActionType::EDIT){
+        } elseif ($option==Profile_ActionType::EDIT) {
             $value = $obj->get($key);
         }
     
@@ -101,19 +99,18 @@ class Profile_FieldTypeText implements Profile_iFieldType
 
     public function showField(/*** Profile_DataObject ***/ $obj, /*** string ***/ $key, /*** Profile_ActionType ***/ $option=0)
     {
-        if($option==Profile_ActionType::NONE||$option==Profile_ActionType::VIEW){
-        	switch($obj->get('option')){
-        	case 'html':
-        	case 'none':
-	            $value = $obj->get($key);
-	            break;
-	        case 'bbcode':
-	        default:
-	        	$value = $obj->getShow($key);
-	        	break;
-	        }
-        }
-        elseif($option==Profile_ActionType::EDIT){
+        if ($option==Profile_ActionType::NONE||$option==Profile_ActionType::VIEW) {
+            switch ($obj->get('option')) {
+            case 'html':
+            case 'none':
+                $value = $obj->get($key);
+                break;
+            case 'bbcode':
+            default:
+                $value = $obj->getShow($key);
+                break;
+            }
+        } elseif ($option==Profile_ActionType::EDIT) {
             $value = $obj->get($key);
         }
         return $value;
@@ -264,13 +261,11 @@ class Profile_FieldTypeDate implements Profile_iFieldType
 
     public function showField(/*** Profile_DataObject ***/ $obj, /*** string ***/ $key, /*** Profile_ActionType ***/ $option=0)
     {
-        if($option==Profile_ActionType::NONE){
+        if ($option==Profile_ActionType::NONE) {
             $value = $obj->get($key);
-        }
-        elseif($option==Profile_ActionType::EDIT){
+        } elseif ($option==Profile_ActionType::EDIT) {
             $value = date(_PHPDATEPICKSTRING, $obj->get($key));
-        }
-        elseif($option==Profile_ActionType::VIEW){
+        } elseif ($option==Profile_ActionType::VIEW) {
             $value = ($obj->get($key)) ? formatTimestamp($obj->get($key), "s") : "";
         }
         return $value;
@@ -278,7 +273,7 @@ class Profile_FieldTypeDate implements Profile_iFieldType
 
     public function getTableQuery()
     {
-        return 'INT(11) UNSIGNED NOT NULL';
+        return 'BIGINT(20) SIGNED';
     }
 
     public function setInitVar(/*** Profile_DataObject ***/ $obj, /*** string ***/ $key, /*** string ***/ $default)
@@ -322,13 +317,12 @@ class Profile_FieldTypeCheckbox implements Profile_iFieldType
 
     public function showField(/*** Profile_DataObject ***/ $obj, /*** string ***/ $key, /*** Profile_ActionType ***/ $option=0)
     {
-        if($option==Profile_ActionType::NONE||$option==Profile_ActionType::EDIT){
+        if ($option==Profile_ActionType::NONE||$option==Profile_ActionType::EDIT) {
             $value = $obj->get($key);
-        }
-        elseif($option==Profile_ActionType::VIEW){
+        } elseif ($option==Profile_ActionType::VIEW) {
             $handler = Legacy_Utils::getModuleHandler('definitions', 'profile');
             $objs = $handler->getObjects(new Criteria('field_name', $key));
-            if(count($objs)>0){
+            if (count($objs)>0) {
                 $def = array_shift($objs);
                 $optArr = $def->mFieldType->getOption($def);
             }
@@ -386,10 +380,9 @@ class Profile_FieldTypeSelectbox implements Profile_iFieldType
 
     public function showField(/*** Profile_DataObject ***/ $obj, /*** string ***/ $key, /*** Profile_ActionType ***/ $option=0)
     {
-        if($option==Profile_ActionType::NONE||$option==Profile_ActionType::VIEW){
+        if ($option==Profile_ActionType::NONE||$option==Profile_ActionType::VIEW) {
             $value = $obj->getShow($key);
-        }
-        elseif($option==Profile_ActionType::EDIT){
+        } elseif ($option==Profile_ActionType::EDIT) {
             $value = $obj->get($key);
         }
         return $value;
@@ -490,10 +483,9 @@ class Profile_FieldTypeUri implements Profile_iFieldType
 
     public function showField(/*** Profile_DataObject ***/ $obj, /*** string ***/ $key, /*** Profile_ActionType ***/ $option=0)
     {
-        if($option==Profile_ActionType::NONE||$option==Profile_ActionType::VIEW){
+        if ($option==Profile_ActionType::NONE||$option==Profile_ActionType::VIEW) {
             $value = $obj->getShow($key);
-        }
-        elseif($option==Profile_ActionType::EDIT){
+        } elseif ($option==Profile_ActionType::EDIT) {
             $value = $obj->get($key);
         }
         return $value;
@@ -546,5 +538,3 @@ class Profile_ActionType
     const EDIT = 1;
     const VIEW = 2;
 }
-
-?>

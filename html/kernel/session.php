@@ -52,7 +52,7 @@ class XoopsSessionHandler
      * @var	object
      * @access	private
      */
-    var $db;
+    public $db;
 
     /**
      * Constructor
@@ -60,7 +60,7 @@ class XoopsSessionHandler
      * @param	object  &$mf    reference to a XoopsManagerFactory
      * 
      */
-    function XoopsSessionHandler(&$db)
+    public function XoopsSessionHandler(&$db)
     {
         $this->db =& $db;
     }
@@ -73,8 +73,8 @@ class XoopsSessionHandler
      * 
      * @return	bool
      */
-    function open($save_path, $session_name)
-	{
+    public function open($save_path, $session_name)
+    {
         return true;
     }
 
@@ -83,8 +83,8 @@ class XoopsSessionHandler
      * 
      * @return	bool
      */
-    function close()
-	{
+    public function close()
+    {
         return true;
     }
 
@@ -95,8 +95,8 @@ class XoopsSessionHandler
      * 
      * @return	array   Session data
      */
-    function read($sess_id)
-	{
+    public function read($sess_id)
+    {
         $sql = sprintf('SELECT sess_data FROM %s WHERE sess_id = %s', $this->db->prefix('session'), $this->db->quoteString($sess_id));
         if (false != $result = $this->db->query($sql)) {
             if (list($sess_data) = $this->db->fetchRow($result)) {
@@ -114,19 +114,19 @@ class XoopsSessionHandler
      * 
      * @return  bool    
      **/
-    function write($sess_id, $sess_data)
-	{
-		$sess_id = $this->db->quoteString($sess_id);
-		list($count) = $this->db->fetchRow($this->db->query("SELECT COUNT(*) FROM ".$this->db->prefix('session')." WHERE sess_id=".$sess_id));
-        if ( $count > 0 ) {
-			$sql = sprintf('UPDATE %s SET sess_updated = %u, sess_data = %s WHERE sess_id = %s', $this->db->prefix('session'), time(), $this->db->quoteString($sess_data), $sess_id);
+    public function write($sess_id, $sess_data)
+    {
+        $sess_id = $this->db->quoteString($sess_id);
+        list($count) = $this->db->fetchRow($this->db->query("SELECT COUNT(*) FROM ".$this->db->prefix('session')." WHERE sess_id=".$sess_id));
+        if ($count > 0) {
+            $sql = sprintf('UPDATE %s SET sess_updated = %u, sess_data = %s WHERE sess_id = %s', $this->db->prefix('session'), time(), $this->db->quoteString($sess_data), $sess_id);
         } else {
-			$sql = sprintf('INSERT INTO %s (sess_id, sess_updated, sess_ip, sess_data) VALUES (%s, %u, %s, %s)', $this->db->prefix('session'), $sess_id, time(), $this->db->quoteString($_SERVER['REMOTE_ADDR']), $this->db->quoteString($sess_data));
+            $sql = sprintf('INSERT INTO %s (sess_id, sess_updated, sess_ip, sess_data) VALUES (%s, %u, %s, %s)', $this->db->prefix('session'), $sess_id, time(), $this->db->quoteString($_SERVER['REMOTE_ADDR']), $this->db->quoteString($sess_data));
         }
-		if (!$this->db->queryF($sql)) {
+        if (!$this->db->queryF($sql)) {
             return false;
         }
-		return true;
+        return true;
     }
 
     /**
@@ -136,10 +136,10 @@ class XoopsSessionHandler
      * 
      * @return  bool
      **/
-    function destroy($sess_id)
+    public function destroy($sess_id)
     {
-		$sql = sprintf('DELETE FROM %s WHERE sess_id = %s', $this->db->prefix('session'), $this->db->quoteString($sess_id));
-        if ( !$result = $this->db->queryF($sql) ) {
+        $sql = sprintf('DELETE FROM %s WHERE sess_id = %s', $this->db->prefix('session'), $this->db->quoteString($sess_id));
+        if (!$result = $this->db->queryF($sql)) {
             return false;
         }
         return true;
@@ -149,13 +149,12 @@ class XoopsSessionHandler
      * Garbage Collector
      * 
      * @param   int $expire Time in seconds until a session expires
-	 * @return  bool
+     * @return  bool
      **/
-    function gc($expire)
+    public function gc($expire)
     {
         $mintime = time() - (int)$expire;
-		$sql = sprintf('DELETE FROM %s WHERE sess_updated < %u', $this->db->prefix('session'), $mintime);
+        $sql = sprintf('DELETE FROM %s WHERE sess_updated < %u', $this->db->prefix('session'), $mintime);
         return $this->db->queryF($sql);
     }
 }
-?>

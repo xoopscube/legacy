@@ -5,9 +5,8 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
-	exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
 }
 
 /**
@@ -18,16 +17,15 @@ if(!defined('XOOPS_ROOT_PATH'))
 */
 interface Legacy_iImageClientDelegate
 {
-	/**
-	 * getClientList	Legacy_Image.{dirname}.GetClientList
-	 * Get client module's dirname and dataname(tablename)
-	 *
-	 * @param mixed[] &$list
-	 *  $list[]['dirname']	client module dirname
-	 *  $list[]['dataname']	client module dataname(tablename)
-	 *
-	 * @return	void
-	 */ 
-	public static function getClientList(/*** array ***/ &$list);
+    /**
+     * getClientList	Legacy_Image.{dirname}.GetClientList
+     * Get client module's dirname and dataname(tablename)
+     *
+     * @param mixed[] &$list
+     *  $list[]['dirname']	client module dirname
+     *  $list[]['dataname']	client module dataname(tablename)
+     *
+     * @return	void
+     */
+    public static function getClientList(/*** array ***/ &$list);
 }
-?>

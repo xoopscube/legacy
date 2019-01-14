@@ -9,11 +9,11 @@ making XOOPS Cube Legacy an ideal tool for developing small to large dynamic com
 intra company portals, corporate portals, weblogs and much more.
 </p>
 <p>
-XOOPS Cube is released under the terms of the <a href='http://xoopscube.sourceforge.net/license/bsd_licenses.txt' rel='external'>New BSD License</a> and is free to use and modify.
+XOOPS Cube is released under the terms of the <a href='https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt' rel='external'>New BSD License</a> and is free to use and modify.
 It is free to redistribute as long as you abide by the distribution terms of the New BSD License.
 </p>
 <p>
-XOOPS Cube Legacy is released under the terms of the <a href='http://xoopscube.sourceforge.net/license/GPL_V2.txt' rel='external'>GNU General Public License (GPL)</a> and is free to use and modify.
+XOOPS Cube Legacy is released under the terms of the <a href='https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt' rel='external'>GNU General Public License (GPL)</a> and is free to use and modify.
 It is free to redistribute as long as you abide by the distribution terms of the GPL.
 </p>
 <u><b>Requirements</b></u>
@@ -36,5 +36,4 @@ It is free to redistribute as long as you abide by the distribution terms of the
 <p>
 Follow this install wizard.
 </p>
-"
-?>
+";

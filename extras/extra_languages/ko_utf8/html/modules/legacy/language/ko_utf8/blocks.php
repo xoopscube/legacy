@@ -36,9 +36,9 @@ define("_MB_LEGACY_EACNT", "계정정보편집");
 define("_MB_LEGACY_NOTIF", "이벤트통지기능");
 define("_MB_LEGACY_INBOX", "수신박스");
 define("_MB_LEGACY_LOUT",  "로그아웃");
-define("_MB_LEGACY_ADMENU","관리자메뉴");
+define("_MB_LEGACY_ADMENU", "관리자메뉴");
 
-define("_MB_LEGACY_SEARCH","검색");
+define("_MB_LEGACY_SEARCH", "검색");
 define("_MB_LEGACY_ADVS",  "상세 검색");
 
 define("_MB_LEGACY_SUBMS", "신규투고뉴스");
@@ -52,10 +52,10 @@ define("_MB_LEGACY_COMPEND", "코멘트");
 
 define("_MB_LEGACY_RECO",  "이 사이트를 추천!");
 define("_MB_LEGACY_PWWIDTH", "팝업윈도우 폭");
-define("_MB_LEGACY_PWHEIGHT","팝업윈도우 높이");
+define("_MB_LEGACY_PWHEIGHT", "팝업윈도우 높이");
 define("_MB_LEGACY_LOGO",    "%s 디렉토리안의 로고파일이름");  // %s is your root image directory name
 define("_MB_LEGACY_SADMIN",  "관리자그룹을 표시함");
-define("_MB_LEGACY_DISPLAYC"," %s 개의 코멘트를 표시");
+define("_MB_LEGACY_DISPLAYC", " %s 개의 코멘트를 표시");
 
 define("_MB_LEGACY_LANG_NUMTHEME", "%s 테마");
 define('_MB_LEGACY_LANG_THSHOW', "스크린샷 그림파일의 표시");
@@ -66,5 +66,3 @@ define('_MB_LEGACY_LANG_RECOMMENDSITE', "친구에게 이 사이트를 추천");
 define('_MB_LEGACY_MESSAGE_CAN_NOT_THEME_CHANGE', "지금은 테마를 변경하실 수 없습니다.");
 
 define('_MB_LEGACY_MAINMENU_EXPAND_SUB', "모든 하위 메뉴를 표시");
-
-?>

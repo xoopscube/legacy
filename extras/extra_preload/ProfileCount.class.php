@@ -10,28 +10,28 @@
  * @version $Id$
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 class Profile_ProfileCount extends XCube_ActionFilter
 {
-	/**
-	 * @public
-	 */
-	function preBlockFilter()
-	{
-		XCube_Root::getSingleton()->mDelegateManager->add('Module.profile.Event.Add.data',array(&$this, 'count'));
-		XCube_Root::getSingleton()->mDelegateManager->add('Module.profile.Event.Update.data',array(&$this, 'count'));
-	}
+    /**
+     * @public
+     */
+    public function preBlockFilter()
+    {
+        XCube_Root::getSingleton()->mDelegateManager->add('Module.profile.Event.Add.data', array(&$this, 'count'));
+        XCube_Root::getSingleton()->mDelegateManager->add('Module.profile.Event.Update.data', array(&$this, 'count'));
+    }
 
-	/**
-	 * @private
-	 */
-	public function count(&$obj)
-	{
-		$handler = xoops_gethandler('member');
-		$user = $handler->getUser(Legacy_Utils::getUid());
-		$user->incrementPost();
-	}
+    /**
+     * @private
+     */
+    public function count(&$obj)
+    {
+        $handler = xoops_gethandler('member');
+        $user = $handler->getUser(Legacy_Utils::getUid());
+        $user->incrementPost();
+    }
 }
-
-?>

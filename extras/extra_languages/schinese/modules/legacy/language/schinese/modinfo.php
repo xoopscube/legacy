@@ -37,5 +37,3 @@ define('_MI_LEGACY_MENU_THEME_MANAGE', "主题管理");
 define('_MI_LEGACY_MENU_XOOPS_CONFIG', "XOOPS 设定");
 define('_MI_LEGACY_NAME', "Legacy 系统");
 define('_MI_LEGACY_NAME_DESC', "这个模组提供XOOPS Cube 和 XOOPS 2.0.x. 之间的相容性");
-
-?>

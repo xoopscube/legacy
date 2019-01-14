@@ -3,14 +3,17 @@
  *
  * @package Legacy
  * @version $Id: cubecore_init.php,v 1.3 2008/09/25 15:12:45 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
- * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
 
-if (!defined("XOOPS_MAINFILE_INCLUDED")) exit();
-if (!defined('XOOPS_TRUST_PATH')){
-	echo "XOOPS_TRUST_PATH is required after XOOPS Cube Legacy 2.2 in mainfile.php";exit();
+if (!defined("XOOPS_MAINFILE_INCLUDED")) {
+    exit();
+}
+if (!defined('XOOPS_TRUST_PATH')) {
+    echo "XOOPS_TRUST_PATH is required after XOOPS Cube Legacy 2.2 in mainfile.php";
+    exit();
 }
 
 
@@ -25,7 +28,7 @@ define('XOOPS_CUBE_LEGACY', true);
  * developers.
  * ex) if(defined('LEGACY_BASE_VERSION') && version_compare(LEGACY_BASE_VERSION, '2.2.0.0', '>='))
  */
-define('LEGACY_BASE_VERSION', '2.2.1.4');
+define('LEGACY_BASE_VERSION', '2.2.3.0');
 
 require_once XOOPS_ROOT_PATH . "/core/XCube_Root.class.php";
 require_once XOOPS_ROOT_PATH . "/core/XCube_Controller.class.php";
@@ -46,5 +49,3 @@ define('XCUBE_SITE_CUSTOM_FILE_SALT', XOOPS_TRUST_PATH . '/settings/site_custom_
 $root=&XCube_Root::getSingleton();
 $root->loadSiteConfig(XCUBE_SITE_SETTING_FILE, XCUBE_SITE_CUSTOM_FILE, XCUBE_SITE_CUSTOM_FILE_SALT);
 $root->setupController();
-
-?>

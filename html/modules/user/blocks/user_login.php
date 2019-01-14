@@ -1,12 +1,13 @@
 <?php
-function b_user_login_show() {
+function b_user_login_show()
+{
     global $xoopsUser;
-	
+    
     if (!$xoopsUser) {
         $block = array();
         $config_handler =& xoops_gethandler('config');
         $moduleConfig =& $config_handler->getConfigsByDirname('user');
-		
+        
         if (isset($_COOKIE[$moduleConfig['usercookie']])) {
             $block['unamevalue'] = $_COOKIE[$moduleConfig['usercookie']];
         } else {
@@ -26,4 +27,3 @@ function b_user_login_show() {
     }
     return false;
 }
-?>

@@ -22,14 +22,12 @@ class Hdinstaller_View_Index extends Hdinstaller_ViewClass
      *
      *  @access public
      */
-    function preforward()
+    public function preforward()
     {
-		$this->subtitle = _('Select language');
-	
-		$config = $this->backend->getConfig();
-		$this->af->setApp('allow_language', $config->get('allow_language'));
-		$this->af->setApp('cur_lang', current($this->backend->ctl->getLanguage()));
+        $this->subtitle = _('Select language');
+    
+        $config = $this->backend->getConfig();
+        $this->af->setApp('allow_language', $config->get('allow_language'));
+        $this->af->setApp('cur_lang', current($this->backend->ctl->getLanguage()));
     }
 }
-
-?>

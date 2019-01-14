@@ -27,7 +27,9 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 /**
  *
@@ -41,14 +43,16 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
  * @author      Kazumi Ono  <onokazu@xoops.org>
  * @copyright   copyright (c) 2000-2005 XOOPS.org
  */
-class XoopsFormHiddenToken extends XoopsFormHidden {
+class XoopsFormHiddenToken extends XoopsFormHidden
+{
 
     /**
      * Constructor
      *
      * @param   string  $name   "name" attribute
      */
-    function XoopsFormHiddenToken($name = null, $timeout = 360){
+    public function XoopsFormHiddenToken($name = null, $timeout = 360)
+    {
         if (empty($name)) {
             $token =& XoopsMultiTokenHandler::quickCreate(XOOPS_TOKEN_DEFAULT);
             $name = $token->getTokenName();
@@ -58,4 +62,3 @@ class XoopsFormHiddenToken extends XoopsFormHidden {
         $this->XoopsFormHidden($name, $token->getTokenValue());
     }
 }
-?>

@@ -14,9 +14,9 @@ define("_AD_PROFILE_DESC_FIELD_INT", "Defina o valor padrão.");
 define("_AD_PROFILE_DESC_FIELD_SELECTBOX", "Separe cada item com uma barra vertical ( | ).");
 define("_AD_PROFILE_DESC_FIELD_STRING", "Defina o valor padrão.");
 define("_AD_PROFILE_DESC_FIELD_TEXT", "Defina <q>HTML</q> caso o seu portal faça uso de um editor WYSIWYG (necessária um módulo de edição visual WYSIWIG previamente instalado).");
-define("_AD_PROFILE_LANG_DEFINITIONS_DELETE","Remover campo");
-define("_AD_PROFILE_LANG_DEFINITIONS_EDIT","Editar campo");
-define("_AD_PROFILE_LANG_DEFINITIONS_VIEW","Mostrar campo");
+define("_AD_PROFILE_LANG_DEFINITIONS_DELETE", "Remover campo");
+define("_AD_PROFILE_LANG_DEFINITIONS_EDIT", "Editar campo");
+define("_AD_PROFILE_LANG_DEFINITIONS_VIEW", "Mostrar campo");
 define("_AD_PROFILE_TIPS_DATA_DOWNLOAD", "Os dados exportados em CSV são ordenados pelo número do cadastro do associado (<i>user_id</i>).");
 //
 define("_AD_PROFILE_DATA_UPLOAD_CONF", "Confirme a inclusão do conteúdo.");
@@ -30,4 +30,3 @@ define("_AD_PROFILE_TIPS4_DATA_UPLOAD", "When the row of leftmost UID is emptied
 define("_AD_PROFILE_TIPS5_DATA_UPLOAD", "The profile information is updated when there is a value of the row of leftmost(UID).");
 define("_AD_USER_DATA_UPLOAD_BACK", "Selecione o arquivo CSV de novo.");
 define("_AD_USER_DATA_UPLOAD_CHECK_USER_CSVFILE", "Por favor, confirme a inclusão dos dados.");
-?>

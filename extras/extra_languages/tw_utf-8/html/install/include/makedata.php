@@ -32,19 +32,20 @@ include_once './class/dbmanager.php';
 // the defaults specified in the database...!!!! (and don't have problem
 // of missing fields in install file, when add new fields to database)
 
-function make_groups(&$dbm){
+function make_groups(&$dbm)
+{
     $gruops['XOOPS_GROUP_ADMIN'] = $dbm->insert('groups', " VALUES (0, '".addslashes(_INSTALL_WEBMASTER)."', '".addslashes(_INSTALL_WEBMASTERD)."', 'Admin')");
     $gruops['XOOPS_GROUP_USERS'] = $dbm->insert('groups', " VALUES (0, '".addslashes(_INSTALL_REGUSERS)."', '".addslashes(_INSTALL_REGUSERSD)."', 'User')");
     $gruops['XOOPS_GROUP_ANONYMOUS'] = $dbm->insert('groups', " VALUES (0, '".addslashes(_INSTALL_ANONUSERS)."', '".addslashes(_INSTALL_ANONUSERSD)."', 'Anonymous')");
 
-    if(!$gruops['XOOPS_GROUP_ADMIN'] || !$gruops['XOOPS_GROUP_USERS'] || !$gruops['XOOPS_GROUP_ANONYMOUS']){
+    if (!$gruops['XOOPS_GROUP_ADMIN'] || !$gruops['XOOPS_GROUP_USERS'] || !$gruops['XOOPS_GROUP_ANONYMOUS']) {
         return false;
     }
 
     return $gruops;
 }
-function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $gruops){
-
+function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $gruops)
+{
     $myts =& textSanitizer::getInstance();
 
     $tables = array();
@@ -67,7 +68,7 @@ function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $
     $dbm->insert('config', " VALUES (4, 0, 1, 'startpage', '_MD_AM_STARTPAGE', '--', '_MD_AM_STARTPAGEDSC', 'startpage', 'other', 6)");
     //Get Server timezone Setting
     $time_diff_val = date('O');
-	$time_diff = floatval(substr($time_diff_val,0,1).(substr($time_diff_val,1,2) + substr($time_diff_val,3,2)/60));
+    $time_diff = floatval(substr($time_diff_val, 0, 1).(substr($time_diff_val, 1, 2) + substr($time_diff_val, 3, 2)/60));
     $dbm->insert('config', " VALUES (5, 0, 1, 'server_TZ', '_MD_AM_SERVERTZ', '".$time_diff."', '_MD_AM_SERVERTZDSC', 'timezone', 'float', 8)");
     $dbm->insert('config', " VALUES (6, 0, 1, 'default_TZ', '_MD_AM_DEFAULTTZ', '".$time_diff."', '_MD_AM_DEFAULTTZDSC', 'timezone', 'float', 10)");
     $dbm->insert('config', " VALUES (7, 0, 1, 'theme_set', '_MD_AM_DTHEME', 'cube_default', '_MD_AM_DTHEMEDSC', 'theme', 'other', 12)");
@@ -192,8 +193,9 @@ function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $
  * @param $language string language
  * @param $grops array hash map
  */
-function installModule(&$dbm, $mid, $module, $module_name, $language = 'tw_big5', &$groups) {
-    if ( file_exists("../modules/${module}/language/${language}/modinfo.php") ) {
+function installModule(&$dbm, $mid, $module, $module_name, $language = 'tw_big5', &$groups)
+{
+    if (file_exists("../modules/${module}/language/${language}/modinfo.php")) {
         include "../modules/${module}/language/${language}/modinfo.php";
     } else {
         include "../modules/${module}/language/english/modinfo.php";
@@ -209,20 +211,20 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'tw_big5'
     // TODO We should set hasconfig and more option values here.
     //
     $hasconfig = isset($modversion['config']) ? 1 : 0;
-	$hasmain = 0;
-	if (isset($modversion['hasMain']) && $modversion['hasMain'] == 1) {
-		$hasmain = 1;
-	}
+    $hasmain = 0;
+    if (isset($modversion['hasMain']) && $modversion['hasMain'] == 1) {
+        $hasmain = 1;
+    }
     $dbm->insert("modules", " VALUES (${mid}, '" . constant($module_name) . "', 100, ".$time.", 0, 1, '${module}', ${hasmain}, 1, 0, ${hasconfig}, 0, 0)");
 
-	//
-	// Database
-	// TODO Dependence on mysql, Now.
-	//
-	if (isset($modversion['sqlfile']['mysql'])) {
-		$dbm->queryFromFile("../modules/${module}/" . $modversion['sqlfile']['mysql']);
-	}
-	
+    //
+    // Database
+    // TODO Dependence on mysql, Now.
+    //
+    if (isset($modversion['sqlfile']['mysql'])) {
+        $dbm->queryFromFile("../modules/${module}/" . $modversion['sqlfile']['mysql']);
+    }
+    
     if (is_array($modversion['templates']) && count($modversion['templates']) > 0) {
         foreach ($modversion['templates'] as $tplfile) {
             if ($fp = fopen("../modules/${module}/templates/".$tplfile['file'], 'r')) {
@@ -230,8 +232,7 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'tw_big5'
                 //$newtplid = $xoopsDB->getInsertId();
                 if (filesize("../modules/${module}/templates/".$tplfile['file']) > 0) {
                     $tplsource = fread($fp, filesize("../modules/${module}/templates/".$tplfile['file']));
-                }
-                else {
+                } else {
                     $tplsource = "";
                 }
                 fclose($fp);
@@ -259,8 +260,7 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'tw_big5'
                 //$newtplid = $xoopsDB->getInsertId();
                 if (filesize("../modules/${module}/templates/blocks/".$newblock['template']) > 0) {
                     $tplsource = fread($fp, filesize("../modules/${module}/templates/blocks/".$newblock['template']));
-                }
-                else {
+                } else {
                     $tplsource = "";
                 }
                 fclose($fp);
@@ -306,5 +306,3 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'tw_big5'
         }
     }
 }
-
-?>

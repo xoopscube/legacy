@@ -29,7 +29,7 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid()) ) {
+if (!is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid())) {
     exit("Access Denied");
 } else {
     $op = 'list';
@@ -81,7 +81,7 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
                 $myts =& MyTextSanitizer::getInstance();
                 if ($config[$i]->getVar('conf_valuetype') == 'array') {
                     // this is exceptional.. only when value type is arrayneed a smarter way for this
-                    
+
                     $ele = ($config[$i]->getVar('conf_value') != '') ? new XoopsFormTextArea($title, $config[$i]->getVar('conf_name'), $myts->htmlspecialchars(implode('|', $config[$i]->getConfValueForOutput())), 5, 50) : new XoopsFormTextArea($title, $config[$i]->getVar('conf_name'), '', 5, 50);
                 } else {
                     $ele = new XoopsFormTextArea($title, $config[$i]->getVar('conf_name'), $myts->htmlspecialchars($config[$i]->getConfValueForOutput()), 5, 50);
@@ -116,7 +116,7 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
                 $handle = opendir(XOOPS_THEME_PATH.'/');
                 $dirlist = array();
                 while (false !== ($file = readdir($handle))) {
-                    if (is_dir(XOOPS_THEME_PATH.'/'.$file) && !preg_match("/^\..*$/",$file) && strtolower($file) != 'cvs') {
+                    if (is_dir(XOOPS_THEME_PATH.'/'.$file) && !preg_match("/^\..*$/", $file) && strtolower($file) != 'cvs') {
                         $dirlist[$file]=$file;
                     }
                 }
@@ -335,7 +335,7 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
     }
 
     if ($op == 'save') {
-        if(!XoopsMultiTokenHandler::quickValidate('preferences')) {
+        if (!XoopsMultiTokenHandler::quickValidate('preferences')) {
             xoops_cp_header();
             xoops_error("Token Error");
             xoops_cp_footer();
@@ -354,7 +354,7 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
         $lang_updated = false;
         if ($count > 0) {
             for ($i = 0; $i < $count; $i++) {
-				$config_handler=&xoops_gethandler('config');
+                $config_handler=&xoops_gethandler('config');
                 $config =& $config_handler->getConfig($conf_ids[$i]);
                 $new_value =& $_POST[$config->getVar('conf_name')];
                 if (is_array($new_value) || $new_value != $config->getVar('conf_value')) {
@@ -438,14 +438,12 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
             }
         }
         if (!empty($_POST['use_mysession']) && $xoopsConfig['use_mysession'] == 0 && $_POST['session_name'] != '') {
-                setcookie($_POST['session_name'], session_id(), time()+(60*intval($_POST['session_expire'])), '/',  '', 0);
+            setcookie($_POST['session_name'], session_id(), time()+(60*intval($_POST['session_expire'])), '/',  '', 0);
         }
         if (!empty($_POST['redirect'])) {
             redirect_header($_POST['redirect'], 2, _MD_AM_DBUPDATED);
         } else {
-            redirect_header("admin.php?fct=preferences",2,_MD_AM_DBUPDATED);
+            redirect_header("admin.php?fct=preferences", 2, _MD_AM_DBUPDATED);
         }
     }
 }
-
-?>

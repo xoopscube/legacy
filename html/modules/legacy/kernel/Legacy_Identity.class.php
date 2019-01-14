@@ -3,38 +3,40 @@
  *
  * @package Legacy
  * @version $Id: Legacy_Identity.class.php,v 1.3 2008/09/25 15:12:02 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <http://xoopscube.sourceforge.net/> 
- * @license http://xoopscube.sourceforge.net/license/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
 class Legacy_Identity extends XCube_Identity
 {
-	function Legacy_Identity(&$xoopsUser)
-	{
-		parent::XCube_Identity();
-		
-		if (!is_object($xoopsUser)) {
-			die('Exception');
-		}
-		
-		$this->mName = $xoopsUser->get('uname');
-	}
-	
-	function isAuthenticated()
-	{
-		return true;
-	}
+    public function Legacy_Identity(&$xoopsUser)
+    {
+        parent::XCube_Identity();
+        
+        if (!is_object($xoopsUser)) {
+            die('Exception');
+        }
+        
+        $this->mName = $xoopsUser->get('uname');
+    }
+    
+    public function isAuthenticated()
+    {
+        return true;
+    }
 }
 
 class Legacy_AnonymousIdentity extends XCube_Identity
 {
-	function isAuthenticated()
-	{
-		return false;
-	}
+    public function isAuthenticated()
+    {
+        return false;
+    }
 }
 
 /**
@@ -48,21 +50,19 @@ class Legacy_AnonymousIdentity extends XCube_Identity
  */
 class Legacy_GenericPrincipal extends XCube_Principal
 {
-	/**
-	 * Adds a role to this object.
-	 * @param $roleName string
-	 */
-	function addRole($roleName)
-	{
-		if (!$this->isInRole($roleName)) {
-			$this->_mRoles[] = $roleName;
-		}
-	}
-	
-	function isInRole($roleName)
-	{
-		return in_array($roleName, $this->_mRoles);
-	}
+    /**
+     * Adds a role to this object.
+     * @param $roleName string
+     */
+    public function addRole($roleName)
+    {
+        if (!$this->isInRole($roleName)) {
+            $this->_mRoles[] = $roleName;
+        }
+    }
+    
+    public function isInRole($roleName)
+    {
+        return in_array($roleName, $this->_mRoles);
+    }
 }
-
-?>

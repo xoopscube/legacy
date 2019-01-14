@@ -23,7 +23,7 @@ class Hdinstaller_ActionForm extends Ethna_ActionForm
      */
 
     /** @var    array   form definition (default) */
-    var $form_template = array();
+    public $form_template = array();
 
     /**#@-*/
 
@@ -34,7 +34,7 @@ class Hdinstaller_ActionForm extends Ethna_ActionForm
      *  @param  string      $name   form item name.
      *  @param  int         $code   error code.
      */
-    function handleError($name, $code)
+    public function handleError($name, $code)
     {
         return parent::handleError($name, $code);
     }
@@ -46,7 +46,7 @@ class Hdinstaller_ActionForm extends Ethna_ActionForm
      *  @param  array   $form_template  form template
      *  @return array   form template after setting.
      */
-    function _setFormTemplate($form_template)
+    public function _setFormTemplate($form_template)
     {
         return parent::_setFormTemplate($form_template);
     }
@@ -56,7 +56,7 @@ class Hdinstaller_ActionForm extends Ethna_ActionForm
      *
      *  @access protected
      */
-    function _setFormDef()
+    public function _setFormDef()
     {
         return parent::_setFormDef();
     }
@@ -69,16 +69,15 @@ class Hdinstaller_ActionForm extends Ethna_ActionForm
      *  @param  array   $value  設定するフォーム値定義
      *  @return array   フォーム値定義
      */
-    function setDef($name, $value)
+    public function setDef($name, $value)
     {
         if (is_null($name)) {
             $this->form = $value;
-			return ;
+            return ;
         }
 
         $this->form[$name] = $value;
     }
 }
 // }}}
-
-?>
+;

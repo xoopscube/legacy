@@ -38,5 +38,3 @@ define('_MD_PM_MESSAGE_PLZREG', "Please register first to send private messages!
 define('_MD_PM_MESSAGE_POSTED', "Your message has been posted.");
 define('_MD_PM_MESSAGE_SORRY', "Sorry! You are not a registered user.");
 define('_MD_PM_MESSAGE_YOUDONTHAVE', "You don't have any private messages.");
-
-?>

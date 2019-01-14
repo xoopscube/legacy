@@ -54,15 +54,15 @@ class HTML_AJAX
      *
      * @var object
      * @access private
-     */    
-    var $_exportedInstances = array();
+     */
+    public $_exportedInstances = array();
 
     /**
      * Set the server url in the generated stubs to this value
      * If set to false, serverUrl will not be set
      * @var false|string
      */
-    var $serverUrl = false;
+    public $serverUrl = false;
 
     /**
      * What encoding your going to use for serializing data 
@@ -70,27 +70,27 @@ class HTML_AJAX
      *
      * @var string  JSON|PHP|Null
      */
-    var $serializer = 'JSON';
+    public $serializer = 'JSON';
 
     /**
      * What encoding your going to use for unserializing data sent from javascript
      * @var string  JSON|PHP|Null
      */
-    var $unserializer = 'JSON';
+    public $unserializer = 'JSON';
 
     /**
      * Option to use loose typing for JSON encoding
      * @var bool
      * @access public
      */
-    var $jsonLooseType = true;
+    public $jsonLooseType = true;
 
     /**
      * Content-type map
      *
      * Used in to automatically choose serializers as needed
      */
-    var $contentTypeMap = array(
+    public $contentTypeMap = array(
             'JSON'  => 'application/json',
             'XML'   => 'application/xml',
             'Null'  => 'text/plain',
@@ -105,13 +105,13 @@ class HTML_AJAX
      *
      * @param object HTML_AJAX_Debug
      */
-    var $debug;
+    public $debug;
 
     /**
      * This is to tell if debug is enabled or not. If so, then
      * debug is called, instantiated then saves the file and such.
      */
-    var $debugEnabled = false;
+    public $debugEnabled = false;
     
     /**
      * This puts the error into a session variable is set to true.
@@ -119,7 +119,7 @@ class HTML_AJAX
      *
      * @access public
      */
-    var $debugSession = false;
+    public $debugSession = false;
 
     /**
      * Boolean telling if the Content-Length header should be sent. 
@@ -130,7 +130,7 @@ class HTML_AJAX
      * @access public
      * @var boolean
      */
-    var $sendContentLength = true;
+    public $sendContentLength = true;
 
     /**
      * Make Generated code compatible with php4 by lowercasing all 
@@ -144,14 +144,14 @@ class HTML_AJAX
      * @access public
      * @var boolean
      */
-    var $php4CompatCase = false;
+    public $php4CompatCase = false;
 
     /**
      * Automatically pack all generated JavaScript making it smaller
      *
      * If your using output compression this might not make sense
      */
-    var $packJavaScript = false;
+    public $packJavaScript = false;
 
     /**
      * Holds current payload info
@@ -159,7 +159,7 @@ class HTML_AJAX
      * @access private
      * @var string
      */
-    var $_payload;
+    public $_payload;
 
     /**
      * Holds iframe id IF this is an iframe xmlhttprequest
@@ -167,7 +167,7 @@ class HTML_AJAX
      * @access private
      * @var string
      */
-    var $_iframe;
+    public $_iframe;
 
     /**
      * Holds the list of classes permitted to be unserialized
@@ -175,22 +175,22 @@ class HTML_AJAX
      * @access private
      * @var array
      */
-    var $_allowedClasses = array();
+    public $_allowedClasses = array();
     
     /**
      * Holds serializer instances
      */
-    var $_serializers = array();
+    public $_serializers = array();
     
     /**
      * PHP callbacks we're exporting
      */
-    var $_validCallbacks = array();
+    public $_validCallbacks = array();
 
     /**
      * Interceptor instance
      */
-    var $_interceptor = false;
+    public $_interceptor = false;
 
     /**
      * Set a class to handle requests
@@ -204,7 +204,7 @@ class HTML_AJAX
      *
      * @return void
      */
-    function registerClass(&$instance, $exportedName = false, 
+    public function registerClass(&$instance, $exportedName = false,
         $exportedMethods = false)
     {
         $className = strtolower(get_class($instance));
@@ -242,15 +242,15 @@ class HTML_AJAX
      *
      * @return array all methods of the class that are public
      * @access private
-     */    
-    function _getMethodsToExport($className)
+     */
+    public function _getMethodsToExport($className)
     {
         $funcs = get_class_methods($className);
 
         foreach ($funcs as $key => $func) {
             if (strtolower($func) === $className || substr($func, 0, 1) === '_') {
                 unset($funcs[$key]);
-            } else if ($this->php4CompatCase) {
+            } elseif ($this->php4CompatCase) {
                 $funcs[$key] = strtolower($func);
             }
         }
@@ -262,7 +262,7 @@ class HTML_AJAX
      *
      * @return   string   generated javascript client code
      */
-    function generateJavaScriptClient()
+    public function generateJavaScriptClient()
     {
         $client = '';
 
@@ -281,7 +281,7 @@ class HTML_AJAX
      *
      * @return string javascript proxy stub code for a single class
      */
-    function generateClassStub($name)
+    public function generateClassStub($name)
     {
         if (!isset($this->_exportedInstances[$name])) {
             return '';
@@ -307,7 +307,7 @@ class HTML_AJAX
         $client .= "}\n\n";
 
         if ($this->packJavaScript) {
-                $client = $this->packJavaScript($client);
+            $client = $this->packJavaScript($client);
         }
         return $client;
     }
@@ -319,8 +319,8 @@ class HTML_AJAX
      *
      * @return string the js code
      * @access private
-     */    
-    function _generateMethodStub($method)
+     */
+    public function _generateMethodStub($method)
     {
         $stub = "\t{$method}: function() { return ".
             "this.dispatcher.doCall('{$method}',arguments); },\n";
@@ -332,15 +332,14 @@ class HTML_AJAX
      *
      * @return string the js code
      * @access private
-     */    
-    function populatePayload()
+     */
+    public function populatePayload()
     {
         if (isset($_REQUEST['Iframe_XHR'])) {
             $this->_iframe = $_REQUEST['Iframe_XHR_id'];
-            if (isset($_REQUEST['Iframe_XHR_headers']) && 
+            if (isset($_REQUEST['Iframe_XHR_headers']) &&
                 is_array($_REQUEST['Iframe_XHR_headers'])) {
                 foreach ($_REQUEST['Iframe_XHR_headers'] as $header) {
-
                     $array    = explode(':', $header);
                     $array[0] = strip_tags(strtoupper(str_replace('-', '_', $array[0])));
                     //only content-length and content-type can go in without an 
@@ -353,7 +352,7 @@ class HTML_AJAX
                     $_SERVER[$array[0]] = strip_tags($array[1]);
                 }
             }
-            $this->_payload = (isset($_REQUEST['Iframe_XHR_data']) 
+            $this->_payload = (isset($_REQUEST['Iframe_XHR_data'])
                 ? $_REQUEST['Iframe_XHR_data'] : '');
 
             if (isset($_REQUEST['Iframe_XHR_method'])) {
@@ -373,11 +372,11 @@ class HTML_AJAX
      *
      * @return boolean true if an ajax call was handled, false otherwise
      */
-    function handleRequest()
+    public function handleRequest()
     {
-        set_error_handler(array(&$this,'_errorHandler'));
+        set_error_handler(array(&$this, '_errorHandler'));
         if (function_exists('set_exception_handler')) {
-            set_exception_handler(array(&$this,'_exceptionHandler'));
+            set_exception_handler(array(&$this, '_exceptionHandler'));
         }
         if (isset($_GET['px'])) {
             if ($this->_iframeGrabProxy()) {
@@ -397,14 +396,14 @@ class HTML_AJAX
         if (!empty($class) && !empty($method)) {
             if (!isset($this->_exportedInstances[$class])) {
                 // handle error
-                trigger_error('Unknown class: '. $class); 
+                trigger_error('Unknown class: '. $class);
             }
             if (!in_array(($this->php4CompatCase ? strtolower($method) : $method),
                 $this->_exportedInstances[$class]['exportedMethods'])) {
                 // handle error
                 trigger_error('Unknown method: ' . $method);
             }
-        } else if (!empty($phpCallback)) {
+        } elseif (!empty($phpCallback)) {
             if (strpos($phpCallback, '.') !== false) {
                 $phpCallback = explode('.', $phpCallback);
             }
@@ -458,7 +457,7 @@ class HTML_AJAX
      * @return string
      *   a MIME content type
      */
-    function _getClientPayloadContentType()
+    public function _getClientPayloadContentType()
     {
         //OPERA IS STUPID FIX
         if (isset($_SERVER['HTTP_X_CONTENT_TYPE'])) {
@@ -466,7 +465,7 @@ class HTML_AJAX
             $pos  = strpos($type, ';');
 
             return strtolower($pos ? substr($type, 0, $pos) : $type);
-        } else if (isset($_SERVER['CONTENT_TYPE'])) {
+        } elseif (isset($_SERVER['CONTENT_TYPE'])) {
             $type = $this->_getServer('CONTENT_TYPE');
             $pos  = strpos($type, ';');
 
@@ -487,12 +486,11 @@ class HTML_AJAX
      * @access private
      * @return void
      */
-    function _sendResponse($response)
+    public function _sendResponse($response)
     {
         if (is_object($response) && is_a($response, 'HTML_AJAX_Response')) {
             $output  = $response->getPayload();
             $content = $response->getContentType();
-
         } elseif (is_a($response, 'PEAR_Error')) {
             $serializer = $this->_getSerializer('Error');
             $output     = $serializer->serialize(array(
@@ -502,7 +500,6 @@ class HTML_AJAX
                 'mode'     => $response->getMode()
                 ));
             $content    = $this->contentTypeMap['Error'];
-
         } else {
             $serializer = $this->_getSerializer($this->serializer);
             $output     = $serializer->serialize($response);
@@ -537,7 +534,7 @@ class HTML_AJAX
 
         //intercept to wrap iframe return data
         if ($this->_iframe) {
-            $output                  = $this->_iframeWrapper($this->_iframe, 
+            $output                  = $this->_iframeWrapper($this->_iframe,
                                          $output, $headers);
             $headers['Content-Type'] = 'text/html; charset=utf-8';
         }
@@ -552,7 +549,7 @@ class HTML_AJAX
      * @return   bool true if it's ok to send the header, false otherwise
      * @access   private
      */
-    function _sendContentLength() 
+    public function _sendContentLength()
     {
         if (!$this->sendContentLength) {
             return false;
@@ -576,7 +573,7 @@ class HTML_AJAX
      * @access private
      * @return void
      */
-    function _sendHeaders($array)
+    public function _sendHeaders($array)
     {
         foreach ($array as $header => $value) {
             header($header . ': ' . $value);
@@ -591,7 +588,7 @@ class HTML_AJAX
      * @access private
      * @return HTML_AJAX_Serializer
      */
-    function _getSerializer($type)
+    public function _getSerializer($type)
     {
         if (isset($this->_serializers[$type])) {
             return $this->_serializers[$type];
@@ -599,8 +596,8 @@ class HTML_AJAX
     
         $class = 'HTML_AJAX_Serializer_'.$type;
 
-        if ( (version_compare(phpversion(), 5, '>') && !class_exists($class, false)) 
-            || (version_compare(phpversion(), 5, '<') && !class_exists($class)) ) {
+        if ((version_compare(phpversion(), 5, '>') && !class_exists($class, false))
+            || (version_compare(phpversion(), 5, '<') && !class_exists($class))) {
             // include the class only if it isn't defined
             include_once "HTML/AJAX/Serializer/{$type}.php";
         }
@@ -620,12 +617,12 @@ class HTML_AJAX
      * @access   private
      * @return   string   raw post data
      */
-    function _getClientPayload()
+    public function _getClientPayload()
     {
         if (empty($this->_payload)) {
             if (isset($GLOBALS['HTTP_RAW_POST_DATA'])) {
                 $this->_payload = $GLOBALS['HTTP_RAW_POST_DATA'];
-            } else if (function_exists('file_get_contents')) {
+            } elseif (function_exists('file_get_contents')) {
                 // both file_get_contents() and php://input require PHP >= 4.3.0
                 $this->_payload = file_get_contents('php://input');
             } else {
@@ -643,7 +640,7 @@ class HTML_AJAX
      * @access   private
      * @return   string   filtered _GET value
      */
-    function _getVar($var)
+    public function _getVar($var)
     {
         if (!isset($_GET[$var])) {
             return null;
@@ -660,7 +657,7 @@ class HTML_AJAX
      * @access   private
      * @return   string   filtered _GET value
      */
-    function _getServer($var)
+    public function _getServer($var)
     {
         if (!isset($_SERVER[$var])) {
             return null;
@@ -677,7 +674,7 @@ class HTML_AJAX
      * @access private
      * @return void
      */
-    function _exceptionHandler($ex)
+    public function _exceptionHandler($ex)
     {
         $this->_errorHandler($ex->getCode(), $ex->getMessage(), $ex->getFile(), $ex->getLine());
     }
@@ -694,7 +691,7 @@ class HTML_AJAX
      * @access private
      * @return void
      */
-    function _errorHandler($errno, $errstr, $errfile, $errline)
+    public function _errorHandler($errno, $errstr, $errfile, $errline)
     {
         if ($errno & error_reporting()) {
             $e          = new stdClass();
@@ -727,17 +724,17 @@ class HTML_AJAX
      * @access private
      * @return string html page with iframe passing code
      */
-    function _iframeWrapper($id, $data, $headers = array())
+    public function _iframeWrapper($id, $data, $headers = array())
     {
         $string = '<html><script type="text/javascript">'."\n".
             'var Iframe_XHR_headers = new Object();';
 
         foreach ($headers as $label => $value) {
-            $string .= 'Iframe_XHR_headers["'.preg_replace("/\r?\n/", "\\n", 
-                addslashes($label)).'"] = "'.preg_replace("/\r?\n/", "\\n", 
+            $string .= 'Iframe_XHR_headers["'.preg_replace("/\r?\n/", "\\n",
+                addslashes($label)).'"] = "'.preg_replace("/\r?\n/", "\\n",
                 addslashes($value))."\";\n";
         }
-        $string .= 'var Iframe_XHR_data = "' . preg_replace("/\r?\n/", "\\n", 
+        $string .= 'var Iframe_XHR_data = "' . preg_replace("/\r?\n/", "\\n",
             addslashes($data)) . '";</script>'
             . '<body onload="parent.HTML_AJAX_IframeXHR_instances[\''.$id.'\']'
             . '.isLoaded(Iframe_XHR_headers, Iframe_XHR_data);"></body></html>';
@@ -750,7 +747,7 @@ class HTML_AJAX
      * @return bool true to end the response, false to continue trying to handle it
      * @access private
      */
-    function _iframeGrabProxy()
+    public function _iframeGrabProxy()
     {
         if (!isset($_REQUEST['Iframe_XHR_id'])) {
             trigger_error('Invalid iframe ID');
@@ -816,7 +813,7 @@ class HTML_AJAX
         }
         if (isset($url_parts['port'])) {
             $port = $url_parts['port'];
-        } else { 
+        } else {
             $port = getservbyname(strtolower($url_parts['scheme']), 'tcp');
             if ($port === false) {
                 trigger_error('Grab proxy: Unknown port or service, defaulting to 80', E_USER_WARNING);
@@ -858,8 +855,8 @@ class HTML_AJAX
         if (($socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)) < 0
             || ($connected = socket_connect($socket, $host, $port)) < 0
             || ($written = socket_write($socket, $request)) < strlen($request)) {
-             trigger_error('Grab proxy failed: ' . socket_strerror($socket));
-             return true;
+            trigger_error('Grab proxy failed: ' . socket_strerror($socket));
+            return true;
         }
 
         $ret          = '';
@@ -886,7 +883,7 @@ class HTML_AJAX
      * @access public
      * @return void
      */
-    function addAllowedClasses($classes)
+    public function addAllowedClasses($classes)
     {
         if (!is_array($classes)) {
             $this->_allowedClasses[] = $classes;
@@ -904,7 +901,7 @@ class HTML_AJAX
      * @return bool true if the callback is valid, false otherwise
      * @access private
      */
-    function _validatePhpCallback($callback)
+    public function _validatePhpCallback($callback)
     {
         if (!is_callable($callback)) {
             return false;
@@ -921,7 +918,7 @@ class HTML_AJAX
      * @access public
      * @return void
      */
-    function registerPhpCallback($callback)
+    public function registerPhpCallback($callback)
     {
         $this->_validCallbacks[md5(serialize($callback))] = 1;
     }
@@ -940,7 +937,7 @@ class HTML_AJAX
      * @access public
      * @return string packed javascript
      */
-    function packJavaScript($input) 
+    public function packJavaScript($input)
     {
         $stripPregs    = array(
             '/^\s*$/',
@@ -1016,7 +1013,7 @@ class HTML_AJAX
      * @access public
      * @return void
      */
-    function setInterceptor($instance) 
+    public function setInterceptor($instance)
     {
         $this->_interceptor = $instance;
     }
@@ -1033,9 +1030,8 @@ class HTML_AJAX
      * @access private
      * @return array Updated params
      */
-    function _processInterceptor($className,$methodName,$callback,$params) 
+    public function _processInterceptor($className, $methodName, $callback, $params)
     {
-
         $m = $className.'_'.$methodName;
         if (method_exists($this->_interceptor, $m)) {
             return $this->_interceptor->$m($params);
@@ -1064,7 +1060,7 @@ class HTML_AJAX
  * @access public
  * @return bool
  */
-function HTML_AJAX_Class_exists($class, $autoload) 
+function HTML_AJAX_Class_exists($class, $autoload)
 {
     if (function_exists('interface_exists')) {
         return class_exists($class, $autoload);
@@ -1072,5 +1068,4 @@ function HTML_AJAX_Class_exists($class, $autoload)
         return class_exists($class);
     }
 }
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-?>
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */;

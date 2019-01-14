@@ -19,8 +19,8 @@
 <?php echo _INSTALL_L74?><br />
 <input type="password" class="adminpass2" name="adminpass2" />
 <br /><br />
-<?php if(version_compare(phpversion(), '5.3.0', '>=')){
-echo _INSTALL_L77 .'<br />
+<?php if (version_compare(phpversion(), '5.3.0', '>=')) {
+    echo _INSTALL_L77 .'<br />
 <select name="timezone">
 <option value="Kwajalein">'._TZ_GMTM12.'</option>
 <option value="Pacific/Midway">'._TZ_GMTM11.'</option>

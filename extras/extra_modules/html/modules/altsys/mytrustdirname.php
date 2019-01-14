@@ -1,3 +1,2 @@
 <?php
-	$mytrustdirname = 'altsys' ;
-?>
+    $mytrustdirname = 'altsys' ;

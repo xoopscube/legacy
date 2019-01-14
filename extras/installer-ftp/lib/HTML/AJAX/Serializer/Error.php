@@ -12,9 +12,7 @@ require_once 'HTML/AJAX/Serializer/JSON.php';
  * @version    Release: 0.5.6
  * @link       http://pear.php.net/package/HTML_AJAX
  */
-class HTML_AJAX_Serializer_Error extends HTML_AJAX_Serializer_JSON 
+class HTML_AJAX_Serializer_Error extends HTML_AJAX_Serializer_JSON
 {
-
 }
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-?>
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */;

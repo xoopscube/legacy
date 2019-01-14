@@ -8,7 +8,7 @@ $content =
 
 </p>
 <p>
-XOOPS Cube Legacy 的釋出依照<a href='http://xoopscube.sourceforge.net/license/GPL_V2.txt' target='_blank'>GNU General Public License (GPL)</a>授權，並遵循此一方向讓大家可以照自己所需自由的修改，並用於各種用途，但必須保留程式碼的版權宣告及GPL規範的完整性，並且不得直接販售本程式碼。
+XOOPS Cube Legacy 的釋出依照<a href='https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt' target='_blank'>GNU General Public License (GPL)</a>授權，並遵循此一方向讓大家可以照自己所需自由的修改，並用於各種用途，但必須保留程式碼的版權宣告及GPL規範的完整性，並且不得直接販售本程式碼。
 </p>
 <u><b>環境需求</b></u>
 <p>
@@ -30,5 +30,4 @@ XOOPS Cube Legacy 的釋出依照<a href='http://xoopscube.sourceforge.net/licen
 <p>
 請依照安裝精靈指示安裝，安裝完成請移除install目錄以及將mainfile.php變更為唯讀。
 </p>
-"
-?>
+";

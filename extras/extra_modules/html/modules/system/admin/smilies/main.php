@@ -29,7 +29,7 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid()) ) {
+if (!is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid())) {
     exit("Access Denied");
 }
 
@@ -42,11 +42,11 @@ if (!empty($_GET['op'])) {
     $op = $_POST['op'];
 }
 
-switch($op) {
+switch ($op) {
 
 case "SmilesUpdate":
     if (!XoopsMultiTokenHandler::quickValidate('smilies_SmilesUpdate')) {
-        redirect_header('admin.php?fct=smilies',3,"Ticket Error");
+        redirect_header('admin.php?fct=smilies', 3, "Ticket Error");
     }
     $count = (!empty($_POST['smile_id']) && is_array($_POST['smile_id'])) ? count($_POST['smile_id']) : 0;
     $db =& Database::getInstance();
@@ -60,12 +60,12 @@ case "SmilesUpdate":
             $db->query('UPDATE '.$db->prefix('smiles').' SET display='.$smile_display.' WHERE id ='.$smile_id);
         }
     }
-    redirect_header('admin.php?fct=smilies',2,_AM_DBUPDATED);
+    redirect_header('admin.php?fct=smilies', 2, _AM_DBUPDATED);
     break;
 
 case "SmilesAdd":
     if (!XoopsMultiTokenHandler::quickValidate('smilies_SmilesAdd')) {
-        redirect_header('admin.php?fct=smilies',3,"Ticket Error");
+        redirect_header('admin.php?fct=smilies', 3, "Ticket Error");
     }
     $db =& Database::getInstance();
     $myts =& MyTextSanitizer::getInstance();
@@ -91,7 +91,7 @@ case "SmilesAdd":
         $err = $uploader->getErrors();
     }
     if (!isset($err)) {
-        redirect_header('admin.php?fct=smilies&amp;op=SmilesAdmin',2,_AM_DBUPDATED);
+        redirect_header('admin.php?fct=smilies&amp;op=SmilesAdmin', 2, _AM_DBUPDATED);
     } else {
         xoops_cp_header();
         xoops_error($err);
@@ -109,7 +109,7 @@ case "SmilesEdit":
 case "SmilesSave":
     $id = isset($_POST['id']) ? intval($_POST['id']) : 0;
     if ($id <= 0 || !XoopsMultiTokenHandler::quickValidate('smilies_SmilesSave')) {
-        redirect_header('admin.php?fct=smilies',3,"Ticket Error");
+        redirect_header('admin.php?fct=smilies', 3, "Ticket Error");
     }
     $myts =& MyTextSanitizer::getInstance();
     $smile_code = $myts->stripSlashesGPC($_POST['smile_code']);
@@ -145,7 +145,7 @@ case "SmilesSave":
         }
     }
     if (!isset($err)) {
-        redirect_header('admin.php?fct=smilies&amp;op=SmilesAdmin',2,_AM_DBUPDATED);
+        redirect_header('admin.php?fct=smilies&amp;op=SmilesAdmin', 2, _AM_DBUPDATED);
     } else {
         xoops_cp_header();
         xoops_error($err);
@@ -156,7 +156,7 @@ case "SmilesSave":
 
 case "SmilesDel":
     $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-    if ($id > 0 ) {
+    if ($id > 0) {
         xoops_cp_header();
         xoops_token_confirm(array('fct' => 'smilies', 'op' => 'SmilesDelOk', 'id' => $id), 'admin.php', _AM_WAYSYWTDTS);
         xoops_cp_footer();
@@ -166,12 +166,12 @@ case "SmilesDel":
 case "SmilesDelOk":
     $id = isset($_POST['id']) ? intval($_POST['id']) : 0;
     if ($id <= 0 || !xoops_confirm_validate()) {
-        redirect_header('admin.php?fct=smilies',3,"Ticket Error");
+        redirect_header('admin.php?fct=smilies', 3, "Ticket Error");
     }
     $db =& Database::getInstance();
     $sql = sprintf("DELETE FROM %s WHERE id = %u", $db->prefix('smiles'), $id);
     $db->query($sql);
-    redirect_header("admin.php?fct=smilies&amp;op=SmilesAdmin",2,_AM_DBUPDATED);
+    redirect_header("admin.php?fct=smilies&amp;op=SmilesAdmin", 2, _AM_DBUPDATED);
     break;
 
 case "SmilesAdmin":
@@ -179,4 +179,3 @@ default:
     SmilesAdmin();
     break;
 }
-?>

@@ -22,11 +22,11 @@ class Hdinstaller_View_JsonXoopsparam extends Hdinstaller_View_Json
      *
      *  @access public
      */
-    function preforward()
+    public function preforward()
     {
-		parent::preforward();
-		
-		$this->af->set('xoops_root_path', dirname(BASE).'/html');
-		$this->af->set('xoops_trust_path', dirname(BASE).'/xoops_trust_path');
+        parent::preforward();
+        
+        $this->af->set('xoops_root_path', dirname(BASE).'/html');
+        $this->af->set('xoops_trust_path', dirname(BASE).'/xoops_trust_path');
     }
 }

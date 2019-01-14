@@ -5,8 +5,7 @@
  * @version $Id$
 **/
 
-if(!defined('XOOPS_ROOT_PATH'))
-{
+if (!defined('XOOPS_ROOT_PATH')) {
     exit;
 }
 
@@ -31,7 +30,7 @@ class Lecat_CatFilterForm extends Lecat_AbstractFilterForm
      * 
      * @public
     **/
-    var $mSortKeys = array(
+    public $mSortKeys = array(
         LECAT_CAT_SORT_KEY_CAT_ID => 'cat_id',
         LECAT_CAT_SORT_KEY_TITLE => 'title',
         LECAT_CAT_SORT_KEY_P_ID => 'p_id',
@@ -89,5 +88,3 @@ class Lecat_CatFilterForm extends Lecat_AbstractFilterForm
         $this->_mCriteria->addSort($this->getSort(), $this->getOrder());
     }
 }
-
-?>
