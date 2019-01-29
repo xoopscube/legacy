@@ -23,8 +23,9 @@ class Legacy_AbstractBlockProcedure
      * @var XCube_RenderTarget
      */
     public $mRender = null;
-    
-    public function Legacy_AbstractBlockProcedure()
+        // !Fix PHP7
+        public function __construct()
+    //public function Legacy_AbstractBlockProcedure()
     {
     }
     
@@ -167,7 +168,9 @@ class Legacy_BlockProcedure extends Legacy_AbstractBlockProcedure
      */
     public $mRender = null;
     
-    public function Legacy_BlockProcedure(&$block)
+        // !Fix PHP7
+        public function __construct(&$block)
+    //public function Legacy_BlockProcedure(&$block)
     {
         $this->_mBlock =& $block;
     }

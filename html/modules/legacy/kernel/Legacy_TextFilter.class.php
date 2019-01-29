@@ -80,27 +80,29 @@ class Legacy_TextFilter extends XCube_TextFilter
      * @todo
      *	  This method keeps a deprecated delegate.
      */
-    public function Legacy_TextFilter()
+          // !Fix PHP7
+          public function __construct()
+    //public function Legacy_TextFilter()
     {
         $obj = $this->mMakeClickableConvertTable = new XCube_Delegate;
         $obj->register('Legacy_TextFilter.MakeClickableConvertTable');
-        $obj->add('Legacy_TextFilter::makeClickableConvertTable', XCUBE_DELEGATE_PRIORITY_2);
+        $obj->add('Legacy_TextFilter::sMakeClickableConvertTable', XCUBE_DELEGATE_PRIORITY_2);
 
         $obj = $this->mMakeXCodeConvertTable = new XCube_Delegate;
         $obj->register('Legacy_TextFilter.MakeXCodeConvertTable');
-        $obj->add('Legacy_TextFilter::makeXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_2);
+        $obj->add('Legacy_TextFilter::sMakeXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_2);
 
         $obj = $this->mMakeXCodeCheckImgPatterns = new XCube_Delegate;
         $obj->register('Legacy_TextFilter.MakeXCodeCheckImgPatterns');
-        $obj->add('Legacy_TextFilter::makeXCodeCheckImgPatterns', XCUBE_DELEGATE_PRIORITY_2);
+        $obj->add('Legacy_TextFilter::sMakeXCodeCheckImgPatterns', XCUBE_DELEGATE_PRIORITY_2);
 
         $obj = $this->mMakePreXCodeConvertTable = new XCube_Delegate;
         $obj->register('Legacy_TextFilter.MakePreXCodeConvertTable');
-        $obj->add('Legacy_TextFilter::makePreXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_2);
+        $obj->add('Legacy_TextFilter::sMakePreXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_2);
 
         $obj = $this->mMakePostXCodeConvertTable = new XCube_Delegate;
         $obj->register('Legacy_TextFilter.MakePostXCodeConvertTable');
-        $obj->add('Legacy_TextFilter::makePostXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_2);
+        $obj->add('Legacy_TextFilter::sMakePostXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_2);
 
         //@deprecated
         //Todo: For keeping compatible with XC2.1 Beta3
@@ -313,7 +315,7 @@ class Legacy_TextFilter extends XCube_TextFilter
         return $text;
     }
 
-    public function makeClickableConvertTable(&$patterns, &$replacements)
+    public static function sMakeClickableConvertTable(&$patterns, &$replacements)
     {
         // URI accept class ref. RFC 1738 (but not strict here)
         $hpath = "[-_.!~*\'()a-z0-9;\/?:\@&=+\$,%#]+";
@@ -325,6 +327,13 @@ class Legacy_TextFilter extends XCube_TextFilter
         $replacements[] = "\\1<a href=\"ftp://ftp.\\2.\\3\" rel=\"external\">ftp.\\2.\\3</a>";
         $patterns[] = "/(^|[^]_a-z0-9-=\"'\/:\.])([a-z0-9\-_\.]+?)@([a-z0-9!#\$%&'\*\+\-\/=\?^_\`{\|}~\.]+)/i";
         $replacements[] = "\\1<a href=\"mailto:\\2@\\3\">\\2@\\3</a>";
+    }
+    /**
+     * @deprecated
+     **/
+    public function makeClickableConvertTable(&$patterns, &$replacements)
+    {
+        self::sMakeClickableConvertTable($patterns, $replacements);
     }
 
     /**
@@ -397,12 +406,19 @@ class Legacy_TextFilter extends XCube_TextFilter
         return $text;
     }
     
-    public function makeXCodeCheckImgPatterns(&$patterns)
+    public static function sMakeXCodeCheckImgPatterns(&$patterns)
     {
         $patterns[] = "/\[img( align=\w+)]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
     }
+    /**
+     * @deprecated
+     **/
+    public function makeXCodeCheckImgPatterns(&$patterns)
+    {
+        self::sMakeXCodeCheckImgPatterns($patterns);
+    }
 
-    public function makeXCodeConvertTable(&$patterns, &$replacements)
+    public static function sMakeXCodeConvertTable(&$patterns, &$replacements)
     {
         $patterns[] = "/\[siteurl\=(['\"]?)([^\"'<>]*)\\1\](.*)\[\/siteurl\]/sU";
         $replacements[0][] = $replacements[1][] = '<a href="'.XOOPS_URL.'/\\2" rel="external">\\3</a>';
@@ -448,6 +464,13 @@ class Legacy_TextFilter extends XCube_TextFilter
         $replacements[0][] = $replacements[1][] = "java script:";
         $patterns[] = "/about:/si";
         $replacements[0][] = $replacements[1][] = "about :";
+    }
+    /**
+     * @deprecated
+     **/
+    public function makeXCodeConvertTable(&$patterns, &$replacements)
+    {
+        self::sMakeXCodeConvertTable($patterns, $replacements);
     }
 
     /**
@@ -538,10 +561,23 @@ class Legacy_TextFilter extends XCube_TextFilter
         return $text;
     }
     
-    public function makePreXCodeConvertTable(&$patterns, &$replacements)
+    public static function sMakePreXCodeConvertTable(&$patterns, &$replacements)
     {
         $patterns[] = "/\[code\](.*)\[\/code\]/sU";
-        $replacements[] = create_function('$m', 'return \'[code]\'.base64_encode($m[1]).\'[/code]\';');
+        $replacements[] = 'self::_sCodeToBase64Encode';
+    }
+    
+    protected static function _sCodeToBase64Encode($match)
+    {
+        return '[code]' . base64_encode($match[1]) . '[/code]';
+    }
+    
+    /**
+     * @deprecated
+     **/
+    public function makePreXCodeConvertTable(&$patterns, &$replacements)
+    {
+        self::sMakePreXCodeConvertTable($patterns, $replacements);
     }
 
     /**
@@ -600,7 +636,7 @@ class Legacy_TextFilter extends XCube_TextFilter
         return $text;
     }
 
-    public function makePostXCodeConvertTable(&$patterns, &$replacements)
+    public static function sMakePostXCodeConvertTable(&$patterns, &$replacements)
     {
         $patterns[] = "/\[code\](.*)\[\/code\]/sU";
         if (version_compare(PHP_VERSION, '5.2.3', '>=')) {
@@ -612,6 +648,13 @@ class Legacy_TextFilter extends XCube_TextFilter
             $replacements[0][] = array(&$me, 'Legacy_TextFilter::codeSanitizerCallback0');
             $replacements[1][] = array(&$me, 'Legacy_TextFilter::codeSanitizerCallback1');
         }
+    }
+    /**
+     * @deprecated
+     **/
+    public function makePostXCodeConvertTable(&$patterns, &$replacements)
+    {
+        self::sMakePostXCodeConvertTable($patterns, $replacements);
     }
 
     private function codeSanitizerCallback($m, $image)

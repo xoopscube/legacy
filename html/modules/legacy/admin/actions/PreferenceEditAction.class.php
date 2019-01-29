@@ -214,6 +214,11 @@ class Legacy_AbstractPreferenceEditState
 
     public function Legacy_AbstractPreferenceEditState(&$master)
     {
+        self::__construct($master);
+    }
+
+    public function __construct(&$master)
+    {
         $this->_mMaster =& $master;
     }
     

@@ -19,7 +19,9 @@ class LegacyImageObject extends XoopsSimpleObject
     public $mImageBody = null;
     public $_mImageBodyLoadedFlag = false;
 
-    public function LegacyImageObject()
+    // !Fix deprecated constructor for php 7.x
+    public function __construct()
+    // public function LegacyImageObject()
     {
         static $initVars;
         if (isset($initVars)) {

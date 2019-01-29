@@ -37,7 +37,12 @@ class Legacy_BackendAction extends Legacy_Action
     
     public function Legacy_BackendAction($flag)
     {
-        parent::Legacy_Action($flag);
+        self::__construct($flag);
+    }
+
+    public function __construct($flag)
+    {
+        parent::__construct($flag);
         
         $this->mGetRSSItems =new XCube_Delegate();
         $this->mGetRSSItems->register('Legacy_BackendAction.GetRSSItems');

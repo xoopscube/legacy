@@ -29,8 +29,9 @@ class LegacyImagecategoryObject extends XoopsSimpleObject
     public $mUploadGroups = array();
     public $_mUploadGroupsLoadedFlag = false;
     
-
-    public function LegacyImagecategoryObject()
+    // !Fix deprecated constructor for php 7.x
+    public function __construct()
+    // public function LegacyImagecategoryObject()
     {
         static $initVars;
         if (isset($initVars)) {

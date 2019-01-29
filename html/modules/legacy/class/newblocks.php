@@ -30,6 +30,11 @@ class LegacyNewblocksObject extends XoopsSimpleObject
 
     public function LegacyNewblocksObject()
     {
+        self::__construct();
+    }
+
+    public function __construct()
+    {
         static $initVars;
         if (isset($initVars)) {
             $this->mVars = $initVars;

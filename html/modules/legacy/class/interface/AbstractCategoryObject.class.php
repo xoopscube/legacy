@@ -18,6 +18,11 @@ abstract class Legacy_AbstractCategoryObject extends Legacy_AbstractObject
     const DATANAME = 'cat';
     public $mChildren = array();    //Legacy_AbstractCategoryObject[]
 
+    public function Legacy_AbstractCategoryObject()
+    {
+        self::__construct();
+    }
+
     public function __construct()
     {
         $this->initVar('cat_id', XOBJ_DTYPE_INT, '', false);

@@ -54,7 +54,9 @@ class Legacy_DebuggerManager
 
 class Legacy_AbstractDebugger
 {
-    public function Legacy_AbstractDebugger()
+            // !Fix PHP7
+            public function __construct()
+    //public function Legacy_AbstractDebugger()
     {
     }
 

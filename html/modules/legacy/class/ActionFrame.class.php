@@ -53,6 +53,11 @@ class Legacy_ActionFrame
     
     public function Legacy_ActionFrame($admin)
     {
+        self::__construct($admin);
+    }
+
+    public function __construct($admin)
+    {
         $this->mAdminFlag = $admin;
         $this->mCreateAction =new XCube_Delegate();
         $this->mCreateAction->register('Legacy_ActionFrame.CreateAction');
@@ -191,6 +196,11 @@ class Legacy_Action
     public $_mAdminFlag = false;
     
     public function Legacy_Action($adminFlag = false)
+    {
+        self::__construct($adminFlag);
+    }
+
+    public function __construct($adminFlag = false)
     {
         $this->_mAdminFlag = $adminFlag;
     }

@@ -17,8 +17,9 @@ class LegacyCommentObject extends XoopsSimpleObject
     public $mUser = null;
     public $mModule = null;
     public $mStatus = null;
-    
-    public function LegacyCommentObject()
+    // !Fix deprecated constructor for php 7.x
+    public function __construct()
+    // public function LegacyCommentObject()
     {
         static $initVars;
         if (isset($initVars)) {
@@ -75,7 +76,7 @@ class LegacyCommentObject extends XoopsSimpleObject
     public function getVar($key)
     {
         if ($key == 'com_text') {
-            $ts =& MyTextSanitizer::getInstance();
+            $ts =& MyTextSanitizer::sGetInstance();
             return $ts->displayTarea($this->get($key), $this->get('dohtml'), $this->get('dosmiley'), $this->get('doxcode'), $this->get('doimage'), $this->get('dobr'));
         } else {
             return parent::getVar($key);
@@ -98,8 +99,9 @@ class LegacyCommentHandler extends XoopsObjectGenericHandler
      * @var XCube_Delegate
      */
     public $mDeleteSuccess;
-    
-    public function LegacyCommentHandler(&$db)
+    // !Fix deprecated constructor for php 7.x
+    public function __construct(&$db)
+    // public function LegacyCommentHandler(&$db)
     {
         parent::XoopsObjectGenericHandler($db);
         

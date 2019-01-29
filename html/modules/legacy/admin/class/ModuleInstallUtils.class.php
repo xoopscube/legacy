@@ -74,7 +74,7 @@ class Legacy_ModuleInstallUtils
      * This is factory for the installer. The factory reads xoops_version
      * without modulehandler, to prevent cache in modulehandler.
      */
-    public function &createInstaller($dirname)
+    public static function &createInstaller($dirname)
     {
         $installer =& Legacy_ModuleInstallUtils::_createInstaller($dirname, 'installer', 'Legacy_ModuleInstaller');
         return $installer;
@@ -84,7 +84,7 @@ class Legacy_ModuleInstallUtils
      * This is factory for the updater. The factory reads xoops_version
      * without modulehandler, to prevent cache in modulehandler.
      */
-    public function &createUpdater($dirname)
+    public static function &createUpdater($dirname)
     {
         $updater =& Legacy_ModuleInstallUtils::_createInstaller($dirname, 'updater', 'Legacy_ModulePhasedUpgrader');
         return $updater;
@@ -94,7 +94,7 @@ class Legacy_ModuleInstallUtils
      * This is factory for the uninstaller. The factory reads xoops_version
      * without modulehandler, to prevent cache in modulehandler.
      */
-    public function &createUninstaller($dirname)
+    public static function &createUninstaller($dirname)
     {
         $uninstaller =& Legacy_ModuleInstallUtils::_createInstaller($dirname, 'uninstaller', 'Legacy_ModuleUninstaller');
         return $uninstaller;
@@ -107,7 +107,7 @@ class Legacy_ModuleInstallUtils
      * @param string $mode 'installer' 'updater' or 'uninstaller'
      * @param string $defaultClassName
      */
-    public function &_createInstaller($dirname, $mode, $defaultClassName)
+    public static function &_createInstaller($dirname, $mode, $defaultClassName)
     {
         $info = array();
         
@@ -153,7 +153,7 @@ class Legacy_ModuleInstallUtils
      * @param Legacy_ModuleInstallLog $log
      * @note FOR THE CUSTOM-INSTALLER
      */
-    public function installSQLAutomatically(&$module, &$log)
+    public static function installSQLAutomatically(&$module, &$log)
     {
         $dbTypeAliases = array(
             'mysqli' => 'mysql'
@@ -259,7 +259,7 @@ class Legacy_ModuleInstallUtils
      * @note FOR THE CUSTOM-INSTALLER
      * @see Legacy_ModuleInstallUtils::uninstallAllOfModuleTemplates()
      */
-    public function installAllOfModuleTemplates(&$module, &$log)
+    public static function installAllOfModuleTemplates(&$module, &$log)
     {
         $templates = $module->getInfo('templates');
         if ($templates != false) {
@@ -286,7 +286,7 @@ class Legacy_ModuleInstallUtils
      * @note This is not usefull a litte for custom-installers.
      * @todo We'll need the way to specify the template by identity or others.
      */
-    public function installModuleTemplate($module, $template, &$log)
+    public static function installModuleTemplate($module, $template, &$log)
     {
         $tplHandler =& xoops_gethandler('tplfile');
 
@@ -347,7 +347,7 @@ class Legacy_ModuleInstallUtils
      * @note FOR THE CUSTOM-INSTALLER
      * @see Legacy_ModuleInstallUtils::installAllOfModuleTemplates()
      */
-    public function _uninstallAllOfModuleTemplates(&$module, $tplset, &$log)
+    public static function _uninstallAllOfModuleTemplates(&$module, $tplset, &$log)
     {
         //
         // The following processing depends on the structure of Legacy_RenderSystem.
@@ -372,12 +372,12 @@ class Legacy_ModuleInstallUtils
         }
     }
     
-    public function uninstallAllOfModuleTemplates(&$module, &$log)
+    public static function uninstallAllOfModuleTemplates(&$module, &$log)
     {
         Legacy_ModuleInstallUtils::_uninstallAllOfModuleTemplates($module, null, $log);
     }
 
-    public function clearAllOfModuleTemplatesForUpdate(&$module, &$log)
+    public static function clearAllOfModuleTemplatesForUpdate(&$module, &$log)
     {
         Legacy_ModuleInstallUtils::_uninstallAllOfModuleTemplates($module, 'default', $log);
     }
@@ -393,7 +393,7 @@ class Legacy_ModuleInstallUtils
      * @note FOR THE CUSTOM-INSTALLER
      * @see Legacy_ModuleInstallUtils::uninstallAllOfBlocks()
      */
-    public function installAllOfBlocks(&$module, &$log)
+    public static function installAllOfBlocks(&$module, &$log)
     {
         $definedBlocks = $module->getInfo('blocks');
         if ($definedBlocks == false) {
@@ -463,7 +463,7 @@ class Legacy_ModuleInstallUtils
      * @see Legacy_ModuleInstallUtils::installAllOfBlocks()
      * @see Legacy_ModuleInstallUtils::uninstallBlock()
      */
-    public function uninstallAllOfBlocks(&$module, &$log)
+    public static function uninstallAllOfBlocks(&$module, &$log)
     {
         $handler =& xoops_gethandler('block');
         $criteria = new Criteria('mid', $module->get('mid'));
@@ -485,7 +485,7 @@ class Legacy_ModuleInstallUtils
      * @param $block array
      * @return XoopsBlock
      */
-    public function &createBlockByInfo(&$module, $block, $func_num)
+    public static function &createBlockByInfo(&$module, $block, $func_num)
     {
         $options = isset($block['options']) ? $block['options'] : null;
         $edit_func = isset($block['edit_func']) ? $block['edit_func'] : null;
@@ -533,7 +533,7 @@ class Legacy_ModuleInstallUtils
      * @param $block array
      * @return bool
      */
-    public function installBlock(&$module, &$blockObj, &$block, &$log)
+    public static function installBlock(&$module, &$blockObj, &$block, &$log)
     {
         $isNew = $blockObj->isNew();
         $blockHandler =& xoops_gethandler('block');
@@ -607,7 +607,7 @@ class Legacy_ModuleInstallUtils
      * 
      * @todo error handling & delete the block's template.
      */
-    public function uninstallBlock(&$block, &$log)
+    public static function uninstallBlock(&$block, &$log)
     {
         $blockHandler =& xoops_gethandler('block');
         $blockHandler->delete($block);
@@ -629,7 +629,7 @@ class Legacy_ModuleInstallUtils
      * to database.
      * @return bool
      */
-    public function installBlockTemplate(&$block, &$module, &$log)
+    public static function installBlockTemplate(&$block, &$module, &$log)
     {
         if ($block->get('template') == null) {
             return true;
@@ -675,7 +675,7 @@ class Legacy_ModuleInstallUtils
      * 
      * @note This is must, but it depends on ...
      */
-    public function readTemplateFile($dirname, $fileName, $isblock = false)
+    public static function readTemplateFile($dirname, $fileName, $isblock = false)
     {
         //
         // Load template data
@@ -706,7 +706,7 @@ class Legacy_ModuleInstallUtils
         return $tpldata;
     }
 
-    public function installAllOfConfigs(&$module, &$log)
+    public static function installAllOfConfigs(&$module, &$log)
     {
         $dirname = $module->get('dirname');
         
@@ -735,7 +735,7 @@ class Legacy_ModuleInstallUtils
         }
     }
     
-    public function installPreferenceByInfo(&$info, &$module, &$log)
+    public static function installPreferenceByInfo(&$info, &$module, &$log)
     {
         $handler =& xoops_gethandler('config');
         $config =& $handler->createConfig();
@@ -769,7 +769,7 @@ class Legacy_ModuleInstallUtils
     /**
      * Get & build config items from Manifesto by specific module object.
      */
-    public function &getConfigInfosFromManifesto(&$module)
+    public static function &getConfigInfosFromManifesto(&$module)
     {
         $configInfos = $module->getInfo('config');
         
@@ -859,7 +859,7 @@ class Legacy_ModuleInstallUtils
      *
      * @param $module XoopsModule
      */
-    public function uninstallAllOfConfigs(&$module, &$log)
+    public static function uninstallAllOfConfigs(&$module, &$log)
     {
         if ($module->get('hasconfig') == 0) {
             return;
@@ -877,7 +877,7 @@ class Legacy_ModuleInstallUtils
         }
     }
     
-    public function smartUpdateAllOfBlocks(&$module, &$log)
+    public static function smartUpdateAllOfBlocks(&$module, &$log)
     {
         $dirname = $module->get('dirname');
         
@@ -910,7 +910,7 @@ class Legacy_ModuleInstallUtils
         }
     }
     
-    public function smartUpdateAllOfPreferences(&$module, &$log)
+    public static function smartUpdateAllOfPreferences(&$module, &$log)
     {
         $dirname = $module->get('dirname');
         
@@ -992,7 +992,7 @@ class Legacy_ModuleInstallUtils
         }
     }
     
-    public function updateBlockTemplateByInfo(&$info, &$module, &$log)
+    public static function updateBlockTemplateByInfo(&$info, &$module, &$log)
     {
         $handler =& xoops_getmodulehandler('newblocks', 'legacy');
         
@@ -1007,7 +1007,7 @@ class Legacy_ModuleInstallUtils
         }
     }
     
-    public function updateBlockByInfo(&$info, &$module, &$log)
+    public static function updateBlockByInfo(&$info, &$module, &$log)
     {
         $handler =& xoops_getmodulehandler('newblocks', 'legacy');
         
@@ -1035,7 +1035,7 @@ class Legacy_ModuleInstallUtils
         }
     }
     
-    public function updatePreferenceByInfo(&$info, &$module, &$log)
+    public static function updatePreferenceByInfo(&$info, &$module, &$log)
     {
         $handler =& xoops_gethandler('config');
 
@@ -1107,7 +1107,7 @@ class Legacy_ModuleInstallUtils
         }
     }
 
-    public function updatePreferenceOrderByInfo(&$info, &$module, &$log)
+    public static function updatePreferenceOrderByInfo(&$info, &$module, &$log)
     {
         $handler =& xoops_gethandler('config');
 
@@ -1132,7 +1132,7 @@ class Legacy_ModuleInstallUtils
         }
     }
     
-    public function installBlockByInfo(&$info, &$module, &$log)
+    public static function installBlockByInfo(&$info, &$module, &$log)
     {
         $handler =& xoops_gethandler('block');
         $block =& $handler->create();
@@ -1165,7 +1165,7 @@ class Legacy_ModuleInstallUtils
     /**
      * @todo Need a message in the fail case.
      */
-    public function uninstallBlockByFuncNum($func_num, &$module, &$log)
+    public static function uninstallBlockByFuncNum($func_num, &$module, &$log)
     {
         $handler =& xoops_getmodulehandler('newblocks', 'legacy');
         
@@ -1197,7 +1197,7 @@ class Legacy_ModuleInstallUtils
      *     This method users template handlers of the kernel. But, if they are hooked,
      *     they may not do something. So, abstraction mechanism is possible enough.
      */
-    public function _uninstallBlockTemplate(&$block, &$module, $tplset, &$log)
+    public static function _uninstallBlockTemplate(&$block, &$module, $tplset, &$log)
     {
         $handler =& xoops_gethandler('tplfile');
         $criteria =new CriteriaCompo();
@@ -1214,7 +1214,7 @@ class Legacy_ModuleInstallUtils
         $handler->deleteAll($criteria);
     }
     
-    public function uninstallBlockTemplate(&$block, &$module, &$log)
+    public static function uninstallBlockTemplate(&$block, &$module, &$log)
     {
         Legacy_ModuleInstallUtils::_uninstallBlockTemplate($block, $module, null, $log);
     }
@@ -1223,12 +1223,12 @@ class Legacy_ModuleInstallUtils
      * @public
      * Removes a template data from only default group of some render-system.
      */
-    public function clearBlockTemplateForUpdate(&$block, &$module, &$log)
+    public static function clearBlockTemplateForUpdate(&$block, &$module, &$log)
     {
         Legacy_ModuleInstallUtils::_uninstallBlockTemplate($block, $module, 'default', $log);
     }
 
-    public function uninstallPreferenceByOrder($order, &$module, &$log)
+    public static function uninstallPreferenceByOrder($order, &$module, &$log)
     {
         $handler =& xoops_gethandler('config');
 
@@ -1251,7 +1251,7 @@ class Legacy_ModuleInstallUtils
     /**
      * Executes SQL query as cube style.
      */
-    public function DBquery($query, &$module, $log)
+    public static function DBquery($query, &$module, $log)
     {
         require_once XOOPS_MODULE_PATH . "/legacy/admin/class/Legacy_SQLScanner.class.php";
         
@@ -1279,14 +1279,14 @@ class Legacy_ModuleInstallUtils
         return $successFlag;
     }
     
-    public function deleteAllOfNotifications(&$module, &$log)
+    public static function deleteAllOfNotifications(&$module, &$log)
     {
         $handler =& xoops_gethandler('notification');
         $criteria =new Criteria('not_modid', $module->get('mid'));
         $handler->deleteAll($criteria);
     }
 
-    public function deleteAllOfComments(&$module, &$log)
+    public static function deleteAllOfComments(&$module, &$log)
     {
         $handler =& xoops_gethandler('comment');
         $criteria =new Criteria('com_modid', $module->get('mid'));

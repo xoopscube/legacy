@@ -18,6 +18,11 @@ class LegacyColumnsideObject extends XoopsSimpleObject
 {
     public function LegacyColumnsideObject()
     {
+        self::__construct();
+    }
+
+    public function __construct()
+    {
         static $initVars;
         if (isset($initVars)) {
             $this->mVars = $initVars;
@@ -34,6 +39,11 @@ class LegacyColumnsideHandler extends XoopsObjectHandler
     public $_mResults = array();
     
     public function LegacyColumnsideHandler(&$db)
+    {
+        self::__construct($db);
+    }
+
+    public function __construct(&$db)
     {
         $t_arr = array(
                 0 => _AD_LEGACY_LANG_SIDE_BLOCK_LEFT,

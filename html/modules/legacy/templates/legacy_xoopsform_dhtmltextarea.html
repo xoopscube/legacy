@@ -1,10 +1,16 @@
 <a name='moresmiley'></a>
-<a href="#" onclick='xoopsCodeUrl("<{$element->getId()}>", "<{$smarty.const._ENTERURL}>", "<{$smarty.const._ENTERWEBTITLE}>"); return false;'><img src='<{$xoops_url}>/images/url.gif' alt='url' /></a>&nbsp;
-<a href="#" onclick='javascript:xoopsCodeEmail("<{$element->getId()}>", "<{$smarty.const._ENTEREMAIL}>"); return false;'><img src='<{$xoops_url}>/images/email.gif' alt='email' /></a>&nbsp;
-<a href="#" onclick='javascript:xoopsCodeImg("<{$element->getId()}>", "<{$smarty.const._ENTERIMGURL}>", "<{$smarty.const._ENTERIMGPOS}>", "<{$smarty.const._IMGPOSRORL|xoops_escape}>", "<{$smarty.const._ERRORIMGPOS}>"); return false;'><img src='<{$xoops_url}>/images/imgsrc.gif' alt='imgsrc' /></a>&nbsp;
-<a href="#" onclick='javascript:openWithSelfMain("<{$xoops_url}>/imagemanager.php?target=<{$element->getId()}>","imgmanager",400,430); return false;'><img src='<{$xoops_url}>/images/image.gif' alt='image' /></a>&nbsp;
-<a href="#" onclick='javascript:xoopsCodeCode("<{$element->getId()}>", "<{$smarty.const._ENTERCODE}>"); return false;'><img src='<{$xoops_url}>/images/code.gif' alt='code' /></a>&nbsp;
-<a href="#" onclick='javascript:xoopsCodeQuote("<{$element->getId()}>", "<{$smarty.const._ENTERQUOTE}>"); return false;'><img src='<{$xoops_url}>/images/quote.gif' alt='quote' /></a><br />
+<a href="#" onclick='xoopsCodeUrl("<{$element->getId()}>", "<{$smarty.const._ENTERURL}>", "<{$smarty.const._ENTERWEBTITLE}>"); return false;'>
+  <img src='<{$xoops_url}>/images/url.gif' alt='url' /></a>&nbsp;
+<a href="#" onclick='javascript:xoopsCodeEmail("<{$element->getId()}>", "<{$smarty.const._ENTEREMAIL}>"); return false;'>
+  <img src='<{$xoops_url}>/images/email.gif' alt='email' /></a>&nbsp;
+<a href="#" onclick='javascript:xoopsCodeImg("<{$element->getId()}>", "<{$smarty.const._ENTERIMGURL}>", "<{$smarty.const._ENTERIMGPOS}>", "<{$smarty.const._IMGPOSRORL|xoops_escape}>", "<{$smarty.const._ERRORIMGPOS}>"); return false;'>
+  <img src='<{$xoops_url}>/images/imgsrc.gif' alt='imgsrc' /></a>&nbsp;
+<a href="#" onclick='javascript:openWithSelfMain("<{$xoops_url}>/imagemanager.php?target=<{$element->getId()}>","imgmanager",400,430); return false;'>
+  <img src='<{$xoops_url}>/images/image.gif' alt='image' /></a>&nbsp;
+<a href="#" onclick='javascript:xoopsCodeCode("<{$element->getId()}>", "<{$smarty.const._ENTERCODE}>"); return false;'>
+  <img src='<{$xoops_url}>/images/code.gif' alt='code' /></a>&nbsp;
+<a href="#" onclick='javascript:xoopsCodeQuote("<{$element->getId()}>", "<{$smarty.const._ENTERQUOTE}>"); return false;'>
+  <img src='<{$xoops_url}>/images/quote.gif' alt='quote' /></a><br />
 <select id='<{$element->getId()}>Size' onchange='setVisible("<{$element->_xoopsHiddenText}>");setElementSize("<{$element->_xoopsHiddenText}>",this.options[this.selectedIndex].value);'>
   <option value='SIZE'><{$smarty.const._SIZE}></option>
   <option value='xx-small'>xx-small</option>
@@ -269,10 +275,16 @@
 </select>
 <span id='<{$element->_xoopsHiddenText}>'><{$smarty.const._EXAMPLE}></span>
 <br />
-<a href="#" onclick='javascript:setVisible("<{$element->_xoopsHiddenText}>");makeBold("<{$element->_xoopsHiddenText}>"); return false;'><img src='<{$xoops_url}>/images/bold.gif' alt='bold' /></a>&nbsp;
-<a href="#" onclick='javascript:setVisible("<{$element->_xoopsHiddenText}>");makeItalic("<{$element->_xoopsHiddenText}>"); return false;'><img src='<{$xoops_url}>/images/italic.gif' alt='italic' /></a>&nbsp;
-<a href="#" onclick='javascript:setVisible("<{$element->_xoopsHiddenText}>");makeUnderline("<{$element->_xoopsHiddenText}>"); return false;'><img src='<{$xoops_url}>/images/underline.gif' alt='underline' /></a>&nbsp;
-<a href="#" onclick='javascript:setVisible("<{$element->_xoopsHiddenText}>");makeLineThrough("<{$element->_xoopsHiddenText}>"); return false;'><img  src='<{$xoops_url}>/images/linethrough.gif' alt='linethrough' /></a>&nbsp;&nbsp;
+<a href="#" onclick='javascript:setVisible("<{$element->_xoopsHiddenText}>");makeBold("<{$element->_xoopsHiddenText}>"); return false;'>
+  <img src='<{$xoops_url}>/images/bold.gif' alt='bold' /></a>&nbsp;
+<a href="#" onclick='javascript:setVisible("<{$element->_xoopsHiddenText}>");makeItalic("<{$element->_xoopsHiddenText}>"); return false;'>
+  <img src='<{$xoops_url}>/images/italic.gif' alt='italic' /></a>&nbsp;
+<a href="#" onclick='javascript:setVisible("<{$element->_xoopsHiddenText}>");makeUnderline("<{$element->_xoopsHiddenText}>"); return false;'>
+  <img src='<{$xoops_url}>/images/underline.gif' alt='underline' /></a>&nbsp;
+<a href="#" onclick='javascript:setVisible("<{$element->_xoopsHiddenText}>");makeLineThrough("<{$element->_xoopsHiddenText}>"); return false;'>
+  <img  src='<{$xoops_url}>/images/linethrough.gif' alt='linethrough' /></a>&nbsp;&nbsp;
 <input type='text' id='<{$element->getId()}>Addtext' size='20' />&nbsp;
-<input type='button' onclick='xoopsCodeText("<{$element->getId()}>", "<{$element->_xoopsHiddenText}>", "<{$smarty.const._ENTERTEXTBOX}>")' class='formButton' value='<{$smarty.const._ADD}>' /><br /><br />
-<textarea id='<{$element->getId()}>' name='<{$element->getName()}>' <{if $class}>class='<{$class}>' <{/if}>cols='<{$element->getCols()}>' rows='<{$element->getRows()}>' onselect="xoopsSavePosition('<{$element->getId()}>');" onclick="xoopsSavePosition('<{$element->getId()}>');" onkeyup="xoopsSavePosition('<{$element->getId()}>');"<{if $element->getExtra()}><{$element->getExtra()}><{/if}>><{$element->getValue()}></textarea><br />
+<input type='button' onclick='xoopsCodeText("<{$element->getId()}>", "<{$element->_xoopsHiddenText}>", "<{$smarty.const._ENTERTEXTBOX}>")' class='formButton' value='<{$smarty.const._ADD}>' />
+<br /><br />
+<textarea id='<{$element->getId()}>' name='<{$element->getName()}>' <{if $class}>class='<{$class}>' <{/if}>cols='<{$element->getCols()}>' rows='<{$element->getRows()}>' onselect="xoopsSavePosition('<{$element->getId()}>');" onclick="xoopsSavePosition('<{$element->getId()}>');" onkeyup="xoopsSavePosition('<{$element->getId()}>');"<{if $element->getExtra()}><{$element->getExtra()}><{/if}>><{$element->getValue()}>
+</textarea><br />

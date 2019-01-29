@@ -14,9 +14,13 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class Legacy_Identity extends XCube_Identity
 {
-    public function Legacy_Identity(&$xoopsUser)
+        // !Fix PHP7
+        public function __construct(&$xoopsUser)
+    //public function Legacy_Identity(&$xoopsUser)
     {
-        parent::XCube_Identity();
+        // ! call parent::__construct() instead of parent::Controller()
+        parent::__construct($xoopsUser);
+        //parent::XCube_Identity();
         
         if (!is_object($xoopsUser)) {
             die('Exception');

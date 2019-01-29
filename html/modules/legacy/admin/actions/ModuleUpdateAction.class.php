@@ -82,9 +82,14 @@ class Legacy_ModuleUpdateAction extends Legacy_Action
     
     public $mInstaller = null;
     
-    public function Legacy_ModuleUpdateAction($flag)
+    public function  Legacy_ModuleUpdateAction($flag)
     {
-        parent::Legacy_Action($flag);
+        self::__construct($flag);
+    }
+
+    public function __construct($flag)
+    {
+        parent::__construct($flag);
         
         $this->mUpdateSuccess =new XCube_Delegate();
         $this->mUpdateSuccess->register('Legacy_ModuleUpdateAction.UpdateSuccess');

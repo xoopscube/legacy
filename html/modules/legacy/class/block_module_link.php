@@ -14,7 +14,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class LegacyBlock_module_linkObject extends XoopsSimpleObject
 {
-    public function LegacyBlock_module_linkObject()
+    // ! Fix
+    public function __construct()
+    // public function LegacyBlock_module_linkObject()
     {
         static $initVars;
         if (isset($initVars)) {

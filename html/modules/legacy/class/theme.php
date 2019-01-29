@@ -18,6 +18,11 @@ class LegacyThemeObject extends XoopsSimpleObject
 {
     public function LegacyThemeObject()
     {
+        self::__construct();
+    }
+
+    public function __construct()
+    {
         static $initVars;
         if (isset($initVars)) {
             $this->mVars = $initVars;
@@ -50,6 +55,11 @@ class LegacyThemeHandler extends XoopsObjectHandler
     public $mGetInstalledThemes = null;
     
     public function LegacyThemeHandler(&$db)
+    {
+        self::__construct($db);
+    }
+
+    public function __construct(&$db)
     {
         $this->mGetInstalledThemes =new XCube_Delegate();
         $this->mGetInstalledThemes->register('LegacyThemeHandler.GetInstalledThemes');

@@ -50,7 +50,7 @@ class Legacy_SearchResultsForm extends XCube_ActionForm
         
         $t_queries = array();
         
-        $myts =& MyTextSanitizer::getInstance();
+        $myts =& MyTextSanitizer::sGetInstance();
         if ($this->get('andor') == 'exact' && strlen($this->get('query')) >= $this->_mKeywordMin) {
             $this->mQueries[] = $myts->addSlashes($this->get('query'));
         } else {

@@ -96,7 +96,11 @@ class Legacy_ModulePhasedUpgrader
      */
     public $_mForceMode = false;
     
-    public function Legacy_ModulePhasedUpgrader()
+    public function Legacy_ModulePhasedUpgrader() {
+        self::__construct();
+    }
+
+    public function __construct()
     {
         $this->mLog =new Legacy_ModuleInstallLog();
     }

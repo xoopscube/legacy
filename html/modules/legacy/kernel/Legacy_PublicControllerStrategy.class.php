@@ -15,10 +15,13 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
 {
     public $mStatusFlag = LEGACY_CONTROLLER_STATE_PUBLIC;
-    
-    public function Legacy_PublicControllerStrategy(&$controller)
+        // !Fix PHP7
+        public function __construct(&$controller)
+    //public function Legacy_PublicControllerStrategy(&$controller)
     {
-        parent::Legacy_AbstractControllerStrategy($controller);
+        // ! call parent::__construct() instead of parent::Controller()
+        //parent::Legacy_AbstractControllerStrategy($controller);
+        parent::__construct($controller);
         
         $controller->mRoot->mContext->mBaseRenderSystemName = "Legacy_RenderSystem";
         

@@ -14,7 +14,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class Legacy_EventFunction
 {
-    public function imageManager()
+    public static function imageManager()
     {
         require_once XOOPS_MODULE_PATH . "/legacy/class/ActionFrame.class.php";
         
@@ -34,7 +34,7 @@ class Legacy_EventFunction
         $root->mController->executeView();
     }
 
-    public function backend()
+    public static function backend()
     {
         require_once XOOPS_MODULE_PATH . "/legacy/class/ActionFrame.class.php";
         
@@ -51,7 +51,7 @@ class Legacy_EventFunction
         $root->mController->executeView();
     }
 
-    public function search()
+    public static function search()
     {
         require_once XOOPS_MODULE_PATH . "/legacy/class/ActionFrame.class.php";
         
@@ -69,7 +69,7 @@ class Legacy_EventFunction
         $root->mController->executeView();
     }
     
-    public function misc()
+    public static function misc()
     {
         require_once XOOPS_LEGACY_PATH . "/class/ActionFrame.class.php";
 
@@ -91,7 +91,7 @@ class Legacy_EventFunction
         $root->mController->executeView();
     }
 
-    public function notifications()
+    public static function notifications()
     {
         require_once XOOPS_LEGACY_PATH . "/class/ActionFrame.class.php";
         
@@ -127,7 +127,7 @@ class Legacy_EventFunction
      * 
      * @param XCube_RenderBuffer $render
      */
-    public function notifications_select(&$render)
+    public static function notifications_select(&$render)
     {
         require_once XOOPS_ROOT_PATH . '/include/notification_constants.php';
         require_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
@@ -199,7 +199,7 @@ class Legacy_EventFunction
      * 
      * @static
      */
-    public function recountPost(&$posts, $xoopsUser)
+    public static function recountPost(&$posts, $xoopsUser)
     {
         $handler =& xoops_gethandler('comment');
         $criteria =new Criteria('com_uid', $xoopsUser->get('uid'));

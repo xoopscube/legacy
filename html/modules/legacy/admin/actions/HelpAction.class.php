@@ -44,6 +44,11 @@ class Legacy_HelpSmarty extends Smarty
 
     public function Legacy_HelpSmarty()
     {
+        self::__construct();
+    }
+
+    public function __construct()
+    {
         parent::Smarty();
 
         $this->compile_id = null;
@@ -130,7 +135,12 @@ class Legacy_HelpAction extends Legacy_Action
     
     public function Legacy_HelpAction($flag)
     {
-        parent::Legacy_Action($flag);
+        self::__construct($flag);
+    }
+
+    public function __construct($flag)
+    {
+        parent::__construct($flag);
         
         $this->mCreateHelpSmarty =new XCube_Delegate();
         $this->mCreateHelpSmarty->add(array(&$this, '_createHelpSmarty'));

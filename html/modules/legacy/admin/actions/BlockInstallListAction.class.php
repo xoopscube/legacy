@@ -60,7 +60,17 @@ class Legacy_BlockInstallListAction extends Legacy_AbstractListAction
         foreach (array_keys($this->mObjects) as $key) {
             $this->mObjects[$key]->loadModule();
         }
-        
+        foreach ($mods as $mod) {
+            $rtn    = array();
+            $sadmin = $moduleperm_handler->checkRight('module_admin', $mod->getVar('mid'), $xoopsUser->getGroups());
+            if ($sadmin && ($mod->getVar('hasnotification') || is_array($mod->getInfo('config')) || is_array($mod->getInfo('comments')))) {
+                $rtn['link']     = XOOPS_URL . '/modules/system/admin.php?fct=preferences&amp;op=showmod&amp;mod=' . $mod->getVar('mid');
+                $rtn['title']    = htmlspecialchars($mod->name(), ENT_QUOTES);
+                $rtn['absolute'] = 1;
+                $rtn['icon']     = XOOPS_ADMINTHEME_URL . '/icons/prefs_small.png';
+                $menu[]          = $rtn;
+            }
+        }
         $render->setAttribute("objects", $this->mObjects);
         $render->setAttribute("pageNavi", $this->mFilter->mNavi);
         $moduleHandler =& xoops_gethandler('module');

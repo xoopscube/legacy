@@ -16,6 +16,11 @@ class LegacySmilesObject extends XoopsSimpleObject
 {
     public function LegacySmilesObject()
     {
+        self::__construct();
+    }
+
+    public function __construct()
+    {
         static $initVars;
         if (isset($initVars)) {
             $this->mVars = $initVars;

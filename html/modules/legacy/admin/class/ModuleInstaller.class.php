@@ -38,6 +38,11 @@ class Legacy_ModuleInstaller
     
     public function Legacy_ModuleInstaller()
     {
+        self::__construct();
+    }
+
+    public function __construct()
+    {
         $this->mLog =new Legacy_ModuleInstallLog();
     }
 

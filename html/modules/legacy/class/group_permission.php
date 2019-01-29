@@ -16,6 +16,11 @@ class LegacyGroup_permissionObject extends XoopsSimpleObject
 {
     public function LegacyGroup_permissionObject()
     {
+        self::__construct();
+    }
+
+    public function __construct()
+    {
         static $initVars;
         if (isset($initVars)) {
             $this->mVars = $initVars;
