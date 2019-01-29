@@ -11,11 +11,19 @@ require_once XOOPS_ROOT_PATH.'/modules/legacy/admin/class/ModuleInstaller.class.
 
 class Message_myInstaller extends Legacy_ModuleInstaller
 {
+    /**
+     * For backward compatibility
+     */
     public function Message_myInstaller()
     {
-        parent::Legacy_ModuleInstaller();
+        self::__construct();
     }
-  
+
+    public function __construct() 
+    {
+        parent::__construct();
+    }
+
     public function executeInstall()
     {
         if (version_compare(PHP_VERSION, '5.0.0', '>')) {

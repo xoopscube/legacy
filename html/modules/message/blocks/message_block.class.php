@@ -11,7 +11,9 @@ class Message_Block extends Legacy_BlockProcedure
 {
     public function __construct(&$block)
     {
-        parent::Legacy_BlockProcedure($block);
+        // ! call parent::__construct() instead of parent::Controller()
+        parent::__construct($block);
+        //parent::Legacy_BlockProcedure($block);
     }
   
     public function prepare()

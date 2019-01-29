@@ -13,7 +13,9 @@ class MessageSettingsForm extends XCube_ActionForm
 {
     public function __construct()
     {
-        parent::XCube_ActionForm();
+        // ! call parent::__construct() instead of parent::Controller()
+        parent::__construct();
+        //parent::XCube_ActionForm();
     }
   
     public function getTokenName()
