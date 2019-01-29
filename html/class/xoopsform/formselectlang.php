@@ -69,9 +69,13 @@ class XoopsFormSelectLang extends XoopsFormSelect
      * 							Legal is any name of a XOOPS_ROOT_PATH."/language/" subdirectory.
      * @param	int		$size	Number of rows. "1" makes a drop-down-list.
      */
-    public function XoopsFormSelectLang($caption, $name, $value=null, $size=1)
+    public function __construct($caption, $name, $value=null, $size=1)
     {
         $this->XoopsFormSelect($caption, $name, $value, $size);
         $this->addOptionArray(XoopsLists::getLangList());
+    }
+    public function XoopsFormSelectLang($caption, $name, $value=null, $size=1)
+    {
+        return self::__construct($caption, $name, $value, $size);
     }
 }

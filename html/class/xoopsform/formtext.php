@@ -83,13 +83,17 @@ class XoopsFormText extends XoopsFormElement
      * @param	int		$maxlength	Maximum length of text
      * @param	string  $value      Initial text
      */
-    public function XoopsFormText($caption, $name, $size, $maxlength, $value="")
+    public function __construct($caption, $name, $size, $maxlength, $value="")
     {
         $this->setCaption($caption);
         $this->setName($name);
         $this->_size = intval($size);
         $this->_maxlength = intval($maxlength);
         $this->setValue($value);
+    }
+    public function XoopsFormText($caption, $name, $size, $maxlength, $value="")
+    {
+        return self::__construct($caption, $name, $size, $maxlength, $value);
     }
 
     /**

@@ -63,7 +63,9 @@ class XoopsErrorHandler
      * registering an error handler, the setting or 'error_reporting' is
      * ignored and *everything* is trapped.
      */
-    public function XoopsErrorHandler()
+            // !Fix PHP7
+            public function __construct()
+    //public function XoopsErrorHandler()
     {
         set_error_handler('XoopsErrorHandler_HandleError');
         register_shutdown_function('XoopsErrorHandler_Shutdown');
@@ -74,7 +76,7 @@ class XoopsErrorHandler
      *
      * @access public
      */
-    public function &getInstance()
+    public static function &getInstance()
     {
         static $instance = null;
         if (empty($instance)) {
@@ -147,29 +149,52 @@ class XoopsErrorHandler
             return $output;
         }
 
+        $output = array();
         foreach ($this->_errors as $error) {
             switch ($error['errno']) {
                 case E_USER_NOTICE:
-                    $output .= "Notice [Xoops]: ";
+                    $out = "Notice [Xoops]: ";
                     break;
                 case E_USER_WARNING:
-                    $output .= "Warning [Xoops]: ";
+                    $out = "Warning [Xoops]: ";
                     break;
                 case E_USER_ERROR:
-                    $output .= "Error [Xoops]: ";
+                    $out = "Error [Xoops]: ";
+                    break;
+                case E_USER_DEPRECATED:
+                    $out = "Deprecated [Xoops]: ";
+                    break;
+                case E_USER_STRICT:
+                    $out = "Strict [Xoops]: ";
                     break;
                 case E_NOTICE:
-                    $output .= "Notice [PHP]: ";
+                    $out = "Notice [PHP]: ";
                     break;
                 case E_WARNING:
-                    $output .= "Warning [PHP]: ";
+                    $out = "Warning [PHP]: ";
+                    break;
+                case E_DEPRECATED:
+                    $out = "Deprecated [PHP]: ";
+                    break;
+                case E_STRICT:
+                    $out = "Strict [PHP]: ";
+                    break;
+                case E_ERROR:
+                    $out = "Fatal [PHP]: ";
                     break;
                 default:
-                    $output .= "Unknown Condition [" . $error['errno'] . "]: ";
+                    $out = "Unknown Condition [" . $error['errno'] . "]: ";
             }
-            $output .= sprintf("%s in file %s line %s<br />\n", $error['errstr'], $error['errfile'], $error['errline']);
+            $out .= sprintf("%s in file %s line %s", $error['errstr'], $error['errfile'], $error['errline']);
+            $md5 = md5($out);
+            if (isset($output[$md5])) {
+                $output[$md5] = preg_replace('/\(\d+\)$/', '(' . ++$count[$md5] . ')', $output[$md5]);
+            } else {
+                $output[$md5] = $out . ' (1)';
+                $count[$md5] = 1;
+            }
         }
-        return $output;
+        return join("<br />\n", $output);
     }
 }
 
@@ -193,7 +218,7 @@ function XoopsErrorHandler_HandleError($errNo, $errStr, $errFile, $errLine)
     $new_error = array(
         'errno' => $errNo,
         'errstr' => $errStr,
-        'errfile' => preg_replace("|^" . XOOPS_ROOT_PATH . "/|", '', $errFile),
+        'errfile' => str_replace(array(XOOPS_ROOT_PATH, XOOPS_TRUST_PATH), array('(html)', '(trust)'), $errFile),
         'errline' => $errLine
         );
     $error_handler =& XoopsErrorHandler::getInstance();
@@ -208,6 +233,10 @@ function XoopsErrorHandler_HandleError($errNo, $errStr, $errFile, $errLine)
  */
 function XoopsErrorHandler_Shutdown()
 {
+    $error = error_get_last();
+    if ($error['type'] === E_ERROR) {
+        XoopsErrorHandler_HandleError($error['type'], $error['message'], $error['file'], $error['line']);
+    }
     $error_handler =& XoopsErrorHandler::getInstance();
     echo $error_handler->renderErrors();
 }

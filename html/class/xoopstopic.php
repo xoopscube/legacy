@@ -33,7 +33,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 }
 include_once XOOPS_ROOT_PATH."/class/xoopstree.php";
 
-class xoopstopic
+class XoopsTopic
 {
     public $table;
     public $topic_id;
@@ -44,7 +44,7 @@ class xoopstopic
     public $use_permission=false;
     public $mid; // module id used for setting permission
 
-    public function XoopsTopic($table, $topicid=0)
+    public function __construct($table, $topicid=0)
     {
         $this->db =& Database::getInstance();
         $this->table = $table;
@@ -55,6 +55,10 @@ class xoopstopic
         } else {
             $this->topic_id = $topicid;
         }
+    }
+    public function XoopsTopic($table, $topicid=0)
+    {
+        return self::__construct($table, $topicid);
     }
 
     public function setTopicTitle($value)
@@ -94,7 +98,7 @@ class xoopstopic
 
     public function store()
     {
-        $myts =& MyTextSanitizer::getInstance();
+        $myts =& MyTextSanitizer::sGetInstance();
         $title = "";
         $imgurl = "";
         if (isset($this->topic_title) && $this->topic_title != "") {
@@ -204,7 +208,7 @@ class xoopstopic
 
     public function topic_title($format="S")
     {
-        $myts =& MyTextSanitizer::getInstance();
+        $myts =& MyTextSanitizer::sGetInstance();
         switch ($format) {
             case "S":
                 $title = $myts->makeTboxData4Show($this->topic_title);
@@ -224,7 +228,7 @@ class xoopstopic
 
     public function topic_imgurl($format="S")
     {
-        $myts =& MyTextSanitizer::getInstance();
+        $myts =& MyTextSanitizer::sGetInstance();
         switch ($format) {
             case "S":
                 $imgurl= $myts->makeTboxData4Show($this->topic_imgurl);
@@ -319,7 +323,7 @@ class xoopstopic
     {
         $result = $this->db->query('SELECT topic_id, topic_pid, topic_title FROM '.$this->table);
         $ret = array();
-        $myts =& MyTextSanitizer::getInstance();
+        $myts =& MyTextSanitizer::sGetInstance();
         while ($myrow = $this->db->fetchArray($result)) {
             $ret[$myrow['topic_id']] = array('title' => $myts->htmlSpecialChars($myrow['topic_title']), 'pid' => $myrow['topic_pid']);
         }

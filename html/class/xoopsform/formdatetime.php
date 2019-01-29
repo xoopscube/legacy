@@ -55,7 +55,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class XoopsFormDateTime extends XoopsFormElementTray
 {
 
-    public function XoopsFormDateTime($caption, $name, $size = 15, $value=0)
+    public function __construct($caption, $name, $size = 15, $value=0)
     {
         $this->XoopsFormElementTray($caption, '&nbsp;');
         $value = intval($value);
@@ -73,5 +73,9 @@ class XoopsFormDateTime extends XoopsFormElementTray
         $timeselect = new XoopsFormSelect('', $name.'[time]', $datetime['hours'] * 3600 + 600 * ceil($datetime['minutes'] / 10));
         $timeselect->addOptionArray($timearray);
         $this->addElement($timeselect);
+    }
+    public function XoopsFormDateTime($caption, $name, $size = 15, $value=0)
+    {
+        return self::__construct($caption, $name, $size, $value);
     }
 }

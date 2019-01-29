@@ -1,4 +1,7 @@
 <?php
+// for XOOPS compatible
+require_once dirname(__FILE__) . '/PHPMailerAutoload.php';
+
 /**
  * PHPMailer - PHP email creation and transport class.
  * PHP Version 5

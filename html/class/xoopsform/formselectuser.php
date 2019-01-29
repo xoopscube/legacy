@@ -69,7 +69,7 @@ class XoopsFormSelectUser extends XoopsFormSelect
      * @param	int		$size	        Number or rows. "1" makes a drop-down-list.
      * @param	bool    $multiple       Allow multiple selections?
      */
-    public function XoopsFormSelectUser($caption, $name, $include_anon=false, $value=null, $size=1, $multiple=false)
+    public function __construct($caption, $name, $include_anon=false, $value=null, $size=1, $multiple=false)
     {
         $this->XoopsFormSelect($caption, $name, $value, $size, $multiple);
         $member_handler =& xoops_gethandler('member');
@@ -78,5 +78,9 @@ class XoopsFormSelectUser extends XoopsFormSelect
             $this->addOption(0, $xoopsConfig['anonymous']);
         }
         $this->addOptionArray($member_handler->getUserList());
+    }
+    public function XoopsFormSelectUser($caption, $name, $include_anon=false, $value=null, $size=1, $multiple=false)
+    {
+        return self::__construct($caption, $name, $include_anon, $value, $size, $multiple);
     }
 }
