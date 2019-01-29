@@ -57,12 +57,16 @@ class XoopsConfigCategory extends XoopsObject
      * Constructor
      * 
      */
-    public function XoopsConfigCategory()
+    public function __construct()
     {
         $this->XoopsObject();
         $this->initVar('confcat_id', XOBJ_DTYPE_INT, null);
         $this->initVar('confcat_name', XOBJ_DTYPE_OTHER, null);
         $this->initVar('confcat_order', XOBJ_DTYPE_INT, 0);
+    }
+    public function XoopsConfigCategory()
+    {
+        return self::__construct();
     }
 
     /**

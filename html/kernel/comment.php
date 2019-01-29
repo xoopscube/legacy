@@ -56,7 +56,7 @@ class XoopsComment extends XoopsObject
     /**
      * Constructor
      **/
-    public function XoopsComment()
+    public function __construct()
     {
         $this->XoopsObject();
         $this->initVar('com_id', XOBJ_DTYPE_INT, 0, false);
@@ -79,6 +79,10 @@ class XoopsComment extends XoopsObject
         $this->initVar('doxcode', XOBJ_DTYPE_INT, 1, false);
         $this->initVar('doimage', XOBJ_DTYPE_INT, 0, false);
         $this->initVar('dobr', XOBJ_DTYPE_INT, 1, false);
+    }
+    public function XoopsComment()
+    {
+        return self::__construct();
     }
 
     /**

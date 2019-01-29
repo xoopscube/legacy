@@ -6,7 +6,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class XoopsTimezone extends XoopsObject
 {
-    public function XoopsTimezone()
+    public function __construct()
     {
         static $initVars;
         if (isset($initVars)) {
@@ -17,15 +17,19 @@ class XoopsTimezone extends XoopsObject
         $this->initVar('zone_name', XOBJ_DTYPE_TXTBOX, null, true, 255);
         $initVars = $this->vars;
     }
+    public function XoopsTimezone()
+    {
+        return self::__construct();
+    }
 }
 
 class XoopsTimezoneHandler extends XoopsObjectHandler
 {
     public $_mResult;
     
-    public function XoopsTimezoneHandler(&$db)
+    public function __construct(&$db)
     {
-        parent::XoopsObjectHandler($db);
+        parent::__construct($db);
 
         $root =& XCube_Root::getSingleton();
 
@@ -73,6 +77,10 @@ class XoopsTimezoneHandler extends XoopsObjectHandler
             "12"   => _TZ_GMTP12,
             "13"   => _TZ_GMTP13
         );
+    }
+    public function XoopsTimezoneHandler(&$db)
+    {
+        return self::__construct($db);
     }
     
     public function &create()

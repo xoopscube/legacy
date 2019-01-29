@@ -141,29 +141,22 @@ class XoopsConfigItem extends XoopsObject
      * 
      * @return	string
      */
-    public function &getConfValueForOutput()
+    public function getConfValueForOutput()
     {
         switch ($this->getVar('conf_valuetype')) {
         case 'int':
-            $ret = (int)$this->getVar('conf_value', 'N');
-            return $ret;
+            return (int)$this->getVar('conf_value', 'N');
         case 'array':
-            $ret = unserialize($this->getVar('conf_value', 'N'));
-            return $ret;
+            return unserialize($this->getVar('conf_value', 'N'));
         case 'float':
-            $ret = (float)$this->getVar('conf_value', 'N');
-            return $ret;
+            return (float)$this->getVar('conf_value', 'N');
         case 'textarea':
             return $this->getVar('conf_value');
         case 'encrypt':
-            $ret = XCube_Utils::decrypt($this->getVar('conf_value', 'N'));
-            return $ret;
+            return  XCube_Utils::decrypt($this->getVar('conf_value', 'N'));
         default:
             return $this->getVar('conf_value', 'N');
         }
-
-        $ret = null;
-        return $ret;
     }
 
     /**

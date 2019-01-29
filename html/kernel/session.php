@@ -60,9 +60,13 @@ class XoopsSessionHandler
      * @param	object  &$mf    reference to a XoopsManagerFactory
      * 
      */
-    public function XoopsSessionHandler(&$db)
+    public function __construct(&$db)
     {
         $this->db =& $db;
+    }
+    public function XoopsSessionHandler(&$db)
+    {
+        return self::__construct($db);
     }
 
     /**

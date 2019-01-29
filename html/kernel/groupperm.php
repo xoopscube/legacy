@@ -63,7 +63,7 @@ class XoopsGroupPerm extends XoopsObject
      * Constructor
      * 
      */
-    public function XoopsGroupPerm()
+    public function __construct()
     {
         static $initVars;
         if (isset($initVars)) {
@@ -77,6 +77,10 @@ class XoopsGroupPerm extends XoopsObject
         $this->initVar('gperm_modid', XOBJ_DTYPE_INT, 0, false);
         $this->initVar('gperm_name', XOBJ_DTYPE_OTHER, null, false);
         $initVars = $this->vars;
+    }
+    public function XoopsGroupPerm()
+    {
+        return self::__construct();
     }
     
     public function cleanVars()

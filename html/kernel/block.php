@@ -59,7 +59,7 @@ class XoopsBlock extends XoopsObject
      *
      * @param mixed $id
      **/
-    public function XoopsBlock($id = null)
+    public function __construct($id = null)
     {
         static $initVars, $initMap;
         if (isset($initVars)) {
@@ -107,6 +107,10 @@ class XoopsBlock extends XoopsObject
         }
         $this->mBlockFlagMapping = $initMap;
     }
+    public function XoopsBlock($id = null)
+    {
+        return self::__construct($id);
+    }
 
     /**
      * return the content of the block for output
@@ -145,10 +149,10 @@ class XoopsBlock extends XoopsObject
                 ob_end_clean();
                 $ret = str_replace('{X_SITEURL}', XOOPS_URL.'/', $content);
             } elseif ($c_type == 'S') {
-                $myts =& MyTextSanitizer::getInstance();
+                $myts =& MyTextSanitizer::sGetInstance();
                 $ret = str_replace('{X_SITEURL}', XOOPS_URL.'/', $myts->displayTarea($this->get('content'), 1, 1));
             } else {
-                $myts =& MyTextSanitizer::getInstance();
+                $myts =& MyTextSanitizer::sGetInstance();
                 $ret = str_replace('{X_SITEURL}', XOOPS_URL.'/', $myts->displayTarea($this->get('content'), 1, 0));
             }
             break;
@@ -310,11 +314,14 @@ class XoopsBlock extends XoopsObject
         $ret =& $handler->getAllBlocks($rettype, $side, $visible, $orderby, $isactive);
         return $ret;
     }
-    public function &getByModule($moduleid, $asobject=true)
-    {
+    public static function &sGetByModule($moduleid, $asobject=true) {
         $handler = xoops_gethandler('block');
         $ret =& $handler->getByModule($moduleid, $asobject);
         return $ret;
+    }
+    public function &getByModule($moduleid, $asobject=true)
+    {
+        return self::sGetByModule($moduleid, $asobject);
     }
     public function &getAllByGroupModule($groupid, $module_id=0, $toponlyblock=false, $visible=null, $orderby='b.weight,b.bid', $isactive=1)
     {
