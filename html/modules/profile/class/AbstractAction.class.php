@@ -23,6 +23,10 @@ class Profile_AbstractAction
     }
     public function Profile_AbstractAction()
     {
+        self::__construct();
+    }
+    public function __construct()
+    {
         $this->mRoot =& XCube_Root::getSingleton();
         $this->mModule =& $this->mRoot->mContext->mModule;
         $this->mAsset =& $this->mModule->mAssetManager;

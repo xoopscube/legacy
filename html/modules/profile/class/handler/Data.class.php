@@ -13,10 +13,15 @@ class Profile_DataObject extends XoopsSimpleObject
 {
     public $mDef = null;
 
+    public function Profile_DataObject()
+    {
+        self::__construct();
+    }
+
     /**
      * @public
      */
-    public function Profile_DataObject()
+    public function __construct()
     {
         $handler = Legacy_Utils::getModuleHandler('definitions', 'profile');
         $this->mDef = $handler->getDefinitions(false);

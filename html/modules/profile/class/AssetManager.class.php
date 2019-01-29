@@ -18,14 +18,18 @@ class Profile_AssetManager
     /**
      * @private
      */
-    public function Profile_AssetManager()
+    // !Fix deprecated constructor for PHP 7.x
+    public function __construct()
+    //public function Profile_AssetManager()
     {
     }
 
     /**
      * @public
      */
-    public function &getSingleton()
+    // !Fix non-static function called statically in file /modules/profile/preload/AssetPreload.class.php line 43
+    public static function &getSingleton()
+    // public function &getSingleton()
     {
         static $instance;
     

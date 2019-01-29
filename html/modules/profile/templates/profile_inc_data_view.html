@@ -2,8 +2,8 @@
 			<tr valign="top">
 			  <td class="head"><{$def->getShow('label')}></td>
 			  <td class="<{cycle values='odd,even'}>">
-			  	<{assign var="defkey" value=$def->getShow('field_name')}>
-			    <{$profile->showField($defkey)}>
+			  	<h4><{assign var="defkey" value=$def->getShow('field_name')}></h4>
+			    <p><{$profile->showField($defkey)}></p>
 			  </td>
 			</tr>
 			<{/foreach}>

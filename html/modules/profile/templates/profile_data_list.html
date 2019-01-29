@@ -19,20 +19,25 @@ Search stringfield :
       <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DATA_SORT_KEY_UID}>"><img src="<{$xoops_url}>/modules/profile/images/up.png" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a> 
       <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DATA_SORT_KEY_UID}>"><img src="<{$xoops_url}>/modules/profile/images/down.png" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
     <th><{$smarty.const._MD_PROFILE_LANG_UNAME}></th>
+    
     <{foreach item=def from=$definitions}>
     <th><{$def->getShow('field_name')}></th>
     <{/foreach}>
+    
     <th width="100" align="center"><{$smarty.const._MD_PROFILE_LANG_CONTROL}></th>
   </tr>
+  
   <{foreach item=obj from=$objects}>
     <tr class="<{cycle values='odd,even'}>">
       <td><{$obj->getShow('uid')}></td>
       <td><{$obj->getShow('uid')|xoops_user:"user_name"}></td>
+      
       <{foreach item=def2 from=$definitions}>
       <td>
       <{$obj->showField($def2->getShow('field_name'), 2)}>
       </td>
       <{/foreach}>
+      
       <td width="100" align="center">
         <a href="./index.php?action=DataView&amp;uid=<{$obj->getShow('uid')}>"><img src="<{$xoops_url}>/modules/profile/images/form_view.png" alt="<{$smarty.const._VIEW}>" title="<{$smarty.const._VIEW}>" /></a>
         <a href="./index.php?action=DataEdit&amp;uid=<{$obj->getShow('uid')}>"><img src="<{$xoops_url}>/modules/profile/images/form_edit.png" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
@@ -40,5 +45,6 @@ Search stringfield :
       </td>
     </tr>
   <{/foreach}>
+
 </table>
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>

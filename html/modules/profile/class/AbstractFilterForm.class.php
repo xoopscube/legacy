@@ -35,7 +35,9 @@ class Profile_AbstractFilterForm
     /**
      * @protected
      */
-    public function Profile_AbstractFilterForm()
+    // !Fix deprecated constructor for PHP 7.x
+    public function __construct()
+    // public function Profile_AbstractFilterForm()
     {
         $this->_mCriteria =new CriteriaCompo();
     }

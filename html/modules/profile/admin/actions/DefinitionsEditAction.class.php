@@ -99,7 +99,9 @@ $("#legacy_xoopsform_type").change(function(){
     /**
      * @public
      */
-    public function executeViewSuccess(&$render)
+    // !Fix compatibility with Profile_AbstractAction::executeViewSuccess(&$controller, &$render) in file /modules/profile/class/AbstractionAction.class.php line 62
+    public function executeViewSuccess(&$controller, &$render) 
+    // public function executeViewSuccess(&$render)
     {
         $this->mRoot->mController->executeForward("./index.php?action=DefinitionsList");
     }
