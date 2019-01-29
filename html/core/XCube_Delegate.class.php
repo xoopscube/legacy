@@ -36,7 +36,9 @@ class XCube_Ref
      * @public Constructor.
      * @param $obj mixed
      */
-    public function XCube_Ref(&$obj)
+    // !Fix PHP7
+    public function __construct(&$obj)
+    //public function XCube_Ref(&$obj)
     {
         $this->_mObject =& $obj;
     }
@@ -151,7 +153,9 @@ class XCube_Delegate
      *   $delegate =new XCube_Delegate("string", "string");
      * \endcode
      */
-    public function XCube_Delegate()
+    // !Fix PHP7
+    public function __construct()
+    //public function XCube_Delegate()
     {
         if (func_num_args()) {
             $this->_setSignatures(func_get_args());
@@ -412,7 +416,9 @@ class XCube_DelegateManager
      * @public
      * @brief Constructor.
      */
-    public function XCube_DelegateManager()
+    // !Fix PHP7
+    public function __construct()
+    ///public function XCube_DelegateManager()
     {
     }
     
@@ -557,7 +563,9 @@ class XCube_DelegateUtils
      * @private
      * @brief Private Construct. In other words, it's possible to create an instance of this class.
      */
-    public function XCube_DelegateUtils()
+    // !Fix PHP7
+    public function __construct()
+    //public function XCube_DelegateUtils()
     {
     }
 
@@ -640,7 +648,7 @@ class XCube_DelegateUtils
      * @param 2nd and more : Delegate function parameters
      * @return bool
      */
-    public function raiseEvent()
+    public static function raiseEvent()
     {
         if (func_num_args()) {
             $args = func_get_args();
@@ -660,7 +668,7 @@ class XCube_DelegateUtils
      * @param 3rd and more - Optional function paramaters
      * @return string
      */
-    public function applyStringFilter()
+    public static function applyStringFilter()
     {
         $args = func_get_args();
         $num = func_num_args();
@@ -689,7 +697,7 @@ class XCube_DelegateUtils
      * @attention
      *     Only XCube_Delegate, XCube_DelegateManager and sub-classes of them should use this method. 
      */
-    public function _compareCallback($callback1, $callback2)
+    public static function _compareCallback($callback1, $callback2)
     {
         if (!is_array($callback1) && !is_array($callback2) && ($callback1 === $callback2)) {
             return true;

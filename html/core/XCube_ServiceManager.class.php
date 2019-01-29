@@ -59,8 +59,9 @@ class XCube_ServiceManager
      * @var XCube_Delegate
      */
     public $mCreateServer = null;
-    
-    public function XCube_ServiceManager()
+    // !Fix PHP7
+    public function __construct()
+    //public function XCube_ServiceManager()
     {
         $this->mCreateClient = new XCube_Delegate();
         $this->mCreateClient->register("XCube_ServiceManager.CreateClient");

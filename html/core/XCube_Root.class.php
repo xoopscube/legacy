@@ -120,7 +120,9 @@ class XCube_Root
     /**
      * @internal
      */
-    public function XCube_Root()
+    // !Fix PHP7
+    public function __construct()
+    //public function XCube_Root()
     {
     }
 

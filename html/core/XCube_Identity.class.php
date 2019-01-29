@@ -24,8 +24,9 @@ class XCube_Identity
      * @var string
      */
     public $_mAuthenticationType = "";
-    
-    public function XCube_Identity()
+    // !Fix PHP7
+    public function __construct()
+    //public function XCube_Identity()
     {
     }
     
@@ -90,8 +91,9 @@ class XCube_Principal
      * @var string[]
      */
     public $_mRoles = array();
-    
-    public function XCube_Principal($identity, $roles = array())
+    // !Fix PHP7
+    public function __construct($identity, $roles = array())
+    //public function XCube_Principal($identity, $roles = array())
     {
         $this->mIdentity =& $identity;
         $this->_mRoles = $roles;

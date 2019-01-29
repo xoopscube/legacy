@@ -47,7 +47,9 @@ class XCube_ActionFilter
      * @brief Constructor.
      * @param $controller XCube_Controller
      */
-    public function XCube_ActionFilter(&$controller)
+    // !Fix PHP7
+    public function __construct(&$controller)
+    //public function XCube_ActionFilter(&$controller)
     {
         $this->mController =& $controller;
         $this->mRoot =& $this->mController->mRoot;

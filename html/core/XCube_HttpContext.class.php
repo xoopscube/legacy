@@ -51,8 +51,9 @@ class XCube_HttpContext
      * @access private
      */
     public $mThemeName = null;
-    
-    public function XCube_HttpContext()
+    // !Fix PHP7
+    public function __construct()
+    //public function XCube_HttpContext()
     {
     }
     
@@ -236,8 +237,9 @@ class XCube_GenericRequest extends XCube_AbstractRequest
      * @var Array
      */
     public $mAttributes = array();
-    
-    public function XCube_GenericRequest($arr = null)
+     // !Fix PHP7
+    public function __construct($arr = null)  
+    //public function XCube_GenericRequest($arr = null)
     {
         if (is_array($arr)) {
             $this->mAttributes = $arr;

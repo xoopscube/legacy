@@ -48,8 +48,9 @@ class XCube_RenderTarget
     public $mType = XCUBE_RENDER_TARGET_TYPE_BUFFER;
     
     public $mCacheTime = null;
-        
-    public function XCube_RenderTarget()
+    // !Fix PHP7
+    public function __construct()
+    //public function XCube_RenderTarget()
     {
     }
 
@@ -151,8 +152,9 @@ class XCube_RenderSystem
     public $mController;
 
     public $mRenderMode = XCUBE_RENDER_MODE_NORMAL;
-    
-    public function XCube_RenderSystem()
+    // !Fix PHP7
+    public function __construct()
+    //public function XCube_RenderSystem()
     {
     }
     

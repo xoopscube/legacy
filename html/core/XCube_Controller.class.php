@@ -132,8 +132,9 @@ class XCube_Controller
      * @var XCube_Delegate
      */
     public $mSetupTextFilter = null;
-    
-    public function XCube_Controller()
+    // !Fix PHP7
+    public function __construct()
+    //public function XCube_Controller()
     {
         $this->_mBlockChain = array();
         $this->_mFilterChain = array();

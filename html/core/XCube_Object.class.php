@@ -41,8 +41,9 @@ class XCube_Object
     public function getPropertyDefinition()
     {
     }
-    
-    public function XCube_Object()
+    // !Fix PHP7
+    public function __construct()
+    //public function XCube_Object()
     {
         $fileds = $this->getPropertyDefinition();
         foreach ($fileds as $t_field) {

@@ -25,7 +25,9 @@ class XCube_Permissions
 
 class XCube_AbstractPermissionProvider
 {
-    public function XCube_AbstractPermissionProvider()
+    // !Fix PHP7
+    public function __construct()
+    //public function XCube_AbstractPermissionProvider()
     {
     }
     

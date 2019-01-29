@@ -67,7 +67,9 @@ class XCube_Service
     
     public $_mFunctions = array();
     
-    public function XCube_Service()
+    // !Fix PHP7
+    public function __construct()
+    //public function XCube_Service()
     {
     }
     
@@ -125,7 +127,9 @@ class XCube_AbstractServiceClient
     
     public $mUser = null;
     
-    public function XCube_AbstractServiceClient(&$service)
+    // !Fix PHP7
+    public function __construct(&$service)
+    //public function XCube_AbstractServiceClient(&$service)
     {
         $this->mService =& $service;
     }

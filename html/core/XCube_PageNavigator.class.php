@@ -110,7 +110,7 @@ class XCube_PageNavigator
      * @param int $total
      * @param int flag
      */
-    public function XCube_PageNavigator($url, $flags = XCUBE_PAGENAVI_START)
+    public function __construct($url, $flags = XCUBE_PAGENAVI_START)
     {
         $this->mUrl = $url;
         $this->mFlags = $flags;
@@ -119,6 +119,10 @@ class XCube_PageNavigator
         $this->mFetch->add(array(&$this, 'fetchNaviControl'));
         
         $this->mGetTotalItems =new XCube_Delegate();
+    }
+    public function XCube_PageNavigator($url, $flags = XCUBE_PAGENAVI_START)
+    {
+        return self::__construct($url, $flags);
     }
     
     /**

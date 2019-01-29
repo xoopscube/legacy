@@ -108,7 +108,9 @@ class XCube_ActionForm
      * @public
      * @brief Constructor.
      */
-    public function XCube_ActionForm()
+    // !Fix PHP7
+    public function __construct()
+    //public function XCube_ActionForm()
     {
         $root =& XCube_Root::getSingleton();
         $this->mContext =& $root->getContext();
@@ -500,7 +502,9 @@ class XCube_FieldProperty
      * @remarks
      *     Only sub-classes of XCube_ActionForm calles this constructor. 
      */
-    public function XCube_FieldProperty(&$form)
+    // !Fix PHP7
+    public function __construct(&$form)
+    //public function XCube_FieldProperty(&$form)
     {
         $this->mForm =& $form;
     }

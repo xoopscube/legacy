@@ -33,7 +33,7 @@ class XCube_Utils
      * @deprecated XCube 1.0 will remove this method. Don't use static function of XCube
      *             layer for redirect.
      */
-    public function redirectHeader($url, $time, $messages = null)
+    public static function redirectHeader($url, $time, $messages = null)
     {
         $root =& XCube_Root::getSingleton();
         $root->mController->executeRedirect($url, $time, $messages);
@@ -70,7 +70,7 @@ class XCube_Utils
      *     This method doesn't implement the provider which knows how to format
      *     for each locales. So, this method is interim implement.
      */
-    public function formatString()
+    public static function formatString()
     {
         $arr = func_get_args();
         
