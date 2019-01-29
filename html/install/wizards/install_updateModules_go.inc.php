@@ -152,7 +152,7 @@
                         }
                     }
                 }
-                $block_arr = XoopsBlock::getByModule($mid);
+                $block_arr = XoopsBlock::sGetByModule($mid);
                 foreach ($block_arr as $block) {
                     if (!in_array($block->getVar('show_func'), $showfuncs) || !in_array($block->getVar('func_file'), $funcfiles)) {
                         $sql = sprintf("DELETE FROM %s WHERE bid = %u", $xoopsDB->prefix('newblocks'), $block->getVar('bid'));

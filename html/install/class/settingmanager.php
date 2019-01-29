@@ -52,7 +52,7 @@ class setting_manager
 
     public function __construct($post=false)
     {
-        $this->sanitizer =& TextSanitizer::getInstance();
+        $this->sanitizer = TextSanitizer::getInstance();
         if ($post) {
             $this->readPost();
         } else {

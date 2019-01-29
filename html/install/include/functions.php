@@ -71,6 +71,9 @@ function getLanguage()
                         break;
                     }
                 }
+                if (file_exists(dirname(dirname(__FILE__)).'/language/'.$al.'_utf8')) {
+                    $language = $al.'_utf8';
+                }
             } elseif (isset($_SERVER['HTTP_ACCEPT_CHARSET'])) {
                 foreach ($charset_array as $ac => $lg) {
                     if (strstr($_SERVER['HTTP_ACCEPT_CHARSET'], $ac)) {

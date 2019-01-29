@@ -43,7 +43,7 @@ class textsanitizer
     * when storing data
     */
 
-    public static function &getInstance()
+    public static function getInstance()
     {
         static $instance;
         if (!isset($instance)) {

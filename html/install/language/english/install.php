@@ -1,6 +1,6 @@
 <?php
 // $Id: install.php,v 1.3 2007/06/24 12:39:39 tom_g3x Exp $
-define("_INSTALL_L0", "Welcome to the Install Wizard for XOOPS Cube 2.2");
+define("_INSTALL_L0", "Welcome to the Install Wizard for XOOPS Cube 2.3");
 define("_INSTALL_L168", "XOOPS Cube Legacy requires PHP5 or later");
 define("_INSTALL_L70", "Please change the file permission for mainfile.php so that it is writeable by the server (i.e. chmod 777 mainfile.php on a UNIX/LINUX server, or check the properties of the file and make sure the read-only flag is not set on a Windows server ). Reload this page once you have changed the permission setting.");
 //define("_INSTALL_L71","Click on the button below to begin the installation.");
@@ -185,7 +185,7 @@ define('_INSTALL_L200', 'Reload');
 define("_INSTALL_L210", "The 2nd Step Installation");
 
 
-define('_INSTALL_CHARSET', 'ISO-8859-1');
+define('_INSTALL_CHARSET', 'UTF-8');
 
 define('_INSTALL_LANG_XOOPS_SALT', "SALT");
 define('_INSTALL_LANG_XOOPS_SALT_DESC', "This plays a supplementary role to generate secret code and token. You don't need to change the default value.");
