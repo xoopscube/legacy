@@ -6,7 +6,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class UserGroupsObject extends XoopsSimpleObject
 {
-    public function UserGroupsObject()
+    // !Fix deprecated constructor for PHP 7.x
+    public function __construct()
+    // public function UserGroupsObject()
     {
         static $initVars;
         if (isset($initVars)) {

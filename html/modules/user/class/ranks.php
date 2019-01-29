@@ -8,6 +8,11 @@ class UserRanksObject extends XoopsSimpleObject
 {
     public function UserRanksObject()
     {
+        self::__construct();
+    }
+
+    public function __construct()
+    {
         static $initVars;
         if (isset($initVars)) {
             $this->mVars = $initVars;

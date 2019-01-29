@@ -6,7 +6,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class UserAvatarObject extends XoopsSimpleObject
 {
-    public function UserAvatarObject()
+    // !Fix deprecated constructor for PHP 7.x
+    public function __construct()
+    // public function UserAvatarObject()
     {
         static $initVars;
         if (isset($initVars)) {
@@ -47,7 +49,9 @@ class UserAvatarHandler extends XoopsObjectGenericHandler
         return $ret;
     }
     
-    public function delete(&$obj)
+    // !Fix compatibility with XoopsObjectGenericHandler::delete(&$obj, $force = false)
+    public function delete(&$obj, $force = false)
+    // public function delete(&$obj)
     {
         @unlink(XOOPS_UPLOAD_PATH . "/" . $obj->get('avatar_file'));
         if (parent::delete($obj)) {

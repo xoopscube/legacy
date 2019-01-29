@@ -13,6 +13,11 @@ class User_AbstractFilterForm
 
     public function User_AbstractFilterForm(&$navi, &$handler)
     {
+        self::__construct($navi, $handler);
+    }
+
+    public function __construct(&$navi, &$handler)
+    {
         $this->mNavi =& $navi;
         $this->_mHandler =& $handler;
         

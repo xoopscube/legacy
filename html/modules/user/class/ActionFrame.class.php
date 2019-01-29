@@ -29,6 +29,11 @@ class User_ActionFrame
     
     public function User_ActionFrame($admin)
     {
+        self::__construct($admin);
+    }
+
+    public function __construct($admin)
+    {
         $this->mAdminFlag = $admin;
         $this->mCreateAction =new XCube_Delegate();
         $this->mCreateAction->register('User_ActionFrame.CreateAction');
@@ -148,6 +153,11 @@ class User_ActionFrame
 class User_Action
 {
     public function User_Action()
+    {
+        self::__construct();
+    }
+
+    public function __construct()
     {
     }
     

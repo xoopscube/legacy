@@ -8,6 +8,11 @@ class UserGroups_users_linkObject extends XoopsSimpleObject
 {
     public function UserGroups_users_linkObject()
     {
+        self::__construct();
+    }
+
+    public function __construct()
+    {
         static $initVars;
         if (isset($initVars)) {
             $this->mVars = $initVars;

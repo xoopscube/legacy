@@ -268,7 +268,7 @@ class User_LegacypageFunctions
             $user->set('pass', User_Utils::encryptPassword($pass), true);
             if (!$handler->insert($user, true)) {
                 // set $passwordNeedsRehash
-                self::$passwordNeedsRehash = true;
+                self::$passwordNeedsRehash = ture;
             }
         }
 

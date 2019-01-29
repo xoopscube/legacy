@@ -87,8 +87,8 @@ class User_RegistUserActivateMailBuilder
     
     public function setFromEmail($xoopsConfig)
     {
-        $this->mMailer->setFromEmail($xoopsConfig['adminmail']);
-        $this->mMailer->setFromName($xoopsConfig['sitename']);
+        $this->mMailer->setFromEmail(defined('XOOPS_NOTIFY_FROM_EMAIL')? XOOPS_NOTIFY_FROM_EMAIL : $xoopsConfig['adminmail']);
+        $this->mMailer->setFromName(defined('XOOPS_NOTIFY_FROM_NAME')? XOOPS_NOTIFY_FROM_NAME : $xoopsConfig['sitename']);
     }
     
     public function setSubject($user, $xoopsConfig)
@@ -99,7 +99,7 @@ class User_RegistUserActivateMailBuilder
     public function setBody($user, $xoopsConfig)
     {
         $this->mMailer->assign('SITENAME', $xoopsConfig['sitename']);
-        $this->mMailer->assign('ADMINMAIL', $xoopsConfig['adminmail']);
+        $this->mMailer->assign('ADMINMAIL', (!defined('XOOPS_NOTIFY_FROM_EMAIL') || XOOPS_NOTIFY_FROM_EMAIL === $xoopsConfig['adminmail'])? $xoopsConfig['adminmail'] : '');
         $this->mMailer->assign('SITEURL', XOOPS_URL . '/');
         $this->mMailer->assign('USERACTLINK', XOOPS_URL . '/user.php?op=actv&uid=' . $user->getVar('uid') . '&actkey=' . $user->getShow('actkey'));
     }
@@ -134,8 +134,8 @@ class User_RegistUserAdminActivateMailBuilder extends User_RegistUserActivateMai
     
     public function setFromUser($xoopsConfig)
     {
-        $this->mMailer->setFromEmail($xoopsConfig['adminmail']);
-        $this->mMailer->setFromName($xoopsConfig['sitename']);
+        $this->mMailer->setFromEmail(defined('XOOPS_NOTIFY_FROM_EMAIL')? XOOPS_NOTIFY_FROM_EMAIL : $xoopsConfig['adminmail']);
+        $this->mMailer->setFromName(defined('XOOPS_NOTIFY_FROM_NAME')? XOOPS_NOTIFY_FROM_NAME : $xoopsConfig['sitename']);
     }
     
     public function setSubject($user, $xoopsConfig)

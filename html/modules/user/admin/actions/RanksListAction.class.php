@@ -14,7 +14,9 @@ class User_RanksListAction extends User_AbstractListAction
     public $mActionForm = null;
     public $mpageArr = array(5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0);
 
-    public function prepare(&$controller, &$xoopsUser)
+    // !Fix compatibility with  User_Action::prepare(&$controller, &$xoopsUser, $moduleConfig)
+    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
+    // public function prepare(&$controller, &$xoopsUser)
     {
         $this->mActionForm =new User_RanksListForm();
         $this->mActionForm->prepare();

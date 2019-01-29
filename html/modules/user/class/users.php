@@ -15,6 +15,11 @@ class UserUsersObject extends XoopsSimpleObject
     public $_mRankLoadedFlag = false;
     public $mRank;
     
+    public function UserUsersObject()
+    {
+        self::__construct();
+    }
+
     public function __construct()
     {
         static $initVars;

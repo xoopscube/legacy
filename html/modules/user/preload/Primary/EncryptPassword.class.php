@@ -12,6 +12,11 @@ class User_EncryptPassword extends XCube_ActionFilter
 {
     private $useNativeHashing = false;
 
+    public function User_EncryptPassword(&$controller)
+    {
+        self::__construct($controller);
+    }
+
     public function __construct(&$controller)
     {
         parent::__construct($controller);

@@ -25,8 +25,10 @@ class UserMailjobObject extends XoopsSimpleObject
      * @var XCube_Delegate
      */
     public $mSend = null;
-    
-    public function UserMailjobObject()
+        
+    // !Fix deprecated constructor for PHP 7.x
+    public function __construct()
+    // public function UserMailjobObject()
     {
         static $initVars;
         if (isset($initVars)) {
