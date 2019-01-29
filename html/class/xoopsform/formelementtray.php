@@ -81,11 +81,15 @@ class XoopsFormElementTray extends XoopsFormElement
      * @param	string  $caption    Caption for the group.
      * @param	string  $delimiter  HTML to separate the elements
      */
-    public function XoopsFormElementTray($caption, $delimeter="&nbsp;", $name="")
+    public function __construct($caption, $delimeter="&nbsp;", $name="")
     {
         $this->setName($name);
         $this->setCaption($caption);
         $this->_delimeter = $delimeter;
+    }
+    public function XoopsFormElementTray($caption, $delimeter="&nbsp;", $name="")
+    {
+        return self::__construct($caption, $delimeter, $name);
     }
 
     /**

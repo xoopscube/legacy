@@ -60,7 +60,9 @@ class XoopsLogger
      *
      * @access  private
      */
-    public function XoopsLogger()
+    // !Fix PHP7
+    public function __construct()
+    //public function XoopsLogger()
     {
     }
 
@@ -112,6 +114,9 @@ class XoopsLogger
             return;
         }
         $this->queries[] = array('sql' => $sql, 'error' => $error, 'errno' => $errno);
+        if ($error && defined('XOOPS_MYSQL_ERROR_LOG') && XOOPS_MYSQL_ERROR_LOG) {
+            error_log("XOOPS_MYSQL_ERROR_LOG: " . print_r(end($this->queries), true));
+        }
     }
 
     /**

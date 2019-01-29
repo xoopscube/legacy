@@ -29,7 +29,7 @@
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
-class xoopstree
+class XoopsTree
 {
     public $table;     //table with parent-child structure
     public $id;    //name of unique id for records in table $table
@@ -40,12 +40,16 @@ class xoopstree
 
     //constructor of class XoopsTree
     //sets the names of table, unique id, and parend id
-    public function XoopsTree($table_name, $id_name, $pid_name)
+    public function __construct($table_name, $id_name, $pid_name)
     {
         $this->db =& Database::getInstance();
         $this->table = $table_name;
         $this->id = $id_name;
         $this->pid = $pid_name;
+    }
+    public function XoopsTree($table_name, $id_name, $pid_name)
+    {
+        return self::__construct($table_name, $id_name, $pid_name);
     }
 
 
@@ -128,7 +132,7 @@ class xoopstree
             return $path;
         }
         list($parentid, $name) = $this->db->fetchRow($result);
-        $myts =& MyTextSanitizer::getInstance();
+        $myts =& MyTextSanitizer::sGetInstance();
         $name = $myts->makeTboxData4Show($name);
         $path = "/".$name.$path."";
         if ($parentid == 0) {
@@ -146,7 +150,7 @@ class xoopstree
         if ($sel_name == "") {
             $sel_name = $this->id;
         }
-        $myts =& MyTextSanitizer::getInstance();
+        $myts =& MyTextSanitizer::sGetInstance();
         echo "<select name='".$sel_name."'";
         if ($onchange != "") {
             echo " onchange='".$onchange."'";
@@ -190,7 +194,7 @@ class xoopstree
             return $path;
         }
         list($parentid, $name) = $this->db->fetchRow($result);
-        $myts =& MyTextSanitizer::getInstance();
+        $myts =& MyTextSanitizer::sGetInstance();
         $name = $myts->makeTboxData4Show($name);
         $path = "<a href='".$funcURL."&amp;".$this->id."=".$sel_id."'>".$name."</a>&nbsp;:&nbsp;".$path."";
         if ($parentid == 0) {

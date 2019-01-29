@@ -19,12 +19,16 @@ class XoopsFormToken extends XoopsFormHidden
      *
      * @param object    $token  XoopsToken instance
     */
-    public function XoopsFormToken($token)
+    public function __construct($token)
     {
         if (is_object($token)) {
-            parent::XoopsFormHidden($token->getTokenName(), $token->getTokenValue());
+            parent::__construct($token->getTokenName(), $token->getTokenValue());
         } else {
-            parent::XoopsFormHidden('', '');
+            parent::__construct('', '');
         }
+    }
+    public function XoopsFormToken($token)
+    {
+        return self::__construct($token);
     }
 }

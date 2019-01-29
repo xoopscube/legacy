@@ -66,12 +66,16 @@ class XoopsFormSelectMatchOption extends XoopsFormSelect
      * 							{@link XOOPS_MATCH_EQUAL}, and {@link XOOPS_MATCH_CONTAIN}
      * @param	int		$size	Number of rows. "1" makes a drop-down-list
      */
-    public function XoopsFormSelectMatchOption($caption, $name, $value=null, $size=1)
+    public function __construct($caption, $name, $value=null, $size=1)
     {
         $this->XoopsFormSelect($caption, $name, $value, $size, false);
         $this->addOption(XOOPS_MATCH_START, _STARTSWITH);
         $this->addOption(XOOPS_MATCH_END, _ENDSWITH);
         $this->addOption(XOOPS_MATCH_EQUAL, _MATCHES);
         $this->addOption(XOOPS_MATCH_CONTAIN, _CONTAINS);
+    }
+    public function XoopsFormSelectMatchOption($caption, $name, $value=null, $size=1)
+    {
+        return self::__construct($caption, $name, $value, $size);
     }
 }

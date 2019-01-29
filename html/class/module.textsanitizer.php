@@ -96,7 +96,7 @@ class MyTextSanitizer
      * @static
      * @staticvar   object
      */
-    public function &getInstance()
+    public static function &sGetInstance()
     {
         static $instance;
         if (!isset($instance)) {
@@ -504,6 +504,12 @@ class MyTextSanitizer
     public function &oopsNl2Br($text)
     {
         $ret = $this->nl2br($text);
+        return $ret;
+    }
+
+    public function &getInstance()
+    {
+        $ret = self::sGetInstance();
         return $ret;
     }
     /**#@-*/
