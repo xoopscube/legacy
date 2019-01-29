@@ -26,8 +26,9 @@ class LegacyRender_ActionFrame
      * @var XCube_Delegate
      */
     public $mCreateAction = null;
-
-    public function LegacyRender_ActionFrame($admin)
+    // !Fix deprecated constructor for php 7.x
+    public function __construct($admin)
+    // public function LegacyRender_ActionFrame($admin)
     {
         $this->mAdminFlag = $admin;
         $this->mCreateAction =new XCube_Delegate();
@@ -143,8 +144,9 @@ class LegacyRender_Action
      * @access private
      */
     public $_mAdminFlag = false;
-    
-    public function LegacyRender_Action($adminFlag = false)
+    // !Fix deprecated constructor for php 7.x
+    public function __construct($adminFlag = false)
+    // public function LegacyRender_Action($adminFlag = false)
     {
         $this->_mAdminFlag = $adminFlag;
     }

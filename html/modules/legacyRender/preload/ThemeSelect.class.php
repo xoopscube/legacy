@@ -12,7 +12,12 @@ class LegacyRender_ThemeSelect extends XCube_ActionFilter
 {
     public function LegacyRender_ThemeSelect(&$controller)
     {
-        parent::XCube_ActionFilter($controller);
+        self::__construct($controller);
+    }
+
+    public function __construct(&$controller)
+    {
+        parent::__construct($controller);
         $controller->mRoot->mDelegateManager->add('Legacy_ThemeSelect.IsSelectableTheme', 'LegacyRender_ThemeSelect::isSelectableTheme');
         $controller->mRoot->mDelegateManager->add('LegacyThemeHandler.GetInstalledThemes', 'LegacyRender_DelegateFunctions::getInstalledThemes', XOOPS_ROOT_PATH . "/modules/legacyRender/kernel/DelegateFunctions.class.php");
     }

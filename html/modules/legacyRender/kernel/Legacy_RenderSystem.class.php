@@ -32,8 +32,13 @@ class Legacy_XoopsTpl extends XoopsTpl
     
     public function Legacy_XoopsTpl()
     {
+        self::__construct();
+    }
+
+    public function __construct()
+    {
         $this->_mContextReserve = array('xoops_pagetitle' => 'legacy_pagetitle');
-        parent::XoopsTpl();
+        parent::__construct();
     }
     
     public function assign($tpl_var, $value = null)
@@ -127,7 +132,15 @@ class Legacy_RenderSystem extends XCube_RenderSystem
     
     public function Legacy_RenderSystem()
     {
-        parent::XCube_RenderSystem();
+        self::__construct();
+    }
+
+    public function __construct()
+    {
+        // ! call parent::__construct() instead of parent::Controller()
+        parent::__construct();
+        //parent::XCube_RenderSystem();
+
         $this->mSetupXoopsTpl =new XCube_Delegate();
         $this->mSetupXoopsTpl->register('Legacy_RenderSystem.SetupXoopsTpl');
 
@@ -492,7 +505,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
     public function showXoopsHeader($closeHead=true)
     {
         global $xoopsConfig;
-        $myts =& MyTextSanitizer::getInstance();
+        $myts =& MyTextSanitizer::sGetInstance();
         if ($xoopsConfig['gzip_compression'] == 1) {
             ob_start('ob_gzhandler');
         } else {

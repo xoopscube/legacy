@@ -18,7 +18,12 @@ class Legacy_AbstractThemeRenderTarget extends XCube_RenderTarget
 
     public function Legacy_AbstractThemeRenderTarget()
     {
-        parent::XCube_RenderTarget();
+        self::__construct();
+    }
+
+    public function __construct()
+    {
+        parent::__construct();
         $this->setAttribute('legacy_buffertype', LEGACY_RENDER_TARGET_TYPE_THEME);
     }
 
@@ -48,7 +53,12 @@ class Legacy_ThemeRenderTarget extends Legacy_AbstractThemeRenderTarget
 {
     public function Legacy_ThemeRenderTarget()
     {
-        parent::Legacy_AbstractThemeRenderTarget();
+        self::__construct();
+    }
+
+    public function __construct()
+    {
+        parent::__construct();
         $this->setAttribute("isFileTheme", true);
     }
 }
@@ -57,7 +67,12 @@ class Legacy_DialogRenderTarget extends Legacy_AbstractThemeRenderTarget
 {
     public function Legacy_DialogRenderTarget()
     {
-        parent::Legacy_AbstractThemeRenderTarget();
+        self::__construct();
+    }
+
+    public function __construct()
+    {
+        parent::__construct();
         $this->setAttribute("isFileTheme", false);
     }
     
@@ -69,9 +84,9 @@ class Legacy_DialogRenderTarget extends Legacy_AbstractThemeRenderTarget
 
 class Legacy_RenderTargetMain extends XCube_RenderTarget
 {
-    public function Legacy_RenderTargetMain()
+    public function __construct()
     {
-        parent::XCube_RenderTarget();
+        parent::__construct();
         $this->setAttribute('legacy_buffertype', LEGACY_RENDER_TARGET_TYPE_MAIN);
     }
 }

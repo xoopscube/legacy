@@ -179,7 +179,9 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
         $render->setAttribute('tplsets', $tplsets);
     }
     
-    public function renderHiddenControl(&$buf, $params)
+    // !Fix static function call for PHP 7.x
+    public static function renderHiddenControl(&$buf, $params)
+    // public function renderHiddenControl(&$buf, $params)
     {
         if (isset($params['pagenavi']) && is_object($params['pagenavi'])) {
             $navi =& $params['pagenavi'];

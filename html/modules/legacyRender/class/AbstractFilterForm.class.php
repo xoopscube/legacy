@@ -12,8 +12,9 @@ class LegacyRender_AbstractFilterForm
     public $mNavi = null;
     
     public $_mHandler = null;
-    
-    public function LegacyRender_AbstractFilterForm(&$navi, &$handler)
+    // !Fix deprecated constructor for php 7.x
+    public function __construct($navi, $handler)  
+    // public function LegacyRender_AbstractFilterForm(&$navi, &$handler)
     {
         $this->mNavi =& $navi;
         $this->_mHandler =& $handler;

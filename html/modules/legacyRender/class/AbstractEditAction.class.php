@@ -39,8 +39,9 @@ class LegacyRender_AbstractEditAction extends LegacyRender_Action
     {
         return true;
     }
-
-    public function prepare(&$controller, &$xoopsUser)
+    // !Fix compatibility with LegacyRender_Action::prepare(&$controller, &$xoopsUser, $moduleConfig)
+    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
+    // public function prepare(&$controller, &$xoopsUser)
     {
         $this->_setupActionForm();
         $this->_setupObject();

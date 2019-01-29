@@ -6,7 +6,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class LegacyRenderTplsourceObject extends XoopsSimpleObject
 {
-    public function LegacyRenderTplsourceObject()
+    // !Fix deprecated constructor for php 7.x
+    public function __construct() 
+    // public function LegacyRenderTplsourceObject()
     {
         static $initVars;
         if (isset($initVars)) {

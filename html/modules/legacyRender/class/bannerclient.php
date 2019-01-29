@@ -21,7 +21,9 @@ class LegacyRenderBannerclientObject extends XoopsSimpleObject
     public $mFinishBannerCount = null;
     public $_mFinishBannerCountLoadedFlag = false;
 
-    public function LegacyRenderBannerclientObject()
+    // !Fix deprecated constructor for PHP 7.x
+    public function __construct()
+    // public function LegacyRenderBannerclientObject()
     {
         static $initVars;
         if (isset($initVars)) {
@@ -97,7 +99,9 @@ class LegacyRenderBannerclientHandler extends XoopsObjectGenericHandler
     public $mPrimary = "cid";
     public $mClass = "LegacyRenderBannerclientObject";
 
-    public function delete(&$obj)
+    // !Fix compatibility with XoopsObjectGenericHandler::delete(&$obj, $force = false)
+    public function delete(&$obj, $force = false)
+    //public function delete(&$obj)
     {
         $handler =& xoops_getmodulehandler('banner', 'legacyRender');
         $handler->deleteAll(new Criteria('cid', $obj->get('cid')));

@@ -9,7 +9,9 @@ class LegacyRenderBannerObject extends XoopsSimpleObject
     public $mClient = null;
     public $_mClientLoadedFlag = false;
 
-    public function LegacyRenderBannerObject()
+    // !Fix deprecated constructor for PHP 7.x
+    public function __construct()
+    // public function LegacyRenderBannerObject()
     {
         static $initVars;
         if (isset($initVars)) {

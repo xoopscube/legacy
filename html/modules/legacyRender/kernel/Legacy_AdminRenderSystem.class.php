@@ -36,6 +36,11 @@ class Legacy_AdminSmarty extends Smarty
     
     public function Legacy_AdminSmarty()
     {
+        self::__construct();
+    }
+
+    public function __construct()
+    {
         parent::Smarty();
 
         $this->compile_id = XOOPS_URL;
