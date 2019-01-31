@@ -280,7 +280,7 @@ if (!empty($_POST['op'])) {
 } elseif (!empty($_GET['op'])) {
     $op = $_GET['op'];
 }
-$myts =& MyTextSanitizer::getInstance();
+$myts =& MyTextSanitizer::sGetInstance();
 switch ($op) {
 case "click":
     $bid = 0;
