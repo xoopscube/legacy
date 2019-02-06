@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="<{$xoops_langcode}>">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+    <meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+    <meta http-equiv="content-script-type" content="text/javascript" />
+    <meta http-equiv="content-style-type" content="text/css" />
+
+    <meta name="robots" content="<{$xoops_meta_robots}>" />
+    <meta name="keywords" content="<{$xoops_meta_keywords}>" />
+    <meta name="description" content="<{$xoops_meta_description}>" />
+    <meta name="rating" content="<{$xoops_meta_rating}>" />
+    <meta name="author" content="<{$xoops_meta_author}>" />
+    <meta name="copyright" content="<{$xoops_meta_copyright}>" />
+    <meta name="generator" content="XOOPS Cube" />
+
+    <!-- Simple Responsive Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- MSIE -->
+    <{if $smarty.server.HTTP_USER_AGENT|regex_replace:'/^.*MSIE\s*([0-9]+).*$/i':'\1' > 7}>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <{/if}>
+
+    <!--
+    /*---------------------------------------------
+    Theme:      XCL Default
+    Author:     Gigamaster
+    Package:    XOOPS Cube Legacy
+    File:       style.css
+    Version:    2.3.0
+    Date:       2019-01-29
+    URL:        https://xoopscube.github.io/
+    ---------------------------------------------*/
+    -->
+
+    <title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
+
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="<{$xoops_imageurl}>images/xcl-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="<{$xoops_imageurl}>images/xcl-32.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="<{$xoops_imageurl}>images/xcl-64.png" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="<{$xoops_imageurl}>css/style.css" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+		
+    <!-- Simple Editor wysiwyg -->
+    <script type="text/javascript" src="<{$xoops_url}>/include/xoops.js"></script>
+    <!-- Module header -->
+    <{if $xoops_module_header}><{$xoops_module_header}><{/if}>
+    <!-- Block header -->
+    <{if $xoops_block_header}><{$xoops_block_header}><{/if}>
+    <!-- XCL JS -->
+    <script type="text/javascript"><{$xoops_js|regex_replace:"/(\/\/\-\->|<!\-\-)/":""}></script>
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+ 
+
+  </head>
+
+  <body class="<{strip}><{if !$xoops_dirname == ''}><{$xoops_dirname}><{else}>landpage<{/if}> fix-header fix-sidebar card-no-border<{/strip}>">
+  
+    <!-- <div id="main-wrapper"> -->
+    <div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+      <header class="masthead mb-auto">
+
+        <!-- Start Left-Block Loop -->
+        <nav class="nav nav-masthead navbar navbar-dark bg-dark justify-content-center">
+
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" href="<{$xoops_url}>/">Home</a>
+            </li>
+
+            <{if $xoops_showlblock == 1}>
+            <{foreach item=block from=$xoops_lblocks name=lbloop}>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><{$block.title}></a>
+              <div class="dropdown-menu bg-dark">
+                  <{$block.content}>
+
+                  <{if $xoops_isadmin}><!-- Edit Block -->
+                  <div class="dropdown-divider"></div>    
+                      <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=<{$block.id}>">
+                        (edit)
+                      </a>
+                  
+                  ><{/if}>
+
+              </div>
+            </li>
+            <{/foreach}>
+            <{/if}>
+            <!-- End Left-Block Loop -->
+
+          </ul>
+          </nav>
+   
+      </header>
+
+
+    <!-- Container fluid  -->
+
+    <div class="container-fluid">
+    
+        
+        <!-- Start Center-Center-Block -->
+        <{if $xoops_showcblock == 1}>
+        <div class="centerCcolumn">
+        <!-- Start Center-Left-Block Loop -->
+        <{foreach item=block from=$xoops_ccblocks name=ccloop}>
+        <div class="centerCblock">
+            <div class="centerCblockTitle" id="centerc-<{$smarty.foreach.ccloop.iteration}>">
+            <!-- Edit Block -->
+            <{if $xoops_isadmin}>
+            <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=<{$block.id}>">
+                (edit)
+            </a>
+            <{/if}>
+            <!-- Hide if 'block.title' name starts with 'none' -->
+            <{if ! $block.title|strstr:"none"}><{$block.title}><{/if}>
+            </div>
+        <div class="centerCblockContent"><{$block.content}></div>
+        </div>
+        <{/foreach}>
+        <!-- End Center-Left-Block Loop -->
+        </div>
+        <hr>
+        <{/if}><!-- End Center-Left-Block -->
+    
+    
+    
+    
+    
+    
+    
+    
+      <!-- Start Module Content -->
+        <{if !empty($xoops_contents)}>
+        <div id="content"><{$xoops_contents}></div>
+        <{/if}>
+        <!-- End Module Content -->
+    
+    
+        <!-- Start Center-Left and Center-Right Blocks -->
+        <{if $xoops_showcblock == 1}>
+    
+    
+        <div class="row">
+                <div class="col-sm">
+                    <!-- Start Center-Left-Block Loop -->
+                    <{foreach item=block from=$xoops_clblocks name=clloop}>
+                    <div class="centerLblock" id="centerl-<{$smarty.foreach.clloop.iteration}>">
+                    <div class="centerLblockTitle">
+                    <!-- Edit Block -->
+                    <{if $xoops_isadmin}>
+                    <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=<{$block.id}>">
+                        (edit)
+                    </a>
+                    <{/if}>
+                    <!-- Hide if 'block.title' name starts with 'none' -->
+                    <{if ! $block.title|strstr:"none"}><{$block.title}><{/if}>
+                    </div>
+                    <div class="centerLblockContent"><{$block.content}></div>
+                    </div>
+                    <{/foreach}>
+                    <!-- End Center-Left-Block Loop -->
+                </div>
+    
+                <div class="col-sm">
+                  One of three columns
+                </div>
+                
+                <div class="col-sm">
+                    <!-- Start Center-Right-Block Loop -->
+                    <{foreach item=block from=$xoops_crblocks name=crloop}>
+                    <div class="centerRblock" id="centerl-<{$smarty.foreach.crloop.iteration}>">
+                    <div class="centerRblockTitle">
+                    <!-- Edit Block -->
+                    <{if $xoops_isadmin}>
+                    <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=<{$block.id}>">
+                       (edit)
+                    </a>
+                    <{/if}>
+                    <!-- Hide if 'block.title' name starts with 'none' -->
+                    <{if ! $block.title|strstr:"none"}><{$block.title}><{/if}>
+                    </div>
+                    <div class="centerRblockContent"><{$block.content}></div>
+                    </div>
+                    <{/foreach}>
+                    <!-- End Center-Right-Block Loop -->
+                </div>
+        </div>
+    
+    
+    
+    
+    <!-- End Block Center-Left and Center-Right -->
+            <{/if}>
+    
+    
+    <!-- Right sidebar -->
+    
+    
+    
+    
+    
+    </div><!-- End Container fluid  -->
+
+    <!-- Start footer -->
+    <footer class="footer">
+      <{$xoops_footer}><br>
+      <a href="https://xoopscube.org/documentation/api/index.html" rel="external">The XOOPS Cube API Documentation</a>. 
+      Help improve reporting an issue to <a href="https://github.com/xoopscube/legacy/issues"> Project Bug Tracker</a>.
+    </footer>
+    <!-- End footer -->
+
+</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    
+</body>
+</html>
