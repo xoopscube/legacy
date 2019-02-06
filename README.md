@@ -1,4 +1,10 @@
-##Legacy
+Contribute
+====
+
+XOOPS CUbe Legacy 2.3.0
+ -> Prep changes to folder structure
+
+## Legacy
 
 * [About](#about)
 * [License](#license)
@@ -31,12 +37,12 @@ About
 License
 ====
 
-###XOOPS Cube  
+### XOOPS Cube  
 
 XOOPS Cube was started from scratch and the XOOPS Cube Core source code is released under the BSD licence.
 
  
-###XOOPS Cube Legacy  
+### XOOPS Cube Legacy  
 
 XOOPS Cube Legacy source code which is one of base modules to ensure compatibility with old versions of Xoops 2 is released under a GPL licence.
 
@@ -176,17 +182,17 @@ XOOPS Cube functionality can also be easily extended with Preloads - one file cl
 Modules
 ====
 
-###Xoops X (Ten)  
+### Xoops X (Ten)  
 Modules maintained by the community members
 
 https://github.com/XoopsX
 
-###Xoopscube.jp  
+### Xoopscube.jp  
 Modules up-to-date 
 
 [News, Announcements and Release Notes](http://xoopscube.jp/module/)
 
-###Xoopscube.org  
+### Xoopscube.org  
 
 [Module Compatibility Informations](http://xoopscube.org/modules/pukiwiki/?XOOPSCubeLegacy%2FModuleCompatibility)
 

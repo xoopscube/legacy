@@ -1,3 +1,7 @@
+** XCL 2.3.0 Move To repo Docs ! **
+
+Documentation will be moved to its own repo from version 2.3.0
+
 ** NEVER UPLOAD all archive's files to your server!! **
 
 Basically, the archive includes all files whether a file has been updated.
