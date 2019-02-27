@@ -1,4 +1,12 @@
-##Legacy
+## XOOPSCube development branch : 2.3
+
+2019-02-11 Merge update PHP7 
+2019-01-30 XCL UI prototype https://xoopscube.github.io/
+2019-01-29 Prepare to merge PHP7 branch and merge XCL 2.3.0 alpha User Interface.
+
+
+TOC
+====
 
 * [About](#about)
 * [License](#license)
