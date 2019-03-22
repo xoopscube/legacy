@@ -1,11 +1,18 @@
+# ⚠️ Unmaintained repository !
+
+# 🆕 Development moved to XCL
+
+https://github.com/xoopscube/xcl
+
 ## XOOPSCube development branch : 2.3
 
-2019-02-11 Merge update PHP7 
+2019-01-29 Branch 2.3 updated to PHP7
 
-2019-01-30 XCL UI prototype https://xoopscube.github.io/
+https://github.com/xoopscube/xcl/tree/develop
 
-2019-01-29 Prepare branch 2.3 to merge PHP7 update.
+XCL UI prototype 
 
+https://xoopscube.github.io/
 
 TOC
 ====
