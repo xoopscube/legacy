@@ -97,9 +97,9 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
         // Users who are belong to ADMIN GROUP have every permissions, so we have to prepare two kinds of SQL.
         //
         if ($root->mContext->mUser->isInRole('Site.Owner')) {
-            $sql = "SELECT DISTINCT mid FROM ${mod} WHERE isactive=1 AND hasadmin=1 ORDER BY weight, mid";
+            $sql = "SELECT DISTINCT weight, mid FROM ${mod} WHERE isactive=1 AND hasadmin=1 ORDER BY weight, mid";
         } else {
-            $sql = "SELECT DISTINCT ${mod}.mid FROM ${mod},${perm} " .
+            $sql = "SELECT DISTINCT ${mod}.weight, ${mod}.mid FROM ${mod},${perm} " .
                    "WHERE ${mod}.isactive=1 AND ${mod}.mid=${perm}.gperm_itemid AND ${perm}.gperm_name='module_admin' AND ${perm}.gperm_groupid IN (${groups}) " .
                    "AND ${mod}.hasadmin=1 " .
                    "ORDER BY ${mod}.weight, ${mod}.mid";
@@ -110,7 +110,7 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
         
         $handler =& xoops_gethandler('module');
         
-        while (list($mid) = $db->fetchRow($result)) {
+        while (list($weight, $mid) = $db->fetchRow($result)) {
             $xoopsModule = & $handler->get($mid);
             $module =& Legacy_Utils::createModule($xoopsModule, false);
 
