@@ -38,7 +38,7 @@
  * {mailto address="me@domain.com" cc="you@domain.com,they@domain.com"}
  * {mailto address="me@domain.com" extra='class="mailto"'}
  * </pre>
- * @link http://smarty.php.net/manual/en/language.function.mailto.php {mailto}
+ * @link https://smarty.php.net/manual/en/language.function.mailto.php {mailto}
  *          (Smarty online manual)
  * @version  1.2
  * @author   Monte Ohrt <monte at ohrt dot com>
@@ -70,10 +70,11 @@ function smarty_function_mailto($params, &$smarty)
             case 'cc':
             case 'bcc':
             case 'followupto':
-                if (!empty($value))
-                    $mail_parms[] = $var.'='.str_replace($search,$replace,rawurlencode($value));
+                if (!empty($value)) {
+                    $mail_parms[] = $var . '=' . str_replace($search, $replace, rawurlencode($value));
+                }
                 break;
-                
+
             case 'subject':
             case 'newsgroups':
                 $mail_parms[] = $var.'='.rawurlencode($value);
@@ -104,7 +105,7 @@ function smarty_function_mailto($params, &$smarty)
         $string = 'document.write(\'<a href="mailto:'.$address.'" '.$extra.'>'.$text.'</a>\');';
 
         $js_encode = '';
-        for ($x=0; $x < strlen($string); $x++) {
+        for ($x=0, $xMax = strlen($string); $x < $xMax; $x++) {
             $js_encode .= '%' . bin2hex($string[$x]);
         }
 
@@ -114,7 +115,7 @@ function smarty_function_mailto($params, &$smarty)
         $string = '<a href="mailto:'.$address.'" '.$extra.'>'.$text.'</a>';
 
         for($x = 0, $y = strlen($string); $x < $y; $x++ ) {
-            $ord[] = ord($string[$x]);   
+            $ord[] = ord($string[$x]);
         }
 
         $_ret = "<script type=\"text/javascript\" language=\"javascript\">\n";
@@ -125,10 +126,10 @@ function smarty_function_mailto($params, &$smarty)
         $_ret .= "}\n";
         $_ret .= "//-->\n";
         $_ret .= "</script>\n";
-        
+
         return $_ret;
-        
-        
+
+
     } elseif ($encode == 'hex') {
 
         preg_match('!^(.*)(\?.*)$!',$address,$match);
@@ -137,7 +138,7 @@ function smarty_function_mailto($params, &$smarty)
             return;
         }
         $address_encode = '';
-        for ($x=0; $x < strlen($address); $x++) {
+        for ($x=0, $xMax = strlen($address); $x < $xMax; $x++) {
             if(preg_match('!\w!',$address[$x])) {
                 $address_encode .= '%' . bin2hex($address[$x]);
             } else {
@@ -145,7 +146,7 @@ function smarty_function_mailto($params, &$smarty)
             }
         }
         $text_encode = '';
-        for ($x=0; $x < strlen($text); $x++) {
+        for ($x=0, $xMax = strlen($text); $x < $xMax; $x++) {
             $text_encode .= '&#x' . bin2hex($text[$x]).';';
         }
 
@@ -159,7 +160,3 @@ function smarty_function_mailto($params, &$smarty)
     }
 
 }
-
-/* vim: set expandtab: */
-
-?>

@@ -100,4 +100,3 @@ abstract class HTMLPurifier_URIScheme
 }
 
 // vim: et sw=4 sts=4
-

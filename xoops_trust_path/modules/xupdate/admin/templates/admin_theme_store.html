@@ -1,0 +1,315 @@
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<div id="xupdate">
+
+
+    <{include file="admin_navi.html"}>
+
+    <{include file="admin_menunavi.html"}>
+
+    <h2 class="admintitle"><{$smarty.const._AD_XUPDATE_LANG_THEMES}><{if $storeObject}> » <{$storeObject->getShow('name')}><{/if}></h2>
+
+
+    <{include file="admin_tips.html"}>
+
+    <{if $actionForm->hasError()}>
+    <div class="error">
+        <ul>
+            <{foreach item=message from=$actionForm->getErrorMessages()}>
+            <li><{$message|xoops_escape}></li>
+            <{/foreach}>
+        </ul>
+    </div>
+    <{/if}>
+
+
+    <{* ////— ACTION-CONTROL —\\\\ *}>
+    <section layout="row center-justify" class="action-control">
+
+        <!-- category selection -->
+        <div class="filtermenu">
+
+            <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>" class="button">
+                <{$smarty.const._MI_XUPDATE_ALL}>
+            </a>
+            <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>filter=installed" class="button">
+                <{$smarty.const._MI_XUPDATE_INSTALLED}>
+            </a>
+            <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>filter=updated" class="button">
+                <{$smarty.const._MI_XUPDATE_UPDATED}>
+            </a>
+            <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>filter=future" class="button">
+                <{$smarty.const._MI_XUPDATE_FUTURE}>
+            </a>
+        </div>
+
+        <div class="control-view">
+
+            <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ThemeList" class="button"><{$smarty.const._MI_XUPDATE_MANAGE}> <{$smarty.const._AD_LEGACY_LANG_THEME}></a>
+
+            <button class="help-admin button" type='button' data-id='4' data-module='xupdate' data-help-article='#help-theme' aria-label="<{$smarty.const._HELP}>">
+                <b>?</b>
+            </button>
+
+        </div>
+
+    </section>
+
+
+<!--        <{if $pageNavi->getPerpage() < $pageNavi->getTotalItems() }>-->
+<!--        <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>-->
+<!--        <{/if}>-->
+
+    <form action="index.php?action=ThemeStore" method="post">
+        <{xoops_input type=hidden name=sid value=$sid}>
+
+    <table class="outer">
+    <thead>
+        <tr>
+        <th>
+        <{* ////— DROPDOWN SORT —\\\\ *}>
+        <div class="dropdown" id="filter-sort">
+
+            <a href="#" class="dropdown-toggle button" aria-label="sort filter">
+                <img class="svg" src="<{$xoops_url}>/images/icons/list-tree.svg" width="24px" height="24px" alt="options">
+            </a>
+
+            <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
+
+                <{if !$sid}>
+                <div layout="row center-justify inline">
+                    <h6><{$smarty.const._MD_XUPDATE_LANG_SID}></h6>
+                    <div>
+                        <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_SID}>"
+                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_SID}>"
+                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <{/if}>
+
+                <div layout="row center-justify inline">
+                    <h6><{$smarty.const._AD_LEGACY_LANG_THEME}></h6>
+                    <div>
+                        <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"
+                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href=index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"
+                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;
+                        </a>
+                    </div>
+                </div>
+
+                <div layout="row center-justify">
+                    <h6><{$smarty.const._AD_LEGACY_LANG_VERSION}></h6>
+                    <div>
+                        <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_VERSION}>"
+                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_VERSION}>"
+                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+
+                <div layout="row center-justify">
+                    <h6><{$smarty.const._AD_XUPDATE_LANG_LICENSE}></h6>
+                    <div>
+                        <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_LICENSE}>"
+                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_LICENSE}>"
+                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+
+                <div layout="row center-justify">
+                    <h6><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}></h6>
+                    <div>
+                        <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"
+                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"
+                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+
+                <div layout="row center-justify">
+                    <h6><{$smarty.const._AD_LEGACY_LANG_PACKAGE}></h6>
+                    <div>
+                        <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_TARGET_KEY}>"
+                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="index.php?action=ThemeStore&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_TARGET_KEY}>"
+                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+
+                </div><{* ----- /Dropdown-content *}>
+            </div>
+        <{* ----- /Dropdown *}>
+        </th>
+        <th><{$smarty.const._AD_LEGACY_LANG_THEME}></th>
+        <th><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}></th>
+        <th>screenshot</th>
+        <th><{$smarty.const._AD_XUPDATE_DESCRIPTION}></th>
+        <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
+        <th><input id="rapidInstallCheckboxAll" type="checkbox" aria-label="<{$smarty.const._AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL}>">
+        </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <{foreach item=module from=$moduleObjects}>
+        <tr>
+            <!--<td class="legacy_list_id"><{$module->getShow('id')}></td>-->
+
+            <td class="legacy_list_id">
+                <{if !$sid}>
+                <a class="button" href="index.php?action=ThemeStore&amp;sid=<{$module->getShow('sid')}>" aria-label="<{$smarty.const._AD_XUPDATE_LANG_STORE}>">
+                    <{$module->getShow('sid')}>
+                </a>
+                <{/if}>
+            </td>
+
+            <td>
+                <div class="legacy_list_image">
+                    <input type="hidden"
+                           size="24"
+                           name="dirname[<{$module->get('id')}>]"
+                           value="<{$module->get('dirname')}>">
+
+                    <input type="text"
+                           size="20"
+                           value="<{$module->getShow('dirname')}>"
+                           readonly>
+                    <{* $module->getShow('dirname') *}>
+                    <p>
+                    <{if $module->getShow('detail_url')}>
+                    <a href="<{$module->getShow('detail_url')}>" target="_blank">&#128230; <{$module->getShow('target_key')}> ↗</a>
+                    <{else}>
+                    <{$module->getShow('target_key')}>
+                    <{/if}>
+                    </p>
+                </div>
+
+
+            </td>
+            <td class="last_update">
+                <{if $module->getVar('last_update')}>
+                <{$module->getVar('last_update')|xoops_formattimestamp:l}>
+                <{/if}>
+                <{assign var="hasupdate" value=0}>
+                <div class="version" aria-label="Version">
+                    <{if $module->hasNeedUpdate()}>
+                    <{assign var="hasupdate" value=1}>
+                    <{$module->mModule->getRenderedVersion()}> &rarr; <b><{$module->getRenderedVersion()}></b>
+                    <{else}>
+                    <{$module->getRenderedVersion()}>
+                    <{/if}>
+                </div>
+                <{if $module->options.detailed_version}>
+                <div class="version_detail" aria-label="Version detail">
+                    <{if $module->hasNeedUpdateDetail()}>
+                    <{assign var="hasupdate" value=1}>
+                    <{$module->modinfo.detailed_version}> &rarr; <b><{$module->options.detailed_version}></b>
+                    <{else}>
+                    <{$module->options.detailed_version}>
+                    <{/if}>
+                </div>
+                <{/if}>
+                <{if $hasupdate && $module->options.changes_url}>
+                <div class="changlog">
+                    <a href="<{$module->options.changes_url|escape:'html'}>" target="_blank"><{$smarty.const._AD_XUPDATE_RECENTCHANGES}> ↗</a>
+                </div>
+                <{/if}>
+
+                <div class="license" aria-label="License">
+                    <{$module->getShow('license')}>
+                </div>
+            </td>
+            <td class="list_screenshot">
+                <{if $module->options.screen_shot}><img src="<{$module->options.screen_shot}>" height="60"><{/if}>
+            </td>
+            <td>
+                <{if $module->get('description')}>
+                <{$module->get('description')}>
+                <{else}>
+                <div class="error">No description available !</div>
+                <{/if}>
+            </td>
+            <!--
+            <td class="legacy_list_select">
+              <{$module->getShow('target_type')}>
+            </td>
+            -->
+            <td class="legacy_list_control">
+                <{if $xupdate_writable.result==true}>
+                <{if $module->getVar('isactive') > 0}>
+                <a href="<{$module->get_StoreUrl()}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>">
+                    <img src="<{"icons/icon-package-update.svg"|theme}>" class="svg" alt="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>"></a>
+                <a href="<{$module->get_UpdateUrl()}>"></a>
+                <{else}>
+                <a href="<{$module->get_StoreUrl()}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
+                    <img class="svg" src="<{$xoops_url}>/images/icons/download.svg"
+                         width="24px"
+                         height="24px"
+                         alt="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
+                    </a>
+                <a href="<{$module->get_InstallUrl()}>"></a>
+                <{/if}>
+                <{/if}>
+            </td>
+            <td class="legacy_list_select">
+                <{if $xupdate_writable.result==true}>
+                <{if $module->mModule && $module->mModule->getVar('mid') > 0 }>
+                <{if $module->mModule->getVar('isactive') && $module->isDirnameError() == false}>
+                <input type="checkbox" class="rapidInstallCheckbox">
+                <{/if}>
+                <{else}>
+                <input type="checkbox" class="rapidInstallCheckbox">
+                <{/if}>
+                <{/if}>
+            </td>
+        </tr>
+        <{/foreach}>
+    </tbody>
+
+    <tfoot class="foot">
+        <tr>
+            <td colspan="5">
+            <{xoops_token form=$actionForm}>
+            </td>
+            <td class="foot" colspan="2">
+                <{if $xupdate_writable.result==true}>
+                <input class="formButton" type="submit"
+                       value="<{$smarty.const._AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL}>"
+                       id="rapidModuleInstallButton"/>
+                <{/if}>
+            </td>
+        </tr>
+    </tfoot>
+
+    </table>
+
+    </form>
+    <{if $pageNavi->getPerpage() < $pageNavi->getTotalItems() }>
+    <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+    <{/if}>
+
+    <{include file="admin_tagcloud.html"}>
+
+</div>
+
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        var popup = $('<img>').css('position', 'absolute'), next;
+
+        $('.legacy_list_screenshot img').hover(
+            function () {
+                popup.attr('src', $(this).attr('src')).css($(this).parent('td').next().offset());
+                $('body').append(popup);
+            },
+            function () {
+                popup.remove();
+            }
+        );
+    })
+</script>
+
+

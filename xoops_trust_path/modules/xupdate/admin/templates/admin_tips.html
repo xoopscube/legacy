@@ -1,0 +1,110 @@
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+<div class="tips">
+<{if empty($action) && $currentMenu == $smarty.const._MI_XUPDATE_ADMENU_STORELIST}>
+    <{$smarty.const._AD_XUPDATE_LANG_STORES_TIP}>
+<{elseif $action == 'ModuleStore'}>
+    <{$smarty.const._AD_XUPDATE_LANG_MODULES_TIP}>
+<{elseif $action == 'PackageStore'}>
+    <{$smarty.const._AD_XUPDATE_LANG_PRELOADS_TIP}>
+<{elseif $action == 'PreloadStore'}>
+    <{$smarty.const._AD_XUPDATE_LANG_PRELOADS_TIP}>
+<{elseif $action == 'ThemeStore'}>
+    <{$smarty.const._AD_XUPDATE_LANG_THEMES_TIP}>
+<{elseif empty($action) && $currentMenu == $smarty.const._MI_XUPDATE_ADMENU_THEMEFINDER}>
+    <{$smarty.const._AD_XUPDATE_LANG_THEME_FINDER_TIP}>
+<{/if}>
+</div>
+
+<style>
+    .modal-footer {
+background: var(--color-5);
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(function() {
+            $("#dialog-check-parameters").dialog({
+                autoOpen: false,
+                classes: {
+                    "ui-dialog-buttonpane": "modal-footer"
+                },
+                maxWidth:540,
+                maxHeight: 390,
+                resizable: false,
+                width: 520,
+                height: 460,
+                modal: true,
+                buttons:
+                    [
+                        {
+                            text: "Help",
+                            icon: "ui-icon-help",
+                            class: "button",
+                            click: function() {
+                                window.location.href = "<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&dirname=xupdate#help-store";
+                            }
+                        },
+                        {
+                            text: "Ok",
+                            icon: "ui-icon-check",
+                            class: "button",
+                            click: function() {
+                                $( this ).dialog( "close" );
+                            }
+
+                            // Uncommenting the following line would hide the text,
+                            // resulting in the label being used as a tooltip
+                            //showText: false
+                        },
+                    ]
+            });
+        });
+
+        $("#check-app")
+            .button()
+            .click(function() {
+                $("#dialog-check-parameters").dialog("open");
+            });
+    });
+</script>
+
+
+<div id="dialog-check-parameters" title="Configuration Checker">
+
+    <div class="tips">
+        <{$smarty.const._MI_XUPDATE_TEMP_PATH}><br>
+        <pre><small><code class="lang-none"><{$xupdate_writable.path}></code></small></pre>
+    </div>
+
+    <{if $xupdate_writable.result==true}>
+    <div class="success"><{$smarty.const._AD_XUPDATE_LANG_WRITABLE_RESULT}> : OK</div>
+    <{else}>
+    <div class="error"><{$smarty.const._AD_XUPDATE_LANG_WRITABLE_RESULT}> NG</div>
+    <{/if}>
+
+    cURL Extension
+    <{if $mod_config._CurlCheck }>
+    <div class="success"><{$smarty.const._AD_XUPDATE_LANG_EXTENSION_CHECK_RESULT}> OK</div>
+    <{else}>
+    <div class="error"><{$smarty.const._AD_XUPDATE_LANG_EXTENSION_CHECK_RESULT}> NG</div>
+    <{/if}>
+
+    <{$mod_config.FTP_UserName}>
+    <{if $mod_config._FtpLoginCheck }>
+    <div class="success"><{$smarty.const._AD_XUPDATE_LANG_FTP_PASS_RESULT}> OK</div>
+    <{else}>
+    <div class="error"><{$smarty.const._AD_XUPDATE_LANG_FTP_PASS_RESULT}> NG</div>
+    <{/if}>
+
+    <{$smarty.const._AD_XUPDATE_LANG_EXECUTION_TIME}>
+    <{if $mod_config._ExecutionTime >= 300 }>
+    <div class="success"><{$mod_config._ExecutionTime}>s OK</div>
+    <{elseif $mod_config._ExecutionTime == 0 }>
+        <div class="success">OK</div>
+    <{else}>
+    <div class="error"><{$mod_config._ExecutionTime}> <{$smarty.const._AD_XUPDATE_LANG_EXECUTION_TIME_NOTICE}></div>
+    <{/if}>
+
+</div>

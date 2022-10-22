@@ -36,4 +36,3 @@ class HTMLPurifier_AttrDef_HTML_FrameTarget extends HTMLPurifier_AttrDef_Enum
 }
 
 // vim: et sw=4 sts=4
-

@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: function.xoops_token.php,v 1.3 2008/09/25 15:12:35 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright (c) 2005-2022 The XOOPS Cube Project
+ * @license https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  *
  */
 
@@ -19,7 +19,7 @@
  * Input:    name = token name
  *           value = token value
  *           actionform = actionform object
- * 
+ *
  * -------------------------------------------------------------
  */
 function smarty_function_xoops_token($params, &$smarty)
@@ -35,7 +35,7 @@ function smarty_function_xoops_token($params, &$smarty)
         $tokenName = $params['name'];
         $tokenValue = $params['value'];
     }
-    
+
     if ($tokenName != null && $tokenValue != null) {
         printf('<input type="hidden" name="%s" value="%s" />', htmlspecialchars($tokenName, ENT_QUOTES), htmlspecialchars($tokenValue, ENT_QUOTES));
     }

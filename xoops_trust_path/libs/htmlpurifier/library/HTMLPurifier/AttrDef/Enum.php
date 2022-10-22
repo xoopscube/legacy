@@ -71,4 +71,3 @@ class HTMLPurifier_AttrDef_Enum extends HTMLPurifier_AttrDef
 }
 
 // vim: et sw=4 sts=4
-

@@ -73,12 +73,13 @@ class HTMLPurifier_ChildDef_StrictBlockquote extends HTMLPurifier_ChildDef_Requi
             if ($block_wrap === false) {
                 if (($node instanceof HTMLPurifier_Node_Text && !$node->is_whitespace) ||
                     ($node instanceof HTMLPurifier_Node_Element && !isset($this->elements[$node->name]))) {
-                    $block_wrap = new HTMLPurifier_Node_Element($def->info_block_wrapper);
-                    $ret[] = $block_wrap;
+                        $block_wrap = new HTMLPurifier_Node_Element($def->info_block_wrapper);
+                        $ret[] = $block_wrap;
                 }
             } else {
                 if ($node instanceof HTMLPurifier_Node_Element && isset($this->elements[$node->name])) {
                     $block_wrap = false;
+
                 }
             }
             if ($block_wrap) {
@@ -107,4 +108,3 @@ class HTMLPurifier_ChildDef_StrictBlockquote extends HTMLPurifier_ChildDef_Requi
 }
 
 // vim: et sw=4 sts=4
-

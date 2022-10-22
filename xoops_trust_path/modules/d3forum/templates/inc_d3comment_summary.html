@@ -1,0 +1,35 @@
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<{if $topic.comment_link}>
+<div aria-label="topic-comment-link">
+
+	<h4>
+        <a href="<{$topic.comment_link}>"><{$smarty.const._MD_D3FORUM_LINK_COMMENTSOURCE}></a>
+    </h4>
+
+    <{elseif is_array($topic.comment_description)}>
+        <div layout="row mb-2">
+            <div self="size-x1 sm-full">
+                <{$smarty.const._MD_D3FORUM_COM_TARGETMODULE}>
+            </div>
+            <div self="size-x3 sm-full">
+                <a href="<{$xoops_url}>/modules/<{$topic.comment_description.dirname}>/"><{$topic.comment_description.module_name}></a>
+            </div>
+        </div>
+
+        <div layout="row mb-2">
+            <div self="size-x1 sm-full"><{$smarty.const._MD_D3FORUM_COM_SUBJECT}></div>
+            <div self="size-x3 sm-full"><a href="<{$topic.comment_description.uri}>"><{$topic.comment_description.subject}></a></div>
+        </div>
+
+        <div layout="row mb-2">
+            <div self="size-x1 sm-full"><{$smarty.const._MD_D3FORUM_COM_SUMMARY}></div>
+            <div self="size-x3 sm-full"><{$topic.comment_description.summary}></div>
+        </div>
+
+    <{elseif $topic.comment_description}>
+    <div aria-label="topic-comment-description"><{$topic.comment_description}></div>
+
+ </div>
+<{/if}>

@@ -22,7 +22,7 @@
  * Smarty mailing list. Send a blank e-mail to
  * smarty-discussion-subscribe@googlegroups.com
  *
- * @link http://www.smarty.net/
+ * @link https://www.smarty.net/
  * @copyright 2001-2005 New Digital Group, Inc.
  * @author Monte Ohrt <monte at ohrt dot com>
  * @author Andrei Zmievski <andrei@php.net>
@@ -53,10 +53,10 @@ if (!defined('SMARTY_CORE_DIR')) {
     define('SMARTY_CORE_DIR', SMARTY_DIR . 'internals' . DIRECTORY_SEPARATOR);
 }
 
-define('SMARTY_PHP_PASSTHRU',   0);
-define('SMARTY_PHP_QUOTE',      1);
-define('SMARTY_PHP_REMOVE',     2);
-define('SMARTY_PHP_ALLOW',      3);
+const SMARTY_PHP_PASSTHRU = 0;
+const SMARTY_PHP_QUOTE = 1;
+const SMARTY_PHP_REMOVE = 2;
+const SMARTY_PHP_ALLOW = 3;
 
 /**
  * @package Smarty
@@ -64,7 +64,7 @@ define('SMARTY_PHP_ALLOW',      3);
 class Smarty
 {
     /**
-     * For backward compatibility of XOOPS Cube
+     * For backward compatibility of XOOPSCube
      */
     public function Smarty()
     {
@@ -133,7 +133,7 @@ class Smarty
      *  <li>NONE => no debugging control allowed</li>
      *  <li>URL => enable debugging when SMARTY_DEBUG is found in the URL.</li>
      * </ul>
-     * @link http://www.foo.dom/index.php?SMARTY_DEBUG
+     * @link https://www.foo.dom/index.php?SMARTY_DEBUG
      * @var string
      */
     var $debugging_ctrl  =  'NONE';

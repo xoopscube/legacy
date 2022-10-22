@@ -45,4 +45,3 @@ class HTMLPurifier_StringHash extends ArrayObject
 }
 
 // vim: et sw=4 sts=4
-

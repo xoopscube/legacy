@@ -12,7 +12,7 @@
  * Type:     function<br>
  * Name:     html_select_time<br>
  * Purpose:  Prints the dropdowns for time selection
- * @link http://smarty.php.net/manual/en/language.function.html.select.time.php {html_select_time}
+ * @link https://smarty.php.net/manual/en/language.function.html.select.time.php {html_select_time}
  *          (Smarty online manual)
  * @author Roberto Berto <roberto@berto.net>
  * @credits Monte Ohrt <monte AT ohrt DOT com>
@@ -84,8 +84,9 @@ function smarty_function_html_select_time($params, &$smarty)
     if ($display_hours) {
         $hours       = $use_24_hours ? range(0, 23) : range(1, 12);
         $hour_fmt = $use_24_hours ? '%H' : '%I';
-        for ($i = 0, $for_max = count($hours); $i < $for_max; $i++)
+        for ($i = 0, $for_max = count($hours); $i < $for_max; $i++) {
             $hours[$i] = sprintf('%02d', $hours[$i]);
+        }
         $html_result .= '<select name=';
         if (null !== $field_array) {
             $html_result .= '"' . $field_array . '[' . $prefix . 'Hour]"';
@@ -109,8 +110,9 @@ function smarty_function_html_select_time($params, &$smarty)
 
     if ($display_minutes) {
         $all_minutes = range(0, 59);
-        for ($i = 0, $for_max = count($all_minutes); $i < $for_max; $i+= $minute_interval)
+        for ($i = 0, $for_max = count($all_minutes); $i < $for_max; $i+= $minute_interval) {
             $minutes[] = sprintf('%02d', $all_minutes[$i]);
+        }
         $selected = intval(floor(strftime('%M', $time) / $minute_interval) * $minute_interval);
         $html_result .= '<select name=';
         if (null !== $field_array) {
@@ -125,7 +127,7 @@ function smarty_function_html_select_time($params, &$smarty)
             $html_result .= ' ' . $all_extra;
         }
         $html_result .= '>'."\n";
-        
+
         $html_result .= smarty_function_html_options(array('output'          => $minutes,
                                                            'values'          => $minutes,
                                                            'selected'      => $selected,
@@ -136,8 +138,9 @@ function smarty_function_html_select_time($params, &$smarty)
 
     if ($display_seconds) {
         $all_seconds = range(0, 59);
-        for ($i = 0, $for_max = count($all_seconds); $i < $for_max; $i+= $second_interval)
+        for ($i = 0, $for_max = count($all_seconds); $i < $for_max; $i+= $second_interval) {
             $seconds[] = sprintf('%02d', $all_seconds[$i]);
+        }
         $selected = intval(floor(strftime('%S', $time) / $second_interval) * $second_interval);
         $html_result .= '<select name=';
         if (null !== $field_array) {
@@ -145,7 +148,7 @@ function smarty_function_html_select_time($params, &$smarty)
         } else {
             $html_result .= '"' . $prefix . 'Second"';
         }
-        
+
         if (null !== $second_extra){
             $html_result .= ' ' . $second_extra;
         }
@@ -153,7 +156,7 @@ function smarty_function_html_select_time($params, &$smarty)
             $html_result .= ' ' . $all_extra;
         }
         $html_result .= '>'."\n";
-        
+
         $html_result .= smarty_function_html_options(array('output'          => $seconds,
                                                            'values'          => $seconds,
                                                            'selected'      => $selected,
@@ -169,7 +172,7 @@ function smarty_function_html_select_time($params, &$smarty)
         } else {
             $html_result .= '"' . $prefix . 'Meridian"';
         }
-        
+
         if (null !== $meridian_extra){
             $html_result .= ' ' . $meridian_extra;
         }
@@ -177,7 +180,7 @@ function smarty_function_html_select_time($params, &$smarty)
             $html_result .= ' ' . $all_extra;
         }
         $html_result .= '>'."\n";
-        
+
         $html_result .= smarty_function_html_options(array('output'          => array('AM', 'PM'),
                                                            'values'          => array('am', 'pm'),
                                                            'selected'      => strtolower(strftime('%p', $time)),
@@ -188,7 +191,3 @@ function smarty_function_html_select_time($params, &$smarty)
 
     return $html_result;
 }
-
-/* vim: set expandtab: */
-
-?>

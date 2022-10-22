@@ -12,7 +12,7 @@
  * Name:     textformat<br>
  * Purpose:  format text a certain way with preset styles
  *           or custom wrap/indent settings<br>
- * @link http://smarty.php.net/manual/en/language.function.textformat.php {textformat}
+ * @link https://smarty.php.net/manual/en/language.function.textformat.php {textformat}
  *       (Smarty online manual)
  * @param array
  * <pre>

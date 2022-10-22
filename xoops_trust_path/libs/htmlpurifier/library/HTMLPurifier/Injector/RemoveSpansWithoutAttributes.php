@@ -82,4 +82,3 @@ class HTMLPurifier_Injector_RemoveSpansWithoutAttributes extends HTMLPurifier_In
 }
 
 // vim: et sw=4 sts=4
-

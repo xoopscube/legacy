@@ -1,0 +1,111 @@
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<div id="xupdate">
+
+    <{include file="admin_navi.html"}>
+
+    <{include file="admin_menunavi.html"}>
+
+    <h2 class="admintitle"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}> » <{$target_key|xoops_escape:show}></h2>
+
+
+    <{include file="admin_tips.html"}>
+
+
+    <div class="confirm"><{$smarty.const._AD_LEGACY_LANG_THEME}> - <{$smarty.const._MI_XUPDATE_DEPLOY}></div>
+    <{if $actionForm->hasError() && $actionForm->getErrorMessages()}>
+    <div class="error">
+        <ul>
+            <{foreach item=message from=$actionForm->getErrorMessages()}>
+            <li><{$message|xoops_escape}></li>
+            <{/foreach}>
+        </ul>
+    </div>
+    <{/if}>
+
+    <h3><{$dirname|xoops_escape:show}></h3>
+
+    <form action="index.php?action=ThemeInstall" method="post">
+        <{xoops_token form=$actionForm}>
+        <{xoops_input type=hidden name=confirm value=1}>
+        <{xoops_input type=hidden name=id value=$id }>
+        <{xoops_input type=hidden name=sid value=$sid }>
+        <{xoops_input type=hidden name=dirname value=$dirname }>
+        <{xoops_input type=hidden name=addon_url value=$addon_url }>
+        <{xoops_input type=hidden name=unzipdirlevel value=$unzipdirlevel }>
+        <{xoops_input type=hidden name=target_key value=$target_key }>
+        <{xoops_input type=hidden name=target_type value=$target_type }>
+
+        <table class="outer">
+
+            <thead>
+            <{if $screen_shot}>
+                <tr>
+                    <th colspan="2" class="legacy_list_select"><img src="<{$screen_shot}>" alt=""></th>
+                </tr>
+            <{/if}>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}> : </td>
+                <td>
+                    <a href="index.php?action=ThemeStore&amp;sid=<{$sid}>">
+                        &#127978; <{$store_name|xoops_escape:show}></a>
+
+                </td>
+            </tr>
+            <tr>
+                <td><{$smarty.const._MI_XUPDATE_FTP_THEME_URL}></td>
+                <td> <{if $detail_url}>
+                    <a href="<{$detail_url|xoops_escape:show}>" target="_blank">
+                        &#128230; <{$target_key|xoops_escape:show}> ↗</a>
+                    <{else}>
+                        <{$target_key|xoops_escape:show}>
+                    <{/if}>
+                </td>
+            </tr>
+            <tr>
+                <td><{$smarty.const._MI_XUPDATE_ADMENU_PACKAGE}></td>
+                <td><{$addon_url|xoops_escape:show}></td>
+            </tr>
+            <tr>
+                <td><{$smarty.const._AD_LEGACY_LANG_VERSION}></td>
+                <td>
+                    <{$version}><{if $detailed_version}> ( <{$detailed_version}> )<{/if}>
+                    <{if $options.changes_url}><a href="<{$options.changes_url|escape:'html'}>" target="_blank"><{$smarty.const._AD_XUPDATE_RECENTCHANGES}></a><{/if}>
+                </td>
+            </tr>
+            <tr>
+                <td><{$smarty.const._AD_XUPDATE_DESCRIPTION}></td>
+                <td><{$description}></td>
+            </tr>
+            <{include file='include_options_form.html'}>
+            </tbody>
+
+            <tfoot>
+            <tr class="foot">
+                <td colspan="2">
+                    <input class="button" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
+                    <input class="button" type="submit" value="<{$smarty.const._MI_XUPDATE_DEPLOY}>">
+                </td>
+            </tr>
+            </tfoot>
+
+        </table>
+
+    </form>
+
+
+    <div id="xupdate_boxes">
+        <!-- #customize your modal window here -->
+        <div id="xupdate_dialog" class="window">
+            <{$smarty.const._MI_XUPDATE_PROG_PROCESSING}>
+            <div class="progress_bar"><img src="../images/progress-bar.gif" alt=""></div>
+        </div>
+        <!-- Do not remove div#mask, because you'll need it to fill the whole screen -->
+        <div id="xupdate_mask"></div>
+    </div>
+
+
+</div>

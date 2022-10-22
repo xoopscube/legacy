@@ -12,7 +12,7 @@
  * Type:     modifier<br>
  * Name:     debug_print_var<br>
  * Purpose:  formats variable contents for display in the console
- * @link http://smarty.php.net/manual/en/language.modifier.debug.print.var.php
+ * @link https://smarty.php.net/manual/en/language.modifier.debug.print.var.php
  *          debug_print_var (Smarty online manual)
  * @author   Monte Ohrt <monte at ohrt dot com>
  * @param array|object
@@ -20,7 +20,7 @@
  * @param integer
  * @return string
  */
-function smarty_modifier_debug_print_var($var, $depth = 0, $length = 40)
+function smarty_modifier_debug_print_var($var, $depth = 0, $length = 50)
 {
     $_replace = array(
         "\n" => '<i>\n</i>',

@@ -24,4 +24,3 @@ class HTMLPurifier_HTMLModule_Tidy_XHTML extends HTMLPurifier_HTMLModule_Tidy
 }
 
 // vim: et sw=4 sts=4
-

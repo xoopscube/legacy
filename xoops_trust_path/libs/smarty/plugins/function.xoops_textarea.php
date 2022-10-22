@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: function.xoops_textarea.php,v 1.3 2008/09/25 15:12:35 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright (c) 2005-2022 The XOOPS Cube Project
+ * @license https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  *
  * [ToDo]
  * [ToDo]
@@ -13,7 +13,7 @@
  * 2) Some users and developers want free elements at $params. For example,
  *    $params['script']... This function have not impletented that yet. At
  *    implementing, we will have to define the rule about sanitizing.
- * 
+ *
  */
 
 /*
@@ -32,7 +32,7 @@
  *           cols = amount of cols. (default 50)
  *           rows = amount of rows. (default 5)
  *           readonly = if it's true, textarea becomes readonly.
- * 
+ *
  * Examples: {xoops_textarea name=message cols=40 rows=6 value=$message}
  * -------------------------------------------------------------
  */
@@ -65,7 +65,7 @@ function smarty_function_xoops_textarea($params, &$smarty)
         // Build string.
         //
         $string = "<textarea name=\"$name\" cols=\"$cols\" rows=\"$rows\"";
-        
+
         if ($class) {
             $string .= " class=\"$class\"";
         }
@@ -75,7 +75,7 @@ function smarty_function_xoops_textarea($params, &$smarty)
         }
 
         $string .= " id=\"$id\"";
-        
+
         if ($readonly) {
             $string .= ' readonly="readonly"';
         }

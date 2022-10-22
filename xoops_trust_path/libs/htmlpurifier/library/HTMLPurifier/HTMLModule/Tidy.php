@@ -214,6 +214,7 @@ class HTMLPurifier_HTMLModule_Tidy extends HTMLPurifier_HTMLModule
         }
 
         return array($property, $params);
+
     }
 
     /**
@@ -227,4 +228,3 @@ class HTMLPurifier_HTMLModule_Tidy extends HTMLPurifier_HTMLModule
 }
 
 // vim: et sw=4 sts=4
-

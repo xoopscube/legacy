@@ -12,7 +12,7 @@
  * Type:     modifier<br>
  * Name:     regex_replace<br>
  * Purpose:  regular expression search/replace
- * @link http://smarty.php.net/manual/en/language.modifier.regex.replace.php
+ * @link https://smarty.php.net/manual/en/language.modifier.regex.replace.php
  *          regex_replace (Smarty online manual)
  * @author   Monte Ohrt <monte at ohrt dot com>
  * @param string

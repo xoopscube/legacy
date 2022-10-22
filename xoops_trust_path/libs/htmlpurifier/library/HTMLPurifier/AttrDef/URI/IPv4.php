@@ -43,4 +43,3 @@ class HTMLPurifier_AttrDef_URI_IPv4 extends HTMLPurifier_AttrDef
 }
 
 // vim: et sw=4 sts=4
-

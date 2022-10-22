@@ -18,7 +18,7 @@
  *         - preceed_test = if true, includes preceeding break tags
  *           in replacement
  * Example:  {$text|nl2br}
- * @link http://smarty.php.net/manual/en/language.modifier.nl2br.php
+ * @link https://smarty.php.net/manual/en/language.modifier.nl2br.php
  *          nl2br (Smarty online manual)
  * @version  1.0
  * @author   Monte Ohrt <monte at ohrt dot com>

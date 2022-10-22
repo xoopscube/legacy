@@ -26,7 +26,7 @@ abstract class HTMLPurifier_Token
     public $armor = array();
 
     /**
-     * Used during MakeWellFormed.
+     * Used during MakeWellFormed.  See Note [Injector skips]
      * @type
      */
     public $skip;
@@ -98,4 +98,3 @@ abstract class HTMLPurifier_Token
 }
 
 // vim: et sw=4 sts=4
-

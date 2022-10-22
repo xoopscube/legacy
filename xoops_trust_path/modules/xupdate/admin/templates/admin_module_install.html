@@ -1,0 +1,50 @@
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<div id="xupdate">
+
+
+    <{include file="admin_navi.html"}>
+
+    <{include file="admin_menunavi.html"}>
+
+    <h2 class="admintitle"><{$smarty.const._AD_XUPDATE_LANG_MODULES}> <{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></h2>
+    <{* <p>"Finish Download"|t}></p> *}>
+
+    <{* include file="admin_tips.html" *}>
+
+    <div class="ui-card-full">
+    <div id="xupdate_content">
+        <{$xupdate_content}>
+    </div>
+
+    <{if $xupdate_nextlink}>
+    <div class="toptab">
+        <div id="xupdate_addModule" class="button">
+            <{$xupdate_nextlink}>
+        </div>
+    </div>
+
+    <div style="clear:both;"></div>
+
+    <{if $xupdate_moduleUpdate}>
+    <script type="text/javascript">
+        jQuery(function ($) {
+            var next_link_url = $('#xupdate_addModule>a').attr('href');
+            if (next_link_url) {
+                if (confirm("<{$xupdate_moduleUpdate}>")) {
+                    document.location.href = next_link_url;
+                }
+            }
+        });
+    </script>
+    <{/if}>
+
+    <{/if}>
+
+    <div id="xupdate_message">
+        <{$xupdate_message}>
+    </div>
+
+</div><!-- ui-card-full -->
+
+</div>

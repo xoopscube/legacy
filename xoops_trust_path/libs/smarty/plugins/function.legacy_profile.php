@@ -22,9 +22,9 @@ function smarty_function_legacy_profile($params, &$smarty)
     if ($uid===0) {
         return;
     }
-    $profileActionForm = isset($params['actionForm']) ? $params['actionForm'] : null;
-    $action = isset($params['action']) ? $params['action'] : 'view';
-    $template = isset($params['template']) ? $params['template'] : 'profile_inc_data_view.html';
+    $profileActionForm = $params['actionForm'] ?? null;
+    $action = $params['action'] ?? 'view';
+    $template = $params['template'] ?? 'profile_inc_data_view.html';
 
     $defArr = null;
     XCube_DelegateUtils::call(

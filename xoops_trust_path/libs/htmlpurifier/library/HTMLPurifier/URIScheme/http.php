@@ -34,4 +34,3 @@ class HTMLPurifier_URIScheme_http extends HTMLPurifier_URIScheme
 }
 
 // vim: et sw=4 sts=4
-

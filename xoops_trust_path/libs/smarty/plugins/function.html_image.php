@@ -23,7 +23,7 @@
  *
  * Examples: {html_image file="/images/masthead.gif"}
  * Output:   <img src="/images/masthead.gif" width=400 height=23>
- * @link http://smarty.php.net/manual/en/language.function.html.image.php {html_image}
+ * @link https://smarty.php.net/manual/en/language.function.html.image.php {html_image}
  *      (Smarty online manual)
  * @author   Monte Ohrt <monte at ohrt dot com>
  * @author credits to Duda <duda@big.hu> - wrote first image function
@@ -37,7 +37,7 @@
 function smarty_function_html_image($params, &$smarty)
 {
     require_once $smarty->_get_plugin_filepath('shared','escape_special_chars');
-    
+
     $alt = '';
     $file = '';
     $height = '';
@@ -47,7 +47,7 @@ function smarty_function_html_image($params, &$smarty)
     $suffix = '';
     $path_prefix = '';
     $server_vars = ($smarty->request_use_auto_globals) ? $_SERVER : $GLOBALS['HTTP_SERVER_VARS'];
-    $basedir = isset($server_vars['DOCUMENT_ROOT']) ? $server_vars['DOCUMENT_ROOT'] : '';
+    $basedir = $server_vars['DOCUMENT_ROOT'] ?? '';
     foreach($params as $_key => $_val) {
         switch($_key) {
             case 'file':
@@ -93,8 +93,8 @@ function smarty_function_html_image($params, &$smarty)
     } else {
         $_image_path = $file;
     }
-    
-    if(!isset($params['width']) || !isset($params['height'])) {
+
+    if(!isset($params['width'], $params['height'])) {
         if(!$_image_data = @getimagesize($_image_path)) {
             if(!file_exists($_image_path)) {
                 $smarty->trigger_error("html_image: unable to find '$_image_path'", E_USER_NOTICE);
@@ -112,8 +112,8 @@ function smarty_function_html_image($params, &$smarty)
             (require_once(SMARTY_CORE_DIR . 'core.is_secure.php')) &&
             (!smarty_core_is_secure($_params, $smarty)) ) {
             $smarty->trigger_error("html_image: (secure) '$_image_path' not in secure directory", E_USER_NOTICE);
-        }        
-        
+        }
+
         if(!isset($params['width'])) {
             $width = $_image_data[0];
         }
@@ -124,7 +124,7 @@ function smarty_function_html_image($params, &$smarty)
     }
 
     if(isset($params['dpi'])) {
-        if(strstr($server_vars['HTTP_USER_AGENT'], 'Mac')) {
+        if(false !== strpos($server_vars['HTTP_USER_AGENT'], 'Mac')) {
             $dpi_default = 72;
         } else {
             $dpi_default = 96;
@@ -136,7 +136,3 @@ function smarty_function_html_image($params, &$smarty)
 
     return $prefix . '<img src="'.$path_prefix.$file.'" alt="'.$alt.'" width="'.$width.'" height="'.$height.'"'.$extra.' />' . $suffix;
 }
-
-/* vim: set expandtab: */
-
-?>

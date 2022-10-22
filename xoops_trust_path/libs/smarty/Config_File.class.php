@@ -21,7 +21,7 @@
  * Smarty mailing list. Send a blank e-mail to
  * smarty-discussion-subscribe@googlegroups.com 
  *
- * @link http://www.smarty.net/
+ * @link https://www.smarty.net/
  * @version 2.6.25-dev
  * @copyright Copyright: 2001-2005 New Digital Group, Inc.
  * @author Andrei Zmievski <andrei@php.net>
@@ -398,4 +398,4 @@ class Config_File {
     /**#@-*/
 }
 
-?>
+

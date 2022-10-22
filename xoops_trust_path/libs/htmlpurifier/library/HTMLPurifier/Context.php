@@ -93,4 +93,3 @@ class HTMLPurifier_Context
 }
 
 // vim: et sw=4 sts=4
-

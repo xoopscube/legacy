@@ -110,4 +110,3 @@ class HTMLPurifier_DefinitionCache_Decorator extends HTMLPurifier_DefinitionCach
 }
 
 // vim: et sw=4 sts=4
-

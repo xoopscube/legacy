@@ -112,6 +112,7 @@ class HTMLPurifier_Strategy_RemoveForeignElements extends HTMLPurifier_Strategy
                     } elseif ($token->name === $textify_comments && $token instanceof HTMLPurifier_Token_End) {
                         $textify_comments = false;
                     }
+
                 } elseif ($escape_invalid_tags) {
                     // invalid tag, generate HTML representation and insert in
                     if ($e) {
@@ -204,4 +205,3 @@ class HTMLPurifier_Strategy_RemoveForeignElements extends HTMLPurifier_Strategy
 }
 
 // vim: et sw=4 sts=4
-

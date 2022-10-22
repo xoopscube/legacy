@@ -1,0 +1,170 @@
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<style>
+    .cat-plus {
+         /*filter: invert(33%) sepia(97%) saturate(2738%) hue-rotate(199deg) brightness(100%) contrast(109%);*/
+         background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='1em' height='1em' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' d='M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z'/%3e%3c/svg%3e");
+         }
+    .cat-minus {
+        color:#fff;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='1em' height='1em' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' d='M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm2 7.5a.5.5 0 0 0 0 1h8a.5.5 0 0 0 0-1H4z'/%3e%3c/svg%3e");
+    }
+    .cat-minus, .cat-plus {
+        /*padding: .25rem .5rem;*/
+        /*font-size: .875rem;*/
+        /*line-height: 1.5;*/
+        border: 0;
+        width: 40px;height: 32px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        transition: all 0.3s ease-in;
+    }
+
+</style>
+<script>
+$(document).ready(function(){
+    $('.cat-tree').click(function() {
+            var linkId = $(this).attr('data-cat-id');
+            $('#' + linkId).slideToggle(400);
+            $(this).toggleClass( "cat-minus", "cat-plus" );
+        });
+    });
+</script>
+
+
+<{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
+
+
+<div layout="column" class="pico_container pico_menu" id="<{$mydirname}>_container" style="position: relative;">
+
+
+    <{* ------- top message *}>
+        <{if "" != $mod_config.top_message}>
+            <div class="category-top"><{$mod_config.top_message}></div>
+        <{/if}>
+
+            <{* ------- top controller *}>
+            <{if $xoops_isadmin}>
+            <div layout="row" self="size-x1">
+                    <a class="ui-button" href="<{$mod_url}>/admin/index.php?page=category_access" aria-label="<{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}>">
+                        <img class="svg permissions" src="<{$xoops_url}>/images/icons/folder-lock.svg" width="1em" height="1em" alt="permissions"> <{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}></a>
+                    <a class="ui-button" href="<{$mod_url}>/admin/index.php?page=contents" aria-label="<{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}>">
+                        <img class="svg move" src="<{$xoops_url}>/images/icons/file-move.svg" width="1em" height="1em" alt="file manage"> <{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}></a>
+                    <a class="ui-button" href="<{$mod_url}>/index.php?page=makecategory" aria-label="<{$smarty.const._MD_PICO_LINK_MAKECATEGORY}>">
+                        <img class="svg add" src="<{$xoops_url}>/images/icons/folder-plus.svg" width="1em" height="1em" alt="New Category"> <{$smarty.const._MD_PICO_LINK_MAKECATEGORY}></a>
+            </div>
+            <{/if}>
+
+
+        <{* ------- start categories list *}>
+
+        <ul class="list-group" layout="column mt-6">
+
+
+        <{foreach item=category from=$categories}>
+
+                <{* ------- category-header *}>
+                <li class="list-group-item">
+
+
+                    <{* ------- auto-set level (css + depth 1 to 5 + heading *}>
+                    <div class="level<{$category.depth_in_tree|min:5}>" layout="rows-justify my-1 p-0">
+
+                            <h4 class="title-<{$category.id}>" self="size-x1 left md-half sm-full">
+                            <span class="ui-button cat-tree cat-plus" data-cat-id="cat<{$category.id}>" role="button" aria-label="View Content" self="mr-2">
+                            </span> <a href="<{$mod_url}>/<{$category.link}>"><{$category.title}></a></h4>
+
+
+                        <{* ------- controllers *}>
+                        <div self="center md-half sm-full">
+
+                            <{if $category.isadminormod}>
+                            <a self="mr-2" href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>" aria-label="<{$smarty.const._MD_PICO_LINK_EDITCATEGORY}>">
+                                <img class="svg folder-edit" src="<{$xoops_url}>/images/icons/folder-edit.svg" width="1em" height="1em" alt="edit category">
+                            </a>
+                            <{/if}>
+
+                            <{if $category.can_post}>
+                            <a self="mr-2" href="<{$mod_url}>/index.php?page=makecontent&amp;cat_id=<{$category.id}>&amp;ret=mm" aria-label="<{$smarty.const._MD_PICO_LINK_MAKECONTENT}>">
+                                <img class="svg file-new" src="<{$xoops_url}>/images/icons/file-new.svg" width="1em" height="1em" alt="file new">
+                            </a>
+                            <{/if}>
+
+                            <{if $category.isadminormod && $category.private_contents_counter}>
+                            <a self="mr-2" href="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$category.id}>">
+                                <img class="svg folder-lock" src="<{$xoops_url}>/images/icons/folder-lock.svg" width="1em" height="1em" alt="category permissions"> <{$category.private_contents_counter|string_format:$smarty.const._MD_PICO_FMT_PRIVATECOUNT}>
+                            </a>
+                            <{/if}>
+
+                            <{if $category.can_makesubcategory}>
+                            <a self="mr-2" href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$category.id}>" aria-label="<{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}>">
+                                <img class="svg folder-plus" src="<{$xoops_url}>/images/icons/folder-plus.svg" width="1em" height="1em" alt="New Category">
+                            </a>
+                            <{/if}>
+
+                            <{if $xoops_isadmin}>
+                            <a self="mr-2" href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>" aria-label="<{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}>">
+                                <img class="svg folder-lock" src="<{$xoops_url}>/images/icons/folder-lock.svg" width="1em" height="1em" alt="category permissions">
+                            </a>
+                            <{/if}>
+
+                            <{* ----- RSS *}>
+                            <a self="mr-2" href="<{$mod_url}>/index.php?page=rss&amp;cat_id=<{$category.id}>">
+                                <img class="svg rss" src="<{$xoops_url}>/images/icons/rss.svg" width="1em" height="1em" alt="rss"></a>
+
+                        </div>
+                        <{* ------- /controllers *}>
+
+                    </div><{* ------- /auto-set level *}>
+
+
+                </li>
+                <{* ------- /category header *}>
+
+
+
+                <{* ------- category collapse contents *}>
+
+                <div class="category-collapse" id="cat<{$category.id}>">
+<!--                    layout="column" self="size-x1"-->
+                    <{foreach item=content from=$category.contents}>
+
+                    <li class="list-group-item" layout="rows-justify py-2" self="size-x1">
+
+                        <a class="ml-4" href="<{$mod_url}>/<{$content.link}>" aria-label="<{$smarty.const._MD_PICO_CREATED}>:<{$content.created_time_formatted}>">
+                            <img class="svg file" src="<{$xoops_url}>/images/icons/file.svg" width="1em" height="1em" alt="file"> <{$content.subject}></a>
+
+                        <{if $category.isadminormod && ! $content.approval}>
+                        <em class="pico_notice badge badge-warning">(<{$smarty.const._MD_PICO_WAITINGUPDATE}>)</em>
+                        <{/if}>
+
+                        <{if $category.can_edit}>
+                        <a class="mr-4 px-1" href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>&amp;ret=mm" aria-label="<{$smarty.const._MD_PICO_LINK_EDITCONTENT}>">
+                            <img class="svg file-edit" src="<{$xoops_url}>/images/icons/file-edit.svg" width="1em" height="1em" alt="file-edit"></a>
+                        <{/if}>
+
+                    </li>
+
+                    <{/foreach}>
+
+                </div>
+                <{* ------- /collapse contents *}>
+
+
+        <{/foreach}>
+
+        </ul>
+        <{* ------- end categories list *}>
+
+
+
+    <hr>
+
+    <{* /////// NOTIFICATION \\\\\\\ *}>
+
+    <{include file='db:system_notification_select.html'}>
+
+</div>
+<{* -----/layout="column" *}>
+<!-- end module contents -->

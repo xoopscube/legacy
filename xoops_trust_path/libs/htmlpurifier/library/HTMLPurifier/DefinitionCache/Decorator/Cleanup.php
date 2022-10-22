@@ -76,4 +76,3 @@ class HTMLPurifier_DefinitionCache_Decorator_Cleanup extends HTMLPurifier_Defini
 }
 
 // vim: et sw=4 sts=4
-

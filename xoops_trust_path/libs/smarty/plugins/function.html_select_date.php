@@ -26,7 +26,7 @@
  *             dropdown to include given date unless explicitly set (Monte)
  *           - 1.3.4 fix behaviour of 0000-00-00 00:00:00 dates to match that
  *             of 0000-00-00 dates (cybot, boots)
- * @link http://smarty.php.net/manual/en/language.function.html.select.date.php {html_select_date}
+ * @link https://smarty.php.net/manual/en/language.function.html.select.date.php {html_select_date}
  *      (Smarty online manual)
  * @version 1.3.4
  * @author Andrei Zmievski
@@ -325,7 +325,3 @@ function smarty_function_html_select_date($params, &$smarty)
 
     return $html_result;
 }
-
-/* vim: set expandtab: */
-
-?>

@@ -43,4 +43,3 @@ class HTMLPurifier_AttrTransform_Length extends HTMLPurifier_AttrTransform
 }
 
 // vim: et sw=4 sts=4
-

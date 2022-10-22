@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: function.xoops_optionsArray.php,v 1.3 2008/09/25 15:12:36 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright (c) 2005-2022 The XOOPS Cube Project
+ * @license https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  *
  */
 
@@ -16,13 +16,13 @@
  * Version:  0.1
  * Date:     Apr 6, 2006
  * Author:   minahito
- * Purpose:  Build option tags from array of object who have value and text in 
+ * Purpose:  Build option tags from array of object who have value and text in
              own properties.
- * Input:    from = template variable that is array of object 
+ * Input:    from = template variable that is array of object
  *           label = property name to get the text.
  *           value = property name to get the value.
  *           default = selected value. variable (include Array).
- * 
+ *
  * -------------------------------------------------------------
  */
 
@@ -48,12 +48,12 @@ function smarty_function_xoops_optionsArray($params, &$smarty)
     $isarr = is_array($default);
     foreach ($objectArr as $object) {
         $value = $object->get($vname);
-        
+
         $selected = ($isarr?in_array($value, $default):$value==$default)?' selected="selected"':'';
         $value = $textFilter->toShow($value);
         $label = $textFilter->toShow($object->get($lname));
         $tags .= $id?"<option id=\"$id$value\" value=\"$value\"$selected>$label</option>\n":"<option value=\"$value\"$selected>$label</option>\n";
     }
-    
+
     print $tags;
 }

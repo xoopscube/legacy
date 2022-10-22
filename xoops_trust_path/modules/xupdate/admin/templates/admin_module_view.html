@@ -1,0 +1,197 @@
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<div id="xupdate">
+
+    <{include file="admin_navi.html"}>
+
+    <{include file="admin_menunavi.html"}>
+
+    <h2 class="admintitle"><{$smarty.const._AD_XUPDATE_LANG_STORES}></h2>
+
+    <{include file="admin_tips.html"}>
+
+    <{* ////— ACTION-CONTROL —\\\\ *}>
+    <section layout="row center-justify sm-column" class="action-control">
+        <div class="filtermenu" self="sm-full">
+            <!-- No category selection -->
+        </div>
+        <div class="control-view" self="sm-full">
+            <a href="#" id="check-app" class="button">
+                <img class="svg" src="<{$xoops_url}>/images/icons/check.svg" width="1em" height="1em" alt="check"> Configuration Checker
+            </a>
+            <button class="help-admin button" type='button' data-id='4' data-module='xupdate' data-help-article='#help-store' aria-label="<{$smarty.const._HELP}>">
+                <b>?</b>
+            </button>
+        </div>
+    </section>
+    <{* ----- / ACTION-CONTROL *}>
+
+
+
+<script>jQuery(function ($) {
+    $("#tabs").tabs();
+});</script>
+
+
+    <div id="tabs">
+        <ul>
+            <{if !empty($package_items) }>
+            <li><a href="#xupdate-tabs-package"><{$smarty.const._MI_XUPDATE_ADMENU_PACKAGE}>
+                <{$smarty.const._AD_XUPDATE_LANG_STORE}></a></li>
+            <{/if}>
+            <{if !empty($module_items) }>
+            <li><a href="#xupdate-tabs-module"><{$smarty.const._MI_XUPDATE_ADMENU_MODULE}>
+                <{$smarty.const._AD_XUPDATE_LANG_STORE}></a></li>
+            <{/if}>
+            <{if !empty($theme_items) }>
+            <li><a href="#xupdate-tabs-theme"><{$smarty.const._MI_XUPDATE_ADMENU_THEME}>
+                <{$smarty.const._AD_XUPDATE_LANG_STORE}></a></li>
+            <{/if}>
+            <{if !empty($preload_items) }>
+            <li><a href="#xupdate-tabs-preload"><{$smarty.const._MI_XUPDATE_ADMENU_PRELOAD}>
+                <{$smarty.const._AD_XUPDATE_LANG_STORE}></a></li>
+            <{/if}>
+        </ul>
+
+        <{* ----- PACKAGE ITEMS ----- *}>
+        <{if !empty($package_items) }>
+        <div id="xupdate-tabs-package" class="storelist">
+
+            <section layout="rows sm-column" name="package">
+            <{foreach item=data from=$package_items}>
+            <div class="eachstore" self="size-1of4 sm-full p-2">
+                <h3>
+                    <a href="index.php?action=PackageStore&amp;sid=<{$data.storeobj->get('sid')}>">
+                        <img class="svg" src="<{$xoops_url}>/images/icons/package.svg" width="1em" height="1em" alt="package">
+                        <{$data.storeobj->getShow('name')}>
+                    </a>
+                </h3>
+                <div class="module_count"><{$smarty.const._AD_XUPDATE_LANG_ITEM_TOTAL}>: <{$data.items_count}></div>
+                <ul class="scroll-y">
+                    <{foreach item=itemsobj from=$data.itemsobj}>
+                    <li>
+                        <a href="index.php?action=ModuleInstall&amp;id=<{$itemsobj.id}>"
+                           class="isactive_<{$itemsobj.isactive}>" aria-label="<{$itemsobj.title}>">
+                            <{$itemsobj.dirname}><{if $itemsobj.hasupdate}>
+                            <img class="svg" src="<{$smarty.const.XOOPS_URL}>/images/icons/new.svg" alt="New!"
+                                 style="vertical-align:middle;color:var(--color-amber)" width="1em" height="1em">
+                            <{/if}>
+                        </a>
+                        <{if $itemsobj.category_id>0}>(<{$categoryList[$itemsobj.category_id]}>)
+                        <{/if}>
+                    </li>
+                    <{/foreach}>
+                </ul>
+            </div>
+            <{/foreach}>
+            </section>
+
+        </div>
+        <{/if}>
+
+        <{* ----- MODULE ITEMS ----- *}>
+        <{if !empty($module_items) }>
+        <div id="xupdate-tabs-module" class="storelist">
+
+            <section layout="rows sm-column" name="modules">
+            <{foreach item=data from=$module_items}>
+            <div class="eachstore" self="size-1of4 sm-full p-2">
+                <h3>
+                    <a href="index.php?action=ModuleStore&amp;sid=<{$data.storeobj->get('sid')}>" aria-label="<{$data.storeobj->getShow('name')}>">
+                        <img class="svg" src="<{$xoops_url}>/images/icons/store.svg" width="1em" height="1em" alt="store">
+                        <{* |truncate:16 Title limit 16 characters *}>
+                        <{$data.storeobj->getShow('name')|truncate:16}>
+                    </a>
+                </h3>
+                <div class="module_count"><{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>: <{$data.items_count}></div>
+                <ul class="scroll-y">
+                    <{foreach item=itemsobj from=$data.itemsobj}>
+                    <li><a href="index.php?action=ModuleInstall&amp;id=<{$itemsobj.id}>"
+                           class="isactive_<{$itemsobj.isactive}>" aria-label="<{$itemsobj.title}>">
+                        <{$itemsobj.dirname}>
+                        <{if $itemsobj.hasupdate}>
+                        <img class="svg" src="<{$smarty.const.XOOPS_URL}>/images/icons/new.svg" alt="New!"
+                             style="vertical-align:middle;color:var(--color-amber)" width="1em" height="1em">
+                        <{/if}></a>
+                        <{if $itemsobj.category_id>0}>(<{$categoryList[$itemsobj.category_id]}>)<{/if}>
+                    </li>
+                    <{/foreach}>
+                </ul>
+            </div>
+            <{/foreach}>
+            </section>
+
+        </div>
+        <{/if}>
+
+        <{* ----- THEMES ITEMS ----- *}>
+        <{if !empty($theme_items) }>
+        <div id="xupdate-tabs-theme" class="storelist">
+
+            <section layout="rows sm-column" name="themes">
+            <{foreach item=data from=$theme_items}>
+            <div class="eachstore" self="size-1of4 sm-full p-2">
+                <h3>
+                    <a href="index.php?action=ThemeStore&amp;sid=<{$data.storeobj->get('sid')}>" aria-label="<{$data.storeobj->getShow('name')}>">
+                        <img class="svg" src="<{$xoops_url}>/images/icons/store.svg" width="1em" height="1em" alt="store">
+                        <{* |truncate:16 Title limit 16 characters *}>
+                        <{$data.storeobj->getShow('name')|truncate:16}>
+                    </a>
+                </h3>
+                <div class="module_count"><{$smarty.const._AD_XUPDATE_LANG_THM_TOTAL}>: <{$data.items_count}></div>
+                <ul class="scroll-y">
+                    <{foreach item=itemsobj from=$data.itemsobj}>
+                    <li><a href="index.php?action=ThemeInstall&amp;id=<{$itemsobj.id}>"
+                           class="isactive_<{$itemsobj.isactive}>" aria-label="<{$itemsobj.title}>"><{$itemsobj.dirname}><{if
+                        $itemsobj.hasupdate}>
+                        <img class="svg" src="<{$smarty.const.XOOPS_URL}>/images/icons/new.svg" alt="New!"
+                             style="vertical-align:middle;color:var(--color-amber)" width="1em" height="1em">
+                        <{/if}></a>
+                    </li>
+                    <{/foreach}>
+                </ul>
+            </div>
+            <{/foreach}>
+            </section>
+
+        </div>
+        <{/if}>
+
+        <{* ----- PRELOAD ITEMS ----- *}>
+        <{if !empty($preload_items) }>
+        <div id="xupdate-tabs-preload" class="storelist">
+
+            <section layout="rows sm-column" name="preloads">
+            <{foreach item=data from=$preload_items}>
+            <div class="eachstore" self="size-1of4 sm-full p-2">
+                <h3>
+                    <a href="index.php?action=PreloadStore&amp;sid=<{$data.storeobj->get('sid')}>" aria-label="<{$data.storeobj->getShow('name')}>">
+                        <img class="svg" src="<{$xoops_url}>/images/icons/store.svg" width="1em" height="1em" alt="store">
+                        <{* |truncate:16 Title limit 16 characters *}>
+                        <{$data.storeobj->getShow('name')|truncate:16}>
+                    </a>
+                </h3>
+                <div class="module_count"><{$smarty.const._AD_XUPDATE_LANG_ITEM_TOTAL}>: <{$data.items_count}></div>
+                <ul class="scroll-y">
+                    <{foreach item=itemsobj from=$data.itemsobj}>
+                    <li><a href="index.php?action=PreloadInstall&amp;id=<{$itemsobj.id}>"
+                           class="isactive_<{$itemsobj.isactive}>" aria-label="<{$itemsobj.title}>"><{$itemsobj.dirname}><{if
+                        $itemsobj.hasupdate}>
+                        <img class="svg" src="<{$smarty.const.XOOPS_URL}>/images/icons/new.svg" alt="New!"
+                             style="vertical-align:middle;color:var(--color-amber)" width="1em" height="1em">
+                        <{/if}></a>
+                    </li>
+                    <{/foreach}>
+                </ul>
+            </div>
+            <{/foreach}>
+            </section>
+
+        </div>
+        <{/if}>
+
+    </div>
+
+    <div class="fetchLog"><{$fetchLog}></div>
+
+</div>

@@ -12,7 +12,7 @@
  * Type:     function<br>
  * Name:     fetch<br>
  * Purpose:  fetch file, web or ftp data and display results
- * @link http://smarty.php.net/manual/en/language.function.fetch.php {fetch}
+ * @link https://smarty.php.net/manual/en/language.function.fetch.php {fetch}
  *       (Smarty online manual)
  * @author Monte Ohrt <monte at ohrt dot com>
  * @param array
@@ -48,7 +48,7 @@ function smarty_function_fetch($params, &$smarty)
         }
     } else {
         // not a local file
-        if(preg_match('!^http://!i',$params['file'])) {
+        if(preg_match('!^https://!i',$params['file'])) {
             // http fetch
             if($uri_parts = parse_url($params['file'])) {
                 // set defaults

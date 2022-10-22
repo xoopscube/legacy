@@ -1,0 +1,10 @@
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<div id="menunavi" class="adminavi">
+    <{if !empty($adminMenu) }>
+    <{foreach item=menu from=$adminMenu}>
+    <a href="<{$menu.link|xoops_escape:link}>" class="adminavi-item"><{$menu.title|xoops_escape}></a>
+    <{/foreach}>
+<!--    <a href="<{$xoops_url}>/admin.php" class="adminavi-item"><{$smarty.const._CPHOME}></a>-->
+    <{/if}>
+</div>

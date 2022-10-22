@@ -12,7 +12,7 @@
  * Type:     function<br>
  * Name:     popup<br>
  * Purpose:  make text pop up in windows via overlib
- * @link http://smarty.php.net/manual/en/language.function.popup.php {popup}
+ * @link https://smarty.php.net/manual/en/language.function.popup.php {popup}
  *          (Smarty online manual)
  * @author   Monte Ohrt <monte at ohrt dot com>
  * @param array
@@ -29,8 +29,9 @@ function smarty_function_popup($params, &$smarty)
             case 'function':
             case 'inarray':
                 $$_key = (string)$_value;
-                if ($_key == 'function' || $_key == 'inarray')
+                if ($_key == 'function' || $_key == 'inarray') {
                     $append .= ',' . strtoupper($_key) . ",'$_value'";
+                }
                 break;
 
             case 'caption':
@@ -90,7 +91,9 @@ function smarty_function_popup($params, &$smarty)
             case 'mouseoff':
             case 'followmouse':
             case 'closeclick':
-                if ($_value) $append .= ',' . strtoupper($_key);
+                if ($_value) {
+                    $append .= ',' . strtoupper($_key);
+                }
                 break;
 
             default:
@@ -107,13 +110,10 @@ function smarty_function_popup($params, &$smarty)
 
     $retval = $trigger . '="return overlib(\''.preg_replace(array("!'!","![\r\n]!"),array("\'",'\r'),$text).'\'';
     $retval .= $append . ');"';
-    if ($trigger == 'onmouseover')
-       $retval .= ' onmouseout="nd();"';
+    if ($trigger == 'onmouseover') {
+        $retval .= ' onmouseout="nd();"';
+    }
 
 
     return $retval;
 }
-
-/* vim: set expandtab: */
-
-?>

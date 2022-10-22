@@ -54,4 +54,3 @@ class HTMLPurifier_AttrDef_HTML_Length extends HTMLPurifier_AttrDef_HTML_Pixels
 }
 
 // vim: et sw=4 sts=4
-

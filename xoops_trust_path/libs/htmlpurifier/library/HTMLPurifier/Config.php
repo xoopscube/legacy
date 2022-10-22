@@ -21,7 +21,7 @@ class HTMLPurifier_Config
      * HTML Purifier's version
      * @type string
      */
-    public $version = '4.6.0';
+    public $version = '4.12.0';
 
     /**
      * Whether or not to automatically finalize
@@ -133,9 +133,7 @@ class HTMLPurifier_Config
         }
         if (is_string($config)) {
             $ret->loadIni($config);
-        } elseif (is_array($config)) {
-            $ret->loadArray($config);
-        }
+        } elseif (is_array($config)) $ret->loadArray($config);
         return $ret;
     }
 
@@ -335,7 +333,7 @@ class HTMLPurifier_Config
         }
 
         // Raw type might be negative when using the fully optimized form
-        // of stdclass, which indicates allow_null == true
+        // of stdClass, which indicates allow_null == true
         $rtype = is_int($def) ? $def : $def->type;
         if ($rtype < 0) {
             $type = -$rtype;
@@ -648,16 +646,25 @@ class HTMLPurifier_Config
         return $this->getDefinition($name, true, true);
     }
 
+    /**
+     * @return HTMLPurifier_HTMLDefinition
+     */
     public function maybeGetRawHTMLDefinition()
     {
         return $this->getDefinition('HTML', true, true);
     }
-
+    
+    /**
+     * @return HTMLPurifier_CSSDefinition
+     */
     public function maybeGetRawCSSDefinition()
     {
         return $this->getDefinition('CSS', true, true);
     }
-
+    
+    /**
+     * @return HTMLPurifier_URIDefinition
+     */
     public function maybeGetRawURIDefinition()
     {
         return $this->getDefinition('URI', true, true);
@@ -775,8 +782,8 @@ class HTMLPurifier_Config
      */
     public function mergeArrayFromForm($array, $index = false, $allowed = true, $mq_fix = true)
     {
-        $ret = HTMLPurifier_Config::prepareArrayFromForm($array, $index, $allowed, $mq_fix, $this->def);
-        $this->loadArray($ret);
+         $ret = HTMLPurifier_Config::prepareArrayFromForm($array, $index, $allowed, $mq_fix, $this->def);
+         $this->loadArray($ret);
     }
 
     /**
@@ -883,7 +890,7 @@ class HTMLPurifier_Config
             // zip(tail(trace), trace) -- but PHP is not Haskell har har
             for ($i = 0, $c = count($trace); $i < $c - 1; $i++) {
                 // XXX this is not correct on some versions of HTML Purifier
-                if ($trace[$i + 1]['class'] === 'HTMLPurifier_Config') {
+                if (isset($trace[$i + 1]['class']) && $trace[$i + 1]['class'] === 'HTMLPurifier_Config') {
                     continue;
                 }
                 $frame = $trace[$i];
@@ -907,7 +914,7 @@ class HTMLPurifier_Config
         $this->getDefinition('URI');
         return serialize($this);
     }
+
 }
 
 // vim: et sw=4 sts=4
-

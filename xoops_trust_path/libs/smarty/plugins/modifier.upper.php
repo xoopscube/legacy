@@ -12,7 +12,7 @@
  * Type:     modifier<br>
  * Name:     upper<br>
  * Purpose:  convert string to uppercase
- * @link http://smarty.php.net/manual/en/language.modifier.upper.php
+ * @link https://smarty.php.net/manual/en/language.modifier.upper.php
  *          upper (Smarty online manual)
  * @author   Monte Ohrt <monte at ohrt dot com>
  * @param string

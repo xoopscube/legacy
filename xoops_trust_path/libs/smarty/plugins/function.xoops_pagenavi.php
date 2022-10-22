@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: function.xoops_pagenavi.php,v 1.3 2008/09/25 15:12:37 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright (c) 2005-2022 The XOOPS Cube Project
+ * @license https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  *
  */
 
@@ -19,7 +19,7 @@
  * Purpose:  the place holder for xoops pagenavi.
  * Input:    pagenavi =
  *           offset =
- * 
+ *
  * Examples: {xoops_pagenavi pagenavi=$pagenavi}
  * -------------------------------------------------------------
  */
@@ -29,19 +29,19 @@ function smarty_function_xoops_pagenavi($params, &$smarty)
 
     if (isset($params['pagenavi']) && is_object($params['pagenavi'])) {
         $navi =& $params['pagenavi'];
-        
+
         $perPage = $navi->getPerpage();
 
         $total = $navi->getTotalItems();
         $totalPages = $navi->getTotalPages();
-        
+
         if ($totalPages == 0) {
             return;
         }
-        
+
         $url = $navi->renderURLForPage();
         $current = $navi->getStart();
-        
+
         $offset = isset($params['offset']) ? intval($params['offset']) : 4;
 
         //
@@ -70,7 +70,7 @@ function smarty_function_xoops_pagenavi($params, &$smarty)
             }
             $counter++;
         }
-    
+
         //
         // check next
         //
