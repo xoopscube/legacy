@@ -1,0 +1,34 @@
+<{* ---------- ---------- ---------- ---------- ---------- Image Overview *}>
+<div class="ui-card-overview">
+
+	<div class="ui-card-small">
+		<div class="ui-card-small-icon ui-icon-blue">
+      <img class="svg images" src="<{"icons/icon-images.svg"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_IMGCAT_TOTAL}>">
+		</div>
+		<div class="ui-card-small-info">
+      <p class="ui-card-small-subtitle"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_TOTAL}>: <strong><{$ImgcatTotal}></strong></p>
+			<p class="ui-card-small-subtitle"><{$smarty.const._AD_LEGACY_LANG_IMAGE_TOTAL}>: <strong><{$ImageTotal}></strong></p>
+		</div>
+	</div>
+
+	<div class="ui-card-small">
+		<div class="ui-card-small-icon ui-icon-green">
+      <img class="svg image-active" src="<{"icons/icon-image-active.svg"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAYTOTAL}>">
+		</div>
+		<div class="ui-card-small-info">
+      <p class="ui-card-small-subtitle"><{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAYTOTAL}>: <{$displayImageTotal}></p>
+			<p class="ui-card-small-subtitle"></p>
+		</div>
+	</div>
+
+	<div class="ui-card-small">
+		<div class="ui-card-small-icon ui-icon-red">
+      <img class="svg image-inactive" src="<{"icons/icon-image-inactive.svg"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_IMAGE_NOTDISPLAYTOTAL}>">
+		</div>
+		<div class="ui-card-small-info">
+      <p class="ui-card-small-subtitle"><{$smarty.const._AD_LEGACY_LANG_IMAGE_NOTDISPLAYTOTAL}>: <{$notdisplayImageTotal}></p>
+			<p class="ui-card-small-subtitle"></p>
+		</div>
+	</div>
+
+</div><!-- Images Overview -->

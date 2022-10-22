@@ -1,35 +1,28 @@
 <?php
 /**
- *
- * @package XCube
- * @version $Id: XCube_TextFilter.class.php,v 1.3 2008/10/12 04:30:27 minahito Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt Modified BSD license
- *
+ * XCube_TextFilter.class.php
+ * @package    XCube
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Minahito, 2008/10/12
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    BSD-3-Clause
  */
 
-/**
- *
- * @final
- */
-class XCube_TextFilter
-{
-    public $mDummy=null;  //Dummy member for preventing object be treated as empty.
+class XCube_TextFilter {
+	public $mDummy;  //Dummy member for preventing object be treated as empty.
 
-    public function getInstance(&$instance)
-    {
-        if (empty($instance)) {
-            $instance = new XCube_TextFilter();
-        }
-    }
-    
-    public function toShow($str)
-    {
-        return htmlspecialchars($str, ENT_QUOTES);
-    }
+	public static function getInstance( &$instance ) {
+		if ( empty( $instance ) ) {
+			$instance = new self();
+		}
+	}
 
-    public function toEdit($str)
-    {
-        return htmlspecialchars($str, ENT_QUOTES);
-    }
+	public function toShow( $str ) {
+		return htmlspecialchars( $str, ENT_QUOTES );
+	}
+
+	public function toEdit( $str ) {
+		return htmlspecialchars( $str, ENT_QUOTES );
+	}
 }

@@ -1,0 +1,271 @@
+<h3 id="Component">{ component_name }</h3>
+
+<p>XC—Layout helper based on CSS flexbox specification using custom html attributes — layout and self — extended with CSS custom properties and scalable spacing attributes, margin and padding.
+    It can also be used as a fallback for a responsive layout in case a theme or template style cannot be rendered.</p>
+
+
+<div layout="row md-column mt-6" class="component">
+
+    <!-- ///// Description \\\\\ -->
+    <div layout="column">
+
+        <h4>Options</h4>
+
+        <ol>
+            <li>CSS reset that provides better cross-browser consistency in the default styling of HTML elements.</li>
+            <li>CSS box-sizing Property to all elements includes the 'padding' & 'border' in elements total width & height.</li>
+            <li>Layout helper based on CSS flexbox specification designed to serve</li>
+            <li>quick flexbox shorthand by using custom HTML attributes</li>
+            <li>Position : layout and self (parent and child elements)</li>
+            <li>Spacing  : p** and m** for padding and margin, -n** negative</li>
+            <li>native CSS feature "scroll-behavior:smooth" </li>
+        </ol>
+
+        <h5>Reference :</h5>
+        <ul class="component-ref">
+            <li><a href="https://jqueryui.com/accordion/#default" class="modal-control modal-open" target="iframe-modal">&#128210; API Documentation</a></li>
+            <li><a href="https://api.jqueryui.com/theming/css-framework/" class="modal-control modal-open" target="iframe-modal">&#128208; jQuery UI - CSS Framework</a></li>
+            <li><a href="https://jqueryui.com/themeroller/"  class="modal-control modal-open" target="iframe-modal" rel="noopener">&#127912; Theme Roller</a></li>
+        </ul>
+
+    </div>
+
+
+    <!-- ///// Preview Sample \\\\\ -->
+    <div layout="column">
+
+        <h4>Preview</h4>
+
+        <p></p>
+        <p>
+            rules
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                <path class="uim-primary" d="M14 10h-2V7a1 1 0 0 1 1-1a1 1 0 0 1 1 1zM9 6a1 1 0 0 0-1 1v1H7a1 1 0 0 0 0 2h3V7a1 1 0 0 0-1-1zm1 6v2H7a1 1 0 0 1-1-1a1 1 0 0 1 1-1z" fill="currentColor"/>
+                <path class="uim-primary" d="M10 12v2H7a1 1 0 0 1-1-1a1 1 0 0 1 1-1z" fill="currentColor"/>
+                <path class="uim-tertiary" d="M21 2H3a1 1 0 0 0-1 1v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3H7a1 1 0 0 1 0-2h3v-2H7a1 1 0 0 1 0-2h3v-2H7a1 1 0 0 1 0-2h1V7a1 1 0 0 1 2 0v3h2V7a1 1 0 0 1 2 0v3h2V7a1 1 0 0 1 2 0v3h3a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z" opacity=".5" fill="currentColor"/>
+                <path class="uim-primary" d="M10 16v2H7a1 1 0 0 1-1-1a1 1 0 0 1 1-1zm8-6h-2V7a1 1 0 0 1 1-1a1 1 0 0 1 1 1z" fill="currentColor"/></svg>
+
+            [layout*=lg-row] {flex-direction:row}
+            [layout*=lg-column] {flex-direction:column}
+            [layout*=lg-columns],[layout*=lg-rows] {flex-wrap:wrap}
+
+            [layout*=md-row] {flex-direction:row}
+            [layout*=md-column] {flex-direction:column}
+            [layout*=md-columns],[layout*=md-rows] {flex-wrap:wrap}
+
+            [self*=md-full] {flex:1 1 100% !important;width:100%;max-width:100%}
+            [self*=md-half] {flex:1 1 50% !important;width:50%;max-width:50%}
+            [self~=md-first] {order:-1}
+            [self~=md-last] {order:999}
+            [self~=md-hide] {display:none!important}
+            [self~=md-show] {display:inherit!important}
+        </p>
+        <p>
+            [layout] {display:-ms-flexbox;display:flex}<br>
+            [layout*=column],[layout*=row] {width:100%;max-width:100%}<br>
+            [layout^=row] {flex-direction:row}<br>
+            [layout^=column] {flex-direction:column}<br>
+            [layout*=row][layout*=reverse] {flex-direction:row-reverse}<br>
+            [layout*=column][layout*=reverse] {flex-direction:column-reverse}<br>
+            [layout*=columns],[layout*=rows] {flex-wrap:wrap}<br>
+            [layout=none] {flex:none}<br>
+        </p>
+        <p>row
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                <path class="uim-quaternary" opacity=".25" d="M22 8H2v2h9v12h2V10h9z" fill="currentColor"/>
+                <path class="uim-primary" d="M3 2h18a1 1 0 0 1 1 1v5H2V3a1 1 0 0 1 1-1z" fill="currentColor"/>
+                <path class="uim-tertiary" d="M2 10h9v12H3a1 1 0 0 1-1-1V10zm11 0h9v11a1 1 0 0 1-1 1h-8V10z" opacity=".5" fill="currentColor"/></svg>
+        </p>
+        <p>
+            layers
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                <path class="uim-quaternary" d="M21 2H9a1 1 0 0 0-1 .999V7h8a1 1 0 0 1 1 .999V16h4a1 1 0 0 0 1-.999V3a1 1 0 0 0-.999-1H21z" opacity=".25" fill="currentColor"/>
+                <path class="uim-primary" d="M3 12h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1z" fill="currentColor"/>
+                <path class="uim-tertiary" d="M16 7H6a1 1 0 0 0-1 .999V12h6a1 1 0 0 1 1 .999V19h4a1 1 0 0 0 1-.999V8a1 1 0 0 0-.999-1H16z" opacity=".5" fill="currentColor"/></svg>
+        </p>
+<p>
+    uim:columns
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+        <path class="uim-quaternary" opacity=".25" d="M11 2h2v20h-2z" fill="currentColor"/>
+        <path class="uim-primary" d="M3 2h8v20H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" fill="currentColor"/>
+        <path class="uim-tertiary" d="M13 2h8a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1h-8V2z" opacity=".5" fill="currentColor"/></svg>
+
+</p>
+        gg:align-bottom
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none"><path d="M13 10h4v6h-4v-6z" fill="currentColor" fill-opacity=".5"/><path d="M11 4H7v12h4V4z" fill="currentColor"/><path d="M18 18H6v2h12v-2z" fill="currentColor"/></g></svg>
+        gg:align-center
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none"><path d="M9 13h6v4H9v-4z" fill="currentColor" fill-opacity=".5"/><path d="M6 7h12v4H6V7z" fill="currentColor"/></g></svg>
+        gg:align-left
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none"><path d="M8 13h6v4H8v-4z" fill="currentColor" fill-opacity=".5"/><path d="M6 6H4v12h2V6z" fill="currentColor"/><path d="M20 7H8v4h12V7z" fill="currentColor"/></g></svg>
+        gg:align-middle
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none"><path d="M13 9h4v6h-4V9z" fill="currentColor" fill-opacity=".5"/><path d="M7 6h4v12H7V6z" fill="currentColor"/></g></svg>
+        gg:align-right
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 13.004l-6-.013l-.01 4l6 .013l.01-4z" fill="currentColor" fill-opacity=".5"/><path fill-rule="evenodd" clip-rule="evenodd" d="M19.978 18.002l.026-12l-2-.004l-.026 12l2 .004z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M3.996 10.985l12 .026l.009-4l-12-.026l-.009 4z" fill="currentColor"/></g></svg>
+        gg:align-top
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.035 7.988l.002 6l4-.002l-.002-6l-4 .002z" fill="currentColor" fill-opacity=".5"/><path fill-rule="evenodd" clip-rule="evenodd" d="M18 4.012L6 4.018v2l12-.006v-2z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M11.037 19.986l-.005-12l-4 .002l.005 12l4-.002z" fill="currentColor"/></g></svg>
+
+        gg:distribute-horizontal
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none"><path d="M11 9h2v6h-2V9z" stroke="currentColor" stroke-opacity=".5" stroke-width="2"/><path d="M5 5v14h2V5H5z" fill="currentColor"/><path d="M17 5v14h2V5h-2z" fill="currentColor"/></g></svg>
+
+        gg:distribute-vertical
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none"><path d="M9 11h6v2H9v-2z" stroke="currentColor" stroke-opacity=".5" stroke-width="2"/><path d="M19 7H5V5h14v2z" fill="currentColor"/><path d="M19 19H5v-2h14v2z" fill="currentColor"/></g></svg>
+
+        gg:feed
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none"><path d="M12.552 8a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-4z" fill="currentColor" fill-opacity=".5"/><path d="M12.552 17a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-4z" fill="currentColor" fill-opacity=".5"/><path d="M12.552 5a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2h-8z" fill="currentColor" fill-opacity=".8"/><path d="M12.552 14a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2h-8z" fill="currentColor" fill-opacity=".8"/><path d="M3.448 4.002a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1h-5z" fill="currentColor"/><path d="M3.448 12.998a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1h-5z" fill="currentColor"/></g></svg>
+
+        gg:format-uppercase
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M13 9h-3v8H8V9H5V7h8v2zm5 4h-2v4h-2v-4h-2v-2h6v2z" fill="currentColor"/></g></svg>
+
+        gg:format-text
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none"><path d="M6.5 3H3v3.5h1V4h2.5V3z" fill="currentColor"/><path d="M8.5 4V3H11v1H8.5z" fill="currentColor"/><path d="M13 4h2.5V3H13v1z" fill="currentColor"/><path d="M17.5 3v1H20v2.5h1V3h-3.5z" fill="currentColor"/><path d="M21 8.5h-1V11h1V8.5z" fill="currentColor"/><path d="M21 13h-1v2.5h1V13z" fill="currentColor"/><path d="M21 17.5h-1V20h-2.5v1H21v-3.5z" fill="currentColor"/><path d="M15.5 21v-1H13v1h2.5z" fill="currentColor"/><path d="M11 21v-1H8.5v1H11z" fill="currentColor"/><path d="M6.5 21v-1H4v-2.5H3V21h3.5z" fill="currentColor"/><path d="M3 15.5h1V13H3v2.5z" fill="currentColor"/><path d="M3 11h1V8.5H3V11z" fill="currentColor"/><path d="M11 9.5H7v-2h10v2h-4v7h-2v-7z" fill="currentColor"/></g></svg>
+
+        gg:notifications
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none"><path d="M20 7a3 3 0 1 1-6 0a3 3 0 0 1 6 0z" fill="currentColor"/><path d="M12 6H4v14h14v-8h-2v6H6V8h6V6z" fill="currentColor"/></g></svg>
+
+        gg:reorder
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none"><path d="M3 4a1 1 0 0 1 1-1h8a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1z" fill="currentColor" fill-opacity=".5"/><path d="M3 12a1 1 0 0 1 1-1h8a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1z" fill="currentColor" fill-opacity=".5"/><path d="M3 16a1 1 0 0 1 1-1h8a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1z" fill="currentColor" fill-opacity=".5"/><path d="M3 20a1 1 0 0 1 1-1h8a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1z" fill="currentColor" fill-opacity=".5"/><path fill-rule="evenodd" clip-rule="evenodd" d="M15.17 9a3.001 3.001 0 1 0 0-2H4a1 1 0 0 0 0 2h11.17zM19 8a1 1 0 1 1-2 0a1 1 0 0 1 2 0z" fill="currentColor"/></g></svg>
+
+        gg:row-first
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none"><g opacity=".5" fill="currentColor"><path d="M6 11a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H6z"/><path d="M6 15a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H6z"/></g><path d="M5 8a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1z" fill="currentColor"/></g></svg>
+
+        gg:row-last
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none"><g opacity=".5" fill="currentColor"><path d="M6 13a1 1 0 1 1 0-2h8a1 1 0 1 1 0 2H6z"/><path d="M6 9a1 1 0 0 1 0-2h8a1 1 0 1 1 0 2H6z"/></g><path d="M5 16a1 1 0 0 0 1 1h12a1 1 0 1 0 0-2H6a1 1 0 0 0-1 1z" fill="currentColor"/></g></svg>
+
+        gg:ruler
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M3 6a3 3 0 0 0-3 3v7a3 3 0 0 0 3 3h18a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3H3zm6 2H7v5a1 1 0 1 1-2 0V8H3a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-2v3a1 1 0 1 1-2 0V8h-2v5a1 1 0 1 1-2 0V8h-2v3a1 1 0 1 1-2 0V8z" fill="currentColor"/></g></svg>
+
+        gg:stack
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none"><path d="M20 4v12h2V2H8v2h12z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M2 8v14h14V8H2zm12 2H4v10h10V10z" fill="currentColor"/><path d="M17 7H5V5h14v14h-2V7z" fill="currentColor"/></g></svg>
+
+        vaadin:accordion-menu
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><path fill="currentColor" d="M0 4v8h16V4H0zm15 7H1V7h14v4z"/><path fill="currentColor" d="M0 0h16v3H0V0z"/><path fill="currentColor" d="M0 13h16v3H0v-3z"/></svg>
+
+        carbon:tools-alt
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M29.415 21.666l-6.335-6.335l6.334-6.334a2 2 0 0 0 .001-2.829l-.001-.002l-3.58-3.58a2 2 0 0 0-2.829-.001l-.001.001L16.67 8.92l-6.335-6.335a2.004 2.004 0 0 0-2.828 0L2.585 7.506a2.001 2.001 0 0 0 0 2.829l6.334 6.334L2 23.59V30h6.41l6.92-6.92l6.335 6.337a2.008 2.008 0 0 0 2.83 0l4.92-4.922a2.001 2.001 0 0 0 0-2.829zm-5.002-17.67l3.59 3.59l-6.333 6.334l-3.59-3.59zM8 28H4v-3.591l6.33-6.329l3.676 3.678zm15.08.004L4 8.92L8.922 4l3.788 3.787l-2.252 2.253l1.415 1.414l2.251-2.252l4.13 4.13L16 15.582l1.416 1.414l2.252-2.252l4.13 4.13l-2.252 2.251l1.414 1.415l2.252-2.251l2.79 2.791z" fill="currentColor"/></svg>
+
+        bx:bx-notification
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><circle cx="18" cy="6" r="3" fill="currentColor"/><path d="M18 19H5V6h8c0-.712.153-1.387.422-2H5c-1.103 0-2 .897-2 2v13c0 1.103.897 2 2 2h13c1.103 0 2-.897 2-2v-8.422A4.962 4.962 0 0 1 18 11v8z" fill="currentColor"/></svg>
+
+        heroicons-solid:template
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20"><g fill="none"><path d="M3 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4z" fill="currentColor"/><path d="M3 10a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6z" fill="currentColor"/><path d="M14 9a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1h-2z" fill="currentColor"/></g></svg>
+
+        tabler:template
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g class="icon-tabler" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="4" rx="1"/><rect x="4" y="12" width="6" height="8" rx="1"/><path d="M14 12h6"/><path d="M14 16h6"/><path d="M14 20h6"/></g></svg>
+
+        carbon:template
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M26 6v4H6V6h20m0-2H6a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z" fill="currentColor"/><path d="M10 16v10H6V16h4m0-2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V16a2 2 0 0 0-2-2z" fill="currentColor"/><path d="M26 16v10H16V16h10m0-2H16a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V16a2 2 0 0 0-2-2z" fill="currentColor"/></svg>
+
+        gridicons:layout-blocks
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M21 7h-2V3a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v2H3a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2h2a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zm-4 14H7v-8h2a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7V3h10v4h-2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2v2zm4-4h-6V9h6v8z" fill="currentColor"/></svg>
+    </div>
+
+</div>
+
+
+<!-- ///// Source Code \\\\\ -->
+<div id="tabs-code">
+    <ul>
+        <li>
+            <a href="#tabs-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" style="color:#ff460c;" aria-hidden="true" role="img" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718l10.059.003l.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426l-2.91.804l-2.955-.81l-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443l.744-8.157H8.531z" fill="currentColor"></path></svg>
+                HTML</a>
+        </li>
+        <li>
+            <a href="#tabs-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" style="color:#027dde;" aria-hidden="true" role="img"  viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622l10.125.002l-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523l-2.91.804l-2.956-.81l-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414z" fill="currentColor"></path></svg>
+                CSS</a>
+        </li>
+        <li>
+            <a href="#tabs-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" style="color:#F7E018;" aria-hidden="true" role="img" viewBox="0 0 24 24"><path d="M3 3h18v18H3V3m4.73 15.04c.4.85 1.19 1.55 2.54 1.55c1.5 0 2.53-.8 2.53-2.55v-5.78h-1.7V17c0 .86-.35 1.08-.9 1.08c-.58 0-.82-.4-1.09-.87l-1.38.83m5.98-.18c.5.98 1.51 1.73 3.09 1.73c1.6 0 2.8-.83 2.8-2.36c0-1.41-.81-2.04-2.25-2.66l-.42-.18c-.73-.31-1.04-.52-1.04-1.02c0-.41.31-.73.81-.73c.48 0 .8.21 1.09.73l1.31-.87c-.55-.96-1.33-1.33-2.4-1.33c-1.51 0-2.48.96-2.48 2.23c0 1.38.81 2.03 2.03 2.55l.42.18c.78.34 1.24.55 1.24 1.13c0 .48-.45.83-1.15.83c-.83 0-1.31-.43-1.67-1.03l-1.38.8z" fill="currentColor"/><rect x="0" y="0" width="2em" height="2em" fill="rgba(0, 0, 0, 0)" /></svg>
+                JavaScript</a>
+        </li>
+        <li>
+            <a href="#tabs-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" aria-hidden="true" role="img" viewBox="0 0 1024 1024"><path d="M1024 618q-138 16-197 103t-59 239q-62-50-138-73q-10 9-22 9H416q-12 0-22-9q-76 23-138 73q0-152-59-239T0 618q235-173 101-428Q389 259 512 0q123 259 411 190q-134 255 101 428zM512 256q-106 0-181 80.5T256 530q0 15 3 29.5t6 24.5t11.5 24t12.5 20t15.5 22.5T320 672q21 24 58.5 57t53.5 55t16 48h128q0-26 16.5-48t53.5-55t58-57q4-5 15.5-21.5T735 628t12.5-20t11.5-24t6-24.5t3-29.5q0-113-75-193.5T512 256zm-96 640h192q13 0 22.5 9.5T640 928t-9.5 22.5T608 960q0 29-23 46.5t-73 17.5t-73-17.5t-23-46.5q-13 0-22.5-9.5T384 928t9.5-22.5T416 896z" fill="currentColor"/></svg>
+                SMARTY</a>
+        </li>
+    </ul>
+
+    <div id="tabs-1">
+    <pre><code class="language-html">
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;
+/* 1. Use class="language-html"
+      or class="lang-html"
+      avoid highlight using class="language-plain" */
+
+/* 2. Use HTML-comment to escape the code
+   &lt;!-- Converts Special Characters --&gt;
+   in Text to HTML Entities */
+&lt;/code&gt;&lt;/pre&gt;
+    </code></pre>
+    </div>
+
+    <div id="tabs-2">
+    <pre><code class="language-css"><!--
+    /* Syntax highlighting code blocks with PrismJS. */
+    /* html/common/prismjs/ [prism-custom.css] */
+
+    pre[class*="language-"] {
+    color:#abc;
+    border:1px solid #face74;
+    background:rgb(240,50,50);
+        padding: 1em;
+        margin: .5em 0;
+        overflow: auto;
+    }
+    --></code></pre>
+    </div>
+
+    <div id="tabs-3">
+    <pre><code class="language-javascript"><!--
+    $( function() {
+
+        $( "#tabs-code" ).tabs({
+            collapsible: true
+        }).tabs('option', 'disabled', [3]);
+        /* option tab disabled, [0,1,2,3] */
+    } );
+    /* Method to process all code blocks */
+    Prism.highlightAll();
+    --></code></pre>
+    </div>
+
+    <div id="tabs-4">
+    <pre><code class="language-smarty"><!--
+    Smarty delimiters are defined as <{ and }>
+    Smarty comments don't waste bandwidth,
+    these blocks are stripped at compile-time.
+    <{* smarty comment *}>
+    --></code></pre>
+    </div>
+
+</div>
+
+
+<script>
+    //Scope Immediately Invoked Function Expression - IIFE
+    //Encapsulate
+    $( function() {
+        // Modal for reference links
+        $(function() {
+            $("a.modal-control").on("click",function(e) {
+                e.preventDefault();
+                $("#iframe-api").attr("src", this.href );
+                $( ".modal-view" ).toggleClass( "modal-show" );
+            });
+        });
+
+        // UI-Tabs [0,1,2,3]
+        $( "#tabs-code" ).tabs(); //.tabs('option', 'disabled', [0,1,2,3]);
+
+        // Example UI-Button
+        $( ".ui-button.disabled" ).button({
+            disabled: true
+        });
+
+    } );
+    // Syntax Highlight
+    Prism.highlightAll();
+
+</script>

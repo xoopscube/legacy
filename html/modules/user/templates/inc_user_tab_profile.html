@@ -1,0 +1,73 @@
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<{* USER TAB PROFILE *}>
+<div class="ui-tab-content" layout="row sm-column" self="size-x1">
+
+
+    <{* ---------- User Profile Avatar *}>
+    <div layout="column" self="size-1of3 sm-full" class="user-tab-avatar">
+
+
+        <{* ------- User profile column with user-data *}>
+        <{* include file="$xoops_theme/templates/user/inc_user_nav_left.html" *}>
+        <{include file="`$smarty.const.XOOPS_MODULE_PATH`/user/templates/inc_user_nav_left.html"}>
+
+
+    </div><{* ------- /User Profile Avatar *}>
+
+
+    <div self="size-x1 px-6" class="user-tab-data">
+
+        <h3><{$thisUser->getShow('uname')}></h3>
+
+        <hr>
+
+        <{* ------- Registered Members Only *}>
+        <{if $xoops_isuser == true}>
+
+            <{if $thisUser->get('user_viewemail') == 1 || $user_ownpage == true || $xoops_isadmin == true }>
+            <div class="row">
+                <h5><strong><{$smarty.const._MD_USER_LANG_EMAIL}></strong></h5>
+                <p><{mailto address=$thisUser->get('email') encode="javascript"}></p>
+            </div>
+            <{/if}>
+
+            <div class="row">
+                <h5><strong><{$smarty.const._MD_USER_LANG_WEBSITE}></strong></h5>
+                <p><a href="<{$thisUser->getShow('url')}>" rel="external"><{$thisUser->getShow('url')}></a></p>
+            </div>
+
+            <hr>
+
+            <{if $thisUser->get('bio') != null }>
+            <h5><{$smarty.const._MD_USER_LANG_BIO}></h5>
+            <p><{$thisUser->getShow('bio')}></p>
+            <hr>
+            <{/if}>
+
+            <{if $thisUser->get('user_intrest') != null }>
+            <h5><{$smarty.const._MD_USER_LANG_USER_INTREST}></h5>
+            <p><{$thisUser->getShow('user_intrest')}></p>
+            <hr>
+            <{/if}>
+
+
+            <{* /////— PROFILE CUSTOM FIELDS —\\\\\ *}>
+            <{legacy_profile uid=$thisUser->getShow('uid')}>
+
+
+            <{if $thisUser->get('user_sig') != null }>
+            <h5><{$smarty.const._MD_USER_LANG_USER_SIG}></h5>
+            <div><{$thisUser->getShow('user_sig')}></div>
+            <hr>
+            <{/if}>
+
+        <{/if}>
+        <{* ------- /Registered Members Only *}>
+
+    </div>
+    <{* /user-tab-data *}>
+
+
+</div>

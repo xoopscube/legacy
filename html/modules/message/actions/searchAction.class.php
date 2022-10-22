@@ -28,7 +28,7 @@ class searchAction extends AbstractAction
             $this->setUrl('index.php?action=settings');
             $this->setErr(_MD_MESSAGE_SETTINGS_MSG5);
         } else {
-            if ($this->mService == null) {
+            if (null == $this->mService) {
                 $this->setErr('Service Not loaded.');
                 return;
             }
@@ -38,18 +38,18 @@ class searchAction extends AbstractAction
             $this->mActionform->prepare();
       
             $this->mActionform->fetch();
-            if ($this->mActionform->get('dosearch') == 1) {
+            if (1 == $this->mActionform->get('dosearch')) {
                 $this->mActionform->validate();
                 if ($this->mActionform->hasError()) {
                     $this->setErr($this->mActionform->getErrorMessages());
                     return;
                 }
-                $request = array(
+                $request = [
           'uname' => $this->mActionform->get('uname'),
           'stype' => $this->mActionform->get('searchtype'),
           'page'  => 10,
           'url'   => 'index.php?action=search'
-        );
+                ];
                 $this->getData($request);
             } else {
                 $this->mActionform->set('searchtype', 0);

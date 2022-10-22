@@ -1,0 +1,43 @@
+/* ToDo */
+
+ul.list-group{
+    border-left: none;
+}
+
+div[class^="level"]::before{
+    position: absolute;
+    left: 10px;
+    top: -1em;
+    content: '';
+    display: block;
+    border-left: 1px solid #ddd;
+    height: 2em;
+    border-bottom: 1px solid #ddd;
+    width: 10px;
+}
+
+div.level1::before { left:10px;width: 10px; }
+
+div.level2::before { left:10px;width: 20px; }
+
+div.level3::before { left:10px;width: 30px; }
+div.level4::before { left:10px;width: 40px; }
+div.level5::before { left:10px;width: 50px; }
+
+div[class^="level"]:after{
+    position: absolute;
+    left: 10px;
+    bottom: -15px;
+    content: '';
+    display: block;
+    border-left: 1px solid #ddd;
+    height: 100%;
+}
+div.level1>h5 {margin-left:10px;}
+div.level2>h5 {margin-left:20px;}
+div.level3>h5 {margin-left:30px;}
+div.level4>h5 {margin-left:40px;}
+div.level5>h5 {margin-left:50px;}
+div.collapse {
+    margin-left:10px;
+}

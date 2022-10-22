@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractListAction.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractListAction.class.php';
 
 class User_UserDataUploadAction extends User_Action
 {
@@ -20,12 +20,12 @@ class User_UserDataUploadAction extends User_Action
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=UserDataUpload";
+        return './index.php?action=UserDataUpload';
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_data_upload.html");
+        $render->setTemplateName('user_data_upload.html');
     }
     
     public function getDefaultView(&$controller, &$xoopsUser)

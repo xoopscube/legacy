@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/TplfileEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplfileEditForm.class.php';
 
 class LegacyRender_TplfileEditAction extends LegacyRender_AbstractEditAction
 {
@@ -28,7 +28,7 @@ class LegacyRender_TplfileEditAction extends LegacyRender_AbstractEditAction
     {
         parent::_setupObject();
         
-        if (is_object($this->mObject) && $this->mObject->get('tpl_tplset') == 'default') {
+        if (is_object($this->mObject) && 'default' == $this->mObject->get('tpl_tplset')) {
             $this->mObject = null;
         }
     }
@@ -46,7 +46,7 @@ class LegacyRender_TplfileEditAction extends LegacyRender_AbstractEditAction
     
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("tplfile_edit.html");
+        $render->setTemplateName('tplfile_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
     }
@@ -57,7 +57,7 @@ class LegacyRender_TplfileEditAction extends LegacyRender_AbstractEditAction
         // This class knows the db template mechanism, because this is in
         // LegacyRender.
         //
-        require_once XOOPS_ROOT_PATH . "/class/template.php";
+        require_once XOOPS_ROOT_PATH . '/class/template.php';
 
         $xoopsTpl =new XoopsTpl();
         $xoopsTpl->clear_cache('db:' . $this->mObject->get('tpl_file'));
@@ -70,7 +70,7 @@ class LegacyRender_TplfileEditAction extends LegacyRender_AbstractEditAction
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=TplsetList", 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=TplsetList', 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
     }
 
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)

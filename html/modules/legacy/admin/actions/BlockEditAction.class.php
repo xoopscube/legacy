@@ -1,19 +1,20 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: BlockEditAction.class.php,v 1.4 2008/09/25 15:11:37 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * BlockEditAction.class.php
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors  gigamaster, 2020 XCL/PHP7
+ * @author     Kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/BlockEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/BlockEditForm.class.php';
 
 class Legacy_BlockEditAction extends Legacy_AbstractEditAction
 {
@@ -21,12 +22,12 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
      * @var string
      */
     public $_mOptionForm = null;
-    
+
     public function _getId()
     {
         return isset($_REQUEST['bid']) ? xoops_getrequest('bid') : 0;
     }
-    
+
     public function prepare(&$controller, &$xoopsUser)
     {
         parent::prepare($controller, $xoopsUser);
@@ -39,12 +40,12 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
             }
         }
     }
-    
+
     public function isEnableCreate()
     {
         return false;
     }
-    
+
     public function &_getHandler()
     {
         $handler =& xoops_getmodulehandler('newblocks');
@@ -56,31 +57,31 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
         $this->mActionForm =new Legacy_BlockEditForm();
         $this->mActionForm->prepare();
     }
-    
+
     /**
-     * Return true if the target object can be edited. This private method exists 
+     * Return true if the target object can be edited. This private method exists
      * to control subclass actions.
-     * 
+     *
      * @return bool
      */
     public function _isEditable()
     {
         if (is_object($this->mObject)) {
-            return ($this->mObject->get('visible') == 1);
-        } else {
-            return false;
+            return (1 == $this->mObject->get('visible'));
         }
+
+        return false;
     }
-    
+
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         if (!$this->_isEditable()) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
-        
+
         $this->mObject->loadGroup();
         $this->mObject->loadBmodule();
-        
+
         return parent::getDefaultView($controller, $xoopsUser);
     }
 
@@ -91,8 +92,8 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
         }
 
         $ret = parent::execute($controller, $xoopsUser);
-        
-        if ($ret == LEGACY_FRAME_VIEW_SUCCESS) {
+
+        if (LEGACY_FRAME_VIEW_SUCCESS == $ret) {
             //
             // Reset block_module_link.
             //
@@ -109,59 +110,59 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
             //
             // Insert group permissions.
             //
-            $currentGroupid = array();
+            $currentGroupid = [];
             foreach ($this->mObject->mGroup as $group) {
                 $currentGroupid[] = $group->get('groupid');
             }
-            
+
             $permHandler =& xoops_gethandler('groupperm');
             $criteria =new CriteriaCompo();
             $criteria->add(new Criteria('gperm_modid', 1));
             $criteria->add(new Criteria('gperm_itemid', $this->mObject->get('bid')));
             $criteria->add(new Criteria('gperm_name', 'block_read'));
-            
+
             $gpermArr =&  $permHandler->getObjects($criteria);
             foreach ($gpermArr as $gperm) {
-                if (!in_array($gperm->get('gperm_groupid'), $currentGroupid)) {
+                if (!in_array($gperm->get('gperm_groupid'), $currentGroupid, true)) {
                     $permHandler->delete($gperm);
                 }
             }
-            
+
             foreach ($this->mObject->mGroup as $group) {
                 $insertFlag = true;
                 foreach ($gpermArr as $gperm) {
-                    if ($gperm->get('gperm_groupid') == $group->get('groupid')) {
+                    if ($gperm->get('gperm_groupid') === $group->get('groupid')) {
                         $insertFlag = false;
                     }
                 }
-                
+
                 if ($insertFlag) {
                     $gperm =& $permHandler->create();
                     $gperm->set('gperm_modid', 1);
                     $gperm->set('gperm_groupid', $group->get('groupid'));
                     $gperm->set('gperm_itemid', $this->mObject->get('bid'));
                     $gperm->set('gperm_name', 'block_read');
-                    
+
                     $permHandler->insert($gperm);
                 }
             }
         }
-        
+
         return $ret;
     }
-    
+
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("block_edit.html");
+        $render->setTemplateName('block_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
-        
+
         //
         // lazy loading
         //
         $this->mObject->loadModule();
-        
+
         $render->setAttribute('object', $this->mObject);
-        
+
         //
         // Build active modules list and set.
         //
@@ -169,7 +170,7 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
         $moduleArr[0] =& $handler->create();
         $moduleArr[0]->set('mid', -1);
         $moduleArr[0]->set('name', _AD_LEGACY_LANG_TOPPAGE);
-        
+
         $moduleArr[1] =& $handler->create();
         $moduleArr[1]->set('mid', 0);
         $moduleArr[1]->set('name', _AD_LEGACY_LANG_ALL_MODULES);
@@ -177,11 +178,11 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('hasmain', 1));
         $criteria->add(new Criteria('isactive', 1));
-        
+
         $t_Arr =& $handler->getObjects($criteria);
         $moduleArr = array_merge($moduleArr, $t_Arr);
         $render->setAttribute('moduleArr', $moduleArr);
-        
+
         $handler =& xoops_getmodulehandler('columnside');
         $columnSideArr =& $handler->getObjects();
         $render->setAttribute('columnSideArr', $columnSideArr);
@@ -189,7 +190,7 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
         $handler =& xoops_gethandler('group');
         $groupArr =& $handler->getObjects();
         $render->setAttribute('groupArr', $groupArr);
-        
+
         //
         // Build cachetime list and set.
         //
@@ -216,7 +217,7 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
         $block =& Legacy_Utils::createBlockProcedure($this->mObject);
         return $block->_hasVisibleOptionForm();
     }
-    
+
     /**
      * Gets rendered HTML buffer of the block optional edit form.
      */
@@ -228,16 +229,16 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=BlockList");
+        $controller->executeForward('./index.php?action=BlockList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=BlockList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=BlockList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
-    
+
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=BlockList");
+        $controller->executeForward('./index.php?action=BlockList');
     }
 }

@@ -8,13 +8,13 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 class User_RanksAdminDeleteForm extends XCube_ActionForm
 {
     public function getTokenName()
     {
-        return "module.user.RanksAdminDeleteForm.TOKEN" . $this->get('rank_id');
+        return 'module.user.RanksAdminDeleteForm.TOKEN' . $this->get('rank_id');
     }
 
     public function prepare()
@@ -28,7 +28,7 @@ class User_RanksAdminDeleteForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['rank_id'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['rank_id']->setDependsByArray(array('required'));
+        $this->mFieldProperties['rank_id']->setDependsByArray(['required']);
         $this->mFieldProperties['rank_id']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_RANK_ID);
     }
 

@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractListAction.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractListAction.class.php';
 
 class User_UserDataDownloadAction extends User_Action
 {
@@ -20,12 +20,12 @@ class User_UserDataDownloadAction extends User_Action
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=UserDataDownload";
+        return './index.php?action=UserDataDownload';
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_data_download.html");
+        $render->setTemplateName('user_data_download.html');
         $member_handler =& xoops_gethandler('member');
         $user_count = $member_handler->getUserCount();
         $render->setAttribute('user_count', $user_count);
@@ -37,10 +37,10 @@ class User_UserDataDownloadAction extends User_Action
     }
     
     
-    /// CSVファイルを出力する
+    /// export CSV file
     public function execute(&$controller, &$xoopsUser)
     {
-        $filename = sprintf('%s User data List.csv', $GLOBALS['xoopsConfig']['sitename']);
+        $filename = sprintf('%s_User_data_List.csv', $GLOBALS['xoopsConfig']['sitename']);
         $text = '';
         $field_line = '';
         
@@ -48,12 +48,12 @@ class User_UserDataDownloadAction extends User_Action
         $criteria = new CriteriaElement();
         $criteria->setSort('uid');
         $users = $user_handler->getObjects($criteria);
-        if (!$users || count($users)==0) {
+        if (!$users || 0 == count($users)) {
             return USER_FRAME_VIEW_INDEX;
         }
         foreach ($users[0]->gets() as $key=>$var) {
             $_f = '_MD_USER_LANG_'.strtoupper($key);
-            $field_line .= (defined($_f) ? constant($_f) : $key).",";
+            $field_line .= (defined($_f) ? constant($_f) : $key) . ',';
         }
         $field_line .= "\n";
         
@@ -68,7 +68,7 @@ class User_UserDataDownloadAction extends User_Action
                   default:
                 }
                 if (preg_match('/[,"\r\n]/', $value)) {
-                    $value = preg_replace('/"/', "\"\"", $value);
+                    $value = preg_replace('/"/', '""', $value);
                     $value = "\"$value\"";
                 }
                 $user_data .= $value . ',';
@@ -78,7 +78,7 @@ class User_UserDataDownloadAction extends User_Action
         $text = $field_line.$text;
         
         /// japanese 
-        if (strncasecmp($GLOBALS['xoopsConfig']['language'], 'ja', 2)===0) {
+        if (0 === strncasecmp($GLOBALS['xoopsConfig']['language'], 'ja', 2)) {
             if (_CHARSET !== 'UTF-8') {
                 mb_convert_variables('UTF-8', _CHARSET, $text);
             }
@@ -86,9 +86,9 @@ class User_UserDataDownloadAction extends User_Action
         }
         
         if (preg_match('/firefox/i', xoops_getenv('HTTP_USER_AGENT'))) {
-            header("Content-Type: application/x-csv");
+            header('Content-Type: application/x-csv');
         } else {
-            header("Content-Type: application/vnd.ms-excel");
+            header('Content-Type: application/vnd.ms-excel');
         }
         
         

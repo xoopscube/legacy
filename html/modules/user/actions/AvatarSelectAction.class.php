@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/forms/AvatarSelectForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/forms/AvatarSelectForm.class.php';
 
 /***
  * @internal
@@ -36,7 +36,7 @@ class User_AvatarSelectAction extends User_AbstractEditAction
     
     public function _getId()
     {
-        return isset($_REQUEST['uid']) ? intval(xoops_getrequest('uid')) : 0;
+        return isset($_REQUEST['uid']) ? (int)xoops_getrequest('uid') : 0;
     }
     
     public function &_getHandler()
@@ -68,12 +68,16 @@ class User_AvatarSelectAction extends User_AbstractEditAction
     {
         return true;
     }
-    
+
     /***
      *  Check whether a current user can access this action.
      * 1) A specified user has to exist.
      * 2) A current user has to equal the specified user, or a current user has
      *    to be a administrator.
+     * @param $controller
+     * @param $xoopsUser
+     * @param $moduleConfig
+     * @return bool
      */
     public function hasPermission(&$controller, &$xoopsUser, $moduleConfig)
     {
@@ -98,7 +102,7 @@ class User_AvatarSelectAction extends User_AbstractEditAction
             //
             // If old avatar is a cutom avatar, delete it.
             //
-            if ($this->mOldAvatar != null && $this->mOldAvatar->get('avatar_type') == 'C') {
+            if (null != $this->mOldAvatar && 'C' == $this->mOldAvatar->get('avatar_type')) {
                 $avatarHandler->delete($this->mOldAvatar);
             }
             
@@ -126,19 +130,21 @@ class User_AvatarSelectAction extends User_AbstractEditAction
 
     /***
      * This action always kicks out GET request.
+     * @param $controller
+     * @param $xoopsUser
      */
     public function getDefaultView(&$controller, &$xoopsUser)
     {
-        $controller->executeForward(XOOPS_URL . "/edituser.php?op=avatarform&uid=" . $this->mObject->get('uid'));
+        $controller->executeForward(XOOPS_URL . '/edituser.php?op=avatarform&uid=' . $this->mObject->get('uid'));
     }
     
     public function executeViewSuccess(&$controller, &$xoopsUser, &$renderSystem)
     {
-        $controller->executeForward(XOOPS_URL . "/userinfo.php?op=avatarform&uid=" . $this->mActionForm->get('uid'));
+        $controller->executeForward(XOOPS_URL . '/userinfo.php?op=avatarform&uid=' . $this->mActionForm->get('uid'));
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$renderSystem)
     {
-        $controller->executeRedirect(XOOPS_URL . "/userinfo.php?op=avatarform&uid=" . $this->mActionForm->get('uid'), 1, _MD_USER_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect(XOOPS_URL . '/userinfo.php?op=avatarform&uid=' . $this->mActionForm->get('uid'), 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }
 }

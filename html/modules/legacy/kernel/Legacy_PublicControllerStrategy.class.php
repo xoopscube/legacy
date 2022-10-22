@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: Legacy_PublicControllerStrategy.class.php,v 1.7 2008/11/14 09:45:23 mumincacao Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright Copyright 2005-2022 XOOPS Cube Project  <https://github.com/xoopscube/>
+ * @license   GPL 2.0
  *
  */
 
@@ -15,15 +15,15 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
 {
     public $mStatusFlag = LEGACY_CONTROLLER_STATE_PUBLIC;
-    
-    public function Legacy_PublicControllerStrategy(&$controller)
+
+    public function __construct(&$controller)
     {
-        parent::Legacy_AbstractControllerStrategy($controller);
-        
-        $controller->mRoot->mContext->mBaseRenderSystemName = "Legacy_RenderSystem";
-        
-        if (!defined("LEGACY_DEPENDENCE_RENDERER")) {
-            define("LEGACY_DEPENDENCE_RENDERER", "Legacy_RenderSystem");
+        parent::__construct($controller);
+
+        $controller->mRoot->mContext->mBaseRenderSystemName = 'Legacy_RenderSystem';
+
+        if (!defined('LEGACY_DEPENDENCE_RENDERER')) {
+            define('LEGACY_DEPENDENCE_RENDERER', 'Legacy_RenderSystem');
         }
     }
 
@@ -32,12 +32,12 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
         $showFlag =0;
         $mid=0;
 
-        if ($this->mController->mRoot->mContext->mModule != null) {
+        if (null != $this->mController->mRoot->mContext->mModule) {
             $showFlag = (preg_match("/index\.php$/i", xoops_getenv('PHP_SELF')) && $this->mController->mRoot->mContext->mXoopsConfig['startpage'] == $this->mController->mRoot->mContext->mXoopsModule->get('dirname'));
             $mid = $this->mController->mRoot->mContext->mXoopsModule->get('mid');
         } else {
             //
-            // If you does not have module_contoller, this request is to toppage or other pages of toppage.
+            // If you don't have module_controller, this request is to toppage or other pages of toppage.
             //
 
             // $mid = preg_match("/index\.php$/i", xoops_getenv('PHP_SELF')) ? -1 : 0;
@@ -55,7 +55,7 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
         foreach ($blockObjects as $blockObject) {
             $block =& Legacy_Utils::createBlockProcedure($blockObject);
 
-            if ($block->prepare() !== false) {
+            if (false !== $block->prepare()) {
                 $this->mController->_mBlockChain[] =& $block;
             }
             unset($block);
@@ -67,7 +67,7 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
     {
         // [TODO]
         // Because get() of the virtual handler is heavy, we have to consider
-        // the new solution about this process.
+        // a new solution about this process.
         //
         $handler =& xoops_getmodulehandler('theme', 'legacy');
         $theme =& $handler->get($this->mController->mRoot->mContext->getThemeName());
@@ -87,7 +87,7 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
                 return $theme;
             }
         }
-        
+
         $objs =& $handler->getObjects();
         if (count($objs) > 0) {
             return $objs[0];
@@ -96,23 +96,23 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
         $theme = null;
         return $theme;
     }
-    
+
     public function isEnableCacheFeature()
     {
         return true;
     }
-    
+
     public function enableAccess()
     {
-        if ($this->mController->mRoot->mContext->mModule != null) {
+        if (null != $this->mController->mRoot->mContext->mModule) {
             $dirname = $this->mController->mRoot->mContext->mXoopsModule->get('dirname');
-            
+
             return $this->mController->mRoot->mContext->mUser->isInRole("Module.${dirname}.Visitor");
         }
-        
+
         return true;
     }
-    
+
     public function setupModuleLanguage()
     {
         $root =& XCube_Root::getSingleton();

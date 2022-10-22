@@ -1,42 +1,17 @@
 <?php
-// $Id: downloader.php,v 1.1 2007/05/15 02:34:21 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
 /**
  * Sends non HTML files through a http socket
- * 
- * @package     kernel
- * @subpackage  core
- * 
- * @author	    Kazumi Ono	<onokazu@xoops.org>
- * @copyright	copyright (c) 2000-2003 XOOPS.org
+ * @package    kernel
+ * @subpackage core
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Other authors Minahito, 2007/05/15
+ * @author     Kazumi Ono (aka onokazu)
+ * @copyright  (c) 2000-2003 XOOPS.org
+ * @license    GPL 2.0
  */
+
+
 class XoopsDownloader
 {
 
@@ -51,16 +26,16 @@ class XoopsDownloader
     /**
      * Constructor
      */
-    public function XoopsDownloader()
+    public function __construct()
     {
         //EMPTY
     }
 
     /**
      * Send the HTTP header
-     * 
+     *
      * @param	string  $filename
-     * 
+     *
      * @access	private
      */
     public function _header($filename)
@@ -83,7 +58,7 @@ class XoopsDownloader
 
     /**
      * XoopsDownloader::addFile()
-     * 
+     *
      * @param   string  $filepath
      * @param   string   $newfilename
      **/
@@ -94,7 +69,7 @@ class XoopsDownloader
 
     /**
      * XoopsDownloader::addBinaryFile()
-     * 
+     *
      * @param   string  $filepath
      * @param   string  $newfilename
      **/
@@ -105,10 +80,10 @@ class XoopsDownloader
 
     /**
      * XoopsDownloader::addFileData()
-     * 
-     * @param   mixed     $data
-     * @param   string    $filename
-     * @param   integer   $time
+     *
+     * @param   mixed  $data
+     * @param   string $filename
+     * @param int      $time
      **/
     public function addFileData(&$data, $filename, $time=0)
     {
@@ -117,10 +92,10 @@ class XoopsDownloader
 
     /**
      * XoopsDownloader::addBinaryFileData()
-     * 
-     * @param   mixed   $data
-     * @param   string  $filename
-     * @param   integer $time
+     *
+     * @param   mixed  $data
+     * @param   string $filename
+     * @param int      $time
      **/
     public function addBinaryFileData(&$data, $filename, $time=0)
     {
@@ -129,9 +104,9 @@ class XoopsDownloader
 
     /**
      * XoopsDownloader::download()
-     * 
-     * @param   string  $name
-     * @param   boolean $gzip
+     *
+     * @param   string $name
+     * @param bool     $gzip
      **/
     public function download($name, $gzip = true)
     {

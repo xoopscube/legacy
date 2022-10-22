@@ -1,58 +1,31 @@
 <?php
-// $Id: logger.php,v 1.1 2007/05/15 02:34:21 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
-
 /**
  * Collects information for a page request
- *
- * <b>Singelton:</b> There can be only one instance of this class and it must
+ * Singleton: There can be only one instance of this class and it must
  * be accessed through the {@link instance()} method!
- *
  * records information about database queries, blocks, and execution time
  * and can display it as HTML
- *
- * @author  Kazumi Ono  <onokazu@xoops.org>
- * @copyright   copyright (c) 2000-2003 XOOPS.org
- *
- * @package kernel
+ * @package    kernel
+ * @subpackage core
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Other authors Minahito, 2007/05/15
+ * @author     Kazumi Ono (aka onokazu)
+ * @copyright  (c) 2000-2003 XOOPS.org
+ * @license    GPL 2.0
  */
+
+
 class XoopsLogger
 {
     /**#@+
      * @var array
      */
-    public $queries = array();
-    public $blocks = array();
-    public $extra = array();
-    public $logstart = array();
-    public $logend = array();
+    public $queries = [];
+    public $blocks = [];
+    public $extra = [];
+    public $logstart = [];
+    public $logend = [];
     /**#@-*/
 
     /**
@@ -60,7 +33,7 @@ class XoopsLogger
      *
      * @access  private
      */
-    public function XoopsLogger()
+    public function __construct()
     {
     }
 
@@ -111,7 +84,10 @@ class XoopsLogger
         if (defined('XOOPS_LOGGER_ADDQUERY_DISABLED') && XOOPS_LOGGER_ADDQUERY_DISABLED) {
             return;
         }
-        $this->queries[] = array('sql' => $sql, 'error' => $error, 'errno' => $errno);
+        $this->queries[] = ['sql' => $sql, 'error' => $error, 'errno' => $errno];
+        if ($error && defined('XOOPS_MYSQL_ERROR_LOG') && XOOPS_MYSQL_ERROR_LOG) {
+            error_log('XOOPS_MYSQL_ERROR_LOG: ' . print_r(end($this->queries), true));
+        }
     }
 
     /**
@@ -123,7 +99,7 @@ class XoopsLogger
      */
     public function addBlock($name, $cached = false, $cachetime = 0)
     {
-        $this->blocks[] = array('name' => $name, 'cached' => $cached, 'cachetime' => $cachetime);
+        $this->blocks[] = ['name' => $name, 'cached' => $cached, 'cachetime' => $cachetime];
     }
 
     /**
@@ -134,7 +110,7 @@ class XoopsLogger
      */
     public function addExtra($name, $msg)
     {
-        $this->extra[] = array('name' => $name, 'msg' => $msg);
+        $this->extra[] = ['name' => $name, 'msg' => $msg];
     }
 
     /**
@@ -148,13 +124,13 @@ class XoopsLogger
         $class = 'even';
         foreach ($this->queries as $q) {
             if (isset($q['error'])) {
-                $ret .= '<tr class="'.$class.'"><td><span style="color:#ff0000;">'.htmlentities($q['sql']).'<br /><b>Error number:</b> '.$q['errno'].'<br /><b>Error message:</b> '.$q['error'].'</span></td></tr>';
+                $ret .= '<tr class="'.$class.'"><td><span style="color:#ff0000;">'.htmlentities($q['sql']).'<br><b>Error number:</b> '.$q['errno'].'<br><b>Error message:</b> '.$q['error'].'</span></td></tr>';
             } else {
                 $ret .= '<tr class="'.$class.'"><td>'.htmlentities($q['sql']).'</td></tr>';
             }
-            $class = ($class == 'odd') ? 'even' : 'odd';
+            $class = ('odd' == $class) ? 'even' : 'odd';
         }
-        $ret .= '<tr class="foot"><td>Total: <span style="color:#ff0000;">'.count($this->queries).'</span> queries</td></tr></table><br />';
+        $ret .= '<tr class="foot"><td>Total: <span style="color:#ff0000;">'.count($this->queries).'</span> queries</td></tr></table><br>';
         return $ret;
     }
 
@@ -169,13 +145,13 @@ class XoopsLogger
         $class = 'even';
         foreach ($this->blocks as $b) {
             if ($b['cached']) {
-                $ret .= '<tr><td class="'.$class.'"><b>'.htmlspecialchars($b['name']).':</b> Cached (regenerates every '.intval($b['cachetime']).' seconds)</td></tr>';
+                $ret .= '<tr><td class="'.$class.'"><b>'.htmlspecialchars($b['name']).':</b> Cached (regenerates every ' . (int)$b['cachetime'] . ' seconds)</td></tr>';
             } else {
                 $ret .= '<tr><td class="'.$class.'"><b>'.htmlspecialchars($b['name']).':</b> No Cache</td></tr>';
             }
-            $class = ($class == 'odd') ? 'even' : 'odd';
+            $class = ('odd' == $class) ? 'even' : 'odd';
         }
-        $ret .= '<tr class="foot"><td>Total: <span style="color:#ff0000;">'.count($this->blocks).'</span> blocks</td></tr></table><br />';
+        $ret .= '<tr class="foot"><td>Total: <span style="color:#ff0000;">'.count($this->blocks).'</span> blocks</td></tr></table><br>';
         return $ret;
     }
 
@@ -209,9 +185,9 @@ class XoopsLogger
         $class = 'even';
         foreach ($this->extra as $ex) {
             $ret .= '<tr><td class="'.$class.'"><b>'.htmlspecialchars($ex['name']).':</b> '.htmlspecialchars($ex['msg']).'</td></tr>';
-            $class = ($class == 'odd') ? 'even' : 'odd';
+            $class = ('odd' == $class) ? 'even' : 'odd';
         }
-        $ret .= '</table><br />';
+        $ret .= '</table><br>';
         return $ret;
     }
 
@@ -229,9 +205,9 @@ class XoopsLogger
             $class = 'even';
             foreach ($this->logstart as $k => $v) {
                 $ret .= '<tr><td class="'.$class.'"><b>'.htmlspecialchars($k).'</b> took <span style="color:#ff0000;">'.$this->dumpTime($k).'</span> seconds to load.</td></tr>';
-                $class = ($class == 'odd') ? 'even' : 'odd';
+                $class = ('odd' == $class) ? 'even' : 'odd';
             }
-            $ret .= '</table><br />';
+            $ret .= '</table><br>';
         }
         $ret .= $this->dumpExtra();
         return $ret;

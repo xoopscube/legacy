@@ -1,19 +1,21 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: SearchShowallbyuserAction.class.php,v 1.4 2008/09/25 15:12:06 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * SearchShowallbyuserAction.class.php
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/actions/SearchShowallAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/forms/SearchShowallbyuserForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/actions/SearchShowallAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/forms/SearchShowallbyuserForm.class.php';
+
 
 class Legacy_SearchShowallbyuserAction extends Legacy_SearchShowallAction
 {
@@ -22,20 +24,20 @@ class Legacy_SearchShowallbyuserAction extends Legacy_SearchShowallAction
         $this->mActionForm =new Legacy_SearchShowallbyuserForm(0);
         $this->mActionForm->prepare();
     }
-    
+
     public function _getTemplateName()
     {
-        return "legacy_search_showallbyuser.html";
+        return 'legacy_search_showallbyuser.html';
     }
-    
+
     public function _getSelectedMids()
     {
-        $ret = array();
+        $ret = [];
         $ret[] = $this->mActionForm->get('mid');
-        
+
         return $ret;
     }
-    
+
     public function _doSearch(&$client, &$xoopsUser, &$params)
     {
         return $client->call('searchItemsOfUser', $params);
@@ -45,16 +47,16 @@ class Legacy_SearchShowallbyuserAction extends Legacy_SearchShowallAction
     {
         return LEGACY_SEARCH_SHOWALL_MAXHIT;
     }
-    
+
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
         parent::executeViewIndex($controller, $xoopsUser, $render);
-        
+
         $handler =& xoops_gethandler('user');
         $user =& $handler->get($this->mActionForm->get('uid'));
-        
+
         $render->setAttribute('targetUser', $user);
-        
+
         $prevStart = $this->mActionForm->get('start') - LEGACY_SEARCH_SHOWALL_MAXHIT;
         if ($prevStart < 0) {
             $prevStart = 0;

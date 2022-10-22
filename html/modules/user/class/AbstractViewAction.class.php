@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package User
  * @version $Id: AbstractViewAction.class.php,v 1.1 2007/05/15 02:34:49 minahito Exp $
@@ -13,7 +14,7 @@ class User_AbstractViewAction extends User_Action
     public $mObject = null;
     public $mObjectHandler = null;
 
-    public function User_AbstractViewAction()
+    public function __construct()
     {
     }
 
@@ -28,19 +29,19 @@ class User_AbstractViewAction extends User_Action
     public function _setupObject()
     {
         $id = $this->_getId();
-        
-        $this->mObjectHandler =& $this->_getHandler();
-        
-        $this->mObject =& $this->mObjectHandler->get($id);
+
+        $this->mObjectHandler = &$this->_getHandler();
+
+        $this->mObject = &$this->mObjectHandler->get($id);
     }
 
     /**
      * _getPageAction
-     * 
+     *
      * @param	void
-     * 
+     *
      * @return	string
-    **/
+     **/
     protected function _getPageAction()
     {
         return _VIEW;
@@ -53,10 +54,10 @@ class User_AbstractViewAction extends User_Action
 
     public function getDefaultView(&$controller, &$xoopsUser)
     {
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return USER_FRAME_VIEW_ERROR;
         }
-    
+
         return USER_FRAME_VIEW_SUCCESS;
     }
 

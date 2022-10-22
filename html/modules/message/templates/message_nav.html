@@ -1,0 +1,127 @@
+<ul>
+    <li>
+        <a href="index.php" target="_self">
+        <img class="svg inbox-in" src="<{$xoops_url}>/images/icons/inbox-in.svg">
+        <span self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE15}></span></a>
+    </li>
+
+    <li>
+        <a href="index.php?action=send" target="_self">
+        <img class="svg inbox-out" src="<{$xoops_url}>/images/icons/inbox-out.svg">
+        <span self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE7}></span></a>
+    </li>
+
+    <li>
+        <a href="index.php?action=new" target="_self">
+        <img class="svg mail-edit" src="<{$xoops_url}>/images/icons/mail-edit.svg">
+        <span self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE8}></span></a>
+    </li>
+
+    <li class="settings">
+        <{* ------- dropdown *}>
+        <div class="dropdown">
+
+            <a id="#settings" href="#/" class="dropdown-toggle" aria-label="<{$smarty.const._MI_MESSAGE_SUB_SETTINGS}>">
+            <img class="svg dropdown" src="<{$xoops_url}>/images/icons/dropdown.svg" alt="control"></a>
+
+            <div class="dropdown-content">
+                <ul>
+                    <li>
+                        <a class="dropdown-item" href="#" onclick="location.href='index.php?action=new&amp;res=<{$msgdata.inbox_id}>'">
+                        <img class="svg reply" src="<{$xoops_url}>/images/icons/reply.svg" width="1em" height="1em" alt="reply"> <{$smarty.const._MD_MESSAGE_TEMPLATE13}></a>
+                    </li>
+                    <li>
+                        <form method="post" id="forwardEmail" action="index.php">
+                            <input type="hidden" name="inbox" value="<{$msgdata.inbox_id}>">
+                            <input type="hidden" name="inout" value="in">
+                            <input type="hidden" name="cmd" value="mail">
+                            <input type="hidden" name="action" value="view">
+                            <a class="dropdown-item" href="javascript:document.getElementById('forwardEmail').submit();">
+                                <img class="svg mail-forward" src="<{$xoops_url}>/images/icons/mail-send.svg" width="1em" height="1em" alt="Message Forward"> <{$smarty.const._MD_MESSAGE_TEMPLATE21}></a>
+                        </form>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="javascript:document.getElementById('formLock').submit();">
+                            <img class="svg file-shield" src="<{$xoops_url}>/images/icons/shield.svg" width="1em" height="1em" alt="private">
+                            <{if $msgdata.is_read==1}>
+                            <{$smarty.const._MD_MESSAGE_TEMPLATE19}>
+                            <{else}>
+                            <{$smarty.const._MD_MESSAGE_TEMPLATE20}>
+                            <{/if}>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#" onclick="xoopsPrintag('printhis');">
+                        <img class="svg print" src="<{$xoops_url}>/images/icons/print.svg" width="1em" height="1em" alt="Print"> Print</a>
+                    </li>
+                    <{if $msgdata.from_uid != 0}>
+                    <li>
+                        <a class="dropdown-item" href="#" onclick="location.href='index.php?action=blacklist&amp;uid=<{$msgdata.from_uid}>'">
+                        <img class="svg user" src="<{$xoops_url}>/images/icons/user.svg" width="1em" height="1em" alt="user"> <{$smarty.const._MD_MESSAGE_SETTINGS_MSG10}> this user</a>
+                    </li>
+                    <{/if}>
+
+                    <li>
+                        <a class="dropdown-item" href="index.php?action=blacklist">
+                        <img class="svg user-block" src="<{$xoops_url}>/images/icons/user-lock.svg" width="1em" height="1em" alt="user block"> <{$smarty.const._MD_MESSAGE_SETTINGS_MSG10}></a>
+                    </li>
+
+                    <{if $UserSearch}>
+                    <li>
+                        <a class="dropdown-item"  href="<{$message_url}>?action=search">
+                        <img class="svg user-seach" src="<{$xoops_url}>/images/icons/search-adv.svg" width="1em" height="1em" alt="user search">
+                        <{$smarty.const._MI_MESSAGE_SUB_SEARCH}></a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="<{$message_url}>?action=favorites">
+                        <img class="svg user-seach" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" width="1em" height="1em" alt="favorites">
+                        <{$smarty.const._MI_MESSAGE_SUB_FAVORITES}></a>
+                    </li>
+                    <{/if}>
+
+                    <li>
+                        <a class="dropdown-item" href="<{$message_url}>?action=settings">
+                        <img class="svg mail-settings" src="<{$xoops_url}>/images/icons/mail-settings.svg" width="1em" height="1em" alt="Message Settings"> <{$smarty.const._MI_MESSAGE_SUB_SETTINGS}></a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <{* ------- dropdown *}>
+    </li>
+</ul>
+
+<script>
+    // Highlight the active Message nav-tab
+    $(function () {
+
+    $("#tabs-mail").tabs({
+        active: false,
+        collapsible: true,
+        beforeActivate: function (event, ui) {
+            window.open($(ui.newTab).find('a').attr('href'), '_self');
+            return false;
+        }
+    });
+        // url constructor
+        const parseUrl = new URL(window.location.href);
+        const msgAction = parseUrl.searchParams.get("action");
+        //console.log(parseUrl.searchParams.get("action"));
+        //console.log('the action of this url is:', msgAction);
+
+        // If module message index, highlight the first nav-tab
+        if (msgAction == null) {
+           // $('#tabs-mail ul:first-child li').addClass('ui-state-hover ');
+            $('#tabs-mail ul li:first-child a').addClass('mail-tab-active');
+        } else {
+            // Highlight current action nav-tab
+            //$('a[href^="index.php?action=' + msgAction + '"]').parent('li').addClass('mail-tab-active');
+            $('a[href="index.php?action=' + msgAction + '"]').addClass('mail-tab-active');
+            // console.log('the tab url is :' + )
+        }
+        if (msgAction == 'settings'|| msgAction == 'blacklist'){
+            // Highlight dropdown menu
+            $('.dropdown').parent('li').addClass("mail-tab-active");
+        }
+    });
+</script>

@@ -7,7 +7,7 @@ require_once XOOPS_MODULE_PATH.'/user/actions/UserInfoAction.class.php';
 class UserinfoAction extends User_UserInfoAction
 {
     protected $isError = false;
-    protected $errMsg = "";
+    protected $errMsg = '';
     protected $url = 'index.php';
     protected $mController = null;
     protected $mXoopsUser = null;
@@ -53,7 +53,7 @@ class UserinfoAction extends User_UserInfoAction
             $xoopsUser = $this->mXoopsUser;
         }
         $result = $this->getDefaultView($controller, $xoopsUser);
-        if ($result == USER_FRAME_VIEW_ERROR) {
+        if (USER_FRAME_VIEW_ERROR == $result) {
             $this->setErr(_MD_MESSAGE_SETTINGS_MSG19);
         }
         $language = $controller->mRoot->mContext->getXoopsConfig('language');
@@ -82,7 +82,7 @@ class UserinfoAction extends User_UserInfoAction
             $render->setAttribute('enableSelfDelete', false);
         }
     
-        $definitions = array();
+        $definitions = [];
         $profile = null;
         XCube_DelegateUtils::call('Legacy_Profile.GetDefinition', new XCube_Ref($definitions), 'view');
         XCube_DelegateUtils::call('Legacy_Profile.GetProfile', new XCube_Ref($profile), $this->mObject->get('uid'));

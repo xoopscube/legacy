@@ -1,3 +1,3 @@
 <?php
 
-define('_AD_STDCACHE_LANG_INTERVAL_TIMER', "Interval timer (min) :");
+define( '_AD_STDCACHE_LANG_INTERVAL_TIMER' , 'Interval timer (min) :');

@@ -1,33 +1,31 @@
 <?php
 /**
- *
- * @package XOOPS2
- * @version $Id: legacy_mainmenu.php,v 1.3 2008/09/25 15:12:12 kilica Exp $
- * @copyright Copyright (c) 2000 XOOPS.org  <http://www.xoops.org/>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * legacy_mainmenu.php
+ * XOOPS2
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Kilica, 2008/09/25
+ * @author     Kazumi Ono (aka onokazu)
+ * @copyright  (c) 2000-2003 XOOPS.org
+ * @license    GPL 2.0
+ * @brief      This file has been modified for Legacy from XOOPS2 System module block
  */
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
-//  This file has been modified for Legacy from XOOPS2 System module block   //
-// ------------------------------------------------------------------------- //
 
+/**
+ *
+ * @param $options
+ * @return array
+ */
 function b_legacy_mainmenu_show($options)
 {
     $root =& XCube_Root::getSingleton();
     $xoopsModule =& $root->mContext->mXoopsModule;
     $xoopsUser =& $root->mController->mRoot->mContext->mXoopsUser;
-    
-    $block = array();
-    $block['_display_'] = true;
 
+    $block = [];
+    $block['_display_'] = true;
+    $block['icon'] = $options[1];
     $module_handler =& xoops_gethandler('module');
     $criteria = new CriteriaCompo(new Criteria('hasmain', 1));
     $criteria->add(new Criteria('isactive', 1));
@@ -43,16 +41,19 @@ function b_legacy_mainmenu_show($options)
             $module = &$modules[$i];
             $blockm = &$block['modules'][$i];
             $blockm['name'] = $module->getVar('name');
+            if (!empty($options[1])) {
+                $blockm['icon'] = $module->getInfo('icon'); // TODO @gigamaster icon option
+            }
             $moddir = XOOPS_URL.'/modules/';
             $moddir .= $blockm['directory'] = $module->getVar('dirname', 'N');
             $info = $module->getInfo();
             $sublinks =& $module->subLink();
             if (count($sublinks)>0 && ($all_links || $i==$mid)) {
                 foreach ($sublinks as $sublink) {
-                    $blockm['sublinks'][] = array('name' => $sublink['name'], 'url' => $moddir.'/'.$sublink['url']);
+                    $blockm['sublinks'][] = ['name' => $sublink['name'], 'url' => $moddir . '/' . $sublink['url']];
                 }
             } else {
-                $blockm['sublinks'] = array();
+                $blockm['sublinks'] = [];
             }
         }
     }
@@ -67,7 +68,17 @@ function b_legacy_mainmenu_edit($options)
         $on = $off;
         $off = '';
     }
-    return "<div>"._MB_LEGACY_MAINMENU_EXPAND_SUB.
-    "<input type=\"radio\" name=\"options[0]\" value=\"0\" $off>"._NO.
-    " &nbsp; <input type=\"radio\" name=\"options[0]\" value=\"1\" $on>"._YES."</div>";
+    $icon_off = 'checked="checked"';
+    $icon_on = '';
+    if ($options[1]) {
+        $icon_on = $icon_off;
+        $icon_off = '';
+    }
+    return '<div>' . _MB_LEGACY_MAINMENU_EXPAND_SUB .
+           "<input type=\"radio\" name=\"options[0]\" value=\"0\" $off>" . _NO .
+           " &nbsp; <input type=\"radio\" name=\"options[0]\" value=\"1\" $on>" . _YES .
+           "<br>Show icon
+           <input type=\"radio\" name=\"options[1]\" value=\"0\" $icon_off>" . _NO .
+           " &nbsp; <input type=\"radio\" name=\"options[1]\" value=\"1\" $icon_on>" . _YES . '
+</div>';
 }

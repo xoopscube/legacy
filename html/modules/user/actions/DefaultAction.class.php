@@ -36,7 +36,7 @@ class User_DefaultAction extends User_Action
     
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_default.html");
+        $render->setTemplateName('user_default.html');
         $render->setAttribute('allowRegister', $this->_mAllowRegister);
         if (!empty($_GET['xoops_redirect'])) {
             $root =& $controller->mRoot;
@@ -47,6 +47,6 @@ class User_DefaultAction extends User_Action
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("index.php?action=UserInfo&uid=" . $xoopsUser->get('uid'));
+        $controller->executeForward('index.php?action=UserInfo&uid=' . $xoopsUser->get('uid'));
     }
 }

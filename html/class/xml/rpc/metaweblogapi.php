@@ -1,33 +1,14 @@
 <?php
-// $Id: metaweblogapi.php,v 1.1 2007/05/15 02:34:53 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+/**
+ * Meta Weblog API
+ * @package    kernel
+ * @subpackage xml
+ * @version    XCL 2.3.1
+ * @author     Other authors Minahito, 2007/05/15
+ * @author     Kazumi Ono (aka onokazu)
+ * @copyright  (c) 2000-2003 XOOPS.org
+ * @license    GPL 2.0
+ */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
@@ -35,11 +16,11 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 require_once XOOPS_ROOT_PATH.'/class/xml/rpc/xmlrpcapi.php';
 
-class metaweblogapi extends XoopsXmlRpcApi
+class MetaWeblogApi extends XoopsXmlRpcApi
 {
-    public function MetaWeblogApi(&$params, &$response, &$module)
+    public function __construct(&$params, &$response, &$module)
     {
-        $this->XoopsXmlRpcApi($params, $response, $module);
+        parent::__construct($params, $response, $module);
         $this->_setXoopsTagMap('storyid', 'postid');
         $this->_setXoopsTagMap('published', 'dateCreated');
         $this->_setXoopsTagMap('uid', 'userid');
@@ -54,13 +35,13 @@ class metaweblogapi extends XoopsXmlRpcApi
             if (!$fields =& $this->_getPostFields(null, $this->params[0])) {
                 $this->response->add(new XoopsXmlRpcFault(106));
             } else {
-                $missing = array();
-                $post = array();
+                $missing = [];
+                $post = [];
                 foreach ($fields as $tag => $detail) {
                     $maptag = $this->_getXoopsTagMap($tag);
                     if (!isset($this->params[3][$maptag])) {
                         $data = $this->_getTagCdata($this->params[3]['description'], $maptag, true);
-                        if (trim($data) == '') {
+                        if ('' == trim($data)) {
                             if ($detail['required']) {
                                 $missing[] = $maptag;
                             }
@@ -79,7 +60,7 @@ class metaweblogapi extends XoopsXmlRpcApi
                     }
                     $this->response->add(new XoopsXmlRpcFault(109, $msg));
                 } else {
-                    $newparams = array();
+                    $newparams = [];
                     $newparams[0] = $this->params[0];
                     $newparams[1] = $this->params[1];
                     $newparams[2] = $this->params[2];
@@ -109,13 +90,13 @@ class metaweblogapi extends XoopsXmlRpcApi
         } else {
             if (!$fields =& $this->_getPostFields($this->params[0])) {
             } else {
-                $missing = array();
-                $post = array();
+                $missing = [];
+                $post = [];
                 foreach ($fields as $tag => $detail) {
                     $maptag = $this->_getXoopsTagMap($tag);
                     if (!isset($this->params[3][$maptag])) {
                         $data = $this->_getTagCdata($this->params[3]['description'], $maptag, true);
-                        if (trim($data) == '') {
+                        if ('' == trim($data)) {
                             if ($detail['required']) {
                                 $missing[] = $tag;
                             }
@@ -133,7 +114,7 @@ class metaweblogapi extends XoopsXmlRpcApi
                     }
                     $this->response->add(new XoopsXmlRpcFault(109, $msg));
                 } else {
-                    $newparams = array();
+                    $newparams = [];
                     $newparams[0] = $this->params[0];
                     $newparams[1] = $this->params[1];
                     $newparams[2] = $this->params[2];
@@ -208,7 +189,7 @@ class metaweblogapi extends XoopsXmlRpcApi
             if (is_array($ret)) {
                 $arr = new XoopsXmlRpcArray();
                 $count = count($ret);
-                if ($count == 0) {
+                if (0 == $count) {
                     $this->response->add(new XoopsXmlRpcFault(106, 'Found 0 Entries'));
                 } else {
                     for ($i = 0; $i < $count; $i++) {

@@ -1,20 +1,21 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: NotifyDeleteAction.class.php,v 1.4 2008/09/25 15:12:11 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * NotifyDeleteAction.class.php
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/include/notification_functions.php";
+require_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
 
-require_once XOOPS_MODULE_PATH . "/legacy/forms/NotifyDeleteForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/forms/NotifyDeleteForm.class.php';
 
 /***
  * @internal
@@ -23,16 +24,16 @@ require_once XOOPS_MODULE_PATH . "/legacy/forms/NotifyDeleteForm.class.php";
  */
 class Legacy_NotifyDeleteAction extends Legacy_Action
 {
-    public $mModules = array();
+    public $mModules = [];
     public $mActionForm = null;
-    
+
     public $mErrorMessage = null;
-    
+
     public function prepare(&$controller, &$xoopsUser)
     {
         $controller->mRoot->mLanguageManager->loadPageTypeMessageCatalog('notification');
         $controller->mRoot->mLanguageManager->loadModuleMessageCatalog('legacy');
-        
+
         $this->mActionForm =new Legacy_NotifyDeleteForm();
         $this->mActionForm->prepare();
     }
@@ -45,12 +46,15 @@ class Legacy_NotifyDeleteAction extends Legacy_Action
     /**
      * This member function is a special case. Because the confirm is must, it
      * uses token error for displaying confirm.
+     * @param $contoller
+     * @param $xoopsUser
+     * @return int
      */
     public function execute(&$contoller, &$xoopsUser)
     {
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
-        
+
         //
         // If input values are error, the action form returns fatal error flag.
         // If it's not fatal, display confirm form.
@@ -70,23 +74,23 @@ class Legacy_NotifyDeleteAction extends Legacy_Action
                 $successFlag = $successFlag & $handler->delete($t_notify);
             }
         }
-        
+
         return $successFlag ? LEGACY_FRAME_VIEW_SUCCESS : LEGACY_FRAME_VIEW_ERROR;
     }
-        
+
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("legacy_notification_delete.html");
+        $render->setTemplateName('legacy_notification_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward(XOOPS_URL . "/notifications.php");
+        $controller->executeForward(XOOPS_URL . '/notifications.php');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect(XOOPS_URL . "/notifications.php", 2, _NOT_NOTHINGTODELETE);
+        $controller->executeRedirect(XOOPS_URL . '/notifications.php', 2, _NOT_NOTHINGTODELETE);
     }
 }

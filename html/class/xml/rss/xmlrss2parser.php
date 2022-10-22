@@ -1,33 +1,14 @@
 <?php
-// $Id: xmlrss2parser.php,v 1.1 2007/05/15 02:34:38 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+/**
+ * XML RSS parser
+ * @package    kernel
+ * @subpackage xml
+ * @version    XCL 2.3.1
+ * @author     Other authors Minahito, 2007/05/15
+ * @author     Kazumi Ono (aka onokazu)
+ * @copyright  (c) 2000-2003 XOOPS.org
+ * @license    GPL 2.0
+ */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
@@ -38,14 +19,14 @@ require_once(XOOPS_ROOT_PATH.'/class/xml/xmltaghandler.php');
 
 class XoopsXmlRss2Parser extends SaxParser
 {
-    public $_tempArr = array();
-    public $_channelData = array();
-    public $_imageData = array();
-    public $_items = array();
+    public $_tempArr = [];
+    public $_channelData = [];
+    public $_imageData = [];
+    public $_items = [];
 
-    public function XoopsXmlRss2Parser(&$input)
+    public function __construct(&$input)
     {
-        $this->SaxParser($input);
+        parent::__construct($input);
         $this->useUtfEncoding();
         $this->addTagHandler(new RssChannelHandler());
         $this->addTagHandler(new RssTitleHandler());
@@ -137,14 +118,14 @@ class XoopsXmlRss2Parser extends SaxParser
     public function resetTempArr()
     {
         unset($this->_tempArr);
-        $this->_tempArr = array();
+        $this->_tempArr = [];
     }
 }
 
 class RssChannelHandler extends XmlTagHandler
 {
 
-    public function RssChannelHandler()
+    public function __construct()
     {
     }
 
@@ -157,7 +138,7 @@ class RssChannelHandler extends XmlTagHandler
 class RssTitleHandler extends XmlTagHandler
 {
 
-    public function RssTitleHandler()
+    public function __construct()
     {
     }
 
@@ -188,7 +169,7 @@ class RssTitleHandler extends XmlTagHandler
 class RssLinkHandler extends XmlTagHandler
 {
 
-    public function RssLinkHandler()
+    public function __construct()
     {
     }
 
@@ -219,7 +200,7 @@ class RssLinkHandler extends XmlTagHandler
 class RssDescriptionHandler extends XmlTagHandler
 {
 
-    public function RssDescriptionHandler()
+    public function __construct()
     {
     }
 
@@ -250,7 +231,7 @@ class RssDescriptionHandler extends XmlTagHandler
 class RssGeneratorHandler extends XmlTagHandler
 {
 
-    public function RssGeneratorHandler()
+    public function __construct()
     {
     }
 
@@ -274,7 +255,7 @@ class RssGeneratorHandler extends XmlTagHandler
 class RssCopyrightHandler extends XmlTagHandler
 {
 
-    public function RssCopyrightHandler()
+    public function __construct()
     {
     }
 
@@ -298,7 +279,7 @@ class RssCopyrightHandler extends XmlTagHandler
 class RssNameHandler extends XmlTagHandler
 {
 
-    public function RssNameHandler()
+    public function __construct()
     {
     }
 
@@ -322,7 +303,7 @@ class RssNameHandler extends XmlTagHandler
 class RssManagingEditorHandler extends XmlTagHandler
 {
 
-    public function RssManagingEditorHandler()
+    public function __construct()
     {
     }
 
@@ -346,7 +327,7 @@ class RssManagingEditorHandler extends XmlTagHandler
 class RssLanguageHandler extends XmlTagHandler
 {
 
-    public function RssLanguageHandler()
+    public function __construct()
     {
     }
 
@@ -370,7 +351,7 @@ class RssLanguageHandler extends XmlTagHandler
 class RssWebMasterHandler extends XmlTagHandler
 {
 
-    public function RssWebMasterHandler()
+    public function __construct()
     {
     }
 
@@ -394,7 +375,7 @@ class RssWebMasterHandler extends XmlTagHandler
 class RssDocsHandler extends XmlTagHandler
 {
 
-    public function RssDocsHandler()
+    public function __construct()
     {
     }
 
@@ -418,7 +399,7 @@ class RssDocsHandler extends XmlTagHandler
 class RssTtlHandler extends XmlTagHandler
 {
 
-    public function RssTtlHandler()
+    public function __construct()
     {
     }
 
@@ -465,7 +446,7 @@ class RssTextInputHandler extends XmlTagHandler
 class RssLastBuildDateHandler extends XmlTagHandler
 {
 
-    public function RssLastBuildDateHandler()
+    public function __construct()
     {
     }
 
@@ -489,7 +470,7 @@ class RssLastBuildDateHandler extends XmlTagHandler
 class RssImageHandler extends XmlTagHandler
 {
 
-    public function RssImageHandler()
+    public function __construct()
     {
     }
 
@@ -502,7 +483,7 @@ class RssImageHandler extends XmlTagHandler
 class RssUrlHandler extends XmlTagHandler
 {
 
-    public function RssUrlHandler()
+    public function __construct()
     {
     }
 
@@ -513,7 +494,7 @@ class RssUrlHandler extends XmlTagHandler
 
     public function handleCharacterData(&$parser, &$data)
     {
-        if ($parser->getParentTag() == 'image') {
+        if ('image' === $parser->getParentTag()) {
             $parser->setImageData('url', $data);
         }
     }
@@ -522,7 +503,7 @@ class RssUrlHandler extends XmlTagHandler
 class RssWidthHandler extends XmlTagHandler
 {
 
-    public function RssWidthHandler()
+    public function __construct()
     {
     }
 
@@ -533,7 +514,7 @@ class RssWidthHandler extends XmlTagHandler
 
     public function handleCharacterData(&$parser, &$data)
     {
-        if ($parser->getParentTag() == 'image') {
+        if ('image' === $parser->getParentTag()) {
             $parser->setImageData('width', $data);
         }
     }
@@ -542,7 +523,7 @@ class RssWidthHandler extends XmlTagHandler
 class RssHeightHandler extends XmlTagHandler
 {
 
-    public function RssHeightHandler()
+    public function __construct()
     {
     }
 
@@ -553,7 +534,7 @@ class RssHeightHandler extends XmlTagHandler
 
     public function handleCharacterData(&$parser, &$data)
     {
-        if ($parser->getParentTag() == 'image') {
+        if ('image' === $parser->getParentTag()) {
             $parser->setImageData('height', $data);
         }
     }
@@ -562,7 +543,7 @@ class RssHeightHandler extends XmlTagHandler
 class RssItemHandler extends XmlTagHandler
 {
 
-    public function RssItemHandler()
+    public function __construct()
     {
     }
 
@@ -585,7 +566,7 @@ class RssItemHandler extends XmlTagHandler
 class RssCategoryHandler extends XmlTagHandler
 {
 
-    public function RssCategoryHandler()
+    public function __construct()
     {
     }
 
@@ -602,6 +583,7 @@ class RssCategoryHandler extends XmlTagHandler
             break;
         case 'item':
             $parser->setTempArr('category', $data, ', ');
+            break;
         default:
             break;
         }
@@ -611,7 +593,7 @@ class RssCategoryHandler extends XmlTagHandler
 class RssCommentsHandler extends XmlTagHandler
 {
 
-    public function RssCommentsHandler()
+    public function __construct()
     {
     }
 
@@ -622,7 +604,7 @@ class RssCommentsHandler extends XmlTagHandler
 
     public function handleCharacterData(&$parser, &$data)
     {
-        if ($parser->getParentTag() == 'item') {
+        if ('item' === $parser->getParentTag()) {
             $parser->setTempArr('comments', $data);
         }
     }
@@ -631,7 +613,7 @@ class RssCommentsHandler extends XmlTagHandler
 class RssPubDateHandler extends XmlTagHandler
 {
 
-    public function RssPubDateHandler()
+    public function __construct()
     {
     }
 
@@ -658,7 +640,7 @@ class RssPubDateHandler extends XmlTagHandler
 class RssGuidHandler extends XmlTagHandler
 {
 
-    public function RssGuidHandler()
+    public function __construct()
     {
     }
 
@@ -669,7 +651,7 @@ class RssGuidHandler extends XmlTagHandler
 
     public function handleCharacterData(&$parser, &$data)
     {
-        if ($parser->getParentTag() == 'item') {
+        if ('item' === $parser->getParentTag()) {
             $parser->setTempArr('guid', $data);
         }
     }
@@ -689,7 +671,7 @@ class RssAuthorHandler extends XmlTagHandler
 
     public function handleCharacterData(&$parser, &$data)
     {
-        if ($parser->getParentTag() == 'item') {
+        if ('item' === $parser->getParentTag()) {
             $parser->setTempArr('author', $data);
         }
     }
@@ -698,7 +680,7 @@ class RssAuthorHandler extends XmlTagHandler
 class RssSourceHandler extends XmlTagHandler
 {
 
-    public function RssSourceHandler()
+    public function __construct()
     {
     }
 
@@ -709,14 +691,14 @@ class RssSourceHandler extends XmlTagHandler
 
     public function handleBeginElement(&$parser, &$attributes)
     {
-        if ($parser->getParentTag() == 'item') {
+        if ('item' === $parser->getParentTag()) {
             $parser->setTempArr('source_url', $attributes['url']);
         }
     }
 
     public function handleCharacterData(&$parser, &$data)
     {
-        if ($parser->getParentTag() == 'item') {
+        if ('item' === $parser->getParentTag()) {
             $parser->setTempArr('source', $data);
         }
     }

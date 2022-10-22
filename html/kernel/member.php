@@ -1,33 +1,17 @@
 <?php
-// $Id: member.php,v 1.1 2007/05/15 02:34:37 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://xoopscube.jp/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+/**
+ * XOOPS member handler class
+ * This class provides simple interface (a facade class) for handling groups/users/
+ * membership data
+ * @package    kernel
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Other authors Minahito, 2007/05/15
+ * @author     Kazumi Ono (aka onokazu)
+ * @copyright  (c) 2000-2003 XOOPS.org
+ * @license    GPL 2.0
+ */
+
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
@@ -36,11 +20,6 @@ require_once XOOPS_ROOT_PATH.'/kernel/user.php';
 require_once XOOPS_ROOT_PATH.'/kernel/group.php';
 
 /**
-* XOOPS member handler class.
-* This class provides simple interface (a facade class) for handling groups/users/
-* membership data.
-*
-*
 * @author  Kazumi Ono <onokazu@xoops.org>
 * @copyright copyright (c) 2000-2003 XOOPS.org
 * @package kernel
@@ -68,18 +47,22 @@ class XoopsMemberHandler
     /**
     * holds temporary user objects
     */
-    public $_members = array();
+    public $_members = [];
     /**#@-*/
 
     /**
      * constructor
-     *
+     * @param $db
      */
-    public function XoopsMemberHandler(&$db)
+    public function __construct(&$db)
     {
         $this->_gHandler =new XoopsGroupHandler($db);
         $this->_uHandler =new XoopsUserHandler($db);
         $this->_mHandler =new XoopsMembershipHandler($db);
+    }
+    public function XoopsMemberHandler(&$db)
+    {
+        return self::__construct($db);
     }
 
     /**
@@ -129,12 +112,12 @@ class XoopsMemberHandler
         }
         return $this->_members[$id];
     }
-    
+
     public function &getUserByEmail($email)
     {
         $returnUser = null;
 
-        $myts =& MyTextSanitizer::getInstance();    ///< @todo not depends
+        $myts =& MyTextSanitizer::sGetInstance();    ///< @todo not depends
         $users =& $this->getUsers(new Criteria('email', $myts->addSlashes($email)));
 
         if (!is_array($users)) {
@@ -142,19 +125,20 @@ class XoopsMemberHandler
         } elseif (count($users) > 0) {
             $returnUser = is_object($users[0]) ? $users[0] : null;
         }
-        
+
         return $returnUser;
     }
 
     /**
      * Delete function. This function is virtual overload function.
-     * @param $object XoopsUser or XoopsGroup
+     * @param XoopsUser $object or XoopsGroup
+     * @return bool
      */
     public function delete(&$object)
     {
-        if (is_a($object, "XoopsUser")) {
+        if ($object instanceof \XoopsUser) {
             return $this->deleteUser($object);
-        } elseif (is_a($object, "XoopsGroup")) {
+        } elseif ($object instanceof \XoopsGroup) {
             return $this->deleteGroup($object);
         }
     }
@@ -201,8 +185,9 @@ class XoopsMemberHandler
      * insert a user into the database
      *
      * @param object $user reference to the user to insert
+     * @param bool   $force
      * @return bool TRUE if already in database and unchanged
-     * FALSE on failure
+     *                     FALSE on failure
      */
     public function insertUser(&$user, $force = false)
     {
@@ -244,7 +229,7 @@ class XoopsMemberHandler
     public function &getGroupList($criteria = null)
     {
         $groups =& $this->_gHandler->getObjects($criteria, true);
-        $ret = array();
+        $ret = [];
         foreach (array_keys($groups) as $i) {
             $ret[$i] = $groups[$i]->getVar('name');
         }
@@ -266,8 +251,8 @@ class XoopsMemberHandler
      * add a user to a group
      *
      * @param int $group_id ID of the group
-     * @param int $user_id ID of the user
-     * @return object XoopsMembership
+     * @param int $user_id  ID of the user
+     * @return bool XoopsMembership
      */
     public function addUserToGroup($group_id, $user_id)
     {
@@ -282,7 +267,7 @@ class XoopsMemberHandler
         return true;
     }
 
-    
+
     /**
      * remove a one user from a group.
      * @param int $group_id ID of the group
@@ -291,7 +276,7 @@ class XoopsMemberHandler
      */
     public function removeUserFromGroup($group_id, $user_id)
     {
-        $user_ids = array($user_id);
+        $user_ids = [$user_id];
         return $this->removeUsersFromGroup($group_id, $user_ids);
     }
 
@@ -302,7 +287,7 @@ class XoopsMemberHandler
      * @param array $user_ids array of user-IDs
      * @return bool success?
      */
-    public function removeUsersFromGroup($group_id, $user_ids = array())
+    public function removeUsersFromGroup($group_id, $user_ids = [])
     {
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('groupid', $group_id));
@@ -330,7 +315,7 @@ class XoopsMemberHandler
         if (!$asobject) {
             return $user_ids;
         } else {
-            $ret = array();
+            $ret = [];
             foreach ($user_ids as $u_id) {
                 $user =& $this->getUser($u_id);
                 if (is_object($user)) {
@@ -343,6 +328,11 @@ class XoopsMemberHandler
     }
 
     /**
+     * @param      $group_id
+     * @param bool $asobject
+     * @param int  $limit
+     * @param int  $start
+     * @return array
      * @see getUsersByGroup
      */
     public function &getUsersByNoGroup($group_id, $asobject = false, $limit = 0, $start = 0)
@@ -351,7 +341,7 @@ class XoopsMemberHandler
         if (!$asobject) {
             return $user_ids;
         } else {
-            $ret = array();
+            $ret = [];
             foreach ($user_ids as $u_id) {
                 $user =& $this->getUser($u_id);
                 if (is_object($user)) {
@@ -376,7 +366,7 @@ class XoopsMemberHandler
         if (!$asobject) {
             return $group_ids;
         } else {
-            $ret = array();
+            $ret = [];
             foreach ($group_ids as $g_id) {
                 $ret[] =& $this->getGroup($g_id);
             }
@@ -396,12 +386,12 @@ class XoopsMemberHandler
         $criteria = new CriteriaCompo(new Criteria('uname', $uname));
         if (is_callable('User_Utils::passwordVerify')) {
             $user = $this->_uHandler->getObjects($criteria, false);
-            if ($user && count($user) === 1) {
+            if ($user && 1 === count($user)) {
                 if (!User_Utils::passwordVerify($pwd, $user[0]->get('pass'))) {
-                    $user = array();
+                    $user = [];
                 }
             } else {
-                $user = array();
+                $user = [];
             }
         } else {
             if (is_callable('User_Utils::encryptPassword')) {
@@ -411,7 +401,7 @@ class XoopsMemberHandler
             }
             $user = $this->_uHandler->getObjects($criteria, false);
         }
-        if (!$user || count($user) != 1) {
+        if (!$user || 1 != count($user)) {
             $ret = false;
             return $ret;
         }
@@ -430,7 +420,7 @@ class XoopsMemberHandler
         $criteria = new CriteriaCompo(new Criteria('uname', $uname));
         $criteria->add(new Criteria('pass', $md5pwd));
         $user =& $this->_uHandler->getObjects($criteria, false);
-        if (!$user || count($user) != 1) {
+        if (!$user || 1 != count($user)) {
             $ret = false;
             return $ret;
         }
@@ -460,8 +450,9 @@ class XoopsMemberHandler
     }
 
     /**
-     * @see getUserCountByGroup
+     * @param $group_id
      * @return int
+     * @see getUserCountByGroup
      */
     public function getUserCountByNoGroup($group_id)
     {
@@ -472,8 +463,7 @@ class XoopsMemberHandler
         $sql = "SELECT count(*) FROM ${usersTable} u LEFT JOIN ${linkTable} g ON u.uid=g.uid," .
                 "${usersTable} u2 LEFT JOIN ${linkTable} g2 ON u2.uid=g2.uid AND g2.groupid=${groupid} " .
                 "WHERE (g.groupid != ${groupid} OR g.groupid IS NULL) " .
-                "AND (g2.groupid = ${groupid} OR g2.groupid IS NULL) " .
-                "AND u.uid = u2.uid AND g2.uid IS NULL GROUP BY u.uid";
+                "AND (g2.groupid = ${groupid} OR g2.groupid IS NULL) " . 'AND u.uid = u2.uid AND g2.uid IS NULL GROUP BY u.uid';
 
         $result = $this->_mHandler->db->query($sql);
         if (!$result) {
@@ -520,7 +510,7 @@ class XoopsMemberHandler
      */
     public function activateUser(&$user)
     {
-        if ($user->getVar('level') != 0) {
+        if (0 != $user->getVar('level')) {
             return true;
         }
         $user->setVar('level', 1);

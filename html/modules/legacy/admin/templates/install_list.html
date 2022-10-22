@@ -1,30 +1,110 @@
-<div class="adminnavi">
-  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+<div class="adminnavi" aria-label="breadcrumb">
+	<a href="<{$xoops_url}>/admin.php">Dashboard</a>
+	&raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
-  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></span>
+  &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><a href="./index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></span>
 </div>
 
-<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></h3>
 
-<div class="tips"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_LIST_ADVICE}></div>
+<{* include file="./components/module-overview.html" *}>
 
-<table class="outer">
-  <tr>
-    <th><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_VERSION}></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
-  </tr>
-  <{foreach item=module from=$moduleObjects}>
-    <tr class="<{cycle values='odd,even'}>">
-      <td class="legacy_list_image">
-        <img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->getShow('name','e')}>" title="<{$module->getShow('name','e')}>" />
-        <div class="legacy_list_imagetitle"><{$module->getShow('name')}></div>
-      </td>
-      <td class="legacy_list_order"><{$module->getRenderedVersion()}></td>
-      <td class="legacy_list_control">
-        <a href="index.php?action=ModuleInstall&amp;dirname=<{$module->getShow('dirname')}>"><img src="<{"icons/module_add.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>" title="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>" /></a>
-        <a href="index.php?action=ModuleInfo&amp;dirname=<{$module->getShow('dirname')}>"><img src="<{"icons/info.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>" title="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>" /></a>
-      </td>
-    </tr>
-  <{/foreach}>
-</table>
+
+<h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></h2>
+
+
+<div class="tips">
+    <{$smarty.const._AD_LEGACY_LANG_MODINSTALL_LIST_ADVICE}>
+</div>
+
+
+<{* ////— ACTION-CONTROL —\\\\ *}>
+<section layout="row center-justify" class="action-control">
+
+    <a class="button" href="index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
+
+    <div class="control-view">
+        <button id="list" class="button" data-id="1" type="button" aria-label="View List">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                <path d="M9 5v4h12V5M9 19h12v-4H9m0-1h12v-4H9M4 9h4V5H4m0 14h4v-4H4m0-1h4v-4H4v4z" fill="currentColor"/></svg>
+        </button>
+
+        <button id="grid" class="button" data-id="2" type="button" aria-label="View Grid">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                <path d="M16 5v6h5V5m-11 6h5V5h-5m6 13h5v-6h-5m-6 6h5v-6h-5m-6 6h5v-6H4m0-1h5V5H4v6z" fill="currentColor"/></svg>
+        </button>
+
+        <button class="help-admin button" type='button' data-module='legacy' data-help-article='#help-modules' aria-label="<{$smarty.const._HELP}>">
+            <b>?</b> </button>
+    </div>
+
+</section>
+
+
+<hr>
+
+
+<{* ----- MODULE LIST ----- *}>
+
+
+<div class="ui-data-render view">
+
+	<{foreach item=module from=$moduleObjects}>
+	<div class="ui-card-block">
+
+    <div class="ui-card-block-header">
+
+      <div class="ui-card-block-info">
+        <a href="index.php?action=ModuleInfo&amp;dirname=<{$module->getVar('dirname')}>" aria-label="<{$module->getShow('name')}> - <{$smarty.const._AD_LEGACY_LANG_INFORMATION}>">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="icon-info">
+            <path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2z" fill="currentColor"></path>
+            </svg>
+        </a>
+      </div>
+
+      <div class="ui-card-block-settings">
+        <input type="checkbox" class="switch" name="<{$module->getShow('name')}>" disabled>
+      </div><{* /ui-card-block-settings *}>
+
+    </div><{* /ui-card-header *}>
+
+
+		<div class="ui-card-block-image">
+			<img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" class="svg" alt="<{$module->getShow('name')}>" aria-label="<{$module->getShow('name')}>">
+		</div>
+
+
+    <div class="ui-card-block-content">
+
+    <div class="ui-card-block-item pad-center">
+			<input type="text" size="20" name="<{$module->getShow('name')}>" value="<{$module->getShow('name')}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_MOD_NAME}> : <{$module->getShow('name')}>" disabled>
+		</div>
+
+		<div class="ui-card-block-item pad-left">
+      <span aria-label="<{$smarty.const._AD_LEGACY_LANG_VERSION}>"><img src="<{"icons/icon-package.svg"|theme}>" class="svg"></span>
+				<{$smarty.const._AD_LEGACY_LANG_VERSION}> : <{$module->getRenderedVersion()}>
+		</div>
+
+		<div class="ui-card-block-item pad-left">
+			<span aria-label="<{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}>"><img class="svg" src="<{"icons/icon-date-time.svg"|theme}>" width="1em" height="1em" alt="date time"></span>
+			<span>----/--/-- --:--:--</span>
+		</div>
+
+		<div class="ui-card-block-item pad-center">
+			<a href="index.php?action=ModuleInstall&amp;dirname=<{$module->getShow('dirname')}>" class="button" aria-label="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
+				<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24" class="svg-ui-icon">
+					<path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18c-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18c.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9M12 4.15l-1.89 1.07L16 8.61l1.96-1.11L12 4.15M6.04 7.5L12 10.85l1.96-1.1l-5.88-3.4L6.04 7.5M5 15.91l6 3.38v-6.71L5 9.21v6.7m14 0v-6.7l-6 3.37v6.71l6-3.38z" fill="currentColor"></path>
+				</svg>	<{$smarty.const._AD_LEGACY_LANG_INSTALL}>
+			</a>
+		</div>
+
+    </div><{* / ui-card-block-content *}>
+
+
+	</div><{* / ui-card-block *}>
+
+	<{/foreach}>
+
+</div>

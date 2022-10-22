@@ -1,0 +1,13 @@
+<{* ---------- ---------- ---------- ---------- ---------- Block Waiting *}>
+
+<div class="tips">
+  <{$smarty.const._MI_LEGACY_BLOCK_WAITING_NAME}>
+</div>
+
+  <div id="c<{$blockid}>" class="submenu">
+    <ul>
+    <{foreach item=module from=$modules}>
+      <li><a href="<{$module.adminlink}>"><{$module.lang_linkname}></a>: <{$module.pendingnum}></li>
+    <{/foreach}>
+    </ul>
+  </div>

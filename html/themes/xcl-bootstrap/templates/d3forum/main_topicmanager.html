@@ -1,0 +1,187 @@
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+    <{if $mod_config.show_breadcrumbs}>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="<{$xoops_url}>/">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                    <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                </svg></a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="<{$mod_url}>/index.php">
+                <svg class="bi bi-chat-square-dots" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2.5a2 2 0 0 1 1.6.8L8 14.333 9.9 11.8a2 2 0 0 1 1.6-.8H14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                    <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg> <{$smarty.const._MD_D3FORUM_TOP}></a>
+            </li>
+            <li class="breadcrumb-item"><a href="<{$mod_url}>/index.php?cat_id=<{$category.id}>"><{$category.title}></a></li>
+            <li class="breadcrumb-item"><a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>"><{$forum.title}></a></li>
+            <{if $topic.id}>
+            <li class="breadcrumb-item"><a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>"><{$topic.title}></a></li>
+            <{/if}>
+            <li class="breadcrumb-item active" aria-current="page"><{$smarty.const._MD_D3FORUM_TOPICMANAGER}></li>
+        </ol>
+    </nav>
+    <{/if}>
+
+
+<h3 class="d3f_title"><{$smarty.const._MD_D3FORUM_TOPICMANAGER}></h3>
+
+<p class="targettopic"><{$category.title}> - <{$forum.title}> - <{$topic.title}></p>
+
+<form name="topicmanager_update" id="topicmanager_update" action="<{$mod_url}>/index.php?page=topicmanager&amp;topic_id=<{$topic.id}>" method="post">
+<{$gticket_hidden}>
+
+
+
+        <div class="form-group row">
+            <label for="topic_title" class="col-sm-4 col-form-label"><{$smarty.const._MD_D3FORUM_TOPICTITLE}></label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" name="topic_title" id="topic_title" size="50" value="<{$topic.title4edit}>">
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label for="forum_id" class="col-sm-4 col-form-label"><{$smarty.const._MD_D3FORUM_FORUM}></label>
+            <div class="col-sm-6">
+                <select name="forum_id" id="forum_id" class="custom-select mr-sm-4" ><{$forum_jumpbox_options}></select>
+            </div>
+        </div>
+
+
+	<{if $forum.external_link_format}>
+        <div class="form-group row">
+            <label for="topic_external_link_id" class="col-sm-4 col-form-label"><{$smarty.const._MD_D3FORUM_TOPICEXTERNALLINKID}></label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" name="topic_external_link_id" id="topic_external_link_id" size="20" value="<{$topic.external_link_id}>">
+            </div>
+        </div>
+	<{/if}>
+
+        <div class="form-group row">
+            <div class="col-sm-4"><{$smarty.const._MD_D3FORUM_REPLIES}></div>
+            <div class="col-sm-6 form-check"><{$topic.replies}></div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-4"><{$smarty.const._MD_D3FORUM_VIEWS}></div>
+            <div class="col-sm-6 form-check"><{$topic.views}></div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-4"><{$smarty.const._MD_D3FORUM_FIRSTPOST}></div>
+            <div class="col-sm-6 form-check"><{$topic.first_post_time_formatted}></div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-4"><{$smarty.const._MD_D3FORUM_LASTPOST}></div>
+            <div class="col-sm-6 form-check"><{$topic.last_post_time_formatted}></div>
+        </div>
+
+        <div class="form-group row">
+            <label for="topic_sticky" class="col-sm-4 col-form-label"><{$smarty.const._MD_D3FORUM_TH_STICKY}></label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control col-sm-2" name="topic_sticky" id="topic_sticky" size="2" value="<{$topic.sticky}>">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="topic_locked" class="col-sm-4 col-form-label"><{$smarty.const._MD_D3FORUM_TH_LOCK}></label>
+            <div class="col-sm-6 form-check">
+
+                <input type="checkbox" name="topic_locked" id="topic_locked" value="1" <{if $topic.locked}>checked="checked"<{/if}>>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="topic_invisible" class="col-sm-4 col-form-label"><{$smarty.const._MD_D3FORUM_TH_INVISIBLE}></label>
+            <div class="col-sm-6 form-check">
+                <input type="checkbox" name="topic_invisible" id="topic_invisible" value="1" <{if $topic.invisible}>checked="checked"<{/if}>>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="topic_solved" class="col-sm-4 col-form-label"><{$smarty.const._MD_D3FORUM_TH_SOLVED}></label>
+            <div class="col-sm-6 form-check">
+                <input type="checkbox" name="topic_solved" id="topic_solved" value="1" <{if $topic.solved}>checked="checked"<{/if}>>
+            </div>
+        </div>
+
+
+        <p class="text-center">
+            <button type="submit" class="btn btn-primary px-3" name="topicman_post" value="<{$smarty.const._MD_D3FORUM_BTN_UPDATE}>">
+                <svg class="bi bi-arrow-up-square mr-1" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                    <path fill-rule="evenodd" d="M4.646 8.354a.5.5 0 0 0 .708 0L8 5.707l2.646 2.647a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 0 0 0 .708z"/>
+                    <path fill-rule="evenodd" d="M8 11.5a.5.5 0 0 0 .5-.5V6a.5.5 0 0 0-1 0v5a.5.5 0 0 0 .5.5z"/>
+                </svg> <{$smarty.const._MD_D3FORUM_BTN_UPDATE}> </button>
+            <button type="submit" class="btn btn-outline-primary px-3" name="topicman_sync" value="<{$smarty.const._MD_D3FORUM_BTN_SYNCTHISTOPIC}>">
+                <svg class="bi bi-gear-wide-connected mr-1" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M8.932.727c-.243-.97-1.62-.97-1.864 0l-.071.286a.96.96 0 0 1-1.622.434l-.205-.211c-.695-.719-1.888-.03-1.613.931l.08.284a.96.96 0 0 1-1.186 1.187l-.284-.081c-.96-.275-1.65.918-.931 1.613l.211.205a.96.96 0 0 1-.434 1.622l-.286.071c-.97.243-.97 1.62 0 1.864l.286.071a.96.96 0 0 1 .434 1.622l-.211.205c-.719.695-.03 1.888.931 1.613l.284-.08a.96.96 0 0 1 1.187 1.187l-.081.283c-.275.96.918 1.65 1.613.931l.205-.211a.96.96 0 0 1 1.622.434l.071.286c.243.97 1.62.97 1.864 0l.071-.286a.96.96 0 0 1 1.622-.434l.205.211c.695.719 1.888.03 1.613-.931l-.08-.284a.96.96 0 0 1 1.187-1.187l.283.081c.96.275 1.65-.918.931-1.613l-.211-.205a.96.96 0 0 1 .434-1.622l.286-.071c.97-.243.97-1.62 0-1.864l-.286-.071a.96.96 0 0 1-.434-1.622l.211-.205c.719-.695.03-1.888-.931-1.613l-.284.08a.96.96 0 0 1-1.187-1.186l.081-.284c.275-.96-.918-1.65-1.613-.931l-.205.211a.96.96 0 0 1-1.622-.434L8.932.727zM8 12.997a4.998 4.998 0 1 0 0-9.995 4.998 4.998 0 0 0 0 9.996z"/>
+                    <path fill-rule="evenodd" d="M7.375 8L4.602 4.302l.8-.6L8.25 7.5h4.748v1H8.25L5.4 12.298l-.8-.6L7.376 8z"/>
+                </svg> <{$smarty.const._MD_D3FORUM_BTN_SYNCTHISTOPIC}></button>
+        </p>
+
+</form>
+
+
+<hr>
+<{* ------- Topic Export *}>
+<div class="msg-callout msg-info">
+    <p> You can export the topic to another selected module, and then select the category or forum.<br>
+        This feature is only available when you have installed other instances of D3Forum renamed e.g. comments, module-name, etc.</p>
+</div>
+<form name="topicmanager_export" id="topicmanager_export" action="<{$mod_url}>/index.php?page=topicmanager&amp;topic_id=<{$topic.id}>" class="outer head" method="post">
+    <div class="form-group row">
+    <label for="export_mid" class="col-sm-2 col-form-label">Module Instance</label>
+    <div class="col-sm-10">
+	<select name="export_mid" class="form-control" id="export_mid" onchange="d3forum_showhide_forum_select(this);"><{html_options options=$export_to_module_options}></select>
+    </div>
+    <label for="export_forum_id_0" class="col-sm-2 col-form-label">Export to forum</label>
+        <div class="col-sm-10">
+	<select name="export_forum_id[0]" class="form-control" id="export_forum_id_0">
+		<option value="0">----</option>
+	</select>
+
+	<{foreach from=$export_to_forum_options key="ex_forum_id" item="ex_options"}>
+		<select name="export_forum_id[<{$ex_forum_id}>]" class="form-control" id="export_forum_id_<{$ex_forum_id}>">
+			<option value="0">----</option>
+			<{$ex_options}>
+		</select>
+	<{/foreach}>
+    </div>
+	<div class="col-12 text-center my-4">
+	<input class="btn btn-outline-primary" type="submit" name="topicman_export_move" value="<{$smarty.const._MD_D3FORUM_BTN_MOVETOPICTOOTHERFORUM}>" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMOK}>')">
+	<input class="btn btn-outline-primary" type="submit" name="topicman_export_copy" value="<{$smarty.const._MD_D3FORUM_BTN_COPYTOPICTOOTHERFORUM}>" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMOK}>')">
+    </div>
+        <{$gticket_hidden}>
+    </div>
+</form>
+
+<script type="text/javascript">
+<!--//
+d3forum_showhide_forum_select( xoopsGetElementById("export_forum_id_0") ) ;
+
+function d3forum_showhide_forum_select(select)
+{
+	selected_val = select.options[select.selectedIndex].value ;
+	form = select.form ;
+	for( i = 0 ; i < form.elements.length ; i ++ ) {
+		if( form.elements[i].name.match(/export_forum_id/) ) {
+			if( form.elements[i].id == "export_forum_id_" + selected_val ) {
+				form.elements[i].style.display = "inline" ;
+			} else {
+				form.elements[i].style.display = "none" ;
+			}
+		}
+	}
+}
+//-->
+</script>
+
+<!-- end module contents -->

@@ -1,0 +1,24 @@
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}> </div>
+
+<{strip}>
+<ul class="breadcrumb" aria-label="breadcrumb">
+  <li><a href="<{$xoops_url}>/">
+    <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt="index"></a>
+  </li>
+  <li aria-current="page"><img class="svg sitemap" src="<{$xoops_url}>/modules/sitemap/images/sitemap.svg" alt="<{$smarty.const._MD_SITEMAP_HOME}>"> <{$smarty.const._MI_SITEMAP_NAME}> </li>
+</ul>
+
+<section name="sitemap" layout="row my-4" class="bg-color"><{$msgs}></section>
+
+<div align="right">
+  <img src="<{$xoops_url}>/modules/sitemap/images/map.gif">
+  <a href="<{$xoops_url}>/"><{$smarty.const._MD_SITEMAP_HOME}></a>
+</div>
+
+
+<{foreach name=i item=module from=$sitemap.modules}>
+  <{include file="db:sitemap_inc_eachmodule.html" div_style="width:30%;float:left;margin:10px;"}>
+<{/foreach}>
+
+<{/strip}>

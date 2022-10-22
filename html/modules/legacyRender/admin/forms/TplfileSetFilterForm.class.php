@@ -4,7 +4,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/TplfileFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplfileFilterForm.class.php';
 
 /***
  * @internal
@@ -16,7 +16,7 @@ class LegacyRender_TplfileSetFilterForm extends LegacyRender_TplfileFilterForm
     {
         if (isset($_REQUEST['tpl_module'])) {
             $this->mNavi->addExtra('tpl_module', xoops_getrequest('tpl_module'));
-            $this->_mCriteria->add(new Criteria('tpl_module', array(XOBJ_DTYPE_STRING, xoops_getrequest('tpl_module'))));
+            $this->_mCriteria->add(new Criteria('tpl_module', [XOBJ_DTYPE_STRING, xoops_getrequest('tpl_module')]));
             
             $handler =& xoops_gethandler('module');
             $this->mModule =& $handler->getByDirname(xoops_getrequest('tpl_module'));
@@ -43,7 +43,7 @@ class LegacyRender_TplfileSetFilterForm extends LegacyRender_TplfileFilterForm
     
         if (isset($_REQUEST['tpl_type'])) {
             $this->mNavi->addExtra('tpl_type', xoops_getrequest('tpl_type'));
-            $this->_mCriteria->add(new Criteria('tpl_type', array(XOBJ_DTYPE_STRING, xoops_getrequest('tpl_type'))));
+            $this->_mCriteria->add(new Criteria('tpl_type', [XOBJ_DTYPE_STRING, xoops_getrequest('tpl_type')]));
         }
         
         if (isset($_REQUEST['tpl_file'])) {
@@ -54,7 +54,7 @@ class LegacyRender_TplfileSetFilterForm extends LegacyRender_TplfileFilterForm
         //
         // check filtering criterion and if module & tplset specified mode, then remove paging function.
         //
-        if ($this->mModule != null && $this->mTplset != null) {
+        if (null != $this->mModule && null != $this->mTplset) {
             $this->mNavi->setPerpage(0);
             $this->mNavi->freezePerpage();
         }

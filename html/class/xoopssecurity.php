@@ -1,17 +1,16 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: xoopssecurity.php,v 1.3 2008/09/25 15:12:42 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
- */
-/**
- * Class for xoops.org 2.0.10 compatibility
- *
+ * Class for xoops2 compatibility
+ * @package    Legacy
+ * @subpackage core
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Kilica
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  * @deprecated
  */
+
 class xoopssecurity
 {
     public $errors;
@@ -64,7 +63,7 @@ class xoopssecurity
             $ret = '';
             if (count($this->errors) > 0) {
                 foreach ($this->errors as $error) {
-                    $ret .= $error.'<br />';
+                    $ret .= $error.'<br>';
                 }
             }
             return $ret;

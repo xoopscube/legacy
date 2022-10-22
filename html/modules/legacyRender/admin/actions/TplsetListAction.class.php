@@ -4,9 +4,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/TplsetFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/TplsetSelectForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplsetFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplsetSelectForm.class.php';
 
 class LegacyRender_TplsetListAction extends LegacyRender_AbstractListAction
 {
@@ -34,7 +34,7 @@ class LegacyRender_TplsetListAction extends LegacyRender_AbstractListAction
     
     public function _getBaseUrl()
     {
-        return "./index.php?action=TplsetList";
+        return './index.php?action=TplsetList';
     }
     
     public function execute(&$controller, &$xoopsUser)
@@ -68,11 +68,11 @@ class LegacyRender_TplsetListAction extends LegacyRender_AbstractListAction
             $this->mObjects[$key]->loadModuletpl();
         }
 
-        if ($this->mActiveTemplateSet == null) {
+        if (null == $this->mActiveTemplateSet) {
             $this->mActiveTemplateSet = $controller->mRoot->mContext->getXoopsConfig('template_set');
         }
 
-        $render->setTemplateName("tplset_list.html");
+        $render->setTemplateName('tplset_list.html');
         $render->setAttribute('objects', $this->mObjects);
         $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         $render->setAttribute('activeTemplateSet', $this->mActiveTemplateSet);

@@ -1,12 +1,18 @@
-<div class='confirmMsg'>
-  <h4><{$smarty.const._NOT_DELETINGNOTIFICATIONS}></h4>
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<div class="notification confirmMsg">
+  <h4>
+      <img class="svg bell" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" height="1em" alt="notification"> <{$smarty.const._NOT_DELETINGNOTIFICATIONS}>
+  </h4>
+
   <form action="notifications.php" method="post">
     <{xoops_token form=$actionForm}>
     <{xoops_input type=hidden name=delete value=1}>
     <{foreach item=ids from=$actionForm->mNotifiyIds}>
-      <input type="hidden" name="del_not[<{$ids.modid|xoops_escape:plain}>][]" value="<{$ids.id|xoops_escape:plain}>" />
+      <input type="hidden" name="del_not[<{$ids.modid|xoops_escape:plain}>][]" value="<{$ids.id|xoops_escape:plain}>">
     <{/foreach}>
-    <input type="submit" name="delete" value="<{$smarty.const._DELETE}>" />
-    <input type="button" name="confirm_back" value="<{$smarty.const._CANCEL}>"  onclick="javascript:history.go(-1);" />
+    <input type="submit" class="ui-button delete" name="delete" value="<{$smarty.const._DELETE}>">
+    <input type="button" class="ui-button cancel" name="confirm_back" value="<{$smarty.const._CANCEL}>" onclick="javascript:history.go(-1);">
   </form>
 </div>

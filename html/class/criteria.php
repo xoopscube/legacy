@@ -1,48 +1,17 @@
 <?php
-// $Id: criteria.php,v 1.1 2007/05/15 02:34:21 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
-// Modified by: Nathan Dial                                                  //
-// Date: 20 March 2003                                                       //
-// Desc: added experimental LDAP filter generation code                      //
-//       also refactored to remove about 20 lines of redundant code.         //
-// ------------------------------------------------------------------------- //
-
 /**
- *
- *
- * @package     kernel
- * @subpackage  database
- *
- * @author      Kazumi Ono  <onokazu@xoops.org>
- * @copyright   copyright (c) 2000-2003 XOOPS.org
+ * A criteria (grammar?) for a database query.
+ * Abstract base class should never be instantiated directly.
+ * @package    kernel
+ * @subpackage database
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Other authors Minahito, 2007/05/15
+ * @author     Kazumi Ono (aka onokazu)
+ * @copyright  (c) 2000-2003 XOOPS.org
+ * @license    GPL 2.0
  */
+
 
 define('XOOPS_CRITERIA_ASC', 'ASC');
 define('XOOPS_CRITERIA_DESC', 'DESC');
@@ -50,31 +19,19 @@ define('XOOPS_CRITERIA_STARTWITH', 1);
 define('XOOPS_CRITERIA_ENDWITH', 2);
 define('XOOPS_CRITERIA_CONTAIN', 3);
 
-/**
- * A criteria (grammar?) for a database query.
- *
- * Abstract base class should never be instantiated directly.
- *
- * @abstract
- *
- * @package     kernel
- * @subpackage  database
- *
- * @author      Kazumi Ono  <onokazu@xoops.org>
- * @copyright   copyright (c) 2000-2003 XOOPS.org
- */
+
 class CriteriaElement
 {
     /**
      * Sort order
      * @var string
      */
-    public $order = array();
+    public $order = [];
 
     /**
      * @var string
      */
-    public $sort = array();
+    public $sort = [];
 
     /**
      * Number of records to retrieve
@@ -96,7 +53,7 @@ class CriteriaElement
     /**
      * Constructor
      **/
-    public function CriteriaElement()
+    public function __construct()
     {
     }
 
@@ -107,7 +64,7 @@ class CriteriaElement
     public function render()
     {
     }
-    
+
     /**
      * Return true if this object has child elements.
      */
@@ -115,22 +72,26 @@ class CriteriaElement
     {
         return false;
     }
-    
+
     public function getCountChildElements()
     {
         return 0;
     }
-    
+
     /**
      * Return child element.
+     * @param $idx
+     * @return null
      */
     public function getChildElement($idx)
     {
         return null;
     }
-    
+
     /**
      * Return condition string.
+     * @param $idx
+     * @return null
      */
     public function getCondition($idx)
     {
@@ -141,12 +102,12 @@ class CriteriaElement
     {
         return null;
     }
-    
+
     public function getValue()
     {
         return null;
     }
-    
+
     public function getOperator()
     {
         return null;
@@ -162,29 +123,31 @@ class CriteriaElement
     public function setSort($sort, $order = null)
     {
         $this->sort[0] = $sort;
-        
+
         if (!isset($this->order[0])) {
             $this->order[0] = 'ASC';
         }
-        
-        if ($order != null) {
-            if (strtoupper($order) == 'ASC') {
+
+        if (null != $order) {
+            if ('ASC' == strtoupper($order)) {
                 $this->order[0] = 'ASC';
-            } elseif (strtoupper($order) == 'DESC') {
+            } elseif ('DESC' == strtoupper($order)) {
                 $this->order[0] = 'DESC';
             }
         }
     }
-    
+
     /**
      * Add sort and order condition to this object.
+     * @param        $sort
+     * @param string $order
      */
     public function addSort($sort, $order = 'ASC')
     {
         $this->sort[] = $sort;
-        if (strtoupper($order) == 'ASC') {
+        if ('ASC' == strtoupper($order)) {
             $this->order[] = 'ASC';
-        } elseif (strtoupper($order) == 'DESC') {
+        } elseif ('DESC' == strtoupper($order)) {
             $this->order[] = 'DESC';
         }
     }
@@ -196,30 +159,26 @@ class CriteriaElement
     {
         if (isset($this->sort[0])) {
             return $this->sort[0];
-        } else {
-            return '';
         }
+
+        return '';
     }
 
     /**
      * Return sort and order condition as hashmap array.
-     * 
-     * @return hashmap 'sort' ... sort string/key'order' order string.
+     *
+     * @return array 'sort' ... sort string/key'order' order string.
      */
     public function getSorts()
     {
-        $ret = array();
+        $ret = [];
         $max = count($this->sort);
-        
+
         for ($i = 0; $i < $max; $i++) {
             $ret[$i]['sort'] = $this->sort[$i];
-            if (isset($this->order[$i])) {
-                $ret[$i]['order'] = $this->order[$i];
-            } else {
-                $ret[$i]['order'] = 'ASC';
-            }
+            $ret[$i]['order'] = $this->order[$i] ?? 'ASC';
         }
-        
+
         return $ret;
     }
 
@@ -229,9 +188,9 @@ class CriteriaElement
      */
     public function setOrder($order)
     {
-        if (strtoupper($order) == 'ASC') {
+        if ('ASC' == strtoupper($order)) {
             $this->order[0] = 'ASC';
-        } elseif (strtoupper($order) == 'DESC') {
+        } elseif ('DESC' === strtoupper($order)) {
             $this->order[0] = 'DESC';
         }
     }
@@ -243,9 +202,9 @@ class CriteriaElement
     {
         if (isset($this->order[0])) {
             return $this->order[0];
-        } else {
-            return 'ASC';
         }
+
+        return 'ASC';
     }
 
     /**
@@ -253,7 +212,7 @@ class CriteriaElement
      */
     public function setLimit($limit=0)
     {
-        $this->limit = intval($limit);
+        $this->limit = (int)$limit;
     }
 
     /**
@@ -269,7 +228,7 @@ class CriteriaElement
      */
     public function setStart($start=0)
     {
-        $this->start = intval($start);
+        $this->start = (int)$start;
     }
 
     /**
@@ -301,13 +260,8 @@ class CriteriaElement
 }
 
 /**
- * Collection of multiple {@link CriteriaElement}s
- *
- * @package     kernel
- * @subpackage  database
- *
- * @author      Kazumi Ono  <onokazu@xoops.org>
- * @copyright   copyright (c) 2000-2003 XOOPS.org
+ * Collection of multiple
+ * {@link CriteriaElement}s
  */
 class CriteriaCompo extends CriteriaElement
 {
@@ -316,13 +270,13 @@ class CriteriaCompo extends CriteriaElement
      * The elements of the collection
      * @var array   Array of {@link CriteriaElement} objects
      */
-    public $criteriaElements = array();
+    public $criteriaElements = [];
 
     /**
      * Conditions
      * @var array
      */
-    public $conditions = array();
+    public $conditions = [];
 
     /**
      * Constructor
@@ -330,28 +284,28 @@ class CriteriaCompo extends CriteriaElement
      * @param   object  $ele
      * @param   string  $condition
      **/
-    public function CriteriaCompo($ele=null, $condition='AND')
+    public function __construct($ele=null, $condition='AND')
     {
         if (isset($ele) && is_object($ele)) {
             $this->add($ele, $condition);
         }
     }
-    
+
     public function hasChildElements()
     {
         return count($this->criteriaElements) > 0;
     }
-    
+
     public function getCountChildElements()
     {
         return count($this->criteriaElements);
     }
-    
+
     public function getChildElement($idx)
     {
         return $this->criteriaElements[$idx];
     }
-    
+
     public function getCondition($idx)
     {
         return $this->conditions[$idx];
@@ -403,7 +357,7 @@ class CriteriaCompo extends CriteriaElement
     public function renderWhere()
     {
         $ret = $this->render();
-        $ret = ($ret != '') ? 'WHERE ' . $ret : $ret;
+        $ret = ('' !== $ret) ? 'WHERE ' . $ret : $ret;
         return $ret;
     }
 
@@ -422,12 +376,12 @@ class CriteriaCompo extends CriteriaElement
             $retval = $this->criteriaElements[0]->renderLdap();
             for ($i = 1; $i < $count; $i++) {
                 $cond = $this->conditions[$i];
-                if (strtoupper($cond) == 'AND') {
+                if ('AND' == strtoupper($cond)) {
                     $op = '&';
-                } elseif (strtoupper($cond)=='OR') {
+                } elseif ('OR' == strtoupper($cond)) {
                     $op = '|';
                 }
-                $retval = "($op$retval" . $this->criteriaElements[$i]->renderLdap().")";
+                $retval = "($op$retval" . $this->criteriaElements[$i]->renderLdap() . ')';
             }
         }
         return $retval;
@@ -455,17 +409,19 @@ class Criteria extends CriteriaElement
     public $column;
     public $operator;
     public $value;
-    
+
     public $dtype = 0;
 
     /**
      * Constructor
      *
-     * @param   string  $column
-     * @param   string  $value
-     * @param   string  $operator
-     **/
-    public function Criteria($column, $value='', $operator='=', $prefix = '', $function = '')
+     * @param string $column
+     * @param string $value
+     * @param string $operator
+     * @param string $prefix
+     * @param string $function
+     */
+    public function __construct($column, $value='', $operator='=', $prefix = '', $function = '')
     {
         $this->prefix = $prefix;
         $this->function = $function;
@@ -475,24 +431,24 @@ class Criteria extends CriteriaElement
         //
         // Recive DTYPE. This is a prolongation of criterion life operation.
         //
-        if (is_array($value) && count($value)==2 && $operator!='IN' && $operator!='NOT IN') {
-            $this->dtype = intval($value[0]);
+        if (is_array($value) && 2 == count($value) && 'IN' !== $operator && 'NOT IN' !== $operator) {
+            $this->dtype = (int)$value[0];
             $this->value = $value[1];
         } else {
             $this->value = $value;
         }
     }
-    
+
     public function getName()
     {
         return $this->column;
     }
-    
+
     public function getValue()
     {
         return $this->value;
     }
-    
+
     public function getOperator()
     {
         return $this->operator;
@@ -507,7 +463,7 @@ class Criteria extends CriteriaElement
     public function render()
     {
         $value = $this->value;
-        if (in_array(strtoupper($this->operator), array('IN', 'NOT IN'))) {
+        if (in_array(strtoupper($this->operator), ['IN', 'NOT IN'])) {
             $value = is_array($value) ? implode(',', $value) : trim($value, " ()\t"); // [Compat] allow value '("a", "b", "c")'
             if (isset($value)) {
                 $value = '('.$value.')';
@@ -524,7 +480,7 @@ class Criteria extends CriteriaElement
         $clause .= ' '.$this->operator.' '.$value;
         return $clause;
     }
-    
+
    /**
      * Generate an LDAP filter from criteria
      *
@@ -534,8 +490,7 @@ class Criteria extends CriteriaElement
      */
     public function renderLdap()
     {
-        $clause = "(" . $this->column . $this->operator . $this->value . ")";
-        return $clause;
+        return '(' . $this->column . $this->operator . $this->value . ')';
     }
 
     /**

@@ -1,10 +1,15 @@
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<{include file=db:legacy_search_form.html}>
+
 <{if $searchResults.0.name != null}>
-  <h4><{$searchResults.0.name}></h4>
+  <h3><{$searchResults.0.name}></h3>
 
   <!-- start results item loop -->
   <ul style="list-style:none;margin-left:10px;">
   <{foreach item=result from=$searchResults.0.results}>
-    <li><img src="<{$result.image}>" alt="<{$searchResults.0.name}>" title="<{$searchResults.0.name}>" /><span style="font-weight:bold;"><a href="<{$result.link}>"><{$result.title}></a></span><br />
+    <li><img src="<{$result.image}>" alt="<{$searchResults.0.name}>" aria-label="<{$searchResults.0.name}>"><span style="font-weight:bold;"><a href="<{$result.link}>"><{$result.title}></a></span><br>
     <span style="font-size:small;">
       <{if $result.uid > 0}>
         <a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$result.uid|xoops_escape}>"><{$result.uid|xoops_user:user_name}></a>
@@ -24,4 +29,4 @@
   <{/if}>
 <{/if}>
 
-<{include file=db:legacy_search_form.html}>
+

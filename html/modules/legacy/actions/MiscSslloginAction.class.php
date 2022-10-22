@@ -1,11 +1,12 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: MiscSslloginAction.class.php,v 1.5 2008/09/25 15:12:07 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * MiscSslloginAction.class.php
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -23,22 +24,25 @@ class Legacy_MiscSslloginAction extends Legacy_Action
     {
         return LEGACY_FRAME_VIEW_INDEX;
     }
-    
+
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
         //
         // Because this action's template uses USER message catalog, load it.
         //
         $root =& $controller->mRoot;
-    
+
         $config_handler =& xoops_gethandler('config');
         $moduleConfigUser =& $config_handler->getConfigsByDirname('user');
-    
-        if ($moduleConfigUser['use_ssl'] == 1 && ! empty($_POST[$moduleConfigUser['sslpost_name']])) {
+
+        if ($moduleConfigUser['use_ssl'] === 1 && ! empty($_POST[$moduleConfigUser['sslpost_name']])) {
             session_id($_POST[$moduleConfigUser['sslpost_name']]);
+            //if (!isset($_SESSION)) {
+            //    session_id($_POST[$moduleConfigUser['sslpost_name']]);
+            //  }
         }
-    
-        $render->setTemplateName("legacy_misc_ssllogin.html");
-        $render->setAttribute("message", XCube_Utils::formatString(_MD_LEGACY_MESSAGE_LOGIN_SUCCESS, $xoopsUser->get('uname')));
+
+        $render->setTemplateName('legacy_misc_ssllogin.html');
+        $render->setAttribute('message', XCube_Utils::formatString(_MD_LEGACY_MESSAGE_LOGIN_SUCCESS, $xoopsUser->get('uname')));
     }
 }

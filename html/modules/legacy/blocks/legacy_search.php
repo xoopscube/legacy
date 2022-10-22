@@ -1,26 +1,16 @@
 <?php
 /**
- *
- * @package XOOPS2
- * @version $Id: legacy_search.php,v 1.3 2008/09/25 15:12:14 kilica Exp $
- * @copyright Copyright (c) 2000 XOOPS.org  <http://www.xoops.org/>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * legacy_search.php
+ * XOOPS2
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
+ * @brief      This file has been modified for Legacy from XOOPS2 System module block
  */
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
-//  This file has been modified for Legacy from XOOPS2 System module block   //
-// ------------------------------------------------------------------------- //
 
 function b_legacy_search_show()
 {
-    $block = array(1);
-    return $block;
+	return [1];
 }

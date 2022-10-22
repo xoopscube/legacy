@@ -4,7 +4,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/class/AbstractEditAction.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/class/AbstractEditAction.class.php';
 
 class LegacyRender_AbstractDeleteAction extends LegacyRender_AbstractEditAction
 {

@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="https://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
 <meta http-equiv="content-style-type" content="text/css" />
@@ -12,6 +12,59 @@
 <meta name="author" content="<{$xoops_meta_author}>" />
 <meta name="copyright" content="<{$xoops_meta_copyright}>" />
 <meta name="generator" content="XOOPS Cube" />
+
+<!-- Extra Meta Webmaster Tools-->
+
+<meta name="msvalidate.01" content="<{$xoops_meta_bing}>" />
+<meta name="google-site-verification" content="<{$xoops_meta_google}>" />
+<meta name="yandex-verification" content="<{$xoops_meta_yandex}>" />
+
+<!-- extra meta end -->
+
+<!--  Essential META Tags -->
+
+<meta property="og:title" content="<{$xoops_meta_og_title}>">
+<meta property="og:description" content="<{$xoops_meta_description}>">
+<meta property="og:image" content="<{$xoops_imageurl}>images/logo.png">
+<meta property="og:url" content="<{$xoops_url}>/">
+<meta name="twitter:card" content="summary_large_image">
+
+
+<!--  Non-Essential, But Recommended -->
+
+<meta property="og:site_name" content="<{$xoops_sitename}>">
+<meta name="twitter:image:alt" content="<{$xoops_pagetitle}>">
+
+
+<!--  Non-Essential, But Required for Analytics -->
+
+<meta property="fb:app_id" content="<{$xoops_meta_fb_app}>" />
+<meta name="twitter:site" content="<{$xoops_meta_twitter_site}>">
+
+
+
+<!--  Essential META Tags --> 
+
+<meta property="og:title" content="<{$xoops_pagetitle}>"> 
+<meta property="og:description" content="<{$xoops_meta_description}>"> 
+<meta property="og:image" content="<{$xoops_imageurl}>images/logo-social-media.png"> 
+<meta property="og:url" content="<{$xoops_url}>/"> 
+<meta name="twitter:card" content="<{$xoops_sitename}>">
+ 
+<!--  Non-Essential, But Recommended --> 
+
+<meta property="og:site_name" content="<{$xoops_sitename}>"> 
+<meta name="twitter:image:alt" content="<{$xoops_sitename}>">
+ 
+<!--  Non-Essential, But Required for Analytics --> 
+
+<meta property="fb:app_id" content="your_app_id" /> 
+<meta name="twitter:site" content="@website-username"> 
+
+
+
+
+
 <title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
 <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_themecss}>" />
 
@@ -63,12 +116,12 @@
 <!--<div class="headerbar">
 
 <ul id="navigation">
-<li><a href="http://xoopscube.org/index.php"><span>Welcome</span></a></li>
-<li><a href="http://xoopscube.org/modules/news/"><span>News</span></a></li>
-<li><a href="http://xoopscube.org/modules/features/"><span>Features</span></a></li>
-<li><a href="http://xoopscube.org/modules/pukiwiki"><span>Documentation</span></a></li>
-<li><a href="http://xoopscube.org/modules/xhnewbb/"><span>Forum</span></a></li>
-<li><a href="http://xoopscube.org/modules/workshop/"><span>Workshop</span></a></li>
+<li><a href="https://xoopscube.org/index.php"><span>Welcome</span></a></li>
+<li><a href="https://xoopscube.org/modules/news/"><span>News</span></a></li>
+<li><a href="https://xoopscube.org/modules/features/"><span>Features</span></a></li>
+<li><a href="https://xoopscube.org/modules/pukiwiki"><span>Documentation</span></a></li>
+<li><a href="https://xoopscube.org/modules/xhnewbb/"><span>Forum</span></a></li>
+<li><a href="https://xoopscube.org/modules/workshop/"><span>Workshop</span></a></li>
 </ul>
 <div class="floatClear"></div>
 </div>-->
@@ -124,7 +177,7 @@
     <{/foreach}>
     <{/if}>
 
-    <br />
+    <br>
 
     <{if $xoops_showrblock == 1}>
     <{foreach item=block from=$xoops_rblocks}>
@@ -188,9 +241,9 @@
 <br class="floatClear" />
 
 <div id="footerbar">
-<a href="http://xoops.net.br/">Portuguese</a> | <a href="http://xoopscube.org/">English</a> | <a href="http://www.xoopscube.de/">German</a> | <a href="http://www.xoopscube.gr/">Greek</a> | <a href="http://xoopscube.jp/">Japanese</a> | <a href="http://www.xoops.ne.kr/xoopscube/">Korean</a> | <a href="http://www.xoopscube.ru/">Russian</a> | <a href="http://www.xoopscube.tw/">T-Chinese</a>
+<a href="https://xoops.net.br/">Portuguese</a> | <a href="https://xoopscube.org/">English</a> | <a href="https://www.xoopscube.de/">German</a> | <a href="https://www.xoopscube.gr/">Greek</a> | <a href="https://xoopscube.jp/">Japanese</a> | <a href="https://www.xoops.ne.kr/xoopscube/">Korean</a> | <a href="https://www.xoopscube.ru/">Russian</a> | <a href="https://www.xoopscube.tw/">T-Chinese</a>
 <span><a href="#top"><img src="<{$xoops_imageurl}>images/top.gif" alt="top" title="top" hspace="15" /></a></span>
-<br />
+<br>
 <{$xoops_footer}>
 </div>
 

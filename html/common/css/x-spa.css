@@ -1,0 +1,344 @@
+/*
+ * XCL Layout single-page application (SPA)
+ * Layout helper based on CSS flexbox specification designed to serve a **quick flexbox shorthand**
+ * by using custom html attributes — layout and self, p** and m** for padding and margin, m**-n** negative
+ *
+ * @package    XCL-UI
+ * @author     Nuno Luciano ( @gigamaster v.2.x.x)
+ * @copyright  2005-2022 The XOOPSCube Project
+ * @License    MIT license
+ * @license    XCube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ * @link       https://github.com/xoopscube/xcl
+ * @version    2.3.1 Release: @package_231@
+ */
+@import "x-layout.css"; /*  UI Layout Helper */
+/* -------------------- -------------------- NORMALIZE */
+:root {
+    --color-10      : hsl(210, 20%, 10%);
+    --color-20      : hsl(210, 20%, 20%);
+    --color-30      : hsl(210, 20%, 30%);
+    --color-40      : hsl(210, 20%, 40%);
+    --color-50      : hsl(210, 20%, 50%);
+    --color-60      : hsl(210, 20%, 60%);
+    --color-70      : hsl(210, 20%, 70%);
+    --color-80      : hsl(210, 20%, 80%);
+    --color-90      : hsl(210, 20%, 90%);
+    --bg-color      : hsla(210, 33%, 6%, 0.2);
+    --bg-cover      : hsl(227, 15%, 15%);
+    --bg-linear     : linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));
+    --border-radius : 5px;
+    --link-active   : hsl(210, 100%, 50%);
+    --link-hover    : hsl(210, 100%, 40%);
+    --link-visited  : hsl(210, 100%, 50%);
+    --trackBG       : #17181c;
+    --thumbBG       : #2b2f40;
+}
+
+html { background: var(--color-90); }
+body {
+    background: var(--color-80);
+    color: var(--color-20);
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: lighter;
+    line-height: 1.5;
+    margin:0;
+    padding:0;
+}
+body.no-scroll {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+/*  Webkit Scrollbar */
+::-webkit-scrollbar {width: 8px;height: 8px}
+::-webkit-scrollbar-thumb {background: var(--thumbBG)}
+::-webkit-scrollbar-thumb:hover {background: var(--color-20);}
+::-webkit-scrollbar-track {background-color: var(--trackBG)}
+/* Firefox Scrollbar */
+:root, #app {
+    scrollbar-color: var(--thumbBG) var(--trackBG); /* thumb-color track-color */
+    scrollbar-width: thin;
+}
+article, header, main, nav, section, footer {
+    margin:0 auto;
+    width:100%;
+}
+
+h2.plugin-title,
+footer {
+    background:var(--color-20);
+    color:var(--color-70);
+    padding:1rem;
+}
+
+/* :link, :visited, :hover, :focus, :active */
+a, a:link, a:visited { color: var(--link-active) }
+a:hover, a:focus { color: var(--link-hover) }
+a:active{ color: var(--link-active) }
+/* icon to external link */
+a[href^="https://"]:after {
+    content: '\2197';
+    position: relative;
+    left: 2px;
+}
+
+a[href^="https://"]:active:after,
+a[href^="https://"]:hover:after,
+a[href^="https://"]:focus:after {
+    content: '\21E2';
+    color: var(--color-20);
+}
+
+h1, h2, h3 {
+    color: var(--color-20);
+    font-weight:lighter;
+    margin:.5rem 0;
+}
+
+h3 {
+    font-size:24px;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+    margin:1em auto;
+    width: inherit;
+}
+kbd {
+    background-color: hsl(210, 10%, 14%);
+    border: hsl(210, 10%, 30%);
+    border-radius: 3px;
+    box-shadow: inset 0 5px 10px 0 hsl(215, 15%, 21%), 1px 2px 3px hsl(215, 17%, 10%);;
+    color: var(--color-90);
+    display: inline-block;
+    font-size: 14px;
+    line-height: 1.2;
+    margin: 0 .25rem;
+    padding: .25rem .5rem;
+    text-shadow: 0 1px 5px hsl(0, 0%, 95%);
+    white-space: nowrap;
+}
+pre {border-radius:var(--border-radius)}
+code:not([class*="lang"]){
+    background: var(--color-80);
+    border-radius:var(--border-radius);
+    color:var(--color-20);
+    font-size: 14px;
+    padding: .25rem .5rem;
+}
+/*border-collapse: collapse;*/
+table {border-collapse: separate;border-radius: 5px;border-spacing: 0;box-shadow: 0 0 10px var(--color-40);margin: 2rem auto;width: 80%;}
+th {background: var(--color-20);border-bottom: 1px solid var(--color-30);color: var(--color-70);width: 50%;}
+th, td {line-height: 1.5;padding: 0.5em;text-align: center;}
+/*td {background-color: var(--color-90);}*/
+thead th:first-child { border-top-left-radius: 5px;}
+thead th:last-child {border-top-right-radius: 5px;}
+tbody tr:last-child td:first-child {border-bottom-left-radius: 5px;}
+tbody tr:last-child td:last-child {border-bottom-right-radius: 5px;}
+tbody tr:nth-child(odd){background: var(--color-90);}
+tbody tr:nth-child(even){background: var(--color-80);}
+tbody tr:nth-child(odd) td {background: var(--color-90);}
+td:first-child {}
+
+nav {background: transparent;width:100%;z-index: 1000;}
+
+/* jQuery-UI Menu */
+#menu {position: fixed;top: 1rem;left:1rem;}
+.ui-widget .ui-widget-content {border: 1px solid var(--color-20);}
+.ui-menu:not(#ui-id-1) {
+    border: 1px dotted hsl(230, 40%, 30%);
+    background: hsl(230, 15%, 15%);
+    display: block;font-size:.875rem;
+}
+.ui-menu .ui-menu-item-wrapper:not(#ui-id-1) {position: relative;padding: .75rem 1.5rem;min-width: 160px;}
+#ui-id-1 {border-radius: 3px;padding:.25em}
+#ui-id-1 > svg {color: var(--color-90);height: 1.5em;margin: .5em;/*vertical-align:middle;*/width: 1.5em;}
+#ui-id-1 .ui-menu-icon {
+    display: none;
+}
+.ui-menu li a {
+    border-radius: 3px;
+    color: var(--color-80);
+    text-decoration: none;
+    display: block;
+}
+.ui-menu .menu-sub {
+    background-color:var(--color-20);
+    border-radius: 3px;
+    box-shadow:1px 1px 10px 0px hsla(210, 20%, 17%, .5);
+}
+.ui-menu .menu-sub  li a:hover {
+    color:var(--color-90);
+}
+.ui-state-hover {
+    color:var(--color-90);
+}
+.ui-state-active {
+    color:var(--color-90);
+}
+
+
+main  {
+    background: hsl(210, 25%,92%);
+    border: 2px solid hsl(210, 25%, 92%);
+    padding:1rem;
+}
+
+#plugin {
+    background: var(--bg-cover);
+    color: var(--color-70);
+    margin: 0;
+    width: 100vw;
+    padding: 1em;
+    height: 100vh;
+}
+#plugin a {
+    color: var(--color-80);
+}
+.plugin-cover {
+    text-align: center;
+    margin: auto;
+}
+.plugin-cover .plugin-logo svg {
+    font-size: 8vw;
+}
+.plugin-data {
+    border-left: 2px dotted var(--color-10);
+    text-align: left;
+}
+.plugin-cover .plugin-name {
+    display: inline;
+    font-size: xx-large;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+}
+.plugin-cover .plugin-version {
+    font-size: larger;
+    font-weight: normal;
+    line-height: 1;
+    margin-top: 0.25rem;
+}
+.plugin-cover .plugin-desc {
+    font-size: large;
+    font-weight: normal;
+    line-height: 1.2;
+    margin: auto;
+}
+.plugin-cover .plugin-options {
+    padding-top: 1rem;
+}
+.plugin-cover .plugin-options * {
+    font-size: small;
+    letter-spacing: 1px;
+    line-height: 1;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rel-links {
+    column-count:2;
+    column-gap:40px;
+    /* column-rule property */
+    column-rule-color:var(--color-40);
+    column-rule-style:dotted;
+    column-rule-width:2px;
+    /* shorthand property for setting all the column-rule-* properties above.
+    column-rule:2px dotted var(--color-40); */
+    column-width:50%;
+}
+/* the <h2> element should span across all columns */
+.rel-links h3 {
+    column-span:all;
+}
+
+/* iframe modal */
+
+#iframe-this {border : none; overflow:hidden;}
+
+.modal {
+    /*z-index:1001;*/
+    display:none;
+    padding-top:0;
+    position:fixed;
+    left:0;
+    top:0;
+
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    height: 100%;
+    overflow:auto;
+    background-color:rgba(21,25,27,.8);
+    overscroll-behavior: contain;
+}
+.modal-show {
+    display : flex
+}
+
+.modal-close {
+    color:var(--ui-link);
+    cursor: pointer;
+    position: inherit;
+    right: 5%;
+    top: 5px;
+    border:var(--ui-border);
+    background-image:var(--background-linear);
+    padding:var(--space-2) var(--space-4);
+    transition  : color 0.5s ease;
+}
+.modal-close:hover {
+    color:var(--ui-link-hover);
+}
+.msg-callout,
+.msg-callout ul {
+    background:var(--color-20);
+    color:var(--color-80);
+    border: 1px solid var(--color-30);;
+    border-radius: var(--border-radius);
+    list-style: none;
+    display: block;
+    margin: 2em auto;
+    max-width: 90%;
+    padding: 1.5em 5em;
+}
+
+.msg-info {
+    display: block;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath d='M12 2c-.5 0-1 .19-1.41.59l-8 8c-.79.78-.79 2.04 0 2.82l8 8c.78.79 2.04.79 2.82 0l8-8c.79-.78.79-2.04 0-2.82l-8-8C13 2.19 12.5 2 12 2m-1 5h2v6h-2V7m0 8h2v2h-2v-2z' fill='%23face74'/%3E%3C/svg%3E");
+    background-position: 20px 20px;
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+}
+
+@media screen and (min-width: 400px) {
+    article {padding: .25em;}
+    .plugin-cover .plugin-desc {font-size: x-large;}
+    .plugin-cover .plugin-options * {font-size: large;letter-spacing: 2px;}
+    .rel-links {column-count:1;}
+}
+@media screen and (min-width: 768px) {
+    .plugin-cover {
+        min-height: unset !important;
+        height: unset !important;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .plugin-cover .plugin-logo {
+        padding: 2rem;
+        vertical-align: middle;
+    }
+    .plugin-cover .plugin-data {
+        padding-left: 1rem;
+        text-align: left !important;
+        vertical-align: middle;
+    }
+    .plugin-cover .plugin-data .plugin-desc {
+        font-size: xx-large;
+    }
+    .rel-links {column-count:2;}
+}

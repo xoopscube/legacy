@@ -8,15 +8,15 @@ class Mailjob_ArrayOfInt extends XCube_ObjectArray
 {
     public function getClassName()
     {
-        return "int";
+        return 'int';
     }
 }
 
 class User_MailjobService extends XCube_Service
 {
-    public $mServiceName = "User_MailjobService";
-    public $mNameSpace = "User_Mailjob";
-    public $mClassName = "User_MailjobService";
+    public $mServiceName = 'User_MailjobService';
+    public $mNameSpace = 'User_Mailjob';
+    public $mClassName = 'User_MailjobService';
 
     /**
      * @public
@@ -33,7 +33,7 @@ class User_MailjobService extends XCube_Service
      */
     public function addMailjob()
     {
-        require_once XOOPS_MODULE_PATH . "/user/admin/forms/MailjobServiceEditForm.class.php";
+        require_once XOOPS_MODULE_PATH . '/user/admin/forms/MailjobServiceEditForm.class.php';
     
         $root =& XCube_Root::getSingleton();
     

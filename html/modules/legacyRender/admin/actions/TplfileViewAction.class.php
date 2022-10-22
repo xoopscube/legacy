@@ -30,12 +30,12 @@ class LegacyRender_TplfileViewAction extends LegacyRender_Action
     {
         $this->mObject->loadSource();
 
-        $render->setTemplateName("tplfile_view.html");
+        $render->setTemplateName('tplfile_view.html');
         $render->setAttribute('object', $this->mObject);
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=TplsetList", 1, _AD_LEGACYRENDER_ERROR_OBJECT_IS_NOT_EXIST);
+        $controller->executeRedirect('./index.php?action=TplsetList', 1, _AD_LEGACYRENDER_ERROR_OBJECT_IS_NOT_EXIST);
     }
 }

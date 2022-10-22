@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractDeleteAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/UserAdminDeleteForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractDeleteAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/UserAdminDeleteForm.class.php';
 
 class User_UserDeleteAction extends User_AbstractDeleteAction
 {
@@ -36,7 +36,7 @@ class User_UserDeleteAction extends User_AbstractDeleteAction
         // It is not possible to delete the super administrator.
         //
         parent::_setupObject();
-        if (is_object($this->mObject) && $this->mObject->get('uid') == 1) {
+        if (is_object($this->mObject) && 1 == $this->mObject->get('uid')) {
             $this->mObject = null;
         }
     }
@@ -56,23 +56,23 @@ class User_UserDeleteAction extends User_AbstractDeleteAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_delete.html");
+        $render->setTemplateName('user_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
     }
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=UserList");
+        $controller->executeForward('./index.php?action=UserList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=UserList", 1, _MD_USER_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=UserList', 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }
     
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=UserList");
+        $controller->executeForward('./index.php?action=UserList');
     }
 }

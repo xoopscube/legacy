@@ -4,7 +4,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 class User_AbstractUserEditForm extends XCube_ActionForm
 {
@@ -12,7 +12,12 @@ class User_AbstractUserEditForm extends XCube_ActionForm
     
     public function User_AbstractUserEditForm($userConfig)
     {
-        parent::XCube_ActionForm();
+        self::__construct($userConfig);
+    }
+
+    public function __construct($userConfig)
+    {
+        parent::__construct();
         $this->mConfig = $userConfig;
     }
     
@@ -34,7 +39,7 @@ class User_AbstractUserEditForm extends XCube_ActionForm
             //
             // Check allow uname string pattern.
             //
-            $regex="";
+            $regex= '';
             switch ($this->mConfig['uname_test_level']) {
                 case 0:
                     $regex="/[^a-zA-Z0-9\_\-]/";

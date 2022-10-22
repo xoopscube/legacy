@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 class User_RanksAdminEditForm extends XCube_ActionForm
 {
@@ -18,7 +18,7 @@ class User_RanksAdminEditForm extends XCube_ActionForm
     
     public function getTokenName()
     {
-        return "module.user.RanksAdminEditForm.TOKEN" . $this->get('rank_id');
+        return 'module.user.RanksAdminEditForm.TOKEN' . $this->get('rank_id');
     }
 
     public function prepare()
@@ -37,23 +37,23 @@ class User_RanksAdminEditForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['rank_id'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['rank_id']->setDependsByArray(array('required'));
+        $this->mFieldProperties['rank_id']->setDependsByArray(['required']);
         $this->mFieldProperties['rank_id']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_RANK_ID);
 
         $this->mFieldProperties['rank_title'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['rank_title']->setDependsByArray(array('required', 'maxlength'));
+        $this->mFieldProperties['rank_title']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['rank_title']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_RANK_TITLE, '50');
         $this->mFieldProperties['rank_title']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _AD_USER_LANG_RANK_TITLE, '50');
         $this->mFieldProperties['rank_title']->addVar('maxlength', 50);
 
         $this->mFieldProperties['rank_min'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['rank_min']->setDependsByArray(array('required', 'min'));
+        $this->mFieldProperties['rank_min']->setDependsByArray(['required', 'min']);
         $this->mFieldProperties['rank_min']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_RANK_MIN);
         $this->mFieldProperties['rank_min']->addMessage('min', _AD_USER_ERROR_MIN, _AD_USER_LANG_RANK_MIN, 0);
         $this->mFieldProperties['rank_min']->addVar('min', 0);
 
         $this->mFieldProperties['rank_max'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['rank_max']->setDependsByArray(array('required', 'min'));
+        $this->mFieldProperties['rank_max']->setDependsByArray(['required', 'min']);
         $this->mFieldProperties['rank_max']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_RANK_MAX);
         $this->mFieldProperties['rank_max']->addMessage('min', _AD_USER_ERROR_MIN, _AD_USER_LANG_RANK_MAX, 0);
         $this->mFieldProperties['rank_max']->addVar('min', 0);
@@ -68,7 +68,7 @@ class User_RanksAdminEditForm extends XCube_ActionForm
 
     public function validateRank_image()
     {
-        if ($this->_mIsNew && $this->get('rank_image') == null) {
+        if ($this->_mIsNew && null == $this->get('rank_image')) {
             $this->addErrorMessage(_AD_USER_ERROR_IMAGE_REQUIRED);
         }
     }
@@ -94,7 +94,7 @@ class User_RanksAdminEditForm extends XCube_ActionForm
         $obj->set('rank_special', $this->get('rank_special'));
 
         $this->mFormFile = $this->get('rank_image');
-        if ($this->mFormFile != null) {
+        if (null != $this->mFormFile) {
             $this->mFormFile->setRandomToBodyName('rank');
             $obj->set('rank_image', $this->mFormFile->getFileName());
         }

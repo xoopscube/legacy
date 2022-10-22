@@ -1,8 +1,11 @@
 <?php
 /**
- * @file
- * @package profile
- * @version $Id$
+ * @package    profile
+ * @version    2.3.1
+ * @author     Other Authors Nuno Luciano (aka gigamaster), 2020, XCL PHP7
+ * @author     Original Author Kilica
+ * @copyright  2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -42,12 +45,12 @@ class Profile_AbstractEditAction extends Profile_AbstractAction
     public function _setupObject()
     {
         $id = $this->_getId();
-    
+
         $this->mObjectHandler =& $this->_getHandler();
-    
+
         $this->mObject =& $this->mObjectHandler->get($id);
-    
-        if ($this->mObject == null && $this->_isEnableCreate()) {
+
+        if (null == $this->mObject && $this->_isEnableCreate()) {
             $this->mObject =& $this->mObjectHandler->create();
         }
     }
@@ -74,12 +77,12 @@ class Profile_AbstractEditAction extends Profile_AbstractAction
      */
     public function getDefaultView()
     {
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return PROFILE_FRAME_VIEW_ERROR;
         }
-    
+
         $this->mActionForm->load($this->mObject);
-    
+
         return PROFILE_FRAME_VIEW_INPUT;
     }
 
@@ -88,25 +91,25 @@ class Profile_AbstractEditAction extends Profile_AbstractAction
      */
     public function execute()
     {
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return PROFILE_FRAME_VIEW_ERROR;
         }
-    
-        if (xoops_getrequest('_form_control_cancel') != null) {
+
+        if (null != xoops_getrequest('_form_control_cancel')) {
             return PROFILE_FRAME_VIEW_CANCEL;
         }
-    
+
         $this->mActionForm->load($this->mObject);
-    
+
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
-    
+
         if ($this->mActionForm->hasError()) {
             return PROFILE_FRAME_VIEW_INPUT;
         }
-    
+
         $this->mActionForm->update($this->mObject);
-    
+
         return $this->_doExecute($this->mObject);
     }
 
@@ -118,7 +121,7 @@ class Profile_AbstractEditAction extends Profile_AbstractAction
         if ($this->mObjectHandler->insert($this->mObject)) {
             return PROFILE_FRAME_VIEW_SUCCESS;
         }
-    
+
         return PROFILE_FRAME_VIEW_ERROR;
     }
 }

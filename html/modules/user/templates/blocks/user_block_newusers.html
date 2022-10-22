@@ -1,13 +1,18 @@
-<table cellspacing="1" class="outer">
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<div layout="column" class="block-new-users">
+
   <{foreach item=user from=$block.users}>
-    <tr class="<{cycle values="even,odd"}>" valign="middle">
-      <td align="center">
+    <div layout="row center-justify my-2">
       <{if $user.avatar != ""}>
-      <img src="<{$user.avatar}>" alt="" width="32" /><br />
+      <img src="<{$user.avatar}>" alt="" width="32" self="radius-circle"/>
+          <{else}>
+          <img src="<{$user.uid|xoops_user_avatarize}>" alt=" <{$member.uname}>" height="24" self="radius-circle"/>
       <{/if}>
       <a href="<{$xoops_url}>/userinfo.php?uid=<{$user.id}>"><{$user.name}></a>
-      </td>
-      <td align="center"><{$user.joindate|xoops_formattimestamp:s}></td>
-    </tr>
+        <span class="badge"><{$user.joindate|xoops_formattimestamp:s}></span>
+    </div>
   <{/foreach}>
-</table>
+
+</div>

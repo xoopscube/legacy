@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/BannerclientFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/BannerclientFilterForm.class.php';
 
 class LegacyRender_BannerclientListAction extends LegacyRender_AbstractListAction
 {
@@ -27,17 +27,17 @@ class LegacyRender_BannerclientListAction extends LegacyRender_AbstractListActio
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=BannerclientList";
+        return './index.php?action=BannerclientList';
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("bannerclient_list.html");
+        $render->setTemplateName('bannerclient_list.html');
         foreach (array_keys($this->mObjects) as $key) {
             $this->mObjects[$key]->loadBannerCount();
             $this->mObjects[$key]->loadFinishBannerCount();
         }
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
     }
 }

@@ -1,139 +1,180 @@
-<div class="adminnavi">
-  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<div class="adminnavi" aria-label="breadcrumb">
+  <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+  &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=ImagecategoryList"><{$smarty.const._MI_LEGACY_MENU_IMAGE_MANAGE}></a>
-  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_IMAGE_LIST}> (<{$category->getShow('imgcat_name')}>)</span>
+  &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_IMAGE_LIST}> (<{$category->getShow('imgcat_name')}>)</span>
 </div>
 
-<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_IMAGE_LIST}> (<{$category->getShow('imgcat_name')}>)</h3>
+
+<h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_IMAGE_LIST}> (<{$category->getShow('imgcat_name')}>)</h2>
+
 
 <div class="tips">
-<ul>
-<li>
-<{$smarty.const._AD_LEGACY_LANG_IMAGE_TOTAL}>: <{$ImageTotal}>&nbsp;&nbsp;
-( <{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAYTOTAL}>: <{$displayImageTotal}>&nbsp;&nbsp;&nbsp;<{$smarty.const._AD_LEGACY_LANG_IMAGE_NOTDISPLAYTOTAL}>: <{$notdisplayImageTotal}> )
-</li>
-<li>
-<{$smarty.const._AD_LEGACY_TIPS_IMAGE}>
-</li>
-<li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=legacy"><{$smarty.const._HELP}></a></li>
-</ul>
+    <ul>
+        <li><{$smarty.const._AD_LEGACY_LANG_IMAGE_TOTAL}>: <{$ImageTotal}>&nbsp;&nbsp;
+            ( <{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAYTOTAL}>: <{$displayImageTotal}>&nbsp;&nbsp;&nbsp;<{$smarty.const._AD_LEGACY_LANG_IMAGE_NOTDISPLAYTOTAL}>: <{$notdisplayImageTotal}> )
+        </li>
+        <li><{$smarty.const._AD_LEGACY_TIPS_IMAGE}></li>
+    </ul>
 </div>
 
-<ul class="toptab">
-  <li class="addImage"><a href="index.php?action=ImageCreate&amp;imgcat_id=<{$category->getShow('imgcat_id')}>"><{$smarty.const._AD_LEGACY_LANG_IMAGE_NEW}></a></li>
-  <li><a href="index.php?action=ImageUpload&amp;imgcat_id=<{$category->getShow('imgcat_id')}>"><{$smarty.const._AD_LEGACY_LANG_IMAGE_UPLOAD}></a></li>
-</ul>
 
 <{if $actionForm->hasError()}>
 <div class="error">
-  <ul>
-    <{foreach item=message from=$actionForm->getErrorMessages()}>
-      <li><{$message|xoops_escape}></li>
-    <{/foreach}>
-  </ul>
+    <ul>
+        <{foreach item=message from=$actionForm->getErrorMessages()}>
+        <li><{$message|xoops_escape}></li>
+        <{/foreach}>
+    </ul>
 </div>
 <{/if}>
 
-<div>
-<form action="./index.php" method="get">
-  <input type="hidden" name="action" value="ImageList" />
-  <input type="hidden" name="imgcat_id" value="<{$category->getShow('imgcat_id')}>" />
-  <{$smarty.const._SEARCH}> : 
-  <input type="text" name="search" value="<{$filterForm->mKeyword}>" />
-  <{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAY}> : 
-  <select name="option_field">
-    <option value="all" <{if $filterForm->mOptionField == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
-    <option value="visible" <{if $filterForm->mOptionField == 'visible'}>selected="selected"<{/if}>><{$smarty.const._YES}></option>
-    <option value="invisible" <{if $filterForm->mOptionField == 'invisible'}>selected="selected"<{/if}>><{$smarty.const._NO}></option>
-  </select>
-  <{$smarty.const._MD_LEGACY_LANG_IMAGE_MIMETYPE}> : 
-  <select name="option_field2">
-    <option value="all" <{if $filterForm->mOptionField2 == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
-    <option value="gif" <{if $filterForm->mOptionField2 == 'gif'}>selected="selected"<{/if}>>image/gif</option>
-    <option value="png" <{if $filterForm->mOptionField2 == 'png'}>selected="selected"<{/if}>>image/png</option>
-    <option value="jpeg" <{if $filterForm->mOptionField2 == 'jpeg'}>selected="selected"<{/if}>>image/jpeg</option>
-  </select>
-  <{$smarty.const._VIEW}> : 
-  <select name="perpage">
-    <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
-    <{foreach item=page from=$pageArr}>
-      <{if $pageNavi->mPerpage == $page && $page != 0}>
-        <option value="<{$page}>" selected="selected"><{$page}></option>
-      <{elseif $pageNavi->mPerpage == $page && $page == 0}>
-        <option value="<{$page}>" selected="selected"><{$smarty.const._ALL}></option>
-      <{elseif $pageNavi->mPerpage != $page && $page == 0}>
-        <option value="<{$page}>"><{$smarty.const._ALL}></option>
-      <{else}>
-        <option value="<{$page}>"><{$page}></option>
-      <{/if}>
-    <{/foreach}>
-  </select>
-  <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
-</form>
-</div>
+
+<{* ////— ACTION-CONTROL —\\\\ *}>
+<section layout="row center-justify" class="action-control">
+
+    <div>
+        <a class="button" href="index.php?action=ImageCreate&amp;imgcat_id=<{$category->getShow('imgcat_id')}>"><{$smarty.const._AD_LEGACY_LANG_IMAGE_NEW}></a>
+        <a class="button" href="index.php?action=ImageUpload&amp;imgcat_id=<{$category->getShow('imgcat_id')}>"><{$smarty.const._AD_LEGACY_LANG_IMAGE_UPLOAD}></a>
+    </div>
+
+    <div class="control-view">
+        <{* <button id="list" class="button" data-id="1" type="button" aria-label="View List">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                <path d="M9 5v4h12V5M9 19h12v-4H9m0-1h12v-4H9M4 9h4V5H4m0 14h4v-4H4m0-1h4v-4H4v4z" fill="currentColor"/></svg>
+        </button>
+
+        <button id="grid" class="button" data-id="2" type="button" aria-label="View Grid">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                <path d="M16 5v6h5V5m-11 6h5V5h-5m6 13h5v-6h-5m-6 6h5v-6h-5m-6 6h5v-6H4m0-1h5V5H4v6z" fill="currentColor"/></svg>
+        </button>
+
+        <button id="filter" class="button" type="button" data-id="3" onclick="slideToggle('.module-filter', this)"  aria-label="View Filter">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                <path d="M7 11h10v2H7zM4 7h16v2H4zm6 8h4v2h-4z" fill="currentColor"/></svg>
+        </button> *}>
+
+        <button class="help-admin button" type='button' data-module='legacy' data-help-article='#help-images' aria-label="<{$smarty.const._HELP}>">
+            <b>?</b> </button>
+    </div>
+
+</section>
+
+
+<{include file="./components/comment-search.html"}>
+
 
 <form name="imagelistform" method="post" action="./index.php?action=ImageList">
-  <{xoops_token form=$actionForm}>
+	<{xoops_token form=$actionForm}>
+
 <table class="outer">
-  <tr>
-    <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_ID}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_ID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_ID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_NAME}>
-      <{$smarty.const._MD_LEGACY_LANG_IMAGE_NICENAME}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_NICENAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_NICENAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._MD_LEGACY_LANG_IMAGE_MIMETYPE}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_MIMETYPE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_MIMETYPE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_CREATED}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_CREATED}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_CREATED}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAY}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_DISPLAY}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_DISPLAY}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_WEIGHT}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_WEIGHT}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_WEIGHT}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._DELETE}><br />
-      <input name="allbox" id="allbox" onclick="with(document.imagelistform){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].disabled==false&&elements[i].name.indexOf('delete')>=0){elements[i].checked=this.checked;}}}" type="checkbox" value="Check All" /></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
-  </tr>
-  <{foreach item=obj from=$objects}>
-    <{if $obj->get('image_display') == 1}>
-      <tr class="<{cycle values='odd,even'}> active">
-    <{else}>
-      <tr class="<{cycle values='odd,even'}>">
-    <{/if}>
-      <td class="legacy_list_id"><{$obj->getShow('image_id')}></td>
-      <td class="legacy_list_image">
-        <{if $obj->mImageCategory != null}>
-          <{if $obj->mImageCategory->get('imgcat_storetype') == 'file'}>
-            <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>" alt="<{$obj->getShow('image_nicename')}>" title="<{$obj->getShow('image_nicename')}>" />
-          <{else}>
-            <img src="<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>" alt="<{$obj->getShow('image_nicename')}>" title="<{$obj->getShow('image_nicename')}>" />
-          <{/if}>
-        <{/if}>
-        <div class="legacy_list_imagetitle"><input type="text" size="12" name="nicename[<{$obj->getShow('image_id')}>]" value="<{$obj->getShow('image_nicename')}>" /></div>
-      </td>
-      <td class="legacy_list_type"><{$obj->getShow('image_mimetype')}></td>
-      <td class="legacy_list_date"><{$obj->getShow('image_created')|xoops_formattimestamp:l}></td>
-      <td class="legacy_list_select"><input type="checkbox" name="display[<{$obj->getShow('image_id')}>]" value="1" <{if $obj->getShow('image_display')}>checked="checked"<{/if}> /></td>
-      <td class="legacy_list_number"><input type="text" size="4" maxlength="6" name="weight[<{$obj->getShow('image_id')}>]" value="<{$obj->getShow('image_weight')}>" class=legacy_list_number /></td>
-      <td class="legacy_list_select"><input type="checkbox" name="delete[<{$obj->getShow('image_id')}>]" value="1" /></td>
-      <td class="legacy_list_control">
-        <a href="./index.php?action=ImageEdit&amp;image_id=<{$obj->getShow('image_id')}>"><img src="<{"icons/edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
-        <a href="./index.php?action=ImageDelete&amp;image_id=<{$obj->getShow('image_id')}>"><img src="<{"icons/delete.png"|theme}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
-      </td>
-    </tr>
-  <{/foreach}>
+    <thead>
     <tr>
-      <td colspan="8" class="foot">
-        <input type="hidden" name="imgcatid" value="<{$category->getShow('imgcat_id')}>" />
-        <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
-      </td>
+        <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_ID}>
+            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_ID}>" aria-label="<{$smarty.const._ASCENDING}>">
+                <img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" >
+            </a>
+            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_ID}>" aria-label="<{$smarty.const._DESCENDING}>">
+                <img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>">
+            </a>
+        </th>
+        <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_NAME}>
+            <{$smarty.const._MD_LEGACY_LANG_IMAGE_NICENAME}>
+            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_NICENAME}>" aria-label="<{$smarty.const._ASCENDING}>">
+                <img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>">
+            </a>
+            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_NICENAME}>" aria-label="<{$smarty.const._DESCENDING}>">
+                <img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>">
+            </a>
+        </th>
+        <th><{$smarty.const._MD_LEGACY_LANG_IMAGE_MIMETYPE}>
+            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_MIMETYPE}>">
+                <img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>">
+            </a>
+            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_MIMETYPE}>">
+                <img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>">
+            </a>
+        </th>
+        <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_CREATED}>
+            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_CREATED}>">
+                <img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>">
+            </a>
+            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_CREATED}>">
+                <img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>">
+            </a>
+        </th>
+        <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAY}>
+            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_DISPLAY}>">
+                <img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>">
+            </a>
+            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_DISPLAY}>">
+                <img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>">
+            </a>
+        </th>
+        <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_WEIGHT}>
+            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_WEIGHT}>">
+                <img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>">
+            </a>
+            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_WEIGHT}>">
+                <img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>">
+            </a>
+        </th>
+        <th><{$smarty.const._DELETE}><br>
+            <input name="allbox" id="allbox" onclick="with(document.imagelistform){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].disabled==false&&elements[i].name.indexOf('delete')>=0){elements[i].checked=this.checked;}}}" type="checkbox" value="Check All"></th>
+        <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
     </tr>
+    </thead>
+    <tbody>
+    <{foreach item=obj from=$objects}>
+    <{if $obj->get('image_display') == 1}>
+    <tr class="<{cycle values='odd,even'}> active">
+        <{else}>
+        <tr>
+    <{/if}>
+    <td class="list_id"><{$obj->getShow('image_id')}></td>
+    <td class="ui-card-block-image">
+    <{if $obj->mImageCategory != null}>
+    <{if $obj->mImageCategory->get('imgcat_storetype') == 'file'}>
+        <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>" alt="<{$obj->getShow('image_nicename')}>" aria-label="<{$obj->getShow('image_nicename')}>" style="max-width: 70%;">
+        <{else}>
+        <img src="<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>" alt="<{$obj->getShow('image_nicename')}>" aria-label="<{$obj->getShow('image_nicename')}>" style="max-width: 70%;">
+        <{/if}>
+    <{/if}>
+    <div class="list_imagetitle"><input type="text" size="12" name="nicename[<{$obj->getShow('image_id')}>]" value="<{$obj->getShow('image_nicename')}>"></div>
+    </td>
+        <td class="list_type"><{$obj->getShow('image_mimetype')}></td>
+        <td class="list_date"><{$obj->getShow('image_created')|xoops_formattimestamp:l}></td>
+        <td class="list_select">
+            <input type="checkbox" name="display[<{$obj->getShow('image_id')}>]" value="1" <{if $obj->getShow('image_display')}>checked="checked"<{/if}>>
+        </td>
+        <td class="list_number"><input type="text" size="4" maxlength="6" name="weight[<{$obj->getShow('image_id')}>]" value="<{$obj->getShow('image_weight')}>" class=list_number /></td>
+        <td class="list_select">
+            <input type="checkbox" name="delete[<{$obj->getShow('image_id')}>]" value="1">
+        </td>
+        <td class="list_control">
+            <a href="./index.php?action=ImageEdit&amp;image_id=<{$obj->getShow('image_id')}>" aria-label="<{$smarty.const._EDIT}>">
+                <img src="<{"icons/icon-image-edit.svg"|theme}>" class="svg" alt="<{$smarty.const._EDIT}>">
+            </a>
+            <a href="./index.php?action=ImageDelete&amp;image_id=<{$obj->getShow('image_id')}>" aria-label="<{$smarty.const._EDIT}>">
+                <img src="<{"icons/icon-delete.svg"|theme}>" class="svg" alt="<{$smarty.const._DELETE}>">
+            </a>
+        </td>
+    </tr>
+    <{/foreach}>
+    </tbody>
+    <tfoot>
+    <tr>
+		<td colspan="8" class="foot">
+			<input type="hidden" name="imgcatid" value="<{$category->getShow('imgcat_id')}>">
+			<input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+		</td>
+	</tr>
+</tfoot>
+
 </table>
+
 </form>
 
-<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+<{include file="./components/pagenavi.html"}>

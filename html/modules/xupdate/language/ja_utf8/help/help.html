@@ -1,0 +1,199 @@
+<article id="help-xupdate">
+
+
+    <nav id="help-menu">
+        <ul>
+            <li><a href="#help-store" class="button">Store Overview</a>
+            <li><a href="#help-module" class="button">Module</a>
+            <li><a href="#help-theme" class="button">Theme</a>
+            <li><a href="#help-themefinder" class="button">Theme Finder</a>
+            <li><a href="#help-preload" class="button">Preload</a>
+            <li><a href="#help-preferences" class="button">Preferences</a>
+            <li><a href="#help-development" class="button">Development</a>
+        </ul>
+    </nav>
+
+
+<hr>
+
+
+    <section id="help-store">
+
+        <h3>Store List</h3>
+
+        <p>The X-Update Store is a digital marketplace to get and deploy modules, preloads and themes.
+            Trusted developer stores allow website owners to download and install add-ons and updates.</p>
+
+        <p>X-Update automatically monitors the public Store repository for updates as well as installed modules and themes.</p>
+
+        <p>Available updates are highlighted in the top notification, and the front-end if X-Update's block is installed.</p>
+
+        <div class="confirm">Beware of your web application platform current version — <b><{$smarty.const.XOOPS_VERSION}></b></div>
+
+        <h3>Download and Install Updates</h3>
+            <p>By default, X-Update compares the Version number of the currently installed add-on to
+            the version number of the add-on in the public Store.</p>
+
+        <p>If there is an update available, then X-Update shows a notification.</p>
+
+        <div class="error">NOTE ! You are given the freedom to use older versions if those are necessary for compatibility reasons.</div>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-module">
+
+        <h3>Module</h3>
+
+        <p>Modules can add new functionality to your Web Application Platform or extend and enhance existing functionality.</p>
+        <p>There are three different types of modules that are easily recognizable:</p>
+        <ul>
+            <li><b>Core</b> ( red label <b style="color:var(--color-red);">required</b> )</li>
+            <li><b>Trust module</b> ( duplicable )</li>
+            <li><b>X2 Module</b> ( backwards compatibility )</li>
+        </ul>
+
+        <h3>Core modules</h3>
+        <p>Required modules are installed by default along with recommended modules.</p>
+
+        <h3>Trust modules</h3>
+        <p>D3 nodules are installed in the Trust_PATH directory. These modules are duplicable and allow the installation of several instances on the client side. To rename the module directory :<p>
+        <ul>
+            <li>1. Hover over the module's name to check if "allowed".</li>
+            <li>2. Type a new name for the module directory.</li>
+            <li>3. Click "Rename Trust modules" at the bottom of the list.</li>
+            <li>4. Confirm the new directory name.</li>
+            <li>5. Proceed to install.</li>
+        </ul>
+
+        <div class="confirm">Beware of your web application platform current version — <b><{$smarty.const.XOOPS_VERSION}></b></div>
+
+        <h3>X2 Backwards Compatibility</h3>
+        <p>The core modules, <b>legacy System and Renderer</b>, are designed to ensure backward compatibility
+            and easier upgrades from previous versions, to be forward compatible and extensible, with built-in features such as hooks, extensions (preloads),
+            and an interface that allows the addition of new features.</p>
+
+        <div class="error">NOTE ! The Legacy system can not guarantee backwards compatibility with deprecated code of module versions that are no longer supported by developers.</div>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-theme">
+
+        <h3>Theme</h3>
+
+        <p>This section provides a brief introduction to download and install Themes.</p>
+
+        <p>Select a Theme to customize the global appearance of your website.</p>
+
+        <p>Browse to System » Theme Management</p>
+
+        <p>Theme Management allows you to simple click the "Select" button next to the theme
+            that you want to use as the default theme or main theme of your site.
+
+        <h4>Allow Users to select Theme</h4>
+
+        <p>Any theme that is "checked" in the "Control" column, will be available to users in the block "Themes".
+
+        <p>If you install the "Themes" block and grant users permission, they can then select their favorite theme and customize the look and feel of the website.</p>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-themefinder">
+
+        <h3>ThemeFinder</h3>
+        <p>Service to select and preview Themes.</p>
+        <div class="error">Note : The service is not up-to-date and might be removed soon due the lack of developers interest.</div>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-preload">
+
+        <h3>Preload</h3>
+
+        <p>This section provides a brief introduction to Preloads and walks through the installation of a simple extension.</p>
+        <p><b>Preloads</b> are commonly <b>Single File Components</b> that extend the Web Application Platform with customized functionality.</p>
+                <ul>
+                    <li>— Productivity workflow</li>
+                    <li>— Web page content enrichment</li>
+                    <li>— Information aggregation</li>
+                    <li>— UI components</li>
+                </ul>
+        <p>In a nutshell, Preloads are simple extensions, or plugins, to add new functionality to a website or improve the current usability of a design without hacking the core system.</p>
+
+        <h3>Enable and disable a Preload</h3>
+
+            <p>Unlike modules, Preloads do not have a dashboard control panel.</p>
+            <p>A Preload is installed in the public directory /preloads/...</p>
+            <p>To disable a preload, the best practice is to use XelFinder to move the preload to the directory /preloads/disabled/ or simply delete.</p>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-preferences">
+
+        <h3>Preferences</h3>
+        
+        <p>Provides you several options to get and deploy add-ons.</p>
+        <p>The user interface is user-friendly and allows you to select the data delivery protocol here from Curl to SFTP.</p>
+
+    </section>
+
+
+<hr>
+
+    <section id="help-development">
+
+        <h3>Development</h3>
+
+        <p>Todo : Write some information that should help developers.</p>
+        <p><a href="<{'delegate.html'|helpurl}>">Delegate List ⭢</a></p>
+
+        <table class="outer">
+            <thead>
+            <tr>
+                <th>Module name</th>
+                <th>Xupdate</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Type</td>
+                <td>Trust module</td>
+            </tr>
+            <tr>
+                <td>Version</td>
+                <td>2.31</td>
+            </tr>
+            <tr>
+                <td>Level</td>
+                <td>Recommended</td>
+            </tr>
+            <tr>
+                <td>🌐 Repository URL</td>
+                <td><a href="https://github.com/xoopscube/xupdate" target="_blank">https://github.com/xoopscube/xupdate ⭧</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+
+</article>

@@ -1,0 +1,23 @@
+/*
+	XOOPSCube Theme : XCL Admin Flex Grid
+	Distribution : XOOPSCube XCL 2.3.1
+	Version : 1.0.1
+	Author : Nuno Luciano aka Gigamaster
+	Date : 2021-10-28
+	URL : https://github.com/xoopscube/
+
+	-------------------- -------------------- -------------------- ----- IMPORT   */
+@import "./stylesheets/_ui-root.css";       /*  UI Default Settings         */
+@import "./stylesheets/ui-body.css";        /*  Body Elements              */
+@import "./stylesheets/ui-layout.css";      /*  Layout Grid-Flex          */
+@import "./stylesheets/ui-breadcrumbs.css"; /*  Breadcrumbs Adminnavi    */
+@import "./stylesheets/ui-button.css";      /*  Buttons                 */
+@import "./stylesheets/ui-card.css";        /*  Card elements          */
+@import "./stylesheets/ui-form.css";        /*  Form Elements         */
+@import "./stylesheets/ui-menunav.css";	  	/*  Menu Navigation      */
+@import "./stylesheets/ui-module.css";	   	/*  Media Queries       */
+@import "./stylesheets/ui-notification.css";/*  Notifications      */
+@import "./stylesheets/ui-svg.css";         /*  SVG settings      */
+@import "./stylesheets/ui-table.css";       /*  Tables           */
+@import "./stylesheets/ui-media.css";       /*  Modules CSS     */
+/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

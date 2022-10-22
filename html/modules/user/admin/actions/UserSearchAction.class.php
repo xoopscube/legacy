@@ -8,40 +8,40 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/UserSearchForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/UserSearchForm.class.php';
 
 class User_UserSearchAction extends User_Action
 {
     public $mActionForm = null;
-    
-    public function prepare(&$controller, &$xoopsUser)
+
+    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         $this->mActionForm =new User_UserSearchForm();
         $this->mActionForm->prepare();
     }
-    
+
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $this->mActionForm->fetch();
-        
+
         return USER_FRAME_VIEW_INPUT;
     }
-    
+
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_search.html");
-        $render->setAttribute("actionForm", $this->mActionForm);
-        
+        $render->setTemplateName('user_search.html');
+        $render->setAttribute('actionForm', $this->mActionForm);
+
         $groupHandler =& xoops_gethandler('group');
         $groups =& $groupHandler->getObjects(null, true);
-        
-        $groupOptions = array();
+
+        $groupOptions = [];
         foreach ($groups as $gid => $group) {
             $groupOptions[$gid] = $group->getVar('name');
         }
 
-        $matchOptions = array();
-        $matchArray = array(XOOPS_MATCH_START => _STARTSWITH, XOOPS_MATCH_END => _ENDSWITH, XOOPS_MATCH_EQUAL => _MATCHES, XOOPS_MATCH_CONTAIN => _CONTAINS);
+        $matchOptions = [];
+        $matchArray = [XOOPS_MATCH_START => _STARTSWITH, XOOPS_MATCH_END => _ENDSWITH, XOOPS_MATCH_EQUAL => _MATCHES, XOOPS_MATCH_CONTAIN => _CONTAINS];
         foreach ($matchArray as $key => $value) {
             $matchOptions[$key] = $value;
         }

@@ -7,10 +7,10 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-define("LEGACY_RENDER_TARGET_TYPE_BUFFER", null);
-define("LEGACY_RENDER_TARGET_TYPE_THEME", 'theme');
-define("LEGACY_RENDER_TARGET_TYPE_BLOCK", 'block');
-define("LEGACY_RENDER_TARGET_TYPE_MAIN", 'main');
+define('LEGACY_RENDER_TARGET_TYPE_BUFFER', null);
+define('LEGACY_RENDER_TARGET_TYPE_THEME', 'theme');
+define('LEGACY_RENDER_TARGET_TYPE_BLOCK', 'block');
+define('LEGACY_RENDER_TARGET_TYPE_MAIN', 'main');
 
 class Legacy_AbstractThemeRenderTarget extends XCube_RenderTarget
 {
@@ -18,7 +18,12 @@ class Legacy_AbstractThemeRenderTarget extends XCube_RenderTarget
 
     public function Legacy_AbstractThemeRenderTarget()
     {
-        parent::XCube_RenderTarget();
+        $this->__construct();
+    }
+
+    public function __construct()
+    {
+        parent::__construct();
         $this->setAttribute('legacy_buffertype', LEGACY_RENDER_TARGET_TYPE_THEME);
     }
 
@@ -48,8 +53,13 @@ class Legacy_ThemeRenderTarget extends Legacy_AbstractThemeRenderTarget
 {
     public function Legacy_ThemeRenderTarget()
     {
-        parent::Legacy_AbstractThemeRenderTarget();
-        $this->setAttribute("isFileTheme", true);
+        $this->__construct();
+    }
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setAttribute('isFileTheme', true);
     }
 }
 
@@ -57,21 +67,26 @@ class Legacy_DialogRenderTarget extends Legacy_AbstractThemeRenderTarget
 {
     public function Legacy_DialogRenderTarget()
     {
-        parent::Legacy_AbstractThemeRenderTarget();
-        $this->setAttribute("isFileTheme", false);
+        $this->__construct();
     }
-    
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setAttribute('isFileTheme', false);
+    }
+
     public function getTemplateName()
     {
-        return "legacy_render_dialog.html";
+        return 'legacy_render_dialog.html';
     }
 }
 
 class Legacy_RenderTargetMain extends XCube_RenderTarget
 {
-    public function Legacy_RenderTargetMain()
+    public function __construct()
     {
-        parent::XCube_RenderTarget();
+        parent::__construct();
         $this->setAttribute('legacy_buffertype', LEGACY_RENDER_TARGET_TYPE_MAIN);
     }
 }

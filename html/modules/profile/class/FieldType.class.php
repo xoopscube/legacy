@@ -1,9 +1,12 @@
 <?php
 /**
- * @file
- * @package profile
- * @version $Id$
-**/
+ * @package    profile
+ * @version    XCL 2.3.1
+ * @author     Other authors  gigamaster, 2020 XCL/PHP7
+ * @author     Kilica
+ * @copyright  2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
+ */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit;
@@ -49,18 +52,18 @@ class Profile_FieldTypeString implements Profile_iFieldType
         } elseif ($option==Profile_ActionType::EDIT) {
             $value = $obj->get($key);
         }
-    
+
         return $value;
     }
 
     public function getTableQuery()
     {
-        return 'VARCHAR(255) NOT NULL';
+        return 'VARCHAR(191) NOT NULL';
     }
 
     public function setInitVar(/*** Profile_DataObject ***/ $obj, /*** string ***/ $key, /*** string ***/ $default)
     {
-        $obj->initVar($key, $this->getXObjType(), $default, false, 255);
+        $obj->initVar($key, $this->getXObjType(), $default, false, 191);
     }
 
     public function getDefault(/*** string ***/ $option)
@@ -266,7 +269,7 @@ class Profile_FieldTypeDate implements Profile_iFieldType
         } elseif ($option==Profile_ActionType::EDIT) {
             $value = date(_PHPDATEPICKSTRING, $obj->get($key));
         } elseif ($option==Profile_ActionType::VIEW) {
-            $value = ($obj->get($key)) ? formatTimestamp($obj->get($key), "s") : "";
+            $value = ($obj->get($key)) ? formatTimestamp($obj->get($key), 's') : '';
         }
         return $value;
     }
@@ -326,9 +329,9 @@ class Profile_FieldTypeCheckbox implements Profile_iFieldType
                 $def = array_shift($objs);
                 $optArr = $def->mFieldType->getOption($def);
             }
-            $yes = $optArr[0] ? $optArr[0] : _YES;
-            $no = $optArr[1] ? $optArr[1] : _NO;
-            $value = $obj->get($key)==true ? $yes : $no;
+            $yes = $optArr[0] ?: _YES;
+            $no = $optArr[1] ?: _NO;
+            $value = true == $obj->get($key) ? $yes : $no;
         }
         return $value;
     }
@@ -366,7 +369,7 @@ class Profile_FieldTypeCheckbox implements Profile_iFieldType
 
     public function getOption(/*** Profile_DefinitionsObject ***/ $obj, /*** string ***/ $key=null)
     {
-        return explode("|", $obj->get('options'));
+        return explode('|', $obj->get('options'));
     }
 }
 
@@ -420,7 +423,7 @@ class Profile_FieldTypeSelectbox implements Profile_iFieldType
 
     public function getOption(/*** Profile_DefinitionsObject ***/ $obj, /*** string ***/ $key=null)
     {
-        return explode("|", $obj->get('options'));
+        return explode('|', $obj->get('options'));
     }
 }
 

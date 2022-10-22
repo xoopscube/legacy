@@ -1,54 +1,83 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: install_modcheck.inc.php,v 1.3 2008/09/25 15:12:20 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * @package    XCL
+ * @subpackage Installation Wizard
+ * @version    XCL 2.3.1
+ * @author     kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
-    // checking XOOPS_ROOT_PATH and XOOPS_URL
-    include_once '../mainfile.php';
 
-    $writeok = array('cache/', 'templates_c');
-    $error = false;
-    foreach ($writeok as $wok) {
-        if (!is_dir(XOOPS_TRUST_PATH. '/'. $wok)) {
-            if (file_exists(XOOPS_TRUST_PATH. '/'. $wok)) {
-                @chmod(XOOPS_TRUST_PATH. '/'. $wok, 0666);
-                if (! is_writeable(XOOPS_TRUST_PATH. '/'. $wok)) {
-                    $wizard->addArray('checks', _NGIMG.sprintf(_INSTALL_L83, $wok));
-                    $error = true;
-                } else {
-                    $wizard->addArray('checks', _OKIMG.sprintf(_INSTALL_L84, $wok));
-                }
-            }
+// checking XOOPS_ROOT_PATH and XOOPS_URL
+include_once '../mainfile.php';
+
+$writeok = ['cache/', 'templates_c/', 'templates_c/xelfinder/'];
+$error = false;
+echo '<h2>wizard/install_modcheck_trust.inc</h2>';
+
+clearstatcache();
+
+foreach ($writeok as $wok) {
+
+    // try to create this directory if it doesn't exist
+    is_dir(XOOPS_TRUST_PATH . '/' . $wok) || (mkdir(XOOPS_TRUST_PATH . '/' . $wok, 0777, true) && is_dir(XOOPS_TRUST_PATH . '/' . $wok));
+    $wokWritable = false;
+    $permissions = fileperms(XOOPS_TRUST_PATH . '/' . $wok);
+    //$permissions = fileperms('../' . $wok);
+    if ($wok && is_writable(XOOPS_TRUST_PATH . '/' . $wok)) {
+
+        $tempFile = tempnam(XOOPS_TRUST_PATH . '/' . $wok, 'tmp');
+        if ($tempFile !== false) {
+            $res = file_put_contents($tempFile, 'test');
+
+            $wokWritable = $res !== false;
+            @unlink($tempFile);
+            $fperm = substr(sprintf('%o', $permissions), -4); //output 0777
+            $wizard->addArray('checks', _OKIMG. '<code>' .$fperm.'</code>' . sprintf(_INSTALL_L86, XOOPS_TRUST_PATH. '/'.$wok));
         } else {
-            @chmod(XOOPS_TRUST_PATH. '/'. $wok, 0777);
-            if (! is_writeable(XOOPS_TRUST_PATH. '/'. $wok)) {
-                $wizard->addArray('checks', _NGIMG.sprintf(_INSTALL_L85, XOOPS_TRUST_PATH. '/'.$wok));
-                $error = true;
-            } else {
-                $wizard->addArray('checks', _OKIMG.sprintf(_INSTALL_L86, XOOPS_TRUST_PATH. '/'.$wok));
-            }
+            $fperm = substr(sprintf('%o', $permissions), -4); //output 0777
+            $wizard->addArray('checks', _NGIMG. '<span style="color:#e43140">' .$fperm.'</span>' .sprintf(_INSTALL_L85, XOOPS_TRUST_PATH. '/'.$wok));
+            $error = true;
         }
     }
 
-    if (! $error) {
-        $wizard->assign('message', _INSTALL_L87);
-    } else {
-        $wizard->assign('message', _INSTALL_L46);
-        $wizard->setReload(true);
-    }
-    
-    //install_modcheck_trust_mkdir($directory);
+//    if (!is_dir(XOOPS_TRUST_PATH. '/'. $wok)) {
+//        if (file_exists(XOOPS_TRUST_PATH. '/'. $wok)) {
+//            @chmod(XOOPS_TRUST_PATH. '/'. $wok, 0666);
+//            if (! is_writeable(XOOPS_TRUST_PATH. '/'. $wok)) {
+//                $wizard->addArray('checks', _NGIMG.sprintf(_INSTALL_L83, $wok));
+//                $error = true;
+//            } else {
+//                $wizard->addArray('checks', _OKIMG.sprintf(_INSTALL_L84, $wok));
+//            }
+//        }
+//    } else {
+//        @chmod(XOOPS_TRUST_PATH. '/'. $wok, 0777);
+//        $fperm = substr(sprintf('%o', $permissions), -4); //output 0777
+//        if (! is_writeable(XOOPS_TRUST_PATH. '/'. $wok)) {
+//
+//        } else {
+//            $wizard->addArray('checks', _OKIMG. '<code>' .$fperm.'</code>' . sprintf(_INSTALL_L86, XOOPS_TRUST_PATH. '/'.$wok));
+//        }
+//    }
+}
 
-    $wizard->render('install_modcheck.tpl.php');
+if (! $error) {
+    $wizard->assign('message', '<div class="confirmOk">'._INSTALL_L87.'</div>');
+    //$wizard->assign( 'message', '<div class="confirmOk">install_modcheck_trust.inc</div>' );
+} else {
+    $wizard->assign('message', '<div class="confirmError">'._INSTALL_L46.'</div>');
+    $wizard->setReload(true);
+}
 
-    function install_modcheck_trust_mkdir(/*** string ***/ $directory)
-    {
-        if (! is_dir($directory)) {
-            umask(0);
-            mkdir($directory, 0777);
-        }
+//install_modcheck_trust_mkdir($directory);
+
+$wizard->render('install_modcheck.tpl.php');
+
+function install_modcheck_trust_mkdir(/*** string ***/ $directory)
+{
+    if (! is_dir($directory)) {
+        umask(0);
+        mkdir($directory, 0777);
     }
+}

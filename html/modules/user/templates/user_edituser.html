@@ -1,172 +1,89 @@
-<div>
-<a href="<{$xoops_url}>/userinfo.php?uid=<{$actionForm->get('uid')|xoops_escape}>"><{$smarty.const._MD_USER_LANG_PROFILE}></a>
-&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;<{$smarty.const._MD_USER_LANG_EDITPROFILE}>
-</div>
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
-<{if $actionForm->hasError()}>
-<div class="errorMsg">
-  <ul>
-    <{foreach item=message from=$actionForm->getErrorMessages()}>
-      <li><{$message}></li>
-    <{/foreach}>
-  </ul>
-</div>
-<{/if}>
+<ul class="breadcrumb" aria-label="breadcrumb">
+    <li><a href="<{$xoops_url}>/">
+        <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a></li>
+    <li><a href="<{$xoops_url}>/userinfo.php?uid=<{$actionForm->get('uid')|xoops_escape}>"><{$smarty.const._MD_USER_LANG_PROFILE}></a></li>
+    <li aria-current="page"><{$smarty.const._MD_USER_LANG_EDITPROFILE}></li>
+</ul>
 
-<form action="#" method="post" autocomplete="off">
-<{xoops_token form=$actionForm}>
-<{xoops_input name=uid type=hidden value=$actionForm->get('uid')}>
-<table class="outer" cellspacing="1" width="100%">
-  <tr>
-    <th colspan="2"><{$smarty.const._MD_USER_LANG_EDITPROFILE}></th>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_NICKNAME}></td>
-    <td class="<{cycle values="odd,even"}>"><{$thisUser->getShow('uname')}></td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_NAME}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{xoops_input name=name size=30 maxlength=60 value=$actionForm->get('name')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_EMAIL}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{if $allow_chgmail}>
-        <{xoops_input name=email size=30 maxlength=60 value=$actionForm->get('email')}><br />
-      <{else}>
-        <{$thisUser->getShow('email')}><br />
-      <{/if}>
-      <label><{xoops_input type=checkbox name=user_viewemail value=1 default=$actionForm->get('user_viewemail')}><{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}></label>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_WEBSITE}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{xoops_input name=url size=30 maxlength=100 value=$actionForm->get('url')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_TIMEZONE_OFFSET}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <select name="timezone_offset">
-        <{xoops_optionsArray id=timezone_offset label=zone_name value=offset from=$timezones default=$actionForm->get('timezone_offset')}>
-      </select>
-    </td>
-  </tr>
 
-  <!-- XCL2.2 TEST-->
-  <{legacy_profile template=profile_inc_data_edit.html action=edit actionForm=$actionForm}>
-  <{*
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_ICQ}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{xoops_input name=user_icq size=15 maxlength=15 value=$actionForm->get('user_icq')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_AIM}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{xoops_input name=user_aim size=18 maxlength=18 value=$actionForm->get('user_aim')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_YIM}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{xoops_input name=user_yim size=25 maxlength=25 value=$actionForm->get('user_yim')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_MSNM}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{xoops_input name=user_msnm size=30 maxlength=100 value=$actionForm->get('user_msnm')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_FROM}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{xoops_input name=user_from size=30 maxlength=100 value=$actionForm->get('user_from')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_OCC}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{xoops_input name=user_occ size=30 maxlength=100 value=$actionForm->get('user_occ')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_INTREST}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{xoops_input name=user_intrest size=30 maxlength=150 value=$actionForm->get('user_intrest')}>
-    </td>
-  </tr>
-  *}>
-  <!-- XCL2.2 TEST END-->
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_SIG}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{xoops_dhtmltarea name=user_sig value=$actionForm->get('user_sig')}><br />
-      <label><{xoops_input type=checkbox name=attachsig value=1 default=$actionForm->get('attachsig')}><{$smarty.const._MD_USER_LANG_ATTACHSIG}></label>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_UMODE}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{html_options name=umode options=$umodeOptions selected=$actionForm->get('umode')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_UORDER}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{html_options name=uorder options=$uorderOptions selected=$actionForm->get('uorder')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_NOTIFY_METHOD}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{html_options name=notify_method options=$notify_methodOptions selected=$actionForm->get('notify_method')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_NOTIFY_MODE}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{html_options name=notify_mode options=$notify_modeOptions selected=$actionForm->get('notify_mode')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_BIO}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{xoops_textarea name=bio value=$actionForm->get('bio') rows=5 cols=50}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_PASSWORD}><br />
-    <{$smarty.const._MD_USER_LANG_TYPEPASSTWICE}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{xoops_input type=password name=pass size=10 maxlength=32 value=$actionForm->get('pass')}>
-      <{xoops_input type=password name=vpass size=10 maxlength=32 value=$actionForm->get('vpass')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USERCOOKIE}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <label><{xoops_input type=radio name=usercookie value=1 default=$actionForm->get('usercookie')}><{$smarty.const._YES}></label>
-      <label><{xoops_input type=radio name=usercookie value=0 default=$actionForm->get('usercookie')}><{$smarty.const._NO}></label>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_MAILOK}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <label><{xoops_input type=radio name=user_mailok value=1 default=$actionForm->get('user_mailok')}><{$smarty.const._YES}></label>
-      <label><{xoops_input type=radio name=user_mailok value=0 default=$actionForm->get('user_mailok')}><{$smarty.const._NO}></label>
-    </td>
-  </tr>
-  <tr>
-    <td class="head">&nbsp;</td>
-    <td class="<{cycle values="odd,even"}>">
-      <input type="submit" value="<{$smarty.const._MD_USER_LANG_SAVECHANGES}>" />
-    </td>
-  </tr>
-</table>
-</form>
+<section layout="column" id="edit-user">
+
+<!--    <h3><{$smarty.const._MD_USER_LANG_EDITPROFILE}></h3>-->
+
+    <{if $actionForm->hasError()}>
+    <div class="errorMsg">
+      <ul>
+        <{foreach item=message from=$actionForm->getErrorMessages()}>
+          <li><{$message}></li>
+        <{/foreach}>
+      </ul>
+    </div>
+    <{/if}>
+
+    <form action="#" method="post" autocomplete="off">
+
+        <{xoops_token form=$actionForm}>
+        <{xoops_input name=uid type=hidden value=$actionForm->get('uid')}>
+
+        <div id="tabs">
+
+            <ul>
+                <li class="page">
+                    <a href="<{$xoops_url}>/userinfo.php?uid=<{$thisUser->getShow('uid')}>#tab-profile">
+                    <img class="svg profile" src="<{$xoops_url}>/images/icons/user.svg" width="1em" height="1em" alt="profile">
+                    <span self="sm-hide">Profile</span></a></li>
+                <li class="page">
+                    <a href="<{$xoops_url}>/userinfo.php?uid=<{$thisUser->getShow('uid')}>#tab-timeline">
+                    <img class="svg timeline" src="<{$xoops_url}>/images/icons/timeline.svg" width="1em" height="1em" alt="timeline">
+                    <span self="sm-hide">Timeline</span></a></li>
+                <li>
+                    <a href="#tab-edit">Edit Profile</a>
+                </li>
+                <li>
+                    <a href="#tab-pref">
+                    <img class="svg settings" src="<{$xoops_url}>/images/icons/settings.svg" width="1em" height="1em" alt="settings">
+                    <span self="sm-hide">Preferences</span></a>
+                </li>
+                <li class="page">
+                    <a href="<{$xoops_url}>/notifications.php">
+                    <img class="svg notifications" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" height="1em" alt="notifications">
+                    <span self="sm-hide">Notifications</span></a>
+                </li>
+            </ul>
+
+
+            <div id="tab-edit">
+                <{* include file="$xoops_theme/templates/user/inc_user_tab_edit.html" *}>
+                <{include file="`$smarty.const.XOOPS_MODULE_PATH`/user/templates/inc_user_tab_edit.html"}>
+            </div>
+
+            <div id="tab-pref">
+                <{* include file="$xoops_theme/templates/user/inc_user_tab_pref.html" *}>
+                <{include file="`$smarty.const.XOOPS_MODULE_PATH`/user/templates/inc_user_tab_pref.html"}>
+            </div>
+
+
+        </div>
+
+    </form>
+
+</section>
+
+<script>
+    $( function() {
+        $("#tabs").tabs({
+            classes: {
+                // "ui-tabs": "tab-bg",
+                // "ui-tabs-nav": "tab-shadow",
+                "ui-tabs-tab": "ui-corner-top",
+                "ui-tabs-panel": "ui-corner-bottom"
+            },
+            active: 2,
+            fx: [{opacity:'toggle', duration:'normal'}, {opacity:'toggle', duration:'normal'}]
+        }).addClass('tab-active');
+        $('#tabs > ul > li.page a').unbind('click');
+    });
+</script>

@@ -1,186 +1,207 @@
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
 <div class="adminnavi">
-  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
-  &raquo;&raquo; <a href="./index.php?action=UserList"><{$smarty.const._AD_USER_LANG_USER_LIST}></a>
-  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_USER_VIEW}></span>
+    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+    &raquo;&raquo; <a href="./index.php?action=UserList"><{$smarty.const._AD_USER_LANG_USER_LIST}></a>
+    &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_USER_VIEW}></span>
 </div>
 
-<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_USER_VIEW}> (<{$object->getShow('uname')}>)</h3>
+
+<h2 class="admintitle"><{$smarty.const._AD_USER_LANG_USER_VIEW}> &raquo; <{$object->getShow('uname')}></h2>
+
 
 <div class="tips">
-  <{$smarty.const._AD_USER_TIPS_RECOUNT_POSTS}>
+    <{$smarty.const._AD_USER_TIPS_RECOUNT_POSTS}>
 </div>
 
 <table class="outer">
-  <tr>
-    <th colspan="2"><{$smarty.const._AD_USER_LANG_USER_VIEW}></th>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_UID}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$object->getShow('uid')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_AVATAR}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{if $object->get('user_avatar') != "blank.gif" }>
-        <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$object->getShow('user_avatar')}>" alt="Avatar" title="Avatar" />
-      <{else}>
-        <img src="<{$smarty.const.XOOPS_URL}>/modules/user/images/no_avatar.gif" alt="No Avatar" title="No Avatar" />
-      <{/if}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_UNAME}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$object->getShow('uname')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_NAME}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$object->getShow('name')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_RANK}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{if $rank}>
-        <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$rank->getShow('rank_image')}>" alt="<{$rank->getShow('rank_title')}>" title="<{$rank->getShow('rank_title')}>" />
-        <{$rank->getShow('rank_title')}>
-      <{/if}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_LEVEL}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{if $object->get('level') == 0}>
-        <{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>
-      <{elseif $object->get('level') == 1}>
-        <{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>
-      <{elseif $object->get('level') == 5}>
-        <{$smarty.const._AD_USER_LANG_LEVEL_ROOT}>
-      <{/if}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_REGDATE}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$object->get('user_regdate')|xoops_formattimestamp:l}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_LAST_LOGIN}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$object->get('last_login')|xoops_formattimestamp:l}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_POSTS}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <form action="./index.php?action=UserView" method="post">
-      <{$object->getShow('posts')}>
-        <{xoops_token form=$actionForm}>
-        <{xoops_input type=hidden name=uid value=$actionForm->get('uid')}>
-        <input class='formButton' type='submit' value='<{$smarty.const._AD_USER_LANG_RECOUNT}>' />
-      </form>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_TIMEZONE_OFFSET}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{if $timezone}>
-        <{$timezone->getShow('zone_name')}>
-      <{else}>
-        <{$object->getShow('timezone_offset')}>
-      <{/if}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_URL}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{if $object->getShow('url')}>
-        <a href="<{$object->getShow('url')}>" rel="external"><{$object->getShow('url')}></a>
-      <{/if}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_EMAIL}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$object->getShow('email')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{if $object->getShow('user_viewemail') == 1}>
-        <{$smarty.const._YES}>
-      <{else}>
-        <{$smarty.const._NO}>
-      <{/if}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_MAILOK}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{if $object->getShow('user_mailok') == 1}>
-        <{$smarty.const._YES}>
-      <{else}>
-        <{$smarty.const._NO}>
-      <{/if}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_SIG}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$object->getShow('user_sig')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_ATTACHSIG}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{if $object->get('attachesig')}>
-        <{$smarty.const._YES}>
-      <{else}>
-        <{$smarty.const._NO}>
-      <{/if}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_THEME}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$object->getShow('theme')}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_UMODE}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$umode|xoops_escape}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_UORDER}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$uorder|xoops_escape}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_NOTIFY_METHOD}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$notify_method|xoops_escape}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_NOTIFY_MODE}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$notify_mode|xoops_escape}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_BIO}></td>
-    <td class="<{cycle values='odd,even'}>">
-      <{$object->getShow('bio')}>
-    </td>
-  </tr>
-  <{legacy_profile uid=$object->getShow('uid')}>
+    <thead>
+    <tr>
+        <th colspan="2">
+            <{$smarty.const._MD_USER_LANG_UID}>
+            <code><{$object->getShow('uid')}></code>
+        </th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td class="head" style="width: 50%"><{$smarty.const._MD_USER_LANG_USER_AVATAR}></td>
+        <td>
+            <{if $object->getShow('user_avatar') != "blank.gif"}>
+            <img class="user-avatar" src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$object->getShow('user_avatar')}>" alt="Avatar" aria-label="Avatar">
+            <{else}>
+            <img class="user-avatar" src="<{$smarty.const.XOOPS_URL}>/modules/user/images/no_avatar.gif" alt="No Avatar" aria-label="No Avatar">
+            <{/if}>
+        </td>
+    </tr>
+    <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_UNAME}></td>
+        <td>
+            <{$object->getShow('uname')}>
+        </td>
+    </tr>
+    <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_NAME}></td>
+        <td>
+            <{$object->getShow('name')}>
+        </td>
+    </tr>
+    <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_RANK}></td>
+        <td>
+            <{if $rank}>
+            <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$rank->getShow('rank_image')}>" alt="<{$rank->getShow('rank_title')}>" aria-label="<{$rank->getShow('rank_title')}>">
+            <{$rank->getShow('rank_title')}>
+            <{/if}>
+        </td>
+    </tr>
+    <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_LEVEL}></td>
+        <td>
+            <{if $object->get('level') == 0}>
+            <{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>
+            <{elseif $object->get('level') == 1}>
+            <{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>
+            <{elseif $object->get('level') == 5}>
+            <{$smarty.const._AD_USER_LANG_LEVEL_ROOT}>
+            <{/if}>
+        </td>
+    </tr>
+    <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_USER_REGDATE}></td>
+        <td>
+            <{$object->get('user_regdate')|xoops_formattimestamp:l}>
+        </td>
+    </tr>
+    <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_LAST_LOGIN}></td>
+        <td>
+            <{$object->get('last_login')|xoops_formattimestamp:l}>
+        </td>
+    </tr>
+    <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_POSTS}></td>
+        <td>
+            <form action="./index.php?action=UserView" method="post">
+                <span class="badge"><{$object->getShow('posts')}></span>
+                <{xoops_token form=$actionForm}>
+                <{xoops_input type=hidden name=uid value=$actionForm->get('uid')}>
+                <input class='button' type='submit' value='<{$smarty.const._AD_USER_LANG_RECOUNT}>'>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_TIMEZONE_OFFSET}></td>
+        <td>
+            <{if $timezone}>
+            <{$timezone->getShow('zone_name')}>
+            <{else}>
+            <{$object->getShow('timezone_offset')}>
+            <{/if}>
+        </td>
+    </tr>
+    <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_URL}></td>
+        <td>
+            <{if $object->getShow('url')}>
+            <a href="<{$object->getShow('url')}>" rel="external"><{$object->getShow('url')}></a>
+            <{/if}>
+        </td>
+    </tr>
+    <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_EMAIL}></td>
+        <td>
+            <{$object->getShow('email')}>
+        </td>
+    </tr>
+    <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}></td>
+        <td>
+            <{if $object->getShow('user_viewemail') == 1}>
+            <{$smarty.const._YES}>
+            <{else}>
+            <{$smarty.const._NO}>
+            <{/if}>
+        </td>
+    </tr>
+    <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_USER_MAILOK}></td>
+        <td>
+            <{if $object->getShow('user_mailok') == 1}>
+            <{$smarty.const._YES}>
+            <{else}>
+            <{$smarty.const._NO}>
+            <{/if}>
+        </td>
+    </tr>
+    <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_USER_SIG}></td>
+        <td>
+            <{$object->getShow('user_sig')}>
+        </td>
+    </tr>
+    <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_ATTACHSIG}></td>
+        <td>
+            <{if $object->get('attachesig')}>
+            <{$smarty.const._YES}>
+            <{else}>
+            <{$smarty.const._NO}>
+            <{/if}>
+        </td>
+    </tr>
+    <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_THEME}></td>
+        <td>
+            <{$object->getShow('theme')}>
+        </td>
+    </tr>
+    <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_UMODE}></td>
+        <td>
+            <{$umode|xoops_escape}>
+        </td>
+    </tr>
+    <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_UORDER}></td>
+        <td>
+            <{$uorder|xoops_escape}>
+        </td>
+    </tr>
+    <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_NOTIFY_METHOD}></td>
+        <td>
+            <{$notify_method|xoops_escape}>
+        </td>
+    </tr>
+    <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_NOTIFY_MODE}></td>
+        <td>
+            <{$notify_mode|xoops_escape}>
+        </td>
+    </tr>
+    <tr>
+        <td class="head"><{$smarty.const._MD_USER_LANG_BIO}></td>
+        <td>
+            <{$object->getShow('bio')}>
+        </td>
+    </tr>
+    <{legacy_profile uid=$object->getShow('uid')}>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="2">
+            <input class="button" type="submit" name="confirm_back" value="<{$smarty.const._BACK}>" onclick="javascript:history.go(-1);">
+            <a href="./index.php?action=UserEdit&amp;uid=<{$object->getShow('uid')}>" class="button" aria-label="<{$smarty.const._EDIT}>" aria-label="<{$smarty.const._EDIT}>">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24" class="svg-ui-icon">
+                    <path d="M21.7 13.35l-1 1l-2.05-2.05l1-1a.55.55 0 0 1 .77 0l1.28 1.28c.21.21.21.56 0 .77M12 18.94l6.06-6.06l2.05 2.05L14.06 21H12v-2.06M12 14c-4.42 0-8 1.79-8 4v2h6v-1.89l4-4c-.66-.08-1.33-.11-2-.11m0-10a4 4 0 0 0-4 4a4 4 0 0 0 4 4a4 4 0 0 0 4-4a4 4 0 0 0-4-4z" fill="currentColor">
+                    </path>
+                </svg> <{$smarty.const._EDIT}>
+            </a>
+        </td>
+    </tr>
+    </tfoot>
 </table>

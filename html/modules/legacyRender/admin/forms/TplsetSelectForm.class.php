@@ -8,13 +8,13 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 class LegacyRender_TplsetSelectForm extends XCube_ActionForm
 {
     public function getTokenName()
     {
-        return "module.legacyRender.TemplatesetSelectForm.TOKEN";
+        return 'module.legacyRender.TemplatesetSelectForm.TOKEN';
     }
 
     public function prepare()
@@ -28,7 +28,7 @@ class LegacyRender_TplsetSelectForm extends XCube_ActionForm
     public function validateTplset_name()
     {
         $handler =& xoops_getmodulehandler('tplset');
-        if ($handler->getCount(new Criteria('tplset_name', $this->get('tplset_name'))) == 0) {
+        if (0 == $handler->getCount(new Criteria('tplset_name', $this->get('tplset_name')))) {
             $this->addErrorMessage(_AD_LEGACYRENDER_ERROR_TPLSET_NO_EXIST);
         }
     }

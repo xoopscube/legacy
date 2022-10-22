@@ -1,33 +1,18 @@
 <?php
-// $Id: config.php,v 1.1 2007/05/15 02:34:37 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://xoopscube.jp/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+/**
+ * XOOPS configuration handling class.
+ * @package    kernel
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Other authors Minahito, 2007/05/15
+ * @author     Kazumi Ono (aka onokazu)
+ * @copyright  (c) 2000-2003 XOOPS.org
+ * @license    GPL 2.0
+ * @brief      This class acts as an interface for handling general configurations of XOOPS and its modules.
+ * @todo       Tests that need to be made:
+ *             - error handling
+ * @access  public
+ */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
@@ -36,32 +21,13 @@ if (!defined('XOOPS_ROOT_PATH')) {
 require_once XOOPS_ROOT_PATH.'/kernel/configoption.php';
 require_once XOOPS_ROOT_PATH.'/kernel/configitem.php';
 
-/**
- * @package     kernel
- * 
- * @author	    Kazumi Ono	<onokazu@xoops.org>
- * @copyright	copyright (c) 2000-2003 XOOPS.org
- */
-
-
-/**
-* XOOPS configuration handling class.
-* This class acts as an interface for handling general configurations of XOOPS
-* and its modules.
-*
-*
-* @author  Kazumi Ono <webmaster@myweb.ne.jp>
-* @todo    Tests that need to be made:
-*          - error handling
-* @access  public
-*/
 
 class XoopsConfigHandler
 {
 
     /**
      * holds reference to config item handler(DAO) class
-     * 
+     *
      * @var     object
      * @access	private
      */
@@ -69,7 +35,7 @@ class XoopsConfigHandler
 
     /**
      * holds reference to config option handler(DAO) class
-     * 
+     *
      * @var	    object
      * @access	private
      */
@@ -82,14 +48,14 @@ class XoopsConfigHandler
      * @var     array
      * @access  private
      */
-    public $_cachedConfigs = array();
+    public $_cachedConfigs = [];
 
     /**
      * Constructor
-     * 
+     *
      * @param	object  &$db    reference to database object
      */
-    public function XoopsConfigHandler(&$db)
+    public function __construct(&$db)
     {
         $this->_cHandler =new XoopsConfigItemHandler($db);
         $this->_oHandler =new XoopsConfigOptionHandler($db);
@@ -97,7 +63,7 @@ class XoopsConfigHandler
 
     /**
      * Create a config
-     * 
+     *
      * @see     XoopsConfigItem
      * @return	object  reference to the new {@link XoopsConfigItem}
      */
@@ -109,15 +75,15 @@ class XoopsConfigHandler
 
     /**
      * Get a config
-     * 
+     *
      * @param	int     $id             ID of the config
      * @param	bool    $withoptions    load the config's options now?
-     * @return	object  reference to the {@link XoopsConfig} 
+     * @return	object  reference to the {@link XoopsConfig}
      */
     public function &getConfig($id, $withoptions = false)
     {
         $config =& $this->_cHandler->get($id);
-        if ($withoptions == true) {
+        if (true == $withoptions) {
             $config->setConfOptions($this->getConfigOptions(new Criteria('conf_id', $id)));
         }
         return $config;
@@ -125,8 +91,9 @@ class XoopsConfigHandler
 
     /**
      * insert a new config in the database
-     * 
-     * @param	object  &$config    reference to the {@link XoopsConfigItem} 
+     *
+     * @param object  &$config reference to the {@link XoopsConfigItem}
+     * @return bool
      */
     public function insertConfig(&$config)
     {
@@ -150,8 +117,9 @@ class XoopsConfigHandler
 
     /**
      * Delete a config from the database
-     * 
-     * @param	object  &$config    reference to a {@link XoopsConfigItem} 
+     *
+     * @param object  &$config reference to a {@link XoopsConfigItem}
+     * @return bool
      */
     public function deleteConfig(&$config)
     {
@@ -160,7 +128,7 @@ class XoopsConfigHandler
         }
         $options =& $config->getConfOptions();
         $count = count($options);
-        if ($count == 0) {
+        if (0 == $count) {
             $options =& $this->getConfigOptions(new Criteria('conf_id', $config->getVar('conf_id')));
             $count = count($options);
         }
@@ -177,11 +145,11 @@ class XoopsConfigHandler
 
     /**
      * get one or more Configs
-     * 
-     * @param	object  $criteria       {@link CriteriaElement} 
+     *
+     * @param	object  $criteria       {@link CriteriaElement}
      * @param	bool    $id_as_key      Use the configs' ID as keys?
      * @param	bool    $with_options   get the options now?
-     * 
+     *
      * @return	array   Array of {@link XoopsConfigItem} objects
      */
     public function &getConfigs($criteria = null, $id_as_key = false, $with_options = false)
@@ -192,8 +160,9 @@ class XoopsConfigHandler
 
     /**
      * Count some configs
-     * 
-     * @param	object  $criteria   {@link CriteriaElement} 
+     *
+     * @param object $criteria {@link CriteriaElement}
+     * @return int
      */
     public function getConfigCount($criteria = null)
     {
@@ -202,27 +171,27 @@ class XoopsConfigHandler
 
     /**
      * Get configs from a certain category
-     * 
+     *
      * @param	int $category   ID of a category
      * @param	int $module     ID of a module
-     * 
-     * @return	array   array of {@link XoopsConfig}s 
+     *
+     * @return	array   array of {@link XoopsConfig}s
      * @todo This method keeps cache for categories. This may be problem...
      */
     public function &getConfigsByCat($category, $module = 0)
     {
-        static $_cachedConfigs=array();
+        static $_cachedConfigs= [];
         if (!empty($_cachedConfigs[$module][$category])) {
             return $_cachedConfigs[$module][$category];
         } else {
-            $ret = array();
+            $ret = [];
             $criteria = new CriteriaCompo(new Criteria('conf_modid', (int)$module));
             if (!empty($category)) {
                 $criteria->add(new Criteria('conf_catid', (int)$category));
             }
 
             // get config values
-            $configs = array();
+            $configs = [];
             $db = $this->_cHandler->db;
             $result = $db->query('SELECT conf_name,conf_value,conf_valuetype FROM '.$db->prefix('config').' '.$criteria->renderWhere().' ORDER BY conf_order ASC');
             if ($result) {
@@ -243,12 +212,13 @@ class XoopsConfigHandler
             return $ret;
         }
     }
-    
+
     /**
      * Get configs by dirname.
-     * 
+     *
      * @param string $dirname
-     * @param int    $category   ID of a category. (Reserved)
+     * @param int    $category ID of a category. (Reserved)
+     * @return array|null
      */
     public function &getConfigsByDirname($dirname, $category = 0)
     {
@@ -260,16 +230,16 @@ class XoopsConfigHandler
         if (!is_object($module)) {
             return $ret;
         }
-        
+
         $ret =& $this->getConfigsByCat($category, $module->get('mid'));
-        
+
         return $ret;
     }
 
     /**
-     * Make a new {@link XoopsConfigOption} 
-     * 
-     * @return	object  {@link XoopsConfigOption} 
+     * Make a new {@link XoopsConfigOption}
+     *
+     * @return	object  {@link XoopsConfigOption}
      */
     public function &createConfigOption()
     {
@@ -278,11 +248,11 @@ class XoopsConfigHandler
     }
 
     /**
-     * Get a {@link XoopsConfigOption} 
-     * 
+     * Get a {@link XoopsConfigOption}
+     *
      * @param	int $id ID of the config option
-     * 
-     * @return	object  {@link XoopsConfigOption} 
+     *
+     * @return	object  {@link XoopsConfigOption}
      */
     public function &getConfigOption($id)
     {
@@ -292,10 +262,10 @@ class XoopsConfigHandler
 
     /**
      * Get one or more {@link XoopsConfigOption}s
-     * 
-     * @param	object  $criteria   {@link CriteriaElement} 
+     *
+     * @param	object  $criteria   {@link CriteriaElement}
      * @param	bool    $id_as_key  Use IDs as keys in the array?
-     * 
+     *
      * @return	array   Array of {@link XoopsConfigOption}s
      */
     public function &getConfigOptions($criteria = null, $id_as_key = false)
@@ -306,9 +276,9 @@ class XoopsConfigHandler
 
     /**
      * Count some {@link XoopsConfigOption}s
-     * 
-     * @param	object  $criteria   {@link CriteriaElement} 
-     * 
+     *
+     * @param	object  $criteria   {@link CriteriaElement}
+     *
      * @return	int     Count of {@link XoopsConfigOption}s matching $criteria
      */
     public function getConfigOptionsCount($criteria = null)
@@ -318,10 +288,10 @@ class XoopsConfigHandler
 
     /**
      * Get a list of configs
-     * 
+     *
      * @param	int $conf_modid ID of the modules
      * @param	int $conf_catid ID of the category
-     * 
+     *
      * @return	array   Associative array of name=>value pairs.
      */
     public function &getConfigList($conf_modid, $conf_catid = 0)
@@ -335,7 +305,7 @@ class XoopsConfigHandler
             }
             $configs =& $this->_cHandler->getObjects($criteria);
             $confcount = count($configs);
-            $ret = array();
+            $ret = [];
             for ($i = 0; $i < $confcount; $i++) {
                 $ret[$configs[$i]->getVar('conf_name')] = $configs[$i]->getConfValueForOutput();
             }

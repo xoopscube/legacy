@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: ThemeSelect.class.php,v 1.3 2008/09/25 15:12:43 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  *
  */
 
@@ -24,29 +24,36 @@ class Legacy_ThemeSelect extends XCube_ActionFilter
      * @var XCube_Delegate
      */
     public $mIsSelectableTheme = null;
-    
+
     public function Legacy_ThemeSelect(&$controller)
+    {
+        $this->__construct($controller);
+    }
+
+    public function __construct(&$controller)
     {
         //
         // TODO remove
         //
-        parent::XCube_ActionFilter($controller);
+        parent::__construct($controller);
         $this->mIsSelectableTheme =new XCube_Delegate();
         $this->mIsSelectableTheme->register('Legacy_ThemeSelect.IsSelectableTheme');
-        
-        $controller->mSetupUser->add(array(&$this, 'doChangeTheme'));
+
+        $controller->mSetupUser->add([&$this, 'doChangeTheme']);
     }
-    
+
     public function preBlockFilter()
     {
-        $this->mController->mRoot->mDelegateManager->add("Site.CheckLogin.Success", array(&$this, "callbackCheckLoginSuccess"));
+        $this->mController->mRoot->mDelegateManager->add('Site.CheckLogin.Success', [&$this, 'callbackCheckLoginSuccess']);
     }
-    
+
     /**
      * Because this process needs sessions, this functions is added to
      * SiteLogin event.
-     * 
-     * @param XoopsUser $xoopsUser Must parameter, because this is added to login event.
+     *
+     * @param $principal
+     * @param $controller
+     * @param $context
      */
     public function doChangeTheme(&$principal, &$controller, &$context)
     {
@@ -68,14 +75,14 @@ class Legacy_ThemeSelect extends XCube_ActionFilter
         // Check Theme and set it to session.
         //
         $userTheme = $xoopsUser->get('theme');
-        if (in_array($userTheme, $this->mRoot->mContext->getXoopsConfig('theme_set_allowed'))) {
+        if (in_array($userTheme, $this->mRoot->mContext->getXoopsConfig('theme_set_allowed'), true)) {
             $_SESSION['xoopsUserTheme'] = $userTheme;
             $this->mRoot->mContext->setThemeName($userTheme);
         }
     }
-    
+
     public function _isSelectableTheme($theme_name)
     {
-        return in_array($theme_name, $this->mRoot->mContext->getXoopsConfig('theme_set_allowed'));
+        return in_array($theme_name, $this->mRoot->mContext->getXoopsConfig('theme_set_allowed'), true);
     }
 }

@@ -19,7 +19,7 @@ class User_Permission
      */
     public $mItem;
 
-    public function User_Permission($groupId, &$item)
+    public function __construct($groupId, &$item)
     {
         $this->mGroupId = $groupId;
         $this->mItem =& $item;
@@ -38,7 +38,7 @@ class User_Permission
 
     public function setValue($value)
     {
-        $value = intval($value);
+        $value = (int)$value;
         $this->mValue = $value & (USER_PERMISSION_READ | USER_PERMISSION_ADMIN);
     }
     
@@ -90,7 +90,7 @@ class User_Permission
 class User_PermissionItem
 {
     /**
-     * @return int
+     * @return void
      */
     public function getId()
     {
@@ -111,7 +111,7 @@ class User_PermissionItem
     }
 
     /**
-     * @return bool
+     * @return void
      */
     public function isActive()
     {
@@ -142,7 +142,7 @@ class User_PermissionModuleItem extends User_PermissionItem
 {
     public $mModule;
     
-    public function User_PermissionModuleItem(&$module)
+    public function __construct(&$module)
     {
         $this->mModule =& $module;
     }
@@ -171,11 +171,11 @@ class User_PermissionModuleItem extends User_PermissionItem
         $ret = USER_PERMISSION_NONE;
 
         $gpermHandler =& xoops_gethandler('groupperm');
-        if ($gpermHandler->checkRight("module_admin", $this->mModule->getVar('mid'), $groupId)) {
+        if ($gpermHandler->checkRight('module_admin', $this->mModule->getVar('mid'), $groupId)) {
             $ret |= USER_PERMISSION_ADMIN;
         }
         
-        if ($gpermHandler->checkRight("module_read", $this->mModule->getVar('mid'), $groupId)) {
+        if ($gpermHandler->checkRight('module_read', $this->mModule->getVar('mid'), $groupId)) {
             $ret |= USER_PERMISSION_READ;
         }
 
@@ -184,12 +184,12 @@ class User_PermissionModuleItem extends User_PermissionItem
 
     public function getReadPermName()
     {
-        return "module_read";
+        return 'module_read';
     }
 
     public function getAdminPermName()
     {
-        return "module_admin";
+        return 'module_admin';
     }
 }
 
@@ -197,7 +197,7 @@ class User_PermissionBlockItem extends User_PermissionItem
 {
     public $mBlock;
     
-    public function User_PermissionBlockItem(&$block)
+    public function __construct(&$block)
     {
         $this->mBlock =& $block;
     }
@@ -218,7 +218,7 @@ class User_PermissionBlockItem extends User_PermissionItem
     
     public function isActive()
     {
-        return $this->mBlock->getProperty('visible')==1 ? true : false;
+        return 1 == $this->mBlock->getProperty('visible') ? true : false;
     }
 
     public function loadPermission($groupId)
@@ -226,7 +226,7 @@ class User_PermissionBlockItem extends User_PermissionItem
         $ret = USER_PERMISSION_NONE;
 
         $gpermHandler =& xoops_gethandler('groupperm');
-        if ($gpermHandler->checkRight("block_read", $this->mBlock->getVar('bid'), $groupId, 1, true)) {
+        if ($gpermHandler->checkRight('block_read', $this->mBlock->getVar('bid'), $groupId, 1, true)) {
             $ret |= USER_PERMISSION_READ;
         }
 
@@ -236,7 +236,7 @@ class User_PermissionBlockItem extends User_PermissionItem
     
     public function getReadPermName()
     {
-        return "block_read";
+        return 'block_read';
     }
 }
 
@@ -249,7 +249,7 @@ class User_PermissionSystemAdminItem extends User_PermissionItem
     public $mId;
     public $mName;
     
-    public function User_PermissionSystemAdminItem($id, $name)
+    public function __construct($id, $name)
     {
         $this->mId = $id;
         $this->mName = $name;
@@ -279,7 +279,7 @@ class User_PermissionSystemAdminItem extends User_PermissionItem
         $ret = USER_PERMISSION_NONE;
         
         $gpermHandler =& xoops_gethandler('groupperm');
-        if ($gpermHandler->checkRight("system_admin", $this->mId, $groupId)) {
+        if ($gpermHandler->checkRight('system_admin', $this->mId, $groupId)) {
             $ret |= USER_PERMISSION_ADMIN;
         }
         
@@ -288,6 +288,6 @@ class User_PermissionSystemAdminItem extends User_PermissionItem
 
     public function getAdminPermName()
     {
-        return "system_admin";
+        return 'system_admin';
     }
 }

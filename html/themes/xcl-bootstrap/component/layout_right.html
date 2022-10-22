@@ -1,0 +1,46 @@
+<div class="row">
+
+    <{* ------- order content first *}>
+    <div class="col-md-9 order-md-1">
+
+        <{if !empty($xoops_contents)}>
+
+            <div class="content"><{$xoops_contents}></div>
+
+        <{else}>
+
+        <{ include file="$xoops_theme/component/inc_block_center_custom.html" }>
+
+        <{/if}>
+
+    </div>
+
+    <{* ------- order column blocks second *}>
+    <div class="col-md-3 order-md-2">
+
+        <{if $xoops_showlblock}>
+            <{foreach item=block from=$xoops_lblocks name=lbloop}>
+                <{if ! $block.title|strstr:"none"}>
+                    <h4 class="block-title"><{$block.title}></h4>
+                <{/if}>
+                <div class="btnList">
+                    <{$block.content}>
+                </div>
+            <{/foreach}>
+        <{/if}>
+
+        <{if $xoops_showrblock}>
+            <{foreach item=block from=$xoops_rblocks name=rbloop}>
+                <{if ! $block.title|strstr:"none"}>
+                    <h4 class="block-title"><{$block.title}></h4>
+                <{/if}>
+                <div class="btnList">
+                    <{$block.content}>
+                </div>
+            <{/foreach}>
+        <{/if}>
+
+    </div>
+
+
+</div>

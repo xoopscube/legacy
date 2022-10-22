@@ -6,7 +6,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class LegacyRenderTplsourceObject extends XoopsSimpleObject
 {
-    public function LegacyRenderTplsourceObject()
+    public function __construct()
     {
         static $initVars;
         if (isset($initVars)) {
@@ -21,7 +21,7 @@ class LegacyRenderTplsourceObject extends XoopsSimpleObject
 
 class LegacyRenderTplsourceHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "tplsource";
-    public $mPrimary = "tpl_id";
-    public $mClass = "LegacyRenderTplsourceObject";
+    public $mTable = 'tplsource';
+    public $mPrimary = 'tpl_id';
+    public $mClass = 'LegacyRenderTplsourceObject';
 }

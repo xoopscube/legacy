@@ -4,7 +4,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 class User_AvatarAdminEditForm extends XCube_ActionForm
 {
@@ -14,7 +14,7 @@ class User_AvatarAdminEditForm extends XCube_ActionForm
     
     public function getTokenName()
     {
-        return "module.user.AvatarAdminEditForm.TOKEN" . $this->get('avatar_id');
+        return 'module.user.AvatarAdminEditForm.TOKEN' . $this->get('avatar_id');
     }
 
     public function prepare()
@@ -32,28 +32,28 @@ class User_AvatarAdminEditForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['avatar_id'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['avatar_id']->setDependsByArray(array('required'));
+        $this->mFieldProperties['avatar_id']->setDependsByArray(['required']);
         $this->mFieldProperties['avatar_id']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_AVATAR_ID);
 
         $this->mFieldProperties['avatar_file'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['avatar_file']->setDependsByArray(array('extension'));
+        $this->mFieldProperties['avatar_file']->setDependsByArray(['extension']);
         $this->mFieldProperties['avatar_file']->addMessage('extension', _MD_USER_ERROR_AVATAR_EXTENSION, _AD_USER_LANG_AVATAR_FILE);
-        $this->mFieldProperties['avatar_file']->addVar('extension', "gif,png,jpg");
+        $this->mFieldProperties['avatar_file']->addVar('extension', 'gif,png,jpg');
 
         $this->mFieldProperties['avatar_name'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['avatar_name']->setDependsByArray(array('required', 'maxlength'));
+        $this->mFieldProperties['avatar_name']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['avatar_name']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_AVATAR_NAME, '100');
         $this->mFieldProperties['avatar_name']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _AD_USER_LANG_AVATAR_NAME, '100');
         $this->mFieldProperties['avatar_name']->addVar('maxlength', 100);
 
         $this->mFieldProperties['avatar_weight'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['avatar_weight']->setDependsByArray(array('required'));
+        $this->mFieldProperties['avatar_weight']->setDependsByArray(['required']);
         $this->mFieldProperties['avatar_weight']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_AVATAR_WEIGHT);
     }
 
     public function validateAvatar_file()
     {
-        if ($this->_mIsNew && $this->get('avatar_file') == null) {
+        if ($this->_mIsNew && null == $this->get('avatar_file')) {
             $this->addErrorMessage(_AD_USER_ERROR_IMAGE_REQUIRED);
         }
     }
@@ -77,7 +77,7 @@ class User_AvatarAdminEditForm extends XCube_ActionForm
         $obj->set('avatar_weight', $this->get('avatar_weight'));
     
         $this->mFormFile = $this->get('avatar_file');
-        if ($this->mFormFile != null) {
+        if (null != $this->mFormFile) {
             $this->mFormFile->setRandomToBodyName('savt');
             $filename = $this->mFormFile->getBodyName();
             $this->mFormFile->setBodyName(substr($filename, 0, 24));

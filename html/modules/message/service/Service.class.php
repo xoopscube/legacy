@@ -25,7 +25,7 @@ class Message_Service extends XCube_Service
             return XOOPS_URL.'/modules/message/index.php';
         }
     
-        return "";
+        return '';
     }
   
     public function getPmliteUrl()
@@ -39,7 +39,7 @@ class Message_Service extends XCube_Service
             return XOOPS_URL.'/modules/message/index.php?action=new&to_userid='.$toUid;
         }
     
-        return "";
+        return '';
     }
   
     public function getCountUnreadPM()

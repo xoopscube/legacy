@@ -1,34 +1,92 @@
-<h3><{$smarty.const._MD_MESSAGE_TEMPLATE1}></h3>
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
-<p><img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_inbox.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE15}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE15}>" /> <a href="index.php?action=index"><{$smarty.const._MD_MESSAGE_TEMPLATE15}></a>&nbsp;&nbsp;
-<img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_outbox.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE7}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE7}>" /> <a href="index.php?action=send"><{$smarty.const._MD_MESSAGE_TEMPLATE7}></a></p>
-<br />
-<{if $errMsg!=""}>
-<ul>
-<{foreach item=error from=$errMsg}>
-<li style="color:red; font-weight: bold;"><{$error}></li>
-<{/foreach}>
+<ul class="breadcrumb" aria-label="breadcrumb">
+    <li><a href="<{$xoops_url}>/">
+        <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a>
+    <li><a href="index.php">
+    <img class="svg inbox" src="<{$xoops_url}>/images/icons/inbox.svg"> <{$smarty.const._MI_MESSAGE_NAME}></a>
+    <li aria-current="page"><{$smarty.const._MD_MESSAGE_TEMPLATE1}>
 </ul>
-<{/if}>
 
-<{if $mActionForm->get('Legacy_Event_User_Preview')!=""}>
-<table class="outer">
-<tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE2}></td><td class="even"><{$mActionForm->getShow('uname')}></td></tr>
-<tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE3}></td><td class="even"><{$mActionForm->getShow('title')}></td></tr>
-<tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE4}></td><td class="even"><{$mActionForm->getShow('note', 'toShowTarea')}></td></tr>
-</table>
-<br />
-<{/if}>
 
-<form action="index.php?action=new" method="post">
-<{xoops_token form=$mActionForm}>
-<{xoops_input type=hidden name=mode}>
-<table class="outer">
-<tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE2}></td><td class="even"><{xoops_input name=uname size=30 maxlength=50 value=$mActionForm->get('uname')}></td></tr>
-<tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE3}></td><td class="even"><{xoops_input name=title size=50 maxlength=100 value=$mActionForm->get('title')}></td></tr>
-<tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE4}></td><td class="even"><{xoops_dhtmltarea cols=60 rows=7 name=note value=$mActionForm->get('note')}></td></tr>
-<tr><td class="foot" colspan="2" align="center"><{legacy_button id=Preview Text=$smarty.const._MD_MESSAGE_TEMPLATE5}>
-<{legacy_button id=Submit Text=$smarty.const._MD_MESSAGE_TEMPLATE6}></td></tr>
-</table>
+<div id="tabs-mail">
 
-</form>
+    <{include file=db:message_nav.html}>
+
+
+    <div id="mail-new">
+
+
+        <div class="ui-tab-content">
+
+
+        <form action="index.php?action=new" method="post">
+
+        <{xoops_token form=$mActionForm}>
+        <{xoops_input type=hidden name=mode}>
+
+            <{if $errMsg!=""}>
+                <div self="size-x1 m-6" class="msg-callout msg-warning">
+                    <ul>
+                    <{foreach item=error from=$errMsg}>
+                    <li><{$error}></li>
+                    <{/foreach}>
+                    </ul>
+                </div>
+            <hr>
+            <{/if}>
+
+
+        <{if $mActionForm->get('Legacy_Event_User_Preview')!=""}>
+            <div layout="column p-6" class="preview">
+                <h3><{$smarty.const._MD_MESSAGE_TEMPLATE3}> : <{$mActionForm->getShow('title')}></h3>
+                <p><{$smarty.const._MD_MESSAGE_TEMPLATE2}> : <{$mActionForm->getShow('uname')}>
+                <br><{$smarty.const._MD_MESSAGE_TEMPLATE4}></p>
+
+                <blockquote>
+                <{$mActionForm->getShow('note', 'toShowTarea')}>
+                </blockquote>
+            </div>
+        <{/if}>
+
+
+        <hr>
+        <div layout="column p-6">
+            <label for="uname" self="row"><{$smarty.const._MD_MESSAGE_TEMPLATE2}></label>
+            <div self="size-x1">
+                <{xoops_input name=uname size=30 maxlength=25 value=$mActionForm->get('uname')}>
+            </div>
+        </div>
+
+        <div layout="column p-6">
+            <label for="title" self="row"><{$smarty.const._MD_MESSAGE_TEMPLATE3}></label>
+            <div self="row">
+                <{xoops_input name=title class="form-control form-control-sm" size=50 maxlength=100 value=$mActionForm->get('title')}>
+            </div>
+        </div>
+
+            <div layout="column p-6">
+            <label for="note" self="row"><{$smarty.const._MD_MESSAGE_TEMPLATE4}></label>
+            <div self="row">
+                <{xoops_dhtmltarea class="form-control" cols=60 rows=7 name=note value=$mActionForm->get('note')}>
+            </div>
+        </div>
+
+        <hr>
+
+        <div layout="row centered pb-6">
+            <{legacy_button class="ui-button" id=Preview Text=$smarty.const._MD_MESSAGE_TEMPLATE5}>
+            <{legacy_button class="ui-button" id=Submit Text=$smarty.const._MD_MESSAGE_TEMPLATE6}>
+        </div>
+
+        </form>
+
+
+        </div><{* ------- /ui-tab-content *}>
+
+    </div><{* ------- /ui-tab-mail-settings *}>
+
+</div><{* ------- /ui-tab-wrap *}>
+
+

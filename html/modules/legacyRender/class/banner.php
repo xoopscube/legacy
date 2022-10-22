@@ -9,7 +9,7 @@ class LegacyRenderBannerObject extends XoopsSimpleObject
     public $mClient = null;
     public $_mClientLoadedFlag = false;
 
-    public function LegacyRenderBannerObject()
+    public function __construct()
     {
         static $initVars;
         if (isset($initVars)) {
@@ -21,8 +21,8 @@ class LegacyRenderBannerObject extends XoopsSimpleObject
         $this->initVar('imptotal', XOBJ_DTYPE_INT, '0', true);
         $this->initVar('impmade', XOBJ_DTYPE_INT, '0', true);
         $this->initVar('clicks', XOBJ_DTYPE_INT, '0', true);
-        $this->initVar('imageurl', XOBJ_DTYPE_STRING, '', true, 255);
-        $this->initVar('clickurl', XOBJ_DTYPE_STRING, '', true, 255);
+        $this->initVar('imageurl', XOBJ_DTYPE_STRING, '', true, 191);
+        $this->initVar('clickurl', XOBJ_DTYPE_STRING, '', true, 191);
         $this->initVar('date', XOBJ_DTYPE_INT, time(), true);
         $this->initVar('htmlbanner', XOBJ_DTYPE_BOOL, '0', true);
         $this->initVar('htmlcode', XOBJ_DTYPE_TEXT, '', true);
@@ -31,7 +31,7 @@ class LegacyRenderBannerObject extends XoopsSimpleObject
 
     public function loadBannerclient()
     {
-        if ($this->_mClientLoadedFlag == false) {
+        if (false == $this->_mClientLoadedFlag) {
             $handler =& xoops_getmodulehandler('bannerclient', 'legacyRender');
             $this->mClient =& $handler->get($this->get('cid'));
             $this->_mClientLoadedFlag = true;
@@ -41,7 +41,7 @@ class LegacyRenderBannerObject extends XoopsSimpleObject
 
 class LegacyRenderBannerHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "banner";
-    public $mPrimary = "bid";
-    public $mClass = "LegacyRenderBannerObject";
+    public $mTable = 'banner';
+    public $mPrimary = 'bid';
+    public $mClass = 'LegacyRenderBannerObject';
 }

@@ -15,22 +15,19 @@ class User_AbstractEditAction extends User_Action
      * @access protected
      */
     public function _getId()
-    {
-    }
+    { }
 
     /**
      * @access protected
      */
     public function &_getHandler()
-    {
-    }
+    { }
 
     /**
      * @access protected
      */
     public function _setupActionForm()
-    {
-    }
+    { }
 
     /**
      * @access protected
@@ -38,13 +35,13 @@ class User_AbstractEditAction extends User_Action
     public function _setupObject()
     {
         $id = $this->_getId();
-        
+
         $this->mObjectHandler = $this->_getHandler();
-        
-        $this->mObject =& $this->mObjectHandler->get($id);
-        
-        if ($this->mObject == null && $this->isEnableCreate()) {
-            $this->mObject =& $this->mObjectHandler->create();
+
+        $this->mObject = &$this->mObjectHandler->get($id);
+
+        if (null == $this->mObject && $this->isEnableCreate()) {
+            $this->mObject = &$this->mObjectHandler->create();
         }
     }
 
@@ -54,7 +51,7 @@ class User_AbstractEditAction extends User_Action
      * @param	void
      * 
      * @return	string
-    **/
+     **/
     protected function _getPageAction()
     {
         return _EDIT;
@@ -78,38 +75,38 @@ class User_AbstractEditAction extends User_Action
 
     public function getDefaultView(&$controller, &$xoopsUser)
     {
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return USER_FRAME_VIEW_ERROR;
         }
-    
+
         $this->mActionForm->load($this->mObject);
-        
+
         return USER_FRAME_VIEW_INPUT;
     }
 
     public function execute(&$controller, &$xoopsUser)
     {
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return USER_FRAME_VIEW_ERROR;
         }
-    
-        if (xoops_getrequest('_form_control_cancel') != null) {
+
+        if (null != xoops_getrequest('_form_control_cancel')) {
             return USER_FRAME_VIEW_CANCEL;
         }
 
         $this->mActionForm->load($this->mObject);
-        
+
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
-    
+
         if ($this->mActionForm->hasError()) {
             return USER_FRAME_VIEW_INPUT;
         }
-    
+
         $this->mActionForm->update($this->mObject);
-        
+
         return $this->_doExecute($this->mObject) ? USER_FRAME_VIEW_SUCCESS
-                                                 : USER_FRAME_VIEW_ERROR;
+            : USER_FRAME_VIEW_ERROR;
     }
 
     /**

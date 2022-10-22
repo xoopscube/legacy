@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/TplfileEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplfileEditForm.class.php';
 
 class LegacyRender_TplfileDownloadAction extends LegacyRender_Action
 {
@@ -21,13 +21,13 @@ class LegacyRender_TplfileDownloadAction extends LegacyRender_Action
         $handler =& xoops_getmodulehandler('tplfile');
         $this->mObject =& $handler->get($id);
         
-        return $this->mObject != null ? LEGACYRENDER_FRAME_VIEW_SUCCESS : LEGACYRENDER_FRAME_VIEW_ERROR;
+        return null != $this->mObject ? LEGACYRENDER_FRAME_VIEW_SUCCESS : LEGACYRENDER_FRAME_VIEW_ERROR;
     }
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
         $this->mObject->loadSource();
-        if ($this->mObject->Source == null) {
+        if (null == $this->mObject->Source) {
             return LEGACYRENDER_FRAME_VIEW_ERROR;
         }
 
@@ -37,7 +37,7 @@ class LegacyRender_TplfileDownloadAction extends LegacyRender_Action
         header('Pragma: no-cache');
         header('Content-Type: application/force-download');
         
-        if (preg_match("/MSIE 5.5/", $_SERVER['HTTP_USER_AGENT'])) {
+        if (preg_match('/MSIE 5.5/', $_SERVER['HTTP_USER_AGENT'])) {
             header('Content-Disposition: filename=' . $this->mObject->getShow('tpl_file'));
         } else {
             header('Content-Disposition: attachment; filename=' . $this->mObject->getShow('tpl_file'));
@@ -51,6 +51,6 @@ class LegacyRender_TplfileDownloadAction extends LegacyRender_Action
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=TplsetList", 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=TplsetList', 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
     }
 }

@@ -1,79 +1,74 @@
 <?php
 /**
- *
- * @package XCube
- * @version $Id: XCube_RenderCache.class.php,v 1.3 2008/10/12 04:30:27 minahito Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt Modified BSD license
- *
+ * XCube_RenderCache.class.php
+ * @package    XCube
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Minahito, 2008/10/12
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    BSD-3-Clause
  */
 
-class XCube_RenderCache
-{
-    public $mCacheId = null;
-    public $mResourceName = null;
-    
-    public function XCube_RenderCache()
-    {
-    }
+class XCube_RenderCache {
+	public $mCacheId;
+	public $mResourceName;
 
-    /**
-     * @return bool
-     */
-    public function isCache($cachetime = null)
-    {
-    }
-    
-    /**
-     * @return bool
-     */
-    public function enableCache()
-    {
-        return true;
-    }
-    
-    public function setResourceName($name)
-    {
-        $this->mResourceName = $name;
-    }
-    
-    /**
-     * @return string
-     */
-    public function getCacheId()
-    {
-    }
-    
-    /**
-     * @return string
-     */
-    public function _getFileName()
-    {
-    }
+	public function __construct() {
+	}
 
-    public function save($renderTarget)
-    {
-        if ($this->enableCache()) {
-            $filename = $this->_getFileName();
-            $fp = fopen($filename, "wb");
-            fwrite($fp, $renderTarget->getResult());
-            fclose($fp);
-        }
-    }
+	/**
+	 * @param null $cachetime
+	 *
+	 * @return void
+	 */
+	public function isCache( $cachetime = null ) {
+	}
 
-    public function load()
+	/**
+	 * @return bool
+	 */
+	public function enableCache(): bool
     {
-        if ($this->isCache()) {
-            return file_get_contents($this->_getFileName());
-        }
-    }
-    
-    public function clear()
+		return true;
+	}
+
+	public function setResourceName( $name ) {
+		$this->mResourceName = $name;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getCacheId(): string
     {
-    }
-    
-    public function reset()
+	}
+
+	/**
+	 * @return string
+	 */
+	public function _getFileName(): string
     {
-        $this->mResourceName = null;
-    }
+	}
+
+	public function save( $renderTarget ) {
+		if ( $this->enableCache() ) {
+			$filename = $this->_getFileName();
+			$fp       = fopen( $filename, 'wb' );
+			fwrite( $fp, $renderTarget->getResult() );
+			fclose( $fp );
+		}
+	}
+
+	public function load() {
+		if ( $this->isCache() ) {
+			return file_get_contents( $this->_getFileName() );
+		}
+	}
+
+	public function clear() {
+	}
+
+	public function reset() {
+		$this->mResourceName = null;
+	}
 }

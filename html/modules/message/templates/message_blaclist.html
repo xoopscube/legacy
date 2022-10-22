@@ -1,20 +1,94 @@
-<h3><{$smarty.const._MD_MESSAGE_SETTINGS_MSG15}></h3>
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
-<form action="index.php?action=blacklist" method="post" name="adduser">
-<input type="hidden" name="cmd" value="add" />
-<{$smarty.const._MD_MESSAGE_TEMPLATE2}>&nbsp;<input type="text" name="uname" value="" />
-<{legacy_button id=Submit Text=$smarty.const._ADD}>
-</form>
+<ul class="breadcrumb" aria-label="breadcrumb">
+    <li>
+        <a href="<{$xoops_url}>/">
+            <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="Home"></a>
+    </li>
+    <li><a href="index.php">
+        <img class="svg inbox" src="<{$xoops_url}>/images/icons/inbox.svg"> <{$smarty.const._MI_MESSAGE_NAME}></a>
+    <li aria-current="page"><{$smarty.const._MD_MESSAGE_SETTINGS_MSG15}>
+</ul>
 
-<br />
 
-<form action="index.php?action=blacklist" method="post" name="listform">
-<input type="hidden" name="cmd" value="del" />
-<table class="outer">
-<tr><th><{$smarty.const._MD_MESSAGE_TEMPLATE2}></th><th><{$smarty.const._MD_MESSAGE_TEMPLATE14}></th></tr>
-<{foreach item=uname key=uid from=$blackuser}>
-<tr><td class="even"><{$uname}></td><td class="odd" align="center"><input type="checkbox" name="deluid[]" value="<{$uid}>" /></td></tr>
-<{/foreach}>
-<tr><td colspan="2" class="foot" align="center"><{legacy_button id=Submit Text=$smarty.const._DELETE}></td></tr>
-</table>
-</form>
+<div id="tabs-mail">
+
+    <{include file=db:message_nav.html}>
+
+    <div id="blacklist">
+
+
+    <div class="ui-tab-content" id="printhis">
+
+    <hr>
+
+        <div layout="column px-6">
+
+        <form action="index.php?action=blacklist" method="post" name="adduser">
+
+            <input type="hidden" name="cmd" value="add">
+
+            <div layout="row centered sm-column p-6">
+                <label for="uname"><{$smarty.const._MD_MESSAGE_TEMPLATE2}></label>
+                <input type="text" class="form-control form-control-sm ml-2" id="uname" name="uname" value="" placeholder="uname">
+
+            <button type="submit" class="ui-button">
+                <img class="svg shield" src="<{$xoops_url}>/images/icons/shield.svg"> <{$smarty.const._MD_MESSAGE_ADDBLACKLIST}>
+            </button>
+
+            </div>
+        </form>
+
+        </div>
+
+
+        <form action="index.php?action=blacklist" method="post" name="listform">
+
+            <input type="hidden" name="cmd" value="del">
+
+            <table class="outer">
+                <thead>
+                <tr class="small">
+                    <th><{$smarty.const._MD_MESSAGE_TEMPLATE14}></th>
+                    <th><{$smarty.const._MD_MESSAGE_TEMPLATE2}></th>
+                </tr>
+                </thead>
+
+                <{foreach item=uname key=uid from=$blackuser}>
+                <tr>
+                    <td class="odd">
+                        <div layout="row centered">
+                            <input type="checkbox" id="<{$uid}>" name="deluid[]" value="<{$uid}>">
+                            <label for="<{$uid}>"></label>
+                        </div>
+                    </td>
+                    <td class="even">
+                        <div layout="row centered">
+                            <img src="<{$uid|xoops_user_avatarize}>" width="24px" self="radius-circle mr-4"> <{$uname}>
+                        </div>
+                    </td>
+                </tr>
+                <{/foreach}>
+
+            </table>
+
+        <hr>
+
+            <div layout="row centered pb-6">
+            <button id=Submit class="ui-button">
+                <img class="svg check" src="<{$xoops_url}>/images/icons/check.svg"> <{$smarty.const._SUBMIT}></button>
+            </div>
+
+
+        </form>
+
+
+    </div><{* ------- /ui-tab-content *}>
+
+    </div><{* ------- /ui-tab-blacklist *}>
+
+</div><{* ------- /ui-tabs-mail *}>
+
+
+

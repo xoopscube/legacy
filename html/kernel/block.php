@@ -1,33 +1,14 @@
 <?php
-// $Id: block.php,v 1.1 2007/05/15 02:34:37 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://xoopscube.jp/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+/**
+ * block class object
+ * @package    kernel
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Other authors Minahito, 2007/05/15
+ * @author     Kazumi Ono (aka onokazu)
+ * @copyright  (c) 2000-2003 XOOPS.org
+ * @license    GPL 2.0
+ */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
@@ -43,23 +24,18 @@ if (!defined('SHOW_SIDEBLOCK_LEFT')) {
 }
 
 /**
- * A block
- *
  * @author Kazumi Ono <onokazu@xoops.org>
  * @copyright copyright (c) 2000 XOOPS.org
- *
  * @package kernel
  **/
 class XoopsBlock extends XoopsObject
 {
-    public $mBlockFlagMapping = array();
+    public $mBlockFlagMapping = [];
 
     /**
-     * constructor
-     *
      * @param mixed $id
      **/
-    public function XoopsBlock($id = null)
+    public function __construct($id = null)
     {
         static $initVars, $initMap;
         if (isset($initVars)) {
@@ -87,16 +63,16 @@ class XoopsBlock extends XoopsObject
             $this->initVar('bcachetime', XOBJ_DTYPE_INT, 0, false);
             $this->initVar('last_modified', XOBJ_DTYPE_INT, time(), false);
             $initVars = $this->vars;
-            $initMap = array(
+            $initMap = [
             0 => false,
                 SHOW_SIDEBLOCK_LEFT => 0,
                 SHOW_SIDEBLOCK_RIGHT => 1,
                 SHOW_CENTERBLOCK_LEFT => 3,
                 SHOW_CENTERBLOCK_RIGHT => 4,
                 SHOW_CENTERBLOCK_CENTER => 5
-            );
+            ];
         }
-    
+
         // for backward compatibility
         if (isset($id)) {
             if (is_array($id)) {
@@ -106,6 +82,10 @@ class XoopsBlock extends XoopsObject
             }
         }
         $this->mBlockFlagMapping = $initMap;
+    }
+    public function XoopsBlock($id = null)
+    {
+        return self::__construct($id);
     }
 
     /**
@@ -130,25 +110,25 @@ class XoopsBlock extends XoopsObject
 
         switch ($format) {
         case 'S':
-        
+
             // check the type of content
             // H : custom HTML block
             // P : custom PHP block
             // S : use text sanitizater (smilies enabled)
             // T : use text sanitizater (smilies disabled)
-            if ($c_type == 'H') {
+            if ('H' == $c_type) {
                 $ret = str_replace('{X_SITEURL}', XOOPS_URL.'/', $this->getVar('content', 'N'));
-            } elseif ($c_type == 'P') {
+            } elseif ('P' == $c_type) {
                 ob_start();
                 echo eval($this->get('content'));
                 $content = ob_get_contents();
                 ob_end_clean();
                 $ret = str_replace('{X_SITEURL}', XOOPS_URL.'/', $content);
-            } elseif ($c_type == 'S') {
-                $myts =& MyTextSanitizer::getInstance();
+            } elseif ('S' == $c_type) {
+                $myts =& MyTextSanitizer::sGetInstance();
                 $ret = str_replace('{X_SITEURL}', XOOPS_URL.'/', $myts->displayTarea($this->get('content'), 1, 1));
             } else {
-                $myts =& MyTextSanitizer::getInstance();
+                $myts =& MyTextSanitizer::sGetInstance();
                 $ret = str_replace('{X_SITEURL}', XOOPS_URL.'/', $myts->displayTarea($this->get('content'), 1, 0));
             }
             break;
@@ -159,7 +139,7 @@ class XoopsBlock extends XoopsObject
             $ret = $this->get('content');
             break;
         }
-        
+
         return $ret;
     }
 
@@ -167,9 +147,9 @@ class XoopsBlock extends XoopsObject
     {
         $ret = false;
 
-        $block = array();
+        $block = [];
         // M for module block, S for system block C for Custom
-        if ($this->get('block_type') != 'C') {
+        if ('C' != $this->get('block_type')) {
             // get block display function
             $show_func = $this->getVar('show_func', 'N');
             if (!$show_func) {
@@ -213,9 +193,9 @@ class XoopsBlock extends XoopsObject
     */
     public function &buildContent($position, $content='', $contentdb='')
     {
-        if ($position == 0) {
+        if (0 == $position) {
             $ret = $contentdb.$content;
-        } elseif ($position == 1) {
+        } elseif (1 == $position) {
             $ret = $content.$contentdb;
         }
         return $ret;
@@ -223,7 +203,7 @@ class XoopsBlock extends XoopsObject
 
     public function &buildTitle($originaltitle, $newtitle='')
     {
-        if ($newtitle != '') {
+        if ('' != $newtitle) {
             $ret = $newtitle;
         } else {
             $ret = $originaltitle;
@@ -233,7 +213,7 @@ class XoopsBlock extends XoopsObject
 
     public function isCustom()
     {
-        if ($this->get('block_type') == 'C') {
+        if ('C' == $this->get('block_type')) {
             return true;
         }
         return false;
@@ -246,7 +226,7 @@ class XoopsBlock extends XoopsObject
      **/
     public function getOptions()
     {
-        if ($this->get('block_type') != 'C') {
+        if ('C' != $this->get('block_type')) {
             $edit_func = $this->getVar('edit_func', 'N');
             if (!$edit_func) {
                 return false;
@@ -254,7 +234,7 @@ class XoopsBlock extends XoopsObject
             if (file_exists($path = XOOPS_ROOT_PATH.'/modules/'.($dirname=$this->getVar('dirname', 'N')).'/blocks/'.$this->getVar('func_file', 'N'))) {
                 $root =& XCube_Root::getSingleton();
                 $root->mLanguageManager->loadBlockMessageCatalog($dirname);
-                
+
                 include_once $path;
                 $options = explode('|', $this->getVar('options', 'N'));
                 $edit_form = $edit_func($options);
@@ -310,11 +290,14 @@ class XoopsBlock extends XoopsObject
         $ret =& $handler->getAllBlocks($rettype, $side, $visible, $orderby, $isactive);
         return $ret;
     }
-    public function &getByModule($moduleid, $asobject=true)
-    {
+    public static function &sGetByModule($moduleid, $asobject=true) {
         $handler = xoops_gethandler('block');
         $ret =& $handler->getByModule($moduleid, $asobject);
         return $ret;
+    }
+    public function &getByModule($moduleid, $asobject=true)
+    {
+        return self::sGetByModule($moduleid, $asobject);
     }
     public function &getAllByGroupModule($groupid, $module_id=0, $toponlyblock=false, $visible=null, $orderby='b.weight,b.bid', $isactive=1)
     {
@@ -374,11 +357,11 @@ class XoopsBlockHandler extends XoopsObjectHandler
     }
 
     /**
-     * Create a new block by array that is defined in xoops_version. You must 
+     * Create a new block by array that is defined in xoops_version. You must
      * be careful that the value that it is returned doesn't have $mid, $func_num
      * and $dirname.
      *
-     * @param $info array
+     * @param array $info
      * @return object XoopsBlock
      */
     public function &createByInfo($info)
@@ -420,13 +403,13 @@ class XoopsBlockHandler extends XoopsObjectHandler
                 return $ret;
             }
             $numrows = $db->getRowsNum($result);
-            if ($numrows == 1) {
+            if (1 == $numrows) {
                 $block = new XoopsBlock();
                 $block->assignVars($db->fetchArray($result));
                 return $block;
             }
         }
-        
+
         $ret = false;    //< You may think this should be null. But this is the compatibility with X2.
         return $ret;
     }
@@ -435,12 +418,12 @@ class XoopsBlockHandler extends XoopsObjectHandler
      * write a new block into the database
      *
      * @param object XoopsBlock $block reference to the block to insert
-     * @param $autolink temp
+     * @param bool $autolink
      * @return bool TRUE if succesful
-     **/
+     */
     public function insert(&$block, $autolink=false)
     {
-        if (strtolower(get_class($block)) != 'xoopsblock') {
+        if ('xoopsblock' != strtolower(get_class($block))) {
             return false;
         }
         if (!$block->isDirty()) {
@@ -454,7 +437,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
         }
 
         $isNew = false;
-        
+
         $db = $this->db;
         if ($block->isNew()) {
             $isNew = true;
@@ -490,7 +473,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
      **/
     public function delete(&$block)
     {
-        if (strtolower(get_class($block)) != 'xoopsblock') {
+        if ('xoopsblock' != strtolower(get_class($block))) {
             return false;
         }
         $id = $block->get('bid');
@@ -512,10 +495,10 @@ class XoopsBlockHandler extends XoopsObjectHandler
      **/
     public function &getObjects($criteria = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         $sql = 'SELECT DISTINCT(b.*) FROM '.$this->db->prefix('newblocks').' b LEFT JOIN '.$this->db->prefix('block_module_link').' l ON b.bid=l.block_id';
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();
@@ -536,10 +519,10 @@ class XoopsBlockHandler extends XoopsObjectHandler
         }
         return $ret;
     }
-    
+
     public function &getObjectsDirectly($criteria = null)
     {
-        $ret = array();
+        $ret = [];
         $limit = 0;
         $start = 0;
 
@@ -547,7 +530,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
         if ($criteria) {
             $sql .= ' ' . $criteria->renderWhere();
         }
-        
+
         $result = $this->db->query($sql);
         if (!$result) {
             return $ret;
@@ -556,12 +539,12 @@ class XoopsBlockHandler extends XoopsObjectHandler
         while ($row = $this->db->fetchArray($result)) {
             $block =& $this->create(false);
             $block->assignVars($row);
-            
+
             $ret[] =& $block;
-            
+
             unset($block);
         }
-        
+
         return $ret;
     }
 
@@ -575,31 +558,33 @@ class XoopsBlockHandler extends XoopsObjectHandler
     public function &getList($criteria = null)
     {
         $blocks =& $this->getObjects($criteria, true);
-        $ret = array();
+        $ret = [];
         foreach (array_keys($blocks) as $i) {
-            $name = ($blocks[$i]->get('block_type') != 'C') ? $blocks[$i]->getVar('name') : $blocks[$i]->getVar('title');
+            $name = ('C' != $blocks[$i]->get('block_type')) ? $blocks[$i]->getVar('name') : $blocks[$i]->getVar('title');
             $ret[$i] = $name;
         }
         return $ret;
     }
 
     /**
-    * get all the blocks that match the supplied parameters
-    * @param $side   0: sideblock - left
-    *        1: sideblock - right
-    *        2: sideblock - left and right
-    *        3: centerblock - left
-    *        4: centerblock - right
-    *        5: centerblock - center
-    *        6: centerblock - left, right, center
-    * @param $groupid   groupid (can be an array)
-    * @param $visible   0: not visible 1: visible
-    * @param $orderby   order of the blocks
-    * @returns array of block objects
-    */
+     * get all the blocks that match the supplied parameters
+     * @param groupid $groupid (can be an array)
+     * @param bool    $asobject
+     * @param         $side    0: sideblock - left
+     *                         1: sideblock - right
+     *                         2: sideblock - left and right
+     *                         3: centerblock - left
+     *                         4: centerblock - right
+     *                         5: centerblock - center
+     *                         6: centerblock - left, right, center
+     * @param         $visible 0: not visible 1: visible
+     * @param string  $orderby of the blocks
+     * @param int     $isactive
+     * @return array
+     */
     public function &getAllBlocksByGroup($groupid, $asobject=true, $side=null, $visible=null, $orderby='b.weight,b.bid', $isactive=1)
     {
-        $ret = array();
+        $ret = [];
         if (!$asobject) {
             $sql = 'SELECT b.bid ';
         } else {
@@ -622,9 +607,9 @@ class XoopsBlockHandler extends XoopsObjectHandler
         if (isset($side)) {
             $side = (int)$side;
             // get both sides in sidebox? (some themes need this)
-            if ($side == XOOPS_SIDEBLOCK_BOTH) {
+            if (XOOPS_SIDEBLOCK_BOTH == $side) {
                 $side = '(b.side=0 OR b.side=1)';
-            } elseif ($side == XOOPS_CENTERBLOCK_ALL) {
+            } elseif (XOOPS_CENTERBLOCK_ALL == $side) {
                 $side = '(b.side=3 OR b.side=4 OR b.side=5)';
             } else {
                 $side = 'b.side='.$side;
@@ -636,7 +621,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
         }
         $sql .= ' ORDER BY '.addslashes($orderby);
         $result = $this->db->query($sql);
-        $added = array();
+        $added = [];
         while ($myrow = $this->db->fetchArray($result)) {
             if (!in_array($myrow['bid'], $added)) {
                 if (!$asobject) {
@@ -653,14 +638,14 @@ class XoopsBlockHandler extends XoopsObjectHandler
     }
     public function &getAllBlocks($rettype='object', $side=null, $visible=null, $orderby='side,weight,bid', $isactive=1)
     {
-        $ret = array();
+        $ret = [];
         $where_query = ' WHERE isactive='.(int)$isactive;
         if (isset($side)) {
             $side = (int)$side;
             // get both sides in sidebox? (some themes need this)
-            if ($side == 2) {
+            if (2 == $side) {
                 $side = '(side=0 OR side=1)';
-            } elseif ($side == 6) {
+            } elseif (6 == $side) {
                 $side = '(side=3 OR side=4 OR side=5)';
             } else {
                 $side = 'side='.$side;
@@ -688,7 +673,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
             while ($myrow = $this->db->fetchArray($result)) {
                 $block =& $this->create(false);
                 $block->assignVars($myrow);
-                $name = ($block->get('block_type') != 'C') ? $block->getVar('name') : $block->getVar('title');
+                $name = ('C' != $block->get('block_type')) ? $block->getVar('name') : $block->getVar('title');
                 $ret[$block->getVar('bid')] = $name;
                 unset($block);
             }
@@ -708,13 +693,13 @@ class XoopsBlockHandler extends XoopsObjectHandler
     public function &getByModule($moduleid, $asobject=true)
     {
         $moduleid = (int)$moduleid;
-        if ($asobject == true) {
+        if (true == $asobject) {
             $sql = $sql = 'SELECT * FROM '.$this->db->prefix('newblocks').' WHERE mid='.$moduleid;
         } else {
             $sql = 'SELECT bid FROM '.$this->db->prefix('newblocks').' WHERE mid='.$moduleid;
         }
         $result = $this->db->query($sql);
-        $ret = array();
+        $ret = [];
         while ($myrow = $this->db->fetchArray($result)) {
             if ($asobject) {
                 $block =& $this->create(false);
@@ -730,10 +715,17 @@ class XoopsBlockHandler extends XoopsObjectHandler
     /**
      * Gets block objects by groups & modules.
      * @remark This is the special API for base modules like Legacy.
+     * @param        $groupid
+     * @param int    $module_id
+     * @param bool   $toponlyblock
+     * @param null   $visible
+     * @param string $orderby
+     * @param int    $isactive
+     * @return array
      */
     public function &getAllByGroupModule($groupid, $module_id=0, $toponlyblock=false, $visible=null, $orderby='b.weight,b.bid', $isactive=1)
     {
-        $ret = array();
+        $ret = [];
         $db = $this->db;
         $sql = 'SELECT DISTINCT gperm_itemid FROM '.$db->prefix('group_permission').' WHERE gperm_name = \'block_read\' AND gperm_modid = 1';
         if (is_array($groupid)) {
@@ -745,7 +737,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
             }
         }
         $result = $db->query($sql);
-        $blockids = array();
+        $blockids = [];
         while ($myrow = $db->fetchArray($result)) {
             $blockids[] = $myrow['gperm_itemid'];
         }
@@ -755,7 +747,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
             if (isset($visible)) {
                 $sql .= ' AND b.visible='.(int)$visible;
             }
-            if ($module_id !== false) {
+            if (false !== $module_id) {
                 $sql .= ' AND m.module_id IN (0,'.(int)$module_id;
                 if ($toponlyblock) {
                     $sql .= ',-1';
@@ -785,13 +777,18 @@ class XoopsBlockHandler extends XoopsObjectHandler
      * Return block instance array by $groupid, $mid and $blockFlag.
      * This function is new function of Cube and used from controller.
      * @remark This is the special API for base modules like Legacy.
-     **/
+     * @param        $groupid
+     * @param bool   $mid
+     * @param int    $blockFlag
+     * @param string $orderby
+     * @return array
+     */
     public function &getBlocks($groupid, $mid=false, $blockFlag=SHOW_BLOCK_ALL, $orderby='b.weight,b.bid')
     {
         $root =& XCube_Root::getSingleton();
         $db = $this->db =& $root->mController->getDB();
 
-        $ret = array();
+        $ret = [];
         $sql = 'SELECT DISTINCT gperm_itemid FROM '.$db->prefix('group_permission').' WHERE gperm_name = \'block_read\' AND gperm_modid = 1';
         if (is_array($groupid)) {
             $sql .= ' AND gperm_groupid IN ('.addslashes(implode(',', array_map('intval', $groupid))).')';
@@ -802,24 +799,24 @@ class XoopsBlockHandler extends XoopsObjectHandler
             }
         }
         $result = $db->query($sql);
-        $blockids = array();
+        $blockids = [];
         while (list($itemid) = $db->fetchRow($result)) {
             $blockids[] = $itemid;
         }
         if (!empty($blockids)) {
             $sql = 'SELECT b.* FROM '.$db->prefix('newblocks').' b, '.$db->prefix('block_module_link').' m WHERE m.block_id=b.bid';
             $sql .= ' AND b.isactive=1 AND b.visible=1';
-            if ($mid !== false && $mid !== 0) {
+            if (false !== $mid && 0 !== $mid) {
                 $sql .= ' AND m.module_id IN (0,'.(int)$mid.')';
             } else {
                 $sql .= ' AND m.module_id=0';
             }
-            
+
             //
             // SIDE
             //
-            if ($blockFlag != SHOW_BLOCK_ALL) {
-                $arr = array();
+            if (SHOW_BLOCK_ALL != $blockFlag) {
+                $arr = [];
                 if ($blockFlag & SHOW_SIDEBLOCK_LEFT) {
                     $arr[] = 'b.side=' . $this->mBlockFlagMapping[SHOW_SIDEBLOCK_LEFT];
                 }
@@ -835,7 +832,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
                 if ($blockFlag & SHOW_CENTERBLOCK_RIGHT) {
                     $arr[] = 'b.side=' . $this->mBlockFlagMapping[SHOW_CENTERBLOCK_RIGHT];
                 }
-                
+
                 $sql .= ' AND (' . implode(' OR ', $arr) . ')';
             }
 
@@ -853,11 +850,17 @@ class XoopsBlockHandler extends XoopsObjectHandler
 
     /**
      * @remark This is the special API for base modules like Legacy.
+     * @param int    $module_id
+     * @param bool   $toponlyblock
+     * @param null   $visible
+     * @param string $orderby
+     * @param int    $isactive
+     * @return array
      */
     public function &getNonGroupedBlocks($module_id=0, $toponlyblock=false, $visible=null, $orderby='b.weight,b.bid', $isactive=1)
     {
-        $ret = array();
-        $bids = array();
+        $ret = [];
+        $bids = [];
         $db = $this->db;
         $sql = 'SELECT DISTINCT(bid) from '.$db->prefix('newblocks');
         if ($result = $db->query($sql)) {
@@ -866,7 +869,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
             }
         }
         $sql = 'SELECT DISTINCT(p.gperm_itemid) from '.$db->prefix('group_permission').' p, '.$db->prefix('groups').' g WHERE g.groupid=p.gperm_groupid AND p.gperm_name=\'block_read\'';
-        $grouped = array();
+        $grouped = [];
         if ($result = $db->query($sql)) {
             while ($myrow = $db->fetchArray($result)) {
                 $grouped[] = $myrow['gperm_itemid'];
@@ -923,17 +926,20 @@ class XoopsBlockHandler extends XoopsObjectHandler
         list($count) = $db->fetchRow($result);
         return $count;
     }
-    
+
     /**
      * Changes 'isactive' value of the module specified by $moduleId.
      * @remark This method should be called by only the base modules like Legacy.
+     * @param      $moduleId
+     * @param      $isActive
+     * @param bool $force
      */
     public function syncIsActive($moduleId, $isActive, $force = false)
     {
         $db = $this->db;
         $db->prepare('UPDATE ' . $db->prefix('newblocks') . ' SET isactive=? WHERE mid=?');
         $db->bind_param('ii', $isActive, $moduleId);
-        
+
         if ($force) {
             $db->executeF();
         } else {

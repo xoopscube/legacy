@@ -30,11 +30,16 @@ class Legacy_AdminSmarty extends Smarty
     public $mModulePrefix = null;
 
     //
-    // If you don't hope to override for theme, set false.
+    // If you don't intend to override the theme, set false.
     //
     public $overrideMode = true;
     
     public function Legacy_AdminSmarty()
+    {
+        self::__construct();
+    }
+
+    public function __construct()
     {
         parent::Smarty();
 
@@ -44,14 +49,13 @@ class Legacy_AdminSmarty extends Smarty
         $this->compile_dir = XOOPS_COMPILE_PATH;
         $this->left_delimiter = '<{';
         $this->right_delimiter = '}>';
-        $this->plugins_dir = array(SMARTY_DIR.'plugins', XOOPS_ROOT_PATH.'/class/smarty/plugins');
+        $this->plugins_dir = [SMARTY_DIR . 'plugins', XOOPS_ROOT_PATH . '/class/smarty/plugins'];
 
-        //
-        // [TODO]
-        //	If we don't set true to the following flag, a user can not recover
-        // with deleting additional theme. But, a user should to select true or
-        // false by site_custom.ini.php.
-        //
+	    /**
+	     * @brief force_compile
+	     * If we don't set true to the following flag, a user can't recover deleting a Theme.
+	     * However, this option can be defined =true or =false in "site_custom.ini.php"
+	     */
         $this->force_compile = false;
     }
     
@@ -74,7 +78,7 @@ class Legacy_AdminSmarty extends Smarty
         $theme = $root->mSiteConfig['Legacy']['Theme'];
         $dirname = $this->mModulePrefix;
         
-        if ($dirname != null) {
+        if (null != $dirname) {
             $params['resource_base_path'] = XOOPS_THEME_PATH . '/' . $theme . '/modules/' . $dirname;
             $params['quiet'] = true;
             
@@ -94,7 +98,7 @@ class Legacy_AdminSmarty extends Smarty
 
 /**
  * @brief The specific FILE-TYPE render-system.
- * @todo We depends on Legacy_RenderSystem that a add-in module defines. We must stop this situation.
+ * @todo We depend on Legacy_RenderSystem which an add-on module defines. We need to put an end to this situation.
  */
 class Legacy_AdminRenderSystem extends Legacy_RenderSystem
 {
@@ -118,16 +122,30 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         $this->mSmarty->register_modifier('theme', 'Legacy_modifier_theme');
         $this->mSmarty->register_function('stylesheet', 'Legacy_function_stylesheet');
 
-        $this->mSmarty->assign(array(
-            'xoops_url'       => XOOPS_URL,
-            'xoops_rootpath'   => XOOPS_ROOT_PATH,
-            'xoops_langcode'   => _LANGCODE,
-            'xoops_charset'    => _CHARSET,
-            'xoops_version'    => XOOPS_VERSION,
-            'xoops_upload_url' => XOOPS_UPLOAD_URL)
+        /**
+         * @todo - get global smarty module and uid for theme design :
+         * @brief <{$uid|xoops_user:"uname"}>, <{$uid|xoops_user:"name"}>, <{$uid|xoops_user:"email"}>, <{$uid|xoops_user:"last_login"}>
+         */
+        global $xoopsUser, $xoopsModule, $xoopsOption, $xoopsConfig;
+        $dirname = is_object( @$xoopsModule ) ? $xoopsModule->getVar('dirname') : '' ;
+        $modname = is_object( @$xoopsModule ) ? $xoopsModule->getVar('name') : '' ;
+        $uid = is_object( @$xoopsUser ) ? $xoopsUser->getVar('uid') : '' ;
+
+        $this->mSmarty->assign(
+            [
+            'xoops_url'         => XOOPS_URL,
+            'xoops_rootpath'    => XOOPS_ROOT_PATH,
+            'xoops_langcode'    => _LANGCODE,
+            'xoops_charset'     => _CHARSET,
+            'xoops_version'     => XOOPS_VERSION,
+            'xoops_upload_url'  => XOOPS_UPLOAD_URL,
+            'xoops_modulename'  => $modname,
+            'xoops_dirname'     => $dirname,
+            'uid'               => $uid
+            ]
         );
 
-        if ($controller->mRoot->mSiteConfig['Legacy_AdminRenderSystem']['ThemeDevelopmentMode'] == true) {
+        if (true == $controller->mRoot->mSiteConfig['Legacy_AdminRenderSystem']['ThemeDevelopmentMode']) {
             $this->mSmarty->force_compile = true;
         }
     }
@@ -158,7 +176,7 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         // Assign from attributes of the render-target.
         //
         $smarty = $this->mSmarty;
-        $vars = array('stdout_buffer'=>$this->_mStdoutBuffer);
+        $vars = ['stdout_buffer' =>$this->_mStdoutBuffer];
         foreach ($target->getAttributes() as $key=>$value) {
             $vars[$key] = $value;
         }
@@ -186,7 +204,7 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         //
         // Theme rendering
         //
-        $blocks = array();
+        $blocks = [];
         foreach ($context->mAttributes['legacy_BlockContents'][0] as $key => $result) {
             // $smarty->append('xoops_lblocks', $result);
             $blocks[$result['name']] = $result;
@@ -221,11 +239,11 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         foreach ($target->getAttributes() as $key=>$value) {
             $this->mSmarty->assign($key, $value);
         }
-        
+       
         $result = null;
         
         if ($target->getTemplateName()) {
-            if ($target->getAttribute('legacy_module') != null) {
+            if (null != $target->getAttribute('legacy_module')) {
                 $this->mSmarty->setModulePrefix($target->getAttribute('legacy_module'));
                 $this->mSmarty->template_dir = XOOPS_MODULE_PATH . '/' . $target->getAttribute('legacy_module') . '/admin/'. LEGACY_ADMIN_RENDER_TEMPLATE_DIRNAME;
             }
@@ -250,6 +268,8 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
 }
 
 /***
+ * @param $string
+ * @return string
  * @internal
  * Return URL string by "overriding" rule.
  * (Now, test implement)
@@ -261,14 +281,14 @@ function Legacy_modifier_theme($string)
 {
     $infoArr = Legacy_get_override_file($string);
     
-    if ($infoArr['theme'] != null && $infoArr['dirname'] != null) {
+    if (null != $infoArr['theme'] && null != $infoArr['dirname']) {
         return XOOPS_THEME_URL . '/' . $infoArr['theme'] . '/modules/' . $infoArr['dirname'] . '/' . $string;
-    } elseif ($infoArr['theme'] != null) {
+    } elseif (null != $infoArr['theme']) {
         return XOOPS_THEME_URL . '/' . $infoArr['theme'] . '/' . $string;
-    } elseif ($infoArr['dirname'] != null) {
+    } elseif (null != $infoArr['dirname']) {
         return XOOPS_MODULE_URL . '/' . $infoArr['dirname'] . '/admin/templates/' . $string;
     }
-    
+   
     return LEGACY_ADMIN_RENDER_FALLBACK_URL . '/' . $string;
 }
 
@@ -281,18 +301,18 @@ function Legacy_function_stylesheet($params, &$smarty)
     
     $file = $params['file'];
     
-    if (strstr($file, '..') !== false) {
+    if (false !== strstr($file, '..')) {
         $smarty->trigger_error('stylesheet: missing file parameter.');
         return;
     }
     
-    $media = (isset($params['media'])) ? $params['media'] : 'all';
+    $media = $params['media'] ?? 'all';
 
     $infoArr = Legacy_get_override_file($file, 'stylesheets/');
 
     // TEMP
     // TODO We must return FALLBACK_URL here.
-    if ($infoArr['file'] != null) {
+    if (null != $infoArr['file']) {
         if ($params['static']) {
             $theme=$infoArr['theme'];
             $dirname=$infoArr['dirname'];
@@ -307,10 +327,10 @@ function Legacy_function_stylesheet($params, &$smarty)
                 $url = LEGACY_ADMIN_RENDER_FALLBACK_URL . "/$file";
             }
         } else {
-            if ($infoArr['file'] != null) {
-                $request = array();
+            if (null != $infoArr['file']) {
+                $request = [];
                 foreach ($infoArr as $key => $value) {
-                    if ($value != null) {
+                    if (null != $value) {
                         $request[] = "${key}=${value}";
                     }
                 }
@@ -327,8 +347,9 @@ function Legacy_get_override_file($file, $prefix = null, $isSpDirname = false)
     $root =& XCube_Root::getSingleton();
     $moduleObject =& $root->mContext->mXoopsModule;
 
-    if ($isSpDirname && is_object($moduleObject) && $moduleObject->get('dirname') == 'legacy' && isset($_REQUEST['dirname'])) {
-        $dirname = xoops_getrequest('dirname');
+    if ($isSpDirname && is_object($moduleObject) && 'legacy' == $moduleObject->get('dirname') && isset($_REQUEST['dirname'])) {
+        //$dirname = xoops_getrequest('dirname');
+	    $root->mContext->mRequest->getRequest($dirname);
         if (preg_match('/^[a-z0-9_]+$/i', $dirname)) {
             $handler = xoops_gethandler('module');
             $moduleObject =& $handler->getByDirname($dirname);
@@ -337,13 +358,13 @@ function Legacy_get_override_file($file, $prefix = null, $isSpDirname = false)
 
     $theme = $root->mSiteConfig['Legacy']['Theme'];
 
-    $ret = array();
+    $ret = [];
     $ret['theme'] = $theme;
     $ret['file'] = $file;
     
     $file = $prefix . $file;
 
-    static $checkCache = array();
+    static $checkCache = [];
     if (isset($checkCache[$file])) {
         return $checkCache[$file];
     }
@@ -381,6 +402,7 @@ function Legacy_get_override_file($file, $prefix = null, $isSpDirname = false)
         $ret['dirname'] = null;
 
         if (file_exists(LEGACY_ADMIN_RENDER_FALLBACK_PATH . '/' . $file)) {
+            
             return $checkCache[$mfile] = &$ret;
         }
         

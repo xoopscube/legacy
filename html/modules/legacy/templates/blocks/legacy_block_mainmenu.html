@@ -1,9 +1,39 @@
-<ul id="mainmenu">
-      <li><a class="menuTop" href="<{$xoops_url}>/"><{$smarty.const._MB_LEGACY_HOME}></a></li>
-<{foreach item=module from=$block.modules}>
-      <li><a class="menuMain" href="<{$xoops_url}>/modules/<{$module.directory}>/"><{$module.name}></a></li>
-<{foreach item=sublink from=$module.sublinks}>
-        <li><a class="menuSub" href="<{$sublink.url}>"><{$sublink.name}></a></li>
-<{/foreach}>
-<{/foreach}>
-</ul>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<style>
+    <{if $xoops_dirname}>body.<{$xoops_dirname}> ul#main-menu li a.<{$xoops_dirname}>
+    <{else}>ul#main-menu li a.menu-top<{/if}> {
+    color: var(--link-active); /* Active main-menu link */
+    }
+</style>
+
+<div class="block-main-menu">
+
+    <ul id="main-menu" >
+        <li><a class="menu-top" href="<{$xoops_url}>/">
+            <{if $block.icon == true}>
+            <span class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" alt=""></span>
+            <{/if}>
+                <{$smarty.const._MB_LEGACY_HOME}>
+            </a>
+        </li>
+        <{foreach item=module from=$block.modules}>
+            <li>
+                <a class="<{$module.directory}> menuMain" href="<{$xoops_url}>/modules/<{$module.directory}>/">
+                <{if $module.icon}><span class="icon"><img class="svg" src="<{$xoops_url}>/modules/<{$module.directory}>/<{$module.icon}>" width="1em"></span><{/if}>
+                    <{$module.name}>
+                </a>
+            </li>
+            <{foreach item=sublink from=$module.sublinks}>
+                <li><a class="menu-sub" href="<{$sublink.url}>">
+                    <{* Smarty Truncate for Modules sub-links eg: D3Forum and Pico
+                    This truncates a variable to a character length, the default is 80.
+                    As an optional second parameter, you can specify a string of text to display at the end if the variable was truncated. *}>
+                        <{$sublink.name|truncate:30}>
+                    </a>
+                </li>
+                <{/foreach}>
+        <{/foreach}>
+    </ul>
+
+</div>

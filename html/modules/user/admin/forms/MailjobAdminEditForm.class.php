@@ -8,14 +8,14 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 class User_MailjobAdminEditForm extends XCube_ActionForm
 {
     public function getTokenName()
     {
-        return "module.user.MailjobAdminEditForm.TOKEN" . $this->get('mailjob_id');
+        return 'module.user.MailjobAdminEditForm.TOKEN' . $this->get('mailjob_id');
     }
 
     public function prepare()
@@ -35,34 +35,34 @@ class User_MailjobAdminEditForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['mailjob_id'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['mailjob_id']->setDependsByArray(array('required'));
+        $this->mFieldProperties['mailjob_id']->setDependsByArray(['required']);
         $this->mFieldProperties['mailjob_id']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_MAILJOB_ID);
     
         $this->mFieldProperties['title'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['title']->setDependsByArray(array('required', 'maxlength'));
-        $this->mFieldProperties['title']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_TITLE, '255');
-        $this->mFieldProperties['title']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _AD_USER_LANG_TITLE, '255');
-        $this->mFieldProperties['title']->addVar('maxlength', '255');
+        $this->mFieldProperties['title']->setDependsByArray(['required', 'maxlength']);
+        $this->mFieldProperties['title']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_TITLE, '191');
+        $this->mFieldProperties['title']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _AD_USER_LANG_TITLE, '191');
+        $this->mFieldProperties['title']->addVar('maxlength', '191');
     
         $this->mFieldProperties['body'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['body']->setDependsByArray(array('required'));
+        $this->mFieldProperties['body']->setDependsByArray(['required']);
         $this->mFieldProperties['body']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_BODY);
     
         $this->mFieldProperties['from_name'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['from_name']->setDependsByArray(array('maxlength'));
-        $this->mFieldProperties['from_name']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, '255');
-        $this->mFieldProperties['from_name']->addVar('maxlength', '255');
+        $this->mFieldProperties['from_name']->setDependsByArray(['maxlength']);
+        $this->mFieldProperties['from_name']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, '191');
+        $this->mFieldProperties['from_name']->addVar('maxlength', '191');
     
         $this->mFieldProperties['from_email'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['from_email']->setDependsByArray(array('maxlength', 'email'));
-        $this->mFieldProperties['from_email']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, '255');
-        $this->mFieldProperties['from_email']->addVar('maxlength', '255');
+        $this->mFieldProperties['from_email']->setDependsByArray(['maxlength', 'email']);
+        $this->mFieldProperties['from_email']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, '191');
+        $this->mFieldProperties['from_email']->addVar('maxlength', '191');
         $this->mFieldProperties['from_email']->addMessage('email', _AD_USER_ERROR_EMAIL, _AD_USER_LANG_FROM_EMAIL);
     }
     
     public function validateFrom_email()
     {
-        if ($this->get('is_mail') && strlen($this->get('from_email')) == 0) {
+        if ($this->get('is_mail') && 0 == strlen($this->get('from_email'))) {
             $this->addErrorMessage(XCube_Utils::formatString(_MD_USER_ERROR_REQUIRED, _AD_USER_LANG_FROM_EMAIL));
         }
     }

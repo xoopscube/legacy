@@ -1,28 +1,31 @@
 <?php
 /**
- * @file
- * @package profile
- * @version $Id$
+ * @package    profile
+ * @version    2.3.1
+ * @author     Nuno Luciano (aka gigamaster), 2020, XCL PHP7
+ * @author     Kilica
+ * @copyright  2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 class Profile_DataEditForm extends XCube_ActionForm
 {
     //table field definitions
-    public $mDef = array();
+    public $mDef = [];
 
     /**
      * @public
      */
     public function getTokenName()
     {
-        return "module.profile.DataEditForm.TOKEN";
+        return 'module.profile.DataEditForm.TOKEN';
     }
 
     /**
@@ -42,10 +45,10 @@ class Profile_DataEditForm extends XCube_ActionForm
             $this->mFormProperties[$this->mDef[$key]->get('field_name')] =new $className($this->mDef[$key]->get('field_name'));
         
             //validation checks
-            $validationArr = array();
+            $validationArr = [];
             $this->mFieldProperties[$this->mDef[$key]->get('field_name')] =new XCube_FieldProperty($this);
             //required check
-            if ($this->mDef[$key]->get('required')==1) {
+            if (1 == $this->mDef[$key]->get('required')) {
                 $validationArr[] = 'required';
                 $this->mFieldProperties[$this->mDef[$key]->get('field_name')]->addMessage('required', _MD_PROFILE_ERROR_REQUIRED, $this->mDef[$key]->get('label'));
             }
@@ -63,12 +66,13 @@ class Profile_DataEditForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['uid'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['uid']->setDependsByArray(array('required'));
+        $this->mFieldProperties['uid']->setDependsByArray(['required']);
         $this->mFieldProperties['uid']->addMessage('required', _MD_PROFILE_ERROR_REQUIRED, _MD_PROFILE_LANG_UID);
     }
 
     /**
      * @public
+     * @param $obj
      */
     public function load(&$obj)
     {
@@ -80,12 +84,13 @@ class Profile_DataEditForm extends XCube_ActionForm
 
     /**
      * @public
+     * @param $obj
      */
     public function update(&$obj)
     {
         $obj->set('uid', $this->get('uid'));
         foreach (array_keys($this->mDef) as $key) {
-            $val = ($this->mDef[$key]->get('type')!='date') ? $this->get($this->mDef[$key]->get('field_name')) : $this->_makeUnixtime($this->mDef[$key]->get('field_name'));
+            $val = ('date' != $this->mDef[$key]->get('type')) ? $this->get($this->mDef[$key]->get('field_name')) : $this->_makeUnixtime($this->mDef[$key]->get('field_name'));
             $obj->set($this->mDef[$key]->get('field_name'), $val);
         }
     }

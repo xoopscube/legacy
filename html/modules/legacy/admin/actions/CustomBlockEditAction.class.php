@@ -1,20 +1,21 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: CustomBlockEditAction.class.php,v 1.3 2008/09/25 15:11:36 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * CustomBlockEditAction.class.php
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/actions/BlockEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/CustomBlockEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/actions/BlockEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/CustomBlockEditForm.class.php';
 
 class Legacy_CustomBlockEditAction extends Legacy_BlockEditAction
 {
@@ -23,12 +24,12 @@ class Legacy_CustomBlockEditAction extends Legacy_BlockEditAction
         $this->mActionForm =new Legacy_CustomBlockEditForm();
         $this->mActionForm->prepare();
     }
-    
+
     public function isEnableCreate()
     {
         return true;
     }
-    
+
     public function _isEditable()
     {
         return true;
@@ -36,16 +37,16 @@ class Legacy_CustomBlockEditAction extends Legacy_BlockEditAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("customblock_edit.html");
+        $render->setTemplateName('customblock_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
-        
+
         //
         // lazy loading
         //
         $this->mObject->loadModule();
-        
+
         $render->setAttribute('object', $this->mObject);
-        
+
         //
         // Build active modules list and set.
         //
@@ -53,7 +54,7 @@ class Legacy_CustomBlockEditAction extends Legacy_BlockEditAction
         $moduleArr[0] =& $handler->create();
         $moduleArr[0]->set('mid', -1);
         $moduleArr[0]->set('name', _AD_LEGACY_LANG_TOPPAGE);
-        
+
         $moduleArr[1] =& $handler->create();
         $moduleArr[1]->set('mid', 0);
         $moduleArr[1]->set('name', _AD_LEGACY_LANG_ALL_MODULES);
@@ -61,11 +62,11 @@ class Legacy_CustomBlockEditAction extends Legacy_BlockEditAction
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('hasmain', 1));
         $criteria->add(new Criteria('isactive', 1));
-        
+
         $t_Arr =& $handler->getObjects($criteria);
         $moduleArr = array_merge($moduleArr, $t_Arr);
         $render->setAttribute('moduleArr', $moduleArr);
-        
+
         $handler =& xoops_getmodulehandler('columnside');
         $columnSideArr =& $handler->getObjects();
         $render->setAttribute('columnSideArr', $columnSideArr);
@@ -73,7 +74,7 @@ class Legacy_CustomBlockEditAction extends Legacy_BlockEditAction
         $handler =& xoops_gethandler('group');
         $groupArr =& $handler->getObjects();
         $render->setAttribute('groupArr', $groupArr);
-        
+
         //
         // Build cachetime list and set.
         //
@@ -88,13 +89,13 @@ class Legacy_CustomBlockEditAction extends Legacy_BlockEditAction
         $ctypeArr =& $handler->getObjects();
         $render->setAttribute('ctypeArr', $ctypeArr);
     }
-    
+
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
         if ($this->mObject->isNew()) {
-            $controller->executeForward("./index.php?action=BlockInstallList");
+            $controller->executeForward('./index.php?action=BlockInstallList');
         } else {
-            $controller->executeForward("./index.php?action=BlockList");
+            $controller->executeForward('./index.php?action=BlockList');
         }
     }
 }

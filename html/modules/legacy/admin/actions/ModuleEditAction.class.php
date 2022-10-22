@@ -1,28 +1,36 @@
 <?php
+/**
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
+ */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ModuleEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/ModuleEditForm.class.php';
 
 class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
 {
 
-    public $mReadGroups = array();
-    public $mAdminGroups = array();
-    
+    public $mReadGroups = [];
+    public $mAdminGroups = [];
+
     public function _getId()
     {
         return isset($_REQUEST['mid']) ? xoops_getrequest('mid') : 0;
     }
-        
+
     public function isEnableCreate()
     {
         return false;
     }
-    
+
     public function &_getHandler()
     {
         $handler =& xoops_gethandler('module');
@@ -34,25 +42,25 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
         $this->mActionForm =new Legacy_ModuleEditForm();
         $this->mActionForm->prepare();
     }
-    
+
     public function _isEditable()
     {
         if (is_object($this->mObject)) {
-            return ($this->mObject->get('isactive') == 1);
+            return (1 == $this->mObject->get('isactive'));
         } else {
             return false;
         }
     }
-    
+
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         if (!$this->_isEditable()) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
-    
+
         $this->mActionForm->load($this->mObject);
         return LEGACY_FRAME_VIEW_INPUT;
     }
@@ -64,8 +72,8 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
         }
 
         $ret = parent::execute($controller, $xoopsUser);
-        
-        if ($ret == LEGACY_FRAME_VIEW_SUCCESS) {
+
+        if (LEGACY_FRAME_VIEW_SUCCESS == $ret) {
             $handler =& xoops_gethandler('group');
             $permHandler =& xoops_gethandler('groupperm');
 
@@ -79,11 +87,11 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
             //
             // Insert group permissions.
             //
-            $currentReadGroupid = array();
+            $currentReadGroupid = [];
             foreach ($this->mReadGroups as $readgroup) {
                 $currentReadGroupid[] = $readgroup->get('groupid');
             }
-            $currentAdminGroupid = array();
+            $currentAdminGroupid = [];
             foreach ($this->mAdminGroups as $admingroup) {
                 $currentAdminGroupid[] = $admingroup->get('groupid');
             }
@@ -92,7 +100,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
             $criteria->add(new Criteria('gperm_modid', 1));
             $criteria->add(new Criteria('gperm_itemid', $this->mObject->get('mid')));
             $criteria->add(new Criteria('gperm_name', 'module_read'));
-            
+
             $gpermArr =&  $permHandler->getObjects($criteria);
             foreach ($gpermArr as $gperm) {
                 if (!in_array($gperm->get('gperm_groupid'), $currentReadGroupid)) {
@@ -101,7 +109,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
                     }
                 }
             }
-            
+
             foreach ($this->mReadGroups as $readgroup) {
                 $insertFlag = true;
                 foreach ($gpermArr as $gperm) {
@@ -109,7 +117,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
                         $insertFlag = false;
                     }
                 }
-                
+
                 if ($insertFlag) {
                     $gperm =& $permHandler->create();
                     $gperm->set('gperm_modid', 1);
@@ -126,7 +134,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
             $criteria->add(new Criteria('gperm_modid', 1));
             $criteria->add(new Criteria('gperm_itemid', $this->mObject->get('mid')));
             $criteria->add(new Criteria('gperm_name', 'module_admin'));
-            
+
             $gpermArr =&  $permHandler->getObjects($criteria);
             foreach ($gpermArr as $gperm) {
                 if (!in_array($gperm->get('gperm_groupid'), $currentAdminGroupid)) {
@@ -135,7 +143,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
                     }
                 }
             }
-            
+
             foreach ($this->mAdminGroups as $admingroup) {
                 $insertFlag = true;
                 foreach ($gpermArr as $gperm) {
@@ -143,7 +151,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
                         $insertFlag = false;
                     }
                 }
-                
+
                 if ($insertFlag) {
                     $gperm =& $permHandler->create();
                     $gperm->set('gperm_modid', 1);
@@ -164,7 +172,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
             $configObjects =& $confighandler->getConfigs($criteria);
             if (is_object($configObjects[0])) {
                 $oldvalue = $configObjects[0]->get('conf_value');
-                $t_arr = !empty($oldvalue) ? unserialize($oldvalue) : array();
+                $t_arr = !empty($oldvalue) ? unserialize($oldvalue) : [];
                 if (is_array($t_arr)) {
                     $t_arr[$this->mObject->get('mid')] = $this->mActionForm->get('module_cache');
                     $configObjects[0]->set('conf_value', serialize($t_arr));
@@ -180,39 +188,39 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
                 return LEGACY_FRAME_VIEW_ERROR;
             }
         }
-        
+
         return $ret;
     }
-    
+
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
         $this->mObject->loadInfo($this->mObject->getShow('dirname'));
-        $render->setTemplateName("module_edit.html");
+        $render->setTemplateName('module_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
-        
+
         $handler =& xoops_gethandler('groupperm');
         $grouphandler =& xoops_gethandler('group');
         $groupArr =& $grouphandler->getObjects();
         $render->setAttribute('groupArr', $groupArr);
-        
+
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('gperm_modid', 1));
         $criteria->add(new Criteria('gperm_itemid', $this->mObject->get('mid')));
         $criteria->add(new Criteria('gperm_name', 'module_read'));
         $gpermReadArr =&  $handler->getObjects($criteria);
-        $readgroupid = array();
+        $readgroupid = [];
         foreach ($gpermReadArr as $gpermRead) {
             $readgroupid[] = $gpermRead->get('gperm_groupid');
         }
         $render->setAttribute('readgroupidArr', $readgroupid);
-        
+
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('gperm_modid', 1));
         $criteria->add(new Criteria('gperm_itemid', $this->mObject->get('mid')));
         $criteria->add(new Criteria('gperm_name', 'module_admin'));
         $gpermAdminArr =&  $handler->getObjects($criteria);
-        $admingroupid = array();
+        $admingroupid = [];
         foreach ($gpermAdminArr as $gpermAdmin) {
             $admingroupid[] = $gpermAdmin->get('gperm_groupid');
         }
@@ -226,16 +234,16 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=ModuleList");
+        $controller->executeForward('./index.php?action=ModuleList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=ModuleList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=ModuleList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
-    
+
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=ModuleList");
+        $controller->executeForward('./index.php?action=ModuleList');
     }
 }

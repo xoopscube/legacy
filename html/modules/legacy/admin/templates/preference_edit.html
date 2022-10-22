@@ -1,247 +1,307 @@
-<div class="adminnavi">
-  <{if $module != null}>
-    <a href="<{$smarty.const.XOOPS_URL}>/modules/<{$module->getVar('dirname')}>/<{$module->getInfo('adminindex')|xoops_escape}>"><{$module->getVar('name')}></a>
+<div class="adminnavi" aria-label="breadcrumb">
+    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    <{if $module != null}>
+    &raquo;&raquo; <a href="<{$smarty.const.XOOPS_URL}>/modules/<{$module->getVar('dirname')}>/<{$module->getInfo('adminindex')|xoops_escape}>"><{$module->getVar('name')}></a>
     <{if $category != null}>
-      &raquo;&raquo; <a href="<{$smarty.const.XOOPS_URL}>/modules/<{$module->getVar('dirname')}>/admin/index.php?action=PreferenceList"><{$smarty.const._MI_LEGACY_MENU_PREFERENCE}></a>
-      &raquo;&raquo; <{$category->getName()|xoops_escape}>
+    &raquo;&raquo; <a href="<{$smarty.const.XOOPS_URL}>/modules/<{$module->getVar('dirname')}>/admin/index.php?action=PreferenceList"><{$smarty.const._MI_LEGACY_MENU_PREFERENCE}></a>
+    &raquo;&raquo; <{$category->getName()|xoops_escape}>
     <{else}>
-      &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._MI_LEGACY_MENU_PREFERENCE}></span>
+    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._MI_LEGACY_MENU_PREFERENCE}></span>
     <{/if}>
-  <{else}>
-    <a href="<{$smarty.const.XOOPS_URL}>/modules/legacy/admin/index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+    <{else}>
+    &raquo;&raquo; <a href="<{$smarty.const.XOOPS_URL}>/modules/legacy/admin/index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=PreferenceList"><{$smarty.const._MI_LEGACY_MENU_PREFERENCE}></a>
-    &raquo;&raquo; <span class="adminnaviTitle"><{$category->getName()|xoops_escape}></span>
-  <{/if}>
+    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$category->getName()|xoops_escape}></span>
+    <{/if}>
 </div>
 
-<h3 class="admintitle">
-  <{if $category != null}>
+
+<h2 class="admintitle">
+    <{if $category != null}>
     <{$category->getName()|xoops_escape}>
-  <{else}>
+    <{else}>
     <{$smarty.const._MI_LEGACY_MENU_PREFERENCE}>
-  <{/if}>
-</h3>
+    <{/if}>
+</h2>
+
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
 
 <{if $actionForm->hasError()}>
 <div class="error">
-  <ul>
-    <{foreach item=message from=$actionForm->getErrorMessages()}>
-      <li><{$message|xoops_escape}></li>
-    <{/foreach}>
-  </ul>
+    <ul>
+        <{foreach item=message from=$actionForm->getErrorMessages()}>
+        <li><{$message|xoops_escape}></li>
+        <{/foreach}>
+    </ul>
 </div>
 <{/if}>
 
 <form action="./index.php?action=PreferenceEdit" method="post" autocomplete="off">
-  <{xoops_token form=$actionForm}>
-  <{xoops_input type=hidden name=$actionForm->mKeyName value=$actionForm->mKeyValue}>
-  <table class="outer">
-    <tr>
-      <th colspan="2">
-        <{$smarty.const._MI_LEGACY_MENU_PREFERENCE}>
-        <{if $category != null}>
-           - <{$category->getName()|xoops_escape}>
-        <{/if}>
-      </th>
-    </tr>
+    <{xoops_token form=$actionForm}>
+    <{xoops_input type=hidden name=$actionForm->mKeyName value=$actionForm->mKeyValue}>
 
-    <{foreach item=config from=$objectArr}>
-      <{assign var=conf_name value=$config->getVar('conf_name')}>
-      <{assign var=rconf_name value=$config->get('conf_name')}>
-      <{assign var=conf_formtype value=$config->get('conf_formtype')}>
-      <tr>
-        <td class="head">
-          <div class="legacy_list_title"><{$config->getTitle()}>
-          <{if $mcrypt_enabled && $config->get('conf_valuetype') == 'encrypt'}><img src="<{"icons/textfield_key.png"|theme}>" alt="Encrypted"><{/if}>
-          <{if $config->get('conf_desc') != null}>
-            <p class="legacy_list_description"><{$config->getDesc()}></p>
-          <{/if}>
-          </div>
-        </td>
-        <td class="<{cycle values="odd,even"}>">
-          <{if $conf_formtype == 'textarea'}>
+    <table class="outer">
+        <thead>
+        <tr>
+            <th colspan="2">
+                <{$smarty.const._MI_LEGACY_MENU_PREFERENCE}>
+                <{if $category != null}>
+                - <{$category->getName()|xoops_escape}>
+                <{/if}>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <{foreach item=config from=$objectArr}>
+        <{assign var=conf_name value=$config->getVar('conf_name')}>
+        <{assign var=rconf_name value=$config->get('conf_name')}>
+        <{assign var=conf_formtype value=$config->get('conf_formtype')}>
+        <tr>
+            <td class="head">
+                <div class="list_title"><{$config->getTitle()}>
+                    <{if $mcrypt_enabled && $config->get('conf_valuetype') == 'encrypt'}>
+                    <img src="<{'icons/textfield_key.png'|theme}>" alt="Encrypted">
+                    <{/if}>
+                    <{if $config->get('conf_desc') != null}>
+                    <p class="list_description"><{$config->getDesc()}></p>
+                    <{/if}>
+                </div>
+            </td>
+            <td>
+            <{if $conf_formtype == 'textarea'}>
             <{xoops_textarea name=$conf_name rows=5 cols=50 value=$actionForm->get($rconf_name)}>
 
-
-          <{elseif $conf_formtype == 'server_module'}>
+            <{elseif $conf_formtype == 'server_module'}>
             <select name='<{$conf_name}>' id='legacy_xoopsform_<{$conf_name}>'>
-              <{foreach item=option from=$config->getRoledModuleList()}>
+                <{foreach item=option from=$config->getRoledModuleList()}>
                 <option value='<{$option}>' <{if $actionForm->get($rconf_name) == $option}>selected="selected"<{/if}>><{$option}></option>
-              <{/foreach}>
+                <{/foreach}>
             </select>
 
-
-          <{elseif $conf_formtype == 'select'}>
+            <{elseif $conf_formtype == 'select'}>
             <select name='<{$conf_name}>' id='legacy_xoopsform_<{$conf_name}>'>
-              <{foreach item=option from=$config->getOptionItems()}>
-                <option value='<{$option->getOptionKey()|xoops_escape}>' <{if $actionForm->get($rconf_name) == $option->getOptionKey()}>selected="selected"<{/if}>><{$option->getOptionLabel()|xoops_escape}></option>
-              <{/foreach}>
+                <{foreach item=option from=$config->getOptionItems()}>
+                <option value='<{$option->getOptionKey()|xoops_escape}>' <{if $actionForm->get($rconf_name) == $option->getOptionKey()}>selected="selected"<{/if}>>
+                <{$option->getOptionLabel()|xoops_escape}></option>
+                <{/foreach}>
             </select>
 
-
-          <{elseif $conf_formtype == 'radio'}>
+            <{elseif $conf_formtype == 'radio'}>
             <{counter start=0 skip=1 assign=count}>
             <{foreach item=option from=$config->getOptionItems()}>
-              <{counter assign=count}>
-              <input type='radio' name='<{$conf_name}>' id='legacy_xoopsform_<{$conf_name}>_<{$count}>' value='<{$option->getOptionKey()|xoops_escape}>' <{if $actionForm->get($rconf_name) == $option->getOptionKey()}>checked='checked'<{/if}> /><label for='legacy_xoopsform_<{$conf_name}>_<{$count}>'><{$option->getOptionLabel()|xoops_escape}></label><br />
+            <{counter assign=count}>
+            <input type='radio' name='<{$conf_name}>' id='legacy_xoopsform_<{$conf_name}>_<{$count}>'
+                   value='<{$option->getOptionKey()|xoops_escape}>' <{if $actionForm->get($rconf_name) == $option->getOptionKey()}>checked='checked'<{/if}>>
+            <label for='legacy_xoopsform_<{$conf_name}>_<{$count}>'><{$option->getOptionLabel()|xoops_escape}></label>
+            <br>
             <{/foreach}>
 
-
-          <{elseif $conf_formtype == 'select_multi'}>
+            <{elseif $conf_formtype == 'select_multi'}>
             <select name='<{$conf_name}>[]' id='legacy_xoopsform_<{$conf_name}>' size='5' multiple="multiple">
-              <{foreach item=option from=$config->getOptionItems()}>
+                <{foreach item=option from=$config->getOptionItems()}>
                 <{assign var=flag value=0}>
                 <{foreach item=selected from=$actionForm->get($rconf_name)}>
-                  <{if $option->getOptionKey() == $selected}><{assign var=flag value=1}><{/if}>
+                <{if $option->getOptionKey() == $selected}><{assign var=flag value=1}><{/if}>
                 <{/foreach}>
-                <option value="<{$option->getOptionKey()|xoops_escape}>" <{if $flag}>selected="selected"<{/if}>><{$option->getOptionLabel()|xoops_escape}></option>
-              <{/foreach}>
+                <option value="<{$option->getOptionKey()|xoops_escape}>" <{if $flag}>selected="selected"<{/if}>>
+                <{$option->getOptionLabel()|xoops_escape}>
+                </option>
+                <{/foreach}>
             </select>
 
-
-          <{elseif $conf_formtype == 'checkbox'}>
+            <{elseif $conf_formtype == 'checkbox'}>
             <{counter start=0 skip=1 assign=count}>
             <{foreach item=option from=$config->getOptionItems()}>
-              <{counter assign=count}>
-              <{assign var=flag value=0}>
-              <{foreach item=checked from=$actionForm->get($rconf_name)}>
-                <{if $option->getOptionKey() == $checked}><{assign var=flag value=1}><{/if}>
-              <{/foreach}>
-              <input type='checkbox' name='<{$conf_name}>[]' id='legacy_xoopsform_<{$conf_name}>_<{$count}>' value='<{$option->getOptionKey()|xoops_escape}>' <{if $flag}>checked='checked'<{/if}> /><label for='legacy_xoopsform_<{$conf_name}>_<{$count}>'><{$option->getOptionLabel()|xoops_escape}></label><br />
+            <{counter assign=count}>
+            <{assign var=flag value=0}>
+            <{foreach item=checked from=$actionForm->get($rconf_name)}>
+            <{if $option->getOptionKey() == $checked}><{assign var=flag value=1}><{/if}>
+            <{/foreach}>
+            <label class="ui-checkbox" for='legacy_xoopsform_<{$conf_name}>_<{$count}>'><{$option->getOptionLabel()|xoops_escape}></label>
+            <input type='checkbox' name='<{$conf_name}>[]' id='legacy_xoopsform_<{$conf_name}>_<{$count}>'
+                   value='<{$option->getOptionKey()|xoops_escape}>' <{if $flag}>checked='checked'<{/if}>>
+            <span class="ui-checkbox-custom"></span>
+            </label>
+            <br>
             <{/foreach}>
 
-
-          <{elseif $conf_formtype == 'yesno'}>
+            <{elseif $conf_formtype == 'yesno'}>
             <{*TODO ID conflict*}>
             <label><{xoops_input type=radio name=$rconf_name value=1 default=$actionForm->get($rconf_name)}><{$smarty.const._YES}></label>
             <label><{xoops_input type=radio name=$rconf_name value=0 default=$actionForm->get($rconf_name)}><{$smarty.const._NO}></label>
 
-
-          <{elseif $conf_formtype == 'theme'}>
+            <{elseif $conf_formtype == 'theme'}>
             <select name='<{$conf_name}>' id='legacy_xoopsform_<{$conf_name}>'>
-              <{xoops_optionsArray id=$conf_name value=dirname label=dirname from=$themeArr default=$actionForm->get($rconf_name)}>
+                <{xoops_optionsArray id=$conf_name value=dirname label=dirname from=$themeArr
+                default=$actionForm->get($rconf_name)}>
             </select>
 
-            
-          <{elseif $conf_formtype == 'theme_multi'}>
+            <{elseif $conf_formtype == 'theme_multi'}>
             <select name='<{$conf_name}>[]' id='legacy_xoopsform_<{$conf_name}>' size='5' multiple="multiple">
-              <{xoops_optionsArray id=$conf_name value=dirname label=dirname from=$themeArr default=$actionForm->get($rconf_name)}>
+                <{xoops_optionsArray id=$conf_name value=dirname label=dirname from=$themeArr
+                default=$actionForm->get($rconf_name)}>
             </select>
-            
-            
-          <{elseif $conf_formtype == 'tplset'}>
+
+            <{elseif $conf_formtype == 'tplset'}>
             <select name='<{$conf_name}>' id='legacy_xoopsform_<{$conf_name}>'>
-              <{xoops_optionsArray id=$conf_name value=tplset_name label=tplset_name from=$tplsetArr default=$actionForm->get($rconf_name)}>
+                <{xoops_optionsArray id=$conf_name value=tplset_name label=tplset_name from=$tplsetArr
+                default=$actionForm->get($rconf_name)}>
             </select>
-            
-            
-          <{elseif $conf_formtype == 'timezone'}>
+
+            <{elseif $conf_formtype == 'timezone'}>
             <select name='<{$conf_name}>' id='legacy_xoopsform_<{$conf_name}>'>
-              <{xoops_optionsArray id=$conf_name value=offset label=zone_name from=$timezoneArr default=$actionForm->get($rconf_name)}>
+                <{xoops_optionsArray id=$conf_name value=offset label=zone_name from=$timezoneArr default=$actionForm->get($rconf_name)}>
             </select>
 
-
-          <{elseif $conf_formtype == 'language'}>
+            <{elseif $conf_formtype == 'language'}>
             <select name='<{$conf_name}>' id='legacy_xoopsform_<{$conf_name}>'>
-              <{foreach item=language from=$languageArr}>
-                <option value="<{$language|xoops_escape}>" <{if $actionForm->get($rconf_name) == $language}>selected="selected"<{/if}>><{$language|xoops_escape}></option>
-              <{/foreach}>
+                <{foreach item=language from=$languageArr}>
+                <option value="<{$language|xoops_escape}>"
+                <{if $actionForm->get($rconf_name) == $language}>selected="selected"<{/if}>>
+                <{$language|xoops_escape}>
+                </option>
+                <{/foreach}>
             </select>
 
-
-          <{elseif $conf_formtype == 'startpage'}>
+            <{elseif $conf_formtype == 'startpage'}>
             <select name='<{$conf_name}>' id='legacy_xoopsform_<{$conf_name}>'>
-              <option value="--"><{$smarty.const._AD_LEGACY_LANG_NONE}></option>
-              <{xoops_optionsArray id=$conf_name value=mid label=name from=$moduleArr default=$actionForm->get($rconf_name)}>
+                <option value="--"><{$smarty.const._AD_LEGACY_LANG_NONE}></option>
+                <{xoops_optionsArray id=$conf_name value=mid label=name from=$moduleArr
+                default=$actionForm->get($rconf_name)}>
             </select>
-            
-            
-          <{elseif $conf_formtype == 'group'}>
+
+            <{elseif $conf_formtype == 'group'}>
             <select name='<{$conf_name}>' id='legacy_xoopsform_<{$conf_name}>'>
-              <{xoops_optionsArray id=$conf_name value=groupid label=name from=$groupArr default=$actionForm->get($rconf_name)}>
+                <{xoops_optionsArray id=$conf_name value=groupid label=name from=$groupArr default=$actionForm->get($rconf_name)}>
             </select>
 
-
-          <{elseif $conf_formtype == 'group_multi'}>
+            <{elseif $conf_formtype == 'group_multi'}>
             <select name='<{$conf_name}>[]' id='legacy_xoopsform_<{$conf_name}>' size='3' multiple="multiple">
-              <{foreach item=group from=$groupArr}>
+                <{foreach item=group from=$groupArr}>
                 <{assign var=flag value=0}>
                 <{foreach item=selected from=$actionForm->get($rconf_name)}>
-                  <{if $group->get('groupid') == $selected}><{assign var=flag value=1}><{/if}>
+                <{if $group->get('groupid') == $selected}><{assign var=flag value=1}><{/if}>
                 <{/foreach}>
-                <option value="<{$group->getVar('groupid')}>" <{if $flag}>selected="selected"<{/if}>><{$group->getVar('name')}></option>
-              <{/foreach}>
+                <option value="<{$group->getVar('groupid')}>" <{if $flag}>selected="selected"<{/if}>>
+                <{$group->getVar('name')}>
+                </option>
+                <{/foreach}>
             </select>
 
-
-          <{elseif $conf_formtype == 'group_checkbox'}>
+            <{elseif $conf_formtype == 'group_checkbox'}>
             <{counter start=0 skip=1 assign=count}>
             <{foreach item=group from=$groupArr}>
-              <{counter assign=count}>
-              <{assign var=flag value=0}>
-              <{foreach item=checked from=$actionForm->get($rconf_name)}>
-                <{if $group->get('groupid') == $checked}><{assign var=flag value=1}><{/if}>
-              <{/foreach}>
-              <input type="checkbox" name="<{$conf_name}>[]" id="legacy_xoopsform_<{$conf_name}>_<{$count}>" value="<{$group->getVar('groupid')}>" <{if $flag}>checked="checked"<{/if}> /><label for="legacy_xoopsform_<{$conf_name}>_<{$count}>"><{$group->getVar('name')}></label><br />
+            <{counter assign=count}>
+            <{assign var=flag value=0}>
+            <{foreach item=checked from=$actionForm->get($rconf_name)}>
+            <{if $group->get('groupid') == $checked}><{assign var=flag value=1}><{/if}>
+            <{/foreach}>
+            <label class="ui-checkbox"
+                   for="legacy_xoopsform_<{$conf_name}>_<{$count}>"><{$group->getVar('name')}></label>
+            <input type="checkbox" name="<{$conf_name}>[]" id="legacy_xoopsform_<{$conf_name}>_<{$count}>"
+                   value="<{$group->getVar('groupid')}>" <{if $flag}>checked="checked"<{/if}> />
+            <span class="ui-checkbox-custom"></span>
+            </label>
+            <br>
             <{/foreach}>
 
-
-          <{elseif $conf_formtype == 'user'}>
+            <{elseif $conf_formtype == 'user'}>
             <select name='<{$conf_name}>' id='legacy_xoopsform_<{$conf_name}>'>
-              <{foreach key=value item=label from=$userArr}>
-                <option value="<{$value|xoops_escape}>" <{if $value == $actionForm->get($rconf_name)}>selected<{/if}>><{$label|xoops_escape}></option>
-              <{/foreach}>
+                <{foreach key=value item=label from=$userArr}>
+                <option value="<{$value|xoops_escape}>" <{if $value == $actionForm->get($rconf_name)}>selected<{/if}>>
+                <{$label|xoops_escape}>
+                </option>
+                <{/foreach}>
             </select>
 
-
-          <{elseif $conf_formtype == 'user_multi'}>
-            <select name='<{$conf_name}>[]' id='legacy_xoopsform_<{$conf_name}>' size='3' multiple="multiple">
-              <{foreach key=value item=label from=$userArr}>
+            <{elseif $conf_formtype == 'user_multi'}>
+            <select name='<{$conf_name}>[]' id='legacy_xoopsform_<{$conf_name}>' size='5' multiple="multiple">
+                <{foreach key=value item=label from=$userArr}>
                 <{assign var=flag value=0}>
                 <{foreach item=selected from=$actionForm->get($rconf_name)}>
-                  <{if $value == $selected}><{assign var=flag value=1}><{/if}>
+                <{if $value == $selected}><{assign var=flag value=1}><{/if}>
                 <{/foreach}>
-                <option value="<{$value|xoops_escape}>" <{if $flag}>selected="selected"<{/if}>><{$label|xoops_escape}></option>
-              <{/foreach}>
+                <option value="<{$value|xoops_escape}>" <{if $flag}>selected="selected"<{/if}>>
+                <{$label|xoops_escape}>
+                </option>
+                <{/foreach}>
             </select>
 
-
-          <{elseif $conf_formtype == 'module_cache'}>
+            <{elseif $conf_formtype == 'module_cache'}>
             <{foreach item=module from=$moduleArr}>
-			  <{assign var=mcachetime value=$actionForm->get($rconf_name, $module->get('mid'))}>
-              <{$module->getVar('name')}>
-                <select name="<{$conf_name}>[<{$module->get('mid')}>]" id="legacy_xoopsform_<{$conf_name}>_<{$module->get('mid')}>">
-                  <{foreach item=cachetime from=$cachetimeArr}>
-                    <{if $mcachetime == $cachetime->get('cachetime')}>
-                      <option value="<{$cachetime->get('cachetime')}>" selected="selected"><{$cachetime->getVar('label')}></option>
-                    <{else}>
-                      <option value="<{$cachetime->get('cachetime')}>"><{$cachetime->getVar('label')}></option>
-                    <{/if}>
-                  <{/foreach}>
-                </select>
-              <br/>
+            <{assign var=mcachetime value=$actionForm->get($rconf_name, $module->get('mid'))}>
+
+            <select name="<{$conf_name}>[<{$module->get('mid')}>]"
+                    id="legacy_xoopsform_<{$conf_name}>_<{$module->get('mid')}>">
+                <{foreach item=cachetime from=$cachetimeArr}>
+                <{if $mcachetime == $cachetime->get('cachetime')}>
+                <option value="<{$cachetime->get('cachetime')}>" selected="selected">
+                    <{$cachetime->getVar('label')}>
+                </option>
+                <{else}>
+                <option value="<{$cachetime->get('cachetime')}>"><{$cachetime->getVar('label')}></option>
+                <{/if}>
+                <{/foreach}>
+            </select> <{$module->getVar('name')}>
+            <br>
             <{/foreach}>
-            
-            
-          <{elseif $conf_formtype == 'password'}>
-            <{xoops_input type=password name=$rconf_name size=50 maxlength=255 value=$actionForm->get($rconf_name)}>
 
+            <{elseif $conf_formtype == 'color'}> <{* color picker *}>
+            <{xoops_input type=color id="color" name=$rconf_name value=$actionForm->get($rconf_name)}>
+            <{xoops_input type=text id="color-hex" placeholder="#101010" name=$rconf_name size=9 maxlength=9
+            value=$actionForm->get($rconf_name)}>
+            <script>
+                // TODO Regex pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"
+                var colorhex = document.getElementById('color-hex');
+                var colorset = document.getElementById('color');
+                // Listen to changes in the colortext input
+                colorhex.addEventListener("input", function (e) {
+                    // If the input is a valid 7 character hex string
+                    // assign this value to the color picker
+                    if (this.value.match(/^#([0-9a-f]{6})$/)) {
+                        colorset.value = this.value;
+                    }
+                    // If the input is a valid 4 character hex string
+                    // convert it to a 7 character hex string and
+                    // assign this value to the color picker
+                    else if (this.value.match(/^#([0-9a-f]{3})$/)) {
+                        var r = this.value[1],
+                            g = this.value[2],
+                            b = this.value[3];
+                        colorset.value = `#${r + r + g + g + b + b}`;
+                    }
+                })
+                // If a new color is picked, display its value
+                // in the text input field
+                colorset.addEventListener("input", function (e) {
+                    colorhex.value = this.value;
+                })
+            </script>
 
-          <{elseif $conf_formtype == 'textbox'}>
-            <{xoops_input type=text name=$rconf_name size=50 maxlength=255 value=$actionForm->get($rconf_name)}>
+            <{elseif $conf_formtype == 'password'}>
+            <{xoops_input type=password name=$rconf_name size=50 maxlength=191 value=$actionForm->get($rconf_name)}>
 
-          <{elseif $conf_formtype == 'text'}> <{* deprecated *}>
-            <{xoops_input type=text name=$rconf_name size=50 maxlength=255 value=$actionForm->get($rconf_name)}>
+            <{elseif $conf_formtype == 'textbox'}>
+            <{xoops_input type=text name=$rconf_name size=50 maxlength=191 value=$actionForm->get($rconf_name)}>
 
-          <{/if}>
-        </td>
-      </tr>
-    <{/foreach}>
-    <tr>
-      <td colspan="2" class="foot">
-        <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
-        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
-      </td>
-    </tr>
-  </table>
+            <{elseif $conf_formtype == 'text'}> <{* deprecated *}>
+            <{xoops_input type=text name=$rconf_name size=50 maxlength=191 value=$actionForm->get($rconf_name)}>
+
+            <{/if}>
+            </td>
+        </tr>
+        <{/foreach}>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2" class="foot">
+                <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
+                <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+            </td>
+        </tr>
+        </tfoot>
+
+    </table>
+
 </form>

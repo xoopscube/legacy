@@ -1,35 +1,17 @@
 <?php
-// $Id: errorhandler.php,v 1.3 2007/06/24 07:54:19 nobunobu Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-
 /**
  * Error handler class
- *
- * @author Michael van Dam
+ * @package    kernel
+ * @subpackage core
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Other authors nobunobu, 2007/06/24
+ * @author     Michael van Dam
+ * @copyright  (c) 2000-2003 XOOPS.org
+ * @license    GPL 2.0
  */
+
+
 class XoopsErrorHandler
 {
     /**
@@ -38,12 +20,12 @@ class XoopsErrorHandler
      * @var array
      * @access private
      */
-    public $_errors = array();
+    public $_errors = [];
 
     /**
      * Show error messages?
      *
-     * @var boolean
+     * @var bool
      * @access private
      */
     public $_showErrors = false;
@@ -51,7 +33,7 @@ class XoopsErrorHandler
     /**
      * Was there a fatal error (E_USER_ERROR)
      *
-     * @var boolean
+     * @var bool
      * @access private
      */
     public $_isFatal = false;
@@ -63,7 +45,7 @@ class XoopsErrorHandler
      * registering an error handler, the setting or 'error_reporting' is
      * ignored and *everything* is trapped.
      */
-    public function XoopsErrorHandler()
+    public function __construct()
     {
         set_error_handler('XoopsErrorHandler_HandleError');
         register_shutdown_function('XoopsErrorHandler_Shutdown');
@@ -74,11 +56,11 @@ class XoopsErrorHandler
      *
      * @access public
      */
-    public function &getInstance()
+    public static function &getInstance()
     {
         static $instance = null;
         if (empty($instance)) {
-            $instance = new XoopsErrorHandler;
+            $instance = new XoopsErrorHandler();
         }
         return $instance;
     }
@@ -87,10 +69,10 @@ class XoopsErrorHandler
      * Activate the error handler
      *
      * @access public
-     * @param boolean $showErrors True if debug mode is on
+     * @param bool $showErrors True if debug mode is on
      * @return void
      */
-    public function activate($showErrors=false)
+    public function activate(bool $showErrors=false)
     {
         $this->_showErrors = $showErrors;
     }
@@ -104,11 +86,11 @@ class XoopsErrorHandler
      */
     public function handleError($error)
     {
-        if ($error['errno'] == E_USER_ERROR) {
+        if (E_USER_ERROR == $error['errno']) {
             $this->_isFatal = true;
             exit($error['errstr']);
         }
-        if (($error['errno'] & error_reporting()) != $error['errno']) {
+        if (($error['errno'] & error_reporting()) !== $error['errno']) {
             return;
         }
         $this->_errors[] = $error;
@@ -131,7 +113,7 @@ class XoopsErrorHandler
      * @TODO Use language? or allow customized message?
      *
      * @access public
-     * @return void
+     * @return string
      */
     public function renderErrors()
     {
@@ -140,36 +122,67 @@ class XoopsErrorHandler
         //
         $output = '';
         if ($this->_isFatal) {
-            $output .= 'This page cannot be displayed due to an internal error.<br/><br/>';
-            $output .= 'If you are the administrator of this site, please visit the <a href="https://github.com/xoopscube/legacy/">XOOPS Cube Project Site</a> for assistance.<br/><br/>';
+            $output .= 'This page cannot be displayed due to an internal error.<br><br>';
+            $output .= 'If you are the administrator of this site, please visit the <a href="https://github.com/xoopscube/">XOOPSCube Project Site</a> for assistance.<br><br>';
         }
         if (!$this->_showErrors || empty($this->_errors)) {
             return $output;
         }
 
+        $output = [];
         foreach ($this->_errors as $error) {
             switch ($error['errno']) {
                 case E_USER_NOTICE:
-                    $output .= "Notice [Xoops]: ";
+                    $out = 'Notice [Xoops]: ';
                     break;
                 case E_USER_WARNING:
-                    $output .= "Warning [Xoops]: ";
+                    $out = 'Warning [Xoops]: ';
                     break;
                 case E_USER_ERROR:
-                    $output .= "Error [Xoops]: ";
+                    $out = 'Error [Xoops]: ';
+                    break;
+                case E_USER_DEPRECATED:
+                    $out = 'Deprecated [Xoops]: ';
+                    break;
+                case E_USER_STRICT:
+                    $out = 'Strict [Xoops]: ';
                     break;
                 case E_NOTICE:
-                    $output .= "Notice [PHP]: ";
+                    $out = 'Notice [PHP]: ';
                     break;
                 case E_WARNING:
-                    $output .= "Warning [PHP]: ";
+                    $out = 'Warning [PHP7]: ';
+                    break;
+                case E_DEPRECATED:
+                    $out = 'Deprecated [PHP7]: ';
+                    break;
+                case E_STRICT:
+                    $out = 'Strict [PHP7]: ';
+                    break;
+                case E_ERROR:
+                    $out = 'Fatal [PHP7]: ';
                     break;
                 default:
-                    $output .= "Unknown Condition [" . $error['errno'] . "]: ";
+                    $out = 'Unknown Condition [' . $error['errno'] . ']: ';
             }
-            $output .= sprintf("%s in file %s line %s<br />\n", $error['errstr'], $error['errfile'], $error['errline']);
+
+
+            // output
+            $out .= sprintf('%s in file %s line %s', $error['errstr'], $error['errfile'], $error['errline']);
+            $md5 = md5($out);
+            $count =[];
+            if (isset($output[$md5])) {
+
+                $output[$md5] = preg_replace('/\(\d+\)$/', '(' . ++$count[$md5] . ')', $output[$md5]);
+            } else {
+                $output[$md5] = $out . ' (1)';
+                $count[$md5] = 1;
+            }
         }
-        return $output;
+        $ret = '<div class="error">';
+        $ret .= implode("<br>\n", $output);
+        $ret .= '</div>';
+        return $ret;
     }
 }
 
@@ -190,12 +203,12 @@ class XoopsErrorHandler
 function XoopsErrorHandler_HandleError($errNo, $errStr, $errFile, $errLine)
 {
     // NOTE: we only store relative pathnames
-    $new_error = array(
+    $new_error = [
         'errno' => $errNo,
         'errstr' => $errStr,
-        'errfile' => preg_replace("|^" . XOOPS_ROOT_PATH . "/|", '', $errFile),
+        'errfile' => str_replace([XOOPS_ROOT_PATH, XOOPS_TRUST_PATH], ['(html)', '(trust)'], $errFile),
         'errline' => $errLine
-        );
+    ];
     $error_handler =& XoopsErrorHandler::getInstance();
     $error_handler->handleError($new_error);
 }
@@ -208,6 +221,10 @@ function XoopsErrorHandler_HandleError($errNo, $errStr, $errFile, $errLine)
  */
 function XoopsErrorHandler_Shutdown()
 {
+    $error = error_get_last();
+    if (E_ERROR === $error['type']) {
+        XoopsErrorHandler_HandleError($error['type'], $error['message'], $error['file'], $error['line']);
+    }
     $error_handler =& XoopsErrorHandler::getInstance();
     echo $error_handler->renderErrors();
 }

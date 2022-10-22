@@ -1,34 +1,14 @@
 <?php
-// $Id: xmlrpcapi.php,v 1.1 2007/05/15 02:34:53 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
-
+/**
+ * XML RPC API
+ * @package    kernel
+ * @subpackage xml
+ * @version    XCL 2.3.1
+ * @author     Other authors Minahito, 2007/05/15
+ * @author     Kazumi Ono (aka onokazu)
+ * @copyright  (c) 2000-2003 XOOPS.org
+ * @license    GPL 2.0
+ * */
 
 class XoopsXmlRpcApi
 {
@@ -43,7 +23,7 @@ class XoopsXmlRpcApi
     public $module;
 
     // map between xoops tags and blogger specific tags
-    public $xoopsTagMap = array();
+    public $xoopsTagMap = [];
 
     // user class object
     public $user;
@@ -52,7 +32,7 @@ class XoopsXmlRpcApi
 
 
 
-    public function XoopsXmlRpcApi(&$params, &$response, &$module)
+    public function __construct(&$params, &$response, &$module)
     {
         $this->params =& $params;
         $this->response =& $response;
@@ -103,11 +83,11 @@ class XoopsXmlRpcApi
 
     public function &_getPostFields($post_id = null, $blog_id = null)
     {
-        $ret = array();
-        $ret['title'] = array('required' => true, 'form_type' => 'textbox', 'value_type' => 'text');
-        $ret['hometext'] = array('required' => false, 'form_type' => 'textarea', 'data_type' => 'textarea');
-        $ret['moretext'] = array('required' => false, 'form_type' => 'textarea', 'data_type' => 'textarea');
-        $ret['categories'] = array('required' => false, 'form_type' => 'select_multi', 'data_type' => 'array');
+        $ret = [];
+        $ret['title'] = ['required' => true, 'form_type' => 'textbox', 'value_type' => 'text'];
+        $ret['hometext'] = ['required' => false, 'form_type' => 'textarea', 'data_type' => 'textarea'];
+        $ret['moretext'] = ['required' => false, 'form_type' => 'textarea', 'data_type' => 'textarea'];
+        $ret['categories'] = ['required' => false, 'form_type' => 'select_multi', 'data_type' => 'array'];
         /*
         if (!isset($blog_id)) {
             if (!isset($post_id)) {
@@ -126,7 +106,7 @@ class XoopsXmlRpcApi
 
     public function _setXoopsTagMap($xoopstag, $blogtag)
     {
-        if (trim($blogtag) != '') {
+        if ('' != trim($blogtag)) {
             $this->xoopsTagMap[$xoopstag] = $blogtag;
         }
     }
@@ -142,7 +122,7 @@ class XoopsXmlRpcApi
     public function _getTagCdata(&$text, $tag, $remove = true)
     {
         $ret = '';
-        $match = array();
+        $match = [];
         if (preg_match("/\<".$tag."\>(.*)\<\/".$tag."\>/is", $text, $match)) {
             if ($remove) {
                 $text = str_replace($match[0], '', $text);
@@ -156,7 +136,7 @@ class XoopsXmlRpcApi
     // returns itself if the calling object is XOOPS API
     public function &_getXoopsApi(&$params)
     {
-        if (strtolower(get_class($this)) != 'xoopsapi') {
+        if ('xoopsapi' != strtolower(get_class($this))) {
             require_once(XOOPS_ROOT_PATH.'/class/xml/rpc/xoopsapi.php');
             $instance =new XoopsApi($params, $this->response, $this->module);
             return $instance;

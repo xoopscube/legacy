@@ -4,7 +4,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractFilterForm.class.php';
 
 define('MAILJOB_SORT_KEY_MAILJOB_ID', 1);
 define('MAILJOB_SORT_KEY_TITLE', 2);
@@ -20,7 +20,7 @@ define('MAILJOB_SORT_KEY_DEFAULT', -MAILJOB_SORT_KEY_CREATE_UNIXTIME);
 
 class User_MailjobFilterForm extends User_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         MAILJOB_SORT_KEY_MAILJOB_ID => 'mailjob_id',
         MAILJOB_SORT_KEY_TITLE => 'title',
         MAILJOB_SORT_KEY_BODY => 'body',
@@ -29,7 +29,7 @@ class User_MailjobFilterForm extends User_AbstractFilterForm
         MAILJOB_SORT_KEY_IS_PM => 'is_pm',
         MAILJOB_SORT_KEY_IS_MAIL => 'is_mail',
         MAILJOB_SORT_KEY_CREATE_UNIXTIME => 'create_unixtime'
-    );
+    ];
     
     public function getDefaultSortKey()
     {
@@ -45,7 +45,7 @@ class User_MailjobFilterForm extends User_AbstractFilterForm
             // TODO like
             //
             $this->mNavi->addExtra('title', xoops_getrequest('title'));
-            $this->_mCriteria->add(new Criteria('title', array(XOBJ_DTYPE_STRING, xoops_getrequest('title'))));
+            $this->_mCriteria->add(new Criteria('title', [XOBJ_DTYPE_STRING, xoops_getrequest('title')]));
         }
     
         if (isset($_REQUEST['is_pm'])) {

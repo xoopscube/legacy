@@ -1,24 +1,25 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: BlockUninstallForm.class.php,v 1.3 2008/09/25 15:11:07 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ *  BlockUninstallForm.class.php
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors  gigamaster, 2020 XCL/PHP7
+ * @author     Kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/CustomBlockDeleteForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/CustomBlockDeleteForm.class.php';
 
 class Legacy_BlockUninstallForm extends Legacy_CustomBlockDeleteForm
 {
     public function getTokenName()
     {
-        return "module.legacy.BlockUninstallForm.TOKEN" . $this->get('bid');
+        return 'module.legacy.BlockUninstallForm.TOKEN' . $this->get('bid');
     }
 
     public function update(&$obj)

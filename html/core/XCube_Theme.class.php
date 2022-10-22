@@ -1,118 +1,118 @@
 <?php
 /**
- *
- * @package XCube
- * @version $Id: XCube_Theme.class.php,v 1.4 2008/10/12 04:30:27 minahito Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt Modified BSD license
- *
+ * XCube_Theme.class.php
+ * @package    XCube
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Minahito, 2008/10/12
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    BSD-3-Clause
+ * @brief      The theme class.
  */
 
-/**
- * The theme class.
- */
-class XCube_Theme
-{
-    /**
-     * A name of the theme.
-     * 
-     * @var string
-     */
-    public $mName = null;
-    
-    /**
-     * A name of the theme on the file system.
-     * 
-     * @var string
-     */
-    public $mDirname = null;
-    
-    /**
-     * A name of entities system which this theme depends on.
-     * 
-     * @var string
-     */
-    public $mDepends = array();
-    
-    public $mVersion = null;
-    
-    public $mUrl = null;
-    
-    /**
-     * A name of the render system which this theme depends on.
-     * 
-     * @var string
-     */
-    public $mRenderSystemName = null;
-    
-    /**
-     * A file name of screen shot.
-     * 
-     * @var string
-     */
-    public $mScreenShot = null;
-    
-    public $mDescription = null;
-    
-    /**
-     * A description of this theme file format. This information isn't used by
-     * a program. But, this is an important information for users
-     * 
-     * @var string
-     */
-    public $mFormat = null;
-    
-    public $mAuthor = null;
-    
-    /**
-     * @deprecated mLicense
-     */
-    public $mLicence = null;
-       
-    public $mLicense = null;
-    
-    public $_mManifesto = array();
+class XCube_Theme {
+	/**
+	 * A name of the theme.
+	 *
+	 * @var string
+	 */
+	public $mName;
 
-    /**
-     * Load manifesto file, and set infomations from the file to member
-     * property.
-     * 
-     * @return bool
-     */
-    public function loadManifesto($file)
-    {
-        if (file_exists($file)) {
-            $iniHandler = new XCube_IniHandler($file, true);
-            $this->_mManifesto = $iniHandler->getAllConfig();
-            $this->mName = isset($this->_mManifesto['Manifesto']['Name']) ? $this->_mManifesto['Manifesto']['Name'] : "";
-            $this->mDepends = isset($this->_mManifesto['Manifesto']['Depends']) ? $this->_mManifesto['Manifesto']['Depends'] : "";
-            $this->mVersion = isset($this->_mManifesto['Manifesto']['Version']) ? $this->_mManifesto['Manifesto']['Version'] : "";
-            $this->mUrl = isset($this->_mManifesto['Manifesto']['Url']) ? $this->_mManifesto['Manifesto']['Url'] : "";
-            
-            $this->mRenderSystemName = isset($this->_mManifesto['Theme']['RenderSystem']) ? $this->_mManifesto['Theme']['RenderSystem'] : "";
-            $this->mAuthor = isset($this->_mManifesto['Theme']['Author']) ? $this->_mManifesto['Theme']['Author'] : "";
-            
-            if (isset($this->_mManifesto['Theme']['ScreenShot'])) {
-                $this->mScreenShot = $this->_mManifesto['Theme']['ScreenShot'];
-            }
-            
-            if (isset($this->_mManifesto['Theme']['Description'])) {
-                $this->mDescription = $this->_mManifesto['Theme']['Description'];
-            }
-            
-            $this->mFormat = isset($this->_mManifesto['Theme']['Format']) ? $this->_mManifesto['Theme']['Format'] : "";
-            
-            if (isset($this->_mManifesto['Theme']['License'])) {
-                $this->mLicense = $this->_mManifesto['Theme']['License'];
-                $this->mLicence = $this->_mManifesto['Theme']['License'];
-            } elseif (isset($this->_mManifesto['Theme']['Licence'])) { // For typo
-                $this->mLicense = $this->_mManifesto['Theme']['Licence'];
-                $this->mLicence = $this->_mManifesto['Theme']['Licence'];
-            }
-            
-            return true;
-        } else {
-            return false;
-        }
-    }
+	/**
+	 * A name of the theme on the file system.
+	 *
+	 * @var string
+	 */
+	public $mDirname;
+
+	/**
+	 * A name of the entity system on which this theme depends.
+	 *
+	 * @var string
+	 */
+	public $mDepends = [];
+
+	public $mVersion;
+
+	public $mUrl;
+
+	public $mThemeOptions;
+
+	/**
+	 * A name of the render system on which this theme depends on.
+	 *
+	 * @var string
+	 */
+	public $mRenderSystemName;
+
+	/**
+	 * A file name of screen shot.
+	 *
+	 * @var string
+	 */
+	public $mScreenShot;
+
+	public $mDescription;
+
+	/**
+	 * A description of this theme file format. This is not used by the program. But, it is important for users.
+	 *
+	 * @var string
+	 */
+	public $mFormat;
+
+	public $mAuthor;
+
+	/**
+	 * @deprecated mLicense
+	 */
+	public $mLicence;
+
+	public $mLicense;
+
+	public $_mManifesto = [];
+
+	/**
+	 * Load manifesto file, and set information from the file to member property.
+	 *
+	 * @param $file
+	 *
+	 * @return bool
+	 */
+	public function loadManifesto( $file ) {
+		if ( file_exists( $file ) ) {
+			$iniHandler          = new XCube_IniHandler( $file, true );
+			$this->_mManifesto   = $iniHandler->getAllConfig();
+			$this->mName         = $this->_mManifesto['Manifesto']['Name'] ?? '';
+			$this->mDepends      = $this->_mManifesto['Manifesto']['Depends'] ?? '';
+			$this->mVersion      = $this->_mManifesto['Manifesto']['Version'] ?? '';
+			$this->mUrl          = $this->_mManifesto['Manifesto']['Url'] ?? '';
+			$this->mThemeOptions = $this->_mManifesto['Manifesto']['ThemeOptions'] ?? '';
+
+			$this->mRenderSystemName = $this->_mManifesto['Theme']['RenderSystem'] ?? '';
+			$this->mAuthor           = $this->_mManifesto['Theme']['Author'] ?? '';
+
+			if ( isset( $this->_mManifesto['Theme']['ScreenShot'] ) ) {
+				$this->mScreenShot = $this->_mManifesto['Theme']['ScreenShot'];
+			}
+
+			if ( isset( $this->_mManifesto['Theme']['Description'] ) ) {
+				$this->mDescription = $this->_mManifesto['Theme']['Description'];
+			}
+
+			$this->mFormat = $this->_mManifesto['Theme']['Format'] ?? '';
+
+			if ( isset( $this->_mManifesto['Theme']['License'] ) ) {
+				$this->mLicense = $this->_mManifesto['Theme']['License'];
+				$this->mLicence = $this->_mManifesto['Theme']['License'];
+			} elseif ( isset( $this->_mManifesto['Theme']['Licence'] ) ) { // For typo English, French
+				$this->mLicense = $this->_mManifesto['Theme']['Licence'];
+				$this->mLicence = $this->_mManifesto['Theme']['Licence'];
+			}
+
+			return true;
+		}
+
+		return false;
+	}
 }

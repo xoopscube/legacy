@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH."/core/XCube_PageNavigator.class.php";
-require_once XOOPS_MODULE_PATH."/user/admin/class/Permission.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_PageNavigator.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/class/Permission.class.php';
 
 /***
  * @internal
@@ -18,9 +18,9 @@ require_once XOOPS_MODULE_PATH."/user/admin/class/Permission.class.php";
  */
 class User_GroupPropertyAction extends User_Action
 {
-    public $_mActiveModules = array();
+    public $_mActiveModules = [];
     public $_mActiveModulesLoadedFlag = false;
-    public $_mActiveBlocks = array();
+    public $_mActiveBlocks = [];
     public $_mActiveBlocksLoadedFlag = false;
     
     public $mGroup;
@@ -40,8 +40,8 @@ class User_GroupPropertyAction extends User_Action
         }
 
         $root =& XCube_Root::getSingleton();
-        $root->mLanguageManager->loadModuleAdminMessageCatalog("system");
-        $root->mLanguageManager->loadModinfoMessageCatalog("system");
+        $root->mLanguageManager->loadModuleAdminMessageCatalog('system');
+        $root->mLanguageManager->loadModinfoMessageCatalog('system');
 
         //
         // Get member list
@@ -49,7 +49,7 @@ class User_GroupPropertyAction extends User_Action
         $memberHandler =& xoops_gethandler('member');
 
         $total = $memberHandler->getUserCountByGroup($this->mGroup->getVar('groupid'));
-        $this->mPageNavi =new XCube_PageNavigator("./index.php?action=GroupProperty", XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);    // TODO get controller->getUrl() ?
+        $this->mPageNavi =new XCube_PageNavigator('./index.php?action=GroupProperty', XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);    // TODO get controller->getUrl() ?
         $this->mPageNavi->setTotalItems($total);
         $this->mPageNavi->addExtra('groupid', $this->mGroup->get('groupid'));
 
@@ -61,12 +61,12 @@ class User_GroupPropertyAction extends User_Action
         //
         // Get...
         //
-        if (file_exists(XOOPS_ROOT_PATH . "/modules/system/constants.php")) {
+        if (file_exists(XOOPS_ROOT_PATH . '/modules/system/constants.php')) {
             if ($moduleHandler->getByDirname('system')) {
-                require_once XOOPS_ROOT_PATH . "/modules/system/constants.php";
-                $fileHandler = opendir(XOOPS_ROOT_PATH . "/modules/system/admin");
+                require_once XOOPS_ROOT_PATH . '/modules/system/constants.php';
+                $fileHandler = opendir(XOOPS_ROOT_PATH . '/modules/system/admin');
                 while ($file = readdir($fileHandler)) {
-                    $infoFile = XOOPS_ROOT_PATH . "/modules/system/admin/" . $file . "/xoops_version.php";
+                    $infoFile = XOOPS_ROOT_PATH . '/modules/system/admin/' . $file . '/xoops_version.php';
                     if (file_exists($infoFile)) {
                         require_once $infoFile;
                         if (!empty($modversion['category'])) {
@@ -85,7 +85,7 @@ class User_GroupPropertyAction extends User_Action
         //
         $this->_loadActiveModules();
     
-        $t_activeModuleIDs = array();
+        $t_activeModuleIDs = [];
     
         foreach ($this->_mActiveModules as $module) {
             $item =new User_PermissionModuleItem($module);
@@ -103,8 +103,8 @@ class User_GroupPropertyAction extends User_Action
         $blockHandler = xoops_gethandler('block');
         $this->_loadActiveBlocks();
         $idx = 0;
-        foreach (array(0, 1, 3, 4, 5) as $side) {
-            $this->mBlockPermissions[$idx] = array();
+        foreach ([0, 1, 3, 4, 5] as $side) {
+            $this->mBlockPermissions[$idx] = [];
 
             foreach ($this->_mActiveBlocks[$side] as $block) {
                 $item =new User_PermissionBlockItem($block);
@@ -139,16 +139,16 @@ class User_GroupPropertyAction extends User_Action
 
         $this->_loadActiveModules();
         
-        $t_activeModuleIDs = array();
+        $t_activeModuleIDs = [];
         foreach ($this->_mActiveModules as $module) {
             $t_activeModuleIDs[] = $module->get('mid');
         }
         $t_activeModuleIDs[] = 0;
 
         $blockHandler = xoops_gethandler('block');
-        foreach (array(0, 1, 3, 4, 5) as $side) {
-            $this->_mActiveBlocks[$side] = array();
-            $blockArr =& $blockHandler->getAllBlocks("object", $side, null);
+        foreach ([0, 1, 3, 4, 5] as $side) {
+            $this->_mActiveBlocks[$side] = [];
+            $blockArr =& $blockHandler->getAllBlocks('object', $side, null);
 
             foreach ($blockArr as $block) {
                 if ($block->get('visible') && in_array($block->get('mid'), $t_activeModuleIDs)) {
@@ -173,12 +173,12 @@ class User_GroupPropertyAction extends User_Action
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("group_property.html");
-        $render->setAttribute("group", $this->mGroup);
-        $render->setAttribute("modulePermissions", $this->mPermissions);
-        $render->setAttribute("blockPermissions", $this->mBlockPermissions);
-        $render->setAttribute("systemPermissions", $this->mSystemPermissions);
-        $render->setAttribute("users", $this->mUsers);
-        $render->setAttribute("pageNavi", $this->mPageNavi);
+        $render->setTemplateName('group_property.html');
+        $render->setAttribute('group', $this->mGroup);
+        $render->setAttribute('modulePermissions', $this->mPermissions);
+        $render->setAttribute('blockPermissions', $this->mBlockPermissions);
+        $render->setAttribute('systemPermissions', $this->mSystemPermissions);
+        $render->setAttribute('users', $this->mUsers);
+        $render->setAttribute('pageNavi', $this->mPageNavi);
     }
 }

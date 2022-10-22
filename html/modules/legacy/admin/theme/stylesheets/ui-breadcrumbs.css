@@ -1,0 +1,36 @@
+
+    .ui-breadcrumbs,
+    .adminnavi {
+    background      : var( --breadcrumbs-bg     );
+    border-color    : var( --breadcrumbs-border-color   );
+    border-radius   : var( --breadcrumbs-border-radius  );
+    border-style    : var( --breadcrumbs-border-radius  );
+    border-width    : var( --breadcrumbs-border-width   );
+    box-shadow      : var( --breadcrumbs-box-shadow     );
+    padding         : var( --breadcrumbs-padding        );
+    margin          : var( --breadcrumbs-margin         );
+    }
+
+    .pagenavi {
+
+    }
+
+    .ui-breadcrumbs a,
+    .adminnavi a,
+    .pagenavi a {
+
+    background      : var( --breadcrumbs-bg-link        );
+
+    border-color    : var( --breadcrumbs-border-color   );
+    border-radius   : var( --breadcrumbs-border-radius  );
+    border-style    : var( --breadcrumbs-border-radius  );
+    border-width    : var( --breadcrumbs-border-width   );
+
+    box-shadow      : var( --breadcrumbs-box-shadow     );
+
+    padding         : var( --breadcrumbs-padding        );
+    margin          : var( --breadcrumbs-margin         );
+
+    transition      : all 0.3s ease;
+
+    }

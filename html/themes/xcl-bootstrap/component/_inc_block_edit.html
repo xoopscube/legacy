@@ -1,0 +1,25 @@
+<div class="dropdown">
+    <a href="#" data-toggle="dropdown" aria-label="Edit">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+        </svg>
+    </a>
+    <{* ------- dropdown-menu right aligned *}>
+    <div class="dropdown-menu dropdown-menu-right">
+        <a class="dropdown-item" href="<{$xoops_url}>/modules/altsys/admin/index.php?mode=admin&lib=altsys&page=myblocksadmin&op=edit&bid=<{$block.id}>">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                <path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z" fill="currentColor"/>
+                <rect x="0" y="0" width="1em" height="1em" fill="rgba(0, 0, 0, 0)" />
+            </svg> Edit <span class="badge">B-<{$block.id}></span></a>
+        <a class="dropdown-item" href="<{$xoops_url}>/modules/altsys/admin/index.php?mode=admin&lib=altsys&page=myblocksadmin&op=clone&bid=<{$block.id}>">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                <path d="M14 12h5.5L14 6.5V12M8 5h7l6 6v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-3h5v2l4-3l-4-3v2H6V7a2 2 0 0 1 2-2m5.5-2H4v13h2v2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h7.5l2 2z" fill="currentColor"/>
+                <rect x="0" y="0" width="24" height="24" fill="rgba(0, 0, 0, 0)" />
+            </svg> Clone Block</a>
+        <a class="dropdown-item" href="<{$xoops_url}>/modules/altsys/admin/index.php?mode=admin&lib=altsys&page=mytplsform&tpl_file=<{$bt}>">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                <path d="M12.89 3l1.96.4L11.11 21l-1.96-.4L12.89 3m6.7 9L16 8.41V5.58L22.42 12L16 18.41v-2.83L19.59 12M1.58 12L8 5.58v2.83L4.41 12L8 15.58v2.83L1.58 12z" fill="currentColor"/>
+                <rect x="0" y="0" width="1em" height="1em" fill="rgba(0, 0, 0, 0)" />
+            </svg> Block Template</a>
+    </div>
+</div>

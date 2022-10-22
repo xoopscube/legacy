@@ -1,0 +1,157 @@
+<article id="help-module">
+
+
+    <nav id="help-menu">
+        <ul>
+            <li><a href ="#help-overview" class="button">CKEditor4</a>
+            <li><a href="#help-features" class="button">Features</a>
+            <li><a href="#help-implement" class="button">Implement</a>
+            <li><a href="#help-customize" class="button">Customize</a>
+            <li><a href="#help-license" class="button">License</a>
+            <li><a href="#help-development" class="button">Development</a>
+        </ul>
+    </nav>
+
+
+<hr>
+
+
+    <section id="help-overview">
+
+    <h3>CKEditor4 Module</h3>
+
+    <p>Proven, enterprise-grade WYSIWYG HTML editor with wide browser compatibility, including legacy browsers.
+    <p>This module is the default WYSIWYG editor to create and manage your web content easily.
+    <p>WYSIWYG implies a user interface that allows the user to view something very similar to the end result
+        while the document is being created.
+    </section>
+
+
+<hr>
+
+
+    <section id="help-features">
+
+    <h3>Main Features</h3>
+
+    <p>CKEditor WYSIWYG editor brings to the web common editing features found on desktop editing applications
+        like Microsoft Word and OpenOffice.</p>
+
+    <h5>CKEditor vs. Word</h5>
+    <P>CKEditor is not a desktop application like Microsoft Word or OpenOffice.
+    <P>It's a component to be used by developers to enhance their applications.
+    <P>It's an editor to be used inside web pages.</p>
+    </section>
+
+
+<hr>
+
+
+    <section id="help-implement">
+
+    <h3>Implement CKEditor to textarea.</h3>
+
+        <p>The CKEditor toolbar can be fully customized.</p>
+
+            <p><a class="button" href="https://ckeditor.com/ckeditor-4/demo/" target="_blank">Demo  ⭧</a></p>
+
+        <h3>Installation</h3>
+        <ol>
+            <li>Clone/Duplicate your <b>Templates</b> to create a new Set.
+            <li>Edit any installed module's templates with a textarea and add a new parameter <strong><em>editor=html</em></strong>
+        </ol>
+
+        <pre><code class="lang-smarty">&lt;{xoops_dhtmltarea editor=html}&gt;</code></pre>
+
+        <div class="confirm"><strong>Note :</strong> remember to uppdate your new template set.<br>
+        The CKEditor4 module won't make any data conversion.<br>
+            Any textarea with previous data will  be automatically escaped.
+        </div>
+
+    </section>
+
+<hr>
+
+
+    <section id="help-customize">
+
+        <h3>CKEditor User Interface color</h3>
+
+        <p>The CKEditor UI color can be adjusted from the module's option preferences <strong> Admin > CKEditor > Preferences</strong> to match the look and feel of a website or an application.
+            In order to define the color of the user interface, use the config.uiColor configuration setting which accepts an RGB color code.</p>
+        <p>The editor instance UI color was set by default to the theme RGB value.</p>
+
+        <p>Please note that this configuration option can only be used for editor skins that are compatible with the so-called "chameleon" feature, for example:</p>
+
+        <ul>
+            <li>Moono-Lisa</li>
+            <li>Moono</li>
+            <li>Kama</li>
+        </ul>
+
+        <pre><code class="lang-smarty">&lt;{xoops_dhtmltarea editor=html}&gt;</code></pre>
+
+        <div class="tips">Note :<br>
+            Refer to the Setting Editor User Interface Color article to learn more about this feature :
+            <a href="https://ckeditor.com/docs/ckeditor4/latest/examples/uicolor.html" target="_blank">uicolor  ⭧</a>
+        </div>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-license">
+
+    <h3>License</h3>
+
+    <p>CKEditor is distributed under the GPL, LGPL and MPL open source licenses.<br>
+    This triple copyleft licensing model avoids incompatibility with other open source licenses.<br>
+        These Open Source licenses are specially indicated for:</p>
+    <ul>
+        <li>Integrating CKEditor into Open Source software;
+        <li>Personal and educational use of CKEditor;
+        <li>Integrating CKEditor in commercial software, taking care of satisfying the Open Source licenses terms,
+        while not able or interested on supporting CKEditor and its development.
+    </ul>
+
+    <p>CKEditor web site <a href="https://ckeditor.com/license" target="_blank" rel="license">License  ⭧</a></p>
+
+    </section>
+
+
+    <section id="help-development">
+        <h3>Development</h3>
+
+        <table class="outer">
+            <thead>
+            <tr>
+                <th>Module name</th>
+                <th>CKEditor4</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Type</td>
+                <td>X2 module</td>
+            </tr>
+            <tr>
+                <td>Version</td>
+                <td>2.31</td>
+            </tr>
+            <tr>
+                <td>Level</td>
+                <td>Recommended</td>
+            </tr>
+            <tr>
+                <td>🌐 Repository URL</td>
+                <td><a href="https://github.com/xoopscube/legacy" target="_blank">https://github.com/xoopscube/legacy ⭧</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+
+</article>

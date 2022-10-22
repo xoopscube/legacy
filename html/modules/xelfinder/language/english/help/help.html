@@ -1,0 +1,299 @@
+<article id="help-xelfinder">
+
+
+    <nav id="help-menu">
+        <ul>
+            <li><a href="#help-overview" class="button">Module XelFinder</a>
+            <li><a href="#help-features" class="button">Features</a>
+            <li><a href="#help-oauth2" class="button">Use OAuth 2.0</a>
+            <li><a href="#help-authorize" class="button">Authorize Google API</a>
+            <li><a href="#help-volume" class="button">Volume Drivers</a>
+            <li><a href="#help-root" class="button">Root Folder</a>
+            <li><a href="#help-development" class="button">Development</a>
+        </ul>
+    </nav>
+
+
+<hr>
+
+
+    <section id="help-overview">
+
+        <h3>Module XelFinder</h3>
+
+        <p>Control Panel > File Manager
+        <p>Open-source file manager for web, written in JavaScript using jQuery and jQuery UI.
+        <p>Creation is inspired by simplicity and convenience of Finder program used in Mac OS X operating system.
+        <p>On the main File Manager page you can view all of your previously uploaded files.
+        <p>Files can be searched by keyword as well as filtered by upload location.
+        <p>You can also select multiple files using the checkboxes, and then download or delete.
+        <p>Set and manage you cloud storage, Drive, Dropbox, etc.
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-features">
+
+        <h3>Features</h3>
+
+        <ul class="ui-card-2-colcol">
+            <li>Usability like the MacOS Finder or Windows Explorer
+            <li>Mobile friendly view for touch devices
+            <li>All operations with files and folders on a remote server (copy, move, upload, create folder/file, rename, etc.)
+            <li>High performance server backend and light client UI
+            <li>Multi-root support
+            <li>Local file system, MySQL, FTP, Box, Dropbox, GoogleDrive and OneDrive volume storage drivers
+            <li>Support AWS S3, Azure, Digital Ocean Spaces and more with League\Flysystem Flysystem driver
+            <li>Cloud storage (Box, Dropbox, GoogleDrive and OneDrive) drivers
+            <li>Background file/folder upload with Drag & Drop HTML5 support
+            <li>Chunked file upload for large file
+            <li>Upload directly to the folder
+            <li>Upload form URL (or list)
+            <li>List and Icons view
+            <li>Keyboard shortcuts
+            <li>Standard methods of file/group selection using mouse or keyboard
+            <li>Move/Copy files with Drag & Drop
+            <li>Drag & Drop to outside by starting drag with alt/option key press
+            <li>Archives create/extract (zip, rar, 7z, tar, gzip, bzip2)
+            <li>Rich context menu and toolbar
+            <li>Quicklook, preview for common file types
+            <li>Edit text files and images
+            <li>"Places" for your favorites
+            <li>Calculate directory sizes
+            <li>Thumbnails for image, movie files
+            <li>Easy to integrate with web editors (elRTE, CKEditor, TinyMCE)
+            <li>Flexible configuration of access rights, upload file types, user interface and other
+            <li>Extensibility by event handling of backend and client side
+            <li>Simple client-server API based on JSON
+            <li>Supports custom information in info dialog
+            <li>Configurable columns of list view
+            <li>Supports custom CSS class function for the custom folder icon
+            <li>Connector plugin
+        </ul>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-oauth2">
+
+        <h3>Using OAuth 2.0 for Web Server Applications</h3>
+
+        <p>This document explains how web server applications use Google API Client Libraries or
+            Google OAuth 2.0 endpoints to implement OAuth 2.0 authorization to access Google APIs.</p>
+        <p>OAuth 2.0 allows users to share specific data with an application while keeping their
+            usernames, passwords, and other information private. For example, an application can
+            use OAuth 2.0 to obtain permission from users to store files in their Google Drives.</p>
+        <p>This OAuth 2.0 flow is specifically for user authorization. It is designed for applications
+            that can store confidential information and maintain state. A properly authorized web server
+            application can access an API while the user interacts with the application or after the user
+            has left the application.</p>
+
+        <p>Web server applications frequently also use
+            <a href="https://developers.google.com/identity/protocols/oauth2/service-account" target="_blank">service accounts ⭧</a>
+            to authorize API requests, particularly when calling Cloud APIs to access project-based data rather than user-specific data.
+            Web server applications can use service accounts in conjunction with user authorization.</p>
+        <p><a href="https://developers.google.com/identity/protocols/oauth2/web-server" target="_blank">Learn more ⭧</a></p>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-authorize">
+
+        <h3>How do I authorize Google API?</h3>
+
+        <p>All requests to the API must be authorized by an authenticated user.</p>
+        <p>Both Sign In With Google and One Tap authentication include a consent screen which tells users the application
+            requesting access to their data, what kind of data they are asked for and the terms that apply.</p>
+        <p> If you add sensitive (
+            <svg width="1em" height="1em" viewBox="0 0 48 48" preserveAspectRatio="xMidYMid meet" focusable="false" sandboxuid="0">
+            <path d="M24 34c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4zm12-18h-2v-4c0-5.52-4.48-10-10-10S14 6.48 14 12v4h-2c-2.2 0-4 1.8-4 4v20c0 2.2 1.8 4 4 4h24c2.2 0 4-1.8 4-4V20c0-2.2-1.8-4-4-4zm-18.2-4c0-3.42 2.78-6.2 6.2-6.2s6.2 2.78 6.2 6.2v4H17.8v-4zM36 40H12V20h24v20z" sandboxuid="0">
+            </path></svg> ) or restricted (
+            <svg width="1em" height="1em" viewBox="0 0 18 18" preserveAspectRatio="xMidYMid meet" focusable="false" sandboxuid="0">
+                <path d="M13 6a4 4 0 0 0-4-4 4 4 0 0 0-4 4v1a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2V6zm-1.6 1H6.6V6a2.4 2.4 0 0 1 4.8 0v1zM9 13a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" fill-rule="evenodd" sandboxuid="0"></path>
+            </svg> ) scopes,
+            like scopes that let you access a user's emails or contacts, you will need to submit your app for verification.
+            <a aria-label="FAQ to learn more about verifying OAuth scopes" target="_blank" rel="noopener" href="https://support.google.com/cloud/answer/9110914"> Learn more ⭧</a>
+            </p>
+        <p>At a high level, you follow five steps:</p>
+        <ol>
+            <li>Obtain OAuth 2. 0 credentials from the Google API Console.
+            <li>Obtain an access token from the Google Authorization Server.
+            <li>Examine scopes of access granted by the user.
+            <li>Send the access token to an API.
+            <li>Refresh the access token, if necessary.
+        </ol>
+        <p>Using OAuth 2.0 to Access Google APIs <a href="https://developers.google.com/identity/protocols/oauth2" target="_blank">Learn more ⭧</a></p>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-volume">
+
+        <h3>Volume Drivers</h3>
+
+        <table class="outer">
+            <tr><th colspan="2">Common options</th></tr>
+            <tr><td>#</td><td>use hashtag to comment a line to ignore</td></tr>
+            <tr><td>|</td><td>use pipe to separate multiple options</td></tr>
+            <tr><td>gid=</td><td>use comma to spate Group ID</td></tr>
+            <tr><td>defaults=</td><td>set permissions with each initial "r"ead, "w"rite, "h"idden, and "l"ock. Example: defaults=rw</td></tr>
+            <tr><td>uploadMaxSize=</td><td>i.e 2M maximum upload file size</td></tr>
+            <tr><td>id=</td><td>Arbitrary unique ID</td></tr>
+            <tr><td>encoding=</td><td>character encoding (use iconv)</td></tr>
+            <tr><td>locale=</td><td>Important for encoding</td></tr>
+            <tr><td>chmod=1</td><td>Enable chmod on supported volume only</td></tr>
+        </table>
+
+        <h3>Settings for Modules</h3>
+        <pre><code class="lang-none">[Module directory name]:[Plugin name]:[Saved files directory path]:[View name]:[Options]/code></code></pre>
+
+        <p>Module "xelFinder", directory "uploads", view name</p>
+        <pre><code class="lang-none">myalbum:myalbum:uploads/photos:MyAlbum</code></pre>
+
+        <p>Module "xelFinder", directory "uploads", view name</p>
+        <pre><code class="lang-none">gnavi:gnavi:uploads/gnavi:GNAVI</code></pre>
+
+
+        <p>Module "xelFinder", directory "uploads", view name</p>
+        <pre><code class="lang-none">mailbbs:mailbbs:modules/mailbbs/imgs:MailBBS</code></pre>
+
+        <h3>Settings for directory permissions</h3>
+        <p>Module "xelFinder", directory "uploads", view name</p>
+        <pre><code class="lang-none">xelfinder:xelfinder_db:uploads/xelfinder:Share holder</code></pre>
+
+        <p>Module "xelFinder", directory "uploads", Group id=1</p>
+        <pre><code class="lang-none">xelfinder:xelfinder:uploads/elfinder:elFinder:gid=1</code></pre>
+
+        <p>Module "xelFinder", directory "html", Group id=1, chmod=1</p>
+        <pre><code class="lang-none">#xelfinder:xelfinder:/:html:gid=1|chmod=1</code></pre>
+
+        <p>Module "xelFinder", directory "xoops_trust_path", view name</p>
+        <pre><code class="lang-none">#xelfinder:xelfinder:[trust]/:xoops_trust_path:gid=1|chmod=1</code></pre>
+
+        <p>Module "xelFinder", directory "cache", view name</p>
+        <pre><code class="lang-none">#xelfinder:xelfinder:[trust]/cache:TrustCache:gid=1</code></pre>
+
+        <p>Module "xelFinder", directory "preload", Group id=1</p>
+        <pre><code class="lang-none">#xelfinder:xelfinder:preload:Preload:gid=1</code></pre>
+
+        <h3>Setting up FTP</h3>
+        <p>Module xelfinder FTP, directory "preload", Group id=1</p>
+        <pre><code class="lang-none">#xelfinder:ftp:preload:Preload:gid=1</code></pre>
+
+        <h3>Settings for Cloud Storage</h3>
+        <pre><code class="lang-none">#xelfinder:flyCopy:/:Copy.com:gid=1|ext_consumerKey=[Consumer Key]|ext_consumerSecret=[Consumer Secret]|ext_accessToken=[Access Token]|ext_tokenSecret=[Token Secret]</code></pre>
+
+        <p>Cloud Storage DropBox, directory "dropbox", Group id=1</p>
+        <pre><code class="lang-none">#xelfinder:dropbox:/:Dropbox:gid=1</code></pre>
+
+        <pre><code class="lang-none">xelfinder:GoogleDrive:root:GoogleDrive:gid=1|id=gd|ext_token={"client_id":"132015128300-21ailjvkes201cjuo10mvc3s9bspdfv9.apps.googleusercontent.com","client_secret":"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","refresh_token":"1\/\/09-8udKfOQDifCgYIARAAGAkSNwF-L9IrPHxTLr6lsT5ULCYOA9REW2LA2hbV9YCExv1uO7T-7ghjOqcnEWk_QUxz6kP57HUEQk0"}</code></pre>
+        <pre><code class="lang-none">#Folder GDRIVE - Xoopscube.org</code></pre>
+        <pre><code class="lang-none">xelfinder:GoogleDrive:0B8VTNiEoAnFTYzg0ZWJhMzgtNTVlMy00MDgyLWI2MDktM2E4NDdkNzE4NTQ4:GoogleDrive:gid=1|id=gd|ext_token={"client_id":"132015128300-21ailjvkes201cjuo10mvc3s9bspdfv9.apps.googleusercontent.com","client_secret":"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","refresh_token":"1\/\/095a6efSE0uq3CgYIARAAGAkSNwF-L9Irj1CMPJN0xrmsxhbmXxwVUYgYDsWfk1enfuJ8VfXy-0cRPXVTeR4uNt4NdKxzv1sgfPY"}</code></pre>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-root">
+
+        <h3>Root folder ID </h3>
+
+        <p>You can set the root_folder_id for X-elFinder. This is the directory (identified by its Folder ID) considered to be the root of your drive.</p>
+        <p>Normally you will leave this blank and X-elFinder will determine the correct root to use itself.</p>
+
+        <p>However, you can set this to restrict X-elFinder to a specific folder hierarchy or to access data within the "Computers" tab on the drive web interface
+            (where files from Google's Backup and Sync desktop program go).
+        </p>
+        <p>In order to do this you will have to find the Folder ID of the directory you wish X-elFinder to display.</p>
+
+        <h3>What is the Folder ID Google Drive?</h3>
+        <p>This will be the last segment of the URL when you open the relevant folder in the drive web interface.</p>
+        <p>So if the folder you want X-elFinder to use has a URL which looks like in the browser:<br>
+        <pre><code class="lang-none">https://drive.google.com/drive/folders/1XyfxxxxxxxxxxxxxxxxxxxxxxxxxXCL</code></pre>
+        <p>then you use the "id" as the "root folder_id" in the settings of Google Drive API.</p>
+        <pre><code class="lang-none">1XyfxxxxxxxxxxxxxxxxxxxxxxxxxXCL</code></pre>
+
+        <p>NB. folders under the "Computers" tab seem to be read only (drive gives a 500 error)</p>
+        <p>There doesn't appear to be an API to discover the folder IDs of the "Computers" tab - please contact us if you know otherwise!</p>
+        <p>Note also that X-elFinder can't access any data under the "Backups" tab on the Google Drive web interface.</p>
+
+        <h3>My Drive</h3>
+        <p>Each user has a "root" folder called "My Drive" that functions as their primary hierarchy,
+            and consists of everything that descends from this root folder. The user is the primary owner of this folder.</p>
+        <h3>Shared drives</h3>
+        <p>A shared drive is an organizational structure within Google Drive that lives parallel to My Drive.
+           You can organize an individual file within a shared drive or in My Drive but not both.</p>
+        <p>Files and folders overview - <a href="https://developers.google.com/drive/api/v3/about-files" target="_blank">Learn more ⭧</a></p>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-development">
+
+        <h3>Development</h3>
+
+        <h4>Authors</h4>
+
+        <ul>
+            <li>
+            <li>Current main developer: Naoki Sawada hypweb+elfinder@gmail.com
+            <li>Chief developer: Dmitry "dio" Levashov dio@std42.ru
+            <li>Maintainer: Troex Nevelin troex@fury.scancode.ru
+            <li>Developers: Alexey Sukhotin strogg@yandex.ru, Naoki Sawada hypweb+elfinder@gmail.com
+            <li>Icons: PixelMixer, Yusuke Kamiyamane, Icons8
+        </ul>
+
+        <p><a href="https://studio-42.github.io/elFinder/" target="_blank" rel="author">elFinder development web site ⭧</a>
+
+        <h4>elFinder License</h4>
+
+        <p><a href="https://github.com/Studio-42/elFinder/blob/master/LICENSE.md" target="_blank" rel="license">elFinder is issued under a 3-clauses BSD license</a>.</p>
+
+        <table class="outer">
+            <thead>
+            <tr>
+                <th>Module name</th>
+                <th>XelFinder</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Type</td>
+                <td>Trust Module</td>
+            </tr>
+            <tr>
+                <td>Version</td>
+                <td>2.31</td>
+            </tr>
+            <tr>
+                <td>Level</td>
+                <td>Recommended</td>
+            </tr>
+            <tr>
+                <td>🌐 Repository URL</td>
+                <td><a href="https://github.com/xoopscube/xelfinder" target="_blank">https://github.com/xoopscube/xelfinder ⭧</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+
+</article>

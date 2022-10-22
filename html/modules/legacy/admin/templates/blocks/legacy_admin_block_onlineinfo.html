@@ -1,0 +1,89 @@
+<{* ---------- ---------- ---------- ---------- ---------- Admin Block Online Info *}>
+<div class="ui-block-online">
+
+	<div class="ui-block-online-content">
+
+		<{* ---------- ---------- ---------- ---------- ---------- Online Welcome *}>
+
+		<div class="ui-block-online-welcome">
+			<div class="ui-block-online-title">Welcome, <{$uid|xoops_user:"name"}></div>
+			<div class="ui-block-online-text">
+				Gambatte kudasai. Have fun today!<br>
+				<{$contents.online_total}><br>
+				<{foreach item=member from=$contents.online_member_list}>
+				<a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$member.uid}>" target="new"><{$member.uname}></a>
+				<{/foreach}>
+			</div>
+		</div>
+
+		<{* ---------- ---------- ---------- ---------- ---------- Online Stats *}>
+
+		<div class="ui-block-online-stats">
+
+			<{* ---------- ---------- ---------- ---------- ---------- Online Members *}>
+
+			<div class="ui-block-online-stats-info">
+				<div class="ui-block-online-stats-total"><{$contents.online_members}></div>
+				<div class="ui-block-online-stats-text">
+					<img class="svg user-time" src="<{'icons/icon-user-time.svg'|theme}>">
+					<span class="font-light"><{$smarty.const._MB_USER_MEMBERS}></span>
+				</div>
+			</div>
+
+			<{* ---------- ---------- ---------- ---------- ---------- Online Guests *}>
+
+			<div class="ui-block-online-stats-info">
+				<div class="ui-block-online-stats-total"><{$contents.online_guests}></div>
+				<div class="ui-block-online-stats-text">
+					<img class="svg user-guest-time" src="<{'icons/icon-user-guest-time.svg'|theme}>">
+					<span class="font-light"><{$smarty.const._MB_USER_GUESTS}></span>
+				</div>
+			</div>
+
+			<{* ---------- ---------- ---------- Online Info - Ajax popup modal*}>
+            <script>
+                $( function() {
+                    $( "#dialog-online" ).dialog({
+                        // position: { my: "center center", at: "right top", of: null,collision: "fit" },
+                        position: {my: "right center", at: "right bottom", collision: "flipfit" },
+                        autoOpen: false,
+                        maxWidth:600,
+                        maxHeight: 400,
+                        width: 400,
+                        height: 400,
+                        show: {
+                            effect: "blind",
+                            duration: 300
+                        },
+                        closeOnEscape: true,
+                        hide: {
+                            effect: "clip",
+                            duration: 300
+                        },
+                    });
+                    // Open Help
+                    $( "#open-online" ).on( "click", function() {
+                        $( "#dialog-online" ).dialog( "open" );
+                        $('#online-users').load('<{$xoops_url}>/misc.php?type=online #online-users', function() {
+                            console.log('Load was performed.');
+                        })
+                    });
+                });
+            </script>
+			<div class="ui-block-online-stats-info">
+				<a id="open-online" href="#">
+				<div class="ui-block-online-stats-title">
+					<{$smarty.const._MB_LEGACY_ONLINEINFO}>?
+				</div>
+				<div class="ui-block-online-stats-text">
+					<img class="svg user-online"src="<{"icons/icon-user-online.svg"|theme}>"> <{$smarty.const._MB_USER_MORE}></div>
+				</a>
+			</div>
+                    <div class="display:none ui-widget-shadow " id="dialog-online" title="<{$smarty.const._MB_LEGACY_ONLINEINFO}>">
+                        <div id="online-users"></div>
+                    </div>
+		</div><{* ui-block-online-stats *}>
+
+	</div><{* ui-block-online-content- *}>
+
+</div><{* ui-block-online *}>

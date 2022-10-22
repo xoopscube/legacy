@@ -1,0 +1,251 @@
+/*
+	XOOPSCube Theme : XCL Admin Flex Grid
+	Distribution : XOOPSCube XCL 2.3
+	Version : 1.0.0
+	Author : Nuno Luciano aka Gigamaster
+	Date : 2021-10-28
+	URL : https://github.com/xoopscube/
+
+
+    -------------------- -------------------- NAV IMPORT */
+
+    @import "./ui-nav-aside.css";  /*      Nav-side    */
+    @import "./ui-nav-header.css";/*      Nav-header  */
+
+    /* -------------------- -------------------- NAV ADMIN */
+
+.admintitle {
+    border-bottom   : 3px solid var(--border);
+    margin-bottom   : 1em;
+}
+
+.adminavi,
+.adminavi-sub {
+    background      : var(--color-5);
+    border          : 1px solid var(--color-5);
+    box-shadow      : var(--shadow-2);
+    display         : grid;
+    justify-content : center;
+    grid-gap        : 0.25em;
+    grid-template-columns: repeat(auto-fit, 12em);
+    /*grid-template-columns: repeat(auto-fit, minmax(Min(8em, 100%), 1fr)); */
+    grid-auto-flow  : row;
+    margin-bottom   : 2em;
+    /*max-width: 57em; container */
+    padding         : var(--space-2);
+}
+
+
+
+/*.adminavi,
+.adminavi-sub {
+    background      : var( --color-5 );
+    border          : 1px solid var(--color-5);
+    box-shadow      : var( --shadow-2 );
+    display         : flex;
+    flex-wrap       : wrap;
+    gap             : 5px 5px; !* row-gap column-gap *!
+    margin          : 1.5em auto 1.5em 0;
+    padding         : var(--space-2);
+    max-width       : max-content;
+    width           : -moz-fit-content;
+    width           : fit-content;
+    overflow        : hidden;
+    }
+.adminavi-item {
+    border          : 1px solid var(--color-5);
+    color           : var(--link);
+    padding         : var(--space-4);
+    margin-right    : var(--space-2);
+    text-decoration : none;
+    transition      : .3s;
+}
+
+.adminavi .adminavi-item:first-child {
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+}
+.adminavi .adminavi-item:last-child {
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+}
+
+.adminavi-sub .adminavi-item {
+    width           : 19%;
+    margin-right    : var(--space-2);
+    padding         : var(--space-4);
+}
+.adminavi-sub .adminavi-item > svg {
+    margin-right    : var(--space-2);
+}
+.adminavi-sub .adminavi-item:nth-of-type(5n) {
+    margin-right    : 0;
+}
+.adminavi-sub .adminavi-item:nth-of-type(5n+1) {
+    margin-left     : 0;
+}
+.adminavi-sub .adminavi-item {
+    align-items     : center;
+    display         : flex;
+    !*justify-content : space-between;*!
+    margin-left     : 0;
+    padding         : var(--space-2) var(--space-4);
+    }*/
+
+.adminavi .adminavi-item,
+.adminavi-sub .adminavi-item {
+    border          : 1px solid var(--color-5);
+    color           : var(--link);
+    display         : block;
+    max-width       : 100%;
+    padding         : var(--space-2) var(--space-4);
+}
+
+.adminavi .adminavi-item:first-child {
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.adminavi-sub .adminavi-item > svg {
+    margin-right    : var(--space-2);
+}
+
+.adminavi-item:not(.selected) {
+    /*background      : var(--color-5);*/
+}
+
+.adminavi-item.selected,
+.adminavi-item:not(.selected):hover,
+.adminavi-item.selected:active {
+    background      : var(--color-6);
+    border          : 1px solid var( --color-7 );
+    border-radius   : var(--border-radius);
+    color           : var( --link-hover );
+    outline-width   : 0;
+}
+
+/* -------------------- dropdown MENU */
+
+div.dropdown {
+    position        : relative;
+    display         : inline-block;
+}
+
+/* Selects any dropdown inside a header nac */
+:where(header, nav, footer) div.dropdown {
+    position        : inherit;
+}
+
+div.dropdown a.dropdown-toggle {
+    background      : var(--d-toggle-bg);
+    border          : var(--d-toggle-border);
+    border-radius   : var(--d-toggle-radius);
+    color           : var(--d-toggle-color);
+    cursor          : pointer;
+    display         : block;
+    font            : var(--d-toggle-font);
+    margin          : 0;
+    padding         : var(--d-toggle-padding);
+    transition      : var(--d-toggle-transition);
+    /*width          : max-content;*/
+}
+div.dropdown a.dropdown-toggle:hover {
+    background      : var(--d-toggle-bg-on);
+    box-shadow      : var(--d-toggle-shadow);
+    color           : var(--d-toggle-color-on);
+}
+div.dropdown.isopen div.dropdown-content {
+    display         : block;
+    z-index         : var(--z-above);
+}
+div.dropdown-content {
+    background      : var(--dropdown-bg);
+    border-radius   : var(--dropdown-radius);
+    box-shadow      : var(--dropdown-shadow);
+    display         : none;
+
+    min-width       : var(--dropdown-width);
+
+    padding         : var(--dropdown-padding);
+    position        : absolute;
+    right           : 1px; /* Fix device Viewport */
+    text-align      : left;
+    top             : 100%;
+    transition      : var(--dropdown-transition);
+    width           : auto;
+}
+:where(div.dropdown.isopen) div.drop-left {
+    left            : 1px; /* Fix device Viewport */
+}
+:where(div.dropdown.isopen) div.drop-right {
+    right           : 1px; /* Fix device Viewport */
+}
+:where(div.dropdown.isopen) div.drop-top {
+    top             : -100%; /* Fix device Viewport */
+}
+:where(div.dropdown-content)  h6 {
+    font-size       : 12px;
+    letter-spacing  : 1px;
+    text-transform  : uppercase;
+    margin          : var( --space-2 ) 0;
+}
+:where(div.dropdown-content) ul {
+    margin          : 0;
+    padding         : 0;
+    list-style      : none;
+}
+:where(div.dropdown-content) ul li {
+    background      : transparent;
+    padding         : 0;
+    width           : 100%;
+}
+/* Dropdown links */
+:where(div.dropdown-content) ul li a {
+    border-radius   : var( --dropdown-radius );
+    color           : var( --link );
+    display         : block;
+    font            : var( --dropdown-font ) !important;
+    padding         : var( --dropdown-padding );
+    text-decoration : none;
+}
+/* Change color of dropdown links on hover */
+:where(div.dropdown-content) ul li a:hover {
+    background      : var( --dropdown-bg-on );
+    color           : var( --link-hover );
+}
+:where(div.dropdown-content) ul li a > svg {
+    margin-right    : var(--dropdown-padding);
+}
+
+/* Badge default */
+:where(div.dropdown-content) .btn {
+    background      : var( --button-bg );
+    border          : none;
+    border-radius   : 7px;
+    box-shadow      : var( --button-shadow );
+    color           : var( --color-1 );
+    display         : inline-block;
+    font-size       : 0.74rem;
+    font-family     : sans-serif;
+    font-style      : normal;
+    font-weight     : 300;
+    letter-spacing  : 0.1rem;
+    line-height     : 1em;
+    margin          : var( --button-margin );
+    padding         : var( --space-4 ) var( --space-5 );
+    position        : relative;
+    text-align      : center;
+    /*text-transform  : uppercase;*/
+    transition      : all ease-in-out 0.2s;
+    vertical-align  : baseline;
+    white-space     : nowrap;
+}
+
+/* Badge with icon */
+:where(div.dropdown-content) .btn > i[class^="i-"]{
+    mask-size       : 1.5em 1.5em;
+    -webkit-mask-size   : 1.5em 1.5em;
+}
+:where(div.dropdown-content) .btn:hover {
+    background      : var(  --button-bg-hover  );
+}

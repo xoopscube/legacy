@@ -1,24 +1,25 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: CommentAdminEditForm.class.php,v 1.3 2008/09/25 15:11:08 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * CommentAdminEditForm.class.php
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 class Legacy_AbstractCommentAdminEditForm extends XCube_ActionForm
 {
     public function getTokenName()
     {
-        return "module.legacy.CommentAdminEditForm.TOKEN" . $this->get('com_id');
+        return 'module.legacy.CommentAdminEditForm.TOKEN' . $this->get('com_id');
     }
 
     public function prepare()
@@ -37,28 +38,28 @@ class Legacy_AbstractCommentAdminEditForm extends XCube_ActionForm
         $this->mFormProperties['doxcode'] =new XCube_BoolProperty('doxcode');
         $this->mFormProperties['doimage'] =new XCube_BoolProperty('doimage');
         $this->mFormProperties['dobr'] =new XCube_BoolProperty('dobr');
-    
+
         //
         // Set field properties
         //
 
         $this->mFieldProperties['com_id'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['com_id']->setDependsByArray(array('required'));
+        $this->mFieldProperties['com_id']->setDependsByArray(['required']);
         $this->mFieldProperties['com_id']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_ID);
-    
+
         $this->mFieldProperties['com_icon'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['com_icon']->setDependsByArray(array('maxlength'));
+        $this->mFieldProperties['com_icon']->setDependsByArray(['maxlength']);
         $this->mFieldProperties['com_icon']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _MD_LEGACY_LANG_COM_ICON, '25');
         $this->mFieldProperties['com_icon']->addVar('maxlength', '25');
-    
+
         $this->mFieldProperties['com_title'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['com_title']->setDependsByArray(array('required', 'maxlength'));
-        $this->mFieldProperties['com_title']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_TITLE, '255');
-        $this->mFieldProperties['com_title']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _MD_LEGACY_LANG_COM_TITLE, '255');
-        $this->mFieldProperties['com_title']->addVar('maxlength', '255');
-    
+        $this->mFieldProperties['com_title']->setDependsByArray(['required', 'maxlength']);
+        $this->mFieldProperties['com_title']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_TITLE, '191');
+        $this->mFieldProperties['com_title']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _MD_LEGACY_LANG_COM_TITLE, '191');
+        $this->mFieldProperties['com_title']->addVar('maxlength', '191');
+
         $this->mFieldProperties['com_text'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['com_text']->setDependsByArray(array('required'));
+        $this->mFieldProperties['com_text']->setDependsByArray(['required']);
         $this->mFieldProperties['com_text']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_TEXT);
     }
 
@@ -100,7 +101,7 @@ class Legacy_PendingCommentAdminEditForm extends Legacy_AbstractCommentAdminEdit
         parent::prepare();
 
         $this->mFieldProperties['com_status'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['com_status']->setDependsByArray(array('required', 'intRange'));
+        $this->mFieldProperties['com_status']->setDependsByArray(['required', 'intRange']);
         $this->mFieldProperties['com_status']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_COM_STATUS);
         $this->mFieldProperties['com_status']->addMessage('intRange', _AD_LEGACY_ERROR_INTRANGE, _AD_LEGACY_LANG_COM_STATUS);
         $this->mFieldProperties['com_status']->addVar('min', '1');
@@ -115,7 +116,7 @@ class Legacy_ApprovalCommentAdminEditForm extends Legacy_AbstractCommentAdminEdi
         parent::prepare();
 
         $this->mFieldProperties['com_status'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['com_status']->setDependsByArray(array('required', 'intRange'));
+        $this->mFieldProperties['com_status']->setDependsByArray(['required', 'intRange']);
         $this->mFieldProperties['com_status']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_COM_STATUS);
         $this->mFieldProperties['com_status']->addMessage('intRange', _AD_LEGACY_ERROR_INTRANGE, _AD_LEGACY_LANG_COM_STATUS);
         $this->mFieldProperties['com_status']->addVar('min', '2');

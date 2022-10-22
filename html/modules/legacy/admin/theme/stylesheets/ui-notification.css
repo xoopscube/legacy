@@ -1,0 +1,172 @@
+/*
+	XOOPSCube Theme : XCL Admin Flex Grid
+	Distribution : XOOPSCube XCL 2.3
+	Version : 1.0.0
+	Author : Nuno Luciano aka Gigamaster
+	Date : 2021-10-28
+	URL : https://github.com/xoopscube/
+
+-------------------- -------------------- -------------------- Notifications */
+
+
+.ui-dev-mode {
+
+    background      : var(  --notification-bg       )
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M11.5 3a9.5 9.5 0 1 1 0 19a9.5 9.5 0 0 1 0-19zm0 1a8.5 8.5 0 1 0 0 17a8.5 8.5 0 0 0 0-17zM11 8v2h1V8h-1zm0 4v5h1v-5h-1z' fill='%23face74'/%3E %3C/svg%3E") 1em 1em no-repeat;
+    border-color    : var(  --notif-border-color     );
+    border-radius   : var(  --notif-border-radius    );
+    border-style    : var(  --notif-border-style     );
+    border-width    : var(  --notif-border-width     );
+
+    box-shadow      : var(  --notif-box-shadow       );
+
+    color           : var(  --notification-color     );
+    display         : var(  --dev-mode               );
+    padding         : var(  --notif-padding          );
+
+}
+/* TODO override with modal notification */
+
+    .tips, .error, .confirm, .success {
+        background      : var(  --notification-bg    );
+        border-color    : var(  --notif-border-color );
+        border-radius   : var(  --notif-border-radius);
+        border-style    : var(  --notif-border-style );
+        border-width    : var(  --notif-border-width );
+        box-shadow      : var(  --notif-box-shadow   );
+        color           : var(  --notification-color );
+        padding         : var(  --notif-padding      );
+        margin          : var(  --notif-margin       );
+        max-width       : var(  --notif-max-width    );
+    }
+
+    .confirm {
+        border-left     : 7px solid var( --color-amber );
+        background      : var( --notification-bg ) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M11.5 3a9.5 9.5 0 1 1 0 19a9.5 9.5 0 0 1 0-19zm0 1a8.5 8.5 0 1 0 0 17a8.5 8.5 0 0 0 0-17zM11 8v2h1V8h-1zm0 4v5h1v-5h-1z' fill='%23face74'/%3E %3C/svg%3E") .6em 1em no-repeat;
+    }
+
+    .tips {
+        border-left     : 7px solid var( --color-blue );
+        background      : var( --notification-bg ) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M11.5 3a9.5 9.5 0 1 1 0 19a9.5 9.5 0 0 1 0-19zm0 1a8.5 8.5 0 1 0 0 17a8.5 8.5 0 0 0 0-17zM11 8v2h1V8h-1zm0 4v5h1v-5h-1z' fill='%23face74'/%3E %3C/svg%3E") .6em 1em no-repeat;
+    }
+
+    .error {
+        border-left     : 7px solid var(  --color-red      );
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M1 21L11.5 2.813L22 21H1zm19.268-1L11.5 4.813L2.732 20h17.536zM11 14v-4h1v4h-1zm0 2h1v2h-1v-2z' fill='%23face74'/%3E %3C/svg%3E");
+        background-position:  .6em 1em;
+        background-repeat: no-repeat;
+        /* animation: warning 1s infinite alternate; */
+    }
+
+    .success {
+        border-left     : 7px solid var(  --color-green     );
+        background: var(  --notification-bg    ) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M9 19l-5.657-5.657l2.121-2.121L9 14.757l8.485-8.485l2.122 2.121L9 19zm-3.536-6.364l-.707.707L9 17.586l9.192-9.193l-.707-.707L9 16.172l-3.536-3.536z' fill='%23face74'/%3E %3C/svg%3E") .6em 1em no-repeat;
+    }
+
+    .message-warning {
+        background      : var(  --notification-bg    );
+        border          : 1px solid var(  --color-amber );
+        border-radius   : var(  --notif-border-radius );
+        color           : var(  --color-white     );
+        padding         : var(  --space-2       );
+        animation       : badge-warning 1s infinite alternate;
+    }
+
+    @keyframes badge-warning {
+/*         from {
+            border: hsl(0, 40%, 40%);
+        } */
+        to {
+            border:1px solid hsl(0, 40%, 40%);
+            background-color: hsl(0, 40%, 40%);
+           }
+      }
+    @keyframes warning {
+    0% {
+        background-position: 0.7em center;
+        border-left     : 7px solid var(  --color-red    );
+    }
+    100% {
+        background-position: 1em center;
+        border-left     : 7px solid var(  --link  );
+    }
+    0% {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M1 21L11.5 2.813L22 21H1zm19.268-1L11.5 4.813L2.732 20h17.536zM11 14v-4h1v4h-1zm0 2h1v2h-1v-2z' fill='%23f44336'/%3E %3C/svg%3E");
+   }
+    100% {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M1 21L11.5 2.813L22 21H1zm19.268-1L11.5 4.813L2.732 20h17.536zM11 14v-4h1v4h-1zm0 2h1v2h-1v-2z' fill='%23FACE74'/%3E %3C/svg%3E");
+   }
+   to {
+         background-color: hsl(0, 40%, 40%);
+		}
+   }
+
+
+/* X-UPDATE MANAGER : STORE NOTIFICATION */
+
+    .notification {
+        color           : var(  --color-white     );
+        display         : flex;
+        flex-basis      : 100%;
+        flex-direction  : row-reverse;
+        align-items     : center;
+        justify-content : center;
+        float           : none!important;
+    }
+
+    .sticky {
+        background      : var( --color-green );
+        border-bottom   : 1px solid transparent !important;
+        border-radius   : var( --border-radius );
+        box-shadow      : var( --shadow-3 );
+        left            : unset;
+        margin          : 0 calc(50% - 200px);
+        width           : 400px;
+        z-index         : 1000;
+    }
+
+    .ondemand {
+        background      : var( --color-green );
+        border-color    : var( --border-color ) !important;
+        border-radius   : var( --border-radius );
+        border-style    : var( --border-style );
+        border-width    : var( --border-width );
+        box-shadow      : var( --shadow-3 );
+        color           : var( --color-white );
+        height          : 50px;
+        left            : unset;
+        margin          : 0 calc( 50% - 200px );
+        position: absolute;
+        top: 0;
+        width           : 400px;
+        z-index         : 2000;
+    }
+
+    .sticky a, .floated a, .fixed a, .ondemand a {
+        color           : #fff;
+        float           : none;
+        margin          : 5px 10px 0px 0px;
+    }
+
+    .ondemand-button {
+        background      : var(  --color-4      );
+        border-color    : var(  --border-color   );
+        border-radius   : var(  --border-radius  );
+        border-style    : var(  --border-style   );
+        border-width    : var(  --border-width   );
+        border-top-right-radius	: unset;
+        border-top-left-radius	: unset;
+        box-shadow      : var(  --shadow-3     );
+        float           : none!important;
+        height          : 24px;
+        left            : unset!important;
+        margin          : 0 50% !important;
+        padding         : 0 5px;
+        position        : absolute;
+        top             : 0;
+        width           : 32px !important;
+        z-index         : 1999;
+    }
+
+    .hide .ondemand-button {
+    }

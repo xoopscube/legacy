@@ -1,76 +1,42 @@
 <?php
-// $Id: groupperm.php,v 1.7 2008/11/02 11:51:05 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://xoopscube.jp/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+/**
+ * Group permission
+ * These permissions are managed through a {@link XoopsGroupPermHandler} object
+ * @package    kernel
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Other authors Minahito, 2008/11/02
+ * @author     Kazumi Ono (aka onokazu)
+ * @copyright  (c) 2000-2003 XOOPS.org
+ * @license    GPL 2.0
+ */
+
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-define("GROUPPERM_VAL_MODREAD",   "module_read");
-define("GROUPPERM_VAL_MODADMIN",  "module_admin");
-define("GROUPPERM_VAL_BLOCKREAD", "block_read");
+define('GROUPPERM_VAL_MODREAD', 'module_read');
+define('GROUPPERM_VAL_MODADMIN', 'module_admin');
+define('GROUPPERM_VAL_BLOCKREAD', 'block_read');
+
 
 /**
- * 
- * 
  * @package     kernel
- * 
- * @author	    Kazumi Ono	<onokazu@xoops.org>
- * @copyright	copyright (c) 2000-2003 XOOPS.org
- */
-
-/**
- * A group permission
- * 
- * These permissions are managed through a {@link XoopsGroupPermHandler} object
- * 
- * @package     kernel
- * 
  * @author	    Kazumi Ono	<onokazu@xoops.org>
  * @copyright	copyright (c) 2000-2003 XOOPS.org
  */
 class XoopsGroupPerm extends XoopsObject
 {
 
-    /**
-     * Constructor
-     * 
-     */
-    public function XoopsGroupPerm()
+    public function __construct()
     {
         static $initVars;
         if (isset($initVars)) {
             $this->vars = $initVars;
             return;
         }
-        $this->XoopsObject();
+        parent::__construct();
         $this->initVar('gperm_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('gperm_groupid', XOBJ_DTYPE_INT, null, false);
         $this->initVar('gperm_itemid', XOBJ_DTYPE_INT, null, false);
@@ -78,13 +44,17 @@ class XoopsGroupPerm extends XoopsObject
         $this->initVar('gperm_name', XOBJ_DTYPE_OTHER, null, false);
         $initVars = $this->vars;
     }
-    
+    public function XoopsGroupPerm()
+    {
+        return self::__construct();
+    }
+
     public function cleanVars()
     {
         if (!parent::cleanVars()) {
             return false;
         }
-        
+
         // The following validation code doesn't have this class,
         // because the validation code accesses handlers.
         // But, this follows traditional architecture of XOOPS2.
@@ -96,29 +66,29 @@ class XoopsGroupPerm extends XoopsObject
         }
 
         $mHandler = xoops_gethandler('module');
-        
-        if ($this->get('gperm_modid') != 1) {
+
+        if (1 != $this->get('gperm_modid')) {
             $module =& $mHandler->get($this->get('gperm_modid'));
             if (!is_object($module)) {
                 return false;
             }
         }
-        
-        if ($this->get('gperm_name') == GROUPPERM_VAL_MODREAD
-            || $this->get('gperm_name') == GROUPPERM_VAL_MODADMIN) {
+
+        if (GROUPPERM_VAL_MODREAD == $this->get('gperm_name')
+            || GROUPPERM_VAL_MODADMIN == $this->get('gperm_name')) {
             $mHandler = xoops_gethandler('module');
             $module =& $mHandler->get($this->get('gperm_itemid'));
             if (!is_object($module)) {
                 return false;
             }
-        } elseif ($this->get('gperm_name') == GROUPPERM_VAL_BLOCKREAD) {
+        } elseif (GROUPPERM_VAL_BLOCKREAD == $this->get('gperm_name')) {
             $bHandler = xoops_gethandler('block');
             $block =& $bHandler->get($this->get('gperm_itemid'));
             if (!is_object($block)) {
                 return false;
             }
         }
-        
+
         return true;
     }
 }
@@ -126,9 +96,9 @@ class XoopsGroupPerm extends XoopsObject
 
 /**
 * XOOPS group permission handler class.
-* 
-* This class is responsible for providing data access mechanisms to the data source 
-* of XOOPS group permission class objects. 
+*
+* This class is responsible for providing data access mechanisms to the data source
+* of XOOPS group permission class objects.
 * This class is an abstract class to be implemented by child group permission classes.
 *
 * @see          XoopsGroupPerm
@@ -139,9 +109,10 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
 {
 
     /**
-     * Create a new {@link XoopsGroupPerm} 
-     * 
-     * @return	bool    $isNew  Flag the object as "new"?
+     * Create a new {@link XoopsGroupPerm}
+     *
+     * @param bool $isNew
+     * @return \XoopsGroupPerm $isNew  Flag the object as "new"?
      */
     public function &create($isNew = true)
     {
@@ -154,9 +125,9 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
 
     /**
      * Retrieve a group permission
-     * 
+     *
      * @param	int $id ID
-     * 
+     *
      * @return	object  {@link XoopsGroupPerm}, FALSE on fail
      */
     public function &get($id)
@@ -167,7 +138,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
             $sql = sprintf('SELECT * FROM %s WHERE gperm_id = %u', $db->prefix('group_permission'), $id);
             if ($result = $db->query($sql)) {
                 $numrows = $db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $perm =new XoopsGroupPerm();
                     $perm->assignVars($db->fetchArray($result));
                     $ret =& $perm;
@@ -178,15 +149,15 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
     }
 
     /**
-     * Store a {@link XoopsGroupPerm} 
-     * 
+     * Store a {@link XoopsGroupPerm}
+     *
      * @param	object  &$perm  {@link XoopsGroupPerm} object
-     * 
+     *
      * @return	bool    TRUE on success
      */
     public function insert(&$perm)
     {
-        if (strtolower(get_class($perm)) != 'xoopsgroupperm') {
+        if ('xoopsgroupperm' != strtolower(get_class($perm))) {
             return false;
         }
         if (!$perm->isDirty()) {
@@ -195,7 +166,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
         if (!$perm->cleanVars()) {
             return false;
         }
-        
+
         foreach ($perm->cleanVars as $k => $v) {
             ${$k} = $v;
         }
@@ -215,20 +186,20 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
         $perm->assignVar('gperm_id', $gperm_id);
         return true;
     }
-    
+
     /**
-     * Delete a {@link XoopsGroupPerm} 
-     * 
-     * @param	object  &$perm  
-     * 
+     * Delete a {@link XoopsGroupPerm}
+     *
+     * @param	object  &$perm
+     *
      * @return	bool    TRUE on success
      */
     public function delete(&$perm)
     {
-        if (strtolower(get_class($perm)) != 'xoopsgroupperm') {
+        if ('xoopsgroupperm' != strtolower(get_class($perm))) {
             return false;
         }
-        $sql = sprintf("DELETE FROM %s WHERE gperm_id = %u", $this->db->prefix('group_permission'), $perm->getVar('gperm_id'));
+        $sql = sprintf('DELETE FROM %s WHERE gperm_id = %u', $this->db->prefix('group_permission'), $perm->getVar('gperm_id'));
         if (!$result = $this->db->query($sql)) {
             return false;
         }
@@ -236,20 +207,20 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
     }
 
     /**
-     * Retrieve multiple {@link XoopsGroupPerm}s 
-     * 
+     * Retrieve multiple {@link XoopsGroupPerm}s
+     *
      * @param	object  $criteria   {@link CriteriaElement}
      * @param	bool    $id_as_key  Use IDs as array keys?
-     * 
-     * @return	array   Array of {@link XoopsGroupPerm}s 
+     *
+     * @return	array   Array of {@link XoopsGroupPerm}s
      */
     public function &getObjects($criteria = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         $db = &$this->db;
         $sql = 'SELECT * FROM '.$db->prefix('group_permission');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();
@@ -272,17 +243,17 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
     }
 
     /**
-     * Count some {@link XoopsGroupPerm}s 
-     * 
-     * @param	object  $criteria   {@link CriteriaElement} 
-     * 
+     * Count some {@link XoopsGroupPerm}s
+     *
+     * @param	object  $criteria   {@link CriteriaElement}
+     *
      * @return	int
      */
     public function getCount($criteria = null)
     {
         $db = &$this->db;
         $sql = 'SELECT COUNT(*) FROM '.$db->prefix('group_permission');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         $result = $db->query($sql);
@@ -295,15 +266,15 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
 
     /**
      * Delete all permissions by a certain criteria
-     * 
-     * @param	object  $criteria   {@link CriteriaElement} 
-     * 
+     *
+     * @param	object  $criteria   {@link CriteriaElement}
+     *
      * @return	bool    TRUE on success
      */
     public function deleteAll($criteria = null)
     {
-        $sql = sprintf("DELETE FROM %s", $this->db->prefix('group_permission'));
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        $sql = sprintf('DELETE FROM %s', $this->db->prefix('group_permission'));
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result = $this->db->query($sql)) {
@@ -314,10 +285,10 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
 
     /**
      * Delete all module specific permissions assigned for a group
-     * 
+     *
      * @param	int  $gperm_groupid ID of a group
      * @param	int  $gperm_modid ID of a module
-     * 
+     *
      * @return	bool TRUE on success
      */
     public function deleteByGroup($gperm_groupid, $gperm_modid = null)
@@ -331,11 +302,11 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
 
     /**
      * Delete all module specific permissions
-     * 
+     *
      * @param	int  $gperm_modid ID of a module
      * @param	string  $gperm_name Name of a module permission
      * @param	int  $gperm_itemid ID of a module item
-     * 
+     *
      * @return	bool TRUE on success
      */
     public function deleteByModule($gperm_modid, $gperm_name = null, $gperm_itemid = null)
@@ -353,6 +324,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
 
     /**
      * Delete
+     * @param $gperm_groupid
      */
     public function deleteBasicPermission($gperm_groupid)
     {
@@ -368,13 +340,13 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
 
     /**
      * Check permission
-     * 
+     *
      * @param	string    $gperm_name       Name of permission
      * @param	int       $gperm_itemid     ID of an item
      * @param	int/array $gperm_groupid    A group ID or an array of group IDs
      * @param	int       $gperm_modid      ID of a module
      * @param	bool      $bypass_admincheck Do not XOOPS_GROUP_ADMIN check if true.
-     * 
+     *
      * @return	bool    TRUE if permission is enabled
      */
     public function checkRight($gperm_name, $gperm_itemid, $gperm_groupid, $gperm_modid = 1, $bypass_admincheck = false)
@@ -382,7 +354,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
         if (empty($gperm_groupid)) {
             return false;
         }
-           
+
         if (!$bypass_admincheck &&
             (is_array($gperm_groupid)?in_array(XOOPS_GROUP_ADMIN, $gperm_groupid):(XOOPS_GROUP_ADMIN == $gperm_groupid))) {
             return true;
@@ -397,7 +369,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
 
     /**
      * Add a permission
-     * 
+     *
      * @param	string  $gperm_name       Name of permission
      * @param	int     $gperm_itemid     ID of an item
      * @param	int     $gperm_groupid    ID of a group
@@ -409,7 +381,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
     {
         $criteria =& $this->getCriteria($gperm_name, $gperm_itemid, $gperm_groupid, $gperm_modid);
         $count = $this->getCount($criteria);
-        if ($count == 1) {
+        if (1 == $count) {
             return true;    // Only one record already exist. do nothing.
         } elseif ($count > 1) {
             // This case occurs when group_permission table exists from older versions of XOOPS.
@@ -424,10 +396,10 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
         $perm->setVar('gperm_modid', $gperm_modid);
         return $this->insert($perm);
     }
-    
+
     /**
      * Remove a permission
-     * 
+     *
      * @param	string  $gperm_name       Name of permission
      * @param	int     $gperm_itemid     ID of an item
      * @param	int     $gperm_groupid    ID of a group
@@ -443,7 +415,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
 
     /**
      * Get all item IDs that a group is assigned a specific permission
-     * 
+     *
      * @param	string    $gperm_name       Name of permission
      * @param	int/array $gperm_groupid    A group ID or an array of group IDs
      * @param	int       $gperm_modid      ID of a module
@@ -452,7 +424,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
      */
     public function getItemIds($gperm_name, $gperm_groupid, $gperm_modid = 1)
     {
-        $ret = array();
+        $ret = [];
 
         $criteria =& $this->getCriteria($gperm_name, 0, $gperm_groupid, $gperm_modid);
 
@@ -465,7 +437,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
 
     /**
      * Get all group IDs assigned a specific permission for a particular item
-     * 
+     *
      * @param	string  $gperm_name       Name of permission
      * @param	int     $gperm_itemid     ID of an item
      * @param	int     $gperm_modid      ID of a module
@@ -474,9 +446,9 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
      */
     public function getGroupIds($gperm_name, $gperm_itemid, $gperm_modid = 1)
     {
-        $ret = array();
+        $ret = [];
 
-        $criteria =& $this->getCriteria($gperm_name, $gperm_itemid, array(), $gperm_modid);
+        $criteria =& $this->getCriteria($gperm_name, $gperm_itemid, [], $gperm_modid);
 
         $perms =& $this->getObjects($criteria, true);
         foreach (array_keys($perms) as $i) {
@@ -487,13 +459,13 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
 
     /**
      * Generate a criteria from given params
-     * 
-     * @param	string  $gperm_name       Name of permission
-     * @param	int     $gperm_itemid     ID of an item
-     * @param	int     $gperm_groupid    ID of a group
-     * @param	int     $gperm_modid      ID of a module
      *
-     * @return	CriteiaCompo
+     * @param string $gperm_name    Name of permission
+     * @param int    $gperm_itemid  ID of an item
+     * @param int    $gperm_groupid ID of a group
+     * @param int    $gperm_modid   ID of a module
+     *
+     * @return \CriteriaCompo
      */
     public function &getCriteria($gperm_name, $gperm_itemid, $gperm_groupid, $gperm_modid = 1)
     {

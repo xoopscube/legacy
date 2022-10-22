@@ -1,0 +1,82 @@
+/*
+ * Theme XCL DEFAULT
+ * @version   2.3.2
+ * @author    Nuno Luciano ( https://github.com/gigamaster )
+ * @copyright 2005-2022 The XOOPSCube Project
+ * @license   BSD
+ * @link      https://github.com/xoopscube
+ */
+
+/* -------------------- -------------------- NAV */
+
+/* -------------------- dropdown MENU */
+
+div.dropdown {
+    position            : relative;
+    /*display             : inline-block;*/
+}
+div.dropdown a.dropdown-toggle {
+    background          : var(--d-toggle-bg);
+    border              : var(--d-toggle-border);
+    border-radius       : var(--d-toggle-radius);
+    box-shadow          : var(--d-toggle-shadow);
+    color               : var(--d-toggle-color);
+    cursor              : pointer;
+    display             : block;
+    font                : var(--d-toggle-font);
+    margin              : 0;
+    padding             : var(--d-toggle-padding);
+    transition          : var(--d-toggle-transition);
+    width               : max-content;
+}
+div.dropdown a.dropdown-toggle:hover {
+    background          : var(--d-toggle-bg-on);
+    box-shadow          : var(--d-toggle-shadow-on);
+    color               : var(--d-toggle-color-on);
+}
+div.dropdown.isopen div.dropdown-content {
+    display             : block;
+    z-index             : var(--z-above);
+}
+div.dropdown-content {
+    background          : var(--dropdown-bg);
+    border-radius       : var(--dropdown-radius);
+    box-shadow          : var(--dropdown-shadow);
+    display             : none;
+
+    min-width           : var(--dropdown-width);
+    padding             : var(--dropdown-padding);
+    position            : absolute;
+    right               : 1px; /* Fix device Viewport */
+    text-align          : left;
+    top                 : 100%;
+    transition          : var(--dropdown-transition);
+}
+div.dropdown div.dropdown-content ul {
+    margin              : 0;
+    padding             : 0;
+    list-style          : none;
+}
+div.dropdown div.dropdown-content ul li {
+    background          : transparent;
+    padding             : 0;
+    width               : 100%;
+}
+/* Dropdown links */
+div.dropdown div.dropdown-content a {
+    border-radius       : var(--dropdown-radius);
+    color               : var(--dropdown-color);
+    display             : block;
+    font                : var(--dropdown-font) !important;
+    padding             : var(--dropdown-padding);
+    text-decoration     : none;
+}
+/* Change color of dropdown links on hover */
+div.dropdown div.dropdown-content a:hover {
+    background          : var(--dropdown-bg-on);
+    color               : var(--dropdown-color-on);
+}
+
+div.dropdown div.dropdown-content a > svg {
+    margin              : var(--dropdown-icon-margin);
+}

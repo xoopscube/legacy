@@ -1,54 +1,139 @@
 <div class="adminnavi">
-  <a href="./index.php"><{$smarty.const._MI_PROFILE_LANG_PROFILE}></a>
-  &raquo;&raquo; <a href="./index.php?action=DefinitionsList"><{$smarty.const._MI_PROFILE_LANG_DEFINITIONS_LIST}></a>
+    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_PROFILE_LANG_PROFILE}></a>
+    &raquo;&raquo; <a href="./index.php?action=DefinitionsList"><{$smarty.const._MI_PROFILE_LANG_DEFINITIONS_LIST}></a>
 </div>
 
-<h3><{$smarty.const._MI_PROFILE_LANG_DEFINITIONS_LIST}></h3>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
-<ul class="toptab">
-  <li class="add"><a href="index.php?action=DefinitionsEdit"><{$smarty.const._MD_PROFILE_LANG_ADD_A_NEW_DEFINITIONS}></a></li>
-</ul>
+<h2><{$smarty.const._MI_PROFILE_LANG_DEFINITIONS_LIST}></h2>
+
+
+<{* ////— ACTION-CONTROL —\\\\ *}>
+<section layout="row center-justify" class="action-control">
+
+    <a class="button" href="index.php?action=DefinitionsEdit"><i class="i-add"></i> <{$smarty.const._MD_PROFILE_LANG_ADD_A_NEW_DEFINITIONS}></a>
+
+    <div class="control-view">
+        <a class="button" href="../../user/admin/index.php"><{$smarty.const._AD_PROFILE_LANG_USERS}></a>
+        <button class="help-admin button" type='button' data-module='profile' data-help-article='#help-overview' aria-label="<{$smarty.const._HELP}>">
+            <b>?</b> </button>
+    </div>
+</section>
+<{* ----- / CONTROL-ACTION *}>
+
 
 <table class="outer">
-  <tr>
-    <th><{$smarty.const._MD_PROFILE_LANG_FIELD_NAME}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_FIELD_NAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_FIELD_NAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._MD_PROFILE_LANG_LABEL}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_LABEL}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_LABEL}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._MD_PROFILE_LANG_TYPE}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_TYPE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_TYPE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._MD_PROFILE_LANG_VALIDATION}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_VALIDATION}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_VALIDATION}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._MD_PROFILE_LANG_REQUIRED}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_REQUIRED}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_REQUIRED}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._MD_PROFILE_LANG_SHOW_FORM}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_SHOW_FORM}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_SHOW_FORM}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._MD_PROFILE_LANG_WEIGHT}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_WEIGHT}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_WEIGHT}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._MD_PROFILE_LANG_CONTROL}></th>
-  </tr>
-  <{foreach item=obj from=$objects}>
-    <tr class="<{cycle values='odd,even'}>">
-      <td><{$obj->getShow('field_name')}></td>
-      <td><{$obj->getShow('label')}></td>
-      <td><{$obj->getShow('type')}></td>
-      <td><{$obj->getShow('validation')}></td>
-      <td><{$obj->getShow('required')}></td>
-      <td><{$obj->getShow('show_form')}></td>
-      <td><{$obj->getShow('weight')}></td>
-      <td align="center">
-        <a href="./index.php?action=DefinitionsView&amp;field_id=<{$obj->getShow('field_id')}>"><img src="<{"icons/view.png"|theme}>" alt="<{$smarty.const._VIEW}>" title="<{$smarty.const._VIEW}>" /></a>
-        <a href="./index.php?action=DefinitionsEdit&amp;field_id=<{$obj->getShow('field_id')}>"><img src="<{"icons/edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
-        <a href="./index.php?action=DefinitionsDelete&amp;field_id=<{$obj->getShow('field_id')}>"><img src="<{"icons/delete.png"|theme}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
-      </td>
+    <thead>
+    <tr>
+        <th>
+        <{* ////— DROPDOWN SORT —\\\\ *}>
+        <div class="dropdown" id="filter-sort">
+
+            <a href="#" class="dropdown-toggle button" aria-label="sort filter">
+                <img class="svg" src="<{$xoops_url}>/images/icons/list-tree.svg" width="24px" height="24px" alt="options">
+            </a>
+
+            <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
+                <div layout="row center-justify inline">
+                    <h6><{$smarty.const._MD_PROFILE_LANG_FIELD_NAME}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_FIELD_NAME}>"
+                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_FIELD_NAME}>"
+                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div layout="row center-justify inline">
+                    <h6><{$smarty.const._MD_PROFILE_LANG_LABEL}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_LABEL}>"
+                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_LABEL}>"
+                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div layout="row center-justify inline">
+                    <h6><{$smarty.const._MD_PROFILE_LANG_TYPE}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_TYPE}>"
+                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_TYPE}>"
+                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div layout="row center-justify inline">
+                    <h6><{$smarty.const._MD_PROFILE_LANG_VALIDATION}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_VALIDATION}>"
+                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_VALIDATION}>"
+                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div layout="row center-justify inline">
+                    <h6><{$smarty.const._MD_PROFILE_LANG_REQUIRED}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_REQUIRED}>"
+                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_REQUIRED}>"
+                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div layout="row center-justify inline">
+                    <h6><{$smarty.const._MD_PROFILE_LANG_SHOW_FORM}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_SHOW_FORM}>"
+                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_SHOW_FORM}>"
+                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div layout="row center-justify inline">
+                    <h6><{$smarty.const._MD_PROFILE_LANG_WEIGHT}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_WEIGHT}>"
+                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_WEIGHT}>"
+                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+            </div><{* ----- /Dropdown-content *}>
+        </div><{* ----- /Dropdown *}>
+        </th>
+        <th><{$smarty.const._MD_PROFILE_LANG_LABEL}></th>
+        <th><{$smarty.const._MD_PROFILE_LANG_TYPE}></th>
+        <th><{$smarty.const._MD_PROFILE_LANG_VALIDATION}></th>
+        <th><{$smarty.const._MD_PROFILE_LANG_REQUIRED}></th>
+        <th><{$smarty.const._MD_PROFILE_LANG_SHOW_FORM}></th>
+        <th><{$smarty.const._MD_PROFILE_LANG_WEIGHT}></th>
+        <th class="list_control"><{$smarty.const._MD_PROFILE_LANG_CONTROL}></th>
     </tr>
-  <{/foreach}>
+    </thead>
+    <tbody>
+    <{foreach item=obj from=$objects}>
+    <tr>
+    <td><{$obj->getShow('field_name')}></td>
+    <td><{$obj->getShow('label')}></td>
+    <td><{$obj->getShow('type')}></td>
+    <td><{$obj->getShow('validation')}></td>
+    <td><{$obj->getShow('required')}></td>
+    <td><{$obj->getShow('show_form')}></td>
+    <td><{$obj->getShow('weight')}></td>
+    <td class="list_control">
+        <a href="./index.php?action=DefinitionsView&amp;field_id=<{$obj->getShow('field_id')}>" aria-label="<{$smarty.const._VIEW}>">
+            <img src="<{"icons/icon-file-view.svg"|theme}>" class="svg">
+        </a>
+        <a href="./index.php?action=DefinitionsEdit&amp;field_id=<{$obj->getShow('field_id')}>" aria-label="<{$smarty.const._EDIT}>">
+            <img src="<{"icons/icon-file-edit.svg"|theme}>" class="svg">
+        </a>
+        <a href="./index.php?action=DefinitionsDelete&amp;field_id=<{$obj->getShow('field_id')}>" aria-label="<{$smarty.const._DELETE}>">
+            <img src="<{"icons/icon-file-delete.svg"|theme}>" class="svg">
+        </a>
+    </td>
+    </tr>
+    <{/foreach}>
+    </tbody>
 </table>
+
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>

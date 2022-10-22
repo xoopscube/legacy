@@ -1,22 +1,39 @@
-<form action="#" method="post">
-<table width="100%" class="outer">
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_NICKNAME}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{$registForm->get('uname')|xoops_escape}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_EMAIL}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{$registForm->get('email')|xoops_escape}>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" class="foot" style="text-align:center;">
-      <input type="submit" value="<{$smarty.const._MD_USER_LANG_FINISH}>" />
-      <input type="submit" value="<{$smarty.const._CANCEL}>" name="_form_control_cancel" />
-    </td>
-  </tr>
-</table>
-</form>
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<ul class="breadcrumb" aria-label="breadcrumb">
+    <li><a href="<{$xoops_url}>/">
+        <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a>
+    <li><a href="<{$xoops_url}>/user.php"><{$smarty.const._MD_USER_LANG_PROFILE}></a>
+    <li aria-current="page"><{$smarty.const._MD_USER_LANG_USERREG}>
+</ul>
+
+<hr>
+
+<section layout="column" class="user-register">
+
+    <h2><{$smarty.const._MD_USER_LANG_USERREG}></h2>
+
+    <form action="#" method="post">
+        <table width="100%" class="outer">
+            <tr>
+                <td class="head"><{$smarty.const._MD_USER_LANG_NICKNAME}></td>
+                <td>
+                <input type="text" value="<{$registForm->get('uname')|xoops_escape}>" style="cursor:not-allowed;" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td class="head"><{$smarty.const._MD_USER_LANG_EMAIL}></td>
+                <td>
+                <input type="email" value="<{$registForm->get('email')|xoops_escape}>" style="cursor:not-allowed;" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="foot" style="text-align:center;">
+                    <input type="submit" class="ui-button cancel" name="_form_control_cancel" value="<{$smarty.const._CANCEL}>">
+                    <input type="submit" class="ui-button" value="<{$smarty.const._MD_USER_LANG_FINISH}>">
+                </td>
+            </tr>
+        </table>
+    </form>
+</section>

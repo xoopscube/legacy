@@ -2,20 +2,20 @@
 /**
  * @package ShadeSoap
  * @version $Id: NusoapServer.class.php,v 1.3 2007/12/15 12:16:57 minahito Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license http://www.gnu.org/licenses/lgpl.txt GNU LESSER GENERAL PUBLIC LICENSE Version 2.1
+ * @copyright Copyright 2005-2022 XOOPSCube Project
+ * @license https://www.gnu.org/licenses/lgpl.txt GNU LESSER GENERAL PUBLIC LICENSE Version 2.1
  */
  // TODO prevent path disclosure, gigamaster
  error_reporting(0);
 
 // if (!XC_CLASS_EXISTS('soap_server')) exit();
 
-if (version_compare(PHP_VERSION, "5.0", ">=")) {
-    if (!class_exists("soap_server", false)) {
+if (version_compare(PHP_VERSION, '5.0', '>=')) {
+    if (!class_exists('soap_server', false)) {
         exit();
     }
 } else {
-    if (!class_exists("soap_server")) {
+    if (!class_exists('soap_server')) {
         exit();
     }
 }
@@ -57,7 +57,8 @@ class ShadeSoap_NusoapServer extends soap_server
             $delim = '';
         }
 
-        if (strlen($delim) > 0 && substr_count($this->methodname, $delim) == 1 &&
+        if (strlen($delim) > 0 && 1 == substr_count($this->methodname, $delim)
+            &&
             XC_CLASS_EXISTS(substr($this->methodname, 0, strpos($this->methodname, $delim)))) {
             // get the class and method name
             $class = substr($this->methodname, 0, strpos($this->methodname, $delim));
@@ -66,7 +67,7 @@ class ShadeSoap_NusoapServer extends soap_server
         }
 
         // does method exist?
-        if ($class == '') {
+        if ('' == $class) {
             if (!function_exists($this->methodname)) {
                 $this->debug("in invoke_method, function '$this->methodname' not found!");
                 $this->result = 'fault: method not found';
@@ -74,7 +75,7 @@ class ShadeSoap_NusoapServer extends soap_server
                 return;
             }
         } else {
-            $method_to_compare = (substr(phpversion(), 0, 2) == '4.') ? strtolower($method) : $method;
+            $method_to_compare = ('4.' == substr(phpversion(), 0, 2)) ? strtolower($method) : $method;
             if (!in_array($method_to_compare, get_class_methods($class))) {
                 $this->debug("in invoke_method, method '$this->methodname' not found in class '$class'!");
                 $this->result = 'fault: method not found';
@@ -99,25 +100,25 @@ class ShadeSoap_NusoapServer extends soap_server
         $this->appendDebug($this->varDump($this->methodparams));
         $this->debug("in invoke_method, calling '$this->methodname'");
 
-        if ($class == '') {
+        if ('' == $class) {
             $this->debug('in invoke_method, calling function using call_user_func_array()');
-            $call_arg = "$this->methodname";    // straight assignment changes $this->methodname to lower case after call_user_func_array()
-        } elseif ($delim == '..') {
+            $call_arg = (string)$this->methodname;    // straight assignment changes $this->methodname to lower case after call_user_func_array()
+        } elseif ('..' == $delim) {
             $this->debug('in invoke_method, calling class method using call_user_func_array()');
-            $call_arg = array($class, $method);
+            $call_arg = [$class, $method];
         } else {
             $this->debug('in invoke_method, calling instance method using call_user_func_array()');
             $instance = new $class ();
-            $call_arg = array(&$instance, $method);
+            $call_arg = [&$instance, $method];
         }
-        
+
         //
         // Insert CUBE CODE
         //
         $root =& XCube_Root::getSingleton();
         // $root->mContext->mUser->setService(true);
-        $retValue = call_user_func_array($call_arg, array($root->mContext->mUser, $this->methodparams));
-        
+        $retValue = call_user_func_array($call_arg, [$root->mContext->mUser, $this->methodparams]);
+
         if (is_array($retValue)) {
             $retValue = $this->_encodeUTF8($retValue, $root->mLanguageManager);
         } else {
@@ -130,7 +131,7 @@ class ShadeSoap_NusoapServer extends soap_server
         $this->appendDebug($this->varDump($this->methodreturn));
         $this->debug("in invoke_method, called method $this->methodname, received $this->methodreturn of type ".gettype($this->methodreturn));
     }
-    
+
     public function _encodeUTF8($arr, &$languageManager)
     {
         foreach (array_keys($arr) as $key) {
@@ -140,7 +141,7 @@ class ShadeSoap_NusoapServer extends soap_server
                 $arr[$key] = $languageManager->encodeUTF8($arr[$key]);
             }
         }
-        
+
         return $arr;
     }
 }

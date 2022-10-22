@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/forms/EditUserForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/forms/EditUserForm.class.php';
 
 define('USER_COOKIE_KEEP_TIME', 31536000);
 
@@ -21,7 +21,7 @@ class User_EditUserAction extends User_AbstractEditAction
     /**
      * @var string
      */
-    public $mUserCookie = "";
+    public $mUserCookie = '';
     
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
@@ -34,7 +34,7 @@ class User_EditUserAction extends User_AbstractEditAction
         $root =& XCube_Root::getSingleton();
         $uid = is_object($root->mContext->mXoopsUser) ? $root->mContext->mXoopsUser->get('uid') : 0;
         
-        return isset($_REQUEST['uid']) ? intval(xoops_getrequest('uid')) : $uid;
+        return isset($_REQUEST['uid']) ? (int)xoops_getrequest('uid') : $uid;
     }
     
     public function &_getHandler()
@@ -76,12 +76,16 @@ class User_EditUserAction extends User_AbstractEditAction
     {
         return true;
     }
-    
+
     /**
      * Allow Conditions:
-     * 
+     *
      * 1) The current user is the target user.
      * 2) The current user is administrators.
+     * @param $controller
+     * @param $xoopsUser
+     * @param $moduleConfig
+     * @return bool
      */
     public function hasPermission(&$controller, &$xoopsUser, $moduleConfig)
     {
@@ -114,11 +118,11 @@ class User_EditUserAction extends User_AbstractEditAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_edituser.html");
-        $render->setAttribute("actionForm", $this->mActionForm);
-        $render->setAttribute("thisUser", $this->mObject);
-        $render->setAttribute("currentUser", $xoopsUser);
-        $render->setAttribute("allow_chgmail", $this->mConfig['allow_chgmail']);
+        $render->setTemplateName('user_edituser.html');
+        $render->setAttribute('actionForm', $this->mActionForm);
+        $render->setAttribute('thisUser', $this->mObject);
+        $render->setAttribute('currentUser', $xoopsUser);
+        $render->setAttribute('allow_chgmail', $this->mConfig['allow_chgmail']);
         
         $handler =& xoops_gethandler('timezone');
         $timezoneArr =& $handler->getObjects();
@@ -127,13 +131,13 @@ class User_EditUserAction extends User_AbstractEditAction
         //
         // umode option
         //
-        $umodeOptions = array("nest" => _NESTED, "flat" => _FLAT, "thread" => _THREADED);
+        $umodeOptions = ['nest' => _NESTED, 'flat' => _FLAT, 'thread' => _THREADED];
         $render->setAttribute('umodeOptions', $umodeOptions);
 
         //		
         // uorder option
         //
-        $uorderOptions = array(0 => _OLDESTFIRST, 1 => _NEWESTFIRST);
+        $uorderOptions = [0 => _OLDESTFIRST, 1 => _NEWESTFIRST];
         $render->setAttribute('uorderOptions', $uorderOptions);
 
         //
@@ -145,26 +149,26 @@ class User_EditUserAction extends User_AbstractEditAction
         //
         $root =& XCube_Root::getSingleton();
         $root->mLanguageManager->loadPageTypeMessageCatalog('notification');
-        require_once XOOPS_ROOT_PATH . "/include/notification_constants.php";
+        require_once XOOPS_ROOT_PATH . '/include/notification_constants.php';
 
         // Check the PM service has been installed.
         $root =& XCube_Root::getSingleton();
         $service =& $root->mServiceManager->getService('privateMessage');
 
-        $methodOptions = array();
+        $methodOptions = [];
         $methodOptions[XOOPS_NOTIFICATION_METHOD_DISABLE] = _NOT_METHOD_DISABLE;
-        if ($service != null) {
+        if (null != $service) {
             $methodOptions[XOOPS_NOTIFICATION_METHOD_PM] = _NOT_METHOD_PM;
         }
         $methodOptions[XOOPS_NOTIFICATION_METHOD_EMAIL] = _NOT_METHOD_EMAIL;
 
         $render->setAttribute('notify_methodOptions', $methodOptions);
         
-        $modeOptions = array(
+        $modeOptions = [
             XOOPS_NOTIFICATION_MODE_SENDALWAYS => _NOT_MODE_SENDALWAYS,
             XOOPS_NOTIFICATION_MODE_SENDONCETHENDELETE => _NOT_MODE_SENDONCE,
             XOOPS_NOTIFICATION_MODE_SENDONCETHENWAIT => _NOT_MODE_SENDONCEPERLOGIN
-        );
+        ];
 
         $render->setAttribute('notify_modeOptions', $modeOptions);
         $this->_setDatepicker();
@@ -179,7 +183,7 @@ class User_EditUserAction extends User_AbstractEditAction
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
         $redirect = xoops_getrequest('xoops_redirect');
-        $controller->executeForward(($redirect && $redirect[0] === '/')? $redirect : (XOOPS_URL . '/userinfo.php?uid=' . $this->mObject->getShow('uid')));
+        $controller->executeForward(($redirect && '/' === $redirect[0])? $redirect : (XOOPS_URL . '/userinfo.php?uid=' . $this->mObject->getShow('uid')));
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)

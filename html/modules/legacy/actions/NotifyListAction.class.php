@@ -1,20 +1,21 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: NotifyListAction.class.php,v 1.6 2008/09/25 15:12:07 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * NotifyListAction.class.php
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/include/notification_functions.php";
+require_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
 
-require_once XOOPS_MODULE_PATH . "/legacy/forms/NotifyDeleteForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/forms/NotifyDeleteForm.class.php';
 
 /***
  * @internal
@@ -23,19 +24,19 @@ require_once XOOPS_MODULE_PATH . "/legacy/forms/NotifyDeleteForm.class.php";
  */
 class Legacy_NotifyListAction extends Legacy_Action
 {
-    public $mModules = array();
+    public $mModules = [];
     public $mActionForm = null;
-    
+
     public function prepare(&$controller, &$xoopsUser)
     {
         $root =& $controller->mRoot;
         $root->mLanguageManager->loadPageTypeMessageCatalog('notification');
         $root->mLanguageManager->loadModuleMessageCatalog('legacy');
-        
+
         $this->mActionForm =new Legacy_NotifyDeleteForm();
         $this->mActionForm->prepare();
     }
-    
+
     public function hasPermission(&$controller, &$xoopsUser)
     {
         return is_object($xoopsUser);
@@ -45,33 +46,33 @@ class Legacy_NotifyListAction extends Legacy_Action
     {
         $criteria =new Criteria('not_uid', $xoopsUser->get('uid'));
         $criteria->setSort('not_modid, not_category, not_itemid');
-        
+
         $handler =& xoops_gethandler('notification');
         $notificationArr =& $handler->getObjects($criteria);
 
         $moduleHandler =& xoops_gethandler('module');
-        
+
         $prev_modid = -1;
         $prev_category = -1;
         $prev_item = -1;
         foreach ($notificationArr as $notify) {
             $t_modid = $notify->get('not_modid');
-            
+
             $module =& $moduleHandler->get($t_modid);
             if (!is_object($module)) {
                 continue;
             }
-            
+
             if ($t_modid != $prev_modid) {
                 $prev_modid = $t_modid;
                 $prev_category = -1;
                 $prev_item = -1;
-                
-                $this->mModules[$t_modid] = array(
+
+                $this->mModules[$t_modid] = [
                     'id' => $t_modid,
                     'name' => $module->getShow('name'),
-                    'categories' => array()
-                );
+                    'categories' => []
+                ];
 
 
                 //
@@ -100,32 +101,32 @@ class Legacy_NotifyListAction extends Legacy_Action
                     }
                 }
             }
-            
+
             $t_category = $notify->get('not_category');
             if ($t_category != $prev_category) {
                 $prev_category = $t_category;
                 $prev_item = -1;
                 $categoryInfo =& notificationCategoryInfo($t_category, $t_modid);
             }
-            
+
             $t_item = $notify->get('not_itemid');
             if ($t_item != $prev_item) {
                 $prev_item = $t_item;
                 if (!empty($lookupFunc)) {
                     $itemInfo = $lookupFunc($t_category, $t_item);
                 } else {
-                    $itemInfo = array('name' => '[' . _NOT_NAMENOTAVAILABLE . ']', 'url' => '');
+                    $itemInfo = ['name' => '[' . _NOT_NAMENOTAVAILABLE . ']', 'url' => ''];
                 }
-                $this->mModules[$t_modid]['categories'][$t_category]['items'][$t_item] = array(
+                $this->mModules[$t_modid]['categories'][$t_category]['items'][$t_item] = [
                     'id' => $t_item,
                     'name' => $itemInfo['name'],
                     'url' => $itemInfo['url'],
-                    'notifications' => array()
-                );
+                    'notifications' => []
+                ];
             }
-            
+
             $eventInfo =& notificationEventInfo($t_category, $notify->get('not_event'), $notify->get('not_modid'));
-            $this->mModules[$t_modid]['categories'][$t_category]['items'][$t_item]['notifications'][] = array(
+            $this->mModules[$t_modid]['categories'][$t_category]['items'][$t_item]['notifications'][] = [
                 'id' => $notify->get('not_id'),
                 'module_id' => $notify->get('not_modid'),
                 'category' => $notify->get('not_category'),
@@ -134,16 +135,16 @@ class Legacy_NotifyListAction extends Legacy_Action
                 'event' => $notify->get('not_event'),
                 'event_title' => $eventInfo['title'],
                 'user_id' => $notify->get('not_uid')
-            );
+            ];
         }
-        
+
         return LEGACY_FRAME_VIEW_INDEX;
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("legacy_notification_list.html");
-        
+        $render->setTemplateName('legacy_notification_list.html');
+
         $render->setAttribute('modules', $this->mModules);
         $render->setAttribute('currentUser', $xoopsUser);
         $render->setAttribute('actionForm', $this->mActionForm);
@@ -151,6 +152,6 @@ class Legacy_NotifyListAction extends Legacy_Action
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=NotifyList");
+        $controller->executeForward('./index.php?action=NotifyList');
     }
 }

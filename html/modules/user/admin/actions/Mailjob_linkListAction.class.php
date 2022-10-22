@@ -4,9 +4,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/Mailjob_linkFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/Mailjob_linkAdminDeletesForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/Mailjob_linkFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/Mailjob_linkAdminDeletesForm.class.php';
 
 class User_Mailjob_linkListAction extends User_AbstractListAction
 {
@@ -35,7 +35,7 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=Mailjob_linkList";
+        return './index.php?action=Mailjob_linkList';
     }
     
     public function getDefaultView(&$controller, &$xoopsUser)
@@ -43,7 +43,7 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
         $handler =& xoops_getmodulehandler('mailjob', 'user');
         $this->mMailjob =& $handler->get($this->mActionForm->get('mailjob_id'));
         
-        if ($this->mMailjob == null) {
+        if (null == $this->mMailjob) {
             return USER_FRAME_VIEW_ERROR;
         }
         
@@ -63,7 +63,7 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
         $handler =& xoops_getmodulehandler('mailjob_link', 'user');
         foreach (array_keys($uidArr) as $uid) {
             $mailjob_link =& $handler->get($mailjob_id, $uid);
-            if ($mailjob_link != null) {
+            if (null != $mailjob_link) {
                 $handler->delete($mailjob_link);
             }
         }
@@ -73,11 +73,11 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("mailjob_link_list.html");
+        $render->setTemplateName('mailjob_link_list.html');
         #cubson::lazy_load_array('mailjob_link', $this->mObjects);
-        $render->setAttribute("mailJob", $this->mMailjob);
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setAttribute('mailJob', $this->mMailjob);
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 

@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: IPbanningFilter.class.php,v 1.5 2008/09/25 15:12:43 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  *
  */
 
@@ -24,7 +24,7 @@ class Legacy_IPbanningFilter extends XCube_ActionFilter
             if (isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR']) {
                 foreach ($this->mRoot->mContext->mXoopsConfig['bad_ips'] as $bi) {
                     $bi = str_replace('.', '\.', $bi);
-                    if (!empty($bi) && preg_match("/".$bi."/", $_SERVER['REMOTE_ADDR'])) {
+                    if (!empty($bi) && preg_match('/' . $bi . '/', $_SERVER['REMOTE_ADDR'])) {
                         die();
                     }
                 }

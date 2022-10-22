@@ -9,12 +9,17 @@ class UserUsersObject extends XoopsSimpleObject
     //
     // TODO naming rule
     //
-    public $Groups = array();
+    public $Groups = [];
     public $_mGroupsLoadedFlag = false;
-    
+
     public $_mRankLoadedFlag = false;
     public $mRank;
-    
+
+    public function UserUsersObject()
+    {
+        self::__construct();
+    }
+
     public function __construct()
     {
         static $initVars;
@@ -37,7 +42,7 @@ class UserUsersObject extends XoopsSimpleObject
         $this->initVar('user_aim', XOBJ_DTYPE_STRING, '', false, 18);
         $this->initVar('user_yim', XOBJ_DTYPE_STRING, '', false, 25);
         $this->initVar('user_msnm', XOBJ_DTYPE_STRING, '', false, 100);
-        $this->initVar('pass', XOBJ_DTYPE_STRING, '', false, 255);
+        $this->initVar('pass', XOBJ_DTYPE_STRING, '', false, 191);
         $this->initVar('posts', XOBJ_DTYPE_INT, '0', false);
         $this->initVar('attachsig', XOBJ_DTYPE_BOOL, '0', false);
         $this->initVar('rank', XOBJ_DTYPE_INT, '0', false);
@@ -53,136 +58,140 @@ class UserUsersObject extends XoopsSimpleObject
         $this->initVar('bio', XOBJ_DTYPE_TEXT, '', false);
         $this->initVar('user_intrest', XOBJ_DTYPE_STRING, '', false, 150);
         $this->initVar('user_mailok', XOBJ_DTYPE_BOOL, '1', false);
-        $initVars=$this->mVars;
+        $initVars = $this->mVars;
     }
-    
+
     public function getGroups()
     {
         return $this->Groups;
     }
-    
+
     public function getNumGroups()
     {
         $this->_loadGroups();
         return count($this->Groups);
     }
-    
+
     //
     // TODO naming rule
     //
     public function _loadGroups()
     {
         if (!$this->_mGroupsLoadedFlag) {
-            $handler =& xoops_getmodulehandler('groups_users_link', 'user');
-            $links =& $handler->getObjects(new Criteria('uid', $this->get('uid')));
+            $handler = &xoops_getmodulehandler('groups_users_link', 'user');
+            $links = &$handler->getObjects(new Criteria('uid', $this->get('uid')));
             foreach ($links as $link) {
                 $this->Groups[] = $link->get('groupid');
             }
         }
-        
+
         $this->_mGroupsLoadedFlag = true;
     }
 
-    
+
     public function _loadRank()
     {
         if (!$this->_mRankLoadedFlag) {
             $t_rank = xoops_getrank($this->get('rank'), $this->get('posts'));
             $rank_id = $t_rank['id'];
-            
-            $handler =& xoops_getmodulehandler('ranks');
-            $this->mRank =& $handler->get($rank_id);
-        
+
+            $handler = &xoops_getmodulehandler('ranks');
+            $this->mRank = &$handler->get($rank_id);
+
             $this->_mRankLoadedFlag = true;
         }
     }
-    
+
     public function getRank()
     {
         if (!$this->_mRankLoadedFlag) {
             $this->_loadRank();
         }
-            
+
         return $this->mRank;
     }
 }
 
 class UserUsersHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "users";
-    public $mPrimary = "uid";
-    public $mClass = "UserUsersObject";
-    
+    public $mTable = 'users';
+    public $mPrimary = 'uid';
+    public $mClass = 'UserUsersObject';
+
     public function &get($id)
     {
-        $obj =& parent::get($id);
-        
+        $obj = &parent::get($id);
+
         if (is_object($obj)) {
             $obj->_loadGroups();
         }
-        
+
         return $obj;
     }
-    
+
     public function &getObjects($criteria = null, $limit = null, $start = null, $id_as_key = false)
     {
-        $objects =& parent::getObjects($criteria, $limit, $start, $id_as_key);
+        $objects = &parent::getObjects($criteria, $limit, $start, $id_as_key);
 
         if (count($objects)) {
             foreach (array_keys($objects) as $key) {
                 $objects[$key]->_loadGroups();
             }
         }
-        
+
         return $objects;
     }
 
     /**
      * Return the array which consists of an integer as the uid. This member
      * function is more speedy than getObjects().
-     * 
+     *
+     * @param null $criteria
+     * @param null $limit
+     * @param null $start
+     * @param bool $id_as_key
      * @return Array
      */
     public function &getUids($criteria = null, $limit = null, $start = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
 
-        $sql = "SELECT uid FROM " . $this->mTable;
-        
+        $sql = 'SELECT uid FROM ' . $this->mTable;
+
         $limit = 0;
         $start = 0;
 
-        if ($criteria !== null && is_a($criteria, 'CriteriaElement')) {
+        if (null !== $criteria && $criteria instanceof \CriteriaElement) {
             $where = $this->_makeCriteria4sql($criteria);
-            
+
             if (trim($where)) {
-                $sql .= " WHERE " . $where;
+                $sql .= ' WHERE ' . $where;
             }
-            
-            $sorts = array();
+
+            $sorts = [];
             foreach ($criteria->getSorts() as $sort) {
                 $sorts[] = $sort['sort'] . ' ' . $sort['order'];
             }
-            if ($criteria->getSort() != '') {
-                $sql .= " ORDER BY " . implode(',', $sorts);
+            if ('' != $criteria->getSort()) {
+                $sql .= ' ORDER BY ' . implode(',', $sorts);
             }
-            
-            $limit=$criteria->getLimit();
-            $start=$criteria->getStart();
+
+            $limit = $criteria->getLimit();
+            $start = $criteria->getStart();
         }
-        
+
         $result = $this->db->query($sql, $limit, $start);
         if (!$result) {
             return $ret;
         }
-        
+
         while ($row = $this->db->fetchArray($result)) {
             $ret[] = $row['uid'];
         }
-        
+
         return $ret;
     }
-    
+
     public function insert(&$user, $force = false)
     {
         // check pass colmun length of users table
@@ -192,16 +201,16 @@ class UserUsersHandler extends XoopsObjectGenericHandler
 
         if (parent::insert($user, $force)) {
             $flag = true;
-            
+
             $user->_loadGroups();
 
-            $handler =& xoops_getmodulehandler('groups_users_link', 'user');
-            $oldLinkArr =& $handler->getObjects(new Criteria('uid', $user->get('uid')), $force);
-            
+            $handler = &xoops_getmodulehandler('groups_users_link', 'user');
+            $oldLinkArr = &$handler->getObjects(new Criteria('uid', $user->get('uid')), $force);
+
             //
             // Delete
             //
-            $oldGroupidArr = array();
+            $oldGroupidArr = [];
             foreach (array_keys($oldLinkArr) as $key) {
                 $oldGroupidArr[] = $oldLinkArr[$key]->get('groupid');
                 if (!in_array($oldLinkArr[$key]->get('groupid'), $user->Groups)) {
@@ -211,20 +220,20 @@ class UserUsersHandler extends XoopsObjectGenericHandler
 
             foreach ($user->Groups as $gid) {
                 if (!in_array($gid, $oldGroupidArr)) {
-                    $link =& $handler->create();
-                
+                    $link = &$handler->create();
+
                     $link->set('groupid', $gid);
                     $link->set('uid', $user->get('uid'));
-                
-                    $flag =& $handler->insert($link, $force);
-                
+
+                    $flag = &$handler->insert($link, $force);
+
                     unset($link);
                 }
             }
-            
+
             return $flag;
         }
-        
+
         return false;
     }
 }

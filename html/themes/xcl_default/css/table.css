@@ -1,0 +1,236 @@
+/*
+ * Theme XCL DEFAULT
+ * @version   2.3.2
+ * @author    Nuno Luciano ( https://github.com/gigamaster )
+ * @copyright 2005-2022 The XOOPSCube Project
+ * @license   BSD
+ * @link      https://github.com/xoopscube
+ */
+
+/* -------------------- -------------------- -------------------- -------------------- Tabs */
+
+
+/*!TODO specificity*/
+table.outer:not(:where([id^="cke_"] *, [class^="cke_"] *)) {
+    animation       : 5s ease-in-out;
+    background      : var(--table-bg);
+    border          : var(--table-border);
+    border-collapse : separate;
+    border-radius   : var(--table-radius);
+    box-shadow      : var(--table-shadow);
+    color           : var(--table-color);
+    font            : var(--table-font);
+    margin          : var(--table-margin);
+    overflow        : hidden;
+    padding         : 0;
+    text-align      : left;
+    vertical-align  : var(--table-vertical-align);
+    width           : var(--table-width);
+}
+/*table.outer thead tr:first-child th:first-child {*/
+table.outer thead th:first-child {
+    border-top-left-radius: var(--table-radius);
+}
+/*table.outer thead tr, th:last-child {*/
+table.outer thead th:last-child {
+    border-top-right-radius: var(--table-radius);
+}
+table.outer tfoot tr:first-child {
+    border-bottom-left-radius: var(--table-radius);;
+}
+
+    /*table tr:last-child td:last-child {*/
+/*    border: 2px solid green;*/
+/*    border-bottom-right-radius: var(--table-radius);*/
+/*}*/
+
+table.outer thead {
+    background      : var(--table-thead-bg);
+}
+table.outer th,
+table.outer th {
+    /*background      : var(--table-thead-bg);*/
+    font        : var(--table-thead-font);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding         : var(--table-padding);
+    /*vertical-align  : top;*/
+
+}
+table.outer tbody {
+    background      : var(--table-tbody-bg);
+}
+table.outer tbody td,
+table.outer tbody tr {
+    border-bottom   : var(--table-border);
+    padding         : var(--table-padding);
+}
+table.outer tbody tr:hover {
+    background      : var(--table-tr-on);
+}
+
+table.outer tfoot {
+    background      : var(--table-tfoot-bg);
+    display         : table-footer-group;
+}
+table.outer tfoot td {
+    padding         : var(--table-padding);
+    vertical-align  : middle;
+}
+
+
+/* Table row stripe */
+table.stripe tbody tr:nth-child(odd) {
+    background      : var(--table-bg-odd);
+}
+
+table.stripe tbody tr:nth-child(even) {
+    background      : var(--table-bg-even);
+}
+
+.box-table {
+    overflow        : hidden;
+    margin          : 0 auto;
+    display         : block;
+    width           : 95%;
+    padding         : 2.5%;
+}
+
+.list_center,
+.list_control {
+    text-align: center;
+}
+
+/* = Responsive table
+------------------------*/
+/* RESPONSIVE TABLE */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin:0;
+    padding:0;
+    width: 100%;
+}
+
+table tr {
+    border-bottom: var(--border);
+    padding: var(--space-3);
+}
+
+table th, table td {
+    padding: var(--space-5);
+    /*text-align: center;*/
+}
+
+
+@media screen and (max-width: 600px) {
+/*    table {
+        border: 0;
+    }
+    table thead {
+        display: none;
+    }
+    table tr {
+        margin-bottom: 10px;
+        display: block;
+    }
+    table tr:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    table tr:before {
+        display: block;
+        border-bottom: var(--border);
+    }
+    table td {
+        box-sizing: border-box;
+        display: block;
+        float: left;
+        clear: left;
+        width: 100%;
+        !*text-align: right;*!
+        !*font-size: 13px;*!
+        border-bottom: var(--border);
+    }
+    table td:last-child {
+        border-bottom: 0;
+    }
+    table td:before {
+        content: attr(data-label);
+        float: left;
+        text-transform: uppercase;
+        font-weight: bold;
+    }*/
+
+    /*table caption {*/
+    /*    background-image: none;*/
+    /*}*/
+    /*table thead {*/
+    /*    display: none;*/
+    /*}*/
+    /*table tbody td {*/
+    /*    display: block;*/
+    /*    padding: .6rem;*/
+    /*}*/
+    /*table tbody tr td:first-child {*/
+    /*    border-bottom:1px solid red*/
+    /*}*/
+    /*table tbody td:before {*/
+    /*    content: attr(data-label);*/
+    /*    font-weight: bold;*/
+    /*    display: inline-block;*/
+    /*    width: 6rem;*/
+    /*}*/
+
+    table {
+        width: 100%;
+    }
+    /* Table as blocks ! */
+    table, table caption, thead, tbody, tfoot, th, td, tr {
+        display: block;
+    }
+    /* Hide table headers. Do not use display: none;, for accessibility ! */
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    tr {}
+    td {
+        border: none;
+        display: initial;
+    }
+
+}
+/* = Error
+------------------------*/
+.error_table {
+    display             : block;
+    background          : #E05E5E;
+    color               : #D1D1D1;
+    font-size           : 3em;
+    padding             : 5%;
+    text-align          : center;
+    width               : 90%;
+}
+/* = Loader
+------------------------*/
+.loading_table {
+    animation           : table_loader 10s infinite ease;
+    background          : #d35400;
+    color               : #ecf0f1;
+    display             : block;
+    height              : 1em;
+    overflow            : hidden;
+    padding             : 0.5em;
+    text-align          : center;
+    width               : 0;
+
+}
+@keyframes table_loader{50%{width:100%}}
+@-webkit-keyframes table_loader{50%{width:100%}}
+@-moz-keyframes table_loader{50%{width:100%}}
+/*@-ms-keyframes table_loader{50%{width:100%}}*/
+/*@-o-keyframes table_loader{ 50%{width:100%}}*/

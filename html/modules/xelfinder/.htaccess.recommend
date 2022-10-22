@@ -1,0 +1,18 @@
+# Charactor Encoding
+AddDefaultCharset Off
+
+# PHP Settings
+# PHP5
+<IfModule mod_php5.c>
+  php_flag  output_buffering              Off
+  php_value output_handler                none
+  php_value default_charset               none
+  php_value mbstring.language             Japanese
+  php_flag  mbstring.encoding_translation Off
+  php_value mbstring.http_input           pass
+  php_value mbstring.http_output          pass
+  php_value mbstring.internal_encoding    UTF-8
+  php_value mbstring.detect_order         ASCII,JIS,UTF-8,SJIS,EUC-JP
+  php_value mbstring.substitute_character none
+</IfModule>
+

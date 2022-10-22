@@ -1,78 +1,104 @@
-<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<!DOCTYPE html>
+<html lang="<{$xoops_langcode}>">
 <head>
-<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
-<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>">
+<meta http-equiv="content-language" content="<{$xoops_langcode}>">
 <title><{$xoops_sitename}></title>
-<style type="text/css">
-<!--
-body {
-	padding:0px;
-	margin:0px;
-}
 
-img {
-	border: 0;
-}
 
-#header {
-	background-color:#000080;
-	vertical-align: middle;
-	text-align:left;
-	padding:5px;
-	margin:0px;
-}
+  <!-- x-layout -->
+  <link rel="stylesheet" media="screen" href="<{$xoops_url}>/common/css/x-layout.css">
+  <!-- XCL-Theme -->
+  <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_themecss}>">
 
-#installCompletedConfirm {
-	width:80%;
-	font-weight:bold;
-	color:#000000;
-	font-size:15px;
-	padding:20px 15px 20px 35px;
-	margin:40px auto;
-	background:#fff8ee url(<{$xoops_url}>/modules/legacy/admin/theme/icons/important.png) no-repeat 5px 15px;
-	border-top:1px solid #dfffdd;
-	border-left:1px solid #ffdddd;
-	border-right:1px solid #aaaaaa;
-	border-bottom:1px solid #aaaaaa;
-}
+  <style type="text/css">
+    body {
+      max-width: 1024px;
+      margin:2em auto;
+    }
+  </style>
 
-#installCompletedWarning {
-	width:80%;
-	font-weight:bold;
-	color:#770000;
-	font-size:15px;
-	padding:20px 15px 20px 35px;
-	margin:30px auto;
-	background:#ffaaaa url(<{$xoops_url}>/modules/legacy/admin/theme/icons/error.png) no-repeat 5px 15px;
-	border-top:1px solid #dfffdd;
-	border-left:1px solid #ffdddd;
-	border-right:1px solid #aaaaaa;
-	border-bottom:1px solid #aaaaaa;
-}
-
-#footer {
-	font-size: 12px;
-	vertical-align: middle;
-	text-align: center;
-	color:#666666;
-	border-bottom:1px solid silver;
-	border-top:1px solid silver;
-	background-color:#eeeeee;
-	margin:40px 0;
-	padding:3px;
-}
--->
-</style>
 </head>
+
 <body>
 
-  <div id="header"><a href="<{$xoops_url}>/"><img src="<{$xoops_url}>/images/logo.gif" alt="<{$xoops_sitename}>" title="<{$xoops_sitename}>" /></a></div>
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
-  <div id="installCompletedConfirm"><{$lang_message_confirm}></div>
-  <div id="installCompletedWarning"><{$lang_message_warning}></div>
 
-  <div id="footer">&nbsp;<{$xoops_sitename}></div>
+<div layout="column center-center">
+  <p><a href="<{$xoops_url}>/"><img src="<{$xoops_url}>/images/logo.png" alt="<{$xoops_sitename}>" aria-label="<{$xoops_sitename}>"></a></p>
+  <h3><{$xoops_sitename}></h3>
+</div>
+
+
+<hr>
+
+
+  <{* ----- INSTALL COMPLETE ----- *}>
+  <div class="success"><{$install_confirm}></div>
+
+
+
+  <{* ----- MAINFILE PERMISSIONS ----- *}>
+  <{if $is_chmod > 0}>
+    <div class="error">Main file is writable <span class="badge red"><{$fperm}></span></div>
+    <{else}>
+    <div class="success">Main file is read-only <span class="badge"><{$fperm}></span></div>
+  <{/if}>
+  
+
+
+  <{* ----- DIRECTORY /INSTALL ----- *}>
+  <{if !empty($install_warning_dir)}>
+  <div id="installCompletedWarning" class="error"><{$install_warning_dir}></div>
+  <{/if}>
+  
+
+
+  <{* ----- WARNING DEV ONLY ----- *}>
+  <div class="tips"><{$install_warning_tip}></div>
+  
+  
+  <hr>
+
+
+  <{* ----- ACTION CONTROLS ----- *}>
+  <div layout="column center-center">
+  <form method="post" action="">
+
+    <{if $is_chmod > 0}>
+    <!-- <input class="ui-button" type="submit" name="chmod" value="<{$btn_chmod}>"> -->
+    <button class="ui-button" type="submit" name="chmod" value="<{$btn_chmod}>">
+      <img class="svg" src="<{$xoops_url}>/images/icons/file-lock.svg" width="24px" height="24px" alt="file-lock"> <{$smarty.const._EDIT}> mainfile
+    </button>
+    <{/if}>
+
+    <{if !empty($install_warning_dir)}>
+    <!-- <input class="ui-button" type="submit" name="install_delete" value="<{$btn_delete}>"> -->
+    <button class="ui-button" type="submit" name="Delete" value="<{$btn_delete}>">
+    <img class="svg" src="<{$xoops_url}>/images/icons/delete.svg" width="24px" height="24px" alt=""> <{$smarty.const._DELETE}> install</button>
+    <{/if}>
+    
+
+
+    <!-- <input class="ui-button" type="submit" name="preload_active" value="<{$btn_preload}>"> -->
+    <button class="ui-button" type="submit" name="Activate" value="<{$btn_preload}>">
+    <img class="svg" src="<{$xoops_url}>/images/icons/tools.svg" width="24px" height="24px" alt="activate-preload"> <{$smarty.const._INSTALL}> Preload</button>
+
+  </form>
+</div>
+
+  <!-- x-utils -->
+  <script src="<{$xoops_url}>/common/js/jquery.min.js"></script>
+  <script src="<{$xoops_url}>/common/js/x-utils.js"></script>
+
+  <script>
+    $(function () {
+      // Inline SVG icons
+      $('.svg').renderClassSvg();
+    });
+  </script>
 
 </body>
 </html>

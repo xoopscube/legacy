@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/forms/UserRegisterEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/forms/UserRegisterEditForm.class.php';
 
 /***
  * @internal
@@ -33,7 +33,7 @@ class User_UserRegisterAction extends User_Action
             //
             // If user is registered, kick to his information page.
             //
-            $controller->executeForward(XOOPS_URL . "/user.php");
+            $controller->executeForward(XOOPS_URL . '/user.php');
         }
         if (empty($this->mConfig['allow_register'])) {
             $controller->executeRedirect(XOOPS_URL . '/', 6, _MD_USER_LANG_NOREGISTER);
@@ -70,7 +70,7 @@ class User_UserRegisterAction extends User_Action
             return;
         }
     
-        if ($this->mConfig['reg_dispdsclmr'] != 0 && $this->mConfig['reg_disclaimer'] != null) {
+        if (0 != $this->mConfig['reg_dispdsclmr'] && null != $this->mConfig['reg_disclaimer']) {
             $this->mEnableAgreeFlag = true;
             $this->mActionForm =new User_RegisterAgreeEditForm($this->mConfig);
         } else {
@@ -83,22 +83,27 @@ class User_UserRegisterAction extends User_Action
         $this->mActionForm->set('timezone_offset', $root->mContext->getXoopsConfig('default_TZ'));
     }
 
+    /**
+     * @param $controller
+     * @param $xoopsUser
+     * @param $renderSystem
+     */
     public function executeViewInput(&$controller, &$xoopsUser, &$renderSystem)
     {
-        $renderSystem->setTemplateName("user_register_form.html");
+        $renderSystem->setTemplateName('user_register_form.html');
         //
         // Get some objects for input form.
         //
         $tzoneHandler =& xoops_gethandler('timezone');
         $timezones =& $tzoneHandler->getObjects();
         $renderSystem->setAttribute('timezones', $timezones);
-        $renderSystem->setAttribute("actionForm", $this->mActionForm);
-        $renderSystem->setAttribute("enableAgree", $this->mEnableAgreeFlag);
+        $renderSystem->setAttribute('actionForm', $this->mActionForm);
+        $renderSystem->setAttribute('enableAgree', $this->mEnableAgreeFlag);
         if ($this->mEnableAgreeFlag) {
-            $renderSystem->setAttribute("disclaimer", $this->mConfig['reg_disclaimer']);
+            $renderSystem->setAttribute('disclaimer', $this->mConfig['reg_disclaimer']);
         }
         
-        $validators = array();
+        $validators = [];
         //
         // set `$validators[] = array('caption' => 'Any Caption HTML', 'element' => 'Form element HTML');` in the preload function.
         //

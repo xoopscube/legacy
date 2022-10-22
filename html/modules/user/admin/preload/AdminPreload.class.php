@@ -12,7 +12,7 @@ class User_AdminPreload extends XCube_ActionFilter
 {
     public function preBlockFilter()
     {
-        $this->mRoot->mDelegateManager->add('Legacy.Event.ThemeSettingChanged', array($this, 'doThemeSettingChanged'));
+        $this->mRoot->mDelegateManager->add('Legacy.Event.ThemeSettingChanged', [$this, 'doThemeSettingChanged']);
     }
     
     public function doThemeSettingChanged($mainTheme, $selectableThemes)
@@ -23,13 +23,13 @@ class User_AdminPreload extends XCube_ActionFilter
         
         $mainTheme = $db->quoteString($mainTheme);
         
-        $t_conds = array();
-        $t_conds[] = "theme <> " . $db->quoteString('');
+        $t_conds = [];
+        $t_conds[] = 'theme <> ' . $db->quoteString('');
         foreach ($selectableThemes as $theme) {
-            $t_conds[] = "theme <> " . $db->quoteString($theme);
+            $t_conds[] = 'theme <> ' . $db->quoteString($theme);
         }
         
-        $sql = "UPDATE ${table} SET theme=${mainTheme} WHERE " . join(' AND ', $t_conds);
+        $sql = "UPDATE ${table} SET theme=${mainTheme} WHERE " . implode(' AND ', $t_conds);
 
         $db->query($sql);
     }

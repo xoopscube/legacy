@@ -2,7 +2,7 @@
 /**
  * @file
  * @package profile
- * @version $Id$
+ * @version 2.3
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {

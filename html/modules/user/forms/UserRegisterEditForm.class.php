@@ -4,13 +4,13 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once dirname(__FILE__) . "/AbstractUserEditForm.class.php";
+require_once __DIR__ . '/AbstractUserEditForm.class.php';
 
 class User_RegisterEditForm extends User_AbstractUserEditForm
 {
     public function getTokenName()
     {
-        return "module.user.UserRegisterEditForm.TOKEN";
+        return 'module.user.UserRegisterEditForm.TOKEN';
     }
 
     public function prepare()
@@ -33,7 +33,7 @@ class User_RegisterEditForm extends User_AbstractUserEditForm
         // Set field properties
         //
         $this->mFieldProperties['uname'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['uname']->setDependsByArray(array('required', 'maxlength', 'minlength'));
+        $this->mFieldProperties['uname']->setDependsByArray(['required', 'maxlength', 'minlength']);
         $this->mFieldProperties['uname']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_UNAME, '25');
         $this->mFieldProperties['uname']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_UNAME, min(25, $this->mConfig['maxuname']));
         $this->mFieldProperties['uname']->addMessage('minlength', _MD_USER_ERROR_MINLENGTH, _MD_USER_LANG_UNAME, $this->mConfig['minuname']);
@@ -41,19 +41,19 @@ class User_RegisterEditForm extends User_AbstractUserEditForm
         $this->mFieldProperties['uname']->addVar('minlength', $this->mConfig['minuname']);
 
         $this->mFieldProperties['email'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['email']->setDependsByArray(array('required', 'maxlength', 'email'));
+        $this->mFieldProperties['email']->setDependsByArray(['required', 'maxlength', 'email']);
         $this->mFieldProperties['email']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_EMAIL, '60');
         $this->mFieldProperties['email']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_EMAIL, '60');
         $this->mFieldProperties['email']->addVar('maxlength', 60);
         $this->mFieldProperties['email']->addMessage('email', _MD_USER_ERROR_EMAIL, _MD_USER_LANG_EMAIL);
 
         $this->mFieldProperties['url'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['url']->setDependsByArray(array('maxlength'));
+        $this->mFieldProperties['url']->setDependsByArray(['maxlength']);
         $this->mFieldProperties['url']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_URL, '100');
         $this->mFieldProperties['url']->addVar('maxlength', 100);
 
         $this->mFieldProperties['pass'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['pass']->setDependsByArray(array('required', 'minlength', 'maxlength'));
+        $this->mFieldProperties['pass']->setDependsByArray(['required', 'minlength', 'maxlength']);
         $this->mFieldProperties['pass']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_PASS, '32');
         $this->mFieldProperties['pass']->addMessage('minlength', _MD_USER_ERROR_MINLENGTH, _MD_USER_LANG_PASS, $this->mConfig['minpass']);
         $this->mFieldProperties['pass']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_PASS, '32');
@@ -61,13 +61,13 @@ class User_RegisterEditForm extends User_AbstractUserEditForm
         $this->mFieldProperties['pass']->addVar('maxlength', 32);
 
         $this->mFieldProperties['vpass'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['vpass']->setDependsByArray(array('required', 'maxlength'));
+        $this->mFieldProperties['vpass']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['vpass']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_VERIFYPASS, '32');
         $this->mFieldProperties['vpass']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_VERIFYPASS, '32');
         $this->mFieldProperties['vpass']->addVar('maxlength', 32);
 
         $this->mFieldProperties['timezone_offset'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['timezone_offset']->setDependsByArray(array('required'));
+        $this->mFieldProperties['timezone_offset']->setDependsByArray(['required']);
         $this->mFieldProperties['timezone_offset']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_TIMEZONE_OFFSET);
     }
 
@@ -104,10 +104,10 @@ class User_RegisterAgreeEditForm extends User_RegisterEditForm
 
         // set fields
         $this->mFieldProperties['agree']=new XCube_FieldProperty($this);
-        $this->mFieldProperties['agree']->setDependsByArray(array('required', 'intRange'));
-        $this->mFieldProperties['agree']->addMessage("required", _MD_USER_ERROR_UNEEDAGREE);
-        $this->mFieldProperties['agree']->addMessage("intRange", _MD_USER_ERROR_UNEEDAGREE);
-        $this->mFieldProperties['agree']->addVar("min", 1);
-        $this->mFieldProperties['agree']->addVar("max", 1);
+        $this->mFieldProperties['agree']->setDependsByArray(['required', 'intRange']);
+        $this->mFieldProperties['agree']->addMessage('required', _MD_USER_ERROR_UNEEDAGREE);
+        $this->mFieldProperties['agree']->addMessage('intRange', _MD_USER_ERROR_UNEEDAGREE);
+        $this->mFieldProperties['agree']->addVar('min', 1);
+        $this->mFieldProperties['agree']->addVar('max', 1);
     }
 }

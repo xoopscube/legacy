@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 /***
  * @internal
@@ -19,7 +19,7 @@ class LegacyRender_BannerAdminEditForm extends XCube_ActionForm
 {
     public function getTokenName()
     {
-        return "module.legacyRender.BannerAdminEditForm.TOKEN" . $this->get('bid');
+        return 'module.legacyRender.BannerAdminEditForm.TOKEN' . $this->get('bid');
     }
 
     public function prepare()
@@ -39,27 +39,27 @@ class LegacyRender_BannerAdminEditForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['bid'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['bid']->setDependsByArray(array('required'));
+        $this->mFieldProperties['bid']->setDependsByArray(['required']);
         $this->mFieldProperties['bid']->addMessage('required', _AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_BID);
     
         $this->mFieldProperties['cid'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['cid']->setDependsByArray(array('required', 'objectExist'));
+        $this->mFieldProperties['cid']->setDependsByArray(['required', 'objectExist']);
         $this->mFieldProperties['cid']->addMessage('required', _AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_CID);
         $this->mFieldProperties['cid']->addMessage('objectExist', _AD_LEGACYRENDER_ERROR_OBJECT_EXIST, _AD_LEGACYRENDER_LANG_CID);
         $this->mFieldProperties['cid']->addVar('handler', 'bannerclient');
         $this->mFieldProperties['cid']->addVar('module', 'legacyRender');
     
         $this->mFieldProperties['imptotal'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['imptotal']->setDependsByArray(array('required'));
+        $this->mFieldProperties['imptotal']->setDependsByArray(['required']);
         $this->mFieldProperties['imptotal']->addMessage('required', _AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_IMPTOTAL);
     
         $this->mFieldProperties['imageurl'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['imageurl']->setDependsByArray(array('maxlength'));
+        $this->mFieldProperties['imageurl']->setDependsByArray(['maxlength']);
         $this->mFieldProperties['imageurl']->addMessage('maxlength', _AD_LEGACYRENDER_ERROR_MAXLENGTH, _AD_LEGACYRENDER_LANG_IMAGEURL, '255');
         $this->mFieldProperties['imageurl']->addVar('maxlength', '255');
     
         $this->mFieldProperties['clickurl'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['clickurl']->setDependsByArray(array('maxlength'));
+        $this->mFieldProperties['clickurl']->setDependsByArray(['maxlength']);
         $this->mFieldProperties['clickurl']->addMessage('maxlength', _AD_LEGACYRENDER_ERROR_MAXLENGTH, _AD_LEGACYRENDER_LANG_CLICKURL, '255');
         $this->mFieldProperties['clickurl']->addVar('maxlength', '255');
     }
@@ -72,14 +72,14 @@ class LegacyRender_BannerAdminEditForm extends XCube_ActionForm
         // If htmlbanner is clicked, htmlbanner is requreid.
         //
         if ($this->get('htmlbanner')) {
-            if (strlen($this->get('htmlcode')) == 0) {
+            if (0 == strlen($this->get('htmlcode'))) {
                 $this->addErrorMessage(XCube_Utils::formatString(_AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_HTMLCODE));
             }
         } else {
-            if (strlen($this->get('imageurl')) == 0) {
+            if (0 == strlen($this->get('imageurl'))) {
                 $this->addErrorMessage(XCube_Utils::formatString(_AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_IMAGEURL));
             }
-            if (strlen($this->get('clickurl')) == 0) {
+            if (0 == strlen($this->get('clickurl'))) {
                 $this->addErrorMessage(XCube_Utils::formatString(_AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_CLICKURL));
             }
         }

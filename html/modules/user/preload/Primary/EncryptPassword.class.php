@@ -5,12 +5,17 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 // load password_compat - https://github.com/ircmaxell/password_compat
 if (version_compare(PHP_VERSION, '5.5.0', '<') && (version_compare(PHP_VERSION, '5.3.7', '>=') || defined('PHP53_BCRYPT_Y2_FIXED'))) {
-    include_once dirname(dirname(dirname(__FILE__))) . '/compat/password.php';
+    include_once dirname(dirname(__DIR__)) . '/compat/password.php';
 }
 
 class User_EncryptPassword extends XCube_ActionFilter
 {
     private $useNativeHashing = false;
+
+    public function User_EncryptPassword(&$controller)
+    {
+        self::__construct($controller);
+    }
 
     public function __construct(&$controller)
     {
@@ -20,9 +25,9 @@ class User_EncryptPassword extends XCube_ActionFilter
 
     public function preFilter()
     {
-        $this->mController->mRoot->mDelegateManager->add("User.EncryptPassword", array($this, 'encryptPassword'));
-        $this->mController->mRoot->mDelegateManager->add("User.PasswordVerify", array($this, 'passwordVerify'));
-        $this->mController->mRoot->mDelegateManager->add("User.PasswordNeedsRehash", array($this, 'needsRehash'));
+        $this->mController->mRoot->mDelegateManager->add('User.EncryptPassword', [$this, 'encryptPassword']);
+        $this->mController->mRoot->mDelegateManager->add('User.PasswordVerify', [$this, 'passwordVerify']);
+        $this->mController->mRoot->mDelegateManager->add('User.PasswordNeedsRehash', [$this, 'needsRehash']);
     }
 
     public function encryptPassword(&$password)
@@ -38,7 +43,7 @@ class User_EncryptPassword extends XCube_ActionFilter
     public function passwordVerify(&$result, $password, $hash)
     {
         $result = false;
-        if (strlen($hash) === 32) {
+        if (32 === strlen($hash)) {
             $result = md5($password) === $hash;
         } else if ($this->useNativeHashing) {
             $result = password_verify($password, $hash);
@@ -51,7 +56,7 @@ class User_EncryptPassword extends XCube_ActionFilter
             $needs = password_needs_rehash($val, PASSWORD_DEFAULT);
         } else {
             // md5 length = 32
-            $needs = strlen($val) !== 32;
+            $needs = 32 !== strlen($val);
         }
     }
 }

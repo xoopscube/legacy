@@ -1,15 +1,17 @@
 <?php
 /**
- * @file
- * @package profile
- * @version $Id$
+ * @package    profile
+ * @version    2.3.1
+ * @author     Original Author Kilica
+ * @copyright  2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/profile/class/AbstractDeleteAction.class.php";
+require_once XOOPS_MODULE_PATH . '/profile/class/AbstractDeleteAction.class.php';
 
 class Profile_DataDeleteAction extends Profile_AbstractDeleteAction
 {
@@ -18,7 +20,7 @@ class Profile_DataDeleteAction extends Profile_AbstractDeleteAction
      */
     public function _getId()
     {
-        return intval(xoops_getrequest('uid'));
+        return (int)xoops_getrequest('uid');
     }
 
     /**
@@ -26,7 +28,7 @@ class Profile_DataDeleteAction extends Profile_AbstractDeleteAction
      */
     public function &_getHandler()
     {
-        $handler =& $this->mAsset->load('handler', "data");
+        $handler =& $this->mAsset->load('handler', 'data');
         return $handler;
     }
 
@@ -36,16 +38,17 @@ class Profile_DataDeleteAction extends Profile_AbstractDeleteAction
     public function _setupActionForm()
     {
         // $this->mActionForm =new Profile_DataDeleteForm();
-        $this->mActionForm =& $this->mAsset->create('form', "delete_data");
+        $this->mActionForm =& $this->mAsset->create('form', 'delete_data');
         $this->mActionForm->prepare();
     }
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewInput(&$render)
     {
-        $render->setTemplateName("profile_data_delete.html");
+        $render->setTemplateName('profile_data_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         #cubson::lazy_load('data', $this->mObject);
         $render->setAttribute('object', $this->mObject);
@@ -53,25 +56,28 @@ class Profile_DataDeleteAction extends Profile_AbstractDeleteAction
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewSuccess(&$render)
     {
-        $this->mRoot->mController->executeForward("./index.php?action=DataList");
+        $this->mRoot->mController->executeForward('./index.php?action=DataList');
     }
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewError(&$render)
     {
-        $this->mRoot->mController->executeRedirect("./index.php?action=DataList", 1, _MD_PROFILE_ERROR_DBUPDATE_FAILED);
+        $this->mRoot->mController->executeRedirect('./index.php?action=DataList', 1, _MD_PROFILE_ERROR_DBUPDATE_FAILED);
     }
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewCancel(&$render)
     {
-        $this->mRoot->mController->executeForward("./index.php?action=DataList");
+        $this->mRoot->mController->executeForward('./index.php?action=DataList');
     }
 }

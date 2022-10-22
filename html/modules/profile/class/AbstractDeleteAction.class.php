@@ -1,15 +1,18 @@
 <?php
 /**
- * @file
- * @package profile
- * @version $Id$
+ * @package    profile
+ * @version    2.3.1
+ * @author     Other Authors Nuno Luciano (aka gigamaster), 2020, XCL PHP7
+ * @author     Original Author Kilica
+ * @copyright  2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once dirname(__FILE__) . "/AbstractEditAction.class.php";
+require_once __DIR__ . '/AbstractEditAction.class.php';
 
 class Profile_AbstractDeleteAction extends Profile_AbstractEditAction
 {
@@ -38,7 +41,7 @@ class Profile_AbstractDeleteAction extends Profile_AbstractEditAction
         if ($this->mObjectHandler->delete($this->mObject)) {
             return PROFILE_FRAME_VIEW_SUCCESS;
         }
-    
+
         return PROFILE_FRAME_VIEW_ERROR;
     }
 }

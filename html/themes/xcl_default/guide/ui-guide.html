@@ -1,0 +1,98 @@
+<h3>Theme Style Guide</h3>
+
+<div class="ui-flex-column">
+    <p>The components and features of X-Layout Helper and jQuery UI
+        are designed to create visual consistency throughout the application.<br>
+        CSS custom properties (variables) have been widely implemented to ease
+        theming the user interface from a single file "ui-root.css"</p>
+</div>
+
+<hr>
+
+<style>
+    #gradient stop:nth-child(3) {stop-color:#d53a3a;}
+    #gradient stop:nth-child(2) {stop-color: #ffa500;}
+    #gradient stop:nth-child(1) {stop-color: #4b0082;}
+    .flex-item-guide {align-items:center;background:var(--color-2);border:1px solid var(--color-3);color:var(--color-8);
+        display:flex;font-size:14px;row-gap:10px;column-gap:10px;height:80px;justify-content:center;margin:5px;
+        max-width:80px;min-width:80px;text-align:center;transition:all ease-in 1s;}
+    .flex-item-guide:hover {background:var(--color-3);border-image-slice:1;border-width:1px;border-image-source:linear-gradient(to right, #743ad5, #ffa500, #d53a3a);}
+    .flex-item-guide > a > svg.uix {display:block;width:2em;height:2em;max-height: 80px;margin:0 auto 10px;transition:all ease-in 1s;opacity:0.3;fill:url("#gradient");}
+    .flex-item-guide:hover > a > svg.uix {opacity: 1;}.flex-item-guide:hover > a > svg.uix path {fill:url("#gradient");transition:ease-in 2s;opacity:1;}
+</style>
+
+<div layout="rows center" class="ui-flex-row" id="ui-theme-design">
+    <div class="ui-flex-column flex-item-guide"><a href="ui-component.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24"><g fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.5 1.5L15 0h7.5L24 1.5V9l-1.5 1.5H15L13.5 9V1.5zm1.5 0V9h7.5V1.5H15zM0 15V6l1.5-1.5H9L10.5 6v7.5H18l1.5 1.5v7.5L18 24H1.5L0 22.5V15zm9-1.5V6H1.5v7.5H9zM9 15H1.5v7.5H9V15zm1.5 7.5H18V15h-7.5v7.5z"/></g></svg>
+    Component</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-theme-accordion.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24"><path d="M21 18H2v2h19v-2m-2-8v4H4v-4h15m1-2H3c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h17c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1m1-4H2v2h19V4z" fill="currentColor"/></svg>
+    Accordion</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-theme-autocomplete.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24"><path d="M12.68 6h-1.36L7 16h2l.73-2h4.54l.73 2h2L12.68 6m-2.38 6.5L12 8l1.7 4.5h-3.4m7.1 7.9L19 22h-5v-5l2 2c2.39-1.39 4-4.05 4-7c0-4.41-3.59-8-8-8s-8 3.59-8 8c0 2.95 1.61 5.53 4 6.92v2.24C4.47 19.61 2 16.1 2 12C2 6.5 6.5 2 12 2s10 4.5 10 10c0 3.53-1.83 6.62-4.6 8.4z" fill="currentColor"/></svg>
+    Auto-Fill</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-theme-badge.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23 4.5C23 6.43 21.43 8 19.5 8S16 6.43 16 4.5S17.57 1 19.5 1S23 2.57 23 4.5M19.5 10H19v9H5V5h9.03C14 4.84 14 4.67 14 4.5c0-.5.08-1 .21-1.5H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14c1.11 0 2-.89 2-2V9.79c-.5.13-1 .21-1.5.21z" fill="currentColor"/></svg>
+    Badge</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-theme-buttons.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="currentColor" d="M15.7 5.3l-1-1c-.2-.2-.4-.3-.7-.3H1c-.6 0-1 .4-1 1v5c0 .3.1.6.3.7l1 1c.2.2.4.3.7.3h13c.6 0 1-.4 1-1V6c0-.3-.1-.5-.3-.7zM14 10H1V5h13v5z"/></svg>
+    Button</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-theme-colors.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none"><path d="M7 21a4 4 0 0 1-4-4V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v12a4 4 0 0 1-4 4zm0 0h12a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 0 1 2.828 0l2.829 2.829a2 2 0 0 1 0 2.828l-8.486 8.485M7 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
+    Colors</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-theme-cursor.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.07 14.27a.997.997 0 0 1 1.33.48l2.3 4.99l1.8-.85l-2.31-4.98c-.24-.5-.02-1.1.48-1.33l.28-.08l2.3-.45L8 5.12V15.9l1.82-1.47l.25-.16m3.57 7.7a.99.99 0 0 1-1.33-.47l-2.18-4.74l-2.51 2.02c-.17.14-.38.22-.62.22a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1c.24 0 .47.09.64.23l.01-.01l11.49 9.64a1.001 1.001 0 0 1-.44 1.75l-3.16.62l2.2 4.73c.26.5.02 1.09-.48 1.32l-3.62 1.69z" fill="currentColor"/></svg>
+    Cursor</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-theme-date.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 1v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h6.1c1.26 1.24 2.99 2 4.9 2c3.87 0 7-3.13 7-7c0-1.91-.76-3.64-2-4.9V5a2 2 0 0 0-2-2h-1V1h-2v2H8V1M5 5h14v2H5m0 2h14v.67c-.91-.43-1.93-.67-3-.67c-3.87 0-7 3.13-7 7c0 1.07.24 2.09.67 3H5m11-7.85c2.68 0 4.85 2.17 4.85 4.85c0 2.68-2.17 4.85-4.85 4.85c-2.68 0-4.85-2.17-4.85-4.85c0-2.68 2.17-4.85 4.85-4.85M15 13v3.69l3.19 1.84l.75-1.3l-2.44-1.41V13z" fill="currentColor"/></svg>
+    Date</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-theme-form.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="currentColor" d="M5 3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 5 3.5z"/><path fill="currentColor" d="M3.5 0C1.6 0 0 1.6 0 3.5S1.6 7 3.5 7S7 5.4 7 3.5S5.4 0 3.5 0zm0 6C2.1 6 1 4.9 1 3.5S2.1 1 3.5 1S6 2.1 6 3.5S4.9 6 3.5 6z"/><path fill="currentColor" d="M3.5 8C1.6 8 0 9.6 0 11.5S1.6 15 3.5 15S7 13.4 7 11.5S5.4 8 3.5 8zm0 6C2.1 14 1 12.9 1 11.5S2.1 9 3.5 9S6 10.1 6 11.5S4.9 14 3.5 14z"/><path fill="currentColor" d="M8 2h8v3H8V2z"/><path fill="currentColor" d="M8 10h8v3H8v-3z"/></svg>
+    Form</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-theme-icons.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.6 10.9c.1.1.2.1.4.1h7c.6 0 1-.4 1-1c0-.2 0-.3-.1-.4l-3.5-7c-.3-.5-.9-.7-1.4-.4c-.1.1-.3.2-.4.4l-3.5 7c-.2.4 0 1 .5 1.3zm3.9-5.7L19.4 9h-3.8l1.9-3.8zM6.5 2C4 2 2 4 2 6.5S4 11 6.5 11S11 9 11 6.5S9 2 6.5 2zm0 7C5.1 9 4 7.9 4 6.5S5.1 4 6.5 4S9 5.1 9 6.5S7.9 9 6.5 9zm4.2 4.3c-.4-.4-1-.4-1.4 0l-2.8 2.8l-2.8-2.8c-.4-.4-1-.4-1.4 0c-.4.4-.4 1 0 1.4l2.8 2.8l-2.8 2.8c-.4.4-.4 1 0 1.4s1 .4 1.4 0l2.8-2.8l2.8 2.8c.4.4 1 .4 1.4 0c.4-.4.4-1 0-1.4l-2.8-2.8l2.8-2.8c.4-.4.4-1 0-1.4zM21 13h-7c-.6 0-1 .4-1 1v7c0 .6.4 1 1 1h7c.6 0 1-.4 1-1v-7c0-.6-.4-1-1-1zm-1 7h-5v-5h5v5z" fill="currentColor"/></svg>
+    Icons</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-theme-layout.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M26 6v4H6V6h20m0-2H6a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z" fill="currentColor"></path><path d="M10 16v10H6V16h4m0-2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V16a2 2 0 0 0-2-2z" fill="currentColor"></path><path d="M26 16v10H16V16h10m0-2H16a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V16a2 2 0 0 0-2-2z" fill="currentColor"></path></svg>
+    Layout</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-theme-menu.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 18h13v-2H3v2zm0-5h10v-2H3v2zm0-7v2h13V6H3zm18 9.59L17.42 12L21 8.41L19.59 7l-5 5l5 5L21 15.59z" fill="currentColor"/></svg>
+    Menu</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-theme-modal.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="currentColor" d="M0 1v14h16V1H0zm15 13H1V4h14v10zm0-11h-1V2h1v1z"/></svg>
+    Modal</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-theme-motion.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.88 7.88l1.54 1.54C4.15 10.23 4 11.1 4 12c0 4.41 3.59 8 8 8s8-3.59 8-8s-3.59-8-8-8c-.9 0-1.77.15-2.58.42L7.89 2.89C9.15 2.32 10.54 2 12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12c0-1.47.32-2.86.88-4.12zM7 5.5C7 6.33 6.33 7 5.5 7S4 6.33 4 5.5S4.67 4 5.5 4S7 4.67 7 5.5zm5.03 3.49h-.07L10.8 12.3h2.39l-1.16-3.31zm-.74-1.49h1.43l3.01 8h-1.39l-.72-2.04h-3.23l-.73 2.04H8.28l3.01-8z" fill="currentColor"/></svg>
+    Motion</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-theme-notify.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v12a2 2 0 0 0 2 2h4l4 4l4-4h4c1.11 0 2-.89 2-2V4a2 2 0 0 0-2-2m0 14h-4.83L12 19.17L8.83 16H4V4h16v12m-9.25-2.29l-3.5-3.5l1.41-1.42l2.09 2.09l4.59-4.58l1.41 1.41l-6 6z" fill="currentColor"/></svg>
+    Notification</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-theme-progressbar.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M18 5H2C.9 5 0 5.9 0 7v6c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 8H2V7h16v6zM7 8H3v4h4V8zm5 0H8v4h4V8z" fill="currentColor"/></svg>
+    Progressbar</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-theme-selectmenu.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 5h3l-1.5 2L15 5M5 2h14a2 2 0 0 1 2 2v16c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2m0 2v4h14V4H5m0 16h14V10H5v10m2-8h10v2H7v-2m0 4h10v2H7v-2z" fill="currentColor"/></svg>
+    Selectmenu</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-theme-space.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="currentColor" d="M0 0h1v1H0V0z"/><path fill="currentColor" d="M2 0h1v1H2V0z"/><path fill="currentColor" d="M1 1h1v1H1V1z"/><path fill="currentColor" d="M0 2h1v1H0V2z"/><path fill="currentColor" d="M2 2h1v1H2V2z"/><path fill="currentColor" d="M1 3h1v1H1V3z"/><path fill="currentColor" d="M0 4h1v1H0V4z"/><path fill="currentColor" d="M1 5h1v1H1V5z"/><path fill="currentColor" d="M0 6h1v1H0V6z"/><path fill="currentColor" d="M1 7h1v1H1V7z"/><path fill="currentColor" d="M0 8h1v1H0V8z"/><path fill="currentColor" d="M1 9h1v1H1V9z"/><path fill="currentColor" d="M0 10h1v1H0v-1z"/><path fill="currentColor" d="M1 11h1v1H1v-1z"/><path fill="currentColor" d="M0 12h1v1H0v-1z"/><path fill="currentColor" d="M1 13h1v1H1v-1z"/><path fill="currentColor" d="M0 14h1v1H0v-1z"/><path fill="currentColor" d="M2 14h1v1H2v-1z"/><path fill="currentColor" d="M1 15h1v1H1v-1z"/><path fill="currentColor" d="M3 15h1v1H3v-1z"/><path fill="currentColor" d="M5 15h1v1H5v-1z"/><path fill="currentColor" d="M4 0h1v1H4V0z"/><path fill="currentColor" d="M3 1h1v1H3V1z"/><path fill="currentColor" d="M5 1h1v1H5V1z"/><path fill="currentColor" d="M4 14h1v1H4v-1z"/><path fill="currentColor" d="M6 0h1v1H6V0z"/><path fill="currentColor" d="M8 0h1v1H8V0z"/><path fill="currentColor" d="M7 1h1v1H7V1z"/><path fill="currentColor" d="M6 14h1v1H6v-1z"/><path fill="currentColor" d="M8 14h1v1H8v-1z"/><path fill="currentColor" d="M7 15h1v1H7v-1z"/><path fill="currentColor" d="M9 15h1v1H9v-1z"/><path fill="currentColor" d="M11 15h1v1h-1v-1z"/><path fill="currentColor" d="M10 0h1v1h-1V0z"/><path fill="currentColor" d="M9 1h1v1H9V1z"/><path fill="currentColor" d="M11 1h1v1h-1V1z"/><path fill="currentColor" d="M10 14h1v1h-1v-1z"/><path fill="currentColor" d="M12 0h1v1h-1V0z"/><path fill="currentColor" d="M14 0h1v1h-1V0z"/><path fill="currentColor" d="M13 1h1v1h-1V1z"/><path fill="currentColor" d="M13 2h-1v1h-1V2h-1v1H9V2H8v1H7V2H6v1H5V2H4v1H3v1H2v1h1v1H2v1h1v1H2v1h1v1H2v1h1v1H2v1h1v1h1v-1h1v1h1v-1h1v1h1v-1h1v1h1v-1h1v1h1v-1h1v-1h1v-1h-1v-1h1V9h-1V8h1V7h-1V6h1V5h-1V4h1V3h-1V2zm-1 10H4V4h8v8z"/><path fill="currentColor" d="M14 2h1v1h-1V2z"/><path fill="currentColor" d="M14 4h1v1h-1V4z"/><path fill="currentColor" d="M14 6h1v1h-1V6z"/><path fill="currentColor" d="M14 8h1v1h-1V8z"/><path fill="currentColor" d="M14 10h1v1h-1v-1z"/><path fill="currentColor" d="M14 12h1v1h-1v-1z"/><path fill="currentColor" d="M13 13h1v1h-1v-1z"/><path fill="currentColor" d="M12 14h1v1h-1v-1z"/><path fill="currentColor" d="M14 14h1v1h-1v-1z"/><path fill="currentColor" d="M13 15h1v1h-1v-1z"/><path fill="currentColor" d="M15 15h1v1h-1v-1z"/><path fill="currentColor" d="M15 1h1v1h-1V1z"/><path fill="currentColor" d="M15 3h1v1h-1V3z"/><path fill="currentColor" d="M15 5h1v1h-1V5z"/><path fill="currentColor" d="M15 7h1v1h-1V7z"/><path fill="currentColor" d="M15 9h1v1h-1V9z"/><path fill="currentColor" d="M15 11h1v1h-1v-1z"/><path fill="currentColor" d="M15 13h1v1h-1v-1z"/></svg>
+    Spacing</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-theme-slider.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15"><g fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.3 7.5a1.8 1.8 0 1 1-3.6 0a1.8 1.8 0 0 1 3.6 0zm.905.5a2.751 2.751 0 0 1-5.41 0H.5a.5.5 0 0 1 0-1h5.295a2.751 2.751 0 0 1 5.41 0H14.5a.5.5 0 0 1 0 1h-3.295z" fill="currentColor"/></g></svg>
+    Slider</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-theme-table.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><g fill="currentColor"><path d="M13.5 2h-12l-.5.5v11l.5.5h12l.5-.5v-11l-.5-.5zM2 3h11v1H2V3zm7 4H6V5h3v2zm0 1v2H6V8h3zM2 5h3v2H2V5zm0 3h3v2H2V8zm0 5v-2h3v2H2zm4 0v-2h3v2H6zm7 0h-3v-2h3v2zm0-3h-3V8h3v2zm-3-3V5h3v2h-3z"/></g></svg>
+    Table</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-theme-tabs.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="currentColor" d="M14 4V2H0v12h16V4h-2zm-4-1h3v1h-3V3zM6 3h3v1H6V3zm9 10H1V3h4v2h10v8z"/></svg>
+     Tabs</a></div>
+    <div class="ui-flex-column flex-item-guide"><a href="ui-theme-typo.html">
+    <svg class="uix" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1 8h6v2H5v6H3v-6H1zm14-4h-3.934v12H8.933V4H4.999V2h10z" fill="currentColor"/></svg>
+    Typo</a></div>
+
+    <script>window.onload = function(){var svg = document.querySelectorAll (".uix");var i;for (i = 0; i < svg.length; i++) {
+        /* svg[i].style.backgroundColor = "var(--color-5)"; svg[i].style.stroke ="var(--color-7)"; svg[i].setAttribute("fill", "url(#gradient)");*/
+    svg[i].insertAdjacentHTML('afterbegin', '<defs><linearGradient id="gradient"><stop offset="0%"/><stop offset="50%"/><stop offset="100%"/></linearGradient></defs>');}}
+    </script>
+</div>
+
+<hr>

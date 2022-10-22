@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractDeleteAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/AvatarAdminDeleteForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractDeleteAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/AvatarAdminDeleteForm.class.php';
 
 class User_AvatarDeleteAction extends User_AbstractDeleteAction
 {
@@ -61,23 +61,23 @@ class User_AvatarDeleteAction extends User_AbstractDeleteAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("avatar_delete.html");
+        $render->setTemplateName('avatar_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
     }
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=AvatarList");
+        $controller->executeForward('./index.php?action=AvatarList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=AvatarList", 1, _MD_USER_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=AvatarList', 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }
     
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=AvatarList");
+        $controller->executeForward('./index.php?action=AvatarList');
     }
 }

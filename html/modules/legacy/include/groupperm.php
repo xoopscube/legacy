@@ -1,17 +1,14 @@
 <?php
 /**
- *
- * @package XOOPS2
- * @version $Id: groupperm.php,v 1.3 2008/09/25 15:12:38 kilica Exp $
- * @copyright Copyright (c) 2000 XOOPS.org  <http://www.xoops.org/>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
- * This file has been moved from XOOPS2 for some things which need
- * full-compatibility with XOOPS2.
- *
+ * @package    xoops2
+ * @version    $Id: groupperm.php,v 1.3 2008/09/25 15:12:38 kilica Exp $
+ * @copyright  (c) 2000-2003 XOOPS.org
+ * @license    GPL 2.0
+ * @brief      This file has been moved from XOOPS2 for some things which need
+ *             full-compatibility with XOOPS2.
  */
 include '../../../include/cp_header.php';
-$modid = isset($_POST['modid']) ? intval($_POST['modid']) : 0;
+$modid = isset($_POST['modid']) ? (int)$_POST['modid'] : 0;
 
 //
 // Load Message catalog
@@ -19,7 +16,7 @@ $modid = isset($_POST['modid']) ? intval($_POST['modid']) : 0;
 $root =& XCube_Root::getSingleton();
 $root->mLanguageManager->loadModuleAdminMessageCatalog('legacy');
 
-// we dont want system module permissions to be changed here
+// we don't want system module permissions to be changed here
 if ($modid <= 1 || !is_object($xoopsUser) || !$xoopsUser->isAdmin($modid)) {
     redirect_header(XOOPS_URL.'/index.php', 1, _NOPERM);
     exit();
@@ -35,16 +32,16 @@ $group_list =& $member_handler->getGroupList();
 if (is_array($_POST['perms']) && !empty($_POST['perms'])) {
     $gperm_handler = xoops_gethandler('groupperm');
     foreach ($_POST['perms'] as $perm_name => $perm_data) {
-        if (false != $gperm_handler->deleteByModule($modid, $perm_name)) {
+        if (false !== $gperm_handler->deleteByModule($modid, $perm_name)) {
             if (isset($perm_data['groups']) && is_array($perm_data['groups'])) {
                 foreach ($perm_data['groups'] as $group_id => $item_ids) {
                     foreach ($item_ids as $item_id => $selected) {
-                        if ($selected == 1) {
+                        if (1 == $selected) {
                             // make sure that all parent ids are selected as well
-                            if ($perm_data['parents'][$item_id] != '') {
+                            if ('' !== $perm_data['parents'][$item_id]) {
                                 $parent_ids = explode(':', $perm_data['parents'][$item_id]);
                                 foreach ($parent_ids as $pid) {
-                                    if ($pid != 0 && !in_array($pid, array_keys($item_ids))) {
+                                    if (0 !== $pid && !array_key_exists($pid, $item_ids)) {
                                         // one of the parent items were not selected, so skip this item
                                         $msg[] = sprintf(_MD_AM_PERMADDNG, '<b>'.$perm_name.'</b>', '<b>'.$perm_data['itemname'][$item_id].'</b>', '<b>'.$group_list[$group_id].'</b>').' ('._MD_AM_PERMADDNGP.')';
                                         continue 2;
@@ -74,13 +71,13 @@ if (is_array($_POST['perms']) && !empty($_POST['perms'])) {
 
 $backlink = XOOPS_URL.'/admin.php';
 if ($module->getVar('hasadmin')) {
-    $adminindex = isset($_POST['redirect_url']) ? $_POST['redirect_url'] : $module->getInfo('adminindex');
+    $adminindex = $_POST['redirect_url'] ?? $module->getInfo('adminindex');
     if ($adminindex) {
         $backlink = XOOPS_URL.'/modules/'.$module->getVar('dirname').'/'.$adminindex;
     }
 }
 
-$msg[] = '<br /><br /><a href="'.$backlink.'">'._BACK.'</a>';
+$msg[] = '<br><br><a href="'.$backlink.'">'._BACK.'</a>';
 xoops_cp_header();
 xoops_result($msg);
 xoops_cp_footer();

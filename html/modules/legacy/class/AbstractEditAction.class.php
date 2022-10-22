@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: AbstractEditAction.class.php,v 1.3 2008/09/25 15:11:27 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  *
  */
 
@@ -33,12 +33,12 @@ class Legacy_AbstractEditAction extends Legacy_Action
     public function _setupObject()
     {
         $id = $this->_getId();
-        
+
         $this->mObjectHandler =& $this->_getHandler();
-        
+
         $this->mObject =& $this->mObjectHandler->get($id);
-    
-        if ($this->mObject == null && $this->isEnableCreate()) {
+
+        if (null === $this->mObject && $this->isEnableCreate()) {
             $this->mObject =& $this->mObjectHandler->create();
         }
     }
@@ -56,36 +56,36 @@ class Legacy_AbstractEditAction extends Legacy_Action
 
     public function getDefaultView(&$controller, &$xoopsUser)
     {
-        if ($this->mObject == null) {
+        if (null === $this->mObject) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
-    
+
         $this->mActionForm->load($this->mObject);
-    
+
         return LEGACY_FRAME_VIEW_INPUT;
     }
 
     public function execute(&$controller, &$xoopsUser)
     {
-        if ($this->mObject == null) {
+        if (null === $this->mObject) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
-    
-        if (xoops_getrequest('_form_control_cancel') != null) {
+
+        if (null !== xoops_getrequest('_form_control_cancel')) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
 
         $this->mActionForm->load($this->mObject);
-        
+
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
-    
+
         if ($this->mActionForm->hasError()) {
             return LEGACY_FRAME_VIEW_INPUT;
         }
-    
+
         $this->mActionForm->update($this->mObject);
-        
+
         return $this->_doExecute($this->mObject) ? LEGACY_FRAME_VIEW_SUCCESS
                                                  : LEGACY_FRAME_VIEW_ERROR;
     }

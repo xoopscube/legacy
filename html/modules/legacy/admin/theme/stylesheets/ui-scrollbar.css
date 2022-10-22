@@ -1,0 +1,59 @@
+/*
+    XOOPSCube Theme : XCL Admin Flex Grid
+    Distribution : XOOPSCube XCL 2.3
+    Version : 1.0.0
+    Author : Nuno Luciano aka Gigamaster
+    Date : 2021-10-28
+    URL : https://github.com/xoopscube/
+
+-------------------- -------------------- -------------------- -------------------- SCROLLBAR */
+
+/*	-------------------- -------------------- -------------------- Text Selection */
+::selection {
+
+    background-color	: rgba(15, 15, 15, 0.85);
+    color               : var(  --color-2	 );
+
+}
+
+
+/*	-------------------- -------------------- -------------------- TODO
+    Implement crosshover css/js scrollbar
+*/
+::-webkit-scrollbar {
+    background			: transparent;
+    width				: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background			: rgba(255, 147, 5, 0.5);
+    box-shadow			: inset 0px 4px 0px 4px rgba(15, 15, 15, 0.85);
+    border-radius		: 0px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background			: rgba(15, 15, 15, 0.80);
+    border-radius		: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background			: rgba(255, 147, 5, 0.5);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background			: linear-gradient(left, #272727, rgba(255, 147, 5, 0.5));
+}
+::-webkit-scrollbar-corner {
+    border				: none;
+}
+
+/* transparent resizer */
+::-webkit-resizer {
+    background			: transparent;
+    border-width        : 8px;
+    border-style        : solid;
+    border-color        : transparent hsl(215, 15%, 25%) hsl(216, 17%, 17%) transparent;
+}

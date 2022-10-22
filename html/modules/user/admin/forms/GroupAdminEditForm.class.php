@@ -8,14 +8,14 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 class User_GroupAdminEditForm extends XCube_ActionForm
 {
     public function getTokenName()
     {
-        return "module.user.GroupAdminEditForm.TOKEN" . $this->get('groupid');
+        return 'module.user.GroupAdminEditForm.TOKEN' . $this->get('groupid');
     }
 
     public function prepare()
@@ -31,11 +31,11 @@ class User_GroupAdminEditForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['groupid'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['groupid']->setDependsByArray(array('required'));
+        $this->mFieldProperties['groupid']->setDependsByArray(['required']);
         $this->mFieldProperties['groupid']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_GROUPID);
     
         $this->mFieldProperties['name'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['name']->setDependsByArray(array('required', 'maxlength'));
+        $this->mFieldProperties['name']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['name']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_GROUP_NAME, '50');
         $this->mFieldProperties['name']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _AD_USER_LANG_GROUP_NAME, '50');
         $this->mFieldProperties['name']->addVar('maxlength', '50');

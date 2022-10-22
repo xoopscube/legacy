@@ -13,10 +13,15 @@ class Profile_DataObject extends XoopsSimpleObject
 {
     public $mDef = null;
 
+    public function Profile_DataObject()
+    {
+        self::__construct();
+    }
+
     /**
      * @public
      */
-    public function Profile_DataObject()
+    public function __construct()
     {
         $handler = Legacy_Utils::getModuleHandler('definitions', 'profile');
         $this->mDef = $handler->getDefinitions(false);
@@ -29,12 +34,12 @@ class Profile_DataObject extends XoopsSimpleObject
 
     /**
      * showField
-     * 
-     * @param	string	$key
-     * @param	Enum  $option
-     * 
-     * @return	mixed
-    **/
+     *
+     * @param string $key
+     * @param int    $option
+     *
+     * @return    mixed
+     */
     public function showField(/*** string ***/ $key, /*** Enum ***/ $option=2)
     {
         return $this->mDef[$key]->mFieldType->showField($this, $key, $option);
@@ -53,7 +58,7 @@ class Profile_DataObject extends XoopsSimpleObject
         $type = $this->mDef[$key]->get('type');
         switch ($type) {
             case Profile_FormType::TEXT:
-                if ($this->mDef[$key]->get('options')=='html') {
+                if ('html' == $this->mDef[$key]->get('options')) {
                     $value = XCube_Root::getSingleton()->mTextFilter->purifyHtml($value);
                 }
                 $this->set($key, $value);
@@ -80,7 +85,7 @@ class Profile_DataHandler extends XoopsObjectGenericHandler
 
     public function insert(&$obj, $force = false)
     {
-        if (count($obj->mDef)===0) {
+        if (0 === count($obj->mDef)) {
             return true;
         }
         return parent::insert($obj, $force = false);

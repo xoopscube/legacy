@@ -1,16 +1,19 @@
 <?php
 /**
- * @file
- * @package profile
- * @version $Id$
+ * @package    profile
+ * @version    2.3.1
+ * @author     Other Authors Nuno Luciano (aka gigamaster), 2020, XCL PHP7
+ * @author     Original Author Kilica
+ * @copyright  2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 class Profile_Admin_DefinitionsEditForm extends XCube_ActionForm
 {
@@ -19,7 +22,7 @@ class Profile_Admin_DefinitionsEditForm extends XCube_ActionForm
      */
     public function getTokenName()
     {
-        return "module.profile.Admin_DefinitionsEditForm.TOKEN";
+        return 'module.profile.Admin_DefinitionsEditForm.TOKEN';
     }
 
     /**
@@ -41,44 +44,45 @@ class Profile_Admin_DefinitionsEditForm extends XCube_ActionForm
         $this->mFormProperties['description'] =new XCube_TextProperty('description');
         $this->mFormProperties['access'] =new XCube_TextProperty('access');
         $this->mFormProperties['options'] =new XCube_TextProperty('options');
-    
+
         //
         // Set field properties
         //
         $this->mFieldProperties['field_id'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['field_id']->setDependsByArray(array('required'));
+        $this->mFieldProperties['field_id']->setDependsByArray(['required']);
         $this->mFieldProperties['field_id']->addMessage('required', _MD_PROFILE_ERROR_REQUIRED, _MD_PROFILE_LANG_FIELD_ID);
-    
+
         $this->mFieldProperties['field_name'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['field_name']->setDependsByArray(array('required', 'maxlength'));
+        $this->mFieldProperties['field_name']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['field_name']->addMessage('required', _MD_PROFILE_ERROR_REQUIRED, _MD_PROFILE_LANG_FIELD_NAME, '32');
         $this->mFieldProperties['field_name']->addMessage('maxlength', _MD_PROFILE_ERROR_MAXLENGTH, _MD_PROFILE_LANG_FIELD_NAME, '32');
         $this->mFieldProperties['field_name']->addVar('maxlength', '32');
-    
+
         $this->mFieldProperties['label'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['label']->setDependsByArray(array('required', 'maxlength'));
-        $this->mFieldProperties['label']->addMessage('required', _MD_PROFILE_ERROR_REQUIRED, _MD_PROFILE_LANG_LABEL, '255');
-        $this->mFieldProperties['label']->addMessage('maxlength', _MD_PROFILE_ERROR_MAXLENGTH, _MD_PROFILE_LANG_LABEL, '255');
-        $this->mFieldProperties['label']->addVar('maxlength', '255');
-    
+        $this->mFieldProperties['label']->setDependsByArray(['required', 'maxlength']);
+        $this->mFieldProperties['label']->addMessage('required', _MD_PROFILE_ERROR_REQUIRED, _MD_PROFILE_LANG_LABEL, '191');
+        $this->mFieldProperties['label']->addMessage('maxlength', _MD_PROFILE_ERROR_MAXLENGTH, _MD_PROFILE_LANG_LABEL, '191');
+        $this->mFieldProperties['label']->addVar('maxlength', '191');
+
         $this->mFieldProperties['type'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['type']->setDependsByArray(array('maxlength'));
+        $this->mFieldProperties['type']->setDependsByArray(['maxlength']);
 //		$this->mFieldProperties['type']->addMessage('required', _MD_PROFILE_ERROR_REQUIRED, _MD_PROFILE_LANG_TYPE, '16');
         $this->mFieldProperties['type']->addMessage('maxlength', _MD_PROFILE_ERROR_MAXLENGTH, _MD_PROFILE_LANG_TYPE, '32');
         $this->mFieldProperties['type']->addVar('maxlength', '32');
-    
+
         $this->mFieldProperties['validation'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['validation']->setDependsByArray(array('maxlength'));
-        $this->mFieldProperties['validation']->addMessage('maxlength', _MD_PROFILE_ERROR_MAXLENGTH, _MD_PROFILE_LANG_VALIDATION, '255');
-        $this->mFieldProperties['validation']->addVar('maxlength', '255');
-    
+        $this->mFieldProperties['validation']->setDependsByArray(['maxlength']);
+        $this->mFieldProperties['validation']->addMessage('maxlength', _MD_PROFILE_ERROR_MAXLENGTH, _MD_PROFILE_LANG_VALIDATION, '191');
+        $this->mFieldProperties['validation']->addVar('maxlength', '191');
+
         $this->mFieldProperties['weight'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['weight']->setDependsByArray(array('required'));
+        $this->mFieldProperties['weight']->setDependsByArray(['required']);
         $this->mFieldProperties['weight']->addMessage('required', _MD_PROFILE_ERROR_REQUIRED, _MD_PROFILE_LANG_WEIGHT);
     }
 
     /**
      * @public
+     * @param $obj
      */
     public function load(&$obj)
     {
@@ -91,12 +95,13 @@ class Profile_Admin_DefinitionsEditForm extends XCube_ActionForm
         $this->set('show_form', $obj->get('show_form'));
         $this->set('weight', $obj->get('weight'));
         $this->set('description', $obj->get('description'));
-        $this->set('access', explode(",", $obj->get('access')));
+        $this->set('access', explode(',', $obj->get('access')));
         $this->set('options', $obj->get('options'));
     }
 
     /**
      * @public
+     * @param $obj
      */
     public function update(&$obj)
     {
@@ -110,16 +115,16 @@ class Profile_Admin_DefinitionsEditForm extends XCube_ActionForm
         $obj->set('weight', $this->get('weight'));
         $obj->set('description', $this->get('description'));
         if ($this->get('access')) {
-            $obj->set('access', implode(",", $this->get('access')));
+            $obj->set('access', implode(',', $this->get('access')));
         }
         $obj->set('options', $this->get('options'));
     }
 
     /**
      * validateField_name
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     public function validateField_name()

@@ -1,34 +1,46 @@
-<{if $actionForm->hasError()}>
-<div class="errorMsg">
-  <ul>
-    <{foreach item=message from=$actionForm->getErrorMessages()}>
-      <li><{$message}></li>
-    <{/foreach}>
-  </ul>
-</div>
-<{/if}>
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
-<form action="#" method="post">
-<{xoops_token form=$actionForm}>
-<table class="outer">
-  <tr>
-    <th colspan="2" style="text-align:center;"><{$smarty.const._MD_USER_LANG_LOSTPASSWORD}></th>
-  </tr>
-  <tr>
-    <td colspan="2" class="<{cycle values="odd,even"}>">
-      <{$smarty.const._MD_USER_LANG_NOPROBLEM}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_EMAIL}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{xoops_input name=email value=$actionForm->get('email') size=34 maxlength=60}>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" class="foot" style="text-align:center;">
-      <input type="submit" value="<{$smarty.const._SEND}>" />
-    </td>
-  </tr>
-</table>
-</form>
+<ul class="breadcrumb" aria-label="breadcrumb">
+  <li><a href="<{$xoops_url}>/">
+      <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a>
+  <li><a href="<{$xoops_url}>/user.php"><{$smarty.const._MD_USER_LANG_PROFILE}></a>
+  <li aria-current="page"><{$smarty.const._MD_USER_LANG_LOSTPASSWORD}>
+</ul>
+
+<hr>
+
+<section layout="column" class="lost-password">
+
+    <h2><{$smarty.const._MD_USER_LANG_LOSTPASSWORD}></h2>
+
+    <{if $actionForm->hasError()}>
+    <div class="errorMsg msg-callout msg-warning">
+      <ul>
+        <{foreach item=message from=$actionForm->getErrorMessages()}>
+          <li><{$message}></li>
+        <{/foreach}>
+      </ul>
+    </div>
+    <{/if}>
+
+
+    <form action="#" method="post">
+    <{xoops_token form=$actionForm}>
+
+        <div class="errorMsg msg-callout msg-warning">
+            <{$smarty.const._MD_USER_LANG_NOPROBLEM}>
+        </div>
+
+        <div layout="column centered">
+            <{$smarty.const._MD_USER_LANG_EMAIL}>
+            <br>
+            <{xoops_input name=email value=$actionForm->get('email') size=34 maxlength=60}>
+            <br>
+            <input type="submit" class="ui-button" value="<{$smarty.const._SEND}>">
+        </div>
+
+    </form>
+
+</section>
+

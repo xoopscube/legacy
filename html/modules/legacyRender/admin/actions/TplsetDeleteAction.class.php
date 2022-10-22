@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/class/AbstractDeleteAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/TplsetDeleteForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/class/AbstractDeleteAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplsetDeleteForm.class.php';
 
 class LegacyRender_TplsetDeleteAction extends LegacyRender_AbstractDeleteAction
 {
@@ -31,7 +31,7 @@ class LegacyRender_TplsetDeleteAction extends LegacyRender_AbstractDeleteAction
         $this->mObjectHandler = $this->_getHandler();
         
         $this->mObject =& $this->mObjectHandler->get($id);
-        if (is_object($this->mObject) && $this->mObject->get('tplset_name') == 'default') {
+        if (is_object($this->mObject) && 'default' == $this->mObject->get('tplset_name')) {
             $this->mObject = null;
         }
     }
@@ -44,23 +44,23 @@ class LegacyRender_TplsetDeleteAction extends LegacyRender_AbstractDeleteAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("tplset_delete.html");
+        $render->setTemplateName('tplset_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
     }
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=TplsetList");
+        $controller->executeForward('./index.php?action=TplsetList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=TplsetList", 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=TplsetList', 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
     }
 
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=TplsetList");
+        $controller->executeForward('./index.php?action=TplsetList');
     }
 }

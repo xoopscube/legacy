@@ -1,31 +1,49 @@
-<form action="<{$xoops_url}>/user.php" method="post">
-<{xoops_input type=hidden name=op value=login}>
-<{xoops_input type=hidden name=xoops_redirect value=$redirect_page}>
-<table class="outer">
-  <tr>
-    <th colspan="2" style="text-align:center;"><{$smarty.const._LOGIN}></th>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._USERNAME}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{xoops_input type=text name=uname size=25 maxlength=25 value=$usercookie}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._PASSWORD}></td>
-    <td class="<{cycle values="odd,even"}>">
-     <{xoops_input type=password name=pass size=30 maxlength=32}>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" class="foot" style="text-align:center;">
-      <input type="submit" value="<{$smarty.const._LOGIN}>" />
-    </td>
-  </tr>
-</table>
-</form>
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
-<{if $allowRegister}>
-  <div style="text-align:center;"><a href="<{$xoops_url}>/register.php"><{$smarty.const._MD_USER_LANG_NOTREGISTERED}></a></div>
-<{/if}>
+<ul class="breadcrumb" aria-label="breadcrumb">
+    <li><a href="<{$xoops_url}>/">
+        <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home">
+        </a>
+    <li aria-current="page"><{$smarty.const._LOGIN}>
+</ul>
+
+<hr>
+
+    <section layout="column center-center mx-auto p-2" class="user-login" self="size-x1">
+
+        <h2><{$smarty.const._LOGIN}></h2>
+
+        <form action="<{$xoops_url}>/user.php" method="post">
+
+            <{xoops_input type=hidden name=op value=login}>
+            <{xoops_input type=hidden name=xoops_redirect value=$redirect_page}>
+
+        <label for="uname" aria-label="<{$smarty.const._USERNAME}>">
+
+        <input type="text" name="uname" id="uname" placeholder="<{$smarty.const._USERNAME}>" value="<{$usercookie}>">
+        <{* xoops_input type=text name=uname size=25 maxlength=25 value=$usercookie *}>
+        </label>
+
+        <label for="pass" aria-label="<{$smarty.const._PASSWORD}>">
+
+        <input type="password" name="pass" id="pass" placeholder="<{$smarty.const._PASSWORD}>">
+        <{* xoops_input type=password name=pass id="pass" size=25 maxlength=32 placeholder=$smarty.const._PASSWORD  *}>
+        </label>
+        
+        <div layout="row center-right my-2">
+            <button type="submit" class="ui-button" value="<{$smarty.const._LOGIN}>"><img class="svg login" src="<{$xoops_url}>/images/icons/login.svg" alt="<{$smarty.const._LOGIN}>"> <{$smarty.const._MB_USER_LOGIN}> </button>
+        </div>
+        
+        <div layout="row center-center my-4">
+            <a href="<{$xoops_url}>/lostpass.php" self="mx-2"><{$smarty.const._MB_USER_LOSTPASS}></a>
+
+            <{if $allowRegister}>
+                |  &nbsp; <a href="<{$xoops_url}>/register.php"><{$smarty.const._MD_USER_LANG_NOTREGISTERED}></a>
+            <{/if}>
+        </div>
+
+        </form>
+
+    </section>
 

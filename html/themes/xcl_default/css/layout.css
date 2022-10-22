@@ -1,0 +1,164 @@
+/*
+ * Theme XCL DEFAULT
+ * @version   2.3.2
+ * @author    Nuno Luciano ( https://github.com/gigamaster )
+ * @copyright 2005-2022 The XOOPSCube Project
+ * @license   BSD
+ * @link      https://github.com/xoopscube
+ */
+
+/* -------------------- -------------------- MAIN */
+
+body > header {
+    background      : var(--header-bg);
+    backdrop-filter : var(--header-filter);
+    color           : var(--header-color);
+    font-family     : var(--header-font);
+    font-size       : var(--header-size);
+    font-weight     : var(--header-weight);
+    height          : var(--header-height);
+    margin          : var(--header-margin);
+    /*opacity         : var(--header-opacity);*/
+    padding         : var(--header-padding);
+    position        : var(--header-position);
+    width           : var(--header-width);
+    z-index         : var(--header-z-index);
+}
+body > header .sitelogo {
+    display         : inline-block;
+    animation       : top 1s .2s both;
+    height          : var(--header-height); /* 4rem;*/
+    max-width       : 100px;
+}
+
+body > header .sitelogo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: grayscale(1000%) drop-shadow(1px 1px 4px #f1f2f3);
+    transition: filter 1s linear;
+
+}
+
+body > header .sitelogo:hover img {
+    filter: grayscale(0%) drop-shadow(1px 1px 4px #f1f2f3) drop-shadow(1px 1px 12px #face74);
+}
+
+body > header h1.sitename {
+    animation       : var(--h1-animation);
+    border          : var(--h1-border);
+    border-radius   : var(--h1-radius);
+    box-shadow      : var(--h1-shadow);
+    color           : var(--h1-color);
+    font            : var(--h1-font);
+    margin          : var(--h1-margin);
+    padding         : var(--h1-padding);
+    text-align      : var(--h1-align);
+    text-shadow     : var(--h1-text-shadow);
+}
+body > header .slogan {
+    animation       : top 1.5s 1s both;
+    color           : var(--header-slogan-color);
+    font-family     : sans-serif;
+    font-size       : calc( var(--font-scale ) / 1.5);
+    font-weight     : 700;
+    margin          : var(--space-1);
+    text-align      : center;
+    text-shadow     : 1px 1px 0 #5f6b7f, 2px 2px 4px #000;
+    vertical-align  : super;
+}
+body > header > .search {
+    animation       : bottom 1s .6s both;
+    font-size       : var(--input-font);
+}
+/* Hero gets smaller while you shrink the page*/
+body > .hero {
+    min-height      : 200px;
+    height          : 60vw;
+    max-height      : 500px;
+}
+/* Hero work without media queries*/
+body > .hero-top {
+    min-height      : 200px;
+    height          : calc(500px + (200 - 500) * (100vw - 600px) / (1200 - 600));
+    max-height      : 500px;
+}
+
+body > main {
+    background      : var(--main-bg);
+    border          : var(--main-border);
+    border-radius   : var(--main-radius);
+    box-shadow      : var(--main-shadow);
+    margin          : var(--main-margin);
+    padding         : var(--main-padding);
+    width           : var(--main-width) !important;
+}
+
+body > main > section {
+    margin-left     : auto;
+    margin-right    : auto;
+}
+
+body > main > section.render-view {
+    /*margin-bottom   : var(--space-8);*/
+}
+
+body > main section.render-view > aside.side-left {
+    animation       : var(--aside-left-animation);
+    background      : var(--aside-left-bg);
+    border          : var(--aside-left-border);
+    border-radius   : var(--aside-left-radius);
+    box-shadow      : var(--aside-left-shadow);
+    height          : var(--aside-left-height);
+    padding         : var(--aside-left-padding);
+    width           : var(--aside-left-width);
+}
+
+body > main section.render-view > aside.side-right {
+    animation       : right 1s .4s both;
+    background      : var(--aside-right-bg);
+    border          : var(--aside-right-border);
+    border-radius   : var(--aside-right-radius);
+    box-shadow      : var(--aside-right-shadow);
+    height          : var(--aside-right-height);
+    padding         : var(--aside-right-padding);
+    width           : var(--aside-right-width);
+}
+
+body > main > section.render-view > .content {
+    animation       : bottom 1s .6s both;
+    display         : block;
+    max-width       : 1020px;
+    width           : 100%;
+    margin-left     : auto;
+    margin-right    : auto;
+    margin-bottom   : var(--space-8);
+    padding         : 0 var(--space-6);
+}
+
+body > main > section.full-width {
+    background      : var( --block-full-bg  );
+    border          : var( --block-full-border );
+    display         : block;
+    left            : 50%;
+    margin-left     : -50vw;
+    margin-right    : -50vw;
+    overflow-x      : hidden;
+    padding         : var( --block-full-padding );
+    position        : relative;
+    right           : 50%;
+    width           : 100vw;
+}
+
+body > footer {
+    background      : var(--footer-bg);
+    color           : var(--footer-color);
+    font-family     : var(--footer-font);
+    font-size       : var(--footer-size);
+    font-weight     : var(--footer-weight);
+    height          : var(--footer-height);
+    margin          : var(--footer-margin);
+    padding         : var(--footer-padding);
+    width           : var(--footer-width) !important;
+}

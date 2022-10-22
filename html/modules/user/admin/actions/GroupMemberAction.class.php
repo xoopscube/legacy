@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH."/core/XCube_PageNavigator.class.php";
-require_once XOOPS_MODULE_PATH."/user/admin/forms/GroupMemberEditForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_PageNavigator.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/GroupMemberEditForm.class.php';
 
 if (!defined('USER_GROUPMEMBER_DEFAULT_PERPAGE')) {
     define('USER_GROUPMEMBER_DEFAULT_PERPAGE', 10);
@@ -32,13 +32,13 @@ class User_GroupMemberAction extends User_Action
     /**
      * group member list.
      */
-    public $mUsers = array();
+    public $mUsers = [];
     public $mPageNavi = null;
 
     /**
      * No group member list.
      */
-    public $mNoUsers = array();
+    public $mNoUsers = [];
     public $mNoPageNavi = null;
     
     public $mActionForm = null;
@@ -67,7 +67,7 @@ class User_GroupMemberAction extends User_Action
         //
         $total = $memberHandler->getUserCountByGroup($groupid);
 
-        $this->mPageNavi =new XCube_PageNavigator("./index.php?action=GroupMember", XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);    // TODO get controller->getUrl() ?
+        $this->mPageNavi =new XCube_PageNavigator('./index.php?action=GroupMember', XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);    // TODO get controller->getUrl() ?
         $this->mPageNavi->setTotalItems($total);
         $this->mPageNavi->addExtra('groupid', $groupid);
         $this->mPageNavi->setPerpage(USER_GROUPMEMBER_DEFAULT_PERPAGE);
@@ -81,10 +81,10 @@ class User_GroupMemberAction extends User_Action
         //
         $total = $memberHandler->getUserCountByNoGroup($groupid);
 
-        $this->mNoPageNavi=new XCube_PageNavigator("./index.php?action=GroupMember", XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);    // TODO get controller->getUrl() ?
+        $this->mNoPageNavi=new XCube_PageNavigator('./index.php?action=GroupMember', XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);    // TODO get controller->getUrl() ?
         $this->mNoPageNavi->setTotalItems($total);
         $this->mNoPageNavi->addExtra('groupid', $groupid);
-        $this->mNoPageNavi->setPrefix("no");
+        $this->mNoPageNavi->setPrefix('no');
         $this->mNoPageNavi->setPerpage(USER_GROUPMEMBER_DEFAULT_PERPAGE);
 
         $this->mNoPageNavi->fetch();
@@ -115,9 +115,9 @@ class User_GroupMemberAction extends User_Action
             $user =& $userHandler->get($uid);
             
             if (is_object($user)) {
-                if ($value == 1) {
+                if (1 == $value) {
                     $memberHandler->addUserToGroup($this->mGroup->get('groupid'), $uid);
-                } elseif ($value == 2) {
+                } elseif (2 == $value) {
                     $memberHandler->removeUserFromGroup($this->mGroup->get('groupid'), $uid);
                 }
             }
@@ -138,15 +138,15 @@ class User_GroupMemberAction extends User_Action
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("group_member.html");
-        $render->setAttribute("group", $this->mGroup);
+        $render->setTemplateName('group_member.html');
+        $render->setAttribute('group', $this->mGroup);
 
-        $render->setAttribute("users", $this->mUsers);
-        $render->setAttribute("pageNavi", $this->mPageNavi);
+        $render->setAttribute('users', $this->mUsers);
+        $render->setAttribute('pageNavi', $this->mPageNavi);
 
-        $render->setAttribute("noUsers", $this->mNoUsers);
-        $render->setAttribute("noPageNavi", $this->mNoPageNavi);
+        $render->setAttribute('noUsers', $this->mNoUsers);
+        $render->setAttribute('noPageNavi', $this->mNoPageNavi);
         
-        $render->setAttribute("actionForm", $this->mActionForm);
+        $render->setAttribute('actionForm', $this->mActionForm);
     }
 }

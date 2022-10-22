@@ -1,0 +1,31 @@
+/*
+	Theme XCL Default
+	Render Engine : Smarty Template
+	Distribution : XCL 2.3.1
+	Version : 1.0.0
+	Author : Nuno Luciano aka Gigamaster
+	Date : 2021-05-28
+	URL : https://github.com/xoopscube/xcl/
+
+---------- ---------- ---------- ---------- ---------- ---------- IMPORT */
+@import "./css/_ui_root.css";    /*  UI Default Settings            */
+/*@import "./css/jquery-ui.structure.css";  Default Structure      */
+@import "./css/jquery-ui.theme.css";/*  jqueryTheme               */
+@import "./css/body.css";        /*  Body Elements               */
+@import "./css/layout.css";      /*  Layout Grid-Flex           */
+@import "./css/breadcrumb.css";  /*  Breadcrumbs               */
+@import "./css/button.css";      /*  Buttons                  */
+@import "./css/block.css";       /*  Block elements          */
+@import "./css/card.css";        /*  Card component         */
+@import "./css/form.css";        /*  Form Elements         */
+@import "./css/menunav.css";     /*  Menu Navigation      */
+@import "./css/module.css";      /*  Media Queries       */
+@import "./css/notification.css";/*  Notifications      */
+@import "./css/svg.css";         /*  SVG settings      */
+@import "./css/table.css";       /*  Tables           */
+@import "./css/media.css";       /*  Modules CSS     */
+/* ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~
+ ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~
+~~~~~~~~~~ ~~~~~~~~~~
+*/
+

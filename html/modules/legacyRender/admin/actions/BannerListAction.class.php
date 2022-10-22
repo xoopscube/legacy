@@ -4,8 +4,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/BannerFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/BannerFilterForm.class.php';
 
 class LegacyRender_BannerListAction extends LegacyRender_AbstractListAction
 {
@@ -23,17 +23,17 @@ class LegacyRender_BannerListAction extends LegacyRender_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=BannerList";
+        return './index.php?action=BannerList';
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("banner_list.html");
+        $render->setTemplateName('banner_list.html');
         foreach (array_keys($this->mObjects) as $key) {
             $this->mObjects[$key]->loadBannerclient();
         }
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         
         //
         // If cid is specified, load client object and assign it.
@@ -43,7 +43,7 @@ class LegacyRender_BannerListAction extends LegacyRender_AbstractListAction
             $handler =& xoops_getmodulehandler('bannerclient');
             $client =& $handler->get($cid);
             if (is_object($client)) {
-                $render->setAttribute("currentClient", $client);
+                $render->setAttribute('currentClient', $client);
             }
         }
     }

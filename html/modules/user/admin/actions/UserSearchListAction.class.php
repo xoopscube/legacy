@@ -8,18 +8,22 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/UserSearchFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/UserSearchListForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/UserSearchFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/UserSearchListForm.class.php';
 
+// @todo @gigamaster !Fix WARNING:
+// Declaration of User_UserSearchListAction::prepare(&$controller, &$xoopsUser)
+// should be compatible with
+// User_Action::prepare(&$controller, &$xoopsUser, $moduleConfig)
 class User_UserSearchListAction extends User_AbstractListAction
 {
-    public $mUserObjects = array();
+    public $mUserObjects = [];
     public $mActionForm = null;
-    public $mpageArr = array(5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0);
-    public $mExtraURL = "";
+    public $mpageArr = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0];
+    public $mExtraURL = '';
 
-    public function prepare(&$controller, &$xoopsUser)
+    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         $this->mActionForm =new User_UserSearchListForm();
         $this->mActionForm->prepare();
@@ -40,7 +44,7 @@ class User_UserSearchListAction extends User_AbstractListAction
     public function &_getPageNavi()
     {
         $navi =new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
-        if (isset($_REQUEST[$navi->mPrefix.'perpage']) && intval($_REQUEST[$navi->mPrefix.'perpage']) == 0) {
+        if (isset($_REQUEST[$navi->mPrefix.'perpage']) && 0 == (int)$_REQUEST[$navi->mPrefix . 'perpage']) {
             $navi->setPerpage(0);
         }
         return $navi;
@@ -48,9 +52,9 @@ class User_UserSearchListAction extends User_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=UserSearchList";
+        return './index.php?action=UserSearchList';
     }
-    
+
     public function execute(&$controller, &$xoopsUser)
     {
         //in case of result of user-search
@@ -58,11 +62,11 @@ class User_UserSearchListAction extends User_AbstractListAction
             return $this->getDefaultView($controller, $xoopsUser);
         }
 
-        //To return user to proper-url with search condition 
+        //To return user to proper-url with search condition
         $this->mFilter =& $this->_getFilterForm();
         $this->mFilter->fetch();
         //
-        if (xoops_getrequest('_form_control_cancel') != null) {
+        if (null != xoops_getrequest('_form_control_cancel')) {
             return USER_FRAME_VIEW_CANCEL;
         }
 
@@ -81,9 +85,9 @@ class User_UserSearchListAction extends User_AbstractListAction
         $controller->mRoot->mDelegateManager->add('Legacy.Event.Explaceholder.Get.UserPagenaviOtherUrl', 'User_UserSearchListAction::renderOtherUrlControl');
         $controller->mRoot->mDelegateManager->add('Legacy.Event.Explaceholder.Get.UserSearchPagenaviHidden', 'User_UserSearchListAction::renderHiddenControl');
 
-        $render->setTemplateName("user_search_list.html");
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setTemplateName('user_search_list.html');
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('filterForm', $this->mFilter);
         $render->setAttribute('pageArr', $this->mpageArr);
@@ -113,7 +117,7 @@ class User_UserSearchListAction extends User_AbstractListAction
         $userHandler =& xoops_gethandler('user');
 
         foreach (array_keys($levelArr) as $uid) {
-            if ($uid != 1) {
+            if (1 != $uid) {
                 $user =& $userHandler->get($uid);
                 if (is_object($user)) {
                     $olddata['level'] = $user->get('level');
@@ -132,7 +136,7 @@ class User_UserSearchListAction extends User_AbstractListAction
         }//foreach
 
                 foreach (array_keys($levelArr) as $uid) {
-                    if (($this->mActionForm->get('delete', $uid) == 1) && ($uid != 1)) {
+                    if ((1 == $this->mActionForm->get('delete', $uid)) && (1 != $uid)) {
                         $user =& $userHandler->get($uid);
                         if (is_object($user)) {
                             XCube_DelegateUtils::call('Legacy.Admin.Event.UserDelete', new XCube_Ref($user));
@@ -152,25 +156,28 @@ class User_UserSearchListAction extends User_AbstractListAction
 
     /**
      * To support a template writer, this send the list of mid that actionForm kept.
+     * @param $controller
+     * @param $xoopsUser
+     * @param $render
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_search_list_confirm.html");
+        $render->setTemplateName('user_search_list_confirm.html');
         $render->setAttribute('userObjects', $this->mUserObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
-        
+
         //
         // To support a template writer, this send the list of mid that
         // actionForm kept.
         //
         $t_arr = $this->mActionForm->get('level');
         $render->setAttribute('uids', array_keys($t_arr));
-        //To return user to proper-url with search condition 
+        //To return user to proper-url with search condition
         $controller->mRoot->mDelegateManager->add('Legacy.Event.Explaceholder.Get.UserSearchPagenaviHidden', 'User_UserSearchListAction::renderHiddenControl');
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
     }
 
-
+// @todo @gigamaster Check change $render to $renderer
     public function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=UserSearchList'.$this->getExtraURL());
@@ -189,48 +196,48 @@ class User_UserSearchListAction extends User_AbstractListAction
 
     public function getExtraURL()
     {
-        $extraurl = "";
+        $extraurl = '';
         if (count($this->mFilter->mNavi->mExtra) > 0) {
-            $t_arr = array();
+            $t_arr = [];
             foreach ($this->mFilter->mNavi->mExtra as $key => $value) {
-                $t_arr[] = $key . "=" . urlencode($value);
+                $t_arr[] = $key . '=' . urlencode($value);
             }
-            $extraurl = "&" . implode("&", $t_arr);
+            $extraurl = '&' . implode('&', $t_arr);
         }
         return $extraurl;
     }
-    
-    public function renderOtherUrlControl(&$buf, $params)
+
+    public static function renderOtherUrlControl(&$buf, $params)
     {
         if (isset($params['pagenavi']) && is_object($params['pagenavi'])) {
             $navi =& $params['pagenavi'];
             $url = $params['url'];
             if (count($navi->mExtra) > 0) {
-                $t_arr = array();
-            
+                $t_arr = [];
+
                 foreach ($navi->mExtra as $key => $value) {
-                    $t_arr[] = $key . "=" . urlencode($value);
+                    $t_arr[] = $key . '=' . urlencode($value);
                 }
-            
-                if (count($t_arr) == 0) {
+
+                if (0 == count($t_arr)) {
                     $buf = $url;
                     return;
                 }
-            
-                if (strpos($url, "?")!==false) {
-                    $buf = $url . "&amp;" . implode("&amp;", $t_arr);
+
+                if (false !== strpos($url, '?')) {
+                    $buf = $url . '&amp;' . implode('&amp;', $t_arr);
                 } else {
-                    $buf = $url . "?" . implode("&amp;", $t_arr);
+                    $buf = $url . '?' . implode('&amp;', $t_arr);
                 }
             }
         }
     }
 
-    public function renderHiddenControl(&$buf, $params)
+    public static function renderHiddenControl(&$buf, $params)
     {
         if (isset($params['pagenavi']) && is_object($params['pagenavi'])) {
             $navi =& $params['pagenavi'];
-            $mask = isset($params['mask']) ? explode('+', $params['mask']) : array();
+            $mask = isset($params['mask']) ? explode('+', $params['mask']) : [];
             foreach ($navi->mExtra as $key => $value) {
                 if (!in_array($key, $mask)) {
                     $value = htmlspecialchars($value, ENT_QUOTES);

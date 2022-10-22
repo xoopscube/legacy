@@ -1,0 +1,44 @@
+<!-- Comments Overview -->
+<div class="ui-card-overview">
+
+	<div class="ui-card-small">
+		<div class="ui-card-small-icon ui-icon-blue">
+        <img class="svg comments" src="<{"icons/icon-comments.svg"|theme}>">
+		</div>
+		<div class="ui-card-small-info">
+			<h3 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_COMMENT_TOTAL}>: <strong><{$CommentTotal}></strong></h3>
+			<p class="ui-card-small-subtitle"></p>
+		</div>
+	</div>
+
+	<div class="ui-card-small">
+		<div class="ui-card-small-icon ui-icon-green">
+        <img class="svg comment-active" src="<{"icons/icon-comment-active.svg"|theme}>">
+		</div>
+		<div class="ui-card-small-info">
+			<h3 class="ui-card-small-title"><{$smarty.const._CM_ACTIVE}>: <strong><{$activeCommentTotal}></strong></h3>
+			<p class="ui-card-small-subtitle"></p>
+		</div>
+	</div>
+
+  <div class="ui-card-small">
+      <div class="ui-card-small-icon ui-icon-red">
+          <img class="svg comment-inactive" src="<{"icons/icon-comment-inactive.svg"|theme}>">
+      </div>
+      <div class="ui-card-small-info">
+        <h3 class="ui-card-small-title"><{$smarty.const._CM_HIDDEN}>: <strong><{$hiddenCommentTotal}></strong></h3>
+        <p class="ui-card-small-subtitle"></p>
+      </div>
+    </div>
+
+	<div class="ui-card-small">
+      <div class="ui-card-small-icon ui-icon-orange">
+          <img class="svg comment-pending" src="<{"icons/icon-comment-pending.svg"|theme}>">
+      </div>
+      <div class="ui-card-small-info">
+        <h3 class="ui-card-small-title"><{$smarty.const._CM_PENDING}>: <strong><{$pendingCommentTotal}></strong></h3>
+        <p class="ui-card-small-subtitle"></p>
+      </div>
+    </div>
+
+</div>

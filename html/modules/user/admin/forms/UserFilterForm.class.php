@@ -8,42 +8,42 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractFilterForm.class.php';
 
-define('USER_SORT_KEY_UID', 1);
-define('USER_SORT_KEY_NAME', 2);
-define('USER_SORT_KEY_UNAME', 3);
-define('USER_SORT_KEY_EMAIL', 4);
-define('USER_SORT_KEY_URL', 5);
-define('USER_SORT_KEY_USER_AVATAR', 6);
-define('USER_SORT_KEY_USER_REGDATE', 7);
-define('USER_SORT_KEY_USER_ICQ', 8);
-define('USER_SORT_KEY_USER_FROM', 9);
-define('USER_SORT_KEY_USER_SIG', 10);
-define('USER_SORT_KEY_USER_VIEWEMAIL', 11);
-define('USER_SORT_KEY_ACTKEY', 12);
-define('USER_SORT_KEY_USER_AIM', 13);
-define('USER_SORT_KEY_USER_YIM', 14);
-define('USER_SORT_KEY_USER_MSNM', 15);
-define('USER_SORT_KEY_PASS', 16);
-define('USER_SORT_KEY_POSTS', 17);
-define('USER_SORT_KEY_ATTACHSIG', 18);
-define('USER_SORT_KEY_RANK', 19);
-define('USER_SORT_KEY_LEVEL', 20);
-define('USER_SORT_KEY_THEME', 21);
-define('USER_SORT_KEY_TIMEZONE_OFFSET', 22);
-define('USER_SORT_KEY_LAST_LOGIN', 23);
-define('USER_SORT_KEY_UMODE', 24);
-define('USER_SORT_KEY_UORDER', 25);
-define('USER_SORT_KEY_NOTIFY_METHOD', 26);
-define('USER_SORT_KEY_NOTIFY_MODE', 27);
-define('USER_SORT_KEY_USER_OCC', 28);
-define('USER_SORT_KEY_BIO', 29);
-define('USER_SORT_KEY_USER_INTREST', 30);
-define('USER_SORT_KEY_USER_MAILOK', 31);
-define('USER_SORT_KEY_MAXVALUE', 31);
-
-define('USER_SORT_KEY_DEFAULT', USER_SORT_KEY_UID);
+const USER_SORT_KEY_UID = 1;
+const USER_SORT_KEY_NAME = 2;
+const USER_SORT_KEY_UNAME = 3;
+const USER_SORT_KEY_EMAIL = 4;
+const USER_SORT_KEY_URL = 5;
+const USER_SORT_KEY_USER_AVATAR = 6;
+const USER_SORT_KEY_USER_REGDATE = 7;
+const USER_SORT_KEY_USER_ICQ = 8;
+const USER_SORT_KEY_USER_FROM = 9;
+const USER_SORT_KEY_USER_SIG = 10;
+const USER_SORT_KEY_USER_VIEWEMAIL = 11;
+const USER_SORT_KEY_ACTKEY = 12;
+const USER_SORT_KEY_USER_AIM = 13;
+const USER_SORT_KEY_USER_YIM = 14;
+const USER_SORT_KEY_USER_MSNM = 15;
+const USER_SORT_KEY_PASS = 16;
+const USER_SORT_KEY_POSTS = 17;
+const USER_SORT_KEY_ATTACHSIG = 18;
+const USER_SORT_KEY_RANK = 19;
+const USER_SORT_KEY_LEVEL = 20;
+const USER_SORT_KEY_THEME = 21;
+const USER_SORT_KEY_TIMEZONE_OFFSET = 22;
+const USER_SORT_KEY_LAST_LOGIN = 23;
+const USER_SORT_KEY_UMODE = 24;
+const USER_SORT_KEY_UORDER = 25;
+const USER_SORT_KEY_NOTIFY_METHOD = 26;
+const USER_SORT_KEY_NOTIFY_MODE = 27;
+const USER_SORT_KEY_USER_OCC = 28;
+const USER_SORT_KEY_BIO = 29;
+const USER_SORT_KEY_USER_INTREST = 30;
+const USER_SORT_KEY_USER_MAILOK = 31;
+const USER_SORT_KEY_MAXVALUE = 31;
+// DEFAULT
+const USER_SORT_KEY_DEFAULT = USER_SORT_KEY_UID;
 
 /***
  * @internal
@@ -52,7 +52,7 @@ define('USER_SORT_KEY_DEFAULT', USER_SORT_KEY_UID);
  */
 class User_UserFilterForm extends User_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         USER_SORT_KEY_UID => 'uid',
         USER_SORT_KEY_NAME => 'name',
         USER_SORT_KEY_UNAME => 'uname',
@@ -84,10 +84,10 @@ class User_UserFilterForm extends User_AbstractFilterForm
         USER_SORT_KEY_BIO => 'bio',
         USER_SORT_KEY_USER_INTREST => 'user_intrest',
         USER_SORT_KEY_USER_MAILOK => 'user_mailok'
-    );
+    ];
 
-    public $mKeyword = "";
-    public $mOptionField = "";
+    public $mKeyword = '';
+    public $mOptionField = '';
 
     public function getDefaultSortKey()
     {
@@ -149,10 +149,10 @@ class User_UserFilterForm extends User_AbstractFilterForm
             $this->mNavi->addExtra('option_field', xoops_getrequest('option_field'));
             $this->mOptionField = $option_field;
 
-            if ($option_field == "inactive") {
+            if ('inactive' == $option_field) {
                 //only inactive users
             $this->_mCriteria->add(new Criteria('level', '0'));
-            } elseif ($option_field == "active") {
+            } elseif ('active' == $option_field) {
                 //only active users
             $this->_mCriteria->add(new Criteria('level', '0', '>'));
             } else {

@@ -1,26 +1,27 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: SmilesListAction.class.php,v 1.3 2008/09/25 15:11:50 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * SmilesListAction.class.php
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/SmilesFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/SmilesListForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/SmilesFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/SmilesListForm.class.php';
 
 class Legacy_SmilesListAction extends Legacy_AbstractListAction
 {
-    public $mSmilesObjects = array();
+    public $mSmilesObjects = [];
     public $mActionForm = null;
-    public $mpageArr = array(5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0);
+    public $mpageArr = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0];
 
     public function prepare(&$controller, &$xoopsUser)
     {
@@ -41,7 +42,7 @@ class Legacy_SmilesListAction extends Legacy_AbstractListAction
         $root =& XCube_Root::getSingleton();
         $perpage = $root->mContext->mRequest->getRequest($navi->mPrefix.'perpage');
 
-        if (isset($perpage) && intval($perpage) == 0) {
+        if (isset($perpage) && 0 === (int)$perpage) {
             $navi->setPerpage(0);
         }
         return $navi;
@@ -55,14 +56,14 @@ class Legacy_SmilesListAction extends Legacy_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=SmilesList";
+        return './index.php?action=SmilesList';
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("smiles_list.html");
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setTemplateName('smiles_list.html');
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('pageArr', $this->mpageArr);
         $render->setAttribute('filterForm', $this->mFilter);
@@ -78,7 +79,7 @@ class Legacy_SmilesListAction extends Legacy_AbstractListAction
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if ($form_cancel != null) {
+        if (null !== $form_cancel) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
 
@@ -91,7 +92,7 @@ class Legacy_SmilesListAction extends Legacy_AbstractListAction
             return $this->_processSave($controller, $xoopsUser);
         }
     }
-    
+
     public function _processConfirm(&$controller, &$xoopsUser)
     {
         $codeArr = $this->mActionForm->get('code');
@@ -136,7 +137,7 @@ class Legacy_SmilesListAction extends Legacy_AbstractListAction
         }//foreach
 
                 foreach (array_keys($codeArr) as $sid) {
-                    if ($this->mActionForm->get('delete', $sid) == 1) {
+                    if (1 === $this->mActionForm->get('delete', $sid)) {
                         $smiles =& $smilesHandler->get($sid);
                         if (is_object($smiles)) {
                             if (!$smilesHandler->delete($smiles)) {
@@ -150,13 +151,16 @@ class Legacy_SmilesListAction extends Legacy_AbstractListAction
 
     /**
      * To support a template writer, this send the list of mid that actionForm kept.
+     * @param $controller
+     * @param $xoopsUser
+     * @param $render
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("smiles_list_confirm.html");
+        $render->setTemplateName('smiles_list_confirm.html');
         $render->setAttribute('smilesObjects', $this->mSmilesObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
-        
+
         //
         // To support a template writer, this send the list of mid that
         // actionForm kept.

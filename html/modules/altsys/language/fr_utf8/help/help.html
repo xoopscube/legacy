@@ -1,0 +1,255 @@
+<article id="help-module">
+
+
+    <nav id="help-menu">
+        <ul>
+            <li><a href="#help-custom-block" class="button">Custom Blocks</a>
+            <li><a href="#help-templates" class="button">Templates</a>
+            <li><a href="#help-advanced" class="button">Advanced Templates</a>
+            <li><a href="#help-language" class="button">Language</a>
+            <li><a href="#help-development" class="button">Development</a>
+        </ul>
+    </nav>
+
+
+<hr>
+
+
+    <section id="help-overview">
+
+        <h2>Overview</h2>
+
+        <p>This module aims to provide quick access to most common tasks of the application platform.
+        <p>This module (library) is required and installed by default with the core modules.
+        <p>Permissions can be extended to trusted user groups.
+
+        <p>Next we will give an overview of some common tasks you can do with the Administration.
+            Each task will be used to highlight a particular function within the module.
+        <p>creation of custom blocks (HTML, PHP and BBCode), modules block management,
+                advanced templates design, customization, translations and localization.
+    </section>
+
+
+<hr>
+
+
+    <section id="help-custom-block">
+
+        <h2>Blocks management</h2>
+
+        <p>The building blocks of your site are single components of content like business information,
+            advertisements, contact forms, images or media embeds from other platforms.</p>
+
+        <h3>Block Settings</h3>
+        <p>Each block has the following default properties :</p>
+        <ul>
+            <li>name (title)</li>
+            <li>order or weight of display</li>
+            <li>default block "side"</li>
+            <li>enabled or disable</li>
+            <li>in which module</li>
+            <li>for which user groups</li>
+            <li>and cache settings</li>
+            <li><b>Custom Blocks</b></li>
+            <li>+ Type of Block (HTML,PHP...)</li>
+            <li>+ Copy/duplicate</li>
+            <li>+ edit the template</li>
+            <li>+ and delete the custom block</li>
+        </ul>
+
+        <h3>Block Side</h3>
+
+        <p>The block "side"" is just a legacy code convention to identify areas in the theme and organize the layout.
+            Blocks are modular units of content that can be positioned almost anywhere on the page.</p>
+        <p>For example, a theme can place the block-left "Main Menu" at the top of the page to create a navigation bar.</p>
+
+        <div class="tips">The block template specifies the shape, and the global theme specifies the areas and appearance.
+            However, the block's presentation layer can be replaced by a custom template.</div>
+
+        <h3>Types of blocks</h3>
+
+        <h4>Custom blocks</h4>
+
+        <p>A Custom block can be built with HTML, CSS, JavaScript, PHP and Smarty variables.
+            Thus allowing to create reusable Components to create an effective website layout.</p>
+        <p>It can also embed code or integrate with third-party features specific to a site's unique needs.</p>
+
+        <div class="tips">The block editor will switch according to the type of content.</div>
+
+        <h4>Modules blocks</h4>
+
+        <p>Modules have several pre-built blocks that offer specific functionality and favor composition over inheritance.
+            These blocks are made available in Block Management by enabling modules.
+            Each module block has its own settings and customization options.</p>
+
+        <p><a class="button" href="<{'index.php?action=Help&dirname=legacy&file=block.html'}>">Learn more about Blocks ⭢</a></p>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-templates">
+
+        <h3>Templates</h3>
+
+        <p>Templates of modules and blocks shape content. While the frontend and backend Themes define the general appearance.</p>
+        <p>A custom template can be created with HTML, CSS, JavaScript, PHP and Smarty variables to make a single file component.</p>
+
+        <h3>Template Set</h3>
+
+        <p>The list of Template Sets can be found in Template Management of module Renderer.
+            When modules are installed, their templates become part of the Default Template Set.</p>
+
+        <p>1. First, make a copy of the <b>Default Template Set</b> ( Base-File )</p>
+        <p>2. Browse to templates »» Module</p>
+        <p>3. Click "edit" next to the template of the new Set</p>
+        <p>4. Make the changes you want</p>
+        <p>5. Save the template</p>
+
+        <div class="tips">In case of errors, check the box next to the template to easily copy from <b>Base-File Set</b> !</div>
+
+        <h3>Find a Template</h3>
+
+        <h4>Naming Convention</h4>
+
+        <p>The template naming convention is a systematic method for naming files
+            written in all-lowercase ASCII letters. The name specs might include the package name, action, event.</p>
+        <ul>
+            <li>[module-name]_[admin].html</li>
+            <li>[module-name]_[block].html</li>
+            <li>[module-name]_[inc]_[component-name].html</li>
+        </ul>
+
+        <p><a class="button" href="<{'index.php?action=Help&dirname=legacy&file=directory_structure.html'}>">Learn more about Naming Convention ⭢</a></p>
+
+        <h3>Custom Templates</h3>
+        <p>1. Create a custom template</p>
+        <p>2. Add some content</p>
+        <p>3. Name the template eg.: mycustom_template.html</p>
+        <p>4. Save the custom template</p>
+
+        <p>Then, you can create a custom block and load your custom template</p>
+        <pre><code class="lang-php">
+$xoopsTpl = new XoopsTpl();
+$test = $xoopsTpl->fetch('myblock_custom.html');
+echo $test;
+        </code></pre>
+
+        <h3>Renderer Engine</h3>
+
+        <p>The Renderer uses Smarty Template Engine —one of the most popular and mature template engines— with custom delimiters
+            similar to HTML markup language that make easier to design and develop components for templates.</p>
+        <p>From template Management you can enable a Set and check the list of templates that you can edit, copy, download or delete.</p>
+
+        <p><a class="button" href="<{'index.php?action=Help&dirname=legacyRender'}>">Learn more about Themes and Templates ⭢</a></p>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-advanced">
+
+        <h3>Advanced Templates</h3>
+
+        <p>These features allow you to insert ruler guides and logic to collect template variables
+            in order to help designers identify components during the design process.</p>
+
+       <div class="tips">You can also generate a DreamWeaver extension with template variables.</div>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-language">
+
+        <h3>Language</h3>
+
+        <p>The default distribution comes with English, French, Japanese and Portuguese translations.
+            You can change the 'Default Language' in <br>
+        <div class="badge">System »» Preferences »» Settings</div>
+
+        <p>Other local languages translations are available that you can download from the
+        <a href="https://github.com/xoopscube/i18n-language" target="_blank">GitHub repository - i18n-language ⭧</a><p>
+
+        <div class="confirm">
+        Note that he translations of installation wizard, System and modules might not be up-to-date.
+        However, you can translate and customize here any missing constants.
+        </div>
+
+        <h3>Translation</h3>
+
+        <p>If your language files are not available, you’ll need to translate the files located in modules directories
+            e.g. “/language/english/”</p>
+
+        <div class="error">
+            Some times you have a placeholder within a constant, for example, <b>%s</b> or <b>{0}</b>,
+            it's important to keep them !<br>
+            define( '_MSC_INTSITE' , 'Interesting Site: <b>%s</b>');<br>
+            // Here <b>%s</b> is a placeholder for your site name
+        </div>
+
+        <p>1. Click the module to translate
+        <p>2. Select the local language, e.g. english</p>
+        <p>3. Select the file to translate</p>
+        <p>4. Add a new Custom Value</p>
+        <p>5. Update to save the constants translated into your language</p>
+        <p> This will save into the database and in a file under TRUST_PATH/cache/....</p>
+
+        <h3>Localization</h3>
+
+        <p>Localisation (l10n) is the process of customizing your app and
+            adapting your product's translation to a specific country or region.</p>
+
+        <div class="tips">
+            Keep your global voice consistent across all modules, branches, cultures, and language locales
+        </div>
+
+        <p>It is the second phase of a larger process of product translation and cultural adaptation to account for
+            differences in distinct markets, a process known as internationalisation and localisation.</p>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-development">
+        <h3>Development</h3>
+
+        <table class="outer">
+            <thead>
+            <tr>
+                <th>Module name</th>
+                <th>Altsys</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Type</td>
+                <td>Trust Module [ D3 library ]</td>
+            </tr>
+            <tr>
+                <td>Version</td>
+                <td>2.31</td>
+            </tr>
+            <tr>
+                <td>Level</td>
+                <td>Required</td>
+            </tr>
+            <tr>
+                <td>🌐 Repository URL</td>
+                <td><a href="https://github.com/xoopscube/altsys" target="_blank">https://github.com/xoopscube/altsys ⭧</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+
+</article>

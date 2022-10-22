@@ -1,0 +1,57 @@
+<{* ---------- Blocks Center *}>
+<{if $xoops_showcblock==1}>
+
+<hr class="break-row">
+
+
+<{* ---------- BLOCK Center-Left *}>
+
+<{foreach item=block from=$xoops_clblocks}>
+<div class="block-center-left">
+	<h3>
+		<{if $xoops_isadmin}>
+		<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=<{$block.id}>" class="admin"><{$block.title}></a>
+		<{else}>
+		<{$block.title}>
+		<{/if}>
+	</h3>
+	<div><{$block.content}></div>
+</div>
+<{/foreach}>
+
+
+<{* ---------- BLOCK Center-Center *}>
+
+<{foreach item=block from=$xoops_ccblocks}>
+<div class="block-center-center">
+	<h3>
+		<{if $xoops_isadmin}>
+		<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=<{$block.id}>" class="admin"><{$block.title}></a>
+		<{else}>
+		<{$block.title}>
+		<{/if}>
+	</h3>
+	<div><{$block.content}></div>
+</div>
+<{/foreach}>
+
+
+<{* ---------- BLOCK Center-right *}>
+
+<{foreach item=block from=$xoops_crblocks}>
+
+<hr class="break-row">
+
+<div class="block-center-right">
+	<h3>
+		<{if $xoops_isadmin}>
+		<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=<{$block.id}>" class="admin"><{$block.title}></a>
+		<{else}>
+		<{$block.title}>
+		<{/if}>
+	</h3>
+	<div class="block"><{$block.content}></div>
+</div>
+<{/foreach}>
+
+<{/if}>

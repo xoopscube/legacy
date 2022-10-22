@@ -8,14 +8,14 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/TplfileEditForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplfileEditForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 class LegacyRender_TplfileCloneForm extends LegacyRender_TplfileEditForm
 {
     public function getTokenName()
     {
-        return "module.legacyRender.TplfileCloneForm.TOKEN";
+        return 'module.legacyRender.TplfileCloneForm.TOKEN';
     }
 
     public function prepare()
@@ -31,7 +31,7 @@ class LegacyRender_TplfileCloneForm extends LegacyRender_TplfileEditForm
         // Set field properties
         //
         $this->mFieldProperties['tpl_tplset'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['tpl_tplset']->setDependsByArray(array('required'));
+        $this->mFieldProperties['tpl_tplset']->setDependsByArray(['required']);
         $this->mFieldProperties['tpl_tplset']->addMessage('required', _AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_TPL_TPLSET);
     }
     
@@ -43,7 +43,7 @@ class LegacyRender_TplfileCloneForm extends LegacyRender_TplfileEditForm
         $criteria =new Criteria('tplset_name', $this->get('tpl_tplset'));
         $objs =& $handler->getObjects($criteria);
         
-        if (count($objs) == 0) {
+        if (0 == count($objs)) {
             $this->addErrorMessage(_AD_LEGACYRENDER_ERROR_TPLSET_WRONG);
         }
     }

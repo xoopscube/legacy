@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/forms/LostPassEditForm.class.php";
-require_once XOOPS_MODULE_PATH . "/user/class/LostPassMailBuilder.class.php";
+require_once XOOPS_MODULE_PATH . '/user/forms/LostPassEditForm.class.php';
+require_once XOOPS_MODULE_PATH . '/user/class/LostPassMailBuilder.class.php';
 
 /***
  * @internal
@@ -48,7 +48,7 @@ class User_LostPassAction extends User_Action
         $root =& XCube_Root::getSingleton();
         $code = $root->mContext->mRequest->getRequest('code');    // const $code
         $email = $root->mContext->mRequest->getRequest('email');    // const $email
-        if (strlen($code) == 0 || strlen($email) == 0) {
+        if (0 == strlen($code) || 0 == strlen($email)) {
             return USER_FRAME_VIEW_INPUT;
         } else {
             return $this->_updatePassword($controller);
@@ -79,7 +79,11 @@ class User_LostPassAction extends User_Action
         }
 
         $builder =new User_LostPass2MailBuilder();
-        $director =new User_LostPassMailDirector($builder, $lostUser, $controller->mRoot->mContext->getXoopsConfig(), $extraVars);
+        //$getXConfig = getXoopsConfig();
+		$getXConfig = $controller->mRoot->mContext->getXoopsConfig();
+		// gigamaster fix error 'lost-password'
+		
+        $director =new User_LostPassMailDirector($builder, $lostUser, $controller->mRoot->mContext->$getXConfig, $extraVars);
         $director->contruct();
         $xoopsMailer =& $builder->getResult();
         XCube_DelegateUtils::call('Legacy.Event.RegistUser.SendMail', new XCube_Ref($xoopsMailer), 'LostPass2');
@@ -110,7 +114,13 @@ class User_LostPassAction extends User_Action
         }
 
         $builder =new User_LostPass1MailBuilder();
-        $director =new User_LostPassMailDirector($builder, $lostUser, $controller->mRoot->mContext->getXoopsConfig());
+        //$getXConfig = getXoopsConfig();
+
+		$root =& XCube_Root::getSingleton();
+		$getXConfig = $root->mContext->getXoopsConfig();
+		// gigamaster fix lost-password
+
+        $director =new User_LostPassMailDirector($builder, $lostUser, $controller->mRoot->mContext->$getXConfig);
         $director->contruct();
         $xoopsMailer =& $builder->getResult();
         XCube_DelegateUtils::call('Legacy.Event.RegistUser.SendMail', new XCube_Ref($xoopsMailer), 'LostPass1');
@@ -125,8 +135,8 @@ class User_LostPassAction extends User_Action
     
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_lostpass.html");
-        $render->setAttribute("actionForm", $this->mActionForm);
+        $render->setTemplateName('user_lostpass.html');
+        $render->setAttribute('actionForm', $this->mActionForm);
     }
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)

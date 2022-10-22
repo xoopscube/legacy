@@ -1,0 +1,338 @@
+
+<h3 id="Component">Selectmenu Widget</h3>
+
+<p>Duplicates and extends the functionality of a native HTML select element to overcome the limitations
+    of the native control. The Selectmenu widgets provides a styleable select element replacement.
+    It will act as a proxy back to the original select element, controlling its state for form submission
+    or serialization</p>
+
+
+<div layout="row md-column mt-6" class="component">
+
+    <!-- ///// Description \\\\\ -->
+    <div layout="column">
+
+        <h4>Options</h4>
+
+        <p>The datasource is a native select element. Supports optgroups.</p>
+        <ol>
+            <li>Select a speed, file or number</li>
+            <li>Custom Rendering, framework icons</li>
+            <li>Custom images as CSS background.</li>
+        </ol>
+
+        <h5>Reference :</h5>
+        <ul class="component-ref">
+            <li><a href="https://api.jqueryui.com/selectmenu/" class="modal-control modal-open" target="iframe-modal">&#128210; API Documentation - Selectmenu</a></li>
+            <li><a href="https://api.jqueryui.com/theming/css-framework/" class="modal-control modal-open" target="iframe-modal">&#128208; jQuery UI - CSS Framework</a></li>
+            <li><a href="https://jqueryui.com/themeroller/"  class="modal-control modal-open" target="iframe-modal" rel="noopener">&#127912; Theme Roller</a></li>
+        </ul>
+
+    </div>
+
+    <!-- ///// Preview Sample \\\\\ -->
+    <div layout="column">
+
+        <h4>Preview </h4>
+
+        <form action="#">
+
+            <h4>Selectmenu with framework icons</h4>
+            <fieldset>
+                <label for="filesA">Select a File:</label>
+                <select name="filesA" id="filesA">
+                    <option value="jquery" data-class="ui-icon-script">jQuery.js</option>
+                    <option value="jquerylogo" data-class="ui-icon-image">jQuery Logo</option>
+                    <option value="jqueryui" data-class="ui-icon-script">ui.jQuery.js</option>
+                    <option value="jqueryuilogo" selected="selected" data-class="ui-icon-image">jQuery UI Logo</option>
+                    <option value="somefile" disabled="disabled" data-class="ui-icon-help">Some unknown file</option>
+                </select>
+            </fieldset>
+
+            <h4>Selectmenu with custom icon images</h4>
+            <fieldset>
+                <label for="filesB">Select a podcast:</label>
+                <select name="filesB" id="filesB">
+                    <option value="html5" data-class="html5">HTML5</option>
+                    <option value="css3" data-class="css3">CSS3</option>
+                    <option value="jquery" data-class="jquery">jQuery</option>
+                </select>
+            </fieldset>
+
+            <h4>Selectmenu with custom avatar 16x16 images as CSS background</h4>
+            <fieldset>
+                <label for="people">Select a Person:</label>
+                <select name="people" id="people">
+                    <option value="1" data-class="avatar" data-style="background-image: url(&apos;http://www.gravatar.com/avatar/b3e04a46e85ad3e165d66f5d927eb609?d=monsterid&amp;r=g&amp;s=16&apos;);">John Resig</option>
+                    <option value="2" data-class="avatar" data-style="background-image: url(&apos;http://www.gravatar.com/avatar/e42b1e5c7cfd2be0933e696e292a4d5f?d=monsterid&amp;r=g&amp;s=16&apos;);">Tauren Mills</option>
+                    <option value="3" data-class="avatar" data-style="background-image: url(&apos;http://www.gravatar.com/avatar/bdeaec11dd663f26fa58ced0eb7facc8?d=monsterid&amp;r=g&amp;s=16&apos;);">Jane Doe</option>
+                </select>
+            </fieldset>
+        </form>
+
+    <style>
+        /* select with custom icons */
+        .ui-selectmenu-menu .ui-menu.customicons .ui-menu-item-wrapper {
+            padding: 0.5em 0 0.5em 3em;
+        }
+        .ui-selectmenu-menu .ui-menu.customicons .ui-menu-item .ui-icon {
+            height: 24px;
+            width: 24px;
+            top: 0.1em;
+        }
+        .ui-icon.html5 {
+            mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' class='icon-add-plus'%3e%3cpath d='M13.09 20H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h16c1.11 0 2 .89 2 2v7.81c-.88-.51-1.91-.81-3-.81c-3.31 0-6 2.69-6 6c0 .34.04.67.09 1M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3h-2z' fill='currentColor'%3e%3c/path%3e%3c/svg%3e");
+
+            -webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' class='icon-add-plus'%3e%3cpath d='M13.09 20H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h16c1.11 0 2 .89 2 2v7.81c-.88-.51-1.91-.81-3-.81c-3.31 0-6 2.69-6 6c0 .34.04.67.09 1M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3h-2z' fill='currentColor'%3e%3c/path%3e%3c/svg%3e");
+
+            /*-webkit-mask-image : url("data:image/svg+xml;charset=UTF-8,%3cwidth='1em' height='1em' viewBox='0 0 24 24'%3e%3cpath d='M12 17.56l4.07-1.13l.55-6.1H9.38L9.2 8.3h7.6l.2-1.99H7l.56 6.01h6.89l-.23 2.58l-2.22.6l-2.22-.6l-.14-1.66h-2l.29 3.19L12 17.56M4.07 3h15.86L18.5 19.2L12 21l-6.5-1.8L4.07 3z' fill='currentColor'%3e%3c/path%3e%3c/svg%3e%3crect x='0' y='0' width='1em' height='1em' fill='currentColor'%3e%3c/path%3e%3c/svg%3e");*/
+
+            /*background: url("../../images/logo-html5.svg") 0 0 no-repeat;*/
+            mask-repeat: no-repeat;
+            mask-size: 100%;
+            -webkit-mask-size: 100%;
+            /*-webkit-mask-repeat: no-repeat;*/
+            color: currentColor;
+            background-size: auto, auto;
+            background-repeat: no-repeat;
+            height: 16px;
+            width: 16px;
+
+        }
+        .ui-icon.css3 {
+            background: url("../../images/logo-css3.svg") 0 0 no-repeat;
+            background-size: auto, auto;
+        }
+        .ui-icon.jquery {
+            background: url("../../images/logo-jquery.svg") 0 0 no-repeat;
+            background-size: auto, auto;
+        }
+
+        /* select with CSS avatar icons */
+        option.avatar {
+            background-repeat: no-repeat !important;
+            padding-left: 20px;
+        }
+        .avatar .ui-icon {
+            background-position: left top;
+        }
+    </style>
+    <script>
+        $( function() {
+        $.widget( "custom.iconselectmenu", $.ui.selectmenu, {
+            _renderItem: function( ul, item ) {
+                var li = $( "<li>" ),
+                    wrapper = $( "<div>", { text: item.label } );
+
+                if ( item.disabled ) {
+                    li.addClass( "ui-state-disabled" );
+                }
+
+                $( "<span>", {
+                    style: item.element.attr( "data-style" ),
+                    "class": "ui-icon " + item.element.attr( "data-class" )
+                })
+                    .appendTo( wrapper );
+
+                return li.append( wrapper ).appendTo( ul );
+            }
+        });
+
+        $( "#filesA" )
+        .iconselectmenu()
+        .iconselectmenu( "menuWidget" )
+        .addClass( "ui-menu-icons" );
+
+        $( "#filesB" )
+        .iconselectmenu()
+        .iconselectmenu( "menuWidget" )
+        .addClass( "ui-menu-icons customicons" );
+
+        $( "#people" )
+        .iconselectmenu()
+        .iconselectmenu( "menuWidget")
+        .addClass( "ui-menu-icons avatar" );
+    } );
+    </script>
+    </div>
+
+</div>
+
+
+<!-- ///// Source Code \\\\\ -->
+<div id="tabs-code">
+    <ul>
+        <li>
+            <a href="#tabs-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" style="color:#ff460c;" aria-hidden="true" role="img" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718l10.059.003l.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426l-2.91.804l-2.955-.81l-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443l.744-8.157H8.531z" fill="currentColor"></path></svg>
+            HTML</a>
+        </li>
+        <li>
+            <a href="#tabs-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" style="color:#027dde;" aria-hidden="true" role="img"  viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622l10.125.002l-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523l-2.91.804l-2.956-.81l-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414z" fill="currentColor"></path></svg>
+            CSS</a>
+        </li>
+        <li>
+            <a href="#tabs-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" style="color:#F7E018;" aria-hidden="true" role="img" viewBox="0 0 24 24"><path d="M3 3h18v18H3V3m4.73 15.04c.4.85 1.19 1.55 2.54 1.55c1.5 0 2.53-.8 2.53-2.55v-5.78h-1.7V17c0 .86-.35 1.08-.9 1.08c-.58 0-.82-.4-1.09-.87l-1.38.83m5.98-.18c.5.98 1.51 1.73 3.09 1.73c1.6 0 2.8-.83 2.8-2.36c0-1.41-.81-2.04-2.25-2.66l-.42-.18c-.73-.31-1.04-.52-1.04-1.02c0-.41.31-.73.81-.73c.48 0 .8.21 1.09.73l1.31-.87c-.55-.96-1.33-1.33-2.4-1.33c-1.51 0-2.48.96-2.48 2.23c0 1.38.81 2.03 2.03 2.55l.42.18c.78.34 1.24.55 1.24 1.13c0 .48-.45.83-1.15.83c-.83 0-1.31-.43-1.67-1.03l-1.38.8z" fill="currentColor"/><rect x="0" y="0" width="1em" height="1em" fill="rgba(0, 0, 0, 0)" /></svg>
+            JavaScript</a>
+        </li>
+        <li>
+            <a href="#tabs-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" aria-hidden="true" role="img" viewBox="0 0 1024 1024"><path d="M1024 618q-138 16-197 103t-59 239q-62-50-138-73q-10 9-22 9H416q-12 0-22-9q-76 23-138 73q0-152-59-239T0 618q235-173 101-428Q389 259 512 0q123 259 411 190q-134 255 101 428zM512 256q-106 0-181 80.5T256 530q0 15 3 29.5t6 24.5t11.5 24t12.5 20t15.5 22.5T320 672q21 24 58.5 57t53.5 55t16 48h128q0-26 16.5-48t53.5-55t58-57q4-5 15.5-21.5T735 628t12.5-20t11.5-24t6-24.5t3-29.5q0-113-75-193.5T512 256zm-96 640h192q13 0 22.5 9.5T640 928t-9.5 22.5T608 960q0 29-23 46.5t-73 17.5t-73-17.5t-23-46.5q-13 0-22.5-9.5T384 928t9.5-22.5T416 896z" fill="currentColor"/></svg>
+            SMARTY</a>
+        </li>
+    </ul>
+
+    <div id="tabs-1">
+    <pre><code class="language-html"><!--
+<form action="#">
+  <h4>Selectmenu with framework icons</h4>
+  <fieldset>
+    <label for="filesA">Select a File:</label>
+    <select name="filesA" id="filesA">
+      <option value="jquery" data-class="ui-icon-script">jQuery.js</option>
+      <option value="jquerylogo" data-class="ui-icon-image">jQuery Logo</option>
+      <option value="jqueryui" data-class="ui-icon-script">ui.jQuery.js</option>
+      <option value="jqueryuilogo" selected="selected" data-class="ui-icon-image">jQuery UI Logo</option>
+      <option value="somefile" disabled="disabled" data-class="ui-icon-help">Some unknown file</option>
+    </select>
+  </fieldset>
+
+  <h4>Selectmenu with custom icon images</h4>
+  <fieldset>
+    <label for="filesB">Select a podcast:</label>
+    <select name="filesB" id="filesB">
+      <option value="mypodcast" data-class="podcast">John Resig Podcast</option>
+      <option value="myvideo" data-class="video">Scott Gonz&#xE1;lez Video</option>
+      <option value="myrss" data-class="rss">jQuery RSS XML</option>
+    </select>
+  </fieldset>
+
+  <h4>Selectmenu with custom avatar 16x16 images as CSS background</h4>
+  <fieldset>
+    <label for="people">Select a Person:</label>
+    <select name="people" id="people">
+      <option value="1" data-class="avatar" data-style="background-image: url(&apos;http://www.gravatar.com/avatar/b3e04a46e85ad3e165d66f5d927eb609?d=monsterid&amp;r=g&amp;s=16&apos;);">John Resig</option>
+      <option value="2" data-class="avatar" data-style="background-image: url(&apos;http://www.gravatar.com/avatar/e42b1e5c7cfd2be0933e696e292a4d5f?d=monsterid&amp;r=g&amp;s=16&apos;);">Tauren Mills</option>
+      <option value="3" data-class="avatar" data-style="background-image: url(&apos;http://www.gravatar.com/avatar/bdeaec11dd663f26fa58ced0eb7facc8?d=monsterid&amp;r=g&amp;s=16&apos;);">Jane Doe</option>
+    </select>
+  </fieldset>
+</form>
+--></code></pre>
+    </div>
+
+    <div id="tabs-2">
+    <pre><code class="language-css"><!--
+  <style>
+    /* select with custom icons */
+    .ui-selectmenu-menu .ui-menu.customicons .ui-menu-item-wrapper {
+      padding: 0.5em 0 0.5em 3em;
+    }
+    .ui-selectmenu-menu .ui-menu.customicons .ui-menu-item .ui-icon {
+      height: 24px;
+      width: 24px;
+      top: 0.1em;
+    }
+    .ui-icon.video {
+      background: url("<{$xoops_url}>/images/logo-html5.svg") 0 0 no-repeat;
+    }
+    .ui-icon.podcast {
+      background: url("<{$xoops_url}>/images/logo-css3.svg") 0 0 no-repeat;
+    }
+    .ui-icon.rss {
+      background: url("<{$xoops_url}>/images/logo-jquery.svg") 0 0 no-repeat;
+    }
+
+    /* select with CSS avatar icons */
+    option.avatar {
+      background-repeat: no-repeat !important;
+      padding-left: 20px;
+    }
+    .avatar .ui-icon {
+      background-position: left top;
+    }
+  </style>
+    --></code></pre>
+    </div>
+
+    <div id="tabs-3">
+    <pre><code class="language-javascript"><!--
+  <script>
+  $( function() {
+    $.widget( "custom.iconselectmenu", $.ui.selectmenu, {
+      _renderItem: function( ul, item ) {
+        var li = $( "<li>" ),
+          wrapper = $( "<div>", { text: item.label } );
+
+        if ( item.disabled ) {
+          li.addClass( "ui-state-disabled" );
+        }
+
+        $( "<span>", {
+          style: item.element.attr( "data-style" ),
+          "class": "ui-icon " + item.element.attr( "data-class" )
+        })
+          .appendTo( wrapper );
+
+        return li.append( wrapper ).appendTo( ul );
+      }
+    });
+
+    $( "#filesA" )
+      .iconselectmenu()
+      .iconselectmenu( "menuWidget" )
+        .addClass( "ui-menu-icons" );
+
+    $( "#filesB" )
+      .iconselectmenu()
+      .iconselectmenu( "menuWidget" )
+        .addClass( "ui-menu-icons customicons" );
+
+    $( "#people" )
+      .iconselectmenu()
+      .iconselectmenu( "menuWidget")
+        .addClass( "ui-menu-icons avatar" );
+  } );
+  </script>
+    --></code></pre>
+    </div>
+
+    <div id="tabs-4">
+    <pre><code class="language-smarty"><!--
+    Smarty delimiters are defined as <{ and }>
+    Smarty comments don't waste bandwidth,
+    these blocks are stripped at compile-time.
+    <{* smarty comment *}>
+    --></code></pre>
+    </div>
+
+</div>
+
+
+<script>
+    //Scope Immediately Invoked Function Expression - IIFE
+    //Encapsulate
+    $( function() {
+        // Modal for reference links
+        $(function() {
+            $("a.modal-control").on("click",function(e) {
+                e.preventDefault();
+                $("#iframe-api").attr("src", this.href );
+                $( ".modal-view" ).toggleClass( "modal-show" );
+            });
+        });
+
+        // UI-Tabs [0,1,2,3]
+        $( "#tabs-code" ).tabs(); //.tabs('option', 'disabled', [0,1,2,3]);
+
+        // Example UI-Button
+        $( ".ui-button.disabled" ).button({
+            disabled: true
+        });
+
+    } );
+    // Syntax Highlight
+    Prism.highlightAll();
+
+</script>

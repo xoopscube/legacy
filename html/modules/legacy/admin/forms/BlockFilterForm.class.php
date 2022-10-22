@@ -1,18 +1,19 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: BlockFilterForm.class.php,v 1.3 2008/09/25 15:10:53 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * BlockFilterForm.class.php
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractFilterForm.class.php';
 
 define('NEWBLOCKS_SORT_KEY_BID', 1);
 define('NEWBLOCKS_SORT_KEY_MID', 2);
@@ -40,7 +41,7 @@ define('NEWBLOCKS_SORT_KEY_MAXVALUE', 20);
 
 class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         NEWBLOCKS_SORT_KEY_BID => 'bid',
         NEWBLOCKS_SORT_KEY_MID => 'mid',
         NEWBLOCKS_SORT_KEY_FUNC_NUM => 'func_num',
@@ -54,11 +55,11 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
         NEWBLOCKS_SORT_KEY_TEMPLATE => 'template',
         NEWBLOCKS_SORT_KEY_BCACHETIME => 'bcachetime',
         NEWBLOCKS_SORT_KEY_LAST_MODIFIED => 'last_modified'
-    );
+    ];
     //wanikoo
-    public $mKeyword = "";
+    public $mKeyword = '';
     public $mModule = null;
-    public $mOptionField = "all";
+    public $mOptionField = 'all';
 
     public function getDefaultSortKey()
     {
@@ -104,10 +105,10 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
             $this->_mCriteria->add(new Criteria('c_type', xoops_getrequest('c_type')));
         }
 
-        if (isset($_REQUEST['dirname']) and !$_REQUEST['dirname'] == 0) {
-            if (intval($dirname) == -1) {
+        if (isset($_REQUEST['dirname']) and 0 == !$_REQUEST['dirname']) {
+            if (-1 == (int)$dirname) {
                 $this->_mCriteria->add(new Criteria('block_type', 'C'));
-                $this->mModule = "cblock";
+                $this->mModule = 'cblock';
             } else {
                 $this->_mCriteria->add(new Criteria('dirname', xoops_getrequest('dirname')));
             //wanikoo
@@ -126,20 +127,20 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
 
         if (isset($_REQUEST['option_field'])) {
             $this->mOptionField = $option_field;
-            if ($this->mOptionField != "all") {
-                $this->_mCriteria->add(new Criteria('side', intval($this->mOptionField)));
+            if ('all' != $this->mOptionField) {
+                $this->_mCriteria->add(new Criteria('side', (int)$this->mOptionField));
             }
             $this->mNavi->addExtra('option_field', $this->mOptionField);
         }
 
         // added criteria of block module link
         $selectedMid = (int) $root->mContext->mRequest->getRequest('selmid');
-        if ($selectedMid !== 0) {
+        if (0 !== $selectedMid) {
             $handler =& xoops_getmodulehandler('block_module_link');
             $criteria = new CriteriaCompo(new Criteria('module_id', $selectedMid));
             $criteria->add(new Criteria('module_id', 0), 'OR');
             $selmodArrObj = $handler -> getObjects($criteria);
-            $selmodArr = array() ;
+            $selmodArr = [];
             if (isset($selmodArrObj)) {
                 foreach ($selmodArrObj as $selmodObj) {
                     $selmodArr[] = $selmodObj->getShow('block_id');
@@ -149,14 +150,14 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
 
         // added criteria of group permissions
         $selectedGid = (int) $root->mContext->mRequest->getRequest('selgid');
-        if ($selectedGid !== 0) {
+        if (0 !== $selectedGid) {
             $handler =& xoops_gethandler('groupperm');
             $criteria =new CriteriaCompo();
             $criteria->add(new Criteria('gperm_modid', 1));
             $criteria->add(new Criteria('gperm_groupid', $selectedGid));
             $criteria->add(new Criteria('gperm_name', 'block_read'));
             $selgrpArrObj =&  $handler ->getObjects($criteria);
-            $selgrpArr = array() ;
+            $selgrpArr = [];
             if (isset($selgrpArrObj)) {
                 foreach ($selgrpArrObj as $selgrpObj) {
                     $selgrpArr[] = $selgrpObj->getShow('gperm_itemid');
@@ -188,15 +189,15 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
         //
         // If the sort key is mid, set c_type to second sort key for list display.
         //
-        if (abs($this->mSort) == NEWBLOCKS_SORT_KEY_MID) {
+        if (NEWBLOCKS_SORT_KEY_MID == abs($this->mSort)) {
             $this->_mCriteria->addSort('c_type', $this->getOrder());
         }
 
-        if (abs($this->mSort) != NEWBLOCKS_SORT_KEY_SIDE) {
+        if (NEWBLOCKS_SORT_KEY_SIDE != abs($this->mSort)) {
             $this->_mCriteria->addSort('side', $this->getOrder());
         }
 
-        if (abs($this->mSort) != NEWBLOCKS_SORT_KEY_WEIGHT) {
+        if (NEWBLOCKS_SORT_KEY_WEIGHT != abs($this->mSort)) {
             $this->_mCriteria->addSort('weight', $this->getOrder());
         }
     }

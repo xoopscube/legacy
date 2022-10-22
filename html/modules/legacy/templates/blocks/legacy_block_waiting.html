@@ -1,5 +1,12 @@
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<div class="block-waiting">
+
 <ul>
-<{foreach item=module from=$block.modules}>
-  <li><a href="<{$module.adminlink}>"><{$module.lang_linkname}></a>: <{$module.pendingnum}></li>
-<{/foreach}>
+    <{foreach item=module from=$block.modules}>
+        <li><a href="<{$module.adminlink}>"><{$module.lang_linkname}> <span class="badge"><{$module.pendingnum}></span></a></li>
+    <{/foreach}>
 </ul>
+
+</div>

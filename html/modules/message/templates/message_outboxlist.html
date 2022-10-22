@@ -1,44 +1,93 @@
-<h3><{$smarty.const._MD_MESSAGE_TEMPLATE7}></h3>
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}> - <{$tabSent}></div>
 
-<p><img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_inbox.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE15}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE15}>" /> <a href="index.php?action=index"><{$smarty.const._MD_MESSAGE_TEMPLATE15}></a>&nbsp;&nbsp;
-<img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_add.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE8}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE8}>" /> <a href="index.php?action=new"><{$smarty.const._MD_MESSAGE_TEMPLATE8}></a></p>
+<ul class="breadcrumb" aria-label="breadcrumb">
+    <li><a href="<{$xoops_url}>/">
+        <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a>
+    <li><a href="index.php">
+    <img class="svg inbox" src="<{$xoops_url}>/images/icons/inbox.svg"> <span self="sm-hide"><{$smarty.const._MI_MESSAGE_NAME}></span></a>
+    <li aria-current="page"><{$smarty.const._MD_MESSAGE_TEMPLATE7}>
+</ul>
 
-<form method="post" action="index.php?action=send">
-<div align="right">
-<{$smarty.const._MD_MESSAGE_TEMPLATE9}>
-<select name="touid">
-<option value="0">---</option>
-<{foreach item=fuser from=$select}>
-<option value="<{$fuser.uid}>"<{if $fuser.select==true}> selected="selected"<{/if}>><{$fuser.uname|xoops_escape}></option>
-<{/foreach}>
-</select>
-&nbsp;
-<{$smarty.const._MD_MESSAGE_TEMPLATE3}>
-<input type="text" name="subject" size="25" value="<{$subject|xoops_escape}>" />
-&nbsp;
-<input type="submit" name="subbtn" value="<{$smarty.const._MD_MESSAGE_SEARCH}>" />
-</form>
-</div>
-<br />
 
-<form method="post" action="index.php?action=deleteall">
-<table class="outer">
-<tr>
-<th><{$smarty.const._MD_MESSAGE_TEMPLATE3}></th>
-<th><{$smarty.const._MD_MESSAGE_TEMPLATE9}></th>
-<th><{$smarty.const._MD_MESSAGE_TEMPLATE10}></th>
-<th><{$smarty.const._DELETE}></th>
-</tr>
-<{foreach item=val from=$ListData}>
-<tr>
-<td class="even"><a href="index.php?action=view&amp;inout=out&amp;outbox=<{$val.outbox_id}>"><{$val.title}></a></td>
-<td class="odd"><{$val.fromname}></td>
-<td class="even"><{$val.utime|xoops_formattimestamp:l}></td>
-<td class="odd" align="center"><input type="checkbox" name="delmsg[]" value="<{$val.outbox_id}>" /></td>
-</tr>
-<{/foreach}>
-<tr><td class="foot" colspan="5" style="text-align: center;"><input type="submit" name="subbtn" value="<{$smarty.const._DELETE}>" /></td></tr>
-</table>
-<input type="hidden" name="inout" value="out" />
-</form>
-<div class="pagenavi" align="center"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+<div id="tabs-mail">
+
+    <{include file=db:message_nav.html}>
+
+    <div id="mail-outbox-list">
+
+        <div class="ui-tab-content">
+
+            <form method="post" action="index.php?action=send">
+
+                <div layout="row center-right sm-column my-2">
+
+                <select name="touid" self="center mr-2 sm-full">
+                <option value="0">-<{$smarty.const._MD_MESSAGE_TEMPLATE9}></option>
+                <{foreach item=fuser from=$select}>
+                <option value="<{$fuser.uid}>"<{if $fuser.select==true}> selected="selected"<{/if}>><{$fuser.uname|xoops_escape}></option>
+                <{/foreach}>
+                </select>
+
+                <input self="center mr-2 sm-full" type="text" name="subject" size="25" value="<{$subject|xoops_escape}>" placeholder="<{$smarty.const._MD_MESSAGE_TEMPLATE3}>">
+
+                <button type="submit" class="ui-button" name="subbtn" value="<{$smarty.const._MD_MESSAGE_SEARCH}>">
+                    <img class="svg search" src="<{$xoops_url}>/images/icons/search.svg"> <{$smarty.const._MD_MESSAGE_SEARCH}></button>
+
+                </div>
+
+            </form>
+
+
+            <hr>
+
+
+            <form method="post" action="index.php?action=deleteall">
+
+                <{foreach item=val from=$ListData}>
+
+                <div layout="row center-justify my-2 px-6 py-4 sm-column" id="printhis" class="mail-list-item">
+                    <!-- size-xxsmal = max-width: 240px and size-xsmall = max-width: 360px -->
+                    <div self="size-xxsmall centered mr-4 sm-full">
+
+                        <input type="checkbox" name="delmsg[]" value="<{$val.outbox_id}>" self="center mr-4">
+
+                        <img src="<{$val.to_uid|xoops_user_avatarize}>" alt="" class="mail-list-avatar">
+
+                        <span self="px-4"><{$val.fromname}></span>
+
+                    </div>
+
+                    <a href="index.php?action=view&amp;inout=out&amp;outbox=<{$val.outbox_id}>" self="size-x1 center mr-2 sm-full" class="mail-list-subject"><{$val.title|truncate:50:"..."}></a>
+
+                    <div self="right-center" class="mail-list-date"><{$val.utime|xoops_formattimestamp:l}></div>
+
+                </div>
+
+                <{/foreach}>
+
+                <input type="hidden" name="inout" value="out">
+
+            </form>
+
+
+            <nav self="size-x1 my-4" aria-label="Messages page navigation">
+                <div class="pagenavi pagination"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+            </nav>
+
+
+            <hr>
+
+
+            <div layout="row center-center pb-6" self="size-x1">
+                <button type="submit" class="ui-button delete" name="subbtn" value="<{$smarty.const._DELETE}>">
+                <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg"> <{$smarty.const._DELETE}></button>
+            </div>
+
+        </div><{* ------- /ui-tab-content *}>
+
+    </div><{* ------- /mail-outbox-list *}>
+
+</div><{* ------- /tabs-mail *}>
+
+

@@ -2,9 +2,10 @@
     <{if $def->get('required')===1}>
 	<tr>
     <td class="head"><{$def->get('label')}></td>
-    <td class="<{cycle values="odd,even"}>">
+    <td>
     <{if $def->get('type')=="string"}>
-      <{xoops_input type=text name=$def->getShow('field_name') value=$profileForm->get($def->getShow('field_name'))  size=40 maxlength=255}>     <{elseif $def->get('type')=="int" || $def->get('type')=="float"}>
+      <{xoops_input type=text name=$def->getShow('field_name') value=$profileForm->get($def->getShow('field_name'))  size=40 maxlength=191}>     
+<{elseif $def->get('type')=="int" || $def->get('type')=="float"}>
       <{xoops_input type=text name=$def->getShow('field_name') value=$profileForm->get($def->getShow('field_name')) size=15 maxlength=11}>
     <{elseif $def->get('type')=="text"}>
       <{if $def->mFieldType->getOption($def)=="bbcode"}>
@@ -15,7 +16,8 @@
       <{xoops_dhtmltarea type=text name=$def->getShow('field_name') value=$profileForm->get($def->getShow('field_name')) editor=none}>
       <{/if}>
     <{elseif $def->get('type')=="date"}>
-      <{xoops_input class=datepicker type=text name=$def->getShow('field_name') value=$profileForm->get($def->getShow('field_name')) size=20 maxlength=10}>     <{elseif $def->get('type')=="checkbox"}>
+      <{xoops_input class=datepicker type=text name=$def->getShow('field_name') value=$profileForm->get($def->getShow('field_name')) size=20 maxlength=10}>     
+<{elseif $def->get('type')=="checkbox"}>
       <{xoops_input type=checkbox name=$def->getShow('field_name') value=1 default=$profileForm->get($def->getShow('field_name'))}>
     <{elseif $def->get('type')=="selectbox"}>
       <select name="<{$def->getShow('field_name')}>" id="legacy_xoopsform_<{$def->getShow('field_name')}>">

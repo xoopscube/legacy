@@ -1,9 +1,15 @@
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
 <div class="adminnavi">
-  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+	<a href="<{$xoops_url}>/admin.php">Dashboard</a>
+	&raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
   &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=UserDataUpload"><{$smarty.const._MI_USER_ADMENU_USER_DATA_CSVUPLOAD}></a></span>
 </div>
 
-<h3 class="admintitle"><{$smarty.const._MI_USER_ADMENU_USER_DATA_CSVUPLOAD}></h3>
+
+<h2 class="admintitle"><{$smarty.const._MI_USER_ADMENU_USER_DATA_CSVUPLOAD}></h2>
+
 
 <div class="confirm">
 	<ul>
@@ -14,6 +20,7 @@
     	<li><{$smarty.const._AD_USER_TIPS5_DATA_UPLOAD}></li>
 	</ul>
 </div>
+
 
 <div style="text-align:center; line-height:2em;">
 	<{$smarty.const._AD_USER_DATA_UPLOAD_CHECK_USER_CSVFILE}><br>
@@ -32,16 +39,27 @@
 	}
 	</style>
 	<table class="outer">
-		<tr class="head"><th>&nbsp;</th><{foreach from=$user_fields item=field}><th style="border-right:1px solid #7775bc;"><{$field}></th><{/foreach}></tr>
+		<tr class="head">
+			<th>&nbsp;</th>
+			<{foreach from=$user_fields item=field}>
+			<th style="border-right:1px solid #7775bc;"><{$field}></th><
+			{/foreach}>
+		</tr>
 		<{foreach from=$csv_data item=d}>
 		<tr class="<{cycle values=odd,even}>">
 			<td class="<{if $d.update}>update<{elseif $d.is_new}>new<{/if}>"><{if $d.update}>Update!<{elseif $d.is_new}>New!<{/if}></td>
-			<{foreach from=$d.value item=dd}><td<{if $dd.update}> class="update"<{/if}>><{$dd.var}></td><{/foreach}></tr>
+			<{foreach from=$d.value item=dd}>
+			<td <{if $dd.update}>class="update"<{/if}>>
+			    <{$dd.var}>
+			</td>
+			<{/foreach}>
+		</tr>
 		<{/foreach}>
 	</table>
 	<{/if}>
+
+
 	<form action="./index.php?action=UserDataUploadDo" method="post">
-		<input type="submit" name="do" value="<{$smarty.const._AD_USER_DATA_UPLOAD_DO}>" class="formButton">
-		&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="submit" name="back" value="<{$smarty.const._AD_USER_DATA_UPLOAD_BACK}>" class="formButton">
+		<input class="button cancel" type="submit" name="back" value="<{$smarty.const._AD_USER_DATA_UPLOAD_BACK}>">
+		<input class="button upload" type="submit" name="do" value="<{$smarty.const._AD_USER_DATA_UPLOAD_DO}>">
 	</form>

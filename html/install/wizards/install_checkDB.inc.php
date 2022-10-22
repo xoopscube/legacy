@@ -1,39 +1,58 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: install_checkDB.inc.php,v 1.3 2008/09/25 15:12:17 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * @package    XCL
+ * @subpackage Installation Wizard
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
-    include_once '../mainfile.php';
-    include_once './class/dbmanager.php';
-    $dbm = new db_manager;
-    $title = _INSTALL_L104;
-    if (! $dbm->isConnectable()) {
-        $wizard->addArray('checks', _NGIMG._INSTALL_L106);
-        $wizard->addArray('msgs', _INSTALL_L107);
-        $wizard->setBack(array('start', _INSTALL_L103));
-        $wizard->setReload(true);
-    } else {
-        $wizard->addArray('checks', _OKIMG._INSTALL_L108);
-        if (! $dbm->dbExists()) {
-            $wizard->addArray('checks', _NGIMG.sprintf(_INSTALL_L109, XOOPS_DB_NAME));
-            $wizard->addArray('msgs', _INSTALL_L21.'<br /><b>'.XOOPS_DB_NAME.'</b>');
-            $wizard->addArray('msgs', _INSTALL_L22);
-        } else {
-            $wizard->addArray('checks', _OKIMG.sprintf(_INSTALL_L110, XOOPS_DB_NAME));
-            if (!$dbm->tableExists('users')) {
-                $wizard->addArray('msgs', _INSTALL_L111);
-                $wizard->setNext(array('createTables', _INSTALL_L40));
-            } elseif (!$dbm->tableExists('config')) {
-                $wizard->addArray('msgs', _INSTALL_L130);
-                $wizard->setNext(array('updateTables', _INSTALL_L14));
-            } else {
-                $wizard->addArray('checks', _NGIMG._INSTALL_L131);
-                $wizard->setNext('');
-            }
-        }
-    }
-    $wizard->render('install_checkDB.tpl.php');
+
+include_once '../mainfile.php';
+include_once './class/dbmanager.php';
+
+$dbm   = new db_manager();
+$title = _INSTALL_L104;
+
+if ( ! $dbm->isConnectable() ) {
+	$wizard->addArray( 'checks', _NGIMG . _INSTALL_L106 );
+	$wizard->addArray( 'msgs', '<div class="confirmError">'. _INSTALL_L107 .'</div' );
+	$wizard->setBack( [ 'start', _INSTALL_L103 ] );
+	$wizard->setReload( true );
+} else {
+    // Check connection to Database
+	$wizard->addArray( 'checks', _OKIMG . _INSTALL_L108 );
+
+    // DB
+	if ( ! $dbm->dbExists() ) {
+		$wizard->addArray( 'checks', _NGIMG . sprintf(  _INSTALL_L109 , XOOPS_DB_NAME ) );
+		$wizard->addArray( 'msgs', '<div class="confirmError">'. _INSTALL_L21 . '<br><code>' . XOOPS_DB_NAME . '</code></div>' );
+		$wizard->addArray( 'msgs', '<div class="confirmInfo">'._INSTALL_L22. '</div>' );
+	} else {
+
+		$wizard->addArray( 'checks', _OKIMG . sprintf( _INSTALL_L110, '<code>'.XOOPS_DB_NAME.'</code>' ) );
+        // Detect Table Users
+		if ( ! $dbm->tableExists( 'users' ) ) {
+			$wizard->addArray( 'msgs', '<div class="confirmOk">'._INSTALL_L111.'</div>' );
+			$wizard->setNext( [ 'createTables', _INSTALL_L40 ] );
+
+        }elseif ( $dbm->tableExists( 'users' ) ) {
+            $wizard->addArray('msgs', '<div class="confirmError">'._INSTALL_L130.'</div>');
+            $wizard->setBack( [ 'start', _INSTALL_L103 ] );
+            // Force might duplicate results in DB tables eg. groups
+            $wizard->setNext( [ 'createTables', _INSTALL_L40 ] );
+		} elseif ( ! $dbm->tableExists( 'config' ) ) {
+			$wizard->addArray( 'msgs', '<div class="confirmError">'._INSTALL_L130.'</div>' );
+            // Attempt to update previous versions
+			$wizard->setNext( [ 'updateTables', _INSTALL_L14 ] );
+            $wizard->setReload( true );
+		} else {
+			$wizard->addArray( 'checks', _NGIMG . _INSTALL_L131 );
+			$wizard->addArray( 'msgs', '<div class="confirmError">'. _INSTALL_L131 .'</div>' );
+			$wizard->setBack( [ 'start', _INSTALL_L103 ] );
+		}
+	}
+}
+
+$wizard->render( 'install_checkDB.tpl.php' );

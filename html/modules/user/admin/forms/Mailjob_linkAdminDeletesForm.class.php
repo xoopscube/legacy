@@ -8,13 +8,13 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH."/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 class User_Mailjob_linkAdminDeletesForm extends XCube_ActionForm
 {
     public function getTokenName()
     {
-        return "module.user.Mailjob_linkAdminDeletesForm.TOKEN." . $this->get('mailjob_id');
+        return 'module.user.Mailjob_linkAdminDeletesForm.TOKEN.' . $this->get('mailjob_id');
     }
     
     /**

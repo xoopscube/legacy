@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 /***
  * @internal
@@ -18,7 +18,7 @@ class LegacyRender_TplsetDeleteForm extends XCube_ActionForm
 {
     public function getTokenName()
     {
-        return "module.legacyRender.TplsetDeleteForm.TOKEN" . $this->get('tplset_id');
+        return 'module.legacyRender.TplsetDeleteForm.TOKEN' . $this->get('tplset_id');
     }
 
     public function prepare()
@@ -32,7 +32,7 @@ class LegacyRender_TplsetDeleteForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['tplset_id'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['tplset_id']->setDependsByArray(array('required'));
+        $this->mFieldProperties['tplset_id']->setDependsByArray(['required']);
         $this->mFieldProperties['tplset_id']->addMessage('required', _AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_TPLSET_ID);
     }
 

@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: Legacy_HttpContext.class.php,v 1.4 2008/09/25 15:12:00 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright (c) 2005-2022 XOOPSCube Project
+ * @license   GPL 2.0
  *
  */
 
@@ -12,12 +12,12 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/modules/legacy/kernel/Legacy_Module.class.php";
+require_once XOOPS_ROOT_PATH . '/modules/legacy/kernel/Legacy_Module.class.php';
 
 /**
  * @public
  * @brief [Secret Agreement] The context class for Legacy which extends to keep
- *        Legacy-module-specific informations.
+ *        Legacy-module-specific information.
  * @attention
  *     Only Legacy_Controller or its sub-classes calls this constructor.
  */
@@ -34,7 +34,7 @@ class Legacy_HttpContext extends XCube_HttpContext
      * @brief [READ ONLY] Legacy_AbstractModule - The current module instance.
      */
     public $mModule = null;
-    
+
     /**
      * @public
      * @brief [READ ONLY] XoopsModule - The current Xoops Module object.
@@ -42,28 +42,28 @@ class Legacy_HttpContext extends XCube_HttpContext
      *     This is a shortcut to mModule->mXoopsModule.
      */
     public $mXoopsModule = null;
-    
+
     /**
      * @public
      * @brief [READ ONLY] Map Array - std::map<string, mixed>
      *
      *     This is string collection which indicates site configurations by a site owner.
-     *     Those configuration informations are loaded by the controller, and set. This
+     *     Those configuration information are loaded by the controller, and set. This
      *     configuration and the site configuration of XCube_Root are different.
-     * 
+     *
      *     The array for Xoops, which is configured in the preference of the base. This
      *     property and $xoopsConfig (X2) is the same.
      */
-    public $mXoopsConfig = array();
-    
+    public $mXoopsConfig = [];
+
     /**
      * @public
      * @var [READ ONLY] Map Array - std::map<string, mixed> - The array for Xoops Module Config.
      * @remarks
      *     This is a short cut to mModule->mConfig.
      */
-    public $mModuleConfig = array();
-    
+    public $mModuleConfig = [];
+
     /**
      * @public
      * @internal
@@ -71,27 +71,29 @@ class Legacy_HttpContext extends XCube_HttpContext
      * @attention
      *     This member is used for only Legacy_Controller.
      */
-    public $mBaseRenderSystemName = "";
-    
+    public $mBaseRenderSystemName = '';
+
     /**
      * @public
      * @brief Gets a value of XoopsConfig by $id.
-     * @param $id string
+     * @param string $id
      * @return mixed
      */
     public function getXoopsConfig($id = null)
     {
-        if ($id != null) {
-            return isset($this->mXoopsConfig[$id]) ? $this->mXoopsConfig[$id] : null;
+        if (null != $id) {
+            //return isset($this->mXoopsConfig[$id]) ? $this->mXoopsConfig[$id] : null;
+            // null coalescing operator
+            return $this->mXoopsConfig[$id] ?? null;
         }
 
         return $this->mXoopsConfig;
     }
-    
+
     /**
      * @public
      * @brief Sets the name of the current theme.
-     * @param $name string
+     * @param string $name
      * @return void
      * @attention
      *     This method is for the theme changer feature. However, this API will be

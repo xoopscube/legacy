@@ -1,26 +1,28 @@
 <?php
 /**
- * @file
- * @package profile
- * @version $Id$
+ * @package    profile
+ * @version    2.3.1
+ * @author     Original Author Kilica
+ * @copyright  2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/profile/class/AbstractViewAction.class.php";
+require_once XOOPS_MODULE_PATH . '/profile/class/AbstractViewAction.class.php';
 
 class Profile_DataViewAction extends Profile_AbstractViewAction
 {
-    public $mFieldArr = array();
+    public $mFieldArr = [];
 
     /**
      * @public
      */
     public function _getId()
     {
-        return intval(xoops_getrequest('uid'));
+        return (int)xoops_getrequest('uid');
     }
 
     /**
@@ -28,7 +30,7 @@ class Profile_DataViewAction extends Profile_AbstractViewAction
      */
     public function &_getHandler()
     {
-        $handler =& $this->mAsset->load('handler', "data");
+        $handler =& $this->mAsset->load('handler', 'data');
         return $handler;
     }
 
@@ -41,19 +43,21 @@ class Profile_DataViewAction extends Profile_AbstractViewAction
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewSuccess(&$render)
     {
-        $render->setTemplateName("profile_data_view.html");
+        $render->setTemplateName('profile_data_view.html');
         $render->setAttribute('object', $this->mObject);
         $render->setAttribute('fields', $this->mFieldArr);
     }
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewError(&$render)
     {
-        $this->mRoot->mController->executeRedirect("./index.php?action=DataList", 1, _MD_PROFILE_ERROR_CONTENT_IS_NOT_FOUND);
+        $this->mRoot->mController->executeRedirect('./index.php?action=DataList', 1, _MD_PROFILE_ERROR_CONTENT_IS_NOT_FOUND);
     }
 }

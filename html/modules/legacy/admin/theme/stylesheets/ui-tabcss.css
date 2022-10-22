@@ -1,0 +1,133 @@
+/*
+	XOOPSCube Theme : XCL Admin Flex Grid
+	Distribution : XOOPSCube XCL 2.3
+	Version : 1.0.0
+	Author : Nuno Luciano aka Gigamaster
+	Date : 2021-10-28
+	URL : https://github.com/xoopscube/
+
+    -------------------- -------------------- --------------------  Tabs */
+
+    .ui-tab-css-wrap {
+
+        background-color: var(  --tab-css-background-hover   ); /* transition */
+        border-radius		: 5px;
+        /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
+        box-shadow      : var(  --tab-css-shadow         );
+        display         : flex;
+        flex-wrap       : wrap;
+        list-style      : none;
+        margin          : 40px 0;
+        max-width       : 100%;
+        position        : relative;
+        transition      : 0.3s box-shadow ease;
+
+    }
+
+    .ui-tab-css-wrap:hover {
+
+        /* box-shadow: 0 12px 23px rgba(0, 0, 0, 0.23), 0 10px 10px rgba(0, 0, 0, 0.19); */
+        box-shadow      : var(  --tab-css-shadow-hover   );
+
+    }
+
+    .ui-tab-css {
+
+        display         : none;
+
+    }
+
+    .ui-tab-css:checked:nth-of-type(1) ~ .ui-tab-css-content:nth-of-type(1),
+    .ui-tab-css:checked:nth-of-type(2) ~ .ui-tab-css-content:nth-of-type(2),
+    .ui-tab-css:checked:nth-of-type(3) ~ .ui-tab-css-content:nth-of-type(3),
+    .ui-tab-css:checked:nth-of-type(4) ~ .ui-tab-css-content:nth-of-type(4),
+    .ui-tab-css:checked:nth-of-type(5) ~ .ui-tab-css-content:nth-of-type(5),
+    .ui-tab-css:checked:nth-of-type(6) ~ .ui-tab-css-content:nth-of-type(6),
+    .ui-tab-css:checked:nth-of-type(7) ~ .ui-tab-css-content:nth-of-type(7) {
+        border-top-left-radius  : 0;
+        border-top-right-radius : 0;
+        opacity                 : 1;
+        transition              : 0.5s opacity ease-in, 0.8s transform ease;
+        position                : relative;
+        top                     : 0;
+        z-index                 : 10;
+        transform               : translateY(0px);
+        background-color        : var( --tab-css-background-hover    );
+
+    }
+
+    .ui-tab-css:first-of-type:not(:last-of-type) + label {
+
+        border-top-right-radius     : 0;
+        border-bottom-right-radius  : 0;
+
+    }
+
+    .ui-tab-css:not(:first-of-type):not(:last-of-type) + label {
+
+        border-radius       : 0;
+
+    }
+    .ui-tab-css:last-of-type:not(:first-of-type) + label {
+
+        border-top-left-radius      : 0;
+        border-bottom-left-radius   : 0;
+
+    }
+
+    .ui-tab-css:checked + label {
+
+        background-color    : var(  --tab-css-background-hover       );
+        cursor              : default;
+
+    }
+
+    .ui-tab-css:checked + label:hover {
+
+        box-shadow          : 0 -1px 0 #face74 inset;
+        /* background-color:#face74; */
+
+    }
+
+    .ui-tab-css + label {
+
+        background-color    : var(  --tab-css-background         );
+        border-radius       : 5px 5x 0 0;
+        box-shadow          : 0 -1px 0 transparent inset;
+        color               : #fff;
+        cursor              : pointer;
+        display             : block;
+        flex-grow           : 3;
+        height              : 50px;
+        padding             : 15px;
+        text-align          : center;
+        text-decoration     : none;
+        transition          : 0.3s background-color ease, 0.3s box-shadow ease;
+        user-select         : none;
+        -webkit-user-select : none;
+            -moz-user-select: none;
+            -ms-user-select : none;
+
+    }
+    .ui-tab-css + label:hover {
+
+        background-color    : var(  --tab-css-background-hover   );
+        box-shadow			: 0 -1px 0 #face74 inset;
+
+    }
+    .ui-tab-css-content {
+
+        background-color    : transparent;
+
+        border-bottom-left-radius   : 5px;
+        border-bottom-right-radius  : 5px;
+
+        left                : 0; right: 0;
+        opacity             : 0;
+        padding             : 10px 25px;
+        position            : absolute;
+        transform           : translateY(-3px);
+        width               : 100%;
+        z-index             : -1;
+
+    }

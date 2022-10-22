@@ -1,30 +1,61 @@
-<form action="<{$xoops_url}>/user.php" method="post" style="margin-top: 0px;">
-<br />    
-<{$smarty.const._MB_USER_USERNAME}><br />
-<{xoops_input type=text name=uname size=14 value=$block.unamevalue maxlength=25 id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_uname"}>
-<br />
-<br />
-    <{$smarty.const._MB_USER_PASSWORD}><br />
-    <{xoops_input type=password name=pass size=14 maxlength=32 id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_pass"}>
-<br />
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
-<!--<label><{xoops_input type=checkbox name=rememberme value=On class=formButton}><{$smarty.const._MB_USER_REMEMBERME}></label><br />-->
+<div layout="column center-center" self="size-x1" class="block-login">
 
-<input type="hidden" name="xoops_redirect" value="<{if $xoops_redirect}><{$xoops_redirect}><{else}><{$xoops_requesturi}><{/if}>" />
-<{xoops_input type=hidden name=op value=login id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_op"}>
+    <form action="<{$xoops_url}>/user.php" method="post">
+    <{* Smarty local variable concatenation : const + cat:'' *}>
+    <label for="<{$smarty.const.XOOPS_INPUT_DEFID_PREFIX|cat:'block_uname'}>" aria-label="<{$smarty.const._MB_USER_USERNAME}>">
+    <input type="text"
+           name="uname"
+           value="<{$block.unamevalue}>"
+           maxlength="25"
+           id="<{$smarty.const.XOOPS_INPUT_DEFID_PREFIX|cat:'block_uname'}>"
+           placeholder="<{$smarty.const._MB_USER_USERNAME}>"
+           autocomplete="username">
+    </label>
 
-<br /><br />
-<{xoops_input type=submit name=submit value=$smarty.const._MB_USER_LOGIN id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_submit"}>
-   
-</form>
+    <{* Smarty local variable concatenation : const + cat:'' *}>
+    <label for="<{$smarty.const.XOOPS_INPUT_DEFID_PREFIX|cat:'block_pass'}>" aria-label="<{$smarty.const._MB_USER_PASSWORD}>">
+    <input type="password"
+           name="pass"
+           maxlength="32"
+           id="<{$smarty.const.XOOPS_INPUT_DEFID_PREFIX|cat:'block_pass'}>"
+           placeholder="<{$smarty.const._MB_USER_PASSWORD}>"
+           autocomplete="current-password">
+    </label>
 
-<br />
-<{if $block.use_ssl == '1'}>
-  <a href="javascript:openWithSelfMain('<{$block.sslloginlink}>', 'ssllogin', 300, 200);"><{$smarty.const._MB_USER_SECURE}></a>
-<{/if}>
+    <label for="legacy_xoopsform_rememberme_On">
+        <{xoops_input type=checkbox name=rememberme value=On class=formButton}><{$smarty.const._MB_USER_REMEMBERME}>
+    </label>
 
-<br />
-<a href="<{$xoops_url}>/lostpass.php"><{$smarty.const._MB_USER_LOSTPASS}></a> 
-<{if $block.allow_register == '1'}>
-&nbsp;|<a href="<{$xoops_url}>/register.php"><{$smarty.const._MB_USER_USERREG}></a>
-<{/if}>
+
+    <input type="hidden" name="xoops_redirect" value="<{if $xoops_redirect}><{$xoops_redirect}><{else}><{$xoops_requesturi}><{/if}>">
+    <{xoops_input type=hidden name=op value=login id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_op"}>
+
+
+    <div layout="row center-justify p-4">
+
+        <{if $block.use_ssl == '1'}>
+        <span class="ssl"><a href="javascript:openWithSelfMain('<{$block.sslloginlink}>', 'ssllogin', 320, 240);">
+            <img class="svg ssl" src="<{$xoops_url}>/images/icons/shield.svg"> <{$smarty.const._MB_USER_SECURE}></a>
+        </span>
+        <{/if}>
+
+    <{* xoops_input type=submit name=submit value=$smarty.const._MB_USER_LOGIN id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_submit" *}>
+        <{* Smarty local variable concatenation : const + cat:'' *}>
+        <button type="submit" class="ui-button" name="submit" id="<{$smarty.const.XOOPS_INPUT_DEFID_PREFIX|cat:'block_submit'}>">
+            <img src="<{$xoops_url}>/images/icons/login.svg" width="1em" height="1em" alt="" class="svg"> <{$smarty.const._MB_USER_LOGIN}>
+        </button>
+    </div>
+
+    <p layout="row centered p-4">
+        <small><a href="<{$xoops_url}>/lostpass.php"><{$smarty.const._MB_USER_LOSTPASS}></a>
+        <{if $block.allow_register == '1'}>
+        &nbsp;|  <a href="<{$xoops_url}>/register.php"><{$smarty.const._MB_USER_USERREG}></a>
+        <{/if}></small>
+    </p>
+
+    </form>
+
+</div>

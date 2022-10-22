@@ -8,13 +8,13 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 class User_GroupAdminDeleteForm extends XCube_ActionForm
 {
     public function getTokenName()
     {
-        return "module.user.GroupAdminDeleteForm.TOKEN" . $this->get('group_id');
+        return 'module.user.GroupAdminDeleteForm.TOKEN' . $this->get('group_id');
     }
 
     public function prepare()
@@ -28,7 +28,7 @@ class User_GroupAdminDeleteForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['groupid'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['groupid']->setDependsByArray(array('required'));
+        $this->mFieldProperties['groupid']->setDependsByArray(['required']);
         $this->mFieldProperties['groupid']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_GROUPID);
     }
     

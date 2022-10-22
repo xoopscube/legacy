@@ -1,80 +1,16 @@
 <?php
-// $Id: class.tar.php,v 1.1 2007/05/15 02:34:21 minahito Exp $
-/*
-    package::i.tools
-
-    php-downloader	v1.0	-	www.ipunkt.biz
-
-    (c)	2002 - www.ipunkt.biz (rok)
-*/
-
-/*
-=======================================================================
-Name:
-    tar Class
-
-Author:
-    Josh Barger <joshb@npt.com>
-
-Description:
-    This class reads and writes Tape-Archive (TAR) Files and Gzip
-    compressed TAR files, which are mainly used on UNIX systems.
-    This class works on both windows AND unix systems, and does
-    NOT rely on external applications!! Woohoo!
-
-Usage:
-    Copyright (C) 2002  Josh Barger
-
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
-
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details at:
-        http://www.gnu.org/copyleft/lesser.html
-
-    If you use this script in your application/website, please
-    send me an e-mail letting me know about it :)
-
-Bugs:
-    Please report any bugs you might find to my e-mail address
-    at joshb@npt.com.  If you have already created a fix/patch
-    for the bug, please do send it to me so I can incorporate it into my release.
-
-Version History:
-    1.0	04/10/2002	- InitialRelease
-
-    2.0	04/11/2002	- Merged both tarReader and tarWriter
-                  classes into one
-                - Added support for gzipped tar files
-                  Remember to name for .tar.gz or .tgz
-                  if you use gzip compression!
-                  :: THIS REQUIRES ZLIB EXTENSION ::
-                - Added additional comments to
-                  functions to help users
-                - Added ability to remove files and
-                  directories from archive
-    2.1	04/12/2002	- Fixed serious bug in generating tar
-                - Created another example file
-                - Added check to make sure ZLIB is
-                  installed before running GZIP
-                  compression on TAR
-    2.2	05/07/2002	- Added automatic detection of Gzipped
-                  tar files (Thanks go to Jidgen Falch
-                  for the idea)
-                - Changed "private" functions to have
-                  special function names beginning with
-                  two underscores
-=======================================================================
-XOOPS changes onokazu <webmaster@xoops.org>
-
-    12/25/2002 - Added flag to addFile() function for binary files
-
-=======================================================================
-*/
+/**
+ * tar Class
+ * @package    class
+ * @subpackage core
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Other authors Minahito, 2007/05/15
+ * @author     Other authors onokazu, 12/25/2002
+ * @author     Josh Barger <joshb@npt.com>
+ * @copyright  (c) 2002  Josh Barger
+ * @license    GPL 2.0
+ */
 
 /**
  * tar Class
@@ -83,12 +19,6 @@ XOOPS changes onokazu <webmaster@xoops.org>
  * compressed TAR files, which are mainly used on UNIX systems.
  * This class works on both windows AND unix systems, and does
  * NOT rely on external applications!! Woohoo!
- *
- * @author	Josh Barger <joshb@npt.com>
- * @copyright	Copyright (C) 2002  Josh Barger
- *
- * @package     kernel
- * @subpackage  core
  */
 class tar
 {
@@ -109,11 +39,10 @@ class tar
     public $numDirectories;
     /**#@-*/
 
-
     /**
      * Class Constructor -- Does nothing...
      */
-    public function tar()
+    public function __construct()
     {
         return true;
     }
@@ -122,9 +51,10 @@ class tar
      * Computes the unsigned Checksum of a file's header
      * to try to ensure valid file
      *
-     * @param	string  $bytestring
+     * @param string $bytestring
      *
-     * @access	private
+     * @access    private
+     * @return float|int|string
      */
     public function __computeUnsignedChecksum($bytestring)
     {
@@ -135,7 +65,7 @@ class tar
         for ($i=0; $i<8; $i++) {
             $unsigned_chksum -= ord($bytestring[148 + $i]);
         }
-        $unsigned_chksum += ord(" ") * 8;
+        $unsigned_chksum += ord(' ') * 8;
 
         return $unsigned_chksum;
     }
@@ -229,16 +159,16 @@ class tar
                 $activeFile = &$this->files[];
 
                 // Asign Values
-                $activeFile["name"]        = $file_name;
-                $activeFile["mode"]        = $file_mode;
-                $activeFile["size"]        = $file_size;
-                $activeFile["time"]        = $file_time;
-                $activeFile["user_id"]        = $file_uid;
-                $activeFile["group_id"]        = $file_gid;
-                $activeFile["user_name"]    = $file_uname;
-                $activeFile["group_name"]    = $file_gname;
-                $activeFile["checksum"]        = $file_chksum;
-                $activeFile["file"]        = $file_contents;
+                $activeFile['name']       = $file_name;
+                $activeFile['mode']       = $file_mode;
+                $activeFile['size']       = $file_size;
+                $activeFile['time']       = $file_time;
+                $activeFile['user_id']    = $file_uid;
+                $activeFile['group_id']   = $file_gid;
+                $activeFile['user_name']  = $file_uname;
+                $activeFile['group_name'] = $file_gname;
+                $activeFile['checksum']   = $file_chksum;
+                $activeFile['file']       = $file_contents;
             } else {
                 // Increment number of directories
                 $this->numDirectories++;
@@ -247,14 +177,14 @@ class tar
                 $activeDir = &$this->directories[];
 
                 // Assign values
-                $activeDir["name"]        = $file_name;
-                $activeDir["mode"]        = $file_mode;
-                $activeDir["time"]        = $file_time;
-                $activeDir["user_id"]        = $file_uid;
-                $activeDir["group_id"]        = $file_gid;
-                $activeDir["user_name"]        = $file_uname;
-                $activeDir["group_name"]    = $file_gname;
-                $activeDir["checksum"]        = $file_chksum;
+                $activeDir['name']       = $file_name;
+                $activeDir['mode']       = $file_mode;
+                $activeDir['time']       = $file_time;
+                $activeDir['user_id']    = $file_uid;
+                $activeDir['group_id']   = $file_gid;
+                $activeDir['user_name']  = $file_uname;
+                $activeDir['group_name'] = $file_gname;
+                $activeDir['checksum']   = $file_chksum;
             }
 
             // Move our offset the number of blocks we have processed
@@ -280,12 +210,12 @@ class tar
         }
 
         // Read in the TAR file
-        $fp = fopen($filename, "rb");
+        $fp = fopen($filename, 'rb');
         $this->tar_file = fread($fp, filesize($filename));
         fclose($fp);
 
         if ($this->tar_file[0] == chr(31) && $this->tar_file[1] == chr(139) && $this->tar_file[2] == chr(8)) {
-            if (!function_exists("gzinflate")) {
+            if (!function_exists('gzinflate')) {
                 return false;
             }
 
@@ -319,26 +249,26 @@ class tar
 
                 // Generate tar header for this directory
                 // Filename, Permissions, UID, GID, size, Time, checksum, typeflag, linkname, magic, version, user name, group name, devmajor, devminor, prefix, end
-                $header .= str_pad($information["name"], 100, chr(0));
-                $header .= str_pad(decoct($information["mode"]), 7, "0", STR_PAD_LEFT) . chr(0);
-                $header .= str_pad(decoct($information["user_id"]), 7, "0", STR_PAD_LEFT) . chr(0);
-                $header .= str_pad(decoct($information["group_id"]), 7, "0", STR_PAD_LEFT) . chr(0);
-                $header .= str_pad(decoct(0), 11, "0", STR_PAD_LEFT) . chr(0);
-                $header .= str_pad(decoct($information["time"]), 11, "0", STR_PAD_LEFT) . chr(0);
-                $header .= str_repeat(" ", 8);
-                $header .= "5";
+                $header .= str_pad($information['name'], 100, chr(0));
+                $header .= str_pad(decoct($information['mode']), 7, '0', STR_PAD_LEFT) . chr(0);
+                $header .= str_pad(decoct($information['user_id']), 7, '0', STR_PAD_LEFT) . chr(0);
+                $header .= str_pad(decoct($information['group_id']), 7, '0', STR_PAD_LEFT) . chr(0);
+                $header .= str_pad(decoct(0), 11, '0', STR_PAD_LEFT) . chr(0);
+                $header .= str_pad(decoct($information['time']), 11, '0', STR_PAD_LEFT) . chr(0);
+                $header .= str_repeat(' ', 8);
+                $header .= '5';
                 $header .= str_repeat(chr(0), 100);
-                $header .= str_pad("ustar", 6, chr(32));
+                $header .= str_pad('ustar', 6, chr(32));
                 $header .= chr(32) . chr(0);
-                $header .= str_pad("", 32, chr(0));
-                $header .= str_pad("", 32, chr(0));
+                $header .= str_pad('', 32, chr(0));
+                $header .= str_pad('', 32, chr(0));
                 $header .= str_repeat(chr(0), 8);
                 $header .= str_repeat(chr(0), 8);
                 $header .= str_repeat(chr(0), 155);
                 $header .= str_repeat(chr(0), 12);
 
                 // Compute header checksum
-                $checksum = str_pad(decoct($this->__computeUnsignedChecksum($header)), 6, "0", STR_PAD_LEFT);
+                $checksum = str_pad(decoct($this->__computeUnsignedChecksum($header)), 6, '0', STR_PAD_LEFT);
                 for ($i=0; $i<6; $i++) {
                     $header[(148 + $i)] = substr($checksum, $i, 1);
                 }
@@ -358,26 +288,26 @@ class tar
 
                 // Generate the TAR header for this file
                 // Filename, Permissions, UID, GID, size, Time, checksum, typeflag, linkname, magic, version, user name, group name, devmajor, devminor, prefix, end
-                $header = str_pad($information["name"], 100, chr(0));
-                $header .= str_pad(decoct($information["mode"]), 7, "0", STR_PAD_LEFT) . chr(0);
-                $header .= str_pad(decoct($information["user_id"]), 7, "0", STR_PAD_LEFT) . chr(0);
-                $header .= str_pad(decoct($information["group_id"]), 7, "0", STR_PAD_LEFT) . chr(0);
-                $header .= str_pad(decoct($information["size"]), 11, "0", STR_PAD_LEFT) . chr(0);
-                $header .= str_pad(decoct($information["time"]), 11, "0", STR_PAD_LEFT) . chr(0);
-                $header .= str_repeat(" ", 8);
-                $header .= "0";
+                $header = str_pad($information['name'], 100, chr(0));
+                $header .= str_pad(decoct($information['mode']), 7, '0', STR_PAD_LEFT) . chr(0);
+                $header .= str_pad(decoct($information['user_id']), 7, '0', STR_PAD_LEFT) . chr(0);
+                $header .= str_pad(decoct($information['group_id']), 7, '0', STR_PAD_LEFT) . chr(0);
+                $header .= str_pad(decoct($information['size']), 11, '0', STR_PAD_LEFT) . chr(0);
+                $header .= str_pad(decoct($information['time']), 11, '0', STR_PAD_LEFT) . chr(0);
+                $header .= str_repeat(' ', 8);
+                $header .= '0';
                 $header .= str_repeat(chr(0), 100);
-                $header .= str_pad("ustar", 6, chr(32));
+                $header .= str_pad('ustar', 6, chr(32));
                 $header .= chr(32) . chr(0);
-                $header .= str_pad($information["user_name"], 32, chr(0));    // How do I get a file's user name from PHP?
-                $header .= str_pad($information["group_name"], 32, chr(0));    // How do I get a file's group name from PHP?
+                $header .= str_pad($information['user_name'], 32, chr(0));    // How do I get a file's user name from PHP?
+                $header .= str_pad($information['group_name'], 32, chr(0));    // How do I get a file's group name from PHP?
                 $header .= str_repeat(chr(0), 8);
                 $header .= str_repeat(chr(0), 8);
                 $header .= str_repeat(chr(0), 155);
                 $header .= str_repeat(chr(0), 12);
 
                 // Compute header checksum
-                $checksum = str_pad(decoct($this->__computeUnsignedChecksum($header)), 6, "0", STR_PAD_LEFT);
+                $checksum = str_pad(decoct($this->__computeUnsignedChecksum($header)), 6, '0', STR_PAD_LEFT);
                 for ($i=0; $i<6; $i++) {
                     $header[(148 + $i)] = substr($checksum, $i, 1);
                 }
@@ -385,7 +315,7 @@ class tar
                 $header[155] = chr(32);
 
                 // Pad file contents to byte count divisible by 512
-                $file_contents = str_pad($information["file"], (ceil($information["size"] / 512) * 512), chr(0));
+                $file_contents = str_pad($information['file'], (ceil($information['size'] / 512) * 512), chr(0));
 
                 // Add new tar formatted data to tar file contents
                 $this->tar_file .= $header . $file_contents;
@@ -457,7 +387,7 @@ class tar
     {
         if ($this->numFiles > 0) {
             foreach ($this->files as $key => $information) {
-                if ($information["name"] == $filename) {
+                if ($information['name'] == $filename) {
                     return $information;
                 }
             }
@@ -476,7 +406,7 @@ class tar
     {
         if ($this->numDirectories > 0) {
             foreach ($this->directories as $key => $information) {
-                if ($information["name"] == $dirname) {
+                if ($information['name'] == $dirname) {
                     return $information;
                 }
             }
@@ -495,7 +425,7 @@ class tar
     {
         if ($this->numFiles > 0) {
             foreach ($this->files as $key => $information) {
-                if ($information["name"] == $filename) {
+                if ($information['name'] == $filename) {
                     return true;
                 }
             }
@@ -513,7 +443,7 @@ class tar
     {
         if ($this->numDirectories > 0) {
             foreach ($this->directories as $key => $information) {
-                if ($information["name"] == $dirname) {
+                if ($information['name'] == $dirname) {
                     return true;
                 }
             }
@@ -538,13 +468,13 @@ class tar
 
         // Add directory to processed data
         $this->numDirectories++;
-        $activeDir        = &$this->directories[];
-        $activeDir["name"]    = $dirname;
-        $activeDir["mode"]    = $file_information["mode"];
-        $activeDir["time"]    = $file_information["time"];
-        $activeDir["user_id"]    = $file_information["uid"];
-        $activeDir["group_id"]    = $file_information["gid"];
-        $activeDir["checksum"]    = $checksum;
+        $activeDir             = &$this->directories[];
+        $activeDir['name']     = $dirname;
+        $activeDir['mode']     = $file_information['mode'];
+        $activeDir['time']     = $file_information['time'];
+        $activeDir['user_id']  = $file_information['uid'];
+        $activeDir['group_id'] = $file_information['gid'];
+        $activeDir['checksum'] = $checksum;
 
         return true;
     }
@@ -552,8 +482,8 @@ class tar
     /**
      * Add a file to the tar archive
      *
-     * @param   string  $filename
-     * @param   boolean $binary     Binary file?
+     * @param   string $filename
+     * @param bool     $binary Binary file?
      * @return  bool
      **/
     public function addFile($filename, $binary = false)
@@ -573,28 +503,28 @@ class tar
 
         // Read in the file's contents
         if (!$binary) {
-            $fp = fopen($filename, "r");
+            $fp = fopen($filename, 'r');
         } else {
-            $fp = fopen($filename, "rb");
+            $fp = fopen($filename, 'rb');
         }
         $file_contents = filesize($filename) ? fread($fp, filesize($filename)) : '' ;
         fclose($fp);
 
         // Add file to processed data
         $this->numFiles++;
-        $activeFile            = &$this->files[];
-        $activeFile["name"]        = $filename;
-        $activeFile["mode"]        = $file_information["mode"];
-        $activeFile["user_id"]        = $file_information["uid"];
-        $activeFile["group_id"]        = $file_information["gid"];
-        $activeFile["size"]        = $file_information["size"];
-        $activeFile["time"]        = $file_information["mtime"];
-        $activeFile["checksum"]        = isset($checksum) ? $checksum : '';
-        $activeFile["user_name"]    = "";
-        $activeFile["group_name"]    = "";
+        $activeFile               = &$this->files[];
+        $activeFile['name']       = $filename;
+        $activeFile['mode']       = $file_information['mode'];
+        $activeFile['user_id']    = $file_information['uid'];
+        $activeFile['group_id']   = $file_information['gid'];
+        $activeFile['size']       = $file_information['size'];
+        $activeFile['time']       = $file_information['mtime'];
+        $activeFile['checksum']   = isset($checksum) ? $checksum : '';
+        $activeFile['user_name']  = '';
+        $activeFile['group_name'] = '';
         // "trim" May be needless. by nao-pon
         //$activeFile["file"]		= trim($file_contents);
-        $activeFile["file"]        = $file_contents;
+        $activeFile['file'] = $file_contents;
 
         return true;
     }
@@ -609,7 +539,7 @@ class tar
     {
         if ($this->numFiles > 0) {
             foreach ($this->files as $key => $information) {
-                if ($information["name"] == $filename) {
+                if ($information['name'] == $filename) {
                     $this->numFiles--;
                     unset($this->files[$key]);
                     return true;
@@ -629,7 +559,7 @@ class tar
     {
         if ($this->numDirectories > 0) {
             foreach ($this->directories as $key => $information) {
-                if ($information["name"] == $dirname) {
+                if ($information['name'] == $dirname) {
                     $this->numDirectories--;
                     unset($this->directories[$key]);
                     return true;
@@ -675,7 +605,7 @@ class tar
         // GZ Compress the data if we need to
         if ($useGzip) {
             // Make sure we have gzip support
-            if (!function_exists("gzencode")) {
+            if (!function_exists('gzencode')) {
                 return false;
             }
 
@@ -685,7 +615,7 @@ class tar
         }
 
         // Write the TAR file
-        $fp = fopen($filename, "wb");
+        $fp = fopen($filename, 'wb');
         fwrite($fp, $file);
         fclose($fp);
 
@@ -711,7 +641,7 @@ class tar
         // GZ Compress the data if we need to
         if ($useGzip) {
             // Make sure we have gzip support
-            if (!function_exists("gzencode")) {
+            if (!function_exists('gzencode')) {
                 return false;
             }
 

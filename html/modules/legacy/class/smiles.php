@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: smiles.php,v 1.3 2008/09/25 15:11:25 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  *
  */
 
@@ -15,6 +15,11 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class LegacySmilesObject extends XoopsSimpleObject
 {
     public function LegacySmilesObject()
+    {
+        self::__construct();
+    }
+
+    public function __construct()
     {
         static $initVars;
         if (isset($initVars)) {
@@ -32,14 +37,14 @@ class LegacySmilesObject extends XoopsSimpleObject
 
 class LegacySmilesHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "smiles";
-    public $mPrimary = "id";
-    public $mClass = "LegacySmilesObject";
-    
+    public $mTable = 'smiles';
+    public $mPrimary = 'id';
+    public $mClass = 'LegacySmilesObject';
+
     public function delete(&$obj, $force=null)
     {
-        @unlink(XOOPS_UPLOAD_PATH . "/" . $obj->get('smile_url'));
-        
+        @unlink(XOOPS_UPLOAD_PATH . '/' . $obj->get('smile_url'));
+
         return parent::delete($obj, $force);
     }
 }

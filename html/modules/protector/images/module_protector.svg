@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" 
+width="100%" height="100%" viewBox="0 0 240 100">
+<g id="protector">
+<path class="module-icon" d="M12 12h7c-.53 4.11-3.28 7.78-7 8.92V12H5V6.3l7-3.11M12 1L3 5v6c0 5.55 3.84 10.73 9 12c5.16-1.27 9-6.45 9-12V5l-9-4z" fill="currentColor"/>
+<text class="module-name" x="120px" y="50px" fill="currentColor">
+<tspan><![CDATA[Protector]]></tspan>
+</text>
+</g>
+</svg>

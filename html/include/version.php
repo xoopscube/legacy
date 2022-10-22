@@ -1,7 +1,10 @@
 <?php
+
 /**
- * @package Legacy
- * @version $Id: version.php,v 1.21 2008/11/16 10:31:30 minahito Exp $
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Minahito, 2008/11/16
  */
 
-define("XOOPS_VERSION", "XOOPS Cube Legacy 2.2.3 Beta 1");
+define('XOOPS_VERSION', 'XCL 2.3.1');

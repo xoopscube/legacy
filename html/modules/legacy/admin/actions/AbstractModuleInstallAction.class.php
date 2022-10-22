@@ -1,21 +1,19 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: AbstractModuleInstallAction.class.php,v 1.3 2008/09/25 15:11:35 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * AbstractModuleInstallAction.class.php
+ * This is abstract class for 3 action classes : Install, Update and Uninstall.
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors  gigamaster, 2020 XCL/PHP7
+ * @author     Kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
  if (!defined('XOOPS_ROOT_PATH')) {
      exit();
  }
 
-/**
- * This is abstract class for 3 action classes that are Install, Update and
- * Uninstall.
- */
 class Legacy_AbstractModuleInstallAction extends Legacy_Action
 {
     /**
@@ -23,14 +21,14 @@ class Legacy_AbstractModuleInstallAction extends Legacy_Action
      */
     public $mModuleObject = null;
     public $mLog = null;
-    
+
     public $mActionForm = null;
-    
+
     public function prepare(&$controller, &$xoopsUser)
     {
         $this->_setupActionForm();
     }
-    
+
     public function _setupActionForm()
     {
     }
@@ -49,10 +47,10 @@ class Legacy_AbstractModuleInstallAction extends Legacy_Action
         }
 
         $this->mActionForm->load($this->mModuleObject);
-        
+
         $this->mModuleObject->loadAdminMenu();
         $this->mModuleObject->loadInfo($dirname);
-        
+
         return LEGACY_FRAME_VIEW_INDEX;
     }
 
@@ -61,13 +59,13 @@ class Legacy_AbstractModuleInstallAction extends Legacy_Action
         if (isset($_REQUEST['_form_control_cancel'])) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
-        
+
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
-        
+
         $installer =& $this->_getInstaller($this->mActionForm->get('dirname'));
         $this->mModuleObject =& $installer->loadModuleObject($this->mActionForm->get('dirname'));
-        
+
         if ($installer->hasAgree()) {
             $this->_loadAgreement();
         }
@@ -83,7 +81,7 @@ class Legacy_AbstractModuleInstallAction extends Legacy_Action
                 return LEGACY_FRAME_VIEW_INDEX;
             }
         }
-        
+
         if (!is_object($this->mModuleObject)) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
@@ -92,24 +90,25 @@ class Legacy_AbstractModuleInstallAction extends Legacy_Action
         $installer->execute($this->mActionForm->get('dirname'));
 
         $this->mLog =& $installer->getLog();
-        
+
         return LEGACY_FRAME_VIEW_SUCCESS;
     }
 
     /**
      * Return a procedure for this process.
+     * @param $dirname
      */
     public function &_getInstaller($dirname)
     {
     }
-    
+
     public function _loadAgreement()
     {
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$renderer)
     {
-        $renderer->setTemplateName("install_wizard_error.html");
+        $renderer->setTemplateName('install_wizard_error.html');
         $renderer->setAttribute('log', $this->mLog);
     }
 }

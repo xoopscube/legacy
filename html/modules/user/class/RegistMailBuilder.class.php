@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package user
  * @version $Id: RegistMailBuilder.class.php,v 1.2 2007/06/07 05:27:37 minahito Exp $
@@ -19,25 +20,25 @@ class User_UserRegistMailDirector
      * @var User_RegistUserActivateMailBuilder
      */
     public $mBuilder;
-    
+
     /***
      * @var XoopsUser
      */
     public $mUser;
-    
+
     public $mXoopsConfig;
-    
+
     public $mUserConfig;
 
-    public function User_UserRegistMailDirector(&$builder, &$user, $xoopsConfig, $userConfig)
+    public function __construct(&$builder, &$user, $xoopsConfig, $userConfig)
     {
-        $this->mBuilder =& $builder;
-        
-        $this->mUser =& $user;
-        $this->mXoopsConfig =$xoopsConfig;
+        $this->mBuilder = &$builder;
+
+        $this->mUser = &$user;
+        $this->mXoopsConfig = $xoopsConfig;
         $this->mUserConfig = $userConfig;
     }
-    
+
     /***
      * With setting variables to a builder, triggers building the mail of a
      * builder.
@@ -62,10 +63,10 @@ class User_UserRegistMailDirector
 class User_RegistUserActivateMailBuilder
 {
     public $mMailer;
-    
-    public function User_RegistUserActivateMailBuilder()
+
+    public function __construct()
     {
-        $this->mMailer =& getMailer();
+        $this->mMailer = &getMailer();
         $this->mMailer->useMail();
     }
 
@@ -74,7 +75,7 @@ class User_RegistUserActivateMailBuilder
      */
     public function setTemplate()
     {
-        $root=&XCube_Root::getSingleton();
+        $root = &XCube_Root::getSingleton();
         $language = $root->mContext->getXoopsConfig('language');
         $this->mMailer->setTemplateDir(XOOPS_ROOT_PATH . '/modules/user/language/' . $language . '/mail_template/');
         $this->mMailer->setTemplate('register.tpl');
@@ -84,13 +85,13 @@ class User_RegistUserActivateMailBuilder
     {
         $this->mMailer->setToUsers($user);
     }
-    
+
     public function setFromEmail($xoopsConfig)
     {
-        $this->mMailer->setFromEmail($xoopsConfig['adminmail']);
-        $this->mMailer->setFromName($xoopsConfig['sitename']);
+        $this->mMailer->setFromEmail(defined('XOOPS_NOTIFY_FROM_EMAIL') ? XOOPS_NOTIFY_FROM_EMAIL : $xoopsConfig['adminmail']);
+        $this->mMailer->setFromName(defined('XOOPS_NOTIFY_FROM_NAME') ? XOOPS_NOTIFY_FROM_NAME : $xoopsConfig['sitename']);
     }
-    
+
     public function setSubject($user, $xoopsConfig)
     {
         $this->mMailer->setSubject(@sprintf(_MD_USER_LANG_USERKEYFOR, $user->getShow('uname')));
@@ -99,11 +100,11 @@ class User_RegistUserActivateMailBuilder
     public function setBody($user, $xoopsConfig)
     {
         $this->mMailer->assign('SITENAME', $xoopsConfig['sitename']);
-        $this->mMailer->assign('ADMINMAIL', $xoopsConfig['adminmail']);
+        $this->mMailer->assign('ADMINMAIL', (!defined('XOOPS_NOTIFY_FROM_EMAIL') || XOOPS_NOTIFY_FROM_EMAIL === $xoopsConfig['adminmail']) ? $xoopsConfig['adminmail'] : '');
         $this->mMailer->assign('SITEURL', XOOPS_URL . '/');
         $this->mMailer->assign('USERACTLINK', XOOPS_URL . '/user.php?op=actv&uid=' . $user->getVar('uid') . '&actkey=' . $user->getShow('actkey'));
     }
-    
+
     public function &getResult()
     {
         return $this->mMailer;
@@ -120,7 +121,7 @@ class User_RegistUserAdminActivateMailBuilder extends User_RegistUserActivateMai
 {
     public function setTemplate()
     {
-        $root=&XCube_Root::getSingleton();
+        $root = &XCube_Root::getSingleton();
         $language = $root->mContext->getXoopsConfig('language');
         $this->mMailer->setTemplateDir(XOOPS_ROOT_PATH . '/modules/user/language/' . $language . '/mail_template/');
         $this->mMailer->setTemplate('adminactivate.tpl');
@@ -128,16 +129,16 @@ class User_RegistUserAdminActivateMailBuilder extends User_RegistUserActivateMai
 
     public function setToUsers($user, $userConfig)
     {
-        $memberHandler=&xoops_gethandler('member');
+        $memberHandler = &xoops_gethandler('member');
         $this->mMailer->setToGroups($memberHandler->getGroup($userConfig['activation_group']));
     }
-    
+
     public function setFromUser($xoopsConfig)
     {
-        $this->mMailer->setFromEmail($xoopsConfig['adminmail']);
-        $this->mMailer->setFromName($xoopsConfig['sitename']);
+        $this->mMailer->setFromEmail(defined('XOOPS_NOTIFY_FROM_EMAIL') ? XOOPS_NOTIFY_FROM_EMAIL : $xoopsConfig['adminmail']);
+        $this->mMailer->setFromName(defined('XOOPS_NOTIFY_FROM_NAME') ? XOOPS_NOTIFY_FROM_NAME : $xoopsConfig['sitename']);
     }
-    
+
     public function setSubject($user, $xoopsConfig)
     {
         $this->mMailer->setSubject(@sprintf(_MD_USER_LANG_USERKEYFOR, $user->getVar('uname')));
@@ -156,21 +157,20 @@ class User_RegistUserAdminActivateMailBuilder extends User_RegistUserActivateMai
  * @internal
  * [Notice]
  * Uncompleted?
- * 
+ *
  * @todo Implement setTemplate()
  */
 class User_RegistUserNotifyMailBuilder extends User_RegistUserActivateMailBuilder
 {
     public function setTemplate()
-    {
-    }
+    { }
 
     public function setToUsers($user, $userConfig)
     {
-        $memberHandler=&xoops_gethandler('member');
+        $memberHandler = &xoops_gethandler('member');
         $this->mMailer->setToGroups($memberHandler->getGroup($userConfig['new_user_notify_group']));
     }
-    
+
     public function setSubject($user, $xoopsConfig)
     {
         $this->mMailer->setSubject(@sprintf(_MD_USER_LANG_NEWUSERREGAT, $xoopsConfig['sitename']));
@@ -191,12 +191,12 @@ class User_RegistAdminCommitMailBuilder extends User_RegistUserActivateMailBuild
 {
     public function setTemplate()
     {
-        $root=&XCube_Root::getSingleton();
+        $root = &XCube_Root::getSingleton();
         $language = $root->mContext->getXoopsConfig('language');
         $this->mMailer->setTemplateDir(XOOPS_ROOT_PATH . '/modules/user/language/' . $language . '/mail_template/');
         $this->mMailer->setTemplate('activated.tpl');
     }
-    
+
     public function setSubject($user, $xoopsConfig)
     {
         $this->mMailer->setSubject(@sprintf(_MD_USER_LANG_YOURACCOUNT, $xoopsConfig['sitename']));

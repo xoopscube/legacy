@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/MailjobFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/MailjobFilterForm.class.php';
 
 class User_MailjobListAction extends User_AbstractListAction
 {
@@ -27,18 +27,18 @@ class User_MailjobListAction extends User_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=MailjobList";
+        return './index.php?action=MailjobList';
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("mailjob_list.html");
+        $render->setTemplateName('mailjob_list.html');
         
         foreach (array_keys($this->mObjects) as $key) {
             $this->mObjects[$key]->loadUserCount();
         }
 
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
     }
 }

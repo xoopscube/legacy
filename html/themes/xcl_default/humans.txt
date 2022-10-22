@@ -1,0 +1,20 @@
+# humanstxt.org
+# The humans responsible & technology colophon
+
+# TEAM
+
+    <name>	--	 <role> -- 			<twitter>
+    Gigamaster		Front End Developer		@nunoluciano
+
+# THANKS
+
+    <name>	--	 <role> -- 			<twitter>
+    <name>	--	 <role> -- 			<twitter>
+
+# TECHNOLOGY COLOPHON
+
+    Apache Server Configs
+    CSS3, HTML5, Normalize.css
+    jQuery, Modernizr
+    PHP, MySQL, Smarty
+    XCL Web App

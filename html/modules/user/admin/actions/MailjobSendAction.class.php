@@ -4,7 +4,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/MailjobAdminSendForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/MailjobAdminSendForm.class.php';
 
 class User_MailjobSendAction extends User_Action
 {
@@ -13,7 +13,7 @@ class User_MailjobSendAction extends User_Action
     
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
-        $id = intval(xoops_getrequest('mailjob_id'));
+        $id = (int)xoops_getrequest('mailjob_id');
         
         $handler =& xoops_getmodulehandler('mailjob');
         
@@ -46,7 +46,7 @@ class User_MailjobSendAction extends User_Action
             return USER_FRAME_VIEW_ERROR;
         }
         
-        if (xoops_getrequest('_form_control_cancel') != null) {
+        if (null != xoops_getrequest('_form_control_cancel')) {
             return USER_FRAME_VIEW_CANCEL;
         }
         
@@ -59,11 +59,11 @@ class User_MailjobSendAction extends User_Action
 
         $root =& XCube_Root::getSingleton();
         if ($this->mMailjob->get('is_pm')) {
-            $this->mMailjob->mSend->add(array(&$this, "sendPM"));
+            $this->mMailjob->mSend->add([&$this, 'sendPM']);
         }
 
         if ($this->mMailjob->get('is_mail')) {
-            $this->mMailjob->mSend->add(array(&$this, "sendMail"));
+            $this->mMailjob->mSend->add([&$this, 'sendMail']);
         }
 
         $this->mMailjob->send($xoopsUser);
@@ -85,7 +85,7 @@ class User_MailjobSendAction extends User_Action
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("mailjob_send.html");
+        $render->setTemplateName('mailjob_send.html');
         $render->setAttribute('object', $this->mMailjob);
         $render->setAttribute('actionForm', $this->mActionForm);
     }
@@ -99,6 +99,10 @@ class User_MailjobSendAction extends User_Action
      * [Notice]
      * Until private message will come to implement Service, we use pm object
      * directly.
+     * @param $link
+     * @param $mailjob
+     * @param $to_user
+     * @param $from_user
      */
     public function sendPM(&$link, &$mailjob, &$to_user, &$from_user)
     {
@@ -136,10 +140,10 @@ class User_MailjobSendAction extends User_Action
         $xoopsMailer->setBody($mailjob->getReplaceBody($to_user, $from_user));
 
         if (!$xoopsMailer->send(true)) {
-            if ($link->get('message') == "" && $xoopsMailer->multimailer->ErrorInfo == "") {
-                $link->set('message', "Could not send mail. ");
+            if ('' == $link->get('message') && '' == $xoopsMailer->multimailer->ErrorInfo) {
+                $link->set('message', 'Could not send mail. ');
             } else {
-                $link->set('message', $link->get('message') . " / " . $xoopsMailer->multimailer->ErrorInfo);
+                $link->set('message', $link->get('message') . ' / ' . $xoopsMailer->multimailer->ErrorInfo);
             }
         }
     }

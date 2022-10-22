@@ -1,2 +1,3 @@
 <?php
-    $wizardSeq->insertAfter('start', 'envcheck', 'Enviromment Check');
+
+$wizardSeq->insertAfter( 'start', 'envcheck', 'Enviromment Check' );

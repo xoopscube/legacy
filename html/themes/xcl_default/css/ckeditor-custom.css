@@ -1,0 +1,112 @@
+/*
+ * Theme XCL DEFAULT
+ * @version   2.3.2
+ * @author    Nuno Luciano ( https://github.com/gigamaster )
+ * @copyright 2005-2022 The XOOPSCube Project
+ * @license   BSD
+ * @link      https://github.com/xoopscube
+ */
+
+/* -------------------- -------------------- CKEDITOR */
+
+.cke_reset_all,
+.cke_dialog_ui_labeled_label {
+    color: #abc !important;
+    max-width: 100%;
+}
+.cke_dialog_body,
+.cke_dialog_contents {
+    background: linear-gradient(145deg, #252b34, #3d4752) !important;
+    border              : 1px solid hsl(220, 15%, 25%) !important;
+    box-shadow: inset 5px 5px 8px 1px rgb(0 0 0 / 20%), 5px 5px 10px 1px rgb(45 50 60 / 20%), inset -5px -5px 10px 3px rgb(47 65 74 / 20%), inset -1px -2px 5px 1px rgb(45 50 60 / 20%), -5px -5px 10px 5px rgb(45 50 60 / 20%);
+}
+
+.cke_dialog_tabs {
+    background-color: hsl(210, 15%, 28%) !important; /* transition color */
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 5px hsl(210deg 10% 12% / 90%)!important;
+    transition: 0.3s box-shadow ease;
+    background: linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%))!important;
+}
+
+.cke_dialog_tab {
+    background: linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%)) !important;
+    transition: 0.5s opacity ease-in, 0.8s transform ease!important;
+    transform: translateY(0px)!important;
+}
+
+a.cke_dialog_tab {
+    background-color: hsl(210, 15%, 28%);
+    transition: 0.3s background-color ease, 0.3s box-shadow ease;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    box-shadow: inset 0px 5px 10px 0px hsl(215, 15%, 21%), 0px 5px 1px hsl(215, 17%, 10%)
+}
+a.cke_dialog_tab_selected {
+    background-color: hsl(210, 15%, 18%);
+    cursor: default;
+    background: linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));
+}
+.cke_dialog_tab_selected,
+.cke_dialog_tab_selected:hover {
+    color:#face74;
+    border-bottom-color: rgb(255, 255, 255);
+    background: hsl(210, 15%, 12%);
+    box-shadow: 0 -1px 0 #face74 inset!important;
+}
+
+.cke_dialog_ui_input_text {
+    border              : 1px solid hsl(220, 15%, 25%) !important;
+}
+
+select.cke_dialog_ui_input_select{
+    color           : #abc!important;
+    background 		: linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%))!important;
+/*background-color: #232831;*/
+    border          : 1px solid hsla(210, 15%, 20%, 1);
+    border-radius   : var(--border-radius);
+    box-shadow      : inset 10px 10px 10px hsl(218, 17%, 12%),
+    inset -10px -10px 10px rgb(45, 51, 62);
+    box-shadow      : inset 5px 5px 8px 1px rgba(0, 0, 0, 0.2), 5px 5px 10px 0px rgba(45, 50, 60, 1),
+    inset -5px -5px 8px 0px rgba(55, 65, 75, 0.3),
+    inset -1px -2px 2px 0px rgba(45, 50, 60, 0.4), -6px -6px 15px 3px rgba(45, 50, 60, 0.6);
+    padding         : .5em 1em;
+    margin          : .5em 0;
+    max-width       : 100%;
+    transition      : 0.4s;
+
+}
+
+textarea.cke_source {
+    /*border: 1px solid hsla(210, 15%, 20%, 1);*/
+    /*border-radius: 5px;*/
+    /*background: linear-gradient(145deg, #252b34, #20242c);*/
+    /*box-shadow: 10px 10px 20px #1a1e25,*/
+    /*-10px -10px 20px #2c323d;*/
+    color           : inherit;
+    border          : 1px solid hsla(210, 15%, 20%, 1);
+    padding         : .5em 1.5em;
+    border-radius   : var(--border-radius);
+    background      : #232831;
+    box-shadow      : inset 10px 10px 10px hsl(218, 17%, 12%), inset -5px -10px 10px hsl(219, 16%, 21%);
+    margin          : 1em 0em;
+    width           : 100%;
+}
+select option,
+select.cke_dialog_ui_input_select option {
+    padding         : 1em .5em!important;
+}
+select option,
+select.cke_dialog_ui_input_select {
+    /*margin: 10px;*/
+    background: #232831!important;
+    /*color: #fff;*/
+    /*text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);*/
+}
+select option:hover,
+select.cke_dialog_ui_input_select:hover,
+select.cke_dialog_ui_input_select option:hover {
+    border: 1px solid #face74 !important;
+}

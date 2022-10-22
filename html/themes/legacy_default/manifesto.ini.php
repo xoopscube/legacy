@@ -5,7 +5,7 @@
 Name="XOOPS Cube Legacy 2.2"
 Depends=Legacy_RenderSystem,legacy
 Url="https://github.com/xoopscube/legacy/"
-Version="2.2"
+Version="2.2.0"
 
 [Theme]
 RenderSystem=Legacy_RenderSystem
@@ -17,4 +17,5 @@ W3C=NG
 
 Licence="BSD"
 
-*/;
+*/
+

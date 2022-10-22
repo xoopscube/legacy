@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="<{$xoops_langcode}>">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>">
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<title><{$xoops_sitename}></title>
+
+
+
+<!-- !TODO : Fix this to default package stylesheet ! -->
+
+<link rel="stylesheet" href="<{$xoops_url}>/modules/legacy/admin/theme/style.css">
+
+<style>
+body {
+	margin : 2em;
+	transition			: background 500ms ease-in-out, color 200ms ease;
+}
+
+.wrapper-require {
+	align-content		: center;
+	display					: flex;
+	flex-direction	: column;
+  justify-content	: center;
+	min-height			: 100vh;
+}
+
+.wrapper-require > * {
+	margin					: 1em auto;
+}
+table {
+	width: 100%;
+	border-spacing: 1px;
+  border-collapse: separate;
+}
+td {
+	padding: 1em 2em;
+}
+.icon-package {
+margin-right			: 1em; /* Space icon -> text */
+vertical-align		: middle; /* Align icon and text */
+width							: 1.5em; /* Size icon to text */
+}
+
+</style>
+</head>
+<body>
+
+<div class="wrapper-require">
+
+<h2>Module <{$smarty.const._SYS_MODULE_UNINSTALLED}></h2>
+
+<div class="error"><{$smarty.const._SYSTEM_MODULE_ERROR}></div>
+
+	<form action="<{$xoops_url}>/index.php" method="post">
+
+	<table>
+
+		<thead>
+			<tr>
+				<th>&nbsp;</th>
+				<th>Module</th>
+				<th colspan="2">Status</th>
+			</tr>
+		</thead>
+
+		<tbody>
+		<{foreach item=module from=$uninstalled}>
+			<tr>
+				<td>
+					<input type="checkbox" name="uninstalled_modules_dummy[]" value="<{$module}>" checked="checked" disabled>
+					<input type="hidden" name="uninstalled_modules[]" value="<{$module}>"></td>
+				<td><b><{$module}></b></td>
+				<td colspan="2"><{$smarty.const._SYS_MODULE_UNINSTALLED}></td>
+			</tr>
+		<{/foreach}>
+		<{foreach item=module from=$disabled}>
+			<tr>
+				<td>
+					<input type="checkbox" name="disabled_modules_dummy[]" value="<{$module}>" checked="checked" disabled>
+					<input type="hidden" name="disabled_modules[]" value="<{$module}>"/></td>
+				<td><b><{$module}></b></td>
+				<td><{$smarty.const._SYS_MODULE_DISABLED}></td>
+				<td>
+					<a href="<{$xoops_url}>/index.php?cube_module_uninstall=<{$module}>">
+					<svg xmlns="http://www.w3.org/2000/svg"
+					width="24px" height="24px" viewBox="0 0 24 24" class="icon-package">
+					<path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18c-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18c.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9M12 4.15l-1.89 1.07L16 8.61l1.96-1.11L12 4.15M6.04 7.5L12 10.85l1.96-1.1l-5.88-3.4L6.04 7.5M5 15.91l6 3.38v-6.71L5 9.21v6.7m14 0v-6.7l-6 3.37v6.71l6-3.38z" fill="currentColor"></path>
+					</svg><{$smarty.const._UNINSTALL}>
+					</a>
+				</td>
+			</tr>
+		<{/foreach}>
+		<{foreach item=module from=$option}>
+			<tr>
+				<td><input type="checkbox" name="option_modules[]" value="<{$module.dirname}>" <{$module.checked}> /></td>
+				<td><{$module.dirname}></td>
+				<td colspan="2"><{$module.desc}></td>
+			</tr>
+		<{/foreach}>
+		</tbody>
+
+		<tfoot>
+			<tr>
+				<td colspan="4">
+         <input type="hidden" name="cube_module_install" value="1"/>
+         <input type="submit" value="<{$smarty.const._INSTALL}>" />
+				</td>
+			</tr>
+		</tfoot>
+
+	</table>
+
+	</form>
+
+</div>
+
+</body>
+
+</html>

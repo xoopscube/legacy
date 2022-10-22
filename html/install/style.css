@@ -1,115 +1,687 @@
+/*
+	XOOPSCube Theme : XCL Installer Wizard
+	Distribution : XCL 2.3 Alpha
+	Version : 1.0.0
+	Author : Nuno Luciano aka Gigamaster
+	Date : 2020-04-29
+	URL : https://github.com/xoopscube/xcl/
+
+	-------------------- -------------------- INDEX */
+
+:root {
+
+    --trackBG: hsl(228, 10%, 10%);
+    --thumbBG: hsl(229, 20%, 21%);
+
+    --color-mode: 'dark';
+
+    --background: hsl(219, 17%, 16%);
+    --text-color: hsl(212, 26%, 80%);
+    --color-10 : hsl(212, 26%, 80%);
+
+    /* Firefox Scrollbar */
+    scrollbar-color: var(--thumbBG) var( --trackBG ); /* thumb-color track-color */
+    scrollbar-width: thin;
+}
+    /*  Webkit Scrollbar */
+    ::-webkit-scrollbar {
+     width: 9px;
+     height: 9px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: var( --thumbBG );
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #686c7e;
+    }
+    ::-webkit-scrollbar-track {
+        background-color: var( --trackBG );
+    }
+    textarea::-webkit-resizer {
+        background-color: var( --thumbBG );
+    }
+
+html {
+    box-sizing: border-box
+}
+
+*, *:before,
+*:after {
+    box-sizing: inherit
+}
+
+hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible
+}
+
+button, input, select, textarea, optgroup {
+    font: inherit;
+}
+
+optgroup {
+    font-weight: bold
+}
+
+/* -------------------- -------------------- FONT-FAMILY */
+
+/* 	Set Operating Systems default font-family */
+@font-face {
+    font-family: "system";
+    font-style: normal;
+    src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"),
+    local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"),
+    local("Roboto-Light"), local("DroidSans"), local("Tahoma");
+}
+
+/* -------------------- -------------------- HTML BODY */
+
+html,
 body {
-	color:#37342F;
-	font-size:12px;
-	line-height:130%;
-	font:12px/1.5em Arial, Helvetica, sans-serif;
-	background:#fff url(img/bg_page.jpg) top left repeat-x;
+    background: hsl(219, 17%, 16%);
+    color: hsl(212, 26%, 80%);
+    font-family: "system", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5rem;
+    margin: 1em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
 a {
-	text-decoration:none;
-	color:#000000;
-	font-weight: bold;
-}
-a:hover {
-	text-decoration:none;
-	color:#CC6600;
-	font-weight:bold;
+    color: hsl(40, 93%, 72%);
+    font-weight: bold;
+    text-decoration: none;
 }
 
-table {border:0; width:100%; border-collapse:collapse;}
-
-th {
-	text-align:center;
-	padding:5px 1px;
-	background:#eee url(img/bg_blockcontent.gif) top left repeat-x;
+a:hover,
+svg:hover {
+    color: hsl(0, 0%, 100%);
+    font-weight: bold;
+    text-decoration: none;
 }
 
-td {vertical-align:top;}
-
-img {border:0;}
-
-#container {
-	position:relative;
-	top:20px;
-	width:740px;
-	margin:0 auto;
-	text-align:left;
-	border:1px solid #ccc;
+code, .badge {
+    background: hsl(219, 17%, 15%);
+    border: 1px solid hsl(219deg 28% 27%);
+    border-radius: 5px;
+    font-family: monospace;
+    font-size: 11px;
+    padding: 0.5em .875em;
+    margin: auto .25em;
 }
 
-
-#mainbody {border-top:1px solid #eee; border-bottom:1px solid #eee;}
-#mainbody .maincontents {background:#FFFFFF; padding:15px 20px; line-height:150%;}
-#mainbody h3 {margin-top:10px; margin-bottom:5px; padding:10px; background:#EEEEFF; font-size:14px;}
-
-#footer {background:#EEEEFF; padding:15px; text-align:right;}
-
-.separate {border-collapse:separate;}
-
-.bg3 {	
-	background:#ddd;
-	padding:5px 14px;
-	width:45%;}
-
-form {
-	margin:0.5em 0;
-}
-input, .bg1 {
-	border-top:1px solid #999;
-	border-right:1px solid #CCC;
-	border-bottom:1px solid #DDD;
-	border-left:1px solid #999;
-	padding:2px;
-	background:url(img/bg_data.gif) top left repeat;
+h3 {
+    font-weight: lighter;
+    margin: 1.5em 0 .85em;
 }
 
-.bg1, .bg3, .bg4 {padding:2px 10px;}
+h4 {
+    font-weight: lighter;
+    text-transform: uppercase;
+    margin: 1.5em 0 0;
+}
 
-input.adminame { background:url(img/admin.png) center left no-repeat; padding-left:17px;}
-input.adminmail {background:url(img/email.png) center left no-repeat; padding-left:17px;}
-input.adminpass {background:url(img/pass.png) center left no-repeat; padding-left:17px;}
-input.adminpass2 {background:url(img/pass2.png) center left no-repeat; padding-left:17px;}
+img {
+    border: 0;
+    min-width: 0;
+    object-fit: contain;
+}
+
+/* -------------------- -------------------- LAYOUT */
+
+.container {
+    background: linear-gradient(130deg, hsl(216, 17%, 17%), hsl(220, 16%, 15%));
+    border: 1px solid hsla(210, 15%, 20%, 1);
+    border-radius: 20px;
+    box-shadow: 20px 20px 30px hsl(218, 17%, 12%), -20px -20px 30px hsl(219, 16%, 21%);
+    display: flex;
+    height: 100%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* -------------------- -------------------- NAV */
+
+header {
+    font-size: 1em;
+    text-transform: uppercase;    display: flex;
+    flex-direction: column;
+    flex: 1
+}
+
+nav {
+    margin: 0;
+    padding: 1em;
+}
+
+.logo {
+    vertical-align: -0.125em;
+    margin: 2em 1em;
+}
+
+ul.steps {
+    list-style: none;
+}
+ul.steps li {
+    position: relative;
+    padding: .5em 2em;
+}
+ul.steps li a {
+    color: rgb(174, 174, 174);
+}
+ul.steps li:before {
+    content: '';
+    background: rgb(174, 174, 174);
+    background: hsla(219, 16%, 17%, .7);
+    box-shadow: 5px 5px 5px hsl(218, 17%, 10%), -5px -5px 5px hsl(219, 16%, 24%);
+    border: 2px solid hsl(219, 17%, 31%);
+    border-radius: 50%;
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    height: 16px;
+    width: 16px;
+    transform: translateY(-35%);
+    z-index: 2;
+}
+ul.steps li:not(:last-child):after {
+    content: '';
+    background: hsl(219, 17%, 31%);
+    height: 100%;
+    width: 2px;
+    position: absolute;
+    left: -8px;
+    top: 50%;
+    z-index: 1;
+}
+
+/* -------------------- -------------------- MAIN */
+
+main {
+    background: hsl(219, 15%, 18%);
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 1.25em 2em;
+    display: flex;
+    flex-direction: column;
+    flex: 2
+}
+.wizard-content {
+    background: hsl(219, 15%, 18%);
+    flex: 1 1 auto;
+    padding: 0 2em;
+}
+article {
+    padding: 1em;
+}
+footer {
+    align-items: center;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+/* -------------------- -------------------- FORM */
+
+form {margin: 0;}
+
+select,
+input[type='text'],
+input[type='password'],
+.data {
+    color: var(--text-color);
+    border: 1px solid hsla(210, 15%, 20%, 1);
+    padding: .5em 1.5em;
+    border-radius: 5px;
+    background: hsl(219, 17%, 16%) !important;
+    box-shadow: inset 8px 8px 16px hsl(218deg 17% 12%), inset 4px 4px 16px hsl(219deg 16% 21%);
+    transition: all 0.3s ease;
+}
+p {
+    margin: 0.5em 0 1em;
+}
+p.data {
+    background: hsl(219, 17%, 16%) !important;
+    box-shadow: none;
+    font-style: italic;
+    cursor: not-allowed;
+}
+p.data:hover{
+    box-shadow: none;
+}
 
 textarea {
-	font-size:13px;	
+    border-radius: 50px;
+    background: linear-gradient(145deg, hsl(216, 17%, 17%), hsl(220, 16%, 15%));
+    box-shadow: 20px 20px 40px hsl(218, 17%, 12%),
+    -20px -20px 40px hsl(219, 16%, 21%);
 }
 
 select option {
-	padding: 0 3px;
-}
-.reload, .next, .back { border:1px solid #5B9C54; background:#fff; padding:2px 20px;}
-
-.head {
-	border-top:1px solid #ccc;
-	padding:5px 0 5px 0;
-}
-.even {
-	border-top:1px solid #ccc;
-	padding:10px 0 10px 0;
+    padding: 1em 2em;
 }
 
-.confirmInfo {
-	color:#000000;
-	font-size:15px;
-	border:1px solid #6B94C5;
-	padding:8px 8px 8px 35px;
-	margin:15px 10px;
-	background:#EEEEFF url(img/info.png) no-repeat 5px 4px;
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 3px  hsl(219, 17%, 16%)  inset !important;
+    -webkit-text-fill-color: white;
+    transition: background-color 5000s ease-in-out 0s;
+}
+input[type='text']:active,
+input[type='text']:hover,
+input[type='text']:focus,
+select:hover,
+select:focus,
+textarea:hover,
+textarea:focus,
+input[type='password']:hover,
+input[type='password']:hover,
+.data:hover,
+.data:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(21, 156, 228, 0.4);
 }
 
-.confirmMsg {
-	color:#000000;
-	border:1px solid #ff6633;
-	padding:8px 8px 8px 35px;
-	margin:15px 10px;
-	background:#fff8ee url(img/important.png) no-repeat 5px 4px;
+/* -------------------- -------------------- FORM CHECKBOX & RADIO  */
+
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+    input[type='checkbox'],
+    input[type='radio'] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: hsl(210, 15%, 15%);
+        border: 1px solid hsla(210, 15%, 40%, 0.7);
+        box-shadow: 5px 10px 10px hsl(218, 17%, 10%), -5px -10px 10px hsl(219, 16%, 24%);
+        cursor: pointer;
+        height: 20px;
+        margin: 0 1em 0 0;
+        outline: none;
+        padding: 0;
+        position: relative;
+        transition: background .3s ease, border-color .3s ease;
+        vertical-align: -5px;
+    }
+    input[type='checkbox']:after,
+    input[type='radio']:after {
+        content: '';
+        display: block;
+        left: 0;
+        position: absolute;
+        top: 0;
+        transition: opacity .2s ease, -webkit-transform .3s ease, -webkit-filter .3s ease;
+        transition: transform .3s ease, opacity .2s ease, filter .3s ease;
+        transition: transform .3s ease, opacity .2s ease, filter .3s ease, -webkit-transform .3s ease, -webkit-filter .3s ease;
+    }
+    input[type='checkbox']:checked,
+    input[type='radio']:checked {
+        animation: pulse 1s;
+        background: hsl(219, 15%, 18%);
+        border: 1px solid #6c757d;
+    }
+    input[type='checkbox']:checked:after,
+    input[type='radio']:checked:after {
+        filter: drop-shadow(0 1px 2px rgba(21, 25, 27, 0.25));
+        transition: opacity 0.3s ease, -webkit-filter 0.3s ease, -webkit-transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2);
+        transition: opacity 0.3s ease, filter 0.3s ease, transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2);
+        transition: opacity 0.3s ease, filter 0.3s ease, transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2),
+        -webkit-filter 0.3s ease, -webkit-transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2);
+    }
+    input[type='checkbox']:disabled,
+    input[type='radio']:disabled {
+        background: hsl(219, 15%, 24%);
+        cursor: not-allowed;
+        opacity: .9;
+    }
+    input[type='checkbox']:disabled:checked,
+    input[type='radio']:disabled:checked {
+        background: hsl(219, 15%, 24%);
+        border: 1px solid hsl(216, 15%, 64%);
+    }
+    input[type='checkbox']:hover:not(:checked):not(:disabled),
+    input[type='radio']:hover:not(:checked):not(:disabled) {
+        border: 1px solid #face74;
+    }
+    input[type='checkbox']:not(.switch),
+    input[type='radio']:not(.switch) {
+        width: 20px;
+    }
+    input[type='checkbox']:not(.switch):after,
+    input[type='radio']:not(.switch):after {
+        opacity: 0;
+    }
+    input[type='checkbox']:not(.switch):checked:after,
+    input[type='radio']:not(.switch):checked:after {
+        opacity: 1;
+    }
+    input[type='checkbox']:not(.switch) {
+        border-radius: 6px;
+    }
+    input[type='checkbox']:not(.switch):after {
+        border: 2px solid #face74;
+        border-left: 0;
+        border-top: 0;
+        height: 9px;
+        left: 7px;
+        top: 4px;
+        transform: rotate(20deg);
+        width: 5px;
+    }
+    input[type='checkbox']:not(.switch):checked:after {
+        transform: rotate(43deg);
+    }
+    input[type='checkbox'].switch {
+        border-radius: 11px;
+        width: 38px;
+    }
+    input[type='checkbox'].switch:after {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        height: 18px;
+        left: 1px;
+        top: 0;
+        width: 18px;
+    }
+    input[type='checkbox'].switch:checked:after {
+        background: rgba(255, 255, 255, 0.9);
+        transform: translateX(17px);
+    }
+    input[type='checkbox'].switch:disabled:not(:checked):after {
+        opacity: .6;
+    }
+    input[type='radio'] {
+        border-radius: 50%;
+    }
+    input[type='radio']:after {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        height: 17px;
+        opacity: 0;
+        transform: scale(0.7);
+        width: 17px;
+    }
+    input[type='radio']:checked:after {
+        background: #face74;
+        transform: scale(0.5);
+    }
+    @keyframes pulse { from {box-shadow: 0 0 0 0 #face74;} }
 }
 
+
+/* -------------------- -------------------- WIZARD BUTTON */
+
+.wizard-back,
+.wizard-next,
+.wizard-reload,
+.wizard-back-label,
+.wizard-next-label {
+    border: 1px solid hsl(219, 17%, 21%);
+    border-radius: 50%;
+    background: linear-gradient(145deg, #252b34, #20242c);
+    box-shadow: 10px 10px 20px #1a1e25,
+    -10px -10px 20px #2c323d;
+    padding: .5em;
+    pointer-events: none; /*CSS Trick To Trigger Parent only when Hover Child */
+}
+.wizard-back svg,
+.wizard-next svg,
+.wizard-reload svg {
+    color: #face74;
+    height: 32px;
+    width: 32px;
+    pointer-events: auto; /*CSS Trick To Trigger Parent only when Hover Child */
+    vertical-align: -0.125em;
+}
+.wizard-back svg:hover,
+.wizard-next svg:hover,
+.wizard-reload svg:hover {
+    color: #fff;
+}
+.wizard-reload:hover,
+.wizard-next:hover,
+.wizard-back:hover {
+    border: 1px solid #232831;
+    background: #333b49;
+    color: #fff;
+}
+/* LABEL BORDERED TRIANGLE WITH PSEUDO :AFTER */
+.wizard-back-label,
+.wizard-next-label {
+    border-radius: 7px;
+    font-size: 0.9em;
+    line-height: 24px;
+    padding: 1em;
+    margin: 0 1em;
+    position: relative;
+}
+.wizard-back-label::after,
+.wizard-next-label::after {
+    border-top: 1px solid hsl(219, 17%, 23%);
+    border-left: 1px solid hsl(219, 17%, 23%);
+    content: '';
+    height: 14px;
+    position: absolute;
+    top: 40%;
+    width: 14px;
+}
+/* LABEL TRIANGLE Transform:rotate */
+.wizard-back-label::after {
+    background: #242932;
+    left: -7px;
+    transform: rotate(-45deg);
+}
+.wizard-next-label::after {
+    background: #20252d;
+    right: -7px;
+    transform: rotate(135deg);
+}
+
+/* -------------------- -------------------- NOTIFICATION */
+
+.confirmInfo,
+.confirmError,
+.confirmMsg,
 .confirmOk {
-	color:#000000;
-	border:1px solid #00cc00;
-	padding:8px 8px 8px 35px;
-	margin:15px 10px;
-	background:#f8fff8 url(img/yes.png) no-repeat 5px 4px;
+    border: 1px solid #232831;
+    border-radius: 7px;
+    background: #232831;
+    background: linear-gradient(145deg, #252b34, #20242c);
+    box-shadow: 10px 10px 20px #1a1e25, -10px -10px 20px #2c323d;
+    margin: 3em 1em;
+    padding: 2em 4em;
+}
+.confirmInfo {
+    border: 1px solid #6B94C5;
+    background: url(img/icon-info.svg) no-repeat 1em 1.5em;
+    background-size: 30px 30px;
+    color: #9db8d8;
+}
+.confirmError,
+.confirmMsg {
+    border: 1px solid #ff6633;
+    background: url(img/icon-alert.svg) no-repeat 1em 1.5em;
+    background-size: 30px 30px;
+    color: #ff6633;
+}
+.confirmOk {
+    border: 1px solid #00cc00;
+    background: url(img/yes.svg) no-repeat 1em 1.5em;
+    background-size: 30px 30px;
+    color: #88e288;
+}
+
+/* -------------------- -------------------- Tabs */
+
+.ui-tab-wrap {
+    background-color: hsl(219, 15%, 28%); /* transition */
+    border-radius: 5px;
+    box-shadow: 10px 10px 20px hsl(218, 17%, 12%), -10px -10px 20px hsl(219, 16%, 21%);
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 40px 0;
+    max-width: 100%;
+    position: relative;
+    transition: 0.3s box-shadow ease;
+}
+.ui-tab-wrap:hover {
+    box-shadow: 0 5px 5px hsla(0, 0%, 0%, 0.2), 0 5px 5px hsla(0, 0%, 0%, 0.25);
+}
+.ui-tab {
+    display: none;
+}
+.ui-tab:checked:nth-of-type(1) ~ .ui-tab-content:nth-of-type(1),
+.ui-tab:checked:nth-of-type(2) ~ .ui-tab-content:nth-of-type(2),
+.ui-tab:checked:nth-of-type(3) ~ .ui-tab-content:nth-of-type(3),
+.ui-tab:checked:nth-of-type(4) ~ .ui-tab-content:nth-of-type(4),
+.ui-tab:checked:nth-of-type(5) ~ .ui-tab-content:nth-of-type(5),
+.ui-tab:checked:nth-of-type(6) ~ .ui-tab-content:nth-of-type(6),
+.ui-tab:checked:nth-of-type(7) ~ .ui-tab-content:nth-of-type(7) {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    opacity: 1;
+    transition: 0.5s opacity ease-in, 0.8s transform ease;
+    position: relative;
+    top: 0;
+    z-index: 10;
+    transform: translateY(0px);
+    background-color: hsl(219, 15%, 18%);
+}
+.ui-tab:first-of-type:not(:last-of-type) + label {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.ui-tab:not(:first-of-type):not(:last-of-type) + label {
+    border-radius: 0;
+}
+.ui-tab:last-of-type:not(:first-of-type) + label {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.ui-tab:checked + label {
+    background-color: hsl(219, 15%, 18%);
+    cursor: default;
+}
+.ui-tab:checked + label:hover {
+    box-shadow: 0 -1px 0 #face74 inset;
+}
+.ui-tab + label {
+    background-color: hsl(216, 15%, 32%);
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 -1px 0 transparent inset;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    flex-grow: 3;
+    height: 50px;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.3s background-color ease, 0.3s box-shadow ease;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+.ui-tab + label:hover {
+    background-color: hsl(219, 15%, 18%);
+    box-shadow: 0 -1px 0 #face74 inset;
+}
+.ui-tab-content {
+    background-color: transparent;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    padding: 10px 25px;
+    position: absolute;
+    transform: translateY(-3px);
+    width: 100%;
+    z-index: -1;
+}
+
+:is(body.start main) h2 {
+    color: hsl(219, 27%, 65%);
+    font-size: 32px;
+    font-weight: lighter;
+    line-height: 1;
+    margin-top: 1rem;
+    text-align: center;
+    text-shadow: 1px 2px 3px hsl(0, 0%, 7%);
+}
+:is(body.start main) h2 > span {
+    color: hsl(218deg 10% 12%);
+    font-size: 27px;
+    letter-spacing: 2px;
+    font-weight: bolder !important;
+    line-height: 42px;
+    text-shadow: 0 12px 8px hsl(218deg 5% 5% / 80%), 1px 8px 10px hsl(45deg 100% 51% / 50%), 0 -1px 1px #face74;
+}
+:is(body.start main) h2 > span::first-letter {
+    color: hsl(218deg 10% 12%);
+    display:block;
+    text-shadow: 1px 1px 1px hsl(40, 93%, 72%);
+    font-size: 42px;
+}
+:is(body.start main h2) span {
+    display:block
+}
+:is(header) h2 {font-size: 18px;}
+:is(h2 span.logo) svg {
+    color: hsl(218deg 17% 25%);
+    filter: drop-shadow(0 -1px 1px hsl(40, 40%, 60%)) drop-shadow(0px -5px 4px hsl(45deg 100% 51% / 50%)) drop-shadow(0 2px 1px hsl(40, 80%, 54%));
+}
+/* -------------------- MEDIA QUERY */
+
+/* -------------------- Smartphones (portrait and landscape) */
+@media (min-device-width: 480px) {
+    body {margin:.5em;}
+    .row {display:flex;flex-direction: column;flex-wrap:nowrap;width:100%;}
+    nav {flex-flow:column wrap;justify-content:space-around;padding:1em;}
+    nav a {text-align: center;padding: 10px;border-top:1px solid rgba(255, 255, 255, 0.3);border-bottom:1px solid rgba(0, 0, 0, 0.1);}
+    h2 {font-size:21px;font-weight:lighter;text-shadow:1px 2px 3px hsl(0, 0%, 7%);}
+    ul.steps li {font-size:.9em;}
+    .wizard-content {padding:0;}
+    input[type="text"] {width:100%;}
+    select[name="lang"] {display:block;margin: 2em auto 1em;}
+    .wizard-back-label, .wizard-next-label {display: none;}
+}
+
+/* -------------------- Medium screen retina */
+@media only screen and (-webkit-min-device-pixel-ratio: 2)
+and (min-width: 700px), only screen
+and ( min--moz-device-pixel-ratio: 2)
+and (min-width: 700px), only screen
+and ( -o-min-device-pixel-ratio: 2/1)
+and (min-width: 700px), only screen
+and ( min-device-pixel-ratio: 2)
+and (min-width: 700px), only screen
+and ( min-resolution: 192dpi)
+and (min-width: 700px), only screen
+and ( min-resolution: 2dppx)
+and (min-width: 700px) {
+    body {margin: 2.5em;}
+    .wizard-back-label, .wizard-next-label {display: block;}
+}
+
+/* -------------------- Large screen, tablet, non-retina */
+@media only screen and (min-width: 992px) {
+    body {margin: 2.5em;}
+    .row {display: flex;flex-direction: row;flex-wrap: nowrap;width: 100%;}
+    ul.steps li {font-size: .9em;}
+    .container {margin: 0 auto;max-width: 980px;}
+    .wizard-back-label, .wizard-next-label {display: block;}
+
 }

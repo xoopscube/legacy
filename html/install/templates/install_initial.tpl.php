@@ -1,22 +1,14 @@
-<div style="width:500px; margin:0 auto;">
-<table>
-      <tr>
-      	<td class="bg3"><b><?php echo _INSTALL_L27 ?></b></td>
-      	<td class="bg1"><b><?php echo XOOPS_DB_HOST?></b></td>
-  	  </tr>
-      <tr>
-        <td class="bg3"><b><?php echo _INSTALL_L28 ?></b></td>
-        <td class="bg1"><b><?php echo XOOPS_DB_USER?></b></td>
-      </tr>
-      <tr>
-        <td class="bg3"><b><?php echo _INSTALL_L29 ?></b></td>
-        <td class="bg1"><b><?php echo XOOPS_DB_NAME?></b></td>
-      </tr>
-      <tr>
-        <td class="bg3"><b><?php echo _INSTALL_L30 ?></b></td>
-        <td class="bg1"><b><?php echo XOOPS_DB_PREFIX?></b></td>
-      </tr>
+<h3><?php echo _INSTALL_L27 ?></h3>
 
-</table>
-<div class="confirmMsg"><?php echo _INSTALL_L13 ?></div>
-</div>
+<p class="data"><?php echo XOOPS_DB_HOST ?></p>
+
+<h3><?php echo _INSTALL_L28 ?></h3>
+<p class="data"><?php echo XOOPS_DB_USER ?></p>
+
+<h3><?php echo _INSTALL_L29 ?></h3>
+<p class="data"><?php echo XOOPS_DB_NAME ?></p>
+
+<h3><?php echo _INSTALL_L30 ?></h3>
+<p class="data"><?php echo XOOPS_DB_PREFIX ?></p>
+
+<div class="confirmInfo"><?php echo _INSTALL_L13 ?></div>

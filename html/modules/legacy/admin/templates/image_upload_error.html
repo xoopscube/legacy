@@ -1,14 +1,21 @@
-<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_IMAGE_UPLOAD_RESULT}></h3>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
-<div class="error">
-<ul>
-  <{foreach item=message from=$errorMessages}>
-    <li><{$message|xoops_escape}></li>
-  <{/foreach}>
-</ul>
+<h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_IMAGE_UPLOAD_RESULT}></h2>
+
+
+<div class="ui-card-full">
+    <div class="error">
+        <ul>
+            <{foreach item=message from=$errorMessages}>
+            <li><{$message|xoops_escape}></li>
+            <{/foreach}>
+        </ul>
+    </div>
+
+    <ul class="toptab">
+        <li><a href="./index.php?action=ImageList"><{$smarty.const._AD_LEGACY_LANG_IMAGE_LIST}></a></li>
+        <li><a href="./index.php?action=ImageUpload"><{$smarty.const._AD_LEGACY_LANG_IMAGE_UPLOAD}></a></li>
+    </ul>
+
+
 </div>
-
-<ul class="toptab">
-  <li><a href="./index.php?action=ImageList"><{$smarty.const._AD_LEGACY_LANG_IMAGE_LIST}></a></li>
-  <li><a href="./index.php?action=ImageUpload"><{$smarty.const._AD_LEGACY_LANG_IMAGE_UPLOAD}></a></li>
-</ul>

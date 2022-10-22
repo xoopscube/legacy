@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Marijuana
- * @license http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @license https://www.gnu.org/licenses/gpl.txt
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {

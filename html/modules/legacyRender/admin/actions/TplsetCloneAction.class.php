@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/actions/TplsetEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/TplsetCloneForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/actions/TplsetEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplsetCloneForm.class.php';
 
 class LegacyRender_TplsetCloneAction extends LegacyRender_TplsetEditAction
 {
@@ -34,11 +34,11 @@ class LegacyRender_TplsetCloneAction extends LegacyRender_TplsetEditAction
 
     public function execute(&$controller, &$xoopsUser)
     {
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return LEGACYRENDER_FRAME_VIEW_ERROR;
         }
 
-        if (xoops_getrequest('_form_control_cancel') != null) {
+        if (null != xoops_getrequest('_form_control_cancel')) {
             return LEGACYRENDER_FRAME_VIEW_CANCEL;
         }
 
@@ -62,23 +62,23 @@ class LegacyRender_TplsetCloneAction extends LegacyRender_TplsetEditAction
     
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("tplset_clone.html");
+        $render->setTemplateName('tplset_clone.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
     }
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=TplsetList");
+        $controller->executeForward('./index.php?action=TplsetList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=TplsetList", 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=TplsetList', 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
     }
 
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=TplsetList");
+        $controller->executeForward('./index.php?action=TplsetList');
     }
 }

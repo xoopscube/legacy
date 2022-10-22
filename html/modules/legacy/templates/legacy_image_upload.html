@@ -15,20 +15,20 @@
   <table class="outer" cellspacing="1">
     <tr>
       <td class="head"><{$smarty.const._MD_LEGACY_LANG_IMAGE_FILE}></td>
-      <td class="<{cycle values="odd,even"}>">
+      <td>
         <{xoops_input type=file name=image_name}>
       </td>
     </tr>
     <tr>
       <td class="head"><{$smarty.const._MD_LEGACY_LANG_IMAGE_NICENAME}></td>
-      <td class="<{cycle values="odd,even"}>">
+      <td>
         <{xoops_input type=text name=image_nicename value=$actionForm->get('image_nicename') size=30 maxlength=255}>
       </td>
     </tr>
     <tr class="foot">
       <td colspan="2" style="text-align:center;">
-        <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
-        <input type="button" value="<{$smarty.const._BACK}>" onclick="javascript:history.back()" class="formButton" />
+        <input class="btn submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+        <input class="btn cancel" type="button" value="<{$smarty.const._BACK}>" onclick="javascript:history.back()">
       </td>
     </tr>
   </table>

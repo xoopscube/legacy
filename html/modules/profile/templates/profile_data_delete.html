@@ -1,5 +1,5 @@
 <div class="confirm"><{$smarty.const._MD_PROFILE_MESSAGE_CONFIRM_DELETE}></div>
-<br />
+<br>
 <form action="./index.php?action=DataDelete" method="POST">
   <{xoops_token form=$actionForm}>
   <{xoops_input type=hidden name=uid value=$actionForm->get('uid')}>
@@ -9,12 +9,12 @@
     </tr>
     <tr>
       <td class="head"><{$smarty.const._MD_PROFILE_LANG_UID}></th>
-      <td class="<{cycle values="odd,even"}>"><{$object->getShow('uid')}></td>
+      <td><{$object->getShow('uid')}></td>
     </tr>
     <tr>
       <td class="foot" colspan="2">
-        <input type="submit" class="formButton" value="<{$smarty.const._DELETE}>"/>
-        <input type="submit" class="formButton" value="<{$smarty.const._MD_PROFILE_LANG_CANCEL}>" name="_form_control_cancel"/>
+        <input class="btn delete" type="submit" value="<{$smarty.const._DELETE}>">
+        <input class="btn cancel" type="submit" value="<{$smarty.const._MD_PROFILE_LANG_CANCEL}>" name="_form_control_cancel">
       </td>
     </tr>
   </table>

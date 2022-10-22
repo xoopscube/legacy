@@ -15,13 +15,13 @@ class deleteAction extends AbstractAction
   
     public function execute()
     {
-        if ($this->root->mContext->mRequest->getRequest('inout') == 'in') {
+        if ('in' == $this->root->mContext->mRequest->getRequest('inout')) {
             $this->inout = 'inbox';
         } else {
             $this->inout = 'outbox';
         }
     
-        $boxid = intval($this->root->mContext->mRequest->getRequest($this->inout));
+        $boxid = (int)$this->root->mContext->mRequest->getRequest($this->inout);
         $modHand = xoops_getmodulehandler($this->inout, _MY_DIRNAME);
         $modObj = $modHand->get($boxid);
         if (!is_object($modObj)) {

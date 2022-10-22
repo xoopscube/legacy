@@ -1,0 +1,218 @@
+
+<h3 id="Component">Cursor</h3>
+
+<p class="custom-cursor">The cursor setting should inform users of the mouse operations that can be performed at the current location, including: text selection, activating help or context menus, copying content, resizing tables, and so on.</p>
+
+
+<div layout="row md-column mt-6" class="component">
+
+    <!-- ///// Description \\\\\ -->
+    <div layout="column" class="cursor-info">
+
+        <h4>Options</h4>
+        <p>The cursor CSS property sets the mouse cursor, if any, to show when the mouse pointer is over an element.</p>
+        <p>Specify either the type of cursor using a keyword, or load a specific icon to use (with optional fallback images and mandatory keyword as a final fallback).</p>
+        <ol>
+            <li>Keyword value</li>
+            <li>URL with mandatory keyword fallback</li>
+            <li>URLs and fallback URLs</li>>
+        </ol>
+
+        <h5>Reference :</h5>
+        <ul class="component-ref">
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor" target="_blank" rel="noopener">&#128210; Mozilla - Cursor</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor#browser_compatibility" target="_blank" rel="noopener">🚧 Browser compatibility</a></li>
+        </ul>
+
+        <div class="errorMsg cursor-alert">
+            <p>On Firefox and Chromium cursor images are restricted to 32x32 pixels by default, and cursor changes using larger images will generally just be ignored</p>
+        </div>
+
+    </div>
+
+<style>
+    .cursor {
+        column-gap: 10px;
+    }
+    .cursor div {
+    background:var(--color-3);
+    border-radius: var(--border-radius);
+    flex: 0 0 18%;
+    height: 4rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-9);
+    }
+    .cursor div span {
+        background: var(--mono-1);
+        color: var(--white);
+        font: 100 12px/1.5 sans-serif;
+        padding: 0.25em 0.5em;
+        text-align: center;
+    }
+</style>
+
+
+    <!-- ///// Preview Sample \\\\\ -->
+    <div layout="column">
+
+        <h4>Preview</h4>
+        <p>Move the mouse over values to see cursor live appearance in your browser:</p>
+
+            <div layout="rows" class="cursor">
+                <div class="auto"><span>auto</span></div>
+                <div class="inherit"><span>inherit</span></div>
+                <div class="default"><span>default</span></div>
+            </div>
+
+            <h6>Links & status</h6>
+            <div layout="rows" class="cursor">
+                <div class="context-menu"><span>context-menu</span></div>
+                <div class="help"><span>help</span></div>
+                <div class="pointer"><span>pointer</span></div>
+                <div class="progress"><span>progress</span></div>
+                <div class="wait"><span>wait</span></div>
+            </div>
+
+            <h6>Selection</h6>
+            <div layout="rows" class="cursor">
+                <div class="cell"><span>cell</span></div>
+                <div class="crosshair"><span>crosshair</span></div>
+                <div class="text"><span>text</span></div>
+                <div class="vertical-text"><span>vertical-text</span></div>
+            </div>
+
+            <h6>Drag and Drop</h6>
+            <div layout="rows" class="cursor">
+                <div class="alias"><span>alias</span></div>
+                <div class="copy"><span>copy</span></div>
+                <div class="move"><span>move</span></div>
+                <div class="no-drop"><span>no-drop</span></div>
+                <div class="not-allowed"><span>not-allowed</span></div>
+                <div class="grab"><span>grab</span></div>
+                <div class="grabbing"><span>grabbing</span></div>
+            </div>
+
+            <h6>Resizing & scrolling</h6>
+            <div layout="rows" class="cursor">
+                <div class="all-scroll"><span>all-scroll</span></div>
+                <div class="col-resize"><span>col-resize</span></div>
+                <div class="row-resize"><span>row-resize</span></div>
+                <div class="n-resize"><span>n-resize</span></div>
+                <div class="e-resize"><span>e-resize</span></div>
+                <div class="s-resize"><span>s-resize</span></div>
+                <div class="w-resize"><span>w-resize</span></div>
+                <div class="ne-resize"><span>ne-resize</span></div>
+                <div class="nw-resize"><span>nw-resize</span></div>
+                <div class="se-resize"><span>se-resize</span></div>
+                <div class="sw-resize"><span>sw-resize</span></div>
+                <div class="ew-resize"><span>ew-resize</span></div>
+                <div class="ns-resize"><span>ns-resize</span></div>
+                <div class="nesw-resize"><span>nesw-resize</span></div>
+                <div class="nwse-resize"><span>nwse-resize</span></div>
+            </div>
+
+            <h6>zoom</h6>
+            <div layout="rows" class="cursor">
+                <div class="zoom-in"><span>zoom-in</span></div>
+                <div class="zoom-out"><span>zoom-out</span></div>
+            </div>
+
+    </div>
+
+</div>
+
+
+<!-- ///// Source Code \\\\\ -->
+<div id="tabs-code">
+    <ul>
+        <li>
+            <a href="#tabs-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" style="color:#ff460c;" aria-hidden="true" role="img" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718l10.059.003l.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426l-2.91.804l-2.955-.81l-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443l.744-8.157H8.531z" fill="currentColor"></path></svg>
+            HTML</a>
+        </li>
+        <li>
+            <a href="#tabs-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" style="color:#027dde;" aria-hidden="true" role="img"  viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622l10.125.002l-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523l-2.91.804l-2.956-.81l-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414z" fill="currentColor"></path></svg>
+            CSS</a>
+        </li>
+        <li>
+            <a href="#tabs-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" style="color:#F7E018;" aria-hidden="true" role="img" viewBox="0 0 24 24"><path d="M3 3h18v18H3V3m4.73 15.04c.4.85 1.19 1.55 2.54 1.55c1.5 0 2.53-.8 2.53-2.55v-5.78h-1.7V17c0 .86-.35 1.08-.9 1.08c-.58 0-.82-.4-1.09-.87l-1.38.83m5.98-.18c.5.98 1.51 1.73 3.09 1.73c1.6 0 2.8-.83 2.8-2.36c0-1.41-.81-2.04-2.25-2.66l-.42-.18c-.73-.31-1.04-.52-1.04-1.02c0-.41.31-.73.81-.73c.48 0 .8.21 1.09.73l1.31-.87c-.55-.96-1.33-1.33-2.4-1.33c-1.51 0-2.48.96-2.48 2.23c0 1.38.81 2.03 2.03 2.55l.42.18c.78.34 1.24.55 1.24 1.13c0 .48-.45.83-1.15.83c-.83 0-1.31-.43-1.67-1.03l-1.38.8z" fill="currentColor"/><rect x="0" y="0" width="1em" height="1em" fill="rgba(0, 0, 0, 0)" /></svg>
+            JavaScript</a>
+        </li>
+        <li>
+            <a href="#tabs-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.125em" height="1.125em" aria-hidden="true" role="img" viewBox="0 0 1024 1024"><path d="M1024 618q-138 16-197 103t-59 239q-62-50-138-73q-10 9-22 9H416q-12 0-22-9q-76 23-138 73q0-152-59-239T0 618q235-173 101-428Q389 259 512 0q123 259 411 190q-134 255 101 428zM512 256q-106 0-181 80.5T256 530q0 15 3 29.5t6 24.5t11.5 24t12.5 20t15.5 22.5T320 672q21 24 58.5 57t53.5 55t16 48h128q0-26 16.5-48t53.5-55t58-57q4-5 15.5-21.5T735 628t12.5-20t11.5-24t6-24.5t3-29.5q0-113-75-193.5T512 256zm-96 640h192q13 0 22.5 9.5T640 928t-9.5 22.5T608 960q0 29-23 46.5t-73 17.5t-73-17.5t-23-46.5q-13 0-22.5-9.5T384 928t9.5-22.5T416 896z" fill="currentColor"/></svg>
+            SMARTY</a>
+        </li>
+    </ul>
+
+    <div id="tabs-1">
+    <pre><code class="language-html">
+&lt;!-- Create and save a custom color scheme --&gt;
+
+&lt;div class=&quot;pointer&quot;&gt;&lt;span&gt;pointer&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;progress&quot;&gt;&lt;span&gt;progress&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;wait&quot;&gt;&lt;span&gt;wait&lt;/span&gt;&lt;/div&gt;
+    </code></pre>
+    </div>
+
+    <div id="tabs-2">
+    <pre><code class="language-css"><!--
+    /*  ../common/x-layout.css imports "x-cursors" */
+   @import "x-cursors.css"; /*  UI Default cursors */
+
+   /* ClassName = cursor key value */
+    .help    {cursor:help}
+    .pointer {cursor:pointer}
+
+   /* Custom cursor PNG or SVG - restricted to 32x32 pixels by default */
+    .custom-cursor url(images/cursor.png) x y, auto; /* 'auto' is the fallback */
+    --></code></pre>
+    </div>
+
+    <div id="tabs-3">
+    <pre><code class="language-javascript"><!--
+    /* Method to process all code blocks */
+    Prism.highlightAll();
+    --></code></pre>
+    </div>
+
+    <div id="tabs-4">
+    <pre><code class="language-smarty"><!--
+    Smarty delimiters are defined as <{ and }>
+    Smarty comments don't waste bandwidth,
+    these blocks are stripped at compile-time.
+    <{* smarty comment *}>
+    --></code></pre>
+    </div>
+
+</div>
+
+
+<script>
+    //Scope Immediately Invoked Function Expression - IIFE
+    //Encapsulate
+    $( function() {
+        // Modal for reference links
+        $(function() {
+            $("a.modal-control").on("click",function(e) {
+                e.preventDefault();
+                $("#iframe-api").attr("src", this.href );
+                $( ".modal-view" ).toggleClass( "modal-show" );
+            });
+        });
+
+        // UI-Tabs [0,1,2,3]
+        $( "#tabs-code" ).tabs(); //.tabs('option', 'disabled', [0,1,2,3]);
+
+        // Example UI-Button
+        $( ".ui-button.disabled" ).button({
+            disabled: true
+        });
+
+    } );
+    // Syntax Highlight
+    Prism.highlightAll();
+
+</script>

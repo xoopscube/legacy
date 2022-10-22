@@ -8,17 +8,17 @@ if (!defined('XOOPS_ROOT_PATH')) {
 function smarty_function_message_suggestlist($params, &$smarty)
 {
     $name = isset($params['name']) ? trim($params['name']) : 'uname';
-    $size = isset($params['size']) ? intval($params['size']) : 30;
+    $size = isset($params['size']) ? (int)$params['size'] : 30;
     $username = isset($params['uname']) ? trim($params['uname']) : '';
   
     $root = XCube_Root::getSingleton();
     $db = $root->mController->getDB();
   
-    $sql = "SELECT `uname` FROM `".$db->prefix('users')."` ";
-    $sql.= "WHERE `uid` <> ".$root->mContext->mXoopsUser->get('uid'). " ";
-    $sql.= "ORDER BY `uname`";
+    $sql = 'SELECT `uname` FROM `' . $db->prefix('users') . '` ';
+    $sql.= 'WHERE `uid` <> ' . $root->mContext->mXoopsUser->get('uid') . ' ';
+    $sql.= 'ORDER BY `uname`';
     $result = $db->query($sql);
-    $name = array();
+    $name = [];
     while (list($uname) = $db->fetchRow($result)) {
         $uname = htmlspecialchars($uname, ENT_QUOTES);
         $name[] = "'".$uname."'";

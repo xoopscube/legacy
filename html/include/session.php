@@ -1,11 +1,13 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: session.php,v 1.5 2008/09/25 15:12:44 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * Session
+ * @package    XCL
+ * @subpackage core
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -20,5 +22,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 function xoops_session_regenerate()
 {
     $root =& XCube_Root::getSingleton();
-    $root->mSession->regenerate();
+    if (!isset($_SESSION)) {
+      $root->mSession->regenerate();
+    }
 }

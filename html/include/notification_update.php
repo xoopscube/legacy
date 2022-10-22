@@ -1,29 +1,16 @@
 <?php
-// $Id: notification_update.php,v 1.1 2007/05/15 02:34:18 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
+/**
+ * Notification update
+ * @package    XCL
+ * @subpackage core
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Other authors Minahito, 2007/05/15
+ * @author     Kazumi Ono (aka onokazu)
+ * @copyright  (c) 2000-2003 XOOPS.org
+ * @license    GPL 2.0
+ */
+
 
 // RMV-NOTIFY
 
@@ -58,7 +45,7 @@ if (!isset($_POST['not_submit'])) {
 
 // NOTE: in addition to the templates provided in the block and view
 // modes, we can have buttons, etc. which load the arguments to be
-// read by this script.  That way a module can really customize its 
+// read by this script.  That way a module can really customize its
 // look as to where/how the notification options are made available.
 
 $update_list = $_POST['not_list'];
@@ -85,9 +72,8 @@ foreach ($update_list as $update_item) {
     }
 }
 
-// TODO: something like grey box summary of actions (like multiple comment
-// deletion), with a button to return back...  NOTE: we need some arguments
-// to help us get back to where we were...
+// TODO: something like grey box summary of actions (like multiple comment deletion), with a button to return back...
+// NOTE: we need some arguments to help us get back to where we were...
 
 // TODO: finish integration with comments... i.e. need calls to
 // notifyUsers at appropriate places... (need to figure out where
@@ -95,9 +81,9 @@ foreach ($update_list as $update_item) {
 
 include_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
 
-$redirect_args = array();
+$redirect_args = [];
 foreach ($update_list as $update_item) {
-    list($category, $item_id, $event) = explode(',', $update_item['params']);
+    [$category, $item_id, $event] = explode(',', $update_item['params']);
     $category_info =& notificationCategoryInfo($category);
     if (!empty($category_info['item_name'])) {
         $redirect_args[$category_info['item_name']] = $item_id;
@@ -110,10 +96,10 @@ $argstring = '';
 $first_arg = 1;
 foreach (array_keys($redirect_args) as $arg) {
     if ($first_arg) {
-        $argstring .= "?" . $arg . "=" . $redirect_args[$arg];
+        $argstring .= '?' . $arg . '=' . $redirect_args[$arg];
         $first_arg = 0;
     } else {
-        $argstring .= "&amp;" . $arg . "=" . $redirect_args[$arg];
+        $argstring .= '&amp;' . $arg . '=' . $redirect_args[$arg];
     }
 }
 

@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/AvatarAdminEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/AvatarAdminEditForm.class.php';
 
 class User_AvatarEditAction extends User_AbstractEditAction
 {
@@ -32,13 +32,13 @@ class User_AvatarEditAction extends User_AbstractEditAction
     
     public function _doExecute()
     {
-        if ($this->mActionForm->mFormFile != null) {
+        if (null != $this->mActionForm->mFormFile) {
             if (!$this->mActionForm->mFormFile->saveAs(XOOPS_UPLOAD_PATH)) {
                 return false;
             }
             
-            if ($this->mActionForm->mOldFileName != null && $this->mActionForm->mOldFileName != "blank.gif") {
-                @unlink(XOOPS_UPLOAD_PATH . "/" . $this->mActionForm->mOldFileName);
+            if (null != $this->mActionForm->mOldFileName && 'blank.gif' != $this->mActionForm->mOldFileName) {
+                @unlink(XOOPS_UPLOAD_PATH . '/' . $this->mActionForm->mOldFileName);
                 
                 //
                 // Change user_avatar of all users who are setting this avatar.
@@ -67,23 +67,23 @@ class User_AvatarEditAction extends User_AbstractEditAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("avatar_edit.html");
+        $render->setTemplateName('avatar_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
     }
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=AvatarList");
+        $controller->executeForward('./index.php?action=AvatarList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=AvatarList", 1, _MD_USER_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=AvatarList', 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }
 
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=AvatarList");
+        $controller->executeForward('./index.php?action=AvatarList');
     }
 }

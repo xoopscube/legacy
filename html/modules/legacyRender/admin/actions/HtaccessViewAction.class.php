@@ -24,6 +24,6 @@ class LegacyRender_HtaccessViewAction extends LegacyRender_Action
         $render->setAttribute('data_name', _REQUESTED_DATA_NAME);
         $render->setAttribute('action_name', _REQUESTED_ACTION_NAME);
         $render->setAttribute('data_id', _REQUESTED_DATA_ID);
-        $render->setTemplateName("htaccess_view.html");
+        $render->setTemplateName('htaccess_view.html');
     }
 }

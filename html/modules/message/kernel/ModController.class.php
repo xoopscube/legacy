@@ -7,19 +7,19 @@ require_once _MY_MODULE_PATH.'class/AbstractAction.class.php';
 class ModController
 {
     private $act;
-  
+
     public function __construct()
     {
         $root = XCube_Root::getSingleton();
         $this->act = $root->mContext->mRequest->getRequest('action');
-        if ($this->act == "") {
+        if ('' == $this->act) {
             $this->act = 'index';
         }
         if (!preg_match("/^\w+$/", $this->act)) {
             exit('bad action name');
         }
     }
-  
+
     public function execute($controller)
     {
         $className = $this->act.'Action';
@@ -31,7 +31,7 @@ class ModController
 
         $Action = new $className($controller);
         $Action->execute();
-    
+
         if ($Action->getisError()) {
             $controller->executeRedirect($Action->getUrl(), 2, $Action->geterrMsg());
         } else {

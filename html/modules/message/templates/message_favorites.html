@@ -1,20 +1,42 @@
-<h3><{$smarty.const._MD_USERSEARCH_9}></h3>
+<ul class="breadcrumb" aria-label="breadcrumb">
+    <li>
+        <a href="<{$xoops_url}>/">
+            <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="Home"></a>
+    </li>
+    <li><a href="index.php">
+        <img class="svg inbox" src="<{$xoops_url}>/images/icons/inbox.svg"> <{$smarty.const._MI_MESSAGE_NAME}></a>
+    <li aria-current="page"><{$smarty.const._MD_USERSEARCH_9}></li>
+</ul>
+
+
+<h4><{$smarty.const._MD_USERSEARCH_9}></h4>
 
 <{if $fuser!=false}>
-<form method="post" action="index.php?action=favorites">
-<table class="outer">
-<tr><th><{$smarty.const._MD_MESSAGE_TEMPLATE2}></th><th><{$smarty.const._MD_MESSAGE_TEMPLATE18}></th><th><{$smarty.const._MD_MESSAGE_TEMPLATE14}></th></tr>
-<{foreach item=user from=$fuser}>
-<tr>
-<td class="even"><a href="index.php?action=new&to_userid=<{$user.userobj->get('uid')}>"><{$user.userobj->get('uname')}></a></td>
-<td class="odd"><input type="text" name="weight[<{$user.fobj->get('id')}>]" value="<{$user.fobj->get('weight')}>" /></td>
-<td class="even"><input type="checkbox" name="delid[]" value="<{$user.fobj->get('id')}>" /></td>
-</tr>
-<{/foreach}>
-<tr><td class="odd" align="center"><input type="submit" value="<{$smarty.const._SUBMIT}>" /></td></tr>
-</table>
-<input type="hidden" name="cmd" value="edt" />
-</form>
+    <form method="post" action="index.php?action=favorites">
+    <table class="outer">
+        <tr>
+            <th><{$smarty.const._MD_MESSAGE_TEMPLATE2}></th>
+            <th><{$smarty.const._MD_MESSAGE_TEMPLATE18}></th>
+            <th><{$smarty.const._MD_MESSAGE_TEMPLATE14}></th>
+        </tr>
+        <{foreach item=user from=$fuser}>
+        <tr>
+        <td class="even"><a href="index.php?action=new&to_userid=<{$user.userobj->get('uid')}>"><{$user.userobj->get('uname')}></a></td>
+        <td class="odd"><input type="text" name="weight[<{$user.fobj->get('id')}>]" value="<{$user.fobj->get('weight')}>" /></td>
+        <td class="even">
+            <input type="checkbox" name="delid[]" value="<{$user.fobj->get('id')}>">
+        </td>
+        </tr>
+        <{/foreach}>
+        <tr><td class="odd">
+            <input type="submit" class="ui-button" value="<{$smarty.const._SUBMIT}>">
+        </td>
+        </tr>
+    </table>
+    <input type="hidden" name="cmd" value="edt">
+    </form>
 <{else}>
 <div><{$smarty.const._MD_USERSEARCH_8}></div>
 <{/if}>
+
+

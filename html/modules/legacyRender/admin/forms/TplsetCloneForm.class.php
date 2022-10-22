@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/TplsetEditForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplsetEditForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 /***
  * @internal
@@ -19,7 +19,7 @@ class LegacyRender_TplsetCloneForm extends LegacyRender_TplsetEditForm
 {
     public function getTokenName()
     {
-        return "module.legacyRender.TplsetCloneForm.TOKEN" . $this->get('tplset_id');
+        return 'module.legacyRender.TplsetCloneForm.TOKEN' . $this->get('tplset_id');
     }
 
     public function prepare()
@@ -36,7 +36,7 @@ class LegacyRender_TplsetCloneForm extends LegacyRender_TplsetEditForm
         // Set field properties
         //
         $this->mFieldProperties['tplset_name'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['tplset_name']->setDependsByArray(array('required', 'maxlength'));
+        $this->mFieldProperties['tplset_name']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['tplset_name']->addMessage('required', _AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_TPLSET_NAME, '50');
         $this->mFieldProperties['tplset_name']->addMessage('maxlength', _AD_LEGACYRENDER_ERROR_MAXLENGTH, _AD_LEGACYRENDER_LANG_TPLSET_NAME, '50');
         $this->mFieldProperties['tplset_name']->addVar('maxlength', 50);
@@ -49,7 +49,7 @@ class LegacyRender_TplsetCloneForm extends LegacyRender_TplsetEditForm
         //
         $handler = xoops_getmodulehandler('tplset');
 
-        if ($this->get('tplset_name') != null) {
+        if (null != $this->get('tplset_name')) {
             if ($handler->getCount(new Criteria('tplset_name', $this->get('tplset_name'))) > 0) {
                 $this->addErrorMessage(_AD_LEGACYRENDER_ERROR_UNIQUE_NAME);
             }

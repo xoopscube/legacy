@@ -1,0 +1,81 @@
+/*
+ * Theme XCL DEFAULT
+ * @version   2.3.2
+ * @author    Nuno Luciano ( https://github.com/gigamaster )
+ * @copyright 2005-2022 The XOOPSCube Project
+ * @license   BSD
+ * @link      https://github.com/xoopscube
+ */
+
+/* -------------------- -------------------- CARD */
+
+.card,
+.theme-features > div > div {
+    background          : var(--card-bg);
+    border              : var(--card-border);
+    border-radius       : var(--card-radius);
+    box-shadow          : var(--card-shadow);
+    padding             : var(--card-padding);
+    transition          : all 0.2s ease;
+    gap                 : 10px;
+    scroll-snap-align   : start;
+    align-items         : stretch;
+    /*box-sizing: border-box;*/
+    flex-basis: max(max(max(max((100% - 32px) / 5,
+    min((100% - 24px) / 4, (1532px - 100%) * 9999)),
+    min((100% - 16px) / 3, (1224px - 100%) * 9999)),
+    min((100% - 8px) / 2, (916px - 100%) * 9999)),
+    min(100%, (608px - 100%) * 9999));
+}
+.card:hover,
+.theme-features > div > div:hover {
+    background          : var(--card-bg-on);
+    border              : var(--card-border-on);
+    box-shadow          : var(--card-shadow-on);
+
+}
+.card-title{
+    font-size           : var(--card-title);
+    margin-top          : .5rem;
+    padding             : var(--card-padding);
+}
+
+.card-subtitle {
+    font-size           : var(--card-subtitle);
+    padding             : var(--card-padding);
+}
+.card-media {
+    background          : var(--card-bg);
+    margin              : 0;
+    padding             : 0;
+}
+.card-media img {
+    height              : 140px;
+    margin              : 0;
+    object-fit          : cover;
+    padding             : 0;
+    width               : 100%;
+}
+.card-content {
+    background          : var(--bg-linear);
+    font-size           : var(--card-content);
+    padding             : var(--card-space);
+}
+.card-footer {
+    font-size           : var(--card-footer);
+    padding             : var(--card-padding);
+}
+
+ul.column-2 {
+    border              : var(--border);
+    padding             : var(--space-2);
+    -webkit-column-count: 2;
+    /*-moz-column-count   : 2;*/
+    column-count        : 2;
+    -webkit-column-gap  : 40px;
+    /*-moz-column-gap     : 40px;*/
+    column-gap          : 40px;
+    -webkit-column-rule : var(--border);
+    /*-moz-column-rule    : 1px solid lightgrey;*/
+    column-rule         : var(--border);
+}

@@ -1,72 +1,165 @@
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
 <div class="adminnavi">
-  <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
-  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=BannerList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_BANNER_MANAGE}></a></span>
+    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
+    &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=BannerList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_BANNER_MANAGE}></a></span>
 </div>
 
-<h3 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_LIST}>
-<{if $currentClient}>
-  ( <{$currentClient->getShow('name')}> )
-<{/if}>
-</h3>
 
-<ul class="toptab">
-  <li class="addBannerClientList"><a href="index.php?action=BannerclientList"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></a></li>
-  <li class="addBannerExpire"><a href="index.php?action=BannerfinishList"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST}></a></li>
-  <li class="addBanner"><a href="index.php?action=BannerEdit"><{$smarty.const._AD_LEGACYRENDER_LANG_CREATE_NEW}></a></li>
-</ul>
+<h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_LIST}>
+    <{if $currentClient}>
+    » <{$currentClient->getShow('name')}>
+    <{/if}>
+</h2>
+
+<div class="tips">
+    Add link to : https://xyz.local/xcl/html/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=3
+    <br> and "id" to language
+</div>
+
+
+<{* ////— ACTION-CONTROL —\\\\ *}>
+<section layout="row center-justify" class="action-control">
+
+    <div>
+    <a href="index.php?action=BannerclientList" class="button button-small"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></a>
+    <a href="index.php?action=BannerfinishList" class="button button-small"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST}></a>
+    <a href="index.php?action=BannerEdit" class="button button-small"><{$smarty.const._AD_LEGACYRENDER_LANG_CREATE_NEW}></a>
+    </div>
+
+    <div class="control-view">
+        <button class="help-admin button" type='button' data-module='legacyRender' data-help-article='#help-banner' aria-label="<{$smarty.const._HELP}>">
+            <b>?</b> </button>
+    </div>
+
+</section>
+<{* ----- / CONTROL-ACTION *}>
+
 
 <table class="outer">
-  <tr>
-    <th><{$smarty.const._AD_LEGACYRENDER_LANG_BID}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_BID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_BID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACYRENDER_LANG_CLIENT_NAME}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_CID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_CID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACYRENDER_LANG_IMPTOTAL}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_IMPTOTAL}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_IMPTOTAL}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACYRENDER_LANG_IMPMADE}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_IMPMADE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_IMPMADE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACYRENDER_LANG_CLICKS}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_CLICKS}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_CLICKS}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACYRENDER_LANG_DATE}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_DATE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_DATE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACYRENDER_LANG_HTMLBANNER}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_HTMLBANNER}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_HTMLBANNER}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACYRENDER_LANG_CONTROL}></th>
-  </tr>
-  <{foreach item=obj from=$objects}>
-    <tr class="<{cycle values='odd,even'}>">
-      <td class="legacyRender_list_id"><{$obj->getShow('bid')}></td>
-      <td class="legacyRender_list_title"><{$obj->mClient->getShow('name')}></td>
-      <td class="legacyRender_list_number">
-        <{if $obj->get('imptotal') > 0}>
-          <{$obj->getShow('imptotal')}>
-        <{else}>
-          <{$smarty.const._AD_LEGACYRENDER_LANG_UN_LIMITED}>
-        <{/if}>
-      </td>
-      <td class="legacyRender_list_number"><{$obj->getShow('impmade')}></td>
-      <td class="legacyRender_list_number">
-      <{if $obj->getShow('clickurl')}>
-        <{$obj->getShow('clicks')}>
-      <{else}>
-        --
-      <{/if}>
-      </td>
-      <td class="legacyRender_list_date"><{$obj->get('date')|xoops_formattimestamp}></td>
-      <td class="legacyRender_list_select"><{if $obj->getShow('htmlbanner') == 1}><{$smarty.const._YES}><{else}><{$smarty.const._NO}><{/if}></td>
-      <td class="legacyRender_list_control">
-        <a href="./index.php?action=BannerEdit&amp;bid=<{$obj->getShow('bid')}>"><img src="<{"icons/edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
-        <a href="./index.php?action=BannerDelete&amp;bid=<{$obj->getShow('bid')}>"><img src="<{"icons/delete.png"|theme}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
-      </td>
+    <thead>
+    <tr>
+        <th>
+        <{* ////— DROPDOWN SORT —\\\\ *}>
+        <div class="dropdown" id="filter-sort">
+
+            <a href="#" class="dropdown-toggle button" aria-label="sort filter">
+                <img class="svg" src="<{$xoops_url}>/images/icons/list-tree.svg" width="24px" height="24px" alt="options">
+            </a>
+
+            <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
+                <div layout="row center-justify inline">
+                    <h6><{$smarty.const._AD_LEGACYRENDER_LANG_BID}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_BID}>"
+                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_BID}>"
+                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div layout="row center-justify inline">
+                    <h6><{$smarty.const._AD_LEGACYRENDER_LANG_CID}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_CID}>"
+                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_CID}>"
+                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;
+                        </a>
+                    </div>
+                </div>
+                <div layout="row center-justify">
+                    <h6><{$smarty.const._AD_LEGACYRENDER_LANG_IMPTOTAL}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_IMPTOTAL}>"
+                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_IMPTOTAL}>"
+                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div layout="row center-justify">
+                    <h6><{$smarty.const._AD_LEGACYRENDER_LANG_IMPMADE}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_IMPMADE}>"
+                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_IMPMADE}>"
+                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div layout="row center-justify">
+                    <h6><{$smarty.const._AD_LEGACYRENDER_LANG_CLICKS}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_CLICKS}>"
+                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_CLICKS}>"
+                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div layout="row center-justify">
+                    <h6><{$smarty.const._AD_LEGACYRENDER_LANG_DATE}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_DATE}>"
+                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_DATE}>"
+                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div layout="row center-justify">
+                    <h6><{$smarty.const._AD_LEGACYRENDER_LANG_HTMLBANNER}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_HTMLBANNER}>"
+                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_HTMLBANNER}>"
+                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+            </div><{* ----- /Dropdown-content *}><!-- close dropdown-content -->
+        </div><{* ----- /Dropdown *}><!-- close dropdown -->
+        </th>
+        <th><{$smarty.const._AD_LEGACYRENDER_LANG_CID}></th>
+        <th><{$smarty.const._AD_LEGACYRENDER_LANG_IMPTOTAL}></th>
+        <th><{$smarty.const._AD_LEGACYRENDER_LANG_IMPMADE}></th>
+        <th><{$smarty.const._AD_LEGACYRENDER_LANG_CLICKS}></th>
+        <th><{$smarty.const._AD_LEGACYRENDER_LANG_DATE}></th>
+        <th><{$smarty.const._AD_LEGACYRENDER_LANG_HTMLBANNER}></th>
+        <th><{$smarty.const._AD_LEGACYRENDER_LANG_CONTROL}></th>
     </tr>
-  <{/foreach}>
+    </thead>
+    <tbody>
+    <{foreach item=obj from=$objects}>
+    <tr>
+        <td class="list_id"><{$obj->getShow('bid')}></td>
+        <td class="list_title"><{$obj->mClient->getShow('name')}></td>
+        <td class="list_number">
+            <{if $obj->get('imptotal') > 0}>
+            <{$obj->getShow('imptotal')}>
+            <{else}>
+            <{$smarty.const._AD_LEGACYRENDER_LANG_UN_LIMITED}>
+            <{/if}>
+        </td>
+        <td class="list_number"><{$obj->getShow('impmade')}></td>
+        <td class="list_number">
+            <{if $obj->getShow('clickurl')}>
+            <{$obj->getShow('clicks')}>
+            <{else}>
+            --
+            <{/if}>
+        </td>
+        <td class="list_date"><{$obj->get('date')|xoops_formattimestamp}></td>
+        <td class="list_select"><{if $obj->getShow('htmlbanner') == 1}><{$smarty.const._YES}><{else}><{$smarty.const._NO}><{/if}></td>
+        <td class="list_control">
+
+            <a href="./index.php?action=BannerEdit&amp;bid=<{$obj->getShow('bid')}>" aria-label="<{$smarty.const._EDIT}>">
+                <img src="<{'icons/icon-edit.svg'|theme}>" class="svg">
+            </a>
+            <a href="./index.php?action=BannerDelete&amp;bid=<{$obj->getShow('bid')}>" aria-label="<{$smarty.const._DELETE}>" class="bg-red">
+                <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" alt="Delete">
+            </a>
+        </td>
+    </tr>
+    <{/foreach}>
+    </tbody>
 </table>
 
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>

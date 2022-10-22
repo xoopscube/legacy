@@ -8,14 +8,14 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/class/RegistMailBuilder.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/class/RegistMailBuilder.class.php';
 
 class User_UserActivateAction extends User_AbstractEditAction
 {
     public function _getId()
     {
-        return isset($_REQUEST['uid']) ? intval(xoops_getrequest('uid')) : 0;
+        return isset($_REQUEST['uid']) ? (int)xoops_getrequest('uid') : 0;
     }
     
     public function &_getHandler()
@@ -63,7 +63,7 @@ class User_UserActivateAction extends User_AbstractEditAction
         //
         $this->mObjectHandler->insert($this->mObject, true);
 
-        if ($this->mConfig['activation_type'] == 2) {
+        if (2 == $this->mConfig['activation_type']) {
             $builder =new User_RegistAdminCommitMailBuilder();
             $director =new User_UserRegistMailDirector($builder, $this->mObject, $controller->mRoot->mContext->getXoopsConfig(), $this->mConfig);
             $director->contruct();

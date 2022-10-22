@@ -1,50 +1,46 @@
 <?php
-// $Id: xmltaghandler.php,v 1.1 2007/05/15 02:35:35 minahito Exp $
-/*******************************************************************************
-    Location: <b>xml/XmlTagHandler</b><br>
-     <br>
-    XmlTagHandler<br>
-    <br>
-    Copyright &copy; 2001 eXtremePHP.  All rights reserved.<br>
-    <br>
-    @author Ken Egervari, Remi Michalski<br>
-*******************************************************************************/
+/**
+ * Xml Tag Handler
+ * @package    kernel
+ * @subpackage xml
+ * @version    XCL 2.3.1
+ * @author     Other authors Minahito, 2007/05/15 
+ * @author     Ken Egervari, Remi Michalski
+ * @copyright  2001 eXtremePHP
+ * @license    
+ */
 
-class xmltaghandler
+class XmlTagHandler
 {
 
-    /****************************************************************************
-
-    ****************************************************************************/
-    public function XmlTagHandler()
+    public function __construct()
     {
     }
 
-    /****************************************************************************
-
-    ****************************************************************************/
     public function getName()
     {
         return '';
     }
 
-    /****************************************************************************
-
-    ****************************************************************************/
+    /**
+     * @param $parser
+     * @param $attributes
+     */
     public function handleBeginElement(&$parser, &$attributes)
     {
     }
 
-    /****************************************************************************
-
-    ****************************************************************************/
+    /**
+     * @param $parser
+     */
     public function handleEndElement(&$parser)
     {
     }
 
-    /****************************************************************************
-
-    ****************************************************************************/
+    /**
+     * @param $parser
+     * @param $data
+     */
     public function handleCharacterData(&$parser,  &$data)
     {
     }

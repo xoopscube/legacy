@@ -1,7 +1,11 @@
 <?php
 /**
- * @package profile
- * @version $Id: DelegateFunctions.class.php,v 1.0 $
+ * @package    profile
+ * @version    XCL 2.3.1
+ * @author     Other authors  gigamaster, 2020 XCL/PHP7
+ * @author     Kilica
+ * @copyright  2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -90,14 +94,14 @@ class Profile_Delegate
         foreach ($definitions as $def) {
             $className = $def->mFieldType->getFormPropertyClass();
             $actionForm->mFormProperties[$def->get('field_name')] = new $className($def->get('field_name'));
-        
+
             //
             //validation checks for custom fields
             //
-            $validationArr = array();
+            $validationArr = [];
             $actionForm->mFieldProperties[$def->get('field_name')] = new XCube_FieldProperty($actionForm);
             //required check
-            if ($def->get('required')==true) {
+            if (true == $def->get('required')) {
                 $validationArr[] = 'required';
                 $actionForm->mFieldProperties[$def->get('field_name')]->addMessage('required', _MD_USER_ERROR_REQUIRED, $def->get('label'));
             }
@@ -156,9 +160,9 @@ class Profile_CoolUriDelegate
         $sUri = '/%s/index.php?action=%s%s';
         $lUri = '/%s/index.php?action=%s%s&%s=%d';
         $key = 'uid';
-    
+
         $table = isset($dataname) ? $dataname : 'data';
-    
+
         if (isset($dataname)) {
             if ($data_id>0) {
                 if (isset($action)) {

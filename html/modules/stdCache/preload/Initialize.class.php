@@ -12,8 +12,8 @@ class StdCache_Initialize extends XCube_ActionFilter
 {
     public function preBlockFilter()
     {
-        $this->mController->mSetBlockCachePolicy->add(array(&$this, 'setForBlock'), XCUBE_DELEGATE_PRIORITY_FIRST + 10);
-        $this->mController->mSetModuleCachePolicy->add(array(&$this, 'setForModule'), XCUBE_DELEGATE_PRIORITY_FIRST + 10);
+        $this->mController->mSetBlockCachePolicy->add([&$this, 'setForBlock'], XCUBE_DELEGATE_PRIORITY_FIRST + 10);
+        $this->mController->mSetModuleCachePolicy->add([&$this, 'setForModule'], XCUBE_DELEGATE_PRIORITY_FIRST + 10);
     }
     
     public function setForBlock($cacheInfo)
@@ -35,7 +35,7 @@ class StdCache_Initialize extends XCube_ActionFilter
             $cacheInfo->mGroupArr = $user->getGroups();
             $cacheInfo->setEnableCache(!in_array(XOOPS_GROUP_ADMIN, $user->getGroups()));
         } else {
-            $cacheInfo->mGroupArr = array(XOOPS_GROUP_ANONYMOUS);
+            $cacheInfo->mGroupArr = [XOOPS_GROUP_ANONYMOUS];
             $cacheInfo->setEnableCache(true);
         }
     }
@@ -47,7 +47,7 @@ class StdCache_Initialize extends XCube_ActionFilter
             $cacheInfo->mGroupArr = $user->getGroups();
             $cacheInfo->setEnableCache(!in_array(XOOPS_GROUP_ADMIN, $user->getGroups()));
         } else {
-            $cacheInfo->mGroupArr = array(XOOPS_GROUP_ANONYMOUS);
+            $cacheInfo->mGroupArr = [XOOPS_GROUP_ANONYMOUS];
             $cacheInfo->setEnableCache(true);
         }
     }

@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractFilterForm.class.php';
 
 define('RANKS_SORT_KEY_RANK_ID', 1);
 define('RANKS_SORT_KEY_RANK_TITLE', 2);
@@ -21,16 +21,16 @@ define('RANKS_SORT_KEY_DEFAULT', RANKS_SORT_KEY_RANK_ID);
 
 class User_RanksFilterForm extends User_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         RANKS_SORT_KEY_RANK_ID => 'rank_id',
         RANKS_SORT_KEY_RANK_TITLE => 'rank_title',
         RANKS_SORT_KEY_RANK_MIN => 'rank_min',
         RANKS_SORT_KEY_RANK_MAX => 'rank_max',
         RANKS_SORT_KEY_RANK_SPECIAL => 'rank_special'
-    );
+    ];
 
-    public $mKeyword = "";
-    public $mOptionField = "";
+    public $mKeyword = '';
+    public $mOptionField = '';
     
     public function getDefaultSortKey()
     {
@@ -53,10 +53,10 @@ class User_RanksFilterForm extends User_AbstractFilterForm
         if (isset($_REQUEST['option_field'])) {
             $this->mNavi->addExtra('option_field', xoops_getrequest('option_field'));
             $this->mOptionField = $option_field;
-            if ($this->mOptionField == "special") {
+            if ('special' == $this->mOptionField) {
                 //only system avatar
             $this->_mCriteria->add(new Criteria('rank_special', '1'));
-            } elseif ($this->mOptionField == "normal") {
+            } elseif ('normal' == $this->mOptionField) {
                 //only custom avatar
             $this->_mCriteria->add(new Criteria('rank_special', '0'));
             } else {

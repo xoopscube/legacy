@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once dirname(__FILE__)."/UserDataUploadAction.class.php";
+require_once __DIR__ . '/UserDataUploadAction.class.php';
 
 class User_UserDataUploadConfAction extends User_UserDataUploadAction
 {
@@ -18,7 +18,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
     
         /// csv file check
         if (isset($_FILES['user_csv_file']) &&
-            $_FILES['user_csv_file']['error'] == 0) {
+            0 == $_FILES['user_csv_file']['error']) {
             return USER_FRAME_VIEW_SUCCESS;
         }
         return $this->getDefaultView($controller, $xoopsUser);
@@ -29,10 +29,10 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
         /// success
-        $render->setTemplateName("user_data_upload_conf.html");
+        $render->setTemplateName('user_data_upload_conf.html');
 
         // fields
-        $fields = array();
+        $fields = [];
         $user_handler =& $this->_getHandler();
         $user_tmp = $user_handler->create();
         $user_key = array_keys($user_tmp->gets());
@@ -43,7 +43,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
         $render->setAttribute('user_fields', $fields);
 
         /// csv data
-        $csv_data = array();
+        $csv_data = [];
         $csv_file = $_FILES['user_csv_file']['tmp_name'];
         $csv_encoding = '';
         $user_h =& $this->_getHandler();
@@ -52,30 +52,30 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
             $csv_encoding = mb_detect_encoding($_csv_contents);
         }
 
-        if (($handle = fopen($csv_file, 'r')) !== false) {
+        if (false !== ($handle = fopen($csv_file, 'r'))) {
             $current_locale = false;
-            if ($csv_encoding === 'UTF-8') {
+            if ('UTF-8' === $csv_encoding) {
                 $current_locale = setlocale(LC_ALL, '0');
                 setlocale(LC_ALL, 'ja_JP.UTF-8');
                 $bom = fread($handle, 3); // remove BOM
-                if (ord($bom[0]) !== 0xef || ord($bom[1]) !== 0xbb || ord($bom[2]) !== 0xbf) {
+                if (0xef !== ord($bom[0]) || 0xbb !== ord($bom[1]) || 0xbf !== ord($bom[2])) {
                     rewind($handle, 0); // BOM not found then do rewind
                 }
             }
             $n = 0;
-            while (($_data = fgetcsv($handle)) !== false) {
+            while (false !== ($_data = fgetcsv($handle))) {
                 if ($csv_encoding) {
                     mb_convert_variables(_CHARSET, $csv_encoding, $_data);
                 }
                 if (!$n++ || !implode('', $_data)) {
                     continue;
                 }
-                $user_data = array(
+                $user_data = [
                     'error'  => false,
                     'update' => 0,
                     'is_new' => true,
-                    'value'  => array(),
-                    );
+                    'value'  => [],
+                ];
                 if (count($_data) != count($user_key)) {
                     $user_data['error'] = true;
                 }
@@ -89,7 +89,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
                             switch ($user_key[$i]) {
                               case 'user_regdate':
                               case 'last_login':
-                                $update = ($user_value || $csv_value) && strcmp(formatTimestamp($user_value, 'Y/n/j H:i'),  $csv_value)!==0;
+                                $update = ($user_value || $csv_value) && 0 !== strcmp(formatTimestamp($user_value, 'Y/n/j H:i'), $csv_value);
                                  if ($update) {
                                  }
                                 break;
@@ -101,26 +101,27 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
                               default:
                             }
                             $user_data['update'] = $user_data['update'] | $update;
-                            $user_data['value'][] = array(
+                            $user_data['value'][] = [
                                 'var'    => $csv_value,
                                 'update' => $update,
-                                );
+                            ];
                         }
                         $user_data['is_new'] = false;
                     }
                 }
-                if ($user_data['is_new'] == true) {
+                if (true == $user_data['is_new']) {
                     for ($i=0; $i<count($user_key); $i++) {
-                        $var = isset($_data[$i]) && $_data[$i]!=='' ? $_data[$i] : $user_tmp->get($user_key[$i]);
+                        $var = isset($_data[$i]) && '' !== $_data[$i] ? $_data[$i] : $user_tmp->get($user_key[$i]);
                         switch ($user_key[$i]) {
                           case 'user_regdate':
                           case 'last_login':
                             $var = formatTimestamp($var, 'Y/n/j H:i');
                             break;
                         }
-                        $user_data['value'][] = array(
+                        $user_data['value'][] = [
                             'var'    => $var,
-                            'update' => 0);
+                            'update' => 0
+                        ];
                     }
                 }
                 $csv_data[] = $user_data;
@@ -146,16 +147,16 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
      *  @param  string  $delimiter  フィールドの区切り文字
      *  @return mixed   (array):分割結果 Ethna_Error:エラー(行継続)
      */
-    public function explodeCSV($csv, $delimiter = ",")
+    public function explodeCSV($csv, $delimiter = ',')
     {
         $space_list = '';
-        foreach (array(" ", "\t", "\r", "\n") as $c) {
+        foreach ([' ', "\t", "\r", "\n"] as $c) {
             if ($c != $delimiter) {
                 $space_list .= $c;
             }
         }
 
-        $line_end = "";
+        $line_end = '';
         if (preg_match("/([$space_list]+)\$/sS", $csv, $match)) {
             $line_end = $match[1];
         }
@@ -163,7 +164,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
         $csv .= ' ';
 
         $field = '';
-        $retval = array();
+        $retval = [];
 
         $index = 0;
         $csv_len = strlen($csv);
@@ -177,13 +178,13 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
             }
 
             // 2. read field
-            if ($csv{$index} == '"') {
+            if ('"' == $csv{$index}) {
                 // 2A. handle quote delimited field
                 $index++;
                 while ($index < $csv_len) {
-                    if ($csv{$index} == '"') {
+                    if ('"' == $csv{$index}) {
                         // handle double quote
-                        if ($csv{$index+1} == '"') {
+                        if ('"' == $csv{$index + 1}) {
                             $field .= $csv{$index};
                             $index += 2;
                         } else {
@@ -198,7 +199,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
                         }
                     } else {
                         // normal character
-                        if (preg_match("/^([^\"]*)/S", substr($csv, $index), $match)) {
+                        if (preg_match('/^([^"]*)/S', substr($csv, $index), $match)) {
                             $field .= $match[1];
                             $index += strlen($match[1]);
                         }

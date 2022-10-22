@@ -1,10 +1,10 @@
-/*  Copyright Mihai Bazon, 2002  |  http://students.infoiasi.ro/~mishoo
+/*  Copyright Mihai Bazon, 2002  |  https://students.infoiasi.ro/~mishoo
  * ---------------------------------------------------------------------
  *
  * The DHTML Calendar, version 0.9.2 "The art of date selection"
  *
  * Details and latest version at:
- * http://students.infoiasi.ro/~mishoo/site/calendar.epl
+ * https://students.infoiasi.ro/~mishoo/site/calendar.epl
  *
  * Feel free to use this script under the terms of the GNU Lesser General
  * Public License, as long as you do not remove or alter this notice.
@@ -175,7 +175,7 @@ Calendar.createElement = function(type, parent) {
 	if (document.createElementNS) {
 		// use the XHTML namespace; IE won't normally get here unless
 		// _they_ "fix" the DOM2 implementation.
-		el = document.createElementNS("http://www.w3.org/1999/xhtml", type);
+		el = document.createElementNS("https://www.w3.org/1999/xhtml", type);
 	} else {
 		el = document.createElement(type);
 	}
@@ -1242,7 +1242,7 @@ Date.prototype.getMonthDays = function(month) {
 };
 
 /** Returns the number of the week.  The algorithm was "stolen" from PPK's
- * website, hope it's correct :) http://www.xs4all.nl/~ppk/js/week.html */
+ * website, hope it's correct :) https://www.xs4all.nl/~ppk/js/week.html */
 Date.prototype.getWeekNumber = function() {
 	var now = new Date(this.getFullYear(), this.getMonth(), this.getDate(), 0, 0, 0);
 	var then = new Date(this.getFullYear(), 0, 1, 0, 0, 0);

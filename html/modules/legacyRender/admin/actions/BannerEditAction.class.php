@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/BannerAdminEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/BannerAdminEditForm.class.php';
 
 class LegacyRender_BannerEditAction extends LegacyRender_AbstractEditAction
 {
@@ -40,7 +40,7 @@ class LegacyRender_BannerEditAction extends LegacyRender_AbstractEditAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("banner_edit.html");
+        $render->setTemplateName('banner_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $this->mObject->loadBannerclient();
         $render->setAttribute('object', $this->mObject);
@@ -55,16 +55,16 @@ class LegacyRender_BannerEditAction extends LegacyRender_AbstractEditAction
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=BannerList");
+        $controller->executeForward('./index.php?action=BannerList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=BannerList", 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=BannerList', 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
     }
     
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=BannerList");
+        $controller->executeForward('./index.php?action=BannerList');
     }
 }

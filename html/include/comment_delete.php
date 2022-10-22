@@ -1,49 +1,35 @@
 <?php
-// $Id: comment_delete.php,v 1.1 2007/05/15 02:34:19 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.xoops.org/ http://jp.xoops.org/  http://www.myweb.ne.jp/  //
-// Project: The XOOPS Project (http://www.xoops.org/)                        //
-// ------------------------------------------------------------------------- //
+/**
+ * Comment delete
+ * @package    XCL
+ * @subpackage comment
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Other authors Minahito, 2007/05/15
+ * @author     Kazumi Ono (aka onokazu)
+ * @copyright  (c) 2000-2003 XOOPS.org
+ * @license    GPL 2.0
+ */
 
 if (!defined('XOOPS_ROOT_PATH') || !is_object($xoopsModule)) {
     exit();
 }
+
 include_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
+
 $op = 'delete';
+
 if (!empty($_POST)) {
     $com_mode = isset($_POST['com_mode']) ? htmlspecialchars(trim($_POST['com_mode']), ENT_QUOTES) : 'flat';
     $com_order = isset($_POST['com_order']) ? (int)$_POST['com_order'] : XOOPS_COMMENT_OLD1ST;
     $com_id = isset($_POST['com_id']) ? (int)$_POST['com_id'] : 0;
-    $op = isset($_POST['op']) ? $_POST['op'] : 'delete';
+    $op = $_POST['op'] ?? 'delete';
 } else {
     $com_mode = isset($_GET['com_mode']) ? htmlspecialchars(trim($_GET['com_mode']), ENT_QUOTES) : 'flat';
     $com_order = isset($_GET['com_order']) ? (int)$_GET['com_order'] : XOOPS_COMMENT_OLD1ST;
     $com_id = isset($_GET['com_id']) ? (int)$_GET['com_id'] : 0;
 }
+
 
 if ('system' == $xoopsModule->getVar('dirname')) {
     $comment_handler =& xoops_gethandler('comment');
@@ -62,7 +48,7 @@ if ('system' == $xoopsModule->getVar('dirname')) {
     $comment_config = $xoopsModule->getInfo('comments');
     $com_modid = $xoopsModule->getVar('mid');
     $redirect_page = $comment_config['pageName'].'?';
-    $comment_confirm_extra = array();
+    $comment_confirm_extra = [];
     if (isset($comment_config['extraParams']) && is_array($comment_config['extraParams'])) {
         foreach ($comment_config['extraParams'] as $extra_param) {
             if (isset(${$extra_param})) {
@@ -83,20 +69,19 @@ if ('system' == $xoopsModule->getVar('dirname')) {
 }
 
 $accesserror = false;
+
 if (!is_object($xoopsUser)) {
     $accesserror = true;
-} else {
-    if (!$xoopsUser->isAdmin($com_modid)) {
-        $sysperm_handler =& xoops_gethandler('groupperm');
-        if (!$sysperm_handler->checkRight('system_admin', LEGACY_SYSTEM_COMMENT, $xoopsUser->getGroups())) {
-            $accesserror = true;
-        }
+} else if (!$xoopsUser->isAdmin($com_modid)) {
+    $sysperm_handler =& xoops_gethandler('groupperm');
+    if (!$sysperm_handler->checkRight('system_admin', LEGACY_SYSTEM_COMMENT, $xoopsUser->getGroups())) {
+        $accesserror = true;
     }
 }
 
-if (false != $accesserror) {
+if (false !== $accesserror) {
     $ref = xoops_getenv('HTTP_REFERER');
-    if ($ref != '') {
+    if ('' !== $ref) {
         redirect_header($ref, 2, _NOPERM);
     } else {
         redirect_header($redirect_page.'?'.$comment_config['itemName'].'='.(int)$com_itemid, 2, _NOPERM);
@@ -105,7 +90,8 @@ if (false != $accesserror) {
 }
 
 $t_root =& XCube_Root::getSingleton();
-$t_root->mLanguageManager->loadPageTypeMessageCatalog('comment');    ///< Is this must?
+
+$t_root->mLanguageManager->loadPageTypeMessageCatalog('comment');    ///< Is this must needed?
 
 switch ($op) {
 case 'delete_one':
@@ -121,12 +107,12 @@ case 'delete_one':
     $com_itemid = $comment->getVar('com_itemid');
 
     // execute updateStat callback function if set
-    if (isset($comment_config['callback']['update']) && trim($comment_config['callback']['update']) != '') {
+    if (isset($comment_config['callback']['update']) && '' !== trim($comment_config['callback']['update'])) {
         $skip = false;
         if (!function_exists($comment_config['callback']['update'])) {
             if (isset($comment_config['callbackFile'])) {
                 $callbackfile = trim($comment_config['callbackFile']);
-                if ($callbackfile != '' && file_exists(XOOPS_ROOT_PATH.'/modules/'.$moddir.'/'.$callbackfile)) {
+                if ('' != $callbackfile && file_exists(XOOPS_ROOT_PATH . '/modules/' . $moddir . '/' . $callbackfile)) {
                     include_once XOOPS_ROOT_PATH.'/modules/'.$moddir.'/'.$callbackfile;
                 }
                 if (!function_exists($comment_config['callback']['update'])) {
@@ -146,7 +132,7 @@ case 'delete_one':
     }
 
     // update user posts if its not an anonymous post
-    if ($comment->getVar('com_uid') != 0) {
+    if (0 !== $comment->getVar('com_uid')) {
         $member_handler =& xoops_gethandler('member');
         $com_poster =& $member_handler->getUser($comment->getVar('com_uid'));
         if (is_object($com_poster)) {
@@ -164,11 +150,11 @@ case 'delete_one':
 
     // now set new parent ID for direct child comments
     $new_pid = $comment->getVar('com_pid');
-    $errs = array();
+    $errs = [];
     foreach (array_keys($child_comments) as $i) {
         $child_comments[$i]->setVar('com_pid', $new_pid);
         // if the deleted comment is a root comment, need to change root id to own id
-        if (false != $comment->isRoot()) {
+        if (false !== $comment->isRoot()) {
             $new_rootid = $child_comments[$i]->getVar('com_id');
             $child_comments[$i]->setVar('com_rootid', $child_comments[$i]->getVar('com_id'));
             if (!$comment_handler->insert($child_comments[$i])) {
@@ -213,8 +199,8 @@ case 'delete_all':
     $child_comments =& $xot->getAllChild($com_id);
     // add itself here
     $child_comments[$com_id] =& $comment;
-    $msgs = array();
-    $deleted_num = array();
+    $msgs = [];
+    $deleted_num = [];
     $member_handler =& xoops_gethandler('member');
     foreach (array_keys($child_comments) as $i) {
         if (!$comment_handler->delete($child_comments[$i])) {
@@ -239,12 +225,12 @@ case 'delete_all':
     $com_itemid = $comment->getVar('com_itemid');
 
     // execute updateStat callback function if set
-    if (isset($comment_config['callback']['update']) && trim($comment_config['callback']['update']) != '') {
+    if (isset($comment_config['callback']['update']) && '' !== trim($comment_config['callback']['update'])) {
         $skip = false;
         if (!function_exists($comment_config['callback']['update'])) {
             if (isset($comment_config['callbackFile'])) {
                 $callbackfile = trim($comment_config['callbackFile']);
-                if ($callbackfile != '' && file_exists(XOOPS_ROOT_PATH.'/modules/'.$moddir.'/'.$callbackfile)) {
+                if ('' !== $callbackfile && file_exists(XOOPS_ROOT_PATH . '/modules/' . $moddir . '/' . $callbackfile)) {
                     include_once XOOPS_ROOT_PATH.'/modules/'.$moddir.'/'.$callbackfile;
                 }
                 if (!function_exists($comment_config['callback']['update'])) {
@@ -264,15 +250,16 @@ case 'delete_all':
     }
 
     include XOOPS_ROOT_PATH.'/header.php';
+
     xoops_result($msgs);
-    echo '<br /><a href="'.$redirect_page.'='.$com_itemid.'&amp;com_order='.$com_order.'&amp;com_mode='.$com_mode.'">'._BACK.'</a>';
+    echo '<br><a href="'.$redirect_page.'='.$com_itemid.'&amp;com_order='.$com_order.'&amp;com_mode='.$com_mode.'">'._BACK.'</a>';
     include XOOPS_ROOT_PATH.'/footer.php';
     break;
 
 case 'delete':
 default:
     include XOOPS_ROOT_PATH.'/header.php';
-    $comment_confirm = array('com_id' => $com_id, 'com_mode' => $com_mode, 'com_order' => $com_order, 'op' => array(_CM_DELETEONE => 'delete_one', _CM_DELETEALL => 'delete_all'));
+    $comment_confirm = ['com_id' => $com_id, 'com_mode' => $com_mode, 'com_order' => $com_order, 'op' => [_CM_DELETEONE => 'delete_one', _CM_DELETEALL => 'delete_all']];
     if (!empty($comment_confirm_extra) && is_array($comment_confirm_extra)) {
         $comment_confirm = $comment_confirm + $comment_confirm_extra;
     }

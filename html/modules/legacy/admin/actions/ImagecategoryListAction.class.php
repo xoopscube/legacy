@@ -1,26 +1,27 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: ImagecategoryListAction.class.php,v 1.3 2008/09/25 15:11:47 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * ImagecategoryListAction.class.php
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors  gigamaster, 2020 XCL/PHP7
+ * @author     Kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ImagecategoryFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ImagecategoryListForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/ImagecategoryFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/ImagecategoryListForm.class.php';
 
 class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
 {
-    public $mImagecategoryObjects = array();
+    public $mImagecategoryObjects = [];
     public $mActionForm = null;
-    public $mpageArr = array(5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0);
+    public $mpageArr = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0];
 
     public function prepare(&$controller, &$xoopsUser)
     {
@@ -40,7 +41,7 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
 
         $root =& XCube_Root::getSingleton();
         $perpage = $root->mContext->mRequest->getRequest($navi->mPrefix.'perpage');
-        if (isset($perpage) && intval($perpage) == 0) {
+        if (isset($perpage) && 0 == (int)$perpage) {
             $navi->setPerpage(0);
         }
         return $navi;
@@ -54,14 +55,14 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=ImagecategoryList";
+        return './index.php?action=ImagecategoryList';
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("imagecategory_list.html");
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setTemplateName('imagecategory_list.html');
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('pageArr', $this->mpageArr);
         $render->setAttribute('filterForm', $this->mFilter);
@@ -84,7 +85,7 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if ($form_cancel != null) {
+        if (null != $form_cancel) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
 
@@ -97,7 +98,7 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
             return $this->_processSave($controller, $xoopsUser);
         }
     }
-    
+
     public function _processConfirm(&$controller, &$xoopsUser)
     {
         $nameArr = $this->mActionForm->get('name');
@@ -112,7 +113,7 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
             }
             unset($imagecategory);
         }
-    
+
 
         return LEGACY_FRAME_VIEW_INPUT;
     }
@@ -152,7 +153,7 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
         }//foreach
 
                 foreach (array_keys($nameArr) as $icid) {
-                    if ($this->mActionForm->get('delete', $icid) == 1) {
+                    if (1 == $this->mActionForm->get('delete', $icid)) {
                         $imagecategory =& $imagecategoryHandler->get($icid);
                         if (is_object($imagecategory)) {
                             if (!$imagecategoryHandler->delete($imagecategory)) {
@@ -166,10 +167,13 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
 
     /**
      * To support a template writer, this send the list of mid that actionForm kept.
+     * @param $controller
+     * @param $xoopsUser
+     * @param $render
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("imagecategory_list_confirm.html");
+        $render->setTemplateName('imagecategory_list_confirm.html');
         $render->setAttribute('imagecategoryObjects', $this->mImagecategoryObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
         //

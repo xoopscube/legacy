@@ -4,7 +4,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/class/AbstractFilterForm.class.php';
 
 define('TPLFILE_SORT_KEY_TPL_ID', 1);
 define('TPLFILE_SORT_KEY_TPL_REFID', 2);
@@ -21,7 +21,7 @@ define('TPLFILE_SORT_KEY_DEFAULT', TPLFILE_SORT_KEY_TPL_FILE);
 
 class LegacyRender_TplfileFilterForm extends LegacyRender_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         TPLFILE_SORT_KEY_TPL_ID => 'tpl_id',
         TPLFILE_SORT_KEY_TPL_REFID => 'tpl_refid',
         TPLFILE_SORT_KEY_TPL_MODULE => 'tpl_module',
@@ -31,7 +31,7 @@ class LegacyRender_TplfileFilterForm extends LegacyRender_AbstractFilterForm
         TPLFILE_SORT_KEY_TPL_LASTMODIFIED => 'tpl_lastmodified',
         TPLFILE_SORT_KEY_TPL_LASTIMPORTED => 'tpl_lastimported',
         TPLFILE_SORT_KEY_TPL_TYPE => 'tpl_type'
-    );
+    ];
     
     public $mTplset = null;
     public $mModule = null;
@@ -51,7 +51,7 @@ class LegacyRender_TplfileFilterForm extends LegacyRender_AbstractFilterForm
     {
         if (isset($_REQUEST['tpl_module'])) {
             $this->mNavi->addExtra('tpl_module', xoops_getrequest('tpl_module'));
-            $this->_mCriteria->add(new Criteria('tpl_module', array(XOBJ_DTYPE_STRING, xoops_getrequest('tpl_module'))));
+            $this->_mCriteria->add(new Criteria('tpl_module', [XOBJ_DTYPE_STRING, xoops_getrequest('tpl_module')]));
             
             $handler =& xoops_gethandler('module');
             $this->mModule =& $handler->getByDirname(xoops_getrequest('tpl_module'));
@@ -59,7 +59,7 @@ class LegacyRender_TplfileFilterForm extends LegacyRender_AbstractFilterForm
     
         if (isset($_REQUEST['tpl_type'])) {
             $this->mNavi->addExtra('tpl_type', xoops_getrequest('tpl_type'));
-            $this->_mCriteria->add(new Criteria('tpl_type', array(XOBJ_DTYPE_STRING, xoops_getrequest('tpl_type'))));
+            $this->_mCriteria->add(new Criteria('tpl_type', [XOBJ_DTYPE_STRING, xoops_getrequest('tpl_type')]));
         }
         
         if (isset($_REQUEST['tpl_file'])) {

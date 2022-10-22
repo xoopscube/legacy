@@ -1,20 +1,21 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: CommentDeleteAction.class.php,v 1.4 2008/09/25 15:11:33 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * CommentDeleteAction.class.php
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractDeleteAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/CommentAdminDeleteForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/actions/CommentEditAction.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractDeleteAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/CommentAdminDeleteForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/actions/CommentEditAction.class.php';
 
 class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
 {
@@ -26,7 +27,7 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
     public function &_getHandler()
     {
         $handler =& xoops_getmodulehandler('comment');
-        $handler->mDeleteSuccess->add(array(&$this, "doDelete"));
+        $handler->mDeleteSuccess->add([&$this, 'doDelete']);
         return $handler;
     }
 
@@ -59,7 +60,7 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
             }
         }
 
-        $render->setTemplateName("comment_delete.html");
+        $render->setTemplateName('comment_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
         $render->setAttribute('children', $children);
@@ -67,17 +68,17 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=CommentList");
+        $controller->executeForward('./index.php?action=CommentList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=CommentList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=CommentList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
-    
+
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=CommentList");
+        $controller->executeForward('./index.php?action=CommentList');
     }
 
     public function doDelete($comment)
@@ -85,7 +86,7 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
         //
         // Adjust user's post count.
         //
-        if ($comment->get('com_status') != 1 && $comment->get('com_uid') > 0) {
+        if (1 != $comment->get('com_status') && $comment->get('com_uid') > 0) {
             $handler =& xoops_gethandler('member');
 
             //
@@ -95,32 +96,32 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
             $user =& $handler->getUser($comment->get('com_uid'));
             if (is_object($user)) {
                 $count = $user->get('posts');
-            
+
                 if ($count > 0) {
                     $handler->updateUserByField($user, 'posts', $count - 1);
                 }
             }
         }
-        
+
         //
         // callback
         //
         $comment_config = Legacy_CommentEditAction::loadCallbackFile($comment);
-        
-        if ($comment_config == false) {
+
+        if (false == $comment_config) {
             return;
         }
-        
+
         $function = $comment_config['callback']['update'];
-        
+
         if (function_exists($function)) {
             $criteria = new CriteriaCompo(new Criteria('com_modid', $comment->get('com_modid')));
             $criteria->add(new Criteria('com_itemid', $comment->get('com_itemid')));
             $criteria->add(new Criteria('com_status', XOOPS_COMMENT_ACTIVE));
-            
+
             $handler =& xoops_gethandler('comment');
             $commentCount = $handler->getCount($criteria);
-            
+
             call_user_func($function, $comment->get('com_id'), $commentCount);
         }
     }

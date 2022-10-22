@@ -1,0 +1,46 @@
+/* Cursor 
+ * TODO : customize
+*/
+.alias           {cursor:alias}
+.auto            {cursor:auto}
+.cell            {cursor:cell}
+.context-menu    {cursor:context-menu}
+.copy            {cursor:copy}
+.crosshair       {cursor:crosshair}
+.default         {cursor:default}
+.grab            {cursor:grab}
+.grabbing        {cursor:grabbing}
+.help            {cursor:help}
+.pointer         {cursor:pointer}
+.progress        {cursor:progress}
+.wait            {cursor:wait}
+.text            {cursor:text}
+.vertical-text   {cursor:vertical-text}
+.move            {cursor:move}
+.none            {cursor:none}
+.no-drop         {cursor:no-drop}
+.not-allowed     {cursor:not-allowed}
+.all-scroll      {cursor:all-scroll}
+.col-resize      {cursor:col-resize}
+.row-resize      {cursor:row-resize}
+.n-resize        {cursor:n-resize}
+.e-resize        {cursor:e-resize}
+.s-resize        {cursor:s-resize}
+.w-resize        {cursor:w-resize}
+.ns-resize       {cursor:ns-resize}
+.ew-resize       {cursor:ew-resize}
+.ne-resize       {cursor:ne-resize}
+.nw-resize       {cursor:nw-resize}
+.se-resize       {cursor:se-resize}
+.sw-resize       {cursor:sw-resize}
+.nesw-resize     {cursor:nesw-resize}
+.nwse-resize     {cursor:nwse-resize}
+.zoom-in         {cursor:zoom-in}
+.zoom-out        {cursor:zoom-out}
+.cursor-image {cursor:url(../../images/icons/arrow-left.svg), auto} /* cursor with custom image:
+/* WebKit only cursors:
+-webkit-zoom-in
+-webkit-zoom-out
+-webkit-zoom-grab
+-webkit-zoom-grabbing
+*/

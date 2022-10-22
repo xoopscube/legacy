@@ -8,17 +8,17 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/UserFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/UserListForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/UserFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/UserListForm.class.php';
 
 class User_UserListAction extends User_AbstractListAction
 {
-    public $mUserObjects = array();
+    public $mUserObjects = [];
     public $mActionForm = null;
-    public $mpageArr = array(5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0);
+    public $mpageArr = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0];
 
-    public function prepare(&$controller, &$xoopsUser)
+    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         $this->mActionForm =new User_UserListForm();
         $this->mActionForm->prepare();
@@ -37,7 +37,7 @@ class User_UserListAction extends User_AbstractListAction
         $root =& XCube_Root::getSingleton();
         $perpage = $root->mContext->mRequest->getRequest($navi->mPrefix.'perpage');
 
-        if (isset($perpage) && intval($perpage) == 0) {
+        if (isset($perpage) && 0 == (int)$perpage) {
             $navi->setPerpage(0);
         }
         return $navi;
@@ -51,14 +51,14 @@ class User_UserListAction extends User_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=UserList";
+        return './index.php?action=UserList';
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_list.html");
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setTemplateName('user_list.html');
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('filterForm', $this->mFilter);
         $render->setAttribute('pageArr', $this->mpageArr);
@@ -74,7 +74,7 @@ class User_UserListAction extends User_AbstractListAction
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if ($form_cancel != null) {
+        if (null != $form_cancel) {
             return USER_FRAME_VIEW_CANCEL;
         }
 
@@ -112,7 +112,7 @@ class User_UserListAction extends User_AbstractListAction
         $userHandler =& xoops_gethandler('user');
 
         foreach (array_keys($levelArr) as $uid) {
-            if ($uid != 1) {
+            if (1 != $uid) {
                 $user =& $userHandler->get($uid);
                 if (is_object($user)) {
                     $olddata['level'] = $user->get('level');
@@ -131,7 +131,7 @@ class User_UserListAction extends User_AbstractListAction
         }//foreach
 
                 foreach (array_keys($levelArr) as $uid) {
-                    if (($this->mActionForm->get('delete', $uid) == 1) && ($uid != 1)) {
+                    if ((1 == $this->mActionForm->get('delete', $uid)) && (1 != $uid)) {
                         $user =& $userHandler->get($uid);
                         if (is_object($user)) {
                             XCube_DelegateUtils::call('Legacy.Admin.Event.UserDelete', new XCube_Ref($user));
@@ -151,10 +151,13 @@ class User_UserListAction extends User_AbstractListAction
 
     /**
      * To support a template writer, this send the list of mid that actionForm kept.
+     * @param $controller
+     * @param $xoopsUser
+     * @param $render
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_list_confirm.html");
+        $render->setTemplateName('user_list_confirm.html');
         $render->setAttribute('userObjects', $this->mUserObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
         
@@ -166,7 +169,7 @@ class User_UserListAction extends User_AbstractListAction
         $render->setAttribute('uids', array_keys($t_arr));
     }
 
-
+// @todo @gigamaster Check change $render to $renderer
     public function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
     {
         $controller->executeForward('./index.php?action=UserList');

@@ -1,0 +1,94 @@
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+    <{if $mod_config.show_breadcrumbs}>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<{$xoops_url}>/">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                        <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                    </svg></a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="<{$mod_url}>/index.php">
+                    <svg class="bi bi-chat-square-dots" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2.5a2 2 0 0 1 1.6.8L8 14.333 9.9 11.8a2 2 0 0 1 1.6-.8H14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                        <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    </svg> <{$smarty.const._MD_D3FORUM_TOP}></a>
+                </li>
+                <li class="breadcrumb-item"><a href="<{$mod_url}>/index.php?cat_id=<{$category.id}>"><{$category.title}></a></li>
+                <li class="breadcrumb-item"><a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>"><{$forum.title}></a></li>
+                <{if $topic.id}>
+                <li class="breadcrumb-item"><a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>"><{$topic.title}></a></li>
+                <{/if}>
+                <li class="breadcrumb-item active" aria-current="page"><{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}></li>
+            </ol>
+        </nav>
+    <{/if}>
+
+
+<h3 class="d3f_title"><{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}></h3>
+
+
+    <div id="post_reference" class="card my-4 shadow-sm">
+        <div class="card-header">
+            <h5><{$reference_subject}></h5>
+        <p class="card-subtitle"><{$smarty.const._MD_D3FORUM_BY}>: <{$reference_name}> <{$smarty.const._MD_D3FORUM_ON}>: <{$reference_date}></p></div>
+        <div class="card-body"><{$reference_message}></div>
+        <div class="card-footer"><{$smarty.const._MD_D3FORUM_CHILDREN_COUNT}> : <{$children_count}><br><{$smarty.const._MD_D3FORUM_PARENT_POSTID}> : <{$post.pid}></div>
+    </div>
+
+
+<h3 class="d3f_head">
+    <svg class="bi bi-file-plus" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 1H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8h-1v5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h5V1z"/>
+        <path fill-rule="evenodd" d="M13.5 1a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13V1.5a.5.5 0 0 1 .5-.5z"/>
+        <path fill-rule="evenodd" d="M13 3.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
+    </svg> <{$smarty.const._MD_D3FORUM_CUTPASTEBYPOSTIDSBJ}></h3>
+
+
+<form name="cutpastebypostid" id="cutpastebypostid" action="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$post_id}>" method="post">
+
+	<p class="msg-callout msg-info"><{$smarty.const._MD_D3FORUM_CUTPASTEBYPOSTIDDSC}></p>
+    <div class="form-group row">
+        <label for="pid" class="col-form-label col-sm-3 pt-0"><{$smarty.const._MD_D3FORUM_CUTPASTEBYPOSTID_DEST}></label>
+	    <input type="text" class="form-control col-2 mr-sm-2" name="pid" id="pid" size="12" maxlength="12" value="">
+        <button type="submit" class="btn btn-primary" name="cutpastepostsok" id="cutpastepostsok" value="<{$smarty.const._SUBMIT}>"><{$smarty.const._SUBMIT}></button>
+    </div>
+
+</form>
+
+
+<{if $post.pid}>
+	<h3 class="d3f_head">
+        <svg class="bi bi-file-break" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M0 10.5a.5.5 0 0 1 .5-.5h15a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5z"/>
+            <path d="M12 1H4a2 2 0 0 0-2 2v6h1V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v6h1V3a2 2 0 0 0-2-2zm2 11h-1v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1H2v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1z"/>
+        </svg> <{$smarty.const._MD_D3FORUM_CUTPASTETOPICDIVSBJ}></h3>
+	<p class="msg-callout msg-info"><{$smarty.const._MD_D3FORUM_CUTPASTETOPICDIVDSC}></p>
+<{else}>
+	<h3 class="d3f_head">
+        <svg class="bi bi-file-break" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M0 10.5a.5.5 0 0 1 .5-.5h15a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5z"/>
+            <path d="M12 1H4a2 2 0 0 0-2 2v6h1V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v6h1V3a2 2 0 0 0-2-2zm2 11h-1v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1H2v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1z"/>
+        </svg> <{$smarty.const._MD_D3FORUM_CUTPASTEBYFORUMIDSBJ}></h3>
+	<p class="msg-callout msg-info"><{$smarty.const._MD_D3FORUM_CUTPASTEBYFORUMIDDSC}></p>
+<{/if}>
+
+
+<form name="cutpastebyforumid" id="cutpastebyforumid" action="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$post_id}>" method="post">
+
+	<div class="form-group row"class="d3f_bbsviewctrl">
+        <label for="forum_id" class="col-form-label col-sm-3 pt-0"><{$smarty.const._MD_D3FORUM_CUTPASTEBYFORUMID_DEST}></label>
+        <div class="col-sm-6">
+	        <select name="forum_id" id="forum_id" class="custom-select mr-sm-2"><{$forum_jumpbox_options}></select>
+        </div>
+
+        <button type="submit" class="btn btn-primary px-4" name="cutpastepostsok" id="cutpastepostsok" value="<{$smarty.const._SUBMIT}>"><{$smarty.const._SUBMIT}></button>
+
+    </div>
+
+</form>
+<!-- end module contents -->

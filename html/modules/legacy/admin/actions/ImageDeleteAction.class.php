@@ -1,19 +1,20 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: ImageDeleteAction.class.php,v 1.3 2008/09/25 15:11:35 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * ImageDeleteAction.class.php
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractDeleteAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ImageAdminDeleteForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractDeleteAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/ImageAdminDeleteForm.class.php';
 
 class Legacy_ImageDeleteAction extends Legacy_AbstractDeleteAction
 {
@@ -37,24 +38,24 @@ class Legacy_ImageDeleteAction extends Legacy_AbstractDeleteAction
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
         $this->mObject->loadImagecategory();
-        
-        $render->setTemplateName("image_delete.html");
+
+        $render->setTemplateName('image_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
     }
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=ImageList&imgcat_id=" . $this->mObject->get('imgcat_id'));
+        $controller->executeForward('./index.php?action=ImageList&imgcat_id=' . $this->mObject->get('imgcat_id'));
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=ImageList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=ImageList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
-    
+
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=ImageList&imgcat_id=" . $this->mObject->get('imgcat_id'));
+        $controller->executeForward('./index.php?action=ImageList&imgcat_id=' . $this->mObject->get('imgcat_id'));
     }
 }

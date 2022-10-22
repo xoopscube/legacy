@@ -1,47 +1,261 @@
-<h4>Outline</h4>
-<ul>
-  <li>This rendering engine (renderer) is for themes of XOOPS 2.0.x/XOOPS JP 2.0.x.</li>
-  <li>It has neither override nor the fall-back mechanism. Smarty is used for rendering and the cache management. The renderer is medium speed. Please see package.ini.php for specs and details.</li>
-</ul>
+<article id="help-module">
 
-<h4>Additional themes</h4>
-<ul>
-  <li>Additional themes can be obtained on theme-developers' websites etc.</li>
-  <li>Distributed themes are mostly compressed. To use a theme, the uncompressed files must be in the /themes directory of your site. </li>
-</ul>
 
-<h4>Uploading of themes</h4>
-<ul>
-  <li>Please upload the folder of the decompressed theme to the /themes directory under the root directory of XOOPS Cube. The folder should include theme.html or package.ini.php. First download the theme and expand it on your local machine. Then upload the entire folder. <i>If your host has server-side decompressing available then upload the compressed file to the /themes folder and uncompress on the server.</i></li>
-</ul>
+    <nav id="help-menu">
+        <ul>
+            <li><a href="#help-overview" class="button">Renderer</a>
+            <li><a href="#help-banner" class="button">Banner</a>
+            <li><a href="#help-htaccess" class="button">htaccess</a>
+            <li><a href="#help-template" class="button">Templates</a>
+            <li><a href="#help-themes" class="button">Themes</a>
+            <li><a href="#help-development" class="button">Development</a>
+        </ul>
+    </nav>
 
-<h4>Selection of themes</h4>
-<ul>
-  <li>In Theme Management, please click the "Select" button next to the theme that you wish to use as the default theme or main theme of your site.</li>
-  <li>Any theme that has a checkbox checked in the "Control" column, will appear in the Theme Selection Block. If you allow users to see this Block, they will then be able to select from these themes.</li>
-</ul>
 
-<h4>Uninstallation of theme</h4>
-<ul>
-  <li>This render system manages themes without using the database. To delete a theme, simply delete it's directory from the ��hemes��directory of XOOPS Cube.</li>
-</ul>
+<hr>
 
-<h4>Template Management</h4>
-<ul>
-  <li>The list of template sets is displayed in Template Management.</li>
-  <li>XOOPS CUBE comes with a default Template Set. By default, when modules are installed, their templates become part of this default set.</li>
-  <li>The default set cannot be deleted nor modified. If you wish to modify the templates in your site, first 'Clone' the default template set. The 'Clone' button is on the right, in the Control column. Once you have a new Template Set, you should first make it the Active set by clicking the "Select" button in the Control column. The actual template files can now be edited in the Template File Management section.</li>
-  <li>If you have a template set in tar.gz format, you can also upload this to your site through the admin interface. Simply click on the "Upload a Template Set" link in Template Management.</li>
-</ul>
 
-<h4>Template File Management</h4>
-<ul>
-  <li>The list of template files is displayed, and each file can be edited by clicking the edit icon ( a pencil ) in the rightmost column.</li>
-</ul>
+    <section id="help-overview">
 
-<h4>TODO</h4>
-<ul>
-  <li>Corresponds to "Theme selection".</li>
-  <li>The action filter that guarantees "Theme selection block" and the operation is shifted.</li>
-  <li>Correspond to the designer's license presentation and README mark.</li>
-</ul>
+        <h3>Overview</h3>
+
+        <p>The Renderer uses Smarty Template Engine — one of the most popular and mature template engines.</p>
+
+        <p>Smarty is a template engine for PHP. More specifically,
+            it facilitates a manageable way to separate application logic and content from its presentation.<br>
+            This is best described in a situation where the application programmer and the template designer play
+            different roles.
+
+        <p>Smarty Template Engine is used for rendering and cache management, it has neither override nor fall-back mechanism.
+
+        <p>The Render engine (renderer) ensures compatibility with legacy themes of XOOPS2 and XOOPS2-JP.
+
+        <p>Templates are built with HTML, CSS, JavaScript and Smarty tags<br>
+        — Smarty is used with custom delimiters very similar to HTML markup language that make it easier to design and develop components.</p>
+
+        <p>The Renderer module allows you to manage files more easily, even when they’re not all stored in one central folder or directory.
+            Although, some Themes have a template directory including most, if not all template files to meet an organization's needs for customization and personalization.
+
+        <p>The <b>Template Management</b> allows you to enable a <b>Template Set</b> and check the list of <b>templates</b> that you can edit, copy, download or delete.
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-banner">
+
+    <h3>Banner Management</h3>
+
+        <p>Allows you to manage banner ads and display ads in your website.
+
+        <p>You can place a banner of any type, in any location of the page, and on any module.
+
+        <p>You may show a banner to visitors a certain number of impressions.
+
+        <p>An impression is a metric used to quantify the number of digital views of a client banner.
+
+        <h3>Smarty Tags</h3>
+
+        <p>Smarty generates web content through the placement of special Smarty tags within a document.
+
+        <p>The following tags can be added to Themes and Templates.
+
+        <p>Smarty tags will be processed and substituted with other code.
+
+    <h4>Random Banner display</h4>
+
+    <pre><code class="lang-smarty">
+    &lt;{$xoops_banner}&gt;
+    </code></pre>
+
+    <h4>Display Banner if not empty</h4>
+    <pre><code class="lang-smarty">
+    &lt;{if $xoops_banner and $xoops_banner!=&quot;&quot;}&gt;&lt;{$xoops_banner}&gt;&lt;{/if}&gt;
+    </code></pre>
+
+    <h4>Display a specific Banner Id (bid)</h4>
+    <pre><code class="lang-smarty">
+    &lt;{if $xoops_banner &amp;&amp; bid=2}&gt;&lt;{$xoops_banner}&gt;&lt;{/if}&gt;
+    </code></pre>
+
+    <h3>Client login</h3>
+
+    <pre><code class="lang-smarty">
+    <{$smarty.const.XOOPS_URL}>/banners.php
+    </code></pre>
+
+    <p>Features</p>
+        <ul>
+            <li>List of Banner Clients
+            <li>List of Banners
+            <li>List of Expired Banners
+            <li>Edit a Banner
+            <li>Name
+            <li>Contact
+            <li>Email
+            <li>Login
+            <li>Password
+            <li>Impressions Allowed
+            <li>HTML code
+            <li>Extra info
+        </ul>
+    </section>
+
+
+<hr>
+
+
+    <section id="help-htaccess">
+
+        <h3>Cool URI .htaccess</h3>
+
+        <p>This feature generates a htaccess file to use Cool URI
+
+        <p>1. Copy the generated code
+
+        <p>2. Create a file /html/.htaccess
+
+        <p>3. Past the generated code into .htaccess</p>
+
+        <p>4. Enable "Cool URI" i the Control Panel System  <a href="../../legacy/admin/index.php?action=PreferenceEdit&confcat_id=1">🆒 Settings ⭢</a>
+
+        <h3>The .htaccess File</h3>
+
+        <p><b>.htaccess</b> files are plain-text configuration files used by the Apache HTTP web server.
+            They allow users to set directory level options without requiring access to the httpd.conf file,
+            including www rewrite, hotlink prevention, custom error pages, caching, and redirects.<br>
+            As such it is required that your server uses Apache, and a web host that allows htaccess files (the most popular hosts do).
+
+        <h3>The Cool URI</h3>
+        <p>The term used to describe a Uniform Resource Identifier (URI) that does not change.
+        This enables resources that have been linked to, bookmarked, or referenced in other ways to remain valid links for many years to come.
+        <p>A cool URI is considered to be a foundation requirement for the Semantic Web.
+        As described by Tim Berners-Lee in “Cool URIs don’t change” (1998), URIs should be designed with three things in mind: simplicity, stability and manageability.
+
+        <p>Learn more about Apache .htaccess file and Cool URIs :
+        <p><a href="https://www.askapache.com/htaccess/" target="_blank" >THE Ultimate Htaccess ⭧</a>
+        <p><a href="https://www.w3.org/TR/cooluris/" target="_blank"> W3C - Cool URIs for the Semantic Web ⭧</a>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-template">
+
+        <h3>Template Management</h3>
+
+        <p>The list of Template Sets is displayed in Template Management.
+
+        <p>The distribution package comes with a Default Template Set.
+
+        <p>When modules are installed, their templates become part of this Default Template set.
+
+        <div class="error">The Default Template Set cannot be deleted nor modified !</div>
+
+        <p>To customize the templates in your site, first copy the default template set.
+
+        <p>Once you have a new Template Set, you can activate it by clicking the "Select" button in the Control column.
+
+        <p>Only then template files can be edited in the Template File Management.
+
+        <h3>Template File Management</h3>
+
+        <p>The list of template files allow editing and download each file.</p>
+
+        <div class="tips">You can upload a Template Set in tar.gz format through the admin interface.</div>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-themes">
+
+        <h3>Theme Design</h3>
+
+        <h3>Additional Themes</h3>
+
+        <p>Themes can be installed from Xupdate Store or from theme-developers' websites etc.
+
+        <h3>Uploading Themes</h3>
+
+        <p>Distributed themes are mostly compressed.
+            To use a theme, the uncompressed files must be uploaded into the directory public_html/themes/.
+
+        <p>The Theme folder must include theme.html and manifesto.ini.php
+
+        <h3>Theme Selection</h3>
+
+        <p>Theme Management allows you to simple click the "Select" button next to the theme
+            that you want to use as the default theme or main theme of your site.
+
+        <p>Any theme that is "checked" in the "Control" column, will be available to users in the block "Themes".
+
+        <p>If you install the "Themes" block and grant users permission, they can then select their favorite theme and customize the look and feel of the website.
+
+        <h3>Uninstall a Theme</h3>
+
+        <p>The render system manages themes without using the database.
+
+        <p>So, to delete a theme, simply delete its directory from the "themes" directory.
+
+        <p><a class="button" href="<{'index.php?action=Help&dirname=legacy'}>">Learn more about Themes ⭢</a></p>
+
+
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-development">
+
+        <h3>Development</h3>
+
+        <p>Todo : Write some information.</p>
+        <ul>
+            <li> and tips</li>
+            <li>Tutorial - How to create Custom Templates
+            <li>How to creat Single File Component</li>
+            <li>Smarty Tags list</li>
+        </ul>
+
+        <table class="outer">
+            <thead>
+            <tr>
+                <th>Module name</th>
+                <th>Renderer  [ core system ]</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Type</td>
+                <td>X2 Module</td>
+            </tr>
+            <tr>
+                <td>Version</td>
+                <td>2.31</td>
+            </tr>
+            <tr>
+                <td>Level</td>
+                <td>Required</td>
+            </tr>
+            <tr>
+                <td>🌐 Repository URL</td>
+                <td><a href="https://github.com/xoopscube/legacy" target="_blank">https://github.com/xoopscube/legacy ⭧</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <script>Prism.highlightAll();</script>
+
+</article>

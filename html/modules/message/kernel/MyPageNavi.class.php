@@ -54,7 +54,7 @@ class MyPageNavi
     {
         $this->_Total = $this->_mHandler->getCount($this->_mCriteria);
         $this->mNavi = new XCube_PageNavigator($this->_mUrl);
-        $this->mNavi->mGetTotalItems->add(array($this, 'getTotalItems'));
+        $this->mNavi->mGetTotalItems->add([$this, 'getTotalItems']);
         $this->mNavi->setPerpage($this->_mPagenum);
         $this->mNavi->fetch();
     }

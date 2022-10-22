@@ -1,19 +1,20 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: SmilesEditAction.class.php,v 1.3 2008/09/25 15:11:51 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * SmilesEditAction.class.php
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/SmilesAdminEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/SmilesAdminEditForm.class.php';
 
 class Legacy_SmilesEditAction extends Legacy_AbstractEditAction
 {
@@ -33,11 +34,11 @@ class Legacy_SmilesEditAction extends Legacy_AbstractEditAction
         $this->mActionForm =new Legacy_SmilesAdminEditForm();
         $this->mActionForm->prepare();
     }
-    
-    
+
+
     public function _doExecute()
     {
-        if ($this->mActionForm->mFormFile != null) {
+        if (null !== $this->mActionForm->mFormFile) {
             if (!$this->mActionForm->mFormFile->saveAs(XOOPS_UPLOAD_PATH)) {
                 return false;
             }
@@ -46,8 +47,8 @@ class Legacy_SmilesEditAction extends Legacy_AbstractEditAction
         //
         // Delete old file, if the file exists.
         //
-        if ($this->mActionForm->mOldFilename != null && $this->mActionForm->mOldFilename != "blank.gif") {
-            @unlink(XOOPS_UPLOAD_PATH . "/" . $this->mActionForm->mOldFilename);
+        if (null !== $this->mActionForm->mOldFilename && 'blank.gif' != $this->mActionForm->mOldFilename) {
+            @unlink(XOOPS_UPLOAD_PATH . '/' . $this->mActionForm->mOldFilename);
         }
 
         return parent::_doExecute();
@@ -55,23 +56,23 @@ class Legacy_SmilesEditAction extends Legacy_AbstractEditAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("smiles_edit.html");
+        $render->setTemplateName('smiles_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
     }
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=SmilesList");
+        $controller->executeForward('./index.php?action=SmilesList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=SmilesList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=SmilesList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
-    
+
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=SmilesList");
+        $controller->executeForward('./index.php?action=SmilesList');
     }
 }

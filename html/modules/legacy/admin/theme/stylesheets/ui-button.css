@@ -1,0 +1,357 @@
+/*
+	XOOPSCube Theme : XCL Admin Flex Grid
+	Distribution : XOOPSCube XCL 2.3.1
+	Version : 1.0.0
+	Author : Nuno Luciano aka Gigamaster
+	Date : 2021-10-28
+	URL : https://github.com/xoopscube/
+
+-------------------- -------------------- -------------------- -------------------- ICONS */
+
+
+
+    /* Icons color and size */
+    i[class^="i-"] {
+        /* color for mask */
+        background-color    : var(--button-color);
+        /* set max or overwrite with container btn */
+        height              : 18px;
+        width               : 18px;
+        /* container btn with position:relative */
+        margin              : auto;
+        position            : relative;
+        opacity             : 0.74;
+        top                 : 0;
+        left                : 0;
+        mask-repeat         : no-repeat;
+        -webkit-mask-repeat : no-repeat;
+        /*mask-size           : 20px 20px;*/
+        /*-webkit-mask-size   : 20px 20px;*/
+        mask-size           : 100%;
+        -webkit-mask-size   : 100%;
+        vertical-align      : -0.125em;
+    }
+
+
+    i[class|="i-"]:hover{
+        background-color    : var( --button-color-hover );
+        /*box-shadow          : 0 8px 6px -6px green;*/
+    }
+
+/* -------------------- -------------------- -------------------- -------------------- BADGE */
+
+    /* Badge default */
+    .badge,
+    .badge-count {
+        background      : var( --button-bg );
+        border          : none;
+        border-radius   : var(--border-radius);
+        box-shadow      : var( --button-shadow );
+        color           : var( --color-1 );
+        display         : inline-block;
+        font-size       : 0.74rem;
+        font-family     : sans-serif;
+        font-style      : normal;
+        font-weight     : 300;
+        letter-spacing  : 0.1rem;
+        line-height     : 1em;
+        margin          : var( --button-margin );
+        padding         : var( --space-4 ) var( --space-6 );
+        position        : relative;
+        text-align      : center;
+        /*text-transform      : uppercase;*/
+        transition      : all ease-in-out 0.2s;
+        vertical-align  : baseline;
+        white-space     : nowrap;
+    }
+
+
+    .badge-count {
+        background      : var( --color-6 );
+        font-size       : 13px;
+        margin          : 0 var( --space-2 );
+        padding         : var( --space-1 ) var( --space-2 );
+        min-width       : 4ch;
+        text-align      : right;
+    }
+
+    /* Badge with icon */
+    .badge > i[class^="i-"]{
+        mask-size           : 1.5em 1.5em;
+        -webkit-mask-size   : 1.5em 1.5em;
+    }
+    .badge:hover {
+        background      : var(  --button-bg-hover  );
+    }
+    /* Button with badge */
+    button > .badge {
+        border-radius   : 50%;
+        box-shadow      : 1px 2px 2px -1px hsla(0, 0%, 7%, 0.9);
+        padding         : 4px 7px;
+        position        : absolute;
+        right           : -1em;
+        top             : -1em;
+    }
+
+
+/* -------------------- -------------------- -------------------- -------------------- button + jQueryUI */
+
+    /* Overwrite jQuery Components */
+
+    /*.button,*/
+    .button {
+        background-color    : var( --button-bg     );
+        border              : var( --button-border );
+        border-radius       : var( --button-radius );
+        box-shadow          : var( --button-shadow );
+        color               : var( --button-color  );
+        cursor              : pointer;
+        display             : inline-block;
+        /* font-size        : 0.875rem;
+        font-family         : sans-serif;
+        font-style          : normal;
+        font-weight         : 300;
+        letter-spacing      : 0.08rem;*/
+        line-height         : 1.25;
+        padding             : var( --button-padding );
+        position            : relative;
+        margin              : var( --button-margin  );
+        min-width           : 4ch;
+        text-align          : center;
+        text-decoration     : none;
+        touch-action        : manipulation;
+        transition          : all 0.3s ease 0s;
+        user-select         : none;
+        /*vertical-align      : middle;*/
+        white-space         : nowrap;
+        /*width: min-content;*/
+    }
+    .button:active {
+    /*[class*="button"]:active {*/
+        box-shadow          : var( --shadow-3 );
+    }
+
+
+    .button-small {
+    /*[class*="button-"].button-small {*/
+        color               : var( --button-color );
+        font-size           : inherit;
+        padding             : var(--space-2) var(--space-5) var(--space-2) var(--space-3);
+        /* padding             : var(  --button-padding ); */
+    }
+
+    a.button > svg.svg-ui-icon,
+    a.button.button-small > svg.svg-ui-icon,
+    [class*="button-"]> svg.svg-ui-icon {
+        color               : var( --button-color );
+        font-size           : 1rem;
+        padding-right       : 0.25em;
+        vertical-align      : middle;            /* Align icon = text  */
+        width               : 1.4em !important; /* Size icon + text   */
+    }
+
+    .button:hover,
+    .button:focus,
+    .button.button-small:hover,
+    .button.button-small:focus {
+        background          : var( --button-bg-hover );
+        color               : var( --button-color-hover );
+    }
+
+/* -------------------- -------------------- -------------------- btn-fx BTNVAV */
+
+    .btnav {
+        background      : none;
+        border          : var( --button-border );
+        border          : transparent;
+        color           : var( --color-white );
+        font-size       : var( --size-2 );
+        height          : 40px;
+        line-height     : 40px;
+        margin          : var( --space-1 );
+        padding         : 0 var( --size-1 );
+        position        : relative;
+        touch-action    : manipulation;
+        transition      : color 0.3s;
+        min-width       : 40px;   /* icon */
+        max-width       : 240px; /* text */
+        z-index         : 1;
+        backface-visibility: hidden;
+    }
+    .btnav::before {
+        box-shadow      : inset 0 0 0 35px transparent;
+        border-radius   : inherit;
+        content         : '';
+        height          : 100%;
+        left            : 0;
+        position        : absolute;
+        top             : 0;
+        transform       : scale3d(0.9, 0.9, 1);
+        transition      : box-shadow 0.3s, transform 0.3s;
+        width           : 100%;
+        z-index         : -1;
+    }
+    .btnav.btn-round {
+        border-radius   : 50%;
+    }
+/*     .btnav > i {
+        top: 10px;
+        left: 10px;
+    } */
+    .btnav > span {
+        position        : absolute;
+        pointer-events  : none;
+        opacity         : 0;
+    }
+    .btnav:hover {
+        color           : var( --link-hover  );
+    }
+    .btnav:hover::before {
+        box-shadow      : inset 0 0 0 1px var( --link-hover  );
+        transform       : scale3d(1, 1, 1);
+    }
+
+/*-------------------- -------------------- -------------------- BUTTON COLOR */
+
+    .bg-amber {
+        border: 1px solid var(  --color-amber	);
+        /*background      : var(  --color-amber	);*/
+        /*color           : var(  --color-white	);*/
+        color:var(  --color-amber	);
+    }
+    .bg-black {
+        background      : var(  --color-black	);
+        color           : var(  --color-white	);
+    }
+    .bg-blue {
+        background      : var( --color-blue );
+        color           : var( --color-white );
+    }
+    .bg-green {
+        background      : var( --color-green );
+        color           : var( --color-white );
+    }
+    .bg-indigo {
+        background      : var( --color-indigo );
+        color           : var( --color-white );
+    }
+    .bg-orange {
+        background      : var( --color-orange );
+        color           : var( --color-white );
+    }
+    .bg-purple {
+        background      : var( --color-purple );
+        color           : var( --color-white ) !important;
+    }
+    .bg-red {
+        background      : var( --color-red );
+        color           : var( --color-white );
+    }
+    .bg-white {
+        background      : var( --color-white );
+        color           : var( --color-black );
+    }
+    /* button icon with color black */
+    button[class^="btn-ico"].btn-white > i {
+        background-color: var( --color-black );
+    }
+
+    /* Background Colors */
+    .color-green { background: var( --color-green ); }
+    .color-red { background: var( --color-red );}
+    .color-orange {background: var( --color-orange ); }
+
+a.round{
+    border-radius: 50%;
+    line-height: 50px;
+    font-size: 13px;
+    font-weight: 300;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*-------------------- -------------------- -------------------- BUTTON COLOR */
+
+.outline {
+    position: relative;
+    display: inline-block;
+    height: 36px;
+    padding: 0 16px;
+    margin: 10px 4px;
+    color: hsl(230deg 70% 70%) !important;
+    border: 1px solid #3f51b5;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: lighter; /* 300; */
+    line-height: 36px;
+    vertical-align: middle;
+    overflow: hidden;
+    cursor: pointer;
+    outline: 0;
+    z-index: 1;
+    -webkit-transition: all .15s ease-in;
+    transition: all .15s ease-in;
+    max-width: 200px;
+}
+.outline:hover,
+.outline:focus {
+    opacity: .9;
+}
+
+
+/*-------------------- -------------------- RIPPLE */
+
+.ripple:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: currentColor;
+    visibility: hidden;
+    z-index: 2;
+}
+.ripple:not(:active):before {
+    -webkit-animation: ripple 0.4s cubic-bezier(0, 0, 0.2, 1);
+    animation: ripple 0.4s cubic-bezier(0, 0, 0.2, 1);
+    -webkit-transition: visibility .4s step-end;
+    transition: visibility .4s step-end;
+}
+.ripple:active:before {
+    visibility: visible;
+}
+
+@-webkit-keyframes ripple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: .5;
+    }
+    100% {
+        width: 150px;
+        height: 150px;
+        opacity: 0;
+    }
+}
+
+@keyframes ripple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: .5;
+    }
+    100% {
+        width: 150px;
+        height: 150px;
+        opacity: 0;
+    }
+}

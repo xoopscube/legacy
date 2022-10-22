@@ -8,14 +8,14 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 class User_MailjobAdminDeleteForm extends XCube_ActionForm
 {
     public function getTokenName()
     {
-        return "module.user.MailjobAdminDeleteForm.TOKEN" . $this->get('mailjob_id');
+        return 'module.user.MailjobAdminDeleteForm.TOKEN' . $this->get('mailjob_id');
     }
 
     public function prepare()
@@ -29,7 +29,7 @@ class User_MailjobAdminDeleteForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['mailjob_id'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['mailjob_id']->setDependsByArray(array('required'));
+        $this->mFieldProperties['mailjob_id']->setDependsByArray(['required']);
         $this->mFieldProperties['mailjob_id']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_MAILJOB_ID);
     }
 

@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/class/AbstractDeleteAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/BannerAdminDeleteForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/class/AbstractDeleteAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/BannerAdminDeleteForm.class.php';
 
 class LegacyRender_BannerDeleteAction extends LegacyRender_AbstractDeleteAction
 {
@@ -32,7 +32,7 @@ class LegacyRender_BannerDeleteAction extends LegacyRender_AbstractDeleteAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("banner_delete.html");
+        $render->setTemplateName('banner_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $this->mObject->loadBannerclient();
         $render->setAttribute('object', $this->mObject);
@@ -40,16 +40,16 @@ class LegacyRender_BannerDeleteAction extends LegacyRender_AbstractDeleteAction
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=BannerList");
+        $controller->executeForward('./index.php?action=BannerList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=BannerList", 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=BannerList', 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
     }
     
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=BannerList");
+        $controller->executeForward('./index.php?action=BannerList');
     }
 }

@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractDeleteAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/MailjobAdminDeleteForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractDeleteAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/MailjobAdminDeleteForm.class.php';
 
 class User_MailjobDeleteAction extends User_AbstractDeleteAction
 {
@@ -32,7 +32,7 @@ class User_MailjobDeleteAction extends User_AbstractDeleteAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("mailjob_delete.html");
+        $render->setTemplateName('mailjob_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         #cubson::lazy_load('mailjob', $this->mObject);
         $render->setAttribute('object', $this->mObject);
@@ -40,16 +40,16 @@ class User_MailjobDeleteAction extends User_AbstractDeleteAction
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=MailjobList");
+        $controller->executeForward('./index.php?action=MailjobList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=MailjobList", 1, _MD_USER_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=MailjobList', 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }
 
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=MailjobList");
+        $controller->executeForward('./index.php?action=MailjobList');
     }
 }

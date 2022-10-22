@@ -1,0 +1,44 @@
+<form action="./index.php" method="get">
+    <input type="hidden" name="action" value="UserList">
+
+    <section class="filter">
+
+        <article>
+            <{$smarty.const._SEARCH}> :
+            <input type="text" name="search" value="<{$filterForm->mKeyword}>">
+        </article>
+
+        <article>
+            <{$smarty.const._AD_USER_LANG_DISPLAY_USER_LEVEL}> :
+            <select name="option_field">
+                <option value="all" <{if $filterForm->mOptionField == 'all'}>selected="selected"<{/if}>><{$smarty.const._AD_USER_LANG_ALL_OF_USERS}></option>
+                <option value="inactive" <{if $filterForm->mOptionField == 'inactive'}>selected="selected"<{/if}>><{$smarty.const._AD_USER_LANG_PENDING_USERS_ONLY}></option>
+                <option value="active" <{if $filterForm->mOptionField == 'active'}>selected="selected"<{/if}>><{$smarty.const._AD_USER_LANG_APPROVE_USERS_ONLY}></option>
+            </select>
+        </article>
+
+        <article>
+            <{$smarty.const._VIEW}> :
+            <select name="perpage">
+                <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
+                <{foreach item=page from=$pageArr}>
+                <{if $pageNavi->mPerpage == $page && $page != 0}>
+                <option value="<{$page}>" selected="selected"><{$page}></option>
+                <{elseif $pageNavi->mPerpage == $page && $page == 0}>
+                <option value="<{$page}>" selected="selected"><{$smarty.const._ALL}></option>
+                <{elseif $pageNavi->mPerpage != $page && $page == 0}>
+                <option value="<{$page}>"><{$smarty.const._ALL}></option>
+                <{else}>
+                <option value="<{$page}>"><{$page}></option>
+                <{/if}>
+                <{/foreach}>
+            </select>
+        </article>
+
+        <article>
+            <input class="btn submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+        </article>
+
+    </section>
+
+</form>

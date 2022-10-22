@@ -20,7 +20,7 @@ if (!defined('_CM_TITLE')) {
     define('_CM_BOTTOM', 'Bottom');
     define('_CM_ONLINE', 'Online!');
     define('_CM_POSTED', 'Posted'); // Posted date
-define('_CM_UPDATED', 'Updated');
+    define('_CM_UPDATED', 'Updated');
     define('_CM_THREAD', 'Thread');
     define('_CM_POSTER', 'Poster');
     define('_CM_JOINED', 'Joined');

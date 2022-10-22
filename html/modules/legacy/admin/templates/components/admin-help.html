@@ -1,0 +1,148 @@
+<!--
+  ~ /**
+  ~  * Ajax load Help
+  ~  *
+  ~  * Load Help files id #article into a jQuery dialog/modal
+  ~  *
+  ~  * @package    XCL 2.3.1
+  ~  * @author     Original Author Nuno Luciano ( @gigamaster )
+  ~  * @license    GPL_V2.tx
+  ~  * *
+  ~  */
+  -->
+
+<{*
+    How to use Help Admin
+    Admin Help file         Module  Help article id
+    [action=Help&dirname=] [legacy] [#help-blocks]
+    [action=Help&dirname=] [legacy] [&file=block.html]
+
+
+    1. Add a button with data attributes e.g.:
+        data-help-module="legacy" // Module's name
+        data-help-file="block.html" // !TODO if module's
+        data-help-article="help-overview" // article id from module's help file
+       <button class="help-admin button" type='button' data-module='legacy' data-help-article='#help-version'>Help Admin</button>
+        or a button with icon:
+        <button class="help-admin button" type='button' data-module='legacy' data-help-article='#help-version'>
+            <b>?</b> </button>
+*}>
+
+
+
+<script>
+
+
+    $( function() {
+
+        $( "#dialog-help" ).dialog({
+            // Event on dialog creation
+            create: function( e, ui ) {
+
+                // Get dialog component to customize
+                var $parent = $( this ).parent(),
+                    $button = $parent.find( ".ui-dialog-titlebar-close" ),
+                    $title = $parent.find( ".ui-dialog-title" );
+
+                // Customize dialog title style
+                $title.css( { width: "auto", margin: "0" } );
+
+                // Modify the close button
+                // eh. show text or icon, or both
+                // Customize close button style
+                // $button.removeClass( "ui-dialog-titlebar-close" )
+                //     .css( { width: "auto", margin: "0", float: "right", padding: "0" } )
+                //     .button( "option", {
+                //         //icons: {primary: false},
+                //         icons: true,
+                //         //text: true,
+                //         text: false,
+                //         label: "Close",
+                //     });
+
+            },
+            autoOpen: false,
+            maxWidth:600,
+            maxHeight: 600,
+            width: 520,
+            height: 480,
+
+            show: {
+                effect: "blind",
+                duration: 300
+            },
+            hide: {
+                effect: "clip",
+                duration: 300
+            }
+        });
+
+        $( "#open-help, #help-option, .help-admin" ).on( "click", function(e) {
+            e.preventDefault();
+
+            var module = $(this).data('module');
+            var helpArticle = $(this).data('help-article');
+            // console.log('module=',module);
+            // console.log('helpArticle=',helpArticle);
+
+            $( "#dialog-help" ).dialog( "open" );
+
+            $('#help-data').delay(3000).html('<div class="xcl-progress-loading"></div>');
+
+            setTimeout(function() {
+                $('#help-data').delay(3000).load('<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&dirname='+module+' '+helpArticle, function() {
+                //console.log('Load was performed=');
+               // Note Local nginx server CORS issue if FIREFOX strict mode
+              // use relative path eg. '../../'
+            })}, 2500);
+        });
+    });
+</script>
+<style>
+    #help-data {display:block;}
+        .xcl-progress-loading {
+        width: 70%;
+        margin:25% auto;
+        height: 1.5em;
+        border-radius: .5em;
+        border: .125em solid;
+        color: rgba(25, 100, 190, 0.74)
+    }
+    .xcl-progress-loading {
+        -webkit-filter: drop-shadow(0.2em 0.2em 0.2em rgba(0, 0, 0, 0.5));
+        filter: drop-shadow(0.2em 0.2em 0.2em rgba(0, 0, 0, 0.5));
+    }
+    .xcl-progress-loading:before, .xcl-progress-loading:after {
+        content: '';
+        top: .2em;
+        left: .2em;
+        right: .2em;
+        bottom: .2em;
+        border-radius: .25em;
+        display: block;
+        position: absolute;
+        overflow: hidden;
+    }
+    .xcl-progress-loading:after {
+        right: 100%;
+        -webkit-animation: xcLoaderBarInfine 10s infinite linear, xcLoaderBarScroll 3s infinite linear;
+        animation: xcLoaderBarInfine 10s infinite linear, xcLoaderBarScroll 3s infinite linear;
+        box-shadow: inset 0 0.5em 0.5em rgba(25, 100, 190, 0.25), inset 0 -0.5em 0.5em rgba(8, 30, 63, 0.5);
+        background-image: repeating-linear-gradient(45deg, rgb(8, 55, 86) 0px, rgb(8, 55, 86) 4px, rgb(19, 109, 151) 5px, rgb(19, 109, 151) 9px);
+        background-size: 27px 13px;
+    }
+    @keyframes xcLoaderBarInfine {
+        from {background-position: 274px 0;}
+        to {background-position: -274px 0;}
+    }
+    @keyframes xcLoaderBarScroll {
+        to {right: 2%;}
+    }
+</style>
+
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<div class="display:none" id="dialog-help" title="� <{$xoops_dirname}>">
+    <div id="help-data">
+    </div>
+</div>

@@ -1,0 +1,231 @@
+<section id="help-module">
+
+
+    <nav id="help-menu">
+        <a href ="#help-forum-overview" class="button">Overview</a>
+        <a href ="#help-forum-start" class="button">Get started</a>
+        <a href ="#help-forum-permissions" class="button">Permissions</a>
+        <a href ="#help-forum-advanced" class="button">Advanced</a>
+        <a href ="#help-forum-history" class="button">History</a>
+        <a href ="#help-forum-customize" class="button" title="Languages and Templates">Customization</a>
+        <a href ="#help-forum-blocks" class="button">Blocks</a>
+        <a href ="#help-forum-preferences" class="button">Preferences</a>
+        <a href ="#help-forum-development" class="button">Preferences</a>
+    </nav>
+
+
+<hr>
+
+
+    <section id="help-forum-overview">
+        <h3>D3 Forum</h3>
+        <p>D3 Forum is a duplicable module used to create and manage forums and forum entries.
+        <p>This module allows you to manage forums but also the comments of any D3 module.
+        <p>The module features are comparable to the Top PHP forums, discussions and message boards.
+        <p>D3Forum is also tightly integrated with Trust modules, as it has been around for a long time.
+        <p>It was developed by Gijoe and Jidaikobo, improved by Naao, Nao-pon and Domifara.
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-forum-start">
+
+        <h3>Categories and Forums</h3>
+
+        <p>Once activated in the <b>Settings > Module Management</b>
+        <p>Create a first <b>Category</b> and a <b>forum</b> in the front-end.
+        <p>Then you will be redirected to get access to the module advanced options.
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-forum-permissions">
+
+        <h3>Permissions</h3>
+
+        <p>Provide permissions to groups and users.</p>
+        <p>Category and Forum permissions are a combination of a category, forum, forum users, and permissions.
+        <p>Associate forum users and permissions within a specific category and forum.
+
+        <table class="outer">
+            <thead>
+            <tr>
+                <th>groupname</th>
+                <th>View<input type="checkbox"></th>
+                <th>Post<input type="checkbox"></th>
+                <th>Edit <input type="checkbox"></th>
+                <th>Delete	<input type="checkbox"></th>
+                <th>AutoApproval	<input type="checkbox"></th>
+                <th>Moderator <input type="checkbox"></th>
+                <th>Making forums <input type="checkbox"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Webmasters</td>
+                <td><input type="checkbox" name="can_reads[1]" id="gcol_1_1" value="1" checked="checked"></td>
+                <td><input type="checkbox" name="can_posts[1]" id="gcol_2_1" value="1" checked="checked"></td>
+                <td><input type="checkbox" name="can_edits[1]" id="gcol_3_1" value="1" checked="checked"></td>
+                <td><input type="checkbox" name="can_deletes[1]" id="gcol_4_1" value="1" checked="checked"></td>
+                <td><input type="checkbox" name="post_auto_approveds[1]" id="gcol_5_1" value="1" checked="checked"></td>
+                <td><input type="checkbox" name="is_moderators[1]" id="gcol_6_1" value="1" checked="checked"></td>
+                <td><input type="checkbox" name="can_makeforums[1]" id="gcol_7_1" value="1" checked="checked"></td>
+            </tr>
+            <tr>
+                <td>Registered Users</td>
+                <td><input type="checkbox" name="can_reads[2]" id="gcol_1_2" value="1" checked="checked"></td>
+                <td><input type="checkbox" name="can_posts[2]" id="gcol_2_2" value="1" checked="checked"></td>
+                <td><input type="checkbox" name="can_edits[2]" id="gcol_3_2" value="1" checked="checked"></td>
+                <td><input type="checkbox" name="can_deletes[2]" id="gcol_4_2" value="1" checked="checked"></td>
+                <td><input type="checkbox" name="post_auto_approveds[2]" id="gcol_5_2" value="1" checked="checked"></td>
+                <td><input type="checkbox" name="is_moderators[2]" id="gcol_6_2" value="1"></td>
+                <td><input type="checkbox" name="can_makeforums[2]" id="gcol_7_2" value="1"></td>
+            </tr>
+            <tr>
+                <td>Anonymous Users</td>
+                <td><input type="checkbox" name="can_reads[3]" id="gcol_1_3" value="1"></td>
+                <td><input type="checkbox" name="can_posts[3]" id="gcol_2_3" value="1"></td>
+                <td><input type="checkbox" name="can_edits[3]" id="gcol_3_3" value="1"></td>
+                <td><input type="checkbox" name="can_deletes[3]" id="gcol_4_3" value="1"></td>
+                <td><input type="checkbox" name="post_auto_approveds[3]" id="gcol_5_3" value="1"></td>
+                <td><input type="checkbox" name="is_moderators[3]" id="gcol_6_3" value="1"></td>
+                <td><input type="checkbox" name="can_makeforums[3]" id="gcol_7_3" value="1"></td>
+            </tr>
+            <tr>
+                <td>Translators</td>
+                <td><input type="checkbox" name="can_reads[4]" id="gcol_1_4" value="1"></td>
+                <td><input type="checkbox" name="can_posts[4]" id="gcol_2_4" value="1"></td>
+                <td><input type="checkbox" name="can_edits[4]" id="gcol_3_4" value="1"></td>
+                <td><input type="checkbox" name="can_deletes[4]" id="gcol_4_4" value="1"></td>
+                <td><input type="checkbox" name="post_auto_approveds[4]" id="gcol_5_4" value="1"></td>
+                <td><input type="checkbox" name="is_moderators[4]" id="gcol_6_4" value="1"></td>
+                <td><input type="checkbox" name="can_makeforums[4]" id="gcol_7_4" value="1"></td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="100"><input type="submit" name="group_update" value="Submit"></td>
+            </tr>
+            </tfoot>
+        </table>
+    </section>
+
+<hr>
+
+
+    <section id="help-forum-advanced">
+
+        <h3>Advanced</h3>
+
+        <p>Features tools to synchronize and import comments</p>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-forum-history">
+
+        <h3>Revisions History</h3>
+
+        <p>A page history is sometimes called revision history or edit history.
+        <p>You can view a page's history by clicking the "View history" tab at the top of the associated
+        <p>The Advanced Forum module comes already configured but you can make changes.
+
+        <ul>
+            <li>- Click on Configuration in the black admin menu bar.</li>
+            <li>- Click on Advanced Forum in the Content Authoring box on the left side of the screen.</li>
+        </ul>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-forum-customize">
+
+        <h3>Customization</h3>
+
+        <p>You can customize Language and Templates</p>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-forum-blocks">
+
+        <h3>Forum Blocks</h3>
+
+        <p>Adding A Forum Block
+        <p>Another nice feature you can add blocks with posts, topics and forums to your site provided by the module.
+        <p>The module creates a block that you can enable to show on the pages of modules you select.
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-forum-preferences">
+
+        <h3>Preferences</h3>
+
+        <p>Module Preferences focus primarily on how the forums, forum topics, and comments are set on the site.
+        <p>The D3 Forum module comes with several options set for a new forum.
+        <p>Review the list of options and define your preferences.
+        <p>If you are familiar with themes and templates, you can make a copy (duplicate) of the module
+            templates files to customize.
+        <p>Then, you can edit the files and CSS to meet your theme needs.
+        <p>Finally, select your <b>Template Set</b> in Render » <b>Template Management</b>.
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-forum-development">
+
+        <h3>Development</h3>
+
+        <table class="outer">
+            <thead>
+            <tr>
+                <th>Module name</th>
+                <th>D3Forum</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Type</td>
+                <td>Trust Module</td>
+            </tr>
+            <tr>
+                <td>Version</td>
+                <td>2.31</td>
+            </tr>
+            <tr>
+                <td>Level</td>
+                <td>Recommended</td>
+            </tr>
+            <tr>
+                <td>🌐 Repository URL</td>
+                <td><a href="https://github.com/xoopscube/d3forum" target="_blank">https://github.com/xoopscube/d3forum ⭧</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+
+</section>

@@ -3,12 +3,12 @@
 suggest.js - Input Suggest
 Version 2.1.1 (Update 2009/10/04)
 
-Copyright (c) 2006-2009 onozaty (http://www.enjoyxstudy.com)
+Copyright (c) 2006-2009 onozaty (https://www.enjoyxstudy.com)
 
 Released under an MIT-style license.
 
 For details, see the web site:
- http://www.enjoyxstudy.com/javascript/suggest/
+ https://www.enjoyxstudy.com/javascript/suggest/
 
 --------------------------------------------------------
 */

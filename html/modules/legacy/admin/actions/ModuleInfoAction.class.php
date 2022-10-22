@@ -1,11 +1,11 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: ModuleInfoAction.class.php,v 1.3 2008/09/25 15:11:48 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors  gigamaster, 2020 XCL/PHP7
+ * @author     Kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
  if (!defined('XOOPS_ROOT_PATH')) {
@@ -26,11 +26,11 @@ class Legacy_ModuleInfoAction extends Legacy_Action
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $dirname = xoops_getrequest('dirname');
-        if (!preg_match("/^[a-zA-Z_][a-zA-Z0-9_]*$/", $dirname)) {
+        if (!preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/', $dirname)) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
 
-        if (!is_dir(XOOPS_MODULE_PATH . "/" . $dirname)) {
+        if (!is_dir(XOOPS_MODULE_PATH . '/' . $dirname)) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
 
@@ -55,10 +55,10 @@ class Legacy_ModuleInfoAction extends Legacy_Action
 
         return LEGACY_FRAME_VIEW_SUCCESS;
     }
-    
+
     public function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
     {
-        $renderer->setTemplateName("module_information.html");
+        $renderer->setTemplateName('module_information.html');
         $renderer->setAttribute('module', $this->mModuleObject);
         $renderer->setAttribute('installed', $this->mInstalledFlag);
     }

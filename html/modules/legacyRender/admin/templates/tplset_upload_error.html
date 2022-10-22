@@ -1,14 +1,20 @@
-<h3 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_UPLOAD_RESULT}></h3>
+<h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_UPLOAD_RESULT}></h2>
+
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 <div class="error">
-<ul>
-  <{foreach item=message from=$errorMessages}>
-    <li><{$message|xoops_escape}></li>
-  <{/foreach}>
-</ul>
+    <ul>
+        <{foreach item=message from=$errorMessages}>
+        <li><{$message|xoops_escape}></li>
+        <{/foreach}>
+    </ul>
 </div>
 
-<ul class="toptab">
-  <li><a href="./index.php?action=TplsetList"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_LIST}></a></li>
-  <li><a href="./index.php?action=TplsetUpload"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_UPLOAD}></a></li>
-</ul>
+<div class="ui-card-full">
+
+    <ul class="toptab">
+        <li><a href="./index.php?action=TplsetList"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_LIST}></a></li>
+        <li><a href="./index.php?action=TplsetUpload"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_UPLOAD}></a></li>
+    </ul>
+
+</div>

@@ -1,0 +1,10 @@
+{
+	"name": "Dark Slim",
+	"cssurls": "https://johnfort.github.io/elFinder.themes/dark-slim/css/elfinder.theme.min.css",
+	"author": "John Fort",
+	"email": "support@fortcms.ru",
+	"license": "MIT",
+	"link": "https://github.com/johnfort/elFinder.themes",
+	"image": "https://johnfort.github.io/elFinder.themes/Screenshorts/Main-view-icons.png",
+	"description": "For version 2.1.43 or older. Not supported MS IE!"
+}

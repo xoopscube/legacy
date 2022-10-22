@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/UserSearchForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/UserSearchForm.class.php';
 
 define('USER_SORT_KEY_UID', 1);
 define('USER_SORT_KEY_NAME', 2);
@@ -48,7 +48,7 @@ define('USER_SORT_KEY_DEFAULT', USER_SORT_KEY_UID);
 
 class User_UserSearchFilterForm extends User_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         USER_SORT_KEY_UID => 'u.uid',
         USER_SORT_KEY_NAME => 'u.name',
         USER_SORT_KEY_UNAME => 'u.uname',
@@ -80,10 +80,21 @@ class User_UserSearchFilterForm extends User_AbstractFilterForm
         USER_SORT_KEY_BIO => 'u.bio',
         USER_SORT_KEY_USER_INTREST => 'u.user_intrest',
         USER_SORT_KEY_USER_MAILOK => 'u.user_mailok'
-    );
+    ];
 
-    public $_mMatchFields = array("uname", "name", "email", "user_icq", "user_aim", "user_yim", "user_msnm",
-                                "url", "user_from", "user_occ", "user_intrest");
+    public $_mMatchFields = [
+        'uname',
+        'name',
+        'email',
+        'user_icq',
+        'user_aim',
+        'user_yim',
+        'user_msnm',
+        'url',
+        'user_from',
+        'user_occ',
+        'user_intrest'
+    ];
     
     public function getDefaultSortKey()
     {
@@ -115,10 +126,10 @@ class User_UserSearchFilterForm extends User_AbstractFilterForm
                 if (isset($user_field_match) || isset($field_match)) {
                     $formvalue =  0;
                     if (isset($user_field_match)) {
-                        $formvalue = intval($form->get('user_'.$field.'_match')) ;
+                        $formvalue = (int)$form->get('user_' . $field . '_match');
                         $this->mNavi->addExtra('user_'.$field.'_match', $formvalue);
                     } elseif (isset($field_match)) {
-                        $formvalue = intval($form->get($field.'_match')) ;
+                        $formvalue = (int)$form->get($field . '_match');
                         $this->mNavi->addExtra($field.'_match', $formvalue);
                     }
                     switch ($formvalue) {

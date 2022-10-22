@@ -1,14 +1,17 @@
-<table cellspacing="1" class="outer">
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<table class="block-top-users">
   <{foreach item=user from=$block.users}>
   <tr class="<{cycle values="even,odd"}>" valign="middle">
-    <td><{$user.rank}></td>
+    <td width="25%"><{$user.rank}></td>
     <td align="center">
       <{if $user.avatar != ""}>
-      <img src="<{$user.avatar}>" alt="" width="32" /><br />
+      <img src="<{$user.avatar}>" alt="" width="32" self="radius-circle"/><br>
       <{/if}>
       <a href="<{$xoops_url}>/userinfo.php?uid=<{$user.id}>"><{$user.name}></a>
     </td>
-    <td align="center"><{$user.posts}></td>
+    <td align="center"><span class="badge"><{$user.posts}></span></td>
   </tr>
   <{/foreach}>
 </table>

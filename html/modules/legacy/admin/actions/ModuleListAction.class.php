@@ -1,23 +1,23 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: ModuleListAction.class.php,v 1.3 2008/09/25 15:11:49 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_LEGACY_PATH . "/admin/forms/ModuleListFilterForm.class.php";
-require_once XOOPS_LEGACY_PATH . "/admin/forms/ModuleListForm.class.php";
+require_once XOOPS_LEGACY_PATH . '/admin/forms/ModuleListFilterForm.class.php';
+require_once XOOPS_LEGACY_PATH . '/admin/forms/ModuleListForm.class.php';
 
 class Legacy_ModuleListAction extends Legacy_Action
 {
-    public $mModuleObjects = array();
+    public $mModuleObjects = [];
     public $mFilter = null;
 
     public $mActionForm = null;
@@ -27,7 +27,7 @@ class Legacy_ModuleListAction extends Legacy_Action
         $this->mActionForm =new Legacy_ModuleListForm();
         $this->mActionForm->prepare();
     }
-    
+
 
     public function getDefaultView(&$controller, &$xoopsUser)
     {
@@ -39,11 +39,11 @@ class Legacy_ModuleListAction extends Legacy_Action
 
         return LEGACY_FRAME_VIEW_INDEX;
     }
-    
+
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if ($form_cancel != null) {
+        if (null !== $form_cancel) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
 
@@ -54,7 +54,7 @@ class Legacy_ModuleListAction extends Legacy_Action
             return $this->_processConfirm($controller, $xoopsUser);
         } else {
             $result = $this->_processSave($controller, $xoopsUser);
-            if ($result === LEGACY_FRAME_VIEW_SUCCESS) {
+            if (LEGACY_FRAME_VIEW_SUCCESS === $result) {
                 XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleListSave.Success', new XCube_Ref($this->mActionForm));
             } else {
                 XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleListSave.Fail', new XCube_Ref($this->mActionForm));
@@ -62,7 +62,7 @@ class Legacy_ModuleListAction extends Legacy_Action
             return $result;
         }
     }
-    
+
     public function _processConfirm(&$controller, &$xoopsUser)
     {
         $moduleHandler =& xoops_gethandler('module');
@@ -116,15 +116,18 @@ class Legacy_ModuleListAction extends Legacy_Action
 
     /**
      * To support a template writer, this send the list of mid that actionForm kept.
+     * @param $controller
+     * @param $xoopsUser
+     * @param $render
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("module_list_confirm.html");
+        $render->setTemplateName('module_list_confirm.html');
         $render->setAttribute('moduleObjects', $this->mModuleObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
-        
+
         //
-        // To support a template writer, this send the list of mid that
+        // To support a template writer, this sends the list of mid that
         // actionForm kept.
         //
         $t_arr = $this->mActionForm->get('name');
@@ -133,16 +136,16 @@ class Legacy_ModuleListAction extends Legacy_Action
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("module_list.html");
+        $render->setTemplateName('module_list.html');
         $render->setAttribute('actionForm', $this->mActionForm);
-        
+
         //
         // Load info before we assign these to template.
         //
         foreach (array_keys($this->mModuleObjects) as $key) {
             $this->mModuleObjects[$key]->loadInfo($this->mModuleObjects[$key]->get('dirname'));
         }
-        
+
         $render->setAttribute('moduleObjects', $this->mModuleObjects);
 
         $moduleHandler =& xoops_gethandler('module');

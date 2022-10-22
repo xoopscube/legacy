@@ -1,18 +1,19 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: CommentFilterForm.class.php,v 1.3 2008/09/25 15:10:34 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * CommentFilterForm.class.php
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors  gigamaster, 2020 XCL/PHP7
+ * @author     Kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractFilterForm.class.php';
 
 define('COMMENT_SORT_KEY_COM_ID', 1);
 define('COMMENT_SORT_KEY_COM_PID', 2);
@@ -40,7 +41,7 @@ define('COMMENT_SORT_KEY_MAXVALUE', 20);
 
 class Legacy_CommentFilterForm extends Legacy_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         COMMENT_SORT_KEY_COM_ID => 'com_id',
         COMMENT_SORT_KEY_COM_PID => 'com_pid',
         COMMENT_SORT_KEY_COM_ROOTID => 'com_rootid',
@@ -61,20 +62,20 @@ class Legacy_CommentFilterForm extends Legacy_AbstractFilterForm
         COMMENT_SORT_KEY_DOXCODE => 'doxcode',
         COMMENT_SORT_KEY_DOIMAGE => 'doimage',
         COMMENT_SORT_KEY_DOBR => 'dobr'
-    );
+    ];
     //wanikoo
-    public $mKeyword = "";
-    public $mSearchField = "";
+    public $mKeyword = '';
+    public $mSearchField = '';
 
     public function getDefaultSortKey()
     {
         return COMMENT_SORT_KEY_DEFAULT;
     }
-    
+
     public function fetch()
     {
         parent::fetch();
-    
+
         $root =& XCube_Root::getSingleton();
         $com_modid = $root->mContext->mRequest->getRequest('com_modid');
         $dirname = $root->mContext->mRequest->getRequest('dirname');
@@ -85,7 +86,7 @@ class Legacy_CommentFilterForm extends Legacy_AbstractFilterForm
         $keyword = $root->mContext->mRequest->getRequest('keyword');
         $search_field = $root->mContext->mRequest->getRequest('search_field');
 
-        if (isset($_REQUEST['com_modid']) && intval(xoops_getrequest('com_modid')) > 0) {
+        if (isset($_REQUEST['com_modid']) && (int)xoops_getrequest('com_modid') > 0) {
             $this->mNavi->addExtra('com_modid', xoops_getrequest('com_modid'));
             $this->_mCriteria->add(new Criteria('com_modid', xoops_getrequest('com_modid')));
         } elseif (isset($_REQUEST['dirname'])) {
@@ -97,22 +98,22 @@ class Legacy_CommentFilterForm extends Legacy_AbstractFilterForm
                 $this->_mCriteria->add(new Criteria('com_modid', $module->get('mid')));
             }
         }
-    
+
         if (isset($_REQUEST['com_icon'])) {
             $this->mNavi->addExtra('com_icon', xoops_getrequest('com_icon'));
             $this->_mCriteria->add(new Criteria('com_icon', xoops_getrequest('com_icon')));
         }
-    
+
         if (isset($_REQUEST['com_uid'])) {
             $this->mNavi->addExtra('com_uid', xoops_getrequest('com_uid'));
             $this->_mCriteria->add(new Criteria('com_uid', xoops_getrequest('com_uid')));
         }
-    
+
         if (isset($_REQUEST['com_ip'])) {
             $this->mNavi->addExtra('com_ip', xoops_getrequest('com_ip'));
             $this->_mCriteria->add(new Criteria('com_ip', xoops_getrequest('com_ip')));
         }
-    
+
         if (xoops_getrequest('com_status') > 0) {
             $this->mNavi->addExtra('com_status', xoops_getrequest('com_status'));
             $this->_mCriteria->add(new Criteria('com_status', xoops_getrequest('com_status')));
@@ -125,24 +126,24 @@ class Legacy_CommentFilterForm extends Legacy_AbstractFilterForm
             $this->mNavi->addExtra('keyword', $this->mKeyword);
             $this->mNavi->addExtra('search_field', $this->mSearchField);
 
-            if ($this->mSearchField == "com_both") {
+            if ('com_both' == $this->mSearchField) {
                 //title or text ( OR condition )
             $search_criteria = new CriteriaCompo(new Criteria('com_title', '%' . $this->mKeyword . '%', 'LIKE'));
                 $search_criteria->add(new Criteria('com_text', '%' . $this->mKeyword . '%', 'LIKE'), $condition='OR');
                 $this->_mCriteria->add($search_criteria);
-            } elseif ($this->mSearchField == "com_title") {
+            } elseif ('com_title' == $this->mSearchField) {
                 //only search about title
             $this->_mCriteria->add(new Criteria('com_title', '%' . $this->mKeyword . '%', 'LIKE'));
-            } elseif ($this->mSearchField == "com_text") {
+            } elseif ('com_text' == $this->mSearchField) {
                 //only search about text
             $this->_mCriteria->add(new Criteria('com_text', '%' . $this->mKeyword . '%', 'LIKE'));
-            } elseif ($this->mSearchField == "com_uid") {
+            } elseif ('com_uid' == $this->mSearchField) {
                 //search about uname
-            if ($this->mKeyword != "guest") {
+            if ('guest' != $this->mKeyword) {
                 //in case of member
             $cm_handler =& xoops_gethandler('member');
                 $cm_user =& $cm_handler->getUsers(new Criteria('uname', $this->mKeyword));
-                if (count($cm_user) == 1 && is_object($cm_user[0])) {
+                if (1 == count($cm_user) && is_object($cm_user[0])) {
                     $cm_user_uid = $cm_user[0]->getVar('uid');
                     $this->_mCriteria->add(new Criteria('com_uid', $cm_user_uid));
                 } else {

@@ -1,12 +1,16 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: install_updateSmilies.inc.php,v 1.3 2008/09/25 15:12:20 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * @package    XCL
+ * @subpackage Installation Wizard
+ * @version    XCL 2.3.1
+ * @author     kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
-    $content = '<p>'._INSTALL_L150.'</p>';
-    $b_next = array('updateSmilies_go', _INSTALL_L140);
-    include './install_tpl.php';
+
+echo '<h2>wizard/install_updateSmilies.inc</h2>';
+
+$content = '<p>' . _INSTALL_L150 . '</p>';
+$b_next = [ 'updateSmilies_go', _INSTALL_L140 ];
+
+include './install_tpl.php';

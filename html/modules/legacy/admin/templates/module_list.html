@@ -1,102 +1,92 @@
-<div class="adminnavi">
-  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
-  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a></span>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<div class="adminnavi" aria-label="breadcrumb">
+    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a></span>
 </div>
 
-<h3 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></h3>
+
+<{include file="./components/module-overview.html"}>
+
+
+<h2 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></h2>
+
 
 <div class="tips">
-<ul>
-<li>
-<{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>: <{$ModuleTotal}>
-<{$smarty.const._AD_LEGACY_LANG_ACTIVE}>: <{$activeModuleTotal}>&nbsp;&nbsp;|&nbsp; <{$smarty.const._AD_LEGACY_LANG_DEACTIVATE}>: <{$inactiveModuleTotal}>
-</li>
-<li>
-<{$smarty.const._AD_LEGACY_TIPS_MOD}>
-</li>
-<li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=legacy"><{$smarty.const._HELP}></a></li>
-</ul>
+    <p><{$smarty.const._AD_LEGACY_TIPS_MOD}></p>
 </div>
 
-<ul class="toptab">
-  <li class="addModule"><a href="index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></li>
-</ul>
 
 <{if $actionForm->hasError()}>
 <div class="error">
-  <ul>
-    <{foreach item=message from=$actionForm->getErrorMessages()}>
-      <li><{$message|xoops_escape}></li>
-    <{/foreach}>
-  </ul>
+    <ul>
+        <{foreach item=message from=$actionForm->getErrorMessages()}>
+        <li><{$message|xoops_escape}></li>
+        <{/foreach}>
+    </ul>
 </div>
 <{/if}>
 
-<form method="post" action="">
-<{xoops_token form=$actionForm}>
-<table class="outer">
-  <tr>
-    <th><{$smarty.const._AD_LEGACY_LANG_MOD_MID}>
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_MID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_MID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}>
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_NAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_NAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_VERSION}>
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}>
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_WEIGHT}>
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_WEIGHT}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_WEIGHT}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_ISACTIVE}>
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_ISACTIVE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_ISACTIVE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
-  </tr>
-  <{foreach item=module from=$moduleObjects}>
-    <{if $module->getVar('hasmain') && $module->getVar('weight','e') != 0 }>
-      <tr class="<{cycle values='odd,even'}> active">
-    <{else}>
-    <tr class="<{cycle values='odd,even'}>">
-    <{/if}>
-      <td class="legacy_list_id"><{$module->getVar('mid')}></td>
-      <td class="legacy_list_image">
-        <{if $module->getVar('hasadmin')}><a href="<{$xoops_url}>/modules/<{$module->getVar('dirname')}>/<{if $module->modinfo.adminindex}><{$module->modinfo.adminindex}><{else}>admin/<{/if}>"><{/if}><img src="<{$xoops_url}>/modules/<{$module->getVar('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->getVar('name')}>" /><{if $module->getVar('hasadmin')}></a><{/if}>
-        <br />
-        <input type="text" size="24" name="name[<{$module->getVar('mid')}>]" value="<{$module->getVar('name')}>" /></td>
-      <td class="legacy_list_order">
-        <{if $module->hasNeedUpdate()}>
-          <strong class="legacy_module_versionMsg"><{$module->getRenderedVersion()}></strong>
-          <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getVar('dirname')}>"><img src="<{"icons/upgrade.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" /></a>
-        <{else}>
-          <{$module->getRenderedVersion()}>
-        <{/if}>
-      </td>
-      <td class="legacy_list_date"><{$module->getVar('last_update')|xoops_formattimestamp:l}></td>
-      <td class="legacy_list_select">
-        <input type="text" size="4" maxlength="4" name="weight[<{$module->getVar('mid')}>]" value="<{$module->getVar('weight','e')}>" class=legacy_list_number />
-      </td>
-      <td class="legacy_list_select"><input type="checkbox" name="isactive[<{$module->getVar('mid')}>]" value="1" <{if $module->getVar('isactive')}>checked="checked"<{/if}> /></td>
-      <td class="legacy_list_control">
-        <{if $module->getVar('isactive') == 1 }>
-          <a href="index.php?action=ModuleEdit&amp;mid=<{$module->getVar('mid')}>"><img src="<{"icons/module_edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
-        <{/if}>
-        <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getVar('dirname')}>"><img src="<{"icons/update.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" /></a>
-        <{if $module->getVar('isactive') == 0 }>
-          <a href="index.php?action=ModuleUninstall&amp;dirname=<{$module->getVar('dirname')}>"><img src="<{"icons/module_remove.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" title="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" /></a>
-        <{/if}>
-        <a href="index.php?action=ModuleInfo&amp;dirname=<{$module->getVar('dirname')}>"><img src="<{"icons/info.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>" title="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>" /></a>
-      </td>
-    </tr>
-  <{/foreach}>
-  <tr>
-    <td class="foot" colspan="7">
-      <input type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" class="formButton" />
-    </td>
-  </tr>
-</table>
+
+<{* ////— ACTION-CONTROL —\\\\ *}>
+<section layout="row center-justify" class="action-control">
+
+    <a class="button" href="index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a>
+
+    <div class="control-view">
+        <button id="list" class="button" data-id="1" type="button" aria-label="View List">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                <path d="M9 5v4h12V5M9 19h12v-4H9m0-1h12v-4H9M4 9h4V5H4m0 14h4v-4H4m0-1h4v-4H4v4z" fill="currentColor"/></svg>
+        </button>
+
+        <button id="grid" class="button" data-id="2" type="button" aria-label="View Grid">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                <path d="M16 5v6h5V5m-11 6h5V5h-5m6 13h5v-6h-5m-6 6h5v-6h-5m-6 6h5v-6H4m0-1h5V5H4v6z" fill="currentColor"/></svg>
+        </button>
+
+        <button id="filter" class="button" type="button" data-id="3" onclick="slideToggle('.module-filter', this)"  aria-label="View Filter">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                <path d="M7 11h10v2H7zM4 7h16v2H4zm6 8h4v2h-4z" fill="currentColor"/></svg>
+        </button>
+
+        <button class="help-admin button" type='button' data-module='legacy' data-help-article='#help-modules' aria-label="<{$smarty.const._HELP}>">
+            <b>?</b> </button>
+    </div>
+
+</section>
+
+
+<hr>
+
+
+<{* ----- FILTER - SORT ----- *}>
+<form method="post" action="" role="search">
+    <{xoops_token form=$actionForm}>
+
+<div class="module-filter" style="display: none">
+<{include file="./components/module-filter.html"}>
+</div>
+
+
+
+<{* ----- MODULE LIST ----- *}>
+<div class="ui-data-render view">
+
+<{foreach item=module from=$moduleObjects}>
+
+    <{include file="./components/module-card.html"}>
+
+<{/foreach}>
+
+</div>
+
+<hr>
+
+    <div class="ui-card-full foot">
+        <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+    </div>
+
 </form>
 
+<{include file="./components/pagenavi.html"}>

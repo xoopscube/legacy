@@ -1,15 +1,16 @@
 <?php
-// $Id: install2.php,v 1.1 2007/05/15 02:34:22 minahito Exp $
-define("_INSTALL_WEBMASTER", "Webmasters");
-define("_INSTALL_WEBMASTERD", "Webmasters of this site");
-define("_INSTALL_REGUSERS", "Registered Users");
-define("_INSTALL_REGUSERSD", "Registered Users Group");
-define("_INSTALL_ANONUSERS", "Anonymous Users");
-define("_INSTALL_ANONUSERSD", "Anonymous Users Group");
+// Syntax replace define with const v2.3.0 2021/05/15 @gigamaster XCL-PHP7
 
-define("_INSTALL_ANON", "Anonymous");
+const _INSTALL_WEBMASTER = 'Webmasters' ;
+const _INSTALL_WEBMASTERD = 'Webmasters of this site' ;
+const _INSTALL_REGUSERS = 'Registered Users' ;
+const _INSTALL_REGUSERSD = 'Registered Users Group' ;
+const _INSTALL_ANONUSERS = 'Anonymous Users' ;
+const _INSTALL_ANONUSERSD = 'Anonymous Users Group' ;
 
-define("_INSTALL_DISCLMR", "While the administrators and moderators of this site will attempt to remove
+const _INSTALL_ANON = 'Anonymous' ;
+
+const _INSTALL_DISCLMR = 'While the administrators and moderators of this site will attempt to remove
 or edit any generally objectionable material as quickly as possible, it is
 impossible to review every message. Therefore you acknowledge that all posts
 made to this site express the views and opinions of the author and not the
@@ -36,4 +37,4 @@ they serve only to improve your viewing pleasure. The email address is used
 only for confirming your registration details and password (and for sending
 new passwords should you forget your current one). 
 
-By clicking Register below you agree to be bound by these conditions.");
+By clicking Register below you agree to be bound by these conditions.';

@@ -1,44 +1,27 @@
 <?php
-// $Id: comment_post.php,v 1.1 2007/05/15 02:34:19 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.xoops.org/ http://jp.xoops.org/  http://www.myweb.ne.jp/  //
-// Project: The XOOPS Project (http://www.xoops.org/)                        //
-// ------------------------------------------------------------------------- //
+/**
+ * Comment post
+ * @package    XCL
+ * @subpackage comment
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Other authors Minahito, 2007/05/15
+ * @author     Kazumi Ono (aka onokazu)
+ * @copyright  (c) 2000-2003 XOOPS.org
+ * @license    GPL 2.0
+ */
 
 if (!defined('XOOPS_ROOT_PATH') || !is_object($xoopsModule)) {
     exit();
 }
 
 $t_root =& XCube_Root::getSingleton();
-$t_root->mLanguageManager->loadPageTypeMessageCatalog("comment");    ///< @todo Is this must?
+$t_root->mLanguageManager->loadPageTypeMessageCatalog('comment');    ///< @todo Is this required?
 
 include_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
 
 $com_id = isset($_POST['com_id']) ? (int)$_POST['com_id'] : 0;
+
 $extra_params = '';
 if ('system' == $xoopsModule->getVar('dirname')) {
     if (empty($com_id)) {
@@ -61,7 +44,7 @@ if ('system' == $xoopsModule->getVar('dirname')) {
     $com_modid = $xoopsModule->getVar('mid');
     $redirect_page = $comment_config['pageName'].'?';
     if (isset($comment_config['extraParams']) && is_array($comment_config['extraParams'])) {
-        $myts =& MyTextSanitizer::getInstance();
+        $myts =& MyTextSanitizer::sGetInstance();
         foreach ($comment_config['extraParams'] as $extra_param) {
             $extra_params .= isset($_POST[$extra_param]) ? $extra_param.'='.$myts->stripSlashesGPC($_POST[$extra_param]).'&amp;' : $extra_param.'=&amp;';
         }
@@ -71,6 +54,7 @@ if ('system' == $xoopsModule->getVar('dirname')) {
     $comment_url = $redirect_page;
     $moddir = $xoopsModule->getVar('dirname');
 }
+
 $op = '';
 if (!empty($_POST)) {
     if (isset($_POST['com_dopost'])) {
@@ -81,12 +65,6 @@ if (!empty($_POST)) {
     if (isset($_POST['com_dodelete'])) {
         $op = 'delete';
     }
-
-//    if ($op == 'preview' || $op == 'post') {
-//        if (!xoops_token_validate()) {
-//            $op = '';
-//        }
-//    }
 
     $com_mode = isset($_POST['com_mode']) ? htmlspecialchars(trim($_POST['com_mode']), ENT_QUOTES) : 'flat';
     $com_order = isset($_POST['com_order']) ? (int)$_POST['com_order'] : XOOPS_COMMENT_OLD1ST;
@@ -101,20 +79,20 @@ if (!empty($_POST)) {
     $doimage = (isset($_POST['doimage']) && (int)$_POST['doimage'] > 0) ? 1 : 0;
     $com_icon = isset($_POST['com_icon']) ? trim($_POST['com_icon']) : '';
     $noname = isset($_POST['noname']) ? (int)$_POST['noname'] : 0;
-} else {
-    exit();
-}
+    } else {
+        exit();
+    }
 
 switch ($op) {
 
-case "delete":
+case 'delete':
     include XOOPS_ROOT_PATH.'/include/comment_delete.php';
     break;
-case "preview":
-    $myts =& MyTextSanitizer::getInstance();
+case 'preview':
+    $myts =& MyTextSanitizer::sGetInstance();
     $doimage = 1;
     $com_title = $myts->htmlSpecialChars($myts->stripSlashesGPC($_POST['com_title']));
-    if ($dohtml != 0) {
+    if (0 != $dohtml) {
         if (is_object($xoopsUser)) {
             if (!$xoopsUser->isAdmin($com_modid)) {
                 $sysperm_handler =& xoops_gethandler('groupperm');
@@ -128,7 +106,7 @@ case "preview":
     }
     $p_comment =& $myts->previewTarea($_POST['com_text'], $dohtml, $dosmiley, $doxcode, $doimage, $dobr);
     $com_text = $myts->htmlSpecialChars($myts->stripSlashesGPC($_POST['com_text']));
-    if ($xoopsModule->getVar('dirname') != 'system') {
+    if ('system' !== $xoopsModule->getVar('dirname')) {
         include XOOPS_ROOT_PATH.'/header.php';
         themecenterposts($com_title, $p_comment);
         include XOOPS_ROOT_PATH.'/include/comment_form.php';
@@ -140,7 +118,7 @@ case "preview":
         xoops_cp_footer();
     }
     break;
-case "post":
+case 'post':
     $doimage = 1;
     $comment_handler =& xoops_gethandler('comment');
     $add_userpost = false;
@@ -155,7 +133,7 @@ case "post":
         if (is_object($xoopsUser)) {
             $sysperm_handler =& xoops_gethandler('groupperm');
             if ($xoopsUser->isAdmin($com_modid) || $sysperm_handler->checkRight('system_admin', LEGACY_SYSTEM_COMMENT, $xoopsUser->getGroups())) {
-                if (!empty($com_status) && $com_status != XOOPS_COMMENT_PENDING) {
+                if (!empty($com_status) && XOOPS_COMMENT_PENDING != $com_status) {
                     $old_com_status = $comment->getVar('com_status');
                     $comment->setVar('com_status', $com_status);
                     // if changing status from pending state, increment user post
@@ -177,7 +155,7 @@ case "post":
                 }
             } else {
                 $dohtml = 0;
-                if ($comment->getVar('com_uid') != $xoopsUser->getVar('uid')) {
+                if ($comment->getVar('com_uid') !== $xoopsUser->getVar('uid')) {
                     $accesserror = true;
                 }
             }
@@ -185,7 +163,7 @@ case "post":
             $dohtml = 0;
             $accesserror = true;
         }
-        if (false != $accesserror) {
+        if (false !== $accesserror) {
             redirect_header($redirect_page.'='.$com_itemid.'&amp;com_id='.$com_id.'&amp;com_mode='.$com_mode.'&amp;com_order='.$com_order, 1, _NOPERM);
             exit();
         }
@@ -232,12 +210,12 @@ case "post":
         } else {
             $dohtml = 0;
             $uid = 0;
-            if ($xoopsModuleConfig['com_anonpost'] != 1) {
+            if (1 !== $xoopsModuleConfig['com_anonpost']) {
                 redirect_header($redirect_page.'='.$com_itemid.'&amp;com_id='.$com_id.'&amp;com_mode='.$com_mode.'&amp;com_order='.$com_order, 1, _NOPERM);
                 exit();
             }
         }
-        if ($uid == 0) {
+        if (0 == $uid) {
             switch ($xoopsModuleConfig['com_rule']) {
             case XOOPS_COMMENT_APPROVEALL:
                 $comment->setVar('com_status', XOOPS_COMMENT_ACTIVE);
@@ -259,7 +237,7 @@ case "post":
         $comment->setVar('com_uid', $uid);
     }
     $com_title = xoops_trim($_POST['com_title']);
-    $com_title = ($com_title == '') ? _NOTITLE : $com_title;
+    $com_title = ('' == $com_title) ? _NOTITLE : $com_title;
     $comment->setVar('com_title', $com_title);
     $comment->setVar('com_text', $_POST['com_text']);
     $comment->setVar('dohtml', $dohtml);
@@ -273,11 +251,11 @@ case "post":
     if (!empty($extra_params)) {
         $comment->setVar('com_exparams', str_replace('&amp;', '&', $extra_params));
     }
-    if (false != $comment_handler->insert($comment)) {
+    if (false !== $comment_handler->insert($comment)) {
         $newcid = $comment->getVar('com_id');
 
         // set own id as root id if this is a top comment
-        if ($com_rootid == 0) {
+        if (0 == $com_rootid) {
             $com_rootid = $newcid;
             if (!$comment_handler->updateByField($comment, 'com_rootid', $com_rootid)) {
                 $comment_handler->delete($comment);
@@ -288,12 +266,12 @@ case "post":
         }
 
         // call custom approve function if any
-        if (false != $call_approvefunc && isset($comment_config['callback']['approve']) && trim($comment_config['callback']['approve']) != '') {
+        if (false !== $call_approvefunc && isset($comment_config['callback']['approve']) && '' !== trim($comment_config['callback']['approve'])) {
             $skip = false;
             if (!function_exists($comment_config['callback']['approve'])) {
                 if (isset($comment_config['callbackFile'])) {
                     $callbackfile = trim($comment_config['callbackFile']);
-                    if ($callbackfile != '' && file_exists(XOOPS_ROOT_PATH.'/modules/'.$moddir.'/'.$callbackfile)) {
+                    if ('' != $callbackfile && file_exists(XOOPS_ROOT_PATH . '/modules/' . $moddir . '/' . $callbackfile)) {
                         include_once XOOPS_ROOT_PATH.'/modules/'.$moddir.'/'.$callbackfile;
                     }
                     if (!function_exists($comment_config['callback']['approve'])) {
@@ -309,12 +287,12 @@ case "post":
         }
 
         // call custom update function if any
-        if (false != $call_updatefunc && isset($comment_config['callback']['update']) && trim($comment_config['callback']['update']) != '') {
+        if (false !== $call_updatefunc && isset($comment_config['callback']['update']) && '' != trim($comment_config['callback']['update'])) {
             $skip = false;
             if (!function_exists($comment_config['callback']['update'])) {
                 if (isset($comment_config['callbackFile'])) {
                     $callbackfile = trim($comment_config['callbackFile']);
-                    if ($callbackfile != '' && file_exists(XOOPS_ROOT_PATH.'/modules/'.$moddir.'/'.$callbackfile)) {
+                    if ('' !== $callbackfile && file_exists(XOOPS_ROOT_PATH . '/modules/' . $moddir . '/' . $callbackfile)) {
                         include_once XOOPS_ROOT_PATH.'/modules/'.$moddir.'/'.$callbackfile;
                     }
                     if (!function_exists($comment_config['callback']['update'])) {
@@ -330,13 +308,13 @@ case "post":
                 $criteria->add(new Criteria('com_status', XOOPS_COMMENT_ACTIVE));
                 $comment_count = $comment_handler->getCount($criteria);
                 $func = $comment_config['callback']['update'];
-                call_user_func_array($func, array($com_itemid, $comment_count, $comment->getVar('com_id')));
+                call_user_func_array($func, [$com_itemid, $comment_count, $comment->getVar('com_id')]);
             }
         }
 
         // increment user post if needed
         $uid = $comment->getVar('com_uid');
-        if ($uid > 0 && false != $add_userpost) {
+        if ($uid > 0 && false !== $add_userpost) {
             $member_handler =& xoops_gethandler('member');
             $poster =& $member_handler->getUser($uid);
             if (is_object($poster)) {
@@ -356,7 +334,7 @@ case "post":
             // Build an ABSOLUTE URL to view the comment.  Make sure we
             // point to a viewable page (i.e. not the system administration
             // module).
-            $comment_tags = array();
+            $comment_tags = [];
             if ('system' == $xoopsModule->getVar('dirname')) {
                 $module_handler =& xoops_gethandler('module');
                 $not_module =& $module_handler->get($not_modid);
@@ -384,7 +362,7 @@ case "post":
         if (!isset($comment_post_results)) {
 
             // if the comment is active, redirect to posted comment
-            if ($comment->getVar('com_status') == XOOPS_COMMENT_ACTIVE) {
+            if (XOOPS_COMMENT_ACTIVE == $comment->getVar('com_status')) {
                 redirect_header($redirect_page.'='.$com_itemid.'&amp;com_id='.$newcid.'&amp;com_rootid='.$com_rootid.'&amp;com_mode='.$com_mode.'&amp;com_order='.$com_order.'#comment'.$newcid, 2, _CM_THANKSPOST);
             } else {
                 // not active, so redirect to top comment page

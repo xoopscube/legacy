@@ -8,12 +8,13 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_Theme.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_Theme.class.php';
 
 class LegacyRender_DelegateFunctions
 {
     /**
      * Search themes that Legacy_RenderSystem can render in file system.
+     * @param $results
      */
     public static function getInstalledThemes(&$results)
     {
@@ -22,7 +23,7 @@ class LegacyRender_DelegateFunctions
             $theme->mDirname = $dirname = basename($themeDir);
         
             if ($theme->loadManifesto($themeDir . '/manifesto.ini.php')) {
-                if ($theme->mRenderSystemName != 'Legacy_RenderSystem') {
+                if ('Legacy_RenderSystem' != $theme->mRenderSystemName) {
                     continue;
                 }
             } else {

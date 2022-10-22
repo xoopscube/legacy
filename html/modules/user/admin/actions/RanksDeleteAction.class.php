@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractDeleteAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/RanksAdminDeleteForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractDeleteAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/RanksAdminDeleteForm.class.php';
 
 class User_RanksDeleteAction extends User_AbstractDeleteAction
 {
@@ -32,23 +32,23 @@ class User_RanksDeleteAction extends User_AbstractDeleteAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("ranks_delete.html");
+        $render->setTemplateName('ranks_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
     }
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=RanksList");
+        $controller->executeForward('./index.php?action=RanksList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=RanksList", 1, _MD_USER_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=RanksList', 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }
     
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=RanksList");
+        $controller->executeForward('./index.php?action=RanksList');
     }
 }

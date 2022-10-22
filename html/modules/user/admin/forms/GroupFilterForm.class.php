@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractFilterForm.class.php';
 
 define('GROUP_SORT_KEY_GROUPID', 1);
 define('GROUP_SORT_KEY_NAME', 2);
@@ -20,13 +20,13 @@ define('GROUP_SORT_KEY_DEFAULT', GROUP_SORT_KEY_GROUPID);
 
 class User_GroupFilterForm extends User_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         GROUP_SORT_KEY_DEFAULT => 'groupid',
         GROUP_SORT_KEY_GROUPID => 'groupid',
         GROUP_SORT_KEY_NAME => 'name',
         GROUP_SORT_KEY_DESCRIPTION => 'description',
         GROUP_SORT_KEY_GROUP_TYPE => 'group_type'
-    );
+    ];
 
     public function getDefaultSortKey()
     {

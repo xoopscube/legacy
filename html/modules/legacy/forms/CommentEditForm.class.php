@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: CommentEditForm.class.php,v 1.4 2008/09/25 15:12:40 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  *
  */
 
@@ -12,13 +12,13 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 class Legacy_CommentEditForm extends XCube_ActionForm
 {
     public function getTokenName()
     {
-        return "module.legacy.Legacy_CommentEditForm.TOKEN";
+        return 'module.legacy.Legacy_CommentEditForm.TOKEN';
     }
 
     public function prepare()
@@ -49,49 +49,49 @@ class Legacy_CommentEditForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['com_id'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['com_id']->setDependsByArray(array('required'));
+        $this->mFieldProperties['com_id']->setDependsByArray(['required']);
         $this->mFieldProperties['com_id']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_ID);
 
         $this->mFieldProperties['com_pid'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['com_pid']->setDependsByArray(array('required'));
+        $this->mFieldProperties['com_pid']->setDependsByArray(['required']);
         $this->mFieldProperties['com_pid']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_PID);
 
         $this->mFieldProperties['com_rootid'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['com_rootid']->setDependsByArray(array('required'));
+        $this->mFieldProperties['com_rootid']->setDependsByArray(['required']);
         $this->mFieldProperties['com_rootid']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_ROOTID);
 
         $this->mFieldProperties['com_modid'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['com_modid']->setDependsByArray(array('required'));
+        $this->mFieldProperties['com_modid']->setDependsByArray(['required']);
         $this->mFieldProperties['com_modid']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_MODID);
 
         $this->mFieldProperties['com_itemid'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['com_itemid']->setDependsByArray(array('required'));
+        $this->mFieldProperties['com_itemid']->setDependsByArray(['required']);
         $this->mFieldProperties['com_itemid']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_ITEMID);
 
         $this->mFieldProperties['com_icon'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['com_icon']->setDependsByArray(array('required', 'maxlength'));
+        $this->mFieldProperties['com_icon']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['com_icon']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_ICON, '25');
         $this->mFieldProperties['com_icon']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _MD_LEGACY_LANG_COM_ICON, '25');
         $this->mFieldProperties['com_icon']->addVar('maxlength', 25);
 
         $this->mFieldProperties['com_ip'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['com_ip']->setDependsByArray(array('required', 'maxlength'));
+        $this->mFieldProperties['com_ip']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['com_ip']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_IP, '15');
         $this->mFieldProperties['com_ip']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _MD_LEGACY_LANG_COM_IP, '15');
         $this->mFieldProperties['com_ip']->addVar('maxlength', 15);
 
         $this->mFieldProperties['com_title'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['com_title']->setDependsByArray(array('required', 'maxlength'));
+        $this->mFieldProperties['com_title']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['com_title']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_TITLE, '255');
         $this->mFieldProperties['com_title']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _MD_LEGACY_LANG_COM_TITLE, '255');
         $this->mFieldProperties['com_title']->addVar('maxlength', 255);
 
         $this->mFieldProperties['com_text'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['com_text']->setDependsByArray(array('required'));
+        $this->mFieldProperties['com_text']->setDependsByArray(['required']);
         $this->mFieldProperties['com_text']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_TEXT);
 
         $this->mFieldProperties['com_exparams'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['com_exparams']->setDependsByArray(array('required', 'maxlength'));
+        $this->mFieldProperties['com_exparams']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['com_exparams']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_EXPARAMS, '255');
         $this->mFieldProperties['com_exparams']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _MD_LEGACY_LANG_COM_EXPARAMS, '255');
         $this->mFieldProperties['com_exparams']->addVar('maxlength', 255);
@@ -156,7 +156,7 @@ class Legacy_CommentEditForm_Admin extends Legacy_CommentEditForm
     public function prepare()
     {
         parent::prepare();
-        
+
         //
         // Set form properties
         //

@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: IndexRedirector.class.php,v 1.3 2008/09/25 15:12:44 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  *
  */
 
@@ -16,13 +16,13 @@ class Legacy_IndexRedirector extends XCube_ActionFilter
 {
     public function preBlockFilter()
     {
-        $this->mController->mRoot->mDelegateManager->add("Legacypage.Top.Access", array(&$this, "redirect"));
+        $this->mController->mRoot->mDelegateManager->add('Legacypage.Top.Access', [&$this, 'redirect']);
     }
 
     public function redirect()
     {
         $startPage = $this->mRoot->mContext->getXoopsConfig('startpage');
-        if ($startPage != null && $startPage != "--") {
+        if (null !== $startPage && '--' !== $startPage) {
             $handler =& xoops_gethandler('module');
             $module =& $handler->get($startPage);
             if (is_object($module) && $module->get('isactive')) {

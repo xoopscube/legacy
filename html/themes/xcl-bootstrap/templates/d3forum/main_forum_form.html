@@ -1,0 +1,211 @@
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+    <{if $mod_config.show_breadcrumbs}>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<{$xoops_url}>/">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                        <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                    </svg></a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="<{$mod_url}>/index.php">
+                    <svg class="bi bi-chat-square-dots" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2.5a2 2 0 0 1 1.6.8L8 14.333 9.9 11.8a2 2 0 0 1 1.6-.8H14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                        <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    </svg> <{$smarty.const._MD_D3FORUM_TOP}></a>
+                </li>
+                <li class="breadcrumb-item"><a href="<{$mod_url}>/index.php?cat_id=<{$category.id}>"><{$category.title}></a></li>
+                <li class="breadcrumb-item active" aria-current="page"><{$smarty.const._MD_D3FORUM_FORUMMANAGER}></li>
+            </ol>
+        </nav>
+    <{/if}>
+
+
+<h2><{$smarty.const._MD_D3FORUM_FORUMMANAGER}></h2>
+
+
+<!-- Permissions -->
+    <{if $xoops_isadmin}>
+        <p><a class="btn btn-outline-primary btn-sm" href="<{$mod_url}>/admin/index.php?page=forum_access&amp;cat_id=<{$forum.id}>">
+            <svg class="bi bi-lock-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <rect width="11" height="9" x="2.5" y="7" rx="2"/>
+                <path fill-rule="evenodd" d="M4.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
+            </svg> <{$smarty.const._MD_D3FORUM_LINK_FORUMACCESS}></a></p>
+    <{/if}>
+
+
+<h3 class="itemHead"><{$formtitle}></h3>
+
+<form name="forumform" id="forumform" action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>&amp;forum_id=<{$forum.id}>" method="post" onsubmit="return xoopsFormValidate_forumform();">
+
+    <{$gticket_hidden}>
+	<table width="100%" class="table outer d3f_form_table" cellspacing="1">
+
+		<tr valign="top" align="left">
+			<td class="head"><label for="forum_title"><{$smarty.const._MD_D3FORUM_TH_FORUMTITLE}></label></td>
+			<td class="even">
+				<input type="text" name="title" id="forum_title" size="50" maxlength="255" value="<{$forum.title}>">
+			</td>
+		</tr>
+
+		<tr valign="top" align="left">
+			<td class="head"><label for="forum_desc"><{$smarty.const._MD_D3FORUM_TH_FORUMDESC}></label></td>
+			<td class="even">
+				<textarea name="desc" id="forum_desc" cols="50" rows="10"><{$forum.desc}></textarea>
+			</td>
+		</tr>
+
+		<{if $xoops_isadmin}>
+
+            <tr valign="top" align="left">
+                <td class="head"><label for="cat_id"><{$smarty.const._MD_D3FORUM_CATEGORY}></label></td>
+                <td class="even">
+                    <{if $cat_jumpbox_options}>
+                    <select name="cat_id" id="cat_id">
+                        <{$cat_jumpbox_options}>
+                    </select>
+                    <{else}>
+                    <{$category.title}>
+                    <input type="hidden" name="cat_id" value="<{$category.id}>">
+                    <{/if}>
+                </td>
+            </tr>
+
+
+            <tr valign="top" align="left">
+                <td class="head"><label for="forum_weight"><{$smarty.const._MD_D3FORUM_TH_FORUMWEIGHT}></label></td>
+                <td class="even">
+                <input type="text" name="weight" id="forum_weight" size="4" maxlength="4" value="<{$forum.weight}>">
+                </td>
+            </tr>
+
+            <tr valign="top" align="left">
+                <td class="head"><label for="forum_external_link_format"><{$smarty.const._MD_D3FORUM_TH_EXTERNALLINKFORMAT}></label></td>
+                <td class="even">
+                    <input type="text" name="external_link_format" id="forum_external_link_format" size="80" maxlength="255" value="<{$forum.external_link_format}>">
+                    <br>
+                    <{$smarty.const._MD_D3FORUM_HELP_EXTERNALLINKFORMAT}>
+                </td>
+            </tr>
+
+            <tr valign="top" align="left">
+                <td class="head">
+                    <{$smarty.const._MD_D3FORUM_TH_FORUMOPTIONS}>
+                </td>
+                <td class="even">
+
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="forum_option_controller_onoff"
+                               onclick="if(this.checked){xoopsGetElementById('forum_option_controller').style.display='block';
+                           } else {
+                               xoopsGetElementById('forum_option_controller').style.display='none';
+                           };"  <{if $forum.options}>checked="checked"<{/if}>>
+                        <label class="custom-control-label" for="forum_option_controller_onoff"><{$smarty.const._MD_D3FORUM_ONOFF}></label>
+                    </div>
+
+    <!--				<input type="checkbox" id="forum_option_controller_onoff" -->
+    <!--                       onclick="if(this.checked){xoopsGetElementById('forum_option_controller').style.display='block';-->
+    <!--                       } else {-->
+    <!--                           xoopsGetElementById('forum_option_controller').style.display='none';-->
+    <!--                       };"  <{if $forum.options}>checked="checked"<{/if}>>-->
+    <!--                <label for="forum_option_controller_onoff"><{$smarty.const._MD_D3FORUM_ONOFF}></label>-->
+
+                    <div id="forum_option_controller" <{if ! $forum.options}>style="display:none;"<{/if}>>
+                        <textarea name="options" id="forum_options" cols="50" rows="10"><{$forum.options}></textarea>
+                        <br>
+                        <{$smarty.const._MD_D3FORUM_HOWTO_OVERRIDEOPTIONS}>
+                        <br>
+                        <span class="forumoptiondesc"><{$forum.option_desc}></span>
+                    </div>
+                </td>
+            </tr>
+
+		<{/if}>
+
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <{if !$xoops_isadmin}>
+                    <input name="weight" id="forum_weight" value="<{$forum.weight}>" type="hidden">
+                    <{/if}>
+
+                    <p class="d3f_submit"><input type="submit" name="forumman_post" value="<{$smarty.const._SUBMIT}>">
+                        <{if $page == 'forummanager' }>
+                        <input type="submit" name="forumman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMDELETERECURSIVE}>')">
+                        <{/if}></p>
+                </td>
+            </tr>
+
+        </tfoot>
+	</table>
+
+
+
+</form>
+
+<!-- Start Form Vaidation JavaScript //-->
+<script type="text/javascript">
+<!--//
+function xoopsFormValidate_forumform() {
+	myform = window.document.forumform;
+	if ( myform.title.value == "" ) { window.alert("<{$smarty.const._MD_D3FORUM_TH_FORUMTITLE|string_format:$smarty.const._FORM_ENTER}>"); myform.title.focus(); return false; }
+	return true;
+}
+//--></script>
+<!-- End Form Vaidation JavaScript //-->
+
+
+
+<{if $forum.id > 0 && $xoops_isadmin}>
+
+<hr>
+
+<form name="forummanager_export" id="forummanager_export" action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>&amp;forum_id=<{$forum.id}>" class="outer head" method="post">
+
+	<select name="export_mid" id="export_mid" onchange="d3forum_showhide_category_select(this);"><{html_options options=$export_to_module_options}></select>
+
+	<select name="export_cat_id[0]" id="export_cat_id_0">
+		<option value="0">----</option>
+	</select>
+	<{foreach from=$export_to_cat_options key="ex_cat_id" item="ex_options"}>
+		<select name="export_cat_id[<{$ex_cat_id}>]" id="export_cat_id_<{$ex_cat_id}>">
+			<option value="0">----</option>
+			<{$ex_options}>
+		</select>
+	<{/foreach}>
+
+	<br>
+	<input type="submit" name="forumman_export_move" value="<{$smarty.const._MD_D3FORUM_BTN_MOVEFORUMTOOTHERFORUM}>" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMOK}>')">
+	<input type="submit" name="forumman_export_copy" value="<{$smarty.const._MD_D3FORUM_BTN_COPYFORUMTOOTHERFORUM}>" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMOK}>')">
+	<{$gticket_hidden}>
+
+</form>
+
+
+<script type="text/javascript">
+<!--//
+
+d3forum_showhide_category_select( xoopsGetElementById("export_cat_id_0") ) ;
+
+function d3forum_showhide_category_select(select)
+{
+	selected_val = select.options[select.selectedIndex].value ;
+	form = select.form ;
+	for( i = 0 ; i < form.elements.length ; i ++ ) {
+		if( form.elements[i].name.match(/export_cat_id/) ) {
+			if( form.elements[i].id == "export_cat_id_" + selected_val ) {
+				form.elements[i].style.display = "inline" ;
+			} else {
+				form.elements[i].style.display = "none" ;
+			}
+		}
+	}
+}
+//-->
+</script>
+
+<{/if}>

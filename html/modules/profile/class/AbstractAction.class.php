@@ -1,8 +1,11 @@
 <?php
 /**
- * @file
- * @package profile
- * @version $Id$
+ * @package    profile
+ * @version    XCL 2.3.1
+ * @author     Other authors  gigamaster, 2020 XCL/PHP7
+ * @author     Original Author Kilica
+ * @copyright  2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -22,6 +25,10 @@ class Profile_AbstractAction
     {
     }
     public function Profile_AbstractAction()
+    {
+        self::__construct();
+    }
+    public function __construct()
     {
         $this->mRoot =& XCube_Root::getSingleton();
         $this->mModule =& $this->mRoot->mContext->mModule;

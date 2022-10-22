@@ -1,0 +1,241 @@
+/*
+	XOOPSCube Theme : XCL Admin Flex Grid
+	Distribution : XOOPSCube XCL 2.3
+	Version : 1.0.0
+	Author : Nuno Luciano aka Gigamaster
+	Date : 2021-10-28
+	URL : https://github.com/xoopscube/
+
+    -------------------- -------------------- Admin utils */
+    /*
+    * Customize
+    * BLOCK SECTION FILTER SEARCH
+    * BLOCK SECTION SORT
+    * BLOCK STATE SWITCH ( ! TODO : change image and icon background color
+    * Module STATE SWITCH
+    * BLOCK PREVIEW
+    */
+
+/*-------------------- -------------------- ARIA-LABEL TOOLTIP */
+
+    [aria-label]:before {
+        /* Required ! - do not touch */
+        content: attr(aria-label);
+        opacity: 0;
+        position: absolute;
+        /* customizable */
+        color: #fff;
+        border-radius: 7px;
+        box-shadow: 1px 2px 8px hsla(219, 10%, 10%, 0.8);
+        margin-top: -32px;
+        margin-left: 24px;
+        padding: 1em;
+        pointer-events: none;
+        transition: all 0.15s ease;
+        transform-style: preserve-3d;
+        z-index: 100;
+        overflow: visible;
+    }
+    [aria-label]:hover:before {
+        /* Required ! - do not touch */
+        opacity: 1;
+        /* customizable */
+        background: hsla(219, 14%, 10%, 0.8);
+        border: 1px solid hsla(219, 10%, 18%, 0.9);
+        font-size: 13px;
+        max-width: 280px;
+        z-index: 101;
+    }
+
+    #dialog-online {
+        /*box-shadow : var(--shadow-7);*/
+        background: var(--color-7);
+    }
+
+
+/*-------------------- -------------------- HELP DOCUMENTATION */
+
+    div.help section[id|="help"] {
+        padding         : var(--space-6);
+    }
+
+
+/*-------------------- -------------------- X-UPDATE STORE */
+
+    /* UL - LI vertical scroll eg. Module Update */
+    .scroll-y {
+        background:var(--bg-gradient);
+        border: var(--border);
+        border-radius: var(--border-radius);
+        display:block;
+        height: 24ch;
+        margin: var(--space-6) var(--space-1);
+        padding: var(--space-2);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        overflow-x: hidden;
+
+    }
+    .scroll-y > li > a {
+        background: hsla(219, 14%, 20%, 0.4);
+        display: block;
+        margin-bottom: 2px;
+        padding: .5em 1.5em;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        position:relative; /*if position is set, the block contains the tooltip ! */
+    }
+    .scroll-y > li > a:focus,
+    .scroll-y > li > a:hover{
+        background: hsla(219, 14%, 20%, 0.8);
+        color: var(--link-hover);
+    }
+
+    .scroll-h {
+        max-height: 25vh;
+        overflow-x: auto;
+        width: 100%;
+    }
+
+
+
+
+    /*-------------------- -------------------- BLOCK SECTION FILTER SEARCH */
+
+
+    section.filter {
+
+        align-items     : center;
+
+        background      : var(  --filter-background      );
+
+        border-color    : var(  --filter-border-color    );
+        border-radius   : var(  --filter-border-radius   );
+        border-style    : var(  --filter-border-radius   );
+        border-width    : var(  --filter-border-width    );
+
+        box-shadow      : var(  --filter-box-shadow      );
+
+        display         : flex;
+        flex-direction  : row;
+        flex-wrap       : wrap;
+        padding         : var(  --filter-padding  );
+        margin          : var(  --filter-margin   );
+        width           : 100%;
+
+    }
+
+        section.filter article {
+
+        flex            : 1;
+        padding-right   : var(  --space-2  );
+
+        }
+
+        section .search-button {
+
+        flex-basis      : 100%;
+        padding-top     : 1rem;
+
+        }
+
+    /* -------------------- -------------------- BLOCK SECTION SORT */
+
+    section.sort {
+
+        align-items     : center;
+
+        background      : var(  --sort-background    );
+
+        border-color  	: var(  --sort-border-color  );
+        border-radius 	: var(  --sort-border-radius );
+        border-style  	: var(  --sort-border-style  );
+        border-width  	: var(  --sort-border-width  );
+
+        box-shadow    	: var(  --sort-box-shadow    );
+
+        padding       	: var(  --sort-padding       );
+        margin        	: var(  --sort-margin        );
+
+        display         : flex;
+        flex-direction  : row;
+        flex-wrap       : wrap;
+        justify-content : space-evenly;
+        max-width       : 95%;
+
+    }
+
+
+    /* -------------------- -------------------- BLOCK STATE SWITCH */
+
+    /* Block Switch Off - color indicator */
+    .ui-update-change {
+
+        background      : var(  --color-5  );
+
+        transition      : all 1s;
+
+    }
+    .ui-block-type.ui-update-change {
+
+        background      : var(  --color-red  );
+
+    }
+    .ui-update-change svg,
+    .ui-update-change > svg path.block-icon,
+    .ui-update-change > svg text.block-name {
+
+        color           : var(  --color-red  );
+
+    }
+
+    /* -------------------- -------------------- Module STATE SWITCH */
+
+    /* Update indicator */
+    .ui-update-change {
+
+        transition      : all 1s;
+
+    }
+    .ui-update-change a {
+
+        background      : var(  --color-red  );
+
+    }
+    .ui-update-change svg,
+    .ui-update-change > svg path.module-icon,
+    .ui-update-change > svg text.module-name {
+
+        color           : var(  --color-red  );
+
+    }
+
+    /* -------------------- -------------------- BLOCK PREVIEW */
+
+    .ui-block-admin-preview,
+    .ui-block-permissions {
+        transition      : all 1s;
+    }
+
+    .fingerprint1 { color: var(  --color-red   ) }
+    .fingerprint2 { color: var(  --color-blue   ) }
+    .fingerprint3 { color: var(  --color-green   ) }
+    .fingerprint4 { color: var(  --color-orange   ) }
+    .fingerprint5 { color: var(  --color-purple   ) }
+    .fingerprint6 { color: var(  --color-amber   ) }
+    .fingerprint7 { color: var(  --link   ) }
+
+/* -------------------- -------------------- AltSys Active Template Set */
+
+    .active,
+    .dbtplset_active {
+        /*background  : var(  --color-green   );*/
+        color       : var(  --color-green  );
+    }
+/* -------------------- -------------------- Render Template Source */
+.legacyRender_TemplateManager_textarea {
+    width:600px;
+    height:400px;
+}

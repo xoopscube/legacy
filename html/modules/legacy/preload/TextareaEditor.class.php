@@ -22,17 +22,19 @@ class Legacy_TextareaEditor extends XCube_ActionFilter
     }
 
     /**
-     *  @public
-    */
+     * @public
+     * @param $html
+     * @param $params
+     */
     public static function renderBBCode(&$html, $params)
     {
         if (!XC_CLASS_EXISTS('xoopsformelement')) {
-            require_once XOOPS_ROOT_PATH . "/class/xoopsformloader.php";
+            require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
         }
     
         $form =new XoopsFormDhtmlTextArea($params['name'], $params['name'], $params['value'], $params['rows'], $params['cols']);
         $form->setId($params['id']);
-        if ($params['class'] != null) {
+        if (null !== $params['class']) {
             $form->setClass($params['class']);
         }
         
@@ -40,25 +42,29 @@ class Legacy_TextareaEditor extends XCube_ActionFilter
     }
 
     /**
-     *  @public
-    */
+     * @public
+     * @param $html
+     * @param $params
+     */
     public static function renderHtml(&$html, $params)
     {
         self::renderBBCode($html, $params);
     }
 
     /**
-     *  @public
-    */
+     * @public
+     * @param $html
+     * @param $params
+     */
     public static function renderNone(&$html, $params)
     {
         if (!XC_CLASS_EXISTS('xoopsformelement')) {
-            require_once XOOPS_ROOT_PATH . "/class/xoopsformloader.php";
+            require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
         }
     
         $form =new XoopsFormTextArea($params['name'], $params['name'], $params['value'], $params['rows'], $params['cols']);
         $form->setId($params['id']);
-        if ($params['class'] != null) {
+        if (null !== $params['class']) {
             $form->setClass($params['class']);
         }
         

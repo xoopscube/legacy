@@ -1,3 +1,7 @@
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
 <{if $actionForm->hasError()}>
 <div class="errorMsg">
   <ul>
@@ -12,7 +16,7 @@
   <h4><{$self_delete_message|nl2br}></h4>
   <form method="post" action="#">
     <{xoops_token form=$actionForm}>
-    <input type="submit" value="<{$smarty.const._DELETE}>" />
-    <input type="button" name="confirm_back" value="<{$smarty.const._CANCEL}>"  onclick="javascript:history.go(-1);" />
+    <input type="submit" class="ui-button delete" value="<{$smarty.const._DELETE}>" />
+    <input type="button" class="ui-button cancel" name="confirm_back" value="<{$smarty.const._CANCEL}>"  onclick="javascript:history.go(-1);" />
   </form>
 </div>

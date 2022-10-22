@@ -1,0 +1,49 @@
+/* cursor */
+.alias           {cursor:alias}
+.auto            {cursor:auto}
+.cell            {cursor:cell}
+.context-menu    {cursor:context-menu}
+.copy            {cursor:copy}
+.crosshair       {cursor:crosshair}
+.default         {cursor:default}
+.grab            {cursor:grab}
+.grabbing        {cursor:grabbing}
+.help            {cursor:help}
+.pointer         {cursor:pointer}
+.progress        {cursor:progress}
+.wait            {cursor:wait}
+.text            {cursor:text}
+.vertical-text   {cursor:vertical-text}
+.move            {cursor:move}
+.none            {cursor:none}
+.no-drop         {cursor:no-drop}
+.not-allowed     {cursor:not-allowed}
+.all-scroll      {cursor:all-scroll}
+.col-resize      {cursor:col-resize}
+.row-resize      {cursor:row-resize}
+.n-resize        {cursor:n-resize}
+.e-resize        {cursor:e-resize}
+.s-resize        {cursor:s-resize}
+.w-resize        {cursor:w-resize}
+.ns-resize       {cursor:ns-resize}
+.ew-resize       {cursor:ew-resize}
+.ne-resize       {cursor:ne-resize}
+.nw-resize       {cursor:nw-resize}
+.se-resize       {cursor:se-resize}
+.sw-resize       {cursor:sw-resize}
+.nesw-resize     {cursor:nesw-resize}
+.nwse-resize     {cursor:nwse-resize}
+.zoom-in         {cursor:zoom-in}
+.zoom-out        {cursor:zoom-out}
+/* cursor with custom image:*/
+.custom-cursor {cursor:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3e%3cg fill='none'%3e%3cpath d='M5.5 3.483c0-1.248 1.436-1.95 2.421-1.184l13.514 10.513c1.128.877.508 2.684-.92 2.684h-6.853c-.505 0-.981.23-1.294.626l-4.191 5.3c-.882 1.116-2.677.492-2.677-.93V3.483zm15.014 10.513L7 3.483v17.009l4.191-5.3a3.15 3.15 0 0 1 2.47-1.196h6.853z' fill='%23face74'/%3e%3c/g%3e%3c/svg%3e") 16 16, pointer;;}
+.cursor-alert {cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3E%3Cpath d='M12 2L1 21h22M12 6l7.53 13H4.47M11 10v4h2v-4m-2 6v2h2v-2' fill='%23face74'/%3E%3C/svg%3E") 16 16, pointer;}
+.cursor-info {cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'%3E%3Cpath d='M11 15h2v2h-2v-2m0-8h2v6h-2V7m1-5C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18a8 8 0 0 1-8-8a8 8 0 0 1 8-8a8 8 0 0 1 8 8a8 8 0 0 1-8 8z' fill='%23face74'/%3E%3C/svg%3E") 16 16, pointer;}
+
+
+/* WebKit only cursors:
+-webkit-zoom-in
+-webkit-zoom-out
+-webkit-zoom-grab
+-webkit-zoom-grabbing
+*/

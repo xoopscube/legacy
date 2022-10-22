@@ -1,0 +1,130 @@
+<div class="card-header">
+
+    <ul class="msgNav nav nav-tabs card-header-tabs flex-column flex-sm-row">
+
+        <li class="nav-item flex-sm-fill text-sm-center">
+                <a class="nav-link <{$tab}>" href="index.php">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M.5 8a.5.5 0 0 1 .5.5V12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8.5a.5.5 0 0 1 1 0V12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8.5A.5.5 0 0 1 .5 8z"/>
+                    <path fill-rule="evenodd" d="M5 7.5a.5.5 0 0 1 .707 0L8 9.793 10.293 7.5a.5.5 0 1 1 .707.707l-2.646 2.647a.5.5 0 0 1-.708 0L5 8.207A.5.5 0 0 1 5 7.5z"/>
+                    <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0v-8A.5.5 0 0 1 8 1z"/>
+                </svg> <{$smarty.const._MD_MESSAGE_TEMPLATE15}></a>
+        </li>
+
+        <li class="nav-item flex-sm-fill text-sm-center">
+            <a class="nav-link <{$tabSent}>" name="send" href="index.php?action=send">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-upload mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M.5 8a.5.5 0 0 1 .5.5V12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8.5a.5.5 0 0 1 1 0V12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8.5A.5.5 0 0 1 .5 8zM5 4.854a.5.5 0 0 0 .707 0L8 2.56l2.293 2.293A.5.5 0 1 0 11 4.146L8.354 1.5a.5.5 0 0 0-.708 0L5 4.146a.5.5 0 0 0 0 .708z"/>
+                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0v-8A.5.5 0 0 1 8 2z"/>
+                </svg> <{$smarty.const._MD_MESSAGE_TEMPLATE7}></a>
+        </li>
+
+        <li class="nav-item flex-sm-fill text-sm-center">
+            <a class="nav-link" name="new" href="index.php?action=new">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="edit-square mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                </svg> <{$smarty.const._MD_MESSAGE_TEMPLATE8}></a>
+        </li>
+
+        <{* ------- dropdown *}>
+        <li class="nav-item text-sm-right dropdown">
+            <a class="msgOptions nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-grip-horizontal" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg></a>
+
+            <{* ------- dropdown-menu right aligned *}>
+            <div class="dropdown-menu dropdown-menu-right">
+
+                <a class="dropdown-item" href="#" onclick="location.href='index.php?action=new&amp;res=<{$msgdata.inbox_id}>'" title="<{$smarty.const._MD_MESSAGE_TEMPLATE13}>">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-reply-fill mr-3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.079 11.9l4.568-3.281a.719.719 0 0 0 0-1.238L9.079 4.1A.716.716 0 0 0 8 4.719V6c-1.5 0-6 0-7 8 2.5-4.5 7-4 7-4v1.281c0 .56.606.898 1.079.62z"/>
+                    </svg> <{$smarty.const._MD_MESSAGE_TEMPLATE13}></a>
+
+                <form method="post" id="forwardEmail" action="index.php">
+                    <input type="hidden" name="inbox" value="<{$msgdata.inbox_id}>">
+                    <input type="hidden" name="inout" value="in">
+                    <input type="hidden" name="cmd" value="mail">
+                    <input type="hidden" name="action" value="view">
+                    <a class="dropdown-item" href="javascript:document.getElementById('forwardEmail').submit();">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-forward-fill mr-3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.77 12.11l4.012-2.953a.647.647 0 0 0 0-1.114L9.771 5.09a.644.644 0 0 0-.971.557V6.65H2v3.9h6.8v1.003c0 .505.545.808.97.557z"/>
+                        </svg> <{$smarty.const._MD_MESSAGE_TEMPLATE21}></a>
+                </form>
+
+                <a class="dropdown-item" href="javascript:document.getElementById('formLock').submit();">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shield-shaded mr-3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M5.443 1.991a60.17 60.17 0 0 0-2.725.802.454.454 0 0 0-.315.366C1.87 7.056 3.1 9.9 4.567 11.773c.736.94 1.533 1.636 2.197 2.093.333.228.626.394.857.5.116.053.21.089.282.11A.73.73 0 0 0 8 14.5c.007-.001.038-.005.097-.023.072-.022.166-.058.282-.111.23-.106.525-.272.857-.5a10.197 10.197 0 0 0 2.197-2.093C12.9 9.9 14.13 7.056 13.597 3.159a.454.454 0 0 0-.315-.366c-.626-.2-1.682-.526-2.725-.802C9.491 1.71 8.51 1.5 8 1.5c-.51 0-1.49.21-2.557.491zm-.256-.966C6.23.749 7.337.5 8 .5c.662 0 1.77.249 2.813.525a61.09 61.09 0 0 1 2.772.815c.528.168.926.623 1.003 1.184.573 4.197-.756 7.307-2.367 9.365a11.191 11.191 0 0 1-2.418 2.3 6.942 6.942 0 0 1-1.007.586c-.27.124-.558.225-.796.225s-.526-.101-.796-.225a6.908 6.908 0 0 1-1.007-.586 11.192 11.192 0 0 1-2.417-2.3C2.167 10.331.839 7.221 1.412 3.024A1.454 1.454 0 0 1 2.415 1.84a61.11 61.11 0 0 1 2.772-.815z"/>
+                        <path d="M8 2.25c.909 0 3.188.685 4.254 1.022a.94.94 0 0 1 .656.773c.814 6.424-4.13 9.452-4.91 9.452V2.25z"/>
+                    </svg>
+                    <{if $msgdata.is_read==1}>
+                    <{$smarty.const._MD_MESSAGE_TEMPLATE19}>
+                        <{else}>
+                    <{$smarty.const._MD_MESSAGE_TEMPLATE20}>
+                    <{/if}>
+                </a>
+
+                <a class="dropdown-item" href="#" onclick="xoopsPrintag('printhis');">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-printer-fill mr-3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5z"/>
+                        <path fill-rule="evenodd" d="M11 9H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
+                        <path fill-rule="evenodd" d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                    </svg> Print</a>
+
+                <{if $msgdata.from_uid != 0}>
+                <a class="dropdown-item" href="#" onclick="location.href='index.php?action=blacklist&amp;uid=<{$msgdata.from_uid}>'">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-dash-fill mr-3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5-.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
+                    </svg> <{$smarty.const._MD_MESSAGE_SETTINGS_MSG10}> this user</a>
+                <{/if}>
+
+                <a class="dropdown-item" href="index.php?action=blacklist">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-octagon-fill mr-3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm.394 4.708a.5.5 0 0 0-.708-.708L8 7.293 4.854 4.146a.5.5 0 1 0-.708.708L7.293 8l-3.147 3.146a.5.5 0 0 0 .708.708L8 8.707l3.146 3.147a.5.5 0 0 0 .708-.708L8.707 8l3.147-3.146z"/>
+                    </svg> <{$smarty.const._MD_MESSAGE_SETTINGS_MSG10}></a>
+
+                <{if $UserSearch}>
+                <a class="dropdown-item"  href="<{$message_url}>?action=search">
+                    <img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_edit.png" alt="">
+                    <{$smarty.const._MI_MESSAGE_SUB_SEARCH}></a>
+                <a class="dropdown-item"  href="<{$message_url}>?action=favorites">
+                    <img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_edit.png" alt="">
+                    <{$smarty.const._MI_MESSAGE_SUB_FAVORITES}></a>
+                <{/if}>
+
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="<{$message_url}>?action=settings">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-ui-radios mr-3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zM0 12a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm7-1.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1z"/>
+                        <path fill-rule="evenodd" d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zM3 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm0 4.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                    </svg> <{$smarty.const._MI_MESSAGE_SUB_SETTINGS}></a>
+
+            </div>
+
+        </li>
+
+    </ul>
+</div>
+<script>
+    // Highlight the active Message nav-tab
+    $(document).ready(function () {
+        //url constructor
+        const parseUrl = new URL(window.location.href);
+        const msgAction = parseUrl.searchParams.get("action");
+        //console.log(parseUrl.searchParams.get("action"));
+        console.log('the action of this url is:', msgAction);
+
+        // If module message index, highlight the first nav-tab
+        if (msgAction == null) {
+            $('ul.msgNav a:first').addClass('active');
+        } else {
+            // Highlight message nav-tab current action
+            $('ul.msgNav li a[href="index.php?action=' + msgAction + '"]').addClass('active');
+        }
+        if (msgAction == 'settings'|| msgAction == 'blacklist'){
+            // Highlight parent menu item
+            $('ul.msgNav li a.msgOptions').addClass('active');
+        }
+    });
+</script>

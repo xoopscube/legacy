@@ -7,16 +7,16 @@ require _MY_MODULE_PATH.'kernel/MyPageNavi.class.php';
 class indexAction extends AbstractAction
 {
     private $listdata;
-    private $mPagenavi = null;
+    private $mPagenavi;
     private $select;
-    private $subject = "";
-    private $status = "";
-  
-    public function __construct()
-    {
-        parent::__construct();
-    }
-  
+    private $subject = '';
+    private $status = '';
+
+//    public function __construct()
+//    {
+//        parent::__construct();
+//    }
+
     private function _view()
     {
         $fromuid = 0;
@@ -32,18 +32,18 @@ class indexAction extends AbstractAction
         $this->mPagenavi->setPagenum($pagenum);
         $this->mPagenavi->addSort('utime', 'DESC');
         $this->mPagenavi->addCriteria(new Criteria('uid', $this->root->mContext->mXoopsUser->get('uid')));
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $fromuid = intval($this->root->mContext->mRequest->getRequest('fromuid'));
+        if ('POST' === $_SERVER['REQUEST_METHOD']) {
+            $fromuid = (int)$this->root->mContext->mRequest->getRequest('fromuid');
             if ($fromuid > 0) {
                 $this->mPagenavi->addCriteria(new Criteria('from_uid', $fromuid));
             }
             $this->subject = $this->root->mContext->mRequest->getRequest('subject');
-            if ($this->subject != "") {
+            if ('' !== $this->subject) {
                 $this->mPagenavi->addCriteria(new Criteria('title', '%'.$this->subject.'%', 'LIKE'));
             }
             $this->status = $this->root->mContext->mRequest->getRequest('status');
-            if ($this->status !== "") {
-                $this->status = intval($this->status);
+            if ('' !== $this->status) {
+                $this->status = (int)$this->status;
                 $this->mPagenavi->addCriteria(new Criteria('is_read', $this->status));
             }
         }
@@ -60,7 +60,7 @@ class indexAction extends AbstractAction
             unset($item_ary);
         }
     }
-  
+
     public function execute()
     {
         if ($this->chk_use()) {
@@ -70,7 +70,7 @@ class indexAction extends AbstractAction
             $this->setErr(_MD_MESSAGE_SETTINGS_MSG5);
         }
     }
-  
+
     public function executeView(&$render)
     {
         $render->setTemplateName('message_inboxlist.html');

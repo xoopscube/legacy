@@ -1,0 +1,18 @@
+
+<div class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle btn-dark btn-sm" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img src="<{$xoops_userid|xoops_user_avatarize}>" width="24px"><span class="ml-2"><{user_uname2name uname=$xoops_uname}></span>
+    </a>
+
+    <div class="dropdown-menu" aria-labelledby="dropdown01">
+        <a class="dropdown-item" href="<{$xoops_url}>/user.php"><{$smarty.const._MB_LEGACY_VACNT}></a>
+        <a class="dropdown-item" href="<{$xoops_url}>/edituser.php"><{$smarty.const._MB_LEGACY_EACNT}></a>
+        <a class="dropdown-item" href="<{$xoops_url}>/notifications.php"><{$smarty.const._MB_LEGACY_NOTIF}></a>
+        <a class="dropdown-item" href="<{$block.inbox_url}>"><{$smarty.const._MB_LEGACY_INBOX}><span class="badge"><{$block.new_messages}></span></a>
+        <{if $xoops_isadmin}>
+        <a class="dropdown-item" href="<{$xoops_url}>/admin.php"><{$smarty.const._MB_LEGACY_ADMENU}></a>
+        <{/if}>
+        <a class="dropdown-item" href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._MB_LEGACY_LOUT}></a>
+    </div>
+</div>
+

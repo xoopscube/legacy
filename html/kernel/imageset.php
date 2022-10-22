@@ -1,33 +1,16 @@
 <?php
-// $Id: imageset.php,v 1.1 2007/05/15 02:34:37 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://xoopscube.jp/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+/**
+ * imageset handler class
+ * This class is responsible for providing data access mechanisms to the data source
+ * of XOOPS imageset class objects.
+ * @package    kernel
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Other authors Minahito, 2007/05/15
+ * @author     Kazumi Ono (aka onokazu)
+ * @copyright  (c) 2000-2003 XOOPS.org
+ * @license    GPL 2.0
+ */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
@@ -36,9 +19,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class XoopsImageset extends XoopsObject
 {
 
-    public function XoopsImageset()
+    public function __construct()
     {
-        $this->XoopsObject();
+        parent::__construct();
         $this->initVar('imgset_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('imgset_name', XOBJ_DTYPE_TXTBOX, null, true, 50);
         $this->initVar('imgset_refid', XOBJ_DTYPE_INT, 0, false);
@@ -46,11 +29,6 @@ class XoopsImageset extends XoopsObject
 }
 
 /**
-* XOOPS imageset handler class.  
-* This class is responsible for providing data access mechanisms to the data source 
-* of XOOPS imageset class objects.
-*
-*
 * @author  Kazumi Ono <onokazu@xoops.org>
 */
 
@@ -73,7 +51,7 @@ class XoopsImagesetHandler extends XoopsObjectHandler
             $sql = 'SELECT * FROM '.$this->db->prefix('imgset').' WHERE imgset_id='.$id;
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $imgset =new XoopsImageset();
                     $imgset->assignVars($this->db->fetchArray($result));
                     $ret =& $imgset;
@@ -85,7 +63,7 @@ class XoopsImagesetHandler extends XoopsObjectHandler
 
     public function insert(&$imgset)
     {
-        if (strtolower(get_class($imgset)) != 'xoopsimageset') {
+        if ('xoopsimageset' != strtolower(get_class($imgset))) {
             return false;
         }
         if (!$imgset->isDirty()) {
@@ -99,9 +77,9 @@ class XoopsImagesetHandler extends XoopsObjectHandler
         }
         if ($imgset->isNew()) {
             $imgset_id = $this->db->genId('imgset_imgset_id_seq');
-            $sql = sprintf("INSERT INTO %s (imgset_id, imgset_name, imgset_refid) VALUES (%u, %s, %u)", $this->db->prefix('imgset'), $imgset_id, $this->db->quoteString($imgset_name), $imgset_refid);
+            $sql = sprintf('INSERT INTO %s (imgset_id, imgset_name, imgset_refid) VALUES (%u, %s, %u)', $this->db->prefix('imgset'), $imgset_id, $this->db->quoteString($imgset_name), $imgset_refid);
         } else {
-            $sql = sprintf("UPDATE %s SET imgset_name = %s, imgset_refid = %u WHERE imgset_id = %u", $this->db->prefix('imgset'), $this->db->quoteString($imgset_name), $imgset_refid, $imgset_id);
+            $sql = sprintf('UPDATE %s SET imgset_name = %s, imgset_refid = %u WHERE imgset_id = %u', $this->db->prefix('imgset'), $this->db->quoteString($imgset_name), $imgset_refid, $imgset_id);
         }
         if (!$result = $this->db->query($sql)) {
             return false;
@@ -115,24 +93,24 @@ class XoopsImagesetHandler extends XoopsObjectHandler
 
     public function delete(&$imgset)
     {
-        if (strtolower(get_class($imgset)) != 'xoopsimageset') {
+        if ('xoopsimageset' != strtolower(get_class($imgset))) {
             return false;
         }
-        $sql = sprintf("DELETE FROM %s WHERE imgset_id = %u", $this->db->prefix('imgset'), $imgset->getVar('imgset_id'));
+        $sql = sprintf('DELETE FROM %s WHERE imgset_id = %u', $this->db->prefix('imgset'), $imgset->getVar('imgset_id'));
         if (!$result = $this->db->query($sql)) {
             return false;
         }
-        $sql = sprintf("DELETE FROM %s WHERE imgset_id = %u", $this->db->prefix('imgset_tplset_link'), $imgset->getVar('imgset_id'));
+        $sql = sprintf('DELETE FROM %s WHERE imgset_id = %u', $this->db->prefix('imgset_tplset_link'), $imgset->getVar('imgset_id'));
         $this->db->query($sql);
         return true;
     }
 
     public function &getObjects($criteria = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         $sql = 'SELECT DISTINCT i.* FROM '.$this->db->prefix('imgset'). ' i LEFT JOIN '.$this->db->prefix('imgset_tplset_link'). ' l ON l.imgset_id=i.imgset_id';
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();
@@ -158,13 +136,13 @@ class XoopsImagesetHandler extends XoopsObjectHandler
     {
         $imgset_id = (int)$imgset_id;
         $tplset_name = trim($tplset_name);
-        if ($imgset_id <= 0 || $tplset_name == '') {
+        if ($imgset_id <= 0 || '' == $tplset_name) {
             return false;
         }
         if (!$this->unlinkThemeset($imgset_id, $tplset_name)) {
             return false;
         }
-        $sql = sprintf("INSERT INTO %s (imgset_id, tplset_name) VALUES (%u, %s)", $this->db->prefix('imgset_tplset_link'), $imgset_id, $this->db->quoteString($tplset_name));
+        $sql = sprintf('INSERT INTO %s (imgset_id, tplset_name) VALUES (%u, %s)', $this->db->prefix('imgset_tplset_link'), $imgset_id, $this->db->quoteString($tplset_name));
         $result = $this->db->query($sql);
         if (!$result) {
             return false;
@@ -176,10 +154,10 @@ class XoopsImagesetHandler extends XoopsObjectHandler
     {
         $imgset_id = (int)$imgset_id;
         $tplset_name = trim($tplset_name);
-        if ($imgset_id <= 0 || $tplset_name == '') {
+        if ($imgset_id <= 0 || '' == $tplset_name) {
             return false;
         }
-        $sql = sprintf("DELETE FROM %s WHERE imgset_id = %u AND tplset_name = %s", $this->db->prefix('imgset_tplset_link'), $imgset_id, $this->db->quoteString($tplset_name));
+        $sql = sprintf('DELETE FROM %s WHERE imgset_id = %u AND tplset_name = %s', $this->db->prefix('imgset_tplset_link'), $imgset_id, $this->db->quoteString($tplset_name));
         $result = $this->db->query($sql);
         if (!$result) {
             return false;
@@ -197,7 +175,7 @@ class XoopsImagesetHandler extends XoopsObjectHandler
             $criteria->add(new Criteria('tplset_name', $tplset));
         }
         $imgsets =& $this->getObjects($criteria, true);
-        $ret = array();
+        $ret = [];
         foreach (array_keys($imgsets) as $i) {
             $ret[$i] = $imgsets[$i]->getVar('imgset_name');
         }

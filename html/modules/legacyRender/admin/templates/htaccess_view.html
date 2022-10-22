@@ -1,9 +1,34 @@
-<h1><{$smarty.const._AD_LEGACYRENDER_LANG_HTACCESS}></h1>
-<p>
-<{$smarty.const._AD_LEGACYRENDER_DESC_HTACCESS}>
-</p>
-<div>
-<textarea name="htaccess" cols="80" rows="20">
+<div class="adminnavi">
+    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
+    &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACYRENDER_LANG_HTACCESS}></span>
+</div>
+
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<{* ////— ACTION-CONTROL —\\\\ *}>
+<section layout="row center-justify" class="action-control">
+
+    <div>
+        <h2><{$smarty.const._AD_LEGACYRENDER_LANG_HTACCESS}></h2>
+    </div>
+
+    <div class="control-view">
+        <button class="help-admin button" type='button' data-module='legacyRender' data-help-article='#help-htaccess' aria-label="<{$smarty.const._HELP}>">
+            <b>?</b> </button>
+    </div>
+
+</section>
+<{* ----- / CONTROL-ACTION *}>
+
+<div class="ui-card-full">
+
+    <div class="tips">
+        <{$smarty.const._AD_LEGACYRENDER_DESC_HTACCESS}>
+    </div>
+
+    <div>
+<textarea name="htaccess" style="width: 100%;" rows="20">
 RewriteEngine On
 RewriteBase <{$rewrite_base}>
 RewriteRule ^modules/(\w+)/(\w+\.php)(/.*)$ <{$xoops_module_path}>/$1/$2 [L,QSA,E=PATH_INFO:$3]
@@ -16,4 +41,6 @@ RewriteRule ^(\w+)/(\w+)/(\w+)$ <{$xoops_module_path}>/$1/index.php?<{$data_name
 RewriteRule ^(\w+)/(\w+)/(\d+)/(.+)$ <{$xoops_module_path}>/$1/index.php?<{$data_name}>=$2&<{$action_name}>=$4&<{$data_id}>=$3 [L,QSA]
 RewriteRule ^(\w+)\?(\w+=\w+)$ <{$xoops_module_path}>/$1/index.php?$2 [L,QSA]
 </textarea>
+    </div>
+
 </div>

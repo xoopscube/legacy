@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: Legacy_Debugger.class.php,v 1.4 2008/09/25 15:11:30 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  *
  */
 
@@ -12,25 +12,27 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/class/errorhandler.php";
+require_once XOOPS_ROOT_PATH . '/class/errorhandler.php';
 
-define("XOOPS_DEBUG_OFF", 0);
-define("XOOPS_DEBUG_PHP", 1);
-define("XOOPS_DEBUG_MYSQL", 2);
-define("XOOPS_DEBUG_SMARTY", 3);
+const XOOPS_DEBUG_OFF = 0;
+const XOOPS_DEBUG_PHP = 1;
+const XOOPS_DEBUG_MYSQL = 2;
+const XOOPS_DEBUG_SMARTY = 3;
 
 class Legacy_DebuggerManager
 {
     /***
-    Create XoopsDebugger instance.
-    You must not communicate with this method directly.
-    */
+     * Create XoopsDebugger instance.
+     * You must not communicate with this method directly.
+     * @param $instance
+     * @param $debug_mode
+     */
     public function createInstance(&$instance, $debug_mode)
     {
         if (is_object($instance)) {
             return;
         }
-        
+
         switch ($debug_mode) {
             case XOOPS_DEBUG_PHP:
                 $instance = new Legacy_PHPDebugger();
@@ -43,7 +45,7 @@ class Legacy_DebuggerManager
             case XOOPS_DEBUG_SMARTY:
                 $instance = new Legacy_SmartyDebugger();
                 break;
-            
+
             case XOOPS_DEBUG_OFF:
             default:
                 $instance = new Legacy_NonDebugger();
@@ -54,14 +56,14 @@ class Legacy_DebuggerManager
 
 class Legacy_AbstractDebugger
 {
-    public function Legacy_AbstractDebugger()
+    public function __construct()
     {
     }
 
     public function prepare()
     {
     }
-    
+
     public function isDebugRenderSystem()
     {
         return false;
@@ -73,7 +75,7 @@ class Legacy_AbstractDebugger
     public function renderLog()
     {
     }
-    
+
     public function displayLog()
     {
     }
@@ -94,11 +96,7 @@ class Legacy_PHPDebugger extends Legacy_AbstractDebugger
         if (defined('XOOPS_ERROR_REPORTING_LEVEL')) {
             error_reporting(XOOPS_ERROR_REPORTING_LEVEL);
         } else {
-            if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
-                error_reporting(E_ALL ^ E_STRICT ^ E_NOTICE);
-            } else {
-                error_reporting(E_ALL ^ E_NOTICE);
-            }
+            error_reporting(E_ALL ^ E_STRICT ^ E_NOTICE);
         }
         $GLOBALS['xoopsErrorHandler'] =& XoopsErrorHandler::getInstance();
         $GLOBALS['xoopsErrorHandler']->activate(true);
@@ -116,20 +114,21 @@ class Legacy_MysqlDebugger extends Legacy_AbstractDebugger
         $GLOBALS['xoopsErrorHandler'] =& XoopsErrorHandler::getInstance();
         $GLOBALS['xoopsErrorHandler']->activate(true);
     }
-    
+
     public function renderLog()
     {
         $xoopsLogger =& XoopsLogger::instance();
         return $xoopsLogger->dumpAll();
     }
-    
+
+    // TODO ! @gigamaster debug
     public function displayLog()
     {
         echo '<script type="text/javascript">
         <!--//
-        debug_window = openWithSelfMain("", "xoops_debug", 680, 600, true);
+        debug_window = openWithSelfMain("Debug", "xoops_debug", 680, 600, true);
         ';
-        $content = '<html><head><meta http-equiv="content-type" content="text/html; charset='._CHARSET.'" /><meta http-equiv="content-language" content="'._LANGCODE.'" /><title>'.htmlspecialchars($GLOBALS['xoopsConfig']['sitename']).'</title><link rel="stylesheet" type="text/css" media="all" href="'.getcss($GLOBALS['xoopsConfig']['theme_set']).'" /></head><body>'.$this->renderLog().'<div style="text-align:center;"><input class="formButton" value="'._CLOSE.'" type="button" onclick="javascript:window.close();" /></div></body></html>';
+        $content = '<html lang="'._CHARSET.'"><head><meta http-equiv="content-type" content="text/html; charset='._CHARSET.'" /><meta http-equiv="content-language" content="'._LANGCODE.'" /><title>'.htmlspecialchars($GLOBALS['xoopsConfig']['sitename']).'</title><link rel="stylesheet" type="text/css" media="all" href="'.getcss($GLOBALS['xoopsConfig']['theme_set']).'" /></head><body>'.$this->renderLog().'<div style="text-align:center;"><input class="btn close" value="'._CLOSE.'" type="button" onclick="javascript:window.close();"></div></body></html>';
         $lines = preg_split("/(\r\n|\r|\n)( *)/", $content);
         foreach ($lines as $line) {
             echo 'debug_window.document.writeln("'.str_replace('"', '\"', $line).'");';
@@ -152,12 +151,12 @@ class Legacy_SmartyDebugger extends Legacy_AbstractDebugger
         $GLOBALS['xoopsErrorHandler'] =& XoopsErrorHandler::getInstance();
         $GLOBALS['xoopsErrorHandler']->activate(true);
     }
-    
+
     public function isDebugRenderSystem()
     {
         $root =& XCube_Root::getSingleton();
         $user =& $root->mContext->mXoopsUser;
-        
+
         return is_object($user) ? $user->isAdmin(0) : false;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * @license http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE Version 3
+ * @license https://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE Version 3
  * @author Marijuana
  */
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -12,22 +12,22 @@ require_once XOOPS_MODULE_PATH.'/legacy/class/Legacy_Validator.class.php';
 class MessageForm extends XCube_ActionForm
 {
     public $fuid = 0;
-  
-    public function __construct()
-    {
-        parent::XCube_ActionForm();
-    }
-  
+
+//    public function __construct()
+//    {
+//        parent::__construct();
+//    }
+
     public function getTokenName()
     {
         return 'module.message.NewMessage.TOKEN';
     }
-  
+
     private function set_Property($key, $classname = 'XCube_StringProperty')
     {
         $this->mFormProperties[$key] = new $classname($key);
     }
-  
+
     public function prepare()
     {
         $this->set_Property('uname');
@@ -35,32 +35,32 @@ class MessageForm extends XCube_ActionForm
         $this->set_Property('Legacy_Event_User_Preview');
         $this->set_Property('Legacy_Event_User_Submit');
         $this->set_Property('note', 'XCube_TextProperty');
-    
+
         $this->mFieldProperties['uname'] = new XCube_FieldProperty($this);
-        $this->mFieldProperties['uname']->setDependsByArray(array('required', 'maxlength'));
+        $this->mFieldProperties['uname']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['uname']->addMessage('required', _MD_MESSAGE_FORMERROR1);
         $this->mFieldProperties['uname']->addMessage('maxlength', _MD_MESSAGE_FORMERROR2);
         $this->mFieldProperties['uname']->addVar('maxlength', '30');
-    
+
         $this->mFieldProperties['title'] = new XCube_FieldProperty($this);
-        $this->mFieldProperties['title']->setDependsByArray(array('required', 'maxlength'));
+        $this->mFieldProperties['title']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['title']->addMessage('required', _MD_MESSAGE_FORMERROR3);
         $this->mFieldProperties['title']->addMessage('maxlength', _MD_MESSAGE_FORMERROR4);
         $this->mFieldProperties['title']->addVar('maxlength', '100');
-    
+
         $this->mFieldProperties['note'] = new XCube_FieldProperty($this);
-        $this->mFieldProperties['note']->setDependsByArray(array('required'));
+        $this->mFieldProperties['note']->setDependsByArray(['required']);
         $this->mFieldProperties['note']->addMessage('required', _MD_MESSAGE_FORMERROR5);
     }
-  
+
     public function validateUname()
     {
-        if ($this->get('uname') != "") {
+        if ('' !== $this->get('uname')) {
             $uname = mb_strcut($this->get('uname'), 0, 30);
             $userhand = xoops_gethandler('user');
             $criteria = new CriteriaCompo(new Criteria('uname', $uname));
             $uobj = $userhand->getObjects($criteria);
-            if (isset($uobj) && is_array($uobj) && count($uobj) == 1) {
+            if (isset($uobj) && is_array($uobj) && 1 === count($uobj)) {
                 $this->fuid = $uobj[0]->get('uid');
             } else {
                 $this->fuid = 0;
@@ -69,7 +69,7 @@ class MessageForm extends XCube_ActionForm
             $this->set('uname', $uname);
         }
     }
-  
+
     public function getShow($name, $type = 'toShow')
     {
         if (isset($this->mFormProperties[$name])) {
@@ -77,9 +77,9 @@ class MessageForm extends XCube_ActionForm
             $textFilter = $root->getTextFilter();
             return $textFilter->$type($this->mFormProperties[$name]->getValue(null));
         }
-        return "";
+        return '';
     }
-  
+
     public function update(&$obj)
     {
         $root = XCube_Root::getSingleton();
@@ -89,14 +89,14 @@ class MessageForm extends XCube_ActionForm
         $obj->set('message', $this->get('note'));
         $obj->set('utime', time());
     }
-  
-    public function setRes(&$obj)
+
+    public function setRes($obj)
     {
         $title = $obj->get('title', 'n');
-        if (!preg_match("/^Re:/i", $title)) {
+        if (!preg_match('/^Re:/i', $title)) {
             $title = 'Re: '.$title;
         }
-    
+
         $userhand = xoops_gethandler('user');
         $uobj = $userhand->get($obj->get('from_uid'));
         if (is_object($uobj)) {
@@ -107,7 +107,7 @@ class MessageForm extends XCube_ActionForm
         }
         return false;
     }
-  
+
     public function setUser(&$user)
     {
         $this->set('uname', $user->get('uname'));

@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH."/user/admin/actions/GroupPropertyAction.class.php";
-require_once XOOPS_MODULE_PATH."/user/admin/forms/GroupPermEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/admin/actions/GroupPropertyAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/GroupPermEditForm.class.php';
 
 /***
  * @internal
@@ -63,7 +63,7 @@ class User_GroupPermAction extends User_GroupPropertyAction
         }
         
         $moduleHandler =& xoops_gethandler('module');
-        $modPerms = array();
+        $modPerms = [];
 
         //
         // Store module read permission
@@ -106,16 +106,16 @@ class User_GroupPermAction extends User_GroupPropertyAction
     
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("group_perm.html");
-        $render->setAttribute("group", $this->mGroup);
-        $render->setAttribute("actionForm", $this->mActionForm);
-        $render->setAttribute("modulePermissions", $this->mPermissions);
-        $render->setAttribute("blockPermissions", $this->mBlockPermissions);
-        $render->setAttribute("systemPermissions", $this->mSystemPermissions);
+        $render->setTemplateName('group_perm.html');
+        $render->setAttribute('group', $this->mGroup);
+        $render->setAttribute('actionForm', $this->mActionForm);
+        $render->setAttribute('modulePermissions', $this->mPermissions);
+        $render->setAttribute('blockPermissions', $this->mBlockPermissions);
+        $render->setAttribute('systemPermissions', $this->mSystemPermissions);
     }
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("index.php?action=GroupPerm&groupid=" . $this->mGroup->getVar('groupid'));
+        $controller->executeForward('index.php?action=GroupPerm&groupid=' . $this->mGroup->getVar('groupid'));
     }
 }

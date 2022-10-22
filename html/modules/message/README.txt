@@ -1,158 +1,158 @@
-ƒvƒ‰ƒCƒx[ƒgƒƒbƒZ[ƒWƒ‚ƒWƒ…[ƒ‹‚Å‚·B
-Ver0.80‚æ‚èPHP5ê—p‚É‚È‚è‚Ü‚µ‚½B
+ï¿½vï¿½ï¿½ï¿½Cï¿½xï¿½[ï¿½gï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Å‚ï¿½ï¿½B
+Ver0.80ï¿½ï¿½ï¿½PHP5ï¿½ï¿½pï¿½É‚È‚ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
 
-ƒRƒA•Û—L‚ÌPM‚ÌãˆÊŒÝŠ·ƒ‚ƒWƒ…[ƒ‹‚Å‚·‚Ì‚ÅAPMƒ‚ƒWƒ…[ƒ‹‚ÍƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚µ‚Ä‚­‚¾‚³‚¢B
-i‚Ç‚ñ‚È‰e‹¿‚ªo‚é‚©ŽŽ‚µ‚Ä‚Ü‚¹‚ñBj
-
-
-yƒ‚ƒWƒ…[ƒ‹‚Ìˆê”ÊÝ’èz
-•\Ž¦”F1ƒy[ƒW‚É•\Ž¦‚·‚éƒŠƒXƒg”iƒ†[ƒU–ˆ‚É•ÏX‰Â”\j
-•Û‘¶“ú”FƒƒbƒZ[ƒW‚ð•Û‘¶‚·‚é“ú”i0‚Å–³ŠúŒÀj
-          •Û‘¶“ú”‚ð’´‚¦‚½‘—ŽóMƒƒbƒZ[ƒW‚ð‘—MŽž‚Éíœ‚µ‚Ü‚·B
-          –•ÛŒì‚³‚ê‚½ŽóMƒƒbƒZ[ƒW‚Ííœ‚³‚ê‚Ü‚¹‚ñB
-V’…ƒuƒƒbƒN‚Ì—˜—pFƒ}ƒCƒtƒŒƒ“ƒhƒ‚ƒWƒ…[ƒ‹‚ÌV’…ƒuƒƒbƒN‚ÉV’…PM‚ð•\Ž¦‚·‚é‚©‚Ç‚¤‚©
-user_userinfo.html‚Ì·‘Ö‚¦Fuser_userinfo.html‚ð·‘Ö‚¦‚é‚©‚Ç‚¤‚©
-–¢“ÇƒƒbƒZ[ƒW‚Ìíœ F•Û‘¶ŠúŠÔ‚Ì‰ß‚¬‚½ƒƒbƒZ[ƒW‚ðíœ‚·‚éÛ‚É–¢“ÇƒƒbƒZ[ƒW‚ðíœ‚·‚é‚©‚Ç‚¤‚©
+ï¿½Rï¿½Aï¿½Û—Lï¿½ï¿½PMï¿½Ìï¿½ÊŒÝŠï¿½ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Å‚ï¿½ï¿½Ì‚ÅAPMï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ÍƒAï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Xï¿½gï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
+ï¿½iï¿½Ç‚ï¿½È‰eï¿½ï¿½ï¿½ï¿½ï¿½oï¿½é‚©ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚Ü‚ï¿½ï¿½ï¿½Bï¿½j
 
 
-yƒ†[ƒU–ˆ‚ÌÝ’èz
-ƒvƒ‰ƒCƒx[ƒgƒƒbƒZ[ƒW‚ðŽg‚¤Fƒvƒ‰ƒCƒx[ƒgƒƒbƒZ[ƒW‚ðŽg‚¢‚½‚­‚È‚¢ê‡‚Íu‚¢‚¢‚¦v
-                              ‚±‚ê‚ªu‚¢‚¢‚¦v‚É‚È‚Á‚Ä‚¢‚éƒ†[ƒU‚É‚ÍƒƒbƒZ[ƒW‚ð‘—‚ê‚Ü‚¹‚ñB
-ƒ[ƒ‹‚É“]‘—‚·‚éFu‚Í‚¢v‚É‚·‚é‚ÆƒƒbƒZ[ƒWŽóMŽž‚Éƒ[ƒ‹‘—M‚³‚ê‚Ü‚·B
-ƒ[ƒ‹‚É–{•¶‚ð•\Ž¦‚·‚éBF‘—M‚³‚ê‚½ƒ[ƒ‹‚É–{•¶‚ðŠÜ‚ß‚éê‡‚Íu‚Í‚¢v
-1ƒy[ƒW‚Ì•\Ž¦”F1ƒy[ƒW‚É•\Ž¦‚·‚éƒŠƒXƒg”
-ŽóŽæ‹‘”Ûƒ†[ƒUFƒƒbƒZ[ƒW‚ðŽóŽæ‚è‚½‚­‚È‚¢ƒ†[ƒUID‚ð,(ƒJƒ“ƒ})‹æØ‚è‚Å“ü—Í‚µ‚Ü‚·B
-                Ú×ƒŠƒ“ƒN‚ðƒNƒŠƒbƒN‚·‚é‚Æƒ†[ƒU–¼‚Å’Ç‰Á‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
+ï¿½yï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Ìˆï¿½ÊÝ’ï¿½z
+ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½F1ï¿½yï¿½[ï¿½Wï¿½É•\ï¿½ï¿½ï¿½ï¿½ï¿½éƒŠï¿½Xï¿½gï¿½ï¿½ï¿½iï¿½ï¿½ï¿½[ï¿½Uï¿½ï¿½ï¿½É•ÏXï¿½Â”\ï¿½j
+ï¿½Û‘ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Fï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½Û‘ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½i0ï¿½Å–ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½j
+          ï¿½Û‘ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ð’´‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ð‘—Mï¿½ï¿½ï¿½Éíœï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+          ï¿½ï¿½ï¿½ÛŒì‚³ï¿½ê‚½ï¿½ï¿½Mï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½Ííœï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B
+ï¿½Vï¿½ï¿½ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½Ì—ï¿½ï¿½pï¿½Fï¿½}ï¿½Cï¿½tï¿½ï¿½ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ÌVï¿½ï¿½ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½ÉVï¿½ï¿½PMï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½é‚©ï¿½Ç‚ï¿½ï¿½ï¿½
+user_userinfo.htmlï¿½Ìï¿½ï¿½Ö‚ï¿½ï¿½Fuser_userinfo.htmlï¿½ï¿½ï¿½ï¿½ï¿½Ö‚ï¿½ï¿½é‚©ï¿½Ç‚ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½Çƒï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½Ìíœ ï¿½Fï¿½Û‘ï¿½ï¿½ï¿½ï¿½Ô‚Ì‰ß‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½íœï¿½ï¿½ï¿½ï¿½Û‚É–ï¿½ï¿½Çƒï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½íœï¿½ï¿½ï¿½é‚©ï¿½Ç‚ï¿½ï¿½ï¿½
 
 
-yƒ[ƒ‹‚Ìƒeƒ“ƒvƒŒ[ƒgz
-‘—M‚³‚ê‚éƒ[ƒ‹‚ÌŒ–¼‚ÍŒ¾Œêƒtƒ@ƒCƒ‹imain.phpj‚Ì_MD_MESSAGE_MAILSUBJECT‚É‚È‚è‚Ü‚·B
-–{•¶‚ÍŒ¾Œêƒtƒ@ƒCƒ‹‚ÌƒfƒBƒŒƒNƒgƒŠinvitation.tpl‚É‚È‚è‚Ü‚·B
-–{•¶‚ð•\Ž¦‚µ‚È‚¢ê‡‚ÍŒ¾Œêƒtƒ@ƒCƒ‹imain.phpj‚Ì_MD_MESSAGE_MAILBODY‚ð—˜—p‚µ‚Ü‚·B{0}‚É‚ÍƒTƒCƒg‚ÌURL‚ª“ü‚è‚Ü‚·B
-invitation.tpl‚ÍSmarty‚ð—˜—p‚µ‚Ä‚¢‚ÄAƒAƒTƒCƒ“‚³‚ê‚Ä‚¢‚é•Ï”‚Ísitename,uname,note,siteurl‚É‚È‚è‚Ü‚·B
-XCL‚Ìƒeƒ“ƒvƒŒ[ƒg‚Æˆá‚¢<{•Ï”–¼}>‚Å‚Í‚È‚­{•Ï”–¼}‚É‚È‚è‚Ü‚·B
+ï¿½yï¿½ï¿½ï¿½[ï¿½Uï¿½ï¿½ï¿½ÌÝ’ï¿½z
+ï¿½vï¿½ï¿½ï¿½Cï¿½xï¿½[ï¿½gï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½gï¿½ï¿½ï¿½Fï¿½vï¿½ï¿½ï¿½Cï¿½xï¿½[ï¿½gï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ê‡ï¿½Íuï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½v
+                              ï¿½ï¿½ï¿½ê‚ªï¿½uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½É‚È‚ï¿½ï¿½Ä‚ï¿½ï¿½éƒ†ï¿½[ï¿½Uï¿½É‚Íƒï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ð‘—‚ï¿½Ü‚ï¿½ï¿½ï¿½B
+ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½É“]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Fï¿½uï¿½Í‚ï¿½ï¿½vï¿½É‚ï¿½ï¿½ï¿½Æƒï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½Mï¿½ï¿½ï¿½Éƒï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½É–{ï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Bï¿½Fï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½É–{ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ß‚ï¿½ê‡ï¿½Íuï¿½Í‚ï¿½ï¿½v
+1ï¿½yï¿½[ï¿½Wï¿½Ì•\ï¿½ï¿½ï¿½ï¿½ï¿½F1ï¿½yï¿½[ï¿½Wï¿½É•\ï¿½ï¿½ï¿½ï¿½ï¿½éƒŠï¿½Xï¿½gï¿½ï¿½
+ï¿½ï¿½æ‹‘ï¿½Ûƒï¿½ï¿½[ï¿½Uï¿½Fï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½è‚½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½[ï¿½UIDï¿½ï¿½,(ï¿½Jï¿½ï¿½ï¿½})ï¿½ï¿½Ø‚ï¿½Å“ï¿½ï¿½Í‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+                ï¿½Ú×ƒï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½bï¿½Nï¿½ï¿½ï¿½ï¿½Æƒï¿½ï¿½[ï¿½Uï¿½ï¿½ï¿½Å’Ç‰ï¿½ï¿½ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
 
-yƒe[ƒ}‚ÖƒAƒTƒCƒ“‚·‚éz
-<{message_newmessage}>‚ðƒe[ƒ}‚ÌD‚«‚ÈˆÊ’uiƒAƒTƒCƒ“‚µ‚½’l‚ð—˜—p‚·‚é‚æ‚è‘O‚ÌˆÊ’uj‚É‹Lq‚·‚é‚¾‚¯‚Å
-new_messages‚É–¢“Ç”
-open_message_alert‚ÉV’…ƒƒbƒZ[ƒW‚ª‚ ‚éê‡‚É1
-‚ªƒAƒTƒCƒ“‚³‚ê‚Ü‚·B
-
-ƒAƒTƒCƒ“‚·‚é•Ï”–¼‚ð•ÏX‚µ‚½‚¢ê‡‚Í
-<{message_newmessage name=–¢“Ç”‚ðƒAƒTƒCƒ“‚µ‚½‚¢•Ï”–¼ open=ƒAƒ‰[ƒg‚ðƒAƒTƒCƒ“‚µ‚½‚¢•Ï”–¼}>
-‚É‚µ‚Ä‚­‚¾‚³‚¢B
-
-ƒQƒXƒg‚Ìê‡‚Ínew_messages‚Éfalse‚ªƒAƒTƒCƒ“‚³‚ê‚Ü‚·B“o˜^ƒ†[ƒU‚Å–¢“Ç‚ª‚È‚¢ê‡‚Í0‚ªƒAƒTƒCƒ“‚³‚ê‚Ü‚·B
-
-‚Ü‚½AHandler‚ÌŒÝŠ·«‚ðŒüã‚³‚¹‚½‚Ì‚Å]—ˆ‚ÌX2—p‚ÌSmartyƒR[ƒh‚Å‚àƒe[ƒ}‚Ö‚ÌƒAƒTƒCƒ“‚ª‰Â”\‚Å‚·B
-–ŽQlƒXƒŒƒbƒhFhttp://www.xugj.org/modules/d3forum/index.php?post_id=5138
+ï¿½yï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Ìƒeï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½z
+ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½ï¿½éƒï¿½[ï¿½ï¿½ï¿½ÌŒï¿½ï¿½ï¿½ï¿½ÍŒï¿½ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½imain.phpï¿½jï¿½ï¿½_MD_MESSAGE_MAILSUBJECTï¿½É‚È‚ï¿½Ü‚ï¿½ï¿½B
+ï¿½{ï¿½ï¿½ï¿½ÍŒï¿½ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ìƒfï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½invitation.tplï¿½É‚È‚ï¿½Ü‚ï¿½ï¿½B
+ï¿½{ï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ê‡ï¿½ÍŒï¿½ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½imain.phpï¿½jï¿½ï¿½_MD_MESSAGE_MAILBODYï¿½ð—˜—pï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B{0}ï¿½É‚ÍƒTï¿½Cï¿½gï¿½ï¿½URLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+invitation.tplï¿½ï¿½Smartyï¿½ð—˜—pï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ÄAï¿½Aï¿½Tï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Ïï¿½ï¿½ï¿½sitename,uname,note,siteurlï¿½É‚È‚ï¿½Ü‚ï¿½ï¿½B
+XCLï¿½Ìƒeï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½Æˆá‚¢<{ï¿½Ïï¿½ï¿½ï¿½}>ï¿½Å‚Í‚È‚ï¿½{ï¿½Ïï¿½ï¿½ï¿½}ï¿½É‚È‚ï¿½Ü‚ï¿½ï¿½B
 
 
-yƒ‚ƒoƒCƒ‹—pƒeƒ“ƒvƒŒ[ƒgz
-ƒ‚ƒoƒCƒ‹ ƒeƒ“ƒvƒnƒEƒX—l‚Åƒ‚ƒoƒCƒ‹—p‚Ìƒeƒ“ƒvƒŒ[ƒg‚ð”z•z‚µ‚Ä‚­‚ê‚Ä‚¢‚Ü‚·
-http://www.mc8.jp/HD/modules/xpwiki/45.html
+ï¿½yï¿½eï¿½[ï¿½}ï¿½ÖƒAï¿½Tï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½z
+<{message_newmessage}>ï¿½ï¿½ï¿½eï¿½[ï¿½}ï¿½ÌDï¿½ï¿½ï¿½ÈˆÊ’uï¿½iï¿½Aï¿½Tï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½lï¿½ð—˜—pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ÌˆÊ’uï¿½jï¿½É‹Lï¿½qï¿½ï¿½ï¿½é‚¾ï¿½ï¿½ï¿½ï¿½
+new_messagesï¿½É–ï¿½ï¿½Çï¿½
+open_message_alertï¿½ÉVï¿½ï¿½ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ï¿½1
+ï¿½ï¿½ï¿½Aï¿½Tï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+
+ï¿½Aï¿½Tï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïï¿½ï¿½ï¿½ï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ï¿½
+<{message_newmessage name=ï¿½ï¿½ï¿½Çï¿½ï¿½ï¿½ï¿½Aï¿½Tï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïï¿½ï¿½ï¿½ open=ï¿½Aï¿½ï¿½ï¿½[ï¿½gï¿½ï¿½ï¿½Aï¿½Tï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïï¿½ï¿½ï¿½}>
+ï¿½É‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
+
+ï¿½Qï¿½Xï¿½gï¿½Ìê‡ï¿½ï¿½new_messagesï¿½ï¿½falseï¿½ï¿½ï¿½Aï¿½Tï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½Bï¿½oï¿½^ï¿½ï¿½ï¿½[ï¿½Uï¿½Å–ï¿½ï¿½Ç‚ï¿½ï¿½È‚ï¿½ï¿½ê‡ï¿½ï¿½0ï¿½ï¿½ï¿½Aï¿½Tï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+
+ï¿½Ü‚ï¿½ï¿½AHandlerï¿½ÌŒÝŠï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã‚³ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Å]ï¿½ï¿½ï¿½ï¿½X2ï¿½pï¿½ï¿½Smartyï¿½Rï¿½[ï¿½hï¿½Å‚ï¿½ï¿½eï¿½[ï¿½}ï¿½Ö‚ÌƒAï¿½Tï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Â”\ï¿½Å‚ï¿½ï¿½B
+ï¿½ï¿½ï¿½Qï¿½lï¿½https://ï¿½Fhttps://www.xugj.org/modules/d3forum/index.php?post_id=5138
+
+
+ï¿½yï¿½ï¿½ï¿½oï¿½Cï¿½ï¿½ï¿½pï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½z
+ï¿½ï¿½ï¿½oï¿½Cï¿½ï¿½ ï¿½eï¿½ï¿½ï¿½vï¿½nï¿½Eï¿½Xï¿½lï¿½Åƒï¿½ï¿½oï¿½Cï¿½ï¿½ï¿½pï¿½Ìƒeï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½ï¿½zï¿½zï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½
+https://www.mc8.jp/HD/modules/xpwiki/45.html
 
 
 templates
-/message_new.html‚Ì26s–Ú
+/message_new.htmlï¿½ï¿½26ï¿½sï¿½ï¿½
 <tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE2}></td><td class="even"><{xoops_input name=uname size=30 maxlength=50 value=$mActionForm->get('uname')}></td></tr>
-‚ð
+ï¿½ï¿½
 <tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE2}></td><td class="even"><{message_userlist uname=$mActionForm->get('uname')}></td></tr>
-‚É‘‚«Š·‚¦‚é‚±‚Æ‚Åƒ†[ƒU–¼‚ð’¼Ú“ü—Í‚©‚çƒŠƒXƒg‘I‘ð‚Ö•ÏXo—ˆ‚Ü‚·B
+ï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é‚±ï¿½Æ‚Åƒï¿½ï¿½[ï¿½Uï¿½ï¿½ï¿½ð’¼Ú“ï¿½ï¿½Í‚ï¿½ï¿½çƒŠï¿½Xï¿½gï¿½Iï¿½ï¿½ï¿½Ö•ÏXï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 <tr><td class="head"><{$smarty.const._MD_MESSAGE_TEMPLATE2}></td><td class="even"><{message_suggestlist uname=$mActionForm->get('uname')}></td></tr>
-‚É‘‚«Š·‚¦‚é‚±‚Æ‚ÅƒI[ƒgƒRƒ“ƒvƒŠ[ƒg‚ÌƒeƒLƒXƒgƒ{ƒbƒNƒX‚ª—˜—po—ˆ‚Ü‚·B
+ï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é‚±ï¿½Æ‚ÅƒIï¿½[ï¿½gï¿½Rï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½Ìƒeï¿½Lï¿½Xï¿½gï¿½{ï¿½bï¿½Nï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½pï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
 
-ysuggest.jsz
-”z•zŒ³FEnjoy*Study‚³‚ñ(http://www.enjoyxstudy.com/)
-ƒ‰ƒCƒZƒ“ƒXFMITƒ‰ƒCƒZƒ“ƒX
+ï¿½ysuggest.jsï¿½z
+ï¿½zï¿½zï¿½ï¿½ï¿½FEnjoy*https://ï¿½ï¿½(https://www.enjoyxstudy.com/)
+ï¿½ï¿½ï¿½Cï¿½Zï¿½ï¿½ï¿½Xï¿½FMITï¿½ï¿½ï¿½Cï¿½Zï¿½ï¿½ï¿½X
 
 
 
 ToDo:
-“¯•ñ”­M
+ï¿½ï¿½ï¿½ñ”­M
 
-yXV—š—ðz
-Ver 1.19:ƒvƒ‰ƒCƒx[ƒgƒƒbƒZ[ƒWŒÂlÝ’è‚ðs‚Á‚Ä‚¢‚È‚¢ƒ†[ƒU[‚Ì
-         uƒvƒ‰ƒCƒx[ƒgƒƒbƒZ[ƒW‚ðŽg‚¤vuƒ[ƒ‹‚É“]‘—‚·‚évuƒ[ƒ‹‚É–{•¶‚ð•\Ž¦‚·‚év
-         ‚Ì‹K’è’l‚ðŠÇ—‰æ–Ê‚Å•ÏX‰Â”\‚Æ‚µ‚½B
-Ver 1.18:pmƒ‚ƒWƒ…[ƒ‹‚Æ‚ÌŒÝŠ·«‚ÌŒüã
-Ver 1.17:íœ‚³‚ê‚½ƒ†[ƒU‚Ö‚Ì•ÔM‚ÅƒGƒ‰[‚É‚È‚Á‚Ä‚¢‚½‚Ì‚ðC³
-Ver 1.16:newAction.class.php‚ÌC³
-         My_MailerƒNƒ‰ƒX‚Ìbody‚ðƒZƒbƒg‚·‚éÛ‚ÉƒeƒLƒXƒg‚Ì‰üsƒR[ƒh‚ð“ˆê‚·‚é‚æ‚¤‚É•ÏX
-         mb_encode_mimeheader‚É‰üsƒR[ƒh‚ðƒZƒbƒg
-Ver 1.15:My_MailerƒNƒ‰ƒX‚ðXoopsMailer‚Æƒƒ\ƒbƒh–¼‚ð“¯‚¶‚É•ÏXiˆê•”‚¾‚¯j
-         ’è”_USE_XOOPSMAILER‚ð’Ç‰Á‚µAXoopsMailer‚ð—˜—p‚Å‚«‚é‚æ‚¤‚É•ÏX
-         suggest.js‚ÌƒAƒbƒvƒf[ƒg
-Ver 1.14:smarty_function_message_userlist‚ÌC³
-Ver 1.13:‰pŒê‚ÌŒ¾Œêƒtƒ@ƒCƒ‹‚É’è”’Ç‰Á
-Ver 1.12:‘—M” ‚ÅŽóMŽÒAŒ–¼‚Å‚Ìi‚èž‚Ý‚É‘Î‰ž
-         ŽóM” ‚Ìiž‚ÝðŒ’Ç‰Á
-         Ž©“®íœŽž‚É–¢“ÇƒƒbƒZ[ƒW‚ðíœ‚·‚é‚©Ý’è’Ç‰Á
-         ƒeƒ“ƒvƒŒ[ƒgA‰pŒê‚ÌŒ¾Œêƒtƒ@ƒCƒ‹A‰æ‘œ‚ð•ÏX
-         ŠÇ—‰æ–Ê(admin.php)‚ÉƒAƒNƒZƒXŽžAŽ©“®íœ‚·‚é‚æ‚¤‚ÉƒvƒŠƒ[ƒh’Ç‰Á
-Ver 1.11:‘¼l‚ÌƒƒbƒZ[ƒW‚ª“Ç‚ß‚Ä‚µ‚Ü‚¤–â‘èC³
-Ver 1.10:PostgreSQL‘Î‰ž‚Ì”pŽ~
-         ƒtƒƒ“ƒgƒRƒ“ƒgƒ[ƒ‰[“®ì‚Ì”pŽ~
-         phpmailer‚Ìƒpƒbƒ`íœ
-Ver 1.02:ƒ†[ƒUƒŠƒXƒg—p‚ÌSmartyƒvƒ‰ƒOƒCƒ“’Ç‰Á
-         suggest.js‚ð—˜—p‚µ‚½Smartyƒvƒ‰ƒOƒCƒ“’Ç‰Á
-Ver 1.01:Handler‚ÌŒÝŠ·«‚ÌŒüã
-         ƒe[ƒ}‚ÖV’…”‚ðƒAƒTƒCƒ“‚·‚éSmartyƒvƒ‰ƒOƒCƒ“’Ç‰Á
-         ƒZƒLƒ…ƒŠƒeƒBŒüã
-         Žg‚í‚ê‚Ä‚¢‚È‚¢ƒtƒ@ƒCƒ‹‚Ìíœ
-         .htaccess‚ÌƒTƒ“ƒvƒ‹’Ç‰Á
-Ver 1.00:ŽóMƒƒbƒZ[ƒW•ÛŒì’Ç‰Á
-         ŽóM” ‚Ì‰æ‘œ•ÏX
-         ŽóMƒƒbƒZ[ƒW‚Ìƒ[ƒ‹‘—M’Ç‰Á
-         ‚¨–â‚¢‡‚í‚¹‚©‚ç‚Ì(‘—Mƒ†[ƒU‚Ì‚È‚¢)ƒƒbƒZ[ƒW‚É•ÔMƒ{ƒ^ƒ“‚ªo‚éƒoƒOC³
-Ver 0.90:ƒ‚ƒWƒ…[ƒ‹ˆê”ÊÝ’è‚É•Û‘¶“ú”’Ç‰Á
-         ƒ‚ƒWƒ…[ƒ‹ˆê”ÊÝ’è‚ÉV’…ƒuƒƒbƒN‚Ì—˜—p’Ç‰Á
-         ƒ‚ƒWƒ…[ƒ‹ˆê”ÊÝ’è‚Éuser_userinfo.html‚Ì·‘Ö‚¦’Ç‰Á
-         ƒfƒtƒHƒ‹ƒg‚ÌPMƒ‚ƒWƒ…[ƒ‹‚©‚ç‚Ìmigration‹@”\’Ç‰Á
-         ƒCƒ“ƒXƒg[ƒ‹Žž‚Ìƒ`ƒFƒbƒN‹@”\’Ç‰Á
-         ƒ[ƒ‹ƒeƒ“ƒvƒŒ[ƒg‚ÌC³
-Ver 0.83:ƒuƒƒbƒN‚Ìƒeƒ“ƒvƒŒ[ƒgC³
-         ‚¨‹C‚É“ü‚è‚É’Ç‰ÁŽž‚ÌWarningC³
-Ver 0.82:ƒuƒƒbƒNƒtƒ@ƒCƒ‹–¼‚ÌTYPOC³
-Ver 0.81:ƒ[ƒ‹“]‘—Ý’è‚ÌƒoƒOC³
-Ver 0.80:PHP5ê—p‚É•ÏX
-         ƒtƒƒ“ƒgƒRƒ“ƒgƒ[ƒ‰“®ìŽž‚É‚¨‹C‚É“ü‚èƒ†[ƒU‚Ì“o˜^‚ªo—ˆ‚È‚©‚Á‚½‚Ì‚ðC³
-         ƒeƒ“ƒvƒŒ[ƒg‚ÌC³
-         handlerƒNƒ‰ƒX‚ðhandlerƒfƒBƒŒƒNƒgƒŠ‚ÉˆÚ“®
-         PostgreSQL‘Î‰ž
-Ver 0.76:ƒuƒ‰ƒbƒNƒŠƒXƒg’Ç‰ÁŽž‚ÌƒoƒOC³
-Ver 0.75:ˆê——‚Å‚ÌíœŽž‚Ì–ß‚èæC³
-Ver 0.74:ˆê——‚Å‚ÌíœŽž‚ÌƒGƒ‰[ˆ—C³
-Ver 0.73:ƒuƒ‰ƒbƒNƒŠƒXƒg’Ç‰ÁŽž‚ÌƒoƒOC³
-Ver 0.72:ƒuƒƒbƒN‚ªPHP4‚Å•\Ž¦‚³‚ê‚È‚­‚È‚Á‚½‚Ì‚ðC³
-Ver 0.71:ƒuƒ‰ƒbƒNƒŠƒXƒg‚Ö’Ç‰Á‚·‚éuid‚ªŽ©•ª‚É‚È‚Á‚Ä‚¢‚½‚Ì‚ðC³
-         ƒtƒƒ“ƒgƒRƒ“ƒgƒ[ƒ‰[‚ÌƒvƒŠƒ[ƒh‚É‘Î‰ž
-Ver 0.70:message_userinfo.html‚Ìƒeƒ“ƒvƒŒ[ƒg’Ç‰Á‚µAuserinfo‚Ìƒeƒ“ƒvƒŒ[ƒg‚ð·‚µ‘Ö‚¦
-         message_inbox‚Éuname‚ÌƒtƒB[ƒ‹ƒh’Ç‰Á‚µAƒQƒXƒg‚©‚ç‚ÌPM‚ðŽóŽæ‚ê‚é‚æ‚¤‚É•ÏXiŠÇ—ŽÒŒü‚¯‚Å‰æ–Ê“™‚Íì¬‚µ‚Ä‚¢‚Ü‚¹‚ñBj
-         ƒuƒ‰ƒbƒNƒŠƒXƒg‚ÌÝ’è‰æ–Ê’Ç‰Á
-Ver 0.63:message_new.html‚Å‘½dƒGƒXƒP[ƒv‚³‚ê‚Ä‚¢‚½‚Ì‚ðC³
-         ˆê•”‚ÌŠÂ‹«‚Åƒy[ƒWƒiƒr‚ª‹@”\‚µ‚È‚©‚Á‚½‚Ì‚ðC³
-Ver 0.62:0.61‚Å’¼‚¹‚Ä‚È‚©‚Á‚½‚Ì‚Å‚³‚ç‚ÉC³
-         ƒƒjƒ…[ƒuƒƒbƒN‚ÉŽóM” ‚Æ‘—M” ‚ÌŒ”•\Ž¦
-Ver 0.61:ŽóM” ‚Å‚Ì‘—MŽÒ‚Ìi‚èž‚Ý‚ðC³
-Ver 0.60:–{•¶‚ðƒ[ƒ‹“]‘—‚·‚é‚©‚µ‚È‚¢‚©‚ÌÝ’è’Ç‰Á
-         “]‘—ƒ[ƒ‹‚Ìƒeƒ“ƒvƒŒ[ƒg‰»
-         ƒ†[ƒU–ˆ‚Å1ƒy[ƒW‚Ì•\Ž¦”‚ðÝ’èo—ˆ‚é‚æ‚¤‚ÉÝ’è’Ç‰Á
-         ŽóM” ‚Å‘—MŽÒAŒ–¼‚Å‚Ìi‚èž‚Ý‚É‘Î‰ž
-         ƒuƒ‰ƒbƒNƒŠƒXƒg‘Î‰ž
-Ver 0.53:require‚ðrequire_once‚É•ÏX
-Ver 0.52:V’…ƒuƒƒbƒN‚ðPMƒƒjƒ…[ƒuƒƒbƒN‚É•ÏX
-         ƒ`ƒFƒbƒNƒ{ƒbƒNƒX‚Å‚Ü‚Æ‚ß‚Äíœ‚É‘Î‰ž
-Ver 0.51:PM‚ÌV’…ƒuƒƒbƒN’Ç‰Á
-Ver 0.50:ƒ†[ƒU‚ªPM‚ðŽg—p‚·‚é‚©‘I‘ðo—ˆ‚é‚æ‚¤‚É‹@”\’Ç‰Á
-         PM‚ðŽó‚¯Žæ‚Á‚½‚Æ‚«‚Éƒ[ƒ‹“]‘—’Ç‰ÁiŽè”²‚«j
-Ver 0.40:íœ‚Ìo—ˆ‚È‚¢ƒoƒOC³
-         ƒCƒxƒ“ƒg’Ê’mAƒ[ƒ‹ƒWƒ‡ƒu‘Î‰ž
-Ver 0.31:ƒeƒ“ƒvƒŒ[ƒg‚É“ú–{Œê‚ª‘‚©‚ê‚Ä‚¢‚½‚Ì‚ðC³
-Ver 0.30:‚¨‹C‚É“ü‚èƒ†[ƒUŽÀ‘•
-         ˆê•”ƒR[ƒh‚Ì‘‚«’¼‚µ
-Ver 0.21:‘—M” ‚Ìƒy[ƒWƒiƒrC³
-Ver 0.20:usersearchƒ‚ƒWƒ…[ƒ‹‚É‘Î‰ž
-         ƒy[ƒWƒiƒr‚É‘Î‰ž
+ï¿½yï¿½Xï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½z
+Ver 1.19:ï¿½vï¿½ï¿½ï¿½Cï¿½xï¿½[ï¿½gï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½Âlï¿½Ý’ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½[ï¿½Uï¿½[ï¿½ï¿½
+         ï¿½uï¿½vï¿½ï¿½ï¿½Cï¿½xï¿½[ï¿½gï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½gï¿½ï¿½ï¿½vï¿½uï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½É“]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½uï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½É–{ï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½v
+         ï¿½Ì‹Kï¿½ï¿½lï¿½ï¿½ï¿½Ç—ï¿½ï¿½ï¿½Ê‚Å•ÏXï¿½Â”\ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½B
+Ver 1.18:pmï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Æ‚ÌŒÝŠï¿½ï¿½ï¿½ï¿½ÌŒï¿½ï¿½ï¿½
+Ver 1.17:ï¿½íœï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½[ï¿½Uï¿½Ö‚Ì•ÔMï¿½ÅƒGï¿½ï¿½ï¿½[ï¿½É‚È‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½Cï¿½ï¿½
+Ver 1.16:newAction.class.phpï¿½ÌCï¿½ï¿½
+         My_Mailerï¿½Nï¿½ï¿½ï¿½Xï¿½ï¿½bodyï¿½ï¿½ï¿½Zï¿½bï¿½gï¿½ï¿½ï¿½ï¿½Û‚Éƒeï¿½Lï¿½Xï¿½gï¿½Ì‰ï¿½ï¿½sï¿½Rï¿½[ï¿½hï¿½ð“ˆê‚·ï¿½ï¿½æ‚¤ï¿½É•ÏX
+         mb_encode_mimeheaderï¿½É‰ï¿½ï¿½sï¿½Rï¿½[ï¿½hï¿½ï¿½ï¿½Zï¿½bï¿½g
+Ver 1.15:My_Mailerï¿½Nï¿½ï¿½ï¿½Xï¿½ï¿½XoopsMailerï¿½Æƒï¿½ï¿½\ï¿½bï¿½hï¿½ï¿½ï¿½ð“¯‚ï¿½ï¿½É•ÏXï¿½iï¿½ê•”ï¿½ï¿½ï¿½ï¿½ï¿½j
+         ï¿½è”_USE_XOOPSMAILERï¿½ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½AXoopsMailerï¿½ð—˜—pï¿½Å‚ï¿½ï¿½ï¿½æ‚¤ï¿½É•ÏX
+         suggest.jsï¿½ÌƒAï¿½bï¿½vï¿½fï¿½[ï¿½g
+Ver 1.14:smarty_function_message_userlistï¿½ÌCï¿½ï¿½
+Ver 1.13:ï¿½pï¿½ï¿½ÌŒï¿½ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½É’è”ï¿½Ç‰ï¿½
+Ver 1.12:ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½ÅŽï¿½Mï¿½ÒAï¿½ï¿½ï¿½ï¿½ï¿½Å‚Ìiï¿½èžï¿½Ý‚É‘Î‰ï¿½
+         ï¿½ï¿½Mï¿½ï¿½ï¿½Ìiï¿½ï¿½ï¿½Ýï¿½ï¿½ï¿½ï¿½Ç‰ï¿½
+         ï¿½ï¿½ï¿½ï¿½ï¿½íœï¿½ï¿½ï¿½É–ï¿½ï¿½Çƒï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½íœï¿½ï¿½ï¿½é‚©ï¿½Ý’ï¿½Ç‰ï¿½
+         ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½Aï¿½pï¿½ï¿½ÌŒï¿½ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Aï¿½æ‘œï¿½ï¿½ÏX
+         ï¿½Ç—ï¿½ï¿½ï¿½ï¿½(admin.php)ï¿½ÉƒAï¿½Nï¿½Zï¿½Xï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½íœï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½Éƒvï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½hï¿½Ç‰ï¿½
+Ver 1.11:ï¿½ï¿½ï¿½lï¿½Ìƒï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½Ç‚ß‚Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½
+Ver 1.10:PostgreSQLï¿½Î‰ï¿½ï¿½Ì”pï¿½~
+         ï¿½tï¿½ï¿½ï¿½ï¿½ï¿½gï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½Ì”pï¿½~
+         phpmailerï¿½Ìƒpï¿½bï¿½`ï¿½íœ
+Ver 1.02:ï¿½ï¿½ï¿½[ï¿½Uï¿½ï¿½ï¿½Xï¿½gï¿½pï¿½ï¿½Smartyï¿½vï¿½ï¿½ï¿½Oï¿½Cï¿½ï¿½ï¿½Ç‰ï¿½
+         suggest.jsï¿½ð—˜—pï¿½ï¿½ï¿½ï¿½Smartyï¿½vï¿½ï¿½ï¿½Oï¿½Cï¿½ï¿½ï¿½Ç‰ï¿½
+Ver 1.01:Handlerï¿½ÌŒÝŠï¿½ï¿½ï¿½ï¿½ÌŒï¿½ï¿½ï¿½
+         ï¿½eï¿½[ï¿½}ï¿½ÖVï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Tï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Smartyï¿½vï¿½ï¿½ï¿½Oï¿½Cï¿½ï¿½ï¿½Ç‰ï¿½
+         ï¿½Zï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½eï¿½Bï¿½ï¿½ï¿½ï¿½
+         ï¿½gï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ìíœ
+         .htaccessï¿½ÌƒTï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Ç‰ï¿½
+Ver 1.00:ï¿½ï¿½Mï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ÛŒï¿½Ç‰ï¿½
+         ï¿½ï¿½Mï¿½ï¿½ï¿½Ì‰æ‘œï¿½ÏX
+         ï¿½ï¿½Mï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½Ìƒï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Mï¿½Ç‰ï¿½
+         ï¿½ï¿½ï¿½â‚¢ï¿½ï¿½ï¿½í‚¹ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½[ï¿½Uï¿½Ì‚È‚ï¿½)ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½É•ÔMï¿½{ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½ï¿½oï¿½Oï¿½Cï¿½ï¿½
+Ver 0.90:ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ÊÝ’ï¿½É•Û‘ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç‰ï¿½
+         ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ÊÝ’ï¿½ÉVï¿½ï¿½ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½Ì—ï¿½ï¿½pï¿½Ç‰ï¿½
+         ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ÊÝ’ï¿½ï¿½user_userinfo.htmlï¿½Ìï¿½ï¿½Ö‚ï¿½ï¿½Ç‰ï¿½
+         ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½ï¿½PMï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½migrationï¿½@ï¿½\ï¿½Ç‰ï¿½
+         ï¿½Cï¿½ï¿½ï¿½Xï¿½gï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Ìƒ`ï¿½Fï¿½bï¿½Nï¿½@ï¿½\ï¿½Ç‰ï¿½
+         ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½ÌCï¿½ï¿½
+Ver 0.83:ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½Ìƒeï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½Cï¿½ï¿½
+         ï¿½ï¿½ï¿½Cï¿½É“ï¿½ï¿½ï¿½É’Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½Warningï¿½Cï¿½ï¿½
+Ver 0.82:ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½TYPOï¿½Cï¿½ï¿½
+Ver 0.81:ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½]ï¿½ï¿½ï¿½Ý’ï¿½Ìƒoï¿½Oï¿½Cï¿½ï¿½
+Ver 0.80:PHP5ï¿½ï¿½pï¿½É•ÏX
+         ï¿½tï¿½ï¿½ï¿½ï¿½ï¿½gï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ìŽžï¿½É‚ï¿½ï¿½Cï¿½É“ï¿½ï¿½èƒ†ï¿½[ï¿½Uï¿½Ì“oï¿½^ï¿½ï¿½ï¿½oï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½Cï¿½ï¿½
+         ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½ÌCï¿½ï¿½
+         handlerï¿½Nï¿½ï¿½ï¿½Xï¿½ï¿½handlerï¿½fï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½ï¿½ÉˆÚ“ï¿½
+         PostgreSQLï¿½Î‰ï¿½
+Ver 0.76:ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½ï¿½ï¿½Xï¿½gï¿½Ç‰ï¿½ï¿½ï¿½ï¿½Ìƒoï¿½Oï¿½Cï¿½ï¿½
+Ver 0.75:ï¿½ê——ï¿½Å‚Ìíœï¿½ï¿½ï¿½Ì–ß‚ï¿½ï¿½Cï¿½ï¿½
+Ver 0.74:ï¿½ê——ï¿½Å‚Ìíœï¿½ï¿½ï¿½ÌƒGï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½
+Ver 0.73:ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½ï¿½ï¿½Xï¿½gï¿½Ç‰ï¿½ï¿½ï¿½ï¿½Ìƒoï¿½Oï¿½Cï¿½ï¿½
+Ver 0.72:ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½ï¿½PHP4ï¿½Å•\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½Cï¿½ï¿½
+Ver 0.71:ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½ï¿½ï¿½Xï¿½gï¿½Ö’Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½uidï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É‚È‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½Cï¿½ï¿½
+         ï¿½tï¿½ï¿½ï¿½ï¿½ï¿½gï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[ï¿½Ìƒvï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½hï¿½É‘Î‰ï¿½
+Ver 0.70:message_userinfo.htmlï¿½Ìƒeï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½Ç‰ï¿½ï¿½ï¿½ï¿½Auserinfoï¿½Ìƒeï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö‚ï¿½
+         message_inboxï¿½ï¿½unameï¿½Ìƒtï¿½Bï¿½[ï¿½ï¿½ï¿½hï¿½Ç‰ï¿½ï¿½ï¿½ï¿½Aï¿½Qï¿½Xï¿½gï¿½ï¿½ï¿½ï¿½ï¿½PMï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½É•ÏXï¿½iï¿½Ç—ï¿½ï¿½ÒŒï¿½ï¿½ï¿½ï¿½Å‰ï¿½Ê“ï¿½ï¿½Íì¬ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Bï¿½j
+         ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½ï¿½ï¿½Xï¿½gï¿½ÌÝ’ï¿½ï¿½Ê’Ç‰ï¿½
+Ver 0.63:message_new.htmlï¿½Å‘ï¿½ï¿½dï¿½Gï¿½Xï¿½Pï¿½[ï¿½vï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½Cï¿½ï¿½
+         ï¿½ê•”ï¿½ÌŠÂ‹ï¿½ï¿½Åƒyï¿½[ï¿½Wï¿½iï¿½rï¿½ï¿½ï¿½@ï¿½\ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½Cï¿½ï¿½
+Ver 0.62:0.61ï¿½Å’ï¿½ï¿½ï¿½ï¿½Ä‚È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Å‚ï¿½ï¿½ï¿½ÉCï¿½ï¿½
+         ï¿½ï¿½ï¿½jï¿½ï¿½ï¿½[ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½ÉŽï¿½Mï¿½ï¿½ï¿½Æ‘ï¿½ï¿½Mï¿½ï¿½ï¿½ÌŒï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½
+Ver 0.61:ï¿½ï¿½Mï¿½ï¿½ï¿½Å‚Ì‘ï¿½ï¿½Mï¿½Ò‚Ìiï¿½èžï¿½Ý‚ï¿½ï¿½Cï¿½ï¿½
+Ver 0.60:ï¿½{ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½é‚©ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ÌÝ’ï¿½Ç‰ï¿½
+         ï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Ìƒeï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½ï¿½
+         ï¿½ï¿½ï¿½[ï¿½Uï¿½ï¿½ï¿½ï¿½1ï¿½yï¿½[ï¿½Wï¿½Ì•\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý’ï¿½oï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½ÉÝ’ï¿½Ç‰ï¿½
+         ï¿½ï¿½Mï¿½ï¿½ï¿½Å‘ï¿½ï¿½Mï¿½ÒAï¿½ï¿½ï¿½ï¿½ï¿½Å‚Ìiï¿½èžï¿½Ý‚É‘Î‰ï¿½
+         ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½ï¿½ï¿½Xï¿½gï¿½Î‰ï¿½
+Ver 0.53:requireï¿½ï¿½require_onceï¿½É•ÏX
+Ver 0.52:ï¿½Vï¿½ï¿½ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½ï¿½PMï¿½ï¿½ï¿½jï¿½ï¿½ï¿½[ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½É•ÏX
+         ï¿½`ï¿½Fï¿½bï¿½Nï¿½{ï¿½bï¿½Nï¿½Xï¿½Å‚Ü‚Æ‚ß‚Äíœï¿½É‘Î‰ï¿½
+Ver 0.51:PMï¿½ÌVï¿½ï¿½ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½Ç‰ï¿½
+Ver 0.50:ï¿½ï¿½ï¿½[ï¿½Uï¿½ï¿½PMï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½é‚©ï¿½Iï¿½ï¿½ï¿½oï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½É‹@ï¿½\ï¿½Ç‰ï¿½
+         PMï¿½ï¿½ï¿½ó‚¯Žï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Éƒï¿½ï¿½[ï¿½ï¿½ï¿½]ï¿½ï¿½ï¿½Ç‰ï¿½ï¿½iï¿½è”²ï¿½ï¿½ï¿½j
+Ver 0.40:ï¿½íœï¿½Ìoï¿½ï¿½ï¿½È‚ï¿½ï¿½oï¿½Oï¿½Cï¿½ï¿½
+         ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½Ê’mï¿½Aï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½uï¿½Î‰ï¿½
+Ver 0.31:ï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½É“ï¿½ï¿½{ï¿½ê‚ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½Cï¿½ï¿½
+Ver 0.30:ï¿½ï¿½ï¿½Cï¿½É“ï¿½ï¿½èƒ†ï¿½[ï¿½Uï¿½ï¿½ï¿½ï¿½
+         ï¿½ê•”ï¿½Rï¿½[ï¿½hï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+Ver 0.21:ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½Ìƒyï¿½[ï¿½Wï¿½iï¿½rï¿½Cï¿½ï¿½
+Ver 0.20:usersearchï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½É‘Î‰ï¿½
+         ï¿½yï¿½[ï¿½Wï¿½iï¿½rï¿½É‘Î‰ï¿½

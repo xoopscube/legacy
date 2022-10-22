@@ -13,21 +13,21 @@ class User_PrimaryFilter extends XCube_ActionFilter
     public function preFilter()
     {
         $root =& XCube_Root::getSingleton();
-        $this->mController->mSetupUser->add("User_Utils::setupUser");
-        $this->mController->_mNotifyRedirectToUser->add("User_Utils::convertUrlToUser");
+        $this->mController->mSetupUser->add('User_Utils::setupUser');
+        $this->mController->_mNotifyRedirectToUser->add('User_Utils::convertUrlToUser');
 
-        $file = XOOPS_ROOT_PATH . "/modules/user/kernel/LegacypageFunctions.class.php";
+        $file = XOOPS_ROOT_PATH . '/modules/user/kernel/LegacypageFunctions.class.php';
 
-        $root->mDelegateManager->add("Legacypage.Userinfo.Access", "User_LegacypageFunctions::userinfo", $file);
-        $root->mDelegateManager->add("Legacypage.Edituser.Access", "User_LegacypageFunctions::edituser", $file);
-        $root->mDelegateManager->add("Legacypage.Register.Access", "User_LegacypageFunctions::register", $file);
-        $root->mDelegateManager->add("Legacypage.User.Access", "User_LegacypageFunctions::user", $file);
-        $root->mDelegateManager->add("Legacypage.Lostpass.Access", "User_LegacypageFunctions::lostpass", $file);
-        $root->mDelegateManager->add("Site.CheckLogin", "User_LegacypageFunctions::checkLogin", $file);
-        $root->mDelegateManager->add("Site.CheckLogin.Success", "User_LegacypageFunctions::checkLoginSuccess", $file);
-        $root->mDelegateManager->add("Site.Logout", "User_LegacypageFunctions::logout", $file);
+        $root->mDelegateManager->add('Legacypage.Userinfo.Access', 'User_LegacypageFunctions::userinfo', $file);
+        $root->mDelegateManager->add('Legacypage.Edituser.Access', 'User_LegacypageFunctions::edituser', $file);
+        $root->mDelegateManager->add('Legacypage.Register.Access', 'User_LegacypageFunctions::register', $file);
+        $root->mDelegateManager->add('Legacypage.User.Access', 'User_LegacypageFunctions::user', $file);
+        $root->mDelegateManager->add('Legacypage.Lostpass.Access', 'User_LegacypageFunctions::lostpass', $file);
+        $root->mDelegateManager->add('Site.CheckLogin', 'User_LegacypageFunctions::checkLogin', $file);
+        $root->mDelegateManager->add('Site.CheckLogin.Success', 'User_LegacypageFunctions::checkLoginSuccess', $file);
+        $root->mDelegateManager->add('Site.Logout', 'User_LegacypageFunctions::logout', $file);
 
-        $root->mDelegateManager->add("Legacypage.Misc.Access", "User_LegacypageFunctions::misc", XCUBE_DELEGATE_PRIORITY_NORMAL - 5, $file);
+        $root->mDelegateManager->add('Legacypage.Misc.Access', 'User_LegacypageFunctions::misc', XCUBE_DELEGATE_PRIORITY_NORMAL - 5, $file);
     }
 }
 
@@ -55,13 +55,13 @@ class User_Utils
             if (is_object($context->mXoopsUser)) {
                 $context->mXoopsUser->setGroups($_SESSION['xoopsUserGroups']);
 
-                $roles = array();
-                $roles[] = "Site.RegisteredUser";
+                $roles = [];
+                $roles[] = 'Site.RegisteredUser';
                 if ($context->mXoopsUser->isAdmin(-1)) {
-                    $roles[] = "Site.Administrator";
+                    $roles[] = 'Site.Administrator';
                 }
                 if (in_array(XOOPS_GROUP_ADMIN, $_SESSION['xoopsUserGroups'])) {
-                    $roles[] = "Site.Owner";
+                    $roles[] = 'Site.Owner';
                 }
 
                 $identity = new Legacy_Identity($context->mXoopsUser);
@@ -69,11 +69,11 @@ class User_Utils
                 return;
             } else {
                 $context->mXoopsUser = null;
-                $_SESSION = array();
+                $_SESSION = [];
             }
         }
         $identity = new Legacy_AnonymousIdentity();
-        $principal = new Legacy_GenericPrincipal($identity, array("Site.GuestUser"));
+        $principal = new Legacy_GenericPrincipal($identity, ['Site.GuestUser']);
     }
 
     public static function convertUrlToUser(&$url)
@@ -81,9 +81,9 @@ class User_Utils
         global $xoopsRequestUri;
         if (!preg_match('/xoops_redirect=/', $url)) {
             if (!strstr($url, '?')) {
-                $url .= "?xoops_redirect=" . urlencode($xoopsRequestUri);
+                $url .= '?xoops_redirect=' . urlencode($xoopsRequestUri);
             } else {
-                $url .= "&amp;xoops_redirect=" . urlencode($xoopsRequestUri);
+                $url .= '&amp;xoops_redirect=' . urlencode($xoopsRequestUri);
             }
         }
     }
@@ -108,7 +108,7 @@ class User_Utils
      * @param      string   $password  The password
      * @param      string   $hash      The hash
      *
-     * @return     boolean  password match to hash
+     * @return     bool  password match to hash
      */
     public static function passwordVerify($password, $hash)
     {
@@ -122,7 +122,7 @@ class User_Utils
      *
      * @param      string   $value  The hash value
      *
-     * @return     boolean  needs rehash
+     * @return     bool  needs rehash
      */
     public static function passwordNeedsRehash($value)
     {
@@ -134,7 +134,7 @@ class User_Utils
     /**
      * check pass colmun length of users table
      *
-     * @return     boolean Users pass column length is fixed (VARCHAR(255))
+     * @return     bool Users pass column length is fixed (VARCHAR(191))
      */
     public static function checkUsersPassColumnLength()
     {
@@ -146,8 +146,8 @@ class User_Utils
             $sql = 'SELECT COLUMN_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA="'.XOOPS_DB_NAME.'" AND TABLE_NAME="'.$db->prefix('users').'" AND COLUMN_NAME="pass"';
             if ($res = $db->query($sql)) {
                 $type = $db->fetchRow($res);
-                if (preg_replace('/[^0-9]/', '', $type[0]) < 255) {
-                    $sql = 'ALTER TABLE '.$db->prefix('users').' CHANGE `pass` `pass` VARCHAR(255) NOT NULL DEFAULT ""';
+                if (preg_replace('/[^0-9]/', '', $type[0]) > 191) {
+                    $sql = 'ALTER TABLE '.$db->prefix('users').' CHANGE `pass` `pass` VARCHAR(191) NOT NULL DEFAULT ""';
                     $res = $db->queryF($sql);
                 } else {
                     $res = true;

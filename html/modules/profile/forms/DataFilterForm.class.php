@@ -1,26 +1,29 @@
 <?php
 /**
- * @file
- * @package profile
- * @version $Id$
+ * @package    profile
+ * @version    2.3.1
+ * @author     Nuno Luciano (aka gigamaster), 2020, XCL PHP7
+ * @author     Kilica
+ * @copyright  2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/profile/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/profile/class/AbstractFilterForm.class.php';
 
 define('PROFILE_DATA_SORT_KEY_UID', 1);
 define('PROFILE_DATA_SORT_KEY_DEFAULT', PROFILE_DATA_SORT_KEY_UID);
 
 class Profile_DataFilterForm extends Profile_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         PROFILE_DATA_SORT_KEY_UID => 'uid'
-    );
+    ];
 
-    /*** Profile_DefinitionsObject[] ***/ public $mFields = array();
+    /*** Profile_DefinitionsObject[] ***/ public $mFields = [];
 
     /**
      * @public
@@ -32,11 +35,9 @@ class Profile_DataFilterForm extends Profile_AbstractFilterForm
 
     /**
      * _addSortKeys
-     * 
-     * @param   string $dirname
-     * 
+     *
      * @return  void
-    **/
+     */
     protected function _addSortKeys()
     {
         foreach ($this->mFields as $field) {
@@ -69,14 +70,14 @@ class Profile_DataFilterForm extends Profile_AbstractFilterForm
     
         $root =& XCube_Root::getSingleton();
     
-        if (($value = $root->mContext->mRequest->getRequest('uid')) !== null) {
+        if (null !== ($value = $root->mContext->mRequest->getRequest('uid'))) {
             $this->mNavi->addExtra('uid', $value);
             $this->_mCriteria->add(new Criteria('uid', $value));
         }
     
         foreach ($this->mFields as $field) {
             $value = $root->mContext->mRequest->getRequest($field->get('field_name'));
-            if (isset($value) && $value!=="") {
+            if (isset($value) && '' !== $value) {
                 $this->mNavi->addExtra($field->get('field_name'), $value);
                 if ($field->get('type')==Profile_FormType::STRING || $field->get('type')==Profile_FormType::TEXT) {
                     $value = '%'.$value.'%';

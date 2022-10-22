@@ -1,7 +1,18 @@
-<{$block.online_total}><br /><br />
-<{$smarty.const._MB_USER_MEMBERS}>: <{$block.online_members}><br />
-<{$smarty.const._MB_USER_GUESTS}>: <{$block.online_guests}><br /><br />
-<{foreach item=member from=$block.online_member_list}>
-<a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$member.uid}>"><{$member.uname}></a>
-<{/foreach}>
-<a href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=online','Online',420,350);"><{$smarty.const._MB_USER_MORE}></a>
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<div layout="column" class="block-online">
+    <p><{$block.online_total}></p>
+    <div self="size-x1"><{$smarty.const._MB_USER_MEMBERS}> <span class="badge"><{$block.online_members}></span>
+        <{$smarty.const._MB_USER_GUESTS}> <span class="badge"><{$block.online_guests}></span></div>
+    <{foreach item=member from=$block.online_member_list}>
+    <div layout="row center my-2" self="size-x1" class="block-online-members">
+        <img src="<{$member.uid|xoops_user_avatarize}>" alt="<{$member.uname}>" height="24" self="mr-2 radius-circle">
+        <a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$member.uid}>">
+
+            <span><{$member.uname}></span>
+        </a>
+    </div>
+    <{/foreach}>
+    <a class="ui-button" href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=online','Online',420,350);"><{$smarty.const._MB_USER_MORE}></a>
+</div>

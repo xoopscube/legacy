@@ -1,68 +1,32 @@
 <?php
-// $Id: configoption.php,v 1.1 2007/05/15 02:34:38 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://xoopscube.jp/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+/**
+ * Config-Option
+ * @package    kernel
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Other authors Minahito, 2007/05/15
+ * @author     Kazumi Ono (aka onokazu)
+ * @copyright  (c) 2000-2003 XOOPS.org
+ * @license    GPL 2.0
+ */
+
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-/**
- * 
- * 
- * @package     kernel
- * 
- * @author	    Kazumi Ono	<onokazu@xoops.org>
- * @copyright	copyright (c) 2000-2003 XOOPS.org
- */
 
-/**
- * A Config-Option
- * 
- * @author	Kazumi Ono	<onokazu@xoops.org>
- * @copyright	copyright (c) 2000-2003 XOOPS.org
- * 
- * @package     kernel
- */
 class XoopsConfigOption extends XoopsObject
 {
-    /**
-     * Constructor
-     */
-    public function XoopsConfigOption()
+
+    public function __construct()
     {
         static $initVars;
         if (isset($initVars)) {
             $this->vars = $initVars;
             return;
         }
-        $this->XoopsObject();
+        parent::__construct();
         $this->initVar('confop_id', XOBJ_DTYPE_INT, null);
         $this->initVar('confop_name', XOBJ_DTYPE_TXTBOX, null, true, 255);
         $this->initVar('confop_value', XOBJ_DTYPE_TXTBOX, null, true, 255);
@@ -77,7 +41,7 @@ class XoopsConfigOption extends XoopsObject
     {
         return defined($this->get('confop_value')) ? constant($this->get('confop_value')) : $this->get('confop_value');
     }
-    
+
     /**
      * Get a constract of confop_name
      */
@@ -85,32 +49,33 @@ class XoopsConfigOption extends XoopsObject
     {
         return defined($this->get('confop_name')) ? constant($this->get('confop_name')) : $this->get('confop_name');
     }
+
     /**
      * Compare with contents of $config object. If it's equal, return true.
      * This member function doesn't use 'conf_id' & 'conf_order' to compare.
-     * 
-     * @param XoopsConfigItem $config
+     *
+     * @param $option
      * @return bool
      */
     public function isEqual(&$option)
     {
         $flag = true;
-        
+
         $flag &= ($this->get('confop_name') == $option->get('confop_name'));
         $flag &= ($this->get('confop_value') == $option->get('confop_value'));
-        
+
         return $flag;
     }
 }
 
 /**
- * XOOPS configuration option handler class.  
- * This class is responsible for providing data access mechanisms to the data source 
+ * XOOPS configuration option handler class.
+ * This class is responsible for providing data access mechanisms to the data source
  * of XOOPS configuration option class objects.
  *
  * @copyright	copyright (c) 2000-2003 XOOPS.org
  * @author  Kazumi Ono <onokazu@xoops.org>
- * 
+ *
  * @package     kernel
  * @subpackage  config
 */
@@ -119,10 +84,10 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
 
     /**
      * Create a new option
-     * 
+     *
      * @param	bool    $isNew  Flag the option as "new"?
-     * 
-     * @return	object  {@link XoopsConfigOption} 
+     *
+     * @return	object  {@link XoopsConfigOption}
      */
     public function &create($isNew = true)
     {
@@ -135,9 +100,9 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
 
     /**
      * Get an option from the database
-     * 
+     *
      * @param	int $id ID of the option
-     * 
+     *
      * @return	object  reference to the {@link XoopsConfigOption}, FALSE on fail
      */
     public function &get($id)
@@ -148,7 +113,7 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
             $sql = 'SELECT * FROM '.$this->db->prefix('configoption').' WHERE confop_id='.$id;
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $confoption =new XoopsConfigOption();
                     $confoption->assignVars($this->db->fetchArray($result));
                     $ret =& $confoption;
@@ -160,13 +125,13 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
 
     /**
      * Insert a new option in the database
-     * 
-     * @param	object  &$confoption    reference to a {@link XoopsConfigOption} 
+     *
+     * @param	object  &$confoption    reference to a {@link XoopsConfigOption}
      * @return	bool    TRUE if successfull.
      */
     public function insert(&$confoption)
     {
-        if (strtolower(get_class($confoption)) != 'xoopsconfigoption') {
+        if ('xoopsconfigoption' != strtolower(get_class($confoption))) {
             return false;
         }
         if (!$confoption->isDirty()) {
@@ -196,13 +161,13 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
 
     /**
      * Delete an option
-     * 
-     * @param	object  &$confoption    reference to a {@link XoopsConfigOption} 
+     *
+     * @param	object  &$confoption    reference to a {@link XoopsConfigOption}
      * @return	bool    TRUE if successful
      */
     public function delete(&$confoption)
     {
-        if (strtolower(get_class($confoption)) != 'xoopsconfigoption') {
+        if ('xoopsconfigoption' != strtolower(get_class($confoption))) {
             return false;
         }
         $sql = sprintf('DELETE FROM %s WHERE confop_id = %u', $this->db->prefix('configoption'), $confoption->getVar('confop_id', 'n'));
@@ -213,19 +178,19 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
     }
 
     /**
-     * Get some {@link XoopsConfigOption}s 
-     * 
-     * @param	object  $criteria   {@link CriteriaElement} 
+     * Get some {@link XoopsConfigOption}s
+     *
+     * @param	object  $criteria   {@link CriteriaElement}
      * @param	bool    $id_as_key  Use the IDs as array-keys?
-     * 
-     * @return	array   Array of {@link XoopsConfigOption}s 
+     *
+     * @return	array   Array of {@link XoopsConfigOption}s
      */
     public function &getObjects($criteria = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         $sql = 'SELECT * FROM '.$this->db->prefix('configoption');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere().' ORDER BY confop_id '.$criteria->getOrder();
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();

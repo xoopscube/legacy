@@ -4,13 +4,13 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 class User_GroupPermEditForm extends XCube_ActionForm
 {
     public function getTokenName()
     {
-        return "module.user.GroupPermEditForm.TOKEN";
+        return 'module.user.GroupPermEditForm.TOKEN';
     }
 
     public function prepare()

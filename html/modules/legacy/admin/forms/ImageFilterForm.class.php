@@ -1,18 +1,19 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: ImageFilterForm.class.php,v 1.4 2008/09/25 15:11:10 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * ImageFilterForm.class.php
+ * @package    Legacy
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Kilica, 2008/09/25
+ * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractFilterForm.class.php';
 
 define('IMAGE_SORT_KEY_IMAGE_ID', 1);
 define('IMAGE_SORT_KEY_IMAGE_NAME', 2);
@@ -28,7 +29,7 @@ define('IMAGE_SORT_KEY_DEFAULT', '-'.IMAGE_SORT_KEY_IMAGE_CREATED);
 
 class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         IMAGE_SORT_KEY_IMAGE_ID => 'image_id',
         IMAGE_SORT_KEY_IMAGE_NAME => 'image_name',
         IMAGE_SORT_KEY_IMAGE_NICENAME => 'image_nicename',
@@ -37,17 +38,17 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
         IMAGE_SORT_KEY_IMAGE_DISPLAY => 'image_display',
         IMAGE_SORT_KEY_IMAGE_WEIGHT => 'image_weight',
         IMAGE_SORT_KEY_IMGCAT_ID => 'imgcat_id'
-    );
-    
-    public $mKeyword = "";
-    public $mOptionField = "";
-    public $mOptionField2 = "";
+    ];
+
+    public $mKeyword = '';
+    public $mOptionField = '';
+    public $mOptionField2 = '';
 
     public function getDefaultSortKey()
     {
         return IMAGE_SORT_KEY_DEFAULT;
     }
-    
+
     public function fetch()
     {
         parent::fetch();
@@ -58,12 +59,12 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
         $option_field = $root->mContext->mRequest->getRequest('option_field');
         $option_field2 = $root->mContext->mRequest->getRequest('option_field2');
         $search = $root->mContext->mRequest->getRequest('search');
-    
+
         if (isset($_REQUEST['image_display'])) {
             $this->mNavi->addExtra('image_display', xoops_getrequest('image_display'));
             $this->_mCriteria->add(new Criteria('image_display', xoops_getrequest('image_display')));
         }
-    
+
         if (isset($_REQUEST['imgcat_id'])) {
             $this->mNavi->addExtra('imgcat_id', xoops_getrequest('imgcat_id'));
             $this->_mCriteria->add(new Criteria('imgcat_id', xoops_getrequest('imgcat_id')));
@@ -73,9 +74,9 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
         if (isset($_REQUEST['option_field'])) {
             $this->mNavi->addExtra('option_field', $option_field);
             $this->mOptionField = $option_field;
-            if ($this->mOptionField == "visible") {
+            if ('visible' === $this->mOptionField) {
                 $this->_mCriteria->add(new Criteria('image_display', '1'));
-            } elseif ($this->mOptionField == "invisible") {
+            } elseif ('invisible' === $this->mOptionField) {
                 $this->_mCriteria->add(new Criteria('image_display', '0'));
             } else {
                 //all
@@ -85,11 +86,11 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
         if (isset($_REQUEST['option_field2'])) {
             $this->mNavi->addExtra('option_field2', $option_field2);
             $this->mOptionField2 = $option_field2;
-            if ($this->mOptionField2 == "gif") {
+            if ('gif' === $this->mOptionField2) {
                 $this->_mCriteria->add(new Criteria('image_mimetype', 'image/gif'));
-            } elseif ($this->mOptionField2 == "png") {
+            } elseif ('png' === $this->mOptionField2) {
                 $this->_mCriteria->add(new Criteria('image_mimetype', 'image/png'));
-            } elseif ($this->mOptionField2 == "jpeg") {
+            } elseif ('jpeg' === $this->mOptionField2) {
                 $cri = new CriteriaCompo();
                 $cri->add(new Criteria('image_mimetype', 'image/jpeg'));
                 $cri->add(new Criteria('image_mimetype', 'image/pjpeg'), 'OR');
@@ -105,7 +106,7 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
             $this->mNavi->addExtra('search', $this->mKeyword);
             $this->_mCriteria->add(new Criteria('image_nicename', '%' . $this->mKeyword . '%', 'LIKE'));
         }
-        
+
         $this->_mCriteria->addSort($this->getSort(), $this->getOrder());
         /*
         if (abs($this->mSort) != IMAGE_SORT_KEY_IMAGE_WEIGHT) {

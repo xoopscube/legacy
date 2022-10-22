@@ -1,0 +1,30 @@
+<{* ---------- ---------- ---------- ---------- ---------- Similies Search *}>
+<form action="./index.php" method="get" role="search">
+<{strip}>
+    <input type="hidden" name="action" value="SmilesList">
+    <label for="search"><{$smarty.const._SEARCH}></label>
+    <input type="text" id="search" name="search" value="<{$filterForm->mKeyword}>">
+    <label for="option_field"><{$smarty.const._AD_LEGACY_LANG_DISPLAY}></label>
+    <select name="option_field" id="option_field">
+        <option value="all" <{if $filterForm->mOptionField == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
+        <option value="visible" <{if $filterForm->mOptionField == 'visible'}>selected="selected"<{/if}>><{$smarty.const._YES}></option>
+        <option value="invisible" <{if $filterForm->mOptionField == 'invisible'}>selected="selected"<{/if}>><{$smarty.const._NO}></option>
+    </select>
+    <label for="perpage"><{$smarty.const._VIEW}></label>
+    <select name="perpage" id="perpage">
+        <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
+        <{foreach item=page from=$pageArr}>
+        <{if $pageNavi->mPerpage == $page && $page != 0}>
+        <option value="<{$page}>" selected="selected"><{$page}></option>
+        <{elseif $pageNavi->mPerpage == $page && $page == 0}>
+        <option value="<{$page}>" selected="selected"><{$smarty.const._ALL}></option>
+        <{elseif $pageNavi->mPerpage != $page && $page == 0}>
+        <option value="<{$page}>"><{$smarty.const._ALL}></option>
+        <{else}>
+        <option value="<{$page}>"><{$page}></option>
+        <{/if}>
+        <{/foreach}>
+    </select>
+    <input class="button" type="submit" value="<{$smarty.const._SUBMIT}>">
+<{/strip}>
+</form>

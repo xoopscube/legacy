@@ -1,85 +1,111 @@
-<div>
-<a href="<{$xoops_url}>/userinfo.php?uid=<{$actionForm->get('uid')|xoops_escape}>"><{$smarty.const._MD_USER_LANG_PROFILE}></a>
-&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;<{$smarty.const._MD_USER_LANG_AVATAR_EDIT}>( <{$actionForm->get('uid')|xoops_user:user_name}> )
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<ul class="breadcrumb" aria-label="breadcrumb">
+    <li><a href="<{$xoops_url}>/">
+        <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a>
+    <li><a href="<{$xoops_url}>/userinfo.php?uid=<{$actionForm->get('uid')|xoops_escape}>">
+    <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg" alt=""> <{$smarty.const._MD_USER_LANG_PROFILE}></a>
+    <li aria-current="page">
+    <{$smarty.const._MD_USER_LANG_AVATAR_EDIT}>( <{$actionForm->get('uid')|xoops_user:user_name}> )
+</ul>
+
+
+<section class="user-avatar-edit">
+
+<{if $actionForm->hasError()}>
+    <div class="msg-callout msg-warning errorMsg">
+    <ul>
+        <{foreach item=message from=$actionForm->getErrorMessages()}>
+        <li><{$message|xoops_escape}></li>
+        <{/foreach}>
+    </ul>
+</div>
+<{/if}>
+
+<h3><{$smarty.const._MD_USER_LANG_AVATAR}></h3>
+
+<div class="msg-callout msg-warning errorMsg">
+    <p><{$smarty.const._MD_USER_MESSAGE_OLDDELETED}></p>
 </div>
 
 <{if $allowUpload}>
-<{if $actionForm->hasError()}>
-<div class="errorMsg">
-  <ul>
-    <{foreach item=message from=$actionForm->getErrorMessages()}>
-      <li><{$message|xoops_escape}></li>
-    <{/foreach}>
-  </ul>
-</div>
-<{/if}>
-
 <form action="<{$xoops_url}>/edituser.php?op=avatarupload" method="post" enctype="multipart/form-data">
-  <{xoops_token form=$actionForm}>
-  <{xoops_input type=hidden name=uid value=$actionForm->get('uid')}>
-  <table class="outer">
-    <tr>
-      <th colspan="2" style="text-align:center;">( <{$actionForm->get('uid')|xoops_user:user_name}> )<{$smarty.const._MD_USER_LANG_AVATAR_EDIT}></th>
-    </tr>
-    <tr>
-      <td colspan="2" class="<{cycle values="odd,even"}>" style="text-align:center;">
-        <{if $actionForm->get('uid')|xoops_user:user_avatar != "blank.gif"}>
-          <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$actionForm->get('uid')|xoops_user:user_avatar}>" alt="Avatar" title="Avatar" />
-        <{else}>
-          <img src="<{$smarty.const.XOOPS_URL}>/modules/user/images/no_avatar.gif" alt="No Avatar" title="No Avatar" />
-        <{/if}>
-        <br />
-        <{$smarty.const._MD_USER_MESSAGE_OLDDELETED}>
-      <td>
-    </tr>
-    <tr>
-      <td class="head"><{$smarty.const._MD_USER_LANG_AVATAR_WIDTH_HIGHT}></td>
-      <td class="<{cycle values="odd,even"}>">
-        <{$avatarWidth}> x <{$avatarHeight}> (px)
-      </td>
-    </tr>
-    <tr>
-      <td class="head"><{$smarty.const._MD_USER_LANG_AVATAR_MAXFILESIZE}></td>
-      <td class="<{cycle values="odd,even"}>">
-        <{$avatarMaxfilesize|number_format}> (bytes)
-      </td>
-    </tr>
-    <tr>
-      <td class="head"><{$smarty.const._MD_USER_LANG_AVATAR}></td>
-      <td class="<{cycle values="odd,even"}>">
-        <{xoops_input type=file name=uploadavatar size=30}>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" class="foot" style="text-align:center;">
-        <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
-      </td>
-    </tr>
-  </table>
+    <{xoops_token form=$actionForm}>
+    <{xoops_input type=hidden name=uid value=$actionForm->get('uid')}>
+
+    <div layout="row center-spread sm-column">
+
+            <div layout="column center-center" self="size-1of2">
+
+                <div self="center p-4 m-auto" class="avatar-edit">
+                <{if $actionForm->get('uid')|xoops_user:user_avatar != "blank.gif"}>
+                    <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$actionForm->get('uid')|xoops_user:user_avatar}>" alt="Avatar" aria-label="Avatar">
+                <{else}>
+                    <img src="<{$smarty.const.XOOPS_URL}>/modules/user/images/no_avatar.gif" alt="No Avatar" aria-label="No Avatar">
+                <{/if}>
+                </div>
+            </div>
+
+            <div layout="column" self="size-1of2">
+                <p><{$smarty.const._MD_USER_LANG_AVATAR_EDIT}> <span class="badge"><{$actionForm->get('uid')|xoops_user:user_name}></span></p>
+                <p><{$smarty.const._MD_USER_LANG_AVATAR_WIDTH_HEIGHT}> : <span class="badge"><{$avatarWidth}> x <{$avatarHeight}></span> (px)</p>
+                <p><{$smarty.const._MD_USER_LANG_AVATAR_MAXFILESIZE}> <span class="badge"><{$avatarMaxfilesize|number_format}></span> (bytes)</p>
+            </div>
+
+    </div>
+
+    <div layout="row center-spread my-4 sm-column">
+        <div self="size-1of2 sm-full">
+            <p>
+                <span class="btn-wrap-upload">
+                <{xoops_input class="ui-button" type=file name=uploadavatar size=30}>
+                </span>
+            </p>
+        </div>
+        <div self="size-1of2 sm-full">
+            <p><button class="ui-button" type="submit" value="<{$smarty.const._SUBMIT}>">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"  viewBox="0 0 24 24">
+                    <path fill="none" stroke="currentColor" stroke-width="2" d="M1 17v6h22v-6M12 2v17M5 9l7-7l7 7"/>
+                </svg> <{$smarty.const._SUBMIT}></button>
+            </p>
+        </div>
+    </div>
+
 </form>
 <{/if}>
 
-<form method="post" action="<{$xoops_url}>/edituser.php?op=avatarchoose">
-  <{xoops_token form=$avatarSelectForm}>
-  <{xoops_input type=hidden name=uid value=$avatarSelectForm->get('uid')}>
-  <table class="outer" style="text-align:center;">
-    <tr>
-      <th colspan="4"><{$smarty.const._MD_USER_LANG_AVATAR_LIST}></th>
-    </tr>
-    <tr>
-      <{foreach item=obj from=$systemAvatars}>
-        <td class="<{cycle values="odd,even" name="class"}>" style="text-align:center;">
-          <{if $obj->get('avatar_id') == 0}>
-            <img src="<{$smarty.const.XOOPS_MODULE_URL}>/user/images/no_avatar.gif" alt="<{$obj->getShow('avatar_name')}>" title="<{$obj->getShow('avatar_name')}>"/><br />
-          <{else}>
-            <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('avatar_file')}>" alt="<{$obj->getShow('avatar_name')}>" title="<{$obj->getShow('avatar_name')}>"/><br />
-          <{/if}>
-          <{$obj->getShow('avatar_name')}><br />
-          <input name="avatar_id[<{$obj->getShow('avatar_id')}>]" type="submit" value="<{$smarty.const._MD_USER_LANG_SELECT}>" />
-        <{cycle name="table" values="</td>,</td>,</td>,</td></tr><tr>"}>
-      <{/foreach}>
-    </tr>
-  </table>
-</form>
+</section>
 
-<div class="pagenavi" style="text-align:center;"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+
+
+<hr>
+
+<section class="user-avatar-list">
+    <h3><{$smarty.const._MD_USER_LANG_AVATAR_LIST}></h3>
+
+    <form method="post" action="<{$xoops_url}>/edituser.php?op=avatarchoose">
+        <{xoops_token form=$avatarSelectForm}>
+        <{xoops_input type=hidden name=uid value=$avatarSelectForm->get('uid')}>
+
+        <table class="outer" style="text-align:center;">
+            <tr>
+                <{foreach item=obj from=$systemAvatars}>
+                <td class="<{cycle values="odd,even" name="class"}>" style="text-align:center;">
+                <{if $obj->get('avatar_id') == 0}>
+                <img src="<{$smarty.const.XOOPS_MODULE_URL}>/user/images/no_avatar.gif" alt="<{$obj->getShow('avatar_name')}>" aria-label="<{$obj->getShow('avatar_name')}>">
+                <br>
+                <{else}>
+                <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('avatar_file')}>" alt="<{$obj->getShow('avatar_name')}>" aria-label="<{$obj->getShow('avatar_name')}>">
+                <br>
+                <{/if}>
+                <{$obj->getShow('avatar_name')}>
+                <br>
+                <input class="ui-button" name="avatar_id[<{$obj->getShow('avatar_id')}>]" type="submit" value="<{$smarty.const._MD_USER_LANG_SELECT}>">
+                <{cycle name="table" values="</td>,</td>,</td>,</td></tr><tr>"}>
+            <{/foreach}>
+        </tr>
+        </table>
+
+    </form>
+</section>

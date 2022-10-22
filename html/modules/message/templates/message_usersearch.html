@@ -1,6 +1,16 @@
-<h3><{$smarty.const._MD_USERSEARCH_1}></h3>
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
-<div style="padding: 5px;">
+<ul class="breadcrumb" aria-label="breadcrumb">
+    <li><a href="<{$xoops_url}>/">
+        <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a>
+    <li><a href="index.php">
+    <img class="svg inbox" src="<{$xoops_url}>/images/icons/inbox.svg"> <{$smarty.const._MI_MESSAGE_NAME}></a>
+    <li aria-current="page"><{$smarty.const._MD_USERSEARCH_1}>
+</ul>
+
+
+<div class=" mt-sm-5" style="padding: 5px;">
   <fieldset>
     <legend><{$smarty.const._MD_USERSEARCH_2}></legend>
     <form name="searchform" action="index.php" method="get">
@@ -11,7 +21,7 @@
     <{xoops_input type=hidden name=dosearch value=1}>
     <{xoops_input type=hidden name=action value=search}>
     <{xoops_input type=hidden name=moddir value=$smarty.const._MY_DIRNAME}>
-    <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
+    <input type="submit" class="ui-button" value="<{$smarty.const._SUBMIT}>">
     </form>
   </fieldset>
 </div>
@@ -19,15 +29,16 @@
 <{if $listdata!=false}>
 <form method="post" action="index.php">
 <{foreach item=user from=$listdata.udata}>
-<input type="checkbox" name="adduid[]" value="<{$user->get('uid')}>" />
+    <input type="checkbox" name="adduid[]" value="<{$user->get('uid')}>">
 <a href="<{$xoops_url}>/modules/message/index.php?action=new&to_userid=<{$user->get('uid')}>"><{$user->get('uname')}></a>
-<br />
+<br>
 <{/foreach}>
-<input type="hidden" name="cmd" value="add" />
+<input type="hidden" name="cmd" value="add">
 <{xoops_input type=hidden name=action value=favorites}>
-<input type="submit" value="<{$smarty.const._MD_MESSAGE_ADDFAVORITES}>" />
-</form><br />
+<input type="submit" class="ui-button" value="<{$smarty.const._MD_MESSAGE_ADDFAVORITES}>">
+</form><br>
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$listdata.pagenavi}></div>
 <{else}>
 <div><{$smarty.const._MD_USERSEARCH_8}></div>
 <{/if}>
+

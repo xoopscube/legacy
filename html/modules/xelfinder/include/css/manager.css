@@ -1,0 +1,55 @@
+#elfinder .elfinder-navbar {
+	width:180px;
+}
+#elfinder .elfinder-resize-preview {
+	height: 320px;
+}
+
+div.elfinder-perm-dialog input.perm-uid {
+	width: 2.7em;
+	text-align: right;
+}
+
+.elfinder-button-icon-perm      { background-position: 0 -48px; }
+
+.file_info {
+	font-family: Verdana,Arial,sans-serif;
+	font-size: 0.9em;
+	text-shadow: 0 -1px 1px #000,
+		-1px 0 1px #000,
+		1px 0 1px #000,
+		0 1px 1px #000,
+		1px 1px 1px #FFF,
+		2px 2px 2px #FFF,
+		3px 3px 3px #FFF;
+	color: #FFF;
+}
+.image-inserter-item {
+    background-color: #FFFFFF;
+    background-origin: border-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 14px;
+    margin: 0;
+    min-height: 120px;
+    opacity: 0.9;
+    padding-bottom: 5px;
+    padding-top: 15px;
+    text-align: center;
+    width: 200px;
+}
+.image-inserter-item span[onclick] {
+	cursor: pointer;
+}
+/* ACE Editor IME Fix */
+@font-face {
+  font-family: 'ime_jp_rp';
+  src: url('./ime_jp_rp.woff') format('woff');
+}
+.ace_editor > .ace_text-input {
+  padding-top: 1px;
+  padding-left: 1px;
+  letter-spacing: 1px;
+  font-family: 'ime_jp_rp', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+}

@@ -1,0 +1,277 @@
+<h3>Checkbox and radio button widgets</h3>
+
+<p></p>
+
+
+<div layout="row md-column mt-6" class="component">
+
+    <!-- ///// Description \\\\\ -->
+    <div layout="column">
+
+        <h4>Options</h4>
+
+        <p>Checkbox and radio button widgets.</p>
+        <p>Use preview to show a representation of what the user will see on the screen.</p>
+        <p>Use code tabs to share the HTML, CSS and JavaScript applied to preview the control.</p>
+
+        <h5>Reference :</h5>
+        <ul class="component-ref">
+            <li><a href="https://api.jqueryui.com/checkboxradio/" class="modal-control modal-open" target="iframe-modal" rel="noopener">&#128210; API checkboxradio Widget</a></li>
+            <li><a href="https://api.jqueryui.com/controlgroup/" class="modal-control modal-open" target="iframe-modal" rel="noopener">&#128210; API controlgroup Widget</a></li>
+            <li><a href="https://api.jqueryui.com/theming/css-framework/" class="modal-control modal-open" target="iframe-modal" rel="noopener">&#128208; jQuery UI - CSS Framework</a></li>
+            <li><a href="https://jqueryui.com/themeroller/" class="modal-control modal-open" target="iframe-modal" rel="noopener">&#127912; Theme Roller</a></li>
+        </ul>
+
+    </div>
+
+    <!-- ///// Preview Sample \\\\\ -->
+    <div layout="column">
+
+        <h4>Preview</h4>
+
+        <p>Checkbox with class="switch"</p>
+        <p><input class="switch" type="checkbox" id="on-off" value="0"> Switch</p>
+        <br>
+
+<script>
+  $( function() {
+    $( "input.uij" ).checkboxradio();
+  } );
+  </script>
+
+        <div class="widget">
+
+            <h1>Checkbox and radio button widgets</h1>
+
+<pre><code class="lang-js">
+    $( function() {
+        $( "input.uij" ).checkboxradio();
+      } );
+</code></pre>
+
+            <h2>Radio Group</h2>
+            <fieldset>
+              <legend>Select a Location: </legend>
+              <label for="radio-1">New York</label>
+              <input class="uij" type="radio" name="radio-1" id="radio-1">
+              <label for="radio-2">Paris</label>
+              <input class="uij" type="radio" name="radio-1" id="radio-2">
+              <label for="radio-3">London</label>
+              <input class="uij" type="radio" name="radio-1" id="radio-3">
+            </fieldset>
+
+            <h2>Checkbox</h2>
+            <fieldset>
+              <legend>Hotel Ratings: </legend>
+              <label for="checkbox-1">2 Star</label>
+              <input type="checkbox" name="checkbox-1" id="checkbox-1">
+              <label for="checkbox-2">3 Star</label>
+              <input type="checkbox" name="checkbox-2" id="checkbox-2">
+              <label for="checkbox-3">4 Star</label>
+              <input type="checkbox" name="checkbox-3" id="checkbox-3">
+              <label for="checkbox-4">5 Star</label>
+              <input type="checkbox" name="checkbox-4" id="checkbox-4">
+            </fieldset>
+
+            <h2>Checkbox nested in label</h2>
+            <fieldset>
+              <legend>Bed Type: </legend>
+              <label for="checkbox-nested-1">2 Double
+                <input type="checkbox" name="checkbox-nested-1" id="checkbox-nested-1">
+              </label>
+              <label for="checkbox-nested-2">2 Queen
+                <input type="checkbox" name="checkbox-nested-2" id="checkbox-nested-2">
+              </label>
+              <label for="checkbox-nested-3">1 Queen
+                <input type="checkbox" name="checkbox-nested-3" id="checkbox-nested-3">
+              </label>
+              <label for="checkbox-nested-4">1 King
+                <input type="checkbox" name="checkbox-nested-4" id="checkbox-nested-4">
+              </label>
+            </fieldset>
+          </div>
+
+
+
+<script>
+$( function() {
+$( ".controlgroup" ).controlgroup()
+$( ".controlgroup-vertical" ).controlgroup({
+"direction": "vertical"
+});
+} );
+</script>
+
+<div class="widget">
+    <h1>Controlgroup</h1>
+
+<pre><code class="lang-js">
+    $( function() {
+        $( ".controlgroup" ).controlgroup()
+        $( ".controlgroup-vertical" ).controlgroup({
+            "direction": "vertical"
+        });
+    } );
+</code></pre>
+
+    <fieldset>
+      <legend>Rental Car</legend>
+      <div class="controlgroup">
+        <select id="car-type">
+          <option>Compact car</option>
+          <option>Midsize car</option>
+          <option>Full size car</option>
+          <option>SUV</option>
+          <option>Luxury</option>
+          <option>Truck</option>
+          <option>Van</option>
+        </select>
+        <label for="transmission-standard">Standard</label>
+        <input type="radio" name="transmission" id="transmission-standard">
+        <label for="transmission-automatic">Automatic</label>
+        <input type="radio" name="transmission" id="transmission-automatic">
+        <label for="insurance">Insurance</label>
+        <input type="checkbox" name="insurance" id="insurance">
+        <label for="horizontal-spinner" class="ui-controlgroup-label"># of cars</label>
+        <input id="horizontal-spinner" class="ui-spinner-input">
+        <button>Book Now!</button>
+      </div>
+    </fieldset>
+    <br>
+    <fieldset>
+      <legend>Rental Car</legend>
+      <div class="controlgroup-vertical">
+        <select>
+          <option>Compact car</option>
+          <option>Midsize car</option>
+          <option>Full size car</option>
+          <option>SUV</option>
+          <option>Luxury</option>
+          <option>Truck</option>
+          <option>Van</option>
+        </select>
+        <label for="transmission-standard-v">Standard</label>
+        <input type="radio" name="transmission-v" id="transmission-standard-v">
+        <label for="transmission-automatic-v">Automatic</label>
+        <input type="radio" name="transmission-v" id="transmission-automatic-v">
+        <label for="insurance-v">Insurance</label>
+        <input type="checkbox" name="insurance" id="insurance-v">
+        <label for="vertical-spinner" class="ui-controlgroup-label"># of cars</label>
+        <input id="vertical-spinner" class="ui-spinner-input">
+        <button id="book">Book Now!</button>
+      </div>
+    </fieldset>
+  </div>
+
+
+
+        <br>
+
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ///// Source Code \\\\\ -->
+
+<div id="tabs-code">
+    <ul>
+        <li>
+            <a href="#tabs-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" style="color:#ff460c;" aria-hidden="true" role="img" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718l10.059.003l.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426l-2.91.804l-2.955-.81l-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443l.744-8.157H8.531z" fill="currentColor"></path></svg>
+                HTML</a>
+        </li>
+        <li>
+            <a href="#tabs-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" style="color:#027dde;" aria-hidden="true" role="img"  viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622l10.125.002l-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523l-2.91.804l-2.956-.81l-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414z" fill="currentColor"></path></svg>
+                CSS</a>
+        </li>
+        <li>
+            <a href="#tabs-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" style="color:#F7E018;" aria-hidden="true" role="img" viewBox="0 0 24 24"><path d="M3 3h18v18H3V3m4.73 15.04c.4.85 1.19 1.55 2.54 1.55c1.5 0 2.53-.8 2.53-2.55v-5.78h-1.7V17c0 .86-.35 1.08-.9 1.08c-.58 0-.82-.4-1.09-.87l-1.38.83m5.98-.18c.5.98 1.51 1.73 3.09 1.73c1.6 0 2.8-.83 2.8-2.36c0-1.41-.81-2.04-2.25-2.66l-.42-.18c-.73-.31-1.04-.52-1.04-1.02c0-.41.31-.73.81-.73c.48 0 .8.21 1.09.73l1.31-.87c-.55-.96-1.33-1.33-2.4-1.33c-1.51 0-2.48.96-2.48 2.23c0 1.38.81 2.03 2.03 2.55l.42.18c.78.34 1.24.55 1.24 1.13c0 .48-.45.83-1.15.83c-.83 0-1.31-.43-1.67-1.03l-1.38.8z" fill="currentColor"/><rect x="0" y="0" width="1em" height="1em" fill="rgba(0, 0, 0, 0)" /></svg>
+                JavaScript</a>
+        </li>
+        <li>
+            <a href="#tabs-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" aria-hidden="true" role="img" viewBox="0 0 1024 1024"><path d="M1024 618q-138 16-197 103t-59 239q-62-50-138-73q-10 9-22 9H416q-12 0-22-9q-76 23-138 73q0-152-59-239T0 618q235-173 101-428Q389 259 512 0q123 259 411 190q-134 255 101 428zM512 256q-106 0-181 80.5T256 530q0 15 3 29.5t6 24.5t11.5 24t12.5 20t15.5 22.5T320 672q21 24 58.5 57t53.5 55t16 48h128q0-26 16.5-48t53.5-55t58-57q4-5 15.5-21.5T735 628t12.5-20t11.5-24t6-24.5t3-29.5q0-113-75-193.5T512 256zm-96 640h192q13 0 22.5 9.5T640 928t-9.5 22.5T608 960q0 29-23 46.5t-73 17.5t-73-17.5t-23-46.5q-13 0-22.5-9.5T384 928t9.5-22.5T416 896z" fill="currentColor"/></svg>
+                SMARTY</a>
+        </li>
+    </ul>
+
+    <div id="tabs-1">
+    <pre><code class="language-html"><!--
+<input class="switch" type="checkbox" id="on-off" value="0">
+
+<div class="controlaction">
+    <label for="create">Create</label>
+    <input type="radio" name="radio-module" id="create">
+    <label for="edit">Edit</label>
+    <input type="radio" name="radio-module" id="edit">
+    <label for="delete">Delete</label>
+    <input type="radio" name="radio-module" id="delete">
+</div>
+
+    --></code></pre>
+    </div>
+
+    <div id="tabs-2">
+    <pre><code class="language-css"><!--
+    /* jQuery-UI */
+    /* Checkbox Switch style from "form.css"
+    /* Checkboxradio inherits styles from UI-Button
+      and Theme CSS custom properties */
+
+    /* Switch inherits style from theme "form.css" */
+    --></code></pre>
+    </div>
+
+    <div id="tabs-3">
+    <pre><code class="language-javascript"><!--
+    // Checkboxradio Widget
+    $( ".widget-checkbox input" ).checkboxradio();
+
+    // Controlgroup Widget
+    $( ".widget-controlgroup .controlaction input" ).checkboxradio();
+    $( ".widget-controlgroup .controlaction" ).controlgroup();
+    --></code></pre>
+    </div>
+
+    <div id="tabs-4">
+    <pre><code class="language-smarty"><!--
+    <{$xoops_url}>
+    --></code></pre>
+    </div>
+
+</div>
+
+<script>
+    //Scope Immediately Invoked Function Expression - IIFE
+    // Encapsulate
+    $( function() {
+        // Modal for reference links
+        $(function() {
+            $("a.modal-control").on("click",function(e) {
+                e.preventDefault();
+                $("#iframe-api").attr("src", this.href );
+                $( ".modal-view" ).toggleClass( "modal-show" );
+            });
+        });
+
+        // UI-Tabs [0,1,2,3]
+        $( "#tabs-code" ).tabs().tabs('option', 'disabled', [3]);
+
+        // Checkboxradio Widget
+//        $( ".widget-checkbox input" ).checkboxradio();
+
+        // Controlgroup Widget
+//        $( ".widget-controlgroup .controlaction input" ).checkboxradio();
+//        $( ".widget-controlgroup .controlaction" ).controlgroup();
+
+    } );
+    // Syntax Highlight
+    Prism.highlightAll();
+
+</script>

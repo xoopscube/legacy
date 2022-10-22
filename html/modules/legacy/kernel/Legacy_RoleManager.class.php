@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: Legacy_RoleManager.class.php,v 1.3 2008/09/25 15:11:56 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright Copyright 2005-2022 XOOPS Cube Project  <https://github.com/xoopscube/xcl>
+ * @license   GPL 2.0
  *
  */
 
@@ -22,38 +22,38 @@ class Legacy_RoleManager
     public function loadRolesByModule(&$module)
     {
         static $cache;
-        
+
         $root =& XCube_Root::getSingleton();
         $context =& $root->mContext;
-        
-        if ($module == null) {
+
+        if (null == $module) {
             return;
         }
-        
+
         if (isset($cache[$module->get('mid')])) {
             return;
         }
-        
-        $groups = is_object($context->mXoopsUser) ? $context->mXoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
-        
+
+        $groups = is_object($context->mXoopsUser) ? $context->mXoopsUser->getGroups() : [XOOPS_GROUP_ANONYMOUS];
+
         $handler =& xoops_gethandler('groupperm');
         if ($handler->checkRight('module_read', $module->get('mid'), $groups)) {
             $context->mUser->addRole('Module.' . $module->get('dirname') . '.Visitor');
         }
-        
+
         if (is_object($context->mXoopsUser) && $handler->checkRight('module_admin', $module->get('mid'), $groups)) {
             $context->mUser->addRole('Module.' . $module->get('dirname') . '.Admin');
         }
-        
+
         $handler =& xoops_getmodulehandler('group_permission', 'legacy');
         $roleArr = $handler->getRolesByModule($module->get('mid'), $groups);
         foreach ($roleArr as $role) {
             $context->mUser->addRole('Module.' . $module->get('dirname') . '.' . $role);
         }
-        
+
         $cache[$module->get('mid')] = true;
     }
-    
+
     /**
      * Loads roles of the specific module with $mid, and set loaded roles to
      * the current principal.
@@ -63,7 +63,7 @@ class Legacy_RoleManager
     {
         $handler =& xoops_gethandler('module');
         $module =& $handler->get($mid);
-        
+
         if (is_object($module)) {
             $this->loadRolesByModule($module);
         }
@@ -79,7 +79,7 @@ class Legacy_RoleManager
     {
         $handler =& xoops_gethandler('module');
         $module =& $handler->getByDirname($dirname);
-        
+
         if (is_object($module)) {
             $this->loadRolesByModule($module);
         }

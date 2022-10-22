@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/class/AbstractFilterForm.class.php';
 
 define('BANNERCLIENT_SORT_KEY_CID', 1);
 define('BANNERCLIENT_SORT_KEY_NAME', 2);
@@ -23,7 +23,7 @@ define('BANNERCLIENT_SORT_KEY_DEFAULT', BANNERCLIENT_SORT_KEY_CID);
 
 class LegacyRender_BannerclientFilterForm extends LegacyRender_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         BANNERCLIENT_SORT_KEY_CID => 'cid',
         BANNERCLIENT_SORT_KEY_NAME => 'name',
         BANNERCLIENT_SORT_KEY_CONTACT => 'contact',
@@ -31,7 +31,7 @@ class LegacyRender_BannerclientFilterForm extends LegacyRender_AbstractFilterFor
         BANNERCLIENT_SORT_KEY_LOGIN => 'login',
         BANNERCLIENT_SORT_KEY_PASSWD => 'passwd',
         BANNERCLIENT_SORT_KEY_EXTRAINFO => 'extrainfo'
-    );
+    ];
     
     public function getDefaultSortKey()
     {
