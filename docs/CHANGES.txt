@@ -3,6 +3,14 @@ XOOPS Cube Legacy "Package_Legacy" & "XCube core" Changelog
 
 
 ----------------------------------------
+2022/10/22 : Merge version 2.3.1
+----------------------------------------
+
+Refer please to Branch Legacy 2.3 Commits  
+https://github.com/xoopscube/legacy/commits/2.3
+
+
+----------------------------------------
 2014/04/03: Package Revision 2.2.3RC1
 ----------------------------------------
 [Issues]

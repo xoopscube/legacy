@@ -7,25 +7,30 @@ the "GNU PUBLIC LICENSE VERSION 2.0". (see /docs/GPL_V2.txt)
 
  Many of these files are delivered from 
   -XOOPS 2.0.9.3
-    Copyright 2000 XOOPS Project
+    Copyright 2000 XOOPS Project, author Kazumi Ono (aka onokazu)
     http://www.xoops.org
 
  But the other files are newly added  or completely rewritten by XOOPS Cube Project.
     Copyright 2005 - 2007 XOOPS Cube Project
     http://xoopscube.sourceforge.net/
 
-But some special files are licensed under the other license models those can co-exist with GPL V2 files.
+And later versions added or rewritten by XOOPS Cube Project
+    Copyright 2005 - 2022 XOOPS Cube Project
+    https://github.com/xoopscube
+
+But some libraries and files are licensed under other license models that can co-exist with GPL V2 files.
 
 *Licensed under the "Modified BSD License"  (see /docs/ModifiedBSD.txt)
   -XOOPS Cube Core Files (/html/core/*)  and some other files
-     Copyright 2005 - 2007 XOOPS Cube Project
-     http://xoopscube.sourceforge.net/
+     Copyright 2005 - 2022 XOOPS Cube Project
+     https://github.com/xoopscube/legacy
+     https://github.com/xoopscube/core
      (These files are developed by XOOPS Cube Project and are fully isolated from
      XOOPS files. Then we decide to change the license model from GPL V2 to Modified BSD.)
 
 *Licensed under the "GNU LESSER GENERAL PUBLIC LICENSE Version 2.1"  (see /docs/LGPL_V2_1.txt)
-  -Smarty (/html/class/smarty/*)
-     Copyright (c) 2001-2005 New Digital Group, Inc. All rights reserved. 
+  -Smarty (trust path /libs/smarty/*)
+     Copyright (c) 2001-2022 New Digital Group, Inc. All rights reserved. 
      (http://smarty.php.net/)
   -PHPDownloader(/html/classs/class.tar.php, /html/classs/class.zipfile.php)
      Copyright (c) 2002 - www.ipunkt.biz (rok)
