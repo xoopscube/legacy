@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+/*
+ * XOOPSCube Web Installation Wizard
+ * @version   2.3.x
+ * @author    Nuno Luciano ( https://github.com/gigamaster )
+ * @copyright 2005-2022 The XOOPSCube Project
+ * @license   BSD
+ * @link      https://github.com/xoopscube/legacy
+ */
+ -->
+<head>
+    <!-- Title -->
+    <title>Documentation - Install XOOPSCube Legacy</title>
+
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.png">
+
+    <!--  Meta tags -->
+    <meta name="keywords" content="documentation, application, platform, self host, selfhosted, bundle, package, theme, template, help, open source, free, module, plugin">
+    <meta name="description" content="XOOPSCube Legacy is a simple, secure and scalable web application platform under Open Source licenses.
+   The XCL bundle package features a CMS, user groups management, elfinder file manager, ckeditor, free themes, reusable and customizable Blocks.">
+
+    <!-- Schema.org -->
+    <meta itemprop="name" content="Documentation XOOPSCube Legacy ">
+    <meta itemprop="description" content="XOOPSCube Legacy is a simple, secure and scalable web application platform under Open Source licenses.">
+    <meta itemprop="image" content="xcl-install-wizard.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="product">
+    <meta name="twitter:site" content="https://xoopscube.github.io/legacy/">
+    <meta name="twitter:title" content="Documentation XOOPSCube Legacy ">
+    <meta name="twitter:description" content="XOOPSCube Legacy is a simple, secure and scalable web application platform under Open Source licenses.">
+    <meta name="twitter:creator" content="@XOOPSCube">
+    <meta name="twitter:image" content="xcl-install-wizard.jpg">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Documentation XOOPSCube Legacy ">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://xoopscube.github.io/legacy/">
+    <meta property="og:image" content="xcl-install-wizard.jpg">
+    <meta property="og:description"
+        content="XOOPSCube Legacy is a simple, secure and scalable web application platform under Open Source licenses.">
+    <meta property="og:site_name" content="XOOPSCube">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="../html/common/prismjs/prism.css">
+
+</head>
+
+<body>
+
+<!-- Mobile -->
+<div class="mobile" onclick="openNav(event);">
+    <svg class="icon-cube" width="48px" height="48px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor">
+        <path stroke="url(#svg_rg)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" d="M21 7.353v9.294a.6.6 0 01-.309.525l-8.4 4.666a.6.6 0 01-.582 0l-8.4-4.666A.6.6 0 013 16.647V7.353a.6.6 0 01.309-.524l8.4-4.667a.6.6 0 01.582 0l8.4 4.667a.6.6 0 01.309.524z"></path>
+        <path stroke="url(#svg_rg)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" d="M3.528 7.294l8.18 4.544a.6.6 0 00.583 0l8.209-4.56M12 21v-9"></path>
+        <defs>
+            <radialGradient r="0.5" cy="0.3884" cx="0.4725" spreadMethod="pad" id="svg_rg">
+                <stop offset="0" stop-opacity="1" stop-color="#ffaa56"/>
+                <stop offset="1" stop-color="#000000"/>
+               </radialGradient>
+          </defs>
+    </svg>
+</div>
+
+<!-- Desktop -->
+<aside class="menu" id="navbar" tabindex="0">
+    <span class="logo">
+      <svg width="48px" height="48px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-cube" fill="none" color="currentColor">
+         <path fill="url(#svg_top)" stroke="url(#svg_top)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" d="m21,7.353l0,9.294a0.6,0.6 0 0 1 -0.309,0.525l-8.4,4.666a0.6,0.6 0 0 1 -0.582,0l-8.4,-4.666a0.6,0.6 0 0 1 -0.309,-0.525l0,-9.294a0.6,0.6 0 0 1 0.309,-0.524l8.4,-4.667a0.6,0.6 0 0 1 0.582,0l8.4,4.667a0.6,0.6 0 0 1 0.309,0.524z" id="svg_1"/>
+         <path fill="url(#svg_cube)" stroke="url(#svg_top)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" d="m3.5905,7.16357l8.18,4.58127a0.6,0.70147 0 0 0 0.583,0l8.1465,-4.70618l-8.4375,-4.60117m0,0m0,19.875l0,-10.52206" id="svg_2"/>
+        <defs>
+         <radialGradient gradientTransform="rotate(0.05557,0.5,0.5) translate(0,0.00031) scale(1,0.99937)" r="0.54427" cy="0.30" cx="0.5" spreadMethod="pad" id="svg_top">
+          <stop offset="0" stop-color="#face74"/>
+          <stop offset="1" stop-color="#000000"/>
+         </radialGradient>
+         <radialGradient gradientTransform="rotate(0.05557,0.5,0.5) translate(0,0.0061) scale(1,0.8493)" r="0.35" cy="0.30" cx="0.50" spreadMethod="pad" id="svg_cube">
+          <stop offset="0" stop-color="#face74"/>
+          <stop offset="1" stop-color="#000000"/>
+         </radialGradient>
+        </defs>
+       </svg>
+    XOOPSCube
+    </span>
+    <ul>
+        <li><a href="#xoopscube">Installation</a>
+        <li><a href="#overview">Overview</a>
+        <li><a href="#start">Get Started</a>
+        <li><a class="sub-link" href="#requirements">Requirements</a>
+        <li><a class="sub-link" href="#download">Download</a>
+        <li><a href="#folder">Folder Structure</a>
+        <li><a class="sub-link" href="#public">Public HTML</a>
+        <li><a class="sub-link" href="#private">Private Trust Path</a>
+        <li><a href="#wizard">Installation Wizard</a>
+        <li><a href="#recommend-specs">Recommend Specs</a>
+        <li><a href="#composer">Composer</a>
+        <li><a href="#update">Update Manager</a>
+    </ul>
+</aside>
+
+
+<!-- Wrap content -->
+<div class="container">
+
+    <!-- Header -->
+    <header>
+        <nav aria-label="Main">
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#start">Get started</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#wizard">Install</a></li>
+                </li>
+            </ul>
+            <!-- GITHUB LINKS -->
+            <div>
+                <a target="_blank" rel="noreferrer noopener" href="https://github.com/xoopscube/legacy/subscription" title="Subscribe to notifications">
+                    <svg class="icon-watch" width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke="currentColor" d="M12 14a2 2 0 100-4 2 2 0 000 4z"></path><path stroke="currentColor" d="M21 12c-1.889 2.991-5.282 6-9 6s-7.111-3.009-9-6c2.299-2.842 4.992-6 9-6s6.701 3.158 9 6z"></path></svg>
+                </a>
+                <a target="_blank" rel="noreferrer noopener" href="https://github.com/xoopscube/legacy/" title="Keep track of activity">
+                    <svg class="icon-star" width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke="currentColor" d="M8.587 8.236l2.598-5.232a.911.911 0 011.63 0l2.598 5.232 5.808.844a.902.902 0 01.503 1.542l-4.202 4.07.992 5.75c.127.738-.653 1.3-1.32.952L12 18.678l-5.195 2.716c-.666.349-1.446-.214-1.319-.953l.992-5.75-4.202-4.07a.902.902 0 01.503-1.54l5.808-.845z"></path></svg>
+                </a>
+                <a target="_blank" rel="noreferrer noopener" href="https://github.com/xoopscube/legacy/fork" title="Fork to customize">
+                    <svg class="icon-fork" width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke="currentColor" d="M17 7a2 2 0 100-4 2 2 0 000 4zM7 7a2 2 0 100-4 2 2 0 000 4zM7 21a2 2 0 100-4 2 2 0 000 4zM7 7v10M17 7v1c0 2.5-2 3-2 3l-6 2s-2 .5-2 3v1"></path></svg>
+                </a>
+                <a target="_blank" rel="noreferrer noopener" href="https://github.com/xoopscube/legacy/issues/new" title="Report an Issue">
+                    <svg class="icon-issue" width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke="currentColor" d="M20.043 21H3.957c-1.538 0-2.5-1.664-1.734-2.997l8.043-13.988c.77-1.337 2.699-1.337 3.468 0l8.043 13.988C22.543 19.336 21.58 21 20.043 21zM12 9v4"></path><path stroke="currentColor" d="M12 17.01l.01-.011"></path></svg>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- XOOPSCube -->
+    <div id="xoopscube">
+        <svg class="title" xmlns="http://www.w3.org/2000/svg" width="400" height="200">
+            <text class="xcl" x="50%" y="20%" dominant-baseline="middle" text-anchor="middle">XOOPS Cube Legacy</text>
+            <text class="x3s" x="50%" y="55%" dominant-baseline="middle" text-anchor="middle">Simple Secure Scalable</text>
+            <text class="wap" x="50%" y="90%" dominant-baseline="middle" text-anchor="middle">Web Application Platform</text>
+        </svg>
+        <svg class="xbg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1920 325" enable-background="new 0 0 1920 325" xml:space="preserve">
+            <polygon fill="#107ef4" style="fill-opacity: .1;" points="0,0 960,325 1920,325"></polygon>
+            <polygon fill="#107ef4" style="fill-opacity: .1;" points="0,325 960,325 1920,0 "></polygon>
+            <polygon fill="#107ef4" style="fill-opacity: .05;" points="960,1 0,325 1920,325 "></polygon>
+        </svg>
+        <div class="animation-wrapper">
+            <div class="particle particle-1"></div>
+            <div class="particle particle-2"></div>
+            <div class="particle particle-3"></div>
+            <div class="particle particle-4"></div>
+            <div class="particle particle-5"></div>
+          </div>
+    </div>
+
+
+<!-- MAIN CONTENT -->
+<main>
+
+
+    <!-- Overview Block -->
+    <section id="overview-block">
+        <div>
+            <svg class="icon-tools" width="48px" height="48px" viewBox="0 0 24 24" stroke-width="0.96" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M10.05 10.607l-7.07 7.07a2 2 0 000 2.83v0a2 2 0 002.828 0l7.07-7.072M17.193 13.8l3.878 3.878a2 2 0 010 2.828v0a2 2 0 01-2.828 0l-6.209-6.208M6.733 5.904L4.61 6.61 2.49 3.075l1.414-1.414L7.44 3.782l-.707 2.122zm0 0l2.83 2.83" stroke="#000000" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10.05 10.607c-.844-2.153-.679-4.978 1.061-6.718 1.74-1.74 4.95-2.121 6.717-1.06l-3.04 3.04-.283 3.111 3.111-.282 3.04-3.041c1.062 1.768.68 4.978-1.06 6.717-1.74 1.74-4.564 1.905-6.717 1.061" stroke="#000000" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            <h5>Open Source Stack</h5>
+        </div>
+        <div>
+            <svg class="icon-bundle" width="48px" height="48px" stroke-width="0.96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M2.695 7.185l9 4 .61-1.37-9-4-.61 1.37zM12.75 21.5v-11h-1.5v11h1.5zm-.445-10.315l9-4-.61-1.37-9 4 .61 1.37z" fill="#000000"></path><path d="M3 17.11V6.89a.6.6 0 01.356-.548l8.4-3.734a.6.6 0 01.488 0l8.4 3.734A.6.6 0 0121 6.89v10.22a.6.6 0 01-.356.548l-8.4 3.734a.6.6 0 01-.488 0l-8.4-3.734A.6.6 0 013 17.11z" stroke="#000000" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path><path d="M7.5 4.5l8.644 3.842a.6.6 0 01.356.548v3.61" stroke="#000000" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            <h5>Bundle Package</h5>
+        </div>
+        <div>
+            <svg class="icon-design" width="48px" height="48px" viewBox="0 0 24 24" stroke-width="0.96" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M3 21V3h6v12h12v6H3z" stroke="#000000" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13 19v2M9 19v2M3 7h2M3 11h2M3 15h2M17 19v2" stroke="#000000" stroke-width="0.96" stroke-linecap="round"></path></svg>
+            <h5>Framework Agnostic</h5>
+        </div>
+    </section>
+
+
+    <!-- Overview Introduction -->
+    <section id="overview">
+
+        <article>
+
+            <h3>Overview</h3>
+
+            <h5>Simple</h5>
+            <p>XOOPSCube Legacy (XCL) is a free and open-source Web Application Platform (WAP) empowering you to build, manage and deploy scalable web applications,
+                custom Content Management System (CMS), forums, community discussion board and knowledge management systems, or multiple blogs (e.g. WordPress).
+                The XCL bundle package is designed for easy usage and to benefit from the performance of XCube Core and the most popular web server stack: Apache, MySQL and PHP.</p>
+
+            <h5>Secure</h5>
+            <p>XCube Core (©2005-2022 Minahito, BSD) is secure by design, in software engineering, means that software products and capabilities have been designed to be foundationally secure.
+                However, the module Protector (©peak.ne.jp, GPL) is installed to provide an extra layer of security to the subsystem Legacy (©XOOPSCube, GPL) — which provides backward and forward compatibility with older systems and new modules or frameworks.</p>
+
+            <h5>Scalable</h5>
+            <p>Scaling a web application means allowing more people to use the application and being able to meet increasing demand,
+                without changing the code, data or your trusted system. You can deploy additional infrastructure and offload functions, including SSL/TLS termination, cloud storage, static content delivery and server-side rendering, that would otherwise overload your application server.</p>
+
+            <h5>Self-hosting</h5>
+            <p>Self-hosted platforms are decentralized, allow for superior accessibility, customization of features and style,
+                which means you are not dependent on a centralized service and are also free to choose your hosting service as the number of users grows.
+                You have full control over your own data and services, rather than depending on expensive third-party services (cloud, saas).</p>
+
+        </article>
+
+    </section>
+
+
+<hr>
+
+
+    <!-- GET STARTED -->
+    <section id="start">
+
+        <article>
+
+            <h3>Get Started</h3>
+            <p><strong>This guide focuses on the user-friendly Web installation wizard !</strong></p>
+
+            <p>Running a local instance (Linux, macOS, Windows) and deploying to your dedicated server or shared hosting is fairly easy.</p>
+
+            <ol>
+                <li>Upload a Zip file to your server</li>
+                <li>Extract the files to the web root</li>
+                <li>Browse to your install URL</li>
+                <li>Follow the steps in the Installer</li>
+            </ol>
+
+            <p>The XCL bundle package is designed to run smoothly on any local server environment bundle LAMP, MAMP, XAMPP,<br>
+                dedicated server, virtual private server (VPS) or shared hosting. </p>
+
+            <div class="note tip">
+                <h5><svg class="icon-info" width="1em" height="1em" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M12 7v6M12 17.01l.01-.011M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    Public Web Root</h5>
+                <p>The document root, or web root, is the folder where the files for a domain are stored, usually <span class="badge">/public_html/</span><br>
+                   Some hosting providers can serve addon domains and subdomains as sub-folders <span class="badge">/domains/example.com/html/</span></p>
+            </div>
+
+        </article>
+
+    </section>
+
+
+    <!-- REQUIREMENTS -->
+    <section id="requirements">
+
+        <h3>Requirements</h3>
+
+        <article class="grid">
+            <div class="card">
+                <h4><svg class="icon-server" width="1em" height="1em" stroke-width="0.96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M6 18.01l.01-.011M6 6.01l.01-.011" stroke="#000000" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2 9.4V2.6a.6.6 0 01.6-.6h18.8a.6.6 0 01.6.6v6.8a.6.6 0 01-.6.6H2.6a.6.6 0 01-.6-.6zM2 21.4v-6.8a.6.6 0 01.6-.6h18.8a.6.6 0 01.6.6v6.8a.6.6 0 01-.6.6H2.6a.6.6 0 01-.6-.6z" stroke="#000000" stroke-width="0.96"></path></svg>
+                Web Server</h4>
+                <span>Apache 2.4.x mod_rewrite — Nginx 1.20.x<br>any server supporting PHP and MySQL</span>
+            </div>
+            <div class="card">
+                <h4><svg class="" width="1em" height="1em" stroke-width="0.96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M4 6v6s0 3 7 3 7-3 7-3V6" stroke="#000000" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11 3c7 0 7 3 7 3s0 3-7 3-7-3-7-3 0-3 7-3zM11 21c-7 0-7-3-7-3v-6M19 21a2 2 0 100-4 2 2 0 000 4z" stroke="#000000" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19 22a3 3 0 100-6 3 3 0 000 6z" stroke="#000000" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.3 2"></path></svg>
+                Database</h4>
+                <span>MySQL 5.6—8.0 — MariaDB 10.5.xx<br>Other databases supported by modules</span>
+            </div>
+            <div class="card">
+                <h4><svg class="icon-code" width="1em" height="1em" stroke-width="0.96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M9 21H8c-1.105 0-2-.894-2-1.999V14c0-1-1.5-2-1.5-2S6 11 6 10V5a2 2 0 012-2h1M15 21h1c1.105 0 2-.894 2-1.999V14c0-1 1.5-2 1.5-2S18 11 18 10V5a2 2 0 00-2-2h-1" stroke="#000000" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                Scripting language</h4>
+                <span>PHP 7.2.x — PHP 7.4.x<br>PHP 8.x Refer to module compatibility!</span>
+            </div>
+            <div class="card">
+                <h4><svg class="icon-chip" width="1em" height="1em" stroke-width="0.96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M7 19.4V4.6a.6.6 0 01.6-.6h8.8a.6.6 0 01.6.6v14.8a.6.6 0 01-.6.6H7.6a.6.6 0 01-.6-.6zM14 20v2.5M10 20v2.5M14 4V1.5M10 4V1.5M7 12H4.5M19.5 12H17M7 6.5H4.5M19.5 6.5H17M7 17.5H4.5M19.5 17.5H17" stroke="#000000" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                Memory </h4>
+                <span>Minimum 64 Mb —  256 MB<br>Most Hosting providers offer enough RAM</span>
+            </div>
+            <div class="card">
+                <h4><svg class="icon-drive" width="1em" height="1em" stroke-width="0.96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M10 17.01l.01-.011M6 17.01l.01-.011" stroke="#000000" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2 13v7.4a.6.6 0 00.6.6h18.8a.6.6 0 00.6-.6V13M2 13h20M2 13l2.872-9.572A.6.6 0 015.446 3h13.108a.6.6 0 01.574.428L22 13" stroke="#000000" stroke-width="0.96"></path></svg>
+                    Disk Space</h4>
+                <span>100MB — 200MB<br>Plan ahead backups, cache, add-ons</span>
+            </div>
+            <div class="card">
+                <h4><svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 640 512"><path fill="currentColor" d="M320 104.5c171.4 0 303.2 72.2 303.2 151.5S491.3 407.5 320 407.5c-171.4 0-303.2-72.2-303.2-151.5S148.7 104.5 320 104.5m0-16.8C143.3 87.7 0 163 0 256s143.3 168.3 320 168.3S640 349 640 256S496.7 87.7 320 87.7zM218.2 242.5c-7.9 40.5-35.8 36.3-70.1 36.3l13.7-70.6c38 0 63.8-4.1 56.4 34.3zM97.4 350.3h36.7l8.7-44.8c41.1 0 66.6 3 90.2-19.1c26.1-24 32.9-66.7 14.3-88.1c-9.7-11.2-25.3-16.7-46.5-16.7h-70.7L97.4 350.3zm185.7-213.6h36.5l-8.7 44.8c31.5 0 60.7-2.3 74.8 10.7c14.8 13.6 7.7 31-8.3 113.1h-37c15.4-79.4 18.3-86 12.7-92c-5.4-5.8-17.7-4.6-47.4-4.6l-18.8 96.6h-36.5l32.7-168.6zM505 242.5c-8 41.1-36.7 36.3-70.1 36.3l13.7-70.6c38.2 0 63.8-4.1 56.4 34.3zM384.2 350.3H421l8.7-44.8c43.2 0 67.1 2.5 90.2-19.1c26.1-24 32.9-66.7 14.3-88.1c-9.7-11.2-25.3-16.7-46.5-16.7H417l-32.8 168.7z"/></svg>
+                PHP extensions</h4>
+                <span>Built-in extensions and modules<br>Refer to modules requirements</span>
+            </div>
+        </article>
+
+
+        <article id="prerequisites">
+
+            <h4>Prerequisites</h4>
+
+            <ul>
+                <!-- <li>FTP user account with proper permissions.</li> -->
+                <li>You need a new database InnoDB collation utf8mb4<br>
+                    <em>the install wizard can create it with the proper privileges</em></li>
+                <li>you need the database name, username and password</li>
+                <li>and you obviously need the latest XCL Bundle Package</li>
+            </ul>
+
+            <p>Plan ahead to meet the ever-changing needs of your system and make sure your server can be upgraded with more disk space
+                or cloud services for your storage needs.
+                A standard installation requires a minimum of 100MB - be sure to account for backups, caching, modules and themes, files upload and media.</p>
+
+        </article>
+
+    </section>
+
+
+<hr>
+
+
+    <!-- DOWNLOAD -->
+    <section>
+
+        <article id="download">
+
+            <h3>Download</h3>
+            <p>You can download a ZIP file with the latest source code, a specific version or use the command line to clone the git repository.</p>
+
+            <div class="grid">
+                <div class="card">
+                <h5><svg class="icon-download" width="32px" height="32px" stroke-width="0.96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M6 18h12M12 6v8m0 0l3.5-3.5M12 14l-3.5-3.5" stroke="#000000" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 20.4V3.6a.6.6 0 01.6-.6h16.8a.6.6 0 01.6.6v16.8a.6.6 0 01-.6.6H3.6a.6.6 0 01-.6-.6z" stroke="#000000" stroke-width="0.96"></path></svg>
+                Source code ZIP file</h5>
+                <p><a href="https://github.com/xoopscube/legacy/archive/refs/heads/master.zip" target="_blank" rel="noopener">Download ZIP file</a> with the latest source code from GitHub</p>
+                </div>
+
+                <div class="card">
+                <h5><svg class="icon-package" width="32px" height="32px" stroke-width="0.96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M2.695 7.185l9 4 .61-1.37-9-4-.61 1.37zM12.75 21.5v-11h-1.5v11h1.5zm-.445-10.315l9-4-.61-1.37-9 4 .61 1.37z" fill="#000000"></path><path d="M3 17.11V6.89a.6.6 0 01.356-.548l8.4-3.734a.6.6 0 01.488 0l8.4 3.734A.6.6 0 0121 6.89v10.22a.6.6 0 01-.356.548l-8.4 3.734a.6.6 0 01-.488 0l-8.4-3.734A.6.6 0 013 17.11z" stroke="#000000" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path><path d="M7.5 4.5l8.644 3.842a.6.6 0 01.356.548v3.61" stroke="#000000" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                XCL Releases</h5>
+                <p><a href="https://github.com/xoopscube/legacy/releases" target="_blank" rel="noopener">Browse the public repository</a> by release name or tag version number</p>
+                </div>
+
+                <div class="card">
+                <h5><svg class="icon-github" width="32px" height="32px" stroke-width="0.96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="#000000" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14.333 19v-1.863c.025-.31-.018-.62-.126-.913a2.18 2.18 0 00-.5-.781c2.093-.227 4.293-1 4.293-4.544 0-.906-.358-1.778-1-2.434a3.211 3.211 0 00-.06-2.448s-.787-.227-2.607.961a9.152 9.152 0 00-4.666 0c-1.82-1.188-2.607-.96-2.607-.96A3.211 3.211 0 007 8.464a3.482 3.482 0 00-1 2.453c0 3.519 2.2 4.291 4.293 4.544a2.18 2.18 0 00-.496.773 2.134 2.134 0 00-.13.902V19M9.667 17.702c-2 .631-3.667 0-4.667-1.948" stroke="#000000" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                Clone from GitHub</h5>
+                <p>Git clone the public repository with a command line.</p>
+                </div>
+            </div>
+
+            <p>Extract the ZIP file to your web root e.g. <span class="badge">/public_html/</span> or a sub-folder <span class="badge">/public_html/my-web-app/</span></p>
+            <p>You can also copy and paste the git clone command below into the terminal and press enter to create a local copy.</p>
+
+            <pre><code class="language-bash">git clone https://github.com/xoopscube/legacy.git</code></pre>
+
+        </article>
+
+    </section>
+
+
+<hr>
+
+
+    <!-- FOLDER STRUCTURE -->
+    <section id="folder">
+
+        <h3>Folder Structure</h3>
+
+        <p>The XCL bundle package contains two folders needed to run the web application <span class="badge">html</span> and <span class="badge">trust_path</span></p>
+
+        <p>Upload the XCL bundle package Zip file to your server using your hosting control panel and extract the files.<br>
+           Otherwise, SFTP/SSH is a secure, easier, and robust alternative to upload or download files from your web hosting server.</p>
+
+        <div class="note tip">
+            <h5><svg class="icon-info" width="1em" height="1em" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M12 7v6M12 17.01l.01-.011M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                Rename Folders</h5>
+            <p>Before running the web installation wizard, you can rename <span class="badge">html</span> and <span class="badge">trust_path</span> to suit your project needs.<br>
+                If you're using a FTP client to upload the files, make sure you don't change the tree-structured sub-folders.</p>
+        </div>
+
+        <article id="public">
+
+            <h4><svg class="icon-folder" width="1em" height="1em" stroke-width="0.96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M2 11V4.6a.6.6 0 01.6-.6h6.178a.6.6 0 01.39.144l3.164 2.712a.6.6 0 00.39.144H21.4a.6.6 0 01.6.6V11M2 11v8.4a.6.6 0 00.6.6h18.8a.6.6 0 00.6-.6V11M2 11h20" stroke="#000000" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                Public - HTML</h4>
+
+    <pre>
+    <code class="language-none">
+    html
+    ├── class          [ sqlutility, phpmailer, abstract base class for forms ]
+    ├── common         [ Locally shared CSS and Javascript ]
+    ├── core           [ XCube Core IniHandler class ]
+    ├── images         [ banners, icons, logos ]
+    ├── include        [ legacy backwards compatibility ]
+    ├── install        [ Web installation wizard ]
+    ├── kernel         [ legacy subsystem interface ]
+    ├── language       [ global translations ]
+    ├── modules        [ user group management, render, private message, CKEditor... ]
+    ├── preload        [ single file component e.g. add-on, plugin or extension ]
+    ├── themes         [ frontend themes and templates ]
+    └── uploads        [ public folder for avatars, icons, ranks, smiley ]
+    </code>
+    </pre>
+
+        </article>
+
+        <article id="private">
+
+            <h4>
+                <svg class="icon-folder-alert" width="1em" height="1em" stroke-width="0.96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M18 3v4M18 11.01l.01-.011M22 7v12.4a.6.6 0 01-.6.6H2.6a.6.6 0 01-.6-.6V11" stroke="currentColor" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14 7h-1.278a.6.6 0 01-.39-.144L9.168 4.144A.6.6 0 008.778 4H2.6a.6.6 0 00-.6.6V11h12" stroke="currentColor" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                Private - Trust Path</h4>
+
+    <pre>
+    <code class="language-none">
+    trust_path
+    ├── cache          [ application cache data ]
+    ├── libs           [ shared libraries: altsys, elfinder ]
+    ├── modules        [ D3 modules are only duplicated on public/html/modules/ ]
+    │   ├── d3forum    [ D3 forum and comment management ]
+    │   ├── pico       [ D3 Content edition with granular permissions ]
+    │   ├── protector  [ web application security module ]
+    │   ├── xelfinder  [ file manager with multi-root and cloud storage support ]
+    │   └── xupdate    [ Update manager for core, modules, themes and preloads ]
+    ├── PEAR           [ Framework and distribution system for reusable PHP components ]
+    ├── settings       [ XCube ini environment file using an inheritance pattern ]
+    ├── templates_c    [ generated templates ]
+    ├── uploads        [ read ]
+    ├── vendor         [ composer further installations ]
+    ├── wraps          [ static content managed by pico module ]
+    └── .htaccess      [ apache, read ]
+    </code>
+    </pre>
+
+            <h4><svg class="icon-lock-key" width="1em" height="1em" stroke-width="0.96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M14.667 12h.733a.6.6 0 01.6.6v3.8a.6.6 0 01-.6.6H8.6a.6.6 0 01-.6-.6v-3.8a.6.6 0 01.6-.6h.733m5.334 0V9.5c0-.833-.534-2.5-2.667-2.5S9.333 8.667 9.333 9.5V12m5.334 0H9.333" stroke="#000000" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 19V5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="#000000" stroke-width="0.96"></path></svg>
+                Permissions</h4>
+
+            <p>XCL web installation wizard will check permissions of folders that require read and write access.
+                These folders are used to store cached files, templates and files uploaded with the file-manager
+                or packages delivered from GitHub by the Update manager.</p>
+
+    <pre><code class="language-none">
+        /uploads/
+        /trust_path/cache/
+        /trust_path/templates_c/
+        /trust_path/uploads/
+    </code></pre>
+
+            <div class="note warning">
+                <h4><svg class="icon-warn" width="1em" height="1em" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M20.043 21H3.957c-1.538 0-2.5-1.664-1.734-2.997l8.043-13.988c.77-1.337 2.699-1.337 3.468 0l8.043 13.988C22.543 19.336 21.58 21 20.043 21zM12 9v4" stroke="currentColor" stroke-width="1" stroke-linecap="round"></path><path d="M12 17.01l.01-.011" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    Warning</h4>
+                <p>For security reasons, your TRUST_PATH should be located outside the web root <span class="badge">public html</span> of your server!<br>
+                If that's not possible and if you are running Apache use the .htaccess file </p>
+            </div>
+
+            <h4>Apache .htaccess file</h4>
+
+            <p>Protect your TRUST PATH with an .htaccess that allows you to configure permissions without changing the server configuration.
+                Read more about Apache HTTP server - <a href="https://httpd.apache.org/docs/2.4/howto/access.html" target="_blank" rel="noopener">Access Control</a> and <a href="https://httpd.apache.org/docs/2.4/howto/auth.html" target="_blank" rel="noopener">Authentication and Authorization</a></p>
+
+    <pre><code class="language-bash">
+        # 2.4 configuration:
+
+        Require all denied
+    </code></pre>
+
+        </article>
+
+    </section>
+
+
+<hr>
+
+
+    <!-- INSTALLATION WIZARD -->
+    <section id="wizard">
+
+        <article>
+
+            <h3>Web Installation Wizard</h3>
+
+            <p>Before you install XCL, make sure that your server meets the system requirements.</p>
+            <p>When the <a href="#requirements">prerequisites</a> are fulfilled, run the Web Installation Wizard :</p>
+
+            <ol>
+                <li>Browse to <span class="badge">https://localhost</span> or your <span class="badge">https://domain-name</span></li>
+                <li>and just follow the steps in the web installation wizard.</li>
+
+            </ol>
+
+            <p>This is everything you need to get started.</p>
+
+            <div class="note warning">
+                <h4>
+                    <svg class="icon-warn" width="1em" height="1em" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M20.043 21H3.957c-1.538 0-2.5-1.664-1.734-2.997l8.043-13.988c.77-1.337 2.699-1.337 3.468 0l8.043 13.988C22.543 19.336 21.58 21 20.043 21zM12 9v4" stroke="currentColor" stroke-width="1" stroke-linecap="round"></path><path d="M12 17.01l.01-.011" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    Administrator account</h4>
+                <p>It's the most important account of all, so make the password as strong as possible and store it somewhere safe.</p>
+            </div>
+
+            <figure>
+                <img src="./images/986x878-31k-min.jpg" width="100%" style="max-width: 986px;" alt="Web installation wizard">
+                <figcaption>Fig.1 - Web Installation Wizard, checklist.</figcaption>
+            </figure>
+
+            <p></p>
+
+            <p>1. Once the installation is complete, you should confirm to change the access permissions of <span class="badge">mainfile.php</span><br>
+               and give only <span class="badge">read permission</span> for everyone ( owner, group, others) <span class="badge">chmod 444 = (r-- r-- r--)</span></p>
+
+            <p>2. You must also confirm that you want to remove the Web Installation Wizard.<br>
+                However, you can keep the Installer on your server for development purposes,<br>
+                in case you need to reinstall the application or install a new instance.<br>
+                It is recommended to secure the Web Installation Wizard with a password.</p>
+
+            <div class="note warning">
+                <h4>
+                    <svg class="icon-warn" width="1em" height="1em" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M20.043 21H3.957c-1.538 0-2.5-1.664-1.734-2.997l8.043-13.988c.77-1.337 2.699-1.337 3.468 0l8.043 13.988C22.543 19.336 21.58 21 20.043 21zM12 9v4" stroke="currentColor" stroke-width="1" stroke-linecap="round"></path><path d="M12 17.01l.01-.011" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    Secure the installation wizard</h4>
+                <p>If you are planning to reuse the installation wizard, we strongly encourage you to protect with HTTP authentication<br>
+                Edit the file <span class="badge">/install/passwd.php</span> and put an username and password to avoid a malicious attack or worse.</p>
+            </div>
+
+        </article>
+
+    </section>
+
+
+<hr>
+
+
+    <!-- RECOMMENDED SPECS -->
+    <section id="recommend-specs">
+
+        <h3>Recommended System Specs</h3>
+
+        <article class="grid">
+            <div class="card">
+                <h4><svg class="icon-apache" width="48px" height="48px" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 512" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="IconifyId-184045d268d-c33c5e-0" x1="16.363%" x2="159.99%" y1="63.905%" y2="20.213%"><stop offset="0%" stop-color="#F69923"></stop><stop offset="31.23%" stop-color="#F79A23"></stop><stop offset="83.83%" stop-color="#E97826"></stop></linearGradient><linearGradient id="IconifyId-184045d268d-c33c5e-1" x1="-217.651%" x2="74.743%" y1="394.672%" y2="13.846%"><stop offset="32.33%" stop-color="#9E2064"></stop><stop offset="63.02%" stop-color="#C92037"></stop><stop offset="75.14%" stop-color="#CD2335"></stop><stop offset="100%" stop-color="#E97826"></stop></linearGradient><linearGradient id="IconifyId-184045d268d-c33c5e-2" x1="-80.044%" x2="146.24%" y1="170.418%" y2="-44.299%"><stop offset="32.33%" stop-color="#9E2064"></stop><stop offset="63.02%" stop-color="#C92037"></stop><stop offset="75.14%" stop-color="#CD2335"></stop><stop offset="100%" stop-color="#E97826"></stop></linearGradient><linearGradient id="IconifyId-184045d268d-c33c5e-3" x1="-18.316%" x2="165.002%" y1="77.36%" y2="-41.416%"><stop offset="0%" stop-color="#282662"></stop><stop offset="9.548%" stop-color="#662E8D"></stop><stop offset="78.82%" stop-color="#9F2064"></stop><stop offset="94.87%" stop-color="#CD2032"></stop></linearGradient><linearGradient id="IconifyId-184045d268d-c33c5e-4" x1="-129.783%" x2="66.456%" y1="463.715%" y2="17.19%"><stop offset="32.33%" stop-color="#9E2064"></stop><stop offset="63.02%" stop-color="#C92037"></stop><stop offset="75.14%" stop-color="#CD2335"></stop><stop offset="100%" stop-color="#E97826"></stop></linearGradient><linearGradient id="IconifyId-184045d268d-c33c5e-5" x1="-34.88%" x2="110.599%" y1="187.706%" y2="-51.1%"><stop offset="32.33%" stop-color="#9E2064"></stop><stop offset="63.02%" stop-color="#C92037"></stop><stop offset="75.14%" stop-color="#CD2335"></stop><stop offset="100%" stop-color="#E97826"></stop></linearGradient><linearGradient id="IconifyId-184045d268d-c33c5e-6" x1="-20.619%" x2="125.26%" y1="192.564%" y2="-136.906%"><stop offset="0%" stop-color="#282662"></stop><stop offset="9.548%" stop-color="#662E8D"></stop><stop offset="78.82%" stop-color="#9F2064"></stop><stop offset="94.87%" stop-color="#CD2032"></stop></linearGradient></defs><path fill="url(#IconifyId-184045d268d-c33c5e-0)" d="M218.048 2.889c-7.969 4.681-21.316 18.129-37.254 37.553v1.195l13.945 25.8l.698.498c10.26-14.643 20.619-27.891 31.178-39.147c.797-.897 1.195-1.295 1.195-1.295c-.398.398-.797.896-1.195 1.295c-3.387 3.785-13.747 15.738-29.286 39.645l1.793.398s36.358-3.586 53.89-6.574l.996-.897c5.578-31.278-5.479-45.621-5.479-45.621s-13.945-22.513-30.48-12.85Z"></path><path fill="url(#IconifyId-184045d268d-c33c5e-1)" d="M152.405 139.156c4.482-8.267 8.965-16.435 13.447-24.305c4.682-8.168 9.463-16.137 14.344-23.807c.299-.398.598-.896.797-1.394a547.709 547.709 0 0 1 14.444-21.715l-14.643-27.593c-1.096 1.295-2.192 2.69-3.287 4.084c-4.184 5.28-8.567 10.858-13.05 16.835a769.377 769.377 0 0 0-15.539 21.516a828.534 828.534 0 0 0-14.742 21.814c-4.184 6.475-8.467 13.05-12.65 19.923c-.2.298-.3.498-.499.797v1.095l18.229 36.159l.797.299c4.084-7.97 8.168-15.938 12.352-23.708Z"></path><path fill="url(#IconifyId-184045d268d-c33c5e-2)" d="M73.015 316.165c3.287-8.567 6.773-17.233 10.26-25.998c3.386-8.368 6.773-16.835 10.36-25.302c3.486-8.467 7.171-16.933 10.857-25.5c3.785-8.666 7.57-17.332 11.455-25.899c3.885-8.467 7.77-16.934 11.754-25.301a376.829 376.829 0 0 1 4.383-9.065c2.49-5.18 5.08-10.36 7.57-15.44c.1-.298.3-.497.399-.796l-19.026-37.553l-.896 1.494c-4.383 7.271-8.866 14.642-13.149 22.213a872.556 872.556 0 0 0-12.85 23.309c-3.586 6.674-6.972 13.348-10.36 20.121c-.697 1.395-1.294 2.69-1.991 4.084a514.412 514.412 0 0 0-11.256 24.704c-3.786 8.965-7.172 17.531-10.16 25.7c-1.993 5.378-3.686 10.459-5.38 15.44a609.063 609.063 0 0 0-3.785 12.65a359.905 359.905 0 0 0-7.272 29.783l.3 1.196l18.228 36.258l.598.299c2.49-6.774 5.08-13.547 7.77-20.52c.697-1.992 1.494-3.885 2.19-5.877Z"></path><path fill="url(#IconifyId-184045d268d-c33c5e-3)" d="M43.73 306.104c-2.391 12.053-4.085 24.106-4.981 36.06c0 .398-.1.796-.1 1.294c-5.977-9.562-21.914-18.826-21.914-18.826c11.455 16.535 20.121 32.971 21.416 49.108c-6.076 1.295-14.444-.598-24.205-4.084c10.06 9.264 17.63 11.854 20.619 12.551c-9.264.598-18.926 6.973-28.688 14.244c14.244-5.777 25.7-8.068 33.967-6.275C26.795 427.132 13.746 467.972.598 511.203c3.984-1.195 6.375-3.885 7.77-7.57c2.29-7.87 17.83-59.269 42.035-126.905c.697-1.892 1.395-3.884 2.092-5.777c.2-.498.398-1.096.598-1.594c2.59-7.072 5.18-14.344 7.968-21.715c.598-1.693 1.295-3.387 1.893-5.08v-.1L43.928 304.81c0 .498-.1.897-.199 1.295Z"></path><path fill="url(#IconifyId-184045d268d-c33c5e-4)" d="M197.33 68.532c-4.284 6.575-8.966 14.045-14.046 22.512c-.299.399-.498.897-.797 1.295a835.931 835.931 0 0 0-13.846 24.206a1000.618 1000.618 0 0 0-13.148 24.604a923.83 923.83 0 0 0-12.253 24.404l.897.399l46.319-4.98l1.096-.798c14.045-6.474 20.32-12.351 26.397-20.818a230.24 230.24 0 0 0 4.88-7.272c4.981-7.77 9.862-16.237 14.145-24.703c4.184-8.169 7.87-16.337 10.758-23.608c1.793-4.682 3.287-8.965 4.284-12.75c.896-3.387 1.593-6.575 2.091-9.563c-18.726 3.287-41.737 6.375-56.778 7.072Z"></path><path fill="url(#IconifyId-184045d268d-c33c5e-5)" d="M141.447 169.438c-1.593 3.387-3.287 6.873-4.98 10.36c-1.793 3.785-3.686 7.77-5.479 11.754c-.896 1.992-1.892 4.084-2.789 6.076c-2.888 6.176-5.678 12.551-8.666 19.125a1712.552 1712.552 0 0 0-10.957 25.202c-3.586 8.367-7.172 16.934-10.758 25.899a1436.099 1436.099 0 0 0-10.46 26.197c-3.187 8.069-6.374 16.237-9.562 24.803c-.2.399-.299.797-.498 1.196c-3.187 8.467-6.296 17.08-9.584 25.945c-.1.2-.277.718-.377.917l.688.153l13.855-1.49l.782-.324c-.299-.1-.483-.498-.782-.597c18.329-2.291 42.733-16.038 58.571-32.972c7.272-7.77 13.846-17.033 20.022-27.79c4.582-8.07 8.766-16.935 12.85-26.796c3.586-8.567 6.973-17.93 10.26-27.99c-4.184 2.19-9.065 3.884-14.344 4.98c-.897.199-1.893.398-2.889.597c-.996.2-1.992.3-2.889.498c17.134-6.574 27.892-19.324 35.76-34.863c-4.482 3.087-11.853 7.072-20.619 9.064c-1.195.299-2.39.498-3.685.697c-.3 0-.598.1-.897.1c5.977-2.49 10.957-5.28 15.34-8.567c.897-.697 1.793-1.394 2.69-2.191c1.295-1.195 2.59-2.39 3.785-3.586c.797-.797 1.494-1.594 2.291-2.49a55.754 55.754 0 0 0 4.781-6.575c.498-.697.897-1.494 1.395-2.191c.598-1.096 1.096-2.191 1.594-3.287c2.39-4.781 4.283-9.065 5.777-12.85c.797-1.893 1.395-3.586 1.992-5.28c.2-.597.399-1.294.698-1.892c.597-1.793 1.095-3.387 1.494-4.88a43.27 43.27 0 0 0 1.096-4.981c-.598.498-1.196.896-1.993 1.394c-5.18 3.088-14.045 5.877-21.217 7.172l14.145-1.594l-14.145 1.594c-.996.2-1.693.299-2.49.498c.066-.066-15.91 1.623-47.926 5.067c-.2.2-1.381 2.703-1.88 3.898Z"></path><path fill="url(#IconifyId-184045d268d-c33c5e-6)" d="M65.843 350.63c-2.49 6.874-5.08 13.946-7.57 21.118c0 .1-.1.2-.1.299c-.399.996-.698 1.992-1.096 3.088c-1.693 4.88-3.188 9.164-6.574 19.125c5.578 2.59 10.06 9.264 14.344 16.934c-.399-7.87-3.686-15.34-9.961-21.018c27.592 1.195 51.399-5.778 63.651-25.899a51.043 51.043 0 0 0 2.988-5.678c-5.578 7.073-12.55 10.06-25.5 9.364h-.1h.1c19.225-8.567 28.787-16.835 37.354-30.481a170.153 170.153 0 0 0 5.977-10.659c-16.835 17.233-36.259 22.114-56.679 18.428l-15.34 1.694c-.498 1.095-.996 2.39-1.494 3.685Z"></path></svg>
+
+                Apache 2.4.x</h4>
+                <span>Easy to use, functionality and features</span>
+            </div>
+            <div class="card">
+                <h4><svg class="icon-mysql" width="48px" height="48px" aria-hidden="true" role="img" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#5d87a1" fill-rule="evenodd" d="M8.785 6.865a3.055 3.055 0 0 0-.785.1V7h.038a6.461 6.461 0 0 0 .612.785c.154.306.288.611.441.917l.038-.039a1.074 1.074 0 0 0 .4-.957a4.314 4.314 0 0 1-.23-.4c-.115-.191-.364-.287-.517-.44"/><path fill="#00758f" fill-rule="evenodd" d="M27.78 23.553a8.849 8.849 0 0 0-3.712.536c-.287.115-.745.115-.785.478c.154.153.172.4.307.613a4.467 4.467 0 0 0 .995 1.167c.4.306.8.611 1.225.879c.745.461 1.588.728 2.314 1.187c.422.268.842.612 1.264.9c.21.153.343.4.611.5v-.058a3.844 3.844 0 0 0-.291-.613c-.191-.19-.383-.363-.575-.554a9.118 9.118 0 0 0-1.99-1.932c-.613-.422-1.953-1-2.2-1.7l-.039-.039a7.69 7.69 0 0 0 1.321-.308c.65-.172 1.243-.133 1.912-.3c.307-.077.862-.268.862-.268v-.3c-.342-.34-.587-.795-.947-1.116a25.338 25.338 0 0 0-3.122-2.328c-.587-.379-1.344-.623-1.969-.946c-.226-.114-.6-.17-.737-.36a7.594 7.594 0 0 1-.776-1.457a46.84 46.84 0 0 1-1.551-3.293a20.236 20.236 0 0 0-.965-2.157A19.078 19.078 0 0 0 11.609 5a9.07 9.07 0 0 0-2.421-.776c-.474-.02-.946-.057-1.419-.075a7.55 7.55 0 0 1-.869-.664C5.818 2.8 3.038 1.328 2.242 3.277C1.732 4.508 3 5.718 3.435 6.343A8.866 8.866 0 0 1 4.4 7.762c.133.322.171.663.3 1a22.556 22.556 0 0 0 .987 2.538a8.946 8.946 0 0 0 .7 1.172c.153.209.417.3.474.645a5.421 5.421 0 0 0-.436 1.419a8.336 8.336 0 0 0 .549 6.358c.3.473 1.022 1.514 1.987 1.116c.851-.34.662-1.419.908-2.364c.056-.229.019-.379.132-.53v.184s.483 1.061.723 1.6a10.813 10.813 0 0 0 2.4 2.59A3.514 3.514 0 0 1 14 24.657V25h.427a1.054 1.054 0 0 0-.427-.788a9.4 9.4 0 0 1-.959-1.16a24.992 24.992 0 0 1-2.064-3.519c-.3-.6-.553-1.258-.793-1.857c-.11-.231-.11-.58-.295-.7a7.266 7.266 0 0 0-.884 1.313a11.419 11.419 0 0 0-.517 2.921c-.073.02-.037 0-.073.038c-.589-.155-.792-.792-1.014-1.332a8.756 8.756 0 0 1-.166-5.164c.128-.405.683-1.681.461-2.068c-.111-.369-.48-.58-.682-.871a7.767 7.767 0 0 1-.663-1.237C5.912 9.5 5.69 8.3 5.212 7.216a10.4 10.4 0 0 0-.921-1.489A9.586 9.586 0 0 1 3.276 4.22c-.092-.213-.221-.561-.074-.793a.3.3 0 0 1 .259-.252c.238-.212.921.058 1.16.174a9.2 9.2 0 0 1 1.824.967c.258.194.866.685.866.685h.18c.612.133 1.3.037 1.876.21a12.247 12.247 0 0 1 2.755 1.32a16.981 16.981 0 0 1 5.969 6.545c.23.439.327.842.537 1.3c.4.94.9 1.9 1.3 2.814a12.578 12.578 0 0 0 1.36 2.564c.286.4 1.435.612 1.952.822a13.7 13.7 0 0 1 1.32.535c.651.4 1.3.861 1.913 1.3c.305.23 1.262.708 1.32 1.091"/></svg>
+                    MySQL 8.0.x</h4>
+                <span>Compatibility, XML and native JSON</span>
+            </div>
+            <div class="card">
+                <h4><svg class="icon-php" width="48px" height="48px" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#8993be" d="M12 5.5C5.271 5.5 0 8.355 0 12s5.271 6.5 12 6.5s12-2.855 12-6.5s-5.271-6.5-12-6.5Zm-1.246 2h1.31l-.416 2h1.17c.742 0 1.24.104 1.524.363c.277.256.361.676.25 1.248l-.52 2.389H12.74l.479-2.209c.058-.303.035-.514-.067-.625c-.101-.111-.324-.166-.658-.166h-1.049l-.633 3H9.5l1.254-6ZM5 9.5h2.666c1.271 0 2.041.852 1.74 2.123C9.056 13.1 8.12 13.5 6.396 13.5h-.824L5.311 15H3.986L5 9.5Zm10.5 0h2.666c1.271 0 2.041.852 1.74 2.123c-.35 1.477-1.287 1.877-3.01 1.877h-.824l-.261 1.5h-1.325L15.5 9.5Zm-9.365 1l-.377 2h.855c.74 0 1.428-.084 1.543-1.188c.043-.427-.135-.812-.99-.812H6.135Zm10.5 0l-.377 2h.855c.74 0 1.428-.084 1.543-1.188c.043-.427-.134-.812-.99-.812h-1.031Z"/></svg>
+                    7.4.x</h4>
+                <span>Anticipating future migration</span>
+            </div>
+        </article>
+
+        <!-- STACK-->
+        <article>
+
+            <p>Some hosting providers, media or tech evangelists are desperately trying to hype and push you to adopt new technologies overnight,
+                however, it would be wiser to take a good first step with a proven technology.
+                We recommend this LAMP stack specs because you can get the best comparison results with each vendor in a live production environment.
+                Simply put, It has been in use long enough that most of its initial flaws and inherent problems have been fixed.
+                Such mature technology has set the de facto standard for getting started.
+            </p>
+
+        </article>
+
+        <!-- SCALABLE HOSTING -->
+        <article id="scale-host">
+
+            <h3>Scalable hosting</h3>
+
+            <p>Based on public information, the largest cloud providers are selling the recommended LAMP stack to address a wide range of use cases,
+                from small-scale hosting to medium and large enterprises. We encourage you to do your own research to ensure the best fit for your unique needs.
+                The key features to look for include easy scalability, a partner network, managed services, and paying only for the services and resources actually used.
+            </p>
+
+            <div class="grid-4">
+                <div>
+                    <svg class="icon-linode" xmlns="http://www.w3.org/2000/svg" width="48" height="48" preserveAspectRatio="xMidYMid meet" viewBox="0 0 448 512"><path fill="currentColor" d="m366.036 186.867l-59.5 36.871l-.838 36.871l-29.329-19.273l-39.384 24.3c2.238 55.211 2.483 59.271 2.51 59.5l-97.2 65.359l-15.081-104.747l108.1-62.01l-40.224-25.977l-75.417 38.547l-20.95-143.293l129.048-49.441L136.432 0L10.737 39.385L38.39 174.3l41.9 32.681l-31.845 15.081l20.949 101.395l29.329 27.653l-20.949 12.569l16.76 78.769L160.733 512c-10.8-74.842-11.658-78.641-11.725-78.773l77.925-55.3c16.759-12.57 15.083-10.894 15.083-10.894l.838 24.3l33.519 28.491l-.838-77.093l46.927-33.519l26.815-18.435l-2.514 36.033l25.139 17.6l6.7-74.579l58.657-43.575Z"/></svg>
+                    <br>
+                    Akamai Linode
+                 </div>
+                <div>
+                    <svg class="icon-aws" xmlns="http://www.w3.org/2000/svg" width="48" height="48" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="currentColor" d="M6.584 9.01c-1.36 0-2.74.53-2.97.82c-.06.12-.2 1.09.13 1.09c.11 0 .16.02.48-.13c1.2-.47 1.96-.46 2.07-.46c1.35-.13 2.13.79 2.01 1.98v.7c-1.14-.27-1.79-.28-2.11-.28c-1.66-.1-3.194.776-3.194 2.7c0 2.11 1.883 2.56 2.613 2.53c1.09.01 2.13-.48 2.82-1.33c.55 1.23.9 1.15.91 1.15c.1 0 .18-.04.26-.09l.57-.4c.1-.06.18-.16.19-.28c-.01-.29-.53-.74-.49-1.75v-3.12a3.179 3.179 0 0 0-.799-2.35a3.42 3.42 0 0 0-2.49-.78zm19.373 0c-2 0-3.15 1.25-3.12 2.52c0 1.74 1.76 2.29 1.96 2.35c1.69.53 1.92.55 2.39.95c.4.41.35 1.21-.24 1.56c-.17.1-.9.54-2.55.2c-.55-.11-.84-.24-1.29-.43c-.12-.04-.4-.11-.4.26v.49c0 .23.14.44.35.54c1.05.53 2.31.55 2.58.55c.04 0 2.34.001 3.11-1.55c.158-.32.57-1.49-.2-2.49c-.64-.75-1.19-.83-2.83-1.33c-.14-.04-1.35-.35-1.34-1.2c-.06-1.09 1.42-1.15 1.73-1.13c1.25-.02 1.87.45 2.21.48c.15 0 .22-.09.22-.29v-.46a.487.487 0 0 0-.09-.31c-.4-.52-1.93-.71-2.49-.71zm-15.18.25c-.11.02-.19.13-.17.24c.02.13.04.26.09.39l2.24 7.39c.05.24.21.5.56.46h.82c.5.05.57-.43.58-.48l1.47-6.16l1.49 6.17c.01.05.08.53.57.48h.83c.36.04.53-.22.58-.46c2.52-8.11 2.35-7.56 2.37-7.64c.04-.42-.2-.39-.24-.38h-.89c-.45-.05-.54.36-.56.46l-1.66 6.41l-1.5-6.41c-.07-.49-.47-.47-.57-.46h-.77c-.44-.04-.55.31-.58.46l-1.49 6.32l-1.6-6.32c-.04-.2-.17-.51-.56-.47h-1.01zm-4.254 4.63c.72.01 1.342.12 1.772.22c0 .5.018.78-.092 1.23c-.14.48-.759 1.35-2.219 1.37c-.84.04-1.39-.62-1.34-1.37c-.05-1.2 1.19-1.5 1.88-1.45zm22.518 6.112c-.933.013-2.035.222-2.871.809c-.258.179-.213.427.074.394c.94-.113 3.032-.367 3.406.111c.375.478-.414 2.45-.763 3.332c-.108.263.12.372.361.172c1.564-1.31 1.97-4.056 1.65-4.45c-.16-.198-.924-.381-1.857-.368zm-27.824 1c-.218.03-.312.306-.084.525C5.05 25.201 10.226 27 15.973 27c4.099 0 8.857-1.337 12.142-3.857c.543-.42.08-1.047-.476-.8c-3.683 1.626-7.684 2.409-11.325 2.409c-5.396 0-10.62-1.127-14.845-3.686a.39.39 0 0 0-.252-.064z"/></svg>
+                    <br>Amazon Web Services
+                </div>
+                <div>
+                    <svg class="icon-azure" xmlns="http://www.w3.org/2000/svg" width="48" height="48" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M13.05 4.24L6.56 18.05L2 18l5.09-8.76l5.96-5m.7 1.09L22 19.76H6.74l9.3-1.66l-4.87-5.79l2.58-6.98Z"/></svg>
+                    <br>Microsoft Azure
+                </div>
+                <div>
+                    <svg class="icon-centos" xmlns="http://www.w3.org/2000/svg" width="48" height="48" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="currentColor" d="M15.996 3L13 6.004h2V12l1 1l1-1V6.004h2L15.996 3zM7 7v4l1.293-1.293L12.586 14H14v-1.414L9.707 8.293L11 7H7zm5.414 0l-1.293 1.293L14 11.172V7h-1.586zM18 7v4.172l2.879-2.879L19.586 7H18zm3 0l1.293 1.293L18 12.586V14h1.414l4.293-4.293L25 11V7h-4zM8.293 11.121L7 12.414V14h4.172l-2.879-2.879zm15.414 0L20.828 14H25v-1.586l-1.293-1.293zM6.004 13L3 16.004L6.004 19v-2H12l1-1l-1-1H6.004v-2zm19.992 0v2H20l-1 1l1 1h5.996v2L29 15.996L25.996 13zM7 18v1.586l1.293 1.293L11.172 18H7zm5.586 0l-4.293 4.293L7 21v4h4l-1.293-1.293L14 19.414V18h-1.414zM18 18v1.414l4.293 4.293L21 25h4v-4l-1.293 1.293L19.414 18H18zm2.828 0l2.879 2.879L25 19.586V18h-4.172zM16 19l-1 1v5.996h-2L16.004 29L19 25.996h-2V20l-1-1zm-2 1.828l-2.879 2.879L12.414 25H14v-4.172zm4 0V25h1.586l1.293-1.293L18 20.828z"/></svg>
+                    <br>CentOS Linux
+                </div>
+                <div>
+                    <svg class="icon-digital-ocean" xmlns="http://www.w3.org/2000/svg" width="48" height="48" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="currentColor" d="M16 3C8.831 3 3 8.832 3 16h5a8 8 0 1 1 8 8v5c7.169 0 13-5.832 13-13S23.169 3 16 3zm0 21v-6h-6v6h6zm-6 0H6v4h4v-4zm-4 0v-3H3v3h3z"/></svg>
+                    <br>DigitalOcean
+                </div>
+                <div>
+                    <svg class="icon-google-cloud" xmlns="http://www.w3.org/2000/svg" width="48" height="48" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M23 14.75C23 18.2 20.2 21 16.75 21h-9.5C3.8 21 1 18.2 1 14.75c0-2.14 1.08-4.03 2.71-5.15C4.58 5.82 7.96 3 12 3c4.04 0 7.42 2.82 8.29 6.6A6.22 6.22 0 0 1 23 14.75M16.63 17c1.31 0 2.37-1.06 2.37-2.37c0-1.28-1-2.33-2.28-2.38l.03-.5a4.754 4.754 0 0 0-8.32-3.14c1.5.29 2.8 1.11 3.71 2.25L9.5 13.5c-.42-.73-1.21-1.25-2.12-1.25c-1.32 0-2.38 1.06-2.38 2.38c0 1.27 1 2.3 2.25 2.37h9.38Z"/></svg>
+                    <br>Google Cloud
+                </div>
+                <div>
+                    <svg class="icon-ibm-cloud" xmlns="http://www.w3.org/2000/svg" width="48" height="48" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="currentColor" d="M24.58 13.65a9.733 9.733 0 0 0-18.294 3.889A6.75 6.75 0 0 0 7 31h16a8.746 8.746 0 0 0 1.58-17.35zM23 29.5H7a5.237 5.237 0 0 1-.7-10.43a9.726 9.726 0 0 0 1.104 3.785a.75.75 0 1 0 1.322-.71a8.25 8.25 0 0 1 14.026-8.632a8.754 8.754 0 0 0-6.315 2.95a.75.75 0 1 0 1.124.992A7.25 7.25 0 1 1 23 29.5zm8.898-19.245a.758.758 0 0 0-1.036-.278l-3.02 1.744a.759.759 0 1 0 .758 1.314l3.02-1.744a.759.759 0 0 0 .278-1.036zM22.676 7.87a.758.758 0 0 0 1.037-.278l1.744-3.02a.759.759 0 0 0-1.314-.758l-1.744 3.02a.759.759 0 0 0 .277 1.036zM16 6.081a.759.759 0 0 0 .759-.759V1.835a.759.759 0 1 0-1.518 0v3.487a.759.759 0 0 0 .759.76zM8.287 7.592a.759.759 0 0 0 1.314-.759l-1.744-3.02a.759.759 0 1 0-1.314.76zm-4.129 4.129l-3.02-1.744a.759.759 0 1 0-.758 1.314l3.02 1.744a.759.759 0 1 0 .759-1.314z"/></svg>
+                    <br>IBM Cloud
+                </div>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="currentColor" d="m26.51 13.458l3.417-5.932A15.928 15.928 0 0 1 32 15.406c0 3.839-1.354 7.365-3.615 10.125h-8.823l2.719-4.719h-3.594l4.234-7.354zm-3.093-6.989L12.443 25.521l.005.01H3.615A15.928 15.928 0 0 1 0 15.406c0-2.87.76-5.557 2.083-7.891l5.724 9.953l6.328-11z"/></svg>
+                    <br>OVH
+                </div>
+             </div>
+
+            <div class="grid">
+                <blockquote class="card">
+                    <p>LAMP stands for Linux, Apache, MySQL, and PHP. Together, they provide a proven set of software for delivering high-performance web applications.</p>
+                    - <cite>LAMP stack on Cloud Providers</cite>
+                </blockquote>
+                <blockquote class="card">
+                    <p>Using proven mature technology means finding that sweet spot after the beta testers and before the end of a product development lifecycle.</p>
+                    - <cite>Program Development Life Cycle</cite>
+                </blockquote>
+            </div>
+
+        </article>
+
+    </section>
+
+
+<hr>
+
+
+    <!-- COMPOSER -->
+    <section id="composer">
+
+        <h3>Composer</h3>
+
+        <article>
+
+            <p>XCL Bundle Package is compatible with Composer, the de facto standard for PHP package management,<br>
+               for users who want more control over installation and to extend the file manager with cloud storage.</p>
+            <ol>
+                <li>Install composer “packages” or libraries in your folder <span class="badge">/trust_path/vendor/</span></li>
+                <li>Composer generates a vendor/autoload.php file. </li>
+                <li>The file is automatically loaded and available for your web application.</li>
+            </ol>
+
+            <p>Learn more about Composer and Packages</p>
+            <ul>
+                <li><a href="https://getcomposer.org/" target="_blank" rel="noopener">Composer - Dependency Manager for PHP</a>
+                <li><a href="https://getcomposer.org/doc/00-intro.md" target="_blank" rel="noopener">Composer - Introduction</a>
+                <li><a href="https://packagist.org/" target="_blank" rel="noopener">Packagist - Browse packages</a>
+            </ul>
+
+
+        </article>
+
+    </section>
+
+
+<hr>
+
+
+    <!-- UPDATE MANAGER -->
+    <section id="update">
+
+        <article>
+
+            <h3>Update Manager</h3>
+            <p>The software update management process is necessary to maintain operational efficiency,
+            continuous improvement process and the stability of your Web Application Platform.</p>
+
+            <p>X-Update Manager provides an effective and user-friendly dashboard with a set of features
+            that can help manage the complex task of applying software updates to Web Applications.</p>
+
+            <h5>Update</h5>
+            <p>Refers to a new minor version with corrections to already existing features.</p>
+
+            <h5>Upgrade</h5>
+            <p>Refers to a new major version that contains both new and different features and corrections to already existing features.<br>
+                Please note that Modules and Themes need to be up-to-date as well. Otherwise, they will not work with more recent versions.<br>
+                New XCL 2.3.x versions typically include new features and usability enhancements.</p>
+
+            <ol>
+                <li>Export your MySQL database to UTF8<br>Replace your domain name if needed</li>
+                <li>Make a new local installation to test</li>
+                <li>Import your database UTF8</li>
+                <li>Update modules from your Control Panel</li>
+                <li>Select your default template</li>
+            </ol>
+
+            <h4>Migration</h4>
+            <p>Means that your installed version is replaced by a newer or changed version with similar or extended functionality.<br>
+               Your site is running locally on your computer and you plan to deploy to an online hosting provider.<br>
+               Or you plan to <em>migrate</em> your site from one web server to another.
+            </p>
+
+            <ol>
+                <li>Export your MySQL database to UTF8<br>Replace your domain name if needed</li>
+                <li>Edit your mainfile.php with new settings<br>
+                    New server path<br>
+                    New domain name<br>
+                    New database
+                </li>
+                <li>Import your database UTF8</li>
+                <li>Update modules from your Control Panel</li>
+            </ol>
+
+            <p>Consider the migration if your are experiencing significant growth, changes in the business model
+                and processes that require the system to be extended or integrated with modern tools.
+                This will save you much time in the future, eliminate the error level, and contribute to your business’s further growth.</p>
+
+            <div class="note warning">
+                <h4>
+                    <svg class="icon-warn" width="1em" height="1em" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M20.043 21H3.957c-1.538 0-2.5-1.664-1.734-2.997l8.043-13.988c.77-1.337 2.699-1.337 3.468 0l8.043 13.988C22.543 19.336 21.58 21 20.043 21zM12 9v4" stroke="currentColor" stroke-width="1" stroke-linecap="round"></path><path d="M12 17.01l.01-.011" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    Backup</h4>
+                    <p>Make a backup of your database and files for any emergency case. If you find that some data is corrupted or missing, you can restore it from the backup.</p>
+            </div>
+
+            <h4>Documentation</h4>
+
+            <p>Each module has its own documentation, accessible from your administration <span class="badge">control panel --> Module --> Help</span></p>
+
+            <h4>Built-in Action Search</h4>
+            <p>Use Action Search from your administration to quickly find a feature of your platform and installed modules.</p>
+
+            <hr>
+
+            <p>You've reached the end of the Installation guide — we hope you enjoy your new Web Application Platform!</p>
+
+        </article>
+
+    </section>
+
+</main>
+
+<!-- Scroll to top -->
+<div class="ntop-wrap">
+    <a href="#" role="button" aria-label="Scroll to top">
+        <svg height="48" viewBox="0 0 48 48" width="48" height="48px" xmlns="http://www.w3.org/2000/svg">
+        <path id="ntop-bg" d="M0 0h48v48h-48z"></path>
+        <path id="ntop-arrow" d="M14.83 30.83l9.17-9.17 9.17 9.17 2.83-2.83-12-12-12 12z"></path>
+        </svg>
+    </a>
+</div>
+
+
+<!-- FOOTER SOURCE - CREDITS -->
+<footer id="source-credit">
+    <section class="sources">
+        <dl>
+            <div>
+                <dt><svg class="icon-github" width="24px" height="24px" stroke-width="0.96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14.333 19v-1.863c.025-.31-.018-.62-.126-.913a2.18 2.18 0 00-.5-.781c2.093-.227 4.293-1 4.293-4.544 0-.906-.358-1.778-1-2.434a3.211 3.211 0 00-.06-2.448s-.787-.227-2.607.961a9.152 9.152 0 00-4.666 0c-1.82-1.188-2.607-.96-2.607-.96A3.211 3.211 0 007 8.464a3.482 3.482 0 00-1 2.453c0 3.519 2.2 4.291 4.293 4.544a2.18 2.18 0 00-.496.773 2.134 2.134 0 00-.13.902V19M9.667 17.702c-2 .631-3.667 0-4.667-1.948" stroke="currentColor" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    GitHub</dt>
+                <dd><a href="#xoopscube" target="" rel="noopener">The XOOPSCube Project</a></dd>
+            </div>
+            <div>
+                <dt><svg class="icon-notes" width="24px" height="24px" stroke-width="0.96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M8 14h8M8 10h2M8 18h4M10 3H6a2 2 0 00-2 2v15a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2h-3.5M10 3V1m0 2v2" stroke="currentColor" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    Overview</dt>
+                <dd><a href="#overview">Introduction and Requirements</a></dd>
+            </div>
+            <div>
+                <dt><svg class="icon-download" width="24px" height="24px" stroke-width="0.96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M6 20h12M12 4v12m0 0l3.5-3.5M12 16l-3.5-3.5" stroke="currentColor" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    Download</dt>
+                <dd><a href="#download">XCL Bundle Package</a></dd>
+            </div>
+
+            <div>
+                <dt><svg class="icon-browser" width="24px" height="24px" stroke-width="0.96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M8 21h12.4a.6.6 0 00.6-.6V3.6a.6.6 0 00-.6-.6H3.6a.6.6 0 00-.6.6V16M10 6h8M6 6h1M3.5 20.5L12 12m0 0v4m0-4H8" stroke="currentColor" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    Get started</dt>
+                <dd><a href="#start">Using the installation Wizard</a></dd>
+            </div>
+            <div>
+                <dt><svg class="icon-watch" width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke="currentColor" d="M12 14a2 2 0 100-4 2 2 0 000 4z"></path><path stroke="currentColor" d="M21 12c-1.889 2.991-5.282 6-9 6s-7.111-3.009-9-6c2.299-2.842 4.992-6 9-6s6.701 3.158 9 6z"></path></svg>
+                    Watch
+                </dt>
+                <dd><a target="_blank" rel="noreferrer noopener" href="https://github.com/xoopscube/legacy/subscription" title="Subscribe to notifications">Subscribe to notifications</a></dd>
+            </div>
+            <div>
+                <dt><svg class="icon-star" width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke="currentColor" d="M8.587 8.236l2.598-5.232a.911.911 0 011.63 0l2.598 5.232 5.808.844a.902.902 0 01.503 1.542l-4.202 4.07.992 5.75c.127.738-.653 1.3-1.32.952L12 18.678l-5.195 2.716c-.666.349-1.446-.214-1.319-.953l.992-5.75-4.202-4.07a.902.902 0 01.503-1.54l5.808-.845z"></path></svg>
+                    Star
+                </dt>
+                <dd><a target="_blank" rel="noreferrer noopener" href="https://github.com/xoopscube/legacy/" title="Keep track of activity">Keep track of activity</a></dd>
+            </div>
+            <div>
+                <dt><svg class="icon-fork" width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke="currentColor" d="M17 7a2 2 0 100-4 2 2 0 000 4zM7 7a2 2 0 100-4 2 2 0 000 4zM7 21a2 2 0 100-4 2 2 0 000 4zM7 7v10M17 7v1c0 2.5-2 3-2 3l-6 2s-2 .5-2 3v1"></path></svg>
+                    Fork
+                </dt>
+                <dd><a target="_blank" rel="noreferrer noopener" href="https://github.com/xoopscube/legacy/fork" title="Fork to customize">Customize your platform</a></dd>
+            </div>
+            <div>
+                <dt><svg class="icon-issue" width="24px" height="24px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke="currentColor" d="M20.043 21H3.957c-1.538 0-2.5-1.664-1.734-2.997l8.043-13.988c.77-1.337 2.699-1.337 3.468 0l8.043 13.988C22.543 19.336 21.58 21 20.043 21zM12 9v4"></path><path stroke="currentColor" d="M12 17.01l.01-.011"></path></svg>
+                    Report
+                </dt>
+                <dd><a target="_blank" rel="noreferrer noopener" href="https://github.com/xoopscube/legacy/issues/new" title="Report an Issue">Issue or Feature Request</a></dd>
+            </div>
+        </dl>
+
+
+        <hr>
+
+        <p class="credits">Free Open Source Web Application Platform and CMS ©2005-2022 The XOOPSCube Project - XCL Bundle Package</p>
+    </section>
+</footer>
+
+</div><!-- container -->
+<script src='../html/common/prismjs/prism.js'></script>
+<script src="./assets/script.js"></script>
+</body>
+</html>
