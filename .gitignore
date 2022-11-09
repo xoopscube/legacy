@@ -9,6 +9,7 @@ xoops_trust_path/uploads/xelfinder/*
 xoops_trust_path/uploads/xupdate/*
 
 # Files by IDE/VS
+.hintrc
 *_i.c
 *_p.c
 *_i.h
