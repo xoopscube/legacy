@@ -134,7 +134,7 @@ class XCube_HttpContext {
 	 *
 	 * @deprecated
 	 */
-	public function setThemeName( $theme ) {
+	public function setThemeName(string $theme ) {
 		$this->mThemeName = $theme;
 	}
 

@@ -70,13 +70,18 @@ class setting_manager {
 			}
 			$protocol        = ( ! empty( $_SERVER['HTTPS'] ) && ( 'on' === $_SERVER['HTTPS'] ) ) ? 'https://' : 'http://';
 			$this->xoops_url = ( ! empty( $filepath ) ) ? $protocol . $_SERVER['HTTP_HOST'] . '/' . $filepath : $protocol . $_SERVER['HTTP_HOST'];
-			// find xoops_trust_path
+
+            // find xoops_trust_path
 			$path = $this->root_path;
 			while ( strlen( $path ) > 4 ) {
 				if ( is_dir( $path . '/xoops_trust_path' ) ) {
 					$this->trust_path = $path . '/xoops_trust_path';
 					break;
 				}
+                if ( is_dir( $path . '/trust_path' ) ) {
+                    $this->trust_path = $path . '/trust_path';
+                    break;
+                }
 				$path = dirname( $path );
 			}
 		}

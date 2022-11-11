@@ -69,7 +69,7 @@ if (XOOPS_COMMENT_APPROVENONE !== $xoopsModuleConfig['com_rule']) {
             include_once XOOPS_ROOT_PATH.'/class/commentrenderer.php';
             //$renderer =& XoopsCommentRenderer::instance($xoopsTpl);
             // Non-static : make call dynamic
-            $renderer =& (new XoopsCommentRenderer($tpl))->instance( $xoopsTpl);
+            $renderer =& (new XoopsCommentRenderer($tpl))->instance($xoopsTpl);
             $renderer->setComments($comments);
             $renderer->renderFlatView($admin_view);
         } elseif ('thread' == $com_mode) {

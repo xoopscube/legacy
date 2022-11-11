@@ -110,7 +110,7 @@ class XCube_LanguageManager {
 	}
 
 	/**
-	 * check the exstence of the specified file in the specified section.
+	 * check the existence of the specified file in the specified section.
 	 *
 	 * @access public
 	 *

@@ -226,14 +226,14 @@ class XCube_PageNavigator {
 			$mask = [ $mask ];
 		}
 
-		$demiliter = '?';
+		$delimiter = '?';
 		$url       = $this->getRenderBaseUrl( $mask );
 
 		if ( false !== strpos( $url, '?' ) ) {
-			$demiliter = '&amp;';
+			$delimiter = '&amp;';
 		}
 
-		return $url . $demiliter . $this->getStartKey() . '=';
+		return $url . $delimiter . $this->getStartKey() . '=';
 	}
 
 	public function renderUrlForSort() {

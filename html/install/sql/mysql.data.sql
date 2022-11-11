@@ -18,21 +18,23 @@ INSERT INTO newblocks (`bid`, `mid`, `func_num`, `options`, `name`, `title`, `co
                        `bcachetime`, `last_modified`)
 VALUES (27, 0, 0, '', 'Custom HTML', 'Welcome',
         '<h2>Welcome to your new website!</h2>\r\n<p>A web application platform that is simple to deploy and to customize with<br>\r\nthe frameworks of your choice, modules and blocks. accessible format and expanded search capabilities, simpler navigation, and direct access to the information.&nbsp;</p>\r\n',
-        5, 1, 1, 'C', 'H', 1, '', '', '', '', '', 0, '1631325744');
-
-
-#
-# Dumping data for table `group_permission`
-#
-INSERT INTO group_permission (`gperm_id`, `gperm_groupid`, `gperm_itemid`, `gperm_modid`, `gperm_name`)
-VALUES (27, 3, 11, 1, 'block_read');
-
+        5, 0, 1, 'C', 'H', 1, '', '', '', '', '', 0, '1631325744');
 
 #
 # Dumping data for table `block_module_link`
 #
 INSERT INTO block_module_link (`block_id`, `module_id`)
-VALUES (27, 0);
+VALUES (27, -1);
+#
+# Dumping data for table `group_permission`
+#
+INSERT INTO group_permission (`gperm_id`, `gperm_groupid`, `gperm_itemid`, `gperm_modid`, `gperm_name`)
+VALUES (74,	1, 27, 1, 'block_read');
+#
+# Dumping data for table `groups_users_link`
+#
+# INSERT INTO groups_users_link (`linkid`, `groupid`, `uid`)
+# VALUES (11,	2,	9);
 #
 # Dumping data for table `comments`
 #

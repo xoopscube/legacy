@@ -221,9 +221,9 @@ class XCube_Controller {
 	 *
 	 * @param string $url Can't use html tags.
 	 * @param int $time
-	 * @param string $message
+	 * @param string|null $message
 	 */
-	public function executeForward( $url, $time = 0, $message = null ) {
+	public function executeForward(string $url, int $time = 0, string $message = null ) {
 		// check header output
 		header( 'location: ' . $url );
 		exit();
@@ -232,11 +232,11 @@ class XCube_Controller {
 	/**
 	 * Redirect to the specified URL with displaying message.
 	 *
-	 * @param string $url Can't use html tags.
-	 * @param int $time
-	 * @param string $message
+	 * @param string      $url Can't use html tags.
+	 * @param int         $time
+	 * @param string|null $message
 	 */
-	public function executeRedirect( $url, $time = 1, $message = null ) {
+	public function executeRedirect(string $url, int $time = 1, string $message = null ) {
 		$this->executeForward( $url, $time, $message );
 	}
 

@@ -40,7 +40,7 @@ function xoops_cp_footer()
 // We need these because theme files will not be included
 function OpenTable()
 {
-    echo "<table width='100%' border='0' cellspacing='1' cellpadding='8' style='border: 2px solid #2F5376;'><tr class='bg4'><td valign='top'>\n";
+    echo "<table><tr><td>\n";
 }
 
 function CloseTable()
@@ -50,12 +50,12 @@ function CloseTable()
 
 function themecenterposts($title, $content)
 {
-    echo '<table cellpadding="4" cellspacing="1" width="98%" class="outer"><tr><td class="head">'.$title.'</td></tr><tr><td><br>'.$content.'<br></td></tr></table>';
+    echo '<table class="outer"><thead><tr><td class="head">'.$title.'</td></tr></thead><tbody><tr><td><br>'.$content.'<br></td></tr></tbody></table>';
 }
 
 function myTextForm($url, $value)
 {
-    return '<form action="'.$url.'" method="post"><input type="submit" value="'.$value.'" /></form>';
+    return '<form action="'.$url.'" method="post"><input type="submit" value="'.$value.'"></form>';
 }
 
 function xoopsfwrite()

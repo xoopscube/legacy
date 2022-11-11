@@ -109,6 +109,8 @@ function make_data( &$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, 
 	$dbm->insert( 'groups_users_link', ' VALUES (0, ' . $gruops['XOOPS_GROUP_ADMIN'] . ', 1)' );
 	$dbm->insert( 'groups_users_link', ' VALUES (0, ' . $gruops['XOOPS_GROUP_USERS'] . ', 1)' );
 
+    // Block Welcome
+    // $dbm->insert( 'groups_users_link', ' VALUES (11, ' . $gruops['XOOPS_GROUP_ADMIN'] . ',	9)' );
 	/*
 		// install modules
 		installModule($dbm, 1, "system", _MI_SYSTEM_NAME, $language, $gruops);
@@ -177,7 +179,7 @@ function make_data( &$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, 
  * Install module by module's name, language and specified mid.
  *
  * @param object $dbm Database manager instance
- * @param int $mid module's ID
+ * @param int    $mid module's ID
  * @param string $module module's name
  * @param        $module_name
  * @param string $language language

@@ -552,7 +552,7 @@ class XCube_FieldProperty {
 	 * \endcode
 	 *   This feature is helpful for automatic ActionForm generators.
 	 */
-	public function renderMessage( $name ) {
+	public function renderMessage(string $name ) {
 		if ( ! isset( $this->mMessages[ $name ] ) ) {
 			return null;
 		}
