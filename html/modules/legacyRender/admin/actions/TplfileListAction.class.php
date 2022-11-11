@@ -136,7 +136,7 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
         $errorMessage = $successFlag ? _AD_LEGACYRENDER_MESSAGE_UPLOAD_TEMPLATE_SUCCESS : _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED;
 
         //
-        // No good exmaple ;)
+        // Not a good example ;)
         // Because some local variables are used, jump directly without the return value of view status.
         //
         $controller->executeRedirect("index.php?action=TplfileList&tpl_tplset=${last_tplset}&tpl_module=${last_module}", 1, $errorMessage);
@@ -169,7 +169,7 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
         $render->setAttribute('targetModule', xoops_getrequest('tpl_module'));
 
         //
-        // TODO We must fetch only module objects that has templates.
+        // TODO We must to fetch only module objects that have templates.
         //
         // fetch module objects, assign to template for pull-down menu.
         //

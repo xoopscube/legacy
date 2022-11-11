@@ -18,7 +18,8 @@ if ( is_object( $xoopsUser ) ) {
 		require_once __DIR__ . '/altsys_functions.php';
 
 		if ( ! empty( $GLOBALS['altsysModuleConfig']['admin_in_theme'] ) && file_exists( XOOPS_THEME_PATH . '/' . $GLOBALS['altsysModuleConfig']['admin_in_theme'] . '/theme.html' ) ) {
-			// configs OK
+
+            // configs OK
 			require_once __DIR__ . '/admin_in_theme_functions.php';
 
 			// for security with register_globals=1

@@ -21,6 +21,10 @@
 	<{* ------------------------------------------ Layout *}>
 	<{include file="$xoops_theme/component/app_layout.html"}>
 
+	<{if $xoops_isadmin}>
+	<{include file="$xoops_theme/component/admin-panel.html"}>
+	<{/if}>
+
     <{* ------------------------------------------ Scripts *}>
     <{include file="$xoops_theme/component/app_footer.html"}>
 

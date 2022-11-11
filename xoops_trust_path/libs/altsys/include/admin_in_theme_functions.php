@@ -29,8 +29,8 @@ function altsys_admin_in_theme( $s ) {
 	//!Fix redirect
 	//strpos - Find the position of the first occurrence of a substring in a string
 	//mb_strstr - Finds first occurrence of a string within another
-	//if (strpos($s, '<meta http-equiv="Refresh" ') !== false) {
-	if ( mb_strstr( $s, '<meta http-equiv="Refresh" ' ) ) {
+	if (strpos($s, '<meta http-equiv="Refresh" ') !== false) {
+	//if ( mb_strstr( $s, '<meta http-equiv="Refresh" ' ) ) {
 		define( 'ALTSYS_DONT_USE_ADMIN_IN_THEME', 1 );
 
 		return $s;
@@ -49,7 +49,7 @@ function altsys_admin_in_theme( $s ) {
 		return $s;
 	}
 
-	[ $tmp_s, $tmp_after ] = explode( "<td width='1%'>", $tmp_s );
+	[ $tmp_s, $tmp_after ] = explode( "<div width='1%'>", $tmp_s );
 	if ( empty( $tmp_after ) ) {
 		define( 'ALTSYS_DONT_USE_ADMIN_IN_THEME', 1 );
 

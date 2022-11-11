@@ -9,7 +9,7 @@
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section layout="row center-justify" class="action-control">
+<section data-layout="row center-justify" class="action-control">
 
     <a class="button" href="index.php?mode=admin&lib=altsys&page=myblocksadmin&dirname=__CustomBlocks__&op=edit"><{$smarty.const._MI_ALTSYS_MENU_NEWCUSTOMBLOCK}></a>
 
@@ -93,8 +93,8 @@
 
 		<div class="ui-card-block-content">
 
-			<div layout="rows column">
-			<div class="ui-card-block-item" layout="rows">
+			<div data-layout="rows column">
+			<div class="ui-card-block-item" data-layout="rows">
 				<label for="weights[<{$block.bid}>]" aria-label="<{$smarty.const._MD_A_MYBLOCKSADMIN_WEIGHT}>">
 				<input type="text" name="weights[<{$block.bid}>]" value="<{$block.weight}>" size="1" maxlength="5">
 				</label>
@@ -149,7 +149,7 @@
 </div><{* ui-data-render *}>
 
 
-<div layout="row centered" class="adminnavi">
+<div data-layout="row centered" class="adminnavi">
 	<input type="hidden" name="fct" value="blocksadmin">
 	<input type="hidden" name="op" value="order">
 	<{$gticket_hidden}>

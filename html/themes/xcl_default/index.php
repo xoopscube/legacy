@@ -11,12 +11,7 @@
 // Process Script start getrusage — Gets the current resource usages
 $rustart = getrusage();
 
-$main = "../../mainfile.php";
-if (file_exists(stream_resolve_include_path($main))) {
-    require_once $main;
-} else {
-    throw new Exception("Failed to find and include required mainfile.");
-}
+require_once '../../mainfile.php';
 
 require_once("../../header.php");
 

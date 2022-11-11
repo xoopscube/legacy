@@ -1,0 +1,388 @@
+<{* XCL-Cube Admin Panel Options *}>
+<style>
+    /* -------------------- -------------------- Right side toggle */
+
+    @keyframes rotate {
+        from {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+        to {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); }
+    }
+    @keyframes rotateY {
+        from {
+            transform: rotateY(0);
+        }
+        to {
+            transform: rotateY(359.99deg);
+        }
+    }
+
+    .theme-options {
+
+        background      : transparent;
+
+        border-top-left-radius : 2px;
+        border-bottom-left-radius : 2px;
+        box-shadow      : -5px 0 5px 1px rgba(0,0,0,0.27);
+
+        color           : #abc;
+        line-height     : 30px;
+        position        : fixed;
+        top             : 30%;
+        right           : 2px;
+        z-index         : 900;
+        padding         : 1px;
+        margin          : 3px;
+
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+    }
+
+    .theme-options-toogle {
+        position        : relative;
+        padding         : 10px;
+        top             : -18px;
+        right           : -20px;
+        /* filter: drop-shadow( 3px 3px 2px rgba(223, 13, 13, 0.8)); */
+    }
+
+    .theme-options-toogle:hover {
+        box-shadow      : 1px 1px 1px 1px rgba(0,0,0,0.27);
+        filter          : drop-shadow(1px 1px 0px rgba(10, 10, 10, 0.7));
+        /* box-shadow   : 1px 1px 1px 1px rgba(204, 15, 15, 0.27); */
+        /* Similar syntax to box-shadow */
+    }
+
+    /* -------------------- -------------------- XCL CUBE */
+
+    .qube-perspective{-webkit-perspective:900px;-moz-perspective:900px;perspective:900px}
+    .qube-preserve3d{-webkit-transform-style:preserve-3d;-moz-transform-style:preserve-3d;transform-style:preserve-3d}
+    .qube{position:relative;margin:0;padding:0;list-style:none;width:100%;height:100%;-webkit-transform-style:preserve-3d;-moz-transform-style:preserve-3d;transform-style:preserve-3d}
+    .qube>*{background:#666;background-size:100%}
+    .qube>*,.qube>:after{position:absolute;left:0;top:0;margin:0;padding:0;width:100%;height:100%}
+    .qube>:after{pointer-events:none;display:block;content:""}
+    .qube.no-shading>:after{display:none}
+    .qube.solid>*,.qube.solid>:after{-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;backface-visibility:hidden}
+    .qube.textured>*{background-size:300%}
+    .qube.faces>:nth-child(1),.qube>.front{-webkit-transform:rotateX(90deg) translateY(50%) rotateX(-90deg);-moz-transform:rotateX(90deg) translateY(50%) rotateX(-90deg);transform:rotateX(90deg) translateY(50%) rotateX(-90deg)}
+    .qube.textured.faces>:nth-child(1),.qube.textured>.front{background-position:0 0}
+    .qube.faces>:nth-child(3),.qube>.back{-webkit-transform:rotateY(180deg) rotateX(90deg) translateY(50%) rotateX(-90deg);-moz-transform:rotateY(180deg) rotateX(90deg) translateY(50%) rotateX(-90deg);transform:rotateY(180deg) rotateX(90deg) translateY(50%) rotateX(-90deg)}
+    .qube.faces>:nth-child(3):after,.qube>.back:after{background:rgba(0,0,0,.6)}
+    .qube.x-axis.faces>:nth-child(3),.qube.x-axis>.back{-webkit-transform:rotateX(90deg) translateY(-50%) rotateX(90deg);-moz-transform:rotateX(90deg) translateY(-50%) rotateX(90deg);transform:rotateX(90deg) translateY(-50%) rotateX(90deg)}
+    .qube.textured.faces>:nth-child(3),.qube.textured>.back{background-position:-100% 0}
+    .qube.faces>:nth-child(2),.qube>.left{-webkit-transform:translateX(-50%) rotateY(-90deg);-moz-transform:translateX(-50%) rotateY(-90deg);transform:translateX(-50%) rotateY(-90deg)}
+    .qube.faces>:nth-child(2):after,.qube>.left:after{background:rgba(0,0,0,.5)}
+    .qube.textured.faces>:nth-child(2),.qube.textured>.left{background-position:-200% 0}
+    .qube.faces>:nth-child(4),.qube>.right{-webkit-transform:translateX(50%) rotateY(90deg);-moz-transform:translateX(50%) rotateY(90deg);transform:translateX(50%) rotateY(90deg)}
+    .qube.faces>:nth-child(4):after,.qube>.right:after{background:rgba(0,0,0,.3)}
+    .qube.textured.faces>:nth-child(4),.qube.textured>.right{background-position:0 -100%}
+    .qube.faces>:nth-child(5),.qube>.top{-webkit-transform:translateY(-50%) rotateX(90deg);-moz-transform:translateY(-50%) rotateX(90deg);transform:translateY(-50%) rotateX(90deg)}
+    .qube.faces>:nth-child(5):after,.qube>.top:after{background:rgba(0,0,0,.2)}
+    .qube.textured.faces>:nth-child(5),.qube.textured>.top{background-position:-100% -100%}
+    .qube.faces>:nth-child(6),.qube>.bottom{-webkit-transform:translateY(50%) rotateX(-90deg);-moz-transform:translateY(50%) rotateX(-90deg);transform:translateY(50%) rotateX(-90deg)}
+    .qube.faces>:nth-child(6):after,.qube>.bottom:after{background:rgba(0,0,0,.7)}
+    .qube.textured.faces>:nth-child(6),.qube.textured>.bottom{background-position:-200% -100%}
+    /* Quintessential Responsive 3D CSS Cube, MIT License @zacharyjohnson https://github.com/zachstronaut/quintessential-css-cube/ */
+
+    .xcl-cube {
+        width           : 40px;
+        height          : 40px;
+        line-height     : 40px;
+        transition      : transform 1500ms ease;
+    }
+    .xcl-cube:hover {
+        transform       : rotateY(359deg);
+    }
+    .xcl-cube > * {
+        background      : rgba(0,127,255,0.5);
+        border          : 1px solid rgba(0,127,255,0.5);
+        text-align      : center;
+        cursor          : pointer;
+    }
+    .xcl-cube > .front {
+        background      : rgba(84,110,127,0.27);
+    }
+    .xcl-cube > .left {
+        background      : rgba(70,90,100,0.27);
+    }
+    .xcl-cube > .back {
+        background      : rgba(55,70,80,0.27);
+    }
+    .xcl-cube > .right {
+        background      : rgba(40,52,60,0.27);
+    }
+
+
+    /* -------------------- -------------------- XCL Panel */
+
+    .right-sidebar {
+        /*background      : #272c35ee;*/
+        background:var(--color-1);
+        box-shadow      : 5px 1px 40px rgba(0, 0, 0, 0.1);
+        display         : none;
+        direction       : rtl; /* Used for scrollbar on the left */
+        height          : 100vh;
+        overflow-y      : auto;
+        overflow-x      : hidden;
+        padding-bottom  : 20px;
+        position        : fixed;
+        right           : -274px;
+        top             : 0;
+        transition      : all 0.3s ease;
+        width           : 270px;
+        z-index         : 1100;
+        /* FIREFOX SCROLLBAR */
+        scrollbar-color : var(--thumbBG) var( --trackBG ); /* thumb-color track-color */
+        scrollbar-width : thin;
+
+    }
+    .right-sidebar .right-panel-title {
+        background      : hsla(201, 100%, 50%, 0.5);
+        color           : hsl(0, 0%, 100%);
+        display         : block;
+        font-size       : 15px;
+        padding         : 15px 20px;
+        position        : sticky;
+        text-transform  : uppercase;
+        top             : 2px;
+        z-index         : 11;
+    }
+    .right-sidebar .right-panel-title span {
+        cursor          : pointer;
+        float           : right;
+        font-size       : 18px;
+    }
+    .right-sidebar .right-panel-title span:hover {
+        color           : #ffffff;
+    }
+
+    .right-sidebar .right-panel-block {
+        direction       : ltr; /* used for content on the left*/
+        display         : block;
+        height          : auto;
+        padding         : 15px;
+        width           : 100%;
+        z-index         : 10;
+    }
+    .right-sidebar .right-panel-block ul {
+        margin          : 0;
+        padding         : 0;
+    }
+    .right-sidebar .right-panel-block ul li {
+        list-style      : none;
+        padding         : 5px 0;
+    }
+
+    .right-panel-show {
+        display         : block;
+        right           : 0;
+        width           : 274px;
+    }
+
+/*    .chatline img {
+        margin-right    : 10px;
+        float           : left;
+        width           : 30px;
+    }
+
+    .chatline li a {
+        padding         : 13px 0;
+        float           : left;
+        width           : 100%;
+    }
+    .chatline li a span {
+        color           : #747d8a;
+    }
+    .chatline li a span small {
+        display         : block;
+        font-size       : 10px;
+    }*/
+
+</style>
+
+<div class="theme-options">
+	<div class="qube-perspective">
+		<ul class="qube xcl-cube">
+			<li class="front">X
+			<li class="left">L
+			<li class="back">C
+			<li class="right">L
+			<li class="top">
+			<li class="bottom">
+		</ul>
+	</div>
+</div>
+
+<{* ----- RIGHT-SIDEBAR ----- *}>
+<div class="right-sidebar">
+
+    <div class="right-panel-title"> Control Panel
+        <span class="theme-options theme-options-toogle">
+            <svg xmlns="https://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024">
+                <path d="M512 0Q373 0 255 68.5T68.5 255 0 512t68.5 257T255 955.5t257 68.5 257-68.5T955.5 769t68.5-257-68.5-257T769 68.5 512 0zm0 961q-73 0-141.5-22.5T247 874t-96.5-97-64-123.5T64 512q0-91 35.5-174T195 195t143-95.5T512 64t174 35.5T829 195t95.5 143T960 512t-35.5 174T829 829.5t-143 96T512 961zm181-630q-9-9-22.5-9t-22.5 9L512 467 376 331q-9-9-22.5-9t-22.5 9-9 22.5 9 22.5l136 136-136 136q-6 6-8.5 14t0 16.5T331 693q9 9 22.5 9t22.5-9l136-136 136 136q9 9 22.5 9t22.5-9q6-6 8.5-14.5t0-16.5-8.5-14L557 512l136-136q9-9 9-22.5t-9-22.5z" fill="currentColor"></path>
+            </svg>
+        </span>
+    </div>
+
+    <{* ----- RIGHT-PANEL-BLOCK ----- *}>
+		<div class="right-panel-block">
+
+            <{* Admin Menu *}>
+            <ul style="width: calc(100% - 30px); margin:0">
+                <li>
+                <a href="<{$xoops_url}>/" target="_blank" aria-label="<{$smarty.const._YOURHOME}>" class="button" style="width: 100%; text-align:left; margin: 0">
+                    <svg class="svg-ui-icon" xmlns="http://www.w3.org/2000/svg"  class="svg-ui-icon" viewBox="0 0 24 24">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3L2 12h3v8h5z" fill="currentColor"/>
+                    </svg> <{$smarty.const._YOURHOME}></a>
+                <li>
+				<a href="<{$xoops_url}>/edituser.php" target="_blank" aria-label="Account Setting" class="button" style="width: 100%; text-align:left; margin: 0">
+					<svg role="img" xmlns="https://www.w3.org/2000/svg" aria-hidden=”true” viewBox="0 0 24 24" class="svg-ui-icon">
+                        <path d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z" fill="currentColor"></path>
+					</svg> Account</a>
+                <li>
+				<a href="<{$xoops_url}>/viewpmsg.php" target="_blank" aria-label="Inbox" class="button" style="width: 100%; text-align:left; margin: 0">
+					<svg role="img" xmlns="https://www.w3.org/2000/svg" aria-hidden=”true” viewBox="0 0 24 24" class="svg-ui-icon">
+                        <path d="M2 6v14h18v2H2c-1.105 0-2-.89-2-2V6h2m22-2c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4m-2 0l-8 5l-8-5h16m0 12H6V6l8 5l8-5v10z" fill="currentColor"></path>
+					</svg> Inbox</a>
+                <li>
+				<a href="<{$xoops_url}>/notifications.php" target="_blank" aria-label="Notifications" class="button" style="width: 100%; text-align:left; margin: 0">
+					<svg role="img" xmlns="https://www.w3.org/2000/svg" aria-hidden=”true” viewBox="0 0 24 24" class="svg-ui-icon">
+                        <path d="M16 17H7v-6.5C7 8 9 6 11.5 6S16 8 16 10.5m2 5.5v-5.5c0-3.07-2.14-5.64-5-6.32V3.5A1.5 1.5 0 0 0 11.5 2A1.5 1.5 0 0 0 10 3.5v.68c-2.87.68-5 3.25-5 6.32V16l-2 2v1h17v-1m-8.5 4a2 2 0 0 0 2-2h-4a2 2 0 0 0 2 2z" fill="currentColor"></path>
+					</svg> Notifications</a>
+                <li>
+				<a href="<{$xoops_url}>/user.php?op=logout" target="_blank" aria-label="<{$smarty.const._LOGOUT}>" class="button" style="width: 100%; text-align:left; margin: 0">
+					<svg role="img" xmlns="https://www.w3.org/2000/svg" aria-hidden=”true” viewBox="0 0 24 24" class="svg-ui-icon">
+                        <path d="M14.08 15.59L16.67 13H7v-2h9.67l-2.59-2.59L15.5 7l5 5l-5 5l-1.42-1.41M19 3a2 2 0 0 1 2 2v4.67l-2-2V5H5v14h14v-2.67l2-2V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h14z" fill="currentColor"></path>
+					</svg> <{$smarty.const._LOGOUT}></a>
+			    </li>
+            </ul>
+
+            <{* Admin Help *}>
+            <{* assign var="helpAdmin" value="`$xoops_dirname` article#help-overview" *}>
+            <h5>Module</h5>
+
+            <div layout="row center-spread">
+
+                <button class="help-admin button" type="button" data-module="<{$xoops_dirname}>" data-help-article="#help-overview" aria-label="<{$smarty.const._HELP}>">
+                    <b>?</b> <{$smarty.const._HELP}> : <{$xoops_dirname}>
+                </button>
+
+            </div>
+
+
+            <{* ----- ADMIN PREVIEW ----- *}>
+            <h5>Preview Layout</h5>
+
+            <div layout="row center-spread" class="btn-group" data-self="size-x1" role="group" aria-label="Basic example">
+                <button type="button" class="button" aria-label="Screen Height-736 Width-414" href="<{$xoops_url}>/" target="_blank" onclick="window.open('<{$xoops_url}>/','pagename','resizable,height=700,width=400'); return false;">
+                    <svg xmlns="https://www.w3.org/2000/svg" aria-hidden="true" width="1.5em" height="1.5em" style="vertical-align: -0.062em;color: #face74;" preserveAspectRatio="xMidYMid meet" viewBox="0 0 576 1024"><path d="M480 0H96Q70 0 48 13T13 48 0 96v832q0 40 28 68t68 28h384q40 0 68-28t28-68V96q0-26-13-48t-35-35-48-13zm32 928q0 13-9.5 22.5T480 960H96q-13 0-22.5-9.5T64 928V96q0-13 9.5-22.5T96 64h384q13 0 22.5 9.5T512 96v832zM288.5 800q-26.5 0-45.5 19t-19 45q0 17 8.5 32t23.5 23.5 32 8.5 32-8.5 23.5-23.5 8.5-32q0-26-18.5-45t-45-19zM352 96H224q-13 0-22.5 9.5T192 128t9.5 22.5T224 160h128q13 0 22.5-9.5T384 128t-9.5-22.5T352 96z" fill="currentColor"></path></svg>
+                </button>
+
+                <button type="button" class="button" class="button" aria-label="Screen Height-1024 Width-768" href="<{$xoops_url}>/" onclick="window.open('<{$xoops_url}>/','pagename','resizable,height=1024,width=768'); return false;">
+                    <svg xmlns="https://www.w3.org/2000/svg" aria-hidden="true" width="1.5em" height="1.5em" style="color: #face74;" preserveAspectRatio="xMidYMid meet" viewBox="0 0 832 1024"><path d="M736 0H96Q70 0 48 13T13 48 0 96v832q0 40 28 68t68 28h640q40 0 68-28t28-68V96q0-26-13-48t-35-35-48-13zm32 928q0 13-9.5 22.5T736 960H96q-13 0-22.5-9.5T64 928V96q0-13 9.5-22.5T96 64h640q13 0 22.5 9.5T768 96v832zM416 800q-26 0-45 19t-19 45 19 45 45 19 45-19 19-45q0-17-8.5-32T448 808.5t-32-8.5zm64-704H352q-13 0-22.5 9.5T320 128t9.5 22.5T352 160h128q13 0 22.5-9.5T512 128t-9.5-22.5T480 96z" fill="currentColor"></path></svg>
+                </button>
+
+                <button type="button" class="button" aria-label="Blank" href="<{$xoops_url}>/" target="_blank" onclick="window.open('<{$xoops_url}>/'); return false;">
+                    <svg xmlns="https://www.w3.org/2000/svg" aria-hidden="true" width="1.5em" height="1.5em" style="color: #face74;" preserveAspectRatio="xMidYMid meet" viewBox="0 -64 1024 1024"><path d="M960 32H64q-26 0-45 18.5T0 96v544q0 26 19 45t45 19h416v96H320q-13 0-22.5 9.5T288 832t9.5 22.5T320 864h384q13 0 22.5-9.5T736 832t-9.5-22.5T704 800H544v-96h416q26 0 45-19t19-45V96q0-27-19-45.5T960 32zm0 608H64V96h896v544z" fill="currentColor"></path></svg>
+                </button>
+            </div>
+            <p><a href="<{$xoops_url}>/common/styleguide/" target="_parent">styleguide</a></a> </p>
+            <div layout="row centered">
+                <button class="button" id="info-browser">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="1em" height="1em" viewBox="0 0 24 24" class="icon-info">
+                        <path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2z" fill="currentColor">
+                        </path>
+                    </svg> Navigator userAgent</button>
+            </div>
+
+
+
+            <{* ----- OS BROWSER ----- *}>
+            <script>
+                // system/broser
+                'use strict';
+                var System={browser:function(){
+                        var a=navigator.userAgent;
+                        return/Arora/i.test(a)?"Arora":/Opera|OPR/.test(a)?"Opera":/Maxthon/i.test(a)?"Maxthon":/Vivaldi/i.test(a)?"Vivaldi":/YaBrowser/i.test(a)?"Yandex":/Chrome/i.test(a)?"Chrome":/Epiphany/i.test(a)?"Epiphany":/Firefox/i.test(a)?"Firefox":/Mobile(\/.*)? Safari/i.test(a)?"Mobile Safari":/MSIE/i.test(a)?"Internet Explorer":/Midori/i.test(a)?"Midori":/Safari/i.test(a)?"Safari":!1}(),
+                    os:function(){
+                        var a=navigator.userAgent;
+                        return/Android/i.test(a)?"Android":/CrOS/i.test(a)?"Chrome OS":/iP[ao]d|iPhone/i.test(a)?"iOS":/Linux/i.test(a)?"Linux":/Mac OS/i.test(a)?"Mac OS":/windows/i.test(a)?"Windows":!1}(),
+                    support:{
+                        canvas:!!window.CanvasRenderingContext2D,
+                        localStorage:function(){try{return!!window.localStorage.getItem}catch(a){return!1}}(),
+                        file:!!window.File&&!!window.FileReader&&!!window.FileList&&!!window.Blob,fileSystem:!!window.requestFileSystem||!!window.webkitRequestFileSystem,getUserMedia:!!window.navigator.getUserMedia||!!window.navigator.webkitGetUserMedia||!!window.navigator.mozGetUserMedia||!!window.navigator.msGetUserMedia,requestAnimationFrame:!!window.mozRequestAnimationFrame||!!window.webkitRequestAnimationFrame||!!window.oRequestAnimationFrame||!!window.msRequestAnimationFrame,
+                        sessionStorage:function(){try{return!!window.sessionStorage.getItem}catch(a){return!1}}(),
+                        svg:function(){try{return!!document.createElementNS&&!!document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect}catch(a){return!1}}(),
+                        webgl:function(){try{return!!window.WebGLRenderingContext&&!!document.createElement("canvas").getContext("experimental-webgl")}catch(a){return!1}}(),worker:!!window.Worker}};
+
+                var system = [
+                    '<strong>Browser</strong> ' + System.browser,
+                    '<strong>OS</strong> ' + System.os,
+                    '',
+                    '<strong>Canvas</strong> ' + System.support.canvas,
+                    '<strong>Local storage</strong> ' + System.support.localStorage,
+                    '<strong>File API</strong> ' + System.support.file,
+                    '<strong>FileSystem API</strong> ' + System.support.fileSystem,
+                    '<strong>RequestAnimationFrame</strong> ' + System.support.requestAnimationFrame,
+                    '<strong>Session storage</strong> ' + System.support.sessionStorage,
+                    '<strong>SVG</strong> ' + System.support.svg,
+                    '<strong>WebGL</strong> ' + System.support.webgl,
+                    '<strong>Worker</strong> ' + System.support.worker
+                ].join( '<br>' );
+
+                $( function() {
+                    $("#dialog_os_browser").dialog({
+                        autoOpen: false,
+                        modal: true,
+                        resizable: false,
+/*                        buttons: [
+                            {
+                                text: "<{$smarty.const._HELP}>",
+                                "id": "btnHelp",
+                                click: function () {
+                                    // window.location.href=src;
+                                    //window.location.href="admin/index.php?action=Help&dirname=<{$adminHelp}>";
+                                    window.location.href = "<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&dirname=legacyRender#help-browser";
+                                }
+
+                            }, {
+                                text: "Close",
+                                click: function () {
+                                    //closeCallback();
+                                    $(this).dialog('close');
+                                },
+
+                            }]*/
+                    });
+
+                    $( "#info-browser" ).on( "click", function() {
+                        $( "#dialog_os_browser" ).dialog( "open" ).html('<div class="os-browser">'+ system + '</div>');
+                    });
+
+                } );
+            </script>
+
+            <div id="dialog_os_browser" title="OS Navigator">
+                <!-- Load OS Browser -->
+            </div>
+
+		</div>
+    <{* -----/ RIGHT-PANEL-BLOCK *}>
+
+</div>
+<{* -----/ RIGHT-SIDEBAR *}>
+<script>
+    // Sidebar - Theme Options
+    // .theme-options .theme-options-toggle
+    // $(".right-side-toggle").click(function() {
+    $(".theme-options").click(function () {
+        $(".right-sidebar").slideDown(50), $(".right-sidebar").toggleClass("right-panel-show");
+    });
+</script>

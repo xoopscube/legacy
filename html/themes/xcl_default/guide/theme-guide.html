@@ -16,14 +16,14 @@
 
 
 <{* ////— Theme Manifesto —\\\\ *}>
-<section layout="row sm-column" self="size-x1" class="theme-manifesto">
+<section data-layout="row sm-column" data-self="size-x1" class="theme-manifesto">
 
-    <div self="size-10f2 px-2 sm-full">
+    <div data-self="size-10f2 px-2 sm-full">
         <img src="<{$xoops_imageurl}><{$theme.screenshot.value}>" alt="Theme screenshot" width="400px">
     </div>
 
     <{* Theme Credits *}>
-    <article self="size-x1 px-2 sm-full" class="theme-credits">
+    <article data-self="size-x1 px-2 sm-full" class="theme-credits">
         <p><span class="badge">Theme Name</span>  <{$theme.name.value}><br>
             <span class="badge">Description</span>  <{$theme.description.value}><br>
             <span class="badge">Version</span>  <{$theme.version.value}><br>
@@ -91,7 +91,7 @@
 
     <{*
        <h4>ICONS</h4>
-        <div layout="row">
+        <div data-layout="row">
             <ul>*}>
         <{* foreach from=$icons item=item *}>
                 <{*        <li><img class="svg" src="<{$xoops_url}>/images/icons/<{$item}>" width="" alt="<{$item}>"> <{$item}></li> *}>

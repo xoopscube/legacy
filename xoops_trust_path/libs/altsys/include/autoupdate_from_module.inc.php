@@ -30,6 +30,11 @@ foreach ( $tplsadmin_autoupdate_dirnames as $dirname ) {
 	if ( $handler = @opendir( $tplsadmin_autoupdate_path . '/' ) ) {
 		while ( false !== ( $file = readdir( $handler ) ) ) {
 			$file_path = $tplsadmin_autoupdate_path . '/' . $file;
+            /**
+             * Import CSS
+             * proposed by tohokuaiki
+             * ! if( is_file( $file_path ) && (substr( $file , -5 ) == '.html'||substr( $file , -4 ) == '.css') ) {
+             */
 			if ( is_file( $file_path ) && '.html' == substr( $file, - 5 ) ) {
 				$mtime = (int) @filemtime( $file_path );
 				list( $count ) = $xoopsDB->fetchRow( $xoopsDB->query( 'SELECT COUNT(*) FROM ' . $xoopsDB->prefix( 'tplfile' ) . " WHERE tpl_tplset='" . addslashes( $xoopsConfig['template_set'] ) . "' AND tpl_file='" . addslashes( $file ) . "' AND tpl_lastmodified >= $mtime" ) );

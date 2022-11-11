@@ -169,7 +169,7 @@ class HTMLPurifier_Generator
             }
             $attr = $this->generateAttributes($token->attr, $token->name);
              return '<' . $token->name . ($attr ? ' ' : '') . $attr .
-                ( $this->_xhtml ? ' /': '' ) // <br> v. <br>
+                ( $this->_xhtml ? ' /': '' ) // <br /> v. <br>
                 . '>';
 
         } elseif ($token instanceof HTMLPurifier_Token_Text) {

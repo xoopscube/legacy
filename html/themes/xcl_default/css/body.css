@@ -190,24 +190,24 @@ kbd {
     text-shadow         : 0 1px 5px #f2f2f2;
     white-space         : nowrap;
 }
-
+/*
 body {
-    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    /* Adds a hyphen where the word breaks, if supported (No Blink)
     hyphens             : auto;
     -ms-hyphens         : auto;
     -moz-hyphens        : auto;
-    -webkit-hyphens     : auto;
+    -webkit-hyphens     : auto;*/
 
-    /* These are technically the same, but use both */
+    /* These are technically the same, but use both
     overflow-wrap       : break-word;
-    word-wrap           : break-word;
+    word-wrap           : break-word;*/
 
-    /* This is the dangerous one in WebKit, as it breaks things wherever */
-    word-break          : break-all;
+    /* This is the dangerous one in WebKit, as it breaks things wherever
+    word-break          : break-all;*/
     /* Instead use this non-standard one:
     word-break          : break-word; */
-}
-
+/* }
+*/
 p {
     font-size           : var(--font-size);
     line-height         : var(--line-height);
@@ -241,6 +241,74 @@ ul.column-2 {
     /*-moz-column-rule    : 1px solid lightgrey;*/
     column-rule         : var(--border);
 }
+
+/* ---------- ---------- ------- SCROLL TOP */
+.ntop-wrap {
+    box-sizing: border-box;
+    position: absolute;
+    top: 12rem;
+    right: 2rem;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 100;
+}
+.ntop-wrap #ntop-bg {
+    fill: #007bff;
+}
+.ntop-wrap #ntop-arrow {
+    fill: var(--color-light);
+}
+.ntop-wrap a:hover #ntop-bg {
+    fill: #2990ff;
+}
+.ntop-wrap a:hover #ntop-arrow {
+    fill: var(--color-light);
+}
+.ntop-wrap a {
+    /* position: fixed; */
+    position: sticky;
+    top: -5rem;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: -5rem;
+    transform: translateY(100vh);
+    backface-visibility: hidden;
+    display: inline-block;
+    text-decoration: none;
+    user-select: none;
+    pointer-events: all;
+    outline: none;
+    overflow: hidden;
+}
+.ntop-wrap a svg {
+    display: block;
+    border-radius: var(--radius);
+    width: 100%;
+    height: 100%;
+}
+.ntop-wrap a svg path {
+    transition: all 0.1s;
+}
+.ntop-wrap a #ntop-arrow {
+    transform: scale(0.66);
+    transform-origin: center;
+}
+@media print {
+    .ntop-wrap { display: none !important; }
+}
+@keyframes bottom {
+    0% { transform:translateY(10px); opacity:0; }
+    100% { opacity:1; transform:none;}
+}
+@keyframes top {
+    0% { transform:translateY(-10px); opacity:0; }
+    100% { opacity:1; transform:none; }
+}
+@keyframes left {
+    0% { transform:translateX(-10px); opacity:0; }
+    100% { opacity:1; transform:none; }
+}
+
 
 /* -------------------- -------------------- SELECTION */
 /* ::selection pseduo-class selector changes the style of the selected text.

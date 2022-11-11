@@ -84,7 +84,7 @@ $modversion['config'][] = [
 	'description' => '_MI_ALTSYS_ADMIN_IN_THEMEDSC',
 	'formtype'    => 'textbox',
 	'valuetype'   => 'text',
-	'default'     => 'default',
+	'default'     => 'xcl_default',
 	'options'     => []
 ];
 

@@ -5,10 +5,10 @@
     themeable menu with mouse and keyboard interactions for navigation.</p>
 
 
-<div layout="row md-column mt-6" class="component">
+<div data-layout="row md-column mt-6" class="component">
 
     <!-- ///// Description \\\\\ -->
-    <div layout="column">
+    <div data-layout="column">
 
         <h4>Options</h4>
 
@@ -26,12 +26,12 @@
     </div>
 
     <!-- ///// Preview Sample \\\\\ -->
-    <div layout="column">
+    <div data-layout="column">
 
         <h4>Preview </h4>
 
         <!-- ///// Menu Default \\\\\ -->
-        <div layout="row sm-column">
+        <div data-layout="row sm-column">
             <script>
                 $( function() {
                     $( "#menu-default" ).menu();
@@ -40,7 +40,7 @@
             <style>
                 .ui-menu { width: 174px; }
             </style>
-            <div self="size-1of2">
+            <div data-self="size-1of2">
                 <ul id="menu-default">
                     <li class="ui-state-disabled"><div>Toys (n/a)</div></li>
                     <li><div>Books</div></li>
@@ -75,7 +75,7 @@
                 </ul>
             </div>
 
-            <div self="size-1of2">
+            <div data-self="size-1of2">
                 <h4>Menu Default</h4>
                 <p>A menu with the default configuration, disabled items and nested menus. A list is transformed, adding theming, mouse and keyboard navigation support. Try to tab to the menu then use the cursor keys to navigate.</p>
             </div>
@@ -85,7 +85,7 @@
 
         <hr>
         <!-- ///// Menu Categories \\\\\ -->
-        <div layout="row sm-column">
+        <div data-layout="row sm-column">
             <script>
                 $( function() {
                     $( "#menu-categories" ).menu({
@@ -97,7 +97,7 @@
                 .ui-menu { width: 200px; }
                 .ui-widget-header { padding: 0.2em; }
             </style>
-            <div self="size-1of2">
+            <div data-self="size-1of2">
                 <ul id="menu-categories">
                     <li class="ui-widget-header"><div>Category 1</div></li>
                     <li><div>Option 1</div></li>
@@ -110,7 +110,7 @@
                 </ul>
             </div>
 
-            <div self="size-1of2">
+            <div data-self="size-1of2">
                 <h4>Menu Categories</h4>
                 <p>By using the items option, you can configure which elements are converted into selectable menu items. Here this technique is used to create category headers.</p>
             </div>
@@ -120,7 +120,7 @@
 
         <hr>
         <!-- ///// Menu Icons \\\\\ -->
-        <div layout="row sm-column">
+        <div data-layout="row sm-column">
             <script>
                 $( function() {
                     $( "#menu-icons" ).menu();
@@ -129,7 +129,7 @@
             <style>
                 .ui-menu { width: 150px; }
             </style>
-            <div self="size-1of2">
+            <div data-self="size-1of2">
                 <ul id="menu-icons">
                     <li>
                         <div><span class="ui-icon ui-icon-disk"></span>Save</div>
@@ -166,7 +166,7 @@
                 </ul>
             </div>
 
-            <div self="size-1of2">
+            <div data-self="size-1of2">
                 <h4>Menu Icons</h4>
                 <p>A menu with the default configuration, showing how to use a menu with icons.</p>
             </div>

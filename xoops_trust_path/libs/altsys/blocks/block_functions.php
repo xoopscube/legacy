@@ -27,7 +27,7 @@ function b_altsys_admin_menu_show($options)
         return [];
     }
 
-    // coretype
+    // core type
     $coretype = altsys_get_core_type();
 
     // mid_selected
@@ -155,7 +155,8 @@ function b_altsys_admin_menu_show($options)
             'adminindex' => htmlspecialchars(@$modinfo['adminindex'], ENT_QUOTES),
             'adminindex_absolute' => @$modinfo['adminindex_absolute'],
             'submenu' => $submenus4assign,
-            'selected' => $mid == $mid_selected ? true : false,
+            //'selected' => $mid == $mid_selected ? true : false, TODO gigamaster check
+            'selected' => $mid == $mid_selected,
             'dot_suffix' => $mid == $mid_selected ? 'selected_opened' : 'closed',
         ];
         $block['modules'][] = $module4assign;

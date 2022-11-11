@@ -2,15 +2,15 @@
 
     <p>Relative Margin and padding settings</p>
 
-<div layout="row md-column mt-6" class="component">
+<div data-layout="row md-column mt-6" class="component">
 
     <!-- ///// Description \\\\\ -->
-    <div layout="column">
+    <div data-layout="column">
 
         <h4>Options</h4>
 
         <p>Spacing - margin and padding</p>
-        <p>Use X-Layout within HTML self="p-[1to 8description to outline the component's appearance and capabilities.</p>
+        <p>Use X-Layout within HTML data-self="p-[1to 8description to outline the component's appearance and capabilities.</p>
         <p>Use preview to show a representation of what the user will see on the screen.</p>
         <p>Use code tabs to share the HTML, CSS and JavaScript applied to preview the control.</p>
 
@@ -24,7 +24,7 @@
     </div>
 
     <!-- ///// Preview Sample \\\\\ -->
-    <div layout="column">
+    <div data-layout="column">
 
         <h4>Preview </h4>
 
@@ -40,30 +40,30 @@
         <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none"><path d="M8 16h8V9h3v10H5V9h3v7z" fill="currentColor" fill-opacity=".3"/><path d="M5 7h14V4H5v3z" fill="#100"/></g></svg>
         </p>
 
-        <div layout="row">
-            <div self="p-2" class="b-div b-space">div self=p-2</div>
-            <div self="m-2" class="b-div b-space">div self=m-2</div>
+        <div data-layout="row">
+            <div data-self="p-2" class="b-div b-space">div data-selfp-2</div>
+            <div data-self="m-2" class="b-div b-space">div data-selfm-2</div>
         </div>
 
         <p>Default space negative value</p>
-        <div layout="row">
-            <div self="p-4" class="b-div b-space">div self=p-2</div>
-            <div self="mt-n7" class="b-div b-n">div self=mt-n7</div>
+        <div data-layout="row">
+            <div data-self="p-4" class="b-div b-space">div data-selfp-2</div>
+            <div data-self="mt-n7" class="b-div b-n">div data-selfmt-n7</div>
         </div>
 
-        <div layout="row">
-            <div self="p-4" class="b-div">div self=p-4</div>
-            <div self="mt-n5" class="b-div b-n">div self=mt-n5</div>
+        <div data-layout="row">
+            <div data-self="p-4" class="b-div">div data-selfp-4</div>
+            <div data-self="mt-n5" class="b-div b-n">div data-self=mt-n5</div>
         </div>
 
         <p>CSS margin [ _ui-root.css ]</p>
-        <div layout="row">
+        <div data-layout="row">
             <div class="b-div b-space-p2">var(--space-2)</div>
             <div class="b-div b-space-p2">var(--space-2)</div>
         </div>
 
         <p>CSS margin [ _ui-root.css ]</p>
-        <div layout="row">
+        <div data-layout="row">
             <div class="b-div b-space-m2">var(--space-2)</div>
             <div class="b-div b-space-m2">var(--space-2)</div>
         </div>
@@ -103,19 +103,19 @@
     <div id="tabs-1">
     <pre><code class="language-html"><!--
     <p>Default x-Layout</p>
-    <div layout="row">
-        <div self="p-2" class="b-div b-space">div self=p-2</div>
-        <div self="m-2" class="b-div b-space">div self=m-2</div>
+    <div data-layout="row">
+        <div data-self="p-2" class="b-div b-space">div data-self=p-2</div>
+        <div data-self="m-2" class="b-div b-space">div data-self=m-2</div>
     </div>
 
     <p>CSS margin [ _ui-root.css ]</p>
-    <div layout="row">
+    <div data-layout="row">
         <div class="b-div b-space-p2">var(--space-2)</div>
         <div class="b-div b-space-p2">var(--space-2)</div>
     </div>
 
     <p>CSS margin [ _ui-root.css ]</p>
-    <div layout="row">
+    <div data-layout="row">
         <div class="b-div b-space-m2">var(--space-2)</div>
         <div class="b-div b-space-m2">var(--space-2)</div>
     </div>

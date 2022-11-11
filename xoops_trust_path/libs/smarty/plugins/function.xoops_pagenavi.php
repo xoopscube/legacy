@@ -13,7 +13,9 @@
  * -------------------------------------------------------------
  * Type:     function
  * Name:     xoops_pagenavi
- * Version:  1.0
+ * Version:  1.1
+ * Date:     Nov 11, 2020
+ * Author:   gigamaster
  * Date:     Nov 13, 2005
  * Author:   minahito
  * Purpose:  the place holder for xoops pagenavi.
@@ -25,7 +27,7 @@
  */
 function smarty_function_xoops_pagenavi($params, &$smarty)
 {
-    $ret = "";
+    $ret = "<ul class='pagenavi'>";
 
     if (isset($params['pagenavi']) && is_object($params['pagenavi'])) {
         $navi =& $params['pagenavi'];
@@ -45,10 +47,10 @@ function smarty_function_xoops_pagenavi($params, &$smarty)
         $offset = isset($params['offset']) ? intval($params['offset']) : 4;
 
         //
-        // check prev
+        // check prev '«'
         //
         if ($navi->hasPrivPage()) {
-            $ret .= @sprintf("<a href='%s'>&laquo;</a> ", $navi->renderURLForPage($navi->getPrivStart()));
+            $ret .= @sprintf("<li class='previous'><a href='%s'>&laquo;</a></li> ", $navi->renderURLForPage($navi->getPrivStart()));
         }
 
         //
@@ -58,12 +60,13 @@ function smarty_function_xoops_pagenavi($params, &$smarty)
         $currentPage = $navi->getCurrentPage();
         while ($counter<=$totalPages) {
             if ($counter==$currentPage) {
-                $ret.=@sprintf("<strong>(%d)</strong> ", $counter);
+                // gigamaster removed '(' and ')'
+                $ret.=@sprintf("<li><strong>%d</strong></li>", $counter);
             } elseif (($counter>$currentPage-$offset && $counter<$currentPage+$offset) || $counter==1 || $counter==$totalPages) {
                 if ($counter==$totalPages && $currentPage<$totalPages-$offset) {
                     $ret.="... ";
                 }
-                $ret .= @sprintf("<a href='%s'>%d</a> ", $navi->renderURLForPage(($counter-1)*$perPage), $counter);
+                $ret .= @sprintf("<li><a href='%s'>%d</a></li> ", $navi->renderURLForPage(($counter-1)*$perPage), $counter);
                 if ($counter==1 && $currentPage>1 + $offset) {
                     $ret.="... ";
                 }
@@ -72,12 +75,13 @@ function smarty_function_xoops_pagenavi($params, &$smarty)
         }
 
         //
-        // check next
+        // check next '»'
         //
         $next=$current + $perPage;
         if ($navi->hasNextPage()) {
-            $ret.=@sprintf("<a href='%s'>&raquo;</a>", $navi->renderURLForPage($navi->getNextStart()));
+            $ret.=@sprintf("<li><a href='%s' class='next'>&raquo;</a></li>", $navi->renderURLForPage($navi->getNextStart()));
         }
+        $ret.= "</ul>";
     }
 
     print $ret;

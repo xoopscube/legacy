@@ -53,7 +53,7 @@ DEFAULT: NULL
     <tbody>
         <tr>
             <td>%r</td>
-            <td>1 - The URI embeds a resource<br>(blank) - The URI is merely a link</td>
+            <td>1 - The URI embeds a resource<br />(blank) - The URI is merely a link</td>
             <td></td>
         </tr>
         <tr>

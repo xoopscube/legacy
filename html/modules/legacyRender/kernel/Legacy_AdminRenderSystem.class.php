@@ -49,8 +49,9 @@ class Legacy_AdminSmarty extends Smarty
         $this->compile_dir = XOOPS_COMPILE_PATH;
         $this->left_delimiter = '<{';
         $this->right_delimiter = '}>';
-        $this->plugins_dir = [SMARTY_DIR . 'plugins', XOOPS_ROOT_PATH . '/class/smarty/plugins'];
-
+        //loading under root_path for compatibility with XCL2.1
+        //$this->plugins_dir = [SMARTY_DIR . 'plugins', XOOPS_ROOT_PATH . '/class/smarty/plugins'];
+        $this->plugins_dir = [SMARTY_DIR . 'plugins'];
 	    /**
 	     * @brief force_compile
 	     * If we don't set true to the following flag, a user can't recover deleting a Theme.

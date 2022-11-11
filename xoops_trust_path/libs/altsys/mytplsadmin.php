@@ -303,7 +303,7 @@ echo "<form name='MainForm' action='?mode=admin&amp;lib=altsys&amp;page=mytplsad
     . $xoopsGTicket->getTicketHtml( __LINE__ ) ;
 
 ////— ACTION-CONTROL —\\\\
-echo '<section layout="row center-justify" class="action-control">
+echo '<section data-layout="row center-justify" class="action-control">
         <div>' . _MYTPLSADMIN_CREATE_NEW_TPLSET . ' : ' . _MYTPLSADMIN_CAPTION_BASE . ':
 			<select name="clone_tplset_from">'. $tplset_options .'
 			<option value="_blank_">' . _MYTPLSADMIN_OPT_BLANKSET . '</option>

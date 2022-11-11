@@ -135,7 +135,7 @@ class HTMLPurifier_Injector_AutoParagraph extends HTMLPurifier_Injector
                         } else {
                             // State 1.1.1: <div><p>PAR1</p><b>
                             //                              ---
-                            // State 1.1.2: <div><br><b>
+                            // State 1.1.2: <div><br /><b>
                             //                         ---
                             // State 1.1.3: <div>PAR<b>
                             //                      ---

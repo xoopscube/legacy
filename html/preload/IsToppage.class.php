@@ -4,11 +4,11 @@
  *  * Preload is Top page
  *  *
  *  * Usage
- *  * <{if $xoops_is_top }> It's the top page! <{else}> It's not the top page <{/if}>
+ *  * <{if $xoops_is_top}> It's the top page! <{else}> It's not the top page <{/if}>
  *  *
  *  * @package    Preload
  *  * @author     Original Author : Ryuji AMANO
- *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @copyright  2005-2022 The XOOPSCube Project
  *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  *  * @version    Release: @package_230@

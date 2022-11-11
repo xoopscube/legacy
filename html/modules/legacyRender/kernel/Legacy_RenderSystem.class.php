@@ -95,7 +95,8 @@ class Legacy_XoopsTpl extends XoopsTpl
         return $value;
     }
 }
-
+// @TODO test version 2.4.0
+require_once XOOPS_ROOT_PATH . '/core/XCube_Theme.class.php';
 /**
  * Compatible render system with XOOPS 2 Themes & Templates.
  *
@@ -462,7 +463,11 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 
         $target->setResult($result);
     }
-
+    /**
+     * Block Show Flag (i.e. block management)
+     * @param $area
+     * @return int
+     */
     public function _getBlockShowFlag($area)
     {
         switch ($area) {
@@ -512,7 +517,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
      * @param bool $closeHead
      * @deprecated
      */
-    public function showXoopsHeader($closeHead=true)
+    public function showXoopsHeader(bool $closeHead=true)
     {
         global $xoopsConfig;
         $myts =& MyTextSanitizer::sGetInstance();
@@ -532,7 +537,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
      * @param bool $closehead
      * @deprecated
      */
-    public function _renderHeader($closehead=true)
+    public function _renderHeader(bool $closehead=true)
     {
         global $xoopsConfig, $xoopsTheme, $xoopsConfigMetaFooter;
 
@@ -606,6 +611,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
      * @param bool $isDialog
      * @return Legacy_DialogRenderTarget|Legacy_ThemeRenderTarget
      */
+// public function &getThemeRenderTarget(bool $isDialog)
     public function &getThemeRenderTarget($isDialog = false)
     {
         $screenTarget = $isDialog ? new Legacy_DialogRenderTarget() : new Legacy_ThemeRenderTarget();
@@ -613,6 +619,12 @@ class Legacy_RenderSystem extends XCube_RenderSystem
     }
 }
 
+/**
+ * Notifications create render target main
+ * @param $params
+ * @param $smarty
+ * @return mixed
+ */
 function LegacyRender_smartyfunction_notifications_select($params, &$smarty)
 {
     $root =& XCube_Root::getSingleton();

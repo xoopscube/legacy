@@ -1,19 +1,19 @@
 <{* App Body Layout *}>
 
-<header layout="row center-justify" id="topage">
+<header data-layout="row center-justify" id="topage">
 
-    <div self="left">
+    <div data-self="left">
         <a href="<{$xoops_url}>/" title="<{$xoops_sitename}> - <{$xoops_slogan}>" class="sitelogo">
             <img src="<{$xoops_url}>/images/logo.svg" width="auto" height="40" alt="<{$xoops_sitename}>">
         </a>
     </div>
 
-    <div self="center sm-hide">
+    <div data-self="center sm-hide">
         <h1 class="sitename"><{$xoops_sitename}> <span class="slogan"><{$xoops_slogan}></span></h1>
 
     </div>
 
-    <div self="right-center" class="search">
+    <div data-self="right-center" class="search">
         <form action="<{$xoops_url}>/search.php" method="get" role="search">
             <input type="hidden" name="action" value="results" aria-label="Search">
             <label><input type="search" name="query" accesskey="S"></label>
@@ -24,19 +24,19 @@
 </header>
 
 
-<main layout="column" self="size-x1" id="top">
+<main data-layout="column" data-self="size-x1" id="top">
 
 
-    <section class="render-view" layout="md-column">
+    <section class="render-view" data-layout="md-column">
 
         <{if $xoops_showlblock==1}>
-            <aside class="side-left" self="size-xsmall sm-full">
+            <aside class="side-left" data-self="size-xsmall sm-full">
                 <{include file="$xoops_theme/component/block_left.html"}>
             </aside>
         <{/if}>
 
 
-        <div class="content" self="size-x1">
+        <div class="content" data-self="size-x1">
         <{if !empty($xoops_contents)}>
 
 
@@ -46,7 +46,7 @@
             <{else}>
 
                 <{if $xoops_isadmin}>
-                <div layout="row center-right">
+                <div data-layout="row center-right">
                 <a class="ui-button" href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                     <path d="M3 17v2h6v-2H3M3 5v2h10V5H3m10 16v-2h8v-2h-8v-2h-2v6h2M7 9v2H3v2h4v2h2V9H7m14 4v-2H11v2h10m-6-4h2V7h4V5h-4V3h-2v6z" fill="currentColor"/>
@@ -65,7 +65,7 @@
         </div>
 
         <{if $xoops_showrblock==1}>
-            <aside class="side-right" self="size-xsmall sm-full">
+            <aside class="side-right" data-self="size-xsmall sm-full">
                 <{include file="$xoops_theme/component/block_right.html"}>
             </aside>
         <{/if}>
@@ -76,22 +76,22 @@
     <{if $xoops_showcblock==1}>
     <section class="full-width">
 
-        <div layout="row center md-column" self="center size-xlarge">
+        <div data-layout="row center md-column" data-self="center size-xlarge">
 
             <{if $xoops_clblocks}>
-            <div self="size-x1 sm-first">
+            <div data-self="size-x1 sm-first">
                 <{include file="$xoops_theme/component/block_center_left.html"}>
             </div>
             <{/if}>
 
             <{if $xoops_ccblocks}>
-            <div self="size-x1 sm-full" data-tooltip="(first on small screen)">
+            <div data-self="size-x1 sm-full" data-tooltip="(first on small screen)">
                 <{include file="$xoops_theme/component/block_center_center.html"}>
             </div>
             <{/if}>
 
             <{if $xoops_crblocks}>
-            <div self="size-x1 sm-full">
+            <div data-self="size-x1 sm-full">
                 <{include file="$xoops_theme/component/block_center_right.html"}>
             </div>
             <{/if}>
