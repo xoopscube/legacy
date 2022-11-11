@@ -745,8 +745,8 @@ class Legacy_Controller extends XCube_Controller
         if (0 == count($this->mRoot->mContext->mXoopsConfig)) {
             return;
         }
-
-        $this->mRoot->mContext->setThemeName($this->mRoot->mContext->mXoopsConfig['theme_set']);
+// @todo gigamaster setThemeName renders theme 'xcl_default'
+        // $this->mRoot->mContext->setThemeName('theme_set', $this->mRoot->mContext->mXoopsConfig['theme_set']);
 
         $this->mRoot->mContext->setAttribute('legacy_sitename', $this->mRoot->mContext->mXoopsConfig['sitename']);
         $this->mRoot->mContext->setAttribute('legacy_pagetitle', $this->mRoot->mContext->mXoopsConfig['slogan']);
@@ -1095,7 +1095,10 @@ class Legacy_Controller extends XCube_Controller
             $this->mLogout->call(new XCube_Ref($successFlag), $xoopsUser);
             if ($successFlag) {
                 XCube_DelegateUtils::call('Site.Logout.Success', $xoopsUser);
-                $this->executeRedirect(XOOPS_URL . '/', 1, [_MD_LEGACY_MESSAGE_LOGGEDOUT, _MD_LEGACY_MESSAGE_THANKYOUFORVISIT]);
+                // @gigamaster join lang array, 'message' must be of the type string
+                $msg_array = [_MD_LEGACY_MESSAGE_LOGGEDOUT, _MD_LEGACY_MESSAGE_THANKYOUFORVISIT];
+                $msg_show = join('<br>', $msg_array);
+                $this->executeRedirect(XOOPS_URL . '/', 1, $msg_show);
             } else {
                 XCube_DelegateUtils::call('Site.Logout.Fail', $xoopsUser);
             }
@@ -1177,15 +1180,14 @@ class Legacy_Controller extends XCube_Controller
      * wrong value, some problems may be raised. If you can't understand the
      * difference, do not use this function but redirect_header().
      *
-     * @param string $url		   redirect URL. Don't use user's variables or request.
-     * @param int	 $time		   waiting time (sec)
-     * @param string $message	   This string doesn't include tags.
-     * @param bool	 $addRedirect  A value indication whether this method adds URL automatically for user.php.
+     * @param string      $url     redirect URL. Don't use user's variables or request.
+     * @param int         $time    waiting time (sec)
+     * @param string|null $message This string doesn't include tags.
      *
      * @todo Change this function to delegate.
      * @remark This method encodes $url and $message directly without its template, to share the template with old function.
      */
-    public function executeRedirect($url, $time = 1, $message = null, bool $addRedirect = true)
+    public function executeRedirect(string $url, int $time = 1, string $message = null)
     {
         global $xoopsConfig, $xoopsRequestUri;
 
@@ -1208,7 +1210,10 @@ class Legacy_Controller extends XCube_Controller
 
         $url = htmlspecialchars($url, ENT_QUOTES);
 
-        // XOOPS2 Compatibility
+        // @TODO test XOOPS2 Compatibility $addredirect = true
+
+        $addRedirect = $addredirect = true;
+
         if ($addRedirect && strpos($url, 'user.php') !== false) {
             $this->_mNotifyRedirectToUser->call(new XCube_Ref($url));
         }
@@ -1231,7 +1236,7 @@ class Legacy_Controller extends XCube_Controller
                 }
             }
         }
-
+        //@gigamaster added theme_set, theme_url and theme_css (custom templates from theme)
         if (!defined('XOOPS_CPFUNC_LOADED')) {
             require_once XOOPS_ROOT_PATH.'/class/template.php';
             $xoopsTpl = new XoopsTpl();
@@ -1239,6 +1244,9 @@ class Legacy_Controller extends XCube_Controller
                 [
                     'xoops_sitename'   =>htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES),
                     'sitename'         =>htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES),
+                    'theme_set'        =>htmlspecialchars($xoopsConfig['theme_set'], ENT_QUOTES),
+                    'theme_url'        =>XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'],
+                    'theme_css'        =>getcss(),
                     'langcode'         =>_LANGCODE,
                     'charset'          =>_CHARSET,
                     'time'             =>$time,
@@ -1249,7 +1257,7 @@ class Legacy_Controller extends XCube_Controller
             );
             $GLOBALS['xoopsModuleUpdate'] = 1;
 
-            $xoopsTpl->display('db:system_redirect.html'); // TODO gigamaster
+            $xoopsTpl->display('db:system_redirect.html');
 
         } else {
 

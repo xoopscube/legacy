@@ -164,7 +164,7 @@ $modversion['blocks'][2]['edit_func'] = 'b_legacy_mainmenu_edit';
 $modversion['blocks'][2]['template'] = 'legacy_block_mainmenu.html';
 $modversion['blocks'][2]['visible_any'] = true;
 $modversion['blocks'][2]['show_all_module'] = true;
-$modversion['blocks'][2]['options'] = '0';
+$modversion['blocks'][2]['options'] = '	0|1';
 
 $modversion['blocks'][3]['func_num'] = 3;
 $modversion['blocks'][3]['file'] = 'legacy_search.php';

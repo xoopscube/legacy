@@ -194,7 +194,7 @@ class Legacy_TextFilter extends XCube_TextFilter
      * @param bool   $x2comat
      * @return    string
      */
-    public function toPreviewTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1, $x2comat=false)
+    public function toPreviewTarea(string $text, int $html = 0, int $smiley = 1, int $xcode = 1, int $image = 1, int $br = 1, bool $x2comat=false)
     {
         return $this->toShowTarea($text, $html, $smiley, $xcode, $image, $br, $x2comat);
     }
@@ -202,19 +202,24 @@ class Legacy_TextFilter extends XCube_TextFilter
     /**
      * purifyHtml
      *
-     * @param	string	$html
-     * @param	string	$encoding
-     * @param	string	$doctype
-     * @param	object	$config
+     * @param string      $html
+     * @param string|null $encoding
+     * @param string|null $doctype
+     * @param object|null $config
      *
      * @return	string
      **/
-    public function purifyHtml(/*** string ***/ $html, /*** string ***/ $encoding=null, /*** string ***/ $doctype=null, /*** object ***/ $config=null)
+    public function purifyHtml( string $html, string $encoding=null, string $doctype=null, object $config=null)
     {
         require_once LIBRARY_PATH.'/htmlpurifier/library/HTMLPurifier.auto.php';
+
         $encoding = $encoding ?: _CHARSET;
 
-       // !Todo : update to HTML5 HTML.Doctype https://github.com/xemlock/htmlpurifier-html5
+       // !Todo Gigamaster update to HTML Purifier is 4.15.0, released on 2022-09-18
+       /* $config = HTMLPurifier_Config::createDefault();
+        * $purifier = new HTMLPurifier($config);
+        * $clean_html = $purifier->purify($dirty_html);
+        */
         $doctypeArr = ['HTML', 'HTML 4.01 Strict', 'HTML 4.01 Transitional', 'XHTML 1.0 Strict', 'XHTML 1.0 Transitional', 'XHTML 1.1'];
 
         if (null === $config || !is_object($config) || !($config instanceof HTMLPurifier_Config)) {
@@ -243,6 +248,8 @@ class Legacy_TextFilter extends XCube_TextFilter
 
         return $html;
     }
+
+
 
 
     /**

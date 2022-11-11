@@ -19,7 +19,7 @@ if (defined('XOOPS_TRUST_PATH') && XOOPS_TRUST_PATH !== '' && file_exists(XOOPS_
 }
 
 
-// show the hint if password mathes
+// show the hint if password matches
 $hint = '' ;
 if (@$_POST['dbpassword'] == XOOPS_DB_PASS) {
     // find XOOPS_TRUST_PATH

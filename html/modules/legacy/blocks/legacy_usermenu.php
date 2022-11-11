@@ -12,7 +12,7 @@
  * @brief      This file has been modified for Legacy from XOOPS2 System module block
  * This function is called back to display the user menu.
  * [Template Variables]
- *  $block.uid ... Curent user id for the menu.
+ *  $block.uid ... Current user id for the menu.
  *  $block.flagShowInbox ... If there is the pm module, set true.
  *  $block.inbox_url ... Return url to access inbox of pm.
  *  $block.new_messages ... amount of unread messages.

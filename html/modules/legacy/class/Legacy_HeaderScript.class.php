@@ -320,11 +320,11 @@ google.load("jqueryui", "'. $this->_mUi .'");
     /**
      * _makeScript
      *
-     * @param	bool	$isOnloadFunction
+     * @param bool $isOnloadFunction
      *
      * @return	string
     **/
-    protected function _makeScript($isOnloadFunction=true)
+    protected function _makeScript(bool $isOnloadFunction=true)
     {
         $html = null;
         $scriptArr = (true === $isOnloadFunction) ? $this->_mOnloadScript : $this->_mScript;
@@ -337,11 +337,11 @@ google.load("jqueryui", "'. $this->_mUi .'");
     /**
      * _convertFuncName
      *
-     * @param	string $script
+     * @param string $script
      *
      * @return	string
     **/
-    protected function _convertFuncName($script)
+    protected function _convertFuncName(string $script)
     {
         if ($this->mFuncNamePrefix) {
             $script = str_replace('$(', $this->mFuncNamePrefix . '$(', $script);
@@ -352,11 +352,11 @@ google.load("jqueryui", "'. $this->_mUi .'");
     /**
      * _getRenderConfig
      *
-     * @param	string $key
+     * @param string $key
      *
      * @return	string
     **/
-    protected function _getRenderConfig($key)
+    protected function _getRenderConfig(string $key)
     {
         $handler =& xoops_gethandler('config');
         $configArr =& $handler->getConfigsByDirname('legacyRender');

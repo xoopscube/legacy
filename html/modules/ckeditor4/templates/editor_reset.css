@@ -1,5 +1,20 @@
+@media only screen and (prefers-color-scheme:dark) {
+	:root:not([data-theme=light]) {
+
+		color-scheme: dark;
+
+		--background-color: #11191f;
+		--color: hsl(205deg, 16%, 77%);
+	}
+}
 body {
 	background-image: none;
 	background-color:transparent;
 	/*background-color:var(--body-bg);*/
+	background : var(--background-color, #11191f);
+	color: var(--color, #bbc6ce);
+}
+textarea.cke_source {
+	background : var(--background-color, #11191f);
+	color: var(--color, #bbc6ce);
 }

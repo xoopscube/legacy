@@ -60,7 +60,7 @@ class Legacy_HttpContext extends XCube_HttpContext
      * @public
      * @var [READ ONLY] Map Array - std::map<string, mixed> - The array for Xoops Module Config.
      * @remarks
-     *     This is a short cut to mModule->mConfig.
+     *     This is a shortcut to mModule->mConfig.
      */
     public $mModuleConfig = [];
 
@@ -93,16 +93,16 @@ class Legacy_HttpContext extends XCube_HttpContext
     /**
      * @public
      * @brief Sets the name of the current theme.
-     * @param string $name
+     * @param string $theme
      * @return void
      * @attention
      *     This method is for the theme changer feature. However, this API will be
      *     changed.
      */
-    public function setThemeName($name)
+    public function setThemeName(string $theme)
     {
-        parent::setThemeName($name);
-        $this->mXoopsConfig['theme_set'] = $name;
-        $GLOBALS['xoopsConfig']['theme_set'] = $name;
+        parent::setThemeName($theme);
+        $this->mXoopsConfig['theme_set'] = $theme;
+        $GLOBALS['xoopsConfig']['theme_set'] = $theme;
     }
 }

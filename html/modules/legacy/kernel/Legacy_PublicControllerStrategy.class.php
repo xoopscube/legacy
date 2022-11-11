@@ -65,7 +65,7 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
 
     public function &getMainThemeObject()
     {
-        // [TODO]
+        // @TODO
         // Because get() of the virtual handler is heavy, we have to consider
         // a new solution about this process.
         //

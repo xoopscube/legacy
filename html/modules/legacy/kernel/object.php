@@ -13,18 +13,18 @@ if (!defined('XOOPS_ROOT_PATH')) {
 }
 
 /**
- *	This class implements the interface of XoopsObjectInterface. It gives a developer
- * 'TYPE SAFE' with the limit. The instance can have only five data type that are
- * BOOL, INT, FLOAT, STRING and TEXT.
- *	You can not get the sanitizing values by cleanVars() that is the function of
- * XoopsObject. But, all set functions give you 'TYPE SAFE'. You should use this
- * class with using your favorite ActionForm.
+ * This class implements the interface of XoopsObjectInterface, and it gives developers
+ * 'TYPE SAFE' to avoid type errors trying to perform an operation on the wrong type of data.
+ * The instance can have only five data type that are : BOOL, INT, FLOAT, STRING and TEXT.
+ * You can not sanitize values by cleanVars() that is the function of XoopsObject.
+ * However, all set functions give you 'TYPE SAFE'.
+ * You should use this class with your favorite ActionForm.
  *
  * "Check values by actionform, set values to XoopsSimpleObject"
  *
- *	This class was defined for "The prolongation of human life plan". This is not
- * the rule that you are forced.
- *
+ * This class was defined for the "extending life expectancy plan" of Xoops2.
+ * It's not a rule you're forced to use. PHP supports the following data types:
+ * String, Integer, Float, Boolean, Array, Object, NULL, Resource.
  */
 class XoopsSimpleObject extends AbstractXoopsObject
 {
@@ -149,8 +149,8 @@ class XoopsSimpleObject extends AbstractXoopsObject
     }
 
     /**
-     * Return HTML string for displaying only by HTML.
-     * The second parametor doesn't exist.
+     * Return HTML strings for displaying only by HTML.
+     * The second parameter doesn't exist.
      * @param $key
      * @return string|null
      */
@@ -192,13 +192,13 @@ class XoopsSimpleObject extends AbstractXoopsObject
     /**
      * getPurifiedHtml
      *
-     * @param	string	$key
-     * @param	string	$encoding
-     * @param	string	$doctype
+     * @param string      $key
+     * @param string|null $encoding
+     * @param string|null $doctype
      *
      * @return	string
     **/
-    public function getPurifiedHtml(/*** string ***/ $key, /*** string ***/ $encoding=null, /*** string ***/ $doctype=null)
+    public function getPurifiedHtml( string $key, string $encoding=null, string $doctype=null)
     {
         $root = XCube_Root::getSingleton();
         $textFilter = $root->getTextFilter();

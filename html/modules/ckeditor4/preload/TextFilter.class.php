@@ -77,7 +77,8 @@ class ckeditor4_TextFilter extends XCube_ActionFilter
 				$tag = 'ol';
 				$style = '';
 				break;
-			case 'a':
+            case 'R':
+            case 'a':
 				$tag = 'ol';
 				$style = ' style="list-style-type:lower-alpha"';
 				break;
@@ -89,11 +90,7 @@ class ckeditor4_TextFilter extends XCube_ActionFilter
 				$tag = 'ol';
 				$style = ' style="list-style-type:lower-roman"';
 				break;
-			case 'R':
-				$tag = 'ol';
-				$style = ' style="list-style-type:lower-alpha"';
-				break;
-			case 'd':
+            case 'd':
 				$tag = 'ol';
 				$style = ' style="list-style-type:decimal"';
 				break;
@@ -101,15 +98,12 @@ class ckeditor4_TextFilter extends XCube_ActionFilter
 				$tag = 'ol';
 				$style = ' style="list-style-type:disc"';
 				break;
-			case 'C':
+            case 'S':
+            case 'C':
 				$tag = 'ol';
 				$style = ' style="list-style-type:circle"';
 				break;
-			case 'S':
-				$tag = 'ol';
-				$style = ' style="list-style-type:circle"';
-				break;
-			default:
+            default:
 				$tag = 'ul';
 				$style = '';
 		}

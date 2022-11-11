@@ -138,7 +138,7 @@ class Legacy_Utils
     }
 
     /***
-     * Calls user controll event.
+     * Calls user control event.
      */
     public static function raiseUserControlEvent()
     {
