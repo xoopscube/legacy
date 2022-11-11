@@ -177,13 +177,13 @@ class XoopsCommentRenderer
     /**
      * Render replies to a thread
      *
-     * @param   array   &$thread
-     * @param   int      $key
-     * @param   array    $replies
-     * @param   string   $prefix
-     * @param   bool     $admin_view
-     * @param int        $depth
-     * @param   string   $current_prefix
+     * @param array   &$thread
+     * @param int      $key
+     * @param array    $replies
+     * @param string   $prefix
+     * @param bool     $admin_view
+     * @param int      $depth
+     * @param string   $current_prefix
      *
      * @access  private
      **/
@@ -278,12 +278,12 @@ class XoopsCommentRenderer
     /**
      * Render replies in nested view
      *
-     * @param   array  $thread
-     * @param   int    $key
-     * @param   array  $replies
-     * @param   string $prefix
-     * @param   bool   $admin_view
-     * @param int      $depth
+     * @param array  $thread
+     * @param int    $key
+     * @param array  $replies
+     * @param string $prefix
+     * @param bool   $admin_view
+     * @param int    $depth
      *
      * @access  private
      **/
@@ -314,7 +314,7 @@ class XoopsCommentRenderer
                 'poster' => $this->_getPosterArray($thread[$key]['obj']->getVar('com_uid'))
             ];
 
-            $prefix = $prefix + 25;
+            $prefix += 25;
         }
         if (isset($thread[$key]['child']) && !empty($thread[$key]['child'])) {
             $depth++;
