@@ -23,13 +23,13 @@
 
     <hr>
 
-        <div layout="column px-6">
+        <div data-layout="column px-6">
 
         <form action="index.php?action=blacklist" method="post" name="adduser">
 
             <input type="hidden" name="cmd" value="add">
 
-            <div layout="row centered sm-column p-6">
+            <div data-layout="row centered sm-column p-6">
                 <label for="uname"><{$smarty.const._MD_MESSAGE_TEMPLATE2}></label>
                 <input type="text" class="form-control form-control-sm ml-2" id="uname" name="uname" value="" placeholder="uname">
 
@@ -58,14 +58,14 @@
                 <{foreach item=uname key=uid from=$blackuser}>
                 <tr>
                     <td class="odd">
-                        <div layout="row centered">
+                        <div data-layout="row centered">
                             <input type="checkbox" id="<{$uid}>" name="deluid[]" value="<{$uid}>">
                             <label for="<{$uid}>"></label>
                         </div>
                     </td>
                     <td class="even">
-                        <div layout="row centered">
-                            <img src="<{$uid|xoops_user_avatarize}>" width="24px" self="radius-circle mr-4"> <{$uname}>
+                        <div data-layout="row centered">
+                            <img src="<{$uid|xoops_user_avatarize}>" width="24px" data-self="radius-circle mr-4"> <{$uname}>
                         </div>
                     </td>
                 </tr>
@@ -75,7 +75,7 @@
 
         <hr>
 
-            <div layout="row centered pb-6">
+            <div data-layout="row centered pb-6">
             <button id=Submit class="ui-button">
                 <img class="svg check" src="<{$xoops_url}>/images/icons/check.svg"> <{$smarty.const._SUBMIT}></button>
             </div>

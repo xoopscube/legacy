@@ -64,7 +64,7 @@
 <{/foreach}>
 </table>
 
-<div self="right mx-2">
+<div data-self="right mx-2">
 <a class="button" href="<{$block.mod_url}>/index.php?page=search"><{$block.lang_linktosearch}></a>
 &nbsp;
 <{if is_numeric( $block.forums ) }>
@@ -83,7 +83,7 @@
 
 <{else}>
 
-<ol self="mx-2" class="d3f_eachbranch">
+<ol data-self="mx-2" class="d3f_eachbranch">
 <{foreach item=topic from=$block.topics}>
 	<li<{if $block.current_topic_id == $topic.id}> class="d3f_currenttopic d3f_block_currenttopic"<{/if}>>
 	<{if $block.current_topic_id != $topic.id}>

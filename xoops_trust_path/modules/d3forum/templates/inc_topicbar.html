@@ -36,7 +36,7 @@
 
 
 	<{* ----- TOPIC ----- *}>
-	<div layout="row">
+	<div data-layout="row">
 
 	<{* ----- TOPIC MARKED STICKY ----- *}>
 	<{if $uid && $mod_config.allow_mark}>
@@ -100,7 +100,7 @@
 	<{* ----- /TOPIC ----- *}>
 
 	<{if $forum.can_post}>
-	<div layout="row right">
+	<div data-layout="row right">
 		<a class="ui-button" href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>">
 			<{$smarty.const._MD_D3FORUM_POSTASNEWTOPICTOTHISFORUM}>
 		</a>

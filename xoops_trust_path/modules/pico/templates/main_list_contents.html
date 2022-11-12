@@ -6,7 +6,7 @@
 
 <{* ------- Top Message - Module's preferences *}>
 <{if $category.id == 0 && $mod_config.top_message != null}>
-    <div layout="row p-2">
+    <div data-layout="row p-2">
         <{$mod_config.top_message}>
     </div>
 
@@ -15,9 +15,9 @@
 
 
     <{* ------- Category Top *}>
-    <section layout="column sm-first" id="<{$mydirname}>_container" class="category-top">
+    <section data-layout="column sm-first" id="<{$mydirname}>_container" class="category-top">
 
-        <div layout="row center-justify">
+        <div data-layout="row center-justify">
             <h3>
                 <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="category">
                 <{$category.title}>
@@ -66,19 +66,19 @@
             <{/if}>
         </div>
 
-        <div layout="row my-2" class="description">
+        <div data-layout="row my-2" class="description">
             <{$category.desc}>
         </div>
 
         <{* ------- Activity Overview - Top Category *}>
-        <div layout="row center-justify" class="activity">
+        <div data-layout="row center-justify" class="activity">
 
-            <div self="left">
+            <div data-self="left">
                 <{$smarty.const._MD_PICO_CONTENTS_TOTAL}> <span class="badge"><{$category.redundants.contents_total}></span>
                 <{$smarty.const._MD_PICO_SUBCATEGORIES_TOTAL}> <span class="badge"><{$category.redundants.subcategories_total}></span>
             </div>
 
-            <a self="ml-2" href="<{$mod_url}>/index.php?page=rss&amp;cat_id=<{$category.id}>">
+            <a data-self="ml-2" href="<{$mod_url}>/index.php?page=rss&amp;cat_id=<{$category.id}>">
                 <img class="svg rss" src="<{$xoops_url}>/images/icons/rss.svg" width="1em" height="1em" alt="rss">
             </a>
 
@@ -87,10 +87,10 @@
 
 
         <{* ---------------------------
-<!--        <div layout="row sm-column">
+<!--        <div data-layout="row sm-column">
 
 
-            <div self="right inline sm-full">
+            <div data-self="right inline sm-full">
             <{if $category.isadminormod}>
                 <a class="ui-button" href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>">
                     <img class="svg cat-edit" src="<{$xoops_url}>/images/icons/folder-edit.svg" width="1em" height="1em" alt="category edit">
@@ -121,7 +121,7 @@
 
 
     <{* ----- Action controllers - Content ----- *}>
-    <section layout="row center-right" class="action-control">
+    <section data-layout="row center-right" class="action-control">
         <{if $category.can_makesubcategory}>
         <a class="ui-button" href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$category.id}>">
             <img class="svg cat-new" src="<{$xoops_url}>/images/icons/folder-plus.svg" width="1em" height="1em" alt="new category">
@@ -144,9 +144,9 @@
     <{if $subcategories}>
     <{foreach from=$subcategories item="subcategory"}>
 
-    <section layout="column" class="category">
+    <section data-layout="column" class="category">
 
-        <div layout="rows center-justify">
+        <div data-layout="rows center-justify">
             <h3>
                 <a href="<{$mod_url}>/<{$subcategory.link}>">
                 <img class="svg category" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="category">
@@ -158,14 +158,14 @@
             </a>
         </div>
 
-        <div layout="row">
+        <div data-layout="row">
             <{$subcategory.desc}>
         </div>
 
         <{* ----- Activity Overview - Subcategories ----- *}>
         <{if $category.isadminormod}>
-        <div layout="row center-justify sm-column" class="activity">
-            <div self="left sm-full">
+        <div data-layout="row center-justify sm-column" class="activity">
+            <div data-self="left sm-full">
                 <{$smarty.const._MD_PICO_CONTENTS_TOTAL}> <span class="badge"><{$subcategory.redundants.contents_total}></span>
                 <{$smarty.const._MD_PICO_SUBCATEGORIES_TOTAL}> <span class="badge"><{$subcategory.redundants.subcategories_total > 0}></span>
             </div>
@@ -182,12 +182,12 @@
 
     <{* ----- Content ----- *}>
     <{if $contents}>
-    <section layout="column" class="list-content">
+    <section data-layout="column" class="list-content">
 
         <{foreach from=$contents item="content"}>
 
-        <div layout="center py-4">
-            <a self="size-auto ml-4" href="<{$mod_url}>/<{$content.link}>">
+        <div data-layout="center py-4">
+            <a data-self="size-auto ml-4" href="<{$mod_url}>/<{$content.link}>">
                 <img class="svg file" src="<{$xoops_url}>/images/icons/file.svg" width="1em" height="1em" alt="file">
                 <{if $content.public}>
                         <{$content.subject}>

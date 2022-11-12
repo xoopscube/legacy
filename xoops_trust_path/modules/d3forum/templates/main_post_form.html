@@ -27,7 +27,7 @@
 
 
     <{if $ispreview}>
-        <section layout="column" class="preview-post">
+        <section data-layout="column" class="preview-post">
             <h4><{$preview_subject}></h4>
             <article><{$preview_message}></article>
         </section>
@@ -156,7 +156,7 @@
 			<td>
 				<!-- approval -->
 				<{if $forum.isadminormod && $mode == "edit" && ! $post.approval}>
-				<label for="approval" self="centered">
+				<label for="approval" data-self="centered">
 				<input type="checkbox" name="approval" id="approval" value="1" <{$approval_checked}>>
 				<{$smarty.const._MD_D3FORUM_LABEL_DOAPPROVAL}>
 				</label>
@@ -164,7 +164,7 @@
 
 				<!-- solve or not -->
 				<{if $can_change_solved}>
-				<label for="solved" self="centered">
+				<label for="solved" data-self="centered">
 				<input type="checkbox" name="solved" id="solved" value="1" <{$solved_checked}>>
 				<{$smarty.const._MD_D3FORUM_TH_SOLVED}>
 				</label>
@@ -172,7 +172,7 @@
 
 				<!-- mark -->
 				<{if $allow_mark}>
-				<label for="u2t_marked" self="centered">
+				<label for="u2t_marked" data-self="centered">
 				<input type="checkbox" name="u2t_marked" id="u2t_marked" value="1" <{$u2t_marked_checked}>>
 				<{$smarty.const._MD_D3FORUM_MARK_TURNON}>
 				</label>
@@ -180,7 +180,7 @@
 
 				<!-- html -->
 				<{if $allow_html}>
-				<label for="html" self="centered">
+				<label for="html" data-self="centered">
 				<input type="checkbox" name="html" id="html" value="1" <{$html_checked}>>
 				<{$smarty.const._MD_D3FORUM_ENABLEHTML}>
 				</label>
@@ -198,10 +198,10 @@
 				<{$smarty.const._MD_D3FORUM_LABEL_ADVANCEDOPTIONS}>
 				</label>
 
-				<div id="d3f_post_advanced_options" layout="column" style="display:none;">
+				<div id="d3f_post_advanced_options" data-layout="column" style="display:none;">
 
 					<!-- smiley -->
-					<label for="smiley" self="centered">
+					<label for="smiley" data-self="centered">
 					<input type="checkbox" name="smiley" id="smiley" value="1" <{$smiley_checked}>>
 					<{$smarty.const._MD_D3FORUM_ENABLESMILEY}>
 					</label>
@@ -209,27 +209,27 @@
 
 
 					<!-- xcode -->
-					<label for="xcode" self="centered">
+					<label for="xcode" data-self="centered">
 					<input type="checkbox" name="xcode" id="xcode" value="1" <{$xcode_checked}>>
 					<{$smarty.const._MD_D3FORUM_ENABLEXCODE}>
 					</label>
 
 
 					<!-- br -->
-					<label for="br" self="centered">
+					<label for="br" data-self="centered">
 					<input type="checkbox" name="br" id="br" value="1" <{$br_checked}>>
 					<{$smarty.const._MD_D3FORUM_ENABLEBR}>
 					</label>
 
 
 					<!-- number_entity -->
-					<label for="number_entity" self="centered">
+					<label for="number_entity" data-self="centered">
 					<input type="checkbox" name="number_entity" id="number_entity" value="1" <{$number_entity_checked}>>
 					<{$smarty.const._MD_D3FORUM_ENABLENUMBERENTITY}>
 					</label>
 
 					<!-- special_entity -->
-					<label for="special_entity" self="centered">
+					<label for="special_entity" data-self="centered">
 					<input type="checkbox" name="special_entity" id="special_entity" value="1" <{$special_entity_checked}>>
 					<{$smarty.const._MD_D3FORUM_ENABLESPECIALENTITY}>
 					</label>
@@ -238,7 +238,7 @@
 					<!-- hide_uid -->
 					<{if $allow_hideuid}>
 
-					<label for="hide_uid" self="centered">
+					<label for="hide_uid" data-self="centered">
 					<input type="checkbox" name="hide_uid" id="hide_uid" value="1" <{$hide_uid_checked}>>
 					<{$smarty.const._MD_D3FORUM_LABEL_HIDEUID}>
 					</label>
@@ -246,7 +246,7 @@
 
 					<!-- signature -->
 					<{if $allow_sig}>
-					<label for="attachsig" self="centered">
+					<label for="attachsig" data-self="centered">
 					<input type="checkbox" name="attachsig" id="attachsig" value="1" <{$attachsig_checked}>>
 					<{$smarty.const._MD_D3FORUM_LABEL_ATTACHSIG}>
 					</label>
@@ -254,7 +254,7 @@
 
 					<!-- notification thread-new_post -->
 					<{if $allow_notify}>
-					<label for="notify" self="centered">
+					<label for="notify" data-self="centered">
 					<input type="checkbox" name="notify" id="notify" value="1" <{$notify_checked}>>
 					<{$smarty.const._MD_D3FORUM_LABEL_NEWPOSTNOTIFY}>
 					</label>
@@ -262,7 +262,7 @@
 
 					<!-- invisible -->
 					<{if $forum.isadminormod}>
-					<label for="invisible" self="centered">
+					<label for="invisible" data-self="centered">
 					<input type="checkbox" name="invisible" id="invisible" value="1" <{$invisible_checked}>>
 					<{$smarty.const._MD_D3FORUM_LABEL_POSTINVISIBLE}>
 					</label>

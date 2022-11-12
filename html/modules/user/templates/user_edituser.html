@@ -9,7 +9,7 @@
 </ul>
 
 
-<section layout="column" id="edit-user">
+<section data-layout="column" id="edit-user">
 
 <!--    <h3><{$smarty.const._MD_USER_LANG_EDITPROFILE}></h3>-->
 
@@ -34,23 +34,23 @@
                 <li class="page">
                     <a href="<{$xoops_url}>/userinfo.php?uid=<{$thisUser->getShow('uid')}>#tab-profile">
                     <img class="svg profile" src="<{$xoops_url}>/images/icons/user.svg" width="1em" height="1em" alt="profile">
-                    <span self="sm-hide">Profile</span></a></li>
+                    <span data-self="sm-hide">Profile</span></a></li>
                 <li class="page">
                     <a href="<{$xoops_url}>/userinfo.php?uid=<{$thisUser->getShow('uid')}>#tab-timeline">
                     <img class="svg timeline" src="<{$xoops_url}>/images/icons/timeline.svg" width="1em" height="1em" alt="timeline">
-                    <span self="sm-hide">Timeline</span></a></li>
+                    <span data-self="sm-hide">Timeline</span></a></li>
                 <li>
                     <a href="#tab-edit">Edit Profile</a>
                 </li>
                 <li>
                     <a href="#tab-pref">
                     <img class="svg settings" src="<{$xoops_url}>/images/icons/settings.svg" width="1em" height="1em" alt="settings">
-                    <span self="sm-hide">Preferences</span></a>
+                    <span data-self="sm-hide">Preferences</span></a>
                 </li>
                 <li class="page">
                     <a href="<{$xoops_url}>/notifications.php">
                     <img class="svg notifications" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" height="1em" alt="notifications">
-                    <span self="sm-hide">Notifications</span></a>
+                    <span data-self="sm-hide">Notifications</span></a>
                 </li>
             </ul>
 

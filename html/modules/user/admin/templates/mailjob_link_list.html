@@ -41,7 +41,7 @@
                 </a>
 
                 <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._MD_USER_LANG_UID}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_LINK_SORT_KEY_UID}>"
@@ -50,7 +50,7 @@
                                 class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_USER_LANG_RETRY}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_LINK_SORT_KEY_RETRY}>"
@@ -59,7 +59,7 @@
                                 class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_USER_LANG_MESSAGE}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_LINK_SORT_KEY_MESSAGE}>"

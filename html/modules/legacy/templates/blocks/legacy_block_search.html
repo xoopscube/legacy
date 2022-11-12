@@ -1,7 +1,7 @@
 <{* Dev-Mode Toggle *}>
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-<div layout="column" class="block-search">
+<div data-layout="column" class="block-search">
 
     <form action="<{$xoops_url}>/search.php" method="get">
         <{xoops_input type=hidden name=andor value=AND}>
@@ -11,7 +11,7 @@
         <{xoops_input type=text id=query name=query}>
         </label>
 
-        <p layout="row center-spread">
+        <p data-layout="row center-spread">
             <small><a href="<{$xoops_url}>/search.php"><{$smarty.const._MB_LEGACY_ADVS}></a></small>
             <input type="submit" class="ui-button" name="submit" value="<{$smarty.const._MB_LEGACY_SEARCH}>">
         </p>

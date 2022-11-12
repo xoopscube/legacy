@@ -60,7 +60,7 @@
             <{* assign var="helpAdmin" value="`$xoops_dirname` article#help-overview" *}>
             <h5>Module</h5>
 
-            <div layout="row center-spread">
+            <div data-layout="row center-spread">
 
                 <button class="help-admin button" type="button" data-module="<{$xoops_dirname}>" data-help-article="#help-overview" aria-label="<{$smarty.const._HELP}>">
                     <b>?</b> <{$smarty.const._HELP}> : <{$xoops_dirname}>
@@ -72,7 +72,7 @@
             <{* ----- ADMIN PREVIEW ----- *}>
             <h5>Preview Layout</h5>
 
-            <div layout="row center-spread" class="btn-group" self="size-x1" role="group" aria-label="Basic example">
+            <div data-layout="row center-spread" class="btn-group" data-self="size-x1" role="group" aria-label="Basic example">
                 <button type="button" class="button" aria-label="Screen Height-736 Width-414" href="<{$xoops_url}>/" target="_blank" onclick="window.open('<{$xoops_url}>/','pagename','resizable,height=700,width=400'); return false;">
                     <svg xmlns="https://www.w3.org/2000/svg" aria-hidden="true" width="1.5em" height="1.5em" style="vertical-align: -0.062em;color: #face74;" preserveAspectRatio="xMidYMid meet" viewBox="0 0 576 1024"><path d="M480 0H96Q70 0 48 13T13 48 0 96v832q0 40 28 68t68 28h384q40 0 68-28t28-68V96q0-26-13-48t-35-35-48-13zm32 928q0 13-9.5 22.5T480 960H96q-13 0-22.5-9.5T64 928V96q0-13 9.5-22.5T96 64h384q13 0 22.5 9.5T512 96v832zM288.5 800q-26.5 0-45.5 19t-19 45q0 17 8.5 32t23.5 23.5 32 8.5 32-8.5 23.5-23.5 8.5-32q0-26-18.5-45t-45-19zM352 96H224q-13 0-22.5 9.5T192 128t9.5 22.5T224 160h128q13 0 22.5-9.5T384 128t-9.5-22.5T352 96z" fill="currentColor"></path></svg>
                 </button>
@@ -85,7 +85,7 @@
                     <svg xmlns="https://www.w3.org/2000/svg" aria-hidden="true" width="1.5em" height="1.5em" style="color: #face74;" preserveAspectRatio="xMidYMid meet" viewBox="0 -64 1024 1024"><path d="M960 32H64q-26 0-45 18.5T0 96v544q0 26 19 45t45 19h416v96H320q-13 0-22.5 9.5T288 832t9.5 22.5T320 864h384q13 0 22.5-9.5T736 832t-9.5-22.5T704 800H544v-96h416q26 0 45-19t19-45V96q0-27-19-45.5T960 32zm0 608H64V96h896v544z" fill="currentColor"></path></svg>
                 </button>
             </div>
-            <div layout="row centered">
+            <div data-layout="row centered">
                 <button class="button" id="info-browser">
                     <svg xmlns="http://www.w3.org/2000/svg"
                          width="1em" height="1em" viewBox="0 0 24 24" class="icon-info">

@@ -295,7 +295,7 @@ $modversion['config'][] = [
 	'description' => '',
 	'formtype'    => 'yesno',
 	'valuetype'   => 'int',
-	'default'     => 1,
+	'default'     => 0,
 	'options'     => []
 ];
 
@@ -426,7 +426,7 @@ $modversion['config'][] = [
 	'description' => '',
 	'formtype'    => 'textbox',
 	'valuetype'   => 'int',
-	'default'     => 10,
+	'default'     => 4,
 	'options'     => []
 ];
 

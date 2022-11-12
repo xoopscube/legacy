@@ -25,11 +25,11 @@
 
         <form action="<{$mod_url}>/index.php" method="get">
 
-            <div layout="row center-center">
+            <div data-layout="row center-center">
             <{$forum_selection_sort}>
                 <input type="hidden" name="cat_ids" value="<{$cat_ids}>">
 
-                <div self="mr-1">
+                <div data-self="mr-1">
                     <img class="svg filter" src="<{$xoops_url}>/images/icons/filter.svg">
                     <input type="text" size="12" name="txt" value="<{$query.txt}>">
                 </div>
@@ -147,7 +147,7 @@
     <label for='forum-legend'> <{$smarty.const._MD_D3FORUM_LEGEND}></label>
 </h4>
 
-<div layout="row sm-column" class="forum-legend" style="display:none">
+<div data-layout="row sm-column" class="forum-legend" style="display:none">
     <ul class="d3f_iconexp">
         <li><img class="svg new" src="<{$xoops_url}>/images/icons/topic_11.svg" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICNEWPOSTS}></li>
         <li><img class="svg topic" src="<{$xoops_url}>/images/icons/topic_01.svg" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICNONEWPOSTS}></li>

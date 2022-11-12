@@ -4,7 +4,7 @@
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<!--<section layout="row center-justify" class="action-control">-->
+<!--<section data-layout="row center-justify" class="action-control">-->
 
 <!--    <div class="control-view">-->
 <!--        <button class="help-admin button" type='button' data-id="4" data-module="<{$mydirname}>" data-help-article="#help-forum-start" aria-label="<{$smarty.const._HELP}>">-->
@@ -23,8 +23,8 @@
 <div class="ui-card-full">
     <form name="syncalltables" action="<{$mod_url}>/admin/index.php?page=advanced_admin" method="post">
 
-        <div layout="row sm-column">
-            <div self="size-1of3 p-2">
+        <div data-layout="row sm-column">
+            <div data-self="size-1of3 p-2">
             <h3><label for="button_synctopics">1.<{$smarty.const._MD_D3FORUM_TOPIC}></label></h3>
             <p>
                 <{$smarty.const._MD_A_D3FORUM_MAX_TOPIC_ID}>:<{$max_topic_id}>
@@ -38,12 +38,12 @@
             </p>
             </div>
 
-            <div self="size-1of3 p-2">
+            <div data-self="size-1of3 p-2">
             <h3><label for="button_syncforums">2.<{$smarty.const._MD_D3FORUM_FORUM}></label></h3>
             <p><input type="submit" name="do_syncforums" id="button_syncforums" value="<{$smarty.const._MD_A_D3FORUM_BTN_DOSYNCTABLES}>"></p>
             </div>
 
-            <div self="size-1of3 p-2">
+            <div data-self="size-1of3 p-2">
             <h3><label for="button_synccategories">3.<{$smarty.const._MD_D3FORUM_CATEGORY}></label></h3>
             <p><input type="submit" name="do_synccategories" id="button_synccategories" value="<{$smarty.const._MD_A_D3FORUM_BTN_DOSYNCTABLES}>"></p>
             </div>
@@ -55,9 +55,9 @@
 <hr>
 
 
-<div layout="row sm-column">
+<div data-layout="row sm-column">
 
-    <div self="size-1of2 p-2">
+    <div data-self="size-1of2 p-2">
 
         <h3 class="head"><{$smarty.const._MD_A_D3FORUM_H2_IMPORTFROM}></h3>
         <div class="tips">
@@ -82,7 +82,7 @@
 
 
 
-    <div self="size-1of2 p-2">
+    <div data-self="size-1of2 p-2">
         <h3 class="head"><{$smarty.const._MD_A_D3FORUM_H2_COMIMPORTFROM}></h3>
         <div class="tips">
             <{$smarty.const._MD_A_D3FORUM_HELP_COMIMPORTFROM}>

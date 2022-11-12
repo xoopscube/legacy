@@ -9,7 +9,7 @@
 
         <{if $pagenav}>
         <nav aria-label="Comment page navigation">
-            <ul class="pagination" self="center">
+            <ul class="pagination" data-self="center">
                 <{foreach from=$pagenav item=nav_}>
                     <{if $nav_.url}>
                     <li class="page-item <{$nav_.class}>">
@@ -107,26 +107,26 @@
     <{* ------- Poster avatar *}>
     <{* ------- Smarty function cycle used to alternate comments position left and right *}>
 
-    <section layout="column my-4" class="d3f_wrap" id="d3comment_listposts_flat">
+    <section data-layout="column my-4" class="d3f_wrap" id="d3comment_listposts_flat">
 
 
     <{foreach item=post from=$posts}>
 
-        <article layout="rows my-2">
+        <article data-layout="rows my-2">
 
-            <div layout="row center-justify">
-                <div self="mx-2 <{cycle values='left first,top last'}>" style="text-align: center;">
+            <div data-layout="row center-justify">
+                <div data-self="mx-2 <{cycle values='left first,top last'}>" style="text-align: center;">
                     <a id="post_id<{$post.id}>"></a>
                     <{if $post.poster_avatar}>
                         <{if $post.poster_uid != 0}>
                         <a href="<{$xoops_url}>/userinfo.php?uid=<{$post.poster_uid}>" aria-label="<{$post.poster_uname}>">
                             <{/if}>
                             <{if $post.poster_avatar.height > 48}>
-                            <img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" width="48" height="48" alt="<{$post.poster_uname}>" self="radius-circle">
+                            <img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" width="48" height="48" alt="<{$post.poster_uname}>" data-self="radius-circle">
                             <{elseif $post.poster_avatar.width > 1}>
-                            <img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" width="<{$post.poster_avatar.width}>" height="<{$post.poster_avatar.height}>" alt="<{$post.poster_uname}>" self="radius-circle">
+                            <img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" width="<{$post.poster_avatar.width}>" height="<{$post.poster_avatar.height}>" alt="<{$post.poster_uname}>" data-self="radius-circle">
                             <{else}>
-<!--                            <img src="<{$xoops_url}>/modules/user/images/no_avatar.gif" width="48" height="48" alt="<{$post.poster_uname}>" self="radius-circle">-->
+<!--                            <img src="<{$xoops_url}>/modules/user/images/no_avatar.gif" width="48" height="48" alt="<{$post.poster_uname}>" data-self="radius-circle">-->
                             <img class="svg user" src="<{$xoops_url}>/images/icons/user.svg" width="48px" height="48px" alt="<{$post.poster_uname}>">
                             <{/if}>
                             <{if $post.poster_uid != 0}>
@@ -141,11 +141,11 @@
                     <{/if}>&nbsp;
                 </div>
 
-                <div self="size-x1">
+                <div data-self="size-x1">
 
                     <h4><a href="<{$mod_url}>/index.php?post_id=<{$post.id}>" id="post_path<{$post.unique_path}>" name="post_id<{$post.id}>"><{$post.subject}></a></h4>
 
-                    <div self="size-x1" class="d3f_info even">
+                    <div data-self="size-x1" class="d3f_info even">
 
                         <span class="d3f_trip">
                         <{if $post.guest_url}>
@@ -158,7 +158,7 @@
                     </div>
 
                     <{* ------- post *}>
-                    <div self="size-x1 my-2">
+                    <div data-self="size-x1 my-2">
 
                         <div><{$post.post_text}></div>
 
@@ -169,7 +169,7 @@
             </div>
 
             <{* ------- Actions buttons *}>
-            <div layout="row center-right">
+            <div data-layout="row center-right">
 
                 <{if $post.can_edit}>
                 <a class="ui-button" href="<{$mod_url}>/index.php?page=edit&amp;post_id=<{$post.id}>">

@@ -64,7 +64,7 @@
 		<p>
 			<span class="badge badge-warning"><{$smarty.const._MD_PICO_TH_SUBJECT_WAITING}></span>
 		</p>
-		<div self="size-x1" class="waiting-content">
+		<div data-self="size-x1" class="waiting-content">
 			<div><{$content.subject_waiting|htmlspecialchars_decode}></div>
 		</div>
 		<{/if}>
@@ -73,7 +73,7 @@
 		<p>
 			<span class="badge badge-warning"><{$smarty.const._MD_PICO_TH_BODY_WAITING}></span>
 		</p>
-		<div self="size-x1" class="waiting-content">
+		<div data-self="size-x1" class="waiting-content">
 			<div class="pico_waiting"><{$content.body_waiting|htmlspecialchars_decode|nl2br}></div>
 		</div>
 		<{/if}>
@@ -247,8 +247,8 @@ extra fields ------- *}>
 		<{/if}>
 
 	<{* ------- ORDER / TAGS *}>
-	<div layout="row stretch-stretch sm-column">
-		<div self="size-1of3 sm-full">
+	<div data-layout="row stretch-stretch sm-column">
+		<div data-self="size-1of3 sm-full">
 			<h4>
 				<label for="weight"><{$smarty.const._MD_PICO_TH_WEIGHT}></label>
 			</h4>
@@ -256,7 +256,7 @@ extra fields ------- *}>
 			<p><input type="number" min="0" max="100" step="1" name="weight" id="weight" value="<{$content.weight}>" class="pico_number_only" aria-label="Max 100"></p>
 		</div>
 		<{* ------- TAGS *}>
-		<div self="size-2of3 small-full">
+		<div data-self="size-2of3 small-full">
 			<h4>
 				<label for="tags"><{$smarty.const._MD_PICO_TH_TAGS}>  <span style="font-size:small;line-height:2;"><{$smarty.const._MD_PICO_TH_TAGSDSC}></span></label>
 			</h4>
@@ -288,7 +288,7 @@ extra fields ------- *}>
 		<label for='filters_onoff'> <{$smarty.const._MD_PICO_TH_FILTERS}></label>
 	</h4>
 
-	<section class="filters" layout="column" style="display:none;">
+	<section class="filters" data-layout="column" style="display:none;">
 		<ul class="content-filter">
 			<{foreach from=$content.filter_infos key="filter_name" item="filter"}>
 			<{if $filter.title}>
@@ -314,7 +314,7 @@ extra fields ------- *}>
 		<label for='options'> <{$smarty.const._MD_PICO_TH_CONTENTOPTIONS}></label>
 	</h4>
 
-	<section class="content_options" layout="column" style="display:none;">
+	<section class="content_options" data-layout="column" style="display:none;">
 		<{* ------- visible *}>
 
 		<label for="visible">
@@ -376,10 +376,10 @@ extra fields ------- *}>
 		<label for='time'> <{$smarty.const._MD_PICO_LABEL_SPECIFY_DATETIME}></label>
 	</h4>
 
-	<section class="content_time" layout="column" style="display:none;">
+	<section class="content_time" data-layout="column" style="display:none;">
 
 		<h4><{$smarty.const._MD_PICO_CREATED}></h4>
-		<p><img src="<{$content_base.poster_uname|xoops_user_avatarize}>" width="16px" self="radius-circle mr-2" style="vertical-align:middle">
+		<p><img src="<{$content_base.poster_uname|xoops_user_avatarize}>" width="16px" data-self="radius-circle mr-2" style="vertical-align:middle">
 			<{$content_base.poster_uname|@ucfirst}> <span class="badge">uid : <{$content_base.poster_uid}></span>
 
 			<{if $category.isadminormod && $page == 'contentmanager'}>
@@ -412,7 +412,7 @@ extra fields ------- *}>
 
 		<h4><{$smarty.const._MD_PICO_MODIFIED}></h4>
 
-		<p><img src="<{$content_base.modifier_uname|xoops_user_avatarize}>" width="16px" self="radius-circle mr-2" style="vertical-align:middle">
+		<p><img src="<{$content_base.modifier_uname|xoops_user_avatarize}>" width="16px" data-self="radius-circle mr-2" style="vertical-align:middle">
 			<{$content_base.modifier_uname|@ucfirst}> <span class="badge">uid :<{$content_base.modifier_uid}></span>
 
 			<{if $category.isadminormod && $page == 'contentmanager'}>
@@ -486,7 +486,7 @@ extra fields ------- *}>
 		<label for='history'> <{$smarty.const._MD_PICO_HISTORY}></label>
 	</h4>
 
-	<section class="content_history" layout="column" style="display:none;">
+	<section class="content_history" data-layout="column" style="display:none;">
 
 		<ul class="content_history_list">
 			<{foreach from=$content_histories item="history"}>
@@ -514,7 +514,7 @@ extra fields ------- *}>
 
 
 
-	<div layout="row center-center mt-2" class="pico_submit">
+	<div data-layout="row center-center mt-2" class="pico_submit">
 
 		<input type="submit" class="ui-button" name="contentman_preview" id="contentman_preview" value="<{$smarty.const._PREVIEW}>">
 

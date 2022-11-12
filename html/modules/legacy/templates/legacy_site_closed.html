@@ -36,7 +36,7 @@ ob_end_flush();
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
 
-<div layout="row center-center">
+<div data-layout="row center-center">
     <a href="<{$xoops_url}>/"><img src="<{$xoops_url}>/images/logo.png" alt="<{$xoops_sitename}>" aria-label="<{$xoops_sitename}>"></a>
 </div>
 
@@ -46,7 +46,7 @@ ob_end_flush();
 
 <{if $xoops_isuser}>
 
-<div layout="row center-center">
+<div data-layout="row center-center">
     <a href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._LOGOUT}></a>
 </div>
 
@@ -55,7 +55,7 @@ ob_end_flush();
     <form action="<{$xoops_url}>/user.php" method="post">
 
 
-        <div layout="column center-center py-4">
+        <div data-layout="column center-center py-4">
 
             <div>
                 <h3><{$lang_login}></h3>

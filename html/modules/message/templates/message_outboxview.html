@@ -10,7 +10,7 @@
     <li><a href="<{$xoops_url}>/">
         <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a>
     <li><a href="index.php">
-    <img class="svg inbox" src="<{$xoops_url}>/images/icons/inbox.svg"> <span self="sm-hide"><{$smarty.const._MI_MESSAGE_NAME}></span></a>
+    <img class="svg inbox" src="<{$xoops_url}>/images/icons/inbox.svg"> <span data-self="sm-hide"><{$smarty.const._MI_MESSAGE_NAME}></span></a>
     <li><a href="index.php?action=send"><{$smarty.const._MD_MESSAGE_TEMPLATE7}></a>
     <li aria-current="<{$smarty.const._MD_MESSAGE_TEMPLATE4}>"><{$smarty.const._MD_MESSAGE_TEMPLATE4}>
 </ul>
@@ -28,26 +28,26 @@
             <hr>
 
 
-            <h3 self="px-6" class="mail-title"><{$smarty.const._MD_MESSAGE_TEMPLATE3}> : <{$msgdata.title}></h3>
+            <h3 data-self="px-6" class="mail-title"><{$smarty.const._MD_MESSAGE_TEMPLATE3}> : <{$msgdata.title}></h3>
 
-            <div layout="row center-justify p-6" class="mail-author" style="border-bottom: 1px solid hsl(219, 17%, 21%);">
+            <div data-layout="row center-justify p-6" class="mail-author" style="border-bottom: 1px solid hsl(219, 17%, 21%);">
 
-                <div self="size-x1"><{$smarty.const._MD_MESSAGE_TEMPLATE9}> : <img src="<{$msgdata.to_uid|xoops_user_avatarize}>" width="24px" self="radius-circle" class="avatar"> <{$msgdata.toname}></div>
+                <div data-self="size-x1"><{$smarty.const._MD_MESSAGE_TEMPLATE9}> : <img src="<{$msgdata.to_uid|xoops_user_avatarize}>" width="24px" data-self="radius-circle" class="avatar"> <{$msgdata.toname}></div>
                 <div><{$smarty.const._MD_MESSAGE_TEMPLATE10}> : <span class="badge"><{$msgdata.utime|xoops_formattimestamp:l}></span></div>
 
             </div>
 
 
-            <div layout="column center-left p-6" class="mail-text">
-                <div self="size-x1 p-6"><{$smarty.const._MD_MESSAGE_TEMPLATE4}> :</div>
-                <div self="size-x1 p-6"><{$msgdata.message}></div>
+            <div data-layout="column center-left p-6" class="mail-text">
+                <div data-self="size-x1 p-6"><{$smarty.const._MD_MESSAGE_TEMPLATE4}> :</div>
+                <div data-self="size-x1 p-6"><{$msgdata.message}></div>
             </div>
 
 
             <hr>
 
 
-            <div layout="row center-center pb-6" self="size-x1">
+            <div data-layout="row center-center pb-6" data-self="size-x1">
              <form method="post" action="index.php?action=delete&amp;inout=out">
                  <input type="hidden" name="outbox" value="<{$msgdata.outbox_id}>">
                  <button type="submit" class="ui-button delete" value="<{$smarty.const._MD_MESSAGE_TEMPLATE14}>">

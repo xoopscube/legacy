@@ -22,19 +22,19 @@
 
     <{* ------- Top Message *}>
 
-    <section layout="column my-4 sm-first" class="category-top">
+    <section data-layout="column my-4 sm-first" class="category-top">
 
-        <div self="left">
+        <div data-self="left">
             <{$mod_config.top_message}>
         </div>
 
         <{* ------- Activity Overview *}>
-        <div layout="row center-justify" class="activity">
-            <div self="inline">
-            <div self="px-4"><{$smarty.const._MD_D3FORUM_TOTALTOPICSCOUNT}> <span class="badge"><{$total_topics_count}></span></div>
-            <div self="px-4"><{$smarty.const._MD_D3FORUM_TOTALPOSTSCOUNT}> <span class="badge"><{$total_posts_count}></span></div>
-            <div self="px-4"><{$smarty.const._MD_D3FORUM_TIMENOW}> <span class="badge"><{$currenttime_formatted}></span></div>
-            <div self="px-4"><{$smarty.const._MD_D3FORUM_LASTVISIT}> <span class="badge"><{$lastvisit_formatted}></span></div>
+        <div data-layout="row center-justify" class="activity">
+            <div data-self="inline">
+            <div data-self="px-4"><{$smarty.const._MD_D3FORUM_TOTALTOPICSCOUNT}> <span class="badge"><{$total_topics_count}></span></div>
+            <div data-self="px-4"><{$smarty.const._MD_D3FORUM_TOTALPOSTSCOUNT}> <span class="badge"><{$total_posts_count}></span></div>
+            <div data-self="px-4"><{$smarty.const._MD_D3FORUM_TIMENOW}> <span class="badge"><{$currenttime_formatted}></span></div>
+            <div data-self="px-4"><{$smarty.const._MD_D3FORUM_LASTVISIT}> <span class="badge"><{$lastvisit_formatted}></span></div>
             </div>
 
             <a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=0&amp;odr=1" aria-label="<{$smarty.const._MD_D3FORUM_LINK_ALLRSS}> ">
@@ -48,7 +48,7 @@
 
 
     <{* ------- Admin Control *}>
-    <section layout="row center-right" class="action-control">
+    <section data-layout="row center-right" class="action-control">
         <{if $xoops_isadmin}>
         <a class="ui-button" href="<{$mod_url}>/index.php?page=makecategory">
             <img class="svg new" src="<{$xoops_url}>/images/icons/folder-plus.svg" width="1em" alt="new">
@@ -69,9 +69,9 @@
 
         <{if $category.subcategories or $category.forums or $xoops_isadmin}>
 
-        <section layout="column" class="category-sub">
+        <section data-layout="column" class="category-sub">
 
-            <div layout="rows center-justify">
+            <div data-layout="rows center-justify">
                 <h3>
                     <a href="<{$mod_url}>/index.php?cat_id=<{$category.id}>" aria-label="<{$category.title}>">
                     <img class="svg category_<{$category.bit_new}>"
@@ -89,15 +89,15 @@
             </div>
 
             <{if $category.desc}>
-                <div layout="row" class="description">
+                <div data-layout="row" class="description">
                     <p><{$category.desc}></p>
                 </div>
             <{/if}>
 
             <{* ------- Activity Overview - Category *}>
-            <div layout="row center-justify sm-column sm-full" class="activity">
+            <div data-layout="row center-justify sm-column sm-full" class="activity">
 
-                <div self="left sm-full">
+                <div data-self="left sm-full">
                     <{include file="db:`$mydirname`_inc_moderators.html" target=$category}>
                     <{$smarty.const._MD_D3FORUM_TOTALTOPICSCOUNT}>: <span class="badge"><{$category.topics_count_in_tree}></span>
                     <{$smarty.const._MD_D3FORUM_TOTALPOSTSCOUNT}>: <span class="badge"><{$category.posts_count_in_tree}></span>
@@ -107,8 +107,8 @@
                 </div>
 
                 <{* RSS *}>
-                <div self="right sm-full">
-                    <a self="pr-2" href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$category.id}>&amp;odr=1" aria-label="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}>">
+                <div data-self="right sm-full">
+                    <a data-self="pr-2" href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$category.id}>&amp;odr=1" aria-label="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}>">
                         <img class="svg rss" src="<{$xoops_url}>/images/icons/rss.svg" width="1em" alt="RSS">
                     </a>
                 </div>
@@ -143,23 +143,23 @@
 
 
         <{* ------- Admin Control - Subcategory *}>
-        <section layout="row center-right" class="action-control">
+        <section data-layout="row center-right" class="action-control">
 
             <{if $xoops_isadmin}>
 <!--            <a class="ui-button" href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>">-->
 <!--                <img class="svg edit" src="<{$xoops_url}>/images/icons/edit.svg"width="1em" alt="edit">-->
-<!--                <span self="sm-hide"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}></span>-->
+<!--                <span data-self="sm-hide"><{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}></span>-->
 <!--            </a>-->
             <a class="ui-button" href="<{$mod_url}>/index.php?page=makecategory&amp;cat_id=<{$category.id}>">
                 <img class="svg new" src="<{$xoops_url}>/images/icons/folder-plus.svg" width="1em" alt="new">
-                <span self="sm-hide"><{$smarty.const._MD_D3FORUM_LINK_MAKESUBCATEGORY}></span>
+                <span data-self="sm-hide"><{$smarty.const._MD_D3FORUM_LINK_MAKESUBCATEGORY}></span>
             </a>
             <{/if}>
 
             <{if $category.can_makeforum}>
             <a class="ui-button" href="<{$mod_url}>/index.php?page=makeforum&amp;cat_id=<{$category.id}>">
                 <img class="svg new-forum" src="<{$xoops_url}>/images/icons/topic_plus.svg" width="1em" alt="new-forum">
-                <span self="sm-hide"><{$smarty.const._MD_D3FORUM_LINK_MAKEFORUM}></span>
+                <span data-self="sm-hide"><{$smarty.const._MD_D3FORUM_LINK_MAKEFORUM}></span>
             </a>
             <{/if}>
 
@@ -181,7 +181,7 @@
 <hr>
 
 <{* ----- Forum jump-box *}>
-<section layout="row center-right" name="jump-box" class="action-control">
+<section data-layout="row center-right" name="jump-box" class="action-control">
     <form name="forum_jump_box" action="<{$mod_url}>/index.php" method="get" class="form-inline">
         <input type="hidden" name="page" value="forum_access">
         <select name="forum_id" id="select_forum_id"><{$forum_jumpbox_options}></select>

@@ -11,7 +11,7 @@
 
 
 <{if $user_ownpage == true && $enableSelfDelete == true && $xoops_isadmin == false}>
-<div self="right">
+<div data-self="right">
     <a href="<{$xoops_url}>/user.php?op=delete"><{$smarty.const._MD_USER_LANG_DELACCOUNT}></a>
 </div>
 <{elseif $xoops_isadmin == true}>
@@ -24,11 +24,11 @@
 
 
 
-<table width="100%" border="0" cellspacing="5">
-    <tr valign="top">
+<table>
+    <tr>
         <td width="50%">
 
-            <table class="outer" cellpadding="4" cellspacing="1" width="100%">
+            <table class="outer">
                 <tr>
                     <th colspan="2" style="text-align:center;">
                         <{$smarty.const._MD_USER_LANG_ALLABOUT|replace:"%s":$thisUser->getShow('uname')}>
@@ -41,7 +41,7 @@
                     </td>
                 </tr>
                 <{/if}>
-                <tr valign="top">
+                <tr>
                     <td class="head"><{$smarty.const._MD_USER_LANG_AVATAR}></td>
                     <td style="text-align:center;">
                         <{if $thisUser->get('user_avatar') != "blank.gif" }>
@@ -64,7 +64,7 @@
                     <td><a href="<{$thisUser->getShow('url')}>" rel="external"><{$thisUser->getShow('url')}></a></td>
                 </tr>
                 <{if $thisUser->get('user_viewemail') == 1 || $user_ownpage == true || $xoops_isadmin == true }>
-                <tr valign="top">
+                <tr>
                     <td class="head"><{$smarty.const._MD_USER_LANG_EMAIL}></td>
                     <td>
                         <{mailto address=$thisUser->get('email') encode="javascript"}>
@@ -72,7 +72,7 @@
                 </tr>
                 <{/if}>
                 <{if $xoops_isuser == true && $pmliteUrl != ''}>
-                <tr valign="top">
+                <tr>
                     <td class="head"><{$smarty.const._MD_USER_LANG_PM}></td>
                     <td>
                         <a href="<{$pmliteUrl|xoops_escape:link}>" aria-label="<{$smarty.const._SENDPMTO|replace:"%s":$thisUser->getShow('uname')}>">
@@ -87,16 +87,16 @@
             </table>
         </td>
         <td width="50%">
-            <table class="outer" cellpadding="4" cellspacing="1" width="100%">
-                <tr valign="top">
+            <table class="outer">
+                <tr>
                     <th colspan="2" style="text-align:center;"><{$smarty.const._MD_USER_LANG_STATISTICS}></th>
                 </tr>
-                <tr valign="top">
+                <tr>
                     <td class="head"><{$smarty.const._MD_USER_LANG_USER_REGDATE}></td>
                     <td style="text-align:center;"><{$thisUser->get('user_regdate')|xoops_formattimestamp:l}></td>
                 </tr>
                 <{if $rank != null}>
-                <tr valign="top">
+                <tr>
                     <td class="head"><{$smarty.const._MD_USER_LANG_RANK}></td>
                     <td style="text-align:center;">
                         <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$rank->getShow('rank_image')}>" alt="<{$rank->getShow('rank_title')}>" aria-label="<{$rank->getShow('rank_title')}>" /><br>
@@ -104,21 +104,21 @@
                     </td>
                 </tr>
                 <{/if}>
-                <tr valign="top">
+                <tr>
                     <td class="head"><{$smarty.const._MD_USER_LANG_POSTS}></td>
                     <td style="text-align:center;"><{$thisUser->getShow('posts')}></td>
                 </tr>
-                <tr valign="top">
+                <tr>
                     <td class="head"><{$smarty.const._MD_USER_LANG_LAST_LOGIN}></td>
                     <td style="text-align:center;"><{$thisUser->get('last_login')|xoops_formattimestamp:l}></td>
                 </tr>
             </table>
             <br>
-            <table class="outer" cellpadding="4" cellspacing="1" width="100%">
-                <tr valign="top">
+            <table class="outer">
+                <tr>
                     <th colspan="2" style="text-align:center;"><{$smarty.const._MD_USER_LANG_USER_SIG}></th>
                 </tr>
-                <tr valign="top">
+                <tr>
                     <td><{$thisUser->getShow('user_sig')}></td>
                 </tr>
             </table>

@@ -27,7 +27,7 @@
         <{xoops_input type=hidden name=mode}>
 
             <{if $errMsg!=""}>
-                <div self="size-x1 m-6" class="msg-callout msg-warning">
+                <div data-self="size-x1 m-6" class="msg-callout msg-warning">
                     <ul>
                     <{foreach item=error from=$errMsg}>
                     <li><{$error}></li>
@@ -39,7 +39,7 @@
 
 
         <{if $mActionForm->get('Legacy_Event_User_Preview')!=""}>
-            <div layout="column p-6" class="preview">
+            <div data-layout="column p-6" class="preview">
                 <h3><{$smarty.const._MD_MESSAGE_TEMPLATE3}> : <{$mActionForm->getShow('title')}></h3>
                 <p><{$smarty.const._MD_MESSAGE_TEMPLATE2}> : <{$mActionForm->getShow('uname')}>
                 <br><{$smarty.const._MD_MESSAGE_TEMPLATE4}></p>
@@ -52,30 +52,30 @@
 
 
         <hr>
-        <div layout="column p-6">
-            <label for="uname" self="row"><{$smarty.const._MD_MESSAGE_TEMPLATE2}></label>
-            <div self="size-x1">
+        <div data-layout="column p-6">
+            <label for="uname" data-self="row"><{$smarty.const._MD_MESSAGE_TEMPLATE2}></label>
+            <div data-self="size-x1">
                 <{xoops_input name=uname size=30 maxlength=25 value=$mActionForm->get('uname')}>
             </div>
         </div>
 
-        <div layout="column p-6">
-            <label for="title" self="row"><{$smarty.const._MD_MESSAGE_TEMPLATE3}></label>
-            <div self="row">
+        <div data-layout="column p-6">
+            <label for="title" data-self="row"><{$smarty.const._MD_MESSAGE_TEMPLATE3}></label>
+            <div data-self="row">
                 <{xoops_input name=title class="form-control form-control-sm" size=50 maxlength=100 value=$mActionForm->get('title')}>
             </div>
         </div>
 
-            <div layout="column p-6">
-            <label for="note" self="row"><{$smarty.const._MD_MESSAGE_TEMPLATE4}></label>
-            <div self="row">
+            <div data-layout="column p-6">
+            <label for="note" data-self="row"><{$smarty.const._MD_MESSAGE_TEMPLATE4}></label>
+            <div data-self="row">
                 <{xoops_dhtmltarea class="form-control" cols=60 rows=7 name=note value=$mActionForm->get('note')}>
             </div>
         </div>
 
         <hr>
 
-        <div layout="row centered pb-6">
+        <div data-layout="row centered pb-6">
             <{legacy_button class="ui-button" id=Preview Text=$smarty.const._MD_MESSAGE_TEMPLATE5}>
             <{legacy_button class="ui-button" id=Submit Text=$smarty.const._MD_MESSAGE_TEMPLATE6}>
         </div>

@@ -28,9 +28,9 @@
 
 
     <{* ------- Category Top message *}>
-    <section layout="column my-4" class="category-top">
+    <section data-layout="column my-4" class="category-top">
 
-        <div layout="rows center-justify">
+        <div data-layout="rows center-justify">
 
             <h2><{$category.title}></h2>
 
@@ -73,7 +73,7 @@
         </div>
 
         <{if $category.desc}>
-            <div layout="row" class="description">
+            <div data-layout="row" class="description">
                 <{$category.desc}>
             </div>
         <{/if}>
@@ -82,9 +82,9 @@
 
 
     <{* ------- Admin Action controller *}>
-    <section layout="row center-right" class="action-control">
+    <section data-layout="row center-right" class="action-control">
 
-        <div self="right inline sm-full">
+        <div data-self="right inline sm-full">
             <{if $category.isadminormod}>
             <a class="ui-button" href="<{$mod_url}>/index.php?page=makeforum&amp;cat_id=<{$category.id}>" aria-label="<{$smarty.const._MD_D3FORUM_LINK_MAKEFORUM}> <{$smarty.const._MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY}>">
                 <img class="svg forum-plus" src="<{$xoops_url}>/images/icons/topic_plus.svg">
@@ -111,11 +111,11 @@
     <h4><{$smarty.const._MD_D3FORUM_SUBCATEGORIES}></h4>
 
         <{foreach item=subcategory from=$subcategories}>
-        <section layout="column" id="subcategory-<{$subcategory.id}>" class="category-sub">
+        <section data-layout="column" id="subcategory-<{$subcategory.id}>" class="category-sub">
 
-            <div layout="rows center-justify">
+            <div data-layout="rows center-justify">
                 <h3>
-                    <a self="size-x1" href="<{$mod_url}>/index.php?cat_id=<{$subcategory.id}>">
+                    <a data-self="size-x1" href="<{$mod_url}>/index.php?cat_id=<{$subcategory.id}>">
                         <img class="svg category_<{$subcategory.bit_new}>" src="<{$xoops_url}>/images/icons/category_<{$subcategory.bit_new}>.svg" alt="<{$subcategory.title}>">
                         <{$subcategory.title}>
                     </a>
@@ -128,14 +128,14 @@
             </div>
 
             <{if $subcategory.desc}>
-            <div layout="row stretch p-4" class="description">
+            <div data-layout="row stretch p-4" class="description">
                 <{$subcategory.desc}>
             </div>
             <{/if}>
 
             <{* ------- Activity Overview - Subcategories *}>
-            <div layout="row center-justify" class="activity">
-                <div self="inline">
+            <div data-layout="row center-justify" class="activity">
+                <div data-self="inline">
                 <div><{$smarty.const._MD_D3FORUM_TOTALTOPICSCOUNT}> <span class="badge"><{$subcategory.topics_count_in_tree}></span></div>
                 <div><{$smarty.const._MD_D3FORUM_TOTALPOSTSCOUNT}> <span class="badge"><{$subcategory.posts_count_in_tree}></span></div>
                 </div>
@@ -161,9 +161,9 @@
     <h4><{$smarty.const._MD_D3FORUM_FORUM}></h4>
 
         <{foreach item=forum from=$forums}>
-        <section layout="column" class="category-forum">
+        <section data-layout="column" class="category-forum">
 
-            <div layout="rows center-justify">
+            <div data-layout="rows center-justify">
                 <h3>
                     <a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>">
                         <img class="svg forum" src="<{$xoops_url}>/images/icons/forum_<{$forum.bit_new}>.svg" alt="<{$forum.title}>">
@@ -177,14 +177,14 @@
             </div>
 
             <{if $forum.desc}>
-            <div layout="row" class="description">
+            <div data-layout="row" class="description">
                 <{$forum.desc}>
             </div>
             <{/if}>
 
             <{* ------- Activity Overview - Forums *}>
-            <div layout="row center-justify sm-column" class="activity">
-                <div self="left sm-full">
+            <div data-layout="row center-justify sm-column" class="activity">
+                <div data-self="left sm-full">
                 <{if $forum.isadminormod}>
                     <{include file="db:`$mydirname`_inc_moderators.html" target=$forum}>
                     <a href="<{$mod_url}>/index.php?page=forummanager&amp;forum_id=<{$forum.id}>" aria-label="<{$smarty.const._MD_D3FORUM_LINK_FORUMMANAGER}>">
@@ -214,12 +214,12 @@
             </div>
             <{* ------- /Activity Overview - Forums *}>
 
-                <div layout="row center-right">
+                <div data-layout="row center-right">
 
                     <{if $forum.external_link_format}>
-                        <div self="left"> [<{$smarty.const._MD_D3FORUM_FORUMASCOMMENT}>] </div>
+                        <div data-self="left"> [<{$smarty.const._MD_D3FORUM_FORUMASCOMMENT}>] </div>
                         <{elseif $forum.can_post}>
-                        <div self="right">
+                        <div data-self="right">
                             <a class="button" href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>">
                                 <{$smarty.const._MD_D3FORUM_POSTASNEWTOPIC}></a>
                         </div>
@@ -234,7 +234,7 @@
 <hr>
 
 <{* ----- Category jump-box *}>
-<section layout="row center-right" name="jump-box" class="action-control">
+<section data-layout="row center-right" name="jump-box" class="action-control">
     <form name="category_jump_box" action="<{$mod_url}>/index.php" method="get">
         <select name="cat_id">
             <option value="">(<{$smarty.const._MD_D3FORUM_TOP}>)</option>

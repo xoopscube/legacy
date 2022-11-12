@@ -1,13 +1,13 @@
 <{* Dev-Mode Toggle *}>
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-<div layout="column" class="block-online">
+<div data-layout="column" class="block-online">
     <p><{$block.online_total}></p>
-    <div self="size-x1"><{$smarty.const._MB_USER_MEMBERS}> <span class="badge"><{$block.online_members}></span>
+    <div data-self="size-x1"><{$smarty.const._MB_USER_MEMBERS}> <span class="badge"><{$block.online_members}></span>
         <{$smarty.const._MB_USER_GUESTS}> <span class="badge"><{$block.online_guests}></span></div>
     <{foreach item=member from=$block.online_member_list}>
-    <div layout="row center my-2" self="size-x1" class="block-online-members">
-        <img src="<{$member.uid|xoops_user_avatarize}>" alt="<{$member.uname}>" height="24" self="mr-2 radius-circle">
+    <div data-layout="row center my-2" data-self="size-x1" class="block-online-members">
+        <img src="<{$member.uid|xoops_user_avatarize}>" alt="<{$member.uname}>" height="24" data-self="mr-2 radius-circle">
         <a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$member.uid}>">
 
             <span><{$member.uname}></span>

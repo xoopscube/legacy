@@ -1,8 +1,8 @@
 <{foreach item=def from=$defArr}>
-<div layout="row sm-column mb-6">
-    <label for="<{$def->get('label')}>" self="size-x1"><{$def->get('label')}></label>
+<div data-layout="row sm-column mb-6">
+    <label for="<{$def->get('label')}>" data-self="size-x1"><{$def->get('label')}></label>
 
-    <div self="size-x3">
+    <div data-self="size-x3">
     	<{if $def->get('type')=="string"}>
             <{xoops_input type=text name=$def->getShow('field_name') value=$profileForm->get($def->getShow('field_name'))  size=40 maxlength=255}>
         <{elseif $def->get('type')=="int" || $def->get('type')=="float"}>

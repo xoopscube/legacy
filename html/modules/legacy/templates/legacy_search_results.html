@@ -4,15 +4,15 @@
 <{include file=db:legacy_search_form.html}>
 <hr>
 
-<section id="search-results" layout="column mx-auto">
+<section id="search-results" data-layout="column mx-auto">
 <{foreach item=module from=$searchResults}>
     <h3><{$module.name}></h3>
 
     <{* start results item loop *}>
-    <article layout="column my-2" class="result">
+    <article data-layout="column my-2" class="result">
         <{foreach item=result from=$module.results}>
-        <div layout="row center-left">
-            <h4 self="size-x1 center">
+        <div data-layout="row center-left">
+            <h4 data-self="size-x1 center">
                 <img class="svg" src="<{$result.image}>" alt="<{$module.name}>" aria-label="<{$module.name}>">
                 <a href="<{$result.link}>"><{$result.title}></a>
             </h4>

@@ -2,11 +2,11 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
 <{* USER TAB PROFILE *}>
-<div class="ui-tab-content" layout="row sm-column" self="size-x1">
+<div class="ui-tab-content" data-layout="row sm-column" data-self="size-x1">
 
 
     <{* ---------- User Profile Avatar *}>
-    <div layout="column" self="size-1of3 sm-full" class="user-tab-avatar">
+    <div data-layout="column" data-self="size-1of3 sm-full" class="user-tab-avatar">
 
 
         <{* ------- User profile column with user-data *}>
@@ -17,7 +17,7 @@
     </div><{* ------- /User Profile Avatar *}>
 
 
-    <div self="size-x1 px-6" class="user-tab-data">
+    <div data-self="size-x1 px-6" class="user-tab-data">
 
         <h3><{$thisUser->getShow('uname')}></h3>
 

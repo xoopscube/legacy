@@ -23,58 +23,58 @@
     <input type="hidden" name="number_entity" id="number_entity" value="1">
 
 
-    <section layout="column mx-4 p-4">
+    <section data-layout="column mx-4 p-4">
 
-        <div layout="row center-left my-2">
-            <div self="size-xxsmall sm-full"><{$smarty.const._MD_D3FORUM_SUBJECT}></div>
-            <div self="sm-full">
+        <div data-layout="row center-left my-2">
+            <div data-self="size-xxsmall sm-full"><{$smarty.const._MD_D3FORUM_SUBJECT}></div>
+            <div data-self="sm-full">
                 <input type="text" name="subject" id="subject" size="50" maxlength="191" value="<{$subject_raw|ltrim:'Re: '|string_format:$smarty.const._MD_D3FORUM_FMT_COMMENTSUBJECT|escape}>">
             </div>
         </div>
 
         <{if $uname}>
         <{* ------- begin post by USER newly *}>
-        <div layout="row center-left my-2">
-            <div self="size-xxsmall sm-full"><{$smarty.const._MD_D3FORUM_TH_UNAME}></div>
+        <div data-layout="row center-left my-2">
+            <div data-self="size-xxsmall sm-full"><{$smarty.const._MD_D3FORUM_TH_UNAME}></div>
                 <div>
                 <input type="text" id="inlineFormInputGroup" placeholder="<{$uname|string_format:$smarty.const._MD_D3FORUM_FMT_UNAME}>" disabled>
             </div>
         </div>
         <{else}>
             <{* ------- begin GUEST's new post  *}>
-            <div layout="row center-left">
-                <div self="size-xxsmall sm-full"><{$smarty.const._MD_D3FORUM_TH_GUESTNAME}></div>
-                <div self="sm-full">
+            <div data-layout="row center-left">
+                <div data-self="size-xxsmall sm-full"><{$smarty.const._MD_D3FORUM_TH_GUESTNAME}></div>
+                <div data-self="sm-full">
                     <input type="text" name="guest_name" id="guest_name" value="<{$guest_name}>" size="25" maxlength="30">
                 </div>
 
             </div>
-            <div layout="row">
-                <label for="guest_pass" self="size-xxsmall sm-full"><{$smarty.const._MD_D3FORUM_TH_GUESTPASSWORD}></label>
-                <div self="sm-full">
+            <div data-layout="row">
+                <label for="guest_pass" data-self="size-xxsmall sm-full"><{$smarty.const._MD_D3FORUM_TH_GUESTPASSWORD}></label>
+                <div data-self="sm-full">
                     <input type="password" name="guest_pass" id="guest_pass" value="<{$guest_pass}>" size="20" maxlength="20">
                 </div>
             </div>
-            <div layout="row">
-            <label for="guest_url" self="size-xxsmall sm-full"><{$smarty.const._MD_D3FORUM_TH_GUESTURL}></label>
-                <div self="sm-full">
+            <div data-layout="row">
+            <label for="guest_url" data-self="size-xxsmall sm-full"><{$smarty.const._MD_D3FORUM_TH_GUESTURL}></label>
+                <div data-self="sm-full">
                     <input type="text" name="guest_url" id="guest_url" value="<{$guest_url}>" size="50" maxlength="100">
                 </div>
             </div>
             <{* end GUEST's new post *}>
         <{/if}>
 
-        <div layout="row">
-            <div self="size-xxsmall sm-full"><{$smarty.const._MD_D3FORUM_TH_BODY}></div>
-            <div self="sm-full">
+        <div data-layout="row">
+            <div data-self="size-xxsmall sm-full"><{$smarty.const._MD_D3FORUM_TH_BODY}></div>
+            <div data-self="sm-full">
                 <textarea name="message" cols="50" rows="4"><{$message}></textarea>
                 <{$antispam.html_in_form}>
             </div>
         </div>
 
-        <div layout="row">
-            <div self="size-xxsmall sm-full"><!-- submit comment --></div>
-            <div self="sm-full">
+        <div data-layout="row">
+            <div data-self="size-xxsmall sm-full"><!-- submit comment --></div>
+            <div data-self="sm-full">
                 <button type="submit" class="ui-button" name="contents_submit"  id="contents_submit" value="<{$smarty.const._MD_D3FORUM_DOPOST}>">
                     <img class="svg comment-edit" src="<{$xoops_url}>/images/icons/comment-edit.svg"> <{$smarty.const._MD_D3FORUM_DOPOST}></button>
 

@@ -1,14 +1,14 @@
 <{* Dev-Mode Toggle *}>
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-<div layout="column" class="block-new-users">
+<div data-layout="column" class="block-new-users">
 
   <{foreach item=user from=$block.users}>
-    <div layout="row center-justify my-2">
+    <div data-layout="row center-justify my-2">
       <{if $user.avatar != ""}>
-      <img src="<{$user.avatar}>" alt="" width="32" self="radius-circle"/>
+      <img src="<{$user.avatar}>" alt="" width="32" data-self="radius-circle"/>
           <{else}>
-          <img src="<{$user.uid|xoops_user_avatarize}>" alt=" <{$member.uname}>" height="24" self="radius-circle"/>
+          <img src="<{$user.uid|xoops_user_avatarize}>" alt=" <{$member.uname}>" height="24" data-self="radius-circle"/>
       <{/if}>
       <a href="<{$xoops_url}>/userinfo.php?uid=<{$user.id}>"><{$user.name}></a>
         <span class="badge"><{$user.joindate|xoops_formattimestamp:s}></span>

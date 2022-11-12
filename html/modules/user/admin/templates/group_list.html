@@ -12,7 +12,7 @@
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section layout="row center-justify" class="action-control">
+<section data-layout="row center-justify" class="action-control">
 
     <a class="button" href="index.php?action=GroupEdit"><{$smarty.const._AD_USER_LANG_GROUP_NEW}></a>
 
@@ -39,7 +39,7 @@
             </a>
 
             <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
-                <div layout="row center-justify inline">
+                <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_USER_LANG_GROUP_GID}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GROUP_SORT_KEY_GROUPID}>"
@@ -48,7 +48,7 @@
                            class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-                <div layout="row center-justify inline">
+                <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_USER_LANG_GROUP_NAME}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GROUP_SORT_KEY_NAME}>"
@@ -58,7 +58,7 @@
                         </a>
                     </div>
                 </div>
-                <div layout="row center-justify">
+                <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_USER_LANG_GROUP_DESC}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GROUP_SORT_KEY_DESCRIPTION}>"
@@ -67,7 +67,7 @@
                            class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-                <div layout="row center-justify">
+                <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_USER_LANG_GROUP_TYPE}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GROUP_SORT_KEY_GROUP_TYPE}>"

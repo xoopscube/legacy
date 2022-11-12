@@ -10,7 +10,7 @@
 
 <hr>
 
-<section layout="column" class="lost-password">
+<section data-layout="column" class="lost-password">
 
     <h2><{$smarty.const._MD_USER_LANG_LOSTPASSWORD}></h2>
 
@@ -32,7 +32,7 @@
             <{$smarty.const._MD_USER_LANG_NOPROBLEM}>
         </div>
 
-        <div layout="column centered">
+        <div data-layout="column centered">
             <{$smarty.const._MD_USER_LANG_EMAIL}>
             <br>
             <{xoops_input name=email value=$actionForm->get('email') size=34 maxlength=60}>

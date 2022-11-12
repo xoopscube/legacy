@@ -3,11 +3,11 @@
 
 <article class="topic-post">
 
-    <div layout="row center-justify sm-column" class="post">
+    <div data-layout="row center-justify sm-column" class="post">
 
         <{* ------- POST AUTHOR AVATAR *}>
         <{* ------- Smarty function cycle - used to alternate comments position left and right *}>
-        <div self="<{cycle values='left first,top last'}> sm-full sm-first" class="post-author">
+        <div data-self="<{cycle values='left first,top last'}> sm-full sm-first" class="post-author">
 
             <{if $post.poster_avatar}>
                 <{if $post.poster_uid != 0}>
@@ -15,11 +15,11 @@
                 <{/if}>
                 <{* TODO Theme options to customize UI *}>
                 <{if $post.poster_avatar.height > 48}>
-                    <img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" width="48" height="48" alt="<{$post.poster_uname}>" self="radius-circle">
+                    <img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" width="48" height="48" alt="<{$post.poster_uname}>" data-self="radius-circle">
                 <{elseif $post.poster_avatar.width > 1}>
-                    <img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" width="<{$post.poster_avatar.width}>" height="<{$post.poster_avatar.height}>" alt="<{$post.poster_uname}>" self="radius-circle">
+                    <img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" width="<{$post.poster_avatar.width}>" height="<{$post.poster_avatar.height}>" alt="<{$post.poster_uname}>" data-self="radius-circle">
                 <{else}>
-                    <img src="<{$xoops_url}>/uploads/no_avatar.gif" width="48" height="48" alt="<{$post.poster_uname}>" self="radius-circle">
+                    <img src="<{$xoops_url}>/uploads/no_avatar.gif" width="48" height="48" alt="<{$post.poster_uname}>" data-self="radius-circle">
                 <{/if}>
                 <{if $post.poster_uid != 0}>
                 </a>
@@ -81,7 +81,7 @@
 
 
         <{* ------- POST HEADER *}>
-        <div self="size-x1 sm-full" class="post-header">
+        <div data-self="size-x1 sm-full" class="post-header">
 
             <{* ----- POST TITLE *}>
             <h3 class=post-title"">
@@ -99,7 +99,7 @@
             <{* ------- POST DATE - HISTORY - DEPTH TREE *}>
             <p>
                 <img class="svg date-time" src="<{$xoops_url}>/images/icons/date-time.svg" width="1em" alt="date">
-                <span self="sm-hide"><{$smarty.const._MD_D3FORUM_ON}></span>
+                <span data-self="sm-hide"><{$smarty.const._MD_D3FORUM_ON}></span>
                 <span class="badge"><{$post.post_time_formatted}></span>
 
 
@@ -127,7 +127,7 @@
 
 
             <{* ------- POST CONTENT *}>
-            <div self="size-x1" class="post-content">
+            <div data-self="size-x1" class="post-content">
                 <{$post.post_text}>
 
                 <{if $post.signature}>
@@ -142,10 +142,10 @@
 
     <{* ------- ACTION CONTROL *}>
 
-    <section layout="row center-center sm-column" class="action-control">
+    <section data-layout="row center-center sm-column" class="action-control">
 
         <{if $post.can_vote || $mod_config.use_vote && ! $post.invisible && $post.approval}>
-        <div self="size-x2 sm-full" class="post-vote" role="group" aria-label="Vote">
+        <div data-self="size-x2 sm-full" class="post-vote" role="group" aria-label="Vote">
 
             <{if $post.can_vote}>
             <form action="<{$mod_url}>/index.php" method="get" style="display:inline;">
@@ -161,7 +161,7 @@
                         value="<{$smarty.const._MD_D3FORUM_VOTEPOINTDSCBEST}>"
                         aria-label="<{$smarty.const._MD_D3FORUM_VOTEPOINTDSCBEST}>">
                     <img class="svg thumb-up" src="<{$xoops_url}>/images/icons/thumb-up.svg" width="1em" alt="thumb-up">
-                    <{* <span self="sm-hide"><{$smarty.const._MD_D3FORUM_VOTEPOINTDSCBEST}></span> *}>
+                    <{* <span data-self="sm-hide"><{$smarty.const._MD_D3FORUM_VOTEPOINTDSCBEST}></span> *}>
                 </button>
             </form>
             <{/if}>
@@ -179,9 +179,9 @@
 
         <{* ------- Admin actions controllers *}>
 
-        <div self="size-x3 sm-full">
+        <div data-self="size-x3 sm-full">
 
-            <div layout="row center-right" role="group" aria-label="Post actions">
+            <div data-layout="row center-right" role="group" aria-label="Post actions">
 
                 <{if $post.can_edit}>
                 <a class="ui-button" href="<{$mod_url}>/index.php?page=edit&amp;post_id=<{$post.id}>" title="<{$smarty.const._MD_D3FORUM_POSTEDIT}>">

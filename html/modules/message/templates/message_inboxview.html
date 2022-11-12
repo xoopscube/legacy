@@ -8,8 +8,8 @@
 
 <ul class="breadcrumb" aria-label="breadcrumb">
     <li><a href="<{$xoops_url}>/"><img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a>
-    <li><a href="index.php"><img class="svg inbox" src="<{$xoops_url}>/images/icons/inbox.svg"> <span self="sm-hide"><{$smarty.const._MI_MESSAGE_NAME}></span></a>
-    <li self="sm-hide"><a href="index.php"><{$smarty.const._MD_MESSAGE_TEMPLATE15}></a>
+    <li><a href="index.php"><img class="svg inbox" src="<{$xoops_url}>/images/icons/inbox.svg"> <span data-self="sm-hide"><{$smarty.const._MI_MESSAGE_NAME}></span></a>
+    <li data-self="sm-hide"><a href="index.php"><{$smarty.const._MD_MESSAGE_TEMPLATE15}></a>
     <li aria-current="page"><{$smarty.const._MD_MESSAGE_TEMPLATE11}>
 </ul>
 
@@ -26,36 +26,36 @@
         <hr>
 
 
-        <h3 self="px-6" class="mail-title"><{$smarty.const._MD_MESSAGE_TEMPLATE3}>: <{$msgdata.title}></h3>
+        <h3 data-self="px-6" class="mail-title"><{$smarty.const._MD_MESSAGE_TEMPLATE3}>: <{$msgdata.title}></h3>
 
-        <div layout="row center-justify p-6" class="mail-author" style="border-bottom: 1px solid hsl(219, 17%, 21%);">
+        <div data-layout="row center-justify p-6" class="mail-author" style="border-bottom: 1px solid hsl(219, 17%, 21%);">
 
-            <div self="size-x1"><{$smarty.const._MD_MESSAGE_TEMPLATE12}> : <img src="<{$msgdata.from_uid|xoops_user_avatarize}>" width="24px" self="radius-circle" class="avatar"> <{$msgdata.fromname}> </div>
+            <div data-self="size-x1"><{$smarty.const._MD_MESSAGE_TEMPLATE12}> : <img src="<{$msgdata.from_uid|xoops_user_avatarize}>" width="24px" data-self="radius-circle" class="avatar"> <{$msgdata.fromname}> </div>
             <div><{$smarty.const._MD_MESSAGE_TEMPLATE10}> : <span class="badge"><{$msgdata.utime|xoops_formattimestamp:l}></span></div>
 
         </div>
 
-       <div layout="column center-left p-6" class="mail-text">
-           <div self="size-x1 p-6"><{$smarty.const._MD_MESSAGE_TEMPLATE4}> :</div>
-           <div self="size-x1 p-6"><{$msgdata.message}></div>
+       <div data-layout="column center-left p-6" class="mail-text">
+           <div data-self="size-x1 p-6"><{$smarty.const._MD_MESSAGE_TEMPLATE4}> :</div>
+           <div data-self="size-x1 p-6"><{$msgdata.message}></div>
        </div>
 
 
         <hr>
 
 
-        <div layout="row center-justify pb-6">
+        <div data-layout="row center-justify pb-6">
 
-            <div layout="row" self="size-1of2" role="group" aria-label="Delete and Lock Message">
+            <div data-layout="row" data-self="size-1of2" role="group" aria-label="Delete and Lock Message">
 
                 <form method="post" id="msgDelete" action="index.php?action=delete&amp;inout=in">
                     <input type="hidden" name="inbox" value="<{$msgdata.inbox_id}>">
                     <{if $msgdata.is_read==2}>
                     <button type="submit" class="ui-button delete" name="subbtn" value="<{$smarty.const._DELETE}>" aria-label="<{$smarty.const._MD_MESSAGE_TEMPLATE14}> <{$smarty.const._MD_MESSAGE_TEMPLATE19}>" disabled>
-                    <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" alt=""> <span self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE19}></span></button>
+                    <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" alt=""> <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE19}></span></button>
                     <{else}>
                     <button type="submit" class="ui-button delete" name="subbtn" value="<{$smarty.const._DELETE}>">
-                    <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" alt=""> <span self="sm-hide"><{$smarty.const._DELETE}></span></button>
+                    <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" alt=""> <span data-self="sm-hide"><{$smarty.const._DELETE}></span></button>
                     <{/if}>
                 </form>
 
@@ -68,19 +68,19 @@
                     <input type="hidden" name="lock" value="1">
                     <button type="submit" class="ui-button" value="<{$smarty.const._MD_MESSAGE_TEMPLATE19}>">
                     <img class="svg mail-lock" src="<{$xoops_url}>/images/icons/mail-lock.svg" width="1em" height="1em" alt="Mail lock">
-                    <span self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE19}></span></button>
+                    <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE19}></span></button>
                     <{else}>
                     <input type="hidden" name="lock" value="0">
                     <button type="submit" class="ui-button" value="<{$smarty.const._MD_MESSAGE_TEMPLATE20}>">
                     <img class="svg mail-off" src="<{$xoops_url}>/images/icons/mail-off.svg" width="1em" height="1em" alt="Mail off">
-                    <span self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE20}></span></button>
+                    <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE20}></span></button>
                     <{/if}>
                 </form>
 
             </div><{* Delete and Lock Message *}>
 
 
-            <div layout="row center-right" self="size-1of2" role="group" aria-label="Forward and Reply">
+            <div data-layout="row center-right" data-self="size-1of2" role="group" aria-label="Forward and Reply">
 
                 <form method="post" action="index.php">
                 <input type="hidden" name="inbox" value="<{$msgdata.inbox_id}>">
@@ -89,12 +89,12 @@
                 <input type="hidden" name="action" value="view">
                 <button type="submit" class="ui-button ui-primary">
                 <img class="svg mail-send" src="<{$xoops_url}>/images/icons/mail-send.svg" alt="Forward">
-                <span self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE21}></span></button>
+                <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE21}></span></button>
                 </form>
 
 
                 <button type="button" class="ui-button" value="<{$smarty.const._MD_MESSAGE_TEMPLATE13}>" onclick="location.href='index.php?action=new&amp;res=<{$msgdata.inbox_id}>'">
-                <img class="svg mail-edit" src="<{$xoops_url}>/images/icons/mail-edit.svg" alt="Reply"> <span self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE13}></span></button>
+                <img class="svg mail-edit" src="<{$xoops_url}>/images/icons/mail-edit.svg" alt="Reply"> <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE13}></span></button>
 
             </div><{* Forward and Reply *}>
 

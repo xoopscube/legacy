@@ -18,40 +18,40 @@
 
     <{$gticket_hidden}>
 
-    <section layout="column" class="category-admin">
+    <section data-layout="column" class="category-admin">
 
         <!-- Permissions -->
         <{if $xoops_isadmin}>
-        <div layout="row center-justify mb-6">
+        <div data-layout="row center-justify mb-6">
             <h3><{$formtitle}></h3>
             <div><a class="ui-button" href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>">
             <img class="svg lock" src="<{$xoops_url}>/images/icons/lock.svg" width="1em" alt="admin"> <{$smarty.const._MD_D3FORUM_LINK_CATEGORYACCESS}></a></div>
         </div>
         <{/if}>
 
-        <div layout="row center-left sm-column mb-6">
-            <div self="size-xxsmall sm-full">
+        <div data-layout="row center-left sm-column mb-6">
+            <div data-self="size-xxsmall sm-full">
                 <label for="category_title"><{$smarty.const._MD_D3FORUM_TH_CATEGORYTITLE}></label>
             </div>
-            <div self="sm-full">
+            <div data-self="sm-full">
 				<input type="text" name="title" id="category_title" size="42" maxlength="191" value="<{$category.title}>">
             </div>
         </div>
 
-        <div layout="row center-left sm-column mb-6">
-            <div self="size-xxsmall sm-full">
+        <div data-layout="row center-left sm-column mb-6">
+            <div data-self="size-xxsmall sm-full">
                 <label for="category_desc"><{$smarty.const._MD_D3FORUM_TH_CATEGORYDESC}></label>
             </div>
-            <div self="sm-full">
+            <div data-self="sm-full">
 				<textarea name="desc" id="category_desc" cols="50" rows="5"><{$category.desc}></textarea>
             </div>
         </div>
 
-        <div layout="row center-left sm-column mb-6">
-            <div self="size-xxsmall sm-full">
+        <div data-layout="row center-left sm-column mb-6">
+            <div data-self="size-xxsmall sm-full">
                 <label for="category_pid"><{$smarty.const._MD_D3FORUM_TH_CATEGORYPARENT}></label>
             </div>
-            <div self="sm-full">
+            <div data-self="sm-full">
 				<select name="pid" id="category_pid">
 					<option value="">(<{$smarty.const._MD_D3FORUM_TOP}>)</option>
 					<{$cat_jumpbox_options}>
@@ -59,29 +59,29 @@
             </div>
         </div>
 
-        <div layout="row center-left sm-column mb-6">
-            <div self="size-xxsmall sm-full">
+        <div data-layout="row center-left sm-column mb-6">
+            <div data-self="size-xxsmall sm-full">
                 <label for="category_weight"><{$smarty.const._MD_D3FORUM_TH_CATEGORYWEIGHT}></label>
             </div>
-            <div self="sm-full">
+            <div data-self="sm-full">
 				<input type="text" name="weight" id="category_weight" size="4" maxlength="4" value="<{$category.weight}>">
             </div>
         </div>
 
-        <div layout="row center-left mb-6">
-            <div self="size-xxsmall sm-full">
+        <div data-layout="row center-left mb-6">
+            <div data-self="size-xxsmall sm-full">
                 <{$smarty.const._MD_D3FORUM_CHILDREN_COUNT}>
             </div>
-            <div self="sm-full">
+            <div data-self="sm-full">
                 <span class="badge"><{$children_count}></span>
             </div>
         </div>
 
-        <div layout="row center-left mb-6">
-            <div self="size-xxsmall sm-full">
+        <div data-layout="row center-left mb-6">
+            <div data-self="size-xxsmall sm-full">
                 <{$smarty.const._MD_D3FORUM_BATCH_ACTIONS}>
             </div>
-            <div self="sm-full">
+            <div data-self="sm-full">
                 <label for="batch_action_turnsolvedon">
                 <input type="checkbox" name="batch_action_turnsolvedon" id="batch_action_turnsolvedon" value="1" onclick="if(this.checked){alert('<{$smarty.const._MD_D3FORUM_BA_MSG_CONFIRM}>');}">
                 <{$smarty.const._MD_D3FORUM_BA_TURNSOLVEDON}></label>
@@ -89,11 +89,11 @@
         </div>
 
         <{* ----- CATEGORY OPTIONS *}>
-        <div layout="row center-left mb-6">
-            <div self="size-xxsmall sm-full">
+        <div data-layout="row center-left mb-6">
+            <div data-self="size-xxsmall sm-full">
 				<{$smarty.const._MD_D3FORUM_TH_CATEGORYOPTIONS}>
             </div>
-            <div self="sm-full">
+            <div data-self="sm-full">
                 <label for="category_option_controller_onoff">
                     <input type="checkbox" id="category_option_controller_onoff"
                        onclick="if(this.checked){xoopsGetElementById('category_option_controller').style.display='block';}else{xoopsGetElementById('category_option_controller').style.display='none';};"
@@ -112,10 +112,10 @@
         <{* ----- /CATEGORY OPTIONS *}>
 
 
-        <div layout="row center-left">
-            <div self="size-xxsmall sm-full">
+        <div data-layout="row center-left">
+            <div data-self="size-xxsmall sm-full">
             </div>
-            <div self="sm-full inline">
+            <div data-self="sm-full inline">
                 <{if $page == 'categorymanager' && $children_count == 0}>
                 <button type="submit" class="button delete" name="categoryman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMDELETERECURSIVE}>')">
                     <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" alt="delete"> <{$smarty.const._DELETE}></button>

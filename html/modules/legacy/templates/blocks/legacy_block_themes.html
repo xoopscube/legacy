@@ -10,12 +10,14 @@
     } );
 </script>
 
-<div layout="column center-center" class="block-content block-themes">
+<div data-layout="column center-center" class="block-content block-themes">
 
     <{if $block.isEnableChanger == false}>
         <{$smarty.const._MB_LEGACY_MESSAGE_CAN_NOT_THEME_CHANGE}>
     <{else}>
+
     <form action="#" method="post">
+
         <{if $block.mode==1}>
         <img id="xoops_theme_img"
              src="<{$xoops_imageurl}><{$block.theme_selected_screenshot}>"

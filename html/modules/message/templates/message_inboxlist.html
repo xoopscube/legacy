@@ -10,7 +10,7 @@
     <li>
         <a href="index.php">
         <img class="svg mail" src="<{$xoops_url}>/images/icons/mail.svg" width="1em" height="1em" alt="Message">
-        <span self="sm-hide"><{$smarty.const._MI_MESSAGE_NAME}></span></a>
+        <span data-self="sm-hide"><{$smarty.const._MI_MESSAGE_NAME}></span></a>
     </li>
     <li aria-current="page"><{$smarty.const._MD_MESSAGE_TEMPLATE15}></li>
 </ul>
@@ -26,23 +26,23 @@
 
             <form method="post" name="form-search" action="index.php?action=index">
 
-                <div layout="row center-right sm-column my-2">
+                <div data-layout="row center-right sm-column my-2">
 
-                    <select name="status" self="center mr-2 sm-full">
+                    <select name="status" data-self="center mr-2 sm-full">
                         <option value="">- <{$smarty.const._MD_MESSAGE_TEMPLATE22}></option>
                         <option value="0"<{if $status===0}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE16}></option>
                         <option value="1"<{if $status==1}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE17}></option>
                         <option value="2"<{if $status==2}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE19}></option>
                     </select>
 
-                    <select name="fromuid" self="center mr-2 sm-full">
+                    <select name="fromuid" data-self="center mr-2 sm-full">
                         <option value="0">- <{$smarty.const._MD_MESSAGE_TEMPLATE12}></option>
                         <{foreach item=fuser from=$select}>
                         <option value="<{$fuser.uid}>"<{if $fuser.select==true}> selected="selected"<{/if}>><{$fuser.uname|xoops_escape}></option>
                         <{/foreach}>
                     </select>
 
-                    <div self="center ml-2 sm-full">
+                    <div data-self="center ml-2 sm-full">
                         <input type="text" name="subject" size="25" value="<{$subject|xoops_escape}>" placeholder="<{$smarty.const._MD_MESSAGE_TEMPLATE3}>">
                         <button type="submit" class="ui-button" name="subbtn" value="<{$smarty.const._MD_MESSAGE_SEARCH}>">
                             <img class="svg search" src="<{$xoops_url}>/images/icons/search.svg"> <{$smarty.const._MD_MESSAGE_SEARCH}></button>
@@ -60,13 +60,13 @@
 
                 <{foreach item=val from=$ListData}>
 
-                <div layout="row center-justify my-2 px-6 py-4 sm-column" id="printhis" class="mail-list-item">
+                <div data-layout="row center-justify my-2 px-6 py-4 sm-column" id="printhis" class="mail-list-item">
 
-                    <div self="left-center mr-4 sm-full" class="mail-list-author">
+                    <div data-self="left-center mr-4 sm-full" class="mail-list-author">
                         <{if $val.is_read==1}>
-                        <input self="mr-4" type="checkbox" name="delmsg[]" value="<{$val.inbox_id}>" aria-label="<{$smarty.const._DELETE}>">
+                        <input data-self="mr-4" type="checkbox" name="delmsg[]" value="<{$val.inbox_id}>" aria-label="<{$smarty.const._DELETE}>">
                         <{else}>
-                        <input self="mr-4" type="checkbox" name="delmsg[]" value="<{$val.inbox_id}>" disabled>
+                        <input data-self="mr-4" type="checkbox" name="delmsg[]" value="<{$val.inbox_id}>" disabled>
                         <{/if}>
 
                         <{if $val.is_read==0}>
@@ -87,9 +87,9 @@
 
                     </div>
 
-                    <a href="index.php?action=view&amp;inout=in&amp;inbox=<{$val.inbox_id}>" self="size-x1 center mr-2 sm-full" class="mail-list-subject"><{$val.title|truncate:50:"..."}></a>
+                    <a href="index.php?action=view&amp;inout=in&amp;inbox=<{$val.inbox_id}>" data-self="size-x1 center mr-2 sm-full" class="mail-list-subject"><{$val.title|truncate:50:"..."}></a>
 
-                    <div self="right-center" class="mail-list-date"><{$val.utime|xoops_formattimestamp:l}></div>
+                    <div data-self="right-center" class="mail-list-date"><{$val.utime|xoops_formattimestamp:l}></div>
 
                 </div>
 
@@ -99,7 +99,7 @@
 
             </form>
 
-            <nav self="size-x1 my-4" aria-label="Messages page navigation">
+            <nav data-self="size-x1 my-4" aria-label="Messages page navigation">
                 <div class="pagenavi pagination"><{xoops_pagenavi pagenavi=$pageNavi}></div>
             </nav>
 
@@ -107,7 +107,7 @@
             <hr>
 
 
-            <div layout="row center-center pb-6" self="size-x1">
+            <div data-layout="row center-center pb-6" data-self="size-x1">
                 <button type="submit" class="ui-button delete" name="subbtn" value="<{$smarty.const._DELETE}>">
                     <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg"> <{$smarty.const._DELETE}>
                 </button>

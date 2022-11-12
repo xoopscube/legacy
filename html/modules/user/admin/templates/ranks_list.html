@@ -64,7 +64,7 @@
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section layout="row center-justify" class="action-control">
+<section data-layout="row center-justify" class="action-control">
     <form action="./index.php" method="get">
         <input type="hidden" name="action" value="RanksList">
         <label for="search-rank"><{$smarty.const._SEARCH}></label>
@@ -115,7 +115,7 @@
                 </a>
 
                 <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._MD_USER_LANG_RANK_ID}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.RANKS_SORT_KEY_RANK_ID}>"
@@ -124,7 +124,7 @@
                                class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_USER_LANG_RANK_TITLE}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.RANKS_SORT_KEY_RANK_TITLE}>"
@@ -133,7 +133,7 @@
                                class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_USER_LANG_RANK_MIN}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.RANKS_SORT_KEY_RANK_MIN}>"
@@ -142,7 +142,7 @@
                                class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_USER_LANG_RANK_MAX}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.RANKS_SORT_KEY_RANK_MAX}>"
@@ -151,7 +151,7 @@
                                class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_USER_LANG_RANK_SPECIAL}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.RANKS_SORT_KEY_RANK_SPECIAL}>"

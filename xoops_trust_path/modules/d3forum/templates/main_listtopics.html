@@ -22,9 +22,9 @@
 
     <{* ------- CATEGORY TOP - Forum *}>
 
-    <section layout="column" class="category-top">
+    <section data-layout="column" class="category-top">
 
-        <div layout="row center-justify">
+        <div data-layout="row center-justify">
 
             <h2><{$forum.title}></h2>
 
@@ -57,13 +57,13 @@
 
         </div>
 
-        <div layout="row" class="description">
+        <div data-layout="row" class="description">
             <{$forum.desc}>
         </div>
 
         <{* ------- Activity Overview - Forums *}>
-        <div layout="row center-justify sm-column" class="activity">
-            <div self="left sm-full">
+        <div data-layout="row center-justify sm-column" class="activity">
+            <div data-self="left sm-full">
                 <{if $forum.isadminormod}>
                     <{include file="db:`$mydirname`_inc_moderators.html" target=$forum}>
                 <{/if}>
@@ -95,17 +95,17 @@
 
     <{* ------- NEW TOPIC or D3 COMMENT *}>
     <{if $forum.external_link_format}>
-        <div layout="row center-right">
+        <div data-layout="row center-right">
             <{$smarty.const._MD_D3FORUM_FORUMASCOMMENT_DESC}>
         </div>
     <{elseif $forum.can_post}>
-        <div layout="row center-right">
+        <div data-layout="row center-right">
             <a class="ui-button" href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>">
                 <{$smarty.const._MD_D3FORUM_POSTASNEWTOPICTOTHISFORUM}>
             </a>
         </div>
     <{else}>
-        <div layout="row center-right">
+        <div data-layout="row center-right">
             <button class="ui-button" disabled><{$smarty.const._MD_D3FORUM_CANTCREATENEWTOPICTHISFORUM}></button>
         </div>
     <{/if}>
@@ -133,7 +133,7 @@
         <input type="hidden" name="forum_id" value="<{$forum.id}>">
         <input type="hidden" name="external_link_id" value="<{$query.external_link_id}>">
 
-        <div layout="rows center-right">
+        <div data-layout="rows center-right">
             <label>
                 <input type="text" size="12" name="txt" value="<{$query.txt}>">
             </label>
@@ -158,14 +158,14 @@
 
 
     <{if $pagenav}>
-    <nav layout="row center-center" class="page-nav" aria-label="Forum page navigation">
+    <nav data-layout="row center-center" class="page-nav" aria-label="Forum page navigation">
         <div class="pagination"><{$pagenav}></div>
     </nav>
     <{/if}>
 
 
     <{* ----- TOPICS LIST *}>
-    <div layout="column" class="topics-list">
+    <div data-layout="column" class="topics-list">
 
     <{foreach item=topic from=$topics}>
 
@@ -183,7 +183,7 @@
         <{assign var="topic_icon_alt" value=""}>
     <{/if}>
 
-    <article layout="column" class="topic-post">
+    <article data-layout="column" class="topic-post">
 
         <h3 class="topic-title">
             <img class="svg topic-icon" src="<{$topic_icon_src}>" width="1em" alt="<{$topic_icon_alt}>">
@@ -235,9 +235,9 @@
         <{/if}>
 
         <{* ------- Activity Overview - Forums *}>
-        <div layout="row center" class="activity">
+        <div data-layout="row center" class="activity">
 
-            <div self="px-2" abbr="<{$smarty.const._MD_D3FORUM_TOPIC}>">
+            <div data-self="px-2" abbr="<{$smarty.const._MD_D3FORUM_TOPIC}>">
                 <{$topic_hits|string_format:$smarty.const._MD_D3FORUM_FMT_TOPICHITS}>
             </div>
             <div abbr="<{$smarty.const._MD_D3FORUM_REPLIES}>">
@@ -284,7 +284,7 @@
     <label for='forum-legend'> <{$smarty.const._MD_D3FORUM_LEGEND}></label>
 </h4>
 
-<div layout="row sm-column" class="forum-legend" style="display:none">
+<div data-layout="row sm-column" class="forum-legend" style="display:none">
         <ul class="d3f_iconexp">
             <li><img class="svg new" src="<{$xoops_url}>/images/icons/topic_10.svg" width="1em" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICNEWPOSTS}></li>
             <li><img class="svg new" src="<{$xoops_url}>/images/icons/topic_11.svg" width="1em" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICNEWPOSTS}></li>

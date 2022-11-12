@@ -4,7 +4,7 @@
 
 <{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
 
-<article layout="column sm-first" id="<{$mydirname}>_container" class="page-container">
+<article data-layout="column sm-first" id="<{$mydirname}>_container" class="page-container">
 
     <h2>
         <{if ! $content.approval}>
@@ -37,12 +37,12 @@
     <{* ------- Activity Overview *}>
 
     <{if $category.isadminormod}>
-        <div layout="row center-justify" class="activity">
+        <div data-layout="row center-justify" class="activity">
             <div class="size-x1">
                 <img class="svg user" src="<{$xoops_url}>/images/icons/user.svg" width="1em" height="1em" alt="user">
                 <{$content.poster_uname}>
                 <img class="svg date-time" src="<{$xoops_url}>/images/icons/date-time.svg" width="1em" height="1em" alt="date time">
-                <span self="sm-hide"><{$smarty.const._MD_PICO_CREATED}></span> <span class="badge"><{$content.created_time_formatted}></span>
+                <span data-self="sm-hide"><{$smarty.const._MD_PICO_CREATED}></span> <span class="badge"><{$content.created_time_formatted}></span>
 
                 <{if $content.modified_time > $content.created_time}>
                 <{$smarty.const._MD_PICO_MODIFIED}> <span class="badge"><{$content.modified_time_formatted}></span> <{$content.modifier_uname}>
@@ -57,28 +57,28 @@
     <{capture name="controllers"}>
 
         <{* ////— ACTION-CONTROL —\\\\ *}>
-        <section layout="row center-left" class="action-control">
+        <section data-layout="row center-left" class="action-control">
 
             <{if $content.can_edit}>
-                <a self="mr-2" class="button" href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>" aria-label="<{$smarty.const._MD_PICO_LINK_EDITCONTENT}>">
+                <a data-self="mr-2" class="button" href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>" aria-label="<{$smarty.const._MD_PICO_LINK_EDITCONTENT}>">
                     <img class="svg file-edit" src="<{$xoops_url}>/images/icons/file-edit.svg" width="1em" height="1em" alt="edit">
-                    <span self="sm-hide"><{$smarty.const._MD_PICO_LINK_EDITCONTENT}></span></a>
+                    <span data-self="sm-hide"><{$smarty.const._MD_PICO_LINK_EDITCONTENT}></span></a>
             <{/if}>
 
             <{if $xoops_isadmin}>
-                <a self="mx-2" class="button" href="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$category.id}>" aria-label="<{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}>">
+                <a data-self="mx-2" class="button" href="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$category.id}>" aria-label="<{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}>">
                     <img class="svg batch" src="<{$xoops_url}>/images/icons/file-move.svg" width="1em" height="1em" alt="manage">
-                    <span self="sm-hide"><{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}></span></a>
+                    <span data-self="sm-hide"><{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}></span></a>
             <{/if}>
 
             <{if $mod_config.show_printicon}>
-            <a self="mx-2" class="button" href="<{$mod_url}>/<{$content.link}><{if $mod_config.use_wraps_mode || $mod_config.use_rewrite}>?<{else}>&amp;<{/if}>page=print" aria-label="<{$smarty.const._MD_PICO_LINK_PRINTERFRIENDLY}>">
+            <a data-self="mx-2" class="button" href="<{$mod_url}>/<{$content.link}><{if $mod_config.use_wraps_mode || $mod_config.use_rewrite}>?<{else}>&amp;<{/if}>page=print" aria-label="<{$smarty.const._MD_PICO_LINK_PRINTERFRIENDLY}>">
                 <img class="svg print" src="<{$xoops_url}>/images/icons/print.svg" width="1em" height="1em" alt="print">
-                <span self="sm-hide"><{$smarty.const._MD_PICO_LINK_PRINTERFRIENDLY}></span></a>
+                <span data-self="sm-hide"><{$smarty.const._MD_PICO_LINK_PRINTERFRIENDLY}></span></a>
             <{/if}>
 
             <{if $mod_config.show_tellafriend && $content.tellafriend_uri}>
-                <a self="ml-2" class="button" href="<{$content.tellafriend_uri}>" target="_top" aria-label="<{$smarty.const._MD_PICO_LINK_TELLAFRIEND}>">
+                <a data-self="ml-2" class="button" href="<{$content.tellafriend_uri}>" target="_top" aria-label="<{$smarty.const._MD_PICO_LINK_TELLAFRIEND}>">
                     <img class="svg mail-send" src="<{$xoops_url}>/images/icons/mail-send.svg" width="1em" height="1em" alt="share"> <{$smarty.const._MD_PICO_LINK_TELLAFRIEND}></a>
             <{/if}>
 
@@ -97,13 +97,13 @@
     <{* ------- Waiting Overview *}>
 
     <{if $category.isadminormod }>
-        <div layout="column">
+        <div data-layout="column">
 
             <{* ------- subject reference for a waiting content *}>
 
             <{if $content.subject_waiting && $page != 'makecontent'}>
             <p><span class="badge badge-warning"><{$smarty.const._MD_PICO_TH_SUBJECT_WAITING}></span></p>
-            <div self="size-x1" class="waiting-content">
+            <div data-self="size-x1" class="waiting-content">
                 <h3><{$content.subject_waiting|htmlspecialchars_decode}></h3>
             </div>
             <{/if}>
@@ -112,7 +112,7 @@
 
             <{if $content.body_waiting && $page != 'makecontent'}>
             <p><span class="badge badge-warning"><{$smarty.const._MD_PICO_TH_BODY_WAITING}></span></p>
-            <div self="size-x1" class="waiting-content">
+            <div data-self="size-x1" class="waiting-content">
                 <div class="pico_waiting"><{$content.body_waiting|htmlspecialchars_decode|nl2br}></div>
             </div>
             <{/if}>
@@ -121,16 +121,16 @@
     <{/if}>
 
 
-    <div self="size-x1" id="<{$mydirname}>_body" class="page-body">
+    <div data-self="size-x1" id="<{$mydirname}>_body" class="page-body">
         <{$content.body}>
     </div>
 
 
     <{* ----- CONTENT ACTION - Vote and Tags *}>
 
-    <section layout="row center-justify sm-column" class="content-action" aria-label="Vote group">
+    <section data-layout="row center-justify sm-column" class="content-action" aria-label="Vote group">
 
-        <div self="size-1of2 center inline sm-full" class="content-vote">
+        <div data-self="size-1of2 center inline sm-full" class="content-vote">
             <{if $mod_config.use_vote && $content.id}>
 
                 <{if $content.can_vote}>
@@ -140,7 +140,7 @@
                     <input type="hidden" name="point" value="10">
                     <button type="submit" class="button" value="<{$smarty.const._MD_PICO_VOTEPOINTDSCBEST}>">
                         <{* smiley happy = posticon3.svg or thumb up = posticon5.svg *}>
-                        <img class="svg heart-like" src="<{$xoops_url}>/images/icons/heart.svg"> <span self="sm-hide"><{$smarty.const._MD_PICO_VOTEPOINTDSCBEST}></span></button>
+                        <img class="svg heart-like" src="<{$xoops_url}>/images/icons/heart.svg"> <span data-self="sm-hide"><{$smarty.const._MD_PICO_VOTEPOINTDSCBEST}></span></button>
                 </form>
                 <{* ---------- Remove Smarty comment to render vote down
 <!--                <form action="<{$mod_url}>/index.php" method="get" name="pico_vote_worst" id="pico_vote_worst">-->
@@ -149,13 +149,13 @@
 <!--                    <input type="hidden" name="point" value="0">-->
 <!--                    <button type="submit" class="button" value="<{$smarty.const._MD_PICO_VOTEPOINTDSCWORST}>">-->
 
-<!--                        <img class="svg thumb-up" src="<{$xoops_url}>/images/icons/thumb-down.svg"> <span self="sm-hide"><{$smarty.const._MD_PICO_VOTEPOINTDSCBEST}></span></button>-->
+<!--                        <img class="svg thumb-up" src="<{$xoops_url}>/images/icons/thumb-down.svg"> <span data-self="sm-hide"><{$smarty.const._MD_PICO_VOTEPOINTDSCBEST}></span></button>-->
 <!--                </form>-->
                 ---------- smiley sad = posticon2.svg or thumb down = posticon4.svg *}>
 
                 <{/if}>
 
-            <span self="center">
+            <span data-self="center">
                 <img class="svg chart" src="<{$xoops_url}>/images/icons/chart.svg" width="1em" height="1em" alt="votes">
                 <{$smarty.const._MD_PICO_VOTECOUNT}> <span class="badge"> <{$content.votes_count}></span>
                 <{$smarty.const._MD_PICO_VOTEPOINTAVG}> <span class="badge"><{$content.votes_avg|string_format:"%.2f"}></span>
@@ -166,9 +166,9 @@
         <{* ----- Tags *}>
 
         <{if $content.tags_array}>
-            <div self="right sm-full" class="content-tags">
+            <div data-self="right sm-full" class="content-tags">
                 <{foreach from=$content.tags_array item="tag"}>
-                <span self="mr-1" class="badge"><{$tag}></span>
+                <span data-self="mr-1" class="badge"><{$tag}></span>
                 <{/foreach}>
             </div>
         <{/if}>
@@ -194,9 +194,9 @@
 
     <hr>
 
-    <nav layout="row center-justify" class="page-nav">
+    <nav data-layout="row center-justify" class="page-nav">
 
-        <div self="left" class="<{$smarty.const._ALIGN_START}>">
+        <div data-self="left" class="<{$smarty.const._ALIGN_START}>">
         <{if $prev_content.id}>
 
             <a href="<{$mod_url}>/<{$prev_content.link}>" accesskey="P" aria-label="<{$smarty.const._MD_PICO_PREV}>">
@@ -206,14 +206,14 @@
         <{/if}>
         </div>
 
-        <div self="center">
+        <div data-self="center">
             <a href="<{$mod_url}>/<{$category.link}>" accesskey="T" aria-label="<{$smarty.const._MD_PICO_CATEGORYINDEX}>">
                 <img class="svg arrow-up" src="<{$xoops_url}>/images/icons/arrow-up.svg" width="1em" height="1em" alt="up">
-                <span self="sm-hide"><{$category.title}></span>
+                <span data-self="sm-hide"><{$category.title}></span>
             </a>
         </div>
 
-        <div self="right" class="<{$smarty.const._ALIGN_END}>">
+        <div data-self="right" class="<{$smarty.const._ALIGN_END}>">
         <{if $next_content.id}>
             <a href="<{$mod_url}>/<{$next_content.link}>" accesskey="F" aria-label="<{$smarty.const._MD_PICO_NEXT}>">
                 <span><{$next_content.subject}></span>

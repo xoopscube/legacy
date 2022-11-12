@@ -51,7 +51,7 @@
                 <{/if}>
             </th>
             <th>
-                <img src="<{$actionForm->get('uid')|xoops_user_avatarize}>" alt="<{$member.uname}>" width="auto" height="64" self="radius-circle">
+                <img src="<{$actionForm->get('uid')|xoops_user_avatarize}>" alt="<{$member.uname}>" width="auto" height="64" data-self="radius-circle">
             </th>
         </tr>
         </thead>
@@ -99,31 +99,6 @@
         </tr>
 
         <!-- Optional Fields
-
-            <tr>
-              <td class="head"><{$smarty.const._MD_USER_LANG_USER_ICQ}></td>
-              <td>
-                <{xoops_input type=text name=user_icq value=$actionForm->get('user_icq') size=15 maxlength=15}>
-              </td>
-            </tr>
-            <tr>
-              <td class="head"><{$smarty.const._MD_USER_LANG_USER_AIM}></td>
-              <td>
-                <{xoops_input type=text name=user_aim value=$actionForm->get('user_aim') size=18 maxlength=18}>
-              </td>
-            </tr>
-            <tr>
-              <td class="head"><{$smarty.const._MD_USER_LANG_USER_YIM}></td>
-              <td>
-                <{xoops_input type=text name=user_yim value=$actionForm->get('user_yim') size=25 maxlength=25}>
-              </td>
-            </tr>
-            <tr>
-              <td class="head"><{$smarty.const._MD_USER_LANG_USER_MSNM}></td>
-              <td>
-                <{xoops_input type=text name=user_msnm value=$actionForm->get('user_msnm') size=25 maxlength=100}>
-              </td>
-            </tr>
             <tr>
               <td class="head"><{$smarty.const._MD_USER_LANG_USER_FROM}></td>
               <td>

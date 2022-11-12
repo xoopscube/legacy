@@ -27,10 +27,10 @@
     <{* Permissions *}>
     <{$gticket_hidden}>
 
-    <section layout="column">
+    <section data-layout="column">
 
         <{if $xoops_isadmin}>
-        <div layout="row center-justify">
+        <div data-layout="row center-justify">
             <h3 class="itemHead"><{$formtitle}></h3>
             <p>
                 <a class="ui-button" href="<{$mod_url}>/admin/index.php?page=forum_access&amp;cat_id=<{$forum.id}>">
@@ -162,18 +162,18 @@ function xoopsFormValidate_forumform() {
               method="post">
 
             <p>
-                <label for="export_mid" self="mr-2">Export to module</label>
+                <label for="export_mid" data-self="mr-2">Export to module</label>
                 <select name="export_mid" id="export_mid" onchange="d3forum_showhide_category_select(this);">
                   <{html_options options=$export_to_module_options}>
                 </select>
 
-                <label for="export_cat_id_0" self="mr-2">Export to category</label>
+                <label for="export_cat_id_0" data-self="mr-2">Export to category</label>
                 <select name="export_cat_id[0]" id="export_cat_id_0">
                   <option value="0">----</option>
                 </select>
 
                 <{foreach from=$export_to_cat_options key="ex_cat_id" item="ex_options"}>
-                <label for="export_cat_id_<{$ex_cat_id}>" self="mr-2">Export Options</label>
+                <label for="export_cat_id_<{$ex_cat_id}>" data-self="mr-2">Export Options</label>
                 <select name="export_cat_id[<{$ex_cat_id}>]" id="export_cat_id_<{$ex_cat_id}>">
                   <option value="0">----</option>
                   <{$ex_options}>

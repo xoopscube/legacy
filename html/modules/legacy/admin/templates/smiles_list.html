@@ -31,7 +31,7 @@
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section layout="row center-justify md-column" class="action-control">
+<section data-layout="row center-justify md-column" class="action-control">
     <div>
     <{include file="./components/smilies-search.html"}>
     </div>
@@ -61,7 +61,7 @@
                 </a>
 
                 <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_LEGACY_LANG_ID}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_ID}>"
@@ -70,7 +70,7 @@
                                class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._MD_LEGACY_LANG_CODE}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_CODE}>"
@@ -80,7 +80,7 @@
                             </a>
                         </div>
                     </div>
-                    <div layout="row center-justify">
+                    <div data-layout="row center-justify">
                         <h6><{$smarty.const._MD_LEGACY_LANG_EMOTION}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_EMOTION}>"
@@ -89,7 +89,7 @@
                                class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
-                    <div layout="row center-justify">
+                    <div data-layout="row center-justify">
                         <h6><{$smarty.const._AD_LEGACY_LANG_DISPLAY}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_DISPLAY}>"

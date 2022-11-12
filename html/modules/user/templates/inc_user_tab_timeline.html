@@ -2,23 +2,21 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
 <{* USER TAB TIMELINE *}>
-<div class="ui-tab-content" layout="row sm-column" self="size-x1">
+<div class="ui-tab-content" data-layout="row sm-column" data-self="size-x1">
 
 
     <{* ---------- User Profile Avatar *}>
-    <div layout="column" self="size-1of3 sm-full" class="user-tab-avatar">
-
+    <div data-layout="column" data-self="size-1of3 sm-full" class="user-tab-avatar">
 
         <{* ------- User profile column with user-data *}>
         <{* include file="$xoops_theme/templates/user/inc_user_nav_left.html" *}>
         <{include file="`$smarty.const.XOOPS_MODULE_PATH`/user/templates/inc_user_nav_left.html"}>
 
-
     </div><{* ------- /User Profile Avatar *}>
 
 
     <{* ------- User profile-timeline *}>
-    <div self="size-x1 px-6" class="user-tab-timeline">
+    <div data-self="size-x1 px-6" class="user-tab-timeline">
 
 
         <h3><{$smarty.const._MD_USER_LANG_ALLABOUT|replace:"%s":$thisUser->getShow('uname')}></h3>
@@ -33,7 +31,7 @@
             <{* ------- start results item loop *}>
 
             <{foreach item=result from=$module.results}>
-            <div  layout="column" class="stream-item">
+            <div  data-layout="column" class="stream-item">
 
                     <p>
                         <svg class="i-clock" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

@@ -17,7 +17,7 @@
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section layout="row center-justify" class="action-control">
+<section data-layout="row center-justify" class="action-control">
 
     <a class="button button-small" href="index.php?action=UserSearch"><{$smarty.const._AD_USER_LANG_CREATE_NEW}></a>
 
@@ -41,7 +41,7 @@
             </a>
 
             <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
-                <div layout="row center-justify inline">
+                <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_USER_LANG_MAILJOB_ID}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_SORT_KEY_MAILJOB_ID}>"
@@ -50,7 +50,7 @@
                            class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-                <div layout="row center-justify inline">
+                <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_USER_LANG_TITLE}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_SORT_KEY_TITLE}>"
@@ -60,7 +60,7 @@
                            class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-                <div layout="row center-justify inline">
+                <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_USER_LANG_IS_PM}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_SORT_KEY_IS_PM}>"
@@ -70,7 +70,7 @@
                            class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-                <div layout="row center-justify inline">
+                <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_USER_LANG_IS_MAIL}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_SORT_KEY_IS_MAIL}>"
@@ -80,7 +80,7 @@
                            class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-                <div layout="row center-justify inline">
+                <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_USER_LANG_CREATE_UNIXTIME}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_SORT_KEY_CREATE_UNIXTIME}>"

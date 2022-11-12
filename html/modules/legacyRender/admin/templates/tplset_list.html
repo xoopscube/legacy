@@ -18,7 +18,7 @@
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section layout="row center-justify" class="action-control">
+<section data-layout="row center-justify" class="action-control">
     <form method="get" action="index.php"><{$smarty.const._AD_LEGACYRENDER_LANG_SEARCH_TEMPLATE}> :
         <input type="hidden" name="action" value="TplfileList">
         <input type="text" name="tpl_file">
@@ -60,7 +60,7 @@
             </a>
 
             <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
-                <div layout="row center-justify inline">
+                <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_ID}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLSET_SORT_KEY_TPLSET_ID}>"
@@ -69,7 +69,7 @@
                            class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-                <div layout="row center-justify inline">
+                <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_NAME}>/<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DESC}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLSET_SORT_KEY_TPLSET_NAME}>"
@@ -78,7 +78,7 @@
                            class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-                <div layout="row center-justify inline">
+                <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_CREDITS}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLSET_SORT_KEY_TPLSET_CREDITS}>"
@@ -87,7 +87,7 @@
                            class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-                <div layout="row center-justify inline">
+                <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_CREATED}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLSET_SORT_KEY_TPLSET_CREATED}>"
@@ -140,19 +140,23 @@
             </form>
             <{/if}>
             <a href="index.php?action=TplsetDownload&amp;tplset_id=<{$obj->get('tplset_id')}>&amp;method=tar" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD}>">
-                <img class="svg" src="<{'icons/icon-file-download.svg'|theme}>" alt="Download">
+                <span>⭳</span>
+<!--                <img class="svg" src="<{'icons/icon-file-download.svg'|theme}>" alt="Download">-->
             </a>
             <a href="index.php?action=TplsetClone&amp;tplset_id=<{$obj->get('tplset_id')}>" aria-label="<{$smarty.const._CLONE}>">
-                <img class="svg" src="<{'icons/icon-file-duplicate.svg'|theme}>" alt="Copy">
+                <span>⧉</span>
+<!--                <img class="svg" src="<{'icons/icon-file-duplicate.svg'|theme}>" alt="Copy">-->
             </a>
             <br>
             <{if $obj->get('tplset_name') != "default"}>
             <a href="index.php?action=TplsetEdit&amp;tplset_id=<{$obj->get('tplset_id')}>" aria-label="<{$smarty.const._EDIT}>">
-                <img class="svg" src="<{'icons/icon-file-edit.svg'|theme}>" alt="Edit">
+                <span>✐</span>
+<!--                <img class="svg" src="<{'icons/icon-file-edit.svg'|theme}>" alt="Edit">-->
             </a>
             <{if $activeTemplateSet != $obj->get('tplset_name')}>
             <a href="index.php?action=TplsetDelete&amp;tplset_id=<{$obj->get('tplset_id')}>" aria-label="<{$smarty.const._DELETE}>" class="bg-red">
-                <img class="svg" src="<{'icons/icon-file-delete.svg'|theme}>" alt="Delete">
+                <span>🗑</span>
+<!--                <img class="svg" src="<{'icons/icon-file-delete.svg'|theme}>" alt="Delete">-->
             </a>
             <{/if}>
             <{/if}>

@@ -1,17 +1,17 @@
 <{* Dev-Mode Toggle *}>
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-<div layout="column" class="block-site-info">
+<div data-layout="column" class="block-site-info">
 
     <{if $block.showgroups == true}>
 
     <{foreach item=group from=$block.groups}>
-    <div layout="row left my-2"><{$group.name}></div>
+    <div data-layout="row left my-2"><{$group.name}></div>
 
         <{foreach item=user from=$group.users}>
-        <div layout="row center-left pl-4 my-2">
-            <img src="<{$user.avatar}>" alt="profile" width="32" self="radius-circle"/>
-            <a href="<{$xoops_url}>/userinfo.php?uid=<{$user.id}>" self="mx-2"><{$user.name}></a>
+        <div data-layout="row center-left pl-4 my-2">
+            <img src="<{$user.avatar}>" alt="profile" width="32" data-self="radius-circle"/>
+            <a href="<{$xoops_url}>/userinfo.php?uid=<{$user.id}>" data-self="mx-2"><{$user.name}></a>
             <{$user.msglink}>
         </div>
         <{/foreach}>
@@ -20,7 +20,7 @@
 
     <{/if}>
 
-    <div self="size-x1 center my-4">
+    <div data-self="size-x1 center my-4">
       <img src="<{$block.logourl}>" alt=""><br>
         <{if $block.recoomendtime != 0}>
           <a href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=friend&amp;op=sendform&amp;t=<{$block.recoomendtime}>','friend',<{$block.popup_width}>,<{$block.popup_height}>)"><{$smarty.const._MB_LEGACY_RECO}></a>

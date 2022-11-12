@@ -34,11 +34,11 @@
     <{xoops_token form=$actionForm}>
     <{xoops_input type=hidden name=uid value=$actionForm->get('uid')}>
 
-    <div layout="row center-spread sm-column">
+    <div data-layout="row center-spread sm-column">
 
-            <div layout="column center-center" self="size-1of2">
+            <div data-layout="column center-center" data-self="size-1of2">
 
-                <div self="center p-4 m-auto" class="avatar-edit">
+                <div data-self="center p-4 m-auto" class="avatar-edit">
                 <{if $actionForm->get('uid')|xoops_user:user_avatar != "blank.gif"}>
                     <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$actionForm->get('uid')|xoops_user:user_avatar}>" alt="Avatar" aria-label="Avatar">
                 <{else}>
@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            <div layout="column" self="size-1of2">
+            <div data-layout="column" data-self="size-1of2">
                 <p><{$smarty.const._MD_USER_LANG_AVATAR_EDIT}> <span class="badge"><{$actionForm->get('uid')|xoops_user:user_name}></span></p>
                 <p><{$smarty.const._MD_USER_LANG_AVATAR_WIDTH_HEIGHT}> : <span class="badge"><{$avatarWidth}> x <{$avatarHeight}></span> (px)</p>
                 <p><{$smarty.const._MD_USER_LANG_AVATAR_MAXFILESIZE}> <span class="badge"><{$avatarMaxfilesize|number_format}></span> (bytes)</p>
@@ -55,15 +55,15 @@
 
     </div>
 
-    <div layout="row center-spread my-4 sm-column">
-        <div self="size-1of2 sm-full">
+    <div data-layout="row center-spread my-4 sm-column">
+        <div data-self="size-1of2 sm-full">
             <p>
                 <span class="btn-wrap-upload">
                 <{xoops_input class="ui-button" type=file name=uploadavatar size=30}>
                 </span>
             </p>
         </div>
-        <div self="size-1of2 sm-full">
+        <div data-self="size-1of2 sm-full">
             <p><button class="ui-button" type="submit" value="<{$smarty.const._SUBMIT}>">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"  viewBox="0 0 24 24">
                     <path fill="none" stroke="currentColor" stroke-width="2" d="M1 17v6h22v-6M12 2v17M5 9l7-7l7 7"/>

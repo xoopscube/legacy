@@ -23,7 +23,7 @@
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section layout="row center-justify" class="action-control">
+<section data-layout="row center-justify" class="action-control">
 
     <{include file="./components/comment-search.html"}>
 
@@ -51,7 +51,7 @@
             </a>
 
             <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
-                <div layout="row center-justify inline">
+                <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_LEGACY_LANG_ID}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_ID}>"
@@ -60,7 +60,7 @@
                            class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-                <div layout="row center-justify inline">
+                <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._MD_LEGACY_LANG_COM_MODID}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_MODID}>"
@@ -70,7 +70,7 @@
                         </a>
                     </div>
                 </div>
-                <div layout="row center-justify">
+                <div data-layout="row center-justify">
                     <h6><{$smarty.const._MD_LEGACY_LANG_COM_TITLE}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_TITLE}>"
@@ -79,7 +79,7 @@
                            class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-                <div layout="row center-justify">
+                <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_LEGACY_LANG_COM_CREATED}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_CREATED}>"
@@ -88,7 +88,7 @@
                            class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-                <div layout="row center-justify">
+                <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_LEGACY_LANG_COM_MODIFIED}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_MODIFIED}>"
@@ -97,7 +97,7 @@
                            class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-                <div layout="row center-justify">
+                <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_LEGACY_LANG_COM_UID}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_UID}>"
@@ -106,7 +106,7 @@
                            class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-                <div layout="row center-justify">
+                <div data-layout="row center-justify">
                     <h6><{$smarty.const._MD_LEGACY_LANG_COM_IP}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_IP}>"
@@ -115,7 +115,7 @@
                            class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-                <div layout="row center-justify">
+                <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_LEGACY_LANG_COM_STATUS}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_STATUS}>"

@@ -1,9 +1,9 @@
 <h4 class="forums"><{$smarty.const._MD_D3FORUM_FORUM}></h4>
 
 <{foreach item=forum from=$category.forums}>
-<section layout="column" id="forum-<{$forum.id}>" class="category-forum">
+<section data-layout="column" id="forum-<{$forum.id}>" class="category-forum">
 
-    <div layout="rows center-justify">
+    <div data-layout="rows center-justify">
         <h3>
             <a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>" aria-label="<{$forum.title}>">
                 <img class="svg forum_<{$forum.bit_new}>" src="<{$xoops_url}>/images/icons/forum_<{$forum.bit_new}>.svg" alt="forum">
@@ -17,13 +17,13 @@
         <{/if}>
     </div>
 
-    <div layout="row stretch p-4" class="description">
+    <div data-layout="row stretch p-4" class="description">
         <{$forum.desc}>
     </div>
 
     <{* ------- Activity Overview - Forums *}>
-    <div layout="row center-justify sm-column sm-full" class="activity">
-        <div self="left sm-full">
+    <div data-layout="row center-justify sm-column sm-full" class="activity">
+        <div data-self="left sm-full">
             <{$smarty.const._MD_D3FORUM_TOPICSCOUNT}> <span class="badge"><{$forum.topics_count}></span>
             <{$smarty.const._MD_D3FORUM_POSTSCOUNT}> <span class="badge"><{$forum.posts_count}></span>
             <{if $forum.last_post_time}>
@@ -32,8 +32,8 @@
         </div>
 
         <{* RSS *}>
-        <div self="right sm-full">
-            <a self="" href="<{$mod_url}>/index.php?page=rss&amp;forum_id=<{$forum.id}>" aria-label="<{$smarty.const._MD_D3FORUM_LINK_FORUMRSS}>">
+        <div data-self="right sm-full">
+            <a data-self="" href="<{$mod_url}>/index.php?page=rss&amp;forum_id=<{$forum.id}>" aria-label="<{$smarty.const._MD_D3FORUM_LINK_FORUMRSS}>">
                 <img class="svg rss" src="<{$xoops_url}>/images/icons/rss.svg" width="1em" alt="RSS">
             </a>
         </div>

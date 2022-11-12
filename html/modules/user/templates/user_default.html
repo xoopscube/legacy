@@ -10,7 +10,7 @@
 
 <hr>
 
-    <section layout="column center-center mx-auto p-2" class="user-login" self="size-x1">
+    <section data-layout="column center-center mx-auto p-2" class="user-login" data-self="size-x1">
 
         <h2><{$smarty.const._LOGIN}></h2>
 
@@ -31,12 +31,12 @@
         <{* xoops_input type=password name=pass id="pass" size=25 maxlength=32 placeholder=$smarty.const._PASSWORD  *}>
         </label>
         
-        <div layout="row center-right my-2">
+        <div data-layout="row center-right my-2">
             <button type="submit" class="ui-button" value="<{$smarty.const._LOGIN}>"><img class="svg login" src="<{$xoops_url}>/images/icons/login.svg" alt="<{$smarty.const._LOGIN}>"> <{$smarty.const._MB_USER_LOGIN}> </button>
         </div>
         
-        <div layout="row center-center my-4">
-            <a href="<{$xoops_url}>/lostpass.php" self="mx-2"><{$smarty.const._MB_USER_LOSTPASS}></a>
+        <div data-layout="row center-center my-4">
+            <a href="<{$xoops_url}>/lostpass.php" data-self="mx-2"><{$smarty.const._MB_USER_LOSTPASS}></a>
 
             <{if $allowRegister}>
                 |  &nbsp; <a href="<{$xoops_url}>/register.php"><{$smarty.const._MD_USER_LANG_NOTREGISTERED}></a>

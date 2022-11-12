@@ -1,0 +1,645 @@
+
+<section id="help-overview">
+
+    <h3>Overview</h3>
+
+    <p>The Renderer uses Smarty Template Engine — one of the most popular and mature template engines.</p>
+
+    <p>Smarty is a template engine for PHP. More specifically,
+        it facilitates a manageable way to separate application logic and content from its presentation.<br>
+        This is best described in a situation where the application programmer and the template designer play
+        different roles.
+
+    <p>Smarty Template Engine is used for rendering and cache management, it has neither override nor fall-back mechanism.
+
+    <p>The Render engine (renderer) ensures compatibility with legacy themes of XOOPS2 and XOOPS2-JP.
+
+    <p>Templates are built with HTML, CSS, JavaScript and Smarty<br>
+        — Smarty is used with custom delimiters very similar to HTML markup language that make it easier to design and develop components.</p>
+
+    <p>The module Renderer allows you to manage files more easily, even when they’re not all stored in one central folder or directory.
+        Although, some Themes have a template directory including most, if not all template files to meet an organization's needs for customization and personalization.
+
+    <p>The <b>Template Management</b> allows you to enable a <b>Template Set</b> and check the list of <b>templates</b> that you can edit, copy, download or delete.
+
+</section>
+
+
+
+
+<h3>Smarty Tags</h3>
+
+<p>Smarty generates web content through the placement of special Smarty tags within a document.
+<p>The following tags can be added to Themes and Templates.
+<p>Smarty tags will be processed and substituted with other code.</p>
+
+
+
+<p>This section </p>
+<p>the plain framework for<br>
+    themes. Although you can build your theme from a blank XHTML file, it simply takes
+    too much time and requires a lot of thinking. By using the simplest theme framework,
+    I will introduce the template engine structures of XOOPS.<br>
+    Chapter 3, Converting an Existing XHTML Template, mainly introduces how to apply
+    an existing XHTML template to XOOPS. This will give you a more thorough look at
+    the template engine.<br>
+    Chapter 4, Styling XOOPS and Creating a Theme from 960, introduces more details on
+    CSS styling. It will also illustrate how to create a XOOPS theme using 960 Framework
+    for XOOPS, and how to make use of the theme framework to save time and code.
+    Chapter 5, jQuery and UI Libraries for XOOPS Themes, briefly discusses how to add
+    jQuery and jQuery-based UI libraries to the theme to achieve complex effects. Two
+    detailed case studies will help give you a deeper understanding of this subject.
+    Chapter 6, Module Template Override, covers the module template override. This allows
+    you to control the template of each individual module by your XOOPS theme. jQuery
+    integrations will also be discussed in this chapter
+
+
+</p>
+
+
+
+<section id="help-theme">
+
+    <h3>Additional Themes</h3>
+
+    <p>Themes can be installed from Xupdate Store or from theme-developers' websites etc.
+
+    <h3>Uploading Themes</h3>
+
+    <p>Distributed themes are mostly compressed.
+        To use a theme, the uncompressed files must be uploaded into the directory public_html/themes/.
+
+    <p>The Theme folder must include theme.html and manifesto.ini.php
+
+    <h3>Theme Selection</h3>
+
+    <p>Theme Management allows you to simple click the "Select" button next to the theme
+        that you want to use as the default theme or main theme of your site.
+
+    <p>Any theme that is "checked" in the "Control" column, will be available to users in the block "Themes".
+
+    <p>If you install the "Themes" block and grant users permission, they can then select their favorite theme and customize the look and feel of the website.
+
+    <h3>Uninstall a Theme</h3>
+
+    <p>The render system manages themes without using the database.
+
+    <p>So, to delete a theme, simply delete its directory from the "themes" directory.
+
+    <h3>Smarty Template Engine</h3>
+
+    <p><a href="https://www.smarty.net/docsv2/en/what.is.smarty.tpl" target="_blank" class="button">Smarty v2 - Documentation</a></p>
+
+</section>
+
+
+<hr>
+
+
+<hr>
+
+
+<section id="help-theme">
+
+    <h3>Additional Themes</h3>
+
+    <p>Themes can be installed from Xupdate Store or from theme-developers' websites etc.
+
+    <h3>Uploading Themes</h3>
+
+    <p>Distributed themes are mostly compressed.
+        To use a theme, the uncompressed files must be uploaded into the directory public_html/themes/.
+
+    <p>The Theme folder must include theme.html and manifesto.ini.php
+
+    <h3>Theme Selection</h3>
+
+    <p>Theme Management allows you to simple click the "Select" button next to the theme
+        that you want to use as the default theme or main theme of your site.
+
+    <p>Any theme that is "checked" in the "Control" column, will be available to users in the block "Themes".
+
+    <p>If you install the "Themes" block and grant users permission, they can then select their favorite theme and customize the look and feel of the website.
+
+    <h3>Uninstall a Theme</h3>
+
+    <p>The render system manages themes without using the database.
+
+    <p>So, to delete a theme, simply delete its directory from the "themes" directory.
+
+    <h3>Smarty Template Engine</h3>
+
+    <p><a href="https://www.smarty.net/docsv2/en/what.is.smarty.tpl" target="_blank" class="button">Smarty v2 - Documentation</a></p>
+
+</section>
+
+
+<hr>
+
+
+<section id="help-structure">
+
+    <h3>Theme folder structure</h3>
+
+    <p>
+        A theme is a collection of files (html, css, javascript) with <strong>Smarty Render Variables</strong> and <strong>Constants</strong> that are assigned from PHP
+        (core, module or preload). These are referenced by preceding them with a dollar sign $ (like php) eg.: <code>&lt;{$smarty.const._MD_PROFILE_LANG_CONTROL}&gt;</code><br>
+        Variables assigned from within a template with the <code>&lt;{assign}&gt;</code> function are also displayed this way.<br>
+        You can easily include a partial <strong>component</strong> anywhere using Smarty Render <code>include</code> that define the presentation layer.<br>
+    </p>
+
+    <p>Technically, themes only require four files : manifesto.ini.php, screenshot.png, style.css, theme.html.
+        <br>The folder <strong>assets</strong> usually contains all the assets used in the theme, including images, stylesheets, and javascript files.<br>
+        This is an example of the files and folders that are found in a typical XCL theme folder structure.</p>
+
+    <pre><code class="language-treeview">
+xt-theme-html5
+|-- assets/
+|   |-- css/
+|   |-- image/
+|   `-- js/
+|-- manifesto.ini.php
+|-- screenshot.png
+|-- style.css
+`-- theme.html
+</code></pre>
+
+    <p>You must place a <strong>theme</strong> in the "themes" folder of your installation.<br>
+        Each individual theme is contained in a directory named after the theme itself.<br>
+        For example, the themes released for XCL 2.3.x are using a naming convention to enhance clarity and to clearly identify their contents.<br>
+        A theme name starting with a prefix :
+    </p>
+
+    <ul>
+        <li>"xt-" simple theme, often relying on xLayout Helper Flexbox</li>
+        <li>"ui-" custom User Interface (icon set, language constants, modules templates).</li>
+        <li>"ui-framework-theme-name" using a CSS Framework eg.: ui-bootstrap-blog, ui-metro-magazine</li>
+    </ul>
+
+
+    <h3>Default System Themes</h3>
+
+    <p>The "admin" and "default" theme names are reserved for the Core backend and frontend.<br>
+        Core themes are all lowercase and might use an underscore (_) in the name.<br>
+        A name convention is said to be a matter of dogma. So, you are free to adopt what is must convient to you and your project.<br>
+        This is an example of the files and folders that are found in typical theme folder structure:</p>
+
+    <pre><code class="language-treeview">
+ui-default-jquery
+|-- component/    # custom include partial template
+|-- css/
+|-- images/
+|-- js/
+|-- language/    # custom language constants
+|-- templates/
+|   |-- content/    # custom module templates
+|   |-- forum/    # custom module templates
+|   `-- user/    # custom module templates
+|-- .gitignore
+|-- .htaccess
+|-- CHANGELOG.md
+|-- manifesto.ini.php
+|-- README.md
+|-- screenshot.png
+|-- style.css
+|-- theme.html
+`-- theme_assign.php
+</code></pre>
+    <!--<script>Prism.highlightAll();</script>-->
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h3>Necessary Elements and Components</h3>
+<p>Please go to the XOOPS/theme/default directory; this holds the default theme of
+    XOOPS. There you can see lots of CSS, HTML, and graphics files, as shown in
+    Figure 2-1.</p>
+<p>Are all those files necessary? Of course not. The simplest XOOPS theme needs only
+    one file: theme.html. And since you are not in prehistoric times, you should use CSS to
+    control the style instead of directly controlling it in HTML. You can use theme.html
+    and style.css to build your theme. In the beginning, we will be dealing with these two
+    files pretty much all the time.</p>
+<p>Now go to XOOPS/theme/, create a new folder, and name it whatever you’d like. I’ll
+    use firsttheme.</p>
+<p> let me explain how it works. If we choose to use firsttheme as our theme, XOOPS
+    will display theme.html under the firsttheme folder, no matter what’s in that file. Suppose that you write a static HTML file, name it theme.html and put it in firsttheme.
+    XOOPS will display that HTML file.</p>
+<p>Then why bother with XOOPS? You could display that file by double-clicking it. It will
+    not make much difference.</p>
+<p>What you are going to do is add some markup that can be read by the XOOPS theme
+    engine. The engine can read your instructions and actually control the way XOOPS
+    displays your website. That’s basically the mechanism of the XOOPS theme engine,
+    and is pretty easy to understand.</p>
+<p>The next question is how to make use of the “special markup.” Instead of introducing
+    these options one by one, I will first give you an example and then explain the markup
+    in it.</p>
+
+
+<section id="help-browser">
+    <h3>Browser</h3>
+    <p>The XOOPSCube render engine (renderer) ensures compatibility with most, if not all, Navigator UserAgent.</p>
+    <p>However, due to browsers customizations available to users, themes and aextensions can interfere with the rendered layout.</p>
+    <p>In case of render issues, it is suggested to open a new browser windows without extensions (usually privacy mode).</p>
+
+    <h3>Browser Blocked features</h3>
+    <p>Recent versions og navigators allow to users to customize permissions domain based.
+        <br>
+        javascript, webcam, mic, etc...<br>
+        Usually these options don't interfere with the rendered layout, but it is required to activate cookies and javascript.</p>
+    <p><a href="https://www.smarty.net/docsv2/en/what.is.smarty.tpl" target="_blank" class="button">Smarty v2 - Documentation</a></p>
+</section>
+
+The default theme directory in XOOPS contains CSS, HTML, and graphics files
+
+
+A Simple Example
+provides a plain XOOPS theme in the
+XOOPS forum (http://goo.gl/qXkgv). It is a very good theme to start with
+
+Block-Displaying Structures
+
+Let’s ignore the <head> part for now and focus on <body>. You will find out that there
+are lots of similar structures:
+
+<{foreach item=block from=$*}>
+<{$block.title}>
+<{$block.content}>
+<{/foreach}>
+These are used to display XOOPS blocks. The part between <{foreach}> will be repeatedly displayed. What does that mean? Well, for example, if you’ve set the block
+manager in the XOOPS backend to display four left blocks, then the following section
+in theme.html will be interpreted by XOOPS:
+theme.html (excerpt)
+<{foreach item=block from=$xoBlocks.canvas_left}>
+<{$block.title}>
+<{$block.content}>
+<{/foreach}>
+The output result will be as shown in Figure 2-2.
+
+By using this code in theme.html, you are actually telling XOOPS, “OK, please display
+all the left blocks here, and don’t forget to follow the pattern I defined within the
+<foreach> tag!”
+    How does XOOPS know whether you are talking about left blocks or not? The key is
+    in the first line:
+    <{foreach item=block from=$xoBlocks.canvas_left}>
+    from=$xoBlocks.canvas_left actually instructs XOOPS to show left blocks only. If you
+    understand this, then you can understand all other similar structures in the code. They
+    are only different in block types.
+    You can read the comment to see what part the code is actually displaying.
+    There are eight positions (or places) of blocks in the latest XOOPS, version 2.4. You
+    can match the code with the settings in the XOOPS backend (see Figure 2-3).
+
+
+    </div>
+    </fieldset>
+
+    <p>use rows and columns for flexbox wrap, otherwise it will break the container!</p>
+
+    </section>
+
+
+    <hr>
+
+
+    <section id="theme-buttons">
+
+        <h3>Buttons jQuery UI Widget</h3>
+
+        <script>
+            $( function() {
+                $( ".widget button" )
+                    .eq( 0 ).button()
+                    .end().eq( 1 ).button( {
+                    icon: "ui-icon-gear",
+                    showLabel: false
+                } ).end().eq( 2 ).button( {
+                    icon: "ui-icon-gear"
+                } ).end().eq( 3 ).button( {
+                    icon: "ui-icon-gear",
+                    iconPosition: "end"
+                } ).end().eq( 4 ).button( {
+                    icon: "ui-icon-gear",
+                    iconPosition: "top"
+                } ).end().eq( 5 ).button( {
+                    icon: "ui-icon-gear",
+                    iconPosition: "bottom"
+                } );
+            } );
+        </script>
+
+        <div class="widget">
+            <h3>Widget</h3>
+            <button>Button with only text</button>
+            <button>Button with icon only</button>
+            <button>Button with icon on the left</button>
+            <button>Button with icon on the right</button>
+            <button>Button with icon on the top</button>
+            <button>Button with icon on the bottom</button>
+        </div>
+
+        <div class="css">
+            <h3>CSS</h3>
+            <button class="ui-button ui-widget ui-corner-all">
+                Button with only text
+            </button>
+            <button class="ui-button ui-widget ui-corner-all ui-button-icon-only" aria-label="Button with icon only">
+                <span class="ui-icon ui-icon-gear"></span> Button with icon only
+            </button>
+            <button class="ui-button ui-widget ui-corner-all">
+                <span class="ui-icon ui-icon-gear"></span> Button with icon on the left
+            </button>
+            <button class="ui-button ui-widget ui-corner-all">
+                Button with icon on the right <span class="ui-icon ui-icon-gear"></span>
+            </button>
+            <button class="ui-button ui-widget ui-corner-all">
+                <span class="ui-icon ui-icon-gear ui-widget-icon-block"></span> Button with icon on the top
+            </button>
+            <button class="ui-button ui-widget ui-corner-all">
+                Button with icon on the bottom <span class="ui-icon ui-icon-gear ui-widget-icon-block"></span>
+            </button>
+        </div>
+
+    </section>
+
+
+    <hr>
+
+
+    <section id="theme-dialog">
+
+        <h3>Dialog Widget</h3>
+
+        <p>jQuery Dialog Widget Description: Open content in an interactive overlay.</p>
+
+        <p><a class="ui-button" href="https://api.jqueryui.com/dialog/" target="_blank">Documentation</a></p>
+
+        <p>Examples</p>
+
+        <!-- dialog example -->
+        <div data-self="size-x1">
+
+            <script>
+                $( function() {
+                    $( "#dialog" ).dialog({
+                        autoOpen: false,
+                        show: {
+                            effect: "blind",
+                            duration: 500
+                        },
+                        hide: {
+                            effect: "blind",
+                            duration: 500
+                        }
+                    });
+                    $( "#opener" ).on( "click", function() {
+                        $( "#dialog" ).dialog( "open" );
+                    });
+                } );
+            </script>
+
+            <div id="dialog" aria-label="Basic dialog">
+                <p>This is an animated dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the &apos;x&apos; icon.</p>
+            </div>
+
+            <button class="ui-button" id="opener">Open Dialog</button>
+            <!-- System -->
+            <script>
+                // system/broser
+                'use strict';
+                var System={browser:function(){
+                        var a=navigator.userAgent;
+                        return/Arora/i.test(a)?"Arora":/Opera|OPR/.test(a)?"Opera":/Maxthon/i.test(a)?"Maxthon":/Vivaldi/i.test(a)?"Vivaldi":/YaBrowser/i.test(a)?"Yandex":/Chrome/i.test(a)?"Chrome":/Epiphany/i.test(a)?"Epiphany":/Firefox/i.test(a)?"Firefox":/Mobile(\/.*)? Safari/i.test(a)?"Mobile Safari":/MSIE/i.test(a)?"Internet Explorer":/Midori/i.test(a)?"Midori":/Safari/i.test(a)?"Safari":!1}(),
+                    os:function(){
+                        var a=navigator.userAgent;
+                        return/Android/i.test(a)?"Android":/CrOS/i.test(a)?"Chrome OS":/iP[ao]d|iPhone/i.test(a)?"iOS":/Linux/i.test(a)?"Linux":/Mac OS/i.test(a)?"Mac OS":/windows/i.test(a)?"Windows":!1}(),
+                    support:{
+                        canvas:!!window.CanvasRenderingContext2D,
+                        localStorage:function(){try{return!!window.localStorage.getItem}catch(a){return!1}}(),
+                        file:!!window.File&&!!window.FileReader&&!!window.FileList&&!!window.Blob,fileSystem:!!window.requestFileSystem||!!window.webkitRequestFileSystem,getUserMedia:!!window.navigator.getUserMedia||!!window.navigator.webkitGetUserMedia||!!window.navigator.mozGetUserMedia||!!window.navigator.msGetUserMedia,requestAnimationFrame:!!window.mozRequestAnimationFrame||!!window.webkitRequestAnimationFrame||!!window.oRequestAnimationFrame||!!window.msRequestAnimationFrame,
+                        sessionStorage:function(){try{return!!window.sessionStorage.getItem}catch(a){return!1}}(),
+                        svg:function(){try{return!!document.createElementNS&&!!document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect}catch(a){return!1}}(),
+                        webgl:function(){try{return!!window.WebGLRenderingContext&&!!document.createElement("canvas").getContext("experimental-webgl")}catch(a){return!1}}(),worker:!!window.Worker}};
+
+                var system = [
+                    '<strong>Browser</strong> ' + System.browser,
+                    '<strong>OS</strong> ' + System.os,
+                    '',
+                    '<strong>Canvas</strong> ' + System.support.canvas,
+                    '<strong>Local storage</strong> ' + System.support.localStorage,
+                    '<strong>File API</strong> ' + System.support.file,
+                    '<strong>FileSystem API</strong> ' + System.support.fileSystem,
+                    '<strong>RequestAnimationFrame</strong> ' + System.support.requestAnimationFrame,
+                    '<strong>Session storage</strong> ' + System.support.sessionStorage,
+                    '<strong>SVG</strong> ' + System.support.svg,
+                    '<strong>WebGL</strong> ' + System.support.webgl,
+                    '<strong>Worker</strong> ' + System.support.worker
+                ].join( '<br>' );
+
+                $( function() {
+                    $("#dialog_system").dialog({
+                        autoOpen: false,
+                        modal: true,
+                        resizable: false,
+                        buttons: [
+                            {
+                                text: "Ok",
+                                "id": "btnOk",
+                                click: function () {
+                                    //okCallback();
+                                    $(this).dialog('close');
+                                },
+
+                            }, {
+                                text: "Close",
+                                click: function () {
+                                    //closeCallback();
+                                    $(this).dialog('close');
+                                },
+
+                            }]
+                    });
+
+                    $( "#system" ).on( "click", function() {
+                        $( "#dialog_system" ).dialog( "open" ).html('<div class="system-browser">'+ system + '</div>');
+                    });
+
+                } );
+            </script>
+
+            <div id="dialog_system" aria-label="Basic dialog">
+                <!-- Load system browser -->
+            </div>
+
+            <button class="ui-button" id="system">System</button>
+
+        </div>
+        <!-- /dialog example -->
+
+
+        <!-- dialog source -->
+        <p><input class='switch' type='checkbox' name='dialog-sample' onclick="slideToggle('.dialog-sample', this)" value='0'>
+            <label for='dialog-sample'> View source code</label></p>
+
+        <!--  display code -->
+        <div class="dialog-sample" style="display:none">
+<pre>
+<code class="lang-js">
+$( function() {
+    $( "#dialog" ).dialog({
+        autoOpen: false,
+        show: {
+            effect: "blind",
+            duration: 500
+        },
+        hide: {
+            effect: "blind",
+            duration: 500
+        }
+    });
+    $( "#opener" ).on( "click", function() {
+        $( "#dialog" ).dialog( "open" );
+    });
+} );
+</code>
+</pre>
+        </div><!-- /toggle code dialog-sample -->
+        <!-- /dialog -->
+
+    </section>
+
+
+    <hr>
+
+
+    <h3>Editable content</h3>
+
+    <div class="editable">Editable text</div>
+
+    <button class="ui-button" id="edit">Edit</button>
+    <script>
+        // Place the script after the editable element
+        $("#edit").click(function() {
+            var $this = $(this);
+            if($this.attr('editing') != '1') {
+                $this.text('Save').attr('editing', 1);
+                $(document).find('.editable').each(function() {
+                    var input = $('<input class="editing" />').val($(this).text());
+                    $(this).replaceWith(input);
+                });
+            }
+            else {
+                $this.text('Edit').removeAttr('editing');
+                $(document).find('input.editing').each(function() {
+                    var div = $('<div class="editable" />').text($(this).val());
+                    $(this).replaceWith(div);
+                });
+            }
+        });
+    </script>
+
+
+    <hr>
+
+    <!-- System -->
+    <script>
+        // system/broser
+        'use strict';
+        var System={browser:function(){
+                var a=navigator.userAgent;
+                return/Arora/i.test(a)?"Arora":/Opera|OPR/.test(a)?"Opera":/Maxthon/i.test(a)?"Maxthon":/Vivaldi/i.test(a)?"Vivaldi":/YaBrowser/i.test(a)?"Yandex":/Chrome/i.test(a)?"Chrome":/Epiphany/i.test(a)?"Epiphany":/Firefox/i.test(a)?"Firefox":/Mobile(\/.*)? Safari/i.test(a)?"Mobile Safari":/MSIE/i.test(a)?"Internet Explorer":/Midori/i.test(a)?"Midori":/Safari/i.test(a)?"Safari":!1}(),
+            os:function(){
+                var a=navigator.userAgent;
+                return/Android/i.test(a)?"Android":/CrOS/i.test(a)?"Chrome OS":/iP[ao]d|iPhone/i.test(a)?"iOS":/Linux/i.test(a)?"Linux":/Mac OS/i.test(a)?"Mac OS":/windows/i.test(a)?"Windows":!1}(),
+            support:{
+                canvas:!!window.CanvasRenderingContext2D,
+                localStorage:function(){try{return!!window.localStorage.getItem}catch(a){return!1}}(),
+                file:!!window.File&&!!window.FileReader&&!!window.FileList&&!!window.Blob,fileSystem:!!window.requestFileSystem||!!window.webkitRequestFileSystem,getUserMedia:!!window.navigator.getUserMedia||!!window.navigator.webkitGetUserMedia||!!window.navigator.mozGetUserMedia||!!window.navigator.msGetUserMedia,requestAnimationFrame:!!window.mozRequestAnimationFrame||!!window.webkitRequestAnimationFrame||!!window.oRequestAnimationFrame||!!window.msRequestAnimationFrame,
+                sessionStorage:function(){try{return!!window.sessionStorage.getItem}catch(a){return!1}}(),
+                svg:function(){try{return!!document.createElementNS&&!!document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect}catch(a){return!1}}(),
+                webgl:function(){try{return!!window.WebGLRenderingContext&&!!document.createElement("canvas").getContext("experimental-webgl")}catch(a){return!1}}(),worker:!!window.Worker}};
+
+        var system = [
+            '<strong>Browser</strong> ' + System.browser,
+            '<strong>OS</strong> ' + System.os,
+            '',
+            '<strong>Canvas</strong> ' + System.support.canvas,
+            '<strong>Local storage</strong> ' + System.support.localStorage,
+            '<strong>File API</strong> ' + System.support.file,
+            '<strong>FileSystem API</strong> ' + System.support.fileSystem,
+            '<strong>RequestAnimationFrame</strong> ' + System.support.requestAnimationFrame,
+            '<strong>Session storage</strong> ' + System.support.sessionStorage,
+            '<strong>SVG</strong> ' + System.support.svg,
+            '<strong>WebGL</strong> ' + System.support.webgl,
+            '<strong>Worker</strong> ' + System.support.worker
+        ].join( '<br>' );
+
+        $( function() {
+            $("#dialog_system").dialog({
+                autoOpen: false,
+                modal: true,
+                resizable: false,
+                /*                    buttons: [
+                                        {
+                                            text: "Ok",
+                                            "id": "btnOk",
+                                            click: function () {
+                                                //okCallback();
+                                                $(this).dialog('close');
+                                            },
+
+                                        }, {
+                                            text: "Close",
+                                            click: function () {
+                                                //closeCallback();
+                                                $(this).dialog('close');
+                                            },
+
+                                        }
+                                    ]*/
+            });
+
+            $( "#system" ).on( "click", function() {
+                $( "#dialog_system" ).dialog( "open" ).html('<div class="system-browser">'+ system + '</div>');
+            });
+
+        } );
+    </script>
+
+    <div id="dialog_system" title="Basic dialog">
+        <!-- Load system browser -->
+    </div>
+
+    <button class="ui-button" id="system">System</button>

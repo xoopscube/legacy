@@ -20,7 +20,7 @@
 
 
     <{if $topic.external_link_id}>
-    <div class="d3f_link" self="size-x1 right my-2">
+    <div class="d3f_link" data-self="size-x1 right my-2">
     <{$posts|@count|string_format:$smarty.const._MD_D3FORUM_FMT_POSTDISPLAYSINFO}>
     <a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>&amp;external_link_id=<{$topic.external_link_id|escape:"url"}>">
         <{$smarty.const._MD_D3FORUM_LINK_LISTALLCOMMENTS}></a>

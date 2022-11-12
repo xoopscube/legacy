@@ -25,7 +25,7 @@
             <h3><{$reference_subject}></h3>
             <p><{$smarty.const._MD_D3FORUM_BY}>: <{$reference_name}></p>
             <p><{$smarty.const._MD_D3FORUM_ON}>: <{$reference_time_formatted}></p>
-            <div layout="row" name="post-message"><{$reference_message}></div>
+            <div data-layout="row" name="post-message"><{$reference_message}></div>
             <p><{$smarty.const._MD_D3FORUM_CHILDREN_COUNT}> <span class="badge"><{$children_count}></span> <{$smarty.const._MD_D3FORUM_PARENT_POSTID}> <span class="badge"><{$post.pid}></span></p>
         </blockquote>
     </article>
@@ -39,7 +39,7 @@
 
 <form name="cutpastebypostid" id="cutpastebypostid" action="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$post_id}>" method="post">
 	<div class="tips"><{$smarty.const._MD_D3FORUM_CUTPASTEBYPOSTIDDSC}></div>
-    <div self="size-x1">
+    <div data-self="size-x1">
         <label for="pid"><{$smarty.const._MD_D3FORUM_CUTPASTEBYPOSTID_DEST}></label>
 	    <input type="text" name="pid" id="pid" size="12" maxlength="12" value="">
         <button type="submit" class="ui-button" name="cutpastepostsok" id="cutpastepostsok" value="<{$smarty.const._SUBMIT}>"><{$smarty.const._SUBMIT}></button>
@@ -59,7 +59,7 @@
 <{/if}>
 
 <form name="cutpastebyforumid" id="cutpastebyforumid" action="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$post_id}>" method="post">
-	<div layout="row center-left" self="size-x1">
+	<div data-layout="row center-left" data-self="size-x1">
         <label for="forum_id"><{$smarty.const._MD_D3FORUM_CUTPASTEBYFORUMID_DEST}></label>
         <select name="forum_id" id="forum_id"><{$forum_jumpbox_options}></select>
         <button type="submit" class="button" name="cutpastepostsok" id="cutpastepostsok" value="<{$smarty.const._SUBMIT}>"><{$smarty.const._SUBMIT}></button>

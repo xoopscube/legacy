@@ -29,7 +29,7 @@
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section layout="row center-justify" class="action-control">
+<section data-layout="row center-justify" class="action-control">
     <div>
         <form action="./index.php" method="get">
             <input type="hidden" name="action" value="UserSearchList">
@@ -81,7 +81,7 @@
                 </a>
 
                 <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_USER_LANG_MAILJOB_ID}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_UID}>"
@@ -90,7 +90,7 @@
                                class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._MD_USER_LANG_UNAME}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_UNAME}>"
@@ -100,7 +100,7 @@
                                class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._MD_USER_LANG_NAME}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_NAME}>"
@@ -110,7 +110,7 @@
                                class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_USER_LANG_REGDATE}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_USER_REGDATE}>"
@@ -119,7 +119,7 @@
                                class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_USER_LANG_LASTLOGIN}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_LAST_LOGIN}>"
@@ -128,7 +128,7 @@
                                class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._MD_USER_LANG_POSTS}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_POSTS}>"
@@ -137,7 +137,7 @@
                                class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._MD_USER_LANG_LEVEL}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_LEVEL}>"

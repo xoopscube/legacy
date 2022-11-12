@@ -38,7 +38,7 @@
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section layout="row center-justify" class="action-control">
+<section data-layout="row center-justify" class="action-control">
     <form action="./index.php" method="get">
         <input type="hidden" name="action" value="TplfileList">
         <{$smarty.const._AD_LEGACYRENDER_LANG_TPL_TPLSET}> :
@@ -90,7 +90,7 @@
                 </a>
 
                 <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_ID}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLFILE_SORT_KEY_TPL_ID}>"
@@ -99,7 +99,7 @@
                                class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_MODULE}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLFILE_SORT_KEY_TPL_MODULE}>"
@@ -108,7 +108,7 @@
                                class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_TPLSET}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLFILE_SORT_KEY_TPL_TPLSET}>"
@@ -117,7 +117,7 @@
                                class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_FILE}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLFILE_SORT_KEY_TPL_FILE}>"
@@ -126,7 +126,7 @@
                                class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_LASTMODIFIED}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLFILE_SORT_KEY_TPL_LASTMODIFIED}>"
@@ -135,7 +135,7 @@
                                class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_LASTIMPORTED}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLFILE_SORT_KEY_TPL_LASTIMPORTED}>"
@@ -144,7 +144,7 @@
                                class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
-                    <div layout="row center-justify inline">
+                    <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_TYPE}></h6>
                         <div>
                             <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLFILE_SORT_KEY_TPL_TYPE}>"
@@ -228,22 +228,27 @@
             <td class="list_control">
                 <{if $targetTplset == 'default'}>
                 <a href="index.php?action=TplfileView&amp;tpl_id=<{$obj->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_VIEW}>">
-                    <img class="svg" src="<{'icons/icon-file-view.svg'|theme}>" alt="View">
+                    <span>👁</span>
+<!--                    <img class="svg" src="<{'icons/icon-file-view.svg'|theme}>" alt="View">-->
                 </a>
                 <a href="index.php?action=TplfileDownload&amp;tpl_id=<{$obj->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD}>">
-                    <img class="svg" src="<{'icons/icon-file-download.svg'|theme}>" alt="Download">
+                    <span>⭳</span>
+<!--                    <img class="svg" src="<{'icons/icon-file-download.svg'|theme}>" alt="Download">-->
                 </a>
 
                 <{elseif $obj->mOverride != null}>
 
                 <a href="index.php?action=TplfileEdit&amp;tpl_id=<{$obj->mOverride->getShow('tpl_id')}>" aria-label="<{$smarty.const._EDIT}>">
-                    <img class="svg" src="<{'icons/icon-file-edit.svg'|theme}>" alt="Edit">
+                    <span>🖉</span>
+<!--                    ✐ <img class="svg" src="<{'icons/icon-file-edit.svg'|theme}>" alt="Edit">-->
                 </a>
                 <a href="index.php?action=TplfileDelete&amp;tpl_id=<{$obj->mOverride->getShow('tpl_id')}>" aria-label="<{$smarty.const._DELETE}>" class="bg-red">
-                    <img class="svg" src="<{'icons/icon-file-delete.svg'|theme}>" alt="Delete">
+                    <span>⮾</span>
+<!--                   ⮿ 🗑 ⛔ ☒ 🗑 <img class="svg" src="<{'icons/icon-file-delete.svg'|theme}>" alt="Delete">-->
                 </a>
                 <a href="index.php?action=TplfileDownload&amp;tpl_id=<{$obj->mOverride->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD}>">
-                    <img class="svg" src="<{'icons/icon-file-download.svg'|theme}>" alt="Download">
+                    <span>⭳</span>
+<!--                    <img class="svg" src="<{'icons/icon-file-download.svg'|theme}>" alt="Download">-->
                 </a>
 
                 <{* ----- Customized Input File *}>
@@ -255,23 +260,27 @@
                 <{elseif $obj->mOverride == null && $targetTplset != null && $targetTplset != 'default'}>
 
                 <a href="index.php?action=TplfileClone&amp;tpl_id=<{$obj->getShow('tpl_id')}>&amp;tpl_tplset=<{$targetTplset|xoops_escape:link}>" aria-label="<{$smarty.const._CLONE}>">
-                    <img class="svg" src="<{'icons/icon-file-duplicate.svg'|theme}>" alt="Copy">
+                    <span>⧉</span>
+<!--                    <img class="svg" src="<{'icons/icon-file-duplicate.svg'|theme}>" alt="Copy">-->
                 </a>
 
                 <{else}>
 
                 <{if $obj->get('tpl_tplset') == 'default'}>
                 <a href="index.php?action=TplfileView&amp;tpl_id=<{$obj->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_VIEW}>">
-                    <img class="svg" src="<{'icons/icon-file-view.svg'|theme}>" alt="View">
+                    <span>👁</span>
+<!--                    <img class="svg" src="<{'icons/icon-file-view.svg'|theme}>" alt="View">-->
                 </a>
                 <{else}>
                 <a href="index.php?action=TplfileEdit&amp;tpl_id=<{$obj->getShow('tpl_id')}>&amp;tpl_tplset=<{$obj->getShow('tpl_tplset')|xoops_escape:link}>" aria-label="<{$smarty.const._EDIT}>">
-                    <img class="svg" src="<{'icons/icon-file-edit.svg'|theme}>" alt="Edit">
+                    <span>✐</span>
+<!--                    <img class="svg" src="<{'icons/icon-file-edit.svg'|theme}>" alt="Edit">-->
                 </a>
                 <{/if}>
 
                 <a href="index.php?action=TplfileDownload&amp;tpl_id=<{$obj->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD}>">
-                    <img class="svg" src="<{'icons/icon-file-download.svg'|theme}>" alt="Download">
+                    <span>⭳</span>
+<!--                    <img class="svg" src="<{'icons/icon-file-download.svg'|theme}>" alt="Download">-->
                 </a>
                 <{/if}>
             </td>

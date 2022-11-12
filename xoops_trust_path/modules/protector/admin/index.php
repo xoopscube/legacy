@@ -128,7 +128,7 @@ include __DIR__ . '/mymenu.php';
 echo "<h2>" . $xoopsModule->name() . "</h2>\n";
 
 ////— ACTION-CONTROL —\\\\
-echo '<section layout="row center-justify" class="action-control">
+echo '<section data-layout"row center-justify" class="action-control">
 <div><!-- Filters --></div>
     <div class="control-view">
         <a class="button" href="'. XOOPS_URL .'/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1#ip_ban">'. _AM_TH_IP_BAN .'</a>
@@ -192,12 +192,12 @@ echo "<form name='ConfigForm' action='' method='POST'>"
 
 // LOG Pagination
 echo "<form action='' method='GET'>
-<div layout='row center-justify my-6'>
+<div data-layout'row center-justify my-6'>
     <div>
     <select name='num' onchange='submit();'>$num_options</select>
     <input type='submit' value='" . _SUBMIT . "'>
     </div>
-    <div self='right' class='pagenavi'>$nav_html</div>
+    <div data-self='right' class='pagenavi'>$nav_html</div>
 </div>
 </form>";
 

@@ -8,7 +8,7 @@
 </ul>
 
 
-<section layout="column mx-auto" class="search-form">
+<section data-layout="column mx-auto" class="search-form">
 
     <h2><{$smarty.const._SR_SEARCH}></h2>
 
@@ -22,13 +22,13 @@
     </div>
     <{/if}>
 
-    <div layout="column mx-auto" self="size-smaller sm-mx-0">
+    <div data-layout="column mx-auto" data-self="size-smaller sm-mx-0">
 
         <form action="<{$smarty.const.XOOPS_URL}>/search.php" method="get">
             <{xoops_input type=hidden name=action value=results}>
 
-            <div layout="row sm-column">
-                <div self="size-1of2 my-2">
+            <div data-layout="row sm-column">
+                <div data-self="size-1of2 my-2">
                     <label for="query"><{$smarty.const._SR_KEYWORDS}></label>
                     <br>
                     <{xoops_input type=text name=query size=32 maxlength=191 value=$actionForm->get('query')}>
@@ -36,7 +36,7 @@
                     <small aria-label="<{$smarty.const._SR_SEARCHRULE}>">* <{$searchRuleMessage}></small>
                 </div>
 
-                <div self="size-1of2 my-2">
+                <div data-self="size-1of2 my-2">
                 <label for="andor"><{$smarty.const._SR_TYPE}></label>
                     <br>
                     <select name="andor">
@@ -49,7 +49,7 @@
 
         <h3><{$smarty.const._SR_SEARCHIN}></h3>
 
-            <div self="my-2">
+            <div data-self="my-2">
                 <{foreach item=module from=$moduleArr}>
                     <label for="mids[]">
                         <input type="checkbox" name="mids[]" value="<{$module.mid|xoops_escape:plain}>" <{if in_array($module.mid, $selectedMidArr)}>checked="checked"<{/if}>><{$module.name|xoops_escape}>
