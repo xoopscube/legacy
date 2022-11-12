@@ -25,7 +25,7 @@
 
 
     <{* ////— ACTION-CONTROL —\\\\ *}>
-    <section layout="row center-justify" class="action-control">
+    <section data-layout="row center-justify" class="action-control">
 
         <!-- category selection -->
         <div class="filtermenu">
@@ -87,7 +87,7 @@
             <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
 
                 <{if !$sid}>
-                <div layout="row center-justify inline">
+                <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._MD_XUPDATE_LANG_SID}></h6>
                     <div>
                         <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_SID}>"
@@ -98,7 +98,7 @@
                 </div>
                 <{/if}>
 
-                <div layout="row center-justify inline">
+                <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_XUPDATE_LANG_NAME}></h6>
                     <div>
                         <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"
@@ -109,7 +109,7 @@
                     </div>
                 </div>
 
-                <div layout="row center-justify">
+                <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_LEGACY_LANG_VERSION}></h6>
                     <div>
                         <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_VERSION}>"
@@ -119,7 +119,7 @@
                     </div>
                 </div>
 
-                <div layout="row center-justify">
+                <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_XUPDATE_LANG_LICENSE}></h6>
                     <div>
                         <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_LICENSE}>"
@@ -129,7 +129,7 @@
                     </div>
                 </div>
 
-                <div layout="row center-justify">
+                <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_XUPDATE_LANG_REQUIRED}></h6>
                     <div>
                         <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_REQUIRED}>"
@@ -139,7 +139,7 @@
                     </div>
                 </div>
 
-                <div layout="row center-justify">
+                <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}></h6>
                     <div>
                         <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"

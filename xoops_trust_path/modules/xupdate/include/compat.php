@@ -3,7 +3,7 @@
 
 // json support
 if ( ! extension_loaded( 'json' ) ) {
-	require_once 'Services/JSON.php';
+	require_once PEAR_PATH . PATH_SEPARATOR . 'Services/JSON.php';
 	if ( ! function_exists( 'json_decode' ) ) {
 		function json_decode( $content, $assoc = false ) {
 			$json = $assoc ? new Services_JSON( SERVICES_JSON_LOOSE_TYPE ) : new Services_JSON();

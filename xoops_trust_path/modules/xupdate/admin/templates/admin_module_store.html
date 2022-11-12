@@ -33,9 +33,9 @@
 
 
     <{* ////— ACTION-CONTROL —\\\\ *}>
-    <section layout="row center-justify sm-column" class="action-control">
+    <section data-layout="row center-justify sm-column" class="action-control">
 
-        <div class="filtermenu" self="sm-full">
+        <div class="filtermenu" data-self="sm-full">
             <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>" class="button">
                 <{$smarty.const._MI_XUPDATE_ALL}>
             </a>
@@ -50,7 +50,7 @@
             </a>
         </div>
 
-        <div class="control-view" self="sm-full">
+        <div class="control-view" data-self="sm-full">
             <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=InstallList" class="button"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a>
             <button class="help-admin button" type='button' data-module='xupdate' data-help-article='#help-module' aria-label="<{$smarty.const._HELP}>">
                 <b>?</b>
@@ -77,7 +77,7 @@
             </a>
             <{* ----- Dropdown-content ----- *}>
             <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
-                <div layout="row center-justify inline">
+                <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></h6>
                     <div>
                         <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"
@@ -86,7 +86,7 @@
                            class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-                <div layout="row center-justify inline">
+                <div data-layout="row center-justify inline">
                     <h6>TRUST or <{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></h6>
                     <div>
                         <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_TARGET_KEY}>"
@@ -96,7 +96,7 @@
                         </a>
                     </div>
                 </div>
-                <div layout="row center-justify">
+                <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_XUPDATE_LANG_CATEGORY_ID}></h6>
                     <div>
                         <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_CATEGORY_ID}>"
@@ -105,7 +105,7 @@
                            class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-                <div layout="row center-justify">
+                <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}></h6>
                     <div>
                         <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"
@@ -114,7 +114,7 @@
                            class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-                <div layout="row center-justify">
+                <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_LEGACY_LANG_VERSION}></h6>
                     <div>
                         <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_VERSION}>"
@@ -123,7 +123,7 @@
                            class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-                <div layout="row center-justify">
+                <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_XUPDATE_LANG_REQUIRED}></h6>
                     <div>
                         <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_REQUIRED}>"
@@ -132,7 +132,7 @@
                            class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-                <div layout="row center-justify">
+                <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_XUPDATE_LANG_TYPE}></h6>
                     <div>
                         <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_TARGET_TYPE}>"

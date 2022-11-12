@@ -35,7 +35,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			'html/class',
 			'html/class/database/*',
 			'html/class/mail/*',
-			'html/class/xml/*',
+//			'html/class/xml/*',
 			'html/class/xoopsform/*',
 			'html/core/*',
 			'html/include/*',

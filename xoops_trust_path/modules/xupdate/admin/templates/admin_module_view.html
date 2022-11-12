@@ -11,11 +11,11 @@
     <{include file="admin_tips.html"}>
 
     <{* ////— ACTION-CONTROL —\\\\ *}>
-    <section layout="row center-justify sm-column" class="action-control">
-        <div class="filtermenu" self="sm-full">
+    <section data-layout="row center-justify sm-column" class="action-control">
+        <div class="filtermenu" data-self="sm-full">
             <!-- No category selection -->
         </div>
-        <div class="control-view" self="sm-full">
+        <div class="control-view" data-self="sm-full">
             <a href="#" id="check-app" class="button">
                 <img class="svg" src="<{$xoops_url}>/images/icons/check.svg" width="1em" height="1em" alt="check"> Configuration Checker
             </a>
@@ -57,9 +57,9 @@
         <{if !empty($package_items) }>
         <div id="xupdate-tabs-package" class="storelist">
 
-            <section layout="rows sm-column" name="package">
+            <section data-layout="rows sm-column" name="package">
             <{foreach item=data from=$package_items}>
-            <div class="eachstore" self="size-1of4 sm-full p-2">
+            <div class="eachstore" data-self="size-1of4 sm-full p-2">
                 <h3>
                     <a href="index.php?action=PackageStore&amp;sid=<{$data.storeobj->get('sid')}>">
                         <img class="svg" src="<{$xoops_url}>/images/icons/package.svg" width="1em" height="1em" alt="package">
@@ -93,9 +93,9 @@
         <{if !empty($module_items) }>
         <div id="xupdate-tabs-module" class="storelist">
 
-            <section layout="rows sm-column" name="modules">
+            <section data-layout="rows sm-column" name="modules">
             <{foreach item=data from=$module_items}>
-            <div class="eachstore" self="size-1of4 sm-full p-2">
+            <div class="eachstore" data-self="size-1of4 sm-full p-2">
                 <h3>
                     <a href="index.php?action=ModuleStore&amp;sid=<{$data.storeobj->get('sid')}>" aria-label="<{$data.storeobj->getShow('name')}>">
                         <img class="svg" src="<{$xoops_url}>/images/icons/store.svg" width="1em" height="1em" alt="store">
@@ -128,9 +128,9 @@
         <{if !empty($theme_items) }>
         <div id="xupdate-tabs-theme" class="storelist">
 
-            <section layout="rows sm-column" name="themes">
+            <section data-layout="rows sm-column" name="themes">
             <{foreach item=data from=$theme_items}>
-            <div class="eachstore" self="size-1of4 sm-full p-2">
+            <div class="eachstore" data-self="size-1of4 sm-full p-2">
                 <h3>
                     <a href="index.php?action=ThemeStore&amp;sid=<{$data.storeobj->get('sid')}>" aria-label="<{$data.storeobj->getShow('name')}>">
                         <img class="svg" src="<{$xoops_url}>/images/icons/store.svg" width="1em" height="1em" alt="store">
@@ -161,9 +161,9 @@
         <{if !empty($preload_items) }>
         <div id="xupdate-tabs-preload" class="storelist">
 
-            <section layout="rows sm-column" name="preloads">
+            <section data-layout="rows sm-column" name="preloads">
             <{foreach item=data from=$preload_items}>
-            <div class="eachstore" self="size-1of4 sm-full p-2">
+            <div class="eachstore" data-self="size-1of4 sm-full p-2">
                 <h3>
                     <a href="index.php?action=PreloadStore&amp;sid=<{$data.storeobj->get('sid')}>" aria-label="<{$data.storeobj->getShow('name')}>">
                         <img class="svg" src="<{$xoops_url}>/images/icons/store.svg" width="1em" height="1em" alt="store">

@@ -219,13 +219,15 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 	 * @return    bool
 	 */
 	private function _unzipFile_FileArchive( $downloadFilePath, $exploredDirPath ) {
-		require_once 'File/Archive.php';
+		require_once PEAR_PATH . PATH_SEPARATOR . 'File/Archive.php';
 
 		if ( $source = File_Archive::read( $downloadFilePath . '/' ) ) {
 			if ( is_object( $source ) && 'PEAR_Error' !== get_class( $source ) ) {
-				File_Archive::extract(
+                $file_Archive_Writer = File_Archive::appender($exploredDirPath);
+                File_Archive::extract(
 					$source,
-					File_Archive::appender( $exploredDirPath )
+					//File_Archive::appender( $exploredDirPath ) // @TODO test this - Only variables should be passed by reference
+                    $file_Archive_Writer
 				);
 
 				return true;
@@ -246,7 +248,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 	 * @return    bool
 	 */
 	private function _unzipFile_FileArchiveCareful( $downloadFilePath, $exploredDirPath ) {
-		require_once 'File/Archive.php';
+		require_once PEAR_PATH . PATH_SEPARATOR . 'File/Archive.php';
 
 		$source    = ( new File_Archive )->read( $downloadFilePath . '/' );
 		$className = 'File_Archive_Reader';
@@ -317,15 +319,15 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 	/**
 	 * Execute shell command
 	 *
-	 * @param string $command command line
-	 * @param array $output stdout strings
-	 * @param int $return_var process exit code
-	 * @param array $error_output stderr strings
+	 * @param string $command      command line
+	 * @param array  $output       stdout strings
+	 * @param int    $return_var   process exit code
+	 * @param array  $error_output stderr strings
 	 *
 	 * @return int     exit code
 	 * @author Alexey Sukhotin
 	 */
-	private function procExec( $command, array &$output = null, &$return_var = - 1, array &$error_output = null ) {
+	private function procExec(string $command, array &$output = null, int &$return_var = - 1, array &$error_output = null ) {
 		$descriptorspec = [
 			0 => [ 'pipe', 'r' ],  // stdin
 			1 => [ 'pipe', 'w' ],  // stdout

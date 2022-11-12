@@ -19,8 +19,9 @@ if ( ! defined( 'XOOPS_ROOT_PATH' ) ) {
 if ( ! defined( 'PATH_SEPARATOR' ) ) {
 	define( 'PATH_SEPARATOR', ( 0 !== stripos( PHP_OS, 'WIN' ) ) ? ':' : ';' );
 }
-set_include_path( get_include_path() . PATH_SEPARATOR . dirname( __DIR__ ) . '/PEAR' );
-
+// TODO gigamaster check
+//set_include_path( get_include_path() . PATH_SEPARATOR . dirname( __DIR__ ) . '/PEAR' );
+set_include_path( get_include_path() . PEAR_PATH . PATH_SEPARATOR . '/PEAR' );
 /**
  * Xupdate_AbstractAction
  **/
