@@ -55,6 +55,6 @@ const XCUBE_CORE_PM_MODULE_NAME = "pm";
 const LEGACY_SYSTEM_COMMENT = 14;
 
 //
-// A name of the render-system used by the embedded template of XoopsForm.
+// Name of the render-system used by the embedded template of XoopsForm.
 //
 const XOOPSFORM_DEPENDENCE_RENDER_SYSTEM = 'Legacy_RenderSystem';
