@@ -22,7 +22,7 @@ class My_Mailer extends PHPMailer
     {
         $this->mConvertLocal = new XCube_Delegate();
         $this->mConvertLocal->register('Legacy_Mailer.ConvertLocal');
-        $this->LE ="\n";
+        self::$LE ="\n";
         $this->prepare();
     }
 
@@ -86,7 +86,7 @@ class My_Mailer extends PHPMailer
     public function setBody($text)
     {
         $search = ["\r\n", "\r", "\n"];
-        $replace = ["\n", "\n", $this->LE];
+        $replace = ["\n", "\n", self::$LE]
         $text = str_replace($search, $replace, $text);
         $this->Body = $this->convertLocal($text);
     }

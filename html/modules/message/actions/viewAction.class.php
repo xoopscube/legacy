@@ -51,6 +51,18 @@ class viewAction extends AbstractAction
                 $modHand->insert($modObj, true);
             }
         }
+        /**
+         * @ Version XCL 2.3.x
+         * Outbox message forward to email
+         */
+        if ('outbox' == $this->inout) {
+            if ('POST' == $_SERVER['REQUEST_METHOD']) {
+                if ('mail' == $this->root->mContext->mRequest->getRequest('cmd')) {
+                    $this->send_mail($modObj);
+                }
+            }
+        }
+
 
         foreach (array_keys($modObj->gets()) as $var_name) {
             $this->msgdata[$var_name] = $modObj->getShow($var_name);
