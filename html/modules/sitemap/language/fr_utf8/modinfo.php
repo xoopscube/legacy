@@ -1,17 +1,19 @@
 <?php
 
-define( '_MI_SITEMAP_ADMENU_TOP' , 'TOP');
+
 
 define( '_MI_SITEMAP_NAME' , 'Plan du site');
-define( '_MI_SITEMAP_MESSAGE' , 'Message');
+define( '_MI_SITEMAP_MESSAGE' , "<p>Le plan du site est une page spéciale destinée à servir de guide pour le site Internet.<br>
+Il s'agit d'une représentation visuelle de l'espace d'informations pour aider les utilisateurs à trouver des pages spécifiques plus efficacement.</p>");
 
+define( '_MI_SITEMAP_ADMENU_TOP' , 'TOP');
 define( '_MI_SITEMAP_ADMENU_MYBLOCKSADMIN' , 'Blocs/Groupes');
 
 define( '_MI_SITEMAP_BLOCKNAME' , 'Plan du site');
 define( '_MI_SITEMAP_BLOCKDESC' , 'Afficher le plan dans un bloc.');
 
-define( '_MI_MESSAGE' , 'Message  [html]');
-define( '_MI_MESSAGEEDSC' , 'Message qui apparaitra sur la page');
+define( '_MI_MESSAGE' , 'Message [html]');
+define( '_MI_MESSAGEEDSC' , 'Message affiché sur la page plan du site');
 
 define( '_MI_SHOW_SUBCATEGORIES' , 'Afficher les sous-catégories');
 define( '_MI_SHOW_SUBCATEGORIESDSC' , 'Afficher ou non les sous-catégories');

@@ -14,8 +14,8 @@
 // Manifesto
 $modversion['dirname']          = 'sitemap';
 $modversion['name']             = _MI_SITEMAP_NAME;
-$modversion['version']          = '2.31';
-$modversion['detailed_version'] = '2.31.3';
+$modversion['version']          = '2.32';
+$modversion['detailed_version'] = '2.32.0';
 $modversion['description']      = 'Automated Sitemap and XML file for search engines';
 $modversion['author']           = 'chanoir';
 $modversion['credits']          = 'The XOOPSCube Project';
@@ -37,9 +37,9 @@ $modversion['hasMain'] = 1;
 $modversion['templates'][1]['file'] = 'sitemap_inc_eachmodule.html';
 $modversion['templates'][1]['description'] = '';
 $modversion['templates'][2]['file'] = 'sitemap_index.html';
-$modversion['templates'][2]['description'] = '';
+$modversion['templates'][2]['description'] = 'Sitemap template visible to users';
 $modversion['templates'][3]['file'] = 'sitemap_xml_google.html';
-$modversion['templates'][3]['description'] = '';
+$modversion['templates'][3]['description'] = 'Site map for search engines and crawlers';
 
 // BLocks
 $modversion['blocks'][1]['file'] = 'sitemap_blocks.php';

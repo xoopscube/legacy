@@ -1,7 +1,8 @@
 <?php
 
 define( '_MI_SITEMAP_NAME' , 'Sitemap');
-define( '_MI_SITEMAP_MESSAGE' , 'Message');
+define( '_MI_SITEMAP_MESSAGE' , '<p>The sitemap is a special page intended to serve as a guide for the website.<br>
+It is a visual representation of the information space to help visitors find specific pages more efficiently.</p>');
 
 define( '_MI_SITEMAP_ADMENU_TOP' , 'TOP');
 define( '_MI_SITEMAP_ADMENU_MYBLOCKSADMIN' , 'Blocks/Groups');
