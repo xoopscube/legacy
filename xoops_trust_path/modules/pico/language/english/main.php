@@ -127,7 +127,7 @@ define( '_MD_PICO_BTN_SUBMITEDITING' , 'Save');
 define( '_MD_PICO_BTN_SUBMITSAVEAS' , 'Save as...');
 define( '_MD_PICO_BTN_COPYFROMWAITING' , 'Save waiting content');
 define( '_MD_PICO_MSG_CONFIRMCOPYFROMWAITING' , ' If you do not save the waiting content, the data will be lost. Please confirm!');
-define( '_MD_PICO_HOWTO_OVERRIDEOPTIONS' , 'Override preferences by writing a line e.g.:<br>(option name):(option value)<br>Example: show_breadcrumbs:1<br><b>Overridable options current values</b>');
+define( '_MD_PICO_HOWTO_OVERRIDEOPTIONS' , '<p>Override preferences by writing a new line for each option.<br><code><b>(option name)</b>:<u>(option value)</u></code><br>Example to show breadcrumbs (1=on, 0=off):<br><code><b>show_breadcrumbs</b>:<u>1</u></code></p><h5>Overridable options current values</h5>');
 
 
 // vote to post

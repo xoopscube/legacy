@@ -99,6 +99,7 @@ class PicoControllerEditCategory extends PicoControllerAbstract {
 	}
 
 	// get samples of category options
+    // TODO output html input
 	public function getCategoryOptions4edit(): string {
 		include dirname( __DIR__ ) . '/include/configs_can_override.inc.php';
 

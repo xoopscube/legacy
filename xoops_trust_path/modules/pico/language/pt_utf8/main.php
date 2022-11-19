@@ -146,7 +146,7 @@ define( '_MD_PICO_BTN_SUBMITEDITING' , "Publicar este formulário");
 define( '_MD_PICO_BTN_SUBMITSAVEAS' , "Salvar como");
 define( '_MD_PICO_BTN_COPYFROMWAITING' , "Publicar artigo pendente");
 define( '_MD_PICO_MSG_CONFIRMCOPYFROMWAITING' , "Todo o artigo editado nesta página será perdito. Confirma?");
-define( '_MD_PICO_HOWTO_OVERRIDEOPTIONS' , "Para substituir uma preferência, escreva uma linha como: <br> nome da opção): (valor da opção)<br>Por exemplo: <br>show_breadcrumbs:1<br> - fará com que o valor da opção breadcrumbs seja 1.");
+define( '_MD_PICO_HOWTO_OVERRIDEOPTIONS' , "<p>Para substituir uma preferência, inserir uma nova linha:<br><code><b>(nome da opção)</b>:<u>(valor da opção)</u></code><br>Por exemplo, para exibir o caminho de navegação:<br><code><b>show_breadcrumbs</b>:<u>1</u></code></p><h5>Valores atuais das opções substituíveis</h5>");
 
 
 // vote to post
