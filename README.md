@@ -4,7 +4,7 @@
 ![X-Updare Store](https://img.shields.io/badge/X--Update%20Store-Pending-red)
 
 
-# XCL XOOPSCUBE LEGACY 
+# XCL :: XOOPSCube Legacy 
 ## Simple, Secure and Scalable
 ### Web Application Platform
 
@@ -22,17 +22,12 @@ Scaling a web application means allowing more people to use the application and 
 ### Self-hosting
 Self-hosted platforms are decentralized, allow for superior accessibility, customization of features and style, which means you are not dependent on a centralized service and are also free to choose your hosting service as the number of users grows. You have full control over your own data and services, rather than depending on expensive third-party services (cloud, saas).
 
-## Get Started
-This guide focuses on the user-friendly Web installation wizard !
-
-[<img alt="Wizard Installation" width="100%" src=https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl-installer-wizard.jpg" />](https://xoopscube.github.io/legacy/)
-
-====
-   
+-----  
 
 ### [The XOOPSCube Project Celebrates The 20th Anniversary](https://github.com/xoopscube/legacy/blob/master/XOOPSCube-20th-Anniversary.md)
 
- 
+-----
+
 
 ## License
 
@@ -45,10 +40,26 @@ XOOPSCube was started from scratch and the minimalist XCube Core source code is 
 
 XOOPSCube Legacy source code which is a set of modules to ensure compatibility with old versions of Xoops2 is released under a GPL licence.
 
-***
 
-Requirements
-====
+## Get Started 
+
+The XCL bundle package is designed to run smoothly on any local server environment bundle LAMP, MAMP, XAMPP,
+dedicated server, virtual private server (VPS) or shared hosting.  
+Running a local instance (Linux, macOS, Windows) and deploying to your dedicated server or shared hosting is fairly easy.  
+The following guide focuses on the user-friendly [Web installation wizard](https://xoopscube.github.io/legacy/)  
+
+- Upload a Zip file to your server
+- Extract the files to the web root
+- Browse to your install URL
+- Follow the steps in the Installer
+
+<a href="https://xoopscube.github.io/legacy/" target="_blank" rel="noopener">
+<img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl-installer-wizard.jpg" alt="Wizard Installation" title="Wizard Installation" width="100%">
+</a>
+
+
+## Requirements
+
 
 Whether you plan to create your own personal or corporate community web site with news, forums, photo gallery, portfolio, etc.   
 XOOPSCube will run smoothly on the most popular open source web server stack consisting of Linux, Apache, MySQL, and PHP.   
@@ -93,10 +104,8 @@ Useful Wikipedia articles with tables comparing general and technical informatio
 <img src="https://xoopscube.org/uploads/fckeditor/picture_edit.png"> <a href="http://en.wikipedia.org/wiki/Comparison_of_raster_graphics_editors"> Graphics Editor</a> : Comparison of raster graphics editors  
 <img src="https://xoopscube.org/uploads/fckeditor/computer_go.png"> <a href="http://en.wikipedia.org/wiki/FTP_clients"> FTP Clients</a> : Comparison of FTP client software  
 
-***
+### Features
 
-Features
-====
 Below is a list of some of XOOPS Cube Legacy features.
 
 * Installation wizard  
@@ -115,58 +124,40 @@ Below is a list of some of XOOPS Cube Legacy features.
 * Free choice of PHP, JS, CSS frameworks
 * Third-party modules and extensions (preloads)
 
-***
 
-Download
-====
+
+### Download
 
 The source code of XOOPSCube Legacy is available on [Github](https://github.com/xoopscube/legacy)
 
 XOOPSCube Legacy packages are available at [downloads](https://github.com/xoopscube/legacy/downloads)
 
 
-Installation wizard
-====
-
-Clone this repo or download the archive and unzip in your web server's public directory (e.g. /var/www/html/, /public_html/).  
-Launch your browser and follow the XCL Installer Wizard step-by-step process to complete the installation ( 2min ).
-
-
-***
-
-Overview
-====
+### Usage
 
 After you complete the Wizard process, there are lots of options to customize your Web Application Platform :  
-- select the modules to install
-- add modules blocks or custom blocks (HTML, CSS, JavaScript, PHP and Smarty) to specific pages 
-- change users and group permissions 
-- customize meta tags (SEO) 
-- manage translations and localization 
-
-X-Update Manager dashboard provides a simple click-and-run solution to get all the necessary protection and functionality at the right time.  
-Get and deploy themes, preloads (i.e. plugins), and modules updates.
+- From the Admin dashboard, set-up your preferences (you can close your site)
+- Install modules, blocks or create custom blocks (HTML, CSS, JavaScript or PHP) to specific modules pages 
+- Create new user groups and set permissions 
+- Customize meta tags (SEO) 
+- Manage translations and localization 
 
 <img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl_site_ui_modules.jpg" alt="Modules">
 
 
-Documentation
-====
+#### Documentation
 
 XOOPSCube features a built-in "Help" documentation and search function.
 
-Legacy API documentation generated by Apigen 2.7.0
+**Legacy API documentation**  
+Previous version of the subsystem API generated by Apigen 2.7.0
 
 http://xoopscube.org/documentation/api
 
-Site and Support
-====
+#### Support
 
 https://github.com/xoopscube/legacy/
 
-
-Contribute
-====
 
 XOOPS Cube Legacy is open source project community driven.  
 We encourage everyone in the community to contribute their knowledge and expertise.  
