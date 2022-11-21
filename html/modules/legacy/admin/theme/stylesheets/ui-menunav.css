@@ -27,8 +27,8 @@
     display         : grid;
     justify-content : center;
     grid-gap        : 0.25em;
-    grid-template-columns: repeat(auto-fit, 12em);
-    /*grid-template-columns: repeat(auto-fit, minmax(Min(8em, 100%), 1fr)); */
+    grid-template-columns: repeat(auto-fit, 13em);
+    /*grid-template-columns: repeat(auto-fit, minmax(Min(9em, 100%), 1fr)); */
     grid-auto-flow  : row;
     margin-bottom   : 2em;
     /*max-width: 57em; container */

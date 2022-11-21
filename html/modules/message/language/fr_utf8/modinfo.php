@@ -1,6 +1,6 @@
 <?php
 
-define( '_MI_MESSAGE_NAME' , 'Messages Privés');
+define( '_MI_MESSAGE_NAME' , 'Messages');
 define( '_MI_MESSAGE_DESC' , 'Module pour disposer des fonctions de messagerie privée sur le site.');
 define( '_MI_MESSAGE_SUB_NEW' , 'Nouveau Message');
 define( '_MI_MESSAGE_SUB_SEND' , 'Messages Envoyés');

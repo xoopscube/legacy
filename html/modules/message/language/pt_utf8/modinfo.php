@@ -11,7 +11,7 @@ define( '_MI_MESSAGE_DELTYPE' , "Remover todas as mensagens não lidas?");
 define( '_MI_MESSAGE_DELTYPE_DESC' , "As mensagens ainda não lidas não são removidas automaticamente durante este processo de limpeza.");
 define( '_MI_MESSAGE_DESC' , "Este módulo oferece funcionalidades de troca de mensagens internas entre os associados.");
 define( '_MI_MESSAGE_INSTALL_ERROR2' , "Por favor, desinstale o módulo <q>PM</q> do pacote XCL.");
-define( '_MI_MESSAGE_NAME' , "Mensagens internas");
+define( '_MI_MESSAGE_NAME' , "Mensagens");
 define( '_MI_MESSAGE_NEWALERT' , "Utilizar o bloco <q>Novas mensagens</q>");
 define( '_MI_MESSAGE_NEWALERT_DESC' , "Requer a instalação do módulo <q>MyFriend</q> e o bloco de <q>Novas mensagens</q>.");
 define( '_MI_MESSAGE_PAGENUM' , "Número de linhas");

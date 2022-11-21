@@ -25,7 +25,7 @@ if( ! defined( 'SITEMAP_ROOT_CONTROLLER_LOADED' ) ) {
 	chdir( './modules/sitemap/' ) ;
 	require $real_xml_google_path ;
 	exit ;
-} else {
+    } else {
 	require '../../mainfile.php' ;
 }
 

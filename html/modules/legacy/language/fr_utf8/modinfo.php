@@ -36,4 +36,4 @@ define( '_MI_LEGACY_MENU_SMILES_MANAGE' , "Emoticônes");
 define( '_MI_LEGACY_MENU_THEME_MANAGE' , "Gestion des Themes");
 define( '_MI_LEGACY_MENU_XOOPS_CONFIG' , "Autres Options");
 define( '_MI_LEGACY_NAME' , "Système");
-define( '_MI_LEGACY_NAME_DESC' , "Le module central du système XOOPS Cube assure la gestion et la prise en charge des modules XOOPS2, D3 et des services Cube.");
+define( '_MI_LEGACY_NAME_DESC' , "Le module central du système XOOPSCube assure la gestion et la prise en charge des modules XOOPS2, D3 et des services Cube.");

@@ -65,17 +65,17 @@ if ( !defined('XOOPS_MAINFILE_INCLUDED') ) {
     define('XOOPS_GROUP_USERS', '2');
     define('XOOPS_GROUP_ANONYMOUS', '3');
 
-    // You can select two special module process executing mode by defining following constants
-    //
+    // You can select two special module process execution modes by defining the following constants
+
     //  define('_LEGACY_PREVENT_LOAD_CORE_', 1);
     //    Module process will not load any XOOPS Cube classes.
     //    You cannot use any XOOPS Cube functions and classes.
-    //    (eg. It'll be used for referring only MySQL Database definition.)
+    //    (e.g. It'll be used to reference only the MySQL database definition.)
     //
     //  define('_LEGACY_PREVENT_EXEC_COMMON_', 1);
-    //    Module process will load XOOPS Cube Root class and initialize Controller class.
-    //    You can use some XOOPS Cube functions in this mode.
-    //    You can use more XOOPS Cube functions (eg. xoops_gethandler), if you write
+    //    Module process will load XOOPSCube Root class and initialize Controller class.
+    //    You can use some XOOPSCube functions in this mode.
+    //    You can use more XOOPSCube functions (eg. xoops_gethandler), if you write
     //       $root=&XCube_Root::getSingleton();
     //       $root->mController->executeCommonSubset();
     //    after including mainfile.php.

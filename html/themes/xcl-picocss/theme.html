@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="no-js" lang="<{$xoops_langcode}>">
+<!--
+   /*
+    * XCL Theme PicoCSS
+    *
+    * @version   2.3.2
+    * @author    Nuno Luciano ( https://github.com/gigamaster )
+    * @copyright 2005-2022 The XOOPSCube Project, author
+    * @license   BSD
+    * @link      https://github.com/xoopscube
+    */
+-->
+<head>
+    <meta charset="utf-8">
+    <!--  <meta charset="<{$xoops_charset}>">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
+    <meta name="description" content="<{$xoops_meta_description}>">
+    <!--  <meta name="description" content="A classic company or blog layout with a sidebar. Built with Pico CSS.">-->
+    <meta name="robots" content="<{$xoops_meta_robots}>">
+    <meta name="keywords" content="<{$xoops_meta_keywords}>">
+    <meta name="rating" content="<{$xoops_meta_rating}>">
+    <meta name="author" content="<{$xoops_meta_author}>">
+    <meta name="copyright" content="<{$xoops_meta_copyright}>">
+    <meta name="generator" content="XOOPSCube">
+    <!-- Meta Webmaster Tools-->
+    <meta name="msvalidate.01" content="<{$xoops_meta_bing}>">
+    <meta name="google-site-verification" content="<{$xoops_meta_google}>">
+    <meta name="yandex-verification" content="<{$xoops_meta_yandex}>">
+    <!-- Facebook Open Graph data -->
+    <meta property="fb:app_id" content="<{$xoops_meta_fb_app}>">
+    <meta property="og:url" content="<{$xoops_url}>">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="<{$xoops_meta_og_title}>">
+    <meta property="og:image" content="<{$xoops_imageurl}>img/tile.png">
+    <meta property="og:description" content="<{$xoops_meta_description}>">
+    <meta property="og:site_name" content="<{$xoops_sitename}>">
+    <meta property="article:author" content="<{$xoops_meta_author}>">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="<{$xoops_meta_twitter_site}>"><!-- @site_account -->
+    <meta name="twitter:creator" content="@<{$xoops_meta_author}>">
+    <meta name="twitter:url" content="<{$xoops_url}>">
+    <meta name="twitter:title" content="<{$xoops_pagetitle}>">
+    <meta name="twitter:description" content="<{$xoops_meta_description}>">
+    <meta name="twitter:image" content="<{$xoops_imageurl}>img/tile-wide.png">
+    <meta name="twitter:image:alt" content="<{$xoops_pagetitle}>">
+
+    <!-- Mobile App favicon.ico Place in the root directory -->
+    <link rel="icon" href="<{$xoops_url}>/favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="<{$xoops_url}>/favicon.png" type="image/png">
+    <!-- HTML5 valid Data URI for fake favicon requests by Browsers -->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <!-- Resquesturi $xoops_requesturi : /module/dirname/id -->
+    <link rel="canonical" href="<{$SCRIPT_NAME}>">
+    <!-- Mobile App Manifest -->
+<!--    <link rel="manifest" href="<{$xoops_imageurl}>site.webmanifest">-->
+
+    <!-- Picocss-->
+    <link rel="stylesheet" href="<{$xoops_imageurl}>css/pico.min.css">
+
+    <link rel="stylesheet" href="<{$xoops_themecss}>">
+
+    <!-- Modules javascript -->
+    <script defer><{$xoops_js|regex_replace:"/(\/\/\-\->|<!\-\-)/":""}></script>
+    <!-- RMV: added module header -->
+    <{$xoops_module_header}>
+    <!-- RMV: added block header -->
+    <{$xoops_block_header}>
+    <!-- JavaScript -->
+
+    <{* Custom styles for this theme *}>
+    <link rel="stylesheet" href="<{$xoops_imageurl}>css/jquery-ui.theme.css">
+</head>
+
+<body class="<{$xoops_dirname}>">
+
+<{* Hero + Nav + User Menu *}>
+<div class="hero" data-theme="dark">
+    <nav class="container-fluid nav-top">
+        <ul>
+            <li>
+                <a href="<{$xoops_url}>/" class="contrast" title="<{$xoops_slogan}>">
+                    LOGO
+                    <span data-self="sm-hide"><{$xoops_sitename}></span>
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <{if $xoops_showlblock==1}>
+                <{foreach item=block from=$xoops_lblocks}>
+                <{if $block.title=="User Menu" or $block.id==28}>
+                <li>
+                    <{include file="$xoops_theme/component/_inc_nav_user.html"}>
+                </li>
+                <{/if}>
+                <{/foreach}>
+            <{/if}>
+            <li>
+                <{include file="$xoops_theme/component/_inc_nav_theme.html"}>
+            </li>
+
+        </ul>
+    </nav>
+    <{if $xoops_is_top}>
+    <header class="container">
+
+            <h1><{$xoops_sitename}></h1>
+            <h3><{$xoops_slogan}></h3>
+
+        <p><a href="#" role="button" onclick="event.preventDefault()">Call to action</a></p>
+    </header>
+    <{else}>
+    <{/if}>
+</div><!-- ./ Hero -->
+
+<{* Main *}>
+<main class="container">
+    <div class="grid-main">
+        <{if $xoops_showlblock==1}>
+        <aside>
+            <{include file="$xoops_theme/component/block_left.html"}>
+        </aside>
+        <{/if}>
+
+        <section>
+            <{if !empty($xoops_contents)}>
+
+                <{$xoops_contents}>
+
+            <{else}>
+
+            <{if $xoops_isadmin}>
+            <div>
+                <a role="button" class="primary" href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                        <path d="M3 17v2h6v-2H3M3 5v2h10V5H3m10 16v-2h8v-2h-8v-2h-2v6h2M7 9v2H3v2h4v2h2V9H7m14 4v-2H11v2h10m-6-4h2V7h4V5h-4V3h-2v6z" fill="currentColor"/>
+                        <rect x="0" y="0" width="1em" height="1em" fill="rgba(0, 0, 0, 0)" /></svg> Start Module</a>
+                <a role="button" class="primary" href="<{$xoops_url}>/modules/altsys/admin/index.php?mode=admin&lib=altsys&page=mytplsform&tpl_file=legacy_app_front_page.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                        <path d="M12.89 3l1.96.4L11.11 21l-1.96-.4L12.89 3m6.7 9L16 8.41V5.58L22.42 12L16 18.41v-2.83L19.59 12M1.58 12L8 5.58v2.83L4.41 12L8 15.58v2.83L1.58 12z" fill="currentColor"/>
+                        <rect x="0" y="0" width="1em" height="1em" fill="rgba(0, 0, 0, 0)" />
+                    </svg> Edit Template</a>
+            </div>
+            <{/if}>
+
+            <{include file='db:legacy_app_front_page.html'}>
+
+            <{/if}>
+        </section>
+
+
+
+    </div>
+</main><!-- ./ Main -->
+
+
+<{if $xoops_showcblock==1}>
+<section class="container-fluid block-center">
+<div class="grid-3">
+    <div><{* ---------- BLOCK Center-Left *}>
+        <{foreach item=block from=$xoops_clblocks}>
+        <{if !$block.title|strstr:"Topage"}>
+        <div class="block-center-left b-<{$block.weight}>">
+            <h4 data-layout="row center-justify" class="block-title">
+                <{if $xoops_isadmin}>
+                <{$block.title}>
+                <{include file="$xoops_theme/component/_inc_block_edit.html"}>
+                <{else}>
+                <{if ! $block.title|strstr:"none"}><{$block.title}><{/if}>
+                <{/if}>
+            </h4>
+            <div class="block-content"><{$block.content}></div>
+        </div>
+        <{/if}>
+        <{/foreach}>
+    </div>
+    <div><{* ---------- BLOCK Center-Center *}>
+        <{foreach item=block from=$xoops_ccblocks}>
+        <{if !$block.title|strstr:"Topage"}>
+        <div class="block-center-center b-<{$block.weight}>">
+            <h4 data-layout="row center-justify" class="block-title">
+                <{if $xoops_isadmin}>
+                <{$block.title}>
+                <{include file="$xoops_theme/component/_inc_block_edit.html"}>
+                <{else}>
+                <{if ! $block.title|strstr:"none"}><{$block.title}><{/if}>
+                <{/if}>
+            </h4>
+            <div class="block-content"><{$block.content}></div>
+        </div>
+        <{/if}>
+        <{/foreach}>
+    </div>
+    <div><{* ---------- BLOCK Center-Right *}>
+        <{foreach item=block from=$xoops_crblocks}>
+        <{if !$block.title|strstr:"Topage"}>
+        <div class="block-center-right b-<{$block.weight}>">
+            <h4 data-layout="row center-justify" class="block-title">
+                <{if $xoops_isadmin}>
+                <{$block.title}>
+                <{include file="$xoops_theme/component/_inc_block_edit.html"}>
+                <{else}>
+                <{if ! $block.title|strstr:"none"}><{$block.title}><{/if}>
+                <{/if}>
+            </h4>
+            <div class="block-content"><{$block.content}></div>
+        </div>
+        <{/if}>
+        <{/foreach}>
+    </div>
+</div>
+</section>
+<{/if}>
+
+<{* Scroll to top *}>
+<div class="scroll-top">
+    <a href="#" aria-label="Scroll to top">
+        <svg width="48px" height="48px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path id="ntop-bg" d="M0 0h48v48h-48z"></path>
+            <path id="ntop-arrow" d="M14.83 30.83l9.17-9.17 9.17 9.17 2.83-2.83-12-12-12 12z"></path>
+        </svg>
+    </a>
+</div>
+
+<!--<section aria-label="Subscribe example">
+    <div class="container">
+        <article>
+            <hgroup>
+                <h2>Subscribe</h2>
+                <h3>Litora torquent per conubia nostra</h3>
+            </hgroup>
+            <form class="grid-3">
+                <input type="text" id="firstname" name="firstname" placeholder="First name" aria-label="First name" required>
+                <input type="email" id="email" name="email" placeholder="Email address" aria-label="Email address" required>
+                <button type="submit" onclick="event.preventDefault()">Subscribe</button>
+            </form>
+        </article>
+    </div>
+</section>-->
+
+<{* FOOTER CREDITS *}>
+<footer class="container">
+    <small>Theme by Nuno Luciano <a href="https://github.com/gigamaster" target="_blank" rel="noopener">@gigamaster</a> Built with <a href="https://picocss.com" target="_blank" rel="noopener nofollow">Pico CSS</a> • <a href="https://github.com/picocss/examples/tree/master/company/">Source code</a></small><br>
+    <small><{$xoops_footer}> | <a href="https://github.com/xoopscube/documentation">Documentation</a></small>
+</footer>
+
+<{if $xoops_isadmin}>
+<{include file="$xoops_theme/component/admin-panel.html"}>
+<{/if}>
+
+<{* ---------- Common JavaScript *}>
+<script src="<{$xoops_url}>/common/js/x-utils.js"></script>
+<{* ---------- Theme Plugins *}>
+<script defer src="<{$xoops_imageurl}>js/plugins.js"></script>
+<script src="<{$xoops_imageurl}>js/minimal-theme-switcher.js"></script>
+
+</body>
+
+</html>

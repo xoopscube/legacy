@@ -1,6 +1,6 @@
 <?php
 
-define( '_MI_MESSAGE_NAME' , 'Private Message');
+define( '_MI_MESSAGE_NAME' , 'Message');
 define( '_MI_MESSAGE_DESC' , 'This module provides Private Message functionality.');
 define( '_MI_MESSAGE_SUB_NEW' , 'Compose Message');
 define( '_MI_MESSAGE_SUB_SEND' , 'Sent Box');

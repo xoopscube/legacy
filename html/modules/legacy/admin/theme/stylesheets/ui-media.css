@@ -212,6 +212,6 @@
 /* device 1440px */
 @media screen and (min-width:88em) {
     #container > main {
-        max-width               : calc(94vw - 360px);
+        max-width               : calc(84vw - 360px);
     }
 }

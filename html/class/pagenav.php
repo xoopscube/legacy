@@ -35,7 +35,7 @@ class XoopsPageNav
      **/
     public function __construct($total_items, $items_perpage, $current_start, $start_name= 'start', $extra_arg= '')
     {
-        $this->total = (int)$total_items;
+        $this->total   = (int)$total_items;
         $this->perpage = (int)$items_perpage;
         $this->current = (int)$current_start;
         if ('' !== $extra_arg && ('&amp;' !== substr($extra_arg, -5) || '&' !== substr($extra_arg, -1))) {
@@ -62,30 +62,32 @@ class XoopsPageNav
         }
         $total_pages = ceil($this->total / $this->perpage);
         if ($total_pages > 1) {
+            $ret .= '<ul class="pagenavi">';
             $prev = $this->current - $this->perpage;
             if ($prev >= 0) {
-                $ret .= '<a href="'.$this->url.$prev.'"><u>&laquo;</u></a> ';
+                $ret .= '<li><a href="'.$this->url.$prev.'">&laquo;</a></li>';
             }
             $counter = 1;
             $current_page = (int)floor(($this->current + $this->perpage) / $this->perpage);
             while ($counter <= $total_pages) {
                 if ($counter == $current_page) {
-                    $ret .= '<b>('.$counter.')</b> ';
+                    $ret .= '<li aria-label="page '.$counter.'" aria-current="page"><b>'.$counter.'</b></li>';
                 } elseif (($counter > $current_page-$offset && $counter < $current_page + $offset) || 1 == $counter || $counter == $total_pages) {
                     if ($counter == $total_pages && $current_page < $total_pages - $offset) {
-                        $ret .= '... ';
+                        $ret .= '<li>...</li>';
                     }
-                    $ret .= '<a href="'.$this->url.(($counter - 1) * $this->perpage).'">'.$counter.'</a> ';
+                    $ret .= '<li><a href="'.$this->url.(($counter - 1) * $this->perpage).'">'.$counter.'</a></li>';
                     if (1 == $counter && $current_page > 1 + $offset) {
-                        $ret .= '... ';
+                        $ret .= '<li>...</li>';
                     }
                 }
                 $counter++;
             }
             $next = $this->current + $this->perpage;
             if ($this->total > $next) {
-                $ret .= '<a href="'.$this->url.$next.'"><u>&raquo;</u></a> ';
+                $ret .= '<li><a href="'.$this->url.$next.'"><u>&raquo;</u></a></li>';
             }
+            $ret .= '</ul>';
         }
         return $ret;
     }

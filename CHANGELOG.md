@@ -6,11 +6,64 @@ All notable changes to this project will be documented in this file.
 
 #### Git Repository  
 
+Refer please to repository Legacy Commits  
 
-## [2.3.1] 2022-10-22  
+## [2.3.1] 2022-11-21
 
-Refer please to [Branch Legacy 2.3 Commits ](https://github.com/xoopscube/legacy/commits/2.3)
+### Added 
+- Theme PicoCSS 
+- Module D3Forum RSS preferences
+- Module Pico RSS preferences  
+- Modules language constants
+- Upload folders for modules  
+- Wrap content sample  
 
+### Changed
+- Core Modules templates
+- Default Theme
+- Helper Override preferences
+- Notification  
+- Pagenavi (class)
+- Pagenavi Accessible aria-current  
+- Plugin Smarty function pagenavi
+- Private Message tabs 
+- Private Message dynamic dropdown menu
+- Private Message forward to email
+- Revision history (content items)
+- Sitemap Message
+- Sitemap control to edit
+- Smarty truncate subject
+- Tree (CSS) Posts and Topics
+- X-Update library path 
+- X-Update Manager Help SSL  
+  check Disable SSL certificate   
+  if certificate expired
+
+### Fixed
+- Admin theme color mode
+- Admin color active elements 
+- Admin dashboard
+- CKEditor revert icons css 
+- Icons SVG ( cleanup )
+- Install typo chmod
+- Footer credits
+- Mailer::$LE
+- Theme Prototype Dark mode
+- Turn all topics solved (icon)
+- Textarea size overflow 
+
+### Removed
+- Bootstrap Framework  
+
+### Update
+- HTMLPurifier
+- PEAR (library path)
+
+## [2.3.1] 2022-10-22 
+
+Refer to XCL Legacy 2.3 Commits  
+Note: Actually theGitHub branch  
+is not accessible.     
 
 ## [2.3] 2022-04-10  
 

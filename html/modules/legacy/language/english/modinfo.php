@@ -35,5 +35,5 @@ define( '_MI_LEGACY_MENU_PREFERENCE' , 'Preferences');
 define( '_MI_LEGACY_MENU_SMILES_MANAGE' , 'Smilies Management');
 define( '_MI_LEGACY_MENU_THEME_MANAGE' , 'Theme Management');
 define( '_MI_LEGACY_MENU_XOOPS_CONFIG' , 'Preferences');
-define( '_MI_LEGACY_NAME' , 'Settings');
+define( '_MI_LEGACY_NAME' , 'System');
 define( '_MI_LEGACY_NAME_DESC' , 'XOOPSCube Core system module provides management and support for XOOPS2, D3 modules and Cube services.');

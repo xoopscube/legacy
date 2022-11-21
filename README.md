@@ -1,91 +1,40 @@
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/2.0.0/active.svg)](https://github.com/xoopscube/legacy)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/2.0.0/active.svg)](https://github.com/xoopscube/xcl)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 ![X-Updare Store](https://img.shields.io/badge/X--Update%20Store-Pending-red)
 
 
-# XOOPSCUBE - Simple, Secure and Scalable
+# XCL XOOPSCUBE LEGACY 
+## Simple, Secure and Scalable
+### Web Application Platform
 
-## Web Application Platform
+## Overview
 
-## Self-host  
+### Simple
+XOOPSCube Legacy (XCL) is a free and open-source Web Application Platform (WAP) empowering you to build, manage and deploy scalable web applications, custom Content Management System (CMS), forums, community discussion board and knowledge management systems, or multiple blogs (e.g. WordPress). The XCL bundle package is designed for easy usage and to benefit from the performance of XCube Core and the most popular web server stack: Apache, MySQL and PHP.
 
-XOOPSCube is a self-hosted open source application that runs on the most popular web server stack - Apache, MySQL, PHP. Self-hosted platforms are decentralized, allow for superior accessibility for customizing functions and style, which means you are not dependent on a centralized service and are free to choose your hosting service. This allows for extreme mobility when your number of users increase.
+### Secure
+XCube Core (©2005-2022 Minahito, BSD) is secure by design, in software engineering, means that software products and capabilities have been designed to be foundationally secure. However, the module Protector (©peak.ne.jp, GPL) is installed to provide an extra layer of security to the subsystem Legacy (©XOOPSCube, GPL) — which provides backward and forward compatibility with older systems and new modules or frameworks.
 
+### Scalable
+Scaling a web application means allowing more people to use the application and being able to meet increasing demand, without changing the code, data or your trusted system. You can deploy additional infrastructure and offload functions, including SSL/TLS termination, cloud storage, static content delivery and server-side rendering, that would otherwise overload your application server.
 
-<img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl-installer-wizard.jpg" alt="XOOPSCube Installation Wizard">
+### Self-hosting
+Self-hosted platforms are decentralized, allow for superior accessibility, customization of features and style, which means you are not dependent on a centralized service and are also free to choose your hosting service as the number of users grows. You have full control over your own data and services, rather than depending on expensive third-party services (cloud, saas).
 
----
+## Get Started
+This guide focuses on the user-friendly Web installation wizard !
 
-<h2 align="center">
-??✨??
-<br>
-The XOOPSCube Project
-<br>
- /////———————————————\\\\\
-<br>
- Celebrates The 20th Anniversary 
-<br>
-\\\\\———————————————/////
-<br>
-2002 — 2022
-<br>
-....................
-<br>
-</h2>
-<p align="center">Open Source Software can be freely used, changed, and shared (in modified or unmodified form) by anyone!</p>
+[<img alt="Wizard Installation" width="100%" src=https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl-installer-wizard.jpg" />](https://xoopscube.github.io/legacy/)
 
-                First developed nearly 20 years ago, the original XOOPS was based on PHPNuke forks,  
-                although about 70 to 80% of the code was rewritten, as Kazumi Ono (onokazu) wrote on  
-                the release announcement. Goghs Cheng (goghs) and Kazumi Ono (onokazu) used "OOPS",  
-                an acronym that stands for "Object-Oriented Portal System".  
-                - Xoops.org was launched on December 12, 2001. 
-                - A few weeks later, on New Year's Day 2002, XOOPS RC1 was released. 
-                - And the next year, in April 2003, XOOPS2 was released by Kazumi Ono 
-                - Finally, in May 2005, Onokazu announced the development of XOOPSCube.  
-                The XOOSCube Project developoment was lead by Kazuhisa Minato (minahito)
-                and the core team members Nobunobu, Onokazu, Tom_G3X, Ryuji, Kilica.
-                The new core was enriched with C++ features, object-oriented programming, 
-                following concept of oops like polymorphism, inheritance, encapsulation, 
-                abstraction. The Japanese XOOPS community contributed to the development 
-                of the Package Legacy, a set of modules to ensure backward compatibility.
-
-- [XOOPS2 released by Kazumi Ono](https://xoops.org/modules/news/article.php?storyid=747)
-- [XOOPS: Onokazu is one of Most Valued People of Open Source CMS](https://xoops.org/modules/news/article.php?storyid=4508)
-
------
-
-
-
-## Compatibility mode
-
-XOOPSCube Legacy compatibility mode features a mechanism in which the XOOPSCube Web Application Platform emulates the older version, and mimics the XOOPS2 content management system in order to allow older or incompatible modules and themes to remain compatible with the newer software architecture. 
-
-## Backward compatibility  
-
-Legacy backward compatibility is a property of XOOPSCube that allows for interoperability with the older XOOPS2 system.  
-It refers to the ability of newer versions of XOOPSCube to run modules or themes that worked under the previous version.
-
-## Minimalist software
-  
-In computing, minimalism refers to the application of minimalist philosophies and principles in the design and use of hardware and software. Minimalism, in this sense, means designing systems that use the least hardware and software resources possible.  
-
------
-
-About
 ====
+   
 
-**XOOPSCube** is an Open Source Web Application Platform built with PHP and MySQL empowering webmasters to make a custom content management system and create dynamic and content rich websites with ease.
+### [The XOOPSCube Project Celebrates The 20th Anniversary](https://github.com/xoopscube/legacy/blob/master/XOOPSCube-20th-Anniversary.md)
 
-**XOOPSCube Legacy** is a Simple, Secure and Scalable content management system and the package distribution of The XOOPSCube Project Team.
+ 
 
-**The XOOPSCube Project** is friendly managed, developed and supported by a volunteer group with a multidisciplinary focus to provide a variety of different perspectives and ideas to consider in further development and design. XCL Team spirit  aims to strengthen everyone's social network, share the essential knowledge and understanding of the “spirit of open source” necessary to encourage creativity.
-
-
-***
-
-License
-====
+## License
 
 ### XOOPSCube - XCube Core  
 
